@@ -2,6 +2,10 @@ const Paginator = require("../../common/Paginator");
 const { FDKClientValidationError } = require("../../common/FDKError");
 const PlatformAPIClient = require("../PlatformAPIClient");
 const CommunicationValidator = require("./CommunicationPlatformValidator");
+const CommunicationModel = require("./CommunicationPlatformModel");
+const { Logger } = require("./../../common/Logger");
+const Joi = require("joi");
+
 class Communication {
   constructor(config) {
     this.config = config;
@@ -11,10 +15,11 @@ class Communication {
    * @param {Object} arg - Arg object.
    * @param {number} [arg.pageNo] -
    * @param {number} [arg.pageSize] -
+   * @returns {Promise<SystemNotifications>} - Success response
    * @summary: Get system notifications
    * @description: Get system notifications
    */
-  getSystemNotifications({ pageNo, pageSize } = {}) {
+  async getSystemNotifications({ pageNo, pageSize } = {}) {
     const { error } = CommunicationValidator.getSystemNotifications().validate(
       {
         pageNo,
@@ -37,8 +42,11 @@ class Communication {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for getSystemNotifications");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getSystemNotifications",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -47,7 +55,7 @@ class Communication {
 
     const xHeaders = {};
 
-    return PlatformAPIClient.execute(
+    const response = await PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/communication/v1.0/company/${this.config.companyId}/notification/system-notifications/`,
@@ -55,6 +63,23 @@ class Communication {
       undefined,
       xHeaders
     );
+
+    const {
+      error: res_error,
+    } = CommunicationModel.SystemNotifications().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getSystemNotifications",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**

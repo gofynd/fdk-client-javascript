@@ -6,13 +6,14 @@ declare class Communication {
      * @param {Object} arg - Arg object.
      * @param {number} [arg.pageNo] -
      * @param {number} [arg.pageSize] -
+     * @returns {Promise<SystemNotifications>} - Success response
      * @summary: Get system notifications
      * @description: Get system notifications
      */
     getSystemNotifications({ pageNo, pageSize }?: {
         pageNo?: number;
         pageSize?: number;
-    }): Promise<any>;
+    }): Promise<SystemNotifications>;
     /**
      * @param {Object} arg - Arg object.
      * @param {number} [arg.pageSize] -

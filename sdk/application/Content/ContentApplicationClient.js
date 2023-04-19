@@ -3,6 +3,9 @@ const constructUrl = require("../constructUrl");
 const Paginator = require("../../common/Paginator");
 const { FDKClientValidationError } = require("../../common/FDKError");
 const ContentValidator = require("./ContentApplicationValidator");
+const ContentModel = require("./ContentApplicationModel");
+const { Logger } = require("./../../common/Logger");
+const Joi = require("joi");
 
 class Content {
   constructor(_conf) {
@@ -12,23 +15,23 @@ class Content {
       getBlog: "/service/application/content/v1.0/blogs/{slug}",
       getBlogs: "/service/application/content/v1.0/blogs/",
       getDataLoaders: "/service/application/content/v1.0/data-loader",
-      getFaqs: "/service/application/content/v1.0/faq",
-      getFaqCategories: "/service/application/content/v1.0/faq/categories",
       getFaqBySlug: "/service/application/content/v1.0/faq/{slug}",
+      getFaqCategories: "/service/application/content/v1.0/faq/categories",
       getFaqCategoryBySlug:
         "/service/application/content/v1.0/faq/category/{slug}",
+      getFaqs: "/service/application/content/v1.0/faq",
       getFaqsByCategorySlug:
         "/service/application/content/v1.0/faq/category/{slug}/faqs",
       getLandingPage: "/service/application/content/v1.0/landing-page",
       getLegalInformation: "/service/application/content/v1.0/legal",
       getNavigations: "/service/application/content/v1.0/navigations/",
-      getSEOConfiguration: "/service/application/content/v1.0/seo",
-      getSlideshows: "/service/application/content/v1.0/slideshow/",
-      getSlideshow: "/service/application/content/v1.0/slideshow/{slug}",
-      getSupportInformation: "/service/application/content/v1.0/support",
-      getTags: "/service/application/content/v1.0/tags",
       getPage: "/service/application/content/v2.0/pages/{slug}",
       getPages: "/service/application/content/v2.0/pages/",
+      getSEOConfiguration: "/service/application/content/v1.0/seo",
+      getSlideshow: "/service/application/content/v1.0/slideshow/{slug}",
+      getSlideshows: "/service/application/content/v1.0/slideshow/",
+      getSupportInformation: "/service/application/content/v1.0/support",
+      getTags: "/service/application/content/v1.0/tags",
     };
     this._urls = Object.entries(this._relativeUrls).reduce(
       (urls, [method, relativeUrl]) => {
@@ -52,7 +55,7 @@ class Content {
    * @summary: Get live announcements
    * @description: Announcements are useful to highlight a message or information on top of a webpage. Use this API to retrieve live announcements. Get announcements on individual pages or for all pages.
    */
-  getAnnouncements({} = {}) {
+  async getAnnouncements({} = {}) {
     const { error } = ContentValidator.getAnnouncements().validate(
       {},
       { abortEarly: false, allowUnknown: true }
@@ -67,15 +70,18 @@ class Content {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for getAnnouncements");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getAnnouncements",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
 
     const xHeaders = {};
 
-    return APIClient.execute(
+    const response = await APIClient.execute(
       this._conf,
       "get",
       constructUrl({
@@ -86,6 +92,23 @@ class Content {
       undefined,
       xHeaders
     );
+
+    const {
+      error: res_error,
+    } = ContentModel.AnnouncementsResponseSchema().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getAnnouncements",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
@@ -98,7 +121,7 @@ class Content {
    * @summary: Get a blog
    * @description: Use this API to get the details of a blog using its slug. Details include the title, reading time, publish status, feature image, tags, author, etc.
    */
-  getBlog({ slug, rootId } = {}) {
+  async getBlog({ slug, rootId } = {}) {
     const { error } = ContentValidator.getBlog().validate(
       { slug, rootId },
       { abortEarly: false, allowUnknown: true }
@@ -113,8 +136,11 @@ class Content {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for getBlog");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getBlog",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -122,7 +148,7 @@ class Content {
 
     const xHeaders = {};
 
-    return APIClient.execute(
+    const response = await APIClient.execute(
       this._conf,
       "get",
       constructUrl({
@@ -133,6 +159,21 @@ class Content {
       undefined,
       xHeaders
     );
+
+    const { error: res_error } = ContentModel.BlogSchema().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getBlog",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
@@ -144,7 +185,7 @@ class Content {
    * @summary: Get a list of blogs
    * @description: Use this API to get all the blogs.
    */
-  getBlogs({ pageNo, pageSize } = {}) {
+  async getBlogs({ pageNo, pageSize } = {}) {
     const { error } = ContentValidator.getBlogs().validate(
       { pageNo, pageSize },
       { abortEarly: false, allowUnknown: true }
@@ -159,8 +200,11 @@ class Content {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for getBlogs");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getBlogs",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -169,7 +213,7 @@ class Content {
 
     const xHeaders = {};
 
-    return APIClient.execute(
+    const response = await APIClient.execute(
       this._conf,
       "get",
       constructUrl({
@@ -180,6 +224,23 @@ class Content {
       undefined,
       xHeaders
     );
+
+    const {
+      error: res_error,
+    } = ContentModel.BlogGetResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getBlogs",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
@@ -214,7 +275,7 @@ class Content {
    * @summary: Get the data loaders associated with an application
    * @description: Use this API to get all selected data loaders of the application in the form of tags.
    */
-  getDataLoaders({} = {}) {
+  async getDataLoaders({} = {}) {
     const { error } = ContentValidator.getDataLoaders().validate(
       {},
       { abortEarly: false, allowUnknown: true }
@@ -229,15 +290,18 @@ class Content {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for getDataLoaders");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getDataLoaders",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
 
     const xHeaders = {};
 
-    return APIClient.execute(
+    const response = await APIClient.execute(
       this._conf,
       "get",
       constructUrl({
@@ -248,90 +312,23 @@ class Content {
       undefined,
       xHeaders
     );
-  }
 
-  /**
-   * @param {Object} arg - Arg object.
-   * @returns {Promise<FaqResponseSchema>} - Success response
-   * @summary: Get a list of FAQs
-   * @description: Use this API to get a list of frequently asked questions. Users will benefit from it when facing any issue with the website.
-   */
-  getFaqs({} = {}) {
-    const { error } = ContentValidator.getFaqs().validate(
-      {},
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
+    const {
+      error: res_error,
+    } = ContentModel.DataLoadersSchema().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getDataLoaders",
+      });
+      Logger({ level: "WARN", message: res_error });
     }
 
-    // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = ContentValidator.getFaqs().validate(
-      {},
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      console.log("Parameter Validation warrnings for getFaqs");
-      console.log(warrning);
-    }
-
-    const query_params = {};
-
-    const xHeaders = {};
-
-    return APIClient.execute(
-      this._conf,
-      "get",
-      constructUrl({
-        url: this._urls["getFaqs"],
-        params: {},
-      }),
-      query_params,
-      undefined,
-      xHeaders
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @returns {Promise<GetFaqCategoriesSchema>} - Success response
-   * @summary: Get a list of FAQ categories
-   * @description: FAQs can be divided into categories. Use this API to get a list of FAQ categories.
-   */
-  getFaqCategories({} = {}) {
-    const { error } = ContentValidator.getFaqCategories().validate(
-      {},
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = ContentValidator.getFaqCategories().validate(
-      {},
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      console.log("Parameter Validation warrnings for getFaqCategories");
-      console.log(warrning);
-    }
-
-    const query_params = {};
-
-    const xHeaders = {};
-
-    return APIClient.execute(
-      this._conf,
-      "get",
-      constructUrl({
-        url: this._urls["getFaqCategories"],
-        params: {},
-      }),
-      query_params,
-      undefined,
-      xHeaders
-    );
+    return response;
   }
 
   /**
@@ -343,7 +340,7 @@ class Content {
    * @summary: Get an FAQ
    * @description: Use this API to get a particular FAQ by its slug.
    */
-  getFaqBySlug({ slug } = {}) {
+  async getFaqBySlug({ slug } = {}) {
     const { error } = ContentValidator.getFaqBySlug().validate(
       { slug },
       { abortEarly: false, allowUnknown: true }
@@ -358,15 +355,18 @@ class Content {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for getFaqBySlug");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getFaqBySlug",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
 
     const xHeaders = {};
 
-    return APIClient.execute(
+    const response = await APIClient.execute(
       this._conf,
       "get",
       constructUrl({
@@ -377,6 +377,83 @@ class Content {
       undefined,
       xHeaders
     );
+
+    const { error: res_error } = ContentModel.FaqSchema().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getFaqBySlug",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @returns {Promise<GetFaqCategoriesSchema>} - Success response
+   * @summary: Get a list of FAQ categories
+   * @description: FAQs can be divided into categories. Use this API to get a list of FAQ categories.
+   */
+  async getFaqCategories({} = {}) {
+    const { error } = ContentValidator.getFaqCategories().validate(
+      {},
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = ContentValidator.getFaqCategories().validate(
+      {},
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getFaqCategories",
+      });
+      Logger({ level: "WARN", message: warrning });
+    }
+
+    const query_params = {};
+
+    const xHeaders = {};
+
+    const response = await APIClient.execute(
+      this._conf,
+      "get",
+      constructUrl({
+        url: this._urls["getFaqCategories"],
+        params: {},
+      }),
+      query_params,
+      undefined,
+      xHeaders
+    );
+
+    const {
+      error: res_error,
+    } = ContentModel.GetFaqCategoriesSchema().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getFaqCategories",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
@@ -388,7 +465,7 @@ class Content {
    * @summary: Get the FAQ category
    * @description: FAQs can be divided into categories. Use this API to get the category to which an FAQ belongs.
    */
-  getFaqCategoryBySlug({ slug } = {}) {
+  async getFaqCategoryBySlug({ slug } = {}) {
     const { error } = ContentValidator.getFaqCategoryBySlug().validate(
       { slug },
       { abortEarly: false, allowUnknown: true }
@@ -405,15 +482,18 @@ class Content {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for getFaqCategoryBySlug");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getFaqCategoryBySlug",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
 
     const xHeaders = {};
 
-    return APIClient.execute(
+    const response = await APIClient.execute(
       this._conf,
       "get",
       constructUrl({
@@ -424,6 +504,85 @@ class Content {
       undefined,
       xHeaders
     );
+
+    const {
+      error: res_error,
+    } = ContentModel.GetFaqCategoryBySlugSchema().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getFaqCategoryBySlug",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @returns {Promise<FaqResponseSchema>} - Success response
+   * @summary: Get a list of FAQs
+   * @description: Use this API to get a list of frequently asked questions. Users will benefit from it when facing any issue with the website.
+   */
+  async getFaqs({} = {}) {
+    const { error } = ContentValidator.getFaqs().validate(
+      {},
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = ContentValidator.getFaqs().validate(
+      {},
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getFaqs",
+      });
+      Logger({ level: "WARN", message: warrning });
+    }
+
+    const query_params = {};
+
+    const xHeaders = {};
+
+    const response = await APIClient.execute(
+      this._conf,
+      "get",
+      constructUrl({
+        url: this._urls["getFaqs"],
+        params: {},
+      }),
+      query_params,
+      undefined,
+      xHeaders
+    );
+
+    const {
+      error: res_error,
+    } = ContentModel.FaqResponseSchema().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getFaqs",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
@@ -435,7 +594,7 @@ class Content {
    * @summary: Get FAQs using the slug of FAQ category
    * @description: FAQs can be divided into categories. Use this API to get all the FAQs belonging to a category by using the category slug.
    */
-  getFaqsByCategorySlug({ slug } = {}) {
+  async getFaqsByCategorySlug({ slug } = {}) {
     const { error } = ContentValidator.getFaqsByCategorySlug().validate(
       { slug },
       { abortEarly: false, allowUnknown: true }
@@ -452,15 +611,18 @@ class Content {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for getFaqsByCategorySlug");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getFaqsByCategorySlug",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
 
     const xHeaders = {};
 
-    return APIClient.execute(
+    const response = await APIClient.execute(
       this._conf,
       "get",
       constructUrl({
@@ -471,6 +633,21 @@ class Content {
       undefined,
       xHeaders
     );
+
+    const { error: res_error } = ContentModel.GetFaqSchema().validate(
+      response,
+      { abortEarly: false, allowUnknown: false }
+    );
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getFaqsByCategorySlug",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
@@ -479,7 +656,7 @@ class Content {
    * @summary: Get the landing page
    * @description: Landing page is the first page that a prospect lands upon while visiting a website. Use this API to fetch the details of a landing page.
    */
-  getLandingPage({} = {}) {
+  async getLandingPage({} = {}) {
     const { error } = ContentValidator.getLandingPage().validate(
       {},
       { abortEarly: false, allowUnknown: true }
@@ -494,15 +671,18 @@ class Content {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for getLandingPage");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getLandingPage",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
 
     const xHeaders = {};
 
-    return APIClient.execute(
+    const response = await APIClient.execute(
       this._conf,
       "get",
       constructUrl({
@@ -513,6 +693,23 @@ class Content {
       undefined,
       xHeaders
     );
+
+    const {
+      error: res_error,
+    } = ContentModel.LandingPageSchema().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getLandingPage",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
@@ -521,7 +718,7 @@ class Content {
    * @summary: Get legal information
    * @description: Use this API to get the legal information of an application, which includes Privacy Policy, Terms and Conditions, Shipping Policy and FAQs regarding the usage of the application.
    */
-  getLegalInformation({} = {}) {
+  async getLegalInformation({} = {}) {
     const { error } = ContentValidator.getLegalInformation().validate(
       {},
       { abortEarly: false, allowUnknown: true }
@@ -536,15 +733,18 @@ class Content {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for getLegalInformation");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getLegalInformation",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
 
     const xHeaders = {};
 
-    return APIClient.execute(
+    const response = await APIClient.execute(
       this._conf,
       "get",
       constructUrl({
@@ -555,6 +755,23 @@ class Content {
       undefined,
       xHeaders
     );
+
+    const {
+      error: res_error,
+    } = ContentModel.ApplicationLegal().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getLegalInformation",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
@@ -566,7 +783,7 @@ class Content {
    * @summary: Get the navigation
    * @description: Use this API to fetch the navigations details which includes the items of the navigation pane. It also shows the links and sub-navigations.
    */
-  getNavigations({ pageNo, pageSize } = {}) {
+  async getNavigations({ pageNo, pageSize } = {}) {
     const { error } = ContentValidator.getNavigations().validate(
       { pageNo, pageSize },
       { abortEarly: false, allowUnknown: true }
@@ -581,8 +798,11 @@ class Content {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for getNavigations");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getNavigations",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -591,7 +811,7 @@ class Content {
 
     const xHeaders = {};
 
-    return APIClient.execute(
+    const response = await APIClient.execute(
       this._conf,
       "get",
       constructUrl({
@@ -602,6 +822,23 @@ class Content {
       undefined,
       xHeaders
     );
+
+    const {
+      error: res_error,
+    } = ContentModel.NavigationGetResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getNavigations",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
@@ -632,11 +869,169 @@ class Content {
 
   /**
    * @param {Object} arg - Arg object.
+   * @param {string} arg.slug - A short, human-readable, URL-friendly
+   *   identifier of a page. You can get slug value from the endpoint
+   *   /service/application/content/v2.0/pages/.
+   * @param {string} [arg.rootId] - ID given to the HTML element
+   * @returns {Promise<PageSchema>} - Success response
+   * @summary: Get a page
+   * @description: Use this API to get the details of a page using its slug. Details include the title, seo, publish status, feature image, tags, meta, etc.
+   */
+  async getPage({ slug, rootId } = {}) {
+    const { error } = ContentValidator.getPage().validate(
+      { slug, rootId },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = ContentValidator.getPage().validate(
+      { slug, rootId },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getPage",
+      });
+      Logger({ level: "WARN", message: warrning });
+    }
+
+    const query_params = {};
+    query_params["root_id"] = rootId;
+
+    const xHeaders = {};
+
+    const response = await APIClient.execute(
+      this._conf,
+      "get",
+      constructUrl({
+        url: this._urls["getPage"],
+        params: { slug },
+      }),
+      query_params,
+      undefined,
+      xHeaders
+    );
+
+    const { error: res_error } = ContentModel.PageSchema().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getPage",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {number} [arg.pageNo] - The page number to navigate through the
+   *   given set of results. Default value is 1.
+   * @param {number} [arg.pageSize] - The number of items to retrieve in each page.
+   * @returns {Promise<PageGetResponse>} - Success response
+   * @summary: Get all pages
+   * @description: Use this API to get a list of pages.
+   */
+  async getPages({ pageNo, pageSize } = {}) {
+    const { error } = ContentValidator.getPages().validate(
+      { pageNo, pageSize },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = ContentValidator.getPages().validate(
+      { pageNo, pageSize },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getPages",
+      });
+      Logger({ level: "WARN", message: warrning });
+    }
+
+    const query_params = {};
+    query_params["page_no"] = pageNo;
+    query_params["page_size"] = pageSize;
+
+    const xHeaders = {};
+
+    const response = await APIClient.execute(
+      this._conf,
+      "get",
+      constructUrl({
+        url: this._urls["getPages"],
+        params: {},
+      }),
+      query_params,
+      undefined,
+      xHeaders
+    );
+
+    const {
+      error: res_error,
+    } = ContentModel.PageGetResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getPages",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {number} [arg.pageSize] - The number of items to retrieve in each page.
+   * @summary: Get all pages
+   * @description: Use this API to get a list of pages.
+   */
+  getPagesPaginator({ pageSize } = {}) {
+    const paginator = new Paginator();
+    const callback = async () => {
+      const pageId = paginator.nextId;
+      const pageNo = paginator.pageNo;
+      const pageType = "number";
+      const data = await this.getPages({
+        pageNo: pageNo,
+        pageSize: pageSize,
+      });
+      paginator.setPaginator({
+        hasNext: data.page.has_next ? true : false,
+        nextId: data.page.next_id,
+      });
+      return data;
+    };
+    paginator.setCallback(callback);
+    return paginator;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
    * @returns {Promise<SeoComponent>} - Success response
    * @summary: Get the SEO of an application
    * @description: Use this API to get the SEO details of an application, which includes a robot.txt, meta-tags and sitemap.
    */
-  getSEOConfiguration({} = {}) {
+  async getSEOConfiguration({} = {}) {
     const { error } = ContentValidator.getSEOConfiguration().validate(
       {},
       { abortEarly: false, allowUnknown: true }
@@ -651,15 +1046,18 @@ class Content {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for getSEOConfiguration");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getSEOConfiguration",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
 
     const xHeaders = {};
 
-    return APIClient.execute(
+    const response = await APIClient.execute(
       this._conf,
       "get",
       constructUrl({
@@ -670,6 +1068,86 @@ class Content {
       undefined,
       xHeaders
     );
+
+    const { error: res_error } = ContentModel.SeoComponent().validate(
+      response,
+      { abortEarly: false, allowUnknown: false }
+    );
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getSEOConfiguration",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.slug - A short, human-readable, URL-friendly
+   *   identifier of a slideshow. You can get slug value from the endpoint
+   *   /service/application/content/v1.0/slideshow/.
+   * @returns {Promise<SlideshowSchema>} - Success response
+   * @summary: Get a slideshow
+   * @description: A slideshow is a group of images, videos or a combination of both that are shown on the website in the form of slides. Use this API to fetch a slideshow using its `slug`.
+   */
+  async getSlideshow({ slug } = {}) {
+    const { error } = ContentValidator.getSlideshow().validate(
+      { slug },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = ContentValidator.getSlideshow().validate(
+      { slug },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getSlideshow",
+      });
+      Logger({ level: "WARN", message: warrning });
+    }
+
+    const query_params = {};
+
+    const xHeaders = {};
+
+    const response = await APIClient.execute(
+      this._conf,
+      "get",
+      constructUrl({
+        url: this._urls["getSlideshow"],
+        params: { slug },
+      }),
+      query_params,
+      undefined,
+      xHeaders
+    );
+
+    const {
+      error: res_error,
+    } = ContentModel.SlideshowSchema().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getSlideshow",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
@@ -681,7 +1159,7 @@ class Content {
    * @summary: Get the slideshows
    * @description: Use this API to get a list of slideshows along with their details.
    */
-  getSlideshows({ pageNo, pageSize } = {}) {
+  async getSlideshows({ pageNo, pageSize } = {}) {
     const { error } = ContentValidator.getSlideshows().validate(
       { pageNo, pageSize },
       { abortEarly: false, allowUnknown: true }
@@ -696,8 +1174,11 @@ class Content {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for getSlideshows");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getSlideshows",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -706,7 +1187,7 @@ class Content {
 
     const xHeaders = {};
 
-    return APIClient.execute(
+    const response = await APIClient.execute(
       this._conf,
       "get",
       constructUrl({
@@ -717,6 +1198,23 @@ class Content {
       undefined,
       xHeaders
     );
+
+    const {
+      error: res_error,
+    } = ContentModel.SlideshowGetResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getSlideshows",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
@@ -747,56 +1245,11 @@ class Content {
 
   /**
    * @param {Object} arg - Arg object.
-   * @param {string} arg.slug - A short, human-readable, URL-friendly
-   *   identifier of a slideshow. You can get slug value from the endpoint
-   *   /service/application/content/v1.0/slideshow/.
-   * @returns {Promise<SlideshowSchema>} - Success response
-   * @summary: Get a slideshow
-   * @description: A slideshow is a group of images, videos or a combination of both that are shown on the website in the form of slides. Use this API to fetch a slideshow using its `slug`.
-   */
-  getSlideshow({ slug } = {}) {
-    const { error } = ContentValidator.getSlideshow().validate(
-      { slug },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = ContentValidator.getSlideshow().validate(
-      { slug },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      console.log("Parameter Validation warrnings for getSlideshow");
-      console.log(warrning);
-    }
-
-    const query_params = {};
-
-    const xHeaders = {};
-
-    return APIClient.execute(
-      this._conf,
-      "get",
-      constructUrl({
-        url: this._urls["getSlideshow"],
-        params: { slug },
-      }),
-      query_params,
-      undefined,
-      xHeaders
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
    * @returns {Promise<Support>} - Success response
    * @summary: Get the support information
    * @description: Use this API to get contact details for customer support including emails and phone numbers.
    */
-  getSupportInformation({} = {}) {
+  async getSupportInformation({} = {}) {
     const { error } = ContentValidator.getSupportInformation().validate(
       {},
       { abortEarly: false, allowUnknown: true }
@@ -813,15 +1266,18 @@ class Content {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for getSupportInformation");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getSupportInformation",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
 
     const xHeaders = {};
 
-    return APIClient.execute(
+    const response = await APIClient.execute(
       this._conf,
       "get",
       constructUrl({
@@ -832,6 +1288,21 @@ class Content {
       undefined,
       xHeaders
     );
+
+    const { error: res_error } = ContentModel.Support().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getSupportInformation",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
@@ -840,7 +1311,7 @@ class Content {
    * @summary: Get the tags associated with an application
    * @description: Use this API to get all the CSS and JS injected in the application in the form of tags.
    */
-  getTags({} = {}) {
+  async getTags({} = {}) {
     const { error } = ContentValidator.getTags().validate(
       {},
       { abortEarly: false, allowUnknown: true }
@@ -855,15 +1326,18 @@ class Content {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for getTags");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getTags",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
 
     const xHeaders = {};
 
-    return APIClient.execute(
+    const response = await APIClient.execute(
       this._conf,
       "get",
       constructUrl({
@@ -874,126 +1348,21 @@ class Content {
       undefined,
       xHeaders
     );
-  }
 
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.slug - A short, human-readable, URL-friendly
-   *   identifier of a page. You can get slug value from the endpoint
-   *   /service/application/content/v2.0/pages/.
-   * @param {string} [arg.rootId] - ID given to the HTML element
-   * @returns {Promise<PageSchema>} - Success response
-   * @summary: Get a page
-   * @description: Use this API to get the details of a page using its slug. Details include the title, seo, publish status, feature image, tags, meta, etc.
-   */
-  getPage({ slug, rootId } = {}) {
-    const { error } = ContentValidator.getPage().validate(
-      { slug, rootId },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
+    const { error: res_error } = ContentModel.TagsSchema().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
 
-    // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = ContentValidator.getPage().validate(
-      { slug, rootId },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      console.log("Parameter Validation warrnings for getPage");
-      console.log(warrning);
-    }
-
-    const query_params = {};
-    query_params["root_id"] = rootId;
-
-    const xHeaders = {};
-
-    return APIClient.execute(
-      this._conf,
-      "get",
-      constructUrl({
-        url: this._urls["getPage"],
-        params: { slug },
-      }),
-      query_params,
-      undefined,
-      xHeaders
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {number} [arg.pageNo] - The page number to navigate through the
-   *   given set of results. Default value is 1.
-   * @param {number} [arg.pageSize] - The number of items to retrieve in each page.
-   * @returns {Promise<PageGetResponse>} - Success response
-   * @summary: Get all pages
-   * @description: Use this API to get a list of pages.
-   */
-  getPages({ pageNo, pageSize } = {}) {
-    const { error } = ContentValidator.getPages().validate(
-      { pageNo, pageSize },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = ContentValidator.getPages().validate(
-      { pageNo, pageSize },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      console.log("Parameter Validation warrnings for getPages");
-      console.log(warrning);
-    }
-
-    const query_params = {};
-    query_params["page_no"] = pageNo;
-    query_params["page_size"] = pageSize;
-
-    const xHeaders = {};
-
-    return APIClient.execute(
-      this._conf,
-      "get",
-      constructUrl({
-        url: this._urls["getPages"],
-        params: {},
-      }),
-      query_params,
-      undefined,
-      xHeaders
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {number} [arg.pageSize] - The number of items to retrieve in each page.
-   * @summary: Get all pages
-   * @description: Use this API to get a list of pages.
-   */
-  getPagesPaginator({ pageSize } = {}) {
-    const paginator = new Paginator();
-    const callback = async () => {
-      const pageId = paginator.nextId;
-      const pageNo = paginator.pageNo;
-      const pageType = "number";
-      const data = await this.getPages({
-        pageNo: pageNo,
-        pageSize: pageSize,
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getTags",
       });
-      paginator.setPaginator({
-        hasNext: data.page.has_next ? true : false,
-        nextId: data.page.next_id,
-      });
-      return data;
-    };
-    paginator.setCallback(callback);
-    return paginator;
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 }
 

@@ -2,12 +2,6 @@ const Joi = require("joi");
 
 const AuditTrailModel = require("./AuditTrailPlatformModel");
 class AuditTrailValidator {
-  static getAuditLogs() {
-    return Joi.object({
-      qs: Joi.string().allow("").required(),
-    }).required();
-  }
-
   static createAuditLog() {
     return Joi.object({
       body: AuditTrailModel.RequestBodyAuditLog().required(),
@@ -17,6 +11,12 @@ class AuditTrailValidator {
   static getAuditLog() {
     return Joi.object({
       id: Joi.string().allow("").required(),
+    }).required();
+  }
+
+  static getAuditLogs() {
+    return Joi.object({
+      qs: Joi.string().allow("").required(),
     }).required();
   }
 

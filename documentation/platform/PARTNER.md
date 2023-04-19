@@ -159,59 +159,53 @@ Success
 
 ### Schemas
 
- 
- 
- #### [AddProxyReq](#AddProxyReq)
+
+#### [AddProxyReq](#AddProxyReq)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | attached_path | string |  no  | Proxy path slug |
- | proxy_url | string |  no  | The external URL for which the proxy URL will be generated |
+ | attached_path | string |  no  |  |
+ | proxy_url | string |  no  |  |
+ 
 
 ---
 
-
- 
- 
- #### [AddProxyResponse](#AddProxyResponse)
+#### [AddProxyResponse](#AddProxyResponse)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | _id | string |  no  |  |
- | attached_path | string |  no  |  |
- | proxy_url | string |  no  |  |
- | company_id | string |  no  |  |
  | application_id | string |  no  |  |
- | extension_id | string |  no  |  |
+ | attached_path | string |  no  |  |
+ | company_id | string |  no  |  |
  | created_at | string |  no  |  |
+ | extension_id | string |  no  |  |
  | modified_at | string |  no  |  |
+ | proxy_url | string |  no  |  |
+ 
 
 ---
 
-
- 
- 
- #### [RemoveProxyResponse](#RemoveProxyResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | message | string |  no  |  |
- | data | string |  no  |  |
-
----
-
-
- 
- 
- #### [APIError](#APIError)
+#### [APIError](#APIError)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | code | string |  no  |  |
+ | info | string |  no  |  |
  | message | string |  no  |  |
- | info | string |  no  | Error code description link |
- | request_id | string |  no  |  |
  | meta | string |  no  |  |
+ | request_id | string |  no  |  |
+ 
+
+---
+
+#### [RemoveProxyResponse](#RemoveProxyResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | data | string |  no  |  |
+ | message | string |  no  |  |
+ 
 
 ---
 

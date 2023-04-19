@@ -2,87 +2,11 @@ const Joi = require("joi");
 const CartModel = require("./CartPlatformModel");
 
 class CartValidator {
-  static getCoupons() {
+  static addItems() {
     return Joi.object({
-      pageNo: Joi.number(),
-      pageSize: Joi.number(),
-      isArchived: Joi.boolean(),
-      title: Joi.string().allow(""),
-      isPublic: Joi.boolean(),
-      isDisplay: Joi.boolean(),
-      typeSlug: Joi.string().allow(""),
-      code: Joi.string().allow(""),
-    }).required();
-  }
-
-  static createCoupon() {
-    return Joi.object({
-      body: CartModel.CouponAdd().required(),
-    }).required();
-  }
-
-  static getCouponById() {
-    return Joi.object({
-      id: Joi.string().allow("").required(),
-    }).required();
-  }
-
-  static updateCoupon() {
-    return Joi.object({
-      id: Joi.string().allow("").required(),
-      body: CartModel.CouponUpdate().required(),
-    }).required();
-  }
-
-  static updateCouponPartially() {
-    return Joi.object({
-      id: Joi.string().allow("").required(),
-      body: CartModel.CouponPartialUpdate().required(),
-    }).required();
-  }
-
-  static getPromotions() {
-    return Joi.object({
-      pageNo: Joi.number(),
-      pageSize: Joi.number(),
-      q: Joi.string().allow(""),
-      isActive: Joi.boolean(),
-      promoGroup: Joi.string().allow(""),
-      promotionType: Joi.string().allow(""),
-      fpPanel: Joi.string().allow(""),
-      promotionId: Joi.string().allow(""),
-    }).required();
-  }
-
-  static createPromotion() {
-    return Joi.object({
-      body: CartModel.PromotionAdd().required(),
-    }).required();
-  }
-
-  static getPromotionById() {
-    return Joi.object({
-      id: Joi.string().allow("").required(),
-    }).required();
-  }
-
-  static updatePromotion() {
-    return Joi.object({
-      id: Joi.string().allow("").required(),
-      body: CartModel.PromotionUpdate().required(),
-    }).required();
-  }
-
-  static updatePromotionPartially() {
-    return Joi.object({
-      id: Joi.string().allow("").required(),
-      body: CartModel.PromotionPartialUpdate().required(),
-    }).required();
-  }
-
-  static fetchAndvalidateCartItems() {
-    return Joi.object({
-      body: CartModel.OpenapiCartDetailsRequest().required(),
+      cartId: Joi.string().allow("").required(),
+      b: Joi.boolean(),
+      body: CartModel.AddCartRequest().required(),
     }).required();
   }
 
@@ -95,6 +19,24 @@ class CartValidator {
   static checkoutCart() {
     return Joi.object({
       body: CartModel.OpenApiPlatformCheckoutReq().required(),
+    }).required();
+  }
+
+  static createCoupon() {
+    return Joi.object({
+      body: CartModel.CouponAdd().required(),
+    }).required();
+  }
+
+  static createPromotion() {
+    return Joi.object({
+      body: CartModel.PromotionAdd().required(),
+    }).required();
+  }
+
+  static fetchAndvalidateCartItems() {
+    return Joi.object({
+      body: CartModel.OpenapiCartDetailsRequest().required(),
     }).required();
   }
 
@@ -118,11 +60,41 @@ class CartValidator {
     }).required();
   }
 
-  static addItems() {
+  static getCouponById() {
     return Joi.object({
-      cartId: Joi.string().allow("").required(),
-      b: Joi.boolean(),
-      body: CartModel.AddCartRequest().required(),
+      id: Joi.string().allow("").required(),
+    }).required();
+  }
+
+  static getCoupons() {
+    return Joi.object({
+      pageNo: Joi.number(),
+      pageSize: Joi.number(),
+      isArchived: Joi.boolean(),
+      title: Joi.string().allow(""),
+      isPublic: Joi.boolean(),
+      isDisplay: Joi.boolean(),
+      typeSlug: Joi.string().allow(""),
+      code: Joi.string().allow(""),
+    }).required();
+  }
+
+  static getPromotionById() {
+    return Joi.object({
+      id: Joi.string().allow("").required(),
+    }).required();
+  }
+
+  static getPromotions() {
+    return Joi.object({
+      pageNo: Joi.number(),
+      pageSize: Joi.number(),
+      q: Joi.string().allow(""),
+      isActive: Joi.boolean(),
+      promoGroup: Joi.string().allow(""),
+      promotionType: Joi.string().allow(""),
+      fpPanel: Joi.string().allow(""),
+      promotionId: Joi.string().allow(""),
     }).required();
   }
 
@@ -131,6 +103,34 @@ class CartValidator {
       cartId: Joi.string().allow("").required(),
       b: Joi.boolean(),
       body: CartModel.UpdateCartRequest().required(),
+    }).required();
+  }
+
+  static updateCoupon() {
+    return Joi.object({
+      id: Joi.string().allow("").required(),
+      body: CartModel.CouponUpdate().required(),
+    }).required();
+  }
+
+  static updateCouponPartially() {
+    return Joi.object({
+      id: Joi.string().allow("").required(),
+      body: CartModel.CouponPartialUpdate().required(),
+    }).required();
+  }
+
+  static updatePromotion() {
+    return Joi.object({
+      id: Joi.string().allow("").required(),
+      body: CartModel.PromotionUpdate().required(),
+    }).required();
+  }
+
+  static updatePromotionPartially() {
+    return Joi.object({
+      id: Joi.string().allow("").required(),
+      body: CartModel.PromotionPartialUpdate().required(),
     }).required();
   }
 }

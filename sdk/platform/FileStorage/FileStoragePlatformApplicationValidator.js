@@ -2,14 +2,6 @@ const Joi = require("joi");
 const FileStorageModel = require("./FileStoragePlatformModel");
 
 class FileStorageValidator {
-  static appStartUpload() {
-    return Joi.object({
-      namespace: Joi.string().allow("").required(),
-
-      body: FileStorageModel.StartRequest().required(),
-    }).required();
-  }
-
   static appCompleteUpload() {
     return Joi.object({
       namespace: Joi.string().allow("").required(),
@@ -23,6 +15,14 @@ class FileStorageValidator {
       sync: Joi.boolean(),
 
       body: FileStorageModel.BulkRequest().required(),
+    }).required();
+  }
+
+  static appStartUpload() {
+    return Joi.object({
+      namespace: Joi.string().allow("").required(),
+
+      body: FileStorageModel.StartRequest().required(),
     }).required();
   }
 

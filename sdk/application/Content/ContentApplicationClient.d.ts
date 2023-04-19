@@ -7,21 +7,21 @@ declare class Content {
         getBlog: string;
         getBlogs: string;
         getDataLoaders: string;
-        getFaqs: string;
-        getFaqCategories: string;
         getFaqBySlug: string;
+        getFaqCategories: string;
         getFaqCategoryBySlug: string;
+        getFaqs: string;
         getFaqsByCategorySlug: string;
         getLandingPage: string;
         getLegalInformation: string;
         getNavigations: string;
-        getSEOConfiguration: string;
-        getSlideshows: string;
-        getSlideshow: string;
-        getSupportInformation: string;
-        getTags: string;
         getPage: string;
         getPages: string;
+        getSEOConfiguration: string;
+        getSlideshow: string;
+        getSlideshows: string;
+        getSupportInformation: string;
+        getTags: string;
     };
     _urls: {};
     updateUrls(urls: any): void;
@@ -77,20 +77,6 @@ declare class Content {
     getDataLoaders({}?: any): Promise<DataLoadersSchema>;
     /**
      * @param {Object} arg - Arg object.
-     * @returns {Promise<FaqResponseSchema>} - Success response
-     * @summary: Get a list of FAQs
-     * @description: Use this API to get a list of frequently asked questions. Users will benefit from it when facing any issue with the website.
-     */
-    getFaqs({}?: any): Promise<FaqResponseSchema>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @returns {Promise<GetFaqCategoriesSchema>} - Success response
-     * @summary: Get a list of FAQ categories
-     * @description: FAQs can be divided into categories. Use this API to get a list of FAQ categories.
-     */
-    getFaqCategories({}?: any): Promise<GetFaqCategoriesSchema>;
-    /**
-     * @param {Object} arg - Arg object.
      * @param {string} arg.slug - A short, human-readable, URL-friendly
      *   identifier of an FAQ. You can get slug value from the endpoint
      *   /service/application/content/v1.0/faq.
@@ -103,6 +89,13 @@ declare class Content {
     }): Promise<FaqSchema>;
     /**
      * @param {Object} arg - Arg object.
+     * @returns {Promise<GetFaqCategoriesSchema>} - Success response
+     * @summary: Get a list of FAQ categories
+     * @description: FAQs can be divided into categories. Use this API to get a list of FAQ categories.
+     */
+    getFaqCategories({}?: any): Promise<GetFaqCategoriesSchema>;
+    /**
+     * @param {Object} arg - Arg object.
      * @param {string} arg.slug - A short, human-readable, URL-friendly
      *   identifier of an FAQ category. You can get slug value from the endpoint
      *   /service/application/content/v1.0/faq/categories.
@@ -113,6 +106,13 @@ declare class Content {
     getFaqCategoryBySlug({ slug }?: {
         slug: string;
     }): Promise<GetFaqCategoryBySlugSchema>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @returns {Promise<FaqResponseSchema>} - Success response
+     * @summary: Get a list of FAQs
+     * @description: Use this API to get a list of frequently asked questions. Users will benefit from it when facing any issue with the website.
+     */
+    getFaqs({}?: any): Promise<FaqResponseSchema>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.slug - A short, human-readable, URL-friendly
@@ -163,61 +163,6 @@ declare class Content {
     }): Paginator;
     /**
      * @param {Object} arg - Arg object.
-     * @returns {Promise<SeoComponent>} - Success response
-     * @summary: Get the SEO of an application
-     * @description: Use this API to get the SEO details of an application, which includes a robot.txt, meta-tags and sitemap.
-     */
-    getSEOConfiguration({}?: any): Promise<SeoComponent>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {number} [arg.pageNo] - The page number to navigate through the
-     *   given set of results. Default value is 1.
-     * @param {number} [arg.pageSize] - The number of items to retrieve in each page.
-     * @returns {Promise<SlideshowGetResponse>} - Success response
-     * @summary: Get the slideshows
-     * @description: Use this API to get a list of slideshows along with their details.
-     */
-    getSlideshows({ pageNo, pageSize }?: {
-        pageNo?: number;
-        pageSize?: number;
-    }): Promise<SlideshowGetResponse>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {number} [arg.pageSize] - The number of items to retrieve in each page.
-     * @summary: Get the slideshows
-     * @description: Use this API to get a list of slideshows along with their details.
-     */
-    getSlideshowsPaginator({ pageSize }?: {
-        pageSize?: number;
-    }): Paginator;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.slug - A short, human-readable, URL-friendly
-     *   identifier of a slideshow. You can get slug value from the endpoint
-     *   /service/application/content/v1.0/slideshow/.
-     * @returns {Promise<SlideshowSchema>} - Success response
-     * @summary: Get a slideshow
-     * @description: A slideshow is a group of images, videos or a combination of both that are shown on the website in the form of slides. Use this API to fetch a slideshow using its `slug`.
-     */
-    getSlideshow({ slug }?: {
-        slug: string;
-    }): Promise<SlideshowSchema>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @returns {Promise<Support>} - Success response
-     * @summary: Get the support information
-     * @description: Use this API to get contact details for customer support including emails and phone numbers.
-     */
-    getSupportInformation({}?: any): Promise<Support>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @returns {Promise<TagsSchema>} - Success response
-     * @summary: Get the tags associated with an application
-     * @description: Use this API to get all the CSS and JS injected in the application in the form of tags.
-     */
-    getTags({}?: any): Promise<TagsSchema>;
-    /**
-     * @param {Object} arg - Arg object.
      * @param {string} arg.slug - A short, human-readable, URL-friendly
      *   identifier of a page. You can get slug value from the endpoint
      *   /service/application/content/v2.0/pages/.
@@ -252,5 +197,60 @@ declare class Content {
     getPagesPaginator({ pageSize }?: {
         pageSize?: number;
     }): Paginator;
+    /**
+     * @param {Object} arg - Arg object.
+     * @returns {Promise<SeoComponent>} - Success response
+     * @summary: Get the SEO of an application
+     * @description: Use this API to get the SEO details of an application, which includes a robot.txt, meta-tags and sitemap.
+     */
+    getSEOConfiguration({}?: any): Promise<SeoComponent>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {string} arg.slug - A short, human-readable, URL-friendly
+     *   identifier of a slideshow. You can get slug value from the endpoint
+     *   /service/application/content/v1.0/slideshow/.
+     * @returns {Promise<SlideshowSchema>} - Success response
+     * @summary: Get a slideshow
+     * @description: A slideshow is a group of images, videos or a combination of both that are shown on the website in the form of slides. Use this API to fetch a slideshow using its `slug`.
+     */
+    getSlideshow({ slug }?: {
+        slug: string;
+    }): Promise<SlideshowSchema>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {number} [arg.pageNo] - The page number to navigate through the
+     *   given set of results. Default value is 1.
+     * @param {number} [arg.pageSize] - The number of items to retrieve in each page.
+     * @returns {Promise<SlideshowGetResponse>} - Success response
+     * @summary: Get the slideshows
+     * @description: Use this API to get a list of slideshows along with their details.
+     */
+    getSlideshows({ pageNo, pageSize }?: {
+        pageNo?: number;
+        pageSize?: number;
+    }): Promise<SlideshowGetResponse>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {number} [arg.pageSize] - The number of items to retrieve in each page.
+     * @summary: Get the slideshows
+     * @description: Use this API to get a list of slideshows along with their details.
+     */
+    getSlideshowsPaginator({ pageSize }?: {
+        pageSize?: number;
+    }): Paginator;
+    /**
+     * @param {Object} arg - Arg object.
+     * @returns {Promise<Support>} - Success response
+     * @summary: Get the support information
+     * @description: Use this API to get contact details for customer support including emails and phone numbers.
+     */
+    getSupportInformation({}?: any): Promise<Support>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @returns {Promise<TagsSchema>} - Success response
+     * @summary: Get the tags associated with an application
+     * @description: Use this API to get all the CSS and JS injected in the application in the form of tags.
+     */
+    getTags({}?: any): Promise<TagsSchema>;
 }
 import Paginator = require("../../common/Paginator");

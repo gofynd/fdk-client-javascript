@@ -8,43 +8,45 @@
 ## Payment Methods
 Collect payment through many payment gateway i.e Stripe, Razorpay, Juspay etc.into Fynd or Self account
 
-* [getAggregatorsConfig](#getaggregatorsconfig)
-* [attachCardToCustomer](#attachcardtocustomer)
-* [getActiveCardAggregator](#getactivecardaggregator)
-* [getActiveUserCards](#getactiveusercards)
-* [deleteUserCard](#deleteusercard)
-* [verifyCustomerForPayment](#verifycustomerforpayment)
-* [verifyAndChargePayment](#verifyandchargepayment)
-* [initialisePayment](#initialisepayment)
-* [checkAndUpdatePaymentStatus](#checkandupdatepaymentstatus)
-* [getPaymentModeRoutes](#getpaymentmoderoutes)
-* [getPosPaymentModeRoutes](#getpospaymentmoderoutes)
-* [getRupifiBannerDetails](#getrupifibannerdetails)
-* [getEpaylaterBannerDetails](#getepaylaterbannerdetails)
-* [resendOrCancelPayment](#resendorcancelpayment)
-* [getActiveRefundTransferModes](#getactiverefundtransfermodes)
-* [enableOrDisableRefundTransferMode](#enableordisablerefundtransfermode)
-* [getUserBeneficiariesDetail](#getuserbeneficiariesdetail)
-* [verifyIfscCode](#verifyifsccode)
-* [getOrderBeneficiariesDetail](#getorderbeneficiariesdetail)
-* [verifyOtpAndAddBeneficiaryForBank](#verifyotpandaddbeneficiaryforbank)
 * [addBeneficiaryDetails](#addbeneficiarydetails)
 * [addRefundBankAccountUsingOTP](#addrefundbankaccountusingotp)
-* [verifyOtpAndAddBeneficiaryForWallet](#verifyotpandaddbeneficiaryforwallet)
-* [updateDefaultBeneficiary](#updatedefaultbeneficiary)
-* [getPaymentLink](#getpaymentlink)
-* [createPaymentLink](#createpaymentlink)
-* [resendPaymentLink](#resendpaymentlink)
+* [attachCardToCustomer](#attachcardtocustomer)
 * [cancelPaymentLink](#cancelpaymentlink)
-* [getPaymentModeRoutesPaymentLink](#getpaymentmoderoutespaymentlink)
-* [pollingPaymentLink](#pollingpaymentlink)
-* [createOrderHandlerPaymentLink](#createorderhandlerpaymentlink)
-* [initialisePaymentPaymentLink](#initialisepaymentpaymentlink)
+* [checkAndUpdatePaymentStatus](#checkandupdatepaymentstatus)
 * [checkAndUpdatePaymentStatusPaymentLink](#checkandupdatepaymentstatuspaymentlink)
-* [customerCreditSummary](#customercreditsummary)
-* [redirectToAggregator](#redirecttoaggregator)
 * [checkCredit](#checkcredit)
+* [createOrderHandlerPaymentLink](#createorderhandlerpaymentlink)
+* [createPaymentLink](#createpaymentlink)
+* [customerCreditSummary](#customercreditsummary)
 * [customerOnboard](#customeronboard)
+* [deleteUserCard](#deleteusercard)
+* [enableOrDisableRefundTransferMode](#enableordisablerefundtransfermode)
+* [getActiveCardAggregator](#getactivecardaggregator)
+* [getActiveRefundTransferModes](#getactiverefundtransfermodes)
+* [getActiveUserCards](#getactiveusercards)
+* [getAggregatorsConfig](#getaggregatorsconfig)
+* [getEpaylaterBannerDetails](#getepaylaterbannerdetails)
+* [getOrderBeneficiariesDetail](#getorderbeneficiariesdetail)
+* [getPaymentLink](#getpaymentlink)
+* [getPaymentModeRoutes](#getpaymentmoderoutes)
+* [getPaymentModeRoutesPaymentLink](#getpaymentmoderoutespaymentlink)
+* [getPosPaymentModeRoutes](#getpospaymentmoderoutes)
+* [getRupifiBannerDetails](#getrupifibannerdetails)
+* [getUserBeneficiariesDetail](#getuserbeneficiariesdetail)
+* [initialisePayment](#initialisepayment)
+* [initialisePaymentPaymentLink](#initialisepaymentpaymentlink)
+* [pollingPaymentLink](#pollingpaymentlink)
+* [redirectToAggregator](#redirecttoaggregator)
+* [renderHTML](#renderhtml)
+* [resendOrCancelPayment](#resendorcancelpayment)
+* [resendPaymentLink](#resendpaymentlink)
+* [updateDefaultBeneficiary](#updatedefaultbeneficiary)
+* [validateVPA](#validatevpa)
+* [verifyAndChargePayment](#verifyandchargepayment)
+* [verifyCustomerForPayment](#verifycustomerforpayment)
+* [verifyIfscCode](#verifyifsccode)
+* [verifyOtpAndAddBeneficiaryForBank](#verifyotpandaddbeneficiaryforbank)
+* [verifyOtpAndAddBeneficiaryForWallet](#verifyotpandaddbeneficiaryforwallet)
 
 
 
@@ -53,19 +55,17 @@ Collect payment through many payment gateway i.e Stripe, Razorpay, Juspay etc.in
 
 
 
-### getAggregatorsConfig
-Get payment gateway keys
+### addBeneficiaryDetails
+Save bank details for cancelled/returned order
 
 
 
 ```javascript
 // Promise
-const promise = payment.getAggregatorsConfig({  xApiToken : value,
- refresh : value });
+const promise = payment.addBeneficiaryDetails({  body : value });
 
 // Async/Await
-const data = await payment.getAggregatorsConfig({  xApiToken : value,
- refresh : value });
+const data = await payment.addBeneficiaryDetails({  body : value });
 ```
 
 
@@ -73,22 +73,20 @@ const data = await payment.getAggregatorsConfig({  xApiToken : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| xApiToken | string | no | Used for basic authentication. |    
-| refresh | boolean | no | This is a boolean value. Select `true` to remove temporary cache files on payment gateway and replace with the latest one. |  
+| --------- | -----  | -------- | ----------- |
+| body | [AddBeneficiaryDetailsRequest](#AddBeneficiaryDetailsRequest) | yes | Request body |
 
 
-
-Use this API to retrieve the payment gateway key, secrets, merchant, SDK/API details to complete a payment at front-end.
+Use this API to save the bank details for a returned or cancelled order to refund the amount.
 
 *Returned Response:*
 
 
 
 
-[AggregatorsConfigDetailResponse](#AggregatorsConfigDetailResponse)
+[RefundAccountResponse](#RefundAccountResponse)
 
-Success. Returns the keys of all payment gateways. Check the example shown below or refer `AggregatorsConfigDetailResponse` for more details.
+Success. Shows whether the beneficiary details were saved to a returned/cancelled order or not.
 
 
 
@@ -98,41 +96,70 @@ Success. Returns the keys of all payment gateways. Check the example shown below
 
 ```json
 {
-  "simpl": {
-    "key": "bf9d0ff65ffe6e54223a871e733bbd1c",
-    "secret": "XXXX-XXXX-XXXX-XXXX",
-    "config_type": "fynd",
-    "sdk": true
-  },
-  "juspay": {
-    "key": "XXXX-XXXX-XXXX-XXXX",
-    "secret": "XXXX-XXXX-XXXX-XXXX",
-    "config_type": "fynd",
-    "merchant_key": "XXXX-XXXX-XXXX-XXXX",
-    "sdk": false,
-    "api": "https://api.juspay.in"
-  },
-  "mswipe": {
-    "key": "XXXX-XXXX-XXXX-XXXX",
-    "secret": "XXXX-XXXX-XXXX-XXXX",
-    "config_type": "fynd",
-    "merchant_id": "XXXX-XXXX-XXXX-XXXX",
-    "user_id": "XXXX-XXXX-XXXX-XXXX",
-    "pin": "XXXX-XXXX-XXXX-XXXX",
-    "sdk": true,
-    "verify_api": "https://www.mswipetech.com/verificationapi/api/VerificationApi/MswipeCardSaleVerificationApi"
-  },
-  "razorpay": {
-    "key": "XXXX-XXXX-XXXX-XXXX",
-    "secret": "XXXX-XXXX-XXXX-XXXX",
-    "config_type": "fynd",
-    "webhook_secret": "XXXX-XXXX-XXXX-XXXX",
-    "sdk": true,
-    "api": "https://api.razorpay.com/v1/",
-    "vpa": "XXXX-XXXX-XXXX-XXXX"
-  },
   "success": true,
-  "env": "live"
+  "message": "Account successfully created",
+  "data": {},
+  "is_verified_flag": true
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### addRefundBankAccountUsingOTP
+Save bank details for cancelled/returned order
+
+
+
+```javascript
+// Promise
+const promise = payment.addRefundBankAccountUsingOTP({  body : value });
+
+// Async/Await
+const data = await payment.addRefundBankAccountUsingOTP({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [AddBeneficiaryDetailsOTPRequest](#AddBeneficiaryDetailsOTPRequest) | yes | Request body |
+
+
+Use this API to save bank details for returned/cancelled order to refund amount in his account.
+
+*Returned Response:*
+
+
+
+
+[RefundAccountResponse](#RefundAccountResponse)
+
+Success. Shows whether the beneficiary details were saved to a returned/cancelled order or not.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "success": true,
+  "message": "Account successfully created",
+  "data": {},
+  "is_verified_flag": true
 }
 ```
 </details>
@@ -232,6 +259,644 @@ Success. Check the example shown below or refer `AttachCardsResponse` for more d
 ---
 
 
+### cancelPaymentLink
+Cancel payment link
+
+
+
+```javascript
+// Promise
+const promise = payment.cancelPaymentLink({  body : value });
+
+// Async/Await
+const data = await payment.cancelPaymentLink({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [CancelOrResendPaymentLinkRequest](#CancelOrResendPaymentLinkRequest) | yes | Request body |
+
+
+Use this API to cancel a payment link for the customer
+
+*Returned Response:*
+
+
+
+
+[CancelPaymentLinkResponse](#CancelPaymentLinkResponse)
+
+Success. Check the example shown below
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "success": true,
+  "message": "Payment link cancelled",
+  "status_code": 200
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### checkAndUpdatePaymentStatus
+Performs continuous polling to check status of payment on the server
+
+
+
+```javascript
+// Promise
+const promise = payment.checkAndUpdatePaymentStatus({  body : value });
+
+// Async/Await
+const data = await payment.checkAndUpdatePaymentStatus({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [PaymentStatusUpdateRequest](#PaymentStatusUpdateRequest) | yes | Request body |
+
+
+Use this API to perform continuous polling at intervals to check the status of payment until timeout.
+
+*Returned Response:*
+
+
+
+
+[PaymentStatusUpdateResponse](#PaymentStatusUpdateResponse)
+
+Success. Returns the status of payment. Check the example shown below or refer `PaymentStatusUpdateResponse` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "aggregator_name": "UPI_Razorpay",
+  "status": "success",
+  "retry": false
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### checkAndUpdatePaymentStatusPaymentLink
+Performs continuous polling to check status of payment on the server
+
+
+
+```javascript
+// Promise
+const promise = payment.checkAndUpdatePaymentStatusPaymentLink({  body : value });
+
+// Async/Await
+const data = await payment.checkAndUpdatePaymentStatusPaymentLink({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [PaymentStatusUpdateRequest](#PaymentStatusUpdateRequest) | yes | Request body |
+
+
+Use this API to perform continuous polling at intervals to check the status of payment until timeout.
+
+*Returned Response:*
+
+
+
+
+[PaymentStatusUpdateResponse](#PaymentStatusUpdateResponse)
+
+Success. Returns the status of payment. Check the example shown below or refer `PaymentStatusUpdateResponse` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "aggregator_name": "UPI_Razorpay",
+  "status": "success",
+  "retry": false
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### checkCredit
+API to fetch the customer credit summary
+
+
+
+```javascript
+// Promise
+const promise = payment.checkCredit({  aggregator : value });
+
+// Async/Await
+const data = await payment.checkCredit({  aggregator : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| aggregator | string | no |  |  
+
+
+
+Use this API to fetch the customer credit summary.
+
+*Returned Response:*
+
+
+
+
+[CheckCreditResponse](#CheckCreditResponse)
+
+Success. Returns the status of payment. Check the example shown below or refer `CheckCreditResponseSchema` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "success": true,
+  "data": {
+    "is_registered": false,
+    "status": true,
+    "signup_url": "https://merchant.epaylater.in"
+  }
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### createOrderHandlerPaymentLink
+Create Order user
+
+
+
+```javascript
+// Promise
+const promise = payment.createOrderHandlerPaymentLink({  body : value });
+
+// Async/Await
+const data = await payment.createOrderHandlerPaymentLink({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [CreateOrderUserRequest](#CreateOrderUserRequest) | yes | Request body |
+
+
+Use this API to create a order and payment on aggregator side
+
+*Returned Response:*
+
+
+
+
+[CreateOrderUserResponse](#CreateOrderUserResponse)
+
+Success. Check the example shown below
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "message": "",
+  "success": true,
+  "data": {
+    "amount": 2190000,
+    "order_id": "order_JeaZ5ryKO01rno",
+    "email": "abc@example.com",
+    "contact": "9999999999",
+    "currency": "INR",
+    "customer_id": "cust_CZgcLVGsGP8BUQ",
+    "callback_url": "https://api.fyndx0.com/service/webhooks/payment/v1.0/callback/link/?razorpay_order_id=order_JeaZ5ryKO01rno",
+    "method": "upi",
+    "aggregator": "Razorpay",
+    "merchant_order_id": "FY629EDC0980B6A8C1EA"
+  },
+  "callback_url": "https://api.fyndx0.com/service/webhooks/payment/v1.0/callback/link/?razorpay_order_id=order_JeaZ5ryKO01rno",
+  "payment_confirm_url": "https://api.fyndx0.com/service/webhooks/payment/v1.0/callback/link/?razorpay_order_id=order_JeaZ5ryKO01rno",
+  "order_id": "FY629EDC0980B6A8C1EA"
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### createPaymentLink
+Create payment link
+
+
+
+```javascript
+// Promise
+const promise = payment.createPaymentLink({  body : value });
+
+// Async/Await
+const data = await payment.createPaymentLink({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [CreatePaymentLinkRequest](#CreatePaymentLinkRequest) | yes | Request body |
+
+
+Use this API to create a payment link for the customer
+
+*Returned Response:*
+
+
+
+
+[CreatePaymentLinkResponse](#CreatePaymentLinkResponse)
+
+Success. Check the example shown below
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "success": true,
+  "message": "Payment link created",
+  "status_code": 200,
+  "payment_link_url": "https://api.fyndx0.de/service/application/payment/v1.0/payment/options/link/?id=96b15ea2014a76c8d2774783e239ce26&refresh=false",
+  "payment_link_id": "96b15ea2014a76c8d2774783e239ce26",
+  "polling_timeout": 480
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### customerCreditSummary
+API to fetch the customer credit summary
+
+
+
+```javascript
+// Promise
+const promise = payment.customerCreditSummary({  aggregator : value });
+
+// Async/Await
+const data = await payment.customerCreditSummary({  aggregator : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| aggregator | string | no |  |  
+
+
+
+Use this API to fetch the customer credit summary.
+
+*Returned Response:*
+
+
+
+
+[CustomerCreditSummaryResponse](#CustomerCreditSummaryResponse)
+
+Success. Returns the status of payment. Check the example shown below or refer `CustomerCreditSummaryResponseSchema` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "success": true,
+  "data": {
+    "merchant_customer_ref_id": "ABHI0002",
+    "status": "Bill Due",
+    "status_message": "Pay now to avoid interest charges",
+    "balance": {
+      "value": 87424,
+      "formatted_value": "₹ 87,424.00",
+      "currency": "INR"
+    },
+    "limit": {
+      "value": 100000,
+      "formatted_value": "₹ 100,000.00",
+      "currency": "INR"
+    },
+    "due_amount": {
+      "value": 12576,
+      "formatted_value": "₹ 12,576.00",
+      "currency": "INR"
+    },
+    "used_amount": {
+      "value": 12576,
+      "formatted_value": "₹ 12,576.00",
+      "currency": "INR"
+    },
+    "due_date": "Oct 22 2021",
+    "days_overdue": 123
+  }
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### customerOnboard
+API to fetch the customer credit summary
+
+
+
+```javascript
+// Promise
+const promise = payment.customerOnboard({  body : value });
+
+// Async/Await
+const data = await payment.customerOnboard({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [CustomerOnboardingRequest](#CustomerOnboardingRequest) | yes | Request body |
+
+
+Use this API to fetch the customer credit summary.
+
+*Returned Response:*
+
+
+
+
+[CustomerOnboardingResponse](#CustomerOnboardingResponse)
+
+Success. Returns the status of payment. Check the example shown below or refer `CustomerOnboardingResponseSchema` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "success": true,
+  "data": {
+    "session": {
+      "session_id": "109dae9a-9fe0-4277-979c-0bebb0136930"
+    },
+    "redirect_url": "https://retail-dev.epaylater.in?sessionId=109dae9a-9fe0-4277-979c-0bebb0136930",
+    "status": true
+  }
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### deleteUserCard
+Delete a card
+
+
+
+```javascript
+// Promise
+const promise = payment.deleteUserCard({  body : value });
+
+// Async/Await
+const data = await payment.deleteUserCard({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [DeletehCardRequest](#DeletehCardRequest) | yes | Request body |
+
+
+Use this API to delete a card added by a user on the payment gateway and clear the cache.
+
+*Returned Response:*
+
+
+
+
+[DeleteCardsResponse](#DeleteCardsResponse)
+
+Success. Returns a success message if card is deleted.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "success": true
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### enableOrDisableRefundTransferMode
+Enable/Disable a mode for transferring a refund
+
+
+
+```javascript
+// Promise
+const promise = payment.enableOrDisableRefundTransferMode({  body : value });
+
+// Async/Await
+const data = await payment.enableOrDisableRefundTransferMode({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [UpdateRefundTransferModeRequest](#UpdateRefundTransferModeRequest) | yes | Request body |
+
+
+Activate or Deactivate Transfer Mode to collect Beneficiary Details for Refund
+
+*Returned Response:*
+
+
+
+
+[UpdateRefundTransferModeResponse](#UpdateRefundTransferModeResponse)
+
+Success. Shows whether the refund mode was successfully enabled or disabled.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "success": true
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
 ### getActiveCardAggregator
 Fetch active payment gateway for card payments
 
@@ -281,6 +946,72 @@ Success. Returns an active payment gateway. Check the example shown below or ref
     "api": "https://www.example.com/cards/",
     "customer_id": "lorem_12345"
   }
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### getActiveRefundTransferModes
+Lists the mode of refund
+
+
+
+```javascript
+// Promise
+const promise = payment.getActiveRefundTransferModes();
+
+// Async/Await
+const data = await payment.getActiveRefundTransferModes();
+```
+
+
+
+
+
+
+Use this API to retrieve eligible refund modes (such as Netbanking) and add the beneficiary details.
+
+*Returned Response:*
+
+
+
+
+[TransferModeResponse](#TransferModeResponse)
+
+Success. Shows the available refund mode to choose, e.g. Netbanking. Check the example shown below or refer `TransferModeResponse` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "data": [
+    {
+      "display_name": "BANK",
+      "items": [
+        {
+          "id": 6,
+          "name": "bank",
+          "display_name": "BANK",
+          "logo_small": "https://hdn-1.fynd.com/payment/netbanking.png",
+          "logo_large": "https://hdn-1.fynd.com/payment/netbanking.png"
+        }
+      ]
+    }
+  ]
 }
 ```
 </details>
@@ -376,17 +1107,19 @@ Success. Returns a list of cards saved by the user. Check the example shown belo
 ---
 
 
-### deleteUserCard
-Delete a card
+### getAggregatorsConfig
+Get payment gateway keys
 
 
 
 ```javascript
 // Promise
-const promise = payment.deleteUserCard({  body : value });
+const promise = payment.getAggregatorsConfig({  xApiToken : value,
+ refresh : value });
 
 // Async/Await
-const data = await payment.deleteUserCard({  body : value });
+const data = await payment.getAggregatorsConfig({  xApiToken : value,
+ refresh : value });
 ```
 
 
@@ -394,20 +1127,22 @@ const data = await payment.deleteUserCard({  body : value });
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |
-| body | [DeletehCardRequest](#DeletehCardRequest) | yes | Request body |
+| --------- | -----  | -------- | ----------- |  
+| xApiToken | string | no | Used for basic authentication. |    
+| refresh | boolean | no | This is a boolean value. Select `true` to remove temporary cache files on payment gateway and replace with the latest one. |  
 
 
-Use this API to delete a card added by a user on the payment gateway and clear the cache.
+
+Use this API to retrieve the payment gateway key, secrets, merchant, SDK/API details to complete a payment at front-end.
 
 *Returned Response:*
 
 
 
 
-[DeleteCardsResponse](#DeleteCardsResponse)
+[AggregatorsConfigDetailResponse](#AggregatorsConfigDetailResponse)
 
-Success. Returns a success message if card is deleted.
+Success. Returns the keys of all payment gateways. Check the example shown below or refer `AggregatorsConfigDetailResponse` for more details.
 
 
 
@@ -417,7 +1152,41 @@ Success. Returns a success message if card is deleted.
 
 ```json
 {
-  "success": true
+  "simpl": {
+    "key": "bf9d0ff65ffe6e54223a871e733bbd1c",
+    "secret": "XXXX-XXXX-XXXX-XXXX",
+    "config_type": "fynd",
+    "sdk": true
+  },
+  "juspay": {
+    "key": "XXXX-XXXX-XXXX-XXXX",
+    "secret": "XXXX-XXXX-XXXX-XXXX",
+    "config_type": "fynd",
+    "merchant_key": "XXXX-XXXX-XXXX-XXXX",
+    "sdk": false,
+    "api": "https://api.juspay.in"
+  },
+  "mswipe": {
+    "key": "XXXX-XXXX-XXXX-XXXX",
+    "secret": "XXXX-XXXX-XXXX-XXXX",
+    "config_type": "fynd",
+    "merchant_id": "XXXX-XXXX-XXXX-XXXX",
+    "user_id": "XXXX-XXXX-XXXX-XXXX",
+    "pin": "XXXX-XXXX-XXXX-XXXX",
+    "sdk": true,
+    "verify_api": "https://www.mswipetech.com/verificationapi/api/VerificationApi/MswipeCardSaleVerificationApi"
+  },
+  "razorpay": {
+    "key": "XXXX-XXXX-XXXX-XXXX",
+    "secret": "XXXX-XXXX-XXXX-XXXX",
+    "config_type": "fynd",
+    "webhook_secret": "XXXX-XXXX-XXXX-XXXX",
+    "sdk": true,
+    "api": "https://api.razorpay.com/v1/",
+    "vpa": "XXXX-XXXX-XXXX-XXXX"
+  },
+  "success": true,
+  "env": "live"
 }
 ```
 </details>
@@ -433,38 +1202,34 @@ Success. Returns a success message if card is deleted.
 ---
 
 
-### verifyCustomerForPayment
-Validate customer for payment
+### getEpaylaterBannerDetails
+Get Epaylater Enabled
 
 
 
 ```javascript
 // Promise
-const promise = payment.verifyCustomerForPayment({  body : value });
+const promise = payment.getEpaylaterBannerDetails();
 
 // Async/Await
-const data = await payment.verifyCustomerForPayment({  body : value });
+const data = await payment.getEpaylaterBannerDetails();
 ```
 
 
 
 
 
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |
-| body | [ValidateCustomerRequest](#ValidateCustomerRequest) | yes | Request body |
 
-
-Use this API to check if the customer is eligible to use credit-line facilities such as Simpl Pay Later and Rupifi.
+Get Epaylater Enabled if user is tentatively approved by epaylater
 
 *Returned Response:*
 
 
 
 
-[ValidateCustomerResponse](#ValidateCustomerResponse)
+[EpaylaterBannerResponse](#EpaylaterBannerResponse)
 
-Success. Check the example shown below or refer `ValidateCustomerResponse` for more details.
+Success. Return Epaylater Offer detail. Check the example shown below or refer `EpaylaterBannerResponseSchema` for more details. if `display=True`, then show banner otherwise do not show.
 
 
 
@@ -474,21 +1239,16 @@ Success. Check the example shown below or refer `ValidateCustomerResponse` for m
 
 
 <details>
-<summary><i>&nbsp; success is True i.e user is allowed</i></summary>
+<summary><i>&nbsp; User is registered successfully</i></summary>
 
 ```json
 {
   "value": {
     "success": true,
-    "message": "data fetched",
     "data": {
-      "api_version": 2,
-      "data": {
-        "approved": true,
-        "button_text": "Buy Now, Pay Later",
-        "first_transaction": false
-      },
-      "aggregator": "Simpl"
+      "display": false,
+      "message": "User is Active",
+      "status": "ACTIVE"
     }
   }
 }
@@ -496,23 +1256,17 @@ Success. Check the example shown below or refer `ValidateCustomerResponse` for m
 </details>
 
 <details>
-<summary><i>&nbsp; success is True i.e user not allowed</i></summary>
+<summary><i>&nbsp; User is not registered or KYC not done or approval pending</i></summary>
 
 ```json
 {
   "value": {
-    "success": false,
-    "message": "data fetched",
-    "error": {
-      "api_version": 2,
-      "data": {
-        "approved": false,
-        "button_text": "Buy Now, Pay Later",
-        "first_transaction": false
-      },
-      "aggregator": "Simpl"
-    },
-    "data": {}
+    "success": true,
+    "data": {
+      "display": true,
+      "message": "User is not registered",
+      "status": "NOT REGISTERED"
+    }
   }
 }
 ```
@@ -531,17 +1285,17 @@ Success. Check the example shown below or refer `ValidateCustomerResponse` for m
 ---
 
 
-### verifyAndChargePayment
-Verify and charge payment
+### getOrderBeneficiariesDetail
+Lists the beneficiary of a refund
 
 
 
 ```javascript
 // Promise
-const promise = payment.verifyAndChargePayment({  body : value });
+const promise = payment.getOrderBeneficiariesDetail({  orderId : value });
 
 // Async/Await
-const data = await payment.verifyAndChargePayment({  body : value });
+const data = await payment.getOrderBeneficiariesDetail({  orderId : value });
 ```
 
 
@@ -549,20 +1303,21 @@ const data = await payment.verifyAndChargePayment({  body : value });
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |
-| body | [ChargeCustomerRequest](#ChargeCustomerRequest) | yes | Request body |
+| --------- | -----  | -------- | ----------- | 
+| orderId | string | yes | A unique number used for identifying and tracking your orders. |  
 
 
-Use this API to verify and check the status of a payment transaction (server-to-server) made through aggregators like Simpl and Mswipe.
+
+Use this API to get the details of all active beneficiary added by a user for refund.
 
 *Returned Response:*
 
 
 
 
-[ChargeCustomerResponse](#ChargeCustomerResponse)
+[OrderBeneficiaryResponse](#OrderBeneficiaryResponse)
 
-Success. Check the example shown below or refer `ChargeCustomerResponse` for more details.
+Success. Returns the details of the beneficiary getting a refund. Check the example shown below or refer `OrderBeneficiaryResponse` for more details.
 
 
 
@@ -572,13 +1327,29 @@ Success. Check the example shown below or refer `ChargeCustomerResponse` for mor
 
 ```json
 {
-  "success": true,
-  "message": "Payment Successful",
-  "status": "complete",
-  "order_id": "FY000000001000000101",
-  "aggregator": "Simpl",
-  "cart_id": "0000000",
-  "delivery_address_id": "0000000"
+  "beneficiaries": [
+    {
+      "id": 3695,
+      "beneficiary_id": "4c86dd56e634a4c6a8fb51d195bc7b83",
+      "bank_name": "State Bank of India",
+      "branch_name": "BHOGAT",
+      "account_holder": "PRAKASH TEST",
+      "account_no": "3566342455454",
+      "ifsc_code": "SBIN0014982",
+      "mobile": "7819064010",
+      "email": "prakashtest@gmail.com",
+      "address": "49A, Dabhi seri, jodhpur, kalyanpur",
+      "comment": "COD Refund",
+      "is_active": null,
+      "created_on": "2021-01-22 11:31:02",
+      "modified_on": "2021-01-22 11:31:02",
+      "display_name": "BANK",
+      "transfer_mode": "bank",
+      "title": "Bank Account",
+      "subtitle": "35663423659",
+      "delights_user_name": "shreeniwas_24x7_gmail_com_45978_16624463"
+    }
+  ]
 }
 ```
 </details>
@@ -594,17 +1365,17 @@ Success. Check the example shown below or refer `ChargeCustomerResponse` for mor
 ---
 
 
-### initialisePayment
-Initialize a payment (server-to-server) for UPI and BharatQR
+### getPaymentLink
+Get payment link
 
 
 
 ```javascript
 // Promise
-const promise = payment.initialisePayment({  body : value });
+const promise = payment.getPaymentLink({  paymentLinkId : value });
 
 // Async/Await
-const data = await payment.initialisePayment({  body : value });
+const data = await payment.getPaymentLink({  paymentLinkId : value });
 ```
 
 
@@ -612,20 +1383,21 @@ const data = await payment.initialisePayment({  body : value });
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |
-| body | [PaymentInitializationRequest](#PaymentInitializationRequest) | yes | Request body |
+| --------- | -----  | -------- | ----------- |  
+| paymentLinkId | string | no |  |  
 
 
-PUse this API to inititate payment using UPI, BharatQR, wherein the UPI requests are send to the app and QR code is displayed on the screen.
+
+Use this API to get a payment link
 
 *Returned Response:*
 
 
 
 
-[PaymentInitializationResponse](#PaymentInitializationResponse)
+[GetPaymentLinkResponse](#GetPaymentLinkResponse)
 
-Success. Check the example shown below or refer `PaymentInitializationResponse` for more details.
+Success. Check the example shown below
 
 
 
@@ -636,75 +1408,14 @@ Success. Check the example shown below or refer `PaymentInitializationResponse` 
 ```json
 {
   "success": true,
-  "aggregator": "UPI_Razorpay",
-  "method": "upi",
-  "status": "success",
-  "merchant_order_id": "FY000120000101",
-  "aggregator_order_id": "lorem_GX8W00p2ipsum",
-  "polling_url": "https://api.fynd.com/service/application/payment/v0.1/payments/confirm/polling/?app_id=000000000000000000000001",
-  "timeout": 240,
-  "virtual_id": null,
-  "razorpay_payment_id": "pay_dummy_001",
-  "customer_id": "cust_dummy_001"
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### checkAndUpdatePaymentStatus
-Performs continuous polling to check status of payment on the server
-
-
-
-```javascript
-// Promise
-const promise = payment.checkAndUpdatePaymentStatus({  body : value });
-
-// Async/Await
-const data = await payment.checkAndUpdatePaymentStatus({  body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |
-| body | [PaymentStatusUpdateRequest](#PaymentStatusUpdateRequest) | yes | Request body |
-
-
-Use this API to perform continuous polling at intervals to check the status of payment until timeout.
-
-*Returned Response:*
-
-
-
-
-[PaymentStatusUpdateResponse](#PaymentStatusUpdateResponse)
-
-Success. Returns the status of payment. Check the example shown below or refer `PaymentStatusUpdateResponse` for more details.
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "aggregator_name": "UPI_Razorpay",
-  "status": "success",
-  "retry": false
+  "message": "Payment link",
+  "status_code": 200,
+  "payment_link_current_status": "resent",
+  "payment_link_url": "https://api.fyndx0.de/service/application/payment/v1.0/payment/options/link/?id=4adb4451720a82ee69a3c1c4cc9ab442&refresh=false",
+  "external_order_id": "FY62614DF9D5CF31D3D0",
+  "amount": 21900,
+  "merchant_name": "Fynd",
+  "polling_timeout": 1800
 }
 ```
 </details>
@@ -783,6 +1494,24 @@ Success. Returns all available options for payment. Check the example shown belo
   "success": true,
   "payment_options": {
     "payment_option": [
+      {
+        "name": "COD",
+        "display_name": "Cash on Delivery",
+        "display_priority": 1,
+        "payment_mode_id": 11,
+        "aggregator_name": "Fynd",
+        "logo": "https://hdn-1.fynd.com/payment/cod.png",
+        "logo_url": {
+          "small": "https://hdn-1.fynd.com/payment/cod.png",
+          "large": "https://hdn-1.fynd.com/payment/cod.png"
+        },
+        "list": [
+          {
+            "cod_limit": 1000,
+            "remaining_limit": 100
+          }
+        ]
+      },
       {
         "name": "CARD",
         "display_priority": 2,
@@ -1094,6 +1823,25 @@ Success. Returns all available options for payment. Check the example shown belo
             }
           }
         ]
+      },
+      {
+        "name": "JIOPP",
+        "display_priority": 15,
+        "payment_mode_id": 15,
+        "display_name": "Jio Partner Pay",
+        "list": [
+          {
+            "aggregator_name": "Jio",
+            "name": "JioPP",
+            "display_name": "Jio Partner Pay",
+            "code": "JIOPP",
+            "logo_url": {
+              "large": "https://hdn-1.fynd.com/payment/Pos+Logo.png",
+              "small": "https://hdn-1.fynd.com/payment/Pos+Logo.png"
+            },
+            "merchant_code": "JIOPP"
+          }
+        ]
       }
     ],
     "payment_flows": {
@@ -1246,1393 +1994,14 @@ Success. Returns all available options for payment. Check the example shown belo
         "data": {},
         "api_link": "https://api-blackbox.epaylater.in/web/process-transaction/",
         "payment_flow": "api"
+      },
+      "Jio": {
+        "data": {},
+        "api_link": "",
+        "payment_flow": "api"
       }
     }
   }
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### getPosPaymentModeRoutes
-Get applicable payment options for Point-of-Sale (POS)
-
-
-
-```javascript
-// Promise
-const promise = payment.getPosPaymentModeRoutes({  amount : value,
- cartId : value,
- pincode : value,
- checkoutMode : value,
- orderType : value,
- refresh : value,
- cardReference : value,
- userDetails : value });
-
-// Async/Await
-const data = await payment.getPosPaymentModeRoutes({  amount : value,
- cartId : value,
- pincode : value,
- checkoutMode : value,
- orderType : value,
- refresh : value,
- cardReference : value,
- userDetails : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| amount | number | yes | Payable amount. |   
-| cartId | string | yes | Identifier of the cart. |   
-| pincode | string | yes | The PIN Code of the destination address, e.g. 400059 |   
-| checkoutMode | string | yes | Option to checkout for self or for others. |    
-| refresh | boolean | no | This is a boolean value. Select `true` to remove temporary cache files on payment gateway and replace with the latest one. |    
-| cardReference | string | no | Card reference id of user's debit or credit card. |   
-| orderType | string | yes | The order type of shipment * HomeDelivery - If the customer wants the order home-delivered * PickAtStore - If the customer wants the handover of an order at the store itself. |    
-| userDetails | string | no | URIencoded JSON containing details of an anonymous user. |  
-
-
-
-Use this API to get all valid payment options for doing a payment in POS.
-
-*Returned Response:*
-
-
-
-
-[PaymentModeRouteResponse](#PaymentModeRouteResponse)
-
-Success. Returns all available options for payment. Check the example shown below or refer `PaymentModeRouteResponse` for more details.
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "success": true,
-  "payment_options": {
-    "payment_option": [
-      {
-        "name": "CAS",
-        "display_priority": 21,
-        "payment_mode_id": 39,
-        "display_name": "Cash at Store",
-        "list": [
-          {
-            "aggregator_name": "Fynd",
-            "name": "CAS",
-            "display_name": "CASH",
-            "code": "CAS",
-            "logo_url": {
-              "large": "https://hdn-1.fynd.com/payment/cod.png",
-              "small": "https://hdn-1.fynd.com/payment/cod.png"
-            },
-            "merchant_code": "CAS"
-          }
-        ]
-      },
-      {
-        "name": "CSAS",
-        "display_priority": 21,
-        "payment_mode_id": 40,
-        "display_name": "Card Swiped at Store",
-        "list": [
-          {
-            "aggregator_name": "Fynd",
-            "name": "CSAS",
-            "display_name": "Card Swipe",
-            "code": "CSAS",
-            "logo_url": {
-              "large": "https://hdn-1.fynd.com/payment/cod.png",
-              "small": "https://hdn-1.fynd.com/payment/cod.png"
-            },
-            "merchant_code": "CSAS"
-          }
-        ]
-      },
-      {
-        "name": "UPI",
-        "display_priority": 9,
-        "payment_mode_id": 7,
-        "display_name": "UPI",
-        "list": [
-          {
-            "aggregator_name": "Razorpay",
-            "name": "UPI",
-            "display_name": "BHIM UPI",
-            "code": "UPI",
-            "logo_url": {
-              "small": "https://hdn-1.fynd.com/payment/upi_100x78.png",
-              "large": "https://hdn-1.fynd.com/payment/upi_150x100.png"
-            },
-            "merchant_code": "UPI",
-            "timeout": 240,
-            "retry_count": 0,
-            "fynd_vpa": "shopsense.rzp@hdfcbank",
-            "intent_flow": true,
-            "intent_app": [
-              {
-                "code": "google_pay",
-                "display_name": "Google Pay",
-                "package_name": "com.google.android.apps.nbu.paisa.user",
-                "logos": {
-                  "small": "https://hdn-1.fynd.com/payment/upi-google-pay.png",
-                  "large": "https://hdn-1.fynd.com/payment/upi-google-pay.png"
-                }
-              }
-            ],
-            "intent_app_error_list": [
-              "com.csam.icici.bank.imobile",
-              "in.org.npci.upiapp",
-              "com.whatsapp"
-            ],
-            "intent_app_error_dict_list": [
-              {
-                "package_name": "com.csam.icici.bank.imobile",
-                "code": "icici"
-              },
-              {
-                "package_name": "in.org.npci.upiapp",
-                "code": "upiapp"
-              },
-              {
-                "package_name": "com.whatsapp",
-                "code": "whatsapp"
-              }
-            ]
-          }
-        ]
-      }
-    ],
-    "payment_flows": {
-      "simpl": {
-        "data": {
-          "gateway": {
-            "route": "simpl",
-            "entity": "sdk",
-            "is_customer_validation_required": true,
-            "cust_validation_url": "https://api.fyndx0.de/gringotts/api/v1/validate-customer/?app_id=000000000000000000000001",
-            "sdk": {
-              "config": {
-                "redirect": false,
-                "callback_url": null,
-                "action_url": "https://api.fyndx0.de/platform/payment/v2/external/payments/confirm/charge/?app_id=000000000000000000000001"
-              },
-              "data": {
-                "user_phone": "9999632145",
-                "user_email": "app@fynd.com"
-              }
-            },
-            "return_url": null
-          }
-        },
-        "api_link": "",
-        "payment_flow": "sdk"
-      },
-      "juspay": {
-        "data": {},
-        "api_link": "https://sandbox.juspay.in/txns",
-        "payment_flow": "api"
-      },
-      "razorpay": {
-        "data": {},
-        "api_link": "",
-        "payment_flow": "sdk"
-      },
-      "upi_razorpay": {
-        "data": {},
-        "api_link": "https://api.fyndx0.de/platform/payment/v2/external/payments/request/?app_id=000000000000000000000001",
-        "payment_flow": "api"
-      },
-      "bqr_razorpay": {
-        "data": {},
-        "api_link": "https://api.fyndx0.de/platform/payment/v2/external/payments/request/?app_id=000000000000000000000001",
-        "payment_flow": "api"
-      },
-      "cashfree": {
-        "data": {},
-        "api_link": "",
-        "payment_flow": "api"
-      },
-      "fynd": {
-        "data": {},
-        "api_link": "",
-        "payment_flow": "api"
-      },
-      "jio": {
-        "data": {},
-        "api_link": "",
-        "payment_flow": "api"
-      },
-      "stripe": {
-        "data": {},
-        "api_link": "",
-        "payment_flow": "sdk"
-      },
-      "ccavenue": {
-        "data": {},
-        "api_link": "",
-        "payment_flow": "sdk"
-      },
-      "payumoney": {
-        "data": {},
-        "api_link": "",
-        "payment_flow": "sdk"
-      },
-      "rupifi": {
-        "data": {},
-        "api_link": "",
-        "return_url": "",
-        "payment_flow": "api",
-        "cust_validation_url": "https://api.jiox0.de/gringotts/api/v1/validate-customer/"
-      }
-    }
-  }
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### getRupifiBannerDetails
-Get CreditLine Offer
-
-
-
-```javascript
-// Promise
-const promise = payment.getRupifiBannerDetails();
-
-// Async/Await
-const data = await payment.getRupifiBannerDetails();
-```
-
-
-
-
-
-
-Get CreditLine Offer if user is tentatively approved by rupifi
-
-*Returned Response:*
-
-
-
-
-[RupifiBannerResponse](#RupifiBannerResponse)
-
-Success. Return CreditLine Offer detail. Check the example shown below or refer `RupifiBannerResponseSchema` for more details.
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "success": true,
-  "data": {
-    "kyc_url": "http://rupifi.kyc1.com/",
-    "status": "APPROVED"
-  }
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### getEpaylaterBannerDetails
-Get Epaylater Enabled
-
-
-
-```javascript
-// Promise
-const promise = payment.getEpaylaterBannerDetails();
-
-// Async/Await
-const data = await payment.getEpaylaterBannerDetails();
-```
-
-
-
-
-
-
-Get Epaylater Enabled if user is tentatively approved by epaylater
-
-*Returned Response:*
-
-
-
-
-[EpaylaterBannerResponse](#EpaylaterBannerResponse)
-
-Success. Return Epaylater Offer detail. Check the example shown below or refer `EpaylaterBannerResponseSchema` for more details. if `display=True`, then show banner otherwise do not show.
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; User is registered successfully</i></summary>
-
-```json
-{
-  "value": {
-    "success": true,
-    "data": {
-      "display": false,
-      "message": "User is Active",
-      "status": "ACTIVE"
-    }
-  }
-}
-```
-</details>
-
-<details>
-<summary><i>&nbsp; User is not registered or KYC not done or approval pending</i></summary>
-
-```json
-{
-  "value": {
-    "success": true,
-    "data": {
-      "display": true,
-      "message": "User is not registered",
-      "status": "NOT REGISTERED"
-    }
-  }
-}
-```
-</details>
-
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### resendOrCancelPayment
-API to resend and cancel a payment link which was already generated.
-
-
-
-```javascript
-// Promise
-const promise = payment.resendOrCancelPayment({  body : value });
-
-// Async/Await
-const data = await payment.resendOrCancelPayment({  body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |
-| body | [ResendOrCancelPaymentRequest](#ResendOrCancelPaymentRequest) | yes | Request body |
-
-
-Use this API to perform resend or cancel a payment link based on request payload.
-
-*Returned Response:*
-
-
-
-
-[ResendOrCancelPaymentResponse](#ResendOrCancelPaymentResponse)
-
-Success. Returns the status of payment. Check the example shown below or refer `ResendOrCancelPaymentResponse` for more details.
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; request_type is cancel</i></summary>
-
-```json
-{
-  "value": {
-    "success": true,
-    "data": {
-      "message": "Payment link Cancelled.",
-      "status": true
-    }
-  }
-}
-```
-</details>
-
-<details>
-<summary><i>&nbsp; request_type is resend</i></summary>
-
-```json
-{
-  "value": {
-    "success": true,
-    "data": {
-      "message": "Notification triggered.",
-      "status": true
-    }
-  }
-}
-```
-</details>
-
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### getActiveRefundTransferModes
-Lists the mode of refund
-
-
-
-```javascript
-// Promise
-const promise = payment.getActiveRefundTransferModes();
-
-// Async/Await
-const data = await payment.getActiveRefundTransferModes();
-```
-
-
-
-
-
-
-Use this API to retrieve eligible refund modes (such as Netbanking) and add the beneficiary details.
-
-*Returned Response:*
-
-
-
-
-[TransferModeResponse](#TransferModeResponse)
-
-Success. Shows the available refund mode to choose, e.g. Netbanking. Check the example shown below or refer `TransferModeResponse` for more details.
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "data": [
-    {
-      "display_name": "BANK",
-      "items": [
-        {
-          "id": 6,
-          "name": "bank",
-          "display_name": "BANK",
-          "logo_small": "https://hdn-1.fynd.com/payment/netbanking.png",
-          "logo_large": "https://hdn-1.fynd.com/payment/netbanking.png"
-        }
-      ]
-    }
-  ]
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### enableOrDisableRefundTransferMode
-Enable/Disable a mode for transferring a refund
-
-
-
-```javascript
-// Promise
-const promise = payment.enableOrDisableRefundTransferMode({  body : value });
-
-// Async/Await
-const data = await payment.enableOrDisableRefundTransferMode({  body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |
-| body | [UpdateRefundTransferModeRequest](#UpdateRefundTransferModeRequest) | yes | Request body |
-
-
-Activate or Deactivate Transfer Mode to collect Beneficiary Details for Refund
-
-*Returned Response:*
-
-
-
-
-[UpdateRefundTransferModeResponse](#UpdateRefundTransferModeResponse)
-
-Success. Shows whether the refund mode was successfully enabled or disabled.
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "success": true
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### getUserBeneficiariesDetail
-Lists the beneficiary of a refund
-
-
-
-```javascript
-// Promise
-const promise = payment.getUserBeneficiariesDetail({  orderId : value });
-
-// Async/Await
-const data = await payment.getUserBeneficiariesDetail({  orderId : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| orderId | string | yes | A unique number used for identifying and tracking your orders. |  
-
-
-
-Use this API to get the details of all active beneficiary added by a user for refund.
-
-*Returned Response:*
-
-
-
-
-[OrderBeneficiaryResponse](#OrderBeneficiaryResponse)
-
-Success. Returns the details of the beneficiary getting a refund. Check the example shown below or refer `OrderBeneficiaryResponse` for more details.
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "beneficiaries": [
-    {
-      "id": 221,
-      "beneficiary_id": "0f7e44a922df352c05c5f73cb40ba115",
-      "bank_name": "State Bank of India",
-      "branch_name": "State Bank of India",
-      "account_holder": "SHASHI TEST",
-      "account_no": "1234567891",
-      "ifsc_code": "SBIN0005611",
-      "mobile": "9112042174",
-      "email": "payment@gofynd.com",
-      "address": "204A",
-      "comment": "",
-      "is_active": null,
-      "created_on": "2020-06-29 12:38:39",
-      "modified_on": "2020-06-29 12:38:39",
-      "display_name": "BANK",
-      "transfer_mode": "bank",
-      "title": "Bank Account",
-      "subtitle": "1234567891",
-      "delights_user_name": null
-    }
-  ],
-  "show_beneficiary_details": false
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### verifyIfscCode
-Verify IFSC Code
-
-
-
-```javascript
-// Promise
-const promise = payment.verifyIfscCode({  ifscCode : value });
-
-// Async/Await
-const data = await payment.verifyIfscCode({  ifscCode : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| ifscCode | string | no | A 11-digit alphanumeric code that uniquely identifies a bank branch. |  
-
-
-
-Use this API to check whether the 11-digit IFSC code is valid and to fetch the bank details for refund.
-
-*Returned Response:*
-
-
-
-
-[IfscCodeResponse](#IfscCodeResponse)
-
-Success. Shows whether the IFSC code is valid, and returns the bank details. Check the example shown below or refer `IfscCodeResponse` for more details.
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "branch_name": "MANPUR",
-  "bank_name": "GAYA",
-  "BRANCH": "MANPUR",
-  "CENTRE": "GAYA",
-  "DISTRICT": "GAYA",
-  "STATE": "BIHAR",
-  "ADDRESS": "POBUNIYADGANJBIHAR",
-  "CONTACT": "00",
-  "MICR": "816002103",
-  "UPI": true,
-  "RTGS": true,
-  "CITY": "GAYA",
-  "NEFT": true,
-  "IMPS": true,
-  "SWIFT": "",
-  "BANK": "State Bank of India",
-  "BANKCODE": "SBIN",
-  "IFSC": "SBIN0005611",
-  "success": true
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### getOrderBeneficiariesDetail
-Lists the beneficiary of a refund
-
-
-
-```javascript
-// Promise
-const promise = payment.getOrderBeneficiariesDetail({  orderId : value });
-
-// Async/Await
-const data = await payment.getOrderBeneficiariesDetail({  orderId : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| orderId | string | yes | A unique number used for identifying and tracking your orders. |  
-
-
-
-Use this API to get the details of all active beneficiary added by a user for refund.
-
-*Returned Response:*
-
-
-
-
-[OrderBeneficiaryResponse](#OrderBeneficiaryResponse)
-
-Success. Returns the details of the beneficiary getting a refund. Check the example shown below or refer `OrderBeneficiaryResponse` for more details.
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "beneficiaries": [
-    {
-      "id": 3695,
-      "beneficiary_id": "4c86dd56e634a4c6a8fb51d195bc7b83",
-      "bank_name": "State Bank of India",
-      "branch_name": "BHOGAT",
-      "account_holder": "PRAKASH TEST",
-      "account_no": "3566342455454",
-      "ifsc_code": "SBIN0014982",
-      "mobile": "7819064010",
-      "email": "prakashtest@gmail.com",
-      "address": "49A, Dabhi seri, jodhpur, kalyanpur",
-      "comment": "COD Refund",
-      "is_active": null,
-      "created_on": "2021-01-22 11:31:02",
-      "modified_on": "2021-01-22 11:31:02",
-      "display_name": "BANK",
-      "transfer_mode": "bank",
-      "title": "Bank Account",
-      "subtitle": "35663423659",
-      "delights_user_name": "shreeniwas_24x7_gmail_com_45978_16624463"
-    }
-  ]
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### verifyOtpAndAddBeneficiaryForBank
-Verify the beneficiary details using OTP
-
-
-
-```javascript
-// Promise
-const promise = payment.verifyOtpAndAddBeneficiaryForBank({  body : value });
-
-// Async/Await
-const data = await payment.verifyOtpAndAddBeneficiaryForBank({  body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |
-| body | [AddBeneficiaryViaOtpVerificationRequest](#AddBeneficiaryViaOtpVerificationRequest) | yes | Request body |
-
-
-Use this API to perform an OTP validation before saving the beneficiary details added for a refund.
-
-*Returned Response:*
-
-
-
-
-[AddBeneficiaryViaOtpVerificationResponse](#AddBeneficiaryViaOtpVerificationResponse)
-
-Success. Check the example shown below or refer `AddBeneficiaryViaOtpVerificationRequest` for more details.
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "success": true,
-  "message": "Account successfully created"
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### addBeneficiaryDetails
-Save bank details for cancelled/returned order
-
-
-
-```javascript
-// Promise
-const promise = payment.addBeneficiaryDetails({  body : value });
-
-// Async/Await
-const data = await payment.addBeneficiaryDetails({  body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |
-| body | [AddBeneficiaryDetailsRequest](#AddBeneficiaryDetailsRequest) | yes | Request body |
-
-
-Use this API to save the bank details for a returned or cancelled order to refund the amount.
-
-*Returned Response:*
-
-
-
-
-[RefundAccountResponse](#RefundAccountResponse)
-
-Success. Shows whether the beneficiary details were saved to a returned/cancelled order or not.
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "success": true,
-  "message": "Account successfully created",
-  "data": {},
-  "is_verified_flag": true
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### addRefundBankAccountUsingOTP
-Save bank details for cancelled/returned order
-
-
-
-```javascript
-// Promise
-const promise = payment.addRefundBankAccountUsingOTP({  body : value });
-
-// Async/Await
-const data = await payment.addRefundBankAccountUsingOTP({  body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |
-| body | [AddBeneficiaryDetailsOTPRequest](#AddBeneficiaryDetailsOTPRequest) | yes | Request body |
-
-
-Use this API to save bank details for returned/cancelled order to refund amount in his account.
-
-*Returned Response:*
-
-
-
-
-[RefundAccountResponse](#RefundAccountResponse)
-
-Success. Shows whether the beneficiary details were saved to a returned/cancelled order or not.
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "success": true,
-  "message": "Account successfully created",
-  "data": {},
-  "is_verified_flag": true
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### verifyOtpAndAddBeneficiaryForWallet
-Send OTP on adding a wallet beneficiary
-
-
-
-```javascript
-// Promise
-const promise = payment.verifyOtpAndAddBeneficiaryForWallet({  body : value });
-
-// Async/Await
-const data = await payment.verifyOtpAndAddBeneficiaryForWallet({  body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |
-| body | [WalletOtpRequest](#WalletOtpRequest) | yes | Request body |
-
-
-Use this API to send an OTP while adding a wallet beneficiary by mobile no. verification.
-
-*Returned Response:*
-
-
-
-
-[WalletOtpResponse](#WalletOtpResponse)
-
-Success. Sends the OTP to the given mobile number. Check the example shown below or refer `WalletOtpResponse` for more details.
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "success": true,
-  "is_verified_flag": false,
-  "request_id": "c3ca6c13d490c885a125d106b45697b7"
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### updateDefaultBeneficiary
-Set a default beneficiary for a refund
-
-
-
-```javascript
-// Promise
-const promise = payment.updateDefaultBeneficiary({  body : value });
-
-// Async/Await
-const data = await payment.updateDefaultBeneficiary({  body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |
-| body | [SetDefaultBeneficiaryRequest](#SetDefaultBeneficiaryRequest) | yes | Request body |
-
-
-Use this API to set a default beneficiary for getting a refund.
-
-*Returned Response:*
-
-
-
-
-[SetDefaultBeneficiaryResponse](#SetDefaultBeneficiaryResponse)
-
-Success. Check the example shown below or refer `SetDefaultBeneficiaryResponse` for more details.
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "success": true,
-  "is_beneficiary_set": true
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### getPaymentLink
-Get payment link
-
-
-
-```javascript
-// Promise
-const promise = payment.getPaymentLink({  paymentLinkId : value });
-
-// Async/Await
-const data = await payment.getPaymentLink({  paymentLinkId : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| paymentLinkId | string | no |  |  
-
-
-
-Use this API to get a payment link
-
-*Returned Response:*
-
-
-
-
-[GetPaymentLinkResponse](#GetPaymentLinkResponse)
-
-Success. Check the example shown below
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "success": true,
-  "message": "Payment link",
-  "status_code": 200,
-  "payment_link_current_status": "resent",
-  "payment_link_url": "https://api.fyndx0.de/service/application/payment/v1.0/payment/options/link/?id=4adb4451720a82ee69a3c1c4cc9ab442&refresh=false",
-  "external_order_id": "FY62614DF9D5CF31D3D0",
-  "amount": 21900,
-  "merchant_name": "Fynd",
-  "polling_timeout": 1800
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### createPaymentLink
-Create payment link
-
-
-
-```javascript
-// Promise
-const promise = payment.createPaymentLink({  body : value });
-
-// Async/Await
-const data = await payment.createPaymentLink({  body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |
-| body | [CreatePaymentLinkRequest](#CreatePaymentLinkRequest) | yes | Request body |
-
-
-Use this API to create a payment link for the customer
-
-*Returned Response:*
-
-
-
-
-[CreatePaymentLinkResponse](#CreatePaymentLinkResponse)
-
-Success. Check the example shown below
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "success": true,
-  "message": "Payment link created",
-  "status_code": 200,
-  "payment_link_url": "https://api.fyndx0.de/service/application/payment/v1.0/payment/options/link/?id=96b15ea2014a76c8d2774783e239ce26&refresh=false",
-  "payment_link_id": "96b15ea2014a76c8d2774783e239ce26",
-  "polling_timeout": 480
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### resendPaymentLink
-Resend payment link
-
-
-
-```javascript
-// Promise
-const promise = payment.resendPaymentLink({  body : value });
-
-// Async/Await
-const data = await payment.resendPaymentLink({  body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |
-| body | [CancelOrResendPaymentLinkRequest](#CancelOrResendPaymentLinkRequest) | yes | Request body |
-
-
-Use this API to resend a payment link for the customer
-
-*Returned Response:*
-
-
-
-
-[ResendPaymentLinkResponse](#ResendPaymentLinkResponse)
-
-Success. Check the example shown below
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "success": true,
-  "message": "Payment link resent",
-  "status_code": 200,
-  "polling_timeout": 480
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### cancelPaymentLink
-Cancel payment link
-
-
-
-```javascript
-// Promise
-const promise = payment.cancelPaymentLink({  body : value });
-
-// Async/Await
-const data = await payment.cancelPaymentLink({  body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |
-| body | [CancelOrResendPaymentLinkRequest](#CancelOrResendPaymentLinkRequest) | yes | Request body |
-
-
-Use this API to cancel a payment link for the customer
-
-*Returned Response:*
-
-
-
-
-[CancelPaymentLinkResponse](#CancelPaymentLinkResponse)
-
-Success. Check the example shown below
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "success": true,
-  "message": "Payment link cancelled",
-  "status_code": 200
 }
 ```
 </details>
@@ -3111,17 +2480,31 @@ Success. Returns all available options for payment. Check the example shown belo
 ---
 
 
-### pollingPaymentLink
-Used for polling if payment successful or not
+### getPosPaymentModeRoutes
+Get applicable payment options for Point-of-Sale (POS)
 
 
 
 ```javascript
 // Promise
-const promise = payment.pollingPaymentLink({  paymentLinkId : value });
+const promise = payment.getPosPaymentModeRoutes({  amount : value,
+ cartId : value,
+ pincode : value,
+ checkoutMode : value,
+ orderType : value,
+ refresh : value,
+ cardReference : value,
+ userDetails : value });
 
 // Async/Await
-const data = await payment.pollingPaymentLink({  paymentLinkId : value });
+const data = await payment.getPosPaymentModeRoutes({  amount : value,
+ cartId : value,
+ pincode : value,
+ checkoutMode : value,
+ orderType : value,
+ refresh : value,
+ cardReference : value,
+ userDetails : value });
 ```
 
 
@@ -3129,21 +2512,28 @@ const data = await payment.pollingPaymentLink({  paymentLinkId : value });
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| paymentLinkId | string | no |  |  
+| --------- | -----  | -------- | ----------- | 
+| amount | number | yes | Payable amount. |   
+| cartId | string | yes | Identifier of the cart. |   
+| pincode | string | yes | The PIN Code of the destination address, e.g. 400059 |   
+| checkoutMode | string | yes | Option to checkout for self or for others. |    
+| refresh | boolean | no | This is a boolean value. Select `true` to remove temporary cache files on payment gateway and replace with the latest one. |    
+| cardReference | string | no | Card reference id of user's debit or credit card. |   
+| orderType | string | yes | The order type of shipment * HomeDelivery - If the customer wants the order home-delivered * PickAtStore - If the customer wants the handover of an order at the store itself. |    
+| userDetails | string | no | URIencoded JSON containing details of an anonymous user. |  
 
 
 
-Use this API to poll if payment through payment was successful or not
+Use this API to get all valid payment options for doing a payment in POS.
 
 *Returned Response:*
 
 
 
 
-[PollingPaymentLinkResponse](#PollingPaymentLinkResponse)
+[PaymentModeRouteResponse](#PaymentModeRouteResponse)
 
-Success. Check the example shown below
+Success. Returns all available options for payment. Check the example shown below or refer `PaymentModeRouteResponse` for more details.
 
 
 
@@ -3153,13 +2543,185 @@ Success. Check the example shown below
 
 ```json
 {
-  "aggregator_name": "Fynd",
-  "status": "complete",
-  "redirect_url": "https://api.fyndx0.de/service/application/order/v1.0/orders/?success=true&order_id=FY62B3FF87016F24A4E6&aggregator_name=Fynd&cart_id=412&delivery_address_id=136&billing_address_id=136",
-  "payment_link_id": "223d2a8df39a5dcdd8525498bee73199",
-  "amount": 21900,
-  "order_id": "FY62B3FF87016F24A4E6",
-  "status_code": 200
+  "success": true,
+  "payment_options": {
+    "payment_option": [
+      {
+        "name": "CAS",
+        "display_priority": 21,
+        "payment_mode_id": 39,
+        "display_name": "Cash at Store",
+        "list": [
+          {
+            "aggregator_name": "Fynd",
+            "name": "CAS",
+            "display_name": "CASH",
+            "code": "CAS",
+            "logo_url": {
+              "large": "https://hdn-1.fynd.com/payment/cod.png",
+              "small": "https://hdn-1.fynd.com/payment/cod.png"
+            },
+            "merchant_code": "CAS"
+          }
+        ]
+      },
+      {
+        "name": "CSAS",
+        "display_priority": 21,
+        "payment_mode_id": 40,
+        "display_name": "Card Swiped at Store",
+        "list": [
+          {
+            "aggregator_name": "Fynd",
+            "name": "CSAS",
+            "display_name": "Card Swipe",
+            "code": "CSAS",
+            "logo_url": {
+              "large": "https://hdn-1.fynd.com/payment/cod.png",
+              "small": "https://hdn-1.fynd.com/payment/cod.png"
+            },
+            "merchant_code": "CSAS"
+          }
+        ]
+      },
+      {
+        "name": "UPI",
+        "display_priority": 9,
+        "payment_mode_id": 7,
+        "display_name": "UPI",
+        "list": [
+          {
+            "aggregator_name": "Razorpay",
+            "name": "UPI",
+            "display_name": "BHIM UPI",
+            "code": "UPI",
+            "logo_url": {
+              "small": "https://hdn-1.fynd.com/payment/upi_100x78.png",
+              "large": "https://hdn-1.fynd.com/payment/upi_150x100.png"
+            },
+            "merchant_code": "UPI",
+            "timeout": 240,
+            "retry_count": 0,
+            "fynd_vpa": "shopsense.rzp@hdfcbank",
+            "intent_flow": true,
+            "intent_app": [
+              {
+                "code": "google_pay",
+                "display_name": "Google Pay",
+                "package_name": "com.google.android.apps.nbu.paisa.user",
+                "logos": {
+                  "small": "https://hdn-1.fynd.com/payment/upi-google-pay.png",
+                  "large": "https://hdn-1.fynd.com/payment/upi-google-pay.png"
+                }
+              }
+            ],
+            "intent_app_error_list": [
+              "com.csam.icici.bank.imobile",
+              "in.org.npci.upiapp",
+              "com.whatsapp"
+            ],
+            "intent_app_error_dict_list": [
+              {
+                "package_name": "com.csam.icici.bank.imobile",
+                "code": "icici"
+              },
+              {
+                "package_name": "in.org.npci.upiapp",
+                "code": "upiapp"
+              },
+              {
+                "package_name": "com.whatsapp",
+                "code": "whatsapp"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "payment_flows": {
+      "simpl": {
+        "data": {
+          "gateway": {
+            "route": "simpl",
+            "entity": "sdk",
+            "is_customer_validation_required": true,
+            "cust_validation_url": "https://api.fyndx0.de/gringotts/api/v1/validate-customer/?app_id=000000000000000000000001",
+            "sdk": {
+              "config": {
+                "redirect": false,
+                "callback_url": null,
+                "action_url": "https://api.fyndx0.de/platform/payment/v2/external/payments/confirm/charge/?app_id=000000000000000000000001"
+              },
+              "data": {
+                "user_phone": "9999632145",
+                "user_email": "app@fynd.com"
+              }
+            },
+            "return_url": null
+          }
+        },
+        "api_link": "",
+        "payment_flow": "sdk"
+      },
+      "juspay": {
+        "data": {},
+        "api_link": "https://sandbox.juspay.in/txns",
+        "payment_flow": "api"
+      },
+      "razorpay": {
+        "data": {},
+        "api_link": "",
+        "payment_flow": "sdk"
+      },
+      "upi_razorpay": {
+        "data": {},
+        "api_link": "https://api.fyndx0.de/platform/payment/v2/external/payments/request/?app_id=000000000000000000000001",
+        "payment_flow": "api"
+      },
+      "bqr_razorpay": {
+        "data": {},
+        "api_link": "https://api.fyndx0.de/platform/payment/v2/external/payments/request/?app_id=000000000000000000000001",
+        "payment_flow": "api"
+      },
+      "cashfree": {
+        "data": {},
+        "api_link": "",
+        "payment_flow": "api"
+      },
+      "fynd": {
+        "data": {},
+        "api_link": "",
+        "payment_flow": "api"
+      },
+      "jio": {
+        "data": {},
+        "api_link": "",
+        "payment_flow": "api"
+      },
+      "stripe": {
+        "data": {},
+        "api_link": "",
+        "payment_flow": "sdk"
+      },
+      "ccavenue": {
+        "data": {},
+        "api_link": "",
+        "payment_flow": "sdk"
+      },
+      "payumoney": {
+        "data": {},
+        "api_link": "",
+        "payment_flow": "sdk"
+      },
+      "rupifi": {
+        "data": {},
+        "api_link": "",
+        "return_url": "",
+        "payment_flow": "api",
+        "cust_validation_url": "https://api.jiox0.de/gringotts/api/v1/validate-customer/"
+      }
+    }
+  }
 }
 ```
 </details>
@@ -3175,38 +2737,34 @@ Success. Check the example shown below
 ---
 
 
-### createOrderHandlerPaymentLink
-Create Order user
+### getRupifiBannerDetails
+Get CreditLine Offer
 
 
 
 ```javascript
 // Promise
-const promise = payment.createOrderHandlerPaymentLink({  body : value });
+const promise = payment.getRupifiBannerDetails();
 
 // Async/Await
-const data = await payment.createOrderHandlerPaymentLink({  body : value });
+const data = await payment.getRupifiBannerDetails();
 ```
 
 
 
 
 
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |
-| body | [CreateOrderUserRequest](#CreateOrderUserRequest) | yes | Request body |
 
-
-Use this API to create a order and payment on aggregator side
+Get CreditLine Offer if user is tentatively approved by rupifi
 
 *Returned Response:*
 
 
 
 
-[CreateOrderUserResponse](#CreateOrderUserResponse)
+[RupifiBannerResponse](#RupifiBannerResponse)
 
-Success. Check the example shown below
+Success. Return CreditLine Offer detail. Check the example shown below or refer `RupifiBannerResponseSchema` for more details.
 
 
 
@@ -3216,23 +2774,159 @@ Success. Check the example shown below
 
 ```json
 {
-  "message": "",
   "success": true,
   "data": {
-    "amount": 2190000,
-    "order_id": "order_JeaZ5ryKO01rno",
-    "email": "pratikpatel@gofynd.com",
-    "contact": "8879805874",
-    "currency": "INR",
-    "customer_id": "cust_CZgcLVGsGP8BUQ",
-    "callback_url": "https://api.fyndx0.com/service/webhooks/payment/v1.0/callback/link/?razorpay_order_id=order_JeaZ5ryKO01rno",
-    "method": "upi",
-    "aggregator": "Razorpay",
-    "merchant_order_id": "FY629EDC0980B6A8C1EA"
-  },
-  "callback_url": "https://api.fyndx0.com/service/webhooks/payment/v1.0/callback/link/?razorpay_order_id=order_JeaZ5ryKO01rno",
-  "payment_confirm_url": "https://api.fyndx0.com/service/webhooks/payment/v1.0/callback/link/?razorpay_order_id=order_JeaZ5ryKO01rno",
-  "order_id": "FY629EDC0980B6A8C1EA"
+    "kyc_url": "http://rupifi.kyc1.com/",
+    "status": "APPROVED"
+  }
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### getUserBeneficiariesDetail
+Lists the beneficiary of a refund
+
+
+
+```javascript
+// Promise
+const promise = payment.getUserBeneficiariesDetail({  orderId : value });
+
+// Async/Await
+const data = await payment.getUserBeneficiariesDetail({  orderId : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| orderId | string | yes | A unique number used for identifying and tracking your orders. |  
+
+
+
+Use this API to get the details of all active beneficiary added by a user for refund.
+
+*Returned Response:*
+
+
+
+
+[OrderBeneficiaryResponse](#OrderBeneficiaryResponse)
+
+Success. Returns the details of the beneficiary getting a refund. Check the example shown below or refer `OrderBeneficiaryResponse` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "beneficiaries": [
+    {
+      "id": 221,
+      "beneficiary_id": "0f7e44a922df352c05c5f73cb40ba115",
+      "bank_name": "State Bank of India",
+      "branch_name": "State Bank of India",
+      "account_holder": "SHASHI TEST",
+      "account_no": "1234567891",
+      "ifsc_code": "SBIN0005611",
+      "mobile": "9112042174",
+      "email": "payment@gofynd.com",
+      "address": "204A",
+      "comment": "",
+      "is_active": null,
+      "created_on": "2020-06-29 12:38:39",
+      "modified_on": "2020-06-29 12:38:39",
+      "display_name": "BANK",
+      "transfer_mode": "bank",
+      "title": "Bank Account",
+      "subtitle": "1234567891",
+      "delights_user_name": null
+    }
+  ],
+  "show_beneficiary_details": false
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### initialisePayment
+Initialize a payment (server-to-server) for UPI and BharatQR
+
+
+
+```javascript
+// Promise
+const promise = payment.initialisePayment({  body : value });
+
+// Async/Await
+const data = await payment.initialisePayment({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [PaymentInitializationRequest](#PaymentInitializationRequest) | yes | Request body |
+
+
+PUse this API to inititate payment using UPI, BharatQR, wherein the UPI requests are send to the app and QR code is displayed on the screen.
+
+*Returned Response:*
+
+
+
+
+[PaymentInitializationResponse](#PaymentInitializationResponse)
+
+Success. Check the example shown below or refer `PaymentInitializationResponse` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "success": true,
+  "aggregator": "UPI_Razorpay",
+  "method": "upi",
+  "status": "success",
+  "merchant_order_id": "FY000120000101",
+  "aggregator_order_id": "lorem_GX8W00p2ipsum",
+  "polling_url": "https://api.fynd.com/service/application/payment/v0.1/payments/confirm/polling/?app_id=000000000000000000000001",
+  "timeout": 240,
+  "virtual_id": null,
+  "razorpay_payment_id": "pay_dummy_001",
+  "customer_id": "cust_dummy_001"
 }
 ```
 </details>
@@ -3315,76 +3009,17 @@ Success. Check the example shown below or refer `PaymentInitializationResponse` 
 ---
 
 
-### checkAndUpdatePaymentStatusPaymentLink
-Performs continuous polling to check status of payment on the server
+### pollingPaymentLink
+Used for polling if payment successful or not
 
 
 
 ```javascript
 // Promise
-const promise = payment.checkAndUpdatePaymentStatusPaymentLink({  body : value });
+const promise = payment.pollingPaymentLink({  paymentLinkId : value });
 
 // Async/Await
-const data = await payment.checkAndUpdatePaymentStatusPaymentLink({  body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |
-| body | [PaymentStatusUpdateRequest](#PaymentStatusUpdateRequest) | yes | Request body |
-
-
-Use this API to perform continuous polling at intervals to check the status of payment until timeout.
-
-*Returned Response:*
-
-
-
-
-[PaymentStatusUpdateResponse](#PaymentStatusUpdateResponse)
-
-Success. Returns the status of payment. Check the example shown below or refer `PaymentStatusUpdateResponse` for more details.
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "aggregator_name": "UPI_Razorpay",
-  "status": "success",
-  "retry": false
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### customerCreditSummary
-API to fetch the customer credit summary
-
-
-
-```javascript
-// Promise
-const promise = payment.customerCreditSummary({  aggregator : value });
-
-// Async/Await
-const data = await payment.customerCreditSummary({  aggregator : value });
+const data = await payment.pollingPaymentLink({  paymentLinkId : value });
 ```
 
 
@@ -3393,20 +3028,20 @@ const data = await payment.customerCreditSummary({  aggregator : value });
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
-| aggregator | string | no |  |  
+| paymentLinkId | string | no |  |  
 
 
 
-Use this API to fetch the customer credit summary.
+Use this API to poll if payment through payment was successful or not
 
 *Returned Response:*
 
 
 
 
-[CustomerCreditSummaryResponse](#CustomerCreditSummaryResponse)
+[PollingPaymentLinkResponse](#PollingPaymentLinkResponse)
 
-Success. Returns the status of payment. Check the example shown below or refer `CustomerCreditSummaryResponseSchema` for more details.
+Success. Check the example shown below
 
 
 
@@ -3416,34 +3051,13 @@ Success. Returns the status of payment. Check the example shown below or refer `
 
 ```json
 {
-  "success": true,
-  "data": {
-    "merchant_customer_ref_id": "ABHI0002",
-    "status": "Bill Due",
-    "status_message": "Pay now to avoid interest charges",
-    "balance": {
-      "value": 87424,
-      "formatted_value": "₹ 87,424.00",
-      "currency": "INR"
-    },
-    "limit": {
-      "value": 100000,
-      "formatted_value": "₹ 100,000.00",
-      "currency": "INR"
-    },
-    "due_amount": {
-      "value": 12576,
-      "formatted_value": "₹ 12,576.00",
-      "currency": "INR"
-    },
-    "used_amount": {
-      "value": 12576,
-      "formatted_value": "₹ 12,576.00",
-      "currency": "INR"
-    },
-    "due_date": "Oct 22 2021",
-    "days_overdue": 123
-  }
+  "aggregator_name": "Fynd",
+  "status": "complete",
+  "redirect_url": "https://api.fyndx0.de/service/application/order/v1.0/orders/?success=true&order_id=FY62B3FF87016F24A4E6&aggregator_name=Fynd&cart_id=412&delivery_address_id=136&billing_address_id=136",
+  "payment_link_id": "223d2a8df39a5dcdd8525498bee73199",
+  "amount": 21900,
+  "order_id": "FY62B3FF87016F24A4E6",
+  "status_code": 200
 }
 ```
 </details>
@@ -3524,17 +3138,17 @@ Success. Returns the status of payment. Check the example shown below or refer `
 ---
 
 
-### checkCredit
-API to fetch the customer credit summary
+### renderHTML
+Convert base64 string to HTML form
 
 
 
 ```javascript
 // Promise
-const promise = payment.checkCredit({  aggregator : value });
+const promise = payment.renderHTML({  body : value });
 
 // Async/Await
-const data = await payment.checkCredit({  aggregator : value });
+const data = await payment.renderHTML({  body : value });
 ```
 
 
@@ -3542,21 +3156,280 @@ const data = await payment.checkCredit({  aggregator : value });
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| aggregator | string | no |  |  
+| --------- | -----  | -------- | ----------- |
+| body | [renderHTMLRequest](#renderHTMLRequest) | yes | Request body |
 
 
-
-Use this API to fetch the customer credit summary.
+Use this API to decode base64 html form to plain HTML string.
 
 *Returned Response:*
 
 
 
 
-[CheckCreditResponse](#CheckCreditResponse)
+[renderHTMLResponse](#renderHTMLResponse)
 
-Success. Returns the status of payment. Check the example shown below or refer `CheckCreditResponseSchema` for more details.
+Success and return HTML decoded text
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "html": "<html><body>Your HTML text</body></html>"
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### resendOrCancelPayment
+API to resend and cancel a payment link which was already generated.
+
+
+
+```javascript
+// Promise
+const promise = payment.resendOrCancelPayment({  body : value });
+
+// Async/Await
+const data = await payment.resendOrCancelPayment({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [ResendOrCancelPaymentRequest](#ResendOrCancelPaymentRequest) | yes | Request body |
+
+
+Use this API to perform resend or cancel a payment link based on request payload.
+
+*Returned Response:*
+
+
+
+
+[ResendOrCancelPaymentResponse](#ResendOrCancelPaymentResponse)
+
+Success. Returns the status of payment. Check the example shown below or refer `ResendOrCancelPaymentResponse` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; request_type is cancel</i></summary>
+
+```json
+{
+  "value": {
+    "success": true,
+    "data": {
+      "message": "Payment link Cancelled.",
+      "status": true
+    }
+  }
+}
+```
+</details>
+
+<details>
+<summary><i>&nbsp; request_type is resend</i></summary>
+
+```json
+{
+  "value": {
+    "success": true,
+    "data": {
+      "message": "Notification triggered.",
+      "status": true
+    }
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### resendPaymentLink
+Resend payment link
+
+
+
+```javascript
+// Promise
+const promise = payment.resendPaymentLink({  body : value });
+
+// Async/Await
+const data = await payment.resendPaymentLink({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [CancelOrResendPaymentLinkRequest](#CancelOrResendPaymentLinkRequest) | yes | Request body |
+
+
+Use this API to resend a payment link for the customer
+
+*Returned Response:*
+
+
+
+
+[ResendPaymentLinkResponse](#ResendPaymentLinkResponse)
+
+Success. Check the example shown below
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "success": true,
+  "message": "Payment link resent",
+  "status_code": 200,
+  "polling_timeout": 480
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### updateDefaultBeneficiary
+Set a default beneficiary for a refund
+
+
+
+```javascript
+// Promise
+const promise = payment.updateDefaultBeneficiary({  body : value });
+
+// Async/Await
+const data = await payment.updateDefaultBeneficiary({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [SetDefaultBeneficiaryRequest](#SetDefaultBeneficiaryRequest) | yes | Request body |
+
+
+Use this API to set a default beneficiary for getting a refund.
+
+*Returned Response:*
+
+
+
+
+[SetDefaultBeneficiaryResponse](#SetDefaultBeneficiaryResponse)
+
+Success. Check the example shown below or refer `SetDefaultBeneficiaryResponse` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "success": true,
+  "is_beneficiary_set": true
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### validateVPA
+API to Validate UPI ID
+
+
+
+```javascript
+// Promise
+const promise = payment.validateVPA({  body : value });
+
+// Async/Await
+const data = await payment.validateVPA({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [ValidateVPARequest](#ValidateVPARequest) | yes | Request body |
+
+
+API to Validate UPI ID
+
+*Returned Response:*
+
+
+
+
+[ValidateVPAResponse](#ValidateVPAResponse)
+
+Success. Returns the status of payment. Check the example shown below or refer `ValidateVPAResponseSchema` for more details.
 
 
 
@@ -3568,9 +3441,10 @@ Success. Returns the status of payment. Check the example shown below or refer `
 {
   "success": true,
   "data": {
-    "is_registered": false,
-    "status": true,
-    "signup_url": "https://merchant.epaylater.in"
+    "upi_vpa": "success@razorpay",
+    "status": "VALID",
+    "is_valid": true,
+    "customer_name": "Verified"
   }
 }
 ```
@@ -3587,17 +3461,17 @@ Success. Returns the status of payment. Check the example shown below or refer `
 ---
 
 
-### customerOnboard
-API to fetch the customer credit summary
+### verifyAndChargePayment
+Verify and charge payment
 
 
 
 ```javascript
 // Promise
-const promise = payment.customerOnboard({  body : value });
+const promise = payment.verifyAndChargePayment({  body : value });
 
 // Async/Await
-const data = await payment.customerOnboard({  body : value });
+const data = await payment.verifyAndChargePayment({  body : value });
 ```
 
 
@@ -3606,19 +3480,19 @@ const data = await payment.customerOnboard({  body : value });
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |
-| body | [CustomerOnboardingRequest](#CustomerOnboardingRequest) | yes | Request body |
+| body | [ChargeCustomerRequest](#ChargeCustomerRequest) | yes | Request body |
 
 
-Use this API to fetch the customer credit summary.
+Use this API to verify and check the status of a payment transaction (server-to-server) made through aggregators like Simpl and Mswipe.
 
 *Returned Response:*
 
 
 
 
-[CustomerOnboardingResponse](#CustomerOnboardingResponse)
+[ChargeCustomerResponse](#ChargeCustomerResponse)
 
-Success. Returns the status of payment. Check the example shown below or refer `CustomerOnboardingResponseSchema` for more details.
+Success. Check the example shown below or refer `ChargeCustomerResponse` for more details.
 
 
 
@@ -3629,13 +3503,303 @@ Success. Returns the status of payment. Check the example shown below or refer `
 ```json
 {
   "success": true,
-  "data": {
-    "session": {
-      "session_id": "109dae9a-9fe0-4277-979c-0bebb0136930"
-    },
-    "redirect_url": "https://retail-dev.epaylater.in?sessionId=109dae9a-9fe0-4277-979c-0bebb0136930",
-    "status": true
+  "message": "Payment Successful",
+  "status": "complete",
+  "order_id": "FY000000001000000101",
+  "aggregator": "Simpl",
+  "cart_id": "0000000",
+  "delivery_address_id": "0000000"
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### verifyCustomerForPayment
+Validate customer for payment
+
+
+
+```javascript
+// Promise
+const promise = payment.verifyCustomerForPayment({  body : value });
+
+// Async/Await
+const data = await payment.verifyCustomerForPayment({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [ValidateCustomerRequest](#ValidateCustomerRequest) | yes | Request body |
+
+
+Use this API to check if the customer is eligible to use credit-line facilities such as Simpl Pay Later and Rupifi.
+
+*Returned Response:*
+
+
+
+
+[ValidateCustomerResponse](#ValidateCustomerResponse)
+
+Success. Check the example shown below or refer `ValidateCustomerResponse` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; success is True i.e user is allowed</i></summary>
+
+```json
+{
+  "value": {
+    "success": true,
+    "message": "data fetched",
+    "data": {
+      "api_version": 2,
+      "data": {
+        "approved": true,
+        "button_text": "Buy Now, Pay Later",
+        "first_transaction": false
+      },
+      "aggregator": "Simpl"
+    }
   }
+}
+```
+</details>
+
+<details>
+<summary><i>&nbsp; success is True i.e user not allowed</i></summary>
+
+```json
+{
+  "value": {
+    "success": false,
+    "message": "data fetched",
+    "error": {
+      "api_version": 2,
+      "data": {
+        "approved": false,
+        "button_text": "Buy Now, Pay Later",
+        "first_transaction": false
+      },
+      "aggregator": "Simpl"
+    },
+    "data": {}
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### verifyIfscCode
+Verify IFSC Code
+
+
+
+```javascript
+// Promise
+const promise = payment.verifyIfscCode({  ifscCode : value });
+
+// Async/Await
+const data = await payment.verifyIfscCode({  ifscCode : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| ifscCode | string | no | A 11-digit alphanumeric code that uniquely identifies a bank branch. |  
+
+
+
+Use this API to check whether the 11-digit IFSC code is valid and to fetch the bank details for refund.
+
+*Returned Response:*
+
+
+
+
+[IfscCodeResponse](#IfscCodeResponse)
+
+Success. Shows whether the IFSC code is valid, and returns the bank details. Check the example shown below or refer `IfscCodeResponse` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "branch_name": "MANPUR",
+  "bank_name": "GAYA",
+  "BRANCH": "MANPUR",
+  "CENTRE": "GAYA",
+  "DISTRICT": "GAYA",
+  "STATE": "BIHAR",
+  "ADDRESS": "POBUNIYADGANJBIHAR",
+  "CONTACT": "00",
+  "MICR": "816002103",
+  "UPI": true,
+  "RTGS": true,
+  "CITY": "GAYA",
+  "NEFT": true,
+  "IMPS": true,
+  "SWIFT": "",
+  "BANK": "State Bank of India",
+  "BANKCODE": "SBIN",
+  "IFSC": "SBIN0005611",
+  "success": true
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### verifyOtpAndAddBeneficiaryForBank
+Verify the beneficiary details using OTP
+
+
+
+```javascript
+// Promise
+const promise = payment.verifyOtpAndAddBeneficiaryForBank({  body : value });
+
+// Async/Await
+const data = await payment.verifyOtpAndAddBeneficiaryForBank({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [AddBeneficiaryViaOtpVerificationRequest](#AddBeneficiaryViaOtpVerificationRequest) | yes | Request body |
+
+
+Use this API to perform an OTP validation before saving the beneficiary details added for a refund.
+
+*Returned Response:*
+
+
+
+
+[AddBeneficiaryViaOtpVerificationResponse](#AddBeneficiaryViaOtpVerificationResponse)
+
+Success. Check the example shown below or refer `AddBeneficiaryViaOtpVerificationRequest` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "success": true,
+  "message": "Account successfully created"
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### verifyOtpAndAddBeneficiaryForWallet
+Send OTP on adding a wallet beneficiary
+
+
+
+```javascript
+// Promise
+const promise = payment.verifyOtpAndAddBeneficiaryForWallet({  body : value });
+
+// Async/Await
+const data = await payment.verifyOtpAndAddBeneficiaryForWallet({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [WalletOtpRequest](#WalletOtpRequest) | yes | Request body |
+
+
+Use this API to send an OTP while adding a wallet beneficiary by mobile no. verification.
+
+*Returned Response:*
+
+
+
+
+[WalletOtpResponse](#WalletOtpResponse)
+
+Success. Sends the OTP to the given mobile number. Check the example shown below or refer `WalletOtpResponse` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "success": true,
+  "is_verified_flag": false,
+  "request_id": "c3ca6c13d490c885a125d106b45697b7"
 }
 ```
 </details>
@@ -3654,1337 +3818,1217 @@ Success. Returns the status of payment. Check the example shown below or refer `
 
 ### Schemas
 
- 
- 
- #### [AggregatorConfigDetail](#AggregatorConfigDetail)
+
+#### [ActiveCardPaymentGatewayResponse](#ActiveCardPaymentGatewayResponse)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | merchant_key | string |  no  | Unique merchant key |
- | pin | string |  no  | Masked pin |
- | merchant_id | string |  no  | Unique merchant id |
- | key | string |  yes  | Payment gateway api key |
- | api | string |  no  | Payment gateway api endpoint |
- | verify_api | string |  no  | Payment gateway verify payment api endpoint |
- | secret | string |  yes  | Masked payment gateway api secret |
- | config_type | string |  yes  | Fynd or self payment gateway |
- | user_id | string |  no  | Registered User id |
- | sdk | boolean |  no  | SDK |
+ | cards | [CardPaymentGateway](#CardPaymentGateway) |  yes  |  |
+ | message | string |  yes  |  |
+ | success | boolean |  yes  |  |
+ 
 
 ---
 
-
- 
- 
- #### [AggregatorsConfigDetailResponse](#AggregatorsConfigDetailResponse)
+#### [AddBeneficiaryDetailsOTPRequest](#AddBeneficiaryDetailsOTPRequest)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | simpl | [AggregatorConfigDetail](#AggregatorConfigDetail) |  no  |  |
- | env | string |  yes  | Environment i.e Live or Test |
- | mswipe | [AggregatorConfigDetail](#AggregatorConfigDetail) |  no  |  |
+ | details | [BankDetailsForOTP](#BankDetailsForOTP) |  yes  |  |
+ | order_id | string |  yes  |  |
+ 
+
+---
+
+#### [AddBeneficiaryDetailsRequest](#AddBeneficiaryDetailsRequest)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | delights | boolean |  yes  |  |
+ | details | [BeneficiaryModeDetails](#BeneficiaryModeDetails) |  yes  |  |
+ | order_id | string |  yes  |  |
+ | otp | string |  no  |  |
+ | request_id | string |  no  |  |
+ | shipment_id | string |  yes  |  |
+ | transfer_mode | string |  yes  |  |
+ 
+
+---
+
+#### [AddBeneficiaryViaOtpVerificationRequest](#AddBeneficiaryViaOtpVerificationRequest)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | hash_key | string |  yes  |  |
+ | otp | string |  yes  |  |
+ | request_id | string |  yes  |  |
+ 
+
+---
+
+#### [AddBeneficiaryViaOtpVerificationResponse](#AddBeneficiaryViaOtpVerificationResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | message | string |  yes  |  |
+ | success | boolean |  no  |  |
+ 
+
+---
+
+#### [AggregatorConfigDetail](#AggregatorConfigDetail)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | api | string |  no  |  |
+ | config_type | string |  yes  |  |
+ | key | string |  yes  |  |
+ | merchant_id | string |  no  |  |
+ | merchant_key | string |  no  |  |
+ | pin | string |  no  |  |
+ | sdk | boolean |  no  |  |
+ | secret | string |  yes  |  |
+ | user_id | string |  no  |  |
+ | verify_api | string |  no  |  |
+ 
+
+---
+
+#### [AggregatorRoute](#AggregatorRoute)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | api_link | string |  no  |  |
+ | data | string |  no  |  |
+ | payment_flow | string |  no  |  |
+ | payment_flow_data | string |  no  |  |
+ 
+
+---
+
+#### [AggregatorsConfigDetailResponse](#AggregatorsConfigDetailResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | ccavenue | [AggregatorConfigDetail](#AggregatorConfigDetail) |  no  |  |
+ | env | string |  yes  |  |
  | juspay | [AggregatorConfigDetail](#AggregatorConfigDetail) |  no  |  |
- | stripe | [AggregatorConfigDetail](#AggregatorConfigDetail) |  no  |  |
+ | mswipe | [AggregatorConfigDetail](#AggregatorConfigDetail) |  no  |  |
  | payumoney | [AggregatorConfigDetail](#AggregatorConfigDetail) |  no  |  |
  | razorpay | [AggregatorConfigDetail](#AggregatorConfigDetail) |  no  |  |
  | rupifi | [AggregatorConfigDetail](#AggregatorConfigDetail) |  no  |  |
- | ccavenue | [AggregatorConfigDetail](#AggregatorConfigDetail) |  no  |  |
+ | simpl | [AggregatorConfigDetail](#AggregatorConfigDetail) |  no  |  |
+ | stripe | [AggregatorConfigDetail](#AggregatorConfigDetail) |  no  |  |
  | success | boolean |  yes  |  |
+ 
 
 ---
 
-
- 
- 
- #### [ErrorCodeAndDescription](#ErrorCodeAndDescription)
+#### [AttachCardRequest](#AttachCardRequest)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | description | string |  yes  | Error human understandable description. |
- | code | string |  yes  | Error descrption code. |
-
----
-
-
- 
- 
- #### [HttpErrorCodeAndResponse](#HttpErrorCodeAndResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | error | [ErrorCodeAndDescription](#ErrorCodeAndDescription) |  yes  |  |
- | success | boolean |  yes  | Response is successful or not |
-
----
-
-
- 
- 
- #### [AttachCardRequest](#AttachCardRequest)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | nickname | string |  no  |  |
- | card_id | string |  yes  | Card token of payment gateway. |
+ | card_id | string |  yes  |  |
  | name_on_card | string |  no  |  |
- | refresh | boolean |  no  | Refresh cache flag. |
+ | nickname | string |  no  |  |
+ | refresh | boolean |  no  |  |
+ 
 
 ---
 
-
- 
- 
- #### [AttachCardsResponse](#AttachCardsResponse)
+#### [AttachCardsResponse](#AttachCardsResponse)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | message | string |  no  | Human readable message. |
- | data | string |  yes  | List of cards of customer. |
- | success | boolean |  yes  | Response is successful or not. |
+ | data | string |  yes  |  |
+ | message | string |  no  |  |
+ | success | boolean |  yes  |  |
+ 
 
 ---
 
-
- 
- 
- #### [CardPaymentGateway](#CardPaymentGateway)
+#### [BalanceDetails](#BalanceDetails)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | api | string |  no  | Payment gateway CARD api endpoint |
- | customer_id | string |  no  | Payment gateway customer id. |
- | aggregator | string |  yes  | Payment gateway name. |
+ | currency | string |  yes  |  |
+ | formatted_value | string |  yes  |  |
+ | value | number |  yes  |  |
+ 
 
 ---
 
-
- 
- 
- #### [ActiveCardPaymentGatewayResponse](#ActiveCardPaymentGatewayResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | message | string |  yes  | Human readable message. |
- | cards | [CardPaymentGateway](#CardPaymentGateway) |  yes  | Card's payment gateway with customer id. |
- | success | boolean |  yes  | Response is successful or not. |
-
----
-
-
- 
- 
- #### [Card](#Card)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | card_name | string |  no  | card_name |
- | card_type | string |  no  | card_type |
- | exp_year | number |  no  | exp_year |
- | exp_month | number |  no  | exp_month |
- | card_issuer | string |  no  | card_issuer |
- | card_token | string |  no  | card_token |
- | compliant_with_tokenisation_guidelines | boolean |  no  | If card is tokenised or not |
- | card_brand | string |  no  | card_brand |
- | expired | boolean |  no  | expired |
- | card_number | string |  no  | card_number |
- | card_id | string |  no  | card_id |
- | card_reference | string |  no  | card_reference |
- | aggregator_name | string |  yes  | aggregator_name |
- | card_isin | string |  no  | card_isin |
- | card_fingerprint | string |  no  | card_fingerprint |
- | nickname | string |  no  | nickname |
- | card_brand_image | string |  no  | card_brand_image |
-
----
-
-
- 
- 
- #### [ListCardsResponse](#ListCardsResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | message | string |  yes  | Human readable message. |
- | data | [[Card](#Card)] |  no  | List of cards of customer. |
- | success | boolean |  yes  | Response is successful or not. |
-
----
-
-
- 
- 
- #### [DeletehCardRequest](#DeletehCardRequest)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | card_id | string |  yes  | Card token of payment gateway. |
-
----
-
-
- 
- 
- #### [DeleteCardsResponse](#DeleteCardsResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | message | string |  no  | Human readable message. |
- | success | boolean |  yes  | Response is successful or not. |
-
----
-
-
- 
- 
- #### [ValidateCustomerRequest](#ValidateCustomerRequest)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | phone_number | string |  yes  | User mobile number without country code. |
- | merchant_params | string |  no  | Extra meta fields. |
- | payload | string |  no  | Hashed payload string. |
- | order_items | [string] |  no  | Extra meta fields. |
- | aggregator | string |  yes  | Payment gateway name in camel case i.e Simpl, Rupifi |
- | delivery_address | string |  no  | Extra meta fields. |
- | billing_address | string |  no  | Extra meta fields. |
- | transaction_amount_in_paise | number |  yes  | Payable amount in paise |
-
----
-
-
- 
- 
- #### [ValidateCustomerResponse](#ValidateCustomerResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | message | string |  yes  | Error or success message. |
- | data | string |  yes  | Payment gateway response data |
- | success | boolean |  yes  | Response is successful or not |
-
----
-
-
- 
- 
- #### [ChargeCustomerRequest](#ChargeCustomerRequest)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | amount | number |  yes  | Chargable amount of order. |
- | order_id | string |  yes  | Unique order id. |
- | verified | boolean |  no  | Already Verified flag from payment gateway i.e Mswipe |
- | aggregator | string |  yes  | Payment gateway name i.e Simpl, Mswipe |
- | transaction_token | string |  no  | Transaction token of payment gateway. |
-
----
-
-
- 
- 
- #### [ChargeCustomerResponse](#ChargeCustomerResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | message | string |  yes  | Human readable message. |
- | cart_id | string |  no  | Cart id of customer |
- | delivery_address_id | string |  no  | Delivery adddress id of customer |
- | status | string |  yes  | Status of charged payment. |
- | order_id | string |  yes  | Unique order id. |
- | aggregator | string |  yes  | Payment gateway name i.e Simpl, Mswipe |
- | success | boolean |  yes  | Response is successful or not. |
-
----
-
-
- 
- 
- #### [PaymentInitializationRequest](#PaymentInitializationRequest)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | merchant_order_id | string |  yes  | Unique fynd order id |
- | timeout | number |  no  | Payment polling timeout if not recieved response |
- | aggregator | string |  yes  | Payment gateway name |
- | method | string |  yes  | Payment method |
- | email | string |  yes  | Customer valid email |
- | amount | number |  yes  | Payable amount. |
- | order_id | string |  yes  | Payment gateway order id |
- | currency | string |  yes  | Currency code. |
- | razorpay_payment_id | string |  no  | Payment gateway payment id |
- | customer_id | string |  yes  | Payment gateway customer id. |
- | contact | string |  yes  | Customer valid mobile number |
- | vpa | string |  no  | Customer vpa address |
-
----
-
-
- 
- 
- #### [PaymentInitializationResponse](#PaymentInitializationResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | merchant_order_id | string |  yes  | order id |
- | upi_poll_url | string |  no  | UPI poll url. |
- | virtual_id | string |  no  | Payment virtual address. |
- | timeout | number |  no  | timeout. |
- | method | string |  yes  | Payment method |
- | status | string |  no  | Status of payment. |
- | amount | number |  no  | Payable amount. |
- | polling_url | string |  yes  | Polling url. |
- | currency | string |  no  | Currency code. |
- | bqr_image | string |  no  | Bharath qr image url. |
- | razorpay_payment_id | string |  no  | Payment  id. |
- | customer_id | string |  no  | Payment gateway customer id. |
- | aggregator | string |  yes  | Payment gateway name |
- | aggregator_order_id | string |  no  | Payment order id |
- | vpa | string |  no  | Customer vpa address |
- | success | boolean |  yes  | Response is successful or not. |
-
----
-
-
- 
- 
- #### [PaymentStatusUpdateRequest](#PaymentStatusUpdateRequest)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | merchant_order_id | string |  yes  | Unique fynd order id |
- | method | string |  yes  | Payment method |
- | email | string |  yes  | Customer valid email |
- | amount | number |  yes  | Payable amount. |
- | status | string |  yes  | Status of payment. |
- | order_id | string |  yes  | Payment gateway order id |
- | currency | string |  yes  | Currency code. |
- | customer_id | string |  yes  | Payment gateway customer id. |
- | aggregator | string |  yes  | Payment gateway name |
- | vpa | string |  yes  | Customer vpa address |
- | contact | string |  yes  | Customer valid mobile number |
-
----
-
-
- 
- 
- #### [PaymentStatusUpdateResponse](#PaymentStatusUpdateResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | redirect_url | string |  no  | Redirect url |
- | status | string |  yes  | Payment status |
- | aggregator_name | string |  yes  | Payment gateway name |
- | retry | boolean |  yes  | Response is successful or not. |
- | success | boolean |  no  | Response is successful or not |
-
----
-
-
- 
- 
- #### [PaymentModeLogo](#PaymentModeLogo)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | large | string |  yes  | large |
- | small | string |  yes  | smalll |
-
----
-
-
- 
- 
- #### [IntentAppErrorList](#IntentAppErrorList)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | package_name | string |  no  | package_name |
- | code | string |  no  | code |
-
----
-
-
- 
- 
- #### [IntentApp](#IntentApp)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | package_name | string |  no  | package_name |
- | display_name | string |  no  | display_name |
- | code | string |  no  | code |
- | logos | [PaymentModeLogo](#PaymentModeLogo) |  no  | logos |
-
----
-
-
- 
- 
- #### [PaymentModeList](#PaymentModeList)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | logo_url | [PaymentModeLogo](#PaymentModeLogo) |  no  | Logo |
- | compliant_with_tokenisation_guidelines | boolean |  no  | If card is tokenised or not |
- | exp_month | number |  no  | exp_month |
- | timeout | number |  no  | timeout |
- | expired | boolean |  no  | expired |
- | card_number | string |  no  | card_number |
- | name | string |  no  | name |
- | intent_app_error_dict_list | [[IntentAppErrorList](#IntentAppErrorList)] |  no  | intent_app_error_dict_list |
- | intent_app | [[IntentApp](#IntentApp)] |  no  | intent_app |
- | card_id | string |  no  | card_id |
- | card_isin | string |  no  | card_isin |
- | card_fingerprint | string |  no  | card_fingerprint |
- | card_brand_image | string |  no  | card_brand_image |
- | card_type | string |  no  | card_type |
- | retry_count | number |  no  | retry_count |
- | exp_year | number |  no  | exp_year |
- | card_issuer | string |  no  | card_issuer |
- | intent_flow | boolean |  no  | intent_flow |
- | merchant_code | string |  no  | merchant code |
- | intent_app_error_list | [string] |  no  | intent_app_error_list |
- | card_brand | string |  no  | card_brand |
- | card_reference | string |  no  | card_reference |
- | aggregator_name | string |  yes  | aggregator_name |
- | nickname | string |  no  | nickname |
- | code | string |  no  | code |
- | card_name | string |  no  | card_name |
- | card_token | string |  no  | card_token |
- | display_priority | number |  no  | Dispaly Priority |
- | fynd_vpa | string |  no  | fynd_vpa |
- | display_name | string |  no  | display name |
-
----
-
-
- 
- 
- #### [RootPaymentMode](#RootPaymentMode)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | anonymous_enable | boolean |  no  | Annonymous card flag |
- | list | [[PaymentModeList](#PaymentModeList)] |  no  | Payment mode |
- | display_priority | number |  yes  | Dispaly Priority |
- | add_card_enabled | boolean |  no  | Annonymous card flag |
- | display_name | string |  yes  | Payment mode display name |
- | save_card | boolean |  no  | Card save or not |
- | name | string |  yes  | Payment mode name |
- | aggregator_name | string |  no  | Dispaly Priority |
- | is_pay_by_card_pl | boolean |  no  | This flag will be true in case of Payment link payment through card |
-
----
-
-
- 
- 
- #### [AggregatorRoute](#AggregatorRoute)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | payment_flow | string |  no  | payment_flow |
- | data | string |  no  | Data |
- | api_link | string |  no  | api_link |
- | payment_flow_data | string |  no  | payment_flow_data |
-
----
-
-
- 
- 
- #### [PaymentFlow](#PaymentFlow)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | simpl | [AggregatorRoute](#AggregatorRoute) |  no  | simpl |
- | juspay | [AggregatorRoute](#AggregatorRoute) |  no  | Juspay |
- | mswipe | [AggregatorRoute](#AggregatorRoute) |  no  | mswipe |
- | stripe | [AggregatorRoute](#AggregatorRoute) |  no  | Stripe |
- | payubiz | [AggregatorRoute](#AggregatorRoute) |  no  | Payubiz |
- | jiopay | [AggregatorRoute](#AggregatorRoute) |  no  | Jiopay |
- | razorpay | [AggregatorRoute](#AggregatorRoute) |  no  | Razorpay |
- | rupifi | [AggregatorRoute](#AggregatorRoute) |  no  | Rupifi |
- | upi_razorpay | [AggregatorRoute](#AggregatorRoute) |  no  | UPI_Razorpay |
- | fynd | [AggregatorRoute](#AggregatorRoute) |  no  | Fynd |
- | ccavenue | [AggregatorRoute](#AggregatorRoute) |  no  | Ccavenue |
- | bqr_razorpay | [AggregatorRoute](#AggregatorRoute) |  no  | BQR_Razorpay |
- | epaylater | [AggregatorRoute](#AggregatorRoute) |  no  | Epaylater |
-
----
-
-
- 
- 
- #### [PaymentOptionAndFlow](#PaymentOptionAndFlow)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | payment_option | [[RootPaymentMode](#RootPaymentMode)] |  yes  | Payment options |
- | payment_flows | [PaymentFlow](#PaymentFlow) |  yes  | payment_flows |
-
----
-
-
- 
- 
- #### [PaymentModeRouteResponse](#PaymentModeRouteResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | payment_options | [PaymentOptionAndFlow](#PaymentOptionAndFlow) |  yes  | payment_options |
- | success | boolean |  yes  | Response is successful or not |
-
----
-
-
- 
- 
- #### [RupifiBannerData](#RupifiBannerData)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | status | string |  no  | Rupifi KYC status |
- | kyc_url | string |  no  | Rupifi KYC banner url. |
-
----
-
-
- 
- 
- #### [RupifiBannerResponse](#RupifiBannerResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | data | [RupifiBannerData](#RupifiBannerData) |  yes  | Rupifi KYC banner details. |
- | success | boolean |  yes  | Successful or not. |
-
----
-
-
- 
- 
- #### [EpaylaterBannerData](#EpaylaterBannerData)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | display | boolean |  yes  | Need to display banner or not |
- | status | string |  no  | Epaylater KYC status |
- | message | string |  no  | ePayLater message |
-
----
-
-
- 
- 
- #### [EpaylaterBannerResponse](#EpaylaterBannerResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | data | [EpaylaterBannerData](#EpaylaterBannerData) |  yes  | Epaylater KYC banner details. |
- | success | boolean |  yes  | Successful or not. |
-
----
-
-
- 
- 
- #### [ResendOrCancelPaymentRequest](#ResendOrCancelPaymentRequest)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | request_type | string |  yes  | Either resend or cancel |
- | order_id | string |  yes  | Unique order id |
-
----
-
-
- 
- 
- #### [LinkStatus](#LinkStatus)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | message | string |  yes  | Message |
- | status | boolean |  yes  | Link action status |
-
----
-
-
- 
- 
- #### [ResendOrCancelPaymentResponse](#ResendOrCancelPaymentResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | data | [LinkStatus](#LinkStatus) |  yes  | Data about link action status. |
- | success | boolean |  yes  | Response is successful or not. |
-
----
-
-
- 
- 
- #### [TransferItemsDetails](#TransferItemsDetails)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | display_name | string |  no  | Beneficiary Display Name |
- | name | string |  yes  |  Beneficiary Name |
- | logo_small | string |  yes  | Beneficiary small Logo |
- | logo_large | string |  yes  | Beneficiary large Logo |
- | id | number |  yes  |   |
-
----
-
-
- 
- 
- #### [TransferModeDetails](#TransferModeDetails)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | display_name | string |  yes  | Beneficiary Mode Name |
- | items | [[TransferItemsDetails](#TransferItemsDetails)] |  no  | Beneficiary Mode Items |
-
----
-
-
- 
- 
- #### [TransferModeResponse](#TransferModeResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | data | [[TransferModeDetails](#TransferModeDetails)] |  yes  | Response Object |
-
----
-
-
- 
- 
- #### [UpdateRefundTransferModeRequest](#UpdateRefundTransferModeRequest)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | transfer_mode | string |  yes  | Transfer Mode of the Beneficiary to be added |
- | enable | boolean |  yes  | True for enabling the Transfer Mode |
-
----
-
-
- 
- 
- #### [UpdateRefundTransferModeResponse](#UpdateRefundTransferModeResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | success | boolean |  no  | Response is successful or not |
-
----
-
-
- 
- 
- #### [OrderBeneficiaryDetails](#OrderBeneficiaryDetails)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | beneficiary_id | string |  yes  | Benenficiary Id |
- | branch_name | boolean |  no  | Branch Name Of Account |
- | comment | boolean |  no  | Remarks |
- | account_no | string |  yes  | Account Number |
- | transfer_mode | string |  yes  | Transfer Mode Of Account |
- | address | string |  yes  | Address of User |
- | created_on | string |  yes  | Creation Date of Beneficiary |
- | subtitle | string |  yes  | SHort Title Of Account |
- | title | string |  yes  | Title Of Account |
- | email | string |  yes  | EMail of User |
- | modified_on | string |  yes  | MOdification Date of Beneficiary |
- | is_active | boolean |  yes  | Boolean Flag whether Beneficiary set or not |
- | delights_user_name | string |  no  | User Id Who filled the Beneficiary  |
- | ifsc_code | string |  yes  | Ifsc Code Of Account |
- | display_name | string |  yes  | Display Name Of Account |
- | mobile | boolean |  no  | MObile no of User |
- | account_holder | string |  yes  | Account Holder Name |
- | bank_name | string |  yes  | Bank Name Of Account |
- | id | number |  yes  |   |
-
----
-
-
- 
- 
- #### [OrderBeneficiaryResponse](#OrderBeneficiaryResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | beneficiaries | [[OrderBeneficiaryDetails](#OrderBeneficiaryDetails)] |  no  | All Beneficiaries Of An Order |
- | show_beneficiary_details | boolean |  no  | Show beneficiary details or not. |
-
----
-
-
- 
- 
- #### [NotFoundResourceError](#NotFoundResourceError)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | description | string |  yes  | Not Found |
- | code | string |  yes  | Bad Request Data |
- | success | boolean |  yes  | Response is successful or not |
-
----
-
-
- 
- 
- #### [IfscCodeResponse](#IfscCodeResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | bank_name | string |  yes  | Bank Name Of Account |
- | branch_name | string |  yes  | Branch Name Of Account |
- | success | boolean |  no  | Response is successful or not |
-
----
-
-
- 
- 
- #### [ErrorCodeDescription](#ErrorCodeDescription)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | description | string |  yes  | Error human understandable description. |
- | code | string |  yes  | Error descrption code. |
- | success | boolean |  yes  | Response is successful or not |
-
----
-
-
- 
- 
- #### [AddBeneficiaryViaOtpVerificationRequest](#AddBeneficiaryViaOtpVerificationRequest)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | otp | string |  yes  | Otp sent to the given Mobile No |
- | hash_key | string |  yes  | Hash key of the beneficiary Id |
- | request_id | string |  yes  | Request Id sent in  |
-
----
-
-
- 
- 
- #### [AddBeneficiaryViaOtpVerificationResponse](#AddBeneficiaryViaOtpVerificationResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | message | string |  yes  | Aggregator Response of beneficicary  |
- | success | boolean |  no  | Response is successful or not |
-
----
-
-
- 
- 
- #### [WrongOtpError](#WrongOtpError)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | description | string |  yes  | Wrong OTP Code |
- | is_verified_flag | boolean |  yes  | Vefified flag. |
- | success | string |  yes  | Response is successful or not |
-
----
-
-
- 
- 
- #### [BeneficiaryModeDetails](#BeneficiaryModeDetails)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | wallet | string |  no  |  |
- | email | string |  yes  | Email of the Account Holder |
- | ifsc_code | string |  yes  | Ifsc Code of the Account |
- | mobile | string |  yes  | Moblie Number of the User |
- | account_holder | string |  yes  | Name of the Account Holder |
- | branch_name | string |  yes  | Branch Name of the Account |
- | comment | string |  no  | Remarks added by The user |
- | account_no | string |  yes  | Account NUmber of the Account Holder |
- | bank_name | string |  yes  | Bank Name of the Account |
- | vpa | string |  no  |  |
- | address | string |  no  | Address of the User |
-
----
-
-
- 
- 
- #### [AddBeneficiaryDetailsRequest](#AddBeneficiaryDetailsRequest)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | otp | string |  no  |  |
- | delights | boolean |  yes  | True if  beneficiary to be added by delights or False if by User |
- | order_id | string |  yes  | Merchant Order Id |
- | details | [BeneficiaryModeDetails](#BeneficiaryModeDetails) |  yes  | Beneficiary bank details |
- | request_id | string |  no  |  |
- | transfer_mode | string |  yes  | Transfer Mode of the Beneficiary to be added |
- | shipment_id | string |  yes  | Shipment Id of the respective Merchant Order Id |
-
----
-
-
- 
- 
- #### [RefundAccountResponse](#RefundAccountResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | is_verified_flag | boolean |  no  |  |
- | message | string |  yes  | Response message |
- | data | string |  no  | Refund account data. |
- | success | boolean |  yes  | Success or failure flag. |
-
----
-
-
- 
- 
- #### [BankDetailsForOTP](#BankDetailsForOTP)
+#### [BankDetailsForOTP](#BankDetailsForOTP)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | account_holder | string |  yes  |  |
- | branch_name | string |  yes  |  |
  | account_no | string |  yes  |  |
  | bank_name | string |  yes  |  |
+ | branch_name | string |  yes  |  |
  | ifsc_code | string |  yes  |  |
+ 
 
 ---
 
+#### [BeneficiaryModeDetails](#BeneficiaryModeDetails)
 
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | account_holder | string |  yes  |  |
+ | account_no | string |  yes  |  |
+ | address | string |  no  |  |
+ | bank_name | string |  yes  |  |
+ | branch_name | string |  yes  |  |
+ | comment | string |  no  |  |
+ | email | string |  yes  |  |
+ | ifsc_code | string |  yes  |  |
+ | mobile | string |  yes  |  |
+ | vpa | string |  no  |  |
+ | wallet | string |  no  |  |
  
+
+---
+
+#### [BusinessDetails](#BusinessDetails)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | address | [KYCAddress](#KYCAddress) |  no  |  |
+ | business_ownership_type | string |  no  |  |
+ | business_type | string |  no  |  |
+ | entity_type | string |  no  |  |
+ | fda | string |  no  |  |
+ | fssai | string |  no  |  |
+ | gstin | string |  no  |  |
+ | name | string |  no  |  |
+ | pan | string |  no  |  |
+ | shop_and_establishment | string |  no  |  |
+ | vintage | string |  no  |  |
  
- #### [AddBeneficiaryDetailsOTPRequest](#AddBeneficiaryDetailsOTPRequest)
+
+---
+
+#### [CancelOrResendPaymentLinkRequest](#CancelOrResendPaymentLinkRequest)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | payment_link_id | string |  yes  |  |
+ 
+
+---
+
+#### [CancelPaymentLinkResponse](#CancelPaymentLinkResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | message | string |  yes  |  |
+ | status_code | number |  yes  |  |
+ | success | boolean |  yes  |  |
+ 
+
+---
+
+#### [Card](#Card)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | aggregator_name | string |  yes  |  |
+ | card_brand | string |  no  |  |
+ | card_brand_image | string |  no  |  |
+ | card_fingerprint | string |  no  |  |
+ | card_id | string |  no  |  |
+ | card_isin | string |  no  |  |
+ | card_issuer | string |  no  |  |
+ | card_name | string |  no  |  |
+ | card_number | string |  no  |  |
+ | card_reference | string |  no  |  |
+ | card_token | string |  no  |  |
+ | card_type | string |  no  |  |
+ | compliant_with_tokenisation_guidelines | boolean |  no  |  |
+ | exp_month | number |  no  |  |
+ | exp_year | number |  no  |  |
+ | expired | boolean |  no  |  |
+ | nickname | string |  no  |  |
+ 
+
+---
+
+#### [CardPaymentGateway](#CardPaymentGateway)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | aggregator | string |  yes  |  |
+ | api | string |  no  |  |
+ | customer_id | string |  no  |  |
+ 
+
+---
+
+#### [ChargeCustomerRequest](#ChargeCustomerRequest)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | aggregator | string |  yes  |  |
+ | amount | number |  yes  |  |
+ | order_id | string |  yes  |  |
+ | transaction_token | string |  no  |  |
+ | verified | boolean |  no  |  |
+ 
+
+---
+
+#### [ChargeCustomerResponse](#ChargeCustomerResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | aggregator | string |  yes  |  |
+ | cart_id | string |  no  |  |
+ | delivery_address_id | string |  no  |  |
+ | message | string |  yes  |  |
+ | order_id | string |  yes  |  |
+ | status | string |  yes  |  |
+ | success | boolean |  yes  |  |
+ 
+
+---
+
+#### [CheckCreditResponse](#CheckCreditResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | data | [CreditDetail](#CreditDetail) |  yes  |  |
+ | success | boolean |  yes  |  |
+ 
+
+---
+
+#### [CreateOrderUserData](#CreateOrderUserData)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | aggregator | string |  no  |  |
+ | amount | number |  no  |  |
+ | callback_url | string |  no  |  |
+ | contact | string |  no  |  |
+ | currency | string |  no  |  |
+ | customer_id | string |  no  |  |
+ | email | string |  no  |  |
+ | merchant_order_id | string |  no  |  |
+ | method | string |  no  |  |
+ | order_id | string |  no  |  |
+ 
+
+---
+
+#### [CreateOrderUserPaymentMethods](#CreateOrderUserPaymentMethods)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | meta | [PaymentMethodsMeta](#PaymentMethodsMeta) |  yes  |  |
+ | mode | string |  yes  |  |
+ | name | string |  yes  |  |
+ 
+
+---
+
+#### [CreateOrderUserRequest](#CreateOrderUserRequest)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | currency | string |  yes  |  |
+ | failure_callback_url | string |  yes  |  |
+ | meta | string |  no  |  |
+ | payment_link_id | string |  yes  |  |
+ | payment_methods | [CreateOrderUserPaymentMethods](#CreateOrderUserPaymentMethods) |  yes  |  |
+ | success_callback_url | string |  yes  |  |
+ 
+
+---
+
+#### [CreateOrderUserResponse](#CreateOrderUserResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | callback_url | string |  no  |  |
+ | data | [CreateOrderUserData](#CreateOrderUserData) |  no  |  |
+ | message | string |  yes  |  |
+ | order_id | string |  no  |  |
+ | payment_confirm_url | string |  no  |  |
+ | status_code | number |  yes  |  |
+ | success | boolean |  yes  |  |
+ 
+
+---
+
+#### [CreatePaymentLinkMeta](#CreatePaymentLinkMeta)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | amount | string |  yes  |  |
+ | assign_card_id | string |  no  |  |
+ | cart_id | string |  yes  |  |
+ | checkout_mode | string |  yes  |  |
+ | pincode | string |  yes  |  |
+ 
+
+---
+
+#### [CreatePaymentLinkRequest](#CreatePaymentLinkRequest)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | amount | number |  yes  |  |
+ | description | string |  no  |  |
+ | email | string |  yes  |  |
+ | external_order_id | string |  yes  |  |
+ | meta | [CreatePaymentLinkMeta](#CreatePaymentLinkMeta) |  yes  |  |
+ | mobile_number | string |  yes  |  |
+ 
+
+---
+
+#### [CreatePaymentLinkResponse](#CreatePaymentLinkResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | message | string |  yes  |  |
+ | payment_link_id | string |  no  |  |
+ | payment_link_url | string |  no  |  |
+ | polling_timeout | number |  no  |  |
+ | status_code | number |  yes  |  |
+ | success | boolean |  yes  |  |
+ 
+
+---
+
+#### [CreditDetail](#CreditDetail)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | is_registered | boolean |  yes  |  |
+ | signup_url | string |  yes  |  |
+ | status | boolean |  yes  |  |
+ 
+
+---
+
+#### [CreditSummary](#CreditSummary)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | balance | [BalanceDetails](#BalanceDetails) |  no  |  |
+ | merchant_customer_ref_id | string |  yes  |  |
+ | status | string |  yes  |  |
+ | status_message | string |  yes  |  |
+ 
+
+---
+
+#### [CustomerCreditSummaryResponse](#CustomerCreditSummaryResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | data | [CreditSummary](#CreditSummary) |  no  |  |
+ | success | boolean |  yes  |  |
+ 
+
+---
+
+#### [CustomerOnboardingRequest](#CustomerOnboardingRequest)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | aggregator | string |  yes  |  |
+ | business_info | [BusinessDetails](#BusinessDetails) |  no  |  |
+ | device | [DeviceDetails](#DeviceDetails) |  no  |  |
+ | marketplace_info | [MarketplaceInfo](#MarketplaceInfo) |  no  |  |
+ | mcc | string |  no  |  |
+ | personal_info | [UserPersonalInfoInDetails](#UserPersonalInfoInDetails) |  yes  |  |
+ | source | string |  yes  |  |
+ 
+
+---
+
+#### [CustomerOnboardingResponse](#CustomerOnboardingResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | data | [OnboardSummary](#OnboardSummary) |  yes  |  |
+ | success | boolean |  yes  |  |
+ 
+
+---
+
+#### [DeleteCardsResponse](#DeleteCardsResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | message | string |  no  |  |
+ | success | boolean |  yes  |  |
+ 
+
+---
+
+#### [DeletehCardRequest](#DeletehCardRequest)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | card_id | string |  yes  |  |
+ 
+
+---
+
+#### [DeviceDetails](#DeviceDetails)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | device_make | string |  no  |  |
+ | device_model | string |  no  |  |
+ | device_type | string |  no  |  |
+ | identification_number | string |  no  |  |
+ | identifier_type | string |  no  |  |
+ | os | string |  no  |  |
+ | os_version | string |  no  |  |
+ 
+
+---
+
+#### [EpaylaterBannerData](#EpaylaterBannerData)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | display | boolean |  yes  |  |
+ | message | string |  no  |  |
+ | status | string |  no  |  |
+ 
+
+---
+
+#### [EpaylaterBannerResponse](#EpaylaterBannerResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | data | [EpaylaterBannerData](#EpaylaterBannerData) |  yes  |  |
+ | success | boolean |  yes  |  |
+ 
+
+---
+
+#### [ErrorCodeAndDescription](#ErrorCodeAndDescription)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | code | string |  yes  |  |
+ | description | string |  yes  |  |
+ 
+
+---
+
+#### [ErrorCodeDescription](#ErrorCodeDescription)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | code | string |  yes  |  |
+ | description | string |  yes  |  |
+ | success | boolean |  yes  |  |
+ 
+
+---
+
+#### [ErrorDescription](#ErrorDescription)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | amount | number |  no  |  |
+ | cancelled | boolean |  no  |  |
+ | expired | boolean |  no  |  |
+ | invalid_id | boolean |  no  |  |
+ | merchant_name | string |  no  |  |
+ | merchant_order_id | string |  no  |  |
+ | msg | string |  no  |  |
+ | payment_transaction_id | string |  no  |  |
+ 
+
+---
+
+#### [ErrorResponse](#ErrorResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | error | [ErrorDescription](#ErrorDescription) |  no  |  |
+ | message | string |  yes  |  |
+ | status_code | number |  yes  |  |
+ | success | boolean |  yes  |  |
+ 
+
+---
+
+#### [GetPaymentLinkResponse](#GetPaymentLinkResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | amount | number |  no  |  |
+ | external_order_id | string |  no  |  |
+ | merchant_name | string |  no  |  |
+ | message | string |  yes  |  |
+ | payment_link_current_status | string |  no  |  |
+ | payment_link_url | string |  no  |  |
+ | polling_timeout | number |  no  |  |
+ | status_code | number |  yes  |  |
+ | success | boolean |  yes  |  |
+ 
+
+---
+
+#### [HttpErrorCodeAndResponse](#HttpErrorCodeAndResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | error | [ErrorCodeAndDescription](#ErrorCodeAndDescription) |  yes  |  |
+ | success | boolean |  yes  |  |
+ 
+
+---
+
+#### [IfscCodeResponse](#IfscCodeResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | bank_name | string |  yes  |  |
+ | branch_name | string |  yes  |  |
+ | success | boolean |  no  |  |
+ 
+
+---
+
+#### [IntentApp](#IntentApp)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | code | string |  no  |  |
+ | display_name | string |  no  |  |
+ | logos | [PaymentModeLogo](#PaymentModeLogo) |  no  |  |
+ | package_name | string |  no  |  |
+ 
+
+---
+
+#### [IntentAppErrorList](#IntentAppErrorList)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | code | string |  no  |  |
+ | package_name | string |  no  |  |
+ 
+
+---
+
+#### [KYCAddress](#KYCAddress)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | addressline1 | string |  yes  |  |
+ | addressline2 | string |  no  |  |
+ | city | string |  yes  |  |
+ | land_mark | string |  no  |  |
+ | ownership_type | string |  no  |  |
+ | pincode | string |  yes  |  |
+ | state | string |  yes  |  |
+ 
+
+---
+
+#### [LinkStatus](#LinkStatus)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | message | string |  yes  |  |
+ | status | boolean |  yes  |  |
+ 
+
+---
+
+#### [ListCardsResponse](#ListCardsResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | data | [[Card](#Card)] |  no  |  |
+ | message | string |  yes  |  |
+ | success | boolean |  yes  |  |
+ 
+
+---
+
+#### [MarketplaceInfo](#MarketplaceInfo)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | date_of_joining | string |  no  |  |
+ | membership_id | string |  yes  |  |
+ | name | string |  yes  |  |
+ 
+
+---
+
+#### [NotFoundResourceError](#NotFoundResourceError)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | code | string |  yes  |  |
+ | description | string |  yes  |  |
+ | success | boolean |  yes  |  |
+ 
+
+---
+
+#### [OnboardSummary](#OnboardSummary)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | redirect_url | string |  yes  |  |
+ | session | string |  yes  |  |
+ | status | boolean |  yes  |  |
+ 
+
+---
+
+#### [OrderBeneficiaryDetails](#OrderBeneficiaryDetails)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | account_holder | string |  yes  |  |
+ | account_no | string |  yes  |  |
+ | address | string |  yes  |  |
+ | bank_name | string |  yes  |  |
+ | beneficiary_id | string |  yes  |  |
+ | branch_name | string |  no  |  |
+ | comment | string |  no  |  |
+ | created_on | string |  yes  |  |
+ | delights_user_name | string |  no  |  |
+ | display_name | string |  yes  |  |
+ | email | string |  yes  |  |
+ | id | number |  yes  |  |
+ | ifsc_code | string |  yes  |  |
+ | is_active | boolean |  yes  |  |
+ | mobile | string |  no  |  |
+ | modified_on | string |  yes  |  |
+ | subtitle | string |  yes  |  |
+ | title | string |  yes  |  |
+ | transfer_mode | string |  yes  |  |
+ 
+
+---
+
+#### [OrderBeneficiaryResponse](#OrderBeneficiaryResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | beneficiaries | [[OrderBeneficiaryDetails](#OrderBeneficiaryDetails)] |  no  |  |
+ | show_beneficiary_details | boolean |  no  |  |
+ 
+
+---
+
+#### [PaymentFlow](#PaymentFlow)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | bqr_razorpay | [AggregatorRoute](#AggregatorRoute) |  no  |  |
+ | ccavenue | [AggregatorRoute](#AggregatorRoute) |  no  |  |
+ | epaylater | [AggregatorRoute](#AggregatorRoute) |  no  |  |
+ | fynd | [AggregatorRoute](#AggregatorRoute) |  no  |  |
+ | jiopay | [AggregatorRoute](#AggregatorRoute) |  no  |  |
+ | juspay | [AggregatorRoute](#AggregatorRoute) |  no  |  |
+ | mswipe | [AggregatorRoute](#AggregatorRoute) |  no  |  |
+ | payubiz | [AggregatorRoute](#AggregatorRoute) |  no  |  |
+ | razorpay | [AggregatorRoute](#AggregatorRoute) |  no  |  |
+ | rupifi | [AggregatorRoute](#AggregatorRoute) |  no  |  |
+ | simpl | [AggregatorRoute](#AggregatorRoute) |  no  |  |
+ | stripe | [AggregatorRoute](#AggregatorRoute) |  no  |  |
+ | upi_razorpay | [AggregatorRoute](#AggregatorRoute) |  no  |  |
+ 
+
+---
+
+#### [PaymentInitializationRequest](#PaymentInitializationRequest)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | aggregator | string |  yes  |  |
+ | amount | number |  yes  |  |
+ | contact | string |  yes  |  |
+ | currency | string |  yes  |  |
+ | customer_id | string |  yes  |  |
+ | email | string |  yes  |  |
+ | merchant_order_id | string |  yes  |  |
+ | method | string |  yes  |  |
+ | order_id | string |  yes  |  |
+ | razorpay_payment_id | string |  no  |  |
+ | timeout | number |  no  |  |
+ | vpa | string |  no  |  |
+ 
+
+---
+
+#### [PaymentInitializationResponse](#PaymentInitializationResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | aggregator | string |  yes  |  |
+ | aggregator_order_id | string |  no  |  |
+ | amount | number |  no  |  |
+ | bqr_image | string |  no  |  |
+ | currency | string |  no  |  |
+ | customer_id | string |  no  |  |
+ | merchant_order_id | string |  yes  |  |
+ | method | string |  yes  |  |
+ | polling_url | string |  yes  |  |
+ | razorpay_payment_id | string |  no  |  |
+ | status | string |  no  |  |
+ | success | boolean |  yes  |  |
+ | timeout | number |  no  |  |
+ | upi_poll_url | string |  no  |  |
+ | virtual_id | string |  no  |  |
+ | vpa | string |  no  |  |
+ 
+
+---
+
+#### [PaymentMethodsMeta](#PaymentMethodsMeta)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | merchant_code | string |  yes  |  |
+ | payment_gateway | string |  yes  |  |
+ | payment_identifier | string |  yes  |  |
+ 
+
+---
+
+#### [PaymentModeList](#PaymentModeList)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | aggregator_name | string |  yes  |  |
+ | card_brand | string |  no  |  |
+ | card_brand_image | string |  no  |  |
+ | card_fingerprint | string |  no  |  |
+ | card_id | string |  no  |  |
+ | card_isin | string |  no  |  |
+ | card_issuer | string |  no  |  |
+ | card_name | string |  no  |  |
+ | card_number | string |  no  |  |
+ | card_reference | string |  no  |  |
+ | card_token | string |  no  |  |
+ | card_type | string |  no  |  |
+ | cod_limit | number |  no  |  |
+ | cod_limit_per_order | number |  no  |  |
+ | code | string |  no  |  |
+ | compliant_with_tokenisation_guidelines | boolean |  no  |  |
+ | display_name | string |  no  |  |
+ | display_priority | number |  no  |  |
+ | exp_month | number |  no  |  |
+ | exp_year | number |  no  |  |
+ | expired | boolean |  no  |  |
+ | fynd_vpa | string |  no  |  |
+ | intent_app | [[IntentApp](#IntentApp)] |  no  |  |
+ | intent_app_error_dict_list | [[IntentAppErrorList](#IntentAppErrorList)] |  no  |  |
+ | intent_app_error_list | [string] |  no  |  |
+ | intent_flow | boolean |  no  |  |
+ | logo_url | [PaymentModeLogo](#PaymentModeLogo) |  no  |  |
+ | merchant_code | string |  no  |  |
+ | name | string |  no  |  |
+ | nickname | string |  no  |  |
+ | remaining_limit | number |  no  |  |
+ | retry_count | number |  no  |  |
+ | timeout | number |  no  |  |
+ 
+
+---
+
+#### [PaymentModeLogo](#PaymentModeLogo)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | large | string |  yes  |  |
+ | small | string |  yes  |  |
+ 
+
+---
+
+#### [PaymentModeRouteResponse](#PaymentModeRouteResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | payment_options | [PaymentOptionAndFlow](#PaymentOptionAndFlow) |  yes  |  |
+ | success | boolean |  yes  |  |
+ 
+
+---
+
+#### [PaymentOptionAndFlow](#PaymentOptionAndFlow)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | payment_flows | [PaymentFlow](#PaymentFlow) |  yes  |  |
+ | payment_option | [[RootPaymentMode](#RootPaymentMode)] |  yes  |  |
+ 
+
+---
+
+#### [PaymentStatusUpdateRequest](#PaymentStatusUpdateRequest)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | aggregator | string |  yes  |  |
+ | amount | number |  yes  |  |
+ | contact | string |  yes  |  |
+ | currency | string |  yes  |  |
+ | customer_id | string |  yes  |  |
+ | email | string |  yes  |  |
+ | merchant_order_id | string |  yes  |  |
+ | method | string |  yes  |  |
+ | order_id | string |  yes  |  |
+ | status | string |  yes  |  |
+ | vpa | string |  yes  |  |
+ 
+
+---
+
+#### [PaymentStatusUpdateResponse](#PaymentStatusUpdateResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | aggregator_name | string |  yes  |  |
+ | redirect_url | string |  no  |  |
+ | retry | boolean |  yes  |  |
+ | status | string |  yes  |  |
+ | success | boolean |  no  |  |
+ 
+
+---
+
+#### [PollingPaymentLinkResponse](#PollingPaymentLinkResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | aggregator_name | string |  no  |  |
+ | amount | number |  no  |  |
+ | http_status | number |  no  |  |
+ | message | string |  no  |  |
+ | order_id | string |  no  |  |
+ | payment_link_id | string |  no  |  |
+ | redirect_url | string |  no  |  |
+ | status | string |  no  |  |
+ | status_code | number |  no  |  |
+ | success | boolean |  no  |  |
+ 
+
+---
+
+#### [RedirectToAggregatorResponse](#RedirectToAggregatorResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | data | [RedirectURL](#RedirectURL) |  yes  |  |
+ | success | boolean |  yes  |  |
+ 
+
+---
+
+#### [RedirectURL](#RedirectURL)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | signup_url | string |  yes  |  |
+ | status | boolean |  yes  |  |
+ 
+
+---
+
+#### [RefundAccountResponse](#RefundAccountResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | data | string |  no  |  |
+ | is_verified_flag | boolean |  no  |  |
+ | message | string |  yes  |  |
+ | success | boolean |  yes  |  |
+ 
+
+---
+
+#### [renderHTMLRequest](#renderHTMLRequest)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | base64_html | string |  yes  |  |
+ | returntype | string |  no  |  |
+ 
+
+---
+
+#### [renderHTMLResponse](#renderHTMLResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | html | string |  yes  |  |
+ 
+
+---
+
+#### [ResendOrCancelPaymentRequest](#ResendOrCancelPaymentRequest)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | order_id | string |  yes  |  |
- | details | [BankDetailsForOTP](#BankDetailsForOTP) |  yes  |  |
+ | request_type | string |  yes  |  |
+ 
 
 ---
 
-
- 
- 
- #### [WalletOtpRequest](#WalletOtpRequest)
+#### [ResendOrCancelPaymentResponse](#ResendOrCancelPaymentResponse)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | mobile | string |  yes  | Wallet Moblie Number of the User |
- | country_code | string |  yes  | Country Code of the Mobile Number |
+ | data | [LinkStatus](#LinkStatus) |  yes  |  |
+ | success | boolean |  yes  |  |
+ 
 
 ---
 
-
- 
- 
- #### [WalletOtpResponse](#WalletOtpResponse)
+#### [ResendPaymentLinkResponse](#ResendPaymentLinkResponse)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | is_verified_flag | string |  yes  | Boolean Flag whether OTP Validation is already done or not |
- | request_id | string |  yes  | request id  |
- | success | boolean |  no  | Response is successful or not |
+ | message | string |  yes  |  |
+ | polling_timeout | number |  no  |  |
+ | status_code | number |  yes  |  |
+ | success | boolean |  yes  |  |
+ 
 
 ---
 
-
- 
- 
- #### [SetDefaultBeneficiaryRequest](#SetDefaultBeneficiaryRequest)
+#### [RootPaymentMode](#RootPaymentMode)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | beneficiary_id | string |  yes  | Beneficiary Hash Id of the beneficiary added |
- | order_id | string |  yes  | Merchant Order Id |
+ | add_card_enabled | boolean |  no  |  |
+ | aggregator_name | string |  no  |  |
+ | anonymous_enable | boolean |  no  |  |
+ | display_name | string |  yes  |  |
+ | display_priority | number |  yes  |  |
+ | is_pay_by_card_pl | boolean |  no  |  |
+ | list | [[PaymentModeList](#PaymentModeList)] |  no  |  |
+ | name | string |  yes  |  |
+ | save_card | boolean |  no  |  |
+ 
 
 ---
 
-
- 
- 
- #### [SetDefaultBeneficiaryResponse](#SetDefaultBeneficiaryResponse)
+#### [RupifiBannerData](#RupifiBannerData)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | is_beneficiary_set | boolean |  yes  | Boolean Flag whether Beneficiary set or not |
- | success | boolean |  no  | Response is successful or not |
+ | kyc_url | string |  no  |  |
+ | status | string |  no  |  |
+ 
 
 ---
 
-
- 
- 
- #### [GetPaymentLinkResponse](#GetPaymentLinkResponse)
+#### [RupifiBannerResponse](#RupifiBannerResponse)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | message | string |  yes  | Message |
- | status_code | number |  yes  | HTTP status code |
- | merchant_name | string |  no  | Merchant name |
- | payment_link_current_status | string |  no  | Status of payment link |
- | amount | number |  no  | Total value of order |
- | payment_link_url | string |  no  | Url of payment link |
- | external_order_id | string |  no  | Merchant order id |
- | polling_timeout | number |  no  | Polling request timeout |
- | success | boolean |  yes  | Successful or failure |
+ | data | [RupifiBannerData](#RupifiBannerData) |  yes  |  |
+ | success | boolean |  yes  |  |
+ 
 
 ---
 
-
- 
- 
- #### [ErrorDescription](#ErrorDescription)
+#### [SetDefaultBeneficiaryRequest](#SetDefaultBeneficiaryRequest)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | merchant_order_id | string |  no  | Order id |
- | cancelled | boolean |  no  | Payment link is cancelled or not |
- | invalid_id | boolean |  no  | Payment link id is valid or not |
- | merchant_name | string |  no  | Name of merchant that created payment link |
- | amount | number |  no  | Amount paid |
- | expired | boolean |  no  | Payment link expired or not |
- | payment_transaction_id | string |  no  | Payment transaction id |
- | msg | string |  no  | Message |
+ | beneficiary_id | string |  yes  |  |
+ | order_id | string |  yes  |  |
+ 
 
 ---
 
-
- 
- 
- #### [ErrorResponse](#ErrorResponse)
+#### [SetDefaultBeneficiaryResponse](#SetDefaultBeneficiaryResponse)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | message | string |  yes  | Message |
- | status_code | number |  yes  | HTTP status code |
- | error | [ErrorDescription](#ErrorDescription) |  no  |  |
- | success | boolean |  yes  | Successful or failure |
+ | is_beneficiary_set | boolean |  yes  |  |
+ | success | boolean |  no  |  |
+ 
 
 ---
 
-
- 
- 
- #### [CreatePaymentLinkMeta](#CreatePaymentLinkMeta)
+#### [TransferItemsDetails](#TransferItemsDetails)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | pincode | string |  yes  |  |
- | cart_id | string |  yes  |  |
- | amount | string |  yes  |  |
- | checkout_mode | string |  yes  |  |
- | assign_card_id | string |  no  |  |
+ | display_name | string |  no  |  |
+ | id | number |  yes  |  |
+ | logo_large | string |  yes  |  |
+ | logo_small | string |  yes  |  |
+ | name | string |  yes  |  |
+ 
 
 ---
 
-
- 
- 
- #### [CreatePaymentLinkRequest](#CreatePaymentLinkRequest)
+#### [TransferModeDetails](#TransferModeDetails)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | meta | [CreatePaymentLinkMeta](#CreatePaymentLinkMeta) |  yes  | Meta |
- | description | string |  no  | Merchant order id |
- | email | string |  yes  | Email to which the payment link is to be sent |
- | amount | number |  yes  | Total value of order |
- | external_order_id | string |  yes  | Merchant order id |
- | mobile_number | string |  yes  | Mobile number to which the payment link is to be sent |
+ | display_name | string |  yes  |  |
+ | items | [[TransferItemsDetails](#TransferItemsDetails)] |  no  |  |
+ 
 
 ---
 
-
- 
- 
- #### [CreatePaymentLinkResponse](#CreatePaymentLinkResponse)
+#### [TransferModeResponse](#TransferModeResponse)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | message | string |  yes  | Message |
- | status_code | number |  yes  | HTTP status code |
- | payment_link_url | string |  no  | Url of payment link |
- | success | boolean |  yes  | Successful or failure |
- | polling_timeout | number |  no  | Polling request timeout |
- | payment_link_id | string |  no  | Unique id of payment link |
+ | data | [[TransferModeDetails](#TransferModeDetails)] |  yes  |  |
+ 
 
 ---
 
-
- 
- 
- #### [CancelOrResendPaymentLinkRequest](#CancelOrResendPaymentLinkRequest)
+#### [UpdateRefundTransferModeRequest](#UpdateRefundTransferModeRequest)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | payment_link_id | string |  yes  | Unique id of payment link |
+ | enable | boolean |  yes  |  |
+ | transfer_mode | string |  yes  |  |
+ 
 
 ---
 
-
- 
- 
- #### [ResendPaymentLinkResponse](#ResendPaymentLinkResponse)
+#### [UpdateRefundTransferModeResponse](#UpdateRefundTransferModeResponse)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | message | string |  yes  | Message |
- | status_code | number |  yes  | HTTP status code |
- | polling_timeout | number |  no  | Polling request timeout |
- | success | boolean |  yes  | Successful or failure |
+ | success | boolean |  no  |  |
+ 
 
 ---
 
-
- 
- 
- #### [CancelPaymentLinkResponse](#CancelPaymentLinkResponse)
+#### [UserPersonalInfoInDetails](#UserPersonalInfoInDetails)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | message | string |  yes  | Message |
- | status_code | number |  yes  | HTTP status code |
- | success | boolean |  yes  | Successful or failure |
+ | address_as_per_id | [KYCAddress](#KYCAddress) |  yes  |  |
+ | dob | string |  yes  |  |
+ | driving_license | string |  no  |  |
+ | email | string |  no  |  |
+ | email_verified | boolean |  yes  |  |
+ | fathers_name | string |  no  |  |
+ | first_name | string |  yes  |  |
+ | gender | string |  no  |  |
+ | last_name | string |  no  |  |
+ | middle_name | string |  no  |  |
+ | mobile_verified | boolean |  yes  |  |
+ | mothers_name | string |  no  |  |
+ | pan | string |  no  |  |
+ | passport | string |  no  |  |
+ | phone | string |  yes  |  |
+ | voter_id | string |  no  |  |
+ 
 
 ---
 
-
- 
- 
- #### [PollingPaymentLinkResponse](#PollingPaymentLinkResponse)
+#### [ValidateCustomerRequest](#ValidateCustomerRequest)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | message | string |  no  | Message |
- | redirect_url | string |  no  | Url to redirect to |
- | status_code | number |  no  | HTTP status code |
- | http_status | number |  no  | HTTP status code |
- | status | string |  no  | Status of payment link |
- | amount | number |  no  | Amount |
- | order_id | string |  no  | Fynd order id |
- | payment_link_id | string |  no  | Payment link id |
- | aggregator_name | string |  no  | Aggregator name |
- | success | boolean |  no  | Successful or failure |
+ | aggregator | string |  yes  |  |
+ | billing_address | string |  no  |  |
+ | delivery_address | string |  no  |  |
+ | merchant_params | string |  no  |  |
+ | order_items | [string] |  no  |  |
+ | payload | string |  no  |  |
+ | phone_number | string |  yes  |  |
+ | transaction_amount_in_paise | number |  yes  |  |
+ 
 
 ---
 
-
- 
- 
- #### [PaymentMethodsMeta](#PaymentMethodsMeta)
+#### [ValidateCustomerResponse](#ValidateCustomerResponse)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | merchant_code | string |  yes  | Merchant code |
- | payment_gateway | string |  yes  | Payment gateway name |
- | payment_identifier | string |  yes  | Payment identifier |
+ | data | string |  yes  |  |
+ | message | string |  yes  |  |
+ | success | boolean |  yes  |  |
+ 
 
 ---
 
-
- 
- 
- #### [CreateOrderUserPaymentMethods](#CreateOrderUserPaymentMethods)
+#### [ValidateUPI](#ValidateUPI)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | meta | [PaymentMethodsMeta](#PaymentMethodsMeta) |  yes  | Meta |
- | name | string |  yes  | Payment mode name |
- | mode | string |  yes  | Payment mode |
+ | customer_name | string |  yes  |  |
+ | is_valid | boolean |  yes  |  |
+ | status | string |  yes  |  |
+ | upi_vpa | string |  yes  |  |
+ 
 
 ---
 
-
- 
- 
- #### [CreateOrderUserRequest](#CreateOrderUserRequest)
+#### [ValidateVPARequest](#ValidateVPARequest)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | meta | string |  no  | Meta |
- | failure_callback_url | string |  yes  | Failure page url |
- | success_callback_url | string |  yes  | Success  page url |
- | payment_methods | [CreateOrderUserPaymentMethods](#CreateOrderUserPaymentMethods) |  yes  | Payment method details |
- | currency | string |  yes  | Currency |
- | payment_link_id | string |  yes  | Unique id of payment link |
+ | upi_vpa | string |  yes  |  |
+ 
 
 ---
 
-
- 
- 
- #### [CreateOrderUserData](#CreateOrderUserData)
+#### [ValidateVPAResponse](#ValidateVPAResponse)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | merchant_order_id | string |  no  | Merchant order id |
- | method | string |  no  | Method |
- | aggregator | string |  no  | Aggregator name |
- | email | string |  no  | Email |
- | amount | number |  no  | Amount |
- | order_id | string |  no  | Aggregator order id |
- | callback_url | string |  no  | Callback url for aggregator |
- | customer_id | string |  no  | Aggregator customer id |
- | currency | string |  no  | Currency |
- | contact | string |  no  | Mobile number |
+ | data | [ValidateUPI](#ValidateUPI) |  yes  |  |
+ | success | boolean |  yes  |  |
+ 
 
 ---
 
-
- 
- 
- #### [CreateOrderUserResponse](#CreateOrderUserResponse)
+#### [WalletOtpRequest](#WalletOtpRequest)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | message | string |  yes  | Message |
- | status_code | number |  yes  | HTTP status code |
- | payment_confirm_url | string |  no  | Payment confirm url for aggregator |
- | order_id | string |  no  | Merchant order id |
- | data | [CreateOrderUserData](#CreateOrderUserData) |  no  |  |
- | callback_url | string |  no  | Callback url for aggregator |
- | success | boolean |  yes  | Successful or failure |
+ | country_code | string |  yes  |  |
+ | mobile | string |  yes  |  |
+ 
 
 ---
 
-
- 
- 
- #### [BalanceDetails](#BalanceDetails)
+#### [WalletOtpResponse](#WalletOtpResponse)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | value | number |  yes  | Payment amount |
- | formatted_value | string |  yes  | Formated Amount with currency symbol |
- | currency | string |  yes  | Currency Code |
+ | is_verified_flag | string |  yes  |  |
+ | request_id | string |  yes  |  |
+ | success | boolean |  no  |  |
+ 
 
 ---
 
-
- 
- 
- #### [CreditSummary](#CreditSummary)
+#### [WrongOtpError](#WrongOtpError)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | merchant_customer_ref_id | string |  yes  | Unique aggregator customer id |
- | balance | [BalanceDetails](#BalanceDetails) |  no  | Credit summary of user. |
- | status_message | string |  yes  | message to customer |
- | status | string |  yes  | Customer Credit status |
-
----
-
-
+ | description | string |  yes  |  |
+ | is_verified_flag | boolean |  yes  |  |
+ | success | string |  yes  |  |
  
- 
- #### [CustomerCreditSummaryResponse](#CustomerCreditSummaryResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | data | [CreditSummary](#CreditSummary) |  no  | Credit summary of user. |
- | success | boolean |  yes  | Payment confirmation updated or not. |
-
----
-
-
- 
- 
- #### [RedirectURL](#RedirectURL)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | status | boolean |  yes  | Aggregator's Operation is successful or not. |
- | signup_url | string |  yes  | URL to which the user may redirect. |
-
----
-
-
- 
- 
- #### [RedirectToAggregatorResponse](#RedirectToAggregatorResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | data | [RedirectURL](#RedirectURL) |  yes  | Redirect URL. |
- | success | boolean |  yes  | Status updated or not. |
-
----
-
-
- 
- 
- #### [CreditDetail](#CreditDetail)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | status | boolean |  yes  | Operation is successful or not. |
- | signup_url | string |  yes  | URL to which the user may redirect. |
- | is_registered | boolean |  yes  | User is registered with aggregator or not. |
-
----
-
-
- 
- 
- #### [CheckCreditResponse](#CheckCreditResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | data | [CreditDetail](#CreditDetail) |  yes  | Credit summary of user. |
- | success | boolean |  yes  | Operation is successful or not. |
-
----
-
-
- 
- 
- #### [KYCAddress](#KYCAddress)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | land_mark | string |  no  | Land Mark |
- | pincode | string |  yes  | Pincode |
- | addressline1 | string |  yes  | Address Line 1 |
- | city | string |  yes  | City |
- | state | string |  yes  | State |
- | ownership_type | string |  no  | Address Owner Type |
- | addressline2 | string |  no  | Address Line 2 |
-
----
-
-
- 
- 
- #### [UserPersonalInfoInDetails](#UserPersonalInfoInDetails)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | phone | string |  yes  | Email |
- | first_name | string |  yes  | First Name |
- | email | string |  yes  | Email |
- | email_verified | boolean |  yes  | Is Email Verified or not |
- | dob | string |  yes  | DOB |
- | last_name | string |  no  | Last Name |
- | gender | string |  no  | Gender |
- | passport | string |  no  | Passport |
- | pan | string |  no  | Pan Number |
- | voter_id | string |  no  | Voter ID Number |
- | driving_license | string |  no  | Driver License |
- | address_as_per_id | [KYCAddress](#KYCAddress) |  yes  | Address details |
- | fathers_name | string |  no  | Father's Name |
- | mobile_verified | boolean |  yes  | Is Mobile Verified or not |
- | middle_name | string |  no  | middle Name |
- | mothers_name | string |  no  | Mother's Name |
-
----
-
-
- 
- 
- #### [DeviceDetails](#DeviceDetails)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | device_type | string |  no  | Device Type(E.g. Mobile) |
- | os_version | string |  no  | OS Version |
- | identifier_type | string |  no  | Static value = ip |
- | os | string |  no  | OS Name |
- | device_model | string |  no  | Device Model |
- | identification_number | string |  no  | IP |
- | device_make | string |  no  | Device maker |
-
----
-
-
- 
- 
- #### [BusinessDetails](#BusinessDetails)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | business_ownership_type | string |  no  | business Ownershipp type(e.g Rented) |
- | vintage | string |  no  | Vintage |
- | fda | string |  no  | Driver License |
- | entity_type | string |  no  | Busineess Entity Type |
- | pan | string |  no  | Pan Number |
- | fssai | string |  no  | FDA License Number |
- | business_type | string |  no  | Business Type |
- | name | string |  no  | Business Name |
- | gstin | string |  no  | GSTIN Number |
- | shop_and_establishment | string |  no  | Shop Establishment |
- | address | [KYCAddress](#KYCAddress) |  no  | Address details |
-
----
-
-
- 
- 
- #### [MarketplaceInfo](#MarketplaceInfo)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | membership_id | string |  yes  | merchant id |
- | name | string |  yes  | Name of store |
- | date_of_joining | string |  no  | Date of joining |
-
----
-
-
- 
- 
- #### [CustomerOnboardingRequest](#CustomerOnboardingRequest)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | personal_info | [UserPersonalInfoInDetails](#UserPersonalInfoInDetails) |  yes  | Credit summary of user. |
- | device | [DeviceDetails](#DeviceDetails) |  no  | Device Details. |
- | business_info | [BusinessDetails](#BusinessDetails) |  no  | Business summary. |
- | marketplace_info | [MarketplaceInfo](#MarketplaceInfo) |  no  | Market Place info. |
- | aggregator | string |  yes  | Aggregator Name |
- | source | string |  yes  | callbackURL |
-
----
-
-
- 
- 
- #### [OnboardSummary](#OnboardSummary)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | session | string |  yes  | User Session |
- | redirect_url | string |  yes  | URL to which the user may redirect. |
- | status | boolean |  yes  | Operation Status |
-
----
-
-
- 
- 
- #### [CustomerOnboardingResponse](#CustomerOnboardingResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | data | [OnboardSummary](#OnboardSummary) |  yes  | Redirect URL. |
- | success | boolean |  yes  | Status updated or not. |
 
 ---
 

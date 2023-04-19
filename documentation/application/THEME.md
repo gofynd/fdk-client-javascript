@@ -9,8 +9,8 @@
 Responsible for themes
 
 * [getAllPages](#getallpages)
-* [getPage](#getpage)
 * [getAppliedTheme](#getappliedtheme)
+* [getPage](#getpage)
 * [getThemeForPreview](#getthemeforpreview)
 
 
@@ -144,21 +144,6 @@ Success. Returns an array all the pages of the theme. Refer `AllAvailablePageSch
         "__v": 9
       },
       {
-        "path": "product/:slug/reviews",
-        "type": "system",
-        "seo": {
-          "title": "",
-          "description": "",
-          "_id": "60ab5ca6d572fed64294eb24"
-        },
-        "_id": "60ab5ca6d572fed64294eb25",
-        "sections_meta": [],
-        "value": "product-reviews",
-        "text": "Product Reviews",
-        "theme": "5fb3ee4194a5181feeeba8e5",
-        "__v": 9
-      },
-      {
         "path": "blog",
         "type": "system",
         "seo": {
@@ -231,21 +216,6 @@ Success. Returns an array all the pages of the theme. Refer `AllAvailablePageSch
         "text": "Wishlist",
         "theme": "5fb3ee4194a5181feeeba8e5",
         "sections_meta": [],
-        "__v": 9
-      },
-      {
-        "path": "product/:slug/add-review",
-        "type": "system",
-        "seo": {
-          "title": "",
-          "description": "",
-          "_id": "60ab5ca6d572fed64294eb26"
-        },
-        "_id": "60ab5ca6d572fed64294eb27",
-        "sections_meta": [],
-        "value": "add-product-review",
-        "text": "Add Product Review",
-        "theme": "5fb3ee4194a5181feeeba8e5",
         "__v": 9
       },
       {
@@ -354,433 +324,6 @@ Success. Returns an array all the pages of the theme. Refer `AllAvailablePageSch
         "__v": 9
       }
     ]
-  }
-}
-```
-</details>
-
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### getPage
-Get page of a theme
-
-
-
-```javascript
-// Promise
-const promise = theme.getPage({  themeId : value,
- pageValue : value });
-
-// Async/Await
-const data = await theme.getPage({  themeId : value,
- pageValue : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| themeId | string | yes | ID of the theme to be retrieved |   
-| pageValue | string | yes | Value of the page to be retrieved |  
-
-
-
-Use this API to retrieve a page of a theme.
-
-*Returned Response:*
-
-
-
-
-[AvailablePageSchema](#AvailablePageSchema)
-
-Success. Returns an object of the pages.  Refer `AvailablePageSchema` for more details.
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; Home page</i></summary>
-
-```json
-{
-  "value": {
-    "path": "",
-    "type": "system",
-    "seo": {
-      "title": "",
-      "description": "",
-      "_id": "60210832d7e98115b013f6ac"
-    },
-    "props": [],
-    "_id": "60ab5ca6d572fed64294eafc",
-    "sections": [
-      {
-        "blocks": [],
-        "predicate": {
-          "screen": {
-            "mobile": false,
-            "desktop": false,
-            "tablet": false
-          },
-          "user": {
-            "authenticated": true,
-            "anonymous": true
-          },
-          "route": {
-            "selected": "none",
-            "exactURL": "",
-            "query": {
-              "utm": "facebook"
-            }
-          }
-        },
-        "name": "customHtml",
-        "props": {
-          "code": {
-            "type": "code",
-            "value": "<p style=\"text-align:right;\"><a href=\"tel:+919820204442\"><img src=\"https://dabuttonfactory.com/button.png?t=For+any+queries%2C+call%3A+%2B91+98202+04442&f=Open+Sans-Bold&ts=21&tc=fff&hp=20&vp=15&c=round&bgt=unicolored&bgc=7043f7\"/> </a></p>"
-          }
-        }
-      },
-      {
-        "blocks": [],
-        "predicate": {
-          "screen": {
-            "mobile": true,
-            "desktop": true,
-            "tablet": true
-          },
-          "user": {
-            "authenticated": true,
-            "anonymous": true
-          },
-          "route": {
-            "selected": "none",
-            "exactURL": "",
-            "query": {
-              "udm": "vivek"
-            }
-          }
-        },
-        "name": "brands-listing",
-        "props": {
-          "title": {
-            "type": "text",
-            "value": "Popular rrrrr"
-          },
-          "header": {
-            "type": "header"
-          },
-          "brand_type": {
-            "value": "all",
-            "type": "radio"
-          },
-          "department": {
-            "type": "department"
-          },
-          "item_count": {
-            "value": 5,
-            "type": "range"
-          },
-          "layout": {
-            "value": "horizontal",
-            "type": "select"
-          },
-          "view_all": {
-            "value": false,
-            "type": "checkbox"
-          }
-        }
-      },
-      {
-        "blocks": [
-          {
-            "type": "product",
-            "name": "Product",
-            "props": {
-              "product": {
-                "type": "product"
-              }
-            }
-          },
-          {
-            "type": "product",
-            "name": "Product",
-            "props": {
-              "product": {
-                "type": "product"
-              }
-            }
-          },
-          {
-            "type": "product",
-            "name": "Product",
-            "props": {
-              "product": {
-                "type": "product"
-              }
-            }
-          },
-          {
-            "type": "product",
-            "name": "Product",
-            "props": {
-              "product": {
-                "type": "product"
-              }
-            }
-          }
-        ],
-        "predicate": {
-          "screen": {
-            "mobile": true,
-            "desktop": true,
-            "tablet": true
-          },
-          "user": {
-            "authenticated": false,
-            "anonymous": true
-          },
-          "route": {
-            "selected": "none",
-            "exactURL": ""
-          }
-        },
-        "name": "featuredProducts",
-        "props": {
-          "heading": {
-            "value": "Featured Products",
-            "type": "text"
-          },
-          "item_count": {
-            "type": "range",
-            "value": 4
-          },
-          "full_width": {
-            "value": false,
-            "type": "checkbox"
-          }
-        },
-        "preset": {
-          "blocks": [
-            {
-              "name": "Product"
-            },
-            {
-              "name": "Product"
-            },
-            {
-              "name": "Product"
-            },
-            {
-              "name": "Product"
-            }
-          ]
-        }
-      },
-      {
-        "blocks": [],
-        "predicate": {
-          "screen": {
-            "mobile": true,
-            "desktop": true,
-            "tablet": true
-          },
-          "user": {
-            "authenticated": true,
-            "anonymous": true
-          },
-          "route": {
-            "selected": "none",
-            "exactURL": "",
-            "query": {
-              "": ""
-            }
-          }
-        },
-        "name": "categoryListPage",
-        "props": {
-          "heading": {
-            "type": "text",
-            "value": "Explore Categories"
-          },
-          "layout": {
-            "type": "select",
-            "value": "grid"
-          },
-          "item_count": {
-            "value": 5,
-            "type": "range"
-          },
-          "view_all": {
-            "value": false,
-            "type": "checkbox"
-          }
-        }
-      },
-      {
-        "blocks": [],
-        "predicate": {
-          "screen": {
-            "mobile": true,
-            "desktop": true,
-            "tablet": true
-          },
-          "user": {
-            "authenticated": true,
-            "anonymous": true
-          },
-          "route": {
-            "selected": "none",
-            "exactURL": "",
-            "query": {
-              "": ""
-            }
-          }
-        },
-        "name": "heroBanner",
-        "props": {
-          "ctaLink": {
-            "type": "url",
-            "value": "https://uniket.hostx0.de/about-us"
-          }
-        }
-      },
-      {
-        "blocks": [],
-        "predicate": {
-          "screen": {
-            "mobile": true,
-            "desktop": true,
-            "tablet": true
-          },
-          "user": {
-            "authenticated": true,
-            "anonymous": true
-          },
-          "route": {
-            "selected": "none",
-            "exactURL": "",
-            "query": {
-              "": ""
-            }
-          }
-        },
-        "name": "imageBanner",
-        "props": {
-          "image": {
-            "value": "",
-            "type": "image_picker"
-          },
-          "full_width": {
-            "value": false,
-            "type": "checkbox"
-          },
-          "overlayLayout": {
-            "value": "left",
-            "type": "select"
-          },
-          "overlayImage": {
-            "value": "",
-            "type": "image_picker"
-          },
-          "text": {
-            "value": "",
-            "type": "text"
-          },
-          "text_color": {
-            "value": "#000",
-            "type": "color"
-          },
-          "ctaLink": {
-            "value": "",
-            "type": "url"
-          },
-          "ctaText": {
-            "value": "",
-            "type": "text"
-          },
-          "layout": {
-            "type": "select",
-            "value": "full"
-          },
-          "height": {
-            "type": "select",
-            "value": "h-auto"
-          }
-        }
-      },
-      {
-        "blocks": [],
-        "predicate": {
-          "screen": {
-            "mobile": true,
-            "desktop": true,
-            "tablet": true
-          },
-          "user": {
-            "authenticated": true,
-            "anonymous": true
-          },
-          "route": {
-            "selected": "none",
-            "exactURL": ""
-          }
-        },
-        "name": "brands-listing",
-        "props": {
-          "title": {
-            "type": "text",
-            "value": "asdfasdf"
-          },
-          "header": {
-            "type": "header"
-          },
-          "brand_type": {
-            "value": "all",
-            "type": "radio"
-          },
-          "department": {
-            "type": "department"
-          },
-          "item_count": {
-            "value": 5,
-            "type": "range"
-          },
-          "layout": {
-            "value": "horizontal",
-            "type": "select"
-          },
-          "view_all": {
-            "value": false,
-            "type": "checkbox"
-          }
-        }
-      }
-    ],
-    "value": "home",
-    "text": "Home",
-    "theme": "5fb3ee4194a5181feeeba8e5",
-    "sections_meta": [],
-    "__v": 9
   }
 }
 ```
@@ -1268,11 +811,6 @@ Success. Returns a JSON object of the theme. Check the example shown below or   
       "page_schema": [
         {
           "props": [],
-          "_id": "5fe182f763d26d042fd205c4",
-          "page": "add-product-review"
-        },
-        {
-          "props": [],
           "_id": "5fe182f763d26dadc8d205c6",
           "page": "blog"
         },
@@ -1482,11 +1020,6 @@ Success. Returns a JSON object of the theme. Check the example shown below or   
           "props": [],
           "_id": "5fe182f763d26da5f0d205d3",
           "page": "product-listing"
-        },
-        {
-          "props": [],
-          "_id": "5fe182f763d26d3d18d205d4",
-          "page": "product-reviews"
         },
         {
           "props": [],
@@ -2990,6 +2523,433 @@ Success. Returns a JSON object of the theme. Check the example shown below or   
 ---
 
 
+### getPage
+Get page of a theme
+
+
+
+```javascript
+// Promise
+const promise = theme.getPage({  themeId : value,
+ pageValue : value });
+
+// Async/Await
+const data = await theme.getPage({  themeId : value,
+ pageValue : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| themeId | string | yes | ID of the theme to be retrieved |   
+| pageValue | string | yes | Value of the page to be retrieved |  
+
+
+
+Use this API to retrieve a page of a theme.
+
+*Returned Response:*
+
+
+
+
+[AvailablePageSchema](#AvailablePageSchema)
+
+Success. Returns an object of the pages.  Refer `AvailablePageSchema` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; Home page</i></summary>
+
+```json
+{
+  "value": {
+    "path": "",
+    "type": "system",
+    "seo": {
+      "title": "",
+      "description": "",
+      "_id": "60210832d7e98115b013f6ac"
+    },
+    "props": [],
+    "_id": "60ab5ca6d572fed64294eafc",
+    "sections": [
+      {
+        "blocks": [],
+        "predicate": {
+          "screen": {
+            "mobile": false,
+            "desktop": false,
+            "tablet": false
+          },
+          "user": {
+            "authenticated": true,
+            "anonymous": true
+          },
+          "route": {
+            "selected": "none",
+            "exactURL": "",
+            "query": {
+              "utm": "facebook"
+            }
+          }
+        },
+        "name": "customHtml",
+        "props": {
+          "code": {
+            "type": "code",
+            "value": "<p style=\"text-align:right;\"><a href=\"tel:+919820204442\"><img src=\"https://dabuttonfactory.com/button.png?t=For+any+queries%2C+call%3A+%2B91+98202+04442&f=Open+Sans-Bold&ts=21&tc=fff&hp=20&vp=15&c=round&bgt=unicolored&bgc=7043f7\"/> </a></p>"
+          }
+        }
+      },
+      {
+        "blocks": [],
+        "predicate": {
+          "screen": {
+            "mobile": true,
+            "desktop": true,
+            "tablet": true
+          },
+          "user": {
+            "authenticated": true,
+            "anonymous": true
+          },
+          "route": {
+            "selected": "none",
+            "exactURL": "",
+            "query": {
+              "udm": "vivek"
+            }
+          }
+        },
+        "name": "brands-listing",
+        "props": {
+          "title": {
+            "type": "text",
+            "value": "Popular rrrrr"
+          },
+          "header": {
+            "type": "header"
+          },
+          "brand_type": {
+            "value": "all",
+            "type": "radio"
+          },
+          "department": {
+            "type": "department"
+          },
+          "item_count": {
+            "value": 5,
+            "type": "range"
+          },
+          "layout": {
+            "value": "horizontal",
+            "type": "select"
+          },
+          "view_all": {
+            "value": false,
+            "type": "checkbox"
+          }
+        }
+      },
+      {
+        "blocks": [
+          {
+            "type": "product",
+            "name": "Product",
+            "props": {
+              "product": {
+                "type": "product"
+              }
+            }
+          },
+          {
+            "type": "product",
+            "name": "Product",
+            "props": {
+              "product": {
+                "type": "product"
+              }
+            }
+          },
+          {
+            "type": "product",
+            "name": "Product",
+            "props": {
+              "product": {
+                "type": "product"
+              }
+            }
+          },
+          {
+            "type": "product",
+            "name": "Product",
+            "props": {
+              "product": {
+                "type": "product"
+              }
+            }
+          }
+        ],
+        "predicate": {
+          "screen": {
+            "mobile": true,
+            "desktop": true,
+            "tablet": true
+          },
+          "user": {
+            "authenticated": false,
+            "anonymous": true
+          },
+          "route": {
+            "selected": "none",
+            "exactURL": ""
+          }
+        },
+        "name": "featuredProducts",
+        "props": {
+          "heading": {
+            "value": "Featured Products",
+            "type": "text"
+          },
+          "item_count": {
+            "type": "range",
+            "value": 4
+          },
+          "full_width": {
+            "value": false,
+            "type": "checkbox"
+          }
+        },
+        "preset": {
+          "blocks": [
+            {
+              "name": "Product"
+            },
+            {
+              "name": "Product"
+            },
+            {
+              "name": "Product"
+            },
+            {
+              "name": "Product"
+            }
+          ]
+        }
+      },
+      {
+        "blocks": [],
+        "predicate": {
+          "screen": {
+            "mobile": true,
+            "desktop": true,
+            "tablet": true
+          },
+          "user": {
+            "authenticated": true,
+            "anonymous": true
+          },
+          "route": {
+            "selected": "none",
+            "exactURL": "",
+            "query": {
+              "": ""
+            }
+          }
+        },
+        "name": "categoryListPage",
+        "props": {
+          "heading": {
+            "type": "text",
+            "value": "Explore Categories"
+          },
+          "layout": {
+            "type": "select",
+            "value": "grid"
+          },
+          "item_count": {
+            "value": 5,
+            "type": "range"
+          },
+          "view_all": {
+            "value": false,
+            "type": "checkbox"
+          }
+        }
+      },
+      {
+        "blocks": [],
+        "predicate": {
+          "screen": {
+            "mobile": true,
+            "desktop": true,
+            "tablet": true
+          },
+          "user": {
+            "authenticated": true,
+            "anonymous": true
+          },
+          "route": {
+            "selected": "none",
+            "exactURL": "",
+            "query": {
+              "": ""
+            }
+          }
+        },
+        "name": "heroBanner",
+        "props": {
+          "ctaLink": {
+            "type": "url",
+            "value": "https://uniket.hostx0.de/about-us"
+          }
+        }
+      },
+      {
+        "blocks": [],
+        "predicate": {
+          "screen": {
+            "mobile": true,
+            "desktop": true,
+            "tablet": true
+          },
+          "user": {
+            "authenticated": true,
+            "anonymous": true
+          },
+          "route": {
+            "selected": "none",
+            "exactURL": "",
+            "query": {
+              "": ""
+            }
+          }
+        },
+        "name": "imageBanner",
+        "props": {
+          "image": {
+            "value": "",
+            "type": "image_picker"
+          },
+          "full_width": {
+            "value": false,
+            "type": "checkbox"
+          },
+          "overlayLayout": {
+            "value": "left",
+            "type": "select"
+          },
+          "overlayImage": {
+            "value": "",
+            "type": "image_picker"
+          },
+          "text": {
+            "value": "",
+            "type": "text"
+          },
+          "text_color": {
+            "value": "#000",
+            "type": "color"
+          },
+          "ctaLink": {
+            "value": "",
+            "type": "url"
+          },
+          "ctaText": {
+            "value": "",
+            "type": "text"
+          },
+          "layout": {
+            "type": "select",
+            "value": "full"
+          },
+          "height": {
+            "type": "select",
+            "value": "h-auto"
+          }
+        }
+      },
+      {
+        "blocks": [],
+        "predicate": {
+          "screen": {
+            "mobile": true,
+            "desktop": true,
+            "tablet": true
+          },
+          "user": {
+            "authenticated": true,
+            "anonymous": true
+          },
+          "route": {
+            "selected": "none",
+            "exactURL": ""
+          }
+        },
+        "name": "brands-listing",
+        "props": {
+          "title": {
+            "type": "text",
+            "value": "asdfasdf"
+          },
+          "header": {
+            "type": "header"
+          },
+          "brand_type": {
+            "value": "all",
+            "type": "radio"
+          },
+          "department": {
+            "type": "department"
+          },
+          "item_count": {
+            "value": 5,
+            "type": "range"
+          },
+          "layout": {
+            "value": "horizontal",
+            "type": "select"
+          },
+          "view_all": {
+            "value": false,
+            "type": "checkbox"
+          }
+        }
+      }
+    ],
+    "value": "home",
+    "text": "Home",
+    "theme": "5fb3ee4194a5181feeeba8e5",
+    "sections_meta": [],
+    "__v": 9
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
 ### getThemeForPreview
 Get a theme for a preview
 
@@ -3464,11 +3424,6 @@ Success. Returns a JSON object of the theme. Check the example shown below or re
       "page_schema": [
         {
           "props": [],
-          "_id": "5fe182f763d26d042fd205c4",
-          "page": "add-product-review"
-        },
-        {
-          "props": [],
           "_id": "5fe182f763d26dadc8d205c6",
           "page": "blog"
         },
@@ -3678,11 +3633,6 @@ Success. Returns a JSON object of the theme. Check the example shown below or re
           "props": [],
           "_id": "5fe182f763d26da5f0d205d3",
           "page": "product-listing"
-        },
-        {
-          "props": [],
-          "_id": "5fe182f763d26d3d18d205d4",
-          "page": "product-reviews"
         },
         {
           "props": [],
@@ -5189,609 +5139,519 @@ Success. Returns a JSON object of the theme. Check the example shown below or re
 
 ### Schemas
 
- 
- 
- #### [AvailablePageSchema](#AvailablePageSchema)
 
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | value | string |  no  |  |
- | text | string |  no  |  |
- | path | string |  no  |  |
- | type | string |  no  |  |
- | sections | [[AvailablePageSchemaSections](#AvailablePageSchemaSections)] |  no  |  |
- | sections_meta | [[AvailablePageSectionMetaAttributes](#AvailablePageSectionMetaAttributes)] |  no  |  |
- | theme | string |  no  |  |
- | seo | [AvailablePageSeo](#AvailablePageSeo) |  no  |  |
- | props | [string] |  no  |  |
- | _id | string |  no  |  |
-
----
-
-
- 
- 
- #### [AvailablePageSectionMetaAttributes](#AvailablePageSectionMetaAttributes)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | attributes | string |  no  |  |
-
----
-
-
- 
- 
- #### [AvailablePageSeo](#AvailablePageSeo)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | title | string |  no  |  |
- | description | string |  no  |  |
- | _id | string |  no  |  |
-
----
-
-
- 
- 
- #### [AvailablePageSchemaSections](#AvailablePageSchemaSections)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | name | string |  no  |  |
- | label | string |  no  |  |
- | props | string |  no  |  |
- | blocks | [string] |  no  |  |
- | preset | string |  no  |  |
- | predicate | [AvailablePagePredicate](#AvailablePagePredicate) |  no  |  |
-
----
-
-
- 
- 
- #### [AvailablePageScreenPredicate](#AvailablePageScreenPredicate)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | mobile | boolean |  no  |  |
- | desktop | boolean |  no  |  |
- | tablet | boolean |  no  |  |
-
----
-
-
- 
- 
- #### [AvailablePageUserPredicate](#AvailablePageUserPredicate)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | authenticated | boolean |  no  |  |
- | anonymous | boolean |  no  |  |
-
----
-
-
- 
- 
- #### [AvailablePageRoutePredicate](#AvailablePageRoutePredicate)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | selected | string |  no  |  |
- | exact_url | string |  no  |  |
- | query | string |  no  |  |
-
----
-
-
- 
- 
- #### [AvailablePagePredicate](#AvailablePagePredicate)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | screen | [AvailablePageScreenPredicate](#AvailablePageScreenPredicate) |  no  |  |
- | user | [AvailablePageUserPredicate](#AvailablePageUserPredicate) |  no  |  |
- | route | [AvailablePageRoutePredicate](#AvailablePageRoutePredicate) |  no  |  |
-
----
-
-
- 
- 
- #### [AllAvailablePageSchema](#AllAvailablePageSchema)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | pages | [[AvailablePageSchema](#AvailablePageSchema)] |  no  |  |
-
----
-
-
- 
- 
- #### [PaginationSchema](#PaginationSchema)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | size | number |  no  |  |
- | item_total | number |  no  |  |
- | has_next | boolean |  no  |  |
- | type | string |  no  |  |
- | current | number |  no  |  |
-
----
-
-
- 
- 
- #### [ThemesListingResponseSchema](#ThemesListingResponseSchema)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | items | [[ThemesSchema](#ThemesSchema)] |  no  |  |
- | page | [PaginationSchema](#PaginationSchema) |  no  |  |
-
----
-
-
- 
- 
- #### [AddThemeRequestSchema](#AddThemeRequestSchema)
+#### [AddThemeRequestSchema](#AddThemeRequestSchema)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | theme_id | string |  no  |  |
+ 
 
 ---
 
-
- 
- 
- #### [UpgradableThemeSchema](#UpgradableThemeSchema)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | parent_theme | string |  no  |  |
- | applied_theme | string |  no  |  |
- | upgrade | boolean |  no  |  |
-
----
-
-
- 
- 
- #### [FontsSchema](#FontsSchema)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | items | [FontsSchemaItems](#FontsSchemaItems) |  no  |  |
- | kind | string |  no  |  |
-
----
-
-
- 
- 
- #### [BlitzkriegApiErrorSchema](#BlitzkriegApiErrorSchema)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | message | string |  no  |  |
-
----
-
-
- 
- 
- #### [BlitzkriegNotFoundSchema](#BlitzkriegNotFoundSchema)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | message | string |  no  |  |
-
----
-
-
- 
- 
- #### [BlitzkriegInternalServerErrorSchema](#BlitzkriegInternalServerErrorSchema)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | message | string |  no  |  |
-
----
-
-
- 
- 
- #### [FontsSchemaItems](#FontsSchemaItems)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | family | string |  no  |  |
- | variants | [string] |  no  |  |
- | subsets | [string] |  no  |  |
- | version | string |  no  |  |
- | last_modified | string |  no  |  |
- | files | [FontsSchemaItemsFiles](#FontsSchemaItemsFiles) |  no  |  |
- | category | string |  no  |  |
- | kind | string |  no  |  |
-
----
-
-
- 
- 
- #### [FontsSchemaItemsFiles](#FontsSchemaItemsFiles)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | regular | string |  no  |  |
- | italic | string |  no  |  |
- | bold | string |  no  |  |
-
----
-
-
- 
- 
- #### [ThemesSchema](#ThemesSchema)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | application | string |  no  |  |
- | applied | boolean |  no  |  |
- | customized | boolean |  no  |  |
- | published | boolean |  no  |  |
- | archived | boolean |  no  |  |
- | created_at | string |  no  |  |
- | updated_at | string |  no  |  |
- | version | string |  no  |  |
- | parent_theme_version | string |  no  |  |
- | parent_theme | string |  no  |  |
- | information | [Information](#Information) |  no  |  |
- | tags | [string] |  no  |  |
- | src | [Src](#Src) |  no  |  |
- | assets | [AssetsSchema](#AssetsSchema) |  no  |  |
- | available_sections | [[availableSectionSchema](#availableSectionSchema)] |  no  |  |
- | styles | string |  no  |  |
- | config | [Config](#Config) |  no  |  |
- | font | [Font](#Font) |  no  |  |
- | _id | string |  no  |  |
- | __v | number |  no  |  |
- | colors | [Colors](#Colors) |  no  |  |
-
----
-
-
- 
- 
- #### [availableSectionSchema](#availableSectionSchema)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | blocks | [[Blocks](#Blocks)] |  no  |  |
- | name | string |  no  |  |
- | label | string |  no  |  |
- | props | [[BlocksProps](#BlocksProps)] |  no  |  |
-
----
-
-
- 
- 
- #### [Information](#Information)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | images | [Images](#Images) |  no  |  |
- | features | [string] |  no  |  |
- | name | string |  no  |  |
- | description | string |  no  |  |
-
----
-
-
- 
- 
- #### [Images](#Images)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | desktop | [string] |  no  |  |
- | android | [string] |  no  |  |
- | ios | [string] |  no  |  |
- | thumbnail | [string] |  no  |  |
-
----
-
-
- 
- 
- #### [Src](#Src)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | link | string |  no  |  |
-
----
-
-
- 
- 
- #### [AssetsSchema](#AssetsSchema)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | umd_js | [UmdJs](#UmdJs) |  no  |  |
- | common_js | [CommonJs](#CommonJs) |  no  |  |
- | css | [Css](#Css) |  no  |  |
-
----
-
-
- 
- 
- #### [UmdJs](#UmdJs)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | link | string |  no  |  |
- | links | [string] |  no  |  |
-
----
-
-
- 
- 
- #### [CommonJs](#CommonJs)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | link | string |  no  |  |
-
----
-
-
- 
- 
- #### [Css](#Css)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | link | string |  no  |  |
- | links | [string] |  no  |  |
-
----
-
-
- 
- 
- #### [Sections](#Sections)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | attributes | string |  no  |  |
-
----
-
-
- 
- 
- #### [Config](#Config)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | preset | [Preset](#Preset) |  no  |  |
- | global_schema | [GlobalSchema](#GlobalSchema) |  no  |  |
- | current | string |  no  |  |
- | list | [[ListSchemaItem](#ListSchemaItem)] |  no  |  |
-
----
-
-
- 
- 
- #### [Preset](#Preset)
+#### [AllAvailablePageSchema](#AllAvailablePageSchema)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | pages | [[AvailablePageSchema](#AvailablePageSchema)] |  no  |  |
+ 
 
 ---
 
-
- 
- 
- #### [GlobalSchema](#GlobalSchema)
+#### [AssetsSchema](#AssetsSchema)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | props | [[GlobalSchemaProps](#GlobalSchemaProps)] |  no  |  |
+ | common_js | [CommonJs](#CommonJs) |  no  |  |
+ | css | [Css](#Css) |  no  |  |
+ | umd_js | [UmdJs](#UmdJs) |  no  |  |
+ 
 
 ---
 
-
- 
- 
- #### [ListSchemaItem](#ListSchemaItem)
+#### [AvailablePagePredicate](#AvailablePagePredicate)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | global_config | string |  no  |  |
- | page | [[ConfigPage](#ConfigPage)] |  no  |  |
+ | route | [AvailablePageRoutePredicate](#AvailablePageRoutePredicate) |  no  |  |
+ | screen | [AvailablePageScreenPredicate](#AvailablePageScreenPredicate) |  no  |  |
+ | user | [AvailablePageUserPredicate](#AvailablePageUserPredicate) |  no  |  |
+ 
+
+---
+
+#### [AvailablePageRoutePredicate](#AvailablePageRoutePredicate)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | exact_url | string |  no  |  |
+ | query | string |  no  |  |
+ | selected | string |  no  |  |
+ 
+
+---
+
+#### [AvailablePageSchema](#AvailablePageSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | _id | string |  no  |  |
+ | path | string |  no  |  |
+ | props | [string] |  no  |  |
+ | sections | [[AvailablePageSchemaSections](#AvailablePageSchemaSections)] |  no  |  |
+ | sections_meta | [[AvailablePageSectionMetaAttributes](#AvailablePageSectionMetaAttributes)] |  no  |  |
+ | seo | [AvailablePageSeo](#AvailablePageSeo) |  no  |  |
+ | text | string |  no  |  |
+ | theme | string |  no  |  |
+ | type | string |  no  |  |
+ | value | string |  no  |  |
+ 
+
+---
+
+#### [AvailablePageSchemaSections](#AvailablePageSchemaSections)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | blocks | [string] |  no  |  |
+ | label | string |  no  |  |
  | name | string |  no  |  |
+ | predicate | [AvailablePagePredicate](#AvailablePagePredicate) |  no  |  |
+ | preset | string |  no  |  |
+ | props | string |  no  |  |
+ 
 
 ---
 
-
- 
- 
- #### [Colors](#Colors)
+#### [AvailablePageScreenPredicate](#AvailablePageScreenPredicate)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | desktop | boolean |  no  |  |
+ | mobile | boolean |  no  |  |
+ | tablet | boolean |  no  |  |
+ 
+
+---
+
+#### [AvailablePageSectionMetaAttributes](#AvailablePageSectionMetaAttributes)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | attributes | string |  no  |  |
+ 
+
+---
+
+#### [AvailablePageSeo](#AvailablePageSeo)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | _id | string |  no  |  |
+ | description | string |  no  |  |
+ | title | string |  no  |  |
+ 
+
+---
+
+#### [AvailablePageUserPredicate](#AvailablePageUserPredicate)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | anonymous | boolean |  no  |  |
+ | authenticated | boolean |  no  |  |
+ 
+
+---
+
+#### [availableSectionSchema](#availableSectionSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | blocks | [[Blocks](#Blocks)] |  no  |  |
+ | label | string |  no  |  |
+ | name | string |  no  |  |
+ | props | [[BlocksProps](#BlocksProps)] |  no  |  |
+ 
+
+---
+
+#### [BlitzkriegApiErrorSchema](#BlitzkriegApiErrorSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | message | string |  no  |  |
+ 
+
+---
+
+#### [BlitzkriegInternalServerErrorSchema](#BlitzkriegInternalServerErrorSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | message | string |  no  |  |
+ 
+
+---
+
+#### [BlitzkriegNotFoundSchema](#BlitzkriegNotFoundSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | message | string |  no  |  |
+ 
+
+---
+
+#### [Blocks](#Blocks)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | name | string |  no  |  |
+ | props | [[BlocksProps](#BlocksProps)] |  no  |  |
+ | type | string |  no  |  |
+ 
+
+---
+
+#### [BlocksProps](#BlocksProps)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | id | string |  no  |  |
+ | label | string |  no  |  |
+ | type | string |  no  |  |
+ 
+
+---
+
+#### [Bold](#Bold)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | file | string |  no  |  |
+ | name | string |  no  |  |
+ 
+
+---
+
+#### [Colors](#Colors)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | accent_color | string |  no  |  |
  | bg_color | string |  no  |  |
+ | button_secondary_color | string |  no  |  |
+ | link_color | string |  no  |  |
  | primary_color | string |  no  |  |
  | secondary_color | string |  no  |  |
- | accent_color | string |  no  |  |
- | link_color | string |  no  |  |
- | button_secondary_color | string |  no  |  |
+ 
 
 ---
 
+#### [CommonJs](#CommonJs)
 
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | link | string |  no  |  |
  
+
+---
+
+#### [Config](#Config)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | current | string |  no  |  |
+ | global_schema | [GlobalSchema](#GlobalSchema) |  no  |  |
+ | list | [[ListSchemaItem](#ListSchemaItem)] |  no  |  |
+ | preset | [Preset](#Preset) |  no  |  |
  
- #### [Custom](#Custom)
+
+---
+
+#### [ConfigPage](#ConfigPage)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | page | string |  no  |  |
+ | settings | string |  no  |  |
+ 
+
+---
+
+#### [Css](#Css)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | link | string |  no  |  |
+ | links | [string] |  no  |  |
+ 
+
+---
+
+#### [Custom](#Custom)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | props | string |  no  |  |
+ 
 
 ---
 
-
- 
- 
- #### [ConfigPage](#ConfigPage)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | settings | string |  no  |  |
- | page | string |  no  |  |
-
----
-
-
- 
- 
- #### [Font](#Font)
+#### [Font](#Font)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | family | string |  no  |  |
  | variants | [Variants](#Variants) |  no  |  |
+ 
 
 ---
 
-
- 
- 
- #### [Variants](#Variants)
+#### [FontsSchema](#FontsSchema)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | medium | [Medium](#Medium) |  no  |  |
- | semi_bold | [SemiBold](#SemiBold) |  no  |  |
+ | items | [FontsSchemaItems](#FontsSchemaItems) |  no  |  |
+ | kind | string |  no  |  |
+ 
+
+---
+
+#### [FontsSchemaItems](#FontsSchemaItems)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | category | string |  no  |  |
+ | family | string |  no  |  |
+ | files | [FontsSchemaItemsFiles](#FontsSchemaItemsFiles) |  no  |  |
+ | kind | string |  no  |  |
+ | last_modified | string |  no  |  |
+ | subsets | [string] |  no  |  |
+ | variants | [string] |  no  |  |
+ | version | string |  no  |  |
+ 
+
+---
+
+#### [FontsSchemaItemsFiles](#FontsSchemaItemsFiles)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | bold | string |  no  |  |
+ | italic | string |  no  |  |
+ | regular | string |  no  |  |
+ 
+
+---
+
+#### [GlobalSchema](#GlobalSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | props | [[GlobalSchemaProps](#GlobalSchemaProps)] |  no  |  |
+ 
+
+---
+
+#### [GlobalSchemaProps](#GlobalSchemaProps)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | category | string |  no  |  |
+ | id | string |  no  |  |
+ | label | string |  no  |  |
+ | type | string |  no  |  |
+ 
+
+---
+
+#### [Images](#Images)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | android | [string] |  no  |  |
+ | desktop | [string] |  no  |  |
+ | ios | [string] |  no  |  |
+ | thumbnail | [string] |  no  |  |
+ 
+
+---
+
+#### [Information](#Information)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | description | string |  no  |  |
+ | features | [string] |  no  |  |
+ | images | [Images](#Images) |  no  |  |
+ | name | string |  no  |  |
+ 
+
+---
+
+#### [Light](#Light)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | file | string |  no  |  |
+ | name | string |  no  |  |
+ 
+
+---
+
+#### [ListSchemaItem](#ListSchemaItem)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | global_config | string |  no  |  |
+ | name | string |  no  |  |
+ | page | [[ConfigPage](#ConfigPage)] |  no  |  |
+ 
+
+---
+
+#### [Medium](#Medium)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | file | string |  no  |  |
+ | name | string |  no  |  |
+ 
+
+---
+
+#### [PaginationSchema](#PaginationSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | current | number |  no  |  |
+ | has_next | boolean |  no  |  |
+ | item_total | number |  no  |  |
+ | size | number |  no  |  |
+ | type | string |  no  |  |
+ 
+
+---
+
+#### [Preset](#Preset)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | pages | [[AvailablePageSchema](#AvailablePageSchema)] |  no  |  |
+ 
+
+---
+
+#### [Regular](#Regular)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | file | string |  no  |  |
+ | name | string |  no  |  |
+ 
+
+---
+
+#### [Sections](#Sections)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | attributes | string |  no  |  |
+ 
+
+---
+
+#### [SemiBold](#SemiBold)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | file | string |  no  |  |
+ | name | string |  no  |  |
+ 
+
+---
+
+#### [Src](#Src)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | link | string |  no  |  |
+ 
+
+---
+
+#### [ThemesListingResponseSchema](#ThemesListingResponseSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | items | [[ThemesSchema](#ThemesSchema)] |  no  |  |
+ | page | [PaginationSchema](#PaginationSchema) |  no  |  |
+ 
+
+---
+
+#### [ThemesSchema](#ThemesSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | __v | number |  no  |  |
+ | _id | string |  no  |  |
+ | application | string |  no  |  |
+ | applied | boolean |  no  |  |
+ | archived | boolean |  no  |  |
+ | assets | [AssetsSchema](#AssetsSchema) |  no  |  |
+ | available_sections | [[availableSectionSchema](#availableSectionSchema)] |  no  |  |
+ | colors | [Colors](#Colors) |  no  |  |
+ | config | [Config](#Config) |  no  |  |
+ | created_at | string |  no  |  |
+ | customized | boolean |  no  |  |
+ | font | [Font](#Font) |  no  |  |
+ | information | [Information](#Information) |  no  |  |
+ | parent_theme | string |  no  |  |
+ | parent_theme_version | string |  no  |  |
+ | published | boolean |  no  |  |
+ | src | [Src](#Src) |  no  |  |
+ | styles | string |  no  |  |
+ | tags | [string] |  no  |  |
+ | updated_at | string |  no  |  |
+ | version | string |  no  |  |
+ 
+
+---
+
+#### [UmdJs](#UmdJs)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | link | string |  no  |  |
+ | links | [string] |  no  |  |
+ 
+
+---
+
+#### [UpgradableThemeSchema](#UpgradableThemeSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | applied_theme | string |  no  |  |
+ | parent_theme | string |  no  |  |
+ | upgrade | boolean |  no  |  |
+ 
+
+---
+
+#### [Variants](#Variants)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
  | bold | [Bold](#Bold) |  no  |  |
  | light | [Light](#Light) |  no  |  |
+ | medium | [Medium](#Medium) |  no  |  |
  | regular | [Regular](#Regular) |  no  |  |
-
----
-
-
+ | semi_bold | [SemiBold](#SemiBold) |  no  |  |
  
- 
- #### [Medium](#Medium)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | name | string |  no  |  |
- | file | string |  no  |  |
-
----
-
-
- 
- 
- #### [SemiBold](#SemiBold)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | name | string |  no  |  |
- | file | string |  no  |  |
-
----
-
-
- 
- 
- #### [Bold](#Bold)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | name | string |  no  |  |
- | file | string |  no  |  |
-
----
-
-
- 
- 
- #### [Light](#Light)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | name | string |  no  |  |
- | file | string |  no  |  |
-
----
-
-
- 
- 
- #### [Regular](#Regular)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | name | string |  no  |  |
- | file | string |  no  |  |
-
----
-
-
- 
- 
- #### [Blocks](#Blocks)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | type | string |  no  |  |
- | name | string |  no  |  |
- | props | [[BlocksProps](#BlocksProps)] |  no  |  |
-
----
-
-
- 
- 
- #### [GlobalSchemaProps](#GlobalSchemaProps)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | id | string |  no  |  |
- | label | string |  no  |  |
- | type | string |  no  |  |
- | category | string |  no  |  |
-
----
-
-
- 
- 
- #### [BlocksProps](#BlocksProps)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | id | string |  no  |  |
- | label | string |  no  |  |
- | type | string |  no  |  |
 
 ---
 

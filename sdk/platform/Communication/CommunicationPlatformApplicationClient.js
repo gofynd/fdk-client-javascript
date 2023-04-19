@@ -2,6 +2,9 @@ const Paginator = require("../../common/Paginator");
 const PlatformAPIClient = require("../PlatformAPIClient");
 const { FDKClientValidationError } = require("../../common/FDKError");
 const CommunicationValidator = require("./CommunicationPlatformApplicationValidator");
+const CommunicationModel = require("./CommunicationPlatformModel");
+const { Logger } = require("./../../common/Logger");
+const Joi = require("joi");
 
 class Communication {
   constructor(config, applicationId) {
@@ -11,18 +14,15 @@ class Communication {
 
   /**
    * @param {Object} arg - Arg object.
-   * @param {number} [arg.pageNo] - Current page no
-   * @param {number} [arg.pageSize] - Current request items count
-   * @param {Object} [arg.sort] - To sort based on created_at
-   * @summary: Get campaigns
-   * @description: Get campaigns
+   * @param {AudienceReq} arg.body
+   * @returns {Promise<Audience>} - Success response
+   * @summary: Create audience
+   * @description: Create audience
    */
-  getCampaigns({ pageNo, pageSize, sort } = {}) {
-    const { error } = CommunicationValidator.getCampaigns().validate(
+  async createAudience({ body } = {}) {
+    const { error } = CommunicationValidator.createAudience().validate(
       {
-        pageNo,
-        pageSize,
-        sort,
+        body,
       },
       { abortEarly: false, allowUnknown: true }
     );
@@ -31,72 +31,58 @@ class Communication {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = CommunicationValidator.getCampaigns().validate(
+    const {
+      error: warrning,
+    } = CommunicationValidator.createAudience().validate(
       {
-        pageNo,
-        pageSize,
-        sort,
+        body,
       },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for getCampaigns");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for createAudience",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
-    query_params["page_no"] = pageNo;
-    query_params["page_size"] = pageSize;
-    query_params["sort"] = sort;
 
-    return PlatformAPIClient.execute(
+    const response = await PlatformAPIClient.execute(
       this.config,
-      "get",
-      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/campaigns/campaigns`,
+      "post",
+      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/sources/datasources`,
       query_params,
-      undefined
+      body
     );
-  }
 
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.companyId - Company id
-   * @param {string} arg.applicationId - Application id
-   * @param {number} [arg.pageSize] - Current request items count
-   * @param {Object} [arg.sort] - To sort based on created_at
-   * @summary: Get campaigns
-   * @description: Get campaigns
-   */
-  getCampaignsPaginator({ companyId, applicationId, pageSize, sort } = {}) {
-    const paginator = new Paginator();
-    const callback = async () => {
-      const pageId = paginator.nextId;
-      const pageNo = paginator.pageNo;
-      const pageType = "number";
-      const data = await this.getCampaigns({
-        companyId: companyId,
-        applicationId: applicationId,
-        pageNo: pageNo,
-        pageSize: pageSize,
-        sort: sort,
+    const {
+      error: res_error,
+    } = CommunicationModel.Audience().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for createAudience",
       });
-      paginator.setPaginator({
-        hasNext: data.page.has_next ? true : false,
-        nextId: data.page.next_id,
-      });
-      return data;
-    };
-    paginator.setCallback(callback.bind(this));
-    return paginator;
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
    * @param {Object} arg - Arg object.
    * @param {CampaignReq} arg.body
+   * @returns {Promise<Campaign>} - Success response
    * @summary: Create campaign
    * @description: Create campaign
    */
-  createCampaign({ body } = {}) {
+  async createCampaign({ body } = {}) {
     const { error } = CommunicationValidator.createCampaign().validate(
       {
         body,
@@ -117,74 +103,51 @@ class Communication {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for createCampaign");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for createCampaign",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
 
-    return PlatformAPIClient.execute(
+    const response = await PlatformAPIClient.execute(
       this.config,
       "post",
       `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/campaigns/campaigns`,
       query_params,
       body
     );
-  }
 
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.id - Campaign id
-   * @summary: Get campaign by id
-   * @description: Get campaign by id
-   */
-  getCampaignById({ id } = {}) {
-    const { error } = CommunicationValidator.getCampaignById().validate(
-      {
-        id,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
     const {
-      error: warrning,
-    } = CommunicationValidator.getCampaignById().validate(
-      {
-        id,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      console.log("Parameter Validation warrnings for getCampaignById");
-      console.log(warrning);
+      error: res_error,
+    } = CommunicationModel.Campaign().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for createCampaign",
+      });
+      Logger({ level: "WARN", message: res_error });
     }
 
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/campaigns/campaigns/${id}`,
-      query_params,
-      undefined
-    );
+    return response;
   }
 
   /**
    * @param {Object} arg - Arg object.
-   * @param {string} arg.id - Campaign id
-   * @param {CampaignReq} arg.body
-   * @summary: Update campaign by id
-   * @description: Update campaign by id
+   * @param {EmailProviderReq} arg.body
+   * @returns {Promise<EmailProvider>} - Success response
+   * @summary: Create email provider
+   * @description: Create email provider
    */
-  updateCampaignById({ id, body } = {}) {
-    const { error } = CommunicationValidator.updateCampaignById().validate(
+  async createEmailProvider({ body } = {}) {
+    const { error } = CommunicationValidator.createEmailProvider().validate(
       {
-        id,
         body,
       },
       { abortEarly: false, allowUnknown: true }
@@ -196,37 +159,246 @@ class Communication {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = CommunicationValidator.updateCampaignById().validate(
+    } = CommunicationValidator.createEmailProvider().validate(
       {
-        id,
         body,
       },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for updateCampaignById");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for createEmailProvider",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
 
-    return PlatformAPIClient.execute(
+    const response = await PlatformAPIClient.execute(
       this.config,
-      "put",
-      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/campaigns/campaigns/${id}`,
+      "post",
+      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/email/providers`,
       query_params,
       body
     );
+
+    const {
+      error: res_error,
+    } = CommunicationModel.EmailProvider().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for createEmailProvider",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
    * @param {Object} arg - Arg object.
-   * @param {string} arg.id - Campaign id
-   * @summary: Get stats of campaign by id
-   * @description: Get stats of campaign by id
+   * @param {EmailTemplateReq} arg.body
+   * @returns {Promise<EmailTemplateRes>} - Success response
+   * @summary: Create email template
+   * @description: Create email template
    */
-  getStatsOfCampaignById({ id } = {}) {
-    const { error } = CommunicationValidator.getStatsOfCampaignById().validate(
+  async createEmailTemplate({ body } = {}) {
+    const { error } = CommunicationValidator.createEmailTemplate().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = CommunicationValidator.createEmailTemplate().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for createEmailTemplate",
+      });
+      Logger({ level: "WARN", message: warrning });
+    }
+
+    const query_params = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/email/templates`,
+      query_params,
+      body
+    );
+
+    const {
+      error: res_error,
+    } = CommunicationModel.EmailTemplateRes().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for createEmailTemplate",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {SmsProviderReq} arg.body
+   * @returns {Promise<SmsProvider>} - Success response
+   * @summary: Create sms provider
+   * @description: Create sms provider
+   */
+  async createSmsProvider({ body } = {}) {
+    const { error } = CommunicationValidator.createSmsProvider().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = CommunicationValidator.createSmsProvider().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for createSmsProvider",
+      });
+      Logger({ level: "WARN", message: warrning });
+    }
+
+    const query_params = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/sms/providers`,
+      query_params,
+      body
+    );
+
+    const {
+      error: res_error,
+    } = CommunicationModel.SmsProvider().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for createSmsProvider",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {SmsTemplateReq} arg.body
+   * @returns {Promise<SmsTemplateRes>} - Success response
+   * @summary: Create sms template
+   * @description: Create sms template
+   */
+  async createSmsTemplate({ body } = {}) {
+    const { error } = CommunicationValidator.createSmsTemplate().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = CommunicationValidator.createSmsTemplate().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for createSmsTemplate",
+      });
+      Logger({ level: "WARN", message: warrning });
+    }
+
+    const query_params = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/sms/templates`,
+      query_params,
+      body
+    );
+
+    const {
+      error: res_error,
+    } = CommunicationModel.SmsTemplateRes().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for createSmsTemplate",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.id - Email template id
+   * @returns {Promise<EmailTemplateDeleteSuccessRes>} - Success response
+   * @summary: Delete email template by id
+   * @description: Delete email template by id
+   */
+  async deleteEmailTemplateById({ id } = {}) {
+    const { error } = CommunicationValidator.deleteEmailTemplateById().validate(
       {
         id,
       },
@@ -239,26 +411,172 @@ class Communication {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = CommunicationValidator.getStatsOfCampaignById().validate(
+    } = CommunicationValidator.deleteEmailTemplateById().validate(
       {
         id,
       },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for getStatsOfCampaignById");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for deleteEmailTemplateById",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
 
-    return PlatformAPIClient.execute(
+    const response = await PlatformAPIClient.execute(
       this.config,
-      "get",
-      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/campaigns/get-stats/${id}`,
+      "delete",
+      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/email/templates/${id}`,
       query_params,
       undefined
     );
+
+    const {
+      error: res_error,
+    } = CommunicationModel.EmailTemplateDeleteSuccessRes().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for deleteEmailTemplateById",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.id - Sms template id
+   * @returns {Promise<SmsTemplateDeleteSuccessRes>} - Success response
+   * @summary: Delete sms template by id
+   * @description: Delete sms template by id
+   */
+  async deleteSmsTemplateById({ id } = {}) {
+    const { error } = CommunicationValidator.deleteSmsTemplateById().validate(
+      {
+        id,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = CommunicationValidator.deleteSmsTemplateById().validate(
+      {
+        id,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for deleteSmsTemplateById",
+      });
+      Logger({ level: "WARN", message: warrning });
+    }
+
+    const query_params = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "delete",
+      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/sms/templates/${id}`,
+      query_params,
+      undefined
+    );
+
+    const {
+      error: res_error,
+    } = CommunicationModel.SmsTemplateDeleteSuccessRes().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for deleteSmsTemplateById",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.id - Audience id
+   * @returns {Promise<Audience>} - Success response
+   * @summary: Get audience by id
+   * @description: Get audience by id
+   */
+  async getAudienceById({ id } = {}) {
+    const { error } = CommunicationValidator.getAudienceById().validate(
+      {
+        id,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = CommunicationValidator.getAudienceById().validate(
+      {
+        id,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getAudienceById",
+      });
+      Logger({ level: "WARN", message: warrning });
+    }
+
+    const query_params = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/sources/datasources/${id}`,
+      query_params,
+      undefined
+    );
+
+    const {
+      error: res_error,
+    } = CommunicationModel.Audience().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getAudienceById",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
@@ -266,10 +584,11 @@ class Communication {
    * @param {number} [arg.pageNo] - Current page no
    * @param {number} [arg.pageSize] - Current request items count
    * @param {Object} [arg.sort] - To sort based on created_at
+   * @returns {Promise<Audiences>} - Success response
    * @summary: Get audiences
    * @description: Get audiences
    */
-  getAudiences({ pageNo, pageSize, sort } = {}) {
+  async getAudiences({ pageNo, pageSize, sort } = {}) {
     const { error } = CommunicationValidator.getAudiences().validate(
       {
         pageNo,
@@ -292,8 +611,11 @@ class Communication {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for getAudiences");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getAudiences",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -301,13 +623,30 @@ class Communication {
     query_params["page_size"] = pageSize;
     query_params["sort"] = sort;
 
-    return PlatformAPIClient.execute(
+    const response = await PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/sources/datasources`,
       query_params,
       undefined
     );
+
+    const {
+      error: res_error,
+    } = CommunicationModel.Audiences().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getAudiences",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
@@ -344,53 +683,12 @@ class Communication {
 
   /**
    * @param {Object} arg - Arg object.
-   * @param {AudienceReq} arg.body
-   * @summary: Create audience
-   * @description: Create audience
-   */
-  createAudience({ body } = {}) {
-    const { error } = CommunicationValidator.createAudience().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = CommunicationValidator.createAudience().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      console.log("Parameter Validation warrnings for createAudience");
-      console.log(warrning);
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/sources/datasources`,
-      query_params,
-      body
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
    * @param {BigqueryHeadersReq} arg.body
+   * @returns {Promise<BigqueryHeadersRes>} - Success response
    * @summary: Get bigquery headers
    * @description: Get bigquery headers
    */
-  getBigqueryHeaders({ body } = {}) {
+  async getBigqueryHeaders({ body } = {}) {
     const { error } = CommunicationValidator.getBigqueryHeaders().validate(
       {
         body,
@@ -411,29 +709,50 @@ class Communication {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for getBigqueryHeaders");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getBigqueryHeaders",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
 
-    return PlatformAPIClient.execute(
+    const response = await PlatformAPIClient.execute(
       this.config,
       "post",
       `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/sources/bigquery-headers`,
       query_params,
       body
     );
+
+    const {
+      error: res_error,
+    } = CommunicationModel.BigqueryHeadersRes().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getBigqueryHeaders",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
    * @param {Object} arg - Arg object.
-   * @param {string} arg.id - Audience id
-   * @summary: Get audience by id
-   * @description: Get audience by id
+   * @param {string} arg.id - Campaign id
+   * @returns {Promise<Campaign>} - Success response
+   * @summary: Get campaign by id
+   * @description: Get campaign by id
    */
-  getAudienceById({ id } = {}) {
-    const { error } = CommunicationValidator.getAudienceById().validate(
+  async getCampaignById({ id } = {}) {
+    const { error } = CommunicationValidator.getCampaignById().validate(
       {
         id,
       },
@@ -446,117 +765,46 @@ class Communication {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = CommunicationValidator.getAudienceById().validate(
+    } = CommunicationValidator.getCampaignById().validate(
       {
         id,
       },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for getAudienceById");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getCampaignById",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
 
-    return PlatformAPIClient.execute(
+    const response = await PlatformAPIClient.execute(
       this.config,
       "get",
-      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/sources/datasources/${id}`,
+      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/campaigns/campaigns/${id}`,
       query_params,
       undefined
     );
-  }
 
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.id - Audience id
-   * @param {AudienceReq} arg.body
-   * @summary: Update audience by id
-   * @description: Update audience by id
-   */
-  updateAudienceById({ id, body } = {}) {
-    const { error } = CommunicationValidator.updateAudienceById().validate(
-      {
-        id,
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
     const {
-      error: warrning,
-    } = CommunicationValidator.updateAudienceById().validate(
-      {
-        id,
-        body,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      console.log("Parameter Validation warrnings for updateAudienceById");
-      console.log(warrning);
+      error: res_error,
+    } = CommunicationModel.Campaign().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getCampaignById",
+      });
+      Logger({ level: "WARN", message: res_error });
     }
 
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "put",
-      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/sources/datasources/${id}`,
-      query_params,
-      body
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {GetNRecordsCsvReq} arg.body
-   * @summary: Get n sample records from csv
-   * @description: Get n sample records from csv
-   */
-  getNSampleRecordsFromCsv({ body } = {}) {
-    const {
-      error,
-    } = CommunicationValidator.getNSampleRecordsFromCsv().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = CommunicationValidator.getNSampleRecordsFromCsv().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      console.log(
-        "Parameter Validation warrnings for getNSampleRecordsFromCsv"
-      );
-      console.log(warrning);
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/sources/get-n-records`,
-      query_params,
-      body
-    );
+    return response;
   }
 
   /**
@@ -564,11 +812,12 @@ class Communication {
    * @param {number} [arg.pageNo] - Current page no
    * @param {number} [arg.pageSize] - Current request items count
    * @param {Object} [arg.sort] - To sort based on created_at
-   * @summary: Get email providers
-   * @description: Get email providers
+   * @returns {Promise<Campaigns>} - Success response
+   * @summary: Get campaigns
+   * @description: Get campaigns
    */
-  getEmailProviders({ pageNo, pageSize, sort } = {}) {
-    const { error } = CommunicationValidator.getEmailProviders().validate(
+  async getCampaigns({ pageNo, pageSize, sort } = {}) {
+    const { error } = CommunicationValidator.getCampaigns().validate(
       {
         pageNo,
         pageSize,
@@ -581,9 +830,7 @@ class Communication {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = CommunicationValidator.getEmailProviders().validate(
+    const { error: warrning } = CommunicationValidator.getCampaigns().validate(
       {
         pageNo,
         pageSize,
@@ -592,8 +839,11 @@ class Communication {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for getEmailProviders");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getCampaigns",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -601,13 +851,30 @@ class Communication {
     query_params["page_size"] = pageSize;
     query_params["sort"] = sort;
 
-    return PlatformAPIClient.execute(
+    const response = await PlatformAPIClient.execute(
       this.config,
       "get",
-      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/email/providers`,
+      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/campaigns/campaigns`,
       query_params,
       undefined
     );
+
+    const {
+      error: res_error,
+    } = CommunicationModel.Campaigns().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getCampaigns",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
@@ -616,881 +883,16 @@ class Communication {
    * @param {string} arg.applicationId - Application id
    * @param {number} [arg.pageSize] - Current request items count
    * @param {Object} [arg.sort] - To sort based on created_at
-   * @summary: Get email providers
-   * @description: Get email providers
+   * @summary: Get campaigns
+   * @description: Get campaigns
    */
-  getEmailProvidersPaginator({
-    companyId,
-    applicationId,
-    pageSize,
-    sort,
-  } = {}) {
+  getCampaignsPaginator({ companyId, applicationId, pageSize, sort } = {}) {
     const paginator = new Paginator();
     const callback = async () => {
       const pageId = paginator.nextId;
       const pageNo = paginator.pageNo;
       const pageType = "number";
-      const data = await this.getEmailProviders({
-        companyId: companyId,
-        applicationId: applicationId,
-        pageNo: pageNo,
-        pageSize: pageSize,
-        sort: sort,
-      });
-      paginator.setPaginator({
-        hasNext: data.page.has_next ? true : false,
-        nextId: data.page.next_id,
-      });
-      return data;
-    };
-    paginator.setCallback(callback.bind(this));
-    return paginator;
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {EmailProviderReq} arg.body
-   * @summary: Create email provider
-   * @description: Create email provider
-   */
-  createEmailProvider({ body } = {}) {
-    const { error } = CommunicationValidator.createEmailProvider().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = CommunicationValidator.createEmailProvider().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      console.log("Parameter Validation warrnings for createEmailProvider");
-      console.log(warrning);
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/email/providers`,
-      query_params,
-      body
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.id - Email provider id
-   * @summary: Get email provider by id
-   * @description: Get email provider by id
-   */
-  getEmailProviderById({ id } = {}) {
-    const { error } = CommunicationValidator.getEmailProviderById().validate(
-      {
-        id,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = CommunicationValidator.getEmailProviderById().validate(
-      {
-        id,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      console.log("Parameter Validation warrnings for getEmailProviderById");
-      console.log(warrning);
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/email/providers/${id}`,
-      query_params,
-      undefined
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.id - Email provider id
-   * @param {EmailProviderReq} arg.body
-   * @summary: Update email provider by id
-   * @description: Update email provider by id
-   */
-  updateEmailProviderById({ id, body } = {}) {
-    const { error } = CommunicationValidator.updateEmailProviderById().validate(
-      {
-        id,
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = CommunicationValidator.updateEmailProviderById().validate(
-      {
-        id,
-        body,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      console.log("Parameter Validation warrnings for updateEmailProviderById");
-      console.log(warrning);
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "put",
-      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/email/providers/${id}`,
-      query_params,
-      body
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {number} [arg.pageNo] - Current page no
-   * @param {number} [arg.pageSize] - Current request items count
-   * @param {Object} [arg.sort] - To sort based on created_at
-   * @summary: Get email templates
-   * @description: Get email templates
-   */
-  getEmailTemplates({ pageNo, pageSize, sort } = {}) {
-    const { error } = CommunicationValidator.getEmailTemplates().validate(
-      {
-        pageNo,
-        pageSize,
-        sort,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = CommunicationValidator.getEmailTemplates().validate(
-      {
-        pageNo,
-        pageSize,
-        sort,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      console.log("Parameter Validation warrnings for getEmailTemplates");
-      console.log(warrning);
-    }
-
-    const query_params = {};
-    query_params["page_no"] = pageNo;
-    query_params["page_size"] = pageSize;
-    query_params["sort"] = sort;
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/email/templates`,
-      query_params,
-      undefined
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.companyId - Company id
-   * @param {string} arg.applicationId - Application id
-   * @param {number} [arg.pageSize] - Current request items count
-   * @param {Object} [arg.sort] - To sort based on created_at
-   * @summary: Get email templates
-   * @description: Get email templates
-   */
-  getEmailTemplatesPaginator({
-    companyId,
-    applicationId,
-    pageSize,
-    sort,
-  } = {}) {
-    const paginator = new Paginator();
-    const callback = async () => {
-      const pageId = paginator.nextId;
-      const pageNo = paginator.pageNo;
-      const pageType = "number";
-      const data = await this.getEmailTemplates({
-        companyId: companyId,
-        applicationId: applicationId,
-        pageNo: pageNo,
-        pageSize: pageSize,
-        sort: sort,
-      });
-      paginator.setPaginator({
-        hasNext: data.page.has_next ? true : false,
-        nextId: data.page.next_id,
-      });
-      return data;
-    };
-    paginator.setCallback(callback.bind(this));
-    return paginator;
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {EmailTemplateReq} arg.body
-   * @summary: Create email template
-   * @description: Create email template
-   */
-  createEmailTemplate({ body } = {}) {
-    const { error } = CommunicationValidator.createEmailTemplate().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = CommunicationValidator.createEmailTemplate().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      console.log("Parameter Validation warrnings for createEmailTemplate");
-      console.log(warrning);
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/email/templates`,
-      query_params,
-      body
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {number} [arg.pageNo] - Current page no
-   * @param {number} [arg.pageSize] - Current request items count
-   * @param {Object} [arg.sort] - To sort based on created_at
-   * @summary: Get system email templates
-   * @description: Get system email templates
-   */
-  getSystemEmailTemplates({ pageNo, pageSize, sort } = {}) {
-    const { error } = CommunicationValidator.getSystemEmailTemplates().validate(
-      {
-        pageNo,
-        pageSize,
-        sort,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = CommunicationValidator.getSystemEmailTemplates().validate(
-      {
-        pageNo,
-        pageSize,
-        sort,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      console.log("Parameter Validation warrnings for getSystemEmailTemplates");
-      console.log(warrning);
-    }
-
-    const query_params = {};
-    query_params["page_no"] = pageNo;
-    query_params["page_size"] = pageSize;
-    query_params["sort"] = sort;
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/email/system-templates`,
-      query_params,
-      undefined
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.companyId - Company id
-   * @param {string} arg.applicationId - Application id
-   * @param {number} [arg.pageSize] - Current request items count
-   * @param {Object} [arg.sort] - To sort based on created_at
-   * @summary: Get system email templates
-   * @description: Get system email templates
-   */
-  getSystemEmailTemplatesPaginator({
-    companyId,
-    applicationId,
-    pageSize,
-    sort,
-  } = {}) {
-    const paginator = new Paginator();
-    const callback = async () => {
-      const pageId = paginator.nextId;
-      const pageNo = paginator.pageNo;
-      const pageType = "number";
-      const data = await this.getSystemEmailTemplates({
-        companyId: companyId,
-        applicationId: applicationId,
-        pageNo: pageNo,
-        pageSize: pageSize,
-        sort: sort,
-      });
-      paginator.setPaginator({
-        hasNext: data.page.has_next ? true : false,
-        nextId: data.page.next_id,
-      });
-      return data;
-    };
-    paginator.setCallback(callback.bind(this));
-    return paginator;
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.id - Email template id
-   * @summary: Get email template by id
-   * @description: Get email template by id
-   */
-  getEmailTemplateById({ id } = {}) {
-    const { error } = CommunicationValidator.getEmailTemplateById().validate(
-      {
-        id,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = CommunicationValidator.getEmailTemplateById().validate(
-      {
-        id,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      console.log("Parameter Validation warrnings for getEmailTemplateById");
-      console.log(warrning);
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/email/templates/${id}`,
-      query_params,
-      undefined
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.id - Email template id
-   * @param {EmailTemplateReq} arg.body
-   * @summary: Update email template by id
-   * @description: Update email template by id
-   */
-  updateEmailTemplateById({ id, body } = {}) {
-    const { error } = CommunicationValidator.updateEmailTemplateById().validate(
-      {
-        id,
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = CommunicationValidator.updateEmailTemplateById().validate(
-      {
-        id,
-        body,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      console.log("Parameter Validation warrnings for updateEmailTemplateById");
-      console.log(warrning);
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "put",
-      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/email/templates/${id}`,
-      query_params,
-      body
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.id - Email template id
-   * @summary: Delete email template by id
-   * @description: Delete email template by id
-   */
-  deleteEmailTemplateById({ id } = {}) {
-    const { error } = CommunicationValidator.deleteEmailTemplateById().validate(
-      {
-        id,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = CommunicationValidator.deleteEmailTemplateById().validate(
-      {
-        id,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      console.log("Parameter Validation warrnings for deleteEmailTemplateById");
-      console.log(warrning);
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "delete",
-      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/email/templates/${id}`,
-      query_params,
-      undefined
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {EngineRequest} arg.body
-   * @summary: Send email or sms synchronously
-   * @description: Send email or sms synchronously
-   */
-  sendCommunicationSynchronously({ body } = {}) {
-    const {
-      error,
-    } = CommunicationValidator.sendCommunicationSynchronously().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = CommunicationValidator.sendCommunicationSynchronously().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      console.log(
-        "Parameter Validation warrnings for sendCommunicationSynchronously"
-      );
-      console.log(warrning);
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/engine/send-instant`,
-      query_params,
-      body
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {EngineRequest} arg.body
-   * @summary: Send email or sms asynchronously
-   * @description: Send email or sms asynchronously
-   */
-  sendCommunicationAsynchronously({ body } = {}) {
-    const {
-      error,
-    } = CommunicationValidator.sendCommunicationAsynchronously().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = CommunicationValidator.sendCommunicationAsynchronously().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      console.log(
-        "Parameter Validation warrnings for sendCommunicationAsynchronously"
-      );
-      console.log(warrning);
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/engine/send-async`,
-      query_params,
-      body
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {number} [arg.pageNo] - Current page no
-   * @param {number} [arg.pageSize] - Current request items count
-   * @param {string} [arg.populate] - Populate fields
-   * @summary: Get event subscriptions
-   * @description: Get event subscriptions
-   */
-  getEventSubscriptions({ pageNo, pageSize, populate } = {}) {
-    const { error } = CommunicationValidator.getEventSubscriptions().validate(
-      {
-        pageNo,
-        pageSize,
-        populate,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = CommunicationValidator.getEventSubscriptions().validate(
-      {
-        pageNo,
-        pageSize,
-        populate,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      console.log("Parameter Validation warrnings for getEventSubscriptions");
-      console.log(warrning);
-    }
-
-    const query_params = {};
-    query_params["page_no"] = pageNo;
-    query_params["page_size"] = pageSize;
-    query_params["populate"] = populate;
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/event/event-subscriptions`,
-      query_params,
-      undefined
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.companyId - Company id
-   * @param {string} arg.applicationId - Application id
-   * @param {number} [arg.pageSize] - Current request items count
-   * @param {string} [arg.populate] - Populate fields
-   * @summary: Get event subscriptions
-   * @description: Get event subscriptions
-   */
-  getEventSubscriptionsPaginator({
-    companyId,
-    applicationId,
-    pageSize,
-    populate,
-  } = {}) {
-    const paginator = new Paginator();
-    const callback = async () => {
-      const pageId = paginator.nextId;
-      const pageNo = paginator.pageNo;
-      const pageType = "number";
-      const data = await this.getEventSubscriptions({
-        companyId: companyId,
-        applicationId: applicationId,
-        pageNo: pageNo,
-        pageSize: pageSize,
-        populate: populate,
-      });
-      paginator.setPaginator({
-        hasNext: data.page.has_next ? true : false,
-        nextId: data.page.next_id,
-      });
-      return data;
-    };
-    paginator.setCallback(callback.bind(this));
-    return paginator;
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {number} [arg.pageNo] - Current page no
-   * @param {number} [arg.pageSize] - Current request items count
-   * @param {Object} [arg.sort] - To sort based on created_at
-   * @summary: Get jobs
-   * @description: Get jobs
-   */
-  getJobs({ pageNo, pageSize, sort } = {}) {
-    const { error } = CommunicationValidator.getJobs().validate(
-      {
-        pageNo,
-        pageSize,
-        sort,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = CommunicationValidator.getJobs().validate(
-      {
-        pageNo,
-        pageSize,
-        sort,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      console.log("Parameter Validation warrnings for getJobs");
-      console.log(warrning);
-    }
-
-    const query_params = {};
-    query_params["page_no"] = pageNo;
-    query_params["page_size"] = pageSize;
-    query_params["sort"] = sort;
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/jobs/jobs`,
-      query_params,
-      undefined
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.companyId - Company id
-   * @param {string} arg.applicationId - Application id
-   * @param {number} [arg.pageSize] - Current request items count
-   * @param {Object} [arg.sort] - To sort based on created_at
-   * @summary: Get jobs
-   * @description: Get jobs
-   */
-  getJobsPaginator({ companyId, applicationId, pageSize, sort } = {}) {
-    const paginator = new Paginator();
-    const callback = async () => {
-      const pageId = paginator.nextId;
-      const pageNo = paginator.pageNo;
-      const pageType = "number";
-      const data = await this.getJobs({
-        companyId: companyId,
-        applicationId: applicationId,
-        pageNo: pageNo,
-        pageSize: pageSize,
-        sort: sort,
-      });
-      paginator.setPaginator({
-        hasNext: data.page.has_next ? true : false,
-        nextId: data.page.next_id,
-      });
-      return data;
-    };
-    paginator.setCallback(callback.bind(this));
-    return paginator;
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {TriggerJobRequest} arg.body
-   * @summary: Trigger campaign job
-   * @description: Trigger campaign job
-   */
-  triggerCampaignJob({ body } = {}) {
-    const { error } = CommunicationValidator.triggerCampaignJob().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = CommunicationValidator.triggerCampaignJob().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      console.log("Parameter Validation warrnings for triggerCampaignJob");
-      console.log(warrning);
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/jobs/trigger-job`,
-      query_params,
-      body
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {number} [arg.pageNo] - Current page no
-   * @param {number} [arg.pageSize] - Current request items count
-   * @param {Object} [arg.sort] - To sort based on created_at
-   * @summary: Get job logs
-   * @description: Get job logs
-   */
-  getJobLogs({ pageNo, pageSize, sort } = {}) {
-    const { error } = CommunicationValidator.getJobLogs().validate(
-      {
-        pageNo,
-        pageSize,
-        sort,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = CommunicationValidator.getJobLogs().validate(
-      {
-        pageNo,
-        pageSize,
-        sort,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      console.log("Parameter Validation warrnings for getJobLogs");
-      console.log(warrning);
-    }
-
-    const query_params = {};
-    query_params["page_no"] = pageNo;
-    query_params["page_size"] = pageSize;
-    query_params["sort"] = sort;
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/jobs/logs`,
-      query_params,
-      undefined
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.companyId - Company id
-   * @param {string} arg.applicationId - Application id
-   * @param {number} [arg.pageSize] - Current request items count
-   * @param {Object} [arg.sort] - To sort based on created_at
-   * @summary: Get job logs
-   * @description: Get job logs
-   */
-  getJobLogsPaginator({ companyId, applicationId, pageSize, sort } = {}) {
-    const paginator = new Paginator();
-    const callback = async () => {
-      const pageId = paginator.nextId;
-      const pageNo = paginator.pageNo;
-      const pageType = "number";
-      const data = await this.getJobLogs({
+      const data = await this.getCampaigns({
         companyId: companyId,
         applicationId: applicationId,
         pageNo: pageNo,
@@ -1513,10 +915,11 @@ class Communication {
    * @param {number} [arg.pageSize] - Current request items count
    * @param {Object} [arg.sort] - To sort based on _id
    * @param {Object} [arg.query] -
+   * @returns {Promise<Logs>} - Success response
    * @summary: Get communication logs
    * @description: Get communication logs
    */
-  getCommunicationLogs({ pageId, pageSize, sort, query } = {}) {
+  async getCommunicationLogs({ pageId, pageSize, sort, query } = {}) {
     const { error } = CommunicationValidator.getCommunicationLogs().validate(
       {
         pageId,
@@ -1543,8 +946,11 @@ class Communication {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for getCommunicationLogs");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getCommunicationLogs",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -1553,13 +959,28 @@ class Communication {
     query_params["sort"] = sort;
     query_params["query"] = query;
 
-    return PlatformAPIClient.execute(
+    const response = await PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/log`,
       query_params,
       undefined
     );
+
+    const { error: res_error } = CommunicationModel.Logs().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getCommunicationLogs",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
@@ -1604,14 +1025,15 @@ class Communication {
 
   /**
    * @param {Object} arg - Arg object.
-   * @param {SendOtpCommsReq} arg.body
-   * @summary: Send OTP using email and sms
-   * @description: Send OTP Comms via email and sms
+   * @param {string} arg.id - Email provider id
+   * @returns {Promise<EmailProvider>} - Success response
+   * @summary: Get email provider by id
+   * @description: Get email provider by id
    */
-  sendOtp({ body } = {}) {
-    const { error } = CommunicationValidator.sendOtp().validate(
+  async getEmailProviderById({ id } = {}) {
+    const { error } = CommunicationValidator.getEmailProviderById().validate(
       {
-        body,
+        id,
       },
       { abortEarly: false, allowUnknown: true }
     );
@@ -1620,66 +1042,48 @@ class Communication {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = CommunicationValidator.sendOtp().validate(
+    const {
+      error: warrning,
+    } = CommunicationValidator.getEmailProviderById().validate(
       {
-        body,
+        id,
       },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for sendOtp");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getEmailProviderById",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
 
-    return PlatformAPIClient.execute(
+    const response = await PlatformAPIClient.execute(
       this.config,
-      "post",
-      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/otp/send-otp-comms`,
+      "get",
+      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/email/providers/${id}`,
       query_params,
-      body
+      undefined
     );
-  }
 
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {VerifyOtpCommsReq} arg.body
-   * @summary: Verify OTP sent via email and sms
-   * @description: Verify OTP sent via email and sms
-   */
-  verfiyOtp({ body } = {}) {
-    const { error } = CommunicationValidator.verfiyOtp().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
+    const {
+      error: res_error,
+    } = CommunicationModel.EmailProvider().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getEmailProviderById",
+      });
+      Logger({ level: "WARN", message: res_error });
     }
 
-    // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = CommunicationValidator.verfiyOtp().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      console.log("Parameter Validation warrnings for verfiyOtp");
-      console.log(warrning);
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/otp/verify-otp-comms`,
-      query_params,
-      body
-    );
+    return response;
   }
 
   /**
@@ -1687,10 +1091,729 @@ class Communication {
    * @param {number} [arg.pageNo] - Current page no
    * @param {number} [arg.pageSize] - Current request items count
    * @param {Object} [arg.sort] - To sort based on created_at
+   * @returns {Promise<EmailProviders>} - Success response
+   * @summary: Get email providers
+   * @description: Get email providers
+   */
+  async getEmailProviders({ pageNo, pageSize, sort } = {}) {
+    const { error } = CommunicationValidator.getEmailProviders().validate(
+      {
+        pageNo,
+        pageSize,
+        sort,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = CommunicationValidator.getEmailProviders().validate(
+      {
+        pageNo,
+        pageSize,
+        sort,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getEmailProviders",
+      });
+      Logger({ level: "WARN", message: warrning });
+    }
+
+    const query_params = {};
+    query_params["page_no"] = pageNo;
+    query_params["page_size"] = pageSize;
+    query_params["sort"] = sort;
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/email/providers`,
+      query_params,
+      undefined
+    );
+
+    const {
+      error: res_error,
+    } = CommunicationModel.EmailProviders().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getEmailProviders",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.companyId - Company id
+   * @param {string} arg.applicationId - Application id
+   * @param {number} [arg.pageSize] - Current request items count
+   * @param {Object} [arg.sort] - To sort based on created_at
+   * @summary: Get email providers
+   * @description: Get email providers
+   */
+  getEmailProvidersPaginator({
+    companyId,
+    applicationId,
+    pageSize,
+    sort,
+  } = {}) {
+    const paginator = new Paginator();
+    const callback = async () => {
+      const pageId = paginator.nextId;
+      const pageNo = paginator.pageNo;
+      const pageType = "number";
+      const data = await this.getEmailProviders({
+        companyId: companyId,
+        applicationId: applicationId,
+        pageNo: pageNo,
+        pageSize: pageSize,
+        sort: sort,
+      });
+      paginator.setPaginator({
+        hasNext: data.page.has_next ? true : false,
+        nextId: data.page.next_id,
+      });
+      return data;
+    };
+    paginator.setCallback(callback.bind(this));
+    return paginator;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.id - Email template id
+   * @returns {Promise<EmailTemplate>} - Success response
+   * @summary: Get email template by id
+   * @description: Get email template by id
+   */
+  async getEmailTemplateById({ id } = {}) {
+    const { error } = CommunicationValidator.getEmailTemplateById().validate(
+      {
+        id,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = CommunicationValidator.getEmailTemplateById().validate(
+      {
+        id,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getEmailTemplateById",
+      });
+      Logger({ level: "WARN", message: warrning });
+    }
+
+    const query_params = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/email/templates/${id}`,
+      query_params,
+      undefined
+    );
+
+    const {
+      error: res_error,
+    } = CommunicationModel.EmailTemplate().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getEmailTemplateById",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {number} [arg.pageNo] - Current page no
+   * @param {number} [arg.pageSize] - Current request items count
+   * @param {Object} [arg.sort] - To sort based on created_at
+   * @returns {Promise<EmailTemplates>} - Success response
+   * @summary: Get email templates
+   * @description: Get email templates
+   */
+  async getEmailTemplates({ pageNo, pageSize, sort } = {}) {
+    const { error } = CommunicationValidator.getEmailTemplates().validate(
+      {
+        pageNo,
+        pageSize,
+        sort,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = CommunicationValidator.getEmailTemplates().validate(
+      {
+        pageNo,
+        pageSize,
+        sort,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getEmailTemplates",
+      });
+      Logger({ level: "WARN", message: warrning });
+    }
+
+    const query_params = {};
+    query_params["page_no"] = pageNo;
+    query_params["page_size"] = pageSize;
+    query_params["sort"] = sort;
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/email/templates`,
+      query_params,
+      undefined
+    );
+
+    const {
+      error: res_error,
+    } = CommunicationModel.EmailTemplates().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getEmailTemplates",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.companyId - Company id
+   * @param {string} arg.applicationId - Application id
+   * @param {number} [arg.pageSize] - Current request items count
+   * @param {Object} [arg.sort] - To sort based on created_at
+   * @summary: Get email templates
+   * @description: Get email templates
+   */
+  getEmailTemplatesPaginator({
+    companyId,
+    applicationId,
+    pageSize,
+    sort,
+  } = {}) {
+    const paginator = new Paginator();
+    const callback = async () => {
+      const pageId = paginator.nextId;
+      const pageNo = paginator.pageNo;
+      const pageType = "number";
+      const data = await this.getEmailTemplates({
+        companyId: companyId,
+        applicationId: applicationId,
+        pageNo: pageNo,
+        pageSize: pageSize,
+        sort: sort,
+      });
+      paginator.setPaginator({
+        hasNext: data.page.has_next ? true : false,
+        nextId: data.page.next_id,
+      });
+      return data;
+    };
+    paginator.setCallback(callback.bind(this));
+    return paginator;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {number} [arg.pageNo] - Current page no
+   * @param {number} [arg.pageSize] - Current request items count
+   * @param {string} [arg.populate] - Populate fields
+   * @returns {Promise<EventSubscriptions>} - Success response
+   * @summary: Get event subscriptions
+   * @description: Get event subscriptions
+   */
+  async getEventSubscriptions({ pageNo, pageSize, populate } = {}) {
+    const { error } = CommunicationValidator.getEventSubscriptions().validate(
+      {
+        pageNo,
+        pageSize,
+        populate,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = CommunicationValidator.getEventSubscriptions().validate(
+      {
+        pageNo,
+        pageSize,
+        populate,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getEventSubscriptions",
+      });
+      Logger({ level: "WARN", message: warrning });
+    }
+
+    const query_params = {};
+    query_params["page_no"] = pageNo;
+    query_params["page_size"] = pageSize;
+    query_params["populate"] = populate;
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/event/event-subscriptions`,
+      query_params,
+      undefined
+    );
+
+    const {
+      error: res_error,
+    } = CommunicationModel.EventSubscriptions().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getEventSubscriptions",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.companyId - Company id
+   * @param {string} arg.applicationId - Application id
+   * @param {number} [arg.pageSize] - Current request items count
+   * @param {string} [arg.populate] - Populate fields
+   * @summary: Get event subscriptions
+   * @description: Get event subscriptions
+   */
+  getEventSubscriptionsPaginator({
+    companyId,
+    applicationId,
+    pageSize,
+    populate,
+  } = {}) {
+    const paginator = new Paginator();
+    const callback = async () => {
+      const pageId = paginator.nextId;
+      const pageNo = paginator.pageNo;
+      const pageType = "number";
+      const data = await this.getEventSubscriptions({
+        companyId: companyId,
+        applicationId: applicationId,
+        pageNo: pageNo,
+        pageSize: pageSize,
+        populate: populate,
+      });
+      paginator.setPaginator({
+        hasNext: data.page.has_next ? true : false,
+        nextId: data.page.next_id,
+      });
+      return data;
+    };
+    paginator.setCallback(callback.bind(this));
+    return paginator;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {number} [arg.pageNo] - Current page no
+   * @param {number} [arg.pageSize] - Current request items count
+   * @param {Object} [arg.sort] - To sort based on created_at
+   * @returns {Promise<JobLogs>} - Success response
+   * @summary: Get job logs
+   * @description: Get job logs
+   */
+  async getJobLogs({ pageNo, pageSize, sort } = {}) {
+    const { error } = CommunicationValidator.getJobLogs().validate(
+      {
+        pageNo,
+        pageSize,
+        sort,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = CommunicationValidator.getJobLogs().validate(
+      {
+        pageNo,
+        pageSize,
+        sort,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getJobLogs",
+      });
+      Logger({ level: "WARN", message: warrning });
+    }
+
+    const query_params = {};
+    query_params["page_no"] = pageNo;
+    query_params["page_size"] = pageSize;
+    query_params["sort"] = sort;
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/jobs/logs`,
+      query_params,
+      undefined
+    );
+
+    const { error: res_error } = CommunicationModel.JobLogs().validate(
+      response,
+      { abortEarly: false, allowUnknown: false }
+    );
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getJobLogs",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.companyId - Company id
+   * @param {string} arg.applicationId - Application id
+   * @param {number} [arg.pageSize] - Current request items count
+   * @param {Object} [arg.sort] - To sort based on created_at
+   * @summary: Get job logs
+   * @description: Get job logs
+   */
+  getJobLogsPaginator({ companyId, applicationId, pageSize, sort } = {}) {
+    const paginator = new Paginator();
+    const callback = async () => {
+      const pageId = paginator.nextId;
+      const pageNo = paginator.pageNo;
+      const pageType = "number";
+      const data = await this.getJobLogs({
+        companyId: companyId,
+        applicationId: applicationId,
+        pageNo: pageNo,
+        pageSize: pageSize,
+        sort: sort,
+      });
+      paginator.setPaginator({
+        hasNext: data.page.has_next ? true : false,
+        nextId: data.page.next_id,
+      });
+      return data;
+    };
+    paginator.setCallback(callback.bind(this));
+    return paginator;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {number} [arg.pageNo] - Current page no
+   * @param {number} [arg.pageSize] - Current request items count
+   * @param {Object} [arg.sort] - To sort based on created_at
+   * @returns {Promise<Jobs>} - Success response
+   * @summary: Get jobs
+   * @description: Get jobs
+   */
+  async getJobs({ pageNo, pageSize, sort } = {}) {
+    const { error } = CommunicationValidator.getJobs().validate(
+      {
+        pageNo,
+        pageSize,
+        sort,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = CommunicationValidator.getJobs().validate(
+      {
+        pageNo,
+        pageSize,
+        sort,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getJobs",
+      });
+      Logger({ level: "WARN", message: warrning });
+    }
+
+    const query_params = {};
+    query_params["page_no"] = pageNo;
+    query_params["page_size"] = pageSize;
+    query_params["sort"] = sort;
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/jobs/jobs`,
+      query_params,
+      undefined
+    );
+
+    const { error: res_error } = CommunicationModel.Jobs().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getJobs",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.companyId - Company id
+   * @param {string} arg.applicationId - Application id
+   * @param {number} [arg.pageSize] - Current request items count
+   * @param {Object} [arg.sort] - To sort based on created_at
+   * @summary: Get jobs
+   * @description: Get jobs
+   */
+  getJobsPaginator({ companyId, applicationId, pageSize, sort } = {}) {
+    const paginator = new Paginator();
+    const callback = async () => {
+      const pageId = paginator.nextId;
+      const pageNo = paginator.pageNo;
+      const pageType = "number";
+      const data = await this.getJobs({
+        companyId: companyId,
+        applicationId: applicationId,
+        pageNo: pageNo,
+        pageSize: pageSize,
+        sort: sort,
+      });
+      paginator.setPaginator({
+        hasNext: data.page.has_next ? true : false,
+        nextId: data.page.next_id,
+      });
+      return data;
+    };
+    paginator.setCallback(callback.bind(this));
+    return paginator;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {GetNRecordsCsvReq} arg.body
+   * @returns {Promise<GetNRecordsCsvRes>} - Success response
+   * @summary: Get n sample records from csv
+   * @description: Get n sample records from csv
+   */
+  async getNSampleRecordsFromCsv({ body } = {}) {
+    const {
+      error,
+    } = CommunicationValidator.getNSampleRecordsFromCsv().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = CommunicationValidator.getNSampleRecordsFromCsv().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getNSampleRecordsFromCsv",
+      });
+      Logger({ level: "WARN", message: warrning });
+    }
+
+    const query_params = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/sources/get-n-records`,
+      query_params,
+      body
+    );
+
+    const {
+      error: res_error,
+    } = CommunicationModel.GetNRecordsCsvRes().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getNSampleRecordsFromCsv",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.id - Sms provider id
+   * @returns {Promise<SmsProvider>} - Success response
+   * @summary: Get sms provider by id
+   * @description: Get sms provider by id
+   */
+  async getSmsProviderById({ id } = {}) {
+    const { error } = CommunicationValidator.getSmsProviderById().validate(
+      {
+        id,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = CommunicationValidator.getSmsProviderById().validate(
+      {
+        id,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getSmsProviderById",
+      });
+      Logger({ level: "WARN", message: warrning });
+    }
+
+    const query_params = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/sms/providers/${id}`,
+      query_params,
+      undefined
+    );
+
+    const {
+      error: res_error,
+    } = CommunicationModel.SmsProvider().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getSmsProviderById",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {number} [arg.pageNo] - Current page no
+   * @param {number} [arg.pageSize] - Current request items count
+   * @param {Object} [arg.sort] - To sort based on created_at
+   * @returns {Promise<SmsProviders>} - Success response
    * @summary: Get sms providers
    * @description: Get sms providers
    */
-  getSmsProviders({ pageNo, pageSize, sort } = {}) {
+  async getSmsProviders({ pageNo, pageSize, sort } = {}) {
     const { error } = CommunicationValidator.getSmsProviders().validate(
       {
         pageNo,
@@ -1715,8 +1838,11 @@ class Communication {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for getSmsProviders");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getSmsProviders",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -1724,13 +1850,30 @@ class Communication {
     query_params["page_size"] = pageSize;
     query_params["sort"] = sort;
 
-    return PlatformAPIClient.execute(
+    const response = await PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/sms/providers`,
       query_params,
       undefined
     );
+
+    const {
+      error: res_error,
+    } = CommunicationModel.SmsProviders().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getSmsProviders",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
@@ -1767,54 +1910,13 @@ class Communication {
 
   /**
    * @param {Object} arg - Arg object.
-   * @param {SmsProviderReq} arg.body
-   * @summary: Create sms provider
-   * @description: Create sms provider
+   * @param {string} arg.id - Sms template id
+   * @returns {Promise<SmsTemplate>} - Success response
+   * @summary: Get sms template by id
+   * @description: Get sms template by id
    */
-  createSmsProvider({ body } = {}) {
-    const { error } = CommunicationValidator.createSmsProvider().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = CommunicationValidator.createSmsProvider().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      console.log("Parameter Validation warrnings for createSmsProvider");
-      console.log(warrning);
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/sms/providers`,
-      query_params,
-      body
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.id - Sms provider id
-   * @summary: Get sms provider by id
-   * @description: Get sms provider by id
-   */
-  getSmsProviderById({ id } = {}) {
-    const { error } = CommunicationValidator.getSmsProviderById().validate(
+  async getSmsTemplateById({ id } = {}) {
+    const { error } = CommunicationValidator.getSmsTemplateById().validate(
       {
         id,
       },
@@ -1827,71 +1929,46 @@ class Communication {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = CommunicationValidator.getSmsProviderById().validate(
+    } = CommunicationValidator.getSmsTemplateById().validate(
       {
         id,
       },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for getSmsProviderById");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getSmsTemplateById",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
 
-    return PlatformAPIClient.execute(
+    const response = await PlatformAPIClient.execute(
       this.config,
       "get",
-      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/sms/providers/${id}`,
+      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/sms/templates/${id}`,
       query_params,
       undefined
     );
-  }
 
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.id - Sms provider id
-   * @param {SmsProviderReq} arg.body
-   * @summary: Update sms provider by id
-   * @description: Update sms provider by id
-   */
-  updateSmsProviderById({ id, body } = {}) {
-    const { error } = CommunicationValidator.updateSmsProviderById().validate(
-      {
-        id,
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
     const {
-      error: warrning,
-    } = CommunicationValidator.updateSmsProviderById().validate(
-      {
-        id,
-        body,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      console.log("Parameter Validation warrnings for updateSmsProviderById");
-      console.log(warrning);
+      error: res_error,
+    } = CommunicationModel.SmsTemplate().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getSmsTemplateById",
+      });
+      Logger({ level: "WARN", message: res_error });
     }
 
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "put",
-      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/sms/providers/${id}`,
-      query_params,
-      body
-    );
+    return response;
   }
 
   /**
@@ -1899,10 +1976,11 @@ class Communication {
    * @param {number} [arg.pageNo] - Current page no
    * @param {number} [arg.pageSize] - Current request items count
    * @param {Object} [arg.sort] - To sort based on created_at
+   * @returns {Promise<SmsTemplates>} - Success response
    * @summary: Get sms templates
    * @description: Get sms templates
    */
-  getSmsTemplates({ pageNo, pageSize, sort } = {}) {
+  async getSmsTemplates({ pageNo, pageSize, sort } = {}) {
     const { error } = CommunicationValidator.getSmsTemplates().validate(
       {
         pageNo,
@@ -1927,8 +2005,11 @@ class Communication {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for getSmsTemplates");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getSmsTemplates",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -1936,13 +2017,30 @@ class Communication {
     query_params["page_size"] = pageSize;
     query_params["sort"] = sort;
 
-    return PlatformAPIClient.execute(
+    const response = await PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/sms/templates`,
       query_params,
       undefined
     );
+
+    const {
+      error: res_error,
+    } = CommunicationModel.SmsTemplates().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getSmsTemplates",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
@@ -1979,54 +2077,13 @@ class Communication {
 
   /**
    * @param {Object} arg - Arg object.
-   * @param {SmsTemplateReq} arg.body
-   * @summary: Create sms template
-   * @description: Create sms template
+   * @param {string} arg.id - Campaign id
+   * @returns {Promise<GetStats>} - Success response
+   * @summary: Get stats of campaign by id
+   * @description: Get stats of campaign by id
    */
-  createSmsTemplate({ body } = {}) {
-    const { error } = CommunicationValidator.createSmsTemplate().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = CommunicationValidator.createSmsTemplate().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      console.log("Parameter Validation warrnings for createSmsTemplate");
-      console.log(warrning);
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/sms/templates`,
-      query_params,
-      body
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.id - Sms template id
-   * @summary: Get sms template by id
-   * @description: Get sms template by id
-   */
-  getSmsTemplateById({ id } = {}) {
-    const { error } = CommunicationValidator.getSmsTemplateById().validate(
+  async getStatsOfCampaignById({ id } = {}) {
+    const { error } = CommunicationValidator.getStatsOfCampaignById().validate(
       {
         id,
       },
@@ -2039,113 +2096,46 @@ class Communication {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = CommunicationValidator.getSmsTemplateById().validate(
+    } = CommunicationValidator.getStatsOfCampaignById().validate(
       {
         id,
       },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for getSmsTemplateById");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getStatsOfCampaignById",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
 
-    return PlatformAPIClient.execute(
+    const response = await PlatformAPIClient.execute(
       this.config,
       "get",
-      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/sms/templates/${id}`,
+      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/campaigns/get-stats/${id}`,
       query_params,
       undefined
     );
-  }
 
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.id - Sms template id
-   * @param {SmsTemplateReq} arg.body
-   * @summary: Update sms template by id
-   * @description: Update sms template by id
-   */
-  updateSmsTemplateById({ id, body } = {}) {
-    const { error } = CommunicationValidator.updateSmsTemplateById().validate(
-      {
-        id,
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
     const {
-      error: warrning,
-    } = CommunicationValidator.updateSmsTemplateById().validate(
-      {
-        id,
-        body,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      console.log("Parameter Validation warrnings for updateSmsTemplateById");
-      console.log(warrning);
+      error: res_error,
+    } = CommunicationModel.GetStats().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getStatsOfCampaignById",
+      });
+      Logger({ level: "WARN", message: res_error });
     }
 
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "put",
-      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/sms/templates/${id}`,
-      query_params,
-      body
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.id - Sms template id
-   * @summary: Delete sms template by id
-   * @description: Delete sms template by id
-   */
-  deleteSmsTemplateById({ id } = {}) {
-    const { error } = CommunicationValidator.deleteSmsTemplateById().validate(
-      {
-        id,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = CommunicationValidator.deleteSmsTemplateById().validate(
-      {
-        id,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      console.log("Parameter Validation warrnings for deleteSmsTemplateById");
-      console.log(warrning);
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "delete",
-      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/sms/templates/${id}`,
-      query_params,
-      undefined
-    );
+    return response;
   }
 
   /**
@@ -2153,10 +2143,120 @@ class Communication {
    * @param {number} [arg.pageNo] - Current page no
    * @param {number} [arg.pageSize] - Current request items count
    * @param {Object} [arg.sort] - To sort based on created_at
+   * @returns {Promise<SystemEmailTemplates>} - Success response
+   * @summary: Get system email templates
+   * @description: Get system email templates
+   */
+  async getSystemEmailTemplates({ pageNo, pageSize, sort } = {}) {
+    const { error } = CommunicationValidator.getSystemEmailTemplates().validate(
+      {
+        pageNo,
+        pageSize,
+        sort,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = CommunicationValidator.getSystemEmailTemplates().validate(
+      {
+        pageNo,
+        pageSize,
+        sort,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getSystemEmailTemplates",
+      });
+      Logger({ level: "WARN", message: warrning });
+    }
+
+    const query_params = {};
+    query_params["page_no"] = pageNo;
+    query_params["page_size"] = pageSize;
+    query_params["sort"] = sort;
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/email/system-templates`,
+      query_params,
+      undefined
+    );
+
+    const {
+      error: res_error,
+    } = CommunicationModel.SystemEmailTemplates().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getSystemEmailTemplates",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.companyId - Company id
+   * @param {string} arg.applicationId - Application id
+   * @param {number} [arg.pageSize] - Current request items count
+   * @param {Object} [arg.sort] - To sort based on created_at
+   * @summary: Get system email templates
+   * @description: Get system email templates
+   */
+  getSystemEmailTemplatesPaginator({
+    companyId,
+    applicationId,
+    pageSize,
+    sort,
+  } = {}) {
+    const paginator = new Paginator();
+    const callback = async () => {
+      const pageId = paginator.nextId;
+      const pageNo = paginator.pageNo;
+      const pageType = "number";
+      const data = await this.getSystemEmailTemplates({
+        companyId: companyId,
+        applicationId: applicationId,
+        pageNo: pageNo,
+        pageSize: pageSize,
+        sort: sort,
+      });
+      paginator.setPaginator({
+        hasNext: data.page.has_next ? true : false,
+        nextId: data.page.next_id,
+      });
+      return data;
+    };
+    paginator.setCallback(callback.bind(this));
+    return paginator;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {number} [arg.pageNo] - Current page no
+   * @param {number} [arg.pageSize] - Current request items count
+   * @param {Object} [arg.sort] - To sort based on created_at
+   * @returns {Promise<SystemSmsTemplates>} - Success response
    * @summary: Get system sms templates
    * @description: Get system sms templates
    */
-  getSystemSystemTemplates({ pageNo, pageSize, sort } = {}) {
+  async getSystemSystemTemplates({ pageNo, pageSize, sort } = {}) {
     const {
       error,
     } = CommunicationValidator.getSystemSystemTemplates().validate(
@@ -2183,10 +2283,11 @@ class Communication {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log(
-        "Parameter Validation warrnings for getSystemSystemTemplates"
-      );
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getSystemSystemTemplates",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -2194,13 +2295,30 @@ class Communication {
     query_params["page_size"] = pageSize;
     query_params["sort"] = sort;
 
-    return PlatformAPIClient.execute(
+    const response = await PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/sms/system-templates`,
       query_params,
       undefined
     );
+
+    const {
+      error: res_error,
+    } = CommunicationModel.SystemSmsTemplates().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getSystemSystemTemplates",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
@@ -2238,6 +2356,721 @@ class Communication {
     };
     paginator.setCallback(callback.bind(this));
     return paginator;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {EngineRequest} arg.body
+   * @returns {Promise<EngineResponse>} - Success response
+   * @summary: Send email or sms asynchronously
+   * @description: Send email or sms asynchronously
+   */
+  async sendCommunicationAsynchronously({ body } = {}) {
+    const {
+      error,
+    } = CommunicationValidator.sendCommunicationAsynchronously().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = CommunicationValidator.sendCommunicationAsynchronously().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message:
+          "Parameter Validation warrnings for sendCommunicationAsynchronously",
+      });
+      Logger({ level: "WARN", message: warrning });
+    }
+
+    const query_params = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/engine/send-async`,
+      query_params,
+      body
+    );
+
+    const {
+      error: res_error,
+    } = CommunicationModel.EngineResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message:
+          "Response Validation Warnnings for sendCommunicationAsynchronously",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {EngineRequest} arg.body
+   * @returns {Promise<EngineResponse>} - Success response
+   * @summary: Send email or sms synchronously
+   * @description: Send email or sms synchronously
+   */
+  async sendCommunicationSynchronously({ body } = {}) {
+    const {
+      error,
+    } = CommunicationValidator.sendCommunicationSynchronously().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = CommunicationValidator.sendCommunicationSynchronously().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message:
+          "Parameter Validation warrnings for sendCommunicationSynchronously",
+      });
+      Logger({ level: "WARN", message: warrning });
+    }
+
+    const query_params = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/engine/send-instant`,
+      query_params,
+      body
+    );
+
+    const {
+      error: res_error,
+    } = CommunicationModel.EngineResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message:
+          "Response Validation Warnnings for sendCommunicationSynchronously",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {SendOtpCommsReq} arg.body
+   * @returns {Promise<SendOtpCommsRes>} - Success response
+   * @summary: Send OTP using email and sms
+   * @description: Send OTP Comms via email and sms
+   */
+  async sendOtp({ body } = {}) {
+    const { error } = CommunicationValidator.sendOtp().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = CommunicationValidator.sendOtp().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for sendOtp",
+      });
+      Logger({ level: "WARN", message: warrning });
+    }
+
+    const query_params = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/otp/send-otp-comms`,
+      query_params,
+      body
+    );
+
+    const {
+      error: res_error,
+    } = CommunicationModel.SendOtpCommsRes().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for sendOtp",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {TriggerJobRequest} arg.body
+   * @returns {Promise<TriggerJobResponse>} - Success response
+   * @summary: Trigger campaign job
+   * @description: Trigger campaign job
+   */
+  async triggerCampaignJob({ body } = {}) {
+    const { error } = CommunicationValidator.triggerCampaignJob().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = CommunicationValidator.triggerCampaignJob().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for triggerCampaignJob",
+      });
+      Logger({ level: "WARN", message: warrning });
+    }
+
+    const query_params = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/jobs/trigger-job`,
+      query_params,
+      body
+    );
+
+    const {
+      error: res_error,
+    } = CommunicationModel.TriggerJobResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for triggerCampaignJob",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.id - Audience id
+   * @param {AudienceReq} arg.body
+   * @returns {Promise<Audience>} - Success response
+   * @summary: Update audience by id
+   * @description: Update audience by id
+   */
+  async updateAudienceById({ id, body } = {}) {
+    const { error } = CommunicationValidator.updateAudienceById().validate(
+      {
+        id,
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = CommunicationValidator.updateAudienceById().validate(
+      {
+        id,
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for updateAudienceById",
+      });
+      Logger({ level: "WARN", message: warrning });
+    }
+
+    const query_params = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "put",
+      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/sources/datasources/${id}`,
+      query_params,
+      body
+    );
+
+    const {
+      error: res_error,
+    } = CommunicationModel.Audience().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for updateAudienceById",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.id - Campaign id
+   * @param {CampaignReq} arg.body
+   * @returns {Promise<Campaign>} - Success response
+   * @summary: Update campaign by id
+   * @description: Update campaign by id
+   */
+  async updateCampaignById({ id, body } = {}) {
+    const { error } = CommunicationValidator.updateCampaignById().validate(
+      {
+        id,
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = CommunicationValidator.updateCampaignById().validate(
+      {
+        id,
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for updateCampaignById",
+      });
+      Logger({ level: "WARN", message: warrning });
+    }
+
+    const query_params = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "put",
+      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/campaigns/campaigns/${id}`,
+      query_params,
+      body
+    );
+
+    const {
+      error: res_error,
+    } = CommunicationModel.Campaign().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for updateCampaignById",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.id - Email provider id
+   * @param {EmailProviderReq} arg.body
+   * @returns {Promise<EmailProvider>} - Success response
+   * @summary: Update email provider by id
+   * @description: Update email provider by id
+   */
+  async updateEmailProviderById({ id, body } = {}) {
+    const { error } = CommunicationValidator.updateEmailProviderById().validate(
+      {
+        id,
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = CommunicationValidator.updateEmailProviderById().validate(
+      {
+        id,
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for updateEmailProviderById",
+      });
+      Logger({ level: "WARN", message: warrning });
+    }
+
+    const query_params = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "put",
+      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/email/providers/${id}`,
+      query_params,
+      body
+    );
+
+    const {
+      error: res_error,
+    } = CommunicationModel.EmailProvider().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for updateEmailProviderById",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.id - Email template id
+   * @param {EmailTemplateReq} arg.body
+   * @returns {Promise<EmailTemplateRes>} - Success response
+   * @summary: Update email template by id
+   * @description: Update email template by id
+   */
+  async updateEmailTemplateById({ id, body } = {}) {
+    const { error } = CommunicationValidator.updateEmailTemplateById().validate(
+      {
+        id,
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = CommunicationValidator.updateEmailTemplateById().validate(
+      {
+        id,
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for updateEmailTemplateById",
+      });
+      Logger({ level: "WARN", message: warrning });
+    }
+
+    const query_params = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "put",
+      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/email/templates/${id}`,
+      query_params,
+      body
+    );
+
+    const {
+      error: res_error,
+    } = CommunicationModel.EmailTemplateRes().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for updateEmailTemplateById",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.id - Sms provider id
+   * @param {SmsProviderReq} arg.body
+   * @returns {Promise<SmsProvider>} - Success response
+   * @summary: Update sms provider by id
+   * @description: Update sms provider by id
+   */
+  async updateSmsProviderById({ id, body } = {}) {
+    const { error } = CommunicationValidator.updateSmsProviderById().validate(
+      {
+        id,
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = CommunicationValidator.updateSmsProviderById().validate(
+      {
+        id,
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for updateSmsProviderById",
+      });
+      Logger({ level: "WARN", message: warrning });
+    }
+
+    const query_params = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "put",
+      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/sms/providers/${id}`,
+      query_params,
+      body
+    );
+
+    const {
+      error: res_error,
+    } = CommunicationModel.SmsProvider().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for updateSmsProviderById",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.id - Sms template id
+   * @param {SmsTemplateReq} arg.body
+   * @returns {Promise<SmsTemplateRes>} - Success response
+   * @summary: Update sms template by id
+   * @description: Update sms template by id
+   */
+  async updateSmsTemplateById({ id, body } = {}) {
+    const { error } = CommunicationValidator.updateSmsTemplateById().validate(
+      {
+        id,
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = CommunicationValidator.updateSmsTemplateById().validate(
+      {
+        id,
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for updateSmsTemplateById",
+      });
+      Logger({ level: "WARN", message: warrning });
+    }
+
+    const query_params = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "put",
+      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/sms/templates/${id}`,
+      query_params,
+      body
+    );
+
+    const {
+      error: res_error,
+    } = CommunicationModel.SmsTemplateRes().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for updateSmsTemplateById",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {VerifyOtpCommsReq} arg.body
+   * @returns {Promise<VerifyOtpCommsSuccessRes>} - Success response
+   * @summary: Verify OTP sent via email and sms
+   * @description: Verify OTP sent via email and sms
+   */
+  async verfiyOtp({ body } = {}) {
+    const { error } = CommunicationValidator.verfiyOtp().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = CommunicationValidator.verfiyOtp().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for verfiyOtp",
+      });
+      Logger({ level: "WARN", message: warrning });
+    }
+
+    const query_params = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/otp/verify-otp-comms`,
+      query_params,
+      body
+    );
+
+    const {
+      error: res_error,
+    } = CommunicationModel.VerifyOtpCommsSuccessRes().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for verfiyOtp",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 }
 module.exports = Communication;

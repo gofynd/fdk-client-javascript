@@ -1,15 +1,17 @@
 export = BillingValidator;
 declare class BillingValidator {
-    static checkCouponValidity(): any;
-    static createSubscriptionCharge(): any;
-    static getSubscriptionCharge(): any;
-    static cancelSubscriptionCharge(): any;
-    static getInvoices(): any;
-    static getInvoiceById(): any;
-    static getCustomerDetail(): any;
-    static upsertCustomerDetail(): any;
-    static getSubscription(): any;
-    static getFeatureLimitConfig(): any;
     static activateSubscriptionPlan(): any;
+    static cancelSubscriptionCharge(): any;
     static cancelSubscriptionPlan(): any;
+    static checkCouponValidity(): any;
+    static createOneTimeCharge(): any;
+    static createSubscriptionCharge(): any;
+    static getChargeDetails(): any;
+    static getCustomerDetail(): any;
+    static getFeatureLimitConfig(): any;
+    static getInvoiceById(): any;
+    static getInvoices(): any;
+    static getSubscription(): any;
+    static getSubscriptionCharge(): any;
+    static upsertCustomerDetail(): any;
 }
