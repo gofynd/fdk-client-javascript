@@ -106,7 +106,7 @@ getData();
 ---
 ### Cookie
 
-Following code snippet shows how to save the cookie received in setcookies response header
+Following code snippet shows how to save the cookie received in setcookies response header <br />
 Any subsequent method call done after login will add the cookie by default in headers.
 
 ```javascript
