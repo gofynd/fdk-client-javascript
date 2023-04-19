@@ -14,7 +14,7 @@ Get started with the Javascript Development SDK for Fynd Platform
 ### Usage
 
 ```
-npm install fdk-client-javascript --save
+npm install @gofynd/fdk-client-javascript
 ```
 
 Using this method, you can `require` fdk-client-javascript like so:
@@ -103,7 +103,58 @@ async function getData() {
 
 getData();
 ```
+---
+### Cookie
 
+Following code snippet shows how to save the cookie received in setcookies response header <br />
+Any subsequent method call done after login will add the cookie by default in headers.
+
+```javascript
+const { FdkAxios } = require('@gofynd/fdk-client-javascript');
+const { wrapper } =  require("axios-cookiejar-support");
+const { CookieJar } = require("tough-cookie");
+
+
+wrapper(FdkAxios);
+const cookieJar = new CookieJar();
+FdkAxios.defaults.jar = cookieJar;
+
+
+module.exports = cookieJar
+```
+
+get the stored cookie from the CookieJar instance
+```javascript
+const cookieJar = require('path/to/cookieJar') // replace with actual path
+
+let cookies = await cookieJar.getCookies("https://api.fynd.com");
+```
+---
+
+### Log Curl
+To print the curl command in the console for all network calls made using `applicationClient` or `platformClient`, set the logger level to debug.
+```javascript
+const {
+  ApplicationClient, ApplicationConfig,
+} = require("fdk-client-javascript");
+
+let applicationConfig = new ApplicationConfig({
+  applicationID: "YOUR_APPLICATION_ID",
+  applicationToken: "YOUR_APPLICATION_TOKEN",
+});
+
+applicationConfig.setLogLevel("debug");
+let applicationClient = new ApplicationClient(applicationConfig);
+
+let response = await applicationClient.theme.getAppliedTheme(); 
+console.log("Active Theme: ", response.information.name);
+```
+The above code will log the curl command in the console
+```bash
+curl --request GET "https://api.fynd.com/service/application/theme/v1.0/applied-theme" --header 'authorization: Bearer <authorization-token>' --header 'x-fp-sdk-version: 0.1.36' --header 'x-fp-date: 20230222T115108Z' --header 'x-fp-signature: v1.1:1e3ab3b02b5bc626e3c32a37ee844266ade02bbcbaafc28fc7a0e46a76a7a1a8'
+Active Theme: Emerge
+```
+---
 ### TypeScript
 
 fdk-client-javascript includes Typescript definitions.
@@ -111,8 +162,9 @@ fdk-client-javascript includes Typescript definitions.
 ```typescript
 import { ApplicationConfig, ApplicationClient } from "fdk-client-javascript";
 ```
-
+---
 ### Documentation
 
 - [Application Front](documentation/application/README.md)
 - [Platform Front](documentation/platform/README.md)
+---

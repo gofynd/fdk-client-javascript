@@ -2,18 +2,22 @@
 
 
 
+
 ##### [Back to Platform docs](./README.md)
 
 ## Share Methods
 Short link and QR Code
+
 * [createShortLink](#createshortlink)
-* [getShortLinks](#getshortlinks)
 * [getShortLinkByHash](#getshortlinkbyhash)
+* [getShortLinks](#getshortlinks)
 * [updateShortLinkById](#updateshortlinkbyid)
 
 
 
 ## Methods with example and description
+
+
 
 
 ### createShortLink
@@ -39,6 +43,100 @@ const data = await client.application("<APPLICATION_ID>").share.createShortLink(
 
 
 Create short link
+
+*Returned Response:*
+
+
+
+
+[ShortLinkRes](#ShortLinkRes)
+
+Success
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "url": {
+    "original": "https://0icof6vvsf.hostx0.de/products/?brand=ruosh",
+    "short": "https://0icof6vvsf.hostx0.de/l/3qKlnsq-x",
+    "hash": "3qKlnsq-x"
+  },
+  "redirects": {
+    "ios": {
+      "type": "web",
+      "link": "https://0icof6vvsf.hostx0.de/products/?brand=ruosh"
+    },
+    "android": {
+      "type": "web",
+      "link": "https://0icof6vvsf.hostx0.de/products/?brand=ruosh"
+    },
+    "web": {
+      "type": "web",
+      "link": "https://0icof6vvsf.hostx0.de/products/?brand=ruosh"
+    },
+    "force_web": false
+  },
+  "created_by": "team",
+  "personalized": false,
+  "app_redirect": false,
+  "fallback": "web",
+  "enable_tracking": false,
+  "active": true,
+  "count": 0,
+  "_id": "601a54054c0349592e76c8f3",
+  "title": "new ",
+  "meta": {
+    "type": "brand"
+  },
+  "expire_at": null,
+  "application": "5eda528b97457fe43a733ace",
+  "user_id": "5e4d01e2c39837ab66144f6d",
+  "created_at": "2021-02-03T07:43:01.342Z",
+  "updated_at": "2021-02-03T07:43:01.342Z"
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### getShortLinkByHash
+Get short link by hash
+
+
+
+```javascript
+// Promise
+const promise = client.application("<APPLICATION_ID>").share.getShortLinkByHash({  hash : value });
+
+// Async/Await
+const data = await client.application("<APPLICATION_ID>").share.getShortLinkByHash({  hash : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| hash | string | yes | Hash of short url |  
+
+
+
+Get short link by hash
 
 *Returned Response:*
 
@@ -226,100 +324,6 @@ Success
 ---
 
 
-### getShortLinkByHash
-Get short link by hash
-
-
-
-```javascript
-// Promise
-const promise = client.application("<APPLICATION_ID>").share.getShortLinkByHash({  hash : value });
-
-// Async/Await
-const data = await client.application("<APPLICATION_ID>").share.getShortLinkByHash({  hash : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| hash | string | yes | Hash of short url |  
-
-
-
-Get short link by hash
-
-*Returned Response:*
-
-
-
-
-[ShortLinkRes](#ShortLinkRes)
-
-Success
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "url": {
-    "original": "https://0icof6vvsf.hostx0.de/products/?brand=ruosh",
-    "short": "https://0icof6vvsf.hostx0.de/l/3qKlnsq-x",
-    "hash": "3qKlnsq-x"
-  },
-  "redirects": {
-    "ios": {
-      "type": "web",
-      "link": "https://0icof6vvsf.hostx0.de/products/?brand=ruosh"
-    },
-    "android": {
-      "type": "web",
-      "link": "https://0icof6vvsf.hostx0.de/products/?brand=ruosh"
-    },
-    "web": {
-      "type": "web",
-      "link": "https://0icof6vvsf.hostx0.de/products/?brand=ruosh"
-    },
-    "force_web": false
-  },
-  "created_by": "team",
-  "personalized": false,
-  "app_redirect": false,
-  "fallback": "web",
-  "enable_tracking": false,
-  "active": true,
-  "count": 0,
-  "_id": "601a54054c0349592e76c8f3",
-  "title": "new ",
-  "meta": {
-    "type": "brand"
-  },
-  "expire_at": null,
-  "application": "5eda528b97457fe43a733ace",
-  "user_id": "5e4d01e2c39837ab66144f6d",
-  "created_at": "2021-02-03T07:43:01.342Z",
-  "updated_at": "2021-02-03T07:43:01.342Z"
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
 ### updateShortLinkById
 Update short link by id
 
@@ -419,181 +423,159 @@ Success
 
 ### Schemas
 
- 
- 
- #### [RedirectDevice](#RedirectDevice)
 
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | link | string |  no  |  |
- | type | string |  no  |  |
-
----
-
-
- 
- 
- #### [WebRedirect](#WebRedirect)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | link | string |  no  |  |
- | type | string |  no  |  |
-
----
-
-
- 
- 
- #### [Redirects](#Redirects)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | ios | [RedirectDevice](#RedirectDevice) |  no  |  |
- | android | [RedirectDevice](#RedirectDevice) |  no  |  |
- | web | [WebRedirect](#WebRedirect) |  no  |  |
- | force_web | boolean |  no  |  |
-
----
-
-
- 
- 
- #### [CampaignShortLink](#CampaignShortLink)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | source | string |  no  |  |
- | medium | string |  no  |  |
-
----
-
-
- 
- 
- #### [Attribution](#Attribution)
+#### [Attribution](#Attribution)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | campaign_cookie_expiry | string |  no  |  |
+ 
 
 ---
 
-
- 
- 
- #### [SocialMediaTags](#SocialMediaTags)
+#### [CampaignShortLink](#CampaignShortLink)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | title | string |  no  |  |
- | description | string |  no  |  |
- | image | string |  no  |  |
+ | medium | string |  no  |  |
+ | source | string |  no  |  |
+ 
 
 ---
 
-
- 
- 
- #### [ShortLinkReq](#ShortLinkReq)
+#### [ErrorRes](#ErrorRes)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | title | string |  yes  | Give a name to the link. |
- | url | string |  yes  | The web address to shorten. |
- | hash | string |  no  |  |
- | active | boolean |  no  |  |
- | expire_at | string |  no  |  |
- | enable_tracking | boolean |  no  |  |
- | personalized | boolean |  no  | To create personalized short links. |
- | campaign | [CampaignShortLink](#CampaignShortLink) |  no  |  |
- | redirects | [Redirects](#Redirects) |  no  |  |
- | attribution | [Attribution](#Attribution) |  no  |  |
- | social_media_tags | [SocialMediaTags](#SocialMediaTags) |  no  |  |
- | count | number |  no  |  |
+ | message | string |  no  |  |
+ 
 
 ---
 
-
- 
- 
- #### [UrlInfo](#UrlInfo)
+#### [Page](#Page)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | original | string |  no  |  |
- | short | string |  no  |  |
- | hash | string |  no  |  |
-
----
-
-
- 
- 
- #### [ShortLinkRes](#ShortLinkRes)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | title | string |  no  |  |
- | url | [UrlInfo](#UrlInfo) |  no  |  |
- | created_by | string |  no  |  |
- | app_redirect | boolean |  no  |  |
- | fallback | string |  no  |  |
- | active | boolean |  no  |  |
- | _id | string |  no  |  |
- | enable_tracking | boolean |  no  |  |
- | expire_at | string |  no  |  |
- | application | string |  no  |  |
- | user_id | string |  no  |  |
- | created_at | string |  no  |  |
- | meta | string |  no  |  |
- | updated_at | string |  no  |  |
- | personalized | boolean |  no  | To create personalized short links |
- | campaign | [CampaignShortLink](#CampaignShortLink) |  no  |  |
- | redirects | [Redirects](#Redirects) |  no  |  |
- | attribution | [Attribution](#Attribution) |  no  |  |
- | social_media_tags | [SocialMediaTags](#SocialMediaTags) |  no  |  |
- | count | number |  no  |  |
-
----
-
-
- 
- 
- #### [Page](#Page)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
+ | current | number |  no  |  |
+ | has_next | boolean |  no  |  |
+ | has_previous | boolean |  no  |  |
  | item_total | number |  no  |  |
  | next_id | string |  no  |  |
- | has_previous | boolean |  no  |  |
- | has_next | boolean |  no  |  |
- | current | number |  no  |  |
- | type | string |  yes  |  |
  | size | number |  no  |  |
+ | type | string |  yes  |  |
+ 
 
 ---
 
+#### [RedirectDevice](#RedirectDevice)
 
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | link | string |  no  |  |
+ | type | string |  no  |  |
  
+
+---
+
+#### [Redirects](#Redirects)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | android | [RedirectDevice](#RedirectDevice) |  no  |  |
+ | force_web | boolean |  no  |  |
+ | ios | [RedirectDevice](#RedirectDevice) |  no  |  |
+ | web | [WebRedirect](#WebRedirect) |  no  |  |
  
- #### [ShortLinkList](#ShortLinkList)
+
+---
+
+#### [ShortLinkList](#ShortLinkList)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | items | [[ShortLinkRes](#ShortLinkRes)] |  no  |  |
  | page | [Page](#Page) |  no  |  |
+ 
 
 ---
 
-
- 
- 
- #### [ErrorRes](#ErrorRes)
+#### [ShortLinkReq](#ShortLinkReq)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | message | string |  no  |  |
+ | active | boolean |  no  |  |
+ | attribution | [Attribution](#Attribution) |  no  |  |
+ | campaign | [CampaignShortLink](#CampaignShortLink) |  no  |  |
+ | count | number |  no  |  |
+ | enable_tracking | boolean |  no  |  |
+ | expire_at | string |  no  |  |
+ | hash | string |  no  |  |
+ | personalized | boolean |  no  |  |
+ | redirects | [Redirects](#Redirects) |  no  |  |
+ | social_media_tags | [SocialMediaTags](#SocialMediaTags) |  no  |  |
+ | title | string |  yes  |  |
+ | url | string |  yes  |  |
+ 
+
+---
+
+#### [ShortLinkRes](#ShortLinkRes)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | _id | string |  no  |  |
+ | active | boolean |  no  |  |
+ | app_redirect | boolean |  no  |  |
+ | application | string |  no  |  |
+ | attribution | [Attribution](#Attribution) |  no  |  |
+ | campaign | [CampaignShortLink](#CampaignShortLink) |  no  |  |
+ | count | number |  no  |  |
+ | created_at | string |  no  |  |
+ | created_by | string |  no  |  |
+ | enable_tracking | boolean |  no  |  |
+ | expire_at | string |  no  |  |
+ | fallback | string |  no  |  |
+ | meta | string |  no  |  |
+ | personalized | boolean |  no  |  |
+ | redirects | [Redirects](#Redirects) |  no  |  |
+ | social_media_tags | [SocialMediaTags](#SocialMediaTags) |  no  |  |
+ | title | string |  no  |  |
+ | updated_at | string |  no  |  |
+ | url | [UrlInfo](#UrlInfo) |  no  |  |
+ | user_id | string |  no  |  |
+ 
+
+---
+
+#### [SocialMediaTags](#SocialMediaTags)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | description | string |  no  |  |
+ | image | string |  no  |  |
+ | title | string |  no  |  |
+ 
+
+---
+
+#### [UrlInfo](#UrlInfo)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | hash | string |  no  |  |
+ | original | string |  no  |  |
+ | short | string |  no  |  |
+ 
+
+---
+
+#### [WebRedirect](#WebRedirect)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | link | string |  no  |  |
+ | type | string |  no  |  |
+ 
 
 ---
 

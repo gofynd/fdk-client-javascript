@@ -2,42 +2,44 @@
 
 
 
+
 ##### [Back to Platform docs](./README.md)
 
 ## Rewards Methods
 Earn and redeem reward points
-* [showGiveaways](#showgiveaways)
-* [saveGiveAway](#savegiveaway)
-* [getGiveawayById](#getgiveawaybyid)
-* [updateGiveAway](#updategiveaway)
+
 * [getGiveawayAudienceStatus](#getgiveawayaudiencestatus)
-* [showOffers](#showoffers)
+* [getGiveawayById](#getgiveawaybyid)
 * [getOfferByName](#getofferbyname)
+* [getRewardsConfiguration](#getrewardsconfiguration)
+* [getUserPointsHistory](#getuserpointshistory)
+* [saveGiveAway](#savegiveaway)
+* [setRewardsConfiguration](#setrewardsconfiguration)
+* [showGiveaways](#showgiveaways)
+* [showOffers](#showoffers)
+* [updateGiveAway](#updategiveaway)
 * [updateOfferByName](#updateofferbyname)
 * [updateUserStatus](#updateuserstatus)
 * [user](#user)
-* [getUserPointsHistory](#getuserpointshistory)
-* [getRewardsConfiguration](#getrewardsconfiguration)
-* [setRewardsConfiguration](#setrewardsconfiguration)
 
 
 
 ## Methods with example and description
 
 
-### showGiveaways
-List of giveaways of the current application.
+
+
+### getGiveawayAudienceStatus
+Get the Giveaway audience status
 
 
 
 ```javascript
 // Promise
-const promise = client.application("<APPLICATION_ID>").rewards.showGiveaways({  pageId : value,
- pageSize : value });
+const promise = client.application("<APPLICATION_ID>").rewards.getGiveawayAudienceStatus({  audienceId : value });
 
 // Async/Await
-const data = await client.application("<APPLICATION_ID>").rewards.showGiveaways({  pageId : value,
- pageSize : value });
+const data = await client.application("<APPLICATION_ID>").rewards.getGiveawayAudienceStatus({  audienceId : value });
 ```
 
 
@@ -46,76 +48,20 @@ const data = await client.application("<APPLICATION_ID>").rewards.showGiveaways(
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
-| pageId | string | yes | pagination page id |   
-| pageSize | number | yes | pagination page size |  
+| audienceId | string | yes | audience id |  
 
 
 
-List of giveaways of the current application.
-
-*Returned Response:*
-
-
-
-
-[GiveawayResponse](#GiveawayResponse)
-
-ok
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### saveGiveAway
-List of giveaways of the current application.
-
-
-
-```javascript
-// Promise
-const promise = client.application("<APPLICATION_ID>").rewards.saveGiveAway({  body : value });
-
-// Async/Await
-const data = await client.application("<APPLICATION_ID>").rewards.saveGiveAway({  body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |
-| body | [Giveaway](#Giveaway) | yes | Request body |
-
-
-Adds a new giveaway.
+Get giveaway audience status
 
 *Returned Response:*
 
 
 
 
-[Giveaway](#Giveaway)
+[GiveawayAudience](#GiveawayAudience)
 
-ok
+Success
 
 
 
@@ -195,19 +141,19 @@ ok
 ---
 
 
-### updateGiveAway
-Updates the giveaway by it's ID.
+### getOfferByName
+Get offer by name
 
 
 
 ```javascript
 // Promise
-const promise = client.application("<APPLICATION_ID>").rewards.updateGiveAway({  id : value,
- body : value });
+const promise = client.application("<APPLICATION_ID>").rewards.getOfferByName({  name : value,
+ cookie : value });
 
 // Async/Await
-const data = await client.application("<APPLICATION_ID>").rewards.updateGiveAway({  id : value,
- body : value });
+const data = await client.application("<APPLICATION_ID>").rewards.getOfferByName({  name : value,
+ cookie : value });
 ```
 
 
@@ -216,11 +162,180 @@ const data = await client.application("<APPLICATION_ID>").rewards.updateGiveAway
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
-| id | string | yes | Giveaway ID |  
+| name | string | yes | The name given to the offer. |   
+| cookie | string | yes | User's session cookie. This cookie is set in browser cookie when logged-in to fynd's authentication system i.e. `Grimlock` or by using grimlock-backend SDK for backend implementation. |  
+
+
+
+Use this API to get the offer details and configuration by entering the name of the offer.
+
+*Returned Response:*
+
+
+
+
+[Offer](#Offer)
+
+Success. Check example below or refer `Offer` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### getRewardsConfiguration
+Get all valid android paths
+
+
+
+```javascript
+// Promise
+const promise = client.application("<APPLICATION_ID>").rewards.getRewardsConfiguration();
+
+// Async/Await
+const data = await client.application("<APPLICATION_ID>").rewards.getRewardsConfiguration();
+```
+
+
+
+
+
+
+Use this API to get a list of valid android paths required by the Rewards INIT API to validate a fradualent device.
+
+*Returned Response:*
+
+
+
+
+[ConfigurationRes](#ConfigurationRes)
+
+Success. Refer `ConfigurationRes` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### getUserPointsHistory
+Get all transactions of reward points
+
+
+
+```javascript
+// Promise
+const promise = client.application("<APPLICATION_ID>").rewards.getUserPointsHistory({  userId : value,
+ pageId : value,
+ pageSize : value });
+
+// Async/Await
+const data = await client.application("<APPLICATION_ID>").rewards.getUserPointsHistory({  userId : value,
+ pageId : value,
+ pageSize : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| userId | string | yes | user id |    
+| pageId | string | no | PageID is the ID of the requested page. For first request it should be kept empty. |    
+| pageSize | number | no | The number of items to retrieve in each page. |  
+
+
+
+Use this API to get a list of points transactions.
+
+*Returned Response:*
+
+
+
+
+[HistoryRes](#HistoryRes)
+
+Success. Check example below or refer `HistoryRes` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### saveGiveAway
+List of giveaways of the current application.
+
+
+
+```javascript
+// Promise
+const promise = client.application("<APPLICATION_ID>").rewards.saveGiveAway({  body : value });
+
+// Async/Await
+const data = await client.application("<APPLICATION_ID>").rewards.saveGiveAway({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
 | body | [Giveaway](#Giveaway) | yes | Request body |
 
 
-Updates the giveaway by it's ID.
+Adds a new giveaway.
 
 *Returned Response:*
 
@@ -253,17 +368,74 @@ ok
 ---
 
 
-### getGiveawayAudienceStatus
-Get the Giveaway audience status
+### setRewardsConfiguration
+Updates the collection with given android paths.
 
 
 
 ```javascript
 // Promise
-const promise = client.application("<APPLICATION_ID>").rewards.getGiveawayAudienceStatus({  audienceId : value });
+const promise = client.application("<APPLICATION_ID>").rewards.setRewardsConfiguration({  body : value });
 
 // Async/Await
-const data = await client.application("<APPLICATION_ID>").rewards.getGiveawayAudienceStatus({  audienceId : value });
+const data = await client.application("<APPLICATION_ID>").rewards.setRewardsConfiguration({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [ConfigurationRequest](#ConfigurationRequest) | yes | Request body |
+
+
+Updates the configuration or inserts new records.
+
+*Returned Response:*
+
+
+
+
+[SetConfigurationRes](#SetConfigurationRes)
+
+ok
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### showGiveaways
+List of giveaways of the current application.
+
+
+
+```javascript
+// Promise
+const promise = client.application("<APPLICATION_ID>").rewards.showGiveaways({  pageId : value,
+ pageSize : value });
+
+// Async/Await
+const data = await client.application("<APPLICATION_ID>").rewards.showGiveaways({  pageId : value,
+ pageSize : value });
 ```
 
 
@@ -272,20 +444,21 @@ const data = await client.application("<APPLICATION_ID>").rewards.getGiveawayAud
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
-| audienceId | string | yes | audience id |  
+| pageId | string | yes | pagination page id |   
+| pageSize | number | yes | pagination page size |  
 
 
 
-Get giveaway audience status
+List of giveaways of the current application.
 
 *Returned Response:*
 
 
 
 
-[GiveawayAudience](#GiveawayAudience)
+[GiveawayResponse](#GiveawayResponse)
 
-Success
+ok
 
 
 
@@ -360,19 +533,19 @@ ok
 ---
 
 
-### getOfferByName
-Get offer by name
+### updateGiveAway
+Updates the giveaway by it's ID.
 
 
 
 ```javascript
 // Promise
-const promise = client.application("<APPLICATION_ID>").rewards.getOfferByName({  name : value,
- cookie : value });
+const promise = client.application("<APPLICATION_ID>").rewards.updateGiveAway({  id : value,
+ body : value });
 
 // Async/Await
-const data = await client.application("<APPLICATION_ID>").rewards.getOfferByName({  name : value,
- cookie : value });
+const data = await client.application("<APPLICATION_ID>").rewards.updateGiveAway({  id : value,
+ body : value });
 ```
 
 
@@ -381,21 +554,20 @@ const data = await client.application("<APPLICATION_ID>").rewards.getOfferByName
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
-| name | string | yes | The name given to the offer. |   
-| cookie | string | yes | User's session cookie. This cookie is set in browser cookie when logged-in to fynd's authentication system i.e. `Grimlock` or by using grimlock-backend SDK for backend implementation. |  
+| id | string | yes | Giveaway ID |  
+| body | [Giveaway](#Giveaway) | yes | Request body |
 
 
-
-Use this API to get the offer details and configuration by entering the name of the offer.
+Updates the giveaway by it's ID.
 
 *Returned Response:*
 
 
 
 
-[Offer](#Offer)
+[Giveaway](#Giveaway)
 
-Success. Check example below or refer `Offer` for more details.
+ok
 
 
 
@@ -591,180 +763,59 @@ Success. Check example below or refer `UserRes` for more details.
 ---
 
 
-### getUserPointsHistory
-Get all transactions of reward points
-
-
-
-```javascript
-// Promise
-const promise = client.application("<APPLICATION_ID>").rewards.getUserPointsHistory({  userId : value,
- pageId : value,
- pageSize : value });
-
-// Async/Await
-const data = await client.application("<APPLICATION_ID>").rewards.getUserPointsHistory({  userId : value,
- pageId : value,
- pageSize : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| userId | string | yes | user id |    
-| pageId | string | no | PageID is the ID of the requested page. For first request it should be kept empty. |    
-| pageSize | number | no | The number of items to retrieve in each page. |  
-
-
-
-Use this API to get a list of points transactions.
-
-*Returned Response:*
-
-
-
-
-[HistoryRes](#HistoryRes)
-
-Success. Check example below or refer `HistoryRes` for more details.
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### getRewardsConfiguration
-Get all valid android paths
-
-
-
-```javascript
-// Promise
-const promise = client.application("<APPLICATION_ID>").rewards.getRewardsConfiguration();
-
-// Async/Await
-const data = await client.application("<APPLICATION_ID>").rewards.getRewardsConfiguration();
-```
-
-
-
-
-
-
-Use this API to get a list of valid android paths required by the Rewards INIT API to validate a fradualent device.
-
-*Returned Response:*
-
-
-
-
-[ConfigurationRes](#ConfigurationRes)
-
-Success. Refer `ConfigurationRes` for more details.
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### setRewardsConfiguration
-Updates the collection with given android paths.
-
-
-
-```javascript
-// Promise
-const promise = client.application("<APPLICATION_ID>").rewards.setRewardsConfiguration({  body : value });
-
-// Async/Await
-const data = await client.application("<APPLICATION_ID>").rewards.setRewardsConfiguration({  body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |
-| body | [ConfigurationRequest](#ConfigurationRequest) | yes | Request body |
-
-
-Updates the configuration or inserts new records.
-
-*Returned Response:*
-
-
-
-
-[SetConfigurationRes](#SetConfigurationRes)
-
-ok
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
 
 ### Schemas
 
+
+#### [AppUser](#AppUser)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | _id | string |  no  |  |
+ | active | boolean |  no  |  |
+ | application_id | string |  no  |  |
+ | block_reason | string |  no  |  |
+ | updated_at | string |  no  |  |
+ | updated_by | string |  no  |  |
+ | user_id | string |  no  |  |
  
+
+---
+
+#### [Asset](#Asset)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | aspect_ratio | string |  no  |  |
+ | id | string |  no  |  |
+ | secure_url | string |  no  |  |
  
- #### [E](#E)
+
+---
+
+#### [ConfigurationRequest](#ConfigurationRequest)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | terms_conditions_link | string |  no  |  |
+ | valid_android_packages | [string] |  no  |  |
+ 
+
+---
+
+#### [ConfigurationRes](#ConfigurationRes)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | application_id | string |  no  |  |
+ | success | boolean |  no  |  |
+ | terms_conditions_link | string |  no  |  |
+ | valid_android_packages | [string] |  no  |  |
+ 
+
+---
+
+#### [E](#E)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
@@ -772,25 +823,11 @@ ok
  | exception | string |  no  |  |
  | info | string |  no  |  |
  | message | string |  no  |  |
+ 
 
 ---
 
-
- 
- 
- #### [GiveawayResponse](#GiveawayResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | items | [[Giveaway](#Giveaway)] |  no  |  |
- | page | [Page](#Page) |  no  |  |
-
----
-
-
- 
- 
- #### [Giveaway](#Giveaway)
+#### [Giveaway](#Giveaway)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
@@ -806,80 +843,42 @@ ok
  | rule | [RewardsRule](#RewardsRule) |  no  |  |
  | title | string |  no  |  |
  | updated_at | string |  no  |  |
+ 
 
 ---
 
-
- 
- 
- #### [Schedule](#Schedule)
+#### [GiveawayAudience](#GiveawayAudience)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | duration | number |  no  |  |
- | end | string |  no  |  |
- | start | string |  no  |  |
- | cron | string |  no  |  |
+ | audience_id | string |  no  |  |
+ | current_count | number |  no  |  |
+ 
 
 ---
 
-
- 
- 
- #### [RewardsAudience](#RewardsAudience)
+#### [GiveawayResponse](#GiveawayResponse)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | header_user_id | string |  no  |  |
- | id | string |  no  |  |
+ | items | [[Giveaway](#Giveaway)] |  no  |  |
+ | page | [Page](#Page) |  no  |  |
+ 
 
 ---
 
-
- 
- 
- #### [Asset](#Asset)
+#### [HistoryRes](#HistoryRes)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | aspect_ratio | string |  no  |  |
- | id | string |  no  |  |
- | secure_url | string |  no  |  |
+ | items | [[PointsHistory](#PointsHistory)] |  no  |  |
+ | page | [Page](#Page) |  no  |  |
+ | points | number |  no  |  |
+ 
 
 ---
 
-
- 
- 
- #### [RewardsRule](#RewardsRule)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | amount | number |  no  |  |
-
----
-
-
- 
- 
- #### [Page](#Page)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | current | number |  no  |  |
- | has_next | boolean |  no  |  |
- | has_previous | boolean |  no  |  |
- | item_total | number |  no  |  |
- | next_id | string |  no  |  |
- | size | number |  no  |  |
- | type | string |  yes  |  |
-
----
-
-
- 
- 
- #### [Offer](#Offer)
+#### [Offer](#Offer)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
@@ -897,126 +896,35 @@ ok
  | updated_at | string |  no  |  |
  | updated_by | string |  no  |  |
  | url | string |  no  |  |
+ 
 
 ---
 
-
- 
- 
- #### [ShareMessages](#ShareMessages)
+#### [Page](#Page)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | email | number |  no  |  |
- | facebook | string |  no  |  |
- | fallback | string |  no  |  |
- | message | string |  no  |  |
- | messenger | string |  no  |  |
- | sms | string |  no  |  |
- | text | string |  no  |  |
- | twitter | string |  no  |  |
- | whatsapp | string |  no  |  |
+ | current | number |  no  |  |
+ | has_next | boolean |  no  |  |
+ | has_previous | boolean |  no  |  |
+ | item_total | number |  no  |  |
+ | next_id | string |  no  |  |
+ | size | number |  no  |  |
+ | type | string |  yes  |  |
+ 
 
 ---
 
-
- 
- 
- #### [UserRes](#UserRes)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | points | [Points](#Points) |  no  |  |
- | user | [RewardUser](#RewardUser) |  no  |  |
-
----
-
-
- 
- 
- #### [Points](#Points)
+#### [Points](#Points)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | available | number |  no  |  |
+ 
 
 ---
 
-
- 
- 
- #### [RewardUser](#RewardUser)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | _id | string |  no  |  |
- | active | boolean |  no  |  |
- | created_at | string |  no  |  |
- | referral | [Referral](#Referral) |  no  |  |
- | uid | number |  no  |  |
- | updated_at | string |  no  |  |
- | user_block_reason | string |  no  |  |
- | user_id | string |  no  |  |
-
----
-
-
- 
- 
- #### [Referral](#Referral)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | code | string |  no  |  |
-
----
-
-
- 
- 
- #### [AppUser](#AppUser)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | _id | string |  no  |  |
- | active | boolean |  no  |  |
- | application_id | string |  no  |  |
- | block_reason | string |  no  |  |
- | updated_at | string |  no  |  |
- | updated_by | string |  no  |  |
- | user_id | string |  no  |  |
-
----
-
-
- 
- 
- #### [GiveawayAudience](#GiveawayAudience)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | audience_id | string |  no  |  |
- | current_count | number |  no  |  |
-
----
-
-
- 
- 
- #### [HistoryRes](#HistoryRes)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | items | [[PointsHistory](#PointsHistory)] |  no  | History is the list of points transaction. |
- | page | [Page](#Page) |  no  |  |
- | points | number |  no  |  |
-
----
-
-
- 
- 
- #### [PointsHistory](#PointsHistory)
+#### [PointsHistory](#PointsHistory)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
@@ -1034,43 +942,99 @@ ok
  | txn_name | string |  no  |  |
  | updated_at | string |  no  |  |
  | user_id | string |  no  |  |
+ 
 
 ---
 
-
- 
- 
- #### [ConfigurationRes](#ConfigurationRes)
+#### [Referral](#Referral)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | valid_android_packages | [string] |  no  | Contains array of string items, Valid android package names. |
- | terms_conditions_link | string |  no  | A URL that redirects to the referral information suport page link |
- | application_id | string |  no  |  |
+ | code | string |  no  |  |
+ 
+
+---
+
+#### [RewardsAudience](#RewardsAudience)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | header_user_id | string |  no  |  |
+ | id | string |  no  |  |
+ 
+
+---
+
+#### [RewardsRule](#RewardsRule)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | amount | number |  no  |  |
+ 
+
+---
+
+#### [RewardUser](#RewardUser)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | _id | string |  no  |  |
+ | active | boolean |  no  |  |
+ | created_at | string |  no  |  |
+ | referral | [Referral](#Referral) |  no  |  |
+ | uid | number |  no  |  |
+ | updated_at | string |  no  |  |
+ | user_block_reason | string |  no  |  |
+ | user_id | string |  no  |  |
+ 
+
+---
+
+#### [Schedule](#Schedule)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | cron | string |  no  |  |
+ | duration | number |  no  |  |
+ | end | string |  no  |  |
+ | start | string |  no  |  |
+ 
+
+---
+
+#### [SetConfigurationRes](#SetConfigurationRes)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
  | success | boolean |  no  |  |
+ 
 
 ---
 
-
- 
- 
- #### [SetConfigurationRes](#SetConfigurationRes)
+#### [ShareMessages](#ShareMessages)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | success | boolean |  no  |  |
+ | email | number |  no  |  |
+ | facebook | string |  no  |  |
+ | fallback | string |  no  |  |
+ | message | string |  no  |  |
+ | messenger | string |  no  |  |
+ | sms | string |  no  |  |
+ | text | string |  no  |  |
+ | twitter | string |  no  |  |
+ | whatsapp | string |  no  |  |
+ 
 
 ---
 
-
- 
- 
- #### [ConfigurationRequest](#ConfigurationRequest)
+#### [UserRes](#UserRes)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | valid_android_packages | [string] |  no  |  |
- | terms_conditions_link | string |  no  |  |
+ | points | [Points](#Points) |  no  |  |
+ | user | [RewardUser](#RewardUser) |  no  |  |
+ 
 
 ---
 
