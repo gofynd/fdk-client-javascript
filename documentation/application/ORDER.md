@@ -13,6 +13,7 @@ Handles all Application order and shipment api(s)
 * [getOrderById](#getorderbyid)
 * [getOrders](#getorders)
 * [getPosOrderById](#getposorderbyid)
+* [getProducts](#getproducts)
 * [getShipmentBagReasons](#getshipmentbagreasons)
 * [getShipmentById](#getshipmentbyid)
 * [getShipmentReasons](#getshipmentreasons)
@@ -1554,6 +1555,77 @@ Success. Check the example shown below or refer `PosOrderById` for more details.
 ---
 
 
+### getProducts
+
+
+
+
+```javascript
+// Promise
+const promise = client.order.getProducts({  status : value,
+ pageNo : value,
+ pageSize : value,
+ fromDate : value,
+ toDate : value,
+ searchValue : value });
+
+// Async/Await
+const data = await client.order.getProducts({  status : value,
+ pageNo : value,
+ pageSize : value,
+ fromDate : value,
+ toDate : value,
+ searchValue : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| status | number | no | A filter to retrieve orders by their current status such as _placed_, _delivered_, etc. |    
+| pageNo | number | no | The page number to navigate through the given set of results. Default value is 1. |    
+| pageSize | number | no | The number of items to retrieve in each page. Default value is 10. |    
+| fromDate | string | no | The date from which the orders should be retrieved. |    
+| toDate | string | no | The date till which the orders should be retrieved. |    
+| searchValue | string | no |  |  
+
+
+
+
+
+*Returned Response:*
+
+
+
+
+[ProductListResponse](#ProductListResponse)
+
+Successfully retrived all the given shipments details!
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
 ### getShipmentBagReasons
 Get reasons behind full or partial cancellation of a shipment
 
@@ -2551,6 +2623,8 @@ Success, the code is valid and returns a session token
  | applied_promos | [[AppliedPromos](#AppliedPromos)] |  no  |  |
  | can_cancel | boolean |  no  |  |
  | can_return | boolean |  no  |  |
+ | currency_code | string |  no  |  |
+ | currency_symbol | string |  no  |  |
  | current_status | [CurrentStatus](#CurrentStatus) |  no  |  |
  | delivery_date | string |  no  |  |
  | financial_breakup | [[FinancialBreakup](#FinancialBreakup)] |  no  |  |
@@ -2594,8 +2668,23 @@ Success, the code is valid and returns a session token
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | currency_code | string |  no  |  |
+ | currency_symbol | string |  no  |  |
  | display | string |  no  |  |
  | name | string |  no  |  |
+ | value | number |  no  |  |
+ 
+
+---
+
+#### [Coupon](#Coupon)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | code | string |  no  |  |
+ | coupon_type | string |  no  |  |
+ | id | number |  no  |  |
+ | payable_category | string |  no  |  |
  | value | number |  no  |  |
  
 
@@ -2605,6 +2694,7 @@ Success, the code is valid and returns a session token
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | created_at | string |  no  |  |
  | journey_type | string |  no  |  |
  | name | string |  no  |  |
  | status | string |  no  |  |
@@ -2649,6 +2739,8 @@ Success, the code is valid and returns a session token
  | city | string |  no  |  |
  | contact_person | string |  no  |  |
  | country | string |  no  |  |
+ | country_iso_code | string |  no  |  |
+ | country_phone_code | string |  no  |  |
  | created_at | string |  no  |  |
  | email | string |  no  |  |
  | landmark | string |  no  |  |
@@ -2905,6 +2997,8 @@ Success, the code is valid and returns a session token
  | cod_charges | number |  no  |  |
  | coupon_effective_discount | number |  no  |  |
  | coupon_value | number |  no  |  |
+ | currency_code | string |  no  |  |
+ | currency_symbol | string |  no  |  |
  | delivery_charge | number |  no  |  |
  | discount | number |  no  |  |
  | fynd_credits | number |  no  |  |
@@ -2916,6 +3010,53 @@ Success, the code is valid and returns a session token
  | refund_credit | number |  no  |  |
  | transfer_price | number |  no  |  |
  | value_of_good | number |  no  |  |
+ 
+
+---
+
+#### [Product](#Product)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | applied_promos | [[AppliedPromos](#AppliedPromos)] |  no  |  |
+ | bag_status | [ProductStatus](#ProductStatus) |  no  |  |
+ | brand | [ProductBrand](#ProductBrand) |  no  |  |
+ | can_cancel | boolean |  no  |  |
+ | can_return | boolean |  no  |  |
+ | coupon | [Coupon](#Coupon) |  no  |  |
+ | delivery_date | string |  no  |  |
+ | docket_number | string |  yes  |  |
+ | item | [Item](#Item) |  no  |  |
+ | line_number | number |  no  |  |
+ | order_id | string |  yes  |  |
+ | parent_promo_bags | string |  no  |  |
+ | payment | [ShipmentPayment](#ShipmentPayment) |  no  |  |
+ | quantity | number |  no  |  |
+ | returnable_date | string |  no  |  |
+ | seller_identifier | string |  no  |  |
+ 
+
+---
+
+#### [ProductBrand](#ProductBrand)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | brand_name | string |  no  |  |
+ | id | number |  no  |  |
+ 
+
+---
+
+#### [ProductListResponse](#ProductListResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | filters | [OrderFilters](#OrderFilters) |  no  |  |
+ | items | [[Product](#Product)] |  no  |  |
+ | message | string |  no  |  |
+ | page | [OrderPage](#OrderPage) |  no  |  |
+ | success | boolean |  no  |  |
  
 
 ---
@@ -2978,6 +3119,18 @@ Success, the code is valid and returns a session token
  | identifier | string |  no  |  |
  | line_number | number |  no  |  |
  | quantity | number |  no  |  |
+ 
+
+---
+
+#### [ProductStatus](#ProductStatus)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | created_at | string |  no  |  |
+ | hex_code | string |  no  |  |
+ | title | string |  no  |  |
+ | value | string |  no  |  |
  
 
 ---

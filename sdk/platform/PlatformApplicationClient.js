@@ -680,6 +680,7 @@ class PlatformApplicationClient {
 /** @typedef UpdatePlatformPaymentConfig */
 
 /** @typedef ActionInfo */
+/** @typedef AdvanceFilterInfo */
 /** @typedef Affiliate */
 /** @typedef AffiliateAppConfig */
 /** @typedef AffiliateAppConfigMeta */
@@ -1240,6 +1241,7 @@ class PlatformApplicationClient {
 /** @typedef CompanySerializer */
 /** @typedef CompanySocialAccounts */
 /** @typedef CompanyTaxesSerializer */
+/** @typedef CompanyTaxesSerializer1 */
 /** @typedef ContactDetails */
 /** @typedef CreateUpdateAddressSerializer */
 /** @typedef CreateUpdateBrandRequestSerializer */

@@ -48,6 +48,8 @@ class OrderModel {
       applied_promos: Joi.array().items(OrderModel.AppliedPromos()),
       can_cancel: Joi.boolean(),
       can_return: Joi.boolean(),
+      currency_code: Joi.string().allow(""),
+      currency_symbol: Joi.string().allow(""),
       current_status: OrderModel.CurrentStatus(),
       delivery_date: Joi.string().allow(""),
       financial_breakup: Joi.array().items(OrderModel.FinancialBreakup()),
@@ -79,13 +81,25 @@ class OrderModel {
   }
   static BreakupValues() {
     return Joi.object({
+      currency_code: Joi.string().allow(""),
+      currency_symbol: Joi.string().allow(""),
       display: Joi.string().allow(""),
       name: Joi.string().allow(""),
       value: Joi.number(),
     });
   }
+  static Coupon() {
+    return Joi.object({
+      code: Joi.string().allow(""),
+      coupon_type: Joi.string().allow(""),
+      id: Joi.number(),
+      payable_category: Joi.string().allow(""),
+      value: Joi.number(),
+    });
+  }
   static CurrentStatus() {
     return Joi.object({
+      created_at: Joi.string().allow(""),
       journey_type: Joi.string().allow(""),
       name: Joi.string().allow(""),
       status: Joi.string().allow(""),
@@ -118,6 +132,8 @@ class OrderModel {
       city: Joi.string().allow(""),
       contact_person: Joi.string().allow(""),
       country: Joi.string().allow(""),
+      country_iso_code: Joi.string().allow(""),
+      country_phone_code: Joi.string().allow(""),
       created_at: Joi.string().allow(""),
       email: Joi.string().allow(""),
       landmark: Joi.string().allow(""),
@@ -298,6 +314,8 @@ class OrderModel {
       cod_charges: Joi.number(),
       coupon_effective_discount: Joi.number(),
       coupon_value: Joi.number(),
+      currency_code: Joi.string().allow(""),
+      currency_symbol: Joi.string().allow(""),
       delivery_charge: Joi.number(),
       discount: Joi.number(),
       fynd_credits: Joi.number(),
@@ -309,6 +327,41 @@ class OrderModel {
       refund_credit: Joi.number(),
       transfer_price: Joi.number(),
       value_of_good: Joi.number(),
+    });
+  }
+  static Product() {
+    return Joi.object({
+      applied_promos: Joi.array().items(OrderModel.AppliedPromos()),
+      bag_status: OrderModel.ProductStatus(),
+      brand: OrderModel.ProductBrand(),
+      can_cancel: Joi.boolean(),
+      can_return: Joi.boolean(),
+      coupon: OrderModel.Coupon(),
+      delivery_date: Joi.string().allow(""),
+      docket_number: Joi.string().allow("").required(),
+      item: OrderModel.Item(),
+      line_number: Joi.number(),
+      order_id: Joi.string().allow("").required(),
+      parent_promo_bags: Joi.any(),
+      payment: OrderModel.ShipmentPayment(),
+      quantity: Joi.number(),
+      returnable_date: Joi.string().allow(""),
+      seller_identifier: Joi.string().allow(""),
+    });
+  }
+  static ProductBrand() {
+    return Joi.object({
+      brand_name: Joi.string().allow(""),
+      id: Joi.number(),
+    });
+  }
+  static ProductListResponse() {
+    return Joi.object({
+      filters: OrderModel.OrderFilters(),
+      items: Joi.array().items(OrderModel.Product()),
+      message: Joi.string().allow(""),
+      page: OrderModel.OrderPage(),
+      success: Joi.boolean(),
     });
   }
   static Products() {
@@ -347,6 +400,14 @@ class OrderModel {
       identifier: Joi.string().allow(""),
       line_number: Joi.number(),
       quantity: Joi.number(),
+    });
+  }
+  static ProductStatus() {
+    return Joi.object({
+      created_at: Joi.string().allow(""),
+      hex_code: Joi.string().allow(""),
+      title: Joi.string().allow(""),
+      value: Joi.string().allow(""),
     });
   }
   static Promise() {

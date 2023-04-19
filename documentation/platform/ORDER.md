@@ -46,7 +46,7 @@ Handles all platform order and shipment api(s)
 * [reassignLocation](#reassignlocation)
 * [sendSmsNinja](#sendsmsninja)
 * [sendSmsNinjaPlatform](#sendsmsninjaplatform)
-* [trackPlatformShipment](#trackplatformshipment)
+* [trackShipmentPlatform](#trackshipmentplatform)
 * [updateAddress](#updateaddress)
 * [updatePackagingDimensions](#updatepackagingdimensions)
 * [updateShipmentLock](#updateshipmentlock)
@@ -2714,7 +2714,7 @@ const promise = client.order.getOrders({  lane : value,
  toDate : value,
  dpIds : value,
  stores : value,
- salesChannel : value,
+ salesChannels : value,
  pageNo : value,
  pageSize : value,
  isPrioritySort : value,
@@ -2732,7 +2732,7 @@ const data = await client.order.getOrders({  lane : value,
  toDate : value,
  dpIds : value,
  stores : value,
- salesChannel : value,
+ salesChannels : value,
  pageNo : value,
  pageSize : value,
  isPrioritySort : value,
@@ -2756,7 +2756,7 @@ const data = await client.order.getOrders({  lane : value,
 | toDate | string | no |  |    
 | dpIds | string | no |  |    
 | stores | string | no |  |    
-| salesChannel | string | no |  |    
+| salesChannels | string | no |  |    
 | pageNo | number | no |  |    
 | pageSize | number | no |  |    
 | isPrioritySort | boolean | no |  |    
@@ -3516,7 +3516,7 @@ const promise = client.order.getShipments({  lane : value,
  dpIds : value,
  orderingCompanyId : value,
  stores : value,
- salesChannel : value,
+ salesChannels : value,
  requestByExt : value,
  pageNo : value,
  pageSize : value,
@@ -3542,7 +3542,7 @@ const data = await client.order.getShipments({  lane : value,
  dpIds : value,
  orderingCompanyId : value,
  stores : value,
- salesChannel : value,
+ salesChannels : value,
  requestByExt : value,
  pageNo : value,
  pageSize : value,
@@ -3574,7 +3574,7 @@ const data = await client.order.getShipments({  lane : value,
 | dpIds | string | no |  |    
 | orderingCompanyId | string | no |  |    
 | stores | string | no |  |    
-| salesChannel | string | no |  |    
+| salesChannels | string | no |  |    
 | requestByExt | string | no |  |    
 | pageNo | number | no |  |    
 | pageSize | number | no |  |    
@@ -3668,7 +3668,7 @@ List of filters
 
 ```json
 {
-  "global": [
+  "global_filter": [
     {
       "text": "Fulfilling Stores",
       "value": "stores",
@@ -3746,8 +3746,8 @@ List of filters
       ]
     }
   ],
-  "advance": {
-    "Unfulfilled": [
+  "advance_filter": {
+    "unfulfilled": [
       {
         "text": "Store Type",
         "value": "store_type",
@@ -3825,7 +3825,7 @@ List of filters
         ]
       }
     ],
-    "Processed": [
+    "processed": [
       {
         "text": "Store Type",
         "value": "store_type",
@@ -3888,7 +3888,7 @@ List of filters
         ]
       }
     ],
-    "Return": [
+    "returned": [
       {
         "text": "Store Type",
         "value": "store_type",
@@ -3951,7 +3951,7 @@ List of filters
         ]
       }
     ],
-    "ActionCentre": [
+    "action_centre": [
       {
         "text": "Store Type",
         "value": "store_type",
@@ -4505,17 +4505,17 @@ Sms Sent successfully
 ---
 
 
-### trackPlatformShipment
+### trackShipmentPlatform
 Track shipment
 
 
 
 ```javascript
 // Promise
-const promise = client.application("<APPLICATION_ID>").order.trackPlatformShipment({  shipmentId : value });
+const promise = client.application("<APPLICATION_ID>").order.trackShipmentPlatform({  shipmentId : value });
 
 // Async/Await
-const data = await client.application("<APPLICATION_ID>").order.trackPlatformShipment({  shipmentId : value });
+const data = await client.application("<APPLICATION_ID>").order.trackShipmentPlatform({  shipmentId : value });
 ```
 
 
@@ -4953,6 +4953,19 @@ We are processing the report!
  | display_text | string |  yes  |  |
  | id | number |  yes  |  |
  | slug | string |  yes  |  |
+ 
+
+---
+
+#### [AdvanceFilterInfo](#AdvanceFilterInfo)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | action_centre | [[FiltersInfo](#FiltersInfo)] |  no  |  |
+ | filters | [[FiltersInfo](#FiltersInfo)] |  no  |  |
+ | processed | [[FiltersInfo](#FiltersInfo)] |  no  |  |
+ | returned | [[FiltersInfo](#FiltersInfo)] |  no  |  |
+ | unfulfilled | [[FiltersInfo](#FiltersInfo)] |  no  |  |
  
 
 ---
@@ -6156,7 +6169,8 @@ We are processing the report!
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | advance | [string] |  no  |  |
+ | advance_filter | [AdvanceFilterInfo](#AdvanceFilterInfo) |  no  |  |
+ | global_filter | [[FiltersInfo](#FiltersInfo)] |  no  |  |
  
 
 ---
@@ -7463,6 +7477,7 @@ We are processing the report!
  | application | string |  no  |  |
  | bags | [[BagUnit](#BagUnit)] |  no  |  |
  | channel | string |  no  |  |
+ | company | string |  no  |  |
  | created_at | string |  yes  |  |
  | fulfilling_centre | string |  yes  |  |
  | fulfilling_store | [ShipmentItemFulFillingStore](#ShipmentItemFulFillingStore) |  no  |  |

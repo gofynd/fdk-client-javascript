@@ -19,6 +19,7 @@ class Order {
       getOrders: "/service/application/order/v1.0/orders",
       getPosOrderById:
         "/service/application/order/v1.0/orders/pos-order/{order_id}",
+      getProducts: "/service/application/order/v1.0/products",
       getShipmentBagReasons:
         "/service/application/order/v1.0/orders/shipments/{shipment_id}/bags/{bag_id}/reasons",
       getShipmentById:
@@ -387,6 +388,93 @@ class Order {
       Logger({
         level: "WARN",
         message: "Response Validation Warnnings for getPosOrderById",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {number} arg.companyId -
+   * @param {number} [arg.status] - A filter to retrieve orders by their
+   *   current status such as _placed_, _delivered_, etc.
+   * @param {number} [arg.pageNo] - The page number to navigate through the
+   *   given set of results. Default value is 1.
+   * @param {number} [arg.pageSize] - The number of items to retrieve in each
+   *   page. Default value is 10.
+   * @param {string} [arg.fromDate] - The date from which the orders should be
+   *   retrieved.
+   * @param {string} [arg.toDate] - The date till which the orders should be retrieved.
+   * @param {string} [arg.searchValue] -
+   * @returns {Promise<ProductListResponse>} - Success response
+   * @summary:
+   * @description:
+   */
+  async getProducts({
+    companyId,
+    status,
+    pageNo,
+    pageSize,
+    fromDate,
+    toDate,
+    searchValue,
+  } = {}) {
+    const { error } = OrderValidator.getProducts().validate(
+      { companyId, status, pageNo, pageSize, fromDate, toDate, searchValue },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = OrderValidator.getProducts().validate(
+      { companyId, status, pageNo, pageSize, fromDate, toDate, searchValue },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getProducts",
+      });
+      Logger({ level: "WARN", message: warrning });
+    }
+
+    const query_params = {};
+    query_params["status"] = status;
+    query_params["page_no"] = pageNo;
+    query_params["page_size"] = pageSize;
+    query_params["from_date"] = fromDate;
+    query_params["to_date"] = toDate;
+    query_params["search_value"] = searchValue;
+
+    const xHeaders = {};
+
+    const response = await APIClient.execute(
+      this._conf,
+      "get",
+      constructUrl({
+        url: this._urls["getProducts"],
+        params: { companyId },
+      }),
+      query_params,
+      undefined,
+      xHeaders
+    );
+
+    const {
+      error: res_error,
+    } = OrderModel.ProductListResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getProducts",
       });
       Logger({ level: "WARN", message: res_error });
     }

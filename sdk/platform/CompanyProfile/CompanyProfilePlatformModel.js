@@ -108,6 +108,13 @@ class CompanyProfileModel {
       rate: Joi.number(),
     });
   }
+  static CompanyTaxesSerializer1() {
+    return Joi.object({
+      effective_date: Joi.string().allow(""),
+      enable: Joi.boolean(),
+      rate: Joi.number(),
+    });
+  }
   static ContactDetails() {
     return Joi.object({
       emails: Joi.array().items(Joi.string().allow("")),
@@ -416,7 +423,7 @@ class CompanyProfileModel {
       name: Joi.string().allow(""),
       notification_emails: Joi.array().items(Joi.string().allow("")),
       reject_reason: Joi.string().allow(""),
-      taxes: Joi.array().items(CompanyProfileModel.CompanyTaxesSerializer()),
+      taxes: Joi.array().items(CompanyProfileModel.CompanyTaxesSerializer1()),
       warnings: Joi.any(),
     });
   }

@@ -9,6 +9,7 @@ declare class OrderModel {
     static BagsForReorder(): any;
     static BagsForReorderArticleAssignment(): any;
     static BreakupValues(): any;
+    static Coupon(): any;
     static CurrentStatus(): any;
     static CustomerDetailsResponse(): any;
     static DataUpdates(): any;
@@ -32,12 +33,16 @@ declare class OrderModel {
     static OrderSchema(): any;
     static OrderStatuses(): any;
     static Prices(): any;
+    static Product(): any;
+    static ProductBrand(): any;
+    static ProductListResponse(): any;
     static Products(): any;
     static ProductsDataUpdates(): any;
     static ProductsDataUpdatesFilters(): any;
     static ProductsReasons(): any;
     static ProductsReasonsData(): any;
     static ProductsReasonsFilters(): any;
+    static ProductStatus(): any;
     static Promise(): any;
     static QuestionSet(): any;
     static ReasonsData(): any;

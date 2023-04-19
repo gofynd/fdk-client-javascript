@@ -38,6 +38,18 @@ class OrderValidator {
     }).required();
   }
 
+  static getProducts() {
+    return Joi.object({
+      companyId: Joi.number().required(),
+      status: Joi.number(),
+      pageNo: Joi.number(),
+      pageSize: Joi.number(),
+      fromDate: Joi.string().allow(""),
+      toDate: Joi.string().allow(""),
+      searchValue: Joi.string().allow(""),
+    }).required();
+  }
+
   static getShipmentBagReasons() {
     return Joi.object({
       shipmentId: Joi.string().allow("").required(),

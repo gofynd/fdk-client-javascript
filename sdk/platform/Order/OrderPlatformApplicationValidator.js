@@ -27,7 +27,7 @@ class OrderValidator {
     }).required();
   }
 
-  static trackPlatformShipment() {
+  static trackShipmentPlatform() {
     return Joi.object({
       shipmentId: Joi.string().allow("").required(),
     }).required();

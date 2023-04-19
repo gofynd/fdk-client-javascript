@@ -1509,6 +1509,17 @@ Returns a success response
 
 ---
 
+#### [CompanyTaxesSerializer1](#CompanyTaxesSerializer1)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | effective_date | string |  no  |  |
+ | enable | boolean |  no  |  |
+ | rate | number |  no  |  |
+ 
+
+---
+
 #### [ContactDetails](#ContactDetails)
 
  | Properties | Type | Nullable | Description |
@@ -1909,7 +1920,7 @@ Returns a success response
  | name | string |  no  |  |
  | notification_emails | [string] |  no  |  |
  | reject_reason | string |  no  |  |
- | taxes | [[CompanyTaxesSerializer](#CompanyTaxesSerializer)] |  no  |  |
+ | taxes | [[CompanyTaxesSerializer1](#CompanyTaxesSerializer1)] |  no  |  |
  | warnings | string |  no  |  |
  
 

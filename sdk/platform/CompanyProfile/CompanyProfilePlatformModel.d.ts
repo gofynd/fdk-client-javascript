@@ -12,6 +12,7 @@ declare class CompanyProfileModel {
     static CompanySerializer(): any;
     static CompanySocialAccounts(): any;
     static CompanyTaxesSerializer(): any;
+    static CompanyTaxesSerializer1(): any;
     static ContactDetails(): any;
     static CreateUpdateAddressSerializer(): any;
     static CreateUpdateBrandRequestSerializer(): any;
