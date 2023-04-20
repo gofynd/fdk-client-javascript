@@ -4134,6 +4134,7 @@ class PlatformClient {
  * @property {string} [device_id]
  * @property {string} merchant_order_id
  * @property {string} method
+ * @property {string} [payment_id]
  * @property {string} polling_url
  * @property {string} [razorpay_payment_id]
  * @property {string} [status]
@@ -4205,6 +4206,8 @@ class PlatformClient {
  * @property {string} merchant_order_id
  * @property {string} method
  * @property {string} order_id
+ * @property {string} [payment_id]
+ * @property {string} [razorpay_payment_id]
  * @property {string} status
  * @property {string} [vpa]
  */
@@ -4402,14 +4405,6 @@ class PlatformClient {
  * @property {string} display_text
  * @property {number} id
  * @property {string} slug
- */
-/**
- * @typedef AdvanceFilterInfo
- * @property {FiltersInfo[]} [action_centre]
- * @property {FiltersInfo[]} [filters]
- * @property {FiltersInfo[]} [processed]
- * @property {FiltersInfo[]} [returned]
- * @property {FiltersInfo[]} [unfulfilled]
  */
 /**
  * @typedef Affiliate
@@ -5178,8 +5173,7 @@ class PlatformClient {
  */
 /**
  * @typedef FiltersResponse
- * @property {AdvanceFilterInfo} [advance_filter]
- * @property {FiltersInfo[]} [global_filter]
+ * @property {Object[]} [advance]
  */
 /**
  * @typedef FinancialBreakup
@@ -6002,7 +5996,6 @@ class PlatformClient {
  * @property {Object} [application]
  * @property {BagUnit[]} [bags]
  * @property {Object} [channel]
- * @property {Object} [company]
  * @property {string} created_at
  * @property {string} fulfilling_centre
  * @property {ShipmentItemFulFillingStore} [fulfilling_store]
@@ -8436,7 +8429,7 @@ class PlatformClient {
  * @property {NetQuantity} [net_quantity]
  * @property {number} [no_of_boxes]
  * @property {string[]} [product_group_tag]
- * @property {ProductPublish1} [product_publish]
+ * @property {ProductPublish} [product_publish]
  * @property {string} [requester]
  * @property {ReturnConfig} return_config
  * @property {string} [short_description]
@@ -8632,7 +8625,7 @@ class PlatformClient {
  * @property {string} [pending]
  * @property {string} [primary_color]
  * @property {string[]} [product_group_tag]
- * @property {ProductPublish} [product_publish]
+ * @property {ProductPublish1} [product_publish]
  * @property {ReturnConfigResponse} [return_config]
  * @property {string} [short_description]
  * @property {string} [size_guide]

@@ -8053,6 +8053,7 @@ const promise = posCart.updateShipments({  body : value,
  p : value,
  id : value,
  addressId : value,
+ areaCode : value,
  orderType : value });
 
 // Async/Await
@@ -8061,6 +8062,7 @@ const data = await posCart.updateShipments({  body : value,
  p : value,
  id : value,
  addressId : value,
+ areaCode : value,
  orderType : value });
 ```
 
@@ -8074,6 +8076,7 @@ const data = await posCart.updateShipments({  body : value,
 | p | boolean | no | This is a boolean value. Select `true` for getting a payment option in response. |    
 | id | string | no | The unique identifier of the cart |    
 | addressId | string | no | ID allotted to an address |    
+| areaCode | string | no | The PIN Code of the destination address, e.g. 400059 |    
 | orderType | string | no | The order type of shipment HomeDelivery - If the customer wants the order home-delivered PickAtStore - If the customer wants the handover of an order at the store itself. |  
 | body | [UpdateCartShipmentRequest](#UpdateCartShipmentRequest) | yes | Request body |
 

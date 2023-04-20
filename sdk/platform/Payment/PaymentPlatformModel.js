@@ -305,6 +305,7 @@ class PaymentModel {
       device_id: Joi.string().allow("").allow(null),
       merchant_order_id: Joi.string().allow("").required(),
       method: Joi.string().allow("").required(),
+      payment_id: Joi.string().allow("").allow(null),
       polling_url: Joi.string().allow("").required(),
       razorpay_payment_id: Joi.string().allow("").allow(null),
       status: Joi.string().allow(""),
@@ -385,6 +386,8 @@ class PaymentModel {
       merchant_order_id: Joi.string().allow("").required(),
       method: Joi.string().allow("").required(),
       order_id: Joi.string().allow("").required(),
+      payment_id: Joi.string().allow("").allow(null),
+      razorpay_payment_id: Joi.string().allow("").allow(null),
       status: Joi.string().allow("").required(),
       vpa: Joi.string().allow(""),
     });

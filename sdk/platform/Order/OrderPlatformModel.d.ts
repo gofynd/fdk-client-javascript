@@ -1,7 +1,6 @@
 export = OrderModel;
 declare class OrderModel {
     static ActionInfo(): any;
-    static AdvanceFilterInfo(): any;
     static Affiliate(): any;
     static AffiliateAppConfig(): any;
     static AffiliateAppConfigMeta(): any;

@@ -431,6 +431,8 @@ declare class Cart {
      * @param {Object} arg - Arg object.
      * @param {number} [arg.pickAtStoreUid] -
      * @param {number} [arg.orderingStoreId] -
+     * @param {boolean} [arg.i] - This is a boolean value. Select `true` to
+     *   retrieve all the items added in the cart.
      * @param {boolean} [arg.p] - This is a boolean value. Select `true` for
      *   getting a payment option in response.
      * @param {string} [arg.id] - The unique identifier of the cart
@@ -444,9 +446,10 @@ declare class Cart {
      * @summary: Get delivery date and options before checkout
      * @description: Use this API to get shipment details, expected delivery date, items and price breakup of the shipment.
      */
-    getShipments({ pickAtStoreUid, orderingStoreId, p, id, addressId, areaCode, orderType, }?: {
+    getShipments({ pickAtStoreUid, orderingStoreId, i, p, id, addressId, areaCode, orderType, }?: {
         pickAtStoreUid?: number;
         orderingStoreId?: number;
+        i?: boolean;
         p?: boolean;
         id?: string;
         addressId?: string;
@@ -690,6 +693,8 @@ declare class Cart {
      *   getting a payment option in response.
      * @param {string} [arg.id] - The unique identifier of the cart
      * @param {string} [arg.addressId] - ID allotted to an address
+     * @param {string} [arg.areaCode] - The PIN Code of the destination address,
+     *   e.g. 400059
      * @param {string} [arg.orderType] - The order type of shipment HomeDelivery
      *   - If the customer wants the order home-delivered PickAtStore - If the
      *   customer wants the handover of an order at the store itself.
@@ -698,11 +703,12 @@ declare class Cart {
      * @summary: Update shipment delivery type and quantity before checkout
      * @description: Use this API to update the delivery type and quantity as per customer's preference for either store pick-up or home-delivery.
      */
-    updateShipments({ body, i, p, id, addressId, orderType }?: {
+    updateShipments({ body, i, p, id, addressId, areaCode, orderType, }?: {
         i?: boolean;
         p?: boolean;
         id?: string;
         addressId?: string;
+        areaCode?: string;
         orderType?: string;
         body: UpdateCartShipmentRequest;
     }): Promise<CartShipmentsResponse>;

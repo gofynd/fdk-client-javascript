@@ -206,6 +206,7 @@ class CartValidator {
     return Joi.object({
       pickAtStoreUid: Joi.number(),
       orderingStoreId: Joi.number(),
+      i: Joi.boolean(),
       p: Joi.boolean(),
       id: Joi.string().allow(""),
       addressId: Joi.string().allow(""),
@@ -351,6 +352,7 @@ class CartValidator {
       p: Joi.boolean(),
       id: Joi.string().allow(""),
       addressId: Joi.string().allow(""),
+      areaCode: Joi.string().allow(""),
       orderType: Joi.string().allow(""),
       body: CartModel.UpdateCartShipmentRequest().required(),
     }).required();

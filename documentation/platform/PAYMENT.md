@@ -5382,6 +5382,7 @@ Bank details on correct Ifsc Code
  | device_id | string |  no  |  |
  | merchant_order_id | string |  yes  |  |
  | method | string |  yes  |  |
+ | payment_id | string |  no  |  |
  | polling_url | string |  yes  |  |
  | razorpay_payment_id | string |  no  |  |
  | status | string |  no  |  |
@@ -5478,6 +5479,8 @@ Bank details on correct Ifsc Code
  | merchant_order_id | string |  yes  |  |
  | method | string |  yes  |  |
  | order_id | string |  yes  |  |
+ | payment_id | string |  no  |  |
+ | razorpay_payment_id | string |  no  |  |
  | status | string |  yes  |  |
  | vpa | string |  no  |  |
  

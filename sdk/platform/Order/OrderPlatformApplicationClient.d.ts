@@ -56,7 +56,7 @@ declare class Order {
      * @summary: Track shipment
      * @description: Track Shipment by shipment id, for application based on application Id
      */
-    trackShipmentPlatform({ shipmentId }?: {
+    trackPlatformShipment({ shipmentId }?: {
         shipmentId: string;
     }): Promise<PlatformShipmentTrack>;
 }

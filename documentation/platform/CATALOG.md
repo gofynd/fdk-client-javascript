@@ -21439,7 +21439,7 @@ List of fields and validation values fro each. See example below or refer `Inven
  | net_quantity | [NetQuantity](#NetQuantity) |  no  |  |
  | no_of_boxes | number |  no  |  |
  | product_group_tag | [string] |  no  |  |
- | product_publish | [ProductPublish1](#ProductPublish1) |  no  |  |
+ | product_publish | [ProductPublish](#ProductPublish) |  no  |  |
  | requester | string |  no  |  |
  | return_config | [ReturnConfig](#ReturnConfig) |  yes  |  |
  | short_description | string |  no  |  |
@@ -21715,7 +21715,7 @@ List of fields and validation values fro each. See example below or refer `Inven
  | pending | string |  no  |  |
  | primary_color | string |  no  |  |
  | product_group_tag | [string] |  no  |  |
- | product_publish | [ProductPublish](#ProductPublish) |  no  |  |
+ | product_publish | [ProductPublish1](#ProductPublish1) |  no  |  |
  | return_config | [ReturnConfigResponse](#ReturnConfigResponse) |  no  |  |
  | short_description | string |  no  |  |
  | size_guide | string |  no  |  |

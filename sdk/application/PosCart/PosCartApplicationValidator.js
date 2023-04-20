@@ -216,6 +216,7 @@ class PosCartValidator {
       p: Joi.boolean(),
       id: Joi.string().allow(""),
       addressId: Joi.string().allow(""),
+      areaCode: Joi.string().allow(""),
       orderType: Joi.string().allow(""),
       body: PosCartModel.UpdateCartShipmentRequest().required(),
     }).required();

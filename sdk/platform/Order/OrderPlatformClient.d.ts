@@ -316,7 +316,7 @@ declare class Order {
      * @param {string} [arg.toDate] -
      * @param {string} [arg.dpIds] -
      * @param {string} [arg.stores] -
-     * @param {string} [arg.salesChannels] -
+     * @param {string} [arg.salesChannel] -
      * @param {number} [arg.pageNo] -
      * @param {number} [arg.pageSize] -
      * @param {boolean} [arg.isPrioritySort] -
@@ -325,7 +325,7 @@ declare class Order {
      * @summary:
      * @description:
      */
-    getOrders({ lane, searchType, bagStatus, timeToDispatch, paymentMethods, tags, searchValue, fromDate, toDate, dpIds, stores, salesChannels, pageNo, pageSize, isPrioritySort, customMeta, }?: {
+    getOrders({ lane, searchType, bagStatus, timeToDispatch, paymentMethods, tags, searchValue, fromDate, toDate, dpIds, stores, salesChannel, pageNo, pageSize, isPrioritySort, customMeta, }?: {
         lane?: string;
         searchType?: string;
         bagStatus?: string;
@@ -337,7 +337,7 @@ declare class Order {
         toDate?: string;
         dpIds?: string;
         stores?: string;
-        salesChannels?: string;
+        salesChannel?: string;
         pageNo?: number;
         pageSize?: number;
         isPrioritySort?: boolean;
@@ -420,7 +420,7 @@ declare class Order {
      * @param {string} [arg.dpIds] -
      * @param {string} [arg.orderingCompanyId] -
      * @param {string} [arg.stores] -
-     * @param {string} [arg.salesChannels] -
+     * @param {string} [arg.salesChannel] -
      * @param {string} [arg.requestByExt] -
      * @param {number} [arg.pageNo] -
      * @param {number} [arg.pageSize] -
@@ -437,7 +437,7 @@ declare class Order {
      * @summary:
      * @description:
      */
-    getShipments({ lane, bagStatus, statusOverrideLane, searchType, searchValue, searchId, fromDate, toDate, dpIds, orderingCompanyId, stores, salesChannels, requestByExt, pageNo, pageSize, isPrioritySort, fetchActiveShipment, excludeLockedShipments, paymentMethods, channelShipmentId, channelOrderId, customMeta, orderingChannel, companyAffiliateTag, }?: {
+    getShipments({ lane, bagStatus, statusOverrideLane, searchType, searchValue, searchId, fromDate, toDate, dpIds, orderingCompanyId, stores, salesChannel, requestByExt, pageNo, pageSize, isPrioritySort, fetchActiveShipment, excludeLockedShipments, paymentMethods, channelShipmentId, channelOrderId, customMeta, orderingChannel, companyAffiliateTag, }?: {
         lane?: string;
         bagStatus?: string;
         statusOverrideLane?: boolean;
@@ -449,7 +449,7 @@ declare class Order {
         dpIds?: string;
         orderingCompanyId?: string;
         stores?: string;
-        salesChannels?: string;
+        salesChannel?: string;
         requestByExt?: string;
         pageNo?: number;
         pageSize?: number;

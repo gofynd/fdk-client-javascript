@@ -680,7 +680,6 @@ class PlatformApplicationClient {
 /** @typedef UpdatePlatformPaymentConfig */
 
 /** @typedef ActionInfo */
-/** @typedef AdvanceFilterInfo */
 /** @typedef Affiliate */
 /** @typedef AffiliateAppConfig */
 /** @typedef AffiliateAppConfigMeta */

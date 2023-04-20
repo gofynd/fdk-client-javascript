@@ -215,8 +215,8 @@ class Order {
    * @summary: Track shipment
    * @description: Track Shipment by shipment id, for application based on application Id
    */
-  async trackShipmentPlatform({ shipmentId } = {}) {
-    const { error } = OrderValidator.trackShipmentPlatform().validate(
+  async trackPlatformShipment({ shipmentId } = {}) {
+    const { error } = OrderValidator.trackPlatformShipment().validate(
       {
         shipmentId,
       },
@@ -227,7 +227,7 @@ class Order {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = OrderValidator.trackShipmentPlatform().validate(
+    const { error: warrning } = OrderValidator.trackPlatformShipment().validate(
       {
         shipmentId,
       },
@@ -236,7 +236,7 @@ class Order {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for trackShipmentPlatform",
+        message: "Parameter Validation warrnings for trackPlatformShipment",
       });
       Logger({ level: "WARN", message: warrning });
     }
@@ -261,7 +261,7 @@ class Order {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for trackShipmentPlatform",
+        message: "Response Validation Warnnings for trackPlatformShipment",
       });
       Logger({ level: "WARN", message: res_error });
     }
