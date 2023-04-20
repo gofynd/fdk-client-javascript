@@ -1377,8 +1377,8 @@ Returns a success response
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | landscape | string |  yes  |  |
- | portrait | string |  yes  |  |
+ | landscape | string |  no  |  |
+ | portrait | string |  no  |  |
  
 
 ---
@@ -1555,7 +1555,7 @@ Returns a success response
  | ---------- | ---- | -------- | ----------- |
  | _custom_json | string |  no  |  |
  | _locale_language | string |  no  |  |
- | banner | [BrandBannerSerializer](#BrandBannerSerializer) |  yes  |  |
+ | banner | [BrandBannerSerializer](#BrandBannerSerializer) |  no  |  |
  | brand_tier | string |  no  |  |
  | company_id | number |  no  |  |
  | description | string |  no  |  |

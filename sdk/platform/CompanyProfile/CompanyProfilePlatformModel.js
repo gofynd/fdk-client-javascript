@@ -18,8 +18,8 @@ class CompanyProfileModel {
   }
   static BrandBannerSerializer() {
     return Joi.object({
-      landscape: Joi.string().allow("").required(),
-      portrait: Joi.string().allow("").required(),
+      landscape: Joi.string().allow(""),
+      portrait: Joi.string().allow(""),
     });
   }
   static BulkLocationSerializer() {
@@ -140,7 +140,7 @@ class CompanyProfileModel {
     return Joi.object({
       _custom_json: Joi.any(),
       _locale_language: Joi.any(),
-      banner: CompanyProfileModel.BrandBannerSerializer().required(),
+      banner: CompanyProfileModel.BrandBannerSerializer(),
       brand_tier: Joi.string().allow(""),
       company_id: Joi.number(),
       description: Joi.string().allow(""),

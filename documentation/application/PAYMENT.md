@@ -2928,7 +2928,10 @@ Success. Check the example shown below or refer `PaymentInitializationResponse` 
   "razorpay_payment_id": "pay_dummy_001",
   "payment_id": "pay_dummy_001",
   "customer_id": "cust_dummy_001",
-  "amount": 10000
+  "amount": 10000,
+  "contact": "9999999999",
+  "order_id": "FY000120000101",
+  "email": "abc@xyz.com"
 }
 ```
 </details>
@@ -4582,10 +4585,14 @@ Success. Sends the OTP to the given mobile number. Check the example shown below
  | aggregator_order_id | string |  no  |  |
  | amount | number |  no  |  |
  | bqr_image | string |  no  |  |
+ | contact | string |  no  |  |
  | currency | string |  no  |  |
  | customer_id | string |  no  |  |
+ | device_id | string |  no  |  |
+ | email | string |  no  |  |
  | merchant_order_id | string |  yes  |  |
  | method | string |  yes  |  |
+ | order_id | string |  no  |  |
  | payment_id | string |  no  |  |
  | polling_url | string |  yes  |  |
  | razorpay_payment_id | string |  no  |  |
@@ -4687,13 +4694,13 @@ Success. Sends the OTP to the given mobile number. Check the example shown below
  | ---------- | ---- | -------- | ----------- |
  | aggregator | string |  yes  |  |
  | amount | number |  yes  |  |
- | contact | string |  yes  |  |
- | currency | string |  yes  |  |
+ | contact | string |  no  |  |
+ | currency | string |  no  |  |
  | customer_id | string |  yes  |  |
- | email | string |  yes  |  |
+ | email | string |  no  |  |
  | merchant_order_id | string |  yes  |  |
  | method | string |  yes  |  |
- | order_id | string |  yes  |  |
+ | order_id | string |  no  |  |
  | payment_id | string |  no  |  |
  | razorpay_payment_id | string |  no  |  |
  | status | string |  yes  |  |
