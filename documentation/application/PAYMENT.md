@@ -2926,7 +2926,9 @@ Success. Check the example shown below or refer `PaymentInitializationResponse` 
   "timeout": 240,
   "virtual_id": null,
   "razorpay_payment_id": "pay_dummy_001",
-  "customer_id": "cust_dummy_001"
+  "payment_id": "pay_dummy_001",
+  "customer_id": "cust_dummy_001",
+  "amount": 10000
 }
 ```
 </details>
@@ -2993,7 +2995,8 @@ Success. Check the example shown below or refer `PaymentInitializationResponse` 
   "timeout": 240,
   "virtual_id": null,
   "razorpay_payment_id": "pay_dummy_001",
-  "customer_id": "cust_dummy_001"
+  "customer_id": "cust_dummy_001",
+  "amount": 100
 }
 ```
 </details>
@@ -4583,6 +4586,7 @@ Success. Sends the OTP to the given mobile number. Check the example shown below
  | customer_id | string |  no  |  |
  | merchant_order_id | string |  yes  |  |
  | method | string |  yes  |  |
+ | payment_id | string |  no  |  |
  | polling_url | string |  yes  |  |
  | razorpay_payment_id | string |  no  |  |
  | status | string |  no  |  |
@@ -4690,7 +4694,10 @@ Success. Sends the OTP to the given mobile number. Check the example shown below
  | merchant_order_id | string |  yes  |  |
  | method | string |  yes  |  |
  | order_id | string |  yes  |  |
+ | payment_id | string |  no  |  |
+ | razorpay_payment_id | string |  no  |  |
  | status | string |  yes  |  |
+ | success | boolean |  no  |  |
  | vpa | string |  yes  |  |
  
 
