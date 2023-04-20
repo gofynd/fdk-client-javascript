@@ -658,6 +658,8 @@ class OrderModel {
       size_info: Joi.any(),
 
       total_details: OrderModel.ShipmentTotalDetails(),
+
+      return_meta: OrderModel.ReturnMetaData(),
     });
   }
 
@@ -680,6 +682,18 @@ class OrderModel {
       mop: Joi.string().allow(""),
 
       status: Joi.string().allow(""),
+    });
+  }
+
+  static ReturnMetaData() {
+    return Joi.object({
+      images: Joi.array().items(OrderModel.ReturnMetaDataImages()),
+    });
+  }
+
+  static ReturnMetaDataImages() {
+    return Joi.object({
+      url: Joi.string().allow(""),
     });
   }
 

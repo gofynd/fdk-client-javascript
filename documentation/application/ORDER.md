@@ -1484,6 +1484,7 @@ Success, the code is valid and returns a SignedUrl
  | user_info | [ShipmentUserInfo](#ShipmentUserInfo) |  no  |  |
  | size_info | string |  no  |  |
  | total_details | [ShipmentTotalDetails](#ShipmentTotalDetails) |  no  |  |
+ | return_meta | [ReturnMetaData](#ReturnMetaData) |  no  |  |
 
 ---
 
@@ -1511,6 +1512,28 @@ Success, the code is valid and returns a SignedUrl
  | mode | string |  no  |  |
  | mop | string |  no  |  |
  | status | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ReturnMetaData](#ReturnMetaData)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | images | [[ReturnMetaDataImages](#ReturnMetaDataImages)] |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ReturnMetaDataImages](#ReturnMetaDataImages)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | url | string |  no  |  |
 
 ---
 

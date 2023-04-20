@@ -48,6 +48,8 @@ declare class OrderModel {
     static Shipments(): any;
     static ShipmentTotalDetails(): any;
     static ShipmentPayment(): any;
+    static ReturnMetaData(): any;
+    static ReturnMetaDataImages(): any;
     static Track(): any;
     static TrackingDetails(): any;
     static NestedTrackingDetails(): any;
