@@ -662,126 +662,240 @@ Success. Check example below or refer `UserRes` for more details.
 #### [AppUser](#AppUser)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || _id | string |  no  |  || active | boolean |  no  |  || application_id | string |  no  |  || block_reason | string |  no  |  || updated_at | string |  no  |  || updated_by | string |  no  |  || user_id | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | _id | string |  no  |  |
+ | active | boolean |  no  |  |
+ | application_id | string |  no  |  |
+ | block_reason | string |  no  |  |
+ | updated_at | string |  no  |  |
+ | updated_by | string |  no  |  |
+ | user_id | string |  no  |  |
+ 
 
 ---
 
 #### [Asset](#Asset)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || aspect_ratio | string |  no  |  || id | string |  no  |  || secure_url | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | aspect_ratio | string |  no  |  |
+ | id | string |  no  |  |
+ | secure_url | string |  no  |  |
+ 
 
 ---
 
 #### [E](#E)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || code | number |  no  |  || exception | string |  no  |  || info | string |  no  |  || message | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | code | number |  no  |  |
+ | exception | string |  no  |  |
+ | info | string |  no  |  |
+ | message | string |  no  |  |
+ 
 
 ---
 
 #### [Giveaway](#Giveaway)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || _id | string |  no  |  || _schedule | [Schedule](#Schedule) |  no  |  || active | boolean |  no  |  || application_id | string |  no  |  || audience | [RewardsAudience](#RewardsAudience) |  no  |  || banner_image | [Asset](#Asset) |  no  |  || created_at | string |  no  |  || description | string |  no  |  || name | string |  no  |  || rule | [RewardsRule](#RewardsRule) |  no  |  || title | string |  no  |  || updated_at | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | _id | string |  no  |  |
+ | _schedule | [Schedule](#Schedule) |  no  |  |
+ | active | boolean |  no  |  |
+ | application_id | string |  no  |  |
+ | audience | [RewardsAudience](#RewardsAudience) |  no  |  |
+ | banner_image | [Asset](#Asset) |  no  |  |
+ | created_at | string |  no  |  |
+ | description | string |  no  |  |
+ | name | string |  no  |  |
+ | rule | [RewardsRule](#RewardsRule) |  no  |  |
+ | title | string |  no  |  |
+ | updated_at | string |  no  |  |
+ 
 
 ---
 
 #### [GiveawayAudience](#GiveawayAudience)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || audience_id | string |  no  |  || current_count | number |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | audience_id | string |  no  |  |
+ | current_count | number |  no  |  |
+ 
 
 ---
 
 #### [GiveawayResponse](#GiveawayResponse)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || items | [[Giveaway](#Giveaway)] |  no  |  || page | [Page](#Page) |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | items | [[Giveaway](#Giveaway)] |  no  |  |
+ | page | [Page](#Page) |  no  |  |
+ 
 
 ---
 
 #### [HistoryRes](#HistoryRes)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || items | [[PointsHistory](#PointsHistory)] |  no  |  || page | [Page](#Page) |  no  |  || points | number |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | items | [[PointsHistory](#PointsHistory)] |  no  |  |
+ | page | [Page](#Page) |  no  |  |
+ | points | number |  no  |  |
+ 
 
 ---
 
 #### [Offer](#Offer)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || _schedule | [Schedule](#Schedule) |  no  |  || active | boolean |  no  |  || application_id | string |  no  |  || banner_image | [Asset](#Asset) |  no  |  || created_at | string |  no  |  || name | string |  no  |  || rule | string |  no  |  || share | [ShareMessages](#ShareMessages) |  no  |  || sub_text | string |  no  |  || text | string |  no  |  || type | string |  no  |  || updated_at | string |  no  |  || updated_by | string |  no  |  || url | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | _schedule | [Schedule](#Schedule) |  no  |  |
+ | active | boolean |  no  |  |
+ | application_id | string |  no  |  |
+ | banner_image | [Asset](#Asset) |  no  |  |
+ | created_at | string |  no  |  |
+ | name | string |  no  |  |
+ | rule | string |  no  |  |
+ | share | [ShareMessages](#ShareMessages) |  no  |  |
+ | sub_text | string |  no  |  |
+ | text | string |  no  |  |
+ | type | string |  no  |  |
+ | updated_at | string |  no  |  |
+ | updated_by | string |  no  |  |
+ | url | string |  no  |  |
+ 
 
 ---
 
 #### [Page](#Page)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || current | number |  no  |  || has_next | boolean |  no  |  || has_previous | boolean |  no  |  || item_total | number |  no  |  || next_id | string |  no  |  || size | number |  no  |  || type | string |  yes  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | current | number |  no  |  |
+ | has_next | boolean |  no  |  |
+ | has_previous | boolean |  no  |  |
+ | item_total | number |  no  |  |
+ | next_id | string |  no  |  |
+ | size | number |  no  |  |
+ | type | string |  yes  |  |
+ 
 
 ---
 
 #### [Points](#Points)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || available | number |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | available | number |  no  |  |
+ 
 
 ---
 
 #### [PointsHistory](#PointsHistory)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || _id | string |  no  |  || application_id | string |  no  |  || claimed | boolean |  no  |  || created_at | string |  no  |  || expires_on | string |  no  |  || meta | string |  no  |  || points | number |  no  |  || remaining_points | number |  no  |  || text_1 | string |  no  |  || text_2 | string |  no  |  || text_3 | string |  no  |  || txn_name | string |  no  |  || updated_at | string |  no  |  || user_id | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | _id | string |  no  |  |
+ | application_id | string |  no  |  |
+ | claimed | boolean |  no  |  |
+ | created_at | string |  no  |  |
+ | expires_on | string |  no  |  |
+ | meta | string |  no  |  |
+ | points | number |  no  |  |
+ | remaining_points | number |  no  |  |
+ | text_1 | string |  no  |  |
+ | text_2 | string |  no  |  |
+ | text_3 | string |  no  |  |
+ | txn_name | string |  no  |  |
+ | updated_at | string |  no  |  |
+ | user_id | string |  no  |  |
+ 
 
 ---
 
 #### [Referral](#Referral)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || code | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | code | string |  no  |  |
+ 
 
 ---
 
 #### [RewardsAudience](#RewardsAudience)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || header_user_id | string |  no  |  || id | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | header_user_id | string |  no  |  |
+ | id | string |  no  |  |
+ 
 
 ---
 
 #### [RewardsRule](#RewardsRule)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || amount | number |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | amount | number |  no  |  |
+ 
 
 ---
 
 #### [RewardUser](#RewardUser)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || _id | string |  no  |  || active | boolean |  no  |  || created_at | string |  no  |  || referral | [Referral](#Referral) |  no  |  || uid | number |  no  |  || updated_at | string |  no  |  || user_block_reason | string |  no  |  || user_id | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | _id | string |  no  |  |
+ | active | boolean |  no  |  |
+ | created_at | string |  no  |  |
+ | referral | [Referral](#Referral) |  no  |  |
+ | uid | number |  no  |  |
+ | updated_at | string |  no  |  |
+ | user_block_reason | string |  no  |  |
+ | user_id | string |  no  |  |
+ 
 
 ---
 
 #### [Schedule](#Schedule)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || cron | string |  no  |  || duration | number |  no  |  || end | string |  no  |  || start | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | cron | string |  no  |  |
+ | duration | number |  no  |  |
+ | end | string |  no  |  |
+ | start | string |  no  |  |
+ 
 
 ---
 
 #### [ShareMessages](#ShareMessages)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || email | number |  no  |  || facebook | string |  no  |  || fallback | string |  no  |  || message | string |  no  |  || messenger | string |  no  |  || sms | string |  no  |  || text | string |  no  |  || twitter | string |  no  |  || whatsapp | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | email | number |  no  |  |
+ | facebook | string |  no  |  |
+ | fallback | string |  no  |  |
+ | message | string |  no  |  |
+ | messenger | string |  no  |  |
+ | sms | string |  no  |  |
+ | text | string |  no  |  |
+ | twitter | string |  no  |  |
+ | whatsapp | string |  no  |  |
+ 
 
 ---
 
 #### [UserRes](#UserRes)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || points | [Points](#Points) |  no  |  || user | [RewardUser](#RewardUser) |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | points | [Points](#Points) |  no  |  |
+ | user | [RewardUser](#RewardUser) |  no  |  |
+ 
 
 ---
 

@@ -45,7 +45,5 @@ module.exports = {
     WebhookPlatformModel: require("./Webhook/WebhookPlatformModel"),
 
     AuditTrailPlatformModel: require("./AuditTrail/AuditTrailPlatformModel"),
-
-    DocumentEnginePlatformModel: require("./DocumentEngine/DocumentEnginePlatformModel"),
   },
 };

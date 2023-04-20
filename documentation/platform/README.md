@@ -25,4 +25,3 @@
 * [Partner](PARTNER.md) - Partner configuration apis 
 * [Webhook](WEBHOOK.md) - Webhook dispatcher with retry and one event to many subscriber vice versa 
 * [AuditTrail](AUDITTRAIL.md) - Audit Logging Service that logs the crucial updates on the Platform 
-* [DocumentEngine](DOCUMENTENGINE.md) - Handles financial pdf generation of Fulfilment 

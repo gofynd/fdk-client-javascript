@@ -14,6 +14,7 @@ declare class Order {
         sendOtpToShipmentCustomer: string;
         trackShipment: string;
         updateShipmentStatus: string;
+        updateShipmentStatus1: string;
         verifyOtpShipmentCustomer: string;
     };
     _urls: {};
@@ -167,6 +168,18 @@ declare class Order {
      * @description: Use this API to update the status of a shipment using its shipment ID.
      */
     updateShipmentStatus({ shipmentId, body }?: {
+        shipmentId: string;
+        body: UpdateShipmentStatusRequest;
+    }): Promise<ShipmentApplicationStatusResponse>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {string} arg.shipmentId -
+     * @param {UpdateShipmentStatusRequest} arg.body
+     * @returns {Promise<ShipmentApplicationStatusResponse>} - Success response
+     * @summary:
+     * @description: updateShipmentStatus
+     */
+    updateShipmentStatus1({ shipmentId, body }?: {
         shipmentId: string;
         body: UpdateShipmentStatusRequest;
     }): Promise<ShipmentApplicationStatusResponse>;

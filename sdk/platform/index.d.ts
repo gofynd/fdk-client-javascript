@@ -23,5 +23,4 @@ export namespace PlatformModel {
     const PartnerPlatformModel: typeof import("./Partner/PartnerPlatformModel");
     const WebhookPlatformModel: typeof import("./Webhook/WebhookPlatformModel");
     const AuditTrailPlatformModel: typeof import("./AuditTrail/AuditTrailPlatformModel");
-    const DocumentEnginePlatformModel: typeof import("./DocumentEngine/DocumentEnginePlatformModel");
 }

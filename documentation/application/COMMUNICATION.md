@@ -301,70 +301,123 @@ Success. Updates the channels for which user has consented. Check the example sh
 #### [CommunicationConsent](#CommunicationConsent)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || app_id | string |  no  |  || channels | [CommunicationConsentChannels](#CommunicationConsentChannels) |  no  |  || user_id | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | app_id | string |  no  |  |
+ | channels | [CommunicationConsentChannels](#CommunicationConsentChannels) |  no  |  |
+ | user_id | string |  no  |  |
+ 
 
 ---
 
 #### [CommunicationConsentChannels](#CommunicationConsentChannels)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || email | [CommunicationConsentChannelsEmail](#CommunicationConsentChannelsEmail) |  no  |  || sms | [CommunicationConsentChannelsSms](#CommunicationConsentChannelsSms) |  no  |  || whatsapp | [CommunicationConsentChannelsWhatsapp](#CommunicationConsentChannelsWhatsapp) |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | email | [CommunicationConsentChannelsEmail](#CommunicationConsentChannelsEmail) |  no  |  |
+ | sms | [CommunicationConsentChannelsSms](#CommunicationConsentChannelsSms) |  no  |  |
+ | whatsapp | [CommunicationConsentChannelsWhatsapp](#CommunicationConsentChannelsWhatsapp) |  no  |  |
+ 
 
 ---
 
 #### [CommunicationConsentChannelsEmail](#CommunicationConsentChannelsEmail)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || display_name | string |  no  |  || response | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | display_name | string |  no  |  |
+ | response | string |  no  |  |
+ 
 
 ---
 
 #### [CommunicationConsentChannelsSms](#CommunicationConsentChannelsSms)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || display_name | string |  no  |  || response | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | display_name | string |  no  |  |
+ | response | string |  no  |  |
+ 
 
 ---
 
 #### [CommunicationConsentChannelsWhatsapp](#CommunicationConsentChannelsWhatsapp)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || country_code | string |  no  |  || display_name | string |  no  |  || phone_number | string |  no  |  || response | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | country_code | string |  no  |  |
+ | display_name | string |  no  |  |
+ | phone_number | string |  no  |  |
+ | response | string |  no  |  |
+ 
 
 ---
 
 #### [CommunicationConsentReq](#CommunicationConsentReq)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || action | string |  no  |  || channel | string |  no  |  || response | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | action | string |  no  |  |
+ | channel | string |  no  |  |
+ | response | string |  no  |  |
+ 
 
 ---
 
 #### [CommunicationConsentRes](#CommunicationConsentRes)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || app_id | string |  no  |  || channels | [CommunicationConsentChannels](#CommunicationConsentChannels) |  no  |  || user_id | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | app_id | string |  no  |  |
+ | channels | [CommunicationConsentChannels](#CommunicationConsentChannels) |  no  |  |
+ | user_id | string |  no  |  |
+ 
 
 ---
 
 #### [Page](#Page)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || current | number |  no  |  || has_next | boolean |  no  |  || has_previous | boolean |  no  |  || item_total | number |  no  |  || next_id | string |  no  |  || size | number |  no  |  || type | string |  yes  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | current | number |  no  |  |
+ | has_next | boolean |  no  |  |
+ | has_previous | boolean |  no  |  |
+ | item_total | number |  no  |  |
+ | next_id | string |  no  |  |
+ | size | number |  no  |  |
+ | type | string |  yes  |  |
+ 
 
 ---
 
 #### [PushtokenReq](#PushtokenReq)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || action | string |  no  |  || bundle_identifier | string |  no  |  || push_token | string |  no  |  || type | string |  no  |  || unique_device_id | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | action | string |  no  |  |
+ | bundle_identifier | string |  no  |  |
+ | push_token | string |  no  |  |
+ | type | string |  no  |  |
+ | unique_device_id | string |  no  |  |
+ 
 
 ---
 
 #### [PushtokenRes](#PushtokenRes)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || _id | string |  no  |  || application_id | string |  no  |  || bundle_identifier | string |  no  |  || created_at | string |  no  |  || expired_at | string |  no  |  || platform | string |  no  |  || push_token | string |  no  |  || type | string |  no  |  || unique_device_id | string |  no  |  || updated_at | string |  no  |  || user_id | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | _id | string |  no  |  |
+ | application_id | string |  no  |  |
+ | bundle_identifier | string |  no  |  |
+ | created_at | string |  no  |  |
+ | expired_at | string |  no  |  |
+ | platform | string |  no  |  |
+ | push_token | string |  no  |  |
+ | type | string |  no  |  |
+ | unique_device_id | string |  no  |  |
+ | updated_at | string |  no  |  |
+ | user_id | string |  no  |  |
+ 
 
 ---
 

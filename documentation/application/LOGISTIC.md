@@ -79,10 +79,7 @@ Get pincode data
         "display_name": "421202",
         "meta": {
           "zone": "West",
-          "internal_zone_id": 4,
-          "deliverables": [
-            "essential"
-          ]
+          "internal_zone_id": 4
         },
         "parents": [
           {
@@ -103,7 +100,14 @@ Get pincode data
             "display_name": "Thane",
             "uid": "city:INDIA|MAHARASHTRA|MUMBAI"
           }
-        ]
+        ],
+        "lat_long": {
+          "type": "Point",
+          "coordinates": [
+            3.8858955,
+            7.2272335
+          ]
+        }
       }
     ],
     "request_uuid": "fce9f431215e71c9ee0e86e792ae1dce4",
@@ -386,126 +390,224 @@ Get TAT  data
 #### [GetZoneFromPincodeViewRequest](#GetZoneFromPincodeViewRequest)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || country | string |  yes  |  || pincode | string |  yes  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | country | string |  yes  |  |
+ | pincode | string |  yes  |  |
+ 
 
 ---
 
 #### [GetZoneFromPincodeViewResponse](#GetZoneFromPincodeViewResponse)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || serviceability_type | string |  yes  |  || zones | [string] |  yes  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | serviceability_type | string |  yes  |  |
+ | zones | [string] |  yes  |  |
+ 
 
 ---
 
 #### [PincodeApiResponse](#PincodeApiResponse)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || data | [[PincodeDataResponse](#PincodeDataResponse)] |  no  |  || error | [PincodeErrorSchemaResponse](#PincodeErrorSchemaResponse) |  yes  |  || request_uuid | string |  no  |  || stormbreaker_uuid | string |  no  |  || success | boolean |  yes  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | data | [[PincodeDataResponse](#PincodeDataResponse)] |  no  |  |
+ | error | [PincodeErrorSchemaResponse](#PincodeErrorSchemaResponse) |  yes  |  |
+ | success | boolean |  yes  |  |
+ 
 
 ---
 
 #### [PincodeDataResponse](#PincodeDataResponse)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || display_name | string |  no  |  || error | [PincodeErrorSchemaResponse](#PincodeErrorSchemaResponse) |  yes  |  || meta | [PincodeMetaResponse](#PincodeMetaResponse) |  no  |  || name | string |  no  |  || parents | [[PincodeParentsResponse](#PincodeParentsResponse)] |  no  |  || sub_type | string |  no  |  || uid | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | display_name | string |  no  |  |
+ | error | [PincodeErrorSchemaResponse](#PincodeErrorSchemaResponse) |  yes  |  |
+ | lat_long | [PincodeLatLongData](#PincodeLatLongData) |  no  |  |
+ | meta | [PincodeMetaResponse](#PincodeMetaResponse) |  no  |  |
+ | name | string |  no  |  |
+ | parents | [[PincodeParentsResponse](#PincodeParentsResponse)] |  no  |  |
+ | sub_type | string |  no  |  |
+ | uid | string |  no  |  |
+ 
 
 ---
 
 #### [PincodeErrorSchemaResponse](#PincodeErrorSchemaResponse)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || message | string |  no  |  || type | string |  no  |  || value | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | message | string |  no  |  |
+ | type | string |  no  |  |
+ | value | string |  no  |  |
+ 
+
+---
+
+#### [PincodeLatLongData](#PincodeLatLongData)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | coordinates | [string] |  no  |  |
+ | type | string |  no  |  |
+ 
 
 ---
 
 #### [PincodeMetaResponse](#PincodeMetaResponse)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || deliverables | [string] |  no  |  || internal_zone_id | number |  no  |  || zone | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | internal_zone_id | number |  no  |  |
+ | zone | string |  no  |  |
+ 
 
 ---
 
 #### [PincodeParentsResponse](#PincodeParentsResponse)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || display_name | string |  no  |  || name | string |  no  |  || sub_type | string |  no  |  || uid | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | display_name | string |  no  |  |
+ | name | string |  no  |  |
+ | sub_type | string |  no  |  |
+ | uid | string |  no  |  |
+ 
 
 ---
 
 #### [TATArticlesRequest](#TATArticlesRequest)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || category | [TATCategoryRequest](#TATCategoryRequest) |  no  |  || manufacturing_time | number |  no  |  || manufacturing_time_unit | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | category | [TATCategoryRequest](#TATCategoryRequest) |  no  |  |
+ | manufacturing_time | number |  no  |  |
+ | manufacturing_time_unit | string |  no  |  |
+ 
 
 ---
 
 #### [TATArticlesResponse](#TATArticlesResponse)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || _manufacturing_time_seconds | number |  no  |  || category | [TATCategoryRequest](#TATCategoryRequest) |  no  |  || error | [TATErrorSchemaResponse](#TATErrorSchemaResponse) |  no  |  || is_cod_available | boolean |  no  |  || manufacturing_time | number |  no  |  || manufacturing_time_unit | string |  no  |  || promise | [TATPromiseResponse](#TATPromiseResponse) |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | _manufacturing_time_seconds | number |  no  |  |
+ | category | [TATCategoryRequest](#TATCategoryRequest) |  no  |  |
+ | error | [TATErrorSchemaResponse](#TATErrorSchemaResponse) |  no  |  |
+ | is_cod_available | boolean |  no  |  |
+ | manufacturing_time | number |  no  |  |
+ | manufacturing_time_unit | string |  no  |  |
+ | promise | [TATPromiseResponse](#TATPromiseResponse) |  no  |  |
+ 
 
 ---
 
 #### [TATCategoryRequest](#TATCategoryRequest)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || id | number |  no  |  || level | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | id | number |  no  |  |
+ | level | string |  no  |  |
+ 
 
 ---
 
 #### [TATErrorSchemaResponse](#TATErrorSchemaResponse)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || message | string |  no  |  || type | string |  no  |  || value | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | message | string |  no  |  |
+ | type | string |  no  |  |
+ | value | string |  no  |  |
+ 
 
 ---
 
 #### [TATFormattedResponse](#TATFormattedResponse)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || max | string |  no  |  || min | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | max | string |  no  |  |
+ | min | string |  no  |  |
+ 
 
 ---
 
 #### [TATLocationDetailsRequest](#TATLocationDetailsRequest)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || articles | [[TATArticlesRequest](#TATArticlesRequest)] |  no  |  || from_pincode | string |  no  |  || fulfillment_id | number |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | articles | [[TATArticlesRequest](#TATArticlesRequest)] |  no  |  |
+ | from_pincode | string |  no  |  |
+ | fulfillment_id | number |  no  |  |
+ 
 
 ---
 
 #### [TATLocationDetailsResponse](#TATLocationDetailsResponse)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || articles | [[TATArticlesResponse](#TATArticlesResponse)] |  no  |  || from_pincode | string |  no  |  || fulfillment_id | number |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | articles | [[TATArticlesResponse](#TATArticlesResponse)] |  no  |  |
+ | from_pincode | string |  no  |  |
+ | fulfillment_id | number |  no  |  |
+ 
 
 ---
 
 #### [TATPromiseResponse](#TATPromiseResponse)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || formatted | [TATFormattedResponse](#TATFormattedResponse) |  no  |  || timestamp | [TATTimestampResponse](#TATTimestampResponse) |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | formatted | [TATFormattedResponse](#TATFormattedResponse) |  no  |  |
+ | timestamp | [TATTimestampResponse](#TATTimestampResponse) |  no  |  |
+ 
 
 ---
 
 #### [TATTimestampResponse](#TATTimestampResponse)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || max | number |  no  |  || min | number |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | max | number |  no  |  |
+ | min | number |  no  |  |
+ 
 
 ---
 
 #### [TATViewRequest](#TATViewRequest)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || action | string |  no  |  || identifier | string |  no  |  || journey | string |  no  |  || location_details | [[TATLocationDetailsRequest](#TATLocationDetailsRequest)] |  no  |  || source | string |  no  |  || to_pincode | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | action | string |  no  |  |
+ | identifier | string |  no  |  |
+ | journey | string |  no  |  |
+ | location_details | [[TATLocationDetailsRequest](#TATLocationDetailsRequest)] |  no  |  |
+ | source | string |  no  |  |
+ | to_pincode | string |  no  |  |
+ 
 
 ---
 
 #### [TATViewResponse](#TATViewResponse)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || action | string |  no  |  || error | [TATErrorSchemaResponse](#TATErrorSchemaResponse) |  no  |  || identifier | string |  no  |  || is_cod_available | boolean |  no  |  || journey | string |  no  |  || location_details | [[TATLocationDetailsResponse](#TATLocationDetailsResponse)] |  no  |  || payment_mode | string |  no  |  || request_uuid | string |  no  |  || source | string |  no  |  || stormbreaker_uuid | string |  no  |  || success | boolean |  no  |  || to_city | string |  no  |  || to_pincode | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | action | string |  no  |  |
+ | error | [TATErrorSchemaResponse](#TATErrorSchemaResponse) |  no  |  |
+ | identifier | string |  no  |  |
+ | is_cod_available | boolean |  no  |  |
+ | journey | string |  no  |  |
+ | location_details | [[TATLocationDetailsResponse](#TATLocationDetailsResponse)] |  no  |  |
+ | payment_mode | string |  no  |  |
+ | request_uuid | string |  no  |  |
+ | source | string |  no  |  |
+ | stormbreaker_uuid | string |  no  |  |
+ | success | boolean |  no  |  |
+ | to_city | string |  no  |  |
+ | to_pincode | string |  no  |  |
+ 
 
 ---
 

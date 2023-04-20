@@ -28,8 +28,6 @@ const Webhook = require("./Webhook/WebhookPlatformClient");
 
 const AuditTrail = require("./AuditTrail/AuditTrailPlatformClient");
 
-const DocumentEngine = require("./DocumentEngine/DocumentEnginePlatformClient");
-
 const PlatformApplicationClient = require("./PlatformApplicationClient");
 const { FDKClientValidationError } = require("../common/FDKError");
 
@@ -66,8 +64,6 @@ class PlatformClient {
     this.webhook = new Webhook(config);
 
     this.auditTrail = new AuditTrail(config);
-
-    this.documentEngine = new DocumentEngine(config);
   }
   application(applicationId) {
     if (typeof applicationId == "string") {
@@ -6703,15 +6699,15 @@ class PlatformClient {
  * @property {GetAddressSerializer[]} [addresses]
  * @property {string} [business_type]
  * @property {string} [company_type]
- * @property {UserSerializer1} [created_by]
+ * @property {UserSerializer2} [created_by]
  * @property {string} [created_on]
- * @property {UserSerializer1} [modified_by]
+ * @property {UserSerializer2} [modified_by]
  * @property {string} [modified_on]
  * @property {string} [name]
  * @property {string} [reject_reason]
  * @property {string} [stage]
  * @property {number} [uid]
- * @property {UserSerializer1} [verified_by]
+ * @property {UserSerializer2} [verified_by]
  * @property {string} [verified_on]
  */
 /**
@@ -6788,14 +6784,14 @@ class PlatformClient {
  * @property {string} code
  * @property {GetCompanySerializer} [company]
  * @property {SellerPhoneNumber[]} [contact_numbers]
- * @property {UserSerializer2} [created_by]
+ * @property {UserSerializer1} [created_by]
  * @property {string} [created_on]
  * @property {string} display_name
  * @property {Document[]} [documents]
  * @property {InvoiceDetailsSerializer} [gst_credentials]
  * @property {LocationIntegrationType} [integration_type]
  * @property {LocationManagerSerializer} [manager]
- * @property {UserSerializer2} [modified_by]
+ * @property {UserSerializer1} [modified_by]
  * @property {string} [modified_on]
  * @property {string} name
  * @property {string[]} [notification_emails]
@@ -6805,7 +6801,7 @@ class PlatformClient {
  * @property {string} [store_type]
  * @property {LocationDayWiseSerializer[]} [timing]
  * @property {number} [uid]
- * @property {UserSerializer2} [verified_by]
+ * @property {UserSerializer1} [verified_by]
  * @property {string} [verified_on]
  * @property {Object} [warnings]
  */
@@ -12338,284 +12334,6 @@ class PlatformClient {
 /**
  * @typedef ResourceNotFound
  * @property {string} [message]
- */
-
-/**
- * @typedef BadRequestResponseGenerateBulk
- * @property {BadRequestResponseGenerateBulkItem[]} error_message
- * @property {boolean} success
- */
-/**
- * @typedef BadRequestResponseGenerateBulkItem
- * @property {string} [data_path]
- * @property {string} [keyword]
- * @property {string} [message]
- * @property {BadRequestResponseGenerateBulkItemParameters} [parameters]
- * @property {string} [schema_path]
- */
-/**
- * @typedef BadRequestResponseGenerateBulkItemParameters
- * @property {string} [missing_property]
- * @property {string} [type]
- */
-/**
- * @typedef BadRequestResponseGenerateBulkUrl
- * @property {string} [exception]
- * @property {string} message
- * @property {Object} [meta]
- * @property {string} [request_id]
- * @property {string} [stack_trace]
- * @property {boolean} success
- */
-/**
- * @typedef BoxDetails
- * @property {string} box_id
- * @property {string} dimension
- * @property {string} package_count
- * @property {string} total_quantity
- * @property {string} weight
- */
-/**
- * @typedef BulkListBadRequestResponse
- * @property {string} [error]
- * @property {boolean} [success]
- */
-/**
- * @typedef BulkListFailedResponse
- * @property {string} [error]
- * @property {boolean} [success]
- */
-/**
- * @typedef BulkPresignedSuccessResponse
- * @property {string} [batch_id]
- * @property {number} [expires_in]
- * @property {string} [presigned_type]
- * @property {string} presigned_url
- * @property {string} success
- */
-/**
- * @typedef DocumentType
- * @property {string} invoice
- * @property {string} label
- */
-/**
- * @typedef GenerateBulkBoxLabel
- * @property {BoxDetails[]} box_details
- * @property {string} label_type
- * @property {string} seller_name
- * @property {string} stock_transfer_id
- * @property {number} template_id
- * @property {string} uid
- */
-/**
- * @typedef GenerateBulkInvoiceLabelShipment
- * @property {string} document_type
- * @property {string} from_date
- * @property {string[]} [shipment_ids]
- * @property {number} store_id
- * @property {string} to_date
- */
-/**
- * @typedef GenerateBulkInvoiceOrLabelUrl
- * @property {number} batch_id
- * @property {string} document_type
- * @property {string} uid
- */
-/**
- * @typedef GenerateBulkPackageLabel
- * @property {PackageItemDetails[]} item_details
- * @property {string} label_type
- * @property {string} seller_name
- * @property {string} stock_transfer_id
- * @property {number} template_id
- * @property {string} uid
- */
-/**
- * @typedef GenerateBulkShipment
- * @property {string} batch_id
- * @property {string} document_type
- * @property {string} store_code
- * @property {string} uid
- */
-/**
- * @typedef GenerateBulkShipmentLabel
- * @property {string} label_type
- * @property {ShipmentDetails[]} shipments
- * @property {number} template_id
- * @property {string} uid
- */
-/**
- * @typedef GenerateBulkUrl
- * @property {string} batch_id
- * @property {string} document_type
- * @property {number} [expires_in]
- */
-/**
- * @typedef GenerateBulkUrlSuccessResponse
- * @property {number} expires_in
- * @property {string} presigned_type
- * @property {string} uid
- * @property {string} url
- */
-/**
- * @typedef GenerateManifest
- * @property {string} from_date
- * @property {string[]} [shipment_ids]
- * @property {number} store_id
- * @property {string} to_date
- */
-/**
- * @typedef GenerateManifestUrlSuccessResponse
- * @property {number} expires_in
- * @property {string} manifest_id
- * @property {string} presigned_type
- * @property {string} uid
- * @property {string} url
- */
-/**
- * @typedef GenerateNoc
- * @property {SellerAddress} fc_address
- * @property {string} fc_gstin
- * @property {SellerAddress} seller_address
- * @property {string} seller_gstin
- * @property {string} seller_name
- * @property {number} template_id
- * @property {string} uid
- */
-/**
- * @typedef GeneratePresignedManifestUrl
- * @property {string} manifest_id
- * @property {string} uid
- */
-/**
- * @typedef GetBulkStatusRequest
- * @property {string} batch_id
- */
-/**
- * @typedef InternalErrorResponseGenerateBulk
- * @property {string} [error_message]
- * @property {boolean} success
- */
-/**
- * @typedef InternalErrorResponseGenerateBulkShipment
- * @property {string} error
- * @property {boolean} success
- */
-/**
- * @typedef InternalErrorResponseGenerateBulkUrl
- * @property {string} message
- * @property {boolean} success
- */
-/**
- * @typedef InvoiceLabelPresignedRequestBody
- * @property {string} document_type
- * @property {string} entity_id
- * @property {number} [expires_in]
- */
-/**
- * @typedef ManifestLink
- * @property {string} manifest_id
- * @property {string} name
- */
-/**
- * @typedef ManifestListFailedResponse
- * @property {string} [error]
- * @property {boolean} [success]
- */
-/**
- * @typedef PackageDetails
- * @property {string} dimension
- * @property {string} item_quantity
- * @property {string} package_id
- * @property {string} package_type
- * @property {string} packaging_type
- * @property {string} weight
- */
-/**
- * @typedef PackageItemDetails
- * @property {string} best_before_date
- * @property {string} country_of_origin
- * @property {string} ean
- * @property {string} item_name
- * @property {string} jio_code
- * @property {string} mrp
- * @property {PackageDetails[]} package_details
- */
-/**
- * @typedef SellerAddress
- * @property {string} address
- * @property {string} city
- * @property {string} country
- * @property {string} pincode
- * @property {string} state
- */
-/**
- * @typedef ShipmentDetails
- * @property {string} appointment_no
- * @property {string} gstin_number
- * @property {string} item_qty
- * @property {string} no_of_boxes
- * @property {SellerAddress} seller_address
- * @property {string} seller_name
- * @property {string} shipment_no
- * @property {ShippingToAddress} shipping_address
- * @property {string} shipping_to
- * @property {string} total_sku
- */
-/**
- * @typedef ShippingToAddress
- * @property {string} address
- * @property {string} city
- * @property {string} country
- * @property {string} pincode
- * @property {string} state
- */
-/**
- * @typedef SignedBadRequestResponse
- * @property {string} [error_message]
- * @property {boolean} [success]
- */
-/**
- * @typedef SignedFailedResponse
- * @property {string} [error_message]
- * @property {boolean} [success]
- */
-/**
- * @typedef SignedSuccessResponse
- * @property {number} [expires_in]
- * @property {string} [uid]
- * @property {string} [url]
- */
-/**
- * @typedef StatusBadRequestResponse
- * @property {string} [error_message]
- * @property {boolean} [success]
- */
-/**
- * @typedef StatusFailedResponse
- * @property {string} [error_message]
- * @property {boolean} [success]
- */
-/**
- * @typedef StatusSuccessResponse
- * @property {string} [status]
- * @property {boolean} [success]
- */
-/**
- * @typedef SuccessResponseBulkStatus
- * @property {string} status
- * @property {boolean} success
- * @property {string} [trace_id]
- */
-/**
- * @typedef SuccessResponseGenerateBulk
- * @property {boolean} success
- */
-/**
- * @typedef SuccessResponseGenerateBulkShipment
- * @property {number} job_id
- * @property {boolean} success
- * @property {string} [trace_id]
  */
 
 module.exports = PlatformClient;

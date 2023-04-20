@@ -17,8 +17,6 @@ class LogisticModel {
     return Joi.object({
       data: Joi.array().items(LogisticModel.PincodeDataResponse()),
       error: LogisticModel.PincodeErrorSchemaResponse().required(),
-      request_uuid: Joi.string().allow(""),
-      stormbreaker_uuid: Joi.string().allow(""),
       success: Joi.boolean().required(),
     });
   }
@@ -26,6 +24,7 @@ class LogisticModel {
     return Joi.object({
       display_name: Joi.string().allow(""),
       error: LogisticModel.PincodeErrorSchemaResponse().required(),
+      lat_long: LogisticModel.PincodeLatLongData(),
       meta: LogisticModel.PincodeMetaResponse(),
       name: Joi.string().allow(""),
       parents: Joi.array().items(LogisticModel.PincodeParentsResponse()),
@@ -40,9 +39,14 @@ class LogisticModel {
       value: Joi.string().allow("").allow(null),
     });
   }
+  static PincodeLatLongData() {
+    return Joi.object({
+      coordinates: Joi.array().items(Joi.string().allow("")),
+      type: Joi.string().allow(""),
+    });
+  }
   static PincodeMetaResponse() {
     return Joi.object({
-      deliverables: Joi.array().items(Joi.string().allow("")),
       internal_zone_id: Joi.number(),
       zone: Joi.string().allow(""),
     });

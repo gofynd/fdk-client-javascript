@@ -1635,47 +1635,4 @@ class PlatformApplicationClient {
 /** @typedef RequestBodyAuditLog */
 /** @typedef ResourceNotFound */
 
-/** @typedef BadRequestResponseGenerateBulk */
-/** @typedef BadRequestResponseGenerateBulkItem */
-/** @typedef BadRequestResponseGenerateBulkItemParameters */
-/** @typedef BadRequestResponseGenerateBulkUrl */
-/** @typedef BoxDetails */
-/** @typedef BulkListBadRequestResponse */
-/** @typedef BulkListFailedResponse */
-/** @typedef BulkPresignedSuccessResponse */
-/** @typedef DocumentType */
-/** @typedef GenerateBulkBoxLabel */
-/** @typedef GenerateBulkInvoiceLabelShipment */
-/** @typedef GenerateBulkInvoiceOrLabelUrl */
-/** @typedef GenerateBulkPackageLabel */
-/** @typedef GenerateBulkShipment */
-/** @typedef GenerateBulkShipmentLabel */
-/** @typedef GenerateBulkUrl */
-/** @typedef GenerateBulkUrlSuccessResponse */
-/** @typedef GenerateManifest */
-/** @typedef GenerateManifestUrlSuccessResponse */
-/** @typedef GenerateNoc */
-/** @typedef GeneratePresignedManifestUrl */
-/** @typedef GetBulkStatusRequest */
-/** @typedef InternalErrorResponseGenerateBulk */
-/** @typedef InternalErrorResponseGenerateBulkShipment */
-/** @typedef InternalErrorResponseGenerateBulkUrl */
-/** @typedef InvoiceLabelPresignedRequestBody */
-/** @typedef ManifestLink */
-/** @typedef ManifestListFailedResponse */
-/** @typedef PackageDetails */
-/** @typedef PackageItemDetails */
-/** @typedef SellerAddress */
-/** @typedef ShipmentDetails */
-/** @typedef ShippingToAddress */
-/** @typedef SignedBadRequestResponse */
-/** @typedef SignedFailedResponse */
-/** @typedef SignedSuccessResponse */
-/** @typedef StatusBadRequestResponse */
-/** @typedef StatusFailedResponse */
-/** @typedef StatusSuccessResponse */
-/** @typedef SuccessResponseBulkStatus */
-/** @typedef SuccessResponseGenerateBulk */
-/** @typedef SuccessResponseGenerateBulkShipment */
-
 module.exports = PlatformApplicationClient;

@@ -5,6 +5,7 @@ declare class LogisticModel {
     static PincodeApiResponse(): any;
     static PincodeDataResponse(): any;
     static PincodeErrorSchemaResponse(): any;
+    static PincodeLatLongData(): any;
     static PincodeMetaResponse(): any;
     static PincodeParentsResponse(): any;
     static TATArticlesRequest(): any;
