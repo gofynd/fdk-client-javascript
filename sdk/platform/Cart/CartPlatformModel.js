@@ -63,7 +63,6 @@ class CartModel {
   static AddCartRequest() {
     return Joi.object({
       items: Joi.array().items(CartModel.AddProductCart()),
-      meta: Joi.any(),
     });
   }
   static AddProductCart() {

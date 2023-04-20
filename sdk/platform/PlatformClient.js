@@ -10834,7 +10834,6 @@ class PlatformClient {
 /**
  * @typedef AddCartRequest
  * @property {AddProductCart[]} [items]
- * @property {Object} [meta]
  */
 /**
  * @typedef AddProductCart

@@ -4072,7 +4072,6 @@ Promotion updated successfully
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | items | [[AddProductCart](#AddProductCart)] |  no  |  |
- | meta | string |  no  |  |
  
 
 ---

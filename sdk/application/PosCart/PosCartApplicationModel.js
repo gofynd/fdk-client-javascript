@@ -17,7 +17,6 @@ class PosCartModel {
   static AddCartRequest() {
     return Joi.object({
       items: Joi.array().items(PosCartModel.AddProductCart()),
-      meta: Joi.any(),
     });
   }
   static AddProductCart() {

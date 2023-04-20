@@ -9038,7 +9038,6 @@ type AddCartDetailResponse = {
 };
 type AddCartRequest = {
     items?: AddProductCart[];
-    meta?: any;
 };
 type AddProductCart = {
     article_assignment?: any;
