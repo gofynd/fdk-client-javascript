@@ -140,7 +140,7 @@ class Extension {
         return platformClient;
     }
 
-    async getExtensionDetails(retryCount = 6) {
+    async getExtensionDetails(retryCount = 0) {
         try {
             let url = `${this.cluster}/service/panel/partners/v1.0/extensions/details/${this.api_key}`;
             const token = Buffer.from(
@@ -160,17 +160,25 @@ class Extension {
             logger.debug(`Extension details received: ${logger.safeStringify(extensionData)}`);
             return extensionData;
         } catch (err) {
-            if (retryCount > 0) {
-                // await for 5 second interval after every fail, for 5 times
-                const statusCode = (err.response && err.response.status) || err.code;
-                const SECONDS_5_MILLISECONDS = 5000;
-                if ([BAD_GATEWAY, SERVICE_UNAVAILABLE, TIMEOUT_STATUS].includes(statusCode)) {
-                    logger.debug(`Extension service not reachable. Retrying fetching extension details. Retry count: ${retryCount}`);
-                    await (new Promise(function(resolve, reject){
-                        setTimeout(resolve, SECONDS_5_MILLISECONDS);
-                    }))
-                    return this.getExtensionDetails(retryCount - 1);
+            const statusCode = (err.response && err.response.status) || err.code;
+            
+            if ([BAD_GATEWAY, SERVICE_UNAVAILABLE, TIMEOUT_STATUS].includes(statusCode)) {
+                
+                const SECONDS_5_MILLISECONDS = 1000 * 5;
+                let nextRetrySeconds = SECONDS_5_MILLISECONDS;
+                // await for 5 second interval after every fail, for 30 seconds. Then retry for 1 min, 2min and 3 min infinitely.
+                if (retryCount > 6) {
+                    const MAX_MINUTES_TO_WAIT = 3;
+                    const MINUTES_TO_WAIT = Math.min((retryCount - 6), MAX_MINUTES_TO_WAIT);
+                    nextRetrySeconds = 1000 * 60 * MINUTES_TO_WAIT;
                 }
+                
+                logger.debug(`Extension service not reachable. Retrying fetching extension details. Retry count: ${retryCount}`);
+                await (new Promise(function(resolve, reject){
+                    setTimeout(resolve, nextRetrySeconds);
+                }));
+
+                return this.getExtensionDetails(retryCount + 1);
             }
             throw new FdkInvalidExtensionConfig("Invalid api_key or api_secret. Reason:" + err.message);
         }
