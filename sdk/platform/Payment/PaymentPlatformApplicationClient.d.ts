@@ -242,4 +242,11 @@ declare class Payment {
     resendOrCancelPayment({ body }?: {
         body: ResendOrCancelPaymentRequest;
     }): Promise<ResendOrCancelPaymentResponse>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @returns {Promise<GetPaymentCodeResponse>} - Success response
+     * @summary: List Payment Options Method Codes
+     * @description: Get all active List Payment Options Method Codes
+     */
+    getPaymentCodeOption({}?: any): Promise<GetPaymentCodeResponse>;
 }

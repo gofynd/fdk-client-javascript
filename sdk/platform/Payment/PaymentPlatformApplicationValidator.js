@@ -137,6 +137,10 @@ class PaymentValidator {
       body: PaymentModel.ResendOrCancelPaymentRequest().required(),
     }).required();
   }
+
+  static getPaymentCodeOption() {
+    return Joi.object({}).required();
+  }
 }
 
 module.exports = PaymentValidator;

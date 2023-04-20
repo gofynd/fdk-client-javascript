@@ -40,6 +40,13 @@ declare class Catalog {
     }): Promise<DeleteResponse>;
     /**
      * @param {Object} arg - Arg object.
+     * @returns {Promise<GetSearchWordsResponse>} - Success response
+     * @summary: List all Search Custom Keyword Listing
+     * @description: Custom Search Keyword allows you to map conditions with keywords to give you the ultimate results
+     */
+    getAllSearchKeyword({}?: any): Promise<GetSearchWordsResponse>;
+    /**
+     * @param {Object} arg - Arg object.
      * @param {CreateSearchKeyword} arg.body
      * @returns {Promise<GetSearchWordsData>} - Success response
      * @summary: Add a Custom Search Keywords
@@ -48,13 +55,6 @@ declare class Catalog {
     createCustomKeyword({ body }?: {
         body: CreateSearchKeyword;
     }): Promise<GetSearchWordsData>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @returns {Promise<GetSearchWordsResponse>} - Success response
-     * @summary: List all Search Custom Keyword Listing
-     * @description: Custom Search Keyword allows you to map conditions with keywords to give you the ultimate results
-     */
-    getAllSearchKeyword({}?: any): Promise<GetSearchWordsResponse>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.id - A `id` is a unique identifier for a particular
@@ -92,6 +92,13 @@ declare class Catalog {
     }): Promise<DeleteResponse>;
     /**
      * @param {Object} arg - Arg object.
+     * @returns {Promise<GetAutocompleteWordsResponse>} - Success response
+     * @summary: List all Autocomplete Keyword Listing
+     * @description: Custom Autocomplete Keyword allows you to map conditions with keywords to give you the ultimate results
+     */
+    getAutocompleteConfig({}?: any): Promise<GetAutocompleteWordsResponse>;
+    /**
+     * @param {Object} arg - Arg object.
      * @param {CreateAutocompleteKeyword} arg.body
      * @returns {Promise<CreateAutocompleteWordsResponse>} - Success response
      * @summary: Add a Custom Autocomplete Keywords
@@ -100,13 +107,6 @@ declare class Catalog {
     createCustomAutocompleteRule({ body }?: {
         body: CreateAutocompleteKeyword;
     }): Promise<CreateAutocompleteWordsResponse>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @returns {Promise<GetAutocompleteWordsResponse>} - Success response
-     * @summary: List all Autocomplete Keyword Listing
-     * @description: Custom Autocomplete Keyword allows you to map conditions with keywords to give you the ultimate results
-     */
-    getAutocompleteConfig({}?: any): Promise<GetAutocompleteWordsResponse>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.itemId - Product id for a particular product.
@@ -145,19 +145,6 @@ declare class Catalog {
     }): Promise<GetConfigMetadataResponse>;
     /**
      * @param {Object} arg - Arg object.
-     * @param {string} arg.configType - A `config_type` is a unique identifier
-     *   for a particular group configuration type.
-     * @param {AppConfigurationDetail} arg.body
-     * @returns {Promise<AppConfigurationDetail>} - Success response
-     * @summary: Create configuration for Group config types.
-     * @description: Create configuration for Group config types.
-     */
-    createGroupConfiguration({ configType, body }?: {
-        configType: string;
-        body: AppConfigurationDetail;
-    }): Promise<AppConfigurationDetail>;
-    /**
-     * @param {Object} arg - Arg object.
      * @param {string} arg.configType - A `config_type` is an identifier that
      *   defines a specific type of configuration.
      * @param {number} [arg.pageNo] - The page number to navigate through the
@@ -182,16 +169,15 @@ declare class Catalog {
      * @param {Object} arg - Arg object.
      * @param {string} arg.configType - A `config_type` is a unique identifier
      *   for a particular group configuration type.
-     * @param {string} arg.groupSlug - A `group_slug` is a unique identifier of
-     *   a particular configuration.
-     * @returns {Promise<ConfigSuccessResponse>} - Success response
-     * @summary: Delete configuration of the product config type of the application.
-     * @description: Delete configuration of the product config type of the application.
+     * @param {AppConfigurationDetail} arg.body
+     * @returns {Promise<AppConfigurationDetail>} - Success response
+     * @summary: Create configuration for Group config types.
+     * @description: Create configuration for Group config types.
      */
-    deleteGroupConfiguration({ configType, groupSlug }?: {
+    createGroupConfiguration({ configType, body }?: {
         configType: string;
-        groupSlug: string;
-    }): Promise<ConfigSuccessResponse>;
+        body: AppConfigurationDetail;
+    }): Promise<AppConfigurationDetail>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.configType - A `config_type` is a unique identifier
@@ -211,16 +197,17 @@ declare class Catalog {
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.configType - A `config_type` is a unique identifier
-     *   for a particular listing configuration type.
-     * @param {AppConfigurationsSort} arg.body
-     * @returns {Promise<AppConfigurationsSort>} - Success response
-     * @summary: Add configuration for listings
-     * @description: Add configuration for listing.
+     *   for a particular group configuration type.
+     * @param {string} arg.groupSlug - A `group_slug` is a unique identifier of
+     *   a particular configuration.
+     * @returns {Promise<ConfigSuccessResponse>} - Success response
+     * @summary: Delete configuration of the product config type of the application.
+     * @description: Delete configuration of the product config type of the application.
      */
-    createListingConfiguration({ configType, body }?: {
+    deleteGroupConfiguration({ configType, groupSlug }?: {
         configType: string;
-        body: AppConfigurationsSort;
-    }): Promise<AppConfigurationsSort>;
+        groupSlug: string;
+    }): Promise<ConfigSuccessResponse>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.configType - A `config_type` is an identifier that
@@ -244,16 +231,15 @@ declare class Catalog {
      * @param {Object} arg - Arg object.
      * @param {string} arg.configType - A `config_type` is a unique identifier
      *   for a particular listing configuration type.
-     * @param {string} arg.configId - A `config_id` is a unique identifier of a
-     *   particular configuration.
-     * @returns {Promise<ConfigSuccessResponse>} - Success response
-     * @summary: Delete configuration for listings
-     * @description: Delete configuration for listing.
+     * @param {AppConfigurationsSort} arg.body
+     * @returns {Promise<AppConfigurationsSort>} - Success response
+     * @summary: Add configuration for listings
+     * @description: Add configuration for listing.
      */
-    deleteListingConfiguration({ configType, configId }?: {
+    createListingConfiguration({ configType, body }?: {
         configType: string;
-        configId: string;
-    }): Promise<ConfigSuccessResponse>;
+        body: AppConfigurationsSort;
+    }): Promise<AppConfigurationsSort>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.configType - A `config_type` is a unique identifier
@@ -270,6 +256,20 @@ declare class Catalog {
         configId: string;
         body: AppConfigurationsSort;
     }): Promise<AppConfigurationsSort>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {string} arg.configType - A `config_type` is a unique identifier
+     *   for a particular listing configuration type.
+     * @param {string} arg.configId - A `config_id` is a unique identifier of a
+     *   particular configuration.
+     * @returns {Promise<ConfigSuccessResponse>} - Success response
+     * @summary: Delete configuration for listings
+     * @description: Delete configuration for listing.
+     */
+    deleteListingConfiguration({ configType, configId }?: {
+        configType: string;
+        configId: string;
+    }): Promise<ConfigSuccessResponse>;
     /**
      * @param {Object} arg - Arg object.
      * @param {AllowSingleRequest} arg.body
@@ -299,16 +299,6 @@ declare class Catalog {
     getCatalogConfiguration({}?: any): Promise<GetCatalogConfigurationMetaData>;
     /**
      * @param {Object} arg - Arg object.
-     * @param {AppConfiguration} arg.body
-     * @returns {Promise<GetAppCatalogConfiguration>} - Success response
-     * @summary: Add configuration for products & listings
-     * @description: Add configuration for products & listing.
-     */
-    createConfigurationProductListing({ body }?: {
-        body: AppConfiguration;
-    }): Promise<GetAppCatalogConfiguration>;
-    /**
-     * @param {Object} arg - Arg object.
      * @returns {Promise<GetAppCatalogConfiguration>} - Success response
      * @summary: Get configured details for catalog
      * @description: configured details for catalog.
@@ -316,14 +306,12 @@ declare class Catalog {
     getConfigurations({}?: any): Promise<GetAppCatalogConfiguration>;
     /**
      * @param {Object} arg - Arg object.
-     * @param {string} arg.type - Type can be brands, categories etc.
      * @param {AppConfiguration} arg.body
      * @returns {Promise<GetAppCatalogConfiguration>} - Success response
-     * @summary: Add configuration for categories and brands
-     * @description: Add configuration for categories & brands.
+     * @summary: Add configuration for products & listings
+     * @description: Add configuration for products & listing.
      */
-    createConfigurationByType({ type, body }?: {
-        type: string;
+    createConfigurationProductListing({ body }?: {
         body: AppConfiguration;
     }): Promise<GetAppCatalogConfiguration>;
     /**
@@ -338,21 +326,23 @@ declare class Catalog {
     }): Promise<GetAppCatalogEntityConfiguration>;
     /**
      * @param {Object} arg - Arg object.
+     * @param {string} arg.type - Type can be brands, categories etc.
+     * @param {AppConfiguration} arg.body
+     * @returns {Promise<GetAppCatalogConfiguration>} - Success response
+     * @summary: Add configuration for categories and brands
+     * @description: Add configuration for categories & brands.
+     */
+    createConfigurationByType({ type, body }?: {
+        type: string;
+        body: AppConfiguration;
+    }): Promise<GetAppCatalogConfiguration>;
+    /**
+     * @param {Object} arg - Arg object.
      * @returns {Promise<GetCollectionQueryOptionResponse>} - Success response
      * @summary: Get query filters to configure a collection
      * @description: Get query filters to configure a collection
      */
     getQueryFilters({}?: any): Promise<GetCollectionQueryOptionResponse>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {CreateCollection} arg.body
-     * @returns {Promise<CollectionCreateResponse>} - Success response
-     * @summary: Add a Collection
-     * @description: Create a collection. See `CreateCollectionRequestSchema` for the list of attributes needed to create a collection and collections/query-options for the available options to create a collection. On successful request, returns a paginated list of collections specified in `CollectionCreateResponse`
-     */
-    createCollection({ body }?: {
-        body: CreateCollection;
-    }): Promise<CollectionCreateResponse>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} [arg.q] - Get collection list filtered by q string,
@@ -381,6 +371,16 @@ declare class Catalog {
     }): Promise<GetCollectionListingResponse>;
     /**
      * @param {Object} arg - Arg object.
+     * @param {CreateCollection} arg.body
+     * @returns {Promise<CollectionCreateResponse>} - Success response
+     * @summary: Add a Collection
+     * @description: Create a collection. See `CreateCollectionRequestSchema` for the list of attributes needed to create a collection and collections/query-options for the available options to create a collection. On successful request, returns a paginated list of collections specified in `CollectionCreateResponse`
+     */
+    createCollection({ body }?: {
+        body: CreateCollection;
+    }): Promise<CollectionCreateResponse>;
+    /**
+     * @param {Object} arg - Arg object.
      * @param {string} arg.slug - A `slug` is a human readable, URL friendly
      *   unique identifier of an object. Pass the `slug` of the collection which
      *   you want to retrieve.
@@ -391,16 +391,6 @@ declare class Catalog {
     getCollectionDetail({ slug }?: {
         slug: string;
     }): Promise<CollectionDetailResponse>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.id - A `id` is a unique identifier of a collection.
-     * @returns {Promise<DeleteResponse>} - Success response
-     * @summary: Delete a Collection
-     * @description: Delete a collection by it's id. Returns an object that tells whether the collection was deleted successfully
-     */
-    deleteCollection({ id }?: {
-        id: string;
-    }): Promise<DeleteResponse>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.id - A `id` is a unique identifier of a collection.
@@ -416,15 +406,13 @@ declare class Catalog {
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.id - A `id` is a unique identifier of a collection.
-     * @param {CollectionItemUpdate} arg.body
-     * @returns {Promise<UpdatedResponse>} - Success response
-     * @summary: Add items to a collection
-     * @description: Adds items to a collection specified by its `id`. See `CollectionItemRequest` for the list of attributes needed to add items to an collection.
+     * @returns {Promise<DeleteResponse>} - Success response
+     * @summary: Delete a Collection
+     * @description: Delete a collection by it's id. Returns an object that tells whether the collection was deleted successfully
      */
-    addCollectionItems({ id, body }?: {
+    deleteCollection({ id }?: {
         id: string;
-        body: CollectionItemUpdate;
-    }): Promise<UpdatedResponse>;
+    }): Promise<DeleteResponse>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.id - A `id` is a unique identifier of a collection.
@@ -444,6 +432,18 @@ declare class Catalog {
         pageId?: string;
         pageSize?: number;
     }): Promise<GetCollectionItemsResponse>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {string} arg.id - A `id` is a unique identifier of a collection.
+     * @param {CollectionItemUpdate} arg.body
+     * @returns {Promise<UpdatedResponse>} - Success response
+     * @summary: Add items to a collection
+     * @description: Adds items to a collection specified by its `id`. See `CollectionItemRequest` for the list of attributes needed to add items to an collection.
+     */
+    addCollectionItems({ id, body }?: {
+        id: string;
+        body: CollectionItemUpdate;
+    }): Promise<UpdatedResponse>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} [arg.brand] - Brand slug

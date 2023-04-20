@@ -5,9 +5,9 @@ class CompanyProfileModel {
     return Joi.object({
       contact: Joi.string().allow(""),
 
-      username: Joi.string().allow(""),
-
       user_id: Joi.string().allow(""),
+
+      username: Joi.string().allow(""),
     });
   }
 
@@ -16,42 +16,6 @@ class CompanyProfileModel {
       country: Joi.string().allow(""),
 
       country_code: Joi.string().allow(""),
-    });
-  }
-
-  static Document() {
-    return Joi.object({
-      url: Joi.string().allow(""),
-
-      verified: Joi.boolean(),
-
-      type: Joi.string().allow("").required(),
-
-      value: Joi.string().allow("").required(),
-
-      legal_name: Joi.string().allow(""),
-    });
-  }
-
-  static Website() {
-    return Joi.object({
-      url: Joi.string().allow(""),
-    });
-  }
-
-  static BusinessDetails() {
-    return Joi.object({
-      website: CompanyProfileModel.Website(),
-    });
-  }
-
-  static CompanyTaxesSerializer() {
-    return Joi.object({
-      effective_date: Joi.string().allow(""),
-
-      rate: Joi.number(),
-
-      enable: Joi.boolean(),
     });
   }
 
@@ -71,101 +35,137 @@ class CompanyProfileModel {
     });
   }
 
+  static CompanyTaxesSerializer() {
+    return Joi.object({
+      enable: Joi.boolean(),
+
+      rate: Joi.number(),
+
+      effective_date: Joi.string().allow(""),
+    });
+  }
+
   static GetAddressSerializer() {
     return Joi.object({
       country: Joi.string().allow(""),
 
-      country_code: Joi.string().allow(""),
-
-      landmark: Joi.string().allow(""),
-
-      address_type: Joi.string().allow(""),
-
-      state: Joi.string().allow(""),
-
-      latitude: Joi.number().required(),
-
-      longitude: Joi.number().required(),
-
-      city: Joi.string().allow(""),
-
-      address1: Joi.string().allow(""),
+      pincode: Joi.number(),
 
       address2: Joi.string().allow(""),
 
-      pincode: Joi.number(),
+      state: Joi.string().allow(""),
+
+      landmark: Joi.string().allow(""),
+
+      address1: Joi.string().allow(""),
+
+      address_type: Joi.string().allow(""),
+
+      longitude: Joi.number().required(),
+
+      country_code: Joi.string().allow(""),
+
+      city: Joi.string().allow(""),
+
+      latitude: Joi.number().required(),
+    });
+  }
+
+  static Document() {
+    return Joi.object({
+      value: Joi.string().allow("").required(),
+
+      url: Joi.string().allow(""),
+
+      legal_name: Joi.string().allow(""),
+
+      type: Joi.string().allow("").required(),
+
+      verified: Joi.boolean(),
+    });
+  }
+
+  static Website() {
+    return Joi.object({
+      url: Joi.string().allow(""),
+    });
+  }
+
+  static BusinessDetails() {
+    return Joi.object({
+      website: CompanyProfileModel.Website(),
     });
   }
 
   static GetCompanyProfileSerializerResponse() {
     return Joi.object({
-      created_by: CompanyProfileModel.UserSerializer(),
+      verified_by: CompanyProfileModel.UserSerializer(),
+
+      name: Joi.string().allow(""),
 
       business_country_info: CompanyProfileModel.BusinessCountryInfo(),
 
-      warnings: Joi.any(),
-
-      franchise_enabled: Joi.boolean(),
-
-      mode: Joi.string().allow(""),
-
-      documents: Joi.array().items(CompanyProfileModel.Document()),
-
-      business_details: CompanyProfileModel.BusinessDetails(),
-
-      business_type: Joi.string().allow("").required(),
-
-      business_info: Joi.string().allow(""),
-
-      modified_by: CompanyProfileModel.UserSerializer(),
-
-      uid: Joi.number().required(),
-
-      notification_emails: Joi.array().items(Joi.string().allow("")),
-
       verified_on: Joi.string().allow(""),
-
-      created_on: Joi.string().allow(""),
-
-      taxes: Joi.array().items(CompanyProfileModel.CompanyTaxesSerializer()),
-
-      contact_details: CompanyProfileModel.ContactDetails(),
-
-      verified_by: CompanyProfileModel.UserSerializer(),
-
-      addresses: Joi.array().items(CompanyProfileModel.GetAddressSerializer()),
-
-      modified_on: Joi.string().allow(""),
 
       _custom_json: Joi.any(),
 
-      stage: Joi.string().allow(""),
+      warnings: Joi.any(),
+
+      contact_details: CompanyProfileModel.ContactDetails(),
+
+      taxes: Joi.array().items(CompanyProfileModel.CompanyTaxesSerializer()),
 
       company_type: Joi.string().allow("").required(),
 
-      name: Joi.string().allow(""),
+      modified_on: Joi.string().allow(""),
+
+      business_info: Joi.string().allow(""),
+
+      mode: Joi.string().allow(""),
+
+      addresses: Joi.array().items(CompanyProfileModel.GetAddressSerializer()),
+
+      uid: Joi.number().required(),
+
+      franchise_enabled: Joi.boolean(),
+
+      created_by: CompanyProfileModel.UserSerializer(),
+
+      notification_emails: Joi.array().items(Joi.string().allow("")),
+
+      created_on: Joi.string().allow(""),
+
+      stage: Joi.string().allow(""),
+
+      documents: Joi.array().items(CompanyProfileModel.Document()),
+
+      modified_by: CompanyProfileModel.UserSerializer(),
+
+      business_type: Joi.string().allow("").required(),
+
+      business_details: CompanyProfileModel.BusinessDetails(),
     });
   }
 
   static ErrorResponse() {
     return Joi.object({
+      meta: Joi.any(),
+
       status: Joi.number(),
 
       code: Joi.string().allow(""),
 
       message: Joi.string().allow(""),
-
-      meta: Joi.any(),
     });
   }
 
   static CompanyTaxesSerializer1() {
     return Joi.object({
-      effective_date: Joi.string().allow(""),
+      enable: Joi.boolean(),
 
       rate: Joi.number(),
 
-      enable: Joi.boolean(),
+      effective_date: Joi.string().allow(""),
     });
   }
 
@@ -173,49 +173,51 @@ class CompanyProfileModel {
     return Joi.object({
       country: Joi.string().allow("").required(),
 
-      country_code: Joi.string().allow(""),
-
-      landmark: Joi.string().allow(""),
-
-      longitude: Joi.number().required(),
-
-      state: Joi.string().allow("").required(),
-
-      latitude: Joi.number().required(),
-
-      address_type: Joi.string().allow("").required(),
-
-      city: Joi.string().allow("").required(),
-
-      address1: Joi.string().allow("").required(),
+      pincode: Joi.number().required(),
 
       address2: Joi.string().allow(""),
 
-      pincode: Joi.number().required(),
+      state: Joi.string().allow("").required(),
+
+      landmark: Joi.string().allow(""),
+
+      address1: Joi.string().allow("").required(),
+
+      address_type: Joi.string().allow("").required(),
+
+      longitude: Joi.number().required(),
+
+      country_code: Joi.string().allow(""),
+
+      city: Joi.string().allow("").required(),
+
+      latitude: Joi.number().required(),
     });
   }
 
   static UpdateCompany() {
     return Joi.object({
-      warnings: Joi.any(),
-
-      notification_emails: Joi.array().items(Joi.string().allow("")),
-
-      franchise_enabled: Joi.boolean(),
-
       _custom_json: Joi.any(),
 
-      documents: Joi.array().items(CompanyProfileModel.Document()),
-
-      business_details: CompanyProfileModel.BusinessDetails(),
-
-      taxes: Joi.array().items(CompanyProfileModel.CompanyTaxesSerializer1()),
+      warnings: Joi.any(),
 
       contact_details: CompanyProfileModel.ContactDetails(),
 
+      taxes: Joi.array().items(CompanyProfileModel.CompanyTaxesSerializer1()),
+
       company_type: Joi.string().allow(""),
 
+      documents: Joi.array().items(CompanyProfileModel.Document()),
+
       reject_reason: Joi.string().allow(""),
+
+      franchise_enabled: Joi.boolean(),
+
+      business_info: Joi.string().allow(""),
+
+      notification_emails: Joi.array().items(Joi.string().allow("")),
+
+      name: Joi.string().allow(""),
 
       addresses: Joi.array().items(
         CompanyProfileModel.CreateUpdateAddressSerializer()
@@ -223,9 +225,7 @@ class CompanyProfileModel {
 
       business_type: Joi.string().allow(""),
 
-      business_info: Joi.string().allow(""),
-
-      name: Joi.string().allow(""),
+      business_details: CompanyProfileModel.BusinessDetails(),
     });
   }
 
@@ -239,9 +239,9 @@ class CompanyProfileModel {
 
   static DocumentsObj() {
     return Joi.object({
-      verified: Joi.number(),
-
       pending: Joi.number(),
+
+      verified: Joi.number(),
     });
   }
 
@@ -249,17 +249,17 @@ class CompanyProfileModel {
     return Joi.object({
       product: CompanyProfileModel.DocumentsObj(),
 
+      stage: Joi.string().allow(""),
+
       company_documents: CompanyProfileModel.DocumentsObj(),
 
-      store_documents: CompanyProfileModel.DocumentsObj(),
-
-      stage: Joi.string().allow(""),
+      uid: Joi.number(),
 
       brand: CompanyProfileModel.DocumentsObj(),
 
       store: CompanyProfileModel.DocumentsObj(),
 
-      uid: Joi.number(),
+      store_documents: CompanyProfileModel.DocumentsObj(),
     });
   }
 
@@ -273,85 +273,67 @@ class CompanyProfileModel {
 
   static GetBrandResponseSerializer() {
     return Joi.object({
-      description: Joi.string().allow(""),
-
-      created_by: CompanyProfileModel.UserSerializer(),
-
-      warnings: Joi.any(),
-
-      mode: Joi.string().allow(""),
-
-      modified_by: CompanyProfileModel.UserSerializer(),
-
-      uid: Joi.number(),
-
-      verified_on: Joi.string().allow(""),
-
-      logo: Joi.string().allow(""),
-
-      created_on: Joi.string().allow(""),
-
-      banner: CompanyProfileModel.BrandBannerSerializer(),
+      synonyms: Joi.array().items(Joi.string().allow("")),
 
       verified_by: CompanyProfileModel.UserSerializer(),
 
-      reject_reason: Joi.string().allow(""),
-
-      modified_on: Joi.string().allow(""),
-
-      _custom_json: Joi.any(),
+      name: Joi.string().allow("").required(),
 
       _locale_language: Joi.any(),
 
-      synonyms: Joi.array().items(Joi.string().allow("")),
+      verified_on: Joi.string().allow(""),
 
-      stage: Joi.string().allow(""),
+      _custom_json: Joi.any(),
+
+      warnings: Joi.any(),
+
+      modified_on: Joi.string().allow(""),
+
+      banner: CompanyProfileModel.BrandBannerSerializer(),
+
+      mode: Joi.string().allow(""),
+
+      logo: Joi.string().allow(""),
+
+      uid: Joi.number(),
+
+      created_by: CompanyProfileModel.UserSerializer(),
+
+      reject_reason: Joi.string().allow(""),
 
       slug_key: Joi.string().allow(""),
 
-      name: Joi.string().allow("").required(),
+      description: Joi.string().allow(""),
+
+      created_on: Joi.string().allow(""),
+
+      stage: Joi.string().allow(""),
+
+      modified_by: CompanyProfileModel.UserSerializer(),
     });
   }
 
   static CreateUpdateBrandRequestSerializer() {
     return Joi.object({
-      description: Joi.string().allow(""),
-
-      company_id: Joi.number(),
-
       _custom_json: Joi.any(),
-
-      _locale_language: Joi.any(),
-
-      brand_tier: Joi.string().allow(""),
 
       logo: Joi.string().allow("").required(),
 
       synonyms: Joi.array().items(Joi.string().allow("")),
 
+      company_id: Joi.number(),
+
       banner: CompanyProfileModel.BrandBannerSerializer(),
+
+      uid: Joi.number(),
+
+      brand_tier: Joi.string().allow(""),
 
       name: Joi.string().allow("").required(),
 
-      uid: Joi.number(),
-    });
-  }
+      _locale_language: Joi.any(),
 
-  static Page() {
-    return Joi.object({
-      item_total: Joi.number(),
-
-      next_id: Joi.string().allow(""),
-
-      has_previous: Joi.boolean(),
-
-      has_next: Joi.boolean(),
-
-      current: Joi.number(),
-
-      type: Joi.string().allow("").required(),
-
-      size: Joi.number(),
+      description: Joi.string().allow(""),
     });
   }
 
@@ -373,125 +355,105 @@ class CompanyProfileModel {
 
   static CompanySerializer() {
     return Joi.object({
-      addresses: Joi.array().items(CompanyProfileModel.GetAddressSerializer()),
-
-      notification_emails: Joi.array().items(Joi.string().allow("")),
-
-      modified_on: Joi.string().allow(""),
-
-      market_channels: Joi.array().items(Joi.string().allow("")),
+      created_on: Joi.string().allow(""),
 
       _custom_json: Joi.any(),
 
-      verified_on: Joi.string().allow(""),
-
-      details: CompanyProfileModel.CompanyDetails(),
-
       stage: Joi.string().allow(""),
-
-      created_on: Joi.string().allow(""),
-
-      reject_reason: Joi.string().allow(""),
 
       verified_by: CompanyProfileModel.UserSerializer(),
 
       company_type: Joi.string().allow("").required(),
 
+      modified_on: Joi.string().allow(""),
+
+      reject_reason: Joi.string().allow(""),
+
+      uid: Joi.number(),
+
+      details: CompanyProfileModel.CompanyDetails(),
+
+      business_country_info: CompanyProfileModel.BusinessCountryInfo(),
+
       modified_by: CompanyProfileModel.UserSerializer(),
 
       created_by: CompanyProfileModel.UserSerializer(),
 
-      business_country_info: CompanyProfileModel.BusinessCountryInfo(),
+      name: Joi.string().allow(""),
+
+      notification_emails: Joi.array().items(Joi.string().allow("")),
+
+      addresses: Joi.array().items(CompanyProfileModel.GetAddressSerializer()),
+
+      market_channels: Joi.array().items(Joi.string().allow("")),
 
       business_type: Joi.string().allow("").required(),
 
-      name: Joi.string().allow(""),
-
-      uid: Joi.number(),
+      verified_on: Joi.string().allow(""),
     });
   }
 
   static CompanyBrandSerializer() {
     return Joi.object({
+      created_on: Joi.string().allow(""),
+
       warnings: Joi.any(),
-
-      company: CompanyProfileModel.CompanySerializer(),
-
-      modified_on: Joi.string().allow(""),
-
-      verified_on: Joi.string().allow(""),
 
       stage: Joi.string().allow(""),
 
-      created_on: Joi.string().allow(""),
-
-      reject_reason: Joi.string().allow(""),
-
       verified_by: CompanyProfileModel.UserSerializer(),
+
+      modified_on: Joi.string().allow(""),
+
+      uid: Joi.number(),
+
+      company: CompanyProfileModel.CompanySerializer(),
 
       modified_by: CompanyProfileModel.UserSerializer(),
 
-      created_by: CompanyProfileModel.UserSerializer(),
-
       brand: CompanyProfileModel.GetBrandResponseSerializer(),
 
-      uid: Joi.number(),
+      created_by: CompanyProfileModel.UserSerializer(),
+
+      reject_reason: Joi.string().allow(""),
+
+      verified_on: Joi.string().allow(""),
+    });
+  }
+
+  static Page() {
+    return Joi.object({
+      item_total: Joi.number(),
+
+      next_id: Joi.string().allow(""),
+
+      has_previous: Joi.boolean(),
+
+      has_next: Joi.boolean(),
+
+      current: Joi.number(),
+
+      type: Joi.string().allow("").required(),
+
+      size: Joi.number(),
     });
   }
 
   static CompanyBrandListSerializer() {
     return Joi.object({
-      page: CompanyProfileModel.Page(),
-
       items: Joi.array().items(CompanyProfileModel.CompanyBrandSerializer()),
+
+      page: CompanyProfileModel.Page(),
     });
   }
 
   static CompanyBrandPostRequestSerializer() {
     return Joi.object({
-      brands: Joi.array().items(Joi.number()).required(),
+      uid: Joi.number(),
 
       company: Joi.number().required(),
 
-      uid: Joi.number(),
-    });
-  }
-
-  static LocationTimingSerializer() {
-    return Joi.object({
-      hour: Joi.number().required(),
-
-      minute: Joi.number().required(),
-    });
-  }
-
-  static LocationDayWiseSerializer() {
-    return Joi.object({
-      opening: CompanyProfileModel.LocationTimingSerializer(),
-
-      weekday: Joi.string().allow("").required(),
-
-      closing: CompanyProfileModel.LocationTimingSerializer(),
-
-      open: Joi.boolean().required(),
-    });
-  }
-
-  static InvoiceCredSerializer() {
-    return Joi.object({
-      password: Joi.string().allow(""),
-
-      enabled: Joi.boolean(),
-
-      username: Joi.string().allow(""),
-    });
-  }
-
-  static InvoiceDetailsSerializer() {
-    return Joi.object({
-      e_invoice: CompanyProfileModel.InvoiceCredSerializer(),
-
-      e_waybill: CompanyProfileModel.InvoiceCredSerializer(),
+      brands: Joi.array().items(Joi.number()).required(),
     });
   }
 
@@ -505,33 +467,21 @@ class CompanyProfileModel {
     });
   }
 
-  static GetCompanySerializer() {
+  static HolidayDateSerializer() {
     return Joi.object({
-      addresses: Joi.array().items(CompanyProfileModel.GetAddressSerializer()),
+      start_date: Joi.string().allow("").required(),
 
-      modified_on: Joi.string().allow(""),
+      end_date: Joi.string().allow("").required(),
+    });
+  }
 
-      verified_on: Joi.string().allow(""),
+  static HolidaySchemaSerializer() {
+    return Joi.object({
+      holiday_type: Joi.string().allow("").required(),
 
-      stage: Joi.string().allow(""),
+      date: CompanyProfileModel.HolidayDateSerializer().required(),
 
-      created_on: Joi.string().allow(""),
-
-      reject_reason: Joi.string().allow(""),
-
-      verified_by: CompanyProfileModel.UserSerializer(),
-
-      company_type: Joi.string().allow(""),
-
-      modified_by: CompanyProfileModel.UserSerializer(),
-
-      created_by: CompanyProfileModel.UserSerializer(),
-
-      business_type: Joi.string().allow(""),
-
-      name: Joi.string().allow(""),
-
-      uid: Joi.number(),
+      title: Joi.string().allow("").required(),
     });
   }
 
@@ -543,87 +493,137 @@ class CompanyProfileModel {
     });
   }
 
-  static HolidayDateSerializer() {
+  static GetCompanySerializer() {
     return Joi.object({
-      start_date: Joi.string().allow("").required(),
+      created_on: Joi.string().allow(""),
 
-      end_date: Joi.string().allow("").required(),
+      stage: Joi.string().allow(""),
+
+      verified_by: CompanyProfileModel.UserSerializer(),
+
+      company_type: Joi.string().allow(""),
+
+      modified_on: Joi.string().allow(""),
+
+      reject_reason: Joi.string().allow(""),
+
+      uid: Joi.number(),
+
+      modified_by: CompanyProfileModel.UserSerializer(),
+
+      created_by: CompanyProfileModel.UserSerializer(),
+
+      name: Joi.string().allow(""),
+
+      addresses: Joi.array().items(CompanyProfileModel.GetAddressSerializer()),
+
+      business_type: Joi.string().allow(""),
+
+      verified_on: Joi.string().allow(""),
     });
   }
 
-  static HolidaySchemaSerializer() {
+  static LocationTimingSerializer() {
     return Joi.object({
-      title: Joi.string().allow("").required(),
+      hour: Joi.number().required(),
 
-      holiday_type: Joi.string().allow("").required(),
+      minute: Joi.number().required(),
+    });
+  }
 
-      date: CompanyProfileModel.HolidayDateSerializer().required(),
+  static LocationDayWiseSerializer() {
+    return Joi.object({
+      open: Joi.boolean().required(),
+
+      weekday: Joi.string().allow("").required(),
+
+      closing: CompanyProfileModel.LocationTimingSerializer(),
+
+      opening: CompanyProfileModel.LocationTimingSerializer(),
+    });
+  }
+
+  static InvoiceCredSerializer() {
+    return Joi.object({
+      enabled: Joi.boolean(),
+
+      password: Joi.string().allow(""),
+
+      username: Joi.string().allow(""),
+    });
+  }
+
+  static InvoiceDetailsSerializer() {
+    return Joi.object({
+      e_waybill: CompanyProfileModel.InvoiceCredSerializer(),
+
+      e_invoice: CompanyProfileModel.InvoiceCredSerializer(),
     });
   }
 
   static GetLocationSerializer() {
     return Joi.object({
-      timing: Joi.array().items(
-        CompanyProfileModel.LocationDayWiseSerializer()
-      ),
+      verified_by: CompanyProfileModel.UserSerializer(),
 
-      store_type: Joi.string().allow(""),
-
-      created_by: CompanyProfileModel.UserSerializer(),
-
-      warnings: Joi.any(),
-
-      phone_number: Joi.string().allow(""),
-
-      documents: Joi.array().items(CompanyProfileModel.Document()),
-
-      gst_credentials: CompanyProfileModel.InvoiceDetailsSerializer(),
+      name: Joi.string().allow("").required(),
 
       manager: CompanyProfileModel.LocationManagerSerializer(),
 
-      display_name: Joi.string().allow("").required(),
-
-      modified_by: CompanyProfileModel.UserSerializer(),
-
-      uid: Joi.number(),
-
-      notification_emails: Joi.array().items(Joi.string().allow("")),
-
-      company: CompanyProfileModel.GetCompanySerializer(),
-
       verified_on: Joi.string().allow(""),
-
-      created_on: Joi.string().allow(""),
-
-      product_return_config: CompanyProfileModel.ProductReturnConfigSerializer(),
-
-      verified_by: CompanyProfileModel.UserSerializer(),
-
-      address: CompanyProfileModel.GetAddressSerializer().required(),
-
-      modified_on: Joi.string().allow(""),
 
       _custom_json: Joi.any(),
 
-      code: Joi.string().allow("").required(),
+      address: CompanyProfileModel.GetAddressSerializer().required(),
 
-      stage: Joi.string().allow(""),
+      warnings: Joi.any(),
+
+      modified_on: Joi.string().allow(""),
+
+      holiday: Joi.array().items(CompanyProfileModel.HolidaySchemaSerializer()),
 
       contact_numbers: Joi.array().items(
         CompanyProfileModel.SellerPhoneNumber()
       ),
 
-      holiday: Joi.array().items(CompanyProfileModel.HolidaySchemaSerializer()),
+      product_return_config: CompanyProfileModel.ProductReturnConfigSerializer(),
 
-      name: Joi.string().allow("").required(),
+      code: Joi.string().allow("").required(),
+
+      uid: Joi.number(),
+
+      phone_number: Joi.string().allow(""),
+
+      created_by: CompanyProfileModel.UserSerializer(),
+
+      notification_emails: Joi.array().items(Joi.string().allow("")),
+
+      display_name: Joi.string().allow("").required(),
+
+      created_on: Joi.string().allow(""),
+
+      store_type: Joi.string().allow(""),
+
+      stage: Joi.string().allow(""),
+
+      documents: Joi.array().items(CompanyProfileModel.Document()),
+
+      company: CompanyProfileModel.GetCompanySerializer(),
+
+      modified_by: CompanyProfileModel.UserSerializer(),
+
+      timing: Joi.array().items(
+        CompanyProfileModel.LocationDayWiseSerializer()
+      ),
+
+      gst_credentials: CompanyProfileModel.InvoiceDetailsSerializer(),
     });
   }
 
   static LocationListSerializer() {
     return Joi.object({
-      page: CompanyProfileModel.Page(),
-
       items: Joi.array().items(CompanyProfileModel.GetLocationSerializer()),
+
+      page: CompanyProfileModel.Page(),
     });
   }
 
@@ -631,69 +631,69 @@ class CompanyProfileModel {
     return Joi.object({
       country: Joi.string().allow(""),
 
-      country_code: Joi.string().allow(""),
-
-      landmark: Joi.string().allow(""),
-
-      address_type: Joi.string().allow(""),
-
-      state: Joi.string().allow(""),
-
-      latitude: Joi.number().required(),
-
-      longitude: Joi.number().required(),
-
-      city: Joi.string().allow(""),
-
-      address1: Joi.string().allow(""),
+      pincode: Joi.number(),
 
       address2: Joi.string().allow(""),
 
-      pincode: Joi.number(),
+      state: Joi.string().allow(""),
+
+      landmark: Joi.string().allow(""),
+
+      address1: Joi.string().allow(""),
+
+      address_type: Joi.string().allow(""),
+
+      longitude: Joi.number().required(),
+
+      country_code: Joi.string().allow(""),
+
+      city: Joi.string().allow(""),
+
+      latitude: Joi.number().required(),
     });
   }
 
   static LocationSerializer() {
     return Joi.object({
+      _custom_json: Joi.any(),
+
+      address: CompanyProfileModel.AddressSerializer().required(),
+
+      display_name: Joi.string().allow("").required(),
+
+      warnings: Joi.any(),
+
+      store_type: Joi.string().allow(""),
+
+      stage: Joi.string().allow(""),
+
+      documents: Joi.array().items(CompanyProfileModel.Document()),
+
+      uid: Joi.number(),
+
+      company: Joi.number().required(),
+
+      holiday: Joi.array().items(CompanyProfileModel.HolidaySchemaSerializer()),
+
+      gst_credentials: CompanyProfileModel.InvoiceDetailsSerializer(),
+
       contact_numbers: Joi.array().items(
         CompanyProfileModel.SellerPhoneNumber()
       ),
 
-      address: CompanyProfileModel.AddressSerializer().required(),
-
-      warnings: Joi.any(),
+      product_return_config: CompanyProfileModel.ProductReturnConfigSerializer(),
 
       notification_emails: Joi.array().items(Joi.string().allow("")),
 
-      company: Joi.number().required(),
-
-      _custom_json: Joi.any(),
-
-      gst_credentials: CompanyProfileModel.InvoiceDetailsSerializer(),
-
-      documents: Joi.array().items(CompanyProfileModel.Document()),
+      name: Joi.string().allow("").required(),
 
       timing: Joi.array().items(
         CompanyProfileModel.LocationDayWiseSerializer()
       ),
 
-      stage: Joi.string().allow(""),
-
-      product_return_config: CompanyProfileModel.ProductReturnConfigSerializer(),
-
-      holiday: Joi.array().items(CompanyProfileModel.HolidaySchemaSerializer()),
-
-      store_type: Joi.string().allow(""),
-
-      uid: Joi.number(),
-
       manager: CompanyProfileModel.LocationManagerSerializer(),
 
       code: Joi.string().allow("").required(),
-
-      name: Joi.string().allow("").required(),
-
-      display_name: Joi.string().allow("").required(),
     });
   }
 

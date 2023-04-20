@@ -60,4 +60,8 @@ declare class PaymentModel {
     static ResendOrCancelPaymentRequest(): any;
     static LinkStatus(): any;
     static ResendOrCancelPaymentResponse(): any;
+    static Code(): any;
+    static PaymentCode(): any;
+    static GetPaymentCode(): any;
+    static GetPaymentCodeResponse(): any;
 }

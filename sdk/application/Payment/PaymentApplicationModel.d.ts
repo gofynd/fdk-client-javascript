@@ -20,9 +20,9 @@ declare class PaymentModel {
     static PaymentInitializationResponse(): any;
     static PaymentStatusUpdateRequest(): any;
     static PaymentStatusUpdateResponse(): any;
+    static IntentAppErrorList(): any;
     static PaymentModeLogo(): any;
     static IntentApp(): any;
-    static IntentAppErrorList(): any;
     static PaymentModeList(): any;
     static RootPaymentMode(): any;
     static AggregatorRoute(): any;
@@ -41,6 +41,8 @@ declare class PaymentModel {
     static ValidateVPARequest(): any;
     static ValidateUPI(): any;
     static ValidateVPAResponse(): any;
+    static CardDetails(): any;
+    static CardDetailsResponse(): any;
     static TransferItemsDetails(): any;
     static TransferModeDetails(): any;
     static TransferModeResponse(): any;

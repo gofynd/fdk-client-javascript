@@ -1403,5 +1403,63 @@ class Payment {
 
     return response;
   }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @returns {Promise<GetPaymentCodeResponse>} - Success response
+   * @summary: List Payment Options Method Codes
+   * @description: Get all active List Payment Options Method Codes
+   */
+  async getPaymentCodeOption({} = {}) {
+    const { error } = PaymentValidator.getPaymentCodeOption().validate(
+      {},
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = PaymentValidator.getPaymentCodeOption().validate(
+      {},
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getPaymentCodeOption",
+      });
+      Logger({ level: "WARN", message: warrning });
+    }
+
+    const query_params = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/payment/v1.0/company/${this.config.companyId}/application/${this.applicationId}/payment/codes`,
+      query_params,
+      undefined
+    );
+
+    const {
+      error: res_error,
+    } = PaymentModel.GetPaymentCodeResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getPaymentCodeOption",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
+  }
 }
 module.exports = Payment;

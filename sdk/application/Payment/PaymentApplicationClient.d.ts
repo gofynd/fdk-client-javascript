@@ -19,6 +19,7 @@ declare class Payment {
         resendOrCancelPayment: string;
         renderHTML: string;
         validateVPA: string;
+        cardDetails: string;
         getActiveRefundTransferModes: string;
         enableOrDisableRefundTransferMode: string;
         getUserBeneficiariesDetail: string;
@@ -239,6 +240,18 @@ declare class Payment {
     validateVPA({ body }?: {
         body: ValidateVPARequest;
     }): Promise<ValidateVPAResponse>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {string} arg.cardInfo - Card first 6 digit IIN(prefix) number.
+     * @param {string} [arg.aggregator] -
+     * @returns {Promise<CardDetailsResponse>} - Success response
+     * @summary: API to get Card info from PG
+     * @description: API to get Card info from PG
+     */
+    cardDetails({ cardInfo, aggregator }?: {
+        cardInfo: string;
+        aggregator?: string;
+    }): Promise<CardDetailsResponse>;
     /**
      * @param {Object} arg - Arg object.
      * @returns {Promise<TransferModeResponse>} - Success response

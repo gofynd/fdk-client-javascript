@@ -21,4 +21,5 @@ declare class PaymentValidator {
     static initialisePayment(): any;
     static checkAndUpdatePaymentStatus(): any;
     static resendOrCancelPayment(): any;
+    static getPaymentCodeOption(): any;
 }
