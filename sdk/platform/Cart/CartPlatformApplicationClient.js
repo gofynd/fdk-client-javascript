@@ -1,10 +1,9 @@
-const Paginator = require("../../common/Paginator");
 const PlatformAPIClient = require("../PlatformAPIClient");
 const { FDKClientValidationError } = require("../../common/FDKError");
+const Paginator = require("../../common/Paginator");
 const CartValidator = require("./CartPlatformApplicationValidator");
 const CartModel = require("./CartPlatformModel");
 const { Logger } = require("./../../common/Logger");
-const Joi = require("joi");
 
 class Cart {
   constructor(config, applicationId) {
@@ -3382,4 +3381,5 @@ class Cart {
     return response;
   }
 }
+
 module.exports = Cart;

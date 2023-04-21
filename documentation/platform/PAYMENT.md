@@ -55,11 +55,11 @@ Partial Update Payout
 
 ```javascript
 // Promise
-const promise = client.payment.activateAndDectivatePayout({  uniqueTransferNo : value,
+const promise = platformClient.payment.activateAndDectivatePayout({  uniqueTransferNo : value,
  body : value });
 
 // Async/Await
-const data = await client.payment.activateAndDectivatePayout({  uniqueTransferNo : value,
+const data = await platformClient.payment.activateAndDectivatePayout({  uniqueTransferNo : value,
  body : value });
 ```
 
@@ -117,11 +117,11 @@ Update store id and device tag of edc device
 
 ```javascript
 // Promise
-const promise = client.application("<APPLICATION_ID>").payment.addEdcDevice({  terminalUniqueIdentifier : value,
+const promise = platformClient.application("<APPLICATION_ID>").payment.addEdcDevice({  terminalUniqueIdentifier : value,
  body : value });
 
 // Async/Await
-const data = await client.application("<APPLICATION_ID>").payment.addEdcDevice({  terminalUniqueIdentifier : value,
+const data = await platformClient.application("<APPLICATION_ID>").payment.addEdcDevice({  terminalUniqueIdentifier : value,
  body : value });
 ```
 
@@ -177,10 +177,10 @@ Save bank details for cancelled/returned order
 
 ```javascript
 // Promise
-const promise = client.application("<APPLICATION_ID>").payment.addRefundBankAccountUsingOTP({  body : value });
+const promise = platformClient.application("<APPLICATION_ID>").payment.addRefundBankAccountUsingOTP({  body : value });
 
 // Async/Await
-const data = await client.application("<APPLICATION_ID>").payment.addRefundBankAccountUsingOTP({  body : value });
+const data = await platformClient.application("<APPLICATION_ID>").payment.addRefundBankAccountUsingOTP({  body : value });
 ```
 
 
@@ -237,10 +237,10 @@ Performs continuous polling to check status of payment on the server
 
 ```javascript
 // Promise
-const promise = client.application("<APPLICATION_ID>").payment.checkAndUpdatePaymentStatus({  body : value });
+const promise = platformClient.application("<APPLICATION_ID>").payment.checkAndUpdatePaymentStatus({  body : value });
 
 // Async/Await
-const data = await client.application("<APPLICATION_ID>").payment.checkAndUpdatePaymentStatus({  body : value });
+const data = await platformClient.application("<APPLICATION_ID>").payment.checkAndUpdatePaymentStatus({  body : value });
 ```
 
 
@@ -296,10 +296,10 @@ Confirm payment after successful payment from payment gateway
 
 ```javascript
 // Promise
-const promise = client.application("<APPLICATION_ID>").payment.confirmPayment({  body : value });
+const promise = platformClient.application("<APPLICATION_ID>").payment.confirmPayment({  body : value });
 
 // Async/Await
-const data = await client.application("<APPLICATION_ID>").payment.confirmPayment({  body : value });
+const data = await platformClient.application("<APPLICATION_ID>").payment.confirmPayment({  body : value });
 ```
 
 
@@ -355,10 +355,10 @@ Delete Payout
 
 ```javascript
 // Promise
-const promise = client.payment.deletePayout({  uniqueTransferNo : value });
+const promise = platformClient.payment.deletePayout({  uniqueTransferNo : value });
 
 // Async/Await
-const data = await client.payment.deletePayout({  uniqueTransferNo : value });
+const data = await platformClient.payment.deletePayout({  uniqueTransferNo : value });
 ```
 
 
@@ -413,11 +413,11 @@ Delete Subscription Payment Method
 
 ```javascript
 // Promise
-const promise = client.payment.deleteSubscriptionPaymentMethod({  uniqueExternalId : value,
+const promise = platformClient.payment.deleteSubscriptionPaymentMethod({  uniqueExternalId : value,
  paymentMethodId : value });
 
 // Async/Await
-const data = await client.payment.deleteSubscriptionPaymentMethod({  uniqueExternalId : value,
+const data = await platformClient.payment.deleteSubscriptionPaymentMethod({  uniqueExternalId : value,
  paymentMethodId : value });
 ```
 
@@ -474,10 +474,10 @@ get some information about the store and edc device
 
 ```javascript
 // Promise
-const promise = client.application("<APPLICATION_ID>").payment.edcAggregatorsAndModelList();
+const promise = platformClient.application("<APPLICATION_ID>").payment.edcAggregatorsAndModelList();
 
 // Async/Await
-const data = await client.application("<APPLICATION_ID>").payment.edcAggregatorsAndModelList();
+const data = await platformClient.application("<APPLICATION_ID>").payment.edcAggregatorsAndModelList();
 ```
 
 
@@ -537,14 +537,14 @@ get all the device list of an app
 
 ```javascript
 // Promise
-const promise = client.application("<APPLICATION_ID>").payment.edcDeviceList({  pageNo : value,
+const promise = platformClient.application("<APPLICATION_ID>").payment.edcDeviceList({  pageNo : value,
  pageSize : value,
  isActive : value,
  storeId : value,
  deviceTag : value });
 
 // Async/Await
-const data = await client.application("<APPLICATION_ID>").payment.edcDeviceList({  pageNo : value,
+const data = await platformClient.application("<APPLICATION_ID>").payment.edcDeviceList({  pageNo : value,
  pageSize : value,
  isActive : value,
  storeId : value,
@@ -629,10 +629,10 @@ get some information about the store and edc device
 
 ```javascript
 // Promise
-const promise = client.application("<APPLICATION_ID>").payment.edcDeviceStats();
+const promise = platformClient.application("<APPLICATION_ID>").payment.edcDeviceStats();
 
 // Async/Await
-const data = await client.application("<APPLICATION_ID>").payment.edcDeviceStats();
+const data = await platformClient.application("<APPLICATION_ID>").payment.edcDeviceStats();
 ```
 
 
@@ -686,10 +686,10 @@ Get All Payouts
 
 ```javascript
 // Promise
-const promise = client.payment.getAllPayouts({  uniqueExternalId : value });
+const promise = platformClient.payment.getAllPayouts({  uniqueExternalId : value });
 
 // Async/Await
-const data = await client.payment.getAllPayouts({  uniqueExternalId : value });
+const data = await platformClient.payment.getAllPayouts({  uniqueExternalId : value });
 ```
 
 
@@ -808,11 +808,11 @@ Get bank details
 
 ```javascript
 // Promise
-const promise = client.application("<APPLICATION_ID>").payment.getBankAccountDetailsOpenAPI({  orderId : value,
+const promise = platformClient.application("<APPLICATION_ID>").payment.getBankAccountDetailsOpenAPI({  orderId : value,
  requestHash : value });
 
 // Async/Await
-const data = await client.application("<APPLICATION_ID>").payment.getBankAccountDetailsOpenAPI({  orderId : value,
+const data = await platformClient.application("<APPLICATION_ID>").payment.getBankAccountDetailsOpenAPI({  orderId : value,
  requestHash : value });
 ```
 
@@ -880,10 +880,10 @@ Get All Brand Payment Gateway Config Secret
 
 ```javascript
 // Promise
-const promise = client.application("<APPLICATION_ID>").payment.getBrandPaymentGatewayConfig();
+const promise = platformClient.application("<APPLICATION_ID>").payment.getBrandPaymentGatewayConfig();
 
 // Async/Await
-const data = await client.application("<APPLICATION_ID>").payment.getBrandPaymentGatewayConfig();
+const data = await platformClient.application("<APPLICATION_ID>").payment.getBrandPaymentGatewayConfig();
 ```
 
 
@@ -1053,10 +1053,10 @@ get details of a single edc device
 
 ```javascript
 // Promise
-const promise = client.application("<APPLICATION_ID>").payment.getEdcDevice({  terminalUniqueIdentifier : value });
+const promise = platformClient.application("<APPLICATION_ID>").payment.getEdcDevice({  terminalUniqueIdentifier : value });
 
 // Async/Await
-const data = await client.application("<APPLICATION_ID>").payment.getEdcDevice({  terminalUniqueIdentifier : value });
+const data = await platformClient.application("<APPLICATION_ID>").payment.getEdcDevice({  terminalUniqueIdentifier : value });
 ```
 
 
@@ -1124,11 +1124,11 @@ Get All Valid Payment Options
 
 ```javascript
 // Promise
-const promise = client.application("<APPLICATION_ID>").payment.getPaymentModeRoutes({  refresh : value,
+const promise = platformClient.application("<APPLICATION_ID>").payment.getPaymentModeRoutes({  refresh : value,
  requestType : value });
 
 // Async/Await
-const data = await client.application("<APPLICATION_ID>").payment.getPaymentModeRoutes({  refresh : value,
+const data = await platformClient.application("<APPLICATION_ID>").payment.getPaymentModeRoutes({  refresh : value,
  requestType : value });
 ```
 
@@ -2336,10 +2336,10 @@ API to fetch the payment options of the merchant for paltform
 
 ```javascript
 // Promise
-const promise = client.application("<APPLICATION_ID>").payment.getPlatformPaymentConfig();
+const promise = platformClient.application("<APPLICATION_ID>").payment.getPlatformPaymentConfig();
 
 // Async/Await
-const data = await client.application("<APPLICATION_ID>").payment.getPlatformPaymentConfig();
+const data = await platformClient.application("<APPLICATION_ID>").payment.getPlatformPaymentConfig();
 ```
 
 
@@ -2471,7 +2471,7 @@ Get All Valid Payment Options
 
 ```javascript
 // Promise
-const promise = client.application("<APPLICATION_ID>").payment.getPosPaymentModeRoutes({  amount : value,
+const promise = platformClient.application("<APPLICATION_ID>").payment.getPosPaymentModeRoutes({  amount : value,
  cartId : value,
  pincode : value,
  checkoutMode : value,
@@ -2481,7 +2481,7 @@ const promise = client.application("<APPLICATION_ID>").payment.getPosPaymentMode
  userDetails : value });
 
 // Async/Await
-const data = await client.application("<APPLICATION_ID>").payment.getPosPaymentModeRoutes({  amount : value,
+const data = await platformClient.application("<APPLICATION_ID>").payment.getPosPaymentModeRoutes({  amount : value,
  cartId : value,
  pincode : value,
  checkoutMode : value,
@@ -3701,10 +3701,10 @@ List Subscription Config
 
 ```javascript
 // Promise
-const promise = client.payment.getSubscriptionConfig();
+const promise = platformClient.payment.getSubscriptionConfig();
 
 // Async/Await
-const data = await client.payment.getSubscriptionConfig();
+const data = await platformClient.payment.getSubscriptionConfig();
 ```
 
 
@@ -3758,10 +3758,10 @@ List Subscription Payment Method
 
 ```javascript
 // Promise
-const promise = client.payment.getSubscriptionPaymentMethod({  uniqueExternalId : value });
+const promise = platformClient.payment.getSubscriptionPaymentMethod({  uniqueExternalId : value });
 
 // Async/Await
-const data = await client.payment.getSubscriptionPaymentMethod({  uniqueExternalId : value });
+const data = await platformClient.payment.getSubscriptionPaymentMethod({  uniqueExternalId : value });
 ```
 
 
@@ -3942,10 +3942,10 @@ List User Beneficiary
 
 ```javascript
 // Promise
-const promise = client.application("<APPLICATION_ID>").payment.getUserBeneficiaries({  orderId : value });
+const promise = platformClient.application("<APPLICATION_ID>").payment.getUserBeneficiaries({  orderId : value });
 
 // Async/Await
-const data = await client.application("<APPLICATION_ID>").payment.getUserBeneficiaries({  orderId : value });
+const data = await platformClient.application("<APPLICATION_ID>").payment.getUserBeneficiaries({  orderId : value });
 ```
 
 
@@ -4023,11 +4023,11 @@ Get COD limit for user
 
 ```javascript
 // Promise
-const promise = client.application("<APPLICATION_ID>").payment.getUserCODlimitRoutes({  merchantUserId : value,
+const promise = platformClient.application("<APPLICATION_ID>").payment.getUserCODlimitRoutes({  merchantUserId : value,
  mobileNo : value });
 
 // Async/Await
-const data = await client.application("<APPLICATION_ID>").payment.getUserCODlimitRoutes({  merchantUserId : value,
+const data = await platformClient.application("<APPLICATION_ID>").payment.getUserCODlimitRoutes({  merchantUserId : value,
  mobileNo : value });
 ```
 
@@ -4092,10 +4092,10 @@ List Order Beneficiary
 
 ```javascript
 // Promise
-const promise = client.application("<APPLICATION_ID>").payment.getUserOrderBeneficiaries({  orderId : value });
+const promise = platformClient.application("<APPLICATION_ID>").payment.getUserOrderBeneficiaries({  orderId : value });
 
 // Async/Await
-const data = await client.application("<APPLICATION_ID>").payment.getUserOrderBeneficiaries({  orderId : value });
+const data = await platformClient.application("<APPLICATION_ID>").payment.getUserOrderBeneficiaries({  orderId : value });
 ```
 
 
@@ -4172,10 +4172,10 @@ Initialize a payment (server-to-server) for UPI and BharatQR
 
 ```javascript
 // Promise
-const promise = client.application("<APPLICATION_ID>").payment.initialisePayment({  body : value });
+const promise = platformClient.application("<APPLICATION_ID>").payment.initialisePayment({  body : value });
 
 // Async/Await
-const data = await client.application("<APPLICATION_ID>").payment.initialisePayment({  body : value });
+const data = await platformClient.application("<APPLICATION_ID>").payment.initialisePayment({  body : value });
 ```
 
 
@@ -4240,10 +4240,10 @@ API to resend and cancel a payment link which was already generated.
 
 ```javascript
 // Promise
-const promise = client.application("<APPLICATION_ID>").payment.resendOrCancelPayment({  body : value });
+const promise = platformClient.application("<APPLICATION_ID>").payment.resendOrCancelPayment({  body : value });
 
 // Async/Await
-const data = await client.application("<APPLICATION_ID>").payment.resendOrCancelPayment({  body : value });
+const data = await platformClient.application("<APPLICATION_ID>").payment.resendOrCancelPayment({  body : value });
 ```
 
 
@@ -4325,10 +4325,10 @@ Save Config Secret For Brand Payment Gateway
 
 ```javascript
 // Promise
-const promise = client.application("<APPLICATION_ID>").payment.saveBrandPaymentGatewayConfig({  body : value });
+const promise = platformClient.application("<APPLICATION_ID>").payment.saveBrandPaymentGatewayConfig({  body : value });
 
 // Async/Await
-const data = await client.application("<APPLICATION_ID>").payment.saveBrandPaymentGatewayConfig({  body : value });
+const data = await platformClient.application("<APPLICATION_ID>").payment.saveBrandPaymentGatewayConfig({  body : value });
 ```
 
 
@@ -4385,10 +4385,10 @@ Save Payout
 
 ```javascript
 // Promise
-const promise = client.payment.savePayout({  body : value });
+const promise = platformClient.payment.savePayout({  body : value });
 
 // Async/Await
-const data = await client.payment.savePayout({  body : value });
+const data = await platformClient.payment.savePayout({  body : value });
 ```
 
 
@@ -4468,10 +4468,10 @@ Save Subscription Setup Intent
 
 ```javascript
 // Promise
-const promise = client.payment.saveSubscriptionSetupIntent({  body : value });
+const promise = platformClient.payment.saveSubscriptionSetupIntent({  body : value });
 
 // Async/Await
-const data = await client.payment.saveSubscriptionSetupIntent({  body : value });
+const data = await platformClient.payment.saveSubscriptionSetupIntent({  body : value });
 ```
 
 
@@ -4532,10 +4532,10 @@ Set COD option for user for payment
 
 ```javascript
 // Promise
-const promise = client.application("<APPLICATION_ID>").payment.setUserCODlimitRoutes({  body : value });
+const promise = platformClient.application("<APPLICATION_ID>").payment.setUserCODlimitRoutes({  body : value });
 
 // Async/Await
-const data = await client.application("<APPLICATION_ID>").payment.setUserCODlimitRoutes({  body : value });
+const data = await platformClient.application("<APPLICATION_ID>").payment.setUserCODlimitRoutes({  body : value });
 ```
 
 
@@ -4590,11 +4590,11 @@ map new edc device to the terminal
 
 ```javascript
 // Promise
-const promise = client.application("<APPLICATION_ID>").payment.updateEdcDevice({  terminalUniqueIdentifier : value,
+const promise = platformClient.application("<APPLICATION_ID>").payment.updateEdcDevice({  terminalUniqueIdentifier : value,
  body : value });
 
 // Async/Await
-const data = await client.application("<APPLICATION_ID>").payment.updateEdcDevice({  terminalUniqueIdentifier : value,
+const data = await platformClient.application("<APPLICATION_ID>").payment.updateEdcDevice({  terminalUniqueIdentifier : value,
  body : value });
 ```
 
@@ -4662,11 +4662,11 @@ Update Payout
 
 ```javascript
 // Promise
-const promise = client.payment.updatePayout({  uniqueTransferNo : value,
+const promise = platformClient.payment.updatePayout({  uniqueTransferNo : value,
  body : value });
 
 // Async/Await
-const data = await client.payment.updatePayout({  uniqueTransferNo : value,
+const data = await platformClient.payment.updatePayout({  uniqueTransferNo : value,
  body : value });
 ```
 
@@ -4724,10 +4724,10 @@ API to update the payment options of the merchant for paltform
 
 ```javascript
 // Promise
-const promise = client.application("<APPLICATION_ID>").payment.updatePlatformPaymentConfig({  body : value });
+const promise = platformClient.application("<APPLICATION_ID>").payment.updatePlatformPaymentConfig({  body : value });
 
 // Async/Await
-const data = await client.application("<APPLICATION_ID>").payment.updatePlatformPaymentConfig({  body : value });
+const data = await platformClient.application("<APPLICATION_ID>").payment.updatePlatformPaymentConfig({  body : value });
 ```
 
 
@@ -4863,10 +4863,10 @@ Ifsc Code Verification
 
 ```javascript
 // Promise
-const promise = client.payment.verifyIfscCode({  ifscCode : value });
+const promise = platformClient.payment.verifyIfscCode({  ifscCode : value });
 
 // Async/Await
-const data = await client.payment.verifyIfscCode({  ifscCode : value });
+const data = await platformClient.payment.verifyIfscCode({  ifscCode : value });
 ```
 
 
@@ -4940,8 +4940,8 @@ Bank details on correct Ifsc Code
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | details | [BankDetailsForOTP](#BankDetailsForOTP) |  yes  |  |
- | order_id | string |  yes  |  |
+ | details | [BankDetailsForOTP](#BankDetailsForOTP) |  no  |  |
+ | order_id | string |  no  |  |
  
 
 ---
@@ -4950,11 +4950,11 @@ Bank details on correct Ifsc Code
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | account_holder | string |  yes  |  |
- | account_no | string |  yes  |  |
- | bank_name | string |  yes  |  |
- | branch_name | string |  yes  |  |
- | ifsc_code | string |  yes  |  |
+ | account_holder | string |  no  |  |
+ | account_no | string |  no  |  |
+ | bank_name | string |  no  |  |
+ | branch_name | string |  no  |  |
+ | ifsc_code | string |  no  |  |
  
 
 ---
@@ -4963,11 +4963,11 @@ Bank details on correct Ifsc Code
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | is_active | boolean |  yes  |  |
- | limit | number |  yes  |  |
- | remaining_limit | number |  yes  |  |
- | usages | number |  yes  |  |
- | user_id | string |  yes  |  |
+ | is_active | boolean |  no  | COD option is active or not |
+ | limit | number |  no  | Total Limit of user |
+ | remaining_limit | number |  no  | Remaining Limit for COD of User |
+ | usages | number |  no  | Used COD limit from the user Limit |
+ | user_id | string |  no  | Payment mode name |
  
 
 ---
@@ -4976,7 +4976,7 @@ Bank details on correct Ifsc Code
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | success | boolean |  yes  |  |
+ | success | boolean |  no  | Response is successful or not |
  
 
 ---
@@ -4985,7 +4985,7 @@ Bank details on correct Ifsc Code
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | success | boolean |  yes  |  |
+ | success | boolean |  no  | Success or failure. |
  
 
 ---
@@ -4994,12 +4994,12 @@ Bank details on correct Ifsc Code
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | aggregator_id | number |  yes  |  |
- | device_tag | string |  no  |  |
- | edc_device_serial_no | string |  yes  |  |
- | edc_model | string |  yes  |  |
- | store_id | number |  yes  |  |
- | terminal_serial_no | string |  yes  |  |
+ | aggregator_id | number |  no  | Aggregator which will accept payment |
+ | device_tag | string? |  yes  | Device tag of edc device to identify it |
+ | edc_device_serial_no | string |  no  | Serial number or imei of EDC device |
+ | edc_model | string |  no  | Model of the edc machine |
+ | store_id | number |  no  | Store at which devices is to used |
+ | terminal_serial_no | string |  no  | Device serial number of terminal(android tablet) |
  
 
 ---
@@ -5008,8 +5008,8 @@ Bank details on correct Ifsc Code
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | data | [[EdcModelData](#EdcModelData)] |  yes  |  |
- | success | boolean |  yes  |  |
+ | data | [[EdcModelData](#EdcModelData)] |  no  | List of aggregators and their edc models |
+ | success | boolean |  no  | Response is successful or not |
  
 
 ---
@@ -5018,17 +5018,17 @@ Bank details on correct Ifsc Code
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | aggregator_id | number |  yes  |  |
- | aggregator_name | string |  no  |  |
- | application_id | string |  yes  |  |
- | device_tag | string |  yes  |  |
- | edc_device_serial_no | string |  yes  |  |
- | edc_model | string |  no  |  |
- | is_active | boolean |  yes  |  |
- | merchant_store_pos_code | string |  no  |  |
- | store_id | number |  yes  |  |
- | terminal_serial_no | string |  yes  |  |
- | terminal_unique_identifier | string |  yes  |  |
+ | aggregator_id | number |  no  | Aggregator which will accept payment |
+ | aggregator_name | string? |  yes  | Name of the corresponding aggregator |
+ | application_id | string |  no  | Application ID |
+ | device_tag | string |  no  | Device tag of edc device to identify it |
+ | edc_device_serial_no | string |  no  | Serial number of EDC device |
+ | edc_model | string? |  yes  | Name of the model |
+ | is_active | boolean |  no  | State whether device is active or inactive |
+ | merchant_store_pos_code | string? |  yes  | This is provided by pinelabs |
+ | store_id | number |  no  | Store at which devices is to used |
+ | terminal_serial_no | string |  no  | Device serial number of terminal(android tablet) |
+ | terminal_unique_identifier | string |  no  | Genearated unique value for edc device |
  
 
 ---
@@ -5037,8 +5037,8 @@ Bank details on correct Ifsc Code
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | data | [EdcDevice](#EdcDevice) |  yes  |  |
- | success | boolean |  yes  |  |
+ | data | [EdcDevice](#EdcDevice) |  no  | Details of the EDC Device that is added |
+ | success | boolean |  no  | Response is successful or not |
  
 
 ---
@@ -5047,8 +5047,8 @@ Bank details on correct Ifsc Code
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | data | [EdcDevice](#EdcDevice) |  yes  |  |
- | success | boolean |  yes  |  |
+ | data | [EdcDevice](#EdcDevice) |  no  | Details of one EDC Device |
+ | success | boolean |  no  | Response is successful or not |
  
 
 ---
@@ -5057,9 +5057,9 @@ Bank details on correct Ifsc Code
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | items | [[EdcDevice](#EdcDevice)] |  yes  |  |
- | page | [Page](#Page) |  yes  |  |
- | success | boolean |  yes  |  |
+ | items | [[EdcDevice](#EdcDevice)] |  no  | List of all edc mapped to the application options with their Details. |
+ | page | [Page](#Page) |  no  | Pagination Response |
+ | success | boolean |  no  | Response is successful or not |
  
 
 ---
@@ -5068,8 +5068,8 @@ Bank details on correct Ifsc Code
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | statistics | [StatisticsData](#StatisticsData) |  yes  |  |
- | success | boolean |  yes  |  |
+ | statistics | [StatisticsData](#StatisticsData) |  no  | Message |
+ | success | boolean |  no  | Response is successful or not |
  
 
 ---
@@ -5078,7 +5078,7 @@ Bank details on correct Ifsc Code
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | success | boolean |  yes  |  |
+ | success | boolean |  no  | Response is successful or not |
  
 
 ---
@@ -5087,9 +5087,9 @@ Bank details on correct Ifsc Code
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | aggregator | string |  yes  |  |
- | aggregator_id | number |  yes  |  |
- | models | [string] |  yes  |  |
+ | aggregator | string |  no  | Name of aggregator |
+ | aggregator_id | number |  no  | ID of aggregator |
+ | models | [string] |  no  | List of string of edc models |
  
 
 ---
@@ -5098,13 +5098,13 @@ Bank details on correct Ifsc Code
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | aggregator_id | number |  no  |  |
- | device_tag | string |  no  |  |
- | edc_device_serial_no | string |  no  |  |
- | edc_model | string |  no  |  |
- | is_active | boolean |  no  |  |
- | merchant_store_pos_code | string |  no  |  |
- | store_id | number |  no  |  |
+ | aggregator_id | number? |  yes  | Aggregator which will accept payment |
+ | device_tag | string? |  yes  | Device tag of edc device to identify it |
+ | edc_device_serial_no | string? |  yes  | Serial number or imei of EDC device |
+ | edc_model | string? |  yes  | Model of the edc machine |
+ | is_active | boolean? |  yes  | State whether device is active or inactive |
+ | merchant_store_pos_code | string? |  yes  | This is provided by pinelabs |
+ | store_id | number? |  yes  | Store at which devices is to used |
  
 
 ---
@@ -5113,8 +5113,8 @@ Bank details on correct Ifsc Code
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | code | string |  yes  |  |
- | description | string |  yes  |  |
+ | code | string |  no  | Error descrption code. |
+ | description | string |  no  | Error human understandable description. |
  
 
 ---
@@ -5123,9 +5123,9 @@ Bank details on correct Ifsc Code
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | code | string |  yes  |  |
- | description | string |  yes  |  |
- | success | boolean |  yes  |  |
+ | code | string |  no  | Error descrption code. |
+ | description | string |  no  | Error human understandable description. |
+ | success | boolean |  no  | Response is successful or not |
  
 
 ---
@@ -5134,8 +5134,8 @@ Bank details on correct Ifsc Code
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | success | boolean |  yes  |  |
- | user_cod_data | [CODdata](#CODdata) |  yes  |  |
+ | success | boolean |  no  | Response is successful or not |
+ | user_cod_data | [CODdata](#CODdata) |  no  | User COD Data |
  
 
 ---
@@ -5144,8 +5144,8 @@ Bank details on correct Ifsc Code
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | error | [ErrorCodeAndDescription](#ErrorCodeAndDescription) |  yes  |  |
- | success | boolean |  yes  |  |
+ | error | [ErrorCodeAndDescription](#ErrorCodeAndDescription) |  no  |  |
+ | success | boolean |  no  | Response is successful or not |
  
 
 ---
@@ -5154,9 +5154,9 @@ Bank details on correct Ifsc Code
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | bank_name | string |  yes  |  |
- | branch_name | string |  yes  |  |
- | success | boolean |  no  |  |
+ | bank_name | string |  no  | Bank Name Of Account |
+ | branch_name | string |  no  | Branch Name Of Account |
+ | success | boolean? |  yes  | Response is successful or not |
  
 
 ---
@@ -5165,10 +5165,10 @@ Bank details on correct Ifsc Code
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | code | string |  no  |  |
- | display_name | string |  no  |  |
- | logos | [PaymentModeLogo](#PaymentModeLogo) |  no  |  |
- | package_name | string |  no  |  |
+ | code | string? |  yes  | code |
+ | display_name | string? |  yes  | display_name |
+ | logos | [PaymentModeLogo](#PaymentModeLogo)? |  yes  | logos |
+ | package_name | string? |  yes  | package_name |
  
 
 ---
@@ -5177,8 +5177,8 @@ Bank details on correct Ifsc Code
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | code | string |  no  |  |
- | package_name | string |  no  |  |
+ | code | string? |  yes  | code |
+ | package_name | string? |  yes  | package_name |
  
 
 ---
@@ -5187,8 +5187,8 @@ Bank details on correct Ifsc Code
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | message | string |  yes  |  |
- | status | boolean |  yes  |  |
+ | message | string |  no  | Message |
+ | status | boolean |  no  | Link action status |
  
 
 ---
@@ -5197,11 +5197,11 @@ Bank details on correct Ifsc Code
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | current_status | string |  no  |  |
- | extra_meta | string |  no  |  |
- | order_id | string |  no  |  |
- | payment_gateway | string |  no  |  |
- | payment_id | string |  no  |  |
+ | current_status | string? |  yes  |  |
+ | extra_meta | string? |  yes  |  |
+ | order_id | string? |  yes  |  |
+ | payment_gateway | string? |  yes  |  |
+ | payment_id | string? |  yes  |  |
  
 
 ---
@@ -5210,10 +5210,10 @@ Bank details on correct Ifsc Code
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | amount | number |  yes  |  |
- | meta | [MultiTenderPaymentMeta](#MultiTenderPaymentMeta) |  no  |  |
- | mode | string |  yes  |  |
- | name | string |  no  |  |
+ | amount | number |  no  | Payment amount |
+ | meta | [MultiTenderPaymentMeta](#MultiTenderPaymentMeta)? |  yes  |  |
+ | mode | string |  no  |  |
+ | name | string? |  yes  | Payment mode name |
  
 
 ---
@@ -5222,9 +5222,9 @@ Bank details on correct Ifsc Code
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | code | string |  yes  |  |
- | description | string |  yes  |  |
- | success | boolean |  yes  |  |
+ | code | string |  no  | Bad Request Data |
+ | description | string |  no  | Not Found |
+ | success | boolean |  no  | Response is successful or not |
  
 
 ---
@@ -5233,25 +5233,25 @@ Bank details on correct Ifsc Code
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | account_holder | string |  yes  |  |
- | account_no | string |  yes  |  |
- | address | string |  yes  |  |
- | bank_name | string |  yes  |  |
- | beneficiary_id | string |  yes  |  |
- | branch_name | string |  no  |  |
- | comment | string |  no  |  |
- | created_on | string |  yes  |  |
- | delights_user_name | string |  no  |  |
- | display_name | string |  yes  |  |
- | email | string |  yes  |  |
- | id | number |  yes  |  |
- | ifsc_code | string |  yes  |  |
- | is_active | boolean |  yes  |  |
- | mobile | string |  no  |  |
- | modified_on | string |  yes  |  |
- | subtitle | string |  yes  |  |
- | title | string |  yes  |  |
- | transfer_mode | string |  yes  |  |
+ | account_holder | string |  no  | Account Holder Name |
+ | account_no | string |  no  | Account Number |
+ | address | string |  no  | Address of User |
+ | bank_name | string |  no  | Bank Name Of Account |
+ | beneficiary_id | string |  no  | Benenficiary Id |
+ | branch_name | string? |  yes  | Branch Name Of Account |
+ | comment | string? |  yes  | Remarks |
+ | created_on | string |  no  | Creation Date of Beneficiary |
+ | delights_user_name | string? |  yes  | User Id Who filled the Beneficiary  |
+ | display_name | string |  no  | Display Name Of Account |
+ | email | string |  no  | EMail of User |
+ | id | number |  no  |   |
+ | ifsc_code | string |  no  | Ifsc Code Of Account |
+ | is_active | boolean |  no  | Boolean Flag whether Beneficiary set or not |
+ | mobile | string? |  yes  | MObile no of User |
+ | modified_on | string |  no  | MOdification Date of Beneficiary |
+ | subtitle | string |  no  | SHort Title Of Account |
+ | title | string |  no  | Title Of Account |
+ | transfer_mode | string |  no  | Transfer Mode Of Account |
  
 
 ---
@@ -5260,8 +5260,8 @@ Bank details on correct Ifsc Code
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | beneficiaries | [[OrderBeneficiaryDetails](#OrderBeneficiaryDetails)] |  no  |  |
- | show_beneficiary_details | boolean |  no  |  |
+ | beneficiaries | [[OrderBeneficiaryDetails](#OrderBeneficiaryDetails)]? |  yes  | All Beneficiaries Of An Order |
+ | show_beneficiary_details | boolean? |  yes  | Show beneficiary details or not. |
  
 
 ---
@@ -5270,11 +5270,11 @@ Bank details on correct Ifsc Code
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | current | number |  yes  |  |
- | has_next | boolean |  yes  |  |
- | item_total | number |  yes  |  |
- | size | number |  yes  |  |
- | type | string |  yes  |  |
+ | current | number |  no  | Current page number |
+ | has_next | boolean |  no  | Whether there exist next page or not |
+ | item_total | number |  no  | Total number of items |
+ | size | number |  no  | Total number of pages |
+ | type | string |  no  | Type of pagination used |
  
 
 ---
@@ -5283,8 +5283,8 @@ Bank details on correct Ifsc Code
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | order_id | string |  yes  |  |
- | payment_methods | [[MultiTenderPaymentMethod](#MultiTenderPaymentMethod)] |  yes  |  |
+ | order_id | string |  no  | Unique order id |
+ | payment_methods | [[MultiTenderPaymentMethod](#MultiTenderPaymentMethod)] |  no  |  |
  
 
 ---
@@ -5293,9 +5293,9 @@ Bank details on correct Ifsc Code
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | message | string |  yes  |  |
- | order_id | string |  yes  |  |
- | success | boolean |  yes  |  |
+ | message | string |  no  | Message |
+ | order_id | string |  no  | Unique order id |
+ | success | boolean |  no  | Payment confirmation updated or not. |
  
 
 ---
@@ -5304,11 +5304,11 @@ Bank details on correct Ifsc Code
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | config_type | string |  yes  |  |
- | is_active | boolean |  no  |  |
- | key | string |  yes  |  |
- | merchant_salt | string |  yes  |  |
- | secret | string |  yes  |  |
+ | config_type | string |  no  | Config Type of the aggregator |
+ | is_active | boolean? |  yes  | Enable/ Disable Flag |
+ | key | string |  no  | Api key of the payment aggregator |
+ | merchant_salt | string |  no  | Merchant key of the payment aggregator |
+ | secret | string |  no  | Secret Key of the payment aggregator |
  
 
 ---
@@ -5317,9 +5317,9 @@ Bank details on correct Ifsc Code
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | aggregator_name | [PaymentGatewayConfig](#PaymentGatewayConfig) |  no  |  |
- | app_id | string |  yes  |  |
- | is_active | boolean |  no  |  |
+ | aggregator_name | [PaymentGatewayConfig](#PaymentGatewayConfig)? |  yes  |  |
+ | app_id | string |  no  | Application Id to which Payment config Mapped |
+ | is_active | boolean? |  yes  | Enable/ Disable Flag |
  
 
 ---
@@ -5328,12 +5328,12 @@ Bank details on correct Ifsc Code
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | aggregators | [string] |  no  |  |
- | app_id | string |  yes  |  |
- | created | boolean |  yes  |  |
- | display_fields | [string] |  yes  |  |
- | excluded_fields | [string] |  yes  |  |
- | success | boolean |  yes  |  |
+ | aggregators | [string]? |  yes  | List of all speceific Payment options with their Details. |
+ | app_id | string |  no  | Application Id to which Payment config Mapped |
+ | created | boolean |  no  | Response is created or not |
+ | display_fields | [string] |  no  | List of all included  options with their Details. |
+ | excluded_fields | [string] |  no  | List of all excluded  options with their Details. |
+ | success | boolean |  no  | Response is successful or not |
  
 
 ---
@@ -5342,8 +5342,8 @@ Bank details on correct Ifsc Code
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | aggregator | [string] |  yes  |  |
- | success | boolean |  yes  |  |
+ | aggregator | [string] |  no  | List of added payment gateway |
+ | success | boolean |  no  | Response is successful or not |
  
 
 ---
@@ -5352,19 +5352,19 @@ Bank details on correct Ifsc Code
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | aggregator | string |  yes  |  |
- | amount | number |  yes  |  |
- | contact | string |  yes  |  |
- | currency | string |  yes  |  |
- | customer_id | string |  yes  |  |
- | device_id | string |  no  |  |
- | email | string |  yes  |  |
- | merchant_order_id | string |  yes  |  |
- | method | string |  yes  |  |
- | order_id | string |  yes  |  |
- | razorpay_payment_id | string |  no  |  |
- | timeout | number |  no  |  |
- | vpa | string |  no  |  |
+ | aggregator | string |  no  | Payment gateway name |
+ | amount | number |  no  | Payable amount. |
+ | contact | string |  no  | Customer valid mobile number |
+ | currency | string |  no  | Currency code. |
+ | customer_id | string |  no  | Payment gateway customer id. |
+ | device_id | string? |  yes  | EDC machine Unique Identifier |
+ | email | string |  no  | Customer valid email |
+ | merchant_order_id | string |  no  | Unique fynd order id |
+ | method | string |  no  | Payment method |
+ | order_id | string |  no  | Payment gateway order id |
+ | razorpay_payment_id | string? |  yes  | Payment gateway payment id |
+ | timeout | number? |  yes  | Payment polling timeout if not recieved response |
+ | vpa | string? |  yes  | Customer vpa address |
  
 
 ---
@@ -5373,24 +5373,27 @@ Bank details on correct Ifsc Code
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | aggregator | string |  yes  |  |
- | aggregator_order_id | string |  no  |  |
- | amount | number |  no  |  |
- | bqr_image | string |  no  |  |
- | currency | string |  no  |  |
- | customer_id | string |  no  |  |
- | device_id | string |  no  |  |
- | merchant_order_id | string |  yes  |  |
- | method | string |  yes  |  |
- | payment_id | string |  no  |  |
- | polling_url | string |  yes  |  |
- | razorpay_payment_id | string |  no  |  |
- | status | string |  no  |  |
- | success | boolean |  yes  |  |
- | timeout | number |  no  |  |
- | upi_poll_url | string |  no  |  |
- | virtual_id | string |  no  |  |
- | vpa | string |  no  |  |
+ | aggregator | string |  no  | Payment gateway name |
+ | aggregator_order_id | string? |  yes  | Payment order id |
+ | amount | number? |  yes  | Payable amount. |
+ | bqr_image | string? |  yes  | Bharath qr image url. |
+ | contact | string? |  yes  | Customer valid mobile number |
+ | currency | string? |  yes  | Currency code. |
+ | customer_id | string? |  yes  | Payment gateway customer id. |
+ | device_id | string? |  yes  | EDC machine Unique Identifier |
+ | email | string? |  yes  | Customer valid email |
+ | merchant_order_id | string |  no  | order id |
+ | method | string |  no  | Payment method |
+ | order_id | string? |  yes  | Payment gateway order id |
+ | payment_id | string? |  yes  | Payment id. |
+ | polling_url | string |  no  | Polling url. |
+ | razorpay_payment_id | string? |  yes  | Payment  id. |
+ | status | string? |  yes  | Status of payment. |
+ | success | boolean |  no  | Response is successful or not. |
+ | timeout | number? |  yes  | timeout. |
+ | upi_poll_url | string? |  yes  | UPI poll url. |
+ | virtual_id | string? |  yes  | Payment virtual address. |
+ | vpa | string? |  yes  | Customer vpa address |
  
 
 ---
@@ -5399,39 +5402,39 @@ Bank details on correct Ifsc Code
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | aggregator_name | string |  yes  |  |
- | card_brand | string |  no  |  |
- | card_brand_image | string |  no  |  |
- | card_fingerprint | string |  no  |  |
- | card_id | string |  no  |  |
- | card_isin | string |  no  |  |
- | card_issuer | string |  no  |  |
- | card_name | string |  no  |  |
- | card_number | string |  no  |  |
- | card_reference | string |  no  |  |
- | card_token | string |  no  |  |
- | card_type | string |  no  |  |
- | cod_limit | number |  no  |  |
- | cod_limit_per_order | number |  no  |  |
- | code | string |  no  |  |
- | compliant_with_tokenisation_guidelines | boolean |  no  |  |
- | display_name | string |  no  |  |
- | display_priority | number |  no  |  |
- | exp_month | number |  no  |  |
- | exp_year | number |  no  |  |
- | expired | boolean |  no  |  |
- | fynd_vpa | string |  no  |  |
- | intent_app | [[IntentApp](#IntentApp)] |  no  |  |
- | intent_app_error_dict_list | [[IntentAppErrorList](#IntentAppErrorList)] |  no  |  |
- | intent_app_error_list | [string] |  no  |  |
- | intent_flow | boolean |  no  |  |
- | logo_url | [PaymentModeLogo](#PaymentModeLogo) |  no  |  |
- | merchant_code | string |  no  |  |
- | name | string |  no  |  |
- | nickname | string |  no  |  |
- | remaining_limit | number |  no  |  |
- | retry_count | number |  no  |  |
- | timeout | number |  no  |  |
+ | aggregator_name | string |  no  | aggregator_name |
+ | card_brand | string? |  yes  | card_brand |
+ | card_brand_image | string? |  yes  | card_brand_image |
+ | card_fingerprint | string? |  yes  | card_fingerprint |
+ | card_id | string? |  yes  | card_id |
+ | card_isin | string? |  yes  | card_isin |
+ | card_issuer | string? |  yes  | card_issuer |
+ | card_name | string? |  yes  | card_name |
+ | card_number | string? |  yes  | card_number |
+ | card_reference | string? |  yes  | card_reference |
+ | card_token | string? |  yes  | card_token |
+ | card_type | string? |  yes  | card_type |
+ | cod_limit | number? |  yes  | cod limit |
+ | cod_limit_per_order | number? |  yes  | Cod limit per order |
+ | code | string? |  yes  | code |
+ | compliant_with_tokenisation_guidelines | boolean? |  yes  | If card is tokenised or not |
+ | display_name | string? |  yes  | display name |
+ | display_priority | number? |  yes  | Dispaly Priority |
+ | exp_month | number? |  yes  | exp_month |
+ | exp_year | number? |  yes  | exp_year |
+ | expired | boolean? |  yes  | expired |
+ | fynd_vpa | string? |  yes  | fynd_vpa |
+ | intent_app | [[IntentApp](#IntentApp)]? |  yes  | intent_app |
+ | intent_app_error_dict_list | [[IntentAppErrorList](#IntentAppErrorList)]? |  yes  | intent_app_error_dict_list |
+ | intent_app_error_list | [string]? |  yes  | intent_app_error_list |
+ | intent_flow | boolean? |  yes  | intent_flow |
+ | logo_url | [PaymentModeLogo](#PaymentModeLogo)? |  yes  | Logo |
+ | merchant_code | string? |  yes  | merchant code |
+ | name | string? |  yes  | name |
+ | nickname | string? |  yes  | nickname |
+ | remaining_limit | number? |  yes  | Remaining limit |
+ | retry_count | number? |  yes  | retry_count |
+ | timeout | number? |  yes  | timeout |
  
 
 ---
@@ -5440,8 +5443,8 @@ Bank details on correct Ifsc Code
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | large | string |  yes  |  |
- | small | string |  yes  |  |
+ | large | string |  no  | large |
+ | small | string |  no  | smalll |
  
 
 ---
@@ -5450,7 +5453,7 @@ Bank details on correct Ifsc Code
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | payment_option | [[RootPaymentMode](#RootPaymentMode)] |  yes  |  |
+ | payment_option | [[RootPaymentMode](#RootPaymentMode)] |  no  | Payment options |
  
 
 ---
@@ -5459,8 +5462,8 @@ Bank details on correct Ifsc Code
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | payment_options | [PaymentOptions](#PaymentOptions) |  yes  |  |
- | success | boolean |  yes  |  |
+ | payment_options | [PaymentOptions](#PaymentOptions) |  no  | Payment options |
+ | success | boolean |  no  | Response is successful or not |
  
 
 ---
@@ -5469,20 +5472,20 @@ Bank details on correct Ifsc Code
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | aggregator | string |  yes  |  |
- | amount | number |  yes  |  |
- | contact | string |  yes  |  |
- | currency | string |  yes  |  |
- | customer_id | string |  yes  |  |
- | device_id | string |  no  |  |
- | email | string |  yes  |  |
- | merchant_order_id | string |  yes  |  |
- | method | string |  yes  |  |
- | order_id | string |  yes  |  |
- | payment_id | string |  no  |  |
- | razorpay_payment_id | string |  no  |  |
- | status | string |  yes  |  |
- | vpa | string |  no  |  |
+ | aggregator | string |  no  | Payment gateway name |
+ | amount | number |  no  | Payable amount. |
+ | contact | string? |  yes  | Customer valid mobile number |
+ | currency | string? |  yes  | Currency code. |
+ | customer_id | string |  no  | Payment gateway customer id. |
+ | device_id | string? |  yes  | EDC machine Unique Identifier |
+ | email | string? |  yes  | Customer valid email |
+ | merchant_order_id | string |  no  | Unique fynd order id |
+ | method | string |  no  | Payment method |
+ | order_id | string? |  yes  | Payment gateway order id |
+ | payment_id | string? |  yes  | Payment id. |
+ | razorpay_payment_id | string? |  yes  | Payment  id. |
+ | status | string |  no  | Status of payment. |
+ | vpa | string? |  yes  | Customer vpa address |
  
 
 ---
@@ -5491,11 +5494,11 @@ Bank details on correct Ifsc Code
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | aggregator_name | string |  yes  |  |
- | redirect_url | string |  no  |  |
- | retry | boolean |  yes  |  |
- | status | string |  yes  |  |
- | success | boolean |  no  |  |
+ | aggregator_name | string |  no  | Payment gateway name |
+ | redirect_url | string? |  yes  | Redirect url |
+ | retry | boolean |  no  | Response is successful or not. |
+ | status | string |  no  | Payment status |
+ | success | boolean? |  yes  | Response is successful or not |
  
 
 ---
@@ -5504,13 +5507,13 @@ Bank details on correct Ifsc Code
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | customers | [PayoutCustomer](#PayoutCustomer) |  yes  |  |
- | is_active | boolean |  yes  |  |
- | is_default | boolean |  yes  |  |
- | more_attributes | [PayoutMoreAttributes](#PayoutMoreAttributes) |  yes  |  |
- | payouts_aggregators | [[PayoutAggregator](#PayoutAggregator)] |  no  |  |
- | transfer_type | string |  yes  |  |
- | unique_transfer_no | string |  yes  |  |
+ | customers | [PayoutCustomer](#PayoutCustomer) |  no  | customers details object |
+ | is_active | boolean |  no  | Enable/DIsable Flag Payout |
+ | is_default | boolean |  no  | default or not  |
+ | more_attributes | [PayoutMoreAttributes](#PayoutMoreAttributes) |  no  | bank details object |
+ | payouts_aggregators | [[PayoutAggregator](#PayoutAggregator)]? |  yes  |  |
+ | transfer_type | string |  no  | transafer type |
+ | unique_transfer_no | string |  no  | display priority of the payment mode |
  
 
 ---
@@ -5519,9 +5522,9 @@ Bank details on correct Ifsc Code
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | aggregator_fund_id | number |  no  |  |
- | aggregator_id | number |  no  |  |
- | payout_details_id | number |  no  |  |
+ | aggregator_fund_id | number? |  yes  | aggregator_fund_id |
+ | aggregator_id | number? |  yes  | aggregator_id |
+ | payout_details_id | number? |  yes  | payout_details_id |
  
 
 ---
@@ -5530,16 +5533,16 @@ Bank details on correct Ifsc Code
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | account_holder | string |  no  |  |
- | account_no | string |  no  |  |
- | account_type | string |  yes  |  |
- | bank_name | string |  no  |  |
- | branch_name | string |  no  |  |
- | city | string |  no  |  |
- | country | string |  no  |  |
- | ifsc_code | string |  yes  |  |
- | pincode | number |  no  |  |
- | state | string |  no  |  |
+ | account_holder | string? |  yes  |  |
+ | account_no | string? |  yes  |  |
+ | account_type | string |  no  |  |
+ | bank_name | string? |  yes  |  |
+ | branch_name | string? |  yes  |  |
+ | city | string? |  yes  |  |
+ | country | string? |  yes  |  |
+ | ifsc_code | string |  no  |  |
+ | pincode | number? |  yes  |  |
+ | state | string? |  yes  |  |
  
 
 ---
@@ -5548,10 +5551,10 @@ Bank details on correct Ifsc Code
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | id | number |  no  |  |
- | mobile | string |  no  |  |
- | name | string |  no  |  |
- | unique_external_id | string |  no  |  |
+ | id | number? |  yes  | Customer ID |
+ | mobile | string? |  yes  | Customer Mobile No |
+ | name | string? |  yes  | Customer Name |
+ | unique_external_id | string? |  yes  | unique_external_id |
  
 
 ---
@@ -5560,15 +5563,15 @@ Bank details on correct Ifsc Code
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | account_holder | string |  no  |  |
- | account_no | string |  no  |  |
- | account_type | string |  no  |  |
- | bank_name | string |  no  |  |
- | branch_name | string |  no  |  |
- | city | string |  no  |  |
- | country | string |  no  |  |
- | ifsc_code | string |  no  |  |
- | state | string |  no  |  |
+ | account_holder | string? |  yes  | Account Holder Name |
+ | account_no | string? |  yes  | Account Number |
+ | account_type | string? |  yes  | Account Type Saving/Current |
+ | bank_name | string? |  yes  | Name of Bank |
+ | branch_name | string? |  yes  | Branch Name |
+ | city | string? |  yes  | City |
+ | country | string? |  yes  | Country |
+ | ifsc_code | string? |  yes  | IFSC Code |
+ | state | string? |  yes  | State |
  
 
 ---
@@ -5577,12 +5580,12 @@ Bank details on correct Ifsc Code
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | aggregator | string |  yes  |  |
- | bank_details | [PayoutBankDetails](#PayoutBankDetails) |  yes  |  |
- | is_active | boolean |  yes  |  |
- | transfer_type | string |  yes  |  |
- | unique_external_id | string |  yes  |  |
- | users | string |  yes  |  |
+ | aggregator | string |  no  | Aggregator Name |
+ | bank_details | [PayoutBankDetails](#PayoutBankDetails) |  no  | payout bank details object |
+ | is_active | boolean |  no  | Enable/Disable Flag Payout |
+ | transfer_type | string |  no  | transafer type |
+ | unique_external_id | string |  no  | Unique Id of Payout |
+ | users | string |  no  | payout users object |
  
 
 ---
@@ -5591,16 +5594,16 @@ Bank details on correct Ifsc Code
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | aggregator | string |  yes  |  |
- | bank_details | string |  yes  |  |
- | created | boolean |  yes  |  |
- | is_active | boolean |  yes  |  |
- | payment_status | string |  yes  |  |
- | payouts | string |  yes  |  |
- | success | boolean |  yes  |  |
- | transfer_type | string |  yes  |  |
- | unique_transfer_no | string |  yes  |  |
- | users | string |  yes  |  |
+ | aggregator | string |  no  | Aggregator Name |
+ | bank_details | string |  no  | payout bank_details object |
+ | created | boolean |  no  | created flag |
+ | is_active | boolean |  no  | Enable/DIsable Flag Payout |
+ | payment_status | string |  no  | status of payment |
+ | payouts | string |  no  | payout  object |
+ | success | boolean |  no  | Response is successful or not |
+ | transfer_type | string |  no  | transfer type |
+ | unique_transfer_no | string |  no  | unique transfer no |
+ | users | string |  no  | users details object |
  
 
 ---
@@ -5609,8 +5612,8 @@ Bank details on correct Ifsc Code
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | items | [[Payout](#Payout)] |  yes  |  |
- | success | boolean |  yes  |  |
+ | items | [[Payout](#Payout)] |  no  | contains list of PayoutSchema |
+ | success | boolean |  no  | Response is successful or not |
  
 
 ---
@@ -5619,15 +5622,15 @@ Bank details on correct Ifsc Code
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | anonymous_cod | boolean |  no  |  |
- | callback_url | string |  no  |  |
- | cod_amount_limit | number |  no  |  |
- | cod_charges | number |  no  |  |
- | enabled | boolean |  yes  |  |
- | methods | string |  yes  |  |
- | mode_of_payment | string |  yes  |  |
- | payment_selection_lock | string |  no  |  |
- | source | string |  yes  |  |
+ | anonymous_cod | boolean? |  yes  |  |
+ | callback_url | string? |  yes  |  |
+ | cod_amount_limit | number? |  yes  |  |
+ | cod_charges | number? |  yes  |  |
+ | enabled | boolean |  no  |  |
+ | methods | string |  no  |  |
+ | mode_of_payment | string |  no  |  |
+ | payment_selection_lock | string? |  yes  |  |
+ | source | string |  no  |  |
  
 
 ---
@@ -5636,9 +5639,9 @@ Bank details on correct Ifsc Code
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | data | [PlatformPaymentOptions](#PlatformPaymentOptions) |  yes  |  |
- | message | string |  yes  |  |
- | success | boolean |  yes  |  |
+ | data | [PlatformPaymentOptions](#PlatformPaymentOptions) |  no  |  |
+ | message | string |  no  | Human readable message. |
+ | success | boolean |  no  |  |
  
 
 ---
@@ -5647,10 +5650,10 @@ Bank details on correct Ifsc Code
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | data | string |  no  |  |
- | is_verified_flag | boolean |  no  |  |
- | message | string |  yes  |  |
- | success | boolean |  yes  |  |
+ | data | string? |  yes  | Refund account data. |
+ | is_verified_flag | boolean? |  yes  |  |
+ | message | string |  no  | Response message |
+ | success | boolean |  no  | Success or failure flag. |
  
 
 ---
@@ -5659,9 +5662,9 @@ Bank details on correct Ifsc Code
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | device_id | string |  no  |  |
- | order_id | string |  yes  |  |
- | request_type | string |  yes  |  |
+ | device_id | string? |  yes  | EDC machine Unique Identifier |
+ | order_id | string |  no  | Unique order id |
+ | request_type | string |  no  | Either resend or cancel |
  
 
 ---
@@ -5670,8 +5673,8 @@ Bank details on correct Ifsc Code
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | data | [LinkStatus](#LinkStatus) |  yes  |  |
- | success | boolean |  yes  |  |
+ | data | [LinkStatus](#LinkStatus) |  no  | Data about link action status. |
+ | success | boolean |  no  | Response is successful or not. |
  
 
 ---
@@ -5680,15 +5683,15 @@ Bank details on correct Ifsc Code
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | add_card_enabled | boolean |  no  |  |
- | aggregator_name | string |  no  |  |
- | anonymous_enable | boolean |  no  |  |
- | display_name | string |  yes  |  |
- | display_priority | number |  yes  |  |
- | is_pay_by_card_pl | boolean |  no  |  |
- | list | [[PaymentModeList](#PaymentModeList)] |  no  |  |
- | name | string |  yes  |  |
- | save_card | boolean |  no  |  |
+ | add_card_enabled | boolean? |  yes  | Annonymous card flag |
+ | aggregator_name | string? |  yes  | Dispaly Priority |
+ | anonymous_enable | boolean? |  yes  | Annonymous card flag |
+ | display_name | string |  no  | Payment mode display name |
+ | display_priority | number |  no  | Dispaly Priority |
+ | is_pay_by_card_pl | boolean? |  yes  | This flag will be true in case of Payment link payment through card |
+ | list | [[PaymentModeList](#PaymentModeList)]? |  yes  | Payment mode |
+ | name | string |  no  | Payment mode name |
+ | save_card | boolean? |  yes  | Card save or not |
  
 
 ---
@@ -5697,7 +5700,7 @@ Bank details on correct Ifsc Code
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | unique_external_id | string |  yes  |  |
+ | unique_external_id | string |  no  | Unique id i.e company:id |
  
 
 ---
@@ -5706,8 +5709,8 @@ Bank details on correct Ifsc Code
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | data | string |  yes  |  |
- | success | boolean |  yes  |  |
+ | data | string |  no  | Subscription Payment Method Object |
+ | success | boolean |  no  | Response is successful or not |
  
 
 ---
@@ -5716,9 +5719,9 @@ Bank details on correct Ifsc Code
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | is_active | boolean |  yes  |  |
- | merchant_user_id | string |  yes  |  |
- | mobileno | string |  yes  |  |
+ | is_active | boolean |  no  | either true or false |
+ | merchant_user_id | string |  no  | Merchant User id |
+ | mobileno | string |  no  | Mobile No. of User |
  
 
 ---
@@ -5727,8 +5730,8 @@ Bank details on correct Ifsc Code
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | message | string |  yes  |  |
- | success | boolean |  yes  |  |
+ | message | string |  no  | Message |
+ | success | boolean |  no  | Response is successful or not |
  
 
 ---
@@ -5737,8 +5740,8 @@ Bank details on correct Ifsc Code
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | active_device_count | number |  yes  |  |
- | inactive_device_count | number |  yes  |  |
+ | active_device_count | number |  no  | No of active devices |
+ | inactive_device_count | number |  no  | No of inactive devices |
  
 
 ---
@@ -5747,9 +5750,9 @@ Bank details on correct Ifsc Code
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | aggregator | string |  yes  |  |
- | config | string |  yes  |  |
- | success | boolean |  yes  |  |
+ | aggregator | string |  no  | Aggregator Name |
+ | config | string |  no  | Aggregator Config |
+ | success | boolean |  no  | Response is successful or not |
  
 
 ---
@@ -5758,8 +5761,8 @@ Bank details on correct Ifsc Code
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | data | [string] |  yes  |  |
- | success | boolean |  yes  |  |
+ | data | [string] |  no  | Subscription Payment Method Object |
+ | success | boolean |  no  | Response is successful or not |
  
 
 ---
@@ -5768,9 +5771,9 @@ Bank details on correct Ifsc Code
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | is_active | boolean |  yes  |  |
- | is_default | boolean |  yes  |  |
- | unique_external_id | string |  yes  |  |
+ | is_active | boolean |  no  | Enable/Disable Flag Payout |
+ | is_default | boolean |  no  | Enable/Disable Default Payout |
+ | unique_external_id | string |  no  | Unique Id of Payout |
  
 
 ---
@@ -5779,9 +5782,9 @@ Bank details on correct Ifsc Code
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | is_active | boolean |  yes  |  |
- | is_default | boolean |  yes  |  |
- | success | boolean |  yes  |  |
+ | is_active | boolean |  no  | Enable/DIsable Flag Payout |
+ | is_default | boolean |  no  | Enable/Disable Default Payout |
+ | success | boolean |  no  | Response is successful or not |
  
 
 ---
@@ -5790,11 +5793,11 @@ Bank details on correct Ifsc Code
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | anonymous_cod | boolean |  no  |  |
- | cod_amount_limit | number |  no  |  |
- | cod_charges | number |  no  |  |
- | methods | string |  yes  |  |
- | payment_selection_lock | string |  no  |  |
+ | anonymous_cod | boolean? |  yes  |  |
+ | cod_amount_limit | number? |  yes  |  |
+ | cod_charges | number? |  yes  |  |
+ | methods | string |  no  |  |
+ | payment_selection_lock | string? |  yes  |  |
  
 
 ---

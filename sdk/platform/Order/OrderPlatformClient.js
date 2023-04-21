@@ -1,10 +1,9 @@
-const Paginator = require("../../common/Paginator");
-const { FDKClientValidationError } = require("../../common/FDKError");
 const PlatformAPIClient = require("../PlatformAPIClient");
+const { FDKClientValidationError } = require("../../common/FDKError");
+const Paginator = require("../../common/Paginator");
 const OrderValidator = require("./OrderPlatformValidator");
 const OrderModel = require("./OrderPlatformModel");
 const { Logger } = require("./../../common/Logger");
-const Joi = require("joi");
 
 class Order {
   constructor(config) {
@@ -216,12 +215,20 @@ class Order {
    * @summary:
    * @description:
    */
-  async click2Call({ caller, receiver, bagId, callingTo, callerId } = {}) {
+  async click2Call({
+    caller,
+    receiver,
+    bagId,
+
+    callingTo,
+    callerId,
+  } = {}) {
     const { error } = OrderValidator.click2Call().validate(
       {
         caller,
         receiver,
         bagId,
+
         callingTo,
         callerId,
       },
@@ -237,6 +244,7 @@ class Order {
         caller,
         receiver,
         bagId,
+
         callingTo,
         callerId,
       },
@@ -1568,7 +1576,7 @@ class Order {
    * @param {string} [arg.toDate] -
    * @param {string} [arg.dpIds] -
    * @param {string} [arg.stores] -
-   * @param {string} [arg.salesChannel] -
+   * @param {string} [arg.salesChannels] -
    * @param {number} [arg.pageNo] -
    * @param {number} [arg.pageSize] -
    * @param {boolean} [arg.isPrioritySort] -
@@ -1589,7 +1597,7 @@ class Order {
     toDate,
     dpIds,
     stores,
-    salesChannel,
+    salesChannels,
     pageNo,
     pageSize,
     isPrioritySort,
@@ -1608,7 +1616,7 @@ class Order {
         toDate,
         dpIds,
         stores,
-        salesChannel,
+        salesChannels,
         pageNo,
         pageSize,
         isPrioritySort,
@@ -1634,7 +1642,7 @@ class Order {
         toDate,
         dpIds,
         stores,
-        salesChannel,
+        salesChannels,
         pageNo,
         pageSize,
         isPrioritySort,
@@ -1662,7 +1670,7 @@ class Order {
     query_params["to_date"] = toDate;
     query_params["dp_ids"] = dpIds;
     query_params["stores"] = stores;
-    query_params["sales_channel"] = salesChannel;
+    query_params["sales_channels"] = salesChannels;
     query_params["page_no"] = pageNo;
     query_params["page_size"] = pageSize;
     query_params["is_priority_sort"] = isPrioritySort;
@@ -2062,7 +2070,7 @@ class Order {
    * @param {string} [arg.dpIds] -
    * @param {string} [arg.orderingCompanyId] -
    * @param {string} [arg.stores] -
-   * @param {string} [arg.salesChannel] -
+   * @param {string} [arg.salesChannels] -
    * @param {string} [arg.requestByExt] -
    * @param {number} [arg.pageNo] -
    * @param {number} [arg.pageSize] -
@@ -2091,7 +2099,7 @@ class Order {
     dpIds,
     orderingCompanyId,
     stores,
-    salesChannel,
+    salesChannels,
     requestByExt,
     pageNo,
     pageSize,
@@ -2118,7 +2126,7 @@ class Order {
         dpIds,
         orderingCompanyId,
         stores,
-        salesChannel,
+        salesChannels,
         requestByExt,
         pageNo,
         pageSize,
@@ -2152,7 +2160,7 @@ class Order {
         dpIds,
         orderingCompanyId,
         stores,
-        salesChannel,
+        salesChannels,
         requestByExt,
         pageNo,
         pageSize,
@@ -2188,7 +2196,7 @@ class Order {
     query_params["dp_ids"] = dpIds;
     query_params["ordering_company_id"] = orderingCompanyId;
     query_params["stores"] = stores;
-    query_params["sales_channel"] = salesChannel;
+    query_params["sales_channels"] = salesChannels;
     query_params["request_by_ext"] = requestByExt;
     query_params["page_no"] = pageNo;
     query_params["page_size"] = pageSize;
@@ -2832,6 +2840,7 @@ class Order {
   async updateAddress({
     shipmentId,
     addressCategory,
+
     name,
     address,
     addressType,
@@ -2847,6 +2856,7 @@ class Order {
       {
         shipmentId,
         addressCategory,
+
         name,
         address,
         addressType,
@@ -2869,6 +2879,7 @@ class Order {
       {
         shipmentId,
         addressCategory,
+
         name,
         address,
         addressType,

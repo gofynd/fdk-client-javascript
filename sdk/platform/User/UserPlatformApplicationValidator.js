@@ -1,6 +1,6 @@
 const Joi = require("joi");
-const UserModel = require("./UserPlatformModel");
 
+const UserModel = require("./UserPlatformModel");
 class UserValidator {
   static archiveUser() {
     return Joi.object({

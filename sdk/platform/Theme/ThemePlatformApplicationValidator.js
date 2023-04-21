@@ -1,6 +1,6 @@
 const Joi = require("joi");
-const ThemeModel = require("./ThemePlatformModel");
 
+const ThemeModel = require("./ThemePlatformModel");
 class ThemeValidator {
   static addToThemeLibrary() {
     return Joi.object({

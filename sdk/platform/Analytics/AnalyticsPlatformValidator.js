@@ -34,4 +34,5 @@ class AnalyticsValidator {
     }).required();
   }
 }
+
 module.exports = AnalyticsValidator;

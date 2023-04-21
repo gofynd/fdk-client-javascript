@@ -1,11 +1,10 @@
-const APIClient = require("../ApplicationAPIClient");
+const ApplicationAPIClient = require("../ApplicationAPIClient");
+const { FDKClientValidationError } = require("../../common/FDKError");
 const constructUrl = require("../constructUrl");
 const Paginator = require("../../common/Paginator");
-const { FDKClientValidationError } = require("../../common/FDKError");
 const LeadValidator = require("./LeadApplicationValidator");
 const LeadModel = require("./LeadApplicationModel");
 const { Logger } = require("./../../common/Logger");
-const Joi = require("joi");
 
 class Lead {
   constructor(_conf) {
@@ -71,7 +70,7 @@ class Lead {
 
     const xHeaders = {};
 
-    const response = await APIClient.execute(
+    const response = await ApplicationAPIClient.execute(
       this._conf,
       "post",
       constructUrl({
@@ -132,7 +131,7 @@ class Lead {
 
     const xHeaders = {};
 
-    const response = await APIClient.execute(
+    const response = await ApplicationAPIClient.execute(
       this._conf,
       "post",
       constructUrl({
@@ -193,7 +192,7 @@ class Lead {
 
     const xHeaders = {};
 
-    const response = await APIClient.execute(
+    const response = await ApplicationAPIClient.execute(
       this._conf,
       "get",
       constructUrl({
@@ -257,7 +256,7 @@ class Lead {
 
     const xHeaders = {};
 
-    const response = await APIClient.execute(
+    const response = await ApplicationAPIClient.execute(
       this._conf,
       "get",
       constructUrl({
@@ -321,7 +320,7 @@ class Lead {
 
     const xHeaders = {};
 
-    const response = await APIClient.execute(
+    const response = await ApplicationAPIClient.execute(
       this._conf,
       "get",
       constructUrl({
@@ -382,7 +381,7 @@ class Lead {
 
     const xHeaders = {};
 
-    const response = await APIClient.execute(
+    const response = await ApplicationAPIClient.execute(
       this._conf,
       "get",
       constructUrl({
@@ -446,7 +445,7 @@ class Lead {
 
     const xHeaders = {};
 
-    const response = await APIClient.execute(
+    const response = await ApplicationAPIClient.execute(
       this._conf,
       "post",
       constructUrl({

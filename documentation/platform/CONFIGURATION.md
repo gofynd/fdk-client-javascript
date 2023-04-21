@@ -70,10 +70,10 @@ Add new domain to application
 
 ```javascript
 // Promise
-const promise = client.application("<APPLICATION_ID>").configuration.addDomain({  body : value });
+const promise = platformClient.application("<APPLICATION_ID>").configuration.addDomain({  body : value });
 
 // Async/Await
-const data = await client.application("<APPLICATION_ID>").configuration.addDomain({  body : value });
+const data = await platformClient.application("<APPLICATION_ID>").configuration.addDomain({  body : value });
 ```
 
 
@@ -133,10 +133,10 @@ Change domain type
 
 ```javascript
 // Promise
-const promise = client.application("<APPLICATION_ID>").configuration.changeDomainType({  body : value });
+const promise = platformClient.application("<APPLICATION_ID>").configuration.changeDomainType({  body : value });
 
 // Async/Await
-const data = await client.application("<APPLICATION_ID>").configuration.changeDomainType({  body : value });
+const data = await platformClient.application("<APPLICATION_ID>").configuration.changeDomainType({  body : value });
 ```
 
 
@@ -212,10 +212,10 @@ Create application
 
 ```javascript
 // Promise
-const promise = client.configuration.createApplication({  body : value });
+const promise = platformClient.configuration.createApplication({  body : value });
 
 // Async/Await
-const data = await client.configuration.createApplication({  body : value });
+const data = await platformClient.configuration.createApplication({  body : value });
 ```
 
 
@@ -267,10 +267,10 @@ Get social tokens
 
 ```javascript
 // Promise
-const promise = client.application("<APPLICATION_ID>").configuration.getAppApiTokens();
+const promise = platformClient.application("<APPLICATION_ID>").configuration.getAppApiTokens();
 
 // Async/Await
-const data = await client.application("<APPLICATION_ID>").configuration.getAppApiTokens();
+const data = await platformClient.application("<APPLICATION_ID>").configuration.getAppApiTokens();
 ```
 
 
@@ -396,10 +396,10 @@ Get basic application details
 
 ```javascript
 // Promise
-const promise = client.application("<APPLICATION_ID>").configuration.getAppBasicDetails();
+const promise = platformClient.application("<APPLICATION_ID>").configuration.getAppBasicDetails();
 
 // Async/Await
-const data = await client.application("<APPLICATION_ID>").configuration.getAppBasicDetails();
+const data = await platformClient.application("<APPLICATION_ID>").configuration.getAppBasicDetails();
 ```
 
 
@@ -487,12 +487,12 @@ Application inventory enabled companies
 
 ```javascript
 // Promise
-const promise = client.application("<APPLICATION_ID>").configuration.getAppCompanies({  uid : value,
+const promise = platformClient.application("<APPLICATION_ID>").configuration.getAppCompanies({  uid : value,
  pageNo : value,
  pageSize : value });
 
 // Async/Await
-const data = await client.application("<APPLICATION_ID>").configuration.getAppCompanies({  uid : value,
+const data = await platformClient.application("<APPLICATION_ID>").configuration.getAppCompanies({  uid : value,
  pageNo : value,
  pageSize : value });
 ```
@@ -574,10 +574,10 @@ Get application information
 
 ```javascript
 // Promise
-const promise = client.application("<APPLICATION_ID>").configuration.getAppContactInfo();
+const promise = platformClient.application("<APPLICATION_ID>").configuration.getAppContactInfo();
 
 // Async/Await
-const data = await client.application("<APPLICATION_ID>").configuration.getAppContactInfo();
+const data = await platformClient.application("<APPLICATION_ID>").configuration.getAppContactInfo();
 ```
 
 
@@ -740,10 +740,10 @@ Get application enabled currency list
 
 ```javascript
 // Promise
-const promise = client.application("<APPLICATION_ID>").configuration.getAppCurrencyConfig();
+const promise = platformClient.application("<APPLICATION_ID>").configuration.getAppCurrencyConfig();
 
 // Async/Await
-const data = await client.application("<APPLICATION_ID>").configuration.getAppCurrencyConfig();
+const data = await platformClient.application("<APPLICATION_ID>").configuration.getAppCurrencyConfig();
 ```
 
 
@@ -807,10 +807,10 @@ Get features of application
 
 ```javascript
 // Promise
-const promise = client.application("<APPLICATION_ID>").configuration.getAppFeatures();
+const promise = platformClient.application("<APPLICATION_ID>").configuration.getAppFeatures();
 
 // Async/Await
-const data = await client.application("<APPLICATION_ID>").configuration.getAppFeatures();
+const data = await platformClient.application("<APPLICATION_ID>").configuration.getAppFeatures();
 ```
 
 
@@ -954,11 +954,11 @@ Application inventory enabled stores
 
 ```javascript
 // Promise
-const promise = client.application("<APPLICATION_ID>").configuration.getAppStores({  pageNo : value,
+const promise = platformClient.application("<APPLICATION_ID>").configuration.getAppStores({  pageNo : value,
  pageSize : value });
 
 // Async/Await
-const data = await client.application("<APPLICATION_ID>").configuration.getAppStores({  pageNo : value,
+const data = await platformClient.application("<APPLICATION_ID>").configuration.getAppStores({  pageNo : value,
  pageSize : value });
 ```
 
@@ -1051,10 +1051,10 @@ Get currencies enabled in the application
 
 ```javascript
 // Promise
-const promise = client.application("<APPLICATION_ID>").configuration.getAppSupportedCurrency();
+const promise = platformClient.application("<APPLICATION_ID>").configuration.getAppSupportedCurrency();
 
 // Async/Await
-const data = await client.application("<APPLICATION_ID>").configuration.getAppSupportedCurrency();
+const data = await platformClient.application("<APPLICATION_ID>").configuration.getAppSupportedCurrency();
 ```
 
 
@@ -1120,10 +1120,10 @@ Get application data from id
 
 ```javascript
 // Promise
-const promise = client.application("<APPLICATION_ID>").configuration.getApplicationById();
+const promise = platformClient.application("<APPLICATION_ID>").configuration.getApplicationById();
 
 // Async/Await
-const data = await client.application("<APPLICATION_ID>").configuration.getApplicationById();
+const data = await platformClient.application("<APPLICATION_ID>").configuration.getApplicationById();
 ```
 
 
@@ -1171,12 +1171,12 @@ Get list of application under company
 
 ```javascript
 // Promise
-const promise = client.configuration.getApplications({  pageNo : value,
+const promise = platformClient.configuration.getApplications({  pageNo : value,
  pageSize : value,
  q : value });
 
 // Async/Await
-const data = await client.configuration.getApplications({  pageNo : value,
+const data = await platformClient.configuration.getApplications({  pageNo : value,
  pageSize : value,
  q : value });
 ```
@@ -1233,11 +1233,11 @@ Get all available integration opt-ins
 
 ```javascript
 // Promise
-const promise = client.configuration.getAvailableOptIns({  pageNo : value,
+const promise = platformClient.configuration.getAvailableOptIns({  pageNo : value,
  pageSize : value });
 
 // Async/Await
-const data = await client.configuration.getAvailableOptIns({  pageNo : value,
+const data = await platformClient.configuration.getAvailableOptIns({  pageNo : value,
  pageSize : value });
 ```
 
@@ -1399,10 +1399,10 @@ Get brands by company
 
 ```javascript
 // Promise
-const promise = client.configuration.getBrandsByCompany({  q : value });
+const promise = platformClient.configuration.getBrandsByCompany({  q : value });
 
 // Async/Await
-const data = await client.configuration.getBrandsByCompany({  q : value });
+const data = await platformClient.configuration.getBrandsByCompany({  q : value });
 ```
 
 
@@ -1472,10 +1472,10 @@ Get latest build config
 
 ```javascript
 // Promise
-const promise = client.application("<APPLICATION_ID>").configuration.getBuildConfig({  platformType : value });
+const promise = platformClient.application("<APPLICATION_ID>").configuration.getBuildConfig({  platformType : value });
 
 // Async/Await
-const data = await client.application("<APPLICATION_ID>").configuration.getBuildConfig({  platformType : value });
+const data = await platformClient.application("<APPLICATION_ID>").configuration.getBuildConfig({  platformType : value });
 ```
 
 
@@ -1546,12 +1546,12 @@ Get company by brand uids
 
 ```javascript
 // Promise
-const promise = client.configuration.getCompanyByBrands({  body : value,
+const promise = platformClient.configuration.getCompanyByBrands({  body : value,
  pageNo : value,
  pageSize : value });
 
 // Async/Await
-const data = await client.configuration.getCompanyByBrands({  body : value,
+const data = await platformClient.configuration.getCompanyByBrands({  body : value,
  pageNo : value,
  pageSize : value });
 ```
@@ -1629,10 +1629,10 @@ Get all currencies
 
 ```javascript
 // Promise
-const promise = client.configuration.getCurrencies();
+const promise = platformClient.configuration.getCurrencies();
 
 // Async/Await
-const data = await client.configuration.getCurrencies();
+const data = await platformClient.configuration.getCurrencies();
 ```
 
 
@@ -1693,10 +1693,10 @@ Check domain availibility before linking to application
 
 ```javascript
 // Promise
-const promise = client.configuration.getDomainAvailibility({  body : value });
+const promise = platformClient.configuration.getDomainAvailibility({  body : value });
 
 // Async/Await
-const data = await client.configuration.getDomainAvailibility({  body : value });
+const data = await platformClient.configuration.getDomainAvailibility({  body : value });
 ```
 
 
@@ -1792,10 +1792,10 @@ Get domain connected status.
 
 ```javascript
 // Promise
-const promise = client.application("<APPLICATION_ID>").configuration.getDomainStatus({  body : value });
+const promise = platformClient.application("<APPLICATION_ID>").configuration.getDomainStatus({  body : value });
 
 // Async/Await
-const data = await client.application("<APPLICATION_ID>").configuration.getDomainStatus({  body : value });
+const data = await platformClient.application("<APPLICATION_ID>").configuration.getDomainStatus({  body : value });
 ```
 
 
@@ -1863,10 +1863,10 @@ Get attached domain list
 
 ```javascript
 // Promise
-const promise = client.application("<APPLICATION_ID>").configuration.getDomains();
+const promise = platformClient.application("<APPLICATION_ID>").configuration.getDomains();
 
 // Async/Await
-const data = await client.application("<APPLICATION_ID>").configuration.getDomains();
+const data = await platformClient.application("<APPLICATION_ID>").configuration.getDomains();
 ```
 
 
@@ -1941,10 +1941,10 @@ Get integration data
 
 ```javascript
 // Promise
-const promise = client.configuration.getIntegrationById({  id : value });
+const promise = platformClient.configuration.getIntegrationById({  id : value });
 
 // Async/Await
-const data = await client.configuration.getIntegrationById({  id : value });
+const data = await platformClient.configuration.getIntegrationById({  id : value });
 ```
 
 
@@ -2084,12 +2084,12 @@ Get level data for integration
 
 ```javascript
 // Promise
-const promise = client.configuration.getIntegrationByLevelId({  id : value,
+const promise = platformClient.configuration.getIntegrationByLevelId({  id : value,
  level : value,
  uid : value });
 
 // Async/Await
-const data = await client.configuration.getIntegrationByLevelId({  id : value,
+const data = await platformClient.configuration.getIntegrationByLevelId({  id : value,
  level : value,
  uid : value });
 ```
@@ -2163,13 +2163,13 @@ Get integration level config
 
 ```javascript
 // Promise
-const promise = client.configuration.getIntegrationLevelConfig({  id : value,
+const promise = platformClient.configuration.getIntegrationLevelConfig({  id : value,
  level : value,
  opted : value,
  checkPermission : value });
 
 // Async/Await
-const data = await client.configuration.getIntegrationLevelConfig({  id : value,
+const data = await platformClient.configuration.getIntegrationLevelConfig({  id : value,
  level : value,
  opted : value,
  checkPermission : value });
@@ -2249,10 +2249,10 @@ Get application configuration
 
 ```javascript
 // Promise
-const promise = client.application("<APPLICATION_ID>").configuration.getInventoryConfig();
+const promise = platformClient.application("<APPLICATION_ID>").configuration.getInventoryConfig();
 
 // Async/Await
-const data = await client.application("<APPLICATION_ID>").configuration.getInventoryConfig();
+const data = await platformClient.application("<APPLICATION_ID>").configuration.getInventoryConfig();
 ```
 
 
@@ -2496,13 +2496,13 @@ Check store has active integration
 
 ```javascript
 // Promise
-const promise = client.configuration.getLevelActiveIntegrations({  id : value,
+const promise = platformClient.configuration.getLevelActiveIntegrations({  id : value,
  level : value,
  uid : value,
  permission : value });
 
 // Async/Await
-const data = await client.configuration.getLevelActiveIntegrations({  id : value,
+const data = await platformClient.configuration.getLevelActiveIntegrations({  id : value,
  level : value,
  uid : value,
  permission : value });
@@ -2578,12 +2578,12 @@ Get ordering store by filter
 
 ```javascript
 // Promise
-const promise = client.application("<APPLICATION_ID>").configuration.getOrderingStoresByFilter({  body : value,
+const promise = platformClient.application("<APPLICATION_ID>").configuration.getOrderingStoresByFilter({  body : value,
  pageNo : value,
  pageSize : value });
 
 // Async/Await
-const data = await client.application("<APPLICATION_ID>").configuration.getOrderingStoresByFilter({  body : value,
+const data = await platformClient.application("<APPLICATION_ID>").configuration.getOrderingStoresByFilter({  body : value,
  pageNo : value,
  pageSize : value });
 ```
@@ -2723,10 +2723,10 @@ Get other seller applications
 
 ```javascript
 // Promise
-const promise = client.configuration.getOtherSellerApplicationById({  id : value });
+const promise = platformClient.configuration.getOtherSellerApplicationById({  id : value });
 
 // Async/Await
-const data = await client.configuration.getOtherSellerApplicationById({  id : value });
+const data = await platformClient.configuration.getOtherSellerApplicationById({  id : value });
 ```
 
 
@@ -2826,11 +2826,11 @@ Get other seller applications
 
 ```javascript
 // Promise
-const promise = client.configuration.getOtherSellerApplications({  pageNo : value,
+const promise = platformClient.configuration.getOtherSellerApplications({  pageNo : value,
  pageSize : value });
 
 // Async/Await
-const data = await client.configuration.getOtherSellerApplications({  pageNo : value,
+const data = await platformClient.configuration.getOtherSellerApplications({  pageNo : value,
  pageSize : value });
 ```
 
@@ -2928,10 +2928,10 @@ Get previous build versions
 
 ```javascript
 // Promise
-const promise = client.application("<APPLICATION_ID>").configuration.getPreviousVersions({  platformType : value });
+const promise = platformClient.application("<APPLICATION_ID>").configuration.getPreviousVersions({  platformType : value });
 
 // Async/Await
-const data = await client.application("<APPLICATION_ID>").configuration.getPreviousVersions({  platformType : value });
+const data = await platformClient.application("<APPLICATION_ID>").configuration.getPreviousVersions({  platformType : value });
 ```
 
 
@@ -2999,13 +2999,13 @@ Get company/store level integration opt-ins
 
 ```javascript
 // Promise
-const promise = client.configuration.getSelectedOptIns({  level : value,
+const promise = platformClient.configuration.getSelectedOptIns({  level : value,
  uid : value,
  pageNo : value,
  pageSize : value });
 
 // Async/Await
-const data = await client.configuration.getSelectedOptIns({  level : value,
+const data = await platformClient.configuration.getSelectedOptIns({  level : value,
  uid : value,
  pageNo : value,
  pageSize : value });
@@ -3171,12 +3171,12 @@ Get deployment stores
 
 ```javascript
 // Promise
-const promise = client.application("<APPLICATION_ID>").configuration.getStaffOrderingStores({  pageNo : value,
+const promise = platformClient.application("<APPLICATION_ID>").configuration.getStaffOrderingStores({  pageNo : value,
  pageSize : value,
  q : value });
 
 // Async/Await
-const data = await client.application("<APPLICATION_ID>").configuration.getStaffOrderingStores({  pageNo : value,
+const data = await platformClient.application("<APPLICATION_ID>").configuration.getStaffOrderingStores({  pageNo : value,
  pageSize : value,
  q : value });
 ```
@@ -3233,12 +3233,12 @@ Get stores by brand uids
 
 ```javascript
 // Promise
-const promise = client.configuration.getStoreByBrands({  body : value,
+const promise = platformClient.configuration.getStoreByBrands({  body : value,
  pageNo : value,
  pageSize : value });
 
 // Async/Await
-const data = await client.configuration.getStoreByBrands({  body : value,
+const data = await platformClient.configuration.getStoreByBrands({  body : value,
  pageNo : value,
  pageSize : value });
 ```
@@ -3355,10 +3355,10 @@ Update features of application
 
 ```javascript
 // Promise
-const promise = client.application("<APPLICATION_ID>").configuration.modifyAppFeatures({  body : value });
+const promise = platformClient.application("<APPLICATION_ID>").configuration.modifyAppFeatures({  body : value });
 
 // Async/Await
-const data = await client.application("<APPLICATION_ID>").configuration.modifyAppFeatures({  body : value });
+const data = await platformClient.application("<APPLICATION_ID>").configuration.modifyAppFeatures({  body : value });
 ```
 
 
@@ -3497,11 +3497,11 @@ Opt out company or store from other seller application
 
 ```javascript
 // Promise
-const promise = client.configuration.optOutFromApplication({  id : value,
+const promise = platformClient.configuration.optOutFromApplication({  id : value,
  body : value });
 
 // Async/Await
-const data = await client.configuration.optOutFromApplication({  id : value,
+const data = await platformClient.configuration.optOutFromApplication({  id : value,
  body : value });
 ```
 
@@ -3557,10 +3557,10 @@ Partially update application configuration
 
 ```javascript
 // Promise
-const promise = client.application("<APPLICATION_ID>").configuration.partiallyUpdateInventoryConfig({  body : value });
+const promise = platformClient.application("<APPLICATION_ID>").configuration.partiallyUpdateInventoryConfig({  body : value });
 
 // Async/Await
-const data = await client.application("<APPLICATION_ID>").configuration.partiallyUpdateInventoryConfig({  body : value });
+const data = await platformClient.application("<APPLICATION_ID>").configuration.partiallyUpdateInventoryConfig({  body : value });
 ```
 
 
@@ -3808,10 +3808,10 @@ Remove attached domain
 
 ```javascript
 // Promise
-const promise = client.application("<APPLICATION_ID>").configuration.removeDomainById({  id : value });
+const promise = platformClient.application("<APPLICATION_ID>").configuration.removeDomainById({  id : value });
 
 // Async/Await
-const data = await client.application("<APPLICATION_ID>").configuration.removeDomainById({  id : value });
+const data = await platformClient.application("<APPLICATION_ID>").configuration.removeDomainById({  id : value });
 ```
 
 
@@ -3866,10 +3866,10 @@ Add social tokens
 
 ```javascript
 // Promise
-const promise = client.application("<APPLICATION_ID>").configuration.updateAppApiTokens({  body : value });
+const promise = platformClient.application("<APPLICATION_ID>").configuration.updateAppApiTokens({  body : value });
 
 // Async/Await
-const data = await client.application("<APPLICATION_ID>").configuration.updateAppApiTokens({  body : value });
+const data = await platformClient.application("<APPLICATION_ID>").configuration.updateAppApiTokens({  body : value });
 ```
 
 
@@ -3999,10 +3999,10 @@ Add or update application's basic details
 
 ```javascript
 // Promise
-const promise = client.application("<APPLICATION_ID>").configuration.updateAppBasicDetails({  body : value });
+const promise = platformClient.application("<APPLICATION_ID>").configuration.updateAppBasicDetails({  body : value });
 
 // Async/Await
-const data = await client.application("<APPLICATION_ID>").configuration.updateAppBasicDetails({  body : value });
+const data = await platformClient.application("<APPLICATION_ID>").configuration.updateAppBasicDetails({  body : value });
 ```
 
 
@@ -4092,10 +4092,10 @@ Get application information
 
 ```javascript
 // Promise
-const promise = client.application("<APPLICATION_ID>").configuration.updateAppContactInfo({  body : value });
+const promise = platformClient.application("<APPLICATION_ID>").configuration.updateAppContactInfo({  body : value });
 
 // Async/Await
-const data = await client.application("<APPLICATION_ID>").configuration.updateAppContactInfo({  body : value });
+const data = await platformClient.application("<APPLICATION_ID>").configuration.updateAppContactInfo({  body : value });
 ```
 
 
@@ -4255,10 +4255,10 @@ Add initial application supported currency
 
 ```javascript
 // Promise
-const promise = client.application("<APPLICATION_ID>").configuration.updateAppCurrencyConfig({  body : value });
+const promise = platformClient.application("<APPLICATION_ID>").configuration.updateAppCurrencyConfig({  body : value });
 
 // Async/Await
-const data = await client.application("<APPLICATION_ID>").configuration.updateAppCurrencyConfig({  body : value });
+const data = await platformClient.application("<APPLICATION_ID>").configuration.updateAppCurrencyConfig({  body : value });
 ```
 
 
@@ -4326,10 +4326,10 @@ Update features of application
 
 ```javascript
 // Promise
-const promise = client.application("<APPLICATION_ID>").configuration.updateAppFeatures({  body : value });
+const promise = platformClient.application("<APPLICATION_ID>").configuration.updateAppFeatures({  body : value });
 
 // Async/Await
-const data = await client.application("<APPLICATION_ID>").configuration.updateAppFeatures({  body : value });
+const data = await platformClient.application("<APPLICATION_ID>").configuration.updateAppFeatures({  body : value });
 ```
 
 
@@ -4465,11 +4465,11 @@ Update build config for next build
 
 ```javascript
 // Promise
-const promise = client.application("<APPLICATION_ID>").configuration.updateBuildConfig({  platformType : value,
+const promise = platformClient.application("<APPLICATION_ID>").configuration.updateBuildConfig({  platformType : value,
  body : value });
 
 // Async/Await
-const data = await client.application("<APPLICATION_ID>").configuration.updateBuildConfig({  platformType : value,
+const data = await platformClient.application("<APPLICATION_ID>").configuration.updateBuildConfig({  platformType : value,
  body : value });
 ```
 
@@ -4541,10 +4541,10 @@ Update application configuration
 
 ```javascript
 // Promise
-const promise = client.application("<APPLICATION_ID>").configuration.updateInventoryConfig({  body : value });
+const promise = platformClient.application("<APPLICATION_ID>").configuration.updateInventoryConfig({  body : value });
 
 // Async/Await
-const data = await client.application("<APPLICATION_ID>").configuration.updateInventoryConfig({  body : value });
+const data = await platformClient.application("<APPLICATION_ID>").configuration.updateInventoryConfig({  body : value });
 ```
 
 
@@ -4792,12 +4792,12 @@ Update a store level opt-in for integration
 
 ```javascript
 // Promise
-const promise = client.configuration.updateLevelIntegration({  id : value,
+const promise = platformClient.configuration.updateLevelIntegration({  id : value,
  level : value,
  body : value });
 
 // Async/Await
-const data = await client.configuration.updateLevelIntegration({  id : value,
+const data = await platformClient.configuration.updateLevelIntegration({  id : value,
  level : value,
  body : value });
 ```
@@ -4870,13 +4870,13 @@ Update a store level opt-in for integration
 
 ```javascript
 // Promise
-const promise = client.configuration.updateLevelUidIntegration({  id : value,
+const promise = platformClient.configuration.updateLevelUidIntegration({  id : value,
  level : value,
  uid : value,
  body : value });
 
 // Async/Await
-const data = await client.configuration.updateLevelUidIntegration({  id : value,
+const data = await platformClient.configuration.updateLevelUidIntegration({  id : value,
  level : value,
  uid : value,
  body : value });
@@ -4951,10 +4951,10 @@ Add/Update ordering store config
 
 ```javascript
 // Promise
-const promise = client.application("<APPLICATION_ID>").configuration.updateOrderingStoreConfig({  body : value });
+const promise = platformClient.application("<APPLICATION_ID>").configuration.updateOrderingStoreConfig({  body : value });
 
 // Async/Await
-const data = await client.application("<APPLICATION_ID>").configuration.updateOrderingStoreConfig({  body : value });
+const data = await platformClient.application("<APPLICATION_ID>").configuration.updateOrderingStoreConfig({  body : value });
 ```
 
 
@@ -5030,8 +5030,8 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | api_key | string |  no  |  |
- | application_id | string |  no  |  |
+ | api_key | string? |  yes  |  |
+ | application_id | string? |  yes  |  |
  
 
 ---
@@ -5040,11 +5040,11 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | auth | [ApplicationAuth](#ApplicationAuth) |  no  |  |
- | channel_type | string |  no  |  |
- | company_id | string |  no  |  |
- | desc | string |  no  |  |
- | name | string |  no  |  |
+ | auth | [ApplicationAuth](#ApplicationAuth)? |  yes  |  |
+ | channel_type | string? |  yes  |  |
+ | company_id | string? |  yes  | Current company id |
+ | desc | string? |  yes  | Basic description of application |
+ | name | string? |  yes  | User friendly name for application |
  
 
 ---
@@ -5053,14 +5053,14 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | bulk_coupons | boolean |  no  |  |
- | delivery_charges | [DeliveryCharges](#DeliveryCharges) |  no  |  |
- | empty_cart | boolean |  no  |  |
- | enabled | boolean |  no  |  |
- | max_cart_items | number |  no  |  |
- | min_cart_value | number |  no  |  |
- | pan_card | [PanCardConfig](#PanCardConfig) |  no  |  |
- | revenue_engine_coupon | boolean |  no  |  |
+ | bulk_coupons | boolean? |  yes  |  |
+ | delivery_charges | [DeliveryCharges](#DeliveryCharges)? |  yes  |  |
+ | empty_cart | boolean? |  yes  | Enable/disable to allow adding cart items added before login to user's cart once user is logged in |
+ | enabled | boolean? |  yes  |  |
+ | max_cart_items | number? |  yes  |  |
+ | min_cart_value | number? |  yes  |  |
+ | pan_card | [PanCardConfig](#PanCardConfig)? |  yes  |  |
+ | revenue_engine_coupon | boolean? |  yes  |  |
  
 
 ---
@@ -5069,9 +5069,9 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | application | string |  no  |  |
- | default_currency | [DefaultCurrency](#DefaultCurrency) |  no  |  |
- | supported_currency | [[Currency](#Currency)] |  no  |  |
+ | application | string? |  yes  |  |
+ | default_currency | [DefaultCurrency](#DefaultCurrency)? |  yes  |  |
+ | supported_currency | [[Currency](#Currency)]? |  yes  |  |
  
 
 ---
@@ -5080,7 +5080,7 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | name | string |  no  |  |
+ | name | string? |  yes  |  |
  
 
 ---
@@ -5089,20 +5089,20 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | __v | number |  no  |  |
- | _id | string |  no  |  |
- | app | string |  no  |  |
- | cart | [CartFeature](#CartFeature) |  no  |  |
- | common | [CommonFeature](#CommonFeature) |  no  |  |
- | created_at | string |  no  |  |
- | home_page | [HomePageFeature](#HomePageFeature) |  no  |  |
- | landing_page | [LandingPageFeature](#LandingPageFeature) |  no  |  |
- | order | [OrderFeature](#OrderFeature) |  no  |  |
- | pcr | [PcrFeature](#PcrFeature) |  no  |  |
- | product_detail | [ProductDetailFeature](#ProductDetailFeature) |  no  |  |
- | qr | [QrFeature](#QrFeature) |  no  |  |
- | registration_page | [RegistrationPageFeature](#RegistrationPageFeature) |  no  |  |
- | updated_at | string |  no  |  |
+ | __v | number? |  yes  |  |
+ | _id | string? |  yes  |  |
+ | app | string? |  yes  |  |
+ | cart | [CartFeature](#CartFeature)? |  yes  |  |
+ | common | [CommonFeature](#CommonFeature)? |  yes  |  |
+ | created_at | string? |  yes  |  |
+ | home_page | [HomePageFeature](#HomePageFeature)? |  yes  |  |
+ | landing_page | [LandingPageFeature](#LandingPageFeature)? |  yes  |  |
+ | order | [OrderFeature](#OrderFeature)? |  yes  |  |
+ | pcr | [PcrFeature](#PcrFeature)? |  yes  |  |
+ | product_detail | [ProductDetailFeature](#ProductDetailFeature)? |  yes  |  |
+ | qr | [QrFeature](#QrFeature)? |  yes  |  |
+ | registration_page | [RegistrationPageFeature](#RegistrationPageFeature)? |  yes  |  |
+ | updated_at | string? |  yes  |  |
  
 
 ---
@@ -5111,7 +5111,7 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | feature | [AppFeature](#AppFeature) |  no  |  |
+ | feature | [AppFeature](#AppFeature)? |  yes  |  |
  
 
 ---
@@ -5120,7 +5120,7 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | feature | [AppFeature](#AppFeature) |  no  |  |
+ | feature | [AppFeature](#AppFeature)? |  yes  |  |
  
 
 ---
@@ -5129,14 +5129,14 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | article_assignment | [InventoryArticleAssignment](#InventoryArticleAssignment) |  no  |  |
- | brand | [InventoryBrandRule](#InventoryBrandRule) |  no  |  |
- | franchise_enabled | boolean |  no  |  |
- | image | [string] |  no  |  |
- | only_verified_products | boolean |  no  |  |
- | out_of_stock | boolean |  no  |  |
- | payment | [InventoryPaymentConfig](#InventoryPaymentConfig) |  no  |  |
- | store | [InventoryStoreRule](#InventoryStoreRule) |  no  |  |
+ | article_assignment | [InventoryArticleAssignment](#InventoryArticleAssignment)? |  yes  |  |
+ | brand | [InventoryBrandRule](#InventoryBrandRule)? |  yes  |  |
+ | franchise_enabled | boolean? |  yes  |  |
+ | image | [string]? |  yes  |  |
+ | only_verified_products | boolean? |  yes  |  |
+ | out_of_stock | boolean? |  yes  |  |
+ | payment | [InventoryPaymentConfig](#InventoryPaymentConfig)? |  yes  |  |
+ | store | [InventoryStoreRule](#InventoryStoreRule)? |  yes  |  |
  
 
 ---
@@ -5145,9 +5145,9 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | company_type | string |  no  |  |
- | name | string |  no  |  |
- | uid | number |  no  |  |
+ | company_type | string? |  yes  |  |
+ | name | string? |  yes  |  |
+ | uid | number? |  yes  |  |
  
 
 ---
@@ -5156,17 +5156,17 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | brand | [InventoryBrand](#InventoryBrand) |  no  |  |
- | category | [InventoryCategory](#InventoryCategory) |  no  |  |
- | company_store | [any] |  no  |  |
- | discount | [InventoryDiscount](#InventoryDiscount) |  no  |  |
- | exclude_category | [any] |  no  |  |
- | franchise_enabled | boolean |  no  |  |
- | image | [string] |  no  |  |
- | only_verified_products | boolean |  no  |  |
- | out_of_stock | boolean |  no  |  |
- | price | [InventoryPrice](#InventoryPrice) |  no  |  |
- | store | [InventoryStore](#InventoryStore) |  no  |  |
+ | brand | [InventoryBrand](#InventoryBrand)? |  yes  |  |
+ | category | [InventoryCategory](#InventoryCategory)? |  yes  |  |
+ | company_store | [any]? |  yes  |  |
+ | discount | [InventoryDiscount](#InventoryDiscount)? |  yes  |  |
+ | exclude_category | [any]? |  yes  |  |
+ | franchise_enabled | boolean? |  yes  |  |
+ | image | [string]? |  yes  |  |
+ | only_verified_products | boolean? |  yes  |  |
+ | out_of_stock | boolean? |  yes  |  |
+ | price | [InventoryPrice](#InventoryPrice)? |  yes  |  |
+ | store | [InventoryStore](#InventoryStore)? |  yes  |  |
  
 
 ---
@@ -5175,12 +5175,12 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | cart | [AppCartConfig](#AppCartConfig) |  no  |  |
- | comms_enabled | boolean |  no  |  |
- | communication | [CommunicationConfig](#CommunicationConfig) |  no  |  |
- | loyalty_points | [LoyaltyPointsConfig](#LoyaltyPointsConfig) |  no  |  |
- | payment | [AppPaymentConfig](#AppPaymentConfig) |  no  |  |
- | reward_points | [RewardPointsConfig](#RewardPointsConfig) |  no  |  |
+ | cart | [AppCartConfig](#AppCartConfig)? |  yes  |  |
+ | comms_enabled | boolean? |  yes  |  |
+ | communication | [CommunicationConfig](#CommunicationConfig)? |  yes  |  |
+ | loyalty_points | [LoyaltyPointsConfig](#LoyaltyPointsConfig)? |  yes  |  |
+ | payment | [AppPaymentConfig](#AppPaymentConfig)? |  yes  |  |
+ | reward_points | [RewardPointsConfig](#RewardPointsConfig)? |  yes  |  |
  
 
 ---
@@ -5189,14 +5189,14 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | _id | string |  no  |  |
- | company_id | number |  no  |  |
- | display_name | string |  no  |  |
- | modified_on | string |  no  |  |
- | name | string |  no  |  |
- | store_code | string |  no  |  |
- | store_type | string |  no  |  |
- | uid | number |  no  |  |
+ | _id | string? |  yes  |  |
+ | company_id | number? |  yes  |  |
+ | display_name | string? |  yes  |  |
+ | modified_on | string? |  yes  |  |
+ | name | string? |  yes  |  |
+ | store_code | string? |  yes  |  |
+ | store_type | string? |  yes  |  |
+ | uid | number? |  yes  |  |
  
 
 ---
@@ -5205,32 +5205,32 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | __v | number |  no  |  |
- | _id | string |  no  |  |
- | app_type | string |  no  |  |
- | auth | [ApplicationAuth](#ApplicationAuth) |  no  |  |
- | banner | [SecureUrl](#SecureUrl) |  no  |  |
- | cache_ttl | number |  no  |  |
- | channel_type | string |  no  |  |
- | company_id | number |  no  |  |
- | cors | [ApplicationCors](#ApplicationCors) |  no  |  |
- | created_at | string |  no  |  |
- | description | string |  no  |  |
- | domain | [Domain](#Domain) |  no  |  |
- | domains | [[Domain](#Domain)] |  no  |  |
- | favicon | [SecureUrl](#SecureUrl) |  no  |  |
- | is_active | boolean |  no  |  |
- | is_internal | boolean |  no  |  |
- | logo | [SecureUrl](#SecureUrl) |  no  |  |
- | meta | [[ApplicationMeta](#ApplicationMeta)] |  no  |  |
- | mobile_logo | [SecureUrl](#SecureUrl) |  no  |  |
- | name | string |  no  |  |
- | owner | string |  no  |  |
- | redirections | [[ApplicationRedirections](#ApplicationRedirections)] |  no  |  |
- | slug | string |  no  |  |
- | token | string |  no  |  |
- | updated_at | string |  no  |  |
- | website | [ApplicationWebsite](#ApplicationWebsite) |  no  |  |
+ | __v | number? |  yes  |  |
+ | _id | string? |  yes  |  |
+ | app_type | string? |  yes  |  |
+ | auth | [ApplicationAuth](#ApplicationAuth)? |  yes  |  |
+ | banner | [SecureUrl](#SecureUrl)? |  yes  |  |
+ | cache_ttl | number? |  yes  |  |
+ | channel_type | string? |  yes  |  |
+ | company_id | number? |  yes  |  |
+ | cors | [ApplicationCors](#ApplicationCors)? |  yes  |  |
+ | created_at | string? |  yes  |  |
+ | description | string? |  yes  |  |
+ | domain | [Domain](#Domain)? |  yes  |  |
+ | domains | [[Domain](#Domain)]? |  yes  |  |
+ | favicon | [SecureUrl](#SecureUrl)? |  yes  |  |
+ | is_active | boolean? |  yes  |  |
+ | is_internal | boolean? |  yes  |  |
+ | logo | [SecureUrl](#SecureUrl)? |  yes  |  |
+ | meta | [[ApplicationMeta](#ApplicationMeta)]? |  yes  |  |
+ | mobile_logo | [SecureUrl](#SecureUrl)? |  yes  |  |
+ | name | string? |  yes  |  |
+ | owner | string? |  yes  |  |
+ | redirections | [[ApplicationRedirections](#ApplicationRedirections)]? |  yes  |  |
+ | slug | string? |  yes  |  |
+ | token | string? |  yes  |  |
+ | updated_at | string? |  yes  |  |
+ | website | [ApplicationWebsite](#ApplicationWebsite)? |  yes  |  |
  
 
 ---
@@ -5239,7 +5239,7 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | enabled | boolean |  no  |  |
+ | enabled | boolean? |  yes  |  |
  
 
 ---
@@ -5248,7 +5248,7 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | domains | [string] |  no  |  |
+ | domains | [string]? |  yes  |  |
  
 
 ---
@@ -5257,16 +5257,16 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | _id | string |  no  |  |
- | banner | [SecureUrl](#SecureUrl) |  no  |  |
- | description | string |  no  |  |
- | domain | [Domain](#Domain) |  no  |  |
- | domains | [[Domain](#Domain)] |  no  |  |
- | favicon | [SecureUrl](#SecureUrl) |  no  |  |
- | logo | [SecureUrl](#SecureUrl) |  no  |  |
- | mobile_logo | [SecureUrl](#SecureUrl) |  no  |  |
- | name | string |  no  |  |
- | slug | string |  no  |  |
+ | _id | string? |  yes  |  |
+ | banner | [SecureUrl](#SecureUrl)? |  yes  |  |
+ | description | string? |  yes  |  |
+ | domain | [Domain](#Domain)? |  yes  |  |
+ | domains | [[Domain](#Domain)]? |  yes  |  |
+ | favicon | [SecureUrl](#SecureUrl)? |  yes  |  |
+ | logo | [SecureUrl](#SecureUrl)? |  yes  |  |
+ | mobile_logo | [SecureUrl](#SecureUrl)? |  yes  |  |
+ | name | string? |  yes  |  |
+ | slug | string? |  yes  |  |
  
 
 ---
@@ -5275,17 +5275,17 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | __v | number |  no  |  |
- | _id | string |  no  |  |
- | address | [InformationAddress](#InformationAddress) |  no  |  |
- | application | string |  no  |  |
- | business_highlights | [BusinessHighlights](#BusinessHighlights) |  no  |  |
- | copyright_text | string |  no  |  |
- | created_at | string |  no  |  |
- | links | [Links](#Links) |  no  |  |
- | social_links | [SocialLinks](#SocialLinks) |  no  |  |
- | support | [InformationSupport](#InformationSupport) |  no  |  |
- | updated_at | string |  no  |  |
+ | __v | number? |  yes  |  |
+ | _id | string? |  yes  |  |
+ | address | [InformationAddress](#InformationAddress)? |  yes  |  |
+ | application | string? |  yes  |  |
+ | business_highlights | [BusinessHighlights](#BusinessHighlights)? |  yes  |  |
+ | copyright_text | string? |  yes  |  |
+ | created_at | string? |  yes  |  |
+ | links | [Links](#Links)? |  yes  |  |
+ | social_links | [SocialLinks](#SocialLinks)? |  yes  |  |
+ | support | [InformationSupport](#InformationSupport)? |  yes  |  |
+ | updated_at | string? |  yes  |  |
  
 
 ---
@@ -5294,24 +5294,24 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | _id | string |  no  |  |
- | app | string |  no  |  |
- | article_assignment | [ArticleAssignmentConfig](#ArticleAssignmentConfig) |  no  |  |
- | authentication | [AuthenticationConfig](#AuthenticationConfig) |  no  |  |
- | business | string |  no  |  |
- | cart | [AppCartConfig](#AppCartConfig) |  no  |  |
- | comms_enabled | boolean |  no  |  |
- | communication | [CommunicationConfig](#CommunicationConfig) |  no  |  |
- | created_at | string |  no  |  |
- | inventory | [AppInventoryConfig](#AppInventoryConfig) |  no  |  |
- | logistics | [AppLogisticsConfig](#AppLogisticsConfig) |  no  |  |
- | loyalty_points | [LoyaltyPointsConfig](#LoyaltyPointsConfig) |  no  |  |
- | modified_by | string |  no  |  |
- | order | [AppOrderConfig](#AppOrderConfig) |  no  |  |
- | payment | [AppPaymentConfig](#AppPaymentConfig) |  no  |  |
- | platforms | [string] |  no  |  |
- | reward_points | [RewardPointsConfig](#RewardPointsConfig) |  no  |  |
- | updated_at | string |  no  |  |
+ | _id | string? |  yes  |  |
+ | app | string? |  yes  |  |
+ | article_assignment | [ArticleAssignmentConfig](#ArticleAssignmentConfig)? |  yes  |  |
+ | authentication | [AuthenticationConfig](#AuthenticationConfig)? |  yes  |  |
+ | business | string? |  yes  |  |
+ | cart | [AppCartConfig](#AppCartConfig)? |  yes  |  |
+ | comms_enabled | boolean? |  yes  |  |
+ | communication | [CommunicationConfig](#CommunicationConfig)? |  yes  |  |
+ | created_at | string? |  yes  |  |
+ | inventory | [AppInventoryConfig](#AppInventoryConfig)? |  yes  |  |
+ | logistics | [AppLogisticsConfig](#AppLogisticsConfig)? |  yes  |  |
+ | loyalty_points | [LoyaltyPointsConfig](#LoyaltyPointsConfig)? |  yes  |  |
+ | modified_by | string? |  yes  |  |
+ | order | [AppOrderConfig](#AppOrderConfig)? |  yes  |  |
+ | payment | [AppPaymentConfig](#AppPaymentConfig)? |  yes  |  |
+ | platforms | [string]? |  yes  |  |
+ | reward_points | [RewardPointsConfig](#RewardPointsConfig)? |  yes  |  |
+ | updated_at | string? |  yes  |  |
  
 
 ---
@@ -5320,8 +5320,8 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | name | string |  no  |  |
- | value | string |  no  |  |
+ | name | string? |  yes  |  |
+ | value | string? |  yes  |  |
  
 
 ---
@@ -5330,9 +5330,9 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | redirect_from | string |  no  |  |
- | redirect_to | string |  no  |  |
- | type | string |  no  |  |
+ | redirect_from | string? |  yes  |  |
+ | redirect_to | string? |  yes  |  |
+ | type | string? |  yes  |  |
  
 
 ---
@@ -5341,8 +5341,8 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | items | [[Application](#Application)] |  no  |  |
- | page | [Page](#Page) |  no  |  |
+ | items | [[Application](#Application)]? |  yes  |  |
+ | page | [Page](#Page)? |  yes  |  |
  
 
 ---
@@ -5351,8 +5351,8 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | basepath | string |  no  |  |
- | enabled | boolean |  no  |  |
+ | basepath | string? |  yes  |  |
+ | enabled | boolean? |  yes  |  |
  
 
 ---
@@ -5361,10 +5361,10 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | dp_assignment | boolean |  no  |  |
- | logistics_by_seller | boolean |  no  |  |
- | same_day_delivery | boolean |  no  |  |
- | serviceability_check | boolean |  no  |  |
+ | dp_assignment | boolean? |  yes  |  |
+ | logistics_by_seller | boolean? |  yes  |  |
+ | same_day_delivery | boolean? |  yes  |  |
+ | serviceability_check | boolean? |  yes  |  |
  
 
 ---
@@ -5373,9 +5373,9 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | enabled | boolean |  no  |  |
- | force_reassignment | boolean |  no  |  |
- | message | string |  no  |  |
+ | enabled | boolean? |  yes  |  |
+ | force_reassignment | boolean? |  yes  |  |
+ | message | string? |  yes  |  |
  
 
 ---
@@ -5384,14 +5384,14 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | callback_url | [CallbackUrl](#CallbackUrl) |  no  |  |
- | cod_amount_limit | number |  no  |  |
- | cod_charges | number |  no  |  |
- | enabled | boolean |  no  |  |
- | methods | [Methods](#Methods) |  no  |  |
- | mode_of_payment | string |  no  |  |
- | payment_selection_lock | [PaymentSelectionLock](#PaymentSelectionLock) |  no  |  |
- | source | string |  no  |  |
+ | callback_url | [CallbackUrl](#CallbackUrl)? |  yes  |  |
+ | cod_amount_limit | number? |  yes  |  |
+ | cod_charges | number? |  yes  |  |
+ | enabled | boolean? |  yes  |  |
+ | methods | [Methods](#Methods)? |  yes  |  |
+ | mode_of_payment | string? |  yes  |  |
+ | payment_selection_lock | [PaymentSelectionLock](#PaymentSelectionLock)? |  yes  |  |
+ | source | string? |  yes  |  |
  
 
 ---
@@ -5400,8 +5400,8 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | brands | [any] |  no  |  |
- | companies | [number] |  no  |  |
+ | brands | [any]? |  yes  |  |
+ | companies | [number]? |  yes  |  |
  
 
 ---
@@ -5410,12 +5410,12 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | _id | string |  no  |  |
- | application | string |  no  |  |
- | created_at | string |  no  |  |
- | default_currency | [DefaultCurrency](#DefaultCurrency) |  no  |  |
- | supported_currency | [string] |  no  |  |
- | updated_at | string |  no  |  |
+ | _id | string? |  yes  |  |
+ | application | string? |  yes  |  |
+ | created_at | string? |  yes  |  |
+ | default_currency | [DefaultCurrency](#DefaultCurrency)? |  yes  |  |
+ | supported_currency | [string]? |  yes  |  |
+ | updated_at | string? |  yes  |  |
  
 
 ---
@@ -5424,8 +5424,8 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | post_order_reassignment | boolean |  no  |  |
- | rules | [ArticleAssignmentRules](#ArticleAssignmentRules) |  no  |  |
+ | post_order_reassignment | boolean? |  yes  |  |
+ | rules | [ArticleAssignmentRules](#ArticleAssignmentRules)? |  yes  |  |
  
 
 ---
@@ -5434,7 +5434,7 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | store_priority | [StorePriorityRule](#StorePriorityRule) |  no  |  |
+ | store_priority | [StorePriorityRule](#StorePriorityRule)? |  yes  |  |
  
 
 ---
@@ -5443,7 +5443,7 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | store_priority | [StorePriority](#StorePriority) |  no  |  |
+ | store_priority | [StorePriority](#StorePriority)? |  yes  |  |
  
 
 ---
@@ -5452,8 +5452,8 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | provider | string |  no  |  |
- | required | boolean |  no  |  |
+ | provider | string? |  yes  |  |
+ | required | boolean? |  yes  |  |
  
 
 ---
@@ -5462,9 +5462,9 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | icon | string |  no  |  |
- | link | string |  no  |  |
- | title | string |  no  |  |
+ | icon | string? |  yes  |  |
+ | link | string? |  yes  |  |
+ | title | string? |  yes  |  |
  
 
 ---
@@ -5473,8 +5473,8 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | company_id | number |  no  |  |
- | company_name | string |  no  |  |
+ | company_id | number? |  yes  |  |
+ | company_name | string? |  yes  |  |
  
 
 ---
@@ -5483,7 +5483,7 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | brands | [CompanyBrandInfo](#CompanyBrandInfo) |  no  |  |
+ | brands | [CompanyBrandInfo](#CompanyBrandInfo)? |  yes  |  |
  
 
 ---
@@ -5492,12 +5492,12 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | company | [OptedCompany](#OptedCompany) |  no  |  |
- | store_address | [OptedStoreAddress](#OptedStoreAddress) |  no  |  |
- | store_code | string |  no  |  |
- | store_id | number |  no  |  |
- | store_name | string |  no  |  |
- | store_type | string |  no  |  |
+ | company | [OptedCompany](#OptedCompany)? |  yes  |  |
+ | store_address | [OptedStoreAddress](#OptedStoreAddress)? |  yes  |  |
+ | store_code | string? |  yes  |  |
+ | store_id | number? |  yes  |  |
+ | store_name | string? |  yes  |  |
+ | store_type | string? |  yes  |  |
  
 
 ---
@@ -5506,15 +5506,15 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | __v | number |  no  |  |
- | _id | string |  no  |  |
- | application | string |  no  |  |
- | build_status | string |  no  |  |
- | created_at | string |  no  |  |
- | platform_type | string |  no  |  |
- | updated_at | string |  no  |  |
- | version_code | number |  no  |  |
- | version_name | string |  no  |  |
+ | __v | number? |  yes  |  |
+ | _id | string? |  yes  |  |
+ | application | string? |  yes  |  |
+ | build_status | string? |  yes  |  |
+ | created_at | string? |  yes  |  |
+ | platform_type | string? |  yes  |  |
+ | updated_at | string? |  yes  |  |
+ | version_code | number? |  yes  |  |
+ | version_name | string? |  yes  |  |
  
 
 ---
@@ -5523,8 +5523,8 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | latest_available_version_name | string |  no  |  |
- | versions | [BuildVersion](#BuildVersion) |  no  |  |
+ | latest_available_version_name | string? |  yes  |  |
+ | versions | [BuildVersion](#BuildVersion)? |  yes  |  |
  
 
 ---
@@ -5533,10 +5533,10 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | _id | string |  no  |  |
- | icon | string |  no  |  |
- | sub_title | string |  no  |  |
- | title | string |  no  |  |
+ | _id | string? |  yes  |  |
+ | icon | string? |  yes  |  |
+ | sub_title | string? |  yes  |  |
+ | title | string? |  yes  |  |
  
 
 ---
@@ -5545,8 +5545,8 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | app | string |  no  |  |
- | web | string |  no  |  |
+ | app | string? |  yes  |  |
+ | web | string? |  yes  |  |
  
 
 ---
@@ -5555,11 +5555,11 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | google_map | boolean |  no  |  |
- | gst_input | boolean |  no  |  |
- | placing_for_customer | boolean |  no  |  |
- | revenue_engine_coupon | boolean |  no  |  |
- | staff_selection | boolean |  no  |  |
+ | google_map | boolean? |  yes  |  |
+ | gst_input | boolean? |  yes  |  |
+ | placing_for_customer | boolean? |  yes  |  |
+ | revenue_engine_coupon | boolean? |  yes  |  |
+ | staff_selection | boolean? |  yes  |  |
  
 
 ---
@@ -5568,8 +5568,8 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | charges | number |  no  |  |
- | threshold | number |  no  |  |
+ | charges | number? |  yes  |  |
+ | threshold | number? |  yes  |  |
  
 
 ---
@@ -5578,14 +5578,14 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | communication_optin_dialog | [CommunicationOptinDialogFeature](#CommunicationOptinDialogFeature) |  no  |  |
- | compare_products | [CompareProductsFeature](#CompareProductsFeature) |  no  |  |
- | currency | [CurrencyFeature](#CurrencyFeature) |  no  |  |
- | deployment_store_selection | [DeploymentStoreSelectionFeature](#DeploymentStoreSelectionFeature) |  no  |  |
- | feedback | [FeedbackFeature](#FeedbackFeature) |  no  |  |
- | listing_price | [ListingPriceFeature](#ListingPriceFeature) |  no  |  |
- | revenue_engine | [RevenueEngineFeature](#RevenueEngineFeature) |  no  |  |
- | reward_points | [RewardPointsConfig](#RewardPointsConfig) |  no  |  |
+ | communication_optin_dialog | [CommunicationOptinDialogFeature](#CommunicationOptinDialogFeature)? |  yes  |  |
+ | compare_products | [CompareProductsFeature](#CompareProductsFeature)? |  yes  |  |
+ | currency | [CurrencyFeature](#CurrencyFeature)? |  yes  |  |
+ | deployment_store_selection | [DeploymentStoreSelectionFeature](#DeploymentStoreSelectionFeature)? |  yes  |  |
+ | feedback | [FeedbackFeature](#FeedbackFeature)? |  yes  |  |
+ | listing_price | [ListingPriceFeature](#ListingPriceFeature)? |  yes  |  |
+ | revenue_engine | [RevenueEngineFeature](#RevenueEngineFeature)? |  yes  |  |
+ | reward_points | [RewardPointsConfig](#RewardPointsConfig)? |  yes  |  |
  
 
 ---
@@ -5594,7 +5594,7 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | enabled | boolean |  no  |  |
+ | enabled | boolean? |  yes  | Check current communication channel is enabled |
  
 
 ---
@@ -5603,9 +5603,9 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | email | [CommsConfig](#CommsConfig) |  no  |  |
- | sms | [CommsConfig](#CommsConfig) |  no  |  |
- | voice | [CommsConfig](#CommsConfig) |  no  |  |
+ | email | [CommsConfig](#CommsConfig)? |  yes  |  |
+ | sms | [CommsConfig](#CommsConfig)? |  yes  |  |
+ | voice | [CommsConfig](#CommsConfig)? |  yes  |  |
  
 
 ---
@@ -5614,7 +5614,7 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | visibility | boolean |  no  |  |
+ | visibility | boolean? |  yes  |  |
  
 
 ---
@@ -5623,8 +5623,8 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | items | [AppInventoryCompanies](#AppInventoryCompanies) |  no  |  |
- | page | [Page](#Page) |  no  |  |
+ | items | [AppInventoryCompanies](#AppInventoryCompanies)? |  yes  |  |
+ | page | [Page](#Page)? |  yes  |  |
  
 
 ---
@@ -5633,13 +5633,13 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | address1 | string |  no  |  |
- | address2 | string |  no  |  |
- | address_type | string |  no  |  |
- | city | string |  no  |  |
- | country | string |  no  |  |
- | pincode | number |  no  |  |
- | state | string |  no  |  |
+ | address1 | string? |  yes  |  |
+ | address2 | string? |  yes  |  |
+ | address_type | string? |  yes  |  |
+ | city | string? |  yes  |  |
+ | country | string? |  yes  |  |
+ | pincode | number? |  yes  |  |
+ | state | string? |  yes  |  |
  
 
 ---
@@ -5648,11 +5648,11 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | brand_banner_portrait_url | string |  no  |  |
- | brand_banner_url | string |  no  |  |
- | brand_logo_url | string |  no  |  |
- | name | string |  no  |  |
- | value | number |  no  |  |
+ | brand_banner_portrait_url | string? |  yes  |  |
+ | brand_banner_url | string? |  yes  |  |
+ | brand_logo_url | string? |  yes  |  |
+ | name | string? |  yes  |  |
+ | value | number? |  yes  |  |
  
 
 ---
@@ -5661,8 +5661,8 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | brands | number |  yes  |  |
- | search_text | string |  no  |  |
+ | brands | number |  no  | Brand uids |
+ | search_text | string? |  yes  | Search company by name |
  
 
 ---
@@ -5671,8 +5671,8 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | items | [[BrandCompanyInfo](#BrandCompanyInfo)] |  no  |  |
- | page | [Page](#Page) |  no  |  |
+ | items | [[BrandCompanyInfo](#BrandCompanyInfo)]? |  yes  |  |
+ | page | [Page](#Page)? |  yes  |  |
  
 
 ---
@@ -5681,8 +5681,8 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | browser_script | string |  no  |  |
- | json_schema | [[JsonSchema](#JsonSchema)] |  no  |  |
+ | browser_script | string? |  yes  |  |
+ | json_schema | [[JsonSchema](#JsonSchema)]? |  yes  |  |
  
 
 ---
@@ -5691,7 +5691,7 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | enabled | boolean |  no  |  |
+ | enabled | boolean? |  yes  |  |
  
 
 ---
@@ -5700,9 +5700,9 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | app | [App](#App) |  no  |  |
- | configuration | [AppInventory](#AppInventory) |  no  |  |
- | domain | [AppDomain](#AppDomain) |  no  |  |
+ | app | [App](#App)? |  yes  |  |
+ | configuration | [AppInventory](#AppInventory)? |  yes  |  |
+ | domain | [AppDomain](#AppDomain)? |  yes  |  |
  
 
 ---
@@ -5711,8 +5711,8 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | app | [Application](#Application) |  no  |  |
- | configuration | [ApplicationInventory](#ApplicationInventory) |  no  |  |
+ | app | [Application](#Application)? |  yes  |  |
+ | configuration | [ApplicationInventory](#ApplicationInventory)? |  yes  |  |
  
 
 ---
@@ -5721,12 +5721,12 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | android | [Android](#Android) |  no  |  |
- | api_key | string |  no  |  |
- | application_id | string |  no  |  |
- | gcm_sender_id | string |  no  |  |
- | ios | [Ios](#Ios) |  no  |  |
- | project_id | string |  no  |  |
+ | android | [Android](#Android)? |  yes  |  |
+ | api_key | string? |  yes  |  |
+ | application_id | string? |  yes  |  |
+ | gcm_sender_id | string? |  yes  |  |
+ | ios | [Ios](#Ios)? |  yes  |  |
+ | project_id | string? |  yes  |  |
  
 
 ---
@@ -5735,7 +5735,7 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | enabled | boolean |  no  |  |
+ | enabled | boolean? |  yes  |  |
  
 
 ---
@@ -5744,7 +5744,7 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | items | [[Currency](#Currency)] |  no  |  |
+ | items | [[Currency](#Currency)]? |  yes  |  |
  
 
 ---
@@ -5753,14 +5753,14 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | _id | string |  no  |  |
- | code | string |  no  |  |
- | created_at | string |  no  |  |
- | decimal_digits | number |  no  |  |
- | is_active | boolean |  no  |  |
- | name | string |  no  |  |
- | symbol | string |  no  |  |
- | updated_at | string |  no  |  |
+ | _id | string? |  yes  |  |
+ | code | string? |  yes  |  |
+ | created_at | string? |  yes  |  |
+ | decimal_digits | number? |  yes  |  |
+ | is_active | boolean? |  yes  |  |
+ | name | string? |  yes  |  |
+ | symbol | string? |  yes  |  |
+ | updated_at | string? |  yes  |  |
  
 
 ---
@@ -5769,14 +5769,14 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | _id | string |  no  |  |
- | code | string |  no  |  |
- | created_at | string |  no  |  |
- | decimal_digits | number |  no  |  |
- | is_active | boolean |  no  |  |
- | name | string |  no  |  |
- | symbol | string |  no  |  |
- | updated_at | string |  no  |  |
+ | _id | string? |  yes  |  |
+ | code | string? |  yes  |  |
+ | created_at | string? |  yes  |  |
+ | decimal_digits | number? |  yes  |  |
+ | is_active | boolean? |  yes  |  |
+ | name | string? |  yes  |  |
+ | symbol | string? |  yes  |  |
+ | updated_at | string? |  yes  |  |
  
 
 ---
@@ -5785,9 +5785,9 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | default_currency | string |  no  |  |
- | type | string |  no  |  |
- | value | [string] |  no  |  |
+ | default_currency | string? |  yes  |  |
+ | type | string? |  yes  |  |
+ | value | [string]? |  yes  |  |
  
 
 ---
@@ -5796,9 +5796,9 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | auto_apply | boolean |  no  |  |
- | enabled | boolean |  no  |  |
- | strategy_channel | string |  no  |  |
+ | auto_apply | boolean? |  yes  |  |
+ | enabled | boolean? |  yes  |  |
+ | strategy_channel | string? |  yes  |  |
  
 
 ---
@@ -5807,8 +5807,8 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | code | string |  no  |  |
- | ref | string |  no  |  |
+ | code | string? |  yes  |  |
+ | ref | string? |  yes  |  |
  
 
 ---
@@ -5817,8 +5817,8 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | charges | [Charges](#Charges) |  no  |  |
- | enabled | boolean |  no  |  |
+ | charges | [Charges](#Charges)? |  yes  |  |
+ | enabled | boolean? |  yes  |  |
  
 
 ---
@@ -5827,12 +5827,12 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | _id | string |  no  |  |
- | all_stores | boolean |  no  |  |
- | app | string |  no  |  |
- | deployed_stores | [number] |  no  |  |
- | enabled | boolean |  no  |  |
- | type | string |  no  |  |
+ | _id | string? |  yes  |  |
+ | all_stores | boolean? |  yes  |  |
+ | app | string? |  yes  |  |
+ | deployed_stores | [number]? |  yes  |  |
+ | enabled | boolean? |  yes  |  |
+ | type | string? |  yes  |  |
  
 
 ---
@@ -5841,8 +5841,8 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | enabled | boolean |  no  |  |
- | type | string |  no  |  |
+ | enabled | boolean? |  yes  |  |
+ | type | string? |  yes  |  |
  
 
 ---
@@ -5851,12 +5851,12 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | _id | string |  no  |  |
- | is_predefined | boolean |  no  |  |
- | is_primary | boolean |  no  |  |
- | is_shortlink | boolean |  no  |  |
- | name | string |  no  |  |
- | verified | boolean |  no  |  |
+ | _id | string? |  yes  |  |
+ | is_predefined | boolean? |  yes  | Domain is hosting domain or not. |
+ | is_primary | boolean? |  yes  |  |
+ | is_shortlink | boolean? |  yes  |  |
+ | name | string? |  yes  |  |
+ | verified | boolean? |  yes  |  |
  
 
 ---
@@ -5865,7 +5865,7 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | name | string |  no  |  |
+ | name | string? |  yes  | Full domain name |
  
 
 ---
@@ -5874,7 +5874,7 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | domain | [DomainAdd](#DomainAdd) |  no  |  |
+ | domain | [DomainAdd](#DomainAdd)? |  yes  |  |
  
 
 ---
@@ -5883,7 +5883,7 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | domains | [[Domain](#Domain)] |  no  |  |
+ | domains | [[Domain](#Domain)]? |  yes  |  |
  
 
 ---
@@ -5892,8 +5892,8 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | display | string |  no  |  |
- | status | boolean |  no  |  |
+ | display | string? |  yes  |  |
+ | status | boolean? |  yes  |  |
  
 
 ---
@@ -5902,7 +5902,7 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | domain_url | string |  no  |  |
+ | domain_url | string? |  yes  | Domain url |
  
 
 ---
@@ -5911,8 +5911,8 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | connected | boolean |  no  |  |
- | status | [[DomainStatus](#DomainStatus)] |  no  |  |
+ | connected | boolean? |  yes  |  |
+ | status | [[DomainStatus](#DomainStatus)]? |  yes  |  |
  
 
 ---
@@ -5921,11 +5921,11 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | currency | string |  no  |  |
- | is_available | boolean |  yes  |  |
- | name | string |  yes  |  |
- | price | number |  no  |  |
- | unsupported | boolean |  no  |  |
+ | currency | string? |  yes  | Custom domain price currency. Not present for fynd domain |
+ | is_available | boolean |  no  |  |
+ | name | string |  no  |  |
+ | price | number? |  yes  | Price for purchasing a custom domain. Not present for fynd domain |
+ | unsupported | boolean? |  yes  | Whether TLD domain is supported or not |
  
 
 ---
@@ -5934,8 +5934,8 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | custom | boolean |  no  |  |
- | domain_url | string |  no  |  |
+ | custom | boolean? |  yes  | Get suggestion for custom domains or fynd domains |
+ | domain_url | string? |  yes  | Domain url |
  
 
 ---
@@ -5944,7 +5944,7 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | domains | [[DomainSuggestion](#DomainSuggestion)] |  no  |  |
+ | domains | [[DomainSuggestion](#DomainSuggestion)]? |  yes  | Domain url |
  
 
 ---
@@ -5953,9 +5953,9 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | icon | string |  no  |  |
- | link | string |  no  |  |
- | title | string |  no  |  |
+ | icon | string? |  yes  |  |
+ | link | string? |  yes  |  |
+ | title | string? |  yes  |  |
  
 
 ---
@@ -5964,7 +5964,7 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | enabled | boolean |  no  |  |
+ | enabled | boolean? |  yes  |  |
  
 
 ---
@@ -5973,10 +5973,10 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | all_stores | boolean |  no  |  |
- | deployed_stores | [number] |  no  |  |
- | only_deployed | boolean |  no  |  |
- | q | string |  no  |  |
+ | all_stores | boolean? |  yes  |  |
+ | deployed_stores | [number]? |  yes  |  |
+ | only_deployed | boolean? |  yes  |  |
+ | q | string? |  yes  |  |
  
 
 ---
@@ -5985,8 +5985,8 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | credentials | [Credentials](#Credentials) |  no  |  |
- | enabled | boolean |  no  |  |
+ | credentials | [Credentials](#Credentials)? |  yes  |  |
+ | enabled | boolean? |  yes  |  |
  
 
 ---
@@ -5995,8 +5995,8 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | credentials | [FreshchatCredentials](#FreshchatCredentials) |  no  |  |
- | enabled | boolean |  no  |  |
+ | credentials | [FreshchatCredentials](#FreshchatCredentials)? |  yes  |  |
+ | enabled | boolean? |  yes  |  |
  
 
 ---
@@ -6005,9 +6005,9 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | app_id | string |  no  |  |
- | app_key | string |  no  |  |
- | web_token | string |  no  |  |
+ | app_id | string? |  yes  |  |
+ | app_key | string? |  yes  |  |
+ | web_token | string? |  yes  |  |
  
 
 ---
@@ -6016,7 +6016,7 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | credentials | [FyndRewardsCredentials](#FyndRewardsCredentials) |  no  |  |
+ | credentials | [FyndRewardsCredentials](#FyndRewardsCredentials)? |  yes  |  |
  
 
 ---
@@ -6025,7 +6025,7 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | public_key | string |  no  |  |
+ | public_key | string? |  yes  |  |
  
 
 ---
@@ -6034,8 +6034,8 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | items | [[IntegrationOptIn](#IntegrationOptIn)] |  no  |  |
- | page | [Page](#Page) |  no  |  |
+ | items | [[IntegrationOptIn](#IntegrationOptIn)]? |  yes  |  |
+ | page | [Page](#Page)? |  yes  |  |
  
 
 ---
@@ -6044,7 +6044,7 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | credentials | [GoogleMapCredentials](#GoogleMapCredentials) |  no  |  |
+ | credentials | [GoogleMapCredentials](#GoogleMapCredentials)? |  yes  |  |
  
 
 ---
@@ -6053,7 +6053,7 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | api_key | string |  no  |  |
+ | api_key | string? |  yes  |  |
  
 
 ---
@@ -6062,9 +6062,9 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | icon | string |  no  |  |
- | link | string |  no  |  |
- | title | string |  no  |  |
+ | icon | string? |  yes  |  |
+ | link | string? |  yes  |  |
+ | title | string? |  yes  |  |
  
 
 ---
@@ -6073,8 +6073,8 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | credentials | [GtmCredentials](#GtmCredentials) |  no  |  |
- | enabled | boolean |  no  |  |
+ | credentials | [GtmCredentials](#GtmCredentials)? |  yes  |  |
+ | enabled | boolean? |  yes  |  |
  
 
 ---
@@ -6083,7 +6083,7 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | api_key | string |  no  |  |
+ | api_key | string? |  yes  |  |
  
 
 ---
@@ -6092,7 +6092,7 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | order_processing | boolean |  no  |  |
+ | order_processing | boolean? |  yes  |  |
  
 
 ---
@@ -6101,12 +6101,12 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | address_line | [string] |  no  |  |
- | city | string |  no  |  |
- | country | string |  no  |  |
- | loc | string |  no  |  |
- | phone | [[InformationPhone](#InformationPhone)] |  no  |  |
- | pincode | number |  no  |  |
+ | address_line | [string]? |  yes  |  |
+ | city | string? |  yes  |  |
+ | country | string? |  yes  |  |
+ | loc | string? |  yes  |  |
+ | phone | [[InformationPhone](#InformationPhone)]? |  yes  |  |
+ | pincode | number? |  yes  |  |
  
 
 ---
@@ -6115,8 +6115,8 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | code | string |  no  |  |
- | number | string |  no  |  |
+ | code | string? |  yes  |  |
+ | number | string? |  yes  |  |
  
 
 ---
@@ -6125,9 +6125,9 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | email | [string] |  no  |  |
- | phone | [string] |  no  |  |
- | timing | string |  no  |  |
+ | email | [string]? |  yes  |  |
+ | phone | [string]? |  yes  |  |
+ | timing | string? |  yes  |  |
  
 
 ---
@@ -6136,9 +6136,9 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | icon | string |  no  |  |
- | link | string |  no  |  |
- | title | string |  no  |  |
+ | icon | string? |  yes  |  |
+ | link | string? |  yes  |  |
+ | title | string? |  yes  |  |
  
 
 ---
@@ -6147,22 +6147,22 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | __v | number |  no  |  |
- | _id | string |  no  |  |
- | companies | [string] |  no  |  |
- | constants | string |  no  |  |
- | created_at | string |  no  |  |
- | description | string |  no  |  |
- | description_html | string |  no  |  |
- | icon | string |  no  |  |
- | meta | [[IntegrationMeta](#IntegrationMeta)] |  no  |  |
- | name | string |  no  |  |
- | owner | string |  no  |  |
- | secret | string |  no  |  |
- | support | [string] |  no  |  |
- | token | string |  no  |  |
- | updated_at | string |  no  |  |
- | validators | [Validators](#Validators) |  no  |  |
+ | __v | number? |  yes  |  |
+ | _id | string? |  yes  |  |
+ | companies | [string]? |  yes  |  |
+ | constants | string? |  yes  |  |
+ | created_at | string? |  yes  |  |
+ | description | string? |  yes  |  |
+ | description_html | string? |  yes  |  |
+ | icon | string? |  yes  |  |
+ | meta | [[IntegrationMeta](#IntegrationMeta)]? |  yes  |  |
+ | name | string? |  yes  |  |
+ | owner | string? |  yes  |  |
+ | secret | string? |  yes  |  |
+ | support | [string]? |  yes  |  |
+ | token | string? |  yes  |  |
+ | updated_at | string? |  yes  |  |
+ | validators | [Validators](#Validators)? |  yes  |  |
  
 
 ---
@@ -6171,7 +6171,7 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | items | [[IntegrationLevel](#IntegrationLevel)] |  no  |  |
+ | items | [[IntegrationLevel](#IntegrationLevel)]? |  yes  |  |
  
 
 ---
@@ -6180,19 +6180,19 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | __v | number |  no  |  |
- | _id | string |  no  |  |
- | created_at | string |  no  |  |
- | data | string |  no  |  |
- | integration | string |  no  |  |
- | last_patch | [[LastPatch](#LastPatch)] |  no  |  |
- | level | string |  no  |  |
- | meta | [[IntegrationMeta](#IntegrationMeta)] |  no  |  |
- | opted | boolean |  no  |  |
- | permissions | [string] |  no  |  |
- | token | string |  no  |  |
- | uid | number |  no  |  |
- | updated_at | string |  no  |  |
+ | __v | number? |  yes  |  |
+ | _id | string? |  yes  |  |
+ | created_at | string? |  yes  |  |
+ | data | string? |  yes  |  |
+ | integration | string? |  yes  |  |
+ | last_patch | [[LastPatch](#LastPatch)]? |  yes  |  |
+ | level | string? |  yes  |  |
+ | meta | [[IntegrationMeta](#IntegrationMeta)]? |  yes  |  |
+ | opted | boolean? |  yes  |  |
+ | permissions | [string]? |  yes  |  |
+ | token | string? |  yes  |  |
+ | uid | number? |  yes  |  |
+ | updated_at | string? |  yes  |  |
  
 
 ---
@@ -6201,10 +6201,10 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | _id | string |  no  |  |
- | is_public | boolean |  no  |  |
- | name | string |  no  |  |
- | value | string |  no  |  |
+ | _id | string? |  yes  |  |
+ | is_public | boolean? |  yes  |  |
+ | name | string? |  yes  |  |
+ | value | string? |  yes  |  |
  
 
 ---
@@ -6213,22 +6213,22 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | __v | number |  no  |  |
- | _id | string |  no  |  |
- | companies | [string] |  no  |  |
- | constants | string |  no  |  |
- | created_at | string |  no  |  |
- | description | string |  no  |  |
- | description_html | string |  no  |  |
- | icon | string |  no  |  |
- | meta | [[IntegrationMeta](#IntegrationMeta)] |  no  |  |
- | name | string |  no  |  |
- | owner | string |  no  |  |
- | secret | string |  no  |  |
- | support | [string] |  no  |  |
- | token | string |  no  |  |
- | updated_at | string |  no  |  |
- | validators | [Validators](#Validators) |  no  |  |
+ | __v | number? |  yes  |  |
+ | _id | string? |  yes  |  |
+ | companies | [string]? |  yes  |  |
+ | constants | string? |  yes  |  |
+ | created_at | string? |  yes  |  |
+ | description | string? |  yes  |  |
+ | description_html | string? |  yes  |  |
+ | icon | string? |  yes  |  |
+ | meta | [[IntegrationMeta](#IntegrationMeta)]? |  yes  |  |
+ | name | string? |  yes  |  |
+ | owner | string? |  yes  |  |
+ | secret | string? |  yes  |  |
+ | support | [string]? |  yes  |  |
+ | token | string? |  yes  |  |
+ | updated_at | string? |  yes  |  |
+ | validators | [Validators](#Validators)? |  yes  |  |
  
 
 ---
@@ -6237,7 +6237,7 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | message | string |  no  |  |
+ | message | string? |  yes  |  |
  
 
 ---
@@ -6246,8 +6246,8 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | post_order_reassignment | boolean |  no  |  |
- | rules | [ArticleAssignmentRule](#ArticleAssignmentRule) |  no  |  |
+ | post_order_reassignment | boolean? |  yes  |  |
+ | rules | [ArticleAssignmentRule](#ArticleAssignmentRule)? |  yes  |  |
  
 
 ---
@@ -6256,8 +6256,8 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | brands | [any] |  no  |  |
- | criteria | string |  no  |  |
+ | brands | [any]? |  yes  |  |
+ | criteria | string? |  yes  |  |
  
 
 ---
@@ -6266,8 +6266,8 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | brands | [number] |  no  |  |
- | criteria | string |  no  |  |
+ | brands | [number]? |  yes  | Brand uids in case of explicit criteria |
+ | criteria | string? |  yes  | Whether enable all or explicitly few brands as inventory |
  
 
 ---
@@ -6276,8 +6276,8 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | categories | [any] |  no  |  |
- | criteria | string |  no  |  |
+ | categories | [any]? |  yes  |  |
+ | criteria | string? |  yes  |  |
  
 
 ---
@@ -6286,8 +6286,8 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | max | number |  no  |  |
- | min | number |  no  |  |
+ | max | number? |  yes  |  |
+ | min | number? |  yes  |  |
  
 
 ---
@@ -6296,8 +6296,8 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | mode_of_payment | string |  no  |  |
- | source | string |  no  |  |
+ | mode_of_payment | string? |  yes  |  |
+ | source | string? |  yes  |  |
  
 
 ---
@@ -6306,8 +6306,8 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | max | number |  no  |  |
- | min | number |  no  |  |
+ | max | number? |  yes  |  |
+ | min | number? |  yes  |  |
  
 
 ---
@@ -6316,9 +6316,9 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | criteria | string |  no  |  |
- | rules | [AppStoreRules](#AppStoreRules) |  no  |  |
- | stores | [any] |  no  |  |
+ | criteria | string? |  yes  |  |
+ | rules | [AppStoreRules](#AppStoreRules)? |  yes  |  |
+ | stores | [any]? |  yes  |  |
  
 
 ---
@@ -6327,9 +6327,9 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | criteria | string |  no  |  |
- | rules | [[StoreCriteriaRule](#StoreCriteriaRule)] |  no  |  |
- | stores | [number] |  no  |  |
+ | criteria | string? |  yes  | Whether enable all or explicitly few stores or use filter of brands and company as inventory stores |
+ | rules | [[StoreCriteriaRule](#StoreCriteriaRule)]? |  yes  | List of rules with company and brands uids. Used when critera is `filter` |
+ | stores | [number]? |  yes  | List of store uids. Used when critera is `explicit` |
  
 
 ---
@@ -6338,8 +6338,8 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | browser_script | string |  no  |  |
- | json_schema | [[JsonSchema](#JsonSchema)] |  no  |  |
+ | browser_script | string? |  yes  |  |
+ | json_schema | [[JsonSchema](#JsonSchema)]? |  yes  |  |
  
 
 ---
@@ -6348,8 +6348,8 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | api_key | string |  no  |  |
- | application_id | string |  no  |  |
+ | api_key | string? |  yes  |  |
+ | application_id | string? |  yes  |  |
  
 
 ---
@@ -6358,10 +6358,10 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | display | string |  no  |  |
- | key | string |  no  |  |
- | tooltip | string |  no  |  |
- | type | string |  no  |  |
+ | display | string? |  yes  |  |
+ | key | string? |  yes  |  |
+ | tooltip | string? |  yes  |  |
+ | type | string? |  yes  |  |
  
 
 ---
@@ -6370,8 +6370,8 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | aspect_ratio | string |  no  |  |
- | secure_url | string |  no  |  |
+ | aspect_ratio | string? |  yes  |  |
+ | secure_url | string? |  yes  |  |
  
 
 ---
@@ -6380,11 +6380,11 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | continue_as_guest | boolean |  no  |  |
- | launch_page | [LaunchPage](#LaunchPage) |  no  |  |
- | login_btn_text | string |  no  |  |
- | show_domain_textbox | boolean |  no  |  |
- | show_register_btn | boolean |  no  |  |
+ | continue_as_guest | boolean? |  yes  |  |
+ | launch_page | [LaunchPage](#LaunchPage)? |  yes  |  |
+ | login_btn_text | string? |  yes  |  |
+ | show_domain_textbox | boolean? |  yes  |  |
+ | show_register_btn | boolean? |  yes  |  |
  
 
 ---
@@ -6393,9 +6393,9 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | op | string |  no  |  |
- | path | string |  no  |  |
- | value | string |  no  |  |
+ | op | string? |  yes  |  |
+ | path | string? |  yes  |  |
+ | value | string? |  yes  |  |
  
 
 ---
@@ -6404,9 +6404,9 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | page_type | string |  no  |  |
- | params | string |  no  |  |
- | query | string |  no  |  |
+ | page_type | string? |  yes  |  |
+ | params | string? |  yes  |  |
+ | query | string? |  yes  |  |
  
 
 ---
@@ -6415,9 +6415,9 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | icon | string |  no  |  |
- | link | string |  no  |  |
- | title | string |  no  |  |
+ | icon | string? |  yes  |  |
+ | link | string? |  yes  |  |
+ | title | string? |  yes  |  |
  
 
 ---
@@ -6426,8 +6426,8 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | link | string |  no  |  |
- | title | string |  no  |  |
+ | link | string? |  yes  |  |
+ | title | string? |  yes  |  |
  
 
 ---
@@ -6436,7 +6436,7 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | value | string |  no  |  |
+ | value | string? |  yes  |  |
  
 
 ---
@@ -6445,8 +6445,8 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | auto_apply | boolean |  no  |  |
- | enabled | boolean |  no  |  |
+ | auto_apply | boolean? |  yes  |  |
+ | enabled | boolean? |  yes  |  |
  
 
 ---
@@ -6455,25 +6455,25 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | card | [PaymentModeConfig](#PaymentModeConfig) |  no  |  |
- | cod | [PaymentModeConfig](#PaymentModeConfig) |  no  |  |
- | fc | [PaymentModeConfig](#PaymentModeConfig) |  no  |  |
- | jiopp | [PaymentModeConfig](#PaymentModeConfig) |  no  |  |
- | jp | [PaymentModeConfig](#PaymentModeConfig) |  no  |  |
- | juspaypg | [PaymentModeConfig](#PaymentModeConfig) |  no  |  |
- | nb | [PaymentModeConfig](#PaymentModeConfig) |  no  |  |
- | pac | [PaymentModeConfig](#PaymentModeConfig) |  no  |  |
- | payubizpg | [PaymentModeConfig](#PaymentModeConfig) |  no  |  |
- | payumoneypg | [PaymentModeConfig](#PaymentModeConfig) |  no  |  |
- | pl | [PaymentModeConfig](#PaymentModeConfig) |  no  |  |
- | pp | [PaymentModeConfig](#PaymentModeConfig) |  no  |  |
- | ps | [PaymentModeConfig](#PaymentModeConfig) |  no  |  |
- | qr | [PaymentModeConfig](#PaymentModeConfig) |  no  |  |
- | rupifipg | [PaymentModeConfig](#PaymentModeConfig) |  no  |  |
- | simpl | [PaymentModeConfig](#PaymentModeConfig) |  no  |  |
- | stripepg | [PaymentModeConfig](#PaymentModeConfig) |  no  |  |
- | upi | [PaymentModeConfig](#PaymentModeConfig) |  no  |  |
- | wl | [PaymentModeConfig](#PaymentModeConfig) |  no  |  |
+ | card | [PaymentModeConfig](#PaymentModeConfig)? |  yes  |  |
+ | cod | [PaymentModeConfig](#PaymentModeConfig)? |  yes  |  |
+ | fc | [PaymentModeConfig](#PaymentModeConfig)? |  yes  |  |
+ | jiopp | [PaymentModeConfig](#PaymentModeConfig)? |  yes  |  |
+ | jp | [PaymentModeConfig](#PaymentModeConfig)? |  yes  |  |
+ | juspaypg | [PaymentModeConfig](#PaymentModeConfig)? |  yes  |  |
+ | nb | [PaymentModeConfig](#PaymentModeConfig)? |  yes  |  |
+ | pac | [PaymentModeConfig](#PaymentModeConfig)? |  yes  |  |
+ | payubizpg | [PaymentModeConfig](#PaymentModeConfig)? |  yes  |  |
+ | payumoneypg | [PaymentModeConfig](#PaymentModeConfig)? |  yes  |  |
+ | pl | [PaymentModeConfig](#PaymentModeConfig)? |  yes  |  |
+ | pp | [PaymentModeConfig](#PaymentModeConfig)? |  yes  |  |
+ | ps | [PaymentModeConfig](#PaymentModeConfig)? |  yes  |  |
+ | qr | [PaymentModeConfig](#PaymentModeConfig)? |  yes  |  |
+ | rupifipg | [PaymentModeConfig](#PaymentModeConfig)? |  yes  |  |
+ | simpl | [PaymentModeConfig](#PaymentModeConfig)? |  yes  |  |
+ | stripepg | [PaymentModeConfig](#PaymentModeConfig)? |  yes  |  |
+ | upi | [PaymentModeConfig](#PaymentModeConfig)? |  yes  |  |
+ | wl | [PaymentModeConfig](#PaymentModeConfig)? |  yes  |  |
  
 
 ---
@@ -6482,10 +6482,10 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | app_name | string |  no  |  |
- | is_active | boolean |  no  |  |
- | landing_image | [LandingImage](#LandingImage) |  no  |  |
- | splash_image | [SplashImage](#SplashImage) |  no  |  |
+ | app_name | string? |  yes  |  |
+ | is_active | boolean? |  yes  |  |
+ | landing_image | [LandingImage](#LandingImage)? |  yes  |  |
+ | splash_image | [SplashImage](#SplashImage)? |  yes  |  |
  
 
 ---
@@ -6494,17 +6494,17 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | __v | number |  no  |  |
- | _id | string |  no  |  |
- | app_name | string |  no  |  |
- | application | string |  no  |  |
- | created_at | string |  no  |  |
- | is_active | boolean |  no  |  |
- | landing_image | [LandingImage](#LandingImage) |  no  |  |
- | package_name | string |  no  |  |
- | platform_type | string |  no  |  |
- | splash_image | [SplashImage](#SplashImage) |  no  |  |
- | updated_at | string |  no  |  |
+ | __v | number? |  yes  |  |
+ | _id | string? |  yes  |  |
+ | app_name | string? |  yes  |  |
+ | application | string? |  yes  |  |
+ | created_at | string? |  yes  |  |
+ | is_active | boolean? |  yes  |  |
+ | landing_image | [LandingImage](#LandingImage)? |  yes  |  |
+ | package_name | string? |  yes  |  |
+ | platform_type | string? |  yes  |  |
+ | splash_image | [SplashImage](#SplashImage)? |  yes  |  |
+ | updated_at | string? |  yes  |  |
  
 
 ---
@@ -6513,8 +6513,8 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | credentials | [MoengageCredentials](#MoengageCredentials) |  no  |  |
- | enabled | boolean |  no  |  |
+ | credentials | [MoengageCredentials](#MoengageCredentials)? |  yes  |  |
+ | enabled | boolean? |  yes  |  |
  
 
 ---
@@ -6523,7 +6523,7 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | app_id | string |  no  |  |
+ | app_id | string? |  yes  |  |
  
 
 ---
@@ -6532,7 +6532,7 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | message | string |  no  |  |
+ | message | string? |  yes  |  |
  
 
 ---
@@ -6541,13 +6541,13 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | _id | string |  no  |  |
- | company | [OptedCompany](#OptedCompany) |  no  |  |
- | description | string |  no  |  |
- | domain | string |  no  |  |
- | name | string |  no  |  |
- | opt_out_inventory | [OptOutInventory](#OptOutInventory) |  no  |  |
- | opted_inventory | [OptedInventory](#OptedInventory) |  no  |  |
+ | _id | string? |  yes  |  |
+ | company | [OptedCompany](#OptedCompany)? |  yes  |  |
+ | description | string? |  yes  |  |
+ | domain | string? |  yes  |  |
+ | name | string? |  yes  |  |
+ | opt_out_inventory | [OptOutInventory](#OptOutInventory)? |  yes  |  |
+ | opted_inventory | [OptedInventory](#OptedInventory)? |  yes  |  |
  
 
 ---
@@ -6556,8 +6556,8 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | name | string |  no  |  |
- | uid | number |  no  |  |
+ | name | string? |  yes  |  |
+ | uid | number? |  yes  |  |
  
 
 ---
@@ -6566,8 +6566,8 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | items | any |  no  |  |
- | opt_type | [OptType](#OptType) |  no  |  |
+ | items | any? |  yes  |  |
+ | opt_type | [OptType](#OptType)? |  yes  |  |
  
 
 ---
@@ -6576,15 +6576,15 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | _id | string |  no  |  |
- | address | [OptedStoreAddress](#OptedStoreAddress) |  no  |  |
- | company_id | number |  no  |  |
- | display_name | string |  no  |  |
- | modified_on | string |  no  |  |
- | name | string |  no  |  |
- | store_code | string |  no  |  |
- | store_type | string |  no  |  |
- | uid | number |  no  |  |
+ | _id | string? |  yes  |  |
+ | address | [OptedStoreAddress](#OptedStoreAddress)? |  yes  |  |
+ | company_id | number? |  yes  |  |
+ | display_name | string? |  yes  |  |
+ | modified_on | string? |  yes  |  |
+ | name | string? |  yes  |  |
+ | store_code | string? |  yes  |  |
+ | store_type | string? |  yes  |  |
+ | uid | number? |  yes  |  |
  
 
 ---
@@ -6593,13 +6593,13 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | address1 | string |  no  |  |
- | address2 | string |  no  |  |
- | city | string |  no  |  |
- | country | string |  no  |  |
- | lat_long | [StoreLatLong](#StoreLatLong) |  no  |  |
- | pincode | number |  no  |  |
- | state | string |  no  |  |
+ | address1 | string? |  yes  |  |
+ | address2 | string? |  yes  |  |
+ | city | string? |  yes  |  |
+ | country | string? |  yes  |  |
+ | lat_long | [StoreLatLong](#StoreLatLong)? |  yes  |  |
+ | pincode | number? |  yes  |  |
+ | state | string? |  yes  |  |
  
 
 ---
@@ -6608,9 +6608,9 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | other_entity | [OtherEntity](#OtherEntity) |  no  |  |
- | other_integration | [IntegrationOptIn](#IntegrationOptIn) |  no  |  |
- | other_opted | boolean |  no  |  |
+ | other_entity | [OtherEntity](#OtherEntity)? |  yes  |  |
+ | other_integration | [IntegrationOptIn](#IntegrationOptIn)? |  yes  |  |
+ | other_opted | boolean? |  yes  |  |
  
 
 ---
@@ -6619,8 +6619,8 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | company | [number] |  yes  |  |
- | store | [number] |  yes  |  |
+ | company | [number] |  no  |  |
+ | store | [number] |  no  |  |
  
 
 ---
@@ -6629,8 +6629,8 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | display | string |  no  |  |
- | key | string |  no  |  |
+ | display | string? |  yes  |  |
+ | key | string? |  yes  |  |
  
 
 ---
@@ -6639,7 +6639,7 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | buy_again | boolean |  no  |  |
+ | buy_again | boolean? |  yes  |  |
  
 
 ---
@@ -6648,15 +6648,15 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | _id | string |  no  |  |
- | address | [OptedStoreAddress](#OptedStoreAddress) |  no  |  |
- | code | string |  no  |  |
- | display_name | string |  no  |  |
- | name | string |  no  |  |
- | pincode | number |  no  |  |
- | store_code | string |  no  |  |
- | store_type | string |  no  |  |
- | uid | number |  no  |  |
+ | _id | string? |  yes  |  |
+ | address | [OptedStoreAddress](#OptedStoreAddress)? |  yes  |  |
+ | code | string? |  yes  |  |
+ | display_name | string? |  yes  |  |
+ | name | string? |  yes  |  |
+ | pincode | number? |  yes  |  |
+ | store_code | string? |  yes  |  |
+ | store_type | string? |  yes  |  |
+ | uid | number? |  yes  |  |
  
 
 ---
@@ -6665,7 +6665,7 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | deployment_meta | [DeploymentMeta](#DeploymentMeta) |  no  |  |
+ | deployment_meta | [DeploymentMeta](#DeploymentMeta)? |  yes  |  |
  
 
 ---
@@ -6674,15 +6674,15 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | __v | number |  no  |  |
- | _id | string |  no  |  |
- | all_stores | boolean |  no  |  |
- | app | string |  no  |  |
- | deployed_stores | [number] |  no  |  |
- | enabled | boolean |  no  |  |
- | items | [[OrderingStore](#OrderingStore)] |  no  |  |
- | page | [Page](#Page) |  no  |  |
- | type | string |  no  |  |
+ | __v | number? |  yes  |  |
+ | _id | string? |  yes  |  |
+ | all_stores | boolean? |  yes  |  |
+ | app | string? |  yes  |  |
+ | deployed_stores | [number]? |  yes  |  |
+ | enabled | boolean? |  yes  |  |
+ | items | [[OrderingStore](#OrderingStore)]? |  yes  |  |
+ | page | [Page](#Page)? |  yes  |  |
+ | type | string? |  yes  |  |
  
 
 ---
@@ -6691,8 +6691,8 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | items | [[OrderingStore](#OrderingStore)] |  no  |  |
- | page | [Page](#Page) |  no  |  |
+ | items | [[OrderingStore](#OrderingStore)]? |  yes  |  |
+ | page | [Page](#Page)? |  yes  |  |
  
 
 ---
@@ -6701,8 +6701,8 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | browser_script | string |  no  |  |
- | json_schema | [[JsonSchema](#JsonSchema)] |  no  |  |
+ | browser_script | string? |  yes  |  |
+ | json_schema | [[JsonSchema](#JsonSchema)]? |  yes  |  |
  
 
 ---
@@ -6711,19 +6711,19 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | __v | number |  no  |  |
- | _id | string |  no  |  |
- | created_at | string |  no  |  |
- | data | [OtherEntityData](#OtherEntityData) |  no  |  |
- | integration | string |  no  |  |
- | last_patch | [[LastPatch](#LastPatch)] |  no  |  |
- | level | string |  no  |  |
- | meta | [string] |  no  |  |
- | opted | boolean |  no  |  |
- | permissions | [string] |  no  |  |
- | token | string |  no  |  |
- | uid | number |  no  |  |
- | updated_at | string |  no  |  |
+ | __v | number? |  yes  |  |
+ | _id | string? |  yes  |  |
+ | created_at | string? |  yes  |  |
+ | data | [OtherEntityData](#OtherEntityData)? |  yes  |  |
+ | integration | string? |  yes  |  |
+ | last_patch | [[LastPatch](#LastPatch)]? |  yes  |  |
+ | level | string? |  yes  |  |
+ | meta | [string]? |  yes  |  |
+ | opted | boolean? |  yes  |  |
+ | permissions | [string]? |  yes  |  |
+ | token | string? |  yes  |  |
+ | uid | number? |  yes  |  |
+ | updated_at | string? |  yes  |  |
  
 
 ---
@@ -6732,7 +6732,7 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | article_identifier | string |  no  |  |
+ | article_identifier | string? |  yes  |  |
  
 
 ---
@@ -6741,12 +6741,12 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | _id | string |  no  |  |
- | company | [OtherSellerCompany](#OtherSellerCompany) |  no  |  |
- | description | string |  no  |  |
- | domain | string |  no  |  |
- | name | string |  no  |  |
- | opt_type | string |  no  |  |
+ | _id | string? |  yes  |  |
+ | company | [OtherSellerCompany](#OtherSellerCompany)? |  yes  |  |
+ | description | string? |  yes  |  |
+ | domain | string? |  yes  |  |
+ | name | string? |  yes  |  |
+ | opt_type | string? |  yes  |  |
  
 
 ---
@@ -6755,8 +6755,8 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | items | [[OtherSellerApplication](#OtherSellerApplication)] |  no  |  |
- | page | [Page](#Page) |  no  |  |
+ | items | [[OtherSellerApplication](#OtherSellerApplication)]? |  yes  |  |
+ | page | [Page](#Page)? |  yes  |  |
  
 
 ---
@@ -6765,8 +6765,8 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | name | string |  no  |  |
- | uid | number |  no  |  |
+ | name | string? |  yes  |  |
+ | uid | number? |  yes  |  |
  
 
 ---
@@ -6775,13 +6775,13 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | current | number |  no  |  |
- | has_next | boolean |  no  |  |
- | has_previous | boolean |  no  |  |
- | item_total | number |  no  |  |
- | next_id | string |  no  |  |
- | size | number |  no  |  |
- | type | string |  yes  |  |
+ | current | number? |  yes  |  |
+ | has_next | boolean? |  yes  |  |
+ | has_previous | boolean? |  yes  |  |
+ | item_total | number? |  yes  |  |
+ | next_id | string? |  yes  |  |
+ | size | number? |  yes  |  |
+ | type | string |  no  |  |
  
 
 ---
@@ -6790,9 +6790,9 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | cod_threshold_amount | number |  no  |  |
- | enabled | boolean |  no  |  |
- | online_threshold_amount | number |  no  |  |
+ | cod_threshold_amount | number? |  yes  | On which COD order amount pan card number is expected from customer for order |
+ | enabled | boolean? |  yes  | If pan card accepting is enabled on cart |
+ | online_threshold_amount | number? |  yes  | On which online payment order amount pan card number is expected from customer for order |
  
 
 ---
@@ -6801,7 +6801,7 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | enabled | boolean |  no  |  |
+ | enabled | boolean? |  yes  |  |
  
 
 ---
@@ -6810,9 +6810,9 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | default_options | string |  no  |  |
- | enabled | boolean |  no  |  |
- | payment_identifier | string |  no  |  |
+ | default_options | string? |  yes  |  |
+ | enabled | boolean? |  yes  |  |
+ | payment_identifier | string? |  yes  |  |
  
 
 ---
@@ -6821,7 +6821,7 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | staff_selection | boolean |  no  |  |
+ | staff_selection | boolean? |  yes  |  |
  
 
 ---
@@ -6830,9 +6830,9 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | icon | string |  no  |  |
- | link | string |  no  |  |
- | title | string |  no  |  |
+ | icon | string? |  yes  |  |
+ | link | string? |  yes  |  |
+ | title | string? |  yes  |  |
  
 
 ---
@@ -6841,10 +6841,10 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | request_product | boolean |  no  |  |
- | seller_selection | boolean |  no  |  |
- | similar | [string] |  no  |  |
- | update_product_meta | boolean |  no  |  |
+ | request_product | boolean? |  yes  |  |
+ | seller_selection | boolean? |  yes  |  |
+ | similar | [string]? |  yes  |  |
+ | update_product_meta | boolean? |  yes  |  |
  
 
 ---
@@ -6853,9 +6853,9 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | application | boolean |  no  |  |
- | collections | boolean |  no  |  |
- | products | boolean |  no  |  |
+ | application | boolean? |  yes  |  |
+ | collections | boolean? |  yes  |  |
+ | products | boolean? |  yes  |  |
  
 
 ---
@@ -6864,7 +6864,7 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | ask_store_address | boolean |  no  |  |
+ | ask_store_address | boolean? |  yes  |  |
  
 
 ---
@@ -6873,7 +6873,7 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | enabled | boolean |  no  |  |
+ | enabled | boolean? |  yes  |  |
  
 
 ---
@@ -6882,8 +6882,8 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | credit | [Credit](#Credit) |  no  |  |
- | debit | [Debit](#Debit) |  no  |  |
+ | credit | [Credit](#Credit)? |  yes  |  |
+ | debit | [Debit](#Debit)? |  yes  |  |
  
 
 ---
@@ -6892,8 +6892,8 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | credentials | [SafetynetCredentials](#SafetynetCredentials) |  no  |  |
- | enabled | boolean |  no  |  |
+ | credentials | [SafetynetCredentials](#SafetynetCredentials)? |  yes  |  |
+ | enabled | boolean? |  yes  |  |
  
 
 ---
@@ -6902,7 +6902,7 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | api_key | string |  no  |  |
+ | api_key | string? |  yes  |  |
  
 
 ---
@@ -6911,7 +6911,7 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | secure_url | string |  no  |  |
+ | secure_url | string? |  yes  |  |
  
 
 ---
@@ -6920,8 +6920,8 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | credentials | [SegmentCredentials](#SegmentCredentials) |  no  |  |
- | enabled | boolean |  no  |  |
+ | credentials | [SegmentCredentials](#SegmentCredentials)? |  yes  |  |
+ | enabled | boolean? |  yes  |  |
  
 
 ---
@@ -6930,7 +6930,7 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | write_key | string |  no  |  |
+ | write_key | string? |  yes  |  |
  
 
 ---
@@ -6939,15 +6939,15 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | blog_link | [BlogLink](#BlogLink) |  no  |  |
- | facebook | [FacebookLink](#FacebookLink) |  no  |  |
- | google_plus | [GooglePlusLink](#GooglePlusLink) |  no  |  |
- | instagram | [InstagramLink](#InstagramLink) |  no  |  |
- | linked_in | [LinkedInLink](#LinkedInLink) |  no  |  |
- | pinterest | [PinterestLink](#PinterestLink) |  no  |  |
- | twitter | [TwitterLink](#TwitterLink) |  no  |  |
- | vimeo | [VimeoLink](#VimeoLink) |  no  |  |
- | youtube | [YoutubeLink](#YoutubeLink) |  no  |  |
+ | blog_link | [BlogLink](#BlogLink)? |  yes  |  |
+ | facebook | [FacebookLink](#FacebookLink)? |  yes  |  |
+ | google_plus | [GooglePlusLink](#GooglePlusLink)? |  yes  |  |
+ | instagram | [InstagramLink](#InstagramLink)? |  yes  |  |
+ | linked_in | [LinkedInLink](#LinkedInLink)? |  yes  |  |
+ | pinterest | [PinterestLink](#PinterestLink)? |  yes  |  |
+ | twitter | [TwitterLink](#TwitterLink)? |  yes  |  |
+ | vimeo | [VimeoLink](#VimeoLink)? |  yes  |  |
+ | youtube | [YoutubeLink](#YoutubeLink)? |  yes  |  |
  
 
 ---
@@ -6956,8 +6956,8 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | aspect_ratio | string |  no  |  |
- | secure_url | string |  no  |  |
+ | aspect_ratio | string? |  yes  |  |
+ | secure_url | string? |  yes  |  |
  
 
 ---
@@ -6966,9 +6966,9 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | brands | number |  yes  |  |
- | company_id | number |  no  |  |
- | search_text | string |  no  |  |
+ | brands | number |  no  | Brand uids |
+ | company_id | number? |  yes  | Current company id for current company stores only. Don't send in case of cross selling enabled |
+ | search_text | string? |  yes  | Search store by name or store code |
  
 
 ---
@@ -6977,8 +6977,8 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | items | [[BrandStoreInfo](#BrandStoreInfo)] |  no  |  |
- | page | [Page](#Page) |  no  |  |
+ | items | [[BrandStoreInfo](#BrandStoreInfo)]? |  yes  |  |
+ | page | [Page](#Page)? |  yes  |  |
  
 
 ---
@@ -6987,8 +6987,8 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | brands | [number] |  no  |  |
- | companies | [number] |  no  |  |
+ | brands | [number]? |  yes  | list of brand uids |
+ | companies | [number]? |  yes  | list of company uids |
  
 
 ---
@@ -6997,8 +6997,8 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | coordinates | [number] |  no  |  |
- | type | string |  no  |  |
+ | coordinates | [number]? |  yes  |  |
+ | type | string? |  yes  |  |
  
 
 ---
@@ -7007,8 +7007,8 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | enabled | boolean |  no  |  |
- | storetype_order | [any] |  no  |  |
+ | enabled | boolean? |  yes  |  |
+ | storetype_order | [any]? |  yes  |  |
  
 
 ---
@@ -7017,8 +7017,8 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | enabled | boolean |  no  |  |
- | storetype_order | [string] |  no  |  |
+ | enabled | boolean? |  yes  |  |
+ | storetype_order | [string]? |  yes  |  |
  
 
 ---
@@ -7027,8 +7027,8 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | items | [AppInventoryStores](#AppInventoryStores) |  no  |  |
- | page | [Page](#Page) |  no  |  |
+ | items | [AppInventoryStores](#AppInventoryStores)? |  yes  |  |
+ | page | [Page](#Page)? |  yes  |  |
  
 
 ---
@@ -7037,8 +7037,8 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | browser_script | string |  no  |  |
- | json_schema | [[JsonSchema](#JsonSchema)] |  no  |  |
+ | browser_script | string? |  yes  |  |
+ | json_schema | [[JsonSchema](#JsonSchema)]? |  yes  |  |
  
 
 ---
@@ -7047,7 +7047,7 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | message | string |  no  |  |
+ | message | string? |  yes  |  |
  
 
 ---
@@ -7056,12 +7056,12 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | __v | number |  no  |  |
- | _id | string |  no  |  |
- | application | string |  no  |  |
- | created_at | string |  no  |  |
- | tokens | [Tokens](#Tokens) |  no  |  |
- | updated_at | string |  no  |  |
+ | __v | number? |  yes  |  |
+ | _id | string? |  yes  |  |
+ | application | string? |  yes  |  |
+ | created_at | string? |  yes  |  |
+ | tokens | [Tokens](#Tokens)? |  yes  |  |
+ | updated_at | string? |  yes  |  |
  
 
 ---
@@ -7070,14 +7070,14 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | firebase | [Firebase](#Firebase) |  no  |  |
- | freshchat | [Freshchat](#Freshchat) |  no  |  |
- | fynd_rewards | [FyndRewards](#FyndRewards) |  no  |  |
- | google_map | [GoogleMap](#GoogleMap) |  no  |  |
- | gtm | [Gtm](#Gtm) |  no  |  |
- | moengage | [Moengage](#Moengage) |  no  |  |
- | safetynet | [Safetynet](#Safetynet) |  no  |  |
- | segment | [Segment](#Segment) |  no  |  |
+ | firebase | [Firebase](#Firebase)? |  yes  |  |
+ | freshchat | [Freshchat](#Freshchat)? |  yes  |  |
+ | fynd_rewards | [FyndRewards](#FyndRewards)? |  yes  |  |
+ | google_map | [GoogleMap](#GoogleMap)? |  yes  |  |
+ | gtm | [Gtm](#Gtm)? |  yes  |  |
+ | moengage | [Moengage](#Moengage)? |  yes  |  |
+ | safetynet | [Safetynet](#Safetynet)? |  yes  |  |
+ | segment | [Segment](#Segment)? |  yes  |  |
  
 
 ---
@@ -7086,9 +7086,9 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | icon | string |  no  |  |
- | link | string |  no  |  |
- | title | string |  no  |  |
+ | icon | string? |  yes  |  |
+ | link | string? |  yes  |  |
+ | title | string? |  yes  |  |
  
 
 ---
@@ -7097,7 +7097,7 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | message | string |  no  |  |
+ | message | string? |  yes  |  |
  
 
 ---
@@ -7106,7 +7106,7 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | _id | string |  no  |  |
+ | _id | string? |  yes  |  |
  
 
 ---
@@ -7115,8 +7115,8 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | action | string |  no  |  |
- | domain | [UpdateDomain](#UpdateDomain) |  no  |  |
+ | action | string? |  yes  |  |
+ | domain | [UpdateDomain](#UpdateDomain)? |  yes  |  |
  
 
 ---
@@ -7125,7 +7125,7 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | items | [[IntegrationLevel](#IntegrationLevel)] |  no  |  |
+ | items | [[IntegrationLevel](#IntegrationLevel)]? |  yes  |  |
  
 
 ---
@@ -7134,10 +7134,10 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | active | boolean |  no  |  |
- | email | string |  no  |  |
- | primary | boolean |  no  |  |
- | verified | boolean |  no  |  |
+ | active | boolean? |  yes  |  |
+ | email | string? |  yes  |  |
+ | primary | boolean? |  yes  |  |
+ | verified | boolean? |  yes  |  |
  
 
 ---
@@ -7146,11 +7146,11 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | active | boolean |  no  |  |
- | country_code | number |  no  |  |
- | phone | string |  no  |  |
- | primary | boolean |  no  |  |
- | verified | boolean |  no  |  |
+ | active | boolean? |  yes  |  |
+ | country_code | number? |  yes  |  |
+ | phone | string? |  yes  |  |
+ | primary | boolean? |  yes  |  |
+ | verified | boolean? |  yes  |  |
  
 
 ---
@@ -7159,10 +7159,10 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | company | [CompanyValidator](#CompanyValidator) |  no  |  |
- | inventory | [InventoryValidator](#InventoryValidator) |  no  |  |
- | order | [OrderValidator](#OrderValidator) |  no  |  |
- | store | [StoreValidator](#StoreValidator) |  no  |  |
+ | company | [CompanyValidator](#CompanyValidator)? |  yes  |  |
+ | inventory | [InventoryValidator](#InventoryValidator)? |  yes  |  |
+ | order | [OrderValidator](#OrderValidator)? |  yes  |  |
+ | store | [StoreValidator](#StoreValidator)? |  yes  |  |
  
 
 ---
@@ -7171,9 +7171,9 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | icon | string |  no  |  |
- | link | string |  no  |  |
- | title | string |  no  |  |
+ | icon | string? |  yes  |  |
+ | link | string? |  yes  |  |
+ | title | string? |  yes  |  |
  
 
 ---
@@ -7182,9 +7182,9 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | icon | string |  no  |  |
- | link | string |  no  |  |
- | title | string |  no  |  |
+ | icon | string? |  yes  |  |
+ | link | string? |  yes  |  |
+ | title | string? |  yes  |  |
  
 
 ---

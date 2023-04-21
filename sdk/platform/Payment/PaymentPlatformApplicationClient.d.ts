@@ -85,7 +85,7 @@ declare class Payment {
      * @summary: Get bank details
      * @description: Use this API to get saved bank details for returned/cancelled order using order id.
      */
-    getBankAccountDetailsOpenAPI({ orderId, requestHash }?: {
+    getBankAccountDetailsOpenAPI({ orderId, requestHash, }?: {
         orderId: string;
         requestHash?: string;
     }): Promise<RefundAccountResponse>;

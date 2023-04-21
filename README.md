@@ -106,8 +106,8 @@ getData();
 ---
 ### Cookie
 
-Following code snippet shows how to save the cookie received in setcookies response header <br />
-Any subsequent method call done after login will add the cookie by default in headers.
+Following code snippet will read and write cookies on behalf of you <br />
+Cookies will get appended in subsequent requests.
 
 ```javascript
 const { FdkAxios } = require('@gofynd/fdk-client-javascript');
@@ -165,6 +165,7 @@ import { ApplicationConfig, ApplicationClient } from "fdk-client-javascript";
 ---
 ### Documentation
 
+- [Public Front](documentation/public/README.md)
 - [Application Front](documentation/application/README.md)
 - [Platform Front](documentation/platform/README.md)
----
+

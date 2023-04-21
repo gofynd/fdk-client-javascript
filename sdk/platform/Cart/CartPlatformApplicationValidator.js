@@ -1,6 +1,6 @@
 const Joi = require("joi");
-const CartModel = require("./CartPlatformModel");
 
+const CartModel = require("./CartPlatformModel");
 class CartValidator {
   static addAddress() {
     return Joi.object({

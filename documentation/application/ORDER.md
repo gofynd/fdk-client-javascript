@@ -36,11 +36,11 @@ Get Customer Details by Shipment Id
 
 ```javascript
 // Promise
-const promise = order.getCustomerDetailsByShipmentId({  orderId : value,
+const promise = applicationClient.order.getCustomerDetailsByShipmentId({  orderId : value,
  shipmentId : value });
 
 // Async/Await
-const data = await order.getCustomerDetailsByShipmentId({  orderId : value,
+const data = await applicationClient.order.getCustomerDetailsByShipmentId({  orderId : value,
  shipmentId : value });
 ```
 
@@ -101,10 +101,10 @@ Get Invoice of a shipment
 
 ```javascript
 // Promise
-const promise = order.getInvoiceByShipmentId({  shipmentId : value });
+const promise = applicationClient.order.getInvoiceByShipmentId({  shipmentId : value });
 
 // Async/Await
-const data = await order.getInvoiceByShipmentId({  shipmentId : value });
+const data = await applicationClient.order.getInvoiceByShipmentId({  shipmentId : value });
 ```
 
 
@@ -157,10 +157,10 @@ Get details of an order
 
 ```javascript
 // Promise
-const promise = order.getOrderById({  orderId : value });
+const promise = applicationClient.order.getOrderById({  orderId : value });
 
 // Async/Await
-const data = await order.getOrderById({  orderId : value });
+const data = await applicationClient.order.getOrderById({  orderId : value });
 ```
 
 
@@ -1148,7 +1148,7 @@ Get all orders
 
 ```javascript
 // Promise
-const promise = order.getOrders({  status : value,
+const promise = applicationClient.order.getOrders({  status : value,
  pageNo : value,
  pageSize : value,
  fromDate : value,
@@ -1156,7 +1156,7 @@ const promise = order.getOrders({  status : value,
  customMeta : value });
 
 // Async/Await
-const data = await order.getOrders({  status : value,
+const data = await applicationClient.order.getOrders({  status : value,
  pageNo : value,
  pageSize : value,
  fromDate : value,
@@ -1219,10 +1219,10 @@ Get POS Order
 
 ```javascript
 // Promise
-const promise = order.getPosOrderById({  orderId : value });
+const promise = applicationClient.order.getPosOrderById({  orderId : value });
 
 // Async/Await
-const data = await order.getPosOrderById({  orderId : value });
+const data = await applicationClient.order.getPosOrderById({  orderId : value });
 ```
 
 
@@ -1562,7 +1562,7 @@ Success. Check the example shown below or refer `PosOrderById` for more details.
 
 ```javascript
 // Promise
-const promise = client.order.getProducts({  status : value,
+const promise = applicationClient.order.getProducts({  status : value,
  pageNo : value,
  pageSize : value,
  fromDate : value,
@@ -1570,7 +1570,7 @@ const promise = client.order.getProducts({  status : value,
  searchValue : value });
 
 // Async/Await
-const data = await client.order.getProducts({  status : value,
+const data = await applicationClient.order.getProducts({  status : value,
  pageNo : value,
  pageSize : value,
  fromDate : value,
@@ -1633,11 +1633,11 @@ Get reasons behind full or partial cancellation of a shipment
 
 ```javascript
 // Promise
-const promise = order.getShipmentBagReasons({  shipmentId : value,
+const promise = applicationClient.order.getShipmentBagReasons({  shipmentId : value,
  bagId : value });
 
 // Async/Await
-const data = await order.getShipmentBagReasons({  shipmentId : value,
+const data = await applicationClient.order.getShipmentBagReasons({  shipmentId : value,
  bagId : value });
 ```
 
@@ -1734,10 +1734,10 @@ Get details of a shipment
 
 ```javascript
 // Promise
-const promise = order.getShipmentById({  shipmentId : value });
+const promise = applicationClient.order.getShipmentById({  shipmentId : value });
 
 // Async/Await
-const data = await order.getShipmentById({  shipmentId : value });
+const data = await applicationClient.order.getShipmentById({  shipmentId : value });
 ```
 
 
@@ -2150,10 +2150,10 @@ Get reasons behind full or partial cancellation of a shipment
 
 ```javascript
 // Promise
-const promise = order.getShipmentReasons({  shipmentId : value });
+const promise = applicationClient.order.getShipmentReasons({  shipmentId : value });
 
 // Async/Await
-const data = await order.getShipmentReasons({  shipmentId : value });
+const data = await applicationClient.order.getShipmentReasons({  shipmentId : value });
 ```
 
 
@@ -2289,11 +2289,11 @@ Send and Resend Otp code to Order-Shipment customer
 
 ```javascript
 // Promise
-const promise = order.sendOtpToShipmentCustomer({  orderId : value,
+const promise = applicationClient.order.sendOtpToShipmentCustomer({  orderId : value,
  shipmentId : value });
 
 // Async/Await
-const data = await order.sendOtpToShipmentCustomer({  orderId : value,
+const data = await applicationClient.order.sendOtpToShipmentCustomer({  orderId : value,
  shipmentId : value });
 ```
 
@@ -2353,10 +2353,10 @@ Track shipment
 
 ```javascript
 // Promise
-const promise = order.trackShipment({  shipmentId : value });
+const promise = applicationClient.order.trackShipment({  shipmentId : value });
 
 // Async/Await
-const data = await order.trackShipment({  shipmentId : value });
+const data = await applicationClient.order.trackShipment({  shipmentId : value });
 ```
 
 
@@ -2422,11 +2422,11 @@ Update the shipment status
 
 ```javascript
 // Promise
-const promise = order.updateShipmentStatus({  shipmentId : value,
+const promise = applicationClient.order.updateShipmentStatus({  shipmentId : value,
  body : value });
 
 // Async/Await
-const data = await order.updateShipmentStatus({  shipmentId : value,
+const data = await applicationClient.order.updateShipmentStatus({  shipmentId : value,
  body : value });
 ```
 
@@ -2496,12 +2496,12 @@ Verify Otp code
 
 ```javascript
 // Promise
-const promise = order.verifyOtpShipmentCustomer({  orderId : value,
+const promise = applicationClient.order.verifyOtpShipmentCustomer({  orderId : value,
  shipmentId : value,
  body : value });
 
 // Async/Await
-const data = await order.verifyOtpShipmentCustomer({  orderId : value,
+const data = await applicationClient.order.verifyOtpShipmentCustomer({  orderId : value,
  shipmentId : value,
  body : value });
 ```
@@ -2560,8 +2560,8 @@ Success, the code is valid and returns a session token
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | message | string |  no  |  |
- | success | boolean |  no  |  |
+ | message | string? |  yes  |  |
+ | success | boolean? |  yes  |  |
  
 
 ---
@@ -2570,10 +2570,10 @@ Success, the code is valid and returns a session token
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | article_id | string |  no  |  |
- | free_gift_item_details | string |  no  |  |
- | parent_item_identifier | string |  no  |  |
- | quantity | number |  no  |  |
+ | article_id | string? |  yes  |  |
+ | free_gift_item_details | string? |  yes  |  |
+ | parent_item_identifier | string? |  yes  |  |
+ | quantity | number? |  yes  |  |
  
 
 ---
@@ -2582,13 +2582,13 @@ Success, the code is valid and returns a session token
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | amount | number |  no  |  |
- | applied_free_articles | [[AppliedFreeArticles](#AppliedFreeArticles)] |  no  |  |
- | article_quantity | number |  no  |  |
- | mrp_promotion | boolean |  no  |  |
- | promo_id | string |  no  |  |
- | promotion_name | string |  no  |  |
- | promotion_type | string |  no  |  |
+ | amount | number? |  yes  |  |
+ | applied_free_articles | [[AppliedFreeArticles](#AppliedFreeArticles)]? |  yes  |  |
+ | article_quantity | number? |  yes  |  |
+ | mrp_promotion | boolean? |  yes  |  |
+ | promo_id | string? |  yes  |  |
+ | promotion_name | string? |  yes  |  |
+ | promotion_type | string? |  yes  |  |
  
 
 ---
@@ -2597,7 +2597,7 @@ Success, the code is valid and returns a session token
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | show_text_area | boolean |  no  |  |
+ | show_text_area | boolean? |  yes  |  |
  
 
 ---
@@ -2606,12 +2606,12 @@ Success, the code is valid and returns a session token
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | display_name | string |  no  |  |
- | id | number |  no  |  |
- | meta | [BagReasonMeta](#BagReasonMeta) |  no  |  |
- | qc_type | [string] |  no  |  |
- | question_set | [[QuestionSet](#QuestionSet)] |  no  |  |
- | reasons | [[BagReasons](#BagReasons)] |  no  |  |
+ | display_name | string? |  yes  |  |
+ | id | number? |  yes  |  |
+ | meta | [BagReasonMeta](#BagReasonMeta)? |  yes  |  |
+ | qc_type | [string]? |  yes  |  |
+ | question_set | [[QuestionSet](#QuestionSet)]? |  yes  |  |
+ | reasons | [[BagReasons](#BagReasons)]? |  yes  |  |
  
 
 ---
@@ -2620,22 +2620,22 @@ Success, the code is valid and returns a session token
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | applied_promos | [[AppliedPromos](#AppliedPromos)] |  no  |  |
- | can_cancel | boolean |  no  |  |
- | can_return | boolean |  no  |  |
- | currency_code | string |  no  |  |
- | currency_symbol | string |  no  |  |
- | current_status | [CurrentStatus](#CurrentStatus) |  no  |  |
- | delivery_date | string |  no  |  |
- | financial_breakup | [[FinancialBreakup](#FinancialBreakup)] |  no  |  |
- | id | number |  no  |  |
- | item | [Item](#Item) |  no  |  |
- | line_number | number |  no  |  |
- | parent_promo_bags | string |  no  |  |
- | prices | [Prices](#Prices) |  no  |  |
- | quantity | number |  no  |  |
- | returnable_date | string |  no  |  |
- | seller_identifier | string |  no  |  |
+ | applied_promos | [[AppliedPromos](#AppliedPromos)]? |  yes  |  |
+ | can_cancel | boolean? |  yes  |  |
+ | can_return | boolean? |  yes  |  |
+ | currency_code | string? |  yes  |  |
+ | currency_symbol | string? |  yes  |  |
+ | current_status | [CurrentStatus](#CurrentStatus)? |  yes  |  |
+ | delivery_date | string? |  yes  |  |
+ | financial_breakup | [[FinancialBreakup](#FinancialBreakup)]? |  yes  |  |
+ | id | number? |  yes  |  |
+ | item | [Item](#Item)? |  yes  |  |
+ | line_number | number? |  yes  |  |
+ | parent_promo_bags | string? |  yes  |  |
+ | prices | [Prices](#Prices)? |  yes  |  |
+ | quantity | number? |  yes  |  |
+ | returnable_date | string? |  yes  |  |
+ | seller_identifier | string? |  yes  |  |
  
 
 ---
@@ -2644,12 +2644,12 @@ Success, the code is valid and returns a session token
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | article_assignment | [BagsForReorderArticleAssignment](#BagsForReorderArticleAssignment) |  no  |  |
- | item_id | number |  no  |  |
- | item_size | string |  no  |  |
- | quantity | number |  no  |  |
- | seller_id | number |  no  |  |
- | store_id | number |  no  |  |
+ | article_assignment | [BagsForReorderArticleAssignment](#BagsForReorderArticleAssignment)? |  yes  |  |
+ | item_id | number? |  yes  |  |
+ | item_size | string? |  yes  |  |
+ | quantity | number? |  yes  |  |
+ | seller_id | number? |  yes  |  |
+ | store_id | number? |  yes  |  |
  
 
 ---
@@ -2658,8 +2658,8 @@ Success, the code is valid and returns a session token
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | level | string |  no  |  |
- | strategy | string |  no  |  |
+ | level | string? |  yes  |  |
+ | strategy | string? |  yes  |  |
  
 
 ---
@@ -2668,11 +2668,11 @@ Success, the code is valid and returns a session token
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | currency_code | string |  no  |  |
- | currency_symbol | string |  no  |  |
- | display | string |  no  |  |
- | name | string |  no  |  |
- | value | number |  no  |  |
+ | currency_code | string? |  yes  |  |
+ | currency_symbol | string? |  yes  |  |
+ | display | string? |  yes  |  |
+ | name | string? |  yes  |  |
+ | value | number? |  yes  |  |
  
 
 ---
@@ -2681,11 +2681,11 @@ Success, the code is valid and returns a session token
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | code | string |  no  |  |
- | coupon_type | string |  no  |  |
- | id | number |  no  |  |
- | payable_category | string |  no  |  |
- | value | number |  no  |  |
+ | code | string? |  yes  |  |
+ | coupon_type | string? |  yes  |  |
+ | id | number? |  yes  |  |
+ | payable_category | string? |  yes  |  |
+ | value | number? |  yes  |  |
  
 
 ---
@@ -2694,11 +2694,11 @@ Success, the code is valid and returns a session token
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | created_at | string |  no  |  |
- | journey_type | string |  no  |  |
- | name | string |  no  |  |
- | status | string |  no  |  |
- | updated_at | string |  no  |  |
+ | created_at | string? |  yes  |  |
+ | journey_type | string? |  yes  |  |
+ | name | string? |  yes  |  |
+ | status | string? |  yes  |  |
+ | updated_at | string? |  yes  |  |
  
 
 ---
@@ -2707,11 +2707,11 @@ Success, the code is valid and returns a session token
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | country | string |  no  |  |
- | name | string |  no  |  |
- | order_id | string |  no  |  |
- | phone | string |  no  |  |
- | shipment_id | string |  no  |  |
+ | country | string? |  yes  |  |
+ | name | string? |  yes  |  |
+ | order_id | string? |  yes  |  |
+ | phone | string? |  yes  |  |
+ | shipment_id | string? |  yes  |  |
  
 
 ---
@@ -2720,8 +2720,8 @@ Success, the code is valid and returns a session token
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | entities | [[EntitiesDataUpdates](#EntitiesDataUpdates)] |  no  |  |
- | products | [[ProductsDataUpdates](#ProductsDataUpdates)] |  no  |  |
+ | entities | [[EntitiesDataUpdates](#EntitiesDataUpdates)]? |  yes  |  |
+ | products | [[ProductsDataUpdates](#ProductsDataUpdates)]? |  yes  |  |
  
 
 ---
@@ -2730,28 +2730,28 @@ Success, the code is valid and returns a session token
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | address | string |  no  |  |
- | address1 | string |  no  |  |
- | address2 | string |  no  |  |
- | address_category | string |  no  |  |
- | address_type | string |  no  |  |
- | area | string |  no  |  |
- | city | string |  no  |  |
- | contact_person | string |  no  |  |
- | country | string |  no  |  |
- | country_iso_code | string |  no  |  |
- | country_phone_code | string |  no  |  |
- | created_at | string |  no  |  |
- | email | string |  no  |  |
- | landmark | string |  no  |  |
- | latitude | number |  no  |  |
- | longitude | number |  no  |  |
- | name | string |  no  |  |
- | phone | string |  no  |  |
- | pincode | string |  no  |  |
- | state | string |  no  |  |
- | updated_at | string |  no  |  |
- | version | string |  no  |  |
+ | address | string? |  yes  |  |
+ | address1 | string? |  yes  |  |
+ | address2 | string? |  yes  |  |
+ | address_category | string? |  yes  |  |
+ | address_type | string? |  yes  |  |
+ | area | string? |  yes  |  |
+ | city | string? |  yes  |  |
+ | contact_person | string? |  yes  |  |
+ | country | string? |  yes  |  |
+ | country_iso_code | string? |  yes  |  |
+ | country_phone_code | string? |  yes  |  |
+ | created_at | string? |  yes  |  |
+ | email | string? |  yes  |  |
+ | landmark | string? |  yes  |  |
+ | latitude | number? |  yes  |  |
+ | longitude | number? |  yes  |  |
+ | name | string? |  yes  |  |
+ | phone | string? |  yes  |  |
+ | pincode | string? |  yes  |  |
+ | state | string? |  yes  |  |
+ | updated_at | string? |  yes  |  |
+ | version | string? |  yes  |  |
  
 
 ---
@@ -2760,8 +2760,8 @@ Success, the code is valid and returns a session token
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | data | string |  no  |  |
- | filters | [string] |  no  |  |
+ | data | string? |  yes  |  |
+ | filters | [string]? |  yes  |  |
  
 
 ---
@@ -2770,8 +2770,8 @@ Success, the code is valid and returns a session token
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | data | [EntityReasonData](#EntityReasonData) |  no  |  |
- | filters | [string] |  no  |  |
+ | data | [EntityReasonData](#EntityReasonData)? |  yes  |  |
+ | filters | [string]? |  yes  |  |
  
 
 ---
@@ -2780,8 +2780,8 @@ Success, the code is valid and returns a session token
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | reason_id | number |  no  |  |
- | reason_text | string |  no  |  |
+ | reason_id | number? |  yes  |  |
+ | reason_text | string? |  yes  |  |
  
 
 ---
@@ -2790,11 +2790,11 @@ Success, the code is valid and returns a session token
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | code | string |  no  |  |
- | exception | string |  no  |  |
- | message | string |  no  |  |
- | stack_trace | string |  no  |  |
- | status | number |  no  |  |
+ | code | string? |  yes  |  |
+ | exception | string? |  yes  |  |
+ | message | string? |  yes  |  |
+ | stack_trace | string? |  yes  |  |
+ | status | number? |  yes  |  |
  
 
 ---
@@ -2803,33 +2803,33 @@ Success, the code is valid and returns a session token
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | added_to_fynd_cash | boolean |  no  |  |
- | amount_paid | number |  no  |  |
- | amount_paid_roundoff | number |  no  |  |
- | brand_calculated_amount | number |  no  |  |
- | cashback | number |  no  |  |
- | cashback_applied | number |  no  |  |
- | cod_charges | number |  no  |  |
- | coupon_effective_discount | number |  no  |  |
- | coupon_value | number |  no  |  |
- | delivery_charge | number |  no  |  |
- | discount | number |  no  |  |
- | fynd_credits | number |  no  |  |
- | gst_fee | number |  no  |  |
- | gst_tag | string |  no  |  |
- | gst_tax_percentage | number |  no  |  |
- | hsn_code | string |  no  |  |
- | identifiers | [Identifiers](#Identifiers) |  no  |  |
- | item_name | string |  no  |  |
- | price_effective | number |  no  |  |
- | price_marked | number |  no  |  |
- | promotion_effective_discount | number |  no  |  |
- | refund_amount | number |  no  |  |
- | refund_credit | number |  no  |  |
- | size | string |  no  |  |
- | total_units | number |  no  |  |
- | transfer_price | number |  no  |  |
- | value_of_good | number |  no  |  |
+ | added_to_fynd_cash | boolean? |  yes  |  |
+ | amount_paid | number? |  yes  |  |
+ | amount_paid_roundoff | number? |  yes  |  |
+ | brand_calculated_amount | number? |  yes  |  |
+ | cashback | number? |  yes  |  |
+ | cashback_applied | number? |  yes  |  |
+ | cod_charges | number? |  yes  |  |
+ | coupon_effective_discount | number? |  yes  |  |
+ | coupon_value | number? |  yes  |  |
+ | delivery_charge | number? |  yes  |  |
+ | discount | number? |  yes  |  |
+ | fynd_credits | number? |  yes  |  |
+ | gst_fee | number? |  yes  |  |
+ | gst_tag | string? |  yes  |  |
+ | gst_tax_percentage | number? |  yes  |  |
+ | hsn_code | string? |  yes  |  |
+ | identifiers | [Identifiers](#Identifiers)? |  yes  |  |
+ | item_name | string? |  yes  |  |
+ | price_effective | number? |  yes  |  |
+ | price_marked | number? |  yes  |  |
+ | promotion_effective_discount | number? |  yes  |  |
+ | refund_amount | number? |  yes  |  |
+ | refund_credit | number? |  yes  |  |
+ | size | string? |  yes  |  |
+ | total_units | number? |  yes  |  |
+ | transfer_price | number? |  yes  |  |
+ | value_of_good | number? |  yes  |  |
  
 
 ---
@@ -2838,8 +2838,8 @@ Success, the code is valid and returns a session token
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | id | number |  no  |  |
- | name | string |  no  |  |
+ | id | number? |  yes  |  |
+ | name | string? |  yes  |  |
  
 
 ---
@@ -2848,11 +2848,11 @@ Success, the code is valid and returns a session token
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | code | string |  no  |  |
- | company_id | number |  no  |  |
- | company_name | string |  no  |  |
- | id | number |  no  |  |
- | name | string |  no  |  |
+ | code | string? |  yes  |  |
+ | company_id | number? |  yes  |  |
+ | company_name | string? |  yes  |  |
+ | id | number? |  yes  |  |
+ | name | string? |  yes  |  |
  
 
 ---
@@ -2861,8 +2861,8 @@ Success, the code is valid and returns a session token
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | ean | string |  no  |  |
- | sku_code | string |  no  |  |
+ | ean | string? |  yes  |  |
+ | sku_code | string? |  yes  |  |
  
 
 ---
@@ -2871,9 +2871,9 @@ Success, the code is valid and returns a session token
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | invoice_url | string |  no  |  |
- | label_url | string |  no  |  |
- | updated_date | string |  no  |  |
+ | invoice_url | string? |  yes  |  |
+ | label_url | string? |  yes  |  |
+ | updated_date | string? |  yes  |  |
  
 
 ---
@@ -2882,14 +2882,14 @@ Success, the code is valid and returns a session token
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | brand | [ItemBrand](#ItemBrand) |  no  |  |
- | code | string |  no  |  |
- | id | number |  no  |  |
- | image | [string] |  no  |  |
- | name | string |  no  |  |
- | seller_identifier | string |  no  |  |
- | size | string |  no  |  |
- | slug_key | string |  no  |  |
+ | brand | [ItemBrand](#ItemBrand)? |  yes  |  |
+ | code | string? |  yes  |  |
+ | id | number? |  yes  |  |
+ | image | [string]? |  yes  |  |
+ | name | string? |  yes  |  |
+ | seller_identifier | string? |  yes  |  |
+ | size | string? |  yes  |  |
+ | slug_key | string? |  yes  |  |
  
 
 ---
@@ -2898,8 +2898,8 @@ Success, the code is valid and returns a session token
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | logo | string |  no  |  |
- | name | string |  no  |  |
+ | logo | string? |  yes  |  |
+ | name | string? |  yes  |  |
  
 
 ---
@@ -2908,10 +2908,10 @@ Success, the code is valid and returns a session token
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | is_current | boolean |  no  |  |
- | is_passed | boolean |  no  |  |
- | status | string |  no  |  |
- | time | string |  no  |  |
+ | is_current | boolean? |  yes  |  |
+ | is_passed | boolean? |  yes  |  |
+ | status | string? |  yes  |  |
+ | time | string? |  yes  |  |
  
 
 ---
@@ -2920,7 +2920,7 @@ Success, the code is valid and returns a session token
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | order | [OrderSchema](#OrderSchema) |  no  |  |
+ | order | [OrderSchema](#OrderSchema)? |  yes  |  |
  
 
 ---
@@ -2929,7 +2929,7 @@ Success, the code is valid and returns a session token
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | statuses | [[OrderStatuses](#OrderStatuses)] |  no  |  |
+ | statuses | [[OrderStatuses](#OrderStatuses)]? |  yes  |  |
  
 
 ---
@@ -2938,9 +2938,9 @@ Success, the code is valid and returns a session token
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | filters | [OrderFilters](#OrderFilters) |  no  |  |
- | items | [[OrderSchema](#OrderSchema)] |  no  |  |
- | page | [OrderPage](#OrderPage) |  no  |  |
+ | filters | [OrderFilters](#OrderFilters)? |  yes  |  |
+ | items | [[OrderSchema](#OrderSchema)]? |  yes  |  |
+ | page | [OrderPage](#OrderPage)? |  yes  |  |
  
 
 ---
@@ -2949,11 +2949,11 @@ Success, the code is valid and returns a session token
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | current | number |  no  |  |
- | has_next | boolean |  no  |  |
- | item_total | number |  no  |  |
- | size | number |  no  |  |
- | type | string |  no  |  |
+ | current | number? |  yes  |  |
+ | has_next | boolean? |  yes  |  |
+ | item_total | number? |  yes  |  |
+ | size | number? |  yes  |  |
+ | type | string? |  yes  |  |
  
 
 ---
@@ -2962,13 +2962,13 @@ Success, the code is valid and returns a session token
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | bags_for_reorder | [[BagsForReorder](#BagsForReorder)] |  no  |  |
- | breakup_values | [[BreakupValues](#BreakupValues)] |  no  |  |
- | order_created_time | string |  no  |  |
- | order_id | string |  no  |  |
- | shipments | [[Shipments](#Shipments)] |  no  |  |
- | total_shipments_in_order | number |  no  |  |
- | user_info | [UserInfo](#UserInfo) |  no  |  |
+ | bags_for_reorder | [[BagsForReorder](#BagsForReorder)]? |  yes  |  |
+ | breakup_values | [[BreakupValues](#BreakupValues)]? |  yes  |  |
+ | order_created_time | string? |  yes  |  |
+ | order_id | string? |  yes  |  |
+ | shipments | [[Shipments](#Shipments)]? |  yes  |  |
+ | total_shipments_in_order | number? |  yes  |  |
+ | user_info | [UserInfo](#UserInfo)? |  yes  |  |
  
 
 ---
@@ -2977,9 +2977,9 @@ Success, the code is valid and returns a session token
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | display | string |  no  |  |
- | is_selected | boolean |  no  |  |
- | value | number |  no  |  |
+ | display | string? |  yes  |  |
+ | is_selected | boolean? |  yes  |  |
+ | value | number? |  yes  |  |
  
 
 ---
@@ -2988,28 +2988,28 @@ Success, the code is valid and returns a session token
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | added_to_fynd_cash | boolean |  no  |  |
- | amount_paid | number |  no  |  |
- | amount_paid_roundoff | number |  no  |  |
- | brand_calculated_amount | number |  no  |  |
- | cashback | number |  no  |  |
- | cashback_applied | number |  no  |  |
- | cod_charges | number |  no  |  |
- | coupon_effective_discount | number |  no  |  |
- | coupon_value | number |  no  |  |
- | currency_code | string |  no  |  |
- | currency_symbol | string |  no  |  |
- | delivery_charge | number |  no  |  |
- | discount | number |  no  |  |
- | fynd_credits | number |  no  |  |
- | gst_tax_percentage | number |  no  |  |
- | price_effective | number |  no  |  |
- | price_marked | number |  no  |  |
- | promotion_effective_discount | number |  no  |  |
- | refund_amount | number |  no  |  |
- | refund_credit | number |  no  |  |
- | transfer_price | number |  no  |  |
- | value_of_good | number |  no  |  |
+ | added_to_fynd_cash | boolean? |  yes  |  |
+ | amount_paid | number? |  yes  |  |
+ | amount_paid_roundoff | number? |  yes  |  |
+ | brand_calculated_amount | number? |  yes  |  |
+ | cashback | number? |  yes  |  |
+ | cashback_applied | number? |  yes  |  |
+ | cod_charges | number? |  yes  |  |
+ | coupon_effective_discount | number? |  yes  |  |
+ | coupon_value | number? |  yes  |  |
+ | currency_code | string? |  yes  |  |
+ | currency_symbol | string? |  yes  |  |
+ | delivery_charge | number? |  yes  |  |
+ | discount | number? |  yes  |  |
+ | fynd_credits | number? |  yes  |  |
+ | gst_tax_percentage | number? |  yes  |  |
+ | price_effective | number? |  yes  |  |
+ | price_marked | number? |  yes  |  |
+ | promotion_effective_discount | number? |  yes  |  |
+ | refund_amount | number? |  yes  |  |
+ | refund_credit | number? |  yes  |  |
+ | transfer_price | number? |  yes  |  |
+ | value_of_good | number? |  yes  |  |
  
 
 ---
@@ -3018,22 +3018,22 @@ Success, the code is valid and returns a session token
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | applied_promos | [[AppliedPromos](#AppliedPromos)] |  no  |  |
- | bag_status | [ProductStatus](#ProductStatus) |  no  |  |
- | brand | [ProductBrand](#ProductBrand) |  no  |  |
- | can_cancel | boolean |  no  |  |
- | can_return | boolean |  no  |  |
- | coupon | [Coupon](#Coupon) |  no  |  |
- | delivery_date | string |  no  |  |
- | docket_number | string |  yes  |  |
- | item | [Item](#Item) |  no  |  |
- | line_number | number |  no  |  |
- | order_id | string |  yes  |  |
- | parent_promo_bags | string |  no  |  |
- | payment | [ShipmentPayment](#ShipmentPayment) |  no  |  |
- | quantity | number |  no  |  |
- | returnable_date | string |  no  |  |
- | seller_identifier | string |  no  |  |
+ | applied_promos | [[AppliedPromos](#AppliedPromos)]? |  yes  |  |
+ | bag_status | [ProductStatus](#ProductStatus)? |  yes  |  |
+ | brand | [ProductBrand](#ProductBrand)? |  yes  |  |
+ | can_cancel | boolean? |  yes  |  |
+ | can_return | boolean? |  yes  |  |
+ | coupon | [Coupon](#Coupon)? |  yes  |  |
+ | delivery_date | string? |  yes  |  |
+ | docket_number | string |  no  |  |
+ | item | [Item](#Item)? |  yes  |  |
+ | line_number | number? |  yes  |  |
+ | order_id | string |  no  |  |
+ | parent_promo_bags | string? |  yes  |  |
+ | payment | [ShipmentPayment](#ShipmentPayment)? |  yes  |  |
+ | quantity | number? |  yes  |  |
+ | returnable_date | string? |  yes  |  |
+ | seller_identifier | string? |  yes  |  |
  
 
 ---
@@ -3042,8 +3042,8 @@ Success, the code is valid and returns a session token
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | brand_name | string |  no  |  |
- | id | number |  no  |  |
+ | brand_name | string? |  yes  |  |
+ | id | number? |  yes  |  |
  
 
 ---
@@ -3052,11 +3052,11 @@ Success, the code is valid and returns a session token
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | filters | [OrderFilters](#OrderFilters) |  no  |  |
- | items | [[Product](#Product)] |  no  |  |
- | message | string |  no  |  |
- | page | [OrderPage](#OrderPage) |  no  |  |
- | success | boolean |  no  |  |
+ | filters | [OrderFilters](#OrderFilters)? |  yes  |  |
+ | items | [[Product](#Product)]? |  yes  |  |
+ | message | string? |  yes  |  |
+ | page | [OrderPage](#OrderPage)? |  yes  |  |
+ | success | boolean? |  yes  |  |
  
 
 ---
@@ -3065,9 +3065,9 @@ Success, the code is valid and returns a session token
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | identifier | string |  no  |  |
- | line_number | number |  no  |  |
- | quantity | number |  no  |  |
+ | identifier | string? |  yes  |  |
+ | line_number | number? |  yes  |  |
+ | quantity | number? |  yes  |  |
  
 
 ---
@@ -3076,8 +3076,8 @@ Success, the code is valid and returns a session token
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | data | string |  no  |  |
- | filters | [[ProductsDataUpdatesFilters](#ProductsDataUpdatesFilters)] |  no  |  |
+ | data | string? |  yes  |  |
+ | filters | [[ProductsDataUpdatesFilters](#ProductsDataUpdatesFilters)]? |  yes  |  |
  
 
 ---
@@ -3086,8 +3086,8 @@ Success, the code is valid and returns a session token
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | identifier | string |  no  |  |
- | line_number | number |  no  |  |
+ | identifier | string? |  yes  |  |
+ | line_number | number? |  yes  |  |
  
 
 ---
@@ -3096,8 +3096,8 @@ Success, the code is valid and returns a session token
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | data | [ProductsReasonsData](#ProductsReasonsData) |  no  |  |
- | filters | [[ProductsReasonsFilters](#ProductsReasonsFilters)] |  no  |  |
+ | data | [ProductsReasonsData](#ProductsReasonsData)? |  yes  |  |
+ | filters | [[ProductsReasonsFilters](#ProductsReasonsFilters)]? |  yes  |  |
  
 
 ---
@@ -3106,8 +3106,8 @@ Success, the code is valid and returns a session token
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | reason_id | number |  no  |  |
- | reason_text | string |  no  |  |
+ | reason_id | number? |  yes  |  |
+ | reason_text | string? |  yes  |  |
  
 
 ---
@@ -3116,9 +3116,9 @@ Success, the code is valid and returns a session token
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | identifier | string |  no  |  |
- | line_number | number |  no  |  |
- | quantity | number |  no  |  |
+ | identifier | string? |  yes  |  |
+ | line_number | number? |  yes  |  |
+ | quantity | number? |  yes  |  |
  
 
 ---
@@ -3127,10 +3127,10 @@ Success, the code is valid and returns a session token
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | created_at | string |  no  |  |
- | hex_code | string |  no  |  |
- | title | string |  no  |  |
- | value | string |  no  |  |
+ | created_at | string? |  yes  |  |
+ | hex_code | string? |  yes  |  |
+ | title | string? |  yes  |  |
+ | value | string? |  yes  |  |
  
 
 ---
@@ -3139,8 +3139,8 @@ Success, the code is valid and returns a session token
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | show_promise | boolean |  no  |  |
- | timestamp | [TimeStampData](#TimeStampData) |  no  |  |
+ | show_promise | boolean? |  yes  |  |
+ | timestamp | [TimeStampData](#TimeStampData)? |  yes  |  |
  
 
 ---
@@ -3149,8 +3149,8 @@ Success, the code is valid and returns a session token
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | display_name | string |  no  |  |
- | id | number |  no  |  |
+ | display_name | string? |  yes  |  |
+ | id | number? |  yes  |  |
  
 
 ---
@@ -3159,8 +3159,8 @@ Success, the code is valid and returns a session token
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | entities | [[EntitiesReasons](#EntitiesReasons)] |  no  |  |
- | products | [[ProductsReasons](#ProductsReasons)] |  no  |  |
+ | entities | [[EntitiesReasons](#EntitiesReasons)]? |  yes  |  |
+ | products | [[ProductsReasons](#ProductsReasons)]? |  yes  |  |
  
 
 ---
@@ -3169,10 +3169,10 @@ Success, the code is valid and returns a session token
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | presigned_type | string |  yes  |  |
- | presigned_url | string |  yes  |  |
- | shipment_id | string |  yes  |  |
- | success | boolean |  yes  |  |
+ | presigned_type | string |  no  |  |
+ | presigned_url | string |  no  |  |
+ | shipment_id | string |  no  |  |
+ | success | boolean |  no  |  |
  
 
 ---
@@ -3181,10 +3181,10 @@ Success, the code is valid and returns a session token
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | message | string |  no  |  |
- | request_id | string |  no  |  |
- | resend_timer | number |  no  |  |
- | success | boolean |  no  |  |
+ | message | string? |  yes  |  |
+ | request_id | string? |  yes  |  |
+ | resend_timer | number? |  yes  |  |
+ | success | boolean? |  yes  |  |
  
 
 ---
@@ -3193,7 +3193,7 @@ Success, the code is valid and returns a session token
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | statuses | [[StatusesBodyResponse](#StatusesBodyResponse)] |  no  |  |
+ | statuses | [[StatusesBodyResponse](#StatusesBodyResponse)]? |  yes  |  |
  
 
 ---
@@ -3202,8 +3202,8 @@ Success, the code is valid and returns a session token
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | reasons | [[BagReasons](#BagReasons)] |  no  |  |
- | success | boolean |  no  |  |
+ | reasons | [[BagReasons](#BagReasons)]? |  yes  |  |
+ | success | boolean? |  yes  |  |
  
 
 ---
@@ -3212,7 +3212,7 @@ Success, the code is valid and returns a session token
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | shipment | [Shipments](#Shipments) |  no  |  |
+ | shipment | [Shipments](#Shipments)? |  yes  |  |
  
 
 ---
@@ -3221,12 +3221,12 @@ Success, the code is valid and returns a session token
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | display_name | string |  no  |  |
- | logo | string |  no  |  |
- | mode | string |  no  |  |
- | mop | string |  no  |  |
- | payment_mode | string |  no  |  |
- | status | string |  no  |  |
+ | display_name | string? |  yes  |  |
+ | logo | string? |  yes  |  |
+ | mode | string? |  yes  |  |
+ | mop | string? |  yes  |  |
+ | payment_mode | string? |  yes  |  |
+ | status | string? |  yes  |  |
  
 
 ---
@@ -3235,12 +3235,12 @@ Success, the code is valid and returns a session token
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | feedback_type | string |  no  |  |
- | flow | string |  no  |  |
- | priority | number |  no  |  |
- | reason_id | number |  no  |  |
- | reason_text | string |  no  |  |
- | show_text_area | boolean |  no  |  |
+ | feedback_type | string? |  yes  |  |
+ | flow | string? |  yes  |  |
+ | priority | number? |  yes  |  |
+ | reason_id | number? |  yes  |  |
+ | reason_text | string? |  yes  |  |
+ | show_text_area | boolean? |  yes  |  |
  
 
 ---
@@ -3249,7 +3249,7 @@ Success, the code is valid and returns a session token
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | reasons | [[ShipmentReason](#ShipmentReason)] |  no  |  |
+ | reasons | [[ShipmentReason](#ShipmentReason)]? |  yes  |  |
  
 
 ---
@@ -3258,41 +3258,41 @@ Success, the code is valid and returns a session token
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | awb_no | string |  no  |  |
- | bags | [[Bags](#Bags)] |  no  |  |
- | beneficiary_details | boolean |  no  |  |
- | breakup_values | [[BreakupValues](#BreakupValues)] |  no  |  |
- | can_break | string |  no  |  |
- | can_cancel | boolean |  no  |  |
- | can_return | boolean |  no  |  |
- | comment | string |  no  |  |
- | custom_meta | [string] |  no  |  |
- | delivery_address | [DeliveryAddress](#DeliveryAddress) |  no  |  |
- | delivery_date | string |  no  |  |
- | dp_name | string |  no  |  |
- | fulfilling_company | [FulfillingCompany](#FulfillingCompany) |  no  |  |
- | fulfilling_store | [FulfillingStore](#FulfillingStore) |  no  |  |
- | invoice | [Invoice](#Invoice) |  no  |  |
- | need_help_url | string |  no  |  |
- | order_id | string |  no  |  |
- | order_type | string |  no  |  |
- | payment | [ShipmentPayment](#ShipmentPayment) |  no  |  |
- | prices | [Prices](#Prices) |  no  |  |
- | promise | [Promise](#Promise) |  no  |  |
- | refund_details | string |  no  |  |
- | returnable_date | string |  no  |  |
- | shipment_created_at | string |  no  |  |
- | shipment_id | string |  no  |  |
- | shipment_status | [ShipmentStatus](#ShipmentStatus) |  no  |  |
- | show_download_invoice | boolean |  no  |  |
- | show_track_link | boolean |  no  |  |
- | size_info | string |  no  |  |
- | total_bags | number |  no  |  |
- | total_details | [ShipmentTotalDetails](#ShipmentTotalDetails) |  no  |  |
- | track_url | string |  no  |  |
- | tracking_details | [[TrackingDetails](#TrackingDetails)] |  no  |  |
- | traking_no | string |  no  |  |
- | user_info | [ShipmentUserInfo](#ShipmentUserInfo) |  no  |  |
+ | awb_no | string? |  yes  |  |
+ | bags | [[Bags](#Bags)]? |  yes  |  |
+ | beneficiary_details | boolean? |  yes  |  |
+ | breakup_values | [[BreakupValues](#BreakupValues)]? |  yes  |  |
+ | can_break | string? |  yes  |  |
+ | can_cancel | boolean? |  yes  |  |
+ | can_return | boolean? |  yes  |  |
+ | comment | string? |  yes  |  |
+ | custom_meta | [string]? |  yes  |  |
+ | delivery_address | [DeliveryAddress](#DeliveryAddress)? |  yes  |  |
+ | delivery_date | string? |  yes  |  |
+ | dp_name | string? |  yes  |  |
+ | fulfilling_company | [FulfillingCompany](#FulfillingCompany)? |  yes  |  |
+ | fulfilling_store | [FulfillingStore](#FulfillingStore)? |  yes  |  |
+ | invoice | [Invoice](#Invoice)? |  yes  |  |
+ | need_help_url | string? |  yes  |  |
+ | order_id | string? |  yes  |  |
+ | order_type | string? |  yes  |  |
+ | payment | [ShipmentPayment](#ShipmentPayment)? |  yes  |  |
+ | prices | [Prices](#Prices)? |  yes  |  |
+ | promise | [Promise](#Promise)? |  yes  |  |
+ | refund_details | string? |  yes  |  |
+ | returnable_date | string? |  yes  |  |
+ | shipment_created_at | string? |  yes  |  |
+ | shipment_id | string? |  yes  |  |
+ | shipment_status | [ShipmentStatus](#ShipmentStatus)? |  yes  |  |
+ | show_download_invoice | boolean? |  yes  |  |
+ | show_track_link | boolean? |  yes  |  |
+ | size_info | string? |  yes  |  |
+ | total_bags | number? |  yes  |  |
+ | total_details | [ShipmentTotalDetails](#ShipmentTotalDetails)? |  yes  |  |
+ | track_url | string? |  yes  |  |
+ | tracking_details | [[TrackingDetails](#TrackingDetails)]? |  yes  |  |
+ | traking_no | string? |  yes  |  |
+ | user_info | [ShipmentUserInfo](#ShipmentUserInfo)? |  yes  |  |
  
 
 ---
@@ -3301,10 +3301,10 @@ Success, the code is valid and returns a session token
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | data_updates | [DataUpdates](#DataUpdates) |  no  |  |
- | identifier | string |  yes  |  |
- | products | [[Products](#Products)] |  no  |  |
- | reasons | [ReasonsData](#ReasonsData) |  no  |  |
+ | data_updates | [DataUpdates](#DataUpdates)? |  yes  |  |
+ | identifier | string |  no  |  |
+ | products | [[Products](#Products)]? |  yes  |  |
+ | reasons | [ReasonsData](#ReasonsData)? |  yes  |  |
  
 
 ---
@@ -3313,8 +3313,8 @@ Success, the code is valid and returns a session token
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | hex_code | string |  no  |  |
- | title | string |  no  |  |
+ | hex_code | string? |  yes  |  |
+ | title | string? |  yes  |  |
  
 
 ---
@@ -3323,9 +3323,9 @@ Success, the code is valid and returns a session token
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | pieces | number |  no  |  |
- | sizes | number |  no  |  |
- | total_price | number |  no  |  |
+ | pieces | number? |  yes  |  |
+ | sizes | number? |  yes  |  |
+ | total_price | number? |  yes  |  |
  
 
 ---
@@ -3334,7 +3334,7 @@ Success, the code is valid and returns a session token
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | results | [[Track](#Track)] |  no  |  |
+ | results | [[Track](#Track)]? |  yes  |  |
  
 
 ---
@@ -3343,10 +3343,10 @@ Success, the code is valid and returns a session token
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | first_name | string |  no  |  |
- | gender | string |  no  |  |
- | last_name | string |  no  |  |
- | mobile | string |  no  |  |
+ | first_name | string? |  yes  |  |
+ | gender | string? |  yes  |  |
+ | last_name | string? |  yes  |  |
+ | mobile | string? |  yes  |  |
  
 
 ---
@@ -3355,9 +3355,9 @@ Success, the code is valid and returns a session token
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | exclude_bags_next_state | string |  no  |  |
- | shipments | [[ShipmentsRequest](#ShipmentsRequest)] |  no  |  |
- | status | string |  no  |  |
+ | exclude_bags_next_state | string? |  yes  |  |
+ | shipments | [[ShipmentsRequest](#ShipmentsRequest)]? |  yes  |  |
+ | status | string? |  yes  |  |
  
 
 ---
@@ -3366,7 +3366,7 @@ Success, the code is valid and returns a session token
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | shipments | [string] |  no  |  |
+ | shipments | [string]? |  yes  |  |
  
 
 ---
@@ -3375,8 +3375,8 @@ Success, the code is valid and returns a session token
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | max | string |  no  |  |
- | min | string |  no  |  |
+ | max | string? |  yes  |  |
+ | min | string? |  yes  |  |
  
 
 ---
@@ -3385,14 +3385,14 @@ Success, the code is valid and returns a session token
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | account_name | string |  no  |  |
- | awb | string |  no  |  |
- | last_location_recieved_at | string |  no  |  |
- | reason | string |  no  |  |
- | shipment_type | string |  no  |  |
- | status | string |  no  |  |
- | updated_at | string |  no  |  |
- | updated_time | string |  no  |  |
+ | account_name | string? |  yes  |  |
+ | awb | string? |  yes  |  |
+ | last_location_recieved_at | string? |  yes  |  |
+ | reason | string? |  yes  |  |
+ | shipment_type | string? |  yes  |  |
+ | status | string? |  yes  |  |
+ | updated_at | string? |  yes  |  |
+ | updated_time | string? |  yes  |  |
  
 
 ---
@@ -3401,11 +3401,11 @@ Success, the code is valid and returns a session token
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | is_current | boolean |  no  |  |
- | is_passed | boolean |  no  |  |
- | status | string |  no  |  |
- | time | string |  no  |  |
- | tracking_details | [[NestedTrackingDetails](#NestedTrackingDetails)] |  no  |  |
+ | is_current | boolean? |  yes  |  |
+ | is_passed | boolean? |  yes  |  |
+ | status | string? |  yes  |  |
+ | time | string? |  yes  |  |
+ | tracking_details | [[NestedTrackingDetails](#NestedTrackingDetails)]? |  yes  |  |
  
 
 ---
@@ -3414,11 +3414,11 @@ Success, the code is valid and returns a session token
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | force_transition | boolean |  no  |  |
- | lock_after_transition | boolean |  no  |  |
- | statuses | [[StatuesRequest](#StatuesRequest)] |  no  |  |
- | task | boolean |  no  |  |
- | unlock_before_transition | boolean |  no  |  |
+ | force_transition | boolean? |  yes  |  |
+ | lock_after_transition | boolean? |  yes  |  |
+ | statuses | [[StatuesRequest](#StatuesRequest)]? |  yes  |  |
+ | task | boolean? |  yes  |  |
+ | unlock_before_transition | boolean? |  yes  |  |
  
 
 ---
@@ -3427,10 +3427,10 @@ Success, the code is valid and returns a session token
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | email | string |  no  |  |
- | gender | string |  no  |  |
- | mobile | string |  no  |  |
- | name | string |  no  |  |
+ | email | string? |  yes  |  |
+ | gender | string? |  yes  |  |
+ | mobile | string? |  yes  |  |
+ | name | string? |  yes  |  |
  
 
 ---
@@ -3439,8 +3439,8 @@ Success, the code is valid and returns a session token
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | otp_code | string |  no  |  |
- | request_id | string |  no  |  |
+ | otp_code | string? |  yes  |  |
+ | request_id | string? |  yes  |  |
  
 
 ---
@@ -3449,7 +3449,7 @@ Success, the code is valid and returns a session token
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | success | boolean |  no  |  |
+ | success | boolean? |  yes  |  |
  
 
 ---

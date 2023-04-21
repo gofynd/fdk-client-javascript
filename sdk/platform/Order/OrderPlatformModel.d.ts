@@ -1,6 +1,7 @@
 export = OrderModel;
 declare class OrderModel {
     static ActionInfo(): any;
+    static AdvanceFilterInfo(): any;
     static Affiliate(): any;
     static AffiliateAppConfig(): any;
     static AffiliateAppConfigMeta(): any;
@@ -31,6 +32,7 @@ declare class OrderModel {
     static BagMeta(): any;
     static BagReturnableCancelableStatus(): any;
     static Bags(): any;
+    static BagsPage(): any;
     static BagStateMapper(): any;
     static BagStatusHistory(): any;
     static BagUnit(): any;
@@ -138,7 +140,6 @@ declare class OrderModel {
     static OrderUser(): any;
     static OriginalFilter(): any;
     static Page(): any;
-    static Page1(): any;
     static PaymentInfo(): any;
     static PaymentMethod(): any;
     static PaymentMethods(): any;

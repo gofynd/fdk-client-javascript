@@ -1,10 +1,9 @@
-const Paginator = require("../../common/Paginator");
 const PlatformAPIClient = require("../PlatformAPIClient");
 const { FDKClientValidationError } = require("../../common/FDKError");
+const Paginator = require("../../common/Paginator");
 const OrderValidator = require("./OrderPlatformApplicationValidator");
 const OrderModel = require("./OrderPlatformModel");
 const { Logger } = require("./../../common/Logger");
-const Joi = require("joi");
 
 class Order {
   constructor(config, applicationId) {
@@ -215,8 +214,8 @@ class Order {
    * @summary: Track shipment
    * @description: Track Shipment by shipment id, for application based on application Id
    */
-  async trackPlatformShipment({ shipmentId } = {}) {
-    const { error } = OrderValidator.trackPlatformShipment().validate(
+  async trackShipmentPlatform({ shipmentId } = {}) {
+    const { error } = OrderValidator.trackShipmentPlatform().validate(
       {
         shipmentId,
       },
@@ -227,7 +226,7 @@ class Order {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = OrderValidator.trackPlatformShipment().validate(
+    const { error: warrning } = OrderValidator.trackShipmentPlatform().validate(
       {
         shipmentId,
       },
@@ -236,7 +235,7 @@ class Order {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for trackPlatformShipment",
+        message: "Parameter Validation warrnings for trackShipmentPlatform",
       });
       Logger({ level: "WARN", message: warrning });
     }
@@ -261,7 +260,7 @@ class Order {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for trackPlatformShipment",
+        message: "Response Validation Warnnings for trackShipmentPlatform",
       });
       Logger({ level: "WARN", message: res_error });
     }
@@ -269,4 +268,5 @@ class Order {
     return response;
   }
 }
+
 module.exports = Order;

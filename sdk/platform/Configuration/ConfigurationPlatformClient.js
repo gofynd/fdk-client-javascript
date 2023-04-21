@@ -1,10 +1,9 @@
-const Paginator = require("../../common/Paginator");
-const { FDKClientValidationError } = require("../../common/FDKError");
 const PlatformAPIClient = require("../PlatformAPIClient");
+const { FDKClientValidationError } = require("../../common/FDKError");
+const Paginator = require("../../common/Paginator");
 const ConfigurationValidator = require("./ConfigurationPlatformValidator");
 const ConfigurationModel = require("./ConfigurationPlatformModel");
 const { Logger } = require("./../../common/Logger");
-const Joi = require("joi");
 
 class Configuration {
   constructor(config) {
@@ -176,7 +175,7 @@ class Configuration {
       });
       return data;
     };
-    paginator.setCallback(callback);
+    paginator.setCallback(callback.bind(this));
     return paginator;
   }
 
@@ -273,7 +272,7 @@ class Configuration {
       });
       return data;
     };
-    paginator.setCallback(callback);
+    paginator.setCallback(callback.bind(this));
     return paginator;
   }
 
@@ -442,7 +441,7 @@ class Configuration {
       });
       return data;
     };
-    paginator.setCallback(callback);
+    paginator.setCallback(callback.bind(this));
     return paginator;
   }
 
@@ -1034,7 +1033,7 @@ class Configuration {
       });
       return data;
     };
-    paginator.setCallback(callback);
+    paginator.setCallback(callback.bind(this));
     return paginator;
   }
 
@@ -1141,7 +1140,7 @@ class Configuration {
       });
       return data;
     };
-    paginator.setCallback(callback);
+    paginator.setCallback(callback.bind(this));
     return paginator;
   }
 
@@ -1243,7 +1242,7 @@ class Configuration {
       });
       return data;
     };
-    paginator.setCallback(callback);
+    paginator.setCallback(callback.bind(this));
     return paginator;
   }
 

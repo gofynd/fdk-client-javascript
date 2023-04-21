@@ -6,8 +6,6 @@ module.exports = {
 
     LeadPlatformModel: require("./Lead/LeadPlatformModel"),
 
-    FeedbackPlatformModel: require("./Feedback/FeedbackPlatformModel"),
-
     ThemePlatformModel: require("./Theme/ThemePlatformModel"),
 
     UserPlatformModel: require("./User/UserPlatformModel"),
@@ -22,10 +20,6 @@ module.exports = {
 
     OrderPlatformModel: require("./Order/OrderPlatformModel"),
 
-    CatalogPlatformModel: require("./Catalog/CatalogPlatformModel"),
-
-    CompanyProfilePlatformModel: require("./CompanyProfile/CompanyProfilePlatformModel"),
-
     FileStoragePlatformModel: require("./FileStorage/FileStoragePlatformModel"),
 
     SharePlatformModel: require("./Share/SharePlatformModel"),
@@ -39,8 +33,6 @@ module.exports = {
     RewardsPlatformModel: require("./Rewards/RewardsPlatformModel"),
 
     AnalyticsPlatformModel: require("./Analytics/AnalyticsPlatformModel"),
-
-    DiscountPlatformModel: require("./Discount/DiscountPlatformModel"),
 
     PartnerPlatformModel: require("./Partner/PartnerPlatformModel"),
 

@@ -9,6 +9,15 @@ class OrderModel {
       slug: Joi.string().allow("").required(),
     });
   }
+  static AdvanceFilterInfo() {
+    return Joi.object({
+      action_centre: Joi.array().items(OrderModel.FiltersInfo()),
+      filters: Joi.array().items(OrderModel.FiltersInfo()),
+      processed: Joi.array().items(OrderModel.FiltersInfo()),
+      returned: Joi.array().items(OrderModel.FiltersInfo()),
+      unfulfilled: Joi.array().items(OrderModel.FiltersInfo()),
+    });
+  }
   static Affiliate() {
     return Joi.object({
       config: OrderModel.AffiliateConfig(),
@@ -342,6 +351,15 @@ class OrderModel {
       affiliate_order_id: Joi.string().allow(""),
       bag_id: Joi.number(),
       is_locked: Joi.boolean(),
+    });
+  }
+  static BagsPage() {
+    return Joi.object({
+      current: Joi.number().required(),
+      has_next: Joi.boolean().required(),
+      item_total: Joi.number().required(),
+      page_type: Joi.string().allow("").required(),
+      size: Joi.number().required(),
     });
   }
   static BagStateMapper() {
@@ -864,7 +882,8 @@ class OrderModel {
   }
   static FiltersResponse() {
     return Joi.object({
-      advance: Joi.array().items(Joi.any()),
+      advance_filter: OrderModel.AdvanceFilterInfo(),
+      global_filter: Joi.array().items(OrderModel.FiltersInfo()),
     });
   }
   static FinancialBreakup() {
@@ -935,7 +954,7 @@ class OrderModel {
       items: Joi.array()
         .items(OrderModel.BagDetailsPlatformResponse())
         .required(),
-      page: OrderModel.Page1().required(),
+      page: OrderModel.BagsPage().required(),
     });
   }
   static GSTDetailsData() {
@@ -1356,15 +1375,6 @@ class OrderModel {
       next_id: Joi.string().allow(""),
       size: Joi.number(),
       type: Joi.string().allow("").required(),
-    });
-  }
-  static Page1() {
-    return Joi.object({
-      current: Joi.number().required(),
-      has_next: Joi.boolean().required(),
-      item_total: Joi.number().required(),
-      page_type: Joi.string().allow("").required(),
-      size: Joi.number().required(),
     });
   }
   static PaymentInfo() {
@@ -1790,6 +1800,7 @@ class OrderModel {
       application: Joi.any(),
       bags: Joi.array().items(OrderModel.BagUnit()),
       channel: Joi.any(),
+      company: Joi.any(),
       created_at: Joi.string().allow("").required(),
       fulfilling_centre: Joi.string().allow("").required(),
       fulfilling_store: OrderModel.ShipmentItemFulFillingStore(),
