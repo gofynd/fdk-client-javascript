@@ -1,95 +1,16 @@
-const Paginator = require("../../common/Paginator");
 const PlatformAPIClient = require("../PlatformAPIClient");
 const { FDKClientValidationError } = require("../../common/FDKError");
+const Paginator = require("../../common/Paginator");
 const FileStorageValidator = require("./FileStoragePlatformApplicationValidator");
 const FileStorageModel = require("./FileStoragePlatformModel");
 const { Logger } = require("./../../common/Logger");
+
+const axios = require("axios");
 
 class FileStorage {
   constructor(config, applicationId) {
     this.config = config;
     this.applicationId = applicationId;
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.namespace - Bucket name
-   * @param {StartRequest} arg.body
-   * @returns {Promise<StartResponse>} - Success response
-   * @summary: This operation initiates upload and returns storage link which is valid for 30 Minutes. You can use that storage link to make subsequent upload request with file buffer or blob.
-   * @description: Uploads an arbitrarily sized buffer or blob.
-   *
-   * It has three Major Steps:
-   * Start
-   * Upload
-   * Complete
-   *
-   * ### Start
-   * Initiates the assets upload using `appStartUpload`.
-   * It returns the storage link in response.
-   *
-   * ### Upload
-   * Use the storage link to upload a file (Buffer or Blob) to the File Storage.
-   * Make a `PUT` request on storage link received from `appStartUpload` api with file (Buffer or Blob) as a request body.
-   *
-   * ### Complete
-   * After successfully upload, call `appCompleteUpload` api to complete the upload process.
-   * This operation will return the url for the uploaded file.
-   */
-  async appStartUpload({ namespace, body } = {}) {
-    const { error } = FileStorageValidator.appStartUpload().validate(
-      {
-        namespace,
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = FileStorageValidator.appStartUpload().validate(
-      {
-        namespace,
-        body,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: "Parameter Validation warrnings for appStartUpload",
-      });
-      Logger({ level: "WARN", message: warrning });
-    }
-
-    const query_params = {};
-
-    const response = await PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/assets/v1.0/company/${this.config.companyId}/application/${this.applicationId}/namespaces/${namespace}/upload/start/`,
-      query_params,
-      body
-    );
-
-    const {
-      error: res_error,
-    } = FileStorageModel.StartResponse().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
-
-    if (res_error) {
-      Logger({
-        level: "WARN",
-        message: "Response Validation Warnnings for appStartUpload",
-      });
-      Logger({ level: "WARN", message: res_error });
-    }
-
-    return response;
   }
 
   /**
@@ -117,10 +38,15 @@ class FileStorage {
    * After successfully upload, call `appCompleteUpload` api to complete the upload process.
    * This operation will return the url for the uploaded file.
    */
-  async appCompleteUpload({ namespace, body } = {}) {
+  async appCompleteUpload({
+    namespace,
+
+    body,
+  } = {}) {
     const { error } = FileStorageValidator.appCompleteUpload().validate(
       {
         namespace,
+
         body,
       },
       { abortEarly: false, allowUnknown: true }
@@ -135,6 +61,7 @@ class FileStorage {
     } = FileStorageValidator.appCompleteUpload().validate(
       {
         namespace,
+
         body,
       },
       { abortEarly: false, allowUnknown: false }
@@ -243,15 +170,107 @@ class FileStorage {
   /**
    * @param {Object} arg - Arg object.
    * @param {string} arg.namespace - Bucket name
+   * @param {StartRequest} arg.body
+   * @returns {Promise<StartResponse>} - Success response
+   * @summary: This operation initiates upload and returns storage link which is valid for 30 Minutes. You can use that storage link to make subsequent upload request with file buffer or blob.
+   * @description: Uploads an arbitrarily sized buffer or blob.
+   *
+   * It has three Major Steps:
+   * Start
+   * Upload
+   * Complete
+   *
+   * ### Start
+   * Initiates the assets upload using `appStartUpload`.
+   * It returns the storage link in response.
+   *
+   * ### Upload
+   * Use the storage link to upload a file (Buffer or Blob) to the File Storage.
+   * Make a `PUT` request on storage link received from `appStartUpload` api with file (Buffer or Blob) as a request body.
+   *
+   * ### Complete
+   * After successfully upload, call `appCompleteUpload` api to complete the upload process.
+   * This operation will return the url for the uploaded file.
+   */
+  async appStartUpload({
+    namespace,
+
+    body,
+  } = {}) {
+    const { error } = FileStorageValidator.appStartUpload().validate(
+      {
+        namespace,
+
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = FileStorageValidator.appStartUpload().validate(
+      {
+        namespace,
+
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for appStartUpload",
+      });
+      Logger({ level: "WARN", message: warrning });
+    }
+
+    const query_params = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/assets/v1.0/company/${this.config.companyId}/application/${this.applicationId}/namespaces/${namespace}/upload/start/`,
+      query_params,
+      body
+    );
+
+    const {
+      error: res_error,
+    } = FileStorageModel.StartResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for appStartUpload",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.namespace - Bucket name
    * @param {number} [arg.pageNo] - Page no
    * @returns {Promise<BrowseResponse>} - Success response
    * @summary: Browse Files
    * @description: Browse Files
    */
-  async browse({ namespace, pageNo } = {}) {
+  async browse({
+    namespace,
+
+    pageNo,
+  } = {}) {
     const { error } = FileStorageValidator.browse().validate(
       {
         namespace,
+
         pageNo,
       },
       { abortEarly: false, allowUnknown: true }
@@ -264,6 +283,7 @@ class FileStorage {
     const { error: warrning } = FileStorageValidator.browse().validate(
       {
         namespace,
+
         pageNo,
       },
       { abortEarly: false, allowUnknown: false }
@@ -335,7 +355,6 @@ class FileStorage {
     return paginator;
   }
 }
-module.exports = FileStorage;
 
 /**
  * @param data
@@ -385,3 +404,5 @@ FileStorage.prototype.upload = function ({
     }
   });
 };
+
+module.exports = FileStorage;

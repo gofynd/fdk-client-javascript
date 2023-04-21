@@ -2,6 +2,17 @@ const Joi = require("joi");
 
 const ServiceabilityModel = require("./ServiceabilityPlatformModel");
 class ServiceabilityValidator {
+  static getAllStores() {
+    return Joi.object({}).required();
+  }
+
+  static getCompanyStoreView() {
+    return Joi.object({
+      pageNumber: Joi.number(),
+      pageSize: Joi.number(),
+    }).required();
+  }
+
   static getEntityRegionView() {
     return Joi.object({
       body: ServiceabilityModel.EntityRegionView_Request().required(),
@@ -18,17 +29,9 @@ class ServiceabilityValidator {
     }).required();
   }
 
-  static getCompanyStoreView() {
+  static getStore() {
     return Joi.object({
-      pageNumber: Joi.number(),
-      pageSize: Joi.number(),
-    }).required();
-  }
-
-  static updateZoneControllerView() {
-    return Joi.object({
-      zoneId: Joi.string().allow("").required(),
-      body: ServiceabilityModel.ZoneUpdateRequest().required(),
+      storeUid: Joi.number().required(),
     }).required();
   }
 
@@ -44,14 +47,12 @@ class ServiceabilityValidator {
     }).required();
   }
 
-  static getStore() {
+  static updateZoneControllerView() {
     return Joi.object({
-      storeUid: Joi.number().required(),
+      zoneId: Joi.string().allow("").required(),
+      body: ServiceabilityModel.ZoneUpdateRequest().required(),
     }).required();
   }
-
-  static getAllStores() {
-    return Joi.object({}).required();
-  }
 }
+
 module.exports = ServiceabilityValidator;

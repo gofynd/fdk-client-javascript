@@ -1,6 +1,6 @@
 const Joi = require("joi");
-const ServiceabilityModel = require("./ServiceabilityPlatformModel");
 
+const ServiceabilityModel = require("./ServiceabilityPlatformModel");
 class ServiceabilityValidator {
   static getApplicationServiceability() {
     return Joi.object({}).required();

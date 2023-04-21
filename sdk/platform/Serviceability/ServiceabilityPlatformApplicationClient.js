@@ -1,6 +1,6 @@
-const Paginator = require("../../common/Paginator");
 const PlatformAPIClient = require("../PlatformAPIClient");
 const { FDKClientValidationError } = require("../../common/FDKError");
+const Paginator = require("../../common/Paginator");
 const ServiceabilityValidator = require("./ServiceabilityPlatformApplicationValidator");
 const ServiceabilityModel = require("./ServiceabilityPlatformModel");
 const { Logger } = require("./../../common/Logger");
@@ -138,4 +138,5 @@ class Serviceability {
     return response;
   }
 }
+
 module.exports = Serviceability;

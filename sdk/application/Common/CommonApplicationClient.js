@@ -1,7 +1,7 @@
-const APIClient = require("../ApplicationAPIClient");
+const ApplicationAPIClient = require("../ApplicationAPIClient");
+const { FDKClientValidationError } = require("../../common/FDKError");
 const constructUrl = require("../constructUrl");
 const Paginator = require("../../common/Paginator");
-const { FDKClientValidationError } = require("../../common/FDKError");
 const CommonValidator = require("./CommonApplicationValidator");
 const CommonModel = require("./CommonApplicationModel");
 const { Logger } = require("./../../common/Logger");
@@ -10,9 +10,9 @@ class Common {
   constructor(_conf) {
     this._conf = _conf;
     this._relativeUrls = {
+      getLocations: "/service/common/configuration/v1.0/location",
       searchApplication:
         "/service/common/configuration/v1.0/application/search-application",
-      getLocations: "/service/common/configuration/v1.0/location",
     };
     this._urls = Object.entries(this._relativeUrls).reduce(
       (urls, [method, relativeUrl]) => {
@@ -28,72 +28,6 @@ class Common {
       ...this._urls,
       ...urls,
     };
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} [arg.authorization] -
-   * @param {string} [arg.query] - Provide application name
-   * @returns {Promise<ApplicationResponse>} - Success response
-   * @summary: Search Application
-   * @description: Provide application name or domain url
-   */
-  async searchApplication({ authorization, query } = {}) {
-    const { error } = CommonValidator.searchApplication().validate(
-      { authorization, query },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = CommonValidator.searchApplication().validate(
-      { authorization, query },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: "Parameter Validation warrnings for searchApplication",
-      });
-      Logger({ level: "WARN", message: warrning });
-    }
-
-    const query_params = {};
-    query_params["query"] = query;
-
-    const xHeaders = {};
-    xHeaders["authorization"] = authorization;
-
-    const response = await APIClient.execute(
-      this._conf,
-      "get",
-      constructUrl({
-        url: this._urls["searchApplication"],
-        params: {},
-      }),
-      query_params,
-      undefined,
-      xHeaders
-    );
-
-    const {
-      error: res_error,
-    } = CommonModel.ApplicationResponse().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
-
-    if (res_error) {
-      Logger({
-        level: "WARN",
-        message: "Response Validation Warnnings for searchApplication",
-      });
-      Logger({ level: "WARN", message: res_error });
-    }
-
-    return response;
   }
 
   /**
@@ -135,7 +69,7 @@ class Common {
 
     const xHeaders = {};
 
-    const response = await APIClient.execute(
+    const response = await ApplicationAPIClient.execute(
       this._conf,
       "get",
       constructUrl({
@@ -156,6 +90,72 @@ class Common {
       Logger({
         level: "WARN",
         message: "Response Validation Warnnings for getLocations",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {string} [arg.authorization] -
+   * @param {string} [arg.query] - Provide application name
+   * @returns {Promise<ApplicationResponse>} - Success response
+   * @summary: Search Application
+   * @description: Provide application name or domain url
+   */
+  async searchApplication({ authorization, query } = {}) {
+    const { error } = CommonValidator.searchApplication().validate(
+      { authorization, query },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = CommonValidator.searchApplication().validate(
+      { authorization, query },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for searchApplication",
+      });
+      Logger({ level: "WARN", message: warrning });
+    }
+
+    const query_params = {};
+    query_params["query"] = query;
+
+    const xHeaders = {};
+    xHeaders["authorization"] = authorization;
+
+    const response = await ApplicationAPIClient.execute(
+      this._conf,
+      "get",
+      constructUrl({
+        url: this._urls["searchApplication"],
+        params: {},
+      }),
+      query_params,
+      undefined,
+      xHeaders
+    );
+
+    const {
+      error: res_error,
+    } = CommonModel.ApplicationResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for searchApplication",
       });
       Logger({ level: "WARN", message: res_error });
     }

@@ -5,6 +5,16 @@ declare class Order {
     applicationId: any;
     /**
      * @param {Object} arg - Arg object.
+     * @param {string} arg.orderId -
+     * @returns {Promise<ShipmentDetailsResponse>} - Success response
+     * @summary:
+     * @description:
+     */
+    getAppOrderShipmentDetails({ orderId }?: {
+        orderId: string;
+    }): Promise<ShipmentDetailsResponse>;
+    /**
+     * @param {Object} arg - Arg object.
      * @param {string} [arg.lane] -
      * @param {string} [arg.searchType] -
      * @param {string} [arg.searchId] -
@@ -39,16 +49,6 @@ declare class Order {
         customerId?: string;
         isPrioritySort?: boolean;
     }): Promise<ShipmentInternalPlatformViewResponse>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.orderId -
-     * @returns {Promise<ShipmentDetailsResponse>} - Success response
-     * @summary:
-     * @description:
-     */
-    getAppOrderShipmentDetails({ orderId }?: {
-        orderId: string;
-    }): Promise<ShipmentDetailsResponse>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.shipmentId -

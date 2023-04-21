@@ -4,8 +4,8 @@ declare class Logistic {
     _conf: any;
     _relativeUrls: {
         getPincodeCity: string;
-        getTatProduct: string;
         getPincodeZones: string;
+        getTatProduct: string;
     };
     _urls: {};
     updateUrls(urls: any): void;
@@ -22,16 +22,6 @@ declare class Logistic {
     }): Promise<PincodeApiResponse>;
     /**
      * @param {Object} arg - Arg object.
-     * @param {TATViewRequest} arg.body
-     * @returns {Promise<TATViewResponse>} - Success response
-     * @summary: Get TAT API
-     * @description: Get TAT data
-     */
-    getTatProduct({ body }?: {
-        body: TATViewRequest;
-    }): Promise<TATViewResponse>;
-    /**
-     * @param {Object} arg - Arg object.
      * @param {GetZoneFromPincodeViewRequest} arg.body
      * @returns {Promise<GetZoneFromPincodeViewResponse>} - Success response
      * @summary: GET zone from the Pincode.
@@ -40,4 +30,14 @@ declare class Logistic {
     getPincodeZones({ body }?: {
         body: GetZoneFromPincodeViewRequest;
     }): Promise<GetZoneFromPincodeViewResponse>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {TATViewRequest} arg.body
+     * @returns {Promise<TATViewResponse>} - Success response
+     * @summary: Get TAT API
+     * @description: Get TAT data
+     */
+    getTatProduct({ body }?: {
+        body: TATViewRequest;
+    }): Promise<TATViewResponse>;
 }

@@ -4,6 +4,25 @@ declare class Serviceability {
     config: any;
     /**
      * @param {Object} arg - Arg object.
+     * @returns {Promise<GetStoresViewResponse>} - Success response
+     * @summary: GET stores data
+     * @description: This API returns stores data.
+     */
+    getAllStores({}?: any): Promise<GetStoresViewResponse>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {number} [arg.pageNumber] - Index of the item to start returning with
+     * @param {number} [arg.pageSize] - Determines the items to be displayed in a page
+     * @returns {Promise<CompanyStoreView_Response>} - Success response
+     * @summary: Company Store View of application.
+     * @description: This API returns Company Store View of the application.
+     */
+    getCompanyStoreView({ pageNumber, pageSize }?: {
+        pageNumber?: number;
+        pageSize?: number;
+    }): Promise<CompanyStoreView_Response>;
+    /**
+     * @param {Object} arg - Arg object.
      * @param {EntityRegionView_Request} arg.body
      * @returns {Promise<EntityRegionView_Response>} - Success response
      * @summary: Get country and state list
@@ -32,29 +51,14 @@ declare class Serviceability {
     }): Promise<ListViewResponse>;
     /**
      * @param {Object} arg - Arg object.
-     * @param {number} [arg.pageNumber] - Index of the item to start returning with
-     * @param {number} [arg.pageSize] - Determines the items to be displayed in a page
-     * @returns {Promise<CompanyStoreView_Response>} - Success response
-     * @summary: Company Store View of application.
-     * @description: This API returns Company Store View of the application.
+     * @param {number} arg.storeUid - A `store_uid` contains a specific ID of a store.
+     * @returns {Promise<GetStoresViewResponse>} - Success response
+     * @summary: GET stores data
+     * @description: This API returns stores data.
      */
-    getCompanyStoreView({ pageNumber, pageSize }?: {
-        pageNumber?: number;
-        pageSize?: number;
-    }): Promise<CompanyStoreView_Response>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.zoneId - A `zone_id` is a unique identifier for a
-     *   particular zone.
-     * @param {ZoneUpdateRequest} arg.body
-     * @returns {Promise<ZoneSuccessResponse>} - Success response
-     * @summary: Updation of zone collections in database.
-     * @description: This API returns response of updation of zone in mongo database.
-     */
-    updateZoneControllerView({ zoneId, body }?: {
-        zoneId: string;
-        body: ZoneUpdateRequest;
-    }): Promise<ZoneSuccessResponse>;
+    getStore({ storeUid }?: {
+        storeUid: number;
+    }): Promise<GetStoresViewResponse>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.zoneId - A `zone_id` is a unique identifier for a
@@ -78,19 +82,15 @@ declare class Serviceability {
     }): Promise<ZoneResponse>;
     /**
      * @param {Object} arg - Arg object.
-     * @param {number} arg.storeUid - A `store_uid` contains a specific ID of a store.
-     * @returns {Promise<GetStoresViewResponse>} - Success response
-     * @summary: GET stores data
-     * @description: This API returns stores data.
+     * @param {string} arg.zoneId - A `zone_id` is a unique identifier for a
+     *   particular zone.
+     * @param {ZoneUpdateRequest} arg.body
+     * @returns {Promise<ZoneSuccessResponse>} - Success response
+     * @summary: Updation of zone collections in database.
+     * @description: This API returns response of updation of zone in mongo database.
      */
-    getStore({ storeUid }?: {
-        storeUid: number;
-    }): Promise<GetStoresViewResponse>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @returns {Promise<GetStoresViewResponse>} - Success response
-     * @summary: GET stores data
-     * @description: This API returns stores data.
-     */
-    getAllStores({}?: any): Promise<GetStoresViewResponse>;
+    updateZoneControllerView({ zoneId, body, }?: {
+        zoneId: string;
+        body: ZoneUpdateRequest;
+    }): Promise<ZoneSuccessResponse>;
 }

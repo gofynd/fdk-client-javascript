@@ -4,38 +4,6 @@ declare class Payment {
     config: any;
     /**
      * @param {Object} arg - Arg object.
-     * @param {string} [arg.uniqueExternalId] - Fetch payouts using unique external id
-     * @returns {Promise<PayoutsResponse>} - Success response
-     * @summary: Get All Payouts
-     * @description: Get All Payouts
-     */
-    getAllPayouts({ uniqueExternalId }?: {
-        uniqueExternalId?: string;
-    }): Promise<PayoutsResponse>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {PayoutRequest} arg.body
-     * @returns {Promise<PayoutResponse>} - Success response
-     * @summary: Save Payout
-     * @description: Save Payout
-     */
-    savePayout({ body }?: {
-        body: PayoutRequest;
-    }): Promise<PayoutResponse>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.uniqueTransferNo - Unique transfer id
-     * @param {PayoutRequest} arg.body
-     * @returns {Promise<UpdatePayoutResponse>} - Success response
-     * @summary: Update Payout
-     * @description: Update Payout
-     */
-    updatePayout({ uniqueTransferNo, body }?: {
-        uniqueTransferNo: string;
-        body: PayoutRequest;
-    }): Promise<UpdatePayoutResponse>;
-    /**
-     * @param {Object} arg - Arg object.
      * @param {string} arg.uniqueTransferNo - Unique transfer id
      * @param {UpdatePayoutRequest} arg.body
      * @returns {Promise<UpdatePayoutResponse>} - Success response
@@ -58,16 +26,6 @@ declare class Payment {
     }): Promise<DeletePayoutResponse>;
     /**
      * @param {Object} arg - Arg object.
-     * @param {string} [arg.uniqueExternalId] - Unique external id
-     * @returns {Promise<SubscriptionPaymentMethodResponse>} - Success response
-     * @summary: List Subscription Payment Method
-     * @description: Get all  Subscription  Payment Method
-     */
-    getSubscriptionPaymentMethod({ uniqueExternalId }?: {
-        uniqueExternalId?: string;
-    }): Promise<SubscriptionPaymentMethodResponse>;
-    /**
-     * @param {Object} arg - Arg object.
      * @param {string} arg.uniqueExternalId -
      * @param {string} arg.paymentMethodId -
      * @returns {Promise<DeleteSubscriptionPaymentMethodResponse>} - Success response
@@ -80,11 +38,41 @@ declare class Payment {
     }): Promise<DeleteSubscriptionPaymentMethodResponse>;
     /**
      * @param {Object} arg - Arg object.
+     * @param {string} [arg.uniqueExternalId] - Fetch payouts using unique external id
+     * @returns {Promise<PayoutsResponse>} - Success response
+     * @summary: Get All Payouts
+     * @description: Get All Payouts
+     */
+    getAllPayouts({ uniqueExternalId }?: {
+        uniqueExternalId?: string;
+    }): Promise<PayoutsResponse>;
+    /**
+     * @param {Object} arg - Arg object.
      * @returns {Promise<SubscriptionConfigResponse>} - Success response
      * @summary: List Subscription Config
      * @description: Get all  Subscription Config details
      */
     getSubscriptionConfig({}?: any): Promise<SubscriptionConfigResponse>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {string} [arg.uniqueExternalId] - Unique external id
+     * @returns {Promise<SubscriptionPaymentMethodResponse>} - Success response
+     * @summary: List Subscription Payment Method
+     * @description: Get all  Subscription  Payment Method
+     */
+    getSubscriptionPaymentMethod({ uniqueExternalId }?: {
+        uniqueExternalId?: string;
+    }): Promise<SubscriptionPaymentMethodResponse>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {PayoutRequest} arg.body
+     * @returns {Promise<PayoutResponse>} - Success response
+     * @summary: Save Payout
+     * @description: Save Payout
+     */
+    savePayout({ body }?: {
+        body: PayoutRequest;
+    }): Promise<PayoutResponse>;
     /**
      * @param {Object} arg - Arg object.
      * @param {SaveSubscriptionSetupIntentRequest} arg.body
@@ -95,6 +83,18 @@ declare class Payment {
     saveSubscriptionSetupIntent({ body }?: {
         body: SaveSubscriptionSetupIntentRequest;
     }): Promise<SaveSubscriptionSetupIntentResponse>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {string} arg.uniqueTransferNo - Unique transfer id
+     * @param {PayoutRequest} arg.body
+     * @returns {Promise<UpdatePayoutResponse>} - Success response
+     * @summary: Update Payout
+     * @description: Update Payout
+     */
+    updatePayout({ uniqueTransferNo, body }?: {
+        uniqueTransferNo: string;
+        body: PayoutRequest;
+    }): Promise<UpdatePayoutResponse>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} [arg.ifscCode] -

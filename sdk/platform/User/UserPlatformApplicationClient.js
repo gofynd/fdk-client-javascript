@@ -1,6 +1,6 @@
-const Paginator = require("../../common/Paginator");
 const PlatformAPIClient = require("../PlatformAPIClient");
 const { FDKClientValidationError } = require("../../common/FDKError");
+const Paginator = require("../../common/Paginator");
 const UserValidator = require("./UserPlatformApplicationValidator");
 const UserModel = require("./UserPlatformModel");
 const { Logger } = require("./../../common/Logger");
@@ -9,6 +9,372 @@ class User {
   constructor(config, applicationId) {
     this.config = config;
     this.applicationId = applicationId;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {ArchiveUserRequestSchema} arg.body
+   * @returns {Promise<ArchiveUserSuccess>} - Success response
+   * @summary: archive user
+   * @description: archive user
+   */
+  async archiveUser({ body } = {}) {
+    const { error } = UserValidator.archiveUser().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = UserValidator.archiveUser().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for archiveUser",
+      });
+      Logger({ level: "WARN", message: warrning });
+    }
+
+    const query_params = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "put",
+      `/service/platform/user/v1.0/company/${this.config.companyId}/application/${this.applicationId}/customers/archive`,
+      query_params,
+      body
+    );
+
+    const {
+      error: res_error,
+    } = UserModel.ArchiveUserSuccess().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for archiveUser",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {BlockUserRequestSchema} arg.body
+   * @returns {Promise<BlockUserSuccess>} - Success response
+   * @summary: Block/Unblock user
+   * @description: Block/Unblock user
+   */
+  async blockOrUnblockUsers({ body } = {}) {
+    const { error } = UserValidator.blockOrUnblockUsers().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = UserValidator.blockOrUnblockUsers().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for blockOrUnblockUsers",
+      });
+      Logger({ level: "WARN", message: warrning });
+    }
+
+    const query_params = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "put",
+      `/service/platform/user/v1.0/company/${this.config.companyId}/application/${this.applicationId}/customers/activation`,
+      query_params,
+      body
+    );
+
+    const { error: res_error } = UserModel.BlockUserSuccess().validate(
+      response,
+      { abortEarly: false, allowUnknown: false }
+    );
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for blockOrUnblockUsers",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {CreateUserRequestSchema} arg.body
+   * @returns {Promise<CreateUserResponseSchema>} - Success response
+   * @summary: Create user
+   * @description: Create user
+   */
+  async createUser({ body } = {}) {
+    const { error } = UserValidator.createUser().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = UserValidator.createUser().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for createUser",
+      });
+      Logger({ level: "WARN", message: warrning });
+    }
+
+    const query_params = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/user/v1.0/company/${this.config.companyId}/application/${this.applicationId}/customers`,
+      query_params,
+      body
+    );
+
+    const {
+      error: res_error,
+    } = UserModel.CreateUserResponseSchema().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for createUser",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {CreateUserSessionRequestSchema} arg.body
+   * @returns {Promise<CreateUserSessionResponseSchema>} - Success response
+   * @summary: Create user session
+   * @description: Create user session
+   */
+  async createUserSession({ body } = {}) {
+    const { error } = UserValidator.createUserSession().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = UserValidator.createUserSession().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for createUserSession",
+      });
+      Logger({ level: "WARN", message: warrning });
+    }
+
+    const query_params = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/user/v1.0/company/${this.config.companyId}/application/${this.applicationId}/customers/session`,
+      query_params,
+      body
+    );
+
+    const {
+      error: res_error,
+    } = UserModel.CreateUserSessionResponseSchema().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for createUserSession",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.id - ID of a customer.
+   * @returns {Promise<SessionDeleteResponseSchema>} - Success response
+   * @summary: Delete a list of all session for a user
+   * @description: Use this API to Delete a list of session of customers who have registered in the application.
+   */
+  async deleteActiveSessions({ id } = {}) {
+    const { error } = UserValidator.deleteActiveSessions().validate(
+      {
+        id,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = UserValidator.deleteActiveSessions().validate(
+      {
+        id,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for deleteActiveSessions",
+      });
+      Logger({ level: "WARN", message: warrning });
+    }
+
+    const query_params = {};
+    query_params["id"] = id;
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "delete",
+      `/service/platform/user/v1.0/company/${this.config.companyId}/application/${this.applicationId}/customers/sesions`,
+      query_params,
+      undefined
+    );
+
+    const {
+      error: res_error,
+    } = UserModel.SessionDeleteResponseSchema().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for deleteActiveSessions",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.id - ID of a customer.
+   * @returns {Promise<SessionListResponseSchema>} - Success response
+   * @summary: Get a list of all session for a user
+   * @description: Use this API to retrieve a list of session of customers who have registered in the application.
+   */
+  async getActiveSessions({ id } = {}) {
+    const { error } = UserValidator.getActiveSessions().validate(
+      {
+        id,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = UserValidator.getActiveSessions().validate(
+      {
+        id,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getActiveSessions",
+      });
+      Logger({ level: "WARN", message: warrning });
+    }
+
+    const query_params = {};
+    query_params["id"] = id;
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/user/v1.0/company/${this.config.companyId}/application/${this.applicationId}/customers/sesions`,
+      query_params,
+      undefined
+    );
+
+    const {
+      error: res_error,
+    } = UserModel.SessionListResponseSchema().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getActiveSessions",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
@@ -86,6 +452,60 @@ class User {
 
   /**
    * @param {Object} arg - Arg object.
+   * @returns {Promise<PlatformSchema>} - Success response
+   * @summary: Get platform configurations
+   * @description: Use this API to get all the platform configurations such as mobile image, desktop image, social logins, and all other text.
+   */
+  async getPlatformConfig({} = {}) {
+    const { error } = UserValidator.getPlatformConfig().validate(
+      {},
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = UserValidator.getPlatformConfig().validate(
+      {},
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getPlatformConfig",
+      });
+      Logger({ level: "WARN", message: warrning });
+    }
+
+    const query_params = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/user/v1.0/company/${this.config.companyId}/application/${this.applicationId}/platform/config`,
+      query_params,
+      undefined
+    );
+
+    const { error: res_error } = UserModel.PlatformSchema().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getPlatformConfig",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
    * @param {string} [arg.q] - The search query. Mobile number or email ID of
    *   a customer.
    * @returns {Promise<UserSearchResponseSchema>} - Success response
@@ -140,187 +560,6 @@ class User {
       Logger({
         level: "WARN",
         message: "Response Validation Warnnings for searchUsers",
-      });
-      Logger({ level: "WARN", message: res_error });
-    }
-
-    return response;
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {CreateUserRequestSchema} arg.body
-   * @returns {Promise<CreateUserResponseSchema>} - Success response
-   * @summary: Create user
-   * @description: Create user
-   */
-  async createUser({ body } = {}) {
-    const { error } = UserValidator.createUser().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = UserValidator.createUser().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: "Parameter Validation warrnings for createUser",
-      });
-      Logger({ level: "WARN", message: warrning });
-    }
-
-    const query_params = {};
-
-    const response = await PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/user/v1.0/company/${this.config.companyId}/application/${this.applicationId}/customers`,
-      query_params,
-      body
-    );
-
-    const {
-      error: res_error,
-    } = UserModel.CreateUserResponseSchema().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
-
-    if (res_error) {
-      Logger({
-        level: "WARN",
-        message: "Response Validation Warnnings for createUser",
-      });
-      Logger({ level: "WARN", message: res_error });
-    }
-
-    return response;
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {BlockUserRequestSchema} arg.body
-   * @returns {Promise<BlockUserSuccess>} - Success response
-   * @summary: Block/Unblock user
-   * @description: Block/Unblock user
-   */
-  async blockOrUnblockUsers({ body } = {}) {
-    const { error } = UserValidator.blockOrUnblockUsers().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = UserValidator.blockOrUnblockUsers().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: "Parameter Validation warrnings for blockOrUnblockUsers",
-      });
-      Logger({ level: "WARN", message: warrning });
-    }
-
-    const query_params = {};
-
-    const response = await PlatformAPIClient.execute(
-      this.config,
-      "put",
-      `/service/platform/user/v1.0/company/${this.config.companyId}/application/${this.applicationId}/customers/activation`,
-      query_params,
-      body
-    );
-
-    const { error: res_error } = UserModel.BlockUserSuccess().validate(
-      response,
-      { abortEarly: false, allowUnknown: false }
-    );
-
-    if (res_error) {
-      Logger({
-        level: "WARN",
-        message: "Response Validation Warnnings for blockOrUnblockUsers",
-      });
-      Logger({ level: "WARN", message: res_error });
-    }
-
-    return response;
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {ArchiveUserRequestSchema} arg.body
-   * @returns {Promise<ArchiveUserSuccess>} - Success response
-   * @summary: archive user
-   * @description: archive user
-   */
-  async archiveUser({ body } = {}) {
-    const { error } = UserValidator.archiveUser().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = UserValidator.archiveUser().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: "Parameter Validation warrnings for archiveUser",
-      });
-      Logger({ level: "WARN", message: warrning });
-    }
-
-    const query_params = {};
-
-    const response = await PlatformAPIClient.execute(
-      this.config,
-      "put",
-      `/service/platform/user/v1.0/company/${this.config.companyId}/application/${this.applicationId}/customers/archive`,
-      query_params,
-      body
-    );
-
-    const {
-      error: res_error,
-    } = UserModel.ArchiveUserSuccess().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
-
-    if (res_error) {
-      Logger({
-        level: "WARN",
-        message: "Response Validation Warnnings for archiveUser",
       });
       Logger({ level: "WARN", message: res_error });
     }
@@ -391,6 +630,65 @@ class User {
 
   /**
    * @param {Object} arg - Arg object.
+   * @param {PlatformSchema} arg.body
+   * @returns {Promise<PlatformSchema>} - Success response
+   * @summary: Update platform configurations
+   * @description: Use this API to edit the existing platform configurations such as mobile image, desktop image, social logins, and all other text.
+   */
+  async updatePlatformConfig({ body } = {}) {
+    const { error } = UserValidator.updatePlatformConfig().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = UserValidator.updatePlatformConfig().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for updatePlatformConfig",
+      });
+      Logger({ level: "WARN", message: warrning });
+    }
+
+    const query_params = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/user/v1.0/company/${this.config.companyId}/application/${this.applicationId}/platform/config`,
+      query_params,
+      body
+    );
+
+    const { error: res_error } = UserModel.PlatformSchema().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for updatePlatformConfig",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
    * @param {string} arg.userId - User ID
    * @param {UpdateUserRequestSchema} arg.body
    * @returns {Promise<CreateUserResponseSchema>} - Success response
@@ -452,303 +750,6 @@ class User {
 
     return response;
   }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {CreateUserSessionRequestSchema} arg.body
-   * @returns {Promise<CreateUserSessionResponseSchema>} - Success response
-   * @summary: Create user session
-   * @description: Create user session
-   */
-  async createUserSession({ body } = {}) {
-    const { error } = UserValidator.createUserSession().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = UserValidator.createUserSession().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: "Parameter Validation warrnings for createUserSession",
-      });
-      Logger({ level: "WARN", message: warrning });
-    }
-
-    const query_params = {};
-
-    const response = await PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/user/v1.0/company/${this.config.companyId}/application/${this.applicationId}/customers/session`,
-      query_params,
-      body
-    );
-
-    const {
-      error: res_error,
-    } = UserModel.CreateUserSessionResponseSchema().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
-
-    if (res_error) {
-      Logger({
-        level: "WARN",
-        message: "Response Validation Warnnings for createUserSession",
-      });
-      Logger({ level: "WARN", message: res_error });
-    }
-
-    return response;
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.id - ID of a customer.
-   * @returns {Promise<SessionListResponseSchema>} - Success response
-   * @summary: Get a list of all session for a user
-   * @description: Use this API to retrieve a list of session of customers who have registered in the application.
-   */
-  async getActiveSessions({ id } = {}) {
-    const { error } = UserValidator.getActiveSessions().validate(
-      {
-        id,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = UserValidator.getActiveSessions().validate(
-      {
-        id,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: "Parameter Validation warrnings for getActiveSessions",
-      });
-      Logger({ level: "WARN", message: warrning });
-    }
-
-    const query_params = {};
-    query_params["id"] = id;
-
-    const response = await PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/user/v1.0/company/${this.config.companyId}/application/${this.applicationId}/customers/sesions`,
-      query_params,
-      undefined
-    );
-
-    const {
-      error: res_error,
-    } = UserModel.SessionListResponseSchema().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
-
-    if (res_error) {
-      Logger({
-        level: "WARN",
-        message: "Response Validation Warnnings for getActiveSessions",
-      });
-      Logger({ level: "WARN", message: res_error });
-    }
-
-    return response;
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.id - ID of a customer.
-   * @returns {Promise<SessionDeleteResponseSchema>} - Success response
-   * @summary: Delete a list of all session for a user
-   * @description: Use this API to Delete a list of session of customers who have registered in the application.
-   */
-  async deleteActiveSessions({ id } = {}) {
-    const { error } = UserValidator.deleteActiveSessions().validate(
-      {
-        id,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = UserValidator.deleteActiveSessions().validate(
-      {
-        id,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: "Parameter Validation warrnings for deleteActiveSessions",
-      });
-      Logger({ level: "WARN", message: warrning });
-    }
-
-    const query_params = {};
-    query_params["id"] = id;
-
-    const response = await PlatformAPIClient.execute(
-      this.config,
-      "delete",
-      `/service/platform/user/v1.0/company/${this.config.companyId}/application/${this.applicationId}/customers/sesions`,
-      query_params,
-      undefined
-    );
-
-    const {
-      error: res_error,
-    } = UserModel.SessionDeleteResponseSchema().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
-
-    if (res_error) {
-      Logger({
-        level: "WARN",
-        message: "Response Validation Warnnings for deleteActiveSessions",
-      });
-      Logger({ level: "WARN", message: res_error });
-    }
-
-    return response;
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @returns {Promise<PlatformSchema>} - Success response
-   * @summary: Get platform configurations
-   * @description: Use this API to get all the platform configurations such as mobile image, desktop image, social logins, and all other text.
-   */
-  async getPlatformConfig({} = {}) {
-    const { error } = UserValidator.getPlatformConfig().validate(
-      {},
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = UserValidator.getPlatformConfig().validate(
-      {},
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: "Parameter Validation warrnings for getPlatformConfig",
-      });
-      Logger({ level: "WARN", message: warrning });
-    }
-
-    const query_params = {};
-
-    const response = await PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/user/v1.0/company/${this.config.companyId}/application/${this.applicationId}/platform/config`,
-      query_params,
-      undefined
-    );
-
-    const { error: res_error } = UserModel.PlatformSchema().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
-
-    if (res_error) {
-      Logger({
-        level: "WARN",
-        message: "Response Validation Warnnings for getPlatformConfig",
-      });
-      Logger({ level: "WARN", message: res_error });
-    }
-
-    return response;
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {PlatformSchema} arg.body
-   * @returns {Promise<PlatformSchema>} - Success response
-   * @summary: Update platform configurations
-   * @description: Use this API to edit the existing platform configurations such as mobile image, desktop image, social logins, and all other text.
-   */
-  async updatePlatformConfig({ body } = {}) {
-    const { error } = UserValidator.updatePlatformConfig().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = UserValidator.updatePlatformConfig().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: "Parameter Validation warrnings for updatePlatformConfig",
-      });
-      Logger({ level: "WARN", message: warrning });
-    }
-
-    const query_params = {};
-
-    const response = await PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/user/v1.0/company/${this.config.companyId}/application/${this.applicationId}/platform/config`,
-      query_params,
-      body
-    );
-
-    const { error: res_error } = UserModel.PlatformSchema().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
-
-    if (res_error) {
-      Logger({
-        level: "WARN",
-        message: "Response Validation Warnnings for updatePlatformConfig",
-      });
-      Logger({ level: "WARN", message: res_error });
-    }
-
-    return response;
-  }
 }
+
 module.exports = User;

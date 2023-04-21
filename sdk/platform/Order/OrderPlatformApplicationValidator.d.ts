@@ -1,6 +1,6 @@
 export = OrderValidator;
 declare class OrderValidator {
-    static getApplicationShipments(): any;
     static getAppOrderShipmentDetails(): any;
+    static getApplicationShipments(): any;
     static trackPlatformShipment(): any;
 }

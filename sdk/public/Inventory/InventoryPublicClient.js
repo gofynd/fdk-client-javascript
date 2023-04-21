@@ -10,13 +10,13 @@ class Inventory {
   constructor(_conf) {
     this._conf = _conf;
     this._relativeUrls = {
-      getConfigByApiKey: "/service/common/inventory/v1.0/company/slingshot",
       getApiKey: "/service/common/inventory/v1.0/company/slingshot/apikey",
+      getConfigByApiKey: "/service/common/inventory/v1.0/company/slingshot",
       getJobByCode: "/service/common/inventory/v1.0/company/jobs/code/{code}",
-      getJobConfigByIntegrationType:
-        "/service/common/inventory/v1.0/company/job/config",
       getJobCodesMetrics:
         "/service/common/inventory/v1.0/company/email/jobCode",
+      getJobConfigByIntegrationType:
+        "/service/common/inventory/v1.0/company/job/config",
       saveJobCodesMetrics:
         "/service/common/inventory/v1.0/company/email/jobCode",
     };
@@ -34,70 +34,6 @@ class Inventory {
       ...this._urls,
       ...urls,
     };
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.apikey - Api key
-   * @returns {Promise<ResponseEnvelopeSlingshotConfigurationDetail>} - Success response
-   * @summary: Get Slingshot Configuration Of  A Company using API key
-   * @description: REST Endpoint that returns all configuration detail of a company
-   */
-  async getConfigByApiKey({ apikey } = {}) {
-    const { error } = InventoryValidator.getConfigByApiKey().validate(
-      { apikey },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = InventoryValidator.getConfigByApiKey().validate(
-      { apikey },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: "Parameter Validation warrnings for getConfigByApiKey",
-      });
-      Logger({ level: "WARN", message: warrning });
-    }
-
-    const query_params = {};
-    query_params["apikey"] = apikey;
-
-    const xHeaders = {};
-
-    const response = await PublicAPIClient.execute(
-      this._conf,
-      "get",
-      constructUrl({
-        url: this._urls["getConfigByApiKey"],
-        params: {},
-      }),
-      query_params,
-      undefined,
-      xHeaders
-    );
-
-    const {
-      error: res_error,
-    } = InventoryModel.ResponseEnvelopeSlingshotConfigurationDetail().validate(
-      response,
-      { abortEarly: false, allowUnknown: false }
-    );
-
-    if (res_error) {
-      Logger({
-        level: "WARN",
-        message: "Response Validation Warnnings for getConfigByApiKey",
-      });
-      Logger({ level: "WARN", message: res_error });
-    }
-
-    return response;
   }
 
   /**
@@ -168,6 +104,70 @@ class Inventory {
 
   /**
    * @param {Object} arg - Arg object.
+   * @param {string} arg.apikey - Api key
+   * @returns {Promise<ResponseEnvelopeSlingshotConfigurationDetail>} - Success response
+   * @summary: Get Slingshot Configuration Of  A Company using API key
+   * @description: REST Endpoint that returns all configuration detail of a company
+   */
+  async getConfigByApiKey({ apikey } = {}) {
+    const { error } = InventoryValidator.getConfigByApiKey().validate(
+      { apikey },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = InventoryValidator.getConfigByApiKey().validate(
+      { apikey },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getConfigByApiKey",
+      });
+      Logger({ level: "WARN", message: warrning });
+    }
+
+    const query_params = {};
+    query_params["apikey"] = apikey;
+
+    const xHeaders = {};
+
+    const response = await PublicAPIClient.execute(
+      this._conf,
+      "get",
+      constructUrl({
+        url: this._urls["getConfigByApiKey"],
+        params: {},
+      }),
+      query_params,
+      undefined,
+      xHeaders
+    );
+
+    const {
+      error: res_error,
+    } = InventoryModel.ResponseEnvelopeSlingshotConfigurationDetail().validate(
+      response,
+      { abortEarly: false, allowUnknown: false }
+    );
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getConfigByApiKey",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
    * @param {string} arg.code - Job Code
    * @returns {Promise<ResponseEnvelopeJobConfigDTO>} - Success response
    * @summary: Get Job Config By Code
@@ -222,6 +222,74 @@ class Inventory {
       Logger({
         level: "WARN",
         message: "Response Validation Warnnings for getJobByCode",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {boolean} [arg.dailyJob] - Daily Job Flag
+   * @param {string} [arg.jobCode] - Email Job Code
+   * @returns {Promise<ResponseEnvelopeObject>} - Success response
+   * @summary: Find all the JobCodes from Metrics Collection based on the field Values
+   * @description: Endpoint to return all JobCodes present in Metrics Collection
+   */
+  async getJobCodesMetrics({ dailyJob, jobCode } = {}) {
+    const { error } = InventoryValidator.getJobCodesMetrics().validate(
+      { dailyJob, jobCode },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = InventoryValidator.getJobCodesMetrics().validate(
+      { dailyJob, jobCode },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getJobCodesMetrics",
+      });
+      Logger({ level: "WARN", message: warrning });
+    }
+
+    const query_params = {};
+    query_params["daily_job"] = dailyJob;
+    query_params["job_code"] = jobCode;
+
+    const xHeaders = {};
+
+    const response = await PublicAPIClient.execute(
+      this._conf,
+      "get",
+      constructUrl({
+        url: this._urls["getJobCodesMetrics"],
+        params: {},
+      }),
+      query_params,
+      undefined,
+      xHeaders
+    );
+
+    const {
+      error: res_error,
+    } = InventoryModel.ResponseEnvelopeObject().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getJobCodesMetrics",
       });
       Logger({ level: "WARN", message: res_error });
     }
@@ -303,74 +371,6 @@ class Inventory {
 
   /**
    * @param {Object} arg - Arg object.
-   * @param {boolean} [arg.dailyJob] - Daily Job Flag
-   * @param {string} [arg.jobCode] - Email Job Code
-   * @returns {Promise<ResponseEnvelopeObject>} - Success response
-   * @summary: Find all the JobCodes from Metrics Collection based on the field Values
-   * @description: Endpoint to return all JobCodes present in Metrics Collection
-   */
-  async getJobCodesMetrics({ dailyJob, jobCode } = {}) {
-    const { error } = InventoryValidator.getJobCodesMetrics().validate(
-      { dailyJob, jobCode },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = InventoryValidator.getJobCodesMetrics().validate(
-      { dailyJob, jobCode },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: "Parameter Validation warrnings for getJobCodesMetrics",
-      });
-      Logger({ level: "WARN", message: warrning });
-    }
-
-    const query_params = {};
-    query_params["daily_job"] = dailyJob;
-    query_params["job_code"] = jobCode;
-
-    const xHeaders = {};
-
-    const response = await PublicAPIClient.execute(
-      this._conf,
-      "get",
-      constructUrl({
-        url: this._urls["getJobCodesMetrics"],
-        params: {},
-      }),
-      query_params,
-      undefined,
-      xHeaders
-    );
-
-    const {
-      error: res_error,
-    } = InventoryModel.ResponseEnvelopeObject().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
-
-    if (res_error) {
-      Logger({
-        level: "WARN",
-        message: "Response Validation Warnnings for getJobCodesMetrics",
-      });
-      Logger({ level: "WARN", message: res_error });
-    }
-
-    return response;
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
    * @param {EmailJobMetrics} arg.body
    * @returns {Promise<ResponseEnvelopeEmailJobMetrics>} - Success response
    * @summary: Save JobCode Metrics
@@ -434,4 +434,5 @@ class Inventory {
     return response;
   }
 }
+
 module.exports = Inventory;

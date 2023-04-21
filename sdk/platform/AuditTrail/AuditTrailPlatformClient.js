@@ -1,6 +1,6 @@
-const Paginator = require("../../common/Paginator");
-const { FDKClientValidationError } = require("../../common/FDKError");
 const PlatformAPIClient = require("../PlatformAPIClient");
+const { FDKClientValidationError } = require("../../common/FDKError");
+const Paginator = require("../../common/Paginator");
 const AuditTrailValidator = require("./AuditTrailPlatformValidator");
 const AuditTrailModel = require("./AuditTrailPlatformModel");
 const { Logger } = require("./../../common/Logger");
@@ -8,71 +8,6 @@ const { Logger } = require("./../../common/Logger");
 class AuditTrail {
   constructor(config) {
     this.config = config;
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.qs - Logs Query
-   * @returns {Promise<LogSchemaResponse>} - Success response
-   * @summary: Get paginated audit logs
-   * @description: Get a paginated set of logs that can be filtered using the available set of parameters and get the relevant group of logs
-   */
-  async getAuditLogs({ qs } = {}) {
-    const { error } = AuditTrailValidator.getAuditLogs().validate(
-      {
-        qs,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = AuditTrailValidator.getAuditLogs().validate(
-      {
-        qs,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: "Parameter Validation warrnings for getAuditLogs",
-      });
-      Logger({ level: "WARN", message: warrning });
-    }
-
-    const query_params = {};
-    query_params["qs"] = qs;
-
-    const xHeaders = {};
-
-    const response = await PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/audit-trail/v1.0/company/${this.config.companyId}/logs/`,
-      query_params,
-      undefined,
-      xHeaders
-    );
-
-    const {
-      error: res_error,
-    } = AuditTrailModel.LogSchemaResponse().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
-
-    if (res_error) {
-      Logger({
-        level: "WARN",
-        message: "Response Validation Warnnings for getAuditLogs",
-      });
-      Logger({ level: "WARN", message: res_error });
-    }
-
-    return response;
   }
 
   /**
@@ -196,6 +131,71 @@ class AuditTrail {
       Logger({
         level: "WARN",
         message: "Response Validation Warnnings for getAuditLog",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.qs - Logs Query
+   * @returns {Promise<LogSchemaResponse>} - Success response
+   * @summary: Get paginated audit logs
+   * @description: Get a paginated set of logs that can be filtered using the available set of parameters and get the relevant group of logs
+   */
+  async getAuditLogs({ qs } = {}) {
+    const { error } = AuditTrailValidator.getAuditLogs().validate(
+      {
+        qs,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = AuditTrailValidator.getAuditLogs().validate(
+      {
+        qs,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getAuditLogs",
+      });
+      Logger({ level: "WARN", message: warrning });
+    }
+
+    const query_params = {};
+    query_params["qs"] = qs;
+
+    const xHeaders = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/audit-trail/v1.0/company/${this.config.companyId}/logs/`,
+      query_params,
+      undefined,
+      xHeaders
+    );
+
+    const {
+      error: res_error,
+    } = AuditTrailModel.LogSchemaResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getAuditLogs",
       });
       Logger({ level: "WARN", message: res_error });
     }

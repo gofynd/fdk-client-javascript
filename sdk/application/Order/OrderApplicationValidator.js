@@ -2,31 +2,9 @@ const Joi = require("joi");
 
 const OrderModel = require("./OrderApplicationModel");
 class OrderValidator {
-  static getOrders() {
-    return Joi.object({
-      status: Joi.number(),
-      pageNo: Joi.number(),
-      pageSize: Joi.number(),
-      fromDate: Joi.string().allow(""),
-      toDate: Joi.string().allow(""),
-      customMeta: Joi.string().allow(""),
-    });
-  }
-
-  static getOrderById() {
+  static getCustomerDetailsByShipmentId() {
     return Joi.object({
       orderId: Joi.string().allow("").required(),
-    }).required();
-  }
-
-  static getPosOrderById() {
-    return Joi.object({
-      orderId: Joi.string().allow("").required(),
-    }).required();
-  }
-
-  static getShipmentById() {
-    return Joi.object({
       shipmentId: Joi.string().allow("").required(),
     }).required();
   }
@@ -38,15 +16,44 @@ class OrderValidator {
     }).required();
   }
 
-  static trackShipment() {
+  static getOrderById() {
+    return Joi.object({
+      orderId: Joi.string().allow("").required(),
+    }).required();
+  }
+
+  static getOrders() {
+    return Joi.object({
+      status: Joi.number(),
+      pageNo: Joi.number(),
+      pageSize: Joi.number(),
+      fromDate: Joi.string().allow(""),
+      toDate: Joi.string().allow(""),
+      customMeta: Joi.string().allow(""),
+    });
+  }
+
+  static getPosOrderById() {
+    return Joi.object({
+      orderId: Joi.string().allow("").required(),
+    }).required();
+  }
+
+  static getShipmentBagReasons() {
+    return Joi.object({
+      shipmentId: Joi.string().allow("").required(),
+      bagId: Joi.string().allow("").required(),
+    }).required();
+  }
+
+  static getShipmentById() {
     return Joi.object({
       shipmentId: Joi.string().allow("").required(),
     }).required();
   }
 
-  static getCustomerDetailsByShipmentId() {
+  static getShipmentReasons() {
     return Joi.object({
-      orderId: Joi.string().allow("").required(),
       shipmentId: Joi.string().allow("").required(),
     }).required();
   }
@@ -58,22 +65,7 @@ class OrderValidator {
     }).required();
   }
 
-  static verifyOtpShipmentCustomer() {
-    return Joi.object({
-      orderId: Joi.string().allow("").required(),
-      shipmentId: Joi.string().allow("").required(),
-      body: OrderModel.VerifyOtp().required(),
-    }).required();
-  }
-
-  static getShipmentBagReasons() {
-    return Joi.object({
-      shipmentId: Joi.string().allow("").required(),
-      bagId: Joi.string().allow("").required(),
-    }).required();
-  }
-
-  static getShipmentReasons() {
+  static trackShipment() {
     return Joi.object({
       shipmentId: Joi.string().allow("").required(),
     }).required();
@@ -90,6 +82,14 @@ class OrderValidator {
     return Joi.object({
       shipmentId: Joi.string().allow("").required(),
       body: OrderModel.UpdateShipmentStatusRequest().required(),
+    }).required();
+  }
+
+  static verifyOtpShipmentCustomer() {
+    return Joi.object({
+      orderId: Joi.string().allow("").required(),
+      shipmentId: Joi.string().allow("").required(),
+      body: OrderModel.VerifyOtp().required(),
     }).required();
   }
 }

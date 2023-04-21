@@ -1,6 +1,6 @@
-const Paginator = require("../../common/Paginator");
-const { FDKClientValidationError } = require("../../common/FDKError");
 const PlatformAPIClient = require("../PlatformAPIClient");
+const { FDKClientValidationError } = require("../../common/FDKError");
+const Paginator = require("../../common/Paginator");
 const LeadValidator = require("./LeadPlatformValidator");
 const LeadModel = require("./LeadPlatformModel");
 const { Logger } = require("./../../common/Logger");
@@ -8,6 +8,447 @@ const { Logger } = require("./../../common/Logger");
 class Lead {
   constructor(config) {
     this.config = config;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.id - Ticket ID for which history is created
+   * @param {TicketHistoryPayload} arg.body
+   * @returns {Promise<TicketHistory>} - Success response
+   * @summary: Create history for specific company level ticket
+   * @description: Create history for specific company level ticket, this history is seen on ticket detail page, this can be comment, log or rating.
+   */
+  async createHistory({ id, body } = {}) {
+    const { error } = LeadValidator.createHistory().validate(
+      {
+        id,
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = LeadValidator.createHistory().validate(
+      {
+        id,
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for createHistory",
+      });
+      Logger({ level: "WARN", message: warrning });
+    }
+
+    const query_params = {};
+
+    const xHeaders = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/lead/v1.0/company/${this.config.companyId}/ticket/${id}/history`,
+      query_params,
+      body,
+      xHeaders
+    );
+
+    const { error: res_error } = LeadModel.TicketHistory().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for createHistory",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {AddTicketPayload} arg.body
+   * @returns {Promise<Ticket>} - Success response
+   * @summary: Creates a company level ticket
+   * @description: Creates a company level ticket
+   */
+  async createTicket({ body } = {}) {
+    const { error } = LeadValidator.createTicket().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = LeadValidator.createTicket().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for createTicket",
+      });
+      Logger({ level: "WARN", message: warrning });
+    }
+
+    const query_params = {};
+
+    const xHeaders = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/lead/v1.0/company/${this.config.companyId}/ticket`,
+      query_params,
+      body,
+      xHeaders
+    );
+
+    const { error: res_error } = LeadModel.Ticket().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for createTicket",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.id - Ticket ID of ticket to be edited
+   * @param {EditTicketPayload} arg.body
+   * @returns {Promise<Ticket>} - Success response
+   * @summary: Edits ticket details of a company level ticket
+   * @description: Edits ticket details of a company level ticket such as status, priority, category, tags, attachments, assigne & ticket content changes
+   */
+  async editTicket({ id, body } = {}) {
+    const { error } = LeadValidator.editTicket().validate(
+      {
+        id,
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = LeadValidator.editTicket().validate(
+      {
+        id,
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for editTicket",
+      });
+      Logger({ level: "WARN", message: warrning });
+    }
+
+    const query_params = {};
+
+    const xHeaders = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "put",
+      `/service/platform/lead/v1.0/company/${this.config.companyId}/ticket/${id}`,
+      query_params,
+      body,
+      xHeaders
+    );
+
+    const { error: res_error } = LeadModel.Ticket().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for editTicket",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.id - Ticket ID for which feedbacks are to be fetched
+   * @returns {Promise<TicketFeedbackList>} - Success response
+   * @summary: Gets a list of feedback submitted against that ticket
+   * @description: Gets a list of feedback submitted against that ticket
+   */
+  async getFeedbacks({ id } = {}) {
+    const { error } = LeadValidator.getFeedbacks().validate(
+      {
+        id,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = LeadValidator.getFeedbacks().validate(
+      {
+        id,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getFeedbacks",
+      });
+      Logger({ level: "WARN", message: warrning });
+    }
+
+    const query_params = {};
+
+    const xHeaders = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/lead/v1.0/company/${this.config.companyId}/ticket/${id}/feedback`,
+      query_params,
+      undefined,
+      xHeaders
+    );
+
+    const {
+      error: res_error,
+    } = LeadModel.TicketFeedbackList().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getFeedbacks",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @returns {Promise<CloseVideoRoomResponse>} - Success response
+   * @summary: Get general support configuration.
+   * @description: Get general support configuration.
+   */
+  async getGeneralConfig({} = {}) {
+    const { error } = LeadValidator.getGeneralConfig().validate(
+      {},
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = LeadValidator.getGeneralConfig().validate(
+      {},
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getGeneralConfig",
+      });
+      Logger({ level: "WARN", message: warrning });
+    }
+
+    const query_params = {};
+
+    const xHeaders = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/lead/v1.0/company/${this.config.companyId}/general-config`,
+      query_params,
+      undefined,
+      xHeaders
+    );
+
+    const {
+      error: res_error,
+    } = LeadModel.CloseVideoRoomResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getGeneralConfig",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.id - Tiket ID of the ticket to be fetched
+   * @returns {Promise<Ticket>} - Success response
+   * @summary: Retreives ticket details of a company level ticket with ticket ID
+   * @description: Retreives ticket details of a company level ticket
+   */
+  async getTicket({ id } = {}) {
+    const { error } = LeadValidator.getTicket().validate(
+      {
+        id,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = LeadValidator.getTicket().validate(
+      {
+        id,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getTicket",
+      });
+      Logger({ level: "WARN", message: warrning });
+    }
+
+    const query_params = {};
+
+    const xHeaders = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/lead/v1.0/company/${this.config.companyId}/ticket/${id}`,
+      query_params,
+      undefined,
+      xHeaders
+    );
+
+    const { error: res_error } = LeadModel.Ticket().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getTicket",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.id - Ticket ID for which history is to be fetched
+   * @returns {Promise<TicketHistoryList>} - Success response
+   * @summary: Gets history list for specific company level ticket
+   * @description: Gets history list for specific company level ticket, this history is seen on ticket detail page, this can be comment, log or rating.
+   */
+  async getTicketHistory({ id } = {}) {
+    const { error } = LeadValidator.getTicketHistory().validate(
+      {
+        id,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = LeadValidator.getTicketHistory().validate(
+      {
+        id,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getTicketHistory",
+      });
+      Logger({ level: "WARN", message: warrning });
+    }
+
+    const query_params = {};
+
+    const xHeaders = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/lead/v1.0/company/${this.config.companyId}/ticket/${id}/history`,
+      query_params,
+      undefined,
+      xHeaders
+    );
+
+    const {
+      error: res_error,
+    } = LeadModel.TicketHistoryList().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getTicketHistory",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
@@ -159,455 +600,8 @@ class Lead {
       });
       return data;
     };
-    paginator.setCallback(callback);
+    paginator.setCallback(callback.bind(this));
     return paginator;
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {AddTicketPayload} arg.body
-   * @returns {Promise<Ticket>} - Success response
-   * @summary: Creates a company level ticket
-   * @description: Creates a company level ticket
-   */
-  async createTicket({ body } = {}) {
-    const { error } = LeadValidator.createTicket().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = LeadValidator.createTicket().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: "Parameter Validation warrnings for createTicket",
-      });
-      Logger({ level: "WARN", message: warrning });
-    }
-
-    const query_params = {};
-
-    const xHeaders = {};
-
-    const response = await PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/lead/v1.0/company/${this.config.companyId}/ticket`,
-      query_params,
-      body,
-      xHeaders
-    );
-
-    const { error: res_error } = LeadModel.Ticket().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
-
-    if (res_error) {
-      Logger({
-        level: "WARN",
-        message: "Response Validation Warnnings for createTicket",
-      });
-      Logger({ level: "WARN", message: res_error });
-    }
-
-    return response;
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.id - Tiket ID of the ticket to be fetched
-   * @returns {Promise<Ticket>} - Success response
-   * @summary: Retreives ticket details of a company level ticket with ticket ID
-   * @description: Retreives ticket details of a company level ticket
-   */
-  async getTicket({ id } = {}) {
-    const { error } = LeadValidator.getTicket().validate(
-      {
-        id,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = LeadValidator.getTicket().validate(
-      {
-        id,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: "Parameter Validation warrnings for getTicket",
-      });
-      Logger({ level: "WARN", message: warrning });
-    }
-
-    const query_params = {};
-
-    const xHeaders = {};
-
-    const response = await PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/lead/v1.0/company/${this.config.companyId}/ticket/${id}`,
-      query_params,
-      undefined,
-      xHeaders
-    );
-
-    const { error: res_error } = LeadModel.Ticket().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
-
-    if (res_error) {
-      Logger({
-        level: "WARN",
-        message: "Response Validation Warnnings for getTicket",
-      });
-      Logger({ level: "WARN", message: res_error });
-    }
-
-    return response;
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.id - Ticket ID of ticket to be edited
-   * @param {EditTicketPayload} arg.body
-   * @returns {Promise<Ticket>} - Success response
-   * @summary: Edits ticket details of a company level ticket
-   * @description: Edits ticket details of a company level ticket such as status, priority, category, tags, attachments, assigne & ticket content changes
-   */
-  async editTicket({ id, body } = {}) {
-    const { error } = LeadValidator.editTicket().validate(
-      {
-        id,
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = LeadValidator.editTicket().validate(
-      {
-        id,
-        body,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: "Parameter Validation warrnings for editTicket",
-      });
-      Logger({ level: "WARN", message: warrning });
-    }
-
-    const query_params = {};
-
-    const xHeaders = {};
-
-    const response = await PlatformAPIClient.execute(
-      this.config,
-      "put",
-      `/service/platform/lead/v1.0/company/${this.config.companyId}/ticket/${id}`,
-      query_params,
-      body,
-      xHeaders
-    );
-
-    const { error: res_error } = LeadModel.Ticket().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
-
-    if (res_error) {
-      Logger({
-        level: "WARN",
-        message: "Response Validation Warnnings for editTicket",
-      });
-      Logger({ level: "WARN", message: res_error });
-    }
-
-    return response;
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.id - Ticket ID for which history is created
-   * @param {TicketHistoryPayload} arg.body
-   * @returns {Promise<TicketHistory>} - Success response
-   * @summary: Create history for specific company level ticket
-   * @description: Create history for specific company level ticket, this history is seen on ticket detail page, this can be comment, log or rating.
-   */
-  async createHistory({ id, body } = {}) {
-    const { error } = LeadValidator.createHistory().validate(
-      {
-        id,
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = LeadValidator.createHistory().validate(
-      {
-        id,
-        body,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: "Parameter Validation warrnings for createHistory",
-      });
-      Logger({ level: "WARN", message: warrning });
-    }
-
-    const query_params = {};
-
-    const xHeaders = {};
-
-    const response = await PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/lead/v1.0/company/${this.config.companyId}/ticket/${id}/history`,
-      query_params,
-      body,
-      xHeaders
-    );
-
-    const { error: res_error } = LeadModel.TicketHistory().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
-
-    if (res_error) {
-      Logger({
-        level: "WARN",
-        message: "Response Validation Warnnings for createHistory",
-      });
-      Logger({ level: "WARN", message: res_error });
-    }
-
-    return response;
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.id - Ticket ID for which history is to be fetched
-   * @returns {Promise<TicketHistoryList>} - Success response
-   * @summary: Gets history list for specific company level ticket
-   * @description: Gets history list for specific company level ticket, this history is seen on ticket detail page, this can be comment, log or rating.
-   */
-  async getTicketHistory({ id } = {}) {
-    const { error } = LeadValidator.getTicketHistory().validate(
-      {
-        id,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = LeadValidator.getTicketHistory().validate(
-      {
-        id,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: "Parameter Validation warrnings for getTicketHistory",
-      });
-      Logger({ level: "WARN", message: warrning });
-    }
-
-    const query_params = {};
-
-    const xHeaders = {};
-
-    const response = await PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/lead/v1.0/company/${this.config.companyId}/ticket/${id}/history`,
-      query_params,
-      undefined,
-      xHeaders
-    );
-
-    const {
-      error: res_error,
-    } = LeadModel.TicketHistoryList().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
-
-    if (res_error) {
-      Logger({
-        level: "WARN",
-        message: "Response Validation Warnnings for getTicketHistory",
-      });
-      Logger({ level: "WARN", message: res_error });
-    }
-
-    return response;
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.id - Ticket ID for which feedbacks are to be fetched
-   * @returns {Promise<TicketFeedbackList>} - Success response
-   * @summary: Gets a list of feedback submitted against that ticket
-   * @description: Gets a list of feedback submitted against that ticket
-   */
-  async getFeedbacks({ id } = {}) {
-    const { error } = LeadValidator.getFeedbacks().validate(
-      {
-        id,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = LeadValidator.getFeedbacks().validate(
-      {
-        id,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: "Parameter Validation warrnings for getFeedbacks",
-      });
-      Logger({ level: "WARN", message: warrning });
-    }
-
-    const query_params = {};
-
-    const xHeaders = {};
-
-    const response = await PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/lead/v1.0/company/${this.config.companyId}/ticket/${id}/feedback`,
-      query_params,
-      undefined,
-      xHeaders
-    );
-
-    const {
-      error: res_error,
-    } = LeadModel.TicketFeedbackList().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
-
-    if (res_error) {
-      Logger({
-        level: "WARN",
-        message: "Response Validation Warnnings for getFeedbacks",
-      });
-      Logger({ level: "WARN", message: res_error });
-    }
-
-    return response;
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.id - Ticket ID for which feedback is to be submitted
-   * @param {TicketFeedbackPayload} arg.body
-   * @returns {Promise<TicketFeedback>} - Success response
-   * @summary: Submit a response for feeback form against that ticket
-   * @description: Submit a response for feeback form against that ticket
-   */
-  async submitFeedback({ id, body } = {}) {
-    const { error } = LeadValidator.submitFeedback().validate(
-      {
-        id,
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = LeadValidator.submitFeedback().validate(
-      {
-        id,
-        body,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: "Parameter Validation warrnings for submitFeedback",
-      });
-      Logger({ level: "WARN", message: warrning });
-    }
-
-    const query_params = {};
-
-    const xHeaders = {};
-
-    const response = await PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/lead/v1.0/company/${this.config.companyId}/ticket/${id}/feedback`,
-      query_params,
-      body,
-      xHeaders
-    );
-
-    const { error: res_error } = LeadModel.TicketFeedback().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
-
-    if (res_error) {
-      Logger({
-        level: "WARN",
-        message: "Response Validation Warnnings for submitFeedback",
-      });
-      Logger({ level: "WARN", message: res_error });
-    }
-
-    return response;
   }
 
   /**
@@ -740,13 +734,18 @@ class Lead {
 
   /**
    * @param {Object} arg - Arg object.
-   * @returns {Promise<CloseVideoRoomResponse>} - Success response
-   * @summary: Get general support configuration.
-   * @description: Get general support configuration.
+   * @param {string} arg.id - Ticket ID for which feedback is to be submitted
+   * @param {TicketFeedbackPayload} arg.body
+   * @returns {Promise<TicketFeedback>} - Success response
+   * @summary: Submit a response for feeback form against that ticket
+   * @description: Submit a response for feeback form against that ticket
    */
-  async getGeneralConfig({} = {}) {
-    const { error } = LeadValidator.getGeneralConfig().validate(
-      {},
+  async submitFeedback({ id, body } = {}) {
+    const { error } = LeadValidator.submitFeedback().validate(
+      {
+        id,
+        body,
+      },
       { abortEarly: false, allowUnknown: true }
     );
     if (error) {
@@ -754,14 +753,17 @@ class Lead {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = LeadValidator.getGeneralConfig().validate(
-      {},
+    const { error: warrning } = LeadValidator.submitFeedback().validate(
+      {
+        id,
+        body,
+      },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for getGeneralConfig",
+        message: "Parameter Validation warrnings for submitFeedback",
       });
       Logger({ level: "WARN", message: warrning });
     }
@@ -772,16 +774,14 @@ class Lead {
 
     const response = await PlatformAPIClient.execute(
       this.config,
-      "get",
-      `/service/platform/lead/v1.0/company/${this.config.companyId}/general-config`,
+      "post",
+      `/service/platform/lead/v1.0/company/${this.config.companyId}/ticket/${id}/feedback`,
       query_params,
-      undefined,
+      body,
       xHeaders
     );
 
-    const {
-      error: res_error,
-    } = LeadModel.CloseVideoRoomResponse().validate(response, {
+    const { error: res_error } = LeadModel.TicketFeedback().validate(response, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -789,7 +789,7 @@ class Lead {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for getGeneralConfig",
+        message: "Response Validation Warnnings for submitFeedback",
       });
       Logger({ level: "WARN", message: res_error });
     }

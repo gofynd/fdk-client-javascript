@@ -1,6 +1,6 @@
-const Paginator = require("../../common/Paginator");
 const PlatformAPIClient = require("../PlatformAPIClient");
 const { FDKClientValidationError } = require("../../common/FDKError");
+const Paginator = require("../../common/Paginator");
 const ShareValidator = require("./SharePlatformApplicationValidator");
 const ShareModel = require("./SharePlatformModel");
 const { Logger } = require("./../../common/Logger");
@@ -63,6 +63,65 @@ class Share {
       Logger({
         level: "WARN",
         message: "Response Validation Warnnings for createShortLink",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.hash - Hash of short url
+   * @returns {Promise<ShortLinkRes>} - Success response
+   * @summary: Get short link by hash
+   * @description: Get short link by hash
+   */
+  async getShortLinkByHash({ hash } = {}) {
+    const { error } = ShareValidator.getShortLinkByHash().validate(
+      {
+        hash,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = ShareValidator.getShortLinkByHash().validate(
+      {
+        hash,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getShortLinkByHash",
+      });
+      Logger({ level: "WARN", message: warrning });
+    }
+
+    const query_params = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/share/v1.0/company/${this.config.companyId}/application/${this.applicationId}/links/short-link/${hash}/`,
+      query_params,
+      undefined
+    );
+
+    const { error: res_error } = ShareModel.ShortLinkRes().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getShortLinkByHash",
       });
       Logger({ level: "WARN", message: res_error });
     }
@@ -191,65 +250,6 @@ class Share {
 
   /**
    * @param {Object} arg - Arg object.
-   * @param {string} arg.hash - Hash of short url
-   * @returns {Promise<ShortLinkRes>} - Success response
-   * @summary: Get short link by hash
-   * @description: Get short link by hash
-   */
-  async getShortLinkByHash({ hash } = {}) {
-    const { error } = ShareValidator.getShortLinkByHash().validate(
-      {
-        hash,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = ShareValidator.getShortLinkByHash().validate(
-      {
-        hash,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: "Parameter Validation warrnings for getShortLinkByHash",
-      });
-      Logger({ level: "WARN", message: warrning });
-    }
-
-    const query_params = {};
-
-    const response = await PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/share/v1.0/company/${this.config.companyId}/application/${this.applicationId}/links/short-link/${hash}/`,
-      query_params,
-      undefined
-    );
-
-    const { error: res_error } = ShareModel.ShortLinkRes().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
-
-    if (res_error) {
-      Logger({
-        level: "WARN",
-        message: "Response Validation Warnnings for getShortLinkByHash",
-      });
-      Logger({ level: "WARN", message: res_error });
-    }
-
-    return response;
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
    * @param {string} arg.id - Short link document identifier
    * @param {ShortLinkReq} arg.body
    * @returns {Promise<ShortLinkRes>} - Success response
@@ -310,4 +310,5 @@ class Share {
     return response;
   }
 }
+
 module.exports = Share;

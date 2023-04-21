@@ -1,16 +1,16 @@
 export = OrderValidator;
 declare class OrderValidator {
-    static getOrders(): any;
-    static getOrderById(): any;
-    static getPosOrderById(): any;
-    static getShipmentById(): any;
-    static getInvoiceByShipmentId(): any;
-    static trackShipment(): any;
     static getCustomerDetailsByShipmentId(): any;
-    static sendOtpToShipmentCustomer(): any;
-    static verifyOtpShipmentCustomer(): any;
+    static getInvoiceByShipmentId(): any;
+    static getOrderById(): any;
+    static getOrders(): any;
+    static getPosOrderById(): any;
     static getShipmentBagReasons(): any;
+    static getShipmentById(): any;
     static getShipmentReasons(): any;
+    static sendOtpToShipmentCustomer(): any;
+    static trackShipment(): any;
     static updateShipmentStatus(): any;
     static updateShipmentStatus1(): any;
+    static verifyOtpShipmentCustomer(): any;
 }

@@ -6,19 +6,27 @@ class CompanyProfileValidator {
     return Joi.object({}).required();
   }
 
-  static updateCompany() {
+  static createBrand() {
     return Joi.object({
-      body: CompanyProfileModel.UpdateCompany().required(),
+      body: CompanyProfileModel.CreateUpdateBrandRequestSerializer().required(),
     }).required();
   }
 
-  static getCompanyMetrics() {
-    return Joi.object({}).required();
+  static createCompanyBrandMapping() {
+    return Joi.object({
+      body: CompanyProfileModel.CompanyBrandPostRequestSerializer().required(),
+    }).required();
   }
 
-  static getBrand() {
+  static createLocation() {
     return Joi.object({
-      brandId: Joi.string().allow("").required(),
+      body: CompanyProfileModel.LocationSerializer().required(),
+    }).required();
+  }
+
+  static createLocationBulk() {
+    return Joi.object({
+      body: CompanyProfileModel.BulkLocationSerializer().required(),
     }).required();
   }
 
@@ -29,9 +37,9 @@ class CompanyProfileValidator {
     }).required();
   }
 
-  static createBrand() {
+  static getBrand() {
     return Joi.object({
-      body: CompanyProfileModel.CreateUpdateBrandRequestSerializer().required(),
+      brandId: Joi.string().allow("").required(),
     }).required();
   }
 
@@ -43,9 +51,13 @@ class CompanyProfileValidator {
     }).required();
   }
 
-  static createCompanyBrandMapping() {
+  static getCompanyMetrics() {
+    return Joi.object({}).required();
+  }
+
+  static getLocationDetail() {
     return Joi.object({
-      body: CompanyProfileModel.CompanyBrandPostRequestSerializer().required(),
+      locationId: Joi.string().allow("").required(),
     }).required();
   }
 
@@ -60,15 +72,9 @@ class CompanyProfileValidator {
     }).required();
   }
 
-  static createLocation() {
+  static updateCompany() {
     return Joi.object({
-      body: CompanyProfileModel.LocationSerializer().required(),
-    }).required();
-  }
-
-  static getLocationDetail() {
-    return Joi.object({
-      locationId: Joi.string().allow("").required(),
+      body: CompanyProfileModel.UpdateCompany().required(),
     }).required();
   }
 
@@ -78,11 +84,6 @@ class CompanyProfileValidator {
       body: CompanyProfileModel.LocationSerializer().required(),
     }).required();
   }
-
-  static createLocationBulk() {
-    return Joi.object({
-      body: CompanyProfileModel.BulkLocationSerializer().required(),
-    }).required();
-  }
 }
+
 module.exports = CompanyProfileValidator;

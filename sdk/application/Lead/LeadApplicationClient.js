@@ -1,7 +1,7 @@
-const APIClient = require("../ApplicationAPIClient");
+const ApplicationAPIClient = require("../ApplicationAPIClient");
+const { FDKClientValidationError } = require("../../common/FDKError");
 const constructUrl = require("../constructUrl");
 const Paginator = require("../../common/Paginator");
-const { FDKClientValidationError } = require("../../common/FDKError");
 const LeadValidator = require("./LeadApplicationValidator");
 const LeadModel = require("./LeadApplicationModel");
 const { Logger } = require("./../../common/Logger");
@@ -10,15 +10,15 @@ class Lead {
   constructor(_conf) {
     this._conf = _conf;
     this._relativeUrls = {
-      getTicket: "/service/application/lead/v1.0/ticket/{id}",
       createHistory: "/service/application/lead/v1.0/ticket/{id}/history",
       createTicket: "/service/application/lead/v1.0/ticket/",
       getCustomForm: "/service/application/lead/v1.0/form/{slug}",
-      submitCustomForm: "/service/application/lead/v1.0/form/{slug}/submit",
       getParticipantsInsideVideoRoom:
         "/service/application/lead/v1.0/video/room/{unique_name}/participants",
+      getTicket: "/service/application/lead/v1.0/ticket/{id}",
       getTokenForVideoRoom:
         "/service/application/lead/v1.0/video/room/{unique_name}/token",
+      submitCustomForm: "/service/application/lead/v1.0/form/{slug}/submit",
     };
     this._urls = Object.entries(this._relativeUrls).reduce(
       (urls, [method, relativeUrl]) => {
@@ -34,67 +34,6 @@ class Lead {
       ...this._urls,
       ...urls,
     };
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.id - ID of ticket to be retrieved
-   * @returns {Promise<Ticket>} - Success response
-   * @summary: Get Ticket with the specific id
-   * @description: Get Ticket with the specific id, this is used to view the ticket details
-   */
-  async getTicket({ id } = {}) {
-    const { error } = LeadValidator.getTicket().validate(
-      { id },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = LeadValidator.getTicket().validate(
-      { id },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: "Parameter Validation warrnings for getTicket",
-      });
-      Logger({ level: "WARN", message: warrning });
-    }
-
-    const query_params = {};
-
-    const xHeaders = {};
-
-    const response = await APIClient.execute(
-      this._conf,
-      "get",
-      constructUrl({
-        url: this._urls["getTicket"],
-        params: { id },
-      }),
-      query_params,
-      undefined,
-      xHeaders
-    );
-
-    const { error: res_error } = LeadModel.Ticket().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
-
-    if (res_error) {
-      Logger({
-        level: "WARN",
-        message: "Response Validation Warnnings for getTicket",
-      });
-      Logger({ level: "WARN", message: res_error });
-    }
-
-    return response;
   }
 
   /**
@@ -131,7 +70,7 @@ class Lead {
 
     const xHeaders = {};
 
-    const response = await APIClient.execute(
+    const response = await ApplicationAPIClient.execute(
       this._conf,
       "post",
       constructUrl({
@@ -192,7 +131,7 @@ class Lead {
 
     const xHeaders = {};
 
-    const response = await APIClient.execute(
+    const response = await ApplicationAPIClient.execute(
       this._conf,
       "post",
       constructUrl({
@@ -253,7 +192,7 @@ class Lead {
 
     const xHeaders = {};
 
-    const response = await APIClient.execute(
+    const response = await ApplicationAPIClient.execute(
       this._conf,
       "get",
       constructUrl({
@@ -274,70 +213,6 @@ class Lead {
       Logger({
         level: "WARN",
         message: "Response Validation Warnnings for getCustomForm",
-      });
-      Logger({ level: "WARN", message: res_error });
-    }
-
-    return response;
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.slug - Slug of form whose response is getting submitted
-   * @param {CustomFormSubmissionPayload} arg.body
-   * @returns {Promise<SubmitCustomFormResponse>} - Success response
-   * @summary: Submit Response for a specific Custom Form using it's slug
-   * @description: Submit Response for a specific Custom Form using it's slug, this response is then used to create a ticket on behalf of the user.
-   */
-  async submitCustomForm({ slug, body } = {}) {
-    const { error } = LeadValidator.submitCustomForm().validate(
-      { slug, body },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = LeadValidator.submitCustomForm().validate(
-      { slug, body },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: "Parameter Validation warrnings for submitCustomForm",
-      });
-      Logger({ level: "WARN", message: warrning });
-    }
-
-    const query_params = {};
-
-    const xHeaders = {};
-
-    const response = await APIClient.execute(
-      this._conf,
-      "post",
-      constructUrl({
-        url: this._urls["submitCustomForm"],
-        params: { slug },
-      }),
-      query_params,
-      body,
-      xHeaders
-    );
-
-    const {
-      error: res_error,
-    } = LeadModel.SubmitCustomFormResponse().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
-
-    if (res_error) {
-      Logger({
-        level: "WARN",
-        message: "Response Validation Warnnings for submitCustomForm",
       });
       Logger({ level: "WARN", message: res_error });
     }
@@ -381,7 +256,7 @@ class Lead {
 
     const xHeaders = {};
 
-    const response = await APIClient.execute(
+    const response = await ApplicationAPIClient.execute(
       this._conf,
       "get",
       constructUrl({
@@ -405,6 +280,67 @@ class Lead {
         level: "WARN",
         message:
           "Response Validation Warnnings for getParticipantsInsideVideoRoom",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.id - ID of ticket to be retrieved
+   * @returns {Promise<Ticket>} - Success response
+   * @summary: Get Ticket with the specific id
+   * @description: Get Ticket with the specific id, this is used to view the ticket details
+   */
+  async getTicket({ id } = {}) {
+    const { error } = LeadValidator.getTicket().validate(
+      { id },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = LeadValidator.getTicket().validate(
+      { id },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getTicket",
+      });
+      Logger({ level: "WARN", message: warrning });
+    }
+
+    const query_params = {};
+
+    const xHeaders = {};
+
+    const response = await ApplicationAPIClient.execute(
+      this._conf,
+      "get",
+      constructUrl({
+        url: this._urls["getTicket"],
+        params: { id },
+      }),
+      query_params,
+      undefined,
+      xHeaders
+    );
+
+    const { error: res_error } = LeadModel.Ticket().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getTicket",
       });
       Logger({ level: "WARN", message: res_error });
     }
@@ -445,7 +381,7 @@ class Lead {
 
     const xHeaders = {};
 
-    const response = await APIClient.execute(
+    const response = await ApplicationAPIClient.execute(
       this._conf,
       "get",
       constructUrl({
@@ -468,6 +404,70 @@ class Lead {
       Logger({
         level: "WARN",
         message: "Response Validation Warnnings for getTokenForVideoRoom",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.slug - Slug of form whose response is getting submitted
+   * @param {CustomFormSubmissionPayload} arg.body
+   * @returns {Promise<SubmitCustomFormResponse>} - Success response
+   * @summary: Submit Response for a specific Custom Form using it's slug
+   * @description: Submit Response for a specific Custom Form using it's slug, this response is then used to create a ticket on behalf of the user.
+   */
+  async submitCustomForm({ slug, body } = {}) {
+    const { error } = LeadValidator.submitCustomForm().validate(
+      { slug, body },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = LeadValidator.submitCustomForm().validate(
+      { slug, body },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for submitCustomForm",
+      });
+      Logger({ level: "WARN", message: warrning });
+    }
+
+    const query_params = {};
+
+    const xHeaders = {};
+
+    const response = await ApplicationAPIClient.execute(
+      this._conf,
+      "post",
+      constructUrl({
+        url: this._urls["submitCustomForm"],
+        params: { slug },
+      }),
+      query_params,
+      body,
+      xHeaders
+    );
+
+    const {
+      error: res_error,
+    } = LeadModel.SubmitCustomFormResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for submitCustomForm",
       });
       Logger({ level: "WARN", message: res_error });
     }

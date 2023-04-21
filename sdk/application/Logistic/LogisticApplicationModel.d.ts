@@ -1,21 +1,21 @@
 export = LogisticModel;
 declare class LogisticModel {
-    static PincodeMetaResponse(): any;
-    static PincodeParentsResponse(): any;
-    static PincodeErrorSchemaResponse(): any;
-    static PincodeDataResponse(): any;
-    static PincodeApiResponse(): any;
-    static TATCategoryRequest(): any;
-    static TATArticlesRequest(): any;
-    static TATLocationDetailsRequest(): any;
-    static TATViewRequest(): any;
-    static TATTimestampResponse(): any;
-    static TATFormattedResponse(): any;
-    static TATPromiseResponse(): any;
-    static TATErrorSchemaResponse(): any;
-    static TATArticlesResponse(): any;
-    static TATLocationDetailsResponse(): any;
-    static TATViewResponse(): any;
     static GetZoneFromPincodeViewRequest(): any;
     static GetZoneFromPincodeViewResponse(): any;
+    static PincodeApiResponse(): any;
+    static PincodeDataResponse(): any;
+    static PincodeErrorSchemaResponse(): any;
+    static PincodeMetaResponse(): any;
+    static PincodeParentsResponse(): any;
+    static TATArticlesRequest(): any;
+    static TATArticlesResponse(): any;
+    static TATCategoryRequest(): any;
+    static TATErrorSchemaResponse(): any;
+    static TATFormattedResponse(): any;
+    static TATLocationDetailsRequest(): any;
+    static TATLocationDetailsResponse(): any;
+    static TATPromiseResponse(): any;
+    static TATTimestampResponse(): any;
+    static TATViewRequest(): any;
+    static TATViewResponse(): any;
 }

@@ -3,23 +3,11 @@ declare class Common {
     constructor(_conf: any);
     _conf: any;
     _relativeUrls: {
-        searchApplication: string;
         getLocations: string;
+        searchApplication: string;
     };
     _urls: {};
     updateUrls(urls: any): void;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {string} [arg.authorization] -
-     * @param {string} [arg.query] - Provide application name
-     * @returns {Promise<ApplicationResponse>} - Success response
-     * @summary: Search Application
-     * @description: Provide application name or domain url
-     */
-    searchApplication({ authorization, query }?: {
-        authorization?: string;
-        query?: string;
-    }): Promise<ApplicationResponse>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} [arg.locationType] - Provide location type to query on.
@@ -35,4 +23,16 @@ declare class Common {
         locationType?: string;
         id?: string;
     }): Promise<Locations>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {string} [arg.authorization] -
+     * @param {string} [arg.query] - Provide application name
+     * @returns {Promise<ApplicationResponse>} - Success response
+     * @summary: Search Application
+     * @description: Provide application name or domain url
+     */
+    searchApplication({ authorization, query }?: {
+        authorization?: string;
+        query?: string;
+    }): Promise<ApplicationResponse>;
 }

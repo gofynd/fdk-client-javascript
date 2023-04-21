@@ -1,6 +1,6 @@
 const Joi = require("joi");
-const PartnerModel = require("./PartnerPlatformModel");
 
+const PartnerModel = require("./PartnerPlatformModel");
 class PartnerValidator {
   static addProxyPath() {
     return Joi.object({

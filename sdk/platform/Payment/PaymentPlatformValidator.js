@@ -2,25 +2,6 @@ const Joi = require("joi");
 
 const PaymentModel = require("./PaymentPlatformModel");
 class PaymentValidator {
-  static getAllPayouts() {
-    return Joi.object({
-      uniqueExternalId: Joi.string().allow(""),
-    }).required();
-  }
-
-  static savePayout() {
-    return Joi.object({
-      body: PaymentModel.PayoutRequest().required(),
-    }).required();
-  }
-
-  static updatePayout() {
-    return Joi.object({
-      uniqueTransferNo: Joi.string().allow("").required(),
-      body: PaymentModel.PayoutRequest().required(),
-    }).required();
-  }
-
   static activateAndDectivatePayout() {
     return Joi.object({
       uniqueTransferNo: Joi.string().allow("").required(),
@@ -34,12 +15,6 @@ class PaymentValidator {
     }).required();
   }
 
-  static getSubscriptionPaymentMethod() {
-    return Joi.object({
-      uniqueExternalId: Joi.string().allow(""),
-    }).required();
-  }
-
   static deleteSubscriptionPaymentMethod() {
     return Joi.object({
       uniqueExternalId: Joi.string().allow("").required(),
@@ -47,13 +22,38 @@ class PaymentValidator {
     }).required();
   }
 
+  static getAllPayouts() {
+    return Joi.object({
+      uniqueExternalId: Joi.string().allow(""),
+    }).required();
+  }
+
   static getSubscriptionConfig() {
     return Joi.object({}).required();
+  }
+
+  static getSubscriptionPaymentMethod() {
+    return Joi.object({
+      uniqueExternalId: Joi.string().allow(""),
+    }).required();
+  }
+
+  static savePayout() {
+    return Joi.object({
+      body: PaymentModel.PayoutRequest().required(),
+    }).required();
   }
 
   static saveSubscriptionSetupIntent() {
     return Joi.object({
       body: PaymentModel.SaveSubscriptionSetupIntentRequest().required(),
+    }).required();
+  }
+
+  static updatePayout() {
+    return Joi.object({
+      uniqueTransferNo: Joi.string().allow("").required(),
+      body: PaymentModel.PayoutRequest().required(),
     }).required();
   }
 
@@ -63,4 +63,5 @@ class PaymentValidator {
     }).required();
   }
 }
+
 module.exports = PaymentValidator;

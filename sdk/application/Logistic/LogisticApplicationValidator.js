@@ -8,15 +8,15 @@ class LogisticValidator {
     }).required();
   }
 
-  static getTatProduct() {
-    return Joi.object({
-      body: LogisticModel.TATViewRequest().required(),
-    }).required();
-  }
-
   static getPincodeZones() {
     return Joi.object({
       body: LogisticModel.GetZoneFromPincodeViewRequest().required(),
+    }).required();
+  }
+
+  static getTatProduct() {
+    return Joi.object({
+      body: LogisticModel.TATViewRequest().required(),
     }).required();
   }
 }

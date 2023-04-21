@@ -1,6 +1,6 @@
-const Paginator = require("../../common/Paginator");
-const { FDKClientValidationError } = require("../../common/FDKError");
 const PlatformAPIClient = require("../PlatformAPIClient");
+const { FDKClientValidationError } = require("../../common/FDKError");
+const Paginator = require("../../common/Paginator");
 const ServiceabilityValidator = require("./ServiceabilityPlatformValidator");
 const ServiceabilityModel = require("./ServiceabilityPlatformModel");
 const { Logger } = require("./../../common/Logger");
@@ -8,6 +8,136 @@ const { Logger } = require("./../../common/Logger");
 class Serviceability {
   constructor(config) {
     this.config = config;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @returns {Promise<GetStoresViewResponse>} - Success response
+   * @summary: GET stores data
+   * @description: This API returns stores data.
+   */
+  async getAllStores({} = {}) {
+    const { error } = ServiceabilityValidator.getAllStores().validate(
+      {},
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = ServiceabilityValidator.getAllStores().validate(
+      {},
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getAllStores",
+      });
+      Logger({ level: "WARN", message: warrning });
+    }
+
+    const query_params = {};
+
+    const xHeaders = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/logistics/v1.0/company/${this.config.companyId}/logistics/stores`,
+      query_params,
+      undefined,
+      xHeaders
+    );
+
+    const {
+      error: res_error,
+    } = ServiceabilityModel.GetStoresViewResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getAllStores",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {number} [arg.pageNumber] - Index of the item to start returning with
+   * @param {number} [arg.pageSize] - Determines the items to be displayed in a page
+   * @returns {Promise<CompanyStoreView_Response>} - Success response
+   * @summary: Company Store View of application.
+   * @description: This API returns Company Store View of the application.
+   */
+  async getCompanyStoreView({ pageNumber, pageSize } = {}) {
+    const { error } = ServiceabilityValidator.getCompanyStoreView().validate(
+      {
+        pageNumber,
+        pageSize,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = ServiceabilityValidator.getCompanyStoreView().validate(
+      {
+        pageNumber,
+        pageSize,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getCompanyStoreView",
+      });
+      Logger({ level: "WARN", message: warrning });
+    }
+
+    const query_params = {};
+    query_params["page_number"] = pageNumber;
+    query_params["page_size"] = pageSize;
+
+    const xHeaders = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/logistics/v1.0/company/${this.config.companyId}/all-stores`,
+      query_params,
+      undefined,
+      xHeaders
+    );
+
+    const {
+      error: res_error,
+    } = ServiceabilityModel.CompanyStoreView_Response().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getCompanyStoreView",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
@@ -159,17 +289,15 @@ class Serviceability {
 
   /**
    * @param {Object} arg - Arg object.
-   * @param {number} [arg.pageNumber] - Index of the item to start returning with
-   * @param {number} [arg.pageSize] - Determines the items to be displayed in a page
-   * @returns {Promise<CompanyStoreView_Response>} - Success response
-   * @summary: Company Store View of application.
-   * @description: This API returns Company Store View of the application.
+   * @param {number} arg.storeUid - A `store_uid` contains a specific ID of a store.
+   * @returns {Promise<GetStoresViewResponse>} - Success response
+   * @summary: GET stores data
+   * @description: This API returns stores data.
    */
-  async getCompanyStoreView({ pageNumber, pageSize } = {}) {
-    const { error } = ServiceabilityValidator.getCompanyStoreView().validate(
+  async getStore({ storeUid } = {}) {
+    const { error } = ServiceabilityValidator.getStore().validate(
       {
-        pageNumber,
-        pageSize,
+        storeUid,
       },
       { abortEarly: false, allowUnknown: true }
     );
@@ -178,33 +306,28 @@ class Serviceability {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = ServiceabilityValidator.getCompanyStoreView().validate(
+    const { error: warrning } = ServiceabilityValidator.getStore().validate(
       {
-        pageNumber,
-        pageSize,
+        storeUid,
       },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for getCompanyStoreView",
+        message: "Parameter Validation warrnings for getStore",
       });
       Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
-    query_params["page_number"] = pageNumber;
-    query_params["page_size"] = pageSize;
 
     const xHeaders = {};
 
     const response = await PlatformAPIClient.execute(
       this.config,
       "get",
-      `/service/platform/logistics/v1.0/company/${this.config.companyId}/all-stores`,
+      `/service/platform/logistics/v1.0/company/${this.config.companyId}/stores/${storeUid}`,
       query_params,
       undefined,
       xHeaders
@@ -212,7 +335,7 @@ class Serviceability {
 
     const {
       error: res_error,
-    } = ServiceabilityModel.CompanyStoreView_Response().validate(response, {
+    } = ServiceabilityModel.GetStoresViewResponse().validate(response, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -220,79 +343,7 @@ class Serviceability {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for getCompanyStoreView",
-      });
-      Logger({ level: "WARN", message: res_error });
-    }
-
-    return response;
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.zoneId - A `zone_id` is a unique identifier for a
-   *   particular zone.
-   * @param {ZoneUpdateRequest} arg.body
-   * @returns {Promise<ZoneSuccessResponse>} - Success response
-   * @summary: Updation of zone collections in database.
-   * @description: This API returns response of updation of zone in mongo database.
-   */
-  async updateZoneControllerView({ zoneId, body } = {}) {
-    const {
-      error,
-    } = ServiceabilityValidator.updateZoneControllerView().validate(
-      {
-        zoneId,
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = ServiceabilityValidator.updateZoneControllerView().validate(
-      {
-        zoneId,
-        body,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: "Parameter Validation warrnings for updateZoneControllerView",
-      });
-      Logger({ level: "WARN", message: warrning });
-    }
-
-    const query_params = {};
-
-    const xHeaders = {};
-
-    const response = await PlatformAPIClient.execute(
-      this.config,
-      "put",
-      `/service/platform/logistics/v1.0/company/${this.config.companyId}/zone/${zoneId}`,
-      query_params,
-      body,
-      xHeaders
-    );
-
-    const {
-      error: res_error,
-    } = ServiceabilityModel.ZoneSuccessResponse().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
-
-    if (res_error) {
-      Logger({
-        level: "WARN",
-        message: "Response Validation Warnnings for updateZoneControllerView",
+        message: "Response Validation Warnnings for getStore",
       });
       Logger({ level: "WARN", message: res_error });
     }
@@ -437,15 +488,25 @@ class Serviceability {
 
   /**
    * @param {Object} arg - Arg object.
-   * @param {number} arg.storeUid - A `store_uid` contains a specific ID of a store.
-   * @returns {Promise<GetStoresViewResponse>} - Success response
-   * @summary: GET stores data
-   * @description: This API returns stores data.
+   * @param {string} arg.zoneId - A `zone_id` is a unique identifier for a
+   *   particular zone.
+   * @param {ZoneUpdateRequest} arg.body
+   * @returns {Promise<ZoneSuccessResponse>} - Success response
+   * @summary: Updation of zone collections in database.
+   * @description: This API returns response of updation of zone in mongo database.
    */
-  async getStore({ storeUid } = {}) {
-    const { error } = ServiceabilityValidator.getStore().validate(
+  async updateZoneControllerView({
+    zoneId,
+
+    body,
+  } = {}) {
+    const {
+      error,
+    } = ServiceabilityValidator.updateZoneControllerView().validate(
       {
-        storeUid,
+        zoneId,
+
+        body,
       },
       { abortEarly: false, allowUnknown: true }
     );
@@ -454,16 +515,20 @@ class Serviceability {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = ServiceabilityValidator.getStore().validate(
+    const {
+      error: warrning,
+    } = ServiceabilityValidator.updateZoneControllerView().validate(
       {
-        storeUid,
+        zoneId,
+
+        body,
       },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for getStore",
+        message: "Parameter Validation warrnings for updateZoneControllerView",
       });
       Logger({ level: "WARN", message: warrning });
     }
@@ -474,16 +539,16 @@ class Serviceability {
 
     const response = await PlatformAPIClient.execute(
       this.config,
-      "get",
-      `/service/platform/logistics/v1.0/company/${this.config.companyId}/stores/${storeUid}`,
+      "put",
+      `/service/platform/logistics/v1.0/company/${this.config.companyId}/zone/${zoneId}`,
       query_params,
-      undefined,
+      body,
       xHeaders
     );
 
     const {
       error: res_error,
-    } = ServiceabilityModel.GetStoresViewResponse().validate(response, {
+    } = ServiceabilityModel.ZoneSuccessResponse().validate(response, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -491,66 +556,7 @@ class Serviceability {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for getStore",
-      });
-      Logger({ level: "WARN", message: res_error });
-    }
-
-    return response;
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @returns {Promise<GetStoresViewResponse>} - Success response
-   * @summary: GET stores data
-   * @description: This API returns stores data.
-   */
-  async getAllStores({} = {}) {
-    const { error } = ServiceabilityValidator.getAllStores().validate(
-      {},
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = ServiceabilityValidator.getAllStores().validate(
-      {},
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: "Parameter Validation warrnings for getAllStores",
-      });
-      Logger({ level: "WARN", message: warrning });
-    }
-
-    const query_params = {};
-
-    const xHeaders = {};
-
-    const response = await PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/logistics/v1.0/company/${this.config.companyId}/logistics/stores`,
-      query_params,
-      undefined,
-      xHeaders
-    );
-
-    const {
-      error: res_error,
-    } = ServiceabilityModel.GetStoresViewResponse().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
-
-    if (res_error) {
-      Logger({
-        level: "WARN",
-        message: "Response Validation Warnnings for getAllStores",
+        message: "Response Validation Warnnings for updateZoneControllerView",
       });
       Logger({ level: "WARN", message: res_error });
     }

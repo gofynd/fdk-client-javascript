@@ -1,32 +1,10 @@
 const Joi = require("joi");
+
 const AnalyticsModel = require("./AnalyticsPlatformModel");
-
 class AnalyticsValidator {
-  static getStatiscticsGroups() {
-    return Joi.object({}).required();
-  }
-
-  static getStatiscticsGroupComponents() {
+  static getAbandonCartDetail() {
     return Joi.object({
-      groupName: Joi.string().allow("").required(),
-    }).required();
-  }
-
-  static getComponentStatsCSV() {
-    return Joi.object({
-      componentName: Joi.string().allow("").required(),
-    }).required();
-  }
-
-  static getComponentStatsPDF() {
-    return Joi.object({
-      componentName: Joi.string().allow("").required(),
-    }).required();
-  }
-
-  static getComponentStats() {
-    return Joi.object({
-      componentName: Joi.string().allow("").required(),
+      cartId: Joi.string().allow("").required(),
     }).required();
   }
 
@@ -46,10 +24,32 @@ class AnalyticsValidator {
     }).required();
   }
 
-  static getAbandonCartDetail() {
+  static getComponentStats() {
     return Joi.object({
-      cartId: Joi.string().allow("").required(),
+      componentName: Joi.string().allow("").required(),
     }).required();
+  }
+
+  static getComponentStatsCSV() {
+    return Joi.object({
+      componentName: Joi.string().allow("").required(),
+    }).required();
+  }
+
+  static getComponentStatsPDF() {
+    return Joi.object({
+      componentName: Joi.string().allow("").required(),
+    }).required();
+  }
+
+  static getStatiscticsGroupComponents() {
+    return Joi.object({
+      groupName: Joi.string().allow("").required(),
+    }).required();
+  }
+
+  static getStatiscticsGroups() {
+    return Joi.object({}).required();
   }
 }
 

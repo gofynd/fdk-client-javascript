@@ -10,9 +10,9 @@ File Storage
 
 * [upload](#upload)
 
-* [startUpload](#startupload)
 * [completeUpload](#completeupload)
 * [signUrls](#signurls)
+* [startUpload](#startupload)
 
 
 
@@ -100,82 +100,6 @@ Use this API to perform the upload of an arbitrarily sized buffer or blob.
 
 
 
-### startUpload
-Initiates an upload and returns a storage link that is valid for 30 minutes. You can use the storage link to make subsequent upload request with file buffer or blob.
-
-
-
-```javascript
-// Promise
-const promise = fileStorage.startUpload({  namespace : value,
- body : value });
-
-// Async/Await
-const data = await fileStorage.startUpload({  namespace : value,
- body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| namespace | string | yes | Name of the bucket created for storing objects. |  
-| body | [StartRequest](#StartRequest) | yes | Request body |
-
-
-Use this API to perform the first step of uploading (i.e. **Start**) an arbitrarily sized buffer or blob.
-
-The three major steps are:
-* Start
-* Upload
-* Complete
-
-### Start
-Initiates the assets upload using `startUpload`.
-It returns a storage link in response.
-
-### Upload
-Use the storage link to upload a file (Buffer or Blob) to the File Storage.
-Make a `PUT` request on storage link received from `startUpload` API with the file (Buffer or Blob) in the request body.
-
-### Complete
-After successfully upload, call the `completeUpload` API to finish the upload process.
-This operation will return the URL of the uploaded file.
-
-
-*Returned Response:*
-
-
-
-
-[StartResponse](#StartResponse)
-
-Success. Next, call the `completeUpload` API and pass the response payload of this API to finish the upload process.
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
 ### completeUpload
 Completes the upload process. After successfully uploading a file, call this API to finish the upload process.
 
@@ -183,11 +107,11 @@ Completes the upload process. After successfully uploading a file, call this API
 
 ```javascript
 // Promise
-const promise = fileStorage.completeUpload({  namespace : value,
+const promise = applicationClient.fileStorage.completeUpload({  namespace : value,
  body : value });
 
 // Async/Await
-const data = await fileStorage.completeUpload({  namespace : value,
+const data = await applicationClient.fileStorage.completeUpload({  namespace : value,
  body : value });
 ```
 
@@ -259,10 +183,10 @@ Explain here
 
 ```javascript
 // Promise
-const promise = fileStorage.signUrls({  body : value });
+const promise = applicationClient.fileStorage.signUrls({  body : value });
 
 // Async/Await
-const data = await fileStorage.signUrls({  body : value });
+const data = await applicationClient.fileStorage.signUrls({  body : value });
 ```
 
 
@@ -307,269 +231,311 @@ Success
 ---
 
 
+### startUpload
+Initiates an upload and returns a storage link that is valid for 30 minutes. You can use the storage link to make subsequent upload request with file buffer or blob.
+
+
+
+```javascript
+// Promise
+const promise = applicationClient.fileStorage.startUpload({  namespace : value,
+ body : value });
+
+// Async/Await
+const data = await applicationClient.fileStorage.startUpload({  namespace : value,
+ body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| namespace | string | yes | Name of the bucket created for storing objects. |  
+| body | [StartRequest](#StartRequest) | yes | Request body |
+
+
+Use this API to perform the first step of uploading (i.e. **Start**) an arbitrarily sized buffer or blob.
+
+The three major steps are:
+* Start
+* Upload
+* Complete
+
+### Start
+Initiates the assets upload using `startUpload`.
+It returns a storage link in response.
+
+### Upload
+Use the storage link to upload a file (Buffer or Blob) to the File Storage.
+Make a `PUT` request on storage link received from `startUpload` API with the file (Buffer or Blob) in the request body.
+
+### Complete
+After successfully upload, call the `completeUpload` API to finish the upload process.
+This operation will return the URL of the uploaded file.
+
+
+*Returned Response:*
+
+
+
+
+[StartResponse](#StartResponse)
+
+Success. Next, call the `completeUpload` API and pass the response payload of this API to finish the upload process.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
 
 ### Schemas
 
- 
- 
- #### [FailedResponse](#FailedResponse)
 
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | message | string |  yes  |  |
-
----
-
-
- 
- 
- #### [CDN](#CDN)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | url | string |  yes  |  |
- | absolute_url | string |  no  |  |
- | relative_url | string |  no  |  |
-
----
-
-
- 
- 
- #### [Upload](#Upload)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | expiry | number |  yes  |  |
- | url | string |  yes  |  |
-
----
-
-
- 
- 
- #### [StartResponse](#StartResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | file_name | string |  yes  |  |
- | file_path | string |  yes  |  |
- | content_type | string |  yes  |  |
- | method | string |  no  |  |
- | namespace | string |  yes  |  |
- | operation | string |  yes  |  |
- | size | number |  yes  |  |
- | upload | [Upload](#Upload) |  yes  |  |
- | cdn | [CDN](#CDN) |  yes  |  |
- | tags | [string] |  no  |  |
-
----
-
-
- 
- 
- #### [StartRequest](#StartRequest)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | file_name | string |  yes  |  |
- | content_type | string |  yes  |  |
- | size | number |  yes  |  |
- | tags | [string] |  no  |  |
- | params | string |  no  |  |
-
----
-
-
- 
- 
- #### [CompleteResponse](#CompleteResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | _id | string |  yes  |  |
- | file_name | string |  yes  |  |
- | file_path | string |  yes  |  |
- | content_type | string |  yes  |  |
- | namespace | string |  yes  |  |
- | operation | string |  yes  |  |
- | size | number |  yes  |  |
- | upload | [Upload](#Upload) |  yes  |  |
- | cdn | [CDN](#CDN) |  yes  |  |
- | success | boolean |  yes  |  |
- | tags | [string] |  no  |  |
- | created_on | string |  yes  |  |
- | modified_on | string |  yes  |  |
-
----
-
-
- 
- 
- #### [Opts](#Opts)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | attempts | number |  no  |  |
- | timestamp | number |  no  |  |
- | delay | number |  no  |  |
-
----
-
-
- 
- 
- #### [CopyFileTask](#CopyFileTask)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | id | string |  yes  |  |
- | name | string |  yes  |  |
- | data | [BulkRequest](#BulkRequest) |  yes  |  |
- | opts | [Opts](#Opts) |  yes  |  |
- | progress | number |  yes  |  |
- | delay | number |  yes  |  |
- | timestamp | number |  yes  |  |
- | attempts_made | number |  yes  |  |
- | stacktrace | [string] |  no  |  |
- | finished_on | number |  yes  |  |
- | processed_on | number |  yes  |  |
-
----
-
-
- 
- 
- #### [BulkUploadResponse](#BulkUploadResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | tracking_url | string |  yes  |  |
- | task | [CopyFileTask](#CopyFileTask) |  yes  |  |
-
----
-
-
- 
- 
- #### [ReqConfiguration](#ReqConfiguration)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | concurrency | number |  no  |  |
-
----
-
-
- 
- 
- #### [Destination](#Destination)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | namespace | string |  yes  |  |
- | rewrite | string |  yes  |  |
- | basepath | string |  no  |  |
-
----
-
-
- 
- 
- #### [BulkRequest](#BulkRequest)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | urls | [string] |  yes  |  |
- | destination | [Destination](#Destination) |  yes  |  |
- | configuration | [ReqConfiguration](#ReqConfiguration) |  no  |  |
-
----
-
-
- 
- 
- #### [Urls](#Urls)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | url | string |  yes  |  |
- | signed_url | string |  yes  |  |
- | expiry | number |  yes  |  |
-
----
-
-
- 
- 
- #### [SignUrlResponse](#SignUrlResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | urls | [[Urls](#Urls)] |  yes  |  |
-
----
-
-
- 
- 
- #### [SignUrlRequest](#SignUrlRequest)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | expiry | number |  yes  |  |
- | urls | [string] |  yes  |  |
-
----
-
-
- 
- 
- #### [Page](#Page)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | item_total | number |  no  |  |
- | next_id | string |  no  |  |
- | has_previous | boolean |  no  |  |
- | has_next | boolean |  no  |  |
- | current | number |  no  |  |
- | type | number |  yes  |  |
- | size | number |  no  |  |
-
----
-
-
- 
- 
- #### [DbRecord](#DbRecord)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | success | boolean |  yes  |  |
- | tags | [string] |  yes  |  |
- | _id | string |  yes  |  |
- | file_name | string |  yes  |  |
- | operation | string |  no  |  |
- | namespace | string |  yes  |  |
- | content_type | string |  yes  |  |
- | file_path | string |  yes  |  |
- | upload | [Upload](#Upload) |  yes  |  |
- | cdn | [CDN](#CDN) |  yes  |  |
- | created_on | string |  yes  |  |
- | modified_on | string |  yes  |  |
-
----
-
-
- 
- 
- #### [BrowseResponse](#BrowseResponse)
+#### [BrowseResponse](#BrowseResponse)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | items | [[DbRecord](#DbRecord)] |  yes  |  |
  | page | [Page](#Page) |  yes  |  |
+ 
+
+---
+
+#### [BulkRequest](#BulkRequest)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | configuration | [ReqConfiguration](#ReqConfiguration) |  no  |  |
+ | destination | [Destination](#Destination) |  yes  |  |
+ | urls | [string] |  yes  |  |
+ 
+
+---
+
+#### [BulkUploadResponse](#BulkUploadResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | task | [CopyFileTask](#CopyFileTask) |  yes  |  |
+ | tracking_url | string |  yes  |  |
+ 
+
+---
+
+#### [CDN](#CDN)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | absolute_url | string |  no  |  |
+ | relative_url | string |  no  |  |
+ | url | string |  yes  |  |
+ 
+
+---
+
+#### [CompleteResponse](#CompleteResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | _id | string |  yes  |  |
+ | cdn | [CDN](#CDN) |  yes  |  |
+ | content_type | string |  yes  |  |
+ | created_on | string |  yes  |  |
+ | file_name | string |  yes  |  |
+ | file_path | string |  yes  |  |
+ | modified_on | string |  yes  |  |
+ | namespace | string |  yes  |  |
+ | operation | string |  yes  |  |
+ | size | number |  yes  |  |
+ | success | boolean |  yes  |  |
+ | tags | [string] |  no  |  |
+ | upload | [Upload](#Upload) |  yes  |  |
+ 
+
+---
+
+#### [CopyFileTask](#CopyFileTask)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | attempts_made | number |  yes  |  |
+ | data | [BulkRequest](#BulkRequest) |  yes  |  |
+ | delay | number |  yes  |  |
+ | finished_on | number |  yes  |  |
+ | id | string |  yes  |  |
+ | name | string |  yes  |  |
+ | opts | [Opts](#Opts) |  yes  |  |
+ | processed_on | number |  yes  |  |
+ | progress | number |  yes  |  |
+ | stacktrace | [string] |  no  |  |
+ | timestamp | number |  yes  |  |
+ 
+
+---
+
+#### [DbRecord](#DbRecord)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | _id | string |  yes  |  |
+ | cdn | [CDN](#CDN) |  yes  |  |
+ | content_type | string |  yes  |  |
+ | created_on | string |  yes  |  |
+ | file_name | string |  yes  |  |
+ | file_path | string |  yes  |  |
+ | modified_on | string |  yes  |  |
+ | namespace | string |  yes  |  |
+ | operation | string |  no  |  |
+ | success | boolean |  yes  |  |
+ | tags | [string] |  yes  |  |
+ | upload | [Upload](#Upload) |  yes  |  |
+ 
+
+---
+
+#### [Destination](#Destination)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | basepath | string |  no  |  |
+ | namespace | string |  yes  |  |
+ | rewrite | string |  yes  |  |
+ 
+
+---
+
+#### [FailedResponse](#FailedResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | message | string |  yes  |  |
+ 
+
+---
+
+#### [Opts](#Opts)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | attempts | number |  no  |  |
+ | delay | number |  no  |  |
+ | timestamp | number |  no  |  |
+ 
+
+---
+
+#### [Page](#Page)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | current | number |  no  |  |
+ | has_next | boolean |  no  |  |
+ | has_previous | boolean |  no  |  |
+ | item_total | number |  no  |  |
+ | next_id | string |  no  |  |
+ | size | number |  no  |  |
+ | type | number |  yes  |  |
+ 
+
+---
+
+#### [ReqConfiguration](#ReqConfiguration)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | concurrency | number |  no  |  |
+ 
+
+---
+
+#### [SignUrlRequest](#SignUrlRequest)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | expiry | number |  yes  |  |
+ | urls | [string] |  yes  |  |
+ 
+
+---
+
+#### [SignUrlResponse](#SignUrlResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | urls | [[Urls](#Urls)] |  yes  |  |
+ 
+
+---
+
+#### [StartRequest](#StartRequest)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | content_type | string |  yes  |  |
+ | file_name | string |  yes  |  |
+ | params | string |  no  |  |
+ | size | number |  yes  |  |
+ | tags | [string] |  no  |  |
+ 
+
+---
+
+#### [StartResponse](#StartResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | cdn | [CDN](#CDN) |  yes  |  |
+ | content_type | string |  yes  |  |
+ | file_name | string |  yes  |  |
+ | file_path | string |  yes  |  |
+ | method | string |  no  |  |
+ | namespace | string |  yes  |  |
+ | operation | string |  yes  |  |
+ | size | number |  yes  |  |
+ | tags | [string] |  no  |  |
+ | upload | [Upload](#Upload) |  yes  |  |
+ 
+
+---
+
+#### [Upload](#Upload)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | expiry | number |  yes  |  |
+ | url | string |  yes  |  |
+ 
+
+---
+
+#### [Urls](#Urls)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | expiry | number |  yes  |  |
+ | signed_url | string |  yes  |  |
+ | url | string |  yes  |  |
+ 
 
 ---
 
