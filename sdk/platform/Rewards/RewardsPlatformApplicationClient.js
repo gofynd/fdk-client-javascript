@@ -199,6 +199,64 @@ class Rewards {
 
   /**
    * @param {Object} arg - Arg object.
+   * @returns {Promise<ConfigurationRes>} - Success response
+   * @summary: Get all valid android paths
+   * @description: Use this API to get a list of valid android paths required by the Rewards INIT API to validate a fradualent device.
+   */
+  async getRewardsConfiguration({} = {}) {
+    const { error } = RewardsValidator.getRewardsConfiguration().validate(
+      {},
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = RewardsValidator.getRewardsConfiguration().validate(
+      {},
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getRewardsConfiguration",
+      });
+      Logger({ level: "WARN", message: warrning });
+    }
+
+    const query_params = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/rewards/v1.0/company/${this.config.companyId}/application/${this.applicationId}/configuration/`,
+      query_params,
+      undefined
+    );
+
+    const {
+      error: res_error,
+    } = RewardsModel.ConfigurationRes().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getRewardsConfiguration",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
    * @param {string} arg.userId - User id
    * @param {string} [arg.pageId] - PageID is the ID of the requested page.
    *   For first request it should be kept empty.
@@ -207,8 +265,8 @@ class Rewards {
    * @summary: Get all transactions of reward points
    * @description: Use this API to get a list of points transactions.
    */
-  async getPointsHistory({ userId, pageId, pageSize } = {}) {
-    const { error } = RewardsValidator.getPointsHistory().validate(
+  async getUserPointsHistory({ userId, pageId, pageSize } = {}) {
+    const { error } = RewardsValidator.getUserPointsHistory().validate(
       {
         userId,
         pageId,
@@ -221,7 +279,9 @@ class Rewards {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = RewardsValidator.getPointsHistory().validate(
+    const {
+      error: warrning,
+    } = RewardsValidator.getUserPointsHistory().validate(
       {
         userId,
         pageId,
@@ -232,7 +292,7 @@ class Rewards {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for getPointsHistory",
+        message: "Parameter Validation warrnings for getUserPointsHistory",
       });
       Logger({ level: "WARN", message: warrning });
     }
@@ -257,7 +317,7 @@ class Rewards {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for getPointsHistory",
+        message: "Response Validation Warnnings for getUserPointsHistory",
       });
       Logger({ level: "WARN", message: res_error });
     }
@@ -274,7 +334,7 @@ class Rewards {
    * @summary: Get all transactions of reward points
    * @description: Use this API to get a list of points transactions.
    */
-  getPointsHistoryPaginator({
+  getUserPointsHistoryPaginator({
     userId,
     companyId,
     applicationId,
@@ -285,7 +345,7 @@ class Rewards {
       const pageId = paginator.nextId;
       const pageNo = paginator.pageNo;
       const pageType = "cursor";
-      const data = await this.getPointsHistory({
+      const data = await this.getUserPointsHistory({
         userId: userId,
         companyId: companyId,
         applicationId: applicationId,
@@ -354,6 +414,69 @@ class Rewards {
       Logger({
         level: "WARN",
         message: "Response Validation Warnnings for saveGiveAway",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {ConfigurationRequest} arg.body
+   * @returns {Promise<SetConfigurationRes>} - Success response
+   * @summary: Updates the collection with given android paths.
+   * @description: Updates the configuration or inserts new records.
+   */
+  async setRewardsConfiguration({ body } = {}) {
+    const { error } = RewardsValidator.setRewardsConfiguration().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = RewardsValidator.setRewardsConfiguration().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for setRewardsConfiguration",
+      });
+      Logger({ level: "WARN", message: warrning });
+    }
+
+    const query_params = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/rewards/v1.0/company/${this.config.companyId}/application/${this.applicationId}/configuration/`,
+      query_params,
+      body
+    );
+
+    const {
+      error: res_error,
+    } = RewardsModel.SetConfigurationRes().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for setRewardsConfiguration",
       });
       Logger({ level: "WARN", message: res_error });
     }

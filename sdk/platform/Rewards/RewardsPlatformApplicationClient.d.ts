@@ -39,6 +39,13 @@ declare class Rewards {
     }): Promise<Offer>;
     /**
      * @param {Object} arg - Arg object.
+     * @returns {Promise<ConfigurationRes>} - Success response
+     * @summary: Get all valid android paths
+     * @description: Use this API to get a list of valid android paths required by the Rewards INIT API to validate a fradualent device.
+     */
+    getRewardsConfiguration({}?: any): Promise<ConfigurationRes>;
+    /**
+     * @param {Object} arg - Arg object.
      * @param {string} arg.userId - User id
      * @param {string} [arg.pageId] - PageID is the ID of the requested page.
      *   For first request it should be kept empty.
@@ -47,7 +54,7 @@ declare class Rewards {
      * @summary: Get all transactions of reward points
      * @description: Use this API to get a list of points transactions.
      */
-    getPointsHistory({ userId, pageId, pageSize }?: {
+    getUserPointsHistory({ userId, pageId, pageSize }?: {
         userId: string;
         pageId?: string;
         pageSize?: number;
@@ -61,7 +68,7 @@ declare class Rewards {
      * @summary: Get all transactions of reward points
      * @description: Use this API to get a list of points transactions.
      */
-    getPointsHistoryPaginator({ userId, companyId, applicationId, pageSize, }?: {
+    getUserPointsHistoryPaginator({ userId, companyId, applicationId, pageSize, }?: {
         userId: string;
         companyId: string;
         applicationId: string;
@@ -77,6 +84,16 @@ declare class Rewards {
     saveGiveAway({ body }?: {
         body: Giveaway;
     }): Promise<Giveaway>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {ConfigurationRequest} arg.body
+     * @returns {Promise<SetConfigurationRes>} - Success response
+     * @summary: Updates the collection with given android paths.
+     * @description: Updates the configuration or inserts new records.
+     */
+    setRewardsConfiguration({ body }?: {
+        body: ConfigurationRequest;
+    }): Promise<SetConfigurationRes>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.pageId - Pagination page id

@@ -14,31 +14,31 @@ class RewardsValidator {
     }).required();
   }
 
-  static getPoints() {
+  static getOrderDiscount() {
+    return Joi.object({
+      body: RewardsModel.OrderDiscountRequest().required(),
+    }).required();
+  }
+
+  static getUserPoints() {
     return Joi.object({});
   }
 
-  static getPointsHistory() {
+  static getUserPointsHistory() {
     return Joi.object({
       pageId: Joi.string().allow(""),
       pageSize: Joi.number(),
     });
   }
 
-  static orderDiscount() {
-    return Joi.object({
-      body: RewardsModel.OrderDiscountRequest().required(),
-    }).required();
+  static getUserReferralDetails() {
+    return Joi.object({});
   }
 
   static redeemReferralCode() {
     return Joi.object({
       body: RewardsModel.RedeemReferralCodeRequest().required(),
     }).required();
-  }
-
-  static referral() {
-    return Joi.object({});
   }
 }
 

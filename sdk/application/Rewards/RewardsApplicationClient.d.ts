@@ -5,11 +5,11 @@ declare class Rewards {
     _relativeUrls: {
         catalogueOrder: string;
         getOfferByName: string;
-        getPoints: string;
-        getPointsHistory: string;
-        orderDiscount: string;
+        getOrderDiscount: string;
+        getUserPoints: string;
+        getUserPointsHistory: string;
+        getUserReferralDetails: string;
         redeemReferralCode: string;
-        referral: string;
     };
     _urls: {};
     updateUrls(urls: any): void;
@@ -35,11 +35,21 @@ declare class Rewards {
     }): Promise<Offer>;
     /**
      * @param {Object} arg - Arg object.
+     * @param {OrderDiscountRequest} arg.body
+     * @returns {Promise<OrderDiscountResponse>} - Success response
+     * @summary: Calculates the discount on order-amount
+     * @description: Use this API to calculate the discount on order-amount based on all the amount range configured in order_discount.
+     */
+    getOrderDiscount({ body }?: {
+        body: OrderDiscountRequest;
+    }): Promise<OrderDiscountResponse>;
+    /**
+     * @param {Object} arg - Arg object.
      * @returns {Promise<PointsResponse>} - Success response
      * @summary: Get referral details of a user
      * @description: Use this API to retrieve total available points of a user for current application
      */
-    getPoints({}?: any): Promise<PointsResponse>;
+    getUserPoints({}?: any): Promise<PointsResponse>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} [arg.pageId] - PageID is the ID of the requested page.
@@ -49,7 +59,7 @@ declare class Rewards {
      * @summary: Get all transactions of reward points
      * @description: Use this API to get a list of points transactions.
      */
-    getPointsHistory({ pageId, pageSize }?: {
+    getUserPointsHistory({ pageId, pageSize }?: {
         pageId?: string;
         pageSize?: number;
     }): Promise<PointsHistoryResponse>;
@@ -59,19 +69,16 @@ declare class Rewards {
      * @summary: Get all transactions of reward points
      * @description: Use this API to get a list of points transactions.
      */
-    getPointsHistoryPaginator({ pageSize }?: {
+    getUserPointsHistoryPaginator({ pageSize }?: {
         pageSize?: number;
     }): Paginator;
     /**
      * @param {Object} arg - Arg object.
-     * @param {OrderDiscountRequest} arg.body
-     * @returns {Promise<OrderDiscountResponse>} - Success response
-     * @summary: Calculates the discount on order-amount
-     * @description: Use this API to calculate the discount on order-amount based on all the amount range configured in order_discount.
+     * @returns {Promise<ReferralDetailsResponse>} - Success response
+     * @summary: Get referral details of a user
+     * @description: Use this API to retrieve the referral details a user has configured in the application.
      */
-    orderDiscount({ body }?: {
-        body: OrderDiscountRequest;
-    }): Promise<OrderDiscountResponse>;
+    getUserReferralDetails({}?: any): Promise<ReferralDetailsResponse>;
     /**
      * @param {Object} arg - Arg object.
      * @param {RedeemReferralCodeRequest} arg.body
@@ -82,12 +89,5 @@ declare class Rewards {
     redeemReferralCode({ body }?: {
         body: RedeemReferralCodeRequest;
     }): Promise<RedeemReferralCodeResponse>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @returns {Promise<ReferralDetailsResponse>} - Success response
-     * @summary: Get referral details of a user
-     * @description: Use this API to retrieve the referral details a user has configured in the application.
-     */
-    referral({}?: any): Promise<ReferralDetailsResponse>;
 }
 import Paginator = require("../../common/Paginator");

@@ -1551,6 +1551,8 @@ class PlatformApplicationClient {
 
 /** @typedef AppUser */
 /** @typedef Asset */
+/** @typedef ConfigurationRequest */
+/** @typedef ConfigurationRes */
 /** @typedef E */
 /** @typedef Giveaway */
 /** @typedef GiveawayAudience */
@@ -1565,6 +1567,7 @@ class PlatformApplicationClient {
 /** @typedef RewardsRule */
 /** @typedef RewardUser */
 /** @typedef Schedule */
+/** @typedef SetConfigurationRes */
 /** @typedef ShareMessages */
 /** @typedef UserRes */
 

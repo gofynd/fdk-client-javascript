@@ -11,8 +11,10 @@ Earn and redeem reward points
 * [getGiveawayAudienceStatus](#getgiveawayaudiencestatus)
 * [getGiveawayById](#getgiveawaybyid)
 * [getOfferByName](#getofferbyname)
-* [getPointsHistory](#getpointshistory)
+* [getRewardsConfiguration](#getrewardsconfiguration)
+* [getUserPointsHistory](#getuserpointshistory)
 * [saveGiveAway](#savegiveaway)
+* [setRewardsConfiguration](#setrewardsconfiguration)
 * [showGiveaways](#showgiveaways)
 * [showOffers](#showoffers)
 * [updateGiveAway](#updategiveaway)
@@ -198,19 +200,70 @@ Success. Check example below or refer `Offer` for more details.
 ---
 
 
-### getPointsHistory
+### getRewardsConfiguration
+Get all valid android paths
+
+
+
+```javascript
+// Promise
+const promise = client.application("<APPLICATION_ID>").rewards.getRewardsConfiguration();
+
+// Async/Await
+const data = await client.application("<APPLICATION_ID>").rewards.getRewardsConfiguration();
+```
+
+
+
+
+
+
+Use this API to get a list of valid android paths required by the Rewards INIT API to validate a fradualent device.
+
+*Returned Response:*
+
+
+
+
+[ConfigurationRes](#ConfigurationRes)
+
+Success. Refer `ConfigurationRes` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### getUserPointsHistory
 Get all transactions of reward points
 
 
 
 ```javascript
 // Promise
-const promise = client.application("<APPLICATION_ID>").rewards.getPointsHistory({  userId : value,
+const promise = client.application("<APPLICATION_ID>").rewards.getUserPointsHistory({  userId : value,
  pageId : value,
  pageSize : value });
 
 // Async/Await
-const data = await client.application("<APPLICATION_ID>").rewards.getPointsHistory({  userId : value,
+const data = await client.application("<APPLICATION_ID>").rewards.getUserPointsHistory({  userId : value,
  pageId : value,
  pageSize : value });
 ```
@@ -290,6 +343,61 @@ Adds a new giveaway.
 
 
 [Giveaway](#Giveaway)
+
+ok
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### setRewardsConfiguration
+Updates the collection with given android paths.
+
+
+
+```javascript
+// Promise
+const promise = client.application("<APPLICATION_ID>").rewards.setRewardsConfiguration({  body : value });
+
+// Async/Await
+const data = await client.application("<APPLICATION_ID>").rewards.setRewardsConfiguration({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [ConfigurationRequest](#ConfigurationRequest) | yes | Request body |
+
+
+Updates the configuration or inserts new records.
+
+*Returned Response:*
+
+
+
+
+[SetConfigurationRes](#SetConfigurationRes)
 
 ok
 
@@ -685,6 +793,28 @@ Success. Check example below or refer `UserRes` for more details.
 
 ---
 
+#### [ConfigurationRequest](#ConfigurationRequest)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | terms_conditions_link | string |  no  |  |
+ | valid_android_packages | [string] |  no  |  |
+ 
+
+---
+
+#### [ConfigurationRes](#ConfigurationRes)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | application_id | string |  no  |  |
+ | success | boolean |  no  |  |
+ | terms_conditions_link | string |  no  |  |
+ | valid_android_packages | [string] |  no  |  |
+ 
+
+---
+
 #### [E](#E)
 
  | Properties | Type | Nullable | Description |
@@ -868,6 +998,15 @@ Success. Check example below or refer `UserRes` for more details.
  | duration | number |  no  |  |
  | end | string |  no  |  |
  | start | string |  no  |  |
+ 
+
+---
+
+#### [SetConfigurationRes](#SetConfigurationRes)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | success | boolean |  no  |  |
  
 
 ---

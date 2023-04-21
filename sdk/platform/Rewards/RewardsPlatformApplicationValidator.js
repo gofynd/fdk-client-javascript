@@ -22,7 +22,11 @@ class RewardsValidator {
     }).required();
   }
 
-  static getPointsHistory() {
+  static getRewardsConfiguration() {
+    return Joi.object({}).required();
+  }
+
+  static getUserPointsHistory() {
     return Joi.object({
       userId: Joi.string().allow("").required(),
 
@@ -34,6 +38,12 @@ class RewardsValidator {
   static saveGiveAway() {
     return Joi.object({
       body: RewardsModel.Giveaway().required(),
+    }).required();
+  }
+
+  static setRewardsConfiguration() {
+    return Joi.object({
+      body: RewardsModel.ConfigurationRequest().required(),
     }).required();
   }
 

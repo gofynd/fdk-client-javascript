@@ -2,6 +2,8 @@ export = RewardsModel;
 declare class RewardsModel {
     static AppUser(): any;
     static Asset(): any;
+    static ConfigurationRequest(): any;
+    static ConfigurationRes(): any;
     static E(): any;
     static Giveaway(): any;
     static GiveawayAudience(): any;
@@ -16,6 +18,7 @@ declare class RewardsModel {
     static RewardsRule(): any;
     static RewardUser(): any;
     static Schedule(): any;
+    static SetConfigurationRes(): any;
     static ShareMessages(): any;
     static UserRes(): any;
 }

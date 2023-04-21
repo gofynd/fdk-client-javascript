@@ -19,6 +19,20 @@ class RewardsModel {
       secure_url: Joi.string().allow(""),
     });
   }
+  static ConfigurationRequest() {
+    return Joi.object({
+      terms_conditions_link: Joi.string().allow(""),
+      valid_android_packages: Joi.array().items(Joi.string().allow("")),
+    });
+  }
+  static ConfigurationRes() {
+    return Joi.object({
+      application_id: Joi.string().allow(""),
+      success: Joi.boolean(),
+      terms_conditions_link: Joi.string().allow(""),
+      valid_android_packages: Joi.array().items(Joi.string().allow("")),
+    });
+  }
   static E() {
     return Joi.object({
       code: Joi.number(),
@@ -148,6 +162,11 @@ class RewardsModel {
       duration: Joi.number(),
       end: Joi.string().allow(""),
       start: Joi.string().allow(""),
+    });
+  }
+  static SetConfigurationRes() {
+    return Joi.object({
+      success: Joi.boolean(),
     });
   }
   static ShareMessages() {

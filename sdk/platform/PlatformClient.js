@@ -11746,6 +11746,18 @@ class PlatformClient {
  * @property {string} [secure_url]
  */
 /**
+ * @typedef ConfigurationRequest
+ * @property {string} [terms_conditions_link]
+ * @property {string[]} [valid_android_packages]
+ */
+/**
+ * @typedef ConfigurationRes
+ * @property {string} [application_id]
+ * @property {boolean} [success]
+ * @property {string} [terms_conditions_link]
+ * @property {string[]} [valid_android_packages]
+ */
+/**
  * @typedef E
  * @property {number} [code]
  * @property {string} [exception]
@@ -11861,6 +11873,10 @@ class PlatformClient {
  * @property {number} [duration]
  * @property {string} [end]
  * @property {string} [start]
+ */
+/**
+ * @typedef SetConfigurationRes
+ * @property {boolean} [success]
  */
 /**
  * @typedef ShareMessages

@@ -10,11 +10,11 @@ Earn and redeem reward points
 
 * [catalogueOrder](#catalogueorder)
 * [getOfferByName](#getofferbyname)
-* [getPoints](#getpoints)
-* [getPointsHistory](#getpointshistory)
-* [orderDiscount](#orderdiscount)
+* [getOrderDiscount](#getorderdiscount)
+* [getUserPoints](#getuserpoints)
+* [getUserPointsHistory](#getuserpointshistory)
+* [getUserReferralDetails](#getuserreferraldetails)
 * [redeemReferralCode](#redeemreferralcode)
-* [referral](#referral)
 
 
 
@@ -134,17 +134,72 @@ Success. Check example below or refer `Offer` for more details.
 ---
 
 
-### getPoints
+### getOrderDiscount
+Calculates the discount on order-amount
+
+
+
+```javascript
+// Promise
+const promise = rewards.getOrderDiscount({  body : value });
+
+// Async/Await
+const data = await rewards.getOrderDiscount({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [OrderDiscountRequest](#OrderDiscountRequest) | yes | Request body |
+
+
+Use this API to calculate the discount on order-amount based on all the amount range configured in order_discount.
+
+*Returned Response:*
+
+
+
+
+[OrderDiscountResponse](#OrderDiscountResponse)
+
+Success. Check example below or refer `OrderDiscountResponse` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### getUserPoints
 Get referral details of a user
 
 
 
 ```javascript
 // Promise
-const promise = rewards.getPoints();
+const promise = rewards.getUserPoints();
 
 // Async/Await
-const data = await rewards.getPoints();
+const data = await rewards.getUserPoints();
 ```
 
 
@@ -185,18 +240,18 @@ Success. Check example below or refer `PointsResponse` for more details.
 ---
 
 
-### getPointsHistory
+### getUserPointsHistory
 Get all transactions of reward points
 
 
 
 ```javascript
 // Promise
-const promise = rewards.getPointsHistory({  pageId : value,
+const promise = rewards.getUserPointsHistory({  pageId : value,
  pageSize : value });
 
 // Async/Await
-const data = await rewards.getPointsHistory({  pageId : value,
+const data = await rewards.getUserPointsHistory({  pageId : value,
  pageSize : value });
 ```
 
@@ -244,38 +299,34 @@ Success. Check example below or refer `PointsHistoryResponse` for more details.
 ---
 
 
-### orderDiscount
-Calculates the discount on order-amount
+### getUserReferralDetails
+Get referral details of a user
 
 
 
 ```javascript
 // Promise
-const promise = rewards.orderDiscount({  body : value });
+const promise = rewards.getUserReferralDetails();
 
 // Async/Await
-const data = await rewards.orderDiscount({  body : value });
+const data = await rewards.getUserReferralDetails();
 ```
 
 
 
 
 
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |
-| body | [OrderDiscountRequest](#OrderDiscountRequest) | yes | Request body |
 
-
-Use this API to calculate the discount on order-amount based on all the amount range configured in order_discount.
+Use this API to retrieve the referral details a user has configured in the application.
 
 *Returned Response:*
 
 
 
 
-[OrderDiscountResponse](#OrderDiscountResponse)
+[ReferralDetailsResponse](#ReferralDetailsResponse)
 
-Success. Check example below or refer `OrderDiscountResponse` for more details.
+Success. Check example below or refer `ReferralDetailsResponse` for more details.
 
 
 
@@ -331,57 +382,6 @@ Use this API to enter a referral code following which, the configured points wou
 [RedeemReferralCodeResponse](#RedeemReferralCodeResponse)
 
 Success. Check example below or refer `RedeemReferralCodeResponse` for more details.
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### referral
-Get referral details of a user
-
-
-
-```javascript
-// Promise
-const promise = rewards.referral();
-
-// Async/Await
-const data = await rewards.referral();
-```
-
-
-
-
-
-
-Use this API to retrieve the referral details a user has configured in the application.
-
-*Returned Response:*
-
-
-
-
-[ReferralDetailsResponse](#ReferralDetailsResponse)
-
-Success. Check example below or refer `ReferralDetailsResponse` for more details.
 
 
 
@@ -607,6 +607,7 @@ Success. Check example below or refer `ReferralDetailsResponse` for more details
  | referral | [Offer](#Offer) |  no  |  |
  | referrer_info | string |  no  |  |
  | share | [ShareMessages](#ShareMessages) |  no  |  |
+ | terms_conditions_link | string |  no  |  |
  | user | [ReferralDetailsUser](#ReferralDetailsUser) |  no  |  |
  
 

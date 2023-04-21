@@ -137,6 +137,7 @@ class RewardsModel {
       referral: RewardsModel.Offer(),
       referrer_info: Joi.string().allow(""),
       share: RewardsModel.ShareMessages(),
+      terms_conditions_link: Joi.string().allow(""),
       user: RewardsModel.ReferralDetailsUser(),
     });
   }
