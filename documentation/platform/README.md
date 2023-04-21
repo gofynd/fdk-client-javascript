@@ -11,7 +11,6 @@
 * [Billing](BILLING.md) - Handle platform subscription 
 * [Communication](COMMUNICATION.md) - Manages email, sms, push notifications sent to users 
 * [Payment](PAYMENT.md) - Collect payment through many payment gateway i.e Stripe, Razorpay, Juspay etc.into Fynd or Self account 
-* [Order](ORDER.md) - Handles all platform order and shipment api(s) 
 * [FileStorage](FILESTORAGE.md) - File Storage 
 * [Share](SHARE.md) - Short link and QR Code 
 * [Inventory](INVENTORY.md) -  

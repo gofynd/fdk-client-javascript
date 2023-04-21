@@ -18,8 +18,6 @@ module.exports = {
 
     PaymentPlatformModel: require("./Payment/PaymentPlatformModel"),
 
-    OrderPlatformModel: require("./Order/OrderPlatformModel"),
-
     FileStoragePlatformModel: require("./FileStorage/FileStoragePlatformModel"),
 
     SharePlatformModel: require("./Share/SharePlatformModel"),

@@ -24,8 +24,6 @@ const Configuration = require("./Configuration/ConfigurationApplicationClient");
 
 const Payment = require("./Payment/PaymentApplicationClient");
 
-const Order = require("./Order/OrderApplicationClient");
-
 const Rewards = require("./Rewards/RewardsApplicationClient");
 
 const PosCart = require("./PosCart/PosCartApplicationClient");
@@ -61,8 +59,6 @@ class ApplicationClient {
     this.configuration = new Configuration(config);
 
     this.payment = new Payment(config);
-
-    this.order = new Order(config);
 
     this.rewards = new Rewards(config);
 
