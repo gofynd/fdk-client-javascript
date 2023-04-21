@@ -264,6 +264,7 @@ class PosCartModel {
       bulk_offer: Joi.any(),
       coupon: PosCartModel.CouponDetails(),
       coupon_message: Joi.string().allow(""),
+      custom_order: Joi.any(),
       discount: Joi.string().allow(""),
       identifiers: PosCartModel.CartProductIdentifer().required(),
       is_set: Joi.boolean(),

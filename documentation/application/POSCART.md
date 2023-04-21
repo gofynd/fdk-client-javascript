@@ -7200,6 +7200,7 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
  | bulk_offer | string |  no  |  |
  | coupon | [CouponDetails](#CouponDetails) |  no  |  |
  | coupon_message | string |  no  |  |
+ | custom_order | string |  no  |  |
  | discount | string |  no  |  |
  | identifiers | [CartProductIdentifer](#CartProductIdentifer) |  yes  |  |
  | is_set | boolean |  no  |  |

@@ -280,6 +280,7 @@ class CartModel {
       bulk_offer: Joi.any(),
       coupon: CartModel.CouponDetails(),
       coupon_message: Joi.string().allow(""),
+      custom_order: Joi.any(),
       discount: Joi.string().allow(""),
       identifiers: CartModel.CartProductIdentifer().required(),
       is_set: Joi.boolean(),
