@@ -1,10 +1,9 @@
-const Paginator = require("../../common/Paginator");
-const { FDKClientValidationError } = require("../../common/FDKError");
 const PlatformAPIClient = require("../PlatformAPIClient");
+const { FDKClientValidationError } = require("../../common/FDKError");
+const Paginator = require("../../common/Paginator");
 const CompanyProfileValidator = require("./CompanyProfilePlatformValidator");
 const CompanyProfileModel = require("./CompanyProfilePlatformModel");
 const { Logger } = require("./../../common/Logger");
-const Joi = require("joi");
 
 class CompanyProfile {
   constructor(config) {
@@ -567,7 +566,7 @@ class CompanyProfile {
       });
       return data;
     };
-    paginator.setCallback(callback);
+    paginator.setCallback(callback.bind(this));
     return paginator;
   }
 
@@ -827,7 +826,7 @@ class CompanyProfile {
       });
       return data;
     };
-    paginator.setCallback(callback);
+    paginator.setCallback(callback.bind(this));
     return paginator;
   }
 

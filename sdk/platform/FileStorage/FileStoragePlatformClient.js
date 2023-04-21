@@ -1,10 +1,11 @@
-const Paginator = require("../../common/Paginator");
-const { FDKClientValidationError } = require("../../common/FDKError");
 const PlatformAPIClient = require("../PlatformAPIClient");
+const { FDKClientValidationError } = require("../../common/FDKError");
+const Paginator = require("../../common/Paginator");
 const FileStorageValidator = require("./FileStoragePlatformValidator");
 const FileStorageModel = require("./FileStoragePlatformModel");
 const { Logger } = require("./../../common/Logger");
-const Joi = require("joi");
+
+const axios = require("axios");
 
 class FileStorage {
   constructor(config) {
@@ -19,10 +20,15 @@ class FileStorage {
    * @summary: Browse Files
    * @description: Browse Files
    */
-  async browse({ namespace, pageNo } = {}) {
+  async browse({
+    namespace,
+
+    pageNo,
+  } = {}) {
     const { error } = FileStorageValidator.browse().validate(
       {
         namespace,
+
         pageNo,
       },
       { abortEarly: false, allowUnknown: true }
@@ -35,6 +41,7 @@ class FileStorage {
     const { error: warrning } = FileStorageValidator.browse().validate(
       {
         namespace,
+
         pageNo,
       },
       { abortEarly: false, allowUnknown: false }
@@ -93,6 +100,7 @@ class FileStorage {
       const pageType = "number";
       const data = await this.browse({
         namespace: namespace,
+
         pageNo: pageNo,
       });
       paginator.setPaginator({
@@ -101,7 +109,7 @@ class FileStorage {
       });
       return data;
     };
-    paginator.setCallback(callback);
+    paginator.setCallback(callback.bind(this));
     return paginator;
   }
 
@@ -130,10 +138,15 @@ class FileStorage {
    * After successfully upload, call `completeUpload` api to complete the upload process.
    * This operation will return the url for the uploaded file.
    */
-  async completeUpload({ namespace, body } = {}) {
+  async completeUpload({
+    namespace,
+
+    body,
+  } = {}) {
     const { error } = FileStorageValidator.completeUpload().validate(
       {
         namespace,
+
         body,
       },
       { abortEarly: false, allowUnknown: true }
@@ -146,6 +159,7 @@ class FileStorage {
     const { error: warrning } = FileStorageValidator.completeUpload().validate(
       {
         namespace,
+
         body,
       },
       { abortEarly: false, allowUnknown: false }
@@ -408,10 +422,15 @@ class FileStorage {
    * After successfully upload, call `completeUpload` api to complete the upload process.
    * This operation will return the url for the uploaded file.
    */
-  async startUpload({ namespace, body } = {}) {
+  async startUpload({
+    namespace,
+
+    body,
+  } = {}) {
     const { error } = FileStorageValidator.startUpload().validate(
       {
         namespace,
+
         body,
       },
       { abortEarly: false, allowUnknown: true }
@@ -424,6 +443,7 @@ class FileStorage {
     const { error: warrning } = FileStorageValidator.startUpload().validate(
       {
         namespace,
+
         body,
       },
       { abortEarly: false, allowUnknown: false }

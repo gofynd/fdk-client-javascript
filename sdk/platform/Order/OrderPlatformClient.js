@@ -1,10 +1,9 @@
-const Paginator = require("../../common/Paginator");
-const { FDKClientValidationError } = require("../../common/FDKError");
 const PlatformAPIClient = require("../PlatformAPIClient");
+const { FDKClientValidationError } = require("../../common/FDKError");
+const Paginator = require("../../common/Paginator");
 const OrderValidator = require("./OrderPlatformValidator");
 const OrderModel = require("./OrderPlatformModel");
 const { Logger } = require("./../../common/Logger");
-const Joi = require("joi");
 
 class Order {
   constructor(config) {
@@ -216,12 +215,20 @@ class Order {
    * @summary:
    * @description:
    */
-  async click2Call({ caller, receiver, bagId, callingTo, callerId } = {}) {
+  async click2Call({
+    caller,
+    receiver,
+    bagId,
+
+    callingTo,
+    callerId,
+  } = {}) {
     const { error } = OrderValidator.click2Call().validate(
       {
         caller,
         receiver,
         bagId,
+
         callingTo,
         callerId,
       },
@@ -237,6 +244,7 @@ class Order {
         caller,
         receiver,
         bagId,
+
         callingTo,
         callerId,
       },
@@ -2832,6 +2840,7 @@ class Order {
   async updateAddress({
     shipmentId,
     addressCategory,
+
     name,
     address,
     addressType,
@@ -2847,6 +2856,7 @@ class Order {
       {
         shipmentId,
         addressCategory,
+
         name,
         address,
         addressType,
@@ -2869,6 +2879,7 @@ class Order {
       {
         shipmentId,
         addressCategory,
+
         name,
         address,
         addressType,

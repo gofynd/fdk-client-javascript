@@ -1,10 +1,9 @@
-const Paginator = require("../../common/Paginator");
-const { FDKClientValidationError } = require("../../common/FDKError");
 const PlatformAPIClient = require("../PlatformAPIClient");
+const { FDKClientValidationError } = require("../../common/FDKError");
+const Paginator = require("../../common/Paginator");
 const AuditTrailValidator = require("./AuditTrailPlatformValidator");
 const AuditTrailModel = require("./AuditTrailPlatformModel");
 const { Logger } = require("./../../common/Logger");
-const Joi = require("joi");
 
 class AuditTrail {
   constructor(config) {

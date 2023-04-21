@@ -1,10 +1,9 @@
-const Paginator = require("../../common/Paginator");
 const PlatformAPIClient = require("../PlatformAPIClient");
 const { FDKClientValidationError } = require("../../common/FDKError");
+const Paginator = require("../../common/Paginator");
 const OrderValidator = require("./OrderPlatformApplicationValidator");
 const OrderModel = require("./OrderPlatformModel");
 const { Logger } = require("./../../common/Logger");
-const Joi = require("joi");
 
 class Order {
   constructor(config, applicationId) {
@@ -269,4 +268,5 @@ class Order {
     return response;
   }
 }
+
 module.exports = Order;

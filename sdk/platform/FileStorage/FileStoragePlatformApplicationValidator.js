@@ -1,6 +1,6 @@
 const Joi = require("joi");
-const FileStorageModel = require("./FileStoragePlatformModel");
 
+const FileStorageModel = require("./FileStoragePlatformModel");
 class FileStorageValidator {
   static appCompleteUpload() {
     return Joi.object({

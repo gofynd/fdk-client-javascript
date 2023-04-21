@@ -1,10 +1,9 @@
-const Paginator = require("../../common/Paginator");
 const PlatformAPIClient = require("../PlatformAPIClient");
 const { FDKClientValidationError } = require("../../common/FDKError");
+const Paginator = require("../../common/Paginator");
 const PartnerValidator = require("./PartnerPlatformApplicationValidator");
 const PartnerModel = require("./PartnerPlatformModel");
 const { Logger } = require("./../../common/Logger");
-const Joi = require("joi");
 
 class Partner {
   constructor(config, applicationId) {
@@ -142,4 +141,5 @@ class Partner {
     return response;
   }
 }
+
 module.exports = Partner;

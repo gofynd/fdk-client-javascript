@@ -1,6 +1,6 @@
 const Joi = require("joi");
-const ContentModel = require("./ContentPlatformModel");
 
+const ContentModel = require("./ContentPlatformModel");
 class ContentValidator {
   static addDataLoader() {
     return Joi.object({
