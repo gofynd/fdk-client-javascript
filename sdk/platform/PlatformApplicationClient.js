@@ -1497,7 +1497,6 @@ class PlatformApplicationClient {
 /** @typedef AppliedFreeArticles */
 /** @typedef AppliedPromotion */
 /** @typedef ApplyCouponRequest */
-/** @typedef ArticleGiftDetail */
 /** @typedef ArticlePriceInfo */
 /** @typedef BaseInfo */
 /** @typedef BasePrice */
@@ -1549,7 +1548,6 @@ class PlatformApplicationClient {
 /** @typedef GetCouponResponse */
 /** @typedef GetShareCartLinkRequest */
 /** @typedef GetShareCartLinkResponse */
-/** @typedef GiftDetail */
 /** @typedef Identifier */
 /** @typedef ItemCriteria */
 /** @typedef LoyaltyPoints */
