@@ -95,6 +95,7 @@ declare class OrderModel {
     static GeneratePosOrderReceiptResponse(): any;
     static GetActionsResponse(): any;
     static GetBagsPlatformResponse(): any;
+    static GiftCard(): any;
     static GSTDetailsData(): any;
     static HistoryDict(): any;
     static Identifier(): any;

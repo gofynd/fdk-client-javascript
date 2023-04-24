@@ -714,6 +714,7 @@ class PlatformApplicationClient {
 /** @typedef GeneratePosOrderReceiptResponse */
 /** @typedef GetActionsResponse */
 /** @typedef GetBagsPlatformResponse */
+/** @typedef GiftCard */
 /** @typedef GSTDetailsData */
 /** @typedef HistoryDict */
 /** @typedef Identifier */

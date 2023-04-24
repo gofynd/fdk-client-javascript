@@ -4231,6 +4231,13 @@ class PlatformClient {
 /**
  * @typedef BagMeta
  * @property {B2BPODetails} [b2b_po_details]
+ * @property {Object} [custom_json]
+ * @property {string} [custom_message]
+ * @property {string} [docket_number]
+ * @property {Object} [extra_meta]
+ * @property {GiftCard} [gift_card]
+ * @property {string} [group_id]
+ * @property {boolean} [partial_can_ret]
  */
 /**
  * @typedef BagReturnableCancelableStatus
@@ -4783,6 +4790,13 @@ class PlatformClient {
  * @property {Page1} page
  */
 /**
+ * @typedef GiftCard
+ * @property {string} [display_text]
+ * @property {string} [gift_message]
+ * @property {number} [gift_price]
+ * @property {boolean} [is_gift_applied]
+ */
+/**
  * @typedef GSTDetailsData
  * @property {number} brand_calculated_amount
  * @property {number} gst_fee
@@ -4925,6 +4939,7 @@ class PlatformClient {
 /**
  * @typedef Meta
  * @property {Dimensions} [dimension]
+ * @property {Object} [lock_data]
  */
 /**
  * @typedef Meta1
@@ -4985,10 +5000,12 @@ class PlatformClient {
  * @property {string} [display_name]
  * @property {string} [entity_type]
  * @property {FinancialBreakup} [financial_breakup]
+ * @property {string} [group_id]
  * @property {BagGST} [gst_details]
  * @property {string} [identifier]
  * @property {PlatformItem} [item]
  * @property {number} [line_number]
+ * @property {BagMeta} [meta]
  * @property {Object} [parent_promo_bags]
  * @property {Prices} [prices]
  * @property {number} [quantity]

@@ -5441,6 +5441,13 @@ We are processing the report!
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | b2b_po_details | [B2BPODetails](#B2BPODetails) |  no  |  |
+ | custom_json | string |  no  |  |
+ | custom_message | string |  no  |  |
+ | docket_number | string |  no  |  |
+ | extra_meta | string |  no  |  |
+ | gift_card | [GiftCard](#GiftCard) |  no  |  |
+ | group_id | string |  no  |  |
+ | partial_can_ret | boolean |  no  |  |
  
 
 ---
@@ -6325,6 +6332,18 @@ We are processing the report!
 
 ---
 
+#### [GiftCard](#GiftCard)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | display_text | string |  no  |  |
+ | gift_message | string |  no  |  |
+ | gift_price | number |  no  |  |
+ | is_gift_applied | boolean |  no  |  |
+ 
+
+---
+
 #### [GSTDetailsData](#GSTDetailsData)
 
  | Properties | Type | Nullable | Description |
@@ -6565,6 +6584,7 @@ We are processing the report!
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | dimension | [Dimensions](#Dimensions) |  no  |  |
+ | lock_data | string |  no  |  |
  
 
 ---
@@ -6665,10 +6685,12 @@ We are processing the report!
  | display_name | string |  no  |  |
  | entity_type | string |  no  |  |
  | financial_breakup | [FinancialBreakup](#FinancialBreakup) |  no  |  |
+ | group_id | string |  no  |  |
  | gst_details | [BagGST](#BagGST) |  no  |  |
  | identifier | string |  no  |  |
  | item | [PlatformItem](#PlatformItem) |  no  |  |
  | line_number | number |  no  |  |
+ | meta | [BagMeta](#BagMeta) |  no  |  |
  | parent_promo_bags | string |  no  |  |
  | prices | [Prices](#Prices) |  no  |  |
  | quantity | number |  no  |  |

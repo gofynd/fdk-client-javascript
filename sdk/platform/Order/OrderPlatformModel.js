@@ -325,6 +325,13 @@ class OrderModel {
   static BagMeta() {
     return Joi.object({
       b2b_po_details: OrderModel.B2BPODetails(),
+      custom_json: Joi.any(),
+      custom_message: Joi.string().allow(""),
+      docket_number: Joi.string().allow(""),
+      extra_meta: Joi.any(),
+      gift_card: OrderModel.GiftCard(),
+      group_id: Joi.string().allow(""),
+      partial_can_ret: Joi.boolean(),
     });
   }
   static BagReturnableCancelableStatus() {
@@ -945,6 +952,14 @@ class OrderModel {
       page: OrderModel.Page1().required(),
     });
   }
+  static GiftCard() {
+    return Joi.object({
+      display_text: Joi.string().allow(""),
+      gift_message: Joi.string().allow(""),
+      gift_price: Joi.number(),
+      is_gift_applied: Joi.boolean(),
+    });
+  }
   static GSTDetailsData() {
     return Joi.object({
       brand_calculated_amount: Joi.number().required(),
@@ -1109,6 +1124,7 @@ class OrderModel {
   static Meta() {
     return Joi.object({
       dimension: OrderModel.Dimensions(),
+      lock_data: Joi.any(),
     });
   }
   static Meta1() {
@@ -1177,10 +1193,12 @@ class OrderModel {
       display_name: Joi.string().allow(""),
       entity_type: Joi.string().allow(""),
       financial_breakup: OrderModel.FinancialBreakup(),
+      group_id: Joi.string().allow(""),
       gst_details: OrderModel.BagGST(),
       identifier: Joi.string().allow(""),
       item: OrderModel.PlatformItem(),
       line_number: Joi.number(),
+      meta: OrderModel.BagMeta(),
       parent_promo_bags: Joi.any(),
       prices: OrderModel.Prices(),
       quantity: Joi.number(),
