@@ -18,6 +18,12 @@ module.exports = {
 
     PaymentPlatformModel: require("./Payment/PaymentPlatformModel"),
 
+    OrderPlatformModel: require("./Order/OrderPlatformModel"),
+
+    CatalogPlatformModel: require("./Catalog/CatalogPlatformModel"),
+
+    CompanyProfilePlatformModel: require("./CompanyProfile/CompanyProfilePlatformModel"),
+
     FileStoragePlatformModel: require("./FileStorage/FileStoragePlatformModel"),
 
     SharePlatformModel: require("./Share/SharePlatformModel"),
@@ -31,6 +37,8 @@ module.exports = {
     RewardsPlatformModel: require("./Rewards/RewardsPlatformModel"),
 
     AnalyticsPlatformModel: require("./Analytics/AnalyticsPlatformModel"),
+
+    DiscountPlatformModel: require("./Discount/DiscountPlatformModel"),
 
     PartnerPlatformModel: require("./Partner/PartnerPlatformModel"),
 

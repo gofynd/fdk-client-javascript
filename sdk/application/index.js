@@ -26,6 +26,8 @@ module.exports = {
 
     PaymentApplicationModel: require("./Payment/PaymentApplicationModel"),
 
+    OrderApplicationModel: require("./Order/OrderApplicationModel"),
+
     RewardsApplicationModel: require("./Rewards/RewardsApplicationModel"),
 
     PosCartApplicationModel: require("./PosCart/PosCartApplicationModel"),
