@@ -58,11 +58,11 @@ Add email to profile
 
 ```javascript
 // Promise
-const promise = user.addEmail({  body : value,
+const promise = applicationClient.user.addEmail({  body : value,
  platform : value });
 
 // Async/Await
-const data = await user.addEmail({  body : value,
+const data = await applicationClient.user.addEmail({  body : value,
  platform : value });
 ```
 
@@ -172,11 +172,11 @@ Add mobile number to profile
 
 ```javascript
 // Promise
-const promise = user.addMobileNumber({  body : value,
+const promise = applicationClient.user.addMobileNumber({  body : value,
  platform : value });
 
 // Async/Await
-const data = await user.addMobileNumber({  body : value,
+const data = await applicationClient.user.addMobileNumber({  body : value,
  platform : value });
 ```
 
@@ -286,14 +286,14 @@ Delete email from profile
 
 ```javascript
 // Promise
-const promise = user.deleteEmail({  active : value,
+const promise = applicationClient.user.deleteEmail({  active : value,
  primary : value,
  verified : value,
  email : value,
  platform : value });
 
 // Async/Await
-const data = await user.deleteEmail({  active : value,
+const data = await applicationClient.user.deleteEmail({  active : value,
  primary : value,
  verified : value,
  email : value,
@@ -409,7 +409,7 @@ Delete mobile number from profile
 
 ```javascript
 // Promise
-const promise = user.deleteMobileNumber({  active : value,
+const promise = applicationClient.user.deleteMobileNumber({  active : value,
  primary : value,
  verified : value,
  countryCode : value,
@@ -417,7 +417,7 @@ const promise = user.deleteMobileNumber({  active : value,
  platform : value });
 
 // Async/Await
-const data = await user.deleteMobileNumber({  active : value,
+const data = await applicationClient.user.deleteMobileNumber({  active : value,
  primary : value,
  verified : value,
  countryCode : value,
@@ -535,10 +535,10 @@ verify otp and delete user
 
 ```javascript
 // Promise
-const promise = user.deleteUser({  body : value });
+const promise = applicationClient.user.deleteUser({  body : value });
 
 // Async/Await
-const data = await user.deleteUser({  body : value });
+const data = await applicationClient.user.deleteUser({  body : value });
 ```
 
 
@@ -592,10 +592,10 @@ Forgot Password
 
 ```javascript
 // Promise
-const promise = user.forgotPassword({  body : value });
+const promise = applicationClient.user.forgotPassword({  body : value });
 
 // Async/Await
-const data = await user.forgotPassword({  body : value });
+const data = await applicationClient.user.forgotPassword({  body : value });
 ```
 
 
@@ -702,10 +702,10 @@ Get list of sessions
 
 ```javascript
 // Promise
-const promise = user.getListOfActiveSessions();
+const promise = applicationClient.user.getListOfActiveSessions();
 
 // Async/Await
-const data = await user.getListOfActiveSessions();
+const data = await applicationClient.user.getListOfActiveSessions();
 ```
 
 
@@ -758,10 +758,10 @@ Get logged in user
 
 ```javascript
 // Promise
-const promise = user.getLoggedInUser();
+const promise = applicationClient.user.getLoggedInUser();
 
 // Async/Await
-const data = await user.getLoggedInUser();
+const data = await applicationClient.user.getLoggedInUser();
 ```
 
 
@@ -864,10 +864,10 @@ Get platform configurations
 
 ```javascript
 // Promise
-const promise = user.getPlatformConfig({  name : value });
+const promise = applicationClient.user.getPlatformConfig({  name : value });
 
 // Async/Await
-const data = await user.getPlatformConfig({  name : value });
+const data = await applicationClient.user.getPlatformConfig({  name : value });
 ```
 
 
@@ -1001,10 +1001,10 @@ Check password
 
 ```javascript
 // Promise
-const promise = user.hasPassword();
+const promise = applicationClient.user.hasPassword();
 
 // Async/Await
-const data = await user.hasPassword();
+const data = await applicationClient.user.hasPassword();
 ```
 
 
@@ -1052,11 +1052,11 @@ Login or Register using Apple on iOS
 
 ```javascript
 // Promise
-const promise = user.loginWithAppleIOS({  body : value,
+const promise = applicationClient.user.loginWithAppleIOS({  body : value,
  platform : value });
 
 // Async/Await
-const data = await user.loginWithAppleIOS({  body : value,
+const data = await applicationClient.user.loginWithAppleIOS({  body : value,
  platform : value });
 ```
 
@@ -1138,10 +1138,10 @@ Login or Register with password
 
 ```javascript
 // Promise
-const promise = user.loginWithEmailAndPassword({  body : value });
+const promise = applicationClient.user.loginWithEmailAndPassword({  body : value });
 
 // Async/Await
-const data = await user.loginWithEmailAndPassword({  body : value });
+const data = await applicationClient.user.loginWithEmailAndPassword({  body : value });
 ```
 
 
@@ -1248,11 +1248,11 @@ Login or Register using Facebook
 
 ```javascript
 // Promise
-const promise = user.loginWithFacebook({  body : value,
+const promise = applicationClient.user.loginWithFacebook({  body : value,
  platform : value });
 
 // Async/Await
-const data = await user.loginWithFacebook({  body : value,
+const data = await applicationClient.user.loginWithFacebook({  body : value,
  platform : value });
 ```
 
@@ -1334,11 +1334,11 @@ Login or Register using Google
 
 ```javascript
 // Promise
-const promise = user.loginWithGoogle({  body : value,
+const promise = applicationClient.user.loginWithGoogle({  body : value,
  platform : value });
 
 // Async/Await
-const data = await user.loginWithGoogle({  body : value,
+const data = await applicationClient.user.loginWithGoogle({  body : value,
  platform : value });
 ```
 
@@ -1420,11 +1420,11 @@ Login or Register using Google on Android
 
 ```javascript
 // Promise
-const promise = user.loginWithGoogleAndroid({  body : value,
+const promise = applicationClient.user.loginWithGoogleAndroid({  body : value,
  platform : value });
 
 // Async/Await
-const data = await user.loginWithGoogleAndroid({  body : value,
+const data = await applicationClient.user.loginWithGoogleAndroid({  body : value,
  platform : value });
 ```
 
@@ -1506,11 +1506,11 @@ Login or Register using Google on iOS
 
 ```javascript
 // Promise
-const promise = user.loginWithGoogleIOS({  body : value,
+const promise = applicationClient.user.loginWithGoogleIOS({  body : value,
  platform : value });
 
 // Async/Await
-const data = await user.loginWithGoogleIOS({  body : value,
+const data = await applicationClient.user.loginWithGoogleIOS({  body : value,
  platform : value });
 ```
 
@@ -1592,11 +1592,11 @@ Login or Register with OTP
 
 ```javascript
 // Promise
-const promise = user.loginWithOTP({  body : value,
+const promise = applicationClient.user.loginWithOTP({  body : value,
  platform : value });
 
 // Async/Await
-const data = await user.loginWithOTP({  body : value,
+const data = await applicationClient.user.loginWithOTP({  body : value,
  platform : value });
 ```
 
@@ -1666,10 +1666,10 @@ Login or Register with token
 
 ```javascript
 // Promise
-const promise = user.loginWithToken({  body : value });
+const promise = applicationClient.user.loginWithToken({  body : value });
 
 // Async/Await
-const data = await user.loginWithToken({  body : value });
+const data = await applicationClient.user.loginWithToken({  body : value });
 ```
 
 
@@ -1776,10 +1776,10 @@ Logs out currently logged in user
 
 ```javascript
 // Promise
-const promise = user.logout();
+const promise = applicationClient.user.logout();
 
 // Async/Await
-const data = await user.logout();
+const data = await applicationClient.user.logout();
 ```
 
 
@@ -1827,11 +1827,11 @@ Registration using a form
 
 ```javascript
 // Promise
-const promise = user.registerWithForm({  body : value,
+const promise = applicationClient.user.registerWithForm({  body : value,
  platform : value });
 
 // Async/Await
-const data = await user.registerWithForm({  body : value,
+const data = await applicationClient.user.registerWithForm({  body : value,
  platform : value });
 ```
 
@@ -1896,11 +1896,11 @@ Send OTP on email
 
 ```javascript
 // Promise
-const promise = user.sendOTPOnEmail({  body : value,
+const promise = applicationClient.user.sendOTPOnEmail({  body : value,
  platform : value });
 
 // Async/Await
-const data = await user.sendOTPOnEmail({  body : value,
+const data = await applicationClient.user.sendOTPOnEmail({  body : value,
  platform : value });
 ```
 
@@ -1956,11 +1956,11 @@ Send OTP on mobile
 
 ```javascript
 // Promise
-const promise = user.sendOTPOnMobile({  body : value,
+const promise = applicationClient.user.sendOTPOnMobile({  body : value,
  platform : value });
 
 // Async/Await
-const data = await user.sendOTPOnMobile({  body : value,
+const data = await applicationClient.user.sendOTPOnMobile({  body : value,
  platform : value });
 ```
 
@@ -2022,11 +2022,11 @@ Reset Password
 
 ```javascript
 // Promise
-const promise = user.sendResetPasswordEmail({  body : value,
+const promise = applicationClient.user.sendResetPasswordEmail({  body : value,
  platform : value });
 
 // Async/Await
-const data = await user.sendResetPasswordEmail({  body : value,
+const data = await applicationClient.user.sendResetPasswordEmail({  body : value,
  platform : value });
 ```
 
@@ -2082,11 +2082,11 @@ Reset Password
 
 ```javascript
 // Promise
-const promise = user.sendResetPasswordMobile({  body : value,
+const promise = applicationClient.user.sendResetPasswordMobile({  body : value,
  platform : value });
 
 // Async/Await
-const data = await user.sendResetPasswordMobile({  body : value,
+const data = await applicationClient.user.sendResetPasswordMobile({  body : value,
  platform : value });
 ```
 
@@ -2142,10 +2142,10 @@ Reset Password using token
 
 ```javascript
 // Promise
-const promise = user.sendResetToken({  body : value });
+const promise = applicationClient.user.sendResetToken({  body : value });
 
 // Async/Await
-const data = await user.sendResetToken({  body : value });
+const data = await applicationClient.user.sendResetToken({  body : value });
 ```
 
 
@@ -2199,11 +2199,11 @@ Send verification link to email
 
 ```javascript
 // Promise
-const promise = user.sendVerificationLinkToEmail({  body : value,
+const promise = applicationClient.user.sendVerificationLinkToEmail({  body : value,
  platform : value });
 
 // Async/Await
-const data = await user.sendVerificationLinkToEmail({  body : value,
+const data = await applicationClient.user.sendVerificationLinkToEmail({  body : value,
  platform : value });
 ```
 
@@ -2257,11 +2257,11 @@ Send verification link to mobile
 
 ```javascript
 // Promise
-const promise = user.sendVerificationLinkToMobile({  body : value,
+const promise = applicationClient.user.sendVerificationLinkToMobile({  body : value,
  platform : value });
 
 // Async/Await
-const data = await user.sendVerificationLinkToMobile({  body : value,
+const data = await applicationClient.user.sendVerificationLinkToMobile({  body : value,
  platform : value });
 ```
 
@@ -2371,10 +2371,10 @@ Set email as primary
 
 ```javascript
 // Promise
-const promise = user.setEmailAsPrimary({  body : value });
+const promise = applicationClient.user.setEmailAsPrimary({  body : value });
 
 // Async/Await
-const data = await user.setEmailAsPrimary({  body : value });
+const data = await applicationClient.user.setEmailAsPrimary({  body : value });
 ```
 
 
@@ -2481,10 +2481,10 @@ Set mobile as primary
 
 ```javascript
 // Promise
-const promise = user.setMobileNumberAsPrimary({  body : value });
+const promise = applicationClient.user.setMobileNumberAsPrimary({  body : value });
 
 // Async/Await
-const data = await user.setMobileNumberAsPrimary({  body : value });
+const data = await applicationClient.user.setMobileNumberAsPrimary({  body : value });
 ```
 
 
@@ -2591,10 +2591,10 @@ Update user password
 
 ```javascript
 // Promise
-const promise = user.updatePassword({  body : value });
+const promise = applicationClient.user.updatePassword({  body : value });
 
 // Async/Await
-const data = await user.updatePassword({  body : value });
+const data = await applicationClient.user.updatePassword({  body : value });
 ```
 
 
@@ -2648,11 +2648,11 @@ Edit Profile Details
 
 ```javascript
 // Promise
-const promise = user.updateProfile({  body : value,
+const promise = applicationClient.user.updateProfile({  body : value,
  platform : value });
 
 // Async/Await
-const data = await user.updateProfile({  body : value,
+const data = await applicationClient.user.updateProfile({  body : value,
  platform : value });
 ```
 
@@ -2761,10 +2761,10 @@ Verify email
 
 ```javascript
 // Promise
-const promise = user.verifyEmail({  body : value });
+const promise = applicationClient.user.verifyEmail({  body : value });
 
 // Async/Await
-const data = await user.verifyEmail({  body : value });
+const data = await applicationClient.user.verifyEmail({  body : value });
 ```
 
 
@@ -2818,11 +2818,11 @@ Verify OTP on email
 
 ```javascript
 // Promise
-const promise = user.verifyEmailOTP({  body : value,
+const promise = applicationClient.user.verifyEmailOTP({  body : value,
  platform : value });
 
 // Async/Await
-const data = await user.verifyEmailOTP({  body : value,
+const data = await applicationClient.user.verifyEmailOTP({  body : value,
  platform : value });
 ```
 
@@ -2932,10 +2932,10 @@ Verify mobile
 
 ```javascript
 // Promise
-const promise = user.verifyMobile({  body : value });
+const promise = applicationClient.user.verifyMobile({  body : value });
 
 // Async/Await
-const data = await user.verifyMobile({  body : value });
+const data = await applicationClient.user.verifyMobile({  body : value });
 ```
 
 
@@ -2989,11 +2989,11 @@ Verify OTP on mobile
 
 ```javascript
 // Promise
-const promise = user.verifyMobileOTP({  body : value,
+const promise = applicationClient.user.verifyMobileOTP({  body : value,
  platform : value });
 
 // Async/Await
-const data = await user.verifyMobileOTP({  body : value,
+const data = await applicationClient.user.verifyMobileOTP({  body : value,
  platform : value });
 ```
 
@@ -3104,7 +3104,7 @@ Success. Returns a JSON object as shown below. Refer `VerifyOtpSuccess` for more
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | app_id | string |  no  |  |
+ | app_id | string? |  yes  |  |
  
 
 ---
@@ -3113,7 +3113,7 @@ Success. Returns a JSON object as shown below. Refer `VerifyOtpSuccess` for more
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | user_id | string |  no  |  |
+ | user_id | string? |  yes  |  |
  
 
 ---
@@ -3122,7 +3122,7 @@ Success. Returns a JSON object as shown below. Refer `VerifyOtpSuccess` for more
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | success | boolean |  no  |  |
+ | success | boolean? |  yes  |  |
  
 
 ---
@@ -3131,7 +3131,7 @@ Success. Returns a JSON object as shown below. Refer `VerifyOtpSuccess` for more
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | message | string |  no  |  |
+ | message | string? |  yes  |  |
  
 
 ---
@@ -3140,7 +3140,7 @@ Success. Returns a JSON object as shown below. Refer `VerifyOtpSuccess` for more
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | message | string |  no  |  |
+ | message | string? |  yes  |  |
  
 
 ---
@@ -3149,9 +3149,9 @@ Success. Returns a JSON object as shown below. Refer `VerifyOtpSuccess` for more
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | register_token | string |  no  |  |
- | user | [UserSchema](#UserSchema) |  no  |  |
- | user_exists | boolean |  no  |  |
+ | register_token | string? |  yes  |  |
+ | user | [UserSchema](#UserSchema)? |  yes  |  |
+ | user_exists | boolean? |  yes  |  |
  
 
 ---
@@ -3160,11 +3160,11 @@ Success. Returns a JSON object as shown below. Refer `VerifyOtpSuccess` for more
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | active | boolean |  no  |  |
- | debug | [AuthSuccessUserDebug](#AuthSuccessUserDebug) |  no  |  |
- | emails | [AuthSuccessUserEmails](#AuthSuccessUserEmails) |  no  |  |
- | first_name | string |  no  |  |
- | last_name | string |  no  |  |
+ | active | boolean? |  yes  |  |
+ | debug | [AuthSuccessUserDebug](#AuthSuccessUserDebug)? |  yes  |  |
+ | emails | [AuthSuccessUserEmails](#AuthSuccessUserEmails)? |  yes  |  |
+ | first_name | string? |  yes  |  |
+ | last_name | string? |  yes  |  |
  
 
 ---
@@ -3173,7 +3173,7 @@ Success. Returns a JSON object as shown below. Refer `VerifyOtpSuccess` for more
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | platform | string |  no  |  |
+ | platform | string? |  yes  |  |
  
 
 ---
@@ -3182,10 +3182,10 @@ Success. Returns a JSON object as shown below. Refer `VerifyOtpSuccess` for more
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | active | boolean |  no  |  |
- | email | string |  no  |  |
- | primary | boolean |  no  |  |
- | verified | boolean |  no  |  |
+ | active | boolean? |  yes  |  |
+ | email | string? |  yes  |  |
+ | primary | boolean? |  yes  |  |
+ | verified | boolean? |  yes  |  |
  
 
 ---
@@ -3194,9 +3194,9 @@ Success. Returns a JSON object as shown below. Refer `VerifyOtpSuccess` for more
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | reason | string |  no  |  |
- | status | boolean |  no  |  |
- | user_id | [string] |  no  |  |
+ | reason | string? |  yes  |  |
+ | status | boolean? |  yes  |  |
+ | user_id | [string]? |  yes  |  |
  
 
 ---
@@ -3205,7 +3205,7 @@ Success. Returns a JSON object as shown below. Refer `VerifyOtpSuccess` for more
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | success | boolean |  no  |  |
+ | success | boolean? |  yes  |  |
  
 
 ---
@@ -3214,7 +3214,7 @@ Success. Returns a JSON object as shown below. Refer `VerifyOtpSuccess` for more
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | code | string |  no  |  |
+ | code | string? |  yes  |  |
  
 
 ---
@@ -3223,9 +3223,9 @@ Success. Returns a JSON object as shown below. Refer `VerifyOtpSuccess` for more
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | description | string |  yes  |  |
- | file_url | string |  yes  |  |
- | name | string |  yes  |  |
+ | description | string |  no  |  |
+ | file_url | string |  no  |  |
+ | name | string |  no  |  |
  
 
 ---
@@ -3234,13 +3234,13 @@ Success. Returns a JSON object as shown below. Refer `VerifyOtpSuccess` for more
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | email | string |  no  |  |
- | first_name | string |  no  |  |
- | gender | string |  no  |  |
- | last_name | string |  no  |  |
- | meta | string |  no  |  |
- | phone_number | string |  yes  |  |
- | username | string |  yes  |  |
+ | email | string? |  yes  |  |
+ | first_name | string? |  yes  |  |
+ | gender | string? |  yes  |  |
+ | last_name | string? |  yes  |  |
+ | meta | string? |  yes  |  |
+ | phone_number | string |  no  |  |
+ | username | string |  no  |  |
  
 
 ---
@@ -3249,7 +3249,7 @@ Success. Returns a JSON object as shown below. Refer `VerifyOtpSuccess` for more
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | user | [UserSchema](#UserSchema) |  no  |  |
+ | user | [UserSchema](#UserSchema)? |  yes  |  |
  
 
 ---
@@ -3258,9 +3258,9 @@ Success. Returns a JSON object as shown below. Refer `VerifyOtpSuccess` for more
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | domain | string |  no  |  |
- | max_age | number |  no  |  |
- | user_id | string |  no  |  |
+ | domain | string? |  yes  |  |
+ | max_age | number? |  yes  |  |
+ | user_id | string? |  yes  |  |
  
 
 ---
@@ -3269,11 +3269,11 @@ Success. Returns a JSON object as shown below. Refer `VerifyOtpSuccess` for more
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | cookie | string |  no  |  |
- | domain | string |  no  |  |
- | http_only | boolean |  no  |  |
- | max_age | number |  no  |  |
- | secure | boolean |  no  |  |
+ | cookie | string? |  yes  |  |
+ | domain | string? |  yes  |  |
+ | http_only | boolean? |  yes  |  |
+ | max_age | number? |  yes  |  |
+ | secure | boolean? |  yes  |  |
  
 
 ---
@@ -3282,8 +3282,8 @@ Success. Returns a JSON object as shown below. Refer `VerifyOtpSuccess` for more
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | items | [[UserSchema](#UserSchema)] |  no  |  |
- | page | [PaginationSchema](#PaginationSchema) |  no  |  |
+ | items | [[UserSchema](#UserSchema)]? |  yes  |  |
+ | page | [PaginationSchema](#PaginationSchema)? |  yes  |  |
  
 
 ---
@@ -3292,7 +3292,7 @@ Success. Returns a JSON object as shown below. Refer `VerifyOtpSuccess` for more
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | consent_text | string |  no  |  |
+ | consent_text | string? |  yes  |  |
  
 
 ---
@@ -3301,9 +3301,9 @@ Success. Returns a JSON object as shown below. Refer `VerifyOtpSuccess` for more
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | reason_id | string |  no  |  |
- | reason_text | string |  no  |  |
- | show_text_area | boolean |  no  |  |
+ | reason_id | string? |  yes  |  |
+ | reason_text | string? |  yes  |  |
+ | show_text_area | boolean? |  yes  |  |
  
 
 ---
@@ -3312,11 +3312,11 @@ Success. Returns a JSON object as shown below. Refer `VerifyOtpSuccess` for more
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | otp | string |  no  |  |
- | reason | string |  no  |  |
- | reason_id | string |  no  |  |
- | request_id | string |  no  |  |
- | user_id | string |  no  |  |
+ | otp | string? |  yes  |  |
+ | reason | string? |  yes  |  |
+ | reason_id | string? |  yes  |  |
+ | request_id | string? |  yes  |  |
+ | user_id | string? |  yes  |  |
  
 
 ---
@@ -3325,7 +3325,7 @@ Success. Returns a JSON object as shown below. Refer `VerifyOtpSuccess` for more
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | success | boolean |  no  |  |
+ | success | boolean? |  yes  |  |
  
 
 ---
@@ -3334,7 +3334,7 @@ Success. Returns a JSON object as shown below. Refer `VerifyOtpSuccess` for more
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | email | string |  no  |  |
+ | email | string? |  yes  |  |
  
 
 ---
@@ -3343,8 +3343,8 @@ Success. Returns a JSON object as shown below. Refer `VerifyOtpSuccess` for more
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | country_code | string |  no  |  |
- | phone | string |  no  |  |
+ | country_code | string? |  yes  |  |
+ | phone | string? |  yes  |  |
  
 
 ---
@@ -3353,8 +3353,8 @@ Success. Returns a JSON object as shown below. Refer `VerifyOtpSuccess` for more
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | country_code | string |  no  |  |
- | phone | string |  no  |  |
+ | country_code | string? |  yes  |  |
+ | phone | string? |  yes  |  |
  
 
 ---
@@ -3363,17 +3363,17 @@ Success. Returns a JSON object as shown below. Refer `VerifyOtpSuccess` for more
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | android_hash | string |  no  |  |
- | country_code | string |  no  |  |
- | dob | string |  no  |  |
- | email | string |  no  |  |
- | first_name | string |  no  |  |
- | gender | string |  no  |  |
- | last_name | string |  no  |  |
- | mobile | [EditProfileMobileSchema](#EditProfileMobileSchema) |  no  |  |
- | profile_pic_url | string |  no  |  |
- | register_token | string |  no  |  |
- | sender | string |  no  |  |
+ | android_hash | string? |  yes  |  |
+ | country_code | string? |  yes  |  |
+ | dob | string? |  yes  |  |
+ | email | string? |  yes  |  |
+ | first_name | string? |  yes  |  |
+ | gender | string? |  yes  |  |
+ | last_name | string? |  yes  |  |
+ | mobile | [EditProfileMobileSchema](#EditProfileMobileSchema)? |  yes  |  |
+ | profile_pic_url | string? |  yes  |  |
+ | register_token | string? |  yes  |  |
+ | sender | string? |  yes  |  |
  
 
 ---
@@ -3382,10 +3382,10 @@ Success. Returns a JSON object as shown below. Refer `VerifyOtpSuccess` for more
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | active | boolean |  no  |  |
- | email | string |  no  |  |
- | primary | boolean |  no  |  |
- | verified | boolean |  no  |  |
+ | active | boolean? |  yes  |  |
+ | email | string? |  yes  |  |
+ | primary | boolean? |  yes  |  |
+ | verified | boolean? |  yes  |  |
  
 
 ---
@@ -3394,7 +3394,7 @@ Success. Returns a JSON object as shown below. Refer `VerifyOtpSuccess` for more
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | success | boolean |  no  |  |
+ | success | boolean? |  yes  |  |
  
 
 ---
@@ -3403,7 +3403,7 @@ Success. Returns a JSON object as shown below. Refer `VerifyOtpSuccess` for more
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | app_id | string |  no  |  |
+ | app_id | string? |  yes  |  |
  
 
 ---
@@ -3412,9 +3412,9 @@ Success. Returns a JSON object as shown below. Refer `VerifyOtpSuccess` for more
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | background_color | string |  no  |  |
- | text | string |  no  |  |
- | text_color | string |  no  |  |
+ | background_color | string? |  yes  |  |
+ | text | string? |  yes  |  |
+ | text_color | string? |  yes  |  |
  
 
 ---
@@ -3423,8 +3423,8 @@ Success. Returns a JSON object as shown below. Refer `VerifyOtpSuccess` for more
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | code | string |  no  |  |
- | password | string |  no  |  |
+ | code | string? |  yes  |  |
+ | password | string? |  yes  |  |
  
 
 ---
@@ -3433,13 +3433,13 @@ Success. Returns a JSON object as shown below. Refer `VerifyOtpSuccess` for more
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | email | string |  no  |  |
- | first_name | string |  no  |  |
- | gender | string |  no  |  |
- | last_name | string |  no  |  |
- | password | string |  no  |  |
- | phone | [FormRegisterRequestSchemaPhone](#FormRegisterRequestSchemaPhone) |  no  |  |
- | register_token | string |  no  |  |
+ | email | string? |  yes  |  |
+ | first_name | string? |  yes  |  |
+ | gender | string? |  yes  |  |
+ | last_name | string? |  yes  |  |
+ | password | string? |  yes  |  |
+ | phone | [FormRegisterRequestSchemaPhone](#FormRegisterRequestSchemaPhone)? |  yes  |  |
+ | register_token | string? |  yes  |  |
  
 
 ---
@@ -3448,8 +3448,8 @@ Success. Returns a JSON object as shown below. Refer `VerifyOtpSuccess` for more
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | country_code | string |  no  |  |
- | mobile | string |  no  |  |
+ | country_code | string? |  yes  |  |
+ | mobile | string? |  yes  |  |
  
 
 ---
@@ -3458,7 +3458,7 @@ Success. Returns a JSON object as shown below. Refer `VerifyOtpSuccess` for more
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | app_id | string |  no  |  |
+ | app_id | string? |  yes  |  |
  
 
 ---
@@ -3467,7 +3467,7 @@ Success. Returns a JSON object as shown below. Refer `VerifyOtpSuccess` for more
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | result | boolean |  no  |  |
+ | result | boolean? |  yes  |  |
  
 
 ---
@@ -3476,8 +3476,8 @@ Success. Returns a JSON object as shown below. Refer `VerifyOtpSuccess` for more
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | otp | boolean |  no  |  |
- | password | boolean |  no  |  |
+ | otp | boolean? |  yes  |  |
+ | password | boolean? |  yes  |  |
  
 
 ---
@@ -3486,9 +3486,9 @@ Success. Returns a JSON object as shown below. Refer `VerifyOtpSuccess` for more
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | register_token | string |  no  |  |
- | request_id | string |  no  |  |
- | user | [UserSchema](#UserSchema) |  no  |  |
+ | register_token | string? |  yes  |  |
+ | request_id | string? |  yes  |  |
+ | user | [UserSchema](#UserSchema)? |  yes  |  |
  
 
 ---
@@ -3497,7 +3497,7 @@ Success. Returns a JSON object as shown below. Refer `VerifyOtpSuccess` for more
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | logout | boolean |  no  |  |
+ | logout | boolean? |  yes  |  |
  
 
 ---
@@ -3506,8 +3506,8 @@ Success. Returns a JSON object as shown below. Refer `VerifyOtpSuccess` for more
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | background_color | string |  no  |  |
- | card_position | string |  no  |  |
+ | background_color | string? |  yes  |  |
+ | card_position | string? |  yes  |  |
  
 
 ---
@@ -3516,7 +3516,7 @@ Success. Returns a JSON object as shown below. Refer `VerifyOtpSuccess` for more
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | fynd_default | boolean |  no  |  |
+ | fynd_default | boolean? |  yes  |  |
  
 
 ---
@@ -3525,7 +3525,7 @@ Success. Returns a JSON object as shown below. Refer `VerifyOtpSuccess` for more
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | message | string |  no  |  |
+ | message | string? |  yes  |  |
  
 
 ---
@@ -3534,9 +3534,9 @@ Success. Returns a JSON object as shown below. Refer `VerifyOtpSuccess` for more
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | oauth | [OAuthRequestAppleSchemaOauth](#OAuthRequestAppleSchemaOauth) |  no  |  |
- | profile | [OAuthRequestAppleSchemaProfile](#OAuthRequestAppleSchemaProfile) |  no  |  |
- | user_identifier | string |  no  |  |
+ | oauth | [OAuthRequestAppleSchemaOauth](#OAuthRequestAppleSchemaOauth)? |  yes  |  |
+ | profile | [OAuthRequestAppleSchemaProfile](#OAuthRequestAppleSchemaProfile)? |  yes  |  |
+ | user_identifier | string? |  yes  |  |
  
 
 ---
@@ -3545,7 +3545,7 @@ Success. Returns a JSON object as shown below. Refer `VerifyOtpSuccess` for more
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | identity_token | string |  no  |  |
+ | identity_token | string? |  yes  |  |
  
 
 ---
@@ -3554,9 +3554,9 @@ Success. Returns a JSON object as shown below. Refer `VerifyOtpSuccess` for more
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | first_name | string |  no  |  |
- | full_name | string |  no  |  |
- | last_name | string |  no  |  |
+ | first_name | string? |  yes  |  |
+ | full_name | string? |  yes  |  |
+ | last_name | string? |  yes  |  |
  
 
 ---
@@ -3565,9 +3565,9 @@ Success. Returns a JSON object as shown below. Refer `VerifyOtpSuccess` for more
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | is_signed_in | boolean |  no  |  |
- | oauth2 | [OAuthRequestSchemaOauth2](#OAuthRequestSchemaOauth2) |  no  |  |
- | profile | [OAuthRequestSchemaProfile](#OAuthRequestSchemaProfile) |  no  |  |
+ | is_signed_in | boolean? |  yes  |  |
+ | oauth2 | [OAuthRequestSchemaOauth2](#OAuthRequestSchemaOauth2)? |  yes  |  |
+ | profile | [OAuthRequestSchemaProfile](#OAuthRequestSchemaProfile)? |  yes  |  |
  
 
 ---
@@ -3576,9 +3576,9 @@ Success. Returns a JSON object as shown below. Refer `VerifyOtpSuccess` for more
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | access_token | string |  no  |  |
- | expiry | number |  no  |  |
- | refresh_token | string |  no  |  |
+ | access_token | string? |  yes  |  |
+ | expiry | number? |  yes  |  |
+ | refresh_token | string? |  yes  |  |
  
 
 ---
@@ -3587,12 +3587,12 @@ Success. Returns a JSON object as shown below. Refer `VerifyOtpSuccess` for more
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | email | string |  no  |  |
- | first_name | string |  no  |  |
- | full_name | string |  no  |  |
- | id | string |  no  |  |
- | image | string |  no  |  |
- | last_name | string |  no  |  |
+ | email | string? |  yes  |  |
+ | first_name | string? |  yes  |  |
+ | full_name | string? |  yes  |  |
+ | id | string? |  yes  |  |
+ | image | string? |  yes  |  |
+ | last_name | string? |  yes  |  |
  
 
 ---
@@ -3601,14 +3601,14 @@ Success. Returns a JSON object as shown below. Refer `VerifyOtpSuccess` for more
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | country_code | string |  no  |  |
- | message | string |  no  |  |
- | mobile | string |  no  |  |
- | register_token | string |  no  |  |
- | request_id | string |  no  |  |
- | resend_timer | number |  no  |  |
- | resend_token | string |  no  |  |
- | success | boolean |  no  |  |
+ | country_code | string? |  yes  |  |
+ | message | string? |  yes  |  |
+ | mobile | string? |  yes  |  |
+ | register_token | string? |  yes  |  |
+ | request_id | string? |  yes  |  |
+ | resend_timer | number? |  yes  |  |
+ | resend_token | string? |  yes  |  |
+ | success | boolean? |  yes  |  |
  
 
 ---
@@ -3617,11 +3617,11 @@ Success. Returns a JSON object as shown below. Refer `VerifyOtpSuccess` for more
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | current | number |  no  |  |
- | has_next | boolean |  no  |  |
- | item_total | number |  no  |  |
- | size | number |  no  |  |
- | type | string |  no  |  |
+ | current | number? |  yes  |  |
+ | has_next | boolean? |  yes  |  |
+ | item_total | number? |  yes  |  |
+ | size | number? |  yes  |  |
+ | type | string? |  yes  |  |
  
 
 ---
@@ -3630,9 +3630,9 @@ Success. Returns a JSON object as shown below. Refer `VerifyOtpSuccess` for more
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | captcha_code | string |  no  |  |
- | password | string |  no  |  |
- | username | string |  no  |  |
+ | captcha_code | string? |  yes  |  |
+ | password | string? |  yes  |  |
+ | username | string? |  yes  |  |
  
 
 ---
@@ -3641,11 +3641,11 @@ Success. Returns a JSON object as shown below. Refer `VerifyOtpSuccess` for more
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | active | boolean |  no  |  |
- | country_code | number |  no  |  |
- | phone | string |  no  |  |
- | primary | boolean |  no  |  |
- | verified | boolean |  no  |  |
+ | active | boolean? |  yes  |  |
+ | country_code | number? |  yes  |  |
+ | phone | string? |  yes  |  |
+ | primary | boolean? |  yes  |  |
+ | verified | boolean? |  yes  |  |
  
 
 ---
@@ -3654,8 +3654,8 @@ Success. Returns a JSON object as shown below. Refer `VerifyOtpSuccess` for more
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | is_required | boolean |  no  |  |
- | level | string |  no  |  |
+ | is_required | boolean? |  yes  |  |
+ | level | string? |  yes  |  |
  
 
 ---
@@ -3664,8 +3664,8 @@ Success. Returns a JSON object as shown below. Refer `VerifyOtpSuccess` for more
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | is_required | boolean |  no  |  |
- | level | string |  no  |  |
+ | is_required | boolean? |  yes  |  |
+ | level | string? |  yes  |  |
  
 
 ---
@@ -3674,31 +3674,31 @@ Success. Returns a JSON object as shown below. Refer `VerifyOtpSuccess` for more
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | _id | string |  no  |  |
- | active | boolean |  no  |  |
- | created_at | string |  no  |  |
- | delete_account_consent | string |  no  |  |
- | delete_account_day | number |  no  |  |
- | delete_account_reasons | [[DeleteAccountReasons](#DeleteAccountReasons)] |  no  |  |
- | desktop_image | string |  no  |  |
- | display | string |  no  |  |
- | flash_card | [FlashCard](#FlashCard) |  no  |  |
- | forgot_password | boolean |  no  |  |
- | login | [Login](#Login) |  no  |  |
- | look_and_feel | [LookAndFeel](#LookAndFeel) |  no  |  |
- | meta | [MetaSchema](#MetaSchema) |  no  |  |
- | mobile_image | string |  no  |  |
- | name | string |  no  |  |
- | register | boolean |  no  |  |
- | register_required_fields | [RegisterRequiredFields](#RegisterRequiredFields) |  no  |  |
- | required_fields | [RequiredFields](#RequiredFields) |  no  |  |
- | session_config | string |  no  |  |
- | skip_captcha | boolean |  no  |  |
- | skip_login | boolean |  no  |  |
- | social | [Social](#Social) |  no  |  |
- | social_tokens | [SocialTokens](#SocialTokens) |  no  |  |
- | subtext | string |  no  |  |
- | updated_at | string |  no  |  |
+ | _id | string? |  yes  |  |
+ | active | boolean? |  yes  |  |
+ | created_at | string? |  yes  |  |
+ | delete_account_consent | string? |  yes  |  |
+ | delete_account_day | number? |  yes  |  |
+ | delete_account_reasons | [[DeleteAccountReasons](#DeleteAccountReasons)]? |  yes  |  |
+ | desktop_image | string? |  yes  |  |
+ | display | string? |  yes  |  |
+ | flash_card | [FlashCard](#FlashCard)? |  yes  |  |
+ | forgot_password | boolean? |  yes  |  |
+ | login | [Login](#Login)? |  yes  |  |
+ | look_and_feel | [LookAndFeel](#LookAndFeel)? |  yes  |  |
+ | meta | [MetaSchema](#MetaSchema)? |  yes  |  |
+ | mobile_image | string? |  yes  |  |
+ | name | string? |  yes  |  |
+ | register | boolean? |  yes  |  |
+ | register_required_fields | [RegisterRequiredFields](#RegisterRequiredFields)? |  yes  |  |
+ | required_fields | [RequiredFields](#RequiredFields)? |  yes  |  |
+ | session_config | string? |  yes  |  |
+ | skip_captcha | boolean? |  yes  |  |
+ | skip_login | boolean? |  yes  |  |
+ | social | [Social](#Social)? |  yes  |  |
+ | social_tokens | [SocialTokens](#SocialTokens)? |  yes  |  |
+ | subtext | string? |  yes  |  |
+ | updated_at | string? |  yes  |  |
  
 
 ---
@@ -3707,21 +3707,21 @@ Success. Returns a JSON object as shown below. Refer `VerifyOtpSuccess` for more
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | country_code | string |  no  |  |
- | email | string |  no  |  |
- | message | string |  no  |  |
- | mobile | string |  no  |  |
- | register_token | string |  no  |  |
- | request_id | string |  no  |  |
- | resend_email_token | string |  no  |  |
- | resend_timer | number |  no  |  |
- | resend_token | string |  no  |  |
- | success | boolean |  no  |  |
- | user | [UserSchema](#UserSchema) |  no  |  |
- | user_exists | boolean |  no  |  |
- | verify_email_link | boolean |  no  |  |
- | verify_email_otp | boolean |  no  |  |
- | verify_mobile_otp | boolean |  no  |  |
+ | country_code | string? |  yes  |  |
+ | email | string? |  yes  |  |
+ | message | string? |  yes  |  |
+ | mobile | string? |  yes  |  |
+ | register_token | string? |  yes  |  |
+ | request_id | string? |  yes  |  |
+ | resend_email_token | string? |  yes  |  |
+ | resend_timer | number? |  yes  |  |
+ | resend_token | string? |  yes  |  |
+ | success | boolean? |  yes  |  |
+ | user | [UserSchema](#UserSchema)? |  yes  |  |
+ | user_exists | boolean? |  yes  |  |
+ | verify_email_link | boolean? |  yes  |  |
+ | verify_email_otp | boolean? |  yes  |  |
+ | verify_mobile_otp | boolean? |  yes  |  |
  
 
 ---
@@ -3730,13 +3730,13 @@ Success. Returns a JSON object as shown below. Refer `VerifyOtpSuccess` for more
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | email | string |  no  |  |
- | register_token | string |  no  |  |
- | user | string |  no  |  |
- | user_exists | boolean |  no  |  |
- | verify_email_link | boolean |  no  |  |
- | verify_email_otp | boolean |  no  |  |
- | verify_mobile_otp | boolean |  no  |  |
+ | email | string? |  yes  |  |
+ | register_token | string? |  yes  |  |
+ | user | string? |  yes  |  |
+ | user_exists | boolean? |  yes  |  |
+ | verify_email_link | boolean? |  yes  |  |
+ | verify_email_otp | boolean? |  yes  |  |
+ | verify_mobile_otp | boolean? |  yes  |  |
  
 
 ---
@@ -3745,19 +3745,19 @@ Success. Returns a JSON object as shown below. Refer `VerifyOtpSuccess` for more
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | country_code | string |  no  |  |
- | email | string |  no  |  |
- | message | string |  no  |  |
- | mobile | string |  no  |  |
- | register_token | string |  no  |  |
- | request_id | string |  no  |  |
- | resend_email_token | string |  no  |  |
- | resend_timer | number |  no  |  |
- | resend_token | string |  no  |  |
- | success | boolean |  no  |  |
- | user_exists | boolean |  no  |  |
- | verify_email_otp | boolean |  no  |  |
- | verify_mobile_otp | boolean |  no  |  |
+ | country_code | string? |  yes  |  |
+ | email | string? |  yes  |  |
+ | message | string? |  yes  |  |
+ | mobile | string? |  yes  |  |
+ | register_token | string? |  yes  |  |
+ | request_id | string? |  yes  |  |
+ | resend_email_token | string? |  yes  |  |
+ | resend_timer | number? |  yes  |  |
+ | resend_token | string? |  yes  |  |
+ | success | boolean? |  yes  |  |
+ | user_exists | boolean? |  yes  |  |
+ | verify_email_otp | boolean? |  yes  |  |
+ | verify_mobile_otp | boolean? |  yes  |  |
  
 
 ---
@@ -3766,8 +3766,8 @@ Success. Returns a JSON object as shown below. Refer `VerifyOtpSuccess` for more
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | email | [RegisterRequiredFieldsEmail](#RegisterRequiredFieldsEmail) |  no  |  |
- | mobile | [RegisterRequiredFieldsMobile](#RegisterRequiredFieldsMobile) |  no  |  |
+ | email | [RegisterRequiredFieldsEmail](#RegisterRequiredFieldsEmail)? |  yes  |  |
+ | mobile | [RegisterRequiredFieldsMobile](#RegisterRequiredFieldsMobile)? |  yes  |  |
  
 
 ---
@@ -3776,8 +3776,8 @@ Success. Returns a JSON object as shown below. Refer `VerifyOtpSuccess` for more
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | is_required | boolean |  no  |  |
- | level | string |  no  |  |
+ | is_required | boolean? |  yes  |  |
+ | level | string? |  yes  |  |
  
 
 ---
@@ -3786,8 +3786,8 @@ Success. Returns a JSON object as shown below. Refer `VerifyOtpSuccess` for more
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | is_required | boolean |  no  |  |
- | level | string |  no  |  |
+ | is_required | boolean? |  yes  |  |
+ | level | string? |  yes  |  |
  
 
 ---
@@ -3796,8 +3796,8 @@ Success. Returns a JSON object as shown below. Refer `VerifyOtpSuccess` for more
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | email | [PlatformEmail](#PlatformEmail) |  no  |  |
- | mobile | [PlatformMobile](#PlatformMobile) |  no  |  |
+ | email | [PlatformEmail](#PlatformEmail)? |  yes  |  |
+ | mobile | [PlatformMobile](#PlatformMobile)? |  yes  |  |
  
 
 ---
@@ -3806,7 +3806,7 @@ Success. Returns a JSON object as shown below. Refer `VerifyOtpSuccess` for more
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | status | string |  no  |  |
+ | status | string? |  yes  |  |
  
 
 ---
@@ -3815,10 +3815,10 @@ Success. Returns a JSON object as shown below. Refer `VerifyOtpSuccess` for more
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | action | string |  no  |  |
- | email | string |  no  |  |
- | register_token | string |  no  |  |
- | token | string |  no  |  |
+ | action | string? |  yes  |  |
+ | email | string? |  yes  |  |
+ | register_token | string? |  yes  |  |
+ | token | string? |  yes  |  |
  
 
 ---
@@ -3827,7 +3827,7 @@ Success. Returns a JSON object as shown below. Refer `VerifyOtpSuccess` for more
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | verify_email_link | boolean |  no  |  |
+ | verify_email_link | boolean? |  yes  |  |
  
 
 ---
@@ -3836,13 +3836,13 @@ Success. Returns a JSON object as shown below. Refer `VerifyOtpSuccess` for more
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | action | string |  no  |  |
- | android_hash | string |  no  |  |
- | captcha_code | string |  no  |  |
- | country_code | string |  no  |  |
- | force | string |  no  |  |
- | mobile | string |  no  |  |
- | token | string |  no  |  |
+ | action | string? |  yes  |  |
+ | android_hash | string? |  yes  |  |
+ | captcha_code | string? |  yes  |  |
+ | country_code | string? |  yes  |  |
+ | force | string? |  yes  |  |
+ | mobile | string? |  yes  |  |
+ | token | string? |  yes  |  |
  
 
 ---
@@ -3851,7 +3851,7 @@ Success. Returns a JSON object as shown below. Refer `VerifyOtpSuccess` for more
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | verify_mobile_link | boolean |  no  |  |
+ | verify_mobile_link | boolean? |  yes  |  |
  
 
 ---
@@ -3860,10 +3860,10 @@ Success. Returns a JSON object as shown below. Refer `VerifyOtpSuccess` for more
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | android_hash | string |  no  |  |
- | captcha_code | string |  no  |  |
- | country_code | string |  no  |  |
- | mobile | string |  no  |  |
+ | android_hash | string? |  yes  |  |
+ | captcha_code | string? |  yes  |  |
+ | country_code | string? |  yes  |  |
+ | mobile | string? |  yes  |  |
  
 
 ---
@@ -3872,19 +3872,19 @@ Success. Returns a JSON object as shown below. Refer `VerifyOtpSuccess` for more
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | country_code | string |  no  |  |
- | email | string |  no  |  |
- | message | string |  no  |  |
- | mobile | string |  no  |  |
- | register_token | string |  no  |  |
- | request_id | string |  no  |  |
- | resend_email_token | string |  no  |  |
- | resend_timer | number |  no  |  |
- | resend_token | string |  no  |  |
- | success | boolean |  no  |  |
- | user_exists | boolean |  no  |  |
- | verify_email_otp | boolean |  no  |  |
- | verify_mobile_otp | boolean |  no  |  |
+ | country_code | string? |  yes  |  |
+ | email | string? |  yes  |  |
+ | message | string? |  yes  |  |
+ | mobile | string? |  yes  |  |
+ | register_token | string? |  yes  |  |
+ | request_id | string? |  yes  |  |
+ | resend_email_token | string? |  yes  |  |
+ | resend_timer | number? |  yes  |  |
+ | resend_token | string? |  yes  |  |
+ | success | boolean? |  yes  |  |
+ | user_exists | boolean? |  yes  |  |
+ | verify_email_otp | boolean? |  yes  |  |
+ | verify_mobile_otp | boolean? |  yes  |  |
  
 
 ---
@@ -3893,8 +3893,8 @@ Success. Returns a JSON object as shown below. Refer `VerifyOtpSuccess` for more
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | captcha_code | string |  no  |  |
- | email | string |  no  |  |
+ | captcha_code | string? |  yes  |  |
+ | email | string? |  yes  |  |
  
 
 ---
@@ -3903,9 +3903,9 @@ Success. Returns a JSON object as shown below. Refer `VerifyOtpSuccess` for more
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | captcha_code | string |  no  |  |
- | country_code | string |  no  |  |
- | mobile | string |  no  |  |
+ | captcha_code | string? |  yes  |  |
+ | country_code | string? |  yes  |  |
+ | mobile | string? |  yes  |  |
  
 
 ---
@@ -3914,11 +3914,11 @@ Success. Returns a JSON object as shown below. Refer `VerifyOtpSuccess` for more
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | active | boolean |  no  |  |
- | country_code | string |  no  |  |
- | phone | string |  no  |  |
- | primary | boolean |  no  |  |
- | verified | boolean |  no  |  |
+ | active | boolean? |  yes  |  |
+ | country_code | string? |  yes  |  |
+ | phone | string? |  yes  |  |
+ | primary | boolean? |  yes  |  |
+ | verified | boolean? |  yes  |  |
  
 
 ---
@@ -3927,7 +3927,7 @@ Success. Returns a JSON object as shown below. Refer `VerifyOtpSuccess` for more
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | items | [string] |  no  |  |
+ | items | [string]? |  yes  |  |
  
 
 ---
@@ -3936,9 +3936,9 @@ Success. Returns a JSON object as shown below. Refer `VerifyOtpSuccess` for more
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | duration | number |  no  |  |
- | is_rolling | boolean |  no  |  |
- | type | string |  no  |  |
+ | duration | number? |  yes  |  |
+ | is_rolling | boolean? |  yes  |  |
+ | type | string? |  yes  |  |
  
 
 ---
@@ -3947,11 +3947,11 @@ Success. Returns a JSON object as shown below. Refer `VerifyOtpSuccess` for more
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | domain | string |  no  |  |
- | expire_in | string |  no  |  |
- | ip | string |  no  |  |
- | session_id | string |  no  |  |
- | user_agent | string |  no  |  |
+ | domain | string? |  yes  |  |
+ | expire_in | string? |  yes  |  |
+ | ip | string? |  yes  |  |
+ | session_id | string? |  yes  |  |
+ | user_agent | string? |  yes  |  |
  
 
 ---
@@ -3960,7 +3960,7 @@ Success. Returns a JSON object as shown below. Refer `VerifyOtpSuccess` for more
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | items | [[SessionListResponseInfo](#SessionListResponseInfo)] |  no  |  |
+ | items | [[SessionListResponseInfo](#SessionListResponseInfo)]? |  yes  |  |
  
 
 ---
@@ -3969,7 +3969,7 @@ Success. Returns a JSON object as shown below. Refer `VerifyOtpSuccess` for more
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | sessions | [string] |  no  |  |
+ | sessions | [string]? |  yes  |  |
  
 
 ---
@@ -3978,10 +3978,10 @@ Success. Returns a JSON object as shown below. Refer `VerifyOtpSuccess` for more
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | account_kit | boolean |  no  |  |
- | apple | boolean |  no  |  |
- | facebook | boolean |  no  |  |
- | google | boolean |  no  |  |
+ | account_kit | boolean? |  yes  |  |
+ | apple | boolean? |  yes  |  |
+ | facebook | boolean? |  yes  |  |
+ | google | boolean? |  yes  |  |
  
 
 ---
@@ -3990,9 +3990,9 @@ Success. Returns a JSON object as shown below. Refer `VerifyOtpSuccess` for more
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | account_kit | [Accountkit](#Accountkit) |  no  |  |
- | facebook | [Facebook](#Facebook) |  no  |  |
- | google | [Google](#Google) |  no  |  |
+ | account_kit | [Accountkit](#Accountkit)? |  yes  |  |
+ | facebook | [Facebook](#Facebook)? |  yes  |  |
+ | google | [Google](#Google)? |  yes  |  |
  
 
 ---
@@ -4001,7 +4001,7 @@ Success. Returns a JSON object as shown below. Refer `VerifyOtpSuccess` for more
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | token | string |  no  |  |
+ | token | string? |  yes  |  |
  
 
 ---
@@ -4010,7 +4010,7 @@ Success. Returns a JSON object as shown below. Refer `VerifyOtpSuccess` for more
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | authenticated | boolean |  no  |  |
+ | authenticated | boolean? |  yes  |  |
  
 
 ---
@@ -4019,7 +4019,7 @@ Success. Returns a JSON object as shown below. Refer `VerifyOtpSuccess` for more
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | message | string |  no  |  |
+ | message | string? |  yes  |  |
  
 
 ---
@@ -4028,9 +4028,9 @@ Success. Returns a JSON object as shown below. Refer `VerifyOtpSuccess` for more
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | reason | string |  no  |  |
- | reason_id | string |  no  |  |
- | user_id | string |  no  |  |
+ | reason | string? |  yes  |  |
+ | reason_id | string? |  yes  |  |
+ | user_id | string? |  yes  |  |
  
 
 ---
@@ -4039,7 +4039,7 @@ Success. Returns a JSON object as shown below. Refer `VerifyOtpSuccess` for more
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | success | boolean |  no  |  |
+ | success | boolean? |  yes  |  |
  
 
 ---
@@ -4048,8 +4048,8 @@ Success. Returns a JSON object as shown below. Refer `VerifyOtpSuccess` for more
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | new_password | string |  no  |  |
- | old_password | string |  no  |  |
+ | new_password | string? |  yes  |  |
+ | old_password | string? |  yes  |  |
  
 
 ---
@@ -4058,9 +4058,9 @@ Success. Returns a JSON object as shown below. Refer `VerifyOtpSuccess` for more
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | description | string |  no  |  |
- | file_url | string |  no  |  |
- | name | string |  no  |  |
+ | description | string? |  yes  |  |
+ | file_url | string? |  yes  |  |
+ | name | string? |  yes  |  |
  
 
 ---
@@ -4069,13 +4069,13 @@ Success. Returns a JSON object as shown below. Refer `VerifyOtpSuccess` for more
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | emails | [[UserEmails](#UserEmails)] |  no  |  |
- | external_id | string |  no  |  |
- | first_name | string |  no  |  |
- | gender | string |  no  |  |
- | last_name | string |  no  |  |
- | meta | string |  no  |  |
- | phone_numbers | [[UserPhoneNumbers](#UserPhoneNumbers)] |  no  |  |
+ | emails | [[UserEmails](#UserEmails)]? |  yes  |  |
+ | external_id | string? |  yes  |  |
+ | first_name | string? |  yes  |  |
+ | gender | string? |  yes  |  |
+ | last_name | string? |  yes  |  |
+ | meta | string? |  yes  |  |
+ | phone_numbers | [[UserPhoneNumbers](#UserPhoneNumbers)]? |  yes  |  |
  
 
 ---
@@ -4084,10 +4084,10 @@ Success. Returns a JSON object as shown below. Refer `VerifyOtpSuccess` for more
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | active | boolean |  no  |  |
- | email | string |  no  |  |
- | primary | boolean |  no  |  |
- | verified | boolean |  no  |  |
+ | active | boolean? |  yes  |  |
+ | email | string? |  yes  |  |
+ | primary | boolean? |  yes  |  |
+ | verified | boolean? |  yes  |  |
  
 
 ---
@@ -4096,8 +4096,8 @@ Success. Returns a JSON object as shown below. Refer `VerifyOtpSuccess` for more
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | items | [[UserGroupResponseSchema](#UserGroupResponseSchema)] |  no  |  |
- | page | [PaginationSchema](#PaginationSchema) |  no  |  |
+ | items | [[UserGroupResponseSchema](#UserGroupResponseSchema)]? |  yes  |  |
+ | page | [PaginationSchema](#PaginationSchema)? |  yes  |  |
  
 
 ---
@@ -4106,16 +4106,16 @@ Success. Returns a JSON object as shown below. Refer `VerifyOtpSuccess` for more
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | __v | number |  no  |  |
- | _id | string |  no  |  |
- | application_id | string |  no  |  |
- | created_at | string |  no  |  |
- | description | string |  no  |  |
- | file_url | string |  no  |  |
- | modified_at | string |  no  |  |
- | name | string |  no  |  |
- | status | string |  no  |  |
- | uid | number |  no  |  |
+ | __v | number? |  yes  |  |
+ | _id | string? |  yes  |  |
+ | application_id | string? |  yes  |  |
+ | created_at | string? |  yes  |  |
+ | description | string? |  yes  |  |
+ | file_url | string? |  yes  |  |
+ | modified_at | string? |  yes  |  |
+ | name | string? |  yes  |  |
+ | status | string? |  yes  |  |
+ | uid | number? |  yes  |  |
  
 
 ---
@@ -4124,7 +4124,7 @@ Success. Returns a JSON object as shown below. Refer `VerifyOtpSuccess` for more
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | user | [UserSchema](#UserSchema) |  no  |  |
+ | user | [UserSchema](#UserSchema)? |  yes  |  |
  
 
 ---
@@ -4133,11 +4133,11 @@ Success. Returns a JSON object as shown below. Refer `VerifyOtpSuccess` for more
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | active | boolean |  no  |  |
- | country_code | string |  no  |  |
- | phone | string |  no  |  |
- | primary | boolean |  no  |  |
- | verified | boolean |  no  |  |
+ | active | boolean? |  yes  |  |
+ | country_code | string? |  yes  |  |
+ | phone | string? |  yes  |  |
+ | primary | boolean? |  yes  |  |
+ | verified | boolean? |  yes  |  |
  
 
 ---
@@ -4146,22 +4146,22 @@ Success. Returns a JSON object as shown below. Refer `VerifyOtpSuccess` for more
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | _id | string |  no  |  |
- | account_type | string |  no  |  |
- | active | boolean |  no  |  |
- | application_id | string |  no  |  |
- | created_at | string |  no  |  |
- | dob | string |  no  |  |
- | emails | [[Email](#Email)] |  no  |  |
- | first_name | string |  no  |  |
- | gender | string |  no  |  |
- | last_name | string |  no  |  |
- | meta | string |  no  |  |
- | phone_numbers | [[PhoneNumber](#PhoneNumber)] |  no  |  |
- | profile_pic_url | string |  no  |  |
- | updated_at | string |  no  |  |
- | user_id | string |  no  |  |
- | username | string |  no  |  |
+ | _id | string? |  yes  |  |
+ | account_type | string? |  yes  |  |
+ | active | boolean? |  yes  |  |
+ | application_id | string? |  yes  |  |
+ | created_at | string? |  yes  |  |
+ | dob | string? |  yes  |  |
+ | emails | [[Email](#Email)]? |  yes  |  |
+ | first_name | string? |  yes  |  |
+ | gender | string? |  yes  |  |
+ | last_name | string? |  yes  |  |
+ | meta | string? |  yes  |  |
+ | phone_numbers | [[PhoneNumber](#PhoneNumber)]? |  yes  |  |
+ | profile_pic_url | string? |  yes  |  |
+ | updated_at | string? |  yes  |  |
+ | user_id | string? |  yes  |  |
+ | username | string? |  yes  |  |
  
 
 ---
@@ -4170,7 +4170,7 @@ Success. Returns a JSON object as shown below. Refer `VerifyOtpSuccess` for more
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | users | [[UserSchema](#UserSchema)] |  no  |  |
+ | users | [[UserSchema](#UserSchema)]? |  yes  |  |
  
 
 ---
@@ -4179,10 +4179,10 @@ Success. Returns a JSON object as shown below. Refer `VerifyOtpSuccess` for more
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | action | string |  no  |  |
- | email | string |  no  |  |
- | otp | string |  no  |  |
- | register_token | string |  no  |  |
+ | action | string? |  yes  |  |
+ | email | string? |  yes  |  |
+ | otp | string? |  yes  |  |
+ | register_token | string? |  yes  |  |
  
 
 ---
@@ -4191,8 +4191,8 @@ Success. Returns a JSON object as shown below. Refer `VerifyOtpSuccess` for more
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | user | [UserSchema](#UserSchema) |  no  |  |
- | verify_email_link | boolean |  no  |  |
+ | user | [UserSchema](#UserSchema)? |  yes  |  |
+ | verify_email_link | boolean? |  yes  |  |
  
 
 ---
@@ -4201,7 +4201,7 @@ Success. Returns a JSON object as shown below. Refer `VerifyOtpSuccess` for more
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | message | string |  no  |  |
+ | message | string? |  yes  |  |
  
 
 ---
@@ -4210,8 +4210,8 @@ Success. Returns a JSON object as shown below. Refer `VerifyOtpSuccess` for more
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | user | [UserSchema](#UserSchema) |  no  |  |
- | verify_mobile_link | boolean |  no  |  |
+ | user | [UserSchema](#UserSchema)? |  yes  |  |
+ | verify_mobile_link | boolean? |  yes  |  |
  
 
 ---
@@ -4220,9 +4220,9 @@ Success. Returns a JSON object as shown below. Refer `VerifyOtpSuccess` for more
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | otp | string |  no  |  |
- | register_token | string |  no  |  |
- | request_id | string |  no  |  |
+ | otp | string? |  yes  |  |
+ | register_token | string? |  yes  |  |
+ | request_id | string? |  yes  |  |
  
 
 ---
@@ -4231,9 +4231,9 @@ Success. Returns a JSON object as shown below. Refer `VerifyOtpSuccess` for more
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | register_token | string |  no  |  |
- | user | [UserSchema](#UserSchema) |  no  |  |
- | user_exists | boolean |  no  |  |
+ | register_token | string? |  yes  |  |
+ | user | [UserSchema](#UserSchema)? |  yes  |  |
+ | user_exists | boolean? |  yes  |  |
  
 
 ---

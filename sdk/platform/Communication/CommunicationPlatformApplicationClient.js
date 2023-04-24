@@ -1,6 +1,6 @@
-const Paginator = require("../../common/Paginator");
 const PlatformAPIClient = require("../PlatformAPIClient");
 const { FDKClientValidationError } = require("../../common/FDKError");
+const Paginator = require("../../common/Paginator");
 const CommunicationValidator = require("./CommunicationPlatformApplicationValidator");
 const CommunicationModel = require("./CommunicationPlatformModel");
 const { Logger } = require("./../../common/Logger");
@@ -3072,4 +3072,5 @@ class Communication {
     return response;
   }
 }
+
 module.exports = Communication;

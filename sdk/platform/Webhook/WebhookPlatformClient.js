@@ -1,6 +1,6 @@
-const Paginator = require("../../common/Paginator");
-const { FDKClientValidationError } = require("../../common/FDKError");
 const PlatformAPIClient = require("../PlatformAPIClient");
+const { FDKClientValidationError } = require("../../common/FDKError");
+const Paginator = require("../../common/Paginator");
 const WebhookValidator = require("./WebhookPlatformValidator");
 const WebhookModel = require("./WebhookPlatformModel");
 const { Logger } = require("./../../common/Logger");

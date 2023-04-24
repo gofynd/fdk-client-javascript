@@ -1,6 +1,6 @@
-const Paginator = require("../../common/Paginator");
 const PlatformAPIClient = require("../PlatformAPIClient");
 const { FDKClientValidationError } = require("../../common/FDKError");
+const Paginator = require("../../common/Paginator");
 const UserValidator = require("./UserPlatformApplicationValidator");
 const UserModel = require("./UserPlatformModel");
 const { Logger } = require("./../../common/Logger");
@@ -1090,4 +1090,5 @@ class User {
     return response;
   }
 }
+
 module.exports = User;

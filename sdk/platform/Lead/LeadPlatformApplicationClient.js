@@ -1,6 +1,6 @@
-const Paginator = require("../../common/Paginator");
 const PlatformAPIClient = require("../PlatformAPIClient");
 const { FDKClientValidationError } = require("../../common/FDKError");
+const Paginator = require("../../common/Paginator");
 const LeadValidator = require("./LeadPlatformApplicationValidator");
 const LeadModel = require("./LeadPlatformModel");
 const { Logger } = require("./../../common/Logger");
@@ -815,4 +815,5 @@ class Lead {
     return response;
   }
 }
+
 module.exports = Lead;

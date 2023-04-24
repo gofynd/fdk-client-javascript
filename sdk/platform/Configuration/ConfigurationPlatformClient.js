@@ -1,6 +1,6 @@
-const Paginator = require("../../common/Paginator");
-const { FDKClientValidationError } = require("../../common/FDKError");
 const PlatformAPIClient = require("../PlatformAPIClient");
+const { FDKClientValidationError } = require("../../common/FDKError");
+const Paginator = require("../../common/Paginator");
 const ConfigurationValidator = require("./ConfigurationPlatformValidator");
 const ConfigurationModel = require("./ConfigurationPlatformModel");
 const { Logger } = require("./../../common/Logger");
@@ -175,7 +175,7 @@ class Configuration {
       });
       return data;
     };
-    paginator.setCallback(callback);
+    paginator.setCallback(callback.bind(this));
     return paginator;
   }
 
@@ -272,7 +272,7 @@ class Configuration {
       });
       return data;
     };
-    paginator.setCallback(callback);
+    paginator.setCallback(callback.bind(this));
     return paginator;
   }
 
@@ -441,7 +441,7 @@ class Configuration {
       });
       return data;
     };
-    paginator.setCallback(callback);
+    paginator.setCallback(callback.bind(this));
     return paginator;
   }
 
@@ -1028,7 +1028,7 @@ class Configuration {
       });
       return data;
     };
-    paginator.setCallback(callback);
+    paginator.setCallback(callback.bind(this));
     return paginator;
   }
 
@@ -1135,7 +1135,7 @@ class Configuration {
       });
       return data;
     };
-    paginator.setCallback(callback);
+    paginator.setCallback(callback.bind(this));
     return paginator;
   }
 
@@ -1237,7 +1237,7 @@ class Configuration {
       });
       return data;
     };
-    paginator.setCallback(callback);
+    paginator.setCallback(callback.bind(this));
     return paginator;
   }
 

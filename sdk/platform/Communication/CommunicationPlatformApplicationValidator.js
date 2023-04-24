@@ -1,6 +1,6 @@
 const Joi = require("joi");
-const CommunicationModel = require("./CommunicationPlatformModel");
 
+const CommunicationModel = require("./CommunicationPlatformModel");
 class CommunicationValidator {
   static createAudience() {
     return Joi.object({

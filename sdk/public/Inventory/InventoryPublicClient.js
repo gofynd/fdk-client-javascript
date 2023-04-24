@@ -434,4 +434,5 @@ class Inventory {
     return response;
   }
 }
+
 module.exports = Inventory;

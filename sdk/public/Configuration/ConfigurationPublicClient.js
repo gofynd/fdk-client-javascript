@@ -167,4 +167,5 @@ class Configuration {
     return response;
   }
 }
+
 module.exports = Configuration;

@@ -43,7 +43,7 @@ declare class Order {
      * @summary:
      * @description:
      */
-    click2Call({ caller, receiver, bagId, callingTo, callerId }?: {
+    click2Call({ caller, receiver, bagId, callingTo, callerId, }?: {
         caller: string;
         receiver: string;
         bagId: string;

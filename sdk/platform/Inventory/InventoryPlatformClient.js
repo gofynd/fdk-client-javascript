@@ -1,6 +1,6 @@
-const Paginator = require("../../common/Paginator");
-const { FDKClientValidationError } = require("../../common/FDKError");
 const PlatformAPIClient = require("../PlatformAPIClient");
+const { FDKClientValidationError } = require("../../common/FDKError");
+const Paginator = require("../../common/Paginator");
 const InventoryValidator = require("./InventoryPlatformValidator");
 const InventoryModel = require("./InventoryPlatformModel");
 const { Logger } = require("./../../common/Logger");

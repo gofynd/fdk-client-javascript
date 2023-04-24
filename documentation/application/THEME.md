@@ -27,10 +27,10 @@ Get all pages of a theme
 
 ```javascript
 // Promise
-const promise = theme.getAllPages({  themeId : value });
+const promise = applicationClient.theme.getAllPages({  themeId : value });
 
 // Async/Await
-const data = await theme.getAllPages({  themeId : value });
+const data = await applicationClient.theme.getAllPages({  themeId : value });
 ```
 
 
@@ -379,10 +379,10 @@ Get the theme currently applied to an application
 
 ```javascript
 // Promise
-const promise = theme.getAppliedTheme();
+const promise = applicationClient.theme.getAppliedTheme();
 
 // Async/Await
-const data = await theme.getAppliedTheme();
+const data = await applicationClient.theme.getAppliedTheme();
 ```
 
 
@@ -2570,11 +2570,11 @@ Get page of a theme
 
 ```javascript
 // Promise
-const promise = theme.getPage({  themeId : value,
+const promise = applicationClient.theme.getPage({  themeId : value,
  pageValue : value });
 
 // Async/Await
-const data = await theme.getPage({  themeId : value,
+const data = await applicationClient.theme.getPage({  themeId : value,
  pageValue : value });
 ```
 
@@ -2997,10 +2997,10 @@ Get a theme for a preview
 
 ```javascript
 // Promise
-const promise = theme.getThemeForPreview({  themeId : value });
+const promise = applicationClient.theme.getThemeForPreview({  themeId : value });
 
 // Async/Await
-const data = await theme.getThemeForPreview({  themeId : value });
+const data = await applicationClient.theme.getThemeForPreview({  themeId : value });
 ```
 
 
@@ -5194,7 +5194,7 @@ Success. Returns a JSON object of the theme. Check the example shown below or re
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | theme_id | string |  no  |  |
+ | theme_id | string? |  yes  |  |
  
 
 ---
@@ -5203,7 +5203,7 @@ Success. Returns a JSON object of the theme. Check the example shown below or re
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | pages | [[AvailablePageSchema](#AvailablePageSchema)] |  no  |  |
+ | pages | [[AvailablePageSchema](#AvailablePageSchema)]? |  yes  |  |
  
 
 ---
@@ -5212,9 +5212,9 @@ Success. Returns a JSON object of the theme. Check the example shown below or re
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | common_js | [CommonJs](#CommonJs) |  no  |  |
- | css | [Css](#Css) |  no  |  |
- | umd_js | [UmdJs](#UmdJs) |  no  |  |
+ | common_js | [CommonJs](#CommonJs)? |  yes  |  |
+ | css | [Css](#Css)? |  yes  |  |
+ | umd_js | [UmdJs](#UmdJs)? |  yes  |  |
  
 
 ---
@@ -5223,9 +5223,9 @@ Success. Returns a JSON object of the theme. Check the example shown below or re
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | route | [AvailablePageRoutePredicate](#AvailablePageRoutePredicate) |  no  |  |
- | screen | [AvailablePageScreenPredicate](#AvailablePageScreenPredicate) |  no  |  |
- | user | [AvailablePageUserPredicate](#AvailablePageUserPredicate) |  no  |  |
+ | route | [AvailablePageRoutePredicate](#AvailablePageRoutePredicate)? |  yes  |  |
+ | screen | [AvailablePageScreenPredicate](#AvailablePageScreenPredicate)? |  yes  |  |
+ | user | [AvailablePageUserPredicate](#AvailablePageUserPredicate)? |  yes  |  |
  
 
 ---
@@ -5234,9 +5234,9 @@ Success. Returns a JSON object of the theme. Check the example shown below or re
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | exact_url | string |  no  |  |
- | query | string |  no  |  |
- | selected | string |  no  |  |
+ | exact_url | string? |  yes  |  |
+ | query | string? |  yes  |  |
+ | selected | string? |  yes  |  |
  
 
 ---
@@ -5245,16 +5245,16 @@ Success. Returns a JSON object of the theme. Check the example shown below or re
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | _id | string |  no  |  |
- | path | string |  no  |  |
- | props | [string] |  no  |  |
- | sections | [[AvailablePageSchemaSections](#AvailablePageSchemaSections)] |  no  |  |
- | sections_meta | [[AvailablePageSectionMetaAttributes](#AvailablePageSectionMetaAttributes)] |  no  |  |
- | seo | [AvailablePageSeo](#AvailablePageSeo) |  no  |  |
- | text | string |  no  |  |
- | theme | string |  no  |  |
- | type | string |  no  |  |
- | value | string |  no  |  |
+ | _id | string? |  yes  |  |
+ | path | string? |  yes  |  |
+ | props | [string]? |  yes  |  |
+ | sections | [[AvailablePageSchemaSections](#AvailablePageSchemaSections)]? |  yes  |  |
+ | sections_meta | [[AvailablePageSectionMetaAttributes](#AvailablePageSectionMetaAttributes)]? |  yes  |  |
+ | seo | [AvailablePageSeo](#AvailablePageSeo)? |  yes  |  |
+ | text | string? |  yes  |  |
+ | theme | string? |  yes  |  |
+ | type | string? |  yes  |  |
+ | value | string? |  yes  |  |
  
 
 ---
@@ -5263,12 +5263,12 @@ Success. Returns a JSON object of the theme. Check the example shown below or re
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | blocks | [string] |  no  |  |
- | label | string |  no  |  |
- | name | string |  no  |  |
- | predicate | [AvailablePagePredicate](#AvailablePagePredicate) |  no  |  |
- | preset | string |  no  |  |
- | props | string |  no  |  |
+ | blocks | [string]? |  yes  |  |
+ | label | string? |  yes  |  |
+ | name | string? |  yes  |  |
+ | predicate | [AvailablePagePredicate](#AvailablePagePredicate)? |  yes  |  |
+ | preset | string? |  yes  |  |
+ | props | string? |  yes  |  |
  
 
 ---
@@ -5277,9 +5277,9 @@ Success. Returns a JSON object of the theme. Check the example shown below or re
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | desktop | boolean |  no  |  |
- | mobile | boolean |  no  |  |
- | tablet | boolean |  no  |  |
+ | desktop | boolean? |  yes  |  |
+ | mobile | boolean? |  yes  |  |
+ | tablet | boolean? |  yes  |  |
  
 
 ---
@@ -5288,7 +5288,7 @@ Success. Returns a JSON object of the theme. Check the example shown below or re
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | attributes | string |  no  |  |
+ | attributes | string? |  yes  |  |
  
 
 ---
@@ -5297,9 +5297,9 @@ Success. Returns a JSON object of the theme. Check the example shown below or re
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | _id | string |  no  |  |
- | description | string |  no  |  |
- | title | string |  no  |  |
+ | _id | string? |  yes  |  |
+ | description | string? |  yes  |  |
+ | title | string? |  yes  |  |
  
 
 ---
@@ -5308,8 +5308,8 @@ Success. Returns a JSON object of the theme. Check the example shown below or re
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | anonymous | boolean |  no  |  |
- | authenticated | boolean |  no  |  |
+ | anonymous | boolean? |  yes  |  |
+ | authenticated | boolean? |  yes  |  |
  
 
 ---
@@ -5318,10 +5318,10 @@ Success. Returns a JSON object of the theme. Check the example shown below or re
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | blocks | [[Blocks](#Blocks)] |  no  |  |
- | label | string |  no  |  |
- | name | string |  no  |  |
- | props | [[BlocksProps](#BlocksProps)] |  no  |  |
+ | blocks | [[Blocks](#Blocks)]? |  yes  |  |
+ | label | string? |  yes  |  |
+ | name | string? |  yes  |  |
+ | props | [[BlocksProps](#BlocksProps)]? |  yes  |  |
  
 
 ---
@@ -5330,7 +5330,7 @@ Success. Returns a JSON object of the theme. Check the example shown below or re
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | message | string |  no  |  |
+ | message | string? |  yes  |  |
  
 
 ---
@@ -5339,7 +5339,7 @@ Success. Returns a JSON object of the theme. Check the example shown below or re
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | message | string |  no  |  |
+ | message | string? |  yes  |  |
  
 
 ---
@@ -5348,7 +5348,7 @@ Success. Returns a JSON object of the theme. Check the example shown below or re
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | message | string |  no  |  |
+ | message | string? |  yes  |  |
  
 
 ---
@@ -5357,9 +5357,9 @@ Success. Returns a JSON object of the theme. Check the example shown below or re
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | name | string |  no  |  |
- | props | [[BlocksProps](#BlocksProps)] |  no  |  |
- | type | string |  no  |  |
+ | name | string? |  yes  |  |
+ | props | [[BlocksProps](#BlocksProps)]? |  yes  |  |
+ | type | string? |  yes  |  |
  
 
 ---
@@ -5368,9 +5368,9 @@ Success. Returns a JSON object of the theme. Check the example shown below or re
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | id | string |  no  |  |
- | label | string |  no  |  |
- | type | string |  no  |  |
+ | id | string? |  yes  |  |
+ | label | string? |  yes  |  |
+ | type | string? |  yes  |  |
  
 
 ---
@@ -5379,8 +5379,8 @@ Success. Returns a JSON object of the theme. Check the example shown below or re
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | file | string |  no  |  |
- | name | string |  no  |  |
+ | file | string? |  yes  |  |
+ | name | string? |  yes  |  |
  
 
 ---
@@ -5389,12 +5389,12 @@ Success. Returns a JSON object of the theme. Check the example shown below or re
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | accent_color | string |  no  |  |
- | bg_color | string |  no  |  |
- | button_secondary_color | string |  no  |  |
- | link_color | string |  no  |  |
- | primary_color | string |  no  |  |
- | secondary_color | string |  no  |  |
+ | accent_color | string? |  yes  |  |
+ | bg_color | string? |  yes  |  |
+ | button_secondary_color | string? |  yes  |  |
+ | link_color | string? |  yes  |  |
+ | primary_color | string? |  yes  |  |
+ | secondary_color | string? |  yes  |  |
  
 
 ---
@@ -5403,7 +5403,7 @@ Success. Returns a JSON object of the theme. Check the example shown below or re
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | link | string |  no  |  |
+ | link | string? |  yes  |  |
  
 
 ---
@@ -5412,10 +5412,10 @@ Success. Returns a JSON object of the theme. Check the example shown below or re
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | current | string |  no  |  |
- | global_schema | [GlobalSchema](#GlobalSchema) |  no  |  |
- | list | [[ListSchemaItem](#ListSchemaItem)] |  no  |  |
- | preset | [Preset](#Preset) |  no  |  |
+ | current | string? |  yes  |  |
+ | global_schema | [GlobalSchema](#GlobalSchema)? |  yes  |  |
+ | list | [[ListSchemaItem](#ListSchemaItem)]? |  yes  |  |
+ | preset | [Preset](#Preset)? |  yes  |  |
  
 
 ---
@@ -5424,8 +5424,8 @@ Success. Returns a JSON object of the theme. Check the example shown below or re
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | page | string |  no  |  |
- | settings | string |  no  |  |
+ | page | string? |  yes  |  |
+ | settings | string? |  yes  |  |
  
 
 ---
@@ -5434,8 +5434,8 @@ Success. Returns a JSON object of the theme. Check the example shown below or re
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | link | string |  no  |  |
- | links | [string] |  no  |  |
+ | link | string? |  yes  |  |
+ | links | [string]? |  yes  |  |
  
 
 ---
@@ -5444,7 +5444,7 @@ Success. Returns a JSON object of the theme. Check the example shown below or re
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | props | string |  no  |  |
+ | props | string? |  yes  |  |
  
 
 ---
@@ -5453,8 +5453,8 @@ Success. Returns a JSON object of the theme. Check the example shown below or re
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | family | string |  no  |  |
- | variants | [Variants](#Variants) |  no  |  |
+ | family | string? |  yes  |  |
+ | variants | [Variants](#Variants)? |  yes  |  |
  
 
 ---
@@ -5463,8 +5463,8 @@ Success. Returns a JSON object of the theme. Check the example shown below or re
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | items | [FontsSchemaItems](#FontsSchemaItems) |  no  |  |
- | kind | string |  no  |  |
+ | items | [FontsSchemaItems](#FontsSchemaItems)? |  yes  |  |
+ | kind | string? |  yes  |  |
  
 
 ---
@@ -5473,14 +5473,14 @@ Success. Returns a JSON object of the theme. Check the example shown below or re
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | category | string |  no  |  |
- | family | string |  no  |  |
- | files | [FontsSchemaItemsFiles](#FontsSchemaItemsFiles) |  no  |  |
- | kind | string |  no  |  |
- | last_modified | string |  no  |  |
- | subsets | [string] |  no  |  |
- | variants | [string] |  no  |  |
- | version | string |  no  |  |
+ | category | string? |  yes  |  |
+ | family | string? |  yes  |  |
+ | files | [FontsSchemaItemsFiles](#FontsSchemaItemsFiles)? |  yes  |  |
+ | kind | string? |  yes  |  |
+ | last_modified | string? |  yes  |  |
+ | subsets | [string]? |  yes  |  |
+ | variants | [string]? |  yes  |  |
+ | version | string? |  yes  |  |
  
 
 ---
@@ -5489,9 +5489,9 @@ Success. Returns a JSON object of the theme. Check the example shown below or re
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | bold | string |  no  |  |
- | italic | string |  no  |  |
- | regular | string |  no  |  |
+ | bold | string? |  yes  |  |
+ | italic | string? |  yes  |  |
+ | regular | string? |  yes  |  |
  
 
 ---
@@ -5500,7 +5500,7 @@ Success. Returns a JSON object of the theme. Check the example shown below or re
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | props | [[GlobalSchemaProps](#GlobalSchemaProps)] |  no  |  |
+ | props | [[GlobalSchemaProps](#GlobalSchemaProps)]? |  yes  |  |
  
 
 ---
@@ -5509,10 +5509,10 @@ Success. Returns a JSON object of the theme. Check the example shown below or re
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | category | string |  no  |  |
- | id | string |  no  |  |
- | label | string |  no  |  |
- | type | string |  no  |  |
+ | category | string? |  yes  |  |
+ | id | string? |  yes  |  |
+ | label | string? |  yes  |  |
+ | type | string? |  yes  |  |
  
 
 ---
@@ -5521,10 +5521,10 @@ Success. Returns a JSON object of the theme. Check the example shown below or re
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | android | [string] |  no  |  |
- | desktop | [string] |  no  |  |
- | ios | [string] |  no  |  |
- | thumbnail | [string] |  no  |  |
+ | android | [string]? |  yes  |  |
+ | desktop | [string]? |  yes  |  |
+ | ios | [string]? |  yes  |  |
+ | thumbnail | [string]? |  yes  |  |
  
 
 ---
@@ -5533,10 +5533,10 @@ Success. Returns a JSON object of the theme. Check the example shown below or re
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | description | string |  no  |  |
- | features | [string] |  no  |  |
- | images | [Images](#Images) |  no  |  |
- | name | string |  no  |  |
+ | description | string? |  yes  |  |
+ | features | [string]? |  yes  |  |
+ | images | [Images](#Images)? |  yes  |  |
+ | name | string? |  yes  |  |
  
 
 ---
@@ -5545,8 +5545,8 @@ Success. Returns a JSON object of the theme. Check the example shown below or re
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | file | string |  no  |  |
- | name | string |  no  |  |
+ | file | string? |  yes  |  |
+ | name | string? |  yes  |  |
  
 
 ---
@@ -5555,9 +5555,9 @@ Success. Returns a JSON object of the theme. Check the example shown below or re
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | global_config | string |  no  |  |
- | name | string |  no  |  |
- | page | [[ConfigPage](#ConfigPage)] |  no  |  |
+ | global_config | string? |  yes  |  |
+ | name | string? |  yes  |  |
+ | page | [[ConfigPage](#ConfigPage)]? |  yes  |  |
  
 
 ---
@@ -5566,8 +5566,8 @@ Success. Returns a JSON object of the theme. Check the example shown below or re
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | file | string |  no  |  |
- | name | string |  no  |  |
+ | file | string? |  yes  |  |
+ | name | string? |  yes  |  |
  
 
 ---
@@ -5576,11 +5576,11 @@ Success. Returns a JSON object of the theme. Check the example shown below or re
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | current | number |  no  |  |
- | has_next | boolean |  no  |  |
- | item_total | number |  no  |  |
- | size | number |  no  |  |
- | type | string |  no  |  |
+ | current | number? |  yes  |  |
+ | has_next | boolean? |  yes  |  |
+ | item_total | number? |  yes  |  |
+ | size | number? |  yes  |  |
+ | type | string? |  yes  |  |
  
 
 ---
@@ -5589,7 +5589,7 @@ Success. Returns a JSON object of the theme. Check the example shown below or re
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | pages | [[AvailablePageSchema](#AvailablePageSchema)] |  no  |  |
+ | pages | [[AvailablePageSchema](#AvailablePageSchema)]? |  yes  |  |
  
 
 ---
@@ -5598,8 +5598,8 @@ Success. Returns a JSON object of the theme. Check the example shown below or re
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | file | string |  no  |  |
- | name | string |  no  |  |
+ | file | string? |  yes  |  |
+ | name | string? |  yes  |  |
  
 
 ---
@@ -5608,7 +5608,7 @@ Success. Returns a JSON object of the theme. Check the example shown below or re
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | attributes | string |  no  |  |
+ | attributes | string? |  yes  |  |
  
 
 ---
@@ -5617,8 +5617,8 @@ Success. Returns a JSON object of the theme. Check the example shown below or re
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | file | string |  no  |  |
- | name | string |  no  |  |
+ | file | string? |  yes  |  |
+ | name | string? |  yes  |  |
  
 
 ---
@@ -5627,7 +5627,7 @@ Success. Returns a JSON object of the theme. Check the example shown below or re
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | link | string |  no  |  |
+ | link | string? |  yes  |  |
  
 
 ---
@@ -5636,8 +5636,8 @@ Success. Returns a JSON object of the theme. Check the example shown below or re
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | items | [[ThemesSchema](#ThemesSchema)] |  no  |  |
- | page | [PaginationSchema](#PaginationSchema) |  no  |  |
+ | items | [[ThemesSchema](#ThemesSchema)]? |  yes  |  |
+ | page | [PaginationSchema](#PaginationSchema)? |  yes  |  |
  
 
 ---
@@ -5646,27 +5646,27 @@ Success. Returns a JSON object of the theme. Check the example shown below or re
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | __v | number |  no  |  |
- | _id | string |  no  |  |
- | application | string |  no  |  |
- | applied | boolean |  no  |  |
- | archived | boolean |  no  |  |
- | assets | [AssetsSchema](#AssetsSchema) |  no  |  |
- | available_sections | [[availableSectionSchema](#availableSectionSchema)] |  no  |  |
- | colors | [Colors](#Colors) |  no  |  |
- | config | [Config](#Config) |  no  |  |
- | created_at | string |  no  |  |
- | customized | boolean |  no  |  |
- | font | [Font](#Font) |  no  |  |
- | information | [Information](#Information) |  no  |  |
- | parent_theme | string |  no  |  |
- | parent_theme_version | string |  no  |  |
- | published | boolean |  no  |  |
- | src | [Src](#Src) |  no  |  |
- | styles | string |  no  |  |
- | tags | [string] |  no  |  |
- | updated_at | string |  no  |  |
- | version | string |  no  |  |
+ | __v | number? |  yes  |  |
+ | _id | string? |  yes  |  |
+ | application | string? |  yes  |  |
+ | applied | boolean? |  yes  |  |
+ | archived | boolean? |  yes  |  |
+ | assets | [AssetsSchema](#AssetsSchema)? |  yes  |  |
+ | available_sections | [[availableSectionSchema](#availableSectionSchema)]? |  yes  |  |
+ | colors | [Colors](#Colors)? |  yes  |  |
+ | config | [Config](#Config)? |  yes  |  |
+ | created_at | string? |  yes  |  |
+ | customized | boolean? |  yes  |  |
+ | font | [Font](#Font)? |  yes  |  |
+ | information | [Information](#Information)? |  yes  |  |
+ | parent_theme | string? |  yes  |  |
+ | parent_theme_version | string? |  yes  |  |
+ | published | boolean? |  yes  |  |
+ | src | [Src](#Src)? |  yes  |  |
+ | styles | string? |  yes  |  |
+ | tags | [string]? |  yes  |  |
+ | updated_at | string? |  yes  |  |
+ | version | string? |  yes  |  |
  
 
 ---
@@ -5675,8 +5675,8 @@ Success. Returns a JSON object of the theme. Check the example shown below or re
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | link | string |  no  |  |
- | links | [string] |  no  |  |
+ | link | string? |  yes  |  |
+ | links | [string]? |  yes  |  |
  
 
 ---
@@ -5685,9 +5685,9 @@ Success. Returns a JSON object of the theme. Check the example shown below or re
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | applied_theme | string |  no  |  |
- | parent_theme | string |  no  |  |
- | upgrade | boolean |  no  |  |
+ | applied_theme | string? |  yes  |  |
+ | parent_theme | string? |  yes  |  |
+ | upgrade | boolean? |  yes  |  |
  
 
 ---
@@ -5696,11 +5696,11 @@ Success. Returns a JSON object of the theme. Check the example shown below or re
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | bold | [Bold](#Bold) |  no  |  |
- | light | [Light](#Light) |  no  |  |
- | medium | [Medium](#Medium) |  no  |  |
- | regular | [Regular](#Regular) |  no  |  |
- | semi_bold | [SemiBold](#SemiBold) |  no  |  |
+ | bold | [Bold](#Bold)? |  yes  |  |
+ | light | [Light](#Light)? |  yes  |  |
+ | medium | [Medium](#Medium)? |  yes  |  |
+ | regular | [Regular](#Regular)? |  yes  |  |
+ | semi_bold | [SemiBold](#SemiBold)? |  yes  |  |
  
 
 ---

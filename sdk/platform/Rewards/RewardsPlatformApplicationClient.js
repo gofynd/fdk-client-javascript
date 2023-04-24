@@ -1,6 +1,6 @@
-const Paginator = require("../../common/Paginator");
 const PlatformAPIClient = require("../PlatformAPIClient");
 const { FDKClientValidationError } = require("../../common/FDKError");
+const Paginator = require("../../common/Paginator");
 const RewardsValidator = require("./RewardsPlatformApplicationValidator");
 const RewardsModel = require("./RewardsPlatformModel");
 const { Logger } = require("./../../common/Logger");
@@ -20,9 +20,7 @@ class Rewards {
    */
   async getGiveawayAudienceStatus({ audienceId } = {}) {
     const { error } = RewardsValidator.getGiveawayAudienceStatus().validate(
-      {
-        audienceId,
-      },
+      { audienceId },
       { abortEarly: false, allowUnknown: true }
     );
     if (error) {
@@ -33,9 +31,7 @@ class Rewards {
     const {
       error: warrning,
     } = RewardsValidator.getGiveawayAudienceStatus().validate(
-      {
-        audienceId,
-      },
+      { audienceId },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
@@ -143,10 +139,15 @@ class Rewards {
    * @summary: Get offer by name
    * @description: Use this API to get the offer details and configuration by entering the name of the offer.
    */
-  async getOfferByName({ name, cookie } = {}) {
+  async getOfferByName({
+    name,
+
+    cookie,
+  } = {}) {
     const { error } = RewardsValidator.getOfferByName().validate(
       {
         name,
+
         cookie,
       },
       { abortEarly: false, allowUnknown: true }
@@ -159,6 +160,7 @@ class Rewards {
     const { error: warrning } = RewardsValidator.getOfferByName().validate(
       {
         name,
+
         cookie,
       },
       { abortEarly: false, allowUnknown: false }
@@ -265,10 +267,16 @@ class Rewards {
    * @summary: Get all transactions of reward points
    * @description: Use this API to get a list of points transactions.
    */
-  async getUserPointsHistory({ userId, pageId, pageSize } = {}) {
+  async getUserPointsHistory({
+    userId,
+
+    pageId,
+    pageSize,
+  } = {}) {
     const { error } = RewardsValidator.getUserPointsHistory().validate(
       {
         userId,
+
         pageId,
         pageSize,
       },
@@ -284,6 +292,7 @@ class Rewards {
     } = RewardsValidator.getUserPointsHistory().validate(
       {
         userId,
+
         pageId,
         pageSize,
       },
@@ -673,10 +682,15 @@ class Rewards {
    * @summary: Update offer by name
    * @description: Use this API to update the offer details
    */
-  async updateOfferByName({ name, body } = {}) {
+  async updateOfferByName({
+    name,
+
+    body,
+  } = {}) {
     const { error } = RewardsValidator.updateOfferByName().validate(
       {
         name,
+
         body,
       },
       { abortEarly: false, allowUnknown: true }
@@ -689,6 +703,7 @@ class Rewards {
     const { error: warrning } = RewardsValidator.updateOfferByName().validate(
       {
         name,
+
         body,
       },
       { abortEarly: false, allowUnknown: false }
@@ -735,10 +750,15 @@ class Rewards {
    * @summary: Update user status
    * @description: Use this API to update the user status active/archive
    */
-  async updateUserStatus({ userId, body } = {}) {
+  async updateUserStatus({
+    userId,
+
+    body,
+  } = {}) {
     const { error } = RewardsValidator.updateUserStatus().validate(
       {
         userId,
+
         body,
       },
       { abortEarly: false, allowUnknown: true }
@@ -751,6 +771,7 @@ class Rewards {
     const { error: warrning } = RewardsValidator.updateUserStatus().validate(
       {
         userId,
+
         body,
       },
       { abortEarly: false, allowUnknown: false }
@@ -798,9 +819,7 @@ class Rewards {
    */
   async user({ userId } = {}) {
     const { error } = RewardsValidator.user().validate(
-      {
-        userId,
-      },
+      { userId },
       { abortEarly: false, allowUnknown: true }
     );
     if (error) {
@@ -809,9 +828,7 @@ class Rewards {
 
     // Showing warrnings if extra unknown parameters are found
     const { error: warrning } = RewardsValidator.user().validate(
-      {
-        userId,
-      },
+      { userId },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
@@ -848,4 +865,5 @@ class Rewards {
     return response;
   }
 }
+
 module.exports = Rewards;

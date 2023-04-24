@@ -40,10 +40,10 @@ archive user
 
 ```javascript
 // Promise
-const promise = client.application("<APPLICATION_ID>").user.archiveUser({  body : value });
+const promise = platformClient.application("<APPLICATION_ID>").user.archiveUser({  body : value });
 
 // Async/Await
-const data = await client.application("<APPLICATION_ID>").user.archiveUser({  body : value });
+const data = await platformClient.application("<APPLICATION_ID>").user.archiveUser({  body : value });
 ```
 
 
@@ -97,10 +97,10 @@ Block/Unblock user
 
 ```javascript
 // Promise
-const promise = client.application("<APPLICATION_ID>").user.blockOrUnblockUsers({  body : value });
+const promise = platformClient.application("<APPLICATION_ID>").user.blockOrUnblockUsers({  body : value });
 
 // Async/Await
-const data = await client.application("<APPLICATION_ID>").user.blockOrUnblockUsers({  body : value });
+const data = await platformClient.application("<APPLICATION_ID>").user.blockOrUnblockUsers({  body : value });
 ```
 
 
@@ -154,10 +154,10 @@ Create user
 
 ```javascript
 // Promise
-const promise = client.application("<APPLICATION_ID>").user.createUser({  body : value });
+const promise = platformClient.application("<APPLICATION_ID>").user.createUser({  body : value });
 
 // Async/Await
-const data = await client.application("<APPLICATION_ID>").user.createUser({  body : value });
+const data = await platformClient.application("<APPLICATION_ID>").user.createUser({  body : value });
 ```
 
 
@@ -251,10 +251,10 @@ Create an User Group
 
 ```javascript
 // Promise
-const promise = client.application("<APPLICATION_ID>").user.createUserGroup({  body : value });
+const promise = platformClient.application("<APPLICATION_ID>").user.createUserGroup({  body : value });
 
 // Async/Await
-const data = await client.application("<APPLICATION_ID>").user.createUserGroup({  body : value });
+const data = await platformClient.application("<APPLICATION_ID>").user.createUserGroup({  body : value });
 ```
 
 
@@ -318,10 +318,10 @@ Create user session
 
 ```javascript
 // Promise
-const promise = client.application("<APPLICATION_ID>").user.createUserSession({  body : value });
+const promise = platformClient.application("<APPLICATION_ID>").user.createUserSession({  body : value });
 
 // Async/Await
-const data = await client.application("<APPLICATION_ID>").user.createUserSession({  body : value });
+const data = await platformClient.application("<APPLICATION_ID>").user.createUserSession({  body : value });
 ```
 
 
@@ -381,11 +381,11 @@ Delete a list of all session for a user
 
 ```javascript
 // Promise
-const promise = client.application("<APPLICATION_ID>").user.deleteActiveSessions({  id : value,
+const promise = platformClient.application("<APPLICATION_ID>").user.deleteActiveSessions({  id : value,
  reason : value });
 
 // Async/Await
-const data = await client.application("<APPLICATION_ID>").user.deleteActiveSessions({  id : value,
+const data = await platformClient.application("<APPLICATION_ID>").user.deleteActiveSessions({  id : value,
  reason : value });
 ```
 
@@ -453,12 +453,12 @@ Delete a session for a user
 
 ```javascript
 // Promise
-const promise = client.application("<APPLICATION_ID>").user.deleteSession({  id : value,
+const promise = platformClient.application("<APPLICATION_ID>").user.deleteSession({  id : value,
  sessionId : value,
  reason : value });
 
 // Async/Await
-const data = await client.application("<APPLICATION_ID>").user.deleteSession({  id : value,
+const data = await platformClient.application("<APPLICATION_ID>").user.deleteSession({  id : value,
  sessionId : value,
  reason : value });
 ```
@@ -528,10 +528,10 @@ Get a list of all session with info for a user
 
 ```javascript
 // Promise
-const promise = client.application("<APPLICATION_ID>").user.getActiveSessions({  id : value });
+const promise = platformClient.application("<APPLICATION_ID>").user.getActiveSessions({  id : value });
 
 // Async/Await
-const data = await client.application("<APPLICATION_ID>").user.getActiveSessions({  id : value });
+const data = await platformClient.application("<APPLICATION_ID>").user.getActiveSessions({  id : value });
 ```
 
 
@@ -597,12 +597,12 @@ Get a list of customers
 
 ```javascript
 // Promise
-const promise = client.application("<APPLICATION_ID>").user.getCustomers({  q : value,
+const promise = platformClient.application("<APPLICATION_ID>").user.getCustomers({  q : value,
  pageSize : value,
  pageNo : value });
 
 // Async/Await
-const data = await client.application("<APPLICATION_ID>").user.getCustomers({  q : value,
+const data = await platformClient.application("<APPLICATION_ID>").user.getCustomers({  q : value,
  pageSize : value,
  pageNo : value });
 ```
@@ -714,10 +714,10 @@ Get platform configurations
 
 ```javascript
 // Promise
-const promise = client.application("<APPLICATION_ID>").user.getPlatformConfig();
+const promise = platformClient.application("<APPLICATION_ID>").user.getPlatformConfig();
 
 // Async/Await
-const data = await client.application("<APPLICATION_ID>").user.getPlatformConfig();
+const data = await platformClient.application("<APPLICATION_ID>").user.getPlatformConfig();
 ```
 
 
@@ -846,10 +846,10 @@ Get an User Group by Id
 
 ```javascript
 // Promise
-const promise = client.application("<APPLICATION_ID>").user.getUserGroupById({  groupId : value });
+const promise = platformClient.application("<APPLICATION_ID>").user.getUserGroupById({  groupId : value });
 
 // Async/Await
-const data = await client.application("<APPLICATION_ID>").user.getUserGroupById({  groupId : value });
+const data = await platformClient.application("<APPLICATION_ID>").user.getUserGroupById({  groupId : value });
 ```
 
 
@@ -914,14 +914,14 @@ Get User Groups mathcing criteria
 
 ```javascript
 // Promise
-const promise = client.application("<APPLICATION_ID>").user.getUserGroups({  pageNo : value,
+const promise = platformClient.application("<APPLICATION_ID>").user.getUserGroups({  pageNo : value,
  pageSize : value,
  name : value,
  status : value,
  groupUid : value });
 
 // Async/Await
-const data = await client.application("<APPLICATION_ID>").user.getUserGroups({  pageNo : value,
+const data = await platformClient.application("<APPLICATION_ID>").user.getUserGroups({  pageNo : value,
  pageSize : value,
  name : value,
  status : value,
@@ -1018,10 +1018,10 @@ Search an existing user.
 
 ```javascript
 // Promise
-const promise = client.application("<APPLICATION_ID>").user.searchUsers({  q : value });
+const promise = platformClient.application("<APPLICATION_ID>").user.searchUsers({  q : value });
 
 // Async/Await
-const data = await client.application("<APPLICATION_ID>").user.searchUsers({  q : value });
+const data = await platformClient.application("<APPLICATION_ID>").user.searchUsers({  q : value });
 ```
 
 
@@ -1116,10 +1116,10 @@ undelete user who deleted from application and have not elapsed the platform con
 
 ```javascript
 // Promise
-const promise = client.application("<APPLICATION_ID>").user.unDeleteUser({  body : value });
+const promise = platformClient.application("<APPLICATION_ID>").user.unDeleteUser({  body : value });
 
 // Async/Await
-const data = await client.application("<APPLICATION_ID>").user.unDeleteUser({  body : value });
+const data = await platformClient.application("<APPLICATION_ID>").user.unDeleteUser({  body : value });
 ```
 
 
@@ -1173,10 +1173,10 @@ Update platform configurations
 
 ```javascript
 // Promise
-const promise = client.application("<APPLICATION_ID>").user.updatePlatformConfig({  body : value });
+const promise = platformClient.application("<APPLICATION_ID>").user.updatePlatformConfig({  body : value });
 
 // Async/Await
-const data = await client.application("<APPLICATION_ID>").user.updatePlatformConfig({  body : value });
+const data = await platformClient.application("<APPLICATION_ID>").user.updatePlatformConfig({  body : value });
 ```
 
 
@@ -1309,11 +1309,11 @@ Update user
 
 ```javascript
 // Promise
-const promise = client.application("<APPLICATION_ID>").user.updateUser({  userId : value,
+const promise = platformClient.application("<APPLICATION_ID>").user.updateUser({  userId : value,
  body : value });
 
 // Async/Await
-const data = await client.application("<APPLICATION_ID>").user.updateUser({  userId : value,
+const data = await platformClient.application("<APPLICATION_ID>").user.updateUser({  userId : value,
  body : value });
 ```
 
@@ -1409,11 +1409,11 @@ Update an User Group
 
 ```javascript
 // Promise
-const promise = client.application("<APPLICATION_ID>").user.updateUserGroup({  groupId : value,
+const promise = platformClient.application("<APPLICATION_ID>").user.updateUserGroup({  groupId : value,
  body : value });
 
 // Async/Await
-const data = await client.application("<APPLICATION_ID>").user.updateUserGroup({  groupId : value,
+const data = await platformClient.application("<APPLICATION_ID>").user.updateUserGroup({  groupId : value,
  body : value });
 ```
 
@@ -1480,7 +1480,7 @@ Success. returns updated User Group. `UserGroupResponseSchema` for more details.
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | app_id | string |  no  |  |
+ | app_id | string? |  yes  |  |
  
 
 ---
@@ -1489,7 +1489,7 @@ Success. returns updated User Group. `UserGroupResponseSchema` for more details.
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | user_id | string |  no  |  |
+ | user_id | string? |  yes  |  |
  
 
 ---
@@ -1498,7 +1498,7 @@ Success. returns updated User Group. `UserGroupResponseSchema` for more details.
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | success | boolean |  no  |  |
+ | success | boolean? |  yes  |  |
  
 
 ---
@@ -1507,7 +1507,7 @@ Success. returns updated User Group. `UserGroupResponseSchema` for more details.
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | message | string |  no  |  |
+ | message | string? |  yes  |  |
  
 
 ---
@@ -1516,7 +1516,7 @@ Success. returns updated User Group. `UserGroupResponseSchema` for more details.
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | message | string |  no  |  |
+ | message | string? |  yes  |  |
  
 
 ---
@@ -1525,9 +1525,9 @@ Success. returns updated User Group. `UserGroupResponseSchema` for more details.
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | register_token | string |  no  |  |
- | user | [UserSchema](#UserSchema) |  no  |  |
- | user_exists | boolean |  no  |  |
+ | register_token | string? |  yes  |  |
+ | user | [UserSchema](#UserSchema)? |  yes  |  |
+ | user_exists | boolean? |  yes  |  |
  
 
 ---
@@ -1536,11 +1536,11 @@ Success. returns updated User Group. `UserGroupResponseSchema` for more details.
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | active | boolean |  no  |  |
- | debug | [AuthSuccessUserDebug](#AuthSuccessUserDebug) |  no  |  |
- | emails | [AuthSuccessUserEmails](#AuthSuccessUserEmails) |  no  |  |
- | first_name | string |  no  |  |
- | last_name | string |  no  |  |
+ | active | boolean? |  yes  |  |
+ | debug | [AuthSuccessUserDebug](#AuthSuccessUserDebug)? |  yes  |  |
+ | emails | [AuthSuccessUserEmails](#AuthSuccessUserEmails)? |  yes  |  |
+ | first_name | string? |  yes  |  |
+ | last_name | string? |  yes  |  |
  
 
 ---
@@ -1549,7 +1549,7 @@ Success. returns updated User Group. `UserGroupResponseSchema` for more details.
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | platform | string |  no  |  |
+ | platform | string? |  yes  |  |
  
 
 ---
@@ -1558,10 +1558,10 @@ Success. returns updated User Group. `UserGroupResponseSchema` for more details.
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | active | boolean |  no  |  |
- | email | string |  no  |  |
- | primary | boolean |  no  |  |
- | verified | boolean |  no  |  |
+ | active | boolean? |  yes  |  |
+ | email | string? |  yes  |  |
+ | primary | boolean? |  yes  |  |
+ | verified | boolean? |  yes  |  |
  
 
 ---
@@ -1570,9 +1570,9 @@ Success. returns updated User Group. `UserGroupResponseSchema` for more details.
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | reason | string |  no  |  |
- | status | boolean |  no  |  |
- | user_id | [string] |  no  |  |
+ | reason | string? |  yes  |  |
+ | status | boolean? |  yes  |  |
+ | user_id | [string]? |  yes  |  |
  
 
 ---
@@ -1581,7 +1581,7 @@ Success. returns updated User Group. `UserGroupResponseSchema` for more details.
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | success | boolean |  no  |  |
+ | success | boolean? |  yes  |  |
  
 
 ---
@@ -1590,7 +1590,7 @@ Success. returns updated User Group. `UserGroupResponseSchema` for more details.
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | code | string |  no  |  |
+ | code | string? |  yes  |  |
  
 
 ---
@@ -1599,9 +1599,9 @@ Success. returns updated User Group. `UserGroupResponseSchema` for more details.
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | description | string |  yes  |  |
- | file_url | string |  yes  |  |
- | name | string |  yes  |  |
+ | description | string |  no  |  |
+ | file_url | string |  no  |  |
+ | name | string |  no  |  |
  
 
 ---
@@ -1610,13 +1610,13 @@ Success. returns updated User Group. `UserGroupResponseSchema` for more details.
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | email | string |  no  |  |
- | first_name | string |  no  |  |
- | gender | string |  no  |  |
- | last_name | string |  no  |  |
- | meta | string |  no  |  |
- | phone_number | string |  yes  |  |
- | username | string |  yes  |  |
+ | email | string? |  yes  |  |
+ | first_name | string? |  yes  |  |
+ | gender | string? |  yes  |  |
+ | last_name | string? |  yes  |  |
+ | meta | string? |  yes  |  |
+ | phone_number | string |  no  |  |
+ | username | string |  no  |  |
  
 
 ---
@@ -1625,7 +1625,7 @@ Success. returns updated User Group. `UserGroupResponseSchema` for more details.
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | user | [UserSchema](#UserSchema) |  no  |  |
+ | user | [UserSchema](#UserSchema)? |  yes  |  |
  
 
 ---
@@ -1634,9 +1634,9 @@ Success. returns updated User Group. `UserGroupResponseSchema` for more details.
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | domain | string |  no  |  |
- | max_age | number |  no  |  |
- | user_id | string |  no  |  |
+ | domain | string? |  yes  |  |
+ | max_age | number? |  yes  |  |
+ | user_id | string? |  yes  |  |
  
 
 ---
@@ -1645,11 +1645,11 @@ Success. returns updated User Group. `UserGroupResponseSchema` for more details.
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | cookie | string |  no  |  |
- | domain | string |  no  |  |
- | http_only | boolean |  no  |  |
- | max_age | number |  no  |  |
- | secure | boolean |  no  |  |
+ | cookie | string? |  yes  |  |
+ | domain | string? |  yes  |  |
+ | http_only | boolean? |  yes  |  |
+ | max_age | number? |  yes  |  |
+ | secure | boolean? |  yes  |  |
  
 
 ---
@@ -1658,8 +1658,8 @@ Success. returns updated User Group. `UserGroupResponseSchema` for more details.
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | items | [[UserSchema](#UserSchema)] |  no  |  |
- | page | [PaginationSchema](#PaginationSchema) |  no  |  |
+ | items | [[UserSchema](#UserSchema)]? |  yes  |  |
+ | page | [PaginationSchema](#PaginationSchema)? |  yes  |  |
  
 
 ---
@@ -1668,7 +1668,7 @@ Success. returns updated User Group. `UserGroupResponseSchema` for more details.
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | consent_text | string |  no  |  |
+ | consent_text | string? |  yes  |  |
  
 
 ---
@@ -1677,9 +1677,9 @@ Success. returns updated User Group. `UserGroupResponseSchema` for more details.
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | reason_id | string |  no  |  |
- | reason_text | string |  no  |  |
- | show_text_area | boolean |  no  |  |
+ | reason_id | string? |  yes  |  |
+ | reason_text | string? |  yes  |  |
+ | show_text_area | boolean? |  yes  |  |
  
 
 ---
@@ -1688,11 +1688,11 @@ Success. returns updated User Group. `UserGroupResponseSchema` for more details.
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | otp | string |  no  |  |
- | reason | string |  no  |  |
- | reason_id | string |  no  |  |
- | request_id | string |  no  |  |
- | user_id | string |  no  |  |
+ | otp | string? |  yes  |  |
+ | reason | string? |  yes  |  |
+ | reason_id | string? |  yes  |  |
+ | request_id | string? |  yes  |  |
+ | user_id | string? |  yes  |  |
  
 
 ---
@@ -1701,7 +1701,7 @@ Success. returns updated User Group. `UserGroupResponseSchema` for more details.
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | success | boolean |  no  |  |
+ | success | boolean? |  yes  |  |
  
 
 ---
@@ -1710,7 +1710,7 @@ Success. returns updated User Group. `UserGroupResponseSchema` for more details.
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | email | string |  no  |  |
+ | email | string? |  yes  |  |
  
 
 ---
@@ -1719,8 +1719,8 @@ Success. returns updated User Group. `UserGroupResponseSchema` for more details.
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | country_code | string |  no  |  |
- | phone | string |  no  |  |
+ | country_code | string? |  yes  |  |
+ | phone | string? |  yes  |  |
  
 
 ---
@@ -1729,8 +1729,8 @@ Success. returns updated User Group. `UserGroupResponseSchema` for more details.
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | country_code | string |  no  |  |
- | phone | string |  no  |  |
+ | country_code | string? |  yes  |  |
+ | phone | string? |  yes  |  |
  
 
 ---
@@ -1739,17 +1739,17 @@ Success. returns updated User Group. `UserGroupResponseSchema` for more details.
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | android_hash | string |  no  |  |
- | country_code | string |  no  |  |
- | dob | string |  no  |  |
- | email | string |  no  |  |
- | first_name | string |  no  |  |
- | gender | string |  no  |  |
- | last_name | string |  no  |  |
- | mobile | [EditProfileMobileSchema](#EditProfileMobileSchema) |  no  |  |
- | profile_pic_url | string |  no  |  |
- | register_token | string |  no  |  |
- | sender | string |  no  |  |
+ | android_hash | string? |  yes  |  |
+ | country_code | string? |  yes  |  |
+ | dob | string? |  yes  |  |
+ | email | string? |  yes  |  |
+ | first_name | string? |  yes  |  |
+ | gender | string? |  yes  |  |
+ | last_name | string? |  yes  |  |
+ | mobile | [EditProfileMobileSchema](#EditProfileMobileSchema)? |  yes  |  |
+ | profile_pic_url | string? |  yes  |  |
+ | register_token | string? |  yes  |  |
+ | sender | string? |  yes  |  |
  
 
 ---
@@ -1758,10 +1758,10 @@ Success. returns updated User Group. `UserGroupResponseSchema` for more details.
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | active | boolean |  no  |  |
- | email | string |  no  |  |
- | primary | boolean |  no  |  |
- | verified | boolean |  no  |  |
+ | active | boolean? |  yes  |  |
+ | email | string? |  yes  |  |
+ | primary | boolean? |  yes  |  |
+ | verified | boolean? |  yes  |  |
  
 
 ---
@@ -1770,7 +1770,7 @@ Success. returns updated User Group. `UserGroupResponseSchema` for more details.
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | success | boolean |  no  |  |
+ | success | boolean? |  yes  |  |
  
 
 ---
@@ -1779,7 +1779,7 @@ Success. returns updated User Group. `UserGroupResponseSchema` for more details.
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | app_id | string |  no  |  |
+ | app_id | string? |  yes  |  |
  
 
 ---
@@ -1788,9 +1788,9 @@ Success. returns updated User Group. `UserGroupResponseSchema` for more details.
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | background_color | string |  no  |  |
- | text | string |  no  |  |
- | text_color | string |  no  |  |
+ | background_color | string? |  yes  |  |
+ | text | string? |  yes  |  |
+ | text_color | string? |  yes  |  |
  
 
 ---
@@ -1799,8 +1799,8 @@ Success. returns updated User Group. `UserGroupResponseSchema` for more details.
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | code | string |  no  |  |
- | password | string |  no  |  |
+ | code | string? |  yes  |  |
+ | password | string? |  yes  |  |
  
 
 ---
@@ -1809,13 +1809,13 @@ Success. returns updated User Group. `UserGroupResponseSchema` for more details.
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | email | string |  no  |  |
- | first_name | string |  no  |  |
- | gender | string |  no  |  |
- | last_name | string |  no  |  |
- | password | string |  no  |  |
- | phone | [FormRegisterRequestSchemaPhone](#FormRegisterRequestSchemaPhone) |  no  |  |
- | register_token | string |  no  |  |
+ | email | string? |  yes  |  |
+ | first_name | string? |  yes  |  |
+ | gender | string? |  yes  |  |
+ | last_name | string? |  yes  |  |
+ | password | string? |  yes  |  |
+ | phone | [FormRegisterRequestSchemaPhone](#FormRegisterRequestSchemaPhone)? |  yes  |  |
+ | register_token | string? |  yes  |  |
  
 
 ---
@@ -1824,8 +1824,8 @@ Success. returns updated User Group. `UserGroupResponseSchema` for more details.
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | country_code | string |  no  |  |
- | mobile | string |  no  |  |
+ | country_code | string? |  yes  |  |
+ | mobile | string? |  yes  |  |
  
 
 ---
@@ -1834,7 +1834,7 @@ Success. returns updated User Group. `UserGroupResponseSchema` for more details.
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | app_id | string |  no  |  |
+ | app_id | string? |  yes  |  |
  
 
 ---
@@ -1843,7 +1843,7 @@ Success. returns updated User Group. `UserGroupResponseSchema` for more details.
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | result | boolean |  no  |  |
+ | result | boolean? |  yes  |  |
  
 
 ---
@@ -1852,8 +1852,8 @@ Success. returns updated User Group. `UserGroupResponseSchema` for more details.
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | otp | boolean |  no  |  |
- | password | boolean |  no  |  |
+ | otp | boolean? |  yes  |  |
+ | password | boolean? |  yes  |  |
  
 
 ---
@@ -1862,9 +1862,9 @@ Success. returns updated User Group. `UserGroupResponseSchema` for more details.
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | register_token | string |  no  |  |
- | request_id | string |  no  |  |
- | user | [UserSchema](#UserSchema) |  no  |  |
+ | register_token | string? |  yes  |  |
+ | request_id | string? |  yes  |  |
+ | user | [UserSchema](#UserSchema)? |  yes  |  |
  
 
 ---
@@ -1873,7 +1873,7 @@ Success. returns updated User Group. `UserGroupResponseSchema` for more details.
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | logout | boolean |  no  |  |
+ | logout | boolean? |  yes  |  |
  
 
 ---
@@ -1882,8 +1882,8 @@ Success. returns updated User Group. `UserGroupResponseSchema` for more details.
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | background_color | string |  no  |  |
- | card_position | string |  no  |  |
+ | background_color | string? |  yes  |  |
+ | card_position | string? |  yes  |  |
  
 
 ---
@@ -1892,7 +1892,7 @@ Success. returns updated User Group. `UserGroupResponseSchema` for more details.
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | fynd_default | boolean |  no  |  |
+ | fynd_default | boolean? |  yes  |  |
  
 
 ---
@@ -1901,7 +1901,7 @@ Success. returns updated User Group. `UserGroupResponseSchema` for more details.
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | message | string |  no  |  |
+ | message | string? |  yes  |  |
  
 
 ---
@@ -1910,9 +1910,9 @@ Success. returns updated User Group. `UserGroupResponseSchema` for more details.
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | oauth | [OAuthRequestAppleSchemaOauth](#OAuthRequestAppleSchemaOauth) |  no  |  |
- | profile | [OAuthRequestAppleSchemaProfile](#OAuthRequestAppleSchemaProfile) |  no  |  |
- | user_identifier | string |  no  |  |
+ | oauth | [OAuthRequestAppleSchemaOauth](#OAuthRequestAppleSchemaOauth)? |  yes  |  |
+ | profile | [OAuthRequestAppleSchemaProfile](#OAuthRequestAppleSchemaProfile)? |  yes  |  |
+ | user_identifier | string? |  yes  |  |
  
 
 ---
@@ -1921,7 +1921,7 @@ Success. returns updated User Group. `UserGroupResponseSchema` for more details.
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | identity_token | string |  no  |  |
+ | identity_token | string? |  yes  |  |
  
 
 ---
@@ -1930,9 +1930,9 @@ Success. returns updated User Group. `UserGroupResponseSchema` for more details.
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | first_name | string |  no  |  |
- | full_name | string |  no  |  |
- | last_name | string |  no  |  |
+ | first_name | string? |  yes  |  |
+ | full_name | string? |  yes  |  |
+ | last_name | string? |  yes  |  |
  
 
 ---
@@ -1941,9 +1941,9 @@ Success. returns updated User Group. `UserGroupResponseSchema` for more details.
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | is_signed_in | boolean |  no  |  |
- | oauth2 | [OAuthRequestSchemaOauth2](#OAuthRequestSchemaOauth2) |  no  |  |
- | profile | [OAuthRequestSchemaProfile](#OAuthRequestSchemaProfile) |  no  |  |
+ | is_signed_in | boolean? |  yes  |  |
+ | oauth2 | [OAuthRequestSchemaOauth2](#OAuthRequestSchemaOauth2)? |  yes  |  |
+ | profile | [OAuthRequestSchemaProfile](#OAuthRequestSchemaProfile)? |  yes  |  |
  
 
 ---
@@ -1952,9 +1952,9 @@ Success. returns updated User Group. `UserGroupResponseSchema` for more details.
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | access_token | string |  no  |  |
- | expiry | number |  no  |  |
- | refresh_token | string |  no  |  |
+ | access_token | string? |  yes  |  |
+ | expiry | number? |  yes  |  |
+ | refresh_token | string? |  yes  |  |
  
 
 ---
@@ -1963,12 +1963,12 @@ Success. returns updated User Group. `UserGroupResponseSchema` for more details.
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | email | string |  no  |  |
- | first_name | string |  no  |  |
- | full_name | string |  no  |  |
- | id | string |  no  |  |
- | image | string |  no  |  |
- | last_name | string |  no  |  |
+ | email | string? |  yes  |  |
+ | first_name | string? |  yes  |  |
+ | full_name | string? |  yes  |  |
+ | id | string? |  yes  |  |
+ | image | string? |  yes  |  |
+ | last_name | string? |  yes  |  |
  
 
 ---
@@ -1977,14 +1977,14 @@ Success. returns updated User Group. `UserGroupResponseSchema` for more details.
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | country_code | string |  no  |  |
- | message | string |  no  |  |
- | mobile | string |  no  |  |
- | register_token | string |  no  |  |
- | request_id | string |  no  |  |
- | resend_timer | number |  no  |  |
- | resend_token | string |  no  |  |
- | success | boolean |  no  |  |
+ | country_code | string? |  yes  |  |
+ | message | string? |  yes  |  |
+ | mobile | string? |  yes  |  |
+ | register_token | string? |  yes  |  |
+ | request_id | string? |  yes  |  |
+ | resend_timer | number? |  yes  |  |
+ | resend_token | string? |  yes  |  |
+ | success | boolean? |  yes  |  |
  
 
 ---
@@ -1993,11 +1993,11 @@ Success. returns updated User Group. `UserGroupResponseSchema` for more details.
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | current | number |  no  |  |
- | has_next | boolean |  no  |  |
- | item_total | number |  no  |  |
- | size | number |  no  |  |
- | type | string |  no  |  |
+ | current | number? |  yes  |  |
+ | has_next | boolean? |  yes  |  |
+ | item_total | number? |  yes  |  |
+ | size | number? |  yes  |  |
+ | type | string? |  yes  |  |
  
 
 ---
@@ -2006,9 +2006,9 @@ Success. returns updated User Group. `UserGroupResponseSchema` for more details.
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | captcha_code | string |  no  |  |
- | password | string |  no  |  |
- | username | string |  no  |  |
+ | captcha_code | string? |  yes  |  |
+ | password | string? |  yes  |  |
+ | username | string? |  yes  |  |
  
 
 ---
@@ -2017,11 +2017,11 @@ Success. returns updated User Group. `UserGroupResponseSchema` for more details.
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | active | boolean |  no  |  |
- | country_code | number |  no  |  |
- | phone | string |  no  |  |
- | primary | boolean |  no  |  |
- | verified | boolean |  no  |  |
+ | active | boolean? |  yes  |  |
+ | country_code | number? |  yes  |  |
+ | phone | string? |  yes  |  |
+ | primary | boolean? |  yes  |  |
+ | verified | boolean? |  yes  |  |
  
 
 ---
@@ -2030,8 +2030,8 @@ Success. returns updated User Group. `UserGroupResponseSchema` for more details.
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | is_required | boolean |  no  |  |
- | level | string |  no  |  |
+ | is_required | boolean? |  yes  |  |
+ | level | string? |  yes  |  |
  
 
 ---
@@ -2040,8 +2040,8 @@ Success. returns updated User Group. `UserGroupResponseSchema` for more details.
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | is_required | boolean |  no  |  |
- | level | string |  no  |  |
+ | is_required | boolean? |  yes  |  |
+ | level | string? |  yes  |  |
  
 
 ---
@@ -2050,31 +2050,31 @@ Success. returns updated User Group. `UserGroupResponseSchema` for more details.
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | _id | string |  no  |  |
- | active | boolean |  no  |  |
- | created_at | string |  no  |  |
- | delete_account_consent | string |  no  |  |
- | delete_account_day | number |  no  |  |
- | delete_account_reasons | [[DeleteAccountReasons](#DeleteAccountReasons)] |  no  |  |
- | desktop_image | string |  no  |  |
- | display | string |  no  |  |
- | flash_card | [FlashCard](#FlashCard) |  no  |  |
- | forgot_password | boolean |  no  |  |
- | login | [Login](#Login) |  no  |  |
- | look_and_feel | [LookAndFeel](#LookAndFeel) |  no  |  |
- | meta | [MetaSchema](#MetaSchema) |  no  |  |
- | mobile_image | string |  no  |  |
- | name | string |  no  |  |
- | register | boolean |  no  |  |
- | register_required_fields | [RegisterRequiredFields](#RegisterRequiredFields) |  no  |  |
- | required_fields | [RequiredFields](#RequiredFields) |  no  |  |
- | session_config | string |  no  |  |
- | skip_captcha | boolean |  no  |  |
- | skip_login | boolean |  no  |  |
- | social | [Social](#Social) |  no  |  |
- | social_tokens | [SocialTokens](#SocialTokens) |  no  |  |
- | subtext | string |  no  |  |
- | updated_at | string |  no  |  |
+ | _id | string? |  yes  |  |
+ | active | boolean? |  yes  |  |
+ | created_at | string? |  yes  |  |
+ | delete_account_consent | string? |  yes  |  |
+ | delete_account_day | number? |  yes  |  |
+ | delete_account_reasons | [[DeleteAccountReasons](#DeleteAccountReasons)]? |  yes  |  |
+ | desktop_image | string? |  yes  |  |
+ | display | string? |  yes  |  |
+ | flash_card | [FlashCard](#FlashCard)? |  yes  |  |
+ | forgot_password | boolean? |  yes  |  |
+ | login | [Login](#Login)? |  yes  |  |
+ | look_and_feel | [LookAndFeel](#LookAndFeel)? |  yes  |  |
+ | meta | [MetaSchema](#MetaSchema)? |  yes  |  |
+ | mobile_image | string? |  yes  |  |
+ | name | string? |  yes  |  |
+ | register | boolean? |  yes  |  |
+ | register_required_fields | [RegisterRequiredFields](#RegisterRequiredFields)? |  yes  |  |
+ | required_fields | [RequiredFields](#RequiredFields)? |  yes  |  |
+ | session_config | string? |  yes  |  |
+ | skip_captcha | boolean? |  yes  |  |
+ | skip_login | boolean? |  yes  |  |
+ | social | [Social](#Social)? |  yes  |  |
+ | social_tokens | [SocialTokens](#SocialTokens)? |  yes  |  |
+ | subtext | string? |  yes  |  |
+ | updated_at | string? |  yes  |  |
  
 
 ---
@@ -2083,21 +2083,21 @@ Success. returns updated User Group. `UserGroupResponseSchema` for more details.
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | country_code | string |  no  |  |
- | email | string |  no  |  |
- | message | string |  no  |  |
- | mobile | string |  no  |  |
- | register_token | string |  no  |  |
- | request_id | string |  no  |  |
- | resend_email_token | string |  no  |  |
- | resend_timer | number |  no  |  |
- | resend_token | string |  no  |  |
- | success | boolean |  no  |  |
- | user | [UserSchema](#UserSchema) |  no  |  |
- | user_exists | boolean |  no  |  |
- | verify_email_link | boolean |  no  |  |
- | verify_email_otp | boolean |  no  |  |
- | verify_mobile_otp | boolean |  no  |  |
+ | country_code | string? |  yes  |  |
+ | email | string? |  yes  |  |
+ | message | string? |  yes  |  |
+ | mobile | string? |  yes  |  |
+ | register_token | string? |  yes  |  |
+ | request_id | string? |  yes  |  |
+ | resend_email_token | string? |  yes  |  |
+ | resend_timer | number? |  yes  |  |
+ | resend_token | string? |  yes  |  |
+ | success | boolean? |  yes  |  |
+ | user | [UserSchema](#UserSchema)? |  yes  |  |
+ | user_exists | boolean? |  yes  |  |
+ | verify_email_link | boolean? |  yes  |  |
+ | verify_email_otp | boolean? |  yes  |  |
+ | verify_mobile_otp | boolean? |  yes  |  |
  
 
 ---
@@ -2106,13 +2106,13 @@ Success. returns updated User Group. `UserGroupResponseSchema` for more details.
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | email | string |  no  |  |
- | register_token | string |  no  |  |
- | user | string |  no  |  |
- | user_exists | boolean |  no  |  |
- | verify_email_link | boolean |  no  |  |
- | verify_email_otp | boolean |  no  |  |
- | verify_mobile_otp | boolean |  no  |  |
+ | email | string? |  yes  |  |
+ | register_token | string? |  yes  |  |
+ | user | string? |  yes  |  |
+ | user_exists | boolean? |  yes  |  |
+ | verify_email_link | boolean? |  yes  |  |
+ | verify_email_otp | boolean? |  yes  |  |
+ | verify_mobile_otp | boolean? |  yes  |  |
  
 
 ---
@@ -2121,19 +2121,19 @@ Success. returns updated User Group. `UserGroupResponseSchema` for more details.
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | country_code | string |  no  |  |
- | email | string |  no  |  |
- | message | string |  no  |  |
- | mobile | string |  no  |  |
- | register_token | string |  no  |  |
- | request_id | string |  no  |  |
- | resend_email_token | string |  no  |  |
- | resend_timer | number |  no  |  |
- | resend_token | string |  no  |  |
- | success | boolean |  no  |  |
- | user_exists | boolean |  no  |  |
- | verify_email_otp | boolean |  no  |  |
- | verify_mobile_otp | boolean |  no  |  |
+ | country_code | string? |  yes  |  |
+ | email | string? |  yes  |  |
+ | message | string? |  yes  |  |
+ | mobile | string? |  yes  |  |
+ | register_token | string? |  yes  |  |
+ | request_id | string? |  yes  |  |
+ | resend_email_token | string? |  yes  |  |
+ | resend_timer | number? |  yes  |  |
+ | resend_token | string? |  yes  |  |
+ | success | boolean? |  yes  |  |
+ | user_exists | boolean? |  yes  |  |
+ | verify_email_otp | boolean? |  yes  |  |
+ | verify_mobile_otp | boolean? |  yes  |  |
  
 
 ---
@@ -2142,8 +2142,8 @@ Success. returns updated User Group. `UserGroupResponseSchema` for more details.
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | email | [RegisterRequiredFieldsEmail](#RegisterRequiredFieldsEmail) |  no  |  |
- | mobile | [RegisterRequiredFieldsMobile](#RegisterRequiredFieldsMobile) |  no  |  |
+ | email | [RegisterRequiredFieldsEmail](#RegisterRequiredFieldsEmail)? |  yes  |  |
+ | mobile | [RegisterRequiredFieldsMobile](#RegisterRequiredFieldsMobile)? |  yes  |  |
  
 
 ---
@@ -2152,8 +2152,8 @@ Success. returns updated User Group. `UserGroupResponseSchema` for more details.
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | is_required | boolean |  no  |  |
- | level | string |  no  |  |
+ | is_required | boolean? |  yes  |  |
+ | level | string? |  yes  |  |
  
 
 ---
@@ -2162,8 +2162,8 @@ Success. returns updated User Group. `UserGroupResponseSchema` for more details.
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | is_required | boolean |  no  |  |
- | level | string |  no  |  |
+ | is_required | boolean? |  yes  |  |
+ | level | string? |  yes  |  |
  
 
 ---
@@ -2172,8 +2172,8 @@ Success. returns updated User Group. `UserGroupResponseSchema` for more details.
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | email | [PlatformEmail](#PlatformEmail) |  no  |  |
- | mobile | [PlatformMobile](#PlatformMobile) |  no  |  |
+ | email | [PlatformEmail](#PlatformEmail)? |  yes  |  |
+ | mobile | [PlatformMobile](#PlatformMobile)? |  yes  |  |
  
 
 ---
@@ -2182,7 +2182,7 @@ Success. returns updated User Group. `UserGroupResponseSchema` for more details.
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | status | string |  no  |  |
+ | status | string? |  yes  |  |
  
 
 ---
@@ -2191,10 +2191,10 @@ Success. returns updated User Group. `UserGroupResponseSchema` for more details.
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | action | string |  no  |  |
- | email | string |  no  |  |
- | register_token | string |  no  |  |
- | token | string |  no  |  |
+ | action | string? |  yes  |  |
+ | email | string? |  yes  |  |
+ | register_token | string? |  yes  |  |
+ | token | string? |  yes  |  |
  
 
 ---
@@ -2203,7 +2203,7 @@ Success. returns updated User Group. `UserGroupResponseSchema` for more details.
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | verify_email_link | boolean |  no  |  |
+ | verify_email_link | boolean? |  yes  |  |
  
 
 ---
@@ -2212,13 +2212,13 @@ Success. returns updated User Group. `UserGroupResponseSchema` for more details.
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | action | string |  no  |  |
- | android_hash | string |  no  |  |
- | captcha_code | string |  no  |  |
- | country_code | string |  no  |  |
- | force | string |  no  |  |
- | mobile | string |  no  |  |
- | token | string |  no  |  |
+ | action | string? |  yes  |  |
+ | android_hash | string? |  yes  |  |
+ | captcha_code | string? |  yes  |  |
+ | country_code | string? |  yes  |  |
+ | force | string? |  yes  |  |
+ | mobile | string? |  yes  |  |
+ | token | string? |  yes  |  |
  
 
 ---
@@ -2227,7 +2227,7 @@ Success. returns updated User Group. `UserGroupResponseSchema` for more details.
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | verify_mobile_link | boolean |  no  |  |
+ | verify_mobile_link | boolean? |  yes  |  |
  
 
 ---
@@ -2236,10 +2236,10 @@ Success. returns updated User Group. `UserGroupResponseSchema` for more details.
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | android_hash | string |  no  |  |
- | captcha_code | string |  no  |  |
- | country_code | string |  no  |  |
- | mobile | string |  no  |  |
+ | android_hash | string? |  yes  |  |
+ | captcha_code | string? |  yes  |  |
+ | country_code | string? |  yes  |  |
+ | mobile | string? |  yes  |  |
  
 
 ---
@@ -2248,19 +2248,19 @@ Success. returns updated User Group. `UserGroupResponseSchema` for more details.
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | country_code | string |  no  |  |
- | email | string |  no  |  |
- | message | string |  no  |  |
- | mobile | string |  no  |  |
- | register_token | string |  no  |  |
- | request_id | string |  no  |  |
- | resend_email_token | string |  no  |  |
- | resend_timer | number |  no  |  |
- | resend_token | string |  no  |  |
- | success | boolean |  no  |  |
- | user_exists | boolean |  no  |  |
- | verify_email_otp | boolean |  no  |  |
- | verify_mobile_otp | boolean |  no  |  |
+ | country_code | string? |  yes  |  |
+ | email | string? |  yes  |  |
+ | message | string? |  yes  |  |
+ | mobile | string? |  yes  |  |
+ | register_token | string? |  yes  |  |
+ | request_id | string? |  yes  |  |
+ | resend_email_token | string? |  yes  |  |
+ | resend_timer | number? |  yes  |  |
+ | resend_token | string? |  yes  |  |
+ | success | boolean? |  yes  |  |
+ | user_exists | boolean? |  yes  |  |
+ | verify_email_otp | boolean? |  yes  |  |
+ | verify_mobile_otp | boolean? |  yes  |  |
  
 
 ---
@@ -2269,8 +2269,8 @@ Success. returns updated User Group. `UserGroupResponseSchema` for more details.
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | captcha_code | string |  no  |  |
- | email | string |  no  |  |
+ | captcha_code | string? |  yes  |  |
+ | email | string? |  yes  |  |
  
 
 ---
@@ -2279,9 +2279,9 @@ Success. returns updated User Group. `UserGroupResponseSchema` for more details.
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | captcha_code | string |  no  |  |
- | country_code | string |  no  |  |
- | mobile | string |  no  |  |
+ | captcha_code | string? |  yes  |  |
+ | country_code | string? |  yes  |  |
+ | mobile | string? |  yes  |  |
  
 
 ---
@@ -2290,11 +2290,11 @@ Success. returns updated User Group. `UserGroupResponseSchema` for more details.
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | active | boolean |  no  |  |
- | country_code | string |  no  |  |
- | phone | string |  no  |  |
- | primary | boolean |  no  |  |
- | verified | boolean |  no  |  |
+ | active | boolean? |  yes  |  |
+ | country_code | string? |  yes  |  |
+ | phone | string? |  yes  |  |
+ | primary | boolean? |  yes  |  |
+ | verified | boolean? |  yes  |  |
  
 
 ---
@@ -2303,7 +2303,7 @@ Success. returns updated User Group. `UserGroupResponseSchema` for more details.
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | items | [string] |  no  |  |
+ | items | [string]? |  yes  |  |
  
 
 ---
@@ -2312,9 +2312,9 @@ Success. returns updated User Group. `UserGroupResponseSchema` for more details.
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | duration | number |  no  |  |
- | is_rolling | boolean |  no  |  |
- | type | string |  no  |  |
+ | duration | number? |  yes  |  |
+ | is_rolling | boolean? |  yes  |  |
+ | type | string? |  yes  |  |
  
 
 ---
@@ -2323,11 +2323,11 @@ Success. returns updated User Group. `UserGroupResponseSchema` for more details.
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | domain | string |  no  |  |
- | expire_in | string |  no  |  |
- | ip | string |  no  |  |
- | session_id | string |  no  |  |
- | user_agent | string |  no  |  |
+ | domain | string? |  yes  |  |
+ | expire_in | string? |  yes  |  |
+ | ip | string? |  yes  |  |
+ | session_id | string? |  yes  |  |
+ | user_agent | string? |  yes  |  |
  
 
 ---
@@ -2336,7 +2336,7 @@ Success. returns updated User Group. `UserGroupResponseSchema` for more details.
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | items | [[SessionListResponseInfo](#SessionListResponseInfo)] |  no  |  |
+ | items | [[SessionListResponseInfo](#SessionListResponseInfo)]? |  yes  |  |
  
 
 ---
@@ -2345,7 +2345,7 @@ Success. returns updated User Group. `UserGroupResponseSchema` for more details.
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | sessions | [string] |  no  |  |
+ | sessions | [string]? |  yes  |  |
  
 
 ---
@@ -2354,10 +2354,10 @@ Success. returns updated User Group. `UserGroupResponseSchema` for more details.
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | account_kit | boolean |  no  |  |
- | apple | boolean |  no  |  |
- | facebook | boolean |  no  |  |
- | google | boolean |  no  |  |
+ | account_kit | boolean? |  yes  |  |
+ | apple | boolean? |  yes  |  |
+ | facebook | boolean? |  yes  |  |
+ | google | boolean? |  yes  |  |
  
 
 ---
@@ -2366,9 +2366,9 @@ Success. returns updated User Group. `UserGroupResponseSchema` for more details.
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | account_kit | [Accountkit](#Accountkit) |  no  |  |
- | facebook | [Facebook](#Facebook) |  no  |  |
- | google | [Google](#Google) |  no  |  |
+ | account_kit | [Accountkit](#Accountkit)? |  yes  |  |
+ | facebook | [Facebook](#Facebook)? |  yes  |  |
+ | google | [Google](#Google)? |  yes  |  |
  
 
 ---
@@ -2377,7 +2377,7 @@ Success. returns updated User Group. `UserGroupResponseSchema` for more details.
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | token | string |  no  |  |
+ | token | string? |  yes  |  |
  
 
 ---
@@ -2386,7 +2386,7 @@ Success. returns updated User Group. `UserGroupResponseSchema` for more details.
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | authenticated | boolean |  no  |  |
+ | authenticated | boolean? |  yes  |  |
  
 
 ---
@@ -2395,7 +2395,7 @@ Success. returns updated User Group. `UserGroupResponseSchema` for more details.
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | message | string |  no  |  |
+ | message | string? |  yes  |  |
  
 
 ---
@@ -2404,9 +2404,9 @@ Success. returns updated User Group. `UserGroupResponseSchema` for more details.
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | reason | string |  no  |  |
- | reason_id | string |  no  |  |
- | user_id | string |  no  |  |
+ | reason | string? |  yes  |  |
+ | reason_id | string? |  yes  |  |
+ | user_id | string? |  yes  |  |
  
 
 ---
@@ -2415,7 +2415,7 @@ Success. returns updated User Group. `UserGroupResponseSchema` for more details.
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | success | boolean |  no  |  |
+ | success | boolean? |  yes  |  |
  
 
 ---
@@ -2424,8 +2424,8 @@ Success. returns updated User Group. `UserGroupResponseSchema` for more details.
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | new_password | string |  no  |  |
- | old_password | string |  no  |  |
+ | new_password | string? |  yes  |  |
+ | old_password | string? |  yes  |  |
  
 
 ---
@@ -2434,9 +2434,9 @@ Success. returns updated User Group. `UserGroupResponseSchema` for more details.
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | description | string |  no  |  |
- | file_url | string |  no  |  |
- | name | string |  no  |  |
+ | description | string? |  yes  |  |
+ | file_url | string? |  yes  |  |
+ | name | string? |  yes  |  |
  
 
 ---
@@ -2445,13 +2445,13 @@ Success. returns updated User Group. `UserGroupResponseSchema` for more details.
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | emails | [[UserEmails](#UserEmails)] |  no  |  |
- | external_id | string |  no  |  |
- | first_name | string |  no  |  |
- | gender | string |  no  |  |
- | last_name | string |  no  |  |
- | meta | string |  no  |  |
- | phone_numbers | [[UserPhoneNumbers](#UserPhoneNumbers)] |  no  |  |
+ | emails | [[UserEmails](#UserEmails)]? |  yes  |  |
+ | external_id | string? |  yes  |  |
+ | first_name | string? |  yes  |  |
+ | gender | string? |  yes  |  |
+ | last_name | string? |  yes  |  |
+ | meta | string? |  yes  |  |
+ | phone_numbers | [[UserPhoneNumbers](#UserPhoneNumbers)]? |  yes  |  |
  
 
 ---
@@ -2460,10 +2460,10 @@ Success. returns updated User Group. `UserGroupResponseSchema` for more details.
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | active | boolean |  no  |  |
- | email | string |  no  |  |
- | primary | boolean |  no  |  |
- | verified | boolean |  no  |  |
+ | active | boolean? |  yes  |  |
+ | email | string? |  yes  |  |
+ | primary | boolean? |  yes  |  |
+ | verified | boolean? |  yes  |  |
  
 
 ---
@@ -2472,8 +2472,8 @@ Success. returns updated User Group. `UserGroupResponseSchema` for more details.
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | items | [[UserGroupResponseSchema](#UserGroupResponseSchema)] |  no  |  |
- | page | [PaginationSchema](#PaginationSchema) |  no  |  |
+ | items | [[UserGroupResponseSchema](#UserGroupResponseSchema)]? |  yes  |  |
+ | page | [PaginationSchema](#PaginationSchema)? |  yes  |  |
  
 
 ---
@@ -2482,16 +2482,16 @@ Success. returns updated User Group. `UserGroupResponseSchema` for more details.
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | __v | number |  no  |  |
- | _id | string |  no  |  |
- | application_id | string |  no  |  |
- | created_at | string |  no  |  |
- | description | string |  no  |  |
- | file_url | string |  no  |  |
- | modified_at | string |  no  |  |
- | name | string |  no  |  |
- | status | string |  no  |  |
- | uid | number |  no  |  |
+ | __v | number? |  yes  |  |
+ | _id | string? |  yes  |  |
+ | application_id | string? |  yes  |  |
+ | created_at | string? |  yes  |  |
+ | description | string? |  yes  |  |
+ | file_url | string? |  yes  |  |
+ | modified_at | string? |  yes  |  |
+ | name | string? |  yes  |  |
+ | status | string? |  yes  |  |
+ | uid | number? |  yes  |  |
  
 
 ---
@@ -2500,7 +2500,7 @@ Success. returns updated User Group. `UserGroupResponseSchema` for more details.
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | user | [UserSchema](#UserSchema) |  no  |  |
+ | user | [UserSchema](#UserSchema)? |  yes  |  |
  
 
 ---
@@ -2509,11 +2509,11 @@ Success. returns updated User Group. `UserGroupResponseSchema` for more details.
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | active | boolean |  no  |  |
- | country_code | string |  no  |  |
- | phone | string |  no  |  |
- | primary | boolean |  no  |  |
- | verified | boolean |  no  |  |
+ | active | boolean? |  yes  |  |
+ | country_code | string? |  yes  |  |
+ | phone | string? |  yes  |  |
+ | primary | boolean? |  yes  |  |
+ | verified | boolean? |  yes  |  |
  
 
 ---
@@ -2522,22 +2522,22 @@ Success. returns updated User Group. `UserGroupResponseSchema` for more details.
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | _id | string |  no  |  |
- | account_type | string |  no  |  |
- | active | boolean |  no  |  |
- | application_id | string |  no  |  |
- | created_at | string |  no  |  |
- | dob | string |  no  |  |
- | emails | [[Email](#Email)] |  no  |  |
- | first_name | string |  no  |  |
- | gender | string |  no  |  |
- | last_name | string |  no  |  |
- | meta | string |  no  |  |
- | phone_numbers | [[PhoneNumber](#PhoneNumber)] |  no  |  |
- | profile_pic_url | string |  no  |  |
- | updated_at | string |  no  |  |
- | user_id | string |  no  |  |
- | username | string |  no  |  |
+ | _id | string? |  yes  |  |
+ | account_type | string? |  yes  |  |
+ | active | boolean? |  yes  |  |
+ | application_id | string? |  yes  |  |
+ | created_at | string? |  yes  |  |
+ | dob | string? |  yes  |  |
+ | emails | [[Email](#Email)]? |  yes  |  |
+ | first_name | string? |  yes  |  |
+ | gender | string? |  yes  |  |
+ | last_name | string? |  yes  |  |
+ | meta | string? |  yes  |  |
+ | phone_numbers | [[PhoneNumber](#PhoneNumber)]? |  yes  |  |
+ | profile_pic_url | string? |  yes  |  |
+ | updated_at | string? |  yes  |  |
+ | user_id | string? |  yes  |  |
+ | username | string? |  yes  |  |
  
 
 ---
@@ -2546,7 +2546,7 @@ Success. returns updated User Group. `UserGroupResponseSchema` for more details.
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | users | [[UserSchema](#UserSchema)] |  no  |  |
+ | users | [[UserSchema](#UserSchema)]? |  yes  |  |
  
 
 ---
@@ -2555,10 +2555,10 @@ Success. returns updated User Group. `UserGroupResponseSchema` for more details.
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | action | string |  no  |  |
- | email | string |  no  |  |
- | otp | string |  no  |  |
- | register_token | string |  no  |  |
+ | action | string? |  yes  |  |
+ | email | string? |  yes  |  |
+ | otp | string? |  yes  |  |
+ | register_token | string? |  yes  |  |
  
 
 ---
@@ -2567,8 +2567,8 @@ Success. returns updated User Group. `UserGroupResponseSchema` for more details.
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | user | [UserSchema](#UserSchema) |  no  |  |
- | verify_email_link | boolean |  no  |  |
+ | user | [UserSchema](#UserSchema)? |  yes  |  |
+ | verify_email_link | boolean? |  yes  |  |
  
 
 ---
@@ -2577,7 +2577,7 @@ Success. returns updated User Group. `UserGroupResponseSchema` for more details.
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | message | string |  no  |  |
+ | message | string? |  yes  |  |
  
 
 ---
@@ -2586,8 +2586,8 @@ Success. returns updated User Group. `UserGroupResponseSchema` for more details.
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | user | [UserSchema](#UserSchema) |  no  |  |
- | verify_mobile_link | boolean |  no  |  |
+ | user | [UserSchema](#UserSchema)? |  yes  |  |
+ | verify_mobile_link | boolean? |  yes  |  |
  
 
 ---
@@ -2596,9 +2596,9 @@ Success. returns updated User Group. `UserGroupResponseSchema` for more details.
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | otp | string |  no  |  |
- | register_token | string |  no  |  |
- | request_id | string |  no  |  |
+ | otp | string? |  yes  |  |
+ | register_token | string? |  yes  |  |
+ | request_id | string? |  yes  |  |
  
 
 ---
@@ -2607,9 +2607,9 @@ Success. returns updated User Group. `UserGroupResponseSchema` for more details.
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | register_token | string |  no  |  |
- | user | [UserSchema](#UserSchema) |  no  |  |
- | user_exists | boolean |  no  |  |
+ | register_token | string? |  yes  |  |
+ | user | [UserSchema](#UserSchema)? |  yes  |  |
+ | user_exists | boolean? |  yes  |  |
  
 
 ---

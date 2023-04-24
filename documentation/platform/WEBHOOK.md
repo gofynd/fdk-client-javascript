@@ -29,10 +29,10 @@ Webhook dispatcher with retry and one event to many subscriber vice versa
 
 ```javascript
 // Promise
-const promise = client.webhook.fetchAllEventConfigurations();
+const promise = platformClient.webhook.fetchAllEventConfigurations();
 
 // Async/Await
-const data = await client.webhook.fetchAllEventConfigurations();
+const data = await platformClient.webhook.fetchAllEventConfigurations();
 ```
 
 
@@ -80,10 +80,10 @@ Get Subscriber By Subscriber ID
 
 ```javascript
 // Promise
-const promise = client.webhook.getSubscriberById({  subscriberId : value });
+const promise = platformClient.webhook.getSubscriberById({  subscriberId : value });
 
 // Async/Await
-const data = await client.webhook.getSubscriberById({  subscriberId : value });
+const data = await platformClient.webhook.getSubscriberById({  subscriberId : value });
 ```
 
 
@@ -136,12 +136,12 @@ Get Subscribers By Company ID
 
 ```javascript
 // Promise
-const promise = client.webhook.getSubscribersByCompany({  pageNo : value,
+const promise = platformClient.webhook.getSubscribersByCompany({  pageNo : value,
  pageSize : value,
  extensionId : value });
 
 // Async/Await
-const data = await client.webhook.getSubscribersByCompany({  pageNo : value,
+const data = await platformClient.webhook.getSubscribersByCompany({  pageNo : value,
  pageSize : value,
  extensionId : value });
 ```
@@ -198,12 +198,12 @@ Get Subscribers By Extension ID
 
 ```javascript
 // Promise
-const promise = client.webhook.getSubscribersByExtensionId({  extensionId : value,
+const promise = platformClient.webhook.getSubscribersByExtensionId({  extensionId : value,
  pageNo : value,
  pageSize : value });
 
 // Async/Await
-const data = await client.webhook.getSubscribersByExtensionId({  extensionId : value,
+const data = await platformClient.webhook.getSubscribersByExtensionId({  extensionId : value,
  pageNo : value,
  pageSize : value });
 ```
@@ -260,10 +260,10 @@ Register Subscriber
 
 ```javascript
 // Promise
-const promise = client.webhook.registerSubscriberToEvent({  body : value });
+const promise = platformClient.webhook.registerSubscriberToEvent({  body : value });
 
 // Async/Await
-const data = await client.webhook.registerSubscriberToEvent({  body : value });
+const data = await platformClient.webhook.registerSubscriberToEvent({  body : value });
 ```
 
 
@@ -315,10 +315,10 @@ Update Subscriber
 
 ```javascript
 // Promise
-const promise = client.webhook.updateSubscriberConfig({  body : value });
+const promise = platformClient.webhook.updateSubscriberConfig({  body : value });
 
 // Async/Await
-const data = await client.webhook.updateSubscriberConfig({  body : value });
+const data = await platformClient.webhook.updateSubscriberConfig({  body : value });
 ```
 
 
@@ -371,10 +371,10 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | application_id | [string] |  no  |  |
- | company_id | number |  no  |  |
- | criteria | string |  no  |  |
- | extension_id | string |  no  |  |
+ | application_id | [string]? |  yes  |  |
+ | company_id | number? |  yes  |  |
+ | criteria | string? |  yes  |  |
+ | extension_id | string? |  yes  |  |
  
 
 ---
@@ -383,8 +383,8 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | secret | string |  no  |  |
- | type | string |  no  |  |
+ | secret | string? |  yes  |  |
+ | type | string? |  yes  |  |
  
 
 ---
@@ -393,14 +393,14 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | created_on | string |  no  |  |
- | description | string |  no  |  |
- | display_name | string |  no  |  |
- | event_category | string |  no  |  |
- | event_name | string |  no  |  |
- | event_type | string |  no  |  |
- | id | number |  no  |  |
- | version | string |  no  |  |
+ | created_on | string? |  yes  |  |
+ | description | string? |  yes  |  |
+ | display_name | string? |  yes  |  |
+ | event_category | string? |  yes  |  |
+ | event_name | string? |  yes  |  |
+ | event_type | string? |  yes  |  |
+ | id | number? |  yes  |  |
+ | version | string? |  yes  |  |
  
 
 ---
@@ -409,10 +409,10 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | event_category | string |  no  |  |
- | event_name | string |  no  |  |
- | event_type | string |  no  |  |
- | version | string |  no  |  |
+ | event_category | string? |  yes  |  |
+ | event_name | string? |  yes  |  |
+ | event_type | string? |  yes  |  |
+ | version | string? |  yes  |  |
  
 
 ---
@@ -421,8 +421,8 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | items | [[EventConfig](#EventConfig)] |  no  |  |
- | page | [Page](#Page) |  no  |  |
+ | items | [[EventConfig](#EventConfig)]? |  yes  |  |
+ | page | [Page](#Page)? |  yes  |  |
  
 
 ---
@@ -431,7 +431,7 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | event_configs | [[EventConfig](#EventConfig)] |  no  |  |
+ | event_configs | [[EventConfig](#EventConfig)]? |  yes  |  |
  
 
 ---
@@ -440,13 +440,13 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | event_name | string |  no  |  |
- | event_trace_id | string |  no  |  |
- | event_type | string |  no  |  |
- | id | number |  no  |  |
- | message_id | string |  no  |  |
- | status | boolean |  no  |  |
- | version | string |  no  |  |
+ | event_name | string? |  yes  |  |
+ | event_trace_id | string? |  yes  |  |
+ | event_type | string? |  yes  |  |
+ | id | number? |  yes  |  |
+ | message_id | string? |  yes  |  |
+ | status | boolean? |  yes  |  |
+ | version | string? |  yes  |  |
  
 
 ---
@@ -455,14 +455,14 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | attempt | number |  no  |  |
- | created_on | string |  no  |  |
- | id | number |  no  |  |
- | processed_on | string |  no  |  |
- | response_code | string |  no  |  |
- | response_message | string |  no  |  |
- | status | boolean |  no  |  |
- | subscriber_id | string |  no  |  |
+ | attempt | number? |  yes  |  |
+ | created_on | string? |  yes  |  |
+ | id | number? |  yes  |  |
+ | processed_on | string? |  yes  |  |
+ | response_code | string? |  yes  |  |
+ | response_message | string? |  yes  |  |
+ | status | boolean? |  yes  |  |
+ | subscriber_id | string? |  yes  |  |
  
 
 ---
@@ -471,13 +471,13 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | current | number |  no  |  |
- | has_next | boolean |  no  |  |
- | has_previous | boolean |  no  |  |
- | item_total | number |  no  |  |
- | next_id | string |  no  |  |
- | size | number |  no  |  |
- | type | string |  yes  |  |
+ | current | number? |  yes  |  |
+ | has_next | boolean? |  yes  |  |
+ | has_previous | boolean? |  yes  |  |
+ | item_total | number? |  yes  |  |
+ | next_id | string? |  yes  |  |
+ | size | number? |  yes  |  |
+ | type | string |  no  |  |
  
 
 ---
@@ -486,15 +486,15 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | association | [Association](#Association) |  no  |  |
- | auth_meta | [AuthMeta](#AuthMeta) |  no  |  |
- | custom_headers | string |  no  |  |
- | email_id | string |  no  |  |
- | event_id | [number] |  no  |  |
- | id | number |  no  |  |
- | name | string |  no  |  |
- | status | [SubscriberStatus](#SubscriberStatus) |  no  |  |
- | webhook_url | string |  no  |  |
+ | association | [Association](#Association)? |  yes  |  |
+ | auth_meta | [AuthMeta](#AuthMeta)? |  yes  |  |
+ | custom_headers | string? |  yes  |  |
+ | email_id | string? |  yes  |  |
+ | event_id | [number]? |  yes  |  |
+ | id | number? |  yes  |  |
+ | name | string? |  yes  |  |
+ | status | [SubscriberStatus](#SubscriberStatus)? |  yes  |  |
+ | webhook_url | string? |  yes  |  |
  
 
 ---
@@ -503,8 +503,8 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | items | [[SubscriberResponse](#SubscriberResponse)] |  no  |  |
- | page | [Page](#Page) |  no  |  |
+ | items | [[SubscriberResponse](#SubscriberResponse)]? |  yes  |  |
+ | page | [Page](#Page)? |  yes  |  |
  
 
 ---
@@ -513,10 +513,10 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | created_date | string |  no  |  |
- | event_id | number |  no  |  |
- | id | number |  no  |  |
- | subscriber_id | number |  no  |  |
+ | created_date | string? |  yes  |  |
+ | event_id | number? |  yes  |  |
+ | id | number? |  yes  |  |
+ | subscriber_id | number? |  yes  |  |
  
 
 ---
@@ -525,17 +525,17 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | association | [Association](#Association) |  no  |  |
- | auth_meta | [AuthMeta](#AuthMeta) |  no  |  |
- | created_on | string |  no  |  |
- | custom_headers | string |  no  |  |
- | email_id | string |  no  |  |
- | event_configs | [[EventConfig](#EventConfig)] |  no  |  |
- | id | number |  no  |  |
- | name | string |  no  |  |
- | status | [SubscriberStatus](#SubscriberStatus) |  no  |  |
- | updated_on | string |  no  |  |
- | webhook_url | string |  no  |  |
+ | association | [Association](#Association)? |  yes  |  |
+ | auth_meta | [AuthMeta](#AuthMeta)? |  yes  |  |
+ | created_on | string? |  yes  |  |
+ | custom_headers | string? |  yes  |  |
+ | email_id | string? |  yes  |  |
+ | event_configs | [[EventConfig](#EventConfig)]? |  yes  |  |
+ | id | number? |  yes  |  |
+ | name | string? |  yes  |  |
+ | status | [SubscriberStatus](#SubscriberStatus)? |  yes  |  |
+ | updated_on | string? |  yes  |  |
+ | webhook_url | string? |  yes  |  |
  
 
 ---

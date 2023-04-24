@@ -80,4 +80,5 @@ class DiscountValidator {
     }).required();
   }
 }
+
 module.exports = DiscountValidator;

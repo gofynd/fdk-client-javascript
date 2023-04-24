@@ -1,6 +1,6 @@
-const Paginator = require("../../common/Paginator");
 const PlatformAPIClient = require("../PlatformAPIClient");
 const { FDKClientValidationError } = require("../../common/FDKError");
+const Paginator = require("../../common/Paginator");
 const ThemeValidator = require("./ThemePlatformApplicationValidator");
 const ThemeModel = require("./ThemePlatformModel");
 const { Logger } = require("./../../common/Logger");
@@ -1469,4 +1469,5 @@ class Theme {
     return response;
   }
 }
+
 module.exports = Theme;

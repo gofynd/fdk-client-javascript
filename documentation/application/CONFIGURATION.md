@@ -39,10 +39,10 @@ Get currencies enabled in the application
 
 ```javascript
 // Promise
-const promise = configuration.getAppCurrencies();
+const promise = applicationClient.configuration.getAppCurrencies();
 
 // Async/Await
-const data = await configuration.getAppCurrencies();
+const data = await applicationClient.configuration.getAppCurrencies();
 ```
 
 
@@ -108,14 +108,14 @@ Get a list of staff.
 
 ```javascript
 // Promise
-const promise = configuration.getAppStaffList({  pageNo : value,
+const promise = applicationClient.configuration.getAppStaffList({  pageNo : value,
  pageSize : value,
  orderIncent : value,
  orderingStore : value,
  user : value });
 
 // Async/Await
-const data = await configuration.getAppStaffList({  pageNo : value,
+const data = await applicationClient.configuration.getAppStaffList({  pageNo : value,
  pageSize : value,
  orderIncent : value,
  orderingStore : value,
@@ -176,12 +176,12 @@ Get a list of staff.
 
 ```javascript
 // Promise
-const promise = configuration.getAppStaffs({  orderIncent : value,
+const promise = applicationClient.configuration.getAppStaffs({  orderIncent : value,
  orderingStore : value,
  user : value });
 
 // Async/Await
-const data = await configuration.getAppStaffs({  orderIncent : value,
+const data = await applicationClient.configuration.getAppStaffs({  orderIncent : value,
  orderingStore : value,
  user : value });
 ```
@@ -238,10 +238,10 @@ Get current application details
 
 ```javascript
 // Promise
-const promise = configuration.getApplication();
+const promise = applicationClient.configuration.getApplication();
 
 // Async/Await
-const data = await configuration.getApplication();
+const data = await applicationClient.configuration.getApplication();
 ```
 
 
@@ -352,10 +352,10 @@ Get basic application details
 
 ```javascript
 // Promise
-const promise = configuration.getBasicDetails();
+const promise = applicationClient.configuration.getBasicDetails();
 
 // Async/Await
-const data = await configuration.getBasicDetails();
+const data = await applicationClient.configuration.getBasicDetails();
 ```
 
 
@@ -443,10 +443,10 @@ Get application information
 
 ```javascript
 // Promise
-const promise = configuration.getContactInfo();
+const promise = applicationClient.configuration.getContactInfo();
 
 // Async/Await
-const data = await configuration.getContactInfo();
+const data = await applicationClient.configuration.getContactInfo();
 ```
 
 
@@ -609,10 +609,10 @@ Get all currencies list
 
 ```javascript
 // Promise
-const promise = configuration.getCurrencies();
+const promise = applicationClient.configuration.getCurrencies();
 
 // Async/Await
-const data = await configuration.getCurrencies();
+const data = await applicationClient.configuration.getCurrencies();
 ```
 
 
@@ -673,10 +673,10 @@ Get currency by its ID
 
 ```javascript
 // Promise
-const promise = configuration.getCurrencyById({  id : value });
+const promise = applicationClient.configuration.getCurrencyById({  id : value });
 
 // Async/Await
-const data = await configuration.getCurrencyById({  id : value });
+const data = await applicationClient.configuration.getCurrencyById({  id : value });
 ```
 
 
@@ -738,10 +738,10 @@ Get features of application
 
 ```javascript
 // Promise
-const promise = configuration.getFeatures();
+const promise = applicationClient.configuration.getFeatures();
 
 // Async/Await
-const data = await configuration.getFeatures();
+const data = await applicationClient.configuration.getFeatures();
 ```
 
 
@@ -884,10 +884,10 @@ Get integration tokens
 
 ```javascript
 // Promise
-const promise = configuration.getIntegrationTokens();
+const promise = applicationClient.configuration.getIntegrationTokens();
 
 // Async/Await
-const data = await configuration.getIntegrationTokens();
+const data = await applicationClient.configuration.getIntegrationTokens();
 ```
 
 
@@ -1004,10 +1004,10 @@ Get list of languages
 
 ```javascript
 // Promise
-const promise = configuration.getLanguages();
+const promise = applicationClient.configuration.getLanguages();
 
 // Async/Await
-const data = await configuration.getLanguages();
+const data = await applicationClient.configuration.getLanguages();
 ```
 
 
@@ -1070,10 +1070,10 @@ Get an Ordering Store signed cookie on selection of ordering store.
 
 ```javascript
 // Promise
-const promise = configuration.getOrderingStoreCookie({  body : value });
+const promise = applicationClient.configuration.getOrderingStoreCookie({  body : value });
 
 // Async/Await
-const data = await configuration.getOrderingStoreCookie({  body : value });
+const data = await applicationClient.configuration.getOrderingStoreCookie({  body : value });
 ```
 
 
@@ -1125,12 +1125,12 @@ Get deployment stores
 
 ```javascript
 // Promise
-const promise = configuration.getOrderingStores({  pageNo : value,
+const promise = applicationClient.configuration.getOrderingStores({  pageNo : value,
  pageSize : value,
  q : value });
 
 // Async/Await
-const data = await configuration.getOrderingStores({  pageNo : value,
+const data = await applicationClient.configuration.getOrderingStores({  pageNo : value,
  pageSize : value,
  q : value });
 ```
@@ -1187,10 +1187,10 @@ Get application, owner and seller information
 
 ```javascript
 // Promise
-const promise = configuration.getOwnerInfo();
+const promise = applicationClient.configuration.getOwnerInfo();
 
 // Async/Await
-const data = await configuration.getOwnerInfo();
+const data = await applicationClient.configuration.getOwnerInfo();
 ```
 
 
@@ -1339,10 +1339,10 @@ Get ordering store details
 
 ```javascript
 // Promise
-const promise = configuration.getStoreDetailById({  storeId : value });
+const promise = applicationClient.configuration.getStoreDetailById({  storeId : value });
 
 // Async/Await
-const data = await configuration.getStoreDetailById({  storeId : value });
+const data = await applicationClient.configuration.getStoreDetailById({  storeId : value });
 ```
 
 
@@ -1403,10 +1403,10 @@ Unset the Ordering Store signed cookie.
 
 ```javascript
 // Promise
-const promise = configuration.removeOrderingStoreCookie();
+const promise = applicationClient.configuration.removeOrderingStoreCookie();
 
 // Async/Await
-const data = await configuration.removeOrderingStoreCookie();
+const data = await applicationClient.configuration.removeOrderingStoreCookie();
 ```
 
 
@@ -1455,8 +1455,8 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | api_key | string |  no  |  |
- | application_id | string |  no  |  |
+ | api_key | string? |  yes  |  |
+ | application_id | string? |  yes  |  |
  
 
 ---
@@ -1465,9 +1465,9 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | application | string |  no  |  |
- | default_currency | [DefaultCurrency](#DefaultCurrency) |  no  |  |
- | supported_currency | [[Currency](#Currency)] |  no  |  |
+ | application | string? |  yes  |  |
+ | default_currency | [DefaultCurrency](#DefaultCurrency)? |  yes  |  |
+ | supported_currency | [[Currency](#Currency)]? |  yes  |  |
  
 
 ---
@@ -1476,20 +1476,20 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | __v | number |  no  |  |
- | _id | string |  no  |  |
- | app | string |  no  |  |
- | cart | [CartFeature](#CartFeature) |  no  |  |
- | common | [CommonFeature](#CommonFeature) |  no  |  |
- | created_at | string |  no  |  |
- | home_page | [HomePageFeature](#HomePageFeature) |  no  |  |
- | landing_page | [LandingPageFeature](#LandingPageFeature) |  no  |  |
- | order | [OrderFeature](#OrderFeature) |  no  |  |
- | pcr | [PcrFeature](#PcrFeature) |  no  |  |
- | product_detail | [ProductDetailFeature](#ProductDetailFeature) |  no  |  |
- | qr | [QrFeature](#QrFeature) |  no  |  |
- | registration_page | [RegistrationPageFeature](#RegistrationPageFeature) |  no  |  |
- | updated_at | string |  no  |  |
+ | __v | number? |  yes  |  |
+ | _id | string? |  yes  |  |
+ | app | string? |  yes  |  |
+ | cart | [CartFeature](#CartFeature)? |  yes  |  |
+ | common | [CommonFeature](#CommonFeature)? |  yes  |  |
+ | created_at | string? |  yes  |  |
+ | home_page | [HomePageFeature](#HomePageFeature)? |  yes  |  |
+ | landing_page | [LandingPageFeature](#LandingPageFeature)? |  yes  |  |
+ | order | [OrderFeature](#OrderFeature)? |  yes  |  |
+ | pcr | [PcrFeature](#PcrFeature)? |  yes  |  |
+ | product_detail | [ProductDetailFeature](#ProductDetailFeature)? |  yes  |  |
+ | qr | [QrFeature](#QrFeature)? |  yes  |  |
+ | registration_page | [RegistrationPageFeature](#RegistrationPageFeature)? |  yes  |  |
+ | updated_at | string? |  yes  |  |
  
 
 ---
@@ -1498,7 +1498,7 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | feature | [AppFeature](#AppFeature) |  no  |  |
+ | feature | [AppFeature](#AppFeature)? |  yes  |  |
  
 
 ---
@@ -1507,7 +1507,7 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | feature | [AppFeature](#AppFeature) |  no  |  |
+ | feature | [AppFeature](#AppFeature)? |  yes  |  |
  
 
 ---
@@ -1516,31 +1516,31 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | __v | number |  no  |  |
- | _id | string |  no  |  |
- | app_type | string |  no  |  |
- | auth | [ApplicationAuth](#ApplicationAuth) |  no  |  |
- | banner | [SecureUrl](#SecureUrl) |  no  |  |
- | cache_ttl | number |  no  |  |
- | channel_type | string |  no  |  |
- | company_id | number |  no  |  |
- | cors | [ApplicationCors](#ApplicationCors) |  no  |  |
- | created_at | string |  no  |  |
- | description | string |  no  |  |
- | domain | [Domain](#Domain) |  no  |  |
- | domains | [[Domain](#Domain)] |  no  |  |
- | favicon | [SecureUrl](#SecureUrl) |  no  |  |
- | is_active | boolean |  no  |  |
- | is_internal | boolean |  no  |  |
- | logo | [SecureUrl](#SecureUrl) |  no  |  |
- | meta | [[ApplicationMeta](#ApplicationMeta)] |  no  |  |
- | mobile_logo | [SecureUrl](#SecureUrl) |  no  |  |
- | name | string |  no  |  |
- | owner | string |  no  |  |
- | redirections | [[ApplicationRedirections](#ApplicationRedirections)] |  no  |  |
- | token | string |  no  |  |
- | updated_at | string |  no  |  |
- | website | [ApplicationWebsite](#ApplicationWebsite) |  no  |  |
+ | __v | number? |  yes  |  |
+ | _id | string? |  yes  |  |
+ | app_type | string? |  yes  |  |
+ | auth | [ApplicationAuth](#ApplicationAuth)? |  yes  |  |
+ | banner | [SecureUrl](#SecureUrl)? |  yes  |  |
+ | cache_ttl | number? |  yes  |  |
+ | channel_type | string? |  yes  |  |
+ | company_id | number? |  yes  |  |
+ | cors | [ApplicationCors](#ApplicationCors)? |  yes  |  |
+ | created_at | string? |  yes  |  |
+ | description | string? |  yes  |  |
+ | domain | [Domain](#Domain)? |  yes  |  |
+ | domains | [[Domain](#Domain)]? |  yes  |  |
+ | favicon | [SecureUrl](#SecureUrl)? |  yes  |  |
+ | is_active | boolean? |  yes  |  |
+ | is_internal | boolean? |  yes  |  |
+ | logo | [SecureUrl](#SecureUrl)? |  yes  |  |
+ | meta | [[ApplicationMeta](#ApplicationMeta)]? |  yes  |  |
+ | mobile_logo | [SecureUrl](#SecureUrl)? |  yes  |  |
+ | name | string? |  yes  |  |
+ | owner | string? |  yes  |  |
+ | redirections | [[ApplicationRedirections](#ApplicationRedirections)]? |  yes  |  |
+ | token | string? |  yes  |  |
+ | updated_at | string? |  yes  |  |
+ | website | [ApplicationWebsite](#ApplicationWebsite)? |  yes  |  |
  
 
 ---
@@ -1549,9 +1549,9 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | application_info | [ApplicationInfo](#ApplicationInfo) |  no  |  |
- | company_info | [CompanyInfo](#CompanyInfo) |  no  |  |
- | owner_info | [OwnerInfo](#OwnerInfo) |  no  |  |
+ | application_info | [ApplicationInfo](#ApplicationInfo)? |  yes  |  |
+ | company_info | [CompanyInfo](#CompanyInfo)? |  yes  |  |
+ | owner_info | [OwnerInfo](#OwnerInfo)? |  yes  |  |
  
 
 ---
@@ -1560,7 +1560,7 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | enabled | boolean |  no  |  |
+ | enabled | boolean? |  yes  |  |
  
 
 ---
@@ -1569,7 +1569,7 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | domains | [string] |  no  |  |
+ | domains | [string]? |  yes  |  |
  
 
 ---
@@ -1578,15 +1578,15 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | _id | string |  no  |  |
- | banner | [SecureUrl](#SecureUrl) |  yes  |  |
- | description | string |  yes  |  |
- | domain | [Domain](#Domain) |  no  |  |
- | domains | [[Domain](#Domain)] |  no  |  |
- | favicon | [SecureUrl](#SecureUrl) |  yes  |  |
- | logo | [SecureUrl](#SecureUrl) |  yes  |  |
- | mobile_logo | [SecureUrl](#SecureUrl) |  yes  |  |
- | name | string |  yes  |  |
+ | _id | string? |  yes  |  |
+ | banner | [SecureUrl](#SecureUrl) |  no  |  |
+ | description | string |  no  |  |
+ | domain | [Domain](#Domain)? |  yes  |  |
+ | domains | [[Domain](#Domain)]? |  yes  |  |
+ | favicon | [SecureUrl](#SecureUrl) |  no  |  |
+ | logo | [SecureUrl](#SecureUrl) |  no  |  |
+ | mobile_logo | [SecureUrl](#SecureUrl) |  no  |  |
+ | name | string |  no  |  |
  
 
 ---
@@ -1595,19 +1595,19 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | _id | string |  no  |  |
- | banner | [SecureUrl](#SecureUrl) |  no  |  |
- | cors | [ApplicationCors](#ApplicationCors) |  no  |  |
- | created_at | string |  no  |  |
- | description | string |  no  |  |
- | domain | [Domain](#Domain) |  no  |  |
- | is_active | boolean |  no  |  |
- | logo | [SecureUrl](#SecureUrl) |  no  |  |
- | meta | [ApplicationMeta](#ApplicationMeta) |  no  |  |
- | name | string |  no  |  |
- | secret | string |  no  |  |
- | token | string |  no  |  |
- | website | [ApplicationWebsite](#ApplicationWebsite) |  no  |  |
+ | _id | string? |  yes  |  |
+ | banner | [SecureUrl](#SecureUrl)? |  yes  |  |
+ | cors | [ApplicationCors](#ApplicationCors)? |  yes  |  |
+ | created_at | string? |  yes  |  |
+ | description | string? |  yes  |  |
+ | domain | [Domain](#Domain)? |  yes  |  |
+ | is_active | boolean? |  yes  |  |
+ | logo | [SecureUrl](#SecureUrl)? |  yes  |  |
+ | meta | [ApplicationMeta](#ApplicationMeta)? |  yes  |  |
+ | name | string? |  yes  |  |
+ | secret | string? |  yes  |  |
+ | token | string? |  yes  |  |
+ | website | [ApplicationWebsite](#ApplicationWebsite)? |  yes  |  |
  
 
 ---
@@ -1616,17 +1616,17 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | __v | number |  no  |  |
- | _id | string |  no  |  |
- | address | [InformationAddress](#InformationAddress) |  no  |  |
- | application | string |  no  |  |
- | business_highlights | [BusinessHighlights](#BusinessHighlights) |  no  |  |
- | copyright_text | string |  no  |  |
- | created_at | string |  no  |  |
- | links | [Links](#Links) |  no  |  |
- | social_links | [SocialLinks](#SocialLinks) |  no  |  |
- | support | [InformationSupport](#InformationSupport) |  no  |  |
- | updated_at | string |  no  |  |
+ | __v | number? |  yes  |  |
+ | _id | string? |  yes  |  |
+ | address | [InformationAddress](#InformationAddress)? |  yes  |  |
+ | application | string? |  yes  |  |
+ | business_highlights | [BusinessHighlights](#BusinessHighlights)? |  yes  |  |
+ | copyright_text | string? |  yes  |  |
+ | created_at | string? |  yes  |  |
+ | links | [Links](#Links)? |  yes  |  |
+ | social_links | [SocialLinks](#SocialLinks)? |  yes  |  |
+ | support | [InformationSupport](#InformationSupport)? |  yes  |  |
+ | updated_at | string? |  yes  |  |
  
 
 ---
@@ -1635,8 +1635,8 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | name | string |  no  |  |
- | value | string |  no  |  |
+ | name | string? |  yes  |  |
+ | value | string? |  yes  |  |
  
 
 ---
@@ -1645,9 +1645,9 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | redirect_from | string |  no  |  |
- | redirect_to | string |  no  |  |
- | type | string |  no  |  |
+ | redirect_from | string? |  yes  |  |
+ | redirect_to | string? |  yes  |  |
+ | type | string? |  yes  |  |
  
 
 ---
@@ -1656,11 +1656,11 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | id | string |  no  |  |
- | name | string |  yes  |  |
- | namespace | string |  no  |  |
- | token | string |  no  |  |
- | version | string |  yes  |  |
+ | id | string? |  yes  |  |
+ | name | string |  no  |  |
+ | namespace | string? |  yes  |  |
+ | token | string? |  yes  |  |
+ | version | string |  no  |  |
  
 
 ---
@@ -1669,8 +1669,8 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | basepath | string |  no  |  |
- | enabled | boolean |  no  |  |
+ | basepath | string? |  yes  |  |
+ | enabled | boolean? |  yes  |  |
  
 
 ---
@@ -1679,16 +1679,16 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | _id | string |  no  |  |
- | application | string |  no  |  |
- | employee_code | string |  no  |  |
- | first_name | string |  no  |  |
- | last_name | string |  no  |  |
- | order_incent | boolean |  no  |  |
- | profile_pic_url | string |  no  |  |
- | stores | [number] |  no  |  |
- | title | string |  no  |  |
- | user | string |  no  |  |
+ | _id | string? |  yes  |  |
+ | application | string? |  yes  |  |
+ | employee_code | string? |  yes  |  |
+ | first_name | string? |  yes  |  |
+ | last_name | string? |  yes  |  |
+ | order_incent | boolean? |  yes  |  |
+ | profile_pic_url | string? |  yes  |  |
+ | stores | [number]? |  yes  |  |
+ | title | string? |  yes  |  |
+ | user | string? |  yes  |  |
  
 
 ---
@@ -1697,8 +1697,8 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | items | [[AppStaff](#AppStaff)] |  no  |  |
- | page | [Page](#Page) |  no  |  |
+ | items | [[AppStaff](#AppStaff)]? |  yes  |  |
+ | page | [Page](#Page)? |  yes  |  |
  
 
 ---
@@ -1707,7 +1707,7 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | staff_users | [[AppStaff](#AppStaff)] |  no  |  |
+ | staff_users | [[AppStaff](#AppStaff)]? |  yes  |  |
  
 
 ---
@@ -1716,12 +1716,12 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | __v | number |  no  |  |
- | _id | string |  no  |  |
- | application | string |  no  |  |
- | created_at | string |  no  |  |
- | tokens | [Tokens](#Tokens) |  no  |  |
- | updated_at | string |  no  |  |
+ | __v | number? |  yes  |  |
+ | _id | string? |  yes  |  |
+ | application | string? |  yes  |  |
+ | created_at | string? |  yes  |  |
+ | tokens | [Tokens](#Tokens)? |  yes  |  |
+ | updated_at | string? |  yes  |  |
  
 
 ---
@@ -1730,10 +1730,10 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | application | [ApplicationVersionRequest](#ApplicationVersionRequest) |  yes  |  |
- | device | [Device](#Device) |  yes  |  |
- | locale | string |  no  |  |
- | timezone | string |  no  |  |
+ | application | [ApplicationVersionRequest](#ApplicationVersionRequest) |  no  |  |
+ | device | [Device](#Device) |  no  |  |
+ | locale | string? |  yes  |  |
+ | timezone | string? |  yes  |  |
  
 
 ---
@@ -1742,7 +1742,7 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | store_priority | [StorePriorityRule](#StorePriorityRule) |  no  |  |
+ | store_priority | [StorePriorityRule](#StorePriorityRule)? |  yes  |  |
  
 
 ---
@@ -1751,9 +1751,9 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | icon | string |  no  |  |
- | link | string |  no  |  |
- | title | string |  no  |  |
+ | icon | string? |  yes  |  |
+ | link | string? |  yes  |  |
+ | title | string? |  yes  |  |
  
 
 ---
@@ -1762,10 +1762,10 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | _id | string |  no  |  |
- | icon | string |  no  |  |
- | sub_title | string |  no  |  |
- | title | string |  no  |  |
+ | _id | string? |  yes  |  |
+ | icon | string? |  yes  |  |
+ | sub_title | string? |  yes  |  |
+ | title | string? |  yes  |  |
  
 
 ---
@@ -1774,11 +1774,11 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | google_map | boolean |  no  |  |
- | gst_input | boolean |  no  |  |
- | placing_for_customer | boolean |  no  |  |
- | revenue_engine_coupon | boolean |  no  |  |
- | staff_selection | boolean |  no  |  |
+ | google_map | boolean? |  yes  |  |
+ | gst_input | boolean? |  yes  |  |
+ | placing_for_customer | boolean? |  yes  |  |
+ | revenue_engine_coupon | boolean? |  yes  |  |
+ | staff_selection | boolean? |  yes  |  |
  
 
 ---
@@ -1787,14 +1787,14 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | communication_optin_dialog | [CommunicationOptinDialogFeature](#CommunicationOptinDialogFeature) |  no  |  |
- | compare_products | [CompareProductsFeature](#CompareProductsFeature) |  no  |  |
- | currency | [CurrencyFeature](#CurrencyFeature) |  no  |  |
- | deployment_store_selection | [DeploymentStoreSelectionFeature](#DeploymentStoreSelectionFeature) |  no  |  |
- | feedback | [FeedbackFeature](#FeedbackFeature) |  no  |  |
- | listing_price | [ListingPriceFeature](#ListingPriceFeature) |  no  |  |
- | revenue_engine | [RevenueEngineFeature](#RevenueEngineFeature) |  no  |  |
- | reward_points | [RewardPointsConfig](#RewardPointsConfig) |  no  |  |
+ | communication_optin_dialog | [CommunicationOptinDialogFeature](#CommunicationOptinDialogFeature)? |  yes  |  |
+ | compare_products | [CompareProductsFeature](#CompareProductsFeature)? |  yes  |  |
+ | currency | [CurrencyFeature](#CurrencyFeature)? |  yes  |  |
+ | deployment_store_selection | [DeploymentStoreSelectionFeature](#DeploymentStoreSelectionFeature)? |  yes  |  |
+ | feedback | [FeedbackFeature](#FeedbackFeature)? |  yes  |  |
+ | listing_price | [ListingPriceFeature](#ListingPriceFeature)? |  yes  |  |
+ | revenue_engine | [RevenueEngineFeature](#RevenueEngineFeature)? |  yes  |  |
+ | reward_points | [RewardPointsConfig](#RewardPointsConfig)? |  yes  |  |
  
 
 ---
@@ -1803,7 +1803,7 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | visibility | boolean |  no  |  |
+ | visibility | boolean? |  yes  |  |
  
 
 ---
@@ -1812,13 +1812,13 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | address1 | string |  no  |  |
- | address2 | string |  no  |  |
- | address_type | string |  no  |  |
- | city | string |  no  |  |
- | country | string |  no  |  |
- | pincode | number |  no  |  |
- | state | string |  no  |  |
+ | address1 | string? |  yes  |  |
+ | address2 | string? |  yes  |  |
+ | address_type | string? |  yes  |  |
+ | city | string? |  yes  |  |
+ | country | string? |  yes  |  |
+ | pincode | number? |  yes  |  |
+ | state | string? |  yes  |  |
  
 
 ---
@@ -1827,13 +1827,13 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | _id | string |  no  |  |
- | addresses | [[CompanyAboutAddress](#CompanyAboutAddress)] |  no  |  |
- | created_on | string |  no  |  |
- | is_active | boolean |  no  |  |
- | name | string |  no  |  |
- | notification_emails | [string] |  no  |  |
- | uid | number |  no  |  |
+ | _id | string? |  yes  |  |
+ | addresses | [[CompanyAboutAddress](#CompanyAboutAddress)]? |  yes  |  |
+ | created_on | string? |  yes  |  |
+ | is_active | boolean? |  yes  |  |
+ | name | string? |  yes  |  |
+ | notification_emails | [string]? |  yes  |  |
+ | uid | number? |  yes  |  |
  
 
 ---
@@ -1842,7 +1842,7 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | enabled | boolean |  no  |  |
+ | enabled | boolean? |  yes  |  |
  
 
 ---
@@ -1851,12 +1851,12 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | android | [Android](#Android) |  no  |  |
- | api_key | string |  no  |  |
- | application_id | string |  no  |  |
- | gcm_sender_id | string |  no  |  |
- | ios | [Ios](#Ios) |  no  |  |
- | project_id | string |  no  |  |
+ | android | [Android](#Android)? |  yes  |  |
+ | api_key | string? |  yes  |  |
+ | application_id | string? |  yes  |  |
+ | gcm_sender_id | string? |  yes  |  |
+ | ios | [Ios](#Ios)? |  yes  |  |
+ | project_id | string? |  yes  |  |
  
 
 ---
@@ -1865,7 +1865,7 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | enabled | boolean |  no  |  |
+ | enabled | boolean? |  yes  |  |
  
 
 ---
@@ -1874,7 +1874,7 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | items | [[Currency](#Currency)] |  no  |  |
+ | items | [[Currency](#Currency)]? |  yes  |  |
  
 
 ---
@@ -1883,14 +1883,14 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | _id | string |  no  |  |
- | code | string |  no  |  |
- | created_at | string |  no  |  |
- | decimal_digits | number |  no  |  |
- | is_active | boolean |  no  |  |
- | name | string |  no  |  |
- | symbol | string |  no  |  |
- | updated_at | string |  no  |  |
+ | _id | string? |  yes  |  |
+ | code | string? |  yes  |  |
+ | created_at | string? |  yes  |  |
+ | decimal_digits | number? |  yes  |  |
+ | is_active | boolean? |  yes  |  |
+ | name | string? |  yes  |  |
+ | symbol | string? |  yes  |  |
+ | updated_at | string? |  yes  |  |
  
 
 ---
@@ -1899,9 +1899,9 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | default_currency | string |  no  |  |
- | type | string |  no  |  |
- | value | [string] |  no  |  |
+ | default_currency | string? |  yes  |  |
+ | type | string? |  yes  |  |
+ | value | [string]? |  yes  |  |
  
 
 ---
@@ -1910,9 +1910,9 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | auto_apply | boolean |  no  |  |
- | enabled | boolean |  no  |  |
- | strategy_channel | string |  no  |  |
+ | auto_apply | boolean? |  yes  |  |
+ | enabled | boolean? |  yes  |  |
+ | strategy_channel | string? |  yes  |  |
  
 
 ---
@@ -1921,8 +1921,8 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | code | string |  no  |  |
- | ref | string |  no  |  |
+ | code | string? |  yes  |  |
+ | ref | string? |  yes  |  |
  
 
 ---
@@ -1931,8 +1931,8 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | enabled | boolean |  no  |  |
- | type | string |  no  |  |
+ | enabled | boolean? |  yes  |  |
+ | type | string? |  yes  |  |
  
 
 ---
@@ -1941,9 +1941,9 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | build | number |  no  |  |
- | model | string |  no  |  |
- | os | [OS](#OS) |  yes  |  |
+ | build | number? |  yes  |  |
+ | model | string? |  yes  |  |
+ | os | [OS](#OS) |  no  |  |
  
 
 ---
@@ -1952,12 +1952,12 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | _id | string |  no  |  |
- | is_predefined | boolean |  no  |  |
- | is_primary | boolean |  no  |  |
- | is_shortlink | boolean |  no  |  |
- | name | string |  no  |  |
- | verified | boolean |  no  |  |
+ | _id | string? |  yes  |  |
+ | is_predefined | boolean? |  yes  | Domain is hosting domain or not. |
+ | is_primary | boolean? |  yes  |  |
+ | is_shortlink | boolean? |  yes  |  |
+ | name | string? |  yes  |  |
+ | verified | boolean? |  yes  |  |
  
 
 ---
@@ -1966,9 +1966,9 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | icon | string |  no  |  |
- | link | string |  no  |  |
- | title | string |  no  |  |
+ | icon | string? |  yes  |  |
+ | link | string? |  yes  |  |
+ | title | string? |  yes  |  |
  
 
 ---
@@ -1977,7 +1977,7 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | enabled | boolean |  no  |  |
+ | enabled | boolean? |  yes  |  |
  
 
 ---
@@ -1986,8 +1986,8 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | credentials | [Credentials](#Credentials) |  no  |  |
- | enabled | boolean |  no  |  |
+ | credentials | [Credentials](#Credentials)? |  yes  |  |
+ | enabled | boolean? |  yes  |  |
  
 
 ---
@@ -1996,8 +1996,8 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | credentials | [FreshchatCredentials](#FreshchatCredentials) |  no  |  |
- | enabled | boolean |  no  |  |
+ | credentials | [FreshchatCredentials](#FreshchatCredentials)? |  yes  |  |
+ | enabled | boolean? |  yes  |  |
  
 
 ---
@@ -2006,9 +2006,9 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | app_id | string |  no  |  |
- | app_key | string |  no  |  |
- | web_token | string |  no  |  |
+ | app_id | string? |  yes  |  |
+ | app_key | string? |  yes  |  |
+ | web_token | string? |  yes  |  |
  
 
 ---
@@ -2017,7 +2017,7 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | credentials | [FyndRewardsCredentials](#FyndRewardsCredentials) |  no  |  |
+ | credentials | [FyndRewardsCredentials](#FyndRewardsCredentials)? |  yes  |  |
  
 
 ---
@@ -2026,7 +2026,7 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | public_key | string |  no  |  |
+ | public_key | string? |  yes  |  |
  
 
 ---
@@ -2035,7 +2035,7 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | credentials | [GoogleMapCredentials](#GoogleMapCredentials) |  no  |  |
+ | credentials | [GoogleMapCredentials](#GoogleMapCredentials)? |  yes  |  |
  
 
 ---
@@ -2044,7 +2044,7 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | api_key | string |  no  |  |
+ | api_key | string? |  yes  |  |
  
 
 ---
@@ -2053,9 +2053,9 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | icon | string |  no  |  |
- | link | string |  no  |  |
- | title | string |  no  |  |
+ | icon | string? |  yes  |  |
+ | link | string? |  yes  |  |
+ | title | string? |  yes  |  |
  
 
 ---
@@ -2064,8 +2064,8 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | credentials | [GtmCredentials](#GtmCredentials) |  no  |  |
- | enabled | boolean |  no  |  |
+ | credentials | [GtmCredentials](#GtmCredentials)? |  yes  |  |
+ | enabled | boolean? |  yes  |  |
  
 
 ---
@@ -2074,7 +2074,7 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | api_key | string |  no  |  |
+ | api_key | string? |  yes  |  |
  
 
 ---
@@ -2083,7 +2083,7 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | order_processing | boolean |  no  |  |
+ | order_processing | boolean? |  yes  |  |
  
 
 ---
@@ -2092,12 +2092,12 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | address_line | [string] |  no  |  |
- | city | string |  no  |  |
- | country | string |  no  |  |
- | loc | string |  no  |  |
- | phone | [InformationPhone](#InformationPhone) |  no  |  |
- | pincode | number |  no  |  |
+ | address_line | [string]? |  yes  |  |
+ | city | string? |  yes  |  |
+ | country | string? |  yes  |  |
+ | loc | string? |  yes  |  |
+ | phone | [InformationPhone](#InformationPhone)? |  yes  |  |
+ | pincode | number? |  yes  |  |
  
 
 ---
@@ -2106,8 +2106,8 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | code | string |  no  |  |
- | number | string |  no  |  |
+ | code | string? |  yes  |  |
+ | number | string? |  yes  |  |
  
 
 ---
@@ -2116,9 +2116,9 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | email | [string] |  no  |  |
- | phone | [string] |  no  |  |
- | timing | string |  no  |  |
+ | email | [string]? |  yes  |  |
+ | phone | [string]? |  yes  |  |
+ | timing | string? |  yes  |  |
  
 
 ---
@@ -2127,9 +2127,9 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | icon | string |  no  |  |
- | link | string |  no  |  |
- | title | string |  no  |  |
+ | icon | string? |  yes  |  |
+ | link | string? |  yes  |  |
+ | title | string? |  yes  |  |
  
 
 ---
@@ -2138,7 +2138,7 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | message | string |  no  |  |
+ | message | string? |  yes  |  |
  
 
 ---
@@ -2147,8 +2147,8 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | post_order_reassignment | boolean |  no  |  |
- | rules | [ArticleAssignmentRule](#ArticleAssignmentRule) |  no  |  |
+ | post_order_reassignment | boolean? |  yes  |  |
+ | rules | [ArticleAssignmentRule](#ArticleAssignmentRule)? |  yes  |  |
  
 
 ---
@@ -2157,8 +2157,8 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | brands | [number] |  no  |  |
- | criteria | string |  no  |  |
+ | brands | [number]? |  yes  | Brand uids in case of explicit criteria |
+ | criteria | string? |  yes  | Whether enable all or explicitly few brands as inventory |
  
 
 ---
@@ -2167,8 +2167,8 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | mode_of_payment | string |  no  |  |
- | source | string |  no  |  |
+ | mode_of_payment | string? |  yes  |  |
+ | source | string? |  yes  |  |
  
 
 ---
@@ -2177,9 +2177,9 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | criteria | string |  no  |  |
- | rules | [[StoreCriteriaRule](#StoreCriteriaRule)] |  no  |  |
- | stores | [number] |  no  |  |
+ | criteria | string? |  yes  | Whether enable all or explicitly few stores or use filter of brands and company as inventory stores |
+ | rules | [[StoreCriteriaRule](#StoreCriteriaRule)]? |  yes  | List of rules with company and brands uids. Used when critera is `filter` |
+ | stores | [number]? |  yes  | List of store uids. Used when critera is `explicit` |
  
 
 ---
@@ -2188,8 +2188,8 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | api_key | string |  no  |  |
- | application_id | string |  no  |  |
+ | api_key | string? |  yes  |  |
+ | application_id | string? |  yes  |  |
  
 
 ---
@@ -2198,11 +2198,11 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | continue_as_guest | boolean |  no  |  |
- | launch_page | [LaunchPage](#LaunchPage) |  no  |  |
- | login_btn_text | string |  no  |  |
- | show_domain_textbox | boolean |  no  |  |
- | show_register_btn | boolean |  no  |  |
+ | continue_as_guest | boolean? |  yes  |  |
+ | launch_page | [LaunchPage](#LaunchPage)? |  yes  |  |
+ | login_btn_text | string? |  yes  |  |
+ | show_domain_textbox | boolean? |  yes  |  |
+ | show_register_btn | boolean? |  yes  |  |
  
 
 ---
@@ -2211,7 +2211,7 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | items | [[SupportedLanguage](#SupportedLanguage)] |  no  |  |
+ | items | [[SupportedLanguage](#SupportedLanguage)]? |  yes  |  |
  
 
 ---
@@ -2220,9 +2220,9 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | page_type | string |  no  |  |
- | params | string |  no  |  |
- | query | string |  no  |  |
+ | page_type | string? |  yes  |  |
+ | params | string? |  yes  |  |
+ | query | string? |  yes  |  |
  
 
 ---
@@ -2231,9 +2231,9 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | icon | string |  no  |  |
- | link | string |  no  |  |
- | title | string |  no  |  |
+ | icon | string? |  yes  |  |
+ | link | string? |  yes  |  |
+ | title | string? |  yes  |  |
  
 
 ---
@@ -2242,8 +2242,8 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | link | string |  no  |  |
- | title | string |  no  |  |
+ | link | string? |  yes  |  |
+ | title | string? |  yes  |  |
  
 
 ---
@@ -2252,7 +2252,7 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | value | string |  no  |  |
+ | value | string? |  yes  |  |
  
 
 ---
@@ -2261,8 +2261,8 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | credentials | [MoengageCredentials](#MoengageCredentials) |  no  |  |
- | enabled | boolean |  no  |  |
+ | credentials | [MoengageCredentials](#MoengageCredentials)? |  yes  |  |
+ | enabled | boolean? |  yes  |  |
  
 
 ---
@@ -2271,7 +2271,7 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | app_id | string |  no  |  |
+ | app_id | string? |  yes  |  |
  
 
 ---
@@ -2280,7 +2280,7 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | message | string |  no  |  |
+ | message | string? |  yes  |  |
  
 
 ---
@@ -2289,13 +2289,13 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | address1 | string |  no  |  |
- | address2 | string |  no  |  |
- | city | string |  no  |  |
- | country | string |  no  |  |
- | lat_long | [StoreLatLong](#StoreLatLong) |  no  |  |
- | pincode | number |  no  |  |
- | state | string |  no  |  |
+ | address1 | string? |  yes  |  |
+ | address2 | string? |  yes  |  |
+ | city | string? |  yes  |  |
+ | country | string? |  yes  |  |
+ | lat_long | [StoreLatLong](#StoreLatLong)? |  yes  |  |
+ | pincode | number? |  yes  |  |
+ | state | string? |  yes  |  |
  
 
 ---
@@ -2304,7 +2304,7 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | buy_again | boolean |  no  |  |
+ | buy_again | boolean? |  yes  |  |
  
 
 ---
@@ -2313,15 +2313,15 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | _id | string |  no  |  |
- | address | [OptedStoreAddress](#OptedStoreAddress) |  no  |  |
- | code | string |  no  |  |
- | display_name | string |  no  |  |
- | name | string |  no  |  |
- | pincode | number |  no  |  |
- | store_code | string |  no  |  |
- | store_type | string |  no  |  |
- | uid | number |  no  |  |
+ | _id | string? |  yes  |  |
+ | address | [OptedStoreAddress](#OptedStoreAddress)? |  yes  |  |
+ | code | string? |  yes  |  |
+ | display_name | string? |  yes  |  |
+ | name | string? |  yes  |  |
+ | pincode | number? |  yes  |  |
+ | store_code | string? |  yes  |  |
+ | store_type | string? |  yes  |  |
+ | uid | number? |  yes  |  |
  
 
 ---
@@ -2330,15 +2330,15 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | __v | number |  no  |  |
- | _id | string |  no  |  |
- | all_stores | boolean |  no  |  |
- | app | string |  no  |  |
- | deployed_stores | [number] |  no  |  |
- | enabled | boolean |  no  |  |
- | items | [[OrderingStore](#OrderingStore)] |  no  |  |
- | page | [Page](#Page) |  no  |  |
- | type | string |  no  |  |
+ | __v | number? |  yes  |  |
+ | _id | string? |  yes  |  |
+ | all_stores | boolean? |  yes  |  |
+ | app | string? |  yes  |  |
+ | deployed_stores | [number]? |  yes  |  |
+ | enabled | boolean? |  yes  |  |
+ | items | [[OrderingStore](#OrderingStore)]? |  yes  |  |
+ | page | [Page](#Page)? |  yes  |  |
+ | type | string? |  yes  |  |
  
 
 ---
@@ -2347,7 +2347,7 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | uid | number |  yes  |  |
+ | uid | number |  no  | store uid |
  
 
 ---
@@ -2356,7 +2356,7 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | ordering_store | [OrderingStoreSelect](#OrderingStoreSelect) |  yes  |  |
+ | ordering_store | [OrderingStoreSelect](#OrderingStoreSelect) |  no  |  |
  
 
 ---
@@ -2365,8 +2365,8 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | items | [[OrderingStore](#OrderingStore)] |  no  |  |
- | page | [Page](#Page) |  no  |  |
+ | items | [[OrderingStore](#OrderingStore)]? |  yes  |  |
+ | page | [Page](#Page)? |  yes  |  |
  
 
 ---
@@ -2375,8 +2375,8 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | name | string |  yes  |  |
- | version | string |  no  |  |
+ | name | string |  no  |  |
+ | version | string? |  yes  |  |
  
 
 ---
@@ -2385,12 +2385,12 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | _id | string |  no  |  |
- | emails | [[UserEmail](#UserEmail)] |  no  |  |
- | first_name | string |  no  |  |
- | last_name | string |  no  |  |
- | phone_numbers | [[UserPhoneNumber](#UserPhoneNumber)] |  no  |  |
- | profile_pic | string |  no  |  |
+ | _id | string? |  yes  |  |
+ | emails | [[UserEmail](#UserEmail)]? |  yes  |  |
+ | first_name | string? |  yes  |  |
+ | last_name | string? |  yes  |  |
+ | phone_numbers | [[UserPhoneNumber](#UserPhoneNumber)]? |  yes  |  |
+ | profile_pic | string? |  yes  |  |
  
 
 ---
@@ -2399,13 +2399,13 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | current | number |  no  |  |
- | has_next | boolean |  no  |  |
- | has_previous | boolean |  no  |  |
- | item_total | number |  no  |  |
- | next_id | string |  no  |  |
- | size | number |  no  |  |
- | type | string |  yes  |  |
+ | current | number? |  yes  |  |
+ | has_next | boolean? |  yes  |  |
+ | has_previous | boolean? |  yes  |  |
+ | item_total | number? |  yes  |  |
+ | next_id | string? |  yes  |  |
+ | size | number? |  yes  |  |
+ | type | string |  no  |  |
  
 
 ---
@@ -2414,7 +2414,7 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | staff_selection | boolean |  no  |  |
+ | staff_selection | boolean? |  yes  |  |
  
 
 ---
@@ -2423,9 +2423,9 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | icon | string |  no  |  |
- | link | string |  no  |  |
- | title | string |  no  |  |
+ | icon | string? |  yes  |  |
+ | link | string? |  yes  |  |
+ | title | string? |  yes  |  |
  
 
 ---
@@ -2434,10 +2434,10 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | request_product | boolean |  no  |  |
- | seller_selection | boolean |  no  |  |
- | similar | [string] |  no  |  |
- | update_product_meta | boolean |  no  |  |
+ | request_product | boolean? |  yes  |  |
+ | seller_selection | boolean? |  yes  |  |
+ | similar | [string]? |  yes  |  |
+ | update_product_meta | boolean? |  yes  |  |
  
 
 ---
@@ -2446,9 +2446,9 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | application | boolean |  no  |  |
- | collections | boolean |  no  |  |
- | products | boolean |  no  |  |
+ | application | boolean? |  yes  |  |
+ | collections | boolean? |  yes  |  |
+ | products | boolean? |  yes  |  |
  
 
 ---
@@ -2457,7 +2457,7 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | ask_store_address | boolean |  no  |  |
+ | ask_store_address | boolean? |  yes  |  |
  
 
 ---
@@ -2466,7 +2466,7 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | enabled | boolean |  no  |  |
+ | enabled | boolean? |  yes  |  |
  
 
 ---
@@ -2475,8 +2475,8 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | credit | [Credit](#Credit) |  no  |  |
- | debit | [Debit](#Debit) |  no  |  |
+ | credit | [Credit](#Credit)? |  yes  |  |
+ | debit | [Debit](#Debit)? |  yes  |  |
  
 
 ---
@@ -2485,8 +2485,8 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | credentials | [SafetynetCredentials](#SafetynetCredentials) |  no  |  |
- | enabled | boolean |  no  |  |
+ | credentials | [SafetynetCredentials](#SafetynetCredentials)? |  yes  |  |
+ | enabled | boolean? |  yes  |  |
  
 
 ---
@@ -2495,7 +2495,7 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | api_key | string |  no  |  |
+ | api_key | string? |  yes  |  |
  
 
 ---
@@ -2504,7 +2504,7 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | secure_url | string |  no  |  |
+ | secure_url | string? |  yes  |  |
  
 
 ---
@@ -2513,8 +2513,8 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | credentials | [SegmentCredentials](#SegmentCredentials) |  no  |  |
- | enabled | boolean |  no  |  |
+ | credentials | [SegmentCredentials](#SegmentCredentials)? |  yes  |  |
+ | enabled | boolean? |  yes  |  |
  
 
 ---
@@ -2523,7 +2523,7 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | write_key | string |  no  |  |
+ | write_key | string? |  yes  |  |
  
 
 ---
@@ -2532,15 +2532,15 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | blog_link | [BlogLink](#BlogLink) |  no  |  |
- | facebook | [FacebookLink](#FacebookLink) |  no  |  |
- | google_plus | [GooglePlusLink](#GooglePlusLink) |  no  |  |
- | instagram | [InstagramLink](#InstagramLink) |  no  |  |
- | linked_in | [LinkedInLink](#LinkedInLink) |  no  |  |
- | pinterest | [PinterestLink](#PinterestLink) |  no  |  |
- | twitter | [TwitterLink](#TwitterLink) |  no  |  |
- | vimeo | [VimeoLink](#VimeoLink) |  no  |  |
- | youtube | [YoutubeLink](#YoutubeLink) |  no  |  |
+ | blog_link | [BlogLink](#BlogLink)? |  yes  |  |
+ | facebook | [FacebookLink](#FacebookLink)? |  yes  |  |
+ | google_plus | [GooglePlusLink](#GooglePlusLink)? |  yes  |  |
+ | instagram | [InstagramLink](#InstagramLink)? |  yes  |  |
+ | linked_in | [LinkedInLink](#LinkedInLink)? |  yes  |  |
+ | pinterest | [PinterestLink](#PinterestLink)? |  yes  |  |
+ | twitter | [TwitterLink](#TwitterLink)? |  yes  |  |
+ | vimeo | [VimeoLink](#VimeoLink)? |  yes  |  |
+ | youtube | [YoutubeLink](#YoutubeLink)? |  yes  |  |
  
 
 ---
@@ -2549,8 +2549,8 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | brands | [number] |  no  |  |
- | companies | [number] |  no  |  |
+ | brands | [number]? |  yes  | list of brand uids |
+ | companies | [number]? |  yes  | list of company uids |
  
 
 ---
@@ -2559,8 +2559,8 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | coordinates | [number] |  no  |  |
- | type | string |  no  |  |
+ | coordinates | [number]? |  yes  |  |
+ | type | string? |  yes  |  |
  
 
 ---
@@ -2569,8 +2569,8 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | enabled | boolean |  no  |  |
- | storetype_order | [string] |  no  |  |
+ | enabled | boolean? |  yes  |  |
+ | storetype_order | [string]? |  yes  |  |
  
 
 ---
@@ -2579,7 +2579,7 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | message | string |  no  |  |
+ | message | string? |  yes  |  |
  
 
 ---
@@ -2588,8 +2588,8 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | code | string |  no  |  |
- | name | string |  no  |  |
+ | code | string? |  yes  |  |
+ | name | string? |  yes  |  |
  
 
 ---
@@ -2598,14 +2598,14 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | firebase | [Firebase](#Firebase) |  no  |  |
- | freshchat | [Freshchat](#Freshchat) |  no  |  |
- | fynd_rewards | [FyndRewards](#FyndRewards) |  no  |  |
- | google_map | [GoogleMap](#GoogleMap) |  no  |  |
- | gtm | [Gtm](#Gtm) |  no  |  |
- | moengage | [Moengage](#Moengage) |  no  |  |
- | safetynet | [Safetynet](#Safetynet) |  no  |  |
- | segment | [Segment](#Segment) |  no  |  |
+ | firebase | [Firebase](#Firebase)? |  yes  |  |
+ | freshchat | [Freshchat](#Freshchat)? |  yes  |  |
+ | fynd_rewards | [FyndRewards](#FyndRewards)? |  yes  |  |
+ | google_map | [GoogleMap](#GoogleMap)? |  yes  |  |
+ | gtm | [Gtm](#Gtm)? |  yes  |  |
+ | moengage | [Moengage](#Moengage)? |  yes  |  |
+ | safetynet | [Safetynet](#Safetynet)? |  yes  |  |
+ | segment | [Segment](#Segment)? |  yes  |  |
  
 
 ---
@@ -2614,9 +2614,9 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | icon | string |  no  |  |
- | link | string |  no  |  |
- | title | string |  no  |  |
+ | icon | string? |  yes  |  |
+ | link | string? |  yes  |  |
+ | title | string? |  yes  |  |
  
 
 ---
@@ -2625,7 +2625,7 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | message | string |  no  |  |
+ | message | string? |  yes  |  |
  
 
 ---
@@ -2634,8 +2634,8 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | interval | number |  no  |  |
- | type | string |  no  |  |
+ | interval | number? |  yes  |  |
+ | type | string? |  yes  |  |
  
 
 ---
@@ -2644,10 +2644,10 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | active | boolean |  no  |  |
- | email | string |  no  |  |
- | primary | boolean |  no  |  |
- | verified | boolean |  no  |  |
+ | active | boolean? |  yes  |  |
+ | email | string? |  yes  |  |
+ | primary | boolean? |  yes  |  |
+ | verified | boolean? |  yes  |  |
  
 
 ---
@@ -2656,11 +2656,11 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | active | boolean |  no  |  |
- | country_code | number |  no  |  |
- | phone | string |  no  |  |
- | primary | boolean |  no  |  |
- | verified | boolean |  no  |  |
+ | active | boolean? |  yes  |  |
+ | country_code | number? |  yes  |  |
+ | phone | string? |  yes  |  |
+ | primary | boolean? |  yes  |  |
+ | verified | boolean? |  yes  |  |
  
 
 ---
@@ -2669,9 +2669,9 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | icon | string |  no  |  |
- | link | string |  no  |  |
- | title | string |  no  |  |
+ | icon | string? |  yes  |  |
+ | link | string? |  yes  |  |
+ | title | string? |  yes  |  |
  
 
 ---
@@ -2680,9 +2680,9 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | icon | string |  no  |  |
- | link | string |  no  |  |
- | title | string |  no  |  |
+ | icon | string? |  yes  |  |
+ | link | string? |  yes  |  |
+ | title | string? |  yes  |  |
  
 
 ---

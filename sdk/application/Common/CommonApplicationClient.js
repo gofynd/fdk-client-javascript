@@ -1,7 +1,7 @@
-const APIClient = require("../ApplicationAPIClient");
+const ApplicationAPIClient = require("../ApplicationAPIClient");
+const { FDKClientValidationError } = require("../../common/FDKError");
 const constructUrl = require("../constructUrl");
 const Paginator = require("../../common/Paginator");
-const { FDKClientValidationError } = require("../../common/FDKError");
 const CommonValidator = require("./CommonApplicationValidator");
 const CommonModel = require("./CommonApplicationModel");
 const { Logger } = require("./../../common/Logger");
@@ -69,7 +69,7 @@ class Common {
 
     const xHeaders = {};
 
-    const response = await APIClient.execute(
+    const response = await ApplicationAPIClient.execute(
       this._conf,
       "get",
       constructUrl({
@@ -133,7 +133,7 @@ class Common {
     const xHeaders = {};
     xHeaders["authorization"] = authorization;
 
-    const response = await APIClient.execute(
+    const response = await ApplicationAPIClient.execute(
       this._conf,
       "get",
       constructUrl({
