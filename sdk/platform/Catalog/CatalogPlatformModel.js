@@ -1179,15 +1179,15 @@ class CatalogModel {
       addresses: Joi.array().items(CatalogModel.GetAddressSerializer()),
       business_type: Joi.string().allow(""),
       company_type: Joi.string().allow(""),
-      created_by: CatalogModel.UserSerializer2(),
+      created_by: CatalogModel.UserSerializer1(),
       created_on: Joi.string().allow(""),
-      modified_by: CatalogModel.UserSerializer2(),
+      modified_by: CatalogModel.UserSerializer1(),
       modified_on: Joi.string().allow(""),
       name: Joi.string().allow(""),
       reject_reason: Joi.string().allow(""),
       stage: Joi.string().allow(""),
       uid: Joi.number(),
-      verified_by: CatalogModel.UserSerializer2(),
+      verified_by: CatalogModel.UserSerializer1(),
       verified_on: Joi.string().allow(""),
     });
   }
@@ -1270,14 +1270,14 @@ class CatalogModel {
       code: Joi.string().allow("").required(),
       company: CatalogModel.GetCompanySerializer(),
       contact_numbers: Joi.array().items(CatalogModel.SellerPhoneNumber()),
-      created_by: CatalogModel.UserSerializer1(),
+      created_by: CatalogModel.UserSerializer2(),
       created_on: Joi.string().allow(""),
       display_name: Joi.string().allow("").required(),
       documents: Joi.array().items(CatalogModel.Document()),
       gst_credentials: CatalogModel.InvoiceDetailsSerializer(),
       integration_type: CatalogModel.LocationIntegrationType(),
       manager: CatalogModel.LocationManagerSerializer(),
-      modified_by: CatalogModel.UserSerializer1(),
+      modified_by: CatalogModel.UserSerializer2(),
       modified_on: Joi.string().allow(""),
       name: Joi.string().allow("").required(),
       notification_emails: Joi.array().items(Joi.string().allow("")),
@@ -1287,7 +1287,7 @@ class CatalogModel {
       store_type: Joi.string().allow(""),
       timing: Joi.array().items(CatalogModel.LocationDayWiseSerializer()),
       uid: Joi.number(),
-      verified_by: CatalogModel.UserSerializer1(),
+      verified_by: CatalogModel.UserSerializer2(),
       verified_on: Joi.string().allow(""),
       warnings: Joi.any(),
     });
@@ -2799,7 +2799,7 @@ class CatalogModel {
       title: Joi.string().allow(""),
     });
   }
-  static StoreAssignResponse() {
+  static StoreAssign() {
     return Joi.object({
       _id: Joi.string().allow(""),
       article_assignment: CatalogModel.ArticleAssignment1().required(),
@@ -2818,6 +2818,20 @@ class CatalogModel {
       store_pincode: Joi.number(),
       strategy_wise_listing: Joi.array().items(Joi.any()),
       uid: Joi.string().allow(""),
+    });
+  }
+  static StoreAssignError() {
+    return Joi.object({
+      message: Joi.string().allow("").allow(null),
+      type: Joi.string().allow("").allow(null),
+      value: Joi.any(),
+    });
+  }
+  static StoreAssignResponse() {
+    return Joi.object({
+      error: CatalogModel.StoreAssignError(),
+      items: Joi.array().items(CatalogModel.StoreAssign()),
+      success: Joi.boolean(),
     });
   }
   static StoreDetail() {

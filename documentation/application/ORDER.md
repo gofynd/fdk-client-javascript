@@ -3280,6 +3280,7 @@ Success, the code is valid and returns a session token
  | prices | [Prices](#Prices)? |  yes  |  |
  | promise | [Promise](#Promise)? |  yes  |  |
  | refund_details | string? |  yes  |  |
+ | return_meta | string? |  yes  |  |
  | returnable_date | string? |  yes  |  |
  | shipment_created_at | string? |  yes  |  |
  | shipment_id | string? |  yes  |  |
