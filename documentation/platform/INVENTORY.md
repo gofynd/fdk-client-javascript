@@ -2,11 +2,9 @@
 
 
 
-
 ##### [Back to Platform docs](./README.md)
 
 ## Inventory Methods
-
 
 * [getConfigByCompany](#getconfigbycompany)
 * [suppressStores](#suppressstores)
@@ -24,8 +22,6 @@
 
 
 ## Methods with example and description
-
-
 
 
 ### getConfigByCompany

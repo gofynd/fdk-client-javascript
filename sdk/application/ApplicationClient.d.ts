@@ -20,7 +20,6 @@ declare class ApplicationClient {
     logistic: Logistic;
     setCookie(cookie: any): void;
     setLocationDetails(locationDetails: any): void;
-    setCurrencyCode(currencyCode: any): void;
     setExtraHeaders(header: any): void;
 }
 import Catalog = require("./client/CatalogApplicationClient");

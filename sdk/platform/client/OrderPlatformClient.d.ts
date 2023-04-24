@@ -5,6 +5,8 @@ declare class Order {
     /**
      * @param {Object} arg - Arg object.
      * @param {string} [arg.lane] -
+     * @param {string} [arg.bagStatus] -
+     * @param {boolean} [arg.statusOverrideLane] -
      * @param {string} [arg.searchType] -
      * @param {string} [arg.searchValue] -
      * @param {string} [arg.searchId] -
@@ -18,16 +20,21 @@ declare class Order {
      * @param {number} [arg.pageNo] -
      * @param {number} [arg.pageSize] -
      * @param {boolean} [arg.isPrioritySort] -
+     * @param {boolean} [arg.fetchActiveShipment] -
      * @param {boolean} [arg.excludeLockedShipments] -
      * @param {string} [arg.paymentMethods] -
      * @param {string} [arg.channelShipmentId] -
      * @param {string} [arg.channelOrderId] -
      * @param {string} [arg.customMeta] -
+     * @param {string} [arg.orderingChannel] -
+     * @param {string} [arg.companyAffiliateTag] -
      * @summary:
      * @description:
      */
-    getShipments({ lane, searchType, searchValue, searchId, fromDate, toDate, dpIds, orderingCompanyId, stores, salesChannel, requestByExt, pageNo, pageSize, isPrioritySort, excludeLockedShipments, paymentMethods, channelShipmentId, channelOrderId, customMeta, }?: {
+    getShipments({ lane, bagStatus, statusOverrideLane, searchType, searchValue, searchId, fromDate, toDate, dpIds, orderingCompanyId, stores, salesChannel, requestByExt, pageNo, pageSize, isPrioritySort, fetchActiveShipment, excludeLockedShipments, paymentMethods, channelShipmentId, channelOrderId, customMeta, orderingChannel, companyAffiliateTag, }?: {
         lane?: string;
+        bagStatus?: string;
+        statusOverrideLane?: boolean;
         searchType?: string;
         searchValue?: string;
         searchId?: string;
@@ -41,11 +48,14 @@ declare class Order {
         pageNo?: number;
         pageSize?: number;
         isPrioritySort?: boolean;
+        fetchActiveShipment?: boolean;
         excludeLockedShipments?: boolean;
         paymentMethods?: string;
         channelShipmentId?: string;
         channelOrderId?: string;
         customMeta?: string;
+        orderingChannel?: string;
+        companyAffiliateTag?: string;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
@@ -100,6 +110,10 @@ declare class Order {
      * @param {Object} arg - Arg object.
      * @param {string} [arg.lane] -
      * @param {string} [arg.searchType] -
+     * @param {string} [arg.bagStatus] -
+     * @param {string} [arg.timeToDispatch] -
+     * @param {string} [arg.paymentMethods] -
+     * @param {string} [arg.tags] -
      * @param {string} [arg.searchValue] -
      * @param {string} [arg.fromDate] -
      * @param {string} [arg.toDate] -
@@ -113,9 +127,13 @@ declare class Order {
      * @summary:
      * @description:
      */
-    getOrders({ lane, searchType, searchValue, fromDate, toDate, dpIds, stores, salesChannel, pageNo, pageSize, isPrioritySort, customMeta, }?: {
+    getOrders({ lane, searchType, bagStatus, timeToDispatch, paymentMethods, tags, searchValue, fromDate, toDate, dpIds, stores, salesChannel, pageNo, pageSize, isPrioritySort, customMeta, }?: {
         lane?: string;
         searchType?: string;
+        bagStatus?: string;
+        timeToDispatch?: string;
+        paymentMethods?: string;
+        tags?: string;
         searchValue?: string;
         fromDate?: string;
         toDate?: string;
@@ -178,7 +196,7 @@ declare class Order {
      * @description:
      */
     upsertJioCode({ body }?: {
-        body: JioCodeUpsertPayload;
+        body: any;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
@@ -272,54 +290,6 @@ declare class Order {
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
-     * @param {string} [arg.status] -
-     * @param {number} [arg.storeId] -
-     * @param {number} [arg.pageNo] -
-     * @param {number} [arg.pageSize] -
-     * @param {string} [arg.searchValue] -
-     * @param {string} [arg.fromDate] -
-     * @param {string} [arg.toDate] -
-     * @summary:
-     * @description:
-     */
-    getManifestList({ status, storeId, pageNo, pageSize, searchValue, fromDate, toDate, }?: {
-        status?: string;
-        storeId?: number;
-        pageNo?: number;
-        pageSize?: number;
-        searchValue?: string;
-        fromDate?: string;
-        toDate?: string;
-    }): Promise<any>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.manifestId -
-     * @param {string} [arg.fromDate] -
-     * @param {string} [arg.toDate] -
-     * @param {number} arg.storeId -
-     * @param {number} [arg.page] -
-     * @param {number} [arg.pageSize] -
-     * @param {string} [arg.lane] -
-     * @param {number} [arg.dpIds] -
-     * @param {string} [arg.searchType] -
-     * @param {string} [arg.searchValue] -
-     * @summary:
-     * @description:
-     */
-    getManifestDetailsWithShipments({ manifestId, storeId, fromDate, toDate, page, pageSize, lane, dpIds, searchType, searchValue, }?: {
-        manifestId: string;
-        fromDate?: string;
-        toDate?: string;
-        storeId: number;
-        page?: number;
-        pageSize?: number;
-        lane?: string;
-        dpIds?: number;
-        searchType?: string;
-        searchValue?: string;
-    }): Promise<any>;
-    /**
-     * @param {Object} arg - Arg object.
      * @param {string} arg.batchId -
      * @param {string} [arg.reportType] -
      * @summary:
@@ -352,7 +322,7 @@ declare class Order {
      * @description: Use this API to start processing Xlsx file.
      */
     bulkActionProcessXlsxFile({ body }?: {
-        body: BulkActionPayload;
+        body: any;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
@@ -408,7 +378,7 @@ declare class Order {
      * @description: Invalidate shipment Cache
      */
     invalidateShipmentCache({ body }?: {
-        body: InvalidateShipmentCachePayload;
+        body: any;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
@@ -417,7 +387,7 @@ declare class Order {
      * @description: Reassign Location
      */
     reassignLocation({ body }?: {
-        body: StoreReassign;
+        body: any;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
@@ -426,7 +396,7 @@ declare class Order {
      * @description: update shipment lock
      */
     updateShipmentLock({ body }?: {
-        body: UpdateShipmentLockPayload;
+        body: any;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
@@ -492,7 +462,7 @@ declare class Order {
      * @description: Update shipment status
      */
     updateShipmentStatus({ body }?: {
-        body: UpdateShipmentStatusRequest;
+        body: any;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
@@ -501,7 +471,7 @@ declare class Order {
      * @description:
      */
     processManifest({ body }?: {
-        body: CreateOrderPayload;
+        body: any;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
@@ -510,7 +480,7 @@ declare class Order {
      * @description:
      */
     dispatchManifest({ body }?: {
-        body: DispatchManifest;
+        body: any;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
@@ -531,12 +501,21 @@ declare class Order {
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
+     * @param {PostShipmentHistory} arg.body
+     * @summary:
+     * @description:
+     */
+    postShipmentHistory({ body }?: {
+        body: any;
+    }): Promise<any>;
+    /**
+     * @param {Object} arg - Arg object.
      * @param {SendSmsPayload} arg.body
      * @summary:
      * @description:
      */
     sendSmsNinja({ body }?: {
-        body: SendSmsPayload;
+        body: any;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
@@ -545,7 +524,7 @@ declare class Order {
      * @description:
      */
     platformManualAssignDPToShipment({ body }?: {
-        body: ManualAssignDPToShipment;
+        body: any;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
@@ -554,7 +533,7 @@ declare class Order {
      * @description:
      */
     updatePackagingDimensions({ body }?: {
-        body: CreateOrderPayload;
+        body: any;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
@@ -563,7 +542,7 @@ declare class Order {
      * @description:
      */
     createOrder({ body }?: {
-        body: CreateOrderAPI;
+        body: any;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
@@ -578,7 +557,7 @@ declare class Order {
      * @description: createChannelConfig
      */
     createChannelConfig({ body }?: {
-        body: CreateChannelConfigData;
+        body: any;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
@@ -587,7 +566,7 @@ declare class Order {
      * @description:
      */
     uploadConsent({ body }?: {
-        body: UploadConsent;
+        body: any;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
@@ -596,7 +575,7 @@ declare class Order {
      * @description:
      */
     orderUpdate({ body }?: {
-        body: PlatformOrderUpdate;
+        body: any;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
@@ -605,15 +584,12 @@ declare class Order {
      * @description:
      */
     checkOrderStatus({ body }?: {
-        body: OrderStatus;
+        body: any;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
-     * @param {SendSmsPayload} arg.body
      * @summary:
      * @description:
      */
-    sendSmsNinjaPlatform({ body }?: {
-        body: SendSmsPayload;
-    }): Promise<any>;
+    sendSmsNinjaPlatform({}?: any): Promise<any>;
 }

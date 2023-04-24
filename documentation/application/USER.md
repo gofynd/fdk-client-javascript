@@ -2,12 +2,10 @@
 
 
 
-
 ##### [Back to Application docs](./README.md)
 
 ## User Methods
 Authentication Service
-
 * [loginWithFacebook](#loginwithfacebook)
 * [loginWithGoogle](#loginwithgoogle)
 * [loginWithGoogleAndroid](#loginwithgoogleandroid)
@@ -47,8 +45,6 @@ Authentication Service
 
 
 ## Methods with example and description
-
-
 
 
 ### loginWithFacebook
@@ -3760,7 +3756,7 @@ Request body must contain an email ID. Refer `EditEmailRequestSchema` for more d
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | items | [string] |  no  |  |
+ | items | [[SessionListResponseInfo](#SessionListResponseInfo)] |  no  |  |
 
 ---
 
@@ -3930,6 +3926,21 @@ Request body must contain an email ID. Refer `EditEmailRequestSchema` for more d
 
  
  
+ #### [SessionListResponseInfo](#SessionListResponseInfo)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | session_id | string |  no  |  |
+ | user_agent | string |  no  |  |
+ | ip | string |  no  |  |
+ | domain | string |  no  |  |
+ | expire_in | string |  no  |  |
+
+---
+
+
+ 
+ 
  #### [AuthSuccessUserDebug](#AuthSuccessUserDebug)
 
  | Properties | Type | Nullable | Description |
@@ -3949,6 +3960,51 @@ Request body must contain an email ID. Refer `EditEmailRequestSchema` for more d
  | verified | boolean |  no  |  |
  | primary | boolean |  no  |  |
  | active | boolean |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [UserGroupResponseSchema](#UserGroupResponseSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | name | string |  no  |  |
+ | description | string |  no  |  |
+ | file_url | string |  no  |  |
+ | _id | string |  no  |  |
+ | status | string |  no  |  |
+ | uid | number |  no  |  |
+ | application_id | string |  no  |  |
+ | created_at | string |  no  |  |
+ | modified_at | string |  no  |  |
+ | __v | number |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [UserGroupListResponseSchema](#UserGroupListResponseSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | items | [[UserGroupResponseSchema](#UserGroupResponseSchema)] |  no  |  |
+ | page | [PaginationSchema](#PaginationSchema) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [CreateUserGroupSchema](#CreateUserGroupSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | name | string |  yes  |  |
+ | description | string |  yes  |  |
+ | file_url | string |  yes  |  |
 
 ---
 
@@ -4263,6 +4319,19 @@ Request body must contain an email ID. Refer `EditEmailRequestSchema` for more d
 
  
  
+ #### [UpdateUserGroupSchema](#UpdateUserGroupSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | name | string |  no  |  |
+ | description | string |  no  |  |
+ | file_url | string |  no  |  |
+
+---
+
+
+ 
+ 
  #### [UpdateUserRequestSchema](#UpdateUserRequestSchema)
 
  | Properties | Type | Nullable | Description |
@@ -4272,6 +4341,37 @@ Request body must contain an email ID. Refer `EditEmailRequestSchema` for more d
  | gender | string |  no  |  |
  | external_id | string |  no  |  |
  | meta | string |  no  |  |
+ | phone_numbers | [[UserPhoneNumbers](#UserPhoneNumbers)] |  no  |  |
+ | emails | [[UserEmails](#UserEmails)] |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [UserEmails](#UserEmails)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | active | boolean |  no  |  |
+ | primary | boolean |  no  |  |
+ | verified | boolean |  no  |  |
+ | email | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [UserPhoneNumbers](#UserPhoneNumbers)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | active | boolean |  no  |  |
+ | primary | boolean |  no  |  |
+ | verified | boolean |  no  |  |
+ | phone | string |  no  |  |
+ | country_code | string |  no  |  |
 
 ---
 
@@ -4295,8 +4395,6 @@ Request body must contain an email ID. Refer `EditEmailRequestSchema` for more d
  | profile_pic_url | string |  no  |  |
  | username | string |  no  |  |
  | account_type | string |  no  |  |
- | debug | [Debug](#Debug) |  no  |  |
- | has_old_password_hash | boolean |  no  |  |
  | _id | string |  no  |  |
  | created_at | string |  no  |  |
  | updated_at | string |  no  |  |
@@ -4329,18 +4427,6 @@ Request body must contain an email ID. Refer `EditEmailRequestSchema` for more d
  | verified | boolean |  no  |  |
  | email | string |  no  |  |
  | active | boolean |  no  |  |
-
----
-
-
- 
- 
- #### [Debug](#Debug)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | source | string |  no  |  |
- | platform | string |  no  |  |
 
 ---
 

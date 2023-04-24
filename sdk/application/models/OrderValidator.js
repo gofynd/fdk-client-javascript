@@ -83,5 +83,12 @@ class OrderValidator {
       body: Validator.UpdateShipmentStatusRequest().required(),
     }).required();
   }
+
+  static updateShipmentStatus1() {
+    return Joi.object({
+      shipmentId: Joi.string().allow("").required(),
+      body: Validator.UpdateShipmentStatusRequest().required(),
+    }).required();
+  }
 }
 module.exports = OrderValidator;

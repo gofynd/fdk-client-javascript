@@ -9,6 +9,37 @@ class Catalog {
 
   /**
    * @param {Object} arg - Arg object.
+   * @param {ProductBundleRequest} arg.body
+   * @summary: Create Product Bundle
+   * @description: Create Product Bundle. See `ProductBundleRequest` for the request body parameter need to create a product bundle. On successful request, returns in `ProductBundleRequest` with id
+   */
+  createProductBundle({ body } = {}) {
+    const { error } = CatalogValidator.createProductBundle().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    const query_params = {};
+
+    const xHeaders = {};
+
+    return PlatformAPIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/catalog/v1.0/company/${this.config.companyId}/product-bundle/`,
+      query_params,
+      body,
+      xHeaders
+    );
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
    * @param {string} [arg.q] - A search string that is searched with product
    *   bundle name.
    * @param {string[]} [arg.slug] - Slugs of bundles to be retrieved.
@@ -45,13 +76,16 @@ class Catalog {
 
   /**
    * @param {Object} arg - Arg object.
-   * @param {ProductBundleRequest} arg.body
-   * @summary: Create Product Bundle
-   * @description: Create Product Bundle. See `ProductBundleRequest` for the request body parameter need to create a product bundle. On successful request, returns in `ProductBundleRequest` with id
+   * @param {string} arg.id - A `id` is a unique identifier for a particular
+   *   detail. Pass the `id` of the keywords which you want to delete.
+   * @param {ProductBundleUpdateRequest} arg.body
+   * @summary: Update a Product Bundle
+   * @description: Update a Product Bundle by its id. On successful request, returns the updated product bundle
    */
-  createProductBundle({ body } = {}) {
-    const { error } = CatalogValidator.createProductBundle().validate(
+  updateProductBundle({ id, body } = {}) {
+    const { error } = CatalogValidator.updateProductBundle().validate(
       {
+        id,
         body,
       },
       { abortEarly: false, allowUnknown: true }
@@ -66,8 +100,8 @@ class Catalog {
 
     return PlatformAPIClient.execute(
       this.config,
-      "post",
-      `/service/platform/catalog/v1.0/company/${this.config.companyId}/product-bundle/`,
+      "put",
+      `/service/platform/catalog/v1.0/company/${this.config.companyId}/product-bundle/${id}/`,
       query_params,
       body,
       xHeaders
@@ -108,16 +142,13 @@ class Catalog {
 
   /**
    * @param {Object} arg - Arg object.
-   * @param {string} arg.id - A `id` is a unique identifier for a particular
-   *   detail. Pass the `id` of the keywords which you want to delete.
-   * @param {ProductBundleUpdateRequest} arg.body
-   * @summary: Update a Product Bundle
-   * @description: Update a Product Bundle by its id. On successful request, returns the updated product bundle
+   * @param {ValidateSizeGuide} arg.body
+   * @summary: Create a size guide.
+   * @description: This API allows to create a size guide associated to a brand.
    */
-  updateProductBundle({ id, body } = {}) {
-    const { error } = CatalogValidator.updateProductBundle().validate(
+  createSizeGuide({ body } = {}) {
+    const { error } = CatalogValidator.createSizeGuide().validate(
       {
-        id,
         body,
       },
       { abortEarly: false, allowUnknown: true }
@@ -132,8 +163,8 @@ class Catalog {
 
     return PlatformAPIClient.execute(
       this.config,
-      "put",
-      `/service/platform/catalog/v1.0/company/${this.config.companyId}/product-bundle/${id}/`,
+      "post",
+      `/service/platform/catalog/v1.0/company/${this.config.companyId}/sizeguide`,
       query_params,
       body,
       xHeaders
@@ -188,13 +219,15 @@ class Catalog {
 
   /**
    * @param {Object} arg - Arg object.
+   * @param {string} arg.id - Mongo id of the size guide to be edited
    * @param {ValidateSizeGuide} arg.body
-   * @summary: Create a size guide.
-   * @description: This API allows to create a size guide associated to a brand.
+   * @summary: Edit a size guide.
+   * @description: This API allows to edit a size guide.
    */
-  createSizeGuide({ body } = {}) {
-    const { error } = CatalogValidator.createSizeGuide().validate(
+  updateSizeGuide({ id, body } = {}) {
+    const { error } = CatalogValidator.updateSizeGuide().validate(
       {
+        id,
         body,
       },
       { abortEarly: false, allowUnknown: true }
@@ -209,8 +242,8 @@ class Catalog {
 
     return PlatformAPIClient.execute(
       this.config,
-      "post",
-      `/service/platform/catalog/v1.0/company/${this.config.companyId}/sizeguide`,
+      "put",
+      `/service/platform/catalog/v1.0/company/${this.config.companyId}/sizeguide/${id}/`,
       query_params,
       body,
       xHeaders
@@ -244,39 +277,6 @@ class Catalog {
       `/service/platform/catalog/v1.0/company/${this.config.companyId}/sizeguide/${id}/`,
       query_params,
       undefined,
-      xHeaders
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.id - Mongo id of the size guide to be edited
-   * @param {ValidateSizeGuide} arg.body
-   * @summary: Edit a size guide.
-   * @description: This API allows to edit a size guide.
-   */
-  updateSizeGuide({ id, body } = {}) {
-    const { error } = CatalogValidator.updateSizeGuide().validate(
-      {
-        id,
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    const xHeaders = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "put",
-      `/service/platform/catalog/v1.0/company/${this.config.companyId}/sizeguide/${id}/`,
-      query_params,
-      body,
       xHeaders
     );
   }
@@ -587,54 +587,6 @@ class Catalog {
 
   /**
    * @param {Object} arg - Arg object.
-   * @param {number} [arg.pageNo] - The page number to navigate through the
-   *   given set of results
-   * @param {number} [arg.pageSize] - Number of items to retrieve in each
-   *   page. Default is 10.
-   * @param {string} [arg.name] - Can search departments by passing name.
-   * @param {string} [arg.search] - Can search departments by passing name of
-   *   the department in search parameter.
-   * @param {boolean} [arg.isActive] - Can query for departments based on
-   *   whether they are active or inactive.
-   * @summary: List all Departments.
-   * @description: Allows you to list all departments, also can search using name and filter active and incative departments, and item type.
-   */
-  listDepartmentsData({ pageNo, pageSize, name, search, isActive } = {}) {
-    const { error } = CatalogValidator.listDepartmentsData().validate(
-      {
-        pageNo,
-        pageSize,
-        name,
-        search,
-        isActive,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-    query_params["page_no"] = pageNo;
-    query_params["page_size"] = pageSize;
-    query_params["name"] = name;
-    query_params["search"] = search;
-    query_params["is_active"] = isActive;
-
-    const xHeaders = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/catalog/v1.0/company/${this.config.companyId}/departments/`,
-      query_params,
-      undefined,
-      xHeaders
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
    * @param {DepartmentCreateUpdate} arg.body
    * @summary: Create the department.
    * @description: Create departments using the API.
@@ -666,14 +618,36 @@ class Catalog {
 
   /**
    * @param {Object} arg - Arg object.
-   * @param {string} arg.uid - A `uid` is a unique identifier of a department.
-   * @summary: Get specific departments details by passing in unique id of the department.
-   * @description: Allows you to get department data, by uid.
+   * @param {number} [arg.pageNo] - The page number to navigate through the
+   *   given set of results
+   * @param {string} [arg.itemType] - A `item_type` is a type of product eg.
+   *   set, standard, digital
+   * @param {number} [arg.pageSize] - Number of items to retrieve in each
+   *   page. Default is 10.
+   * @param {string} [arg.name] - Can search departments by passing name.
+   * @param {string} [arg.search] - Can search departments by passing name of
+   *   the department in search parameter.
+   * @param {boolean} [arg.isActive] - Can query for departments based on
+   *   whether they are active or inactive.
+   * @summary: List all Departments.
+   * @description: Allows you to list all departments, also can search using name and filter active and incative departments, and item type.
    */
-  getDepartmentData({ uid } = {}) {
-    const { error } = CatalogValidator.getDepartmentData().validate(
+  listDepartmentsData({
+    pageNo,
+    itemType,
+    pageSize,
+    name,
+    search,
+    isActive,
+  } = {}) {
+    const { error } = CatalogValidator.listDepartmentsData().validate(
       {
-        uid,
+        pageNo,
+        itemType,
+        pageSize,
+        name,
+        search,
+        isActive,
       },
       { abortEarly: false, allowUnknown: true }
     );
@@ -682,13 +656,19 @@ class Catalog {
     }
 
     const query_params = {};
+    query_params["page_no"] = pageNo;
+    query_params["item_type"] = itemType;
+    query_params["page_size"] = pageSize;
+    query_params["name"] = name;
+    query_params["search"] = search;
+    query_params["is_active"] = isActive;
 
     const xHeaders = {};
 
     return PlatformAPIClient.execute(
       this.config,
       "get",
-      `/service/platform/catalog/v1.0/company/${this.config.companyId}/departments/${uid}/`,
+      `/service/platform/catalog/v1.0/company/${this.config.companyId}/departments/`,
       query_params,
       undefined,
       xHeaders
@@ -724,6 +704,37 @@ class Catalog {
       `/service/platform/catalog/v1.0/company/${this.config.companyId}/departments/${uid}/`,
       query_params,
       body,
+      xHeaders
+    );
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.uid - A `uid` is a unique identifier of a department.
+   * @summary: Get specific departments details by passing in unique id of the department.
+   * @description: Allows you to get department data, by uid.
+   */
+  getDepartmentData({ uid } = {}) {
+    const { error } = CatalogValidator.getDepartmentData().validate(
+      {
+        uid,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    const query_params = {};
+
+    const xHeaders = {};
+
+    return PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/catalog/v1.0/company/${this.config.companyId}/departments/${uid}/`,
+      query_params,
+      undefined,
       xHeaders
     );
   }
@@ -831,8 +842,8 @@ class Catalog {
    * @summary: Download Product Template View
    * @description: Allows you to download product template data
    */
-  downloadProductTemplateView({ itemType } = {}) {
-    const { error } = CatalogValidator.downloadProductTemplateView().validate(
+  downloadInventoryTemplateView({ itemType } = {}) {
+    const { error } = CatalogValidator.downloadInventoryTemplateView().validate(
       {
         itemType,
       },
@@ -950,15 +961,97 @@ class Catalog {
 
   /**
    * @param {Object} arg - Arg object.
+   * @param {ProductTemplateDownloadsExport} arg.body
+   * @summary: Create a product export job.
+   * @description: This API helps to create a Inventory export job.
+   */
+  createProductExportJob({ body } = {}) {
+    const { error } = CatalogValidator.createProductExportJob().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    const query_params = {};
+
+    const xHeaders = {};
+
+    return PlatformAPIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/catalog/v2.0/company/${this.config.companyId}/products/downloads/`,
+      query_params,
+      body,
+      xHeaders
+    );
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {string} [arg.status] - This is a parameter used to find all the
+   *   jobs with the specified status.
+   * @param {string} [arg.fromDate] - This is a parameter used to find the job
+   *   from the date specified to the current date.
+   * @param {string} [arg.toDate] - This is a parameter used to find the job
+   *   from the from_date specified to the to_date.
+   * @param {string} [arg.q] - It is a query parameter to search the export
+   *   job with the task ID.
+   * @summary: Allows you to list all product templates export list details
+   * @description: Can view details including trigger data, task id , etc.
+   */
+  getProductExportJobs({ status, fromDate, toDate, q } = {}) {
+    const { error } = CatalogValidator.getProductExportJobs().validate(
+      {
+        status,
+        fromDate,
+        toDate,
+        q,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    const query_params = {};
+    query_params["status"] = status;
+    query_params["from_date"] = fromDate;
+    query_params["to_date"] = toDate;
+    query_params["q"] = q;
+
+    const xHeaders = {};
+
+    return PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/catalog/v2.0/company/${this.config.companyId}/products/downloads/`,
+      query_params,
+      undefined,
+      xHeaders
+    );
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
    * @param {string} arg.filter - A `filter` is the unique identifier of the
    *   type of value required.
+   * @param {string} [arg.templateTag] - A `template_tag` is the identifier of
+   *   the type of template required.
+   * @param {string} [arg.itemType] - A `item_type` is the identifier of the
+   *   type of template required.
    * @summary: Allows you to list all values for Templates, Brands or Type
    * @description: The filter type query parameter defines what type of data to return. The type of query returns the valid values for the same
    */
-  listTemplateBrandTypeValues({ filter } = {}) {
+  listTemplateBrandTypeValues({ filter, templateTag, itemType } = {}) {
     const { error } = CatalogValidator.listTemplateBrandTypeValues().validate(
       {
         filter,
+        templateTag,
+        itemType,
       },
       { abortEarly: false, allowUnknown: true }
     );
@@ -968,6 +1061,8 @@ class Catalog {
 
     const query_params = {};
     query_params["filter"] = filter;
+    query_params["template_tag"] = templateTag;
+    query_params["item_type"] = itemType;
 
     const xHeaders = {};
 
@@ -977,6 +1072,37 @@ class Catalog {
       `/service/platform/catalog/v1.0/company/${this.config.companyId}/downloads/configuration/`,
       query_params,
       undefined,
+      xHeaders
+    );
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {CategoryRequestBody} arg.body
+   * @summary: Create product categories
+   * @description: This API lets user create product categories
+   */
+  createCategories({ body } = {}) {
+    const { error } = CatalogValidator.createCategories().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    const query_params = {};
+
+    const xHeaders = {};
+
+    return PlatformAPIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/catalog/v1.0/company/${this.config.companyId}/category/`,
+      query_params,
+      body,
       xHeaders
     );
   }
@@ -1029,13 +1155,15 @@ class Catalog {
 
   /**
    * @param {Object} arg - Arg object.
+   * @param {string} arg.uid - Category unique id
    * @param {CategoryRequestBody} arg.body
-   * @summary: Create product categories
-   * @description: This API lets user create product categories
+   * @summary: Update product categories
+   * @description: Update a product category using this apu
    */
-  createCategories({ body } = {}) {
-    const { error } = CatalogValidator.createCategories().validate(
+  updateCategory({ uid, body } = {}) {
+    const { error } = CatalogValidator.updateCategory().validate(
       {
+        uid,
         body,
       },
       { abortEarly: false, allowUnknown: true }
@@ -1050,8 +1178,8 @@ class Catalog {
 
     return PlatformAPIClient.execute(
       this.config,
-      "post",
-      `/service/platform/catalog/v1.0/company/${this.config.companyId}/category/`,
+      "put",
+      `/service/platform/catalog/v1.0/company/${this.config.companyId}/category/${uid}/`,
       query_params,
       body,
       xHeaders
@@ -1091,15 +1219,13 @@ class Catalog {
 
   /**
    * @param {Object} arg - Arg object.
-   * @param {string} arg.uid - Category unique id
-   * @param {CategoryRequestBody} arg.body
-   * @summary: Update product categories
-   * @description: Update a product category using this apu
+   * @param {ProductCreateUpdateSchemaV2} arg.body
+   * @summary: Create a product.
+   * @description: This API allows to create product.
    */
-  updateCategory({ uid, body } = {}) {
-    const { error } = CatalogValidator.updateCategory().validate(
+  createProduct({ body } = {}) {
+    const { error } = CatalogValidator.createProduct().validate(
       {
-        uid,
         body,
       },
       { abortEarly: false, allowUnknown: true }
@@ -1114,8 +1240,8 @@ class Catalog {
 
     return PlatformAPIClient.execute(
       this.config,
-      "put",
-      `/service/platform/catalog/v1.0/company/${this.config.companyId}/category/${uid}/`,
+      "post",
+      `/service/platform/catalog/v2.0/company/${this.config.companyId}/products/`,
       query_params,
       body,
       xHeaders
@@ -1194,14 +1320,22 @@ class Catalog {
 
   /**
    * @param {Object} arg - Arg object.
-   * @param {ProductCreateUpdateSchemaV2} arg.body
-   * @summary: Create a product.
-   * @description: This API allows to create product.
+   * @param {number} arg.itemId - Get list of variants of item Id
+   * @param {string} arg.variantType - Get multiple products filtered by variant type
+   * @param {number} [arg.pageNo] - The page number to navigate through the
+   *   given set of results
+   * @param {number} [arg.pageSize] - Number of items to retrieve in each
+   *   page. Default is 10.
+   * @summary: Get product list
+   * @description: This API gets meta associated to products.
    */
-  createProductV2({ body } = {}) {
-    const { error } = CatalogValidator.createProductV2().validate(
+  getVariantsOfProducts({ itemId, variantType, pageNo, pageSize } = {}) {
+    const { error } = CatalogValidator.getVariantsOfProducts().validate(
       {
-        body,
+        itemId,
+        variantType,
+        pageNo,
+        pageSize,
       },
       { abortEarly: false, allowUnknown: true }
     );
@@ -1210,15 +1344,17 @@ class Catalog {
     }
 
     const query_params = {};
+    query_params["page_no"] = pageNo;
+    query_params["page_size"] = pageSize;
 
     const xHeaders = {};
 
     return PlatformAPIClient.execute(
       this.config,
-      "post",
-      `/service/platform/catalog/v2.0/company/${this.config.companyId}/products/`,
+      "get",
+      `/service/platform/catalog/v1.0/company/${this.config.companyId}/products/${itemId}/variants/${variantType}`,
       query_params,
-      body,
+      undefined,
       xHeaders
     );
   }
@@ -1261,18 +1397,16 @@ class Catalog {
 
   /**
    * @param {Object} arg - Arg object.
-   * @param {string} [arg.itemCode] - Item code of the product.
-   * @param {number} arg.itemId - Item Id of the product.
-   * @param {number} [arg.brandUid] - Brand Id of the product.
-   * @summary: Get a single product.
-   * @description: This API helps to get data associated to a particular product.
+   * @param {number} arg.itemId - Id of the product to be updated.
+   * @param {ProductCreateUpdateSchemaV2} arg.body
+   * @summary: Edit a product.
+   * @description: This API allows to edit product.
    */
-  getProductV2({ itemId, itemCode, brandUid } = {}) {
-    const { error } = CatalogValidator.getProductV2().validate(
+  editProduct({ itemId, body } = {}) {
+    const { error } = CatalogValidator.editProduct().validate(
       {
         itemId,
-        itemCode,
-        brandUid,
+        body,
       },
       { abortEarly: false, allowUnknown: true }
     );
@@ -1281,17 +1415,15 @@ class Catalog {
     }
 
     const query_params = {};
-    query_params["item_code"] = itemCode;
-    query_params["brand_uid"] = brandUid;
 
     const xHeaders = {};
 
     return PlatformAPIClient.execute(
       this.config,
-      "get",
+      "put",
       `/service/platform/catalog/v2.0/company/${this.config.companyId}/products/${itemId}/`,
       query_params,
-      undefined,
+      body,
       xHeaders
     );
   }
@@ -1329,16 +1461,18 @@ class Catalog {
 
   /**
    * @param {Object} arg - Arg object.
-   * @param {number} arg.itemId - Id of the product to be updated.
-   * @param {ProductCreateUpdateSchemaV2} arg.body
-   * @summary: Edit a product.
-   * @description: This API allows to edit product.
+   * @param {number} arg.itemId - Item Id of the product.
+   * @param {number} [arg.brandUid] - Brand Id of the product.
+   * @param {string} [arg.itemCode] - Item code of the product.
+   * @summary: Get a single product.
+   * @description: This API helps to get data associated to a particular product.
    */
-  editProductV2({ itemId, body } = {}) {
-    const { error } = CatalogValidator.editProductV2().validate(
+  getProduct({ itemId, brandUid, itemCode } = {}) {
+    const { error } = CatalogValidator.getProduct().validate(
       {
         itemId,
-        body,
+        brandUid,
+        itemCode,
       },
       { abortEarly: false, allowUnknown: true }
     );
@@ -1347,15 +1481,17 @@ class Catalog {
     }
 
     const query_params = {};
+    query_params["brand_uid"] = brandUid;
+    query_params["item_code"] = itemCode;
 
     const xHeaders = {};
 
     return PlatformAPIClient.execute(
       this.config,
-      "put",
+      "get",
       `/service/platform/catalog/v2.0/company/${this.config.companyId}/products/${itemId}/`,
       query_params,
-      body,
+      undefined,
       xHeaders
     );
   }
@@ -1461,6 +1597,37 @@ class Catalog {
 
   /**
    * @param {Object} arg - Arg object.
+   * @param {BulkJob} arg.body
+   * @summary: Create a Bulk product to upload job.
+   * @description: This API helps to create a bulk products upload job.
+   */
+  createBulkProductUploadJob({ body } = {}) {
+    const { error } = CatalogValidator.createBulkProductUploadJob().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    const query_params = {};
+
+    const xHeaders = {};
+
+    return PlatformAPIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/catalog/v1.0/company/${this.config.companyId}/products/bulk`,
+      query_params,
+      body,
+      xHeaders
+    );
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
    * @param {string} [arg.search] - Search string to filter the results by batch id
    * @param {number} [arg.pageNo] - The page number to navigate through the
    *   given set of results
@@ -1501,13 +1668,18 @@ class Catalog {
 
   /**
    * @param {Object} arg - Arg object.
+   * @param {string} arg.department - Department of the product to be uploaded.
+   * @param {string} arg.productType - Product type of the product to be
+   *   uploaded i.e. set, standard , digital.
    * @param {BulkJob} arg.body
    * @summary: Create a Bulk product to upload job.
    * @description: This API helps to create a bulk products upload job.
    */
-  createBulkProductUploadJob({ body } = {}) {
-    const { error } = CatalogValidator.createBulkProductUploadJob().validate(
+  uploadBulkProducts({ department, productType, body } = {}) {
+    const { error } = CatalogValidator.uploadBulkProducts().validate(
       {
+        department,
+        productType,
         body,
       },
       { abortEarly: false, allowUnknown: true }
@@ -1517,13 +1689,15 @@ class Catalog {
     }
 
     const query_params = {};
+    query_params["department"] = department;
+    query_params["product_type"] = productType;
 
     const xHeaders = {};
 
     return PlatformAPIClient.execute(
       this.config,
       "post",
-      `/service/platform/catalog/v1.0/company/${this.config.companyId}/products/bulk`,
+      `/service/platform/catalog/v2.0/company/${this.config.companyId}/products/bulk`,
       query_params,
       body,
       xHeaders
@@ -1624,6 +1798,37 @@ class Catalog {
 
   /**
    * @param {Object} arg - Arg object.
+   * @param {ProductBulkAssets} arg.body
+   * @summary: Create a Bulk asset upload Job.
+   * @description: This API helps to create a bulk asset upload job.
+   */
+  createProductAssetsInBulk({ body } = {}) {
+    const { error } = CatalogValidator.createProductAssetsInBulk().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    const query_params = {};
+
+    const xHeaders = {};
+
+    return PlatformAPIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/catalog/v1.0/company/${this.config.companyId}/products/assets/bulk/`,
+      query_params,
+      body,
+      xHeaders
+    );
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
    * @param {number} [arg.pageNo] - The page number to navigate through the
    *   given set of results
    * @param {number} [arg.pageSize] - Number of items to retrieve in each
@@ -1661,40 +1866,9 @@ class Catalog {
 
   /**
    * @param {Object} arg - Arg object.
-   * @param {ProductBulkAssets} arg.body
-   * @summary: Create a Bulk asset upload Job.
-   * @description: This API helps to create a bulk asset upload job.
-   */
-  createProductAssetsInBulk({ body } = {}) {
-    const { error } = CatalogValidator.createProductAssetsInBulk().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    const xHeaders = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/catalog/v1.0/company/${this.config.companyId}/products/assets/bulk/`,
-      query_params,
-      body,
-      xHeaders
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
    * @param {number} arg.itemId - Item Id of the product associated with size
    *   to be deleted.
-   * @param {number} arg.size - Size to be deleted.
+   * @param {string} arg.size - Size to be deleted.
    * @summary: Delete a Size associated with product.
    * @description: This API allows to delete size associated with product.
    */
@@ -1726,7 +1900,42 @@ class Catalog {
 
   /**
    * @param {Object} arg - Arg object.
-   * @param {string} arg.itemId - Item code of the product of which size is to be get.
+   * @param {number} arg.itemId - Item code of the product of which size is to be get.
+   * @param {string} arg.size - Size in which inventory is to be added.
+   * @param {InventoryRequest} arg.body
+   * @summary: Add Inventory for particular size and store.
+   * @description: This API allows add Inventory for particular size and store.
+   */
+  addInventory({ itemId, size, body } = {}) {
+    const { error } = CatalogValidator.addInventory().validate(
+      {
+        itemId,
+        size,
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    const query_params = {};
+
+    const xHeaders = {};
+
+    return PlatformAPIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/catalog/v1.0/company/${this.config.companyId}/products/${itemId}/sizes/${size}`,
+      query_params,
+      body,
+      xHeaders
+    );
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {number} arg.itemId - Item code of the product of which size is to be get.
    * @param {string} arg.size - Size of which inventory is to get.
    * @param {number} [arg.pageNo] - The page number to navigate through the
    *   given set of results
@@ -1774,41 +1983,6 @@ class Catalog {
   /**
    * @param {Object} arg - Arg object.
    * @param {number} arg.itemId - Item code of the product of which size is to be get.
-   * @param {string} arg.size - Size in which inventory is to be added.
-   * @param {InventoryRequest} arg.body
-   * @summary: Add Inventory for particular size and store.
-   * @description: This API allows add Inventory for particular size and store.
-   */
-  addInventory({ itemId, size, body } = {}) {
-    const { error } = CatalogValidator.addInventory().validate(
-      {
-        itemId,
-        size,
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    const xHeaders = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/catalog/v1.0/company/${this.config.companyId}/products/${itemId}/sizes/${size}`,
-      query_params,
-      body,
-      xHeaders
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.itemId - Item code of the product of which size is to be get.
    * @param {string} arg.sizeIdentifier - Size Identifier (Seller Identifier
    *   or Primary Identifier) of which inventory is to get.
    * @param {number} [arg.pageNo] - The page number to navigate through the
@@ -1863,6 +2037,71 @@ class Catalog {
 
   /**
    * @param {Object} arg - Arg object.
+   * @param {string} [arg.itemId] - Item code of the product of which size is to be get.
+   * @param {string} [arg.size] - Size of which inventory is to get.
+   * @param {number} [arg.pageNo] - The page number to navigate through the
+   *   given set of results
+   * @param {number} [arg.pageSize] - Number of items to retrieve in each
+   *   page. Default is 12.
+   * @param {string} [arg.q] - Search with help of store code.
+   * @param {boolean} [arg.sellable] - Filter on whether product is in stock or not.
+   * @param {number[]} [arg.storeIds] - The Store Id of products to fetch inventory.
+   * @param {string} [arg.sizeIdentifier] - Size Identifier (Seller Identifier
+   *   or Primary Identifier) of which inventory is to get.
+   * @summary: Get Inventory for company
+   * @description: This API allows get Inventories data for particular company.
+   */
+  getInventories({
+    itemId,
+    size,
+    pageNo,
+    pageSize,
+    q,
+    sellable,
+    storeIds,
+    sizeIdentifier,
+  } = {}) {
+    const { error } = CatalogValidator.getInventories().validate(
+      {
+        itemId,
+        size,
+        pageNo,
+        pageSize,
+        q,
+        sellable,
+        storeIds,
+        sizeIdentifier,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    const query_params = {};
+    query_params["item_id"] = itemId;
+    query_params["size"] = size;
+    query_params["page_no"] = pageNo;
+    query_params["page_size"] = pageSize;
+    query_params["q"] = q;
+    query_params["sellable"] = sellable;
+    query_params["store_ids"] = storeIds;
+    query_params["size_identifier"] = sizeIdentifier;
+
+    const xHeaders = {};
+
+    return PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/catalog/v1.0/company/${this.config.companyId}/inventories`,
+      query_params,
+      undefined,
+      xHeaders
+    );
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
    * @param {string} arg.size - Size that is to be deleted.
    * @param {number} arg.itemId - Id of the product associated with Inventory
    *   to be deleted.
@@ -1900,6 +2139,37 @@ class Catalog {
 
   /**
    * @param {Object} arg - Arg object.
+   * @param {BulkJob} arg.body
+   * @summary: Create a Bulk Inventory upload Job.
+   * @description: This API helps to create a bulk Inventory upload job.
+   */
+  createBulkInventoryJob({ body } = {}) {
+    const { error } = CatalogValidator.createBulkInventoryJob().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    const query_params = {};
+
+    const xHeaders = {};
+
+    return PlatformAPIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/catalog/v1.0/company/${this.config.companyId}/inventory/bulk/`,
+      query_params,
+      body,
+      xHeaders
+    );
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
    * @param {number} [arg.pageNo] - The page number to navigate through the
    *   given set of results
    * @param {number} [arg.pageSize] - Number of items to retrieve in each
@@ -1931,37 +2201,6 @@ class Catalog {
       `/service/platform/catalog/v1.0/company/${this.config.companyId}/inventory/bulk/`,
       query_params,
       undefined,
-      xHeaders
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {BulkJob} arg.body
-   * @summary: Create a Bulk Inventory upload Job.
-   * @description: This API helps to create a bulk Inventory upload job.
-   */
-  createBulkInventoryJob({ body } = {}) {
-    const { error } = CatalogValidator.createBulkInventoryJob().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    const xHeaders = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/catalog/v1.0/company/${this.config.companyId}/inventory/bulk/`,
-      query_params,
-      body,
       xHeaders
     );
   }
@@ -2032,6 +2271,37 @@ class Catalog {
 
   /**
    * @param {Object} arg - Arg object.
+   * @param {InventoryExportRequest} arg.body
+   * @summary: Create a Inventory export Job.
+   * @description: This API helps to create a Inventory export job.
+   */
+  createInventoryExportJob({ body } = {}) {
+    const { error } = CatalogValidator.createInventoryExportJob().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    const query_params = {};
+
+    const xHeaders = {};
+
+    return PlatformAPIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/catalog/v1.0/company/${this.config.companyId}/inventory/download/`,
+      query_params,
+      body,
+      xHeaders
+    );
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
    * @summary: Get Inventory export history.
    * @description: This API helps to get Inventory export history.
    */
@@ -2060,12 +2330,12 @@ class Catalog {
 
   /**
    * @param {Object} arg - Arg object.
-   * @param {InventoryExportRequest} arg.body
-   * @summary: Create a Inventory export Job.
+   * @param {InventoryCreateRequest} arg.body
+   * @summary: Create an inventory export job.
    * @description: This API helps to create a Inventory export job.
    */
-  createInventoryExportJob({ body } = {}) {
-    const { error } = CatalogValidator.createInventoryExportJob().validate(
+  createInventoryExport({ body } = {}) {
+    const { error } = CatalogValidator.createInventoryExport().validate(
       {
         body,
       },
@@ -2082,9 +2352,52 @@ class Catalog {
     return PlatformAPIClient.execute(
       this.config,
       "post",
-      `/service/platform/catalog/v1.0/company/${this.config.companyId}/inventory/download/`,
+      `/service/platform/catalog/v2.0/company/${this.config.companyId}/inventory/download/`,
       query_params,
       body,
+      xHeaders
+    );
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {string} [arg.status] - Status of the export job.
+   * @param {string} [arg.fromDate] - Inventory export history filtered
+   *   according to from_date.
+   * @param {string} [arg.toDate] - Inventory export history filtered
+   *   according to from_date.
+   * @param {string} [arg.q] - Inventory export history filtered according to task ID.
+   * @summary: Get the history of the inventory export.
+   * @description: This API helps you the get the history of inventory jobs depending on the filtered criteria.
+   */
+  listInventoryExport({ status, fromDate, toDate, q } = {}) {
+    const { error } = CatalogValidator.listInventoryExport().validate(
+      {
+        status,
+        fromDate,
+        toDate,
+        q,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    const query_params = {};
+    query_params["status"] = status;
+    query_params["from_date"] = fromDate;
+    query_params["to_date"] = toDate;
+    query_params["q"] = q;
+
+    const xHeaders = {};
+
+    return PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/catalog/v2.0/company/${this.config.companyId}/inventory/download/`,
+      query_params,
+      undefined,
       xHeaders
     );
   }
@@ -2227,51 +2540,15 @@ class Catalog {
 
   /**
    * @param {Object} arg - Arg object.
-   * @param {number} [arg.pageNo] - Page no
-   * @param {number} [arg.pageSize] - Page size
-   * @param {string} [arg.q] - Search using hsn code.
-   * @summary: Hsn Code List.
-   * @description: Hsn Code List.
-   */
-  getAllHsnCodes({ pageNo, pageSize, q } = {}) {
-    const { error } = CatalogValidator.getAllHsnCodes().validate(
-      {
-        pageNo,
-        pageSize,
-        q,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-    query_params["page_no"] = pageNo;
-    query_params["page_size"] = pageSize;
-    query_params["q"] = q;
-
-    const xHeaders = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/catalog/v1.0/company/${this.config.companyId}/hsn/`,
-      query_params,
-      undefined,
-      xHeaders
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
+   * @param {string} arg.id - Unique id
    * @param {HsnUpsert} arg.body
-   * @summary: Create Hsn Code.
-   * @description: Create Hsn Code.
+   * @summary: Update Hsn Code.
+   * @description: Update Hsn Code.
    */
-  createHsnCode({ body } = {}) {
-    const { error } = CatalogValidator.createHsnCode().validate(
+  updateHsnCode({ id, body } = {}) {
+    const { error } = CatalogValidator.updateHsnCode().validate(
       {
+        id,
         body,
       },
       { abortEarly: false, allowUnknown: true }
@@ -2286,8 +2563,8 @@ class Catalog {
 
     return PlatformAPIClient.execute(
       this.config,
-      "post",
-      `/service/platform/catalog/v1.0/company/${this.config.companyId}/hsn/`,
+      "put",
+      `/service/platform/catalog/v1.0/company/${this.config.companyId}/hsn/${id}/`,
       query_params,
       body,
       xHeaders
@@ -2321,39 +2598,6 @@ class Catalog {
       `/service/platform/catalog/v1.0/company/${this.config.companyId}/hsn/${id}/`,
       query_params,
       undefined,
-      xHeaders
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.id - Unique id
-   * @param {HsnUpsert} arg.body
-   * @summary: Update Hsn Code.
-   * @description: Update Hsn Code.
-   */
-  updateHsnCode({ id, body } = {}) {
-    const { error } = CatalogValidator.updateHsnCode().validate(
-      {
-        id,
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    const xHeaders = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "put",
-      `/service/platform/catalog/v1.0/company/${this.config.companyId}/hsn/${id}/`,
-      query_params,
-      body,
       xHeaders
     );
   }

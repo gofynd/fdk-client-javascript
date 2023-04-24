@@ -48,10 +48,15 @@ export class UserValidator {
     static unDeleteUser(): any;
     static updateUser(): any;
     static createUserSession(): any;
+    static deleteSession(): any;
     static getActiveSessions(): any;
     static deleteActiveSessions(): any;
     static getPlatformConfig(): any;
     static updatePlatformConfig(): any;
+    static createUserGroup(): any;
+    static getUserGroups(): any;
+    static updateUserGroup(): any;
+    static getUserGroupById(): any;
 }
 export class ContentValidator {
     static getAnnouncementsList(): any;
@@ -81,6 +86,7 @@ export class ContentValidator {
     static updateFaq(): any;
     static deleteFaq(): any;
     static getFaqByIdOrSlug(): any;
+    static generateSEOTitle(): any;
     static getLandingPages(): any;
     static createLandingPage(): any;
     static updateLandingPage(): any;
@@ -183,42 +189,42 @@ export class OrderValidator {
     static trackPlatformShipment(): any;
 }
 export class CatalogValidator {
-    static getSearchKeywords(): any;
-    static deleteSearchKeywords(): any;
     static updateSearchKeywords(): any;
-    static getAllSearchKeyword(): any;
+    static deleteSearchKeywords(): any;
+    static getSearchKeywords(): any;
     static createCustomKeyword(): any;
-    static getAutocompleteKeywordDetail(): any;
-    static deleteAutocompleteKeyword(): any;
+    static getAllSearchKeyword(): any;
     static updateAutocompleteKeyword(): any;
-    static getAutocompleteConfig(): any;
+    static deleteAutocompleteKeyword(): any;
+    static getAutocompleteKeywordDetail(): any;
     static createCustomAutocompleteRule(): any;
+    static getAutocompleteConfig(): any;
     static updateAppProduct(): any;
     static getAppProduct(): any;
     static getConfigurationMetadata(): any;
-    static getGroupConfigurations(): any;
     static createGroupConfiguration(): any;
-    static deleteGroupConfiguration(): any;
+    static getGroupConfigurations(): any;
     static updateGroupConfiguration(): any;
-    static getListingConfigurations(): any;
+    static deleteGroupConfiguration(): any;
     static createListingConfiguration(): any;
-    static deleteListingConfiguration(): any;
+    static getListingConfigurations(): any;
     static updateListingConfiguration(): any;
+    static deleteListingConfiguration(): any;
     static updateAllowSingle(): any;
     static updateDefaultSort(): any;
     static getCatalogConfiguration(): any;
-    static getConfigurations(): any;
     static createConfigurationProductListing(): any;
-    static getConfigurationByType(): any;
+    static getConfigurations(): any;
     static createConfigurationByType(): any;
+    static getConfigurationByType(): any;
     static getQueryFilters(): any;
-    static getAllCollections(): any;
     static createCollection(): any;
+    static getAllCollections(): any;
     static getCollectionDetail(): any;
-    static deleteCollection(): any;
     static updateCollection(): any;
-    static getCollectionItems(): any;
+    static deleteCollection(): any;
     static addCollectionItems(): any;
+    static getCollectionItems(): any;
     static getCatalogInsights(): any;
     static getDiscountedInventoryBySizeIdentifier(): any;
     static getApplicationBrands(): any;
@@ -255,6 +261,7 @@ export class ConfigurationValidator {
     static getPreviousVersions(): any;
     static getAppFeatures(): any;
     static updateAppFeatures(): any;
+    static modifyAppFeatures(): any;
     static getAppBasicDetails(): any;
     static updateAppBasicDetails(): any;
     static getAppContactInfo(): any;
@@ -310,6 +317,8 @@ export class RewardsValidator {
     static updateUserStatus(): any;
     static user(): any;
     static getUserPointsHistory(): any;
+    static getRewardsConfiguration(): any;
+    static setRewardsConfiguration(): any;
 }
 export class AnalyticsValidator {
     static getStatiscticsGroups(): any;

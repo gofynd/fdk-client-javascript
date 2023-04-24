@@ -2,12 +2,10 @@
 
 
 
-
 ##### [Back to Platform docs](./README.md)
 
 ## Share Methods
 Short link and QR Code
-
 * [createShortLink](#createshortlink)
 * [getShortLinks](#getshortlinks)
 * [getShortLinkByHash](#getshortlinkbyhash)
@@ -16,8 +14,6 @@ Short link and QR Code
 
 
 ## Methods with example and description
-
-
 
 
 ### createShortLink

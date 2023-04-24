@@ -29,6 +29,8 @@ class Order {
       getShipmentReasons:
         "/service/application/orders/v1.0/orders/shipments/{shipment_id}/reasons",
       updateShipmentStatus:
+        "/service/application/orders/v1.0/orders/shipments/{shipment_id}/status",
+      updateShipmentStatus1:
         "/service/application/order-manage/v1.0/orders/shipments/{shipment_id}/status",
     };
     this._urls = Object.entries(this._relativeUrls).reduce(
@@ -50,7 +52,7 @@ class Order {
   /**
    * @param {Object} arg - Arg object.
    * @param {number} [arg.status] - A filter to retrieve orders by their
-   *   current status such as _placed_, _delivered_, etc.
+   *   current status such as *placed*, *delivered*, etc.
    * @param {number} [arg.pageNo] - The page number to navigate through the
    *   given set of results. Default value is 1.
    * @param {number} [arg.pageSize] - The number of items to retrieve in each
@@ -442,11 +444,13 @@ class Order {
 
   /**
    * @param {Object} arg - Arg object.
-   * @param {string} arg.shipmentId -
+   * @param {string} arg.shipmentId - ID of the shipment. An order may contain
+   *   multiple items and may get divided into one or more shipment, each
+   *   having its own ID.
    * @param {UpdateShipmentStatusRequest} arg.body
    * @returns {Promise<ShipmentApplicationStatusResponse>} - Success response
-   * @summary:
-   * @description: updateShipmentStatus
+   * @summary: Update the shipment status
+   * @description: Use this API to update the status of a shipment using its shipment ID.
    */
   updateShipmentStatus({ shipmentId, body } = {}) {
     const { error } = OrderValidator.updateShipmentStatus().validate(
@@ -465,6 +469,39 @@ class Order {
       "put",
       constructUrl({
         url: this._urls["updateShipmentStatus"],
+        params: { shipmentId },
+      }),
+      query_params,
+      body,
+      xHeaders
+    );
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.shipmentId -
+   * @param {UpdateShipmentStatusRequest} arg.body
+   * @returns {Promise<ShipmentApplicationStatusResponse>} - Success response
+   * @summary:
+   * @description: updateShipmentStatus
+   */
+  updateShipmentStatus1({ shipmentId, body } = {}) {
+    const { error } = OrderValidator.updateShipmentStatus1().validate(
+      { shipmentId, body },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+    const query_params = {};
+
+    const xHeaders = {};
+
+    return APIClient.execute(
+      this._conf,
+      "put",
+      constructUrl({
+        url: this._urls["updateShipmentStatus1"],
         params: { shipmentId },
       }),
       query_params,

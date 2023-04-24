@@ -19,7 +19,7 @@ declare class Common {
     searchApplication({ authorization, query }?: {
         authorization?: string;
         query?: string;
-    }): Promise<ApplicationResponse>;
+    }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} [arg.locationType] - Provide location type to query on.
@@ -34,5 +34,5 @@ declare class Common {
     getLocations({ locationType, id }?: {
         locationType?: string;
         id?: string;
-    }): Promise<Locations>;
+    }): Promise<any>;
 }

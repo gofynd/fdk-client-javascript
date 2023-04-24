@@ -15,7 +15,7 @@ declare class Inventory {
      * @description: REST Endpoint that returns all configuration detail of a company
      */
     suppressStores({ body }?: {
-        body: SuppressStorePayload;
+        body: any;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
@@ -35,7 +35,7 @@ declare class Inventory {
      * @description: REST Endpoint that updates a job config
      */
     updateJob({ body }?: {
-        body: JobConfigDTO;
+        body: any;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
@@ -44,7 +44,7 @@ declare class Inventory {
      * @description: REST Endpoint that creates a new job config
      */
     createJob({ body }?: {
-        body: JobConfigDTO;
+        body: any;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.

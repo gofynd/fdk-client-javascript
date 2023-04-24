@@ -2,12 +2,10 @@
 
 
 
-
 ##### [Back to Platform docs](./README.md)
 
 ## Partner Methods
 Partner configuration apis
-
 * [addProxyPath](#addproxypath)
 * [removeProxyPath](#removeproxypath)
 
@@ -16,10 +14,8 @@ Partner configuration apis
 ## Methods with example and description
 
 
-
-
 ### addProxyPath
-Add proxy path for external url
+Create proxy URL for the external URL
 
 
 
@@ -39,11 +35,11 @@ const data = await client.application("<APPLICATION_ID>").partner.addProxyPath({
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
-| extensionId | string | yes | Extension id |  
+| extensionId | string | yes | Extension id for which proxy URL will be generated |  
 | body | [AddProxyReq](#AddProxyReq) | yes | Request body |
 
 
-Add proxy path for external url
+Use this API to generate proxy URL for the external URL
 
 *Returned Response:*
 
@@ -52,7 +48,7 @@ Add proxy path for external url
 
 [AddProxyResponse](#AddProxyResponse)
 
-Success
+Proxy created successfully
 
 
 
@@ -86,7 +82,7 @@ Success
 
 
 ### removeProxyPath
-Remove proxy path for external url
+Remove proxy URL for the external URL
 
 
 
@@ -106,12 +102,12 @@ const data = await client.application("<APPLICATION_ID>").partner.removeProxyPat
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
-| extensionId | string | yes | Extension id |   
+| extensionId | string | yes | Extension id for which proxy URL needs to be removed |   
 | attachedPath | string | yes | Attachaed path slug |  
 
 
 
-Remove proxy path for external url
+Use this API to remove the proxy URL which is already generated for the external URL
 
 *Returned Response:*
 
@@ -166,7 +162,7 @@ Success
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | attached_path | string |  no  | Proxy path slug |
- | proxy_url | string |  no  | Proxied url |
+ | proxy_url | string |  no  | The external URL for which the proxy URL will be generated |
 
 ---
 
@@ -191,6 +187,18 @@ Success
 
  
  
+ #### [RemoveProxyResponse](#RemoveProxyResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | message | string |  no  |  |
+ | data | string |  no  |  |
+
+---
+
+
+ 
+ 
  #### [APIError](#APIError)
 
  | Properties | Type | Nullable | Description |
@@ -200,18 +208,6 @@ Success
  | info | string |  no  | Error code description link |
  | request_id | string |  no  |  |
  | meta | string |  no  |  |
-
----
-
-
- 
- 
- #### [RemoveProxyResponse](#RemoveProxyResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | message | string |  no  |  |
- | data | string |  no  |  |
 
 ---
 

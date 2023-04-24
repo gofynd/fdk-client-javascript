@@ -59,7 +59,7 @@ declare class Payment {
     getAggregatorsConfig({ xApiToken, refresh }?: {
         xApiToken?: string;
         refresh?: boolean;
-    }): Promise<AggregatorsConfigDetailResponse>;
+    }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @param {AttachCardRequest} arg.body
@@ -68,8 +68,8 @@ declare class Payment {
      * @description: Use this API to attach a customer's saved card at the payment gateway, such as Stripe, Juspay.
      */
     attachCardToCustomer({ body }?: {
-        body: AttachCardRequest;
-    }): Promise<AttachCardsResponse>;
+        body: any;
+    }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @param {boolean} [arg.refresh] -
@@ -79,7 +79,7 @@ declare class Payment {
      */
     getActiveCardAggregator({ refresh }?: {
         refresh?: boolean;
-    }): Promise<ActiveCardPaymentGatewayResponse>;
+    }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @param {boolean} [arg.forceRefresh] -
@@ -89,7 +89,7 @@ declare class Payment {
      */
     getActiveUserCards({ forceRefresh }?: {
         forceRefresh?: boolean;
-    }): Promise<ListCardsResponse>;
+    }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @param {DeletehCardRequest} arg.body
@@ -98,8 +98,8 @@ declare class Payment {
      * @description: Use this API to delete a card added by a user on the payment gateway and clear the cache.
      */
     deleteUserCard({ body }?: {
-        body: DeletehCardRequest;
-    }): Promise<DeleteCardsResponse>;
+        body: any;
+    }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @param {ValidateCustomerRequest} arg.body
@@ -108,8 +108,8 @@ declare class Payment {
      * @description: Use this API to check if the customer is eligible to use credit-line facilities such as Simpl Pay Later and Rupifi.
      */
     verifyCustomerForPayment({ body }?: {
-        body: ValidateCustomerRequest;
-    }): Promise<ValidateCustomerResponse>;
+        body: any;
+    }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @param {ChargeCustomerRequest} arg.body
@@ -118,8 +118,8 @@ declare class Payment {
      * @description: Use this API to verify and check the status of a payment transaction (server-to-server) made through aggregators like Simpl and Mswipe.
      */
     verifyAndChargePayment({ body }?: {
-        body: ChargeCustomerRequest;
-    }): Promise<ChargeCustomerResponse>;
+        body: any;
+    }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @param {PaymentInitializationRequest} arg.body
@@ -128,8 +128,8 @@ declare class Payment {
      * @description: PUse this API to inititate payment using UPI, BharatQR, wherein the UPI requests are send to the app and QR code is displayed on the screen.
      */
     initialisePayment({ body }?: {
-        body: PaymentInitializationRequest;
-    }): Promise<PaymentInitializationResponse>;
+        body: any;
+    }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @param {PaymentStatusUpdateRequest} arg.body
@@ -138,8 +138,8 @@ declare class Payment {
      * @description: Use this API to perform continuous polling at intervals to check the status of payment until timeout.
      */
     checkAndUpdatePaymentStatus({ body }?: {
-        body: PaymentStatusUpdateRequest;
-    }): Promise<PaymentStatusUpdateResponse>;
+        body: any;
+    }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @param {number} arg.amount - Payable amount.
@@ -165,7 +165,7 @@ declare class Payment {
         refresh?: boolean;
         cardReference?: string;
         userDetails?: string;
-    }): Promise<PaymentModeRouteResponse>;
+    }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @param {number} arg.amount - Payable amount.
@@ -195,21 +195,21 @@ declare class Payment {
         cardReference?: string;
         orderType: string;
         userDetails?: string;
-    }): Promise<PaymentModeRouteResponse>;
+    }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @returns {Promise<RupifiBannerResponse>} - Success response
      * @summary: Get CreditLine Offer
      * @description: Get CreditLine Offer if user is tentatively approved by rupifi
      */
-    getRupifiBannerDetails({}?: any): Promise<RupifiBannerResponse>;
+    getRupifiBannerDetails({}?: any): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @returns {Promise<EpaylaterBannerResponse>} - Success response
      * @summary: Get Epaylater Enabled
      * @description: Get Epaylater Enabled if user is tentatively approved by epaylater
      */
-    getEpaylaterBannerDetails({}?: any): Promise<EpaylaterBannerResponse>;
+    getEpaylaterBannerDetails({}?: any): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @param {ResendOrCancelPaymentRequest} arg.body
@@ -218,8 +218,8 @@ declare class Payment {
      * @description: Use this API to perform resend or cancel a payment link based on request payload.
      */
     resendOrCancelPayment({ body }?: {
-        body: ResendOrCancelPaymentRequest;
-    }): Promise<ResendOrCancelPaymentResponse>;
+        body: any;
+    }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @param {renderHTMLRequest} arg.body
@@ -228,8 +228,8 @@ declare class Payment {
      * @description: Use this API to decode base64 html form to plain HTML string.
      */
     renderHTML({ body }?: {
-        body: renderHTMLRequest;
-    }): Promise<renderHTMLResponse>;
+        body: any;
+    }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @param {ValidateVPARequest} arg.body
@@ -238,13 +238,12 @@ declare class Payment {
      * @description: API to Validate UPI ID
      */
     validateVPA({ body }?: {
-        body: ValidateVPARequest;
-    }): Promise<ValidateVPAResponse>;
+        body: any;
+    }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.cardInfo - Card first 6 digit IIN(prefix) number.
-     * @param {string} [arg.aggregator] - This is a string value decribing the
-     *   aggregator name.
+     * @param {string} [arg.aggregator] -
      * @returns {Promise<CardDetailsResponse>} - Success response
      * @summary: API to get Card info from PG
      * @description: API to get Card info from PG
@@ -252,14 +251,14 @@ declare class Payment {
     cardDetails({ cardInfo, aggregator }?: {
         cardInfo: string;
         aggregator?: string;
-    }): Promise<CardDetailsResponse>;
+    }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @returns {Promise<TransferModeResponse>} - Success response
      * @summary: Lists the mode of refund
      * @description: Use this API to retrieve eligible refund modes (such as Netbanking) and add the beneficiary details.
      */
-    getActiveRefundTransferModes({}?: any): Promise<TransferModeResponse>;
+    getActiveRefundTransferModes({}?: any): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @param {UpdateRefundTransferModeRequest} arg.body
@@ -268,8 +267,8 @@ declare class Payment {
      * @description: Activate or Deactivate Transfer Mode to collect Beneficiary Details for Refund
      */
     enableOrDisableRefundTransferMode({ body }?: {
-        body: UpdateRefundTransferModeRequest;
-    }): Promise<UpdateRefundTransferModeResponse>;
+        body: any;
+    }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.orderId - A unique number used for identifying and
@@ -280,7 +279,7 @@ declare class Payment {
      */
     getUserBeneficiariesDetail({ orderId }?: {
         orderId: string;
-    }): Promise<OrderBeneficiaryResponse>;
+    }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} [arg.ifscCode] - A 11-digit alphanumeric code that
@@ -291,7 +290,7 @@ declare class Payment {
      */
     verifyIfscCode({ ifscCode }?: {
         ifscCode?: string;
-    }): Promise<IfscCodeResponse>;
+    }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.orderId - A unique number used for identifying and
@@ -302,7 +301,7 @@ declare class Payment {
      */
     getOrderBeneficiariesDetail({ orderId }?: {
         orderId: string;
-    }): Promise<OrderBeneficiaryResponse>;
+    }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @param {AddBeneficiaryViaOtpVerificationRequest} arg.body
@@ -311,8 +310,8 @@ declare class Payment {
      * @description: Use this API to perform an OTP validation before saving the beneficiary details added for a refund.
      */
     verifyOtpAndAddBeneficiaryForBank({ body }?: {
-        body: AddBeneficiaryViaOtpVerificationRequest;
-    }): Promise<AddBeneficiaryViaOtpVerificationResponse>;
+        body: any;
+    }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @param {AddBeneficiaryDetailsRequest} arg.body
@@ -321,8 +320,8 @@ declare class Payment {
      * @description: Use this API to save the bank details for a returned or cancelled order to refund the amount.
      */
     addBeneficiaryDetails({ body }?: {
-        body: AddBeneficiaryDetailsRequest;
-    }): Promise<RefundAccountResponse>;
+        body: any;
+    }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @param {AddBeneficiaryDetailsOTPRequest} arg.body
@@ -331,8 +330,8 @@ declare class Payment {
      * @description: Use this API to save bank details for returned/cancelled order to refund amount in his account.
      */
     addRefundBankAccountUsingOTP({ body }?: {
-        body: AddBeneficiaryDetailsOTPRequest;
-    }): Promise<RefundAccountResponse>;
+        body: any;
+    }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @param {WalletOtpRequest} arg.body
@@ -341,8 +340,8 @@ declare class Payment {
      * @description: Use this API to send an OTP while adding a wallet beneficiary by mobile no. verification.
      */
     verifyOtpAndAddBeneficiaryForWallet({ body }?: {
-        body: WalletOtpRequest;
-    }): Promise<WalletOtpResponse>;
+        body: any;
+    }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @param {SetDefaultBeneficiaryRequest} arg.body
@@ -351,8 +350,8 @@ declare class Payment {
      * @description: Use this API to set a default beneficiary for getting a refund.
      */
     updateDefaultBeneficiary({ body }?: {
-        body: SetDefaultBeneficiaryRequest;
-    }): Promise<SetDefaultBeneficiaryResponse>;
+        body: any;
+    }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} [arg.paymentLinkId] -
@@ -362,7 +361,7 @@ declare class Payment {
      */
     getPaymentLink({ paymentLinkId }?: {
         paymentLinkId?: string;
-    }): Promise<GetPaymentLinkResponse>;
+    }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @param {CreatePaymentLinkRequest} arg.body
@@ -371,8 +370,8 @@ declare class Payment {
      * @description: Use this API to create a payment link for the customer
      */
     createPaymentLink({ body }?: {
-        body: CreatePaymentLinkRequest;
-    }): Promise<CreatePaymentLinkResponse>;
+        body: any;
+    }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @param {CancelOrResendPaymentLinkRequest} arg.body
@@ -381,8 +380,8 @@ declare class Payment {
      * @description: Use this API to resend a payment link for the customer
      */
     resendPaymentLink({ body }?: {
-        body: CancelOrResendPaymentLinkRequest;
-    }): Promise<ResendPaymentLinkResponse>;
+        body: any;
+    }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @param {CancelOrResendPaymentLinkRequest} arg.body
@@ -391,8 +390,8 @@ declare class Payment {
      * @description: Use this API to cancel a payment link for the customer
      */
     cancelPaymentLink({ body }?: {
-        body: CancelOrResendPaymentLinkRequest;
-    }): Promise<CancelPaymentLinkResponse>;
+        body: any;
+    }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.paymentLinkId - Payment link id
@@ -402,7 +401,7 @@ declare class Payment {
      */
     getPaymentModeRoutesPaymentLink({ paymentLinkId }?: {
         paymentLinkId: string;
-    }): Promise<PaymentModeRouteResponse>;
+    }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} [arg.paymentLinkId] -
@@ -412,7 +411,7 @@ declare class Payment {
      */
     pollingPaymentLink({ paymentLinkId }?: {
         paymentLinkId?: string;
-    }): Promise<PollingPaymentLinkResponse>;
+    }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @param {CreateOrderUserRequest} arg.body
@@ -421,8 +420,8 @@ declare class Payment {
      * @description: Use this API to create a order and payment on aggregator side
      */
     createOrderHandlerPaymentLink({ body }?: {
-        body: CreateOrderUserRequest;
-    }): Promise<CreateOrderUserResponse>;
+        body: any;
+    }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @param {PaymentInitializationRequest} arg.body
@@ -431,8 +430,8 @@ declare class Payment {
      * @description: Use this API to inititate payment using UPI, BharatQR, wherein the UPI requests are send to the app and QR code is displayed on the screen.
      */
     initialisePaymentPaymentLink({ body }?: {
-        body: PaymentInitializationRequest;
-    }): Promise<PaymentInitializationResponse>;
+        body: any;
+    }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @param {PaymentStatusUpdateRequest} arg.body
@@ -441,8 +440,8 @@ declare class Payment {
      * @description: Use this API to perform continuous polling at intervals to check the status of payment until timeout.
      */
     checkAndUpdatePaymentStatusPaymentLink({ body }?: {
-        body: PaymentStatusUpdateRequest;
-    }): Promise<PaymentStatusUpdateResponse>;
+        body: any;
+    }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} [arg.aggregator] -
@@ -452,7 +451,7 @@ declare class Payment {
      */
     customerCreditSummary({ aggregator }?: {
         aggregator?: string;
-    }): Promise<CustomerCreditSummaryResponse>;
+    }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} [arg.source] - This is a String value that contains
@@ -466,7 +465,7 @@ declare class Payment {
     redirectToAggregator({ source, aggregator }?: {
         source?: string;
         aggregator?: string;
-    }): Promise<RedirectToAggregatorResponse>;
+    }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} [arg.aggregator] -
@@ -476,7 +475,7 @@ declare class Payment {
      */
     checkCredit({ aggregator }?: {
         aggregator?: string;
-    }): Promise<CheckCreditResponse>;
+    }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @param {CustomerOnboardingRequest} arg.body
@@ -485,6 +484,6 @@ declare class Payment {
      * @description: Use this API to fetch the customer credit summary.
      */
     customerOnboard({ body }?: {
-        body: CustomerOnboardingRequest;
-    }): Promise<CustomerOnboardingResponse>;
+        body: any;
+    }): Promise<any>;
 }

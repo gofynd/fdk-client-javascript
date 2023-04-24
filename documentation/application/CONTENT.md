@@ -2,12 +2,10 @@
 
 
 
-
 ##### [Back to Application docs](./README.md)
 
 ## Content Methods
 Content System
-
 * [getAnnouncements](#getannouncements)
 * [getBlog](#getblog)
 * [getBlogs](#getblogs)
@@ -31,8 +29,6 @@ Content System
 
 
 ## Methods with example and description
-
-
 
 
 ### getAnnouncements
@@ -1214,6 +1210,7 @@ Success. Returns a JSON object SEO details such as robots.txt, meta-tags, and si
       },
       "robots_txt": "User-agent: * \nAllow: / \nsancisciasn xwsaixjowqnxwsiwjs",
       "sitemap_enabled": false,
+      "cannonical_enabled": false,
       "_id": "6009819ee463ad40de397eb2",
       "app": "000000000000000000000001",
       "created_at": "2021-01-21T13:29:02.543Z",
@@ -1885,7 +1882,19 @@ Success. Returns a list of pages along with their details. Check the example sho
  | redirect_to | string |  no  |  |
  | updated_at | string |  no  |  |
  | created_at | string |  no  |  |
- | __source | [TagSourceSchema](#TagSourceSchema) |  no  |  |
+ | __source | [PathSourceSchema](#PathSourceSchema) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [PathSourceSchema](#PathSourceSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | type | string |  no  |  |
+ | id | string |  no  |  |
 
 ---
 
@@ -1911,6 +1920,7 @@ Success. Returns a list of pages along with their details. Check the example sho
  | _id | string |  no  |  |
  | robots_txt | string |  no  |  |
  | sitemap_enabled | boolean |  no  |  |
+ | cannonical_enabled | boolean |  no  |  |
  | custom_meta_tags | [[CustomMetaTag](#CustomMetaTag)] |  no  |  |
  | details | [Detail](#Detail) |  no  |  |
  | created_at | string |  no  |  |
@@ -2316,26 +2326,6 @@ Success. Returns a list of pages along with their details. Check the example sho
  
  
  #### [NavigationReference](#NavigationReference)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | acl | [string] |  no  |  |
- | tags | [string] |  no  |  |
- | _locale_language | [LocaleLanguage](#LocaleLanguage) |  no  |  |
- | image | string |  no  |  |
- | type | string |  no  |  |
- | action | [Action](#Action) |  no  |  |
- | active | boolean |  no  |  |
- | display | string |  no  |  |
- | sort_order | number |  no  |  |
- | sub_navigation | [[SubNavigationReference](#SubNavigationReference)] |  no  |  |
-
----
-
-
- 
- 
- #### [SubNavigationReference](#SubNavigationReference)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |

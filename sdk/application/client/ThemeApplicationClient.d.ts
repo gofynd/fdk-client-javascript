@@ -19,7 +19,7 @@ declare class Theme {
      */
     getAllPages({ themeId }?: {
         themeId: string;
-    }): Promise<AllAvailablePageSchema>;
+    }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.themeId - ID of the theme to be retrieved
@@ -31,14 +31,14 @@ declare class Theme {
     getPage({ themeId, pageValue }?: {
         themeId: string;
         pageValue: string;
-    }): Promise<AvailablePageSchema>;
+    }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @returns {Promise<ThemesSchema>} - Success response
      * @summary: Get the theme currently applied to an application
      * @description: An application has multiple themes, but only one theme can be applied at a time. Use this API to retrieve the theme currently applied to the application.
      */
-    getAppliedTheme({}?: any): Promise<ThemesSchema>;
+    getAppliedTheme({}?: any): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.themeId - ID of the theme to be retrieved
@@ -48,5 +48,5 @@ declare class Theme {
      */
     getThemeForPreview({ themeId }?: {
         themeId: string;
-    }): Promise<ThemesSchema>;
+    }): Promise<any>;
 }

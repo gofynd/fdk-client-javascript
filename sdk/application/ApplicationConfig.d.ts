@@ -12,7 +12,6 @@ declare class ApplicationConfig {
     logLevel: any;
     extraHeaders: any[];
     locationDetails: any;
-    currencyCode: any;
     setLogLevel(level: any): void;
     setCookie(cookie: any): void;
     cookie: any;

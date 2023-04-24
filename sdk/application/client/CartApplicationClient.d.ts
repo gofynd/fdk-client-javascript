@@ -51,7 +51,7 @@ declare class Cart {
         assignCardId?: number;
         areaCode?: string;
         buyNow?: boolean;
-    }): Promise<CartDetailResponse>;
+    }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} [arg.id] -
@@ -78,8 +78,8 @@ declare class Cart {
         b?: boolean;
         areaCode?: string;
         buyNow?: boolean;
-        body: AddCartRequest;
-    }): Promise<AddCartDetailResponse>;
+        body: any;
+    }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} [arg.id] -
@@ -98,8 +98,8 @@ declare class Cart {
         b?: boolean;
         areaCode?: string;
         buyNow?: boolean;
-        body: UpdateCartRequest;
-    }): Promise<UpdateCartDetailResponse>;
+        body: any;
+    }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} [arg.id] - The unique identifier of the cart.
@@ -111,7 +111,7 @@ declare class Cart {
     getItemCount({ id, buyNow }?: {
         id?: string;
         buyNow?: boolean;
-    }): Promise<CartItemCountResponse>;
+    }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} [arg.id] -
@@ -123,7 +123,7 @@ declare class Cart {
     getCoupons({ id, buyNow }?: {
         id?: string;
         buyNow?: boolean;
-    }): Promise<GetCouponResponse>;
+    }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @param {boolean} [arg.i] -
@@ -142,8 +142,8 @@ declare class Cart {
         p?: boolean;
         id?: string;
         buyNow?: boolean;
-        body: ApplyCouponRequest;
-    }): Promise<CartDetailResponse>;
+        body: any;
+    }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} [arg.id] -
@@ -155,7 +155,7 @@ declare class Cart {
     removeCoupon({ id, buyNow }?: {
         id?: string;
         buyNow?: boolean;
-    }): Promise<CartDetailResponse>;
+    }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @param {number} [arg.itemId] - The Item ID of the product
@@ -173,7 +173,7 @@ declare class Cart {
         articleId?: string;
         uid?: number;
         slug?: string;
-    }): Promise<BulkPriceResponse>;
+    }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} [arg.id] -
@@ -190,8 +190,8 @@ declare class Cart {
         i?: boolean;
         b?: boolean;
         buyNow?: boolean;
-        body: RewardPointRequest;
-    }): Promise<CartDetailResponse>;
+        body: any;
+    }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} [arg.cartId] -
@@ -211,7 +211,7 @@ declare class Cart {
         checkoutMode?: string;
         tags?: string;
         isDefault?: boolean;
-    }): Promise<GetAddressesResponse>;
+    }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @param {Address} arg.body
@@ -220,8 +220,8 @@ declare class Cart {
      * @description: Use this API to add an address to an account.
      */
     addAddress({ body }?: {
-        body: Address;
-    }): Promise<SaveAddressResponse>;
+        body: any;
+    }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.id -
@@ -243,7 +243,7 @@ declare class Cart {
         checkoutMode?: string;
         tags?: string;
         isDefault?: boolean;
-    }): Promise<Address>;
+    }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.id - ID allotted to the selected address
@@ -254,8 +254,8 @@ declare class Cart {
      */
     updateAddress({ id, body }?: {
         id: string;
-        body: Address;
-    }): Promise<UpdateAddressResponse>;
+        body: any;
+    }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.id - ID allotted to the selected address
@@ -265,7 +265,7 @@ declare class Cart {
      */
     removeAddress({ id }?: {
         id: string;
-    }): Promise<DeleteAddressResponse>;
+    }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} [arg.cartId] -
@@ -282,8 +282,8 @@ declare class Cart {
         buyNow?: boolean;
         i?: boolean;
         b?: boolean;
-        body: SelectCartAddressRequest;
-    }): Promise<CartDetailResponse>;
+        body: any;
+    }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} [arg.id] -
@@ -296,8 +296,8 @@ declare class Cart {
     selectPaymentMode({ body, id, buyNow }?: {
         id?: string;
         buyNow?: boolean;
-        body: UpdateCartPaymentRequest;
-    }): Promise<CartDetailResponse>;
+        body: any;
+    }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} [arg.id] -
@@ -327,7 +327,7 @@ declare class Cart {
         network?: string;
         type?: string;
         cardId?: string;
-    }): Promise<PaymentCouponValidate>;
+    }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @param {boolean} [arg.p] - This is a boolean value. Select `true` for
@@ -347,7 +347,7 @@ declare class Cart {
         buyNow?: boolean;
         addressId?: string;
         areaCode?: string;
-    }): Promise<CartShipmentsResponse>;
+    }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @param {boolean} [arg.buyNow] - This indicates the type of cart to checkout
@@ -358,8 +358,8 @@ declare class Cart {
      */
     checkoutCart({ body, buyNow }?: {
         buyNow?: boolean;
-        body: CartCheckoutDetailRequest;
-    }): Promise<CartCheckoutResponse>;
+        body: any;
+    }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} [arg.id] -
@@ -372,8 +372,8 @@ declare class Cart {
     updateCartMeta({ body, id, buyNow }?: {
         id?: string;
         buyNow?: boolean;
-        body: CartMetaRequest;
-    }): Promise<CartMetaResponse>;
+        body: any;
+    }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @param {GetShareCartLinkRequest} arg.body
@@ -382,8 +382,8 @@ declare class Cart {
      * @description: Use this API to generate a shared cart snapshot and return a shortlink token. The link can be shared with other users for getting the same items in their cart.
      */
     getCartShareLink({ body }?: {
-        body: GetShareCartLinkRequest;
-    }): Promise<GetShareCartLinkResponse>;
+        body: any;
+    }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.token - Token of the shared short link
@@ -393,7 +393,7 @@ declare class Cart {
      */
     getCartSharedItems({ token }?: {
         token: string;
-    }): Promise<SharedCartResponse>;
+    }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.token - Token of the shared short link
@@ -406,7 +406,7 @@ declare class Cart {
     updateCartWithSharedItems({ token, action }?: {
         token: string;
         action: string;
-    }): Promise<SharedCartResponse>;
+    }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} [arg.slug] - A short, human-readable, URL-friendly
@@ -422,7 +422,7 @@ declare class Cart {
         slug?: string;
         pageSize?: number;
         promotionGroup?: string;
-    }): Promise<PromotionOffersResponse>;
+    }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.slug - A short, human-readable, URL-friendly
@@ -442,5 +442,5 @@ declare class Cart {
         storeId?: string;
         promotionId?: string;
         pageSize?: number;
-    }): Promise<LadderPriceOffers>;
+    }): Promise<any>;
 }

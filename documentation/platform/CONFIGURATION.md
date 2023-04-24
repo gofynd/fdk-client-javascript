@@ -2,17 +2,16 @@
 
 
 
-
 ##### [Back to Platform docs](./README.md)
 
 ## Configuration Methods
 Application configuration apis
-
 * [getBuildConfig](#getbuildconfig)
 * [updateBuildConfig](#updatebuildconfig)
 * [getPreviousVersions](#getpreviousversions)
 * [getAppFeatures](#getappfeatures)
 * [updateAppFeatures](#updateappfeatures)
+* [modifyAppFeatures](#modifyappfeatures)
 * [getAppBasicDetails](#getappbasicdetails)
 * [updateAppBasicDetails](#updateappbasicdetails)
 * [getAppContactInfo](#getappcontactinfo)
@@ -58,8 +57,6 @@ Application configuration apis
 
 
 ## Methods with example and description
-
-
 
 
 ### getBuildConfig
@@ -503,6 +500,148 @@ Success
     "order_processing": true
   },
   "common": {
+    "communication_optin_dialog": {
+      "visibility": true
+    },
+    "deployment_store_selection": {
+      "enabled": true,
+      "type": "hard"
+    },
+    "listing_price": {
+      "value": "min",
+      "sort": "min"
+    },
+    "currency": {
+      "value": [
+        "INR"
+      ],
+      "type": "explicit",
+      "default_currency": "INR"
+    },
+    "revenue_engine": {
+      "enabled": false
+    },
+    "feedback": {
+      "enabled": true
+    },
+    "compare_products": {
+      "enabled": true
+    }
+  },
+  "cart": {
+    "gst_input": true,
+    "staff_selection": true,
+    "placing_for_customer": true,
+    "google_map": true,
+    "revenue_engine_coupon": false
+  },
+  "qr": {
+    "application": true,
+    "products": true,
+    "collections": true
+  },
+  "pcr": {
+    "staff_selection": true
+  },
+  "order": {
+    "buy_again": true
+  },
+  "_id": "5e57643c986e4119c973df7d",
+  "app": "000000000000000000000004",
+  "created_at": "2020-02-27T06:39:56.088Z",
+  "modified_at": "2021-03-09T15:40:29.188Z",
+  "__v": 1
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### modifyAppFeatures
+Update features of application
+
+
+
+```javascript
+// Promise
+const promise = client.application("<APPLICATION_ID>").configuration.modifyAppFeatures({  body : value });
+
+// Async/Await
+const data = await client.application("<APPLICATION_ID>").configuration.modifyAppFeatures({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [AppFeatureRequest](#AppFeatureRequest) | yes | Request body |
+
+
+Update features of application
+
+*Returned Response:*
+
+
+
+
+[AppFeature](#AppFeature)
+
+Success
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "product_detail": {
+    "similar": [
+      "basic",
+      "visual",
+      "brand",
+      "category",
+      "seller",
+      "price",
+      "specs"
+    ],
+    "seller_selection": true,
+    "update_product_meta": true,
+    "request_product": true
+  },
+  "landing_page": {
+    "launch_page": {
+      "page_type": "home",
+      "params": null,
+      "query": null
+    },
+    "continue_as_guest": true,
+    "login_btn_text": "Click here to sign-in",
+    "show_domain_textbox": true,
+    "show_register_btn": true
+  },
+  "registration_page": {
+    "ask_store_address": false
+  },
+  "home_page": {
+    "order_processing": true
+  },
+  "common": {
+    "international_shipping": {
+      "enabled": true
+    },
     "communication_optin_dialog": {
       "visibility": true
     },
@@ -1736,6 +1875,17 @@ Success
   },
   "business": "retail",
   "comms_enabled": true,
+  "communication": {
+    "email": {
+      "enabled": false
+    },
+    "sms": {
+      "enabled": false
+    },
+    "voice": {
+      "enabled": false
+    }
+  },
   "platforms": [
     "uniket_wholesale"
   ],
@@ -1976,6 +2126,17 @@ Success
   },
   "business": "retail",
   "comms_enabled": true,
+  "communication": {
+    "email": {
+      "enabled": false
+    },
+    "sms": {
+      "enabled": false
+    },
+    "voice": {
+      "enabled": false
+    }
+  },
   "platforms": [
     "uniket_wholesale"
   ],
@@ -2216,6 +2377,17 @@ Success
   },
   "business": "retail",
   "comms_enabled": true,
+  "communication": {
+    "email": {
+      "enabled": false
+    },
+    "sms": {
+      "enabled": false
+    },
+    "voice": {
+      "enabled": false
+    }
+  },
   "platforms": [
     "uniket_wholesale"
   ],
@@ -4865,6 +5037,7 @@ Success
  | logistics | [AppLogisticsConfig](#AppLogisticsConfig) |  no  |  |
  | business | string |  no  |  |
  | comms_enabled | boolean |  no  |  |
+ | communication | [CommunicationConfig](#CommunicationConfig) |  no  |  |
  | platforms | [string] |  no  |  |
  | _id | string |  no  |  |
  | loyalty_points | [LoyaltyPointsConfig](#LoyaltyPointsConfig) |  no  |  |
@@ -5192,6 +5365,7 @@ Success
  | payment | [AppPaymentConfig](#AppPaymentConfig) |  no  |  |
  | loyalty_points | [LoyaltyPointsConfig](#LoyaltyPointsConfig) |  no  |  |
  | comms_enabled | boolean |  no  |  |
+ | communication | [CommunicationConfig](#CommunicationConfig) |  no  |  |
 
 ---
 
@@ -5295,6 +5469,30 @@ Success
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | brands | [CompanyBrandInfo](#CompanyBrandInfo) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [CommunicationConfig](#CommunicationConfig)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | email | [CommsConfig](#CommsConfig) |  no  |  |
+ | sms | [CommsConfig](#CommsConfig) |  no  |  |
+ | voice | [CommsConfig](#CommsConfig) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [CommsConfig](#CommsConfig)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | enabled | boolean |  no  | Check current communication channel is enabled |
 
 ---
 

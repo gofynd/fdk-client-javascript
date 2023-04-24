@@ -4,6 +4,8 @@ class OrderValidator {
   static getShipments() {
     return Joi.object({
       lane: Joi.string().allow(""),
+      bagStatus: Joi.string().allow(""),
+      statusOverrideLane: Joi.boolean(),
       searchType: Joi.string().allow(""),
       searchValue: Joi.string().allow(""),
       searchId: Joi.string().allow(""),
@@ -17,11 +19,14 @@ class OrderValidator {
       pageNo: Joi.number(),
       pageSize: Joi.number(),
       isPrioritySort: Joi.boolean(),
+      fetchActiveShipment: Joi.boolean(),
       excludeLockedShipments: Joi.boolean(),
       paymentMethods: Joi.string().allow(""),
       channelShipmentId: Joi.string().allow(""),
       channelOrderId: Joi.string().allow(""),
       customMeta: Joi.string().allow(""),
+      orderingChannel: Joi.string().allow(""),
+      companyAffiliateTag: Joi.string().allow(""),
     }).required();
   }
 
@@ -58,6 +63,10 @@ class OrderValidator {
     return Joi.object({
       lane: Joi.string().allow(""),
       searchType: Joi.string().allow(""),
+      bagStatus: Joi.string().allow(""),
+      timeToDispatch: Joi.string().allow(""),
+      paymentMethods: Joi.string().allow(""),
+      tags: Joi.string().allow(""),
       searchValue: Joi.string().allow(""),
       fromDate: Joi.string().allow(""),
       toDate: Joi.string().allow(""),
@@ -153,33 +162,6 @@ class OrderValidator {
       pageSize: Joi.number(),
       customerId: Joi.string().allow(""),
       isPrioritySort: Joi.boolean(),
-    }).required();
-  }
-
-  static getManifestList() {
-    return Joi.object({
-      status: Joi.string().allow(""),
-      storeId: Joi.number(),
-      pageNo: Joi.number(),
-      pageSize: Joi.number(),
-      searchValue: Joi.string().allow(""),
-      fromDate: Joi.string().allow(""),
-      toDate: Joi.string().allow(""),
-    }).required();
-  }
-
-  static getManifestDetailsWithShipments() {
-    return Joi.object({
-      manifestId: Joi.string().allow("").required(),
-      fromDate: Joi.string().allow(""),
-      toDate: Joi.string().allow(""),
-      storeId: Joi.number().required(),
-      page: Joi.number(),
-      pageSize: Joi.number(),
-      lane: Joi.string().allow(""),
-      dpIds: Joi.number(),
-      searchType: Joi.string().allow(""),
-      searchValue: Joi.string().allow(""),
     }).required();
   }
 
@@ -312,6 +294,12 @@ class OrderValidator {
     }).required();
   }
 
+  static postShipmentHistory() {
+    return Joi.object({
+      body: Validator.PostShipmentHistory().required(),
+    }).required();
+  }
+
   static sendSmsNinja() {
     return Joi.object({
       body: Validator.SendSmsPayload().required(),
@@ -365,9 +353,7 @@ class OrderValidator {
   }
 
   static sendSmsNinjaPlatform() {
-    return Joi.object({
-      body: Validator.SendSmsPayload().required(),
-    }).required();
+    return Joi.object({}).required();
   }
 }
 module.exports = OrderValidator;
