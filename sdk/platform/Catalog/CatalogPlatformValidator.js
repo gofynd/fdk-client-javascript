@@ -193,7 +193,7 @@ class CatalogValidator {
   static getCompanyBrandDetail() {
     return Joi.object({
       isActive: Joi.boolean(),
-      q: Joi.boolean(),
+      q: Joi.string().allow(""),
       pageNo: Joi.number(),
       pageSize: Joi.number(),
       marketplace: Joi.string().allow(""),

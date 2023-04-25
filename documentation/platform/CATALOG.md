@@ -5946,7 +5946,7 @@ const data = await platformClient.catalog.getCompanyBrandDetail({  isActive : va
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
 | isActive | boolean | no | The is_active status for the optin id. |    
-| q | boolean | no | The search value to filter the list. |    
+| q | string | no | The search value to filter the list. |    
 | pageNo | number | no | The number of page for the company id. |    
 | pageSize | number | no | Number of records that can be seen on the page for the company id. |    
 | marketplace | string | no | The marketplace platform associated with the company id. |  
