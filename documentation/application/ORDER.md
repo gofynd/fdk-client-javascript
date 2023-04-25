@@ -2551,8 +2551,6 @@ Success, the code is valid and returns a session token
  | applied_promos | [[AppliedPromos](#AppliedPromos)]? |  yes  |  |
  | can_cancel | boolean? |  yes  |  |
  | can_return | boolean? |  yes  |  |
- | currency_code | string? |  yes  |  |
- | currency_symbol | string? |  yes  |  |
  | current_status | [CurrentStatus](#CurrentStatus)? |  yes  |  |
  | delivery_date | string? |  yes  |  |
  | financial_breakup | [[FinancialBreakup](#FinancialBreakup)]? |  yes  |  |
@@ -2596,8 +2594,6 @@ Success, the code is valid and returns a session token
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | currency_code | string? |  yes  |  |
- | currency_symbol | string? |  yes  |  |
  | display | string? |  yes  |  |
  | name | string? |  yes  |  |
  | value | number? |  yes  |  |
@@ -2653,8 +2649,6 @@ Success, the code is valid and returns a session token
  | city | string? |  yes  |  |
  | contact_person | string? |  yes  |  |
  | country | string? |  yes  |  |
- | country_iso_code | string? |  yes  |  |
- | country_phone_code | string? |  yes  |  |
  | created_at | string? |  yes  |  |
  | email | string? |  yes  |  |
  | landmark | string? |  yes  |  |
@@ -2911,8 +2905,6 @@ Success, the code is valid and returns a session token
  | cod_charges | number? |  yes  |  |
  | coupon_effective_discount | number? |  yes  |  |
  | coupon_value | number? |  yes  |  |
- | currency_code | string? |  yes  |  |
- | currency_symbol | string? |  yes  |  |
  | delivery_charge | number? |  yes  |  |
  | discount | number? |  yes  |  |
  | fynd_credits | number? |  yes  |  |
@@ -3135,7 +3127,6 @@ Success, the code is valid and returns a session token
  | prices | [Prices](#Prices)? |  yes  |  |
  | promise | [Promise](#Promise)? |  yes  |  |
  | refund_details | string? |  yes  |  |
- | return_meta | string? |  yes  |  |
  | returnable_date | string? |  yes  |  |
  | shipment_created_at | string? |  yes  |  |
  | shipment_id | string? |  yes  |  |
