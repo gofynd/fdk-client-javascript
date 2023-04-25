@@ -6447,6 +6447,7 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
  | extra_meta | string |  no  |  |
  | merchant_code | string |  no  |  |
  | meta | string |  no  |  |
+ | order_type | string |  no  |  |
  | ordering_store | number |  no  |  |
  | payment_auto_confirm | boolean |  no  |  |
  | payment_identifier | string |  no  |  |
