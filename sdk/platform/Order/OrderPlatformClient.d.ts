@@ -104,6 +104,20 @@ declare class Order {
     }): Promise<AnnouncementsResponse>;
     /**
      * @param {Object} arg - Arg object.
+     * @param {string} arg.shipmentIds -
+     * @param {boolean} [arg.invoice] -
+     * @param {string} [arg.expiresIn] -
+     * @returns {Promise<ResponseGetAssetShipment>} - Success response
+     * @summary: Get Invoice or Label or Pos of a shipment
+     * @description: Use this API to retrieve shipments invoice, label and pos.
+     */
+    getAssetByShipmentIds({ shipmentIds, invoice, expiresIn }?: {
+        shipmentIds: string;
+        invoice?: boolean;
+        expiresIn?: string;
+    }): Promise<ResponseGetAssetShipment>;
+    /**
+     * @param {Object} arg - Arg object.
      * @param {string} [arg.bagId] -
      * @param {string} [arg.channelBagId] -
      * @param {string} [arg.channelId] -

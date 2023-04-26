@@ -652,6 +652,7 @@ class PlatformApplicationClient {
 /** @typedef Article */
 /** @typedef ArticleDetails */
 /** @typedef ArticleDetails1 */
+/** @typedef AssetByShipment */
 /** @typedef Attributes */
 /** @typedef B2BPODetails */
 /** @typedef BagConfigs */
@@ -804,6 +805,7 @@ class PlatformApplicationClient {
 /** @typedef Reason */
 /** @typedef ReasonsData */
 /** @typedef ResponseDetail */
+/** @typedef ResponseGetAssetShipment */
 /** @typedef ReturnConfig */
 /** @typedef SendSmsPayload */
 /** @typedef Shipment */

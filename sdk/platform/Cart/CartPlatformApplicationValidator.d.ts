@@ -20,10 +20,13 @@ declare class CartValidator {
     static getCartShareLink(): any;
     static getCartSharedItems(): any;
     static getCouponById(): any;
+    static getCouponCodeExists(): any;
+    static getCouponOptionValues(): any;
     static getCoupons(): any;
     static getItemCount(): any;
     static getPromosCouponConfig(): any;
     static getPromotionById(): any;
+    static getPromotionCodeExists(): any;
     static getPromotions(): any;
     static getShipments(): any;
     static getStoreAddressByUid(): any;

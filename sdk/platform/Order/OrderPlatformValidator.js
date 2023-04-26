@@ -61,6 +61,14 @@ class OrderValidator {
     }).required();
   }
 
+  static getAssetByShipmentIds() {
+    return Joi.object({
+      shipmentIds: Joi.string().allow("").required(),
+      invoice: Joi.boolean(),
+      expiresIn: Joi.string().allow(""),
+    }).required();
+  }
+
   static getBagById() {
     return Joi.object({
       bagId: Joi.string().allow(""),

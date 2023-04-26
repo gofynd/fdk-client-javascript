@@ -23,6 +23,7 @@ declare class OrderModel {
     static Article(): any;
     static ArticleDetails(): any;
     static ArticleDetails1(): any;
+    static AssetByShipment(): any;
     static Attributes(): any;
     static B2BPODetails(): any;
     static BagConfigs(): any;
@@ -175,6 +176,7 @@ declare class OrderModel {
     static Reason(): any;
     static ReasonsData(): any;
     static ResponseDetail(): any;
+    static ResponseGetAssetShipment(): any;
     static ReturnConfig(): any;
     static SendSmsPayload(): any;
     static Shipment(): any;

@@ -221,6 +221,13 @@ class OrderModel {
       weight: Joi.any().required(),
     });
   }
+  static AssetByShipment() {
+    return Joi.object({
+      assets: Joi.object().pattern(/\S/, Joi.string().allow("")),
+      expires_in: Joi.string().allow("").required(),
+      shipment_id: Joi.string().allow("").required(),
+    });
+  }
   static Attributes() {
     return Joi.object({
       brand_name: Joi.string().allow(""),
@@ -1722,6 +1729,13 @@ class OrderModel {
     return Joi.object({
       message: Joi.array().items(Joi.string().allow("")),
       success: Joi.boolean(),
+    });
+  }
+  static ResponseGetAssetShipment() {
+    return Joi.object({
+      presigned_type: Joi.string().allow("").required(),
+      result: Joi.array().items(OrderModel.AssetByShipment()).required(),
+      success: Joi.boolean().required(),
     });
   }
   static ReturnConfig() {

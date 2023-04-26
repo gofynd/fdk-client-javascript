@@ -29,7 +29,9 @@ class PosCartModel {
       extra_meta: Joi.any(),
       item_id: Joi.number(),
       item_size: Joi.string().allow(""),
-      parent_item_identifiers: Joi.any(),
+      parent_item_identifiers: Joi.array().items(
+        Joi.object().pattern(/\S/, Joi.string().allow(""))
+      ),
       pos: Joi.boolean(),
       product_group_tags: Joi.array().items(Joi.string().allow("").allow(null)),
       quantity: Joi.number(),

@@ -93,12 +93,6 @@ class UserValidator {
     }).required();
   }
 
-  static updatePlatformConfig() {
-    return Joi.object({
-      body: UserModel.PlatformSchema().required(),
-    }).required();
-  }
-
   static updateUser() {
     return Joi.object({
       userId: Joi.string().allow("").required(),

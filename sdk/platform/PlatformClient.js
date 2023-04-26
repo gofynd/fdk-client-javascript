@@ -1055,6 +1055,7 @@ class PlatformClient {
  * @typedef Login
  * @property {boolean} [otp]
  * @property {boolean} [password]
+ * @property {boolean} [voice_otp]
  */
 /**
  * @typedef LoginSuccess
@@ -1276,6 +1277,7 @@ class PlatformClient {
  * @property {string} [force]
  * @property {string} [mobile]
  * @property {string} [token]
+ * @property {string} [type]
  */
 /**
  * @typedef SendMobileVerifyLinkSuccess
@@ -1287,6 +1289,7 @@ class PlatformClient {
  * @property {string} [captcha_code]
  * @property {string} [country_code]
  * @property {string} [mobile]
+ * @property {string} [type]
  */
 /**
  * @typedef SendOtpResponse
@@ -4274,6 +4277,12 @@ class PlatformClient {
  * @property {Object} weight
  */
 /**
+ * @typedef AssetByShipment
+ * @property {Object} [assets]
+ * @property {string} expires_in
+ * @property {string} shipment_id
+ */
+/**
  * @typedef Attributes
  * @property {string} [brand_name]
  * @property {string} [essential]
@@ -5615,6 +5624,12 @@ class PlatformClient {
  * @typedef ResponseDetail
  * @property {string[]} [message]
  * @property {boolean} [success]
+ */
+/**
+ * @typedef ResponseGetAssetShipment
+ * @property {string} presigned_type
+ * @property {AssetByShipment[]} result
+ * @property {boolean} success
  */
 /**
  * @typedef ReturnConfig
@@ -7134,15 +7149,15 @@ class PlatformClient {
  * @property {GetAddressSerializer[]} [addresses]
  * @property {string} [business_type]
  * @property {string} [company_type]
- * @property {UserSerializer1} [created_by]
+ * @property {UserSerializer2} [created_by]
  * @property {string} [created_on]
- * @property {UserSerializer1} [modified_by]
+ * @property {UserSerializer2} [modified_by]
  * @property {string} [modified_on]
  * @property {string} [name]
  * @property {string} [reject_reason]
  * @property {string} [stage]
  * @property {number} [uid]
- * @property {UserSerializer1} [verified_by]
+ * @property {UserSerializer2} [verified_by]
  * @property {string} [verified_on]
  */
 /**
@@ -7219,14 +7234,14 @@ class PlatformClient {
  * @property {string} code
  * @property {GetCompanySerializer} [company]
  * @property {SellerPhoneNumber[]} [contact_numbers]
- * @property {UserSerializer2} [created_by]
+ * @property {UserSerializer1} [created_by]
  * @property {string} [created_on]
  * @property {string} display_name
  * @property {Document[]} [documents]
  * @property {InvoiceDetailsSerializer} [gst_credentials]
  * @property {LocationIntegrationType} [integration_type]
  * @property {LocationManagerSerializer} [manager]
- * @property {UserSerializer2} [modified_by]
+ * @property {UserSerializer1} [modified_by]
  * @property {string} [modified_on]
  * @property {string} name
  * @property {string[]} [notification_emails]
@@ -7236,7 +7251,7 @@ class PlatformClient {
  * @property {string} [store_type]
  * @property {LocationDayWiseSerializer[]} [timing]
  * @property {number} [uid]
- * @property {UserSerializer2} [verified_by]
+ * @property {UserSerializer1} [verified_by]
  * @property {string} [verified_on]
  * @property {Object} [warnings]
  */
@@ -8133,7 +8148,7 @@ class PlatformClient {
  * @property {NetQuantity} [net_quantity]
  * @property {number} [no_of_boxes]
  * @property {string[]} [product_group_tag]
- * @property {ProductPublish1} [product_publish]
+ * @property {ProductPublish} [product_publish]
  * @property {string} [requester]
  * @property {ReturnConfig} return_config
  * @property {string} [short_description]
@@ -8329,7 +8344,7 @@ class PlatformClient {
  * @property {string} [pending]
  * @property {string} [primary_color]
  * @property {string[]} [product_group_tag]
- * @property {ProductPublish} [product_publish]
+ * @property {ProductPublish1} [product_publish]
  * @property {ReturnConfigResponse} [return_config]
  * @property {string} [short_description]
  * @property {string} [size_guide]
@@ -11448,7 +11463,7 @@ class PlatformClient {
  * @property {Object} [extra_meta]
  * @property {number} [item_id]
  * @property {string} [item_size]
- * @property {Object} [parent_item_identifiers]
+ * @property {Object[]} [parent_item_identifiers]
  * @property {boolean} [pos]
  * @property {string[]} [product_group_tags]
  * @property {number} [quantity]
@@ -11979,7 +11994,7 @@ class PlatformClient {
  */
 /**
  * @typedef OpenapiCartDetailsRequest
- * @property {CartItem} [cart_items]
+ * @property {CartItem[]} cart_items
  */
 /**
  * @typedef OpenapiCartDetailsResponse
@@ -11990,7 +12005,7 @@ class PlatformClient {
  */
 /**
  * @typedef OpenApiCartServiceabilityRequest
- * @property {CartItem} [cart_items]
+ * @property {CartItem[]} cart_items
  * @property {ShippingAddress} shipping_address
  */
 /**

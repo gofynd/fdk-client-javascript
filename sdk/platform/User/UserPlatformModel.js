@@ -237,6 +237,7 @@ class UserModel {
     return Joi.object({
       otp: Joi.boolean(),
       password: Joi.boolean(),
+      voice_otp: Joi.boolean(),
     });
   }
   static LoginSuccess() {
@@ -489,6 +490,7 @@ class UserModel {
       force: Joi.string().allow(""),
       mobile: Joi.string().allow(""),
       token: Joi.string().allow(""),
+      type: Joi.string().allow(""),
     });
   }
   static SendMobileVerifyLinkSuccess() {
@@ -502,6 +504,7 @@ class UserModel {
       captcha_code: Joi.string().allow(""),
       country_code: Joi.string().allow(""),
       mobile: Joi.string().allow(""),
+      type: Joi.string().allow(""),
     });
   }
   static SendOtpResponse() {

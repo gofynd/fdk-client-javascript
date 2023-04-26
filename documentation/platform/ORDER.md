@@ -19,6 +19,7 @@ Handles all platform order and shipment api(s)
 * [getAnnouncements](#getannouncements)
 * [getAppOrderShipmentDetails](#getappordershipmentdetails)
 * [getApplicationShipments](#getapplicationshipments)
+* [getAssetByShipmentIds](#getassetbyshipmentids)
 * [getBagById](#getbagbyid)
 * [getBags](#getbags)
 * [getBulkActionFailedReport](#getbulkactionfailedreport)
@@ -1070,6 +1071,68 @@ const data = await platformClient.application("<APPLICATION_ID>").order.getAppli
 [ShipmentInternalPlatformViewResponse](#ShipmentInternalPlatformViewResponse)
 
 We are processing the report!
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### getAssetByShipmentIds
+Get Invoice or Label or Pos of a shipment
+
+
+
+```javascript
+// Promise
+const promise = platformClient.order.getAssetByShipmentIds({  shipmentIds : value,
+ invoice : value,
+ expiresIn : value });
+
+// Async/Await
+const data = await platformClient.order.getAssetByShipmentIds({  shipmentIds : value,
+ invoice : value,
+ expiresIn : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| shipmentIds | string | yes |  |    
+| invoice | boolean | no |  |    
+| expiresIn | string | no |  |  
+
+
+
+Use this API to retrieve shipments invoice, label and pos.
+
+*Returned Response:*
+
+
+
+
+[ResponseGetAssetShipment](#ResponseGetAssetShipment)
+
+Success. Check the example shown below or refer `ShipmentByIds` for more details.
 
 
 
@@ -5257,6 +5320,17 @@ We are processing the report!
 
 ---
 
+#### [AssetByShipment](#AssetByShipment)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | assets | [String: string]? |  yes  |  |
+ | expires_in | string |  no  |  |
+ | shipment_id | string |  no  |  |
+ 
+
+---
+
 #### [Attributes](#Attributes)
 
  | Properties | Type | Nullable | Description |
@@ -7355,6 +7429,17 @@ We are processing the report!
  | ---------- | ---- | -------- | ----------- |
  | message | [string]? |  yes  |  |
  | success | boolean? |  yes  |  |
+ 
+
+---
+
+#### [ResponseGetAssetShipment](#ResponseGetAssetShipment)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | presigned_type | string |  no  |  |
+ | result | [[AssetByShipment](#AssetByShipment)] |  no  |  |
+ | success | boolean |  no  |  |
  
 
 ---

@@ -22,7 +22,6 @@ Authentication Service
 * [getUserGroups](#getusergroups)
 * [searchUsers](#searchusers)
 * [unDeleteUser](#undeleteuser)
-* [updatePlatformConfig](#updateplatformconfig)
 * [updateUser](#updateuser)
 * [updateUserGroup](#updateusergroup)
 
@@ -761,7 +760,8 @@ Success. Returns a JSON object containing the all the platform configurations. R
   "forgot_password": true,
   "login": {
     "password": true,
-    "otp": true
+    "otp": true,
+    "voice_otp": false
   },
   "skip_captcha": false,
   "display": "Fynd",
@@ -1151,142 +1151,6 @@ Success
 ```json
 {
   "success": true
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### updatePlatformConfig
-Update platform configurations
-
-
-
-```javascript
-// Promise
-const promise = platformClient.application("<APPLICATION_ID>").user.updatePlatformConfig({  body : value });
-
-// Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").user.updatePlatformConfig({  body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |
-| body | [PlatformSchema](#PlatformSchema) | yes | Request body |
-
-
-Use this API to edit the existing platform configurations such as mobile image, desktop image, social logins, and all other text.
-
-*Returned Response:*
-
-
-
-
-[PlatformSchema](#PlatformSchema)
-
-Success. Returns a JSON object with the updated platform configurations. Refer `PlatformSchema` for more details.
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "active": true,
-  "mobile_image": "",
-  "desktop_image": "",
-  "social": {
-    "facebook": true,
-    "google": true,
-    "account_kit": true
-  },
-  "flash_card": {
-    "text": "",
-    "text_color": "#FFFFFF",
-    "background_color": "#EF5350"
-  },
-  "register": true,
-  "forgot_password": true,
-  "login": {
-    "password": true,
-    "otp": true
-  },
-  "skip_captcha": false,
-  "display": "Fynd",
-  "subtext": "Login to Fynd",
-  "name": "Fynd",
-  "meta": {},
-  "required_fields": {
-    "email": {
-      "is_required": false,
-      "level": "hard"
-    },
-    "mobile": {
-      "is_required": true,
-      "level": "hard"
-    }
-  },
-  "register_required_fields": {
-    "email": {
-      "is_required": false,
-      "level": "hard"
-    },
-    "mobile": {
-      "is_required": true,
-      "level": "hard"
-    }
-  },
-  "skip_login": false,
-  "look_and_feel": {
-    "background_color": "#F5F5F5",
-    "card_position": "center"
-  },
-  "social_tokens": {
-    "google": {
-      "appId": "token_123"
-    },
-    "facebook": {
-      "appId": "token_123"
-    },
-    "account_kit": {
-      "appId": "token_123"
-    }
-  },
-  "session_config": {
-    "duration": 30,
-    "type": "Days",
-    "is_rolling": false
-  },
-  "delete_account_reasons": [
-    {
-      "reason_text": "test",
-      "reason_id": "123",
-      "show_text_area": true
-    }
-  ],
-  "delete_account_day": 7,
-  "delete_account_consent": {
-    "consent_text": ""
-  },
-  "_id": "5e04a5e5220bc15839ad9bc0",
-  "created_at": "2019-12-26T12:21:57.878Z",
-  "updated_at": "2020-08-13T14:31:09.878Z",
-  "__v": 0
 }
 ```
 </details>
@@ -1854,6 +1718,7 @@ Success. returns updated User Group. `UserGroupResponseSchema` for more details.
  | ---------- | ---- | -------- | ----------- |
  | otp | boolean? |  yes  |  |
  | password | boolean? |  yes  |  |
+ | voice_otp | boolean? |  yes  |  |
  
 
 ---
@@ -2220,6 +2085,7 @@ Success. returns updated User Group. `UserGroupResponseSchema` for more details.
  | force | string? |  yes  |  |
  | mobile | string? |  yes  |  |
  | token | string? |  yes  |  |
+ | type | string? |  yes  |  |
  
 
 ---
@@ -2241,6 +2107,7 @@ Success. returns updated User Group. `UserGroupResponseSchema` for more details.
  | captcha_code | string? |  yes  |  |
  | country_code | string? |  yes  |  |
  | mobile | string? |  yes  |  |
+ | type | string? |  yes  |  |
  
 
 ---

@@ -916,7 +916,8 @@ Success. Returns a JSON object containing the all the platform configurations. R
   "forgot_password": true,
   "login": {
     "password": true,
-    "otp": true
+    "otp": true,
+    "voice_otp": false
   },
   "skip_captcha": false,
   "display": "Fynd",
@@ -3478,6 +3479,7 @@ Success. Returns a JSON object as shown below. Refer `VerifyOtpSuccess` for more
  | ---------- | ---- | -------- | ----------- |
  | otp | boolean? |  yes  |  |
  | password | boolean? |  yes  |  |
+ | voice_otp | boolean? |  yes  |  |
  
 
 ---
@@ -3844,6 +3846,7 @@ Success. Returns a JSON object as shown below. Refer `VerifyOtpSuccess` for more
  | force | string? |  yes  |  |
  | mobile | string? |  yes  |  |
  | token | string? |  yes  |  |
+ | type | string? |  yes  |  |
  
 
 ---
@@ -3865,6 +3868,7 @@ Success. Returns a JSON object as shown below. Refer `VerifyOtpSuccess` for more
  | captcha_code | string? |  yes  |  |
  | country_code | string? |  yes  |  |
  | mobile | string? |  yes  |  |
+ | type | string? |  yes  |  |
  
 
 ---

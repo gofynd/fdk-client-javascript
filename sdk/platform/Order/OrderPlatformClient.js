@@ -618,6 +618,79 @@ class Order {
 
   /**
    * @param {Object} arg - Arg object.
+   * @param {string} arg.shipmentIds -
+   * @param {boolean} [arg.invoice] -
+   * @param {string} [arg.expiresIn] -
+   * @returns {Promise<ResponseGetAssetShipment>} - Success response
+   * @summary: Get Invoice or Label or Pos of a shipment
+   * @description: Use this API to retrieve shipments invoice, label and pos.
+   */
+  async getAssetByShipmentIds({ shipmentIds, invoice, expiresIn } = {}) {
+    const { error } = OrderValidator.getAssetByShipmentIds().validate(
+      {
+        shipmentIds,
+        invoice,
+        expiresIn,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = OrderValidator.getAssetByShipmentIds().validate(
+      {
+        shipmentIds,
+        invoice,
+        expiresIn,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getAssetByShipmentIds",
+      });
+      Logger({ level: "WARN", message: warrning });
+    }
+
+    const query_params = {};
+    query_params["shipment_ids"] = shipmentIds;
+    query_params["invoice"] = invoice;
+    query_params["expires_in"] = expiresIn;
+
+    const xHeaders = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/orders/v1.0/company/${this.config.companyId}/shipments-invoice`,
+      query_params,
+      undefined,
+      xHeaders
+    );
+
+    const {
+      error: res_error,
+    } = OrderModel.ResponseGetAssetShipment().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getAssetByShipmentIds",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
    * @param {string} [arg.bagId] -
    * @param {string} [arg.channelBagId] -
    * @param {string} [arg.channelId] -

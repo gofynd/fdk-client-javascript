@@ -9046,7 +9046,7 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
  | extra_meta | string? |  yes  |  |
  | item_id | number? |  yes  |  |
  | item_size | string? |  yes  |  |
- | parent_item_identifiers | string? |  yes  |  |
+ | parent_item_identifiers | [[String: string]]? |  yes  |  |
  | pos | boolean? |  yes  |  |
  | product_group_tags | [string]? |  yes  |  |
  | quantity | number? |  yes  |  |
