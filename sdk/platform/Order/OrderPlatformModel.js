@@ -1637,6 +1637,7 @@ class OrderModel {
       delivery_charge: Joi.number(),
       discount: Joi.number(),
       fynd_credits: Joi.number(),
+      gift_price: Joi.number(),
       price_effective: Joi.number(),
       price_marked: Joi.number(),
       promotion_effective_discount: Joi.number(),

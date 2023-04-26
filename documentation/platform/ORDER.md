@@ -7286,6 +7286,7 @@ We are processing the report!
  | delivery_charge | number |  no  |  |
  | discount | number |  no  |  |
  | fynd_credits | number |  no  |  |
+ | gift_price | number |  no  |  |
  | price_effective | number |  no  |  |
  | price_marked | number |  no  |  |
  | promotion_effective_discount | number |  no  |  |
