@@ -5,6 +5,7 @@ const Paginator = require("../../common/Paginator");
 const ContentValidator = require("./ContentApplicationValidator");
 const ContentModel = require("./ContentApplicationModel");
 const { Logger } = require("./../../common/Logger");
+const Joi = require("joi");
 
 class Content {
   constructor(_conf) {

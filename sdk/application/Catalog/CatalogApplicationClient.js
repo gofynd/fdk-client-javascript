@@ -5,6 +5,7 @@ const Paginator = require("../../common/Paginator");
 const CatalogValidator = require("./CatalogApplicationValidator");
 const CatalogModel = require("./CatalogApplicationModel");
 const { Logger } = require("./../../common/Logger");
+const Joi = require("joi");
 
 class Catalog {
   constructor(_conf) {
