@@ -8056,6 +8056,7 @@ Success. Refer `Support` for more details.
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | description | string? |  yes  |  |
+ | image_url | string? |  yes  |  |
  | title | string? |  yes  |  |
  
 

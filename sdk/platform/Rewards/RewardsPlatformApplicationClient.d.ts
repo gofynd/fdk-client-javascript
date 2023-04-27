@@ -5,12 +5,14 @@ declare class Rewards {
     applicationId: any;
     /**
      * @param {Object} arg - Arg object.
+     * @param {string} arg.id - Giveaway ID
      * @param {string} arg.audienceId - Audience id
      * @returns {Promise<GiveawayAudience>} - Success response
      * @summary: Get the Giveaway audience status
      * @description: Get giveaway audience status
      */
-    getGiveawayAudienceStatus({ audienceId }?: {
+    getGiveawayAudienceStatus({ id, audienceId }?: {
+        id: string;
         audienceId: string;
     }): Promise<GiveawayAudience>;
     /**
@@ -26,16 +28,12 @@ declare class Rewards {
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.name - The name given to the offer.
-     * @param {string} arg.cookie - User's session cookie. This cookie is set in
-     *   browser cookie when logged-in to fynd's authentication system i.e.
-     *   `Grimlock` or by using grimlock-backend SDK for backend implementation.
      * @returns {Promise<Offer>} - Success response
      * @summary: Get offer by name
      * @description: Use this API to get the offer details and configuration by entering the name of the offer.
      */
-    getOfferByName({ name, cookie, }?: {
+    getOfferByName({ name }?: {
         name: string;
-        cookie: string;
     }): Promise<Offer>;
     /**
      * @param {Object} arg - Arg object.
@@ -44,6 +42,16 @@ declare class Rewards {
      * @description: Use this API to get a list of valid android paths required by the Rewards INIT API to validate a fradualent device.
      */
     getRewardsConfiguration({}?: any): Promise<ConfigurationRes>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {string} arg.userId - User id
+     * @returns {Promise<UserRes>} - Success response
+     * @summary: Get user reward details
+     * @description: Use this API to get the user reward details
+     */
+    getUserDetails({ userId }?: {
+        userId: string;
+    }): Promise<UserRes>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.userId - User id
@@ -149,15 +157,5 @@ declare class Rewards {
         userId: string;
         body: AppUser;
     }): Promise<AppUser>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.userId - User id
-     * @returns {Promise<UserRes>} - Success response
-     * @summary: Get user reward details
-     * @description: Use this API to get the user reward details
-     */
-    user({ userId }?: {
-        userId: string;
-    }): Promise<UserRes>;
 }
 import Paginator = require("../../common/Paginator");

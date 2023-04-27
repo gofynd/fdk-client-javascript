@@ -1452,6 +1452,7 @@ type DefaultNavigationResponse = {
 };
 type Detail = {
     description?: string;
+    image_url?: string;
     title?: string;
 };
 type EditorMeta = {
@@ -3506,6 +3507,7 @@ type AffiliateMeta = {
     employee_discount?: number;
     is_priority?: boolean;
     loyalty_discount?: number;
+    marketplace_invoice_id?: string;
     order_item_id?: string;
     quantity?: number;
     size_level_total_qty?: number;
@@ -4289,7 +4291,6 @@ type MarketPlacePdf = {
 };
 type Meta = {
     dimension?: Dimensions;
-    lock_data?: any;
 };
 type Meta1 = {
     kafka_emission_status?: number;

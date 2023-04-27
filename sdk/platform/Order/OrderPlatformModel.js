@@ -145,6 +145,7 @@ class OrderModel {
       employee_discount: Joi.number(),
       is_priority: Joi.boolean(),
       loyalty_discount: Joi.number(),
+      marketplace_invoice_id: Joi.string().allow("").allow(null),
       order_item_id: Joi.string().allow(""),
       quantity: Joi.number(),
       size_level_total_qty: Joi.number().allow(null),
@@ -1143,7 +1144,6 @@ class OrderModel {
   static Meta() {
     return Joi.object({
       dimension: OrderModel.Dimensions(),
-      lock_data: Joi.any(),
     });
   }
   static Meta1() {

@@ -5214,6 +5214,7 @@ We are processing the report!
  | employee_discount | number? |  yes  |  |
  | is_priority | boolean? |  yes  |  |
  | loyalty_discount | number? |  yes  |  |
+ | marketplace_invoice_id | string? |  yes  |  |
  | order_item_id | string? |  yes  |  |
  | quantity | number? |  yes  |  |
  | size_level_total_qty | number? |  yes  |  |
@@ -6614,7 +6615,6 @@ We are processing the report!
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | dimension | [Dimensions](#Dimensions)? |  yes  |  |
- | lock_data | string? |  yes  |  |
  
 
 ---
