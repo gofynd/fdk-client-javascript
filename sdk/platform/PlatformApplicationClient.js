@@ -1537,6 +1537,7 @@ class PlatformApplicationClient {
 /** @typedef ProductAction */
 /** @typedef ProductArticle */
 /** @typedef ProductAvailability */
+/** @typedef ProductAvailabilitySize */
 /** @typedef ProductImage */
 /** @typedef ProductPrice */
 /** @typedef ProductPriceInfo */

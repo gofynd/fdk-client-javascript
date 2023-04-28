@@ -17,8 +17,11 @@ Cart APIs
 * [getAbandonedCart](#getabandonedcart)
 * [getAbandonedCartDetails](#getabandonedcartdetails)
 * [getCouponById](#getcouponbyid)
+* [getCouponCodeExists](#getcouponcodeexists)
+* [getCouponOptionValues](#getcouponoptionvalues)
 * [getCoupons](#getcoupons)
 * [getPromotionById](#getpromotionbyid)
+* [getPromotionCodeExists](#getpromotioncodeexists)
 * [getPromotions](#getpromotions)
 * [updateCart](#updatecart)
 * [updateCoupon](#updatecoupon)
@@ -2600,6 +2603,183 @@ Coupon object for sent `id`
 ---
 
 
+### getCouponCodeExists
+Check if coupon is already created with coupon code
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").cart.getCouponCodeExists({  code : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").cart.getCouponCodeExists({  code : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| code | string | no |  |  
+
+
+
+Check if sent coupon code is already existing coupon code. As coupon code is to be unique.
+
+*Returned Response:*
+
+
+
+
+[Object](#Object)
+
+Valid response with existing coupon code count
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; Coupon code exists</i></summary>
+
+```json
+{
+  "value": {
+    "success": true,
+    "count": 1
+  }
+}
+```
+</details>
+
+<details>
+<summary><i>&nbsp; Coupon code is new</i></summary>
+
+```json
+{
+  "value": {
+    "success": true,
+    "count": 0
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### getCouponOptionValues
+Get coupon options enums with display values
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").cart.getCouponOptionValues();
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").cart.getCouponOptionValues();
+```
+
+
+
+
+
+
+Get coupon enum values for fields in valid coupon object. Used for front end to create, update and filter coupon lists via fields
+
+*Returned Response:*
+
+
+
+
+[Object](#Object)
+
+Coupon options enums
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "types": {
+    "absolute": "Absolute",
+    "percentage": "Percentage",
+    "bogo": "BOGO",
+    "bundle": "Bundle"
+  },
+  "scopes": {
+    "category_id": "Categories",
+    "brand_id": "Brands",
+    "company_id": "Sellers",
+    "store_id": "Stores",
+    "collection_id": "Collections"
+  },
+  "applicable_on": {
+    "amount": "Amount",
+    "quantity": "Quantity"
+  },
+  "value_types": {
+    "absolute": "Absolute",
+    "percentage": "Percentage",
+    "quantity": "Quantity",
+    "flat_price": "Absolute Price"
+  },
+  "calculate_on": {
+    "mrp": "MRP",
+    "esp": "ESP",
+    "tp": "TP"
+  },
+  "payable_category": {
+    "fynd": "Fynd",
+    "seller": "Seller"
+  },
+  "txn_mode": {
+    "fynd_cash": "Fynd Cash",
+    "cash": "Cashback",
+    "coupon": "Coupon Discount"
+  },
+  "payable_by": {
+    "Fynd Marketing": "Fynd Marketing",
+    "Fynd": "Fynd",
+    "Fynd Store": "Fynd Store",
+    "Fynd Delights": "Fynd Delights",
+    "Fynd Ops": "Fynd Ops",
+    "Fynd Inventory": "Fynd Inventory"
+  }
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
 ### getCoupons
 Get with single coupon details or coupon list
 
@@ -2886,6 +3066,86 @@ Promotion object for sent `id`
   }
 }
 ```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### getPromotionCodeExists
+Check if promotion is already created with promotion code
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").cart.getPromotionCodeExists({  code : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").cart.getPromotionCodeExists({  code : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| code | string | no |  |  
+
+
+
+Check if sent promotion code is already existing promotion code. As promotion code is to be unique.
+
+*Returned Response:*
+
+
+
+
+[Object](#Object)
+
+Valid response with existing promotion code count
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; Promotion code exists</i></summary>
+
+```json
+{
+  "value": {
+    "success": true,
+    "count": 1
+  }
+}
+```
+</details>
+
+<details>
+<summary><i>&nbsp; Promotion code is new</i></summary>
+
+```json
+{
+  "value": {
+    "success": true,
+    "count": 0
+  }
+}
+```
+</details>
+
 </details>
 
 
@@ -4087,7 +4347,7 @@ Promotion updated successfully
  | extra_meta | string? |  yes  |  |
  | item_id | number? |  yes  |  |
  | item_size | string? |  yes  |  |
- | parent_item_identifiers | string? |  yes  |  |
+ | parent_item_identifiers | [[String: string]]? |  yes  |  |
  | pos | boolean? |  yes  |  |
  | product_group_tags | [string]? |  yes  |  |
  | quantity | number? |  yes  |  |
@@ -4179,6 +4439,7 @@ Promotion updated successfully
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | applied_promo_details | [[AppliedPromotion](#AppliedPromotion)]? |  yes  |  |
  | breakup_values | [CartBreakup](#CartBreakup)? |  yes  |  |
  | buy_now | boolean? |  yes  |  |
  | checkout_mode | string? |  yes  |  |
@@ -4253,11 +4514,13 @@ Promotion updated successfully
  | availability | [ProductAvailability](#ProductAvailability)? |  yes  |  |
  | bulk_offer | string? |  yes  |  |
  | coupon_message | string? |  yes  |  |
+ | delivery_promise | [ShipmentPromise](#ShipmentPromise)? |  yes  |  |
  | discount | string? |  yes  |  |
  | identifiers | [CartProductIdentifer](#CartProductIdentifer) |  no  |  |
  | is_set | boolean? |  yes  |  |
  | key | string? |  yes  |  |
  | message | string? |  yes  |  |
+ | moq | string? |  yes  |  |
  | parent_item_identifiers | string? |  yes  |  |
  | price | [ProductPriceInfo](#ProductPriceInfo)? |  yes  |  |
  | price_per_unit | [ProductPriceInfo](#ProductPriceInfo)? |  yes  |  |
@@ -4575,7 +4838,7 @@ Promotion updated successfully
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | cart_items | [CartItem](#CartItem)? |  yes  |  |
+ | cart_items | [[CartItem](#CartItem)] |  no  |  |
  
 
 ---
@@ -4596,7 +4859,7 @@ Promotion updated successfully
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | cart_items | [CartItem](#CartItem)? |  yes  |  |
+ | cart_items | [[CartItem](#CartItem)] |  no  |  |
  | shipping_address | [ShippingAddress](#ShippingAddress) |  no  |  |
  
 
@@ -4863,11 +5126,23 @@ Promotion updated successfully
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | available_sizes | [[ProductAvailabilitySize](#ProductAvailabilitySize)]? |  yes  |  |
  | deliverable | boolean? |  yes  |  |
  | is_valid | boolean? |  yes  |  |
  | other_store_quantity | number? |  yes  |  |
  | out_of_stock | boolean? |  yes  |  |
  | sizes | [string]? |  yes  |  |
+ 
+
+---
+
+#### [ProductAvailabilitySize](#ProductAvailabilitySize)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | display | string? |  yes  |  |
+ | is_available | boolean? |  yes  |  |
+ | value | string? |  yes  |  |
  
 
 ---

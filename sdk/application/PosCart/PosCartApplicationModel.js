@@ -28,7 +28,9 @@ class PosCartModel {
       extra_meta: Joi.any(),
       item_id: Joi.number(),
       item_size: Joi.string().allow(""),
-      parent_item_identifiers: Joi.any(),
+      parent_item_identifiers: Joi.array().items(
+        Joi.object().pattern(/\S/, Joi.string().allow(""))
+      ),
       pos: Joi.boolean(),
       product_group_tags: Joi.array().items(Joi.string().allow("").allow(null)),
       quantity: Joi.number(),
@@ -151,6 +153,7 @@ class PosCartModel {
   }
   static CartDetailResponse() {
     return Joi.object({
+      applied_promo_details: Joi.array().items(PosCartModel.AppliedPromotion()),
       breakup_values: PosCartModel.CartBreakup(),
       buy_now: Joi.boolean(),
       checkout_mode: Joi.string().allow(""),
@@ -239,11 +242,13 @@ class PosCartModel {
       availability: PosCartModel.ProductAvailability(),
       bulk_offer: Joi.any(),
       coupon_message: Joi.string().allow(""),
+      delivery_promise: PosCartModel.ShipmentPromise(),
       discount: Joi.string().allow(""),
       identifiers: PosCartModel.CartProductIdentifer().required(),
       is_set: Joi.boolean(),
       key: Joi.string().allow(""),
       message: Joi.string().allow(""),
+      moq: Joi.any(),
       parent_item_identifiers: Joi.any(),
       price: PosCartModel.ProductPriceInfo(),
       price_per_unit: PosCartModel.ProductPriceInfo(),
@@ -379,6 +384,7 @@ class PosCartModel {
   static GetAddressesResponse() {
     return Joi.object({
       address: Joi.array().items(PosCartModel.Address()),
+      pii_masking: Joi.boolean(),
     });
   }
   static GetCouponResponse() {
@@ -506,11 +512,21 @@ class PosCartModel {
   }
   static ProductAvailability() {
     return Joi.object({
+      available_sizes: Joi.array().items(
+        PosCartModel.ProductAvailabilitySize()
+      ),
       deliverable: Joi.boolean(),
       is_valid: Joi.boolean(),
       other_store_quantity: Joi.number(),
       out_of_stock: Joi.boolean(),
       sizes: Joi.array().items(Joi.string().allow("")),
+    });
+  }
+  static ProductAvailabilitySize() {
+    return Joi.object({
+      display: Joi.string().allow(""),
+      is_available: Joi.boolean(),
+      value: Joi.string().allow(""),
     });
   }
   static ProductImage() {

@@ -138,6 +138,23 @@ declare class Cart {
     }): Promise<CouponUpdate>;
     /**
      * @param {Object} arg - Arg object.
+     * @param {string} [arg.code] -
+     * @returns {Promise<Object>} - Success response
+     * @summary: Check if coupon is already created with coupon code
+     * @description: Check if sent coupon code is already existing coupon code. As coupon code is to be unique.
+     */
+    getCouponCodeExists({ code }?: {
+        code?: string;
+    }): Promise<any>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @returns {Promise<Object>} - Success response
+     * @summary: Get coupon options enums with display values
+     * @description: Get coupon enum values for fields in valid coupon object. Used for front end to create, update and filter coupon lists via fields
+     */
+    getCouponOptionValues({}?: any): Promise<any>;
+    /**
+     * @param {Object} arg - Arg object.
      * @param {number} [arg.pageNo] -
      * @param {number} [arg.pageSize] -
      * @param {boolean} [arg.isArchived] -
@@ -195,6 +212,16 @@ declare class Cart {
     getPromotionById({ id }?: {
         id: string;
     }): Promise<PromotionUpdate>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {string} [arg.code] -
+     * @returns {Promise<Object>} - Success response
+     * @summary: Check if promotion is already created with promotion code
+     * @description: Check if sent promotion code is already existing promotion code. As promotion code is to be unique.
+     */
+    getPromotionCodeExists({ code }?: {
+        code?: string;
+    }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @param {number} [arg.pageNo] -

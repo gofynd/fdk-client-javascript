@@ -74,7 +74,9 @@ class CartModel {
       extra_meta: Joi.any(),
       item_id: Joi.number(),
       item_size: Joi.string().allow(""),
-      parent_item_identifiers: Joi.any(),
+      parent_item_identifiers: Joi.array().items(
+        Joi.object().pattern(/\S/, Joi.string().allow(""))
+      ),
       pos: Joi.boolean(),
       product_group_tags: Joi.array().items(Joi.string().allow("").allow(null)),
       quantity: Joi.number(),
@@ -134,6 +136,7 @@ class CartModel {
   }
   static CartDetailResponse() {
     return Joi.object({
+      applied_promo_details: Joi.array().items(CartModel.AppliedPromotion()),
       breakup_values: CartModel.CartBreakup(),
       buy_now: Joi.boolean(),
       checkout_mode: Joi.string().allow(""),
@@ -188,11 +191,13 @@ class CartModel {
       availability: CartModel.ProductAvailability(),
       bulk_offer: Joi.any(),
       coupon_message: Joi.string().allow(""),
+      delivery_promise: CartModel.ShipmentPromise(),
       discount: Joi.string().allow(""),
       identifiers: CartModel.CartProductIdentifer().required(),
       is_set: Joi.boolean(),
       key: Joi.string().allow(""),
       message: Joi.string().allow(""),
+      moq: Joi.any(),
       parent_item_identifiers: Joi.any(),
       price: CartModel.ProductPriceInfo(),
       price_per_unit: CartModel.ProductPriceInfo(),
@@ -418,7 +423,7 @@ class CartModel {
   }
   static OpenapiCartDetailsRequest() {
     return Joi.object({
-      cart_items: CartModel.CartItem(),
+      cart_items: Joi.array().items(CartModel.CartItem()).required(),
     });
   }
   static OpenapiCartDetailsResponse() {
@@ -431,7 +436,7 @@ class CartModel {
   }
   static OpenApiCartServiceabilityRequest() {
     return Joi.object({
-      cart_items: CartModel.CartItem(),
+      cart_items: Joi.array().items(CartModel.CartItem()).required(),
       shipping_address: CartModel.ShippingAddress().required(),
     });
   }
@@ -616,11 +621,19 @@ class CartModel {
   }
   static ProductAvailability() {
     return Joi.object({
+      available_sizes: Joi.array().items(CartModel.ProductAvailabilitySize()),
       deliverable: Joi.boolean(),
       is_valid: Joi.boolean(),
       other_store_quantity: Joi.number(),
       out_of_stock: Joi.boolean(),
       sizes: Joi.array().items(Joi.string().allow("")),
+    });
+  }
+  static ProductAvailabilitySize() {
+    return Joi.object({
+      display: Joi.string().allow(""),
+      is_available: Joi.boolean(),
+      value: Joi.string().allow(""),
     });
   }
   static ProductImage() {

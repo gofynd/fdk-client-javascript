@@ -2347,6 +2347,7 @@ Success. Returns a JSON object containing all the tags injected in the applicati
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | description | string? |  yes  |  |
+ | image_url | string? |  yes  |  |
  | title | string? |  yes  |  |
  
 

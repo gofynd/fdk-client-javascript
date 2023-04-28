@@ -66,6 +66,16 @@ class CartValidator {
     }).required();
   }
 
+  static getCouponCodeExists() {
+    return Joi.object({
+      code: Joi.string().allow(""),
+    }).required();
+  }
+
+  static getCouponOptionValues() {
+    return Joi.object({}).required();
+  }
+
   static getCoupons() {
     return Joi.object({
       pageNo: Joi.number(),
@@ -82,6 +92,12 @@ class CartValidator {
   static getPromotionById() {
     return Joi.object({
       id: Joi.string().allow("").required(),
+    }).required();
+  }
+
+  static getPromotionCodeExists() {
+    return Joi.object({
+      code: Joi.string().allow(""),
     }).required();
   }
 
