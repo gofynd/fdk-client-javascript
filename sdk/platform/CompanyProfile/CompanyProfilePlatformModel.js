@@ -18,8 +18,8 @@ class CompanyProfileModel {
   }
   static BrandBannerSerializer() {
     return Joi.object({
-      landscape: Joi.string().allow("").required(),
-      portrait: Joi.string().allow("").required(),
+      landscape: Joi.string().allow(""),
+      portrait: Joi.string().allow(""),
     });
   }
   static BulkLocationSerializer() {

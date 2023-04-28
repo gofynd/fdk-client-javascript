@@ -1377,8 +1377,8 @@ Returns a success response
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | landscape | string |  no  |  |
- | portrait | string |  no  |  |
+ | landscape | string? |  yes  |  |
+ | portrait | string? |  yes  |  |
  
 
 ---

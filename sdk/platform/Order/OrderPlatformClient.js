@@ -553,6 +553,78 @@ class Order {
 
   /**
    * @param {Object} arg - Arg object.
+   * @param {string} arg.orderId -
+   * @param {string} [arg.documentType] -
+   * @returns {Promise<GeneratePosOrderReceiptResponse>} - Success response
+   * @summary:
+   * @description:
+   */
+  async generatePOSReceiptByOrderId({ orderId, documentType } = {}) {
+    const { error } = OrderValidator.generatePOSReceiptByOrderId().validate(
+      {
+        orderId,
+        documentType,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = OrderValidator.generatePOSReceiptByOrderId().validate(
+      {
+        orderId,
+        documentType,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message:
+          "Parameter Validation warrnings for generatePOSReceiptByOrderId",
+      });
+      Logger({ level: "WARN", message: warrning });
+    }
+
+    const query_params = {};
+    query_params["document_type"] = documentType;
+
+    const xHeaders = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/orders/v1.0/company/${this.config.companyId}/orders/${orderId}/generate/pos-receipt`,
+      query_params,
+      undefined,
+      xHeaders
+    );
+
+    const {
+      error: res_error,
+    } = OrderModel.GeneratePosOrderReceiptResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message:
+          "Response Validation Warnnings for generatePOSReceiptByOrderId",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
    * @param {string} [arg.date] -
    * @returns {Promise<AnnouncementsResponse>} - Success response
    * @summary:

@@ -37,12 +37,14 @@ declare class Order {
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.shipmentId - ID of the shipment.
+     * @param {string} [arg.documentType] -
      * @returns {Promise<ResponseGetInvoiceShipment>} - Success response
      * @summary: Get Invoice of a shipment
      * @description: Use this API to retrieve shipment invoice.
      */
-    getInvoiceByShipmentId({ shipmentId }?: {
+    getInvoiceByShipmentId({ shipmentId, documentType }?: {
         shipmentId: string;
+        documentType?: string;
     }): Promise<ResponseGetInvoiceShipment>;
     /**
      * @param {Object} arg - Arg object.

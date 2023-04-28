@@ -724,6 +724,7 @@ class PlatformApplicationClient {
 /** @typedef Formatted */
 /** @typedef FulfillingStore */
 /** @typedef FyndOrderIdList */
+/** @typedef GeneratePosOrderReceiptResponse */
 /** @typedef GetActionsResponse */
 /** @typedef GetBagsPlatformResponse */
 /** @typedef GiftCard */

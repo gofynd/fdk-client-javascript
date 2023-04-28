@@ -959,6 +959,14 @@ class OrderModel {
       fynd_order_id: Joi.array().items(Joi.string().allow("")),
     });
   }
+  static GeneratePosOrderReceiptResponse() {
+    return Joi.object({
+      invoice_receipt: Joi.string().allow(""),
+      order_id: Joi.string().allow(""),
+      payment_receipt: Joi.string().allow(""),
+      success: Joi.boolean(),
+    });
+  }
   static GetActionsResponse() {
     return Joi.object({
       permissions: OrderModel.ActionInfo().required(),

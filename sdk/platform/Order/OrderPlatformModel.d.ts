@@ -95,6 +95,7 @@ declare class OrderModel {
     static Formatted(): any;
     static FulfillingStore(): any;
     static FyndOrderIdList(): any;
+    static GeneratePosOrderReceiptResponse(): any;
     static GetActionsResponse(): any;
     static GetBagsPlatformResponse(): any;
     static GiftCard(): any;

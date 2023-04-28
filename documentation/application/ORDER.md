@@ -101,10 +101,12 @@ Get Invoice of a shipment
 
 ```javascript
 // Promise
-const promise = applicationClient.order.getInvoiceByShipmentId({  shipmentId : value });
+const promise = applicationClient.order.getInvoiceByShipmentId({  shipmentId : value,
+ documentType : value });
 
 // Async/Await
-const data = await applicationClient.order.getInvoiceByShipmentId({  shipmentId : value });
+const data = await applicationClient.order.getInvoiceByShipmentId({  shipmentId : value,
+ documentType : value });
 ```
 
 
@@ -113,7 +115,8 @@ const data = await applicationClient.order.getInvoiceByShipmentId({  shipmentId 
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
-| shipmentId | string | yes | ID of the shipment. |  
+| shipmentId | string | yes | ID of the shipment. |    
+| documentType | string | no |  |  
 
 
 

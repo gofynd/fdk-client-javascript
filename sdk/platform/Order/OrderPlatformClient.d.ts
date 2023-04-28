@@ -94,6 +94,18 @@ declare class Order {
     }): Promise<SuccessResponse>;
     /**
      * @param {Object} arg - Arg object.
+     * @param {string} arg.orderId -
+     * @param {string} [arg.documentType] -
+     * @returns {Promise<GeneratePosOrderReceiptResponse>} - Success response
+     * @summary:
+     * @description:
+     */
+    generatePOSReceiptByOrderId({ orderId, documentType }?: {
+        orderId: string;
+        documentType?: string;
+    }): Promise<GeneratePosOrderReceiptResponse>;
+    /**
+     * @param {Object} arg - Arg object.
      * @param {string} [arg.date] -
      * @returns {Promise<AnnouncementsResponse>} - Success response
      * @summary:

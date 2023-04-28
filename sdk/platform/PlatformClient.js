@@ -4942,6 +4942,13 @@ class PlatformClient {
  * @property {string[]} [fynd_order_id]
  */
 /**
+ * @typedef GeneratePosOrderReceiptResponse
+ * @property {string} [invoice_receipt]
+ * @property {string} [order_id]
+ * @property {string} [payment_receipt]
+ * @property {boolean} [success]
+ */
+/**
  * @typedef GetActionsResponse
  * @property {ActionInfo} permissions
  */
@@ -8890,8 +8897,8 @@ class PlatformClient {
  */
 /**
  * @typedef BrandBannerSerializer
- * @property {string} landscape
- * @property {string} portrait
+ * @property {string} [landscape]
+ * @property {string} [portrait]
  */
 /**
  * @typedef BulkLocationSerializer
