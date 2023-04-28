@@ -3267,6 +3267,7 @@ type AffiliateMeta = {
     employee_discount?: number;
     is_priority?: boolean;
     loyalty_discount?: number;
+    marketplace_invoice_id?: string;
     order_item_id?: string;
     quantity?: number;
     size_level_total_qty?: number;

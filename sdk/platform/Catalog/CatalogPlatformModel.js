@@ -1622,7 +1622,7 @@ class CatalogModel {
       has_next: Joi.boolean(),
       has_previous: Joi.boolean(),
       item_total: Joi.number().required(),
-      next_id: Joi.string().allow(""),
+      next_id: Joi.string().allow("").allow(null),
       type: Joi.string().allow("").required(),
     });
   }
