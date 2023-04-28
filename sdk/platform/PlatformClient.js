@@ -3970,6 +3970,7 @@ class PlatformClient {
  * @property {number} [employee_discount]
  * @property {boolean} [is_priority]
  * @property {number} [loyalty_discount]
+ * @property {string} [marketplace_invoice_id]
  * @property {string} [order_item_id]
  * @property {number} [quantity]
  * @property {number} [size_level_total_qty]
