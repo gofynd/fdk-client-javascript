@@ -4,6 +4,7 @@ const Paginator = require("../../common/Paginator");
 const CommonValidator = require("./CommonPlatformValidator");
 const CommonModel = require("./CommonPlatformModel");
 const { Logger } = require("./../../common/Logger");
+const Joi = require("joi");
 
 class Common {
   constructor(config) {

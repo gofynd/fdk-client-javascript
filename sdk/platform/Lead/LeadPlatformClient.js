@@ -4,6 +4,7 @@ const Paginator = require("../../common/Paginator");
 const LeadValidator = require("./LeadPlatformValidator");
 const LeadModel = require("./LeadPlatformModel");
 const { Logger } = require("./../../common/Logger");
+const Joi = require("joi");
 
 class Lead {
   constructor(config) {

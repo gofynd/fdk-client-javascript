@@ -4,6 +4,7 @@ const Paginator = require("../../common/Paginator");
 const AnalyticsValidator = require("./AnalyticsPlatformValidator");
 const AnalyticsModel = require("./AnalyticsPlatformModel");
 const { Logger } = require("./../../common/Logger");
+const Joi = require("joi");
 
 class Analytics {
   constructor(config) {

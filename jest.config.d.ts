@@ -9,3 +9,4 @@ export namespace coverageThreshold {
         const lines: number;
     }
 }
+export const testPathIgnorePatterns: string[];

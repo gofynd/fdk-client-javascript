@@ -4,6 +4,7 @@ const Paginator = require("../../common/Paginator");
 const BillingValidator = require("./BillingPlatformValidator");
 const BillingModel = require("./BillingPlatformModel");
 const { Logger } = require("./../../common/Logger");
+const Joi = require("joi");
 
 class Billing {
   constructor(config) {
