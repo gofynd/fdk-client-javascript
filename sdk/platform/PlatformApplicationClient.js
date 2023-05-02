@@ -653,6 +653,10 @@ class PlatformApplicationClient {
 /** @typedef ArticleDetails */
 /** @typedef ArticleDetails1 */
 /** @typedef AssetByShipment */
+/** @typedef AttachOrderUser */
+/** @typedef AttachOrderUserResponse */
+/** @typedef AttachUserInfo */
+/** @typedef AttachUserOtpData */
 /** @typedef Attributes */
 /** @typedef B2BPODetails */
 /** @typedef BagConfigs */
@@ -695,6 +699,7 @@ class PlatformApplicationClient {
 /** @typedef CreateOrderErrorReponse */
 /** @typedef CreateOrderPayload */
 /** @typedef CreateOrderResponse */
+/** @typedef CreditBalanceInfo */
 /** @typedef CurrentStatus */
 /** @typedef DataUpdates */
 /** @typedef Dates */
@@ -715,6 +720,8 @@ class PlatformApplicationClient {
 /** @typedef ErrorDetail */
 /** @typedef ErrorResponse */
 /** @typedef ErrorResponse1 */
+/** @typedef FetchCreditBalanceRequestPayload */
+/** @typedef FetchCreditBalanceResponsePayload */
 /** @typedef FileResponse */
 /** @typedef FileUploadResponse */
 /** @typedef FilterInfoOption */
@@ -789,6 +796,7 @@ class PlatformApplicationClient {
 /** @typedef PlatformShipmentTrack */
 /** @typedef PlatformTrack */
 /** @typedef PlatformUserDetails */
+/** @typedef PointBlankOtpData */
 /** @typedef PostActivityHistory */
 /** @typedef PostHistoryData */
 /** @typedef PostHistoryDict */
@@ -805,10 +813,15 @@ class PlatformApplicationClient {
 /** @typedef QuestionSet */
 /** @typedef Reason */
 /** @typedef ReasonsData */
+/** @typedef RefundModeConfigRequestPayload */
+/** @typedef RefundModeConfigResponsePayload */
+/** @typedef RefundModeInfo */
 /** @typedef ResponseDetail */
 /** @typedef ResponseGetAssetShipment */
 /** @typedef ReturnConfig */
 /** @typedef SendSmsPayload */
+/** @typedef SendUserMobileOTP */
+/** @typedef SendUserMobileOtpResponse */
 /** @typedef Shipment */
 /** @typedef ShipmentConfig */
 /** @typedef ShipmentData */
@@ -828,6 +841,7 @@ class PlatformApplicationClient {
 /** @typedef ShipmentStatusData */
 /** @typedef ShipmentTimeStamp */
 /** @typedef ShippingInfo */
+/** @typedef SingleRefundModeInfo */
 /** @typedef SmsDataPayload */
 /** @typedef StatuesRequest */
 /** @typedef StatuesResponse */

@@ -4,6 +4,7 @@ const Paginator = require("../../common/Paginator");
 const FileStorageValidator = require("./FileStoragePlatformValidator");
 const FileStorageModel = require("./FileStoragePlatformModel");
 const { Logger } = require("./../../common/Logger");
+const Joi = require("joi");
 
 const axios = require("axios");
 
@@ -375,7 +376,7 @@ class FileStorage {
 
     const response = await PlatformAPIClient.execute(
       this.config,
-      "post",
+      "get",
       `/service/platform/assets/v1.0/company/${this.config.companyId}/proxy/`,
       query_params,
       undefined,

@@ -5,7 +5,7 @@ const Paginator = require("../../common/Paginator");
 const FileStorageValidator = require("./FileStorageApplicationValidator");
 const FileStorageModel = require("./FileStorageApplicationModel");
 const { Logger } = require("./../../common/Logger");
-
+const Joi = require("joi");
 const axios = require("axios");
 
 class FileStorage {

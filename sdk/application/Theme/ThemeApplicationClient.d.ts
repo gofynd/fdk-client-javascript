@@ -5,8 +5,10 @@ declare class Theme {
     _relativeUrls: {
         getAllPages: string;
         getAppliedTheme: string;
+        getAppliedThemeV2: string;
         getPage: string;
         getThemeForPreview: string;
+        getThemeForPreviewV2: string;
     };
     _urls: {};
     updateUrls(urls: any): void;
@@ -29,6 +31,13 @@ declare class Theme {
     getAppliedTheme({}?: any): Promise<ThemesSchema>;
     /**
      * @param {Object} arg - Arg object.
+     * @returns {Promise<ThemesSchema>} - Success response
+     * @summary: Get the theme currently applied to an application
+     * @description: An application has multiple themes, but only one theme can be applied at a time. Use this API to retrieve the theme currently applied to the application.
+     */
+    getAppliedThemeV2({}?: any): Promise<ThemesSchema>;
+    /**
+     * @param {Object} arg - Arg object.
      * @param {string} arg.themeId - ID of the theme to be retrieved
      * @param {string} arg.pageValue - Value of the page to be retrieved
      * @returns {Promise<AvailablePageSchema>} - Success response
@@ -47,6 +56,16 @@ declare class Theme {
      * @description: A theme can be previewed before applying it. Use this API to retrieve the preview of a theme by its ID.
      */
     getThemeForPreview({ themeId }?: {
+        themeId: string;
+    }): Promise<ThemesSchema>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {string} arg.themeId - ID of the theme to be retrieved
+     * @returns {Promise<ThemesSchema>} - Success response
+     * @summary: Get a theme for a preview
+     * @description: A theme can be previewed before applying it. Use this API to retrieve the preview of a theme by its ID.
+     */
+    getThemeForPreviewV2({ themeId }?: {
         themeId: string;
     }): Promise<ThemesSchema>;
 }

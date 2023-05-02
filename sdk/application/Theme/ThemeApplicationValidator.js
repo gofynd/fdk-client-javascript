@@ -12,6 +12,10 @@ class ThemeValidator {
     return Joi.object({});
   }
 
+  static getAppliedThemeV2() {
+    return Joi.object({});
+  }
+
   static getPage() {
     return Joi.object({
       themeId: Joi.string().allow("").required(),
@@ -20,6 +24,12 @@ class ThemeValidator {
   }
 
   static getThemeForPreview() {
+    return Joi.object({
+      themeId: Joi.string().allow("").required(),
+    }).required();
+  }
+
+  static getThemeForPreviewV2() {
     return Joi.object({
       themeId: Joi.string().allow("").required(),
     }).required();

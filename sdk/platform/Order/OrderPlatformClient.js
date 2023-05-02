@@ -4,10 +4,75 @@ const Paginator = require("../../common/Paginator");
 const OrderValidator = require("./OrderPlatformValidator");
 const OrderModel = require("./OrderPlatformModel");
 const { Logger } = require("./../../common/Logger");
+const Joi = require("joi");
 
 class Order {
   constructor(config) {
     this.config = config;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {AttachOrderUser} arg.body
+   * @returns {Promise<AttachOrderUserResponse>} - Success response
+   * @summary:
+   * @description:
+   */
+  async attachOrderUser({ body } = {}) {
+    const { error } = OrderValidator.attachOrderUser().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = OrderValidator.attachOrderUser().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for attachOrderUser",
+      });
+      Logger({ level: "WARN", message: warrning });
+    }
+
+    const query_params = {};
+
+    const xHeaders = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/order-manage/v1.0/company/${this.config.companyId}/user/attach`,
+      query_params,
+      body,
+      xHeaders
+    );
+
+    const {
+      error: res_error,
+    } = OrderModel.AttachOrderUserResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for attachOrderUser",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
@@ -544,6 +609,136 @@ class Order {
       Logger({
         level: "WARN",
         message: "Response Validation Warnnings for dispatchManifest",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {FetchCreditBalanceRequestPayload} arg.body
+   * @returns {Promise<FetchCreditBalanceResponsePayload>} - Success response
+   * @summary:
+   * @description:
+   */
+  async fetchCreditBalanceDetail({ body } = {}) {
+    const { error } = OrderValidator.fetchCreditBalanceDetail().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = OrderValidator.fetchCreditBalanceDetail().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for fetchCreditBalanceDetail",
+      });
+      Logger({ level: "WARN", message: warrning });
+    }
+
+    const query_params = {};
+
+    const xHeaders = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/order-manage/v1.0/company/${this.config.companyId}/customer-credit-balance`,
+      query_params,
+      body,
+      xHeaders
+    );
+
+    const {
+      error: res_error,
+    } = OrderModel.FetchCreditBalanceResponsePayload().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for fetchCreditBalanceDetail",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {RefundModeConfigRequestPayload} arg.body
+   * @returns {Promise<RefundModeConfigResponsePayload>} - Success response
+   * @summary:
+   * @description:
+   */
+  async fetchRefundModeConfig({ body } = {}) {
+    const { error } = OrderValidator.fetchRefundModeConfig().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = OrderValidator.fetchRefundModeConfig().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for fetchRefundModeConfig",
+      });
+      Logger({ level: "WARN", message: warrning });
+    }
+
+    const query_params = {};
+
+    const xHeaders = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/order-manage/v1.0/company/${this.config.companyId}/refund-mode-config`,
+      query_params,
+      body,
+      xHeaders
+    );
+
+    const {
+      error: res_error,
+    } = OrderModel.RefundModeConfigResponsePayload().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for fetchRefundModeConfig",
       });
       Logger({ level: "WARN", message: res_error });
     }
@@ -2957,6 +3152,70 @@ class Order {
       Logger({
         level: "WARN",
         message: "Response Validation Warnnings for sendSmsNinjaPlatform",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {SendUserMobileOTP} arg.body
+   * @returns {Promise<SendUserMobileOtpResponse>} - Success response
+   * @summary:
+   * @description:
+   */
+  async sendUserMobileOTP({ body } = {}) {
+    const { error } = OrderValidator.sendUserMobileOTP().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = OrderValidator.sendUserMobileOTP().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for sendUserMobileOTP",
+      });
+      Logger({ level: "WARN", message: warrning });
+    }
+
+    const query_params = {};
+
+    const xHeaders = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/order-manage/v1.0/company/${this.config.companyId}/user/send/otp/mobile`,
+      query_params,
+      body,
+      xHeaders
+    );
+
+    const {
+      error: res_error,
+    } = OrderModel.SendUserMobileOtpResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for sendUserMobileOTP",
       });
       Logger({ level: "WARN", message: res_error });
     }

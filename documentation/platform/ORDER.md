@@ -8,6 +8,7 @@
 ## Order Methods
 Handles all platform order and shipment api(s)
 
+* [attachOrderUser](#attachorderuser)
 * [bulkActionDetails](#bulkactiondetails)
 * [bulkActionProcessXlsxFile](#bulkactionprocessxlsxfile)
 * [checkOrderStatus](#checkorderstatus)
@@ -16,6 +17,8 @@ Handles all platform order and shipment api(s)
 * [createOrder](#createorder)
 * [createShipmentReport](#createshipmentreport)
 * [dispatchManifest](#dispatchmanifest)
+* [fetchCreditBalanceDetail](#fetchcreditbalancedetail)
+* [fetchRefundModeConfig](#fetchrefundmodeconfig)
 * [generatePOSReceiptByOrderId](#generateposreceiptbyorderid)
 * [getAnnouncements](#getannouncements)
 * [getAppOrderShipmentDetails](#getappordershipmentdetails)
@@ -48,6 +51,7 @@ Handles all platform order and shipment api(s)
 * [reassignLocation](#reassignlocation)
 * [sendSmsNinja](#sendsmsninja)
 * [sendSmsNinjaPlatform](#sendsmsninjaplatform)
+* [sendUserMobileOTP](#sendusermobileotp)
 * [trackShipmentPlatform](#trackshipmentplatform)
 * [updateAddress](#updateaddress)
 * [updatePackagingDimensions](#updatepackagingdimensions)
@@ -61,6 +65,61 @@ Handles all platform order and shipment api(s)
 ## Methods with example and description
 
 
+
+
+### attachOrderUser
+
+
+
+
+```javascript
+// Promise
+const promise = platformClient.order.attachOrderUser({  body : value });
+
+// Async/Await
+const data = await platformClient.order.attachOrderUser({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [AttachOrderUser](#AttachOrderUser) | yes | Request body |
+
+
+
+
+*Returned Response:*
+
+
+
+
+[AttachOrderUserResponse](#AttachOrderUserResponse)
+
+Attach user to order
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
 
 
 ### bulkActionDetails
@@ -527,6 +586,116 @@ const data = await platformClient.order.dispatchManifest({  body : value });
 [SuccessResponse](#SuccessResponse)
 
 Shipment Dispatched mapped with manifest!
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### fetchCreditBalanceDetail
+
+
+
+
+```javascript
+// Promise
+const promise = platformClient.order.fetchCreditBalanceDetail({  body : value });
+
+// Async/Await
+const data = await platformClient.order.fetchCreditBalanceDetail({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [FetchCreditBalanceRequestPayload](#FetchCreditBalanceRequestPayload) | yes | Request body |
+
+
+
+
+*Returned Response:*
+
+
+
+
+[FetchCreditBalanceResponsePayload](#FetchCreditBalanceResponsePayload)
+
+Credit Balance will be fetched
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### fetchRefundModeConfig
+
+
+
+
+```javascript
+// Promise
+const promise = platformClient.order.fetchRefundModeConfig({  body : value });
+
+// Async/Await
+const data = await platformClient.order.fetchRefundModeConfig({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [RefundModeConfigRequestPayload](#RefundModeConfigRequestPayload) | yes | Request body |
+
+
+
+
+*Returned Response:*
+
+
+
+
+[RefundModeConfigResponsePayload](#RefundModeConfigResponsePayload)
+
+Refund mode config is returned based on input parameter
 
 
 
@@ -4628,6 +4797,70 @@ Sms Sent successfully
 ---
 
 
+### sendUserMobileOTP
+
+
+
+
+```javascript
+// Promise
+const promise = platformClient.order.sendUserMobileOTP({  body : value });
+
+// Async/Await
+const data = await platformClient.order.sendUserMobileOTP({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [SendUserMobileOTP](#SendUserMobileOTP) | yes | Request body |
+
+
+
+
+*Returned Response:*
+
+
+
+
+[SendUserMobileOtpResponse](#SendUserMobileOtpResponse)
+
+Send OTP to user mobile
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "success": true,
+  "data": {
+    "request_id": "112312312",
+    "message": "Text",
+    "resend_timer": "600",
+    "mobile": 99990000
+  },
+  "message": "Text"
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
 ### trackShipmentPlatform
 Track shipment
 
@@ -5392,6 +5625,48 @@ We are processing the report!
 
 ---
 
+#### [AttachOrderUser](#AttachOrderUser)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | fynd_order_id | string |  no  |  |
+ | otp_data | [AttachUserOtpData](#AttachUserOtpData) |  no  |  |
+ | user_info | [AttachUserInfo](#AttachUserInfo) |  no  |  |
+ 
+
+---
+
+#### [AttachOrderUserResponse](#AttachOrderUserResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | message | string? |  yes  |  |
+ | success | boolean? |  yes  |  |
+ 
+
+---
+
+#### [AttachUserInfo](#AttachUserInfo)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | first_name | string |  no  |  |
+ | last_name | string |  no  |  |
+ | mobile | number |  no  |  |
+ 
+
+---
+
+#### [AttachUserOtpData](#AttachUserOtpData)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | otp_code | number |  no  |  |
+ | request_id | string |  no  |  |
+ 
+
+---
+
 #### [Attributes](#Attributes)
 
  | Properties | Type | Nullable | Description |
@@ -6043,6 +6318,17 @@ We are processing the report!
 
 ---
 
+#### [CreditBalanceInfo](#CreditBalanceInfo)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | customer_mobile_number | string? |  yes  |  |
+ | reason | string? |  yes  |  |
+ | total_credited_balance | string? |  yes  |  |
+ 
+
+---
+
 #### [CurrentStatus](#CurrentStatus)
 
  | Properties | Type | Nullable | Description |
@@ -6265,6 +6551,27 @@ We are processing the report!
  | error_trace | string? |  yes  |  |
  | message | string |  no  |  |
  | status | number |  no  |  |
+ 
+
+---
+
+#### [FetchCreditBalanceRequestPayload](#FetchCreditBalanceRequestPayload)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | affiliate_id | string |  no  |  |
+ | customer_mobile_number | string |  no  |  |
+ | seller_id | string |  no  |  |
+ 
+
+---
+
+#### [FetchCreditBalanceResponsePayload](#FetchCreditBalanceResponsePayload)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | data | [CreditBalanceInfo](#CreditBalanceInfo) |  no  |  |
+ | success | boolean |  no  |  |
  
 
 ---
@@ -7313,6 +7620,18 @@ We are processing the report!
 
 ---
 
+#### [PointBlankOtpData](#PointBlankOtpData)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | message | string? |  yes  |  |
+ | mobile | number? |  yes  |  |
+ | request_id | string? |  yes  |  |
+ | resend_timer | number? |  yes  |  |
+ 
+
+---
+
 #### [PostActivityHistory](#PostActivityHistory)
 
  | Properties | Type | Nullable | Description |
@@ -7495,6 +7814,38 @@ We are processing the report!
 
 ---
 
+#### [RefundModeConfigRequestPayload](#RefundModeConfigRequestPayload)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | affiliate_id | string |  no  |  |
+ | customer_mobile_number | string? |  yes  |  |
+ | fynd_order_id | string |  no  |  |
+ | ordering_channel | string |  no  |  |
+ | seller_id | string |  no  |  |
+ 
+
+---
+
+#### [RefundModeConfigResponsePayload](#RefundModeConfigResponsePayload)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | data | [RefundModeInfo](#RefundModeInfo) |  no  |  |
+ | success | boolean |  no  |  |
+ 
+
+---
+
+#### [RefundModeInfo](#RefundModeInfo)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | refund_mode_name | [SingleRefundModeInfo](#SingleRefundModeInfo)? |  yes  |  |
+ 
+
+---
+
 #### [ResponseDetail](#ResponseDetail)
 
  | Properties | Type | Nullable | Description |
@@ -7534,6 +7885,27 @@ We are processing the report!
  | bag_id | number |  no  |  |
  | data | [SmsDataPayload](#SmsDataPayload)? |  yes  |  |
  | slug | string |  no  |  |
+ 
+
+---
+
+#### [SendUserMobileOTP](#SendUserMobileOTP)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | country_code | string? |  yes  |  |
+ | mobile | number |  no  |  |
+ 
+
+---
+
+#### [SendUserMobileOtpResponse](#SendUserMobileOtpResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | data | [PointBlankOtpData](#PointBlankOtpData)? |  yes  |  |
+ | message | string? |  yes  |  |
+ | success | boolean? |  yes  |  |
  
 
 ---
@@ -7834,6 +8206,17 @@ We are processing the report!
  | state | string |  no  |  |
  | state_code | string? |  yes  |  |
  | title | string? |  yes  |  |
+ 
+
+---
+
+#### [SingleRefundModeInfo](#SingleRefundModeInfo)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | display_name | string? |  yes  |  |
+ | is_active | boolean? |  yes  |  |
+ | slug | string? |  yes  |  |
  
 
 ---

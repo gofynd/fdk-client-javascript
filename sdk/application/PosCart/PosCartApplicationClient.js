@@ -5,6 +5,7 @@ const Paginator = require("../../common/Paginator");
 const PosCartValidator = require("./PosCartApplicationValidator");
 const PosCartModel = require("./PosCartApplicationModel");
 const { Logger } = require("./../../common/Logger");
+const Joi = require("joi");
 
 class PosCart {
   constructor(_conf) {

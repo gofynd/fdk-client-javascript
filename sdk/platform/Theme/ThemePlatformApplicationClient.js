@@ -4,6 +4,7 @@ const Paginator = require("../../common/Paginator");
 const ThemeValidator = require("./ThemePlatformApplicationValidator");
 const ThemeModel = require("./ThemePlatformModel");
 const { Logger } = require("./../../common/Logger");
+const Joi = require("joi");
 
 class Theme {
   constructor(config, applicationId) {

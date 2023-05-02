@@ -4,6 +4,7 @@ const Paginator = require("../../common/Paginator");
 const OrderValidator = require("./OrderPlatformApplicationValidator");
 const OrderModel = require("./OrderPlatformModel");
 const { Logger } = require("./../../common/Logger");
+const Joi = require("joi");
 
 class Order {
   constructor(config, applicationId) {

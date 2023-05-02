@@ -10,8 +10,10 @@ Responsible for themes
 
 * [getAllPages](#getallpages)
 * [getAppliedTheme](#getappliedtheme)
+* [getAppliedThemeV2](#getappliedthemev2)
 * [getPage](#getpage)
 * [getThemeForPreview](#getthemeforpreview)
+* [getThemeForPreviewV2](#getthemeforpreviewv2)
 
 
 
@@ -353,6 +355,2187 @@ const promise = applicationClient.theme.getAppliedTheme();
 
 // Async/Await
 const data = await applicationClient.theme.getAppliedTheme();
+```
+
+
+
+
+
+
+An application has multiple themes, but only one theme can be applied at a time. Use this API to retrieve the theme currently applied to the application.
+
+*Returned Response:*
+
+
+
+
+[ThemesSchema](#ThemesSchema)
+
+Success. Returns a JSON object of the theme. Check the example shown below or    refer `ThemesSchema` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; Applied Theme</i></summary>
+
+```json
+{
+  "value": {
+    "information": {
+      "images": {
+        "desktop": [
+          "https://hdn-1.addsale.com/x0/company/1/applications/5e737afb97e0f586bf9d04db/theme/pictures/free/original/artisan-desktop.png"
+        ],
+        "android": [
+          "https://hdn-1.addsale.com/x0/company/1/applications/5e737afb97e0f586bf9d04db/theme/pictures/free/original/artisan-mobile.png"
+        ],
+        "ios": [
+          "https://hdn-1.addsale.com/x0/company/1/applications/5e737afb97e0f586bf9d04db/theme/pictures/free/original/artisan-mobile.png"
+        ],
+        "thumbnail": [
+          "https://hdn-1.addsale.com/x0/company/1/applications/5e737afb97e0f586bf9d04db/theme/pictures/free/original/artisan-desktop.png"
+        ]
+      },
+      "features": [
+        "Responsive"
+      ],
+      "name": "Akash-Artisan"
+    },
+    "src": {
+      "link": "https://hdn-1.addsale.com/x0/company/1/applications/5e737afb97e0f586bf9d04db/theme/sources/J-1s-N-pl-archive.zip"
+    },
+    "assets": {
+      "css": {
+        "link": "https://hdn-1.addsale.com/x0/company/1/applications/5e737afb97e0f586bf9d04db/theme/assets/Ia4m885Mw2-themeBundle.css"
+      },
+      "umd_js": {
+        "link": "https://hdn-1.addsale.com/x0/company/1/applications/5e737afb97e0f586bf9d04db/theme/assets/nEPGyc15g-themeBundle.umd.min.js"
+      },
+      "common_js": {
+        "link": "https://hdn-1.addsale.com/x0/company/1/applications/5e737afb97e0f586bf9d04db/theme/assets/5f7tOB5rpq-themeBundle.common.js"
+      }
+    },
+    "config": {
+      "preset": {
+        "sections": [
+          {
+            "page_sections": [
+              {
+                "blocks": [
+                  {
+                    "type": "gallery_image",
+                    "name": "Image",
+                    "props": {
+                      "image": {
+                        "type": "image_picker",
+                        "value": "https://hdn-1.fynd.com/company/163/applications/5d5265c8f8ad9cae6dbf18f1/theme/pictures/free/original/theme-image-1601219133573.jpeg"
+                      },
+                      "slide_link": {
+                        "type": "url",
+                        "value": "https://www.turtleonline.in/collection/men-collection-vcahuo2q"
+                      }
+                    }
+                  },
+                  {
+                    "type": "gallery_image",
+                    "name": "Image",
+                    "props": {
+                      "image": {
+                        "type": "image_picker",
+                        "value": "https://hdn-1.fynd.com/company/163/applications/5d5265c8f8ad9cae6dbf18f1/theme/pictures/free/original/theme-image-1601219184350.jpeg"
+                      },
+                      "slide_link": {
+                        "type": "url",
+                        "value": "https://www.turtleonline.in/collection/shirts-5e9654ad"
+                      }
+                    }
+                  }
+                ],
+                "predicate": {
+                  "screen": {
+                    "mobile": true,
+                    "desktop": true,
+                    "tablet": true
+                  },
+                  "user": {
+                    "authenticated": true,
+                    "anonymous": true
+                  },
+                  "route": {
+                    "selected": "none",
+                    "query": {},
+                    "exact_u_r_l": ""
+                  }
+                },
+                "name": "image-carousel",
+                "props": {
+                  "slide_height": {
+                    "type": "select",
+                    "value": "adapt"
+                  },
+                  "autoplay": {
+                    "type": "checkbox",
+                    "value": false
+                  },
+                  "slide_interval": {
+                    "type": "range",
+                    "value": 2
+                  }
+                }
+              },
+              {
+                "blocks": [
+                  {
+                    "type": "collection",
+                    "name": "Collection",
+                    "props": {
+                      "collection": {
+                        "type": "collection",
+                        "value": "accessories-7ee89654"
+                      },
+                      "title": {
+                        "type": "text",
+                        "value": "Turtle sports club"
+                      },
+                      "subtitle": {
+                        "type": "text",
+                        "value": "Casual Collections"
+                      },
+                      "overlay_image": {
+                        "type": "image_picker",
+                        "value": "https://hdn-1.addsale.com/x0/company/1/applications/5e737afb97e0f586bf9d04db/theme/pictures/free/original/casual_nfadbl.jpg"
+                      }
+                    }
+                  },
+                  {
+                    "type": "collection",
+                    "name": "Collection",
+                    "props": {
+                      "collection": {
+                        "type": "collection",
+                        "value": "bottom-wear-fb133293"
+                      },
+                      "title": {
+                        "type": "text",
+                        "value": "Formal Collection"
+                      },
+                      "subtitle": {
+                        "type": "text",
+                        "value": "Turtle Tailor Mark"
+                      },
+                      "overlay_image": {
+                        "type": "image_picker",
+                        "value": "https://hdn-1.addsale.com/x0/company/1/applications/5e737afb97e0f586bf9d04db/theme/pictures/free/original/tailors_nsrrfl.jpg"
+                      }
+                    }
+                  },
+                  {
+                    "type": "collection",
+                    "name": "Collection",
+                    "props": {
+                      "collection": {
+                        "type": "collection",
+                        "value": "bottom-wear-fb133293"
+                      },
+                      "title": {
+                        "type": "text",
+                        "value": "Bottomwear"
+                      },
+                      "subtitle": {
+                        "type": "text",
+                        "value": "Chinos | Trousers | Pants"
+                      },
+                      "overlay_image": {
+                        "type": "image_picker",
+                        "value": "https://hdn-1.addsale.com/x0/company/1/applications/5e737afb97e0f586bf9d04db/theme/pictures/free/original/bottomwear_tdkhn2.jpg"
+                      }
+                    }
+                  },
+                  {
+                    "type": "collection",
+                    "name": "Collection",
+                    "props": {
+                      "collection": {
+                        "type": "collection",
+                        "value": "t-shirt-7ee3cbcd"
+                      },
+                      "title": {
+                        "type": "text",
+                        "value": "Shirts"
+                      },
+                      "subtitle": {
+                        "type": "text",
+                        "value": "Casual"
+                      },
+                      "overlay_image": {
+                        "type": "image_picker",
+                        "value": "https://hdn-1.addsale.com/x0/company/1/applications/5e737afb97e0f586bf9d04db/theme/pictures/free/original/t-shirt_re9srk.jpg"
+                      }
+                    }
+                  }
+                ],
+                "predicate": {
+                  "screen": {
+                    "mobile": true,
+                    "desktop": true,
+                    "tablet": true
+                  },
+                  "user": {
+                    "authenticated": true,
+                    "anonymous": true
+                  },
+                  "route": {
+                    "selected": "none",
+                    "query": {},
+                    "exact_u_r_l": ""
+                  }
+                },
+                "name": "collectionGrid",
+                "props": {
+                  "title": {
+                    "type": "text",
+                    "value": "Collections"
+                  },
+                  "subtitle": {
+                    "type": "text",
+                    "value": "Buy from our"
+                  },
+                  "full_width": {
+                    "type": "checkbox",
+                    "value": false
+                  }
+                }
+              }
+            ],
+            "page_key": "home"
+          },
+          {
+            "page_sections": [
+              {
+                "blocks": [],
+                "predicate": {
+                  "screen": {
+                    "mobile": true,
+                    "desktop": true,
+                    "tablet": true
+                  },
+                  "user": {
+                    "authenticated": true,
+                    "anonymous": true
+                  },
+                  "route": {
+                    "selected": "none",
+                    "query": {},
+                    "exact_u_r_l": ""
+                  }
+                },
+                "name": "brandTemplate",
+                "props": {
+                  "item_count": {
+                    "type": "range",
+                    "value": 4
+                  },
+                  "full_width": {
+                    "type": "checkbox",
+                    "value": false
+                  },
+                  "heading": {
+                    "type": "text",
+                    "value": ""
+                  },
+                  "brand_type": {
+                    "type": "radio",
+                    "value": "all"
+                  },
+                  "layout": {
+                    "type": "select",
+                    "value": "grid"
+                  },
+                  "department": {
+                    "type": "department",
+                    "value": "others"
+                  }
+                }
+              }
+            ],
+            "page_key": "brands"
+          },
+          {
+            "page_sections": [],
+            "page_key": "cart-landing"
+          },
+          {
+            "page_sections": [
+              {
+                "blocks": [],
+                "predicate": {
+                  "screen": {
+                    "mobile": true,
+                    "desktop": true,
+                    "tablet": true
+                  },
+                  "user": {
+                    "authenticated": true,
+                    "anonymous": true
+                  },
+                  "route": {
+                    "selected": "none",
+                    "query": {},
+                    "exact_u_r_l": ""
+                  }
+                },
+                "name": "categoriesTemplate",
+                "props": {
+                  "item_count": {
+                    "type": "range",
+                    "value": 4
+                  },
+                  "full_width": {
+                    "type": "checkbox",
+                    "value": false
+                  },
+                  "heading": {
+                    "type": "text",
+                    "value": ""
+                  },
+                  "layout": {
+                    "type": "select",
+                    "value": "grid"
+                  },
+                  "view_all": {
+                    "type": "checkbox",
+                    "value": false
+                  }
+                }
+              }
+            ],
+            "page_key": "categories"
+          },
+          {
+            "page_sections": [
+              {
+                "blocks": [],
+                "predicate": {
+                  "screen": {
+                    "mobile": true,
+                    "desktop": true,
+                    "tablet": true
+                  },
+                  "user": {
+                    "authenticated": true,
+                    "anonymous": true
+                  },
+                  "route": {
+                    "selected": "none",
+                    "query": {},
+                    "exact_u_r_l": ""
+                  }
+                },
+                "name": "collectionTemplate",
+                "props": {
+                  "heading": {
+                    "type": "text",
+                    "value": "Featured Collections"
+                  },
+                  "item_count": {
+                    "type": "range",
+                    "value": 4
+                  },
+                  "full_width": {
+                    "type": "checkbox",
+                    "value": false
+                  },
+                  "layout": {
+                    "type": "select",
+                    "value": "grid"
+                  }
+                }
+              }
+            ],
+            "page_key": "collections"
+          },
+          {
+            "page_sections": [],
+            "page_key": "compare-products"
+          },
+          {
+            "page_sections": [],
+            "page_key": "product-description"
+          },
+          {
+            "page_sections": [],
+            "page_key": "product-listing"
+          },
+          {
+            "page_sections": [],
+            "page_key": "wishlist"
+          }
+        ]
+      },
+      "global_schema": {
+        "props": [
+          {
+            "type": "color",
+            "id": "header_bg_color",
+            "default": "#ffffff",
+            "category": "Header",
+            "label": "Header background Color"
+          },
+          {
+            "type": "color",
+            "id": "footer_bg_color",
+            "default": "#1b1b1b",
+            "category": "Footer",
+            "label": "Footer background Color"
+          },
+          {
+            "type": "text",
+            "id": "footer_text",
+            "default": "",
+            "category": "Footer",
+            "label": "Footer Text"
+          },
+          {
+            "type": "checkbox",
+            "id": "disable_cart",
+            "default": false,
+            "category": "Cart",
+            "label": "Disable Cart"
+          }
+        ]
+      },
+      "current": "default",
+      "page_schema": [
+        {
+          "props": [],
+          "_id": "5fe182f763d26dadc8d205c6",
+          "page": "blog"
+        },
+        {
+          "props": [],
+          "_id": "5fe182f763d26d0a36d205c7",
+          "page": "brands"
+        },
+        {
+          "props": [
+            {
+              "type": "checkbox",
+              "id": "gst",
+              "label": "GST",
+              "default": true,
+              "info": "Show GST on cart"
+            },
+            {
+              "type": "checkbox",
+              "id": "staff_selection",
+              "label": "Staff Selection",
+              "default": true,
+              "info": "Show Staff selection on Cart"
+            },
+            {
+              "type": "checkbox",
+              "id": "enable_customer",
+              "label": "Customer",
+              "default": true,
+              "info": "Placing on behalf of customer"
+            },
+            {
+              "type": "checkbox",
+              "id": "enable_guest",
+              "label": "Enable Guest Checkout",
+              "default": true,
+              "info": "Enable Continue as Guest"
+            }
+          ],
+          "_id": "5fe182f763d26d81c5d205c8",
+          "page": "cart-landing"
+        },
+        {
+          "props": [],
+          "_id": "5fe182f763d26d7e15d205c9",
+          "page": "cart-review"
+        },
+        {
+          "props": [],
+          "_id": "5fe182f763d26d270ed205ca",
+          "page": "categories"
+        },
+        {
+          "props": [],
+          "_id": "5fe182f763d26d9b4fd205cb",
+          "page": "collection-listing"
+        },
+        {
+          "props": [],
+          "_id": "5fe182f763d26da6ecd205cc",
+          "page": "collections"
+        },
+        {
+          "props": [],
+          "_id": "5fe182f763d26d7156d205cd",
+          "page": "compare-products"
+        },
+        {
+          "props": [],
+          "_id": "5fe182f763d26d62bad205ce",
+          "page": "home"
+        },
+        {
+          "props": [],
+          "_id": "5fe182f763d26d5afcd205cf",
+          "page": "order-review"
+        },
+        {
+          "props": [],
+          "_id": "5fe182f763d26def8dd205d0",
+          "page": "order-tracking-details"
+        },
+        {
+          "props": [],
+          "_id": "5fe182f763d26d381fd205d1",
+          "page": "order-tracking"
+        },
+        {
+          "props": [
+            {
+              "type": "text",
+              "id": "shipping_link",
+              "label": "Shipping Link",
+              "default": "https://fynd.freshdesk.com/support/solutions/folders/33000111600",
+              "info": "Link of shipping page"
+            },
+            {
+              "type": "checkbox",
+              "id": "original_image",
+              "label": "Use original Image",
+              "default": false,
+              "info": "Use original product image."
+            },
+            {
+              "type": "checkbox",
+              "id": "wishlist",
+              "label": "Wishlist",
+              "default": true,
+              "info": "Show Wishlist for product"
+            },
+            {
+              "type": "checkbox",
+              "id": "reviews",
+              "label": "Review",
+              "default": true,
+              "info": "Show Reviews of product"
+            },
+            {
+              "type": "checkbox",
+              "id": "add_to_compare",
+              "label": "Add to Compare",
+              "default": true,
+              "info": "Allow comparison of products"
+            },
+            {
+              "type": "checkbox",
+              "id": "size_guide",
+              "label": "Size Guide",
+              "default": true,
+              "info": "Show Size Guide"
+            },
+            {
+              "type": "checkbox",
+              "id": "product_request",
+              "label": "Product Request",
+              "default": true,
+              "info": "Show Product Request"
+            },
+            {
+              "type": "checkbox",
+              "id": "share",
+              "label": "Share",
+              "default": true,
+              "info": "Enable Sharing product"
+            },
+            {
+              "type": "checkbox",
+              "id": "sold_by",
+              "label": "Show Sold By",
+              "default": true,
+              "info": "Show name of the store"
+            },
+            {
+              "type": "checkbox",
+              "id": "store_selection",
+              "label": "Seller Store Selection",
+              "default": true,
+              "info": "Allow to explicitly select stores"
+            },
+            {
+              "type": "checkbox",
+              "id": "compare_products",
+              "label": "Compare Products",
+              "default": true,
+              "info": "Show Most Compared Products"
+            },
+            {
+              "type": "checkbox",
+              "id": "variants",
+              "label": "Product Variants",
+              "default": true,
+              "info": "Show Product Variants"
+            },
+            {
+              "type": "checkbox",
+              "id": "ratings",
+              "label": "Product Rating",
+              "default": true,
+              "info": "Show Product Ratings"
+            },
+            {
+              "type": "checkbox",
+              "id": "similar_products",
+              "label": "Similar Products",
+              "default": true,
+              "info": "Show Similar Products"
+            },
+            {
+              "type": "checkbox",
+              "id": "bulk_prices",
+              "label": "Bulk Prices",
+              "default": true,
+              "info": "Show Bulk Prices"
+            },
+            {
+              "type": "checkbox",
+              "id": "showDeliveryInfo",
+              "label": "Delivery Info",
+              "default": true,
+              "info": "Show Delivery Date"
+            }
+          ],
+          "_id": "5fe182f763d26d29bbd205d2",
+          "page": "product-description"
+        },
+        {
+          "props": [],
+          "_id": "5fe182f763d26da5f0d205d3",
+          "page": "product-listing"
+        },
+        {
+          "props": [],
+          "_id": "5fe182f763d26d4e2dd205d5",
+          "page": "wishlist"
+        },
+        {
+          "props": [
+            {
+              "default": true,
+              "id": "header",
+              "label": "Header",
+              "type": "checkbox"
+            },
+            {
+              "default": true,
+              "id": "footer",
+              "label": "Footer",
+              "type": "checkbox"
+            }
+          ],
+          "_id": "5fe7166cbaae343115de8555",
+          "page": "tesr"
+        }
+      ],
+      "list": [
+        {
+          "name": "default",
+          "global_config": {
+            "static": {
+              "props": {
+                "colors": {
+                  "primary_color": "#7043f7",
+                  "secondary_color": "#02d1cb",
+                  "accent_color": "#FFFFFF",
+                  "link_color": "#7043f7",
+                  "button_secondary_color": "#000000",
+                  "bg_color": "#F8F8F8"
+                }
+              }
+            },
+            "custom": {
+              "props": {
+                "disable_cart": false
+              }
+            }
+          },
+          "page": [
+            {
+              "settings": {
+                "props": {
+                  "show_info_message": true
+                }
+              },
+              "page": "cart-landing"
+            }
+          ],
+          "_id": "5fc4bb9078e957737e7d79a3"
+        }
+      ]
+    },
+    "colors": {
+      "primary_color": "#41434C",
+      "secondary_color": "#41434C",
+      "accent_color": "#FFFFFF",
+      "link_color": "#33B1C0",
+      "button_secondary_color": "#000000",
+      "bg_color": "#F8F8F8"
+    },
+    "font": {
+      "variants": {
+        "light": {
+          "name": "300",
+          "file": ""
+        },
+        "regular": {
+          "name": "regular",
+          "file": "https://fonts.gstatic.com/s/judson/v13/FeVRS0Fbvbc14VxRD7N01bV7kg.ttf"
+        },
+        "medium": {
+          "name": "500",
+          "file": ""
+        },
+        "semi_bold": {
+          "name": "600",
+          "file": ""
+        },
+        "bold": {
+          "name": "700",
+          "file": "https://fonts.gstatic.com/s/judson/v13/FeVSS0Fbvbc14Vxps5xQ3Z5nm29Gww.ttf"
+        }
+      },
+      "family": "Judson"
+    },
+    "applied": true,
+    "published": false,
+    "archived": false,
+    "customized": true,
+    "version": "1.1.19",
+    "tags": [],
+    "_id": "5fe17f7063d26dc54fd202b4",
+    "pages": {
+      "home": {
+        "path": "",
+        "type": "system",
+        "sections": [],
+        "value": "home",
+        "text": "Home"
+      },
+      "brands": {
+        "path": "brands",
+        "type": "system",
+        "sections": [],
+        "value": "brands",
+        "text": "Brands"
+      },
+      "cart-landing": {
+        "path": "cart/bag",
+        "type": "system",
+        "sections": [],
+        "value": "cart-landing",
+        "text": "Cart Landing"
+      },
+      "categories": {
+        "path": "categories",
+        "type": "system",
+        "sections": [],
+        "value": "categories",
+        "text": "Categories"
+      },
+      "collections": {
+        "path": "collections",
+        "type": "system",
+        "sections": [],
+        "value": "collections",
+        "text": "Collections"
+      },
+      "compare-products": {
+        "path": "compare",
+        "type": "system",
+        "sections": [],
+        "value": "compare-products",
+        "text": "Compare Products"
+      },
+      "product-description": {
+        "path": "product",
+        "type": "system",
+        "sections": [],
+        "value": "product-description",
+        "text": "Product Description"
+      },
+      "product-listing": {
+        "path": "products",
+        "type": "system",
+        "sections": [],
+        "value": "product-listing",
+        "text": "Product Listing"
+      },
+      "collection-listing": {
+        "path": "collection",
+        "type": "system",
+        "sections": [],
+        "value": "collection-listing",
+        "text": "COllection Listing"
+      },
+      "wishlist": {
+        "path": "wishlist",
+        "type": "system",
+        "sections": [],
+        "value": "wishlist",
+        "text": "Wishlist"
+      }
+    },
+    "available_sections": [
+      {
+        "props": [
+          {
+            "type": "text",
+            "id": "heading",
+            "default": "Brands",
+            "label": "Brands Heading"
+          },
+          {
+            "type": "radio",
+            "id": "brand_type",
+            "default": "all",
+            "options": [
+              {
+                "value": "all",
+                "text": "All"
+              },
+              {
+                "value": "department",
+                "text": "Department"
+              },
+              {
+                "value": "handpicked",
+                "text": "Handpicked"
+              }
+            ]
+          },
+          {
+            "type": "department",
+            "id": "department",
+            "label": "Department",
+            "info": "Select a department of brands",
+            "note": "Department only applies if 'department' type is selected"
+          },
+          {
+            "type": "range",
+            "id": "item_count",
+            "min": 3,
+            "max": 5,
+            "step": 1,
+            "unit": "",
+            "label": "Items per row",
+            "default": 4,
+            "info": "Maximum items allowed per row"
+          },
+          {
+            "type": "checkbox",
+            "id": "full_width",
+            "default": false,
+            "label": "Full width",
+            "info": "Check to allow items to take entire width of the viewport"
+          },
+          {
+            "id": "layout",
+            "type": "select",
+            "options": [
+              {
+                "value": "grid",
+                "text": "Grid View"
+              },
+              {
+                "value": "horizontal",
+                "text": "Horizontal View"
+              }
+            ],
+            "default": "grid",
+            "label": "Layout",
+            "info": "Alignment of content"
+          },
+          {
+            "type": "checkbox",
+            "id": "view_all",
+            "default": false,
+            "label": "Show View All"
+          }
+        ],
+        "blocks": [
+          {
+            "type": "brand-item",
+            "name": "Brand Item",
+            "props": [
+              {
+                "type": "brand",
+                "id": "brand",
+                "label": "Select Brand"
+              }
+            ]
+          }
+        ],
+        "_id": "5feacca5bec232d59b89283a",
+        "name": "brandTemplate",
+        "label": "Brands List Page"
+      },
+      {
+        "props": [
+          {
+            "type": "text",
+            "id": "heading",
+            "default": "Categories",
+            "label": "Categories Heading"
+          },
+          {
+            "id": "layout",
+            "type": "select",
+            "options": [
+              {
+                "value": "grid",
+                "text": "Grid View"
+              },
+              {
+                "value": "horizontal",
+                "text": "Horizontal View"
+              }
+            ],
+            "default": "grid",
+            "label": "Layout",
+            "info": "Alignment of content"
+          },
+          {
+            "type": "range",
+            "id": "item_count",
+            "min": 3,
+            "max": 5,
+            "step": 1,
+            "unit": "",
+            "label": "Items per row",
+            "default": 4,
+            "info": "Maximum items allowed per row"
+          },
+          {
+            "type": "checkbox",
+            "id": "full_width",
+            "default": false,
+            "label": "Full width",
+            "info": "Check to allow items to take entire width of the viewport"
+          },
+          {
+            "type": "checkbox",
+            "id": "view_all",
+            "default": false,
+            "label": "Show View All",
+            "info": "Check to show View All Button"
+          }
+        ],
+        "blocks": [],
+        "_id": "5feacca5bec232404189283b",
+        "name": "categoriesTemplate",
+        "label": "Categories Page"
+      },
+      {
+        "props": [
+          {
+            "type": "text",
+            "id": "title",
+            "default": "",
+            "label": "Title"
+          },
+          {
+            "type": "text",
+            "id": "subtitle",
+            "default": "",
+            "label": "Subtitle"
+          },
+          {
+            "type": "checkbox",
+            "id": "full_width",
+            "default": false,
+            "label": "Full width",
+            "info": "Check to allow items to take entire width of the viewport"
+          }
+        ],
+        "blocks": [
+          {
+            "type": "collection",
+            "name": "Collection",
+            "props": [
+              {
+                "type": "collection",
+                "id": "collection",
+                "label": "Select a collection"
+              },
+              {
+                "type": "image_picker",
+                "id": "overlayImage",
+                "default": "",
+                "label": "Background image",
+                "info": "Background Image"
+              },
+              {
+                "type": "text",
+                "id": "title",
+                "default": "",
+                "label": "Overlay title"
+              },
+              {
+                "type": "text",
+                "id": "subtitle",
+                "default": "",
+                "label": "Overlay subtitle"
+              }
+            ]
+          }
+        ],
+        "_id": "5feacca5bec2321fd589283c",
+        "name": "collectionGrid",
+        "label": "Collection Grid"
+      },
+      {
+        "props": [
+          {
+            "type": "text",
+            "id": "heading",
+            "default": "Collection List",
+            "label": "Collection Heading",
+            "info": "Collection Heading"
+          },
+          {
+            "type": "range",
+            "id": "item_count",
+            "min": 3,
+            "max": 5,
+            "step": 1,
+            "unit": "",
+            "label": "Collections per row",
+            "default": 2,
+            "info": "Maximum items allowed per row"
+          },
+          {
+            "type": "checkbox",
+            "id": "full_width",
+            "default": false,
+            "label": "Full width",
+            "info": "Check to allow items to take entire width of the viewport"
+          }
+        ],
+        "blocks": [
+          {
+            "type": "collection",
+            "name": "Collection",
+            "props": [
+              {
+                "type": "collection",
+                "id": "collection",
+                "label": "Select a collection"
+              }
+            ]
+          }
+        ],
+        "_id": "5feacca5bec2323bf689283d",
+        "name": "collectionList",
+        "label": "Collection List"
+      },
+      {
+        "props": [
+          {
+            "type": "text",
+            "id": "heading",
+            "default": "Collections",
+            "label": "Collection Heading"
+          },
+          {
+            "type": "range",
+            "id": "item_count",
+            "min": 3,
+            "max": 5,
+            "step": 1,
+            "unit": "",
+            "label": "Collections per row",
+            "default": 4,
+            "info": "Maximum items allowed per row"
+          },
+          {
+            "type": "radio",
+            "id": "collection_type",
+            "default": "all",
+            "options": [
+              {
+                "value": "all",
+                "text": "All"
+              },
+              {
+                "value": "handpicked",
+                "text": "Handpicked"
+              }
+            ]
+          },
+          {
+            "type": "checkbox",
+            "id": "full_width",
+            "default": false,
+            "label": "Full width",
+            "info": "Check to allow items to take entire width of the viewport"
+          },
+          {
+            "id": "layout",
+            "type": "select",
+            "options": [
+              {
+                "value": "grid",
+                "text": "Grid View"
+              },
+              {
+                "value": "horizontal",
+                "text": "Horizontal View"
+              }
+            ],
+            "default": "grid",
+            "label": "Layout",
+            "info": "Alignment of content"
+          },
+          {
+            "type": "checkbox",
+            "id": "view_all",
+            "default": false,
+            "label": "Show View All"
+          }
+        ],
+        "blocks": [
+          {
+            "type": "collection-item",
+            "name": "Collection Item",
+            "props": [
+              {
+                "type": "collection",
+                "id": "collection",
+                "label": "Select collection"
+              }
+            ]
+          }
+        ],
+        "_id": "5feacca5bec23263b489283e",
+        "name": "collectionTemplate",
+        "label": "Collection List Page"
+      },
+      {
+        "props": [
+          {
+            "type": "code",
+            "id": "code",
+            "label": "Custom HTML",
+            "info": "Add Your custom HTML Code below. You can also use the full screen icon to open a code editor and add your code"
+          }
+        ],
+        "blocks": [],
+        "_id": "5feacca5bec232409489283f",
+        "name": "customHtml",
+        "label": "Custom HTML"
+      },
+      {
+        "props": [
+          {
+            "type": "text",
+            "id": "heading",
+            "default": "Featured Products",
+            "label": "Section Heading"
+          },
+          {
+            "type": "range",
+            "id": "item_count",
+            "min": 3,
+            "max": 5,
+            "step": 1,
+            "unit": "",
+            "label": "Products per row",
+            "default": 4,
+            "info": "Maximum items allowed per row"
+          },
+          {
+            "type": "checkbox",
+            "id": "full_width",
+            "default": false,
+            "label": "Full width",
+            "info": "Check to allow items to take entire width of the viewport"
+          }
+        ],
+        "blocks": [
+          {
+            "type": "product",
+            "name": "Product",
+            "props": [
+              {
+                "type": "product",
+                "id": "product",
+                "label": "Select a Product",
+                "info": "Product Item to be displayed"
+              }
+            ]
+          }
+        ],
+        "_id": "5feacca5bec2326213892840",
+        "name": "featuredProducts",
+        "label": "Featured Products",
+        "preset": {
+          "blocks": [
+            {
+              "name": "Product"
+            },
+            {
+              "name": "Product"
+            },
+            {
+              "name": "Product"
+            },
+            {
+              "name": "Product"
+            }
+          ]
+        }
+      },
+      {
+        "props": [
+          {
+            "type": "range",
+            "id": "item_count",
+            "min": 1,
+            "max": 4,
+            "step": 1,
+            "unit": "",
+            "label": "No of items",
+            "default": 4,
+            "info": "Maximum items allowed per row"
+          }
+        ],
+        "blocks": [
+          {
+            "type": "gallery_image",
+            "name": "Image",
+            "props": [
+              {
+                "type": "image_picker",
+                "id": "image",
+                "label": "Gallery Image",
+                "default": "https://hdn-1.fynd.com/company/163/applications/5d5265c8f8ad9cae6dbf18f1/theme/pictures/free/original/theme-image-1603773049684.svg"
+              },
+              {
+                "type": "text",
+                "id": "caption",
+                "label": "Image Caption",
+                "default": ""
+              },
+              {
+                "type": "url",
+                "id": "link",
+                "label": "Link",
+                "default": "",
+                "info": "Link to redirect"
+              }
+            ]
+          }
+        ],
+        "_id": "5feacca5bec2321047892841",
+        "name": "gallery",
+        "label": "Gallery",
+        "preset": {
+          "props": {
+            "item_count": 4
+          },
+          "blocks": [
+            {
+              "name": "Image"
+            },
+            {
+              "name": "Image"
+            },
+            {
+              "name": "Image"
+            },
+            {
+              "name": "Image"
+            }
+          ]
+        }
+      },
+      {
+        "props": [
+          {
+            "type": "url",
+            "id": "ctaLink",
+            "default": "",
+            "label": "Redirect Link"
+          },
+          {
+            "type": "checkbox",
+            "id": "full_width",
+            "default": false,
+            "label": "Full width",
+            "info": "Check to allow items to take entire width of the viewport"
+          }
+        ],
+        "blocks": [],
+        "_id": "5feacca5bec232b085892842",
+        "name": "heroBanner",
+        "label": "Hero Banner"
+      },
+      {
+        "props": [
+          {
+            "id": "image",
+            "type": "image_picker",
+            "label": "Hero Image",
+            "default": ""
+          },
+          {
+            "type": "text",
+            "id": "heading",
+            "default": "",
+            "label": "Heading"
+          },
+          {
+            "type": "checkbox",
+            "id": "full_width",
+            "default": false,
+            "label": "Full width",
+            "info": "Check to allow items to take entire width of the viewport"
+          },
+          {
+            "id": "overlayLayout",
+            "type": "select",
+            "options": [
+              {
+                "value": "left",
+                "text": "Align Left"
+              },
+              {
+                "value": "center",
+                "text": "Align Center"
+              },
+              {
+                "value": "right",
+                "text": "Align Right"
+              }
+            ],
+            "default": "left",
+            "label": "Overlay Layout",
+            "info": "Alignment of overlay content"
+          },
+          {
+            "type": "image_picker",
+            "id": "overlayImage",
+            "default": "",
+            "label": "Overlay image",
+            "info": "Overlay Image"
+          },
+          {
+            "type": "text",
+            "id": "text",
+            "default": "",
+            "label": "Overlay Text"
+          },
+          {
+            "type": "color",
+            "id": "text_color",
+            "default": "#000",
+            "label": "Text Color"
+          },
+          {
+            "type": "url",
+            "id": "ctaLink",
+            "default": "",
+            "label": "Redirect Link"
+          },
+          {
+            "type": "text",
+            "id": "ctaText",
+            "default": "Shop Now",
+            "label": "Button Text"
+          }
+        ],
+        "blocks": [],
+        "_id": "5feacca5bec2321e74892843",
+        "name": "imageBanner",
+        "label": "Hero Image"
+      },
+      {
+        "props": [
+          {
+            "id": "videoUrl",
+            "type": "url",
+            "label": "Video URL",
+            "default": ""
+          },
+          {
+            "type": "checkbox",
+            "id": "full_width",
+            "default": false,
+            "label": "Full width",
+            "info": "Check to allow items to take entire width of the viewport"
+          },
+          {
+            "id": "coverUrl",
+            "type": "image_picker",
+            "label": "Video Cover Image URL",
+            "default": ""
+          },
+          {
+            "type": "checkbox",
+            "id": "showcontrols",
+            "default": false,
+            "label": "Show Controls on Video",
+            "info": "Check to show controls on video"
+          },
+          {
+            "type": "select",
+            "id": "size",
+            "options": [
+              {
+                "value": "adapt",
+                "text": "Adapt"
+              },
+              {
+                "value": "small",
+                "text": "Small"
+              },
+              {
+                "value": "medium",
+                "text": "Medium"
+              },
+              {
+                "value": "large",
+                "text": "Large"
+              }
+            ],
+            "default": "adapt",
+            "label": "Video Height",
+            "info": "Height of Video"
+          },
+          {
+            "type": "text",
+            "id": "heading",
+            "default": "",
+            "label": "Heading"
+          },
+          {
+            "type": "color",
+            "id": "heading_color",
+            "default": "#000",
+            "label": "Headin Text Color"
+          },
+          {
+            "type": "text",
+            "id": "subHeading",
+            "default": "",
+            "label": "Sub-heading"
+          },
+          {
+            "type": "color",
+            "id": "subheading_color",
+            "default": "#000",
+            "label": "Subheading Text Color"
+          },
+          {
+            "type": "url",
+            "id": "ctaLink",
+            "default": "",
+            "label": "Redirect Link"
+          },
+          {
+            "type": "text",
+            "id": "ctaText",
+            "default": "ShopNow",
+            "label": "Button Text"
+          }
+        ],
+        "blocks": [],
+        "_id": "5feacca5bec232bfc8892844",
+        "name": "videoBanner",
+        "label": "Hero Video"
+      },
+      {
+        "props": [
+          {
+            "type": "select",
+            "id": "slide_height",
+            "options": [
+              {
+                "value": "adapt",
+                "text": "Adapt to first image"
+              },
+              {
+                "value": "small",
+                "text": "Small"
+              },
+              {
+                "value": "medium",
+                "text": "Medium"
+              },
+              {
+                "value": "large",
+                "text": "Large"
+              }
+            ],
+            "default": "adapt",
+            "label": "Slide height",
+            "info": "Size of the slide"
+          },
+          {
+            "type": "checkbox",
+            "id": "autoplay",
+            "default": false,
+            "label": "AutoPlay Slides",
+            "info": "Check to autoplay slides"
+          },
+          {
+            "type": "range",
+            "id": "slide_interval",
+            "min": 1,
+            "max": 10,
+            "step": 1,
+            "unit": "sec",
+            "label": "Change slides after every",
+            "default": 2,
+            "info": "Autoplay slide duration"
+          }
+        ],
+        "blocks": [
+          {
+            "type": "gallery_image",
+            "name": "Image",
+            "props": [
+              {
+                "type": "image_picker",
+                "id": "image",
+                "label": "Gallery Image"
+              },
+              {
+                "type": "url",
+                "id": "slide_link",
+                "label": "Slide Link"
+              }
+            ]
+          }
+        ],
+        "_id": "5feacca5bec232a916892845",
+        "name": "image-carousel",
+        "label": "Image Carousel",
+        "preset": {
+          "blocks": [
+            {
+              "name": "Image"
+            },
+            {
+              "name": "Image"
+            }
+          ]
+        }
+      },
+      {
+        "props": [
+          {
+            "type": "text",
+            "id": "heading",
+            "default": "Featured Collections",
+            "label": "Collection Heading"
+          },
+          {
+            "type": "range",
+            "id": "item_count",
+            "min": 2,
+            "max": 5,
+            "step": 1,
+            "unit": "",
+            "label": "Products per row",
+            "default": 2,
+            "info": "Maximum items allowed per row"
+          },
+          {
+            "type": "collection",
+            "id": "collection",
+            "label": "Collection",
+            "info": "Select a collection to display its products"
+          },
+          {
+            "type": "checkbox",
+            "id": "full_width",
+            "default": false,
+            "label": "Full width",
+            "info": "Check to allow items to take entire width of the viewport"
+          }
+        ],
+        "blocks": [],
+        "_id": "5feacca5bec23258ec892846",
+        "name": "productList",
+        "label": "Product List",
+        "preset": {
+          "props": {
+            "heading": "Featured Products",
+            "item_count": 4,
+            "collection": ""
+          }
+        }
+      },
+      {
+        "props": [
+          {
+            "type": "checkbox",
+            "id": "autoplay",
+            "default": false,
+            "label": "AutoPlay Slides"
+          },
+          {
+            "type": "range",
+            "id": "slide_interval",
+            "min": 1,
+            "max": 10,
+            "step": 1,
+            "unit": "sec",
+            "label": "Change slides every",
+            "default": 2
+          },
+          {
+            "type": "checkbox",
+            "id": "full_width",
+            "default": false,
+            "label": "Full width",
+            "info": "Check to allow items to take entire width of the viewport"
+          }
+        ],
+        "blocks": [
+          {
+            "type": "testimonial",
+            "name": "Testimonial",
+            "props": [
+              {
+                "type": "textarea",
+                "id": "testimonialText",
+                "label": "Text for Testimonial",
+                "default": "",
+                "info": "Text for testimonial",
+                "placeholder": "Text"
+              },
+              {
+                "type": "text",
+                "id": "author",
+                "label": "Customers name"
+              }
+            ]
+          }
+        ],
+        "_id": "5feacca5bec23299e8892847",
+        "name": "testimonials",
+        "label": "Testimonial"
+      },
+      {
+        "props": [
+          {
+            "type": "select",
+            "id": "slide_height",
+            "options": [
+              {
+                "value": "adapt",
+                "text": "Adapt to first video"
+              },
+              {
+                "value": "small",
+                "text": "Small"
+              },
+              {
+                "value": "medium",
+                "text": "Medium"
+              },
+              {
+                "value": "large",
+                "text": "Large"
+              }
+            ],
+            "default": "adapt",
+            "label": "Slide height",
+            "info": "Size of the slide"
+          },
+          {
+            "type": "checkbox",
+            "id": "full_width",
+            "default": false,
+            "label": "Full width",
+            "info": "Check to allow items to take entire width of the viewport"
+          },
+          {
+            "type": "checkbox",
+            "id": "autoplay",
+            "default": false,
+            "label": "AutoPlay Slides",
+            "info": "Check to autoplay slides"
+          },
+          {
+            "type": "range",
+            "id": "slide_interval",
+            "min": 1,
+            "max": 10,
+            "step": 1,
+            "unit": "sec",
+            "label": "Change slides every",
+            "default": 2,
+            "info": "Autoplay slide duration"
+          }
+        ],
+        "blocks": [
+          {
+            "type": "video_item",
+            "name": "Video Slide",
+            "props": [
+              {
+                "id": "videoUrl",
+                "type": "url",
+                "label": "Video URL",
+                "default": ""
+              },
+              {
+                "type": "checkbox",
+                "id": "showcontrols",
+                "default": false,
+                "label": "Show Controls on Video",
+                "info": "Check to show controls on video"
+              }
+            ]
+          }
+        ],
+        "_id": "5feacca5bec232d89b892848",
+        "name": "videoCarousel",
+        "label": "Video Carousel"
+      }
+    ],
+    "sections": [
+      {
+        "page_sections": [
+          {
+            "blocks": [],
+            "predicate": {
+              "screen": {
+                "mobile": true,
+                "desktop": true,
+                "tablet": true
+              },
+              "user": {
+                "authenticated": true,
+                "anonymous": true
+              },
+              "route": {
+                "selected": "none",
+                "query": {},
+                "exact_u_r_l": ""
+              }
+            },
+            "name": "brandTemplate",
+            "props": {
+              "title": {
+                "type": "text",
+                "value": "Brands"
+              },
+              "item_count": {
+                "type": "range",
+                "value": 4
+              },
+              "full_width": {
+                "type": "checkbox",
+                "value": false
+              },
+              "heading": {
+                "type": "text",
+                "value": "Brands"
+              },
+              "brand_type": {
+                "type": "radio",
+                "value": "all"
+              },
+              "department": {
+                "type": "department",
+                "value": null
+              },
+              "layout": {
+                "type": "select",
+                "value": "grid"
+              },
+              "view_all": {
+                "type": "checkbox",
+                "value": null
+              }
+            }
+          }
+        ],
+        "page_key": "product-description"
+      },
+      {
+        "page_sections": [],
+        "page_key": "collection-listing"
+      },
+      {
+        "page_sections": [
+          {
+            "blocks": [
+              {
+                "type": "brand-item",
+                "name": "Brand Item",
+                "props": {
+                  "brand": {
+                    "type": "brand",
+                    "value": {
+                      "display": "Apple",
+                      "id": "apple"
+                    }
+                  }
+                }
+              },
+              {
+                "type": "brand-item",
+                "name": "Brand Item",
+                "props": {
+                  "brand": {
+                    "type": "brand",
+                    "value": {
+                      "display": "Gionee",
+                      "id": "gionee"
+                    }
+                  }
+                }
+              }
+            ],
+            "predicate": {
+              "screen": {
+                "mobile": true,
+                "desktop": true,
+                "tablet": true
+              },
+              "user": {
+                "authenticated": true,
+                "anonymous": true
+              },
+              "route": {
+                "selected": "none",
+                "query": {},
+                "exact_u_r_l": ""
+              }
+            },
+            "name": "brandTemplate",
+            "props": {
+              "heading": {
+                "type": "text",
+                "value": "Brandss"
+              },
+              "brand_type": {
+                "type": "radio",
+                "value": "handpicked"
+              },
+              "department": {
+                "type": "department"
+              },
+              "item_count": {
+                "value": 4,
+                "type": "range"
+              },
+              "full_width": {
+                "value": false,
+                "type": "checkbox"
+              },
+              "layout": {
+                "type": "select",
+                "value": "grid"
+              },
+              "view_all": {
+                "value": false,
+                "type": "checkbox"
+              }
+            }
+          }
+        ],
+        "page_key": "home"
+      },
+      {
+        "page_sections": [
+          {
+            "blocks": [],
+            "predicate": {
+              "screen": {
+                "mobile": true,
+                "desktop": true,
+                "tablet": true
+              },
+              "user": {
+                "authenticated": true,
+                "anonymous": true
+              },
+              "route": {
+                "selected": "none",
+                "query": {},
+                "exact_u_r_l": ""
+              }
+            },
+            "name": "brandTemplate",
+            "props": {
+              "title": {
+                "type": "text",
+                "value": "Brands"
+              },
+              "item_count": {
+                "type": "range",
+                "value": 4
+              },
+              "full_width": {
+                "type": "checkbox",
+                "value": false
+              }
+            }
+          }
+        ],
+        "page_key": "brands"
+      },
+      {
+        "page_sections": [],
+        "page_key": "cart-landing"
+      },
+      {
+        "page_sections": [
+          {
+            "blocks": [],
+            "predicate": {
+              "screen": {
+                "mobile": true,
+                "desktop": true,
+                "tablet": true
+              },
+              "user": {
+                "authenticated": true,
+                "anonymous": true
+              },
+              "route": {
+                "selected": "none",
+                "query": {},
+                "exact_u_r_l": ""
+              }
+            },
+            "name": "categoriesTemplate",
+            "props": {
+              "item_count": {
+                "type": "range",
+                "value": 4
+              },
+              "full_width": {
+                "type": "checkbox",
+                "value": false
+              }
+            }
+          }
+        ],
+        "page_key": "categories"
+      },
+      {
+        "page_sections": [
+          {
+            "blocks": [],
+            "predicate": {
+              "screen": {
+                "mobile": true,
+                "desktop": true,
+                "tablet": true
+              },
+              "user": {
+                "authenticated": true,
+                "anonymous": true
+              },
+              "route": {
+                "selected": "none",
+                "query": {},
+                "exact_u_r_l": ""
+              }
+            },
+            "name": "collectionTemplate",
+            "props": {
+              "heading": {
+                "type": "text",
+                "value": "Featured Collections"
+              },
+              "item_count": {
+                "type": "range",
+                "value": 4
+              },
+              "full_width": {
+                "type": "checkbox",
+                "value": false
+              }
+            }
+          }
+        ],
+        "page_key": "collections"
+      },
+      {
+        "page_sections": [],
+        "page_key": "compare-products"
+      },
+      {
+        "page_sections": [],
+        "page_key": "product-listing"
+      },
+      {
+        "page_sections": [],
+        "page_key": "wishlist"
+      },
+      {
+        "page_sections": [],
+        "page_key": "tesr"
+      }
+    ],
+    "application": "5e737afb97e0f586bf9d04db",
+    "available_pages": [
+      {
+        "path": "product",
+        "type": "system",
+        "sections": [],
+        "text": "Product Description",
+        "value": "product-description"
+      },
+      {
+        "path": "collection",
+        "type": "system",
+        "sections": [],
+        "text": "Collection Listing",
+        "value": "collection-listing"
+      },
+      {
+        "path": "",
+        "type": "system",
+        "sections": [
+          {
+            "_id": "5feacca5bec2327927892853",
+            "attributes": {
+              "page": "home"
+            }
+          }
+        ],
+        "value": "home",
+        "text": "Home"
+      },
+      {
+        "path": "brands",
+        "type": "system",
+        "sections": [
+          {
+            "_id": "5feacca5bec2326422892854",
+            "attributes": {
+              "page": "brands"
+            }
+          }
+        ],
+        "value": "brands",
+        "text": "Brands"
+      },
+      {
+        "path": "cart/bag",
+        "type": "system",
+        "sections": [],
+        "value": "cart-landing",
+        "text": "Cart Landing"
+      },
+      {
+        "path": "categories",
+        "type": "system",
+        "sections": [
+          {
+            "_id": "5feacca5bec232424c892855",
+            "attributes": {
+              "page": "categories"
+            }
+          }
+        ],
+        "value": "categories",
+        "text": "Categories"
+      },
+      {
+        "path": "collections",
+        "type": "system",
+        "sections": [
+          {
+            "_id": "5feacca5bec23281de892856",
+            "attributes": {
+              "page": "collections"
+            }
+          }
+        ],
+        "value": "collections",
+        "text": "Collections"
+      },
+      {
+        "path": "compare",
+        "type": "system",
+        "sections": [],
+        "value": "compare-products",
+        "text": "Compare Products"
+      },
+      {
+        "path": "products",
+        "type": "system",
+        "sections": [],
+        "value": "product-listing",
+        "text": "Product Listing"
+      },
+      {
+        "path": "wishlist",
+        "type": "system",
+        "sections": [],
+        "value": "wishlist",
+        "text": "Wishlist"
+      },
+      {
+        "path": "sections/test",
+        "type": "sections",
+        "sections": [],
+        "text": "test",
+        "value": "test"
+      }
+    ],
+    "styles": {},
+    "created_at": "2020-12-22T05:09:04.720Z",
+    "updated_at": "2021-01-24T11:22:41.376Z"
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### getAppliedThemeV2
+Get the theme currently applied to an application
+
+
+
+```javascript
+// Promise
+const promise = applicationClient.theme.getAppliedThemeV2();
+
+// Async/Await
+const data = await applicationClient.theme.getAppliedThemeV2();
 ```
 
 
@@ -2961,6 +5144,2192 @@ const promise = applicationClient.theme.getThemeForPreview({  themeId : value })
 
 // Async/Await
 const data = await applicationClient.theme.getThemeForPreview({  themeId : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| themeId | string | yes | ID of the theme to be retrieved |  
+
+
+
+A theme can be previewed before applying it. Use this API to retrieve the preview of a theme by its ID.
+
+*Returned Response:*
+
+
+
+
+[ThemesSchema](#ThemesSchema)
+
+Success. Returns a JSON object of the theme. Check the example shown below or refer `ThemesSchema` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; Preview Theme</i></summary>
+
+```json
+{
+  "value": {
+    "information": {
+      "images": {
+        "desktop": [
+          "https://hdn-1.addsale.com/x0/company/1/applications/5e737afb97e0f586bf9d04db/theme/pictures/free/original/artisan-desktop.png"
+        ],
+        "android": [
+          "https://hdn-1.addsale.com/x0/company/1/applications/5e737afb97e0f586bf9d04db/theme/pictures/free/original/artisan-mobile.png"
+        ],
+        "ios": [
+          "https://hdn-1.addsale.com/x0/company/1/applications/5e737afb97e0f586bf9d04db/theme/pictures/free/original/artisan-mobile.png"
+        ],
+        "thumbnail": [
+          "https://hdn-1.addsale.com/x0/company/1/applications/5e737afb97e0f586bf9d04db/theme/pictures/free/original/artisan-desktop.png"
+        ]
+      },
+      "features": [
+        "Responsive"
+      ],
+      "name": "Akash-Artisan"
+    },
+    "src": {
+      "link": "https://hdn-1.addsale.com/x0/company/1/applications/5e737afb97e0f586bf9d04db/theme/sources/J-1s-N-pl-archive.zip"
+    },
+    "assets": {
+      "css": {
+        "link": "https://hdn-1.addsale.com/x0/company/1/applications/5e737afb97e0f586bf9d04db/theme/assets/Ia4m885Mw2-themeBundle.css"
+      },
+      "umd_js": {
+        "link": "https://hdn-1.addsale.com/x0/company/1/applications/5e737afb97e0f586bf9d04db/theme/assets/nEPGyc15g-themeBundle.umd.min.js"
+      },
+      "common_js": {
+        "link": "https://hdn-1.addsale.com/x0/company/1/applications/5e737afb97e0f586bf9d04db/theme/assets/5f7tOB5rpq-themeBundle.common.js"
+      }
+    },
+    "config": {
+      "preset": {
+        "sections": [
+          {
+            "page_sections": [
+              {
+                "blocks": [
+                  {
+                    "type": "gallery_image",
+                    "name": "Image",
+                    "props": {
+                      "image": {
+                        "type": "image_picker",
+                        "value": "https://hdn-1.fynd.com/company/163/applications/5d5265c8f8ad9cae6dbf18f1/theme/pictures/free/original/theme-image-1601219133573.jpeg"
+                      },
+                      "slide_link": {
+                        "type": "url",
+                        "value": "https://www.turtleonline.in/collection/men-collection-vcahuo2q"
+                      }
+                    }
+                  },
+                  {
+                    "type": "gallery_image",
+                    "name": "Image",
+                    "props": {
+                      "image": {
+                        "type": "image_picker",
+                        "value": "https://hdn-1.fynd.com/company/163/applications/5d5265c8f8ad9cae6dbf18f1/theme/pictures/free/original/theme-image-1601219184350.jpeg"
+                      },
+                      "slide_link": {
+                        "type": "url",
+                        "value": "https://www.turtleonline.in/collection/shirts-5e9654ad"
+                      }
+                    }
+                  }
+                ],
+                "predicate": {
+                  "screen": {
+                    "mobile": true,
+                    "desktop": true,
+                    "tablet": true
+                  },
+                  "user": {
+                    "authenticated": true,
+                    "anonymous": true
+                  },
+                  "route": {
+                    "selected": "none",
+                    "query": {},
+                    "exact_u_r_l": ""
+                  }
+                },
+                "name": "image-carousel",
+                "props": {
+                  "slide_height": {
+                    "type": "select",
+                    "value": "adapt"
+                  },
+                  "autoplay": {
+                    "type": "checkbox",
+                    "value": false
+                  },
+                  "slide_interval": {
+                    "type": "range",
+                    "value": 2
+                  }
+                }
+              },
+              {
+                "blocks": [
+                  {
+                    "type": "collection",
+                    "name": "Collection",
+                    "props": {
+                      "collection": {
+                        "type": "collection",
+                        "value": "accessories-7ee89654"
+                      },
+                      "title": {
+                        "type": "text",
+                        "value": "Turtle sports club"
+                      },
+                      "subtitle": {
+                        "type": "text",
+                        "value": "Casual Collections"
+                      },
+                      "overlay_image": {
+                        "type": "image_picker",
+                        "value": "https://hdn-1.addsale.com/x0/company/1/applications/5e737afb97e0f586bf9d04db/theme/pictures/free/original/casual_nfadbl.jpg"
+                      }
+                    }
+                  },
+                  {
+                    "type": "collection",
+                    "name": "Collection",
+                    "props": {
+                      "collection": {
+                        "type": "collection",
+                        "value": "bottom-wear-fb133293"
+                      },
+                      "title": {
+                        "type": "text",
+                        "value": "Formal Collection"
+                      },
+                      "subtitle": {
+                        "type": "text",
+                        "value": "Turtle Tailor Mark"
+                      },
+                      "overlay_image": {
+                        "type": "image_picker",
+                        "value": "https://hdn-1.addsale.com/x0/company/1/applications/5e737afb97e0f586bf9d04db/theme/pictures/free/original/tailors_nsrrfl.jpg"
+                      }
+                    }
+                  },
+                  {
+                    "type": "collection",
+                    "name": "Collection",
+                    "props": {
+                      "collection": {
+                        "type": "collection",
+                        "value": "bottom-wear-fb133293"
+                      },
+                      "title": {
+                        "type": "text",
+                        "value": "Bottomwear"
+                      },
+                      "subtitle": {
+                        "type": "text",
+                        "value": "Chinos | Trousers | Pants"
+                      },
+                      "overlay_image": {
+                        "type": "image_picker",
+                        "value": "https://hdn-1.addsale.com/x0/company/1/applications/5e737afb97e0f586bf9d04db/theme/pictures/free/original/bottomwear_tdkhn2.jpg"
+                      }
+                    }
+                  },
+                  {
+                    "type": "collection",
+                    "name": "Collection",
+                    "props": {
+                      "collection": {
+                        "type": "collection",
+                        "value": "t-shirt-7ee3cbcd"
+                      },
+                      "title": {
+                        "type": "text",
+                        "value": "Shirts"
+                      },
+                      "subtitle": {
+                        "type": "text",
+                        "value": "Casual"
+                      },
+                      "overlay_image": {
+                        "type": "image_picker",
+                        "value": "https://hdn-1.addsale.com/x0/company/1/applications/5e737afb97e0f586bf9d04db/theme/pictures/free/original/t-shirt_re9srk.jpg"
+                      }
+                    }
+                  }
+                ],
+                "predicate": {
+                  "screen": {
+                    "mobile": true,
+                    "desktop": true,
+                    "tablet": true
+                  },
+                  "user": {
+                    "authenticated": true,
+                    "anonymous": true
+                  },
+                  "route": {
+                    "selected": "none",
+                    "query": {},
+                    "exact_u_r_l": ""
+                  }
+                },
+                "name": "collectionGrid",
+                "props": {
+                  "title": {
+                    "type": "text",
+                    "value": "Collections"
+                  },
+                  "subtitle": {
+                    "type": "text",
+                    "value": "Buy from our"
+                  },
+                  "full_width": {
+                    "type": "checkbox",
+                    "value": false
+                  }
+                }
+              }
+            ],
+            "page_key": "home"
+          },
+          {
+            "page_sections": [
+              {
+                "blocks": [],
+                "predicate": {
+                  "screen": {
+                    "mobile": true,
+                    "desktop": true,
+                    "tablet": true
+                  },
+                  "user": {
+                    "authenticated": true,
+                    "anonymous": true
+                  },
+                  "route": {
+                    "selected": "none",
+                    "query": {},
+                    "exact_u_r_l": ""
+                  }
+                },
+                "name": "brandTemplate",
+                "props": {
+                  "item_count": {
+                    "type": "range",
+                    "value": 4
+                  },
+                  "full_width": {
+                    "type": "checkbox",
+                    "value": false
+                  },
+                  "heading": {
+                    "type": "text",
+                    "value": ""
+                  },
+                  "brand_type": {
+                    "type": "radio",
+                    "value": "all"
+                  },
+                  "layout": {
+                    "type": "select",
+                    "value": "grid"
+                  },
+                  "department": {
+                    "type": "department",
+                    "value": "others"
+                  }
+                }
+              }
+            ],
+            "page_key": "brands"
+          },
+          {
+            "page_sections": [],
+            "page_key": "cart-landing"
+          },
+          {
+            "page_sections": [
+              {
+                "blocks": [],
+                "predicate": {
+                  "screen": {
+                    "mobile": true,
+                    "desktop": true,
+                    "tablet": true
+                  },
+                  "user": {
+                    "authenticated": true,
+                    "anonymous": true
+                  },
+                  "route": {
+                    "selected": "none",
+                    "query": {},
+                    "exact_u_r_l": ""
+                  }
+                },
+                "name": "categoriesTemplate",
+                "props": {
+                  "item_count": {
+                    "type": "range",
+                    "value": 4
+                  },
+                  "full_width": {
+                    "type": "checkbox",
+                    "value": false
+                  },
+                  "heading": {
+                    "type": "text",
+                    "value": ""
+                  },
+                  "layout": {
+                    "type": "select",
+                    "value": "grid"
+                  },
+                  "view_all": {
+                    "type": "checkbox",
+                    "value": false
+                  }
+                }
+              }
+            ],
+            "page_key": "categories"
+          },
+          {
+            "page_sections": [
+              {
+                "blocks": [],
+                "predicate": {
+                  "screen": {
+                    "mobile": true,
+                    "desktop": true,
+                    "tablet": true
+                  },
+                  "user": {
+                    "authenticated": true,
+                    "anonymous": true
+                  },
+                  "route": {
+                    "selected": "none",
+                    "query": {},
+                    "exact_u_r_l": ""
+                  }
+                },
+                "name": "collectionTemplate",
+                "props": {
+                  "heading": {
+                    "type": "text",
+                    "value": "Featured Collections"
+                  },
+                  "item_count": {
+                    "type": "range",
+                    "value": 4
+                  },
+                  "full_width": {
+                    "type": "checkbox",
+                    "value": false
+                  },
+                  "layout": {
+                    "type": "select",
+                    "value": "grid"
+                  }
+                }
+              }
+            ],
+            "page_key": "collections"
+          },
+          {
+            "page_sections": [],
+            "page_key": "compare-products"
+          },
+          {
+            "page_sections": [],
+            "page_key": "product-description"
+          },
+          {
+            "page_sections": [],
+            "page_key": "product-listing"
+          },
+          {
+            "page_sections": [],
+            "page_key": "wishlist"
+          }
+        ]
+      },
+      "global_schema": {
+        "props": [
+          {
+            "type": "color",
+            "id": "header_bg_color",
+            "default": "#ffffff",
+            "category": "Header",
+            "label": "Header background Color"
+          },
+          {
+            "type": "color",
+            "id": "footer_bg_color",
+            "default": "#1b1b1b",
+            "category": "Footer",
+            "label": "Footer background Color"
+          },
+          {
+            "type": "text",
+            "id": "footer_text",
+            "default": "",
+            "category": "Footer",
+            "label": "Footer Text"
+          },
+          {
+            "type": "checkbox",
+            "id": "disable_cart",
+            "default": false,
+            "category": "Cart",
+            "label": "Disable Cart"
+          }
+        ]
+      },
+      "current": "default",
+      "page_schema": [
+        {
+          "props": [],
+          "_id": "5fe182f763d26dadc8d205c6",
+          "page": "blog"
+        },
+        {
+          "props": [],
+          "_id": "5fe182f763d26d0a36d205c7",
+          "page": "brands"
+        },
+        {
+          "props": [
+            {
+              "type": "checkbox",
+              "id": "gst",
+              "label": "GST",
+              "default": true,
+              "info": "Show GST on cart"
+            },
+            {
+              "type": "checkbox",
+              "id": "staff_selection",
+              "label": "Staff Selection",
+              "default": true,
+              "info": "Show Staff selection on Cart"
+            },
+            {
+              "type": "checkbox",
+              "id": "enable_customer",
+              "label": "Customer",
+              "default": true,
+              "info": "Placing on behalf of customer"
+            },
+            {
+              "type": "checkbox",
+              "id": "enable_guest",
+              "label": "Enable Guest Checkout",
+              "default": true,
+              "info": "Enable Continue as Guest"
+            }
+          ],
+          "_id": "5fe182f763d26d81c5d205c8",
+          "page": "cart-landing"
+        },
+        {
+          "props": [],
+          "_id": "5fe182f763d26d7e15d205c9",
+          "page": "cart-review"
+        },
+        {
+          "props": [],
+          "_id": "5fe182f763d26d270ed205ca",
+          "page": "categories"
+        },
+        {
+          "props": [],
+          "_id": "5fe182f763d26d9b4fd205cb",
+          "page": "collection-listing"
+        },
+        {
+          "props": [],
+          "_id": "5fe182f763d26da6ecd205cc",
+          "page": "collections"
+        },
+        {
+          "props": [],
+          "_id": "5fe182f763d26d7156d205cd",
+          "page": "compare-products"
+        },
+        {
+          "props": [],
+          "_id": "5fe182f763d26d62bad205ce",
+          "page": "home"
+        },
+        {
+          "props": [],
+          "_id": "5fe182f763d26d5afcd205cf",
+          "page": "order-review"
+        },
+        {
+          "props": [],
+          "_id": "5fe182f763d26def8dd205d0",
+          "page": "order-tracking-details"
+        },
+        {
+          "props": [],
+          "_id": "5fe182f763d26d381fd205d1",
+          "page": "order-tracking"
+        },
+        {
+          "props": [
+            {
+              "type": "text",
+              "id": "shipping_link",
+              "label": "Shipping Link",
+              "default": "https://fynd.freshdesk.com/support/solutions/folders/33000111600",
+              "info": "Link of shipping page"
+            },
+            {
+              "type": "checkbox",
+              "id": "original_image",
+              "label": "Use original Image",
+              "default": false,
+              "info": "Use original product image."
+            },
+            {
+              "type": "checkbox",
+              "id": "wishlist",
+              "label": "Wishlist",
+              "default": true,
+              "info": "Show Wishlist for product"
+            },
+            {
+              "type": "checkbox",
+              "id": "reviews",
+              "label": "Review",
+              "default": true,
+              "info": "Show Reviews of product"
+            },
+            {
+              "type": "checkbox",
+              "id": "add_to_compare",
+              "label": "Add to Compare",
+              "default": true,
+              "info": "Allow comparison of products"
+            },
+            {
+              "type": "checkbox",
+              "id": "size_guide",
+              "label": "Size Guide",
+              "default": true,
+              "info": "Show Size Guide"
+            },
+            {
+              "type": "checkbox",
+              "id": "product_request",
+              "label": "Product Request",
+              "default": true,
+              "info": "Show Product Request"
+            },
+            {
+              "type": "checkbox",
+              "id": "share",
+              "label": "Share",
+              "default": true,
+              "info": "Enable Sharing product"
+            },
+            {
+              "type": "checkbox",
+              "id": "sold_by",
+              "label": "Show Sold By",
+              "default": true,
+              "info": "Show name of the store"
+            },
+            {
+              "type": "checkbox",
+              "id": "store_selection",
+              "label": "Seller Store Selection",
+              "default": true,
+              "info": "Allow to explicitly select stores"
+            },
+            {
+              "type": "checkbox",
+              "id": "compare_products",
+              "label": "Compare Products",
+              "default": true,
+              "info": "Show Most Compared Products"
+            },
+            {
+              "type": "checkbox",
+              "id": "variants",
+              "label": "Product Variants",
+              "default": true,
+              "info": "Show Product Variants"
+            },
+            {
+              "type": "checkbox",
+              "id": "ratings",
+              "label": "Product Rating",
+              "default": true,
+              "info": "Show Product Ratings"
+            },
+            {
+              "type": "checkbox",
+              "id": "similar_products",
+              "label": "Similar Products",
+              "default": true,
+              "info": "Show Similar Products"
+            },
+            {
+              "type": "checkbox",
+              "id": "bulk_prices",
+              "label": "Bulk Prices",
+              "default": true,
+              "info": "Show Bulk Prices"
+            },
+            {
+              "type": "checkbox",
+              "id": "showDeliveryInfo",
+              "label": "Delivery Info",
+              "default": true,
+              "info": "Show Delivery Date"
+            }
+          ],
+          "_id": "5fe182f763d26d29bbd205d2",
+          "page": "product-description"
+        },
+        {
+          "props": [],
+          "_id": "5fe182f763d26da5f0d205d3",
+          "page": "product-listing"
+        },
+        {
+          "props": [],
+          "_id": "5fe182f763d26d4e2dd205d5",
+          "page": "wishlist"
+        },
+        {
+          "props": [
+            {
+              "default": true,
+              "id": "header",
+              "label": "Header",
+              "type": "checkbox"
+            },
+            {
+              "default": true,
+              "id": "footer",
+              "label": "Footer",
+              "type": "checkbox"
+            }
+          ],
+          "_id": "5fe7166cbaae343115de8555",
+          "page": "tesr"
+        }
+      ],
+      "list": [
+        {
+          "name": "default",
+          "global_config": {
+            "static": {
+              "props": {
+                "colors": {
+                  "primary_color": "#7043f7",
+                  "secondary_color": "#02d1cb",
+                  "accent_color": "#FFFFFF",
+                  "link_color": "#7043f7",
+                  "button_secondary_color": "#000000",
+                  "bg_color": "#F8F8F8"
+                }
+              }
+            },
+            "custom": {
+              "props": {
+                "disable_cart": false
+              }
+            }
+          },
+          "page": [
+            {
+              "settings": {
+                "props": {
+                  "show_info_message": true
+                }
+              },
+              "page": "cart-landing"
+            }
+          ],
+          "_id": "5fc4bb9078e957737e7d79a3"
+        }
+      ]
+    },
+    "colors": {
+      "primary_color": "#41434C",
+      "secondary_color": "#41434C",
+      "accent_color": "#FFFFFF",
+      "link_color": "#33B1C0",
+      "button_secondary_color": "#000000",
+      "bg_color": "#F8F8F8"
+    },
+    "font": {
+      "variants": {
+        "light": {
+          "name": "300",
+          "file": ""
+        },
+        "regular": {
+          "name": "regular",
+          "file": "https://fonts.gstatic.com/s/judson/v13/FeVRS0Fbvbc14VxRD7N01bV7kg.ttf"
+        },
+        "medium": {
+          "name": "500",
+          "file": ""
+        },
+        "semi_bold": {
+          "name": "600",
+          "file": ""
+        },
+        "bold": {
+          "name": "700",
+          "file": "https://fonts.gstatic.com/s/judson/v13/FeVSS0Fbvbc14Vxps5xQ3Z5nm29Gww.ttf"
+        }
+      },
+      "family": "Judson"
+    },
+    "applied": true,
+    "published": false,
+    "archived": false,
+    "customized": true,
+    "version": "1.1.19",
+    "tags": [],
+    "_id": "5fe17f7063d26dc54fd202b4",
+    "pages": {
+      "home": {
+        "path": "",
+        "type": "system",
+        "sections": [],
+        "value": "home",
+        "text": "Home"
+      },
+      "brands": {
+        "path": "brands",
+        "type": "system",
+        "sections": [],
+        "value": "brands",
+        "text": "Brands"
+      },
+      "cart-landing": {
+        "path": "cart/bag",
+        "type": "system",
+        "sections": [],
+        "value": "cart-landing",
+        "text": "Cart Landing"
+      },
+      "categories": {
+        "path": "categories",
+        "type": "system",
+        "sections": [],
+        "value": "categories",
+        "text": "Categories"
+      },
+      "collections": {
+        "path": "collections",
+        "type": "system",
+        "sections": [],
+        "value": "collections",
+        "text": "Collections"
+      },
+      "compare-products": {
+        "path": "compare",
+        "type": "system",
+        "sections": [],
+        "value": "compare-products",
+        "text": "Compare Products"
+      },
+      "product-description": {
+        "path": "product",
+        "type": "system",
+        "sections": [],
+        "value": "product-description",
+        "text": "Product Description"
+      },
+      "product-listing": {
+        "path": "products",
+        "type": "system",
+        "sections": [],
+        "value": "product-listing",
+        "text": "Product Listing"
+      },
+      "collection-listing": {
+        "path": "collection",
+        "type": "system",
+        "sections": [],
+        "value": "collection-listing",
+        "text": "COllection Listing"
+      },
+      "wishlist": {
+        "path": "wishlist",
+        "type": "system",
+        "sections": [],
+        "value": "wishlist",
+        "text": "Wishlist"
+      }
+    },
+    "available_sections": [
+      {
+        "props": [
+          {
+            "type": "text",
+            "id": "heading",
+            "default": "Brands",
+            "label": "Brands Heading"
+          },
+          {
+            "type": "radio",
+            "id": "brand_type",
+            "default": "all",
+            "options": [
+              {
+                "value": "all",
+                "text": "All"
+              },
+              {
+                "value": "department",
+                "text": "Department"
+              },
+              {
+                "value": "handpicked",
+                "text": "Handpicked"
+              }
+            ]
+          },
+          {
+            "type": "department",
+            "id": "department",
+            "label": "Department",
+            "info": "Select a department of brands",
+            "note": "Department only applies if 'department' type is selected"
+          },
+          {
+            "type": "range",
+            "id": "item_count",
+            "min": 3,
+            "max": 5,
+            "step": 1,
+            "unit": "",
+            "label": "Items per row",
+            "default": 4,
+            "info": "Maximum items allowed per row"
+          },
+          {
+            "type": "checkbox",
+            "id": "full_width",
+            "default": false,
+            "label": "Full width",
+            "info": "Check to allow items to take entire width of the viewport"
+          },
+          {
+            "id": "layout",
+            "type": "select",
+            "options": [
+              {
+                "value": "grid",
+                "text": "Grid View"
+              },
+              {
+                "value": "horizontal",
+                "text": "Horizontal View"
+              }
+            ],
+            "default": "grid",
+            "label": "Layout",
+            "info": "Alignment of content"
+          },
+          {
+            "type": "checkbox",
+            "id": "view_all",
+            "default": false,
+            "label": "Show View All"
+          }
+        ],
+        "blocks": [
+          {
+            "type": "brand-item",
+            "name": "Brand Item",
+            "props": [
+              {
+                "type": "brand",
+                "id": "brand",
+                "label": "Select Brand"
+              }
+            ]
+          }
+        ],
+        "_id": "5feacca5bec232d59b89283a",
+        "name": "brandTemplate",
+        "label": "Brands List Page"
+      },
+      {
+        "props": [
+          {
+            "type": "text",
+            "id": "heading",
+            "default": "Categories",
+            "label": "Categories Heading"
+          },
+          {
+            "id": "layout",
+            "type": "select",
+            "options": [
+              {
+                "value": "grid",
+                "text": "Grid View"
+              },
+              {
+                "value": "horizontal",
+                "text": "Horizontal View"
+              }
+            ],
+            "default": "grid",
+            "label": "Layout",
+            "info": "Alignment of content"
+          },
+          {
+            "type": "range",
+            "id": "item_count",
+            "min": 3,
+            "max": 5,
+            "step": 1,
+            "unit": "",
+            "label": "Items per row",
+            "default": 4,
+            "info": "Maximum items allowed per row"
+          },
+          {
+            "type": "checkbox",
+            "id": "full_width",
+            "default": false,
+            "label": "Full width",
+            "info": "Check to allow items to take entire width of the viewport"
+          },
+          {
+            "type": "checkbox",
+            "id": "view_all",
+            "default": false,
+            "label": "Show View All",
+            "info": "Check to show View All Button"
+          }
+        ],
+        "blocks": [],
+        "_id": "5feacca5bec232404189283b",
+        "name": "categoriesTemplate",
+        "label": "Categories Page"
+      },
+      {
+        "props": [
+          {
+            "type": "text",
+            "id": "title",
+            "default": "",
+            "label": "Title"
+          },
+          {
+            "type": "text",
+            "id": "subtitle",
+            "default": "",
+            "label": "Subtitle"
+          },
+          {
+            "type": "checkbox",
+            "id": "full_width",
+            "default": false,
+            "label": "Full width",
+            "info": "Check to allow items to take entire width of the viewport"
+          }
+        ],
+        "blocks": [
+          {
+            "type": "collection",
+            "name": "Collection",
+            "props": [
+              {
+                "type": "collection",
+                "id": "collection",
+                "label": "Select a collection"
+              },
+              {
+                "type": "image_picker",
+                "id": "overlayImage",
+                "default": "",
+                "label": "Background image",
+                "info": "Background Image"
+              },
+              {
+                "type": "text",
+                "id": "title",
+                "default": "",
+                "label": "Overlay title"
+              },
+              {
+                "type": "text",
+                "id": "subtitle",
+                "default": "",
+                "label": "Overlay subtitle"
+              }
+            ]
+          }
+        ],
+        "_id": "5feacca5bec2321fd589283c",
+        "name": "collectionGrid",
+        "label": "Collection Grid"
+      },
+      {
+        "props": [
+          {
+            "type": "text",
+            "id": "heading",
+            "default": "Collection List",
+            "label": "Collection Heading",
+            "info": "Collection Heading"
+          },
+          {
+            "type": "range",
+            "id": "item_count",
+            "min": 3,
+            "max": 5,
+            "step": 1,
+            "unit": "",
+            "label": "Collections per row",
+            "default": 2,
+            "info": "Maximum items allowed per row"
+          },
+          {
+            "type": "checkbox",
+            "id": "full_width",
+            "default": false,
+            "label": "Full width",
+            "info": "Check to allow items to take entire width of the viewport"
+          }
+        ],
+        "blocks": [
+          {
+            "type": "collection",
+            "name": "Collection",
+            "props": [
+              {
+                "type": "collection",
+                "id": "collection",
+                "label": "Select a collection"
+              }
+            ]
+          }
+        ],
+        "_id": "5feacca5bec2323bf689283d",
+        "name": "collectionList",
+        "label": "Collection List"
+      },
+      {
+        "props": [
+          {
+            "type": "text",
+            "id": "heading",
+            "default": "Collections",
+            "label": "Collection Heading"
+          },
+          {
+            "type": "range",
+            "id": "item_count",
+            "min": 3,
+            "max": 5,
+            "step": 1,
+            "unit": "",
+            "label": "Collections per row",
+            "default": 4,
+            "info": "Maximum items allowed per row"
+          },
+          {
+            "type": "radio",
+            "id": "collection_type",
+            "default": "all",
+            "options": [
+              {
+                "value": "all",
+                "text": "All"
+              },
+              {
+                "value": "handpicked",
+                "text": "Handpicked"
+              }
+            ]
+          },
+          {
+            "type": "checkbox",
+            "id": "full_width",
+            "default": false,
+            "label": "Full width",
+            "info": "Check to allow items to take entire width of the viewport"
+          },
+          {
+            "id": "layout",
+            "type": "select",
+            "options": [
+              {
+                "value": "grid",
+                "text": "Grid View"
+              },
+              {
+                "value": "horizontal",
+                "text": "Horizontal View"
+              }
+            ],
+            "default": "grid",
+            "label": "Layout",
+            "info": "Alignment of content"
+          },
+          {
+            "type": "checkbox",
+            "id": "view_all",
+            "default": false,
+            "label": "Show View All"
+          }
+        ],
+        "blocks": [
+          {
+            "type": "collection-item",
+            "name": "Collection Item",
+            "props": [
+              {
+                "type": "collection",
+                "id": "collection",
+                "label": "Select collection"
+              }
+            ]
+          }
+        ],
+        "_id": "5feacca5bec23263b489283e",
+        "name": "collectionTemplate",
+        "label": "Collection List Page"
+      },
+      {
+        "props": [
+          {
+            "type": "code",
+            "id": "code",
+            "label": "Custom HTML",
+            "info": "Add Your custom HTML Code below. You can also use the full screen icon to open a code editor and add your code"
+          }
+        ],
+        "blocks": [],
+        "_id": "5feacca5bec232409489283f",
+        "name": "customHtml",
+        "label": "Custom HTML"
+      },
+      {
+        "props": [
+          {
+            "type": "text",
+            "id": "heading",
+            "default": "Featured Products",
+            "label": "Section Heading"
+          },
+          {
+            "type": "range",
+            "id": "item_count",
+            "min": 3,
+            "max": 5,
+            "step": 1,
+            "unit": "",
+            "label": "Products per row",
+            "default": 4,
+            "info": "Maximum items allowed per row"
+          },
+          {
+            "type": "checkbox",
+            "id": "full_width",
+            "default": false,
+            "label": "Full width",
+            "info": "Check to allow items to take entire width of the viewport"
+          }
+        ],
+        "blocks": [
+          {
+            "type": "product",
+            "name": "Product",
+            "props": [
+              {
+                "type": "product",
+                "id": "product",
+                "label": "Select a Product",
+                "info": "Product Item to be displayed"
+              }
+            ]
+          }
+        ],
+        "_id": "5feacca5bec2326213892840",
+        "name": "featuredProducts",
+        "label": "Featured Products",
+        "preset": {
+          "blocks": [
+            {
+              "name": "Product"
+            },
+            {
+              "name": "Product"
+            },
+            {
+              "name": "Product"
+            },
+            {
+              "name": "Product"
+            }
+          ]
+        }
+      },
+      {
+        "props": [
+          {
+            "type": "range",
+            "id": "item_count",
+            "min": 1,
+            "max": 4,
+            "step": 1,
+            "unit": "",
+            "label": "No of items",
+            "default": 4,
+            "info": "Maximum items allowed per row"
+          }
+        ],
+        "blocks": [
+          {
+            "type": "gallery_image",
+            "name": "Image",
+            "props": [
+              {
+                "type": "image_picker",
+                "id": "image",
+                "label": "Gallery Image",
+                "default": "https://hdn-1.fynd.com/company/163/applications/5d5265c8f8ad9cae6dbf18f1/theme/pictures/free/original/theme-image-1603773049684.svg"
+              },
+              {
+                "type": "text",
+                "id": "caption",
+                "label": "Image Caption",
+                "default": ""
+              },
+              {
+                "type": "url",
+                "id": "link",
+                "label": "Link",
+                "default": "",
+                "info": "Link to redirect"
+              }
+            ]
+          }
+        ],
+        "_id": "5feacca5bec2321047892841",
+        "name": "gallery",
+        "label": "Gallery",
+        "preset": {
+          "props": {
+            "item_count": 4
+          },
+          "blocks": [
+            {
+              "name": "Image"
+            },
+            {
+              "name": "Image"
+            },
+            {
+              "name": "Image"
+            },
+            {
+              "name": "Image"
+            }
+          ]
+        }
+      },
+      {
+        "props": [
+          {
+            "type": "url",
+            "id": "ctaLink",
+            "default": "",
+            "label": "Redirect Link"
+          },
+          {
+            "type": "checkbox",
+            "id": "full_width",
+            "default": false,
+            "label": "Full width",
+            "info": "Check to allow items to take entire width of the viewport"
+          }
+        ],
+        "blocks": [],
+        "_id": "5feacca5bec232b085892842",
+        "name": "heroBanner",
+        "label": "Hero Banner"
+      },
+      {
+        "props": [
+          {
+            "id": "image",
+            "type": "image_picker",
+            "label": "Hero Image",
+            "default": ""
+          },
+          {
+            "type": "text",
+            "id": "heading",
+            "default": "",
+            "label": "Heading"
+          },
+          {
+            "type": "checkbox",
+            "id": "full_width",
+            "default": false,
+            "label": "Full width",
+            "info": "Check to allow items to take entire width of the viewport"
+          },
+          {
+            "id": "overlayLayout",
+            "type": "select",
+            "options": [
+              {
+                "value": "left",
+                "text": "Align Left"
+              },
+              {
+                "value": "center",
+                "text": "Align Center"
+              },
+              {
+                "value": "right",
+                "text": "Align Right"
+              }
+            ],
+            "default": "left",
+            "label": "Overlay Layout",
+            "info": "Alignment of overlay content"
+          },
+          {
+            "type": "image_picker",
+            "id": "overlayImage",
+            "default": "",
+            "label": "Overlay image",
+            "info": "Overlay Image"
+          },
+          {
+            "type": "text",
+            "id": "text",
+            "default": "",
+            "label": "Overlay Text"
+          },
+          {
+            "type": "color",
+            "id": "text_color",
+            "default": "#000",
+            "label": "Text Color"
+          },
+          {
+            "type": "url",
+            "id": "ctaLink",
+            "default": "",
+            "label": "Redirect Link"
+          },
+          {
+            "type": "text",
+            "id": "ctaText",
+            "default": "Shop Now",
+            "label": "Button Text"
+          }
+        ],
+        "blocks": [],
+        "_id": "5feacca5bec2321e74892843",
+        "name": "imageBanner",
+        "label": "Hero Image"
+      },
+      {
+        "props": [
+          {
+            "id": "videoUrl",
+            "type": "url",
+            "label": "Video URL",
+            "default": ""
+          },
+          {
+            "type": "checkbox",
+            "id": "full_width",
+            "default": false,
+            "label": "Full width",
+            "info": "Check to allow items to take entire width of the viewport"
+          },
+          {
+            "id": "coverUrl",
+            "type": "image_picker",
+            "label": "Video Cover Image URL",
+            "default": ""
+          },
+          {
+            "type": "checkbox",
+            "id": "showcontrols",
+            "default": false,
+            "label": "Show Controls on Video",
+            "info": "Check to show controls on video"
+          },
+          {
+            "type": "select",
+            "id": "size",
+            "options": [
+              {
+                "value": "adapt",
+                "text": "Adapt"
+              },
+              {
+                "value": "small",
+                "text": "Small"
+              },
+              {
+                "value": "medium",
+                "text": "Medium"
+              },
+              {
+                "value": "large",
+                "text": "Large"
+              }
+            ],
+            "default": "adapt",
+            "label": "Video Height",
+            "info": "Height of Video"
+          },
+          {
+            "type": "text",
+            "id": "heading",
+            "default": "",
+            "label": "Heading"
+          },
+          {
+            "type": "color",
+            "id": "heading_color",
+            "default": "#000",
+            "label": "Headin Text Color"
+          },
+          {
+            "type": "text",
+            "id": "subHeading",
+            "default": "",
+            "label": "Sub-heading"
+          },
+          {
+            "type": "color",
+            "id": "subheading_color",
+            "default": "#000",
+            "label": "Subheading Text Color"
+          },
+          {
+            "type": "url",
+            "id": "ctaLink",
+            "default": "",
+            "label": "Redirect Link"
+          },
+          {
+            "type": "text",
+            "id": "ctaText",
+            "default": "ShopNow",
+            "label": "Button Text"
+          }
+        ],
+        "blocks": [],
+        "_id": "5feacca5bec232bfc8892844",
+        "name": "videoBanner",
+        "label": "Hero Video"
+      },
+      {
+        "props": [
+          {
+            "type": "select",
+            "id": "slide_height",
+            "options": [
+              {
+                "value": "adapt",
+                "text": "Adapt to first image"
+              },
+              {
+                "value": "small",
+                "text": "Small"
+              },
+              {
+                "value": "medium",
+                "text": "Medium"
+              },
+              {
+                "value": "large",
+                "text": "Large"
+              }
+            ],
+            "default": "adapt",
+            "label": "Slide height",
+            "info": "Size of the slide"
+          },
+          {
+            "type": "checkbox",
+            "id": "autoplay",
+            "default": false,
+            "label": "AutoPlay Slides",
+            "info": "Check to autoplay slides"
+          },
+          {
+            "type": "range",
+            "id": "slide_interval",
+            "min": 1,
+            "max": 10,
+            "step": 1,
+            "unit": "sec",
+            "label": "Change slides after every",
+            "default": 2,
+            "info": "Autoplay slide duration"
+          }
+        ],
+        "blocks": [
+          {
+            "type": "gallery_image",
+            "name": "Image",
+            "props": [
+              {
+                "type": "image_picker",
+                "id": "image",
+                "label": "Gallery Image"
+              },
+              {
+                "type": "url",
+                "id": "slide_link",
+                "label": "Slide Link"
+              }
+            ]
+          }
+        ],
+        "_id": "5feacca5bec232a916892845",
+        "name": "image-carousel",
+        "label": "Image Carousel",
+        "preset": {
+          "blocks": [
+            {
+              "name": "Image"
+            },
+            {
+              "name": "Image"
+            }
+          ]
+        }
+      },
+      {
+        "props": [
+          {
+            "type": "text",
+            "id": "heading",
+            "default": "Featured Collections",
+            "label": "Collection Heading"
+          },
+          {
+            "type": "range",
+            "id": "item_count",
+            "min": 2,
+            "max": 5,
+            "step": 1,
+            "unit": "",
+            "label": "Products per row",
+            "default": 2,
+            "info": "Maximum items allowed per row"
+          },
+          {
+            "type": "collection",
+            "id": "collection",
+            "label": "Collection",
+            "info": "Select a collection to display its products"
+          },
+          {
+            "type": "checkbox",
+            "id": "full_width",
+            "default": false,
+            "label": "Full width",
+            "info": "Check to allow items to take entire width of the viewport"
+          }
+        ],
+        "blocks": [],
+        "_id": "5feacca5bec23258ec892846",
+        "name": "productList",
+        "label": "Product List",
+        "preset": {
+          "props": {
+            "heading": "Featured Products",
+            "item_count": 4,
+            "collection": ""
+          }
+        }
+      },
+      {
+        "props": [
+          {
+            "type": "checkbox",
+            "id": "autoplay",
+            "default": false,
+            "label": "AutoPlay Slides"
+          },
+          {
+            "type": "range",
+            "id": "slide_interval",
+            "min": 1,
+            "max": 10,
+            "step": 1,
+            "unit": "sec",
+            "label": "Change slides every",
+            "default": 2
+          },
+          {
+            "type": "checkbox",
+            "id": "full_width",
+            "default": false,
+            "label": "Full width",
+            "info": "Check to allow items to take entire width of the viewport"
+          }
+        ],
+        "blocks": [
+          {
+            "type": "testimonial",
+            "name": "Testimonial",
+            "props": [
+              {
+                "type": "textarea",
+                "id": "testimonialText",
+                "label": "Text for Testimonial",
+                "default": "",
+                "info": "Text for testimonial",
+                "placeholder": "Text"
+              },
+              {
+                "type": "text",
+                "id": "author",
+                "label": "Customers name"
+              }
+            ]
+          }
+        ],
+        "_id": "5feacca5bec23299e8892847",
+        "name": "testimonials",
+        "label": "Testimonial"
+      },
+      {
+        "props": [
+          {
+            "type": "select",
+            "id": "slide_height",
+            "options": [
+              {
+                "value": "adapt",
+                "text": "Adapt to first video"
+              },
+              {
+                "value": "small",
+                "text": "Small"
+              },
+              {
+                "value": "medium",
+                "text": "Medium"
+              },
+              {
+                "value": "large",
+                "text": "Large"
+              }
+            ],
+            "default": "adapt",
+            "label": "Slide height",
+            "info": "Size of the slide"
+          },
+          {
+            "type": "checkbox",
+            "id": "full_width",
+            "default": false,
+            "label": "Full width",
+            "info": "Check to allow items to take entire width of the viewport"
+          },
+          {
+            "type": "checkbox",
+            "id": "autoplay",
+            "default": false,
+            "label": "AutoPlay Slides",
+            "info": "Check to autoplay slides"
+          },
+          {
+            "type": "range",
+            "id": "slide_interval",
+            "min": 1,
+            "max": 10,
+            "step": 1,
+            "unit": "sec",
+            "label": "Change slides every",
+            "default": 2,
+            "info": "Autoplay slide duration"
+          }
+        ],
+        "blocks": [
+          {
+            "type": "video_item",
+            "name": "Video Slide",
+            "props": [
+              {
+                "id": "videoUrl",
+                "type": "url",
+                "label": "Video URL",
+                "default": ""
+              },
+              {
+                "type": "checkbox",
+                "id": "showcontrols",
+                "default": false,
+                "label": "Show Controls on Video",
+                "info": "Check to show controls on video"
+              }
+            ]
+          }
+        ],
+        "_id": "5feacca5bec232d89b892848",
+        "name": "videoCarousel",
+        "label": "Video Carousel"
+      }
+    ],
+    "sections": [
+      {
+        "page_sections": [
+          {
+            "blocks": [],
+            "predicate": {
+              "screen": {
+                "mobile": true,
+                "desktop": true,
+                "tablet": true
+              },
+              "user": {
+                "authenticated": true,
+                "anonymous": true
+              },
+              "route": {
+                "selected": "none",
+                "query": {},
+                "exact_u_r_l": ""
+              }
+            },
+            "name": "brandTemplate",
+            "props": {
+              "title": {
+                "type": "text",
+                "value": "Brands"
+              },
+              "item_count": {
+                "type": "range",
+                "value": 4
+              },
+              "full_width": {
+                "type": "checkbox",
+                "value": false
+              },
+              "heading": {
+                "type": "text",
+                "value": "Brands"
+              },
+              "brand_type": {
+                "type": "radio",
+                "value": "all"
+              },
+              "department": {
+                "type": "department",
+                "value": null
+              },
+              "layout": {
+                "type": "select",
+                "value": "grid"
+              },
+              "view_all": {
+                "type": "checkbox",
+                "value": null
+              }
+            }
+          }
+        ],
+        "page_key": "product-description"
+      },
+      {
+        "page_sections": [],
+        "page_key": "collection-listing"
+      },
+      {
+        "page_sections": [
+          {
+            "blocks": [
+              {
+                "type": "brand-item",
+                "name": "Brand Item",
+                "props": {
+                  "brand": {
+                    "type": "brand",
+                    "value": {
+                      "display": "Apple",
+                      "id": "apple"
+                    }
+                  }
+                }
+              },
+              {
+                "type": "brand-item",
+                "name": "Brand Item",
+                "props": {
+                  "brand": {
+                    "type": "brand",
+                    "value": {
+                      "display": "Gionee",
+                      "id": "gionee"
+                    }
+                  }
+                }
+              }
+            ],
+            "predicate": {
+              "screen": {
+                "mobile": true,
+                "desktop": true,
+                "tablet": true
+              },
+              "user": {
+                "authenticated": true,
+                "anonymous": true
+              },
+              "route": {
+                "selected": "none",
+                "query": {},
+                "exact_u_r_l": ""
+              }
+            },
+            "name": "brandTemplate",
+            "props": {
+              "heading": {
+                "type": "text",
+                "value": "Brandss"
+              },
+              "brand_type": {
+                "type": "radio",
+                "value": "handpicked"
+              },
+              "department": {
+                "type": "department"
+              },
+              "item_count": {
+                "value": 4,
+                "type": "range"
+              },
+              "full_width": {
+                "value": false,
+                "type": "checkbox"
+              },
+              "layout": {
+                "type": "select",
+                "value": "grid"
+              },
+              "view_all": {
+                "value": false,
+                "type": "checkbox"
+              }
+            }
+          }
+        ],
+        "page_key": "home"
+      },
+      {
+        "page_sections": [
+          {
+            "blocks": [],
+            "predicate": {
+              "screen": {
+                "mobile": true,
+                "desktop": true,
+                "tablet": true
+              },
+              "user": {
+                "authenticated": true,
+                "anonymous": true
+              },
+              "route": {
+                "selected": "none",
+                "query": {},
+                "exact_u_r_l": ""
+              }
+            },
+            "name": "brandTemplate",
+            "props": {
+              "title": {
+                "type": "text",
+                "value": "Brands"
+              },
+              "item_count": {
+                "type": "range",
+                "value": 4
+              },
+              "full_width": {
+                "type": "checkbox",
+                "value": false
+              }
+            }
+          }
+        ],
+        "page_key": "brands"
+      },
+      {
+        "page_sections": [],
+        "page_key": "cart-landing"
+      },
+      {
+        "page_sections": [
+          {
+            "blocks": [],
+            "predicate": {
+              "screen": {
+                "mobile": true,
+                "desktop": true,
+                "tablet": true
+              },
+              "user": {
+                "authenticated": true,
+                "anonymous": true
+              },
+              "route": {
+                "selected": "none",
+                "query": {},
+                "exact_u_r_l": ""
+              }
+            },
+            "name": "categoriesTemplate",
+            "props": {
+              "item_count": {
+                "type": "range",
+                "value": 4
+              },
+              "full_width": {
+                "type": "checkbox",
+                "value": false
+              }
+            }
+          }
+        ],
+        "page_key": "categories"
+      },
+      {
+        "page_sections": [
+          {
+            "blocks": [],
+            "predicate": {
+              "screen": {
+                "mobile": true,
+                "desktop": true,
+                "tablet": true
+              },
+              "user": {
+                "authenticated": true,
+                "anonymous": true
+              },
+              "route": {
+                "selected": "none",
+                "query": {},
+                "exact_u_r_l": ""
+              }
+            },
+            "name": "collectionTemplate",
+            "props": {
+              "heading": {
+                "type": "text",
+                "value": "Featured Collections"
+              },
+              "item_count": {
+                "type": "range",
+                "value": 4
+              },
+              "full_width": {
+                "type": "checkbox",
+                "value": false
+              }
+            }
+          }
+        ],
+        "page_key": "collections"
+      },
+      {
+        "page_sections": [],
+        "page_key": "compare-products"
+      },
+      {
+        "page_sections": [],
+        "page_key": "product-listing"
+      },
+      {
+        "page_sections": [],
+        "page_key": "wishlist"
+      },
+      {
+        "page_sections": [],
+        "page_key": "tesr"
+      }
+    ],
+    "application": "5e737afb97e0f586bf9d04db",
+    "available_pages": [
+      {
+        "path": "product",
+        "type": "system",
+        "sections": [],
+        "text": "Product Description",
+        "value": "product-description"
+      },
+      {
+        "path": "collection",
+        "type": "system",
+        "sections": [],
+        "text": "Collection Listing",
+        "value": "collection-listing"
+      },
+      {
+        "path": "",
+        "type": "system",
+        "sections": [
+          {
+            "_id": "5feacca5bec2327927892853",
+            "attributes": {
+              "page": "home"
+            }
+          }
+        ],
+        "value": "home",
+        "text": "Home"
+      },
+      {
+        "path": "brands",
+        "type": "system",
+        "sections": [
+          {
+            "_id": "5feacca5bec2326422892854",
+            "attributes": {
+              "page": "brands"
+            }
+          }
+        ],
+        "value": "brands",
+        "text": "Brands"
+      },
+      {
+        "path": "cart/bag",
+        "type": "system",
+        "sections": [],
+        "value": "cart-landing",
+        "text": "Cart Landing"
+      },
+      {
+        "path": "categories",
+        "type": "system",
+        "sections": [
+          {
+            "_id": "5feacca5bec232424c892855",
+            "attributes": {
+              "page": "categories"
+            }
+          }
+        ],
+        "value": "categories",
+        "text": "Categories"
+      },
+      {
+        "path": "collections",
+        "type": "system",
+        "sections": [
+          {
+            "_id": "5feacca5bec23281de892856",
+            "attributes": {
+              "page": "collections"
+            }
+          }
+        ],
+        "value": "collections",
+        "text": "Collections"
+      },
+      {
+        "path": "compare",
+        "type": "system",
+        "sections": [],
+        "value": "compare-products",
+        "text": "Compare Products"
+      },
+      {
+        "path": "products",
+        "type": "system",
+        "sections": [],
+        "value": "product-listing",
+        "text": "Product Listing"
+      },
+      {
+        "path": "wishlist",
+        "type": "system",
+        "sections": [],
+        "value": "wishlist",
+        "text": "Wishlist"
+      },
+      {
+        "path": "sections/test",
+        "type": "sections",
+        "sections": [],
+        "text": "test",
+        "value": "test"
+      }
+    ],
+    "styles": {},
+    "created_at": "2020-12-22T05:09:04.720Z",
+    "updated_at": "2021-01-24T11:22:41.376Z"
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### getThemeForPreviewV2
+Get a theme for a preview
+
+
+
+```javascript
+// Promise
+const promise = applicationClient.theme.getThemeForPreviewV2({  themeId : value });
+
+// Async/Await
+const data = await applicationClient.theme.getThemeForPreviewV2({  themeId : value });
 ```
 
 

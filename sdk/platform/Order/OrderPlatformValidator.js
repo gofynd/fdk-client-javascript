@@ -2,6 +2,12 @@ const Joi = require("joi");
 
 const OrderModel = require("./OrderPlatformModel");
 class OrderValidator {
+  static attachOrderUser() {
+    return Joi.object({
+      body: OrderModel.AttachOrderUser().required(),
+    }).required();
+  }
+
   static bulkActionDetails() {
     return Joi.object({
       batchId: Joi.string().allow("").required(),
@@ -52,6 +58,18 @@ class OrderValidator {
   static dispatchManifest() {
     return Joi.object({
       body: OrderModel.DispatchManifest().required(),
+    }).required();
+  }
+
+  static fetchCreditBalanceDetail() {
+    return Joi.object({
+      body: OrderModel.FetchCreditBalanceRequestPayload().required(),
+    }).required();
+  }
+
+  static fetchRefundModeConfig() {
+    return Joi.object({
+      body: OrderModel.RefundModeConfigRequestPayload().required(),
     }).required();
   }
 
@@ -323,6 +341,12 @@ class OrderValidator {
 
   static sendSmsNinjaPlatform() {
     return Joi.object({}).required();
+  }
+
+  static sendUserMobileOTP() {
+    return Joi.object({
+      body: OrderModel.SendUserMobileOTP().required(),
+    }).required();
   }
 
   static updateAddress() {
