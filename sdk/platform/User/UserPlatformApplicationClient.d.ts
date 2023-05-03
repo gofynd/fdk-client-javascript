@@ -165,6 +165,16 @@ declare class User {
     }): Promise<UnDeleteUserSuccess>;
     /**
      * @param {Object} arg - Arg object.
+     * @param {PlatformSchema} arg.body
+     * @returns {Promise<PlatformSchema>} - Success response
+     * @summary: Update platform configurations
+     * @description: Use this API to edit the existing platform configurations such as mobile image, desktop image, social logins, and all other text.
+     */
+    updatePlatformConfig({ body }?: {
+        body: PlatformSchema;
+    }): Promise<PlatformSchema>;
+    /**
+     * @param {Object} arg - Arg object.
      * @param {string} arg.userId - User ID
      * @param {UpdateUserRequestSchema} arg.body
      * @returns {Promise<CreateUserResponseSchema>} - Success response

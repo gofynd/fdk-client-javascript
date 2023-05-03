@@ -906,6 +906,65 @@ class User {
 
   /**
    * @param {Object} arg - Arg object.
+   * @param {PlatformSchema} arg.body
+   * @returns {Promise<PlatformSchema>} - Success response
+   * @summary: Update platform configurations
+   * @description: Use this API to edit the existing platform configurations such as mobile image, desktop image, social logins, and all other text.
+   */
+  async updatePlatformConfig({ body } = {}) {
+    const { error } = UserValidator.updatePlatformConfig().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = UserValidator.updatePlatformConfig().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for updatePlatformConfig",
+      });
+      Logger({ level: "WARN", message: warrning });
+    }
+
+    const query_params = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/user/v1.0/company/${this.config.companyId}/application/${this.applicationId}/platform/config`,
+      query_params,
+      body
+    );
+
+    const { error: res_error } = UserModel.PlatformSchema().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for updatePlatformConfig",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
    * @param {string} arg.userId - User ID
    * @param {UpdateUserRequestSchema} arg.body
    * @returns {Promise<CreateUserResponseSchema>} - Success response
