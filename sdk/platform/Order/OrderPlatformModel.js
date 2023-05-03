@@ -244,6 +244,7 @@ class OrderModel {
   }
   static AttachUserInfo() {
     return Joi.object({
+      country_code: Joi.string().allow(""),
       first_name: Joi.string().allow("").required(),
       last_name: Joi.string().allow("").required(),
       mobile: Joi.number().required(),

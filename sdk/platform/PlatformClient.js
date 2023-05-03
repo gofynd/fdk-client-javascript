@@ -4297,6 +4297,7 @@ class PlatformClient {
  */
 /**
  * @typedef AttachUserInfo
+ * @property {string} [country_code]
  * @property {string} first_name
  * @property {string} last_name
  * @property {number} mobile

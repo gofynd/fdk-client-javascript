@@ -5650,6 +5650,7 @@ We are processing the report!
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | country_code | string? |  yes  |  |
  | first_name | string |  no  |  |
  | last_name | string |  no  |  |
  | mobile | number |  no  |  |

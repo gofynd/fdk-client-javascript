@@ -3584,6 +3584,7 @@ type AttachOrderUserResponse = {
     success?: boolean;
 };
 type AttachUserInfo = {
+    country_code?: string;
     first_name: string;
     last_name: string;
     mobile: number;
