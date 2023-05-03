@@ -128,14 +128,15 @@ class PosCart {
    * @param {boolean} [arg.b] -
    * @param {string} [arg.areaCode] -
    * @param {boolean} [arg.buyNow] -
+   * @param {string} [arg.id] -
    * @param {AddCartRequest} arg.body
    * @returns {Promise<AddCartDetailResponse>} - Success response
    * @summary: Add items to cart
    * @description: Use this API to add items to the cart.
    */
-  async addItems({ body, i, b, areaCode, buyNow } = {}) {
+  async addItems({ body, i, b, areaCode, buyNow, id } = {}) {
     const { error } = PosCartValidator.addItems().validate(
-      { body, i, b, areaCode, buyNow },
+      { body, i, b, areaCode, buyNow, id },
       { abortEarly: false, allowUnknown: true }
     );
     if (error) {
@@ -144,7 +145,7 @@ class PosCart {
 
     // Showing warrnings if extra unknown parameters are found
     const { error: warrning } = PosCartValidator.addItems().validate(
-      { body, i, b, areaCode, buyNow },
+      { body, i, b, areaCode, buyNow, id },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
@@ -160,6 +161,7 @@ class PosCart {
     query_params["b"] = b;
     query_params["area_code"] = areaCode;
     query_params["buy_now"] = buyNow;
+    query_params["id"] = id;
 
     const xHeaders = {};
 
@@ -272,7 +274,7 @@ class PosCart {
    * @param {boolean} [arg.i] -
    * @param {boolean} [arg.b] -
    * @param {boolean} [arg.buyNow] -
-   * @param {RewardPointRequest} arg.body
+   * @param {RewardPointRequestSchema} arg.body
    * @returns {Promise<CartDetailResponse>} - Success response
    * @summary: Apply reward points at cart
    * @description: Use this API to redeem a fixed no. of reward points by applying it to the cart.
@@ -341,7 +343,7 @@ class PosCart {
    * @param {Object} arg - Arg object.
    * @param {string} [arg.id] -
    * @param {CartPosCheckoutDetailRequest} arg.body
-   * @returns {Promise<CartCheckoutResponse>} - Success response
+   * @returns {Promise<CartCheckoutResponseSchema>} - Success response
    * @summary: Checkout all items in the cart
    * @description: Use this API to checkout all items in the cart for payment and order generation. For COD, order will be generated directly, whereas for other checkout modes, user will be redirected to a payment gateway.
    */
@@ -386,7 +388,7 @@ class PosCart {
 
     const {
       error: res_error,
-    } = PosCartModel.CartCheckoutResponse().validate(response, {
+    } = PosCartModel.CartCheckoutResponseSchema().validate(response, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -1904,7 +1906,7 @@ class PosCart {
    * @param {string} [arg.paymentIdentifier] -
    * @param {string} [arg.aggregatorName] -
    * @param {string} [arg.merchantCode] -
-   * @returns {Promise<PaymentCouponValidate>} - Success response
+   * @returns {Promise<PaymentCouponValidateSchema>} - Success response
    * @summary: Verify the coupon eligibility against the payment mode
    * @description: Use this API to validate a coupon against the payment mode such as NetBanking, Wallet, UPI etc.
    */
@@ -1981,7 +1983,7 @@ class PosCart {
 
     const {
       error: res_error,
-    } = PosCartModel.PaymentCouponValidate().validate(response, {
+    } = PosCartModel.PaymentCouponValidateSchema().validate(response, {
       abortEarly: false,
       allowUnknown: false,
     });

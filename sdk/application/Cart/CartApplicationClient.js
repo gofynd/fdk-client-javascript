@@ -16,6 +16,7 @@ class Cart {
       applyCoupon: "/service/application/cart/v1.0/coupon",
       applyRewardPoints: "/service/application/cart/v1.0/redeem/points/",
       checkoutCart: "/service/application/cart/v1.0/checkout",
+      checkoutCartV2: "/service/application/cart/v2.0/checkout",
       deleteCart: "/service/application/cart/v1.0/cart_archive",
       getAddressById: "/service/application/cart/v1.0/address/{id}",
       getAddresses: "/service/application/cart/v1.0/address",
@@ -126,14 +127,15 @@ class Cart {
    * @param {boolean} [arg.b] -
    * @param {string} [arg.areaCode] -
    * @param {boolean} [arg.buyNow] -
+   * @param {string} [arg.id] -
    * @param {AddCartRequest} arg.body
    * @returns {Promise<AddCartDetailResponse>} - Success response
    * @summary: Add items to cart
    * @description: Use this API to add items to the cart.
    */
-  async addItems({ body, i, b, areaCode, buyNow } = {}) {
+  async addItems({ body, i, b, areaCode, buyNow, id } = {}) {
     const { error } = CartValidator.addItems().validate(
-      { body, i, b, areaCode, buyNow },
+      { body, i, b, areaCode, buyNow, id },
       { abortEarly: false, allowUnknown: true }
     );
     if (error) {
@@ -142,7 +144,7 @@ class Cart {
 
     // Showing warrnings if extra unknown parameters are found
     const { error: warrning } = CartValidator.addItems().validate(
-      { body, i, b, areaCode, buyNow },
+      { body, i, b, areaCode, buyNow, id },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
@@ -158,6 +160,7 @@ class Cart {
     query_params["b"] = b;
     query_params["area_code"] = areaCode;
     query_params["buy_now"] = buyNow;
+    query_params["id"] = id;
 
     const xHeaders = {};
 
@@ -270,7 +273,7 @@ class Cart {
    * @param {boolean} [arg.i] -
    * @param {boolean} [arg.b] -
    * @param {boolean} [arg.buyNow] -
-   * @param {RewardPointRequest} arg.body
+   * @param {RewardPointRequestSchema} arg.body
    * @returns {Promise<CartDetailResponse>} - Success response
    * @summary: Apply reward points at cart
    * @description: Use this API to redeem a fixed no. of reward points by applying it to the cart.
@@ -339,7 +342,7 @@ class Cart {
    * @param {Object} arg - Arg object.
    * @param {boolean} [arg.buyNow] - This indicates the type of cart to checkout
    * @param {CartCheckoutDetailRequest} arg.body
-   * @returns {Promise<CartCheckoutResponse>} - Success response
+   * @returns {Promise<CartCheckoutResponseSchema>} - Success response
    * @summary: Checkout all items in the cart
    * @description: Use this API to checkout all items in the cart for payment and order generation. For COD, order will be directly generated, whereas for other checkout modes, user will be redirected to a payment gateway.
    */
@@ -384,7 +387,7 @@ class Cart {
 
     const {
       error: res_error,
-    } = CartModel.CartCheckoutResponse().validate(response, {
+    } = CartModel.CartCheckoutResponseSchema().validate(response, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -393,6 +396,71 @@ class Cart {
       Logger({
         level: "WARN",
         message: "Response Validation Warnnings for checkoutCart",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {boolean} [arg.buyNow] - This indicates the type of cart to checkout
+   * @param {CartCheckoutDetailV2Request} arg.body
+   * @returns {Promise<CartCheckoutResponseSchema>} - Success response
+   * @summary: Checkout all items in the cart
+   * @description: Use this API to checkout all items in the cart for payment and order generation. For COD, order will be directly generated, whereas for other checkout modes, user will be redirected to a payment gateway.
+   */
+  async checkoutCartV2({ body, buyNow } = {}) {
+    const { error } = CartValidator.checkoutCartV2().validate(
+      { body, buyNow },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = CartValidator.checkoutCartV2().validate(
+      { body, buyNow },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for checkoutCartV2",
+      });
+      Logger({ level: "WARN", message: warrning });
+    }
+
+    const query_params = {};
+    query_params["buy_now"] = buyNow;
+
+    const xHeaders = {};
+
+    const response = await ApplicationAPIClient.execute(
+      this._conf,
+      "post",
+      constructUrl({
+        url: this._urls["checkoutCartV2"],
+        params: {},
+      }),
+      query_params,
+      body,
+      xHeaders
+    );
+
+    const {
+      error: res_error,
+    } = CartModel.CartCheckoutResponseSchema().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for checkoutCartV2",
       });
       Logger({ level: "WARN", message: res_error });
     }
@@ -1172,13 +1240,14 @@ class Cart {
    *   /service/application/catalog/v1.0/products/
    * @param {number} [arg.pageSize] - Number of offers to be fetched to show
    * @param {string} [arg.promotionGroup] - Type of promotion groups
+   * @param {number} [arg.storeId] - Store id
    * @returns {Promise<PromotionOffersResponse>} - Success response
    * @summary: Fetch available promotions
    * @description: Use this API to get top 5 offers available for current product
    */
-  async getPromotionOffers({ slug, pageSize, promotionGroup } = {}) {
+  async getPromotionOffers({ slug, pageSize, promotionGroup, storeId } = {}) {
     const { error } = CartValidator.getPromotionOffers().validate(
-      { slug, pageSize, promotionGroup },
+      { slug, pageSize, promotionGroup, storeId },
       { abortEarly: false, allowUnknown: true }
     );
     if (error) {
@@ -1187,7 +1256,7 @@ class Cart {
 
     // Showing warrnings if extra unknown parameters are found
     const { error: warrning } = CartValidator.getPromotionOffers().validate(
-      { slug, pageSize, promotionGroup },
+      { slug, pageSize, promotionGroup, storeId },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
@@ -1202,6 +1271,7 @@ class Cart {
     query_params["slug"] = slug;
     query_params["page_size"] = pageSize;
     query_params["promotion_group"] = promotionGroup;
+    query_params["store_id"] = storeId;
 
     const xHeaders = {};
 
@@ -1854,7 +1924,7 @@ class Cart {
    * @param {string} [arg.paymentIdentifier] -
    * @param {string} [arg.aggregatorName] -
    * @param {string} [arg.merchantCode] -
-   * @returns {Promise<PaymentCouponValidate>} - Success response
+   * @returns {Promise<PaymentCouponValidateSchema>} - Success response
    * @summary: Verify the coupon eligibility against the payment mode
    * @description: Use this API to validate a coupon against the payment mode such as NetBanking, Wallet, UPI etc.
    */
@@ -1931,7 +2001,7 @@ class Cart {
 
     const {
       error: res_error,
-    } = CartModel.PaymentCouponValidate().validate(response, {
+    } = CartModel.PaymentCouponValidateSchema().validate(response, {
       abortEarly: false,
       allowUnknown: false,
     });
