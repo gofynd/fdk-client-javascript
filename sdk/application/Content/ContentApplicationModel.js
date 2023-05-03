@@ -347,6 +347,7 @@ class ContentModel {
   static Detail() {
     return Joi.object({
       description: Joi.string().allow(""),
+      image_url: Joi.string().allow(""),
       title: Joi.string().allow(""),
     });
   }

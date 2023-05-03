@@ -15,7 +15,6 @@ class LogisticValidator {
   static getPincodeCity() {
     return Joi.object({
       pincode: Joi.string().allow("").required(),
-      countryCode: Joi.string().allow(""),
     }).required();
   }
 

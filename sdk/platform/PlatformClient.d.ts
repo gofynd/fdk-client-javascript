@@ -1443,6 +1443,7 @@ type DefaultNavigationResponse = {
 };
 type Detail = {
     description?: string;
+    image_url?: string;
     title?: string;
 };
 type EditorMeta = {
@@ -6661,7 +6662,7 @@ type ProductCreateUpdateSchemaV2 = {
     net_quantity?: NetQuantity;
     no_of_boxes?: number;
     product_group_tag?: string[];
-    product_publish?: ProductPublish1;
+    product_publish?: ProductPublish;
     requester?: string;
     return_config: ReturnConfig;
     short_description?: string;
@@ -6841,7 +6842,7 @@ type ProductSchemaV2 = {
     pending?: string;
     primary_color?: string;
     product_group_tag?: string[];
-    product_publish?: ProductPublish;
+    product_publish?: ProductPublish1;
     return_config?: ReturnConfigResponse;
     short_description?: string;
     size_guide?: string;
@@ -9290,7 +9291,7 @@ type AddProductCart = {
     extra_meta?: any;
     item_id?: number;
     item_size?: string;
-    parent_item_identifiers?: any;
+    parent_item_identifiers?: any[];
     pos?: boolean;
     product_group_tags?: string[];
     quantity?: number;
@@ -9541,7 +9542,7 @@ type LoyaltyPoints = {
     total?: number;
 };
 type OpenapiCartDetailsRequest = {
-    cart_items?: CartItem;
+    cart_items: CartItem[];
 };
 type OpenapiCartDetailsResponse = {
     breakup_values?: CartBreakup;
@@ -9550,7 +9551,7 @@ type OpenapiCartDetailsResponse = {
     message?: string;
 };
 type OpenApiCartServiceabilityRequest = {
-    cart_items?: CartItem;
+    cart_items: CartItem[];
     shipping_address: ShippingAddress;
 };
 type OpenApiCartServiceabilityResponse = {
@@ -9883,6 +9884,8 @@ type ShippingAddress = {
     city?: string;
     country?: string;
     country_code?: string;
+    country_iso_code?: string;
+    country_phone_code?: string;
     email?: string;
     landmark?: string;
     meta?: any;

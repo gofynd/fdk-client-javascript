@@ -74,7 +74,9 @@ class CartModel {
       extra_meta: Joi.any(),
       item_id: Joi.number(),
       item_size: Joi.string().allow(""),
-      parent_item_identifiers: Joi.any(),
+      parent_item_identifiers: Joi.array().items(
+        Joi.object().pattern(/\S/, Joi.string().allow(""))
+      ),
       pos: Joi.boolean(),
       product_group_tags: Joi.array().items(Joi.string().allow("").allow(null)),
       quantity: Joi.number(),
@@ -421,7 +423,7 @@ class CartModel {
   }
   static OpenapiCartDetailsRequest() {
     return Joi.object({
-      cart_items: CartModel.CartItem(),
+      cart_items: Joi.array().items(CartModel.CartItem()).required(),
     });
   }
   static OpenapiCartDetailsResponse() {
@@ -434,7 +436,7 @@ class CartModel {
   }
   static OpenApiCartServiceabilityRequest() {
     return Joi.object({
-      cart_items: CartModel.CartItem(),
+      cart_items: Joi.array().items(CartModel.CartItem()).required(),
       shipping_address: CartModel.ShippingAddress().required(),
     });
   }
@@ -881,6 +883,8 @@ class CartModel {
       city: Joi.string().allow("").allow(null),
       country: Joi.string().allow("").allow(null),
       country_code: Joi.string().allow(""),
+      country_iso_code: Joi.string().allow(""),
+      country_phone_code: Joi.string().allow(""),
       email: Joi.string().allow(""),
       landmark: Joi.string().allow(""),
       meta: Joi.any(),

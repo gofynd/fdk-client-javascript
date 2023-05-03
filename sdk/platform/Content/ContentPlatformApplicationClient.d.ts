@@ -828,16 +828,6 @@ declare class Content {
     }): Promise<PathMappingSchema>;
     /**
      * @param {Object} arg - Arg object.
-     * @param {SeoComponent} arg.body
-     * @returns {Promise<SeoSchema>} - Success response
-     * @summary: Update SEO of application
-     * @description: Use this API to edit the SEO details of an application. This includes the sitemap, robot.txt, custom meta tags, etc.
-     */
-    updateSEOConfiguration({ body }?: {
-        body: SeoComponent;
-    }): Promise<SeoSchema>;
-    /**
-     * @param {Object} arg - Arg object.
      * @param {string} arg.id - ID allotted to the slideshow.
      * @param {SlideshowRequest} arg.body
      * @returns {Promise<SlideshowSchema>} - Success response

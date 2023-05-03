@@ -661,6 +661,120 @@ class Cart {
 
   /**
    * @param {Object} arg - Arg object.
+   * @param {string} [arg.code] -
+   * @returns {Promise<Object>} - Success response
+   * @summary: Check if coupon is already created with coupon code
+   * @description: Check if sent coupon code is already existing coupon code. As coupon code is to be unique.
+   */
+  async getCouponCodeExists({ code } = {}) {
+    const { error } = CartValidator.getCouponCodeExists().validate(
+      {
+        code,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = CartValidator.getCouponCodeExists().validate(
+      {
+        code,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getCouponCodeExists",
+      });
+      Logger({ level: "WARN", message: warrning });
+    }
+
+    const query_params = {};
+    query_params["code"] = code;
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/cart/v1.0/company/${this.config.companyId}/application/${this.applicationId}/coupon_code_exists`,
+      query_params,
+      undefined
+    );
+
+    const { error: res_error } = Joi.any().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getCouponCodeExists",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @returns {Promise<Object>} - Success response
+   * @summary: Get coupon options enums with display values
+   * @description: Get coupon enum values for fields in valid coupon object. Used for front end to create, update and filter coupon lists via fields
+   */
+  async getCouponOptionValues({} = {}) {
+    const { error } = CartValidator.getCouponOptionValues().validate(
+      {},
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = CartValidator.getCouponOptionValues().validate(
+      {},
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getCouponOptionValues",
+      });
+      Logger({ level: "WARN", message: warrning });
+    }
+
+    const query_params = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/cart/v1.0/company/${this.config.companyId}/application/${this.applicationId}/coupon_options`,
+      query_params,
+      undefined
+    );
+
+    const { error: res_error } = Joi.any().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getCouponOptionValues",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
    * @param {number} [arg.pageNo] -
    * @param {number} [arg.pageSize] -
    * @param {boolean} [arg.isArchived] -
@@ -860,6 +974,66 @@ class Cart {
       Logger({
         level: "WARN",
         message: "Response Validation Warnnings for getPromotionById",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {string} [arg.code] -
+   * @returns {Promise<Object>} - Success response
+   * @summary: Check if promotion is already created with promotion code
+   * @description: Check if sent promotion code is already existing promotion code. As promotion code is to be unique.
+   */
+  async getPromotionCodeExists({ code } = {}) {
+    const { error } = CartValidator.getPromotionCodeExists().validate(
+      {
+        code,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = CartValidator.getPromotionCodeExists().validate(
+      {
+        code,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getPromotionCodeExists",
+      });
+      Logger({ level: "WARN", message: warrning });
+    }
+
+    const query_params = {};
+    query_params["code"] = code;
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/cart/v1.0/company/${this.config.companyId}/application/${this.applicationId}/promotion_code_exists`,
+      query_params,
+      undefined
+    );
+
+    const { error: res_error } = Joi.any().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getPromotionCodeExists",
       });
       Logger({ level: "WARN", message: res_error });
     }

@@ -1789,6 +1789,7 @@ class PlatformClient {
 /**
  * @typedef Detail
  * @property {string} [description]
+ * @property {string} [image_url]
  * @property {string} [title]
  */
 /**
@@ -7839,7 +7840,7 @@ class PlatformClient {
  * @property {NetQuantity} [net_quantity]
  * @property {number} [no_of_boxes]
  * @property {string[]} [product_group_tag]
- * @property {ProductPublish1} [product_publish]
+ * @property {ProductPublish} [product_publish]
  * @property {string} [requester]
  * @property {ReturnConfig} return_config
  * @property {string} [short_description]
@@ -8035,7 +8036,7 @@ class PlatformClient {
  * @property {string} [pending]
  * @property {string} [primary_color]
  * @property {string[]} [product_group_tag]
- * @property {ProductPublish} [product_publish]
+ * @property {ProductPublish1} [product_publish]
  * @property {ReturnConfigResponse} [return_config]
  * @property {string} [short_description]
  * @property {string} [size_guide]
@@ -11117,7 +11118,7 @@ class PlatformClient {
  * @property {Object} [extra_meta]
  * @property {number} [item_id]
  * @property {string} [item_size]
- * @property {Object} [parent_item_identifiers]
+ * @property {Object[]} [parent_item_identifiers]
  * @property {boolean} [pos]
  * @property {string[]} [product_group_tags]
  * @property {number} [quantity]
@@ -11428,7 +11429,7 @@ class PlatformClient {
  */
 /**
  * @typedef OpenapiCartDetailsRequest
- * @property {CartItem} [cart_items]
+ * @property {CartItem[]} cart_items
  */
 /**
  * @typedef OpenapiCartDetailsResponse
@@ -11439,7 +11440,7 @@ class PlatformClient {
  */
 /**
  * @typedef OpenApiCartServiceabilityRequest
- * @property {CartItem} [cart_items]
+ * @property {CartItem[]} cart_items
  * @property {ShippingAddress} shipping_address
  */
 /**
@@ -11831,6 +11832,8 @@ class PlatformClient {
  * @property {string} [city]
  * @property {string} [country]
  * @property {string} [country_code]
+ * @property {string} [country_iso_code]
+ * @property {string} [country_phone_code]
  * @property {string} [email]
  * @property {string} [landmark]
  * @property {Object} [meta]

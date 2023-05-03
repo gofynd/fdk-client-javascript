@@ -32,14 +32,12 @@ declare class Logistic {
      * @param {Object} arg - Arg object.
      * @param {string} arg.pincode - A `pincode` contains a specific address of
      *   a location.
-     * @param {string} [arg.countryCode] - A 3 alphabetic country code
      * @returns {Promise<PincodeApiResponse>} - Success response
      * @summary: Get Pincode API
      * @description: Get pincode data
      */
-    getPincodeCity({ pincode, countryCode }?: {
+    getPincodeCity({ pincode }?: {
         pincode: string;
-        countryCode?: string;
     }): Promise<PincodeApiResponse>;
     /**
      * @param {Object} arg - Arg object.

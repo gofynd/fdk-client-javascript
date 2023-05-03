@@ -406,12 +406,6 @@ class ContentValidator {
     }).required();
   }
 
-  static updateSEOConfiguration() {
-    return Joi.object({
-      body: ContentModel.SeoComponent().required(),
-    }).required();
-  }
-
   static updateSlideshow() {
     return Joi.object({
       id: Joi.string().allow("").required(),

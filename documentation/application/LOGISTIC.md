@@ -134,12 +134,10 @@ Get Pincode API
 
 ```javascript
 // Promise
-const promise = applicationClient.logistic.getPincodeCity({  pincode : value,
- countryCode : value });
+const promise = applicationClient.logistic.getPincodeCity({  pincode : value });
 
 // Async/Await
-const data = await applicationClient.logistic.getPincodeCity({  pincode : value,
- countryCode : value });
+const data = await applicationClient.logistic.getPincodeCity({  pincode : value });
 ```
 
 
@@ -148,8 +146,7 @@ const data = await applicationClient.logistic.getPincodeCity({  pincode : value,
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
-| pincode | string | yes | A `pincode` contains a specific address of a location. |    
-| countryCode | string | no | A 3 alphabetic country code |  
+| pincode | string | yes | A `pincode` contains a specific address of a location. |  
 
 
 

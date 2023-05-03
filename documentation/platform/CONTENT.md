@@ -74,7 +74,6 @@ Content System
 * [updatePage](#updatepage)
 * [updatePagePreview](#updatepagepreview)
 * [updatePathRedirectionRules](#updatepathredirectionrules)
-* [updateSEOConfiguration](#updateseoconfiguration)
 * [updateSlideshow](#updateslideshow)
 * [updateSupportInformation](#updatesupportinformation)
 
@@ -5485,7 +5484,9 @@ Success. Refer `SeoComponent` for more details.
   "value": {
     "seo": {
       "details": {
-        "title": "Zyosa Zyosa"
+        "title": "Zyosa Zyosa",
+        "description": "",
+        "image_url": ""
       },
       "robots_txt": "User-agent: * \nAllow: / \nsancisciasn xwsaixjowqnxwsiwjs",
       "sitemap_enabled": false,
@@ -7272,92 +7273,6 @@ Success. Refer `PathMappingSchema` for more details.
 ---
 
 
-### updateSEOConfiguration
-Update SEO of application
-
-
-
-```javascript
-// Promise
-const promise = platformClient.application("<APPLICATION_ID>").content.updateSEOConfiguration({  body : value });
-
-// Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").content.updateSEOConfiguration({  body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |
-| body | [SeoComponent](#SeoComponent) | yes | Request body |
-
-
-Use this API to edit the SEO details of an application. This includes the sitemap, robot.txt, custom meta tags, etc.
-
-*Returned Response:*
-
-
-
-
-[SeoSchema](#SeoSchema)
-
-Success. Refer `SeoSchema` for more details.
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; default</i></summary>
-
-```json
-{
-  "value": {
-    "details": {
-      "title": "Zyosa Zyosa"
-    },
-    "robots_txt": "User-agent: * \nAllow: / \nsancisciasn xwsaixjowqnxwsiwjs",
-    "sitemap_enabled": false,
-    "_id": "6009819ee463ad40de397eb2",
-    "app": "000000000000000000000001",
-    "created_at": "2021-01-21T13:29:02.543Z",
-    "updated_at": "2021-02-05T06:36:16.048Z",
-    "__v": 11,
-    "custom_meta_tags": [
-      {
-        "name": "test 0000",
-        "content": "<meta name=\"test\" content=\"0000 cn dcje dcj rejre cjrenurenc \">",
-        "_id": "6017c301bde3c21dbb13b284"
-      },
-      {
-        "name": "cwdcdc",
-        "content": "<meta content=\"wdcewdewc\">",
-        "_id": "6017c675bde3c22cfb13b290"
-      }
-    ]
-  }
-}
-```
-</details>
-
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
 ### updateSlideshow
 Update a slideshow
 
@@ -8056,6 +7971,7 @@ Success. Refer `Support` for more details.
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | description | string? |  yes  |  |
+ | image_url | string? |  yes  |  |
  | title | string? |  yes  |  |
  
 

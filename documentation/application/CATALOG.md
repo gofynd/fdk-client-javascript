@@ -8680,7 +8680,7 @@ Success. Returns a response object. Check the example shown below or refer `Foll
  | created_by | [UserDetail](#UserDetail)? |  yes  |  |
  | created_on | string |  no  |  |
  | is_active | boolean? |  yes  |  |
- | logo | string? |  yes  |  |
+ | logo | any? |  yes  |  |
  | meta | string? |  yes  |  |
  | modified_by | [UserDetail](#UserDetail)? |  yes  |  |
  | modified_on | string |  no  |  |
