@@ -59,34 +59,34 @@ declare class Cart {
     }): Promise<OpenApiCartServiceabilityResponse>;
     /**
      * @param {Object} arg - Arg object.
-     * @param {OpenApiPlatformCheckoutReq} arg.body
+     * @param {OpenApiPlatformCheckoutReqSchema} arg.body
      * @returns {Promise<OpenApiCheckoutResponse>} - Success response
      * @summary: Create Fynd order with cart details
      * @description: Generate Fynd order for cart details send with provided `cart_items`
      */
     checkoutCart({ body }?: {
-        body: OpenApiPlatformCheckoutReq;
+        body: OpenApiPlatformCheckoutReqSchema;
     }): Promise<OpenApiCheckoutResponse>;
     /**
      * @param {Object} arg - Arg object.
-     * @param {CouponAdd} arg.body
+     * @param {CouponAddSchema} arg.body
      * @returns {Promise<SuccessMessage>} - Success response
      * @summary: Create new coupon
      * @description: Create new coupon
      */
     createCoupon({ body }?: {
-        body: CouponAdd;
+        body: CouponAddSchema;
     }): Promise<SuccessMessage>;
     /**
      * @param {Object} arg - Arg object.
-     * @param {PromotionAdd} arg.body
-     * @returns {Promise<PromotionAdd>} - Success response
+     * @param {PromotionAddSchema} arg.body
+     * @returns {Promise<PromotionAddSchema>} - Success response
      * @summary: Create new promotion
      * @description: Create new promotion
      */
     createPromotion({ body }?: {
-        body: PromotionAdd;
-    }): Promise<PromotionAdd>;
+        body: PromotionAddSchema;
+    }): Promise<PromotionAddSchema>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} [arg.id] - The unique identifier of the cart.
@@ -118,7 +118,7 @@ declare class Cart {
      * @param {boolean} [arg.anonymousCart] -
      * @param {string} [arg.lastId] -
      * @param {string} [arg.sortOn] -
-     * @returns {Promise<AbandonedCartResponse>} - Success response
+     * @returns {Promise<AbandonedCartResponseSchema>} - Success response
      * @summary: Get with abandoned cart list
      * @description: Get abandoned cart list with pagination
      */
@@ -130,7 +130,7 @@ declare class Cart {
         anonymousCart?: boolean;
         lastId?: string;
         sortOn?: string;
-    }): Promise<AbandonedCartResponse>;
+    }): Promise<AbandonedCartResponseSchema>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.companyId - Current company id
@@ -261,7 +261,7 @@ declare class Cart {
      * @param {string} [arg.fromDate] -
      * @param {string} [arg.toDate] -
      * @param {string} [arg.filterOn] -
-     * @returns {Promise<MultiCartResponse>} - Success response
+     * @returns {Promise<MultiCartResponseSchema>} - Success response
      * @summary: Get cart list for store os user
      * @description: Get all carts for the store os user which is created for customer
      */
@@ -269,7 +269,7 @@ declare class Cart {
         fromDate?: string;
         toDate?: string;
         filterOn?: string;
-    }): Promise<MultiCartResponse>;
+    }): Promise<MultiCartResponseSchema>;
     /**
      * @param {Object} arg - Arg object.
      * @param {GetShareCartLinkRequest} arg.body
@@ -293,13 +293,13 @@ declare class Cart {
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.id -
-     * @returns {Promise<CouponUpdate>} - Success response
+     * @returns {Promise<CouponUpdateSchema>} - Success response
      * @summary: Get with single coupon details or coupon list
      * @description: Get single coupon details with `id` in path param
      */
     getCouponById({ id }?: {
         id: string;
-    }): Promise<CouponUpdate>;
+    }): Promise<CouponUpdateSchema>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} [arg.code] -
@@ -388,13 +388,13 @@ declare class Cart {
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.id -
-     * @returns {Promise<PromotionUpdate>} - Success response
+     * @returns {Promise<PromotionUpdateSchema>} - Success response
      * @summary: Get with single promotion details or promotion list
      * @description: Get single promotion details with `id` in path param
      */
     getPromotionById({ id }?: {
         id: string;
-    }): Promise<PromotionUpdate>;
+    }): Promise<PromotionUpdateSchema>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} [arg.code] -
@@ -515,14 +515,26 @@ declare class Cart {
      * @param {Object} arg - Arg object.
      * @param {string} [arg.id] -
      * @param {PlatformCartCheckoutDetailRequest} arg.body
-     * @returns {Promise<CartCheckoutResponse>} - Success response
+     * @returns {Promise<CartCheckoutResponseSchema>} - Success response
      * @summary: Checkout all items in the cart
      * @description: Use this API to checkout all items in the cart for payment and order generation. For COD, order will be generated directly, whereas for other checkout modes, user will be redirected to a payment gateway.
      */
     platformCheckoutCart({ body, id }?: {
         id?: string;
         body: PlatformCartCheckoutDetailRequest;
-    }): Promise<CartCheckoutResponse>;
+    }): Promise<CartCheckoutResponseSchema>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {string} [arg.id] -
+     * @param {PlatformCartCheckoutDetailV2Request} arg.body
+     * @returns {Promise<CartCheckoutResponseSchema>} - Success response
+     * @summary: Checkout all items in the cart
+     * @description: Use this API to checkout all items in the cart for payment and order generation. For COD, order will be directly generated, whereas for other checkout modes, user will be redirected to a payment gateway.
+     */
+    platformCheckoutCartV2({ body, id }?: {
+        id?: string;
+        body: PlatformCartCheckoutDetailV2Request;
+    }): Promise<CartCheckoutResponseSchema>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} [arg.id] -
@@ -599,6 +611,20 @@ declare class Cart {
     }): Promise<CartDetailResponse>;
     /**
      * @param {Object} arg - Arg object.
+     * @param {string} [arg.id] -
+     * @param {boolean} [arg.buyNow] -
+     * @param {UpdateCartPaymentRequestV2} arg.body
+     * @returns {Promise<CartDetailResponse>} - Success response
+     * @summary: Update cart payment
+     * @description: Use this API to update cart payment.
+     */
+    selectPaymentModeV2({ body, id, buyNow }?: {
+        id?: string;
+        buyNow?: boolean;
+        body: UpdateCartPaymentRequestV2;
+    }): Promise<CartDetailResponse>;
+    /**
+     * @param {Object} arg - Arg object.
      * @param {string} arg.id - ID allotted to the selected address
      * @param {PlatformAddress} arg.body
      * @returns {Promise<UpdateAddressResponse>} - Success response
@@ -667,14 +693,14 @@ declare class Cart {
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.id -
-     * @param {CouponUpdate} arg.body
+     * @param {CouponUpdateSchema} arg.body
      * @returns {Promise<SuccessMessage>} - Success response
      * @summary: Update existing coupon configuration
      * @description: Update coupon with id sent in `id`
      */
     updateCoupon({ id, body }?: {
         id: string;
-        body: CouponUpdate;
+        body: CouponUpdateSchema;
     }): Promise<SuccessMessage>;
     /**
      * @param {Object} arg - Arg object.
@@ -691,15 +717,15 @@ declare class Cart {
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.id -
-     * @param {PromotionUpdate} arg.body
-     * @returns {Promise<PromotionUpdate>} - Success response
+     * @param {PromotionUpdateSchema} arg.body
+     * @returns {Promise<PromotionUpdateSchema>} - Success response
      * @summary: Update existing promotion configuration
      * @description: Update promotion with id sent in `id`
      */
     updatePromotion({ id, body }?: {
         id: string;
-        body: PromotionUpdate;
-    }): Promise<PromotionUpdate>;
+        body: PromotionUpdateSchema;
+    }): Promise<PromotionUpdateSchema>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.id -
@@ -748,7 +774,7 @@ declare class Cart {
      * @param {string} [arg.paymentIdentifier] -
      * @param {string} [arg.aggregatorName] -
      * @param {string} [arg.merchantCode] -
-     * @returns {Promise<PaymentCouponValidate>} - Success response
+     * @returns {Promise<PaymentCouponValidateSchema>} - Success response
      * @summary: Verify the coupon eligibility against the payment mode
      * @description: Use this API to validate a coupon against the payment mode such as NetBanking, Wallet, UPI etc.
      */
@@ -760,6 +786,6 @@ declare class Cart {
         paymentIdentifier?: string;
         aggregatorName?: string;
         merchantCode?: string;
-    }): Promise<PaymentCouponValidate>;
+    }): Promise<PaymentCouponValidateSchema>;
 }
 import Paginator = require("../../common/Paginator");

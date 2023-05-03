@@ -287,7 +287,7 @@ class Cart {
 
   /**
    * @param {Object} arg - Arg object.
-   * @param {OpenApiPlatformCheckoutReq} arg.body
+   * @param {OpenApiPlatformCheckoutReqSchema} arg.body
    * @returns {Promise<OpenApiCheckoutResponse>} - Success response
    * @summary: Create Fynd order with cart details
    * @description: Generate Fynd order for cart details send with provided `cart_items`
@@ -348,7 +348,7 @@ class Cart {
 
   /**
    * @param {Object} arg - Arg object.
-   * @param {CouponAdd} arg.body
+   * @param {CouponAddSchema} arg.body
    * @returns {Promise<SuccessMessage>} - Success response
    * @summary: Create new coupon
    * @description: Create new coupon
@@ -407,8 +407,8 @@ class Cart {
 
   /**
    * @param {Object} arg - Arg object.
-   * @param {PromotionAdd} arg.body
-   * @returns {Promise<PromotionAdd>} - Success response
+   * @param {PromotionAddSchema} arg.body
+   * @returns {Promise<PromotionAddSchema>} - Success response
    * @summary: Create new promotion
    * @description: Create new promotion
    */
@@ -448,7 +448,9 @@ class Cart {
       body
     );
 
-    const { error: res_error } = CartModel.PromotionAdd().validate(response, {
+    const {
+      error: res_error,
+    } = CartModel.PromotionAddSchema().validate(response, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -601,7 +603,7 @@ class Cart {
    * @param {boolean} [arg.anonymousCart] -
    * @param {string} [arg.lastId] -
    * @param {string} [arg.sortOn] -
-   * @returns {Promise<AbandonedCartResponse>} - Success response
+   * @returns {Promise<AbandonedCartResponseSchema>} - Success response
    * @summary: Get with abandoned cart list
    * @description: Get abandoned cart list with pagination
    */
@@ -670,7 +672,7 @@ class Cart {
 
     const {
       error: res_error,
-    } = CartModel.AbandonedCartResponse().validate(response, {
+    } = CartModel.AbandonedCartResponseSchema().validate(response, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -1214,7 +1216,7 @@ class Cart {
    * @param {string} [arg.fromDate] -
    * @param {string} [arg.toDate] -
    * @param {string} [arg.filterOn] -
-   * @returns {Promise<MultiCartResponse>} - Success response
+   * @returns {Promise<MultiCartResponseSchema>} - Success response
    * @summary: Get cart list for store os user
    * @description: Get all carts for the store os user which is created for customer
    */
@@ -1263,7 +1265,7 @@ class Cart {
 
     const {
       error: res_error,
-    } = CartModel.MultiCartResponse().validate(response, {
+    } = CartModel.MultiCartResponseSchema().validate(response, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -1404,7 +1406,7 @@ class Cart {
   /**
    * @param {Object} arg - Arg object.
    * @param {string} arg.id -
-   * @returns {Promise<CouponUpdate>} - Success response
+   * @returns {Promise<CouponUpdateSchema>} - Success response
    * @summary: Get with single coupon details or coupon list
    * @description: Get single coupon details with `id` in path param
    */
@@ -1444,7 +1446,9 @@ class Cart {
       undefined
     );
 
-    const { error: res_error } = CartModel.CouponUpdate().validate(response, {
+    const {
+      error: res_error,
+    } = CartModel.CouponUpdateSchema().validate(response, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -1848,7 +1852,7 @@ class Cart {
   /**
    * @param {Object} arg - Arg object.
    * @param {string} arg.id -
-   * @returns {Promise<PromotionUpdate>} - Success response
+   * @returns {Promise<PromotionUpdateSchema>} - Success response
    * @summary: Get with single promotion details or promotion list
    * @description: Get single promotion details with `id` in path param
    */
@@ -1888,10 +1892,12 @@ class Cart {
       undefined
     );
 
-    const { error: res_error } = CartModel.PromotionUpdate().validate(
-      response,
-      { abortEarly: false, allowUnknown: false }
-    );
+    const {
+      error: res_error,
+    } = CartModel.PromotionUpdateSchema().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
 
     if (res_error) {
       Logger({
@@ -2362,7 +2368,7 @@ class Cart {
    * @param {Object} arg - Arg object.
    * @param {string} [arg.id] -
    * @param {PlatformCartCheckoutDetailRequest} arg.body
-   * @returns {Promise<CartCheckoutResponse>} - Success response
+   * @returns {Promise<CartCheckoutResponseSchema>} - Success response
    * @summary: Checkout all items in the cart
    * @description: Use this API to checkout all items in the cart for payment and order generation. For COD, order will be generated directly, whereas for other checkout modes, user will be redirected to a payment gateway.
    */
@@ -2407,7 +2413,7 @@ class Cart {
 
     const {
       error: res_error,
-    } = CartModel.CartCheckoutResponse().validate(response, {
+    } = CartModel.CartCheckoutResponseSchema().validate(response, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -2416,6 +2422,71 @@ class Cart {
       Logger({
         level: "WARN",
         message: "Response Validation Warnnings for platformCheckoutCart",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {string} [arg.id] -
+   * @param {PlatformCartCheckoutDetailV2Request} arg.body
+   * @returns {Promise<CartCheckoutResponseSchema>} - Success response
+   * @summary: Checkout all items in the cart
+   * @description: Use this API to checkout all items in the cart for payment and order generation. For COD, order will be directly generated, whereas for other checkout modes, user will be redirected to a payment gateway.
+   */
+  async platformCheckoutCartV2({ body, id } = {}) {
+    const { error } = CartValidator.platformCheckoutCartV2().validate(
+      {
+        body,
+        id,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = CartValidator.platformCheckoutCartV2().validate(
+      {
+        body,
+        id,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for platformCheckoutCartV2",
+      });
+      Logger({ level: "WARN", message: warrning });
+    }
+
+    const query_params = {};
+    query_params["id"] = id;
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/cart/v2.0/company/${this.config.companyId}/application/${this.applicationId}/checkout`,
+      query_params,
+      body
+    );
+
+    const {
+      error: res_error,
+    } = CartModel.CartCheckoutResponseSchema().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for platformCheckoutCartV2",
       });
       Logger({ level: "WARN", message: res_error });
     }
@@ -2779,6 +2850,75 @@ class Cart {
 
   /**
    * @param {Object} arg - Arg object.
+   * @param {string} [arg.id] -
+   * @param {boolean} [arg.buyNow] -
+   * @param {UpdateCartPaymentRequestV2} arg.body
+   * @returns {Promise<CartDetailResponse>} - Success response
+   * @summary: Update cart payment
+   * @description: Use this API to update cart payment.
+   */
+  async selectPaymentModeV2({ body, id, buyNow } = {}) {
+    const { error } = CartValidator.selectPaymentModeV2().validate(
+      {
+        body,
+        id,
+        buyNow,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = CartValidator.selectPaymentModeV2().validate(
+      {
+        body,
+        id,
+        buyNow,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for selectPaymentModeV2",
+      });
+      Logger({ level: "WARN", message: warrning });
+    }
+
+    const query_params = {};
+    query_params["id"] = id;
+    query_params["buy_now"] = buyNow;
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "put",
+      `/service/platform/cart/v2.0/company/${this.config.companyId}/application/${this.applicationId}/payment`,
+      query_params,
+      body
+    );
+
+    const {
+      error: res_error,
+    } = CartModel.CartDetailResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for selectPaymentModeV2",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
    * @param {string} arg.id - ID allotted to the selected address
    * @param {PlatformAddress} arg.body
    * @returns {Promise<UpdateAddressResponse>} - Success response
@@ -3115,7 +3255,7 @@ class Cart {
   /**
    * @param {Object} arg - Arg object.
    * @param {string} arg.id -
-   * @param {CouponUpdate} arg.body
+   * @param {CouponUpdateSchema} arg.body
    * @returns {Promise<SuccessMessage>} - Success response
    * @summary: Update existing coupon configuration
    * @description: Update coupon with id sent in `id`
@@ -3239,8 +3379,8 @@ class Cart {
   /**
    * @param {Object} arg - Arg object.
    * @param {string} arg.id -
-   * @param {PromotionUpdate} arg.body
-   * @returns {Promise<PromotionUpdate>} - Success response
+   * @param {PromotionUpdateSchema} arg.body
+   * @returns {Promise<PromotionUpdateSchema>} - Success response
    * @summary: Update existing promotion configuration
    * @description: Update promotion with id sent in `id`
    */
@@ -3282,10 +3422,12 @@ class Cart {
       body
     );
 
-    const { error: res_error } = CartModel.PromotionUpdate().validate(
-      response,
-      { abortEarly: false, allowUnknown: false }
-    );
+    const {
+      error: res_error,
+    } = CartModel.PromotionUpdateSchema().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
 
     if (res_error) {
       Logger({
@@ -3469,7 +3611,7 @@ class Cart {
    * @param {string} [arg.paymentIdentifier] -
    * @param {string} [arg.aggregatorName] -
    * @param {string} [arg.merchantCode] -
-   * @returns {Promise<PaymentCouponValidate>} - Success response
+   * @returns {Promise<PaymentCouponValidateSchema>} - Success response
    * @summary: Verify the coupon eligibility against the payment mode
    * @description: Use this API to validate a coupon against the payment mode such as NetBanking, Wallet, UPI etc.
    */
@@ -3540,7 +3682,7 @@ class Cart {
 
     const {
       error: res_error,
-    } = CartModel.PaymentCouponValidate().validate(response, {
+    } = CartModel.PaymentCouponValidateSchema().validate(response, {
       abortEarly: false,
       allowUnknown: false,
     });

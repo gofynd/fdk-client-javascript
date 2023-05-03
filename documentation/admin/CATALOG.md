@@ -7201,7 +7201,7 @@ Product verification data. See example below or refer `ProductVerificationModelS
  | departments | [string]? |  yes  |  |
  | display | string? |  yes  |  |
  | display_type | [string]? |  yes  |  |
- | image_config | [SwatchImageConfig](#SwatchImageConfig)? |  yes  |  |
+ | image_config | [SwatchImageConfig1](#SwatchImageConfig1)? |  yes  |  |
  | is_active | boolean? |  yes  |  |
  | key | string? |  yes  |  |
  | modified_by | [UserSerializer1](#UserSerializer1)? |  yes  |  |
@@ -7792,22 +7792,6 @@ Product verification data. See example below or refer `ProductVerificationModelS
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | aspect_ratio | string? |  yes  |  |
- | file_type | [string]? |  yes  |  |
- | maintain_aspect_ratio | boolean? |  yes  |  |
- | max_height | number? |  yes  |  |
- | max_size | number? |  yes  |  |
- | max_width | number? |  yes  |  |
- | min_height | number? |  yes  |  |
- | min_width | number? |  yes  |  |
- 
-
----
-
-#### [SwatchImageConfig1](#SwatchImageConfig1)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
  | aspect_ratio | string? |  yes  | Aspect ratio of the image |
  | file_type | [string]? |  yes  | List of allowed file types |
  | maintain_aspect_ratio | boolean? |  yes  | Flag to maintain aspect ratio of the image |
@@ -7816,6 +7800,22 @@ Product verification data. See example below or refer `ProductVerificationModelS
  | max_width | number? |  yes  | Maximum width of the image |
  | min_height | number? |  yes  | Minimum height of the image |
  | min_width | number? |  yes  | Minimum width of the image |
+ 
+
+---
+
+#### [SwatchImageConfig1](#SwatchImageConfig1)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | aspect_ratio | string? |  yes  |  |
+ | file_type | [string]? |  yes  |  |
+ | maintain_aspect_ratio | boolean? |  yes  |  |
+ | max_height | number? |  yes  |  |
+ | max_size | number? |  yes  |  |
+ | max_width | number? |  yes  |  |
+ | min_height | number? |  yes  |  |
+ | min_width | number? |  yes  |  |
  
 
 ---
@@ -7976,7 +7976,7 @@ Product verification data. See example below or refer `ProductVerificationModelS
  | departments | [string]? |  yes  | List of departments for the variant attribute |
  | display | string? |  yes  | Display name of the variant attribute |
  | display_type | [string]? |  yes  | List of display types for the variant attribute |
- | image_config | [SwatchImageConfig1](#SwatchImageConfig1)? |  yes  | Configuration for the swatch image |
+ | image_config | [SwatchImageConfig](#SwatchImageConfig)? |  yes  | Configuration for the swatch image |
  | is_active | boolean? |  yes  | Flag to indicate if the variant attribute is active or not |
  | key | string? |  yes  | Key name of the variant attribute |
  | modified_by | [UserDetail](#UserDetail)? |  yes  | User details of the last modifier of the document |
