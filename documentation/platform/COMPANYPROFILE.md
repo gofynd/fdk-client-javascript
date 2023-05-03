@@ -1555,7 +1555,7 @@ Returns a success response
  | ---------- | ---- | -------- | ----------- |
  | _custom_json | string? |  yes  |  |
  | _locale_language | string? |  yes  |  |
- | banner | [BrandBannerSerializer](#BrandBannerSerializer) |  no  |  |
+ | banner | [BrandBannerSerializer](#BrandBannerSerializer)? |  yes  |  |
  | brand_tier | string? |  yes  |  |
  | company_id | number? |  yes  |  |
  | description | string? |  yes  |  |

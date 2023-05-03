@@ -7204,7 +7204,7 @@ Product verification data. See example below or refer `ProductVerificationModelS
  | departments | [string]? |  yes  |  |
  | display | string? |  yes  |  |
  | display_type | [string]? |  yes  |  |
- | image_config | [SwatchImageConfig1](#SwatchImageConfig1)? |  yes  |  |
+ | image_config | [SwatchImageConfig](#SwatchImageConfig)? |  yes  |  |
  | is_active | boolean? |  yes  |  |
  | key | string? |  yes  |  |
  | modified_by | [UserSerializer1](#UserSerializer1)? |  yes  |  |
@@ -7979,7 +7979,7 @@ Product verification data. See example below or refer `ProductVerificationModelS
  | departments | [any]? |  yes  |  |
  | display | any? |  yes  |  |
  | display_type | [any]? |  yes  |  |
- | image_config | [SwatchImageConfig](#SwatchImageConfig)? |  yes  |  |
+ | image_config | [SwatchImageConfig1](#SwatchImageConfig1)? |  yes  |  |
  | is_active | boolean? |  yes  |  |
  | key | any? |  yes  |  |
  | modified_by | [UserDetail](#UserDetail)? |  yes  |  |
