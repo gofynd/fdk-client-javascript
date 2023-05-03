@@ -543,7 +543,7 @@ Success. Check the example shown below or refer `QRCodeResp` for more details.
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | campaign_cookie_expiry | string |  no  |  |
+ | campaign_cookie_expiry | string? |  yes  |  |
  
 
 ---
@@ -552,8 +552,8 @@ Success. Check the example shown below or refer `QRCodeResp` for more details.
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | medium | string |  no  |  |
- | source | string |  no  |  |
+ | medium | string? |  yes  |  |
+ | source | string? |  yes  |  |
  
 
 ---
@@ -562,7 +562,7 @@ Success. Check the example shown below or refer `QRCodeResp` for more details.
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | message | string |  no  |  |
+ | message | string? |  yes  |  |
  
 
 ---
@@ -571,13 +571,13 @@ Success. Check the example shown below or refer `QRCodeResp` for more details.
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | current | number |  no  |  |
- | has_next | boolean |  no  |  |
- | has_previous | boolean |  no  |  |
- | item_total | number |  no  |  |
- | next_id | string |  no  |  |
- | size | number |  no  |  |
- | type | string |  yes  |  |
+ | current | number? |  yes  |  |
+ | has_next | boolean? |  yes  |  |
+ | has_previous | boolean? |  yes  |  |
+ | item_total | number? |  yes  |  |
+ | next_id | string? |  yes  |  |
+ | size | number? |  yes  |  |
+ | type | string |  no  |  |
  
 
 ---
@@ -586,8 +586,8 @@ Success. Check the example shown below or refer `QRCodeResp` for more details.
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | link | string |  no  |  |
- | svg | string |  no  |  |
+ | link | string? |  yes  |  |
+ | svg | string? |  yes  |  |
  
 
 ---
@@ -596,8 +596,8 @@ Success. Check the example shown below or refer `QRCodeResp` for more details.
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | link | string |  no  |  |
- | type | string |  no  |  |
+ | link | string? |  yes  |  |
+ | type | string? |  yes  |  |
  
 
 ---
@@ -606,10 +606,10 @@ Success. Check the example shown below or refer `QRCodeResp` for more details.
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | android | [RedirectDevice](#RedirectDevice) |  no  |  |
- | force_web | boolean |  no  |  |
- | ios | [RedirectDevice](#RedirectDevice) |  no  |  |
- | web | [WebRedirect](#WebRedirect) |  no  |  |
+ | android | [RedirectDevice](#RedirectDevice)? |  yes  |  |
+ | force_web | boolean? |  yes  |  |
+ | ios | [RedirectDevice](#RedirectDevice)? |  yes  |  |
+ | web | [WebRedirect](#WebRedirect)? |  yes  |  |
  
 
 ---
@@ -618,8 +618,8 @@ Success. Check the example shown below or refer `QRCodeResp` for more details.
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | items | [[ShortLinkRes](#ShortLinkRes)] |  no  |  |
- | page | [Page](#Page) |  no  |  |
+ | items | [[ShortLinkRes](#ShortLinkRes)]? |  yes  |  |
+ | page | [Page](#Page)? |  yes  |  |
  
 
 ---
@@ -628,18 +628,18 @@ Success. Check the example shown below or refer `QRCodeResp` for more details.
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | active | boolean |  no  |  |
- | attribution | [Attribution](#Attribution) |  no  |  |
- | campaign | [CampaignShortLink](#CampaignShortLink) |  no  |  |
- | count | number |  no  |  |
- | enable_tracking | boolean |  no  |  |
- | expire_at | string |  no  |  |
- | hash | string |  no  |  |
- | personalized | boolean |  no  |  |
- | redirects | [Redirects](#Redirects) |  no  |  |
- | social_media_tags | [SocialMediaTags](#SocialMediaTags) |  no  |  |
- | title | string |  yes  |  |
- | url | string |  yes  |  |
+ | active | boolean? |  yes  |  |
+ | attribution | [Attribution](#Attribution)? |  yes  |  |
+ | campaign | [CampaignShortLink](#CampaignShortLink)? |  yes  |  |
+ | count | number? |  yes  |  |
+ | enable_tracking | boolean? |  yes  |  |
+ | expire_at | string? |  yes  |  |
+ | hash | string? |  yes  |  |
+ | personalized | boolean? |  yes  | To create personalized short links. |
+ | redirects | [Redirects](#Redirects)? |  yes  |  |
+ | social_media_tags | [SocialMediaTags](#SocialMediaTags)? |  yes  |  |
+ | title | string |  no  | Give a name to the link. |
+ | url | string |  no  | The web address to shorten. |
  
 
 ---
@@ -648,26 +648,26 @@ Success. Check the example shown below or refer `QRCodeResp` for more details.
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | _id | string |  no  |  |
- | active | boolean |  no  |  |
- | app_redirect | boolean |  no  |  |
- | application | string |  no  |  |
- | attribution | [Attribution](#Attribution) |  no  |  |
- | campaign | [CampaignShortLink](#CampaignShortLink) |  no  |  |
- | count | number |  no  |  |
- | created_at | string |  no  |  |
- | created_by | string |  no  |  |
- | enable_tracking | boolean |  no  |  |
- | expire_at | string |  no  |  |
- | fallback | string |  no  |  |
- | meta | string |  no  |  |
- | personalized | boolean |  no  |  |
- | redirects | [Redirects](#Redirects) |  no  |  |
- | social_media_tags | [SocialMediaTags](#SocialMediaTags) |  no  |  |
- | title | string |  no  |  |
- | updated_at | string |  no  |  |
- | url | [UrlInfo](#UrlInfo) |  no  |  |
- | user_id | string |  no  |  |
+ | _id | string? |  yes  |  |
+ | active | boolean? |  yes  |  |
+ | app_redirect | boolean? |  yes  |  |
+ | application | string? |  yes  |  |
+ | attribution | [Attribution](#Attribution)? |  yes  |  |
+ | campaign | [CampaignShortLink](#CampaignShortLink)? |  yes  |  |
+ | count | number? |  yes  |  |
+ | created_at | string? |  yes  |  |
+ | created_by | string? |  yes  |  |
+ | enable_tracking | boolean? |  yes  |  |
+ | expire_at | string? |  yes  |  |
+ | fallback | string? |  yes  |  |
+ | meta | string? |  yes  |  |
+ | personalized | boolean? |  yes  | To create personalized short links |
+ | redirects | [Redirects](#Redirects)? |  yes  |  |
+ | social_media_tags | [SocialMediaTags](#SocialMediaTags)? |  yes  |  |
+ | title | string? |  yes  |  |
+ | updated_at | string? |  yes  |  |
+ | url | [UrlInfo](#UrlInfo)? |  yes  |  |
+ | user_id | string? |  yes  |  |
  
 
 ---
@@ -676,9 +676,9 @@ Success. Check the example shown below or refer `QRCodeResp` for more details.
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | description | string |  no  |  |
- | image | string |  no  |  |
- | title | string |  no  |  |
+ | description | string? |  yes  |  |
+ | image | string? |  yes  |  |
+ | title | string? |  yes  |  |
  
 
 ---
@@ -687,9 +687,9 @@ Success. Check the example shown below or refer `QRCodeResp` for more details.
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | hash | string |  no  |  |
- | original | string |  no  |  |
- | short | string |  no  |  |
+ | hash | string? |  yes  |  |
+ | original | string? |  yes  |  |
+ | short | string? |  yes  |  |
  
 
 ---
@@ -698,8 +698,8 @@ Success. Check the example shown below or refer `QRCodeResp` for more details.
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | link | string |  no  |  |
- | type | string |  no  |  |
+ | link | string? |  yes  |  |
+ | type | string? |  yes  |  |
  
 
 ---

@@ -35,7 +35,7 @@ class CartValidator {
       i: Joi.boolean(),
       b: Joi.boolean(),
       buyNow: Joi.boolean(),
-      body: CartModel.RewardPointRequest().required(),
+      body: CartModel.RewardPointRequestSchema().required(),
     }).required();
   }
 
@@ -43,6 +43,13 @@ class CartValidator {
     return Joi.object({
       buyNow: Joi.boolean(),
       body: CartModel.CartCheckoutDetailRequest().required(),
+    }).required();
+  }
+
+  static checkoutCartV2() {
+    return Joi.object({
+      buyNow: Joi.boolean(),
+      body: CartModel.CartCheckoutDetailV2Request().required(),
     }).required();
   }
 

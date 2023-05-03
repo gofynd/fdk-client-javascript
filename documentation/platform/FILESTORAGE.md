@@ -818,8 +818,8 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | items | [[DbRecord](#DbRecord)] |  yes  |  |
- | page | [Page](#Page) |  yes  |  |
+ | items | [[DbRecord](#DbRecord)] |  no  |  |
+ | page | [Page](#Page) |  no  |  |
  
 
 ---
@@ -828,9 +828,9 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | configuration | [ReqConfiguration](#ReqConfiguration) |  no  |  |
- | destination | [Destination](#Destination) |  yes  |  |
- | urls | [string] |  yes  |  |
+ | configuration | [ReqConfiguration](#ReqConfiguration)? |  yes  |  |
+ | destination | [Destination](#Destination) |  no  |  |
+ | urls | [string] |  no  |  |
  
 
 ---
@@ -839,8 +839,8 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | task | [CopyFileTask](#CopyFileTask) |  yes  |  |
- | tracking_url | string |  yes  |  |
+ | task | [CopyFileTask](#CopyFileTask) |  no  |  |
+ | tracking_url | string |  no  |  |
  
 
 ---
@@ -849,9 +849,9 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | absolute_url | string |  no  |  |
- | relative_url | string |  no  |  |
- | url | string |  yes  |  |
+ | absolute_url | string? |  yes  |  |
+ | relative_url | string? |  yes  |  |
+ | url | string |  no  |  |
  
 
 ---
@@ -860,19 +860,19 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | _id | string |  yes  |  |
- | cdn | [CDN](#CDN) |  yes  |  |
- | content_type | string |  yes  |  |
- | created_on | string |  yes  |  |
- | file_name | string |  yes  |  |
- | file_path | string |  yes  |  |
- | modified_on | string |  yes  |  |
- | namespace | string |  yes  |  |
- | operation | string |  yes  |  |
- | size | number |  yes  |  |
- | success | boolean |  yes  |  |
- | tags | [string] |  no  |  |
- | upload | [Upload](#Upload) |  yes  |  |
+ | _id | string |  no  |  |
+ | cdn | [CDN](#CDN) |  no  |  |
+ | content_type | string |  no  |  |
+ | created_on | string |  no  |  |
+ | file_name | string |  no  |  |
+ | file_path | string |  no  |  |
+ | modified_on | string |  no  |  |
+ | namespace | string |  no  |  |
+ | operation | string |  no  |  |
+ | size | number |  no  |  |
+ | success | boolean |  no  |  |
+ | tags | [string]? |  yes  |  |
+ | upload | [Upload](#Upload) |  no  |  |
  
 
 ---
@@ -881,17 +881,17 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | attempts_made | number |  yes  |  |
- | data | [BulkRequest](#BulkRequest) |  yes  |  |
- | delay | number |  yes  |  |
- | finished_on | number |  yes  |  |
- | id | string |  yes  |  |
- | name | string |  yes  |  |
- | opts | [Opts](#Opts) |  yes  |  |
- | processed_on | number |  yes  |  |
- | progress | number |  yes  |  |
- | stacktrace | [string] |  no  |  |
- | timestamp | number |  yes  |  |
+ | attempts_made | number |  no  |  |
+ | data | [BulkRequest](#BulkRequest) |  no  |  |
+ | delay | number |  no  |  |
+ | finished_on | number |  no  |  |
+ | id | string |  no  |  |
+ | name | string |  no  |  |
+ | opts | [Opts](#Opts) |  no  |  |
+ | processed_on | number |  no  |  |
+ | progress | number |  no  |  |
+ | stacktrace | [string]? |  yes  |  |
+ | timestamp | number |  no  |  |
  
 
 ---
@@ -900,18 +900,18 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | _id | string |  yes  |  |
- | cdn | [CDN](#CDN) |  yes  |  |
- | content_type | string |  yes  |  |
- | created_on | string |  yes  |  |
- | file_name | string |  yes  |  |
- | file_path | string |  yes  |  |
- | modified_on | string |  yes  |  |
- | namespace | string |  yes  |  |
- | operation | string |  no  |  |
- | success | boolean |  yes  |  |
- | tags | [string] |  yes  |  |
- | upload | [Upload](#Upload) |  yes  |  |
+ | _id | string |  no  |  |
+ | cdn | [CDN](#CDN) |  no  |  |
+ | content_type | string |  no  |  |
+ | created_on | string |  no  |  |
+ | file_name | string |  no  |  |
+ | file_path | string |  no  |  |
+ | modified_on | string |  no  |  |
+ | namespace | string |  no  |  |
+ | operation | string? |  yes  |  |
+ | success | boolean |  no  |  |
+ | tags | [string] |  no  |  |
+ | upload | [Upload](#Upload) |  no  |  |
  
 
 ---
@@ -920,9 +920,9 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | basepath | string |  no  |  |
- | namespace | string |  yes  |  |
- | rewrite | string |  yes  |  |
+ | basepath | string? |  yes  |  |
+ | namespace | string |  no  |  |
+ | rewrite | string |  no  |  |
  
 
 ---
@@ -931,7 +931,7 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | message | string |  yes  |  |
+ | message | string |  no  |  |
  
 
 ---
@@ -940,9 +940,9 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | attempts | number |  no  |  |
- | delay | number |  no  |  |
- | timestamp | number |  no  |  |
+ | attempts | number? |  yes  |  |
+ | delay | number? |  yes  |  |
+ | timestamp | number? |  yes  |  |
  
 
 ---
@@ -951,13 +951,13 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | current | number |  no  |  |
- | has_next | boolean |  no  |  |
- | has_previous | boolean |  no  |  |
- | item_total | number |  no  |  |
- | next_id | string |  no  |  |
- | size | number |  no  |  |
- | type | number |  yes  |  |
+ | current | number? |  yes  |  |
+ | has_next | boolean? |  yes  |  |
+ | has_previous | boolean? |  yes  |  |
+ | item_total | number? |  yes  |  |
+ | next_id | string? |  yes  |  |
+ | size | number? |  yes  |  |
+ | type | number |  no  |  |
  
 
 ---
@@ -966,7 +966,7 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | concurrency | number |  no  |  |
+ | concurrency | number? |  yes  |  |
  
 
 ---
@@ -975,8 +975,8 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | expiry | number |  yes  |  |
- | urls | [string] |  yes  |  |
+ | expiry | number |  no  |  |
+ | urls | [string] |  no  |  |
  
 
 ---
@@ -985,7 +985,7 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | urls | [[Urls](#Urls)] |  yes  |  |
+ | urls | [[Urls](#Urls)] |  no  |  |
  
 
 ---
@@ -994,11 +994,11 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | content_type | string |  yes  |  |
- | file_name | string |  yes  |  |
- | params | string |  no  |  |
- | size | number |  yes  |  |
- | tags | [string] |  no  |  |
+ | content_type | string |  no  |  |
+ | file_name | string |  no  |  |
+ | params | string? |  yes  |  |
+ | size | number |  no  |  |
+ | tags | [string]? |  yes  |  |
  
 
 ---
@@ -1007,16 +1007,16 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | cdn | [CDN](#CDN) |  yes  |  |
- | content_type | string |  yes  |  |
- | file_name | string |  yes  |  |
- | file_path | string |  yes  |  |
- | method | string |  no  |  |
- | namespace | string |  yes  |  |
- | operation | string |  yes  |  |
- | size | number |  yes  |  |
- | tags | [string] |  no  |  |
- | upload | [Upload](#Upload) |  yes  |  |
+ | cdn | [CDN](#CDN) |  no  |  |
+ | content_type | string |  no  |  |
+ | file_name | string |  no  |  |
+ | file_path | string |  no  |  |
+ | method | string? |  yes  |  |
+ | namespace | string |  no  |  |
+ | operation | string |  no  |  |
+ | size | number |  no  |  |
+ | tags | [string]? |  yes  |  |
+ | upload | [Upload](#Upload) |  no  |  |
  
 
 ---
@@ -1025,8 +1025,8 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | expiry | number |  yes  |  |
- | url | string |  yes  |  |
+ | expiry | number |  no  |  |
+ | url | string |  no  |  |
  
 
 ---
@@ -1035,9 +1035,9 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | expiry | number |  yes  |  |
- | signed_url | string |  yes  |  |
- | url | string |  yes  |  |
+ | expiry | number |  no  |  |
+ | signed_url | string |  no  |  |
+ | url | string |  no  |  |
  
 
 ---

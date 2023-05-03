@@ -4,6 +4,7 @@ const Paginator = require("../../common/Paginator");
 const ServiceabilityValidator = require("./ServiceabilityPlatformValidator");
 const ServiceabilityModel = require("./ServiceabilityPlatformModel");
 const { Logger } = require("./../../common/Logger");
+const Joi = require("joi");
 
 class Serviceability {
   constructor(config) {

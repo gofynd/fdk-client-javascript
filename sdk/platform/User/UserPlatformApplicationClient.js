@@ -4,6 +4,7 @@ const Paginator = require("../../common/Paginator");
 const UserValidator = require("./UserPlatformApplicationValidator");
 const UserModel = require("./UserPlatformModel");
 const { Logger } = require("./../../common/Logger");
+const Joi = require("joi");
 
 class User {
   constructor(config, applicationId) {

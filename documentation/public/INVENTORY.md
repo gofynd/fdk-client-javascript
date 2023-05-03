@@ -374,8 +374,8 @@ JobCode Metrics entry Created Successfully
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | error_message | string |  no  |  |
- | session_id | string |  no  |  |
+ | error_message | string? |  yes  |  |
+ | session_id | string? |  yes  |  |
  
 
 ---
@@ -384,11 +384,11 @@ JobCode Metrics entry Created Successfully
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | min_price | number |  no  |  |
- | period_threshold | number |  no  |  |
- | period_threshold_type | string |  no  |  |
- | period_type_list | [[GenericDTO](#GenericDTO)] |  no  |  |
- | safe_stock | number |  no  |  |
+ | min_price | number? |  yes  |  |
+ | period_threshold | number? |  yes  |  |
+ | period_threshold_type | string? |  yes  |  |
+ | period_type_list | [[GenericDTO](#GenericDTO)]? |  yes  |  |
+ | safe_stock | number? |  yes  |  |
  
 
 ---
@@ -397,11 +397,11 @@ JobCode Metrics entry Created Successfully
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | daily_job | boolean |  no  |  |
- | executed | boolean |  no  |  |
- | id | string |  no  |  |
- | job_code | string |  no  |  |
- | last_executed_on | string |  no  |  |
+ | daily_job | boolean? |  yes  |  |
+ | executed | boolean? |  yes  |  |
+ | id | string? |  yes  |  |
+ | job_code | string? |  yes  |  |
+ | last_executed_on | string? |  yes  |  |
  
 
 ---
@@ -410,16 +410,16 @@ JobCode Metrics entry Created Successfully
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | _id | string |  no  |  |
- | gstores | [[GStore](#GStore)] |  no  |  |
- | integration | string |  no  |  |
- | level | string |  no  |  |
- | name | string |  no  |  |
- | opted | boolean |  no  |  |
- | permissions | [string] |  no  |  |
- | stores | [[GStore](#GStore)] |  no  |  |
- | token | string |  no  |  |
- | uid | number |  no  |  |
+ | _id | string? |  yes  |  |
+ | gstores | [[GStore](#GStore)]? |  yes  |  |
+ | integration | string? |  yes  |  |
+ | level | string? |  yes  |  |
+ | name | string? |  yes  |  |
+ | opted | boolean? |  yes  |  |
+ | permissions | [string]? |  yes  |  |
+ | stores | [[GStore](#GStore)]? |  yes  |  |
+ | token | string? |  yes  |  |
+ | uid | number? |  yes  |  |
  
 
 ---
@@ -428,8 +428,8 @@ JobCode Metrics entry Created Successfully
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | text | string |  no  |  |
- | value | string |  no  |  |
+ | text | string? |  yes  |  |
+ | value | string? |  yes  |  |
  
 
 ---
@@ -438,16 +438,16 @@ JobCode Metrics entry Created Successfully
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | _id | string |  no  |  |
- | code | string |  no  |  |
- | data | [StoreData](#StoreData) |  no  |  |
- | integration | string |  no  |  |
- | level | string |  no  |  |
- | name | string |  no  |  |
- | opted | boolean |  no  |  |
- | permissions | [string] |  no  |  |
- | token | string |  no  |  |
- | uid | number |  no  |  |
+ | _id | string? |  yes  |  |
+ | code | string? |  yes  |  |
+ | data | [StoreData](#StoreData)? |  yes  |  |
+ | integration | string? |  yes  |  |
+ | level | string? |  yes  |  |
+ | name | string? |  yes  |  |
+ | opted | boolean? |  yes  |  |
+ | permissions | [string]? |  yes  |  |
+ | token | string? |  yes  |  |
+ | uid | number? |  yes  |  |
  
 
 ---
@@ -456,14 +456,14 @@ JobCode Metrics entry Created Successfully
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | alias | string |  no  |  |
- | company_id | number |  yes  |  |
- | company_name | string |  no  |  |
- | integration | string |  yes  |  |
- | integration_data | string |  no  |  |
- | job_code | string |  no  |  |
- | task_details | [TaskDTO](#TaskDTO) |  no  |  |
- | threshold_details | [DataTresholdDTO](#DataTresholdDTO) |  no  |  |
+ | alias | string? |  yes  |  |
+ | company_id | number |  no  |  |
+ | company_name | string? |  yes  |  |
+ | integration | string |  no  |  |
+ | integration_data | string? |  yes  |  |
+ | job_code | string? |  yes  |  |
+ | task_details | [TaskDTO](#TaskDTO)? |  yes  |  |
+ | threshold_details | [DataTresholdDTO](#DataTresholdDTO)? |  yes  |  |
  
 
 ---
@@ -472,9 +472,9 @@ JobCode Metrics entry Created Successfully
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | _id | string |  no  |  |
- | name | string |  no  |  |
- | value | string |  no  |  |
+ | _id | string? |  yes  |  |
+ | name | string? |  yes  |  |
+ | value | string? |  yes  |  |
  
 
 ---
@@ -483,13 +483,13 @@ JobCode Metrics entry Created Successfully
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | current | number |  no  |  |
- | has_next | boolean |  no  |  |
- | has_previous | boolean |  no  |  |
- | item_total | number |  no  |  |
- | next_id | string |  no  |  |
- | size | number |  no  |  |
- | type | string |  yes  |  |
+ | current | number? |  yes  |  |
+ | has_next | boolean? |  yes  |  |
+ | has_previous | boolean? |  yes  |  |
+ | item_total | number? |  yes  |  |
+ | next_id | string? |  yes  |  |
+ | size | number? |  yes  |  |
+ | type | string |  no  |  |
  
 
 ---
@@ -498,17 +498,17 @@ JobCode Metrics entry Created Successfully
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | error | string |  no  |  |
- | exception | string |  no  |  |
- | http_status | string |  no  |  |
- | items | [ApikeyModel](#ApikeyModel) |  no  |  |
- | message | string |  no  |  |
- | page | [Page](#Page) |  no  |  |
- | payload | [ApikeyModel](#ApikeyModel) |  no  |  |
- | status | number |  no  |  |
- | timestamp | string |  no  |  |
- | total_time_taken_in_millis | number |  no  |  |
- | trace_id | string |  no  |  |
+ | error | string? |  yes  |  |
+ | exception | string? |  yes  |  |
+ | http_status | string? |  yes  |  |
+ | items | [ApikeyModel](#ApikeyModel)? |  yes  |  |
+ | message | string? |  yes  |  |
+ | page | [Page](#Page)? |  yes  |  |
+ | payload | [ApikeyModel](#ApikeyModel)? |  yes  |  |
+ | status | number? |  yes  |  |
+ | timestamp | string? |  yes  |  |
+ | total_time_taken_in_millis | number? |  yes  |  |
+ | trace_id | string? |  yes  |  |
  
 
 ---
@@ -517,17 +517,17 @@ JobCode Metrics entry Created Successfully
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | error | string |  no  |  |
- | exception | string |  no  |  |
- | http_status | string |  no  |  |
- | items | [EmailJobMetrics](#EmailJobMetrics) |  no  |  |
- | message | string |  no  |  |
- | page | [Page](#Page) |  no  |  |
- | payload | [EmailJobMetrics](#EmailJobMetrics) |  no  |  |
- | status | number |  no  |  |
- | timestamp | string |  no  |  |
- | total_time_taken_in_millis | number |  no  |  |
- | trace_id | string |  no  |  |
+ | error | string? |  yes  |  |
+ | exception | string? |  yes  |  |
+ | http_status | string? |  yes  |  |
+ | items | [EmailJobMetrics](#EmailJobMetrics)? |  yes  |  |
+ | message | string? |  yes  |  |
+ | page | [Page](#Page)? |  yes  |  |
+ | payload | [EmailJobMetrics](#EmailJobMetrics)? |  yes  |  |
+ | status | number? |  yes  |  |
+ | timestamp | string? |  yes  |  |
+ | total_time_taken_in_millis | number? |  yes  |  |
+ | trace_id | string? |  yes  |  |
  
 
 ---
@@ -536,17 +536,17 @@ JobCode Metrics entry Created Successfully
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | error | string |  no  |  |
- | exception | string |  no  |  |
- | http_status | string |  no  |  |
- | items | [JobConfigDTO](#JobConfigDTO) |  no  |  |
- | message | string |  no  |  |
- | page | [Page](#Page) |  no  |  |
- | payload | [JobConfigDTO](#JobConfigDTO) |  no  |  |
- | status | number |  no  |  |
- | timestamp | string |  no  |  |
- | total_time_taken_in_millis | number |  no  |  |
- | trace_id | string |  no  |  |
+ | error | string? |  yes  |  |
+ | exception | string? |  yes  |  |
+ | http_status | string? |  yes  |  |
+ | items | [JobConfigDTO](#JobConfigDTO)? |  yes  |  |
+ | message | string? |  yes  |  |
+ | page | [Page](#Page)? |  yes  |  |
+ | payload | [JobConfigDTO](#JobConfigDTO)? |  yes  |  |
+ | status | number? |  yes  |  |
+ | timestamp | string? |  yes  |  |
+ | total_time_taken_in_millis | number? |  yes  |  |
+ | trace_id | string? |  yes  |  |
  
 
 ---
@@ -555,17 +555,17 @@ JobCode Metrics entry Created Successfully
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | error | string |  no  |  |
- | exception | string |  no  |  |
- | http_status | string |  no  |  |
- | items | [[JobConfigDTO](#JobConfigDTO)] |  no  |  |
- | message | string |  no  |  |
- | page | [Page](#Page) |  no  |  |
- | payload | [[JobConfigDTO](#JobConfigDTO)] |  no  |  |
- | status | number |  no  |  |
- | timestamp | string |  no  |  |
- | total_time_taken_in_millis | number |  no  |  |
- | trace_id | string |  no  |  |
+ | error | string? |  yes  |  |
+ | exception | string? |  yes  |  |
+ | http_status | string? |  yes  |  |
+ | items | [[JobConfigDTO](#JobConfigDTO)]? |  yes  |  |
+ | message | string? |  yes  |  |
+ | page | [Page](#Page)? |  yes  |  |
+ | payload | [[JobConfigDTO](#JobConfigDTO)]? |  yes  |  |
+ | status | number? |  yes  |  |
+ | timestamp | string? |  yes  |  |
+ | total_time_taken_in_millis | number? |  yes  |  |
+ | trace_id | string? |  yes  |  |
  
 
 ---
@@ -574,17 +574,17 @@ JobCode Metrics entry Created Successfully
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | error | string |  no  |  |
- | exception | string |  no  |  |
- | http_status | string |  no  |  |
- | items | string |  no  |  |
- | message | string |  no  |  |
- | page | [Page](#Page) |  no  |  |
- | payload | string |  no  |  |
- | status | number |  no  |  |
- | timestamp | string |  no  |  |
- | total_time_taken_in_millis | number |  no  |  |
- | trace_id | string |  no  |  |
+ | error | string? |  yes  |  |
+ | exception | string? |  yes  |  |
+ | http_status | string? |  yes  |  |
+ | items | string? |  yes  |  |
+ | message | string? |  yes  |  |
+ | page | [Page](#Page)? |  yes  |  |
+ | payload | string? |  yes  |  |
+ | status | number? |  yes  |  |
+ | timestamp | string? |  yes  |  |
+ | total_time_taken_in_millis | number? |  yes  |  |
+ | trace_id | string? |  yes  |  |
  
 
 ---
@@ -593,17 +593,17 @@ JobCode Metrics entry Created Successfully
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | error | string |  no  |  |
- | exception | string |  no  |  |
- | http_status | string |  no  |  |
- | items | [SlingshotConfigurationDetail](#SlingshotConfigurationDetail) |  no  |  |
- | message | string |  no  |  |
- | page | [Page](#Page) |  no  |  |
- | payload | [SlingshotConfigurationDetail](#SlingshotConfigurationDetail) |  no  |  |
- | status | number |  no  |  |
- | timestamp | string |  no  |  |
- | total_time_taken_in_millis | number |  no  |  |
- | trace_id | string |  no  |  |
+ | error | string? |  yes  |  |
+ | exception | string? |  yes  |  |
+ | http_status | string? |  yes  |  |
+ | items | [SlingshotConfigurationDetail](#SlingshotConfigurationDetail)? |  yes  |  |
+ | message | string? |  yes  |  |
+ | page | [Page](#Page)? |  yes  |  |
+ | payload | [SlingshotConfigurationDetail](#SlingshotConfigurationDetail)? |  yes  |  |
+ | status | number? |  yes  |  |
+ | timestamp | string? |  yes  |  |
+ | total_time_taken_in_millis | number? |  yes  |  |
+ | trace_id | string? |  yes  |  |
  
 
 ---
@@ -612,8 +612,8 @@ JobCode Metrics entry Created Successfully
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | companies | [[GCompany](#GCompany)] |  no  |  |
- | integration | [SlingshotIntegration](#SlingshotIntegration) |  no  |  |
+ | companies | [[GCompany](#GCompany)]? |  yes  |  |
+ | integration | [SlingshotIntegration](#SlingshotIntegration)? |  yes  |  |
  
 
 ---
@@ -622,11 +622,11 @@ JobCode Metrics entry Created Successfully
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | _id | string |  no  |  |
- | description | string |  no  |  |
- | meta | [[Metum](#Metum)] |  no  |  |
- | name | string |  no  |  |
- | slug | string |  no  |  |
+ | _id | string? |  yes  |  |
+ | description | string? |  yes  |  |
+ | meta | [[Metum](#Metum)]? |  yes  |  |
+ | name | string? |  yes  |  |
+ | slug | string? |  yes  |  |
  
 
 ---
@@ -635,7 +635,7 @@ JobCode Metrics entry Created Successfully
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | location_id | string |  no  |  |
+ | location_id | string? |  yes  |  |
  
 
 ---
@@ -644,8 +644,8 @@ JobCode Metrics entry Created Successfully
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | group_list | [[GenericDTO](#GenericDTO)] |  no  |  |
- | type | number |  no  |  |
+ | group_list | [[GenericDTO](#GenericDTO)]? |  yes  |  |
+ | type | number? |  yes  |  |
  
 
 ---

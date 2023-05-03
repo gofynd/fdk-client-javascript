@@ -5,6 +5,7 @@ const Paginator = require("../../common/Paginator");
 const WebhookValidator = require("./WebhookPublicValidator");
 const WebhookModel = require("./WebhookPublicModel");
 const { Logger } = require("./../../common/Logger");
+const Joi = require("joi");
 
 class Webhook {
   constructor(_conf) {

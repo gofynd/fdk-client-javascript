@@ -38,7 +38,7 @@ class CartModel {
       user_id: Joi.string().allow("").required(),
     });
   }
-  static AbandonedCartResponse() {
+  static AbandonedCartResponseSchema() {
     return Joi.object({
       items: Joi.array().items(CartModel.AbandonedCart()),
       message: Joi.string().allow(""),
@@ -96,10 +96,10 @@ class CartModel {
       store_id: Joi.number(),
     });
   }
-  static AppliedFreeArticles() {
+  static AppliedFreeArticlesSchema() {
     return Joi.object({
       article_id: Joi.string().allow(""),
-      free_gift_item_details: CartModel.FreeGiftItem(),
+      free_gift_item_details: CartModel.FreeGiftItemSchema(),
       parent_item_identifier: Joi.string().allow(""),
       quantity: Joi.number(),
     });
@@ -107,10 +107,12 @@ class CartModel {
   static AppliedPromotion() {
     return Joi.object({
       amount: Joi.number(),
-      applied_free_articles: Joi.array().items(CartModel.AppliedFreeArticles()),
+      applied_free_articles: Joi.array().items(
+        CartModel.AppliedFreeArticlesSchema()
+      ),
       article_quantity: Joi.number(),
-      buy_rules: Joi.array().items(CartModel.BuyRules()),
-      discount_rules: Joi.array().items(CartModel.DiscountRulesApp()),
+      buy_rules: Joi.array().items(CartModel.BuyRulesSchema()),
+      discount_rules: Joi.array().items(CartModel.DiscountRulesAppSchema()),
       mrp_promotion: Joi.boolean(),
       offer_text: Joi.string().allow(""),
       promo_id: Joi.string().allow(""),
@@ -126,8 +128,8 @@ class CartModel {
   }
   static ArticlePriceInfo() {
     return Joi.object({
-      base: CartModel.BasePrice(),
-      converted: CartModel.BasePrice(),
+      base: CartModel.BasePriceSchema(),
+      converted: CartModel.BasePriceSchema(),
     });
   }
   static BaseInfo() {
@@ -136,7 +138,7 @@ class CartModel {
       uid: Joi.number(),
     });
   }
-  static BasePrice() {
+  static BasePriceSchema() {
     return Joi.object({
       currency_code: Joi.string().allow(""),
       currency_symbol: Joi.string().allow(""),
@@ -149,25 +151,25 @@ class CartModel {
       multi_store_allowed: Joi.boolean().required(),
     });
   }
-  static BuyRules() {
+  static BuyRulesSchema() {
     return Joi.object({
       cart_conditions: Joi.any(),
       item_criteria: Joi.any(),
     });
   }
-  static CartBreakup() {
+  static CartBreakupSchema() {
     return Joi.object({
-      coupon: CartModel.CouponBreakup(),
-      display: Joi.array().items(CartModel.DisplayBreakup()),
+      coupon: CartModel.CouponBreakupSchema(),
+      display: Joi.array().items(CartModel.DisplayBreakupSchema()),
       loyalty_points: CartModel.LoyaltyPoints(),
-      raw: CartModel.RawBreakup(),
+      raw: CartModel.RawBreakupSchema(),
     });
   }
-  static CartCheckoutResponse() {
+  static CartCheckoutResponseSchema() {
     return Joi.object({
       app_intercept_url: Joi.string().allow(""),
       callback_url: Joi.string().allow(""),
-      cart: CartModel.CheckCart(),
+      cart: CartModel.CheckCartSchema(),
       data: Joi.any(),
       message: Joi.string().allow(""),
       order_id: Joi.string().allow(""),
@@ -175,7 +177,7 @@ class CartModel {
       success: Joi.boolean(),
     });
   }
-  static CartCurrency() {
+  static CartCurrencySchema() {
     return Joi.object({
       code: Joi.string().allow(""),
       symbol: Joi.string().allow(""),
@@ -189,12 +191,12 @@ class CartModel {
   }
   static CartDetailResponse() {
     return Joi.object({
-      breakup_values: CartModel.CartBreakup(),
+      breakup_values: CartModel.CartBreakupSchema(),
       buy_now: Joi.boolean(),
       checkout_mode: Joi.string().allow(""),
       comment: Joi.string().allow(""),
       coupon_text: Joi.string().allow(""),
-      currency: CartModel.CartCurrency(),
+      currency: CartModel.CartCurrencySchema(),
       delivery_charge_info: Joi.string().allow(""),
       delivery_promise: CartModel.ShipmentPromise(),
       gstin: Joi.string().allow(""),
@@ -209,13 +211,6 @@ class CartModel {
       restrict_checkout: Joi.boolean(),
     });
   }
-  static CartItem() {
-    return Joi.object({
-      product_id: Joi.string().allow("").required(),
-      quantity: Joi.number(),
-      size: Joi.string().allow("").required(),
-    });
-  }
   static CartItemCountResponse() {
     return Joi.object({
       user_cart_items_count: Joi.number(),
@@ -227,7 +222,14 @@ class CartModel {
       primary_item: Joi.boolean(),
     });
   }
-  static CartList() {
+  static CartItemSchema() {
+    return Joi.object({
+      product_id: Joi.string().allow("").required(),
+      quantity: Joi.number(),
+      size: Joi.string().allow("").required(),
+    });
+  }
+  static CartListSchema() {
     return Joi.object({
       cart_id: Joi.string().allow(""),
       cart_value: Joi.number(),
@@ -292,13 +294,13 @@ class CartModel {
   }
   static CartShipmentsResponse() {
     return Joi.object({
-      breakup_values: CartModel.CartBreakup(),
+      breakup_values: CartModel.CartBreakupSchema(),
       buy_now: Joi.boolean(),
       cart_id: Joi.number(),
       checkout_mode: Joi.string().allow(""),
       comment: Joi.string().allow(""),
       coupon_text: Joi.string().allow(""),
-      currency: CartModel.CartCurrency(),
+      currency: CartModel.CartCurrencySchema(),
       delivery_charge_info: Joi.string().allow(""),
       delivery_promise: CartModel.ShipmentPromise(),
       error: Joi.boolean(),
@@ -319,9 +321,9 @@ class CartModel {
       uid: Joi.number(),
     });
   }
-  static CheckCart() {
+  static CheckCartSchema() {
     return Joi.object({
-      breakup_values: CartModel.CartBreakup(),
+      breakup_values: CartModel.CartBreakupSchema(),
       buy_now: Joi.boolean(),
       cart_id: Joi.number(),
       checkout_mode: Joi.string().allow(""),
@@ -330,7 +332,7 @@ class CartModel {
       cod_message: Joi.string().allow(""),
       comment: Joi.string().allow(""),
       coupon_text: Joi.string().allow(""),
-      currency: CartModel.CartCurrency(),
+      currency: CartModel.CartCurrencySchema(),
       delivery_charge_info: Joi.string().allow(""),
       delivery_charge_order_value: Joi.number(),
       delivery_charges: Joi.number(),
@@ -352,7 +354,7 @@ class CartModel {
       user_type: Joi.string().allow(""),
     });
   }
-  static CompareObject() {
+  static CompareObjectSchema() {
     return Joi.object({
       equals: Joi.number(),
       greater_than: Joi.number(),
@@ -377,39 +379,39 @@ class CartModel {
       title: Joi.string().allow(""),
     });
   }
-  static CouponAction() {
+  static CouponActionSchema() {
     return Joi.object({
       action_date: Joi.string().allow("").allow(null),
       txn_mode: Joi.string().allow(""),
     });
   }
-  static CouponAdd() {
+  static CouponAddSchema() {
     return Joi.object({
-      _schedule: CartModel.CouponSchedule(),
-      action: CartModel.CouponAction(),
-      author: CartModel.CouponAuthor(),
+      _schedule: CartModel.CouponScheduleSchema(),
+      action: CartModel.CouponActionSchema(),
+      author: CartModel.CouponAuthorSchema(),
       code: Joi.string().allow("").required(),
-      date_meta: CartModel.CouponDateMeta(),
-      display_meta: CartModel.DisplayMeta().required(),
-      identifiers: CartModel.Identifier().required(),
-      ownership: CartModel.Ownership().required(),
-      restrictions: CartModel.Restrictions(),
-      rule: Joi.array().items(CartModel.Rule()).required(),
-      rule_definition: CartModel.RuleDefinition().required(),
-      state: CartModel.State(),
+      date_meta: CartModel.CouponDateMetaSchema(),
+      display_meta: CartModel.DisplayMetaSchema().required(),
+      identifiers: CartModel.IdentifierSchema().required(),
+      ownership: CartModel.OwnershipSchema().required(),
+      restrictions: CartModel.RestrictionsSchema(),
+      rule: Joi.array().items(CartModel.RuleSchema()).required(),
+      rule_definition: CartModel.RuleDefinitionSchema().required(),
+      state: CartModel.StateSchema(),
       tags: Joi.array().items(Joi.string().allow("")),
       type_slug: Joi.string().allow("").required(),
-      validation: CartModel.Validation(),
-      validity: CartModel.Validity().required(),
+      validation: CartModel.ValidationSchema(),
+      validity: CartModel.ValiditySchema().required(),
     });
   }
-  static CouponAuthor() {
+  static CouponAuthorSchema() {
     return Joi.object({
       created_by: Joi.string().allow("").allow(null),
       modified_by: Joi.string().allow("").allow(null),
     });
   }
-  static CouponBreakup() {
+  static CouponBreakupSchema() {
     return Joi.object({
       code: Joi.string().allow(""),
       coupon_type: Joi.string().allow("").allow(null),
@@ -426,7 +428,7 @@ class CartModel {
       value: Joi.number(),
     });
   }
-  static CouponDateMeta() {
+  static CouponDateMetaSchema() {
     return Joi.object({
       created_on: Joi.string().allow("").allow(null),
       modified_on: Joi.string().allow("").allow(null),
@@ -442,10 +444,10 @@ class CartModel {
   static CouponPartialUpdate() {
     return Joi.object({
       archive: Joi.boolean(),
-      schedule: CartModel.CouponSchedule(),
+      schedule: CartModel.CouponScheduleSchema(),
     });
   }
-  static CouponSchedule() {
+  static CouponScheduleSchema() {
     return Joi.object({
       cron: Joi.string().allow("").allow(null),
       duration: Joi.number().allow(null),
@@ -456,28 +458,28 @@ class CartModel {
   }
   static CouponsResponse() {
     return Joi.object({
-      items: CartModel.CouponAdd(),
+      items: CartModel.CouponAddSchema(),
       page: CartModel.Page(),
     });
   }
-  static CouponUpdate() {
+  static CouponUpdateSchema() {
     return Joi.object({
-      _schedule: CartModel.CouponSchedule(),
-      action: CartModel.CouponAction(),
-      author: CartModel.CouponAuthor(),
+      _schedule: CartModel.CouponScheduleSchema(),
+      action: CartModel.CouponActionSchema(),
+      author: CartModel.CouponAuthorSchema(),
       code: Joi.string().allow("").required(),
-      date_meta: CartModel.CouponDateMeta(),
-      display_meta: CartModel.DisplayMeta().required(),
-      identifiers: CartModel.Identifier().required(),
-      ownership: CartModel.Ownership().required(),
-      restrictions: CartModel.Restrictions(),
-      rule: Joi.array().items(CartModel.Rule()).required(),
-      rule_definition: CartModel.RuleDefinition().required(),
-      state: CartModel.State(),
+      date_meta: CartModel.CouponDateMetaSchema(),
+      display_meta: CartModel.DisplayMetaSchema().required(),
+      identifiers: CartModel.IdentifierSchema().required(),
+      ownership: CartModel.OwnershipSchema().required(),
+      restrictions: CartModel.RestrictionsSchema(),
+      rule: Joi.array().items(CartModel.RuleSchema()).required(),
+      rule_definition: CartModel.RuleDefinitionSchema().required(),
+      state: CartModel.StateSchema(),
       tags: Joi.array().items(Joi.string().allow("")),
       type_slug: Joi.string().allow("").required(),
-      validation: CartModel.Validation(),
-      validity: CartModel.Validity().required(),
+      validation: CartModel.ValidationSchema(),
+      validity: CartModel.ValiditySchema().required(),
     });
   }
   static CouponValidity() {
@@ -506,7 +508,7 @@ class CartModel {
       cart_id_list: Joi.array().items(Joi.string().allow("")),
     });
   }
-  static DiscountOffer() {
+  static DiscountOfferSchema() {
     return Joi.object({
       apportion_discount: Joi.boolean(),
       code: Joi.string().allow(""),
@@ -520,15 +522,7 @@ class CartModel {
       partial_can_ret: Joi.boolean(),
     });
   }
-  static DiscountRule() {
-    return Joi.object({
-      buy_condition: Joi.string().allow("").required(),
-      discount_type: Joi.string().allow("").required(),
-      item_criteria: CartModel.ItemCriteria().required(),
-      offer: CartModel.DiscountOffer().required(),
-    });
-  }
-  static DiscountRulesApp() {
+  static DiscountRulesAppSchema() {
     return Joi.object({
       item_criteria: Joi.any(),
       matched_buy_rules: Joi.array().items(Joi.string().allow("")),
@@ -536,7 +530,15 @@ class CartModel {
       raw_offer: Joi.any(),
     });
   }
-  static DisplayBreakup() {
+  static DiscountRuleSchema() {
+    return Joi.object({
+      buy_condition: Joi.string().allow("").required(),
+      discount_type: Joi.string().allow("").required(),
+      item_criteria: CartModel.ItemCriteriaSchema().required(),
+      offer: CartModel.DiscountOfferSchema().required(),
+    });
+  }
+  static DisplayBreakupSchema() {
     return Joi.object({
       currency_code: Joi.string().allow(""),
       currency_symbol: Joi.string().allow(""),
@@ -546,36 +548,36 @@ class CartModel {
       value: Joi.number(),
     });
   }
-  static DisplayMeta() {
+  static DisplayMetaDictSchema() {
     return Joi.object({
-      apply: CartModel.DisplayMetaDict(),
-      auto: CartModel.DisplayMetaDict(),
-      description: Joi.string().allow(""),
-      remove: CartModel.DisplayMetaDict(),
       subtitle: Joi.string().allow(""),
       title: Joi.string().allow(""),
     });
   }
-  static DisplayMeta1() {
+  static DisplayMetaSchema() {
+    return Joi.object({
+      apply: CartModel.DisplayMetaDictSchema(),
+      auto: CartModel.DisplayMetaDictSchema(),
+      description: Joi.string().allow(""),
+      remove: CartModel.DisplayMetaDictSchema(),
+      subtitle: Joi.string().allow(""),
+      title: Joi.string().allow(""),
+    });
+  }
+  static DisplayMetaSchema1() {
     return Joi.object({
       description: Joi.string().allow(""),
       name: Joi.string().allow(""),
       offer_text: Joi.string().allow(""),
     });
   }
-  static DisplayMetaDict() {
-    return Joi.object({
-      subtitle: Joi.string().allow(""),
-      title: Joi.string().allow(""),
-    });
-  }
-  static Files() {
+  static FilesSchema() {
     return Joi.object({
       key: Joi.string().allow("").required(),
       values: Joi.array().items(Joi.string().allow("")).required(),
     });
   }
-  static FreeGiftItem() {
+  static FreeGiftItemSchema() {
     return Joi.object({
       item_brand_name: Joi.string().allow(""),
       item_id: Joi.number(),
@@ -594,7 +596,7 @@ class CartModel {
   static GetCouponResponse() {
     return Joi.object({
       available_coupon_list: Joi.array().items(CartModel.Coupon()),
-      page: CartModel.PageCoupon(),
+      page: CartModel.PageCouponSchema(),
     });
   }
   static GetShareCartLinkRequest() {
@@ -609,7 +611,7 @@ class CartModel {
       token: Joi.string().allow(""),
     });
   }
-  static Identifier() {
+  static IdentifierSchema() {
     return Joi.object({
       article_id: Joi.array().items(Joi.string().allow("")),
       brand_id: Joi.array().items(Joi.number()),
@@ -623,15 +625,15 @@ class CartModel {
       user_id: Joi.array().items(Joi.string().allow("")),
     });
   }
-  static ItemCriteria() {
+  static ItemCriteriaSchema() {
     return Joi.object({
       all_items: Joi.boolean(),
       available_zones: Joi.array().items(Joi.string().allow("")),
       buy_rules: Joi.array().items(Joi.string().allow("")),
-      cart_quantity: CartModel.CompareObject(),
-      cart_total: CartModel.CompareObject(),
-      cart_unique_item_amount: CartModel.CompareObject(),
-      cart_unique_item_quantity: CartModel.CompareObject(),
+      cart_quantity: CartModel.CompareObjectSchema(),
+      cart_total: CartModel.CompareObjectSchema(),
+      cart_unique_item_amount: CartModel.CompareObjectSchema(),
+      cart_unique_item_quantity: CartModel.CompareObjectSchema(),
       item_brand: Joi.array().items(Joi.number()),
       item_category: Joi.array().items(Joi.number()),
       item_company: Joi.array().items(Joi.number()),
@@ -655,9 +657,9 @@ class CartModel {
       total: Joi.number(),
     });
   }
-  static MultiCartResponse() {
+  static MultiCartResponseSchema() {
     return Joi.object({
-      data: Joi.array().items(CartModel.CartList()),
+      data: Joi.array().items(CartModel.CartListSchema()),
       success: Joi.boolean(),
     });
   }
@@ -680,12 +682,12 @@ class CartModel {
   }
   static OpenapiCartDetailsRequest() {
     return Joi.object({
-      cart_items: CartModel.CartItem(),
+      cart_items: CartModel.CartItemSchema(),
     });
   }
   static OpenapiCartDetailsResponse() {
     return Joi.object({
-      breakup_values: CartModel.CartBreakup(),
+      breakup_values: CartModel.CartBreakupSchema(),
       is_valid: Joi.boolean(),
       items: Joi.array().items(CartModel.CartProductInfo()),
       message: Joi.string().allow(""),
@@ -693,13 +695,13 @@ class CartModel {
   }
   static OpenApiCartServiceabilityRequest() {
     return Joi.object({
-      cart_items: CartModel.CartItem(),
-      shipping_address: CartModel.ShippingAddress().required(),
+      cart_items: CartModel.CartItemSchema(),
+      shipping_address: CartModel.ShippingAddressSchema().required(),
     });
   }
   static OpenApiCartServiceabilityResponse() {
     return Joi.object({
-      breakup_values: CartModel.CartBreakup(),
+      breakup_values: CartModel.CartBreakupSchema(),
       delivery_promise: CartModel.ShipmentPromise(),
       is_valid: Joi.boolean(),
       items: Joi.array().items(CartModel.CartProductInfo()),
@@ -721,13 +723,13 @@ class CartModel {
       success: Joi.boolean(),
     });
   }
-  static OpenApiFiles() {
+  static OpenApiFilesSchema() {
     return Joi.object({
       key: Joi.string().allow("").required(),
       values: Joi.array().items(Joi.string().allow("")).required(),
     });
   }
-  static OpenApiOrderItem() {
+  static OpenApiOrderItemSchema() {
     return Joi.object({
       amount_paid: Joi.number().required(),
       cashback_applied: Joi.number().required(),
@@ -737,7 +739,7 @@ class CartModel {
       discount: Joi.number().required(),
       employee_discount: Joi.number(),
       extra_meta: Joi.any(),
-      files: Joi.array().items(CartModel.OpenApiFiles()),
+      files: Joi.array().items(CartModel.OpenApiFilesSchema()),
       loyalty_discount: Joi.number(),
       meta: CartModel.CartItemMeta(),
       payment_methods: Joi.array()
@@ -750,11 +752,13 @@ class CartModel {
       size: Joi.string().allow("").required(),
     });
   }
-  static OpenApiPlatformCheckoutReq() {
+  static OpenApiPlatformCheckoutReqSchema() {
     return Joi.object({
       affiliate_order_id: Joi.string().allow(""),
-      billing_address: CartModel.ShippingAddress().required(),
-      cart_items: Joi.array().items(CartModel.OpenApiOrderItem()).required(),
+      billing_address: CartModel.ShippingAddressSchema().required(),
+      cart_items: Joi.array()
+        .items(CartModel.OpenApiOrderItemSchema())
+        .required(),
       cart_value: Joi.number().required(),
       cashback_applied: Joi.number().required(),
       cod_charges: Joi.number().required(),
@@ -765,7 +769,7 @@ class CartModel {
       currency_code: Joi.string().allow(""),
       delivery_charges: Joi.number().required(),
       employee_discount: Joi.any(),
-      files: Joi.array().items(CartModel.OpenApiFiles()),
+      files: Joi.array().items(CartModel.OpenApiFilesSchema()),
       gstin: Joi.string().allow("").allow(null),
       loyalty_discount: Joi.number(),
       order_id: Joi.string().allow(""),
@@ -773,7 +777,7 @@ class CartModel {
         .items(CartModel.MultiTenderPaymentMethod())
         .required(),
       payment_mode: Joi.string().allow(""),
-      shipping_address: CartModel.ShippingAddress(),
+      shipping_address: CartModel.ShippingAddressSchema(),
     });
   }
   static OperationErrorResponse() {
@@ -782,13 +786,13 @@ class CartModel {
       success: Joi.boolean(),
     });
   }
-  static Ownership() {
+  static OwnershipSchema() {
     return Joi.object({
       payable_by: Joi.string().allow("").required(),
       payable_category: Joi.string().allow("").required(),
     });
   }
-  static Ownership1() {
+  static OwnershipSchema1() {
     return Joi.object({
       payable_by: Joi.string().allow("").required(),
       payable_category: Joi.string().allow("").required(),
@@ -805,7 +809,7 @@ class CartModel {
       type: Joi.string().allow("").required(),
     });
   }
-  static PageCoupon() {
+  static PageCouponSchema() {
     return Joi.object({
       current: Joi.number(),
       has_next: Joi.boolean(),
@@ -814,29 +818,46 @@ class CartModel {
       total_item_count: Joi.number(),
     });
   }
-  static PaymentAllowValue() {
+  static PaymentAllowValueSchema() {
     return Joi.object({
       max: Joi.number(),
     });
   }
-  static PaymentAllowValue1() {
+  static PaymentAllowValueSchema1() {
     return Joi.object({
       max: Joi.number(),
     });
   }
-  static PaymentCouponValidate() {
+  static PaymentCouponValidateSchema() {
     return Joi.object({
       coupon_validity: CartModel.CouponValidity(),
       message: Joi.string().allow(""),
       success: Joi.boolean().required(),
     });
   }
-  static PaymentModes() {
+  static PaymentMetaSchema() {
+    return Joi.object({
+      merchant_code: Joi.string().allow(""),
+      payment_gateway: Joi.string().allow(""),
+      payment_identifier: Joi.string().allow("").allow(null),
+      type: Joi.string().allow(""),
+    });
+  }
+  static PaymentMethodSchema() {
+    return Joi.object({
+      amount: Joi.number().allow(null),
+      mode: Joi.string().allow("").required(),
+      name: Joi.string().allow(""),
+      payment: Joi.string().allow(""),
+      payment_meta: CartModel.PaymentMetaSchema().required(),
+    });
+  }
+  static PaymentModesSchema() {
     return Joi.object({
       codes: Joi.array().items(Joi.string().allow("")),
       networks: Joi.array().items(Joi.string().allow("")),
       types: Joi.array().items(Joi.string().allow("")),
-      uses: CartModel.PaymentAllowValue(),
+      uses: CartModel.PaymentAllowValueSchema(),
     });
   }
   static PaymentSelectionLock() {
@@ -906,7 +927,7 @@ class CartModel {
       device_id: Joi.string().allow("").allow(null),
       employee_code: Joi.string().allow("").allow(null),
       extra_meta: Joi.any(),
-      files: Joi.array().items(CartModel.Files()),
+      files: Joi.array().items(CartModel.FilesSchema()),
       id: Joi.string().allow("").required(),
       merchant_code: Joi.string().allow(""),
       meta: Joi.any(),
@@ -918,7 +939,39 @@ class CartModel {
       payment_params: Joi.any().allow(null),
       pick_at_store_uid: Joi.number().allow(null),
       pos: Joi.boolean(),
-      staff: CartModel.StaffCheckout(),
+      staff: CartModel.StaffCheckoutSchema(),
+      user_id: Joi.string().allow("").required(),
+    });
+  }
+  static PlatformCartCheckoutDetailV2Request() {
+    return Joi.object({
+      address_id: Joi.string().allow(""),
+      aggregator: Joi.string().allow(""),
+      billing_address: Joi.any(),
+      billing_address_id: Joi.string().allow(""),
+      callback_url: Joi.string().allow("").allow(null),
+      checkout_mode: Joi.string().allow(""),
+      custom_meta: Joi.any(),
+      delivery_address: Joi.any(),
+      device_id: Joi.string().allow("").allow(null),
+      employee_code: Joi.string().allow("").allow(null),
+      extra_meta: Joi.any(),
+      files: Joi.array().items(CartModel.FilesSchema()),
+      id: Joi.string().allow("").required(),
+      merchant_code: Joi.string().allow(""),
+      meta: Joi.any(),
+      order_type: Joi.string().allow("").required(),
+      ordering_store: Joi.number().allow(null),
+      payment_auto_confirm: Joi.boolean(),
+      payment_identifier: Joi.string().allow("").allow(null),
+      payment_methods: Joi.array()
+        .items(CartModel.PaymentMethodSchema())
+        .required(),
+      payment_mode: Joi.string().allow(""),
+      payment_params: Joi.any().allow(null),
+      pick_at_store_uid: Joi.number().allow(null),
+      pos: Joi.boolean(),
+      staff: CartModel.StaffCheckoutSchema(),
       user_id: Joi.string().allow("").required(),
     });
   }
@@ -946,19 +999,19 @@ class CartModel {
       user_id: Joi.string().allow(""),
     });
   }
-  static PostOrder() {
+  static PostOrderSchema() {
     return Joi.object({
       cancellation_allowed: Joi.boolean(),
       return_allowed: Joi.boolean(),
     });
   }
-  static PostOrder1() {
+  static PostOrderSchema1() {
     return Joi.object({
       cancellation_allowed: Joi.boolean(),
       return_allowed: Joi.boolean(),
     });
   }
-  static PriceRange() {
+  static PriceRangeSchema() {
     return Joi.object({
       max: Joi.number(),
       min: Joi.number(),
@@ -1039,47 +1092,49 @@ class CartModel {
       message: Joi.string().allow(""),
     });
   }
-  static PromotionAction() {
+  static PromotionActionSchema() {
     return Joi.object({
       action_date: Joi.string().allow("").allow(null).required(),
       action_type: Joi.string().allow("").required(),
     });
   }
-  static PromotionAdd() {
+  static PromotionAddSchema() {
     return Joi.object({
       _custom_json: Joi.any(),
-      _schedule: CartModel.PromotionSchedule(),
+      _schedule: CartModel.PromotionScheduleSchema(),
       application_id: Joi.string().allow("").required(),
       apply_all_discount: Joi.boolean(),
       apply_exclusive: Joi.string().allow("").allow(null),
       apply_priority: Joi.number(),
-      author: CartModel.PromotionAuthor(),
+      author: CartModel.PromotionAuthorSchema(),
       buy_rules: Joi.object()
-        .pattern(/\S/, CartModel.ItemCriteria())
+        .pattern(/\S/, CartModel.ItemCriteriaSchema())
         .required(),
       calculate_on: Joi.string().allow(""),
       code: Joi.string().allow(""),
       currency: Joi.string().allow(""),
-      date_meta: CartModel.PromotionDateMeta(),
-      discount_rules: Joi.array().items(CartModel.DiscountRule()).required(),
-      display_meta: CartModel.DisplayMeta1().required(),
+      date_meta: CartModel.PromotionDateMetaSchema(),
+      discount_rules: Joi.array()
+        .items(CartModel.DiscountRuleSchema())
+        .required(),
+      display_meta: CartModel.DisplayMetaSchema1().required(),
       mode: Joi.string().allow("").required(),
-      ownership: CartModel.Ownership1().required(),
-      post_order_action: CartModel.PromotionAction(),
+      ownership: CartModel.OwnershipSchema1().required(),
+      post_order_action: CartModel.PromotionActionSchema(),
       promo_group: Joi.string().allow("").required(),
       promotion_type: Joi.string().allow("").required(),
-      restrictions: CartModel.Restrictions1(),
+      restrictions: CartModel.RestrictionsSchema1(),
       stackable: Joi.boolean(),
-      visiblility: CartModel.Visibility(),
+      visiblility: CartModel.VisibilitySchema(),
     });
   }
-  static PromotionAuthor() {
+  static PromotionAuthorSchema() {
     return Joi.object({
       created_by: Joi.string().allow("").allow(null),
       modified_by: Joi.string().allow("").allow(null),
     });
   }
-  static PromotionDateMeta() {
+  static PromotionDateMetaSchema() {
     return Joi.object({
       created_on: Joi.string().allow("").allow(null),
       modified_on: Joi.string().allow("").allow(null),
@@ -1088,45 +1143,47 @@ class CartModel {
   static PromotionListItem() {
     return Joi.object({
       _custom_json: Joi.any(),
-      _schedule: CartModel.PromotionSchedule(),
+      _schedule: CartModel.PromotionScheduleSchema(),
       application_id: Joi.string().allow("").required(),
       apply_all_discount: Joi.boolean(),
       apply_exclusive: Joi.string().allow("").allow(null),
       apply_priority: Joi.number(),
-      author: CartModel.PromotionAuthor(),
+      author: CartModel.PromotionAuthorSchema(),
       buy_rules: Joi.object()
-        .pattern(/\S/, CartModel.ItemCriteria())
+        .pattern(/\S/, CartModel.ItemCriteriaSchema())
         .required(),
       calculate_on: Joi.string().allow(""),
       code: Joi.string().allow(""),
       currency: Joi.string().allow(""),
-      date_meta: CartModel.PromotionDateMeta(),
-      discount_rules: Joi.array().items(CartModel.DiscountRule()).required(),
-      display_meta: CartModel.DisplayMeta1().required(),
+      date_meta: CartModel.PromotionDateMetaSchema(),
+      discount_rules: Joi.array()
+        .items(CartModel.DiscountRuleSchema())
+        .required(),
+      display_meta: CartModel.DisplayMetaSchema1().required(),
       mode: Joi.string().allow("").required(),
-      ownership: CartModel.Ownership1().required(),
-      post_order_action: CartModel.PromotionAction(),
+      ownership: CartModel.OwnershipSchema1().required(),
+      post_order_action: CartModel.PromotionActionSchema(),
       promo_group: Joi.string().allow("").required(),
       promotion_type: Joi.string().allow("").required(),
-      restrictions: CartModel.Restrictions1(),
+      restrictions: CartModel.RestrictionsSchema1(),
       stackable: Joi.boolean(),
-      visiblility: CartModel.Visibility(),
+      visiblility: CartModel.VisibilitySchema(),
     });
   }
   static PromotionPartialUpdate() {
     return Joi.object({
       archive: Joi.boolean(),
-      schedule: CartModel.PromotionSchedule(),
+      schedule: CartModel.PromotionScheduleSchema(),
     });
   }
-  static PromotionPaymentModes() {
+  static PromotionPaymentModesSchema() {
     return Joi.object({
       codes: Joi.array().items(Joi.string().allow("")),
       type: Joi.string().allow("").required(),
-      uses: CartModel.PaymentAllowValue1(),
+      uses: CartModel.PaymentAllowValueSchema1(),
     });
   }
-  static PromotionSchedule() {
+  static PromotionScheduleSchema() {
     return Joi.object({
       cron: Joi.string().allow("").allow(null),
       duration: Joi.number().allow(null),
@@ -1142,35 +1199,37 @@ class CartModel {
       page: CartModel.Page(),
     });
   }
-  static PromotionUpdate() {
+  static PromotionUpdateSchema() {
     return Joi.object({
       _custom_json: Joi.any(),
-      _schedule: CartModel.PromotionSchedule(),
+      _schedule: CartModel.PromotionScheduleSchema(),
       application_id: Joi.string().allow("").required(),
       apply_all_discount: Joi.boolean(),
       apply_exclusive: Joi.string().allow("").allow(null),
       apply_priority: Joi.number(),
-      author: CartModel.PromotionAuthor(),
+      author: CartModel.PromotionAuthorSchema(),
       buy_rules: Joi.object()
-        .pattern(/\S/, CartModel.ItemCriteria())
+        .pattern(/\S/, CartModel.ItemCriteriaSchema())
         .required(),
       calculate_on: Joi.string().allow(""),
       code: Joi.string().allow(""),
       currency: Joi.string().allow(""),
-      date_meta: CartModel.PromotionDateMeta(),
-      discount_rules: Joi.array().items(CartModel.DiscountRule()).required(),
-      display_meta: CartModel.DisplayMeta1().required(),
+      date_meta: CartModel.PromotionDateMetaSchema(),
+      discount_rules: Joi.array()
+        .items(CartModel.DiscountRuleSchema())
+        .required(),
+      display_meta: CartModel.DisplayMetaSchema1().required(),
       mode: Joi.string().allow("").required(),
-      ownership: CartModel.Ownership1().required(),
-      post_order_action: CartModel.PromotionAction(),
+      ownership: CartModel.OwnershipSchema1().required(),
+      post_order_action: CartModel.PromotionActionSchema(),
       promo_group: Joi.string().allow("").required(),
       promotion_type: Joi.string().allow("").required(),
-      restrictions: CartModel.Restrictions1(),
+      restrictions: CartModel.RestrictionsSchema1(),
       stackable: Joi.boolean(),
-      visiblility: CartModel.Visibility(),
+      visiblility: CartModel.VisibilitySchema(),
     });
   }
-  static RawBreakup() {
+  static RawBreakupSchema() {
     return Joi.object({
       cod_charge: Joi.number(),
       convenience_fee: Joi.number(),
@@ -1187,43 +1246,34 @@ class CartModel {
       you_saved: Joi.number(),
     });
   }
-  static Restrictions() {
+  static RestrictionsSchema() {
     return Joi.object({
       bulk_bundle: CartModel.BulkBundleRestriction(),
       coupon_allowed: Joi.boolean(),
       ordering_stores: Joi.array().items(Joi.number()),
-      payments: Joi.object().pattern(/\S/, CartModel.PaymentModes()),
+      payments: Joi.object().pattern(/\S/, CartModel.PaymentModesSchema()),
       platforms: Joi.array().items(Joi.string().allow("")),
-      post_order: CartModel.PostOrder(),
-      price_range: CartModel.PriceRange(),
+      post_order: CartModel.PostOrderSchema(),
+      price_range: CartModel.PriceRangeSchema(),
       user_groups: Joi.array().items(Joi.number()),
       user_type: Joi.string().allow(""),
-      uses: CartModel.UsesRestriction(),
+      uses: CartModel.UsesRestrictionSchema(),
     });
   }
-  static Restrictions1() {
+  static RestrictionsSchema1() {
     return Joi.object({
       anonymous_users: Joi.boolean(),
       order_quantity: Joi.number(),
-      payments: Joi.array().items(CartModel.PromotionPaymentModes()),
+      payments: Joi.array().items(CartModel.PromotionPaymentModesSchema()),
       platforms: Joi.array().items(Joi.string().allow("")),
-      post_order: CartModel.PostOrder1(),
+      post_order: CartModel.PostOrderSchema1(),
       user_groups: Joi.array().items(Joi.number()),
       user_id: Joi.array().items(Joi.string().allow("")),
-      user_registered: CartModel.UserRegistered(),
-      uses: CartModel.UsesRestriction1().required(),
+      user_registered: CartModel.UserRegisteredSchema(),
+      uses: CartModel.UsesRestrictionSchema1().required(),
     });
   }
-  static Rule() {
-    return Joi.object({
-      discount_qty: Joi.number(),
-      key: Joi.number(),
-      max: Joi.number(),
-      min: Joi.number(),
-      value: Joi.number(),
-    });
-  }
-  static RuleDefinition() {
+  static RuleDefinitionSchema() {
     return Joi.object({
       applicable_on: Joi.string().allow("").required(),
       auto_apply: Joi.boolean(),
@@ -1235,6 +1285,15 @@ class CartModel {
       value_type: Joi.string().allow("").required(),
     });
   }
+  static RuleSchema() {
+    return Joi.object({
+      discount_qty: Joi.number(),
+      key: Joi.number(),
+      max: Joi.number(),
+      min: Joi.number(),
+      value: Joi.number(),
+    });
+  }
   static SaveAddressResponse() {
     return Joi.object({
       id: Joi.string().allow(""),
@@ -1244,13 +1303,13 @@ class CartModel {
   }
   static SharedCart() {
     return Joi.object({
-      breakup_values: CartModel.CartBreakup(),
+      breakup_values: CartModel.CartBreakupSchema(),
       buy_now: Joi.boolean(),
       cart_id: Joi.number(),
       checkout_mode: Joi.string().allow(""),
       comment: Joi.string().allow(""),
       coupon_text: Joi.string().allow(""),
-      currency: CartModel.CartCurrency(),
+      currency: CartModel.CartCurrencySchema(),
       delivery_charge_info: Joi.string().allow(""),
       delivery_promise: CartModel.ShipmentPromise(),
       gstin: Joi.string().allow(""),
@@ -1300,7 +1359,7 @@ class CartModel {
       shipments: Joi.number(),
     });
   }
-  static ShippingAddress() {
+  static ShippingAddressSchema() {
     return Joi.object({
       address: Joi.string().allow(""),
       address_type: Joi.string().allow(""),
@@ -1319,7 +1378,7 @@ class CartModel {
       state: Joi.string().allow("").allow(null),
     });
   }
-  static StaffCheckout() {
+  static StaffCheckoutSchema() {
     return Joi.object({
       _id: Joi.string().allow("").required(),
       employee_code: Joi.string().allow(""),
@@ -1328,7 +1387,7 @@ class CartModel {
       user: Joi.string().allow("").required(),
     });
   }
-  static State() {
+  static StateSchema() {
     return Joi.object({
       is_archived: Joi.boolean(),
       is_display: Joi.boolean(),
@@ -1376,6 +1435,17 @@ class CartModel {
       payment_mode: Joi.string().allow(""),
     });
   }
+  static UpdateCartPaymentRequestV2() {
+    return Joi.object({
+      address_id: Joi.string().allow(""),
+      aggregator_name: Joi.string().allow(""),
+      id: Joi.string().allow(""),
+      merchant_code: Joi.string().allow(""),
+      payment_identifier: Joi.string().allow("").allow(null),
+      payment_methods: Joi.array().items(CartModel.PaymentMethodSchema()),
+      payment_mode: Joi.string().allow(""),
+    });
+  }
   static UpdateCartRequest() {
     return Joi.object({
       items: Joi.array().items(CartModel.UpdateProductCart()),
@@ -1415,12 +1485,12 @@ class CartModel {
   }
   static UserCartMappingResponse() {
     return Joi.object({
-      breakup_values: CartModel.CartBreakup(),
+      breakup_values: CartModel.CartBreakupSchema(),
       buy_now: Joi.boolean(),
       checkout_mode: Joi.string().allow(""),
       comment: Joi.string().allow(""),
       coupon_text: Joi.string().allow(""),
-      currency: CartModel.CartCurrency(),
+      currency: CartModel.CartCurrencySchema(),
       delivery_charge_info: Joi.string().allow(""),
       delivery_promise: CartModel.ShipmentPromise(),
       gstin: Joi.string().allow(""),
@@ -1433,10 +1503,10 @@ class CartModel {
       pan_no: Joi.string().allow(""),
       payment_selection_lock: CartModel.PaymentSelectionLock(),
       restrict_checkout: Joi.boolean(),
-      user: CartModel.UserInfo(),
+      user: CartModel.UserInfoSchema(),
     });
   }
-  static UserInfo() {
+  static UserInfoSchema() {
     return Joi.object({
       _id: Joi.string().allow(""),
       created_at: Joi.string().allow(""),
@@ -1449,50 +1519,50 @@ class CartModel {
       uid: Joi.string().allow(""),
     });
   }
-  static UserRegistered() {
+  static UserRegisteredSchema() {
     return Joi.object({
       end: Joi.string().allow("").allow(null),
       start: Joi.string().allow("").allow(null),
     });
   }
-  static UsesRemaining() {
+  static UsesRemainingSchema() {
     return Joi.object({
       app: Joi.number(),
       total: Joi.number(),
       user: Joi.number(),
     });
   }
-  static UsesRemaining1() {
+  static UsesRemainingSchema1() {
     return Joi.object({
       total: Joi.number(),
       user: Joi.number(),
     });
   }
-  static UsesRestriction() {
+  static UsesRestrictionSchema() {
     return Joi.object({
-      maximum: CartModel.UsesRemaining(),
-      remaining: CartModel.UsesRemaining(),
+      maximum: CartModel.UsesRemainingSchema(),
+      remaining: CartModel.UsesRemainingSchema(),
     });
   }
-  static UsesRestriction1() {
+  static UsesRestrictionSchema1() {
     return Joi.object({
-      maximum: CartModel.UsesRemaining1(),
-      remaining: CartModel.UsesRemaining1(),
+      maximum: CartModel.UsesRemainingSchema1(),
+      remaining: CartModel.UsesRemainingSchema1(),
     });
   }
-  static Validation() {
+  static ValidationSchema() {
     return Joi.object({
       anonymous: Joi.boolean(),
       app_id: Joi.array().items(Joi.string().allow("")),
       user_registered_after: Joi.string().allow("").allow(null),
     });
   }
-  static Validity() {
+  static ValiditySchema() {
     return Joi.object({
       priority: Joi.number(),
     });
   }
-  static Visibility() {
+  static VisibilitySchema() {
     return Joi.object({
       coupon_list: Joi.boolean().required(),
       pdp: Joi.boolean().required(),

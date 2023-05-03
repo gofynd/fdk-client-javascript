@@ -36,11 +36,13 @@ Cart APIs
 * [getStoreAddressByUid](#getstoreaddressbyuid)
 * [platformAddItems](#platformadditems)
 * [platformCheckoutCart](#platformcheckoutcart)
+* [platformCheckoutCartV2](#platformcheckoutcartv2)
 * [platformUpdateCart](#platformupdatecart)
 * [removeAddress](#removeaddress)
 * [removeCoupon](#removecoupon)
 * [selectAddress](#selectaddress)
 * [selectPaymentMode](#selectpaymentmode)
+* [selectPaymentModeV2](#selectpaymentmodev2)
 * [updateAddress](#updateaddress)
 * [updateCart](#updatecart)
 * [updateCartMeta](#updatecartmeta)
@@ -2036,7 +2038,7 @@ const data = await platformClient.application("<APPLICATION_ID>").cart.checkoutC
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |
-| body | [OpenApiPlatformCheckoutReq](#OpenApiPlatformCheckoutReq) | yes | Request body |
+| body | [OpenApiPlatformCheckoutReqSchema](#OpenApiPlatformCheckoutReqSchema) | yes | Request body |
 
 
 Generate Fynd order for cart details send with provided `cart_items`
@@ -2096,7 +2098,7 @@ const data = await platformClient.application("<APPLICATION_ID>").cart.createCou
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |
-| body | [CouponAdd](#CouponAdd) | yes | Request body |
+| body | [CouponAddSchema](#CouponAddSchema) | yes | Request body |
 
 
 Create new coupon
@@ -2154,7 +2156,7 @@ const data = await platformClient.application("<APPLICATION_ID>").cart.createPro
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |
-| body | [PromotionAdd](#PromotionAdd) | yes | Request body |
+| body | [PromotionAddSchema](#PromotionAddSchema) | yes | Request body |
 
 
 Create new promotion
@@ -2164,7 +2166,7 @@ Create new promotion
 
 
 
-[PromotionAdd](#PromotionAdd)
+[PromotionAddSchema](#PromotionAddSchema)
 
 Promotion Created successfully
 
@@ -2742,7 +2744,7 @@ Get abandoned cart list with pagination
 
 
 
-[AbandonedCartResponse](#AbandonedCartResponse)
+[AbandonedCartResponseSchema](#AbandonedCartResponseSchema)
 
 Abandoned Cart List for sent page_size and page_no
 
@@ -3572,7 +3574,7 @@ Get all carts for the store os user which is created for customer
 
 
 
-[MultiCartResponse](#MultiCartResponse)
+[MultiCartResponseSchema](#MultiCartResponseSchema)
 
 Platform user cart list
 
@@ -4057,7 +4059,7 @@ Get single coupon details with `id` in path param
 
 
 
-[CouponUpdate](#CouponUpdate)
+[CouponUpdateSchema](#CouponUpdateSchema)
 
 Coupon object for sent `id`
 
@@ -4511,7 +4513,7 @@ Get single promotion details with `id` in path param
 
 
 
-[PromotionUpdate](#PromotionUpdate)
+[PromotionUpdateSchema](#PromotionUpdateSchema)
 
 Promotion object for sent `id`
 
@@ -6314,9 +6316,447 @@ Use this API to checkout all items in the cart for payment and order generation.
 
 
 
-[CartCheckoutResponse](#CartCheckoutResponse)
+[CartCheckoutResponseSchema](#CartCheckoutResponseSchema)
 
 Success. Returns the status of cart checkout. Refer `CartCheckoutResponse` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; Address id not found</i></summary>
+
+```json
+{
+  "value": {
+    "success": false,
+    "message": "No address found with address id {address_id}"
+  }
+}
+```
+</details>
+
+<details>
+<summary><i>&nbsp; Missing address_id</i></summary>
+
+```json
+{
+  "value": {
+    "address_id": [
+      "Missing data for required field."
+    ]
+  }
+}
+```
+</details>
+
+<details>
+<summary><i>&nbsp; Successful checkout cod payment</i></summary>
+
+```json
+{
+  "value": {
+    "success": true,
+    "cart": {
+      "success": true,
+      "error_message": "Note: Your order delivery will be delayed by 7-10 Days",
+      "payment_options": {
+        "payment_option": [
+          {
+            "name": "COD",
+            "display_name": "Cash on Delivery",
+            "display_priority": 1,
+            "payment_mode_id": 11,
+            "logo": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/cod.png",
+            "logo_url": {
+              "small": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/cod.png",
+              "large": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/cod.png"
+            },
+            "list": []
+          },
+          {
+            "name": "CARD",
+            "display_priority": 2,
+            "payment_mode_id": 2,
+            "display_name": "Card",
+            "list": []
+          },
+          {
+            "name": "NB",
+            "display_priority": 3,
+            "payment_mode_id": 3,
+            "display_name": "Net Banking",
+            "list": [
+              {
+                "aggregator_name": "Razorpay",
+                "bank_name": "ICICI Bank",
+                "bank_code": "ICIC",
+                "url": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/NB_ICICI.png",
+                "logo_url": {
+                  "small": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/NB_ICICI.png",
+                  "large": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/NB_ICICI.png"
+                },
+                "merchant_code": "NB_ICICI",
+                "display_priority": 1
+              }
+            ]
+          },
+          {
+            "name": "WL",
+            "display_priority": 4,
+            "payment_mode_id": 4,
+            "display_name": "Wallet",
+            "list": [
+              {
+                "wallet_name": "Paytm",
+                "wallet_code": "paytm",
+                "wallet_id": 4,
+                "merchant_code": "PAYTM",
+                "logo_url": {
+                  "small": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/paytm_logo_small.png",
+                  "large": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/paytm_logo_large.png"
+                },
+                "aggregator_name": "Juspay",
+                "display_priority": 1
+              }
+            ]
+          },
+          {
+            "name": "UPI",
+            "display_priority": 9,
+            "payment_mode_id": 6,
+            "display_name": "UPI",
+            "list": [
+              {
+                "aggregator_name": "UPI_Razorpay",
+                "name": "UPI",
+                "display_name": "BHIM UPI",
+                "code": "UPI",
+                "logo_url": {
+                  "small": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/upi_100x78.png",
+                  "large": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/upi_150x100.png"
+                },
+                "merchant_code": "UPI",
+                "timeout": 240,
+                "retry_count": 0,
+                "fynd_vpa": "shopsense.rzp@hdfcbank",
+                "intent_flow": true,
+                "intent_app_error_list": [
+                  "com.csam.icici.bank.imobile",
+                  "in.org.npci.upiapp",
+                  "com.whatsapp"
+                ]
+              }
+            ]
+          },
+          {
+            "name": "PL",
+            "display_priority": 11,
+            "payment_mode_id": 1,
+            "display_name": "Pay Later",
+            "list": [
+              {
+                "aggregator_name": "Simpl",
+                "name": "Simpl",
+                "code": "simpl",
+                "merchant_code": "SIMPL",
+                "logo": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/simpl_logo.png",
+                "logo_url": {
+                  "small": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/simpl_logo.png",
+                  "large": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/simpl_logo.png"
+                }
+              }
+            ]
+          }
+        ],
+        "payment_flows": {
+          "Simpl": {
+            "data": {
+              "gateway": {
+                "route": "simpl",
+                "entity": "sdk",
+                "is_customer_validation_required": true,
+                "cust_validation_url": "https://api.addsale.com/gringotts/api/v1/validate-customer/",
+                "sdk": {
+                  "config": {
+                    "redirect": false,
+                    "callback_url": null,
+                    "action_url": "https://api.addsale.com/avis/api/v1/payments/charge-gringotts-transaction/"
+                  },
+                  "data": {
+                    "user_phone": "8452996729",
+                    "user_email": "paymentsdummy@gofynd.com"
+                  }
+                },
+                "return_url": null
+              }
+            },
+            "api_link": "",
+            "payment_flow": "sdk"
+          },
+          "Juspay": {
+            "data": {},
+            "api_link": "https://sandbox.juspay.in/txns",
+            "payment_flow": "api"
+          },
+          "Razorpay": {
+            "data": {},
+            "api_link": "",
+            "payment_flow": "sdk"
+          },
+          "UPI_Razorpay": {
+            "data": {},
+            "api_link": "https://api.addsale.com/gringotts/api/v1/external/payment-initialisation/",
+            "payment_flow": "api"
+          },
+          "Fynd": {
+            "data": {},
+            "api_link": "",
+            "payment_flow": "api"
+          }
+        },
+        "default": {}
+      },
+      "user_type": "Store User",
+      "cod_charges": 0,
+      "order_id": "FY5D5E215CF287584CE6",
+      "cod_available": true,
+      "cod_message": "No additional COD charges applicable",
+      "delivery_charges": 0,
+      "delivery_charge_order_value": 0,
+      "delivery_slots": [
+        {
+          "date": "Sat, 24 Aug",
+          "delivery_slot": [
+            {
+              "delivery_slot_timing": "By 9:00 PM",
+              "default": true,
+              "delivery_slot_id": 1
+            }
+          ]
+        }
+      ],
+      "store_code": "",
+      "store_emps": [],
+      "breakup_values": {
+        "coupon": {
+          "type": "cash",
+          "code": "",
+          "uid": null,
+          "value": 0,
+          "is_applied": false,
+          "message": "Sorry! Invalid Coupon"
+        },
+        "loyalty_points": {
+          "total": 0,
+          "applicable": 0,
+          "is_applied": false,
+          "description": "Your cashback, referrals, and refund amount get credited to Fynd Cash which can be redeemed while placing an order."
+        },
+        "raw": {
+          "cod_charge": 0,
+          "convenience_fee": 0,
+          "coupon": 0,
+          "delivery_charge": 0,
+          "discount": 0,
+          "fynd_cash": 0,
+          "gst_charges": 214.18,
+          "mrp_total": 1999,
+          "subtotal": 1999,
+          "total": 1999,
+          "vog": 1784.82,
+          "you_saved": 0
+        },
+        "display": [
+          {
+            "display": "MRP Total",
+            "key": "mrp_total",
+            "value": 1999,
+            "currency_code": "INR"
+          },
+          {
+            "display": "Subtotal",
+            "key": "subtotal",
+            "value": 1999,
+            "currency_code": "INR"
+          },
+          {
+            "display": "Total",
+            "key": "total",
+            "value": 1999,
+            "currency_code": "INR"
+          }
+        ]
+      },
+      "items": [
+        {
+          "key": "820312_L",
+          "message": "",
+          "bulk_offer": {},
+          "price": {
+            "base": {
+              "add_on": 1999,
+              "marked": 1999,
+              "effective": 1999,
+              "selling": 1999,
+              "currency_code": "INR"
+            },
+            "converted": {
+              "add_on": 1999,
+              "marked": 1999,
+              "effective": 1999,
+              "selling": 1999,
+              "currency_code": "INR"
+            }
+          },
+          "quantity": 1,
+          "discount": "",
+          "product": {
+            "type": "product",
+            "uid": 820312,
+            "name": "Navy Blue Melange Shorts",
+            "slug": "883-police-navy-blue-melange-shorts-820312-4943a8",
+            "brand": {
+              "uid": 610,
+              "name": "883 Police"
+            },
+            "categories": [
+              {
+                "uid": 193,
+                "name": "Shorts"
+              }
+            ],
+            "images": [
+              {
+                "aspect_ratio": "16:25",
+                "url": "http://cdn4.gofynd.com/media/pictures/tagged_items/original/610_SPIRAL19ANAVY/1_1549105947281.jpg",
+                "secure_url": "https://d2zv4gzhlr4ud6.cloudfront.net/media/pictures/tagged_items/original/610_SPIRAL19ANAVY/1_1549105947281.jpg"
+              }
+            ],
+            "action": {
+              "type": "product",
+              "url": "https://api.addsale.com/platform/content/v1/products/883-police-navy-blue-melange-shorts-820312-4943a8/",
+              "query": {
+                "product_slug": [
+                  "883-police-navy-blue-melange-shorts-820312-4943a8"
+                ]
+              }
+            }
+          },
+          "article": {
+            "type": "article",
+            "uid": "381_610_IGPL01_SPIRAL19ANAVY_L",
+            "size": "L",
+            "seller": {
+              "uid": 381,
+              "name": "INTERSOURCE GARMENTS PVT LTD"
+            },
+            "store": {
+              "uid": 3009,
+              "name": "Kormangala"
+            },
+            "quantity": 2,
+            "price": {
+              "base": {
+                "marked": 1999,
+                "effective": 1999,
+                "currency_code": "INR"
+              },
+              "converted": {
+                "marked": 1999,
+                "effective": 1999,
+                "currency_code": "INR"
+              }
+            }
+          },
+          "coupon_message": "",
+          "availability": {
+            "sizes": [
+              "L",
+              "XL",
+              "XXL"
+            ],
+            "other_store_quantity": 1,
+            "out_of_stock": false,
+            "deliverable": true,
+            "is_valid": true
+          }
+        }
+      ],
+      "delivery_charge_info": "",
+      "coupon_text": "View all offers",
+      "cart_id": 7483,
+      "uid": "7483",
+      "gstin": null,
+      "checkout_mode": "self",
+      "last_modified": "Thu, 22 Aug 2019 04:58:44 GMT",
+      "restrict_checkout": false,
+      "is_valid": true
+    },
+    "callback_url": "https://api.addsale.com/gringotts/api/v1/external/payment-callback/",
+    "app_intercept_url": "http://uniket-testing.addsale.link/cart/order-status",
+    "message": "",
+    "data": {
+      "order_id": "FY5D5E215CF287584CE6"
+    },
+    "order_id": "FY5D5E215CF287584CE6"
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### platformCheckoutCartV2
+Checkout all items in the cart
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").cart.platformCheckoutCartV2({  body : value,
+ id : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").cart.platformCheckoutCartV2({  body : value,
+ id : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| id | string | no |  |  
+| body | [PlatformCartCheckoutDetailV2Request](#PlatformCartCheckoutDetailV2Request) | yes | Request body |
+
+
+Use this API to checkout all items in the cart for payment and order generation. For COD, order will be directly generated, whereas for other checkout modes, user will be redirected to a payment gateway.
+
+*Returned Response:*
+
+
+
+
+[CartCheckoutResponseSchema](#CartCheckoutResponseSchema)
+
+Success. Returns the status of cart checkout. Refer `CartCheckoutResponseSchema` for more details.
 
 
 
@@ -8092,6 +8532,335 @@ Success. Returns a Cart object as shown below. Refer `CartDetailResponse` for mo
 ---
 
 
+### selectPaymentModeV2
+Update cart payment
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").cart.selectPaymentModeV2({  body : value,
+ id : value,
+ buyNow : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").cart.selectPaymentModeV2({  body : value,
+ id : value,
+ buyNow : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| id | string | no |  |    
+| buyNow | boolean | no |  |  
+| body | [UpdateCartPaymentRequestV2](#UpdateCartPaymentRequestV2) | yes | Request body |
+
+
+Use this API to update cart payment.
+
+*Returned Response:*
+
+
+
+
+[CartDetailResponse](#CartDetailResponse)
+
+Success. Returns a Cart object as shown below. Refer `CartDetailResponse` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "success": true,
+  "error_message": "Note: Your order delivery will be delayed by 7-10 Days",
+  "user_type": "Store User",
+  "cod_charges": 0,
+  "order_id": null,
+  "cod_available": true,
+  "cod_message": "No additional COD charges applicable",
+  "delivery_charges": 0,
+  "delivery_charge_order_value": 0,
+  "store_code": "",
+  "store_emps": [],
+  "breakup_values": {
+    "raw": {
+      "cod_charge": 0,
+      "convenience_fee": 0,
+      "coupon": -2250,
+      "delivery_charge": 0,
+      "discount": 0,
+      "fynd_cash": 0,
+      "gst_charges": 315.86,
+      "mrp_total": 5198,
+      "subtotal": 5198,
+      "total": 2948,
+      "vog": 2632.15,
+      "you_saved": 0
+    },
+    "display": [
+      {
+        "display": "MRP Total",
+        "key": "mrp_total",
+        "value": 5198,
+        "currency_code": "INR"
+      },
+      {
+        "display": "Subtotal",
+        "key": "subtotal",
+        "value": 5198,
+        "currency_code": "INR"
+      },
+      {
+        "display": "Coupon",
+        "key": "coupon",
+        "value": -2250,
+        "currency_code": "INR"
+      },
+      {
+        "display": "Total",
+        "key": "total",
+        "value": 2948,
+        "currency_code": "INR"
+      }
+    ],
+    "coupon": {
+      "type": "cash",
+      "code": "PRISMC22250111",
+      "uid": 17743,
+      "value": 2250,
+      "is_applied": true,
+      "message": "coupn applied"
+    },
+    "loyalty_points": {
+      "total": 0,
+      "applicable": 0,
+      "is_applied": false,
+      "description": "Your cashback, referrals, and refund amount get credited to Fynd Cash which can be redeemed while placing an order."
+    }
+  },
+  "items": [
+    {
+      "message": "",
+      "quantity": 1,
+      "availability": {
+        "sizes": [
+          "M",
+          "S",
+          "L",
+          "XXL",
+          "XL"
+        ],
+        "other_store_quantity": 10,
+        "out_of_stock": false,
+        "deliverable": true,
+        "is_valid": true
+      },
+      "coupon_message": "PRISMC22250111 coupon applied",
+      "price": {
+        "base": {
+          "add_on": 3199,
+          "marked": 3199,
+          "effective": 3199,
+          "selling": 3199,
+          "currency_code": "INR"
+        },
+        "converted": {
+          "add_on": 3199,
+          "marked": 3199,
+          "effective": 3199,
+          "selling": 3199,
+          "currency_code": "INR"
+        }
+      },
+      "bulk_offer": {},
+      "article": {
+        "type": "article",
+        "uid": "381_610_IGPL01_LETTER19APINK_S",
+        "size": "S",
+        "seller": {
+          "uid": 381,
+          "name": "INTERSOURCE GARMENTS PVT LTD"
+        },
+        "store": {
+          "uid": 3009,
+          "name": "Kormangala"
+        },
+        "quantity": 11,
+        "price": {
+          "base": {
+            "marked": 3199,
+            "effective": 3199,
+            "currency_code": "INR"
+          },
+          "converted": {
+            "marked": 3199,
+            "effective": 3199,
+            "currency_code": "INR"
+          }
+        }
+      },
+      "product": {
+        "type": "product",
+        "uid": 857596,
+        "name": "Pink Solid Hoodie",
+        "slug": "883-police-pink-solid-hoodie-857596-111bdc",
+        "brand": {
+          "uid": 610,
+          "name": "883 Police"
+        },
+        "categories": [
+          {
+            "uid": 144,
+            "name": "Hoodies"
+          }
+        ],
+        "images": [
+          {
+            "aspect_ratio": "16:25",
+            "url": "http://cdn4.gofynd.com/media/pictures/tagged_items/original/610_LETTER19APINK/1_1553062658148.jpg",
+            "secure_url": "https://d2zv4gzhlr4ud6.cloudfront.net/media/pictures/tagged_items/original/610_LETTER19APINK/1_1553062658148.jpg"
+          }
+        ],
+        "action": {
+          "type": "product",
+          "url": "https://api.addsale.com/platform/content/v1/products/883-police-pink-solid-hoodie-857596-111bdc/",
+          "query": {
+            "product_slug": [
+              "883-police-pink-solid-hoodie-857596-111bdc"
+            ]
+          }
+        }
+      },
+      "key": "857596_S",
+      "discount": ""
+    },
+    {
+      "message": "",
+      "quantity": 1,
+      "availability": {
+        "sizes": [
+          "L",
+          "XL",
+          "XXL"
+        ],
+        "other_store_quantity": 1,
+        "out_of_stock": false,
+        "deliverable": true,
+        "is_valid": true
+      },
+      "coupon_message": "PRISMC22250111 coupon applied",
+      "price": {
+        "base": {
+          "add_on": 1999,
+          "marked": 1999,
+          "effective": 1999,
+          "selling": 1999,
+          "currency_code": "INR"
+        },
+        "converted": {
+          "add_on": 1999,
+          "marked": 1999,
+          "effective": 1999,
+          "selling": 1999,
+          "currency_code": "INR"
+        }
+      },
+      "bulk_offer": {},
+      "article": {
+        "type": "article",
+        "uid": "381_610_IGPL01_SPIRAL19ANAVY_L",
+        "size": "L",
+        "seller": {
+          "uid": 381,
+          "name": "INTERSOURCE GARMENTS PVT LTD"
+        },
+        "store": {
+          "uid": 3009,
+          "name": "Kormangala"
+        },
+        "quantity": 2,
+        "price": {
+          "base": {
+            "marked": 1999,
+            "effective": 1999,
+            "currency_code": "INR"
+          },
+          "converted": {
+            "marked": 1999,
+            "effective": 1999,
+            "currency_code": "INR"
+          }
+        }
+      },
+      "product": {
+        "type": "product",
+        "uid": 820312,
+        "name": "Navy Blue Melange Shorts",
+        "slug": "883-police-navy-blue-melange-shorts-820312-4943a8",
+        "brand": {
+          "uid": 610,
+          "name": "883 Police"
+        },
+        "categories": [
+          {
+            "uid": 193,
+            "name": "Shorts"
+          }
+        ],
+        "images": [
+          {
+            "aspect_ratio": "16:25",
+            "url": "http://cdn4.gofynd.com/media/pictures/tagged_items/original/610_SPIRAL19ANAVY/1_1549105947281.jpg",
+            "secure_url": "https://d2zv4gzhlr4ud6.cloudfront.net/media/pictures/tagged_items/original/610_SPIRAL19ANAVY/1_1549105947281.jpg"
+          }
+        ],
+        "action": {
+          "type": "product",
+          "url": "https://api.addsale.com/platform/content/v1/products/883-police-navy-blue-melange-shorts-820312-4943a8/",
+          "query": {
+            "product_slug": [
+              "883-police-navy-blue-melange-shorts-820312-4943a8"
+            ]
+          }
+        }
+      },
+      "key": "820312_L",
+      "discount": ""
+    }
+  ],
+  "delivery_charge_info": "",
+  "coupon_text": "View all offers",
+  "buy_now": false,
+  "cart_id": 7477,
+  "uid": "7477",
+  "gstin": null,
+  "checkout_mode": "self",
+  "last_modified": "Fri, 23 Aug 2019 08:03:04 GMT",
+  "restrict_checkout": false,
+  "is_valid": true
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
 ### updateAddress
 Update address added to an account
 
@@ -9539,7 +10308,7 @@ const data = await platformClient.application("<APPLICATION_ID>").cart.updateCou
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
 | id | string | yes |  |  
-| body | [CouponUpdate](#CouponUpdate) | yes | Request body |
+| body | [CouponUpdateSchema](#CouponUpdateSchema) | yes | Request body |
 
 
 Update coupon with id sent in `id`
@@ -9682,7 +10451,7 @@ const data = await platformClient.application("<APPLICATION_ID>").cart.updatePro
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
 | id | string | yes |  |  
-| body | [PromotionUpdate](#PromotionUpdate) | yes | Request body |
+| body | [PromotionUpdateSchema](#PromotionUpdateSchema) | yes | Request body |
 
 
 Update promotion with id sent in `id`
@@ -9692,7 +10461,7 @@ Update promotion with id sent in `id`
 
 
 
-[PromotionUpdate](#PromotionUpdate)
+[PromotionUpdateSchema](#PromotionUpdateSchema)
 
 Promotion updated successfully
 
@@ -10676,7 +11445,7 @@ Use this API to validate a coupon against the payment mode such as NetBanking, W
 
 
 
-[PaymentCouponValidate](#PaymentCouponValidate)
+[PaymentCouponValidateSchema](#PaymentCouponValidateSchema)
 
 Success. Returns a success message and the coupon validity. Refer `PaymentCouponValidate` for more details.
 
@@ -10720,52 +11489,52 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | _id | string |  yes  |  |
- | app_id | string |  no  |  |
- | articles | [string] |  yes  |  |
- | bulk_coupon_discount | number |  no  |  |
- | buy_now | boolean |  no  |  |
- | cart_value | number |  no  |  |
- | cashback | string |  yes  |  |
- | checkout_mode | string |  no  |  |
- | cod_charges | string |  no  |  |
- | comment | string |  no  |  |
- | coupon | string |  no  |  |
- | created_on | string |  yes  |  |
- | delivery_charges | string |  no  |  |
- | discount | number |  no  |  |
- | expire_at | string |  yes  |  |
- | fc_index_map | [number] |  no  |  |
- | fynd_credits | string |  no  |  |
- | gstin | string |  no  |  |
- | is_active | boolean |  no  |  |
- | is_archive | boolean |  no  |  |
- | is_default | boolean |  yes  |  |
- | last_modified | string |  yes  |  |
- | merge_qty | boolean |  no  |  |
- | meta | string |  no  |  |
- | order_id | string |  no  |  |
- | payment_methods | [string] |  no  |  |
- | payment_mode | string |  no  |  |
- | payments | string |  no  |  |
- | pick_up_customer_details | string |  no  |  |
- | promotion | string |  no  |  |
- | shipments | [string] |  no  |  |
- | uid | number |  yes  |  |
- | user_id | string |  yes  |  |
+ | _id | string |  no  |  |
+ | app_id | string? |  yes  |  |
+ | articles | [string] |  no  |  |
+ | bulk_coupon_discount | number? |  yes  |  |
+ | buy_now | boolean? |  yes  |  |
+ | cart_value | number? |  yes  |  |
+ | cashback | string |  no  |  |
+ | checkout_mode | string? |  yes  |  |
+ | cod_charges | string? |  yes  |  |
+ | comment | string? |  yes  |  |
+ | coupon | string? |  yes  |  |
+ | created_on | string |  no  |  |
+ | delivery_charges | string? |  yes  |  |
+ | discount | number? |  yes  |  |
+ | expire_at | string |  no  |  |
+ | fc_index_map | [number]? |  yes  |  |
+ | fynd_credits | string? |  yes  |  |
+ | gstin | string? |  yes  |  |
+ | is_active | boolean? |  yes  |  |
+ | is_archive | boolean? |  yes  |  |
+ | is_default | boolean |  no  |  |
+ | last_modified | string |  no  |  |
+ | merge_qty | boolean? |  yes  |  |
+ | meta | string? |  yes  |  |
+ | order_id | string? |  yes  |  |
+ | payment_methods | [string]? |  yes  |  |
+ | payment_mode | string? |  yes  |  |
+ | payments | string? |  yes  |  |
+ | pick_up_customer_details | string? |  yes  |  |
+ | promotion | string? |  yes  |  |
+ | shipments | [string]? |  yes  |  |
+ | uid | number |  no  |  |
+ | user_id | string |  no  |  |
  
 
 ---
 
-#### [AbandonedCartResponse](#AbandonedCartResponse)
+#### [AbandonedCartResponseSchema](#AbandonedCartResponseSchema)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | items | [[AbandonedCart](#AbandonedCart)] |  no  |  |
- | message | string |  no  |  |
- | page | [Page](#Page) |  no  |  |
- | result | string |  no  |  |
- | success | boolean |  no  |  |
+ | items | [[AbandonedCart](#AbandonedCart)]? |  yes  |  |
+ | message | string? |  yes  | message of the response |
+ | page | [Page](#Page)? |  yes  |  |
+ | result | string? |  yes  |  |
+ | success | boolean? |  yes  | the request success is defined |
  
 
 ---
@@ -10774,7 +11543,7 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | product_slug | [string] |  no  |  |
+ | product_slug | [string]? |  yes  | Contains list of product slug |
  
 
 ---
@@ -10783,16 +11552,16 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | created_on | string |  no  |  |
- | description | string |  no  |  |
- | entity_slug | string |  no  |  |
- | entity_type | string |  no  |  |
- | example | string |  no  |  |
- | is_hidden | boolean |  no  |  |
- | modified_on | string |  no  |  |
- | subtitle | string |  no  |  |
- | title | string |  no  |  |
- | type | string |  no  |  |
+ | created_on | string? |  yes  | Coupon creation date |
+ | description | string? |  yes  | The description of the offer in the form of an HTML |
+ | entity_slug | string? |  yes  |  |
+ | entity_type | string? |  yes  | Type of entity to be selected from : ['coupon', 'promotion'] |
+ | example | string? |  yes  | Discount offers examples |
+ | is_hidden | boolean? |  yes  | If the promo is active or not |
+ | modified_on | string? |  yes  | Coupon modification date |
+ | subtitle | string? |  yes  | Small description of the current offer |
+ | title | string? |  yes  | Name of the promotion |
+ | type | string? |  yes  | Coupon type |
  
 
 ---
@@ -10801,10 +11570,10 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | cart | [CartDetailResponse](#CartDetailResponse) |  no  |  |
- | message | string |  no  |  |
- | partial | boolean |  no  |  |
- | success | boolean |  no  |  |
+ | cart | [CartDetailResponse](#CartDetailResponse)? |  yes  |  |
+ | message | string? |  yes  |  |
+ | partial | boolean? |  yes  | When adding multiple items check if all added. True if only few are added. |
+ | success | boolean? |  yes  | True if all items are added successfully. False if partially added or not added. |
  
 
 ---
@@ -10813,8 +11582,8 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | items | [[AddProductCart](#AddProductCart)] |  no  |  |
- | new_cart | boolean |  no  |  |
+ | items | [[AddProductCart](#AddProductCart)]? |  yes  |  |
+ | new_cart | boolean? |  yes  |  |
  
 
 ---
@@ -10823,30 +11592,30 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | article_assignment | string |  no  |  |
- | article_id | string |  no  |  |
- | display | string |  no  |  |
- | extra_meta | string |  no  |  |
- | item_id | number |  no  |  |
- | item_size | string |  no  |  |
- | parent_item_identifiers | string |  no  |  |
- | pos | boolean |  no  |  |
- | product_group_tags | [string] |  no  |  |
- | quantity | number |  no  |  |
- | seller_id | number |  no  |  |
- | store_id | number |  no  |  |
+ | article_assignment | string? |  yes  |  |
+ | article_id | string? |  yes  |  |
+ | display | string? |  yes  |  |
+ | extra_meta | string? |  yes  |  |
+ | item_id | number? |  yes  |  |
+ | item_size | string? |  yes  |  |
+ | parent_item_identifiers | string? |  yes  |  |
+ | pos | boolean? |  yes  |  |
+ | product_group_tags | [string]? |  yes  |  |
+ | quantity | number? |  yes  |  |
+ | seller_id | number? |  yes  |  |
+ | store_id | number? |  yes  |  |
  
 
 ---
 
-#### [AppliedFreeArticles](#AppliedFreeArticles)
+#### [AppliedFreeArticlesSchema](#AppliedFreeArticlesSchema)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | article_id | string |  no  |  |
- | free_gift_item_details | [FreeGiftItem](#FreeGiftItem) |  no  |  |
- | parent_item_identifier | string |  no  |  |
- | quantity | number |  no  |  |
+ | article_id | string? |  yes  | free article id |
+ | free_gift_item_details | [FreeGiftItemSchema](#FreeGiftItemSchema)? |  yes  | Free gift items details |
+ | parent_item_identifier | string? |  yes  | Parent item identifier for free article |
+ | quantity | number? |  yes  | Free article quantity |
  
 
 ---
@@ -10855,17 +11624,17 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | amount | number |  no  |  |
- | applied_free_articles | [[AppliedFreeArticles](#AppliedFreeArticles)] |  no  |  |
- | article_quantity | number |  no  |  |
- | buy_rules | [[BuyRules](#BuyRules)] |  no  |  |
- | discount_rules | [[DiscountRulesApp](#DiscountRulesApp)] |  no  |  |
- | mrp_promotion | boolean |  no  |  |
- | offer_text | string |  no  |  |
- | promo_id | string |  no  |  |
- | promotion_group | string |  no  |  |
- | promotion_name | string |  no  |  |
- | promotion_type | string |  no  |  |
+ | amount | number? |  yes  | Per unit discount amount applied with current promotion |
+ | applied_free_articles | [[AppliedFreeArticlesSchema](#AppliedFreeArticlesSchema)]? |  yes  | Applied free article for free gift item promotions |
+ | article_quantity | number? |  yes  | Quantity of article on which promotion is applicable |
+ | buy_rules | [[BuyRulesSchema](#BuyRulesSchema)]? |  yes  | Buy rules for promotions |
+ | discount_rules | [[DiscountRulesAppSchema](#DiscountRulesAppSchema)]? |  yes  | Discount rules for promotions |
+ | mrp_promotion | boolean? |  yes  | If applied promotion is applied on product MRP or ESP |
+ | offer_text | string? |  yes  | Offer text of current promotion |
+ | promo_id | string? |  yes  | Promotion id |
+ | promotion_group | string? |  yes  | Promotion group for the promotion |
+ | promotion_name | string? |  yes  | Promotion name of current promotion |
+ | promotion_type | string? |  yes  | Promotion type of current promotion |
  
 
 ---
@@ -10874,7 +11643,7 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | coupon_code | string |  yes  |  |
+ | coupon_code | string |  no  | Coupon code to be applied |
  
 
 ---
@@ -10883,8 +11652,8 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | base | [BasePrice](#BasePrice) |  no  |  |
- | converted | [BasePrice](#BasePrice) |  no  |  |
+ | base | [BasePriceSchema](#BasePriceSchema)? |  yes  |  |
+ | converted | [BasePriceSchema](#BasePriceSchema)? |  yes  |  |
  
 
 ---
@@ -10893,20 +11662,20 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | name | string |  no  |  |
- | uid | number |  no  |  |
+ | name | string? |  yes  |  |
+ | uid | number? |  yes  |  |
  
 
 ---
 
-#### [BasePrice](#BasePrice)
+#### [BasePriceSchema](#BasePriceSchema)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | currency_code | string |  no  |  |
- | currency_symbol | string |  no  |  |
- | effective | number |  no  |  |
- | marked | number |  no  |  |
+ | currency_code | string? |  yes  |  |
+ | currency_symbol | string? |  yes  |  |
+ | effective | number? |  yes  |  |
+ | marked | number? |  yes  |  |
  
 
 ---
@@ -10915,55 +11684,55 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | multi_store_allowed | boolean |  yes  |  |
+ | multi_store_allowed | boolean |  no  |  |
  
 
 ---
 
-#### [BuyRules](#BuyRules)
+#### [BuyRulesSchema](#BuyRulesSchema)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | cart_conditions | string |  no  |  |
- | item_criteria | string |  no  |  |
+ | cart_conditions | string? |  yes  | Cart conditions details for promotion |
+ | item_criteria | string? |  yes  | Item criteria of promotion |
  
 
 ---
 
-#### [CartBreakup](#CartBreakup)
+#### [CartBreakupSchema](#CartBreakupSchema)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | coupon | [CouponBreakup](#CouponBreakup) |  no  |  |
- | display | [[DisplayBreakup](#DisplayBreakup)] |  no  |  |
- | loyalty_points | [LoyaltyPoints](#LoyaltyPoints) |  no  |  |
- | raw | [RawBreakup](#RawBreakup) |  no  |  |
+ | coupon | [CouponBreakupSchema](#CouponBreakupSchema)? |  yes  |  |
+ | display | [[DisplayBreakupSchema](#DisplayBreakupSchema)]? |  yes  |  |
+ | loyalty_points | [LoyaltyPoints](#LoyaltyPoints)? |  yes  |  |
+ | raw | [RawBreakupSchema](#RawBreakupSchema)? |  yes  |  |
  
 
 ---
 
-#### [CartCheckoutResponse](#CartCheckoutResponse)
+#### [CartCheckoutResponseSchema](#CartCheckoutResponseSchema)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | app_intercept_url | string |  no  |  |
- | callback_url | string |  no  |  |
- | cart | [CheckCart](#CheckCart) |  no  |  |
- | data | string |  no  |  |
- | message | string |  no  |  |
- | order_id | string |  no  |  |
- | payment_confirm_url | string |  no  |  |
- | success | boolean |  no  |  |
+ | app_intercept_url | string? |  yes  |  |
+ | callback_url | string? |  yes  |  |
+ | cart | [CheckCartSchema](#CheckCartSchema)? |  yes  |  |
+ | data | string? |  yes  |  |
+ | message | string? |  yes  |  |
+ | order_id | string? |  yes  |  |
+ | payment_confirm_url | string? |  yes  |  |
+ | success | boolean? |  yes  |  |
  
 
 ---
 
-#### [CartCurrency](#CartCurrency)
+#### [CartCurrencySchema](#CartCurrencySchema)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | code | string |  no  |  |
- | symbol | string |  no  |  |
+ | code | string? |  yes  | Currency code defined by ISO 4217:2015 |
+ | symbol | string? |  yes  |  |
  
 
 ---
@@ -10972,8 +11741,8 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | available_modes | [string] |  no  |  |
- | pickup_stores | [number] |  no  |  |
+ | available_modes | [string]? |  yes  | Available delivery modes |
+ | pickup_stores | [number]? |  yes  | Store pick up available store uids |
  
 
 ---
@@ -10982,35 +11751,24 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | breakup_values | [CartBreakup](#CartBreakup) |  no  |  |
- | buy_now | boolean |  no  |  |
- | checkout_mode | string |  no  |  |
- | comment | string |  no  |  |
- | coupon_text | string |  no  |  |
- | currency | [CartCurrency](#CartCurrency) |  no  |  |
- | delivery_charge_info | string |  no  |  |
- | delivery_promise | [ShipmentPromise](#ShipmentPromise) |  no  |  |
- | gstin | string |  no  |  |
- | id | string |  no  |  |
- | is_valid | boolean |  no  |  |
- | items | [[CartProductInfo](#CartProductInfo)] |  no  |  |
- | last_modified | string |  no  |  |
- | message | string |  no  |  |
- | pan_config | string |  no  |  |
- | pan_no | string |  no  |  |
- | payment_selection_lock | [PaymentSelectionLock](#PaymentSelectionLock) |  no  |  |
- | restrict_checkout | boolean |  no  |  |
- 
-
----
-
-#### [CartItem](#CartItem)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | product_id | string |  yes  |  |
- | quantity | number |  no  |  |
- | size | string |  yes  |  |
+ | breakup_values | [CartBreakupSchema](#CartBreakupSchema)? |  yes  |  |
+ | buy_now | boolean? |  yes  |  |
+ | checkout_mode | string? |  yes  |  |
+ | comment | string? |  yes  |  |
+ | coupon_text | string? |  yes  |  |
+ | currency | [CartCurrencySchema](#CartCurrencySchema)? |  yes  |  |
+ | delivery_charge_info | string? |  yes  |  |
+ | delivery_promise | [ShipmentPromise](#ShipmentPromise)? |  yes  |  |
+ | gstin | string? |  yes  |  |
+ | id | string? |  yes  |  |
+ | is_valid | boolean? |  yes  |  |
+ | items | [[CartProductInfo](#CartProductInfo)]? |  yes  |  |
+ | last_modified | string? |  yes  |  |
+ | message | string? |  yes  |  |
+ | pan_config | string? |  yes  |  |
+ | pan_no | string? |  yes  |  |
+ | payment_selection_lock | [PaymentSelectionLock](#PaymentSelectionLock)? |  yes  |  |
+ | restrict_checkout | boolean? |  yes  |  |
  
 
 ---
@@ -11019,7 +11777,7 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | user_cart_items_count | number |  no  |  |
+ | user_cart_items_count | number? |  yes  | Item count present in cart |
  
 
 ---
@@ -11028,22 +11786,33 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | group_id | string |  no  |  |
- | primary_item | boolean |  no  |  |
+ | group_id | string? |  yes  |  |
+ | primary_item | boolean? |  yes  |  |
  
 
 ---
 
-#### [CartList](#CartList)
+#### [CartItemSchema](#CartItemSchema)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | cart_id | string |  no  |  |
- | cart_value | number |  no  |  |
- | created_on | string |  no  |  |
- | item_counts | number |  no  |  |
- | pick_up_customer_details | string |  no  |  |
- | user_id | string |  no  |  |
+ | product_id | string |  no  |  |
+ | quantity | number? |  yes  |  |
+ | size | string |  no  |  |
+ 
+
+---
+
+#### [CartListSchema](#CartListSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | cart_id | string? |  yes  |  |
+ | cart_value | number? |  yes  |  |
+ | created_on | string? |  yes  |  |
+ | item_counts | number? |  yes  |  |
+ | pick_up_customer_details | string? |  yes  |  |
+ | user_id | string? |  yes  |  |
  
 
 ---
@@ -11052,7 +11821,7 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | errors | [string] |  no  |  |
+ | errors | [string]? |  yes  |  |
  
 
 ---
@@ -11061,7 +11830,7 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | message | string |  no  |  |
+ | message | string? |  yes  |  |
  
 
 ---
@@ -11070,18 +11839,18 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | _custom_json | string |  no  |  |
- | action | [ProductAction](#ProductAction) |  no  |  |
- | brand | [BaseInfo](#BaseInfo) |  no  |  |
- | categories | [[CategoryInfo](#CategoryInfo)] |  no  |  |
- | images | [[ProductImage](#ProductImage)] |  no  |  |
- | item_code | string |  no  |  |
- | name | string |  no  |  |
- | slug | string |  no  |  |
- | tags | [string] |  no  |  |
- | teaser_tag | [Tags](#Tags) |  no  |  |
- | type | string |  no  |  |
- | uid | number |  no  |  |
+ | _custom_json | string? |  yes  |  |
+ | action | [ProductAction](#ProductAction)? |  yes  |  |
+ | brand | [BaseInfo](#BaseInfo)? |  yes  |  |
+ | categories | [[CategoryInfo](#CategoryInfo)]? |  yes  |  |
+ | images | [[ProductImage](#ProductImage)]? |  yes  |  |
+ | item_code | string? |  yes  |  |
+ | name | string? |  yes  |  |
+ | slug | string? |  yes  | Unique product url name generated via product name and other meta data |
+ | tags | [string]? |  yes  |  |
+ | teaser_tag | [Tags](#Tags)? |  yes  |  |
+ | type | string? |  yes  |  |
+ | uid | number? |  yes  |  |
  
 
 ---
@@ -11090,7 +11859,7 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | identifier | string |  no  |  |
+ | identifier | string? |  yes  | Article idenfier generated by cart |
  
 
 ---
@@ -11099,24 +11868,24 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | article | [ProductArticle](#ProductArticle) |  no  |  |
- | availability | [ProductAvailability](#ProductAvailability) |  no  |  |
- | bulk_offer | string |  no  |  |
- | coupon | [CouponDetails](#CouponDetails) |  no  |  |
- | coupon_message | string |  no  |  |
- | custom_order | string |  no  |  |
- | discount | string |  no  |  |
- | identifiers | [CartProductIdentifer](#CartProductIdentifer) |  yes  |  |
- | is_set | boolean |  no  |  |
- | key | string |  no  |  |
- | message | string |  no  |  |
- | parent_item_identifiers | string |  no  |  |
- | price | [ProductPriceInfo](#ProductPriceInfo) |  no  |  |
- | price_per_unit | [ProductPriceInfo](#ProductPriceInfo) |  no  |  |
- | product | [CartProduct](#CartProduct) |  no  |  |
- | promo_meta | [PromoMeta](#PromoMeta) |  no  |  |
- | promotions_applied | [[AppliedPromotion](#AppliedPromotion)] |  no  |  |
- | quantity | number |  no  |  |
+ | article | [ProductArticle](#ProductArticle)? |  yes  |  |
+ | availability | [ProductAvailability](#ProductAvailability)? |  yes  |  |
+ | bulk_offer | string? |  yes  |  |
+ | coupon | [CouponDetails](#CouponDetails)? |  yes  |  |
+ | coupon_message | string? |  yes  |  |
+ | custom_order | string? |  yes  |  |
+ | discount | string? |  yes  |  |
+ | identifiers | [CartProductIdentifer](#CartProductIdentifer) |  no  |  |
+ | is_set | boolean? |  yes  |  |
+ | key | string? |  yes  |  |
+ | message | string? |  yes  |  |
+ | parent_item_identifiers | string? |  yes  |  |
+ | price | [ProductPriceInfo](#ProductPriceInfo)? |  yes  |  |
+ | price_per_unit | [ProductPriceInfo](#ProductPriceInfo)? |  yes  |  |
+ | product | [CartProduct](#CartProduct)? |  yes  |  |
+ | promo_meta | [PromoMeta](#PromoMeta)? |  yes  |  |
+ | promotions_applied | [[AppliedPromotion](#AppliedPromotion)]? |  yes  |  |
+ | quantity | number? |  yes  |  |
  
 
 ---
@@ -11125,25 +11894,25 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | breakup_values | [CartBreakup](#CartBreakup) |  no  |  |
- | buy_now | boolean |  no  |  |
- | cart_id | number |  no  |  |
- | checkout_mode | string |  no  |  |
- | comment | string |  no  |  |
- | coupon_text | string |  no  |  |
- | currency | [CartCurrency](#CartCurrency) |  no  |  |
- | delivery_charge_info | string |  no  |  |
- | delivery_promise | [ShipmentPromise](#ShipmentPromise) |  no  |  |
- | error | boolean |  no  |  |
- | gstin | string |  no  |  |
- | id | string |  no  |  |
- | is_valid | boolean |  no  |  |
- | last_modified | string |  no  |  |
- | message | string |  no  |  |
- | payment_selection_lock | [PaymentSelectionLock](#PaymentSelectionLock) |  no  |  |
- | restrict_checkout | boolean |  no  |  |
- | shipments | [[ShipmentResponse](#ShipmentResponse)] |  no  |  |
- | uid | string |  no  |  |
+ | breakup_values | [CartBreakupSchema](#CartBreakupSchema)? |  yes  |  |
+ | buy_now | boolean? |  yes  |  |
+ | cart_id | number? |  yes  |  |
+ | checkout_mode | string? |  yes  |  |
+ | comment | string? |  yes  |  |
+ | coupon_text | string? |  yes  |  |
+ | currency | [CartCurrencySchema](#CartCurrencySchema)? |  yes  |  |
+ | delivery_charge_info | string? |  yes  |  |
+ | delivery_promise | [ShipmentPromise](#ShipmentPromise)? |  yes  |  |
+ | error | boolean? |  yes  |  |
+ | gstin | string? |  yes  |  |
+ | id | string? |  yes  |  |
+ | is_valid | boolean? |  yes  |  |
+ | last_modified | string? |  yes  |  |
+ | message | string? |  yes  |  |
+ | payment_selection_lock | [PaymentSelectionLock](#PaymentSelectionLock)? |  yes  |  |
+ | restrict_checkout | boolean? |  yes  |  |
+ | shipments | [[ShipmentResponse](#ShipmentResponse)]? |  yes  |  |
+ | uid | string? |  yes  |  |
  
 
 ---
@@ -11152,58 +11921,58 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | name | string |  no  |  |
- | uid | number |  no  |  |
+ | name | string? |  yes  |  |
+ | uid | number? |  yes  | Product Category Id |
  
 
 ---
 
-#### [CheckCart](#CheckCart)
+#### [CheckCartSchema](#CheckCartSchema)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | breakup_values | [CartBreakup](#CartBreakup) |  no  |  |
- | buy_now | boolean |  no  |  |
- | cart_id | number |  no  |  |
- | checkout_mode | string |  no  |  |
- | cod_available | boolean |  no  |  |
- | cod_charges | number |  no  |  |
- | cod_message | string |  no  |  |
- | comment | string |  no  |  |
- | coupon_text | string |  no  |  |
- | currency | [CartCurrency](#CartCurrency) |  no  |  |
- | delivery_charge_info | string |  no  |  |
- | delivery_charge_order_value | number |  no  |  |
- | delivery_charges | number |  no  |  |
- | delivery_promise | [ShipmentPromise](#ShipmentPromise) |  no  |  |
- | error_message | string |  no  |  |
- | gstin | string |  no  |  |
- | id | string |  no  |  |
- | is_valid | boolean |  no  |  |
- | items | [[CartProductInfo](#CartProductInfo)] |  no  |  |
- | last_modified | string |  no  |  |
- | message | string |  no  |  |
- | order_id | string |  no  |  |
- | payment_selection_lock | [PaymentSelectionLock](#PaymentSelectionLock) |  no  |  |
- | restrict_checkout | boolean |  no  |  |
- | store_code | string |  no  |  |
- | store_emps | [string] |  no  |  |
- | success | boolean |  no  |  |
- | uid | string |  no  |  |
- | user_type | string |  no  |  |
+ | breakup_values | [CartBreakupSchema](#CartBreakupSchema)? |  yes  |  |
+ | buy_now | boolean? |  yes  |  |
+ | cart_id | number? |  yes  |  |
+ | checkout_mode | string? |  yes  |  |
+ | cod_available | boolean? |  yes  |  |
+ | cod_charges | number? |  yes  |  |
+ | cod_message | string? |  yes  |  |
+ | comment | string? |  yes  |  |
+ | coupon_text | string? |  yes  |  |
+ | currency | [CartCurrencySchema](#CartCurrencySchema)? |  yes  |  |
+ | delivery_charge_info | string? |  yes  |  |
+ | delivery_charge_order_value | number? |  yes  |  |
+ | delivery_charges | number? |  yes  |  |
+ | delivery_promise | [ShipmentPromise](#ShipmentPromise)? |  yes  |  |
+ | error_message | string? |  yes  |  |
+ | gstin | string? |  yes  |  |
+ | id | string? |  yes  |  |
+ | is_valid | boolean? |  yes  |  |
+ | items | [[CartProductInfo](#CartProductInfo)]? |  yes  |  |
+ | last_modified | string? |  yes  |  |
+ | message | string? |  yes  |  |
+ | order_id | string? |  yes  |  |
+ | payment_selection_lock | [PaymentSelectionLock](#PaymentSelectionLock)? |  yes  |  |
+ | restrict_checkout | boolean? |  yes  |  |
+ | store_code | string? |  yes  |  |
+ | store_emps | [string]? |  yes  |  |
+ | success | boolean? |  yes  |  |
+ | uid | string? |  yes  |  |
+ | user_type | string? |  yes  |  |
  
 
 ---
 
-#### [CompareObject](#CompareObject)
+#### [CompareObjectSchema](#CompareObjectSchema)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | equals | number |  no  |  |
- | greater_than | number |  no  |  |
- | greater_than_equals | number |  no  |  |
- | less_than | number |  no  |  |
- | less_than_equals | number |  no  |  |
+ | equals | number? |  yes  |  |
+ | greater_than | number? |  yes  |  |
+ | greater_than_equals | number? |  yes  |  |
+ | less_than | number? |  yes  |  |
+ | less_than_equals | number? |  yes  |  |
  
 
 ---
@@ -11212,93 +11981,93 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | coupon_code | string |  no  |  |
- | coupon_type | string |  no  |  |
- | coupon_value | number |  no  |  |
- | description | string |  no  |  |
- | expires_on | string |  no  |  |
- | is_applicable | boolean |  no  |  |
- | is_applied | boolean |  no  |  |
- | max_discount_value | number |  no  |  |
- | message | string |  no  |  |
- | minimum_cart_value | number |  no  |  |
- | sub_title | string |  no  |  |
- | title | string |  no  |  |
+ | coupon_code | string? |  yes  |  |
+ | coupon_type | string? |  yes  |  |
+ | coupon_value | number? |  yes  |  |
+ | description | string? |  yes  |  |
+ | expires_on | string? |  yes  |  |
+ | is_applicable | boolean? |  yes  |  |
+ | is_applied | boolean? |  yes  |  |
+ | max_discount_value | number? |  yes  |  |
+ | message | string? |  yes  |  |
+ | minimum_cart_value | number? |  yes  |  |
+ | sub_title | string? |  yes  |  |
+ | title | string? |  yes  |  |
  
 
 ---
 
-#### [CouponAction](#CouponAction)
+#### [CouponActionSchema](#CouponActionSchema)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | action_date | string |  no  |  |
- | txn_mode | string |  no  |  |
+ | action_date | string? |  yes  |  |
+ | txn_mode | string? |  yes  |  |
  
 
 ---
 
-#### [CouponAdd](#CouponAdd)
+#### [CouponAddSchema](#CouponAddSchema)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | _schedule | [CouponSchedule](#CouponSchedule) |  no  |  |
- | action | [CouponAction](#CouponAction) |  no  |  |
- | author | [CouponAuthor](#CouponAuthor) |  no  |  |
- | code | string |  yes  |  |
- | date_meta | [CouponDateMeta](#CouponDateMeta) |  no  |  |
- | display_meta | [DisplayMeta](#DisplayMeta) |  yes  |  |
- | identifiers | [Identifier](#Identifier) |  yes  |  |
- | ownership | [Ownership](#Ownership) |  yes  |  |
- | restrictions | [Restrictions](#Restrictions) |  no  |  |
- | rule | [[Rule](#Rule)] |  yes  |  |
- | rule_definition | [RuleDefinition](#RuleDefinition) |  yes  |  |
- | state | [State](#State) |  no  |  |
- | tags | [string] |  no  |  |
- | type_slug | string |  yes  |  |
- | validation | [Validation](#Validation) |  no  |  |
- | validity | [Validity](#Validity) |  yes  |  |
- 
-
----
-
-#### [CouponAuthor](#CouponAuthor)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | created_by | string |  no  |  |
- | modified_by | string |  no  |  |
- 
-
----
-
-#### [CouponBreakup](#CouponBreakup)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
+ | _schedule | [CouponScheduleSchema](#CouponScheduleSchema)? |  yes  |  |
+ | action | [CouponActionSchema](#CouponActionSchema)? |  yes  |  |
+ | author | [CouponAuthorSchema](#CouponAuthorSchema)? |  yes  |  |
  | code | string |  no  |  |
- | coupon_type | string |  no  |  |
- | coupon_value | number |  no  |  |
- | description | string |  no  |  |
- | is_applied | boolean |  no  |  |
- | max_discount_value | number |  no  |  |
- | message | string |  no  |  |
- | minimum_cart_value | number |  no  |  |
- | sub_title | string |  no  |  |
- | title | string |  no  |  |
- | type | string |  no  |  |
- | uid | string |  no  |  |
- | value | number |  no  |  |
+ | date_meta | [CouponDateMetaSchema](#CouponDateMetaSchema)? |  yes  |  |
+ | display_meta | [DisplayMetaSchema](#DisplayMetaSchema) |  no  |  |
+ | identifiers | [IdentifierSchema](#IdentifierSchema) |  no  |  |
+ | ownership | [OwnershipSchema](#OwnershipSchema) |  no  |  |
+ | restrictions | [RestrictionsSchema](#RestrictionsSchema)? |  yes  |  |
+ | rule | [[RuleSchema](#RuleSchema)] |  no  |  |
+ | rule_definition | [RuleDefinitionSchema](#RuleDefinitionSchema) |  no  |  |
+ | state | [StateSchema](#StateSchema)? |  yes  |  |
+ | tags | [string]? |  yes  |  |
+ | type_slug | string |  no  |  |
+ | validation | [ValidationSchema](#ValidationSchema)? |  yes  |  |
+ | validity | [ValiditySchema](#ValiditySchema) |  no  |  |
  
 
 ---
 
-#### [CouponDateMeta](#CouponDateMeta)
+#### [CouponAuthorSchema](#CouponAuthorSchema)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | created_on | string |  no  |  |
- | modified_on | string |  no  |  |
+ | created_by | string? |  yes  |  |
+ | modified_by | string? |  yes  |  |
+ 
+
+---
+
+#### [CouponBreakupSchema](#CouponBreakupSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | code | string? |  yes  |  |
+ | coupon_type | string? |  yes  |  |
+ | coupon_value | number? |  yes  |  |
+ | description | string? |  yes  |  |
+ | is_applied | boolean? |  yes  |  |
+ | max_discount_value | number? |  yes  |  |
+ | message | string? |  yes  |  |
+ | minimum_cart_value | number? |  yes  |  |
+ | sub_title | string? |  yes  |  |
+ | title | string? |  yes  |  |
+ | type | string? |  yes  |  |
+ | uid | string? |  yes  |  |
+ | value | number? |  yes  |  |
+ 
+
+---
+
+#### [CouponDateMetaSchema](#CouponDateMetaSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | created_on | string? |  yes  |  |
+ | modified_on | string? |  yes  |  |
  
 
 ---
@@ -11307,9 +12076,9 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | code | string |  no  |  |
- | discount_single_quantity | number |  no  |  |
- | discount_total_quantity | number |  no  |  |
+ | code | string? |  yes  |  |
+ | discount_single_quantity | number? |  yes  |  |
+ | discount_total_quantity | number? |  yes  |  |
  
 
 ---
@@ -11318,21 +12087,21 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | archive | boolean |  no  |  |
- | schedule | [CouponSchedule](#CouponSchedule) |  no  |  |
+ | archive | boolean? |  yes  | Send true to unpublish coupon |
+ | schedule | [CouponScheduleSchema](#CouponScheduleSchema)? |  yes  |  |
  
 
 ---
 
-#### [CouponSchedule](#CouponSchedule)
+#### [CouponScheduleSchema](#CouponScheduleSchema)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | cron | string |  no  |  |
- | duration | number |  no  |  |
- | end | string |  no  |  |
- | next_schedule | [string] |  no  |  |
- | start | string |  no  |  |
+ | cron | string? |  yes  |  |
+ | duration | number? |  yes  |  |
+ | end | string? |  yes  |  |
+ | next_schedule | [string]? |  yes  |  |
+ | start | string? |  yes  |  |
  
 
 ---
@@ -11341,32 +12110,32 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | items | [CouponAdd](#CouponAdd) |  no  |  |
- | page | [Page](#Page) |  no  |  |
+ | items | [CouponAddSchema](#CouponAddSchema)? |  yes  |  |
+ | page | [Page](#Page)? |  yes  |  |
  
 
 ---
 
-#### [CouponUpdate](#CouponUpdate)
+#### [CouponUpdateSchema](#CouponUpdateSchema)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | _schedule | [CouponSchedule](#CouponSchedule) |  no  |  |
- | action | [CouponAction](#CouponAction) |  no  |  |
- | author | [CouponAuthor](#CouponAuthor) |  no  |  |
- | code | string |  yes  |  |
- | date_meta | [CouponDateMeta](#CouponDateMeta) |  no  |  |
- | display_meta | [DisplayMeta](#DisplayMeta) |  yes  |  |
- | identifiers | [Identifier](#Identifier) |  yes  |  |
- | ownership | [Ownership](#Ownership) |  yes  |  |
- | restrictions | [Restrictions](#Restrictions) |  no  |  |
- | rule | [[Rule](#Rule)] |  yes  |  |
- | rule_definition | [RuleDefinition](#RuleDefinition) |  yes  |  |
- | state | [State](#State) |  no  |  |
- | tags | [string] |  no  |  |
- | type_slug | string |  yes  |  |
- | validation | [Validation](#Validation) |  no  |  |
- | validity | [Validity](#Validity) |  yes  |  |
+ | _schedule | [CouponScheduleSchema](#CouponScheduleSchema)? |  yes  |  |
+ | action | [CouponActionSchema](#CouponActionSchema)? |  yes  |  |
+ | author | [CouponAuthorSchema](#CouponAuthorSchema)? |  yes  |  |
+ | code | string |  no  |  |
+ | date_meta | [CouponDateMetaSchema](#CouponDateMetaSchema)? |  yes  |  |
+ | display_meta | [DisplayMetaSchema](#DisplayMetaSchema) |  no  |  |
+ | identifiers | [IdentifierSchema](#IdentifierSchema) |  no  |  |
+ | ownership | [OwnershipSchema](#OwnershipSchema) |  no  |  |
+ | restrictions | [RestrictionsSchema](#RestrictionsSchema)? |  yes  |  |
+ | rule | [[RuleSchema](#RuleSchema)] |  no  |  |
+ | rule_definition | [RuleDefinitionSchema](#RuleDefinitionSchema) |  no  |  |
+ | state | [StateSchema](#StateSchema)? |  yes  |  |
+ | tags | [string]? |  yes  |  |
+ | type_slug | string |  no  |  |
+ | validation | [ValidationSchema](#ValidationSchema)? |  yes  |  |
+ | validity | [ValiditySchema](#ValiditySchema) |  no  |  |
  
 
 ---
@@ -11375,11 +12144,11 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | code | string |  no  |  |
- | discount | number |  no  |  |
- | display_message_en | string |  no  |  |
- | title | string |  no  |  |
- | valid | boolean |  no  |  |
+ | code | string? |  yes  |  |
+ | discount | number? |  yes  |  |
+ | display_message_en | string? |  yes  |  |
+ | title | string? |  yes  |  |
+ | valid | boolean? |  yes  |  |
  
 
 ---
@@ -11388,8 +12157,8 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | id | string |  no  |  |
- | is_deleted | boolean |  no  |  |
+ | id | string? |  yes  |  |
+ | is_deleted | boolean? |  yes  |  |
  
 
 ---
@@ -11398,8 +12167,8 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | message | string |  no  |  |
- | success | boolean |  no  |  |
+ | message | string? |  yes  |  |
+ | success | boolean? |  yes  | True if cart is archived successfully. False if not archived. |
  
 
 ---
@@ -11408,122 +12177,122 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | cart_id_list | [string] |  no  |  |
+ | cart_id_list | [string]? |  yes  |  |
  
 
 ---
 
-#### [DiscountOffer](#DiscountOffer)
+#### [DiscountOfferSchema](#DiscountOfferSchema)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | apportion_discount | boolean |  no  |  |
- | code | string |  no  |  |
- | discount_amount | number |  no  |  |
- | discount_percentage | number |  no  |  |
- | discount_price | number |  no  |  |
- | max_discount_amount | number |  no  |  |
- | max_offer_quantity | number |  no  |  |
- | max_usage_per_transaction | number |  no  |  |
- | min_offer_quantity | number |  no  |  |
- | partial_can_ret | boolean |  no  |  |
+ | apportion_discount | boolean? |  yes  |  |
+ | code | string? |  yes  |  |
+ | discount_amount | number? |  yes  |  |
+ | discount_percentage | number? |  yes  |  |
+ | discount_price | number? |  yes  |  |
+ | max_discount_amount | number? |  yes  |  |
+ | max_offer_quantity | number? |  yes  |  |
+ | max_usage_per_transaction | number? |  yes  |  |
+ | min_offer_quantity | number? |  yes  |  |
+ | partial_can_ret | boolean? |  yes  |  |
  
 
 ---
 
-#### [DiscountRule](#DiscountRule)
+#### [DiscountRulesAppSchema](#DiscountRulesAppSchema)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | buy_condition | string |  yes  |  |
- | discount_type | string |  yes  |  |
- | item_criteria | [ItemCriteria](#ItemCriteria) |  yes  |  |
- | offer | [DiscountOffer](#DiscountOffer) |  yes  |  |
+ | item_criteria | string? |  yes  | Item criteria of promotion |
+ | matched_buy_rules | [string]? |  yes  | Matched buy rules for promotion |
+ | offer | string? |  yes  | offer for promotion |
+ | raw_offer | string? |  yes  | raw offer details for promotion |
  
 
 ---
 
-#### [DiscountRulesApp](#DiscountRulesApp)
+#### [DiscountRuleSchema](#DiscountRuleSchema)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | item_criteria | string |  no  |  |
- | matched_buy_rules | [string] |  no  |  |
- | offer | string |  no  |  |
- | raw_offer | string |  no  |  |
+ | buy_condition | string |  no  |  |
+ | discount_type | string |  no  |  |
+ | item_criteria | [ItemCriteriaSchema](#ItemCriteriaSchema) |  no  |  |
+ | offer | [DiscountOfferSchema](#DiscountOfferSchema) |  no  |  |
  
 
 ---
 
-#### [DisplayBreakup](#DisplayBreakup)
+#### [DisplayBreakupSchema](#DisplayBreakupSchema)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | currency_code | string |  no  |  |
- | currency_symbol | string |  no  |  |
- | display | string |  no  |  |
+ | currency_code | string? |  yes  |  |
+ | currency_symbol | string? |  yes  |  |
+ | display | string? |  yes  |  |
+ | key | string? |  yes  |  |
+ | message | [string]? |  yes  |  |
+ | value | number? |  yes  |  |
+ 
+
+---
+
+#### [DisplayMetaDictSchema](#DisplayMetaDictSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | subtitle | string? |  yes  |  |
+ | title | string? |  yes  |  |
+ 
+
+---
+
+#### [DisplayMetaSchema](#DisplayMetaSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | apply | [DisplayMetaDictSchema](#DisplayMetaDictSchema)? |  yes  |  |
+ | auto | [DisplayMetaDictSchema](#DisplayMetaDictSchema)? |  yes  |  |
+ | description | string? |  yes  |  |
+ | remove | [DisplayMetaDictSchema](#DisplayMetaDictSchema)? |  yes  |  |
+ | subtitle | string? |  yes  |  |
+ | title | string? |  yes  |  |
+ 
+
+---
+
+#### [DisplayMetaSchema1](#DisplayMetaSchema1)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | description | string? |  yes  |  |
+ | name | string? |  yes  |  |
+ | offer_text | string? |  yes  |  |
+ 
+
+---
+
+#### [FilesSchema](#FilesSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
  | key | string |  no  |  |
- | message | [string] |  no  |  |
- | value | number |  no  |  |
+ | values | [string] |  no  |  |
  
 
 ---
 
-#### [DisplayMeta](#DisplayMeta)
+#### [FreeGiftItemSchema](#FreeGiftItemSchema)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | apply | [DisplayMetaDict](#DisplayMetaDict) |  no  |  |
- | auto | [DisplayMetaDict](#DisplayMetaDict) |  no  |  |
- | description | string |  no  |  |
- | remove | [DisplayMetaDict](#DisplayMetaDict) |  no  |  |
- | subtitle | string |  no  |  |
- | title | string |  no  |  |
- 
-
----
-
-#### [DisplayMeta1](#DisplayMeta1)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | description | string |  no  |  |
- | name | string |  no  |  |
- | offer_text | string |  no  |  |
- 
-
----
-
-#### [DisplayMetaDict](#DisplayMetaDict)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | subtitle | string |  no  |  |
- | title | string |  no  |  |
- 
-
----
-
-#### [Files](#Files)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | key | string |  yes  |  |
- | values | [string] |  yes  |  |
- 
-
----
-
-#### [FreeGiftItem](#FreeGiftItem)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | item_brand_name | string |  no  |  |
- | item_id | number |  no  |  |
- | item_images_url | [string] |  no  |  |
- | item_name | string |  no  |  |
- | item_price_details | string |  no  |  |
- | item_slug | string |  no  |  |
+ | item_brand_name | string? |  yes  | item brand name |
+ | item_id | number? |  yes  | Item id |
+ | item_images_url | [string]? |  yes  | item images URL |
+ | item_name | string? |  yes  | Item name |
+ | item_price_details | string? |  yes  | item price details |
+ | item_slug | string? |  yes  | item slug |
  
 
 ---
@@ -11532,8 +12301,8 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | latitude | number |  no  |  |
- | longitude | number |  no  |  |
+ | latitude | number? |  yes  |  |
+ | longitude | number? |  yes  |  |
  
 
 ---
@@ -11542,8 +12311,8 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | available_coupon_list | [[Coupon](#Coupon)] |  no  |  |
- | page | [PageCoupon](#PageCoupon) |  no  |  |
+ | available_coupon_list | [[Coupon](#Coupon)]? |  yes  |  |
+ | page | [PageCouponSchema](#PageCouponSchema)? |  yes  |  |
  
 
 ---
@@ -11552,8 +12321,8 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | id | string |  no  |  |
- | meta | string |  no  |  |
+ | id | string? |  yes  | Cart uid for generating sharing |
+ | meta | string? |  yes  | Staff, Ordering store or any other data. This data will be used to generate link as well as sent as shared details. |
  
 
 ---
@@ -11562,54 +12331,54 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | share_url | string |  no  |  |
- | token | string |  no  |  |
+ | share_url | string? |  yes  | Short shareable final url |
+ | token | string? |  yes  | Short url unique id |
  
 
 ---
 
-#### [Identifier](#Identifier)
+#### [IdentifierSchema](#IdentifierSchema)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | article_id | [string] |  no  |  |
- | brand_id | [number] |  no  |  |
- | category_id | [number] |  no  |  |
- | collection_id | [string] |  no  |  |
- | company_id | [number] |  no  |  |
- | email_domain | [string] |  no  |  |
- | exclude_brand_id | [number] |  no  |  |
- | item_id | [number] |  no  |  |
- | store_id | [number] |  no  |  |
- | user_id | [string] |  no  |  |
+ | article_id | [string]? |  yes  |  |
+ | brand_id | [number]? |  yes  |  |
+ | category_id | [number]? |  yes  |  |
+ | collection_id | [string]? |  yes  |  |
+ | company_id | [number]? |  yes  |  |
+ | email_domain | [string]? |  yes  |  |
+ | exclude_brand_id | [number]? |  yes  |  |
+ | item_id | [number]? |  yes  |  |
+ | store_id | [number]? |  yes  |  |
+ | user_id | [string]? |  yes  |  |
  
 
 ---
 
-#### [ItemCriteria](#ItemCriteria)
+#### [ItemCriteriaSchema](#ItemCriteriaSchema)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | all_items | boolean |  no  |  |
- | available_zones | [string] |  no  |  |
- | buy_rules | [string] |  no  |  |
- | cart_quantity | [CompareObject](#CompareObject) |  no  |  |
- | cart_total | [CompareObject](#CompareObject) |  no  |  |
- | cart_unique_item_amount | [CompareObject](#CompareObject) |  no  |  |
- | cart_unique_item_quantity | [CompareObject](#CompareObject) |  no  |  |
- | item_brand | [number] |  no  |  |
- | item_category | [number] |  no  |  |
- | item_company | [number] |  no  |  |
- | item_exclude_brand | [number] |  no  |  |
- | item_exclude_category | [number] |  no  |  |
- | item_exclude_company | [number] |  no  |  |
- | item_exclude_id | [number] |  no  |  |
- | item_exclude_sku | [string] |  no  |  |
- | item_exclude_store | [number] |  no  |  |
- | item_id | [number] |  no  |  |
- | item_size | [string] |  no  |  |
- | item_sku | [string] |  no  |  |
- | item_store | [number] |  no  |  |
+ | all_items | boolean? |  yes  |  |
+ | available_zones | [string]? |  yes  |  |
+ | buy_rules | [string]? |  yes  |  |
+ | cart_quantity | [CompareObjectSchema](#CompareObjectSchema)? |  yes  |  |
+ | cart_total | [CompareObjectSchema](#CompareObjectSchema)? |  yes  |  |
+ | cart_unique_item_amount | [CompareObjectSchema](#CompareObjectSchema)? |  yes  |  |
+ | cart_unique_item_quantity | [CompareObjectSchema](#CompareObjectSchema)? |  yes  |  |
+ | item_brand | [number]? |  yes  |  |
+ | item_category | [number]? |  yes  |  |
+ | item_company | [number]? |  yes  |  |
+ | item_exclude_brand | [number]? |  yes  |  |
+ | item_exclude_category | [number]? |  yes  |  |
+ | item_exclude_company | [number]? |  yes  |  |
+ | item_exclude_id | [number]? |  yes  |  |
+ | item_exclude_sku | [string]? |  yes  |  |
+ | item_exclude_store | [number]? |  yes  |  |
+ | item_id | [number]? |  yes  |  |
+ | item_size | [string]? |  yes  |  |
+ | item_sku | [string]? |  yes  |  |
+ | item_store | [number]? |  yes  |  |
  
 
 ---
@@ -11618,20 +12387,20 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | applicable | number |  no  |  |
- | description | string |  no  |  |
- | is_applied | boolean |  no  |  |
- | total | number |  no  |  |
+ | applicable | number? |  yes  |  |
+ | description | string? |  yes  |  |
+ | is_applied | boolean? |  yes  |  |
+ | total | number? |  yes  |  |
  
 
 ---
 
-#### [MultiCartResponse](#MultiCartResponse)
+#### [MultiCartResponseSchema](#MultiCartResponseSchema)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | data | [[CartList](#CartList)] |  no  |  |
- | success | boolean |  no  |  |
+ | data | [[CartListSchema](#CartListSchema)]? |  yes  |  |
+ | success | boolean? |  yes  |  |
  
 
 ---
@@ -11640,11 +12409,11 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | current_status | string |  no  |  |
- | extra_meta | string |  no  |  |
- | order_id | string |  no  |  |
- | payment_gateway | string |  no  |  |
- | payment_id | string |  no  |  |
+ | current_status | string? |  yes  |  |
+ | extra_meta | string? |  yes  |  |
+ | order_id | string? |  yes  |  |
+ | payment_gateway | string? |  yes  |  |
+ | payment_id | string? |  yes  |  |
  
 
 ---
@@ -11653,10 +12422,10 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | amount | number |  yes  |  |
- | meta | [MultiTenderPaymentMeta](#MultiTenderPaymentMeta) |  no  |  |
- | mode | string |  yes  |  |
- | name | string |  no  |  |
+ | amount | number |  no  | Payment amount |
+ | meta | [MultiTenderPaymentMeta](#MultiTenderPaymentMeta)? |  yes  |  |
+ | mode | string |  no  |  |
+ | name | string? |  yes  | Payment mode name |
  
 
 ---
@@ -11665,7 +12434,7 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | cart_items | [CartItem](#CartItem) |  no  |  |
+ | cart_items | [CartItemSchema](#CartItemSchema)? |  yes  |  |
  
 
 ---
@@ -11674,10 +12443,10 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | breakup_values | [CartBreakup](#CartBreakup) |  no  |  |
- | is_valid | boolean |  no  |  |
- | items | [[CartProductInfo](#CartProductInfo)] |  no  |  |
- | message | string |  no  |  |
+ | breakup_values | [CartBreakupSchema](#CartBreakupSchema)? |  yes  |  |
+ | is_valid | boolean? |  yes  |  |
+ | items | [[CartProductInfo](#CartProductInfo)]? |  yes  |  |
+ | message | string? |  yes  |  |
  
 
 ---
@@ -11686,8 +12455,8 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | cart_items | [CartItem](#CartItem) |  no  |  |
- | shipping_address | [ShippingAddress](#ShippingAddress) |  yes  |  |
+ | cart_items | [CartItemSchema](#CartItemSchema)? |  yes  |  |
+ | shipping_address | [ShippingAddressSchema](#ShippingAddressSchema) |  no  |  |
  
 
 ---
@@ -11696,11 +12465,11 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | breakup_values | [CartBreakup](#CartBreakup) |  no  |  |
- | delivery_promise | [ShipmentPromise](#ShipmentPromise) |  no  |  |
- | is_valid | boolean |  no  |  |
- | items | [[CartProductInfo](#CartProductInfo)] |  no  |  |
- | message | string |  no  |  |
+ | breakup_values | [CartBreakupSchema](#CartBreakupSchema)? |  yes  |  |
+ | delivery_promise | [ShipmentPromise](#ShipmentPromise)? |  yes  |  |
+ | is_valid | boolean? |  yes  |  |
+ | items | [[CartProductInfo](#CartProductInfo)]? |  yes  |  |
+ | message | string? |  yes  |  |
  
 
 ---
@@ -11709,10 +12478,10 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | message | string |  no  |  |
- | order_id | string |  yes  |  |
- | order_ref_id | string |  no  |  |
- | success | boolean |  no  |  |
+ | message | string? |  yes  |  |
+ | order_id | string |  no  | Fynd order id |
+ | order_ref_id | string? |  yes  | Order id sent in request |
+ | success | boolean? |  yes  |  |
  
 
 ---
@@ -11721,72 +12490,72 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | errors | string |  no  |  |
- | message | string |  no  |  |
- | success | boolean |  no  |  |
+ | errors | string? |  yes  | Contains field name which has error as key and error message as value |
+ | message | string? |  yes  |  |
+ | success | boolean? |  yes  |  |
  
 
 ---
 
-#### [OpenApiFiles](#OpenApiFiles)
+#### [OpenApiFilesSchema](#OpenApiFilesSchema)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | key | string |  yes  |  |
- | values | [string] |  yes  |  |
+ | key | string |  no  |  |
+ | values | [string] |  no  |  |
  
 
 ---
 
-#### [OpenApiOrderItem](#OpenApiOrderItem)
+#### [OpenApiOrderItemSchema](#OpenApiOrderItemSchema)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | amount_paid | number |  yes  |  |
- | cashback_applied | number |  yes  |  |
- | cod_charges | number |  yes  |  |
- | coupon_effective_discount | number |  yes  |  |
- | delivery_charges | number |  yes  |  |
- | discount | number |  yes  |  |
- | employee_discount | number |  no  |  |
- | extra_meta | string |  no  |  |
- | files | [[OpenApiFiles](#OpenApiFiles)] |  no  |  |
- | loyalty_discount | number |  no  |  |
- | meta | [CartItemMeta](#CartItemMeta) |  no  |  |
- | payment_methods | [[MultiTenderPaymentMethod](#MultiTenderPaymentMethod)] |  yes  |  |
- | price_effective | number |  yes  |  |
- | price_marked | number |  yes  |  |
- | product_id | number |  yes  |  |
- | quantity | number |  no  |  |
- | size | string |  yes  |  |
+ | amount_paid | number |  no  |  |
+ | cashback_applied | number |  no  |  |
+ | cod_charges | number |  no  |  |
+ | coupon_effective_discount | number |  no  |  |
+ | delivery_charges | number |  no  |  |
+ | discount | number |  no  |  |
+ | employee_discount | number? |  yes  |  |
+ | extra_meta | string? |  yes  |  |
+ | files | [[OpenApiFilesSchema](#OpenApiFilesSchema)]? |  yes  |  |
+ | loyalty_discount | number? |  yes  |  |
+ | meta | [CartItemMeta](#CartItemMeta)? |  yes  |  |
+ | payment_methods | [[MultiTenderPaymentMethod](#MultiTenderPaymentMethod)] |  no  |  |
+ | price_effective | number |  no  |  |
+ | price_marked | number |  no  |  |
+ | product_id | number |  no  |  |
+ | quantity | number? |  yes  |  |
+ | size | string |  no  |  |
  
 
 ---
 
-#### [OpenApiPlatformCheckoutReq](#OpenApiPlatformCheckoutReq)
+#### [OpenApiPlatformCheckoutReqSchema](#OpenApiPlatformCheckoutReqSchema)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | affiliate_order_id | string |  no  |  |
- | billing_address | [ShippingAddress](#ShippingAddress) |  yes  |  |
- | cart_items | [[OpenApiOrderItem](#OpenApiOrderItem)] |  yes  |  |
- | cart_value | number |  yes  |  |
- | cashback_applied | number |  yes  |  |
- | cod_charges | number |  yes  |  |
- | comment | string |  no  |  |
- | coupon | string |  no  |  |
- | coupon_code | string |  yes  |  |
- | coupon_value | number |  yes  |  |
- | currency_code | string |  no  |  |
- | delivery_charges | number |  yes  |  |
- | employee_discount | string |  no  |  |
- | files | [[OpenApiFiles](#OpenApiFiles)] |  no  |  |
- | gstin | string |  no  |  |
- | loyalty_discount | number |  no  |  |
- | order_id | string |  no  |  |
- | payment_methods | [[MultiTenderPaymentMethod](#MultiTenderPaymentMethod)] |  yes  |  |
- | payment_mode | string |  no  |  |
- | shipping_address | [ShippingAddress](#ShippingAddress) |  no  |  |
+ | affiliate_order_id | string? |  yes  |  |
+ | billing_address | [ShippingAddressSchema](#ShippingAddressSchema) |  no  |  |
+ | cart_items | [[OpenApiOrderItemSchema](#OpenApiOrderItemSchema)] |  no  |  |
+ | cart_value | number |  no  |  |
+ | cashback_applied | number |  no  |  |
+ | cod_charges | number |  no  |  |
+ | comment | string? |  yes  |  |
+ | coupon | string? |  yes  |  |
+ | coupon_code | string |  no  |  |
+ | coupon_value | number |  no  |  |
+ | currency_code | string? |  yes  |  |
+ | delivery_charges | number |  no  |  |
+ | employee_discount | string? |  yes  |  |
+ | files | [[OpenApiFilesSchema](#OpenApiFilesSchema)]? |  yes  |  |
+ | gstin | string? |  yes  |  |
+ | loyalty_discount | number? |  yes  |  |
+ | order_id | string? |  yes  |  |
+ | payment_methods | [[MultiTenderPaymentMethod](#MultiTenderPaymentMethod)] |  no  |  |
+ | payment_mode | string? |  yes  |  |
+ | shipping_address | [ShippingAddressSchema](#ShippingAddressSchema)? |  yes  |  |
  
 
 ---
@@ -11795,28 +12564,28 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | message | string |  no  |  |
- | success | boolean |  no  |  |
+ | message | string? |  yes  |  |
+ | success | boolean? |  yes  |  |
  
 
 ---
 
-#### [Ownership](#Ownership)
+#### [OwnershipSchema](#OwnershipSchema)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | payable_by | string |  yes  |  |
- | payable_category | string |  yes  |  |
+ | payable_by | string |  no  |  |
+ | payable_category | string |  no  |  |
  
 
 ---
 
-#### [Ownership1](#Ownership1)
+#### [OwnershipSchema1](#OwnershipSchema1)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | payable_by | string |  yes  |  |
- | payable_category | string |  yes  |  |
+ | payable_by | string |  no  |  |
+ | payable_category | string |  no  |  |
  
 
 ---
@@ -11825,69 +12594,94 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | current | number |  no  |  |
- | has_next | boolean |  no  |  |
- | has_previous | boolean |  no  |  |
- | item_total | number |  no  |  |
- | last_id | string |  no  |  |
- | next_id | string |  no  |  |
- | page | number |  no  |  |
- | size | number |  no  |  |
- | type | string |  yes  |  |
+ | current | number? |  yes  | Current page no |
+ | has_next | boolean? |  yes  | True if more records are present for next pages |
+ | has_previous | boolean? |  yes  | True if more records are present for previous pages. Sent for cursor pagination |
+ | item_total | number? |  yes  | Total coupon count in system |
+ | last_id | string? |  yes  | Last objects id |
+ | next_id | string? |  yes  | Cursor id for next set of records. |
+ | page | number? |  yes  | Page requested |
+ | size | number? |  yes  | Current request page size |
+ | type | string |  no  |  |
  
 
 ---
 
-#### [PageCoupon](#PageCoupon)
+#### [PageCouponSchema](#PageCouponSchema)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | current | number |  no  |  |
- | has_next | boolean |  no  |  |
- | has_previous | boolean |  no  |  |
- | total | number |  no  |  |
- | total_item_count | number |  no  |  |
+ | current | number? |  yes  |  |
+ | has_next | boolean? |  yes  |  |
+ | has_previous | boolean? |  yes  |  |
+ | total | number? |  yes  |  |
+ | total_item_count | number? |  yes  |  |
  
 
 ---
 
-#### [PaymentAllowValue](#PaymentAllowValue)
+#### [PaymentAllowValueSchema](#PaymentAllowValueSchema)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | max | number |  no  |  |
+ | max | number? |  yes  |  |
  
 
 ---
 
-#### [PaymentAllowValue1](#PaymentAllowValue1)
+#### [PaymentAllowValueSchema1](#PaymentAllowValueSchema1)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | max | number |  no  |  |
+ | max | number? |  yes  |  |
  
 
 ---
 
-#### [PaymentCouponValidate](#PaymentCouponValidate)
+#### [PaymentCouponValidateSchema](#PaymentCouponValidateSchema)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | coupon_validity | [CouponValidity](#CouponValidity) |  no  |  |
- | message | string |  no  |  |
- | success | boolean |  yes  |  |
+ | coupon_validity | [CouponValidity](#CouponValidity)? |  yes  |  |
+ | message | string? |  yes  |  |
+ | success | boolean |  no  |  |
  
 
 ---
 
-#### [PaymentModes](#PaymentModes)
+#### [PaymentMetaSchema](#PaymentMetaSchema)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | codes | [string] |  no  |  |
- | networks | [string] |  no  |  |
- | types | [string] |  no  |  |
- | uses | [PaymentAllowValue](#PaymentAllowValue) |  no  |  |
+ | merchant_code | string? |  yes  |  |
+ | payment_gateway | string? |  yes  |  |
+ | payment_identifier | string? |  yes  |  |
+ | type | string? |  yes  |  |
+ 
+
+---
+
+#### [PaymentMethodSchema](#PaymentMethodSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | amount | number? |  yes  |  |
+ | mode | string |  no  |  |
+ | name | string? |  yes  |  |
+ | payment | string? |  yes  |  |
+ | payment_meta | [PaymentMetaSchema](#PaymentMetaSchema) |  no  |  |
+ 
+
+---
+
+#### [PaymentModesSchema](#PaymentModesSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | codes | [string]? |  yes  |  |
+ | networks | [string]? |  yes  |  |
+ | types | [string]? |  yes  |  |
+ | uses | [PaymentAllowValueSchema](#PaymentAllowValueSchema)? |  yes  |  |
  
 
 ---
@@ -11896,9 +12690,9 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | default_options | string |  no  |  |
- | enabled | boolean |  no  |  |
- | payment_identifier | string |  no  |  |
+ | default_options | string? |  yes  |  |
+ | enabled | boolean? |  yes  |  |
+ | payment_identifier | string? |  yes  |  |
  
 
 ---
@@ -11907,22 +12701,22 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | address | string |  no  |  |
- | address_type | string |  no  |  |
- | area | string |  no  |  |
- | area_code | string |  no  |  |
- | area_code_slug | string |  no  |  |
- | city | string |  no  |  |
- | country | string |  no  |  |
- | email | string |  no  |  |
- | id | number |  no  |  |
- | landmark | string |  no  |  |
- | name | string |  no  |  |
- | phone | string |  no  |  |
- | pincode | number |  no  |  |
- | state | string |  no  |  |
- | store_code | string |  no  |  |
- | uid | number |  no  |  |
+ | address | string? |  yes  |  |
+ | address_type | string? |  yes  |  |
+ | area | string? |  yes  |  |
+ | area_code | string? |  yes  |  |
+ | area_code_slug | string? |  yes  |  |
+ | city | string? |  yes  |  |
+ | country | string? |  yes  |  |
+ | email | string? |  yes  |  |
+ | id | number? |  yes  |  |
+ | landmark | string? |  yes  |  |
+ | name | string? |  yes  |  |
+ | phone | string? |  yes  |  |
+ | pincode | number? |  yes  |  |
+ | state | string? |  yes  |  |
+ | store_code | string? |  yes  |  |
+ | uid | number? |  yes  |  |
  
 
 ---
@@ -11931,30 +12725,30 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | address | string |  no  |  |
- | address_type | string |  no  |  |
- | area | string |  no  |  |
- | area_code | string |  no  |  |
- | area_code_slug | string |  no  |  |
- | cart_id | string |  no  |  |
- | checkout_mode | string |  no  |  |
- | city | string |  no  |  |
- | country | string |  no  |  |
- | country_code | string |  no  |  |
- | created_by_user_id | string |  no  |  |
- | email | string |  no  |  |
- | geo_location | [GeoLocation](#GeoLocation) |  no  |  |
- | google_map_point | string |  no  |  |
- | id | string |  no  |  |
- | is_active | boolean |  no  |  |
- | is_default_address | boolean |  no  |  |
- | landmark | string |  no  |  |
- | meta | string |  no  |  |
- | name | string |  no  |  |
- | phone | string |  no  |  |
- | state | string |  no  |  |
- | tags | [string] |  no  |  |
- | user_id | string |  no  |  |
+ | address | string? |  yes  |  |
+ | address_type | string? |  yes  |  |
+ | area | string? |  yes  |  |
+ | area_code | string? |  yes  |  |
+ | area_code_slug | string? |  yes  |  |
+ | cart_id | string? |  yes  |  |
+ | checkout_mode | string? |  yes  |  |
+ | city | string? |  yes  |  |
+ | country | string? |  yes  |  |
+ | country_code | string? |  yes  |  |
+ | created_by_user_id | string? |  yes  |  |
+ | email | string? |  yes  |  |
+ | geo_location | [GeoLocation](#GeoLocation)? |  yes  |  |
+ | google_map_point | string? |  yes  |  |
+ | id | string? |  yes  |  |
+ | is_active | boolean? |  yes  |  |
+ | is_default_address | boolean? |  yes  |  |
+ | landmark | string? |  yes  |  |
+ | meta | string? |  yes  |  |
+ | name | string? |  yes  |  |
+ | phone | string? |  yes  |  |
+ | state | string? |  yes  |  |
+ | tags | [string]? |  yes  |  |
+ | user_id | string? |  yes  |  |
  
 
 ---
@@ -11963,30 +12757,64 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | address_id | string |  no  |  |
- | aggregator | string |  no  |  |
- | billing_address | string |  no  |  |
- | billing_address_id | string |  no  |  |
- | callback_url | string |  no  |  |
- | checkout_mode | string |  no  |  |
- | delivery_address | string |  no  |  |
- | device_id | string |  no  |  |
- | employee_code | string |  no  |  |
- | extra_meta | string |  no  |  |
- | files | [[Files](#Files)] |  no  |  |
- | id | string |  yes  |  |
- | merchant_code | string |  no  |  |
- | meta | string |  no  |  |
- | order_type | string |  yes  |  |
- | ordering_store | number |  no  |  |
- | payment_auto_confirm | boolean |  no  |  |
- | payment_identifier | string |  no  |  |
- | payment_mode | string |  yes  |  |
- | payment_params | string |  no  |  |
- | pick_at_store_uid | number |  no  |  |
- | pos | boolean |  no  |  |
- | staff | [StaffCheckout](#StaffCheckout) |  no  |  |
- | user_id | string |  yes  |  |
+ | address_id | string? |  yes  |  |
+ | aggregator | string? |  yes  |  |
+ | billing_address | string? |  yes  |  |
+ | billing_address_id | string? |  yes  |  |
+ | callback_url | string? |  yes  |  |
+ | checkout_mode | string? |  yes  |  |
+ | delivery_address | string? |  yes  |  |
+ | device_id | string? |  yes  |  |
+ | employee_code | string? |  yes  |  |
+ | extra_meta | string? |  yes  |  |
+ | files | [[FilesSchema](#FilesSchema)]? |  yes  | List of file url |
+ | id | string |  no  |  |
+ | merchant_code | string? |  yes  |  |
+ | meta | string? |  yes  |  |
+ | order_type | string |  no  |  |
+ | ordering_store | number? |  yes  |  |
+ | payment_auto_confirm | boolean? |  yes  |  |
+ | payment_identifier | string? |  yes  |  |
+ | payment_mode | string |  no  |  |
+ | payment_params | string? |  yes  |  |
+ | pick_at_store_uid | number? |  yes  |  |
+ | pos | boolean? |  yes  |  |
+ | staff | [StaffCheckoutSchema](#StaffCheckoutSchema)? |  yes  |  |
+ | user_id | string |  no  |  |
+ 
+
+---
+
+#### [PlatformCartCheckoutDetailV2Request](#PlatformCartCheckoutDetailV2Request)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | address_id | string? |  yes  |  |
+ | aggregator | string? |  yes  |  |
+ | billing_address | string? |  yes  |  |
+ | billing_address_id | string? |  yes  |  |
+ | callback_url | string? |  yes  |  |
+ | checkout_mode | string? |  yes  |  |
+ | custom_meta | string? |  yes  |  |
+ | delivery_address | string? |  yes  |  |
+ | device_id | string? |  yes  |  |
+ | employee_code | string? |  yes  |  |
+ | extra_meta | string? |  yes  |  |
+ | files | [[FilesSchema](#FilesSchema)]? |  yes  | List of file url |
+ | id | string |  no  |  |
+ | merchant_code | string? |  yes  |  |
+ | meta | string? |  yes  |  |
+ | order_type | string |  no  |  |
+ | ordering_store | number? |  yes  |  |
+ | payment_auto_confirm | boolean? |  yes  |  |
+ | payment_identifier | string? |  yes  |  |
+ | payment_methods | [[PaymentMethodSchema](#PaymentMethodSchema)] |  no  |  |
+ | payment_mode | string? |  yes  |  |
+ | payment_params | string? |  yes  |  |
+ | pick_at_store_uid | number? |  yes  |  |
+ | pos | boolean? |  yes  |  |
+ | staff | [StaffCheckoutSchema](#StaffCheckoutSchema)? |  yes  |  |
+ | user_id | string |  no  |  |
  
 
 ---
@@ -11995,12 +12823,12 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | checkout_mode | string |  no  |  |
- | comment | string |  no  |  |
- | gift_details | string |  no  |  |
- | gstin | string |  no  |  |
- | pan_no | string |  no  |  |
- | pick_up_customer_details | string |  no  |  |
+ | checkout_mode | string? |  yes  |  |
+ | comment | string? |  yes  |  |
+ | gift_details | string? |  yes  |  |
+ | gstin | string? |  yes  |  |
+ | pan_no | string? |  yes  |  |
+ | pick_up_customer_details | string? |  yes  | Customer contact details for customer pickup at store |
  
 
 ---
@@ -12009,7 +12837,7 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | address | [[PlatformAddress](#PlatformAddress)] |  no  |  |
+ | address | [[PlatformAddress](#PlatformAddress)]? |  yes  |  |
  
 
 ---
@@ -12018,41 +12846,41 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | billing_address_id | string |  no  |  |
- | cart_id | string |  no  |  |
- | checkout_mode | string |  no  |  |
- | id | string |  no  |  |
- | user_id | string |  no  |  |
+ | billing_address_id | string? |  yes  |  |
+ | cart_id | string? |  yes  |  |
+ | checkout_mode | string? |  yes  |  |
+ | id | string? |  yes  |  |
+ | user_id | string? |  yes  |  |
  
 
 ---
 
-#### [PostOrder](#PostOrder)
+#### [PostOrderSchema](#PostOrderSchema)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | cancellation_allowed | boolean |  no  |  |
- | return_allowed | boolean |  no  |  |
+ | cancellation_allowed | boolean? |  yes  |  |
+ | return_allowed | boolean? |  yes  |  |
  
 
 ---
 
-#### [PostOrder1](#PostOrder1)
+#### [PostOrderSchema1](#PostOrderSchema1)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | cancellation_allowed | boolean |  no  |  |
- | return_allowed | boolean |  no  |  |
+ | cancellation_allowed | boolean? |  yes  |  |
+ | return_allowed | boolean? |  yes  |  |
  
 
 ---
 
-#### [PriceRange](#PriceRange)
+#### [PriceRangeSchema](#PriceRangeSchema)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | max | number |  no  |  |
- | min | number |  no  |  |
+ | max | number? |  yes  |  |
+ | min | number? |  yes  |  |
  
 
 ---
@@ -12061,9 +12889,9 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | query | [ActionQuery](#ActionQuery) |  no  |  |
- | type | string |  no  |  |
- | url | string |  no  |  |
+ | query | [ActionQuery](#ActionQuery)? |  yes  |  |
+ | type | string? |  yes  |  |
+ | url | string? |  yes  |  |
  
 
 ---
@@ -12072,21 +12900,21 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | cart_item_meta | string |  no  |  |
- | extra_meta | string |  no  |  |
- | gift_card | string |  no  |  |
- | identifier | string |  no  |  |
- | is_gift_visible | boolean |  no  |  |
- | parent_item_identifiers | string |  no  |  |
- | price | [ArticlePriceInfo](#ArticlePriceInfo) |  no  |  |
- | product_group_tags | [string] |  no  |  |
- | quantity | number |  no  |  |
- | seller | [BaseInfo](#BaseInfo) |  no  |  |
- | seller_identifier | string |  no  |  |
- | size | string |  no  |  |
- | store | [BaseInfo](#BaseInfo) |  no  |  |
- | type | string |  no  |  |
- | uid | string |  no  |  |
+ | cart_item_meta | string? |  yes  |  |
+ | extra_meta | string? |  yes  |  |
+ | gift_card | string? |  yes  |  |
+ | identifier | string? |  yes  |  |
+ | is_gift_visible | boolean? |  yes  |  |
+ | parent_item_identifiers | string? |  yes  |  |
+ | price | [ArticlePriceInfo](#ArticlePriceInfo)? |  yes  |  |
+ | product_group_tags | [string]? |  yes  |  |
+ | quantity | number? |  yes  |  |
+ | seller | [BaseInfo](#BaseInfo)? |  yes  |  |
+ | seller_identifier | string? |  yes  |  |
+ | size | string? |  yes  |  |
+ | store | [BaseInfo](#BaseInfo)? |  yes  |  |
+ | type | string? |  yes  |  |
+ | uid | string? |  yes  |  |
  
 
 ---
@@ -12095,11 +12923,11 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | deliverable | boolean |  no  |  |
- | is_valid | boolean |  no  |  |
- | other_store_quantity | number |  no  |  |
- | out_of_stock | boolean |  no  |  |
- | sizes | [string] |  no  |  |
+ | deliverable | boolean? |  yes  |  |
+ | is_valid | boolean? |  yes  |  |
+ | other_store_quantity | number? |  yes  |  |
+ | out_of_stock | boolean? |  yes  |  |
+ | sizes | [string]? |  yes  |  |
  
 
 ---
@@ -12108,9 +12936,9 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | aspect_ratio | string |  no  |  |
- | secure_url | string |  no  |  |
- | url | string |  no  |  |
+ | aspect_ratio | string? |  yes  |  |
+ | secure_url | string? |  yes  |  |
+ | url | string? |  yes  |  |
  
 
 ---
@@ -12119,12 +12947,12 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | add_on | number |  no  |  |
- | currency_code | string |  no  |  |
- | currency_symbol | string |  no  |  |
- | effective | number |  no  |  |
- | marked | number |  no  |  |
- | selling | number |  no  |  |
+ | add_on | number? |  yes  |  |
+ | currency_code | string? |  yes  |  |
+ | currency_symbol | string? |  yes  |  |
+ | effective | number? |  yes  |  |
+ | marked | number? |  yes  |  |
+ | selling | number? |  yes  |  |
  
 
 ---
@@ -12133,8 +12961,8 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | base | [ProductPrice](#ProductPrice) |  no  |  |
- | converted | [ProductPrice](#ProductPrice) |  no  |  |
+ | base | [ProductPrice](#ProductPrice)? |  yes  |  |
+ | converted | [ProductPrice](#ProductPrice)? |  yes  |  |
  
 
 ---
@@ -12143,8 +12971,8 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | max | string |  no  |  |
- | min | string |  no  |  |
+ | max | string? |  yes  |  |
+ | min | string? |  yes  |  |
  
 
 ---
@@ -12153,8 +12981,8 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | max | number |  no  |  |
- | min | number |  no  |  |
+ | max | number? |  yes  |  |
+ | min | number? |  yes  |  |
  
 
 ---
@@ -12163,67 +12991,67 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | message | string |  no  |  |
+ | message | string? |  yes  |  |
  
 
 ---
 
-#### [PromotionAction](#PromotionAction)
+#### [PromotionActionSchema](#PromotionActionSchema)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | action_date | string |  yes  |  |
- | action_type | string |  yes  |  |
+ | action_date | string |  no  |  |
+ | action_type | string |  no  |  |
  
 
 ---
 
-#### [PromotionAdd](#PromotionAdd)
+#### [PromotionAddSchema](#PromotionAddSchema)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | _custom_json | string |  no  |  |
- | _schedule | [PromotionSchedule](#PromotionSchedule) |  no  |  |
- | application_id | string |  yes  |  |
- | apply_all_discount | boolean |  no  |  |
- | apply_exclusive | string |  no  |  |
- | apply_priority | number |  no  |  |
- | author | [PromotionAuthor](#PromotionAuthor) |  no  |  |
- | buy_rules | [String: [ItemCriteria](#ItemCriteria)] |  yes  |  |
- | calculate_on | string |  no  |  |
- | code | string |  no  |  |
- | currency | string |  no  |  |
- | date_meta | [PromotionDateMeta](#PromotionDateMeta) |  no  |  |
- | discount_rules | [[DiscountRule](#DiscountRule)] |  yes  |  |
- | display_meta | [DisplayMeta1](#DisplayMeta1) |  yes  |  |
- | mode | string |  yes  |  |
- | ownership | [Ownership1](#Ownership1) |  yes  |  |
- | post_order_action | [PromotionAction](#PromotionAction) |  no  |  |
- | promo_group | string |  yes  |  |
- | promotion_type | string |  yes  |  |
- | restrictions | [Restrictions1](#Restrictions1) |  no  |  |
- | stackable | boolean |  no  |  |
- | visiblility | [Visibility](#Visibility) |  no  |  |
+ | _custom_json | string? |  yes  |  |
+ | _schedule | [PromotionScheduleSchema](#PromotionScheduleSchema)? |  yes  |  |
+ | application_id | string |  no  |  |
+ | apply_all_discount | boolean? |  yes  |  |
+ | apply_exclusive | string? |  yes  |  |
+ | apply_priority | number? |  yes  |  |
+ | author | [PromotionAuthorSchema](#PromotionAuthorSchema)? |  yes  |  |
+ | buy_rules | [String: [ItemCriteriaSchema](#ItemCriteriaSchema)] |  no  |  |
+ | calculate_on | string? |  yes  | Only available for Contract pricing and Ladder pricing promotion type |
+ | code | string? |  yes  |  |
+ | currency | string? |  yes  |  |
+ | date_meta | [PromotionDateMetaSchema](#PromotionDateMetaSchema)? |  yes  |  |
+ | discount_rules | [[DiscountRuleSchema](#DiscountRuleSchema)] |  no  |  |
+ | display_meta | [DisplayMetaSchema1](#DisplayMetaSchema1) |  no  |  |
+ | mode | string |  no  |  |
+ | ownership | [OwnershipSchema1](#OwnershipSchema1) |  no  |  |
+ | post_order_action | [PromotionActionSchema](#PromotionActionSchema)? |  yes  |  |
+ | promo_group | string |  no  |  |
+ | promotion_type | string |  no  |  |
+ | restrictions | [RestrictionsSchema1](#RestrictionsSchema1)? |  yes  |  |
+ | stackable | boolean? |  yes  |  |
+ | visiblility | [VisibilitySchema](#VisibilitySchema)? |  yes  |  |
  
 
 ---
 
-#### [PromotionAuthor](#PromotionAuthor)
+#### [PromotionAuthorSchema](#PromotionAuthorSchema)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | created_by | string |  no  |  |
- | modified_by | string |  no  |  |
+ | created_by | string? |  yes  |  |
+ | modified_by | string? |  yes  |  |
  
 
 ---
 
-#### [PromotionDateMeta](#PromotionDateMeta)
+#### [PromotionDateMetaSchema](#PromotionDateMetaSchema)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | created_on | string |  no  |  |
- | modified_on | string |  no  |  |
+ | created_on | string? |  yes  |  |
+ | modified_on | string? |  yes  |  |
  
 
 ---
@@ -12232,28 +13060,28 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | _custom_json | string |  no  |  |
- | _schedule | [PromotionSchedule](#PromotionSchedule) |  no  |  |
- | application_id | string |  yes  |  |
- | apply_all_discount | boolean |  no  |  |
- | apply_exclusive | string |  no  |  |
- | apply_priority | number |  no  |  |
- | author | [PromotionAuthor](#PromotionAuthor) |  no  |  |
- | buy_rules | [String: [ItemCriteria](#ItemCriteria)] |  yes  |  |
- | calculate_on | string |  no  |  |
- | code | string |  no  |  |
- | currency | string |  no  |  |
- | date_meta | [PromotionDateMeta](#PromotionDateMeta) |  no  |  |
- | discount_rules | [[DiscountRule](#DiscountRule)] |  yes  |  |
- | display_meta | [DisplayMeta1](#DisplayMeta1) |  yes  |  |
- | mode | string |  yes  |  |
- | ownership | [Ownership1](#Ownership1) |  yes  |  |
- | post_order_action | [PromotionAction](#PromotionAction) |  no  |  |
- | promo_group | string |  yes  |  |
- | promotion_type | string |  yes  |  |
- | restrictions | [Restrictions1](#Restrictions1) |  no  |  |
- | stackable | boolean |  no  |  |
- | visiblility | [Visibility](#Visibility) |  no  |  |
+ | _custom_json | string? |  yes  |  |
+ | _schedule | [PromotionScheduleSchema](#PromotionScheduleSchema)? |  yes  |  |
+ | application_id | string |  no  |  |
+ | apply_all_discount | boolean? |  yes  |  |
+ | apply_exclusive | string? |  yes  |  |
+ | apply_priority | number? |  yes  |  |
+ | author | [PromotionAuthorSchema](#PromotionAuthorSchema)? |  yes  |  |
+ | buy_rules | [String: [ItemCriteriaSchema](#ItemCriteriaSchema)] |  no  |  |
+ | calculate_on | string? |  yes  | Only available for Contract pricing and Ladder pricing promotion type |
+ | code | string? |  yes  |  |
+ | currency | string? |  yes  |  |
+ | date_meta | [PromotionDateMetaSchema](#PromotionDateMetaSchema)? |  yes  |  |
+ | discount_rules | [[DiscountRuleSchema](#DiscountRuleSchema)] |  no  |  |
+ | display_meta | [DisplayMetaSchema1](#DisplayMetaSchema1) |  no  |  |
+ | mode | string |  no  |  |
+ | ownership | [OwnershipSchema1](#OwnershipSchema1) |  no  |  |
+ | post_order_action | [PromotionActionSchema](#PromotionActionSchema)? |  yes  |  |
+ | promo_group | string |  no  |  |
+ | promotion_type | string |  no  |  |
+ | restrictions | [RestrictionsSchema1](#RestrictionsSchema1)? |  yes  |  |
+ | stackable | boolean? |  yes  |  |
+ | visiblility | [VisibilitySchema](#VisibilitySchema)? |  yes  |  |
  
 
 ---
@@ -12262,33 +13090,33 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | archive | boolean |  no  |  |
- | schedule | [PromotionSchedule](#PromotionSchedule) |  no  |  |
+ | archive | boolean? |  yes  | Send true to unpublish promotion |
+ | schedule | [PromotionScheduleSchema](#PromotionScheduleSchema)? |  yes  |  |
  
 
 ---
 
-#### [PromotionPaymentModes](#PromotionPaymentModes)
+#### [PromotionPaymentModesSchema](#PromotionPaymentModesSchema)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | codes | [string] |  no  |  |
- | type | string |  yes  |  |
- | uses | [PaymentAllowValue1](#PaymentAllowValue1) |  no  |  |
+ | codes | [string]? |  yes  |  |
+ | type | string |  no  |  |
+ | uses | [PaymentAllowValueSchema1](#PaymentAllowValueSchema1)? |  yes  |  |
  
 
 ---
 
-#### [PromotionSchedule](#PromotionSchedule)
+#### [PromotionScheduleSchema](#PromotionScheduleSchema)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | cron | string |  no  |  |
- | duration | number |  no  |  |
- | end | string |  no  |  |
- | next_schedule | [string] |  no  |  |
- | published | boolean |  yes  |  |
- | start | string |  yes  |  |
+ | cron | string? |  yes  |  |
+ | duration | number? |  yes  |  |
+ | end | string? |  yes  |  |
+ | next_schedule | [string]? |  yes  |  |
+ | published | boolean |  no  |  |
+ | start | string |  no  |  |
  
 
 ---
@@ -12297,123 +13125,123 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | items | [PromotionListItem](#PromotionListItem) |  no  |  |
- | page | [Page](#Page) |  no  |  |
+ | items | [PromotionListItem](#PromotionListItem)? |  yes  |  |
+ | page | [Page](#Page)? |  yes  |  |
  
 
 ---
 
-#### [PromotionUpdate](#PromotionUpdate)
+#### [PromotionUpdateSchema](#PromotionUpdateSchema)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | _custom_json | string |  no  |  |
- | _schedule | [PromotionSchedule](#PromotionSchedule) |  no  |  |
- | application_id | string |  yes  |  |
- | apply_all_discount | boolean |  no  |  |
- | apply_exclusive | string |  no  |  |
- | apply_priority | number |  no  |  |
- | author | [PromotionAuthor](#PromotionAuthor) |  no  |  |
- | buy_rules | [String: [ItemCriteria](#ItemCriteria)] |  yes  |  |
+ | _custom_json | string? |  yes  |  |
+ | _schedule | [PromotionScheduleSchema](#PromotionScheduleSchema)? |  yes  |  |
+ | application_id | string |  no  |  |
+ | apply_all_discount | boolean? |  yes  |  |
+ | apply_exclusive | string? |  yes  |  |
+ | apply_priority | number? |  yes  |  |
+ | author | [PromotionAuthorSchema](#PromotionAuthorSchema)? |  yes  |  |
+ | buy_rules | [String: [ItemCriteriaSchema](#ItemCriteriaSchema)] |  no  |  |
+ | calculate_on | string? |  yes  | Only available for Contract pricing and Ladder pricing promotion type |
+ | code | string? |  yes  |  |
+ | currency | string? |  yes  |  |
+ | date_meta | [PromotionDateMetaSchema](#PromotionDateMetaSchema)? |  yes  |  |
+ | discount_rules | [[DiscountRuleSchema](#DiscountRuleSchema)] |  no  |  |
+ | display_meta | [DisplayMetaSchema1](#DisplayMetaSchema1) |  no  |  |
+ | mode | string |  no  |  |
+ | ownership | [OwnershipSchema1](#OwnershipSchema1) |  no  |  |
+ | post_order_action | [PromotionActionSchema](#PromotionActionSchema)? |  yes  |  |
+ | promo_group | string |  no  |  |
+ | promotion_type | string |  no  |  |
+ | restrictions | [RestrictionsSchema1](#RestrictionsSchema1)? |  yes  |  |
+ | stackable | boolean? |  yes  |  |
+ | visiblility | [VisibilitySchema](#VisibilitySchema)? |  yes  |  |
+ 
+
+---
+
+#### [RawBreakupSchema](#RawBreakupSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | cod_charge | number? |  yes  |  |
+ | convenience_fee | number? |  yes  |  |
+ | coupon | number? |  yes  |  |
+ | delivery_charge | number? |  yes  |  |
+ | discount | number? |  yes  |  |
+ | fynd_cash | number? |  yes  |  |
+ | gift_card | number? |  yes  |  |
+ | gst_charges | number? |  yes  |  |
+ | mrp_total | number? |  yes  |  |
+ | subtotal | number? |  yes  |  |
+ | total | number? |  yes  |  |
+ | vog | number? |  yes  |  |
+ | you_saved | number? |  yes  |  |
+ 
+
+---
+
+#### [RestrictionsSchema](#RestrictionsSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | bulk_bundle | [BulkBundleRestriction](#BulkBundleRestriction)? |  yes  |  |
+ | coupon_allowed | boolean? |  yes  |  |
+ | ordering_stores | [number]? |  yes  |  |
+ | payments | [String: [PaymentModesSchema](#PaymentModesSchema)]? |  yes  |  |
+ | platforms | [string]? |  yes  |  |
+ | post_order | [PostOrderSchema](#PostOrderSchema)? |  yes  |  |
+ | price_range | [PriceRangeSchema](#PriceRangeSchema)? |  yes  |  |
+ | user_groups | [number]? |  yes  |  |
+ | user_type | string? |  yes  |  |
+ | uses | [UsesRestrictionSchema](#UsesRestrictionSchema)? |  yes  |  |
+ 
+
+---
+
+#### [RestrictionsSchema1](#RestrictionsSchema1)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | anonymous_users | boolean? |  yes  |  |
+ | order_quantity | number? |  yes  |  |
+ | payments | [[PromotionPaymentModesSchema](#PromotionPaymentModesSchema)]? |  yes  |  |
+ | platforms | [string]? |  yes  |  |
+ | post_order | [PostOrderSchema1](#PostOrderSchema1)? |  yes  |  |
+ | user_groups | [number]? |  yes  |  |
+ | user_id | [string]? |  yes  |  |
+ | user_registered | [UserRegisteredSchema](#UserRegisteredSchema)? |  yes  |  |
+ | uses | [UsesRestrictionSchema1](#UsesRestrictionSchema1) |  no  |  |
+ 
+
+---
+
+#### [RuleDefinitionSchema](#RuleDefinitionSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | applicable_on | string |  no  |  |
+ | auto_apply | boolean? |  yes  |  |
  | calculate_on | string |  no  |  |
- | code | string |  no  |  |
- | currency | string |  no  |  |
- | date_meta | [PromotionDateMeta](#PromotionDateMeta) |  no  |  |
- | discount_rules | [[DiscountRule](#DiscountRule)] |  yes  |  |
- | display_meta | [DisplayMeta1](#DisplayMeta1) |  yes  |  |
- | mode | string |  yes  |  |
- | ownership | [Ownership1](#Ownership1) |  yes  |  |
- | post_order_action | [PromotionAction](#PromotionAction) |  no  |  |
- | promo_group | string |  yes  |  |
- | promotion_type | string |  yes  |  |
- | restrictions | [Restrictions1](#Restrictions1) |  no  |  |
- | stackable | boolean |  no  |  |
- | visiblility | [Visibility](#Visibility) |  no  |  |
+ | currency_code | string? |  yes  |  |
+ | is_exact | boolean? |  yes  |  |
+ | scope | [string]? |  yes  |  |
+ | type | string |  no  |  |
+ | value_type | string |  no  |  |
  
 
 ---
 
-#### [RawBreakup](#RawBreakup)
+#### [RuleSchema](#RuleSchema)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | cod_charge | number |  no  |  |
- | convenience_fee | number |  no  |  |
- | coupon | number |  no  |  |
- | delivery_charge | number |  no  |  |
- | discount | number |  no  |  |
- | fynd_cash | number |  no  |  |
- | gift_card | number |  no  |  |
- | gst_charges | number |  no  |  |
- | mrp_total | number |  no  |  |
- | subtotal | number |  no  |  |
- | total | number |  no  |  |
- | vog | number |  no  |  |
- | you_saved | number |  no  |  |
- 
-
----
-
-#### [Restrictions](#Restrictions)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | bulk_bundle | [BulkBundleRestriction](#BulkBundleRestriction) |  no  |  |
- | coupon_allowed | boolean |  no  |  |
- | ordering_stores | [number] |  no  |  |
- | payments | [String: [PaymentModes](#PaymentModes)] |  no  |  |
- | platforms | [string] |  no  |  |
- | post_order | [PostOrder](#PostOrder) |  no  |  |
- | price_range | [PriceRange](#PriceRange) |  no  |  |
- | user_groups | [number] |  no  |  |
- | user_type | string |  no  |  |
- | uses | [UsesRestriction](#UsesRestriction) |  no  |  |
- 
-
----
-
-#### [Restrictions1](#Restrictions1)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | anonymous_users | boolean |  no  |  |
- | order_quantity | number |  no  |  |
- | payments | [[PromotionPaymentModes](#PromotionPaymentModes)] |  no  |  |
- | platforms | [string] |  no  |  |
- | post_order | [PostOrder1](#PostOrder1) |  no  |  |
- | user_groups | [number] |  no  |  |
- | user_id | [string] |  no  |  |
- | user_registered | [UserRegistered](#UserRegistered) |  no  |  |
- | uses | [UsesRestriction1](#UsesRestriction1) |  yes  |  |
- 
-
----
-
-#### [Rule](#Rule)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | discount_qty | number |  no  |  |
- | key | number |  no  |  |
- | max | number |  no  |  |
- | min | number |  no  |  |
- | value | number |  no  |  |
- 
-
----
-
-#### [RuleDefinition](#RuleDefinition)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | applicable_on | string |  yes  |  |
- | auto_apply | boolean |  no  |  |
- | calculate_on | string |  yes  |  |
- | currency_code | string |  no  |  |
- | is_exact | boolean |  no  |  |
- | scope | [string] |  no  |  |
- | type | string |  yes  |  |
- | value_type | string |  yes  |  |
+ | discount_qty | number? |  yes  |  |
+ | key | number? |  yes  |  |
+ | max | number? |  yes  |  |
+ | min | number? |  yes  |  |
+ | value | number? |  yes  |  |
  
 
 ---
@@ -12422,9 +13250,9 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | id | string |  no  |  |
- | is_default_address | boolean |  no  |  |
- | success | boolean |  no  |  |
+ | id | string? |  yes  |  |
+ | is_default_address | boolean? |  yes  |  |
+ | success | boolean? |  yes  |  |
  
 
 ---
@@ -12433,25 +13261,25 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | breakup_values | [CartBreakup](#CartBreakup) |  no  |  |
- | buy_now | boolean |  no  |  |
- | cart_id | number |  no  |  |
- | checkout_mode | string |  no  |  |
- | comment | string |  no  |  |
- | coupon_text | string |  no  |  |
- | currency | [CartCurrency](#CartCurrency) |  no  |  |
- | delivery_charge_info | string |  no  |  |
- | delivery_promise | [ShipmentPromise](#ShipmentPromise) |  no  |  |
- | gstin | string |  no  |  |
- | id | string |  no  |  |
- | is_valid | boolean |  no  |  |
- | items | [[CartProductInfo](#CartProductInfo)] |  no  |  |
- | last_modified | string |  no  |  |
- | message | string |  no  |  |
- | payment_selection_lock | [PaymentSelectionLock](#PaymentSelectionLock) |  no  |  |
- | restrict_checkout | boolean |  no  |  |
- | shared_cart_details | [SharedCartDetails](#SharedCartDetails) |  no  |  |
- | uid | string |  no  |  |
+ | breakup_values | [CartBreakupSchema](#CartBreakupSchema)? |  yes  |  |
+ | buy_now | boolean? |  yes  |  |
+ | cart_id | number? |  yes  |  |
+ | checkout_mode | string? |  yes  |  |
+ | comment | string? |  yes  |  |
+ | coupon_text | string? |  yes  |  |
+ | currency | [CartCurrencySchema](#CartCurrencySchema)? |  yes  |  |
+ | delivery_charge_info | string? |  yes  |  |
+ | delivery_promise | [ShipmentPromise](#ShipmentPromise)? |  yes  |  |
+ | gstin | string? |  yes  |  |
+ | id | string? |  yes  |  |
+ | is_valid | boolean? |  yes  |  |
+ | items | [[CartProductInfo](#CartProductInfo)]? |  yes  |  |
+ | last_modified | string? |  yes  |  |
+ | message | string? |  yes  |  |
+ | payment_selection_lock | [PaymentSelectionLock](#PaymentSelectionLock)? |  yes  |  |
+ | restrict_checkout | boolean? |  yes  |  |
+ | shared_cart_details | [SharedCartDetails](#SharedCartDetails)? |  yes  |  |
+ | uid | string? |  yes  |  |
  
 
 ---
@@ -12460,11 +13288,11 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | created_on | string |  no  |  |
- | meta | string |  no  |  |
- | source | string |  no  |  |
- | token | string |  no  |  |
- | user | string |  no  |  |
+ | created_on | string? |  yes  |  |
+ | meta | string? |  yes  | Meta data sent while generating share cart link |
+ | source | string? |  yes  | Share link device and other source information |
+ | token | string? |  yes  | Short link id |
+ | user | string? |  yes  | User details of who generated share link |
  
 
 ---
@@ -12473,8 +13301,8 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | cart | [SharedCart](#SharedCart) |  no  |  |
- | error | string |  no  |  |
+ | cart | [SharedCart](#SharedCart)? |  yes  |  |
+ | error | string? |  yes  |  |
  
 
 ---
@@ -12483,8 +13311,8 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | formatted | [PromiseFormatted](#PromiseFormatted) |  no  |  |
- | timestamp | [PromiseTimestamp](#PromiseTimestamp) |  no  |  |
+ | formatted | [PromiseFormatted](#PromiseFormatted)? |  yes  |  |
+ | timestamp | [PromiseTimestamp](#PromiseTimestamp)? |  yes  |  |
  
 
 ---
@@ -12493,63 +13321,63 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | box_type | string |  no  |  |
- | dp_id | string |  no  |  |
- | dp_options | string |  no  |  |
- | fulfillment_id | number |  no  |  |
- | fulfillment_type | string |  no  |  |
- | items | [[CartProductInfo](#CartProductInfo)] |  no  |  |
- | order_type | string |  no  |  |
- | promise | [ShipmentPromise](#ShipmentPromise) |  no  |  |
- | shipment_type | string |  no  |  |
- | shipments | number |  no  |  |
+ | box_type | string? |  yes  |  |
+ | dp_id | string? |  yes  |  |
+ | dp_options | string? |  yes  |  |
+ | fulfillment_id | number? |  yes  |  |
+ | fulfillment_type | string? |  yes  |  |
+ | items | [[CartProductInfo](#CartProductInfo)]? |  yes  |  |
+ | order_type | string? |  yes  |  |
+ | promise | [ShipmentPromise](#ShipmentPromise)? |  yes  |  |
+ | shipment_type | string? |  yes  |  |
+ | shipments | number? |  yes  |  |
  
 
 ---
 
-#### [ShippingAddress](#ShippingAddress)
+#### [ShippingAddressSchema](#ShippingAddressSchema)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | address | string |  no  |  |
- | address_type | string |  no  |  |
- | area | string |  no  |  |
- | area_code | string |  yes  |  |
- | area_code_slug | string |  no  |  |
- | city | string |  no  |  |
- | country | string |  no  |  |
- | country_code | string |  no  |  |
- | email | string |  no  |  |
- | landmark | string |  no  |  |
- | meta | string |  no  |  |
- | name | string |  no  |  |
- | phone | number |  no  |  |
- | pincode | number |  no  |  |
- | state | string |  no  |  |
+ | address | string? |  yes  |  |
+ | address_type | string? |  yes  |  |
+ | area | string? |  yes  |  |
+ | area_code | string |  no  |  |
+ | area_code_slug | string? |  yes  |  |
+ | city | string? |  yes  |  |
+ | country | string? |  yes  |  |
+ | country_code | string? |  yes  |  |
+ | email | string? |  yes  |  |
+ | landmark | string? |  yes  |  |
+ | meta | string? |  yes  |  |
+ | name | string? |  yes  |  |
+ | phone | number? |  yes  |  |
+ | pincode | number? |  yes  |  |
+ | state | string? |  yes  |  |
  
 
 ---
 
-#### [StaffCheckout](#StaffCheckout)
+#### [StaffCheckoutSchema](#StaffCheckoutSchema)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | _id | string |  yes  |  |
- | employee_code | string |  no  |  |
- | first_name | string |  yes  |  |
- | last_name | string |  yes  |  |
- | user | string |  yes  |  |
+ | _id | string |  no  |  |
+ | employee_code | string? |  yes  |  |
+ | first_name | string |  no  |  |
+ | last_name | string |  no  |  |
+ | user | string |  no  |  |
  
 
 ---
 
-#### [State](#State)
+#### [StateSchema](#StateSchema)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | is_archived | boolean |  no  |  |
- | is_display | boolean |  no  |  |
- | is_public | boolean |  no  |  |
+ | is_archived | boolean? |  yes  |  |
+ | is_display | boolean? |  yes  |  |
+ | is_public | boolean? |  yes  |  |
  
 
 ---
@@ -12558,7 +13386,7 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | items | [[PickupStoreDetail](#PickupStoreDetail)] |  no  |  |
+ | items | [[PickupStoreDetail](#PickupStoreDetail)]? |  yes  |  |
  
 
 ---
@@ -12567,8 +13395,8 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | message | string |  no  |  |
- | success | boolean |  no  |  |
+ | message | string? |  yes  |  |
+ | success | boolean? |  yes  |  |
  
 
 ---
@@ -12577,7 +13405,7 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | tags | string |  no  |  |
+ | tags | string? |  yes  |  |
  
 
 ---
@@ -12586,10 +13414,10 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | id | string |  no  |  |
- | is_default_address | boolean |  no  |  |
- | is_updated | boolean |  no  |  |
- | success | boolean |  no  |  |
+ | id | string? |  yes  |  |
+ | is_default_address | boolean? |  yes  |  |
+ | is_updated | boolean? |  yes  |  |
+ | success | boolean? |  yes  |  |
  
 
 ---
@@ -12598,9 +13426,9 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | cart | [CartDetailResponse](#CartDetailResponse) |  no  |  |
- | message | string |  no  |  |
- | success | boolean |  no  |  |
+ | cart | [CartDetailResponse](#CartDetailResponse)? |  yes  |  |
+ | message | string? |  yes  |  |
+ | success | boolean? |  yes  | True if all items are added successfully. False if partially added or not added. |
  
 
 ---
@@ -12609,12 +13437,27 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | address_id | string |  no  |  |
- | aggregator_name | string |  no  |  |
- | id | string |  no  |  |
- | merchant_code | string |  no  |  |
- | payment_identifier | string |  no  |  |
- | payment_mode | string |  no  |  |
+ | address_id | string? |  yes  |  |
+ | aggregator_name | string? |  yes  |  |
+ | id | string? |  yes  |  |
+ | merchant_code | string? |  yes  |  |
+ | payment_identifier | string? |  yes  |  |
+ | payment_mode | string? |  yes  |  |
+ 
+
+---
+
+#### [UpdateCartPaymentRequestV2](#UpdateCartPaymentRequestV2)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | address_id | string? |  yes  |  |
+ | aggregator_name | string? |  yes  |  |
+ | id | string? |  yes  |  |
+ | merchant_code | string? |  yes  |  |
+ | payment_identifier | string? |  yes  |  |
+ | payment_methods | [[PaymentMethodSchema](#PaymentMethodSchema)]? |  yes  |  |
+ | payment_mode | string? |  yes  |  |
  
 
 ---
@@ -12623,8 +13466,8 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | items | [[UpdateProductCart](#UpdateProductCart)] |  no  |  |
- | operation | string |  yes  |  |
+ | items | [[UpdateProductCart](#UpdateProductCart)]? |  yes  |  |
+ | operation | string |  no  |  |
  
 
 ---
@@ -12633,9 +13476,9 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | article_uid | string |  yes  |  |
- | quantity | number |  no  |  |
- | shipment_type | string |  yes  |  |
+ | article_uid | string |  no  | Article mongo id |
+ | quantity | number? |  yes  | Quantity of product in shipment |
+ | shipment_type | string |  no  | Shipment delivery type |
  
 
 ---
@@ -12644,7 +13487,7 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | shipments | [[UpdateCartShipmentItem](#UpdateCartShipmentItem)] |  yes  |  |
+ | shipments | [[UpdateCartShipmentItem](#UpdateCartShipmentItem)] |  no  |  |
  
 
 ---
@@ -12653,14 +13496,14 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | article_id | string |  no  |  |
- | extra_meta | string |  no  |  |
- | identifiers | [CartProductIdentifer](#CartProductIdentifer) |  yes  |  |
- | item_id | number |  no  |  |
- | item_index | number |  no  |  |
- | item_size | string |  no  |  |
- | parent_item_identifiers | string |  no  |  |
- | quantity | number |  no  |  |
+ | article_id | string? |  yes  |  |
+ | extra_meta | string? |  yes  |  |
+ | identifiers | [CartProductIdentifer](#CartProductIdentifer) |  no  |  |
+ | item_id | number? |  yes  |  |
+ | item_index | number? |  yes  |  |
+ | item_size | string? |  yes  |  |
+ | parent_item_identifiers | string? |  yes  |  |
+ | quantity | number? |  yes  |  |
  
 
 ---
@@ -12669,7 +13512,7 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | user_id | string |  yes  |  |
+ | user_id | string |  no  |  |
  
 
 ---
@@ -12678,123 +13521,123 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | breakup_values | [CartBreakup](#CartBreakup) |  no  |  |
- | buy_now | boolean |  no  |  |
- | checkout_mode | string |  no  |  |
- | comment | string |  no  |  |
- | coupon_text | string |  no  |  |
- | currency | [CartCurrency](#CartCurrency) |  no  |  |
- | delivery_charge_info | string |  no  |  |
- | delivery_promise | [ShipmentPromise](#ShipmentPromise) |  no  |  |
- | gstin | string |  no  |  |
- | id | string |  no  |  |
- | is_valid | boolean |  no  |  |
- | items | [[CartProductInfo](#CartProductInfo)] |  no  |  |
- | last_modified | string |  no  |  |
- | message | string |  no  |  |
- | pan_config | string |  no  |  |
- | pan_no | string |  no  |  |
- | payment_selection_lock | [PaymentSelectionLock](#PaymentSelectionLock) |  no  |  |
- | restrict_checkout | boolean |  no  |  |
- | user | [UserInfo](#UserInfo) |  no  |  |
+ | breakup_values | [CartBreakupSchema](#CartBreakupSchema)? |  yes  |  |
+ | buy_now | boolean? |  yes  |  |
+ | checkout_mode | string? |  yes  |  |
+ | comment | string? |  yes  |  |
+ | coupon_text | string? |  yes  |  |
+ | currency | [CartCurrencySchema](#CartCurrencySchema)? |  yes  |  |
+ | delivery_charge_info | string? |  yes  |  |
+ | delivery_promise | [ShipmentPromise](#ShipmentPromise)? |  yes  |  |
+ | gstin | string? |  yes  |  |
+ | id | string? |  yes  |  |
+ | is_valid | boolean? |  yes  |  |
+ | items | [[CartProductInfo](#CartProductInfo)]? |  yes  |  |
+ | last_modified | string? |  yes  |  |
+ | message | string? |  yes  |  |
+ | pan_config | string? |  yes  |  |
+ | pan_no | string? |  yes  |  |
+ | payment_selection_lock | [PaymentSelectionLock](#PaymentSelectionLock)? |  yes  |  |
+ | restrict_checkout | boolean? |  yes  |  |
+ | user | [UserInfoSchema](#UserInfoSchema)? |  yes  |  |
  
 
 ---
 
-#### [UserInfo](#UserInfo)
+#### [UserInfoSchema](#UserInfoSchema)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | _id | string |  no  |  |
- | created_at | string |  no  |  |
- | external_id | string |  no  |  |
- | first_name | string |  no  |  |
- | gender | string |  no  |  |
- | last_name | string |  no  |  |
- | mobile | string |  no  |  |
- | modified_on | string |  no  |  |
- | uid | string |  no  |  |
+ | _id | string? |  yes  |  |
+ | created_at | string? |  yes  |  |
+ | external_id | string? |  yes  |  |
+ | first_name | string? |  yes  |  |
+ | gender | string? |  yes  |  |
+ | last_name | string? |  yes  |  |
+ | mobile | string? |  yes  |  |
+ | modified_on | string? |  yes  |  |
+ | uid | string? |  yes  |  |
  
 
 ---
 
-#### [UserRegistered](#UserRegistered)
+#### [UserRegisteredSchema](#UserRegisteredSchema)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | end | string |  no  |  |
- | start | string |  no  |  |
+ | end | string? |  yes  |  |
+ | start | string? |  yes  |  |
  
 
 ---
 
-#### [UsesRemaining](#UsesRemaining)
+#### [UsesRemainingSchema](#UsesRemainingSchema)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | app | number |  no  |  |
- | total | number |  no  |  |
- | user | number |  no  |  |
+ | app | number? |  yes  |  |
+ | total | number? |  yes  |  |
+ | user | number? |  yes  |  |
  
 
 ---
 
-#### [UsesRemaining1](#UsesRemaining1)
+#### [UsesRemainingSchema1](#UsesRemainingSchema1)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | total | number |  no  |  |
- | user | number |  no  |  |
+ | total | number? |  yes  |  |
+ | user | number? |  yes  |  |
  
 
 ---
 
-#### [UsesRestriction](#UsesRestriction)
+#### [UsesRestrictionSchema](#UsesRestrictionSchema)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | maximum | [UsesRemaining](#UsesRemaining) |  no  |  |
- | remaining | [UsesRemaining](#UsesRemaining) |  no  |  |
+ | maximum | [UsesRemainingSchema](#UsesRemainingSchema)? |  yes  |  |
+ | remaining | [UsesRemainingSchema](#UsesRemainingSchema)? |  yes  |  |
  
 
 ---
 
-#### [UsesRestriction1](#UsesRestriction1)
+#### [UsesRestrictionSchema1](#UsesRestrictionSchema1)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | maximum | [UsesRemaining1](#UsesRemaining1) |  no  |  |
- | remaining | [UsesRemaining1](#UsesRemaining1) |  no  |  |
+ | maximum | [UsesRemainingSchema1](#UsesRemainingSchema1)? |  yes  |  |
+ | remaining | [UsesRemainingSchema1](#UsesRemainingSchema1)? |  yes  |  |
  
 
 ---
 
-#### [Validation](#Validation)
+#### [ValidationSchema](#ValidationSchema)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | anonymous | boolean |  no  |  |
- | app_id | [string] |  no  |  |
- | user_registered_after | string |  no  |  |
+ | anonymous | boolean? |  yes  |  |
+ | app_id | [string]? |  yes  |  |
+ | user_registered_after | string? |  yes  |  |
  
 
 ---
 
-#### [Validity](#Validity)
+#### [ValiditySchema](#ValiditySchema)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | priority | number |  no  |  |
+ | priority | number? |  yes  |  |
  
 
 ---
 
-#### [Visibility](#Visibility)
+#### [VisibilitySchema](#VisibilitySchema)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | coupon_list | boolean |  yes  |  |
- | pdp | boolean |  yes  |  |
+ | coupon_list | boolean |  no  |  |
+ | pdp | boolean |  no  |  |
  
 
 ---

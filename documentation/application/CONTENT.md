@@ -1847,9 +1847,9 @@ Success. Returns a JSON object containing all the tags injected in the applicati
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | page | [ActionPage](#ActionPage) |  no  |  |
- | popup | [ActionPage](#ActionPage) |  no  |  |
- | type | string |  no  |  |
+ | page | [ActionPage](#ActionPage)? |  yes  |  |
+ | popup | [ActionPage](#ActionPage)? |  yes  |  |
+ | type | string? |  yes  |  |
  
 
 ---
@@ -1858,10 +1858,10 @@ Success. Returns a JSON object containing all the tags injected in the applicati
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | params | [String: [string]] |  no  |  |
- | query | [String: [string]] |  no  |  |
- | type | string |  no  |  |
- | url | string |  no  |  |
+ | params | [String: [string]]? |  yes  |  |
+ | query | [String: [string]]? |  yes  |  |
+ | type | string? |  yes  |  |
+ | url | string? |  yes  |  |
  
 
 ---
@@ -1870,17 +1870,17 @@ Success. Returns a JSON object containing all the tags injected in the applicati
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | _id | string |  no  |  |
- | _schedule | [ScheduleSchema](#ScheduleSchema) |  no  |  |
- | announcement | string |  no  |  |
- | app | string |  no  |  |
- | author | [AnnouncementAuthorSchema](#AnnouncementAuthorSchema) |  no  |  |
- | created_at | string |  no  |  |
- | editor_meta | [EditorMeta](#EditorMeta) |  no  |  |
- | modified_at | string |  no  |  |
- | pages | [[AnnouncementPageSchema](#AnnouncementPageSchema)] |  no  |  |
- | platforms | [string] |  no  |  |
- | title | string |  no  |  |
+ | _id | string? |  yes  |  |
+ | _schedule | [ScheduleSchema](#ScheduleSchema)? |  yes  |  |
+ | announcement | string? |  yes  |  |
+ | app | string? |  yes  |  |
+ | author | [AnnouncementAuthorSchema](#AnnouncementAuthorSchema)? |  yes  |  |
+ | created_at | string? |  yes  |  |
+ | editor_meta | [EditorMeta](#EditorMeta)? |  yes  |  |
+ | modified_at | string? |  yes  |  |
+ | pages | [[AnnouncementPageSchema](#AnnouncementPageSchema)]? |  yes  |  |
+ | platforms | [string]? |  yes  |  |
+ | title | string? |  yes  |  |
  
 
 ---
@@ -1889,8 +1889,8 @@ Success. Returns a JSON object containing all the tags injected in the applicati
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | created_by | string |  no  |  |
- | modified_by | string |  no  |  |
+ | created_by | string? |  yes  |  |
+ | modified_by | string? |  yes  |  |
  
 
 ---
@@ -1899,8 +1899,8 @@ Success. Returns a JSON object containing all the tags injected in the applicati
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | page_slug | string |  no  |  |
- | type | string |  no  |  |
+ | page_slug | string? |  yes  |  |
+ | type | string? |  yes  |  |
  
 
 ---
@@ -1909,8 +1909,8 @@ Success. Returns a JSON object containing all the tags injected in the applicati
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | announcement | string |  no  |  |
- | schedule | [ScheduleStartSchema](#ScheduleStartSchema) |  no  |  |
+ | announcement | string? |  yes  |  |
+ | schedule | [ScheduleStartSchema](#ScheduleStartSchema)? |  yes  |  |
  
 
 ---
@@ -1919,9 +1919,9 @@ Success. Returns a JSON object containing all the tags injected in the applicati
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | announcements | [String: [[AnnouncementSchema](#AnnouncementSchema)]] |  no  |  |
- | refresh_pages | [string] |  no  |  |
- | refresh_rate | number |  no  |  |
+ | announcements | [String: [[AnnouncementSchema](#AnnouncementSchema)]]? |  yes  |  |
+ | refresh_pages | [string]? |  yes  | list of page slugs on which announcement should be fetched as soon as they are loaded |
+ | refresh_rate | number? |  yes  | number of seconds after which api should hit again to fetch new announcements |
  
 
 ---
@@ -1930,15 +1930,15 @@ Success. Returns a JSON object containing all the tags injected in the applicati
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | _id | string |  no  |  |
- | application | string |  no  |  |
- | created_at | string |  no  |  |
- | faq | [[ApplicationLegalFAQ](#ApplicationLegalFAQ)] |  no  |  |
- | policy | string |  no  |  |
- | returns | string |  no  |  |
- | shipping | string |  no  |  |
- | tnc | string |  no  |  |
- | updated_at | string |  no  |  |
+ | _id | string? |  yes  |  |
+ | application | string? |  yes  |  |
+ | created_at | string? |  yes  |  |
+ | faq | [[ApplicationLegalFAQ](#ApplicationLegalFAQ)]? |  yes  |  |
+ | policy | string? |  yes  |  |
+ | returns | string? |  yes  |  |
+ | shipping | string? |  yes  |  |
+ | tnc | string? |  yes  |  |
+ | updated_at | string? |  yes  |  |
  
 
 ---
@@ -1947,8 +1947,8 @@ Success. Returns a JSON object containing all the tags injected in the applicati
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | answer | string |  no  |  |
- | question | string |  no  |  |
+ | answer | string? |  yes  |  |
+ | question | string? |  yes  |  |
  
 
 ---
@@ -1957,9 +1957,9 @@ Success. Returns a JSON object containing all the tags injected in the applicati
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | aspect_ratio | string |  no  |  |
- | id | string |  no  |  |
- | secure_url | string |  no  |  |
+ | aspect_ratio | string? |  yes  |  |
+ | id | string? |  yes  |  |
+ | secure_url | string? |  yes  |  |
  
 
 ---
@@ -1968,9 +1968,9 @@ Success. Returns a JSON object containing all the tags injected in the applicati
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | designation | string |  no  |  |
- | id | string |  no  |  |
- | name | string |  no  |  |
+ | designation | string? |  yes  |  |
+ | id | string? |  yes  |  |
+ | name | string? |  yes  |  |
  
 
 ---
@@ -1979,8 +1979,8 @@ Success. Returns a JSON object containing all the tags injected in the applicati
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | items | [[BlogSchema](#BlogSchema)] |  no  |  |
- | page | [Page](#Page) |  no  |  |
+ | items | [[BlogSchema](#BlogSchema)]? |  yes  |  |
+ | page | [Page](#Page)? |  yes  |  |
  
 
 ---
@@ -1989,18 +1989,18 @@ Success. Returns a JSON object containing all the tags injected in the applicati
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | _custom_json | string |  no  |  |
- | _schedule | [CronSchedule](#CronSchedule) |  no  |  |
- | application | string |  no  |  |
- | author | [Author](#Author) |  no  |  |
- | content | [[ResourceContent](#ResourceContent)] |  no  |  |
- | feature_image | [Asset](#Asset) |  no  |  |
- | published | boolean |  no  |  |
- | reading_time | string |  no  |  |
- | seo | [SEO](#SEO) |  no  |  |
- | slug | string |  no  |  |
- | tags | [string] |  no  |  |
- | title | string |  no  |  |
+ | _custom_json | string? |  yes  |  |
+ | _schedule | [CronSchedule](#CronSchedule)? |  yes  |  |
+ | application | string? |  yes  |  |
+ | author | [Author](#Author)? |  yes  |  |
+ | content | [[ResourceContent](#ResourceContent)]? |  yes  |  |
+ | feature_image | [Asset](#Asset)? |  yes  |  |
+ | published | boolean? |  yes  |  |
+ | reading_time | string? |  yes  |  |
+ | seo | [SEO](#SEO)? |  yes  |  |
+ | slug | string? |  yes  |  |
+ | tags | [string]? |  yes  |  |
+ | title | string? |  yes  |  |
  
 
 ---
@@ -2009,21 +2009,21 @@ Success. Returns a JSON object containing all the tags injected in the applicati
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | _custom_json | string |  no  |  |
- | _id | string |  no  |  |
- | _schedule | [CronSchedule](#CronSchedule) |  no  |  |
- | application | string |  no  |  |
- | archived | boolean |  no  |  |
- | author | [Author](#Author) |  no  |  |
- | content | [[ResourceContent](#ResourceContent)] |  no  |  |
- | date_meta | [DateMeta](#DateMeta) |  no  |  |
- | feature_image | [Asset](#Asset) |  no  |  |
- | published | boolean |  no  |  |
- | reading_time | string |  no  |  |
- | seo | [SEO](#SEO) |  no  |  |
- | slug | string |  no  |  |
- | tags | [string] |  no  |  |
- | title | string |  no  |  |
+ | _custom_json | string? |  yes  |  |
+ | _id | string? |  yes  |  |
+ | _schedule | [CronSchedule](#CronSchedule)? |  yes  |  |
+ | application | string? |  yes  |  |
+ | archived | boolean? |  yes  |  |
+ | author | [Author](#Author)? |  yes  |  |
+ | content | [[ResourceContent](#ResourceContent)]? |  yes  |  |
+ | date_meta | [DateMeta](#DateMeta)? |  yes  |  |
+ | feature_image | [Asset](#Asset)? |  yes  |  |
+ | published | boolean? |  yes  |  |
+ | reading_time | string? |  yes  |  |
+ | seo | [SEO](#SEO)? |  yes  |  |
+ | slug | string? |  yes  |  |
+ | tags | [string]? |  yes  |  |
+ | title | string? |  yes  |  |
  
 
 ---
@@ -2032,8 +2032,8 @@ Success. Returns a JSON object containing all the tags injected in the applicati
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | slug | string |  no  |  |
- | title | string |  no  |  |
+ | slug | string? |  yes  |  |
+ | title | string? |  yes  |  |
  
 
 ---
@@ -2042,15 +2042,15 @@ Success. Returns a JSON object containing all the tags injected in the applicati
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | _custom_json | string |  no  |  |
- | _id | string |  no  |  |
- | application | string |  no  |  |
- | children | [string] |  no  |  |
- | description | string |  no  |  |
- | icon_url | string |  no  |  |
- | index | number |  no  |  |
- | slug | string |  no  |  |
- | title | string |  no  |  |
+ | _custom_json | string? |  yes  |  |
+ | _id | string? |  yes  |  |
+ | application | string? |  yes  |  |
+ | children | [string]? |  yes  |  |
+ | description | string? |  yes  |  |
+ | icon_url | string? |  yes  |  |
+ | index | number? |  yes  |  |
+ | slug | string? |  yes  |  |
+ | title | string? |  yes  |  |
  
 
 ---
@@ -2059,11 +2059,11 @@ Success. Returns a JSON object containing all the tags injected in the applicati
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | _id | string |  no  |  |
- | answer | string |  no  |  |
- | application | string |  no  |  |
- | question | string |  no  |  |
- | slug | string |  no  |  |
+ | _id | string? |  yes  |  |
+ | answer | string? |  yes  |  |
+ | application | string? |  yes  |  |
+ | question | string? |  yes  |  |
+ | slug | string? |  yes  |  |
  
 
 ---
@@ -2072,7 +2072,7 @@ Success. Returns a JSON object containing all the tags injected in the applicati
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | message | string |  no  |  |
+ | message | string? |  yes  |  |
  
 
 ---
@@ -2081,10 +2081,10 @@ Success. Returns a JSON object containing all the tags injected in the applicati
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | duration | number |  no  |  |
- | sleep_time | number |  no  |  |
- | slide_direction | string |  no  |  |
- | start_on_launch | boolean |  no  |  |
+ | duration | number? |  yes  |  |
+ | sleep_time | number? |  yes  |  |
+ | slide_direction | string? |  yes  |  |
+ | start_on_launch | boolean? |  yes  |  |
  
 
 ---
@@ -2093,8 +2093,8 @@ Success. Returns a JSON object containing all the tags injected in the applicati
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | email | [EmailSchema](#EmailSchema) |  no  |  |
- | phone | [PhoneSchema](#PhoneSchema) |  no  |  |
+ | email | [EmailSchema](#EmailSchema)? |  yes  |  |
+ | phone | [PhoneSchema](#PhoneSchema)? |  yes  |  |
  
 
 ---
@@ -2103,14 +2103,14 @@ Success. Returns a JSON object containing all the tags injected in the applicati
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | code | string |  no  |  |
- | exception | string |  no  |  |
- | info | string |  no  |  |
- | message | string |  no  |  |
- | meta | string |  no  |  |
- | request_id | string |  no  |  |
- | stack_trace | string |  no  |  |
- | status | number |  no  |  |
+ | code | string? |  yes  |  |
+ | exception | string? |  yes  |  |
+ | info | string? |  yes  |  |
+ | message | string? |  yes  |  |
+ | meta | string? |  yes  |  |
+ | request_id | string? |  yes  |  |
+ | stack_trace | string? |  yes  |  |
+ | status | number? |  yes  |  |
  
 
 ---
@@ -2119,8 +2119,8 @@ Success. Returns a JSON object containing all the tags injected in the applicati
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | type | string |  no  |  |
- | value | string |  no  |  |
+ | type | string? |  yes  |  |
+ | value | string? |  yes  |  |
  
 
 ---
@@ -2129,8 +2129,8 @@ Success. Returns a JSON object containing all the tags injected in the applicati
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | data | [AdminAnnouncementSchema](#AdminAnnouncementSchema) |  no  |  |
- | message | string |  no  |  |
+ | data | [AdminAnnouncementSchema](#AdminAnnouncementSchema)? |  yes  |  |
+ | message | string? |  yes  |  |
  
 
 ---
@@ -2139,7 +2139,7 @@ Success. Returns a JSON object containing all the tags injected in the applicati
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | id | string |  no  |  |
+ | id | string? |  yes  |  |
  
 
 ---
@@ -2148,7 +2148,7 @@ Success. Returns a JSON object containing all the tags injected in the applicati
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | category | [CategoryRequestSchema](#CategoryRequestSchema) |  no  |  |
+ | category | [CategoryRequestSchema](#CategoryRequestSchema)? |  yes  |  |
  
 
 ---
@@ -2157,7 +2157,7 @@ Success. Returns a JSON object containing all the tags injected in the applicati
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | category | [CategorySchema](#CategorySchema) |  no  |  |
+ | category | [CategorySchema](#CategorySchema)? |  yes  |  |
  
 
 ---
@@ -2166,7 +2166,7 @@ Success. Returns a JSON object containing all the tags injected in the applicati
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | faq | [FaqSchema](#FaqSchema) |  no  |  |
+ | faq | [FaqSchema](#FaqSchema)? |  yes  |  |
  
 
 ---
@@ -2175,7 +2175,7 @@ Success. Returns a JSON object containing all the tags injected in the applicati
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | faq | [FAQ](#FAQ) |  no  |  |
+ | faq | [FAQ](#FAQ)? |  yes  |  |
  
 
 ---
@@ -2184,7 +2184,7 @@ Success. Returns a JSON object containing all the tags injected in the applicati
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | tags | [[CreateTagSchema](#CreateTagSchema)] |  no  |  |
+ | tags | [[CreateTagSchema](#CreateTagSchema)]? |  yes  |  |
  
 
 ---
@@ -2193,15 +2193,15 @@ Success. Returns a JSON object containing all the tags injected in the applicati
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | _id | string |  no  |  |
- | attributes | string |  no  |  |
- | content | string |  no  |  |
- | name | string |  no  |  |
- | pages | [string] |  no  |  |
- | position | string |  no  |  |
- | sub_type | string |  no  |  |
- | type | string |  no  |  |
- | url | string |  no  |  |
+ | _id | string? |  yes  |  |
+ | attributes | string? |  yes  |  |
+ | content | string? |  yes  |  |
+ | name | string? |  yes  |  |
+ | pages | [string]? |  yes  |  |
+ | position | string? |  yes  |  |
+ | sub_type | string? |  yes  |  |
+ | type | string? |  yes  |  |
+ | url | string? |  yes  |  |
  
 
 ---
@@ -2210,10 +2210,10 @@ Success. Returns a JSON object containing all the tags injected in the applicati
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | cron | string |  no  |  |
- | duration | number |  no  |  |
- | end | string |  no  |  |
- | start | string |  no  |  |
+ | cron | string? |  yes  |  |
+ | duration | number? |  yes  |  |
+ | end | string? |  yes  |  |
+ | start | string? |  yes  |  |
  
 
 ---
@@ -2222,9 +2222,9 @@ Success. Returns a JSON object containing all the tags injected in the applicati
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | _id | string |  no  |  |
- | content | string |  no  |  |
- | name | string |  no  |  |
+ | _id | string? |  yes  |  |
+ | content | string? |  yes  |  |
+ | name | string? |  yes  |  |
  
 
 ---
@@ -2233,7 +2233,7 @@ Success. Returns a JSON object containing all the tags injected in the applicati
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | data | [CustomPageSchema](#CustomPageSchema) |  no  |  |
+ | data | [CustomPageSchema](#CustomPageSchema)? |  yes  |  |
  
 
 ---
@@ -2242,20 +2242,20 @@ Success. Returns a JSON object containing all the tags injected in the applicati
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | _id | string |  no  |  |
- | _schedule | [ScheduleSchema](#ScheduleSchema) |  no  |  |
- | application | string |  no  |  |
- | content | [string] |  no  |  |
- | created_by | [CreatedBySchema](#CreatedBySchema) |  no  |  |
- | date_meta | [DateMeta](#DateMeta) |  no  |  |
- | description | string |  no  |  |
- | orientation | string |  no  |  |
- | platform | string |  no  |  |
- | published | boolean |  no  |  |
- | slug | string |  no  |  |
- | tags | [string] |  no  |  |
- | title | string |  no  |  |
- | type | string |  no  |  |
+ | _id | string? |  yes  |  |
+ | _schedule | [ScheduleSchema](#ScheduleSchema)? |  yes  |  |
+ | application | string? |  yes  |  |
+ | content | [string]? |  yes  |  |
+ | created_by | [CreatedBySchema](#CreatedBySchema)? |  yes  |  |
+ | date_meta | [DateMeta](#DateMeta)? |  yes  |  |
+ | description | string? |  yes  |  |
+ | orientation | string? |  yes  |  |
+ | platform | string? |  yes  |  |
+ | published | boolean? |  yes  |  |
+ | slug | string? |  yes  |  |
+ | tags | [string]? |  yes  |  |
+ | title | string? |  yes  |  |
+ | type | string? |  yes  |  |
  
 
 ---
@@ -2264,7 +2264,7 @@ Success. Returns a JSON object containing all the tags injected in the applicati
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | reset | string |  no  |  |
+ | reset | string? |  yes  |  |
  
 
 ---
@@ -2273,16 +2273,16 @@ Success. Returns a JSON object containing all the tags injected in the applicati
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | __source | [DataLoaderSourceSchema](#DataLoaderSourceSchema) |  no  |  |
- | _id | string |  no  |  |
- | application | string |  no  |  |
- | company | string |  no  |  |
- | content | string |  no  |  |
- | name | string |  no  |  |
- | operation_id | string |  no  |  |
- | service | string |  no  |  |
- | type | string |  no  |  |
- | url | string |  no  |  |
+ | __source | [DataLoaderSourceSchema](#DataLoaderSourceSchema)? |  yes  |  |
+ | _id | string? |  yes  |  |
+ | application | string? |  yes  |  |
+ | company | string? |  yes  |  |
+ | content | string? |  yes  |  |
+ | name | string? |  yes  |  |
+ | operation_id | string? |  yes  |  |
+ | service | string? |  yes  |  |
+ | type | string? |  yes  |  |
+ | url | string? |  yes  |  |
  
 
 ---
@@ -2291,14 +2291,14 @@ Success. Returns a JSON object containing all the tags injected in the applicati
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | __source | [DataLoaderSourceSchema](#DataLoaderSourceSchema) |  no  |  |
- | _id | string |  no  |  |
- | content | string |  no  |  |
- | name | string |  no  |  |
- | operation_id | string |  no  |  |
- | service | string |  no  |  |
- | type | string |  no  |  |
- | url | string |  no  |  |
+ | __source | [DataLoaderSourceSchema](#DataLoaderSourceSchema)? |  yes  |  |
+ | _id | string? |  yes  |  |
+ | content | string? |  yes  |  |
+ | name | string? |  yes  |  |
+ | operation_id | string? |  yes  |  |
+ | service | string? |  yes  |  |
+ | type | string? |  yes  |  |
+ | url | string? |  yes  |  |
  
 
 ---
@@ -2307,8 +2307,8 @@ Success. Returns a JSON object containing all the tags injected in the applicati
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | id | string |  no  |  |
- | type | string |  no  |  |
+ | id | string? |  yes  |  |
+ | type | string? |  yes  |  |
  
 
 ---
@@ -2317,7 +2317,7 @@ Success. Returns a JSON object containing all the tags injected in the applicati
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | items | [[DataLoaderSchema](#DataLoaderSchema)] |  no  |  |
+ | items | [[DataLoaderSchema](#DataLoaderSchema)]? |  yes  |  |
  
 
 ---
@@ -2326,8 +2326,8 @@ Success. Returns a JSON object containing all the tags injected in the applicati
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | created_on | string |  no  |  |
- | modified_on | string |  no  |  |
+ | created_on | string? |  yes  |  |
+ | modified_on | string? |  yes  |  |
  
 
 ---
@@ -2336,7 +2336,7 @@ Success. Returns a JSON object containing all the tags injected in the applicati
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | items | [[NavigationSchema](#NavigationSchema)] |  no  |  |
+ | items | [[NavigationSchema](#NavigationSchema)]? |  yes  |  |
  
 
 ---
@@ -2345,8 +2345,8 @@ Success. Returns a JSON object containing all the tags injected in the applicati
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | description | string |  no  |  |
- | title | string |  no  |  |
+ | description | string? |  yes  |  |
+ | title | string? |  yes  |  |
  
 
 ---
@@ -2355,10 +2355,10 @@ Success. Returns a JSON object containing all the tags injected in the applicati
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | background_color | string |  no  |  |
- | content | string |  no  |  |
- | content_type | string |  no  |  |
- | foreground_color | string |  no  |  |
+ | background_color | string? |  yes  |  |
+ | content | string? |  yes  |  |
+ | content_type | string? |  yes  |  |
+ | foreground_color | string? |  yes  |  |
  
 
 ---
@@ -2367,8 +2367,8 @@ Success. Returns a JSON object containing all the tags injected in the applicati
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | key | string |  no  |  |
- | value | string |  no  |  |
+ | key | string? |  yes  |  |
+ | value | string? |  yes  |  |
  
 
 ---
@@ -2377,8 +2377,8 @@ Success. Returns a JSON object containing all the tags injected in the applicati
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | active | boolean |  no  |  |
- | email | [[EmailProperties](#EmailProperties)] |  no  |  |
+ | active | boolean? |  yes  |  |
+ | email | [[EmailProperties](#EmailProperties)]? |  yes  |  |
  
 
 ---
@@ -2387,9 +2387,9 @@ Success. Returns a JSON object containing all the tags injected in the applicati
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | answer | string |  no  |  |
- | question | string |  no  |  |
- | slug | string |  no  |  |
+ | answer | string? |  yes  |  |
+ | question | string? |  yes  |  |
+ | slug | string? |  yes  |  |
  
 
 ---
@@ -2398,15 +2398,15 @@ Success. Returns a JSON object containing all the tags injected in the applicati
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | _custom_json | string |  no  |  |
- | _id | string |  no  |  |
- | application | string |  no  |  |
- | children | [[ChildrenSchema](#ChildrenSchema)] |  no  |  |
- | description | string |  no  |  |
- | icon_url | string |  no  |  |
- | index | number |  no  |  |
- | slug | string |  no  |  |
- | title | string |  no  |  |
+ | _custom_json | string? |  yes  |  |
+ | _id | string? |  yes  |  |
+ | application | string? |  yes  |  |
+ | children | [[ChildrenSchema](#ChildrenSchema)]? |  yes  |  |
+ | description | string? |  yes  |  |
+ | icon_url | string? |  yes  |  |
+ | index | number? |  yes  |  |
+ | slug | string? |  yes  |  |
+ | title | string? |  yes  |  |
  
 
 ---
@@ -2415,7 +2415,7 @@ Success. Returns a JSON object containing all the tags injected in the applicati
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | faqs | [[FaqSchema](#FaqSchema)] |  no  |  |
+ | faqs | [[FaqSchema](#FaqSchema)]? |  yes  |  |
  
 
 ---
@@ -2424,12 +2424,12 @@ Success. Returns a JSON object containing all the tags injected in the applicati
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | _id | string |  no  |  |
- | answer | string |  no  |  |
- | application | string |  no  |  |
- | question | string |  no  |  |
- | slug | string |  no  |  |
- | tags | [string] |  no  |  |
+ | _id | string? |  yes  |  |
+ | answer | string? |  yes  |  |
+ | application | string? |  yes  |  |
+ | question | string? |  yes  |  |
+ | slug | string? |  yes  |  |
+ | tags | [string]? |  yes  |  |
  
 
 ---
@@ -2438,7 +2438,7 @@ Success. Returns a JSON object containing all the tags injected in the applicati
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | secure_url | string |  no  |  |
+ | secure_url | string? |  yes  |  |
  
 
 ---
@@ -2447,8 +2447,8 @@ Success. Returns a JSON object containing all the tags injected in the applicati
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | items | [[AdminAnnouncementSchema](#AdminAnnouncementSchema)] |  no  |  |
- | page | [Page](#Page) |  no  |  |
+ | items | [[AdminAnnouncementSchema](#AdminAnnouncementSchema)]? |  yes  |  |
+ | page | [Page](#Page)? |  yes  |  |
  
 
 ---
@@ -2457,7 +2457,7 @@ Success. Returns a JSON object containing all the tags injected in the applicati
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | categories | [[CategorySchema](#CategorySchema)] |  no  |  |
+ | categories | [[CategorySchema](#CategorySchema)]? |  yes  |  |
  
 
 ---
@@ -2466,7 +2466,7 @@ Success. Returns a JSON object containing all the tags injected in the applicati
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | category | [FAQCategorySchema](#FAQCategorySchema) |  no  |  |
+ | category | [FAQCategorySchema](#FAQCategorySchema)? |  yes  |  |
  
 
 ---
@@ -2475,7 +2475,7 @@ Success. Returns a JSON object containing all the tags injected in the applicati
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | faqs | [[FaqSchema](#FaqSchema)] |  no  |  |
+ | faqs | [[FaqSchema](#FaqSchema)]? |  yes  |  |
  
 
 ---
@@ -2484,13 +2484,13 @@ Success. Returns a JSON object containing all the tags injected in the applicati
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | attributes | string |  no  |  |
- | content | string |  no  |  |
- | name | string |  no  |  |
- | position | string |  no  |  |
- | sub_type | string |  no  |  |
- | type | string |  no  |  |
- | url | string |  no  |  |
+ | attributes | string? |  yes  |  |
+ | content | string? |  yes  |  |
+ | name | string? |  yes  |  |
+ | position | string? |  yes  |  |
+ | sub_type | string? |  yes  |  |
+ | type | string? |  yes  |  |
+ | url | string? |  yes  |  |
  
 
 ---
@@ -2499,8 +2499,8 @@ Success. Returns a JSON object containing all the tags injected in the applicati
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | data | [LandingPageSchema](#LandingPageSchema) |  no  |  |
- | success | boolean |  no  |  |
+ | data | [LandingPageSchema](#LandingPageSchema)? |  yes  |  |
+ | success | boolean? |  yes  |  |
  
 
 ---
@@ -2509,8 +2509,8 @@ Success. Returns a JSON object containing all the tags injected in the applicati
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | items | [[LandingPageSchema](#LandingPageSchema)] |  no  |  |
- | page | [Page](#Page) |  no  |  |
+ | items | [[LandingPageSchema](#LandingPageSchema)]? |  yes  |  |
+ | page | [Page](#Page)? |  yes  |  |
  
 
 ---
@@ -2519,15 +2519,15 @@ Success. Returns a JSON object containing all the tags injected in the applicati
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | _custom_json | string |  no  |  |
- | _id | string |  no  |  |
- | action | [Action](#Action) |  no  |  |
- | application | string |  no  |  |
- | archived | boolean |  no  |  |
- | created_by | [CreatedBySchema](#CreatedBySchema) |  no  |  |
- | date_meta | [DateMeta](#DateMeta) |  no  |  |
- | platform | [string] |  no  |  |
- | slug | string |  no  |  |
+ | _custom_json | string? |  yes  |  |
+ | _id | string? |  yes  |  |
+ | action | [Action](#Action)? |  yes  |  |
+ | application | string? |  yes  |  |
+ | archived | boolean? |  yes  |  |
+ | created_by | [CreatedBySchema](#CreatedBySchema)? |  yes  |  |
+ | date_meta | [DateMeta](#DateMeta)? |  yes  |  |
+ | platform | [string]? |  yes  |  |
+ | slug | string? |  yes  |  |
  
 
 ---
@@ -2536,7 +2536,7 @@ Success. Returns a JSON object containing all the tags injected in the applicati
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | display | string |  no  |  |
+ | display | string? |  yes  |  |
  
 
 ---
@@ -2545,9 +2545,9 @@ Success. Returns a JSON object containing all the tags injected in the applicati
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | ar | [Language](#Language) |  no  |  |
- | en_us | [Language](#Language) |  no  |  |
- | hi | [Language](#Language) |  no  |  |
+ | ar | [Language](#Language)? |  yes  |  |
+ | en_us | [Language](#Language)? |  yes  |  |
+ | hi | [Language](#Language)? |  yes  |  |
  
 
 ---
@@ -2556,16 +2556,16 @@ Success. Returns a JSON object containing all the tags injected in the applicati
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | _id | string |  no  |  |
- | application | string |  no  |  |
- | created_by | [CreatedBySchema](#CreatedBySchema) |  no  |  |
- | date_meta | [DateMeta](#DateMeta) |  no  |  |
- | name | string |  no  |  |
- | navigation | [NavigationReference](#NavigationReference) |  no  |  |
- | orientation | string |  no  |  |
- | platform | string |  no  |  |
- | position | string |  no  |  |
- | slug | string |  no  |  |
+ | _id | string? |  yes  |  |
+ | application | string? |  yes  |  |
+ | created_by | [CreatedBySchema](#CreatedBySchema)? |  yes  |  |
+ | date_meta | [DateMeta](#DateMeta)? |  yes  |  |
+ | name | string? |  yes  |  |
+ | navigation | [NavigationReference](#NavigationReference)? |  yes  |  |
+ | orientation | string? |  yes  |  |
+ | platform | string? |  yes  |  |
+ | position | string? |  yes  |  |
+ | slug | string? |  yes  |  |
  
 
 ---
@@ -2574,8 +2574,8 @@ Success. Returns a JSON object containing all the tags injected in the applicati
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | items | [[NavigationSchema](#NavigationSchema)] |  no  |  |
- | page | [Page](#Page) |  no  |  |
+ | items | [[NavigationSchema](#NavigationSchema)]? |  yes  |  |
+ | page | [Page](#Page)? |  yes  |  |
  
 
 ---
@@ -2584,16 +2584,16 @@ Success. Returns a JSON object containing all the tags injected in the applicati
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | _locale_language | [LocaleLanguage](#LocaleLanguage) |  no  |  |
- | acl | [string] |  no  |  |
- | action | [Action](#Action) |  no  |  |
- | active | boolean |  no  |  |
- | display | string |  no  |  |
- | image | string |  no  |  |
- | sort_order | number |  no  |  |
- | sub_navigation | [[NavigationReference](#NavigationReference)] |  no  |  |
- | tags | [string] |  no  |  |
- | type | string |  no  |  |
+ | _locale_language | [LocaleLanguage](#LocaleLanguage)? |  yes  |  |
+ | acl | [string]? |  yes  |  |
+ | action | [Action](#Action)? |  yes  |  |
+ | active | boolean? |  yes  |  |
+ | display | string? |  yes  |  |
+ | image | string? |  yes  |  |
+ | sort_order | number? |  yes  |  |
+ | sub_navigation | [[NavigationReference](#NavigationReference)]? |  yes  |  |
+ | tags | [string]? |  yes  |  |
+ | type | string? |  yes  |  |
  
 
 ---
@@ -2602,11 +2602,11 @@ Success. Returns a JSON object containing all the tags injected in the applicati
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | name | string |  no  |  |
- | navigation | [[NavigationReference](#NavigationReference)] |  no  |  |
- | orientation | [Orientation](#Orientation) |  no  |  |
- | platform | [string] |  no  |  |
- | slug | string |  no  |  |
+ | name | string? |  yes  |  |
+ | navigation | [[NavigationReference](#NavigationReference)]? |  yes  |  |
+ | orientation | [Orientation](#Orientation)? |  yes  |  |
+ | platform | [string]? |  yes  |  |
+ | slug | string? |  yes  |  |
  
 
 ---
@@ -2615,17 +2615,17 @@ Success. Returns a JSON object containing all the tags injected in the applicati
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | _id | string |  no  |  |
- | application | string |  no  |  |
- | archived | boolean |  no  |  |
- | created_by | [CreatedBySchema](#CreatedBySchema) |  no  |  |
- | date_meta | [DateMeta](#DateMeta) |  no  |  |
- | name | string |  no  |  |
- | navigation | [[NavigationReference](#NavigationReference)] |  no  |  |
- | orientation | [Orientation](#Orientation) |  no  |  |
- | platform | [string] |  no  |  |
- | slug | string |  no  |  |
- | version | number |  no  |  |
+ | _id | string? |  yes  |  |
+ | application | string? |  yes  |  |
+ | archived | boolean? |  yes  |  |
+ | created_by | [CreatedBySchema](#CreatedBySchema)? |  yes  |  |
+ | date_meta | [DateMeta](#DateMeta)? |  yes  |  |
+ | name | string? |  yes  |  |
+ | navigation | [[NavigationReference](#NavigationReference)]? |  yes  |  |
+ | orientation | [Orientation](#Orientation)? |  yes  |  |
+ | platform | [string]? |  yes  |  |
+ | slug | string? |  yes  |  |
+ | version | number? |  yes  |  |
  
 
 ---
@@ -2634,8 +2634,8 @@ Success. Returns a JSON object containing all the tags injected in the applicati
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | end | string |  no  |  |
- | start | string |  no  |  |
+ | end | string? |  yes  |  |
+ | start | string? |  yes  |  |
  
 
 ---
@@ -2644,8 +2644,8 @@ Success. Returns a JSON object containing all the tags injected in the applicati
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | landscape | [string] |  no  |  |
- | portrait | [string] |  no  |  |
+ | landscape | [string]? |  yes  |  |
+ | portrait | [string]? |  yes  |  |
  
 
 ---
@@ -2654,13 +2654,13 @@ Success. Returns a JSON object containing all the tags injected in the applicati
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | current | number |  no  |  |
- | has_next | boolean |  no  |  |
- | has_previous | boolean |  no  |  |
- | item_total | number |  no  |  |
- | next_id | string |  no  |  |
- | size | number |  no  |  |
- | type | string |  yes  |  |
+ | current | number? |  yes  |  |
+ | has_next | boolean? |  yes  |  |
+ | has_previous | boolean? |  yes  |  |
+ | item_total | number? |  yes  |  |
+ | next_id | string? |  yes  |  |
+ | size | number? |  yes  |  |
+ | type | string |  no  |  |
  
 
 ---
@@ -2669,8 +2669,8 @@ Success. Returns a JSON object containing all the tags injected in the applicati
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | type | string |  no  |  |
- | value | string |  no  |  |
+ | type | string? |  yes  |  |
+ | value | string? |  yes  |  |
  
 
 ---
@@ -2679,8 +2679,8 @@ Success. Returns a JSON object containing all the tags injected in the applicati
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | items | [[PageSchema](#PageSchema)] |  no  |  |
- | page | [Page](#Page) |  no  |  |
+ | items | [[PageSchema](#PageSchema)]? |  yes  |  |
+ | page | [Page](#Page)? |  yes  |  |
  
 
 ---
@@ -2689,8 +2689,8 @@ Success. Returns a JSON object containing all the tags injected in the applicati
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | key | string |  no  |  |
- | value | string |  no  |  |
+ | key | string? |  yes  |  |
+ | value | string? |  yes  |  |
  
 
 ---
@@ -2699,9 +2699,9 @@ Success. Returns a JSON object containing all the tags injected in the applicati
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | application_id | string |  no  |  |
- | custom_pages | [[PageSchema](#PageSchema)] |  no  |  |
- | system_pages | [[NavigationSchema](#NavigationSchema)] |  no  |  |
+ | application_id | string? |  yes  |  |
+ | custom_pages | [[PageSchema](#PageSchema)]? |  yes  |  |
+ | system_pages | [[NavigationSchema](#NavigationSchema)]? |  yes  |  |
  
 
 ---
@@ -2710,7 +2710,7 @@ Success. Returns a JSON object containing all the tags injected in the applicati
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | publish | boolean |  no  |  |
+ | publish | boolean? |  yes  |  |
  
 
 ---
@@ -2719,19 +2719,19 @@ Success. Returns a JSON object containing all the tags injected in the applicati
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | _custom_json | string |  no  |  |
- | _schedule | [CronSchedule](#CronSchedule) |  no  |  |
- | application | string |  no  |  |
- | author | [Author](#Author) |  no  |  |
- | content | [string] |  no  |  |
- | feature_image | [Asset](#Asset) |  no  |  |
- | orientation | string |  no  |  |
- | published | boolean |  no  |  |
- | reading_time | string |  no  |  |
- | seo | [SEO](#SEO) |  no  |  |
- | slug | string |  no  |  |
- | tags | [string] |  no  |  |
- | title | string |  no  |  |
+ | _custom_json | string? |  yes  |  |
+ | _schedule | [CronSchedule](#CronSchedule)? |  yes  |  |
+ | application | string? |  yes  |  |
+ | author | [Author](#Author)? |  yes  |  |
+ | content | [string]? |  yes  |  |
+ | feature_image | [Asset](#Asset)? |  yes  |  |
+ | orientation | string? |  yes  |  |
+ | published | boolean? |  yes  |  |
+ | reading_time | string? |  yes  |  |
+ | seo | [SEO](#SEO)? |  yes  |  |
+ | slug | string? |  yes  |  |
+ | tags | [string]? |  yes  |  |
+ | title | string? |  yes  |  |
  
 
 ---
@@ -2740,28 +2740,28 @@ Success. Returns a JSON object containing all the tags injected in the applicati
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | _custom_json | string |  no  |  |
- | _id | string |  no  |  |
- | _schedule | [ScheduleSchema](#ScheduleSchema) |  no  |  |
- | application | string |  no  |  |
- | archived | boolean |  no  |  |
- | component_ids | [string] |  no  |  |
- | content | [string] |  no  |  |
- | content_path | string |  no  |  |
- | created_by | [CreatedBySchema](#CreatedBySchema) |  no  |  |
- | date_meta | [DateMeta](#DateMeta) |  no  |  |
- | description | string |  no  |  |
- | feature_image | [Asset](#Asset) |  no  |  |
- | orientation | string |  no  |  |
- | page_meta | [string] |  no  |  |
- | platform | string |  no  |  |
- | published | boolean |  no  |  |
- | seo | [SEO](#SEO) |  no  |  |
- | slug | string |  no  |  |
- | tags | [string] |  no  |  |
- | title | string |  no  |  |
- | type | string |  no  |  |
- | visibility | string |  no  |  |
+ | _custom_json | string? |  yes  |  |
+ | _id | string? |  yes  |  |
+ | _schedule | [ScheduleSchema](#ScheduleSchema)? |  yes  |  |
+ | application | string? |  yes  |  |
+ | archived | boolean? |  yes  |  |
+ | component_ids | [string]? |  yes  | Components can be used to store multiple components |
+ | content | [string]? |  yes  |  |
+ | content_path | string? |  yes  |  |
+ | created_by | [CreatedBySchema](#CreatedBySchema)? |  yes  |  |
+ | date_meta | [DateMeta](#DateMeta)? |  yes  |  |
+ | description | string? |  yes  |  |
+ | feature_image | [Asset](#Asset)? |  yes  |  |
+ | orientation | string? |  yes  |  |
+ | page_meta | [string]? |  yes  |  |
+ | platform | string? |  yes  |  |
+ | published | boolean? |  yes  |  |
+ | seo | [SEO](#SEO)? |  yes  |  |
+ | slug | string? |  yes  |  |
+ | tags | [string]? |  yes  |  |
+ | title | string? |  yes  |  |
+ | type | string? |  yes  |  |
+ | visibility | string? |  yes  |  |
  
 
 ---
@@ -2770,7 +2770,7 @@ Success. Returns a JSON object containing all the tags injected in the applicati
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | specifications | [[PageSpecItem](#PageSpecItem)] |  no  |  |
+ | specifications | [[PageSpecItem](#PageSpecItem)]? |  yes  |  |
  
 
 ---
@@ -2779,10 +2779,10 @@ Success. Returns a JSON object containing all the tags injected in the applicati
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | display_name | string |  no  |  |
- | page_type | string |  no  |  |
- | params | [[PageSpecParam](#PageSpecParam)] |  no  |  |
- | query | [[PageSpecParam](#PageSpecParam)] |  no  |  |
+ | display_name | string? |  yes  |  |
+ | page_type | string? |  yes  |  |
+ | params | [[PageSpecParam](#PageSpecParam)]? |  yes  |  |
+ | query | [[PageSpecParam](#PageSpecParam)]? |  yes  |  |
  
 
 ---
@@ -2791,8 +2791,8 @@ Success. Returns a JSON object containing all the tags injected in the applicati
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | key | string |  no  |  |
- | required | boolean |  no  |  |
+ | key | string? |  yes  |  |
+ | required | boolean? |  yes  |  |
  
 
 ---
@@ -2801,13 +2801,13 @@ Success. Returns a JSON object containing all the tags injected in the applicati
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | __source | [PathSourceSchema](#PathSourceSchema) |  no  |  |
- | _id | string |  no  |  |
- | application | string |  no  |  |
- | created_at | string |  no  |  |
- | redirect_from | string |  no  |  |
- | redirect_to | string |  no  |  |
- | updated_at | string |  no  |  |
+ | __source | [PathSourceSchema](#PathSourceSchema)? |  yes  |  |
+ | _id | string? |  yes  |  |
+ | application | string? |  yes  |  |
+ | created_at | string? |  yes  |  |
+ | redirect_from | string? |  yes  |  |
+ | redirect_to | string? |  yes  |  |
+ | updated_at | string? |  yes  |  |
  
 
 ---
@@ -2816,8 +2816,8 @@ Success. Returns a JSON object containing all the tags injected in the applicati
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | id | string |  no  |  |
- | type | string |  no  |  |
+ | id | string? |  yes  |  |
+ | type | string? |  yes  |  |
  
 
 ---
@@ -2826,9 +2826,9 @@ Success. Returns a JSON object containing all the tags injected in the applicati
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | code | string |  no  |  |
- | key | string |  no  |  |
- | number | string |  no  |  |
+ | code | string? |  yes  |  |
+ | key | string? |  yes  |  |
+ | number | string? |  yes  |  |
  
 
 ---
@@ -2837,8 +2837,8 @@ Success. Returns a JSON object containing all the tags injected in the applicati
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | active | boolean |  no  |  |
- | phone | [[PhoneProperties](#PhoneProperties)] |  no  |  |
+ | active | boolean? |  yes  |  |
+ | phone | [[PhoneProperties](#PhoneProperties)]? |  yes  |  |
  
 
 ---
@@ -2847,7 +2847,7 @@ Success. Returns a JSON object containing all the tags injected in the applicati
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | tags | [string] |  no  |  |
+ | tags | [string]? |  yes  |  |
  
 
 ---
@@ -2856,8 +2856,8 @@ Success. Returns a JSON object containing all the tags injected in the applicati
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | type | string |  no  |  |
- | value | string |  no  |  |
+ | type | string? |  yes  |  |
+ | value | string? |  yes  |  |
  
 
 ---
@@ -2866,11 +2866,11 @@ Success. Returns a JSON object containing all the tags injected in the applicati
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | cron | string |  no  |  |
- | duration | number |  no  |  |
- | end | string |  no  |  |
- | next_schedule | [[NextSchedule](#NextSchedule)] |  no  |  |
- | start | string |  no  |  |
+ | cron | string? |  yes  |  |
+ | duration | number? |  yes  |  |
+ | end | string? |  yes  |  |
+ | next_schedule | [[NextSchedule](#NextSchedule)]? |  yes  |  |
+ | start | string? |  yes  |  |
  
 
 ---
@@ -2879,8 +2879,8 @@ Success. Returns a JSON object containing all the tags injected in the applicati
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | end | string |  no  |  |
- | start | string |  no  |  |
+ | end | string? |  yes  |  |
+ | start | string? |  yes  |  |
  
 
 ---
@@ -2889,9 +2889,9 @@ Success. Returns a JSON object containing all the tags injected in the applicati
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | description | string |  no  |  |
- | image | [SEOImage](#SEOImage) |  no  |  |
- | title | string |  no  |  |
+ | description | string? |  yes  |  |
+ | image | [SEOImage](#SEOImage)? |  yes  |  |
+ | title | string? |  yes  |  |
  
 
 ---
@@ -2900,7 +2900,7 @@ Success. Returns a JSON object containing all the tags injected in the applicati
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | seo | [SeoSchema](#SeoSchema) |  no  |  |
+ | seo | [SeoSchema](#SeoSchema)? |  yes  |  |
  
 
 ---
@@ -2909,7 +2909,7 @@ Success. Returns a JSON object containing all the tags injected in the applicati
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | url | string |  no  |  |
+ | url | string? |  yes  |  |
  
 
 ---
@@ -2918,14 +2918,14 @@ Success. Returns a JSON object containing all the tags injected in the applicati
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | _id | string |  no  |  |
- | app | string |  no  |  |
- | created_at | string |  no  |  |
- | custom_meta_tags | [[CustomMetaTag](#CustomMetaTag)] |  no  |  |
- | details | [Detail](#Detail) |  no  |  |
- | robots_txt | string |  no  |  |
- | sitemap_enabled | boolean |  no  |  |
- | updated_at | string |  no  |  |
+ | _id | string? |  yes  |  |
+ | app | string? |  yes  |  |
+ | created_at | string? |  yes  |  |
+ | custom_meta_tags | [[CustomMetaTag](#CustomMetaTag)]? |  yes  |  |
+ | details | [Detail](#Detail)? |  yes  |  |
+ | robots_txt | string? |  yes  |  |
+ | sitemap_enabled | boolean? |  yes  |  |
+ | updated_at | string? |  yes  |  |
  
 
 ---
@@ -2934,8 +2934,8 @@ Success. Returns a JSON object containing all the tags injected in the applicati
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | data | [SlideshowSchema](#SlideshowSchema) |  no  |  |
- | success | boolean |  no  |  |
+ | data | [SlideshowSchema](#SlideshowSchema)? |  yes  |  |
+ | success | boolean? |  yes  |  |
  
 
 ---
@@ -2944,8 +2944,8 @@ Success. Returns a JSON object containing all the tags injected in the applicati
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | items | [[SlideshowSchema](#SlideshowSchema)] |  no  |  |
- | page | [Page](#Page) |  no  |  |
+ | items | [[SlideshowSchema](#SlideshowSchema)]? |  yes  |  |
+ | page | [Page](#Page)? |  yes  |  |
  
 
 ---
@@ -2954,12 +2954,12 @@ Success. Returns a JSON object containing all the tags injected in the applicati
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | action | [Action](#Action) |  no  |  |
- | auto_decide_duration | boolean |  no  |  |
- | bg_color | string |  no  |  |
- | duration | number |  no  |  |
- | type | string |  no  |  |
- | url | string |  no  |  |
+ | action | [Action](#Action)? |  yes  |  |
+ | auto_decide_duration | boolean? |  yes  |  |
+ | bg_color | string? |  yes  |  |
+ | duration | number? |  yes  |  |
+ | type | string? |  yes  |  |
+ | url | string? |  yes  |  |
  
 
 ---
@@ -2968,11 +2968,11 @@ Success. Returns a JSON object containing all the tags injected in the applicati
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | active | boolean |  no  |  |
- | configuration | [ConfigurationSchema](#ConfigurationSchema) |  no  |  |
- | media | [SlideshowMedia](#SlideshowMedia) |  no  |  |
- | platform | string |  no  |  |
- | slug | string |  no  |  |
+ | active | boolean? |  yes  |  |
+ | configuration | [ConfigurationSchema](#ConfigurationSchema)? |  yes  |  |
+ | media | [SlideshowMedia](#SlideshowMedia)? |  yes  |  |
+ | platform | string? |  yes  |  |
+ | slug | string? |  yes  |  |
  
 
 ---
@@ -2981,16 +2981,16 @@ Success. Returns a JSON object containing all the tags injected in the applicati
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | _custom_json | string |  no  |  |
- | _id | string |  no  |  |
- | active | boolean |  no  |  |
- | application | string |  no  |  |
- | archived | boolean |  no  |  |
- | configuration | [ConfigurationSchema](#ConfigurationSchema) |  no  |  |
- | date_meta | [DateMeta](#DateMeta) |  no  |  |
- | media | [[SlideshowMedia](#SlideshowMedia)] |  no  |  |
- | platform | string |  no  |  |
- | slug | string |  no  |  |
+ | _custom_json | string? |  yes  |  |
+ | _id | string? |  yes  |  |
+ | active | boolean? |  yes  |  |
+ | application | string? |  yes  |  |
+ | archived | boolean? |  yes  |  |
+ | configuration | [ConfigurationSchema](#ConfigurationSchema)? |  yes  |  |
+ | date_meta | [DateMeta](#DateMeta)? |  yes  |  |
+ | media | [[SlideshowMedia](#SlideshowMedia)]? |  yes  |  |
+ | platform | string? |  yes  |  |
+ | slug | string? |  yes  |  |
  
 
 ---
@@ -2999,13 +2999,13 @@ Success. Returns a JSON object containing all the tags injected in the applicati
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | _id | string |  no  |  |
- | application | string |  no  |  |
- | config_type | string |  no  |  |
- | contact | [ContactSchema](#ContactSchema) |  no  |  |
- | created | boolean |  no  |  |
- | created_at | string |  no  |  |
- | updated_at | string |  no  |  |
+ | _id | string? |  yes  |  |
+ | application | string? |  yes  |  |
+ | config_type | string? |  yes  |  |
+ | contact | [ContactSchema](#ContactSchema)? |  yes  |  |
+ | created | boolean? |  yes  |  |
+ | created_at | string? |  yes  |  |
+ | updated_at | string? |  yes  |  |
  
 
 ---
@@ -3014,7 +3014,7 @@ Success. Returns a JSON object containing all the tags injected in the applicati
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | success | boolean |  no  |  |
+ | success | boolean? |  yes  |  |
  
 
 ---
@@ -3023,16 +3023,16 @@ Success. Returns a JSON object containing all the tags injected in the applicati
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | __source | [TagSourceSchema](#TagSourceSchema) |  no  |  |
- | _id | string |  no  |  |
- | attributes | string |  no  |  |
- | content | string |  no  |  |
- | name | string |  no  |  |
- | pages | [string] |  no  |  |
- | position | string |  no  |  |
- | sub_type | string |  no  |  |
- | type | string |  no  |  |
- | url | string |  no  |  |
+ | __source | [TagSourceSchema](#TagSourceSchema)? |  yes  |  |
+ | _id | string? |  yes  |  |
+ | attributes | string? |  yes  |  |
+ | content | string? |  yes  |  |
+ | name | string? |  yes  |  |
+ | pages | [string]? |  yes  |  |
+ | position | string? |  yes  |  |
+ | sub_type | string? |  yes  |  |
+ | type | string? |  yes  |  |
+ | url | string? |  yes  |  |
  
 
 ---
@@ -3041,8 +3041,8 @@ Success. Returns a JSON object containing all the tags injected in the applicati
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | id | string |  no  |  |
- | type | string |  no  |  |
+ | id | string? |  yes  |  |
+ | type | string? |  yes  |  |
  
 
 ---
@@ -3051,9 +3051,9 @@ Success. Returns a JSON object containing all the tags injected in the applicati
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | _id | string |  no  |  |
- | application | string |  no  |  |
- | tags | [[TagSchema](#TagSchema)] |  no  |  |
+ | _id | string? |  yes  |  |
+ | application | string? |  yes  |  |
+ | tags | [[TagSchema](#TagSchema)]? |  yes  |  |
  
 
 ---
@@ -3062,7 +3062,7 @@ Success. Returns a JSON object containing all the tags injected in the applicati
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | category | [CategorySchema](#CategorySchema) |  no  |  |
+ | category | [CategorySchema](#CategorySchema)? |  yes  |  |
  
 
 ---
@@ -3071,7 +3071,7 @@ Success. Returns a JSON object containing all the tags injected in the applicati
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | tag | [HandpickedTagSchema](#HandpickedTagSchema) |  no  |  |
+ | tag | [HandpickedTagSchema](#HandpickedTagSchema)? |  yes  |  |
  
 
 ---

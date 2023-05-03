@@ -682,7 +682,7 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | message | string |  yes  |  |
+ | message | string |  no  |  |
  
 
 ---
@@ -691,8 +691,8 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | company_id | number |  yes  |  |
- | items | [[DiscountItems](#DiscountItems)] |  yes  |  |
+ | company_id | number |  no  |  |
+ | items | [[DiscountItems](#DiscountItems)] |  no  |  |
  
 
 ---
@@ -701,7 +701,7 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | success | boolean |  yes  |  |
+ | success | boolean |  no  |  |
  
 
 ---
@@ -710,19 +710,19 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | app_ids | [string] |  yes  |  |
- | brand_ids | [number] |  no  |  |
- | company_id | number |  yes  |  |
- | discount_level | string |  yes  |  |
- | discount_type | string |  yes  |  |
- | extension_ids | [string] |  yes  |  |
- | file_path | string |  no  |  |
- | is_active | boolean |  yes  |  |
- | job_type | string |  yes  |  |
- | name | string |  yes  |  |
- | store_ids | [number] |  no  |  |
- | validity | [ValidityObject](#ValidityObject) |  yes  |  |
- | value | number |  no  |  |
+ | app_ids | [string] |  no  |  |
+ | brand_ids | [number]? |  yes  |  |
+ | company_id | number |  no  |  |
+ | discount_level | string |  no  |  |
+ | discount_type | string |  no  |  |
+ | extension_ids | [string] |  no  |  |
+ | file_path | string? |  yes  |  |
+ | is_active | boolean |  no  |  |
+ | job_type | string |  no  |  |
+ | name | string |  no  |  |
+ | store_ids | [number]? |  yes  |  |
+ | validity | [ValidityObject](#ValidityObject) |  no  |  |
+ | value | number? |  yes  |  |
  
 
 ---
@@ -731,11 +731,11 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | brand_uid | number |  no  |  |
- | discount_type | string |  yes  |  |
- | item_code | string |  no  |  |
- | seller_identifier | string |  no  |  |
- | value | number |  yes  |  |
+ | brand_uid | number? |  yes  |  |
+ | discount_type | string |  no  |  |
+ | item_code | string? |  yes  |  |
+ | seller_identifier | string? |  yes  |  |
+ | value | number |  no  |  |
  
 
 ---
@@ -744,24 +744,24 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | _id | string |  yes  |  |
- | app_ids | [string] |  no  |  |
- | brand_ids | [number] |  no  |  |
- | company_id | number |  yes  |  |
- | created_by | [UserDetails](#UserDetails) |  yes  |  |
- | created_on | string |  yes  |  |
- | discount_level | string |  no  |  |
- | discount_type | string |  no  |  |
- | file_path | string |  no  |  |
- | is_active | boolean |  yes  |  |
- | job_type | string |  no  |  |
- | meta | string |  no  |  |
- | modified_by | [UserDetails](#UserDetails) |  yes  |  |
- | modified_on | string |  yes  |  |
- | name | string |  yes  |  |
- | store_ids | [number] |  no  |  |
- | validity | [ValidityObject](#ValidityObject) |  yes  |  |
- | value | number |  no  |  |
+ | _id | string |  no  |  |
+ | app_ids | [string]? |  yes  |  |
+ | brand_ids | [number]? |  yes  |  |
+ | company_id | number |  no  |  |
+ | created_by | [UserDetails](#UserDetails) |  no  |  |
+ | created_on | string |  no  |  |
+ | discount_level | string? |  yes  |  |
+ | discount_type | string? |  yes  |  |
+ | file_path | string? |  yes  |  |
+ | is_active | boolean |  no  |  |
+ | job_type | string? |  yes  |  |
+ | meta | string? |  yes  |  |
+ | modified_by | [UserDetails](#UserDetails) |  no  |  |
+ | modified_on | string |  no  |  |
+ | name | string |  no  |  |
+ | store_ids | [number]? |  yes  |  |
+ | validity | [ValidityObject](#ValidityObject) |  no  |  |
+ | value | number? |  yes  |  |
  
 
 ---
@@ -770,8 +770,8 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | brand_ids | [number] |  no  |  |
- | store_ids | [number] |  no  |  |
+ | brand_ids | [number]? |  yes  |  |
+ | store_ids | [number]? |  yes  |  |
  
 
 ---
@@ -780,13 +780,13 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | body | string |  no  |  |
- | company_id | number |  yes  |  |
- | failed | number |  yes  |  |
- | file_type | string |  yes  |  |
- | stage | string |  yes  |  |
- | total | number |  yes  |  |
- | type | string |  yes  |  |
+ | body | string? |  yes  |  |
+ | company_id | number |  no  |  |
+ | failed | number |  no  |  |
+ | file_type | string |  no  |  |
+ | stage | string |  no  |  |
+ | total | number |  no  |  |
+ | type | string |  no  |  |
  
 
 ---
@@ -795,8 +795,8 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | items | [[DiscountJob](#DiscountJob)] |  yes  |  |
- | page | [Page](#Page) |  yes  |  |
+ | items | [[DiscountJob](#DiscountJob)] |  no  |  |
+ | page | [Page](#Page) |  no  |  |
  
 
 ---
@@ -805,13 +805,13 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | current | number |  no  |  |
- | has_next | boolean |  no  |  |
- | has_previous | boolean |  no  |  |
- | item_total | number |  no  |  |
- | next_id | string |  no  |  |
- | size | number |  no  |  |
- | type | number |  yes  |  |
+ | current | number? |  yes  |  |
+ | has_next | boolean? |  yes  |  |
+ | has_previous | boolean? |  yes  |  |
+ | item_total | number? |  yes  |  |
+ | next_id | string? |  yes  |  |
+ | size | number? |  yes  |  |
+ | type | number |  no  |  |
  
 
 ---
@@ -820,8 +820,8 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | user_id | string |  yes  |  |
- | username | string |  yes  |  |
+ | user_id | string |  no  |  |
+ | username | string |  no  |  |
  
 
 ---
@@ -830,8 +830,8 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | end | string |  yes  |  |
- | start | string |  yes  |  |
+ | end | string |  no  |  |
+ | start | string |  no  |  |
  
 
 ---

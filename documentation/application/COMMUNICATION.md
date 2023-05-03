@@ -302,8 +302,8 @@ Success. Updates the channels for which user has consented. Check the example sh
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | message | string |  no  |  |
- | status | string |  no  |  |
+ | message | string? |  yes  | Failure message. |
+ | status | string? |  yes  | Response status. |
  
 
 ---
@@ -312,9 +312,9 @@ Success. Updates the channels for which user has consented. Check the example sh
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | app_id | string |  no  |  |
- | channels | [CommunicationConsentChannels](#CommunicationConsentChannels) |  no  |  |
- | user_id | string |  no  |  |
+ | app_id | string? |  yes  |  |
+ | channels | [CommunicationConsentChannels](#CommunicationConsentChannels)? |  yes  |  |
+ | user_id | string? |  yes  |  |
  
 
 ---
@@ -323,9 +323,9 @@ Success. Updates the channels for which user has consented. Check the example sh
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | email | [CommunicationConsentChannelsEmail](#CommunicationConsentChannelsEmail) |  no  |  |
- | sms | [CommunicationConsentChannelsSms](#CommunicationConsentChannelsSms) |  no  |  |
- | whatsapp | [CommunicationConsentChannelsWhatsapp](#CommunicationConsentChannelsWhatsapp) |  no  |  |
+ | email | [CommunicationConsentChannelsEmail](#CommunicationConsentChannelsEmail)? |  yes  |  |
+ | sms | [CommunicationConsentChannelsSms](#CommunicationConsentChannelsSms)? |  yes  |  |
+ | whatsapp | [CommunicationConsentChannelsWhatsapp](#CommunicationConsentChannelsWhatsapp)? |  yes  |  |
  
 
 ---
@@ -334,8 +334,8 @@ Success. Updates the channels for which user has consented. Check the example sh
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | display_name | string |  no  |  |
- | response | string |  no  |  |
+ | display_name | string? |  yes  |  |
+ | response | string? |  yes  |  |
  
 
 ---
@@ -344,8 +344,8 @@ Success. Updates the channels for which user has consented. Check the example sh
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | display_name | string |  no  |  |
- | response | string |  no  |  |
+ | display_name | string? |  yes  |  |
+ | response | string? |  yes  |  |
  
 
 ---
@@ -354,10 +354,10 @@ Success. Updates the channels for which user has consented. Check the example sh
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | country_code | string |  no  |  |
- | display_name | string |  no  |  |
- | phone_number | string |  no  |  |
- | response | string |  no  |  |
+ | country_code | string? |  yes  |  |
+ | display_name | string? |  yes  |  |
+ | phone_number | string? |  yes  |  |
+ | response | string? |  yes  |  |
  
 
 ---
@@ -366,9 +366,9 @@ Success. Updates the channels for which user has consented. Check the example sh
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | action | string |  no  |  |
- | channel | string |  no  |  |
- | response | string |  no  |  |
+ | action | string? |  yes  |  |
+ | channel | string? |  yes  |  |
+ | response | string? |  yes  |  |
  
 
 ---
@@ -377,9 +377,9 @@ Success. Updates the channels for which user has consented. Check the example sh
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | app_id | string |  no  |  |
- | channels | [CommunicationConsentChannels](#CommunicationConsentChannels) |  no  |  |
- | user_id | string |  no  |  |
+ | app_id | string? |  yes  |  |
+ | channels | [CommunicationConsentChannels](#CommunicationConsentChannels)? |  yes  |  |
+ | user_id | string? |  yes  |  |
  
 
 ---
@@ -388,7 +388,7 @@ Success. Updates the channels for which user has consented. Check the example sh
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | message | string |  no  |  |
+ | message | string? |  yes  | Failure message. |
  
 
 ---
@@ -397,13 +397,13 @@ Success. Updates the channels for which user has consented. Check the example sh
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | current | number |  no  |  |
- | has_next | boolean |  no  |  |
- | has_previous | boolean |  no  |  |
- | item_total | number |  no  |  |
- | next_id | string |  no  |  |
- | size | number |  no  |  |
- | type | string |  yes  |  |
+ | current | number? |  yes  |  |
+ | has_next | boolean? |  yes  |  |
+ | has_previous | boolean? |  yes  |  |
+ | item_total | number? |  yes  |  |
+ | next_id | string? |  yes  |  |
+ | size | number? |  yes  |  |
+ | type | string |  no  |  |
  
 
 ---
@@ -412,11 +412,11 @@ Success. Updates the channels for which user has consented. Check the example sh
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | action | string |  no  |  |
- | bundle_identifier | string |  no  |  |
- | push_token | string |  no  |  |
- | type | string |  no  |  |
- | unique_device_id | string |  no  |  |
+ | action | string? |  yes  |  |
+ | bundle_identifier | string? |  yes  |  |
+ | push_token | string? |  yes  |  |
+ | type | string? |  yes  |  |
+ | unique_device_id | string? |  yes  |  |
  
 
 ---
@@ -425,17 +425,17 @@ Success. Updates the channels for which user has consented. Check the example sh
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | _id | string |  no  |  |
- | application_id | string |  no  |  |
- | bundle_identifier | string |  no  |  |
- | created_at | string |  no  |  |
- | expired_at | string |  no  |  |
- | platform | string |  no  |  |
- | push_token | string |  no  |  |
- | type | string |  no  |  |
- | unique_device_id | string |  no  |  |
- | updated_at | string |  no  |  |
- | user_id | string |  no  |  |
+ | _id | string? |  yes  |  |
+ | application_id | string? |  yes  |  |
+ | bundle_identifier | string? |  yes  |  |
+ | created_at | string? |  yes  |  |
+ | expired_at | string? |  yes  |  |
+ | platform | string? |  yes  |  |
+ | push_token | string? |  yes  |  |
+ | type | string? |  yes  |  |
+ | unique_device_id | string? |  yes  |  |
+ | updated_at | string? |  yes  |  |
+ | user_id | string? |  yes  |  |
  
 
 ---

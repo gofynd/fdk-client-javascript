@@ -663,13 +663,13 @@ Success. Check example below or refer `UserRes` for more details.
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | _id | string |  no  |  |
- | active | boolean |  no  |  |
- | application_id | string |  no  |  |
- | block_reason | string |  no  |  |
- | updated_at | string |  no  |  |
- | updated_by | string |  no  |  |
- | user_id | string |  no  |  |
+ | _id | string? |  yes  |  |
+ | active | boolean? |  yes  |  |
+ | application_id | string? |  yes  |  |
+ | block_reason | string? |  yes  |  |
+ | updated_at | string? |  yes  |  |
+ | updated_by | string? |  yes  |  |
+ | user_id | string? |  yes  |  |
  
 
 ---
@@ -678,9 +678,9 @@ Success. Check example below or refer `UserRes` for more details.
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | aspect_ratio | string |  no  |  |
- | id | string |  no  |  |
- | secure_url | string |  no  |  |
+ | aspect_ratio | string? |  yes  |  |
+ | id | string? |  yes  |  |
+ | secure_url | string? |  yes  |  |
  
 
 ---
@@ -689,10 +689,10 @@ Success. Check example below or refer `UserRes` for more details.
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | code | number |  no  |  |
- | exception | string |  no  |  |
- | info | string |  no  |  |
- | message | string |  no  |  |
+ | code | number? |  yes  |  |
+ | exception | string? |  yes  |  |
+ | info | string? |  yes  |  |
+ | message | string? |  yes  |  |
  
 
 ---
@@ -701,18 +701,18 @@ Success. Check example below or refer `UserRes` for more details.
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | _id | string |  no  |  |
- | _schedule | [Schedule](#Schedule) |  no  |  |
- | active | boolean |  no  |  |
- | application_id | string |  no  |  |
- | audience | [RewardsAudience](#RewardsAudience) |  no  |  |
- | banner_image | [Asset](#Asset) |  no  |  |
- | created_at | string |  no  |  |
- | description | string |  no  |  |
- | name | string |  no  |  |
- | rule | [RewardsRule](#RewardsRule) |  no  |  |
- | title | string |  no  |  |
- | updated_at | string |  no  |  |
+ | _id | string? |  yes  |  |
+ | _schedule | [Schedule](#Schedule)? |  yes  |  |
+ | active | boolean? |  yes  |  |
+ | application_id | string? |  yes  |  |
+ | audience | [RewardsAudience](#RewardsAudience)? |  yes  |  |
+ | banner_image | [Asset](#Asset)? |  yes  |  |
+ | created_at | string? |  yes  |  |
+ | description | string? |  yes  |  |
+ | name | string? |  yes  |  |
+ | rule | [RewardsRule](#RewardsRule)? |  yes  |  |
+ | title | string? |  yes  |  |
+ | updated_at | string? |  yes  |  |
  
 
 ---
@@ -721,8 +721,8 @@ Success. Check example below or refer `UserRes` for more details.
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | audience_id | string |  no  |  |
- | current_count | number |  no  |  |
+ | audience_id | string? |  yes  |  |
+ | current_count | number? |  yes  |  |
  
 
 ---
@@ -731,8 +731,8 @@ Success. Check example below or refer `UserRes` for more details.
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | items | [[Giveaway](#Giveaway)] |  no  |  |
- | page | [Page](#Page) |  no  |  |
+ | items | [[Giveaway](#Giveaway)]? |  yes  |  |
+ | page | [Page](#Page)? |  yes  |  |
  
 
 ---
@@ -741,9 +741,9 @@ Success. Check example below or refer `UserRes` for more details.
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | items | [[PointsHistory](#PointsHistory)] |  no  |  |
- | page | [Page](#Page) |  no  |  |
- | points | number |  no  |  |
+ | items | [[PointsHistory](#PointsHistory)]? |  yes  | History is the list of points transaction. |
+ | page | [Page](#Page)? |  yes  |  |
+ | points | number? |  yes  |  |
  
 
 ---
@@ -752,20 +752,20 @@ Success. Check example below or refer `UserRes` for more details.
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | _schedule | [Schedule](#Schedule) |  no  |  |
- | active | boolean |  no  |  |
- | application_id | string |  no  |  |
- | banner_image | [Asset](#Asset) |  no  |  |
- | created_at | string |  no  |  |
- | name | string |  no  |  |
- | rule | string |  no  |  |
- | share | [ShareMessages](#ShareMessages) |  no  |  |
- | sub_text | string |  no  |  |
- | text | string |  no  |  |
- | type | string |  no  |  |
- | updated_at | string |  no  |  |
- | updated_by | string |  no  |  |
- | url | string |  no  |  |
+ | _schedule | [Schedule](#Schedule)? |  yes  |  |
+ | active | boolean? |  yes  |  |
+ | application_id | string? |  yes  |  |
+ | banner_image | [Asset](#Asset)? |  yes  |  |
+ | created_at | string? |  yes  |  |
+ | name | string? |  yes  |  |
+ | rule | string? |  yes  |  |
+ | share | [ShareMessages](#ShareMessages)? |  yes  |  |
+ | sub_text | string? |  yes  |  |
+ | text | string? |  yes  |  |
+ | type | string? |  yes  |  |
+ | updated_at | string? |  yes  |  |
+ | updated_by | string? |  yes  |  |
+ | url | string? |  yes  |  |
  
 
 ---
@@ -774,13 +774,13 @@ Success. Check example below or refer `UserRes` for more details.
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | current | number |  no  |  |
- | has_next | boolean |  no  |  |
- | has_previous | boolean |  no  |  |
- | item_total | number |  no  |  |
- | next_id | string |  no  |  |
- | size | number |  no  |  |
- | type | string |  yes  |  |
+ | current | number? |  yes  |  |
+ | has_next | boolean? |  yes  |  |
+ | has_previous | boolean? |  yes  |  |
+ | item_total | number? |  yes  |  |
+ | next_id | string? |  yes  |  |
+ | size | number? |  yes  |  |
+ | type | string |  no  |  |
  
 
 ---
@@ -789,7 +789,7 @@ Success. Check example below or refer `UserRes` for more details.
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | available | number |  no  |  |
+ | available | number? |  yes  |  |
  
 
 ---
@@ -798,20 +798,20 @@ Success. Check example below or refer `UserRes` for more details.
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | _id | string |  no  |  |
- | application_id | string |  no  |  |
- | claimed | boolean |  no  |  |
- | created_at | string |  no  |  |
- | expires_on | string |  no  |  |
- | meta | string |  no  |  |
- | points | number |  no  |  |
- | remaining_points | number |  no  |  |
- | text_1 | string |  no  |  |
- | text_2 | string |  no  |  |
- | text_3 | string |  no  |  |
- | txn_name | string |  no  |  |
- | updated_at | string |  no  |  |
- | user_id | string |  no  |  |
+ | _id | string? |  yes  |  |
+ | application_id | string? |  yes  |  |
+ | claimed | boolean? |  yes  |  |
+ | created_at | string? |  yes  |  |
+ | expires_on | string? |  yes  |  |
+ | meta | string? |  yes  |  |
+ | points | number? |  yes  |  |
+ | remaining_points | number? |  yes  |  |
+ | text_1 | string? |  yes  |  |
+ | text_2 | string? |  yes  |  |
+ | text_3 | string? |  yes  |  |
+ | txn_name | string? |  yes  |  |
+ | updated_at | string? |  yes  |  |
+ | user_id | string? |  yes  |  |
  
 
 ---
@@ -820,7 +820,7 @@ Success. Check example below or refer `UserRes` for more details.
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | code | string |  no  |  |
+ | code | string? |  yes  |  |
  
 
 ---
@@ -829,8 +829,8 @@ Success. Check example below or refer `UserRes` for more details.
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | header_user_id | string |  no  |  |
- | id | string |  no  |  |
+ | header_user_id | string? |  yes  |  |
+ | id | string? |  yes  |  |
  
 
 ---
@@ -839,7 +839,7 @@ Success. Check example below or refer `UserRes` for more details.
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | amount | number |  no  |  |
+ | amount | number? |  yes  |  |
  
 
 ---
@@ -848,14 +848,14 @@ Success. Check example below or refer `UserRes` for more details.
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | _id | string |  no  |  |
- | active | boolean |  no  |  |
- | created_at | string |  no  |  |
- | referral | [Referral](#Referral) |  no  |  |
- | uid | number |  no  |  |
- | updated_at | string |  no  |  |
- | user_block_reason | string |  no  |  |
- | user_id | string |  no  |  |
+ | _id | string? |  yes  |  |
+ | active | boolean? |  yes  |  |
+ | created_at | string? |  yes  |  |
+ | referral | [Referral](#Referral)? |  yes  |  |
+ | uid | number? |  yes  |  |
+ | updated_at | string? |  yes  |  |
+ | user_block_reason | string? |  yes  |  |
+ | user_id | string? |  yes  |  |
  
 
 ---
@@ -864,10 +864,10 @@ Success. Check example below or refer `UserRes` for more details.
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | cron | string |  no  |  |
- | duration | number |  no  |  |
- | end | string |  no  |  |
- | start | string |  no  |  |
+ | cron | string? |  yes  |  |
+ | duration | number? |  yes  |  |
+ | end | string? |  yes  |  |
+ | start | string? |  yes  |  |
  
 
 ---
@@ -876,15 +876,15 @@ Success. Check example below or refer `UserRes` for more details.
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | email | number |  no  |  |
- | facebook | string |  no  |  |
- | fallback | string |  no  |  |
- | message | string |  no  |  |
- | messenger | string |  no  |  |
- | sms | string |  no  |  |
- | text | string |  no  |  |
- | twitter | string |  no  |  |
- | whatsapp | string |  no  |  |
+ | email | number? |  yes  |  |
+ | facebook | string? |  yes  |  |
+ | fallback | string? |  yes  |  |
+ | message | string? |  yes  |  |
+ | messenger | string? |  yes  |  |
+ | sms | string? |  yes  |  |
+ | text | string? |  yes  |  |
+ | twitter | string? |  yes  |  |
+ | whatsapp | string? |  yes  |  |
  
 
 ---
@@ -893,8 +893,8 @@ Success. Check example below or refer `UserRes` for more details.
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | points | [Points](#Points) |  no  |  |
- | user | [RewardUser](#RewardUser) |  no  |  |
+ | points | [Points](#Points)? |  yes  |  |
+ | user | [RewardUser](#RewardUser)? |  yes  |  |
  
 
 ---

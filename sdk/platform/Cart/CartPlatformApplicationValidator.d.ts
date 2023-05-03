@@ -28,11 +28,13 @@ declare class CartValidator {
     static getStoreAddressByUid(): any;
     static platformAddItems(): any;
     static platformCheckoutCart(): any;
+    static platformCheckoutCartV2(): any;
     static platformUpdateCart(): any;
     static removeAddress(): any;
     static removeCoupon(): any;
     static selectAddress(): any;
     static selectPaymentMode(): any;
+    static selectPaymentModeV2(): any;
     static updateAddress(): any;
     static updateCart(): any;
     static updateCartMeta(): any;

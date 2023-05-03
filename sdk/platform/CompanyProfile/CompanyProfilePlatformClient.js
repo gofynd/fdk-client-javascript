@@ -4,6 +4,7 @@ const Paginator = require("../../common/Paginator");
 const CompanyProfileValidator = require("./CompanyProfilePlatformValidator");
 const CompanyProfileModel = require("./CompanyProfilePlatformModel");
 const { Logger } = require("./../../common/Logger");
+const Joi = require("joi");
 
 class CompanyProfile {
   constructor(config) {

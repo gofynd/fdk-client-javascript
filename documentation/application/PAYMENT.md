@@ -3904,9 +3904,9 @@ Success. Sends the OTP to the given mobile number. Check the example shown below
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | cards | [CardPaymentGateway](#CardPaymentGateway) |  yes  |  |
- | message | string |  yes  |  |
- | success | boolean |  yes  |  |
+ | cards | [CardPaymentGateway](#CardPaymentGateway) |  no  | Card's payment gateway with customer id. |
+ | message | string |  no  | Human readable message. |
+ | success | boolean |  no  | Response is successful or not. |
  
 
 ---
@@ -3915,8 +3915,8 @@ Success. Sends the OTP to the given mobile number. Check the example shown below
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | details | [BankDetailsForOTP](#BankDetailsForOTP) |  yes  |  |
- | order_id | string |  yes  |  |
+ | details | [BankDetailsForOTP](#BankDetailsForOTP) |  no  |  |
+ | order_id | string |  no  |  |
  
 
 ---
@@ -3925,13 +3925,13 @@ Success. Sends the OTP to the given mobile number. Check the example shown below
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | delights | boolean |  yes  |  |
- | details | [BeneficiaryModeDetails](#BeneficiaryModeDetails) |  yes  |  |
- | order_id | string |  yes  |  |
- | otp | string |  no  |  |
- | request_id | string |  no  |  |
- | shipment_id | string |  yes  |  |
- | transfer_mode | string |  yes  |  |
+ | delights | boolean |  no  | True if  beneficiary to be added by delights or False if by User |
+ | details | [BeneficiaryModeDetails](#BeneficiaryModeDetails) |  no  | Beneficiary bank details |
+ | order_id | string |  no  | Merchant Order Id |
+ | otp | string? |  yes  |  |
+ | request_id | string? |  yes  |  |
+ | shipment_id | string |  no  | Shipment Id of the respective Merchant Order Id |
+ | transfer_mode | string |  no  | Transfer Mode of the Beneficiary to be added |
  
 
 ---
@@ -3940,9 +3940,9 @@ Success. Sends the OTP to the given mobile number. Check the example shown below
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | hash_key | string |  yes  |  |
- | otp | string |  yes  |  |
- | request_id | string |  yes  |  |
+ | hash_key | string |  no  | Hash key of the beneficiary Id |
+ | otp | string |  no  | Otp sent to the given Mobile No |
+ | request_id | string |  no  | Request Id sent in  |
  
 
 ---
@@ -3951,8 +3951,8 @@ Success. Sends the OTP to the given mobile number. Check the example shown below
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | message | string |  yes  |  |
- | success | boolean |  no  |  |
+ | message | string |  no  | Aggregator Response of beneficicary  |
+ | success | boolean? |  yes  | Response is successful or not |
  
 
 ---
@@ -3961,16 +3961,16 @@ Success. Sends the OTP to the given mobile number. Check the example shown below
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | api | string |  no  |  |
- | config_type | string |  yes  |  |
- | key | string |  yes  |  |
- | merchant_id | string |  no  |  |
- | merchant_key | string |  no  |  |
- | pin | string |  no  |  |
- | sdk | boolean |  no  |  |
- | secret | string |  yes  |  |
- | user_id | string |  no  |  |
- | verify_api | string |  no  |  |
+ | api | string? |  yes  | Payment gateway api endpoint |
+ | config_type | string |  no  | Fynd or self payment gateway |
+ | key | string |  no  | Payment gateway api key |
+ | merchant_id | string? |  yes  | Unique merchant id |
+ | merchant_key | string? |  yes  | Unique merchant key |
+ | pin | string? |  yes  | Masked pin |
+ | sdk | boolean? |  yes  | SDK |
+ | secret | string |  no  | Masked payment gateway api secret |
+ | user_id | string? |  yes  | Registered User id |
+ | verify_api | string? |  yes  | Payment gateway verify payment api endpoint |
  
 
 ---
@@ -3979,10 +3979,10 @@ Success. Sends the OTP to the given mobile number. Check the example shown below
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | api_link | string |  no  |  |
- | data | string |  no  |  |
- | payment_flow | string |  no  |  |
- | payment_flow_data | string |  no  |  |
+ | api_link | string? |  yes  | api_link |
+ | data | string? |  yes  | Data |
+ | payment_flow | string? |  yes  | payment_flow |
+ | payment_flow_data | string? |  yes  | payment_flow_data |
  
 
 ---
@@ -3991,16 +3991,16 @@ Success. Sends the OTP to the given mobile number. Check the example shown below
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | ccavenue | [AggregatorConfigDetail](#AggregatorConfigDetail) |  no  |  |
- | env | string |  yes  |  |
- | juspay | [AggregatorConfigDetail](#AggregatorConfigDetail) |  no  |  |
- | mswipe | [AggregatorConfigDetail](#AggregatorConfigDetail) |  no  |  |
- | payumoney | [AggregatorConfigDetail](#AggregatorConfigDetail) |  no  |  |
- | razorpay | [AggregatorConfigDetail](#AggregatorConfigDetail) |  no  |  |
- | rupifi | [AggregatorConfigDetail](#AggregatorConfigDetail) |  no  |  |
- | simpl | [AggregatorConfigDetail](#AggregatorConfigDetail) |  no  |  |
- | stripe | [AggregatorConfigDetail](#AggregatorConfigDetail) |  no  |  |
- | success | boolean |  yes  |  |
+ | ccavenue | [AggregatorConfigDetail](#AggregatorConfigDetail)? |  yes  |  |
+ | env | string |  no  | Environment i.e Live or Test |
+ | juspay | [AggregatorConfigDetail](#AggregatorConfigDetail)? |  yes  |  |
+ | mswipe | [AggregatorConfigDetail](#AggregatorConfigDetail)? |  yes  |  |
+ | payumoney | [AggregatorConfigDetail](#AggregatorConfigDetail)? |  yes  |  |
+ | razorpay | [AggregatorConfigDetail](#AggregatorConfigDetail)? |  yes  |  |
+ | rupifi | [AggregatorConfigDetail](#AggregatorConfigDetail)? |  yes  |  |
+ | simpl | [AggregatorConfigDetail](#AggregatorConfigDetail)? |  yes  |  |
+ | stripe | [AggregatorConfigDetail](#AggregatorConfigDetail)? |  yes  |  |
+ | success | boolean |  no  |  |
  
 
 ---
@@ -4009,10 +4009,10 @@ Success. Sends the OTP to the given mobile number. Check the example shown below
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | card_id | string |  yes  |  |
- | name_on_card | string |  no  |  |
- | nickname | string |  no  |  |
- | refresh | boolean |  no  |  |
+ | card_id | string |  no  | Card token of payment gateway. |
+ | name_on_card | string? |  yes  |  |
+ | nickname | string? |  yes  |  |
+ | refresh | boolean? |  yes  | Refresh cache flag. |
  
 
 ---
@@ -4021,9 +4021,9 @@ Success. Sends the OTP to the given mobile number. Check the example shown below
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | data | string |  yes  |  |
- | message | string |  no  |  |
- | success | boolean |  yes  |  |
+ | data | string |  no  | List of cards of customer. |
+ | message | string? |  yes  | Human readable message. |
+ | success | boolean |  no  | Response is successful or not. |
  
 
 ---
@@ -4032,9 +4032,9 @@ Success. Sends the OTP to the given mobile number. Check the example shown below
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | currency | string |  yes  |  |
- | formatted_value | string |  yes  |  |
- | value | number |  yes  |  |
+ | currency | string |  no  | Currency Code |
+ | formatted_value | string |  no  | Formated Amount with currency symbol |
+ | value | number |  no  | Payment amount |
  
 
 ---
@@ -4043,11 +4043,11 @@ Success. Sends the OTP to the given mobile number. Check the example shown below
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | account_holder | string |  yes  |  |
- | account_no | string |  yes  |  |
- | bank_name | string |  yes  |  |
- | branch_name | string |  yes  |  |
- | ifsc_code | string |  yes  |  |
+ | account_holder | string |  no  |  |
+ | account_no | string |  no  |  |
+ | bank_name | string |  no  |  |
+ | branch_name | string |  no  |  |
+ | ifsc_code | string |  no  |  |
  
 
 ---
@@ -4056,17 +4056,17 @@ Success. Sends the OTP to the given mobile number. Check the example shown below
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | account_holder | string |  yes  |  |
- | account_no | string |  yes  |  |
- | address | string |  no  |  |
- | bank_name | string |  yes  |  |
- | branch_name | string |  yes  |  |
- | comment | string |  no  |  |
- | email | string |  yes  |  |
- | ifsc_code | string |  yes  |  |
- | mobile | string |  yes  |  |
- | vpa | string |  no  |  |
- | wallet | string |  no  |  |
+ | account_holder | string |  no  | Name of the Account Holder |
+ | account_no | string |  no  | Account NUmber of the Account Holder |
+ | address | string? |  yes  | Address of the User |
+ | bank_name | string |  no  | Bank Name of the Account |
+ | branch_name | string |  no  | Branch Name of the Account |
+ | comment | string? |  yes  | Remarks added by The user |
+ | email | string |  no  | Email of the Account Holder |
+ | ifsc_code | string |  no  | Ifsc Code of the Account |
+ | mobile | string |  no  | Moblie Number of the User |
+ | vpa | string? |  yes  |  |
+ | wallet | string? |  yes  |  |
  
 
 ---
@@ -4075,17 +4075,17 @@ Success. Sends the OTP to the given mobile number. Check the example shown below
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | address | [KYCAddress](#KYCAddress) |  no  |  |
- | business_ownership_type | string |  no  |  |
- | business_type | string |  no  |  |
- | entity_type | string |  no  |  |
- | fda | string |  no  |  |
- | fssai | string |  no  |  |
- | gstin | string |  no  |  |
- | name | string |  no  |  |
- | pan | string |  no  |  |
- | shop_and_establishment | string |  no  |  |
- | vintage | string |  no  |  |
+ | address | [KYCAddress](#KYCAddress)? |  yes  | Address details |
+ | business_ownership_type | string? |  yes  | business Ownershipp type(e.g Rented) |
+ | business_type | string? |  yes  | Business Type |
+ | entity_type | string? |  yes  | Busineess Entity Type |
+ | fda | string? |  yes  | Driver License |
+ | fssai | string? |  yes  | FDA License Number |
+ | gstin | string? |  yes  | GSTIN Number |
+ | name | string? |  yes  | Business Name |
+ | pan | string? |  yes  | Pan Number |
+ | shop_and_establishment | string? |  yes  | Shop Establishment |
+ | vintage | string? |  yes  | Vintage |
  
 
 ---
@@ -4094,7 +4094,7 @@ Success. Sends the OTP to the given mobile number. Check the example shown below
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | payment_link_id | string |  yes  |  |
+ | payment_link_id | string |  no  | Unique id of payment link |
  
 
 ---
@@ -4103,9 +4103,9 @@ Success. Sends the OTP to the given mobile number. Check the example shown below
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | message | string |  yes  |  |
- | status_code | number |  yes  |  |
- | success | boolean |  yes  |  |
+ | message | string |  no  | Message |
+ | status_code | number |  no  | HTTP status code |
+ | success | boolean |  no  | Successful or failure |
  
 
 ---
@@ -4114,23 +4114,23 @@ Success. Sends the OTP to the given mobile number. Check the example shown below
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | aggregator_name | string |  yes  |  |
- | card_brand | string |  no  |  |
- | card_brand_image | string |  no  |  |
- | card_fingerprint | string |  no  |  |
- | card_id | string |  no  |  |
- | card_isin | string |  no  |  |
- | card_issuer | string |  no  |  |
- | card_name | string |  no  |  |
- | card_number | string |  no  |  |
- | card_reference | string |  no  |  |
- | card_token | string |  no  |  |
- | card_type | string |  no  |  |
- | compliant_with_tokenisation_guidelines | boolean |  no  |  |
- | exp_month | number |  no  |  |
- | exp_year | number |  no  |  |
- | expired | boolean |  no  |  |
- | nickname | string |  no  |  |
+ | aggregator_name | string |  no  | aggregator_name |
+ | card_brand | string? |  yes  | card_brand |
+ | card_brand_image | string? |  yes  | card_brand_image |
+ | card_fingerprint | string? |  yes  | card_fingerprint |
+ | card_id | string? |  yes  | card_id |
+ | card_isin | string? |  yes  | card_isin |
+ | card_issuer | string? |  yes  | card_issuer |
+ | card_name | string? |  yes  | card_name |
+ | card_number | string? |  yes  | card_number |
+ | card_reference | string? |  yes  | card_reference |
+ | card_token | string? |  yes  | card_token |
+ | card_type | string? |  yes  | card_type |
+ | compliant_with_tokenisation_guidelines | boolean? |  yes  | If card is tokenised or not |
+ | exp_month | number? |  yes  | exp_month |
+ | exp_year | number? |  yes  | exp_year |
+ | expired | boolean? |  yes  | expired |
+ | nickname | string? |  yes  | nickname |
  
 
 ---
@@ -4139,22 +4139,22 @@ Success. Sends the OTP to the given mobile number. Check the example shown below
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | bank | string |  yes  |  |
- | bank_code | string |  yes  |  |
- | card_brand | string |  yes  |  |
- | card_exp_month | string |  no  |  |
- | card_exp_year | string |  no  |  |
- | card_object | string |  yes  |  |
- | card_sub_type | string |  yes  |  |
- | card_token | string |  no  |  |
- | country | string |  yes  |  |
- | extended_card_type | string |  yes  |  |
- | id | string |  yes  |  |
- | is_domestic_card | boolean |  yes  |  |
- | name_on_card | string |  no  |  |
- | status | boolean |  yes  |  |
- | type | string |  yes  |  |
- | user | string |  no  |  |
+ | bank | string |  no  | bank name |
+ | bank_code | string |  no  | Bank Code |
+ | card_brand | string |  no  | Card brand like VISA/RUPAY |
+ | card_exp_month | string? |  yes  | Card Expire Month |
+ | card_exp_year | string? |  yes  | Card Expire Year |
+ | card_object | string |  no  | Card bin or Card refrence |
+ | card_sub_type | string |  no  | Card Sub type |
+ | card_token | string? |  yes  | Card Token |
+ | country | string |  no  | Country Name |
+ | extended_card_type | string |  no  | Extended Card Type |
+ | id | string |  no  | id |
+ | is_domestic_card | boolean |  no  | Is card domestic or international |
+ | name_on_card | string? |  yes  | Name on Card |
+ | status | boolean |  no  | Status |
+ | type | string |  no  | Card Type Credit/Debit |
+ | user | string? |  yes  | Customer/User ID |
  
 
 ---
@@ -4163,8 +4163,8 @@ Success. Sends the OTP to the given mobile number. Check the example shown below
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | data | [CardDetails](#CardDetails) |  yes  |  |
- | success | boolean |  yes  |  |
+ | data | [CardDetails](#CardDetails) |  no  | Saved Card Details |
+ | success | boolean |  no  | Response is successful or not. |
  
 
 ---
@@ -4173,9 +4173,9 @@ Success. Sends the OTP to the given mobile number. Check the example shown below
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | aggregator | string |  yes  |  |
- | api | string |  no  |  |
- | customer_id | string |  no  |  |
+ | aggregator | string |  no  | Payment gateway name. |
+ | api | string? |  yes  | Payment gateway CARD api endpoint |
+ | customer_id | string? |  yes  | Payment gateway customer id. |
  
 
 ---
@@ -4184,11 +4184,11 @@ Success. Sends the OTP to the given mobile number. Check the example shown below
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | aggregator | string |  yes  |  |
- | amount | number |  yes  |  |
- | order_id | string |  yes  |  |
- | transaction_token | string |  no  |  |
- | verified | boolean |  no  |  |
+ | aggregator | string |  no  | Payment gateway name i.e Simpl, Mswipe |
+ | amount | number |  no  | Chargable amount of order. |
+ | order_id | string |  no  | Unique order id. |
+ | transaction_token | string? |  yes  | Transaction token of payment gateway. |
+ | verified | boolean? |  yes  | Already Verified flag from payment gateway i.e Mswipe |
  
 
 ---
@@ -4197,13 +4197,13 @@ Success. Sends the OTP to the given mobile number. Check the example shown below
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | aggregator | string |  yes  |  |
- | cart_id | string |  no  |  |
- | delivery_address_id | string |  no  |  |
- | message | string |  yes  |  |
- | order_id | string |  yes  |  |
- | status | string |  yes  |  |
- | success | boolean |  yes  |  |
+ | aggregator | string |  no  | Payment gateway name i.e Simpl, Mswipe |
+ | cart_id | string? |  yes  | Cart id of customer |
+ | delivery_address_id | string? |  yes  | Delivery adddress id of customer |
+ | message | string |  no  | Human readable message. |
+ | order_id | string |  no  | Unique order id. |
+ | status | string |  no  | Status of charged payment. |
+ | success | boolean |  no  | Response is successful or not. |
  
 
 ---
@@ -4212,8 +4212,8 @@ Success. Sends the OTP to the given mobile number. Check the example shown below
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | data | [CreditDetail](#CreditDetail) |  yes  |  |
- | success | boolean |  yes  |  |
+ | data | [CreditDetail](#CreditDetail) |  no  | Credit summary of user. |
+ | success | boolean |  no  | Operation is successful or not. |
  
 
 ---
@@ -4222,16 +4222,16 @@ Success. Sends the OTP to the given mobile number. Check the example shown below
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | aggregator | string |  no  |  |
- | amount | number |  no  |  |
- | callback_url | string |  no  |  |
- | contact | string |  no  |  |
- | currency | string |  no  |  |
- | customer_id | string |  no  |  |
- | email | string |  no  |  |
- | merchant_order_id | string |  no  |  |
- | method | string |  no  |  |
- | order_id | string |  no  |  |
+ | aggregator | string? |  yes  | Aggregator name |
+ | amount | number? |  yes  | Amount |
+ | callback_url | string? |  yes  | Callback url for aggregator |
+ | contact | string? |  yes  | Mobile number |
+ | currency | string? |  yes  | Currency |
+ | customer_id | string? |  yes  | Aggregator customer id |
+ | email | string? |  yes  | Email |
+ | merchant_order_id | string? |  yes  | Merchant order id |
+ | method | string? |  yes  | Method |
+ | order_id | string? |  yes  | Aggregator order id |
  
 
 ---
@@ -4240,9 +4240,9 @@ Success. Sends the OTP to the given mobile number. Check the example shown below
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | meta | [PaymentMethodsMeta](#PaymentMethodsMeta) |  yes  |  |
- | mode | string |  yes  |  |
- | name | string |  yes  |  |
+ | meta | [PaymentMethodsMeta](#PaymentMethodsMeta) |  no  | Meta |
+ | mode | string |  no  | Payment mode |
+ | name | string |  no  | Payment mode name |
  
 
 ---
@@ -4251,12 +4251,12 @@ Success. Sends the OTP to the given mobile number. Check the example shown below
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | currency | string |  yes  |  |
- | failure_callback_url | string |  yes  |  |
- | meta | string |  no  |  |
- | payment_link_id | string |  yes  |  |
- | payment_methods | [CreateOrderUserPaymentMethods](#CreateOrderUserPaymentMethods) |  yes  |  |
- | success_callback_url | string |  yes  |  |
+ | currency | string |  no  | Currency |
+ | failure_callback_url | string |  no  | Failure page url |
+ | meta | string? |  yes  | Meta |
+ | payment_link_id | string |  no  | Unique id of payment link |
+ | payment_methods | [CreateOrderUserPaymentMethods](#CreateOrderUserPaymentMethods) |  no  | Payment method details |
+ | success_callback_url | string |  no  | Success  page url |
  
 
 ---
@@ -4265,13 +4265,13 @@ Success. Sends the OTP to the given mobile number. Check the example shown below
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | callback_url | string |  no  |  |
- | data | [CreateOrderUserData](#CreateOrderUserData) |  no  |  |
- | message | string |  yes  |  |
- | order_id | string |  no  |  |
- | payment_confirm_url | string |  no  |  |
- | status_code | number |  yes  |  |
- | success | boolean |  yes  |  |
+ | callback_url | string? |  yes  | Callback url for aggregator |
+ | data | [CreateOrderUserData](#CreateOrderUserData)? |  yes  |  |
+ | message | string |  no  | Message |
+ | order_id | string? |  yes  | Merchant order id |
+ | payment_confirm_url | string? |  yes  | Payment confirm url for aggregator |
+ | status_code | number |  no  | HTTP status code |
+ | success | boolean |  no  | Successful or failure |
  
 
 ---
@@ -4280,11 +4280,11 @@ Success. Sends the OTP to the given mobile number. Check the example shown below
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | amount | string |  yes  |  |
- | assign_card_id | string |  no  |  |
- | cart_id | string |  yes  |  |
- | checkout_mode | string |  yes  |  |
- | pincode | string |  yes  |  |
+ | amount | string |  no  |  |
+ | assign_card_id | string? |  yes  |  |
+ | cart_id | string |  no  |  |
+ | checkout_mode | string |  no  |  |
+ | pincode | string |  no  |  |
  
 
 ---
@@ -4293,12 +4293,12 @@ Success. Sends the OTP to the given mobile number. Check the example shown below
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | amount | number |  yes  |  |
- | description | string |  no  |  |
- | email | string |  yes  |  |
- | external_order_id | string |  yes  |  |
- | meta | [CreatePaymentLinkMeta](#CreatePaymentLinkMeta) |  yes  |  |
- | mobile_number | string |  yes  |  |
+ | amount | number |  no  | Total value of order |
+ | description | string? |  yes  | Merchant order id |
+ | email | string |  no  | Email to which the payment link is to be sent |
+ | external_order_id | string |  no  | Merchant order id |
+ | meta | [CreatePaymentLinkMeta](#CreatePaymentLinkMeta) |  no  | Meta |
+ | mobile_number | string |  no  | Mobile number to which the payment link is to be sent |
  
 
 ---
@@ -4307,12 +4307,12 @@ Success. Sends the OTP to the given mobile number. Check the example shown below
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | message | string |  yes  |  |
- | payment_link_id | string |  no  |  |
- | payment_link_url | string |  no  |  |
- | polling_timeout | number |  no  |  |
- | status_code | number |  yes  |  |
- | success | boolean |  yes  |  |
+ | message | string |  no  | Message |
+ | payment_link_id | string? |  yes  | Unique id of payment link |
+ | payment_link_url | string? |  yes  | Url of payment link |
+ | polling_timeout | number? |  yes  | Polling request timeout |
+ | status_code | number |  no  | HTTP status code |
+ | success | boolean |  no  | Successful or failure |
  
 
 ---
@@ -4321,9 +4321,9 @@ Success. Sends the OTP to the given mobile number. Check the example shown below
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | is_registered | boolean |  yes  |  |
- | signup_url | string |  yes  |  |
- | status | boolean |  yes  |  |
+ | is_registered | boolean |  no  | User is registered with aggregator or not. |
+ | signup_url | string |  no  | URL to which the user may redirect. |
+ | status | boolean |  no  | Operation is successful or not. |
  
 
 ---
@@ -4332,10 +4332,10 @@ Success. Sends the OTP to the given mobile number. Check the example shown below
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | balance | [BalanceDetails](#BalanceDetails) |  no  |  |
- | merchant_customer_ref_id | string |  yes  |  |
- | status | string |  yes  |  |
- | status_message | string |  yes  |  |
+ | balance | [BalanceDetails](#BalanceDetails)? |  yes  | Credit summary of user. |
+ | merchant_customer_ref_id | string |  no  | Unique aggregator customer id |
+ | status | string |  no  | Customer Credit status |
+ | status_message | string |  no  | message to customer |
  
 
 ---
@@ -4344,8 +4344,8 @@ Success. Sends the OTP to the given mobile number. Check the example shown below
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | data | [CreditSummary](#CreditSummary) |  no  |  |
- | success | boolean |  yes  |  |
+ | data | [CreditSummary](#CreditSummary)? |  yes  | Credit summary of user. |
+ | success | boolean |  no  | Payment confirmation updated or not. |
  
 
 ---
@@ -4354,13 +4354,13 @@ Success. Sends the OTP to the given mobile number. Check the example shown below
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | aggregator | string |  yes  |  |
- | business_info | [BusinessDetails](#BusinessDetails) |  no  |  |
- | device | [DeviceDetails](#DeviceDetails) |  no  |  |
- | marketplace_info | [MarketplaceInfo](#MarketplaceInfo) |  no  |  |
- | mcc | string |  no  |  |
- | personal_info | [UserPersonalInfoInDetails](#UserPersonalInfoInDetails) |  yes  |  |
- | source | string |  yes  |  |
+ | aggregator | string |  no  | Aggregator Name |
+ | business_info | [BusinessDetails](#BusinessDetails)? |  yes  | Business summary. |
+ | device | [DeviceDetails](#DeviceDetails)? |  yes  | Device Details. |
+ | marketplace_info | [MarketplaceInfo](#MarketplaceInfo)? |  yes  | Market Place info. |
+ | mcc | string? |  yes  | Mcc |
+ | personal_info | [UserPersonalInfoInDetails](#UserPersonalInfoInDetails) |  no  | Credit summary of user. |
+ | source | string |  no  | callbackURL |
  
 
 ---
@@ -4369,8 +4369,8 @@ Success. Sends the OTP to the given mobile number. Check the example shown below
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | data | [OnboardSummary](#OnboardSummary) |  yes  |  |
- | success | boolean |  yes  |  |
+ | data | [OnboardSummary](#OnboardSummary) |  no  | Redirect URL. |
+ | success | boolean |  no  | Status updated or not. |
  
 
 ---
@@ -4379,8 +4379,8 @@ Success. Sends the OTP to the given mobile number. Check the example shown below
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | message | string |  no  |  |
- | success | boolean |  yes  |  |
+ | message | string? |  yes  | Human readable message. |
+ | success | boolean |  no  | Response is successful or not. |
  
 
 ---
@@ -4389,7 +4389,7 @@ Success. Sends the OTP to the given mobile number. Check the example shown below
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | card_id | string |  yes  |  |
+ | card_id | string |  no  | Card token of payment gateway. |
  
 
 ---
@@ -4398,13 +4398,13 @@ Success. Sends the OTP to the given mobile number. Check the example shown below
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | device_make | string |  no  |  |
- | device_model | string |  no  |  |
- | device_type | string |  no  |  |
- | identification_number | string |  no  |  |
- | identifier_type | string |  no  |  |
- | os | string |  no  |  |
- | os_version | string |  no  |  |
+ | device_make | string? |  yes  | Device maker |
+ | device_model | string? |  yes  | Device Model |
+ | device_type | string? |  yes  | Device Type(E.g. Mobile) |
+ | identification_number | string? |  yes  | IP |
+ | identifier_type | string? |  yes  | Static value = ip |
+ | os | string? |  yes  | OS Name |
+ | os_version | string? |  yes  | OS Version |
  
 
 ---
@@ -4413,9 +4413,9 @@ Success. Sends the OTP to the given mobile number. Check the example shown below
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | display | boolean |  yes  |  |
- | message | string |  no  |  |
- | status | string |  no  |  |
+ | display | boolean |  no  | Need to display banner or not |
+ | message | string? |  yes  | ePayLater message |
+ | status | string? |  yes  | Epaylater KYC status |
  
 
 ---
@@ -4424,8 +4424,8 @@ Success. Sends the OTP to the given mobile number. Check the example shown below
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | data | [EpaylaterBannerData](#EpaylaterBannerData) |  yes  |  |
- | success | boolean |  yes  |  |
+ | data | [EpaylaterBannerData](#EpaylaterBannerData) |  no  | Epaylater KYC banner details. |
+ | success | boolean |  no  | Successful or not. |
  
 
 ---
@@ -4434,8 +4434,8 @@ Success. Sends the OTP to the given mobile number. Check the example shown below
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | code | string |  yes  |  |
- | description | string |  yes  |  |
+ | code | string |  no  | Error descrption code. |
+ | description | string |  no  | Error human understandable description. |
  
 
 ---
@@ -4444,9 +4444,9 @@ Success. Sends the OTP to the given mobile number. Check the example shown below
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | code | string |  yes  |  |
- | description | string |  yes  |  |
- | success | boolean |  yes  |  |
+ | code | string |  no  | Error descrption code. |
+ | description | string |  no  | Error human understandable description. |
+ | success | boolean |  no  | Response is successful or not |
  
 
 ---
@@ -4455,14 +4455,14 @@ Success. Sends the OTP to the given mobile number. Check the example shown below
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | amount | number |  no  |  |
- | cancelled | boolean |  no  |  |
- | expired | boolean |  no  |  |
- | invalid_id | boolean |  no  |  |
- | merchant_name | string |  no  |  |
- | merchant_order_id | string |  no  |  |
- | msg | string |  no  |  |
- | payment_transaction_id | string |  no  |  |
+ | amount | number? |  yes  | Amount paid |
+ | cancelled | boolean? |  yes  | Payment link is cancelled or not |
+ | expired | boolean? |  yes  | Payment link expired or not |
+ | invalid_id | boolean? |  yes  | Payment link id is valid or not |
+ | merchant_name | string? |  yes  | Name of merchant that created payment link |
+ | merchant_order_id | string? |  yes  | Order id |
+ | msg | string? |  yes  | Message |
+ | payment_transaction_id | string? |  yes  | Payment transaction id |
  
 
 ---
@@ -4471,10 +4471,10 @@ Success. Sends the OTP to the given mobile number. Check the example shown below
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | error | [ErrorDescription](#ErrorDescription) |  no  |  |
- | message | string |  yes  |  |
- | status_code | number |  yes  |  |
- | success | boolean |  yes  |  |
+ | error | [ErrorDescription](#ErrorDescription)? |  yes  |  |
+ | message | string |  no  | Message |
+ | status_code | number |  no  | HTTP status code |
+ | success | boolean |  no  | Successful or failure |
  
 
 ---
@@ -4483,15 +4483,15 @@ Success. Sends the OTP to the given mobile number. Check the example shown below
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | amount | number |  no  |  |
- | external_order_id | string |  no  |  |
- | merchant_name | string |  no  |  |
- | message | string |  yes  |  |
- | payment_link_current_status | string |  no  |  |
- | payment_link_url | string |  no  |  |
- | polling_timeout | number |  no  |  |
- | status_code | number |  yes  |  |
- | success | boolean |  yes  |  |
+ | amount | number? |  yes  | Total value of order |
+ | external_order_id | string? |  yes  | Merchant order id |
+ | merchant_name | string? |  yes  | Merchant name |
+ | message | string |  no  | Message |
+ | payment_link_current_status | string? |  yes  | Status of payment link |
+ | payment_link_url | string? |  yes  | Url of payment link |
+ | polling_timeout | number? |  yes  | Polling request timeout |
+ | status_code | number |  no  | HTTP status code |
+ | success | boolean |  no  | Successful or failure |
  
 
 ---
@@ -4500,8 +4500,8 @@ Success. Sends the OTP to the given mobile number. Check the example shown below
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | error | [ErrorCodeAndDescription](#ErrorCodeAndDescription) |  yes  |  |
- | success | boolean |  yes  |  |
+ | error | [ErrorCodeAndDescription](#ErrorCodeAndDescription) |  no  |  |
+ | success | boolean |  no  | Response is successful or not |
  
 
 ---
@@ -4510,9 +4510,9 @@ Success. Sends the OTP to the given mobile number. Check the example shown below
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | bank_name | string |  yes  |  |
- | branch_name | string |  yes  |  |
- | success | boolean |  no  |  |
+ | bank_name | string |  no  | Bank Name Of Account |
+ | branch_name | string |  no  | Branch Name Of Account |
+ | success | boolean? |  yes  | Response is successful or not |
  
 
 ---
@@ -4521,10 +4521,10 @@ Success. Sends the OTP to the given mobile number. Check the example shown below
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | code | string |  no  |  |
- | display_name | string |  no  |  |
- | logos | [PaymentModeLogo](#PaymentModeLogo) |  no  |  |
- | package_name | string |  no  |  |
+ | code | string? |  yes  | code |
+ | display_name | string? |  yes  | display_name |
+ | logos | [PaymentModeLogo](#PaymentModeLogo)? |  yes  | logos |
+ | package_name | string? |  yes  | package_name |
  
 
 ---
@@ -4533,8 +4533,8 @@ Success. Sends the OTP to the given mobile number. Check the example shown below
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | code | string |  no  |  |
- | package_name | string |  no  |  |
+ | code | string? |  yes  | code |
+ | package_name | string? |  yes  | package_name |
  
 
 ---
@@ -4543,13 +4543,13 @@ Success. Sends the OTP to the given mobile number. Check the example shown below
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | addressline1 | string |  yes  |  |
- | addressline2 | string |  no  |  |
- | city | string |  yes  |  |
- | land_mark | string |  no  |  |
- | ownership_type | string |  no  |  |
- | pincode | string |  yes  |  |
- | state | string |  yes  |  |
+ | addressline1 | string |  no  | Address Line 1 |
+ | addressline2 | string? |  yes  | Address Line 2 |
+ | city | string |  no  | City |
+ | land_mark | string? |  yes  | Land Mark |
+ | ownership_type | string? |  yes  | Address Owner Type |
+ | pincode | string |  no  | Pincode |
+ | state | string |  no  | State |
  
 
 ---
@@ -4558,8 +4558,8 @@ Success. Sends the OTP to the given mobile number. Check the example shown below
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | message | string |  yes  |  |
- | status | boolean |  yes  |  |
+ | message | string |  no  | Message |
+ | status | boolean |  no  | Link action status |
  
 
 ---
@@ -4568,9 +4568,9 @@ Success. Sends the OTP to the given mobile number. Check the example shown below
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | data | [[Card](#Card)] |  no  |  |
- | message | string |  yes  |  |
- | success | boolean |  yes  |  |
+ | data | [[Card](#Card)]? |  yes  | List of cards of customer. |
+ | message | string |  no  | Human readable message. |
+ | success | boolean |  no  | Response is successful or not. |
  
 
 ---
@@ -4579,9 +4579,9 @@ Success. Sends the OTP to the given mobile number. Check the example shown below
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | date_of_joining | string |  no  |  |
- | membership_id | string |  yes  |  |
- | name | string |  yes  |  |
+ | date_of_joining | string? |  yes  | Date of joining |
+ | membership_id | string |  no  | merchant id |
+ | name | string |  no  | Name of store |
  
 
 ---
@@ -4590,9 +4590,9 @@ Success. Sends the OTP to the given mobile number. Check the example shown below
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | code | string |  yes  |  |
- | description | string |  yes  |  |
- | success | boolean |  yes  |  |
+ | code | string |  no  | Bad Request Data |
+ | description | string |  no  | Not Found |
+ | success | boolean |  no  | Response is successful or not |
  
 
 ---
@@ -4601,9 +4601,9 @@ Success. Sends the OTP to the given mobile number. Check the example shown below
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | redirect_url | string |  yes  |  |
- | session | string |  yes  |  |
- | status | boolean |  yes  |  |
+ | redirect_url | string |  no  | URL to which the user may redirect. |
+ | session | string |  no  | User Session |
+ | status | boolean |  no  | Operation Status |
  
 
 ---
@@ -4612,25 +4612,25 @@ Success. Sends the OTP to the given mobile number. Check the example shown below
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | account_holder | string |  yes  |  |
- | account_no | string |  yes  |  |
- | address | string |  yes  |  |
- | bank_name | string |  yes  |  |
- | beneficiary_id | string |  yes  |  |
- | branch_name | string |  no  |  |
- | comment | string |  no  |  |
- | created_on | string |  yes  |  |
- | delights_user_name | string |  no  |  |
- | display_name | string |  yes  |  |
- | email | string |  yes  |  |
- | id | number |  yes  |  |
- | ifsc_code | string |  yes  |  |
- | is_active | boolean |  yes  |  |
- | mobile | string |  no  |  |
- | modified_on | string |  yes  |  |
- | subtitle | string |  yes  |  |
- | title | string |  yes  |  |
- | transfer_mode | string |  yes  |  |
+ | account_holder | string |  no  | Account Holder Name |
+ | account_no | string |  no  | Account Number |
+ | address | string |  no  | Address of User |
+ | bank_name | string |  no  | Bank Name Of Account |
+ | beneficiary_id | string |  no  | Benenficiary Id |
+ | branch_name | string? |  yes  | Branch Name Of Account |
+ | comment | string? |  yes  | Remarks |
+ | created_on | string |  no  | Creation Date of Beneficiary |
+ | delights_user_name | string? |  yes  | User Id Who filled the Beneficiary  |
+ | display_name | string |  no  | Display Name Of Account |
+ | email | string |  no  | EMail of User |
+ | id | number |  no  |   |
+ | ifsc_code | string |  no  | Ifsc Code Of Account |
+ | is_active | boolean |  no  | Boolean Flag whether Beneficiary set or not |
+ | mobile | string? |  yes  | MObile no of User |
+ | modified_on | string |  no  | MOdification Date of Beneficiary |
+ | subtitle | string |  no  | SHort Title Of Account |
+ | title | string |  no  | Title Of Account |
+ | transfer_mode | string |  no  | Transfer Mode Of Account |
  
 
 ---
@@ -4639,8 +4639,8 @@ Success. Sends the OTP to the given mobile number. Check the example shown below
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | beneficiaries | [[OrderBeneficiaryDetails](#OrderBeneficiaryDetails)] |  no  |  |
- | show_beneficiary_details | boolean |  no  |  |
+ | beneficiaries | [[OrderBeneficiaryDetails](#OrderBeneficiaryDetails)]? |  yes  | All Beneficiaries Of An Order |
+ | show_beneficiary_details | boolean? |  yes  | Show beneficiary details or not. |
  
 
 ---
@@ -4649,19 +4649,19 @@ Success. Sends the OTP to the given mobile number. Check the example shown below
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | bqr_razorpay | [AggregatorRoute](#AggregatorRoute) |  no  |  |
- | ccavenue | [AggregatorRoute](#AggregatorRoute) |  no  |  |
- | epaylater | [AggregatorRoute](#AggregatorRoute) |  no  |  |
- | fynd | [AggregatorRoute](#AggregatorRoute) |  no  |  |
- | jiopay | [AggregatorRoute](#AggregatorRoute) |  no  |  |
- | juspay | [AggregatorRoute](#AggregatorRoute) |  no  |  |
- | mswipe | [AggregatorRoute](#AggregatorRoute) |  no  |  |
- | payubiz | [AggregatorRoute](#AggregatorRoute) |  no  |  |
- | razorpay | [AggregatorRoute](#AggregatorRoute) |  no  |  |
- | rupifi | [AggregatorRoute](#AggregatorRoute) |  no  |  |
- | simpl | [AggregatorRoute](#AggregatorRoute) |  no  |  |
- | stripe | [AggregatorRoute](#AggregatorRoute) |  no  |  |
- | upi_razorpay | [AggregatorRoute](#AggregatorRoute) |  no  |  |
+ | bqr_razorpay | [AggregatorRoute](#AggregatorRoute)? |  yes  | BQR_Razorpay |
+ | ccavenue | [AggregatorRoute](#AggregatorRoute)? |  yes  | Ccavenue |
+ | epaylater | [AggregatorRoute](#AggregatorRoute)? |  yes  | Epaylater |
+ | fynd | [AggregatorRoute](#AggregatorRoute)? |  yes  | Fynd |
+ | jiopay | [AggregatorRoute](#AggregatorRoute)? |  yes  | Jiopay |
+ | juspay | [AggregatorRoute](#AggregatorRoute)? |  yes  | Juspay |
+ | mswipe | [AggregatorRoute](#AggregatorRoute)? |  yes  | mswipe |
+ | payubiz | [AggregatorRoute](#AggregatorRoute)? |  yes  | Payubiz |
+ | razorpay | [AggregatorRoute](#AggregatorRoute)? |  yes  | Razorpay |
+ | rupifi | [AggregatorRoute](#AggregatorRoute)? |  yes  | Rupifi |
+ | simpl | [AggregatorRoute](#AggregatorRoute)? |  yes  | simpl |
+ | stripe | [AggregatorRoute](#AggregatorRoute)? |  yes  | Stripe |
+ | upi_razorpay | [AggregatorRoute](#AggregatorRoute)? |  yes  | UPI_Razorpay |
  
 
 ---
@@ -4670,19 +4670,19 @@ Success. Sends the OTP to the given mobile number. Check the example shown below
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | aggregator | string |  yes  |  |
- | amount | number |  yes  |  |
- | contact | string |  yes  |  |
- | currency | string |  yes  |  |
- | customer_id | string |  yes  |  |
- | device_id | string |  no  |  |
- | email | string |  yes  |  |
- | merchant_order_id | string |  yes  |  |
- | method | string |  yes  |  |
- | order_id | string |  yes  |  |
- | razorpay_payment_id | string |  no  |  |
- | timeout | number |  no  |  |
- | vpa | string |  no  |  |
+ | aggregator | string |  no  | Payment gateway name |
+ | amount | number |  no  | Payable amount. |
+ | contact | string |  no  | Customer valid mobile number |
+ | currency | string |  no  | Currency code. |
+ | customer_id | string |  no  | Payment gateway customer id. |
+ | device_id | string? |  yes  | EDC machine Unique Identifier |
+ | email | string |  no  | Customer valid email |
+ | merchant_order_id | string |  no  | Unique fynd order id |
+ | method | string |  no  | Payment method |
+ | order_id | string |  no  | Payment gateway order id |
+ | razorpay_payment_id | string? |  yes  | Payment gateway payment id |
+ | timeout | number? |  yes  | Payment polling timeout if not recieved response |
+ | vpa | string? |  yes  | Customer vpa address |
  
 
 ---
@@ -4691,23 +4691,23 @@ Success. Sends the OTP to the given mobile number. Check the example shown below
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | aggregator | string |  yes  |  |
- | aggregator_order_id | string |  no  |  |
- | amount | number |  no  |  |
- | bqr_image | string |  no  |  |
- | currency | string |  no  |  |
- | customer_id | string |  no  |  |
- | device_id | string |  no  |  |
- | merchant_order_id | string |  yes  |  |
- | method | string |  yes  |  |
- | polling_url | string |  yes  |  |
- | razorpay_payment_id | string |  no  |  |
- | status | string |  no  |  |
- | success | boolean |  yes  |  |
- | timeout | number |  no  |  |
- | upi_poll_url | string |  no  |  |
- | virtual_id | string |  no  |  |
- | vpa | string |  no  |  |
+ | aggregator | string |  no  | Payment gateway name |
+ | aggregator_order_id | string? |  yes  | Payment order id |
+ | amount | number? |  yes  | Payable amount. |
+ | bqr_image | string? |  yes  | Bharath qr image url. |
+ | currency | string? |  yes  | Currency code. |
+ | customer_id | string? |  yes  | Payment gateway customer id. |
+ | device_id | string? |  yes  | EDC machine Unique Identifier |
+ | merchant_order_id | string |  no  | order id |
+ | method | string |  no  | Payment method |
+ | polling_url | string |  no  | Polling url. |
+ | razorpay_payment_id | string? |  yes  | Payment  id. |
+ | status | string? |  yes  | Status of payment. |
+ | success | boolean |  no  | Response is successful or not. |
+ | timeout | number? |  yes  | timeout. |
+ | upi_poll_url | string? |  yes  | UPI poll url. |
+ | virtual_id | string? |  yes  | Payment virtual address. |
+ | vpa | string? |  yes  | Customer vpa address |
  
 
 ---
@@ -4716,9 +4716,9 @@ Success. Sends the OTP to the given mobile number. Check the example shown below
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | merchant_code | string |  yes  |  |
- | payment_gateway | string |  yes  |  |
- | payment_identifier | string |  yes  |  |
+ | merchant_code | string |  no  | Merchant code |
+ | payment_gateway | string |  no  | Payment gateway name |
+ | payment_identifier | string |  no  | Payment identifier |
  
 
 ---
@@ -4727,39 +4727,39 @@ Success. Sends the OTP to the given mobile number. Check the example shown below
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | aggregator_name | string |  yes  |  |
- | card_brand | string |  no  |  |
- | card_brand_image | string |  no  |  |
- | card_fingerprint | string |  no  |  |
- | card_id | string |  no  |  |
- | card_isin | string |  no  |  |
- | card_issuer | string |  no  |  |
- | card_name | string |  no  |  |
- | card_number | string |  no  |  |
- | card_reference | string |  no  |  |
- | card_token | string |  no  |  |
- | card_type | string |  no  |  |
- | cod_limit | number |  no  |  |
- | cod_limit_per_order | number |  no  |  |
- | code | string |  no  |  |
- | compliant_with_tokenisation_guidelines | boolean |  no  |  |
- | display_name | string |  no  |  |
- | display_priority | number |  no  |  |
- | exp_month | number |  no  |  |
- | exp_year | number |  no  |  |
- | expired | boolean |  no  |  |
- | fynd_vpa | string |  no  |  |
- | intent_app | [[IntentApp](#IntentApp)] |  no  |  |
- | intent_app_error_dict_list | [[IntentAppErrorList](#IntentAppErrorList)] |  no  |  |
- | intent_app_error_list | [string] |  no  |  |
- | intent_flow | boolean |  no  |  |
- | logo_url | [PaymentModeLogo](#PaymentModeLogo) |  no  |  |
- | merchant_code | string |  no  |  |
- | name | string |  no  |  |
- | nickname | string |  no  |  |
- | remaining_limit | number |  no  |  |
- | retry_count | number |  no  |  |
- | timeout | number |  no  |  |
+ | aggregator_name | string |  no  | aggregator_name |
+ | card_brand | string? |  yes  | card_brand |
+ | card_brand_image | string? |  yes  | card_brand_image |
+ | card_fingerprint | string? |  yes  | card_fingerprint |
+ | card_id | string? |  yes  | card_id |
+ | card_isin | string? |  yes  | card_isin |
+ | card_issuer | string? |  yes  | card_issuer |
+ | card_name | string? |  yes  | card_name |
+ | card_number | string? |  yes  | card_number |
+ | card_reference | string? |  yes  | card_reference |
+ | card_token | string? |  yes  | card_token |
+ | card_type | string? |  yes  | card_type |
+ | cod_limit | number? |  yes  | cod limit |
+ | cod_limit_per_order | number? |  yes  | Cod limit per order |
+ | code | string? |  yes  | code |
+ | compliant_with_tokenisation_guidelines | boolean? |  yes  | If card is tokenised or not |
+ | display_name | string? |  yes  | display name |
+ | display_priority | number? |  yes  | Dispaly Priority |
+ | exp_month | number? |  yes  | exp_month |
+ | exp_year | number? |  yes  | exp_year |
+ | expired | boolean? |  yes  | expired |
+ | fynd_vpa | string? |  yes  | fynd_vpa |
+ | intent_app | [[IntentApp](#IntentApp)]? |  yes  | intent_app |
+ | intent_app_error_dict_list | [[IntentAppErrorList](#IntentAppErrorList)]? |  yes  | intent_app_error_dict_list |
+ | intent_app_error_list | [string]? |  yes  | intent_app_error_list |
+ | intent_flow | boolean? |  yes  | intent_flow |
+ | logo_url | [PaymentModeLogo](#PaymentModeLogo)? |  yes  | Logo |
+ | merchant_code | string? |  yes  | merchant code |
+ | name | string? |  yes  | name |
+ | nickname | string? |  yes  | nickname |
+ | remaining_limit | number? |  yes  | Remaining limit |
+ | retry_count | number? |  yes  | retry_count |
+ | timeout | number? |  yes  | timeout |
  
 
 ---
@@ -4768,8 +4768,8 @@ Success. Sends the OTP to the given mobile number. Check the example shown below
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | large | string |  yes  |  |
- | small | string |  yes  |  |
+ | large | string |  no  | large |
+ | small | string |  no  | smalll |
  
 
 ---
@@ -4778,8 +4778,8 @@ Success. Sends the OTP to the given mobile number. Check the example shown below
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | payment_options | [PaymentOptionAndFlow](#PaymentOptionAndFlow) |  yes  |  |
- | success | boolean |  yes  |  |
+ | payment_options | [PaymentOptionAndFlow](#PaymentOptionAndFlow) |  no  | payment_options |
+ | success | boolean |  no  | Response is successful or not |
  
 
 ---
@@ -4788,8 +4788,8 @@ Success. Sends the OTP to the given mobile number. Check the example shown below
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | payment_flows | [PaymentFlow](#PaymentFlow) |  yes  |  |
- | payment_option | [[RootPaymentMode](#RootPaymentMode)] |  yes  |  |
+ | payment_flows | [PaymentFlow](#PaymentFlow) |  no  | payment_flows |
+ | payment_option | [[RootPaymentMode](#RootPaymentMode)] |  no  | Payment options |
  
 
 ---
@@ -4798,18 +4798,18 @@ Success. Sends the OTP to the given mobile number. Check the example shown below
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | aggregator | string |  yes  |  |
- | amount | number |  yes  |  |
- | contact | string |  yes  |  |
- | currency | string |  yes  |  |
- | customer_id | string |  yes  |  |
- | device_id | string |  no  |  |
- | email | string |  yes  |  |
- | merchant_order_id | string |  yes  |  |
- | method | string |  yes  |  |
- | order_id | string |  yes  |  |
- | status | string |  yes  |  |
- | vpa | string |  no  |  |
+ | aggregator | string |  no  | Payment gateway name |
+ | amount | number |  no  | Payable amount. |
+ | contact | string |  no  | Customer valid mobile number |
+ | currency | string |  no  | Currency code. |
+ | customer_id | string |  no  | Payment gateway customer id. |
+ | device_id | string? |  yes  | EDC machine Unique Identifier |
+ | email | string |  no  | Customer valid email |
+ | merchant_order_id | string |  no  | Unique fynd order id |
+ | method | string |  no  | Payment method |
+ | order_id | string |  no  | Payment gateway order id |
+ | status | string |  no  | Status of payment. |
+ | vpa | string? |  yes  | Customer vpa address |
  
 
 ---
@@ -4818,11 +4818,11 @@ Success. Sends the OTP to the given mobile number. Check the example shown below
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | aggregator_name | string |  yes  |  |
- | redirect_url | string |  no  |  |
- | retry | boolean |  yes  |  |
- | status | string |  yes  |  |
- | success | boolean |  no  |  |
+ | aggregator_name | string |  no  | Payment gateway name |
+ | redirect_url | string? |  yes  | Redirect url |
+ | retry | boolean |  no  | Response is successful or not. |
+ | status | string |  no  | Payment status |
+ | success | boolean? |  yes  | Response is successful or not |
  
 
 ---
@@ -4831,16 +4831,16 @@ Success. Sends the OTP to the given mobile number. Check the example shown below
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | aggregator_name | string |  no  |  |
- | amount | number |  no  |  |
- | http_status | number |  no  |  |
- | message | string |  no  |  |
- | order_id | string |  no  |  |
- | payment_link_id | string |  no  |  |
- | redirect_url | string |  no  |  |
- | status | string |  no  |  |
- | status_code | number |  no  |  |
- | success | boolean |  no  |  |
+ | aggregator_name | string? |  yes  | Aggregator name |
+ | amount | number? |  yes  | Amount |
+ | http_status | number? |  yes  | HTTP status code |
+ | message | string? |  yes  | Message |
+ | order_id | string? |  yes  | Fynd order id |
+ | payment_link_id | string? |  yes  | Payment link id |
+ | redirect_url | string? |  yes  | Url to redirect to |
+ | status | string? |  yes  | Status of payment link |
+ | status_code | number? |  yes  | HTTP status code |
+ | success | boolean? |  yes  | Successful or failure |
  
 
 ---
@@ -4849,8 +4849,8 @@ Success. Sends the OTP to the given mobile number. Check the example shown below
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | data | [RedirectURL](#RedirectURL) |  yes  |  |
- | success | boolean |  yes  |  |
+ | data | [RedirectURL](#RedirectURL) |  no  | Redirect URL. |
+ | success | boolean |  no  | Status updated or not. |
  
 
 ---
@@ -4859,8 +4859,8 @@ Success. Sends the OTP to the given mobile number. Check the example shown below
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | signup_url | string |  yes  |  |
- | status | boolean |  yes  |  |
+ | signup_url | string |  no  | URL to which the user may redirect. |
+ | status | boolean |  no  | Aggregator's Operation is successful or not. |
  
 
 ---
@@ -4869,10 +4869,10 @@ Success. Sends the OTP to the given mobile number. Check the example shown below
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | data | string |  no  |  |
- | is_verified_flag | boolean |  no  |  |
- | message | string |  yes  |  |
- | success | boolean |  yes  |  |
+ | data | string? |  yes  | Refund account data. |
+ | is_verified_flag | boolean? |  yes  |  |
+ | message | string |  no  | Response message |
+ | success | boolean |  no  | Success or failure flag. |
  
 
 ---
@@ -4881,8 +4881,8 @@ Success. Sends the OTP to the given mobile number. Check the example shown below
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | base64_html | string |  yes  |  |
- | returntype | string |  no  |  |
+ | base64_html | string |  no  | base64 encoded html string |
+ | returntype | string? |  yes  | Return Type of API |
  
 
 ---
@@ -4891,7 +4891,7 @@ Success. Sends the OTP to the given mobile number. Check the example shown below
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | html | string |  yes  |  |
+ | html | string |  no  | HTML string |
  
 
 ---
@@ -4900,9 +4900,9 @@ Success. Sends the OTP to the given mobile number. Check the example shown below
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | device_id | string |  no  |  |
- | order_id | string |  yes  |  |
- | request_type | string |  yes  |  |
+ | device_id | string? |  yes  | EDC machine Unique Identifier |
+ | order_id | string |  no  | Unique order id |
+ | request_type | string |  no  | Either resend or cancel |
  
 
 ---
@@ -4911,8 +4911,8 @@ Success. Sends the OTP to the given mobile number. Check the example shown below
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | data | [LinkStatus](#LinkStatus) |  yes  |  |
- | success | boolean |  yes  |  |
+ | data | [LinkStatus](#LinkStatus) |  no  | Data about link action status. |
+ | success | boolean |  no  | Response is successful or not. |
  
 
 ---
@@ -4921,10 +4921,10 @@ Success. Sends the OTP to the given mobile number. Check the example shown below
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | message | string |  yes  |  |
- | polling_timeout | number |  no  |  |
- | status_code | number |  yes  |  |
- | success | boolean |  yes  |  |
+ | message | string |  no  | Message |
+ | polling_timeout | number? |  yes  | Polling request timeout |
+ | status_code | number |  no  | HTTP status code |
+ | success | boolean |  no  | Successful or failure |
  
 
 ---
@@ -4933,15 +4933,15 @@ Success. Sends the OTP to the given mobile number. Check the example shown below
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | add_card_enabled | boolean |  no  |  |
- | aggregator_name | string |  no  |  |
- | anonymous_enable | boolean |  no  |  |
- | display_name | string |  yes  |  |
- | display_priority | number |  yes  |  |
- | is_pay_by_card_pl | boolean |  no  |  |
- | list | [[PaymentModeList](#PaymentModeList)] |  no  |  |
- | name | string |  yes  |  |
- | save_card | boolean |  no  |  |
+ | add_card_enabled | boolean? |  yes  | Annonymous card flag |
+ | aggregator_name | string? |  yes  | Dispaly Priority |
+ | anonymous_enable | boolean? |  yes  | Annonymous card flag |
+ | display_name | string |  no  | Payment mode display name |
+ | display_priority | number |  no  | Dispaly Priority |
+ | is_pay_by_card_pl | boolean? |  yes  | This flag will be true in case of Payment link payment through card |
+ | list | [[PaymentModeList](#PaymentModeList)]? |  yes  | Payment mode |
+ | name | string |  no  | Payment mode name |
+ | save_card | boolean? |  yes  | Card save or not |
  
 
 ---
@@ -4950,8 +4950,8 @@ Success. Sends the OTP to the given mobile number. Check the example shown below
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | kyc_url | string |  no  |  |
- | status | string |  no  |  |
+ | kyc_url | string? |  yes  | Rupifi KYC banner url. |
+ | status | string? |  yes  | Rupifi KYC status |
  
 
 ---
@@ -4960,8 +4960,8 @@ Success. Sends the OTP to the given mobile number. Check the example shown below
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | data | [RupifiBannerData](#RupifiBannerData) |  yes  |  |
- | success | boolean |  yes  |  |
+ | data | [RupifiBannerData](#RupifiBannerData) |  no  | Rupifi KYC banner details. |
+ | success | boolean |  no  | Successful or not. |
  
 
 ---
@@ -4970,8 +4970,8 @@ Success. Sends the OTP to the given mobile number. Check the example shown below
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | beneficiary_id | string |  yes  |  |
- | order_id | string |  yes  |  |
+ | beneficiary_id | string |  no  | Beneficiary Hash Id of the beneficiary added |
+ | order_id | string |  no  | Merchant Order Id |
  
 
 ---
@@ -4980,8 +4980,8 @@ Success. Sends the OTP to the given mobile number. Check the example shown below
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | is_beneficiary_set | boolean |  yes  |  |
- | success | boolean |  no  |  |
+ | is_beneficiary_set | boolean |  no  | Boolean Flag whether Beneficiary set or not |
+ | success | boolean? |  yes  | Response is successful or not |
  
 
 ---
@@ -4990,11 +4990,11 @@ Success. Sends the OTP to the given mobile number. Check the example shown below
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | display_name | string |  no  |  |
- | id | number |  yes  |  |
- | logo_large | string |  yes  |  |
- | logo_small | string |  yes  |  |
- | name | string |  yes  |  |
+ | display_name | string? |  yes  | Beneficiary Display Name |
+ | id | number |  no  |   |
+ | logo_large | string |  no  | Beneficiary large Logo |
+ | logo_small | string |  no  | Beneficiary small Logo |
+ | name | string |  no  |  Beneficiary Name |
  
 
 ---
@@ -5003,8 +5003,8 @@ Success. Sends the OTP to the given mobile number. Check the example shown below
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | display_name | string |  yes  |  |
- | items | [[TransferItemsDetails](#TransferItemsDetails)] |  no  |  |
+ | display_name | string |  no  | Beneficiary Mode Name |
+ | items | [[TransferItemsDetails](#TransferItemsDetails)]? |  yes  | Beneficiary Mode Items |
  
 
 ---
@@ -5013,7 +5013,7 @@ Success. Sends the OTP to the given mobile number. Check the example shown below
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | data | [[TransferModeDetails](#TransferModeDetails)] |  yes  |  |
+ | data | [[TransferModeDetails](#TransferModeDetails)] |  no  | Response Object |
  
 
 ---
@@ -5022,8 +5022,8 @@ Success. Sends the OTP to the given mobile number. Check the example shown below
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | enable | boolean |  yes  |  |
- | transfer_mode | string |  yes  |  |
+ | enable | boolean |  no  | True for enabling the Transfer Mode |
+ | transfer_mode | string |  no  | Transfer Mode of the Beneficiary to be added |
  
 
 ---
@@ -5032,7 +5032,7 @@ Success. Sends the OTP to the given mobile number. Check the example shown below
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | success | boolean |  no  |  |
+ | success | boolean? |  yes  | Response is successful or not |
  
 
 ---
@@ -5041,22 +5041,22 @@ Success. Sends the OTP to the given mobile number. Check the example shown below
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | address_as_per_id | [KYCAddress](#KYCAddress) |  yes  |  |
- | dob | string |  yes  |  |
- | driving_license | string |  no  |  |
- | email | string |  no  |  |
- | email_verified | boolean |  yes  |  |
- | fathers_name | string |  no  |  |
- | first_name | string |  yes  |  |
- | gender | string |  no  |  |
- | last_name | string |  no  |  |
- | middle_name | string |  no  |  |
- | mobile_verified | boolean |  yes  |  |
- | mothers_name | string |  no  |  |
- | pan | string |  no  |  |
- | passport | string |  no  |  |
- | phone | string |  yes  |  |
- | voter_id | string |  no  |  |
+ | address_as_per_id | [KYCAddress](#KYCAddress) |  no  | Address details |
+ | dob | string |  no  | DOB |
+ | driving_license | string? |  yes  | Driver License |
+ | email | string? |  yes  | Email |
+ | email_verified | boolean |  no  | Is Email Verified or not |
+ | fathers_name | string? |  yes  | Father's Name |
+ | first_name | string |  no  | First Name |
+ | gender | string? |  yes  | Gender |
+ | last_name | string? |  yes  | Last Name |
+ | middle_name | string? |  yes  | middle Name |
+ | mobile_verified | boolean |  no  | Is Mobile Verified or not |
+ | mothers_name | string? |  yes  | Mother's Name |
+ | pan | string? |  yes  | Pan Number |
+ | passport | string? |  yes  | Passport |
+ | phone | string |  no  | Email |
+ | voter_id | string? |  yes  | Voter ID Number |
  
 
 ---
@@ -5065,14 +5065,14 @@ Success. Sends the OTP to the given mobile number. Check the example shown below
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | aggregator | string |  yes  |  |
- | billing_address | string |  no  |  |
- | delivery_address | string |  no  |  |
- | merchant_params | string |  no  |  |
- | order_items | [string] |  no  |  |
- | payload | string |  no  |  |
- | phone_number | string |  yes  |  |
- | transaction_amount_in_paise | number |  yes  |  |
+ | aggregator | string |  no  | Payment gateway name in camel case i.e Simpl, Rupifi |
+ | billing_address | string? |  yes  | Extra meta fields. |
+ | delivery_address | string? |  yes  | Extra meta fields. |
+ | merchant_params | string? |  yes  | Extra meta fields. |
+ | order_items | [string]? |  yes  | Extra meta fields. |
+ | payload | string? |  yes  | Hashed payload string. |
+ | phone_number | string |  no  | User mobile number without country code. |
+ | transaction_amount_in_paise | number |  no  | Payable amount in paise |
  
 
 ---
@@ -5081,9 +5081,9 @@ Success. Sends the OTP to the given mobile number. Check the example shown below
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | data | string |  yes  |  |
- | message | string |  yes  |  |
- | success | boolean |  yes  |  |
+ | data | string |  no  | Payment gateway response data |
+ | message | string |  no  | Error or success message. |
+ | success | boolean |  no  | Response is successful or not |
  
 
 ---
@@ -5092,10 +5092,10 @@ Success. Sends the OTP to the given mobile number. Check the example shown below
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | customer_name | string |  yes  |  |
- | is_valid | boolean |  yes  |  |
- | status | string |  yes  |  |
- | upi_vpa | string |  yes  |  |
+ | customer_name | string |  no  | Customer Bank |
+ | is_valid | boolean |  no  | boolean is true or false. |
+ | status | string |  no  | VALID or INVALID |
+ | upi_vpa | string |  no  | UPI ID |
  
 
 ---
@@ -5104,7 +5104,7 @@ Success. Sends the OTP to the given mobile number. Check the example shown below
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | upi_vpa | string |  yes  |  |
+ | upi_vpa | string |  no  | UPI ID |
  
 
 ---
@@ -5113,8 +5113,8 @@ Success. Sends the OTP to the given mobile number. Check the example shown below
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | data | [ValidateUPI](#ValidateUPI) |  yes  |  |
- | success | boolean |  yes  |  |
+ | data | [ValidateUPI](#ValidateUPI) |  no  | Data about UPI ID validate. |
+ | success | boolean |  no  | Response is successful or not. |
  
 
 ---
@@ -5123,8 +5123,8 @@ Success. Sends the OTP to the given mobile number. Check the example shown below
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | country_code | string |  yes  |  |
- | mobile | string |  yes  |  |
+ | country_code | string |  no  | Country Code of the Mobile Number |
+ | mobile | string |  no  | Wallet Moblie Number of the User |
  
 
 ---
@@ -5133,9 +5133,9 @@ Success. Sends the OTP to the given mobile number. Check the example shown below
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | is_verified_flag | string |  yes  |  |
- | request_id | string |  yes  |  |
- | success | boolean |  no  |  |
+ | is_verified_flag | string |  no  | Boolean Flag whether OTP Validation is already done or not |
+ | request_id | string |  no  | request id  |
+ | success | boolean? |  yes  | Response is successful or not |
  
 
 ---
@@ -5144,9 +5144,9 @@ Success. Sends the OTP to the given mobile number. Check the example shown below
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | description | string |  yes  |  |
- | is_verified_flag | boolean |  yes  |  |
- | success | string |  yes  |  |
+ | description | string |  no  | Wrong OTP Code |
+ | is_verified_flag | boolean |  no  | Vefified flag. |
+ | success | string |  no  | Response is successful or not |
  
 
 ---
