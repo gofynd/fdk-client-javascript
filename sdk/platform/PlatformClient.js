@@ -3867,6 +3867,27 @@ class PlatformClient {
  * @property {string} small
  */
 /**
+ * @typedef PaymentObjectListSerializer
+ * @property {Object} [aggregator_payment_object]
+ * @property {string[]} all_status
+ * @property {string} amount_in_paisa
+ * @property {string} application_id
+ * @property {string} collected_by
+ * @property {string} company_id
+ * @property {string} created_on
+ * @property {string} currency
+ * @property {string} current_status
+ * @property {string} id
+ * @property {string} modified_on
+ * @property {string} payment_gateway
+ * @property {string} [payment_id]
+ * @property {string} payment_mode
+ * @property {string} payment_mode_identifier
+ * @property {Object} [refund_object]
+ * @property {string} refunded_by
+ * @property {Object} user_object
+ */
+/**
  * @typedef PaymentOptions
  * @property {RootPaymentMode[]} payment_option
  */
@@ -3874,6 +3895,23 @@ class PlatformClient {
  * @typedef PaymentOptionsResponse
  * @property {PaymentOptions} payment_options
  * @property {boolean} success
+ */
+/**
+ * @typedef PaymentStatusBulkHandlerRequest
+ * @property {string[]} merchant_order_id
+ */
+/**
+ * @typedef PaymentStatusBulkHandlerResponse
+ * @property {number} [count]
+ * @property {PaymentStatusObject[]} [data]
+ * @property {string} [error]
+ * @property {number} status
+ * @property {string} success
+ */
+/**
+ * @typedef PaymentStatusObject
+ * @property {string} merchant_order_id
+ * @property {PaymentObjectListSerializer[]} [payment_object_list]
  */
 /**
  * @typedef PaymentStatusUpdateRequest
@@ -3885,6 +3923,7 @@ class PlatformClient {
  * @property {string} [device_id]
  * @property {string} [email]
  * @property {string} merchant_order_id
+ * @property {string} merchant_transaction_id
  * @property {string} method
  * @property {string} [order_id]
  * @property {string} [payment_id]
@@ -11695,7 +11734,6 @@ class PlatformClient {
  */
 /**
  * @typedef CartProduct
- * @property {Object} [_custom_json]
  * @property {ProductAction} [action]
  * @property {BaseInfo} [brand]
  * @property {CategoryInfo[]} [categories]
@@ -11704,8 +11742,6 @@ class PlatformClient {
  * @property {string} [name]
  * @property {NetQuantity} [net_quantity]
  * @property {string} [slug]
- * @property {string[]} [tags]
- * @property {Tags} [teaser_tag]
  * @property {string} [type]
  * @property {number} [uid]
  */
@@ -11718,8 +11754,8 @@ class PlatformClient {
  * @property {ProductArticle} [article]
  * @property {ProductAvailability} [availability]
  * @property {Object} [bulk_offer]
- * @property {CouponDetails} [coupon]
  * @property {string} [coupon_message]
+ * @property {Object} [custom_order]
  * @property {ShipmentPromise} [delivery_promise]
  * @property {string} [discount]
  * @property {CartProductIdentifer} identifiers
@@ -11868,12 +11904,6 @@ class PlatformClient {
  * @property {string} [modified_on]
  */
 /**
- * @typedef CouponDetails
- * @property {string} [code]
- * @property {number} [discount_single_quantity]
- * @property {number} [discount_total_quantity]
- */
-/**
  * @typedef CouponPartialUpdate
  * @property {boolean} [archive]
  * @property {CouponScheduleSchema} [schedule]
@@ -11931,7 +11961,6 @@ class PlatformClient {
 /**
  * @typedef DeleteCartRequest
  * @property {string[]} [cart_id_list]
- * @property {string} [modified_on]
  */
 /**
  * @typedef DiscountOfferSchema
@@ -12031,7 +12060,6 @@ class PlatformClient {
  * @property {number[]} [category_id]
  * @property {string[]} [collection_id]
  * @property {number[]} [company_id]
- * @property {string[]} [email_domain]
  * @property {number[]} [exclude_brand_id]
  * @property {number[]} [item_id]
  * @property {number[]} [store_id]
@@ -12049,23 +12077,16 @@ class PlatformClient {
  * @property {number[]} [item_brand]
  * @property {number[]} [item_category]
  * @property {number[]} [item_company]
- * @property {number[]} [item_department]
  * @property {number[]} [item_exclude_brand]
  * @property {number[]} [item_exclude_category]
  * @property {number[]} [item_exclude_company]
- * @property {number[]} [item_exclude_department]
  * @property {number[]} [item_exclude_id]
- * @property {number[]} [item_exclude_l1_category]
- * @property {number[]} [item_exclude_l2_category]
  * @property {string[]} [item_exclude_sku]
  * @property {number[]} [item_exclude_store]
  * @property {number[]} [item_id]
- * @property {number[]} [item_l1_category]
- * @property {number[]} [item_l2_category]
  * @property {string[]} [item_size]
  * @property {string[]} [item_sku]
  * @property {number[]} [item_store]
- * @property {string[]} [item_tags]
  * @property {string[]} [product_tags]
  */
 /**
@@ -12411,17 +12432,12 @@ class PlatformClient {
 /**
  * @typedef ProductArticle
  * @property {Object} [_custom_json]
- * @property {Object} [cart_item_meta]
  * @property {Object} [extra_meta]
- * @property {Object} [gift_card]
- * @property {Object} [identifier]
- * @property {boolean} [is_gift_visible]
  * @property {Object} [parent_item_identifiers]
  * @property {ArticlePriceInfo} [price]
  * @property {string[]} [product_group_tags]
  * @property {number} [quantity]
  * @property {BaseInfo} [seller]
- * @property {string} [seller_identifier]
  * @property {string} [size]
  * @property {BaseInfo} [store]
  * @property {string} [type]
@@ -12599,7 +12615,6 @@ class PlatformClient {
  * @property {number} [delivery_charge]
  * @property {number} [discount]
  * @property {number} [fynd_cash]
- * @property {number} [gift_card]
  * @property {number} [gst_charges]
  * @property {number} [mrp_total]
  * @property {number} [subtotal]
@@ -12752,10 +12767,6 @@ class PlatformClient {
  * @typedef SuccessMessage
  * @property {string} [message]
  * @property {boolean} [success]
- */
-/**
- * @typedef Tags
- * @property {Object} [tags]
  */
 /**
  * @typedef UpdateAddressResponse

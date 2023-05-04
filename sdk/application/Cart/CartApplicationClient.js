@@ -127,15 +127,14 @@ class Cart {
    * @param {boolean} [arg.b] -
    * @param {string} [arg.areaCode] -
    * @param {boolean} [arg.buyNow] -
-   * @param {string} [arg.id] -
    * @param {AddCartRequest} arg.body
    * @returns {Promise<AddCartDetailResponse>} - Success response
    * @summary: Add items to cart
    * @description: Use this API to add items to the cart.
    */
-  async addItems({ body, i, b, areaCode, buyNow, id } = {}) {
+  async addItems({ body, i, b, areaCode, buyNow } = {}) {
     const { error } = CartValidator.addItems().validate(
-      { body, i, b, areaCode, buyNow, id },
+      { body, i, b, areaCode, buyNow },
       { abortEarly: false, allowUnknown: true }
     );
     if (error) {
@@ -144,7 +143,7 @@ class Cart {
 
     // Showing warrnings if extra unknown parameters are found
     const { error: warrning } = CartValidator.addItems().validate(
-      { body, i, b, areaCode, buyNow, id },
+      { body, i, b, areaCode, buyNow },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
@@ -160,7 +159,6 @@ class Cart {
     query_params["b"] = b;
     query_params["area_code"] = areaCode;
     query_params["buy_now"] = buyNow;
-    query_params["id"] = id;
 
     const xHeaders = {};
 
@@ -1240,14 +1238,13 @@ class Cart {
    *   /service/application/catalog/v1.0/products/
    * @param {number} [arg.pageSize] - Number of offers to be fetched to show
    * @param {string} [arg.promotionGroup] - Type of promotion groups
-   * @param {number} [arg.storeId] - Store id
    * @returns {Promise<PromotionOffersResponse>} - Success response
    * @summary: Fetch available promotions
    * @description: Use this API to get top 5 offers available for current product
    */
-  async getPromotionOffers({ slug, pageSize, promotionGroup, storeId } = {}) {
+  async getPromotionOffers({ slug, pageSize, promotionGroup } = {}) {
     const { error } = CartValidator.getPromotionOffers().validate(
-      { slug, pageSize, promotionGroup, storeId },
+      { slug, pageSize, promotionGroup },
       { abortEarly: false, allowUnknown: true }
     );
     if (error) {
@@ -1256,7 +1253,7 @@ class Cart {
 
     // Showing warrnings if extra unknown parameters are found
     const { error: warrning } = CartValidator.getPromotionOffers().validate(
-      { slug, pageSize, promotionGroup, storeId },
+      { slug, pageSize, promotionGroup },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
@@ -1271,7 +1268,6 @@ class Cart {
     query_params["slug"] = slug;
     query_params["page_size"] = pageSize;
     query_params["promotion_group"] = promotionGroup;
-    query_params["store_id"] = storeId;
 
     const xHeaders = {};
 

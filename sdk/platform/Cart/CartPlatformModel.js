@@ -256,7 +256,6 @@ class CartModel {
   }
   static CartProduct() {
     return Joi.object({
-      _custom_json: Joi.any(),
       action: CartModel.ProductAction(),
       brand: CartModel.BaseInfo(),
       categories: Joi.array().items(CartModel.CategoryInfo()),
@@ -265,8 +264,6 @@ class CartModel {
       name: Joi.string().allow(""),
       net_quantity: CartModel.NetQuantity(),
       slug: Joi.string().allow(""),
-      tags: Joi.array().items(Joi.string().allow("")),
-      teaser_tag: CartModel.Tags(),
       type: Joi.string().allow(""),
       uid: Joi.number(),
     });
@@ -281,8 +278,8 @@ class CartModel {
       article: CartModel.ProductArticle(),
       availability: CartModel.ProductAvailability(),
       bulk_offer: Joi.any(),
-      coupon: CartModel.CouponDetails(),
       coupon_message: Joi.string().allow(""),
+      custom_order: Joi.any(),
       delivery_promise: CartModel.ShipmentPromise(),
       discount: Joi.string().allow(""),
       identifiers: CartModel.CartProductIdentifer().required(),
@@ -441,13 +438,6 @@ class CartModel {
       modified_on: Joi.string().allow("").allow(null),
     });
   }
-  static CouponDetails() {
-    return Joi.object({
-      code: Joi.string().allow(""),
-      discount_single_quantity: Joi.number(),
-      discount_total_quantity: Joi.number(),
-    });
-  }
   static CouponPartialUpdate() {
     return Joi.object({
       archive: Joi.boolean(),
@@ -513,7 +503,6 @@ class CartModel {
   static DeleteCartRequest() {
     return Joi.object({
       cart_id_list: Joi.array().items(Joi.string().allow("")),
-      modified_on: Joi.string().allow(""),
     });
   }
   static DiscountOfferSchema() {
@@ -627,7 +616,6 @@ class CartModel {
       category_id: Joi.array().items(Joi.number()),
       collection_id: Joi.array().items(Joi.string().allow("")),
       company_id: Joi.array().items(Joi.number()),
-      email_domain: Joi.array().items(Joi.string().allow("")),
       exclude_brand_id: Joi.array().items(Joi.number()),
       item_id: Joi.array().items(Joi.number()),
       store_id: Joi.array().items(Joi.number()),
@@ -646,23 +634,16 @@ class CartModel {
       item_brand: Joi.array().items(Joi.number()),
       item_category: Joi.array().items(Joi.number()),
       item_company: Joi.array().items(Joi.number()),
-      item_department: Joi.array().items(Joi.number()),
       item_exclude_brand: Joi.array().items(Joi.number()),
       item_exclude_category: Joi.array().items(Joi.number()),
       item_exclude_company: Joi.array().items(Joi.number()),
-      item_exclude_department: Joi.array().items(Joi.number()),
       item_exclude_id: Joi.array().items(Joi.number()),
-      item_exclude_l1_category: Joi.array().items(Joi.number()),
-      item_exclude_l2_category: Joi.array().items(Joi.number()),
       item_exclude_sku: Joi.array().items(Joi.string().allow("")),
       item_exclude_store: Joi.array().items(Joi.number()),
       item_id: Joi.array().items(Joi.number()),
-      item_l1_category: Joi.array().items(Joi.number()),
-      item_l2_category: Joi.array().items(Joi.number()),
       item_size: Joi.array().items(Joi.string().allow("")),
       item_sku: Joi.array().items(Joi.string().allow("")),
       item_store: Joi.array().items(Joi.number()),
-      item_tags: Joi.array().items(Joi.string().allow("")),
       product_tags: Joi.array().items(Joi.string().allow("")),
     });
   }
@@ -1055,17 +1036,12 @@ class CartModel {
   static ProductArticle() {
     return Joi.object({
       _custom_json: Joi.any(),
-      cart_item_meta: Joi.any(),
       extra_meta: Joi.any(),
-      gift_card: Joi.any(),
-      identifier: Joi.any(),
-      is_gift_visible: Joi.boolean(),
       parent_item_identifiers: Joi.any(),
       price: CartModel.ArticlePriceInfo(),
       product_group_tags: Joi.array().items(Joi.string().allow("")),
       quantity: Joi.number(),
       seller: CartModel.BaseInfo(),
-      seller_identifier: Joi.string().allow(""),
       size: Joi.string().allow(""),
       store: CartModel.BaseInfo(),
       type: Joi.string().allow(""),
@@ -1274,7 +1250,6 @@ class CartModel {
       delivery_charge: Joi.number(),
       discount: Joi.number(),
       fynd_cash: Joi.number(),
-      gift_card: Joi.number(),
       gst_charges: Joi.number(),
       mrp_total: Joi.number(),
       subtotal: Joi.number(),
@@ -1442,11 +1417,6 @@ class CartModel {
     return Joi.object({
       message: Joi.string().allow(""),
       success: Joi.boolean(),
-    });
-  }
-  static Tags() {
-    return Joi.object({
-      tags: Joi.any(),
     });
   }
   static UpdateAddressResponse() {

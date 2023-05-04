@@ -8,7 +8,6 @@ declare class PosCartModel {
     static AppliedFreeArticlesSchema(): any;
     static AppliedPromotion(): any;
     static ApplyCouponRequest(): any;
-    static ArticleGiftDetailSchema(): any;
     static ArticlePriceInfo(): any;
     static BaseInfo(): any;
     static BasePriceSchema(): any;
@@ -34,7 +33,6 @@ declare class PosCartModel {
     static CheckCartSchema(): any;
     static Coupon(): any;
     static CouponBreakupSchema(): any;
-    static CouponDetails(): any;
     static CouponValidity(): any;
     static DeleteAddressResponse(): any;
     static DiscountRulesAppSchema(): any;
@@ -46,7 +44,6 @@ declare class PosCartModel {
     static GetCouponResponse(): any;
     static GetShareCartLinkRequest(): any;
     static GetShareCartLinkResponse(): any;
-    static GiftDetailSchema(): any;
     static LoyaltyPoints(): any;
     static NetQuantity(): any;
     static OfferItemSchema(): any;
@@ -78,7 +75,6 @@ declare class PosCartModel {
     static ShipmentResponse(): any;
     static StaffCheckoutSchema(): any;
     static StoreDetailsResponse(): any;
-    static Tags(): any;
     static UpdateAddressResponse(): any;
     static UpdateCartDetailResponse(): any;
     static UpdateCartPaymentRequest(): any;

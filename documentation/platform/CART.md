@@ -12332,7 +12332,6 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | _custom_json | string? |  yes  |  |
  | action | [ProductAction](#ProductAction)? |  yes  |  |
  | brand | [BaseInfo](#BaseInfo)? |  yes  |  |
  | categories | [[CategoryInfo](#CategoryInfo)]? |  yes  |  |
@@ -12341,8 +12340,6 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
  | name | string? |  yes  |  |
  | net_quantity | [NetQuantity](#NetQuantity)? |  yes  |  |
  | slug | string? |  yes  | Unique product url name generated via product name and other meta data |
- | tags | [string]? |  yes  |  |
- | teaser_tag | [Tags](#Tags)? |  yes  |  |
  | type | string? |  yes  |  |
  | uid | number? |  yes  |  |
  
@@ -12365,8 +12362,8 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
  | article | [ProductArticle](#ProductArticle)? |  yes  |  |
  | availability | [ProductAvailability](#ProductAvailability)? |  yes  |  |
  | bulk_offer | string? |  yes  |  |
- | coupon | [CouponDetails](#CouponDetails)? |  yes  |  |
  | coupon_message | string? |  yes  |  |
+ | custom_order | string? |  yes  |  |
  | delivery_promise | [ShipmentPromise](#ShipmentPromise)? |  yes  |  |
  | discount | string? |  yes  |  |
  | identifiers | [CartProductIdentifer](#CartProductIdentifer) |  no  |  |
@@ -12567,17 +12564,6 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
 
 ---
 
-#### [CouponDetails](#CouponDetails)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | code | string? |  yes  |  |
- | discount_single_quantity | number? |  yes  |  |
- | discount_total_quantity | number? |  yes  |  |
- 
-
----
-
 #### [CouponPartialUpdate](#CouponPartialUpdate)
 
  | Properties | Type | Nullable | Description |
@@ -12673,7 +12659,6 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | cart_id_list | [string]? |  yes  |  |
- | modified_on | string? |  yes  | Coupon modification date |
  
 
 ---
@@ -12843,7 +12828,6 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
  | category_id | [number]? |  yes  |  |
  | collection_id | [string]? |  yes  |  |
  | company_id | [number]? |  yes  |  |
- | email_domain | [string]? |  yes  |  |
  | exclude_brand_id | [number]? |  yes  |  |
  | item_id | [number]? |  yes  |  |
  | store_id | [number]? |  yes  |  |
@@ -12866,23 +12850,16 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
  | item_brand | [number]? |  yes  |  |
  | item_category | [number]? |  yes  |  |
  | item_company | [number]? |  yes  |  |
- | item_department | [number]? |  yes  |  |
  | item_exclude_brand | [number]? |  yes  |  |
  | item_exclude_category | [number]? |  yes  |  |
  | item_exclude_company | [number]? |  yes  |  |
- | item_exclude_department | [number]? |  yes  |  |
  | item_exclude_id | [number]? |  yes  |  |
- | item_exclude_l1_category | [number]? |  yes  |  |
- | item_exclude_l2_category | [number]? |  yes  |  |
  | item_exclude_sku | [string]? |  yes  |  |
  | item_exclude_store | [number]? |  yes  |  |
  | item_id | [number]? |  yes  |  |
- | item_l1_category | [number]? |  yes  |  |
- | item_l2_category | [number]? |  yes  |  |
  | item_size | [string]? |  yes  |  |
  | item_sku | [string]? |  yes  |  |
  | item_store | [number]? |  yes  |  |
- | item_tags | [string]? |  yes  |  |
  | product_tags | [string]? |  yes  |  |
  
 
@@ -13425,17 +13402,12 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | _custom_json | string? |  yes  |  |
- | cart_item_meta | string? |  yes  |  |
  | extra_meta | string? |  yes  |  |
- | gift_card | string? |  yes  |  |
- | identifier | string? |  yes  |  |
- | is_gift_visible | boolean? |  yes  |  |
  | parent_item_identifiers | string? |  yes  |  |
  | price | [ArticlePriceInfo](#ArticlePriceInfo)? |  yes  |  |
  | product_group_tags | [string]? |  yes  |  |
  | quantity | number? |  yes  |  |
  | seller | [BaseInfo](#BaseInfo)? |  yes  |  |
- | seller_identifier | string? |  yes  |  |
  | size | string? |  yes  |  |
  | store | [BaseInfo](#BaseInfo)? |  yes  |  |
  | type | string? |  yes  |  |
@@ -13708,7 +13680,6 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
  | delivery_charge | number? |  yes  |  |
  | discount | number? |  yes  |  |
  | fynd_cash | number? |  yes  |  |
- | gift_card | number? |  yes  |  |
  | gst_charges | number? |  yes  |  |
  | mrp_total | number? |  yes  |  |
  | subtotal | number? |  yes  |  |
@@ -13936,15 +13907,6 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
  | ---------- | ---- | -------- | ----------- |
  | message | string? |  yes  |  |
  | success | boolean? |  yes  |  |
- 
-
----
-
-#### [Tags](#Tags)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | tags | string? |  yes  |  |
  
 
 ---

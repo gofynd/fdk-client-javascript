@@ -600,8 +600,12 @@ class PlatformApplicationClient {
 /** @typedef PaymentInitializationResponse */
 /** @typedef PaymentModeList */
 /** @typedef PaymentModeLogo */
+/** @typedef PaymentObjectListSerializer */
 /** @typedef PaymentOptions */
 /** @typedef PaymentOptionsResponse */
+/** @typedef PaymentStatusBulkHandlerRequest */
+/** @typedef PaymentStatusBulkHandlerResponse */
+/** @typedef PaymentStatusObject */
 /** @typedef PaymentStatusUpdateRequest */
 /** @typedef PaymentStatusUpdateResponse */
 /** @typedef Payout */
@@ -1558,7 +1562,6 @@ class PlatformApplicationClient {
 /** @typedef CouponAuthorSchema */
 /** @typedef CouponBreakupSchema */
 /** @typedef CouponDateMetaSchema */
-/** @typedef CouponDetails */
 /** @typedef CouponPartialUpdate */
 /** @typedef CouponScheduleSchema */
 /** @typedef CouponsResponse */
@@ -1655,7 +1658,6 @@ class PlatformApplicationClient {
 /** @typedef StateSchema */
 /** @typedef StoreDetailsResponse */
 /** @typedef SuccessMessage */
-/** @typedef Tags */
 /** @typedef UpdateAddressResponse */
 /** @typedef UpdateCartDetailResponse */
 /** @typedef UpdateCartPaymentRequest */

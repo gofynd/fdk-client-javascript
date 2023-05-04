@@ -128,15 +128,14 @@ class PosCart {
    * @param {boolean} [arg.b] -
    * @param {string} [arg.areaCode] -
    * @param {boolean} [arg.buyNow] -
-   * @param {string} [arg.id] -
    * @param {AddCartRequest} arg.body
    * @returns {Promise<AddCartDetailResponse>} - Success response
    * @summary: Add items to cart
    * @description: Use this API to add items to the cart.
    */
-  async addItems({ body, i, b, areaCode, buyNow, id } = {}) {
+  async addItems({ body, i, b, areaCode, buyNow } = {}) {
     const { error } = PosCartValidator.addItems().validate(
-      { body, i, b, areaCode, buyNow, id },
+      { body, i, b, areaCode, buyNow },
       { abortEarly: false, allowUnknown: true }
     );
     if (error) {
@@ -145,7 +144,7 @@ class PosCart {
 
     // Showing warrnings if extra unknown parameters are found
     const { error: warrning } = PosCartValidator.addItems().validate(
-      { body, i, b, areaCode, buyNow, id },
+      { body, i, b, areaCode, buyNow },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
@@ -161,7 +160,6 @@ class PosCart {
     query_params["b"] = b;
     query_params["area_code"] = areaCode;
     query_params["buy_now"] = buyNow;
-    query_params["id"] = id;
 
     const xHeaders = {};
 

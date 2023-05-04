@@ -50,18 +50,16 @@ declare class Cart {
      * @param {boolean} [arg.b] -
      * @param {string} [arg.areaCode] -
      * @param {boolean} [arg.buyNow] -
-     * @param {string} [arg.id] -
      * @param {AddCartRequest} arg.body
      * @returns {Promise<AddCartDetailResponse>} - Success response
      * @summary: Add items to cart
      * @description: Use this API to add items to the cart.
      */
-    addItems({ body, i, b, areaCode, buyNow, id }?: {
+    addItems({ body, i, b, areaCode, buyNow }?: {
         i?: boolean;
         b?: boolean;
         areaCode?: string;
         buyNow?: boolean;
-        id?: string;
         body: AddCartRequest;
     }): Promise<AddCartDetailResponse>;
     /**
@@ -297,16 +295,14 @@ declare class Cart {
      *   /service/application/catalog/v1.0/products/
      * @param {number} [arg.pageSize] - Number of offers to be fetched to show
      * @param {string} [arg.promotionGroup] - Type of promotion groups
-     * @param {number} [arg.storeId] - Store id
      * @returns {Promise<PromotionOffersResponse>} - Success response
      * @summary: Fetch available promotions
      * @description: Use this API to get top 5 offers available for current product
      */
-    getPromotionOffers({ slug, pageSize, promotionGroup, storeId }?: {
+    getPromotionOffers({ slug, pageSize, promotionGroup }?: {
         slug?: string;
         pageSize?: number;
         promotionGroup?: string;
-        storeId?: number;
     }): Promise<PromotionOffersResponse>;
     /**
      * @param {Object} arg - Arg object.

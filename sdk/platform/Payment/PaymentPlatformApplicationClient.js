@@ -1141,6 +1141,67 @@ class Payment {
 
   /**
    * @param {Object} arg - Arg object.
+   * @param {PaymentStatusBulkHandlerRequest} arg.body
+   * @returns {Promise<PaymentStatusBulkHandlerResponse>} - Success response
+   * @summary: Get Payment status and information for a list of order_ids
+   * @description: Use this API to get Payment status and information for a list of order_ids
+   */
+  async paymentStatusBulk({ body } = {}) {
+    const { error } = PaymentValidator.paymentStatusBulk().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = PaymentValidator.paymentStatusBulk().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for paymentStatusBulk",
+      });
+      Logger({ level: "WARN", message: warrning });
+    }
+
+    const query_params = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/payment/v1.0/company/${this.config.companyId}/application/${this.applicationId}/payment/payment-status-bulk/`,
+      query_params,
+      body
+    );
+
+    const {
+      error: res_error,
+    } = PaymentModel.PaymentStatusBulkHandlerResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for paymentStatusBulk",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
    * @param {ResendOrCancelPaymentRequest} arg.body
    * @returns {Promise<ResendOrCancelPaymentResponse>} - Success response
    * @summary: API to resend and cancel a payment link which was already generated.

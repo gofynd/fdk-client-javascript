@@ -14,7 +14,6 @@ class PosCartValidator {
       b: Joi.boolean(),
       areaCode: Joi.string().allow(""),
       buyNow: Joi.boolean(),
-      id: Joi.string().allow(""),
       body: PosCartModel.AddCartRequest().required(),
     }).required();
   }

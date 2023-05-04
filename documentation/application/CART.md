@@ -114,16 +114,14 @@ const promise = applicationClient.cart.addItems({  body : value,
  i : value,
  b : value,
  areaCode : value,
- buyNow : value,
- id : value });
+ buyNow : value });
 
 // Async/Await
 const data = await applicationClient.cart.addItems({  body : value,
  i : value,
  b : value,
  areaCode : value,
- buyNow : value,
- id : value });
+ buyNow : value });
 ```
 
 
@@ -135,8 +133,7 @@ const data = await applicationClient.cart.addItems({  body : value,
 | i | boolean | no |  |    
 | b | boolean | no |  |    
 | areaCode | string | no |  |    
-| buyNow | boolean | no |  |    
-| id | string | no |  |  
+| buyNow | boolean | no |  |  
 | body | [AddCartRequest](#AddCartRequest) | yes | Request body |
 
 
@@ -1356,7 +1353,6 @@ Success. Returns a cart object as shown below. Refer `AddCartDetailResponse` for
         "raw": {
           "cod_charge": 0,
           "convenience_fee": 0,
-          "gift_card": 0,
           "coupon": 0,
           "delivery_charge": 0,
           "discount": -202000,
@@ -1377,12 +1373,6 @@ Success. Returns a cart object as shown below. Refer `AddCartDetailResponse` for
           "message": "Sorry! Invalid Coupon"
         },
         "display": [
-          {
-            "display": "Gift Card",
-            "key": "gift_card",
-            "value": 0,
-            "currency_code": "INR"
-          },
           {
             "display": "MRP Total",
             "key": "mrp_total",
@@ -1426,13 +1416,6 @@ Success. Returns a cart object as shown below. Refer `AddCartDetailResponse` for
           },
           "article": {
             "type": "article",
-            "is_gift_visible": true,
-            "gift_card": {
-              "display_text": "",
-              "price": 30,
-              "gift_message": "",
-              "is_gift_applied": true
-            },
             "uid": "604_902_SSTC60401_636BLUE_1",
             "size": "1",
             "seller": {
@@ -4226,8 +4209,7 @@ Success. Returns an Address object containing a list of address saved in the acc
       "name": "abc",
       "email": "ankur@gofynd1.com",
       "address": "Megatron2",
-      "store_name": "store123",
-      "_custom_json": {}
+      "store_name": "store123"
     }
   ]
 }
@@ -6042,14 +6024,12 @@ Fetch available promotions
 // Promise
 const promise = applicationClient.cart.getPromotionOffers({  slug : value,
  pageSize : value,
- promotionGroup : value,
- storeId : value });
+ promotionGroup : value });
 
 // Async/Await
 const data = await applicationClient.cart.getPromotionOffers({  slug : value,
  pageSize : value,
- promotionGroup : value,
- storeId : value });
+ promotionGroup : value });
 ```
 
 
@@ -6060,8 +6040,7 @@ const data = await applicationClient.cart.getPromotionOffers({  slug : value,
 | --------- | -----  | -------- | ----------- |  
 | slug | string | no | A short, human-readable, URL-friendly identifier of a product. You can get slug value from the endpoint /service/application/catalog/v1.0/products/ |    
 | pageSize | number | no | Number of offers to be fetched to show |    
-| promotionGroup | string | no | Type of promotion groups |    
-| storeId | number | no | Store id |  
+| promotionGroup | string | no | Type of promotion groups |  
 
 
 
@@ -7922,7 +7901,6 @@ Success. Updates and returns a cart object as shown below. Refer `UpdateCartDeta
         "raw": {
           "cod_charge": 0,
           "convenience_fee": 0,
-          "gift_card": 30,
           "coupon": 0,
           "delivery_charge": 0,
           "discount": -202000,
@@ -7943,12 +7921,6 @@ Success. Updates and returns a cart object as shown below. Refer `UpdateCartDeta
           "message": "Sorry! Invalid Coupon"
         },
         "display": [
-          {
-            "display": "Gift Card",
-            "key": "gift_card",
-            "value": 30,
-            "currency_code": "INR"
-          },
           {
             "display": "MRP Total",
             "key": "mrp_total",
@@ -7992,13 +7964,6 @@ Success. Updates and returns a cart object as shown below. Refer `UpdateCartDeta
           },
           "article": {
             "type": "article",
-            "is_gift_visible": true,
-            "gift_card": {
-              "display_text": "",
-              "price": 30,
-              "gift_message": "",
-              "is_gift_applied": true
-            },
             "uid": "604_902_SSTC60401_636BLUE_1",
             "size": "1",
             "seller": {
@@ -9534,7 +9499,6 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | _custom_json | string? |  yes  |  |
  | address | string? |  yes  |  |
  | address_type | string? |  yes  |  |
  | area | string? |  yes  |  |
@@ -9601,15 +9565,6 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | coupon_code | string |  no  | Coupon code to be applied |
- 
-
----
-
-#### [ArticleGiftDetailSchema](#ArticleGiftDetailSchema)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | article_id | [GiftDetailSchema](#GiftDetailSchema)? |  yes  |  |
  
 
 ---
@@ -9709,7 +9664,6 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
  | custom_meta | [[CartCheckoutCustomMetaSchema](#CartCheckoutCustomMetaSchema)]? |  yes  |  |
  | delivery_address | string? |  yes  |  |
  | extra_meta | string? |  yes  |  |
- | id | string? |  yes  |  |
  | merchant_code | string? |  yes  |  |
  | meta | string? |  yes  |  |
  | ordering_store | number? |  yes  |  |
@@ -9735,7 +9689,6 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
  | custom_meta | string? |  yes  |  |
  | delivery_address | string? |  yes  |  |
  | extra_meta | string? |  yes  |  |
- | id | string? |  yes  |  |
  | merchant_code | string? |  yes  |  |
  | meta | string? |  yes  |  |
  | ordering_store | number? |  yes  |  |
@@ -9826,7 +9779,6 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
  | ---------- | ---- | -------- | ----------- |
  | checkout_mode | string? |  yes  |  |
  | comment | string? |  yes  |  |
- | gift_details | [ArticleGiftDetailSchema](#ArticleGiftDetailSchema)? |  yes  |  |
  | gstin | string? |  yes  |  |
  | pick_up_customer_details | string? |  yes  | Customer contact details for customer pickup at store |
  
@@ -9846,7 +9798,6 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | _custom_json | string? |  yes  |  |
  | action | [ProductAction](#ProductAction)? |  yes  |  |
  | brand | [BaseInfo](#BaseInfo)? |  yes  |  |
  | categories | [[CategoryInfo](#CategoryInfo)]? |  yes  |  |
@@ -9855,8 +9806,6 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
  | name | string? |  yes  |  |
  | net_quantity | [NetQuantity](#NetQuantity)? |  yes  |  |
  | slug | string? |  yes  | Unique product url name generated via product name and other meta data |
- | tags | [string]? |  yes  |  |
- | teaser_tag | [Tags](#Tags)? |  yes  |  |
  | type | string? |  yes  |  |
  | uid | number? |  yes  |  |
  
@@ -9879,8 +9828,8 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
  | article | [ProductArticle](#ProductArticle)? |  yes  |  |
  | availability | [ProductAvailability](#ProductAvailability)? |  yes  |  |
  | bulk_offer | string? |  yes  |  |
- | coupon | [CouponDetails](#CouponDetails)? |  yes  |  |
  | coupon_message | string? |  yes  |  |
+ | custom_order | string? |  yes  |  |
  | delivery_promise | [ShipmentPromise](#ShipmentPromise)? |  yes  |  |
  | discount | string? |  yes  |  |
  | identifiers | [CartProductIdentifer](#CartProductIdentifer) |  no  |  |
@@ -10010,17 +9959,6 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
  | type | string? |  yes  |  |
  | uid | string? |  yes  |  |
  | value | number? |  yes  |  |
- 
-
----
-
-#### [CouponDetails](#CouponDetails)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | code | string? |  yes  |  |
- | discount_single_quantity | number? |  yes  |  |
- | discount_total_quantity | number? |  yes  |  |
  
 
 ---
@@ -10168,16 +10106,6 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
  | ---------- | ---- | -------- | ----------- |
  | share_url | string? |  yes  | Short shareable final url |
  | token | string? |  yes  | Short url unique id |
- 
-
----
-
-#### [GiftDetailSchema](#GiftDetailSchema)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | gift_message | string? |  yes  |  |
- | is_gift_applied | boolean? |  yes  |  |
  
 
 ---
@@ -10392,17 +10320,12 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | _custom_json | string? |  yes  |  |
- | cart_item_meta | string? |  yes  |  |
  | extra_meta | string? |  yes  |  |
- | gift_card | string? |  yes  |  |
- | identifier | string? |  yes  |  |
- | is_gift_visible | boolean? |  yes  |  |
  | parent_item_identifiers | string? |  yes  |  |
  | price | [ArticlePriceInfo](#ArticlePriceInfo)? |  yes  |  |
  | product_group_tags | [string]? |  yes  |  |
  | quantity | number? |  yes  |  |
  | seller | [BaseInfo](#BaseInfo)? |  yes  |  |
- | seller_identifier | string? |  yes  |  |
  | size | string? |  yes  |  |
  | store | [BaseInfo](#BaseInfo)? |  yes  |  |
  | type | string? |  yes  |  |
@@ -10535,7 +10458,6 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
  | delivery_charge | number? |  yes  |  |
  | discount | number? |  yes  |  |
  | fynd_cash | number? |  yes  |  |
- | gift_card | number? |  yes  |  |
  | gst_charges | number? |  yes  |  |
  | mrp_total | number? |  yes  |  |
  | subtotal | number? |  yes  |  |
@@ -10664,15 +10586,6 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
  | first_name | string |  no  |  |
  | last_name | string |  no  |  |
  | user | string |  no  |  |
- 
-
----
-
-#### [Tags](#Tags)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | tags | string? |  yes  |  |
  
 
 ---

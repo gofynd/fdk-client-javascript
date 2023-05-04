@@ -39,7 +39,6 @@ declare class CartModel {
     static CouponAuthorSchema(): any;
     static CouponBreakupSchema(): any;
     static CouponDateMetaSchema(): any;
-    static CouponDetails(): any;
     static CouponPartialUpdate(): any;
     static CouponScheduleSchema(): any;
     static CouponsResponse(): any;
@@ -136,7 +135,6 @@ declare class CartModel {
     static StateSchema(): any;
     static StoreDetailsResponse(): any;
     static SuccessMessage(): any;
-    static Tags(): any;
     static UpdateAddressResponse(): any;
     static UpdateCartDetailResponse(): any;
     static UpdateCartPaymentRequest(): any;
