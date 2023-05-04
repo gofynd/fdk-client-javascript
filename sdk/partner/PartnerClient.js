@@ -1,6 +1,6 @@
 const { FDKClientValidationError } = require("../common/FDKError");
 
-class Client {
+class PartnerClient {
   constructor(config) {
     this.config = config;
   }
@@ -14,4 +14,4 @@ class Client {
   }
 }
 
-module.exports = Client;
+module.exports = PartnerClient;
