@@ -35,7 +35,7 @@ class PosCartValidator {
       i: Joi.boolean(),
       b: Joi.boolean(),
       buyNow: Joi.boolean(),
-      body: PosCartModel.RewardPointRequestSchema().required(),
+      body: PosCartModel.RewardPointRequest().required(),
     }).required();
   }
 

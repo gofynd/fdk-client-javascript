@@ -11235,7 +11235,7 @@ class PlatformClient {
  * @property {string} user_id
  */
 /**
- * @typedef AbandonedCartResponseSchema
+ * @typedef AbandonedCartResponse
  * @property {AbandonedCart[]} [items]
  * @property {string} [message]
  * @property {Page} [page]
@@ -11287,19 +11287,19 @@ class PlatformClient {
  * @property {number} [store_id]
  */
 /**
- * @typedef AppliedFreeArticlesSchema
+ * @typedef AppliedFreeArticles
  * @property {string} [article_id]
- * @property {FreeGiftItemSchema} [free_gift_item_details]
+ * @property {FreeGiftItem} [free_gift_item_details]
  * @property {string} [parent_item_identifier]
  * @property {number} [quantity]
  */
 /**
  * @typedef AppliedPromotion
  * @property {number} [amount]
- * @property {AppliedFreeArticlesSchema[]} [applied_free_articles]
+ * @property {AppliedFreeArticles[]} [applied_free_articles]
  * @property {number} [article_quantity]
- * @property {BuyRulesSchema[]} [buy_rules]
- * @property {DiscountRulesAppSchema[]} [discount_rules]
+ * @property {BuyRules[]} [buy_rules]
+ * @property {DiscountRulesApp[]} [discount_rules]
  * @property {boolean} [mrp_promotion]
  * @property {string} [offer_text]
  * @property {string} [promo_id]
@@ -11313,8 +11313,8 @@ class PlatformClient {
  */
 /**
  * @typedef ArticlePriceInfo
- * @property {BasePriceSchema} [base]
- * @property {BasePriceSchema} [converted]
+ * @property {BasePrice} [base]
+ * @property {BasePrice} [converted]
  */
 /**
  * @typedef BaseInfo
@@ -11322,7 +11322,7 @@ class PlatformClient {
  * @property {number} [uid]
  */
 /**
- * @typedef BasePriceSchema
+ * @typedef BasePrice
  * @property {string} [currency_code]
  * @property {string} [currency_symbol]
  * @property {number} [effective]
@@ -11333,22 +11333,22 @@ class PlatformClient {
  * @property {boolean} multi_store_allowed
  */
 /**
- * @typedef BuyRulesSchema
+ * @typedef BuyRules
  * @property {Object} [cart_conditions]
  * @property {Object} [item_criteria]
  */
 /**
- * @typedef CartBreakupSchema
- * @property {CouponBreakupSchema} [coupon]
- * @property {DisplayBreakupSchema[]} [display]
+ * @typedef CartBreakup
+ * @property {CouponBreakup} [coupon]
+ * @property {DisplayBreakup[]} [display]
  * @property {LoyaltyPoints} [loyalty_points]
- * @property {RawBreakupSchema} [raw]
+ * @property {RawBreakup} [raw]
  */
 /**
- * @typedef CartCheckoutResponseSchema
+ * @typedef CartCheckoutResponse
  * @property {string} [app_intercept_url]
  * @property {string} [callback_url]
- * @property {CheckCartSchema} [cart]
+ * @property {CheckCart} [cart]
  * @property {Object} [data]
  * @property {string} [message]
  * @property {string} [order_id]
@@ -11356,7 +11356,7 @@ class PlatformClient {
  * @property {boolean} [success]
  */
 /**
- * @typedef CartCurrencySchema
+ * @typedef CartCurrency
  * @property {string} [code]
  * @property {string} [symbol]
  */
@@ -11367,12 +11367,12 @@ class PlatformClient {
  */
 /**
  * @typedef CartDetailResponse
- * @property {CartBreakupSchema} [breakup_values]
+ * @property {CartBreakup} [breakup_values]
  * @property {boolean} [buy_now]
  * @property {string} [checkout_mode]
  * @property {string} [comment]
  * @property {string} [coupon_text]
- * @property {CartCurrencySchema} [currency]
+ * @property {CartCurrency} [currency]
  * @property {string} [delivery_charge_info]
  * @property {ShipmentPromise} [delivery_promise]
  * @property {string} [gstin]
@@ -11387,6 +11387,12 @@ class PlatformClient {
  * @property {boolean} [restrict_checkout]
  */
 /**
+ * @typedef CartItem
+ * @property {string} product_id
+ * @property {number} [quantity]
+ * @property {string} size
+ */
+/**
  * @typedef CartItemCountResponse
  * @property {number} [user_cart_items_count]
  */
@@ -11396,13 +11402,7 @@ class PlatformClient {
  * @property {boolean} [primary_item]
  */
 /**
- * @typedef CartItemSchema
- * @property {string} product_id
- * @property {number} [quantity]
- * @property {string} size
- */
-/**
- * @typedef CartListSchema
+ * @typedef CartList
  * @property {string} [cart_id]
  * @property {number} [cart_value]
  * @property {string} [created_on]
@@ -11459,35 +11459,13 @@ class PlatformClient {
  * @property {number} [quantity]
  */
 /**
- * @typedef CartShipmentsResponse
- * @property {CartBreakupSchema} [breakup_values]
- * @property {boolean} [buy_now]
- * @property {number} [cart_id]
- * @property {string} [checkout_mode]
- * @property {string} [comment]
- * @property {string} [coupon_text]
- * @property {CartCurrencySchema} [currency]
- * @property {string} [delivery_charge_info]
- * @property {ShipmentPromise} [delivery_promise]
- * @property {boolean} [error]
- * @property {string} [gstin]
- * @property {string} [id]
- * @property {boolean} [is_valid]
- * @property {string} [last_modified]
- * @property {string} [message]
- * @property {PaymentSelectionLock} [payment_selection_lock]
- * @property {boolean} [restrict_checkout]
- * @property {ShipmentResponse[]} [shipments]
- * @property {string} [uid]
- */
-/**
  * @typedef CategoryInfo
  * @property {string} [name]
  * @property {number} [uid]
  */
 /**
- * @typedef CheckCartSchema
- * @property {CartBreakupSchema} [breakup_values]
+ * @typedef CheckCart
+ * @property {CartBreakup} [breakup_values]
  * @property {boolean} [buy_now]
  * @property {number} [cart_id]
  * @property {string} [checkout_mode]
@@ -11496,7 +11474,7 @@ class PlatformClient {
  * @property {string} [cod_message]
  * @property {string} [comment]
  * @property {string} [coupon_text]
- * @property {CartCurrencySchema} [currency]
+ * @property {CartCurrency} [currency]
  * @property {string} [delivery_charge_info]
  * @property {number} [delivery_charge_order_value]
  * @property {number} [delivery_charges]
@@ -11518,7 +11496,7 @@ class PlatformClient {
  * @property {string} [user_type]
  */
 /**
- * @typedef CompareObjectSchema
+ * @typedef CompareObject
  * @property {number} [equals]
  * @property {number} [greater_than]
  * @property {number} [greater_than_equals]
@@ -11541,36 +11519,36 @@ class PlatformClient {
  * @property {string} [title]
  */
 /**
- * @typedef CouponActionSchema
+ * @typedef CouponAction
  * @property {string} [action_date]
  * @property {string} [txn_mode]
  */
 /**
- * @typedef CouponAddSchema
- * @property {CouponScheduleSchema} [_schedule]
- * @property {CouponActionSchema} [action]
- * @property {CouponAuthorSchema} [author]
+ * @typedef CouponAdd
+ * @property {CouponSchedule} [_schedule]
+ * @property {CouponAction} [action]
+ * @property {CouponAuthor} [author]
  * @property {string} code
- * @property {CouponDateMetaSchema} [date_meta]
- * @property {DisplayMetaSchema} display_meta
- * @property {IdentifierSchema} identifiers
- * @property {OwnershipSchema} ownership
- * @property {RestrictionsSchema} [restrictions]
- * @property {RuleSchema[]} rule
- * @property {RuleDefinitionSchema} rule_definition
- * @property {StateSchema} [state]
+ * @property {CouponDateMeta} [date_meta]
+ * @property {DisplayMeta} display_meta
+ * @property {Identifier} identifiers
+ * @property {Ownership} ownership
+ * @property {Restrictions} [restrictions]
+ * @property {Rule[]} rule
+ * @property {RuleDefinition} rule_definition
+ * @property {State} [state]
  * @property {string[]} [tags]
  * @property {string} type_slug
- * @property {ValidationSchema} [validation]
- * @property {ValiditySchema} validity
+ * @property {Validation} [validation]
+ * @property {Validity} validity
  */
 /**
- * @typedef CouponAuthorSchema
+ * @typedef CouponAuthor
  * @property {string} [created_by]
  * @property {string} [modified_by]
  */
 /**
- * @typedef CouponBreakupSchema
+ * @typedef CouponBreakup
  * @property {string} [code]
  * @property {string} [coupon_type]
  * @property {number} [coupon_value]
@@ -11586,7 +11564,7 @@ class PlatformClient {
  * @property {number} [value]
  */
 /**
- * @typedef CouponDateMetaSchema
+ * @typedef CouponDateMeta
  * @property {string} [created_on]
  * @property {string} [modified_on]
  */
@@ -11599,10 +11577,10 @@ class PlatformClient {
 /**
  * @typedef CouponPartialUpdate
  * @property {boolean} [archive]
- * @property {CouponScheduleSchema} [schedule]
+ * @property {CouponSchedule} [schedule]
  */
 /**
- * @typedef CouponScheduleSchema
+ * @typedef CouponSchedule
  * @property {string} [cron]
  * @property {number} [duration]
  * @property {string} [end]
@@ -11611,27 +11589,27 @@ class PlatformClient {
  */
 /**
  * @typedef CouponsResponse
- * @property {CouponAddSchema} [items]
+ * @property {CouponAdd} [items]
  * @property {Page} [page]
  */
 /**
- * @typedef CouponUpdateSchema
- * @property {CouponScheduleSchema} [_schedule]
- * @property {CouponActionSchema} [action]
- * @property {CouponAuthorSchema} [author]
+ * @typedef CouponUpdate
+ * @property {CouponSchedule} [_schedule]
+ * @property {CouponAction} [action]
+ * @property {CouponAuthor} [author]
  * @property {string} code
- * @property {CouponDateMetaSchema} [date_meta]
- * @property {DisplayMetaSchema} display_meta
- * @property {IdentifierSchema} identifiers
- * @property {OwnershipSchema} ownership
- * @property {RestrictionsSchema} [restrictions]
- * @property {RuleSchema[]} rule
- * @property {RuleDefinitionSchema} rule_definition
- * @property {StateSchema} [state]
+ * @property {CouponDateMeta} [date_meta]
+ * @property {DisplayMeta} display_meta
+ * @property {Identifier} identifiers
+ * @property {Ownership} ownership
+ * @property {Restrictions} [restrictions]
+ * @property {Rule[]} rule
+ * @property {RuleDefinition} rule_definition
+ * @property {State} [state]
  * @property {string[]} [tags]
  * @property {string} type_slug
- * @property {ValidationSchema} [validation]
- * @property {ValiditySchema} validity
+ * @property {Validation} [validation]
+ * @property {Validity} validity
  */
 /**
  * @typedef CouponValidity
@@ -11656,7 +11634,7 @@ class PlatformClient {
  * @property {string[]} [cart_id_list]
  */
 /**
- * @typedef DiscountOfferSchema
+ * @typedef DiscountOffer
  * @property {boolean} [apportion_discount]
  * @property {string} [code]
  * @property {number} [discount_amount]
@@ -11669,21 +11647,21 @@ class PlatformClient {
  * @property {boolean} [partial_can_ret]
  */
 /**
- * @typedef DiscountRulesAppSchema
+ * @typedef DiscountRule
+ * @property {string} buy_condition
+ * @property {string} discount_type
+ * @property {ItemCriteria} item_criteria
+ * @property {DiscountOffer} offer
+ */
+/**
+ * @typedef DiscountRulesApp
  * @property {Object} [item_criteria]
  * @property {string[]} [matched_buy_rules]
  * @property {Object} [offer]
  * @property {Object} [raw_offer]
  */
 /**
- * @typedef DiscountRuleSchema
- * @property {string} buy_condition
- * @property {string} discount_type
- * @property {ItemCriteriaSchema} item_criteria
- * @property {DiscountOfferSchema} offer
- */
-/**
- * @typedef DisplayBreakupSchema
+ * @typedef DisplayBreakup
  * @property {string} [currency_code]
  * @property {string} [currency_symbol]
  * @property {string} [display]
@@ -11692,32 +11670,32 @@ class PlatformClient {
  * @property {number} [value]
  */
 /**
- * @typedef DisplayMetaDictSchema
- * @property {string} [subtitle]
- * @property {string} [title]
- */
-/**
- * @typedef DisplayMetaSchema
- * @property {DisplayMetaDictSchema} [apply]
- * @property {DisplayMetaDictSchema} [auto]
+ * @typedef DisplayMeta
+ * @property {DisplayMetaDict} [apply]
+ * @property {DisplayMetaDict} [auto]
  * @property {string} [description]
- * @property {DisplayMetaDictSchema} [remove]
+ * @property {DisplayMetaDict} [remove]
  * @property {string} [subtitle]
  * @property {string} [title]
  */
 /**
- * @typedef DisplayMetaSchema1
+ * @typedef DisplayMeta1
  * @property {string} [description]
  * @property {string} [name]
  * @property {string} [offer_text]
  */
 /**
- * @typedef FilesSchema
+ * @typedef DisplayMetaDict
+ * @property {string} [subtitle]
+ * @property {string} [title]
+ */
+/**
+ * @typedef Files
  * @property {string} key
  * @property {string[]} values
  */
 /**
- * @typedef FreeGiftItemSchema
+ * @typedef FreeGiftItem
  * @property {string} [item_brand_name]
  * @property {number} [item_id]
  * @property {string[]} [item_images_url]
@@ -11733,7 +11711,7 @@ class PlatformClient {
 /**
  * @typedef GetCouponResponse
  * @property {Coupon[]} [available_coupon_list]
- * @property {PageCouponSchema} [page]
+ * @property {PageCoupon} [page]
  */
 /**
  * @typedef GetShareCartLinkRequest
@@ -11746,7 +11724,7 @@ class PlatformClient {
  * @property {string} [token]
  */
 /**
- * @typedef IdentifierSchema
+ * @typedef Identifier
  * @property {string[]} [article_id]
  * @property {number[]} [brand_id]
  * @property {number[]} [category_id]
@@ -11759,14 +11737,14 @@ class PlatformClient {
  * @property {string[]} [user_id]
  */
 /**
- * @typedef ItemCriteriaSchema
+ * @typedef ItemCriteria
  * @property {boolean} [all_items]
  * @property {string[]} [available_zones]
  * @property {string[]} [buy_rules]
- * @property {CompareObjectSchema} [cart_quantity]
- * @property {CompareObjectSchema} [cart_total]
- * @property {CompareObjectSchema} [cart_unique_item_amount]
- * @property {CompareObjectSchema} [cart_unique_item_quantity]
+ * @property {CompareObject} [cart_quantity]
+ * @property {CompareObject} [cart_total]
+ * @property {CompareObject} [cart_unique_item_amount]
+ * @property {CompareObject} [cart_unique_item_quantity]
  * @property {number[]} [item_brand]
  * @property {number[]} [item_category]
  * @property {number[]} [item_company]
@@ -11789,8 +11767,8 @@ class PlatformClient {
  * @property {number} [total]
  */
 /**
- * @typedef MultiCartResponseSchema
- * @property {CartListSchema[]} [data]
+ * @typedef MultiCartResponse
+ * @property {CartList[]} [data]
  * @property {boolean} [success]
  */
 /**
@@ -11810,23 +11788,23 @@ class PlatformClient {
  */
 /**
  * @typedef OpenapiCartDetailsRequest
- * @property {CartItemSchema} [cart_items]
+ * @property {CartItem} [cart_items]
  */
 /**
  * @typedef OpenapiCartDetailsResponse
- * @property {CartBreakupSchema} [breakup_values]
+ * @property {CartBreakup} [breakup_values]
  * @property {boolean} [is_valid]
  * @property {CartProductInfo[]} [items]
  * @property {string} [message]
  */
 /**
  * @typedef OpenApiCartServiceabilityRequest
- * @property {CartItemSchema} [cart_items]
- * @property {ShippingAddressSchema} shipping_address
+ * @property {CartItem} [cart_items]
+ * @property {ShippingAddress} shipping_address
  */
 /**
  * @typedef OpenApiCartServiceabilityResponse
- * @property {CartBreakupSchema} [breakup_values]
+ * @property {CartBreakup} [breakup_values]
  * @property {ShipmentPromise} [delivery_promise]
  * @property {boolean} [is_valid]
  * @property {CartProductInfo[]} [items]
@@ -11846,12 +11824,12 @@ class PlatformClient {
  * @property {boolean} [success]
  */
 /**
- * @typedef OpenApiFilesSchema
+ * @typedef OpenApiFiles
  * @property {string} key
  * @property {string[]} values
  */
 /**
- * @typedef OpenApiOrderItemSchema
+ * @typedef OpenApiOrderItem
  * @property {number} amount_paid
  * @property {number} cashback_applied
  * @property {number} cod_charges
@@ -11860,7 +11838,7 @@ class PlatformClient {
  * @property {number} discount
  * @property {number} [employee_discount]
  * @property {Object} [extra_meta]
- * @property {OpenApiFilesSchema[]} [files]
+ * @property {OpenApiFiles[]} [files]
  * @property {number} [loyalty_discount]
  * @property {CartItemMeta} [meta]
  * @property {MultiTenderPaymentMethod[]} payment_methods
@@ -11871,10 +11849,10 @@ class PlatformClient {
  * @property {string} size
  */
 /**
- * @typedef OpenApiPlatformCheckoutReqSchema
+ * @typedef OpenApiPlatformCheckoutReq
  * @property {string} [affiliate_order_id]
- * @property {ShippingAddressSchema} billing_address
- * @property {OpenApiOrderItemSchema[]} cart_items
+ * @property {ShippingAddress} billing_address
+ * @property {OpenApiOrderItem[]} cart_items
  * @property {number} cart_value
  * @property {number} cashback_applied
  * @property {number} cod_charges
@@ -11885,13 +11863,13 @@ class PlatformClient {
  * @property {string} [currency_code]
  * @property {number} delivery_charges
  * @property {Object} [employee_discount]
- * @property {OpenApiFilesSchema[]} [files]
+ * @property {OpenApiFiles[]} [files]
  * @property {string} [gstin]
  * @property {number} [loyalty_discount]
  * @property {string} [order_id]
  * @property {MultiTenderPaymentMethod[]} payment_methods
  * @property {string} [payment_mode]
- * @property {ShippingAddressSchema} [shipping_address]
+ * @property {ShippingAddress} [shipping_address]
  */
 /**
  * @typedef OperationErrorResponse
@@ -11899,12 +11877,12 @@ class PlatformClient {
  * @property {boolean} [success]
  */
 /**
- * @typedef OwnershipSchema
+ * @typedef Ownership
  * @property {string} payable_by
  * @property {string} payable_category
  */
 /**
- * @typedef OwnershipSchema1
+ * @typedef Ownership1
  * @property {string} payable_by
  * @property {string} payable_category
  */
@@ -11919,7 +11897,7 @@ class PlatformClient {
  * @property {string} type
  */
 /**
- * @typedef PageCouponSchema
+ * @typedef PageCoupon
  * @property {number} [current]
  * @property {boolean} [has_next]
  * @property {boolean} [has_previous]
@@ -11927,40 +11905,40 @@ class PlatformClient {
  * @property {number} [total_item_count]
  */
 /**
- * @typedef PaymentAllowValueSchema
+ * @typedef PaymentAllowValue
  * @property {number} [max]
  */
 /**
- * @typedef PaymentAllowValueSchema1
+ * @typedef PaymentAllowValue1
  * @property {number} [max]
  */
 /**
- * @typedef PaymentCouponValidateSchema
+ * @typedef PaymentCouponValidate
  * @property {CouponValidity} [coupon_validity]
  * @property {string} [message]
  * @property {boolean} success
  */
 /**
- * @typedef PaymentMetaSchema
+ * @typedef PaymentMeta
  * @property {string} [merchant_code]
  * @property {string} [payment_gateway]
  * @property {string} [payment_identifier]
  * @property {string} [type]
  */
 /**
- * @typedef PaymentMethodSchema
+ * @typedef PaymentMethod
  * @property {number} [amount]
  * @property {string} mode
  * @property {string} [name]
  * @property {string} [payment]
- * @property {PaymentMetaSchema} payment_meta
+ * @property {PaymentMeta} payment_meta
  */
 /**
- * @typedef PaymentModesSchema
+ * @typedef PaymentModes
  * @property {string[]} [codes]
  * @property {string[]} [networks]
  * @property {string[]} [types]
- * @property {PaymentAllowValueSchema} [uses]
+ * @property {PaymentAllowValue} [uses]
  */
 /**
  * @typedef PaymentSelectionLock
@@ -12026,7 +12004,7 @@ class PlatformClient {
  * @property {string} [device_id]
  * @property {string} [employee_code]
  * @property {Object} [extra_meta]
- * @property {FilesSchema[]} [files]
+ * @property {Files[]} [files]
  * @property {string} id
  * @property {string} [merchant_code]
  * @property {Object} [meta]
@@ -12038,7 +12016,7 @@ class PlatformClient {
  * @property {Object} [payment_params]
  * @property {number} [pick_at_store_uid]
  * @property {boolean} [pos]
- * @property {StaffCheckoutSchema} [staff]
+ * @property {StaffCheckout} [staff]
  * @property {string} user_id
  */
 /**
@@ -12054,7 +12032,7 @@ class PlatformClient {
  * @property {string} [device_id]
  * @property {string} [employee_code]
  * @property {Object} [extra_meta]
- * @property {FilesSchema[]} [files]
+ * @property {Files[]} [files]
  * @property {string} id
  * @property {string} [merchant_code]
  * @property {Object} [meta]
@@ -12062,12 +12040,12 @@ class PlatformClient {
  * @property {number} [ordering_store]
  * @property {boolean} [payment_auto_confirm]
  * @property {string} [payment_identifier]
- * @property {PaymentMethodSchema[]} payment_methods
+ * @property {PaymentMethod[]} payment_methods
  * @property {string} [payment_mode]
  * @property {Object} [payment_params]
  * @property {number} [pick_at_store_uid]
  * @property {boolean} [pos]
- * @property {StaffCheckoutSchema} [staff]
+ * @property {StaffCheckout} [staff]
  * @property {string} user_id
  */
 /**
@@ -12078,6 +12056,29 @@ class PlatformClient {
  * @property {string} [gstin]
  * @property {string} [pan_no]
  * @property {Object} [pick_up_customer_details]
+ */
+/**
+ * @typedef PlatformCartShipmentsResponse
+ * @property {CartBreakup} [breakup_values]
+ * @property {boolean} [buy_now]
+ * @property {string} [checkout_mode]
+ * @property {string} [comment]
+ * @property {string} [coupon_text]
+ * @property {CartCurrency} [currency]
+ * @property {string} [delivery_charge_info]
+ * @property {ShipmentPromise} [delivery_promise]
+ * @property {boolean} [error]
+ * @property {string} [gstin]
+ * @property {string} [id]
+ * @property {boolean} [is_valid]
+ * @property {CartProductInfo[]} [items]
+ * @property {string} [last_modified]
+ * @property {string} [message]
+ * @property {Object} [pan_config]
+ * @property {string} [pan_no]
+ * @property {PaymentSelectionLock} [payment_selection_lock]
+ * @property {boolean} [restrict_checkout]
+ * @property {PlatformShipmentResponse[]} [shipments]
  */
 /**
  * @typedef PlatformGetAddressesResponse
@@ -12092,17 +12093,30 @@ class PlatformClient {
  * @property {string} [user_id]
  */
 /**
- * @typedef PostOrderSchema
+ * @typedef PlatformShipmentResponse
+ * @property {ShipmentArticle[]} [articles]
+ * @property {string} [box_type]
+ * @property {string} [dp_id]
+ * @property {Object} [dp_options]
+ * @property {number} [fulfillment_id]
+ * @property {string} [fulfillment_type]
+ * @property {CartProductInfo[]} [items]
+ * @property {ShipmentPromise} [promise]
+ * @property {string} [shipment_type]
+ * @property {number} [shipments]
+ */
+/**
+ * @typedef PostOrder
  * @property {boolean} [cancellation_allowed]
  * @property {boolean} [return_allowed]
  */
 /**
- * @typedef PostOrderSchema1
+ * @typedef PostOrder1
  * @property {boolean} [cancellation_allowed]
  * @property {boolean} [return_allowed]
  */
 /**
- * @typedef PriceRangeSchema
+ * @typedef PriceRange
  * @property {number} [max]
  * @property {number} [min]
  */
@@ -12173,83 +12187,83 @@ class PlatformClient {
  * @property {string} [message]
  */
 /**
- * @typedef PromotionActionSchema
+ * @typedef PromotionAction
  * @property {string} action_date
  * @property {string} action_type
  */
 /**
- * @typedef PromotionAddSchema
+ * @typedef PromotionAdd
  * @property {Object} [_custom_json]
- * @property {PromotionScheduleSchema} [_schedule]
+ * @property {PromotionSchedule} [_schedule]
  * @property {string} application_id
  * @property {boolean} [apply_all_discount]
  * @property {string} [apply_exclusive]
  * @property {number} [apply_priority]
- * @property {PromotionAuthorSchema} [author]
+ * @property {PromotionAuthor} [author]
  * @property {Object} buy_rules
  * @property {string} [calculate_on]
  * @property {string} [code]
  * @property {string} [currency]
- * @property {PromotionDateMetaSchema} [date_meta]
- * @property {DiscountRuleSchema[]} discount_rules
- * @property {DisplayMetaSchema1} display_meta
+ * @property {PromotionDateMeta} [date_meta]
+ * @property {DiscountRule[]} discount_rules
+ * @property {DisplayMeta1} display_meta
  * @property {string} mode
- * @property {OwnershipSchema1} ownership
- * @property {PromotionActionSchema} [post_order_action]
+ * @property {Ownership1} ownership
+ * @property {PromotionAction} [post_order_action]
  * @property {string} promo_group
  * @property {string} promotion_type
- * @property {RestrictionsSchema1} [restrictions]
+ * @property {Restrictions1} [restrictions]
  * @property {boolean} [stackable]
- * @property {VisibilitySchema} [visiblility]
+ * @property {Visibility} [visiblility]
  */
 /**
- * @typedef PromotionAuthorSchema
+ * @typedef PromotionAuthor
  * @property {string} [created_by]
  * @property {string} [modified_by]
  */
 /**
- * @typedef PromotionDateMetaSchema
+ * @typedef PromotionDateMeta
  * @property {string} [created_on]
  * @property {string} [modified_on]
  */
 /**
  * @typedef PromotionListItem
  * @property {Object} [_custom_json]
- * @property {PromotionScheduleSchema} [_schedule]
+ * @property {PromotionSchedule} [_schedule]
  * @property {string} application_id
  * @property {boolean} [apply_all_discount]
  * @property {string} [apply_exclusive]
  * @property {number} [apply_priority]
- * @property {PromotionAuthorSchema} [author]
+ * @property {PromotionAuthor} [author]
  * @property {Object} buy_rules
  * @property {string} [calculate_on]
  * @property {string} [code]
  * @property {string} [currency]
- * @property {PromotionDateMetaSchema} [date_meta]
- * @property {DiscountRuleSchema[]} discount_rules
- * @property {DisplayMetaSchema1} display_meta
+ * @property {PromotionDateMeta} [date_meta]
+ * @property {DiscountRule[]} discount_rules
+ * @property {DisplayMeta1} display_meta
  * @property {string} mode
- * @property {OwnershipSchema1} ownership
- * @property {PromotionActionSchema} [post_order_action]
+ * @property {Ownership1} ownership
+ * @property {PromotionAction} [post_order_action]
  * @property {string} promo_group
  * @property {string} promotion_type
- * @property {RestrictionsSchema1} [restrictions]
+ * @property {Restrictions1} [restrictions]
  * @property {boolean} [stackable]
- * @property {VisibilitySchema} [visiblility]
+ * @property {Visibility} [visiblility]
  */
 /**
  * @typedef PromotionPartialUpdate
  * @property {boolean} [archive]
- * @property {PromotionScheduleSchema} [schedule]
+ * @property {PromotionSchedule} [schedule]
  */
 /**
- * @typedef PromotionPaymentModesSchema
+ * @typedef PromotionPaymentModes
  * @property {string[]} [codes]
  * @property {string} type
- * @property {PaymentAllowValueSchema1} [uses]
+ * @property {PaymentAllowValue1} [uses]
  */
 /**
- * @typedef PromotionScheduleSchema
+ * @typedef PromotionSchedule
  * @property {string} [cron]
  * @property {number} [duration]
  * @property {string} [end]
@@ -12263,32 +12277,32 @@ class PlatformClient {
  * @property {Page} [page]
  */
 /**
- * @typedef PromotionUpdateSchema
+ * @typedef PromotionUpdate
  * @property {Object} [_custom_json]
- * @property {PromotionScheduleSchema} [_schedule]
+ * @property {PromotionSchedule} [_schedule]
  * @property {string} application_id
  * @property {boolean} [apply_all_discount]
  * @property {string} [apply_exclusive]
  * @property {number} [apply_priority]
- * @property {PromotionAuthorSchema} [author]
+ * @property {PromotionAuthor} [author]
  * @property {Object} buy_rules
  * @property {string} [calculate_on]
  * @property {string} [code]
  * @property {string} [currency]
- * @property {PromotionDateMetaSchema} [date_meta]
- * @property {DiscountRuleSchema[]} discount_rules
- * @property {DisplayMetaSchema1} display_meta
+ * @property {PromotionDateMeta} [date_meta]
+ * @property {DiscountRule[]} discount_rules
+ * @property {DisplayMeta1} display_meta
  * @property {string} mode
- * @property {OwnershipSchema1} ownership
- * @property {PromotionActionSchema} [post_order_action]
+ * @property {Ownership1} ownership
+ * @property {PromotionAction} [post_order_action]
  * @property {string} promo_group
  * @property {string} promotion_type
- * @property {RestrictionsSchema1} [restrictions]
+ * @property {Restrictions1} [restrictions]
  * @property {boolean} [stackable]
- * @property {VisibilitySchema} [visiblility]
+ * @property {Visibility} [visiblility]
  */
 /**
- * @typedef RawBreakupSchema
+ * @typedef RawBreakup
  * @property {number} [cod_charge]
  * @property {number} [convenience_fee]
  * @property {number} [coupon]
@@ -12304,32 +12318,40 @@ class PlatformClient {
  * @property {number} [you_saved]
  */
 /**
- * @typedef RestrictionsSchema
+ * @typedef Restrictions
  * @property {BulkBundleRestriction} [bulk_bundle]
  * @property {boolean} [coupon_allowed]
  * @property {number[]} [ordering_stores]
  * @property {Object} [payments]
  * @property {string[]} [platforms]
- * @property {PostOrderSchema} [post_order]
- * @property {PriceRangeSchema} [price_range]
+ * @property {PostOrder} [post_order]
+ * @property {PriceRange} [price_range]
  * @property {number[]} [user_groups]
  * @property {string} [user_type]
- * @property {UsesRestrictionSchema} [uses]
+ * @property {UsesRestriction} [uses]
  */
 /**
- * @typedef RestrictionsSchema1
+ * @typedef Restrictions1
  * @property {boolean} [anonymous_users]
  * @property {number} [order_quantity]
- * @property {PromotionPaymentModesSchema[]} [payments]
+ * @property {PromotionPaymentModes[]} [payments]
  * @property {string[]} [platforms]
- * @property {PostOrderSchema1} [post_order]
+ * @property {PostOrder1} [post_order]
  * @property {number[]} [user_groups]
  * @property {string[]} [user_id]
- * @property {UserRegisteredSchema} [user_registered]
- * @property {UsesRestrictionSchema1} uses
+ * @property {UserRegistered} [user_registered]
+ * @property {UsesRestriction1} uses
  */
 /**
- * @typedef RuleDefinitionSchema
+ * @typedef Rule
+ * @property {number} [discount_qty]
+ * @property {number} [key]
+ * @property {number} [max]
+ * @property {number} [min]
+ * @property {number} [value]
+ */
+/**
+ * @typedef RuleDefinition
  * @property {string} applicable_on
  * @property {boolean} [auto_apply]
  * @property {string} calculate_on
@@ -12340,14 +12362,6 @@ class PlatformClient {
  * @property {string} value_type
  */
 /**
- * @typedef RuleSchema
- * @property {number} [discount_qty]
- * @property {number} [key]
- * @property {number} [max]
- * @property {number} [min]
- * @property {number} [value]
- */
-/**
  * @typedef SaveAddressResponse
  * @property {string} [id]
  * @property {boolean} [is_default_address]
@@ -12355,13 +12369,13 @@ class PlatformClient {
  */
 /**
  * @typedef SharedCart
- * @property {CartBreakupSchema} [breakup_values]
+ * @property {CartBreakup} [breakup_values]
  * @property {boolean} [buy_now]
  * @property {number} [cart_id]
  * @property {string} [checkout_mode]
  * @property {string} [comment]
  * @property {string} [coupon_text]
- * @property {CartCurrencySchema} [currency]
+ * @property {CartCurrency} [currency]
  * @property {string} [delivery_charge_info]
  * @property {ShipmentPromise} [delivery_promise]
  * @property {string} [gstin]
@@ -12389,25 +12403,18 @@ class PlatformClient {
  * @property {string} [error]
  */
 /**
+ * @typedef ShipmentArticle
+ * @property {string} [article_id]
+ * @property {string} [meta]
+ * @property {string} [quantity]
+ */
+/**
  * @typedef ShipmentPromise
  * @property {PromiseFormatted} [formatted]
  * @property {PromiseTimestamp} [timestamp]
  */
 /**
- * @typedef ShipmentResponse
- * @property {string} [box_type]
- * @property {string} [dp_id]
- * @property {Object} [dp_options]
- * @property {number} [fulfillment_id]
- * @property {string} [fulfillment_type]
- * @property {CartProductInfo[]} [items]
- * @property {string} [order_type]
- * @property {ShipmentPromise} [promise]
- * @property {string} [shipment_type]
- * @property {number} [shipments]
- */
-/**
- * @typedef ShippingAddressSchema
+ * @typedef ShippingAddress
  * @property {string} [address]
  * @property {string} [address_type]
  * @property {string} [area]
@@ -12425,7 +12432,7 @@ class PlatformClient {
  * @property {string} [state]
  */
 /**
- * @typedef StaffCheckoutSchema
+ * @typedef StaffCheckout
  * @property {string} _id
  * @property {string} [employee_code]
  * @property {string} first_name
@@ -12433,7 +12440,7 @@ class PlatformClient {
  * @property {string} user
  */
 /**
- * @typedef StateSchema
+ * @typedef State
  * @property {boolean} [is_archived]
  * @property {boolean} [is_display]
  * @property {boolean} [is_public]
@@ -12480,7 +12487,7 @@ class PlatformClient {
  * @property {string} [id]
  * @property {string} [merchant_code]
  * @property {string} [payment_identifier]
- * @property {PaymentMethodSchema[]} [payment_methods]
+ * @property {PaymentMethod[]} [payment_methods]
  * @property {string} [payment_mode]
  */
 /**
@@ -12515,12 +12522,12 @@ class PlatformClient {
  */
 /**
  * @typedef UserCartMappingResponse
- * @property {CartBreakupSchema} [breakup_values]
+ * @property {CartBreakup} [breakup_values]
  * @property {boolean} [buy_now]
  * @property {string} [checkout_mode]
  * @property {string} [comment]
  * @property {string} [coupon_text]
- * @property {CartCurrencySchema} [currency]
+ * @property {CartCurrency} [currency]
  * @property {string} [delivery_charge_info]
  * @property {ShipmentPromise} [delivery_promise]
  * @property {string} [gstin]
@@ -12533,10 +12540,10 @@ class PlatformClient {
  * @property {string} [pan_no]
  * @property {PaymentSelectionLock} [payment_selection_lock]
  * @property {boolean} [restrict_checkout]
- * @property {UserInfoSchema} [user]
+ * @property {UserInfo} [user]
  */
 /**
- * @typedef UserInfoSchema
+ * @typedef UserInfo
  * @property {string} [_id]
  * @property {string} [created_at]
  * @property {string} [external_id]
@@ -12548,43 +12555,43 @@ class PlatformClient {
  * @property {string} [uid]
  */
 /**
- * @typedef UserRegisteredSchema
+ * @typedef UserRegistered
  * @property {string} [end]
  * @property {string} [start]
  */
 /**
- * @typedef UsesRemainingSchema
+ * @typedef UsesRemaining
  * @property {number} [app]
  * @property {number} [total]
  * @property {number} [user]
  */
 /**
- * @typedef UsesRemainingSchema1
+ * @typedef UsesRemaining1
  * @property {number} [total]
  * @property {number} [user]
  */
 /**
- * @typedef UsesRestrictionSchema
- * @property {UsesRemainingSchema} [maximum]
- * @property {UsesRemainingSchema} [remaining]
+ * @typedef UsesRestriction
+ * @property {UsesRemaining} [maximum]
+ * @property {UsesRemaining} [remaining]
  */
 /**
- * @typedef UsesRestrictionSchema1
- * @property {UsesRemainingSchema1} [maximum]
- * @property {UsesRemainingSchema1} [remaining]
+ * @typedef UsesRestriction1
+ * @property {UsesRemaining1} [maximum]
+ * @property {UsesRemaining1} [remaining]
  */
 /**
- * @typedef ValidationSchema
+ * @typedef Validation
  * @property {boolean} [anonymous]
  * @property {string[]} [app_id]
  * @property {string} [user_registered_after]
  */
 /**
- * @typedef ValiditySchema
+ * @typedef Validity
  * @property {number} [priority]
  */
 /**
- * @typedef VisibilitySchema
+ * @typedef Visibility
  * @property {boolean} coupon_list
  * @property {boolean} pdp
  */

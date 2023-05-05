@@ -272,7 +272,7 @@ class PosCart {
    * @param {boolean} [arg.i] -
    * @param {boolean} [arg.b] -
    * @param {boolean} [arg.buyNow] -
-   * @param {RewardPointRequestSchema} arg.body
+   * @param {RewardPointRequest} arg.body
    * @returns {Promise<CartDetailResponse>} - Success response
    * @summary: Apply reward points at cart
    * @description: Use this API to redeem a fixed no. of reward points by applying it to the cart.
@@ -341,7 +341,7 @@ class PosCart {
    * @param {Object} arg - Arg object.
    * @param {string} [arg.id] -
    * @param {CartPosCheckoutDetailRequest} arg.body
-   * @returns {Promise<CartCheckoutResponseSchema>} - Success response
+   * @returns {Promise<CartCheckoutResponse>} - Success response
    * @summary: Checkout all items in the cart
    * @description: Use this API to checkout all items in the cart for payment and order generation. For COD, order will be generated directly, whereas for other checkout modes, user will be redirected to a payment gateway.
    */
@@ -386,7 +386,7 @@ class PosCart {
 
     const {
       error: res_error,
-    } = PosCartModel.CartCheckoutResponseSchema().validate(response, {
+    } = PosCartModel.CartCheckoutResponse().validate(response, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -1904,7 +1904,7 @@ class PosCart {
    * @param {string} [arg.paymentIdentifier] -
    * @param {string} [arg.aggregatorName] -
    * @param {string} [arg.merchantCode] -
-   * @returns {Promise<PaymentCouponValidateSchema>} - Success response
+   * @returns {Promise<PaymentCouponValidate>} - Success response
    * @summary: Verify the coupon eligibility against the payment mode
    * @description: Use this API to validate a coupon against the payment mode such as NetBanking, Wallet, UPI etc.
    */
@@ -1981,7 +1981,7 @@ class PosCart {
 
     const {
       error: res_error,
-    } = PosCartModel.PaymentCouponValidateSchema().validate(response, {
+    } = PosCartModel.PaymentCouponValidate().validate(response, {
       abortEarly: false,
       allowUnknown: false,
     });

@@ -8,9 +8,8 @@ class APIClient {
    * @param {object} query
    * @param {object} body
    */
-
-  static execute(conf, method, url, query, body, xHeaders) {
-    let headers = {};
+  static async execute(conf, method, url, query, body) {
+    const token = await conf.oauthClient.getNewAccessToken();
 
     const extraHeaders = conf.extraHeaders.reduce((acc, curr) => {
       acc = { ...acc, ...curr };
@@ -18,18 +17,26 @@ class APIClient {
     }, {});
 
     const rawRequest = {
+      baseURL: conf.domain,
       method: method,
       url: url,
       params: query,
       data: body,
       headers: {
-        ...headers,
+        Authorization: "Bearer " + token,
         ...extraHeaders,
-        ...xHeaders,
       },
     };
+
     return fdkAxios.request(rawRequest);
   }
-}
 
+  async get(url, config) {
+    let access_token = await this.configuration.getAccessToken();
+    config = config || {};
+    config.headers = config.headers || {};
+    config.headers.Authorization = "Bearer " + access_token;
+    return axios.get(url);
+  }
+}
 module.exports = APIClient;

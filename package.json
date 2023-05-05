@@ -15,7 +15,7 @@
     "crypto-js": "^4.1.1",
     "joi": "^17.7.0",
     "loglevel": "^1.8.1",
-    "query-string": "^6.14.1"
+    "query-string": "^7.1.3"
   },
   "devDependencies": {
     "axios-cookiejar-support": "^4.0.6",
