@@ -7130,6 +7130,7 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | is_valid | boolean? |  yes  |  |
  | message | string? |  yes  |  |
  
 

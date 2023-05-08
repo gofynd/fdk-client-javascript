@@ -244,6 +244,7 @@ class CartModel {
   }
   static CartMetaResponse() {
     return Joi.object({
+      is_valid: Joi.boolean(),
       message: Joi.string().allow(""),
     });
   }
@@ -1003,6 +1004,7 @@ class CartModel {
       fulfillment_id: Joi.number(),
       fulfillment_type: Joi.string().allow(""),
       items: Joi.array().items(CartModel.CartProductInfo()),
+      order_type: Joi.string().allow(""),
       promise: CartModel.ShipmentPromise(),
       shipment_type: Joi.string().allow(""),
       shipments: Joi.number(),

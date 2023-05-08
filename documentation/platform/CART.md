@@ -11830,6 +11830,7 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | is_valid | boolean? |  yes  |  |
  | message | string? |  yes  |  |
  
 
@@ -12867,6 +12868,7 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
  | fulfillment_id | number? |  yes  |  |
  | fulfillment_type | string? |  yes  |  |
  | items | [[CartProductInfo](#CartProductInfo)]? |  yes  |  |
+ | order_type | string? |  yes  |  |
  | promise | [ShipmentPromise](#ShipmentPromise)? |  yes  |  |
  | shipment_type | string? |  yes  |  |
  | shipments | number? |  yes  |  |
