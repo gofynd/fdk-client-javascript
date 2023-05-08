@@ -1,11 +1,8 @@
-const SwaggerTest = require("./SwaggerTest/SwaggerTestPartnerClient");
-
 const { FDKClientValidationError } = require("../common/FDKError");
 
 class PartnerClient {
   constructor(config) {
     this.config = config;
-    this.swaggerTest = new SwaggerTest(config);
   }
 
   setExtraHeaders(header) {
@@ -16,10 +13,5 @@ class PartnerClient {
     }
   }
 }
-
-/**
- * @typedef TestResponse
- * @property {boolean} [success]
- */
 
 module.exports = PartnerClient;

@@ -530,6 +530,9 @@ class Catalog {
    *   either ascending or descending order. See the supported values below.
    * @param {string} [arg.pageId] - Page ID to retrieve next set of results.
    * @param {number} [arg.pageSize] - The number of items to retrieve in each page.
+   * @param {number} [arg.pageNo] - Page Number to retrieve next set of results.
+   * @param {string} [arg.pageType] - Page Type to retrieve set of results can
+   *   be cursor or number.
    * @returns {Promise<ProductListingResponse>} - Success response
    * @summary: Get the items in a collection
    * @description: Get items in a collection specified by its `slug`.
@@ -541,9 +544,11 @@ class Catalog {
     sortOn,
     pageId,
     pageSize,
+    pageNo,
+    pageType,
   } = {}) {
     const { error } = CatalogValidator.getCollectionItemsBySlug().validate(
-      { slug, f, filters, sortOn, pageId, pageSize },
+      { slug, f, filters, sortOn, pageId, pageSize, pageNo, pageType },
       { abortEarly: false, allowUnknown: true }
     );
     if (error) {
@@ -554,7 +559,7 @@ class Catalog {
     const {
       error: warrning,
     } = CatalogValidator.getCollectionItemsBySlug().validate(
-      { slug, f, filters, sortOn, pageId, pageSize },
+      { slug, f, filters, sortOn, pageId, pageSize, pageNo, pageType },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
@@ -571,6 +576,8 @@ class Catalog {
     query_params["sort_on"] = sortOn;
     query_params["page_id"] = pageId;
     query_params["page_size"] = pageSize;
+    query_params["page_no"] = pageNo;
+    query_params["page_type"] = pageType;
 
     const xHeaders = {};
 
@@ -641,6 +648,8 @@ class Catalog {
         sortOn: sortOn,
         pageId: pageId,
         pageSize: pageSize,
+        pageNo: pageNo,
+        pageType: pageType,
       });
       paginator.setPaginator({
         hasNext: data.page.has_next ? true : false,

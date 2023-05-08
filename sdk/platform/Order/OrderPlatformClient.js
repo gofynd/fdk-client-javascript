@@ -3665,6 +3665,70 @@ class Order {
 
     return response;
   }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {VerifyMobileOTP} arg.body
+   * @returns {Promise<PointBlankOtpData>} - Success response
+   * @summary:
+   * @description:
+   */
+  async verifyMobileOTP({ body } = {}) {
+    const { error } = OrderValidator.verifyMobileOTP().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = OrderValidator.verifyMobileOTP().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for verifyMobileOTP",
+      });
+      Logger({ level: "WARN", message: warrning });
+    }
+
+    const query_params = {};
+
+    const xHeaders = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/order-manage/v1.0/company/${this.config.companyId}/user/verify/otp`,
+      query_params,
+      body,
+      xHeaders
+    );
+
+    const {
+      error: res_error,
+    } = OrderModel.PointBlankOtpData().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for verifyMobileOTP",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
+  }
 }
 
 module.exports = Order;

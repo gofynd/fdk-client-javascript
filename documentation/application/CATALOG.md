@@ -614,7 +614,9 @@ const promise = applicationClient.catalog.getCollectionItemsBySlug({  slug : val
  filters : value,
  sortOn : value,
  pageId : value,
- pageSize : value });
+ pageSize : value,
+ pageNo : value,
+ pageType : value });
 
 // Async/Await
 const data = await applicationClient.catalog.getCollectionItemsBySlug({  slug : value,
@@ -622,7 +624,9 @@ const data = await applicationClient.catalog.getCollectionItemsBySlug({  slug : 
  filters : value,
  sortOn : value,
  pageId : value,
- pageSize : value });
+ pageSize : value,
+ pageNo : value,
+ pageType : value });
 ```
 
 
@@ -636,7 +640,9 @@ const data = await applicationClient.catalog.getCollectionItemsBySlug({  slug : 
 | filters | boolean | no | This is a boolean value, True for fetching all filter parameters and False for disabling the filter parameters. |    
 | sortOn | string | no | The order in which the list of products should be sorted, e.g. popularity, price, latest and discount, in either ascending or descending order. See the supported values below. |    
 | pageId | string | no | Page ID to retrieve next set of results. |    
-| pageSize | number | no | The number of items to retrieve in each page. |  
+| pageSize | number | no | The number of items to retrieve in each page. |    
+| pageNo | number | no | Page Number to retrieve next set of results. |    
+| pageType | string | no | Page Type to retrieve set of results can be cursor or number. |  
 
 
 

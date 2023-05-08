@@ -1628,12 +1628,10 @@ Returns a success response
  | _custom_json | string? |  yes  |  |
  | _locale_language | string? |  yes  |  |
  | banner | [BrandBannerSerializer](#BrandBannerSerializer)? |  yes  |  |
- | created_by | [UserSerializer](#UserSerializer)? |  yes  |  |
  | created_on | string? |  yes  |  |
  | description | string? |  yes  |  |
  | logo | string? |  yes  |  |
  | mode | string? |  yes  |  |
- | modified_by | [UserSerializer](#UserSerializer)? |  yes  |  |
  | modified_on | string? |  yes  |  |
  | name | string |  no  |  |
  | reject_reason | string? |  yes  |  |
@@ -1641,7 +1639,6 @@ Returns a success response
  | stage | string? |  yes  |  |
  | synonyms | [string]? |  yes  |  |
  | uid | number? |  yes  |  |
- | verified_by | [UserSerializer](#UserSerializer)? |  yes  |  |
  | verified_on | string? |  yes  |  |
  | warnings | string? |  yes  |  |
  

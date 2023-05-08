@@ -252,7 +252,6 @@ class OrderModel {
   }
   static AttachUserOtpData() {
     return Joi.object({
-      otp_code: Joi.number().required(),
       request_id: Joi.string().allow("").required(),
     });
   }
@@ -441,12 +440,14 @@ class OrderModel {
   }
   static BagUnit() {
     return Joi.object({
+      article: OrderModel.PlatformArticle(),
       bag_id: Joi.number().required(),
       can_cancel: Joi.boolean(),
       can_return: Joi.boolean(),
       gst: OrderModel.GSTDetailsData(),
       item: OrderModel.PlatformItem(),
       item_quantity: Joi.number().required(),
+      line_number: Joi.number(),
       ordering_channel: Joi.string().allow("").required(),
       prices: OrderModel.Prices(),
       shipment_id: Joi.string().allow("").required(),
@@ -1511,6 +1512,11 @@ class OrderModel {
       mobile_number: Joi.string().allow(""),
     });
   }
+  static PlatformArticle() {
+    return Joi.object({
+      seller_identifier: Joi.string().allow("").required(),
+    });
+  }
   static PlatformBreakupValues() {
     return Joi.object({
       display: Joi.string().allow(""),
@@ -1548,6 +1554,7 @@ class OrderModel {
   }
   static PlatformItem() {
     return Joi.object({
+      brand: Joi.string().allow(""),
       can_cancel: Joi.boolean(),
       can_return: Joi.boolean(),
       code: Joi.string().allow(""),
@@ -2368,6 +2375,17 @@ class OrderModel {
       phone: Joi.string().allow("").required(),
       pincode: Joi.string().allow("").required(),
       state: Joi.string().allow("").required(),
+    });
+  }
+  static VerifyMobileOTP() {
+    return Joi.object({
+      otp_data: OrderModel.VerifyOtpData().required(),
+    });
+  }
+  static VerifyOtpData() {
+    return Joi.object({
+      otp_code: Joi.number().required(),
+      request_id: Joi.string().allow("").required(),
     });
   }
   static Weight() {

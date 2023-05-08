@@ -700,4 +700,14 @@ declare class Order {
     upsertJioCode({ body }?: {
         body: JioCodeUpsertPayload;
     }): Promise<JioCodeUpsertResponse>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {VerifyMobileOTP} arg.body
+     * @returns {Promise<PointBlankOtpData>} - Success response
+     * @summary:
+     * @description:
+     */
+    verifyMobileOTP({ body }?: {
+        body: VerifyMobileOTP;
+    }): Promise<PointBlankOtpData>;
 }

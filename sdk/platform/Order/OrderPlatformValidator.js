@@ -395,6 +395,12 @@ class OrderValidator {
       body: OrderModel.JioCodeUpsertPayload().required(),
     }).required();
   }
+
+  static verifyMobileOTP() {
+    return Joi.object({
+      body: OrderModel.VerifyMobileOTP().required(),
+    }).required();
+  }
 }
 
 module.exports = OrderValidator;

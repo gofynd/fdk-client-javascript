@@ -59,6 +59,7 @@ Handles all platform order and shipment api(s)
 * [updateShipmentStatus](#updateshipmentstatus)
 * [uploadConsent](#uploadconsent)
 * [upsertJioCode](#upsertjiocode)
+* [verifyMobileOTP](#verifymobileotp)
 
 
 
@@ -5297,6 +5298,61 @@ We are processing the report!
 ---
 
 
+### verifyMobileOTP
+
+
+
+
+```javascript
+// Promise
+const promise = platformClient.order.verifyMobileOTP({  body : value });
+
+// Async/Await
+const data = await platformClient.order.verifyMobileOTP({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [VerifyMobileOTP](#VerifyMobileOTP) | yes | Request body |
+
+
+
+
+*Returned Response:*
+
+
+
+
+[PointBlankOtpData](#PointBlankOtpData)
+
+Verify OTP
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
 
 ### Schemas
 
@@ -5662,7 +5718,6 @@ We are processing the report!
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | otp_code | number |  no  |  |
  | request_id | string |  no  |  |
  
 
@@ -5901,12 +5956,14 @@ We are processing the report!
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | article | [PlatformArticle](#PlatformArticle)? |  yes  |  |
  | bag_id | number |  no  |  |
  | can_cancel | boolean? |  yes  |  |
  | can_return | boolean? |  yes  |  |
  | gst | [GSTDetailsData](#GSTDetailsData)? |  yes  |  |
  | item | [PlatformItem](#PlatformItem)? |  yes  |  |
  | item_quantity | number |  no  |  |
+ | line_number | number? |  yes  |  |
  | ordering_channel | string |  no  |  |
  | prices | [Prices](#Prices)? |  yes  |  |
  | shipment_id | string |  no  |  |
@@ -7426,6 +7483,15 @@ We are processing the report!
 
 ---
 
+#### [PlatformArticle](#PlatformArticle)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | seller_identifier | string |  no  |  |
+ 
+
+---
+
 #### [PlatformBreakupValues](#PlatformBreakupValues)
 
  | Properties | Type | Nullable | Description |
@@ -7477,6 +7543,7 @@ We are processing the report!
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | brand | string? |  yes  |  |
  | can_cancel | boolean? |  yes  |  |
  | can_return | boolean? |  yes  |  |
  | code | string? |  yes  |  |
@@ -8629,6 +8696,25 @@ We are processing the report!
  | phone | string |  no  |  |
  | pincode | string |  no  |  |
  | state | string |  no  |  |
+ 
+
+---
+
+#### [VerifyMobileOTP](#VerifyMobileOTP)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | otp_data | [VerifyOtpData](#VerifyOtpData) |  no  |  |
+ 
+
+---
+
+#### [VerifyOtpData](#VerifyOtpData)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | otp_code | number |  no  |  |
+ | request_id | string |  no  |  |
  
 
 ---

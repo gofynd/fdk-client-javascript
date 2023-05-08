@@ -789,6 +789,7 @@ class PlatformApplicationClient {
 /** @typedef PaymentModeInfo */
 /** @typedef PDFLinks */
 /** @typedef PhoneDetails */
+/** @typedef PlatformArticle */
 /** @typedef PlatformBreakupValues */
 /** @typedef PlatformChannel */
 /** @typedef PlatformDeliveryAddress */
@@ -876,6 +877,8 @@ class PlatformApplicationClient {
 /** @typedef UserData */
 /** @typedef UserDataInfo */
 /** @typedef UserDetailsData */
+/** @typedef VerifyMobileOTP */
+/** @typedef VerifyOtpData */
 /** @typedef Weight */
 
 /** @typedef Action */
@@ -1266,6 +1269,8 @@ class PlatformApplicationClient {
 
 /** @typedef Attribution */
 /** @typedef CampaignShortLink */
+/** @typedef ClickStatsItem */
+/** @typedef ClickStatsResponse */
 /** @typedef ErrorRes */
 /** @typedef Page */
 /** @typedef RedirectDevice */

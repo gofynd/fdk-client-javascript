@@ -48,4 +48,5 @@ declare class OrderValidator {
     static updateShipmentStatus(): any;
     static uploadConsent(): any;
     static upsertJioCode(): any;
+    static verifyMobileOTP(): any;
 }

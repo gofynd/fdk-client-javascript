@@ -156,6 +156,7 @@ declare class OrderModel {
     static PaymentModeInfo(): any;
     static PDFLinks(): any;
     static PhoneDetails(): any;
+    static PlatformArticle(): any;
     static PlatformBreakupValues(): any;
     static PlatformChannel(): any;
     static PlatformDeliveryAddress(): any;
@@ -243,5 +244,7 @@ declare class OrderModel {
     static UserData(): any;
     static UserDataInfo(): any;
     static UserDetailsData(): any;
+    static VerifyMobileOTP(): any;
+    static VerifyOtpData(): any;
     static Weight(): any;
 }

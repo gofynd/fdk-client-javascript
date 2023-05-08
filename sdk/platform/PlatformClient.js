@@ -4343,7 +4343,6 @@ class PlatformClient {
  */
 /**
  * @typedef AttachUserOtpData
- * @property {number} otp_code
  * @property {string} request_id
  */
 /**
@@ -4517,12 +4516,14 @@ class PlatformClient {
  */
 /**
  * @typedef BagUnit
+ * @property {PlatformArticle} [article]
  * @property {number} bag_id
  * @property {boolean} [can_cancel]
  * @property {boolean} [can_return]
  * @property {GSTDetailsData} [gst]
  * @property {PlatformItem} [item]
  * @property {number} item_quantity
+ * @property {number} [line_number]
  * @property {string} ordering_channel
  * @property {Prices} [prices]
  * @property {string} shipment_id
@@ -5466,6 +5467,10 @@ class PlatformClient {
  * @property {string} [mobile_number]
  */
 /**
+ * @typedef PlatformArticle
+ * @property {string} seller_identifier
+ */
+/**
  * @typedef PlatformBreakupValues
  * @property {string} [display]
  * @property {string} [name]
@@ -5499,6 +5504,7 @@ class PlatformClient {
  */
 /**
  * @typedef PlatformItem
+ * @property {string} [brand]
  * @property {boolean} [can_cancel]
  * @property {boolean} [can_return]
  * @property {string} [code]
@@ -6236,6 +6242,15 @@ class PlatformClient {
  * @property {string} phone
  * @property {string} pincode
  * @property {string} state
+ */
+/**
+ * @typedef VerifyMobileOTP
+ * @property {VerifyOtpData} otp_data
+ */
+/**
+ * @typedef VerifyOtpData
+ * @property {number} otp_code
+ * @property {string} request_id
  */
 /**
  * @typedef Weight
@@ -9173,12 +9188,10 @@ class PlatformClient {
  * @property {Object} [_custom_json]
  * @property {Object} [_locale_language]
  * @property {BrandBannerSerializer} [banner]
- * @property {UserSerializer} [created_by]
  * @property {string} [created_on]
  * @property {string} [description]
  * @property {string} [logo]
  * @property {string} [mode]
- * @property {UserSerializer} [modified_by]
  * @property {string} [modified_on]
  * @property {string} name
  * @property {string} [reject_reason]
@@ -9186,7 +9199,6 @@ class PlatformClient {
  * @property {string} [stage]
  * @property {string[]} [synonyms]
  * @property {number} [uid]
- * @property {UserSerializer} [verified_by]
  * @property {string} [verified_on]
  * @property {Object} [warnings]
  */
@@ -9536,6 +9548,15 @@ class PlatformClient {
  * @typedef CampaignShortLink
  * @property {string} [medium]
  * @property {string} [source]
+ */
+/**
+ * @typedef ClickStatsItem
+ * @property {string} [display]
+ * @property {number} [total]
+ */
+/**
+ * @typedef ClickStatsResponse
+ * @property {ClickStatsItem[]} click_stats
  */
 /**
  * @typedef ErrorRes
