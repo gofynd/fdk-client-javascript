@@ -3624,7 +3624,7 @@ const data = await platformClient.order.getShipmentHistory({  shipmentId : value
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
-| shipmentId | number | no |  |    
+| shipmentId | string | no |  |    
 | bagId | number | no |  |  
 
 
@@ -7487,7 +7487,8 @@ Verify OTP
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | seller_identifier | string |  no  |  |
+ | identifiers | string? |  yes  |  |
+ | seller_identifier | string? |  yes  |  |
  
 
 ---
@@ -8081,10 +8082,12 @@ Verify OTP
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | applied_filters | string? |  yes  |  |
- | filters | [[FiltersInfo](#FiltersInfo)]? |  yes  |  |
  | items | [[ShipmentItem](#ShipmentItem)]? |  yes  |  |
- | page | string? |  yes  |  |
+ | lane | string? |  yes  |  |
+ | message | string? |  yes  |  |
+ | page | [Page](#Page)? |  yes  |  |
+ | success | boolean? |  yes  |  |
+ | total_count | number? |  yes  |  |
  
 
 ---

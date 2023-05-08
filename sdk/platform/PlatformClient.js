@@ -5468,7 +5468,8 @@ class PlatformClient {
  */
 /**
  * @typedef PlatformArticle
- * @property {string} seller_identifier
+ * @property {Object} [identifiers]
+ * @property {string} [seller_identifier]
  */
 /**
  * @typedef PlatformBreakupValues
@@ -5832,10 +5833,12 @@ class PlatformClient {
  */
 /**
  * @typedef ShipmentInternalPlatformViewResponse
- * @property {Object} [applied_filters]
- * @property {FiltersInfo[]} [filters]
  * @property {ShipmentItem[]} [items]
- * @property {Object} [page]
+ * @property {string} [lane]
+ * @property {string} [message]
+ * @property {Page} [page]
+ * @property {boolean} [success]
+ * @property {number} [total_count]
  */
 /**
  * @typedef ShipmentItem
@@ -7292,15 +7295,15 @@ class PlatformClient {
  * @property {GetAddressSerializer[]} [addresses]
  * @property {string} [business_type]
  * @property {string} [company_type]
- * @property {UserSerializer1} [created_by]
+ * @property {UserSerializer2} [created_by]
  * @property {string} [created_on]
- * @property {UserSerializer1} [modified_by]
+ * @property {UserSerializer2} [modified_by]
  * @property {string} [modified_on]
  * @property {string} [name]
  * @property {string} [reject_reason]
  * @property {string} [stage]
  * @property {number} [uid]
- * @property {UserSerializer1} [verified_by]
+ * @property {UserSerializer2} [verified_by]
  * @property {string} [verified_on]
  */
 /**
@@ -7377,14 +7380,14 @@ class PlatformClient {
  * @property {string} code
  * @property {GetCompanySerializer} [company]
  * @property {SellerPhoneNumber[]} [contact_numbers]
- * @property {UserSerializer2} [created_by]
+ * @property {UserSerializer1} [created_by]
  * @property {string} [created_on]
  * @property {string} display_name
  * @property {Document[]} [documents]
  * @property {InvoiceDetailsSerializer} [gst_credentials]
  * @property {LocationIntegrationType} [integration_type]
  * @property {LocationManagerSerializer} [manager]
- * @property {UserSerializer2} [modified_by]
+ * @property {UserSerializer1} [modified_by]
  * @property {string} [modified_on]
  * @property {string} name
  * @property {string[]} [notification_emails]
@@ -7394,7 +7397,7 @@ class PlatformClient {
  * @property {string} [store_type]
  * @property {LocationDayWiseSerializer[]} [timing]
  * @property {number} [uid]
- * @property {UserSerializer2} [verified_by]
+ * @property {UserSerializer1} [verified_by]
  * @property {string} [verified_on]
  * @property {Object} [warnings]
  */

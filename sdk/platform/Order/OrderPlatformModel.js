@@ -1514,7 +1514,8 @@ class OrderModel {
   }
   static PlatformArticle() {
     return Joi.object({
-      seller_identifier: Joi.string().allow("").required(),
+      identifiers: Joi.any(),
+      seller_identifier: Joi.string().allow(""),
     });
   }
   static PlatformBreakupValues() {
@@ -1924,10 +1925,12 @@ class OrderModel {
   }
   static ShipmentInternalPlatformViewResponse() {
     return Joi.object({
-      applied_filters: Joi.any(),
-      filters: Joi.array().items(OrderModel.FiltersInfo()),
       items: Joi.array().items(OrderModel.ShipmentItem()),
-      page: Joi.any(),
+      lane: Joi.string().allow(""),
+      message: Joi.string().allow(""),
+      page: OrderModel.Page(),
+      success: Joi.boolean(),
+      total_count: Joi.number(),
     });
   }
   static ShipmentItem() {

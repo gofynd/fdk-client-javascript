@@ -248,7 +248,7 @@ class OrderValidator {
 
   static getShipmentHistory() {
     return Joi.object({
-      shipmentId: Joi.number(),
+      shipmentId: Joi.string().allow(""),
       bagId: Joi.number(),
     }).required();
   }
