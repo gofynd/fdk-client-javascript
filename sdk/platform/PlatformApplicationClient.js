@@ -399,6 +399,8 @@ class PlatformApplicationClient {
 /** @typedef CancelSubscriptionRes */
 /** @typedef ChargeLineItem */
 /** @typedef CheckValidityResponse */
+/** @typedef CreateOneTimeCharge */
+/** @typedef CreateOneTimeChargeResponse */
 /** @typedef CreateSubscriptionCharge */
 /** @typedef CreateSubscriptionResponse */
 /** @typedef CurrentPeriod */
@@ -428,6 +430,8 @@ class PlatformApplicationClient {
 /** @typedef InvoicesDataClient */
 /** @typedef InvoicesDataPaymentMethod */
 /** @typedef InvoicesDataPeriod */
+/** @typedef OneTimeChargeEntity */
+/** @typedef OneTimeChargeItem */
 /** @typedef Page */
 /** @typedef Phone */
 /** @typedef Plan */

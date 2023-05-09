@@ -4328,6 +4328,67 @@ class Content {
 
   /**
    * @param {Object} arg - Arg object.
+   * @param {SeoComponent} arg.body
+   * @returns {Promise<SeoSchema>} - Success response
+   * @summary: Update SEO of application
+   * @description: Use this API to edit the SEO details of an application. This includes the sitemap, robot.txt, custom meta tags, etc.
+   */
+  async updateSEOConfiguration({ body } = {}) {
+    const { error } = ContentValidator.updateSEOConfiguration().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = ContentValidator.updateSEOConfiguration().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for updateSEOConfiguration",
+      });
+      Logger({ level: "WARN", message: warrning });
+    }
+
+    const query_params = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/seo`,
+      query_params,
+      body
+    );
+
+    const { error: res_error } = ContentModel.SeoSchema().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for updateSEOConfiguration",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
    * @param {string} arg.id - ID allotted to the slideshow.
    * @param {SlideshowRequest} arg.body
    * @returns {Promise<SlideshowSchema>} - Success response

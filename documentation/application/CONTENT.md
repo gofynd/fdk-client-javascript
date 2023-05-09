@@ -1429,9 +1429,7 @@ Success. Returns a JSON object SEO details such as robots.txt, meta-tags, and si
   "value": {
     "seo": {
       "details": {
-        "title": "Zyosa Zyosa",
-        "description": "",
-        "image_url": ""
+        "title": "Zyosa Zyosa"
       },
       "robots_txt": "User-agent: * \nAllow: / \nsancisciasn xwsaixjowqnxwsiwjs",
       "sitemap_enabled": false,
@@ -2349,7 +2347,6 @@ Success. Returns a JSON object containing all the tags injected in the applicati
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | description | string? |  yes  |  |
- | image_url | string? |  yes  |  |
  | title | string? |  yes  |  |
  
 

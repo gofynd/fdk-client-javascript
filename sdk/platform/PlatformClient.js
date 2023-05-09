@@ -1789,7 +1789,6 @@ class PlatformClient {
 /**
  * @typedef Detail
  * @property {string} [description]
- * @property {string} [image_url]
  * @property {string} [title]
  */
 /**
@@ -2265,6 +2264,18 @@ class PlatformClient {
  * @property {boolean} [is_valid]
  */
 /**
+ * @typedef CreateOneTimeCharge
+ * @property {OneTimeChargeItem} charge
+ * @property {boolean} [is_test]
+ * @property {string} name
+ * @property {string} return_url
+ */
+/**
+ * @typedef CreateOneTimeChargeResponse
+ * @property {OneTimeChargeEntity} [charge]
+ * @property {string} [confirm_url]
+ */
+/**
  * @typedef CreateSubscriptionCharge
  * @property {boolean} [is_test]
  * @property {ChargeLineItem[]} line_items
@@ -2537,6 +2548,33 @@ class PlatformClient {
  * @property {string} [start]
  */
 /**
+ * @typedef OneTimeChargeEntity
+ * @property {string} [_id]
+ * @property {string} [activated_on]
+ * @property {string} [cancelled_on]
+ * @property {string} [entity_id]
+ * @property {string} [entity_type]
+ * @property {boolean} [is_test]
+ * @property {Object} [meta]
+ * @property {Object} [metadata]
+ * @property {string} [name]
+ * @property {EntityChargePrice} [price]
+ * @property {string} [pricing_type]
+ * @property {string} [return_url]
+ * @property {string} [status]
+ * @property {string} [subscriber_id]
+ */
+/**
+ * @typedef OneTimeChargeItem
+ * @property {number} [capped_amount]
+ * @property {boolean} [is_test]
+ * @property {Object} [metadata]
+ * @property {string} name
+ * @property {EntityChargePrice} price
+ * @property {string} pricing_type
+ * @property {string} [term]
+ */
+/**
  * @typedef Page
  * @property {number} [current]
  * @property {boolean} [has_next]
@@ -2724,6 +2762,7 @@ class PlatformClient {
 /**
  * @typedef SubscriptionStatus
  * @property {boolean} [is_enabled]
+ * @property {number} [mandate_amount]
  * @property {Subscription} [subscription]
  */
 /**
@@ -6841,15 +6880,15 @@ class PlatformClient {
  * @property {GetAddressSerializer[]} [addresses]
  * @property {string} [business_type]
  * @property {string} [company_type]
- * @property {UserSerializer2} [created_by]
+ * @property {UserSerializer1} [created_by]
  * @property {string} [created_on]
- * @property {UserSerializer2} [modified_by]
+ * @property {UserSerializer1} [modified_by]
  * @property {string} [modified_on]
  * @property {string} [name]
  * @property {string} [reject_reason]
  * @property {string} [stage]
  * @property {number} [uid]
- * @property {UserSerializer2} [verified_by]
+ * @property {UserSerializer1} [verified_by]
  * @property {string} [verified_on]
  */
 /**
@@ -6926,14 +6965,14 @@ class PlatformClient {
  * @property {string} code
  * @property {GetCompanySerializer} [company]
  * @property {SellerPhoneNumber[]} [contact_numbers]
- * @property {UserSerializer1} [created_by]
+ * @property {UserSerializer2} [created_by]
  * @property {string} [created_on]
  * @property {string} display_name
  * @property {Document[]} [documents]
  * @property {InvoiceDetailsSerializer} [gst_credentials]
  * @property {LocationIntegrationType} [integration_type]
  * @property {LocationManagerSerializer} [manager]
- * @property {UserSerializer1} [modified_by]
+ * @property {UserSerializer2} [modified_by]
  * @property {string} [modified_on]
  * @property {string} name
  * @property {string[]} [notification_emails]
@@ -6943,7 +6982,7 @@ class PlatformClient {
  * @property {string} [store_type]
  * @property {LocationDayWiseSerializer[]} [timing]
  * @property {number} [uid]
- * @property {UserSerializer1} [verified_by]
+ * @property {UserSerializer2} [verified_by]
  * @property {string} [verified_on]
  * @property {Object} [warnings]
  */
@@ -7840,7 +7879,7 @@ class PlatformClient {
  * @property {NetQuantity} [net_quantity]
  * @property {number} [no_of_boxes]
  * @property {string[]} [product_group_tag]
- * @property {ProductPublish} [product_publish]
+ * @property {ProductPublish1} [product_publish]
  * @property {string} [requester]
  * @property {ReturnConfig} return_config
  * @property {string} [short_description]
@@ -8036,7 +8075,7 @@ class PlatformClient {
  * @property {string} [pending]
  * @property {string} [primary_color]
  * @property {string[]} [product_group_tag]
- * @property {ProductPublish1} [product_publish]
+ * @property {ProductPublish} [product_publish]
  * @property {ReturnConfigResponse} [return_config]
  * @property {string} [short_description]
  * @property {string} [size_guide]

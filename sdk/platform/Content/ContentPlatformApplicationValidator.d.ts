@@ -66,6 +66,7 @@ declare class ContentValidator {
     static updatePage(): any;
     static updatePagePreview(): any;
     static updatePathRedirectionRules(): any;
+    static updateSEOConfiguration(): any;
     static updateSlideshow(): any;
     static updateSupportInformation(): any;
 }
