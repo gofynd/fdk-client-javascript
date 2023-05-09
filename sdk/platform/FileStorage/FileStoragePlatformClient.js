@@ -376,7 +376,7 @@ class FileStorage {
 
     const response = await PlatformAPIClient.execute(
       this.config,
-      "post",
+      "get",
       `/service/platform/assets/v1.0/company/${this.config.companyId}/proxy/`,
       query_params,
       undefined,

@@ -16,7 +16,7 @@ class CatalogModel {
   }
   static ApplicationStoreListing() {
     return Joi.object({
-      filters: Joi.array().items(CatalogModel.StoreDepartments()),
+      filters: Joi.array().items(Joi.any()),
       items: Joi.array().items(CatalogModel.AppStore()),
       page: CatalogModel.Page(),
     });
@@ -940,7 +940,7 @@ class CatalogModel {
   }
   static StoreDepartments() {
     return Joi.object({
-      logo: Joi.string().allow(""),
+      logo: Joi.any(),
       name: Joi.string().allow(""),
       priority_order: Joi.number(),
       slug: Joi.string().allow(""),

@@ -2,5 +2,3 @@
 
 # FDK Partner Front API Documentaion
 
-
-* [SwaggerTest](SWAGGERTEST.md) - Authorization configuration apis 

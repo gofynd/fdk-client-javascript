@@ -140,7 +140,7 @@ class CompanyProfileModel {
     return Joi.object({
       _custom_json: Joi.any(),
       _locale_language: Joi.any(),
-      banner: CompanyProfileModel.BrandBannerSerializer(),
+      banner: CompanyProfileModel.BrandBannerSerializer().required(),
       brand_tier: Joi.string().allow(""),
       company_id: Joi.number(),
       description: Joi.string().allow(""),

@@ -18370,13 +18370,13 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | _custom_json | string? |  yes  |  |
- | _custom_meta | [[MetaFields](#MetaFields)]? |  yes  |  |
- | alt_text | string? |  yes  |  |
- | is_cod | boolean? |  yes  |  |
- | is_gift | boolean? |  yes  |  |
- | moq | [ApplicationItemMOQ](#ApplicationItemMOQ)? |  yes  |  |
- | seo | [ApplicationItemSEO](#ApplicationItemSEO)? |  yes  |  |
+ | _custom_json | string? |  yes  | Custom JSON data for the item |
+ | _custom_meta | [[MetaFields](#MetaFields)]? |  yes  | Custom meta fields for the item |
+ | alt_text | string? |  yes  | Alternative text for the item's images |
+ | is_cod | boolean? |  yes  | Whether the item is available for Cash on Delivery (COD) or not |
+ | is_gift | boolean? |  yes  | Whether the item is a gift or not |
+ | moq | [ApplicationItemMOQ](#ApplicationItemMOQ)? |  yes  | Minimum Order Quantity information for the item |
+ | seo | [ApplicationItemSEO](#ApplicationItemSEO)? |  yes  | Search Engine Optimization information for the item |
  
 
 ---
@@ -18385,9 +18385,9 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | increment_unit | number? |  yes  |  |
- | maximum | number? |  yes  |  |
- | minimum | number? |  yes  |  |
+ | increment_unit | number? |  yes  | The minimum quantity increment in which the item can be purchased. |
+ | maximum | number? |  yes  | The maximum quantity allowed for purchase. |
+ | minimum | number? |  yes  | The minimum quantity required for purchase. |
  
 
 ---
@@ -18396,8 +18396,8 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | description | any? |  yes  |  |
- | title | any? |  yes  |  |
+ | description | any? |  yes  | The SEO description of the item |
+ | title | any? |  yes  | The SEO title of the item |
  
 
 ---
@@ -18772,15 +18772,15 @@ List of fields and validation values fro each. See example below or refer `Inven
  | cancelled | number? |  yes  |  |
  | cancelled_records | [string]? |  yes  |  |
  | company_id | number |  no  |  |
- | created_by | [UserInfo1](#UserInfo1)? |  yes  |  |
- | created_on | string |  no  |  |
+ | created_by | [UserInfo1](#UserInfo1)? |  yes  | The user who created the item. |
+ | created_on | string |  no  | The date and time when the item was created. |
  | custom_template_tag | string? |  yes  |  |
  | failed | number? |  yes  |  |
  | failed_records | [string]? |  yes  |  |
  | file_path | string? |  yes  |  |
- | is_active | boolean? |  yes  |  |
- | modified_by | [UserInfo1](#UserInfo1)? |  yes  |  |
- | modified_on | string? |  yes  |  |
+ | is_active | boolean? |  yes  | Whether the item is active or not. |
+ | modified_by | [UserInfo1](#UserInfo1)? |  yes  | The user who last modified the item. |
+ | modified_on | string? |  yes  | The date and time when the item was last modified. |
  | stage | string? |  yes  |  |
  | succeed | number? |  yes  |  |
  | template_tag | string? |  yes  |  |
@@ -18807,11 +18807,11 @@ List of fields and validation values fro each. See example below or refer `Inven
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | batch_id | string |  no  |  |
- | created_by | [UserInfo1](#UserInfo1)? |  yes  |  |
- | created_on | string |  no  |  |
- | is_active | boolean? |  yes  |  |
- | modified_by | [UserInfo1](#UserInfo1)? |  yes  |  |
- | modified_on | string? |  yes  |  |
+ | created_by | [UserInfo1](#UserInfo1)? |  yes  | The user who created the item. |
+ | created_on | string |  no  | The date and time when the item was created. |
+ | is_active | boolean? |  yes  | Whether the item is active or not. |
+ | modified_by | [UserInfo1](#UserInfo1)? |  yes  | The user who last modified the item. |
+ | modified_on | string? |  yes  | The date and time when the item was last modified. |
  
 
 ---
@@ -19143,9 +19143,9 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | attribute | string |  no  |  |
- | op | string |  no  |  |
- | value | [any] |  no  |  |
+ | attribute | string |  no  | The attribute of the collection query |
+ | op | string |  no  | The operation to be performed on the attribute of the collection query |
+ | value | [any] |  no  | The value of the attribute of the collection query |
  
 
 ---
@@ -19594,19 +19594,19 @@ List of fields and validation values fro each. See example below or refer `Inven
  | _cls | any? |  yes  |  |
  | _custom_json | string? |  yes  |  |
  | _id | any? |  yes  |  |
- | created_by | [UserDetail](#UserDetail)? |  yes  |  |
- | created_on | string |  no  |  |
- | is_active | boolean? |  yes  |  |
- | logo | any |  no  |  |
- | modified_by | [UserDetail](#UserDetail)? |  yes  |  |
- | modified_on | string |  no  |  |
- | name | any |  no  |  |
- | priority_order | number |  no  |  |
- | slug | any |  no  |  |
- | synonyms | [any]? |  yes  |  |
- | uid | number |  no  |  |
- | verified_by | [UserDetail](#UserDetail)? |  yes  |  |
- | verified_on | string? |  yes  |  |
+ | created_by | [UserDetail](#UserDetail)? |  yes  | User details of the creator of the document |
+ | created_on | string |  no  | Timestamp of the creation of the document |
+ | is_active | boolean? |  yes  | Whether the department is currently active |
+ | logo | any |  no  | The URL of the department's logo |
+ | modified_by | [UserDetail](#UserDetail)? |  yes  | User details of the last modifier of the document |
+ | modified_on | string |  no  | Timestamp of the last modification of the document |
+ | name | any |  no  | The name of the department |
+ | priority_order | number |  no  | The priority order of the department |
+ | slug | any |  no  | The unique slug identifier for the department |
+ | synonyms | [any]? |  yes  | A list of synonyms for the department name |
+ | uid | number |  no  | The unique ID for the department |
+ | verified_by | [UserDetail](#UserDetail)? |  yes  | User details of the verifier of the document, if applicable |
+ | verified_on | string? |  yes  | Timestamp of when the document was verified, if applicable |
  
 
 ---
@@ -20985,8 +20985,8 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | key | any |  no  |  |
- | value | any |  no  |  |
+ | key | any |  no  | The key of the metadata. Should be a non-empty string and length should not exceed 30 characters. |
+ | value | any |  no  | The value of the metadata. Should be a non-empty string and length should not exceed 100 characters. |
  
 
 ---
@@ -21006,8 +21006,8 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | unit | any? |  yes  |  |
- | value | number? |  yes  |  |
+ | unit | any? |  yes  | The unit of measurement used for the net quantity of the product. |
+ | value | number? |  yes  | The value of the net quantity of the product. |
  
 
 ---
@@ -21436,7 +21436,7 @@ List of fields and validation values fro each. See example below or refer `Inven
  | net_quantity | [NetQuantity](#NetQuantity)? |  yes  |  |
  | no_of_boxes | number? |  yes  |  |
  | product_group_tag | [string]? |  yes  |  |
- | product_publish | [ProductPublish1](#ProductPublish1)? |  yes  |  |
+ | product_publish | [ProductPublish](#ProductPublish)? |  yes  |  |
  | requester | string? |  yes  |  |
  | return_config | [ReturnConfig](#ReturnConfig) |  no  |  |
  | short_description | string? |  yes  |  |
@@ -21712,7 +21712,7 @@ List of fields and validation values fro each. See example below or refer `Inven
  | pending | string? |  yes  |  |
  | primary_color | string? |  yes  |  |
  | product_group_tag | [string]? |  yes  |  |
- | product_publish | [ProductPublish](#ProductPublish)? |  yes  |  |
+ | product_publish | [ProductPublish1](#ProductPublish1)? |  yes  |  |
  | return_config | [ReturnConfigResponse](#ReturnConfigResponse)? |  yes  |  |
  | short_description | string? |  yes  |  |
  | size_guide | string? |  yes  |  |
@@ -22399,10 +22399,10 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | contact | string? |  yes  |  |
- | super_user | boolean? |  yes  |  |
- | user_id | string |  no  |  |
- | username | string |  no  |  |
+ | contact | string? |  yes  | The contact details of the user. |
+ | super_user | boolean? |  yes  | A flag indicating whether the user is a super user. |
+ | user_id | string |  no  | The user ID of the user. |
+ | username | string |  no  | The username of the user. |
  
 
 ---
@@ -22434,10 +22434,10 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | email | string? |  yes  |  |
- | uid | string? |  yes  |  |
- | user_id | string? |  yes  |  |
- | username | string? |  yes  |  |
+ | email | string? |  yes  | The email address of the user. |
+ | uid | string? |  yes  | The unique ID of the user. |
+ | user_id | string? |  yes  | The ID of the user. |
+ | username | string? |  yes  | The username of the user. |
  
 
 ---

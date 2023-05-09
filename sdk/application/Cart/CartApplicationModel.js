@@ -139,6 +139,7 @@ class CartModel {
       extra_meta: Joi.any(),
       merchant_code: Joi.string().allow(""),
       meta: Joi.any(),
+      order_type: Joi.string().allow(""),
       ordering_store: Joi.number().allow(null),
       payment_auto_confirm: Joi.boolean(),
       payment_identifier: Joi.string().allow("").allow(null),

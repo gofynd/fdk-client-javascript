@@ -16,7 +16,7 @@ class AuditTrail {
    * @param {RequestBodyAuditLog} arg.body
    * @returns {Promise<CreateLogResponse>} - Success response
    * @summary: Create logs for auditing later on
-   * @description: Create a Audit log
+   * @description: Create a log instance that stores all the relevant info to be logged
    */
   async createAuditLog({ body } = {}) {
     const { error } = AuditTrailValidator.createAuditLog().validate(
@@ -80,7 +80,7 @@ class AuditTrail {
    * @param {string} arg.id - Log uuid
    * @returns {Promise<LogSchemaResponse>} - Success response
    * @summary: Get audit log
-   * @description: Get audit logs by logs uuid
+   * @description: Get detailed log information by their id
    */
   async getAuditLog({ id } = {}) {
     const { error } = AuditTrailValidator.getAuditLog().validate(
@@ -144,7 +144,7 @@ class AuditTrail {
    * @param {string} arg.qs - Logs Query
    * @returns {Promise<LogSchemaResponse>} - Success response
    * @summary: Get paginated audit logs
-   * @description: Get audit logs
+   * @description: Get a paginated set of logs that can be filtered using the available set of parameters and get the relevant group of logs
    */
   async getAuditLogs({ qs } = {}) {
     const { error } = AuditTrailValidator.getAuditLogs().validate(
@@ -208,7 +208,7 @@ class AuditTrail {
    * @param {Object} arg - Arg object.
    * @returns {Promise<EntityTypesResponse>} - Success response
    * @summary: Get entity types
-   * @description: Get entity types
+   * @description: Get a consolidated list of entity types from all the logs stored on the db, which further helps to filter the logs better
    */
   async getEntityTypes({} = {}) {
     const { error } = AuditTrailValidator.getEntityTypes().validate(
