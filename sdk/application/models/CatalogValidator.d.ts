@@ -20,8 +20,8 @@ declare class CatalogValidator {
     static getCollectionItemsBySlug(): any;
     static getCollectionDetailBySlug(): any;
     static getFollowedListing(): any;
-    static followById(): any;
     static unfollowById(): any;
+    static followById(): any;
     static getFollowerCountById(): any;
     static getFollowIds(): any;
     static getStores(): any;

@@ -6,11 +6,11 @@
 ##### [Back to Application docs](./README.md)
 
 ## Logistic Methods
-Logistics Promise Engine APIs allows you to configure zone, pincode, TAT, logistics and many more useful features. 
+Handles Platform websites OMS
 
-* [getPincodeCity](#getpincodecity)
 * [getTatProduct](#gettatproduct)
 * [getPincodeZones](#getpincodezones)
+* [getPincodeCity](#getpincodecity)
 
 
 
@@ -19,148 +19,8 @@ Logistics Promise Engine APIs allows you to configure zone, pincode, TAT, logist
 
 
 
-### getPincodeCity
-Get Pincode API
-
-
-
-```javascript
-// Promise
-const promise = logistic.getPincodeCity({  pincode : value });
-
-// Async/Await
-const data = await logistic.getPincodeCity({  pincode : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| pincode | string | yes | A `pincode` contains a specific address of a location. |  
-
-
-
-Get pincode data
-
-*Returned Response:*
-
-
-
-
-[PincodeApiResponse](#PincodeApiResponse)
-
-Get pincode data
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; Pincode data found</i></summary>
-
-```json
-{
-  "value": {
-    "data": [
-      {
-        "sub_type": "pincode",
-        "name": "421202",
-        "error": {
-          "type": null,
-          "value": null,
-          "message": null
-        },
-        "uid": "pincode:INDIA|MAHARASHTRA|MUMBAI|421202",
-        "display_name": "421202",
-        "meta": {
-          "zone": "West",
-          "internal_zone_id": 4
-        },
-        "parents": [
-          {
-            "sub_type": "country",
-            "name": "India",
-            "display_name": "India",
-            "uid": "country:INDIA"
-          },
-          {
-            "sub_type": "state",
-            "name": "Maharashtra",
-            "display_name": "Maharashtra",
-            "uid": "state:INDIA|MAHARASHTRA"
-          },
-          {
-            "sub_type": "city",
-            "name": "Thane",
-            "display_name": "Thane",
-            "uid": "city:INDIA|MAHARASHTRA|MUMBAI"
-          }
-        ]
-      }
-    ],
-    "request_uuid": "fce9f431215e71c9ee0e86e792ae1dce4",
-    "stormbreaker_uuid": "56cca764-9fab-41f4-adb8-6e9683532aa5",
-    "error": {
-      "type": null,
-      "value": null,
-      "message": null
-    },
-    "success": true
-  }
-}
-```
-</details>
-
-<details>
-<summary><i>&nbsp; Pincode not found</i></summary>
-
-```json
-{
-  "value": {
-    "data": [
-      {
-        "sub_type": "pincode",
-        "name": "999999",
-        "error": {
-          "type": "DoesNotExist",
-          "value": "999999",
-          "message": "pincode 999999 does not exist"
-        }
-      }
-    ],
-    "request_uuid": "fce9fb9215e71c9ee0e86e792ae1dce4",
-    "stormbreaker_uuid": "03b353ed-9dbd-4629-80b2-2be337859a20",
-    "error": {
-      "type": null,
-      "value": null,
-      "message": null
-    },
-    "success": false
-  }
-}
-```
-</details>
-
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
 ### getTatProduct
-Get TAT API
+Get TAT of a product
 
 
 
@@ -178,136 +38,29 @@ const data = await logistic.getTatProduct({  body : value });
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |
-| body | [TATViewRequest](#TATViewRequest) | yes | Request body |
+| body | [GetTatProductReqBody](#GetTatProductReqBody) | yes | Request body |
 
 
-Get TAT data
+Use this API to know the delivery turnaround time (TAT) by entering the product details along with the PIN Code of the location.
 
 *Returned Response:*
 
 
 
 
-[TATViewResponse](#TATViewResponse)
+[GetTatProductResponse](#GetTatProductResponse)
 
-Get TAT  data
-
-
+Success. Check the example shown below or refer `GetTatProductResponse` for more details.
 
 
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
 
 
 <details>
-<summary><i>&nbsp; Pincode data found</i></summary>
+<summary><i>&nbsp; Example:</i></summary>
 
 ```json
-{
-  "value": {
-    "source": "FYND-APP",
-    "identifier": "PDP",
-    "journey": "forward",
-    "action": "get_tat",
-    "to_pincode": "143001",
-    "location_details": [
-      {
-        "fulfillment_id": 8,
-        "from_pincode": "560023",
-        "articles": [
-          {
-            "category": {
-              "level": "l3",
-              "id": 155
-            },
-            "manufacturing_time": 2,
-            "manufacturing_time_unit": "days",
-            "promise": {
-              "timestamp": {
-                "min": 1663564548,
-                "max": 1663650948
-              },
-              "formatted": {
-                "min": "19 Sep, Monday",
-                "max": "20 Sep, Tuesday"
-              }
-            },
-            "error": {
-              "type": null,
-              "value": null,
-              "message": null
-            },
-            "is_cod_available": true,
-            "_manufacturing_time_seconds": 172800
-          }
-        ]
-      }
-    ],
-    "request_uuid": "b4adf5508e34f17971817c3581e16310",
-    "stormbreaker_uuid": "4b8084d4-ea74-45af-8ddc-c38e29bf0cfb",
-    "error": {
-      "type": null,
-      "value": null,
-      "message": null
-    },
-    "to_city": "Amritsar",
-    "payment_mode": "prepaid",
-    "is_cod_available": true,
-    "success": true
-  }
-}
+
 ```
-</details>
-
-<details>
-<summary><i>&nbsp; Pincode not found</i></summary>
-
-```json
-{
-  "value": {
-    "source": "FYND-APP",
-    "identifier": "PDP",
-    "journey": "forward",
-    "action": "get_tat",
-    "to_pincode": "99999",
-    "location_details": [
-      {
-        "fulfillment_id": 8,
-        "from_pincode": "560023",
-        "articles": [
-          {
-            "category": {
-              "level": "l3",
-              "id": 155
-            },
-            "manufacturing_time": 2,
-            "manufacturing_time_unit": "days",
-            "promise": null,
-            "error": {
-              "type": "ValueError",
-              "value": "99999",
-              "message": "We are not delivering to 99999"
-            }
-          }
-        ]
-      }
-    ],
-    "request_uuid": "4b99d15fddb2b9fc2d6ab99a1c933010",
-    "stormbreaker_uuid": "6a847909-1d59-43e7-9ae0-15f5de8fc7d7",
-    "error": {
-      "type": "ValueError",
-      "value": "99999",
-      "message": "All of the items in your cart are not deliverable to 99999"
-    },
-    "to_city": "",
-    "payment_mode": "prepaid",
-    "is_cod_available": true,
-    "success": false
-  }
-}
-```
-</details>
-
 </details>
 
 
@@ -322,7 +75,7 @@ Get TAT  data
 
 
 ### getPincodeZones
-GET zone from the Pincode.
+Get Pincode Zones
 
 
 
@@ -340,19 +93,75 @@ const data = await logistic.getPincodeZones({  body : value });
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |
-| body | [GetZoneFromPincodeViewRequest](#GetZoneFromPincodeViewRequest) | yes | Request body |
+| body | [GetPincodeZonesReqBody](#GetPincodeZonesReqBody) | yes | Request body |
 
 
-This API returns zone from the Pincode View.
+Get to know the zones of a specefic pincode
 
 *Returned Response:*
 
 
 
 
-[GetZoneFromPincodeViewResponse](#GetZoneFromPincodeViewResponse)
+[GetPincodeZonesResponse](#GetPincodeZonesResponse)
 
-Response status_code
+Success. Check the example shown below or refer `GetTatProductResponse` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### getPincodeCity
+Get city from PIN Code
+
+
+
+```javascript
+// Promise
+const promise = logistic.getPincodeCity({  pincode : value });
+
+// Async/Await
+const data = await logistic.getPincodeCity({  pincode : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| pincode | string | yes | The PIN Code of the area, e.g. 400059 |  
+
+
+
+Use this API to retrieve a city by its PIN Code.
+
+*Returned Response:*
+
+
+
+
+[GetPincodeCityResponse](#GetPincodeCityResponse)
+
+Success. Returns a JSON object containing the city name, state and country identified by its PIN Code. Check the example shown below or refer `GetPincodeCityResponse` for more details.
 
 
 
@@ -381,38 +190,56 @@ Response status_code
 
  
  
- #### [PincodeErrorSchemaResponse](#PincodeErrorSchemaResponse)
+ #### [GetPincodeCityResponse](#GetPincodeCityResponse)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | message | string |  no  |  |
- | value | string |  no  |  |
- | type | string |  no  |  |
+ | request_uuid | string |  no  |  |
+ | stormbreaker_uuid | string |  no  |  |
+ | success | boolean |  yes  |  |
+ | data | [[LogisticPincodeData](#LogisticPincodeData)] |  yes  |  |
 
 ---
 
 
  
  
- #### [PincodeMetaResponse](#PincodeMetaResponse)
+ #### [LogisticPincodeData](#LogisticPincodeData)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | meta | [LogisticMeta](#LogisticMeta) |  no  |  |
+ | parents | [[LogisticParents](#LogisticParents)] |  no  |  |
+ | sub_type | string |  no  |  |
+ | name | string |  no  |  |
+ | error | [LogisticError](#LogisticError) |  no  |  |
+ | uid | string |  no  |  |
+ | display_name | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [LogisticMeta](#LogisticMeta)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | zone | string |  no  |  |
- | internal_zone_id | number |  no  |  |
+ | deliverables | [any] |  no  |  |
 
 ---
 
 
  
  
- #### [PincodeParentsResponse](#PincodeParentsResponse)
+ #### [LogisticParents](#LogisticParents)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | display_name | string |  no  |  |
- | name | string |  no  |  |
  | sub_type | string |  no  |  |
+ | name | string |  no  |  |
+ | display_name | string |  no  |  |
  | uid | string |  no  |  |
 
 ---
@@ -420,118 +247,166 @@ Response status_code
 
  
  
- #### [PincodeDataResponse](#PincodeDataResponse)
+ #### [LogisticError](#LogisticError)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | error | [PincodeErrorSchemaResponse](#PincodeErrorSchemaResponse) |  yes  |  |
- | name | string |  no  |  |
- | uid | string |  no  |  |
- | meta | [PincodeMetaResponse](#PincodeMetaResponse) |  no  |  |
- | display_name | string |  no  |  |
- | sub_type | string |  no  |  |
- | parents | [[PincodeParentsResponse](#PincodeParentsResponse)] |  no  |  |
+ | type | string |  no  |  |
+ | value | string |  no  |  |
+ | message | string |  no  |  |
 
 ---
 
 
  
  
- #### [PincodeApiResponse](#PincodeApiResponse)
+ #### [GetPincodeZonesReqBody](#GetPincodeZonesReqBody)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | error | [PincodeErrorSchemaResponse](#PincodeErrorSchemaResponse) |  yes  |  |
- | data | [[PincodeDataResponse](#PincodeDataResponse)] |  no  |  |
- | request_uuid | string |  yes  |  |
- | success | boolean |  yes  |  |
- | stormbreaker_uuid | string |  yes  |  |
+ | country | string |  yes  |  |
+ | pincode | string |  yes  |  |
 
 ---
 
 
  
  
- #### [TATCategoryRequest](#TATCategoryRequest)
+ #### [GetPincodeZonesResponse](#GetPincodeZonesResponse)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | level | string |  no  |  |
- | id | number |  no  |  |
+ | zones | [any] |  yes  |  |
+ | serviceability_type | string |  yes  |  |
 
 ---
 
 
  
  
- #### [TATArticlesRequest](#TATArticlesRequest)
+ #### [GetTatProductReqBody](#GetTatProductReqBody)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | location_details | [[LocationDetailsReq](#LocationDetailsReq)] |  yes  |  |
+ | to_pincode | string |  yes  |  |
+ | action | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [LocationDetailsReq](#LocationDetailsReq)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | from_pincode | string |  no  |  |
+ | articles | [[TatReqProductArticles](#TatReqProductArticles)] |  no  |  |
+ | fulfillment_id | number |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [TatReqProductArticles](#TatReqProductArticles)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | manufacturing_time | number |  no  |  |
  | manufacturing_time_unit | string |  no  |  |
- | category | [TATCategoryRequest](#TATCategoryRequest) |  no  |  |
+ | category | [LogisticRequestCategory](#LogisticRequestCategory) |  no  |  |
 
 ---
 
 
  
  
- #### [TATLocationDetailsRequest](#TATLocationDetailsRequest)
+ #### [LogisticRequestCategory](#LogisticRequestCategory)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | fulfillment_id | number |  no  |  |
+ | id | number |  no  |  |
+ | level | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [GetTatProductResponse](#GetTatProductResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | location_details | [[LocationDetails](#LocationDetails)] |  yes  |  |
+ | request_uuid | string |  no  |  |
+ | error | string |  yes  |  |
+ | to_city | string |  yes  |  |
+ | source | string |  yes  |  |
+ | to_pincode | string |  yes  |  |
+ | action | string |  yes  |  |
+ | stormbreaker_uuid | string |  no  |  |
+ | success | boolean |  yes  |  |
+ | identifier | string |  yes  |  |
+ | journey | string |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [LocationDetails](#LocationDetails)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
  | from_pincode | string |  no  |  |
- | articles | [[TATArticlesRequest](#TATArticlesRequest)] |  no  |  |
+ | articles | [[TatProductArticles](#TatProductArticles)] |  no  |  |
+ | fulfillment_id | number |  no  |  |
 
 ---
 
 
  
  
- #### [TATViewRequest](#TATViewRequest)
+ #### [TatProductArticles](#TatProductArticles)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | identifier | string |  no  |  |
- | journey | string |  no  |  |
- | action | string |  no  |  |
- | source | string |  no  |  |
- | to_pincode | string |  no  |  |
- | location_details | [[TATLocationDetailsRequest](#TATLocationDetailsRequest)] |  no  |  |
+ | error | string |  no  |  |
+ | category | [LogisticResponseCategory](#LogisticResponseCategory) |  no  |  |
+ | promise | [LogisticPromise](#LogisticPromise) |  no  |  |
 
 ---
 
 
  
  
- #### [TATErrorSchemaResponse](#TATErrorSchemaResponse)
+ #### [LogisticResponseCategory](#LogisticResponseCategory)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | message | string |  no  |  |
- | value | string |  no  |  |
- | type | string |  no  |  |
+ | id | number |  no  |  |
+ | level | string |  no  |  |
 
 ---
 
 
  
  
- #### [TATFormattedResponse](#TATFormattedResponse)
+ #### [LogisticPromise](#LogisticPromise)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | min | string |  no  |  |
- | max | string |  no  |  |
+ | timestamp | [LogisticTimestamp](#LogisticTimestamp) |  no  |  |
+ | formatted | [Formatted](#Formatted) |  no  |  |
 
 ---
 
 
  
  
- #### [TATTimestampResponse](#TATTimestampResponse)
+ #### [LogisticTimestamp](#LogisticTimestamp)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
@@ -543,89 +418,23 @@ Response status_code
 
  
  
- #### [TATPromiseResponse](#TATPromiseResponse)
+ #### [Formatted](#Formatted)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | formatted | [TATFormattedResponse](#TATFormattedResponse) |  no  |  |
- | timestamp | [TATTimestampResponse](#TATTimestampResponse) |  no  |  |
+ | min | string |  no  |  |
+ | max | string |  no  |  |
 
 ---
 
 
  
  
- #### [TATArticlesResponse](#TATArticlesResponse)
+ #### [ApefaceApiError](#ApefaceApiError)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | error | [TATErrorSchemaResponse](#TATErrorSchemaResponse) |  no  |  |
- | promise | [TATPromiseResponse](#TATPromiseResponse) |  no  |  |
- | manufacturing_time | number |  no  |  |
- | is_cod_available | boolean |  no  |  |
- | _manufacturing_time_seconds | number |  no  |  |
- | category | [TATCategoryRequest](#TATCategoryRequest) |  no  |  |
- | manufacturing_time_unit | string |  no  |  |
-
----
-
-
- 
- 
- #### [TATLocationDetailsResponse](#TATLocationDetailsResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | fulfillment_id | number |  no  |  |
- | from_pincode | string |  no  |  |
- | articles | [[TATArticlesResponse](#TATArticlesResponse)] |  no  |  |
-
----
-
-
- 
- 
- #### [TATViewResponse](#TATViewResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | error | [TATErrorSchemaResponse](#TATErrorSchemaResponse) |  no  |  |
- | identifier | string |  no  |  |
- | journey | string |  no  |  |
- | action | string |  no  |  |
- | to_city | string |  no  |  |
- | is_cod_available | boolean |  no  |  |
- | source | string |  no  |  |
- | to_pincode | string |  no  |  |
- | location_details | [[TATLocationDetailsResponse](#TATLocationDetailsResponse)] |  no  |  |
- | request_uuid | string |  no  |  |
- | payment_mode | string |  no  |  |
- | success | boolean |  no  |  |
- | stormbreaker_uuid | string |  no  |  |
-
----
-
-
- 
- 
- #### [GetZoneFromPincodeViewRequest](#GetZoneFromPincodeViewRequest)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | pincode | string |  yes  |  |
- | country | string |  yes  |  |
-
----
-
-
- 
- 
- #### [GetZoneFromPincodeViewResponse](#GetZoneFromPincodeViewResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | serviceability_type | string |  yes  |  |
- | zones | [string] |  yes  |  |
+ | message | string |  no  |  |
 
 ---
 

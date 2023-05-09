@@ -117,6 +117,38 @@ class Serviceability {
    * @param {Object} arg - Arg object.
    * @param {string} arg.zoneId - A `zone_id` is a unique identifier for a
    *   particular zone.
+   * @summary: Zone Data View of application.
+   * @description: This API returns Zone Data View of the application.
+   */
+  getZoneDataView({ zoneId } = {}) {
+    const { error } = ServiceabilityValidator.getZoneDataView().validate(
+      {
+        zoneId,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    const query_params = {};
+
+    const xHeaders = {};
+
+    return PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/logistics/v1.0/company/${this.config.companyId}/zone/${zoneId}`,
+      query_params,
+      undefined,
+      xHeaders
+    );
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.zoneId - A `zone_id` is a unique identifier for a
+   *   particular zone.
    * @param {ZoneUpdateRequest} arg.body
    * @summary: Updation of zone collections in database.
    * @description: This API returns response of updation of zone in mongo database.
@@ -145,38 +177,6 @@ class Serviceability {
       `/service/platform/logistics/v1.0/company/${this.config.companyId}/zone/${zoneId}`,
       query_params,
       body,
-      xHeaders
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.zoneId - A `zone_id` is a unique identifier for a
-   *   particular zone.
-   * @summary: Zone Data View of application.
-   * @description: This API returns Zone Data View of the application.
-   */
-  getZoneDataView({ zoneId } = {}) {
-    const { error } = ServiceabilityValidator.getZoneDataView().validate(
-      {
-        zoneId,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    const xHeaders = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/logistics/v1.0/company/${this.config.companyId}/zone/${zoneId}`,
-      query_params,
-      undefined,
       xHeaders
     );
   }

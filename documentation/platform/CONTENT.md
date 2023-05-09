@@ -35,6 +35,7 @@ Content System
 * [updateFaq](#updatefaq)
 * [deleteFaq](#deletefaq)
 * [getFaqByIdOrSlug](#getfaqbyidorslug)
+* [generateSEOTitle](#generateseotitle)
 * [getLandingPages](#getlandingpages)
 * [createLandingPage](#createlandingpage)
 * [updateLandingPage](#updatelandingpage)
@@ -2320,6 +2321,75 @@ Success. Refer `CreateFaqResponseSchema` for more details.
   }
 }
 ```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### generateSEOTitle
+Get SEO meta tag title for content
+
+
+
+```javascript
+// Promise
+const promise = client.application("<APPLICATION_ID>").content.generateSEOTitle({  type : value,
+ body : value });
+
+// Async/Await
+const data = await client.application("<APPLICATION_ID>").content.generateSEOTitle({  type : value,
+ body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| type | GenerationEntityType | yes | String representing the type of SEO content to be generated. Possible values are: title, description |  
+| body | [GenerateSEOContent](#GenerateSEOContent) | yes | Request body |
+
+
+Use this API to get GPT3 generated SEO meta tag title for content
+
+*Returned Response:*
+
+
+
+
+[GeneratedSEOContent](#GeneratedSEOContent)
+
+Returns the generated SEO title
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; default</i></summary>
+
+```json
+{
+  "value": {
+    "title": "SEO Title example",
+    "description": "SEO Description example"
+  }
+}
+```
+</details>
+
 </details>
 
 
@@ -5763,6 +5833,7 @@ Success. Refer `SeoComponent` for more details.
       },
       "robots_txt": "User-agent: * \nAllow: / \nsancisciasn xwsaixjowqnxwsiwjs",
       "sitemap_enabled": false,
+      "cannonical_enabled": false,
       "_id": "6009819ee463ad40de397eb2",
       "app": "000000000000000000000001",
       "created_at": "2021-01-21T13:29:02.543Z",
@@ -7483,6 +7554,32 @@ Success. Returns a JSON object of components. Refer `PageSchema` for more detail
 
  
  
+ #### [GenerateSEOContent](#GenerateSEOContent)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | text | string |  no  |  |
+ | existing_text | string |  no  |  |
+ | keywords | [string] |  no  |  |
+ | type | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [GeneratedSEOContent](#GeneratedSEOContent)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | title | string |  no  |  |
+ | description | string |  no  |  |
+
+---
+
+
+ 
+ 
  #### [ApplicationLegal](#ApplicationLegal)
 
  | Properties | Type | Nullable | Description |
@@ -7524,7 +7621,19 @@ Success. Returns a JSON object of components. Refer `PageSchema` for more detail
  | redirect_to | string |  no  |  |
  | updated_at | string |  no  |  |
  | created_at | string |  no  |  |
- | __source | [TagSourceSchema](#TagSourceSchema) |  no  |  |
+ | __source | [PathSourceSchema](#PathSourceSchema) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [PathSourceSchema](#PathSourceSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | type | string |  no  |  |
+ | id | string |  no  |  |
 
 ---
 
@@ -7550,6 +7659,7 @@ Success. Returns a JSON object of components. Refer `PageSchema` for more detail
  | _id | string |  no  |  |
  | robots_txt | string |  no  |  |
  | sitemap_enabled | boolean |  no  |  |
+ | cannonical_enabled | boolean |  no  |  |
  | custom_meta_tags | [[CustomMetaTag](#CustomMetaTag)] |  no  |  |
  | details | [Detail](#Detail) |  no  |  |
  | created_at | string |  no  |  |
@@ -8911,6 +9021,18 @@ Success. Returns a JSON object of components. Refer `PageSchema` for more detail
 ### Enums
 
 
+
+
+
+ #### [GenerationEntityType](#GenerationEntityType)
+ Type : string
+
+ | Name | Value | Description |
+ | ---- | ----- | ----------- |
+ | title | title | Denotes title will be generated |
+ | description | description | Denotes description will be generated |
+
+---
 
 
 
