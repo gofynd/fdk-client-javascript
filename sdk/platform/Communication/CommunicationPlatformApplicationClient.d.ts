@@ -65,6 +65,26 @@ declare class Communication {
     }): Promise<SmsTemplateRes>;
     /**
      * @param {Object} arg - Arg object.
+     * @param {VoiceProviderReq} arg.body
+     * @returns {Promise<VoiceProvider>} - Success response
+     * @summary: Create voice provider
+     * @description: Create voice provider
+     */
+    createVoiceProvider({ body }?: {
+        body: VoiceProviderReq;
+    }): Promise<VoiceProvider>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {VoiceTemplateReq} arg.body
+     * @returns {Promise<VoiceTemplateRes>} - Success response
+     * @summary: Create voice template
+     * @description: Create voice template
+     */
+    createVoiceTemplate({ body }?: {
+        body: VoiceTemplateReq;
+    }): Promise<VoiceTemplateRes>;
+    /**
+     * @param {Object} arg - Arg object.
      * @param {string} arg.id - Email template id
      * @returns {Promise<EmailTemplateDeleteSuccessRes>} - Success response
      * @summary: Delete email template by id
@@ -83,6 +103,16 @@ declare class Communication {
     deleteSmsTemplateById({ id }?: {
         id: string;
     }): Promise<SmsTemplateDeleteSuccessRes>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {string} arg.id - Voice template id
+     * @returns {Promise<VoiceTemplateDeleteSuccessRes>} - Success response
+     * @summary: Delete voice template by id
+     * @description: Delete voice template by id
+     */
+    deleteVoiceTemplateById({ id }?: {
+        id: string;
+    }): Promise<VoiceTemplateDeleteSuccessRes>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.id - Audience id
@@ -527,6 +557,113 @@ declare class Communication {
     }): Paginator;
     /**
      * @param {Object} arg - Arg object.
+     * @param {number} [arg.pageNo] - Current page no
+     * @param {number} [arg.pageSize] - Current request items count
+     * @param {Object} [arg.sort] - To sort based on created_at
+     * @returns {Promise<SystemVoiceTemplates>} - Success response
+     * @summary: Get system voice templates
+     * @description: Get system voice templates
+     */
+    getSystemVoiceTemplates({ pageNo, pageSize, sort }?: {
+        pageNo?: number;
+        pageSize?: number;
+        sort?: any;
+    }): Promise<SystemVoiceTemplates>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {string} arg.companyId - Company id
+     * @param {string} arg.applicationId - Application id
+     * @param {number} [arg.pageSize] - Current request items count
+     * @param {Object} [arg.sort] - To sort based on created_at
+     * @summary: Get system voice templates
+     * @description: Get system voice templates
+     */
+    getSystemVoiceTemplatesPaginator({ companyId, applicationId, pageSize, sort, }?: {
+        companyId: string;
+        applicationId: string;
+        pageSize?: number;
+        sort?: any;
+    }): Paginator;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {string} arg.id - Voice provider id
+     * @returns {Promise<VoiceProvider>} - Success response
+     * @summary: Get voice provider by id
+     * @description: Get voice provider by id
+     */
+    getVoiceProviderById({ id }?: {
+        id: string;
+    }): Promise<VoiceProvider>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {number} [arg.pageNo] - Current page no
+     * @param {number} [arg.pageSize] - Current request items count
+     * @param {Object} [arg.sort] - To sort based on created_at
+     * @returns {Promise<VoiceProviders>} - Success response
+     * @summary: Get voice providers
+     * @description: Get voice providers
+     */
+    getVoiceProviders({ pageNo, pageSize, sort }?: {
+        pageNo?: number;
+        pageSize?: number;
+        sort?: any;
+    }): Promise<VoiceProviders>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {string} arg.companyId - Company id
+     * @param {string} arg.applicationId - Application id
+     * @param {number} [arg.pageSize] - Current request items count
+     * @param {Object} [arg.sort] - To sort based on created_at
+     * @summary: Get voice providers
+     * @description: Get voice providers
+     */
+    getVoiceProvidersPaginator({ companyId, applicationId, pageSize, sort, }?: {
+        companyId: string;
+        applicationId: string;
+        pageSize?: number;
+        sort?: any;
+    }): Paginator;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {string} arg.id - Voice template id
+     * @returns {Promise<VoiceTemplate>} - Success response
+     * @summary: Get voice template by id
+     * @description: Get voice template by id
+     */
+    getVoiceTemplateById({ id }?: {
+        id: string;
+    }): Promise<VoiceTemplate>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {number} [arg.pageNo] - Current page no
+     * @param {number} [arg.pageSize] - Current request items count
+     * @param {Object} [arg.sort] - To sort based on created_at
+     * @returns {Promise<VoiceTemplates>} - Success response
+     * @summary: Get voice templates
+     * @description: Get voice templates
+     */
+    getVoiceTemplates({ pageNo, pageSize, sort }?: {
+        pageNo?: number;
+        pageSize?: number;
+        sort?: any;
+    }): Promise<VoiceTemplates>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {string} arg.companyId - Company id
+     * @param {string} arg.applicationId - Application id
+     * @param {number} [arg.pageSize] - Current request items count
+     * @param {Object} [arg.sort] - To sort based on created_at
+     * @summary: Get voice templates
+     * @description: Get voice templates
+     */
+    getVoiceTemplatesPaginator({ companyId, applicationId, pageSize, sort, }?: {
+        companyId: string;
+        applicationId: string;
+        pageSize?: number;
+        sort?: any;
+    }): Paginator;
+    /**
+     * @param {Object} arg - Arg object.
      * @param {EngineRequest} arg.body
      * @returns {Promise<EngineResponse>} - Success response
      * @summary: Send email or sms asynchronously
@@ -637,6 +774,18 @@ declare class Communication {
         id: string;
         body: SmsTemplateReq;
     }): Promise<SmsTemplateRes>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {string} arg.id - Voice template id
+     * @param {VoiceTemplateReq} arg.body
+     * @returns {Promise<VoiceTemplateRes>} - Success response
+     * @summary: Update voice template by id
+     * @description: Update voice template by id
+     */
+    updateVoiceTemplateById({ id, body }?: {
+        id: string;
+        body: VoiceTemplateReq;
+    }): Promise<VoiceTemplateRes>;
     /**
      * @param {Object} arg - Arg object.
      * @param {VerifyOtpCommsReq} arg.body

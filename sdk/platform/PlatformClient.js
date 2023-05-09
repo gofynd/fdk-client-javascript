@@ -3516,6 +3516,28 @@ class PlatformClient {
  * @property {Page} [page]
  */
 /**
+ * @typedef SystemVoiceTemplate
+ * @property {number} [__v]
+ * @property {string} [_id]
+ * @property {string} [created_at]
+ * @property {string} [description]
+ * @property {boolean} [is_internal]
+ * @property {boolean} [is_system]
+ * @property {VoiceTemplateMessage} [message]
+ * @property {string} [name]
+ * @property {string} [priority]
+ * @property {boolean} [published]
+ * @property {string} [slug]
+ * @property {Object[]} [tags]
+ * @property {Object} [template_variables]
+ * @property {string} [updated_at]
+ */
+/**
+ * @typedef SystemVoiceTemplates
+ * @property {SystemVoiceTemplate[]} [items]
+ * @property {Page} [page]
+ */
+/**
  * @typedef TemplateAndType
  * @property {string} [template]
  * @property {string} [template_type]
@@ -3544,6 +3566,103 @@ class PlatformClient {
  * @property {string} [message]
  * @property {string} [mobile]
  * @property {boolean} [success]
+ */
+/**
+ * @typedef VoiceProvider
+ * @property {number} [__v]
+ * @property {string} [_id]
+ * @property {string} [applet_url]
+ * @property {string} [application]
+ * @property {string} [caller_id]
+ * @property {string} [created_at]
+ * @property {string} [description]
+ * @property {string} [discriminator]
+ * @property {string} [name]
+ * @property {string} [password]
+ * @property {string} [provider]
+ * @property {string} [slug]
+ * @property {string} [type]
+ * @property {string} [updated_at]
+ * @property {string} [username]
+ * @property {string[]} [whitelisted_ip]
+ */
+/**
+ * @typedef VoiceProviderReq
+ * @property {string} [authkey]
+ * @property {string} [description]
+ * @property {string} [name]
+ * @property {string} [provider]
+ * @property {string} [sender]
+ * @property {string} [type]
+ * @property {string} [username]
+ */
+/**
+ * @typedef VoiceProviders
+ * @property {VoiceProvider[]} [items]
+ * @property {Page} [page]
+ */
+/**
+ * @typedef VoiceTemplate
+ * @property {number} [__v]
+ * @property {string} [_id]
+ * @property {string} [created_at]
+ * @property {string} [description]
+ * @property {boolean} [is_internal]
+ * @property {boolean} [is_system]
+ * @property {VoiceTemplateMessage} [message]
+ * @property {string} [name]
+ * @property {string} [priority]
+ * @property {boolean} [published]
+ * @property {string} [slug]
+ * @property {Object[]} [tags]
+ * @property {Object} [template_variables]
+ * @property {string} [updated_at]
+ */
+/**
+ * @typedef VoiceTemplateDeleteFailureRes
+ * @property {string} [message]
+ * @property {boolean} [success]
+ */
+/**
+ * @typedef VoiceTemplateDeleteSuccessRes
+ * @property {string} [message]
+ * @property {boolean} [success]
+ */
+/**
+ * @typedef VoiceTemplateMessage
+ * @property {string} [template]
+ * @property {string} [template_type]
+ */
+/**
+ * @typedef VoiceTemplateReq
+ * @property {Object[]} [attachments]
+ * @property {string} [description]
+ * @property {VoiceTemplateMessage} [message]
+ * @property {string} [name]
+ * @property {string} [priority]
+ * @property {Object} [template_variables]
+ */
+/**
+ * @typedef VoiceTemplateRes
+ * @property {number} [__v]
+ * @property {string} [_id]
+ * @property {string} [created_at]
+ * @property {string} [description]
+ * @property {boolean} [is_internal]
+ * @property {boolean} [is_system]
+ * @property {VoiceTemplateMessage} [message]
+ * @property {string} [name]
+ * @property {string} [priority]
+ * @property {boolean} [published]
+ * @property {string} [slug]
+ * @property {Object[]} [tags]
+ * @property {Object} [template_variables]
+ * @property {string} [updated_at]
+ */
+/**
+ * @typedef VoiceTemplates
+ * @property {VoiceTemplate[]} [items]
+ * @property {Page} [page]
  */
 
 /**
@@ -5510,6 +5629,7 @@ class PlatformClient {
  * @property {boolean} [can_return]
  * @property {string} [code]
  * @property {string} [color]
+ * @property {string} [currency]
  * @property {number} [department_id]
  * @property {number} [id]
  * @property {string[]} [image]
@@ -5850,6 +5970,7 @@ class PlatformClient {
  * @property {string} fulfilling_centre
  * @property {ShipmentItemFulFillingStore} [fulfilling_store]
  * @property {string} id
+ * @property {string} [order_id]
  * @property {Object} [payment_methods]
  * @property {PaymentModeInfo} [payment_mode_info]
  * @property {Prices} [prices]

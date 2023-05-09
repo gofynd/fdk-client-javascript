@@ -38,6 +38,18 @@ class CommunicationValidator {
     }).required();
   }
 
+  static createVoiceProvider() {
+    return Joi.object({
+      body: CommunicationModel.VoiceProviderReq().required(),
+    }).required();
+  }
+
+  static createVoiceTemplate() {
+    return Joi.object({
+      body: CommunicationModel.VoiceTemplateReq().required(),
+    }).required();
+  }
+
   static deleteEmailTemplateById() {
     return Joi.object({
       id: Joi.string().allow("").required(),
@@ -45,6 +57,12 @@ class CommunicationValidator {
   }
 
   static deleteSmsTemplateById() {
+    return Joi.object({
+      id: Joi.string().allow("").required(),
+    }).required();
+  }
+
+  static deleteVoiceTemplateById() {
     return Joi.object({
       id: Joi.string().allow("").required(),
     }).required();
@@ -201,6 +219,42 @@ class CommunicationValidator {
     }).required();
   }
 
+  static getSystemVoiceTemplates() {
+    return Joi.object({
+      pageNo: Joi.number(),
+      pageSize: Joi.number(),
+      sort: Joi.any(),
+    }).required();
+  }
+
+  static getVoiceProviderById() {
+    return Joi.object({
+      id: Joi.string().allow("").required(),
+    }).required();
+  }
+
+  static getVoiceProviders() {
+    return Joi.object({
+      pageNo: Joi.number(),
+      pageSize: Joi.number(),
+      sort: Joi.any(),
+    }).required();
+  }
+
+  static getVoiceTemplateById() {
+    return Joi.object({
+      id: Joi.string().allow("").required(),
+    }).required();
+  }
+
+  static getVoiceTemplates() {
+    return Joi.object({
+      pageNo: Joi.number(),
+      pageSize: Joi.number(),
+      sort: Joi.any(),
+    }).required();
+  }
+
   static sendCommunicationAsynchronously() {
     return Joi.object({
       body: CommunicationModel.EngineRequest().required(),
@@ -264,6 +318,13 @@ class CommunicationValidator {
     return Joi.object({
       id: Joi.string().allow("").required(),
       body: CommunicationModel.SmsTemplateReq().required(),
+    }).required();
+  }
+
+  static updateVoiceTemplateById() {
+    return Joi.object({
+      id: Joi.string().allow("").required(),
+      body: CommunicationModel.VoiceTemplateReq().required(),
     }).required();
   }
 

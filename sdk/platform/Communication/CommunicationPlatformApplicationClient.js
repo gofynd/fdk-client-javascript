@@ -392,6 +392,132 @@ class Communication {
 
   /**
    * @param {Object} arg - Arg object.
+   * @param {VoiceProviderReq} arg.body
+   * @returns {Promise<VoiceProvider>} - Success response
+   * @summary: Create voice provider
+   * @description: Create voice provider
+   */
+  async createVoiceProvider({ body } = {}) {
+    const { error } = CommunicationValidator.createVoiceProvider().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = CommunicationValidator.createVoiceProvider().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for createVoiceProvider",
+      });
+      Logger({ level: "WARN", message: warrning });
+    }
+
+    const query_params = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/voice/providers`,
+      query_params,
+      body
+    );
+
+    const {
+      error: res_error,
+    } = CommunicationModel.VoiceProvider().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for createVoiceProvider",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {VoiceTemplateReq} arg.body
+   * @returns {Promise<VoiceTemplateRes>} - Success response
+   * @summary: Create voice template
+   * @description: Create voice template
+   */
+  async createVoiceTemplate({ body } = {}) {
+    const { error } = CommunicationValidator.createVoiceTemplate().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = CommunicationValidator.createVoiceTemplate().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for createVoiceTemplate",
+      });
+      Logger({ level: "WARN", message: warrning });
+    }
+
+    const query_params = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/voice/templates`,
+      query_params,
+      body
+    );
+
+    const {
+      error: res_error,
+    } = CommunicationModel.VoiceTemplateRes().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for createVoiceTemplate",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
    * @param {string} arg.id - Email template id
    * @returns {Promise<EmailTemplateDeleteSuccessRes>} - Success response
    * @summary: Delete email template by id
@@ -509,6 +635,69 @@ class Communication {
       Logger({
         level: "WARN",
         message: "Response Validation Warnnings for deleteSmsTemplateById",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.id - Voice template id
+   * @returns {Promise<VoiceTemplateDeleteSuccessRes>} - Success response
+   * @summary: Delete voice template by id
+   * @description: Delete voice template by id
+   */
+  async deleteVoiceTemplateById({ id } = {}) {
+    const { error } = CommunicationValidator.deleteVoiceTemplateById().validate(
+      {
+        id,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = CommunicationValidator.deleteVoiceTemplateById().validate(
+      {
+        id,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for deleteVoiceTemplateById",
+      });
+      Logger({ level: "WARN", message: warrning });
+    }
+
+    const query_params = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "delete",
+      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/voice/templates/${id}`,
+      query_params,
+      undefined
+    );
+
+    const {
+      error: res_error,
+    } = CommunicationModel.VoiceTemplateDeleteSuccessRes().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for deleteVoiceTemplateById",
       });
       Logger({ level: "WARN", message: res_error });
     }
@@ -2360,6 +2549,459 @@ class Communication {
 
   /**
    * @param {Object} arg - Arg object.
+   * @param {number} [arg.pageNo] - Current page no
+   * @param {number} [arg.pageSize] - Current request items count
+   * @param {Object} [arg.sort] - To sort based on created_at
+   * @returns {Promise<SystemVoiceTemplates>} - Success response
+   * @summary: Get system voice templates
+   * @description: Get system voice templates
+   */
+  async getSystemVoiceTemplates({ pageNo, pageSize, sort } = {}) {
+    const { error } = CommunicationValidator.getSystemVoiceTemplates().validate(
+      {
+        pageNo,
+        pageSize,
+        sort,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = CommunicationValidator.getSystemVoiceTemplates().validate(
+      {
+        pageNo,
+        pageSize,
+        sort,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getSystemVoiceTemplates",
+      });
+      Logger({ level: "WARN", message: warrning });
+    }
+
+    const query_params = {};
+    query_params["page_no"] = pageNo;
+    query_params["page_size"] = pageSize;
+    query_params["sort"] = sort;
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/voice/system-templates`,
+      query_params,
+      undefined
+    );
+
+    const {
+      error: res_error,
+    } = CommunicationModel.SystemVoiceTemplates().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getSystemVoiceTemplates",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.companyId - Company id
+   * @param {string} arg.applicationId - Application id
+   * @param {number} [arg.pageSize] - Current request items count
+   * @param {Object} [arg.sort] - To sort based on created_at
+   * @summary: Get system voice templates
+   * @description: Get system voice templates
+   */
+  getSystemVoiceTemplatesPaginator({
+    companyId,
+    applicationId,
+    pageSize,
+    sort,
+  } = {}) {
+    const paginator = new Paginator();
+    const callback = async () => {
+      const pageId = paginator.nextId;
+      const pageNo = paginator.pageNo;
+      const pageType = "number";
+      const data = await this.getSystemVoiceTemplates({
+        companyId: companyId,
+        applicationId: applicationId,
+        pageNo: pageNo,
+        pageSize: pageSize,
+        sort: sort,
+      });
+      paginator.setPaginator({
+        hasNext: data.page.has_next ? true : false,
+        nextId: data.page.next_id,
+      });
+      return data;
+    };
+    paginator.setCallback(callback.bind(this));
+    return paginator;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.id - Voice provider id
+   * @returns {Promise<VoiceProvider>} - Success response
+   * @summary: Get voice provider by id
+   * @description: Get voice provider by id
+   */
+  async getVoiceProviderById({ id } = {}) {
+    const { error } = CommunicationValidator.getVoiceProviderById().validate(
+      {
+        id,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = CommunicationValidator.getVoiceProviderById().validate(
+      {
+        id,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getVoiceProviderById",
+      });
+      Logger({ level: "WARN", message: warrning });
+    }
+
+    const query_params = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/voice/providers/${id}`,
+      query_params,
+      undefined
+    );
+
+    const {
+      error: res_error,
+    } = CommunicationModel.VoiceProvider().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getVoiceProviderById",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {number} [arg.pageNo] - Current page no
+   * @param {number} [arg.pageSize] - Current request items count
+   * @param {Object} [arg.sort] - To sort based on created_at
+   * @returns {Promise<VoiceProviders>} - Success response
+   * @summary: Get voice providers
+   * @description: Get voice providers
+   */
+  async getVoiceProviders({ pageNo, pageSize, sort } = {}) {
+    const { error } = CommunicationValidator.getVoiceProviders().validate(
+      {
+        pageNo,
+        pageSize,
+        sort,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = CommunicationValidator.getVoiceProviders().validate(
+      {
+        pageNo,
+        pageSize,
+        sort,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getVoiceProviders",
+      });
+      Logger({ level: "WARN", message: warrning });
+    }
+
+    const query_params = {};
+    query_params["page_no"] = pageNo;
+    query_params["page_size"] = pageSize;
+    query_params["sort"] = sort;
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/voice/providers`,
+      query_params,
+      undefined
+    );
+
+    const {
+      error: res_error,
+    } = CommunicationModel.VoiceProviders().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getVoiceProviders",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.companyId - Company id
+   * @param {string} arg.applicationId - Application id
+   * @param {number} [arg.pageSize] - Current request items count
+   * @param {Object} [arg.sort] - To sort based on created_at
+   * @summary: Get voice providers
+   * @description: Get voice providers
+   */
+  getVoiceProvidersPaginator({
+    companyId,
+    applicationId,
+    pageSize,
+    sort,
+  } = {}) {
+    const paginator = new Paginator();
+    const callback = async () => {
+      const pageId = paginator.nextId;
+      const pageNo = paginator.pageNo;
+      const pageType = "number";
+      const data = await this.getVoiceProviders({
+        companyId: companyId,
+        applicationId: applicationId,
+        pageNo: pageNo,
+        pageSize: pageSize,
+        sort: sort,
+      });
+      paginator.setPaginator({
+        hasNext: data.page.has_next ? true : false,
+        nextId: data.page.next_id,
+      });
+      return data;
+    };
+    paginator.setCallback(callback.bind(this));
+    return paginator;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.id - Voice template id
+   * @returns {Promise<VoiceTemplate>} - Success response
+   * @summary: Get voice template by id
+   * @description: Get voice template by id
+   */
+  async getVoiceTemplateById({ id } = {}) {
+    const { error } = CommunicationValidator.getVoiceTemplateById().validate(
+      {
+        id,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = CommunicationValidator.getVoiceTemplateById().validate(
+      {
+        id,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getVoiceTemplateById",
+      });
+      Logger({ level: "WARN", message: warrning });
+    }
+
+    const query_params = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/voice/templates/${id}`,
+      query_params,
+      undefined
+    );
+
+    const {
+      error: res_error,
+    } = CommunicationModel.VoiceTemplate().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getVoiceTemplateById",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {number} [arg.pageNo] - Current page no
+   * @param {number} [arg.pageSize] - Current request items count
+   * @param {Object} [arg.sort] - To sort based on created_at
+   * @returns {Promise<VoiceTemplates>} - Success response
+   * @summary: Get voice templates
+   * @description: Get voice templates
+   */
+  async getVoiceTemplates({ pageNo, pageSize, sort } = {}) {
+    const { error } = CommunicationValidator.getVoiceTemplates().validate(
+      {
+        pageNo,
+        pageSize,
+        sort,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = CommunicationValidator.getVoiceTemplates().validate(
+      {
+        pageNo,
+        pageSize,
+        sort,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getVoiceTemplates",
+      });
+      Logger({ level: "WARN", message: warrning });
+    }
+
+    const query_params = {};
+    query_params["page_no"] = pageNo;
+    query_params["page_size"] = pageSize;
+    query_params["sort"] = sort;
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/voice/templates`,
+      query_params,
+      undefined
+    );
+
+    const {
+      error: res_error,
+    } = CommunicationModel.VoiceTemplates().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getVoiceTemplates",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.companyId - Company id
+   * @param {string} arg.applicationId - Application id
+   * @param {number} [arg.pageSize] - Current request items count
+   * @param {Object} [arg.sort] - To sort based on created_at
+   * @summary: Get voice templates
+   * @description: Get voice templates
+   */
+  getVoiceTemplatesPaginator({
+    companyId,
+    applicationId,
+    pageSize,
+    sort,
+  } = {}) {
+    const paginator = new Paginator();
+    const callback = async () => {
+      const pageId = paginator.nextId;
+      const pageNo = paginator.pageNo;
+      const pageType = "number";
+      const data = await this.getVoiceTemplates({
+        companyId: companyId,
+        applicationId: applicationId,
+        pageNo: pageNo,
+        pageSize: pageSize,
+        sort: sort,
+      });
+      paginator.setPaginator({
+        hasNext: data.page.has_next ? true : false,
+        nextId: data.page.next_id,
+      });
+      return data;
+    };
+    paginator.setCallback(callback.bind(this));
+    return paginator;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
    * @param {EngineRequest} arg.body
    * @returns {Promise<EngineResponse>} - Success response
    * @summary: Send email or sms asynchronously
@@ -3005,6 +3647,72 @@ class Communication {
       Logger({
         level: "WARN",
         message: "Response Validation Warnnings for updateSmsTemplateById",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.id - Voice template id
+   * @param {VoiceTemplateReq} arg.body
+   * @returns {Promise<VoiceTemplateRes>} - Success response
+   * @summary: Update voice template by id
+   * @description: Update voice template by id
+   */
+  async updateVoiceTemplateById({ id, body } = {}) {
+    const { error } = CommunicationValidator.updateVoiceTemplateById().validate(
+      {
+        id,
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = CommunicationValidator.updateVoiceTemplateById().validate(
+      {
+        id,
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for updateVoiceTemplateById",
+      });
+      Logger({ level: "WARN", message: warrning });
+    }
+
+    const query_params = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "put",
+      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/voice/templates/${id}`,
+      query_params,
+      body
+    );
+
+    const {
+      error: res_error,
+    } = CommunicationModel.VoiceTemplateRes().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for updateVoiceTemplateById",
       });
       Logger({ level: "WARN", message: res_error });
     }

@@ -14,8 +14,11 @@ Manages email, sms, push notifications sent to users
 * [createEmailTemplate](#createemailtemplate)
 * [createSmsProvider](#createsmsprovider)
 * [createSmsTemplate](#createsmstemplate)
+* [createVoiceProvider](#createvoiceprovider)
+* [createVoiceTemplate](#createvoicetemplate)
 * [deleteEmailTemplateById](#deleteemailtemplatebyid)
 * [deleteSmsTemplateById](#deletesmstemplatebyid)
+* [deleteVoiceTemplateById](#deletevoicetemplatebyid)
 * [getAudienceById](#getaudiencebyid)
 * [getAudiences](#getaudiences)
 * [getBigqueryHeaders](#getbigqueryheaders)
@@ -38,6 +41,11 @@ Manages email, sms, push notifications sent to users
 * [getSystemEmailTemplates](#getsystememailtemplates)
 * [getSystemNotifications](#getsystemnotifications)
 * [getSystemSystemTemplates](#getsystemsystemtemplates)
+* [getSystemVoiceTemplates](#getsystemvoicetemplates)
+* [getVoiceProviderById](#getvoiceproviderbyid)
+* [getVoiceProviders](#getvoiceproviders)
+* [getVoiceTemplateById](#getvoicetemplatebyid)
+* [getVoiceTemplates](#getvoicetemplates)
 * [sendCommunicationAsynchronously](#sendcommunicationasynchronously)
 * [sendCommunicationSynchronously](#sendcommunicationsynchronously)
 * [sendOtp](#sendotp)
@@ -48,6 +56,7 @@ Manages email, sms, push notifications sent to users
 * [updateEmailTemplateById](#updateemailtemplatebyid)
 * [updateSmsProviderById](#updatesmsproviderbyid)
 * [updateSmsTemplateById](#updatesmstemplatebyid)
+* [updateVoiceTemplateById](#updatevoicetemplatebyid)
 * [verfiyOtp](#verfiyotp)
 
 
@@ -584,6 +593,171 @@ Success
 ---
 
 
+### createVoiceProvider
+Create voice provider
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").communication.createVoiceProvider({  body : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").communication.createVoiceProvider({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [VoiceProviderReq](#VoiceProviderReq) | yes | Request body |
+
+
+Create voice provider
+
+*Returned Response:*
+
+
+
+
+[VoiceProvider](#VoiceProvider)
+
+Success
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; default</i></summary>
+
+```json
+{
+  "value": {
+    "_id": "643e76194f4a21735ab87d7a",
+    "username": "16b0357856247a0dcb9330bb3911ae46890350e1a1dc16c4",
+    "password": "849320ef5051ca4d56ce98f097761bc225595f2465917e26",
+    "caller_id": "09513886363",
+    "applet_url": "http://my.exotel.com/exoml/start/628847",
+    "whitelisted_ip": [
+      "127.0.0.2",
+      "127.0.0.3"
+    ],
+    "application": "637b6355dc65337da9b5c951",
+    "type": "application",
+    "name": "Exotel Sales Channel",
+    "description": "Exotel Voice Provider",
+    "provider": "exotel",
+    "created_at": "2023-04-18T10:51:05.186Z",
+    "updated_at": "2023-04-22T15:59:42.471Z",
+    "slug": "Exotel-Sales-Channel-application-exotel-VC-Wdk7xC",
+    "__v": 2
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### createVoiceTemplate
+Create voice template
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").communication.createVoiceTemplate({  body : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").communication.createVoiceTemplate({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [VoiceTemplateReq](#VoiceTemplateReq) | yes | Request body |
+
+
+Create voice template
+
+*Returned Response:*
+
+
+
+
+[VoiceTemplateRes](#VoiceTemplateRes)
+
+Success
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; default</i></summary>
+
+```json
+{
+  "value": {
+    "is_system": false,
+    "is_internal": true,
+    "description": "This is a test voice template",
+    "priority": "high",
+    "tags": [],
+    "published": true,
+    "_id": "5fd447728394dbf0d21329b3",
+    "slug": "test-voice",
+    "name": "Test voice",
+    "message": {
+      "template_type": "nunjucks",
+      "template": "This is a test voice for order - {{ orderId }}"
+    },
+    "template_variables": {
+      "orderId": "12345"
+    },
+    "created_at": "2020-12-12T04:30:42.456Z",
+    "updated_at": "2020-12-24T15:13:20.558Z",
+    "__v": 0
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
 ### deleteEmailTemplateById
 Delete email template by id
 
@@ -682,6 +856,73 @@ Delete sms template by id
 
 
 [SmsTemplateDeleteSuccessRes](#SmsTemplateDeleteSuccessRes)
+
+Success
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; default</i></summary>
+
+```json
+{
+  "value": {
+    "success": true,
+    "message": "Deleted successfully"
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### deleteVoiceTemplateById
+Delete voice template by id
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").communication.deleteVoiceTemplateById({  id : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").communication.deleteVoiceTemplateById({  id : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| id | string | yes | Voice template id |  
+
+
+
+Delete voice template by id
+
+*Returned Response:*
+
+
+
+
+[VoiceTemplateDeleteSuccessRes](#VoiceTemplateDeleteSuccessRes)
 
 Success
 
@@ -3381,6 +3622,475 @@ Success
 ---
 
 
+### getSystemVoiceTemplates
+Get system voice templates
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").communication.getSystemVoiceTemplates({  pageNo : value,
+ pageSize : value,
+ sort : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").communication.getSystemVoiceTemplates({  pageNo : value,
+ pageSize : value,
+ sort : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| pageNo | number | no | Current page no |    
+| pageSize | number | no | Current request items count |    
+| sort | Object | no | To sort based on created_at |  
+
+
+
+Get system voice templates
+
+*Returned Response:*
+
+
+
+
+[SystemVoiceTemplates](#SystemVoiceTemplates)
+
+Success
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; default</i></summary>
+
+```json
+{
+  "value": {
+    "items": [
+      {
+        "is_system": true,
+        "is_internal": true,
+        "description": "This is a test voice template",
+        "priority": "high",
+        "tags": [],
+        "published": true,
+        "_id": "5fd447728394dbf0d21329b3",
+        "slug": "test-voice",
+        "name": "Test voice",
+        "message": {
+          "template_type": "nunjucks",
+          "template": "This is a test voice for order - {{ orderId }}"
+        },
+        "template_variables": {
+          "orderId": "12345"
+        },
+        "created_at": "2020-12-12T04:30:42.456Z",
+        "updated_at": "2020-12-24T15:13:20.558Z",
+        "__v": 0
+      }
+    ],
+    "page": {
+      "type": "number",
+      "current": 1,
+      "size": 1,
+      "item_total": 66,
+      "has_next": true
+    }
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### getVoiceProviderById
+Get voice provider by id
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").communication.getVoiceProviderById({  id : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").communication.getVoiceProviderById({  id : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| id | string | yes | Voice provider id |  
+
+
+
+Get voice provider by id
+
+*Returned Response:*
+
+
+
+
+[VoiceProvider](#VoiceProvider)
+
+Success
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; default</i></summary>
+
+```json
+{
+  "value": {
+    "_id": "643e76194f4a21735ab87d7a",
+    "username": "16b0357856247a0dcb9330bb3911ae46890350e1a1dc16c4",
+    "password": "849320ef5051ca4d56ce98f097761bc225595f2465917e26",
+    "caller_id": "09513886363",
+    "applet_url": "http://my.exotel.com/exoml/start/628847",
+    "whitelisted_ip": [
+      "127.0.0.2",
+      "127.0.0.3"
+    ],
+    "application": "637b6355dc65337da9b5c951",
+    "type": "application",
+    "name": "Exotel Sales Channel",
+    "description": "Exotel Voice Provider",
+    "provider": "exotel",
+    "created_at": "2023-04-18T10:51:05.186Z",
+    "updated_at": "2023-04-22T15:59:42.471Z",
+    "slug": "Exotel-Sales-Channel-application-exotel-VC-Wdk7xC",
+    "__v": 2
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### getVoiceProviders
+Get voice providers
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").communication.getVoiceProviders({  pageNo : value,
+ pageSize : value,
+ sort : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").communication.getVoiceProviders({  pageNo : value,
+ pageSize : value,
+ sort : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| pageNo | number | no | Current page no |    
+| pageSize | number | no | Current request items count |    
+| sort | Object | no | To sort based on created_at |  
+
+
+
+Get voice providers
+
+*Returned Response:*
+
+
+
+
+[VoiceProviders](#VoiceProviders)
+
+Success
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; default</i></summary>
+
+```json
+{
+  "value": {
+    "items": [
+      {
+        "_id": "643e76194f4a21735ab87d7a",
+        "username": "16b0357856247a0dcb9330bb3911ae46890350e1a1dc16c4",
+        "password": "849320ef5051ca4d56ce98f097761bc225595f2465917e26",
+        "caller_id": "09513886363",
+        "applet_url": "http://my.exotel.com/exoml/start/628847",
+        "whitelisted_ip": [
+          "127.0.0.2",
+          "127.0.0.3"
+        ],
+        "application": "637b6355dc65337da9b5c951",
+        "type": "application",
+        "name": "Exotel Sales Channel",
+        "description": "Exotel Voice Provider",
+        "provider": "exotel",
+        "created_at": "2023-04-18T10:51:05.186Z",
+        "updated_at": "2023-04-22T15:59:42.471Z",
+        "slug": "Exotel-Sales-Channel-application-exotel-VC-Wdk7xC",
+        "__v": 2
+      }
+    ],
+    "page": {
+      "type": "number",
+      "current": 1,
+      "size": 10,
+      "item_total": 1,
+      "has_next": false
+    }
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### getVoiceTemplateById
+Get voice template by id
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").communication.getVoiceTemplateById({  id : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").communication.getVoiceTemplateById({  id : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| id | string | yes | Voice template id |  
+
+
+
+Get voice template by id
+
+*Returned Response:*
+
+
+
+
+[VoiceTemplate](#VoiceTemplate)
+
+Success
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; default</i></summary>
+
+```json
+{
+  "value": {
+    "is_system": false,
+    "is_internal": true,
+    "description": "This is a test voice template",
+    "priority": "high",
+    "tags": [],
+    "published": true,
+    "_id": "5fd447728394dbf0d21329b3",
+    "slug": "test-voice",
+    "name": "Test voice",
+    "message": {
+      "template_type": "nunjucks",
+      "template": "This is a test voice for order - {{ orderId }}"
+    },
+    "template_variables": {
+      "orderId": "12345"
+    },
+    "created_at": "2020-12-12T04:30:42.456Z",
+    "updated_at": "2020-12-24T15:13:20.558Z",
+    "__v": 0
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### getVoiceTemplates
+Get voice templates
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").communication.getVoiceTemplates({  pageNo : value,
+ pageSize : value,
+ sort : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").communication.getVoiceTemplates({  pageNo : value,
+ pageSize : value,
+ sort : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| pageNo | number | no | Current page no |    
+| pageSize | number | no | Current request items count |    
+| sort | Object | no | To sort based on created_at |  
+
+
+
+Get voice templates
+
+*Returned Response:*
+
+
+
+
+[VoiceTemplates](#VoiceTemplates)
+
+Success
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; default</i></summary>
+
+```json
+{
+  "value": {
+    "items": [
+      {
+        "is_system": false,
+        "is_internal": true,
+        "description": "This is a test voice template",
+        "priority": "high",
+        "tags": [],
+        "published": true,
+        "_id": "5fd447728394dbf0d21329b3",
+        "slug": "test-voice",
+        "name": "Test voice",
+        "message": {
+          "template_type": "nunjucks",
+          "template": "This is a test voice for order - {{ orderId }}"
+        },
+        "template_variables": {
+          "orderId": "12345"
+        },
+        "created_at": "2020-12-12T04:30:42.456Z",
+        "updated_at": "2020-12-24T15:13:20.558Z",
+        "__v": 0
+      }
+    ],
+    "page": {
+      "type": "number",
+      "current": 1,
+      "size": 1,
+      "item_total": 66,
+      "has_next": true
+    }
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
 ### sendCommunicationAsynchronously
 Send email or sms asynchronously
 
@@ -4175,6 +4885,92 @@ Success
     "message": {
       "template_type": "nunjucks",
       "template": "This is a test sms for order - {{ orderId }}"
+    },
+    "template_variables": {
+      "orderId": "12345"
+    },
+    "created_at": "2020-12-12T04:30:42.456Z",
+    "updated_at": "2020-12-24T15:13:20.558Z",
+    "__v": 0
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### updateVoiceTemplateById
+Update voice template by id
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").communication.updateVoiceTemplateById({  id : value,
+ body : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").communication.updateVoiceTemplateById({  id : value,
+ body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| id | string | yes | Voice template id |  
+| body | [VoiceTemplateReq](#VoiceTemplateReq) | yes | Request body |
+
+
+Update voice template by id
+
+*Returned Response:*
+
+
+
+
+[VoiceTemplateRes](#VoiceTemplateRes)
+
+Success
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; default</i></summary>
+
+```json
+{
+  "value": {
+    "is_system": false,
+    "is_internal": true,
+    "description": "This is a test voice template",
+    "priority": "high",
+    "tags": [],
+    "published": true,
+    "_id": "5fd447728394dbf0d21329b3",
+    "slug": "test-voice",
+    "name": "Test voice",
+    "message": {
+      "template_type": "nunjucks",
+      "template": "This is a test voice for order - {{ orderId }}"
     },
     "template_variables": {
       "orderId": "12345"
@@ -5457,6 +6253,38 @@ Success
 
 ---
 
+#### [SystemVoiceTemplate](#SystemVoiceTemplate)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | __v | number? |  yes  |  |
+ | _id | string? |  yes  |  |
+ | created_at | string? |  yes  |  |
+ | description | string? |  yes  |  |
+ | is_internal | boolean? |  yes  |  |
+ | is_system | boolean? |  yes  |  |
+ | message | [VoiceTemplateMessage](#VoiceTemplateMessage)? |  yes  |  |
+ | name | string? |  yes  |  |
+ | priority | string? |  yes  |  |
+ | published | boolean? |  yes  |  |
+ | slug | string? |  yes  |  |
+ | tags | [any]? |  yes  |  |
+ | template_variables | any? |  yes  |  |
+ | updated_at | string? |  yes  |  |
+ 
+
+---
+
+#### [SystemVoiceTemplates](#SystemVoiceTemplates)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | items | [[SystemVoiceTemplate](#SystemVoiceTemplate)]? |  yes  |  |
+ | page | [Page](#Page)? |  yes  |  |
+ 
+
+---
+
 #### [TemplateAndType](#TemplateAndType)
 
  | Properties | Type | Nullable | Description |
@@ -5513,6 +6341,153 @@ Success
  | message | string? |  yes  |  |
  | mobile | string? |  yes  |  |
  | success | boolean? |  yes  |  |
+ 
+
+---
+
+#### [VoiceProvider](#VoiceProvider)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | __v | number? |  yes  | The version of the voice provider document |
+ | _id | string? |  yes  | The unique identifier for the voice provider |
+ | applet_url | string? |  yes  | The URL for the Exotel applet used by the voice provider |
+ | application | string? |  yes  | The unique identifier of the application to which the voice provider belongs |
+ | caller_id | string? |  yes  | The caller ID for the Exotel voice provider implementation |
+ | created_at | string? |  yes  | The date and time the voice provider was created |
+ | description | string? |  yes  | The description of the voice provider |
+ | discriminator | string? |  yes  | The discriminator key for the voice provider implementation |
+ | name | string? |  yes  | The name of the voice provider |
+ | password | string? |  yes  | The password for the Exotel voice provider implementation |
+ | provider | string? |  yes  | The name of the voice provider implementation |
+ | slug | string? |  yes  | The slug of the voice provider |
+ | type | string? |  yes  | The type of the voice provider |
+ | updated_at | string? |  yes  | The date and time the voice provider was last updated |
+ | username | string? |  yes  | The username for the Exotel voice provider implementation |
+ | whitelisted_ip | [string]? |  yes  | An array of whitelisted IP addresses for the Exotel voice provider implementation |
+ 
+
+---
+
+#### [VoiceProviderReq](#VoiceProviderReq)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | authkey | string? |  yes  |  |
+ | description | string? |  yes  |  |
+ | name | string? |  yes  |  |
+ | provider | string? |  yes  |  |
+ | sender | string? |  yes  |  |
+ | type | string? |  yes  |  |
+ | username | string? |  yes  |  |
+ 
+
+---
+
+#### [VoiceProviders](#VoiceProviders)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | items | [[VoiceProvider](#VoiceProvider)]? |  yes  |  |
+ | page | [Page](#Page)? |  yes  |  |
+ 
+
+---
+
+#### [VoiceTemplate](#VoiceTemplate)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | __v | number? |  yes  |  |
+ | _id | string? |  yes  |  |
+ | created_at | string? |  yes  |  |
+ | description | string? |  yes  |  |
+ | is_internal | boolean? |  yes  |  |
+ | is_system | boolean? |  yes  |  |
+ | message | [VoiceTemplateMessage](#VoiceTemplateMessage)? |  yes  |  |
+ | name | string? |  yes  |  |
+ | priority | string? |  yes  |  |
+ | published | boolean? |  yes  |  |
+ | slug | string? |  yes  |  |
+ | tags | [any]? |  yes  |  |
+ | template_variables | any? |  yes  |  |
+ | updated_at | string? |  yes  |  |
+ 
+
+---
+
+#### [VoiceTemplateDeleteFailureRes](#VoiceTemplateDeleteFailureRes)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | message | string? |  yes  |  |
+ | success | boolean? |  yes  |  |
+ 
+
+---
+
+#### [VoiceTemplateDeleteSuccessRes](#VoiceTemplateDeleteSuccessRes)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | message | string? |  yes  |  |
+ | success | boolean? |  yes  |  |
+ 
+
+---
+
+#### [VoiceTemplateMessage](#VoiceTemplateMessage)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | template | string? |  yes  |  |
+ | template_type | string? |  yes  |  |
+ 
+
+---
+
+#### [VoiceTemplateReq](#VoiceTemplateReq)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | attachments | [any]? |  yes  |  |
+ | description | string? |  yes  |  |
+ | message | [VoiceTemplateMessage](#VoiceTemplateMessage)? |  yes  |  |
+ | name | string? |  yes  |  |
+ | priority | string? |  yes  |  |
+ | template_variables | any? |  yes  |  |
+ 
+
+---
+
+#### [VoiceTemplateRes](#VoiceTemplateRes)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | __v | number? |  yes  |  |
+ | _id | string? |  yes  |  |
+ | created_at | string? |  yes  |  |
+ | description | string? |  yes  |  |
+ | is_internal | boolean? |  yes  |  |
+ | is_system | boolean? |  yes  |  |
+ | message | [VoiceTemplateMessage](#VoiceTemplateMessage)? |  yes  |  |
+ | name | string? |  yes  |  |
+ | priority | string? |  yes  |  |
+ | published | boolean? |  yes  |  |
+ | slug | string? |  yes  |  |
+ | tags | [any]? |  yes  |  |
+ | template_variables | any? |  yes  |  |
+ | updated_at | string? |  yes  |  |
+ 
+
+---
+
+#### [VoiceTemplates](#VoiceTemplates)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | items | [[VoiceTemplate](#VoiceTemplate)]? |  yes  |  |
+ | page | [Page](#Page)? |  yes  |  |
  
 
 ---

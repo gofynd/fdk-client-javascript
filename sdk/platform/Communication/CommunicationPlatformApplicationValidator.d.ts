@@ -6,8 +6,11 @@ declare class CommunicationValidator {
     static createEmailTemplate(): any;
     static createSmsProvider(): any;
     static createSmsTemplate(): any;
+    static createVoiceProvider(): any;
+    static createVoiceTemplate(): any;
     static deleteEmailTemplateById(): any;
     static deleteSmsTemplateById(): any;
+    static deleteVoiceTemplateById(): any;
     static getAudienceById(): any;
     static getAudiences(): any;
     static getBigqueryHeaders(): any;
@@ -29,6 +32,11 @@ declare class CommunicationValidator {
     static getStatsOfCampaignById(): any;
     static getSystemEmailTemplates(): any;
     static getSystemSystemTemplates(): any;
+    static getSystemVoiceTemplates(): any;
+    static getVoiceProviderById(): any;
+    static getVoiceProviders(): any;
+    static getVoiceTemplateById(): any;
+    static getVoiceTemplates(): any;
     static sendCommunicationAsynchronously(): any;
     static sendCommunicationSynchronously(): any;
     static sendOtp(): any;
@@ -39,5 +47,6 @@ declare class CommunicationValidator {
     static updateEmailTemplateById(): any;
     static updateSmsProviderById(): any;
     static updateSmsTemplateById(): any;
+    static updateVoiceTemplateById(): any;
     static verfiyOtp(): any;
 }

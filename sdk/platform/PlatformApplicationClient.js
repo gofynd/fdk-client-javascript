@@ -554,12 +554,24 @@ class PlatformApplicationClient {
 /** @typedef SystemNotificationUser */
 /** @typedef SystemSmsTemplate */
 /** @typedef SystemSmsTemplates */
+/** @typedef SystemVoiceTemplate */
+/** @typedef SystemVoiceTemplates */
 /** @typedef TemplateAndType */
 /** @typedef TriggerJobRequest */
 /** @typedef TriggerJobResponse */
 /** @typedef VerifyOtpCommsErrorRes */
 /** @typedef VerifyOtpCommsReq */
 /** @typedef VerifyOtpCommsSuccessRes */
+/** @typedef VoiceProvider */
+/** @typedef VoiceProviderReq */
+/** @typedef VoiceProviders */
+/** @typedef VoiceTemplate */
+/** @typedef VoiceTemplateDeleteFailureRes */
+/** @typedef VoiceTemplateDeleteSuccessRes */
+/** @typedef VoiceTemplateMessage */
+/** @typedef VoiceTemplateReq */
+/** @typedef VoiceTemplateRes */
+/** @typedef VoiceTemplates */
 
 /** @typedef AddBeneficiaryDetailsOTPRequest */
 /** @typedef BankDetailsForOTP */

@@ -93,10 +93,22 @@ declare class CommunicationModel {
     static SystemNotificationUser(): any;
     static SystemSmsTemplate(): any;
     static SystemSmsTemplates(): any;
+    static SystemVoiceTemplate(): any;
+    static SystemVoiceTemplates(): any;
     static TemplateAndType(): any;
     static TriggerJobRequest(): any;
     static TriggerJobResponse(): any;
     static VerifyOtpCommsErrorRes(): any;
     static VerifyOtpCommsReq(): any;
     static VerifyOtpCommsSuccessRes(): any;
+    static VoiceProvider(): any;
+    static VoiceProviderReq(): any;
+    static VoiceProviders(): any;
+    static VoiceTemplate(): any;
+    static VoiceTemplateDeleteFailureRes(): any;
+    static VoiceTemplateDeleteSuccessRes(): any;
+    static VoiceTemplateMessage(): any;
+    static VoiceTemplateReq(): any;
+    static VoiceTemplateRes(): any;
+    static VoiceTemplates(): any;
 }

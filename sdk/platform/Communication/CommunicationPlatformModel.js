@@ -820,6 +820,30 @@ class CommunicationModel {
       page: CommunicationModel.Page(),
     });
   }
+  static SystemVoiceTemplate() {
+    return Joi.object({
+      __v: Joi.number(),
+      _id: Joi.string().allow(""),
+      created_at: Joi.string().allow(""),
+      description: Joi.string().allow(""),
+      is_internal: Joi.boolean(),
+      is_system: Joi.boolean(),
+      message: CommunicationModel.VoiceTemplateMessage(),
+      name: Joi.string().allow(""),
+      priority: Joi.string().allow(""),
+      published: Joi.boolean(),
+      slug: Joi.string().allow(""),
+      tags: Joi.array().items(Joi.any()),
+      template_variables: Joi.any(),
+      updated_at: Joi.string().allow(""),
+    });
+  }
+  static SystemVoiceTemplates() {
+    return Joi.object({
+      items: Joi.array().items(CommunicationModel.SystemVoiceTemplate()),
+      page: CommunicationModel.Page(),
+    });
+  }
   static TemplateAndType() {
     return Joi.object({
       template: Joi.string().allow(""),
@@ -854,6 +878,113 @@ class CommunicationModel {
       message: Joi.string().allow(""),
       mobile: Joi.string().allow(""),
       success: Joi.boolean(),
+    });
+  }
+  static VoiceProvider() {
+    return Joi.object({
+      __v: Joi.number(),
+      _id: Joi.string().allow(""),
+      applet_url: Joi.string().allow(""),
+      application: Joi.string().allow(""),
+      caller_id: Joi.string().allow(""),
+      created_at: Joi.string().allow(""),
+      description: Joi.string().allow(""),
+      discriminator: Joi.string().allow(""),
+      name: Joi.string().allow(""),
+      password: Joi.string().allow(""),
+      provider: Joi.string().allow(""),
+      slug: Joi.string().allow(""),
+      type: Joi.string().allow(""),
+      updated_at: Joi.string().allow(""),
+      username: Joi.string().allow(""),
+      whitelisted_ip: Joi.array().items(Joi.string().allow("")),
+    });
+  }
+  static VoiceProviderReq() {
+    return Joi.object({
+      authkey: Joi.string().allow(""),
+      description: Joi.string().allow(""),
+      name: Joi.string().allow(""),
+      provider: Joi.string().allow(""),
+      sender: Joi.string().allow(""),
+      type: Joi.string().allow(""),
+      username: Joi.string().allow(""),
+    });
+  }
+  static VoiceProviders() {
+    return Joi.object({
+      items: Joi.array().items(CommunicationModel.VoiceProvider()),
+      page: CommunicationModel.Page(),
+    });
+  }
+  static VoiceTemplate() {
+    return Joi.object({
+      __v: Joi.number(),
+      _id: Joi.string().allow(""),
+      created_at: Joi.string().allow(""),
+      description: Joi.string().allow(""),
+      is_internal: Joi.boolean(),
+      is_system: Joi.boolean(),
+      message: CommunicationModel.VoiceTemplateMessage(),
+      name: Joi.string().allow(""),
+      priority: Joi.string().allow(""),
+      published: Joi.boolean(),
+      slug: Joi.string().allow(""),
+      tags: Joi.array().items(Joi.any()),
+      template_variables: Joi.any(),
+      updated_at: Joi.string().allow(""),
+    });
+  }
+  static VoiceTemplateDeleteFailureRes() {
+    return Joi.object({
+      message: Joi.string().allow(""),
+      success: Joi.boolean(),
+    });
+  }
+  static VoiceTemplateDeleteSuccessRes() {
+    return Joi.object({
+      message: Joi.string().allow(""),
+      success: Joi.boolean(),
+    });
+  }
+  static VoiceTemplateMessage() {
+    return Joi.object({
+      template: Joi.string().allow(""),
+      template_type: Joi.string().allow(""),
+    });
+  }
+  static VoiceTemplateReq() {
+    return Joi.object({
+      attachments: Joi.array().items(Joi.any()),
+      description: Joi.string().allow(""),
+      message: CommunicationModel.VoiceTemplateMessage(),
+      name: Joi.string().allow(""),
+      priority: Joi.string().allow(""),
+      template_variables: Joi.any(),
+    });
+  }
+  static VoiceTemplateRes() {
+    return Joi.object({
+      __v: Joi.number(),
+      _id: Joi.string().allow(""),
+      created_at: Joi.string().allow(""),
+      description: Joi.string().allow(""),
+      is_internal: Joi.boolean(),
+      is_system: Joi.boolean(),
+      message: CommunicationModel.VoiceTemplateMessage(),
+      name: Joi.string().allow(""),
+      priority: Joi.string().allow(""),
+      published: Joi.boolean(),
+      slug: Joi.string().allow(""),
+      tags: Joi.array().items(Joi.any()),
+      template_variables: Joi.any(),
+      updated_at: Joi.string().allow(""),
+    });
+  }
+  static VoiceTemplates() {
+    return Joi.object({
+      items: Joi.array().items(CommunicationModel.VoiceTemplate()),
+      page: CommunicationModel.Page(),
     });
   }
 }

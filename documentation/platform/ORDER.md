@@ -7549,6 +7549,7 @@ Verify OTP
  | can_return | boolean? |  yes  |  |
  | code | string? |  yes  |  |
  | color | string? |  yes  |  |
+ | currency | string? |  yes  |  |
  | department_id | number? |  yes  |  |
  | id | number? |  yes  |  |
  | image | [string]? |  yes  |  |
@@ -8104,6 +8105,7 @@ Verify OTP
  | fulfilling_centre | string |  no  |  |
  | fulfilling_store | [ShipmentItemFulFillingStore](#ShipmentItemFulFillingStore)? |  yes  |  |
  | id | string |  no  |  |
+ | order_id | string? |  yes  |  |
  | payment_methods | string? |  yes  |  |
  | payment_mode_info | [PaymentModeInfo](#PaymentModeInfo)? |  yes  |  |
  | prices | [Prices](#Prices)? |  yes  |  |
