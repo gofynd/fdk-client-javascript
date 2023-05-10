@@ -9,6 +9,7 @@ declare class OrderValidator {
     static createOrder(): any;
     static createShipmentReport(): any;
     static dispatchManifest(): any;
+    static eInvoiceRetry(): any;
     static fetchCreditBalanceDetail(): any;
     static fetchRefundModeConfig(): any;
     static generatePOSReceiptByOrderId(): any;

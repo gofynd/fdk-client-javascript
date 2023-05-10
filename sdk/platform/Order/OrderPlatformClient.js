@@ -618,6 +618,70 @@ class Order {
 
   /**
    * @param {Object} arg - Arg object.
+   * @param {EInvoiceRetry} arg.body
+   * @returns {Promise<EInvoiceRetryResponse>} - Success response
+   * @summary:
+   * @description:
+   */
+  async eInvoiceRetry({ body } = {}) {
+    const { error } = OrderValidator.eInvoiceRetry().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = OrderValidator.eInvoiceRetry().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for eInvoiceRetry",
+      });
+      Logger({ level: "WARN", message: warrning });
+    }
+
+    const query_params = {};
+
+    const xHeaders = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/order-manage/v1.0/company/${this.config.companyId}/einvoice/retry/irn`,
+      query_params,
+      body,
+      xHeaders
+    );
+
+    const {
+      error: res_error,
+    } = OrderModel.EInvoiceRetryResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for eInvoiceRetry",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
    * @param {FetchCreditBalanceRequestPayload} arg.body
    * @returns {Promise<FetchCreditBalanceResponsePayload>} - Success response
    * @summary:

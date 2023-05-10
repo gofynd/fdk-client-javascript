@@ -4995,6 +4995,23 @@ class PlatformClient {
  * @property {string} [username]
  */
 /**
+ * @typedef EinvoiceResponseData
+ * @property {string} [message]
+ */
+/**
+ * @typedef EInvoiceRetry
+ * @property {EInvoiceRetryShipmentData[]} [shipments_data]
+ */
+/**
+ * @typedef EInvoiceRetryResponse
+ * @property {EinvoiceResponseData[]} [response_data]
+ */
+/**
+ * @typedef EInvoiceRetryShipmentData
+ * @property {string} [einvoice_type]
+ * @property {string} [shipment_id]
+ */
+/**
  * @typedef Entities
  * @property {string} [affiliate_bag_id]
  * @property {string} [affiliate_id]
@@ -5175,10 +5192,12 @@ class PlatformClient {
  * @typedef HistoryDict
  * @property {number} [bag_id]
  * @property {string} createdat
+ * @property {string} [display_message]
  * @property {string} [l1_detail]
  * @property {string} [l2_detail]
  * @property {string} [l3_detail]
  * @property {string} message
+ * @property {Object} [meta]
  * @property {string} [ticket_id]
  * @property {string} [ticket_url]
  * @property {string} type
@@ -11879,6 +11898,7 @@ class PlatformClient {
  */
 /**
  * @typedef CartProduct
+ * @property {Object} [_custom_json]
  * @property {ProductAction} [action]
  * @property {BaseInfo} [brand]
  * @property {CategoryInfo[]} [categories]
@@ -11887,6 +11907,8 @@ class PlatformClient {
  * @property {string} [name]
  * @property {NetQuantity} [net_quantity]
  * @property {string} [slug]
+ * @property {string[]} [tags]
+ * @property {Tags} [teaser_tag]
  * @property {string} [type]
  * @property {number} [uid]
  */
@@ -11899,6 +11921,7 @@ class PlatformClient {
  * @property {ProductArticle} [article]
  * @property {ProductAvailability} [availability]
  * @property {Object} [bulk_offer]
+ * @property {CouponDetails} [coupon]
  * @property {string} [coupon_message]
  * @property {Object} [custom_order]
  * @property {ShipmentPromise} [delivery_promise]
@@ -12047,6 +12070,12 @@ class PlatformClient {
  * @typedef CouponDateMetaSchema
  * @property {string} [created_on]
  * @property {string} [modified_on]
+ */
+/**
+ * @typedef CouponDetails
+ * @property {string} [code]
+ * @property {number} [discount_single_quantity]
+ * @property {number} [discount_total_quantity]
  */
 /**
  * @typedef CouponPartialUpdate
@@ -12205,6 +12234,7 @@ class PlatformClient {
  * @property {number[]} [category_id]
  * @property {string[]} [collection_id]
  * @property {number[]} [company_id]
+ * @property {string[]} [email_domain]
  * @property {number[]} [exclude_brand_id]
  * @property {number[]} [item_id]
  * @property {number[]} [store_id]
@@ -12222,16 +12252,23 @@ class PlatformClient {
  * @property {number[]} [item_brand]
  * @property {number[]} [item_category]
  * @property {number[]} [item_company]
+ * @property {number[]} [item_department]
  * @property {number[]} [item_exclude_brand]
  * @property {number[]} [item_exclude_category]
  * @property {number[]} [item_exclude_company]
+ * @property {number[]} [item_exclude_department]
  * @property {number[]} [item_exclude_id]
+ * @property {number[]} [item_exclude_l1_category]
+ * @property {number[]} [item_exclude_l2_category]
  * @property {string[]} [item_exclude_sku]
  * @property {number[]} [item_exclude_store]
  * @property {number[]} [item_id]
+ * @property {number[]} [item_l1_category]
+ * @property {number[]} [item_l2_category]
  * @property {string[]} [item_size]
  * @property {string[]} [item_sku]
  * @property {number[]} [item_store]
+ * @property {string[]} [item_tags]
  * @property {string[]} [product_tags]
  */
 /**
@@ -12577,12 +12614,17 @@ class PlatformClient {
 /**
  * @typedef ProductArticle
  * @property {Object} [_custom_json]
+ * @property {Object} [cart_item_meta]
  * @property {Object} [extra_meta]
+ * @property {Object} [gift_card]
+ * @property {Object} [identifier]
+ * @property {boolean} [is_gift_visible]
  * @property {Object} [parent_item_identifiers]
  * @property {ArticlePriceInfo} [price]
  * @property {string[]} [product_group_tags]
  * @property {number} [quantity]
  * @property {BaseInfo} [seller]
+ * @property {string} [seller_identifier]
  * @property {string} [size]
  * @property {BaseInfo} [store]
  * @property {string} [type]
@@ -12760,6 +12802,7 @@ class PlatformClient {
  * @property {number} [delivery_charge]
  * @property {number} [discount]
  * @property {number} [fynd_cash]
+ * @property {number} [gift_card]
  * @property {number} [gst_charges]
  * @property {number} [mrp_total]
  * @property {number} [subtotal]
@@ -12912,6 +12955,10 @@ class PlatformClient {
  * @typedef SuccessMessage
  * @property {string} [message]
  * @property {boolean} [success]
+ */
+/**
+ * @typedef Tags
+ * @property {Object} [tags]
  */
 /**
  * @typedef UpdateAddressResponse
@@ -13427,6 +13474,20 @@ class PlatformClient {
  * @typedef DownloadFileJob
  * @property {number[]} [brand_ids]
  * @property {number[]} [store_ids]
+ */
+/**
+ * @typedef FileJobRequest
+ * @property {string[]} [app_ids]
+ * @property {number[]} [brand_ids]
+ * @property {string} [discount_level]
+ * @property {string} [discount_type]
+ * @property {string} [file_path]
+ * @property {boolean} is_active
+ * @property {string} [job_type]
+ * @property {Object} [meta]
+ * @property {string} name
+ * @property {number[]} [store_ids]
+ * @property {ValidityObject} validity
  */
 /**
  * @typedef FileJobResponse

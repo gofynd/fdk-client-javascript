@@ -728,6 +728,10 @@ class PlatformApplicationClient {
 /** @typedef DPDetailsData */
 /** @typedef EinvoiceInfo */
 /** @typedef EInvoicePortalDetails */
+/** @typedef EinvoiceResponseData */
+/** @typedef EInvoiceRetry */
+/** @typedef EInvoiceRetryResponse */
+/** @typedef EInvoiceRetryShipmentData */
 /** @typedef Entities */
 /** @typedef EntitiesDataUpdates */
 /** @typedef EntitiesReasons */
@@ -1579,6 +1583,7 @@ class PlatformApplicationClient {
 /** @typedef CouponAuthorSchema */
 /** @typedef CouponBreakupSchema */
 /** @typedef CouponDateMetaSchema */
+/** @typedef CouponDetails */
 /** @typedef CouponPartialUpdate */
 /** @typedef CouponScheduleSchema */
 /** @typedef CouponsResponse */
@@ -1675,6 +1680,7 @@ class PlatformApplicationClient {
 /** @typedef StateSchema */
 /** @typedef StoreDetailsResponse */
 /** @typedef SuccessMessage */
+/** @typedef Tags */
 /** @typedef UpdateAddressResponse */
 /** @typedef UpdateCartDetailResponse */
 /** @typedef UpdateCartPaymentRequest */
@@ -1745,6 +1751,7 @@ class PlatformApplicationClient {
 /** @typedef DiscountItems */
 /** @typedef DiscountJob */
 /** @typedef DownloadFileJob */
+/** @typedef FileJobRequest */
 /** @typedef FileJobResponse */
 /** @typedef ListOrCalender */
 /** @typedef Page */

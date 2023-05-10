@@ -17023,7 +17023,7 @@ const data = await platformClient.catalog.updateCategory({  uid : value,
 | body | [CategoryRequestBody](#CategoryRequestBody) | yes | Request body |
 
 
-Update a product category using this apu
+Update a product category using this api
 
 *Returned Response:*
 

@@ -842,6 +842,27 @@ class OrderModel {
       username: Joi.string().allow(""),
     });
   }
+  static EinvoiceResponseData() {
+    return Joi.object({
+      message: Joi.string().allow(""),
+    });
+  }
+  static EInvoiceRetry() {
+    return Joi.object({
+      shipments_data: Joi.array().items(OrderModel.EInvoiceRetryShipmentData()),
+    });
+  }
+  static EInvoiceRetryResponse() {
+    return Joi.object({
+      response_data: Joi.array().items(OrderModel.EinvoiceResponseData()),
+    });
+  }
+  static EInvoiceRetryShipmentData() {
+    return Joi.object({
+      einvoice_type: Joi.string().allow(""),
+      shipment_id: Joi.string().allow(""),
+    });
+  }
   static Entities() {
     return Joi.object({
       affiliate_bag_id: Joi.string().allow(""),
@@ -1049,10 +1070,12 @@ class OrderModel {
     return Joi.object({
       bag_id: Joi.number(),
       createdat: Joi.string().allow("").required(),
+      display_message: Joi.string().allow(""),
       l1_detail: Joi.string().allow(""),
       l2_detail: Joi.string().allow(""),
       l3_detail: Joi.string().allow(""),
       message: Joi.string().allow("").required(),
+      meta: Joi.any(),
       ticket_id: Joi.string().allow(""),
       ticket_url: Joi.string().allow(""),
       type: Joi.string().allow("").required(),

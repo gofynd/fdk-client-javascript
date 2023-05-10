@@ -41,6 +41,7 @@ class CartModel {
   }
   static Address() {
     return Joi.object({
+      _custom_json: Joi.any(),
       address: Joi.string().allow(""),
       address_type: Joi.string().allow(""),
       area: Joi.string().allow(""),
@@ -97,6 +98,11 @@ class CartModel {
   static ApplyCouponRequest() {
     return Joi.object({
       coupon_code: Joi.string().allow("").required(),
+    });
+  }
+  static ArticleGiftDetailSchema() {
+    return Joi.object({
+      article_id: CartModel.GiftDetailSchema(),
     });
   }
   static ArticlePriceInfo() {
@@ -160,6 +166,7 @@ class CartModel {
       custom_meta: Joi.array().items(CartModel.CartCheckoutCustomMetaSchema()),
       delivery_address: Joi.any(),
       extra_meta: Joi.any(),
+      id: Joi.string().allow("").allow(null),
       merchant_code: Joi.string().allow(""),
       meta: Joi.any(),
       order_type: Joi.string().allow(""),
@@ -182,6 +189,7 @@ class CartModel {
       custom_meta: Joi.any(),
       delivery_address: Joi.any(),
       extra_meta: Joi.any(),
+      id: Joi.string().allow("").allow(null),
       merchant_code: Joi.string().allow(""),
       meta: Joi.any(),
       order_type: Joi.string().allow(""),
@@ -251,6 +259,7 @@ class CartModel {
     return Joi.object({
       checkout_mode: Joi.string().allow(""),
       comment: Joi.string().allow(""),
+      gift_details: CartModel.ArticleGiftDetailSchema(),
       gstin: Joi.string().allow(""),
       pick_up_customer_details: Joi.any(),
     });
@@ -262,6 +271,7 @@ class CartModel {
   }
   static CartProduct() {
     return Joi.object({
+      _custom_json: Joi.any(),
       action: CartModel.ProductAction(),
       brand: CartModel.BaseInfo(),
       categories: Joi.array().items(CartModel.CategoryInfo()),
@@ -270,6 +280,8 @@ class CartModel {
       name: Joi.string().allow(""),
       net_quantity: CartModel.NetQuantity(),
       slug: Joi.string().allow(""),
+      tags: Joi.array().items(Joi.string().allow("")),
+      teaser_tag: CartModel.Tags(),
       type: Joi.string().allow(""),
       uid: Joi.number(),
     });
@@ -284,6 +296,7 @@ class CartModel {
       article: CartModel.ProductArticle(),
       availability: CartModel.ProductAvailability(),
       bulk_offer: Joi.any(),
+      coupon: CartModel.CouponDetails(),
       coupon_message: Joi.string().allow(""),
       custom_order: Joi.any(),
       delivery_promise: CartModel.ShipmentPromise(),
@@ -397,6 +410,13 @@ class CartModel {
       value: Joi.number(),
     });
   }
+  static CouponDetails() {
+    return Joi.object({
+      code: Joi.string().allow(""),
+      discount_single_quantity: Joi.number(),
+      discount_total_quantity: Joi.number(),
+    });
+  }
   static CouponValidity() {
     return Joi.object({
       code: Joi.string().allow("").allow(null),
@@ -490,6 +510,12 @@ class CartModel {
     return Joi.object({
       share_url: Joi.string().allow(""),
       token: Joi.string().allow(""),
+    });
+  }
+  static GiftDetailSchema() {
+    return Joi.object({
+      gift_message: Joi.string().allow(""),
+      is_gift_applied: Joi.boolean(),
     });
   }
   static LadderOfferItemSchema() {
@@ -632,12 +658,17 @@ class CartModel {
   static ProductArticle() {
     return Joi.object({
       _custom_json: Joi.any(),
+      cart_item_meta: Joi.any(),
       extra_meta: Joi.any(),
+      gift_card: Joi.any(),
+      identifier: Joi.any(),
+      is_gift_visible: Joi.boolean(),
       parent_item_identifiers: Joi.any(),
       price: CartModel.ArticlePriceInfo(),
       product_group_tags: Joi.array().items(Joi.string().allow("")),
       quantity: Joi.number(),
       seller: CartModel.BaseInfo(),
+      seller_identifier: Joi.string().allow(""),
       size: Joi.string().allow(""),
       store: CartModel.BaseInfo(),
       type: Joi.string().allow(""),
@@ -726,6 +757,7 @@ class CartModel {
       delivery_charge: Joi.number(),
       discount: Joi.number(),
       fynd_cash: Joi.number(),
+      gift_card: Joi.number(),
       gst_charges: Joi.number(),
       mrp_total: Joi.number(),
       subtotal: Joi.number(),
@@ -818,6 +850,11 @@ class CartModel {
       first_name: Joi.string().allow("").required(),
       last_name: Joi.string().allow("").required(),
       user: Joi.string().allow("").required(),
+    });
+  }
+  static Tags() {
+    return Joi.object({
+      tags: Joi.any(),
     });
   }
   static UpdateAddressResponse() {

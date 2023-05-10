@@ -14,6 +14,7 @@ class CartValidator {
       b: Joi.boolean(),
       areaCode: Joi.string().allow(""),
       buyNow: Joi.boolean(),
+      id: Joi.string().allow(""),
       body: CartModel.AddCartRequest().required(),
     }).required();
   }
@@ -148,6 +149,7 @@ class CartValidator {
       slug: Joi.string().allow(""),
       pageSize: Joi.number(),
       promotionGroup: Joi.string().allow(""),
+      storeId: Joi.number(),
     });
   }
 

@@ -61,6 +61,12 @@ class OrderValidator {
     }).required();
   }
 
+  static eInvoiceRetry() {
+    return Joi.object({
+      body: OrderModel.EInvoiceRetry().required(),
+    }).required();
+  }
+
   static fetchCreditBalanceDetail() {
     return Joi.object({
       body: OrderModel.FetchCreditBalanceRequestPayload().required(),

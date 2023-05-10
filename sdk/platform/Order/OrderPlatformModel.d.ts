@@ -83,6 +83,10 @@ declare class OrderModel {
     static DPDetailsData(): any;
     static EinvoiceInfo(): any;
     static EInvoicePortalDetails(): any;
+    static EinvoiceResponseData(): any;
+    static EInvoiceRetry(): any;
+    static EInvoiceRetryResponse(): any;
+    static EInvoiceRetryShipmentData(): any;
     static Entities(): any;
     static EntitiesDataUpdates(): any;
     static EntitiesReasons(): any;

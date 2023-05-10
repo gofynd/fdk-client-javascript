@@ -17,6 +17,7 @@ Handles all platform order and shipment api(s)
 * [createOrder](#createorder)
 * [createShipmentReport](#createshipmentreport)
 * [dispatchManifest](#dispatchmanifest)
+* [eInvoiceRetry](#einvoiceretry)
 * [fetchCreditBalanceDetail](#fetchcreditbalancedetail)
 * [fetchRefundModeConfig](#fetchrefundmodeconfig)
 * [generatePOSReceiptByOrderId](#generateposreceiptbyorderid)
@@ -587,6 +588,61 @@ const data = await platformClient.order.dispatchManifest({  body : value });
 [SuccessResponse](#SuccessResponse)
 
 Shipment Dispatched mapped with manifest!
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### eInvoiceRetry
+
+
+
+
+```javascript
+// Promise
+const promise = platformClient.order.eInvoiceRetry({  body : value });
+
+// Async/Await
+const data = await platformClient.order.eInvoiceRetry({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [EInvoiceRetry](#EInvoiceRetry) | yes | Request body |
+
+
+
+
+*Returned Response:*
+
+
+
+
+[EInvoiceRetryResponse](#EInvoiceRetryResponse)
+
+Manifest will be processed!
 
 
 
@@ -6528,6 +6584,43 @@ Verify OTP
 
 ---
 
+#### [EinvoiceResponseData](#EinvoiceResponseData)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | message | string? |  yes  |  |
+ 
+
+---
+
+#### [EInvoiceRetry](#EInvoiceRetry)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | shipments_data | [[EInvoiceRetryShipmentData](#EInvoiceRetryShipmentData)]? |  yes  |  |
+ 
+
+---
+
+#### [EInvoiceRetryResponse](#EInvoiceRetryResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | response_data | [[EinvoiceResponseData](#EinvoiceResponseData)]? |  yes  |  |
+ 
+
+---
+
+#### [EInvoiceRetryShipmentData](#EInvoiceRetryShipmentData)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | einvoice_type | string? |  yes  |  |
+ | shipment_id | string? |  yes  |  |
+ 
+
+---
+
 #### [Entities](#Entities)
 
  | Properties | Type | Nullable | Description |
@@ -6831,10 +6924,12 @@ Verify OTP
  | ---------- | ---- | -------- | ----------- |
  | bag_id | number? |  yes  |  |
  | createdat | string |  no  |  |
+ | display_message | string? |  yes  |  |
  | l1_detail | string? |  yes  |  |
  | l2_detail | string? |  yes  |  |
  | l3_detail | string? |  yes  |  |
  | message | string |  no  |  |
+ | meta | string? |  yes  |  |
  | ticket_id | string? |  yes  |  |
  | ticket_url | string? |  yes  |  |
  | type | string |  no  |  |

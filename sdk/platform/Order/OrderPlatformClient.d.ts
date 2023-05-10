@@ -104,6 +104,16 @@ declare class Order {
     }): Promise<SuccessResponse>;
     /**
      * @param {Object} arg - Arg object.
+     * @param {EInvoiceRetry} arg.body
+     * @returns {Promise<EInvoiceRetryResponse>} - Success response
+     * @summary:
+     * @description:
+     */
+    eInvoiceRetry({ body }?: {
+        body: EInvoiceRetry;
+    }): Promise<EInvoiceRetryResponse>;
+    /**
+     * @param {Object} arg - Arg object.
      * @param {FetchCreditBalanceRequestPayload} arg.body
      * @returns {Promise<FetchCreditBalanceResponsePayload>} - Success response
      * @summary:
