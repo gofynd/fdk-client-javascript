@@ -12342,6 +12342,20 @@ class PlatformClient {
  * @property {number[]} [store_ids]
  */
 /**
+ * @typedef FileJobRequest
+ * @property {string[]} [app_ids]
+ * @property {number[]} [brand_ids]
+ * @property {string} [discount_level]
+ * @property {string} [discount_type]
+ * @property {string} [file_path]
+ * @property {boolean} is_active
+ * @property {string} [job_type]
+ * @property {Object} [meta]
+ * @property {string} name
+ * @property {number[]} [store_ids]
+ * @property {ValidityObject} validity
+ */
+/**
  * @typedef FileJobResponse
  * @property {Object} [body]
  * @property {number} company_id

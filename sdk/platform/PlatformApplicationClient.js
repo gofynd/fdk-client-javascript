@@ -1625,6 +1625,7 @@ class PlatformApplicationClient {
 /** @typedef DiscountItems */
 /** @typedef DiscountJob */
 /** @typedef DownloadFileJob */
+/** @typedef FileJobRequest */
 /** @typedef FileJobResponse */
 /** @typedef ListOrCalender */
 /** @typedef Page */

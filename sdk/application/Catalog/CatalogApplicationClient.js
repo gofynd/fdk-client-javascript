@@ -43,9 +43,9 @@ class Catalog {
       getProductDetailBySlug:
         "/service/application/catalog/v1.0/products/{slug}/",
       getProductPriceBySlug:
-        "/service/application/catalog/v3.0/products/{slug}/sizes/{size}/price/",
+        "/service/application/catalog/v2.0/products/{slug}/sizes/{size}/price/",
       getProductSellersBySlug:
-        "/service/application/catalog/v3.0/products/{slug}/sizes/{size}/sellers/",
+        "/service/application/catalog/v2.0/products/{slug}/sizes/{size}/sellers/",
       getProductSizesBySlug:
         "/service/application/catalog/v1.0/products/{slug}/sizes/",
       getProductStockByIds:
@@ -530,6 +530,9 @@ class Catalog {
    *   either ascending or descending order. See the supported values below.
    * @param {string} [arg.pageId] - Page ID to retrieve next set of results.
    * @param {number} [arg.pageSize] - The number of items to retrieve in each page.
+   * @param {number} [arg.pageNo] - Page Number to retrieve next set of results.
+   * @param {string} [arg.pageType] - Page Type to retrieve set of results can
+   *   be cursor or number.
    * @returns {Promise<ProductListingResponse>} - Success response
    * @summary: Get the items in a collection
    * @description: Get items in a collection specified by its `slug`.
@@ -541,9 +544,11 @@ class Catalog {
     sortOn,
     pageId,
     pageSize,
+    pageNo,
+    pageType,
   } = {}) {
     const { error } = CatalogValidator.getCollectionItemsBySlug().validate(
-      { slug, f, filters, sortOn, pageId, pageSize },
+      { slug, f, filters, sortOn, pageId, pageSize, pageNo, pageType },
       { abortEarly: false, allowUnknown: true }
     );
     if (error) {
@@ -554,7 +559,7 @@ class Catalog {
     const {
       error: warrning,
     } = CatalogValidator.getCollectionItemsBySlug().validate(
-      { slug, f, filters, sortOn, pageId, pageSize },
+      { slug, f, filters, sortOn, pageId, pageSize, pageNo, pageType },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
@@ -571,6 +576,8 @@ class Catalog {
     query_params["sort_on"] = sortOn;
     query_params["page_id"] = pageId;
     query_params["page_size"] = pageSize;
+    query_params["page_no"] = pageNo;
+    query_params["page_type"] = pageType;
 
     const xHeaders = {};
 
@@ -641,6 +648,8 @@ class Catalog {
         sortOn: sortOn,
         pageId: pageId,
         pageSize: pageSize,
+        pageNo: pageNo,
+        pageType: pageType,
       });
       paginator.setPaginator({
         hasNext: data.page.has_next ? true : false,
@@ -1623,7 +1632,7 @@ class Catalog {
    *   selling locations should be searched, e.g. 400059.
    * @param {number} [arg.moq] - An Integer indication the Minimum Order
    *   Quantity of a product, e.g. 100.
-   * @returns {Promise<ProductSizePriceResponseV3>} - Success response
+   * @returns {Promise<ProductSizePriceResponseV2>} - Success response
    * @summary: Get the price of a product size at a PIN Code
    * @description: Prices may vary for different sizes of a product. Use this API to retrieve the price of a product size at all the selling locations near to a PIN Code.
    */
@@ -1672,7 +1681,7 @@ class Catalog {
 
     const {
       error: res_error,
-    } = CatalogModel.ProductSizePriceResponseV3().validate(response, {
+    } = CatalogModel.ProductSizePriceResponseV2().validate(response, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -1703,7 +1712,7 @@ class Catalog {
    * @param {number} [arg.pageNo] - The page number to navigate through the
    *   given set of results.
    * @param {number} [arg.pageSize] - The number of items to retrieve in each page.
-   * @returns {Promise<ProductSizeSellersResponseV3>} - Success response
+   * @returns {Promise<ProductSizeSellersResponseV2>} - Success response
    * @summary: Get the sellers of a product size at a PIN Code
    * @description: A product of a particular size may be sold by multiple sellers. Use this API to fetch the sellers having the stock of a particular size at a given PIN Code.
    */
@@ -1760,7 +1769,7 @@ class Catalog {
 
     const {
       error: res_error,
-    } = CatalogModel.ProductSizeSellersResponseV3().validate(response, {
+    } = CatalogModel.ProductSizeSellersResponseV2().validate(response, {
       abortEarly: false,
       allowUnknown: false,
     });
