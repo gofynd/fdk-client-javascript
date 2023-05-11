@@ -29,6 +29,7 @@ class CatalogModel {
       departments: Joi.array().items(CatalogModel.StoreDepartments()),
       manager: CatalogModel.StoreManagerSerializer(),
       name: Joi.string().allow(""),
+      store_code: Joi.string().allow(""),
       uid: Joi.number(),
     });
   }
@@ -964,6 +965,7 @@ class CatalogModel {
       departments: Joi.array().items(CatalogModel.StoreDepartments()),
       manager: CatalogModel.StoreManagerSerializer(),
       name: Joi.string().allow(""),
+      store_code: Joi.string().allow(""),
       timing: Joi.array().items(CatalogModel.StoreTiming()),
       uid: Joi.number(),
     });
