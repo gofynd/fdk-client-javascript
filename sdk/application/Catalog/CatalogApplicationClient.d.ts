@@ -146,17 +146,22 @@ declare class Catalog {
      *   either ascending or descending order. See the supported values below.
      * @param {string} [arg.pageId] - Page ID to retrieve next set of results.
      * @param {number} [arg.pageSize] - The number of items to retrieve in each page.
+     * @param {number} [arg.pageNo] - Page Number to retrieve next set of results.
+     * @param {string} [arg.pageType] - Page Type to retrieve set of results can
+     *   be cursor or number.
      * @returns {Promise<ProductListingResponse>} - Success response
      * @summary: Get the items in a collection
      * @description: Get items in a collection specified by its `slug`.
      */
-    getCollectionItemsBySlug({ slug, f, filters, sortOn, pageId, pageSize, }?: {
+    getCollectionItemsBySlug({ slug, f, filters, sortOn, pageId, pageSize, pageNo, pageType, }?: {
         slug: string;
         f?: string;
         filters?: boolean;
         sortOn?: string;
         pageId?: string;
         pageSize?: number;
+        pageNo?: number;
+        pageType?: string;
     }): Promise<ProductListingResponse>;
     /**
      * @param {Object} arg - Arg object.

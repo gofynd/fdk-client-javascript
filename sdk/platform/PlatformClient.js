@@ -5872,9 +5872,9 @@ class PlatformClient {
  * @property {number} item_height
  * @property {number} item_length
  * @property {number} item_weight
- * @property {Object} item_weight_unit_of_measure
+ * @property {string} item_weight_unit_of_measure
  * @property {number} item_width
- * @property {Object} size
+ * @property {string} size
  */
 /**
  * @typedef AppCatalogConfiguration
@@ -5970,8 +5970,8 @@ class PlatformClient {
  */
 /**
  * @typedef ApplicationItemSEO
- * @property {Object} [description]
- * @property {Object} [title]
+ * @property {string} [description]
+ * @property {string} [title]
  */
 /**
  * @typedef ApplicationProductListingResponse
@@ -6690,19 +6690,19 @@ class PlatformClient {
  */
 /**
  * @typedef DepartmentModel
- * @property {Object} [_cls]
+ * @property {string} [_cls]
  * @property {Object} [_custom_json]
  * @property {Object} [_id]
  * @property {UserDetail} [created_by]
  * @property {string} created_on
  * @property {boolean} [is_active]
- * @property {Object} logo
+ * @property {string} logo
  * @property {UserDetail} [modified_by]
  * @property {string} modified_on
- * @property {Object} name
+ * @property {string} name
  * @property {number} priority_order
- * @property {Object} slug
- * @property {Object[]} [synonyms]
+ * @property {string} slug
+ * @property {string[]} [synonyms]
  * @property {number} uid
  * @property {UserDetail} [verified_by]
  * @property {string} [verified_on]
@@ -7071,7 +7071,7 @@ class PlatformClient {
 /**
  * @typedef GTIN
  * @property {string} gtin_type
- * @property {Object} gtin_value
+ * @property {string} gtin_value
  * @property {boolean} [primary]
  */
 /**
@@ -7248,7 +7248,7 @@ class PlatformClient {
  * @property {string} [modified_on]
  * @property {string[]} [notification_emails]
  * @property {number} seller_id
- * @property {Object} [status]
+ * @property {string} [status]
  * @property {string} task_id
  * @property {string} [type]
  * @property {string} url
@@ -7427,7 +7427,7 @@ class PlatformClient {
  * @property {number} [price_transfer]
  * @property {number} quantity
  * @property {InventorySet} [set]
- * @property {Object} size
+ * @property {string} size
  * @property {string} store_code
  */
 /**
@@ -7574,8 +7574,8 @@ class PlatformClient {
  */
 /**
  * @typedef MetaFields
- * @property {Object} key
- * @property {Object} value
+ * @property {string} key
+ * @property {string} value
  */
 /**
  * @typedef MOQData
@@ -7585,7 +7585,7 @@ class PlatformClient {
  */
 /**
  * @typedef NetQuantity
- * @property {Object} [unit]
+ * @property {string} [unit]
  * @property {number} [value]
  */
 /**
@@ -7880,7 +7880,7 @@ class PlatformClient {
  * @property {NetQuantity} [net_quantity]
  * @property {number} [no_of_boxes]
  * @property {string[]} [product_group_tag]
- * @property {ProductPublish1} [product_publish]
+ * @property {ProductPublish} [product_publish]
  * @property {string} [requester]
  * @property {ReturnConfig} return_config
  * @property {string} [short_description]
@@ -8076,7 +8076,7 @@ class PlatformClient {
  * @property {string} [pending]
  * @property {string} [primary_color]
  * @property {string[]} [product_group_tag]
- * @property {ProductPublish} [product_publish]
+ * @property {ProductPublish1} [product_publish]
  * @property {ReturnConfigResponse} [return_config]
  * @property {string} [short_description]
  * @property {string} [size_guide]
@@ -8290,8 +8290,8 @@ class PlatformClient {
  */
 /**
  * @typedef SEOData
- * @property {Object} [description]
- * @property {Object} [title]
+ * @property {string} [description]
+ * @property {string} [title]
  */
 /**
  * @typedef SeoDetail
@@ -8449,7 +8449,7 @@ class PlatformClient {
 /**
  * @typedef Trader
  * @property {string[]} [address]
- * @property {Object} name
+ * @property {string} name
  * @property {string} [type]
  */
 /**

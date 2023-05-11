@@ -4971,9 +4971,9 @@ type AllSizes = {
     item_height: number;
     item_length: number;
     item_weight: number;
-    item_weight_unit_of_measure: any;
+    item_weight_unit_of_measure: string;
     item_width: number;
-    size: any;
+    size: string;
 };
 type AppCatalogConfiguration = {
     app_id: string;
@@ -5057,8 +5057,8 @@ type ApplicationItemMOQ = {
     minimum?: number;
 };
 type ApplicationItemSEO = {
-    description?: any;
-    title?: any;
+    description?: string;
+    title?: string;
 };
 type ApplicationProductListingResponse = {
     filters?: ProductFilters[];
@@ -5671,19 +5671,19 @@ type DepartmentIdentifier = {
     uid?: number;
 };
 type DepartmentModel = {
-    _cls?: any;
+    _cls?: string;
     _custom_json?: any;
     _id?: any;
     created_by?: UserDetail;
     created_on: string;
     is_active?: boolean;
-    logo: any;
+    logo: string;
     modified_by?: UserDetail;
     modified_on: string;
-    name: any;
+    name: string;
     priority_order: number;
-    slug: any;
-    synonyms?: any[];
+    slug: string;
+    synonyms?: string[];
     uid: number;
     verified_by?: UserDetail;
     verified_on?: string;
@@ -5999,7 +5999,7 @@ type GlobalValidation = {
 };
 type GTIN = {
     gtin_type: string;
-    gtin_value: any;
+    gtin_value: string;
     primary?: boolean;
 };
 type Guide = {
@@ -6153,7 +6153,7 @@ type InventoryJobDetailResponse = {
     modified_on?: string;
     notification_emails?: string[];
     seller_id: number;
-    status?: any;
+    status?: string;
     task_id: string;
     type?: string;
     url: string;
@@ -6314,7 +6314,7 @@ type InvSize = {
     price_transfer?: number;
     quantity: number;
     set?: InventorySet;
-    size: any;
+    size: string;
     store_code: string;
 };
 type ItemQuery = {
@@ -6434,8 +6434,8 @@ type MetaDataListingSortResponse = {
     data?: MetaDataListingSortMetaResponse[];
 };
 type MetaFields = {
-    key: any;
-    value: any;
+    key: string;
+    value: string;
 };
 type MOQData = {
     increment_unit?: number;
@@ -6443,7 +6443,7 @@ type MOQData = {
     minimum?: number;
 };
 type NetQuantity = {
-    unit?: any;
+    unit?: string;
     value?: number;
 };
 type NetQuantityResponse = {
@@ -6698,7 +6698,7 @@ type ProductCreateUpdateSchemaV2 = {
     net_quantity?: NetQuantity;
     no_of_boxes?: number;
     product_group_tag?: string[];
-    product_publish?: ProductPublish1;
+    product_publish?: ProductPublish;
     requester?: string;
     return_config: ReturnConfig;
     short_description?: string;
@@ -6878,7 +6878,7 @@ type ProductSchemaV2 = {
     pending?: string;
     primary_color?: string;
     product_group_tag?: string[];
-    product_publish?: ProductPublish;
+    product_publish?: ProductPublish1;
     return_config?: ReturnConfigResponse;
     short_description?: string;
     size_guide?: string;
@@ -7062,8 +7062,8 @@ type SellerPhoneNumber = {
     number: string;
 };
 type SEOData = {
-    description?: any;
-    title?: any;
+    description?: string;
+    title?: string;
 };
 type SeoDetail = {
     description?: string;
@@ -7194,7 +7194,7 @@ type ThirdLevelChild = {
 };
 type Trader = {
     address?: string[];
-    name: any;
+    name: string;
     type?: string;
 };
 type Trader1 = {

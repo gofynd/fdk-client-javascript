@@ -18238,9 +18238,9 @@ List of fields and validation values fro each. See example below or refer `Inven
  | item_height | number |  no  |  |
  | item_length | number |  no  |  |
  | item_weight | number |  no  |  |
- | item_weight_unit_of_measure | any |  no  |  |
+ | item_weight_unit_of_measure | string |  no  |  |
  | item_width | number |  no  |  |
- | size | any |  no  |  |
+ | size | string |  no  |  |
  
 
 ---
@@ -18396,8 +18396,8 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | description | any? |  yes  | The SEO description of the item |
- | title | any? |  yes  | The SEO title of the item |
+ | description | string? |  yes  | The SEO description of the item |
+ | title | string? |  yes  | The SEO title of the item |
  
 
 ---
@@ -19591,19 +19591,19 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | _cls | any? |  yes  |  |
+ | _cls | string? |  yes  |  |
  | _custom_json | string? |  yes  |  |
  | _id | any? |  yes  |  |
  | created_by | [UserDetail](#UserDetail)? |  yes  | User details of the creator of the document |
  | created_on | string |  no  | Timestamp of the creation of the document |
  | is_active | boolean? |  yes  | Whether the department is currently active |
- | logo | any |  no  | The URL of the department's logo |
+ | logo | string |  no  | The URL of the department's logo |
  | modified_by | [UserDetail](#UserDetail)? |  yes  | User details of the last modifier of the document |
  | modified_on | string |  no  | Timestamp of the last modification of the document |
- | name | any |  no  | The name of the department |
+ | name | string |  no  | The name of the department |
  | priority_order | number |  no  | The priority order of the department |
- | slug | any |  no  | The unique slug identifier for the department |
- | synonyms | [any]? |  yes  | A list of synonyms for the department name |
+ | slug | string |  no  | The unique slug identifier for the department |
+ | synonyms | [string]? |  yes  | A list of synonyms for the department name |
  | uid | number |  no  | The unique ID for the department |
  | verified_by | [UserDetail](#UserDetail)? |  yes  | User details of the verifier of the document, if applicable |
  | verified_on | string? |  yes  | Timestamp of when the document was verified, if applicable |
@@ -20167,7 +20167,7 @@ List of fields and validation values fro each. See example below or refer `Inven
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | gtin_type | string |  no  |  |
- | gtin_value | any |  no  |  |
+ | gtin_value | string |  no  |  |
  | primary | boolean? |  yes  |  |
  
 
@@ -20459,7 +20459,7 @@ List of fields and validation values fro each. See example below or refer `Inven
  | modified_on | string? |  yes  | This is the timestamp of the modification for this job. |
  | notification_emails | [string]? |  yes  | User email to get notification post completion of the job. |
  | seller_id | number |  no  | This ID of the company. |
- | status | any? |  yes  | This tells you the current status of the export job. |
+ | status | string? |  yes  | This tells you the current status of the export job. |
  | task_id | string |  no  | This is the task id of the jobs that is used for search. |
  | type | string? |  yes  | This is the file type of the export. |
  | url | string |  no  | This is the url to download the export. |
@@ -20728,7 +20728,7 @@ List of fields and validation values fro each. See example below or refer `Inven
  | price_transfer | number? |  yes  |  |
  | quantity | number |  no  |  |
  | set | [InventorySet](#InventorySet)? |  yes  |  |
- | size | any |  no  |  |
+ | size | string |  no  |  |
  | store_code | string |  no  |  |
  
 
@@ -20985,8 +20985,8 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | key | any |  no  | The key of the metadata. Should be a non-empty string and length should not exceed 30 characters. |
- | value | any |  no  | The value of the metadata. Should be a non-empty string and length should not exceed 100 characters. |
+ | key | string |  no  | The key of the metadata. Should be a non-empty string and length should not exceed 30 characters. |
+ | value | string |  no  | The value of the metadata. Should be a non-empty string and length should not exceed 100 characters. |
  
 
 ---
@@ -21006,7 +21006,7 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | unit | any? |  yes  | The unit of measurement used for the net quantity of the product. |
+ | unit | string? |  yes  | The unit of measurement used for the net quantity of the product. |
  | value | number? |  yes  | The value of the net quantity of the product. |
  
 
@@ -21436,7 +21436,7 @@ List of fields and validation values fro each. See example below or refer `Inven
  | net_quantity | [NetQuantity](#NetQuantity)? |  yes  |  |
  | no_of_boxes | number? |  yes  |  |
  | product_group_tag | [string]? |  yes  |  |
- | product_publish | [ProductPublish1](#ProductPublish1)? |  yes  |  |
+ | product_publish | [ProductPublish](#ProductPublish)? |  yes  |  |
  | requester | string? |  yes  |  |
  | return_config | [ReturnConfig](#ReturnConfig) |  no  |  |
  | short_description | string? |  yes  |  |
@@ -21712,7 +21712,7 @@ List of fields and validation values fro each. See example below or refer `Inven
  | pending | string? |  yes  |  |
  | primary_color | string? |  yes  |  |
  | product_group_tag | [string]? |  yes  |  |
- | product_publish | [ProductPublish](#ProductPublish)? |  yes  |  |
+ | product_publish | [ProductPublish1](#ProductPublish1)? |  yes  |  |
  | return_config | [ReturnConfigResponse](#ReturnConfigResponse)? |  yes  |  |
  | short_description | string? |  yes  |  |
  | size_guide | string? |  yes  |  |
@@ -22051,8 +22051,8 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | description | any? |  yes  |  |
- | title | any? |  yes  |  |
+ | description | string? |  yes  |  |
+ | title | string? |  yes  |  |
  
 
 ---
@@ -22315,7 +22315,7 @@ List of fields and validation values fro each. See example below or refer `Inven
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | address | [string]? |  yes  |  |
- | name | any |  no  |  |
+ | name | string |  no  |  |
  | type | string? |  yes  |  |
  
 
