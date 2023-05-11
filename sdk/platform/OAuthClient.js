@@ -3,6 +3,7 @@ const { fdkAxios } = require("../common/AxiosHelper");
 const { sign } = require("../common/RequestSigner");
 const { FDKTokenIssueError, FDKOAuthCodeError } = require("../common/FDKError");
 const { Logger } = require("../common/Logger");
+const { btoa } = require("isomorphic-base64");
 
 const refreshTokenRequestCache = {};
 class OAuthClient {
@@ -158,11 +159,7 @@ class OAuthClient {
     } else if (grant_type === "authorization_code") {
       reqData = { ...reqData, code };
     }
-
-    const token = Buffer.from(
-      `${this.config.apiKey}:${this.config.apiSecret}`,
-      "utf8"
-    ).toString("base64");
+    const token = btoa(`${this.config.apiKey}:${this.config.apiSecret}`);
     let url = `${this.config.domain}/service/panel/authentication/v1.0/company/${this.config.companyId}/oauth/token`;
     const rawRequest = {
       method: "post",
@@ -201,10 +198,7 @@ class OAuthClient {
       scope: scopes,
       code: code,
     };
-    const token = Buffer.from(
-      `${this.config.apiKey}:${this.config.apiSecret}`,
-      "utf8"
-    ).toString("base64");
+    const token = btoa(`${this.config.apiKey}:${this.config.apiSecret}`);
     const rawRequest = {
       method: "post",
       url: url,

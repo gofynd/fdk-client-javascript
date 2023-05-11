@@ -13,6 +13,8 @@ Get started with the Javascript Development SDK for Fynd Platform
 
 ### Usage
 
+#### Node
+
 ```
 npm install @gofynd/fdk-client-javascript
 ```
@@ -25,6 +27,22 @@ const {
   ApplicationClient,
 } = require("fdk-client-javascript");
 ```
+
+#### Browser
+you can load fdk-client-javascript's application browser bundle from CDN; `ApplicationConfig`, `ApplicationClient` and `ApplicationModels` will be attached to browser's `window` object.
+
+```html
+<script src="https://cdn.jsdelivr.net/gh/gofynd/fdk-client-javascript@<version>/dist/application.js"></script>
+```
+Install Specific version
+```html
+<script src="https://cdn.jsdelivr.net/gh/gofynd/fdk-client-javascript@1.0.1/dist/application.js"></script>
+```
+
+```js
+const { ApplicationConfig, ApplicationClient } = window;
+```
+
 
 ### Logging
 

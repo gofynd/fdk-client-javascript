@@ -9,5 +9,8 @@ module.exports = {
           "functions": 0,
           "lines": 0
         }
-    }
+    },
+    "testPathIgnorePatterns": [
+      "cypress/integration/standalone.spec.js"
+    ]
 };
