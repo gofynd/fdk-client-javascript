@@ -11789,6 +11789,10 @@ class PlatformClient {
  * @property {string} coupon_code
  */
 /**
+ * @typedef ArticleGiftDetailSchema
+ * @property {GiftDetailSchema} [article_id]
+ */
+/**
  * @typedef ArticlePriceInfo
  * @property {BasePriceSchema} [base]
  * @property {BasePriceSchema} [converted]
@@ -12228,6 +12232,11 @@ class PlatformClient {
  * @property {string} [token]
  */
 /**
+ * @typedef GiftDetailSchema
+ * @property {string} [gift_message]
+ * @property {boolean} [is_gift_applied]
+ */
+/**
  * @typedef IdentifierSchema
  * @property {string[]} [article_id]
  * @property {number[]} [brand_id]
@@ -12574,6 +12583,7 @@ class PlatformClient {
  * @typedef PlatformCartMetaRequest
  * @property {string} [checkout_mode]
  * @property {string} [comment]
+ * @property {ArticleGiftDetailSchema} [gift_details]
  * @property {string} [gstin]
  * @property {string} [pan_no]
  * @property {Object} [pick_up_customer_details]
