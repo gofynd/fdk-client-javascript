@@ -8,17 +8,17 @@
 ## Analytics Methods
 Perceptor analytics
 
-* [getStatiscticsGroups](#getstatiscticsgroups)
-* [getStatiscticsGroupComponents](#getstatiscticsgroupcomponents)
-* [getComponentStatsCSV](#getcomponentstatscsv)
-* [getComponentStatsPDF](#getcomponentstatspdf)
-* [getComponentStats](#getcomponentstats)
+* [createExportJob](#createexportjob)
+* [getAbandonCartDetail](#getabandoncartdetail)
 * [getAbandonCartList](#getabandoncartlist)
 * [getAbandonCartsCSV](#getabandoncartscsv)
-* [getAbandonCartDetail](#getabandoncartdetail)
-* [createExportJob](#createexportjob)
+* [getComponentStats](#getcomponentstats)
+* [getComponentStatsCSV](#getcomponentstatscsv)
+* [getComponentStatsPDF](#getcomponentstatspdf)
 * [getExportJobStatus](#getexportjobstatus)
 * [getLogsList](#getlogslist)
+* [getStatiscticsGroupComponents](#getstatiscticsgroupcomponents)
+* [getStatiscticsGroups](#getstatiscticsgroups)
 * [searchLogs](#searchlogs)
 
 
@@ -28,32 +28,39 @@ Perceptor analytics
 
 
 
-### getStatiscticsGroups
-Get statistics groups
+### createExportJob
+Create data export job in required format
 
 
 
 ```javascript
 // Promise
-const promise = client.application("<APPLICATION_ID>").analytics.getStatiscticsGroups();
+const promise = platformClient.analytics.createExportJob({  exportType : value,
+ body : value });
 
 // Async/Await
-const data = await client.application("<APPLICATION_ID>").analytics.getStatiscticsGroups();
+const data = await platformClient.analytics.createExportJob({  exportType : value,
+ body : value });
 ```
 
 
 
 
 
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| exportType | string | yes | Export type / format |  
+| body | [ExportJobReq](#ExportJobReq) | yes | Request body |
 
-Get statistics groups
+
+Create data export job in required format
 
 *Returned Response:*
 
 
 
 
-[StatsGroups](#StatsGroups)
+[ExportJobRes](#ExportJobRes)
 
 Success
 
@@ -65,13 +72,8 @@ Success
 
 ```json
 {
-  "groups": [
-    {
-      "key": "general",
-      "url": "/v1/group/general",
-      "title": "General"
-    }
-  ]
+  "status": "queued",
+  "job_id": "6047c67060ad8241a948ee42"
 }
 ```
 </details>
@@ -87,17 +89,17 @@ Success
 ---
 
 
-### getStatiscticsGroupComponents
-Get statistics group components
+### getAbandonCartDetail
+Get abandon carts details
 
 
 
 ```javascript
 // Promise
-const promise = client.application("<APPLICATION_ID>").analytics.getStatiscticsGroupComponents({  groupName : value });
+const promise = platformClient.application("<APPLICATION_ID>").analytics.getAbandonCartDetail({  cartId : value });
 
 // Async/Await
-const data = await client.application("<APPLICATION_ID>").analytics.getStatiscticsGroupComponents({  groupName : value });
+const data = await platformClient.application("<APPLICATION_ID>").analytics.getAbandonCartDetail({  cartId : value });
 ```
 
 
@@ -106,18 +108,83 @@ const data = await client.application("<APPLICATION_ID>").analytics.getStatiscti
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
-| groupName | string | yes | Group name |  
+| cartId | string | yes | Cart Id |  
 
 
 
-Get statistics group components
+Get abandon cart details
 
 *Returned Response:*
 
 
 
 
-[StatsGroupComponents](#StatsGroupComponents)
+[AbandonCartDetail](#AbandonCartDetail)
+
+Success
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### getAbandonCartList
+Get abandon carts list
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").analytics.getAbandonCartList({  fromDate : value,
+ toDate : value,
+ pageNo : value,
+ pageSize : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").analytics.getAbandonCartList({  fromDate : value,
+ toDate : value,
+ pageNo : value,
+ pageSize : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| fromDate | string | yes | From date |   
+| toDate | string | yes | To date |    
+| pageNo | number | no | Current page number |    
+| pageSize | number | no | Current page size |  
+
+
+
+Get abandon carts list
+
+*Returned Response:*
+
+
+
+
+[AbandonCartsList](#AbandonCartsList)
 
 Success
 
@@ -129,16 +196,25 @@ Success
 
 ```json
 {
-  "title": "Catalogue & Inventory",
-  "components": [
-    {
-      "key": "catalogue-basic",
-      "title": "Catalogue Basic",
-      "type": "text-blocks",
-      "url": "/stats/component/catalogue-basic",
-      "filters": {}
+  "items": {
+    "properties_cart_id": 11517,
+    "context_traits_first_name": "Ahmed",
+    "context_traits_last_name": "Sakri",
+    "context_traits_phone_number": "8433859662",
+    "context_traits_email": "ahmedsakri@gofynd.com",
+    "context_app_application_id": "000000000000000000000001",
+    "properties_breakup_values_raw_total": 4020,
+    "received_at": {
+      "value": "2021-03-09T05:09:06.840Z"
     }
-  ]
+  },
+  "page": {
+    "type": "number",
+    "size": 10,
+    "current": 1,
+    "has_next": true,
+    "item_total": 15
+  }
 }
 ```
 </details>
@@ -154,17 +230,19 @@ Success
 ---
 
 
-### getComponentStatsCSV
-Get component statistics csv
+### getAbandonCartsCSV
+Get abandon carts csv
 
 
 
 ```javascript
 // Promise
-const promise = client.application("<APPLICATION_ID>").analytics.getComponentStatsCSV({  componentName : value });
+const promise = platformClient.application("<APPLICATION_ID>").analytics.getAbandonCartsCSV({  fromDate : value,
+ toDate : value });
 
 // Async/Await
-const data = await client.application("<APPLICATION_ID>").analytics.getComponentStatsCSV({  componentName : value });
+const data = await platformClient.application("<APPLICATION_ID>").analytics.getAbandonCartsCSV({  fromDate : value,
+ toDate : value });
 ```
 
 
@@ -173,67 +251,12 @@ const data = await client.application("<APPLICATION_ID>").analytics.getComponent
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
-| componentName | string | yes | Component name |  
+| fromDate | string | yes | From date |   
+| toDate | string | yes | To date |  
 
 
 
-Get component statistics csv
-
-*Returned Response:*
-
-
-
-
-[string](#string)
-
-Success
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### getComponentStatsPDF
-Get component statistics pdf
-
-
-
-```javascript
-// Promise
-const promise = client.application("<APPLICATION_ID>").analytics.getComponentStatsPDF({  componentName : value });
-
-// Async/Await
-const data = await client.application("<APPLICATION_ID>").analytics.getComponentStatsPDF({  componentName : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| componentName | string | yes | Component name |  
-
-
-
-Get component statistics pdf
+Get abandon carts csv
 
 *Returned Response:*
 
@@ -273,10 +296,10 @@ Get component statistics
 
 ```javascript
 // Promise
-const promise = client.application("<APPLICATION_ID>").analytics.getComponentStats({  componentName : value });
+const promise = platformClient.application("<APPLICATION_ID>").analytics.getComponentStats({  componentName : value });
 
 // Async/Await
-const data = await client.application("<APPLICATION_ID>").analytics.getComponentStats({  componentName : value });
+const data = await platformClient.application("<APPLICATION_ID>").analytics.getComponentStats({  componentName : value });
 ```
 
 
@@ -369,23 +392,17 @@ Success
 ---
 
 
-### getAbandonCartList
-Get abandon carts list
+### getComponentStatsCSV
+Get component statistics csv
 
 
 
 ```javascript
 // Promise
-const promise = client.application("<APPLICATION_ID>").analytics.getAbandonCartList({  fromDate : value,
- toDate : value,
- pageNo : value,
- pageSize : value });
+const promise = platformClient.application("<APPLICATION_ID>").analytics.getComponentStatsCSV({  componentName : value });
 
 // Async/Await
-const data = await client.application("<APPLICATION_ID>").analytics.getAbandonCartList({  fromDate : value,
- toDate : value,
- pageNo : value,
- pageSize : value });
+const data = await platformClient.application("<APPLICATION_ID>").analytics.getComponentStatsCSV({  componentName : value });
 ```
 
 
@@ -394,93 +411,11 @@ const data = await client.application("<APPLICATION_ID>").analytics.getAbandonCa
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
-| fromDate | string | yes | From date |   
-| toDate | string | yes | To date |    
-| pageNo | number | no | Current page number |    
-| pageSize | number | no | Current page size |  
+| componentName | string | yes | Component name |  
 
 
 
-Get abandon carts list
-
-*Returned Response:*
-
-
-
-
-[AbandonCartsList](#AbandonCartsList)
-
-Success
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "items": {
-    "properties_cart_id": 11517,
-    "context_traits_first_name": "Ahmed",
-    "context_traits_last_name": "Sakri",
-    "context_traits_phone_number": "8433859662",
-    "context_traits_email": "ahmedsakri@gofynd.com",
-    "context_app_application_id": "000000000000000000000001",
-    "properties_breakup_values_raw_total": 4020,
-    "received_at": {
-      "value": "2021-03-09T05:09:06.840Z"
-    }
-  },
-  "page": {
-    "type": "number",
-    "size": 10,
-    "current": 1,
-    "has_next": true,
-    "item_total": 15
-  }
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### getAbandonCartsCSV
-Get abandon carts csv
-
-
-
-```javascript
-// Promise
-const promise = client.application("<APPLICATION_ID>").analytics.getAbandonCartsCSV({  fromDate : value,
- toDate : value });
-
-// Async/Await
-const data = await client.application("<APPLICATION_ID>").analytics.getAbandonCartsCSV({  fromDate : value,
- toDate : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| fromDate | string | yes | From date |   
-| toDate | string | yes | To date |  
-
-
-
-Get abandon carts csv
+Get component statistics csv
 
 *Returned Response:*
 
@@ -513,17 +448,17 @@ Success
 ---
 
 
-### getAbandonCartDetail
-Get abandon carts details
+### getComponentStatsPDF
+Get component statistics pdf
 
 
 
 ```javascript
 // Promise
-const promise = client.application("<APPLICATION_ID>").analytics.getAbandonCartDetail({  cartId : value });
+const promise = platformClient.application("<APPLICATION_ID>").analytics.getComponentStatsPDF({  componentName : value });
 
 // Async/Await
-const data = await client.application("<APPLICATION_ID>").analytics.getAbandonCartDetail({  cartId : value });
+const data = await platformClient.application("<APPLICATION_ID>").analytics.getComponentStatsPDF({  componentName : value });
 ```
 
 
@@ -532,18 +467,18 @@ const data = await client.application("<APPLICATION_ID>").analytics.getAbandonCa
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
-| cartId | string | yes | Cart Id |  
+| componentName | string | yes | Component name |  
 
 
 
-Get abandon cart details
+Get component statistics pdf
 
 *Returned Response:*
 
 
 
 
-[AbandonCartDetail](#AbandonCartDetail)
+[string](#string)
 
 Success
 
@@ -555,67 +490,6 @@ Success
 
 ```json
 
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### createExportJob
-Create data export job in required format
-
-
-
-```javascript
-// Promise
-const promise = client.analytics.createExportJob({  exportType : value,
- body : value });
-
-// Async/Await
-const data = await client.analytics.createExportJob({  exportType : value,
- body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| exportType | string | yes | Export type / format |  
-| body | [ExportJobReq](#ExportJobReq) | yes | Request body |
-
-
-Create data export job in required format
-
-*Returned Response:*
-
-
-
-
-[ExportJobRes](#ExportJobRes)
-
-Success
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "status": "queued",
-  "job_id": "6047c67060ad8241a948ee42"
-}
 ```
 </details>
 
@@ -637,11 +511,11 @@ Get data export job status
 
 ```javascript
 // Promise
-const promise = client.analytics.getExportJobStatus({  exportType : value,
+const promise = platformClient.analytics.getExportJobStatus({  exportType : value,
  jobId : value });
 
 // Async/Await
-const data = await client.analytics.getExportJobStatus({  exportType : value,
+const data = await platformClient.analytics.getExportJobStatus({  exportType : value,
  jobId : value });
 ```
 
@@ -700,13 +574,13 @@ Get logs list
 
 ```javascript
 // Promise
-const promise = client.analytics.getLogsList({  logType : value,
+const promise = platformClient.analytics.getLogsList({  logType : value,
  body : value,
  pageNo : value,
  pageSize : value });
 
 // Async/Await
-const data = await client.analytics.getLogsList({  logType : value,
+const data = await platformClient.analytics.getLogsList({  logType : value,
  body : value,
  pageNo : value,
  pageSize : value });
@@ -775,6 +649,132 @@ Success
 ---
 
 
+### getStatiscticsGroupComponents
+Get statistics group components
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").analytics.getStatiscticsGroupComponents({  groupName : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").analytics.getStatiscticsGroupComponents({  groupName : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| groupName | string | yes | Group name |  
+
+
+
+Get statistics group components
+
+*Returned Response:*
+
+
+
+
+[StatsGroupComponents](#StatsGroupComponents)
+
+Success
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "title": "Catalogue & Inventory",
+  "components": [
+    {
+      "key": "catalogue-basic",
+      "title": "Catalogue Basic",
+      "type": "text-blocks",
+      "url": "/stats/component/catalogue-basic",
+      "filters": {}
+    }
+  ]
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### getStatiscticsGroups
+Get statistics groups
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").analytics.getStatiscticsGroups();
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").analytics.getStatiscticsGroups();
+```
+
+
+
+
+
+
+Get statistics groups
+
+*Returned Response:*
+
+
+
+
+[StatsGroups](#StatsGroups)
+
+Success
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "groups": [
+    {
+      "key": "general",
+      "url": "/v1/group/general",
+      "title": "General"
+    }
+  ]
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
 ### searchLogs
 Search logs
 
@@ -782,13 +782,13 @@ Search logs
 
 ```javascript
 // Promise
-const promise = client.analytics.searchLogs({  logType : value,
+const promise = platformClient.analytics.searchLogs({  logType : value,
  body : value,
  pageNo : value,
  pageSize : value });
 
 // Async/Await
-const data = await client.analytics.searchLogs({  logType : value,
+const data = await platformClient.analytics.searchLogs({  logType : value,
  body : value,
  pageNo : value,
  pageSize : value });
@@ -866,286 +866,248 @@ Success
 
 ### Schemas
 
- 
- 
- #### [StatGroup](#StatGroup)
+
+#### [AbandonCartDetail](#AbandonCartDetail)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | key | string |  no  |  |
- | url | string |  no  |  |
- | title | string |  no  |  |
+ | _id | string? |  yes  |  |
+ | address | string? |  yes  |  |
+ | articles | [string]? |  yes  |  |
+ | breakup | string? |  yes  |  |
+ | cart_value | string? |  yes  |  |
+ | user_id | string? |  yes  |  |
+ 
 
 ---
 
-
- 
- 
- #### [ErrorRes](#ErrorRes)
+#### [AbandonCartsDetail](#AbandonCartsDetail)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | message | string |  no  |  |
+ | context_app_application_id | string? |  yes  |  |
+ | context_traits_email | string? |  yes  |  |
+ | context_traits_first_name | string? |  yes  |  |
+ | context_traits_last_name | string? |  yes  |  |
+ | context_traits_phone_number | string? |  yes  |  |
+ | properties_breakup_values_raw_total | string? |  yes  |  |
+ | properties_cart_id | string? |  yes  |  |
+ | received_at | [ReceivedAt](#ReceivedAt)? |  yes  |  |
+ 
 
 ---
 
-
- 
- 
- #### [StatsGroups](#StatsGroups)
+#### [AbandonCartsList](#AbandonCartsList)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | groups | [[StatGroup](#StatGroup)] |  no  |  |
+ | cart_total | string? |  yes  |  |
+ | items | [[AbandonCartsDetail](#AbandonCartsDetail)]? |  yes  |  |
+ | page | [Page](#Page)? |  yes  |  |
+ 
 
 ---
 
-
- 
- 
- #### [StatsGroupComponent](#StatsGroupComponent)
+#### [ErrorRes](#ErrorRes)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | key | string |  no  |  |
- | url | string |  no  |  |
- | title | string |  no  |  |
+ | message | string? |  yes  |  |
+ 
+
+---
+
+#### [ExportJobReq](#ExportJobReq)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | end_time | string? |  yes  |  |
+ | event_type | string? |  yes  |  |
+ | marketplace_name | string? |  yes  |  |
+ | start_time | string? |  yes  |  |
+ | trace_id | string? |  yes  |  |
+ 
+
+---
+
+#### [ExportJobRes](#ExportJobRes)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | job_id | string? |  yes  |  |
+ | status | string? |  yes  |  |
+ 
+
+---
+
+#### [ExportJobStatusRes](#ExportJobStatusRes)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | download_url | string? |  yes  |  |
+ | job_id | string? |  yes  |  |
+ | status | string? |  yes  |  |
+ 
+
+---
+
+#### [GetLogsListReq](#GetLogsListReq)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | company_id | string? |  yes  |  |
+ | end_date | string? |  yes  |  |
+ | marketplace_name | string? |  yes  |  |
+ | start_date | string? |  yes  |  |
+ 
+
+---
+
+#### [GetLogsListRes](#GetLogsListRes)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | items | [[MkpLogsResp](#MkpLogsResp)]? |  yes  |  |
+ | page | [Page](#Page)? |  yes  |  |
+ 
+
+---
+
+#### [LogInfo](#LogInfo)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | _id | string? |  yes  |  |
+ | article_id | string? |  yes  |  |
+ | brand_id | number? |  yes  |  |
+ | company_id | number? |  yes  |  |
+ | event | string? |  yes  |  |
+ | event_type | string? |  yes  |  |
+ | item_id | number? |  yes  |  |
+ | marketplace_name | string? |  yes  |  |
+ | seller_identifier | string? |  yes  |  |
+ | status | string? |  yes  |  |
+ | store_code | string? |  yes  |  |
+ | store_id | number? |  yes  |  |
+ | trace_id | string? |  yes  |  |
+ 
+
+---
+
+#### [MkpLogsResp](#MkpLogsResp)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | count | string? |  yes  |  |
+ | end_time_iso | string? |  yes  |  |
+ | event_type | string? |  yes  |  |
+ | start_time_iso | string? |  yes  |  |
+ | status | string? |  yes  |  |
+ | trace_id | string? |  yes  |  |
+ 
+
+---
+
+#### [Page](#Page)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | current | number? |  yes  |  |
+ | has_next | boolean? |  yes  |  |
+ | has_previous | boolean? |  yes  |  |
+ | item_total | number? |  yes  |  |
+ | next_id | string? |  yes  |  |
+ | size | number? |  yes  |  |
  | type | string |  no  |  |
- | filters | string |  no  |  |
+ 
 
 ---
 
-
- 
- 
- #### [StatsGroupComponents](#StatsGroupComponents)
+#### [ReceivedAt](#ReceivedAt)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | title | string |  no  |  |
- | components | [[StatsGroupComponent](#StatsGroupComponent)] |  no  |  |
+ | value | string? |  yes  |  |
+ 
 
 ---
 
-
- 
- 
- #### [StatsRes](#StatsRes)
+#### [SearchLogReq](#SearchLogReq)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | key | string |  no  |  |
- | title | string |  no  |  |
- | type | string |  no  |  |
- | data | string |  no  |  |
+ | company_id | string? |  yes  |  |
+ | end_date | string? |  yes  |  |
+ | identifier | string? |  yes  |  |
+ | identifier_value | string? |  yes  |  |
+ | marketplace_name | string? |  yes  |  |
+ | start_date | string? |  yes  |  |
+ 
 
 ---
 
-
- 
- 
- #### [ReceivedAt](#ReceivedAt)
+#### [SearchLogRes](#SearchLogRes)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | value | string |  no  |  |
+ | items | [[LogInfo](#LogInfo)]? |  yes  |  |
+ | page | [Page](#Page)? |  yes  |  |
+ 
 
 ---
 
-
- 
- 
- #### [AbandonCartsDetail](#AbandonCartsDetail)
+#### [StatGroup](#StatGroup)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | properties_cart_id | string |  no  |  |
- | context_traits_first_name | string |  no  |  |
- | context_traits_last_name | string |  no  |  |
- | context_traits_phone_number | string |  no  |  |
- | context_traits_email | string |  no  |  |
- | context_app_application_id | string |  no  |  |
- | properties_breakup_values_raw_total | string |  no  |  |
- | received_at | [ReceivedAt](#ReceivedAt) |  no  |  |
+ | key | string? |  yes  |  |
+ | title | string? |  yes  |  |
+ | url | string? |  yes  |  |
+ 
 
 ---
 
-
- 
- 
- #### [Page](#Page)
+#### [StatsGroupComponent](#StatsGroupComponent)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | item_total | number |  no  |  |
- | next_id | string |  no  |  |
- | has_previous | boolean |  no  |  |
- | has_next | boolean |  no  |  |
- | current | number |  no  |  |
- | type | string |  yes  |  |
- | size | number |  no  |  |
+ | filters | string? |  yes  |  |
+ | key | string? |  yes  |  |
+ | title | string? |  yes  |  |
+ | type | string? |  yes  |  |
+ | url | string? |  yes  |  |
+ 
 
 ---
 
-
- 
- 
- #### [AbandonCartsList](#AbandonCartsList)
+#### [StatsGroupComponents](#StatsGroupComponents)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | items | [[AbandonCartsDetail](#AbandonCartsDetail)] |  no  |  |
- | cart_total | string |  no  |  |
- | page | [Page](#Page) |  no  |  |
+ | components | [[StatsGroupComponent](#StatsGroupComponent)]? |  yes  |  |
+ | title | string? |  yes  |  |
+ 
 
 ---
 
-
- 
- 
- #### [AbandonCartDetail](#AbandonCartDetail)
+#### [StatsGroups](#StatsGroups)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | _id | string |  no  |  |
- | user_id | string |  no  |  |
- | cart_value | string |  no  |  |
- | articles | [string] |  no  |  |
- | breakup | string |  no  |  |
- | address | string |  no  |  |
+ | groups | [[StatGroup](#StatGroup)]? |  yes  |  |
+ 
 
 ---
 
-
- 
- 
- #### [ExportJobReq](#ExportJobReq)
+#### [StatsRes](#StatsRes)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | marketplace_name | string |  no  |  |
- | start_time | string |  no  |  |
- | end_time | string |  no  |  |
- | event_type | string |  no  |  |
- | trace_id | string |  no  |  |
-
----
-
-
+ | data | string? |  yes  |  |
+ | key | string? |  yes  |  |
+ | title | string? |  yes  |  |
+ | type | string? |  yes  |  |
  
- 
- #### [ExportJobRes](#ExportJobRes)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | status | string |  no  |  |
- | job_id | string |  no  |  |
-
----
-
-
- 
- 
- #### [ExportJobStatusRes](#ExportJobStatusRes)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | status | string |  no  |  |
- | job_id | string |  no  |  |
- | download_url | string |  no  |  |
-
----
-
-
- 
- 
- #### [GetLogsListReq](#GetLogsListReq)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | marketplace_name | string |  no  |  |
- | start_date | string |  no  |  |
- | company_id | string |  no  |  |
- | end_date | string |  no  |  |
-
----
-
-
- 
- 
- #### [MkpLogsResp](#MkpLogsResp)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | start_time_iso | string |  no  |  |
- | end_time_iso | string |  no  |  |
- | event_type | string |  no  |  |
- | trace_id | string |  no  |  |
- | count | string |  no  |  |
- | status | string |  no  |  |
-
----
-
-
- 
- 
- #### [GetLogsListRes](#GetLogsListRes)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | items | [[MkpLogsResp](#MkpLogsResp)] |  no  |  |
- | page | [Page](#Page) |  no  |  |
-
----
-
-
- 
- 
- #### [SearchLogReq](#SearchLogReq)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | marketplace_name | string |  no  |  |
- | start_date | string |  no  |  |
- | company_id | string |  no  |  |
- | end_date | string |  no  |  |
- | identifier | string |  no  |  |
- | identifier_value | string |  no  |  |
-
----
-
-
- 
- 
- #### [LogInfo](#LogInfo)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | _id | string |  no  |  |
- | status | string |  no  |  |
- | event_type | string |  no  |  |
- | marketplace_name | string |  no  |  |
- | event | string |  no  |  |
- | trace_id | string |  no  |  |
- | company_id | number |  no  |  |
- | brand_id | number |  no  |  |
- | store_code | string |  no  |  |
- | store_id | number |  no  |  |
- | item_id | number |  no  |  |
- | article_id | string |  no  |  |
- | seller_identifier | string |  no  |  |
-
----
-
-
- 
- 
- #### [SearchLogRes](#SearchLogRes)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | items | [[LogInfo](#LogInfo)] |  no  |  |
- | page | [Page](#Page) |  no  |  |
 
 ---
 

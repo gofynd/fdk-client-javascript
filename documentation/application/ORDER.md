@@ -8,18 +8,19 @@
 ## Order Methods
 Handles all Application order and shipment api(s)
 
-* [getOrders](#getorders)
-* [getOrderById](#getorderbyid)
-* [getPosOrderById](#getposorderbyid)
-* [getShipmentById](#getshipmentbyid)
-* [getInvoiceByShipmentId](#getinvoicebyshipmentid)
-* [trackShipment](#trackshipment)
 * [getCustomerDetailsByShipmentId](#getcustomerdetailsbyshipmentid)
-* [sendOtpToShipmentCustomer](#sendotptoshipmentcustomer)
-* [verifyOtpShipmentCustomer](#verifyotpshipmentcustomer)
+* [getInvoiceByShipmentId](#getinvoicebyshipmentid)
+* [getOrderById](#getorderbyid)
+* [getOrders](#getorders)
+* [getPosOrderById](#getposorderbyid)
 * [getShipmentBagReasons](#getshipmentbagreasons)
+* [getShipmentById](#getshipmentbyid)
 * [getShipmentReasons](#getshipmentreasons)
+* [sendOtpToShipmentCustomer](#sendotptoshipmentcustomer)
+* [trackShipment](#trackshipment)
 * [updateShipmentStatus](#updateshipmentstatus)
+* [updateShipmentStatus1](#updateshipmentstatus1)
+* [verifyOtpShipmentCustomer](#verifyotpshipmentcustomer)
 
 
 
@@ -28,27 +29,19 @@ Handles all Application order and shipment api(s)
 
 
 
-### getOrders
-Get all orders
+### getCustomerDetailsByShipmentId
+Get Customer Details by Shipment Id
 
 
 
 ```javascript
 // Promise
-const promise = order.getOrders({  status : value,
- pageNo : value,
- pageSize : value,
- fromDate : value,
- toDate : value,
- customMeta : value });
+const promise = applicationClient.order.getCustomerDetailsByShipmentId({  orderId : value,
+ shipmentId : value });
 
 // Async/Await
-const data = await order.getOrders({  status : value,
- pageNo : value,
- pageSize : value,
- fromDate : value,
- toDate : value,
- customMeta : value });
+const data = await applicationClient.order.getCustomerDetailsByShipmentId({  orderId : value,
+ shipmentId : value });
 ```
 
 
@@ -56,26 +49,87 @@ const data = await order.getOrders({  status : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| status | number | no | A filter to retrieve orders by their current status such as _placed_, _delivered_, etc. |    
-| pageNo | number | no | The page number to navigate through the given set of results. Default value is 1. |    
-| pageSize | number | no | The number of items to retrieve in each page. Default value is 10. |    
-| fromDate | string | no | The date from which the orders should be retrieved. |    
-| toDate | string | no | The date till which the orders should be retrieved. |    
-| customMeta | string | no | A filter and retrieve data using special fields included for special use-cases |  
+| --------- | -----  | -------- | ----------- | 
+| orderId | string | yes | ID of the shipment. An order may contain multiple items and may get divided into one or more shipment, each having its own ID. |   
+| shipmentId | string | yes | A unique number used for identifying and tracking your orders. |  
 
 
 
-Use this API to retrieve all the orders.
+Use this API to retrieve customer details such as mobileno using Shipment ID.
 
 *Returned Response:*
 
 
 
 
-[OrderList](#OrderList)
+[CustomerDetailsResponse](#CustomerDetailsResponse)
 
-Success. Returns all the orders. Check the example shown below or refer `OrderList` for more details.
+Success. Check the example shown below or refer `CustomerDetailsByShipmentId` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "order_id": "FYMP629D972D01B6BD76",
+  "shipment_id": "16544950215681060915J",
+  "name": "sagar Kulkarni",
+  "phone": "XXX-XXX-6780",
+  "country": "India"
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### getInvoiceByShipmentId
+Get Invoice of a shipment
+
+
+
+```javascript
+// Promise
+const promise = applicationClient.order.getInvoiceByShipmentId({  shipmentId : value,
+ documentType : value });
+
+// Async/Await
+const data = await applicationClient.order.getInvoiceByShipmentId({  shipmentId : value,
+ documentType : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| shipmentId | string | yes | ID of the shipment. |    
+| documentType | string | no |  |  
+
+
+
+Use this API to retrieve shipment invoice.
+
+*Returned Response:*
+
+
+
+
+[ResponseGetInvoiceShipment](#ResponseGetInvoiceShipment)
+
+Success. Check the example shown below or refer `ShipmentById` for more details.
 
 
 
@@ -106,10 +160,10 @@ Get details of an order
 
 ```javascript
 // Promise
-const promise = order.getOrderById({  orderId : value });
+const promise = applicationClient.order.getOrderById({  orderId : value });
 
 // Async/Await
-const data = await order.getOrderById({  orderId : value });
+const data = await applicationClient.order.getOrderById({  orderId : value });
 ```
 
 
@@ -1090,6 +1144,77 @@ Success. Check the example shown below or refer `OrderById` for more details.
 ---
 
 
+### getOrders
+Get all orders
+
+
+
+```javascript
+// Promise
+const promise = applicationClient.order.getOrders({  status : value,
+ pageNo : value,
+ pageSize : value,
+ fromDate : value,
+ toDate : value,
+ customMeta : value });
+
+// Async/Await
+const data = await applicationClient.order.getOrders({  status : value,
+ pageNo : value,
+ pageSize : value,
+ fromDate : value,
+ toDate : value,
+ customMeta : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| status | number | no | A filter to retrieve orders by their current status such as _placed_, _delivered_, etc. |    
+| pageNo | number | no | The page number to navigate through the given set of results. Default value is 1. |    
+| pageSize | number | no | The number of items to retrieve in each page. Default value is 10. |    
+| fromDate | string | no | The date from which the orders should be retrieved. |    
+| toDate | string | no | The date till which the orders should be retrieved. |    
+| customMeta | string | no | A filter and retrieve data using special fields included for special use-cases |  
+
+
+
+Use this API to retrieve all the orders.
+
+*Returned Response:*
+
+
+
+
+[OrderList](#OrderList)
+
+Success. Returns all the orders. Check the example shown below or refer `OrderList` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
 ### getPosOrderById
 Get POS Order
 
@@ -1097,10 +1222,10 @@ Get POS Order
 
 ```javascript
 // Promise
-const promise = order.getPosOrderById({  orderId : value });
+const promise = applicationClient.order.getPosOrderById({  orderId : value });
 
 // Async/Await
-const data = await order.getPosOrderById({  orderId : value });
+const data = await applicationClient.order.getPosOrderById({  orderId : value });
 ```
 
 
@@ -1433,6 +1558,107 @@ Success. Check the example shown below or refer `PosOrderById` for more details.
 ---
 
 
+### getShipmentBagReasons
+Get reasons behind full or partial cancellation of a shipment
+
+
+
+```javascript
+// Promise
+const promise = applicationClient.order.getShipmentBagReasons({  shipmentId : value,
+ bagId : value });
+
+// Async/Await
+const data = await applicationClient.order.getShipmentBagReasons({  shipmentId : value,
+ bagId : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| shipmentId | string | yes | ID of the bag. An order may contain multiple items and may get divided into one or more shipment, each having its own ID. |   
+| bagId | string | yes | ID of the bag. An order may contain multiple items and may get divided into one or more shipment, each having its own ID. |  
+
+
+
+Use this API to retrieve the issues that led to the cancellation of bags within a shipment.
+
+*Returned Response:*
+
+
+
+
+[ShipmentBagReasons](#ShipmentBagReasons)
+
+Success. Check the example shown below or refer `ShipmentBagReasons` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "success": true,
+  "reasons": [
+    {
+      "id": 1,
+      "display_name": "Not available",
+      "qc_type": [],
+      "question_set": []
+    },
+    {
+      "reasons": [
+        {
+          "id": 2,
+          "display_name": "Processing other orders",
+          "qc_type": [],
+          "question_set": []
+        },
+        {
+          "id": 3,
+          "display_name": "Printer not working",
+          "qc_type": [],
+          "question_set": []
+        },
+        {
+          "reasons": [
+            {
+              "id": 4,
+              "display_name": "Card issues",
+              "qc_type": [],
+              "question_set": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "display_name": "Card issues",
+      "qc_type": [],
+      "question_set": []
+    }
+  ]
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
 ### getShipmentById
 Get details of a shipment
 
@@ -1440,10 +1666,10 @@ Get details of a shipment
 
 ```javascript
 // Promise
-const promise = order.getShipmentById({  shipmentId : value });
+const promise = applicationClient.order.getShipmentById({  shipmentId : value });
 
 // Async/Await
-const data = await order.getShipmentById({  shipmentId : value });
+const data = await applicationClient.order.getShipmentById({  shipmentId : value });
 ```
 
 
@@ -1849,424 +2075,6 @@ Success. Check the example shown below or refer `ShipmentById` for more details.
 ---
 
 
-### getInvoiceByShipmentId
-Get Invoice of a shipment
-
-
-
-```javascript
-// Promise
-const promise = order.getInvoiceByShipmentId({  shipmentId : value });
-
-// Async/Await
-const data = await order.getInvoiceByShipmentId({  shipmentId : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| shipmentId | string | yes | ID of the shipment. |  
-
-
-
-Use this API to retrieve shipment invoice.
-
-*Returned Response:*
-
-
-
-
-[ResponseGetInvoiceShipment](#ResponseGetInvoiceShipment)
-
-Success. Check the example shown below or refer `ShipmentById` for more details.
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### trackShipment
-Track shipment
-
-
-
-```javascript
-// Promise
-const promise = order.trackShipment({  shipmentId : value });
-
-// Async/Await
-const data = await order.trackShipment({  shipmentId : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| shipmentId | string | yes | ID of the shipment. An order may contain multiple items and may get divided into one or more shipment, each having its own ID. |  
-
-
-
-Track Shipment by shipment id, for application based on application Id
-
-*Returned Response:*
-
-
-
-
-[ShipmentTrack](#ShipmentTrack)
-
-Success. Check the example shown below or refer `ShipmentTrack` for more details.
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "results": [
-    {
-      "awb": "string",
-      "updated_at": "string",
-      "last_location_recieved_at": "string",
-      "reason": "string",
-      "shipment_type": "string",
-      "status": "string",
-      "updated_time": "string",
-      "account_name": "string"
-    }
-  ]
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### getCustomerDetailsByShipmentId
-Get Customer Details by Shipment Id
-
-
-
-```javascript
-// Promise
-const promise = order.getCustomerDetailsByShipmentId({  orderId : value,
- shipmentId : value });
-
-// Async/Await
-const data = await order.getCustomerDetailsByShipmentId({  orderId : value,
- shipmentId : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| orderId | string | yes | ID of the shipment. An order may contain multiple items and may get divided into one or more shipment, each having its own ID. |   
-| shipmentId | string | yes | A unique number used for identifying and tracking your orders. |  
-
-
-
-Use this API to retrieve customer details such as mobileno using Shipment ID.
-
-*Returned Response:*
-
-
-
-
-[CustomerDetailsResponse](#CustomerDetailsResponse)
-
-Success. Check the example shown below or refer `CustomerDetailsByShipmentId` for more details.
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "order_id": "FYMP629D972D01B6BD76",
-  "shipment_id": "16544950215681060915J",
-  "name": "sagar Kulkarni",
-  "phone": "XXX-XXX-6780",
-  "country": "India"
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### sendOtpToShipmentCustomer
-Send and Resend Otp code to Order-Shipment customer
-
-
-
-```javascript
-// Promise
-const promise = order.sendOtpToShipmentCustomer({  orderId : value,
- shipmentId : value });
-
-// Async/Await
-const data = await order.sendOtpToShipmentCustomer({  orderId : value,
- shipmentId : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| orderId | string | yes | A unique number used for identifying and tracking your orders. |   
-| shipmentId | string | yes | ID of the shipment. An order may contain multiple items and may get divided into one or more shipment, each having its own ID. |  
-
-
-
-Use this API to send OTP to the customer of the mapped Shipment.
-
-*Returned Response:*
-
-
-
-
-[SendOtpToCustomerResponse](#SendOtpToCustomerResponse)
-
-Success to acknowledge the service was notified
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "success": true,
-  "request_id": "0fe0d6e16205ddc57d212e947ee31896",
-  "message": "OTP sent",
-  "resend_timer": 30
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### verifyOtpShipmentCustomer
-Verify Otp code
-
-
-
-```javascript
-// Promise
-const promise = order.verifyOtpShipmentCustomer({  orderId : value,
- shipmentId : value,
- body : value });
-
-// Async/Await
-const data = await order.verifyOtpShipmentCustomer({  orderId : value,
- shipmentId : value,
- body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| orderId | string | yes | A unique number used for identifying and tracking your orders. |   
-| shipmentId | string | yes | ID of the shipment. An order may contain multiple items and may get divided into one or more shipment, each having its own ID. |  
-| body | [VerifyOtp](#VerifyOtp) | yes | Request body |
-
-
-Use this API to verify OTP and create a session token with custom payload.
-
-*Returned Response:*
-
-
-
-
-[VerifyOtpResponse](#VerifyOtpResponse)
-
-Success, the code is valid and returns a session token
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "success": true
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### getShipmentBagReasons
-Get reasons behind full or partial cancellation of a shipment
-
-
-
-```javascript
-// Promise
-const promise = order.getShipmentBagReasons({  shipmentId : value,
- bagId : value });
-
-// Async/Await
-const data = await order.getShipmentBagReasons({  shipmentId : value,
- bagId : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| shipmentId | string | yes | ID of the bag. An order may contain multiple items and may get divided into one or more shipment, each having its own ID. |   
-| bagId | string | yes | ID of the bag. An order may contain multiple items and may get divided into one or more shipment, each having its own ID. |  
-
-
-
-Use this API to retrieve the issues that led to the cancellation of bags within a shipment.
-
-*Returned Response:*
-
-
-
-
-[ShipmentBagReasons](#ShipmentBagReasons)
-
-Success. Check the example shown below or refer `ShipmentBagReasons` for more details.
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "success": true,
-  "reasons": [
-    {
-      "id": 1,
-      "display_name": "Not available",
-      "qc_type": [],
-      "question_set": []
-    },
-    {
-      "reasons": [
-        {
-          "id": 2,
-          "display_name": "Processing other orders",
-          "qc_type": [],
-          "question_set": []
-        },
-        {
-          "id": 3,
-          "display_name": "Printer not working",
-          "qc_type": [],
-          "question_set": []
-        },
-        {
-          "reasons": [
-            {
-              "id": 4,
-              "display_name": "Card issues",
-              "qc_type": [],
-              "question_set": []
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "id": 4,
-      "display_name": "Card issues",
-      "qc_type": [],
-      "question_set": []
-    }
-  ]
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
 ### getShipmentReasons
 Get reasons behind full or partial cancellation of a shipment
 
@@ -2274,10 +2082,10 @@ Get reasons behind full or partial cancellation of a shipment
 
 ```javascript
 // Promise
-const promise = order.getShipmentReasons({  shipmentId : value });
+const promise = applicationClient.order.getShipmentReasons({  shipmentId : value });
 
 // Async/Await
-const data = await order.getShipmentReasons({  shipmentId : value });
+const data = await applicationClient.order.getShipmentReasons({  shipmentId : value });
 ```
 
 
@@ -2406,6 +2214,139 @@ Success. Check the example shown below or refer `ShipmentBagReasons` for more de
 ---
 
 
+### sendOtpToShipmentCustomer
+Send and Resend Otp code to Order-Shipment customer
+
+
+
+```javascript
+// Promise
+const promise = applicationClient.order.sendOtpToShipmentCustomer({  orderId : value,
+ shipmentId : value });
+
+// Async/Await
+const data = await applicationClient.order.sendOtpToShipmentCustomer({  orderId : value,
+ shipmentId : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| orderId | string | yes | A unique number used for identifying and tracking your orders. |   
+| shipmentId | string | yes | ID of the shipment. An order may contain multiple items and may get divided into one or more shipment, each having its own ID. |  
+
+
+
+Use this API to send OTP to the customer of the mapped Shipment.
+
+*Returned Response:*
+
+
+
+
+[SendOtpToCustomerResponse](#SendOtpToCustomerResponse)
+
+Success to acknowledge the service was notified
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "success": true,
+  "request_id": "0fe0d6e16205ddc57d212e947ee31896",
+  "message": "OTP sent",
+  "resend_timer": 30
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### trackShipment
+Track shipment
+
+
+
+```javascript
+// Promise
+const promise = applicationClient.order.trackShipment({  shipmentId : value });
+
+// Async/Await
+const data = await applicationClient.order.trackShipment({  shipmentId : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| shipmentId | string | yes | ID of the shipment. An order may contain multiple items and may get divided into one or more shipment, each having its own ID. |  
+
+
+
+Track Shipment by shipment id, for application based on application Id
+
+*Returned Response:*
+
+
+
+
+[ShipmentTrack](#ShipmentTrack)
+
+Success. Check the example shown below or refer `ShipmentTrack` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "results": [
+    {
+      "awb": "string",
+      "updated_at": "string",
+      "last_location_recieved_at": "string",
+      "reason": "string",
+      "shipment_type": "string",
+      "status": "string",
+      "updated_time": "string",
+      "account_name": "string"
+    }
+  ]
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
 ### updateShipmentStatus
 Update the shipment status
 
@@ -2413,11 +2354,11 @@ Update the shipment status
 
 ```javascript
 // Promise
-const promise = order.updateShipmentStatus({  shipmentId : value,
+const promise = applicationClient.order.updateShipmentStatus({  shipmentId : value,
  body : value });
 
 // Async/Await
-const data = await order.updateShipmentStatus({  shipmentId : value,
+const data = await applicationClient.order.updateShipmentStatus({  shipmentId : value,
  body : value });
 ```
 
@@ -2480,950 +2421,1063 @@ Successfully updateShipmentStatus!
 ---
 
 
+### updateShipmentStatus1
+
+
+
+
+```javascript
+// Promise
+const promise = applicationClient.order.updateShipmentStatus1({  shipmentId : value,
+ body : value });
+
+// Async/Await
+const data = await applicationClient.order.updateShipmentStatus1({  shipmentId : value,
+ body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| shipmentId | string | yes |  |  
+| body | [UpdateShipmentStatusRequest](#UpdateShipmentStatusRequest) | yes | Request body |
+
+
+updateShipmentStatus
+
+*Returned Response:*
+
+
+
+
+[ShipmentApplicationStatusResponse](#ShipmentApplicationStatusResponse)
+
+Successfully updateShipmentStatus!
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "statuses": [
+    {
+      "shipments": [
+        {
+          "status": 200,
+          "final_state": {
+            "bag_invoiced": "bag_invoiced"
+          },
+          "identifier": "16704782900981358343"
+        }
+      ]
+    }
+  ]
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### verifyOtpShipmentCustomer
+Verify Otp code
+
+
+
+```javascript
+// Promise
+const promise = applicationClient.order.verifyOtpShipmentCustomer({  orderId : value,
+ shipmentId : value,
+ body : value });
+
+// Async/Await
+const data = await applicationClient.order.verifyOtpShipmentCustomer({  orderId : value,
+ shipmentId : value,
+ body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| orderId | string | yes | A unique number used for identifying and tracking your orders. |   
+| shipmentId | string | yes | ID of the shipment. An order may contain multiple items and may get divided into one or more shipment, each having its own ID. |  
+| body | [VerifyOtp](#VerifyOtp) | yes | Request body |
+
+
+Use this API to verify OTP and create a session token with custom payload.
+
+*Returned Response:*
+
+
+
+
+[VerifyOtpResponse](#VerifyOtpResponse)
+
+Success, the code is valid and returns a session token
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "success": true
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
 
 ### Schemas
 
- 
- 
- #### [OrderStatuses](#OrderStatuses)
+
+#### [ApefaceApiError](#ApefaceApiError)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | is_selected | boolean |  no  |  |
- | display | string |  no  |  |
- | value | number |  no  |  |
+ | message | string? |  yes  |  |
+ | success | boolean? |  yes  |  |
+ 
 
 ---
 
-
- 
- 
- #### [OrderFilters](#OrderFilters)
+#### [AppliedFreeArticles](#AppliedFreeArticles)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | statuses | [[OrderStatuses](#OrderStatuses)] |  no  |  |
+ | article_id | string? |  yes  |  |
+ | free_gift_item_details | string? |  yes  |  |
+ | parent_item_identifier | string? |  yes  |  |
+ | quantity | number? |  yes  |  |
+ 
 
 ---
 
-
- 
- 
- #### [OrderPage](#OrderPage)
+#### [AppliedPromos](#AppliedPromos)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | item_total | number |  no  |  |
- | size | number |  no  |  |
- | current | number |  no  |  |
- | type | string |  no  |  |
- | has_next | boolean |  no  |  |
+ | amount | number? |  yes  |  |
+ | applied_free_articles | [[AppliedFreeArticles](#AppliedFreeArticles)]? |  yes  |  |
+ | article_quantity | number? |  yes  |  |
+ | mrp_promotion | boolean? |  yes  |  |
+ | promo_id | string? |  yes  |  |
+ | promotion_name | string? |  yes  |  |
+ | promotion_type | string? |  yes  |  |
+ 
 
 ---
 
-
- 
- 
- #### [BreakupValues](#BreakupValues)
+#### [BagReasonMeta](#BagReasonMeta)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | name | string |  no  |  |
- | display | string |  no  |  |
- | value | number |  no  |  |
+ | show_text_area | boolean? |  yes  |  |
+ 
 
 ---
 
-
- 
- 
- #### [UserInfo](#UserInfo)
+#### [BagReasons](#BagReasons)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | name | string |  no  |  |
- | email | string |  no  |  |
- | gender | string |  no  |  |
- | mobile | string |  no  |  |
+ | display_name | string? |  yes  |  |
+ | id | number? |  yes  |  |
+ | meta | [BagReasonMeta](#BagReasonMeta)? |  yes  |  |
+ | qc_type | [string]? |  yes  |  |
+ | question_set | [[QuestionSet](#QuestionSet)]? |  yes  |  |
+ | reasons | [[BagReasons](#BagReasons)]? |  yes  |  |
+ 
 
 ---
 
-
- 
- 
- #### [BagsForReorderArticleAssignment](#BagsForReorderArticleAssignment)
+#### [Bags](#Bags)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | strategy | string |  no  |  |
- | level | string |  no  |  |
+ | applied_promos | [[AppliedPromos](#AppliedPromos)]? |  yes  |  |
+ | can_cancel | boolean? |  yes  |  |
+ | can_return | boolean? |  yes  |  |
+ | current_status | [CurrentStatus](#CurrentStatus)? |  yes  |  |
+ | delivery_date | string? |  yes  |  |
+ | financial_breakup | [[FinancialBreakup](#FinancialBreakup)]? |  yes  |  |
+ | id | number? |  yes  |  |
+ | item | [Item](#Item)? |  yes  |  |
+ | line_number | number? |  yes  |  |
+ | parent_promo_bags | string? |  yes  |  |
+ | prices | [Prices](#Prices)? |  yes  |  |
+ | quantity | number? |  yes  |  |
+ | returnable_date | string? |  yes  |  |
+ | seller_identifier | string? |  yes  |  |
+ 
 
 ---
 
-
- 
- 
- #### [BagsForReorder](#BagsForReorder)
+#### [BagsForReorder](#BagsForReorder)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | item_size | string |  no  |  |
- | item_id | number |  no  |  |
- | seller_id | number |  no  |  |
- | quantity | number |  no  |  |
- | store_id | number |  no  |  |
- | article_assignment | [BagsForReorderArticleAssignment](#BagsForReorderArticleAssignment) |  no  |  |
+ | article_assignment | [BagsForReorderArticleAssignment](#BagsForReorderArticleAssignment)? |  yes  |  |
+ | item_id | number? |  yes  |  |
+ | item_size | string? |  yes  |  |
+ | quantity | number? |  yes  |  |
+ | seller_id | number? |  yes  |  |
+ | store_id | number? |  yes  |  |
+ 
 
 ---
 
-
- 
- 
- #### [NestedTrackingDetails](#NestedTrackingDetails)
+#### [BagsForReorderArticleAssignment](#BagsForReorderArticleAssignment)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | status | string |  no  |  |
- | is_current | boolean |  no  |  |
- | time | string |  no  |  |
- | is_passed | boolean |  no  |  |
+ | level | string? |  yes  |  |
+ | strategy | string? |  yes  |  |
+ 
 
 ---
 
-
- 
- 
- #### [TrackingDetails](#TrackingDetails)
+#### [BreakupValues](#BreakupValues)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | is_current | boolean |  no  |  |
- | is_passed | boolean |  no  |  |
- | tracking_details | [[NestedTrackingDetails](#NestedTrackingDetails)] |  no  |  |
- | time | string |  no  |  |
- | status | string |  no  |  |
+ | display | string? |  yes  |  |
+ | name | string? |  yes  |  |
+ | value | number? |  yes  |  |
+ 
 
 ---
 
-
- 
- 
- #### [AppliedFreeArticles](#AppliedFreeArticles)
+#### [CurrentStatus](#CurrentStatus)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | free_gift_item_details | string |  no  |  |
- | quantity | number |  no  |  |
- | parent_item_identifier | string |  no  |  |
- | article_id | string |  no  |  |
+ | journey_type | string? |  yes  |  |
+ | name | string? |  yes  |  |
+ | status | string? |  yes  |  |
+ | updated_at | string? |  yes  |  |
+ 
 
 ---
 
-
- 
- 
- #### [AppliedPromos](#AppliedPromos)
+#### [CustomerDetailsResponse](#CustomerDetailsResponse)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | promotion_name | string |  no  |  |
- | applied_free_articles | [[AppliedFreeArticles](#AppliedFreeArticles)] |  no  |  |
- | promo_id | string |  no  |  |
- | promotion_type | string |  no  |  |
- | mrp_promotion | boolean |  no  |  |
- | article_quantity | number |  no  |  |
- | amount | number |  no  |  |
+ | country | string? |  yes  |  |
+ | name | string? |  yes  |  |
+ | order_id | string? |  yes  |  |
+ | phone | string? |  yes  |  |
+ | shipment_id | string? |  yes  |  |
+ 
 
 ---
 
-
- 
- 
- #### [CurrentStatus](#CurrentStatus)
+#### [DataUpdates](#DataUpdates)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | status | string |  no  |  |
- | journey_type | string |  no  |  |
- | updated_at | string |  no  |  |
- | name | string |  no  |  |
+ | entities | [[EntitiesDataUpdates](#EntitiesDataUpdates)]? |  yes  |  |
+ | products | [[ProductsDataUpdates1](#ProductsDataUpdates1)]? |  yes  |  |
+ 
 
 ---
 
-
- 
- 
- #### [Prices](#Prices)
+#### [DeliveryAddress](#DeliveryAddress)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | cashback_applied | number |  no  |  |
- | brand_calculated_amount | number |  no  |  |
- | coupon_value | number |  no  |  |
- | refund_credit | number |  no  |  |
- | promotion_effective_discount | number |  no  |  |
- | added_to_fynd_cash | boolean |  no  |  |
- | delivery_charge | number |  no  |  |
- | refund_amount | number |  no  |  |
- | coupon_effective_discount | number |  no  |  |
- | gst_tax_percentage | number |  no  |  |
- | cod_charges | number |  no  |  |
- | price_effective | number |  no  |  |
- | price_marked | number |  no  |  |
- | discount | number |  no  |  |
- | cashback | number |  no  |  |
- | value_of_good | number |  no  |  |
- | amount_paid | number |  no  |  |
- | transfer_price | number |  no  |  |
- | fynd_credits | number |  no  |  |
- | amount_paid_roundoff | number |  no  |  |
+ | address | string? |  yes  |  |
+ | address1 | string? |  yes  |  |
+ | address2 | string? |  yes  |  |
+ | address_category | string? |  yes  |  |
+ | address_type | string? |  yes  |  |
+ | area | string? |  yes  |  |
+ | city | string? |  yes  |  |
+ | contact_person | string? |  yes  |  |
+ | country | string? |  yes  |  |
+ | created_at | string? |  yes  |  |
+ | email | string? |  yes  |  |
+ | landmark | string? |  yes  |  |
+ | latitude | number? |  yes  |  |
+ | longitude | number? |  yes  |  |
+ | name | string? |  yes  |  |
+ | phone | string? |  yes  |  |
+ | pincode | string? |  yes  |  |
+ | state | string? |  yes  |  |
+ | updated_at | string? |  yes  |  |
+ | version | string? |  yes  |  |
+ 
 
 ---
 
-
- 
- 
- #### [ItemBrand](#ItemBrand)
+#### [EntitiesDataUpdates](#EntitiesDataUpdates)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | logo | string |  no  |  |
- | name | string |  no  |  |
+ | data | string? |  yes  |  |
+ | filters | [string]? |  yes  |  |
+ 
 
 ---
 
-
- 
- 
- #### [Item](#Item)
+#### [EntitiesReasons](#EntitiesReasons)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | seller_identifier | string |  no  |  |
- | size | string |  no  |  |
- | brand | [ItemBrand](#ItemBrand) |  no  |  |
- | slug_key | string |  no  |  |
- | id | number |  no  |  |
- | name | string |  no  |  |
- | image | [string] |  no  |  |
- | code | string |  no  |  |
+ | data | [EntityReasonData](#EntityReasonData)? |  yes  |  |
+ | filters | [string]? |  yes  |  |
+ 
 
 ---
 
-
- 
- 
- #### [Identifiers](#Identifiers)
+#### [EntitiesReasons1](#EntitiesReasons1)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | sku_code | string |  no  |  |
- | ean | string |  no  |  |
+ | data | [EntityReasonData1](#EntityReasonData1)? |  yes  |  |
+ | filters | [string]? |  yes  |  |
+ 
 
 ---
 
-
- 
- 
- #### [FinancialBreakup](#FinancialBreakup)
+#### [EntityReasonData](#EntityReasonData)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | cashback_applied | number |  no  |  |
- | gst_tag | string |  no  |  |
- | gst_fee | number |  no  |  |
- | brand_calculated_amount | number |  no  |  |
- | size | string |  no  |  |
- | coupon_value | number |  no  |  |
- | total_units | number |  no  |  |
- | refund_credit | number |  no  |  |
- | promotion_effective_discount | number |  no  |  |
- | added_to_fynd_cash | boolean |  no  |  |
- | item_name | string |  no  |  |
- | delivery_charge | number |  no  |  |
- | refund_amount | number |  no  |  |
- | coupon_effective_discount | number |  no  |  |
- | gst_tax_percentage | number |  no  |  |
- | cod_charges | number |  no  |  |
- | price_effective | number |  no  |  |
- | price_marked | number |  no  |  |
- | discount | number |  no  |  |
- | cashback | number |  no  |  |
- | identifiers | [Identifiers](#Identifiers) |  no  |  |
- | value_of_good | number |  no  |  |
- | amount_paid | number |  no  |  |
- | transfer_price | number |  no  |  |
- | fynd_credits | number |  no  |  |
- | amount_paid_roundoff | number |  no  |  |
- | hsn_code | string |  no  |  |
+ | reason_id | number? |  yes  |  |
+ | reason_text | string? |  yes  |  |
+ 
 
 ---
 
-
- 
- 
- #### [Bags](#Bags)
+#### [EntityReasonData1](#EntityReasonData1)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | applied_promos | [[AppliedPromos](#AppliedPromos)] |  no  |  |
- | seller_identifier | string |  no  |  |
- | current_status | [CurrentStatus](#CurrentStatus) |  no  |  |
- | can_return | boolean |  no  |  |
- | returnable_date | string |  no  |  |
- | id | number |  no  |  |
- | quantity | number |  no  |  |
- | prices | [Prices](#Prices) |  no  |  |
- | line_number | number |  no  |  |
- | delivery_date | string |  no  |  |
- | parent_promo_bags | string |  no  |  |
- | can_cancel | boolean |  no  |  |
- | item | [Item](#Item) |  no  |  |
- | financial_breakup | [[FinancialBreakup](#FinancialBreakup)] |  no  |  |
+ | reason_id | number? |  yes  |  |
+ | reason_text | string? |  yes  |  |
+ 
 
 ---
 
-
- 
- 
- #### [Invoice](#Invoice)
+#### [ErrorResponse](#ErrorResponse)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | label_url | string |  no  |  |
- | updated_date | string |  no  |  |
- | invoice_url | string |  no  |  |
+ | code | string? |  yes  |  |
+ | exception | string? |  yes  |  |
+ | message | string? |  yes  |  |
+ | stack_trace | string? |  yes  |  |
+ | status | number? |  yes  |  |
+ 
 
 ---
 
-
- 
- 
- #### [ShipmentTotalDetails](#ShipmentTotalDetails)
+#### [FinancialBreakup](#FinancialBreakup)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | sizes | number |  no  |  |
- | total_price | number |  no  |  |
- | pieces | number |  no  |  |
+ | added_to_fynd_cash | boolean? |  yes  |  |
+ | amount_paid | number? |  yes  |  |
+ | amount_paid_roundoff | number? |  yes  |  |
+ | brand_calculated_amount | number? |  yes  |  |
+ | cashback | number? |  yes  |  |
+ | cashback_applied | number? |  yes  |  |
+ | cod_charges | number? |  yes  |  |
+ | coupon_effective_discount | number? |  yes  |  |
+ | coupon_value | number? |  yes  |  |
+ | delivery_charge | number? |  yes  |  |
+ | discount | number? |  yes  |  |
+ | fynd_credits | number? |  yes  |  |
+ | gst_fee | number? |  yes  |  |
+ | gst_tag | string? |  yes  |  |
+ | gst_tax_percentage | number? |  yes  |  |
+ | hsn_code | string? |  yes  |  |
+ | identifiers | [Identifiers](#Identifiers)? |  yes  |  |
+ | item_name | string? |  yes  |  |
+ | price_effective | number? |  yes  |  |
+ | price_marked | number? |  yes  |  |
+ | promotion_effective_discount | number? |  yes  |  |
+ | refund_amount | number? |  yes  |  |
+ | refund_credit | number? |  yes  |  |
+ | size | string? |  yes  |  |
+ | total_units | number? |  yes  |  |
+ | transfer_price | number? |  yes  |  |
+ | value_of_good | number? |  yes  |  |
+ 
 
 ---
 
-
- 
- 
- #### [FulfillingStore](#FulfillingStore)
+#### [FulfillingCompany](#FulfillingCompany)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | company_id | number |  no  |  |
- | id | number |  no  |  |
- | company_name | string |  no  |  |
- | name | string |  no  |  |
- | code | string |  no  |  |
+ | id | number? |  yes  |  |
+ | name | string? |  yes  |  |
+ 
 
 ---
 
-
- 
- 
- #### [FulfillingCompany](#FulfillingCompany)
+#### [FulfillingStore](#FulfillingStore)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | id | number |  no  |  |
- | name | string |  no  |  |
+ | code | string? |  yes  |  |
+ | company_id | number? |  yes  |  |
+ | company_name | string? |  yes  |  |
+ | id | number? |  yes  |  |
+ | name | string? |  yes  |  |
+ 
 
 ---
 
-
- 
- 
- #### [ShipmentStatus](#ShipmentStatus)
+#### [Identifiers](#Identifiers)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | title | string |  no  |  |
- | hex_code | string |  no  |  |
+ | ean | string? |  yes  |  |
+ | sku_code | string? |  yes  |  |
+ 
 
 ---
 
-
- 
- 
- #### [ShipmentUserInfo](#ShipmentUserInfo)
+#### [Invoice](#Invoice)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | first_name | string |  no  |  |
- | last_name | string |  no  |  |
- | gender | string |  no  |  |
- | mobile | string |  no  |  |
+ | invoice_url | string? |  yes  |  |
+ | label_url | string? |  yes  |  |
+ | updated_date | string? |  yes  |  |
+ 
 
 ---
 
-
- 
- 
- #### [DeliveryAddress](#DeliveryAddress)
+#### [Item](#Item)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | address2 | string |  no  |  |
- | address_type | string |  no  |  |
- | email | string |  no  |  |
- | updated_at | string |  no  |  |
- | created_at | string |  no  |  |
- | longitude | number |  no  |  |
- | address_category | string |  no  |  |
- | city | string |  no  |  |
- | address | string |  no  |  |
- | country | string |  no  |  |
- | phone | string |  no  |  |
- | pincode | string |  no  |  |
- | name | string |  no  |  |
- | state | string |  no  |  |
- | landmark | string |  no  |  |
- | latitude | number |  no  |  |
- | area | string |  no  |  |
- | contact_person | string |  no  |  |
- | version | string |  no  |  |
- | address1 | string |  no  |  |
+ | brand | [ItemBrand](#ItemBrand)? |  yes  |  |
+ | code | string? |  yes  |  |
+ | id | number? |  yes  |  |
+ | image | [string]? |  yes  |  |
+ | name | string? |  yes  |  |
+ | seller_identifier | string? |  yes  |  |
+ | size | string? |  yes  |  |
+ | slug_key | string? |  yes  |  |
+ 
 
 ---
 
-
- 
- 
- #### [TimeStampData](#TimeStampData)
+#### [ItemBrand](#ItemBrand)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | max | string |  no  |  |
- | min | string |  no  |  |
+ | logo | string? |  yes  |  |
+ | name | string? |  yes  |  |
+ 
 
 ---
 
-
- 
- 
- #### [Promise](#Promise)
+#### [NestedTrackingDetails](#NestedTrackingDetails)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | show_promise | boolean |  no  |  |
- | timestamp | [TimeStampData](#TimeStampData) |  no  |  |
+ | is_current | boolean? |  yes  |  |
+ | is_passed | boolean? |  yes  |  |
+ | status | string? |  yes  |  |
+ | time | string? |  yes  |  |
+ 
 
 ---
 
-
- 
- 
- #### [ShipmentPayment](#ShipmentPayment)
+#### [OrderById](#OrderById)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | display_name | string |  no  |  |
- | mop | string |  no  |  |
- | logo | string |  no  |  |
- | mode | string |  no  |  |
- | status | string |  no  |  |
- | payment_mode | string |  no  |  |
+ | order | [OrderSchema](#OrderSchema)? |  yes  |  |
+ 
 
 ---
 
-
- 
- 
- #### [Shipments](#Shipments)
+#### [OrderFilters](#OrderFilters)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | tracking_details | [[TrackingDetails](#TrackingDetails)] |  no  |  |
+ | statuses | [[OrderStatuses](#OrderStatuses)]? |  yes  |  |
+ 
+
+---
+
+#### [OrderList](#OrderList)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | filters | [OrderFilters](#OrderFilters)? |  yes  |  |
+ | items | [[OrderSchema](#OrderSchema)]? |  yes  |  |
+ | page | [OrderPage](#OrderPage)? |  yes  |  |
+ 
+
+---
+
+#### [OrderPage](#OrderPage)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | current | number? |  yes  |  |
+ | has_next | boolean? |  yes  |  |
+ | item_total | number? |  yes  |  |
+ | size | number? |  yes  |  |
+ | type | string? |  yes  |  |
+ 
+
+---
+
+#### [OrderSchema](#OrderSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | bags_for_reorder | [[BagsForReorder](#BagsForReorder)]? |  yes  |  |
+ | breakup_values | [[BreakupValues](#BreakupValues)]? |  yes  |  |
+ | order_created_time | string? |  yes  |  |
+ | order_id | string? |  yes  |  |
+ | shipments | [[Shipments](#Shipments)]? |  yes  |  |
+ | total_shipments_in_order | number? |  yes  |  |
+ | user_info | [UserInfo](#UserInfo)? |  yes  |  |
+ 
+
+---
+
+#### [OrderStatuses](#OrderStatuses)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | display | string? |  yes  |  |
+ | is_selected | boolean? |  yes  |  |
+ | value | number? |  yes  |  |
+ 
+
+---
+
+#### [Prices](#Prices)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | added_to_fynd_cash | boolean? |  yes  |  |
+ | amount_paid | number? |  yes  |  |
+ | amount_paid_roundoff | number? |  yes  |  |
+ | brand_calculated_amount | number? |  yes  |  |
+ | cashback | number? |  yes  |  |
+ | cashback_applied | number? |  yes  |  |
+ | cod_charges | number? |  yes  |  |
+ | coupon_effective_discount | number? |  yes  |  |
+ | coupon_value | number? |  yes  |  |
+ | delivery_charge | number? |  yes  |  |
+ | discount | number? |  yes  |  |
+ | fynd_credits | number? |  yes  |  |
+ | gst_tax_percentage | number? |  yes  |  |
+ | price_effective | number? |  yes  |  |
+ | price_marked | number? |  yes  |  |
+ | promotion_effective_discount | number? |  yes  |  |
+ | refund_amount | number? |  yes  |  |
+ | refund_credit | number? |  yes  |  |
+ | transfer_price | number? |  yes  |  |
+ | value_of_good | number? |  yes  |  |
+ 
+
+---
+
+#### [Products](#Products)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | identifier | string? |  yes  |  |
+ | line_number | number? |  yes  |  |
+ | quantity | number? |  yes  |  |
+ 
+
+---
+
+#### [Products1](#Products1)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | identifier | string? |  yes  |  |
+ | line_number | number? |  yes  |  |
+ | quantity | number? |  yes  |  |
+ 
+
+---
+
+#### [ProductsDataUpdates](#ProductsDataUpdates)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | data | string? |  yes  |  |
+ | filters | [[ProductsDataUpdatesFilters](#ProductsDataUpdatesFilters)]? |  yes  |  |
+ 
+
+---
+
+#### [ProductsDataUpdates1](#ProductsDataUpdates1)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | data | string? |  yes  |  |
+ | filters | [[ProductsDataUpdatesFilters1](#ProductsDataUpdatesFilters1)]? |  yes  |  |
+ 
+
+---
+
+#### [ProductsDataUpdatesFilters](#ProductsDataUpdatesFilters)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | identifier | string? |  yes  |  |
+ | line_number | number? |  yes  |  |
+ 
+
+---
+
+#### [ProductsDataUpdatesFilters1](#ProductsDataUpdatesFilters1)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | identifier | string? |  yes  |  |
+ | line_number | number? |  yes  |  |
+ 
+
+---
+
+#### [ProductsReasons](#ProductsReasons)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | data | [ProductsReasonsData](#ProductsReasonsData)? |  yes  |  |
+ | filters | [[ProductsReasonsFilters](#ProductsReasonsFilters)]? |  yes  |  |
+ 
+
+---
+
+#### [ProductsReasons1](#ProductsReasons1)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | data | [ProductsReasonsData1](#ProductsReasonsData1)? |  yes  |  |
+ | filters | [[ProductsReasonsFilters1](#ProductsReasonsFilters1)]? |  yes  |  |
+ 
+
+---
+
+#### [ProductsReasonsData](#ProductsReasonsData)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | reason_id | number? |  yes  |  |
+ | reason_text | string? |  yes  |  |
+ 
+
+---
+
+#### [ProductsReasonsData1](#ProductsReasonsData1)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | reason_id | number? |  yes  |  |
+ | reason_text | string? |  yes  |  |
+ 
+
+---
+
+#### [ProductsReasonsFilters](#ProductsReasonsFilters)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | identifier | string? |  yes  |  |
+ | line_number | number? |  yes  |  |
+ | quantity | number? |  yes  |  |
+ 
+
+---
+
+#### [ProductsReasonsFilters1](#ProductsReasonsFilters1)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | identifier | string? |  yes  |  |
+ | line_number | number? |  yes  |  |
+ | quantity | number? |  yes  |  |
+ 
+
+---
+
+#### [Promise](#Promise)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | show_promise | boolean? |  yes  |  |
+ | timestamp | [TimeStampData](#TimeStampData)? |  yes  |  |
+ 
+
+---
+
+#### [QuestionSet](#QuestionSet)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | display_name | string? |  yes  |  |
+ | id | number? |  yes  |  |
+ 
+
+---
+
+#### [ReasonsData](#ReasonsData)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | entities | [[EntitiesReasons](#EntitiesReasons)]? |  yes  |  |
+ | products | [[ProductsReasons](#ProductsReasons)]? |  yes  |  |
+ 
+
+---
+
+#### [ReasonsData1](#ReasonsData1)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | entities | [[EntitiesReasons1](#EntitiesReasons1)]? |  yes  |  |
+ | products | [[ProductsReasons1](#ProductsReasons1)]? |  yes  |  |
+ 
+
+---
+
+#### [ResponseGetInvoiceShipment](#ResponseGetInvoiceShipment)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | presigned_type | string |  no  |  |
+ | presigned_url | string |  no  |  |
  | shipment_id | string |  no  |  |
- | can_break | string |  no  |  |
- | bags | [[Bags](#Bags)] |  no  |  |
- | invoice | [Invoice](#Invoice) |  no  |  |
- | order_type | string |  no  |  |
- | order_id | string |  no  |  |
- | custom_meta | [string] |  no  |  |
- | delivery_date | string |  no  |  |
- | total_details | [ShipmentTotalDetails](#ShipmentTotalDetails) |  no  |  |
- | fulfilling_store | [FulfillingStore](#FulfillingStore) |  no  |  |
- | breakup_values | [[BreakupValues](#BreakupValues)] |  no  |  |
- | comment | string |  no  |  |
- | fulfilling_company | [FulfillingCompany](#FulfillingCompany) |  no  |  |
- | need_help_url | string |  no  |  |
- | awb_no | string |  no  |  |
- | can_return | boolean |  no  |  |
- | dp_name | string |  no  |  |
- | can_cancel | boolean |  no  |  |
- | shipment_status | [ShipmentStatus](#ShipmentStatus) |  no  |  |
- | user_info | [ShipmentUserInfo](#ShipmentUserInfo) |  no  |  |
- | delivery_address | [DeliveryAddress](#DeliveryAddress) |  no  |  |
- | traking_no | string |  no  |  |
- | promise | [Promise](#Promise) |  no  |  |
- | total_bags | number |  no  |  |
- | payment | [ShipmentPayment](#ShipmentPayment) |  no  |  |
- | show_track_link | boolean |  no  |  |
- | show_download_invoice | boolean |  no  |  |
- | size_info | string |  no  |  |
- | returnable_date | string |  no  |  |
- | shipment_created_at | string |  no  |  |
- | beneficiary_details | boolean |  no  |  |
- | track_url | string |  no  |  |
- | prices | [Prices](#Prices) |  no  |  |
- | refund_details | string |  no  |  |
-
----
-
-
- 
- 
- #### [OrderSchema](#OrderSchema)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | breakup_values | [[BreakupValues](#BreakupValues)] |  no  |  |
- | user_info | [UserInfo](#UserInfo) |  no  |  |
- | bags_for_reorder | [[BagsForReorder](#BagsForReorder)] |  no  |  |
- | total_shipments_in_order | number |  no  |  |
- | order_id | string |  no  |  |
- | shipments | [[Shipments](#Shipments)] |  no  |  |
- | order_created_time | string |  no  |  |
-
----
-
-
- 
- 
- #### [OrderList](#OrderList)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | filters | [OrderFilters](#OrderFilters) |  no  |  |
- | page | [OrderPage](#OrderPage) |  no  |  |
- | items | [[OrderSchema](#OrderSchema)] |  no  |  |
-
----
-
-
- 
- 
- #### [ApefaceApiError](#ApefaceApiError)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | message | string |  no  |  |
  | success | boolean |  no  |  |
+ 
 
 ---
 
-
- 
- 
- #### [OrderById](#OrderById)
+#### [SendOtpToCustomerResponse](#SendOtpToCustomerResponse)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | order | [OrderSchema](#OrderSchema) |  no  |  |
+ | message | string? |  yes  |  |
+ | request_id | string? |  yes  |  |
+ | resend_timer | number? |  yes  |  |
+ | success | boolean? |  yes  |  |
+ 
 
 ---
 
-
- 
- 
- #### [ShipmentById](#ShipmentById)
+#### [ShipmentApplicationStatusResponse](#ShipmentApplicationStatusResponse)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | shipment | [Shipments](#Shipments) |  no  |  |
+ | statuses | [[StatusesBodyResponse](#StatusesBodyResponse)]? |  yes  |  |
+ 
 
 ---
 
-
- 
- 
- #### [ResponseGetInvoiceShipment](#ResponseGetInvoiceShipment)
+#### [ShipmentBagReasons](#ShipmentBagReasons)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | presigned_url | string |  yes  |  |
- | success | boolean |  yes  |  |
- | presigned_type | string |  yes  |  |
- | shipment_id | string |  yes  |  |
+ | reasons | [[BagReasons](#BagReasons)]? |  yes  |  |
+ | success | boolean? |  yes  |  |
+ 
 
 ---
 
-
- 
- 
- #### [Track](#Track)
+#### [ShipmentById](#ShipmentById)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | updated_time | string |  no  |  |
- | awb | string |  no  |  |
- | account_name | string |  no  |  |
- | updated_at | string |  no  |  |
- | last_location_recieved_at | string |  no  |  |
- | status | string |  no  |  |
- | shipment_type | string |  no  |  |
- | reason | string |  no  |  |
+ | shipment | [Shipments](#Shipments)? |  yes  |  |
+ 
 
 ---
 
-
- 
- 
- #### [ShipmentTrack](#ShipmentTrack)
+#### [ShipmentPayment](#ShipmentPayment)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | results | [[Track](#Track)] |  no  |  |
+ | display_name | string? |  yes  |  |
+ | logo | string? |  yes  |  |
+ | mode | string? |  yes  |  |
+ | mop | string? |  yes  |  |
+ | payment_mode | string? |  yes  |  |
+ | status | string? |  yes  |  |
+ 
 
 ---
 
-
- 
- 
- #### [CustomerDetailsResponse](#CustomerDetailsResponse)
+#### [ShipmentReason](#ShipmentReason)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | shipment_id | string |  no  |  |
- | country | string |  no  |  |
- | order_id | string |  no  |  |
- | name | string |  no  |  |
- | phone | string |  no  |  |
+ | feedback_type | string? |  yes  |  |
+ | flow | string? |  yes  |  |
+ | priority | number? |  yes  |  |
+ | reason_id | number? |  yes  |  |
+ | reason_text | string? |  yes  |  |
+ | show_text_area | boolean? |  yes  |  |
+ 
 
 ---
 
-
- 
- 
- #### [SendOtpToCustomerResponse](#SendOtpToCustomerResponse)
+#### [ShipmentReasons](#ShipmentReasons)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | request_id | string |  no  |  |
- | message | string |  no  |  |
- | success | boolean |  no  |  |
- | resend_timer | number |  no  |  |
+ | reasons | [[ShipmentReason](#ShipmentReason)]? |  yes  |  |
+ 
 
 ---
 
-
- 
- 
- #### [VerifyOtp](#VerifyOtp)
+#### [Shipments](#Shipments)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | request_id | string |  no  |  |
- | otp_code | string |  no  |  |
+ | awb_no | string? |  yes  |  |
+ | bags | [[Bags](#Bags)]? |  yes  |  |
+ | beneficiary_details | boolean? |  yes  |  |
+ | breakup_values | [[BreakupValues](#BreakupValues)]? |  yes  |  |
+ | can_break | string? |  yes  |  |
+ | can_cancel | boolean? |  yes  |  |
+ | can_return | boolean? |  yes  |  |
+ | comment | string? |  yes  |  |
+ | custom_meta | [string]? |  yes  |  |
+ | delivery_address | [DeliveryAddress](#DeliveryAddress)? |  yes  |  |
+ | delivery_date | string? |  yes  |  |
+ | dp_name | string? |  yes  |  |
+ | fulfilling_company | [FulfillingCompany](#FulfillingCompany)? |  yes  |  |
+ | fulfilling_store | [FulfillingStore](#FulfillingStore)? |  yes  |  |
+ | invoice | [Invoice](#Invoice)? |  yes  |  |
+ | need_help_url | string? |  yes  |  |
+ | order_id | string? |  yes  |  |
+ | order_type | string? |  yes  |  |
+ | payment | [ShipmentPayment](#ShipmentPayment)? |  yes  |  |
+ | prices | [Prices](#Prices)? |  yes  |  |
+ | promise | [Promise](#Promise)? |  yes  |  |
+ | refund_details | string? |  yes  |  |
+ | returnable_date | string? |  yes  |  |
+ | shipment_created_at | string? |  yes  |  |
+ | shipment_id | string? |  yes  |  |
+ | shipment_status | [ShipmentStatus](#ShipmentStatus)? |  yes  |  |
+ | show_download_invoice | boolean? |  yes  |  |
+ | show_track_link | boolean? |  yes  |  |
+ | size_info | string? |  yes  |  |
+ | total_bags | number? |  yes  |  |
+ | total_details | [ShipmentTotalDetails](#ShipmentTotalDetails)? |  yes  |  |
+ | track_url | string? |  yes  |  |
+ | tracking_details | [[TrackingDetails](#TrackingDetails)]? |  yes  |  |
+ | traking_no | string? |  yes  |  |
+ | user_info | [ShipmentUserInfo](#ShipmentUserInfo)? |  yes  |  |
+ 
 
 ---
 
-
- 
- 
- #### [VerifyOtpResponse](#VerifyOtpResponse)
+#### [ShipmentsRequest](#ShipmentsRequest)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | success | boolean |  no  |  |
-
----
-
-
- 
- 
- #### [QuestionSet](#QuestionSet)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | id | number |  no  |  |
- | display_name | string |  no  |  |
-
----
-
-
- 
- 
- #### [BagReasonMeta](#BagReasonMeta)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | show_text_area | boolean |  no  |  |
-
----
-
-
- 
- 
- #### [BagReasons](#BagReasons)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | display_name | string |  no  |  |
- | id | number |  no  |  |
- | question_set | [[QuestionSet](#QuestionSet)] |  no  |  |
- | meta | [BagReasonMeta](#BagReasonMeta) |  no  |  |
- | qc_type | [string] |  no  |  |
- | reasons | [[BagReasons](#BagReasons)] |  no  |  |
-
----
-
-
- 
- 
- #### [ShipmentBagReasons](#ShipmentBagReasons)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | success | boolean |  no  |  |
- | reasons | [[BagReasons](#BagReasons)] |  no  |  |
-
----
-
-
- 
- 
- #### [ShipmentReason](#ShipmentReason)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | priority | number |  no  |  |
- | show_text_area | boolean |  no  |  |
- | feedback_type | string |  no  |  |
- | reason_text | string |  no  |  |
- | flow | string |  no  |  |
- | reason_id | number |  no  |  |
-
----
-
-
- 
- 
- #### [ShipmentReasons](#ShipmentReasons)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | reasons | [[ShipmentReason](#ShipmentReason)] |  no  |  |
-
----
-
-
- 
- 
- #### [Products](#Products)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | quantity | number |  no  |  |
+ | data_updates | [DataUpdates](#DataUpdates)? |  yes  |  |
  | identifier | string |  no  |  |
- | line_number | number |  no  |  |
+ | products | [[Products](#Products)]? |  yes  |  |
+ | reasons | [ReasonsData](#ReasonsData)? |  yes  |  |
+ 
 
 ---
 
-
- 
- 
- #### [ProductsDataUpdatesFilters](#ProductsDataUpdatesFilters)
+#### [ShipmentsRequest1](#ShipmentsRequest1)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | data_updates | [DataUpdates](#DataUpdates)? |  yes  |  |
  | identifier | string |  no  |  |
- | line_number | number |  no  |  |
+ | products | [[Products1](#Products1)]? |  yes  |  |
+ | reasons | [ReasonsData1](#ReasonsData1)? |  yes  |  |
+ 
 
 ---
 
-
- 
- 
- #### [ProductsDataUpdates](#ProductsDataUpdates)
+#### [ShipmentStatus](#ShipmentStatus)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | data | string |  no  |  |
- | filters | [[ProductsDataUpdatesFilters](#ProductsDataUpdatesFilters)] |  no  |  |
+ | hex_code | string? |  yes  |  |
+ | title | string? |  yes  |  |
+ 
 
 ---
 
-
- 
- 
- #### [EntitiesDataUpdates](#EntitiesDataUpdates)
+#### [ShipmentTotalDetails](#ShipmentTotalDetails)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | data | string |  no  |  |
- | filters | [string] |  no  |  |
+ | pieces | number? |  yes  |  |
+ | sizes | number? |  yes  |  |
+ | total_price | number? |  yes  |  |
+ 
 
 ---
 
-
- 
- 
- #### [DataUpdates](#DataUpdates)
+#### [ShipmentTrack](#ShipmentTrack)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | products | [[ProductsDataUpdates](#ProductsDataUpdates)] |  no  |  |
- | entities | [[EntitiesDataUpdates](#EntitiesDataUpdates)] |  no  |  |
+ | results | [[Track](#Track)]? |  yes  |  |
+ 
 
 ---
 
-
- 
- 
- #### [ProductsReasonsData](#ProductsReasonsData)
+#### [ShipmentUserInfo](#ShipmentUserInfo)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | reason_id | number |  no  |  |
- | reason_text | string |  no  |  |
+ | first_name | string? |  yes  |  |
+ | gender | string? |  yes  |  |
+ | last_name | string? |  yes  |  |
+ | mobile | string? |  yes  |  |
+ 
 
 ---
 
-
- 
- 
- #### [ProductsReasonsFilters](#ProductsReasonsFilters)
+#### [StatuesRequest](#StatuesRequest)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | quantity | number |  no  |  |
- | identifier | string |  no  |  |
- | line_number | number |  no  |  |
+ | exclude_bags_next_state | string? |  yes  |  |
+ | shipments | [[ShipmentsRequest1](#ShipmentsRequest1)]? |  yes  |  |
+ | status | string? |  yes  |  |
+ 
 
 ---
 
-
- 
- 
- #### [ProductsReasons](#ProductsReasons)
+#### [StatusesBodyResponse](#StatusesBodyResponse)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | data | [ProductsReasonsData](#ProductsReasonsData) |  no  |  |
- | filters | [[ProductsReasonsFilters](#ProductsReasonsFilters)] |  no  |  |
+ | shipments | [string]? |  yes  |  |
+ 
 
 ---
 
-
- 
- 
- #### [EntityReasonData](#EntityReasonData)
+#### [TimeStampData](#TimeStampData)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | reason_id | number |  no  |  |
- | reason_text | string |  no  |  |
+ | max | string? |  yes  |  |
+ | min | string? |  yes  |  |
+ 
 
 ---
 
-
- 
- 
- #### [EntitiesReasons](#EntitiesReasons)
+#### [Track](#Track)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | data | [EntityReasonData](#EntityReasonData) |  no  |  |
- | filters | [string] |  no  |  |
+ | account_name | string? |  yes  |  |
+ | awb | string? |  yes  |  |
+ | last_location_recieved_at | string? |  yes  |  |
+ | reason | string? |  yes  |  |
+ | shipment_type | string? |  yes  |  |
+ | status | string? |  yes  |  |
+ | updated_at | string? |  yes  |  |
+ | updated_time | string? |  yes  |  |
+ 
 
 ---
 
-
- 
- 
- #### [ReasonsData](#ReasonsData)
+#### [TrackingDetails](#TrackingDetails)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | products | [[ProductsReasons](#ProductsReasons)] |  no  |  |
- | entities | [[EntitiesReasons](#EntitiesReasons)] |  no  |  |
+ | is_current | boolean? |  yes  |  |
+ | is_passed | boolean? |  yes  |  |
+ | status | string? |  yes  |  |
+ | time | string? |  yes  |  |
+ | tracking_details | [[NestedTrackingDetails](#NestedTrackingDetails)]? |  yes  |  |
+ 
 
 ---
 
-
- 
- 
- #### [ShipmentsRequest](#ShipmentsRequest)
+#### [UpdateShipmentStatusRequest](#UpdateShipmentStatusRequest)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | products | [[Products](#Products)] |  no  |  |
- | data_updates | [DataUpdates](#DataUpdates) |  no  |  |
- | identifier | string |  yes  |  |
- | reasons | [ReasonsData](#ReasonsData) |  no  |  |
+ | force_transition | boolean? |  yes  |  |
+ | lock_after_transition | boolean? |  yes  |  |
+ | statuses | [[StatuesRequest](#StatuesRequest)]? |  yes  |  |
+ | task | boolean? |  yes  |  |
+ | unlock_before_transition | boolean? |  yes  |  |
+ 
 
 ---
 
-
- 
- 
- #### [StatuesRequest](#StatuesRequest)
+#### [UserInfo](#UserInfo)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | status | string |  no  |  |
- | exclude_bags_next_state | string |  no  |  |
- | shipments | [[ShipmentsRequest](#ShipmentsRequest)] |  no  |  |
+ | email | string? |  yes  |  |
+ | gender | string? |  yes  |  |
+ | mobile | string? |  yes  |  |
+ | name | string? |  yes  |  |
+ 
 
 ---
 
-
- 
- 
- #### [UpdateShipmentStatusRequest](#UpdateShipmentStatusRequest)
+#### [VerifyOtp](#VerifyOtp)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | statuses | [[StatuesRequest](#StatuesRequest)] |  no  |  |
- | unlock_before_transition | boolean |  no  |  |
- | lock_after_transition | boolean |  no  |  |
- | force_transition | boolean |  no  |  |
- | task | boolean |  no  |  |
+ | otp_code | string? |  yes  |  |
+ | request_id | string? |  yes  |  |
+ 
 
 ---
 
-
- 
- 
- #### [StatusesBodyResponse](#StatusesBodyResponse)
+#### [VerifyOtpResponse](#VerifyOtpResponse)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | shipments | [string] |  no  |  |
-
----
-
-
+ | success | boolean? |  yes  |  |
  
- 
- #### [ShipmentApplicationStatusResponse](#ShipmentApplicationStatusResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | statuses | [[StatusesBodyResponse](#StatusesBodyResponse)] |  no  |  |
-
----
-
-
- 
- 
- #### [ErrorResponse](#ErrorResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | exception | string |  no  |  |
- | stack_trace | string |  no  |  |
- | code | string |  no  |  |
- | message | string |  no  |  |
- | status | number |  no  |  |
 
 ---
 

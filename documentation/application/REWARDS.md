@@ -8,12 +8,12 @@
 ## Rewards Methods
 Earn and redeem reward points
 
-* [getOfferByName](#getofferbyname)
 * [catalogueOrder](#catalogueorder)
-* [getUserPointsHistory](#getuserpointshistory)
-* [getUserPoints](#getuserpoints)
-* [getUserReferralDetails](#getuserreferraldetails)
+* [getOfferByName](#getofferbyname)
 * [getOrderDiscount](#getorderdiscount)
+* [getUserPoints](#getuserpoints)
+* [getUserPointsHistory](#getuserpointshistory)
+* [getUserReferralDetails](#getuserreferraldetails)
 * [redeemReferralCode](#redeemreferralcode)
 
 
@@ -23,6 +23,61 @@ Earn and redeem reward points
 
 
 
+### catalogueOrder
+Get all transactions of reward points
+
+
+
+```javascript
+// Promise
+const promise = applicationClient.rewards.catalogueOrder({  body : value });
+
+// Async/Await
+const data = await applicationClient.rewards.catalogueOrder({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [CatalogueOrderRequest](#CatalogueOrderRequest) | yes | Request body |
+
+
+Use this API to evaluate the amount of reward points that could be earned on any catalogue product.
+
+*Returned Response:*
+
+
+
+
+[CatalogueOrderResponse](#CatalogueOrderResponse)
+
+Success. Check example below or refer `CatalogueOrderResponse` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
 ### getOfferByName
 Get offer by name
 
@@ -30,10 +85,10 @@ Get offer by name
 
 ```javascript
 // Promise
-const promise = rewards.getOfferByName({  name : value });
+const promise = applicationClient.rewards.getOfferByName({  name : value });
 
 // Async/Await
-const data = await rewards.getOfferByName({  name : value });
+const data = await applicationClient.rewards.getOfferByName({  name : value });
 ```
 
 
@@ -79,17 +134,17 @@ Success. Check example below or refer `Offer` for more details.
 ---
 
 
-### catalogueOrder
-Get all transactions of reward points
+### getOrderDiscount
+Calculates the discount on order-amount
 
 
 
 ```javascript
 // Promise
-const promise = rewards.catalogueOrder({  body : value });
+const promise = applicationClient.rewards.getOrderDiscount({  body : value });
 
 // Async/Await
-const data = await rewards.catalogueOrder({  body : value });
+const data = await applicationClient.rewards.getOrderDiscount({  body : value });
 ```
 
 
@@ -98,19 +153,70 @@ const data = await rewards.catalogueOrder({  body : value });
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |
-| body | [CatalogueOrderRequest](#CatalogueOrderRequest) | yes | Request body |
+| body | [OrderDiscountRequest](#OrderDiscountRequest) | yes | Request body |
 
 
-Use this API to evaluate the amount of reward points that could be earned on any catalogue product.
+Use this API to calculate the discount on order-amount based on all the amount range configured in order_discount.
 
 *Returned Response:*
 
 
 
 
-[CatalogueOrderResponse](#CatalogueOrderResponse)
+[OrderDiscountResponse](#OrderDiscountResponse)
 
-Success. Check example below or refer `CatalogueOrderResponse` for more details.
+Success. Check example below or refer `OrderDiscountResponse` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### getUserPoints
+Get referral details of a user
+
+
+
+```javascript
+// Promise
+const promise = applicationClient.rewards.getUserPoints();
+
+// Async/Await
+const data = await applicationClient.rewards.getUserPoints();
+```
+
+
+
+
+
+
+Use this API to retrieve total available points of a user for current application
+
+*Returned Response:*
+
+
+
+
+[PointsResponse](#PointsResponse)
+
+Success. Check example below or refer `PointsResponse` for more details.
 
 
 
@@ -141,11 +247,11 @@ Get all transactions of reward points
 
 ```javascript
 // Promise
-const promise = rewards.getUserPointsHistory({  pageId : value,
+const promise = applicationClient.rewards.getUserPointsHistory({  pageId : value,
  pageSize : value });
 
 // Async/Await
-const data = await rewards.getUserPointsHistory({  pageId : value,
+const data = await applicationClient.rewards.getUserPointsHistory({  pageId : value,
  pageSize : value });
 ```
 
@@ -193,57 +299,6 @@ Success. Check example below or refer `PointsHistoryResponse` for more details.
 ---
 
 
-### getUserPoints
-Get referral details of a user
-
-
-
-```javascript
-// Promise
-const promise = rewards.getUserPoints();
-
-// Async/Await
-const data = await rewards.getUserPoints();
-```
-
-
-
-
-
-
-Use this API to retrieve total available points of a user for current application
-
-*Returned Response:*
-
-
-
-
-[PointsResponse](#PointsResponse)
-
-Success. Check example below or refer `PointsResponse` for more details.
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
 ### getUserReferralDetails
 Get referral details of a user
 
@@ -251,10 +306,10 @@ Get referral details of a user
 
 ```javascript
 // Promise
-const promise = rewards.getUserReferralDetails();
+const promise = applicationClient.rewards.getUserReferralDetails();
 
 // Async/Await
-const data = await rewards.getUserReferralDetails();
+const data = await applicationClient.rewards.getUserReferralDetails();
 ```
 
 
@@ -295,61 +350,6 @@ Success. Check example below or refer `ReferralDetailsResponse` for more details
 ---
 
 
-### getOrderDiscount
-Calculates the discount on order-amount
-
-
-
-```javascript
-// Promise
-const promise = rewards.getOrderDiscount({  body : value });
-
-// Async/Await
-const data = await rewards.getOrderDiscount({  body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |
-| body | [OrderDiscountRequest](#OrderDiscountRequest) | yes | Request body |
-
-
-Use this API to calculate the discount on order-amount based on all the amount range configured in order_discount.
-
-*Returned Response:*
-
-
-
-
-[OrderDiscountResponse](#OrderDiscountResponse)
-
-Success. Check example below or refer `OrderDiscountResponse` for more details.
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
 ### redeemReferralCode
 Redeems a referral code and credits reward points to users
 
@@ -357,10 +357,10 @@ Redeems a referral code and credits reward points to users
 
 ```javascript
 // Promise
-const promise = rewards.redeemReferralCode({  body : value });
+const promise = applicationClient.rewards.redeemReferralCode({  body : value });
 
 // Async/Await
-const data = await rewards.redeemReferralCode({  body : value });
+const data = await applicationClient.rewards.redeemReferralCode({  body : value });
 ```
 
 
@@ -408,297 +408,259 @@ Success. Check example below or refer `RedeemReferralCodeResponse` for more deta
 
 ### Schemas
 
- 
- 
- #### [RewardsArticle](#RewardsArticle)
+
+#### [Asset](#Asset)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | id | string |  no  |  |
- | points | number |  no  |  |
- | price | number |  no  |  |
+ | aspect_ratio | string? |  yes  |  |
+ | id | string? |  yes  |  |
+ | secure_url | string? |  yes  |  |
+ 
 
 ---
 
-
- 
- 
- #### [CatalogueOrderResponse](#CatalogueOrderResponse)
+#### [CatalogueOrderRequest](#CatalogueOrderRequest)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | articles | [[RewardsArticle](#RewardsArticle)] |  no  |  |
+ | articles | [[RewardsArticle](#RewardsArticle)]? |  yes  |  |
+ 
 
 ---
 
-
- 
- 
- #### [CatalogueOrderRequest](#CatalogueOrderRequest)
+#### [CatalogueOrderResponse](#CatalogueOrderResponse)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | articles | [[RewardsArticle](#RewardsArticle)] |  no  |  |
+ | articles | [[RewardsArticle](#RewardsArticle)]? |  yes  |  |
+ 
 
 ---
 
-
- 
- 
- #### [PointsResponse](#PointsResponse)
+#### [DiscountProperties](#DiscountProperties)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | points | number |  no  | Total points available |
+ | absolute | number? |  yes  |  |
+ | currency | string? |  yes  |  |
+ | display_absolute | string? |  yes  |  |
+ | display_percent | string? |  yes  |  |
+ | percent | number? |  yes  |  |
+ 
 
 ---
 
-
- 
- 
- #### [ReferralDetailsUser](#ReferralDetailsUser)
+#### [Error](#Error)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | blocked | boolean |  no  |  |
- | points | number |  no  |  |
- | redeemed | boolean |  no  |  |
- | referral_code | string |  no  |  |
+ | code | number? |  yes  |  |
+ | exception | string? |  yes  |  |
+ | info | string? |  yes  |  |
+ | message | string? |  yes  |  |
+ 
 
 ---
 
-
- 
- 
- #### [Offer](#Offer)
+#### [Offer](#Offer)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | _schedule | [Schedule](#Schedule) |  no  |  |
- | active | boolean |  no  |  |
- | application_id | string |  no  |  |
- | banner_image | [Asset](#Asset) |  no  |  |
- | created_at | string |  no  |  |
- | name | string |  no  |  |
- | rule | string |  no  |  |
- | share | [ShareMessages](#ShareMessages) |  no  |  |
- | sub_text | string |  no  |  |
- | text | string |  no  |  |
- | type | string |  no  |  |
- | updated_at | string |  no  |  |
- | updated_by | string |  no  |  |
- | url | string |  no  |  |
+ | _schedule | [Schedule](#Schedule)? |  yes  |  |
+ | active | boolean? |  yes  |  |
+ | application_id | string? |  yes  |  |
+ | banner_image | [Asset](#Asset)? |  yes  |  |
+ | created_at | string? |  yes  |  |
+ | name | string? |  yes  |  |
+ | rule | string? |  yes  |  |
+ | share | [ShareMessages](#ShareMessages)? |  yes  |  |
+ | sub_text | string? |  yes  |  |
+ | text | string? |  yes  |  |
+ | type | string? |  yes  |  |
+ | updated_at | string? |  yes  |  |
+ | updated_by | string? |  yes  |  |
+ | url | string? |  yes  |  |
+ 
 
 ---
 
-
- 
- 
- #### [Schedule](#Schedule)
+#### [OrderDiscountRequest](#OrderDiscountRequest)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | duration | number |  no  |  |
- | end | string |  no  |  |
- | start | string |  no  |  |
- | cron | string |  no  |  |
-
----
-
-
- 
- 
- #### [Error](#Error)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | code | number |  no  |  |
- | exception | string |  no  |  |
- | info | string |  no  |  |
- | message | string |  no  |  |
-
----
-
-
- 
- 
- #### [Asset](#Asset)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | aspect_ratio | string |  no  |  |
- | id | string |  no  |  |
- | secure_url | string |  no  |  |
-
----
-
-
- 
- 
- #### [ShareMessages](#ShareMessages)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | email | number |  no  |  |
- | facebook | string |  no  |  |
- | fallback | string |  no  |  |
- | message | string |  no  |  |
- | messenger | string |  no  |  |
- | sms | string |  no  |  |
- | text | string |  no  |  |
- | twitter | string |  no  |  |
- | whatsapp | string |  no  |  |
-
----
-
-
- 
- 
- #### [ReferralDetailsResponse](#ReferralDetailsResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | referral | [Offer](#Offer) |  no  |  |
- | share | [ShareMessages](#ShareMessages) |  no  |  |
- | user | [ReferralDetailsUser](#ReferralDetailsUser) |  no  |  |
- | referrer_info | string |  no  |  |
-
----
-
-
- 
- 
- #### [OrderDiscountRequest](#OrderDiscountRequest)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | order_amount | number |  yes  |  |
- | currency | string |  no  |  |
-
----
-
-
- 
- 
- #### [OrderDiscountRuleBucket](#OrderDiscountRuleBucket)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | high | number |  no  |  |
- | low | number |  no  |  |
- | max | number |  no  |  |
- | value | number |  no  |  |
- | value_type | string |  no  |  |
-
----
-
-
- 
- 
- #### [DiscountProperties](#DiscountProperties)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | absolute | number |  no  |  |
- | currency | string |  no  |  |
- | display_absolute | string |  no  |  |
- | display_percent | string |  no  |  |
- | percent | number |  no  |  |
-
----
-
-
- 
- 
- #### [OrderDiscountResponse](#OrderDiscountResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
+ | currency | string? |  yes  |  |
  | order_amount | number |  no  |  |
- | points | number |  no  |  |
- | discount | [DiscountProperties](#DiscountProperties) |  no  |  |
- | base_discount | [DiscountProperties](#DiscountProperties) |  no  |  |
- | applied_rule_bucket | [OrderDiscountRuleBucket](#OrderDiscountRuleBucket) |  no  |  |
+ 
 
 ---
 
-
- 
- 
- #### [RedeemReferralCodeRequest](#RedeemReferralCodeRequest)
+#### [OrderDiscountResponse](#OrderDiscountResponse)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | device_id | string |  no  |  |
- | referral_code | string |  no  |  |
+ | applied_rule_bucket | [OrderDiscountRuleBucket](#OrderDiscountRuleBucket)? |  yes  |  |
+ | base_discount | [DiscountProperties](#DiscountProperties)? |  yes  |  |
+ | discount | [DiscountProperties](#DiscountProperties)? |  yes  |  |
+ | order_amount | number? |  yes  |  |
+ | points | number? |  yes  |  |
+ 
 
 ---
 
-
- 
- 
- #### [RedeemReferralCodeResponse](#RedeemReferralCodeResponse)
+#### [OrderDiscountRuleBucket](#OrderDiscountRuleBucket)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | redeemed | boolean |  no  |  |
- | message | string |  no  |  |
- | referrer_info | string |  no  |  |
- | referrer_id | string |  no  |  |
- | points | number |  no  |  |
+ | high | number? |  yes  |  |
+ | low | number? |  yes  |  |
+ | max | number? |  yes  |  |
+ | value | number? |  yes  |  |
+ | value_type | string? |  yes  |  |
+ 
 
 ---
 
-
- 
- 
- #### [PointsHistoryResponse](#PointsHistoryResponse)
+#### [Page](#Page)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | items | [[PointsHistory](#PointsHistory)] |  no  | History is the list of points transaction. |
- | page | [Page](#Page) |  no  |  |
+ | current | number? |  yes  |  |
+ | has_next | boolean? |  yes  |  |
+ | has_previous | boolean? |  yes  |  |
+ | item_total | number? |  yes  |  |
+ | next_id | string? |  yes  |  |
+ | size | number? |  yes  |  |
+ | type | string? |  yes  |  |
+ 
 
 ---
 
-
- 
- 
- #### [PointsHistory](#PointsHistory)
+#### [PointsHistory](#PointsHistory)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | _id | string |  no  |  |
- | application_id | string |  no  |  |
- | claimed | boolean |  no  |  |
- | created_at | string |  no  |  |
- | expires_on | string |  no  |  |
- | meta | string |  no  |  |
- | points | number |  no  |  |
- | remaining_points | number |  no  |  |
- | text_1 | string |  no  |  |
- | text_2 | string |  no  |  |
- | text_3 | string |  no  |  |
- | txn_name | string |  no  |  |
- | updated_at | string |  no  |  |
- | user_id | string |  no  |  |
+ | _id | string? |  yes  |  |
+ | application_id | string? |  yes  |  |
+ | claimed | boolean? |  yes  |  |
+ | created_at | string? |  yes  |  |
+ | expires_on | string? |  yes  |  |
+ | meta | string? |  yes  |  |
+ | points | number? |  yes  |  |
+ | remaining_points | number? |  yes  |  |
+ | text_1 | string? |  yes  |  |
+ | text_2 | string? |  yes  |  |
+ | text_3 | string? |  yes  |  |
+ | txn_name | string? |  yes  |  |
+ | updated_at | string? |  yes  |  |
+ | user_id | string? |  yes  |  |
+ 
 
 ---
 
-
- 
- 
- #### [Page](#Page)
+#### [PointsHistoryResponse](#PointsHistoryResponse)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | current | number |  no  |  |
- | has_next | boolean |  no  |  |
- | has_previous | boolean |  no  |  |
- | item_total | number |  no  |  |
- | next_id | string |  no  |  |
- | size | number |  no  |  |
- | type | string |  no  |  |
+ | items | [[PointsHistory](#PointsHistory)]? |  yes  | History is the list of points transaction. |
+ | page | [Page](#Page)? |  yes  |  |
+ 
+
+---
+
+#### [PointsResponse](#PointsResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | points | number? |  yes  | Total points available |
+ 
+
+---
+
+#### [RedeemReferralCodeRequest](#RedeemReferralCodeRequest)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | device_id | string? |  yes  |  |
+ | referral_code | string? |  yes  |  |
+ 
+
+---
+
+#### [RedeemReferralCodeResponse](#RedeemReferralCodeResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | message | string? |  yes  |  |
+ | points | number? |  yes  |  |
+ | redeemed | boolean? |  yes  |  |
+ | referrer_id | string? |  yes  |  |
+ | referrer_info | string? |  yes  |  |
+ 
+
+---
+
+#### [ReferralDetailsResponse](#ReferralDetailsResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | referral | [Offer](#Offer)? |  yes  |  |
+ | referrer_info | string? |  yes  |  |
+ | share | [ShareMessages](#ShareMessages)? |  yes  |  |
+ | user | [ReferralDetailsUser](#ReferralDetailsUser)? |  yes  |  |
+ 
+
+---
+
+#### [ReferralDetailsUser](#ReferralDetailsUser)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | blocked | boolean? |  yes  |  |
+ | points | number? |  yes  |  |
+ | redeemed | boolean? |  yes  |  |
+ | referral_code | string? |  yes  |  |
+ 
+
+---
+
+#### [RewardsArticle](#RewardsArticle)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | id | string? |  yes  |  |
+ | points | number? |  yes  |  |
+ | price | number? |  yes  |  |
+ 
+
+---
+
+#### [Schedule](#Schedule)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | cron | string? |  yes  |  |
+ | duration | number? |  yes  |  |
+ | end | string? |  yes  |  |
+ | start | string? |  yes  |  |
+ 
+
+---
+
+#### [ShareMessages](#ShareMessages)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | email | number? |  yes  |  |
+ | facebook | string? |  yes  |  |
+ | fallback | string? |  yes  |  |
+ | message | string? |  yes  |  |
+ | messenger | string? |  yes  |  |
+ | sms | string? |  yes  |  |
+ | text | string? |  yes  |  |
+ | twitter | string? |  yes  |  |
+ | whatsapp | string? |  yes  |  |
+ 
 
 ---
 

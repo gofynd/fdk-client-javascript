@@ -8,244 +8,24 @@
 ## Inventory Methods
 
 
-* [getConfigByCompany](#getconfigbycompany)
-* [suppressStores](#suppressstores)
-* [getJobsByCompany](#getjobsbycompany)
-* [updateJob](#updatejob)
 * [createJob](#createjob)
-* [getJobSteps](#getjobsteps)
-* [getJobByCompanyAndIntegration](#getjobbycompanyandintegration)
 * [disable](#disable)
-* [getJobConfigDefaults](#getjobconfigdefaults)
+* [getConfigByCompany](#getconfigbycompany)
 * [getJobByCode](#getjobbycode)
+* [getJobByCompanyAndIntegration](#getjobbycompanyandintegration)
 * [getJobCodeMetrics](#getjobcodemetrics)
 * [getJobCodesByCompanyAndIntegration](#getjobcodesbycompanyandintegration)
+* [getJobConfigDefaults](#getjobconfigdefaults)
+* [getJobSteps](#getjobsteps)
+* [getJobsByCompany](#getjobsbycompany)
+* [suppressStores](#suppressstores)
+* [updateJob](#updatejob)
 
 
 
 ## Methods with example and description
 
 
-
-
-### getConfigByCompany
-Get Slingshot Configuration Of  A Company
-
-
-
-```javascript
-// Promise
-const promise = client.inventory.getConfigByCompany();
-
-// Async/Await
-const data = await client.inventory.getConfigByCompany();
-```
-
-
-
-
-
-
-REST Endpoint that returns all configuration detail of a company
-
-*Returned Response:*
-
-
-
-
-[ResponseEnvelopeListSlingshotConfigurationDetail](#ResponseEnvelopeListSlingshotConfigurationDetail)
-
-Successful operation
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### suppressStores
-Get Slingshot Configuration Of  A Company
-
-
-
-```javascript
-// Promise
-const promise = client.inventory.suppressStores({  body : value });
-
-// Async/Await
-const data = await client.inventory.suppressStores({  body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |
-| body | [SuppressStorePayload](#SuppressStorePayload) | yes | Request body |
-
-
-REST Endpoint that returns all configuration detail of a company
-
-*Returned Response:*
-
-
-
-
-[ResponseEnvelopeKafkaResponse](#ResponseEnvelopeKafkaResponse)
-
-Successful operation
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### getJobsByCompany
-Get Job Configs For A Company
-
-
-
-```javascript
-// Promise
-const promise = client.inventory.getJobsByCompany({  pageNo : value,
- pageSize : value });
-
-// Async/Await
-const data = await client.inventory.getJobsByCompany({  pageNo : value,
- pageSize : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| pageNo | number | no | Page Number |    
-| pageSize | number | no | Page Size |  
-
-
-
-REST Endpoint that returns all job configs for a company
-
-*Returned Response:*
-
-
-
-
-[ResponseEnvelopeListJobConfigRawDTO](#ResponseEnvelopeListJobConfigRawDTO)
-
-Successful operation
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### updateJob
-Updates An Existing Job Config
-
-
-
-```javascript
-// Promise
-const promise = client.inventory.updateJob({  body : value });
-
-// Async/Await
-const data = await client.inventory.updateJob({  body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |
-| body | [JobConfigDTO](#JobConfigDTO) | yes | Request body |
-
-
-REST Endpoint that updates a job config
-
-*Returned Response:*
-
-
-
-
-[ResponseEnvelopeString](#ResponseEnvelopeString)
-
-Job Config Updated Successfully
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-
-```
-</details>
-
-
-
-
-
-
-
-
-
----
 
 
 ### createJob
@@ -255,10 +35,10 @@ Creates A New Job Config
 
 ```javascript
 // Promise
-const promise = client.inventory.createJob({  body : value });
+const promise = platformClient.inventory.createJob({  body : value });
 
 // Async/Await
-const data = await client.inventory.createJob({  body : value });
+const data = await platformClient.inventory.createJob({  body : value });
 ```
 
 
@@ -303,17 +83,17 @@ Job Config Created Successfully
 ---
 
 
-### getJobSteps
-Get Job Code Steps
+### disable
+Disable Job Config
 
 
 
 ```javascript
 // Promise
-const promise = client.inventory.getJobSteps({  jobId : value });
+const promise = platformClient.inventory.disable({  integrationId : value });
 
 // Async/Await
-const data = await client.inventory.getJobSteps({  jobId : value });
+const data = await platformClient.inventory.disable({  integrationId : value });
 ```
 
 
@@ -322,18 +102,125 @@ const data = await client.inventory.getJobSteps({  jobId : value });
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
-| jobId | number | yes | Job Id |  
+| integrationId | string | yes | IntegrationId |  
 
 
 
-REST Endpoint that returns Inventory Job Steps
+REST Endpoint that disables Inventory Job Config
 
 *Returned Response:*
 
 
 
 
-[ResponseEnvelopeListJobStepsDTO](#ResponseEnvelopeListJobStepsDTO)
+[ResponseEnvelopeString](#ResponseEnvelopeString)
+
+Successful operation
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### getConfigByCompany
+Get Slingshot Configuration Of  A Company
+
+
+
+```javascript
+// Promise
+const promise = platformClient.inventory.getConfigByCompany();
+
+// Async/Await
+const data = await platformClient.inventory.getConfigByCompany();
+```
+
+
+
+
+
+
+REST Endpoint that returns all configuration detail of a company
+
+*Returned Response:*
+
+
+
+
+[ResponseEnvelopeListSlingshotConfigurationDetail](#ResponseEnvelopeListSlingshotConfigurationDetail)
+
+Successful operation
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### getJobByCode
+Get Job Config By Code
+
+
+
+```javascript
+// Promise
+const promise = platformClient.inventory.getJobByCode({  code : value });
+
+// Async/Await
+const data = await platformClient.inventory.getJobByCode({  code : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| code | string | yes | Job Code |  
+
+
+
+REST Endpoint that returns job config by code
+
+*Returned Response:*
+
+
+
+
+[ResponseEnvelopeJobConfigDTO](#ResponseEnvelopeJobConfigDTO)
 
 Successful operation
 
@@ -366,12 +253,12 @@ Get Job Configs By Company And Integration
 
 ```javascript
 // Promise
-const promise = client.inventory.getJobByCompanyAndIntegration({  integrationId : value,
+const promise = platformClient.inventory.getJobByCompanyAndIntegration({  integrationId : value,
  pageNo : value,
  pageSize : value });
 
 // Async/Await
-const data = await client.inventory.getJobByCompanyAndIntegration({  integrationId : value,
+const data = await platformClient.inventory.getJobByCompanyAndIntegration({  integrationId : value,
  pageNo : value,
  pageSize : value });
 ```
@@ -421,169 +308,6 @@ Successful operation
 ---
 
 
-### disable
-Disable Job Config
-
-
-
-```javascript
-// Promise
-const promise = client.inventory.disable({  integrationId : value });
-
-// Async/Await
-const data = await client.inventory.disable({  integrationId : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| integrationId | string | yes | IntegrationId |  
-
-
-
-REST Endpoint that disables Inventory Job Config
-
-*Returned Response:*
-
-
-
-
-[ResponseEnvelopeString](#ResponseEnvelopeString)
-
-Successful operation
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### getJobConfigDefaults
-Get Job Configs Defaults
-
-
-
-```javascript
-// Promise
-const promise = client.inventory.getJobConfigDefaults();
-
-// Async/Await
-const data = await client.inventory.getJobConfigDefaults();
-```
-
-
-
-
-
-
-REST Endpoint that returns default fields job configs by company And integration
-
-*Returned Response:*
-
-
-
-
-[ResponseEnvelopeJobConfigDTO](#ResponseEnvelopeJobConfigDTO)
-
-Successful operation
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### getJobByCode
-Get Job Config By Code
-
-
-
-```javascript
-// Promise
-const promise = client.inventory.getJobByCode({  code : value });
-
-// Async/Await
-const data = await client.inventory.getJobByCode({  code : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| code | string | yes | Job Code |  
-
-
-
-REST Endpoint that returns job config by code
-
-*Returned Response:*
-
-
-
-
-[ResponseEnvelopeJobConfigDTO](#ResponseEnvelopeJobConfigDTO)
-
-Successful operation
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
 ### getJobCodeMetrics
 Get Job Metrics
 
@@ -591,14 +315,14 @@ Get Job Metrics
 
 ```javascript
 // Promise
-const promise = client.inventory.getJobCodeMetrics({  code : value,
+const promise = platformClient.inventory.getJobCodeMetrics({  code : value,
  pageNo : value,
  pageSize : value,
  status : value,
  date : value });
 
 // Async/Await
-const data = await client.inventory.getJobCodeMetrics({  code : value,
+const data = await platformClient.inventory.getJobCodeMetrics({  code : value,
  pageNo : value,
  pageSize : value,
  status : value,
@@ -659,12 +383,12 @@ Get Job Codes By Company And Integration
 
 ```javascript
 // Promise
-const promise = client.inventory.getJobCodesByCompanyAndIntegration({  integrationId : value,
+const promise = platformClient.inventory.getJobCodesByCompanyAndIntegration({  integrationId : value,
  pageNo : value,
  pageSize : value });
 
 // Async/Await
-const data = await client.inventory.getJobCodesByCompanyAndIntegration({  integrationId : value,
+const data = await platformClient.inventory.getJobCodesByCompanyAndIntegration({  integrationId : value,
  pageNo : value,
  pageSize : value });
 ```
@@ -714,1065 +438,1225 @@ Successful operation
 ---
 
 
+### getJobConfigDefaults
+Get Job Configs Defaults
+
+
+
+```javascript
+// Promise
+const promise = platformClient.inventory.getJobConfigDefaults();
+
+// Async/Await
+const data = await platformClient.inventory.getJobConfigDefaults();
+```
+
+
+
+
+
+
+REST Endpoint that returns default fields job configs by company And integration
+
+*Returned Response:*
+
+
+
+
+[ResponseEnvelopeJobConfigDTO](#ResponseEnvelopeJobConfigDTO)
+
+Successful operation
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### getJobSteps
+Get Job Code Steps
+
+
+
+```javascript
+// Promise
+const promise = platformClient.inventory.getJobSteps({  jobId : value });
+
+// Async/Await
+const data = await platformClient.inventory.getJobSteps({  jobId : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| jobId | number | yes | Job Id |  
+
+
+
+REST Endpoint that returns Inventory Job Steps
+
+*Returned Response:*
+
+
+
+
+[ResponseEnvelopeListJobStepsDTO](#ResponseEnvelopeListJobStepsDTO)
+
+Successful operation
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### getJobsByCompany
+Get Job Configs For A Company
+
+
+
+```javascript
+// Promise
+const promise = platformClient.inventory.getJobsByCompany({  pageNo : value,
+ pageSize : value });
+
+// Async/Await
+const data = await platformClient.inventory.getJobsByCompany({  pageNo : value,
+ pageSize : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| pageNo | number | no | Page Number |    
+| pageSize | number | no | Page Size |  
+
+
+
+REST Endpoint that returns all job configs for a company
+
+*Returned Response:*
+
+
+
+
+[ResponseEnvelopeListJobConfigRawDTO](#ResponseEnvelopeListJobConfigRawDTO)
+
+Successful operation
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### suppressStores
+Get Slingshot Configuration Of  A Company
+
+
+
+```javascript
+// Promise
+const promise = platformClient.inventory.suppressStores({  body : value });
+
+// Async/Await
+const data = await platformClient.inventory.suppressStores({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [SuppressStorePayload](#SuppressStorePayload) | yes | Request body |
+
+
+REST Endpoint that returns all configuration detail of a company
+
+*Returned Response:*
+
+
+
+
+[ResponseEnvelopeKafkaResponse](#ResponseEnvelopeKafkaResponse)
+
+Successful operation
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### updateJob
+Updates An Existing Job Config
+
+
+
+```javascript
+// Promise
+const promise = platformClient.inventory.updateJob({  body : value });
+
+// Async/Await
+const data = await platformClient.inventory.updateJob({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [JobConfigDTO](#JobConfigDTO) | yes | Request body |
+
+
+REST Endpoint that updates a job config
+
+*Returned Response:*
+
+
+
+
+[ResponseEnvelopeString](#ResponseEnvelopeString)
+
+Job Config Updated Successfully
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
 
 ### Schemas
 
- 
- 
- #### [GCompany](#GCompany)
+
+#### [ArchiveConfig](#ArchiveConfig)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | _id | string |  no  |  |
+ | archive | boolean? |  yes  |  |
+ | archive_dir | string? |  yes  |  |
+ | delete | boolean? |  yes  |  |
+ 
+
+---
+
+#### [Audit](#Audit)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | created_by | string? |  yes  |  |
+ | created_on | string? |  yes  |  |
+ | modified_by | string? |  yes  |  |
+ | modified_on | string? |  yes  |  |
+ 
+
+---
+
+#### [AWSS3config](#AWSS3config)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | access_key | string? |  yes  |  |
+ | archive | boolean? |  yes  |  |
+ | archive_config | [ArchiveConfig](#ArchiveConfig)? |  yes  |  |
+ | archive_path | string? |  yes  |  |
+ | bucket | string? |  yes  |  |
+ | delete | boolean? |  yes  |  |
+ | dir | string? |  yes  |  |
+ | file_regex | string? |  yes  |  |
+ | local_file_path | string? |  yes  |  |
+ | region | string? |  yes  |  |
+ | secret_key | string? |  yes  |  |
+ | unzip | boolean? |  yes  |  |
+ | zip_format | string? |  yes  |  |
+ 
+
+---
+
+#### [CatalogMasterConfig](#CatalogMasterConfig)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | source_slug | string? |  yes  |  |
+ 
+
+---
+
+#### [CompanyConfig](#CompanyConfig)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | company_id | number? |  yes  |  |
+ | delete_quantity_threshold | number? |  yes  |  |
+ | exclude_steps | [number]? |  yes  |  |
+ | hidden_closet_keys | [string]? |  yes  |  |
+ | open_tags | string? |  yes  |  |
+ | tax_identifiers | [string]? |  yes  |  |
+ 
+
+---
+
+#### [DataTresholdDTO](#DataTresholdDTO)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | min_price | number? |  yes  |  |
+ | period_threshold | number? |  yes  |  |
+ | period_threshold_type | string? |  yes  |  |
+ | period_type_list | [[GenericDTO](#GenericDTO)]? |  yes  |  |
+ | safe_stock | number? |  yes  |  |
+ 
+
+---
+
+#### [DBConfig](#DBConfig)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | dbname | string? |  yes  |  |
+ | driver_class | string? |  yes  |  |
+ | host | string? |  yes  |  |
+ | jdbc_url | string? |  yes  |  |
+ | optional_properties | [String: string]? |  yes  |  |
+ | password | string? |  yes  |  |
+ | port | number? |  yes  |  |
+ | procedure | boolean? |  yes  |  |
+ | query | string? |  yes  |  |
+ | username | string? |  yes  |  |
+ | vendor | string? |  yes  |  |
+ 
+
+---
+
+#### [DBConnectionProfile](#DBConnectionProfile)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | inventory | string? |  yes  |  |
+ 
+
+---
+
+#### [DBParamConfig](#DBParamConfig)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | params | string? |  yes  |  |
+ 
+
+---
+
+#### [DefaultHeadersDTO](#DefaultHeadersDTO)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | intf_article_id | [PropBeanDTO](#PropBeanDTO)? |  yes  |  |
+ | price_effective | [PropBeanDTO](#PropBeanDTO)? |  yes  |  |
+ | quantity | [PropBeanDTO](#PropBeanDTO)? |  yes  |  |
+ | store | [PropBeanDTO](#PropBeanDTO)? |  yes  |  |
+ 
+
+---
+
+#### [DocMappingConfig](#DocMappingConfig)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | default_headers | [DefaultHeadersDTO](#DefaultHeadersDTO)? |  yes  |  |
+ | junk_data_threshold_count | number? |  yes  |  |
+ | prop_bean_configs | [[PropBeanConfig](#PropBeanConfig)]? |  yes  |  |
+ | properties | string? |  yes  |  |
+ | unwind_field | string? |  yes  |  |
+ 
+
+---
+
+#### [EmailConfig](#EmailConfig)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | archive_config | [ArchiveConfig](#ArchiveConfig)? |  yes  |  |
+ | attachment_mandate | boolean? |  yes  |  |
+ | attachment_regex | string? |  yes  |  |
+ | body_content_regex | string? |  yes  |  |
+ | content_type | string? |  yes  |  |
+ | downloadable_link | boolean? |  yes  |  |
+ | filter_based_on_recepients | boolean? |  yes  |  |
+ | filter_files_after_extraction | boolean? |  yes  |  |
+ | folder_name_hierarchies | [string]? |  yes  |  |
+ | host | string? |  yes  |  |
+ | local_dir | string? |  yes  |  |
+ | password | string? |  yes  |  |
+ | password_protected | boolean? |  yes  |  |
+ | pcol | string? |  yes  |  |
+ | properties | [String: string]? |  yes  |  |
+ | read_all_unread_mails | boolean? |  yes  |  |
+ | read_from_content | boolean? |  yes  |  |
+ | recepient | string? |  yes  |  |
+ | sender_address | string? |  yes  |  |
+ | subject_line_regex | string? |  yes  |  |
+ | unzip | boolean? |  yes  |  |
+ | username | string? |  yes  |  |
+ | zip_format | string? |  yes  |  |
+ 
+
+---
+
+#### [FileConfig](#FileConfig)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | charset | string? |  yes  |  |
+ | data_start_index | number? |  yes  |  |
+ | default_headers | [DefaultHeadersDTO](#DefaultHeadersDTO)? |  yes  |  |
+ | delimiter | string? |  yes  |  |
+ | escape_char | string? |  yes  |  |
+ | file_has_header | boolean? |  yes  |  |
+ | file_type | string? |  yes  |  |
+ | header_array | [string]? |  yes  |  |
+ | header_index | number? |  yes  |  |
+ | junk_data_threshold_count | number? |  yes  |  |
+ | line_validity_check | boolean? |  yes  |  |
+ | prop_bean_configs | [[PropBeanConfig](#PropBeanConfig)]? |  yes  |  |
+ | properties | string? |  yes  |  |
+ | quote_char | string? |  yes  |  |
+ | read_all_sheets | boolean? |  yes  |  |
+ | sheet_names | [string]? |  yes  |  |
+ 
+
+---
+
+#### [FTPConfig](#FTPConfig)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | archive_config | [ArchiveConfig](#ArchiveConfig)? |  yes  |  |
+ | file_regex | string? |  yes  |  |
+ | host | string? |  yes  |  |
+ | interval | number? |  yes  |  |
+ | local_dir | string? |  yes  |  |
+ | password | string? |  yes  |  |
+ | port | number? |  yes  |  |
+ | read_all_files | boolean? |  yes  |  |
+ | remote_dir | string? |  yes  |  |
+ | retries | number? |  yes  |  |
+ | unzip | boolean? |  yes  |  |
+ | username | string? |  yes  |  |
+ | zip_file_regex | string? |  yes  |  |
+ | zip_format | string? |  yes  |  |
+ 
+
+---
+
+#### [GCompany](#GCompany)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | _id | string? |  yes  |  |
+ | gstores | [[GStore](#GStore)]? |  yes  |  |
+ | integration | string? |  yes  |  |
+ | level | string? |  yes  |  |
+ | name | string? |  yes  |  |
+ | opted | boolean? |  yes  |  |
+ | permissions | [string]? |  yes  |  |
+ | stores | [[GStore](#GStore)]? |  yes  |  |
+ | token | string? |  yes  |  |
+ | uid | number? |  yes  |  |
+ 
+
+---
+
+#### [GenericDTO](#GenericDTO)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | text | string? |  yes  |  |
+ | value | string? |  yes  |  |
+ 
+
+---
+
+#### [GoogleSpreadSheetConfig](#GoogleSpreadSheetConfig)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | archive_config | [ArchiveConfig](#ArchiveConfig)? |  yes  |  |
+ | client_secret_location | string? |  yes  |  |
+ | cred_storage_directory | string? |  yes  |  |
+ | local_dir | string? |  yes  |  |
+ | range | string? |  yes  |  |
+ | sheet_id | string? |  yes  |  |
+ 
+
+---
+
+#### [GStore](#GStore)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | _id | string? |  yes  |  |
+ | code | string? |  yes  |  |
+ | data | [StoreData](#StoreData)? |  yes  |  |
+ | integration | string? |  yes  |  |
+ | level | string? |  yes  |  |
+ | name | string? |  yes  |  |
+ | opted | boolean? |  yes  |  |
+ | permissions | [string]? |  yes  |  |
+ | token | string? |  yes  |  |
+ | uid | number? |  yes  |  |
+ 
+
+---
+
+#### [HttpConfig](#HttpConfig)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | archive_config | [ArchiveConfig](#ArchiveConfig)? |  yes  |  |
+ | hosturl | string? |  yes  |  |
+ | http_method | string? |  yes  |  |
+ | local_path | string? |  yes  |  |
+ | password | string? |  yes  |  |
+ | request_params | [String: string]? |  yes  |  |
+ | request_payload | string? |  yes  |  |
+ | username | string? |  yes  |  |
+ 
+
+---
+
+#### [JobConfig](#JobConfig)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | _id | number? |  yes  |  |
+ | aggregator_types | [string]? |  yes  |  |
+ | alias | string? |  yes  |  |
+ | audit | [Audit](#Audit)? |  yes  |  |
+ | catalog_master_config | [CatalogMasterConfig](#CatalogMasterConfig)? |  yes  |  |
+ | company_config | [[CompanyConfig](#CompanyConfig)]? |  yes  |  |
+ | company_ids | [number]? |  yes  |  |
+ | cron_expression | string? |  yes  |  |
+ | db_connection_profile | [DBConnectionProfile](#DBConnectionProfile)? |  yes  |  |
+ | delete_quantity_threshold | number? |  yes  |  |
+ | dependent_job_codes | [string]? |  yes  |  |
+ | disable | boolean? |  yes  |  |
+ | immediate_first_run | boolean? |  yes  |  |
+ | integration_type | string? |  yes  |  |
+ | job_code | string? |  yes  |  |
+ | min_price | number? |  yes  |  |
+ | open_tags | string? |  yes  |  |
+ | params | string? |  yes  |  |
+ | period_threshold | number? |  yes  |  |
+ | period_threshold_type | string? |  yes  |  |
+ | priority | string? |  yes  |  |
+ | process_config | [ProcessConfig](#ProcessConfig)? |  yes  |  |
+ | properties | [String: string]? |  yes  |  |
+ | store_config | [[StoreConfig](#StoreConfig)]? |  yes  |  |
+ | store_filter | [StoreFilter](#StoreFilter)? |  yes  |  |
+ | sync_delay | number? |  yes  |  |
+ | task_type | string? |  yes  |  |
+ | tax_identifiers | [string]? |  yes  |  |
+ | version | number? |  yes  |  |
+ 
+
+---
+
+#### [JobConfigDTO](#JobConfigDTO)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | alias | string? |  yes  |  |
+ | company_id | number |  no  |  |
+ | company_name | string? |  yes  |  |
  | integration | string |  no  |  |
- | level | string |  no  |  |
- | uid | number |  no  |  |
- | opted | boolean |  no  |  |
- | permissions | [string] |  no  |  |
- | token | string |  no  |  |
- | name | string |  no  |  |
- | stores | [[GStore](#GStore)] |  no  |  |
- | gstores | [[GStore](#GStore)] |  no  |  |
+ | integration_data | string? |  yes  |  |
+ | job_code | string? |  yes  |  |
+ | task_details | [TaskDTO](#TaskDTO)? |  yes  |  |
+ | threshold_details | [DataTresholdDTO](#DataTresholdDTO)? |  yes  |  |
+ 
 
 ---
 
-
- 
- 
- #### [GStore](#GStore)
+#### [JobConfigListDTO](#JobConfigListDTO)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | _id | string |  no  |  |
- | integration | string |  no  |  |
- | level | string |  no  |  |
- | uid | number |  no  |  |
- | opted | boolean |  no  |  |
- | permissions | [string] |  no  |  |
- | token | string |  no  |  |
- | code | string |  no  |  |
- | name | string |  no  |  |
- | data | [StoreData](#StoreData) |  no  |  |
+ | active | boolean? |  yes  |  |
+ | alias | string? |  yes  |  |
+ | code | string? |  yes  |  |
+ | created_by | string? |  yes  |  |
+ | created_on | string? |  yes  |  |
+ | modified_by | string? |  yes  |  |
+ | modified_on | string? |  yes  |  |
+ | type | string? |  yes  |  |
+ 
 
 ---
 
-
- 
- 
- #### [Metum](#Metum)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | _id | string |  no  |  |
- | name | string |  no  |  |
- | value | string |  no  |  |
-
----
-
-
- 
- 
- #### [Page](#Page)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | type | string |  yes  |  |
- | size | number |  no  |  |
- | current | number |  no  |  |
- | has_next | boolean |  no  |  |
- | item_total | number |  no  |  |
- | next_id | string |  no  |  |
- | has_previous | boolean |  no  |  |
-
----
-
-
- 
- 
- #### [ResponseEnvelopeListSlingshotConfigurationDetail](#ResponseEnvelopeListSlingshotConfigurationDetail)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | timestamp | string |  no  |  |
- | status | number |  no  |  |
- | error | string |  no  |  |
- | exception | string |  no  |  |
- | message | string |  no  |  |
- | total_time_taken_in_millis | number |  no  |  |
- | http_status | string |  no  |  |
- | items | [[SlingshotConfigurationDetail](#SlingshotConfigurationDetail)] |  no  |  |
- | payload | [[SlingshotConfigurationDetail](#SlingshotConfigurationDetail)] |  no  |  |
- | trace_id | string |  no  |  |
- | page | [Page](#Page) |  no  |  |
-
----
-
-
- 
- 
- #### [SlingshotConfigurationDetail](#SlingshotConfigurationDetail)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | integration | [SlingshotIntegration](#SlingshotIntegration) |  no  |  |
- | companies | [[GCompany](#GCompany)] |  no  |  |
-
----
-
-
- 
- 
- #### [SlingshotIntegration](#SlingshotIntegration)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | _id | string |  no  |  |
- | description | string |  no  |  |
- | name | string |  no  |  |
- | slug | string |  no  |  |
- | meta | [[Metum](#Metum)] |  no  |  |
-
----
-
-
- 
- 
- #### [StoreData](#StoreData)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | location_id | string |  no  |  |
-
----
-
-
- 
- 
- #### [KafkaMetaModel](#KafkaMetaModel)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | job_type | string |  no  |  |
- | batch_id | number |  no  |  |
- | action | string |  no  |  |
- | trace | [string] |  no  |  |
- | created_on | string |  no  |  |
- | created_timestamp | number |  no  |  |
-
----
-
-
- 
- 
- #### [SuppressStoreModel](#SuppressStoreModel)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | stores | [number] |  no  |  |
-
----
-
-
- 
- 
- #### [SuppressStorePayload](#SuppressStorePayload)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | payload | [[SuppressStoreModel](#SuppressStoreModel)] |  no  |  |
- | meta | [KafkaMetaModel](#KafkaMetaModel) |  no  |  |
-
----
-
-
- 
- 
- #### [KafkaResponse](#KafkaResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | offset | number |  no  |  |
- | partition | number |  no  |  |
-
----
-
-
- 
- 
- #### [ResponseEnvelopeKafkaResponse](#ResponseEnvelopeKafkaResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | timestamp | string |  no  |  |
- | status | number |  no  |  |
- | error | string |  no  |  |
- | exception | string |  no  |  |
- | message | string |  no  |  |
- | total_time_taken_in_millis | number |  no  |  |
- | http_status | string |  no  |  |
- | items | [KafkaResponse](#KafkaResponse) |  no  |  |
- | payload | [KafkaResponse](#KafkaResponse) |  no  |  |
- | trace_id | string |  no  |  |
- | page | [Page](#Page) |  no  |  |
-
----
-
-
- 
- 
- #### [DataTresholdDTO](#DataTresholdDTO)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | min_price | number |  no  |  |
- | safe_stock | number |  no  |  |
- | period_threshold | number |  no  |  |
- | period_threshold_type | string |  no  |  |
- | period_type_list | [[GenericDTO](#GenericDTO)] |  no  |  |
-
----
-
-
- 
- 
- #### [GenericDTO](#GenericDTO)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | text | string |  no  |  |
- | value | string |  no  |  |
-
----
-
-
- 
- 
- #### [JobConfigDTO](#JobConfigDTO)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | integration | string |  yes  |  |
- | integration_data | string |  no  |  |
- | company_name | string |  no  |  |
- | company_id | number |  yes  |  |
- | task_details | [TaskDTO](#TaskDTO) |  no  |  |
- | threshold_details | [DataTresholdDTO](#DataTresholdDTO) |  no  |  |
- | job_code | string |  no  |  |
- | alias | string |  no  |  |
-
----
-
-
- 
- 
- #### [TaskDTO](#TaskDTO)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | type | number |  no  |  |
- | group_list | [[GenericDTO](#GenericDTO)] |  no  |  |
-
----
-
-
- 
- 
- #### [ResponseEnvelopeString](#ResponseEnvelopeString)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | timestamp | string |  no  |  |
- | status | number |  no  |  |
- | error | string |  no  |  |
- | exception | string |  no  |  |
- | message | string |  no  |  |
- | total_time_taken_in_millis | number |  no  |  |
- | http_status | string |  no  |  |
- | items | string |  no  |  |
- | payload | string |  no  |  |
- | trace_id | string |  no  |  |
- | page | [Page](#Page) |  no  |  |
-
----
-
-
- 
- 
- #### [AWSS3config](#AWSS3config)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | bucket | string |  no  |  |
- | region | string |  no  |  |
- | dir | string |  no  |  |
- | access_key | string |  no  |  |
- | secret_key | string |  no  |  |
- | local_file_path | string |  no  |  |
- | archive_path | string |  no  |  |
- | archive | boolean |  no  |  |
- | delete | boolean |  no  |  |
- | unzip | boolean |  no  |  |
- | zip_format | string |  no  |  |
- | file_regex | string |  no  |  |
- | archive_config | [ArchiveConfig](#ArchiveConfig) |  no  |  |
-
----
-
-
- 
- 
- #### [ArchiveConfig](#ArchiveConfig)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | delete | boolean |  no  |  |
- | archive | boolean |  no  |  |
- | archive_dir | string |  no  |  |
-
----
-
-
- 
- 
- #### [Audit](#Audit)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | created_by | string |  no  |  |
- | modified_by | string |  no  |  |
- | created_on | string |  no  |  |
- | modified_on | string |  no  |  |
-
----
-
-
- 
- 
- #### [CatalogMasterConfig](#CatalogMasterConfig)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | source_slug | string |  no  |  |
-
----
-
-
- 
- 
- #### [CompanyConfig](#CompanyConfig)
+#### [JobConfigRawDTO](#JobConfigRawDTO)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | company_id | number |  no  |  |
- | exclude_steps | [number] |  no  |  |
- | hidden_closet_keys | [string] |  no  |  |
- | open_tags | string |  no  |  |
- | tax_identifiers | [string] |  no  |  |
- | delete_quantity_threshold | number |  no  |  |
+ | company_name | string |  no  |  |
+ | data | [JobConfig](#JobConfig)? |  yes  |  |
+ | integration | string |  no  |  |
+ 
 
 ---
 
-
- 
- 
- #### [DBConfig](#DBConfig)
+#### [JobHistoryDto](#JobHistoryDto)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | vendor | string |  no  |  |
- | host | string |  no  |  |
- | port | number |  no  |  |
- | username | string |  no  |  |
- | password | string |  no  |  |
- | dbname | string |  no  |  |
- | query | string |  no  |  |
- | procedure | boolean |  no  |  |
- | driver_class | string |  no  |  |
- | jdbc_url | string |  no  |  |
- | optional_properties | [String: string] |  no  |  |
+ | error_type | string? |  yes  |  |
+ | filename | [string]? |  yes  |  |
+ | job_code | string? |  yes  |  |
+ | job_id | number? |  yes  |  |
+ | message | string? |  yes  |  |
+ | processed_on | string? |  yes  |  |
+ | status | string? |  yes  |  |
+ | total_added_count | number? |  yes  |  |
+ | total_initial_count | number? |  yes  |  |
+ | total_suppressed_count | number? |  yes  |  |
+ | total_updated_count | number? |  yes  |  |
+ 
 
 ---
 
-
- 
- 
- #### [DBConnectionProfile](#DBConnectionProfile)
+#### [JobMetricsDto](#JobMetricsDto)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | inventory | string |  no  |  |
+ | is_run_more_than_usual | string? |  yes  |  |
+ | job_code | string? |  yes  |  |
+ | job_history | [[JobHistoryDto](#JobHistoryDto)]? |  yes  |  |
+ | total_failure_count | number? |  yes  |  |
+ | total_job_runs | number? |  yes  |  |
+ | total_success_count | number? |  yes  |  |
+ | total_suppressed_count | number? |  yes  |  |
+ | total_warning_count | number? |  yes  |  |
+ 
 
 ---
 
-
- 
- 
- #### [DBParamConfig](#DBParamConfig)
+#### [JobStepsDTO](#JobStepsDTO)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | params | string |  no  |  |
+ | deleted_count | number? |  yes  |  |
+ | end_count | number? |  yes  |  |
+ | processed_at | string? |  yes  |  |
+ | processed_start_time | string? |  yes  |  |
+ | start_count | number? |  yes  |  |
+ | step_execution_time | number? |  yes  |  |
+ | step_name | string? |  yes  |  |
+ | type | string? |  yes  |  |
+ 
 
 ---
 
-
- 
- 
- #### [DefaultHeadersDTO](#DefaultHeadersDTO)
+#### [JsonDocConfig](#JsonDocConfig)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | store | [PropBeanDTO](#PropBeanDTO) |  no  |  |
- | intf_article_id | [PropBeanDTO](#PropBeanDTO) |  no  |  |
- | price_effective | [PropBeanDTO](#PropBeanDTO) |  no  |  |
- | quantity | [PropBeanDTO](#PropBeanDTO) |  no  |  |
+ | prop_bean_configs | [[PropBeanConfig](#PropBeanConfig)]? |  yes  |  |
+ 
 
 ---
 
-
- 
- 
- #### [DocMappingConfig](#DocMappingConfig)
+#### [KafkaMetaModel](#KafkaMetaModel)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | properties | string |  no  |  |
- | junk_data_threshold_count | number |  no  |  |
- | prop_bean_configs | [[PropBeanConfig](#PropBeanConfig)] |  no  |  |
- | unwind_field | string |  no  |  |
- | default_headers | [DefaultHeadersDTO](#DefaultHeadersDTO) |  no  |  |
+ | action | string? |  yes  |  |
+ | batch_id | number? |  yes  |  |
+ | created_on | string? |  yes  |  |
+ | created_timestamp | number? |  yes  |  |
+ | job_type | string? |  yes  |  |
+ | trace | [string]? |  yes  |  |
+ 
 
 ---
 
-
- 
- 
- #### [EmailConfig](#EmailConfig)
+#### [KafkaResponse](#KafkaResponse)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | recepient | string |  no  |  |
- | host | string |  no  |  |
- | username | string |  no  |  |
- | password | string |  no  |  |
- | unzip | boolean |  no  |  |
- | read_from_content | boolean |  no  |  |
- | filter_based_on_recepients | boolean |  no  |  |
- | pcol | string |  no  |  |
- | subject_line_regex | string |  no  |  |
- | sender_address | string |  no  |  |
- | local_dir | string |  no  |  |
- | folder_name_hierarchies | [string] |  no  |  |
- | attachment_regex | string |  no  |  |
- | body_content_regex | string |  no  |  |
- | password_protected | boolean |  no  |  |
- | zip_format | string |  no  |  |
- | attachment_mandate | boolean |  no  |  |
- | filter_files_after_extraction | boolean |  no  |  |
- | archive_config | [ArchiveConfig](#ArchiveConfig) |  no  |  |
- | read_all_unread_mails | boolean |  no  |  |
- | content_type | string |  no  |  |
- | downloadable_link | boolean |  no  |  |
- | properties | [String: string] |  no  |  |
+ | offset | number? |  yes  |  |
+ | partition | number? |  yes  |  |
+ 
 
 ---
 
-
- 
- 
- #### [FTPConfig](#FTPConfig)
+#### [LocalFileConfig](#LocalFileConfig)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | host | string |  no  |  |
- | port | number |  no  |  |
- | username | string |  no  |  |
- | password | string |  no  |  |
- | unzip | boolean |  no  |  |
- | retries | number |  no  |  |
- | interval | number |  no  |  |
- | local_dir | string |  no  |  |
- | remote_dir | string |  no  |  |
- | zip_file_regex | string |  no  |  |
- | archive_config | [ArchiveConfig](#ArchiveConfig) |  no  |  |
- | file_regex | string |  no  |  |
- | zip_format | string |  no  |  |
- | read_all_files | boolean |  no  |  |
+ | archive_config | [ArchiveConfig](#ArchiveConfig)? |  yes  |  |
+ | file_regex | string? |  yes  |  |
+ | interval | number? |  yes  |  |
+ | local_dir | string? |  yes  |  |
+ | read_all_files | boolean? |  yes  |  |
+ | retries | number? |  yes  |  |
+ | unzip | boolean? |  yes  |  |
+ | working_dir | string? |  yes  |  |
+ | zip_file_regex | string? |  yes  |  |
+ | zip_format | string? |  yes  |  |
+ 
 
 ---
 
-
- 
- 
- #### [FileConfig](#FileConfig)
+#### [Metum](#Metum)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | delimiter | string |  no  |  |
- | charset | string |  no  |  |
- | properties | string |  no  |  |
- | file_has_header | boolean |  no  |  |
- | header_index | number |  no  |  |
- | header_array | [string] |  no  |  |
- | data_start_index | number |  no  |  |
- | prop_bean_configs | [[PropBeanConfig](#PropBeanConfig)] |  no  |  |
- | junk_data_threshold_count | number |  no  |  |
- | file_type | string |  no  |  |
- | line_validity_check | boolean |  no  |  |
- | sheet_names | [string] |  no  |  |
- | read_all_sheets | boolean |  no  |  |
- | quote_char | string |  no  |  |
- | escape_char | string |  no  |  |
- | default_headers | [DefaultHeadersDTO](#DefaultHeadersDTO) |  no  |  |
+ | _id | string? |  yes  |  |
+ | name | string? |  yes  |  |
+ | value | string? |  yes  |  |
+ 
 
 ---
 
-
- 
- 
- #### [GoogleSpreadSheetConfig](#GoogleSpreadSheetConfig)
+#### [MongoDocConfig](#MongoDocConfig)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | range | string |  no  |  |
- | sheet_id | string |  no  |  |
- | client_secret_location | string |  no  |  |
- | cred_storage_directory | string |  no  |  |
- | local_dir | string |  no  |  |
- | archive_config | [ArchiveConfig](#ArchiveConfig) |  no  |  |
+ | aggregate_pipeline | [string]? |  yes  |  |
+ | collection_name | string? |  yes  |  |
+ | find_query | string? |  yes  |  |
+ | projection_query | string? |  yes  |  |
+ | prop_bean_configs | [[PropBeanConfig](#PropBeanConfig)]? |  yes  |  |
+ | skip_save | boolean? |  yes  |  |
+ 
 
 ---
 
-
- 
- 
- #### [HttpConfig](#HttpConfig)
+#### [OAuthConfig](#OAuthConfig)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | hosturl | string |  no  |  |
- | username | string |  no  |  |
- | password | string |  no  |  |
- | request_params | [String: string] |  no  |  |
- | http_method | string |  no  |  |
- | request_payload | string |  no  |  |
- | local_path | string |  no  |  |
- | archive_config | [ArchiveConfig](#ArchiveConfig) |  no  |  |
+ | consumer_key | string? |  yes  |  |
+ | consumer_secret | string? |  yes  |  |
+ | function_name | string? |  yes  |  |
+ | interval | number? |  yes  |  |
+ | limit | number? |  yes  |  |
+ | pages | number? |  yes  |  |
+ | rest_base_url | string? |  yes  |  |
+ | rest_url | string? |  yes  |  |
+ | token | string? |  yes  |  |
+ | token_secret | string? |  yes  |  |
+ 
 
 ---
 
-
- 
- 
- #### [JobConfig](#JobConfig)
+#### [Page](#Page)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | _id | number |  no  |  |
- | job_code | string |  no  |  |
- | task_type | string |  no  |  |
- | sync_delay | number |  no  |  |
- | cron_expression | string |  no  |  |
- | store_filter | [StoreFilter](#StoreFilter) |  no  |  |
- | process_config | [ProcessConfig](#ProcessConfig) |  no  |  |
- | store_config | [[StoreConfig](#StoreConfig)] |  no  |  |
- | properties | [String: string] |  no  |  |
- | immediate_first_run | boolean |  no  |  |
- | disable | boolean |  no  |  |
- | dependent_job_codes | [string] |  no  |  |
- | company_config | [[CompanyConfig](#CompanyConfig)] |  no  |  |
- | company_ids | [number] |  no  |  |
- | tax_identifiers | [string] |  no  |  |
- | priority | string |  no  |  |
- | period_threshold | number |  no  |  |
- | period_threshold_type | string |  no  |  |
- | db_connection_profile | [DBConnectionProfile](#DBConnectionProfile) |  no  |  |
- | params | string |  no  |  |
- | open_tags | string |  no  |  |
- | delete_quantity_threshold | number |  no  |  |
- | catalog_master_config | [CatalogMasterConfig](#CatalogMasterConfig) |  no  |  |
- | aggregator_types | [string] |  no  |  |
- | integration_type | string |  no  |  |
- | min_price | number |  no  |  |
- | audit | [Audit](#Audit) |  no  |  |
- | version | number |  no  |  |
- | alias | string |  no  |  |
-
----
-
-
- 
- 
- #### [JobConfigRawDTO](#JobConfigRawDTO)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | integration | string |  yes  |  |
- | company_name | string |  yes  |  |
- | company_id | number |  yes  |  |
- | data | [JobConfig](#JobConfig) |  no  |  |
-
----
-
-
- 
- 
- #### [JsonDocConfig](#JsonDocConfig)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | prop_bean_configs | [[PropBeanConfig](#PropBeanConfig)] |  no  |  |
-
----
-
-
- 
- 
- #### [LocalFileConfig](#LocalFileConfig)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | retries | number |  no  |  |
- | interval | number |  no  |  |
- | local_dir | string |  no  |  |
- | working_dir | string |  no  |  |
- | unzip | boolean |  no  |  |
- | zip_file_regex | string |  no  |  |
- | file_regex | string |  no  |  |
- | zip_format | string |  no  |  |
- | archive_config | [ArchiveConfig](#ArchiveConfig) |  no  |  |
- | read_all_files | boolean |  no  |  |
-
----
-
-
- 
- 
- #### [MongoDocConfig](#MongoDocConfig)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | collection_name | string |  no  |  |
- | find_query | string |  no  |  |
- | projection_query | string |  no  |  |
- | prop_bean_configs | [[PropBeanConfig](#PropBeanConfig)] |  no  |  |
- | aggregate_pipeline | [string] |  no  |  |
- | skip_save | boolean |  no  |  |
-
----
-
-
- 
- 
- #### [OAuthConfig](#OAuthConfig)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | limit | number |  no  |  |
- | pages | number |  no  |  |
- | interval | number |  no  |  |
- | consumer_key | string |  no  |  |
- | consumer_secret | string |  no  |  |
- | token | string |  no  |  |
- | token_secret | string |  no  |  |
- | rest_url | string |  no  |  |
- | rest_base_url | string |  no  |  |
- | function_name | string |  no  |  |
-
----
-
-
- 
- 
- #### [ProcessConfig](#ProcessConfig)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | db_config | [DBConfig](#DBConfig) |  no  |  |
- | db_param_config | [DBParamConfig](#DBParamConfig) |  no  |  |
- | sftp_config | [SFTPConfig](#SFTPConfig) |  no  |  |
- | aws_s3_config | [AWSS3config](#AWSS3config) |  no  |  |
- | mongo_doc_config | [MongoDocConfig](#MongoDocConfig) |  no  |  |
- | ftp_config | [FTPConfig](#FTPConfig) |  no  |  |
- | email_config | [EmailConfig](#EmailConfig) |  no  |  |
- | file_config | [FileConfig](#FileConfig) |  no  |  |
- | json_doc_config | [JsonDocConfig](#JsonDocConfig) |  no  |  |
- | doc_mapping_config | [DocMappingConfig](#DocMappingConfig) |  no  |  |
- | task_step_config | [TaskStepConfig](#TaskStepConfig) |  no  |  |
- | http_config | [HttpConfig](#HttpConfig) |  no  |  |
- | local_file_config | [LocalFileConfig](#LocalFileConfig) |  no  |  |
- | oauth_config | [OAuthConfig](#OAuthConfig) |  no  |  |
- | google_spreadsheet_config | [GoogleSpreadSheetConfig](#GoogleSpreadSheetConfig) |  no  |  |
-
----
-
-
- 
- 
- #### [PropBeanConfig](#PropBeanConfig)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | required | boolean |  no  |  |
- | mapping | [String: [PropBeanConfig](#PropBeanConfig)] |  no  |  |
- | optional | boolean |  no  |  |
- | send | [Send](#Send) |  no  |  |
- | validations | [string] |  no  |  |
- | values | [string] |  no  |  |
- | include | boolean |  no  |  |
- | source_field | string |  no  |  |
- | source_fields | [string] |  no  |  |
- | destination_field | string |  no  |  |
- | data_type | string |  no  |  |
- | default_value | string |  no  |  |
- | const_value | string |  no  |  |
- | concat_str | string |  no  |  |
- | function_name | string |  no  |  |
- | transformer_name | string |  no  |  |
- | all_param_function_name | string |  no  |  |
- | sub_separator | string |  no  |  |
- | index_field | string |  no  |  |
- | ignore_if_not_exists | boolean |  no  |  |
- | identifier_type | string |  no  |  |
- | projection_query | string |  no  |  |
- | enrich_from_master | boolean |  no  |  |
-
----
-
-
- 
- 
- #### [PropBeanDTO](#PropBeanDTO)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | required | boolean |  no  |  |
- | optional | boolean |  no  |  |
- | include | boolean |  no  |  |
- | source_field | string |  no  |  |
- | source_fields | [string] |  no  |  |
- | destination_field | string |  no  |  |
- | data_type | string |  no  |  |
- | default_value | string |  no  |  |
- | const_value | string |  no  |  |
- | concat_str | string |  no  |  |
- | function_name | string |  no  |  |
- | transformer_name | string |  no  |  |
- | all_param_function_name | string |  no  |  |
- | sub_separator | string |  no  |  |
- | index_field | string |  no  |  |
- | ignore_if_not_exists | boolean |  no  |  |
- | identifier_type | string |  no  |  |
- | projection_query | string |  no  |  |
- | enrich_from_master | boolean |  no  |  |
-
----
-
-
- 
- 
- #### [ResponseEnvelopeListJobConfigRawDTO](#ResponseEnvelopeListJobConfigRawDTO)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | timestamp | string |  no  |  |
- | status | number |  no  |  |
- | error | string |  no  |  |
- | exception | string |  no  |  |
- | message | string |  no  |  |
- | total_time_taken_in_millis | number |  no  |  |
- | http_status | string |  no  |  |
- | items | [[JobConfigRawDTO](#JobConfigRawDTO)] |  no  |  |
- | payload | [[JobConfigRawDTO](#JobConfigRawDTO)] |  no  |  |
- | trace_id | string |  no  |  |
- | page | [Page](#Page) |  no  |  |
-
----
-
-
- 
- 
- #### [SFTPConfig](#SFTPConfig)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | host | string |  no  |  |
- | port | number |  no  |  |
- | username | string |  no  |  |
- | password | string |  no  |  |
- | unzip | boolean |  no  |  |
- | retries | number |  no  |  |
- | interval | number |  no  |  |
- | private_key_path | string |  no  |  |
- | strict_host_key_checking | boolean |  no  |  |
- | local_dir | string |  no  |  |
- | remote_dir | string |  no  |  |
- | password_protected | boolean |  no  |  |
- | zip_file_regex | string |  no  |  |
- | file_regex | string |  no  |  |
- | zip_format | string |  no  |  |
- | archive_config | [ArchiveConfig](#ArchiveConfig) |  no  |  |
- | read_all_files | boolean |  no  |  |
-
----
-
-
- 
- 
- #### [Send](#Send)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | raw | boolean |  no  |  |
- | processed | boolean |  no  |  |
-
----
-
-
- 
- 
- #### [StoreConfig](#StoreConfig)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | job_code | string |  no  |  |
- | storeid | string |  no  |  |
- | store_alias | string |  no  |  |
- | store_file_regex | string |  no  |  |
- | store_file_name | string |  no  |  |
- | process_config | [ProcessConfig](#ProcessConfig) |  no  |  |
- | properties | [String: string] |  no  |  |
-
----
-
-
- 
- 
- #### [StoreFilter](#StoreFilter)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | include_tags | [string] |  no  |  |
- | exclude_tags | [string] |  no  |  |
- | query | string |  no  |  |
-
----
-
-
- 
- 
- #### [TaskConfig](#TaskConfig)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | name | string |  no  |  |
- | task_config_id | number |  no  |  |
- | task_params | [[TaskParam](#TaskParam)] |  no  |  |
-
----
-
-
- 
- 
- #### [TaskParam](#TaskParam)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | name | string |  no  |  |
- | value | string |  no  |  |
-
----
-
-
- 
- 
- #### [TaskStepConfig](#TaskStepConfig)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | task_configs | [[TaskConfig](#TaskConfig)] |  no  |  |
- | task_config_ids | [number] |  no  |  |
- | task_config_group_ids | [number] |  no  |  |
-
----
-
-
- 
- 
- #### [JobStepsDTO](#JobStepsDTO)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | step_name | string |  no  |  |
+ | current | number? |  yes  |  |
+ | has_next | boolean? |  yes  |  |
+ | has_previous | boolean? |  yes  |  |
+ | item_total | number? |  yes  |  |
+ | next_id | string? |  yes  |  |
+ | size | number? |  yes  |  |
  | type | string |  no  |  |
- | step_execution_time | number |  no  |  |
- | start_count | number |  no  |  |
- | end_count | number |  no  |  |
- | deleted_count | number |  no  |  |
- | processed_start_time | string |  no  |  |
- | processed_at | string |  no  |  |
+ 
 
 ---
 
-
- 
- 
- #### [ResponseEnvelopeListJobStepsDTO](#ResponseEnvelopeListJobStepsDTO)
+#### [ProcessConfig](#ProcessConfig)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | timestamp | string |  no  |  |
- | status | number |  no  |  |
- | error | string |  no  |  |
- | exception | string |  no  |  |
- | message | string |  no  |  |
- | total_time_taken_in_millis | number |  no  |  |
- | http_status | string |  no  |  |
- | items | [[JobStepsDTO](#JobStepsDTO)] |  no  |  |
- | payload | [[JobStepsDTO](#JobStepsDTO)] |  no  |  |
- | trace_id | string |  no  |  |
- | page | [Page](#Page) |  no  |  |
+ | aws_s3_config | [AWSS3config](#AWSS3config)? |  yes  |  |
+ | db_config | [DBConfig](#DBConfig)? |  yes  |  |
+ | db_param_config | [DBParamConfig](#DBParamConfig)? |  yes  |  |
+ | doc_mapping_config | [DocMappingConfig](#DocMappingConfig)? |  yes  |  |
+ | email_config | [EmailConfig](#EmailConfig)? |  yes  |  |
+ | file_config | [FileConfig](#FileConfig)? |  yes  |  |
+ | ftp_config | [FTPConfig](#FTPConfig)? |  yes  |  |
+ | google_spreadsheet_config | [GoogleSpreadSheetConfig](#GoogleSpreadSheetConfig)? |  yes  |  |
+ | http_config | [HttpConfig](#HttpConfig)? |  yes  |  |
+ | json_doc_config | [JsonDocConfig](#JsonDocConfig)? |  yes  |  |
+ | local_file_config | [LocalFileConfig](#LocalFileConfig)? |  yes  |  |
+ | mongo_doc_config | [MongoDocConfig](#MongoDocConfig)? |  yes  |  |
+ | oauth_config | [OAuthConfig](#OAuthConfig)? |  yes  |  |
+ | sftp_config | [SFTPConfig](#SFTPConfig)? |  yes  |  |
+ | task_step_config | [TaskStepConfig](#TaskStepConfig)? |  yes  |  |
+ 
 
 ---
 
-
- 
- 
- #### [ResponseEnvelopeListJobConfigDTO](#ResponseEnvelopeListJobConfigDTO)
+#### [PropBeanConfig](#PropBeanConfig)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | timestamp | string |  no  |  |
- | status | number |  no  |  |
- | error | string |  no  |  |
- | exception | string |  no  |  |
- | message | string |  no  |  |
- | total_time_taken_in_millis | number |  no  |  |
- | http_status | string |  no  |  |
- | items | [[JobConfigDTO](#JobConfigDTO)] |  no  |  |
- | payload | [[JobConfigDTO](#JobConfigDTO)] |  no  |  |
- | trace_id | string |  no  |  |
- | page | [Page](#Page) |  no  |  |
+ | all_param_function_name | string? |  yes  |  |
+ | concat_str | string? |  yes  |  |
+ | const_value | string? |  yes  |  |
+ | data_type | string? |  yes  |  |
+ | default_value | string? |  yes  |  |
+ | destination_field | string? |  yes  |  |
+ | enrich_from_master | boolean? |  yes  |  |
+ | function_name | string? |  yes  |  |
+ | identifier_type | string? |  yes  |  |
+ | ignore_if_not_exists | boolean? |  yes  |  |
+ | include | boolean? |  yes  |  |
+ | index_field | string? |  yes  |  |
+ | mapping | [String: [PropBeanConfig](#PropBeanConfig)]? |  yes  |  |
+ | optional | boolean? |  yes  |  |
+ | projection_query | string? |  yes  |  |
+ | required | boolean? |  yes  |  |
+ | send | [Send](#Send)? |  yes  |  |
+ | source_field | string? |  yes  |  |
+ | source_fields | [string]? |  yes  |  |
+ | sub_separator | string? |  yes  |  |
+ | transformer_name | string? |  yes  |  |
+ | validations | [string]? |  yes  |  |
+ | values | [string]? |  yes  |  |
+ 
 
 ---
 
-
- 
- 
- #### [ResponseEnvelopeJobConfigDTO](#ResponseEnvelopeJobConfigDTO)
+#### [PropBeanDTO](#PropBeanDTO)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | timestamp | string |  no  |  |
- | status | number |  no  |  |
- | error | string |  no  |  |
- | exception | string |  no  |  |
- | message | string |  no  |  |
- | total_time_taken_in_millis | number |  no  |  |
- | http_status | string |  no  |  |
- | items | [JobConfigDTO](#JobConfigDTO) |  no  |  |
- | payload | [JobConfigDTO](#JobConfigDTO) |  no  |  |
- | trace_id | string |  no  |  |
- | page | [Page](#Page) |  no  |  |
+ | all_param_function_name | string? |  yes  |  |
+ | concat_str | string? |  yes  |  |
+ | const_value | string? |  yes  |  |
+ | data_type | string? |  yes  |  |
+ | default_value | string? |  yes  |  |
+ | destination_field | string? |  yes  |  |
+ | enrich_from_master | boolean? |  yes  |  |
+ | function_name | string? |  yes  |  |
+ | identifier_type | string? |  yes  |  |
+ | ignore_if_not_exists | boolean? |  yes  |  |
+ | include | boolean? |  yes  |  |
+ | index_field | string? |  yes  |  |
+ | optional | boolean? |  yes  |  |
+ | projection_query | string? |  yes  |  |
+ | required | boolean? |  yes  |  |
+ | source_field | string? |  yes  |  |
+ | source_fields | [string]? |  yes  |  |
+ | sub_separator | string? |  yes  |  |
+ | transformer_name | string? |  yes  |  |
+ 
 
 ---
 
-
- 
- 
- #### [JobHistoryDto](#JobHistoryDto)
+#### [ResponseEnvelopeJobConfigDTO](#ResponseEnvelopeJobConfigDTO)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | total_added_count | number |  no  |  |
- | total_updated_count | number |  no  |  |
- | total_suppressed_count | number |  no  |  |
- | total_initial_count | number |  no  |  |
- | job_id | number |  no  |  |
- | status | string |  no  |  |
- | job_code | string |  no  |  |
- | processed_on | string |  no  |  |
- | filename | [string] |  no  |  |
- | error_type | string |  no  |  |
- | message | string |  no  |  |
+ | error | string? |  yes  |  |
+ | exception | string? |  yes  |  |
+ | http_status | string? |  yes  |  |
+ | items | [JobConfigDTO](#JobConfigDTO)? |  yes  |  |
+ | message | string? |  yes  |  |
+ | page | [Page](#Page)? |  yes  |  |
+ | payload | [JobConfigDTO](#JobConfigDTO)? |  yes  |  |
+ | status | number? |  yes  |  |
+ | timestamp | string? |  yes  |  |
+ | total_time_taken_in_millis | number? |  yes  |  |
+ | trace_id | string? |  yes  |  |
+ 
 
 ---
 
-
- 
- 
- #### [JobMetricsDto](#JobMetricsDto)
+#### [ResponseEnvelopeJobMetricsDto](#ResponseEnvelopeJobMetricsDto)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | job_code | string |  no  |  |
- | is_run_more_than_usual | string |  no  |  |
- | job_history | [[JobHistoryDto](#JobHistoryDto)] |  no  |  |
- | total_success_count | number |  no  |  |
- | total_failure_count | number |  no  |  |
- | total_warning_count | number |  no  |  |
- | total_suppressed_count | number |  no  |  |
- | total_job_runs | number |  no  |  |
+ | error | string? |  yes  |  |
+ | exception | string? |  yes  |  |
+ | http_status | string? |  yes  |  |
+ | items | [JobMetricsDto](#JobMetricsDto)? |  yes  |  |
+ | message | string? |  yes  |  |
+ | page | [Page](#Page)? |  yes  |  |
+ | payload | [JobMetricsDto](#JobMetricsDto)? |  yes  |  |
+ | status | number? |  yes  |  |
+ | timestamp | string? |  yes  |  |
+ | total_time_taken_in_millis | number? |  yes  |  |
+ | trace_id | string? |  yes  |  |
+ 
 
 ---
 
-
- 
- 
- #### [ResponseEnvelopeJobMetricsDto](#ResponseEnvelopeJobMetricsDto)
+#### [ResponseEnvelopeKafkaResponse](#ResponseEnvelopeKafkaResponse)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | timestamp | string |  no  |  |
- | status | number |  no  |  |
- | error | string |  no  |  |
- | exception | string |  no  |  |
- | message | string |  no  |  |
- | total_time_taken_in_millis | number |  no  |  |
- | http_status | string |  no  |  |
- | items | [JobMetricsDto](#JobMetricsDto) |  no  |  |
- | payload | [JobMetricsDto](#JobMetricsDto) |  no  |  |
- | trace_id | string |  no  |  |
- | page | [Page](#Page) |  no  |  |
+ | error | string? |  yes  |  |
+ | exception | string? |  yes  |  |
+ | http_status | string? |  yes  |  |
+ | items | [KafkaResponse](#KafkaResponse)? |  yes  |  |
+ | message | string? |  yes  |  |
+ | page | [Page](#Page)? |  yes  |  |
+ | payload | [KafkaResponse](#KafkaResponse)? |  yes  |  |
+ | status | number? |  yes  |  |
+ | timestamp | string? |  yes  |  |
+ | total_time_taken_in_millis | number? |  yes  |  |
+ | trace_id | string? |  yes  |  |
+ 
 
 ---
 
-
- 
- 
- #### [JobConfigListDTO](#JobConfigListDTO)
+#### [ResponseEnvelopeListJobConfigDTO](#ResponseEnvelopeListJobConfigDTO)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | code | string |  no  |  |
- | alias | string |  no  |  |
- | modified_by | string |  no  |  |
- | created_by | string |  no  |  |
- | modified_on | string |  no  |  |
- | created_on | string |  no  |  |
- | active | boolean |  no  |  |
- | type | string |  no  |  |
+ | error | string? |  yes  |  |
+ | exception | string? |  yes  |  |
+ | http_status | string? |  yes  |  |
+ | items | [[JobConfigDTO](#JobConfigDTO)]? |  yes  |  |
+ | message | string? |  yes  |  |
+ | page | [Page](#Page)? |  yes  |  |
+ | payload | [[JobConfigDTO](#JobConfigDTO)]? |  yes  |  |
+ | status | number? |  yes  |  |
+ | timestamp | string? |  yes  |  |
+ | total_time_taken_in_millis | number? |  yes  |  |
+ | trace_id | string? |  yes  |  |
+ 
 
 ---
 
-
- 
- 
- #### [ResponseEnvelopeListJobConfigListDTO](#ResponseEnvelopeListJobConfigListDTO)
+#### [ResponseEnvelopeListJobConfigListDTO](#ResponseEnvelopeListJobConfigListDTO)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | timestamp | string |  no  |  |
- | status | number |  no  |  |
- | error | string |  no  |  |
- | exception | string |  no  |  |
- | message | string |  no  |  |
- | total_time_taken_in_millis | number |  no  |  |
- | http_status | string |  no  |  |
- | items | [[JobConfigListDTO](#JobConfigListDTO)] |  no  |  |
- | payload | [[JobConfigListDTO](#JobConfigListDTO)] |  no  |  |
- | trace_id | string |  no  |  |
- | page | [Page](#Page) |  no  |  |
+ | error | string? |  yes  |  |
+ | exception | string? |  yes  |  |
+ | http_status | string? |  yes  |  |
+ | items | [[JobConfigListDTO](#JobConfigListDTO)]? |  yes  |  |
+ | message | string? |  yes  |  |
+ | page | [Page](#Page)? |  yes  |  |
+ | payload | [[JobConfigListDTO](#JobConfigListDTO)]? |  yes  |  |
+ | status | number? |  yes  |  |
+ | timestamp | string? |  yes  |  |
+ | total_time_taken_in_millis | number? |  yes  |  |
+ | trace_id | string? |  yes  |  |
+ 
+
+---
+
+#### [ResponseEnvelopeListJobConfigRawDTO](#ResponseEnvelopeListJobConfigRawDTO)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | error | string? |  yes  |  |
+ | exception | string? |  yes  |  |
+ | http_status | string? |  yes  |  |
+ | items | [[JobConfigRawDTO](#JobConfigRawDTO)]? |  yes  |  |
+ | message | string? |  yes  |  |
+ | page | [Page](#Page)? |  yes  |  |
+ | payload | [[JobConfigRawDTO](#JobConfigRawDTO)]? |  yes  |  |
+ | status | number? |  yes  |  |
+ | timestamp | string? |  yes  |  |
+ | total_time_taken_in_millis | number? |  yes  |  |
+ | trace_id | string? |  yes  |  |
+ 
+
+---
+
+#### [ResponseEnvelopeListJobStepsDTO](#ResponseEnvelopeListJobStepsDTO)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | error | string? |  yes  |  |
+ | exception | string? |  yes  |  |
+ | http_status | string? |  yes  |  |
+ | items | [[JobStepsDTO](#JobStepsDTO)]? |  yes  |  |
+ | message | string? |  yes  |  |
+ | page | [Page](#Page)? |  yes  |  |
+ | payload | [[JobStepsDTO](#JobStepsDTO)]? |  yes  |  |
+ | status | number? |  yes  |  |
+ | timestamp | string? |  yes  |  |
+ | total_time_taken_in_millis | number? |  yes  |  |
+ | trace_id | string? |  yes  |  |
+ 
+
+---
+
+#### [ResponseEnvelopeListSlingshotConfigurationDetail](#ResponseEnvelopeListSlingshotConfigurationDetail)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | error | string? |  yes  |  |
+ | exception | string? |  yes  |  |
+ | http_status | string? |  yes  |  |
+ | items | [[SlingshotConfigurationDetail](#SlingshotConfigurationDetail)]? |  yes  |  |
+ | message | string? |  yes  |  |
+ | page | [Page](#Page)? |  yes  |  |
+ | payload | [[SlingshotConfigurationDetail](#SlingshotConfigurationDetail)]? |  yes  |  |
+ | status | number? |  yes  |  |
+ | timestamp | string? |  yes  |  |
+ | total_time_taken_in_millis | number? |  yes  |  |
+ | trace_id | string? |  yes  |  |
+ 
+
+---
+
+#### [ResponseEnvelopeString](#ResponseEnvelopeString)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | error | string? |  yes  |  |
+ | exception | string? |  yes  |  |
+ | http_status | string? |  yes  |  |
+ | items | string? |  yes  |  |
+ | message | string? |  yes  |  |
+ | page | [Page](#Page)? |  yes  |  |
+ | payload | string? |  yes  |  |
+ | status | number? |  yes  |  |
+ | timestamp | string? |  yes  |  |
+ | total_time_taken_in_millis | number? |  yes  |  |
+ | trace_id | string? |  yes  |  |
+ 
+
+---
+
+#### [Send](#Send)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | processed | boolean? |  yes  |  |
+ | raw | boolean? |  yes  |  |
+ 
+
+---
+
+#### [SFTPConfig](#SFTPConfig)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | archive_config | [ArchiveConfig](#ArchiveConfig)? |  yes  |  |
+ | file_regex | string? |  yes  |  |
+ | host | string? |  yes  |  |
+ | interval | number? |  yes  |  |
+ | local_dir | string? |  yes  |  |
+ | password | string? |  yes  |  |
+ | password_protected | boolean? |  yes  |  |
+ | port | number? |  yes  |  |
+ | private_key_path | string? |  yes  |  |
+ | read_all_files | boolean? |  yes  |  |
+ | remote_dir | string? |  yes  |  |
+ | retries | number? |  yes  |  |
+ | strict_host_key_checking | boolean? |  yes  |  |
+ | unzip | boolean? |  yes  |  |
+ | username | string? |  yes  |  |
+ | zip_file_regex | string? |  yes  |  |
+ | zip_format | string? |  yes  |  |
+ 
+
+---
+
+#### [SlingshotConfigurationDetail](#SlingshotConfigurationDetail)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | companies | [[GCompany](#GCompany)]? |  yes  |  |
+ | integration | [SlingshotIntegration](#SlingshotIntegration)? |  yes  |  |
+ 
+
+---
+
+#### [SlingshotIntegration](#SlingshotIntegration)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | _id | string? |  yes  |  |
+ | description | string? |  yes  |  |
+ | meta | [[Metum](#Metum)]? |  yes  |  |
+ | name | string? |  yes  |  |
+ | slug | string? |  yes  |  |
+ 
+
+---
+
+#### [StoreConfig](#StoreConfig)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | job_code | string? |  yes  |  |
+ | process_config | [ProcessConfig](#ProcessConfig)? |  yes  |  |
+ | properties | [String: string]? |  yes  |  |
+ | store_alias | string? |  yes  |  |
+ | store_file_name | string? |  yes  |  |
+ | store_file_regex | string? |  yes  |  |
+ | storeid | string? |  yes  |  |
+ 
+
+---
+
+#### [StoreData](#StoreData)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | location_id | string? |  yes  |  |
+ 
+
+---
+
+#### [StoreFilter](#StoreFilter)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | exclude_tags | [string]? |  yes  |  |
+ | include_tags | [string]? |  yes  |  |
+ | query | string? |  yes  |  |
+ 
+
+---
+
+#### [SuppressStoreModel](#SuppressStoreModel)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | stores | [number]? |  yes  |  |
+ 
+
+---
+
+#### [SuppressStorePayload](#SuppressStorePayload)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | meta | [KafkaMetaModel](#KafkaMetaModel)? |  yes  |  |
+ | payload | [[SuppressStoreModel](#SuppressStoreModel)]? |  yes  |  |
+ 
+
+---
+
+#### [TaskConfig](#TaskConfig)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | name | string? |  yes  |  |
+ | task_config_id | number? |  yes  |  |
+ | task_params | [[TaskParam](#TaskParam)]? |  yes  |  |
+ 
+
+---
+
+#### [TaskDTO](#TaskDTO)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | group_list | [[GenericDTO](#GenericDTO)]? |  yes  |  |
+ | type | number? |  yes  |  |
+ 
+
+---
+
+#### [TaskParam](#TaskParam)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | name | string? |  yes  |  |
+ | value | string? |  yes  |  |
+ 
+
+---
+
+#### [TaskStepConfig](#TaskStepConfig)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | task_config_group_ids | [number]? |  yes  |  |
+ | task_config_ids | [number]? |  yes  |  |
+ | task_configs | [[TaskConfig](#TaskConfig)]? |  yes  |  |
+ 
 
 ---
 
