@@ -13813,7 +13813,7 @@ class PlatformClient {
 /**
  * @typedef GetStoresViewResponse
  * @property {ItemResponse[]} [items]
- * @property {PageResponse} page
+ * @property {ServiceabilityPageResponse} page
  */
 /**
  * @typedef GetZoneDataViewChannels
@@ -13948,16 +13948,31 @@ class PlatformClient {
  * @property {number} [minute]
  */
 /**
- * @typedef PageResponse
+ * @typedef ProductReturnConfigResponse
+ * @property {boolean} [on_same_store]
+ */
+/**
+ * @typedef ReAssignStoreRequest
+ * @property {Object[]} articles
+ * @property {Object} configuration
+ * @property {string} identifier
+ * @property {string[]} ignored_locations
+ * @property {string} to_pincode
+ */
+/**
+ * @typedef ReAssignStoreResponse
+ * @property {Object[]} [articles]
+ * @property {Object} error
+ * @property {boolean} success
+ * @property {string} to_pincode
+ */
+/**
+ * @typedef ServiceabilityPageResponse
  * @property {number} [current]
  * @property {boolean} [has_next]
  * @property {number} [item_total]
  * @property {number} [size]
  * @property {string} [type]
- */
-/**
- * @typedef ProductReturnConfigResponse
- * @property {boolean} [on_same_store]
  */
 /**
  * @typedef ServiceabilityrErrorResponse

@@ -1828,8 +1828,10 @@ class PlatformApplicationClient {
 /** @typedef MobileNo */
 /** @typedef ModifiedByResponse */
 /** @typedef OpeningClosing */
-/** @typedef PageResponse */
 /** @typedef ProductReturnConfigResponse */
+/** @typedef ReAssignStoreRequest */
+/** @typedef ReAssignStoreResponse */
+/** @typedef ServiceabilityPageResponse */
 /** @typedef ServiceabilityrErrorResponse */
 /** @typedef TimmingResponse */
 /** @typedef UpdateZoneData */

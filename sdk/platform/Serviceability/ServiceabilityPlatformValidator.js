@@ -26,6 +26,12 @@ class ServiceabilityValidator {
     }).required();
   }
 
+  static getOptimalLocations() {
+    return Joi.object({
+      body: ServiceabilityModel.ReAssignStoreRequest().required(),
+    }).required();
+  }
+
   static getStore() {
     return Joi.object({
       storeUid: Joi.number().required(),

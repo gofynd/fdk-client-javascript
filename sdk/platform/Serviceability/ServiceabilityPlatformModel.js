@@ -154,7 +154,7 @@ class ServiceabilityModel {
   static GetStoresViewResponse() {
     return Joi.object({
       items: Joi.array().items(ServiceabilityModel.ItemResponse()),
-      page: ServiceabilityModel.PageResponse().required(),
+      page: ServiceabilityModel.ServiceabilityPageResponse().required(),
     });
   }
   static GetZoneDataViewChannels() {
@@ -314,18 +314,35 @@ class ServiceabilityModel {
       minute: Joi.number(),
     });
   }
-  static PageResponse() {
+  static ProductReturnConfigResponse() {
+    return Joi.object({
+      on_same_store: Joi.boolean(),
+    });
+  }
+  static ReAssignStoreRequest() {
+    return Joi.object({
+      articles: Joi.array().items(Joi.any()).required(),
+      configuration: Joi.any().required(),
+      identifier: Joi.string().allow("").required(),
+      ignored_locations: Joi.array().items(Joi.string().allow("")).required(),
+      to_pincode: Joi.string().allow("").required(),
+    });
+  }
+  static ReAssignStoreResponse() {
+    return Joi.object({
+      articles: Joi.array().items(Joi.any()),
+      error: Joi.any().required(),
+      success: Joi.boolean().required(),
+      to_pincode: Joi.string().allow("").required(),
+    });
+  }
+  static ServiceabilityPageResponse() {
     return Joi.object({
       current: Joi.number(),
       has_next: Joi.boolean(),
       item_total: Joi.number(),
       size: Joi.number(),
       type: Joi.string().allow(""),
-    });
-  }
-  static ProductReturnConfigResponse() {
-    return Joi.object({
-      on_same_store: Joi.boolean(),
     });
   }
   static ServiceabilityrErrorResponse() {

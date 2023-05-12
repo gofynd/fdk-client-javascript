@@ -13,6 +13,7 @@ Logistics Configuration API's allows you to configure zone, application logistic
 * [getCompanyStoreView](#getcompanystoreview)
 * [getEntityRegionView](#getentityregionview)
 * [getListView](#getlistview)
+* [getOptimalLocations](#getoptimallocations)
 * [getStore](#getstore)
 * [getZoneDataView](#getzonedataview)
 * [insertZoneControllerView](#insertzonecontrollerview)
@@ -291,6 +292,61 @@ This API returns Zone List View of the application.
 [ListViewResponse](#ListViewResponse)
 
 Zone List of application in descending order of their last modified date.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### getOptimalLocations
+Get serviceable store of the item
+
+
+
+```javascript
+// Promise
+const promise = platformClient.serviceability.getOptimalLocations({  body : value });
+
+// Async/Await
+const data = await platformClient.serviceability.getOptimalLocations({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [ReAssignStoreRequest](#ReAssignStoreRequest) | yes | Request body |
+
+
+This API returns serviceable store of the item.
+
+*Returned Response:*
+
+
+
+
+[ReAssignStoreResponse](#ReAssignStoreResponse)
+
+Response status_code
 
 
 
@@ -817,7 +873,7 @@ Response status_code
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | items | [[ItemResponse](#ItemResponse)]? |  yes  |  |
- | page | [PageResponse](#PageResponse) |  no  |  |
+ | page | [ServiceabilityPageResponse](#ServiceabilityPageResponse) |  no  |  |
  
 
 ---
@@ -1039,7 +1095,41 @@ Response status_code
 
 ---
 
-#### [PageResponse](#PageResponse)
+#### [ProductReturnConfigResponse](#ProductReturnConfigResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | on_same_store | boolean? |  yes  |  |
+ 
+
+---
+
+#### [ReAssignStoreRequest](#ReAssignStoreRequest)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | articles | [string] |  no  |  |
+ | configuration | string |  no  |  |
+ | identifier | string |  no  |  |
+ | ignored_locations | [string] |  no  |  |
+ | to_pincode | string |  no  |  |
+ 
+
+---
+
+#### [ReAssignStoreResponse](#ReAssignStoreResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | articles | [string]? |  yes  |  |
+ | error | string |  no  |  |
+ | success | boolean |  no  |  |
+ | to_pincode | string |  no  |  |
+ 
+
+---
+
+#### [ServiceabilityPageResponse](#ServiceabilityPageResponse)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
@@ -1048,15 +1138,6 @@ Response status_code
  | item_total | number? |  yes  |  |
  | size | number? |  yes  |  |
  | type | string? |  yes  |  |
- 
-
----
-
-#### [ProductReturnConfigResponse](#ProductReturnConfigResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | on_same_store | boolean? |  yes  |  |
  
 
 ---

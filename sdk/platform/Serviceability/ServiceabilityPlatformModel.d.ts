@@ -36,8 +36,10 @@ declare class ServiceabilityModel {
     static MobileNo(): any;
     static ModifiedByResponse(): any;
     static OpeningClosing(): any;
-    static PageResponse(): any;
     static ProductReturnConfigResponse(): any;
+    static ReAssignStoreRequest(): any;
+    static ReAssignStoreResponse(): any;
+    static ServiceabilityPageResponse(): any;
     static ServiceabilityrErrorResponse(): any;
     static TimmingResponse(): any;
     static UpdateZoneData(): any;

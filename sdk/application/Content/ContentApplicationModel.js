@@ -886,10 +886,6 @@ class ContentModel {
 
       "product",
 
-      "product-reviews",
-
-      "add-product-review",
-
       "product-request",
 
       "products",
