@@ -3943,24 +3943,11 @@ Success. Returns a JSON object as shown below. Refer `VerifyOtpSuccess` for more
 
 ---
 
-#### [SessionListResponseInfo](#SessionListResponseInfo)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | domain | string? |  yes  |  |
- | expire_in | string? |  yes  |  |
- | ip | string? |  yes  |  |
- | session_id | string? |  yes  |  |
- | user_agent | string? |  yes  |  |
- 
-
----
-
 #### [SessionListResponseSchema](#SessionListResponseSchema)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | items | [[SessionListResponseInfo](#SessionListResponseInfo)]? |  yes  |  |
+ | items | [string]? |  yes  |  |
  
 
 ---
@@ -4069,25 +4056,11 @@ Success. Returns a JSON object as shown below. Refer `VerifyOtpSuccess` for more
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | emails | [[UserEmails](#UserEmails)]? |  yes  |  |
  | external_id | string? |  yes  |  |
  | first_name | string? |  yes  |  |
  | gender | string? |  yes  |  |
  | last_name | string? |  yes  |  |
  | meta | string? |  yes  |  |
- | phone_numbers | [[UserPhoneNumbers](#UserPhoneNumbers)]? |  yes  |  |
- 
-
----
-
-#### [UserEmails](#UserEmails)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | active | boolean? |  yes  |  |
- | email | string? |  yes  |  |
- | primary | boolean? |  yes  |  |
- | verified | boolean? |  yes  |  |
  
 
 ---
@@ -4125,19 +4098,6 @@ Success. Returns a JSON object as shown below. Refer `VerifyOtpSuccess` for more
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | user | [UserSchema](#UserSchema)? |  yes  |  |
- 
-
----
-
-#### [UserPhoneNumbers](#UserPhoneNumbers)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | active | boolean? |  yes  |  |
- | country_code | string? |  yes  |  |
- | phone | string? |  yes  |  |
- | primary | boolean? |  yes  |  |
- | verified | boolean? |  yes  |  |
  
 
 ---

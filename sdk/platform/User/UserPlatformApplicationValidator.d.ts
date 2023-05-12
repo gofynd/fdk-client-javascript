@@ -6,7 +6,6 @@ declare class UserValidator {
     static createUserGroup(): any;
     static createUserSession(): any;
     static deleteActiveSessions(): any;
-    static deleteSession(): any;
     static getActiveSessions(): any;
     static getCustomers(): any;
     static getPlatformConfig(): any;

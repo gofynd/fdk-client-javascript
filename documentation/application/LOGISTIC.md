@@ -8,8 +8,6 @@
 ## Logistic Methods
 Logistics Promise Engine APIs allows you to configure zone, pincode, TAT, logistics and many more useful features. 
 
-* [getAllCountries](#getallcountries)
-* [getOptimalLocations](#getoptimallocations)
 * [getPincodeCity](#getpincodecity)
 * [getPincodeZones](#getpincodezones)
 * [getTatProduct](#gettatproduct)
@@ -19,112 +17,6 @@ Logistics Promise Engine APIs allows you to configure zone, pincode, TAT, logist
 ## Methods with example and description
 
 
-
-
-### getAllCountries
-Get Country List
-
-
-
-```javascript
-// Promise
-const promise = applicationClient.logistic.getAllCountries();
-
-// Async/Await
-const data = await applicationClient.logistic.getAllCountries();
-```
-
-
-
-
-
-
-Get all countries
-
-*Returned Response:*
-
-
-
-
-[CountryListResponse](#CountryListResponse)
-
-Get Country List
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### getOptimalLocations
-GET zone from the Pincode.
-
-
-
-```javascript
-// Promise
-const promise = applicationClient.logistic.getOptimalLocations({  body : value });
-
-// Async/Await
-const data = await applicationClient.logistic.getOptimalLocations({  body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |
-| body | [ReAssignStoreRequest](#ReAssignStoreRequest) | yes | Request body |
-
-
-This API returns zone from the Pincode View.
-
-*Returned Response:*
-
-
-
-
-[ReAssignStoreResponse](#ReAssignStoreResponse)
-
-Response status_code
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-
-```
-</details>
-
-
-
-
-
-
-
-
-
----
 
 
 ### getPincodeCity
@@ -189,10 +81,6 @@ Get pincode data
           "zone": "West",
           "internal_zone_id": 4
         },
-        "meta_code": {
-          "country_code": "IND",
-          "isd_code": "+91"
-        },
         "parents": [
           {
             "sub_type": "country",
@@ -212,14 +100,7 @@ Get pincode data
             "display_name": "Thane",
             "uid": "city:INDIA|MAHARASHTRA|MUMBAI"
           }
-        ],
-        "lat_long": {
-          "type": "Point",
-          "coordinates": [
-            3.8858955,
-            7.2272335
-          ]
-        }
+        ]
       }
     ],
     "request_uuid": "fce9f431215e71c9ee0e86e792ae1dce4",
@@ -499,60 +380,6 @@ Get TAT  data
 ### Schemas
 
 
-#### [CountryEntityResponse](#CountryEntityResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | display_name | string? |  yes  |  |
- | is_active | boolean? |  yes  |  |
- | logistics | [LogisticsResponse](#LogisticsResponse)? |  yes  |  |
- | meta | [CountryMetaResponse](#CountryMetaResponse)? |  yes  |  |
- | name | string? |  yes  |  |
- | parent_id | string? |  yes  |  |
- | sub_type | string? |  yes  |  |
- | type | string? |  yes  |  |
- | uid | string? |  yes  |  |
- 
-
----
-
-#### [CountryListResponse](#CountryListResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | results | [[CountryEntityResponse](#CountryEntityResponse)]? |  yes  |  |
- 
-
----
-
-#### [CountryMetaResponse](#CountryMetaResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | country_code | string? |  yes  |  |
- | isd_code | string? |  yes  |  |
- 
-
----
-
-#### [DP](#DP)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | area_code | string? |  yes  |  |
- | assign_dp_from_sb | boolean? |  yes  |  |
- | external_account_id | string? |  yes  |  |
- | fm_priority | number |  no  |  |
- | internal_account_id | string? |  yes  |  |
- | lm_priority | number |  no  |  |
- | operations | [string] |  no  |  |
- | payment_mode | string |  no  |  |
- | rvp_priority | number |  no  |  |
- | transport_mode | string? |  yes  |  |
- 
-
----
-
 #### [GetZoneFromPincodeViewRequest](#GetZoneFromPincodeViewRequest)
 
  | Properties | Type | Nullable | Description |
@@ -569,15 +396,6 @@ Get TAT  data
  | ---------- | ---- | -------- | ----------- |
  | serviceability_type | string |  no  |  |
  | zones | [string] |  no  |  |
- 
-
----
-
-#### [LogisticsResponse](#LogisticsResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | dp | [String: [DP](#DP)]? |  yes  |  |
  
 
 ---
@@ -599,9 +417,7 @@ Get TAT  data
  | ---------- | ---- | -------- | ----------- |
  | display_name | string? |  yes  |  |
  | error | [PincodeErrorSchemaResponse](#PincodeErrorSchemaResponse) |  no  |  |
- | lat_long | [PincodeLatLongData](#PincodeLatLongData)? |  yes  |  |
  | meta | [PincodeMetaResponse](#PincodeMetaResponse)? |  yes  |  |
- | meta_code | [CountryMetaResponse](#CountryMetaResponse)? |  yes  |  |
  | name | string? |  yes  |  |
  | parents | [[PincodeParentsResponse](#PincodeParentsResponse)]? |  yes  |  |
  | sub_type | string? |  yes  |  |
@@ -617,16 +433,6 @@ Get TAT  data
  | message | string? |  yes  |  |
  | type | string? |  yes  |  |
  | value | string? |  yes  |  |
- 
-
----
-
-#### [PincodeLatLongData](#PincodeLatLongData)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | coordinates | [string]? |  yes  |  |
- | type | string? |  yes  |  |
  
 
 ---
@@ -653,35 +459,11 @@ Get TAT  data
 
 ---
 
-#### [ReAssignStoreRequest](#ReAssignStoreRequest)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | articles | [string] |  no  |  |
- | configuration | string |  no  |  |
- | identifier | string |  no  |  |
- | ignored_locations | [string] |  no  |  |
- | to_pincode | string |  no  |  |
- 
-
----
-
-#### [ReAssignStoreResponse](#ReAssignStoreResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | articles | [string]? |  yes  |  |
- | error | string |  no  |  |
- | success | boolean |  no  |  |
- | to_pincode | string |  no  |  |
- 
-
----
-
 #### [TATArticlesRequest](#TATArticlesRequest)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | available_quantity | number? |  yes  |  |
  | category | [TATCategoryRequest](#TATCategoryRequest)? |  yes  |  |
  | manufacturing_time | number? |  yes  |  |
  | manufacturing_time_unit | string? |  yes  |  |

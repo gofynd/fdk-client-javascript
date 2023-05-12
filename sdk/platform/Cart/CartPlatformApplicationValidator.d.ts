@@ -7,13 +7,10 @@ declare class CartValidator {
     static createPromotion(): any;
     static fetchAndvalidateCartItems(): any;
     static getAbandonedCart(): any;
-    static getAbandonedCartDetails(): any;
     static getCouponById(): any;
-    static getCouponCodeExists(): any;
-    static getCouponOptionValues(): any;
     static getCoupons(): any;
+    static getPromosCouponConfig(): any;
     static getPromotionById(): any;
-    static getPromotionCodeExists(): any;
     static getPromotions(): any;
     static updateCart(): any;
     static updateCoupon(): any;

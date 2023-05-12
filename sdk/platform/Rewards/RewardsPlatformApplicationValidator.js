@@ -4,7 +4,6 @@ const RewardsModel = require("./RewardsPlatformModel");
 class RewardsValidator {
   static getGiveawayAudienceStatus() {
     return Joi.object({
-      id: Joi.string().allow("").required(),
       audienceId: Joi.string().allow("").required(),
     }).required();
   }
@@ -18,17 +17,13 @@ class RewardsValidator {
   static getOfferByName() {
     return Joi.object({
       name: Joi.string().allow("").required(),
+
+      cookie: Joi.string().allow("").required(),
     }).required();
   }
 
   static getRewardsConfiguration() {
     return Joi.object({}).required();
-  }
-
-  static getUserDetails() {
-    return Joi.object({
-      userId: Joi.string().allow("").required(),
-    }).required();
   }
 
   static getUserPointsHistory() {
@@ -83,6 +78,12 @@ class RewardsValidator {
       userId: Joi.string().allow("").required(),
 
       body: RewardsModel.AppUser().required(),
+    }).required();
+  }
+
+  static user() {
+    return Joi.object({
+      userId: Joi.string().allow("").required(),
     }).required();
   }
 }

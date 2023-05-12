@@ -554,18 +554,9 @@ class UserModel {
       type: Joi.string().allow(""),
     });
   }
-  static SessionListResponseInfo() {
-    return Joi.object({
-      domain: Joi.string().allow(""),
-      expire_in: Joi.string().allow(""),
-      ip: Joi.string().allow(""),
-      session_id: Joi.string().allow(""),
-      user_agent: Joi.string().allow(""),
-    });
-  }
   static SessionListResponseSchema() {
     return Joi.object({
-      items: Joi.array().items(UserModel.SessionListResponseInfo()),
+      items: Joi.array().items(Joi.string().allow("")),
     });
   }
   static SessionListSuccess() {
@@ -630,21 +621,11 @@ class UserModel {
   }
   static UpdateUserRequestSchema() {
     return Joi.object({
-      emails: Joi.array().items(UserModel.UserEmails()),
       external_id: Joi.string().allow(""),
       first_name: Joi.string().allow(""),
       gender: Joi.string().allow(""),
       last_name: Joi.string().allow(""),
       meta: Joi.any(),
-      phone_numbers: Joi.array().items(UserModel.UserPhoneNumbers()),
-    });
-  }
-  static UserEmails() {
-    return Joi.object({
-      active: Joi.boolean(),
-      email: Joi.string().allow(""),
-      primary: Joi.boolean(),
-      verified: Joi.boolean(),
     });
   }
   static UserGroupListResponseSchema() {
@@ -670,15 +651,6 @@ class UserModel {
   static UserObjectSchema() {
     return Joi.object({
       user: UserModel.UserSchema(),
-    });
-  }
-  static UserPhoneNumbers() {
-    return Joi.object({
-      active: Joi.boolean(),
-      country_code: Joi.string().allow(""),
-      phone: Joi.string().allow(""),
-      primary: Joi.boolean(),
-      verified: Joi.boolean(),
     });
   }
   static UserSchema() {

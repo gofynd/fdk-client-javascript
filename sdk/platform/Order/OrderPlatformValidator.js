@@ -55,6 +55,13 @@ class OrderValidator {
     }).required();
   }
 
+  static generatePOSReceiptByOrderId() {
+    return Joi.object({
+      orderId: Joi.string().allow("").required(),
+      documentType: Joi.string().allow(""),
+    }).required();
+  }
+
   static getAnnouncements() {
     return Joi.object({
       date: Joi.string().allow(""),

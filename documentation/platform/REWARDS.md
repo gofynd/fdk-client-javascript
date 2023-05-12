@@ -12,7 +12,6 @@ Earn and redeem reward points
 * [getGiveawayById](#getgiveawaybyid)
 * [getOfferByName](#getofferbyname)
 * [getRewardsConfiguration](#getrewardsconfiguration)
-* [getUserDetails](#getuserdetails)
 * [getUserPointsHistory](#getuserpointshistory)
 * [saveGiveAway](#savegiveaway)
 * [setRewardsConfiguration](#setrewardsconfiguration)
@@ -21,6 +20,7 @@ Earn and redeem reward points
 * [updateGiveAway](#updategiveaway)
 * [updateOfferByName](#updateofferbyname)
 * [updateUserStatus](#updateuserstatus)
+* [user](#user)
 
 
 
@@ -36,12 +36,10 @@ Get the Giveaway audience status
 
 ```javascript
 // Promise
-const promise = platformClient.application("<APPLICATION_ID>").rewards.getGiveawayAudienceStatus({  id : value,
- audienceId : value });
+const promise = platformClient.application("<APPLICATION_ID>").rewards.getGiveawayAudienceStatus({  audienceId : value });
 
 // Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").rewards.getGiveawayAudienceStatus({  id : value,
- audienceId : value });
+const data = await platformClient.application("<APPLICATION_ID>").rewards.getGiveawayAudienceStatus({  audienceId : value });
 ```
 
 
@@ -50,7 +48,6 @@ const data = await platformClient.application("<APPLICATION_ID>").rewards.getGiv
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
-| id | string | yes | Giveaway ID |   
 | audienceId | string | yes | audience id |  
 
 
@@ -151,10 +148,12 @@ Get offer by name
 
 ```javascript
 // Promise
-const promise = platformClient.application("<APPLICATION_ID>").rewards.getOfferByName({  name : value });
+const promise = platformClient.application("<APPLICATION_ID>").rewards.getOfferByName({  name : value,
+ cookie : value });
 
 // Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").rewards.getOfferByName({  name : value });
+const data = await platformClient.application("<APPLICATION_ID>").rewards.getOfferByName({  name : value,
+ cookie : value });
 ```
 
 
@@ -163,7 +162,8 @@ const data = await platformClient.application("<APPLICATION_ID>").rewards.getOff
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
-| name | string | yes | The name given to the offer. |  
+| name | string | yes | The name given to the offer. |   
+| cookie | string | yes | User's session cookie. This cookie is set in browser cookie when logged-in to fynd's authentication system i.e. `Grimlock` or by using grimlock-backend SDK for backend implementation. |  
 
 
 
@@ -228,62 +228,6 @@ Use this API to get a list of valid android paths required by the Rewards INIT A
 [ConfigurationRes](#ConfigurationRes)
 
 Success. Refer `ConfigurationRes` for more details.
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### getUserDetails
-Get user reward details
-
-
-
-```javascript
-// Promise
-const promise = platformClient.application("<APPLICATION_ID>").rewards.getUserDetails({  userId : value });
-
-// Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").rewards.getUserDetails({  userId : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| userId | string | yes | user id |  
-
-
-
-Use this API to get the user reward details
-
-*Returned Response:*
-
-
-
-
-[UserRes](#UserRes)
-
-Success. Check example below or refer `UserRes` for more details.
 
 
 
@@ -740,6 +684,62 @@ Use this API to update the user status active/archive
 [AppUser](#AppUser)
 
 Success
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### user
+Get user reward details
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").rewards.user({  userId : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").rewards.user({  userId : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| userId | string | yes | user id |  
+
+
+
+Use this API to get the user reward details
+
+*Returned Response:*
+
+
+
+
+[UserRes](#UserRes)
+
+Success. Check example below or refer `UserRes` for more details.
 
 
 

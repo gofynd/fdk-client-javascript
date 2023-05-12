@@ -28,6 +28,8 @@ const Analytics = require("./Analytics/AnalyticsPlatformApplicationClient");
 
 const Partner = require("./Partner/PartnerPlatformApplicationClient");
 
+const Serviceability = require("./Serviceability/ServiceabilityPlatformApplicationClient");
+
 const { FDKClientValidationError } = require("../common/FDKError");
 
 class PlatformApplicationClient {
@@ -65,6 +67,8 @@ class PlatformApplicationClient {
     this.analytics = new Analytics(config, applicationId);
 
     this.partner = new Partner(config, applicationId);
+
+    this.serviceability = new Serviceability(config, applicationId);
   }
 
   setExtraHeaders(header) {
@@ -262,7 +266,6 @@ class PlatformApplicationClient {
 /** @typedef SendVerificationLinkMobileRequestSchema */
 /** @typedef SessionDeleteResponseSchema */
 /** @typedef SessionExpiry */
-/** @typedef SessionListResponseInfo */
 /** @typedef SessionListResponseSchema */
 /** @typedef SessionListSuccess */
 /** @typedef Social */
@@ -275,11 +278,9 @@ class PlatformApplicationClient {
 /** @typedef UpdatePasswordRequestSchema */
 /** @typedef UpdateUserGroupSchema */
 /** @typedef UpdateUserRequestSchema */
-/** @typedef UserEmails */
 /** @typedef UserGroupListResponseSchema */
 /** @typedef UserGroupResponseSchema */
 /** @typedef UserObjectSchema */
-/** @typedef UserPhoneNumbers */
 /** @typedef UserSchema */
 /** @typedef UserSearchResponseSchema */
 /** @typedef VerifyEmailOtpRequestSchema */
@@ -399,8 +400,6 @@ class PlatformApplicationClient {
 /** @typedef CancelSubscriptionRes */
 /** @typedef ChargeLineItem */
 /** @typedef CheckValidityResponse */
-/** @typedef CreateOneTimeCharge */
-/** @typedef CreateOneTimeChargeResponse */
 /** @typedef CreateSubscriptionCharge */
 /** @typedef CreateSubscriptionResponse */
 /** @typedef CurrentPeriod */
@@ -430,8 +429,6 @@ class PlatformApplicationClient {
 /** @typedef InvoicesDataClient */
 /** @typedef InvoicesDataPaymentMethod */
 /** @typedef InvoicesDataPeriod */
-/** @typedef OneTimeChargeEntity */
-/** @typedef OneTimeChargeItem */
 /** @typedef Page */
 /** @typedef Phone */
 /** @typedef Plan */
@@ -656,7 +653,6 @@ class PlatformApplicationClient {
 /** @typedef CheckResponse */
 /** @typedef Click2CallResponse */
 /** @typedef CompanyDetails */
-/** @typedef ContactDetails */
 /** @typedef CreateChannelConfig */
 /** @typedef CreateChannelConfigData */
 /** @typedef CreateChannelConfigResponse */
@@ -695,6 +691,7 @@ class PlatformApplicationClient {
 /** @typedef Formatted */
 /** @typedef FulfillingStore */
 /** @typedef FyndOrderIdList */
+/** @typedef GeneratePosOrderReceiptResponse */
 /** @typedef GetActionsResponse */
 /** @typedef GetBagsPlatformResponse */
 /** @typedef GSTDetailsData */
@@ -747,7 +744,6 @@ class PlatformApplicationClient {
 /** @typedef PaymentMethods */
 /** @typedef PaymentModeInfo */
 /** @typedef PDFLinks */
-/** @typedef PhoneDetails */
 /** @typedef PlatformBreakupValues */
 /** @typedef PlatformChannel */
 /** @typedef PlatformDeliveryAddress */
@@ -1329,8 +1325,6 @@ class PlatformApplicationClient {
 /** @typedef CartFeature */
 /** @typedef Charges */
 /** @typedef CommonFeature */
-/** @typedef CommsConfig */
-/** @typedef CommunicationConfig */
 /** @typedef CommunicationOptinDialogFeature */
 /** @typedef CompaniesResponse */
 /** @typedef CompanyAboutAddress */
@@ -1474,14 +1468,17 @@ class PlatformApplicationClient {
 /** @typedef AbandonedCart */
 /** @typedef AbandonedCartResponse */
 /** @typedef ActionQuery */
+/** @typedef ActivePromosResponse */
 /** @typedef AddCartDetailResponse */
 /** @typedef AddCartRequest */
 /** @typedef AddProductCart */
+/** @typedef AppliedFreeArticles */
 /** @typedef AppliedPromotion */
 /** @typedef ArticlePriceInfo */
 /** @typedef BaseInfo */
 /** @typedef BasePrice */
 /** @typedef BulkBundleRestriction */
+/** @typedef BuyRules */
 /** @typedef CartBreakup */
 /** @typedef CartCurrency */
 /** @typedef CartDetailResponse */
@@ -1497,16 +1494,19 @@ class PlatformApplicationClient {
 /** @typedef CouponAuthor */
 /** @typedef CouponBreakup */
 /** @typedef CouponDateMeta */
+/** @typedef CouponDetails */
 /** @typedef CouponPartialUpdate */
 /** @typedef CouponSchedule */
 /** @typedef CouponsResponse */
 /** @typedef CouponUpdate */
 /** @typedef DiscountOffer */
 /** @typedef DiscountRule */
+/** @typedef DiscountRulesApp */
 /** @typedef DisplayBreakup */
 /** @typedef DisplayMeta */
 /** @typedef DisplayMeta1 */
 /** @typedef DisplayMetaDict */
+/** @typedef FreeGiftItem */
 /** @typedef Identifier */
 /** @typedef ItemCriteria */
 /** @typedef LoyaltyPoints */
@@ -1524,7 +1524,6 @@ class PlatformApplicationClient {
 /** @typedef OperationErrorResponse */
 /** @typedef Ownership */
 /** @typedef Ownership1 */
-/** @typedef Ownership2 */
 /** @typedef Page */
 /** @typedef PaymentAllowValue */
 /** @typedef PaymentAllowValue1 */
@@ -1536,7 +1535,6 @@ class PlatformApplicationClient {
 /** @typedef ProductAction */
 /** @typedef ProductArticle */
 /** @typedef ProductAvailability */
-/** @typedef ProductAvailabilitySize */
 /** @typedef ProductImage */
 /** @typedef ProductPrice */
 /** @typedef ProductPriceInfo */
@@ -1562,6 +1560,7 @@ class PlatformApplicationClient {
 /** @typedef ShippingAddress */
 /** @typedef State */
 /** @typedef SuccessMessage */
+/** @typedef Tags */
 /** @typedef UpdateCartDetailResponse */
 /** @typedef UpdateCartRequest */
 /** @typedef UpdateProductCart */
@@ -1664,5 +1663,55 @@ class PlatformApplicationClient {
 /** @typedef Modifier */
 /** @typedef RequestBodyAuditLog */
 /** @typedef ResourceNotFound */
+
+/** @typedef AddressResponse */
+/** @typedef ApplicationServiceabilityConfig */
+/** @typedef ApplicationServiceabilityConfigResponse */
+/** @typedef CompanyStoreView_PageItems */
+/** @typedef CompanyStoreView_Response */
+/** @typedef ContactNumberResponse */
+/** @typedef CreatedByResponse */
+/** @typedef CreateZoneData */
+/** @typedef DocumentsResponse */
+/** @typedef Dp */
+/** @typedef EinvoiceResponse */
+/** @typedef EntityRegionView_Error */
+/** @typedef EntityRegionView_Items */
+/** @typedef EntityRegionView_page */
+/** @typedef EntityRegionView_Request */
+/** @typedef EntityRegionView_Response */
+/** @typedef EwayBillResponse */
+/** @typedef GetSingleZoneDataViewResponse */
+/** @typedef GetStoresViewResponse */
+/** @typedef GetZoneDataViewChannels */
+/** @typedef GetZoneDataViewItems */
+/** @typedef GetZoneFromPincodeViewRequest */
+/** @typedef GetZoneFromPincodeViewResponse */
+/** @typedef GstCredentialsResponse */
+/** @typedef IntegrationTypeResponse */
+/** @typedef ItemResponse */
+/** @typedef ListViewChannels */
+/** @typedef ListViewItems */
+/** @typedef ListViewProduct */
+/** @typedef ListViewResponse */
+/** @typedef ListViewSummary */
+/** @typedef LogisticsResponse */
+/** @typedef ManagerResponse */
+/** @typedef MobileNo */
+/** @typedef ModifiedByResponse */
+/** @typedef OpeningClosing */
+/** @typedef PageResponse */
+/** @typedef ProductReturnConfigResponse */
+/** @typedef ServiceabilityrErrorResponse */
+/** @typedef TimmingResponse */
+/** @typedef UpdateZoneData */
+/** @typedef WarningsResponse */
+/** @typedef ZoneDataItem */
+/** @typedef ZoneMappingType */
+/** @typedef ZoneProductTypes */
+/** @typedef ZoneRequest */
+/** @typedef ZoneResponse */
+/** @typedef ZoneSuccessResponse */
+/** @typedef ZoneUpdateRequest */
 
 module.exports = PlatformApplicationClient;

@@ -52,28 +52,10 @@ class CartValidator {
     }).required();
   }
 
-  static getAbandonedCartDetails() {
-    return Joi.object({
-      id: Joi.string().allow(""),
-      i: Joi.boolean(),
-      b: Joi.boolean(),
-    }).required();
-  }
-
   static getCouponById() {
     return Joi.object({
       id: Joi.string().allow("").required(),
     }).required();
-  }
-
-  static getCouponCodeExists() {
-    return Joi.object({
-      code: Joi.string().allow(""),
-    }).required();
-  }
-
-  static getCouponOptionValues() {
-    return Joi.object({}).required();
   }
 
   static getCoupons() {
@@ -89,15 +71,13 @@ class CartValidator {
     }).required();
   }
 
+  static getPromosCouponConfig() {
+    return Joi.object({}).required();
+  }
+
   static getPromotionById() {
     return Joi.object({
       id: Joi.string().allow("").required(),
-    }).required();
-  }
-
-  static getPromotionCodeExists() {
-    return Joi.object({
-      code: Joi.string().allow(""),
     }).required();
   }
 
@@ -106,7 +86,7 @@ class CartValidator {
       pageNo: Joi.number(),
       pageSize: Joi.number(),
       q: Joi.string().allow(""),
-      isActive: Joi.boolean(),
+      status: Joi.string().allow(""),
       promoGroup: Joi.string().allow(""),
       promotionType: Joi.string().allow(""),
       fpPanel: Joi.string().allow(""),

@@ -1,20 +1,12 @@
 export = LogisticModel;
 declare class LogisticModel {
-    static CountryEntityResponse(): any;
-    static CountryListResponse(): any;
-    static CountryMetaResponse(): any;
-    static DP(): any;
     static GetZoneFromPincodeViewRequest(): any;
     static GetZoneFromPincodeViewResponse(): any;
-    static LogisticsResponse(): any;
     static PincodeApiResponse(): any;
     static PincodeDataResponse(): any;
     static PincodeErrorSchemaResponse(): any;
-    static PincodeLatLongData(): any;
     static PincodeMetaResponse(): any;
     static PincodeParentsResponse(): any;
-    static ReAssignStoreRequest(): any;
-    static ReAssignStoreResponse(): any;
     static TATArticlesRequest(): any;
     static TATArticlesResponse(): any;
     static TATCategoryRequest(): any;

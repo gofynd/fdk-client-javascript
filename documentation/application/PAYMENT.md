@@ -545,8 +545,8 @@ Success. Check the example shown below
   "data": {
     "amount": 2190000,
     "order_id": "order_JeaZ5ryKO01rno",
-    "email": "abc@example.com",
-    "contact": "9999999999",
+    "email": "pratikpatel@gofynd.com",
+    "contact": "8879805874",
     "currency": "INR",
     "customer_id": "cust_CZgcLVGsGP8BUQ",
     "callback_url": "https://api.fyndx0.com/service/webhooks/payment/v1.0/callback/link/?razorpay_order_id=order_JeaZ5ryKO01rno",
@@ -3561,54 +3561,23 @@ Success. Check the example shown below or refer `ValidateCustomerResponse` for m
 
 
 <details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; success is True i.e user is allowed</i></summary>
+<summary><i>&nbsp; Example:</i></summary>
 
 ```json
 {
-  "value": {
-    "success": true,
-    "message": "data fetched",
+  "success": true,
+  "message": "data fetched",
+  "data": {
+    "api_version": 2,
     "data": {
-      "api_version": 2,
-      "data": {
-        "approved": true,
-        "button_text": "Buy Now, Pay Later",
-        "first_transaction": false
-      },
-      "aggregator": "Simpl"
-    }
-  }
-}
-```
-</details>
-
-<details>
-<summary><i>&nbsp; success is True i.e user not allowed</i></summary>
-
-```json
-{
-  "value": {
-    "success": false,
-    "message": "data fetched",
-    "error": {
-      "api_version": 2,
-      "data": {
-        "approved": false,
-        "button_text": "Buy Now, Pay Later",
-        "first_transaction": false
-      },
-      "aggregator": "Simpl"
+      "approved": true,
+      "button_text": "Buy Now, Pay Later",
+      "first_transaction": false
     },
-    "data": {}
+    "aggregator": "Simpl"
   }
 }
 ```
-</details>
-
 </details>
 
 

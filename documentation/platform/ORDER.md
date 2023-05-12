@@ -16,6 +16,7 @@ Handles all platform order and shipment api(s)
 * [createOrder](#createorder)
 * [createShipmentReport](#createshipmentreport)
 * [dispatchManifest](#dispatchmanifest)
+* [generatePOSReceiptByOrderId](#generateposreceiptbyorderid)
 * [getAnnouncements](#getannouncements)
 * [getAppOrderShipmentDetails](#getappordershipmentdetails)
 * [getApplicationShipments](#getapplicationshipments)
@@ -525,6 +526,65 @@ const data = await platformClient.order.dispatchManifest({  body : value });
 [SuccessResponse](#SuccessResponse)
 
 Shipment Dispatched mapped with manifest!
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### generatePOSReceiptByOrderId
+
+
+
+
+```javascript
+// Promise
+const promise = platformClient.order.generatePOSReceiptByOrderId({  orderId : value,
+ documentType : value });
+
+// Async/Await
+const data = await platformClient.order.generatePOSReceiptByOrderId({  orderId : value,
+ documentType : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| orderId | string | yes |  |    
+| documentType | string | no |  |  
+
+
+
+
+
+*Returned Response:*
+
+
+
+
+[GeneratePosOrderReceiptResponse](#GeneratePosOrderReceiptResponse)
+
+We are processing the request!
 
 
 
@@ -5138,7 +5198,6 @@ We are processing the report!
  | employee_discount | number? |  yes  |  |
  | is_priority | boolean? |  yes  |  |
  | loyalty_discount | number? |  yes  |  |
- | marketplace_invoice_id | string? |  yes  |  |
  | order_item_id | string? |  yes  |  |
  | quantity | number? |  yes  |  |
  | size_level_total_qty | number? |  yes  |  |
@@ -5516,7 +5575,6 @@ We are processing the report!
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | employee_code | string? |  yes  |  |
  | first_name | string? |  yes  |  |
  | last_name | string? |  yes  |  |
  | staff_id | number? |  yes  |  |
@@ -5747,22 +5805,10 @@ We are processing the report!
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | address | string? |  yes  |  |
  | company_cin | string? |  yes  |  |
- | company_contact | [ContactDetails](#ContactDetails)? |  yes  |  |
- | company_gst | string? |  yes  |  |
  | company_id | number? |  yes  |  |
  | company_name | string? |  yes  |  |
- 
-
----
-
-#### [ContactDetails](#ContactDetails)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | emails | [string]? |  yes  |  |
- | phone | [[PhoneDetails](#PhoneDetails)]? |  yes  |  |
+ | manufacturer_address | string? |  yes  |  |
  
 
 ---
@@ -5827,7 +5873,6 @@ We are processing the report!
  | ---------- | ---- | -------- | ----------- |
  | billing_info | [BillingInfo](#BillingInfo) |  no  |  |
  | charges | [[Charge](#Charge)]? |  yes  |  |
- | config | string? |  yes  |  |
  | currency_info | string? |  yes  |  |
  | external_creation_date | string? |  yes  |  |
  | external_order_id | string? |  yes  |  |
@@ -6232,6 +6277,18 @@ We are processing the report!
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | fynd_order_id | [string]? |  yes  |  |
+ 
+
+---
+
+#### [GeneratePosOrderReceiptResponse](#GeneratePosOrderReceiptResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | invoice_receipt | string? |  yes  |  |
+ | order_id | string? |  yes  |  |
+ | payment_receipt | string? |  yes  |  |
+ | success | boolean? |  yes  |  |
  
 
 ---
@@ -6927,16 +6984,6 @@ We are processing the report!
 
 ---
 
-#### [PhoneDetails](#PhoneDetails)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | country_code | number? |  yes  |  |
- | mobile_number | string? |  yes  |  |
- 
-
----
-
 #### [PlatformBreakupValues](#PlatformBreakupValues)
 
  | Properties | Type | Nullable | Description |
@@ -7124,7 +7171,6 @@ We are processing the report!
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | platform_user_employee_code | string? |  yes  |  |
  | platform_user_first_name | string? |  yes  |  |
  | platform_user_id | string? |  yes  |  |
  | platform_user_last_name | string? |  yes  |  |
@@ -8041,13 +8087,9 @@ We are processing the report!
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | address | string |  no  |  |
- | address1 | string? |  yes  |  |
- | address_type | string? |  yes  |  |
- | area | string? |  yes  |  |
  | city | string |  no  |  |
  | country | string |  no  |  |
  | email | string? |  yes  |  |
- | landmark | string? |  yes  |  |
  | name | string |  no  |  |
  | phone | string |  no  |  |
  | pincode | string |  no  |  |

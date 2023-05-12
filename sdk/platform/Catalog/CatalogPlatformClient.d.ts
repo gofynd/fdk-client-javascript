@@ -330,7 +330,7 @@ declare class Catalog {
     /**
      * @param {Object} arg - Arg object.
      * @param {boolean} [arg.isActive] - The is_active status for the optin id.
-     * @param {string} [arg.q] - The search value to filter the list.
+     * @param {boolean} [arg.q] - The search value to filter the list.
      * @param {number} [arg.pageNo] - The number of page for the company id.
      * @param {number} [arg.pageSize] - Number of records that can be seen on
      *   the page for the company id.
@@ -342,7 +342,7 @@ declare class Catalog {
      */
     getCompanyBrandDetail({ isActive, q, pageNo, pageSize, marketplace, }?: {
         isActive?: boolean;
-        q?: string;
+        q?: boolean;
         pageNo?: number;
         pageSize?: number;
         marketplace?: string;

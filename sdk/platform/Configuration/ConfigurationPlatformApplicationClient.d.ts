@@ -233,16 +233,6 @@ declare class Configuration {
     }): Paginator;
     /**
      * @param {Object} arg - Arg object.
-     * @param {AppFeatureRequest} arg.body
-     * @returns {Promise<AppFeature>} - Success response
-     * @summary: Update features of application
-     * @description: Update features of application
-     */
-    modifyAppFeatures({ body }?: {
-        body: AppFeatureRequest;
-    }): Promise<AppFeature>;
-    /**
-     * @param {Object} arg - Arg object.
      * @param {AppInventoryPartialUpdate} arg.body
      * @returns {Promise<ApplicationInventory>} - Success response
      * @summary: Partially update application configuration

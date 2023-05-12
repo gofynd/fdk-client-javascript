@@ -136,7 +136,6 @@ class OrderModel {
       employee_discount: Joi.number(),
       is_priority: Joi.boolean(),
       loyalty_discount: Joi.number(),
-      marketplace_invoice_id: Joi.string().allow("").allow(null),
       order_item_id: Joi.string().allow(""),
       quantity: Joi.number(),
       size_level_total_qty: Joi.number().allow(null),
@@ -428,7 +427,6 @@ class OrderModel {
   }
   static BillingStaffDetails() {
     return Joi.object({
-      employee_code: Joi.string().allow(""),
       first_name: Joi.string().allow(""),
       last_name: Joi.string().allow(""),
       staff_id: Joi.number(),
@@ -595,18 +593,10 @@ class OrderModel {
   }
   static CompanyDetails() {
     return Joi.object({
-      address: Joi.any(),
       company_cin: Joi.string().allow(""),
-      company_contact: OrderModel.ContactDetails(),
-      company_gst: Joi.string().allow(""),
       company_id: Joi.number(),
       company_name: Joi.string().allow(""),
-    });
-  }
-  static ContactDetails() {
-    return Joi.object({
-      emails: Joi.array().items(Joi.string().allow("")),
-      phone: Joi.array().items(OrderModel.PhoneDetails()),
+      manufacturer_address: Joi.any(),
     });
   }
   static CreateChannelConfig() {
@@ -647,7 +637,6 @@ class OrderModel {
     return Joi.object({
       billing_info: OrderModel.BillingInfo().required(),
       charges: Joi.array().items(OrderModel.Charge()),
-      config: Joi.any(),
       currency_info: Joi.any(),
       external_creation_date: Joi.string().allow(""),
       external_order_id: Joi.string().allow(""),
@@ -924,6 +913,14 @@ class OrderModel {
   static FyndOrderIdList() {
     return Joi.object({
       fynd_order_id: Joi.array().items(Joi.string().allow("")),
+    });
+  }
+  static GeneratePosOrderReceiptResponse() {
+    return Joi.object({
+      invoice_receipt: Joi.string().allow(""),
+      order_id: Joi.string().allow(""),
+      payment_receipt: Joi.string().allow(""),
+      success: Joi.boolean(),
     });
   }
   static GetActionsResponse() {
@@ -1416,12 +1413,6 @@ class OrderModel {
       po_invoice: Joi.string().allow(""),
     });
   }
-  static PhoneDetails() {
-    return Joi.object({
-      country_code: Joi.number(),
-      mobile_number: Joi.string().allow(""),
-    });
-  }
   static PlatformBreakupValues() {
     return Joi.object({
       display: Joi.string().allow(""),
@@ -1567,7 +1558,6 @@ class OrderModel {
   }
   static PlatformUserDetails() {
     return Joi.object({
-      platform_user_employee_code: Joi.string().allow(""),
       platform_user_first_name: Joi.string().allow(""),
       platform_user_id: Joi.string().allow(""),
       platform_user_last_name: Joi.string().allow(""),
@@ -2212,13 +2202,9 @@ class OrderModel {
   static UserDetailsData() {
     return Joi.object({
       address: Joi.string().allow("").required(),
-      address1: Joi.string().allow(""),
-      address_type: Joi.string().allow(""),
-      area: Joi.string().allow(""),
       city: Joi.string().allow("").required(),
       country: Joi.string().allow("").required(),
       email: Joi.string().allow(""),
-      landmark: Joi.string().allow(""),
       name: Joi.string().allow("").required(),
       phone: Joi.string().allow("").required(),
       pincode: Joi.string().allow("").required(),

@@ -7912,7 +7912,7 @@ Success. Returns a response object. Check the example shown below or refer `Foll
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | filters | [string]? |  yes  |  |
+ | filters | [[StoreDepartments](#StoreDepartments)]? |  yes  |  |
  | items | [[AppStore](#AppStore)]? |  yes  |  |
  | page | [Page](#Page)? |  yes  |  |
  
@@ -7929,7 +7929,6 @@ Success. Returns a response object. Check the example shown below or refer `Foll
  | departments | [[StoreDepartments](#StoreDepartments)]? |  yes  |  |
  | manager | [StoreManagerSerializer](#StoreManagerSerializer)? |  yes  |  |
  | name | string? |  yes  |  |
- | store_code | string? |  yes  |  |
  | uid | number? |  yes  |  |
  
 
@@ -9257,7 +9256,6 @@ Success. Returns a response object. Check the example shown below or refer `Foll
  | departments | [[StoreDepartments](#StoreDepartments)]? |  yes  |  |
  | manager | [StoreManagerSerializer](#StoreManagerSerializer)? |  yes  |  |
  | name | string? |  yes  |  |
- | store_code | string? |  yes  |  |
  | timing | [[StoreTiming](#StoreTiming)]? |  yes  |  |
  | uid | number? |  yes  |  |
  

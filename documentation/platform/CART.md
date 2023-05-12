@@ -15,13 +15,10 @@ Cart APIs
 * [createPromotion](#createpromotion)
 * [fetchAndvalidateCartItems](#fetchandvalidatecartitems)
 * [getAbandonedCart](#getabandonedcart)
-* [getAbandonedCartDetails](#getabandonedcartdetails)
 * [getCouponById](#getcouponbyid)
-* [getCouponCodeExists](#getcouponcodeexists)
-* [getCouponOptionValues](#getcouponoptionvalues)
 * [getCoupons](#getcoupons)
+* [getPromosCouponConfig](#getpromoscouponconfig)
 * [getPromotionById](#getpromotionbyid)
-* [getPromotionCodeExists](#getpromotioncodeexists)
 * [getPromotions](#getpromotions)
 * [updateCart](#updatecart)
 * [updateCoupon](#updatecoupon)
@@ -2178,235 +2175,6 @@ Abandoned Cart List for sent page_size and page_no
 ---
 
 
-### getAbandonedCartDetails
-Fetch all items added to the cart
-
-
-
-```javascript
-// Promise
-const promise = platformClient.application("<APPLICATION_ID>").cart.getAbandonedCartDetails({  id : value,
- i : value,
- b : value });
-
-// Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").cart.getAbandonedCartDetails({  id : value,
- i : value,
- b : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| id | string | no |  |    
-| i | boolean | no |  |    
-| b | boolean | no |  |  
-
-
-
-Use this API to get details of all the items added to a cart.
-
-*Returned Response:*
-
-
-
-
-[CartDetailResponse](#CartDetailResponse)
-
-Success. Returns a Cart object. Check the example shown below or refer `CartDetailResponse` for more details.
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "items": [
-    {
-      "bulk_offer": {},
-      "discount": "67% OFF",
-      "article": {
-        "type": "article",
-        "uid": "604_902_SSTC60401_636BLUE_1",
-        "size": "1",
-        "seller": {
-          "uid": 604,
-          "name": "SHRI SHANTINATH TRADING COMPANY"
-        },
-        "store": {
-          "uid": 4579,
-          "name": "Gandhi Nagar"
-        },
-        "quantity": 108,
-        "price": {
-          "base": {
-            "marked": 2999,
-            "effective": 999,
-            "currency_code": "INR"
-          },
-          "converted": {
-            "marked": 2999,
-            "effective": 999,
-            "currency_code": "INR"
-          }
-        }
-      },
-      "coupon_message": "",
-      "key": "707569_1",
-      "availability": {
-        "sizes": [
-          "1",
-          "8",
-          "7",
-          "2",
-          "9",
-          "5",
-          "3",
-          "6"
-        ],
-        "other_store_quantity": 107,
-        "out_of_stock": false,
-        "deliverable": true,
-        "is_valid": true
-      },
-      "product": {
-        "type": "product",
-        "uid": 707569,
-        "name": "Blue and Gold Printed Ethnic Set",
-        "slug": "aj-dezines-blue-and-gold-printed-ethnic-set-707569-bff01a",
-        "brand": {
-          "uid": 902,
-          "name": ""
-        },
-        "categories": [
-          {
-            "uid": 525,
-            "name": ""
-          }
-        ],
-        "images": [
-          {
-            "aspect_ratio": "16:25",
-            "url": "http://cdn4.gofynd.com/media/pictures/tagged_items/original/902_636BLUE/1_1540301094877.jpg",
-            "secure_url": "https://d2zv4gzhlr4ud6.cloudfront.net/media/pictures/tagged_items/original/902_636BLUE/1_1540301094877.jpg"
-          }
-        ],
-        "action": {
-          "type": "product",
-          "url": "https://api.addsale.com/v1/products/aj-dezines-blue-and-gold-printed-ethnic-set-707569-bff01a/",
-          "query": {
-            "product_slug": [
-              "aj-dezines-blue-and-gold-printed-ethnic-set-707569-bff01a"
-            ]
-          }
-        }
-      },
-      "price": {
-        "base": {
-          "add_on": 999,
-          "marked": 2999,
-          "effective": 999,
-          "selling": 999,
-          "currency_code": "INR"
-        },
-        "converted": {
-          "add_on": 999,
-          "marked": 2999,
-          "effective": 999,
-          "selling": 999,
-          "currency_code": "INR"
-        }
-      },
-      "message": "",
-      "quantity": 1
-    }
-  ],
-  "buy_now": false,
-  "cart_id": 54,
-  "uid": "54",
-  "breakup_values": {
-    "raw": {
-      "cod_charge": 0,
-      "convenience_fee": 0,
-      "coupon": 0,
-      "delivery_charge": 0,
-      "discount": -2000,
-      "fynd_cash": 0,
-      "gst_charges": 47.57,
-      "mrp_total": 2999,
-      "subtotal": 999,
-      "total": 999,
-      "vog": 951.43,
-      "you_saved": 0
-    },
-    "coupon": {
-      "type": "cash",
-      "code": "",
-      "uid": null,
-      "value": 0,
-      "is_applied": false,
-      "message": "Sorry! Invalid Coupon"
-    },
-    "display": [
-      {
-        "display": "MRP Total",
-        "key": "mrp_total",
-        "value": 2999,
-        "currency_code": "INR"
-      },
-      {
-        "display": "Discount",
-        "key": "discount",
-        "value": -2000,
-        "currency_code": "INR"
-      },
-      {
-        "display": "Subtotal",
-        "key": "subtotal",
-        "value": 999,
-        "currency_code": "INR"
-      },
-      {
-        "display": "Total",
-        "key": "total",
-        "value": 999,
-        "currency_code": "INR"
-      }
-    ],
-    "loyalty_points": {
-      "total": 0,
-      "applicable": 0,
-      "is_applied": false,
-      "description": "Your cashback, referrals, and refund amount get credited to Fynd Cash which can be redeemed while placing an order."
-    }
-  },
-  "delivery_charge_info": "",
-  "coupon_text": "View all offers",
-  "gstin": null,
-  "checkout_mode": "self",
-  "restrict_checkout": false,
-  "is_valid": true,
-  "last_modified": "Tue, 03 Sep 2019 05:35:59 GMT"
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
 ### getCouponById
 Get with single coupon details or coupon list
 
@@ -2603,183 +2371,6 @@ Coupon object for sent `id`
 ---
 
 
-### getCouponCodeExists
-Check if coupon is already created with coupon code
-
-
-
-```javascript
-// Promise
-const promise = platformClient.application("<APPLICATION_ID>").cart.getCouponCodeExists({  code : value });
-
-// Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").cart.getCouponCodeExists({  code : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| code | string | no |  |  
-
-
-
-Check if sent coupon code is already existing coupon code. As coupon code is to be unique.
-
-*Returned Response:*
-
-
-
-
-[Object](#Object)
-
-Valid response with existing coupon code count
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; Coupon code exists</i></summary>
-
-```json
-{
-  "value": {
-    "success": true,
-    "count": 1
-  }
-}
-```
-</details>
-
-<details>
-<summary><i>&nbsp; Coupon code is new</i></summary>
-
-```json
-{
-  "value": {
-    "success": true,
-    "count": 0
-  }
-}
-```
-</details>
-
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### getCouponOptionValues
-Get coupon options enums with display values
-
-
-
-```javascript
-// Promise
-const promise = platformClient.application("<APPLICATION_ID>").cart.getCouponOptionValues();
-
-// Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").cart.getCouponOptionValues();
-```
-
-
-
-
-
-
-Get coupon enum values for fields in valid coupon object. Used for front end to create, update and filter coupon lists via fields
-
-*Returned Response:*
-
-
-
-
-[Object](#Object)
-
-Coupon options enums
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "types": {
-    "absolute": "Absolute",
-    "percentage": "Percentage",
-    "bogo": "BOGO",
-    "bundle": "Bundle"
-  },
-  "scopes": {
-    "category_id": "Categories",
-    "brand_id": "Brands",
-    "company_id": "Sellers",
-    "store_id": "Stores",
-    "collection_id": "Collections"
-  },
-  "applicable_on": {
-    "amount": "Amount",
-    "quantity": "Quantity"
-  },
-  "value_types": {
-    "absolute": "Absolute",
-    "percentage": "Percentage",
-    "quantity": "Quantity",
-    "flat_price": "Absolute Price"
-  },
-  "calculate_on": {
-    "mrp": "MRP",
-    "esp": "ESP",
-    "tp": "TP"
-  },
-  "payable_category": {
-    "fynd": "Fynd",
-    "seller": "Seller"
-  },
-  "txn_mode": {
-    "fynd_cash": "Fynd Cash",
-    "cash": "Cashback",
-    "coupon": "Coupon Discount"
-  },
-  "payable_by": {
-    "Fynd Marketing": "Fynd Marketing",
-    "Fynd": "Fynd",
-    "Fynd Store": "Fynd Store",
-    "Fynd Delights": "Fynd Delights",
-    "Fynd Ops": "Fynd Ops",
-    "Fynd Inventory": "Fynd Inventory"
-  }
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
 ### getCoupons
 Get with single coupon details or coupon list
 
@@ -2896,6 +2487,74 @@ Coupon List for sent page_size and page_no
 ```
 </details>
 
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### getPromosCouponConfig
+Fetch all promos that are set as active
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").cart.getPromosCouponConfig();
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").cart.getPromosCouponConfig();
+```
+
+
+
+
+
+
+Use this API to get list of all the active promos/coupons.
+
+*Returned Response:*
+
+
+
+
+[ActivePromosResponse](#ActivePromosResponse)
+
+Success. Returns a list of all the curently active coupons/promos
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "status": "Success",
+  "items": [
+    {
+      "_id": "634647aa9d4b59bf1a0c1269",
+      "entity_slug": "percentage_quantity_percentage",
+      "title": "X Percentage Value",
+      "subtitle": "Get a fixed percentage discount on the effective selling price",
+      "example": "FLAT50 | Flat 50% OFF",
+      "description": "Here, <b>Buy items(BI)</b> is the minimum number of items eligible for a discount <b>Percentage Value(D)</b> is the fixed percentage discount <b>Maximum Discount Amount(MD)</b> (optional) is a limit to the discount <b>Minimum Cart Value(MCV)</b> (optional) is the minimum price of the cart items <b>Apply coupon on exact quantities</b> (optional) if checked, will apply the coupon only to the specified <b>Buy items</b> and if unchecked, will apply the coupon to more than the specified <b>Buy items</b>",
+      "is_hidden": true,
+      "entity_type": "promotion",
+      "type": "percentage",
+      "created_on": "2022-05-30 07:33:01.303000",
+      "modified_on": "2022-05-31 10:41:01.441000"
+    }
+  ]
+}
+```
 </details>
 
 
@@ -3079,86 +2738,6 @@ Promotion object for sent `id`
 ---
 
 
-### getPromotionCodeExists
-Check if promotion is already created with promotion code
-
-
-
-```javascript
-// Promise
-const promise = platformClient.application("<APPLICATION_ID>").cart.getPromotionCodeExists({  code : value });
-
-// Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").cart.getPromotionCodeExists({  code : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| code | string | no |  |  
-
-
-
-Check if sent promotion code is already existing promotion code. As promotion code is to be unique.
-
-*Returned Response:*
-
-
-
-
-[Object](#Object)
-
-Valid response with existing promotion code count
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; Promotion code exists</i></summary>
-
-```json
-{
-  "value": {
-    "success": true,
-    "count": 1
-  }
-}
-```
-</details>
-
-<details>
-<summary><i>&nbsp; Promotion code is new</i></summary>
-
-```json
-{
-  "value": {
-    "success": true,
-    "count": 0
-  }
-}
-```
-</details>
-
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
 ### getPromotions
 Get promotion list
 
@@ -3169,7 +2748,7 @@ Get promotion list
 const promise = platformClient.application("<APPLICATION_ID>").cart.getPromotions({  pageNo : value,
  pageSize : value,
  q : value,
- isActive : value,
+ status : value,
  promoGroup : value,
  promotionType : value,
  fpPanel : value,
@@ -3179,7 +2758,7 @@ const promise = platformClient.application("<APPLICATION_ID>").cart.getPromotion
 const data = await platformClient.application("<APPLICATION_ID>").cart.getPromotions({  pageNo : value,
  pageSize : value,
  q : value,
- isActive : value,
+ status : value,
  promoGroup : value,
  promotionType : value,
  fpPanel : value,
@@ -3195,7 +2774,7 @@ const data = await platformClient.application("<APPLICATION_ID>").cart.getPromot
 | pageNo | number | no |  |    
 | pageSize | number | no |  |    
 | q | string | no |  |    
-| isActive | boolean | no |  |    
+| status | string | no |  |    
 | promoGroup | string | no |  |    
 | promotionType | string | no |  |    
 | fpPanel | string | no |  |    
@@ -4315,6 +3894,24 @@ Promotion updated successfully
 
 ---
 
+#### [ActivePromosResponse](#ActivePromosResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | created_on | string? |  yes  | Coupon creation date |
+ | description | string? |  yes  | The description of the offer in the form of an HTML |
+ | entity_slug | string? |  yes  |  |
+ | entity_type | string? |  yes  | Type of entity to be selected from : ['coupon', 'promotion'] |
+ | example | string? |  yes  | Discount offers examples |
+ | is_hidden | boolean? |  yes  | If the promo is active or not |
+ | modified_on | string? |  yes  | Coupon modification date |
+ | subtitle | string? |  yes  | Small description of the current offer |
+ | title | string? |  yes  | Name of the promotion |
+ | type | string? |  yes  | Coupon type |
+ 
+
+---
+
 #### [AddCartDetailResponse](#AddCartDetailResponse)
 
  | Properties | Type | Nullable | Description |
@@ -4340,14 +3937,13 @@ Promotion updated successfully
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | _custom_json | string? |  yes  |  |
  | article_assignment | string? |  yes  |  |
  | article_id | string? |  yes  |  |
  | display | string? |  yes  |  |
  | extra_meta | string? |  yes  |  |
  | item_id | number? |  yes  |  |
  | item_size | string? |  yes  |  |
- | parent_item_identifiers | [[String: string]]? |  yes  |  |
+ | parent_item_identifiers | string? |  yes  |  |
  | pos | boolean? |  yes  |  |
  | product_group_tags | [string]? |  yes  |  |
  | quantity | number? |  yes  |  |
@@ -4357,16 +3953,32 @@ Promotion updated successfully
 
 ---
 
+#### [AppliedFreeArticles](#AppliedFreeArticles)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | article_id | string? |  yes  | free article id |
+ | free_gift_item_details | [FreeGiftItem](#FreeGiftItem)? |  yes  | Free gift items details |
+ | parent_item_identifier | string? |  yes  | Parent item identifier for free article |
+ | quantity | number? |  yes  | Free article quantity |
+ 
+
+---
+
 #### [AppliedPromotion](#AppliedPromotion)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | amount | number? |  yes  | Per unit discount amount applied with current promotion |
+ | applied_free_articles | [[AppliedFreeArticles](#AppliedFreeArticles)]? |  yes  | Applied free article for free gift item promotions |
  | article_quantity | number? |  yes  | Quantity of article on which promotion is applicable |
+ | buy_rules | [[BuyRules](#BuyRules)]? |  yes  | Buy rules for promotions |
+ | discount_rules | [[DiscountRulesApp](#DiscountRulesApp)]? |  yes  | Discount rules for promotions |
  | mrp_promotion | boolean? |  yes  | If applied promotion is applied on product MRP or ESP |
  | offer_text | string? |  yes  | Offer text of current promotion |
- | ownership | [Ownership2](#Ownership2)? |  yes  | Ownership of promotion |
  | promo_id | string? |  yes  | Promotion id |
+ | promotion_group | string? |  yes  | Promotion group for the promotion |
+ | promotion_name | string? |  yes  | Promotion name of current promotion |
  | promotion_type | string? |  yes  | Promotion type of current promotion |
  
 
@@ -4413,6 +4025,16 @@ Promotion updated successfully
 
 ---
 
+#### [BuyRules](#BuyRules)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | cart_conditions | string? |  yes  | Cart conditions details for promotion |
+ | item_criteria | string? |  yes  | Item criteria of promotion |
+ 
+
+---
+
 #### [CartBreakup](#CartBreakup)
 
  | Properties | Type | Nullable | Description |
@@ -4439,7 +4061,6 @@ Promotion updated successfully
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | applied_promo_details | [[AppliedPromotion](#AppliedPromotion)]? |  yes  |  |
  | breakup_values | [CartBreakup](#CartBreakup)? |  yes  |  |
  | buy_now | boolean? |  yes  |  |
  | checkout_mode | string? |  yes  |  |
@@ -4485,12 +4106,15 @@ Promotion updated successfully
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | _custom_json | string? |  yes  |  |
  | action | [ProductAction](#ProductAction)? |  yes  |  |
  | brand | [BaseInfo](#BaseInfo)? |  yes  |  |
  | categories | [[CategoryInfo](#CategoryInfo)]? |  yes  |  |
  | images | [[ProductImage](#ProductImage)]? |  yes  |  |
  | name | string? |  yes  |  |
  | slug | string? |  yes  | Unique product url name generated via product name and other meta data |
+ | tags | [string]? |  yes  |  |
+ | teaser_tag | [Tags](#Tags)? |  yes  |  |
  | type | string? |  yes  |  |
  | uid | number? |  yes  |  |
  
@@ -4513,14 +4137,13 @@ Promotion updated successfully
  | article | [ProductArticle](#ProductArticle)? |  yes  |  |
  | availability | [ProductAvailability](#ProductAvailability)? |  yes  |  |
  | bulk_offer | string? |  yes  |  |
+ | coupon | [CouponDetails](#CouponDetails)? |  yes  |  |
  | coupon_message | string? |  yes  |  |
- | delivery_promise | [ShipmentPromise](#ShipmentPromise)? |  yes  |  |
  | discount | string? |  yes  |  |
  | identifiers | [CartProductIdentifer](#CartProductIdentifer) |  no  |  |
  | is_set | boolean? |  yes  |  |
  | key | string? |  yes  |  |
  | message | string? |  yes  |  |
- | moq | string? |  yes  |  |
  | parent_item_identifiers | string? |  yes  |  |
  | price | [ProductPriceInfo](#ProductPriceInfo)? |  yes  |  |
  | price_per_unit | [ProductPriceInfo](#ProductPriceInfo)? |  yes  |  |
@@ -4604,8 +4227,15 @@ Promotion updated successfully
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | code | string? |  yes  |  |
+ | coupon_type | string? |  yes  |  |
+ | coupon_value | number? |  yes  |  |
+ | description | string? |  yes  |  |
  | is_applied | boolean? |  yes  |  |
+ | max_discount_value | number? |  yes  |  |
  | message | string? |  yes  |  |
+ | minimum_cart_value | number? |  yes  |  |
+ | sub_title | string? |  yes  |  |
+ | title | string? |  yes  |  |
  | type | string? |  yes  |  |
  | uid | string? |  yes  |  |
  | value | number? |  yes  |  |
@@ -4619,6 +4249,17 @@ Promotion updated successfully
  | ---------- | ---- | -------- | ----------- |
  | created_on | string? |  yes  |  |
  | modified_on | string? |  yes  |  |
+ 
+
+---
+
+#### [CouponDetails](#CouponDetails)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | code | string? |  yes  |  |
+ | discount_single_quantity | number? |  yes  |  |
+ | discount_total_quantity | number? |  yes  |  |
  
 
 ---
@@ -4684,13 +4325,16 @@ Promotion updated successfully
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | apportion_discount | boolean? |  yes  |  |
  | code | string? |  yes  |  |
  | discount_amount | number? |  yes  |  |
  | discount_percentage | number? |  yes  |  |
  | discount_price | number? |  yes  |  |
  | max_discount_amount | number? |  yes  |  |
  | max_offer_quantity | number? |  yes  |  |
+ | max_usage_per_transaction | number? |  yes  |  |
  | min_offer_quantity | number? |  yes  |  |
+ | partial_can_ret | boolean? |  yes  |  |
  
 
 ---
@@ -4703,6 +4347,18 @@ Promotion updated successfully
  | discount_type | string |  no  |  |
  | item_criteria | [ItemCriteria](#ItemCriteria) |  no  |  |
  | offer | [DiscountOffer](#DiscountOffer) |  no  |  |
+ 
+
+---
+
+#### [DiscountRulesApp](#DiscountRulesApp)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | item_criteria | string? |  yes  | Item criteria of promotion |
+ | matched_buy_rules | [string]? |  yes  | Matched buy rules for promotion |
+ | offer | string? |  yes  | offer for promotion |
+ | raw_offer | string? |  yes  | raw offer details for promotion |
  
 
 ---
@@ -4756,6 +4412,20 @@ Promotion updated successfully
 
 ---
 
+#### [FreeGiftItem](#FreeGiftItem)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | item_brand_name | string? |  yes  | item brand name |
+ | item_id | number? |  yes  | Item id |
+ | item_images_url | [string]? |  yes  | item images URL |
+ | item_name | string? |  yes  | Item name |
+ | item_price_details | string? |  yes  | item price details |
+ | item_slug | string? |  yes  | item slug |
+ 
+
+---
+
 #### [Identifier](#Identifier)
 
  | Properties | Type | Nullable | Description |
@@ -4765,6 +4435,7 @@ Promotion updated successfully
  | category_id | [number]? |  yes  |  |
  | collection_id | [string]? |  yes  |  |
  | company_id | [number]? |  yes  |  |
+ | email_domain | [string]? |  yes  |  |
  | exclude_brand_id | [number]? |  yes  |  |
  | item_id | [number]? |  yes  |  |
  | store_id | [number]? |  yes  |  |
@@ -4778,15 +4449,19 @@ Promotion updated successfully
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | all_items | boolean? |  yes  |  |
+ | available_zones | [string]? |  yes  |  |
  | buy_rules | [string]? |  yes  |  |
  | cart_quantity | [CompareObject](#CompareObject)? |  yes  |  |
  | cart_total | [CompareObject](#CompareObject)? |  yes  |  |
+ | cart_unique_item_amount | [CompareObject](#CompareObject)? |  yes  |  |
+ | cart_unique_item_quantity | [CompareObject](#CompareObject)? |  yes  |  |
  | item_brand | [number]? |  yes  |  |
  | item_category | [number]? |  yes  |  |
  | item_company | [number]? |  yes  |  |
  | item_exclude_brand | [number]? |  yes  |  |
  | item_exclude_category | [number]? |  yes  |  |
  | item_exclude_company | [number]? |  yes  |  |
+ | item_exclude_id | [number]? |  yes  |  |
  | item_exclude_sku | [string]? |  yes  |  |
  | item_exclude_store | [number]? |  yes  |  |
  | item_id | [number]? |  yes  |  |
@@ -4838,7 +4513,7 @@ Promotion updated successfully
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | cart_items | [[CartItem](#CartItem)] |  no  |  |
+ | cart_items | [CartItem](#CartItem)? |  yes  |  |
  
 
 ---
@@ -4859,7 +4534,7 @@ Promotion updated successfully
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | cart_items | [[CartItem](#CartItem)] |  no  |  |
+ | cart_items | [CartItem](#CartItem)? |  yes  |  |
  | shipping_address | [ShippingAddress](#ShippingAddress) |  no  |  |
  
 
@@ -4994,16 +4669,6 @@ Promotion updated successfully
 
 ---
 
-#### [Ownership2](#Ownership2)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | payable_by | string? |  yes  | promo amount bearable party |
- | payable_category | string? |  yes  | promo amount payable category |
- 
-
----
-
 #### [Page](#Page)
 
  | Properties | Type | Nullable | Description |
@@ -5107,13 +4772,17 @@ Promotion updated successfully
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | _custom_json | string? |  yes  |  |
+ | cart_item_meta | string? |  yes  |  |
  | extra_meta | string? |  yes  |  |
+ | gift_card | string? |  yes  |  |
+ | identifier | string? |  yes  |  |
+ | is_gift_visible | boolean? |  yes  |  |
  | parent_item_identifiers | string? |  yes  |  |
  | price | [ArticlePriceInfo](#ArticlePriceInfo)? |  yes  |  |
  | product_group_tags | [string]? |  yes  |  |
  | quantity | number? |  yes  |  |
  | seller | [BaseInfo](#BaseInfo)? |  yes  |  |
+ | seller_identifier | string? |  yes  |  |
  | size | string? |  yes  |  |
  | store | [BaseInfo](#BaseInfo)? |  yes  |  |
  | type | string? |  yes  |  |
@@ -5126,23 +4795,11 @@ Promotion updated successfully
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | available_sizes | [[ProductAvailabilitySize](#ProductAvailabilitySize)]? |  yes  |  |
  | deliverable | boolean? |  yes  |  |
  | is_valid | boolean? |  yes  |  |
  | other_store_quantity | number? |  yes  |  |
  | out_of_stock | boolean? |  yes  |  |
  | sizes | [string]? |  yes  |  |
- 
-
----
-
-#### [ProductAvailabilitySize](#ProductAvailabilitySize)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | display | string? |  yes  |  |
- | is_available | boolean? |  yes  |  |
- | value | string? |  yes  |  |
  
 
 ---
@@ -5233,6 +4890,7 @@ Promotion updated successfully
  | apply_priority | number? |  yes  |  |
  | author | [PromotionAuthor](#PromotionAuthor)? |  yes  |  |
  | buy_rules | [String: [ItemCriteria](#ItemCriteria)] |  no  |  |
+ | calculate_on | string? |  yes  | Only available for Contract pricing and Ladder pricing promotion type |
  | code | string? |  yes  |  |
  | currency | string? |  yes  |  |
  | date_meta | [PromotionDateMeta](#PromotionDateMeta)? |  yes  |  |
@@ -5282,6 +4940,7 @@ Promotion updated successfully
  | apply_priority | number? |  yes  |  |
  | author | [PromotionAuthor](#PromotionAuthor)? |  yes  |  |
  | buy_rules | [String: [ItemCriteria](#ItemCriteria)] |  no  |  |
+ | calculate_on | string? |  yes  | Only available for Contract pricing and Ladder pricing promotion type |
  | code | string? |  yes  |  |
  | currency | string? |  yes  |  |
  | date_meta | [PromotionDateMeta](#PromotionDateMeta)? |  yes  |  |
@@ -5356,6 +5015,7 @@ Promotion updated successfully
  | apply_priority | number? |  yes  |  |
  | author | [PromotionAuthor](#PromotionAuthor)? |  yes  |  |
  | buy_rules | [String: [ItemCriteria](#ItemCriteria)] |  no  |  |
+ | calculate_on | string? |  yes  | Only available for Contract pricing and Ladder pricing promotion type |
  | code | string? |  yes  |  |
  | currency | string? |  yes  |  |
  | date_meta | [PromotionDateMeta](#PromotionDateMeta)? |  yes  |  |
@@ -5383,6 +5043,7 @@ Promotion updated successfully
  | delivery_charge | number? |  yes  |  |
  | discount | number? |  yes  |  |
  | fynd_cash | number? |  yes  |  |
+ | gift_card | number? |  yes  |  |
  | gst_charges | number? |  yes  |  |
  | mrp_total | number? |  yes  |  |
  | subtotal | number? |  yes  |  |
@@ -5405,6 +5066,7 @@ Promotion updated successfully
  | post_order | [PostOrder](#PostOrder)? |  yes  |  |
  | price_range | [PriceRange](#PriceRange)? |  yes  |  |
  | user_groups | [number]? |  yes  |  |
+ | user_type | string? |  yes  |  |
  | uses | [UsesRestriction](#UsesRestriction)? |  yes  |  |
  
 
@@ -5478,8 +5140,6 @@ Promotion updated successfully
  | city | string? |  yes  |  |
  | country | string? |  yes  |  |
  | country_code | string? |  yes  |  |
- | country_iso_code | string? |  yes  |  |
- | country_phone_code | string? |  yes  |  |
  | email | string? |  yes  |  |
  | landmark | string? |  yes  |  |
  | meta | string? |  yes  |  |
@@ -5512,6 +5172,15 @@ Promotion updated successfully
 
 ---
 
+#### [Tags](#Tags)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | tags | string? |  yes  |  |
+ 
+
+---
+
 #### [UpdateCartDetailResponse](#UpdateCartDetailResponse)
 
  | Properties | Type | Nullable | Description |
@@ -5537,7 +5206,6 @@ Promotion updated successfully
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | _custom_json | string? |  yes  |  |
  | article_id | string? |  yes  |  |
  | extra_meta | string? |  yes  |  |
  | identifiers | [CartProductIdentifer](#CartProductIdentifer) |  no  |  |

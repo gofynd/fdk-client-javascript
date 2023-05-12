@@ -56,35 +56,19 @@ declare class User {
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.id - ID of a customer.
-     * @param {string} arg.reason - Reason to delete sessions.
      * @returns {Promise<SessionDeleteResponseSchema>} - Success response
      * @summary: Delete a list of all session for a user
      * @description: Use this API to Delete a list of session of customers who have registered in the application.
      */
-    deleteActiveSessions({ id, reason }?: {
+    deleteActiveSessions({ id }?: {
         id: string;
-        reason: string;
-    }): Promise<SessionDeleteResponseSchema>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.id - ID of a customer.
-     * @param {string} arg.sessionId - Session ID of a customer.
-     * @param {string} arg.reason - Reason for deleting session.
-     * @returns {Promise<SessionDeleteResponseSchema>} - Success response
-     * @summary: Delete a session for a user
-     * @description: Use this API to Delete a session of customers who have registered in the application.
-     */
-    deleteSession({ id, sessionId, reason }?: {
-        id: string;
-        sessionId: string;
-        reason: string;
     }): Promise<SessionDeleteResponseSchema>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.id - ID of a customer.
      * @returns {Promise<SessionListResponseSchema>} - Success response
-     * @summary: Get a list of all session with info for a user
-     * @description: Use this API to retrieve a list of session with info of customers who have registered in the application.
+     * @summary: Get a list of all session for a user
+     * @description: Use this API to retrieve a list of session of customers who have registered in the application.
      */
     getActiveSessions({ id }?: {
         id: string;
@@ -179,7 +163,7 @@ declare class User {
      * @param {UpdateUserRequestSchema} arg.body
      * @returns {Promise<CreateUserResponseSchema>} - Success response
      * @summary: Update user
-     * @description: Use this API to update user details, Note: Existing emails and phone numbers of user will be replaced directly if phone_numbers or emails field sent in request data.
+     * @description: Update user
      */
     updateUser({ userId, body }?: {
         userId: string;
