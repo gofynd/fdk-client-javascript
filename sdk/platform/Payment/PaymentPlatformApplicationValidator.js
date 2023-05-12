@@ -111,6 +111,12 @@ class PaymentValidator {
     }).required();
   }
 
+  static paymentStatusBulk() {
+    return Joi.object({
+      body: PaymentModel.PaymentStatusBulkHandlerRequest().required(),
+    }).required();
+  }
+
   static resendOrCancelPayment() {
     return Joi.object({
       body: PaymentModel.ResendOrCancelPaymentRequest().required(),

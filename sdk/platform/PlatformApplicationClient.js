@@ -597,8 +597,12 @@ class PlatformApplicationClient {
 /** @typedef PaymentInitializationResponse */
 /** @typedef PaymentModeList */
 /** @typedef PaymentModeLogo */
+/** @typedef PaymentObjectListSerializer */
 /** @typedef PaymentOptions */
 /** @typedef PaymentOptionsResponse */
+/** @typedef PaymentStatusBulkHandlerRequest */
+/** @typedef PaymentStatusBulkHandlerResponse */
+/** @typedef PaymentStatusObject */
 /** @typedef PaymentStatusUpdateRequest */
 /** @typedef PaymentStatusUpdateResponse */
 /** @typedef PayoutBankDetails */

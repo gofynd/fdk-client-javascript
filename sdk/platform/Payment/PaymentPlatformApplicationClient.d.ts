@@ -199,6 +199,16 @@ declare class Payment {
     }): Promise<PaymentInitializationResponse>;
     /**
      * @param {Object} arg - Arg object.
+     * @param {PaymentStatusBulkHandlerRequest} arg.body
+     * @returns {Promise<PaymentStatusBulkHandlerResponse>} - Success response
+     * @summary: Get Payment status and information for a list of order_ids
+     * @description: Use this API to get Payment status and information for a list of order_ids
+     */
+    paymentStatusBulk({ body }?: {
+        body: PaymentStatusBulkHandlerRequest;
+    }): Promise<PaymentStatusBulkHandlerResponse>;
+    /**
+     * @param {Object} arg - Arg object.
      * @param {ResendOrCancelPaymentRequest} arg.body
      * @returns {Promise<ResendOrCancelPaymentResponse>} - Success response
      * @summary: API to resend and cancel a payment link which was already generated.

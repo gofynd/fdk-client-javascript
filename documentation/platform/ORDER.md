@@ -5893,6 +5893,7 @@ We are processing the report!
  | ---------- | ---- | -------- | ----------- |
  | billing_info | [BillingInfo](#BillingInfo) |  no  |  |
  | charges | [[Charge](#Charge)]? |  yes  |  |
+ | config | string? |  yes  |  |
  | currency_info | string? |  yes  |  |
  | external_creation_date | string? |  yes  |  |
  | external_order_id | string? |  yes  |  |

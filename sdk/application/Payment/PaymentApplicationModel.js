@@ -649,6 +649,7 @@ class PaymentModel {
       device_id: Joi.string().allow("").allow(null),
       email: Joi.string().allow("").required(),
       merchant_order_id: Joi.string().allow("").required(),
+      merchant_transaction_id: Joi.string().allow("").required(),
       method: Joi.string().allow("").required(),
       order_id: Joi.string().allow("").required(),
       status: Joi.string().allow("").required(),

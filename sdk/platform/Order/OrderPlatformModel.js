@@ -653,6 +653,7 @@ class OrderModel {
     return Joi.object({
       billing_info: OrderModel.BillingInfo().required(),
       charges: Joi.array().items(OrderModel.Charge()),
+      config: Joi.any(),
       currency_info: Joi.any(),
       external_creation_date: Joi.string().allow(""),
       external_order_id: Joi.string().allow(""),

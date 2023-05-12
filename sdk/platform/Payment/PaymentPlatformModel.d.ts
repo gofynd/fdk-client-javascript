@@ -43,8 +43,12 @@ declare class PaymentModel {
     static PaymentInitializationResponse(): any;
     static PaymentModeList(): any;
     static PaymentModeLogo(): any;
+    static PaymentObjectListSerializer(): any;
     static PaymentOptions(): any;
     static PaymentOptionsResponse(): any;
+    static PaymentStatusBulkHandlerRequest(): any;
+    static PaymentStatusBulkHandlerResponse(): any;
+    static PaymentStatusObject(): any;
     static PaymentStatusUpdateRequest(): any;
     static PaymentStatusUpdateResponse(): any;
     static PayoutBankDetails(): any;

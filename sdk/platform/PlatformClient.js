@@ -3782,6 +3782,27 @@ class PlatformClient {
  * @property {string} small
  */
 /**
+ * @typedef PaymentObjectListSerializer
+ * @property {Object} [aggregator_payment_object]
+ * @property {string[]} all_status
+ * @property {string} amount_in_paisa
+ * @property {string} application_id
+ * @property {string} collected_by
+ * @property {string} company_id
+ * @property {string} created_on
+ * @property {string} currency
+ * @property {string} current_status
+ * @property {string} id
+ * @property {string} modified_on
+ * @property {string} payment_gateway
+ * @property {string} [payment_id]
+ * @property {string} payment_mode
+ * @property {string} payment_mode_identifier
+ * @property {Object} [refund_object]
+ * @property {string} refunded_by
+ * @property {Object} user_object
+ */
+/**
  * @typedef PaymentOptions
  * @property {RootPaymentMode[]} payment_option
  */
@@ -3789,6 +3810,23 @@ class PlatformClient {
  * @typedef PaymentOptionsResponse
  * @property {PaymentOptions} payment_options
  * @property {boolean} success
+ */
+/**
+ * @typedef PaymentStatusBulkHandlerRequest
+ * @property {string[]} merchant_order_id
+ */
+/**
+ * @typedef PaymentStatusBulkHandlerResponse
+ * @property {number} [count]
+ * @property {PaymentStatusObject[]} [data]
+ * @property {string} [error]
+ * @property {number} status
+ * @property {string} success
+ */
+/**
+ * @typedef PaymentStatusObject
+ * @property {string} merchant_order_id
+ * @property {PaymentObjectListSerializer[]} [payment_object_list]
  */
 /**
  * @typedef PaymentStatusUpdateRequest
@@ -3800,6 +3838,7 @@ class PlatformClient {
  * @property {string} [device_id]
  * @property {string} email
  * @property {string} merchant_order_id
+ * @property {string} merchant_transaction_id
  * @property {string} method
  * @property {string} order_id
  * @property {string} status
@@ -4528,6 +4567,7 @@ class PlatformClient {
  * @typedef CreateOrderAPI
  * @property {BillingInfo} billing_info
  * @property {Charge[]} [charges]
+ * @property {Object} [config]
  * @property {Object} [currency_info]
  * @property {string} [external_creation_date]
  * @property {string} [external_order_id]
@@ -6992,15 +7032,15 @@ class PlatformClient {
  * @property {GetAddressSerializer[]} [addresses]
  * @property {string} [business_type]
  * @property {string} [company_type]
- * @property {UserSerializer1} [created_by]
+ * @property {UserSerializer2} [created_by]
  * @property {string} [created_on]
- * @property {UserSerializer1} [modified_by]
+ * @property {UserSerializer2} [modified_by]
  * @property {string} [modified_on]
  * @property {string} [name]
  * @property {string} [reject_reason]
  * @property {string} [stage]
  * @property {number} [uid]
- * @property {UserSerializer1} [verified_by]
+ * @property {UserSerializer2} [verified_by]
  * @property {string} [verified_on]
  */
 /**
@@ -7077,14 +7117,14 @@ class PlatformClient {
  * @property {string} code
  * @property {GetCompanySerializer} [company]
  * @property {SellerPhoneNumber[]} [contact_numbers]
- * @property {UserSerializer2} [created_by]
+ * @property {UserSerializer1} [created_by]
  * @property {string} [created_on]
  * @property {string} display_name
  * @property {Document[]} [documents]
  * @property {InvoiceDetailsSerializer} [gst_credentials]
  * @property {LocationIntegrationType} [integration_type]
  * @property {LocationManagerSerializer} [manager]
- * @property {UserSerializer2} [modified_by]
+ * @property {UserSerializer1} [modified_by]
  * @property {string} [modified_on]
  * @property {string} name
  * @property {string[]} [notification_emails]
@@ -7094,7 +7134,7 @@ class PlatformClient {
  * @property {string} [store_type]
  * @property {LocationDayWiseSerializer[]} [timing]
  * @property {number} [uid]
- * @property {UserSerializer2} [verified_by]
+ * @property {UserSerializer1} [verified_by]
  * @property {string} [verified_on]
  * @property {Object} [warnings]
  */

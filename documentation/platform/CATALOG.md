@@ -19894,15 +19894,15 @@ List of fields and validation values fro each. See example below or refer `Inven
  | addresses | [[GetAddressSerializer](#GetAddressSerializer)]? |  yes  |  |
  | business_type | string? |  yes  |  |
  | company_type | string? |  yes  |  |
- | created_by | [UserSerializer1](#UserSerializer1)? |  yes  |  |
+ | created_by | [UserSerializer2](#UserSerializer2)? |  yes  |  |
  | created_on | string? |  yes  |  |
- | modified_by | [UserSerializer1](#UserSerializer1)? |  yes  |  |
+ | modified_by | [UserSerializer2](#UserSerializer2)? |  yes  |  |
  | modified_on | string? |  yes  |  |
  | name | string? |  yes  |  |
  | reject_reason | string? |  yes  |  |
  | stage | string? |  yes  |  |
  | uid | number? |  yes  |  |
- | verified_by | [UserSerializer1](#UserSerializer1)? |  yes  |  |
+ | verified_by | [UserSerializer2](#UserSerializer2)? |  yes  |  |
  | verified_on | string? |  yes  |  |
  
 
@@ -20009,14 +20009,14 @@ List of fields and validation values fro each. See example below or refer `Inven
  | code | string |  no  |  |
  | company | [GetCompanySerializer](#GetCompanySerializer)? |  yes  |  |
  | contact_numbers | [[SellerPhoneNumber](#SellerPhoneNumber)]? |  yes  |  |
- | created_by | [UserSerializer2](#UserSerializer2)? |  yes  |  |
+ | created_by | [UserSerializer1](#UserSerializer1)? |  yes  |  |
  | created_on | string? |  yes  |  |
  | display_name | string |  no  |  |
  | documents | [[Document](#Document)]? |  yes  |  |
  | gst_credentials | [InvoiceDetailsSerializer](#InvoiceDetailsSerializer)? |  yes  |  |
  | integration_type | [LocationIntegrationType](#LocationIntegrationType)? |  yes  |  |
  | manager | [LocationManagerSerializer](#LocationManagerSerializer)? |  yes  |  |
- | modified_by | [UserSerializer2](#UserSerializer2)? |  yes  |  |
+ | modified_by | [UserSerializer1](#UserSerializer1)? |  yes  |  |
  | modified_on | string? |  yes  |  |
  | name | string |  no  |  |
  | notification_emails | [string]? |  yes  |  |
@@ -20026,7 +20026,7 @@ List of fields and validation values fro each. See example below or refer `Inven
  | store_type | string? |  yes  |  |
  | timing | [[LocationDayWiseSerializer](#LocationDayWiseSerializer)]? |  yes  |  |
  | uid | number? |  yes  |  |
- | verified_by | [UserSerializer2](#UserSerializer2)? |  yes  |  |
+ | verified_by | [UserSerializer1](#UserSerializer1)? |  yes  |  |
  | verified_on | string? |  yes  |  |
  | warnings | string? |  yes  |  |
  
@@ -22583,8 +22583,6 @@ List of fields and validation values fro each. See example below or refer `Inven
  | page | page | Symbolic link for Page: /page/:slug |
  | policy | policy | Symbolic link for Privacy Policy: /privacy-policy |
  | product | product | Symbolic link for Product: /product/:slug |
- | productReviews | product-reviews | Symbolic link for Product Reviews: /product/:slug/reviews |
- | addProductReview | add-product-review | Symbolic link for Add Product review: /product/:slug/add-review |
  | productRequest | product-request | Symbolic link for Product Request: /product-request/ |
  | products | products | Symbolic link for Products: /products/ |
  | profile | profile | Symbolic link for Profile: /profile |

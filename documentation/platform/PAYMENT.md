@@ -31,6 +31,7 @@ Collect payment through many payment gateway i.e Stripe, Razorpay, Juspay etc.in
 * [getUserCODlimitRoutes](#getusercodlimitroutes)
 * [getUserOrderBeneficiaries](#getuserorderbeneficiaries)
 * [initialisePayment](#initialisepayment)
+* [paymentStatusBulk](#paymentstatusbulk)
 * [resendOrCancelPayment](#resendorcancelpayment)
 * [saveBrandPaymentGatewayConfig](#savebrandpaymentgatewayconfig)
 * [savePayout](#savepayout)
@@ -4206,6 +4207,133 @@ Success. Check the example shown below or refer `PaymentInitializationResponse` 
 ---
 
 
+### paymentStatusBulk
+Get Payment status and information for a list of order_ids
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").payment.paymentStatusBulk({  body : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").payment.paymentStatusBulk({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [PaymentStatusBulkHandlerRequest](#PaymentStatusBulkHandlerRequest) | yes | Request body |
+
+
+Use this API to get Payment status and information for a list of order_ids
+
+*Returned Response:*
+
+
+
+
+[PaymentStatusBulkHandlerResponse](#PaymentStatusBulkHandlerResponse)
+
+Success. Returns the status of payment. Check the example shown below or refer `PaymentConfirmationResponseSchema` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "success": "true",
+  "count": 2,
+  "data": [
+    {
+      "merchant_order_id": "FY63C7B7D860DFC8F71A",
+      "payment_object_list": [
+        {
+          "id": "FY63C7B7D860DFC8F71A",
+          "payment_id": "123",
+          "amount_in_paisa": "10000",
+          "currency": "INR",
+          "current_status": "started",
+          "all_status": [
+            "started",
+            "pending",
+            "complete"
+          ],
+          "payment_mode": "Udhaari",
+          "payment_mode_identifier": "Udhaari",
+          "payment_gateway": "Fynd",
+          "application_id": "5cc04264ad924cea93ded855",
+          "company_id": "1",
+          "collected_by": "fynd",
+          "refunded_by": "fynd",
+          "created_on": "2023-01-18 14:41:53",
+          "modified_on": "2023-01-18 14:41:53",
+          "user_object": {
+            "id": "615d39cf8a3b80b2427a4644",
+            "email": "pratikpatel@gofynd.com",
+            "mobile_number": "8879805874",
+            "merchant_user_id": "615d39cf8a3b80b2427a4644"
+          },
+          "aggregator_payment_object": {
+            "trans_id": "123"
+          },
+          "refund_object": {}
+        },
+        {
+          "id": "FY63C7B7D860DFC8F71A",
+          "payment_id": "123",
+          "amount_in_paisa": "2180000",
+          "currency": "INR",
+          "current_status": "started",
+          "all_status": [
+            "started",
+            "pending",
+            "complete"
+          ],
+          "payment_mode": "UPI",
+          "payment_mode_identifier": "UPI",
+          "payment_gateway": "Razorpay",
+          "application_id": "5cc04264ad924cea93ded855",
+          "company_id": "1",
+          "collected_by": "fynd",
+          "refunded_by": "fynd",
+          "created_on": "2023-01-18 14:41:53",
+          "modified_on": "2023-01-18 14:41:53",
+          "user_object": {
+            "id": "615d39cf8a3b80b2427a4644",
+            "email": "pratikpatel@gofynd.com",
+            "mobile_number": "8879805874",
+            "merchant_user_id": "615d39cf8a3b80b2427a4644"
+          },
+          "aggregator_payment_object": {
+            "trans_id": "123"
+          },
+          "refund_object": {}
+        }
+      ]
+    }
+  ]
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
 ### resendOrCancelPayment
 API to resend and cancel a payment link which was already generated.
 
@@ -5381,6 +5509,32 @@ Bank details on correct Ifsc Code
 
 ---
 
+#### [PaymentObjectListSerializer](#PaymentObjectListSerializer)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | aggregator_payment_object | string? |  yes  |  |
+ | all_status | [string] |  no  |  |
+ | amount_in_paisa | string |  no  |  |
+ | application_id | string |  no  |  |
+ | collected_by | string |  no  |  |
+ | company_id | string |  no  |  |
+ | created_on | string |  no  |  |
+ | currency | string |  no  |  |
+ | current_status | string |  no  |  |
+ | id | string |  no  |  |
+ | modified_on | string |  no  |  |
+ | payment_gateway | string |  no  |  |
+ | payment_id | string? |  yes  |  |
+ | payment_mode | string |  no  |  |
+ | payment_mode_identifier | string |  no  |  |
+ | refund_object | string? |  yes  |  |
+ | refunded_by | string |  no  |  |
+ | user_object | string |  no  |  |
+ 
+
+---
+
 #### [PaymentOptions](#PaymentOptions)
 
  | Properties | Type | Nullable | Description |
@@ -5400,6 +5554,38 @@ Bank details on correct Ifsc Code
 
 ---
 
+#### [PaymentStatusBulkHandlerRequest](#PaymentStatusBulkHandlerRequest)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | merchant_order_id | [string] |  no  | List of order ids |
+ 
+
+---
+
+#### [PaymentStatusBulkHandlerResponse](#PaymentStatusBulkHandlerResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | count | number? |  yes  |  |
+ | data | [[PaymentStatusObject](#PaymentStatusObject)]? |  yes  |  |
+ | error | string? |  yes  |  |
+ | status | number |  no  |  |
+ | success | string |  no  |  |
+ 
+
+---
+
+#### [PaymentStatusObject](#PaymentStatusObject)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | merchant_order_id | string |  no  |  |
+ | payment_object_list | [[PaymentObjectListSerializer](#PaymentObjectListSerializer)]? |  yes  |  |
+ 
+
+---
+
 #### [PaymentStatusUpdateRequest](#PaymentStatusUpdateRequest)
 
  | Properties | Type | Nullable | Description |
@@ -5412,6 +5598,7 @@ Bank details on correct Ifsc Code
  | device_id | string? |  yes  | EDC machine Unique Identifier |
  | email | string |  no  | Customer valid email |
  | merchant_order_id | string |  no  | Unique fynd order id |
+ | merchant_transaction_id | string |  no  | Unique fynd transaction id |
  | method | string |  no  | Payment method |
  | order_id | string |  no  | Payment gateway order id |
  | status | string |  no  | Status of payment. |

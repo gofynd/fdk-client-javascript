@@ -386,6 +386,28 @@ class PaymentModel {
       small: Joi.string().allow("").required(),
     });
   }
+  static PaymentObjectListSerializer() {
+    return Joi.object({
+      aggregator_payment_object: Joi.any().allow(null),
+      all_status: Joi.array().items(Joi.string().allow("")).required(),
+      amount_in_paisa: Joi.string().allow("").required(),
+      application_id: Joi.string().allow("").required(),
+      collected_by: Joi.string().allow("").required(),
+      company_id: Joi.string().allow("").required(),
+      created_on: Joi.string().allow("").required(),
+      currency: Joi.string().allow("").required(),
+      current_status: Joi.string().allow("").required(),
+      id: Joi.string().allow("").required(),
+      modified_on: Joi.string().allow("").required(),
+      payment_gateway: Joi.string().allow("").required(),
+      payment_id: Joi.string().allow("").allow(null),
+      payment_mode: Joi.string().allow("").required(),
+      payment_mode_identifier: Joi.string().allow("").required(),
+      refund_object: Joi.any().allow(null),
+      refunded_by: Joi.string().allow("").required(),
+      user_object: Joi.any().required(),
+    });
+  }
   static PaymentOptions() {
     return Joi.object({
       payment_option: Joi.array()
@@ -399,6 +421,28 @@ class PaymentModel {
       success: Joi.boolean().required(),
     });
   }
+  static PaymentStatusBulkHandlerRequest() {
+    return Joi.object({
+      merchant_order_id: Joi.array().items(Joi.string().allow("")).required(),
+    });
+  }
+  static PaymentStatusBulkHandlerResponse() {
+    return Joi.object({
+      count: Joi.number(),
+      data: Joi.array().items(PaymentModel.PaymentStatusObject()),
+      error: Joi.string().allow(""),
+      status: Joi.number().required(),
+      success: Joi.string().allow("").required(),
+    });
+  }
+  static PaymentStatusObject() {
+    return Joi.object({
+      merchant_order_id: Joi.string().allow("").required(),
+      payment_object_list: Joi.array().items(
+        PaymentModel.PaymentObjectListSerializer()
+      ),
+    });
+  }
   static PaymentStatusUpdateRequest() {
     return Joi.object({
       aggregator: Joi.string().allow("").required(),
@@ -409,6 +453,7 @@ class PaymentModel {
       device_id: Joi.string().allow("").allow(null),
       email: Joi.string().allow("").required(),
       merchant_order_id: Joi.string().allow("").required(),
+      merchant_transaction_id: Joi.string().allow("").required(),
       method: Joi.string().allow("").required(),
       order_id: Joi.string().allow("").required(),
       status: Joi.string().allow("").required(),
