@@ -28,6 +28,8 @@ const Analytics = require("./Analytics/AnalyticsPlatformApplicationClient");
 
 const Partner = require("./Partner/PartnerPlatformApplicationClient");
 
+const Serviceability = require("./Serviceability/ServiceabilityPlatformApplicationClient");
+
 const { FDKClientValidationError } = require("../common/FDKError");
 
 class PlatformApplicationClient {
@@ -65,6 +67,8 @@ class PlatformApplicationClient {
     this.analytics = new Analytics(config, applicationId);
 
     this.partner = new Partner(config, applicationId);
+
+    this.serviceability = new Serviceability(config, applicationId);
   }
 
   setExtraHeaders(header) {
@@ -1787,5 +1791,55 @@ class PlatformApplicationClient {
 /** @typedef Modifier */
 /** @typedef RequestBodyAuditLog */
 /** @typedef ResourceNotFound */
+
+/** @typedef AddressResponse */
+/** @typedef ApplicationServiceabilityConfig */
+/** @typedef ApplicationServiceabilityConfigResponse */
+/** @typedef CompanyStoreView_PageItems */
+/** @typedef CompanyStoreView_Response */
+/** @typedef ContactNumberResponse */
+/** @typedef CreatedByResponse */
+/** @typedef CreateZoneData */
+/** @typedef DocumentsResponse */
+/** @typedef Dp */
+/** @typedef EinvoiceResponse */
+/** @typedef EntityRegionView_Error */
+/** @typedef EntityRegionView_Items */
+/** @typedef EntityRegionView_page */
+/** @typedef EntityRegionView_Request */
+/** @typedef EntityRegionView_Response */
+/** @typedef EwayBillResponse */
+/** @typedef GetSingleZoneDataViewResponse */
+/** @typedef GetStoresViewResponse */
+/** @typedef GetZoneDataViewChannels */
+/** @typedef GetZoneDataViewItems */
+/** @typedef GetZoneFromPincodeViewRequest */
+/** @typedef GetZoneFromPincodeViewResponse */
+/** @typedef GstCredentialsResponse */
+/** @typedef IntegrationTypeResponse */
+/** @typedef ItemResponse */
+/** @typedef ListViewChannels */
+/** @typedef ListViewItems */
+/** @typedef ListViewProduct */
+/** @typedef ListViewResponse */
+/** @typedef ListViewSummary */
+/** @typedef LogisticsResponse */
+/** @typedef ManagerResponse */
+/** @typedef MobileNo */
+/** @typedef ModifiedByResponse */
+/** @typedef OpeningClosing */
+/** @typedef PageResponse */
+/** @typedef ProductReturnConfigResponse */
+/** @typedef ServiceabilityrErrorResponse */
+/** @typedef TimmingResponse */
+/** @typedef UpdateZoneData */
+/** @typedef WarningsResponse */
+/** @typedef ZoneDataItem */
+/** @typedef ZoneMappingType */
+/** @typedef ZoneProductTypes */
+/** @typedef ZoneRequest */
+/** @typedef ZoneResponse */
+/** @typedef ZoneSuccessResponse */
+/** @typedef ZoneUpdateRequest */
 
 module.exports = PlatformApplicationClient;
