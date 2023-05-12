@@ -1265,6 +1265,67 @@ class Payment {
 
   /**
    * @param {Object} arg - Arg object.
+   * @param {string} arg.aggregator - Aggregator_slug
+   * @returns {Promise<RevokeOAuthToken>} - Success response
+   * @summary: API to Revoke oauth for razorpay partnership
+   * @description: Use this API to Revoke oauth for razorpay partnership
+   */
+  async revokeOauthToken({ aggregator } = {}) {
+    const { error } = PaymentValidator.revokeOauthToken().validate(
+      {
+        aggregator,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = PaymentValidator.revokeOauthToken().validate(
+      {
+        aggregator,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for revokeOauthToken",
+      });
+      Logger({ level: "WARN", message: warrning });
+    }
+
+    const query_params = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/payment/v1.0/company/${this.config.companyId}/application/${this.applicationId}/revoke/${aggregator}/`,
+      query_params,
+      undefined
+    );
+
+    const {
+      error: res_error,
+    } = PaymentModel.RevokeOAuthToken().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for revokeOauthToken",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
    * @param {PaymentGatewayConfigRequest} arg.body
    * @returns {Promise<PaymentGatewayToBeReviewed>} - Success response
    * @summary: Save Config Secret For Brand Payment Gateway

@@ -123,6 +123,12 @@ class PaymentValidator {
     }).required();
   }
 
+  static revokeOauthToken() {
+    return Joi.object({
+      aggregator: Joi.string().allow("").required(),
+    }).required();
+  }
+
   static saveBrandPaymentGatewayConfig() {
     return Joi.object({
       body: PaymentModel.PaymentGatewayConfigRequest().required(),

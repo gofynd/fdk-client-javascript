@@ -9,8 +9,6 @@
 Handles all platform order and shipment api(s)
 
 * [attachOrderUser](#attachorderuser)
-* [bulkActionDetails](#bulkactiondetails)
-* [bulkActionProcessXlsxFile](#bulkactionprocessxlsxfile)
 * [checkOrderStatus](#checkorderstatus)
 * [click2Call](#click2call)
 * [createChannelConfig](#createchannelconfig)
@@ -27,10 +25,6 @@ Handles all platform order and shipment api(s)
 * [getAssetByShipmentIds](#getassetbyshipmentids)
 * [getBagById](#getbagbyid)
 * [getBags](#getbags)
-* [getBulkActionFailedReport](#getbulkactionfailedreport)
-* [getBulkInvoice](#getbulkinvoice)
-* [getBulkInvoiceLabel](#getbulkinvoicelabel)
-* [getBulkList](#getbulklist)
 * [getBulkShipmentExcelFile](#getbulkshipmentexcelfile)
 * [getChannelConfig](#getchannelconfig)
 * [getLaneConfig](#getlaneconfig)
@@ -110,140 +104,6 @@ Attach user to order
 
 ```json
 
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### bulkActionDetails
-Returns failed, processing and successfully processed shipments.
-
-
-
-```javascript
-// Promise
-const promise = platformClient.order.bulkActionDetails({  batchId : value });
-
-// Async/Await
-const data = await platformClient.order.bulkActionDetails({  batchId : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| batchId | string | yes |  |  
-
-
-
-Returns failed, processing and successfully processed shipments along with their counts and failed reasons.
-
-*Returned Response:*
-
-
-
-
-[BulkActionDetailsResponse](#BulkActionDetailsResponse)
-
-Success to acknowledge the service was notified
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "success": true,
-  "data": [
-    {
-      "batch_id": "d219af50-d37d-421b-b804-db2c51fa554a",
-      "company_id": "1",
-      "total_shipment_count": 1,
-      "successful_shipment_ids": [],
-      "successful_shipments_count": 0,
-      "failed_shipments_count": 0,
-      "processing_shipments_count": 1
-    }
-  ],
-  "error": [],
-  "message": "",
-  "failed_records": [],
-  "uploaded_by": "Neha Shetye",
-  "user_id": "5f23c85bf4439a812561443a",
-  "uploaded_on": "08 Nov 2022, 01:09 PM",
-  "status": false
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### bulkActionProcessXlsxFile
-emits uuid to kafka topic.
-
-
-
-```javascript
-// Promise
-const promise = platformClient.order.bulkActionProcessXlsxFile({  body : value });
-
-// Async/Await
-const data = await platformClient.order.bulkActionProcessXlsxFile({  body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |
-| body | [BulkActionPayload](#BulkActionPayload) | yes | Request body |
-
-
-Use this API to start processing Xlsx file.
-
-*Returned Response:*
-
-
-
-
-[BulkActionResponse](#BulkActionResponse)
-
-Success to acknowledge the service was notified
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "status": true,
-  "message": "Successful"
-}
 ```
 </details>
 
@@ -1570,291 +1430,6 @@ Successfully retrived all the given shipments details!
 
 ```json
 
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### getBulkActionFailedReport
-
-
-
-
-```javascript
-// Promise
-const promise = platformClient.order.getBulkActionFailedReport({  batchId : value,
- reportType : value });
-
-// Async/Await
-const data = await platformClient.order.getBulkActionFailedReport({  batchId : value,
- reportType : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| batchId | string | yes |  |    
-| reportType | string | no |  |  
-
-
-
-
-
-*Returned Response:*
-
-
-
-
-[FileResponse](#FileResponse)
-
-File Processed!
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "file_name": "requirements.txt",
-  "operation": "putObject",
-  "size": 8493,
-  "namespace": "misc",
-  "content_type": "text/plain",
-  "file_path": "/misc/general/free/original/CEQ64hj8--requirements.txt",
-  "method": "PUT",
-  "tags": [],
-  "upload": {
-    "url": "https://fynd-staging-assets.s3-accelerate.amazonaws.com/x0/misc/general/free/original/CEQ64hj8--requirements.txt?Content-Type=text%2Fplain&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAJUADR2WMPQT6ZJ2Q%2F20221118%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20221118T064720Z&X-Amz-Expires=1800&X-Amz-Signature=088ae87da27ef49644176f751ad2e642ab6cfad015cf01564ab5201c404000ec&X-Amz-SignedHeaders=host%3Bx-amz-acl&x-amz-acl=public-read",
-    "expiry": 1800
-  },
-  "cdn": {
-    "url": "https://cdn.pixelbin.io/v2/falling-surf-7c8bb8/fyndnp/wrkr/x0/misc/general/free/original/CEQ64hj8--requirements.txt"
-  }
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### getBulkInvoice
-
-
-
-
-```javascript
-// Promise
-const promise = platformClient.order.getBulkInvoice({  batchId : value,
- docType : value });
-
-// Async/Await
-const data = await platformClient.order.getBulkInvoice({  batchId : value,
- docType : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| batchId | string | yes |  |   
-| docType | string | yes |  |  
-
-
-
-
-
-*Returned Response:*
-
-
-
-
-[BulkInvoicingResponse](#BulkInvoicingResponse)
-
-We are processing the file!
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### getBulkInvoiceLabel
-
-
-
-
-```javascript
-// Promise
-const promise = platformClient.order.getBulkInvoiceLabel({  batchId : value });
-
-// Async/Await
-const data = await platformClient.order.getBulkInvoiceLabel({  batchId : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| batchId | string | yes |  |  
-
-
-
-
-
-*Returned Response:*
-
-
-
-
-[BulkInvoiceLabelResponse](#BulkInvoiceLabelResponse)
-
-We are processing the file!
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### getBulkList
-
-
-
-
-```javascript
-// Promise
-const promise = platformClient.order.getBulkList({  lane : value,
- searchType : value,
- searchId : value,
- fromDate : value,
- toDate : value,
- dpIds : value,
- orderingCompanyId : value,
- stores : value,
- salesChannel : value,
- requestByExt : value,
- pageNo : value,
- pageSize : value,
- customerId : value,
- isPrioritySort : value });
-
-// Async/Await
-const data = await platformClient.order.getBulkList({  lane : value,
- searchType : value,
- searchId : value,
- fromDate : value,
- toDate : value,
- dpIds : value,
- orderingCompanyId : value,
- stores : value,
- salesChannel : value,
- requestByExt : value,
- pageNo : value,
- pageSize : value,
- customerId : value,
- isPrioritySort : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| lane | string | no |  |    
-| searchType | string | no |  |    
-| searchId | string | no |  |    
-| fromDate | string | no |  |    
-| toDate | string | no |  |    
-| dpIds | string | no |  |    
-| orderingCompanyId | string | no |  |    
-| stores | string | no |  |    
-| salesChannel | string | no |  |    
-| requestByExt | string | no |  |    
-| pageNo | number | no |  |    
-| pageSize | number | no |  |    
-| customerId | string | no |  |    
-| isPrioritySort | boolean | no |  |  
-
-
-
-
-
-*Returned Response:*
-
-
-
-
-[BulkListingResponse](#BulkListingResponse)
-
-We are processing the file!
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{}
 ```
 </details>
 
@@ -5211,7 +4786,7 @@ const data = await platformClient.order.updateShipmentStatus({  body : value });
 | body | [UpdateShipmentStatusRequest](#UpdateShipmentStatusRequest) | yes | Request body |
 
 
-Update shipment status
+This API is for Shipment State transition or Shipment data update or both below example is for partial state transition with data update
 
 *Returned Response:*
 
@@ -5220,7 +4795,7 @@ Update shipment status
 
 [UpdateShipmentStatusResponseBody](#UpdateShipmentStatusResponseBody)
 
-Successfully reassigned location!
+NOTE success response can contains success and failed result as well
 
 
 
@@ -5229,7 +4804,35 @@ Successfully reassigned location!
 <summary><i>&nbsp; Example:</i></summary>
 
 ```json
-
+{
+  "statuses": [
+    {
+      "shipments": [
+        {
+          "status": 200,
+          "final_state": {
+            "bag_confirmed": "bag_confirmed",
+            "shipment_id": "16836279770211860494"
+          },
+          "identifier": "16836279770211860494"
+        }
+      ]
+    },
+    {
+      "shipments": [
+        {
+          "status": 400,
+          "message": "Invalid State Transition bag_confirmed detected for given entity",
+          "code": null,
+          "exception": "ValidationError",
+          "stack_trace": null,
+          "meta": null,
+          "identifier": "16836279770211860494"
+        }
+      ]
+    }
+  ]
+}
 ```
 </details>
 
@@ -6102,138 +5705,6 @@ Verify OTP
 
 ---
 
-#### [BulkActionDetailsDataField](#BulkActionDetailsDataField)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | batch_id | string? |  yes  |  |
- | company_id | string? |  yes  |  |
- | failed_shipments_count | number? |  yes  |  |
- | processing_shipments_count | number? |  yes  |  |
- | successful_shipment_ids | [string]? |  yes  |  |
- | successful_shipments_count | number? |  yes  |  |
- | total_shipments_count | number? |  yes  |  |
- 
-
----
-
-#### [BulkActionDetailsResponse](#BulkActionDetailsResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | data | [[BulkActionDetailsDataField](#BulkActionDetailsDataField)]? |  yes  |  |
- | error | [string]? |  yes  |  |
- | failed_records | [string]? |  yes  |  |
- | message | string? |  yes  |  |
- | status | boolean? |  yes  |  |
- | success | string? |  yes  |  |
- | uploaded_by | string? |  yes  |  |
- | uploaded_on | string? |  yes  |  |
- | user_id | string? |  yes  |  |
- 
-
----
-
-#### [BulkActionPayload](#BulkActionPayload)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | url | string |  no  |  |
- 
-
----
-
-#### [BulkActionResponse](#BulkActionResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | message | string? |  yes  |  |
- | status | boolean? |  yes  |  |
- 
-
----
-
-#### [BulkInvoiceLabelResponse](#BulkInvoiceLabelResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | batch_id | string |  no  |  |
- | company_id | string? |  yes  |  |
- | data | string? |  yes  |  |
- | do_invoice_label_generated | boolean |  no  |  |
- | invoice | string? |  yes  |  |
- | invoice_status | string? |  yes  |  |
- | label | string? |  yes  |  |
- | store_code | string? |  yes  |  |
- | store_id | string? |  yes  |  |
- | store_name | string? |  yes  |  |
- 
-
----
-
-#### [BulkInvoicingResponse](#BulkInvoicingResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | message | string? |  yes  |  |
- | success | boolean |  no  |  |
- 
-
----
-
-#### [bulkListingData](#bulkListingData)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | batch_id | string? |  yes  |  |
- | company_id | number? |  yes  |  |
- | excel_url | string? |  yes  |  |
- | failed | number? |  yes  |  |
- | failed_shipments | [string]? |  yes  |  |
- | file_name | string? |  yes  |  |
- | id | string? |  yes  |  |
- | processing | number? |  yes  |  |
- | processing_shipments | [string]? |  yes  |  |
- | status | string? |  yes  |  |
- | store_code | string? |  yes  |  |
- | store_id | number? |  yes  |  |
- | store_name | string? |  yes  |  |
- | successful | number? |  yes  |  |
- | successful_shipments | [string]? |  yes  |  |
- | total | number? |  yes  |  |
- | uploaded_on | string? |  yes  |  |
- | user_id | string? |  yes  |  |
- | user_name | string? |  yes  |  |
- 
-
----
-
-#### [BulkListingPage](#BulkListingPage)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | current | number? |  yes  |  |
- | has_next | boolean? |  yes  |  |
- | has_previous | boolean? |  yes  |  |
- | size | number? |  yes  |  |
- | total | number? |  yes  |  |
- | type | string? |  yes  |  |
- 
-
----
-
-#### [BulkListingResponse](#BulkListingResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | data | [[bulkListingData](#bulkListingData)]? |  yes  |  |
- | error | string? |  yes  |  |
- | page | [BulkListingPage](#BulkListingPage)? |  yes  |  |
- | success | boolean? |  yes  |  |
- 
-
----
-
 #### [BuyerDetails](#BuyerDetails)
 
  | Properties | Type | Nullable | Description |
@@ -6640,7 +6111,6 @@ Verify OTP
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | data | string? |  yes  |  |
- | filters | [string]? |  yes  |  |
  
 
 ---
@@ -6650,7 +6120,6 @@ Verify OTP
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | data | [EntityReasonData](#EntityReasonData)? |  yes  |  |
- | filters | [string]? |  yes  |  |
  
 
 ---
@@ -7588,6 +7057,15 @@ Verify OTP
 
 ---
 
+#### [PlatformArticleAttributes](#PlatformArticleAttributes)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | currency | string? |  yes  |  |
+ 
+
+---
+
 #### [PlatformBreakupValues](#PlatformBreakupValues)
 
  | Properties | Type | Nullable | Description |
@@ -7639,12 +7117,12 @@ Verify OTP
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | attributes | [PlatformArticleAttributes](#PlatformArticleAttributes)? |  yes  |  |
  | brand | string? |  yes  |  |
  | can_cancel | boolean? |  yes  |  |
  | can_return | boolean? |  yes  |  |
  | code | string? |  yes  |  |
  | color | string? |  yes  |  |
- | currency | string? |  yes  |  |
  | department_id | number? |  yes  |  |
  | id | number? |  yes  |  |
  | image | [string]? |  yes  |  |
@@ -7852,6 +7330,7 @@ Verify OTP
  | ---------- | ---- | -------- | ----------- |
  | amount_paid | number? |  yes  |  |
  | amount_paid_roundoff | number? |  yes  |  |
+ | brand_calculated_amount | number? |  yes  |  |
  | cashback | number? |  yes  |  |
  | cashback_applied | number? |  yes  |  |
  | cod_charges | number? |  yes  |  |
@@ -7889,8 +7368,8 @@ Verify OTP
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | identifier | string? |  yes  |  |
- | line_number | number? |  yes  |  |
+ | identifier | string? |  yes  | Product/Bag Article/Item Identifier |
+ | line_number | number? |  yes  | Product/Bag Line number for the Product/Bag Identifier |
  | quantity | number? |  yes  |  |
  
 
@@ -7901,7 +7380,7 @@ Verify OTP
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | data | string? |  yes  |  |
- | filters | [[ProductsDataUpdatesFilters](#ProductsDataUpdatesFilters)]? |  yes  |  |
+ | filters | [[ProductsDataUpdatesFilters](#ProductsDataUpdatesFilters)]? |  yes  | Filter for the Product/Bag |
  
 
 ---
@@ -7910,8 +7389,8 @@ Verify OTP
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | identifier | string? |  yes  |  |
- | line_number | number? |  yes  |  |
+ | identifier | string? |  yes  | Product/Bag Article/Item Identifier |
+ | line_number | number? |  yes  | Product/Bag Line number for the Product/Bag Identifier |
  
 
 ---
@@ -7940,8 +7419,8 @@ Verify OTP
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | identifier | string? |  yes  |  |
- | line_number | number? |  yes  |  |
+ | identifier | string? |  yes  | Product/Bag Article/Item Identifier |
+ | line_number | number? |  yes  | Product/Bag Line number for the Product/Bag Identifier |
  | quantity | number? |  yes  |  |
  
 
@@ -8285,8 +7764,8 @@ Verify OTP
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | data_updates | [DataUpdates](#DataUpdates)? |  yes  |  |
- | identifier | string |  no  |  |
- | products | [[Products](#Products)]? |  yes  |  |
+ | identifier | string |  no  | Shipment ID |
+ | products | [[Products](#Products)]? |  yes  | Product/Bag to be updated |
  | reasons | [ReasonsData](#ReasonsData)? |  yes  |  |
  
 
@@ -8716,11 +8195,11 @@ Verify OTP
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | force_transition | boolean? |  yes  |  |
- | lock_after_transition | boolean? |  yes  |  |
+ | force_transition | boolean? |  yes  | Force Transition |
+ | lock_after_transition | boolean? |  yes  | Lock Shipment After Transition |
  | statuses | [[StatuesRequest](#StatuesRequest)]? |  yes  |  |
- | task | boolean? |  yes  |  |
- | unlock_before_transition | boolean? |  yes  |  |
+ | task | boolean? |  yes  | To Run Status Update as a background Task |
+ | unlock_before_transition | boolean? |  yes  | Unlock Shipment After Transition |
  
 
 ---

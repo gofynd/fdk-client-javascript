@@ -8,18 +8,6 @@ class OrderValidator {
     }).required();
   }
 
-  static bulkActionDetails() {
-    return Joi.object({
-      batchId: Joi.string().allow("").required(),
-    }).required();
-  }
-
-  static bulkActionProcessXlsxFile() {
-    return Joi.object({
-      body: OrderModel.BulkActionPayload().required(),
-    }).required();
-  }
-
   static checkOrderStatus() {
     return Joi.object({
       body: OrderModel.OrderStatus().required(),
@@ -119,45 +107,6 @@ class OrderValidator {
       channelId: Joi.string().allow(""),
       pageNo: Joi.number(),
       pageSize: Joi.number(),
-    }).required();
-  }
-
-  static getBulkActionFailedReport() {
-    return Joi.object({
-      batchId: Joi.string().allow("").required(),
-      reportType: Joi.string().allow(""),
-    }).required();
-  }
-
-  static getBulkInvoice() {
-    return Joi.object({
-      batchId: Joi.string().allow("").required(),
-      docType: Joi.string().allow("").required(),
-    }).required();
-  }
-
-  static getBulkInvoiceLabel() {
-    return Joi.object({
-      batchId: Joi.string().allow("").required(),
-    }).required();
-  }
-
-  static getBulkList() {
-    return Joi.object({
-      lane: Joi.string().allow(""),
-      searchType: Joi.string().allow(""),
-      searchId: Joi.string().allow(""),
-      fromDate: Joi.string().allow(""),
-      toDate: Joi.string().allow(""),
-      dpIds: Joi.string().allow(""),
-      orderingCompanyId: Joi.string().allow(""),
-      stores: Joi.string().allow(""),
-      salesChannel: Joi.string().allow(""),
-      requestByExt: Joi.string().allow(""),
-      pageNo: Joi.number(),
-      pageSize: Joi.number(),
-      customerId: Joi.string().allow(""),
-      isPrioritySort: Joi.boolean(),
     }).required();
   }
 

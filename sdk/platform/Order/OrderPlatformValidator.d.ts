@@ -1,8 +1,6 @@
 export = OrderValidator;
 declare class OrderValidator {
     static attachOrderUser(): any;
-    static bulkActionDetails(): any;
-    static bulkActionProcessXlsxFile(): any;
     static checkOrderStatus(): any;
     static click2Call(): any;
     static createChannelConfig(): any;
@@ -17,10 +15,6 @@ declare class OrderValidator {
     static getAssetByShipmentIds(): any;
     static getBagById(): any;
     static getBags(): any;
-    static getBulkActionFailedReport(): any;
-    static getBulkInvoice(): any;
-    static getBulkInvoiceLabel(): any;
-    static getBulkList(): any;
     static getBulkShipmentExcelFile(): any;
     static getChannelConfig(): any;
     static getLaneConfig(): any;

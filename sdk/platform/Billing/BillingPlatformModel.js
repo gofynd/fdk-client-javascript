@@ -100,6 +100,7 @@ class BillingModel {
   }
   static DetailedPlanComponents() {
     return Joi.object({
+      config: Joi.any(),
       description: Joi.string().allow(""),
       display_text: Joi.string().allow(""),
       enabled: Joi.boolean(),

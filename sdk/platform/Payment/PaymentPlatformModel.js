@@ -573,6 +573,12 @@ class PaymentModel {
       success: Joi.boolean().required(),
     });
   }
+  static RevokeOAuthToken() {
+    return Joi.object({
+      message: Joi.string().allow("").required(),
+      success: Joi.boolean().required(),
+    });
+  }
   static RootPaymentMode() {
     return Joi.object({
       add_card_enabled: Joi.boolean().allow(null),

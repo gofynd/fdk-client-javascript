@@ -19,6 +19,7 @@ declare class PaymentValidator {
     static initialisePayment(): any;
     static paymentStatusBulk(): any;
     static resendOrCancelPayment(): any;
+    static revokeOauthToken(): any;
     static saveBrandPaymentGatewayConfig(): any;
     static setUserCODlimitRoutes(): any;
     static updateEdcDevice(): any;

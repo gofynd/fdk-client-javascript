@@ -2328,6 +2328,7 @@ class PlatformClient {
  */
 /**
  * @typedef DetailedPlanComponents
+ * @property {Object} [config]
  * @property {string} [description]
  * @property {string} [display_text]
  * @property {boolean} [enabled]
@@ -4170,6 +4171,11 @@ class PlatformClient {
  * @property {boolean} success
  */
 /**
+ * @typedef RevokeOAuthToken
+ * @property {string} message
+ * @property {boolean} success
+ */
+/**
  * @typedef RootPaymentMode
  * @property {boolean} [add_card_enabled]
  * @property {string} [aggregator_name]
@@ -4703,93 +4709,6 @@ class PlatformClient {
  * @property {string} [start_date]
  */
 /**
- * @typedef BulkActionDetailsDataField
- * @property {string} [batch_id]
- * @property {string} [company_id]
- * @property {number} [failed_shipments_count]
- * @property {number} [processing_shipments_count]
- * @property {string[]} [successful_shipment_ids]
- * @property {number} [successful_shipments_count]
- * @property {number} [total_shipments_count]
- */
-/**
- * @typedef BulkActionDetailsResponse
- * @property {BulkActionDetailsDataField[]} [data]
- * @property {string[]} [error]
- * @property {string[]} [failed_records]
- * @property {string} [message]
- * @property {boolean} [status]
- * @property {string} [success]
- * @property {string} [uploaded_by]
- * @property {string} [uploaded_on]
- * @property {string} [user_id]
- */
-/**
- * @typedef BulkActionPayload
- * @property {string} url
- */
-/**
- * @typedef BulkActionResponse
- * @property {string} [message]
- * @property {boolean} [status]
- */
-/**
- * @typedef BulkInvoiceLabelResponse
- * @property {string} batch_id
- * @property {string} [company_id]
- * @property {Object} [data]
- * @property {boolean} do_invoice_label_generated
- * @property {Object} [invoice]
- * @property {string} [invoice_status]
- * @property {Object} [label]
- * @property {string} [store_code]
- * @property {string} [store_id]
- * @property {string} [store_name]
- */
-/**
- * @typedef BulkInvoicingResponse
- * @property {string} [message]
- * @property {boolean} success
- */
-/**
- * @typedef bulkListingData
- * @property {string} [batch_id]
- * @property {number} [company_id]
- * @property {string} [excel_url]
- * @property {number} [failed]
- * @property {Object[]} [failed_shipments]
- * @property {string} [file_name]
- * @property {string} [id]
- * @property {number} [processing]
- * @property {string[]} [processing_shipments]
- * @property {string} [status]
- * @property {string} [store_code]
- * @property {number} [store_id]
- * @property {string} [store_name]
- * @property {number} [successful]
- * @property {Object[]} [successful_shipments]
- * @property {number} [total]
- * @property {string} [uploaded_on]
- * @property {string} [user_id]
- * @property {string} [user_name]
- */
-/**
- * @typedef BulkListingPage
- * @property {number} [current]
- * @property {boolean} [has_next]
- * @property {boolean} [has_previous]
- * @property {number} [size]
- * @property {number} [total]
- * @property {string} [type]
- */
-/**
- * @typedef BulkListingResponse
- * @property {bulkListingData[]} [data]
- * @property {string} [error]
- * @property {BulkListingPage} [page]
- * @property {boolean} [success]
- */
-/**
  * @typedef BuyerDetails
  * @property {string} address
  * @property {string} [ajio_site_id]
@@ -5023,12 +4942,10 @@ class PlatformClient {
 /**
  * @typedef EntitiesDataUpdates
  * @property {Object} [data]
- * @property {Object[]} [filters]
  */
 /**
  * @typedef EntitiesReasons
  * @property {EntityReasonData} [data]
- * @property {Object[]} [filters]
  */
 /**
  * @typedef EntityReasonData
@@ -5610,6 +5527,10 @@ class PlatformClient {
  * @property {string} [seller_identifier]
  */
 /**
+ * @typedef PlatformArticleAttributes
+ * @property {string} [currency]
+ */
+/**
  * @typedef PlatformBreakupValues
  * @property {string} [display]
  * @property {string} [name]
@@ -5643,12 +5564,12 @@ class PlatformClient {
  */
 /**
  * @typedef PlatformItem
+ * @property {PlatformArticleAttributes} [attributes]
  * @property {string} [brand]
  * @property {boolean} [can_cancel]
  * @property {boolean} [can_return]
  * @property {string} [code]
  * @property {string} [color]
- * @property {string} [currency]
  * @property {number} [department_id]
  * @property {number} [id]
  * @property {string[]} [image]
@@ -5786,6 +5707,7 @@ class PlatformClient {
  * @typedef Prices
  * @property {number} [amount_paid]
  * @property {number} [amount_paid_roundoff]
+ * @property {number} [brand_calculated_amount]
  * @property {number} [cashback]
  * @property {number} [cashback_applied]
  * @property {number} [cod_charges]
@@ -8434,7 +8356,7 @@ class PlatformClient {
  * @property {NetQuantity} [net_quantity]
  * @property {number} [no_of_boxes]
  * @property {string[]} [product_group_tag]
- * @property {ProductPublish} [product_publish]
+ * @property {ProductPublish1} [product_publish]
  * @property {string} [requester]
  * @property {ReturnConfig} return_config
  * @property {string} [short_description]
@@ -8630,7 +8552,7 @@ class PlatformClient {
  * @property {string} [pending]
  * @property {string} [primary_color]
  * @property {string[]} [product_group_tag]
- * @property {ProductPublish1} [product_publish]
+ * @property {ProductPublish} [product_publish]
  * @property {ReturnConfigResponse} [return_config]
  * @property {string} [short_description]
  * @property {string} [size_guide]

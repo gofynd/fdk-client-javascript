@@ -1717,6 +1717,7 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | config | string? |  yes  |  |
  | description | string? |  yes  |  |
  | display_text | string? |  yes  |  |
  | enabled | boolean? |  yes  |  |

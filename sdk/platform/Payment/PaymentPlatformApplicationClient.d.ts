@@ -219,6 +219,16 @@ declare class Payment {
     }): Promise<ResendOrCancelPaymentResponse>;
     /**
      * @param {Object} arg - Arg object.
+     * @param {string} arg.aggregator - Aggregator_slug
+     * @returns {Promise<RevokeOAuthToken>} - Success response
+     * @summary: API to Revoke oauth for razorpay partnership
+     * @description: Use this API to Revoke oauth for razorpay partnership
+     */
+    revokeOauthToken({ aggregator }?: {
+        aggregator: string;
+    }): Promise<RevokeOAuthToken>;
+    /**
+     * @param {Object} arg - Arg object.
      * @param {PaymentGatewayConfigRequest} arg.body
      * @returns {Promise<PaymentGatewayToBeReviewed>} - Success response
      * @summary: Save Config Secret For Brand Payment Gateway

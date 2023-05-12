@@ -33,6 +33,7 @@ Collect payment through many payment gateway i.e Stripe, Razorpay, Juspay etc.in
 * [initialisePayment](#initialisepayment)
 * [paymentStatusBulk](#paymentstatusbulk)
 * [resendOrCancelPayment](#resendorcancelpayment)
+* [revokeOauthToken](#revokeoauthtoken)
 * [saveBrandPaymentGatewayConfig](#savebrandpaymentgatewayconfig)
 * [savePayout](#savepayout)
 * [saveSubscriptionSetupIntent](#savesubscriptionsetupintent)
@@ -4446,6 +4447,65 @@ Success. Returns the status of payment. Check the example shown below or refer `
 ---
 
 
+### revokeOauthToken
+API to Revoke oauth for razorpay partnership
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").payment.revokeOauthToken({  aggregator : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").payment.revokeOauthToken({  aggregator : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| aggregator | string | yes | aggregator_slug |  
+
+
+
+Use this API to Revoke oauth for razorpay partnership
+
+*Returned Response:*
+
+
+
+
+[RevokeOAuthToken](#RevokeOAuthToken)
+
+Success. Returns the status of revokation. Check the example shown below or refer `RevokeOAuthTokenSchema` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "success": true,
+  "message": "Token Revoked"
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
 ### saveBrandPaymentGatewayConfig
 Save Config Secret For Brand Payment Gateway
 
@@ -5862,6 +5922,16 @@ Bank details on correct Ifsc Code
  | ---------- | ---- | -------- | ----------- |
  | data | [LinkStatus](#LinkStatus) |  no  | Data about link action status. |
  | success | boolean |  no  | Response is successful or not. |
+ 
+
+---
+
+#### [RevokeOAuthToken](#RevokeOAuthToken)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | message | string |  no  | The confirmation message of the token revoke. |
+ | success | boolean |  no  | Response is successful or not |
  
 
 ---

@@ -45,15 +45,6 @@ declare class OrderModel {
     static BillingInfo(): any;
     static BillingStaffDetails(): any;
     static Brand(): any;
-    static BulkActionDetailsDataField(): any;
-    static BulkActionDetailsResponse(): any;
-    static BulkActionPayload(): any;
-    static BulkActionResponse(): any;
-    static BulkInvoiceLabelResponse(): any;
-    static BulkInvoicingResponse(): any;
-    static bulkListingData(): any;
-    static BulkListingPage(): any;
-    static BulkListingResponse(): any;
     static BuyerDetails(): any;
     static BuyRules(): any;
     static Charge(): any;
@@ -161,6 +152,7 @@ declare class OrderModel {
     static PDFLinks(): any;
     static PhoneDetails(): any;
     static PlatformArticle(): any;
+    static PlatformArticleAttributes(): any;
     static PlatformBreakupValues(): any;
     static PlatformChannel(): any;
     static PlatformDeliveryAddress(): any;

@@ -60,6 +60,7 @@ declare class PaymentModel {
     static RefundAccountResponse(): any;
     static ResendOrCancelPaymentRequest(): any;
     static ResendOrCancelPaymentResponse(): any;
+    static RevokeOAuthToken(): any;
     static RootPaymentMode(): any;
     static SaveSubscriptionSetupIntentRequest(): any;
     static SaveSubscriptionSetupIntentResponse(): any;

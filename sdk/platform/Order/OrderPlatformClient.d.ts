@@ -14,26 +14,6 @@ declare class Order {
     }): Promise<AttachOrderUserResponse>;
     /**
      * @param {Object} arg - Arg object.
-     * @param {string} arg.batchId -
-     * @returns {Promise<BulkActionDetailsResponse>} - Success response
-     * @summary: Returns failed, processing and successfully processed shipments.
-     * @description: Returns failed, processing and successfully processed shipments along with their counts and failed reasons.
-     */
-    bulkActionDetails({ batchId }?: {
-        batchId: string;
-    }): Promise<BulkActionDetailsResponse>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {BulkActionPayload} arg.body
-     * @returns {Promise<BulkActionResponse>} - Success response
-     * @summary: emits uuid to kafka topic.
-     * @description: Use this API to start processing Xlsx file.
-     */
-    bulkActionProcessXlsxFile({ body }?: {
-        body: BulkActionPayload;
-    }): Promise<BulkActionResponse>;
-    /**
-     * @param {Object} arg - Arg object.
      * @param {OrderStatus} arg.body
      * @returns {Promise<OrderStatusResult>} - Success response
      * @summary:
@@ -208,76 +188,6 @@ declare class Order {
         pageNo?: number;
         pageSize?: number;
     }): Promise<GetBagsPlatformResponse>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.batchId -
-     * @param {string} [arg.reportType] -
-     * @returns {Promise<FileResponse>} - Success response
-     * @summary:
-     * @description:
-     */
-    getBulkActionFailedReport({ batchId, reportType }?: {
-        batchId: string;
-        reportType?: string;
-    }): Promise<FileResponse>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.batchId -
-     * @param {string} arg.docType -
-     * @returns {Promise<BulkInvoicingResponse>} - Success response
-     * @summary:
-     * @description:
-     */
-    getBulkInvoice({ batchId, docType }?: {
-        batchId: string;
-        docType: string;
-    }): Promise<BulkInvoicingResponse>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.batchId -
-     * @returns {Promise<BulkInvoiceLabelResponse>} - Success response
-     * @summary:
-     * @description:
-     */
-    getBulkInvoiceLabel({ batchId }?: {
-        batchId: string;
-    }): Promise<BulkInvoiceLabelResponse>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {string} [arg.lane] -
-     * @param {string} [arg.searchType] -
-     * @param {string} [arg.searchId] -
-     * @param {string} [arg.fromDate] -
-     * @param {string} [arg.toDate] -
-     * @param {string} [arg.dpIds] -
-     * @param {string} [arg.orderingCompanyId] -
-     * @param {string} [arg.stores] -
-     * @param {string} [arg.salesChannel] -
-     * @param {string} [arg.requestByExt] -
-     * @param {number} [arg.pageNo] -
-     * @param {number} [arg.pageSize] -
-     * @param {string} [arg.customerId] -
-     * @param {boolean} [arg.isPrioritySort] -
-     * @returns {Promise<BulkListingResponse>} - Success response
-     * @summary:
-     * @description:
-     */
-    getBulkList({ lane, searchType, searchId, fromDate, toDate, dpIds, orderingCompanyId, stores, salesChannel, requestByExt, pageNo, pageSize, customerId, isPrioritySort, }?: {
-        lane?: string;
-        searchType?: string;
-        searchId?: string;
-        fromDate?: string;
-        toDate?: string;
-        dpIds?: string;
-        orderingCompanyId?: string;
-        stores?: string;
-        salesChannel?: string;
-        requestByExt?: string;
-        pageNo?: number;
-        pageSize?: number;
-        customerId?: string;
-        isPrioritySort?: boolean;
-    }): Promise<BulkListingResponse>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} [arg.lane] -
@@ -685,7 +595,7 @@ declare class Order {
      * @param {UpdateShipmentStatusRequest} arg.body
      * @returns {Promise<UpdateShipmentStatusResponseBody>} - Success response
      * @summary:
-     * @description: Update shipment status
+     * @description: This API is for Shipment State transition or Shipment data update or both below example is for partial state transition with data update
      */
     updateShipmentStatus({ body }?: {
         body: UpdateShipmentStatusRequest;

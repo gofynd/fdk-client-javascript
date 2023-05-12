@@ -633,6 +633,7 @@ class PlatformApplicationClient {
 /** @typedef RefundAccountResponse */
 /** @typedef ResendOrCancelPaymentRequest */
 /** @typedef ResendOrCancelPaymentResponse */
+/** @typedef RevokeOAuthToken */
 /** @typedef RootPaymentMode */
 /** @typedef SaveSubscriptionSetupIntentRequest */
 /** @typedef SaveSubscriptionSetupIntentResponse */
@@ -690,15 +691,6 @@ class PlatformApplicationClient {
 /** @typedef BillingInfo */
 /** @typedef BillingStaffDetails */
 /** @typedef Brand */
-/** @typedef BulkActionDetailsDataField */
-/** @typedef BulkActionDetailsResponse */
-/** @typedef BulkActionPayload */
-/** @typedef BulkActionResponse */
-/** @typedef BulkInvoiceLabelResponse */
-/** @typedef BulkInvoicingResponse */
-/** @typedef bulkListingData */
-/** @typedef BulkListingPage */
-/** @typedef BulkListingResponse */
 /** @typedef BuyerDetails */
 /** @typedef BuyRules */
 /** @typedef Charge */
@@ -806,6 +798,7 @@ class PlatformApplicationClient {
 /** @typedef PDFLinks */
 /** @typedef PhoneDetails */
 /** @typedef PlatformArticle */
+/** @typedef PlatformArticleAttributes */
 /** @typedef PlatformBreakupValues */
 /** @typedef PlatformChannel */
 /** @typedef PlatformDeliveryAddress */
