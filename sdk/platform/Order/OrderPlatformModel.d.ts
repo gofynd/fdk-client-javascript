@@ -36,6 +36,7 @@ declare class OrderModel {
     static BagGSTDetails(): any;
     static BagMeta(): any;
     static BagReturnableCancelableStatus(): any;
+    static BagReturnableCancelableStatus1(): any;
     static Bags(): any;
     static BagsPage(): any;
     static BagStateMapper(): any;
@@ -148,10 +149,8 @@ declare class OrderModel {
     static PaymentInfo(): any;
     static PaymentMethod(): any;
     static PaymentMethods(): any;
-    static PaymentModeInfo(): any;
     static PDFLinks(): any;
     static PhoneDetails(): any;
-    static PlatformArticle(): any;
     static PlatformArticleAttributes(): any;
     static PlatformBreakupValues(): any;
     static PlatformChannel(): any;

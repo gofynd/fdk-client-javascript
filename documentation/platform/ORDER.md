@@ -5470,7 +5470,7 @@ Verify OTP
  | restore_promos | string? |  yes  |  |
  | seller_identifier | string? |  yes  |  |
  | shipment_id | string? |  yes  |  |
- | status | [BagReturnableCancelableStatus](#BagReturnableCancelableStatus) |  no  |  |
+ | status | [BagReturnableCancelableStatus1](#BagReturnableCancelableStatus1) |  no  |  |
  | tags | [string]? |  yes  |  |
  
 
@@ -5533,6 +5533,19 @@ Verify OTP
 ---
 
 #### [BagReturnableCancelableStatus](#BagReturnableCancelableStatus)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | can_be_cancelled | boolean |  no  |  |
+ | enable_tracking | boolean |  no  |  |
+ | is_active | boolean |  no  |  |
+ | is_customer_return_allowed | boolean |  no  |  |
+ | is_returnable | boolean |  no  |  |
+ 
+
+---
+
+#### [BagReturnableCancelableStatus1](#BagReturnableCancelableStatus1)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
@@ -5617,19 +5630,29 @@ Verify OTP
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | article | [PlatformArticle](#PlatformArticle)? |  yes  |  |
+ | affiliate_bag_details | [AffiliateBagDetails](#AffiliateBagDetails)? |  yes  |  |
+ | article | [Article](#Article)? |  yes  |  |
+ | bag_expiry_date | string? |  yes  |  |
  | bag_id | number |  no  |  |
+ | bag_status | [[BagStatusHistory](#BagStatusHistory)]? |  yes  |  |
+ | bag_type | string? |  yes  |  |
+ | brand | string? |  yes  |  |
  | can_cancel | boolean? |  yes  |  |
  | can_return | boolean? |  yes  |  |
+ | current_operational_status | [BagStatusHistory](#BagStatusHistory) |  no  |  |
+ | current_status | [BagStatusHistory](#BagStatusHistory) |  no  |  |
+ | dates | [Dates](#Dates)? |  yes  |  |
+ | display_name | string? |  yes  |  |
+ | entity_type | string? |  yes  |  |
+ | financial_breakup | [[FinancialBreakup](#FinancialBreakup)] |  no  |  |
  | gst | [GSTDetailsData](#GSTDetailsData)? |  yes  |  |
  | item | [PlatformItem](#PlatformItem)? |  yes  |  |
- | item_quantity | number |  no  |  |
- | line_number | number? |  yes  |  |
- | ordering_channel | string |  no  |  |
+ | meta | string? |  yes  |  |
  | prices | [Prices](#Prices)? |  yes  |  |
- | shipment_id | string |  no  |  |
- | status | string |  no  |  |
- | total_shipment_bags | number |  no  |  |
+ | product_quantity | number |  no  |  |
+ | reasons | [string]? |  yes  |  |
+ | size | string? |  yes  |  |
+ | status | [BagReturnableCancelableStatus](#BagReturnableCancelableStatus) |  no  |  |
  
 
 ---
@@ -6384,8 +6407,19 @@ Verify OTP
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | brand_calculated_amount | number |  no  |  |
+ | cgst_gst_fee | string? |  yes  |  |
+ | cgst_tax_percentage | number? |  yes  |  |
  | gst_fee | number |  no  |  |
+ | gst_tag | string? |  yes  |  |
+ | gst_tax_percentage | number? |  yes  |  |
  | gstin_code | string |  no  |  |
+ | hsn_code | string? |  yes  |  |
+ | hsn_code_id | string? |  yes  |  |
+ | igst_gst_fee | string? |  yes  |  |
+ | igst_tax_percentage | number? |  yes  |  |
+ | is_default_hsn_code | boolean? |  yes  |  |
+ | sgst_gst_fee | string? |  yes  |  |
+ | sgst_tax_percentage | number? |  yes  |  |
  | tax_collected_at_source | number |  no  |  |
  | value_of_good | number |  no  |  |
  
@@ -7013,16 +7047,6 @@ Verify OTP
 
 ---
 
-#### [PaymentModeInfo](#PaymentModeInfo)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | logo | string |  no  |  |
- | type | string |  no  |  |
- 
-
----
-
 #### [PDFLinks](#PDFLinks)
 
  | Properties | Type | Nullable | Description |
@@ -7051,16 +7075,6 @@ Verify OTP
  | ---------- | ---- | -------- | ----------- |
  | country_code | number? |  yes  |  |
  | mobile_number | string? |  yes  |  |
- 
-
----
-
-#### [PlatformArticle](#PlatformArticle)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | identifiers | string? |  yes  |  |
- | seller_identifier | string? |  yes  |  |
  
 
 ---
@@ -7126,7 +7140,9 @@ Verify OTP
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | attributes | [PlatformArticleAttributes](#PlatformArticleAttributes)? |  yes  |  |
+ | branch_url | string? |  yes  |  |
  | brand | string? |  yes  |  |
+ | brand_id | number? |  yes  |  |
  | can_cancel | boolean? |  yes  |  |
  | can_return | boolean? |  yes  |  |
  | code | string? |  yes  |  |
@@ -7136,10 +7152,14 @@ Verify OTP
  | image | [string]? |  yes  |  |
  | images | [string]? |  yes  |  |
  | l1_category | [string]? |  yes  |  |
+ | l2_category | [string]? |  yes  |  |
  | l3_category | number? |  yes  |  |
  | l3_category_name | string? |  yes  |  |
+ | last_updated_at | string? |  yes  |  |
+ | meta | string? |  yes  |  |
  | name | string? |  yes  |  |
  | size | string? |  yes  |  |
+ | slug_key | string? |  yes  |  |
  
 
 ---
@@ -7342,10 +7362,12 @@ Verify OTP
  | cashback | number? |  yes  |  |
  | cashback_applied | number? |  yes  |  |
  | cod_charges | number? |  yes  |  |
+ | coupon_effective_discount | number? |  yes  |  |
  | coupon_value | number? |  yes  |  |
  | delivery_charge | number? |  yes  |  |
  | discount | number? |  yes  |  |
  | fynd_credits | number? |  yes  |  |
+ | pm_price_split | number? |  yes  |  |
  | price_effective | number? |  yes  |  |
  | price_marked | number? |  yes  |  |
  | promotion_effective_discount | number? |  yes  |  |
@@ -7668,7 +7690,7 @@ Verify OTP
  | items | [[ShipmentItem](#ShipmentItem)]? |  yes  |  |
  | lane | string? |  yes  |  |
  | message | string? |  yes  |  |
- | page | [Page](#Page)? |  yes  |  |
+ | page | string? |  yes  |  |
  | success | boolean? |  yes  |  |
  | total_count | number? |  yes  |  |
  
@@ -7679,24 +7701,29 @@ Verify OTP
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | application | string? |  yes  |  |
  | bags | [[BagUnit](#BagUnit)]? |  yes  |  |
+ | can_process | boolean? |  yes  |  |
  | channel | string? |  yes  |  |
- | company | string? |  yes  |  |
- | created_at | string |  no  |  |
- | fulfilling_centre | string |  no  |  |
+ | customer_note | string? |  yes  |  |
+ | delivery_address | [PlatformDeliveryAddress](#PlatformDeliveryAddress)? |  yes  |  |
+ | display_name | string? |  yes  |  |
+ | estimated_sla_time | string? |  yes  |  |
  | fulfilling_store | [ShipmentItemFulFillingStore](#ShipmentItemFulFillingStore)? |  yes  |  |
- | id | string |  no  |  |
- | order_id | string? |  yes  |  |
+ | invoice_id | string? |  yes  |  |
+ | lock_status | string? |  yes  |  |
+ | meta | string? |  yes  |  |
+ | order_date | string? |  yes  |  |
+ | order_id | string |  no  |  |
+ | ordering_channnel | string? |  yes  |  |
  | payment_methods | string? |  yes  |  |
- | payment_mode_info | [PaymentModeInfo](#PaymentModeInfo)? |  yes  |  |
+ | payment_mode | string? |  yes  |  |
+ | previous_shipment_id | string? |  yes  |  |
  | prices | [Prices](#Prices)? |  yes  |  |
  | shipment_created_at | string |  no  |  |
  | shipment_id | string? |  yes  |  |
  | shipment_status | [ShipmentStatus](#ShipmentStatus)? |  yes  |  |
- | sla | string? |  yes  |  |
+ | status_created_at | string? |  yes  |  |
  | total_bags_count | number |  no  |  |
- | total_shipments_in_order | number |  no  |  |
  | user | [UserDataInfo](#UserDataInfo)? |  yes  |  |
  
 
@@ -7706,8 +7733,18 @@ Verify OTP
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | address | string? |  yes  |  |
+ | brand_store_tags | string? |  yes  |  |
+ | city | string? |  yes  |  |
  | code | string |  no  |  |
- | id | string |  no  |  |
+ | fulfilling_store_id | number |  no  |  |
+ | location_type | string? |  yes  |  |
+ | meta | string? |  yes  |  |
+ | name | string? |  yes  |  |
+ | phone | string? |  yes  |  |
+ | pincode | string? |  yes  |  |
+ | state | string? |  yes  |  |
+ | store_email | string? |  yes  |  |
  
 
 ---
@@ -7799,10 +7836,14 @@ Verify OTP
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | actual_status | string |  no  |  |
- | hex_code | string |  no  |  |
- | ops_status | string |  no  |  |
+ | bag_list | [string]? |  yes  |  |
+ | created_at | string? |  yes  |  |
+ | current_shipment_status | string? |  yes  |  |
+ | meta | string? |  yes  |  |
+ | shipment_id | string? |  yes  |  |
+ | shipment_status_id | number? |  yes  |  |
  | status | string |  no  |  |
+ | status_created_at | string? |  yes  |  |
  | title | string |  no  |  |
  
 

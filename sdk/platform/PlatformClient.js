@@ -4545,7 +4545,7 @@ class PlatformClient {
  * @property {Object} [restore_promos]
  * @property {string} [seller_identifier]
  * @property {string} [shipment_id]
- * @property {BagReturnableCancelableStatus} status
+ * @property {BagReturnableCancelableStatus1} status
  * @property {string[]} [tags]
  */
 /**
@@ -4591,6 +4591,14 @@ class PlatformClient {
  */
 /**
  * @typedef BagReturnableCancelableStatus
+ * @property {boolean} can_be_cancelled
+ * @property {boolean} enable_tracking
+ * @property {boolean} is_active
+ * @property {boolean} is_customer_return_allowed
+ * @property {boolean} is_returnable
+ */
+/**
+ * @typedef BagReturnableCancelableStatus1
  * @property {boolean} can_be_cancelled
  * @property {boolean} enable_tracking
  * @property {boolean} is_active
@@ -4647,19 +4655,29 @@ class PlatformClient {
  */
 /**
  * @typedef BagUnit
- * @property {PlatformArticle} [article]
+ * @property {AffiliateBagDetails} [affiliate_bag_details]
+ * @property {Article} [article]
+ * @property {string} [bag_expiry_date]
  * @property {number} bag_id
+ * @property {BagStatusHistory[]} [bag_status]
+ * @property {string} [bag_type]
+ * @property {Object} [brand]
  * @property {boolean} [can_cancel]
  * @property {boolean} [can_return]
+ * @property {BagStatusHistory} current_operational_status
+ * @property {BagStatusHistory} current_status
+ * @property {Dates} [dates]
+ * @property {string} [display_name]
+ * @property {string} [entity_type]
+ * @property {FinancialBreakup[]} financial_breakup
  * @property {GSTDetailsData} [gst]
  * @property {PlatformItem} [item]
- * @property {number} item_quantity
- * @property {number} [line_number]
- * @property {string} ordering_channel
+ * @property {Object} [meta]
  * @property {Prices} [prices]
- * @property {string} shipment_id
- * @property {Object} status
- * @property {number} total_shipment_bags
+ * @property {number} product_quantity
+ * @property {Object[]} [reasons]
+ * @property {string} [size]
+ * @property {BagReturnableCancelableStatus} status
  */
 /**
  * @typedef BaseResponse
@@ -5109,8 +5127,19 @@ class PlatformClient {
 /**
  * @typedef GSTDetailsData
  * @property {number} brand_calculated_amount
+ * @property {string} [cgst_gst_fee]
+ * @property {number} [cgst_tax_percentage]
  * @property {number} gst_fee
+ * @property {string} [gst_tag]
+ * @property {number} [gst_tax_percentage]
  * @property {string} gstin_code
+ * @property {string} [hsn_code]
+ * @property {string} [hsn_code_id]
+ * @property {string} [igst_gst_fee]
+ * @property {number} [igst_tax_percentage]
+ * @property {boolean} [is_default_hsn_code]
+ * @property {string} [sgst_gst_fee]
+ * @property {number} [sgst_tax_percentage]
  * @property {number} tax_collected_at_source
  * @property {number} value_of_good
  */
@@ -5507,11 +5536,6 @@ class PlatformClient {
  * @property {string} [refund_by]
  */
 /**
- * @typedef PaymentModeInfo
- * @property {string} logo
- * @property {string} type
- */
-/**
  * @typedef PDFLinks
  * @property {string} [b2b]
  * @property {string} [credit_note_url]
@@ -5532,11 +5556,6 @@ class PlatformClient {
  * @typedef PhoneDetails
  * @property {number} [country_code]
  * @property {string} [mobile_number]
- */
-/**
- * @typedef PlatformArticle
- * @property {Object} [identifiers]
- * @property {string} [seller_identifier]
  */
 /**
  * @typedef PlatformArticleAttributes
@@ -5577,7 +5596,9 @@ class PlatformClient {
 /**
  * @typedef PlatformItem
  * @property {PlatformArticleAttributes} [attributes]
+ * @property {string} [branch_url]
  * @property {string} [brand]
+ * @property {number} [brand_id]
  * @property {boolean} [can_cancel]
  * @property {boolean} [can_return]
  * @property {string} [code]
@@ -5587,10 +5608,14 @@ class PlatformClient {
  * @property {string[]} [image]
  * @property {string[]} [images]
  * @property {string[]} [l1_category]
+ * @property {string[]} [l2_category]
  * @property {number} [l3_category]
  * @property {string} [l3_category_name]
+ * @property {string} [last_updated_at]
+ * @property {Object} [meta]
  * @property {string} [name]
  * @property {string} [size]
+ * @property {string} [slug_key]
  */
 /**
  * @typedef PlatformOrderItems
@@ -5723,10 +5748,12 @@ class PlatformClient {
  * @property {number} [cashback]
  * @property {number} [cashback_applied]
  * @property {number} [cod_charges]
+ * @property {number} [coupon_effective_discount]
  * @property {number} [coupon_value]
  * @property {number} [delivery_charge]
  * @property {number} [discount]
  * @property {number} [fynd_credits]
+ * @property {number} [pm_price_split]
  * @property {number} [price_effective]
  * @property {number} [price_marked]
  * @property {number} [promotion_effective_discount]
@@ -5909,36 +5936,51 @@ class PlatformClient {
  * @property {ShipmentItem[]} [items]
  * @property {string} [lane]
  * @property {string} [message]
- * @property {Page} [page]
+ * @property {Object} [page]
  * @property {boolean} [success]
  * @property {number} [total_count]
  */
 /**
  * @typedef ShipmentItem
- * @property {Object} [application]
  * @property {BagUnit[]} [bags]
+ * @property {boolean} [can_process]
  * @property {Object} [channel]
- * @property {Object} [company]
- * @property {string} created_at
- * @property {string} fulfilling_centre
+ * @property {string} [customer_note]
+ * @property {PlatformDeliveryAddress} [delivery_address]
+ * @property {string} [display_name]
+ * @property {string} [estimated_sla_time]
  * @property {ShipmentItemFulFillingStore} [fulfilling_store]
- * @property {string} id
- * @property {string} [order_id]
+ * @property {string} [invoice_id]
+ * @property {string} [lock_status]
+ * @property {Object} [meta]
+ * @property {string} [order_date]
+ * @property {string} order_id
+ * @property {string} [ordering_channnel]
  * @property {Object} [payment_methods]
- * @property {PaymentModeInfo} [payment_mode_info]
+ * @property {string} [payment_mode]
+ * @property {string} [previous_shipment_id]
  * @property {Prices} [prices]
  * @property {string} shipment_created_at
  * @property {string} [shipment_id]
  * @property {ShipmentStatus} [shipment_status]
- * @property {Object} [sla]
+ * @property {string} [status_created_at]
  * @property {number} total_bags_count
- * @property {number} total_shipments_in_order
  * @property {UserDataInfo} [user]
  */
 /**
  * @typedef ShipmentItemFulFillingStore
+ * @property {string} [address]
+ * @property {string} [brand_store_tags]
+ * @property {string} [city]
  * @property {string} code
- * @property {string} id
+ * @property {number} fulfilling_store_id
+ * @property {string} [location_type]
+ * @property {Object} [meta]
+ * @property {string} [name]
+ * @property {string} [phone]
+ * @property {string} [pincode]
+ * @property {string} [state]
+ * @property {string} [store_email]
  */
 /**
  * @typedef ShipmentMeta
@@ -6005,10 +6047,14 @@ class PlatformClient {
  */
 /**
  * @typedef ShipmentStatus
- * @property {string} actual_status
- * @property {string} hex_code
- * @property {string} ops_status
+ * @property {string[]} [bag_list]
+ * @property {string} [created_at]
+ * @property {string} [current_shipment_status]
+ * @property {Object} [meta]
+ * @property {string} [shipment_id]
+ * @property {number} [shipment_status_id]
  * @property {string} status
+ * @property {string} [status_created_at]
  * @property {string} title
  */
 /**
@@ -7369,15 +7415,15 @@ class PlatformClient {
  * @property {GetAddressSerializer[]} [addresses]
  * @property {string} [business_type]
  * @property {string} [company_type]
- * @property {UserSerializer2} [created_by]
+ * @property {UserSerializer1} [created_by]
  * @property {string} [created_on]
- * @property {UserSerializer2} [modified_by]
+ * @property {UserSerializer1} [modified_by]
  * @property {string} [modified_on]
  * @property {string} [name]
  * @property {string} [reject_reason]
  * @property {string} [stage]
  * @property {number} [uid]
- * @property {UserSerializer2} [verified_by]
+ * @property {UserSerializer1} [verified_by]
  * @property {string} [verified_on]
  */
 /**
@@ -7454,14 +7500,14 @@ class PlatformClient {
  * @property {string} code
  * @property {GetCompanySerializer} [company]
  * @property {SellerPhoneNumber[]} [contact_numbers]
- * @property {UserSerializer1} [created_by]
+ * @property {UserSerializer2} [created_by]
  * @property {string} [created_on]
  * @property {string} display_name
  * @property {Document[]} [documents]
  * @property {InvoiceDetailsSerializer} [gst_credentials]
  * @property {LocationIntegrationType} [integration_type]
  * @property {LocationManagerSerializer} [manager]
- * @property {UserSerializer1} [modified_by]
+ * @property {UserSerializer2} [modified_by]
  * @property {string} [modified_on]
  * @property {string} name
  * @property {string[]} [notification_emails]
@@ -7471,7 +7517,7 @@ class PlatformClient {
  * @property {string} [store_type]
  * @property {LocationDayWiseSerializer[]} [timing]
  * @property {number} [uid]
- * @property {UserSerializer1} [verified_by]
+ * @property {UserSerializer2} [verified_by]
  * @property {string} [verified_on]
  * @property {Object} [warnings]
  */

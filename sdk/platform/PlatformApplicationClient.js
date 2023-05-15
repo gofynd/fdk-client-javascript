@@ -686,6 +686,7 @@ class PlatformApplicationClient {
 /** @typedef BagGSTDetails */
 /** @typedef BagMeta */
 /** @typedef BagReturnableCancelableStatus */
+/** @typedef BagReturnableCancelableStatus1 */
 /** @typedef Bags */
 /** @typedef BagsPage */
 /** @typedef BagStateMapper */
@@ -798,10 +799,8 @@ class PlatformApplicationClient {
 /** @typedef PaymentInfo */
 /** @typedef PaymentMethod */
 /** @typedef PaymentMethods */
-/** @typedef PaymentModeInfo */
 /** @typedef PDFLinks */
 /** @typedef PhoneDetails */
-/** @typedef PlatformArticle */
 /** @typedef PlatformArticleAttributes */
 /** @typedef PlatformBreakupValues */
 /** @typedef PlatformChannel */
