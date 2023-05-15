@@ -126,7 +126,8 @@ declare class Order {
     }): Promise<GeneratePosOrderReceiptResponse>;
     /**
      * @param {Object} arg - Arg object.
-     * @param {string} [arg.date] -
+     * @param {string} [arg.date] - Date On which the announcement is Active
+     *   (Date should in ISO Datetime format IST Time)
      * @returns {Promise<AnnouncementsResponse>} - Success response
      * @summary:
      * @description:
@@ -585,7 +586,7 @@ declare class Order {
      * @param {UpdateShipmentLockPayload} arg.body
      * @returns {Promise<UpdateShipmentLockResponse>} - Success response
      * @summary:
-     * @description: update shipment lock
+     * @description: update shipment/bag lock and check status
      */
     updateShipmentLock({ body }?: {
         body: UpdateShipmentLockPayload;

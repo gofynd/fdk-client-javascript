@@ -2634,6 +2634,7 @@ Success, the code is valid and returns a session token
  | id | number? |  yes  |  |
  | item | [Item](#Item)? |  yes  |  |
  | line_number | number? |  yes  |  |
+ | meta | string? |  yes  |  |
  | parent_promo_bags | string? |  yes  |  |
  | prices | [Prices](#Prices)? |  yes  |  |
  | quantity | number? |  yes  |  |

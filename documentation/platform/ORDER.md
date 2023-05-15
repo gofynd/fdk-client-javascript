@@ -714,7 +714,7 @@ const data = await platformClient.order.getAnnouncements({  date : value });
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
-| date | string | no |  |  
+| date | string | no | Date On which the announcement is Active (Date should in ISO Datetime format IST Time) |  
 
 
 
@@ -4731,7 +4731,7 @@ const data = await platformClient.order.updateShipmentLock({  body : value });
 | body | [UpdateShipmentLockPayload](#UpdateShipmentLockPayload) | yes | Request body |
 
 
-update shipment lock
+update shipment/bag lock and check status
 
 *Returned Response:*
 
@@ -4740,7 +4740,7 @@ update shipment lock
 
 [UpdateShipmentLockResponse](#UpdateShipmentLockResponse)
 
-Successfully updated shipment cache!
+Successfully update the Lock and get check status of the shipment/Bag
 
 
 
@@ -5263,6 +5263,8 @@ Verify OTP
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | announcements | [[AnnouncementResponse](#AnnouncementResponse)]? |  yes  |  |
+ | message | string |  no  |  |
+ | success | boolean |  no  |  |
  
 
 ---
@@ -5547,10 +5549,10 @@ Verify OTP
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | affiliate_bag_id | string? |  yes  |  |
- | affiliate_order_id | string? |  yes  |  |
- | bag_id | number? |  yes  |  |
- | is_locked | boolean? |  yes  |  |
+ | affiliate_bag_id | string? |  yes  | Application/Affiliate Bag ID, Required if the ID is missing |
+ | affiliate_order_id | string? |  yes  | Application/Affiliate Order ID, Required if the ID is missing |
+ | bag_id | number? |  yes  | Bag Id |
+ | is_locked | boolean? |  yes  | Is Bag Locked |
  
 
 ---
@@ -5747,15 +5749,15 @@ Verify OTP
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | affiliate_id | string? |  yes  |  |
- | affiliate_shipment_id | string? |  yes  |  |
+ | affiliate_id | string? |  yes  | Affiliate ID |
+ | affiliate_shipment_id | string? |  yes  | Affiliate Shipment ID |
  | bags | [[Bags](#Bags)]? |  yes  |  |
- | is_bag_locked | boolean? |  yes  |  |
- | is_shipment_locked | boolean? |  yes  |  |
- | lock_status | boolean? |  yes  |  |
- | original_filter | [OriginalFilter](#OriginalFilter)? |  yes  |  |
- | shipment_id | string? |  yes  |  |
- | status | string? |  yes  |  |
+ | is_bag_locked | boolean? |  yes  | Is Bag Locked |
+ | is_shipment_locked | boolean? |  yes  | Is Shipment Locked |
+ | lock_status | string? |  yes  | Lock Status: Expected action_type: [complete, operational, financial] |
+ | original_filter | [OriginalFilter](#OriginalFilter)? |  yes  | Filter |
+ | shipment_id | string? |  yes  | Shipment ID |
+ | status | string? |  yes  | Status |
  
 
 ---
@@ -6096,12 +6098,12 @@ Verify OTP
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | affiliate_bag_id | string? |  yes  |  |
- | affiliate_id | string? |  yes  |  |
- | affiliate_order_id | string? |  yes  |  |
- | affiliate_shipment_id | string? |  yes  |  |
- | id | string? |  yes  |  |
- | reason_text | string |  no  |  |
+ | affiliate_bag_id | string? |  yes  | Application/Affiliate Bag ID, Required if the ID is missing |
+ | affiliate_id | string? |  yes  | Application/Affiliate ID, Required if the ID is missing |
+ | affiliate_order_id | string? |  yes  | Application/Affiliate Order ID, Required if the ID is missing |
+ | affiliate_shipment_id | string? |  yes  | Application/Affiliate Shipment ID, Required if the ID is missing |
+ | id | string? |  yes  | Shipment ID if 'entity_type': shipments \| Bag Id if 'entity_type': bags |
+ | reason_text | string |  no  | Reason For Shipment/Bag Action |
  
 
 ---
@@ -6111,6 +6113,7 @@ Verify OTP
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | data | string? |  yes  |  |
+ | filters | [string]? |  yes  |  |
  
 
 ---
@@ -6120,6 +6123,7 @@ Verify OTP
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | data | [EntityReasonData](#EntityReasonData)? |  yes  |  |
+ | filters | [string]? |  yes  |  |
  
 
 ---
@@ -6170,7 +6174,8 @@ Verify OTP
  | ---------- | ---- | -------- | ----------- |
  | error_trace | string? |  yes  |  |
  | message | string |  no  |  |
- | status | number |  no  |  |
+ | status | number? |  yes  |  |
+ | success | boolean |  no  |  |
  
 
 ---
@@ -6391,6 +6396,7 @@ Verify OTP
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | assigned_agent | string? |  yes  |  |
  | bag_id | number? |  yes  |  |
  | createdat | string |  no  |  |
  | display_message | string? |  yes  |  |
@@ -6432,7 +6438,9 @@ Verify OTP
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | shipment_ids | [string] |  no  |  |
+ | affiliate_bag_ids | [string]? |  yes  | Affiliate Bag Ids to clear cache of shipment Ids mapped to it |
+ | bag_ids | [string]? |  yes  | Bag Ids to clear cache of shipment Ids mapped to it |
+ | shipment_ids | [string]? |  yes  | Shipment Ids to clear cache |
  
 
 ---
@@ -6949,8 +6957,8 @@ Verify OTP
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | affiliate_id | string? |  yes  |  |
- | affiliate_shipment_id | string? |  yes  |  |
+ | affiliate_id | string? |  yes  | Affiliate ID |
+ | affiliate_shipment_id | string? |  yes  | Affiliate Shipment ID |
  
 
 ---
@@ -7889,7 +7897,7 @@ Verify OTP
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | exclude_bags_next_state | string? |  yes  |  |
+ | exclude_bags_next_state | string? |  yes  | State to be change for Remaining Bag/Products |
  | shipments | [[ShipmentsRequest](#ShipmentsRequest)]? |  yes  |  |
  | status | string? |  yes  |  |
  
@@ -8172,10 +8180,10 @@ Verify OTP
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | action | string |  no  |  |
- | action_type | string |  no  |  |
- | entities | [[Entities](#Entities)] |  no  |  |
- | entity_type | string |  no  |  |
+ | action | string |  no  | Expected Actions: [lock, unlock, check] |
+ | action_type | string |  no  | Expected action_type: [complete, operational, financial] |
+ | entities | [[Entities](#Entities)] |  no  | Shipment/Entity |
+ | entity_type | string |  no  | Expected entity_type: [bags, shipments] |
  
 
 ---
@@ -8184,9 +8192,9 @@ Verify OTP
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | check_response | [[CheckResponse](#CheckResponse)]? |  yes  |  |
- | message | string? |  yes  |  |
- | success | boolean? |  yes  |  |
+ | check_response | [[CheckResponse](#CheckResponse)]? |  yes  | Entity Lock Status, If the action input as 'check' |
+ | message | string |  no  |  |
+ | success | boolean |  no  |  |
  
 
 ---

@@ -3679,6 +3679,8 @@ type AnnouncementResponse = {
 };
 type AnnouncementsResponse = {
     announcements?: AnnouncementResponse[];
+    message: string;
+    success: boolean;
 };
 type AppliedPromos = {
     amount?: number;
@@ -3988,7 +3990,7 @@ type CheckResponse = {
     bags?: Bags[];
     is_bag_locked?: boolean;
     is_shipment_locked?: boolean;
-    lock_status?: boolean;
+    lock_status?: string;
     original_filter?: OriginalFilter;
     shipment_id?: string;
     status?: string;
@@ -4161,9 +4163,11 @@ type Entities = {
 };
 type EntitiesDataUpdates = {
     data?: any;
+    filters?: any[];
 };
 type EntitiesReasons = {
     data?: EntityReasonData;
+    filters?: any[];
 };
 type EntityReasonData = {
     reason_id?: number;
@@ -4184,7 +4188,8 @@ type ErrorResponse = {
 type ErrorResponse1 = {
     error_trace?: string;
     message: string;
-    status: number;
+    status?: number;
+    success: boolean;
 };
 type FetchCreditBalanceRequestPayload = {
     affiliate_id: string;
@@ -4303,6 +4308,7 @@ type GSTDetailsData = {
     value_of_good: number;
 };
 type HistoryDict = {
+    assigned_agent?: string;
     bag_id?: number;
     createdat: string;
     display_message?: string;
@@ -4326,7 +4332,9 @@ type InvalidateShipmentCacheNestedResponse = {
     status?: number;
 };
 type InvalidateShipmentCachePayload = {
-    shipment_ids: string[];
+    affiliate_bag_ids?: string[];
+    bag_ids?: string[];
+    shipment_ids?: string[];
 };
 type InvalidateShipmentCacheResponse = {
     response?: InvalidateShipmentCacheNestedResponse[];
@@ -5304,8 +5312,8 @@ type UpdateShipmentLockPayload = {
 };
 type UpdateShipmentLockResponse = {
     check_response?: CheckResponse[];
-    message?: string;
-    success?: boolean;
+    message: string;
+    success: boolean;
 };
 type UpdateShipmentStatusRequest = {
     force_transition?: boolean;

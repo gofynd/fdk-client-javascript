@@ -4403,6 +4403,8 @@ class PlatformClient {
 /**
  * @typedef AnnouncementsResponse
  * @property {AnnouncementResponse[]} [announcements]
+ * @property {string} message
+ * @property {boolean} success
  */
 /**
  * @typedef AppliedPromos
@@ -4742,7 +4744,7 @@ class PlatformClient {
  * @property {Bags[]} [bags]
  * @property {boolean} [is_bag_locked]
  * @property {boolean} [is_shipment_locked]
- * @property {boolean} [lock_status]
+ * @property {string} [lock_status]
  * @property {OriginalFilter} [original_filter]
  * @property {string} [shipment_id]
  * @property {string} [status]
@@ -4946,10 +4948,12 @@ class PlatformClient {
 /**
  * @typedef EntitiesDataUpdates
  * @property {Object} [data]
+ * @property {Object[]} [filters]
  */
 /**
  * @typedef EntitiesReasons
  * @property {EntityReasonData} [data]
+ * @property {Object[]} [filters]
  */
 /**
  * @typedef EntityReasonData
@@ -4975,7 +4979,8 @@ class PlatformClient {
  * @typedef ErrorResponse1
  * @property {string} [error_trace]
  * @property {string} message
- * @property {number} status
+ * @property {number} [status]
+ * @property {boolean} success
  */
 /**
  * @typedef FetchCreditBalanceRequestPayload
@@ -5111,6 +5116,7 @@ class PlatformClient {
  */
 /**
  * @typedef HistoryDict
+ * @property {string} [assigned_agent]
  * @property {number} [bag_id]
  * @property {string} createdat
  * @property {string} [display_message]
@@ -5137,7 +5143,9 @@ class PlatformClient {
  */
 /**
  * @typedef InvalidateShipmentCachePayload
- * @property {string[]} shipment_ids
+ * @property {string[]} [affiliate_bag_ids]
+ * @property {string[]} [bag_ids]
+ * @property {string[]} [shipment_ids]
  */
 /**
  * @typedef InvalidateShipmentCacheResponse
@@ -6256,8 +6264,8 @@ class PlatformClient {
 /**
  * @typedef UpdateShipmentLockResponse
  * @property {CheckResponse[]} [check_response]
- * @property {string} [message]
- * @property {boolean} [success]
+ * @property {string} message
+ * @property {boolean} success
  */
 /**
  * @typedef UpdateShipmentStatusRequest
