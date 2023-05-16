@@ -84,6 +84,16 @@ declare class Order {
     }): Promise<SuccessResponse>;
     /**
      * @param {Object} arg - Arg object.
+     * @param {string} [arg.templateSlug] - Slug name of template to be downloaded
+     * @returns {Promise<FileResponse>} - Success response
+     * @summary:
+     * @description:
+     */
+    downloadBulkActionTemplate({ templateSlug }?: {
+        templateSlug?: string;
+    }): Promise<FileResponse>;
+    /**
+     * @param {Object} arg - Arg object.
      * @param {EInvoiceRetry} arg.body
      * @returns {Promise<EInvoiceRetryResponse>} - Success response
      * @summary:
@@ -191,39 +201,42 @@ declare class Order {
     }): Promise<GetBagsPlatformResponse>;
     /**
      * @param {Object} arg - Arg object.
-     * @param {string} [arg.lane] -
-     * @param {string} [arg.searchType] -
-     * @param {string} [arg.searchId] -
-     * @param {string} [arg.fromDate] -
-     * @param {string} [arg.toDate] -
-     * @param {string} [arg.dpIds] -
-     * @param {string} [arg.orderingCompanyId] -
-     * @param {string} [arg.stores] -
-     * @param {string} [arg.salesChannel] -
-     * @param {string} [arg.requestByExt] -
+     * @returns {Promise<BulkActionTemplateResponse>} - Success response
+     * @summary:
+     * @description:
+     */
+    getBulkActionTemplate({}?: any): Promise<BulkActionTemplateResponse>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {string} [arg.salesChannels] - Comma seperated values of sales channel ids
+     * @param {string} [arg.dpIds] - Comma seperated values of delivery partner ids
+     * @param {string} [arg.fromDate] - Start Date in DD-MM-YYYY format
+     * @param {string} [arg.toDate] - End Date in DD-MM-YYYY format
+     * @param {string} [arg.stores] - Comma seperated values of store ids
+     * @param {string} [arg.tags] - Comma seperated values of tags
+     * @param {string} [arg.bagStatus] - Comma seperated values of bag statuses
+     * @param {string} [arg.paymentMethods] - Comma seperated values of payment methods
+     * @param {string} [arg.fileType] - File type to be downloaded
+     * @param {number} [arg.timeToDispatch] - Sla breached or not breached
      * @param {number} [arg.pageNo] -
      * @param {number} [arg.pageSize] -
-     * @param {string} [arg.customerId] -
-     * @param {boolean} [arg.isPrioritySort] -
      * @returns {Promise<FileResponse>} - Success response
      * @summary:
      * @description:
      */
-    getBulkShipmentExcelFile({ lane, searchType, searchId, fromDate, toDate, dpIds, orderingCompanyId, stores, salesChannel, requestByExt, pageNo, pageSize, customerId, isPrioritySort, }?: {
-        lane?: string;
-        searchType?: string;
-        searchId?: string;
+    getBulkShipmentExcelFile({ salesChannels, dpIds, fromDate, toDate, stores, tags, bagStatus, paymentMethods, fileType, timeToDispatch, pageNo, pageSize, }?: {
+        salesChannels?: string;
+        dpIds?: string;
         fromDate?: string;
         toDate?: string;
-        dpIds?: string;
-        orderingCompanyId?: string;
         stores?: string;
-        salesChannel?: string;
-        requestByExt?: string;
+        tags?: string;
+        bagStatus?: string;
+        paymentMethods?: string;
+        fileType?: string;
+        timeToDispatch?: number;
         pageNo?: number;
         pageSize?: number;
-        customerId?: string;
-        isPrioritySort?: boolean;
     }): Promise<FileResponse>;
     /**
      * @param {Object} arg - Arg object.

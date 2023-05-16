@@ -488,6 +488,72 @@ class Order {
 
   /**
    * @param {Object} arg - Arg object.
+   * @param {string} [arg.templateSlug] - Slug name of template to be downloaded
+   * @returns {Promise<FileResponse>} - Success response
+   * @summary:
+   * @description:
+   */
+  async downloadBulkActionTemplate({ templateSlug } = {}) {
+    const { error } = OrderValidator.downloadBulkActionTemplate().validate(
+      {
+        templateSlug,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = OrderValidator.downloadBulkActionTemplate().validate(
+      {
+        templateSlug,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message:
+          "Parameter Validation warrnings for downloadBulkActionTemplate",
+      });
+      Logger({ level: "WARN", message: warrning });
+    }
+
+    const query_params = {};
+    query_params["template_slug"] = templateSlug;
+
+    const xHeaders = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/orders/v1.0/company/${this.config.companyId}/bulk-action/download-seller-templates`,
+      query_params,
+      undefined,
+      xHeaders
+    );
+
+    const { error: res_error } = OrderModel.FileResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for downloadBulkActionTemplate",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
    * @param {EInvoiceRetry} arg.body
    * @returns {Promise<EInvoiceRetryResponse>} - Success response
    * @summary:
@@ -1073,56 +1139,109 @@ class Order {
 
   /**
    * @param {Object} arg - Arg object.
-   * @param {string} [arg.lane] -
-   * @param {string} [arg.searchType] -
-   * @param {string} [arg.searchId] -
-   * @param {string} [arg.fromDate] -
-   * @param {string} [arg.toDate] -
-   * @param {string} [arg.dpIds] -
-   * @param {string} [arg.orderingCompanyId] -
-   * @param {string} [arg.stores] -
-   * @param {string} [arg.salesChannel] -
-   * @param {string} [arg.requestByExt] -
+   * @returns {Promise<BulkActionTemplateResponse>} - Success response
+   * @summary:
+   * @description:
+   */
+  async getBulkActionTemplate({} = {}) {
+    const { error } = OrderValidator.getBulkActionTemplate().validate(
+      {},
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = OrderValidator.getBulkActionTemplate().validate(
+      {},
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getBulkActionTemplate",
+      });
+      Logger({ level: "WARN", message: warrning });
+    }
+
+    const query_params = {};
+
+    const xHeaders = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/orders/v1.0/company/${this.config.companyId}/bulk-action/get-seller-templates`,
+      query_params,
+      undefined,
+      xHeaders
+    );
+
+    const {
+      error: res_error,
+    } = OrderModel.BulkActionTemplateResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getBulkActionTemplate",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {string} [arg.salesChannels] - Comma seperated values of sales channel ids
+   * @param {string} [arg.dpIds] - Comma seperated values of delivery partner ids
+   * @param {string} [arg.fromDate] - Start Date in DD-MM-YYYY format
+   * @param {string} [arg.toDate] - End Date in DD-MM-YYYY format
+   * @param {string} [arg.stores] - Comma seperated values of store ids
+   * @param {string} [arg.tags] - Comma seperated values of tags
+   * @param {string} [arg.bagStatus] - Comma seperated values of bag statuses
+   * @param {string} [arg.paymentMethods] - Comma seperated values of payment methods
+   * @param {string} [arg.fileType] - File type to be downloaded
+   * @param {number} [arg.timeToDispatch] - Sla breached or not breached
    * @param {number} [arg.pageNo] -
    * @param {number} [arg.pageSize] -
-   * @param {string} [arg.customerId] -
-   * @param {boolean} [arg.isPrioritySort] -
    * @returns {Promise<FileResponse>} - Success response
    * @summary:
    * @description:
    */
   async getBulkShipmentExcelFile({
-    lane,
-    searchType,
-    searchId,
+    salesChannels,
+    dpIds,
     fromDate,
     toDate,
-    dpIds,
-    orderingCompanyId,
     stores,
-    salesChannel,
-    requestByExt,
+    tags,
+    bagStatus,
+    paymentMethods,
+    fileType,
+    timeToDispatch,
     pageNo,
     pageSize,
-    customerId,
-    isPrioritySort,
   } = {}) {
     const { error } = OrderValidator.getBulkShipmentExcelFile().validate(
       {
-        lane,
-        searchType,
-        searchId,
+        salesChannels,
+        dpIds,
         fromDate,
         toDate,
-        dpIds,
-        orderingCompanyId,
         stores,
-        salesChannel,
-        requestByExt,
+        tags,
+        bagStatus,
+        paymentMethods,
+        fileType,
+        timeToDispatch,
         pageNo,
         pageSize,
-        customerId,
-        isPrioritySort,
       },
       { abortEarly: false, allowUnknown: true }
     );
@@ -1135,20 +1254,18 @@ class Order {
       error: warrning,
     } = OrderValidator.getBulkShipmentExcelFile().validate(
       {
-        lane,
-        searchType,
-        searchId,
+        salesChannels,
+        dpIds,
         fromDate,
         toDate,
-        dpIds,
-        orderingCompanyId,
         stores,
-        salesChannel,
-        requestByExt,
+        tags,
+        bagStatus,
+        paymentMethods,
+        fileType,
+        timeToDispatch,
         pageNo,
         pageSize,
-        customerId,
-        isPrioritySort,
       },
       { abortEarly: false, allowUnknown: false }
     );
@@ -1161,20 +1278,18 @@ class Order {
     }
 
     const query_params = {};
-    query_params["lane"] = lane;
-    query_params["search_type"] = searchType;
-    query_params["search_id"] = searchId;
+    query_params["sales_channels"] = salesChannels;
+    query_params["dp_ids"] = dpIds;
     query_params["from_date"] = fromDate;
     query_params["to_date"] = toDate;
-    query_params["dp_ids"] = dpIds;
-    query_params["ordering_company_id"] = orderingCompanyId;
     query_params["stores"] = stores;
-    query_params["sales_channel"] = salesChannel;
-    query_params["request_by_ext"] = requestByExt;
+    query_params["tags"] = tags;
+    query_params["bag_status"] = bagStatus;
+    query_params["payment_methods"] = paymentMethods;
+    query_params["file_type"] = fileType;
+    query_params["time_to_dispatch"] = timeToDispatch;
     query_params["page_no"] = pageNo;
     query_params["page_size"] = pageSize;
-    query_params["customer_id"] = customerId;
-    query_params["is_priority_sort"] = isPrioritySort;
 
     const xHeaders = {};
 

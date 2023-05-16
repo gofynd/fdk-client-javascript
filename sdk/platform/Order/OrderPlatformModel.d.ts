@@ -46,6 +46,8 @@ declare class OrderModel {
     static BillingInfo(): any;
     static BillingStaffDetails(): any;
     static Brand(): any;
+    static BulkActionTemplate(): any;
+    static BulkActionTemplateResponse(): any;
     static BuyerDetails(): any;
     static BuyRules(): any;
     static Charge(): any;
@@ -104,6 +106,8 @@ declare class OrderModel {
     static GiftCard(): any;
     static GSTDetailsData(): any;
     static HistoryDict(): any;
+    static HistoryMeta(): any;
+    static HistoryReason(): any;
     static Identifier(): any;
     static InvalidateShipmentCacheNestedResponse(): any;
     static InvalidateShipmentCachePayload(): any;
@@ -200,6 +204,7 @@ declare class OrderModel {
     static ShipmentInternalPlatformViewResponse(): any;
     static ShipmentItem(): any;
     static ShipmentItemFulFillingStore(): any;
+    static ShipmentListingBrand(): any;
     static ShipmentMeta(): any;
     static ShipmentPayments(): any;
     static ShipmentsRequest(): any;

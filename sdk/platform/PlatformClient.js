@@ -28,8 +28,6 @@ const Webhook = require("./Webhook/WebhookPlatformClient");
 
 const AuditTrail = require("./AuditTrail/AuditTrailPlatformClient");
 
-const Serviceability = require("./Serviceability/ServiceabilityPlatformClient");
-
 const PlatformApplicationClient = require("./PlatformApplicationClient");
 const { FDKClientValidationError } = require("../common/FDKError");
 
@@ -66,8 +64,6 @@ class PlatformClient {
     this.webhook = new Webhook(config);
 
     this.auditTrail = new AuditTrail(config);
-
-    this.serviceability = new Serviceability(config);
   }
   application(applicationId) {
     if (typeof applicationId == "string") {
@@ -4423,11 +4419,12 @@ class PlatformClient {
  * @property {Object} [a_set]
  * @property {Object} [child_details]
  * @property {string} [code]
+ * @property {Object} [currency]
  * @property {Dimensions} [dimensions]
- * @property {Object} [esp_modified]
+ * @property {boolean} [esp_modified]
  * @property {Identifier} identifiers
  * @property {boolean} [is_set]
- * @property {Object} [raw_meta]
+ * @property {string} [raw_meta]
  * @property {ReturnConfig} [return_config]
  * @property {string} seller_identifier
  * @property {string} size
@@ -4661,7 +4658,7 @@ class PlatformClient {
  * @property {number} bag_id
  * @property {BagStatusHistory[]} [bag_status]
  * @property {string} [bag_type]
- * @property {Object} [brand]
+ * @property {ShipmentListingBrand} [brand]
  * @property {boolean} [can_cancel]
  * @property {boolean} [can_return]
  * @property {BagStatusHistory} current_operational_status
@@ -4731,6 +4728,15 @@ class PlatformClient {
  * @property {string} [pickup_location]
  * @property {string} [script_last_ran]
  * @property {string} [start_date]
+ */
+/**
+ * @typedef BulkActionTemplate
+ * @property {string} [text]
+ * @property {string} [value]
+ */
+/**
+ * @typedef BulkActionTemplateResponse
+ * @property {BulkActionTemplate[]} [template_x_slug]
  */
 /**
  * @typedef BuyerDetails
@@ -4879,7 +4885,7 @@ class PlatformClient {
  */
 /**
  * @typedef Dates
- * @property {Object} [delivery_date]
+ * @property {string} [delivery_date]
  * @property {string} [order_created]
  */
 /**
@@ -5153,11 +5159,46 @@ class PlatformClient {
  * @property {string} [l2_detail]
  * @property {string} [l3_detail]
  * @property {string} message
- * @property {Object} [meta]
+ * @property {HistoryMeta} [meta]
  * @property {string} [ticket_id]
  * @property {string} [ticket_url]
  * @property {string} type
  * @property {string} user
+ */
+/**
+ * @typedef HistoryMeta
+ * @property {string} [activity_comment]
+ * @property {string} [activity_type]
+ * @property {string} [billsec]
+ * @property {string} [call_id]
+ * @property {string} [caller]
+ * @property {string} [callerid]
+ * @property {string} [channel_type]
+ * @property {string} [duration]
+ * @property {string} [endtime]
+ * @property {string} [message]
+ * @property {HistoryReason} [reason]
+ * @property {string} [receiver]
+ * @property {string} [recipient]
+ * @property {string} [recordpath]
+ * @property {string} [short_link]
+ * @property {string} [slug]
+ * @property {string} [starttime]
+ * @property {string} [status]
+ * @property {string} [status1]
+ * @property {string} [status2]
+ * @property {string} [store_code]
+ * @property {number} [store_id]
+ * @property {string} [store_name]
+ */
+/**
+ * @typedef HistoryReason
+ * @property {string} [category]
+ * @property {number} [code]
+ * @property {string} [dislay_name]
+ * @property {number} [quantity]
+ * @property {string} [state]
+ * @property {string} [text]
  */
 /**
  * @typedef Identifier
@@ -5924,6 +5965,7 @@ class PlatformClient {
 /**
  * @typedef ShipmentHistoryResponse
  * @property {HistoryDict[]} activity_history
+ * @property {boolean} [success]
  */
 /**
  * @typedef ShipmentInfoResponse
@@ -5951,7 +5993,7 @@ class PlatformClient {
  * @property {string} [estimated_sla_time]
  * @property {ShipmentItemFulFillingStore} [fulfilling_store]
  * @property {string} [invoice_id]
- * @property {string} [lock_status]
+ * @property {boolean} [lock_status]
  * @property {Object} [meta]
  * @property {string} [order_date]
  * @property {string} order_id
@@ -5964,7 +6006,7 @@ class PlatformClient {
  * @property {string} [shipment_id]
  * @property {ShipmentStatus} [shipment_status]
  * @property {string} [status_created_at]
- * @property {number} total_bags_count
+ * @property {number} total_bags
  * @property {UserDataInfo} [user]
  */
 /**
@@ -5981,6 +6023,13 @@ class PlatformClient {
  * @property {string} [pincode]
  * @property {string} [state]
  * @property {string} [store_email]
+ */
+/**
+ * @typedef ShipmentListingBrand
+ * @property {string} [created_on]
+ * @property {string} [logo]
+ * @property {string} [logo_base64]
+ * @property {string} [name]
  */
 /**
  * @typedef ShipmentMeta
@@ -7415,15 +7464,15 @@ class PlatformClient {
  * @property {GetAddressSerializer[]} [addresses]
  * @property {string} [business_type]
  * @property {string} [company_type]
- * @property {UserSerializer1} [created_by]
+ * @property {UserSerializer2} [created_by]
  * @property {string} [created_on]
- * @property {UserSerializer1} [modified_by]
+ * @property {UserSerializer2} [modified_by]
  * @property {string} [modified_on]
  * @property {string} [name]
  * @property {string} [reject_reason]
  * @property {string} [stage]
  * @property {number} [uid]
- * @property {UserSerializer1} [verified_by]
+ * @property {UserSerializer2} [verified_by]
  * @property {string} [verified_on]
  */
 /**
@@ -7500,14 +7549,14 @@ class PlatformClient {
  * @property {string} code
  * @property {GetCompanySerializer} [company]
  * @property {SellerPhoneNumber[]} [contact_numbers]
- * @property {UserSerializer2} [created_by]
+ * @property {UserSerializer1} [created_by]
  * @property {string} [created_on]
  * @property {string} display_name
  * @property {Document[]} [documents]
  * @property {InvoiceDetailsSerializer} [gst_credentials]
  * @property {LocationIntegrationType} [integration_type]
  * @property {LocationManagerSerializer} [manager]
- * @property {UserSerializer2} [modified_by]
+ * @property {UserSerializer1} [modified_by]
  * @property {string} [modified_on]
  * @property {string} name
  * @property {string[]} [notification_emails]
@@ -7517,7 +7566,7 @@ class PlatformClient {
  * @property {string} [store_type]
  * @property {LocationDayWiseSerializer[]} [timing]
  * @property {number} [uid]
- * @property {UserSerializer2} [verified_by]
+ * @property {UserSerializer1} [verified_by]
  * @property {string} [verified_on]
  * @property {Object} [warnings]
  */
@@ -8414,7 +8463,7 @@ class PlatformClient {
  * @property {NetQuantity} [net_quantity]
  * @property {number} [no_of_boxes]
  * @property {string[]} [product_group_tag]
- * @property {ProductPublish} [product_publish]
+ * @property {ProductPublish1} [product_publish]
  * @property {string} [requester]
  * @property {ReturnConfig} return_config
  * @property {string} [short_description]
@@ -8610,7 +8659,7 @@ class PlatformClient {
  * @property {string} [pending]
  * @property {string} [primary_color]
  * @property {string[]} [product_group_tag]
- * @property {ProductPublish1} [product_publish]
+ * @property {ProductPublish} [product_publish]
  * @property {ReturnConfigResponse} [return_config]
  * @property {string} [short_description]
  * @property {string} [size_guide]
@@ -13738,366 +13787,6 @@ class PlatformClient {
 /**
  * @typedef ResourceNotFound
  * @property {string} [message]
- */
-
-/**
- * @typedef AddressResponse
- * @property {string} [address1]
- * @property {string} [address2]
- * @property {string} [city]
- * @property {string} [country]
- * @property {string} [landmark]
- * @property {number} [latitude]
- * @property {number} [longitude]
- * @property {number} [pincode]
- * @property {string} [state]
- */
-/**
- * @typedef ApplicationServiceabilityConfig
- * @property {string} channel_id
- * @property {string} channel_type
- * @property {string} serviceability_type
- */
-/**
- * @typedef ApplicationServiceabilityConfigResponse
- * @property {ApplicationServiceabilityConfig} [data]
- * @property {ServiceabilityrErrorResponse} [error]
- * @property {boolean} success
- */
-/**
- * @typedef CompanyStoreView_PageItems
- * @property {number} current
- * @property {boolean} has_next
- * @property {number} item_total
- * @property {number} size
- * @property {string} type
- */
-/**
- * @typedef CompanyStoreView_Response
- * @property {Object[]} [items]
- * @property {CompanyStoreView_PageItems[]} page
- */
-/**
- * @typedef ContactNumberResponse
- * @property {number} [country_code]
- * @property {string} [number]
- */
-/**
- * @typedef CreatedByResponse
- * @property {string} [user_id]
- * @property {string} [username]
- */
-/**
- * @typedef CreateZoneData
- * @property {string} [assignment_preference]
- * @property {GetZoneDataViewChannels[]} channels
- * @property {number} company_id
- * @property {boolean} is_active
- * @property {ZoneMappingType[]} mapping
- * @property {string} name
- * @property {ZoneProductTypes} product
- * @property {string} region_type
- * @property {string} slug
- * @property {number[]} store_ids
- */
-/**
- * @typedef DocumentsResponse
- * @property {string} [legal_name]
- * @property {string} [type]
- * @property {string} [value]
- * @property {boolean} [verified]
- */
-/**
- * @typedef Dp
- * @property {number} [area_code]
- * @property {boolean} [assign_dp_from_sb]
- * @property {string} [external_account_id]
- * @property {number} [fm_priority]
- * @property {string} [internal_account_id]
- * @property {number} [lm_priority]
- * @property {string[]} [operations]
- * @property {string} [payment_mode]
- * @property {number} [rvp_priority]
- * @property {string} [transport_mode]
- */
-/**
- * @typedef EinvoiceResponse
- * @property {boolean} [enabled]
- */
-/**
- * @typedef EntityRegionView_Error
- * @property {string} [message]
- * @property {string} [type]
- * @property {string} [value]
- */
-/**
- * @typedef EntityRegionView_Items
- * @property {string} name
- * @property {string} sub_type
- * @property {string} uid
- */
-/**
- * @typedef EntityRegionView_page
- * @property {number} current
- * @property {boolean} has_next
- * @property {number} item_total
- * @property {number} size
- * @property {string} type
- */
-/**
- * @typedef EntityRegionView_Request
- * @property {string[]} [parent_id]
- * @property {string[]} sub_type
- */
-/**
- * @typedef EntityRegionView_Response
- * @property {EntityRegionView_Items[]} data
- * @property {EntityRegionView_Error} error
- * @property {EntityRegionView_page} page
- * @property {boolean} success
- */
-/**
- * @typedef EwayBillResponse
- * @property {boolean} [enabled]
- */
-/**
- * @typedef GetSingleZoneDataViewResponse
- * @property {GetZoneDataViewItems} data
- */
-/**
- * @typedef GetStoresViewResponse
- * @property {ItemResponse[]} [items]
- * @property {ServiceabilityPageResponse} page
- */
-/**
- * @typedef GetZoneDataViewChannels
- * @property {string} channel_id
- * @property {string} channel_type
- */
-/**
- * @typedef GetZoneDataViewItems
- * @property {string} [assignment_preference]
- * @property {GetZoneDataViewChannels[]} channels
- * @property {number} company_id
- * @property {boolean} is_active
- * @property {ZoneMappingType[]} mapping
- * @property {string} name
- * @property {number} pincodes_count
- * @property {ZoneProductTypes} product
- * @property {string} region_type
- * @property {string} slug
- * @property {number[]} store_ids
- * @property {number} stores_count
- * @property {string} zone_id
- */
-/**
- * @typedef GetZoneFromPincodeViewRequest
- * @property {string} country
- * @property {string} pincode
- */
-/**
- * @typedef GetZoneFromPincodeViewResponse
- * @property {string} serviceability_type
- * @property {string[]} zones
- */
-/**
- * @typedef GstCredentialsResponse
- * @property {EinvoiceResponse} [e_invoice]
- * @property {EwayBillResponse} [e_waybill]
- */
-/**
- * @typedef IntegrationTypeResponse
- * @property {string} [inventory]
- * @property {string} [order]
- */
-/**
- * @typedef ItemResponse
- * @property {string} [_cls]
- * @property {Object} [_custom_json]
- * @property {AddressResponse} [address]
- * @property {string} [code]
- * @property {number} [company]
- * @property {number} [company_id]
- * @property {ContactNumberResponse[]} [contact_numbers]
- * @property {CreatedByResponse} [created_by]
- * @property {string} [created_on]
- * @property {string} [display_name]
- * @property {DocumentsResponse[]} [documents]
- * @property {GstCredentialsResponse} [gst_credentials]
- * @property {IntegrationTypeResponse} [integration_type]
- * @property {LogisticsResponse} [logistics]
- * @property {ManagerResponse} [manager]
- * @property {ModifiedByResponse} [modified_by]
- * @property {string} [modified_on]
- * @property {string} [name]
- * @property {string[]} [notification_emails]
- * @property {ProductReturnConfigResponse} [product_return_config]
- * @property {string} [stage]
- * @property {string} [store_type]
- * @property {string} [sub_type]
- * @property {TimmingResponse[]} [timing]
- * @property {number} [uid]
- * @property {ModifiedByResponse} [verified_by]
- * @property {string} [verified_on]
- * @property {WarningsResponse} [warnings]
- */
-/**
- * @typedef ListViewChannels
- * @property {string} channel_id
- * @property {string} channel_type
- */
-/**
- * @typedef ListViewItems
- * @property {ListViewChannels} channels
- * @property {number} company_id
- * @property {boolean} is_active
- * @property {string} name
- * @property {number} pincodes_count
- * @property {ListViewProduct} product
- * @property {string} slug
- * @property {number} stores_count
- * @property {string} zone_id
- */
-/**
- * @typedef ListViewProduct
- * @property {number} count
- * @property {string} type
- */
-/**
- * @typedef ListViewResponse
- * @property {ListViewItems[]} items
- * @property {ZoneDataItem[]} page
- * @property {ListViewSummary[]} summary
- */
-/**
- * @typedef ListViewSummary
- * @property {number} total_active_zones
- * @property {number} total_pincodes_served
- * @property {number} total_zones
- */
-/**
- * @typedef LogisticsResponse
- * @property {Dp} [dp]
- * @property {boolean} [override]
- */
-/**
- * @typedef ManagerResponse
- * @property {string} [email]
- * @property {MobileNo} [mobile_no]
- * @property {string} [name]
- */
-/**
- * @typedef MobileNo
- * @property {number} [country_code]
- * @property {string} [number]
- */
-/**
- * @typedef ModifiedByResponse
- * @property {string} [user_id]
- * @property {string} [username]
- */
-/**
- * @typedef OpeningClosing
- * @property {number} [hour]
- * @property {number} [minute]
- */
-/**
- * @typedef ProductReturnConfigResponse
- * @property {boolean} [on_same_store]
- */
-/**
- * @typedef ReAssignStoreRequest
- * @property {Object[]} articles
- * @property {Object} configuration
- * @property {string} identifier
- * @property {string[]} ignored_locations
- * @property {string} to_pincode
- */
-/**
- * @typedef ReAssignStoreResponse
- * @property {Object[]} [articles]
- * @property {Object} error
- * @property {boolean} success
- * @property {string} to_pincode
- */
-/**
- * @typedef ServiceabilityPageResponse
- * @property {number} [current]
- * @property {boolean} [has_next]
- * @property {number} [item_total]
- * @property {number} [size]
- * @property {string} [type]
- */
-/**
- * @typedef ServiceabilityrErrorResponse
- * @property {string} message
- * @property {string} type
- * @property {string} value
- */
-/**
- * @typedef TimmingResponse
- * @property {OpeningClosing} [closing]
- * @property {boolean} [open]
- * @property {OpeningClosing} [opening]
- * @property {string} [weekday]
- */
-/**
- * @typedef UpdateZoneData
- * @property {string} [assignment_preference]
- * @property {GetZoneDataViewChannels[]} channels
- * @property {number} company_id
- * @property {boolean} is_active
- * @property {ZoneMappingType[]} mapping
- * @property {string} name
- * @property {ZoneProductTypes} product
- * @property {string} region_type
- * @property {string} slug
- * @property {number[]} store_ids
- * @property {string} zone_id
- */
-/**
- * @typedef WarningsResponse
- * @property {string} [store_address]
- */
-/**
- * @typedef ZoneDataItem
- * @property {number} current
- * @property {boolean} has_next
- * @property {number} item_total
- * @property {number} size
- * @property {string} type
- */
-/**
- * @typedef ZoneMappingType
- * @property {string} country
- * @property {string[]} [pincode]
- * @property {string[]} [state]
- */
-/**
- * @typedef ZoneProductTypes
- * @property {string[]} tags
- * @property {string} type
- */
-/**
- * @typedef ZoneRequest
- * @property {CreateZoneData} data
- * @property {string} identifier
- */
-/**
- * @typedef ZoneResponse
- * @property {number} status_code
- * @property {boolean} success
- * @property {string} zone_id
- */
-/**
- * @typedef ZoneSuccessResponse
- * @property {number} status_code
- * @property {boolean} success
- */
-/**
- * @typedef ZoneUpdateRequest
- * @property {UpdateZoneData} data
- * @property {string} identifier
  */
 
 module.exports = PlatformClient;

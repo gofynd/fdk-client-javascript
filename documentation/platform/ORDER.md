@@ -15,6 +15,7 @@ Handles all platform order and shipment api(s)
 * [createOrder](#createorder)
 * [createShipmentReport](#createshipmentreport)
 * [dispatchManifest](#dispatchmanifest)
+* [downloadBulkActionTemplate](#downloadbulkactiontemplate)
 * [eInvoiceRetry](#einvoiceretry)
 * [fetchCreditBalanceDetail](#fetchcreditbalancedetail)
 * [fetchRefundModeConfig](#fetchrefundmodeconfig)
@@ -25,6 +26,7 @@ Handles all platform order and shipment api(s)
 * [getAssetByShipmentIds](#getassetbyshipmentids)
 * [getBagById](#getbagbyid)
 * [getBags](#getbags)
+* [getBulkActionTemplate](#getbulkactiontemplate)
 * [getBulkShipmentExcelFile](#getbulkshipmentexcelfile)
 * [getChannelConfig](#getchannelconfig)
 * [getLaneConfig](#getlaneconfig)
@@ -457,6 +459,78 @@ Shipment Dispatched mapped with manifest!
 
 ```json
 
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### downloadBulkActionTemplate
+
+
+
+
+```javascript
+// Promise
+const promise = platformClient.order.downloadBulkActionTemplate({  templateSlug : value });
+
+// Async/Await
+const data = await platformClient.order.downloadBulkActionTemplate({  templateSlug : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| templateSlug | string | no | Slug name of template to be downloaded |  
+
+
+
+
+
+*Returned Response:*
+
+
+
+
+[FileResponse](#FileResponse)
+
+We are processing the file!
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "file_name": "placed_352_1668856953.7936668.xlsx",
+  "operation": "putObject",
+  "size": 13245,
+  "namespace": "misc",
+  "content_type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+  "file_path": "/misc/general/free/original/0Ex0-zTyw-placed_352_1668856953.7936668.xlsx",
+  "method": "PUT",
+  "tags": [],
+  "upload": {
+    "url": "https://fynd-staging-assets.s3-accelerate.amazonaws.com/x0/misc/general/free/original/0Ex0-zTyw-placed_352_1668856953.7936668.xlsx?Content-Type=application%2Fvnd.openxmlformats-officedocument.spreadsheetml.sheet&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAJUADR2WMPQT6ZJ2Q%2F20221119%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20221119T112233Z&X-Amz-Expires=1800&X-Amz-Signature=3408400dbe95ff12d0ea5487846aab74b0f2ae6963a58ac980fb46c11cd0b7be&X-Amz-SignedHeaders=host%3Bx-amz-acl&x-amz-acl=public-read",
+    "expiry": 1800
+  },
+  "cdn": {
+    "url": "https://cdn.pixelbin.io/v2/falling-surf-7c8bb8/fyndnp/wrkr/x0/misc/general/free/original/0Ex0-zTyw-placed_352_1668856953.7936668.xlsx"
+  }
+}
 ```
 </details>
 
@@ -1444,6 +1518,64 @@ Successfully retrived all the given shipments details!
 ---
 
 
+### getBulkActionTemplate
+
+
+
+
+```javascript
+// Promise
+const promise = platformClient.order.getBulkActionTemplate();
+
+// Async/Await
+const data = await platformClient.order.getBulkActionTemplate();
+```
+
+
+
+
+
+
+
+
+*Returned Response:*
+
+
+
+
+[BulkActionTemplateResponse](#BulkActionTemplateResponse)
+
+Slug names
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "template_x_slug": [
+    {
+      "text": "Partial Cancellation",
+      "value": "PARTIAL_CANCELLATION"
+    }
+  ]
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
 ### getBulkShipmentExcelFile
 
 
@@ -1451,36 +1583,32 @@ Successfully retrived all the given shipments details!
 
 ```javascript
 // Promise
-const promise = platformClient.order.getBulkShipmentExcelFile({  lane : value,
- searchType : value,
- searchId : value,
+const promise = platformClient.order.getBulkShipmentExcelFile({  salesChannels : value,
+ dpIds : value,
  fromDate : value,
  toDate : value,
- dpIds : value,
- orderingCompanyId : value,
  stores : value,
- salesChannel : value,
- requestByExt : value,
+ tags : value,
+ bagStatus : value,
+ paymentMethods : value,
+ fileType : value,
+ timeToDispatch : value,
  pageNo : value,
- pageSize : value,
- customerId : value,
- isPrioritySort : value });
+ pageSize : value });
 
 // Async/Await
-const data = await platformClient.order.getBulkShipmentExcelFile({  lane : value,
- searchType : value,
- searchId : value,
+const data = await platformClient.order.getBulkShipmentExcelFile({  salesChannels : value,
+ dpIds : value,
  fromDate : value,
  toDate : value,
- dpIds : value,
- orderingCompanyId : value,
  stores : value,
- salesChannel : value,
- requestByExt : value,
+ tags : value,
+ bagStatus : value,
+ paymentMethods : value,
+ fileType : value,
+ timeToDispatch : value,
  pageNo : value,
- pageSize : value,
- customerId : value,
- isPrioritySort : value });
+ pageSize : value });
 ```
 
 
@@ -1489,20 +1617,18 @@ const data = await platformClient.order.getBulkShipmentExcelFile({  lane : value
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
-| lane | string | no |  |    
-| searchType | string | no |  |    
-| searchId | string | no |  |    
-| fromDate | string | no |  |    
-| toDate | string | no |  |    
-| dpIds | string | no |  |    
-| orderingCompanyId | string | no |  |    
-| stores | string | no |  |    
-| salesChannel | string | no |  |    
-| requestByExt | string | no |  |    
+| salesChannels | string | no | Comma seperated values of sales channel ids |    
+| dpIds | string | no | Comma seperated values of delivery partner ids |    
+| fromDate | string | no | Start Date in DD-MM-YYYY format |    
+| toDate | string | no | End Date in DD-MM-YYYY format |    
+| stores | string | no | Comma seperated values of store ids |    
+| tags | string | no | Comma seperated values of tags |    
+| bagStatus | string | no | Comma seperated values of bag statuses |    
+| paymentMethods | string | no | Comma seperated values of payment methods |    
+| fileType | string | no | File type to be downloaded |    
+| timeToDispatch | number | no | Sla breached or not breached |    
 | pageNo | number | no |  |    
-| pageSize | number | no |  |    
-| customerId | string | no |  |    
-| isPrioritySort | boolean | no |  |  
+| pageSize | number | no |  |  
 
 
 
@@ -4197,7 +4323,8 @@ It shows the journey of the shipment!
       "ticket_id": null,
       "ticket_url": null
     }
-  ]
+  ],
+  "success": true
 }
 ```
 </details>
@@ -4749,7 +4876,32 @@ Successfully update the Lock and get check status of the shipment/Bag
 <summary><i>&nbsp; Example:</i></summary>
 
 ```json
-
+{
+  "success": true,
+  "message": "shipments checked successfully",
+  "check_response": [
+    {
+      "bags": [
+        {
+          "bag_id": 175644,
+          "is_locked": false,
+          "affiliate_bag_id": "def134",
+          "affiliate_order_id": "def134"
+        }
+      ],
+      "lock_status": "complete",
+      "is_bag_locked": false,
+      "is_shipment_locked": true,
+      "shipment_id": "16189206454951802898",
+      "affiliate_id": "5c764a6534add21972ef7b08",
+      "affiliate_shipment_id": "def134",
+      "original_filter": {
+        "shipment_id": "16189206454951802898"
+      },
+      "status": "dp_assigned"
+    }
+  ]
+}
 ```
 </details>
 
@@ -5293,11 +5445,12 @@ Verify OTP
  | a_set | string? |  yes  |  |
  | child_details | string? |  yes  |  |
  | code | string? |  yes  |  |
+ | currency | string? |  yes  |  |
  | dimensions | [Dimensions](#Dimensions)? |  yes  |  |
- | esp_modified | any? |  yes  |  |
+ | esp_modified | boolean? |  yes  |  |
  | identifiers | [Identifier](#Identifier) |  no  |  |
  | is_set | boolean? |  yes  |  |
- | raw_meta | any? |  yes  |  |
+ | raw_meta | string? |  yes  |  |
  | return_config | [ReturnConfig](#ReturnConfig)? |  yes  |  |
  | seller_identifier | string |  no  |  |
  | size | string |  no  |  |
@@ -5636,7 +5789,7 @@ Verify OTP
  | bag_id | number |  no  |  |
  | bag_status | [[BagStatusHistory](#BagStatusHistory)]? |  yes  |  |
  | bag_type | string? |  yes  |  |
- | brand | string? |  yes  |  |
+ | brand | [ShipmentListingBrand](#ShipmentListingBrand)? |  yes  |  |
  | can_cancel | boolean? |  yes  |  |
  | can_return | boolean? |  yes  |  |
  | current_operational_status | [BagStatusHistory](#BagStatusHistory) |  no  |  |
@@ -5730,6 +5883,25 @@ Verify OTP
 
 ---
 
+#### [BulkActionTemplate](#BulkActionTemplate)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | text | string? |  yes  |  |
+ | value | string? |  yes  |  |
+ 
+
+---
+
+#### [BulkActionTemplateResponse](#BulkActionTemplateResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | template_x_slug | [[BulkActionTemplate](#BulkActionTemplate)]? |  yes  |  |
+ 
+
+---
+
 #### [BuyerDetails](#BuyerDetails)
 
  | Properties | Type | Nullable | Description |
@@ -5777,7 +5949,7 @@ Verify OTP
  | bags | [[Bags](#Bags)]? |  yes  |  |
  | is_bag_locked | boolean? |  yes  | Is Bag Locked |
  | is_shipment_locked | boolean? |  yes  | Is Shipment Locked |
- | lock_status | string? |  yes  | Lock Status: Expected action_type: [complete, operational, financial] |
+ | lock_status | string? |  yes  | Lock Status: Expected lock_status: [complete, operational, financial] |
  | original_filter | [OriginalFilter](#OriginalFilter)? |  yes  | Filter |
  | shipment_id | string? |  yes  | Shipment ID |
  | status | string? |  yes  | Status |
@@ -5974,7 +6146,7 @@ Verify OTP
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | delivery_date | any? |  yes  |  |
+ | delivery_date | string? |  yes  |  |
  | order_created | string? |  yes  |  |
  
 
@@ -6438,11 +6610,56 @@ Verify OTP
  | l2_detail | string? |  yes  |  |
  | l3_detail | string? |  yes  |  |
  | message | string |  no  |  |
- | meta | string? |  yes  |  |
+ | meta | [HistoryMeta](#HistoryMeta)? |  yes  |  |
  | ticket_id | string? |  yes  |  |
  | ticket_url | string? |  yes  |  |
  | type | string |  no  |  |
  | user | string |  no  |  |
+ 
+
+---
+
+#### [HistoryMeta](#HistoryMeta)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | activity_comment | string? |  yes  |  |
+ | activity_type | string? |  yes  |  |
+ | billsec | string? |  yes  |  |
+ | call_id | string? |  yes  |  |
+ | caller | string? |  yes  |  |
+ | callerid | string? |  yes  |  |
+ | channel_type | string? |  yes  |  |
+ | duration | string? |  yes  |  |
+ | endtime | string? |  yes  |  |
+ | message | string? |  yes  |  |
+ | reason | [HistoryReason](#HistoryReason)? |  yes  |  |
+ | receiver | string? |  yes  |  |
+ | recipient | string? |  yes  |  |
+ | recordpath | string? |  yes  |  |
+ | short_link | string? |  yes  |  |
+ | slug | string? |  yes  |  |
+ | starttime | string? |  yes  |  |
+ | status | string? |  yes  |  |
+ | status1 | string? |  yes  |  |
+ | status2 | string? |  yes  |  |
+ | store_code | string? |  yes  |  |
+ | store_id | number? |  yes  |  |
+ | store_name | string? |  yes  |  |
+ 
+
+---
+
+#### [HistoryReason](#HistoryReason)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | category | string? |  yes  |  |
+ | code | number? |  yes  |  |
+ | dislay_name | string? |  yes  |  |
+ | quantity | number? |  yes  |  |
+ | state | string? |  yes  |  |
+ | text | string? |  yes  |  |
  
 
 ---
@@ -7668,6 +7885,7 @@ Verify OTP
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | activity_history | [[HistoryDict](#HistoryDict)] |  no  |  |
+ | success | boolean? |  yes  |  |
  
 
 ---
@@ -7710,7 +7928,7 @@ Verify OTP
  | estimated_sla_time | string? |  yes  |  |
  | fulfilling_store | [ShipmentItemFulFillingStore](#ShipmentItemFulFillingStore)? |  yes  |  |
  | invoice_id | string? |  yes  |  |
- | lock_status | string? |  yes  |  |
+ | lock_status | boolean? |  yes  |  |
  | meta | string? |  yes  |  |
  | order_date | string? |  yes  |  |
  | order_id | string |  no  |  |
@@ -7723,7 +7941,7 @@ Verify OTP
  | shipment_id | string? |  yes  |  |
  | shipment_status | [ShipmentStatus](#ShipmentStatus)? |  yes  |  |
  | status_created_at | string? |  yes  |  |
- | total_bags_count | number |  no  |  |
+ | total_bags | number |  no  |  |
  | user | [UserDataInfo](#UserDataInfo)? |  yes  |  |
  
 
@@ -7745,6 +7963,18 @@ Verify OTP
  | pincode | string? |  yes  |  |
  | state | string? |  yes  |  |
  | store_email | string? |  yes  |  |
+ 
+
+---
+
+#### [ShipmentListingBrand](#ShipmentListingBrand)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | created_on | string? |  yes  |  |
+ | logo | string? |  yes  |  |
+ | logo_base64 | string? |  yes  |  |
+ | name | string? |  yes  |  |
  
 
 ---

@@ -7,6 +7,7 @@ declare class OrderValidator {
     static createOrder(): any;
     static createShipmentReport(): any;
     static dispatchManifest(): any;
+    static downloadBulkActionTemplate(): any;
     static eInvoiceRetry(): any;
     static fetchCreditBalanceDetail(): any;
     static fetchRefundModeConfig(): any;
@@ -15,6 +16,7 @@ declare class OrderValidator {
     static getAssetByShipmentIds(): any;
     static getBagById(): any;
     static getBags(): any;
+    static getBulkActionTemplate(): any;
     static getBulkShipmentExcelFile(): any;
     static getChannelConfig(): any;
     static getLaneConfig(): any;

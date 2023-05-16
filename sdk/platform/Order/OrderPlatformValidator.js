@@ -49,6 +49,12 @@ class OrderValidator {
     }).required();
   }
 
+  static downloadBulkActionTemplate() {
+    return Joi.object({
+      templateSlug: Joi.string().allow(""),
+    }).required();
+  }
+
   static eInvoiceRetry() {
     return Joi.object({
       body: OrderModel.EInvoiceRetry().required(),
@@ -110,22 +116,24 @@ class OrderValidator {
     }).required();
   }
 
+  static getBulkActionTemplate() {
+    return Joi.object({}).required();
+  }
+
   static getBulkShipmentExcelFile() {
     return Joi.object({
-      lane: Joi.string().allow(""),
-      searchType: Joi.string().allow(""),
-      searchId: Joi.string().allow(""),
+      salesChannels: Joi.string().allow(""),
+      dpIds: Joi.string().allow(""),
       fromDate: Joi.string().allow(""),
       toDate: Joi.string().allow(""),
-      dpIds: Joi.string().allow(""),
-      orderingCompanyId: Joi.string().allow(""),
       stores: Joi.string().allow(""),
-      salesChannel: Joi.string().allow(""),
-      requestByExt: Joi.string().allow(""),
+      tags: Joi.string().allow(""),
+      bagStatus: Joi.string().allow(""),
+      paymentMethods: Joi.string().allow(""),
+      fileType: Joi.string().allow(""),
+      timeToDispatch: Joi.number(),
       pageNo: Joi.number(),
       pageSize: Joi.number(),
-      customerId: Joi.string().allow(""),
-      isPrioritySort: Joi.boolean(),
     }).required();
   }
 
