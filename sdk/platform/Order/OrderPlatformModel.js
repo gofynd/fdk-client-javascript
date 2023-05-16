@@ -96,6 +96,7 @@ class OrderModel {
       affiliate_shipment_id: Joi.string().allow("").required(),
       affiliate_store_id: Joi.string().allow("").required(),
       company_affiliate_tag: Joi.string().allow(""),
+      dp_options: Joi.any(),
       pdf_links: OrderModel.PDFLinks(),
       shipment_meta: OrderModel.ShipmentMeta().required(),
     });
@@ -1062,6 +1063,7 @@ class OrderModel {
   static InvoiceInfo() {
     return Joi.object({
       credit_note_id: Joi.string().allow(""),
+      external_invoice_id: Joi.string().allow(""),
       invoice_url: Joi.string().allow(""),
       label_url: Joi.string().allow(""),
       store_invoice_id: Joi.string().allow(""),
@@ -1573,11 +1575,13 @@ class OrderModel {
       billing_details: OrderModel.UserDetailsData(),
       company_details: OrderModel.CompanyDetails(),
       coupon: Joi.any(),
+      custom_message: Joi.string().allow(""),
       custom_meta: Joi.array().items(Joi.any()),
       delivery_details: OrderModel.UserDetailsData(),
       delivery_slot: Joi.any(),
       dp_details: OrderModel.DPDetailsData(),
       enable_dp_tracking: Joi.boolean(),
+      estimated_sla_time: Joi.string().allow(""),
       forward_shipment_id: Joi.string().allow(""),
       fulfilling_store: OrderModel.FulfillingStore(),
       fulfilment_priority: Joi.number(),

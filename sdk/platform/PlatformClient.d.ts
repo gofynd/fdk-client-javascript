@@ -3619,6 +3619,7 @@ type AffiliateDetails = {
     affiliate_shipment_id: string;
     affiliate_store_id: string;
     company_affiliate_tag?: string;
+    dp_options?: any;
     pdf_links?: PDFLinks;
     shipment_meta: ShipmentMeta;
 };
@@ -4373,6 +4374,7 @@ type InvalidateShipmentCacheResponse = {
 };
 type InvoiceInfo = {
     credit_note_id?: string;
+    external_invoice_id?: string;
     invoice_url?: string;
     label_url?: string;
     store_invoice_id?: string;
@@ -4768,11 +4770,13 @@ type PlatformShipment = {
     billing_details?: UserDetailsData;
     company_details?: CompanyDetails;
     coupon?: any;
+    custom_message?: string;
     custom_meta?: any[];
     delivery_details?: UserDetailsData;
     delivery_slot?: any;
     dp_details?: DPDetailsData;
     enable_dp_tracking?: boolean;
+    estimated_sla_time?: string;
     forward_shipment_id?: string;
     fulfilling_store?: FulfillingStore;
     fulfilment_priority?: number;
@@ -7172,7 +7176,7 @@ type ProductCreateUpdateSchemaV2 = {
     net_quantity?: NetQuantity;
     no_of_boxes?: number;
     product_group_tag?: string[];
-    product_publish?: ProductPublish;
+    product_publish?: ProductPublish1;
     requester?: string;
     return_config: ReturnConfig;
     short_description?: string;
@@ -7352,7 +7356,7 @@ type ProductSchemaV2 = {
     pending?: string;
     primary_color?: string;
     product_group_tag?: string[];
-    product_publish?: ProductPublish1;
+    product_publish?: ProductPublish;
     return_config?: ReturnConfigResponse;
     short_description?: string;
     size_guide?: string;

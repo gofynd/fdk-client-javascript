@@ -1017,12 +1017,14 @@ List all the collections
 // Promise
 const promise = applicationClient.catalog.getCollections({  pageNo : value,
  pageSize : value,
- tag : value });
+ tag : value,
+ q : value });
 
 // Async/Await
 const data = await applicationClient.catalog.getCollections({  pageNo : value,
  pageSize : value,
- tag : value });
+ tag : value,
+ q : value });
 ```
 
 
@@ -1033,7 +1035,8 @@ const data = await applicationClient.catalog.getCollections({  pageNo : value,
 | --------- | -----  | -------- | ----------- |  
 | pageNo | number | no | The page number to navigate through the given set of results. |    
 | pageSize | number | no | The number of items to retrieve in each page. |    
-| tag | Array<string> | no | List of tags  to filter collections |  
+| tag | Array<string> | no | List of tags  to filter collections |    
+| q | string | no | Name of the collection to filter collection |  
 
 
 
@@ -7918,7 +7921,7 @@ Success. Returns a response object. Check the example shown below or refer `Foll
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | filters | [[StoreDepartments](#StoreDepartments)]? |  yes  |  |
+ | filters | [string]? |  yes  |  |
  | items | [[AppStore](#AppStore)]? |  yes  |  |
  | page | [Page](#Page)? |  yes  |  |
  
@@ -7935,6 +7938,7 @@ Success. Returns a response object. Check the example shown below or refer `Foll
  | departments | [[StoreDepartments](#StoreDepartments)]? |  yes  |  |
  | manager | [StoreManagerSerializer](#StoreManagerSerializer)? |  yes  |  |
  | name | string? |  yes  |  |
+ | store_code | string? |  yes  |  |
  | uid | number? |  yes  |  |
  
 
@@ -8545,6 +8549,7 @@ Success. Returns a response object. Check the example shown below or refer `Foll
  | categories | [[ProductBrand](#ProductBrand)]? |  yes  |  |
  | category_map | [ProductCategoryMap](#ProductCategoryMap)? |  yes  |  |
  | color | string? |  yes  |  |
+ | custom_order | [ProductDetailCustomOrder](#ProductDetailCustomOrder)? |  yes  |  |
  | description | string? |  yes  |  |
  | discount | string? |  yes  |  |
  | grouped_attributes | [[ProductDetailGroupedAttribute](#ProductDetailGroupedAttribute)]? |  yes  |  |
@@ -8559,6 +8564,7 @@ Success. Returns a response object. Check the example shown below or refer `Foll
  | name | string? |  yes  |  |
  | net_quantity | [NetQuantity](#NetQuantity)? |  yes  |  |
  | price | [ProductListingPrice](#ProductListingPrice)? |  yes  |  |
+ | product_group_tag | [string]? |  yes  |  |
  | product_online_date | string? |  yes  |  |
  | rating | number? |  yes  |  |
  | rating_count | number? |  yes  |  |
@@ -8582,6 +8588,17 @@ Success. Returns a response object. Check the example shown below or refer `Foll
  | key | string? |  yes  |  |
  | type | string? |  yes  |  |
  | value | string? |  yes  |  |
+ 
+
+---
+
+#### [ProductDetailCustomOrder](#ProductDetailCustomOrder)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | is_custom_order | boolean? |  yes  |  |
+ | manufacturing_time | number? |  yes  |  |
+ | manufacturing_time_unit | string? |  yes  |  |
  
 
 ---
@@ -8764,6 +8781,7 @@ Success. Returns a response object. Check the example shown below or refer `Foll
  | categories | [[ProductBrand](#ProductBrand)]? |  yes  |  |
  | category_map | [ProductCategoryMap](#ProductCategoryMap)? |  yes  |  |
  | color | string? |  yes  |  |
+ | custom_order | [ProductDetailCustomOrder](#ProductDetailCustomOrder)? |  yes  |  |
  | description | string? |  yes  |  |
  | discount | string? |  yes  |  |
  | grouped_attributes | [[ProductDetailGroupedAttribute](#ProductDetailGroupedAttribute)]? |  yes  |  |
@@ -8779,6 +8797,7 @@ Success. Returns a response object. Check the example shown below or refer `Foll
  | name | string? |  yes  |  |
  | net_quantity | [NetQuantity](#NetQuantity)? |  yes  |  |
  | price | [ProductListingPrice](#ProductListingPrice)? |  yes  |  |
+ | product_group_tag | [string]? |  yes  |  |
  | product_online_date | string? |  yes  |  |
  | rating | number? |  yes  |  |
  | rating_count | number? |  yes  |  |
@@ -9262,6 +9281,7 @@ Success. Returns a response object. Check the example shown below or refer `Foll
  | departments | [[StoreDepartments](#StoreDepartments)]? |  yes  |  |
  | manager | [StoreManagerSerializer](#StoreManagerSerializer)? |  yes  |  |
  | name | string? |  yes  |  |
+ | store_code | string? |  yes  |  |
  | timing | [[StoreTiming](#StoreTiming)]? |  yes  |  |
  | uid | number? |  yes  |  |
  

@@ -5271,6 +5271,7 @@ Verify OTP
  | affiliate_shipment_id | string |  no  |  |
  | affiliate_store_id | string |  no  |  |
  | company_affiliate_tag | string? |  yes  |  |
+ | dp_options | string? |  yes  |  |
  | pdf_links | [PDFLinks](#PDFLinks)? |  yes  |  |
  | shipment_meta | [ShipmentMeta](#ShipmentMeta) |  no  |  |
  
@@ -6637,6 +6638,7 @@ Verify OTP
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | credit_note_id | string? |  yes  |  |
+ | external_invoice_id | string? |  yes  |  |
  | invoice_url | string? |  yes  |  |
  | label_url | string? |  yes  |  |
  | store_invoice_id | string? |  yes  |  |
@@ -7345,11 +7347,13 @@ Verify OTP
  | billing_details | [UserDetailsData](#UserDetailsData)? |  yes  |  |
  | company_details | [CompanyDetails](#CompanyDetails)? |  yes  |  |
  | coupon | string? |  yes  |  |
+ | custom_message | string? |  yes  |  |
  | custom_meta | [string]? |  yes  |  |
  | delivery_details | [UserDetailsData](#UserDetailsData)? |  yes  |  |
  | delivery_slot | string? |  yes  |  |
  | dp_details | [DPDetailsData](#DPDetailsData)? |  yes  |  |
  | enable_dp_tracking | boolean? |  yes  |  |
+ | estimated_sla_time | string? |  yes  |  |
  | forward_shipment_id | string? |  yes  |  |
  | fulfilling_store | [FulfillingStore](#FulfillingStore)? |  yes  |  |
  | fulfilment_priority | number? |  yes  |  |
