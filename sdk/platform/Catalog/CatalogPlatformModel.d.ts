@@ -290,6 +290,8 @@ declare class CatalogModel {
     static Size(): any;
     static SizeDistribution(): any;
     static SizeGuideResponse(): any;
+    static StoreAssign(): any;
+    static StoreAssignError(): any;
     static StoreAssignResponse(): any;
     static StoreDetail(): any;
     static StoreMeta(): any;

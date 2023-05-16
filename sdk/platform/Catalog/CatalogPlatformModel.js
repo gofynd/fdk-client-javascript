@@ -34,9 +34,9 @@ class CatalogModel {
       item_height: Joi.number().required(),
       item_length: Joi.number().required(),
       item_weight: Joi.number().required(),
-      item_weight_unit_of_measure: Joi.any().required(),
+      item_weight_unit_of_measure: Joi.string().allow("").required(),
       item_width: Joi.number().required(),
-      size: Joi.any().required(),
+      size: Joi.string().allow("").required(),
     });
   }
   static AppCatalogConfiguration() {
@@ -144,8 +144,8 @@ class CatalogModel {
   }
   static ApplicationItemSEO() {
     return Joi.object({
-      description: Joi.any(),
-      title: Joi.any(),
+      description: Joi.string().allow(""),
+      title: Joi.string().allow(""),
     });
   }
   static ApplicationProductListingResponse() {
@@ -965,7 +965,7 @@ class CatalogModel {
   }
   static DepartmentModel() {
     return Joi.object({
-      _cls: Joi.any(),
+      _cls: Joi.string().allow(""),
       _custom_json: Joi.any(),
       _id: Joi.any(),
       created_by: CatalogModel.UserDetail(),
@@ -974,10 +974,10 @@ class CatalogModel {
       logo: Joi.string().allow("").required(),
       modified_by: CatalogModel.UserDetail(),
       modified_on: Joi.string().allow("").required(),
-      name: Joi.any().required(),
+      name: Joi.string().allow("").required(),
       priority_order: Joi.number().required(),
-      slug: Joi.any().required(),
-      synonyms: Joi.array().items(Joi.any()),
+      slug: Joi.string().allow("").required(),
+      synonyms: Joi.array().items(Joi.string().allow("")),
       uid: Joi.number().required(),
       verified_by: CatalogModel.UserDetail(),
       verified_on: Joi.string().allow(""),
@@ -1385,7 +1385,7 @@ class CatalogModel {
   static GTIN() {
     return Joi.object({
       gtin_type: Joi.string().allow("").required(),
-      gtin_value: Joi.any().required(),
+      gtin_value: Joi.string().allow("").required(),
       primary: Joi.boolean(),
     });
   }
@@ -1585,7 +1585,7 @@ class CatalogModel {
       modified_on: Joi.string().allow(""),
       notification_emails: Joi.array().items(Joi.string().allow("")),
       seller_id: Joi.number().required(),
-      status: Joi.any(),
+      status: Joi.string().allow(""),
       task_id: Joi.string().allow("").required(),
       type: Joi.string().allow("").allow(null),
       url: Joi.string().allow("").required(),
@@ -1782,7 +1782,7 @@ class CatalogModel {
       price_transfer: Joi.number().allow(null),
       quantity: Joi.number().required(),
       set: CatalogModel.InventorySet(),
-      size: Joi.any().required(),
+      size: Joi.string().allow("").required(),
       store_code: Joi.string().allow("").required(),
     });
   }
@@ -1951,8 +1951,8 @@ class CatalogModel {
   }
   static MetaFields() {
     return Joi.object({
-      key: Joi.any().required(),
-      value: Joi.any().required(),
+      key: Joi.string().allow("").required(),
+      value: Joi.string().allow("").required(),
     });
   }
   static MOQData() {
@@ -1964,7 +1964,7 @@ class CatalogModel {
   }
   static NetQuantity() {
     return Joi.object({
-      unit: Joi.any(),
+      unit: Joi.string().allow(""),
       value: Joi.number(),
     });
   }
@@ -2743,8 +2743,8 @@ class CatalogModel {
   }
   static SEOData() {
     return Joi.object({
-      description: Joi.any(),
-      title: Joi.any(),
+      description: Joi.string().allow(""),
+      title: Joi.string().allow(""),
     });
   }
   static SeoDetail() {
@@ -2799,7 +2799,7 @@ class CatalogModel {
       title: Joi.string().allow(""),
     });
   }
-  static StoreAssignResponse() {
+  static StoreAssign() {
     return Joi.object({
       _id: Joi.string().allow(""),
       article_assignment: CatalogModel.ArticleAssignment1().required(),
@@ -2818,6 +2818,20 @@ class CatalogModel {
       store_pincode: Joi.number(),
       strategy_wise_listing: Joi.array().items(Joi.any()),
       uid: Joi.string().allow(""),
+    });
+  }
+  static StoreAssignError() {
+    return Joi.object({
+      message: Joi.string().allow("").allow(null),
+      type: Joi.string().allow("").allow(null),
+      value: Joi.any(),
+    });
+  }
+  static StoreAssignResponse() {
+    return Joi.object({
+      error: CatalogModel.StoreAssignError(),
+      items: Joi.array().items(CatalogModel.StoreAssign()),
+      success: Joi.boolean(),
     });
   }
   static StoreDetail() {
@@ -2923,7 +2937,7 @@ class CatalogModel {
   static Trader() {
     return Joi.object({
       address: Joi.array().items(Joi.string().allow("")),
-      name: Joi.any().required(),
+      name: Joi.string().allow("").required(),
       type: Joi.string().allow(""),
     });
   }

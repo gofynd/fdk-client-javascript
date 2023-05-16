@@ -1183,6 +1183,8 @@ class PlatformApplicationClient {
 /** @typedef Size */
 /** @typedef SizeDistribution */
 /** @typedef SizeGuideResponse */
+/** @typedef StoreAssign */
+/** @typedef StoreAssignError */
 /** @typedef StoreAssignResponse */
 /** @typedef StoreDetail */
 /** @typedef StoreMeta */
