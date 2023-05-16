@@ -278,8 +278,6 @@ declare class Catalog {
      * @param {number[]} [arg.departmentIds] - Get multiple products filtered by
      *   Department Ids
      * @param {string[]} [arg.tags] - Get multiple products filtered by tags
-     * @param {boolean} [arg.isDependent] - This query parameter is used to get
-     *   the dependent products in the listing.
      * @param {number} [arg.pageNo] - The page number to navigate through the
      *   given set of results
      * @param {number} [arg.pageSize] - Number of items to retrieve in each
@@ -289,12 +287,11 @@ declare class Catalog {
      * @summary: Get applicationwise products
      * @description: Products are the core resource of an application. Products can be associated by categories, collections, brands and more. If successful, returns a Product resource in the response body specified in `ApplicationProductListingResponseDatabasePowered`
      */
-    getAppProducts({ brandIds, categoryIds, departmentIds, tags, isDependent, pageNo, pageSize, q, }?: {
+    getAppProducts({ brandIds, categoryIds, departmentIds, tags, pageNo, pageSize, q, }?: {
         brandIds?: number[];
         categoryIds?: number[];
         departmentIds?: number[];
         tags?: string[];
-        isDependent?: boolean;
         pageNo?: number;
         pageSize?: number;
         q?: string;
@@ -312,8 +309,6 @@ declare class Catalog {
      *   **?c=brand:in:voi-jeans|and:::category:nin:t-shirts|shirts**
      * @param {boolean} [arg.filters] - Pass `filters` parameter to fetch the
      *   filter details. This flag is used to fetch all filters
-     * @param {boolean} [arg.isDependent] - This query parameter is used to get
-     *   the dependent products in the listing.
      * @param {string} [arg.sortOn] - The order to sort the list of products on.
      *   The supported sort parameters are popularity, price, redemption and
      *   discount in either ascending or descending order. See the supported
@@ -331,12 +326,11 @@ declare class Catalog {
      * @summary: List the products
      * @description: List all the products associated with a brand, collection or category in a requested sort order. The API additionally supports arbitrary search queries that may refer the name of any product, brand, category or collection. If successful, returns a paginated list of products specified in `ApplicationProductListingResponse`
      */
-    getAppicationProducts({ q, f, c, filters, isDependent, sortOn, pageId, pageSize, pageNo, pageType, itemIds, }?: {
+    getAppicationProducts({ q, f, c, filters, sortOn, pageId, pageSize, pageNo, pageType, itemIds, }?: {
         q?: string;
         f?: string;
         c?: string;
         filters?: boolean;
-        isDependent?: boolean;
         sortOn?: string;
         pageId?: string;
         pageSize?: number;
@@ -361,8 +355,6 @@ declare class Catalog {
      *   **?c=brand:in:voi-jeans|and:::category:nin:t-shirts|shirts**
      * @param {boolean} [arg.filters] - Pass `filters` parameter to fetch the
      *   filter details. This flag is used to fetch all filters
-     * @param {boolean} [arg.isDependent] - This query parameter is used to get
-     *   the dependent products in the listing.
      * @param {string} [arg.sortOn] - The order to sort the list of products on.
      *   The supported sort parameters are popularity, price, redemption and
      *   discount in either ascending or descending order. See the supported
@@ -373,14 +365,13 @@ declare class Catalog {
      * @summary: List the products
      * @description: List all the products associated with a brand, collection or category in a requested sort order. The API additionally supports arbitrary search queries that may refer the name of any product, brand, category or collection. If successful, returns a paginated list of products specified in `ApplicationProductListingResponse`
      */
-    getAppicationProductsPaginator({ companyId, applicationId, q, f, c, filters, isDependent, sortOn, pageSize, itemIds, }?: {
+    getAppicationProductsPaginator({ companyId, applicationId, q, f, c, filters, sortOn, pageSize, itemIds, }?: {
         companyId: string;
         applicationId: string;
         q?: string;
         f?: string;
         c?: string;
         filters?: boolean;
-        isDependent?: boolean;
         sortOn?: string;
         pageSize?: number;
         itemIds?: number[];

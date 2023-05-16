@@ -1313,8 +1313,6 @@ class Catalog {
    * @param {number[]} [arg.departmentIds] - Get multiple products filtered by
    *   Department Ids
    * @param {string[]} [arg.tags] - Get multiple products filtered by tags
-   * @param {boolean} [arg.isDependent] - This query parameter is used to get
-   *   the dependent products in the listing.
    * @param {number} [arg.pageNo] - The page number to navigate through the
    *   given set of results
    * @param {number} [arg.pageSize] - Number of items to retrieve in each
@@ -1329,7 +1327,6 @@ class Catalog {
     categoryIds,
     departmentIds,
     tags,
-    isDependent,
     pageNo,
     pageSize,
     q,
@@ -1340,7 +1337,6 @@ class Catalog {
         categoryIds,
         departmentIds,
         tags,
-        isDependent,
         pageNo,
         pageSize,
         q,
@@ -1358,7 +1354,6 @@ class Catalog {
         categoryIds,
         departmentIds,
         tags,
-        isDependent,
         pageNo,
         pageSize,
         q,
@@ -1378,7 +1373,6 @@ class Catalog {
     query_params["category_ids"] = categoryIds;
     query_params["department_ids"] = departmentIds;
     query_params["tags"] = tags;
-    query_params["is_dependent"] = isDependent;
     query_params["page_no"] = pageNo;
     query_params["page_size"] = pageSize;
     query_params["q"] = q;
@@ -1422,8 +1416,6 @@ class Catalog {
    *   **?c=brand:in:voi-jeans|and:::category:nin:t-shirts|shirts**
    * @param {boolean} [arg.filters] - Pass `filters` parameter to fetch the
    *   filter details. This flag is used to fetch all filters
-   * @param {boolean} [arg.isDependent] - This query parameter is used to get
-   *   the dependent products in the listing.
    * @param {string} [arg.sortOn] - The order to sort the list of products on.
    *   The supported sort parameters are popularity, price, redemption and
    *   discount in either ascending or descending order. See the supported
@@ -1446,7 +1438,6 @@ class Catalog {
     f,
     c,
     filters,
-    isDependent,
     sortOn,
     pageId,
     pageSize,
@@ -1460,7 +1451,6 @@ class Catalog {
         f,
         c,
         filters,
-        isDependent,
         sortOn,
         pageId,
         pageSize,
@@ -1483,7 +1473,6 @@ class Catalog {
         f,
         c,
         filters,
-        isDependent,
         sortOn,
         pageId,
         pageSize,
@@ -1506,7 +1495,6 @@ class Catalog {
     query_params["f"] = f;
     query_params["c"] = c;
     query_params["filters"] = filters;
-    query_params["is_dependent"] = isDependent;
     query_params["sort_on"] = sortOn;
     query_params["page_id"] = pageId;
     query_params["page_size"] = pageSize;
@@ -1557,8 +1545,6 @@ class Catalog {
    *   **?c=brand:in:voi-jeans|and:::category:nin:t-shirts|shirts**
    * @param {boolean} [arg.filters] - Pass `filters` parameter to fetch the
    *   filter details. This flag is used to fetch all filters
-   * @param {boolean} [arg.isDependent] - This query parameter is used to get
-   *   the dependent products in the listing.
    * @param {string} [arg.sortOn] - The order to sort the list of products on.
    *   The supported sort parameters are popularity, price, redemption and
    *   discount in either ascending or descending order. See the supported
@@ -1576,7 +1562,6 @@ class Catalog {
     f,
     c,
     filters,
-    isDependent,
     sortOn,
     pageSize,
     itemIds,
@@ -1593,7 +1578,6 @@ class Catalog {
         f: f,
         c: c,
         filters: filters,
-        isDependent: isDependent,
         sortOn: sortOn,
         pageId: pageId,
         pageSize: pageSize,

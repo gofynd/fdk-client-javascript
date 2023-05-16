@@ -872,7 +872,7 @@ declare class Catalog {
      * @param {CategoryRequestBody} arg.body
      * @returns {Promise<CategoryUpdateResponse>} - Success response
      * @summary: Update product categories
-     * @description: Update a product category using this api
+     * @description: Update a product category using this apu
      */
     updateCategory({ uid, body }?: {
         uid: string;

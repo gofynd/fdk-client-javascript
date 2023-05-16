@@ -1022,53 +1022,16 @@ class OrderModel {
       assigned_agent: Joi.string().allow(""),
       bag_id: Joi.number(),
       createdat: Joi.string().allow("").required(),
-      display_message: Joi.string().allow("").allow(null),
+      display_message: Joi.string().allow(""),
       l1_detail: Joi.string().allow(""),
       l2_detail: Joi.string().allow(""),
       l3_detail: Joi.string().allow(""),
       message: Joi.string().allow("").required(),
-      meta: OrderModel.HistoryMeta(),
+      meta: Joi.any(),
       ticket_id: Joi.string().allow(""),
       ticket_url: Joi.string().allow(""),
       type: Joi.string().allow("").required(),
       user: Joi.string().allow("").required(),
-    });
-  }
-  static HistoryMeta() {
-    return Joi.object({
-      activity_comment: Joi.string().allow("").allow(null),
-      activity_type: Joi.string().allow("").allow(null),
-      billsec: Joi.string().allow("").allow(null),
-      call_id: Joi.string().allow("").allow(null),
-      caller: Joi.string().allow("").allow(null),
-      callerid: Joi.string().allow("").allow(null),
-      channel_type: Joi.string().allow("").allow(null),
-      duration: Joi.string().allow("").allow(null),
-      endtime: Joi.string().allow("").allow(null),
-      message: Joi.string().allow("").allow(null),
-      reason: OrderModel.HistoryReason(),
-      receiver: Joi.string().allow("").allow(null),
-      recipient: Joi.string().allow("").allow(null),
-      recordpath: Joi.string().allow("").allow(null),
-      short_link: Joi.string().allow("").allow(null),
-      slug: Joi.string().allow("").allow(null),
-      starttime: Joi.string().allow("").allow(null),
-      status: Joi.string().allow("").allow(null),
-      status1: Joi.string().allow("").allow(null),
-      status2: Joi.string().allow("").allow(null),
-      store_code: Joi.string().allow("").allow(null),
-      store_id: Joi.number().allow(null),
-      store_name: Joi.string().allow("").allow(null),
-    });
-  }
-  static HistoryReason() {
-    return Joi.object({
-      category: Joi.string().allow("").allow(null),
-      code: Joi.number().allow(null),
-      dislay_name: Joi.string().allow("").allow(null),
-      quantity: Joi.number().allow(null),
-      state: Joi.string().allow("").allow(null),
-      text: Joi.string().allow("").allow(null),
     });
   }
   static Identifier() {
@@ -1086,9 +1049,7 @@ class OrderModel {
   }
   static InvalidateShipmentCachePayload() {
     return Joi.object({
-      affiliate_bag_ids: Joi.array().items(Joi.string().allow("")),
-      bag_ids: Joi.array().items(Joi.string().allow("")),
-      shipment_ids: Joi.array().items(Joi.string().allow("")),
+      shipment_ids: Joi.array().items(Joi.string().allow("")).required(),
     });
   }
   static InvalidateShipmentCacheResponse() {
@@ -1931,7 +1892,6 @@ class OrderModel {
   static ShipmentHistoryResponse() {
     return Joi.object({
       activity_history: Joi.array().items(OrderModel.HistoryDict()).required(),
-      success: Joi.boolean(),
     });
   }
   static ShipmentInfoResponse() {
@@ -1946,7 +1906,7 @@ class OrderModel {
       items: Joi.array().items(OrderModel.ShipmentItem()),
       lane: Joi.string().allow(""),
       message: Joi.string().allow(""),
-      page: Joi.any(),
+      page: OrderModel.Page(),
       success: Joi.boolean(),
       total_count: Joi.number(),
     });
@@ -1955,7 +1915,7 @@ class OrderModel {
     return Joi.object({
       bags: Joi.array().items(OrderModel.BagUnit()),
       can_process: Joi.boolean(),
-      channel: Joi.any(),
+      channel: OrderModel.ShipmentListingChannel(),
       customer_note: Joi.string().allow(""),
       delivery_address: OrderModel.PlatformDeliveryAddress(),
       display_name: Joi.string().allow(""),
@@ -2000,6 +1960,14 @@ class OrderModel {
       created_on: Joi.string().allow(""),
       logo: Joi.string().allow(""),
       logo_base64: Joi.string().allow(""),
+      name: Joi.string().allow(""),
+    });
+  }
+  static ShipmentListingChannel() {
+    return Joi.object({
+      channel_shipment_id: Joi.string().allow(""),
+      is_affiliate: Joi.boolean(),
+      logo: Joi.string().allow(""),
       name: Joi.string().allow(""),
     });
   }

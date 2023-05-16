@@ -16,7 +16,7 @@ class CatalogModel {
   }
   static ApplicationStoreListing() {
     return Joi.object({
-      filters: Joi.array().items(Joi.any()),
+      filters: Joi.array().items(CatalogModel.StoreDepartments()),
       items: Joi.array().items(CatalogModel.AppStore()),
       page: CatalogModel.Page(),
     });
@@ -29,7 +29,6 @@ class CatalogModel {
       departments: Joi.array().items(CatalogModel.StoreDepartments()),
       manager: CatalogModel.StoreManagerSerializer(),
       name: Joi.string().allow(""),
-      store_code: Joi.string().allow(""),
       uid: Joi.number(),
     });
   }
@@ -436,7 +435,6 @@ class CatalogModel {
       categories: Joi.array().items(CatalogModel.ProductBrand()),
       category_map: CatalogModel.ProductCategoryMap(),
       color: Joi.string().allow(""),
-      custom_order: CatalogModel.ProductDetailCustomOrder(),
       description: Joi.string().allow(""),
       discount: Joi.string().allow(""),
       grouped_attributes: Joi.array().items(
@@ -453,7 +451,6 @@ class CatalogModel {
       name: Joi.string().allow(""),
       net_quantity: CatalogModel.NetQuantity(),
       price: CatalogModel.ProductListingPrice(),
-      product_group_tag: Joi.array().items(Joi.string().allow("")),
       product_online_date: Joi.string().allow(""),
       rating: Joi.number(),
       rating_count: Joi.number(),
@@ -473,13 +470,6 @@ class CatalogModel {
       key: Joi.string().allow(""),
       type: Joi.string().allow(""),
       value: Joi.string().allow(""),
-    });
-  }
-  static ProductDetailCustomOrder() {
-    return Joi.object({
-      is_custom_order: Joi.boolean(),
-      manufacturing_time: Joi.number(),
-      manufacturing_time_unit: Joi.string().allow(""),
     });
   }
   static ProductDetailGroupedAttribute() {
@@ -614,7 +604,6 @@ class CatalogModel {
       categories: Joi.array().items(CatalogModel.ProductBrand()),
       category_map: CatalogModel.ProductCategoryMap(),
       color: Joi.string().allow(""),
-      custom_order: CatalogModel.ProductDetailCustomOrder(),
       description: Joi.string().allow(""),
       discount: Joi.string().allow(""),
       grouped_attributes: Joi.array().items(
@@ -632,7 +621,6 @@ class CatalogModel {
       name: Joi.string().allow(""),
       net_quantity: CatalogModel.NetQuantity(),
       price: CatalogModel.ProductListingPrice(),
-      product_group_tag: Joi.array().items(Joi.string().allow("")),
       product_online_date: Joi.string().allow(""),
       rating: Joi.number(),
       rating_count: Joi.number(),
@@ -952,7 +940,7 @@ class CatalogModel {
   }
   static StoreDepartments() {
     return Joi.object({
-      logo: Joi.any(),
+      logo: Joi.string().allow(""),
       name: Joi.string().allow(""),
       priority_order: Joi.number(),
       slug: Joi.string().allow(""),
@@ -976,7 +964,6 @@ class CatalogModel {
       departments: Joi.array().items(CatalogModel.StoreDepartments()),
       manager: CatalogModel.StoreManagerSerializer(),
       name: Joi.string().allow(""),
-      store_code: Joi.string().allow(""),
       timing: Joi.array().items(CatalogModel.StoreTiming()),
       uid: Joi.number(),
     });

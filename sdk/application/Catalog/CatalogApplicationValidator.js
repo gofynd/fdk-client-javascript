@@ -59,7 +59,6 @@ class CatalogValidator {
       pageNo: Joi.number(),
       pageSize: Joi.number(),
       tag: Joi.array().items(Joi.string().allow("")),
-      q: Joi.string().allow(""),
     });
   }
 
