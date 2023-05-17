@@ -94,7 +94,8 @@ declare class Order {
     }): Promise<SuccessResponse>;
     /**
      * @param {Object} arg - Arg object.
-     * @param {string} [arg.date] -
+     * @param {string} [arg.date] - Date On which the announcement is Active
+     *   (Date should in ISO Datetime format IST Time)
      * @returns {Promise<AnnouncementsResponse>} - Success response
      * @summary:
      * @description:
@@ -599,7 +600,7 @@ declare class Order {
      * @param {UpdateShipmentLockPayload} arg.body
      * @returns {Promise<UpdateShipmentLockResponse>} - Success response
      * @summary:
-     * @description: update shipment lock
+     * @description: update shipment/bag lock and check status
      */
     updateShipmentLock({ body }?: {
         body: UpdateShipmentLockPayload;
@@ -609,7 +610,7 @@ declare class Order {
      * @param {UpdateShipmentStatusRequest} arg.body
      * @returns {Promise<UpdateShipmentStatusResponseBody>} - Success response
      * @summary:
-     * @description: Update shipment status
+     * @description: This API is for Shipment State transition or Shipment data update or both below example is for partial state transition with data update
      */
     updateShipmentStatus({ body }?: {
         body: UpdateShipmentStatusRequest;

@@ -165,6 +165,8 @@ class OrderModel {
   static AnnouncementsResponse() {
     return Joi.object({
       announcements: Joi.array().items(OrderModel.AnnouncementResponse()),
+      message: Joi.string().allow("").required(),
+      success: Joi.boolean().required(),
     });
   }
   static AppliedPromos() {
@@ -581,7 +583,7 @@ class OrderModel {
       bags: Joi.array().items(OrderModel.Bags()),
       is_bag_locked: Joi.boolean(),
       is_shipment_locked: Joi.boolean(),
-      lock_status: Joi.boolean().allow(null),
+      lock_status: Joi.string().allow("").allow(null),
       original_filter: OrderModel.OriginalFilter(),
       shipment_id: Joi.string().allow(""),
       status: Joi.string().allow(""),
@@ -825,7 +827,8 @@ class OrderModel {
     return Joi.object({
       error_trace: Joi.string().allow(""),
       message: Joi.string().allow("").required(),
-      status: Joi.number().required(),
+      status: Joi.number(),
+      success: Joi.boolean().required(),
     });
   }
   static FileResponse() {
@@ -950,12 +953,15 @@ class OrderModel {
   }
   static HistoryDict() {
     return Joi.object({
+      assigned_agent: Joi.string().allow(""),
       bag_id: Joi.number(),
       createdat: Joi.string().allow("").required(),
+      display_message: Joi.string().allow(""),
       l1_detail: Joi.string().allow(""),
       l2_detail: Joi.string().allow(""),
       l3_detail: Joi.string().allow(""),
       message: Joi.string().allow("").required(),
+      meta: Joi.any(),
       ticket_id: Joi.string().allow(""),
       ticket_url: Joi.string().allow(""),
       type: Joi.string().allow("").required(),
@@ -977,7 +983,9 @@ class OrderModel {
   }
   static InvalidateShipmentCachePayload() {
     return Joi.object({
-      shipment_ids: Joi.array().items(Joi.string().allow("")).required(),
+      affiliate_bag_ids: Joi.array().items(Joi.string().allow("")),
+      bag_ids: Joi.array().items(Joi.string().allow("")),
+      shipment_ids: Joi.array().items(Joi.string().allow("")),
     });
   }
   static InvalidateShipmentCacheResponse() {
@@ -1769,6 +1777,7 @@ class OrderModel {
   static ShipmentHistoryResponse() {
     return Joi.object({
       activity_history: Joi.array().items(OrderModel.HistoryDict()).required(),
+      success: Joi.boolean(),
     });
   }
   static ShipmentInfoResponse() {
@@ -2161,8 +2170,8 @@ class OrderModel {
   static UpdateShipmentLockResponse() {
     return Joi.object({
       check_response: Joi.array().items(OrderModel.CheckResponse()),
-      message: Joi.string().allow(""),
-      success: Joi.boolean(),
+      message: Joi.string().allow("").required(),
+      success: Joi.boolean().required(),
     });
   }
   static UpdateShipmentStatusRequest() {

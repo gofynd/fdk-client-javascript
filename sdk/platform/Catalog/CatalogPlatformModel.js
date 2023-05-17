@@ -2288,7 +2288,7 @@ class CatalogModel {
       net_quantity: CatalogModel.NetQuantity(),
       no_of_boxes: Joi.number(),
       product_group_tag: Joi.array().items(Joi.string().allow("")),
-      product_publish: CatalogModel.ProductPublish(),
+      product_publish: CatalogModel.ProductPublish1(),
       requester: Joi.string().allow(""),
       return_config: CatalogModel.ReturnConfig().required(),
       short_description: Joi.string().allow(""),
@@ -2504,7 +2504,7 @@ class CatalogModel {
       pending: Joi.string().allow(""),
       primary_color: Joi.string().allow(""),
       product_group_tag: Joi.array().items(Joi.string().allow("")),
-      product_publish: CatalogModel.ProductPublish1(),
+      product_publish: CatalogModel.ProductPublish(),
       return_config: CatalogModel.ReturnConfigResponse(),
       short_description: Joi.string().allow(""),
       size_guide: Joi.string().allow(""),
@@ -3133,10 +3133,6 @@ class CatalogModel {
       "policy",
 
       "product",
-
-      "product-reviews",
-
-      "add-product-review",
 
       "product-request",
 

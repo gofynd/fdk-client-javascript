@@ -13,7 +13,6 @@ declare class Order {
         getShipmentReasons: string;
         sendOtpToShipmentCustomer: string;
         trackShipment: string;
-        updateShipmentStatus: string;
         verifyOtpShipmentCustomer: string;
     };
     _urls: {};
@@ -156,20 +155,6 @@ declare class Order {
     trackShipment({ shipmentId }?: {
         shipmentId: string;
     }): Promise<ShipmentTrack>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.shipmentId - ID of the shipment. An order may contain
-     *   multiple items and may get divided into one or more shipment, each
-     *   having its own ID.
-     * @param {UpdateShipmentStatusRequest} arg.body
-     * @returns {Promise<ShipmentApplicationStatusResponse>} - Success response
-     * @summary: Update the shipment status
-     * @description: Use this API to update the status of a shipment using its shipment ID.
-     */
-    updateShipmentStatus({ shipmentId, body }?: {
-        shipmentId: string;
-        body: UpdateShipmentStatusRequest;
-    }): Promise<ShipmentApplicationStatusResponse>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.orderId - A unique number used for identifying and

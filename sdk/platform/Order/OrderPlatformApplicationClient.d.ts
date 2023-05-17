@@ -5,16 +5,6 @@ declare class Order {
     applicationId: any;
     /**
      * @param {Object} arg - Arg object.
-     * @param {string} arg.orderId -
-     * @returns {Promise<ShipmentDetailsResponse>} - Success response
-     * @summary:
-     * @description:
-     */
-    getAppOrderShipmentDetails({ orderId }?: {
-        orderId: string;
-    }): Promise<ShipmentDetailsResponse>;
-    /**
-     * @param {Object} arg - Arg object.
      * @param {string} [arg.lane] -
      * @param {string} [arg.searchType] -
      * @param {string} [arg.searchId] -
@@ -56,7 +46,7 @@ declare class Order {
      * @summary: Track shipment
      * @description: Track Shipment by shipment id, for application based on application Id
      */
-    trackPlatformShipment({ shipmentId }?: {
+    trackShipmentPlatform({ shipmentId }?: {
         shipmentId: string;
     }): Promise<PlatformShipmentTrack>;
 }

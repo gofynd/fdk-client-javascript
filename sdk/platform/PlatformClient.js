@@ -3996,6 +3996,8 @@ class PlatformClient {
 /**
  * @typedef AnnouncementsResponse
  * @property {AnnouncementResponse[]} [announcements]
+ * @property {string} message
+ * @property {boolean} success
  */
 /**
  * @typedef AppliedPromos
@@ -4377,7 +4379,7 @@ class PlatformClient {
  * @property {Bags[]} [bags]
  * @property {boolean} [is_bag_locked]
  * @property {boolean} [is_shipment_locked]
- * @property {boolean} [lock_status]
+ * @property {string} [lock_status]
  * @property {OriginalFilter} [original_filter]
  * @property {string} [shipment_id]
  * @property {string} [status]
@@ -4589,7 +4591,8 @@ class PlatformClient {
  * @typedef ErrorResponse1
  * @property {string} [error_trace]
  * @property {string} message
- * @property {number} status
+ * @property {number} [status]
+ * @property {boolean} success
  */
 /**
  * @typedef FileResponse
@@ -4699,12 +4702,15 @@ class PlatformClient {
  */
 /**
  * @typedef HistoryDict
+ * @property {string} [assigned_agent]
  * @property {number} [bag_id]
  * @property {string} createdat
+ * @property {string} [display_message]
  * @property {string} [l1_detail]
  * @property {string} [l2_detail]
  * @property {string} [l3_detail]
  * @property {string} message
+ * @property {Object} [meta]
  * @property {string} [ticket_id]
  * @property {string} [ticket_url]
  * @property {string} type
@@ -4723,7 +4729,9 @@ class PlatformClient {
  */
 /**
  * @typedef InvalidateShipmentCachePayload
- * @property {string[]} shipment_ids
+ * @property {string[]} [affiliate_bag_ids]
+ * @property {string[]} [bag_ids]
+ * @property {string[]} [shipment_ids]
  */
 /**
  * @typedef InvalidateShipmentCacheResponse
@@ -5428,6 +5436,7 @@ class PlatformClient {
 /**
  * @typedef ShipmentHistoryResponse
  * @property {HistoryDict[]} activity_history
+ * @property {boolean} [success]
  */
 /**
  * @typedef ShipmentInfoResponse
@@ -5785,8 +5794,8 @@ class PlatformClient {
 /**
  * @typedef UpdateShipmentLockResponse
  * @property {CheckResponse[]} [check_response]
- * @property {string} [message]
- * @property {boolean} [success]
+ * @property {string} message
+ * @property {boolean} success
  */
 /**
  * @typedef UpdateShipmentStatusRequest
@@ -7880,7 +7889,7 @@ class PlatformClient {
  * @property {NetQuantity} [net_quantity]
  * @property {number} [no_of_boxes]
  * @property {string[]} [product_group_tag]
- * @property {ProductPublish} [product_publish]
+ * @property {ProductPublish1} [product_publish]
  * @property {string} [requester]
  * @property {ReturnConfig} return_config
  * @property {string} [short_description]
@@ -8076,7 +8085,7 @@ class PlatformClient {
  * @property {string} [pending]
  * @property {string} [primary_color]
  * @property {string[]} [product_group_tag]
- * @property {ProductPublish1} [product_publish]
+ * @property {ProductPublish} [product_publish]
  * @property {ReturnConfigResponse} [return_config]
  * @property {string} [short_description]
  * @property {string} [size_guide]
@@ -9128,6 +9137,15 @@ class PlatformClient {
  * @typedef CampaignShortLink
  * @property {string} [medium]
  * @property {string} [source]
+ */
+/**
+ * @typedef ClickStatsItem
+ * @property {string} [display]
+ * @property {number} [total]
+ */
+/**
+ * @typedef ClickStatsResponse
+ * @property {ClickStatsItem[]} click_stats
  */
 /**
  * @typedef ErrorRes

@@ -1215,6 +1215,8 @@ class PlatformApplicationClient {
 
 /** @typedef Attribution */
 /** @typedef CampaignShortLink */
+/** @typedef ClickStatsItem */
+/** @typedef ClickStatsResponse */
 /** @typedef ErrorRes */
 /** @typedef Page */
 /** @typedef RedirectDevice */
