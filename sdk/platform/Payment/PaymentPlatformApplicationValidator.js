@@ -111,6 +111,14 @@ class PaymentValidator {
     }).required();
   }
 
+  static oauthGetUrl() {
+    return Joi.object({
+      aggregator: Joi.string().allow("").required(),
+      successRedirectUrl: Joi.string().allow(""),
+      failureRedirectUrl: Joi.string().allow(""),
+    }).required();
+  }
+
   static paymentStatusBulk() {
     return Joi.object({
       body: PaymentModel.PaymentStatusBulkHandlerRequest().required(),

@@ -586,6 +586,7 @@ class PlatformApplicationClient {
 /** @typedef EdcUpdateRequest */
 /** @typedef ErrorCodeAndDescription */
 /** @typedef ErrorCodeDescription */
+/** @typedef GetOauthUrlResponse */
 /** @typedef GetUserCODLimitResponse */
 /** @typedef HttpErrorCodeAndResponse */
 /** @typedef IfscCodeResponse */

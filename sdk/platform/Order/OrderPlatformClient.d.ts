@@ -402,6 +402,7 @@ declare class Order {
      * @param {string} [arg.lane] -
      * @param {string} [arg.bagStatus] -
      * @param {boolean} [arg.statusOverrideLane] -
+     * @param {string} [arg.timeToDispatch] -
      * @param {string} [arg.searchType] -
      * @param {string} [arg.searchValue] -
      * @param {string} [arg.searchId] -
@@ -427,10 +428,11 @@ declare class Order {
      * @summary:
      * @description:
      */
-    getShipments({ lane, bagStatus, statusOverrideLane, searchType, searchValue, searchId, fromDate, toDate, dpIds, orderingCompanyId, stores, salesChannels, requestByExt, pageNo, pageSize, isPrioritySort, fetchActiveShipment, excludeLockedShipments, paymentMethods, channelShipmentId, channelOrderId, customMeta, orderingChannel, companyAffiliateTag, }?: {
+    getShipments({ lane, bagStatus, statusOverrideLane, timeToDispatch, searchType, searchValue, searchId, fromDate, toDate, dpIds, orderingCompanyId, stores, salesChannels, requestByExt, pageNo, pageSize, isPrioritySort, fetchActiveShipment, excludeLockedShipments, paymentMethods, channelShipmentId, channelOrderId, customMeta, orderingChannel, companyAffiliateTag, }?: {
         lane?: string;
         bagStatus?: string;
         statusOverrideLane?: boolean;
+        timeToDispatch?: string;
         searchType?: string;
         searchValue?: string;
         searchId?: string;

@@ -199,6 +199,20 @@ declare class Payment {
     }): Promise<PaymentInitializationResponse>;
     /**
      * @param {Object} arg - Arg object.
+     * @param {string} arg.aggregator - Aggregator
+     * @param {string} [arg.successRedirectUrl] -
+     * @param {string} [arg.failureRedirectUrl] -
+     * @returns {Promise<GetOauthUrlResponse>} - Success response
+     * @summary: API to Get the url to call for oauth
+     * @description: Use this API to Get the url to call for oauth.
+     */
+    oauthGetUrl({ aggregator, successRedirectUrl, failureRedirectUrl, }?: {
+        aggregator: string;
+        successRedirectUrl?: string;
+        failureRedirectUrl?: string;
+    }): Promise<GetOauthUrlResponse>;
+    /**
+     * @param {Object} arg - Arg object.
      * @param {PaymentStatusBulkHandlerRequest} arg.body
      * @returns {Promise<PaymentStatusBulkHandlerResponse>} - Success response
      * @summary: Get Payment status and information for a list of order_ids

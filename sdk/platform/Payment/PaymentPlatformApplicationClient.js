@@ -1141,6 +1141,79 @@ class Payment {
 
   /**
    * @param {Object} arg - Arg object.
+   * @param {string} arg.aggregator - Aggregator
+   * @param {string} [arg.successRedirectUrl] -
+   * @param {string} [arg.failureRedirectUrl] -
+   * @returns {Promise<GetOauthUrlResponse>} - Success response
+   * @summary: API to Get the url to call for oauth
+   * @description: Use this API to Get the url to call for oauth.
+   */
+  async oauthGetUrl({
+    aggregator,
+    successRedirectUrl,
+    failureRedirectUrl,
+  } = {}) {
+    const { error } = PaymentValidator.oauthGetUrl().validate(
+      {
+        aggregator,
+        successRedirectUrl,
+        failureRedirectUrl,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = PaymentValidator.oauthGetUrl().validate(
+      {
+        aggregator,
+        successRedirectUrl,
+        failureRedirectUrl,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for oauthGetUrl",
+      });
+      Logger({ level: "WARN", message: warrning });
+    }
+
+    const query_params = {};
+    query_params["success_redirect_url"] = successRedirectUrl;
+    query_params["failure_redirect_url"] = failureRedirectUrl;
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/payment/v1.0/company/${this.config.companyId}/application/${this.applicationId}/onboard/${aggregator}/`,
+      query_params,
+      undefined
+    );
+
+    const {
+      error: res_error,
+    } = PaymentModel.GetOauthUrlResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for oauthGetUrl",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
    * @param {PaymentStatusBulkHandlerRequest} arg.body
    * @returns {Promise<PaymentStatusBulkHandlerResponse>} - Success response
    * @summary: Get Payment status and information for a list of order_ids

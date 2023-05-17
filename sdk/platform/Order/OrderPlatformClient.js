@@ -2117,6 +2117,7 @@ class Order {
    * @param {string} [arg.lane] -
    * @param {string} [arg.bagStatus] -
    * @param {boolean} [arg.statusOverrideLane] -
+   * @param {string} [arg.timeToDispatch] -
    * @param {string} [arg.searchType] -
    * @param {string} [arg.searchValue] -
    * @param {string} [arg.searchId] -
@@ -2146,6 +2147,7 @@ class Order {
     lane,
     bagStatus,
     statusOverrideLane,
+    timeToDispatch,
     searchType,
     searchValue,
     searchId,
@@ -2173,6 +2175,7 @@ class Order {
         lane,
         bagStatus,
         statusOverrideLane,
+        timeToDispatch,
         searchType,
         searchValue,
         searchId,
@@ -2207,6 +2210,7 @@ class Order {
         lane,
         bagStatus,
         statusOverrideLane,
+        timeToDispatch,
         searchType,
         searchValue,
         searchId,
@@ -2243,6 +2247,7 @@ class Order {
     query_params["lane"] = lane;
     query_params["bag_status"] = bagStatus;
     query_params["status_override_lane"] = statusOverrideLane;
+    query_params["time_to_dispatch"] = timeToDispatch;
     query_params["search_type"] = searchType;
     query_params["search_value"] = searchValue;
     query_params["search_id"] = searchId;

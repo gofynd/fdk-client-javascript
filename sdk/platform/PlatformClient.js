@@ -3772,6 +3772,11 @@ class PlatformClient {
  * @property {boolean} success
  */
 /**
+ * @typedef GetOauthUrlResponse
+ * @property {boolean} success
+ * @property {string} url
+ */
+/**
  * @typedef GetUserCODLimitResponse
  * @property {boolean} success
  * @property {CODdata} user_cod_data

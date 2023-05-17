@@ -17,6 +17,7 @@ declare class PaymentValidator {
     static getUserCODlimitRoutes(): any;
     static getUserOrderBeneficiaries(): any;
     static initialisePayment(): any;
+    static oauthGetUrl(): any;
     static paymentStatusBulk(): any;
     static resendOrCancelPayment(): any;
     static revokeOauthToken(): any;

@@ -127,6 +127,12 @@ class PaymentModel {
       success: Joi.boolean().required(),
     });
   }
+  static GetOauthUrlResponse() {
+    return Joi.object({
+      success: Joi.boolean().required(),
+      url: Joi.string().allow("").required(),
+    });
+  }
   static GetUserCODLimitResponse() {
     return Joi.object({
       success: Joi.boolean().required(),

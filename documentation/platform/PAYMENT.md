@@ -31,6 +31,7 @@ Collect payment through many payment gateway i.e Stripe, Razorpay, Juspay etc.in
 * [getUserCODlimitRoutes](#getusercodlimitroutes)
 * [getUserOrderBeneficiaries](#getuserorderbeneficiaries)
 * [initialisePayment](#initialisepayment)
+* [oauthGetUrl](#oauthgeturl)
 * [paymentStatusBulk](#paymentstatusbulk)
 * [resendOrCancelPayment](#resendorcancelpayment)
 * [revokeOauthToken](#revokeoauthtoken)
@@ -4235,6 +4236,71 @@ Success. Check the example shown below or refer `PaymentInitializationResponse` 
 ---
 
 
+### oauthGetUrl
+API to Get the url to call for oauth
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").payment.oauthGetUrl({  aggregator : value,
+ successRedirectUrl : value,
+ failureRedirectUrl : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").payment.oauthGetUrl({  aggregator : value,
+ successRedirectUrl : value,
+ failureRedirectUrl : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| aggregator | string | yes | aggregator |    
+| successRedirectUrl | string | no |  |    
+| failureRedirectUrl | string | no |  |  
+
+
+
+Use this API to Get the url to call for oauth.
+
+*Returned Response:*
+
+
+
+
+[GetOauthUrlResponse](#GetOauthUrlResponse)
+
+Success. Returns the status of payment. Check the example shown below or refer `GetOauthUrlResponseSchema` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "success": true,
+  "url": "https://auth.razorpay.com/authorize?client_id=LlCp1Mj6YW6jFc&response_type=code&redirect_uri=http://localhost:8000/v1.0/partnership/authorize/razorpay&scope=read_only&state=000000000000000000000001"
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
 ### paymentStatusBulk
 Get Payment status and information for a list of order_ids
 
@@ -5314,6 +5380,16 @@ Bank details on correct Ifsc Code
  | code | string |  no  | Error descrption code. |
  | description | string |  no  | Error human understandable description. |
  | success | boolean |  no  | Response is successful or not |
+ 
+
+---
+
+#### [GetOauthUrlResponse](#GetOauthUrlResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | success | boolean |  no  | Response is successful or not |
+ | url | string |  no  | The url to call for authenticating |
  
 
 ---

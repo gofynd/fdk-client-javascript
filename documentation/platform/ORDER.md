@@ -3558,6 +3558,7 @@ Success. Check the example shown below or refer `PlatformShipmentReasonsResponse
 const promise = platformClient.order.getShipments({  lane : value,
  bagStatus : value,
  statusOverrideLane : value,
+ timeToDispatch : value,
  searchType : value,
  searchValue : value,
  searchId : value,
@@ -3584,6 +3585,7 @@ const promise = platformClient.order.getShipments({  lane : value,
 const data = await platformClient.order.getShipments({  lane : value,
  bagStatus : value,
  statusOverrideLane : value,
+ timeToDispatch : value,
  searchType : value,
  searchValue : value,
  searchId : value,
@@ -3616,6 +3618,7 @@ const data = await platformClient.order.getShipments({  lane : value,
 | lane | string | no |  |    
 | bagStatus | string | no |  |    
 | statusOverrideLane | boolean | no |  |    
+| timeToDispatch | string | no |  |    
 | searchType | string | no |  |    
 | searchValue | string | no |  |    
 | searchId | string | no |  |    

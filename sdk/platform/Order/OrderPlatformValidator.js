@@ -229,6 +229,7 @@ class OrderValidator {
       lane: Joi.string().allow(""),
       bagStatus: Joi.string().allow(""),
       statusOverrideLane: Joi.boolean(),
+      timeToDispatch: Joi.string().allow(""),
       searchType: Joi.string().allow(""),
       searchValue: Joi.string().allow(""),
       searchId: Joi.string().allow(""),

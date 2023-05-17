@@ -17,6 +17,7 @@ declare class PaymentModel {
     static EdcUpdateRequest(): any;
     static ErrorCodeAndDescription(): any;
     static ErrorCodeDescription(): any;
+    static GetOauthUrlResponse(): any;
     static GetUserCODLimitResponse(): any;
     static HttpErrorCodeAndResponse(): any;
     static IfscCodeResponse(): any;
