@@ -138,6 +138,7 @@ class CatalogValidator {
       departmentIds: Joi.array().items(Joi.number()),
       tags: Joi.array().items(Joi.string().allow("")),
       isDependent: Joi.boolean(),
+      itemIds: Joi.array().items(Joi.number()),
       pageNo: Joi.number(),
       pageSize: Joi.number(),
       q: Joi.string().allow(""),

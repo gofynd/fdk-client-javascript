@@ -20,8 +20,6 @@ const Inventory = require("./Inventory/InventoryPlatformClient");
 
 const Configuration = require("./Configuration/ConfigurationPlatformClient");
 
-const Analytics = require("./Analytics/AnalyticsPlatformClient");
-
 const Discount = require("./Discount/DiscountPlatformClient");
 
 const Webhook = require("./Webhook/WebhookPlatformClient");
@@ -56,8 +54,6 @@ class PlatformClient {
     this.inventory = new Inventory(config);
 
     this.configuration = new Configuration(config);
-
-    this.analytics = new Analytics(config);
 
     this.discount = new Discount(config);
 
@@ -4331,7 +4327,6 @@ class PlatformClient {
  * @property {string} affiliate_shipment_id
  * @property {string} affiliate_store_id
  * @property {string} [company_affiliate_tag]
- * @property {Object} [dp_options]
  * @property {PDFLinks} [pdf_links]
  * @property {ShipmentMeta} shipment_meta
  */
@@ -5160,11 +5155,46 @@ class PlatformClient {
  * @property {string} [l2_detail]
  * @property {string} [l3_detail]
  * @property {string} message
- * @property {Object} [meta]
+ * @property {HistoryMeta} [meta]
  * @property {string} [ticket_id]
  * @property {string} [ticket_url]
  * @property {string} type
  * @property {string} user
+ */
+/**
+ * @typedef HistoryMeta
+ * @property {string} [activity_comment]
+ * @property {string} [activity_type]
+ * @property {string} [billsec]
+ * @property {string} [call_id]
+ * @property {string} [caller]
+ * @property {string} [callerid]
+ * @property {string} [channel_type]
+ * @property {string} [duration]
+ * @property {string} [endtime]
+ * @property {string} [message]
+ * @property {HistoryReason} [reason]
+ * @property {string} [receiver]
+ * @property {string} [recipient]
+ * @property {string} [recordpath]
+ * @property {string} [short_link]
+ * @property {string} [slug]
+ * @property {string} [starttime]
+ * @property {string} [status]
+ * @property {string} [status1]
+ * @property {string} [status2]
+ * @property {string} [store_code]
+ * @property {number} [store_id]
+ * @property {string} [store_name]
+ */
+/**
+ * @typedef HistoryReason
+ * @property {string} [category]
+ * @property {number} [code]
+ * @property {string} [dislay_name]
+ * @property {number} [quantity]
+ * @property {string} [state]
+ * @property {string} [text]
  */
 /**
  * @typedef Identifier
@@ -5179,7 +5209,9 @@ class PlatformClient {
  */
 /**
  * @typedef InvalidateShipmentCachePayload
- * @property {string[]} shipment_ids
+ * @property {string[]} [affiliate_bag_ids]
+ * @property {string[]} [bag_ids]
+ * @property {string[]} [shipment_ids]
  */
 /**
  * @typedef InvalidateShipmentCacheResponse
@@ -5289,6 +5321,7 @@ class PlatformClient {
 /**
  * @typedef Meta
  * @property {Dimensions} [dimension]
+ * @property {Object} [dp_options]
  */
 /**
  * @typedef Meta1
@@ -5675,6 +5708,7 @@ class PlatformClient {
  * @property {string} [platform_logo]
  * @property {Prices} [prices]
  * @property {string} [priority_text]
+ * @property {Object} [shipment_details]
  * @property {string} shipment_id
  * @property {string[]} [shipment_images]
  * @property {number} [shipment_quantity]
@@ -5932,6 +5966,7 @@ class PlatformClient {
 /**
  * @typedef ShipmentHistoryResponse
  * @property {HistoryDict[]} activity_history
+ * @property {boolean} [success]
  */
 /**
  * @typedef ShipmentInfoResponse
@@ -8436,7 +8471,7 @@ class PlatformClient {
  * @property {NetQuantity} [net_quantity]
  * @property {number} [no_of_boxes]
  * @property {string[]} [product_group_tag]
- * @property {ProductPublish1} [product_publish]
+ * @property {ProductPublish} [product_publish]
  * @property {string} [requester]
  * @property {ReturnConfig} return_config
  * @property {string} [short_description]
@@ -8632,7 +8667,7 @@ class PlatformClient {
  * @property {string} [pending]
  * @property {string} [primary_color]
  * @property {string[]} [product_group_tag]
- * @property {ProductPublish} [product_publish]
+ * @property {ProductPublish1} [product_publish]
  * @property {ReturnConfigResponse} [return_config]
  * @property {string} [short_description]
  * @property {string} [size_guide]
@@ -13277,151 +13312,6 @@ class PlatformClient {
  * @typedef UserRes
  * @property {Points} [points]
  * @property {RewardUser} [user]
- */
-
-/**
- * @typedef AbandonCartDetail
- * @property {string} [_id]
- * @property {Object} [address]
- * @property {Object[]} [articles]
- * @property {Object} [breakup]
- * @property {string} [cart_value]
- * @property {string} [user_id]
- */
-/**
- * @typedef AbandonCartsDetail
- * @property {string} [context_app_application_id]
- * @property {string} [context_traits_email]
- * @property {string} [context_traits_first_name]
- * @property {string} [context_traits_last_name]
- * @property {string} [context_traits_phone_number]
- * @property {string} [properties_breakup_values_raw_total]
- * @property {string} [properties_cart_id]
- * @property {ReceivedAt} [received_at]
- */
-/**
- * @typedef AbandonCartsList
- * @property {string} [cart_total]
- * @property {AbandonCartsDetail[]} [items]
- * @property {Page} [page]
- */
-/**
- * @typedef ErrorRes
- * @property {string} [message]
- */
-/**
- * @typedef ExportJobReq
- * @property {string} [end_time]
- * @property {string} [event_type]
- * @property {string} [marketplace_name]
- * @property {string} [start_time]
- * @property {string} [trace_id]
- */
-/**
- * @typedef ExportJobRes
- * @property {string} [job_id]
- * @property {string} [status]
- */
-/**
- * @typedef ExportJobStatusRes
- * @property {string} [download_url]
- * @property {string} [job_id]
- * @property {string} [status]
- */
-/**
- * @typedef GetLogsListReq
- * @property {string} [company_id]
- * @property {string} [end_date]
- * @property {string} [marketplace_name]
- * @property {string} [start_date]
- */
-/**
- * @typedef GetLogsListRes
- * @property {MkpLogsResp[]} [items]
- * @property {Page} [page]
- */
-/**
- * @typedef LogInfo
- * @property {string} [_id]
- * @property {string} [article_id]
- * @property {number} [brand_id]
- * @property {number} [company_id]
- * @property {string} [event]
- * @property {string} [event_type]
- * @property {number} [item_id]
- * @property {string} [marketplace_name]
- * @property {string} [seller_identifier]
- * @property {string} [status]
- * @property {string} [store_code]
- * @property {number} [store_id]
- * @property {string} [trace_id]
- */
-/**
- * @typedef MkpLogsResp
- * @property {string} [count]
- * @property {string} [end_time_iso]
- * @property {string} [event_type]
- * @property {string} [start_time_iso]
- * @property {string} [status]
- * @property {string} [trace_id]
- */
-/**
- * @typedef Page
- * @property {number} [current]
- * @property {boolean} [has_next]
- * @property {boolean} [has_previous]
- * @property {number} [item_total]
- * @property {string} [next_id]
- * @property {number} [size]
- * @property {string} type
- */
-/**
- * @typedef ReceivedAt
- * @property {string} [value]
- */
-/**
- * @typedef SearchLogReq
- * @property {string} [company_id]
- * @property {string} [end_date]
- * @property {string} [identifier]
- * @property {string} [identifier_value]
- * @property {string} [marketplace_name]
- * @property {string} [start_date]
- */
-/**
- * @typedef SearchLogRes
- * @property {LogInfo[]} [items]
- * @property {Page} [page]
- */
-/**
- * @typedef StatGroup
- * @property {string} [key]
- * @property {string} [title]
- * @property {string} [url]
- */
-/**
- * @typedef StatsGroupComponent
- * @property {Object} [filters]
- * @property {string} [key]
- * @property {string} [title]
- * @property {string} [type]
- * @property {string} [url]
- */
-/**
- * @typedef StatsGroupComponents
- * @property {StatsGroupComponent[]} [components]
- * @property {string} [title]
- */
-/**
- * @typedef StatsGroups
- * @property {StatGroup[]} [groups]
- */
-/**
- * @typedef StatsRes
- * @property {Object} [data]
- * @property {string} [key]
- * @property {string} [title]
- * @property {string} [type]
  */
 
 /**

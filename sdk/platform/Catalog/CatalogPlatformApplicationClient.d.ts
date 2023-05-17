@@ -280,6 +280,7 @@ declare class Catalog {
      * @param {string[]} [arg.tags] - Get multiple products filtered by tags
      * @param {boolean} [arg.isDependent] - This query parameter is used to get
      *   the dependent products in the listing.
+     * @param {number[]} [arg.itemIds] - Get multiple products filtered by Item Ids
      * @param {number} [arg.pageNo] - The page number to navigate through the
      *   given set of results
      * @param {number} [arg.pageSize] - Number of items to retrieve in each
@@ -289,12 +290,13 @@ declare class Catalog {
      * @summary: Get applicationwise products
      * @description: Products are the core resource of an application. Products can be associated by categories, collections, brands and more. If successful, returns a Product resource in the response body specified in `ApplicationProductListingResponseDatabasePowered`
      */
-    getAppProducts({ brandIds, categoryIds, departmentIds, tags, isDependent, pageNo, pageSize, q, }?: {
+    getAppProducts({ brandIds, categoryIds, departmentIds, tags, isDependent, itemIds, pageNo, pageSize, q, }?: {
         brandIds?: number[];
         categoryIds?: number[];
         departmentIds?: number[];
         tags?: string[];
         isDependent?: boolean;
+        itemIds?: number[];
         pageNo?: number;
         pageSize?: number;
         q?: string;

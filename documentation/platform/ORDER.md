@@ -4120,7 +4120,28 @@ Successfully updated shipment cache!
 <summary><i>&nbsp; Example:</i></summary>
 
 ```json
-
+{
+  "response": [
+    {
+      "message": "Shipment sync initiated",
+      "status": 200,
+      "shipment_id": "16838049724111283577",
+      "error": ""
+    },
+    {
+      "message": "Cannot update cache if shipment in pending, payment_failed or awaiting_payment_confirmation",
+      "status": 400,
+      "shipment_id": "16836368409661507353",
+      "error": ""
+    },
+    {
+      "message": "Problem while deleting the cache",
+      "status": 500,
+      "shipment_id": "16838049724111283577",
+      "error": "Internal Exception"
+    }
+  ]
+}
 ```
 </details>
 
@@ -4323,7 +4344,8 @@ It shows the journey of the shipment!
       "ticket_id": null,
       "ticket_url": null
     }
-  ]
+  ],
+  "success": true
 }
 ```
 </details>
@@ -4875,7 +4897,32 @@ Successfully update the Lock and get check status of the shipment/Bag
 <summary><i>&nbsp; Example:</i></summary>
 
 ```json
-
+{
+  "success": true,
+  "message": "shipments checked successfully",
+  "check_response": [
+    {
+      "bags": [
+        {
+          "bag_id": 175644,
+          "is_locked": false,
+          "affiliate_bag_id": "def134",
+          "affiliate_order_id": "def134"
+        }
+      ],
+      "lock_status": "complete",
+      "is_bag_locked": false,
+      "is_shipment_locked": true,
+      "shipment_id": "16189206454951802898",
+      "affiliate_id": "5c764a6534add21972ef7b08",
+      "affiliate_shipment_id": "def134",
+      "original_filter": {
+        "shipment_id": "16189206454951802898"
+      },
+      "status": "dp_assigned"
+    }
+  ]
+}
 ```
 </details>
 
@@ -5271,7 +5318,6 @@ Verify OTP
  | affiliate_shipment_id | string |  no  |  |
  | affiliate_store_id | string |  no  |  |
  | company_affiliate_tag | string? |  yes  |  |
- | dp_options | string? |  yes  |  |
  | pdf_links | [PDFLinks](#PDFLinks)? |  yes  |  |
  | shipment_meta | [ShipmentMeta](#ShipmentMeta) |  no  |  |
  
@@ -5924,7 +5970,7 @@ Verify OTP
  | bags | [[Bags](#Bags)]? |  yes  |  |
  | is_bag_locked | boolean? |  yes  | Is Bag Locked |
  | is_shipment_locked | boolean? |  yes  | Is Shipment Locked |
- | lock_status | string? |  yes  | Lock Status: Expected action_type: [complete, operational, financial] |
+ | lock_status | string? |  yes  | Lock Status: Expected lock_status: [complete, operational, financial] |
  | original_filter | [OriginalFilter](#OriginalFilter)? |  yes  | Filter |
  | shipment_id | string? |  yes  | Shipment ID |
  | status | string? |  yes  | Status |
@@ -6585,11 +6631,56 @@ Verify OTP
  | l2_detail | string? |  yes  |  |
  | l3_detail | string? |  yes  |  |
  | message | string |  no  |  |
- | meta | string? |  yes  |  |
+ | meta | [HistoryMeta](#HistoryMeta)? |  yes  |  |
  | ticket_id | string? |  yes  |  |
  | ticket_url | string? |  yes  |  |
  | type | string |  no  |  |
  | user | string |  no  |  |
+ 
+
+---
+
+#### [HistoryMeta](#HistoryMeta)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | activity_comment | string? |  yes  |  |
+ | activity_type | string? |  yes  |  |
+ | billsec | string? |  yes  |  |
+ | call_id | string? |  yes  |  |
+ | caller | string? |  yes  |  |
+ | callerid | string? |  yes  |  |
+ | channel_type | string? |  yes  |  |
+ | duration | string? |  yes  |  |
+ | endtime | string? |  yes  |  |
+ | message | string? |  yes  |  |
+ | reason | [HistoryReason](#HistoryReason)? |  yes  |  |
+ | receiver | string? |  yes  |  |
+ | recipient | string? |  yes  |  |
+ | recordpath | string? |  yes  |  |
+ | short_link | string? |  yes  |  |
+ | slug | string? |  yes  |  |
+ | starttime | string? |  yes  |  |
+ | status | string? |  yes  |  |
+ | status1 | string? |  yes  |  |
+ | status2 | string? |  yes  |  |
+ | store_code | string? |  yes  |  |
+ | store_id | number? |  yes  |  |
+ | store_name | string? |  yes  |  |
+ 
+
+---
+
+#### [HistoryReason](#HistoryReason)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | category | string? |  yes  |  |
+ | code | number? |  yes  |  |
+ | dislay_name | string? |  yes  |  |
+ | quantity | number? |  yes  |  |
+ | state | string? |  yes  |  |
+ | text | string? |  yes  |  |
  
 
 ---
@@ -6619,7 +6710,9 @@ Verify OTP
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | shipment_ids | [string] |  no  |  |
+ | affiliate_bag_ids | [string]? |  yes  | Affiliate Bag Ids to clear cache of shipment Ids mapped to it |
+ | bag_ids | [string]? |  yes  | Bag Ids to clear cache of shipment Ids mapped to it |
+ | shipment_ids | [string]? |  yes  | Shipment Ids to clear cache |
  
 
 ---
@@ -6804,6 +6897,7 @@ Verify OTP
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | dimension | [Dimensions](#Dimensions)? |  yes  |  |
+ | dp_options | string? |  yes  |  |
  
 
 ---
@@ -7374,6 +7468,7 @@ Verify OTP
  | platform_logo | string? |  yes  |  |
  | prices | [Prices](#Prices)? |  yes  |  |
  | priority_text | string? |  yes  |  |
+ | shipment_details | string? |  yes  |  |
  | shipment_id | string |  no  |  |
  | shipment_images | [string]? |  yes  |  |
  | shipment_quantity | number? |  yes  |  |
@@ -7816,6 +7911,7 @@ Verify OTP
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | activity_history | [[HistoryDict](#HistoryDict)] |  no  |  |
+ | success | boolean? |  yes  |  |
  
 
 ---

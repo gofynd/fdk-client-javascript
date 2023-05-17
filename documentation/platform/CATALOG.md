@@ -3879,6 +3879,7 @@ const promise = platformClient.application("<APPLICATION_ID>").catalog.getAppPro
  departmentIds : value,
  tags : value,
  isDependent : value,
+ itemIds : value,
  pageNo : value,
  pageSize : value,
  q : value });
@@ -3889,6 +3890,7 @@ const data = await platformClient.application("<APPLICATION_ID>").catalog.getApp
  departmentIds : value,
  tags : value,
  isDependent : value,
+ itemIds : value,
  pageNo : value,
  pageSize : value,
  q : value });
@@ -3905,6 +3907,7 @@ const data = await platformClient.application("<APPLICATION_ID>").catalog.getApp
 | departmentIds | Array<number> | no | Get multiple products filtered by Department Ids |    
 | tags | Array<string> | no | Get multiple products filtered by tags |    
 | isDependent | boolean | no | This query parameter is used to get the dependent products in the listing. |    
+| itemIds | Array<number> | no | Get multiple products filtered by Item Ids |    
 | pageNo | number | no | The page number to navigate through the given set of results |    
 | pageSize | number | no | Number of items to retrieve in each page. Default is 10. |    
 | q | string | no | Search with Item Code, Name, Slug or Identifier. |  
@@ -21439,7 +21442,7 @@ List of fields and validation values fro each. See example below or refer `Inven
  | net_quantity | [NetQuantity](#NetQuantity)? |  yes  |  |
  | no_of_boxes | number? |  yes  |  |
  | product_group_tag | [string]? |  yes  |  |
- | product_publish | [ProductPublish1](#ProductPublish1)? |  yes  |  |
+ | product_publish | [ProductPublish](#ProductPublish)? |  yes  |  |
  | requester | string? |  yes  |  |
  | return_config | [ReturnConfig](#ReturnConfig) |  no  |  |
  | short_description | string? |  yes  |  |
@@ -21715,7 +21718,7 @@ List of fields and validation values fro each. See example below or refer `Inven
  | pending | string? |  yes  |  |
  | primary_color | string? |  yes  |  |
  | product_group_tag | [string]? |  yes  |  |
- | product_publish | [ProductPublish](#ProductPublish)? |  yes  |  |
+ | product_publish | [ProductPublish1](#ProductPublish1)? |  yes  |  |
  | return_config | [ReturnConfigResponse](#ReturnConfigResponse)? |  yes  |  |
  | short_description | string? |  yes  |  |
  | size_guide | string? |  yes  |  |

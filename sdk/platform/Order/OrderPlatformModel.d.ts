@@ -106,6 +106,8 @@ declare class OrderModel {
     static GiftCard(): any;
     static GSTDetailsData(): any;
     static HistoryDict(): any;
+    static HistoryMeta(): any;
+    static HistoryReason(): any;
     static Identifier(): any;
     static InvalidateShipmentCacheNestedResponse(): any;
     static InvalidateShipmentCachePayload(): any;
