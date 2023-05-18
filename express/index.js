@@ -5,7 +5,7 @@ const setupRoutes = require("./routes");
 const { setupProxyRoutes } = require("./api_routes");
 const Session = require("./session/session");
 const SessionStorage = require("./session/session_storage");
-const { ApplicationConfig, ApplicationClient } = require("fdk-client-javascript");
+const { ApplicationConfig, ApplicationClient } = require("@gofynd/fdk-client-javascript");
 const logger = require('./logger');
 
 function setupFdk(data, syncInitialization) {
