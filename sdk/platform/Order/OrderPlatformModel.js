@@ -174,8 +174,8 @@ class OrderModel {
   static AnnouncementsResponse() {
     return Joi.object({
       announcements: Joi.array().items(OrderModel.AnnouncementResponse()),
-      message: Joi.string().allow("").required(),
-      success: Joi.boolean().required(),
+      message: Joi.string().allow(""),
+      success: Joi.boolean(),
     });
   }
   static AppliedPromos() {
@@ -481,8 +481,8 @@ class OrderModel {
   }
   static BaseResponse() {
     return Joi.object({
-      message: Joi.string().allow("").required(),
-      success: Joi.boolean().required(),
+      message: Joi.string().allow(""),
+      success: Joi.boolean(),
     });
   }
   static BillingInfo() {
@@ -851,9 +851,9 @@ class OrderModel {
   static ErrorResponse1() {
     return Joi.object({
       error_trace: Joi.string().allow(""),
-      message: Joi.string().allow("").required(),
+      message: Joi.string().allow(""),
       status: Joi.number(),
-      success: Joi.boolean().required(),
+      success: Joi.boolean(),
     });
   }
   static FetchCreditBalanceRequestPayload() {
@@ -2375,8 +2375,8 @@ class OrderModel {
   static UpdateShipmentLockResponse() {
     return Joi.object({
       check_response: Joi.array().items(OrderModel.CheckResponse()),
-      message: Joi.string().allow("").required(),
-      success: Joi.boolean().required(),
+      message: Joi.string().allow(""),
+      success: Joi.boolean(),
     });
   }
   static UpdateShipmentStatusRequest() {

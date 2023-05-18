@@ -5439,8 +5439,8 @@ Verify OTP
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | announcements | [[AnnouncementResponse](#AnnouncementResponse)]? |  yes  |  |
- | message | string |  no  |  |
- | success | boolean |  no  |  |
+ | message | string? |  yes  |  |
+ | success | boolean? |  yes  |  |
  
 
 ---
@@ -5838,8 +5838,8 @@ Verify OTP
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | message | string |  no  |  |
- | success | boolean |  no  |  |
+ | message | string? |  yes  |  |
+ | success | boolean? |  yes  |  |
  
 
 ---
@@ -6392,9 +6392,9 @@ Verify OTP
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | error_trace | string? |  yes  |  |
- | message | string |  no  |  |
+ | message | string? |  yes  |  |
  | status | number? |  yes  |  |
- | success | boolean |  no  |  |
+ | success | boolean? |  yes  |  |
  
 
 ---
@@ -8505,8 +8505,8 @@ Verify OTP
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | check_response | [[CheckResponse](#CheckResponse)]? |  yes  | Entity Lock Status, If the action input as 'check' |
- | message | string |  no  |  |
- | success | boolean |  no  |  |
+ | message | string? |  yes  |  |
+ | success | boolean? |  yes  |  |
  
 
 ---

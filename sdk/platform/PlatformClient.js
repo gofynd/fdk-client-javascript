@@ -4400,8 +4400,8 @@ class PlatformClient {
 /**
  * @typedef AnnouncementsResponse
  * @property {AnnouncementResponse[]} [announcements]
- * @property {string} message
- * @property {boolean} success
+ * @property {string} [message]
+ * @property {boolean} [success]
  */
 /**
  * @typedef AppliedPromos
@@ -4679,8 +4679,8 @@ class PlatformClient {
  */
 /**
  * @typedef BaseResponse
- * @property {string} message
- * @property {boolean} success
+ * @property {string} [message]
+ * @property {boolean} [success]
  */
 /**
  * @typedef BillingInfo
@@ -5003,9 +5003,9 @@ class PlatformClient {
 /**
  * @typedef ErrorResponse1
  * @property {string} [error_trace]
- * @property {string} message
+ * @property {string} [message]
  * @property {number} [status]
- * @property {boolean} success
+ * @property {boolean} [success]
  */
 /**
  * @typedef FetchCreditBalanceRequestPayload
@@ -6372,8 +6372,8 @@ class PlatformClient {
 /**
  * @typedef UpdateShipmentLockResponse
  * @property {CheckResponse[]} [check_response]
- * @property {string} message
- * @property {boolean} success
+ * @property {string} [message]
+ * @property {boolean} [success]
  */
 /**
  * @typedef UpdateShipmentStatusRequest

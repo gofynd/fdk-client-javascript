@@ -3679,8 +3679,8 @@ type AnnouncementResponse = {
 };
 type AnnouncementsResponse = {
     announcements?: AnnouncementResponse[];
-    message: string;
-    success: boolean;
+    message?: string;
+    success?: boolean;
 };
 type AppliedPromos = {
     amount?: number;
@@ -3934,8 +3934,8 @@ type BagUnit = {
     status: BagReturnableCancelableStatus;
 };
 type BaseResponse = {
-    message: string;
-    success: boolean;
+    message?: string;
+    success?: boolean;
 };
 type BillingInfo = {
     address1: string;
@@ -4212,9 +4212,9 @@ type ErrorResponse = {
 };
 type ErrorResponse1 = {
     error_trace?: string;
-    message: string;
+    message?: string;
     status?: number;
-    success: boolean;
+    success?: boolean;
 };
 type FetchCreditBalanceRequestPayload = {
     affiliate_id: string;
@@ -5418,8 +5418,8 @@ type UpdateShipmentLockPayload = {
 };
 type UpdateShipmentLockResponse = {
     check_response?: CheckResponse[];
-    message: string;
-    success: boolean;
+    message?: string;
+    success?: boolean;
 };
 type UpdateShipmentStatusRequest = {
     force_transition?: boolean;
