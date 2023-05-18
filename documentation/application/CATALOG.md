@@ -1017,12 +1017,14 @@ List all the collections
 // Promise
 const promise = applicationClient.catalog.getCollections({  pageNo : value,
  pageSize : value,
- tag : value });
+ tag : value,
+ q : value });
 
 // Async/Await
 const data = await applicationClient.catalog.getCollections({  pageNo : value,
  pageSize : value,
- tag : value });
+ tag : value,
+ q : value });
 ```
 
 
@@ -1033,7 +1035,8 @@ const data = await applicationClient.catalog.getCollections({  pageNo : value,
 | --------- | -----  | -------- | ----------- |  
 | pageNo | number | no | The page number to navigate through the given set of results. |    
 | pageSize | number | no | The number of items to retrieve in each page. |    
-| tag | Array<string> | no | List of tags  to filter collections |  
+| tag | Array<string> | no | List of tags  to filter collections |    
+| q | string | no | Name of the collection to filter collection |  
 
 
 

@@ -667,13 +667,14 @@ class Catalog {
    *   given set of results.
    * @param {number} [arg.pageSize] - The number of items to retrieve in each page.
    * @param {string[]} [arg.tag] - List of tags to filter collections
+   * @param {string} [arg.q] - Name of the collection to filter collection
    * @returns {Promise<GetCollectionListingResponse>} - Success response
    * @summary: List all the collections
    * @description: Collections are a great way to organize your products and can improve the ability for customers to find items quickly and efficiently.
    */
-  async getCollections({ pageNo, pageSize, tag } = {}) {
+  async getCollections({ pageNo, pageSize, tag, q } = {}) {
     const { error } = CatalogValidator.getCollections().validate(
-      { pageNo, pageSize, tag },
+      { pageNo, pageSize, tag, q },
       { abortEarly: false, allowUnknown: true }
     );
     if (error) {
@@ -682,7 +683,7 @@ class Catalog {
 
     // Showing warrnings if extra unknown parameters are found
     const { error: warrning } = CatalogValidator.getCollections().validate(
-      { pageNo, pageSize, tag },
+      { pageNo, pageSize, tag, q },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
@@ -697,6 +698,7 @@ class Catalog {
     query_params["page_no"] = pageNo;
     query_params["page_size"] = pageSize;
     query_params["tag"] = tag;
+    query_params["q"] = q;
 
     const xHeaders = {};
 
@@ -734,10 +736,11 @@ class Catalog {
    * @param {Object} arg - Arg object.
    * @param {number} [arg.pageSize] - The number of items to retrieve in each page.
    * @param {string[]} [arg.tag] - List of tags to filter collections
+   * @param {string} [arg.q] - Name of the collection to filter collection
    * @summary: List all the collections
    * @description: Collections are a great way to organize your products and can improve the ability for customers to find items quickly and efficiently.
    */
-  getCollectionsPaginator({ pageSize, tag } = {}) {
+  getCollectionsPaginator({ pageSize, tag, q } = {}) {
     const paginator = new Paginator();
     const callback = async () => {
       const pageId = paginator.nextId;
@@ -747,6 +750,7 @@ class Catalog {
         pageNo: pageNo,
         pageSize: pageSize,
         tag: tag,
+        q: q,
       });
       paginator.setPaginator({
         hasNext: data.page.has_next ? true : false,
