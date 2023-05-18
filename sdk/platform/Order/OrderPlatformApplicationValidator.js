@@ -2,6 +2,12 @@ const Joi = require("joi");
 
 const OrderModel = require("./OrderPlatformModel");
 class OrderValidator {
+  static getAppOrderShipmentDetails() {
+    return Joi.object({
+      orderId: Joi.string().allow("").required(),
+    }).required();
+  }
+
   static getApplicationShipments() {
     return Joi.object({
       lane: Joi.string().allow(""),
@@ -21,7 +27,7 @@ class OrderValidator {
     }).required();
   }
 
-  static trackShipmentPlatform() {
+  static trackPlatformShipment() {
     return Joi.object({
       shipmentId: Joi.string().allow("").required(),
     }).required();
