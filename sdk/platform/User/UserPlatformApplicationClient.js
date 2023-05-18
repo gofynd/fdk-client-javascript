@@ -782,8 +782,8 @@ class User {
 
   /**
    * @param {Object} arg - Arg object.
-   * @param {string} [arg.q] - The search query. Mobile number or email ID of
-   *   a customer.
+   * @param {Object} [arg.q] - The search query. Mobile number, email ID or
+   *   user ID of a customer.
    * @returns {Promise<UserSearchResponseSchema>} - Success response
    * @summary: Search an existing user.
    * @description: Use this API to retrieve an existing user from a list.
