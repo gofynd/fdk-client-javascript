@@ -2202,7 +2202,7 @@ const data = await applicationClient.cart.applyRewardPoints({  body : value,
 | i | boolean | no |  |    
 | b | boolean | no |  |    
 | buyNow | boolean | no |  |  
-| body | [RewardPointRequestSchema](#RewardPointRequestSchema) | yes | Request body |
+| body | [RewardPointRequest](#RewardPointRequest) | yes | Request body |
 
 
 Use this API to redeem a fixed no. of reward points by applying it to the cart.
@@ -2437,7 +2437,7 @@ Use this API to checkout all items in the cart for payment and order generation.
 
 
 
-[CartCheckoutResponseSchema](#CartCheckoutResponseSchema)
+[CartCheckoutResponse](#CartCheckoutResponse)
 
 Success. Returns the status of cart checkout. Refer `CartCheckoutResponseSchema` for more details.
 
@@ -3571,7 +3571,7 @@ Use this API to checkout all items in the cart for payment and order generation.
 
 
 
-[CartCheckoutResponseSchema](#CartCheckoutResponseSchema)
+[CartCheckoutResponse](#CartCheckoutResponse)
 
 Success. Returns the status of cart checkout. Refer `CartCheckoutResponseSchema` for more details.
 
@@ -9438,7 +9438,7 @@ Use this API to validate a coupon against the payment mode such as NetBanking, W
 
 
 
-[PaymentCouponValidateSchema](#PaymentCouponValidateSchema)
+[PaymentCouponValidate](#PaymentCouponValidate)
 
 Success. Returns a success message and the coupon validity. Refer `PaymentCouponValidate` for more details.
 
@@ -9564,12 +9564,12 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
 
 ---
 
-#### [AppliedFreeArticlesSchema](#AppliedFreeArticlesSchema)
+#### [AppliedFreeArticles](#AppliedFreeArticles)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | article_id | string? |  yes  | free article id |
- | free_gift_item_details | [FreeGiftItemSchema](#FreeGiftItemSchema)? |  yes  | Free gift items details |
+ | free_gift_item_details | [FreeGiftItem](#FreeGiftItem)? |  yes  | Free gift items details |
  | parent_item_identifier | string? |  yes  | Parent item identifier for free article |
  | quantity | number? |  yes  | Free article quantity |
  
@@ -9581,10 +9581,10 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | amount | number? |  yes  | Per unit discount amount applied with current promotion |
- | applied_free_articles | [[AppliedFreeArticlesSchema](#AppliedFreeArticlesSchema)]? |  yes  | Applied free article for free gift item promotions |
+ | applied_free_articles | [[AppliedFreeArticles](#AppliedFreeArticles)]? |  yes  | Applied free article for free gift item promotions |
  | article_quantity | number? |  yes  | Quantity of article on which promotion is applicable |
- | buy_rules | [[BuyRulesSchema](#BuyRulesSchema)]? |  yes  | Buy rules for promotions |
- | discount_rules | [[DiscountRulesAppSchema](#DiscountRulesAppSchema)]? |  yes  | Discount rules for promotions |
+ | buy_rules | [[BuyRules](#BuyRules)]? |  yes  | Buy rules for promotions |
+ | discount_rules | [[DiscountRulesApp](#DiscountRulesApp)]? |  yes  | Discount rules for promotions |
  | mrp_promotion | boolean? |  yes  | If applied promotion is applied on product MRP or ESP |
  | offer_text | string? |  yes  | Offer text of current promotion |
  | ownership | [Ownership](#Ownership)? |  yes  | Ownership of promotion |
@@ -9605,11 +9605,11 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
 
 ---
 
-#### [ArticleGiftDetailSchema](#ArticleGiftDetailSchema)
+#### [ArticleGiftDetail](#ArticleGiftDetail)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | article_id | [GiftDetailSchema](#GiftDetailSchema)? |  yes  |  |
+ | article_id | [GiftDetail](#GiftDetail)? |  yes  |  |
  
 
 ---
@@ -9618,8 +9618,8 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | base | [BasePriceSchema](#BasePriceSchema)? |  yes  |  |
- | converted | [BasePriceSchema](#BasePriceSchema)? |  yes  |  |
+ | base | [BasePrice](#BasePrice)? |  yes  |  |
+ | converted | [BasePrice](#BasePrice)? |  yes  |  |
  
 
 ---
@@ -9634,7 +9634,7 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
 
 ---
 
-#### [BasePriceSchema](#BasePriceSchema)
+#### [BasePrice](#BasePrice)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
@@ -9646,12 +9646,12 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
 
 ---
 
-#### [BulkPriceOfferSchema](#BulkPriceOfferSchema)
+#### [BulkPriceOffer](#BulkPriceOffer)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | offers | [[OfferItemSchema](#OfferItemSchema)]? |  yes  |  |
- | seller | [OfferSellerSchema](#OfferSellerSchema)? |  yes  |  |
+ | offers | [[OfferItem](#OfferItem)]? |  yes  |  |
+ | seller | [OfferSeller](#OfferSeller)? |  yes  |  |
  
 
 ---
@@ -9660,12 +9660,12 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | data | [[BulkPriceOfferSchema](#BulkPriceOfferSchema)]? |  yes  | Consist of offers from multiple seller |
+ | data | [[BulkPriceOffer](#BulkPriceOffer)]? |  yes  | Consist of offers from multiple seller |
  
 
 ---
 
-#### [BuyRulesSchema](#BuyRulesSchema)
+#### [BuyRules](#BuyRules)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
@@ -9675,19 +9675,19 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
 
 ---
 
-#### [CartBreakupSchema](#CartBreakupSchema)
+#### [CartBreakup](#CartBreakup)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | coupon | [CouponBreakupSchema](#CouponBreakupSchema)? |  yes  |  |
- | display | [[DisplayBreakupSchema](#DisplayBreakupSchema)]? |  yes  |  |
+ | coupon | [CouponBreakup](#CouponBreakup)? |  yes  |  |
+ | display | [[DisplayBreakup](#DisplayBreakup)]? |  yes  |  |
  | loyalty_points | [LoyaltyPoints](#LoyaltyPoints)? |  yes  |  |
- | raw | [RawBreakupSchema](#RawBreakupSchema)? |  yes  |  |
+ | raw | [RawBreakup](#RawBreakup)? |  yes  |  |
  
 
 ---
 
-#### [CartCheckoutCustomMetaSchema](#CartCheckoutCustomMetaSchema)
+#### [CartCheckoutCustomMeta](#CartCheckoutCustomMeta)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
@@ -9706,7 +9706,7 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
  | billing_address | string? |  yes  |  |
  | billing_address_id | string? |  yes  |  |
  | callback_url | string? |  yes  |  |
- | custom_meta | [[CartCheckoutCustomMetaSchema](#CartCheckoutCustomMetaSchema)]? |  yes  |  |
+ | custom_meta | [[CartCheckoutCustomMeta](#CartCheckoutCustomMeta)]? |  yes  |  |
  | delivery_address | string? |  yes  |  |
  | extra_meta | string? |  yes  |  |
  | id | string? |  yes  |  |
@@ -9718,7 +9718,7 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
  | payment_identifier | string? |  yes  |  |
  | payment_mode | string |  no  |  |
  | payment_params | string? |  yes  |  |
- | staff | [StaffCheckoutSchema](#StaffCheckoutSchema)? |  yes  |  |
+ | staff | [StaffCheckout](#StaffCheckout)? |  yes  |  |
  
 
 ---
@@ -9743,21 +9743,21 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
  | ordering_store | number? |  yes  |  |
  | payment_auto_confirm | boolean? |  yes  |  |
  | payment_identifier | string? |  yes  |  |
- | payment_methods | [[PaymentMethodSchema](#PaymentMethodSchema)] |  no  |  |
+ | payment_methods | [[PaymentMethod](#PaymentMethod)] |  no  |  |
  | payment_mode | string |  no  |  |
  | payment_params | string? |  yes  |  |
- | staff | [StaffCheckoutSchema](#StaffCheckoutSchema)? |  yes  |  |
+ | staff | [StaffCheckout](#StaffCheckout)? |  yes  |  |
  
 
 ---
 
-#### [CartCheckoutResponseSchema](#CartCheckoutResponseSchema)
+#### [CartCheckoutResponse](#CartCheckoutResponse)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | app_intercept_url | string? |  yes  |  |
  | callback_url | string? |  yes  |  |
- | cart | [CheckCartSchema](#CheckCartSchema)? |  yes  |  |
+ | cart | [CheckCart](#CheckCart)? |  yes  |  |
  | data | string? |  yes  |  |
  | message | string? |  yes  |  |
  | order_id | string? |  yes  |  |
@@ -9767,7 +9767,7 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
 
 ---
 
-#### [CartCurrencySchema](#CartCurrencySchema)
+#### [CartCurrency](#CartCurrency)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
@@ -9782,12 +9782,12 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | applied_promo_details | [[AppliedPromotion](#AppliedPromotion)]? |  yes  |  |
- | breakup_values | [CartBreakupSchema](#CartBreakupSchema)? |  yes  |  |
+ | breakup_values | [CartBreakup](#CartBreakup)? |  yes  |  |
  | buy_now | boolean? |  yes  |  |
  | checkout_mode | string? |  yes  |  |
  | comment | string? |  yes  |  |
  | coupon_text | string? |  yes  |  |
- | currency | [CartCurrencySchema](#CartCurrencySchema)? |  yes  |  |
+ | currency | [CartCurrency](#CartCurrency)? |  yes  |  |
  | delivery_charge_info | string? |  yes  |  |
  | delivery_promise | [ShipmentPromise](#ShipmentPromise)? |  yes  |  |
  | gstin | string? |  yes  |  |
@@ -9828,7 +9828,7 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
  | ---------- | ---- | -------- | ----------- |
  | checkout_mode | string? |  yes  |  |
  | comment | string? |  yes  |  |
- | gift_details | [ArticleGiftDetailSchema](#ArticleGiftDetailSchema)? |  yes  |  |
+ | gift_details | [ArticleGiftDetail](#ArticleGiftDetail)? |  yes  |  |
  | gstin | string? |  yes  |  |
  | pick_up_customer_details | string? |  yes  | Customer contact details for customer pickup at store |
  
@@ -9839,6 +9839,7 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | is_valid | boolean? |  yes  |  |
  | message | string? |  yes  |  |
  
 
@@ -9906,13 +9907,13 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | breakup_values | [CartBreakupSchema](#CartBreakupSchema)? |  yes  |  |
+ | breakup_values | [CartBreakup](#CartBreakup)? |  yes  |  |
  | buy_now | boolean? |  yes  |  |
  | cart_id | number? |  yes  |  |
  | checkout_mode | string? |  yes  |  |
  | comment | string? |  yes  |  |
  | coupon_text | string? |  yes  |  |
- | currency | [CartCurrencySchema](#CartCurrencySchema)? |  yes  |  |
+ | currency | [CartCurrency](#CartCurrency)? |  yes  |  |
  | delivery_charge_info | string? |  yes  |  |
  | delivery_promise | [ShipmentPromise](#ShipmentPromise)? |  yes  |  |
  | error | boolean? |  yes  |  |
@@ -9939,11 +9940,11 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
 
 ---
 
-#### [CheckCartSchema](#CheckCartSchema)
+#### [CheckCart](#CheckCart)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | breakup_values | [CartBreakupSchema](#CartBreakupSchema)? |  yes  |  |
+ | breakup_values | [CartBreakup](#CartBreakup)? |  yes  |  |
  | buy_now | boolean? |  yes  |  |
  | cart_id | number? |  yes  |  |
  | checkout_mode | string? |  yes  |  |
@@ -9952,7 +9953,7 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
  | cod_message | string? |  yes  |  |
  | comment | string? |  yes  |  |
  | coupon_text | string? |  yes  |  |
- | currency | [CartCurrencySchema](#CartCurrencySchema)? |  yes  |  |
+ | currency | [CartCurrency](#CartCurrency)? |  yes  |  |
  | delivery_charge_info | string? |  yes  |  |
  | delivery_charge_order_value | number? |  yes  |  |
  | delivery_charges | number? |  yes  |  |
@@ -9996,7 +9997,7 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
 
 ---
 
-#### [CouponBreakupSchema](#CouponBreakupSchema)
+#### [CouponBreakup](#CouponBreakup)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
@@ -10041,7 +10042,7 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
 
 ---
 
-#### [CurrencyInfoSchema](#CurrencyInfoSchema)
+#### [CurrencyInfo](#CurrencyInfo)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
@@ -10071,7 +10072,7 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
 
 ---
 
-#### [DiscountRulesAppSchema](#DiscountRulesAppSchema)
+#### [DiscountRulesApp](#DiscountRulesApp)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
@@ -10083,7 +10084,7 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
 
 ---
 
-#### [DisplayBreakupSchema](#DisplayBreakupSchema)
+#### [DisplayBreakup](#DisplayBreakup)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
@@ -10097,7 +10098,7 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
 
 ---
 
-#### [FreeGiftItemSchema](#FreeGiftItemSchema)
+#### [FreeGiftItem](#FreeGiftItem)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
@@ -10111,7 +10112,7 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
 
 ---
 
-#### [FreeGiftItemsSchema](#FreeGiftItemsSchema)
+#### [FreeGiftItems](#FreeGiftItems)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
@@ -10150,7 +10151,7 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | available_coupon_list | [[Coupon](#Coupon)]? |  yes  |  |
- | page | [PageCouponSchema](#PageCouponSchema)? |  yes  |  |
+ | page | [PageCoupon](#PageCoupon)? |  yes  |  |
  
 
 ---
@@ -10175,7 +10176,7 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
 
 ---
 
-#### [GiftDetailSchema](#GiftDetailSchema)
+#### [GiftDetail](#GiftDetail)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
@@ -10185,7 +10186,7 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
 
 ---
 
-#### [LadderOfferItemSchema](#LadderOfferItemSchema)
+#### [LadderOfferItem](#LadderOfferItem)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
@@ -10219,9 +10220,9 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
  | calculate_on | string? |  yes  | If this ladder offer is to be calculated on MRP or ESP price |
  | description | string? |  yes  | Offer details including T&C |
  | discount_rules | [string]? |  yes  | Discount rules of promotions |
- | free_gift_items | [[FreeGiftItemsSchema](#FreeGiftItemsSchema)]? |  yes  | Details of free gift items |
+ | free_gift_items | [[FreeGiftItems](#FreeGiftItems)]? |  yes  | Details of free gift items |
  | id | string? |  yes  | Promotion id |
- | offer_prices | [[LadderOfferItemSchema](#LadderOfferItemSchema)]? |  yes  |  |
+ | offer_prices | [[LadderOfferItem](#LadderOfferItem)]? |  yes  |  |
  | offer_text | string? |  yes  | Offer title |
  | promotion_group | string? |  yes  | Group of promotion belongs to |
  | valid_till | string? |  yes  | Datetime ISOString for promotion end date |
@@ -10234,7 +10235,7 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | available_offers | [[LadderPriceOffer](#LadderPriceOffer)]? |  yes  |  |
- | currency | [CurrencyInfoSchema](#CurrencyInfoSchema)? |  yes  |  |
+ | currency | [CurrencyInfo](#CurrencyInfo)? |  yes  |  |
  
 
 ---
@@ -10261,7 +10262,7 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
 
 ---
 
-#### [OfferItemSchema](#OfferItemSchema)
+#### [OfferItem](#OfferItem)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
@@ -10289,7 +10290,7 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
 
 ---
 
-#### [OfferSellerSchema](#OfferSellerSchema)
+#### [OfferSeller](#OfferSeller)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
@@ -10319,7 +10320,7 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
 
 ---
 
-#### [PageCouponSchema](#PageCouponSchema)
+#### [PageCoupon](#PageCoupon)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
@@ -10332,7 +10333,7 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
 
 ---
 
-#### [PaymentCouponValidateSchema](#PaymentCouponValidateSchema)
+#### [PaymentCouponValidate](#PaymentCouponValidate)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
@@ -10343,7 +10344,7 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
 
 ---
 
-#### [PaymentMetaSchema](#PaymentMetaSchema)
+#### [PaymentMeta](#PaymentMeta)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
@@ -10355,7 +10356,7 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
 
 ---
 
-#### [PaymentMethodSchema](#PaymentMethodSchema)
+#### [PaymentMethod](#PaymentMethod)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
@@ -10363,7 +10364,7 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
  | mode | string |  no  |  |
  | name | string? |  yes  |  |
  | payment | string? |  yes  |  |
- | payment_meta | [PaymentMetaSchema](#PaymentMetaSchema) |  no  |  |
+ | payment_meta | [PaymentMeta](#PaymentMeta) |  no  |  |
  
 
 ---
@@ -10510,7 +10511,7 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
  | buy_rules | string? |  yes  | Buy rules of promotions |
  | description | string? |  yes  | Offer details including T&C |
  | discount_rules | [string]? |  yes  | Discount rules of promotions |
- | free_gift_items | [[FreeGiftItemsSchema](#FreeGiftItemsSchema)]? |  yes  | Details of free gift items |
+ | free_gift_items | [[FreeGiftItems](#FreeGiftItems)]? |  yes  | Details of free gift items |
  | id | string? |  yes  | Promotion id |
  | offer_text | string? |  yes  | Offer title |
  | promotion_group | string? |  yes  | Group of promotion belongs to |
@@ -10528,7 +10529,7 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
 
 ---
 
-#### [RawBreakupSchema](#RawBreakupSchema)
+#### [RawBreakup](#RawBreakup)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
@@ -10549,7 +10550,7 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
 
 ---
 
-#### [RewardPointRequestSchema](#RewardPointRequestSchema)
+#### [RewardPointRequest](#RewardPointRequest)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
@@ -10584,13 +10585,13 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | breakup_values | [CartBreakupSchema](#CartBreakupSchema)? |  yes  |  |
+ | breakup_values | [CartBreakup](#CartBreakup)? |  yes  |  |
  | buy_now | boolean? |  yes  |  |
  | cart_id | number? |  yes  |  |
  | checkout_mode | string? |  yes  |  |
  | comment | string? |  yes  |  |
  | coupon_text | string? |  yes  |  |
- | currency | [CartCurrencySchema](#CartCurrencySchema)? |  yes  |  |
+ | currency | [CartCurrency](#CartCurrency)? |  yes  |  |
  | delivery_charge_info | string? |  yes  |  |
  | delivery_promise | [ShipmentPromise](#ShipmentPromise)? |  yes  |  |
  | gstin | string? |  yes  |  |
@@ -10658,7 +10659,7 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
 
 ---
 
-#### [StaffCheckoutSchema](#StaffCheckoutSchema)
+#### [StaffCheckout](#StaffCheckout)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |

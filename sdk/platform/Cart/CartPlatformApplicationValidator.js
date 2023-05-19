@@ -35,19 +35,19 @@ class CartValidator {
 
   static checkoutCart() {
     return Joi.object({
-      body: CartModel.OpenApiPlatformCheckoutReqSchema().required(),
+      body: CartModel.OpenApiPlatformCheckoutReq().required(),
     }).required();
   }
 
   static createCoupon() {
     return Joi.object({
-      body: CartModel.CouponAddSchema().required(),
+      body: CartModel.CouponAdd().required(),
     }).required();
   }
 
   static createPromotion() {
     return Joi.object({
-      body: CartModel.PromotionAddSchema().required(),
+      body: CartModel.PromotionAdd().required(),
     }).required();
   }
 
@@ -352,7 +352,7 @@ class CartValidator {
   static updateCoupon() {
     return Joi.object({
       id: Joi.string().allow("").required(),
-      body: CartModel.CouponUpdateSchema().required(),
+      body: CartModel.CouponUpdate().required(),
     }).required();
   }
 
@@ -366,7 +366,7 @@ class CartValidator {
   static updatePromotion() {
     return Joi.object({
       id: Joi.string().allow("").required(),
-      body: CartModel.PromotionUpdateSchema().required(),
+      body: CartModel.PromotionUpdate().required(),
     }).required();
   }
 

@@ -36,7 +36,7 @@ class CartValidator {
       i: Joi.boolean(),
       b: Joi.boolean(),
       buyNow: Joi.boolean(),
-      body: CartModel.RewardPointRequestSchema().required(),
+      body: CartModel.RewardPointRequest().required(),
     }).required();
   }
 
