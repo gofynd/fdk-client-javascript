@@ -2,6 +2,12 @@ const Joi = require("joi");
 
 const ServiceabilityModel = require("./ServiceabilityPlatformModel");
 class ServiceabilityValidator {
+  static createZone() {
+    return Joi.object({
+      body: ServiceabilityModel.ZoneRequest().required(),
+    }).required();
+  }
+
   static getAllStores() {
     return Joi.object({}).required();
   }
@@ -26,6 +32,7 @@ class ServiceabilityValidator {
       name: Joi.string().allow(""),
       isActive: Joi.boolean(),
       channelIds: Joi.string().allow(""),
+      q: Joi.string().allow(""),
     }).required();
   }
 
@@ -38,12 +45,6 @@ class ServiceabilityValidator {
   static getZoneDataView() {
     return Joi.object({
       zoneId: Joi.string().allow("").required(),
-    }).required();
-  }
-
-  static insertZoneControllerView() {
-    return Joi.object({
-      body: ServiceabilityModel.ZoneRequest().required(),
     }).required();
   }
 

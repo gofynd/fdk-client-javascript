@@ -4,6 +4,16 @@ declare class Order {
     config: any;
     /**
      * @param {Object} arg - Arg object.
+     * @param {AttachOrderUser} arg.body
+     * @returns {Promise<AttachOrderUserResponse>} - Success response
+     * @summary:
+     * @description:
+     */
+    attachOrderUser({ body }?: {
+        body: AttachOrderUser;
+    }): Promise<AttachOrderUserResponse>;
+    /**
+     * @param {Object} arg - Arg object.
      * @param {string} arg.batchId -
      * @returns {Promise<BulkActionDetailsResponse>} - Success response
      * @summary: Returns failed, processing and successfully processed shipments.
@@ -92,6 +102,26 @@ declare class Order {
     dispatchManifest({ body }?: {
         body: DispatchManifest;
     }): Promise<SuccessResponse>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {FetchCreditBalanceRequestPayload} arg.body
+     * @returns {Promise<FetchCreditBalanceResponsePayload>} - Success response
+     * @summary:
+     * @description:
+     */
+    fetchCreditBalanceDetail({ body }?: {
+        body: FetchCreditBalanceRequestPayload;
+    }): Promise<FetchCreditBalanceResponsePayload>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {RefundModeConfigRequestPayload} arg.body
+     * @returns {Promise<RefundModeConfigResponsePayload>} - Success response
+     * @summary:
+     * @description:
+     */
+    fetchRefundModeConfig({ body }?: {
+        body: RefundModeConfigRequestPayload;
+    }): Promise<RefundModeConfigResponsePayload>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.orderId -
@@ -566,6 +596,16 @@ declare class Order {
     sendSmsNinjaPlatform({}?: any): Promise<OrderStatusResult>;
     /**
      * @param {Object} arg - Arg object.
+     * @param {SendUserMobileOTP} arg.body
+     * @returns {Promise<SendUserMobileOtpResponse>} - Success response
+     * @summary:
+     * @description:
+     */
+    sendUserMobileOTP({ body }?: {
+        body: SendUserMobileOTP;
+    }): Promise<SendUserMobileOtpResponse>;
+    /**
+     * @param {Object} arg - Arg object.
      * @param {string} arg.shipmentId -
      * @param {string} [arg.name] -
      * @param {string} [arg.address] -
@@ -646,4 +686,14 @@ declare class Order {
     upsertJioCode({ body }?: {
         body: JioCodeUpsertPayload;
     }): Promise<JioCodeUpsertResponse>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {VerifyMobileOTP} arg.body
+     * @returns {Promise<PointBlankOtpData>} - Success response
+     * @summary:
+     * @description:
+     */
+    verifyMobileOTP({ body }?: {
+        body: VerifyMobileOTP;
+    }): Promise<PointBlankOtpData>;
 }

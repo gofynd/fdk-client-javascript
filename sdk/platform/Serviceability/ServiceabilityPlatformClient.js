@@ -13,6 +13,70 @@ class Serviceability {
 
   /**
    * @param {Object} arg - Arg object.
+   * @param {ZoneRequest} arg.body
+   * @returns {Promise<ZoneResponse>} - Success response
+   * @summary: Insertion of zone in database.
+   * @description: This API returns response of insertion of zone in mongo database.<br>Correction- `zone_id` in the path must be removed.<br> path is `/service/platform/logistics-internal/v1.0/company/{}/zone/`
+   */
+  async createZone({ body } = {}) {
+    const { error } = ServiceabilityValidator.createZone().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = ServiceabilityValidator.createZone().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for createZone",
+      });
+      Logger({ level: "WARN", message: warrning });
+    }
+
+    const query_params = {};
+
+    const xHeaders = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/logistics/v1.0/company/${this.config.companyId}/zone`,
+      query_params,
+      body,
+      xHeaders
+    );
+
+    const {
+      error: res_error,
+    } = ServiceabilityModel.ZoneResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for createZone",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
    * @returns {Promise<GetStoresViewResponse>} - Success response
    * @summary: GET stores data
    * @description: This API returns stores data.
@@ -214,11 +278,19 @@ class Serviceability {
    * @param {string} [arg.name] - Name of particular zone in the seller account
    * @param {boolean} [arg.isActive] - Status of zone whether active or inactive
    * @param {string} [arg.channelIds] - Zones associated with the given channel ids'
+   * @param {string} [arg.q] - Search with name as a free text
    * @returns {Promise<ListViewResponse>} - Success response
    * @summary: Zone List of application.
    * @description: This API returns Zone List View of the application.
    */
-  async getListView({ pageNumber, pageSize, name, isActive, channelIds } = {}) {
+  async getListView({
+    pageNumber,
+    pageSize,
+    name,
+    isActive,
+    channelIds,
+    q,
+  } = {}) {
     const { error } = ServiceabilityValidator.getListView().validate(
       {
         pageNumber,
@@ -226,6 +298,7 @@ class Serviceability {
         name,
         isActive,
         channelIds,
+        q,
       },
       { abortEarly: false, allowUnknown: true }
     );
@@ -241,6 +314,7 @@ class Serviceability {
         name,
         isActive,
         channelIds,
+        q,
       },
       { abortEarly: false, allowUnknown: false }
     );
@@ -258,6 +332,7 @@ class Serviceability {
     query_params["name"] = name;
     query_params["is_active"] = isActive;
     query_params["channel_ids"] = channelIds;
+    query_params["q"] = q;
 
     const xHeaders = {};
 
@@ -412,74 +487,6 @@ class Serviceability {
       Logger({
         level: "WARN",
         message: "Response Validation Warnnings for getZoneDataView",
-      });
-      Logger({ level: "WARN", message: res_error });
-    }
-
-    return response;
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {ZoneRequest} arg.body
-   * @returns {Promise<ZoneResponse>} - Success response
-   * @summary: Insertion of zone in database.
-   * @description: This API returns response of insertion of zone in mongo database.<br>Correction- `zone_id` in the path must be removed.<br> path is `/service/platform/logistics-internal/v1.0/company/{company_id}/zone/`
-   */
-  async insertZoneControllerView({ body } = {}) {
-    const {
-      error,
-    } = ServiceabilityValidator.insertZoneControllerView().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = ServiceabilityValidator.insertZoneControllerView().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: "Parameter Validation warrnings for insertZoneControllerView",
-      });
-      Logger({ level: "WARN", message: warrning });
-    }
-
-    const query_params = {};
-
-    const xHeaders = {};
-
-    const response = await PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/logistics/v1.0/company/${this.config.companyId}/zone/`,
-      query_params,
-      body,
-      xHeaders
-    );
-
-    const {
-      error: res_error,
-    } = ServiceabilityModel.ZoneResponse().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
-
-    if (res_error) {
-      Logger({
-        level: "WARN",
-        message: "Response Validation Warnnings for insertZoneControllerView",
       });
       Logger({ level: "WARN", message: res_error });
     }

@@ -205,6 +205,7 @@ class PlatformApplicationClient {
 /** @typedef BlockUserRequestSchema */
 /** @typedef BlockUserSuccess */
 /** @typedef CodeRequestBodySchema */
+/** @typedef CreateUserGroupSchema */
 /** @typedef CreateUserRequestSchema */
 /** @typedef CreateUserResponseSchema */
 /** @typedef CreateUserSessionRequestSchema */
@@ -265,6 +266,7 @@ class PlatformApplicationClient {
 /** @typedef SendVerificationLinkMobileRequestSchema */
 /** @typedef SessionDeleteResponseSchema */
 /** @typedef SessionExpiry */
+/** @typedef SessionListResponseInfo */
 /** @typedef SessionListResponseSchema */
 /** @typedef SessionListSuccess */
 /** @typedef Social */
@@ -275,8 +277,13 @@ class PlatformApplicationClient {
 /** @typedef UnDeleteUserRequestSchema */
 /** @typedef UnDeleteUserSuccess */
 /** @typedef UpdatePasswordRequestSchema */
+/** @typedef UpdateUserGroupSchema */
 /** @typedef UpdateUserRequestSchema */
+/** @typedef UserEmails */
+/** @typedef UserGroupListResponseSchema */
+/** @typedef UserGroupResponseSchema */
 /** @typedef UserObjectSchema */
+/** @typedef UserPhoneNumbers */
 /** @typedef UserSchema */
 /** @typedef UserSearchResponseSchema */
 /** @typedef VerifyEmailOtpRequestSchema */
@@ -622,6 +629,8 @@ class PlatformApplicationClient {
 /** @typedef SubscriptionPaymentMethodResponse */
 /** @typedef UpdatePayoutRequest */
 /** @typedef UpdatePayoutResponse */
+/** @typedef ValidateCustomerRequest */
+/** @typedef ValidateCustomerResponse */
 
 /** @typedef ActionInfo */
 /** @typedef Affiliate */
@@ -645,6 +654,10 @@ class PlatformApplicationClient {
 /** @typedef Article */
 /** @typedef ArticleDetails */
 /** @typedef ArticleDetails1 */
+/** @typedef AttachOrderUser */
+/** @typedef AttachOrderUserResponse */
+/** @typedef AttachUserInfo */
+/** @typedef AttachUserOtpData */
 /** @typedef Attributes */
 /** @typedef B2BPODetails */
 /** @typedef BagConfigs */
@@ -686,6 +699,7 @@ class PlatformApplicationClient {
 /** @typedef CreateOrderErrorReponse */
 /** @typedef CreateOrderPayload */
 /** @typedef CreateOrderResponse */
+/** @typedef CreditBalanceInfo */
 /** @typedef CurrentStatus */
 /** @typedef DataUpdates */
 /** @typedef Dates */
@@ -706,6 +720,8 @@ class PlatformApplicationClient {
 /** @typedef ErrorDetail */
 /** @typedef ErrorResponse */
 /** @typedef ErrorResponse1 */
+/** @typedef FetchCreditBalanceRequestPayload */
+/** @typedef FetchCreditBalanceResponsePayload */
 /** @typedef FileResponse */
 /** @typedef FileUploadResponse */
 /** @typedef FilterInfoOption */
@@ -781,6 +797,7 @@ class PlatformApplicationClient {
 /** @typedef PlatformShipmentTrack */
 /** @typedef PlatformTrack */
 /** @typedef PlatformUserDetails */
+/** @typedef PointBlankOtpData */
 /** @typedef PostActivityHistory */
 /** @typedef PostHistoryData */
 /** @typedef PostHistoryDict */
@@ -797,9 +814,14 @@ class PlatformApplicationClient {
 /** @typedef QuestionSet */
 /** @typedef Reason */
 /** @typedef ReasonsData */
+/** @typedef RefundModeConfigRequestPayload */
+/** @typedef RefundModeConfigResponsePayload */
+/** @typedef RefundModeInfo */
 /** @typedef ResponseDetail */
 /** @typedef ReturnConfig */
 /** @typedef SendSmsPayload */
+/** @typedef SendUserMobileOTP */
+/** @typedef SendUserMobileOtpResponse */
 /** @typedef Shipment */
 /** @typedef ShipmentConfig */
 /** @typedef ShipmentData */
@@ -819,6 +841,7 @@ class PlatformApplicationClient {
 /** @typedef ShipmentStatusData */
 /** @typedef ShipmentTimeStamp */
 /** @typedef ShippingInfo */
+/** @typedef SingleRefundModeInfo */
 /** @typedef SmsDataPayload */
 /** @typedef StatuesRequest */
 /** @typedef StatuesResponse */
@@ -849,6 +872,8 @@ class PlatformApplicationClient {
 /** @typedef UserData */
 /** @typedef UserDataInfo */
 /** @typedef UserDetailsData */
+/** @typedef VerifyMobileOTP */
+/** @typedef VerifyOtpData */
 /** @typedef Weight */
 
 /** @typedef Action */
@@ -1751,11 +1776,13 @@ class PlatformApplicationClient {
 /** @typedef EntityRegionView_page */
 /** @typedef EntityRegionView_Request */
 /** @typedef EntityRegionView_Response */
+/** @typedef Error */
 /** @typedef EwayBillResponse */
 /** @typedef GetSingleZoneDataViewResponse */
 /** @typedef GetStoresViewResponse */
 /** @typedef GetZoneDataViewChannels */
 /** @typedef GetZoneDataViewItems */
+/** @typedef GetZoneFromApplicationIdViewResponse */
 /** @typedef GetZoneFromPincodeViewRequest */
 /** @typedef GetZoneFromPincodeViewResponse */
 /** @typedef GstCredentialsResponse */
@@ -1772,7 +1799,21 @@ class PlatformApplicationClient {
 /** @typedef ModifiedByResponse */
 /** @typedef OpeningClosing */
 /** @typedef PageResponse */
+/** @typedef PincodeBulkViewResponse */
+/** @typedef PincodeCodStatusListingPage */
+/** @typedef PincodeCodStatusListingRequest */
+/** @typedef PincodeCodStatusListingResponse */
+/** @typedef PincodeCodStatusListingSummary */
+/** @typedef PincodeMopBulkData */
+/** @typedef PincodeMopData */
+/** @typedef PincodeMOPresponse */
+/** @typedef PincodeMopUpdateAuditHistoryPaging */
+/** @typedef PincodeMopUpdateAuditHistoryRequest */
+/** @typedef PincodeMopUpdateAuditHistoryResponse */
+/** @typedef PincodeMopUpdateAuditHistoryResponseData */
+/** @typedef PincodeMopUpdateResponse */
 /** @typedef ProductReturnConfigResponse */
+/** @typedef ServiceabilityErrorResponse */
 /** @typedef ServiceabilityrErrorResponse */
 /** @typedef TimmingResponse */
 /** @typedef UpdateZoneData */

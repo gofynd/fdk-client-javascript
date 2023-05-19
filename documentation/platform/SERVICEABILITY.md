@@ -8,6 +8,7 @@
 ## Serviceability Methods
 Logistics Configuration API's allows you to configure zone, application logistics and many more useful features. 
 
+* [createZone](#createzone)
 * [getAllStores](#getallstores)
 * [getApplicationServiceability](#getapplicationserviceability)
 * [getCompanyStoreView](#getcompanystoreview)
@@ -15,15 +16,74 @@ Logistics Configuration API's allows you to configure zone, application logistic
 * [getListView](#getlistview)
 * [getStore](#getstore)
 * [getZoneDataView](#getzonedataview)
-* [insertZoneControllerView](#insertzonecontrollerview)
+* [getZoneFromPincodeView](#getzonefrompincodeview)
+* [getZonesFromApplicationIdView](#getzonesfromapplicationidview)
+* [updatePincodeAuditHistory](#updatepincodeaudithistory)
+* [updatePincodeBulkView](#updatepincodebulkview)
+* [updatePincodeCoDListing](#updatepincodecodlisting)
+* [updatePincodeMopView](#updatepincodemopview)
 * [updateZoneControllerView](#updatezonecontrollerview)
-* [upsertZoneControllerView](#upsertzonecontrollerview)
 
 
 
 ## Methods with example and description
 
 
+
+
+### createZone
+Insertion of zone in database.
+
+
+
+```javascript
+// Promise
+const promise = platformClient.serviceability.createZone({  body : value });
+
+// Async/Await
+const data = await platformClient.serviceability.createZone({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [ZoneRequest](#ZoneRequest) | yes | Request body |
+
+
+This API returns response of insertion of zone in mongo database.<br>Correction- `zone_id` in the path must be removed.<br> path is `/service/platform/logistics-internal/v1.0/company/{}/zone/`
+
+*Returned Response:*
+
+
+
+
+[ZoneResponse](#ZoneResponse)
+
+Response status_code
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
 
 
 ### getAllStores
@@ -265,14 +325,16 @@ const promise = platformClient.serviceability.getListView({  pageNumber : value,
  pageSize : value,
  name : value,
  isActive : value,
- channelIds : value });
+ channelIds : value,
+ q : value });
 
 // Async/Await
 const data = await platformClient.serviceability.getListView({  pageNumber : value,
  pageSize : value,
  name : value,
  isActive : value,
- channelIds : value });
+ channelIds : value,
+ q : value });
 ```
 
 
@@ -285,7 +347,8 @@ const data = await platformClient.serviceability.getListView({  pageNumber : val
 | pageSize | number | no | determines the items to be displayed in a page |    
 | name | string | no | Name of particular zone in the seller account |    
 | isActive | boolean | no | status of  zone whether active or inactive |    
-| channelIds | string | no | zones associated with the given channel ids' |  
+| channelIds | string | no | zones associated with the given channel ids' |    
+| q | string | no | search with name as a free text |  
 
 
 
@@ -360,231 +423,220 @@ Response status_code
 
 
 <details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; items</i></summary>
-
-```json
-[
-  {
-    "uid": 2,
-    "_cls": "Store",
-    "address": {
-      "city": "MUMBAI",
-      "country": "INDIA",
-      "address2": "",
-      "address1": "POLARIS 2ND FLOOR, ANDHERI",
-      "landmark": "",
-      "state": "MAHARASHTRA",
-      "pincode": 400001,
-      "longitude": 72.8776559,
-      "latitude": 19.0759837
-    },
-    "code": "HS-a0c85",
-    "company_id": 2,
-    "contact_numbers": [
-      {
-        "country_code": 91,
-        "number": "9096686804"
-      }
-    ],
-    "created_by": {
-      "user_id": "605e8e86493f54a9ccaa47be",
-      "username": "parvezshaikh_gofynd_com_07710"
-    },
-    "created_on": "2021-08-07T06:21:25.293000",
-    "display_name": "Test",
-    "documents": [
-      {
-        "type": "gst",
-        "verified": true,
-        "value": "27AALCA0442L1ZM",
-        "legal_name": "SHOPSENSE RETAIL TECHNOLOGIES PRIVATE LIMITED"
-      }
-    ],
-    "gst_credentials": {
-      "e_waybill": {
-        "enabled": false
-      },
-      "e_invoice": {
-        "enabled": false
-      }
-    },
-    "integration_type": {
-      "order": "pulse",
-      "inventory": "pulse"
-    },
-    "logistics": {
-      "dp": {
-        "1": {
-          "fm_priority": 1,
-          "lm_priority": 1,
-          "rvp_priority": 1,
-          "payment_mode": "all",
-          "operations": [
-            "inter_city"
-          ],
-          "area_code": null,
-          "assign_dp_from_sb": true,
-          "transport_mode": "air",
-          "external_account_id": null,
-          "internal_account_id": "1"
-        },
-        "19": {
-          "fm_priority": 2,
-          "lm_priority": 2,
-          "rvp_priority": 2,
-          "payment_mode": "all",
-          "operations": "inter_city",
-          "area_code": null,
-          "assign_dp_from_sb": true,
-          "transport_mode": "air",
-          "external_account_id": null,
-          "internal_account_id": "19"
-        }
-      },
-      "override": false
-    },
-    "manager": {
-      "name": "Parvez Shaikh",
-      "mobile_no": {
-        "country_code": 91,
-        "number": "9096686804"
-      },
-      "email": "parvezshaikh@gofynd.com"
-    },
-    "modified_by": {
-      "user_id": "38ac93a8a5495305fc794e76",
-      "username": "919594495254_32111"
-    },
-    "modified_on": "2021-08-17T14:18:10.788000",
-    "name": "Test",
-    "notification_emails": [
-      "parvezshaikh@gofynd.com"
-    ],
-    "product_return_config": {
-      "on_same_store": true
-    },
-    "stage": "verified",
-    "store_type": "high_street",
-    "sub_type": "store",
-    "timing": [
-      {
-        "open": true,
-        "opening": {
-          "hour": 11,
-          "minute": 0
-        },
-        "closing": {
-          "hour": 21,
-          "minute": 30
-        },
-        "weekday": "monday"
-      },
-      {
-        "open": true,
-        "opening": {
-          "hour": 11,
-          "minute": 0
-        },
-        "closing": {
-          "hour": 21,
-          "minute": 30
-        },
-        "weekday": "tuesday"
-      },
-      {
-        "open": true,
-        "opening": {
-          "hour": 11,
-          "minute": 0
-        },
-        "closing": {
-          "hour": 21,
-          "minute": 30
-        },
-        "weekday": "wednesday"
-      },
-      {
-        "open": true,
-        "opening": {
-          "hour": 11,
-          "minute": 0
-        },
-        "closing": {
-          "hour": 21,
-          "minute": 30
-        },
-        "weekday": "thursday"
-      },
-      {
-        "open": true,
-        "opening": {
-          "hour": 11,
-          "minute": 0
-        },
-        "closing": {
-          "hour": 21,
-          "minute": 30
-        },
-        "weekday": "friday"
-      },
-      {
-        "open": true,
-        "opening": {
-          "hour": 11,
-          "minute": 0
-        },
-        "closing": {
-          "hour": 21,
-          "minute": 30
-        },
-        "weekday": "saturday"
-      },
-      {
-        "open": true,
-        "opening": {
-          "hour": 11,
-          "minute": 0
-        },
-        "closing": {
-          "hour": 21,
-          "minute": 30
-        },
-        "weekday": "sunday"
-      }
-    ],
-    "verified_by": {
-      "user_id": "0",
-      "username": "Silverbolt"
-    },
-    "verified_on": "2022-03-23T13:35:46.869000",
-    "warnings": {
-      "store_address": "Address: Address seems to be inappropriate this might affect the delivery."
-    },
-    "_custom_json": {},
-    "company": 2
-  }
-]
-```
-</details>
-
-<details>
-<summary><i>&nbsp; page</i></summary>
+<summary><i>&nbsp; Example:</i></summary>
 
 ```json
 {
-  "type": "number",
-  "size": 2,
-  "current": 1,
-  "has_next": true,
-  "item_total": 3276
+  "items": [
+    {
+      "uid": 2,
+      "_cls": "Store",
+      "address": {
+        "city": "MUMBAI",
+        "country": "INDIA",
+        "address2": "",
+        "address1": "POLARIS 2ND FLOOR, ANDHERI",
+        "landmark": "",
+        "state": "MAHARASHTRA",
+        "pincode": 400001,
+        "longitude": 72.8776559,
+        "latitude": 19.0759837
+      },
+      "code": "HS-a0c85",
+      "company_id": 2,
+      "contact_numbers": [
+        {
+          "country_code": 91,
+          "number": "9096686804"
+        }
+      ],
+      "created_by": {
+        "user_id": "605e8e86493f54a9ccaa47be",
+        "username": "parvezshaikh_gofynd_com_07710"
+      },
+      "created_on": "2021-08-07T06:21:25.293000",
+      "display_name": "Test",
+      "documents": [
+        {
+          "type": "gst",
+          "verified": true,
+          "value": "27AALCA0442L1ZM",
+          "legal_name": "SHOPSENSE RETAIL TECHNOLOGIES PRIVATE LIMITED"
+        }
+      ],
+      "gst_credentials": {
+        "e_waybill": {
+          "enabled": false
+        },
+        "e_invoice": {
+          "enabled": false
+        }
+      },
+      "integration_type": {
+        "order": "pulse",
+        "inventory": "pulse"
+      },
+      "logistics": {
+        "dp": {
+          "1": {
+            "fm_priority": 1,
+            "lm_priority": 1,
+            "rvp_priority": 1,
+            "payment_mode": "all",
+            "operations": [
+              "inter_city"
+            ],
+            "area_code": null,
+            "assign_dp_from_sb": true,
+            "transport_mode": "air",
+            "external_account_id": null,
+            "internal_account_id": "1"
+          },
+          "19": {
+            "fm_priority": 2,
+            "lm_priority": 2,
+            "rvp_priority": 2,
+            "payment_mode": "all",
+            "operations": "inter_city",
+            "area_code": null,
+            "assign_dp_from_sb": true,
+            "transport_mode": "air",
+            "external_account_id": null,
+            "internal_account_id": "19"
+          }
+        },
+        "override": false
+      },
+      "manager": {
+        "name": "Parvez Shaikh",
+        "mobile_no": {
+          "country_code": 91,
+          "number": "9096686804"
+        },
+        "email": "parvezshaikh@gofynd.com"
+      },
+      "modified_by": {
+        "user_id": "38ac93a8a5495305fc794e76",
+        "username": "919594495254_32111"
+      },
+      "modified_on": "2021-08-17T14:18:10.788000",
+      "name": "Test",
+      "notification_emails": [
+        "parvezshaikh@gofynd.com"
+      ],
+      "product_return_config": {
+        "on_same_store": true
+      },
+      "stage": "verified",
+      "store_type": "high_street",
+      "sub_type": "store",
+      "timing": [
+        {
+          "open": true,
+          "opening": {
+            "hour": 11,
+            "minute": 0
+          },
+          "closing": {
+            "hour": 21,
+            "minute": 30
+          },
+          "weekday": "monday"
+        },
+        {
+          "open": true,
+          "opening": {
+            "hour": 11,
+            "minute": 0
+          },
+          "closing": {
+            "hour": 21,
+            "minute": 30
+          },
+          "weekday": "tuesday"
+        },
+        {
+          "open": true,
+          "opening": {
+            "hour": 11,
+            "minute": 0
+          },
+          "closing": {
+            "hour": 21,
+            "minute": 30
+          },
+          "weekday": "wednesday"
+        },
+        {
+          "open": true,
+          "opening": {
+            "hour": 11,
+            "minute": 0
+          },
+          "closing": {
+            "hour": 21,
+            "minute": 30
+          },
+          "weekday": "thursday"
+        },
+        {
+          "open": true,
+          "opening": {
+            "hour": 11,
+            "minute": 0
+          },
+          "closing": {
+            "hour": 21,
+            "minute": 30
+          },
+          "weekday": "friday"
+        },
+        {
+          "open": true,
+          "opening": {
+            "hour": 11,
+            "minute": 0
+          },
+          "closing": {
+            "hour": 21,
+            "minute": 30
+          },
+          "weekday": "saturday"
+        },
+        {
+          "open": true,
+          "opening": {
+            "hour": 11,
+            "minute": 0
+          },
+          "closing": {
+            "hour": 21,
+            "minute": 30
+          },
+          "weekday": "sunday"
+        }
+      ],
+      "verified_by": {
+        "user_id": "0",
+        "username": "Silverbolt"
+      },
+      "verified_on": "2022-03-23T13:35:46.869000",
+      "warnings": {
+        "store_address": "Address: Address seems to be inappropriate this might affect the delivery."
+      },
+      "_custom_json": {},
+      "company": 2
+    }
+  ],
+  "page": {
+    "type": "number",
+    "size": 2,
+    "current": 1,
+    "has_next": true,
+    "item_total": 3276
+  }
 }
 ```
-</details>
-
 </details>
 
 
@@ -654,17 +706,17 @@ Get Application Zone Data
 ---
 
 
-### insertZoneControllerView
-Insertion of zone in database.
+### getZoneFromPincodeView
+GET zone from the Pincode.
 
 
 
 ```javascript
 // Promise
-const promise = platformClient.serviceability.insertZoneControllerView({  body : value });
+const promise = platformClient.application("<APPLICATION_ID>").serviceability.getZoneFromPincodeView({  body : value });
 
 // Async/Await
-const data = await platformClient.serviceability.insertZoneControllerView({  body : value });
+const data = await platformClient.application("<APPLICATION_ID>").serviceability.getZoneFromPincodeView({  body : value });
 ```
 
 
@@ -673,19 +725,307 @@ const data = await platformClient.serviceability.insertZoneControllerView({  bod
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |
-| body | [ZoneRequest](#ZoneRequest) | yes | Request body |
+| body | [GetZoneFromPincodeViewRequest](#GetZoneFromPincodeViewRequest) | yes | Request body |
 
 
-This API returns response of insertion of zone in mongo database.<br>Correction- `zone_id` in the path must be removed.<br> path is `/service/platform/logistics-internal/v1.0/company/{company_id}/zone/`
+This API returns zone from the Pincode View.
 
 *Returned Response:*
 
 
 
 
-[ZoneResponse](#ZoneResponse)
+[GetZoneFromPincodeViewResponse](#GetZoneFromPincodeViewResponse)
 
 Response status_code
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### getZonesFromApplicationIdView
+GET zones from the application_id.
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").serviceability.getZonesFromApplicationIdView({  pageNo : value,
+ pageSize : value,
+ zoneId : value,
+ q : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").serviceability.getZonesFromApplicationIdView({  pageNo : value,
+ pageSize : value,
+ zoneId : value,
+ q : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| pageNo | number | no | index of the item to start returning with |    
+| pageSize | number | no | determines the items to be displayed in a page |    
+| zoneId | Array<string> | no | list of zones to query for |    
+| q | string | no | search with name as a free text |  
+
+
+
+This API returns zones from the application_id View.
+
+*Returned Response:*
+
+
+
+
+[GetZoneFromApplicationIdViewResponse](#GetZoneFromApplicationIdViewResponse)
+
+List of zones for the given application_id
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### updatePincodeAuditHistory
+Auditlog configuration of application.
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").serviceability.updatePincodeAuditHistory({  body : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").serviceability.updatePincodeAuditHistory({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [PincodeMopUpdateAuditHistoryRequest](#PincodeMopUpdateAuditHistoryRequest) | yes | Request body |
+
+
+This API returns Audit logs of Pincode.
+
+*Returned Response:*
+
+
+
+
+[PincodeMopUpdateAuditHistoryResponseData](#PincodeMopUpdateAuditHistoryResponseData)
+
+Response Data
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### updatePincodeBulkView
+Bulk Update of pincode in the application.
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").serviceability.updatePincodeBulkView({  body : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").serviceability.updatePincodeBulkView({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [PincodeMopBulkData](#PincodeMopBulkData) | yes | Request body |
+
+
+This API constructs bulk write operations to update the MOP data for each pincode in the payload.
+
+*Returned Response:*
+
+
+
+
+[PincodeBulkViewResponse](#PincodeBulkViewResponse)
+
+Response Data
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "batch_id": "string",
+  "s3_url": "string"
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### updatePincodeCoDListing
+Pincode count view of application.
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").serviceability.updatePincodeCoDListing({  body : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").serviceability.updatePincodeCoDListing({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [PincodeCodStatusListingRequest](#PincodeCodStatusListingRequest) | yes | Request body |
+
+
+This API returns count of active pincode.
+
+*Returned Response:*
+
+
+
+
+[PincodeCodStatusListingResponse](#PincodeCodStatusListingResponse)
+
+Response Data
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### updatePincodeMopView
+PincodeView update of MOP.
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").serviceability.updatePincodeMopView({  body : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").serviceability.updatePincodeMopView({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [PincodeMopData](#PincodeMopData) | yes | Request body |
+
+
+This API updates Pincode method of payment.
+
+*Returned Response:*
+
+
+
+
+[PincodeMOPresponse](#PincodeMOPresponse)
+
+Response Data
 
 
 
@@ -742,61 +1082,6 @@ This API returns response of updation of zone in mongo database.
 
 
 [ZoneSuccessResponse](#ZoneSuccessResponse)
-
-Response status_code
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### upsertZoneControllerView
-GET zone from the Pincode.
-
-
-
-```javascript
-// Promise
-const promise = platformClient.application("<APPLICATION_ID>").serviceability.upsertZoneControllerView({  body : value });
-
-// Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").serviceability.upsertZoneControllerView({  body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |
-| body | [GetZoneFromPincodeViewRequest](#GetZoneFromPincodeViewRequest) | yes | Request body |
-
-
-This API returns zone from the Pincode View.
-
-*Returned Response:*
-
-
-
-
-[GetZoneFromPincodeViewResponse](#GetZoneFromPincodeViewResponse)
 
 Response status_code
 
@@ -1022,6 +1307,17 @@ Response status_code
 
 ---
 
+#### [Error](#Error)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | message | string? |  yes  |  |
+ | type | string? |  yes  |  |
+ | value | string? |  yes  |  |
+ 
+
+---
+
 #### [EwayBillResponse](#EwayBillResponse)
 
  | Properties | Type | Nullable | Description |
@@ -1077,6 +1373,16 @@ Response status_code
  | store_ids | [number] |  no  |  |
  | stores_count | number |  no  |  |
  | zone_id | string |  no  |  |
+ 
+
+---
+
+#### [GetZoneFromApplicationIdViewResponse](#GetZoneFromApplicationIdViewResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | items | [[ListViewItems](#ListViewItems)] |  no  |  |
+ | page | [[ZoneDataItem](#ZoneDataItem)] |  no  |  |
  
 
 ---
@@ -1280,11 +1586,180 @@ Response status_code
 
 ---
 
+#### [PincodeBulkViewResponse](#PincodeBulkViewResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | batch_id | string |  no  |  |
+ | s3_url | string |  no  |  |
+ 
+
+---
+
+#### [PincodeCodStatusListingPage](#PincodeCodStatusListingPage)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | current_page_number | number |  no  |  |
+ | has_next | boolean |  no  |  |
+ | item_total | number |  no  |  |
+ | size | number |  no  |  |
+ | type | string |  no  |  |
+ 
+
+---
+
+#### [PincodeCodStatusListingRequest](#PincodeCodStatusListingRequest)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | country | string? |  yes  |  |
+ | current_page_number | number? |  yes  |  |
+ | is_active | boolean? |  yes  |  |
+ | page_size | number? |  yes  |  |
+ | pincode | number? |  yes  |  |
+ 
+
+---
+
+#### [PincodeCodStatusListingResponse](#PincodeCodStatusListingResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | country | string |  no  |  |
+ | data | [[PincodeCodStatusListingResponse](#PincodeCodStatusListingResponse)] |  no  |  |
+ | errors | [[Error](#Error)]? |  yes  |  |
+ | page | [PincodeCodStatusListingPage](#PincodeCodStatusListingPage) |  no  |  |
+ | success | boolean |  no  |  |
+ | summary | [PincodeCodStatusListingSummary](#PincodeCodStatusListingSummary) |  no  |  |
+ 
+
+---
+
+#### [PincodeCodStatusListingSummary](#PincodeCodStatusListingSummary)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | total_active_pincodes | number |  no  |  |
+ | total_inactive_pincodes | number |  no  |  |
+ 
+
+---
+
+#### [PincodeMopBulkData](#PincodeMopBulkData)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | batch_id | string |  no  |  |
+ | s3_url | string |  no  |  |
+ 
+
+---
+
+#### [PincodeMopData](#PincodeMopData)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | action | string |  no  |  |
+ | country | string |  no  |  |
+ | pincodes | [number] |  no  |  |
+ 
+
+---
+
+#### [PincodeMOPresponse](#PincodeMOPresponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | action | string |  no  |  |
+ | batch_id | string |  no  |  |
+ | country | string |  no  |  |
+ | pincodes | [number]? |  yes  |  |
+ | status_code | number |  no  |  |
+ | success | boolean |  no  |  |
+ | updated_pincodes | [[PincodeMopUpdateResponse](#PincodeMopUpdateResponse)]? |  yes  |  |
+ 
+
+---
+
+#### [PincodeMopUpdateAuditHistoryPaging](#PincodeMopUpdateAuditHistoryPaging)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | current | number? |  yes  |  |
+ | has_next | boolean? |  yes  |  |
+ | item_total | number? |  yes  |  |
+ | size | number? |  yes  |  |
+ | type | string? |  yes  |  |
+ 
+
+---
+
+#### [PincodeMopUpdateAuditHistoryRequest](#PincodeMopUpdateAuditHistoryRequest)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | entity_type | string |  no  |  |
+ | file_name | string? |  yes  |  |
+ 
+
+---
+
+#### [PincodeMopUpdateAuditHistoryResponse](#PincodeMopUpdateAuditHistoryResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | batch_id | string? |  yes  |  |
+ | entity_type | string? |  yes  |  |
+ | error_file_s3_url | string? |  yes  |  |
+ | file_name | string? |  yes  |  |
+ | s3_url | string? |  yes  |  |
+ | success | boolean? |  yes  |  |
+ | updated_at | string? |  yes  |  |
+ | updated_by | string? |  yes  |  |
+ 
+
+---
+
+#### [PincodeMopUpdateAuditHistoryResponseData](#PincodeMopUpdateAuditHistoryResponseData)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | data | [[PincodeMopUpdateAuditHistoryResponse](#PincodeMopUpdateAuditHistoryResponse)] |  no  |  |
+ | entity_type | string? |  yes  |  |
+ | page | [PincodeMopUpdateAuditHistoryPaging](#PincodeMopUpdateAuditHistoryPaging) |  no  |  |
+ 
+
+---
+
+#### [PincodeMopUpdateResponse](#PincodeMopUpdateResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | channel_id | string |  no  |  |
+ | country | string |  no  |  |
+ | is_active | boolean |  no  |  |
+ | pincode | number |  no  |  |
+ 
+
+---
+
 #### [ProductReturnConfigResponse](#ProductReturnConfigResponse)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | on_same_store | boolean? |  yes  |  |
+ 
+
+---
+
+#### [ServiceabilityErrorResponse](#ServiceabilityErrorResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | message | string |  no  |  |
+ | type | string |  no  |  |
+ | value | string |  no  |  |
  
 
 ---

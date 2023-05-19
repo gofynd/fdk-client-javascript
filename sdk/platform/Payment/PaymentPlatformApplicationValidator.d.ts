@@ -23,4 +23,5 @@ declare class PaymentValidator {
     static setUserCODlimitRoutes(): any;
     static updateBrandPaymentGatewayConfig(): any;
     static updateEdcDevice(): any;
+    static verifyCustomerForPayment(): any;
 }

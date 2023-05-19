@@ -4,6 +4,16 @@ declare class Serviceability {
     config: any;
     /**
      * @param {Object} arg - Arg object.
+     * @param {ZoneRequest} arg.body
+     * @returns {Promise<ZoneResponse>} - Success response
+     * @summary: Insertion of zone in database.
+     * @description: This API returns response of insertion of zone in mongo database.<br>Correction- `zone_id` in the path must be removed.<br> path is `/service/platform/logistics-internal/v1.0/company/{}/zone/`
+     */
+    createZone({ body }?: {
+        body: ZoneRequest;
+    }): Promise<ZoneResponse>;
+    /**
+     * @param {Object} arg - Arg object.
      * @returns {Promise<GetStoresViewResponse>} - Success response
      * @summary: GET stores data
      * @description: This API returns stores data.
@@ -38,16 +48,18 @@ declare class Serviceability {
      * @param {string} [arg.name] - Name of particular zone in the seller account
      * @param {boolean} [arg.isActive] - Status of zone whether active or inactive
      * @param {string} [arg.channelIds] - Zones associated with the given channel ids'
+     * @param {string} [arg.q] - Search with name as a free text
      * @returns {Promise<ListViewResponse>} - Success response
      * @summary: Zone List of application.
      * @description: This API returns Zone List View of the application.
      */
-    getListView({ pageNumber, pageSize, name, isActive, channelIds }?: {
+    getListView({ pageNumber, pageSize, name, isActive, channelIds, q, }?: {
         pageNumber?: number;
         pageSize?: number;
         name?: string;
         isActive?: boolean;
         channelIds?: string;
+        q?: string;
     }): Promise<ListViewResponse>;
     /**
      * @param {Object} arg - Arg object.
@@ -70,16 +82,6 @@ declare class Serviceability {
     getZoneDataView({ zoneId }?: {
         zoneId: string;
     }): Promise<GetSingleZoneDataViewResponse>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {ZoneRequest} arg.body
-     * @returns {Promise<ZoneResponse>} - Success response
-     * @summary: Insertion of zone in database.
-     * @description: This API returns response of insertion of zone in mongo database.<br>Correction- `zone_id` in the path must be removed.<br> path is `/service/platform/logistics-internal/v1.0/company/{company_id}/zone/`
-     */
-    insertZoneControllerView({ body }?: {
-        body: ZoneRequest;
-    }): Promise<ZoneResponse>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.zoneId - A `zone_id` is a unique identifier for a

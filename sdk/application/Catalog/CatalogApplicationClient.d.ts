@@ -188,25 +188,29 @@ declare class Catalog {
      * @param {number} [arg.pageNo] - The page number to navigate through the
      *   given set of results.
      * @param {number} [arg.pageSize] - The number of items to retrieve in each page.
+     * @param {string} [arg.q] - Name of the collection to filter collection
      * @param {string[]} [arg.tag] - List of tags to filter collections
      * @returns {Promise<GetCollectionListingResponse>} - Success response
      * @summary: List all the collections
      * @description: Collections are a great way to organize your products and can improve the ability for customers to find items quickly and efficiently.
      */
-    getCollections({ pageNo, pageSize, tag }?: {
+    getCollections({ pageNo, pageSize, q, tag }?: {
         pageNo?: number;
         pageSize?: number;
+        q?: string;
         tag?: string[];
     }): Promise<GetCollectionListingResponse>;
     /**
      * @param {Object} arg - Arg object.
      * @param {number} [arg.pageSize] - The number of items to retrieve in each page.
+     * @param {string} [arg.q] - Name of the collection to filter collection
      * @param {string[]} [arg.tag] - List of tags to filter collections
      * @summary: List all the collections
      * @description: Collections are a great way to organize your products and can improve the ability for customers to find items quickly and efficiently.
      */
-    getCollectionsPaginator({ pageSize, tag }?: {
+    getCollectionsPaginator({ pageSize, q, tag }?: {
         pageSize?: number;
+        q?: string;
         tag?: string[];
     }): Paginator;
     /**

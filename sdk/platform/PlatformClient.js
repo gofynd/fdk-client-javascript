@@ -913,6 +913,12 @@ class PlatformClient {
  * @property {string} [code]
  */
 /**
+ * @typedef CreateUserGroupSchema
+ * @property {string} description
+ * @property {string} file_url
+ * @property {string} name
+ */
+/**
  * @typedef CreateUserRequestSchema
  * @property {string} [email]
  * @property {string} [first_name]
@@ -1326,8 +1332,16 @@ class PlatformClient {
  * @property {string} [type]
  */
 /**
+ * @typedef SessionListResponseInfo
+ * @property {string} [domain]
+ * @property {string} [expire_in]
+ * @property {string} [ip]
+ * @property {string} [session_id]
+ * @property {string} [user_agent]
+ */
+/**
  * @typedef SessionListResponseSchema
- * @property {string[]} [items]
+ * @property {SessionListResponseInfo[]} [items]
  */
 /**
  * @typedef SessionListSuccess
@@ -1374,16 +1388,57 @@ class PlatformClient {
  * @property {string} [old_password]
  */
 /**
+ * @typedef UpdateUserGroupSchema
+ * @property {string} [description]
+ * @property {string} [file_url]
+ * @property {string} [name]
+ */
+/**
  * @typedef UpdateUserRequestSchema
+ * @property {UserEmails[]} [emails]
  * @property {string} [external_id]
  * @property {string} [first_name]
  * @property {string} [gender]
  * @property {string} [last_name]
  * @property {Object} [meta]
+ * @property {UserPhoneNumbers[]} [phone_numbers]
+ */
+/**
+ * @typedef UserEmails
+ * @property {boolean} [active]
+ * @property {string} [email]
+ * @property {boolean} [primary]
+ * @property {boolean} [verified]
+ */
+/**
+ * @typedef UserGroupListResponseSchema
+ * @property {UserGroupResponseSchema[]} [items]
+ * @property {PaginationSchema} [page]
+ */
+/**
+ * @typedef UserGroupResponseSchema
+ * @property {number} [__v]
+ * @property {string} [_id]
+ * @property {string} [application_id]
+ * @property {string} [created_at]
+ * @property {string} [description]
+ * @property {string} [file_url]
+ * @property {string} [modified_at]
+ * @property {string} [name]
+ * @property {string} [status]
+ * @property {number} [uid]
  */
 /**
  * @typedef UserObjectSchema
  * @property {UserSchema} [user]
+ */
+/**
+ * @typedef UserPhoneNumbers
+ * @property {boolean} [active]
+ * @property {string} [country_code]
+ * @property {string} [phone]
+ * @property {boolean} [primary]
+ * @property {boolean} [verified]
  */
 /**
  * @typedef UserSchema
@@ -3975,6 +4030,23 @@ class PlatformClient {
  * @property {boolean} is_default
  * @property {boolean} success
  */
+/**
+ * @typedef ValidateCustomerRequest
+ * @property {string} aggregator
+ * @property {Object} [billing_address]
+ * @property {Object} [delivery_address]
+ * @property {Object} [merchant_params]
+ * @property {Object[]} [order_items]
+ * @property {string} [payload]
+ * @property {string} phone_number
+ * @property {number} transaction_amount_in_paise
+ */
+/**
+ * @typedef ValidateCustomerResponse
+ * @property {Object} data
+ * @property {string} message
+ * @property {boolean} success
+ */
 
 /**
  * @typedef ActionInfo
@@ -4097,6 +4169,7 @@ class PlatformClient {
  * @property {number} [employee_discount]
  * @property {boolean} [is_priority]
  * @property {number} [loyalty_discount]
+ * @property {string} [marketplace_invoice_id]
  * @property {string} [order_item_id]
  * @property {number} [quantity]
  * @property {number} [size_level_total_qty]
@@ -4164,6 +4237,28 @@ class PlatformClient {
  * @property {Object} dimension
  * @property {number} quantity
  * @property {Object} weight
+ */
+/**
+ * @typedef AttachOrderUser
+ * @property {string} fynd_order_id
+ * @property {AttachUserOtpData} otp_data
+ * @property {AttachUserInfo} user_info
+ */
+/**
+ * @typedef AttachOrderUserResponse
+ * @property {string} [message]
+ * @property {boolean} [success]
+ */
+/**
+ * @typedef AttachUserInfo
+ * @property {string} [country_code]
+ * @property {string} first_name
+ * @property {string} last_name
+ * @property {number} mobile
+ */
+/**
+ * @typedef AttachUserOtpData
+ * @property {string} request_id
  */
 /**
  * @typedef Attributes
@@ -4599,6 +4694,12 @@ class PlatformClient {
  * @property {string} fynd_order_id
  */
 /**
+ * @typedef CreditBalanceInfo
+ * @property {string} [customer_mobile_number]
+ * @property {string} [reason]
+ * @property {string} [total_credited_balance]
+ */
+/**
  * @typedef CurrentStatus
  * @property {number} [bag_id]
  * @property {BagStateMapper} [bag_state_mapper]
@@ -4723,6 +4824,17 @@ class PlatformClient {
  * @property {string} [error_trace]
  * @property {string} message
  * @property {number} status
+ */
+/**
+ * @typedef FetchCreditBalanceRequestPayload
+ * @property {string} affiliate_id
+ * @property {string} customer_mobile_number
+ * @property {string} seller_id
+ */
+/**
+ * @typedef FetchCreditBalanceResponsePayload
+ * @property {CreditBalanceInfo} data
+ * @property {boolean} success
  */
 /**
  * @typedef FileResponse
@@ -5408,6 +5520,13 @@ class PlatformClient {
  * @property {string} [platform_user_last_name]
  */
 /**
+ * @typedef PointBlankOtpData
+ * @property {string} [message]
+ * @property {number} [mobile]
+ * @property {string} [request_id]
+ * @property {number} [resend_timer]
+ */
+/**
  * @typedef PostActivityHistory
  * @property {PostHistoryData} data
  * @property {PostHistoryFilters[]} filters
@@ -5511,6 +5630,23 @@ class PlatformClient {
  * @property {ProductsReasons[]} [products]
  */
 /**
+ * @typedef RefundModeConfigRequestPayload
+ * @property {string} affiliate_id
+ * @property {string} [customer_mobile_number]
+ * @property {string} fynd_order_id
+ * @property {string} ordering_channel
+ * @property {string} seller_id
+ */
+/**
+ * @typedef RefundModeConfigResponsePayload
+ * @property {RefundModeInfo} data
+ * @property {boolean} success
+ */
+/**
+ * @typedef RefundModeInfo
+ * @property {SingleRefundModeInfo} [refund_mode_name]
+ */
+/**
  * @typedef ResponseDetail
  * @property {string[]} [message]
  * @property {boolean} [success]
@@ -5526,6 +5662,17 @@ class PlatformClient {
  * @property {number} bag_id
  * @property {SmsDataPayload} [data]
  * @property {string} slug
+ */
+/**
+ * @typedef SendUserMobileOTP
+ * @property {string} [country_code]
+ * @property {number} mobile
+ */
+/**
+ * @typedef SendUserMobileOtpResponse
+ * @property {PointBlankOtpData} [data]
+ * @property {string} [message]
+ * @property {boolean} [success]
  */
 /**
  * @typedef Shipment
@@ -5730,6 +5877,12 @@ class PlatformClient {
  * @property {string} state
  * @property {string} [state_code]
  * @property {string} [title]
+ */
+/**
+ * @typedef SingleRefundModeInfo
+ * @property {string} [display_name]
+ * @property {boolean} [is_active]
+ * @property {string} [slug]
  */
 /**
  * @typedef SmsDataPayload
@@ -5991,6 +6144,15 @@ class PlatformClient {
  * @property {string} phone
  * @property {string} pincode
  * @property {string} state
+ */
+/**
+ * @typedef VerifyMobileOTP
+ * @property {VerifyOtpData} otp_data
+ */
+/**
+ * @typedef VerifyOtpData
+ * @property {number} otp_code
+ * @property {string} request_id
  */
 /**
  * @typedef Weight
@@ -7032,15 +7194,15 @@ class PlatformClient {
  * @property {GetAddressSerializer[]} [addresses]
  * @property {string} [business_type]
  * @property {string} [company_type]
- * @property {UserSerializer2} [created_by]
+ * @property {UserSerializer1} [created_by]
  * @property {string} [created_on]
- * @property {UserSerializer2} [modified_by]
+ * @property {UserSerializer1} [modified_by]
  * @property {string} [modified_on]
  * @property {string} [name]
  * @property {string} [reject_reason]
  * @property {string} [stage]
  * @property {number} [uid]
- * @property {UserSerializer2} [verified_by]
+ * @property {UserSerializer1} [verified_by]
  * @property {string} [verified_on]
  */
 /**
@@ -7117,14 +7279,14 @@ class PlatformClient {
  * @property {string} code
  * @property {GetCompanySerializer} [company]
  * @property {SellerPhoneNumber[]} [contact_numbers]
- * @property {UserSerializer1} [created_by]
+ * @property {UserSerializer2} [created_by]
  * @property {string} [created_on]
  * @property {string} display_name
  * @property {Document[]} [documents]
  * @property {InvoiceDetailsSerializer} [gst_credentials]
  * @property {LocationIntegrationType} [integration_type]
  * @property {LocationManagerSerializer} [manager]
- * @property {UserSerializer1} [modified_by]
+ * @property {UserSerializer2} [modified_by]
  * @property {string} [modified_on]
  * @property {string} name
  * @property {string[]} [notification_emails]
@@ -7134,7 +7296,7 @@ class PlatformClient {
  * @property {string} [store_type]
  * @property {LocationDayWiseSerializer[]} [timing]
  * @property {number} [uid]
- * @property {UserSerializer1} [verified_by]
+ * @property {UserSerializer2} [verified_by]
  * @property {string} [verified_on]
  * @property {Object} [warnings]
  */
@@ -13375,6 +13537,12 @@ class PlatformClient {
  * @property {boolean} success
  */
 /**
+ * @typedef Error
+ * @property {string} [message]
+ * @property {string} [type]
+ * @property {string} [value]
+ */
+/**
  * @typedef EwayBillResponse
  * @property {boolean} [enabled]
  */
@@ -13407,6 +13575,11 @@ class PlatformClient {
  * @property {number[]} store_ids
  * @property {number} stores_count
  * @property {string} zone_id
+ */
+/**
+ * @typedef GetZoneFromApplicationIdViewResponse
+ * @property {ListViewItems[]} items
+ * @property {ZoneDataItem[]} page
  */
 /**
  * @typedef GetZoneFromPincodeViewRequest
@@ -13528,8 +13701,107 @@ class PlatformClient {
  * @property {string} [type]
  */
 /**
+ * @typedef PincodeBulkViewResponse
+ * @property {string} batch_id
+ * @property {string} s3_url
+ */
+/**
+ * @typedef PincodeCodStatusListingPage
+ * @property {number} current_page_number
+ * @property {boolean} has_next
+ * @property {number} item_total
+ * @property {number} size
+ * @property {string} type
+ */
+/**
+ * @typedef PincodeCodStatusListingRequest
+ * @property {string} [country]
+ * @property {number} [current_page_number]
+ * @property {boolean} [is_active]
+ * @property {number} [page_size]
+ * @property {number} [pincode]
+ */
+/**
+ * @typedef PincodeCodStatusListingResponse
+ * @property {string} country
+ * @property {PincodeCodStatusListingResponse[]} data
+ * @property {Error[]} [errors]
+ * @property {PincodeCodStatusListingPage} page
+ * @property {boolean} success
+ * @property {PincodeCodStatusListingSummary} summary
+ */
+/**
+ * @typedef PincodeCodStatusListingSummary
+ * @property {number} total_active_pincodes
+ * @property {number} total_inactive_pincodes
+ */
+/**
+ * @typedef PincodeMopBulkData
+ * @property {string} batch_id
+ * @property {string} s3_url
+ */
+/**
+ * @typedef PincodeMopData
+ * @property {string} action
+ * @property {string} country
+ * @property {number[]} pincodes
+ */
+/**
+ * @typedef PincodeMOPresponse
+ * @property {string} action
+ * @property {string} batch_id
+ * @property {string} country
+ * @property {number[]} [pincodes]
+ * @property {number} status_code
+ * @property {boolean} success
+ * @property {PincodeMopUpdateResponse[]} [updated_pincodes]
+ */
+/**
+ * @typedef PincodeMopUpdateAuditHistoryPaging
+ * @property {number} [current]
+ * @property {boolean} [has_next]
+ * @property {number} [item_total]
+ * @property {number} [size]
+ * @property {string} [type]
+ */
+/**
+ * @typedef PincodeMopUpdateAuditHistoryRequest
+ * @property {string} entity_type
+ * @property {string} [file_name]
+ */
+/**
+ * @typedef PincodeMopUpdateAuditHistoryResponse
+ * @property {string} [batch_id]
+ * @property {string} [entity_type]
+ * @property {string} [error_file_s3_url]
+ * @property {string} [file_name]
+ * @property {string} [s3_url]
+ * @property {boolean} [success]
+ * @property {string} [updated_at]
+ * @property {string} [updated_by]
+ */
+/**
+ * @typedef PincodeMopUpdateAuditHistoryResponseData
+ * @property {PincodeMopUpdateAuditHistoryResponse[]} data
+ * @property {string} [entity_type]
+ * @property {PincodeMopUpdateAuditHistoryPaging} page
+ */
+/**
+ * @typedef PincodeMopUpdateResponse
+ * @property {string} channel_id
+ * @property {string} country
+ * @property {boolean} is_active
+ * @property {number} pincode
+ */
+/**
  * @typedef ProductReturnConfigResponse
  * @property {boolean} [on_same_store]
+ */
+/**
+ * @typedef ServiceabilityErrorResponse
+ * @property {string} message
+ * @property {string} type
+ * @property {string} value
  */
 /**
  * @typedef ServiceabilityrErrorResponse

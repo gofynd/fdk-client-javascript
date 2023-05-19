@@ -56,6 +56,7 @@ class CatalogValidator {
     return Joi.object({
       pageNo: Joi.number(),
       pageSize: Joi.number(),
+      q: Joi.string().allow(""),
       tag: Joi.array().items(Joi.string().allow("")),
     });
   }

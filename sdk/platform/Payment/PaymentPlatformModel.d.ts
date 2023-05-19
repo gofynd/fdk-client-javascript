@@ -68,4 +68,6 @@ declare class PaymentModel {
     static SubscriptionPaymentMethodResponse(): any;
     static UpdatePayoutRequest(): any;
     static UpdatePayoutResponse(): any;
+    static ValidateCustomerRequest(): any;
+    static ValidateCustomerResponse(): any;
 }

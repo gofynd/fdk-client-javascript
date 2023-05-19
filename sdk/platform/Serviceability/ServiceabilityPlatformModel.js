@@ -141,6 +141,13 @@ class ServiceabilityModel {
       success: Joi.boolean().required(),
     });
   }
+  static Error() {
+    return Joi.object({
+      message: Joi.string().allow(""),
+      type: Joi.string().allow(""),
+      value: Joi.string().allow(""),
+    });
+  }
   static EwayBillResponse() {
     return Joi.object({
       enabled: Joi.boolean(),
@@ -182,6 +189,12 @@ class ServiceabilityModel {
       store_ids: Joi.array().items(Joi.number()).required(),
       stores_count: Joi.number().required(),
       zone_id: Joi.string().allow("").required(),
+    });
+  }
+  static GetZoneFromApplicationIdViewResponse() {
+    return Joi.object({
+      items: Joi.array().items(ServiceabilityModel.ListViewItems()).required(),
+      page: Joi.array().items(ServiceabilityModel.ZoneDataItem()).required(),
     });
   }
   static GetZoneFromPincodeViewRequest() {
@@ -323,9 +336,128 @@ class ServiceabilityModel {
       type: Joi.string().allow(""),
     });
   }
+  static PincodeBulkViewResponse() {
+    return Joi.object({
+      batch_id: Joi.string().allow("").required(),
+      s3_url: Joi.string().allow("").required(),
+    });
+  }
+  static PincodeCodStatusListingPage() {
+    return Joi.object({
+      current_page_number: Joi.number().required(),
+      has_next: Joi.boolean().required(),
+      item_total: Joi.number().required(),
+      size: Joi.number().required(),
+      type: Joi.string().allow("").required(),
+    });
+  }
+  static PincodeCodStatusListingRequest() {
+    return Joi.object({
+      country: Joi.string().allow(""),
+      current_page_number: Joi.number(),
+      is_active: Joi.boolean(),
+      page_size: Joi.number(),
+      pincode: Joi.number().allow(null),
+    });
+  }
+  static PincodeCodStatusListingResponse() {
+    return Joi.object({
+      country: Joi.string().allow("").required(),
+      data: Joi.array()
+        .items(Joi.link("#PincodeCodStatusListingResponse"))
+        .required(),
+      errors: Joi.array().items(ServiceabilityModel.Error()),
+      page: ServiceabilityModel.PincodeCodStatusListingPage().required(),
+      success: Joi.boolean().required(),
+      summary: ServiceabilityModel.PincodeCodStatusListingSummary().required(),
+    });
+  }
+  static PincodeCodStatusListingSummary() {
+    return Joi.object({
+      total_active_pincodes: Joi.number().required(),
+      total_inactive_pincodes: Joi.number().required(),
+    });
+  }
+  static PincodeMopBulkData() {
+    return Joi.object({
+      batch_id: Joi.string().allow("").required(),
+      s3_url: Joi.string().allow("").required(),
+    });
+  }
+  static PincodeMopData() {
+    return Joi.object({
+      action: Joi.string().allow("").required(),
+      country: Joi.string().allow("").required(),
+      pincodes: Joi.array().items(Joi.number()).required(),
+    });
+  }
+  static PincodeMOPresponse() {
+    return Joi.object({
+      action: Joi.string().allow("").required(),
+      batch_id: Joi.string().allow("").required(),
+      country: Joi.string().allow("").required(),
+      pincodes: Joi.array().items(Joi.number()),
+      status_code: Joi.number().required(),
+      success: Joi.boolean().required(),
+      updated_pincodes: Joi.array().items(
+        ServiceabilityModel.PincodeMopUpdateResponse()
+      ),
+    });
+  }
+  static PincodeMopUpdateAuditHistoryPaging() {
+    return Joi.object({
+      current: Joi.number(),
+      has_next: Joi.boolean(),
+      item_total: Joi.number(),
+      size: Joi.number(),
+      type: Joi.string().allow(""),
+    });
+  }
+  static PincodeMopUpdateAuditHistoryRequest() {
+    return Joi.object({
+      entity_type: Joi.string().allow("").required(),
+      file_name: Joi.string().allow(""),
+    });
+  }
+  static PincodeMopUpdateAuditHistoryResponse() {
+    return Joi.object({
+      batch_id: Joi.string().allow(""),
+      entity_type: Joi.string().allow(""),
+      error_file_s3_url: Joi.string().allow(""),
+      file_name: Joi.string().allow(""),
+      s3_url: Joi.string().allow(""),
+      success: Joi.boolean(),
+      updated_at: Joi.string().allow(""),
+      updated_by: Joi.string().allow(""),
+    });
+  }
+  static PincodeMopUpdateAuditHistoryResponseData() {
+    return Joi.object({
+      data: Joi.array()
+        .items(ServiceabilityModel.PincodeMopUpdateAuditHistoryResponse())
+        .required(),
+      entity_type: Joi.string().allow(""),
+      page: ServiceabilityModel.PincodeMopUpdateAuditHistoryPaging().required(),
+    });
+  }
+  static PincodeMopUpdateResponse() {
+    return Joi.object({
+      channel_id: Joi.string().allow("").required(),
+      country: Joi.string().allow("").required(),
+      is_active: Joi.boolean().required(),
+      pincode: Joi.number().required(),
+    });
+  }
   static ProductReturnConfigResponse() {
     return Joi.object({
       on_same_store: Joi.boolean(),
+    });
+  }
+  static ServiceabilityErrorResponse() {
+    return Joi.object({
+      message: Joi.string().allow("").required(),
+      type: Joi.string().allow("").required(),
+      value: Joi.string().allow("").required(),
     });
   }
   static ServiceabilityrErrorResponse() {
