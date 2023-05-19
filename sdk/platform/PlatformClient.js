@@ -3995,6 +3995,8 @@ class PlatformClient {
 /**
  * @typedef AnnouncementsResponse
  * @property {AnnouncementResponse[]} [announcements]
+ * @property {string} [message]
+ * @property {boolean} [success]
  */
 /**
  * @typedef AppliedPromos
@@ -4208,8 +4210,8 @@ class PlatformClient {
  */
 /**
  * @typedef BaseResponse
- * @property {string} message
- * @property {boolean} success
+ * @property {string} [message]
+ * @property {boolean} [success]
  */
 /**
  * @typedef BillingInfo
@@ -4260,91 +4262,13 @@ class PlatformClient {
  * @property {string} [start_date]
  */
 /**
- * @typedef BulkActionDetailsDataField
- * @property {string} [batch_id]
- * @property {string} [company_id]
- * @property {number} [failed_shipments_count]
- * @property {number} [processing_shipments_count]
- * @property {string[]} [successful_shipment_ids]
- * @property {number} [successful_shipments_count]
- * @property {number} [total_shipments_count]
+ * @typedef BulkActionTemplate
+ * @property {string} [text]
+ * @property {string} [value]
  */
 /**
- * @typedef BulkActionDetailsResponse
- * @property {BulkActionDetailsDataField[]} [data]
- * @property {string[]} [error]
- * @property {string[]} [failed_records]
- * @property {string} [message]
- * @property {boolean} [status]
- * @property {string} [success]
- * @property {string} [uploaded_by]
- * @property {string} [uploaded_on]
- * @property {string} [user_id]
- */
-/**
- * @typedef BulkActionPayload
- * @property {string} url
- */
-/**
- * @typedef BulkActionResponse
- * @property {string} [message]
- * @property {boolean} [status]
- */
-/**
- * @typedef BulkInvoiceLabelResponse
- * @property {string} batch_id
- * @property {string} [company_id]
- * @property {Object} [data]
- * @property {boolean} do_invoice_label_generated
- * @property {Object} [invoice]
- * @property {string} [invoice_status]
- * @property {Object} [label]
- * @property {string} [store_code]
- * @property {string} [store_id]
- * @property {string} [store_name]
- */
-/**
- * @typedef BulkInvoicingResponse
- * @property {string} [message]
- * @property {boolean} success
- */
-/**
- * @typedef bulkListingData
- * @property {string} [batch_id]
- * @property {number} [company_id]
- * @property {string} [excel_url]
- * @property {number} [failed]
- * @property {Object[]} [failed_shipments]
- * @property {string} [file_name]
- * @property {string} [id]
- * @property {number} [processing]
- * @property {string[]} [processing_shipments]
- * @property {string} [status]
- * @property {string} [store_code]
- * @property {number} [store_id]
- * @property {string} [store_name]
- * @property {number} [successful]
- * @property {Object[]} [successful_shipments]
- * @property {number} [total]
- * @property {string} [uploaded_on]
- * @property {string} [user_id]
- * @property {string} [user_name]
- */
-/**
- * @typedef BulkListingPage
- * @property {number} [current]
- * @property {boolean} [has_next]
- * @property {boolean} [has_previous]
- * @property {number} [size]
- * @property {number} [total]
- * @property {string} [type]
- */
-/**
- * @typedef BulkListingResponse
- * @property {bulkListingData[]} [data]
- * @property {string} [error]
- * @property {BulkListingPage} [page]
- * @property {boolean} [success]
+ * @typedef BulkActionTemplateResponse
+ * @property {BulkActionTemplate[]} [template_x_slug]
  */
 /**
  * @typedef BuyerDetails
@@ -4376,7 +4300,7 @@ class PlatformClient {
  * @property {Bags[]} [bags]
  * @property {boolean} [is_bag_locked]
  * @property {boolean} [is_shipment_locked]
- * @property {boolean} [lock_status]
+ * @property {string} [lock_status]
  * @property {OriginalFilter} [original_filter]
  * @property {string} [shipment_id]
  * @property {string} [status]
@@ -4587,8 +4511,9 @@ class PlatformClient {
 /**
  * @typedef ErrorResponse1
  * @property {string} [error_trace]
- * @property {string} message
- * @property {number} status
+ * @property {string} [message]
+ * @property {number} [status]
+ * @property {boolean} [success]
  */
 /**
  * @typedef FileResponse
@@ -4698,12 +4623,15 @@ class PlatformClient {
  */
 /**
  * @typedef HistoryDict
+ * @property {string} [assigned_agent]
  * @property {number} [bag_id]
  * @property {string} createdat
+ * @property {string} [display_message]
  * @property {string} [l1_detail]
  * @property {string} [l2_detail]
  * @property {string} [l3_detail]
  * @property {string} message
+ * @property {Object} [meta]
  * @property {string} [ticket_id]
  * @property {string} [ticket_url]
  * @property {string} type
@@ -4722,7 +4650,9 @@ class PlatformClient {
  */
 /**
  * @typedef InvalidateShipmentCachePayload
- * @property {string[]} shipment_ids
+ * @property {string[]} [affiliate_bag_ids]
+ * @property {string[]} [bag_ids]
+ * @property {string[]} [shipment_ids]
  */
 /**
  * @typedef InvalidateShipmentCacheResponse
@@ -4766,25 +4696,6 @@ class PlatformClient {
 /**
  * @typedef ItemCriterias
  * @property {number[]} [item_brand]
- */
-/**
- * @typedef JioCodeUpsertDataSet
- * @property {string} [article_id]
- * @property {string} [company_id]
- * @property {string} [item_id]
- * @property {string} [jio_code]
- */
-/**
- * @typedef JioCodeUpsertPayload
- * @property {JioCodeUpsertDataSet[]} [data]
- */
-/**
- * @typedef JioCodeUpsertResponse
- * @property {Object[]} [data]
- * @property {NestedErrorSchemaDataSet[]} [error]
- * @property {string} [identifier]
- * @property {boolean} [success]
- * @property {string} [trace_id]
  */
 /**
  * @typedef LaneConfigResponse
@@ -4836,40 +4747,6 @@ class PlatformClient {
  * @typedef Meta1
  * @property {number} [kafka_emission_status]
  * @property {string} [state_manager_used]
- */
-/**
- * @typedef MetricCountResponse
- * @property {MetricsCount[]} [items]
- */
-/**
- * @typedef MetricsCount
- * @property {string} key
- * @property {Options[]} [options]
- * @property {string} text
- * @property {number} value
- */
-/**
- * @typedef NestedErrorSchemaDataSet
- * @property {string} [message]
- * @property {string} [type]
- * @property {string} [value]
- */
-/**
- * @typedef OmsReports
- * @property {string} [display_name]
- * @property {string} [report_created_at]
- * @property {string} [report_id]
- * @property {string} [report_name]
- * @property {string} [report_requested_at]
- * @property {string} [report_type]
- * @property {Object} [request_details]
- * @property {string} [s3_key]
- * @property {string} [status]
- */
-/**
- * @typedef Options
- * @property {string} [text]
- * @property {number} [value]
  */
 /**
  * @typedef OrderBagArticle
@@ -5427,6 +5304,7 @@ class PlatformClient {
 /**
  * @typedef ShipmentHistoryResponse
  * @property {HistoryDict[]} activity_history
+ * @property {boolean} [success]
  */
 /**
  * @typedef ShipmentInfoResponse
@@ -5720,11 +5598,6 @@ class PlatformClient {
  * @property {string} [text]
  * @property {number} [total_items]
  * @property {string} [value]
- */
-/**
- * @typedef Success
- * @property {string} [message]
- * @property {boolean} [success]
  */
 /**
  * @typedef SuccessResponse
@@ -7879,7 +7752,7 @@ class PlatformClient {
  * @property {NetQuantity} [net_quantity]
  * @property {number} [no_of_boxes]
  * @property {string[]} [product_group_tag]
- * @property {ProductPublish1} [product_publish]
+ * @property {ProductPublish} [product_publish]
  * @property {string} [requester]
  * @property {ReturnConfig} return_config
  * @property {string} [short_description]
@@ -8075,7 +7948,7 @@ class PlatformClient {
  * @property {string} [pending]
  * @property {string} [primary_color]
  * @property {string[]} [product_group_tag]
- * @property {ProductPublish} [product_publish]
+ * @property {ProductPublish1} [product_publish]
  * @property {ReturnConfigResponse} [return_config]
  * @property {string} [short_description]
  * @property {string} [size_guide]
@@ -9127,6 +9000,15 @@ class PlatformClient {
  * @typedef CampaignShortLink
  * @property {string} [medium]
  * @property {string} [source]
+ */
+/**
+ * @typedef ClickStatsItem
+ * @property {string} [display]
+ * @property {number} [total]
+ */
+/**
+ * @typedef ClickStatsResponse
+ * @property {ClickStatsItem[]} click_stats
  */
 /**
  * @typedef ErrorRes

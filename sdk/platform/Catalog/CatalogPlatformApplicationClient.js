@@ -1313,6 +1313,7 @@ class Catalog {
    * @param {number[]} [arg.departmentIds] - Get multiple products filtered by
    *   Department Ids
    * @param {string[]} [arg.tags] - Get multiple products filtered by tags
+   * @param {number[]} [arg.itemIds] - Get multiple products filtered by Item Ids
    * @param {number} [arg.pageNo] - The page number to navigate through the
    *   given set of results
    * @param {number} [arg.pageSize] - Number of items to retrieve in each
@@ -1327,6 +1328,7 @@ class Catalog {
     categoryIds,
     departmentIds,
     tags,
+    itemIds,
     pageNo,
     pageSize,
     q,
@@ -1337,6 +1339,7 @@ class Catalog {
         categoryIds,
         departmentIds,
         tags,
+        itemIds,
         pageNo,
         pageSize,
         q,
@@ -1354,6 +1357,7 @@ class Catalog {
         categoryIds,
         departmentIds,
         tags,
+        itemIds,
         pageNo,
         pageSize,
         q,
@@ -1373,6 +1377,7 @@ class Catalog {
     query_params["category_ids"] = categoryIds;
     query_params["department_ids"] = departmentIds;
     query_params["tags"] = tags;
+    query_params["item_ids"] = itemIds;
     query_params["page_no"] = pageNo;
     query_params["page_size"] = pageSize;
     query_params["q"] = q;

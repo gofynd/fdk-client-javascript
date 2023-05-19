@@ -10,6 +10,7 @@ Short link and QR Code
 
 * [createShortLink](#createshortlink)
 * [getShortLinkByHash](#getshortlinkbyhash)
+* [getShortLinkClickStats](#getshortlinkclickstats)
 * [getShortLinks](#getshortlinks)
 * [updateShortLinkById](#updateshortlinkbyid)
 
@@ -193,6 +194,62 @@ Success
   "created_at": "2021-02-03T07:43:01.342Z",
   "updated_at": "2021-02-03T07:43:01.342Z"
 }
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### getShortLinkClickStats
+Get click statistics for a short link
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").share.getShortLinkClickStats({  surlId : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").share.getShortLinkClickStats({  surlId : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| surlId | string | yes | Short link ID for which click statistics are to be retrieved. |  
+
+
+
+Retrieve click statistics for a given short link ID.
+
+*Returned Response:*
+
+
+
+
+[ClickStatsResponse](#ClickStatsResponse)
+
+Successful retrieval of click statistics.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
 ```
 </details>
 
@@ -439,6 +496,25 @@ Success
  | ---------- | ---- | -------- | ----------- |
  | medium | string? |  yes  |  |
  | source | string? |  yes  |  |
+ 
+
+---
+
+#### [ClickStatsItem](#ClickStatsItem)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | display | string? |  yes  | The display name of the click statistic. |
+ | total | number? |  yes  | The total number of clicks for the statistic. |
+ 
+
+---
+
+#### [ClickStatsResponse](#ClickStatsResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | click_stats | [[ClickStatsItem](#ClickStatsItem)] |  no  | An array of click statistics for the short link. |
  
 
 ---

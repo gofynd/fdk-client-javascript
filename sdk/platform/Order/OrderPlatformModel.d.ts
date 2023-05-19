@@ -38,15 +38,8 @@ declare class OrderModel {
     static BillingInfo(): any;
     static BillingStaffDetails(): any;
     static Brand(): any;
-    static BulkActionDetailsDataField(): any;
-    static BulkActionDetailsResponse(): any;
-    static BulkActionPayload(): any;
-    static BulkActionResponse(): any;
-    static BulkInvoiceLabelResponse(): any;
-    static BulkInvoicingResponse(): any;
-    static bulkListingData(): any;
-    static BulkListingPage(): any;
-    static BulkListingResponse(): any;
+    static BulkActionTemplate(): any;
+    static BulkActionTemplateResponse(): any;
     static BuyerDetails(): any;
     static BuyRules(): any;
     static Charge(): any;
@@ -103,9 +96,6 @@ declare class OrderModel {
     static InvoiceInfo(): any;
     static Item(): any;
     static ItemCriterias(): any;
-    static JioCodeUpsertDataSet(): any;
-    static JioCodeUpsertPayload(): any;
-    static JioCodeUpsertResponse(): any;
     static LaneConfigResponse(): any;
     static LineItem(): any;
     static LocationDetails(): any;
@@ -115,11 +105,6 @@ declare class OrderModel {
     static MarketPlacePdf(): any;
     static Meta(): any;
     static Meta1(): any;
-    static MetricCountResponse(): any;
-    static MetricsCount(): any;
-    static NestedErrorSchemaDataSet(): any;
-    static OmsReports(): any;
-    static Options(): any;
     static OrderBagArticle(): any;
     static OrderBags(): any;
     static OrderBrandName(): any;
@@ -207,7 +192,6 @@ declare class OrderModel {
     static StoreReassign(): any;
     static StoreReassignResponse(): any;
     static SubLane(): any;
-    static Success(): any;
     static SuccessResponse(): any;
     static SuperLane(): any;
     static Tax(): any;

@@ -278,6 +278,7 @@ declare class Catalog {
      * @param {number[]} [arg.departmentIds] - Get multiple products filtered by
      *   Department Ids
      * @param {string[]} [arg.tags] - Get multiple products filtered by tags
+     * @param {number[]} [arg.itemIds] - Get multiple products filtered by Item Ids
      * @param {number} [arg.pageNo] - The page number to navigate through the
      *   given set of results
      * @param {number} [arg.pageSize] - Number of items to retrieve in each
@@ -287,11 +288,12 @@ declare class Catalog {
      * @summary: Get applicationwise products
      * @description: Products are the core resource of an application. Products can be associated by categories, collections, brands and more. If successful, returns a Product resource in the response body specified in `ApplicationProductListingResponseDatabasePowered`
      */
-    getAppProducts({ brandIds, categoryIds, departmentIds, tags, pageNo, pageSize, q, }?: {
+    getAppProducts({ brandIds, categoryIds, departmentIds, tags, itemIds, pageNo, pageSize, q, }?: {
         brandIds?: number[];
         categoryIds?: number[];
         departmentIds?: number[];
         tags?: string[];
+        itemIds?: number[];
         pageNo?: number;
         pageSize?: number;
         q?: string;

@@ -641,15 +641,8 @@ class PlatformApplicationClient {
 /** @typedef BillingInfo */
 /** @typedef BillingStaffDetails */
 /** @typedef Brand */
-/** @typedef BulkActionDetailsDataField */
-/** @typedef BulkActionDetailsResponse */
-/** @typedef BulkActionPayload */
-/** @typedef BulkActionResponse */
-/** @typedef BulkInvoiceLabelResponse */
-/** @typedef BulkInvoicingResponse */
-/** @typedef bulkListingData */
-/** @typedef BulkListingPage */
-/** @typedef BulkListingResponse */
+/** @typedef BulkActionTemplate */
+/** @typedef BulkActionTemplateResponse */
 /** @typedef BuyerDetails */
 /** @typedef BuyRules */
 /** @typedef Charge */
@@ -706,9 +699,6 @@ class PlatformApplicationClient {
 /** @typedef InvoiceInfo */
 /** @typedef Item */
 /** @typedef ItemCriterias */
-/** @typedef JioCodeUpsertDataSet */
-/** @typedef JioCodeUpsertPayload */
-/** @typedef JioCodeUpsertResponse */
 /** @typedef LaneConfigResponse */
 /** @typedef LineItem */
 /** @typedef LocationDetails */
@@ -718,11 +708,6 @@ class PlatformApplicationClient {
 /** @typedef MarketPlacePdf */
 /** @typedef Meta */
 /** @typedef Meta1 */
-/** @typedef MetricCountResponse */
-/** @typedef MetricsCount */
-/** @typedef NestedErrorSchemaDataSet */
-/** @typedef OmsReports */
-/** @typedef Options */
 /** @typedef OrderBagArticle */
 /** @typedef OrderBags */
 /** @typedef OrderBrandName */
@@ -810,7 +795,6 @@ class PlatformApplicationClient {
 /** @typedef StoreReassign */
 /** @typedef StoreReassignResponse */
 /** @typedef SubLane */
-/** @typedef Success */
 /** @typedef SuccessResponse */
 /** @typedef SuperLane */
 /** @typedef Tax */
@@ -1215,6 +1199,8 @@ class PlatformApplicationClient {
 
 /** @typedef Attribution */
 /** @typedef CampaignShortLink */
+/** @typedef ClickStatsItem */
+/** @typedef ClickStatsResponse */
 /** @typedef ErrorRes */
 /** @typedef Page */
 /** @typedef RedirectDevice */
