@@ -4259,7 +4259,9 @@ class PlatformClient {
 /**
  * @typedef AdvanceFilterInfo
  * @property {FiltersInfo[]} [action_centre]
+ * @property {Object} [applied_filters]
  * @property {FiltersInfo[]} [filters]
+ * @property {Object} [page]
  * @property {FiltersInfo[]} [processed]
  * @property {FiltersInfo[]} [returned]
  * @property {FiltersInfo[]} [unfulfilled]
@@ -6049,6 +6051,7 @@ class PlatformClient {
  * @property {boolean} [is_affiliate]
  * @property {string} [logo]
  * @property {string} [name]
+ * @property {string} ordering_channel
  */
 /**
  * @typedef ShipmentMeta
@@ -11837,10 +11840,6 @@ class PlatformClient {
  * @property {string} coupon_code
  */
 /**
- * @typedef ArticleGiftDetail
- * @property {GiftDetail} [article_id]
- */
-/**
  * @typedef ArticlePriceInfo
  * @property {BasePrice} [base]
  * @property {BasePrice} [converted]
@@ -12259,11 +12258,6 @@ class PlatformClient {
  * @property {string} [token]
  */
 /**
- * @typedef GiftDetail
- * @property {string} [gift_message]
- * @property {boolean} [is_gift_applied]
- */
-/**
  * @typedef Identifier
  * @property {string[]} [article_id]
  * @property {number[]} [brand_id]
@@ -12610,7 +12604,7 @@ class PlatformClient {
  * @typedef PlatformCartMetaRequest
  * @property {string} [checkout_mode]
  * @property {string} [comment]
- * @property {ArticleGiftDetail} [gift_details]
+ * @property {Object} [gift_details]
  * @property {string} [gstin]
  * @property {string} [pan_no]
  * @property {Object} [pick_up_customer_details]

@@ -5209,7 +5209,9 @@ Verify OTP
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | action_centre | [[FiltersInfo](#FiltersInfo)]? |  yes  |  |
+ | applied_filters | string? |  yes  |  |
  | filters | [[FiltersInfo](#FiltersInfo)]? |  yes  |  |
+ | page | string? |  yes  |  |
  | processed | [[FiltersInfo](#FiltersInfo)]? |  yes  |  |
  | returned | [[FiltersInfo](#FiltersInfo)]? |  yes  |  |
  | unfulfilled | [[FiltersInfo](#FiltersInfo)]? |  yes  |  |
@@ -8018,6 +8020,7 @@ Verify OTP
  | is_affiliate | boolean? |  yes  |  |
  | logo | string? |  yes  |  |
  | name | string? |  yes  |  |
+ | ordering_channel | string |  no  |  |
  
 
 ---

@@ -12,7 +12,9 @@ class OrderModel {
   static AdvanceFilterInfo() {
     return Joi.object({
       action_centre: Joi.array().items(OrderModel.FiltersInfo()),
+      applied_filters: Joi.any(),
       filters: Joi.array().items(OrderModel.FiltersInfo()),
+      page: Joi.any(),
       processed: Joi.array().items(OrderModel.FiltersInfo()),
       returned: Joi.array().items(OrderModel.FiltersInfo()),
       unfulfilled: Joi.array().items(OrderModel.FiltersInfo()),
@@ -2016,6 +2018,7 @@ class OrderModel {
       is_affiliate: Joi.boolean(),
       logo: Joi.string().allow(""),
       name: Joi.string().allow(""),
+      ordering_channel: Joi.string().allow("").required(),
     });
   }
   static ShipmentMeta() {

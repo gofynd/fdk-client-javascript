@@ -12140,15 +12140,6 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
 
 ---
 
-#### [ArticleGiftDetail](#ArticleGiftDetail)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | article_id | [GiftDetail](#GiftDetail)? |  yes  |  |
- 
-
----
-
 #### [ArticlePriceInfo](#ArticlePriceInfo)
 
  | Properties | Type | Nullable | Description |
@@ -12817,16 +12808,6 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
 
 ---
 
-#### [GiftDetail](#GiftDetail)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | gift_message | string? |  yes  |  |
- | is_gift_applied | boolean? |  yes  |  |
- 
-
----
-
 #### [Identifier](#Identifier)
 
  | Properties | Type | Nullable | Description |
@@ -13343,7 +13324,7 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
  | ---------- | ---- | -------- | ----------- |
  | checkout_mode | string? |  yes  |  |
  | comment | string? |  yes  |  |
- | gift_details | [ArticleGiftDetail](#ArticleGiftDetail)? |  yes  |  |
+ | gift_details | string? |  yes  |  |
  | gstin | string? |  yes  |  |
  | pan_no | string? |  yes  |  |
  | pick_up_customer_details | string? |  yes  | Customer contact details for customer pickup at store |

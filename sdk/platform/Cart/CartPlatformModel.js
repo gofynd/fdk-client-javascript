@@ -128,11 +128,6 @@ class CartModel {
       coupon_code: Joi.string().allow("").required(),
     });
   }
-  static ArticleGiftDetail() {
-    return Joi.object({
-      article_id: CartModel.GiftDetail(),
-    });
-  }
   static ArticlePriceInfo() {
     return Joi.object({
       base: CartModel.BasePrice(),
@@ -601,12 +596,6 @@ class CartModel {
       token: Joi.string().allow(""),
     });
   }
-  static GiftDetail() {
-    return Joi.object({
-      gift_message: Joi.string().allow(""),
-      is_gift_applied: Joi.boolean(),
-    });
-  }
   static Identifier() {
     return Joi.object({
       article_id: Joi.array().items(Joi.string().allow("")),
@@ -991,7 +980,7 @@ class CartModel {
     return Joi.object({
       checkout_mode: Joi.string().allow(""),
       comment: Joi.string().allow(""),
-      gift_details: CartModel.ArticleGiftDetail(),
+      gift_details: Joi.any().allow(null),
       gstin: Joi.string().allow(""),
       pan_no: Joi.string().allow(""),
       pick_up_customer_details: Joi.any(),
