@@ -56,6 +56,7 @@ declare class CatalogModel {
     static ProductCompareResponse(): any;
     static ProductDetail(): any;
     static ProductDetailAttribute(): any;
+    static ProductDetailCustomOrder(): any;
     static ProductDetailGroupedAttribute(): any;
     static ProductDetails(): any;
     static ProductFilters(): any;
