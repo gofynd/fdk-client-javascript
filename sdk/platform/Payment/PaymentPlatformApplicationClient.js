@@ -1653,6 +1653,69 @@ class Payment {
 
     return response;
   }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {ValidateCustomerRequest} arg.body
+   * @returns {Promise<ValidateCustomerResponse>} - Success response
+   * @summary: Validate customer for payment
+   * @description: Use this API to check if the customer is eligible to use credit-line facilities such as Simpl Pay Later and Rupifi.
+   */
+  async verifyCustomerForPayment({ body } = {}) {
+    const { error } = PaymentValidator.verifyCustomerForPayment().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = PaymentValidator.verifyCustomerForPayment().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for verifyCustomerForPayment",
+      });
+      Logger({ level: "WARN", message: warrning });
+    }
+
+    const query_params = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/payment/v1.0/company/${this.config.companyId}/application/${this.applicationId}/payment/customer/validation`,
+      query_params,
+      body
+    );
+
+    const {
+      error: res_error,
+    } = PaymentModel.ValidateCustomerResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for verifyCustomerForPayment",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
+  }
 }
 
 module.exports = Payment;

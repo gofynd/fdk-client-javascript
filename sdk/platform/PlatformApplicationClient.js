@@ -646,6 +646,8 @@ class PlatformApplicationClient {
 /** @typedef UpdatePayoutRequest */
 /** @typedef UpdatePayoutResponse */
 /** @typedef UpdatePlatformPaymentConfig */
+/** @typedef ValidateCustomerRequest */
+/** @typedef ValidateCustomerResponse */
 
 /** @typedef ActionInfo */
 /** @typedef AdvanceFilterInfo */

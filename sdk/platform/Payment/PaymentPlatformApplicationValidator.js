@@ -161,6 +161,12 @@ class PaymentValidator {
       body: PaymentModel.UpdatePlatformPaymentConfig().required(),
     }).required();
   }
+
+  static verifyCustomerForPayment() {
+    return Joi.object({
+      body: PaymentModel.ValidateCustomerRequest().required(),
+    }).required();
+  }
 }
 
 module.exports = PaymentValidator;

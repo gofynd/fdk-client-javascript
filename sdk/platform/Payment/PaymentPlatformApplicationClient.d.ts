@@ -283,4 +283,14 @@ declare class Payment {
     updatePlatformPaymentConfig({ body }?: {
         body: UpdatePlatformPaymentConfig;
     }): Promise<PlatfromPaymentConfig>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {ValidateCustomerRequest} arg.body
+     * @returns {Promise<ValidateCustomerResponse>} - Success response
+     * @summary: Validate customer for payment
+     * @description: Use this API to check if the customer is eligible to use credit-line facilities such as Simpl Pay Later and Rupifi.
+     */
+    verifyCustomerForPayment({ body }?: {
+        body: ValidateCustomerRequest;
+    }): Promise<ValidateCustomerResponse>;
 }

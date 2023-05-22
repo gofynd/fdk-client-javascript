@@ -42,6 +42,7 @@ Collect payment through many payment gateway i.e Stripe, Razorpay, Juspay etc.in
 * [updateEdcDevice](#updateedcdevice)
 * [updatePayout](#updatepayout)
 * [updatePlatformPaymentConfig](#updateplatformpaymentconfig)
+* [verifyCustomerForPayment](#verifycustomerforpayment)
 * [verifyIfscCode](#verifyifsccode)
 
 
@@ -5110,6 +5111,104 @@ Success. Returns the status of API. Check the example shown below or refer `Plat
 ---
 
 
+### verifyCustomerForPayment
+Validate customer for payment
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").payment.verifyCustomerForPayment({  body : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").payment.verifyCustomerForPayment({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [ValidateCustomerRequest](#ValidateCustomerRequest) | yes | Request body |
+
+
+Use this API to check if the customer is eligible to use credit-line facilities such as Simpl Pay Later and Rupifi.
+
+*Returned Response:*
+
+
+
+
+[ValidateCustomerResponse](#ValidateCustomerResponse)
+
+Success. Check the example shown below or refer `ValidateCustomerResponse` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; success is True i.e user is allowed</i></summary>
+
+```json
+{
+  "value": {
+    "success": true,
+    "message": "data fetched",
+    "data": {
+      "api_version": 2,
+      "data": {
+        "approved": true,
+        "button_text": "Buy Now, Pay Later",
+        "first_transaction": false
+      },
+      "aggregator": "Simpl"
+    }
+  }
+}
+```
+</details>
+
+<details>
+<summary><i>&nbsp; success is True i.e user not allowed</i></summary>
+
+```json
+{
+  "value": {
+    "success": false,
+    "message": "data fetched",
+    "error": {
+      "api_version": 2,
+      "data": {
+        "approved": false,
+        "button_text": "Buy Now, Pay Later",
+        "first_transaction": false
+      },
+      "aggregator": "Simpl"
+    },
+    "data": {}
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
 ### verifyIfscCode
 Ifsc Code Verification
 
@@ -6131,6 +6230,34 @@ Bank details on correct Ifsc Code
  | cod_charges | number? |  yes  |  |
  | methods | string |  no  |  |
  | payment_selection_lock | string? |  yes  |  |
+ 
+
+---
+
+#### [ValidateCustomerRequest](#ValidateCustomerRequest)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | aggregator | string |  no  | Payment gateway name in camel case i.e Simpl, Rupifi |
+ | billing_address | string? |  yes  | Extra meta fields. |
+ | delivery_address | string? |  yes  | Extra meta fields. |
+ | merchant_params | string? |  yes  | Extra meta fields. |
+ | order_items | [string]? |  yes  | Extra meta fields. |
+ | payload | string? |  yes  | Hashed payload string. |
+ | phone_number | string |  no  | User mobile number without country code. |
+ | transaction_amount_in_paise | number |  no  | Payable amount in paise |
+ 
+
+---
+
+#### [ValidateCustomerResponse](#ValidateCustomerResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | data | string? |  yes  | Payment gateway response data |
+ | error | string? |  yes  | error details |
+ | message | string |  no  | Error or success message. |
+ | success | boolean |  no  | Response is successful or not |
  
 
 ---

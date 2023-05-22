@@ -73,4 +73,6 @@ declare class PaymentModel {
     static UpdatePayoutRequest(): any;
     static UpdatePayoutResponse(): any;
     static UpdatePlatformPaymentConfig(): any;
+    static ValidateCustomerRequest(): any;
+    static ValidateCustomerResponse(): any;
 }

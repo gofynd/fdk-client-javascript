@@ -4248,6 +4248,24 @@ class PlatformClient {
  * @property {Object} methods
  * @property {Object} [payment_selection_lock]
  */
+/**
+ * @typedef ValidateCustomerRequest
+ * @property {string} aggregator
+ * @property {Object} [billing_address]
+ * @property {Object} [delivery_address]
+ * @property {Object} [merchant_params]
+ * @property {Object[]} [order_items]
+ * @property {string} [payload]
+ * @property {string} phone_number
+ * @property {number} transaction_amount_in_paise
+ */
+/**
+ * @typedef ValidateCustomerResponse
+ * @property {Object} [data]
+ * @property {Object} [error]
+ * @property {string} message
+ * @property {boolean} success
+ */
 
 /**
  * @typedef ActionInfo

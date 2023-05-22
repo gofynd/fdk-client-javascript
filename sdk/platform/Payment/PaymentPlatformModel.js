@@ -664,5 +664,25 @@ class PaymentModel {
       payment_selection_lock: Joi.any(),
     });
   }
+  static ValidateCustomerRequest() {
+    return Joi.object({
+      aggregator: Joi.string().allow("").required(),
+      billing_address: Joi.any(),
+      delivery_address: Joi.any(),
+      merchant_params: Joi.any(),
+      order_items: Joi.array().items(Joi.any()),
+      payload: Joi.string().allow("").allow(null),
+      phone_number: Joi.string().allow("").required(),
+      transaction_amount_in_paise: Joi.number().required(),
+    });
+  }
+  static ValidateCustomerResponse() {
+    return Joi.object({
+      data: Joi.any().allow(null),
+      error: Joi.any().allow(null),
+      message: Joi.string().allow("").required(),
+      success: Joi.boolean().required(),
+    });
+  }
 }
 module.exports = PaymentModel;
