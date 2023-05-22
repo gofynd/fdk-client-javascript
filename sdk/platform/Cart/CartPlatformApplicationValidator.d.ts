@@ -5,10 +5,12 @@ declare class CartValidator {
     static applyCoupon(): any;
     static checkCartServiceability(): any;
     static checkoutCart(): any;
+    static createCartMetaConfig(): any;
     static createCoupon(): any;
     static createPromotion(): any;
     static deleteCart(): any;
     static fetchAndvalidateCartItems(): any;
+    static fetchCartMetaConfig(): any;
     static getAbandonedCart(): any;
     static getAbandonedCartDetails(): any;
     static getAddressById(): any;
@@ -42,6 +44,7 @@ declare class CartValidator {
     static updateAddress(): any;
     static updateCart(): any;
     static updateCartMeta(): any;
+    static updateCartMetaConfig(): any;
     static updateCartUser(): any;
     static updateCartWithSharedItems(): any;
     static updateCoupon(): any;

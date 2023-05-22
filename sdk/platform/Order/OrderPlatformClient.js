@@ -141,11 +141,11 @@ class Order {
 
   /**
    * @param {Object} arg - Arg object.
-   * @param {string} arg.caller -
-   * @param {string} arg.receiver -
-   * @param {string} arg.bagId -
-   * @param {string} [arg.callingTo] -
-   * @param {string} [arg.callerId] -
+   * @param {string} arg.caller - Call Number
+   * @param {string} arg.receiver - Receiver Number
+   * @param {string} arg.bagId - Bag Id for the query
+   * @param {string} [arg.callerId] - Caller Id
+   * @param {string} [arg.method] - Provider Method to Call
    * @returns {Promise<Click2CallResponse>} - Success response
    * @summary:
    * @description:
@@ -155,8 +155,8 @@ class Order {
     receiver,
     bagId,
 
-    callingTo,
     callerId,
+    method,
   } = {}) {
     const { error } = OrderValidator.click2Call().validate(
       {
@@ -164,8 +164,8 @@ class Order {
         receiver,
         bagId,
 
-        callingTo,
         callerId,
+        method,
       },
       { abortEarly: false, allowUnknown: true }
     );
@@ -180,8 +180,8 @@ class Order {
         receiver,
         bagId,
 
-        callingTo,
         callerId,
+        method,
       },
       { abortEarly: false, allowUnknown: false }
     );
@@ -197,8 +197,8 @@ class Order {
     query_params["caller"] = caller;
     query_params["receiver"] = receiver;
     query_params["bag_id"] = bagId;
-    query_params["calling_to"] = callingTo;
     query_params["caller_id"] = callerId;
+    query_params["method"] = method;
 
     const xHeaders = {};
 
@@ -1972,8 +1972,8 @@ class Order {
 
   /**
    * @param {Object} arg - Arg object.
-   * @param {string} [arg.shipmentId] -
-   * @param {number} [arg.bagId] -
+   * @param {number} [arg.shipmentId] - Shipment Id
+   * @param {number} [arg.bagId] - Bag/Product Id
    * @returns {Promise<ShipmentHistoryResponse>} - Success response
    * @summary:
    * @description:
@@ -3068,7 +3068,7 @@ class Order {
 
   /**
    * @param {Object} arg - Arg object.
-   * @param {CreateOrderPayload} arg.body
+   * @param {UpdatePackagingDimensionsPayload} arg.body
    * @returns {Promise<CreateOrderResponse>} - Success response
    * @summary:
    * @description:

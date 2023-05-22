@@ -69,6 +69,7 @@ declare class OrderModel {
     static DataUpdates(): any;
     static Dates(): any;
     static DebugInfo(): any;
+    static Dimension(): any;
     static Dimensions(): any;
     static DiscountRules(): any;
     static DispatchManifest(): any;
@@ -106,8 +107,6 @@ declare class OrderModel {
     static GiftCard(): any;
     static GSTDetailsData(): any;
     static HistoryDict(): any;
-    static HistoryMeta(): any;
-    static HistoryReason(): any;
     static Identifier(): any;
     static InvalidateShipmentCacheNestedResponse(): any;
     static InvalidateShipmentCachePayload(): any;
@@ -236,6 +235,7 @@ declare class OrderModel {
     static TaxInfo(): any;
     static TrackingList(): any;
     static TransactionData(): any;
+    static UpdatePackagingDimensionsPayload(): any;
     static UpdateShipmentLockPayload(): any;
     static UpdateShipmentLockResponse(): any;
     static UpdateShipmentStatusRequest(): any;

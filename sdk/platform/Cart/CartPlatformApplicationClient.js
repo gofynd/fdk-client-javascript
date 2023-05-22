@@ -348,6 +348,67 @@ class Cart {
 
   /**
    * @param {Object} arg - Arg object.
+   * @param {CartMetaConfigAdd} arg.body
+   * @returns {Promise<CartMetaConfigAdd>} - Success response
+   * @summary: Create new cart meta configuration
+   * @description: Create new cart meta configuration
+   */
+  async createCartMetaConfig({ body } = {}) {
+    const { error } = CartValidator.createCartMetaConfig().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = CartValidator.createCartMetaConfig().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for createCartMetaConfig",
+      });
+      Logger({ level: "WARN", message: warrning });
+    }
+
+    const query_params = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/cart/v1.0/company/${this.config.companyId}/application/${this.applicationId}/cart_configuration`,
+      query_params,
+      body
+    );
+
+    const {
+      error: res_error,
+    } = CartModel.CartMetaConfigAdd().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for createCartMetaConfig",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
    * @param {CouponAdd} arg.body
    * @returns {Promise<SuccessMessage>} - Success response
    * @summary: Create new coupon
@@ -585,6 +646,62 @@ class Cart {
       Logger({
         level: "WARN",
         message: "Response Validation Warnnings for fetchAndvalidateCartItems",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @returns {Promise<CartMetaConfigAdd>} - Success response
+   * @summary: Fetch cart meta configuration
+   * @description: Fetch cart meta configuration
+   */
+  async fetchCartMetaConfig({} = {}) {
+    const { error } = CartValidator.fetchCartMetaConfig().validate(
+      {},
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = CartValidator.fetchCartMetaConfig().validate(
+      {},
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for fetchCartMetaConfig",
+      });
+      Logger({ level: "WARN", message: warrning });
+    }
+
+    const query_params = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/cart/v1.0/company/${this.config.companyId}/application/${this.applicationId}/cart_configuration`,
+      query_params,
+      undefined
+    );
+
+    const {
+      error: res_error,
+    } = CartModel.CartMetaConfigAdd().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for fetchCartMetaConfig",
       });
       Logger({ level: "WARN", message: res_error });
     }
@@ -3103,6 +3220,70 @@ class Cart {
       Logger({
         level: "WARN",
         message: "Response Validation Warnnings for updateCartMeta",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.cartMetaId -
+   * @param {CartMetaConfigUpdate} arg.body
+   * @returns {Promise<CartMetaConfigUpdate>} - Success response
+   * @summary: Update cart meta configuration
+   * @description: Update cart meta configuration
+   */
+  async updateCartMetaConfig({ cartMetaId, body } = {}) {
+    const { error } = CartValidator.updateCartMetaConfig().validate(
+      {
+        cartMetaId,
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = CartValidator.updateCartMetaConfig().validate(
+      {
+        cartMetaId,
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for updateCartMetaConfig",
+      });
+      Logger({ level: "WARN", message: warrning });
+    }
+
+    const query_params = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "put",
+      `/service/platform/cart/v1.0/company/${this.config.companyId}/application/${this.applicationId}/cart_configuration/${cartMetaId}`,
+      query_params,
+      body
+    );
+
+    const {
+      error: res_error,
+    } = CartModel.CartMetaConfigUpdate().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for updateCartMetaConfig",
       });
       Logger({ level: "WARN", message: res_error });
     }

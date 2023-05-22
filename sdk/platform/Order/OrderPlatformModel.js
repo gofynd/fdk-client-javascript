@@ -591,7 +591,7 @@ class OrderModel {
   static Click2CallResponse() {
     return Joi.object({
       call_id: Joi.string().allow("").required(),
-      status: Joi.boolean().required(),
+      success: Joi.boolean().required(),
     });
   }
   static CompanyDetails() {
@@ -722,6 +722,15 @@ class OrderModel {
   static DebugInfo() {
     return Joi.object({
       stormbreaker_uuid: Joi.string().allow(""),
+    });
+  }
+  static Dimension() {
+    return Joi.object({
+      height: Joi.string().allow(""),
+      length: Joi.number(),
+      packaging_type: Joi.string().allow(""),
+      weight: Joi.string().allow(""),
+      width: Joi.number(),
     });
   }
   static Dimensions() {
@@ -1024,53 +1033,16 @@ class OrderModel {
       assigned_agent: Joi.string().allow(""),
       bag_id: Joi.number(),
       createdat: Joi.string().allow("").required(),
-      display_message: Joi.string().allow("").allow(null),
+      display_message: Joi.string().allow(""),
       l1_detail: Joi.string().allow(""),
       l2_detail: Joi.string().allow(""),
       l3_detail: Joi.string().allow(""),
       message: Joi.string().allow("").required(),
-      meta: OrderModel.HistoryMeta(),
+      meta: Joi.any(),
       ticket_id: Joi.string().allow(""),
       ticket_url: Joi.string().allow(""),
       type: Joi.string().allow("").required(),
       user: Joi.string().allow("").required(),
-    });
-  }
-  static HistoryMeta() {
-    return Joi.object({
-      activity_comment: Joi.string().allow("").allow(null),
-      activity_type: Joi.string().allow("").allow(null),
-      billsec: Joi.string().allow("").allow(null),
-      call_id: Joi.string().allow("").allow(null),
-      caller: Joi.string().allow("").allow(null),
-      callerid: Joi.string().allow("").allow(null),
-      channel_type: Joi.string().allow("").allow(null),
-      duration: Joi.string().allow("").allow(null),
-      endtime: Joi.string().allow("").allow(null),
-      message: Joi.string().allow("").allow(null),
-      reason: OrderModel.HistoryReason(),
-      receiver: Joi.string().allow("").allow(null),
-      recipient: Joi.string().allow("").allow(null),
-      recordpath: Joi.string().allow("").allow(null),
-      short_link: Joi.string().allow("").allow(null),
-      slug: Joi.string().allow("").allow(null),
-      starttime: Joi.string().allow("").allow(null),
-      status: Joi.string().allow("").allow(null),
-      status1: Joi.string().allow("").allow(null),
-      status2: Joi.string().allow("").allow(null),
-      store_code: Joi.string().allow("").allow(null),
-      store_id: Joi.number().allow(null),
-      store_name: Joi.string().allow("").allow(null),
-    });
-  }
-  static HistoryReason() {
-    return Joi.object({
-      category: Joi.string().allow("").allow(null),
-      code: Joi.number().allow(null),
-      dislay_name: Joi.string().allow("").allow(null),
-      quantity: Joi.number().allow(null),
-      state: Joi.string().allow("").allow(null),
-      text: Joi.string().allow("").allow(null),
     });
   }
   static Identifier() {
@@ -2155,13 +2127,13 @@ class OrderModel {
   }
   static SmsDataPayload() {
     return Joi.object({
-      amount_paid: Joi.number().required(),
-      brand_name: Joi.string().allow("").required(),
+      amount_paid: Joi.number(),
+      brand_name: Joi.string().allow(""),
       country_code: Joi.string().allow("").required(),
-      customer_name: Joi.string().allow("").required(),
+      customer_name: Joi.string().allow(""),
       message: Joi.string().allow("").required(),
       order_id: Joi.string().allow("").required(),
-      payment_mode: Joi.string().allow("").required(),
+      payment_mode: Joi.string().allow(""),
       phone_number: Joi.number().required(),
       shipment_id: Joi.number().required(),
     });
@@ -2367,6 +2339,13 @@ class OrderModel {
       terminal_id: Joi.string().allow(""),
       transaction_id: Joi.string().allow(""),
       unique_reference_number: Joi.string().allow(""),
+    });
+  }
+  static UpdatePackagingDimensionsPayload() {
+    return Joi.object({
+      current_status: Joi.string().allow("").required(),
+      dimension: Joi.array().items(OrderModel.Dimension()).required(),
+      shipment_id: Joi.string().allow("").required(),
     });
   }
   static UpdateShipmentLockPayload() {

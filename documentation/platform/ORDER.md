@@ -185,15 +185,15 @@ Order Status retrieved successfully
 const promise = platformClient.order.click2Call({  caller : value,
  receiver : value,
  bagId : value,
- callingTo : value,
- callerId : value });
+ callerId : value,
+ method : value });
 
 // Async/Await
 const data = await platformClient.order.click2Call({  caller : value,
  receiver : value,
  bagId : value,
- callingTo : value,
- callerId : value });
+ callerId : value,
+ method : value });
 ```
 
 
@@ -202,11 +202,11 @@ const data = await platformClient.order.click2Call({  caller : value,
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
-| caller | string | yes |  |   
-| receiver | string | yes |  |   
-| bagId | string | yes |  |    
-| callingTo | string | no |  |    
-| callerId | string | no |  |  
+| caller | string | yes | Call Number |   
+| receiver | string | yes | Receiver Number |   
+| bagId | string | yes | Bag Id for the query |    
+| callerId | string | no | Caller Id |    
+| method | string | no | Provider Method to Call |  
 
 
 
@@ -228,7 +228,10 @@ Process call on request!
 <summary><i>&nbsp; Example:</i></summary>
 
 ```json
-
+{
+  "success": true,
+  "call_id": "c2c_646b00bc-984c-4c10-bb8d-0e850a1e0022"
+}
 ```
 </details>
 
@@ -3381,8 +3384,8 @@ const data = await platformClient.order.getShipmentHistory({  shipmentId : value
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
-| shipmentId | string | no |  |    
-| bagId | number | no |  |  
+| shipmentId | number | no | Shipment Id |    
+| bagId | number | no | Bag/Product Id |  
 
 
 
@@ -4514,7 +4517,10 @@ Sms Sent successfully
 <summary><i>&nbsp; Example:</i></summary>
 
 ```json
-
+{
+  "success": true,
+  "message": "Successfully emitted aldaviz-delayed-shipment-event"
+}
 ```
 </details>
 
@@ -4824,7 +4830,7 @@ const data = await platformClient.order.updatePackagingDimensions({  body : valu
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |
-| body | [CreateOrderPayload](#CreateOrderPayload) | yes | Request body |
+| body | [UpdatePackagingDimensionsPayload](#UpdatePackagingDimensionsPayload) | yes | Request body |
 
 
 
@@ -5987,8 +5993,8 @@ Verify OTP
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | call_id | string |  no  |  |
- | status | boolean |  no  |  |
+ | call_id | string |  no  | Call ID from the provider |
+ | success | boolean |  no  | Success |
  
 
 ---
@@ -6183,6 +6189,19 @@ Verify OTP
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | stormbreaker_uuid | string? |  yes  |  |
+ 
+
+---
+
+#### [Dimension](#Dimension)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | height | string? |  yes  |  |
+ | length | number? |  yes  |  |
+ | packaging_type | string? |  yes  |  |
+ | weight | string? |  yes  |  |
+ | width | number? |  yes  |  |
  
 
 ---
@@ -6628,64 +6647,19 @@ Verify OTP
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | assigned_agent | string? |  yes  |  |
- | bag_id | number? |  yes  |  |
- | createdat | string |  no  |  |
- | display_message | string? |  yes  |  |
- | l1_detail | string? |  yes  |  |
- | l2_detail | string? |  yes  |  |
- | l3_detail | string? |  yes  |  |
- | message | string |  no  |  |
- | meta | [HistoryMeta](#HistoryMeta)? |  yes  |  |
- | ticket_id | string? |  yes  |  |
- | ticket_url | string? |  yes  |  |
- | type | string |  no  |  |
- | user | string |  no  |  |
- 
-
----
-
-#### [HistoryMeta](#HistoryMeta)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | activity_comment | string? |  yes  |  |
- | activity_type | string? |  yes  |  |
- | billsec | string? |  yes  |  |
- | call_id | string? |  yes  |  |
- | caller | string? |  yes  |  |
- | callerid | string? |  yes  |  |
- | channel_type | string? |  yes  |  |
- | duration | string? |  yes  |  |
- | endtime | string? |  yes  |  |
- | message | string? |  yes  |  |
- | reason | [HistoryReason](#HistoryReason)? |  yes  |  |
- | receiver | string? |  yes  |  |
- | recipient | string? |  yes  |  |
- | recordpath | string? |  yes  |  |
- | short_link | string? |  yes  |  |
- | slug | string? |  yes  |  |
- | starttime | string? |  yes  |  |
- | status | string? |  yes  |  |
- | status1 | string? |  yes  |  |
- | status2 | string? |  yes  |  |
- | store_code | string? |  yes  |  |
- | store_id | number? |  yes  |  |
- | store_name | string? |  yes  |  |
- 
-
----
-
-#### [HistoryReason](#HistoryReason)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | category | string? |  yes  |  |
- | code | number? |  yes  |  |
- | dislay_name | string? |  yes  |  |
- | quantity | number? |  yes  |  |
- | state | string? |  yes  |  |
- | text | string? |  yes  |  |
+ | assigned_agent | string? |  yes  | Assigned Agent |
+ | bag_id | number? |  yes  | Bag ID |
+ | createdat | string |  no  | Create date |
+ | display_message | string? |  yes  | Display Message |
+ | l1_detail | string? |  yes  | L1 details of bag |
+ | l2_detail | string? |  yes  | L2 details of bag |
+ | l3_detail | string? |  yes  | L3 details of bag |
+ | message | string |  no  | History Message or comment |
+ | meta | string? |  yes  | meta |
+ | ticket_id | string? |  yes  | Ticket ID |
+ | ticket_url | string? |  yes  | Ticket URL |
+ | type | string |  no  | type of history, Expected Values:             [ activity_status, activity_escalation, activity_comment, outbound_notification, outbound_voice ] |
+ | user | string |  no  | User who created the history |
  
 
 ---
@@ -7806,9 +7780,9 @@ Verify OTP
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | bag_id | number |  no  |  |
- | data | [SmsDataPayload](#SmsDataPayload)? |  yes  |  |
- | slug | string |  no  |  |
+ | bag_id | number |  no  | bag_id for the activity history track |
+ | data | [SmsDataPayload](#SmsDataPayload)? |  yes  | SMS Data |
+ | slug | string |  no  | slug name for the template mapped in pointblank |
  
 
 ---
@@ -8197,15 +8171,15 @@ Verify OTP
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | amount_paid | number |  no  |  |
- | brand_name | string |  no  |  |
- | country_code | string |  no  |  |
- | customer_name | string |  no  |  |
- | message | string |  no  |  |
- | order_id | string |  no  |  |
- | payment_mode | string |  no  |  |
- | phone_number | number |  no  |  |
- | shipment_id | number |  no  |  |
+ | amount_paid | number? |  yes  | Data mapped in Communication template: amount_paid |
+ | brand_name | string? |  yes  | Data mapped in Communication template: brand_name |
+ | country_code | string |  no  | country code for SMS |
+ | customer_name | string? |  yes  | Data mapped in Communication template: customer_name |
+ | message | string |  no  | message to be send in SMS |
+ | order_id | string |  no  | orderId |
+ | payment_mode | string? |  yes  | Data mapped in Communication template: payment_mode |
+ | phone_number | number |  no  | phone number for communication |
+ | shipment_id | number |  no  | ShipmentId |
  
 
 ---
@@ -8489,6 +8463,17 @@ Verify OTP
  | terminal_id | string? |  yes  |  |
  | transaction_id | string? |  yes  |  |
  | unique_reference_number | string? |  yes  |  |
+ 
+
+---
+
+#### [UpdatePackagingDimensionsPayload](#UpdatePackagingDimensionsPayload)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | current_status | string |  no  |  |
+ | dimension | [[Dimension](#Dimension)] |  no  |  |
+ | shipment_id | string |  no  |  |
  
 
 ---

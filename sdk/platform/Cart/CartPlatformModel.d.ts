@@ -24,12 +24,15 @@ declare class CartModel {
     static CartItemCountResponse(): any;
     static CartItemMeta(): any;
     static CartList(): any;
+    static CartMetaConfigAdd(): any;
+    static CartMetaConfigUpdate(): any;
     static CartMetaMissingResponse(): any;
     static CartMetaResponse(): any;
     static CartProduct(): any;
     static CartProductIdentifer(): any;
     static CartProductInfo(): any;
     static CategoryInfo(): any;
+    static Charges(): any;
     static CheckCart(): any;
     static CompareObject(): any;
     static Coupon(): any;
@@ -47,6 +50,7 @@ declare class CartModel {
     static DeleteAddressResponse(): any;
     static DeleteCartDetailResponse(): any;
     static DeleteCartRequest(): any;
+    static DeliveryCharges(): any;
     static DiscountOffer(): any;
     static DiscountRule(): any;
     static DiscountRulesApp(): any;

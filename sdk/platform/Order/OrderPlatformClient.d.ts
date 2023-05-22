@@ -24,21 +24,21 @@ declare class Order {
     }): Promise<OrderStatusResult>;
     /**
      * @param {Object} arg - Arg object.
-     * @param {string} arg.caller -
-     * @param {string} arg.receiver -
-     * @param {string} arg.bagId -
-     * @param {string} [arg.callingTo] -
-     * @param {string} [arg.callerId] -
+     * @param {string} arg.caller - Call Number
+     * @param {string} arg.receiver - Receiver Number
+     * @param {string} arg.bagId - Bag Id for the query
+     * @param {string} [arg.callerId] - Caller Id
+     * @param {string} [arg.method] - Provider Method to Call
      * @returns {Promise<Click2CallResponse>} - Success response
      * @summary:
      * @description:
      */
-    click2Call({ caller, receiver, bagId, callingTo, callerId, }?: {
+    click2Call({ caller, receiver, bagId, callerId, method, }?: {
         caller: string;
         receiver: string;
         bagId: string;
-        callingTo?: string;
         callerId?: string;
+        method?: string;
     }): Promise<Click2CallResponse>;
     /**
      * @param {Object} arg - Arg object.
@@ -370,14 +370,14 @@ declare class Order {
     }): Promise<ShipmentInfoResponse>;
     /**
      * @param {Object} arg - Arg object.
-     * @param {string} [arg.shipmentId] -
-     * @param {number} [arg.bagId] -
+     * @param {number} [arg.shipmentId] - Shipment Id
+     * @param {number} [arg.bagId] - Bag/Product Id
      * @returns {Promise<ShipmentHistoryResponse>} - Success response
      * @summary:
      * @description:
      */
     getShipmentHistory({ shipmentId, bagId }?: {
-        shipmentId?: string;
+        shipmentId?: number;
         bagId?: number;
     }): Promise<ShipmentHistoryResponse>;
     /**
@@ -588,13 +588,13 @@ declare class Order {
     }): Promise<BaseResponse>;
     /**
      * @param {Object} arg - Arg object.
-     * @param {CreateOrderPayload} arg.body
+     * @param {UpdatePackagingDimensionsPayload} arg.body
      * @returns {Promise<CreateOrderResponse>} - Success response
      * @summary:
      * @description:
      */
     updatePackagingDimensions({ body }?: {
-        body: CreateOrderPayload;
+        body: UpdatePackagingDimensionsPayload;
     }): Promise<CreateOrderResponse>;
     /**
      * @param {Object} arg - Arg object.

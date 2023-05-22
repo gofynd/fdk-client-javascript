@@ -718,6 +718,7 @@ class PlatformApplicationClient {
 /** @typedef DataUpdates */
 /** @typedef Dates */
 /** @typedef DebugInfo */
+/** @typedef Dimension */
 /** @typedef Dimensions */
 /** @typedef DiscountRules */
 /** @typedef DispatchManifest */
@@ -755,8 +756,6 @@ class PlatformApplicationClient {
 /** @typedef GiftCard */
 /** @typedef GSTDetailsData */
 /** @typedef HistoryDict */
-/** @typedef HistoryMeta */
-/** @typedef HistoryReason */
 /** @typedef Identifier */
 /** @typedef InvalidateShipmentCacheNestedResponse */
 /** @typedef InvalidateShipmentCachePayload */
@@ -885,6 +884,7 @@ class PlatformApplicationClient {
 /** @typedef TaxInfo */
 /** @typedef TrackingList */
 /** @typedef TransactionData */
+/** @typedef UpdatePackagingDimensionsPayload */
 /** @typedef UpdateShipmentLockPayload */
 /** @typedef UpdateShipmentLockResponse */
 /** @typedef UpdateShipmentStatusRequest */
@@ -1569,12 +1569,15 @@ class PlatformApplicationClient {
 /** @typedef CartItemCountResponse */
 /** @typedef CartItemMeta */
 /** @typedef CartList */
+/** @typedef CartMetaConfigAdd */
+/** @typedef CartMetaConfigUpdate */
 /** @typedef CartMetaMissingResponse */
 /** @typedef CartMetaResponse */
 /** @typedef CartProduct */
 /** @typedef CartProductIdentifer */
 /** @typedef CartProductInfo */
 /** @typedef CategoryInfo */
+/** @typedef Charges */
 /** @typedef CheckCart */
 /** @typedef CompareObject */
 /** @typedef Coupon */
@@ -1592,6 +1595,7 @@ class PlatformApplicationClient {
 /** @typedef DeleteAddressResponse */
 /** @typedef DeleteCartDetailResponse */
 /** @typedef DeleteCartRequest */
+/** @typedef DeliveryCharges */
 /** @typedef DiscountOffer */
 /** @typedef DiscountRule */
 /** @typedef DiscountRulesApp */

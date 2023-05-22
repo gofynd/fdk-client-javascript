@@ -39,6 +39,12 @@ class CartValidator {
     }).required();
   }
 
+  static createCartMetaConfig() {
+    return Joi.object({
+      body: CartModel.CartMetaConfigAdd().required(),
+    }).required();
+  }
+
   static createCoupon() {
     return Joi.object({
       body: CartModel.CouponAdd().required(),
@@ -62,6 +68,10 @@ class CartValidator {
     return Joi.object({
       body: CartModel.OpenapiCartDetailsRequest().required(),
     }).required();
+  }
+
+  static fetchCartMetaConfig() {
+    return Joi.object({}).required();
   }
 
   static getAbandonedCart() {
@@ -331,6 +341,13 @@ class CartValidator {
       id: Joi.string().allow(""),
       buyNow: Joi.boolean(),
       body: CartModel.PlatformCartMetaRequest().required(),
+    }).required();
+  }
+
+  static updateCartMetaConfig() {
+    return Joi.object({
+      cartMetaId: Joi.string().allow("").required(),
+      body: CartModel.CartMetaConfigUpdate().required(),
     }).required();
   }
 

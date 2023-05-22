@@ -19,8 +19,8 @@ class OrderValidator {
       caller: Joi.string().allow("").required(),
       receiver: Joi.string().allow("").required(),
       bagId: Joi.string().allow("").required(),
-      callingTo: Joi.string().allow(""),
       callerId: Joi.string().allow(""),
+      method: Joi.string().allow(""),
     }).required();
   }
 
@@ -211,7 +211,7 @@ class OrderValidator {
 
   static getShipmentHistory() {
     return Joi.object({
-      shipmentId: Joi.string().allow(""),
+      shipmentId: Joi.number(),
       bagId: Joi.number(),
     }).required();
   }
@@ -332,7 +332,7 @@ class OrderValidator {
 
   static updatePackagingDimensions() {
     return Joi.object({
-      body: OrderModel.CreateOrderPayload().required(),
+      body: OrderModel.UpdatePackagingDimensionsPayload().required(),
     }).required();
   }
 

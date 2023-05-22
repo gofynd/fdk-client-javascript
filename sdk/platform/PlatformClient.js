@@ -4801,7 +4801,7 @@ class PlatformClient {
 /**
  * @typedef Click2CallResponse
  * @property {string} call_id
- * @property {boolean} status
+ * @property {boolean} success
  */
 /**
  * @typedef CompanyDetails
@@ -4916,6 +4916,14 @@ class PlatformClient {
 /**
  * @typedef DebugInfo
  * @property {string} [stormbreaker_uuid]
+ */
+/**
+ * @typedef Dimension
+ * @property {string} [height]
+ * @property {number} [length]
+ * @property {string} [packaging_type]
+ * @property {string} [weight]
+ * @property {number} [width]
  */
 /**
  * @typedef Dimensions
@@ -5184,46 +5192,11 @@ class PlatformClient {
  * @property {string} [l2_detail]
  * @property {string} [l3_detail]
  * @property {string} message
- * @property {HistoryMeta} [meta]
+ * @property {Object} [meta]
  * @property {string} [ticket_id]
  * @property {string} [ticket_url]
  * @property {string} type
  * @property {string} user
- */
-/**
- * @typedef HistoryMeta
- * @property {string} [activity_comment]
- * @property {string} [activity_type]
- * @property {string} [billsec]
- * @property {string} [call_id]
- * @property {string} [caller]
- * @property {string} [callerid]
- * @property {string} [channel_type]
- * @property {string} [duration]
- * @property {string} [endtime]
- * @property {string} [message]
- * @property {HistoryReason} [reason]
- * @property {string} [receiver]
- * @property {string} [recipient]
- * @property {string} [recordpath]
- * @property {string} [short_link]
- * @property {string} [slug]
- * @property {string} [starttime]
- * @property {string} [status]
- * @property {string} [status1]
- * @property {string} [status2]
- * @property {string} [store_code]
- * @property {number} [store_id]
- * @property {string} [store_name]
- */
-/**
- * @typedef HistoryReason
- * @property {string} [category]
- * @property {number} [code]
- * @property {string} [dislay_name]
- * @property {number} [quantity]
- * @property {string} [state]
- * @property {string} [text]
  */
 /**
  * @typedef Identifier
@@ -6196,13 +6169,13 @@ class PlatformClient {
  */
 /**
  * @typedef SmsDataPayload
- * @property {number} amount_paid
- * @property {string} brand_name
+ * @property {number} [amount_paid]
+ * @property {string} [brand_name]
  * @property {string} country_code
- * @property {string} customer_name
+ * @property {string} [customer_name]
  * @property {string} message
  * @property {string} order_id
- * @property {string} payment_mode
+ * @property {string} [payment_mode]
  * @property {number} phone_number
  * @property {number} shipment_id
  */
@@ -6388,6 +6361,12 @@ class PlatformClient {
  * @property {string} [terminal_id]
  * @property {string} [transaction_id]
  * @property {string} [unique_reference_number]
+ */
+/**
+ * @typedef UpdatePackagingDimensionsPayload
+ * @property {string} current_status
+ * @property {Dimension[]} dimension
+ * @property {string} shipment_id
  */
 /**
  * @typedef UpdateShipmentLockPayload
@@ -11958,6 +11937,28 @@ class PlatformClient {
  * @property {string} [user_id]
  */
 /**
+ * @typedef CartMetaConfigAdd
+ * @property {boolean} [bulk_coupons]
+ * @property {DeliveryCharges} [delivery_charges]
+ * @property {boolean} [enabled]
+ * @property {string} [gift_display_text]
+ * @property {number} [gift_pricing]
+ * @property {number} [max_cart_items]
+ * @property {number} [min_cart_value]
+ * @property {boolean} [revenue_engine_coupon]
+ */
+/**
+ * @typedef CartMetaConfigUpdate
+ * @property {boolean} [bulk_coupons]
+ * @property {DeliveryCharges} [delivery_charges]
+ * @property {boolean} [enabled]
+ * @property {string} [gift_display_text]
+ * @property {number} [gift_pricing]
+ * @property {number} [max_cart_items]
+ * @property {number} [min_cart_value]
+ * @property {boolean} [revenue_engine_coupon]
+ */
+/**
  * @typedef CartMetaMissingResponse
  * @property {string[]} [errors]
  */
@@ -12013,6 +12014,11 @@ class PlatformClient {
  * @typedef CategoryInfo
  * @property {string} [name]
  * @property {number} [uid]
+ */
+/**
+ * @typedef Charges
+ * @property {number} [charges]
+ * @property {number} [threshold]
  */
 /**
  * @typedef CheckCart
@@ -12183,6 +12189,11 @@ class PlatformClient {
 /**
  * @typedef DeleteCartRequest
  * @property {string[]} [cart_id_list]
+ */
+/**
+ * @typedef DeliveryCharges
+ * @property {Charges[]} [charges]
+ * @property {boolean} [enabled]
  */
 /**
  * @typedef DiscountOffer
