@@ -20,15 +20,13 @@ const Inventory = require("./Inventory/InventoryPlatformClient");
 
 const Configuration = require("./Configuration/ConfigurationPlatformClient");
 
-const Analytics = require("./Analytics/AnalyticsPlatformClient");
-
 const Discount = require("./Discount/DiscountPlatformClient");
 
 const Webhook = require("./Webhook/WebhookPlatformClient");
 
 const AuditTrail = require("./AuditTrail/AuditTrailPlatformClient");
 
-const Serviceability = require("./Serviceability/ServiceabilityPlatformClient");
+const Logistics = require("./Logistics/LogisticsPlatformClient");
 
 const PlatformApplicationClient = require("./PlatformApplicationClient");
 const { FDKClientValidationError } = require("../common/FDKError");
@@ -59,15 +57,13 @@ class PlatformClient {
 
     this.configuration = new Configuration(config);
 
-    this.analytics = new Analytics(config);
-
     this.discount = new Discount(config);
 
     this.webhook = new Webhook(config);
 
     this.auditTrail = new AuditTrail(config);
 
-    this.serviceability = new Serviceability(config);
+    this.logistics = new Logistics(config);
   }
   application(applicationId) {
     if (typeof applicationId == "string") {
@@ -5335,6 +5331,7 @@ class PlatformClient {
  * @typedef Meta
  * @property {Dimensions} [dimension]
  * @property {Object} [dp_options]
+ * @property {Object} [lock_data]
  */
 /**
  * @typedef Meta1
@@ -5808,6 +5805,7 @@ class PlatformClient {
  * @property {number} [delivery_charge]
  * @property {number} [discount]
  * @property {number} [fynd_credits]
+ * @property {number} [gift_price]
  * @property {number} [pm_price_split]
  * @property {number} [price_effective]
  * @property {number} [price_marked]
@@ -13335,151 +13333,6 @@ class PlatformClient {
  * @typedef UserRes
  * @property {Points} [points]
  * @property {RewardUser} [user]
- */
-
-/**
- * @typedef AbandonCartDetail
- * @property {string} [_id]
- * @property {Object} [address]
- * @property {Object[]} [articles]
- * @property {Object} [breakup]
- * @property {string} [cart_value]
- * @property {string} [user_id]
- */
-/**
- * @typedef AbandonCartsDetail
- * @property {string} [context_app_application_id]
- * @property {string} [context_traits_email]
- * @property {string} [context_traits_first_name]
- * @property {string} [context_traits_last_name]
- * @property {string} [context_traits_phone_number]
- * @property {string} [properties_breakup_values_raw_total]
- * @property {string} [properties_cart_id]
- * @property {ReceivedAt} [received_at]
- */
-/**
- * @typedef AbandonCartsList
- * @property {string} [cart_total]
- * @property {AbandonCartsDetail[]} [items]
- * @property {Page} [page]
- */
-/**
- * @typedef ErrorRes
- * @property {string} [message]
- */
-/**
- * @typedef ExportJobReq
- * @property {string} [end_time]
- * @property {string} [event_type]
- * @property {string} [marketplace_name]
- * @property {string} [start_time]
- * @property {string} [trace_id]
- */
-/**
- * @typedef ExportJobRes
- * @property {string} [job_id]
- * @property {string} [status]
- */
-/**
- * @typedef ExportJobStatusRes
- * @property {string} [download_url]
- * @property {string} [job_id]
- * @property {string} [status]
- */
-/**
- * @typedef GetLogsListReq
- * @property {string} [company_id]
- * @property {string} [end_date]
- * @property {string} [marketplace_name]
- * @property {string} [start_date]
- */
-/**
- * @typedef GetLogsListRes
- * @property {MkpLogsResp[]} [items]
- * @property {Page} [page]
- */
-/**
- * @typedef LogInfo
- * @property {string} [_id]
- * @property {string} [article_id]
- * @property {number} [brand_id]
- * @property {number} [company_id]
- * @property {string} [event]
- * @property {string} [event_type]
- * @property {number} [item_id]
- * @property {string} [marketplace_name]
- * @property {string} [seller_identifier]
- * @property {string} [status]
- * @property {string} [store_code]
- * @property {number} [store_id]
- * @property {string} [trace_id]
- */
-/**
- * @typedef MkpLogsResp
- * @property {string} [count]
- * @property {string} [end_time_iso]
- * @property {string} [event_type]
- * @property {string} [start_time_iso]
- * @property {string} [status]
- * @property {string} [trace_id]
- */
-/**
- * @typedef Page
- * @property {number} [current]
- * @property {boolean} [has_next]
- * @property {boolean} [has_previous]
- * @property {number} [item_total]
- * @property {string} [next_id]
- * @property {number} [size]
- * @property {string} type
- */
-/**
- * @typedef ReceivedAt
- * @property {string} [value]
- */
-/**
- * @typedef SearchLogReq
- * @property {string} [company_id]
- * @property {string} [end_date]
- * @property {string} [identifier]
- * @property {string} [identifier_value]
- * @property {string} [marketplace_name]
- * @property {string} [start_date]
- */
-/**
- * @typedef SearchLogRes
- * @property {LogInfo[]} [items]
- * @property {Page} [page]
- */
-/**
- * @typedef StatGroup
- * @property {string} [key]
- * @property {string} [title]
- * @property {string} [url]
- */
-/**
- * @typedef StatsGroupComponent
- * @property {Object} [filters]
- * @property {string} [key]
- * @property {string} [title]
- * @property {string} [type]
- * @property {string} [url]
- */
-/**
- * @typedef StatsGroupComponents
- * @property {StatsGroupComponent[]} [components]
- * @property {string} [title]
- */
-/**
- * @typedef StatsGroups
- * @property {StatGroup[]} [groups]
- */
-/**
- * @typedef StatsRes
- * @property {Object} [data]
- * @property {string} [key]
- * @property {string} [title]
- * @property {string} [type]
  */
 
 /**

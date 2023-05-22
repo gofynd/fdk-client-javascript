@@ -6901,6 +6901,7 @@ Verify OTP
  | ---------- | ---- | -------- | ----------- |
  | dimension | [Dimensions](#Dimensions)? |  yes  |  |
  | dp_options | string? |  yes  |  |
+ | lock_data | string? |  yes  |  |
  
 
 ---
@@ -7613,6 +7614,7 @@ Verify OTP
  | delivery_charge | number? |  yes  |  |
  | discount | number? |  yes  |  |
  | fynd_credits | number? |  yes  |  |
+ | gift_price | number? |  yes  |  |
  | pm_price_split | number? |  yes  |  |
  | price_effective | number? |  yes  |  |
  | price_marked | number? |  yes  |  |

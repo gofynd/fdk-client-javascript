@@ -1,14 +1,14 @@
 const Joi = require("joi");
 
-const ServiceabilityModel = require("./ServiceabilityPlatformModel");
-class ServiceabilityValidator {
+const LogisticsModel = require("./LogisticsPlatformModel");
+class LogisticsValidator {
   static getApplicationServiceability() {
     return Joi.object({}).required();
   }
 
   static getZoneFromPincodeView() {
     return Joi.object({
-      body: ServiceabilityModel.GetZoneFromPincodeViewRequest().required(),
+      body: LogisticsModel.GetZoneFromPincodeViewRequest().required(),
     }).required();
   }
 
@@ -23,27 +23,27 @@ class ServiceabilityValidator {
 
   static updatePincodeAuditHistory() {
     return Joi.object({
-      body: ServiceabilityModel.PincodeMopUpdateAuditHistoryRequest().required(),
+      body: LogisticsModel.PincodeMopUpdateAuditHistoryRequest().required(),
     }).required();
   }
 
   static updatePincodeBulkView() {
     return Joi.object({
-      body: ServiceabilityModel.PincodeMopBulkData().required(),
+      body: LogisticsModel.PincodeMopBulkData().required(),
     }).required();
   }
 
   static updatePincodeCoDListing() {
     return Joi.object({
-      body: ServiceabilityModel.PincodeCodStatusListingRequest().required(),
+      body: LogisticsModel.PincodeCodStatusListingRequest().required(),
     }).required();
   }
 
   static updatePincodeMopView() {
     return Joi.object({
-      body: ServiceabilityModel.PincodeMopData().required(),
+      body: LogisticsModel.PincodeMopData().required(),
     }).required();
   }
 }
 
-module.exports = ServiceabilityValidator;
+module.exports = LogisticsValidator;

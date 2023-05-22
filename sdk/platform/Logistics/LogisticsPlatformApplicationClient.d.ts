@@ -1,5 +1,5 @@
-export = Serviceability;
-declare class Serviceability {
+export = Logistics;
+declare class Logistics {
     constructor(config: any, applicationId: any);
     config: any;
     applicationId: any;

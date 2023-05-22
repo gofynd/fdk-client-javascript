@@ -14,14 +14,4 @@ declare class Communication {
         pageNo?: number;
         pageSize?: number;
     }): Promise<SystemNotifications>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {number} [arg.pageSize] -
-     * @summary: Get system notifications
-     * @description: Get system notifications
-     */
-    getSystemNotificationsPaginator({ pageSize }?: {
-        pageSize?: number;
-    }): Paginator;
 }
-import Paginator = require("../../common/Paginator");

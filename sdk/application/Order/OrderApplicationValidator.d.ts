@@ -12,6 +12,5 @@ declare class OrderValidator {
     static sendOtpToShipmentCustomer(): any;
     static trackShipment(): any;
     static updateShipmentStatus(): any;
-    static updateShipmentStatus1(): any;
     static verifyOtpShipmentCustomer(): any;
 }

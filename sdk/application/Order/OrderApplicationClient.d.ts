@@ -15,7 +15,6 @@ declare class Order {
         sendOtpToShipmentCustomer: string;
         trackShipment: string;
         updateShipmentStatus: string;
-        updateShipmentStatus1: string;
         verifyOtpShipmentCustomer: string;
     };
     _urls: {};
@@ -199,18 +198,6 @@ declare class Order {
     updateShipmentStatus({ shipmentId, body }?: {
         shipmentId: string;
         body: UpdateShipmentStatusRequest;
-    }): Promise<ShipmentApplicationStatusResponse>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.shipmentId -
-     * @param {UpdateShipmentStatusRequest1} arg.body
-     * @returns {Promise<ShipmentApplicationStatusResponse>} - Success response
-     * @summary:
-     * @description: updateShipmentStatus
-     */
-    updateShipmentStatus1({ shipmentId, body }?: {
-        shipmentId: string;
-        body: UpdateShipmentStatusRequest1;
     }): Promise<ShipmentApplicationStatusResponse>;
     /**
      * @param {Object} arg - Arg object.

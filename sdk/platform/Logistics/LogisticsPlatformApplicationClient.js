@@ -1,12 +1,12 @@
 const PlatformAPIClient = require("../PlatformAPIClient");
 const { FDKClientValidationError } = require("../../common/FDKError");
 const Paginator = require("../../common/Paginator");
-const ServiceabilityValidator = require("./ServiceabilityPlatformApplicationValidator");
-const ServiceabilityModel = require("./ServiceabilityPlatformModel");
+const LogisticsValidator = require("./LogisticsPlatformApplicationValidator");
+const LogisticsModel = require("./LogisticsPlatformModel");
 const { Logger } = require("./../../common/Logger");
 const Joi = require("joi");
 
-class Serviceability {
+class Logistics {
   constructor(config, applicationId) {
     this.config = config;
     this.applicationId = applicationId;
@@ -21,7 +21,7 @@ class Serviceability {
   async getApplicationServiceability({} = {}) {
     const {
       error,
-    } = ServiceabilityValidator.getApplicationServiceability().validate(
+    } = LogisticsValidator.getApplicationServiceability().validate(
       {},
       { abortEarly: false, allowUnknown: true }
     );
@@ -32,7 +32,7 @@ class Serviceability {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = ServiceabilityValidator.getApplicationServiceability().validate(
+    } = LogisticsValidator.getApplicationServiceability().validate(
       {},
       { abortEarly: false, allowUnknown: false }
     );
@@ -57,7 +57,7 @@ class Serviceability {
 
     const {
       error: res_error,
-    } = ServiceabilityModel.ApplicationServiceabilityConfigResponse().validate(
+    } = LogisticsModel.ApplicationServiceabilityConfigResponse().validate(
       response,
       { abortEarly: false, allowUnknown: false }
     );
@@ -82,7 +82,7 @@ class Serviceability {
    * @description: This API returns zone from the Pincode View.
    */
   async getZoneFromPincodeView({ body } = {}) {
-    const { error } = ServiceabilityValidator.getZoneFromPincodeView().validate(
+    const { error } = LogisticsValidator.getZoneFromPincodeView().validate(
       {
         body,
       },
@@ -95,7 +95,7 @@ class Serviceability {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = ServiceabilityValidator.getZoneFromPincodeView().validate(
+    } = LogisticsValidator.getZoneFromPincodeView().validate(
       {
         body,
       },
@@ -121,10 +121,10 @@ class Serviceability {
 
     const {
       error: res_error,
-    } = ServiceabilityModel.GetZoneFromPincodeViewResponse().validate(
-      response,
-      { abortEarly: false, allowUnknown: false }
-    );
+    } = LogisticsModel.GetZoneFromPincodeViewResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
 
     if (res_error) {
       Logger({
@@ -150,7 +150,7 @@ class Serviceability {
   async getZonesFromApplicationIdView({ pageNo, pageSize, zoneId, q } = {}) {
     const {
       error,
-    } = ServiceabilityValidator.getZonesFromApplicationIdView().validate(
+    } = LogisticsValidator.getZonesFromApplicationIdView().validate(
       {
         pageNo,
         pageSize,
@@ -166,7 +166,7 @@ class Serviceability {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = ServiceabilityValidator.getZonesFromApplicationIdView().validate(
+    } = LogisticsValidator.getZonesFromApplicationIdView().validate(
       {
         pageNo,
         pageSize,
@@ -200,7 +200,7 @@ class Serviceability {
 
     const {
       error: res_error,
-    } = ServiceabilityModel.GetZoneFromApplicationIdViewResponse().validate(
+    } = LogisticsModel.GetZoneFromApplicationIdViewResponse().validate(
       response,
       { abortEarly: false, allowUnknown: false }
     );
@@ -225,9 +225,7 @@ class Serviceability {
    * @description: This API returns Audit logs of Pincode.
    */
   async updatePincodeAuditHistory({ body } = {}) {
-    const {
-      error,
-    } = ServiceabilityValidator.updatePincodeAuditHistory().validate(
+    const { error } = LogisticsValidator.updatePincodeAuditHistory().validate(
       {
         body,
       },
@@ -240,7 +238,7 @@ class Serviceability {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = ServiceabilityValidator.updatePincodeAuditHistory().validate(
+    } = LogisticsValidator.updatePincodeAuditHistory().validate(
       {
         body,
       },
@@ -266,7 +264,7 @@ class Serviceability {
 
     const {
       error: res_error,
-    } = ServiceabilityModel.PincodeMopUpdateAuditHistoryResponseData().validate(
+    } = LogisticsModel.PincodeMopUpdateAuditHistoryResponseData().validate(
       response,
       { abortEarly: false, allowUnknown: false }
     );
@@ -290,7 +288,7 @@ class Serviceability {
    * @description: This API constructs bulk write operations to update the MOP data for each pincode in the payload.
    */
   async updatePincodeBulkView({ body } = {}) {
-    const { error } = ServiceabilityValidator.updatePincodeBulkView().validate(
+    const { error } = LogisticsValidator.updatePincodeBulkView().validate(
       {
         body,
       },
@@ -303,7 +301,7 @@ class Serviceability {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = ServiceabilityValidator.updatePincodeBulkView().validate(
+    } = LogisticsValidator.updatePincodeBulkView().validate(
       {
         body,
       },
@@ -329,7 +327,7 @@ class Serviceability {
 
     const {
       error: res_error,
-    } = ServiceabilityModel.PincodeBulkViewResponse().validate(response, {
+    } = LogisticsModel.PincodeBulkViewResponse().validate(response, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -353,9 +351,7 @@ class Serviceability {
    * @description: This API returns count of active pincode.
    */
   async updatePincodeCoDListing({ body } = {}) {
-    const {
-      error,
-    } = ServiceabilityValidator.updatePincodeCoDListing().validate(
+    const { error } = LogisticsValidator.updatePincodeCoDListing().validate(
       {
         body,
       },
@@ -368,7 +364,7 @@ class Serviceability {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = ServiceabilityValidator.updatePincodeCoDListing().validate(
+    } = LogisticsValidator.updatePincodeCoDListing().validate(
       {
         body,
       },
@@ -394,10 +390,10 @@ class Serviceability {
 
     const {
       error: res_error,
-    } = ServiceabilityModel.PincodeCodStatusListingResponse().validate(
-      response,
-      { abortEarly: false, allowUnknown: false }
-    );
+    } = LogisticsModel.PincodeCodStatusListingResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
 
     if (res_error) {
       Logger({
@@ -418,7 +414,7 @@ class Serviceability {
    * @description: This API updates Pincode method of payment.
    */
   async updatePincodeMopView({ body } = {}) {
-    const { error } = ServiceabilityValidator.updatePincodeMopView().validate(
+    const { error } = LogisticsValidator.updatePincodeMopView().validate(
       {
         body,
       },
@@ -431,7 +427,7 @@ class Serviceability {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = ServiceabilityValidator.updatePincodeMopView().validate(
+    } = LogisticsValidator.updatePincodeMopView().validate(
       {
         body,
       },
@@ -457,7 +453,7 @@ class Serviceability {
 
     const {
       error: res_error,
-    } = ServiceabilityModel.PincodeMOPresponse().validate(response, {
+    } = LogisticsModel.PincodeMOPresponse().validate(response, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -474,4 +470,4 @@ class Serviceability {
   }
 }
 
-module.exports = Serviceability;
+module.exports = Logistics;

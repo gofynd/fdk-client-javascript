@@ -54,7 +54,7 @@ class Order {
     const response = await PlatformAPIClient.execute(
       this.config,
       "get",
-      `/service/platform/order/v1.0/company/${this.config.companyId}/application/${this.applicationId}/order-details`,
+      `/service/platform/orders/v1.0/company/${this.config.companyId}/application/${this.applicationId}/order-details`,
       query_params,
       undefined
     );
@@ -185,7 +185,7 @@ class Order {
     const response = await PlatformAPIClient.execute(
       this.config,
       "get",
-      `/service/platform/order/v1.0/company/${this.config.companyId}/application/${this.applicationId}/shipments/`,
+      `/service/platform/orders/v1.0/company/${this.config.companyId}/application/${this.applicationId}/shipments/`,
       query_params,
       undefined
     );
@@ -246,7 +246,7 @@ class Order {
     const response = await PlatformAPIClient.execute(
       this.config,
       "get",
-      `/service/platform/order/v1.0/company/${this.config.companyId}/application/${this.applicationId}/orders/shipments/${shipmentId}/track`,
+      `/service/platform/orders/v1.0/company/${this.config.companyId}/application/${this.applicationId}/orders/shipments/${shipmentId}/track`,
       query_params,
       undefined
     );

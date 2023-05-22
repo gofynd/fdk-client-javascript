@@ -1,6 +1,6 @@
 const Joi = require("joi");
 
-class ServiceabilityModel {
+class LogisticsModel {
   static AddressResponse() {
     return Joi.object({
       address1: Joi.string().allow(""),
@@ -23,8 +23,8 @@ class ServiceabilityModel {
   }
   static ApplicationServiceabilityConfigResponse() {
     return Joi.object({
-      data: ServiceabilityModel.ApplicationServiceabilityConfig(),
-      error: ServiceabilityModel.ServiceabilityrErrorResponse(),
+      data: LogisticsModel.ApplicationServiceabilityConfig(),
+      error: LogisticsModel.ServiceabilityrErrorResponse(),
       success: Joi.boolean().required(),
     });
   }
@@ -48,7 +48,7 @@ class ServiceabilityModel {
     return Joi.object({
       items: Joi.array().items(Joi.any()),
       page: Joi.array()
-        .items(ServiceabilityModel.CompanyStoreView_PageItems())
+        .items(LogisticsModel.CompanyStoreView_PageItems())
         .required(),
     });
   }
@@ -68,15 +68,13 @@ class ServiceabilityModel {
     return Joi.object({
       assignment_preference: Joi.string().allow(""),
       channels: Joi.array()
-        .items(ServiceabilityModel.GetZoneDataViewChannels())
+        .items(LogisticsModel.GetZoneDataViewChannels())
         .required(),
       company_id: Joi.number().required(),
       is_active: Joi.boolean().required(),
-      mapping: Joi.array()
-        .items(ServiceabilityModel.ZoneMappingType())
-        .required(),
+      mapping: Joi.array().items(LogisticsModel.ZoneMappingType()).required(),
       name: Joi.string().allow("").required(),
-      product: ServiceabilityModel.ZoneProductTypes().required(),
+      product: LogisticsModel.ZoneProductTypes().required(),
       region_type: Joi.string().allow("").required(),
       slug: Joi.string().allow("").required(),
       store_ids: Joi.array().items(Joi.number()).required(),
@@ -141,10 +139,10 @@ class ServiceabilityModel {
   static EntityRegionView_Response() {
     return Joi.object({
       data: Joi.array()
-        .items(ServiceabilityModel.EntityRegionView_Items())
+        .items(LogisticsModel.EntityRegionView_Items())
         .required(),
-      error: ServiceabilityModel.EntityRegionView_Error().required(),
-      page: ServiceabilityModel.EntityRegionView_page().required(),
+      error: LogisticsModel.EntityRegionView_Error().required(),
+      page: LogisticsModel.EntityRegionView_page().required(),
       success: Joi.boolean().required(),
     });
   }
@@ -162,13 +160,13 @@ class ServiceabilityModel {
   }
   static GetSingleZoneDataViewResponse() {
     return Joi.object({
-      data: ServiceabilityModel.GetZoneDataViewItems().required(),
+      data: LogisticsModel.GetZoneDataViewItems().required(),
     });
   }
   static GetStoresViewResponse() {
     return Joi.object({
-      items: Joi.array().items(ServiceabilityModel.ItemResponse()),
-      page: ServiceabilityModel.PageResponse().required(),
+      items: Joi.array().items(LogisticsModel.ItemResponse()),
+      page: LogisticsModel.PageResponse().required(),
     });
   }
   static GetZoneDataViewChannels() {
@@ -181,16 +179,14 @@ class ServiceabilityModel {
     return Joi.object({
       assignment_preference: Joi.string().allow(""),
       channels: Joi.array()
-        .items(ServiceabilityModel.GetZoneDataViewChannels())
+        .items(LogisticsModel.GetZoneDataViewChannels())
         .required(),
       company_id: Joi.number(),
       is_active: Joi.boolean().required(),
-      mapping: Joi.array()
-        .items(ServiceabilityModel.ZoneMappingType())
-        .required(),
+      mapping: Joi.array().items(LogisticsModel.ZoneMappingType()).required(),
       name: Joi.string().allow("").required(),
       pincodes_count: Joi.number().required(),
-      product: ServiceabilityModel.ZoneProductTypes().required(),
+      product: LogisticsModel.ZoneProductTypes().required(),
       region_type: Joi.string().allow("").required(),
       slug: Joi.string().allow("").required(),
       store_ids: Joi.array().items(Joi.number()).required(),
@@ -200,8 +196,8 @@ class ServiceabilityModel {
   }
   static GetZoneFromApplicationIdViewResponse() {
     return Joi.object({
-      items: Joi.array().items(ServiceabilityModel.ListViewItems()).required(),
-      page: Joi.array().items(ServiceabilityModel.ZoneDataItem()).required(),
+      items: Joi.array().items(LogisticsModel.ListViewItems()).required(),
+      page: Joi.array().items(LogisticsModel.ZoneDataItem()).required(),
     });
   }
   static GetZoneFromPincodeViewRequest() {
@@ -218,8 +214,8 @@ class ServiceabilityModel {
   }
   static GstCredentialsResponse() {
     return Joi.object({
-      e_invoice: ServiceabilityModel.EinvoiceResponse(),
-      e_waybill: ServiceabilityModel.EwayBillResponse(),
+      e_invoice: LogisticsModel.EinvoiceResponse(),
+      e_waybill: LogisticsModel.EwayBillResponse(),
     });
   }
   static IntegrationTypeResponse() {
@@ -232,34 +228,34 @@ class ServiceabilityModel {
     return Joi.object({
       _cls: Joi.string().allow(""),
       _custom_json: Joi.any(),
-      address: ServiceabilityModel.AddressResponse(),
+      address: LogisticsModel.AddressResponse(),
       code: Joi.string().allow(""),
       company: Joi.number(),
       company_id: Joi.number(),
       contact_numbers: Joi.array().items(
-        ServiceabilityModel.ContactNumberResponse()
+        LogisticsModel.ContactNumberResponse()
       ),
-      created_by: ServiceabilityModel.CreatedByResponse(),
+      created_by: LogisticsModel.CreatedByResponse(),
       created_on: Joi.string().allow(""),
       display_name: Joi.string().allow(""),
-      documents: Joi.array().items(ServiceabilityModel.DocumentsResponse()),
-      gst_credentials: ServiceabilityModel.GstCredentialsResponse(),
-      integration_type: ServiceabilityModel.IntegrationTypeResponse(),
-      logistics: ServiceabilityModel.LogisticsResponse(),
-      manager: ServiceabilityModel.ManagerResponse(),
-      modified_by: ServiceabilityModel.ModifiedByResponse(),
+      documents: Joi.array().items(LogisticsModel.DocumentsResponse()),
+      gst_credentials: LogisticsModel.GstCredentialsResponse(),
+      integration_type: LogisticsModel.IntegrationTypeResponse(),
+      logistics: LogisticsModel.LogisticsResponse(),
+      manager: LogisticsModel.ManagerResponse(),
+      modified_by: LogisticsModel.ModifiedByResponse(),
       modified_on: Joi.string().allow(""),
       name: Joi.string().allow(""),
       notification_emails: Joi.array().items(Joi.string().allow("")),
-      product_return_config: ServiceabilityModel.ProductReturnConfigResponse(),
+      product_return_config: LogisticsModel.ProductReturnConfigResponse(),
       stage: Joi.string().allow(""),
       store_type: Joi.string().allow(""),
       sub_type: Joi.string().allow(""),
-      timing: Joi.array().items(ServiceabilityModel.TimmingResponse()),
+      timing: Joi.array().items(LogisticsModel.TimmingResponse()),
       uid: Joi.number(),
-      verified_by: ServiceabilityModel.ModifiedByResponse(),
+      verified_by: LogisticsModel.ModifiedByResponse(),
       verified_on: Joi.string().allow(""),
-      warnings: ServiceabilityModel.WarningsResponse(),
+      warnings: LogisticsModel.WarningsResponse(),
     });
   }
   static ListViewChannels() {
@@ -270,12 +266,12 @@ class ServiceabilityModel {
   }
   static ListViewItems() {
     return Joi.object({
-      channels: ServiceabilityModel.ListViewChannels().required(),
+      channels: LogisticsModel.ListViewChannels().required(),
       company_id: Joi.number().required(),
       is_active: Joi.boolean().required(),
       name: Joi.string().allow("").required(),
       pincodes_count: Joi.number().required(),
-      product: ServiceabilityModel.ListViewProduct().required(),
+      product: LogisticsModel.ListViewProduct().required(),
       slug: Joi.string().allow("").required(),
       stores_count: Joi.number().required(),
       zone_id: Joi.string().allow("").required(),
@@ -289,11 +285,9 @@ class ServiceabilityModel {
   }
   static ListViewResponse() {
     return Joi.object({
-      items: Joi.array().items(ServiceabilityModel.ListViewItems()).required(),
-      page: Joi.array().items(ServiceabilityModel.ZoneDataItem()).required(),
-      summary: Joi.array()
-        .items(ServiceabilityModel.ListViewSummary())
-        .required(),
+      items: Joi.array().items(LogisticsModel.ListViewItems()).required(),
+      page: Joi.array().items(LogisticsModel.ZoneDataItem()).required(),
+      summary: Joi.array().items(LogisticsModel.ListViewSummary()).required(),
     });
   }
   static ListViewSummary() {
@@ -305,14 +299,14 @@ class ServiceabilityModel {
   }
   static LogisticsResponse() {
     return Joi.object({
-      dp: ServiceabilityModel.Dp(),
+      dp: LogisticsModel.Dp(),
       override: Joi.boolean(),
     });
   }
   static ManagerResponse() {
     return Joi.object({
       email: Joi.string().allow(""),
-      mobile_no: ServiceabilityModel.MobileNo(),
+      mobile_no: LogisticsModel.MobileNo(),
       name: Joi.string().allow(""),
     });
   }
@@ -373,10 +367,10 @@ class ServiceabilityModel {
       data: Joi.array()
         .items(Joi.link("#PincodeCodStatusListingResponse"))
         .required(),
-      errors: Joi.array().items(ServiceabilityModel.Error()),
-      page: ServiceabilityModel.PincodeCodStatusListingPage().required(),
+      errors: Joi.array().items(LogisticsModel.Error()),
+      page: LogisticsModel.PincodeCodStatusListingPage().required(),
       success: Joi.boolean().required(),
-      summary: ServiceabilityModel.PincodeCodStatusListingSummary().required(),
+      summary: LogisticsModel.PincodeCodStatusListingSummary().required(),
     });
   }
   static PincodeCodStatusListingSummary() {
@@ -407,7 +401,7 @@ class ServiceabilityModel {
       status_code: Joi.number().required(),
       success: Joi.boolean().required(),
       updated_pincodes: Joi.array().items(
-        ServiceabilityModel.PincodeMopUpdateResponse()
+        LogisticsModel.PincodeMopUpdateResponse()
       ),
     });
   }
@@ -441,10 +435,10 @@ class ServiceabilityModel {
   static PincodeMopUpdateAuditHistoryResponseData() {
     return Joi.object({
       data: Joi.array()
-        .items(ServiceabilityModel.PincodeMopUpdateAuditHistoryResponse())
+        .items(LogisticsModel.PincodeMopUpdateAuditHistoryResponse())
         .required(),
       entity_type: Joi.string().allow(""),
-      page: ServiceabilityModel.PincodeMopUpdateAuditHistoryPaging().required(),
+      page: LogisticsModel.PincodeMopUpdateAuditHistoryPaging().required(),
     });
   }
   static PincodeMopUpdateResponse() {
@@ -476,9 +470,9 @@ class ServiceabilityModel {
   }
   static TimmingResponse() {
     return Joi.object({
-      closing: ServiceabilityModel.OpeningClosing(),
+      closing: LogisticsModel.OpeningClosing(),
       open: Joi.boolean(),
-      opening: ServiceabilityModel.OpeningClosing(),
+      opening: LogisticsModel.OpeningClosing(),
       weekday: Joi.string().allow(""),
     });
   }
@@ -486,15 +480,13 @@ class ServiceabilityModel {
     return Joi.object({
       assignment_preference: Joi.string().allow(""),
       channels: Joi.array()
-        .items(ServiceabilityModel.GetZoneDataViewChannels())
+        .items(LogisticsModel.GetZoneDataViewChannels())
         .required(),
       company_id: Joi.number().required(),
       is_active: Joi.boolean().required(),
-      mapping: Joi.array()
-        .items(ServiceabilityModel.ZoneMappingType())
-        .required(),
+      mapping: Joi.array().items(LogisticsModel.ZoneMappingType()).required(),
       name: Joi.string().allow("").required(),
-      product: ServiceabilityModel.ZoneProductTypes().required(),
+      product: LogisticsModel.ZoneProductTypes().required(),
       region_type: Joi.string().allow("").required(),
       slug: Joi.string().allow("").required(),
       store_ids: Joi.array().items(Joi.number()).required(),
@@ -530,7 +522,7 @@ class ServiceabilityModel {
   }
   static ZoneRequest() {
     return Joi.object({
-      data: ServiceabilityModel.CreateZoneData().required(),
+      data: LogisticsModel.CreateZoneData().required(),
       identifier: Joi.string().allow("").required(),
     });
   }
@@ -549,9 +541,9 @@ class ServiceabilityModel {
   }
   static ZoneUpdateRequest() {
     return Joi.object({
-      data: ServiceabilityModel.UpdateZoneData().required(),
+      data: LogisticsModel.UpdateZoneData().required(),
       identifier: Joi.string().allow("").required(),
     });
   }
 }
-module.exports = ServiceabilityModel;
+module.exports = LogisticsModel;

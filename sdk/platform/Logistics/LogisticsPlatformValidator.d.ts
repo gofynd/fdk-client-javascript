@@ -1,5 +1,5 @@
-export = ServiceabilityValidator;
-declare class ServiceabilityValidator {
+export = LogisticsValidator;
+declare class LogisticsValidator {
     static createZone(): any;
     static getAllStores(): any;
     static getCompanyStoreView(): any;

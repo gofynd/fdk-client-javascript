@@ -1,12 +1,12 @@
 const PlatformAPIClient = require("../PlatformAPIClient");
 const { FDKClientValidationError } = require("../../common/FDKError");
 const Paginator = require("../../common/Paginator");
-const ServiceabilityValidator = require("./ServiceabilityPlatformValidator");
-const ServiceabilityModel = require("./ServiceabilityPlatformModel");
+const LogisticsValidator = require("./LogisticsPlatformValidator");
+const LogisticsModel = require("./LogisticsPlatformModel");
 const { Logger } = require("./../../common/Logger");
 const Joi = require("joi");
 
-class Serviceability {
+class Logistics {
   constructor(config) {
     this.config = config;
   }
@@ -19,7 +19,7 @@ class Serviceability {
    * @description: This API returns response of insertion of zone in mongo database.<br>Correction- `zone_id` in the path must be removed.<br> path is `/service/platform/logistics-internal/v1.0/company/{}/zone/`
    */
   async createZone({ body } = {}) {
-    const { error } = ServiceabilityValidator.createZone().validate(
+    const { error } = LogisticsValidator.createZone().validate(
       {
         body,
       },
@@ -30,7 +30,7 @@ class Serviceability {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = ServiceabilityValidator.createZone().validate(
+    const { error: warrning } = LogisticsValidator.createZone().validate(
       {
         body,
       },
@@ -59,7 +59,7 @@ class Serviceability {
 
     const {
       error: res_error,
-    } = ServiceabilityModel.ZoneResponse().validate(response, {
+    } = LogisticsModel.ZoneResponse().validate(response, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -82,7 +82,7 @@ class Serviceability {
    * @description: This API returns stores data.
    */
   async getAllStores({} = {}) {
-    const { error } = ServiceabilityValidator.getAllStores().validate(
+    const { error } = LogisticsValidator.getAllStores().validate(
       {},
       { abortEarly: false, allowUnknown: true }
     );
@@ -91,7 +91,7 @@ class Serviceability {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = ServiceabilityValidator.getAllStores().validate(
+    const { error: warrning } = LogisticsValidator.getAllStores().validate(
       {},
       { abortEarly: false, allowUnknown: false }
     );
@@ -118,7 +118,7 @@ class Serviceability {
 
     const {
       error: res_error,
-    } = ServiceabilityModel.GetStoresViewResponse().validate(response, {
+    } = LogisticsModel.GetStoresViewResponse().validate(response, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -141,7 +141,7 @@ class Serviceability {
    * @description: This API returns Company Store View of the application.
    */
   async getCompanyStoreView({} = {}) {
-    const { error } = ServiceabilityValidator.getCompanyStoreView().validate(
+    const { error } = LogisticsValidator.getCompanyStoreView().validate(
       {},
       { abortEarly: false, allowUnknown: true }
     );
@@ -152,7 +152,7 @@ class Serviceability {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = ServiceabilityValidator.getCompanyStoreView().validate(
+    } = LogisticsValidator.getCompanyStoreView().validate(
       {},
       { abortEarly: false, allowUnknown: false }
     );
@@ -179,7 +179,7 @@ class Serviceability {
 
     const {
       error: res_error,
-    } = ServiceabilityModel.CompanyStoreView_Response().validate(response, {
+    } = LogisticsModel.CompanyStoreView_Response().validate(response, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -203,7 +203,7 @@ class Serviceability {
    * @description: This API returns response for Entity Region View.
    */
   async getEntityRegionView({ body } = {}) {
-    const { error } = ServiceabilityValidator.getEntityRegionView().validate(
+    const { error } = LogisticsValidator.getEntityRegionView().validate(
       {
         body,
       },
@@ -216,7 +216,7 @@ class Serviceability {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = ServiceabilityValidator.getEntityRegionView().validate(
+    } = LogisticsValidator.getEntityRegionView().validate(
       {
         body,
       },
@@ -245,7 +245,7 @@ class Serviceability {
 
     const {
       error: res_error,
-    } = ServiceabilityModel.EntityRegionView_Response().validate(response, {
+    } = LogisticsModel.EntityRegionView_Response().validate(response, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -281,7 +281,7 @@ class Serviceability {
     channelIds,
     q,
   } = {}) {
-    const { error } = ServiceabilityValidator.getListView().validate(
+    const { error } = LogisticsValidator.getListView().validate(
       {
         pageNumber,
         pageSize,
@@ -297,7 +297,7 @@ class Serviceability {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = ServiceabilityValidator.getListView().validate(
+    const { error: warrning } = LogisticsValidator.getListView().validate(
       {
         pageNumber,
         pageSize,
@@ -337,7 +337,7 @@ class Serviceability {
 
     const {
       error: res_error,
-    } = ServiceabilityModel.ListViewResponse().validate(response, {
+    } = LogisticsModel.ListViewResponse().validate(response, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -361,7 +361,7 @@ class Serviceability {
    * @description: This API returns stores data.
    */
   async getStore({ storeUid } = {}) {
-    const { error } = ServiceabilityValidator.getStore().validate(
+    const { error } = LogisticsValidator.getStore().validate(
       {
         storeUid,
       },
@@ -372,7 +372,7 @@ class Serviceability {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = ServiceabilityValidator.getStore().validate(
+    const { error: warrning } = LogisticsValidator.getStore().validate(
       {
         storeUid,
       },
@@ -401,7 +401,7 @@ class Serviceability {
 
     const {
       error: res_error,
-    } = ServiceabilityModel.GetStoresViewResponse().validate(response, {
+    } = LogisticsModel.GetStoresViewResponse().validate(response, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -426,7 +426,7 @@ class Serviceability {
    * @description: This API returns Zone Data View of the application.
    */
   async getZoneDataView({ zoneId } = {}) {
-    const { error } = ServiceabilityValidator.getZoneDataView().validate(
+    const { error } = LogisticsValidator.getZoneDataView().validate(
       {
         zoneId,
       },
@@ -437,9 +437,7 @@ class Serviceability {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = ServiceabilityValidator.getZoneDataView().validate(
+    const { error: warrning } = LogisticsValidator.getZoneDataView().validate(
       {
         zoneId,
       },
@@ -468,7 +466,7 @@ class Serviceability {
 
     const {
       error: res_error,
-    } = ServiceabilityModel.GetSingleZoneDataViewResponse().validate(response, {
+    } = LogisticsModel.GetSingleZoneDataViewResponse().validate(response, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -498,9 +496,7 @@ class Serviceability {
 
     body,
   } = {}) {
-    const {
-      error,
-    } = ServiceabilityValidator.updateZoneControllerView().validate(
+    const { error } = LogisticsValidator.updateZoneControllerView().validate(
       {
         zoneId,
 
@@ -515,7 +511,7 @@ class Serviceability {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = ServiceabilityValidator.updateZoneControllerView().validate(
+    } = LogisticsValidator.updateZoneControllerView().validate(
       {
         zoneId,
 
@@ -546,7 +542,7 @@ class Serviceability {
 
     const {
       error: res_error,
-    } = ServiceabilityModel.ZoneSuccessResponse().validate(response, {
+    } = LogisticsModel.ZoneSuccessResponse().validate(response, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -563,4 +559,4 @@ class Serviceability {
   }
 }
 
-module.exports = Serviceability;
+module.exports = Logistics;

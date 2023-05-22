@@ -5,7 +5,7 @@
 
 ##### [Back to Platform docs](./README.md)
 
-## Serviceability Methods
+## Logistics Methods
 Logistics Configuration API's allows you to configure zone, application logistics and many more useful features. 
 
 * [createZone](#createzone)
@@ -38,10 +38,10 @@ Insertion of zone in database.
 
 ```javascript
 // Promise
-const promise = platformClient.serviceability.createZone({  body : value });
+const promise = platformClient.logistics.createZone({  body : value });
 
 // Async/Await
-const data = await platformClient.serviceability.createZone({  body : value });
+const data = await platformClient.logistics.createZone({  body : value });
 ```
 
 
@@ -93,10 +93,10 @@ GET stores data
 
 ```javascript
 // Promise
-const promise = platformClient.serviceability.getAllStores();
+const promise = platformClient.logistics.getAllStores();
 
 // Async/Await
-const data = await platformClient.serviceability.getAllStores();
+const data = await platformClient.logistics.getAllStores();
 ```
 
 
@@ -144,10 +144,10 @@ Zone configuration of application.
 
 ```javascript
 // Promise
-const promise = platformClient.application("<APPLICATION_ID>").serviceability.getApplicationServiceability();
+const promise = platformClient.application("<APPLICATION_ID>").logistics.getApplicationServiceability();
 
 // Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").serviceability.getApplicationServiceability();
+const data = await platformClient.application("<APPLICATION_ID>").logistics.getApplicationServiceability();
 ```
 
 
@@ -207,10 +207,10 @@ Company Store View of application.
 
 ```javascript
 // Promise
-const promise = platformClient.serviceability.getCompanyStoreView();
+const promise = platformClient.logistics.getCompanyStoreView();
 
 // Async/Await
-const data = await platformClient.serviceability.getCompanyStoreView();
+const data = await platformClient.logistics.getCompanyStoreView();
 ```
 
 
@@ -258,10 +258,10 @@ Get country and state list
 
 ```javascript
 // Promise
-const promise = platformClient.serviceability.getEntityRegionView({  body : value });
+const promise = platformClient.logistics.getEntityRegionView({  body : value });
 
 // Async/Await
-const data = await platformClient.serviceability.getEntityRegionView({  body : value });
+const data = await platformClient.logistics.getEntityRegionView({  body : value });
 ```
 
 
@@ -313,7 +313,7 @@ Zone List of application.
 
 ```javascript
 // Promise
-const promise = platformClient.serviceability.getListView({  pageNumber : value,
+const promise = platformClient.logistics.getListView({  pageNumber : value,
  pageSize : value,
  name : value,
  isActive : value,
@@ -321,7 +321,7 @@ const promise = platformClient.serviceability.getListView({  pageNumber : value,
  q : value });
 
 // Async/Await
-const data = await platformClient.serviceability.getListView({  pageNumber : value,
+const data = await platformClient.logistics.getListView({  pageNumber : value,
  pageSize : value,
  name : value,
  isActive : value,
@@ -384,10 +384,10 @@ GET stores data
 
 ```javascript
 // Promise
-const promise = platformClient.serviceability.getStore({  storeUid : value });
+const promise = platformClient.logistics.getStore({  storeUid : value });
 
 // Async/Await
-const data = await platformClient.serviceability.getStore({  storeUid : value });
+const data = await platformClient.logistics.getStore({  storeUid : value });
 ```
 
 
@@ -649,10 +649,10 @@ Zone Data View of application.
 
 ```javascript
 // Promise
-const promise = platformClient.serviceability.getZoneDataView({  zoneId : value });
+const promise = platformClient.logistics.getZoneDataView({  zoneId : value });
 
 // Async/Await
-const data = await platformClient.serviceability.getZoneDataView({  zoneId : value });
+const data = await platformClient.logistics.getZoneDataView({  zoneId : value });
 ```
 
 
@@ -705,10 +705,10 @@ GET zone from the Pincode.
 
 ```javascript
 // Promise
-const promise = platformClient.application("<APPLICATION_ID>").serviceability.getZoneFromPincodeView({  body : value });
+const promise = platformClient.application("<APPLICATION_ID>").logistics.getZoneFromPincodeView({  body : value });
 
 // Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").serviceability.getZoneFromPincodeView({  body : value });
+const data = await platformClient.application("<APPLICATION_ID>").logistics.getZoneFromPincodeView({  body : value });
 ```
 
 
@@ -760,13 +760,13 @@ GET zones from the application_id.
 
 ```javascript
 // Promise
-const promise = platformClient.application("<APPLICATION_ID>").serviceability.getZonesFromApplicationIdView({  pageNo : value,
+const promise = platformClient.application("<APPLICATION_ID>").logistics.getZonesFromApplicationIdView({  pageNo : value,
  pageSize : value,
  zoneId : value,
  q : value });
 
 // Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").serviceability.getZonesFromApplicationIdView({  pageNo : value,
+const data = await platformClient.application("<APPLICATION_ID>").logistics.getZonesFromApplicationIdView({  pageNo : value,
  pageSize : value,
  zoneId : value,
  q : value });
@@ -825,10 +825,10 @@ Auditlog configuration of application.
 
 ```javascript
 // Promise
-const promise = platformClient.application("<APPLICATION_ID>").serviceability.updatePincodeAuditHistory({  body : value });
+const promise = platformClient.application("<APPLICATION_ID>").logistics.updatePincodeAuditHistory({  body : value });
 
 // Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").serviceability.updatePincodeAuditHistory({  body : value });
+const data = await platformClient.application("<APPLICATION_ID>").logistics.updatePincodeAuditHistory({  body : value });
 ```
 
 
@@ -880,10 +880,10 @@ Bulk Update of pincode in the application.
 
 ```javascript
 // Promise
-const promise = platformClient.application("<APPLICATION_ID>").serviceability.updatePincodeBulkView({  body : value });
+const promise = platformClient.application("<APPLICATION_ID>").logistics.updatePincodeBulkView({  body : value });
 
 // Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").serviceability.updatePincodeBulkView({  body : value });
+const data = await platformClient.application("<APPLICATION_ID>").logistics.updatePincodeBulkView({  body : value });
 ```
 
 
@@ -938,10 +938,10 @@ Pincode count view of application.
 
 ```javascript
 // Promise
-const promise = platformClient.application("<APPLICATION_ID>").serviceability.updatePincodeCoDListing({  body : value });
+const promise = platformClient.application("<APPLICATION_ID>").logistics.updatePincodeCoDListing({  body : value });
 
 // Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").serviceability.updatePincodeCoDListing({  body : value });
+const data = await platformClient.application("<APPLICATION_ID>").logistics.updatePincodeCoDListing({  body : value });
 ```
 
 
@@ -993,10 +993,10 @@ PincodeView update of MOP.
 
 ```javascript
 // Promise
-const promise = platformClient.application("<APPLICATION_ID>").serviceability.updatePincodeMopView({  body : value });
+const promise = platformClient.application("<APPLICATION_ID>").logistics.updatePincodeMopView({  body : value });
 
 // Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").serviceability.updatePincodeMopView({  body : value });
+const data = await platformClient.application("<APPLICATION_ID>").logistics.updatePincodeMopView({  body : value });
 ```
 
 
@@ -1048,11 +1048,11 @@ Updation of zone collections in database.
 
 ```javascript
 // Promise
-const promise = platformClient.serviceability.updateZoneControllerView({  zoneId : value,
+const promise = platformClient.logistics.updateZoneControllerView({  zoneId : value,
  body : value });
 
 // Async/Await
-const data = await platformClient.serviceability.updateZoneControllerView({  zoneId : value,
+const data = await platformClient.logistics.updateZoneControllerView({  zoneId : value,
  body : value });
 ```
 

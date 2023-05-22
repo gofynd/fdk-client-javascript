@@ -24,11 +24,9 @@ const Cart = require("./Cart/CartPlatformApplicationClient");
 
 const Rewards = require("./Rewards/RewardsPlatformApplicationClient");
 
-const Analytics = require("./Analytics/AnalyticsPlatformApplicationClient");
-
 const Partner = require("./Partner/PartnerPlatformApplicationClient");
 
-const Serviceability = require("./Serviceability/ServiceabilityPlatformApplicationClient");
+const Logistics = require("./Logistics/LogisticsPlatformApplicationClient");
 
 const { FDKClientValidationError } = require("../common/FDKError");
 
@@ -64,11 +62,9 @@ class PlatformApplicationClient {
 
     this.rewards = new Rewards(config, applicationId);
 
-    this.analytics = new Analytics(config, applicationId);
-
     this.partner = new Partner(config, applicationId);
 
-    this.serviceability = new Serviceability(config, applicationId);
+    this.logistics = new Logistics(config, applicationId);
   }
 
   setExtraHeaders(header) {
@@ -1728,27 +1724,6 @@ class PlatformApplicationClient {
 /** @typedef SetConfigurationRes */
 /** @typedef ShareMessages */
 /** @typedef UserRes */
-
-/** @typedef AbandonCartDetail */
-/** @typedef AbandonCartsDetail */
-/** @typedef AbandonCartsList */
-/** @typedef ErrorRes */
-/** @typedef ExportJobReq */
-/** @typedef ExportJobRes */
-/** @typedef ExportJobStatusRes */
-/** @typedef GetLogsListReq */
-/** @typedef GetLogsListRes */
-/** @typedef LogInfo */
-/** @typedef MkpLogsResp */
-/** @typedef Page */
-/** @typedef ReceivedAt */
-/** @typedef SearchLogReq */
-/** @typedef SearchLogRes */
-/** @typedef StatGroup */
-/** @typedef StatsGroupComponent */
-/** @typedef StatsGroupComponents */
-/** @typedef StatsGroups */
-/** @typedef StatsRes */
 
 /** @typedef BadRequestObject */
 /** @typedef BulkDiscount */

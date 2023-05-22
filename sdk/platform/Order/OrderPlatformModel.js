@@ -1216,6 +1216,7 @@ class OrderModel {
     return Joi.object({
       dimension: OrderModel.Dimensions(),
       dp_options: Joi.any(),
+      lock_data: Joi.any(),
     });
   }
   static Meta1() {
@@ -1739,6 +1740,7 @@ class OrderModel {
       delivery_charge: Joi.number(),
       discount: Joi.number(),
       fynd_credits: Joi.number(),
+      gift_price: Joi.number(),
       pm_price_split: Joi.number(),
       price_effective: Joi.number(),
       price_marked: Joi.number(),

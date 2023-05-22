@@ -20,9 +20,8 @@
 * [Configuration](CONFIGURATION.md) - Application configuration apis 
 * [Cart](CART.md) - Cart APIs 
 * [Rewards](REWARDS.md) - Earn and redeem reward points 
-* [Analytics](ANALYTICS.md) - Perceptor analytics 
 * [Discount](DISCOUNT.md) - Discount 
 * [Partner](PARTNER.md) - Partner configuration apis 
 * [Webhook](WEBHOOK.md) - Webhook dispatcher with retry and one event to many subscriber vice versa 
 * [AuditTrail](AUDITTRAIL.md) - Audit Logging Service that logs the crucial updates on the Platform 
-* [Serviceability](SERVICEABILITY.md) - Logistics Configuration API's allows you to configure zone, application logistics and many more useful features.  
+* [Logistics](LOGISTICS.md) - Logistics Configuration API's allows you to configure zone, application logistics and many more useful features.  

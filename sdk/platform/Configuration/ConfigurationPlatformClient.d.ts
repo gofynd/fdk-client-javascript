@@ -51,15 +51,6 @@ declare class Configuration {
     }): Promise<GetIntegrationsOptInsResponse>;
     /**
      * @param {Object} arg - Arg object.
-     * @param {number} [arg.pageSize] - Current request items count
-     * @summary: Get all available integration opt-ins
-     * @description: Get all available integration opt-ins
-     */
-    getAvailableOptInsPaginator({ pageSize }?: {
-        pageSize?: number;
-    }): Paginator;
-    /**
-     * @param {Object} arg - Arg object.
      * @param {string} [arg.q] - Search text for brand name
      * @returns {Promise<BrandsByCompanyResponse>} - Success response
      * @summary: Get brands by company
@@ -214,19 +205,6 @@ declare class Configuration {
         pageNo?: number;
         pageSize?: number;
     }): Promise<GetIntegrationsOptInsResponse>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.level - Integration level
-     * @param {number} arg.uid - Integration level uid
-     * @param {number} [arg.pageSize] - Current request items count
-     * @summary: Get company/store level integration opt-ins
-     * @description: Get company/store level integration opt-ins
-     */
-    getSelectedOptInsPaginator({ level, uid, pageSize }?: {
-        level: string;
-        uid: number;
-        pageSize?: number;
-    }): Paginator;
     /**
      * @param {Object} arg - Arg object.
      * @param {number} [arg.pageNo] - Current page no

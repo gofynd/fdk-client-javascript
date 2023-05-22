@@ -1,5 +1,5 @@
-export = ServiceabilityModel;
-declare class ServiceabilityModel {
+export = LogisticsModel;
+declare class LogisticsModel {
     static AddressResponse(): any;
     static ApplicationServiceabilityConfig(): any;
     static ApplicationServiceabilityConfigResponse(): any;
