@@ -24,7 +24,11 @@ const Cart = require("./Cart/CartPlatformApplicationClient");
 
 const Rewards = require("./Rewards/RewardsPlatformApplicationClient");
 
+const Analytics = require("./Analytics/AnalyticsPlatformApplicationClient");
+
 const Partner = require("./Partner/PartnerPlatformApplicationClient");
+
+const Serviceability = require("./Serviceability/ServiceabilityPlatformApplicationClient");
 
 const { FDKClientValidationError } = require("../common/FDKError");
 
@@ -60,7 +64,11 @@ class PlatformApplicationClient {
 
     this.rewards = new Rewards(config, applicationId);
 
+    this.analytics = new Analytics(config, applicationId);
+
     this.partner = new Partner(config, applicationId);
+
+    this.serviceability = new Serviceability(config, applicationId);
   }
 
   setExtraHeaders(header) {
@@ -1721,6 +1729,27 @@ class PlatformApplicationClient {
 /** @typedef ShareMessages */
 /** @typedef UserRes */
 
+/** @typedef AbandonCartDetail */
+/** @typedef AbandonCartsDetail */
+/** @typedef AbandonCartsList */
+/** @typedef ErrorRes */
+/** @typedef ExportJobReq */
+/** @typedef ExportJobRes */
+/** @typedef ExportJobStatusRes */
+/** @typedef GetLogsListReq */
+/** @typedef GetLogsListRes */
+/** @typedef LogInfo */
+/** @typedef MkpLogsResp */
+/** @typedef Page */
+/** @typedef ReceivedAt */
+/** @typedef SearchLogReq */
+/** @typedef SearchLogRes */
+/** @typedef StatGroup */
+/** @typedef StatsGroupComponent */
+/** @typedef StatsGroupComponents */
+/** @typedef StatsGroups */
+/** @typedef StatsRes */
+
 /** @typedef BadRequestObject */
 /** @typedef BulkDiscount */
 /** @typedef CancelJobResponse */
@@ -1769,5 +1798,72 @@ class PlatformApplicationClient {
 /** @typedef Modifier */
 /** @typedef RequestBodyAuditLog */
 /** @typedef ResourceNotFound */
+
+/** @typedef AddressResponse */
+/** @typedef ApplicationServiceabilityConfig */
+/** @typedef ApplicationServiceabilityConfigResponse */
+/** @typedef CommonError */
+/** @typedef CompanyStoreView_PageItems */
+/** @typedef CompanyStoreView_Response */
+/** @typedef ContactNumberResponse */
+/** @typedef CreatedByResponse */
+/** @typedef CreateZoneData */
+/** @typedef DocumentsResponse */
+/** @typedef Dp */
+/** @typedef EinvoiceResponse */
+/** @typedef EntityRegionView_Error */
+/** @typedef EntityRegionView_Items */
+/** @typedef EntityRegionView_page */
+/** @typedef EntityRegionView_Request */
+/** @typedef EntityRegionView_Response */
+/** @typedef Error */
+/** @typedef EwayBillResponse */
+/** @typedef GetSingleZoneDataViewResponse */
+/** @typedef GetStoresViewResponse */
+/** @typedef GetZoneDataViewChannels */
+/** @typedef GetZoneDataViewItems */
+/** @typedef GetZoneFromApplicationIdViewResponse */
+/** @typedef GetZoneFromPincodeViewRequest */
+/** @typedef GetZoneFromPincodeViewResponse */
+/** @typedef GstCredentialsResponse */
+/** @typedef IntegrationTypeResponse */
+/** @typedef ItemResponse */
+/** @typedef ListViewChannels */
+/** @typedef ListViewItems */
+/** @typedef ListViewProduct */
+/** @typedef ListViewResponse */
+/** @typedef ListViewSummary */
+/** @typedef LogisticsResponse */
+/** @typedef ManagerResponse */
+/** @typedef MobileNo */
+/** @typedef ModifiedByResponse */
+/** @typedef OpeningClosing */
+/** @typedef PageResponse */
+/** @typedef PincodeBulkViewResponse */
+/** @typedef PincodeCodStatusListingPage */
+/** @typedef PincodeCodStatusListingRequest */
+/** @typedef PincodeCodStatusListingResponse */
+/** @typedef PincodeCodStatusListingSummary */
+/** @typedef PincodeMopBulkData */
+/** @typedef PincodeMopData */
+/** @typedef PincodeMOPresponse */
+/** @typedef PincodeMopUpdateAuditHistoryPaging */
+/** @typedef PincodeMopUpdateAuditHistoryRequest */
+/** @typedef PincodeMopUpdateAuditHistoryResponse */
+/** @typedef PincodeMopUpdateAuditHistoryResponseData */
+/** @typedef PincodeMopUpdateResponse */
+/** @typedef ProductReturnConfigResponse */
+/** @typedef ServiceabilityErrorResponse */
+/** @typedef ServiceabilityrErrorResponse */
+/** @typedef TimmingResponse */
+/** @typedef UpdateZoneData */
+/** @typedef WarningsResponse */
+/** @typedef ZoneDataItem */
+/** @typedef ZoneMappingType */
+/** @typedef ZoneProductTypes */
+/** @typedef ZoneRequest */
+/** @typedef ZoneResponse */
+/** @typedef ZoneSuccessResponse */
+/** @typedef ZoneUpdateRequest */
 
 module.exports = PlatformApplicationClient;

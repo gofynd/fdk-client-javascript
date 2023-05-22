@@ -253,6 +253,32 @@ class Configuration {
 
   /**
    * @param {Object} arg - Arg object.
+   * @param {number} [arg.pageSize] - Current request items count
+   * @summary: Get all available integration opt-ins
+   * @description: Get all available integration opt-ins
+   */
+  getAvailableOptInsPaginator({ pageSize } = {}) {
+    const paginator = new Paginator();
+    const callback = async () => {
+      const pageId = paginator.nextId;
+      const pageNo = paginator.pageNo;
+      const pageType = "number";
+      const data = await this.getAvailableOptIns({
+        pageNo: pageNo,
+        pageSize: pageSize,
+      });
+      paginator.setPaginator({
+        hasNext: data.page.has_next ? true : false,
+        nextId: data.page.next_id,
+      });
+      return data;
+    };
+    paginator.setCallback(callback.bind(this));
+    return paginator;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
    * @param {string} [arg.q] - Search text for brand name
    * @returns {Promise<BrandsByCompanyResponse>} - Success response
    * @summary: Get brands by company
@@ -1087,6 +1113,36 @@ class Configuration {
     }
 
     return response;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.level - Integration level
+   * @param {number} arg.uid - Integration level uid
+   * @param {number} [arg.pageSize] - Current request items count
+   * @summary: Get company/store level integration opt-ins
+   * @description: Get company/store level integration opt-ins
+   */
+  getSelectedOptInsPaginator({ level, uid, pageSize } = {}) {
+    const paginator = new Paginator();
+    const callback = async () => {
+      const pageId = paginator.nextId;
+      const pageNo = paginator.pageNo;
+      const pageType = "number";
+      const data = await this.getSelectedOptIns({
+        level: level,
+        uid: uid,
+        pageNo: pageNo,
+        pageSize: pageSize,
+      });
+      paginator.setPaginator({
+        hasNext: data.page.has_next ? true : false,
+        nextId: data.page.next_id,
+      });
+      return data;
+    };
+    paginator.setCallback(callback.bind(this));
+    return paginator;
   }
 
   /**
