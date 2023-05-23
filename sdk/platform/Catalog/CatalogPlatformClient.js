@@ -1,9 +1,10 @@
-const Paginator = require("../../common/Paginator");
-const { FDKClientValidationError } = require("../../common/FDKError");
 const PlatformAPIClient = require("../PlatformAPIClient");
+const { FDKClientValidationError } = require("../../common/FDKError");
+const Paginator = require("../../common/Paginator");
 const CatalogValidator = require("./CatalogPlatformValidator");
 const CatalogModel = require("./CatalogPlatformModel");
 const { Logger } = require("./../../common/Logger");
+const Joi = require("joi");
 
 class Catalog {
   constructor(config) {
@@ -3543,9 +3544,7 @@ class Catalog {
    */
   async getSingleProductHSNCode({ reportingHsn } = {}) {
     const { error } = CatalogValidator.getSingleProductHSNCode().validate(
-      {
-        reportingHsn,
-      },
+      { reportingHsn },
       { abortEarly: false, allowUnknown: true }
     );
     if (error) {
@@ -3556,9 +3555,7 @@ class Catalog {
     const {
       error: warrning,
     } = CatalogValidator.getSingleProductHSNCode().validate(
-      {
-        reportingHsn,
-      },
+      { reportingHsn },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {

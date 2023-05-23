@@ -24,4 +24,5 @@ class AuditTrailValidator {
     return Joi.object({}).required();
   }
 }
+
 module.exports = AuditTrailValidator;

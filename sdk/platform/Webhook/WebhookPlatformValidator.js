@@ -40,4 +40,5 @@ class WebhookValidator {
     }).required();
   }
 }
+
 module.exports = WebhookValidator;

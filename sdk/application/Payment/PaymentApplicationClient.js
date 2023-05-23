@@ -1,10 +1,11 @@
-const APIClient = require("../ApplicationAPIClient");
+const ApplicationAPIClient = require("../ApplicationAPIClient");
+const { FDKClientValidationError } = require("../../common/FDKError");
 const constructUrl = require("../constructUrl");
 const Paginator = require("../../common/Paginator");
-const { FDKClientValidationError } = require("../../common/FDKError");
 const PaymentValidator = require("./PaymentApplicationValidator");
 const PaymentModel = require("./PaymentApplicationModel");
 const { Logger } = require("./../../common/Logger");
+const Joi = require("joi");
 
 class Payment {
   constructor(_conf) {
@@ -108,7 +109,7 @@ class Payment {
 
     const xHeaders = {};
 
-    const response = await APIClient.execute(
+    const response = await ApplicationAPIClient.execute(
       this._conf,
       "post",
       constructUrl({
@@ -174,7 +175,7 @@ class Payment {
 
     const xHeaders = {};
 
-    const response = await APIClient.execute(
+    const response = await ApplicationAPIClient.execute(
       this._conf,
       "post",
       constructUrl({
@@ -240,7 +241,7 @@ class Payment {
 
     const xHeaders = {};
 
-    const response = await APIClient.execute(
+    const response = await ApplicationAPIClient.execute(
       this._conf,
       "post",
       constructUrl({
@@ -306,7 +307,7 @@ class Payment {
 
     const xHeaders = {};
 
-    const response = await APIClient.execute(
+    const response = await ApplicationAPIClient.execute(
       this._conf,
       "post",
       constructUrl({
@@ -371,7 +372,7 @@ class Payment {
 
     const xHeaders = {};
 
-    const response = await APIClient.execute(
+    const response = await ApplicationAPIClient.execute(
       this._conf,
       "get",
       constructUrl({
@@ -437,7 +438,7 @@ class Payment {
 
     const xHeaders = {};
 
-    const response = await APIClient.execute(
+    const response = await ApplicationAPIClient.execute(
       this._conf,
       "get",
       constructUrl({
@@ -500,7 +501,7 @@ class Payment {
 
     const xHeaders = {};
 
-    const response = await APIClient.execute(
+    const response = await ApplicationAPIClient.execute(
       this._conf,
       "post",
       constructUrl({
@@ -563,7 +564,7 @@ class Payment {
 
     const xHeaders = {};
 
-    const response = await APIClient.execute(
+    const response = await ApplicationAPIClient.execute(
       this._conf,
       "post",
       constructUrl({
@@ -631,7 +632,7 @@ class Payment {
 
     const xHeaders = {};
 
-    const response = await APIClient.execute(
+    const response = await ApplicationAPIClient.execute(
       this._conf,
       "put",
       constructUrl({
@@ -698,7 +699,7 @@ class Payment {
 
     const xHeaders = {};
 
-    const response = await APIClient.execute(
+    const response = await ApplicationAPIClient.execute(
       this._conf,
       "get",
       constructUrl({
@@ -763,7 +764,7 @@ class Payment {
 
     const xHeaders = {};
 
-    const response = await APIClient.execute(
+    const response = await ApplicationAPIClient.execute(
       this._conf,
       "get",
       constructUrl({
@@ -828,7 +829,7 @@ class Payment {
 
     const xHeaders = {};
 
-    const response = await APIClient.execute(
+    const response = await ApplicationAPIClient.execute(
       this._conf,
       "get",
       constructUrl({
@@ -898,7 +899,7 @@ class Payment {
     const xHeaders = {};
     xHeaders["x-api-token"] = xApiToken;
 
-    const response = await APIClient.execute(
+    const response = await ApplicationAPIClient.execute(
       this._conf,
       "get",
       constructUrl({
@@ -962,7 +963,7 @@ class Payment {
 
     const xHeaders = {};
 
-    const response = await APIClient.execute(
+    const response = await ApplicationAPIClient.execute(
       this._conf,
       "get",
       constructUrl({
@@ -1030,7 +1031,7 @@ class Payment {
 
     const xHeaders = {};
 
-    const response = await APIClient.execute(
+    const response = await ApplicationAPIClient.execute(
       this._conf,
       "get",
       constructUrl({
@@ -1137,7 +1138,7 @@ class Payment {
 
     const xHeaders = {};
 
-    const response = await APIClient.execute(
+    const response = await ApplicationAPIClient.execute(
       this._conf,
       "get",
       constructUrl({
@@ -1250,7 +1251,7 @@ class Payment {
 
     const xHeaders = {};
 
-    const response = await APIClient.execute(
+    const response = await ApplicationAPIClient.execute(
       this._conf,
       "get",
       constructUrl({
@@ -1314,7 +1315,7 @@ class Payment {
 
     const xHeaders = {};
 
-    const response = await APIClient.execute(
+    const response = await ApplicationAPIClient.execute(
       this._conf,
       "get",
       constructUrl({
@@ -1382,7 +1383,7 @@ class Payment {
 
     const xHeaders = {};
 
-    const response = await APIClient.execute(
+    const response = await ApplicationAPIClient.execute(
       this._conf,
       "get",
       constructUrl({
@@ -1445,7 +1446,7 @@ class Payment {
 
     const xHeaders = {};
 
-    const response = await APIClient.execute(
+    const response = await ApplicationAPIClient.execute(
       this._conf,
       "post",
       constructUrl({
@@ -1515,7 +1516,7 @@ class Payment {
 
     const xHeaders = {};
 
-    const response = await APIClient.execute(
+    const response = await ApplicationAPIClient.execute(
       this._conf,
       "get",
       constructUrl({
@@ -1580,7 +1581,7 @@ class Payment {
 
     const xHeaders = {};
 
-    const response = await APIClient.execute(
+    const response = await ApplicationAPIClient.execute(
       this._conf,
       "post",
       constructUrl({
@@ -1645,7 +1646,7 @@ class Payment {
 
     const xHeaders = {};
 
-    const response = await APIClient.execute(
+    const response = await ApplicationAPIClient.execute(
       this._conf,
       "post",
       constructUrl({
@@ -1710,7 +1711,7 @@ class Payment {
 
     const xHeaders = {};
 
-    const response = await APIClient.execute(
+    const response = await ApplicationAPIClient.execute(
       this._conf,
       "post",
       constructUrl({
@@ -1775,7 +1776,7 @@ class Payment {
 
     const xHeaders = {};
 
-    const response = await APIClient.execute(
+    const response = await ApplicationAPIClient.execute(
       this._conf,
       "post",
       constructUrl({
@@ -1840,7 +1841,7 @@ class Payment {
 
     const xHeaders = {};
 
-    const response = await APIClient.execute(
+    const response = await ApplicationAPIClient.execute(
       this._conf,
       "get",
       constructUrl({
@@ -1908,7 +1909,7 @@ class Payment {
 
     const xHeaders = {};
 
-    const response = await APIClient.execute(
+    const response = await ApplicationAPIClient.execute(
       this._conf,
       "post",
       constructUrl({
@@ -1977,7 +1978,7 @@ class Payment {
 
     const xHeaders = {};
 
-    const response = await APIClient.execute(
+    const response = await ApplicationAPIClient.execute(
       this._conf,
       "post",
       constructUrl({

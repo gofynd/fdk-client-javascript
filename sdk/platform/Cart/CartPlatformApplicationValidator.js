@@ -1,7 +1,15 @@
 const Joi = require("joi");
-const CartModel = require("./CartPlatformModel");
 
+const CartModel = require("./CartPlatformModel");
 class CartValidator {
+  static addItems() {
+    return Joi.object({
+      cartId: Joi.string().allow("").required(),
+      b: Joi.boolean(),
+      body: CartModel.AddCartRequest().required(),
+    }).required();
+  }
+
   static checkCartServiceability() {
     return Joi.object({
       body: CartModel.OpenApiCartServiceabilityRequest().required(),
@@ -29,6 +37,26 @@ class CartValidator {
   static fetchAndvalidateCartItems() {
     return Joi.object({
       body: CartModel.OpenapiCartDetailsRequest().required(),
+    }).required();
+  }
+
+  static getAbandonedCart() {
+    return Joi.object({
+      pageNo: Joi.number(),
+      pageSize: Joi.number(),
+      fromDate: Joi.string().allow(""),
+      toDate: Joi.string().allow(""),
+      anonymousCart: Joi.boolean(),
+      lastId: Joi.string().allow(""),
+      sortOn: Joi.string().allow(""),
+    }).required();
+  }
+
+  static getAbandonedCartDetails() {
+    return Joi.object({
+      id: Joi.string().allow(""),
+      i: Joi.boolean(),
+      b: Joi.boolean(),
     }).required();
   }
 
@@ -67,6 +95,14 @@ class CartValidator {
       promotionType: Joi.string().allow(""),
       fpPanel: Joi.string().allow(""),
       promotionId: Joi.string().allow(""),
+    }).required();
+  }
+
+  static updateCart() {
+    return Joi.object({
+      cartId: Joi.string().allow("").required(),
+      b: Joi.boolean(),
+      body: CartModel.UpdateCartRequest().required(),
     }).required();
   }
 

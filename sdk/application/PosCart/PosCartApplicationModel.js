@@ -27,6 +27,7 @@ class PosCartModel {
       extra_meta: Joi.any(),
       item_id: Joi.number(),
       item_size: Joi.string().allow(""),
+      meta: Joi.any(),
       parent_item_identifiers: Joi.any(),
       pos: Joi.boolean(),
       product_group_tags: Joi.array().items(Joi.string().allow("").allow(null)),
@@ -487,6 +488,7 @@ class PosCartModel {
   static ProductArticle() {
     return Joi.object({
       extra_meta: Joi.any(),
+      meta: Joi.any(),
       parent_item_identifiers: Joi.any(),
       price: PosCartModel.ArticlePriceInfo(),
       product_group_tags: Joi.array().items(Joi.string().allow("")),
@@ -713,6 +715,7 @@ class PosCartModel {
       item_id: Joi.number(),
       item_index: Joi.number(),
       item_size: Joi.string().allow(""),
+      meta: Joi.any(),
       parent_item_identifiers: Joi.any(),
       quantity: Joi.number(),
     });

@@ -8,6 +8,7 @@ declare class Cart {
         applyCoupon: string;
         applyRewardPoints: string;
         checkoutCart: string;
+        checkoutCartV2: string;
         deleteCart: string;
         getAddressById: string;
         getAddresses: string;
@@ -108,6 +109,18 @@ declare class Cart {
     checkoutCart({ body, buyNow }?: {
         buyNow?: boolean;
         body: CartCheckoutDetailRequest;
+    }): Promise<CartCheckoutResponse>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {boolean} [arg.buyNow] - This indicates the type of cart to checkout
+     * @param {CartCheckoutDetailV2Request} arg.body
+     * @returns {Promise<CartCheckoutResponse>} - Success response
+     * @summary: Checkout all items in the cart
+     * @description: Use this API to checkout all items in the cart for payment and order generation. For COD, order will be directly generated, whereas for other checkout modes, user will be redirected to a payment gateway.
+     */
+    checkoutCartV2({ body, buyNow }?: {
+        buyNow?: boolean;
+        body: CartCheckoutDetailV2Request;
     }): Promise<CartCheckoutResponse>;
     /**
      * @param {Object} arg - Arg object.

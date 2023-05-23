@@ -1,9 +1,10 @@
-const Paginator = require("../../common/Paginator");
 const PlatformAPIClient = require("../PlatformAPIClient");
 const { FDKClientValidationError } = require("../../common/FDKError");
+const Paginator = require("../../common/Paginator");
 const ConfigurationValidator = require("./ConfigurationPlatformApplicationValidator");
 const ConfigurationModel = require("./ConfigurationPlatformModel");
 const { Logger } = require("./../../common/Logger");
+const Joi = require("joi");
 
 class Configuration {
   constructor(config, applicationId) {
@@ -1903,4 +1904,5 @@ class Configuration {
     return response;
   }
 }
+
 module.exports = Configuration;

@@ -79,6 +79,7 @@ declare class ContentModel {
     static PageSpecItem(): any;
     static PageSpecParam(): any;
     static PathMappingSchema(): any;
+    static PathSourceSchema(): any;
     static PhoneProperties(): any;
     static PhoneSchema(): any;
     static RemoveHandpickedSchema(): any;

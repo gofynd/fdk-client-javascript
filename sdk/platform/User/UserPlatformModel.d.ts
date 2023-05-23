@@ -17,7 +17,6 @@ declare class UserModel {
     static CreateUserSessionRequestSchema(): any;
     static CreateUserSessionResponseSchema(): any;
     static CustomerListResponseSchema(): any;
-    static Debug(): any;
     static DeleteAccountConsent(): any;
     static DeleteAccountReasons(): any;
     static DeleteApplicationUserRequestSchema(): any;

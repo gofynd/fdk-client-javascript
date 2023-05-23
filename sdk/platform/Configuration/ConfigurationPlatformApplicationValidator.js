@@ -1,6 +1,6 @@
 const Joi = require("joi");
-const ConfigurationModel = require("./ConfigurationPlatformModel");
 
+const ConfigurationModel = require("./ConfigurationPlatformModel");
 class ConfigurationValidator {
   static addDomain() {
     return Joi.object({

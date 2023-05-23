@@ -1,9 +1,10 @@
-const Paginator = require("../../common/Paginator");
 const PlatformAPIClient = require("../PlatformAPIClient");
 const { FDKClientValidationError } = require("../../common/FDKError");
+const Paginator = require("../../common/Paginator");
 const CatalogValidator = require("./CatalogPlatformApplicationValidator");
 const CatalogModel = require("./CatalogPlatformModel");
 const { Logger } = require("./../../common/Logger");
+const Joi = require("joi");
 
 class Catalog {
   constructor(config, applicationId) {
@@ -4033,4 +4034,5 @@ class Catalog {
     return response;
   }
 }
+
 module.exports = Catalog;

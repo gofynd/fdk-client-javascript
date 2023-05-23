@@ -25,10 +25,10 @@ Get city from PIN Code
 
 ```javascript
 // Promise
-const promise = logistic.getPincodeCity({  pincode : value });
+const promise = applicationClient.logistic.getPincodeCity({  pincode : value });
 
 // Async/Await
-const data = await logistic.getPincodeCity({  pincode : value });
+const data = await applicationClient.logistic.getPincodeCity({  pincode : value });
 ```
 
 
@@ -81,10 +81,10 @@ Get TAT of a product
 
 ```javascript
 // Promise
-const promise = logistic.getTatProduct({  body : value });
+const promise = applicationClient.logistic.getTatProduct({  body : value });
 
 // Async/Await
-const data = await logistic.getTatProduct({  body : value });
+const data = await applicationClient.logistic.getTatProduct({  body : value });
 ```
 
 
@@ -136,119 +136,191 @@ Success. Check the example shown below or refer `GetTatProductResponse` for more
 #### [ApefaceApiError](#ApefaceApiError)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || message | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | message | string? |  yes  |  |
+ 
 
 ---
 
 #### [Formatted](#Formatted)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || max | string |  no  |  || min | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | max | string? |  yes  |  |
+ | min | string? |  yes  |  |
+ 
 
 ---
 
 #### [GetPincodeCityResponse](#GetPincodeCityResponse)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || data | [[LogisticPincodeData](#LogisticPincodeData)] |  yes  |  || request_uuid | string |  yes  |  || stormbreaker_uuid | string |  yes  |  || success | boolean |  yes  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | data | [[LogisticPincodeData](#LogisticPincodeData)] |  no  |  |
+ | request_uuid | string |  no  |  |
+ | stormbreaker_uuid | string |  no  |  |
+ | success | boolean |  no  |  |
+ 
 
 ---
 
 #### [GetTatProductReqBody](#GetTatProductReqBody)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || action | string |  no  |  || location_details | [[LocationDetailsReq](#LocationDetailsReq)] |  yes  |  || to_pincode | string |  yes  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | action | string? |  yes  |  |
+ | location_details | [[LocationDetailsReq](#LocationDetailsReq)] |  no  |  |
+ | to_pincode | string |  no  |  |
+ 
 
 ---
 
 #### [GetTatProductResponse](#GetTatProductResponse)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || action | string |  yes  |  || error | string |  yes  |  || identifier | string |  yes  |  || journey | string |  yes  |  || location_details | [[LocationDetails](#LocationDetails)] |  yes  |  || request_uuid | string |  yes  |  || source | string |  yes  |  || stormbreaker_uuid | string |  yes  |  || success | boolean |  yes  |  || to_city | string |  yes  |  || to_pincode | string |  yes  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | action | string |  no  |  |
+ | error | string |  no  |  |
+ | identifier | string |  no  |  |
+ | journey | string |  no  |  |
+ | location_details | [[LocationDetails](#LocationDetails)] |  no  |  |
+ | request_uuid | string |  no  |  |
+ | source | string |  no  |  |
+ | stormbreaker_uuid | string |  no  |  |
+ | success | boolean |  no  |  |
+ | to_city | string |  no  |  |
+ | to_pincode | string |  no  |  |
+ 
 
 ---
 
 #### [LocationDetails](#LocationDetails)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || articles | [[TatProductArticles](#TatProductArticles)] |  no  |  || from_pincode | string |  no  |  || fulfillment_id | number |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | articles | [[TatProductArticles](#TatProductArticles)]? |  yes  |  |
+ | from_pincode | string? |  yes  |  |
+ | fulfillment_id | number? |  yes  |  |
+ 
 
 ---
 
 #### [LocationDetailsReq](#LocationDetailsReq)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || articles | [[TatReqProductArticles](#TatReqProductArticles)] |  no  |  || from_pincode | string |  no  |  || fulfillment_id | number |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | articles | [[TatReqProductArticles](#TatReqProductArticles)]? |  yes  |  |
+ | from_pincode | string? |  yes  |  |
+ | fulfillment_id | number? |  yes  |  |
+ 
 
 ---
 
 #### [LogisticError](#LogisticError)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || message | string |  no  |  || type | string |  no  |  || value | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | message | string? |  yes  |  |
+ | type | string? |  yes  |  |
+ | value | string? |  yes  |  |
+ 
 
 ---
 
 #### [LogisticMeta](#LogisticMeta)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || deliverables | [any] |  no  |  || zone | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | deliverables | [any]? |  yes  |  |
+ | zone | string? |  yes  |  |
+ 
 
 ---
 
 #### [LogisticParents](#LogisticParents)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || display_name | string |  no  |  || name | string |  no  |  || sub_type | string |  no  |  || uid | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | display_name | string? |  yes  |  |
+ | name | string? |  yes  |  |
+ | sub_type | string? |  yes  |  |
+ | uid | string? |  yes  |  |
+ 
 
 ---
 
 #### [LogisticPincodeData](#LogisticPincodeData)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || display_name | string |  no  |  || error | [LogisticError](#LogisticError) |  no  |  || meta | [LogisticMeta](#LogisticMeta) |  no  |  || name | string |  no  |  || parents | [[LogisticParents](#LogisticParents)] |  no  |  || sub_type | string |  no  |  || uid | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | display_name | string? |  yes  |  |
+ | error | [LogisticError](#LogisticError)? |  yes  |  |
+ | meta | [LogisticMeta](#LogisticMeta)? |  yes  |  |
+ | name | string? |  yes  |  |
+ | parents | [[LogisticParents](#LogisticParents)]? |  yes  |  |
+ | sub_type | string? |  yes  |  |
+ | uid | string? |  yes  |  |
+ 
 
 ---
 
 #### [LogisticPromise](#LogisticPromise)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || formatted | [Formatted](#Formatted) |  no  |  || timestamp | [LogisticTimestamp](#LogisticTimestamp) |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | formatted | [Formatted](#Formatted)? |  yes  |  |
+ | timestamp | [LogisticTimestamp](#LogisticTimestamp)? |  yes  |  |
+ 
 
 ---
 
 #### [LogisticRequestCategory](#LogisticRequestCategory)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || id | number |  no  |  || level | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | id | number? |  yes  |  |
+ | level | string? |  yes  |  |
+ 
 
 ---
 
 #### [LogisticResponseCategory](#LogisticResponseCategory)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || id | number |  no  |  || level | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | id | number? |  yes  |  |
+ | level | string? |  yes  |  |
+ 
 
 ---
 
 #### [LogisticTimestamp](#LogisticTimestamp)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || max | number |  no  |  || min | number |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | max | number? |  yes  |  |
+ | min | number? |  yes  |  |
+ 
 
 ---
 
 #### [TatProductArticles](#TatProductArticles)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || category | [LogisticResponseCategory](#LogisticResponseCategory) |  no  |  || error | string |  no  |  || promise | [LogisticPromise](#LogisticPromise) |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | category | [LogisticResponseCategory](#LogisticResponseCategory)? |  yes  |  |
+ | error | string? |  yes  |  |
+ | promise | [LogisticPromise](#LogisticPromise)? |  yes  |  |
+ 
 
 ---
 
 #### [TatReqProductArticles](#TatReqProductArticles)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || category | [LogisticRequestCategory](#LogisticRequestCategory) |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | category | [LogisticRequestCategory](#LogisticRequestCategory)? |  yes  |  |
+ 
 
 ---
 

@@ -2,6 +2,8 @@ const Configuration = require("./Configuration/ConfigurationPublicClient");
 
 const Webhook = require("./Webhook/WebhookPublicClient");
 
+const Inventory = require("./Inventory/InventoryPublicClient");
+
 const { FDKClientValidationError } = require("../common/FDKError");
 
 class PublicClient {
@@ -11,6 +13,8 @@ class PublicClient {
     this.configuration = new Configuration(config);
 
     this.webhook = new Webhook(config);
+
+    this.inventory = new Inventory(config);
   }
 
   setExtraHeaders(header) {

@@ -1,9 +1,10 @@
-const Paginator = require("../../common/Paginator");
 const PlatformAPIClient = require("../PlatformAPIClient");
 const { FDKClientValidationError } = require("../../common/FDKError");
+const Paginator = require("../../common/Paginator");
 const AnalyticsValidator = require("./AnalyticsPlatformApplicationValidator");
 const AnalyticsModel = require("./AnalyticsPlatformModel");
 const { Logger } = require("./../../common/Logger");
+const Joi = require("joi");
 
 class Analytics {
   constructor(config, applicationId) {
@@ -553,4 +554,5 @@ class Analytics {
     return response;
   }
 }
+
 module.exports = Analytics;

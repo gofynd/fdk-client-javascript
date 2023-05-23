@@ -1,9 +1,10 @@
-const Paginator = require("../../common/Paginator");
 const PlatformAPIClient = require("../PlatformAPIClient");
 const { FDKClientValidationError } = require("../../common/FDKError");
+const Paginator = require("../../common/Paginator");
 const ContentValidator = require("./ContentPlatformApplicationValidator");
 const ContentModel = require("./ContentPlatformModel");
 const { Logger } = require("./../../common/Logger");
+const Joi = require("joi");
 
 class Content {
   constructor(config, applicationId) {
@@ -1523,6 +1524,71 @@ class Content {
       Logger({
         level: "WARN",
         message: "Response Validation Warnnings for editInjectableTag",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {GenerationEntityType} arg.type - String representing the type of
+   *   SEO content to be generated. Possible values are: title, description
+   * @param {GenerateSEOContent} arg.body
+   * @returns {Promise<GeneratedSEOContent>} - Success response
+   * @summary: Get SEO meta tag title for content
+   * @description: Use this API to get GPT3 generated SEO meta tag title for content
+   */
+  async generateSEOTitle({ type, body } = {}) {
+    const { error } = ContentValidator.generateSEOTitle().validate(
+      {
+        type,
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = ContentValidator.generateSEOTitle().validate(
+      {
+        type,
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for generateSEOTitle",
+      });
+      Logger({ level: "WARN", message: warrning });
+    }
+
+    const query_params = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/generate-seo/${type}`,
+      query_params,
+      body
+    );
+
+    const {
+      error: res_error,
+    } = ContentModel.GeneratedSEOContent().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for generateSEOTitle",
       });
       Logger({ level: "WARN", message: res_error });
     }
@@ -4446,4 +4512,5 @@ class Content {
     return response;
   }
 }
+
 module.exports = Content;

@@ -28,6 +28,8 @@ module.exports = {
 
     OrderApplicationModel: require("./Order/OrderApplicationModel"),
 
+    RewardsApplicationModel: require("./Rewards/RewardsApplicationModel"),
+
     PosCartApplicationModel: require("./PosCart/PosCartApplicationModel"),
 
     LogisticApplicationModel: require("./Logistic/LogisticApplicationModel"),

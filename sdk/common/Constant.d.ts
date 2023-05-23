@@ -20,8 +20,6 @@ export namespace AVAILABLE_PAGE_TYPE {
     const PAGE: string;
     const POLICY: string;
     const PRODUCT: string;
-    const PRODUCT_REVIEWS: string;
-    const ADD_PRODUCT_REVIEW: string;
     const PRODUCT_REQUEST: string;
     const PRODUCTS: string;
     const PROFILE: string;
@@ -161,22 +159,6 @@ export const NAVIGATORS: {
         link: string;
     };
     product: {
-        name: string;
-        link: string;
-        params: {
-            key: string;
-            required: boolean;
-        }[];
-    };
-    "product-reviews": {
-        name: string;
-        link: string;
-        params: {
-            key: string;
-            required: boolean;
-        }[];
-    };
-    "add-product-review": {
         name: string;
         link: string;
         params: {

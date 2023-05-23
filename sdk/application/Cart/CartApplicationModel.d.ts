@@ -14,6 +14,7 @@ declare class CartModel {
     static BulkPriceResponse(): any;
     static CartBreakup(): any;
     static CartCheckoutDetailRequest(): any;
+    static CartCheckoutDetailV2Request(): any;
     static CartCheckoutResponse(): any;
     static CartCurrency(): any;
     static CartDetailResponse(): any;
@@ -51,6 +52,8 @@ declare class CartModel {
     static OperationErrorResponse(): any;
     static PageCoupon(): any;
     static PaymentCouponValidate(): any;
+    static PaymentMeta(): any;
+    static PaymentMethod(): any;
     static PaymentSelectionLock(): any;
     static ProductAction(): any;
     static ProductArticle(): any;

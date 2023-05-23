@@ -1,6 +1,6 @@
 const Joi = require("joi");
-const ContentModel = require("./ContentPlatformModel");
 
+const ContentModel = require("./ContentPlatformModel");
 class ContentValidator {
   static addDataLoader() {
     return Joi.object({
@@ -151,6 +151,13 @@ class ContentValidator {
     return Joi.object({
       tagId: Joi.string().allow("").required(),
       body: ContentModel.UpdateHandpickedSchema().required(),
+    }).required();
+  }
+
+  static generateSEOTitle() {
+    return Joi.object({
+      type: ContentModel.GenerationEntityType().required(),
+      body: ContentModel.GenerateSEOContent().required(),
     }).required();
   }
 

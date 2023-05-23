@@ -25,11 +25,11 @@ Add proxy path for external url
 
 ```javascript
 // Promise
-const promise = client.application("<APPLICATION_ID>").partner.addProxyPath({  extensionId : value,
+const promise = platformClient.application("<APPLICATION_ID>").partner.addProxyPath({  extensionId : value,
  body : value });
 
 // Async/Await
-const data = await client.application("<APPLICATION_ID>").partner.addProxyPath({  extensionId : value,
+const data = await platformClient.application("<APPLICATION_ID>").partner.addProxyPath({  extensionId : value,
  body : value });
 ```
 
@@ -92,11 +92,11 @@ Remove proxy path for external url
 
 ```javascript
 // Promise
-const promise = client.application("<APPLICATION_ID>").partner.removeProxyPath({  extensionId : value,
+const promise = platformClient.application("<APPLICATION_ID>").partner.removeProxyPath({  extensionId : value,
  attachedPath : value });
 
 // Async/Await
-const data = await client.application("<APPLICATION_ID>").partner.removeProxyPath({  extensionId : value,
+const data = await platformClient.application("<APPLICATION_ID>").partner.removeProxyPath({  extensionId : value,
  attachedPath : value });
 ```
 
@@ -163,28 +163,49 @@ Success
 #### [AddProxyReq](#AddProxyReq)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || attached_path | string |  no  |  || proxy_url | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | attached_path | string? |  yes  | Proxy path slug |
+ | proxy_url | string? |  yes  | Proxied url |
+ 
 
 ---
 
 #### [AddProxyResponse](#AddProxyResponse)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || _id | string |  no  |  || application_id | string |  no  |  || attached_path | string |  no  |  || company_id | string |  no  |  || created_at | string |  no  |  || extension_id | string |  no  |  || modified_at | string |  no  |  || proxy_url | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | _id | string? |  yes  |  |
+ | application_id | string? |  yes  |  |
+ | attached_path | string? |  yes  |  |
+ | company_id | string? |  yes  |  |
+ | created_at | string? |  yes  |  |
+ | extension_id | string? |  yes  |  |
+ | modified_at | string? |  yes  |  |
+ | proxy_url | string? |  yes  |  |
+ 
 
 ---
 
 #### [APIError](#APIError)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || code | string |  no  |  || info | string |  no  |  || message | string |  no  |  || meta | string |  no  |  || request_id | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | code | string? |  yes  |  |
+ | info | string? |  yes  | Error code description link |
+ | message | string? |  yes  |  |
+ | meta | string? |  yes  |  |
+ | request_id | string? |  yes  |  |
+ 
 
 ---
 
 #### [RemoveProxyResponse](#RemoveProxyResponse)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || data | string |  no  |  || message | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | data | string? |  yes  |  |
+ | message | string? |  yes  |  |
+ 
 
 ---
 

@@ -35,11 +35,11 @@ Create data export job in required format
 
 ```javascript
 // Promise
-const promise = client.analytics.createExportJob({  exportType : value,
+const promise = platformClient.analytics.createExportJob({  exportType : value,
  body : value });
 
 // Async/Await
-const data = await client.analytics.createExportJob({  exportType : value,
+const data = await platformClient.analytics.createExportJob({  exportType : value,
  body : value });
 ```
 
@@ -96,10 +96,10 @@ Get abandon carts details
 
 ```javascript
 // Promise
-const promise = client.application("<APPLICATION_ID>").analytics.getAbandonCartDetail({  cartId : value });
+const promise = platformClient.application("<APPLICATION_ID>").analytics.getAbandonCartDetail({  cartId : value });
 
 // Async/Await
-const data = await client.application("<APPLICATION_ID>").analytics.getAbandonCartDetail({  cartId : value });
+const data = await platformClient.application("<APPLICATION_ID>").analytics.getAbandonCartDetail({  cartId : value });
 ```
 
 
@@ -152,13 +152,13 @@ Get abandon carts list
 
 ```javascript
 // Promise
-const promise = client.application("<APPLICATION_ID>").analytics.getAbandonCartList({  fromDate : value,
+const promise = platformClient.application("<APPLICATION_ID>").analytics.getAbandonCartList({  fromDate : value,
  toDate : value,
  pageNo : value,
  pageSize : value });
 
 // Async/Await
-const data = await client.application("<APPLICATION_ID>").analytics.getAbandonCartList({  fromDate : value,
+const data = await platformClient.application("<APPLICATION_ID>").analytics.getAbandonCartList({  fromDate : value,
  toDate : value,
  pageNo : value,
  pageSize : value });
@@ -237,11 +237,11 @@ Get abandon carts csv
 
 ```javascript
 // Promise
-const promise = client.application("<APPLICATION_ID>").analytics.getAbandonCartsCSV({  fromDate : value,
+const promise = platformClient.application("<APPLICATION_ID>").analytics.getAbandonCartsCSV({  fromDate : value,
  toDate : value });
 
 // Async/Await
-const data = await client.application("<APPLICATION_ID>").analytics.getAbandonCartsCSV({  fromDate : value,
+const data = await platformClient.application("<APPLICATION_ID>").analytics.getAbandonCartsCSV({  fromDate : value,
  toDate : value });
 ```
 
@@ -296,10 +296,10 @@ Get component statistics
 
 ```javascript
 // Promise
-const promise = client.application("<APPLICATION_ID>").analytics.getComponentStats({  componentName : value });
+const promise = platformClient.application("<APPLICATION_ID>").analytics.getComponentStats({  componentName : value });
 
 // Async/Await
-const data = await client.application("<APPLICATION_ID>").analytics.getComponentStats({  componentName : value });
+const data = await platformClient.application("<APPLICATION_ID>").analytics.getComponentStats({  componentName : value });
 ```
 
 
@@ -399,10 +399,10 @@ Get component statistics csv
 
 ```javascript
 // Promise
-const promise = client.application("<APPLICATION_ID>").analytics.getComponentStatsCSV({  componentName : value });
+const promise = platformClient.application("<APPLICATION_ID>").analytics.getComponentStatsCSV({  componentName : value });
 
 // Async/Await
-const data = await client.application("<APPLICATION_ID>").analytics.getComponentStatsCSV({  componentName : value });
+const data = await platformClient.application("<APPLICATION_ID>").analytics.getComponentStatsCSV({  componentName : value });
 ```
 
 
@@ -455,10 +455,10 @@ Get component statistics pdf
 
 ```javascript
 // Promise
-const promise = client.application("<APPLICATION_ID>").analytics.getComponentStatsPDF({  componentName : value });
+const promise = platformClient.application("<APPLICATION_ID>").analytics.getComponentStatsPDF({  componentName : value });
 
 // Async/Await
-const data = await client.application("<APPLICATION_ID>").analytics.getComponentStatsPDF({  componentName : value });
+const data = await platformClient.application("<APPLICATION_ID>").analytics.getComponentStatsPDF({  componentName : value });
 ```
 
 
@@ -511,11 +511,11 @@ Get data export job status
 
 ```javascript
 // Promise
-const promise = client.analytics.getExportJobStatus({  exportType : value,
+const promise = platformClient.analytics.getExportJobStatus({  exportType : value,
  jobId : value });
 
 // Async/Await
-const data = await client.analytics.getExportJobStatus({  exportType : value,
+const data = await platformClient.analytics.getExportJobStatus({  exportType : value,
  jobId : value });
 ```
 
@@ -574,13 +574,13 @@ Get logs list
 
 ```javascript
 // Promise
-const promise = client.analytics.getLogsList({  logType : value,
+const promise = platformClient.analytics.getLogsList({  logType : value,
  body : value,
  pageNo : value,
  pageSize : value });
 
 // Async/Await
-const data = await client.analytics.getLogsList({  logType : value,
+const data = await platformClient.analytics.getLogsList({  logType : value,
  body : value,
  pageNo : value,
  pageSize : value });
@@ -656,10 +656,10 @@ Get statistics group components
 
 ```javascript
 // Promise
-const promise = client.application("<APPLICATION_ID>").analytics.getStatiscticsGroupComponents({  groupName : value });
+const promise = platformClient.application("<APPLICATION_ID>").analytics.getStatiscticsGroupComponents({  groupName : value });
 
 // Async/Await
-const data = await client.application("<APPLICATION_ID>").analytics.getStatiscticsGroupComponents({  groupName : value });
+const data = await platformClient.application("<APPLICATION_ID>").analytics.getStatiscticsGroupComponents({  groupName : value });
 ```
 
 
@@ -723,10 +723,10 @@ Get statistics groups
 
 ```javascript
 // Promise
-const promise = client.application("<APPLICATION_ID>").analytics.getStatiscticsGroups();
+const promise = platformClient.application("<APPLICATION_ID>").analytics.getStatiscticsGroups();
 
 // Async/Await
-const data = await client.application("<APPLICATION_ID>").analytics.getStatiscticsGroups();
+const data = await platformClient.application("<APPLICATION_ID>").analytics.getStatiscticsGroups();
 ```
 
 
@@ -782,13 +782,13 @@ Search logs
 
 ```javascript
 // Promise
-const promise = client.analytics.searchLogs({  logType : value,
+const promise = platformClient.analytics.searchLogs({  logType : value,
  body : value,
  pageNo : value,
  pageSize : value });
 
 // Async/Await
-const data = await client.analytics.searchLogs({  logType : value,
+const data = await platformClient.analytics.searchLogs({  logType : value,
  body : value,
  pageNo : value,
  pageSize : value });
@@ -870,140 +870,244 @@ Success
 #### [AbandonCartDetail](#AbandonCartDetail)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || _id | string |  no  |  || address | string |  no  |  || articles | [string] |  no  |  || breakup | string |  no  |  || cart_value | string |  no  |  || user_id | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | _id | string? |  yes  |  |
+ | address | string? |  yes  |  |
+ | articles | [string]? |  yes  |  |
+ | breakup | string? |  yes  |  |
+ | cart_value | string? |  yes  |  |
+ | user_id | string? |  yes  |  |
+ 
 
 ---
 
 #### [AbandonCartsDetail](#AbandonCartsDetail)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || context_app_application_id | string |  no  |  || context_traits_email | string |  no  |  || context_traits_first_name | string |  no  |  || context_traits_last_name | string |  no  |  || context_traits_phone_number | string |  no  |  || properties_breakup_values_raw_total | string |  no  |  || properties_cart_id | string |  no  |  || received_at | [ReceivedAt](#ReceivedAt) |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | context_app_application_id | string? |  yes  |  |
+ | context_traits_email | string? |  yes  |  |
+ | context_traits_first_name | string? |  yes  |  |
+ | context_traits_last_name | string? |  yes  |  |
+ | context_traits_phone_number | string? |  yes  |  |
+ | properties_breakup_values_raw_total | string? |  yes  |  |
+ | properties_cart_id | string? |  yes  |  |
+ | received_at | [ReceivedAt](#ReceivedAt)? |  yes  |  |
+ 
 
 ---
 
 #### [AbandonCartsList](#AbandonCartsList)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || cart_total | string |  no  |  || items | [[AbandonCartsDetail](#AbandonCartsDetail)] |  no  |  || page | [Page](#Page) |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | cart_total | string? |  yes  |  |
+ | items | [[AbandonCartsDetail](#AbandonCartsDetail)]? |  yes  |  |
+ | page | [Page](#Page)? |  yes  |  |
+ 
 
 ---
 
 #### [ErrorRes](#ErrorRes)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || message | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | message | string? |  yes  |  |
+ 
 
 ---
 
 #### [ExportJobReq](#ExportJobReq)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || end_time | string |  no  |  || event_type | string |  no  |  || marketplace_name | string |  no  |  || start_time | string |  no  |  || trace_id | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | end_time | string? |  yes  |  |
+ | event_type | string? |  yes  |  |
+ | marketplace_name | string? |  yes  |  |
+ | start_time | string? |  yes  |  |
+ | trace_id | string? |  yes  |  |
+ 
 
 ---
 
 #### [ExportJobRes](#ExportJobRes)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || job_id | string |  no  |  || status | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | job_id | string? |  yes  |  |
+ | status | string? |  yes  |  |
+ 
 
 ---
 
 #### [ExportJobStatusRes](#ExportJobStatusRes)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || download_url | string |  no  |  || job_id | string |  no  |  || status | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | download_url | string? |  yes  |  |
+ | job_id | string? |  yes  |  |
+ | status | string? |  yes  |  |
+ 
 
 ---
 
 #### [GetLogsListReq](#GetLogsListReq)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || company_id | string |  no  |  || end_date | string |  no  |  || marketplace_name | string |  no  |  || start_date | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | company_id | string? |  yes  |  |
+ | end_date | string? |  yes  |  |
+ | marketplace_name | string? |  yes  |  |
+ | start_date | string? |  yes  |  |
+ 
 
 ---
 
 #### [GetLogsListRes](#GetLogsListRes)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || items | [[MkpLogsResp](#MkpLogsResp)] |  no  |  || page | [Page](#Page) |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | items | [[MkpLogsResp](#MkpLogsResp)]? |  yes  |  |
+ | page | [Page](#Page)? |  yes  |  |
+ 
 
 ---
 
 #### [LogInfo](#LogInfo)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || _id | string |  no  |  || article_id | string |  no  |  || brand_id | number |  no  |  || company_id | number |  no  |  || event | string |  no  |  || event_type | string |  no  |  || item_id | number |  no  |  || marketplace_name | string |  no  |  || seller_identifier | string |  no  |  || status | string |  no  |  || store_code | string |  no  |  || store_id | number |  no  |  || trace_id | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | _id | string? |  yes  |  |
+ | article_id | string? |  yes  |  |
+ | brand_id | number? |  yes  |  |
+ | company_id | number? |  yes  |  |
+ | event | string? |  yes  |  |
+ | event_type | string? |  yes  |  |
+ | item_id | number? |  yes  |  |
+ | marketplace_name | string? |  yes  |  |
+ | seller_identifier | string? |  yes  |  |
+ | status | string? |  yes  |  |
+ | store_code | string? |  yes  |  |
+ | store_id | number? |  yes  |  |
+ | trace_id | string? |  yes  |  |
+ 
 
 ---
 
 #### [MkpLogsResp](#MkpLogsResp)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || count | string |  no  |  || end_time_iso | string |  no  |  || event_type | string |  no  |  || start_time_iso | string |  no  |  || status | string |  no  |  || trace_id | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | count | string? |  yes  |  |
+ | end_time_iso | string? |  yes  |  |
+ | event_type | string? |  yes  |  |
+ | start_time_iso | string? |  yes  |  |
+ | status | string? |  yes  |  |
+ | trace_id | string? |  yes  |  |
+ 
 
 ---
 
 #### [Page](#Page)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || current | number |  no  |  || has_next | boolean |  no  |  || has_previous | boolean |  no  |  || item_total | number |  no  |  || next_id | string |  no  |  || size | number |  no  |  || type | string |  yes  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | current | number? |  yes  |  |
+ | has_next | boolean? |  yes  |  |
+ | has_previous | boolean? |  yes  |  |
+ | item_total | number? |  yes  |  |
+ | next_id | string? |  yes  |  |
+ | size | number? |  yes  |  |
+ | type | string |  no  |  |
+ 
 
 ---
 
 #### [ReceivedAt](#ReceivedAt)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || value | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | value | string? |  yes  |  |
+ 
 
 ---
 
 #### [SearchLogReq](#SearchLogReq)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || company_id | string |  no  |  || end_date | string |  no  |  || identifier | string |  no  |  || identifier_value | string |  no  |  || marketplace_name | string |  no  |  || start_date | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | company_id | string? |  yes  |  |
+ | end_date | string? |  yes  |  |
+ | identifier | string? |  yes  |  |
+ | identifier_value | string? |  yes  |  |
+ | marketplace_name | string? |  yes  |  |
+ | start_date | string? |  yes  |  |
+ 
 
 ---
 
 #### [SearchLogRes](#SearchLogRes)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || items | [[LogInfo](#LogInfo)] |  no  |  || page | [Page](#Page) |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | items | [[LogInfo](#LogInfo)]? |  yes  |  |
+ | page | [Page](#Page)? |  yes  |  |
+ 
 
 ---
 
 #### [StatGroup](#StatGroup)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || key | string |  no  |  || title | string |  no  |  || url | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | key | string? |  yes  |  |
+ | title | string? |  yes  |  |
+ | url | string? |  yes  |  |
+ 
 
 ---
 
 #### [StatsGroupComponent](#StatsGroupComponent)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || filters | string |  no  |  || key | string |  no  |  || title | string |  no  |  || type | string |  no  |  || url | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | filters | string? |  yes  |  |
+ | key | string? |  yes  |  |
+ | title | string? |  yes  |  |
+ | type | string? |  yes  |  |
+ | url | string? |  yes  |  |
+ 
 
 ---
 
 #### [StatsGroupComponents](#StatsGroupComponents)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || components | [[StatsGroupComponent](#StatsGroupComponent)] |  no  |  || title | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | components | [[StatsGroupComponent](#StatsGroupComponent)]? |  yes  |  |
+ | title | string? |  yes  |  |
+ 
 
 ---
 
 #### [StatsGroups](#StatsGroups)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || groups | [[StatGroup](#StatGroup)] |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | groups | [[StatGroup](#StatGroup)]? |  yes  |  |
+ 
 
 ---
 
 #### [StatsRes](#StatsRes)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || data | string |  no  |  || key | string |  no  |  || title | string |  no  |  || type | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | data | string? |  yes  |  |
+ | key | string? |  yes  |  |
+ | title | string? |  yes  |  |
+ | type | string? |  yes  |  |
+ 
 
 ---
 

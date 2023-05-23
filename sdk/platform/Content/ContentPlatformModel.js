@@ -59,7 +59,7 @@ class ContentModel {
     return Joi.object({
       announcements: Joi.object().pattern(
         /\S/,
-        Joi.array().items(this.AnnouncementSchema())
+        Joi.array().items(ContentModel.AnnouncementSchema())
       ),
       refresh_pages: Joi.array().items(Joi.string().allow("")),
       refresh_rate: Joi.number(),
@@ -410,6 +410,20 @@ class ContentModel {
       secure_url: Joi.string().allow(""),
     });
   }
+  static GeneratedSEOContent() {
+    return Joi.object({
+      description: Joi.string().allow(""),
+      title: Joi.string().allow(""),
+    });
+  }
+  static GenerateSEOContent() {
+    return Joi.object({
+      existing_text: Joi.string().allow(""),
+      keywords: Joi.array().items(Joi.string().allow("")),
+      text: Joi.string().allow(""),
+      type: Joi.string().allow(""),
+    });
+  }
   static GetAnnouncementListSchema() {
     return Joi.object({
       items: Joi.array().items(ContentModel.AdminAnnouncementSchema()),
@@ -508,10 +522,10 @@ class ContentModel {
       display: Joi.string().allow(""),
       image: Joi.string().allow(""),
       sort_order: Joi.number(),
-      sub_navigation: Joi.array().items(ContentModel.NavigationReference()),
+      sub_navigation: Joi.array().items(Joi.link("#NavigationReference")),
       tags: Joi.array().items(Joi.string().allow("")),
       type: Joi.string().allow(""),
-    });
+    }).id("NavigationReference");
   }
   static NavigationRequest() {
     return Joi.object({
@@ -654,13 +668,19 @@ class ContentModel {
   }
   static PathMappingSchema() {
     return Joi.object({
-      __source: ContentModel.TagSourceSchema(),
+      __source: ContentModel.PathSourceSchema(),
       _id: Joi.string().allow(""),
       application: Joi.string().allow(""),
       created_at: Joi.string().allow(""),
       redirect_from: Joi.string().allow(""),
       redirect_to: Joi.string().allow(""),
       updated_at: Joi.string().allow(""),
+    });
+  }
+  static PathSourceSchema() {
+    return Joi.object({
+      id: Joi.string().allow(""),
+      type: Joi.string().allow(""),
     });
   }
   static PhoneProperties() {
@@ -723,6 +743,7 @@ class ContentModel {
     return Joi.object({
       _id: Joi.string().allow(""),
       app: Joi.string().allow(""),
+      cannonical_enabled: Joi.boolean(),
       created_at: Joi.string().allow(""),
       custom_meta_tags: Joi.array().items(Joi.any()),
       details: ContentModel.Detail(),
@@ -831,6 +852,18 @@ class ContentModel {
   }
 
   /*
+        Enum: GenerationEntityType
+        Used By: Content
+    */
+  static GenerationEntityType() {
+    return Joi.string().valid(
+      "title",
+
+      "description"
+    );
+  }
+
+  /*
         Enum: PageType
         Used By: Content
     */
@@ -877,10 +910,6 @@ class ContentModel {
       "policy",
 
       "product",
-
-      "product-reviews",
-
-      "add-product-review",
 
       "product-request",
 

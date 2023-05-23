@@ -1,9 +1,10 @@
-const Paginator = require("../../common/Paginator");
-const { FDKClientValidationError } = require("../../common/FDKError");
 const PlatformAPIClient = require("../PlatformAPIClient");
+const { FDKClientValidationError } = require("../../common/FDKError");
+const Paginator = require("../../common/Paginator");
 const DiscountValidator = require("./DiscountPlatformValidator");
 const DiscountModel = require("./DiscountPlatformModel");
 const { Logger } = require("./../../common/Logger");
+const Joi = require("joi");
 
 class Discount {
   constructor(config) {

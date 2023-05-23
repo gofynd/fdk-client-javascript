@@ -76,4 +76,5 @@ class LeadValidator {
     }).required();
   }
 }
+
 module.exports = LeadValidator;

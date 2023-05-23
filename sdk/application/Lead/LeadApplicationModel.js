@@ -295,8 +295,8 @@ class LeadModel {
       feedback_form: LeadModel.FeedbackForm(),
       group_id: Joi.number(),
       key: Joi.string().allow("").required(),
-      sub_categories: LeadModel.TicketCategory(),
-    });
+      sub_categories: Joi.link("#TicketCategory"),
+    }).id("TicketCategory");
   }
   static TicketContent() {
     return Joi.object({
@@ -374,8 +374,8 @@ class LeadModel {
     return Joi.object({
       display: Joi.string().allow("").required(),
       key: Joi.string().allow("").required(),
-      sub_categories: LeadModel.TicketSubCategory(),
-    });
+      sub_categories: Joi.link("#TicketSubCategory"),
+    }).id("TicketSubCategory");
   }
   static UserSchema() {
     return Joi.object({
@@ -384,12 +384,10 @@ class LeadModel {
       active: Joi.boolean(),
       application_id: Joi.string().allow(""),
       created_at: Joi.string().allow(""),
-      debug: LeadModel.Debug(),
       dob: Joi.string().allow(""),
       emails: Joi.array().items(LeadModel.Email()),
       first_name: Joi.string().allow(""),
       gender: Joi.string().allow(""),
-      has_old_password_hash: Joi.boolean(),
       last_name: Joi.string().allow(""),
       meta: Joi.any(),
       phone_numbers: Joi.array().items(LeadModel.PhoneNumber()),

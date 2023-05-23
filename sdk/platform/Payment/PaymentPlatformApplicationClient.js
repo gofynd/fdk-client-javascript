@@ -1,9 +1,10 @@
-const Paginator = require("../../common/Paginator");
 const PlatformAPIClient = require("../PlatformAPIClient");
 const { FDKClientValidationError } = require("../../common/FDKError");
+const Paginator = require("../../common/Paginator");
 const PaymentValidator = require("./PaymentPlatformApplicationValidator");
 const PaymentModel = require("./PaymentPlatformModel");
 const { Logger } = require("./../../common/Logger");
+const Joi = require("joi");
 
 class Payment {
   constructor(config, applicationId) {
@@ -272,9 +273,7 @@ class Payment {
    */
   async getUserBeneficiaries({ orderId } = {}) {
     const { error } = PaymentValidator.getUserBeneficiaries().validate(
-      {
-        orderId,
-      },
+      { orderId },
       { abortEarly: false, allowUnknown: true }
     );
     if (error) {
@@ -285,9 +284,7 @@ class Payment {
     const {
       error: warrning,
     } = PaymentValidator.getUserBeneficiaries().validate(
-      {
-        orderId,
-      },
+      { orderId },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
@@ -336,9 +333,7 @@ class Payment {
    */
   async getUserOrderBeneficiaries({ orderId } = {}) {
     const { error } = PaymentValidator.getUserOrderBeneficiaries().validate(
-      {
-        orderId,
-      },
+      { orderId },
       { abortEarly: false, allowUnknown: true }
     );
     if (error) {
@@ -349,9 +344,7 @@ class Payment {
     const {
       error: warrning,
     } = PaymentValidator.getUserOrderBeneficiaries().validate(
-      {
-        orderId,
-      },
+      { orderId },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
@@ -523,4 +516,5 @@ class Payment {
     return response;
   }
 }
+
 module.exports = Payment;

@@ -30,10 +30,10 @@ Create a short link
 
 ```javascript
 // Promise
-const promise = share.createShortLink({  body : value });
+const promise = applicationClient.share.createShortLink({  body : value });
 
 // Async/Await
-const data = await share.createShortLink({  body : value });
+const data = await applicationClient.share.createShortLink({  body : value });
 ```
 
 
@@ -123,10 +123,10 @@ Create QR Code of an app
 
 ```javascript
 // Promise
-const promise = share.getApplicationQRCode();
+const promise = applicationClient.share.getApplicationQRCode();
 
 // Async/Await
-const data = await share.getApplicationQRCode();
+const data = await applicationClient.share.getApplicationQRCode();
 ```
 
 
@@ -177,10 +177,10 @@ Create QR Code of a collection
 
 ```javascript
 // Promise
-const promise = share.getCollectionQRCodeBySlug({  slug : value });
+const promise = applicationClient.share.getCollectionQRCodeBySlug({  slug : value });
 
 // Async/Await
-const data = await share.getCollectionQRCodeBySlug({  slug : value });
+const data = await applicationClient.share.getCollectionQRCodeBySlug({  slug : value });
 ```
 
 
@@ -236,10 +236,10 @@ Get original link by hash
 
 ```javascript
 // Promise
-const promise = share.getOriginalShortLinkByHash({  hash : value });
+const promise = applicationClient.share.getOriginalShortLinkByHash({  hash : value });
 
 // Async/Await
-const data = await share.getOriginalShortLinkByHash({  hash : value });
+const data = await applicationClient.share.getOriginalShortLinkByHash({  hash : value });
 ```
 
 
@@ -330,10 +330,10 @@ Create QR Code of a product
 
 ```javascript
 // Promise
-const promise = share.getProductQRCodeBySlug({  slug : value });
+const promise = applicationClient.share.getProductQRCodeBySlug({  slug : value });
 
 // Async/Await
-const data = await share.getProductQRCodeBySlug({  slug : value });
+const data = await applicationClient.share.getProductQRCodeBySlug({  slug : value });
 ```
 
 
@@ -389,10 +389,10 @@ Get short link by hash
 
 ```javascript
 // Promise
-const promise = share.getShortLinkByHash({  hash : value });
+const promise = applicationClient.share.getShortLinkByHash({  hash : value });
 
 // Async/Await
-const data = await share.getShortLinkByHash({  hash : value });
+const data = await applicationClient.share.getShortLinkByHash({  hash : value });
 ```
 
 
@@ -483,10 +483,10 @@ Create QR Code of a URL
 
 ```javascript
 // Promise
-const promise = share.getUrlQRCode({  url : value });
+const promise = applicationClient.share.getUrlQRCode({  url : value });
 
 // Async/Await
-const data = await share.getUrlQRCode({  url : value });
+const data = await applicationClient.share.getUrlQRCode({  url : value });
 ```
 
 
@@ -542,91 +542,165 @@ Success. Check the example shown below or refer `QRCodeResp` for more details.
 #### [Attribution](#Attribution)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || campaign_cookie_expiry | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | campaign_cookie_expiry | string? |  yes  |  |
+ 
 
 ---
 
 #### [CampaignShortLink](#CampaignShortLink)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || medium | string |  no  |  || source | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | medium | string? |  yes  |  |
+ | source | string? |  yes  |  |
+ 
 
 ---
 
 #### [ErrorRes](#ErrorRes)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || message | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | message | string? |  yes  |  |
+ 
 
 ---
 
 #### [Page](#Page)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || current | number |  no  |  || has_next | boolean |  no  |  || has_previous | boolean |  no  |  || item_total | number |  no  |  || next_id | string |  no  |  || size | number |  no  |  || type | string |  yes  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | current | number? |  yes  |  |
+ | has_next | boolean? |  yes  |  |
+ | has_previous | boolean? |  yes  |  |
+ | item_total | number? |  yes  |  |
+ | next_id | string? |  yes  |  |
+ | size | number? |  yes  |  |
+ | type | string |  no  |  |
+ 
 
 ---
 
 #### [QRCodeResp](#QRCodeResp)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || link | string |  no  |  || svg | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | link | string? |  yes  |  |
+ | svg | string? |  yes  |  |
+ 
 
 ---
 
 #### [RedirectDevice](#RedirectDevice)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || link | string |  no  |  || type | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | link | string? |  yes  |  |
+ | type | string? |  yes  |  |
+ 
 
 ---
 
 #### [Redirects](#Redirects)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || android | [RedirectDevice](#RedirectDevice) |  no  |  || force_web | boolean |  no  |  || ios | [RedirectDevice](#RedirectDevice) |  no  |  || web | [WebRedirect](#WebRedirect) |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | android | [RedirectDevice](#RedirectDevice)? |  yes  |  |
+ | force_web | boolean? |  yes  |  |
+ | ios | [RedirectDevice](#RedirectDevice)? |  yes  |  |
+ | web | [WebRedirect](#WebRedirect)? |  yes  |  |
+ 
 
 ---
 
 #### [ShortLinkList](#ShortLinkList)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || items | [[ShortLinkRes](#ShortLinkRes)] |  no  |  || page | [Page](#Page) |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | items | [[ShortLinkRes](#ShortLinkRes)]? |  yes  |  |
+ | page | [Page](#Page)? |  yes  |  |
+ 
 
 ---
 
 #### [ShortLinkReq](#ShortLinkReq)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || active | boolean |  no  |  || attribution | [Attribution](#Attribution) |  no  |  || campaign | [CampaignShortLink](#CampaignShortLink) |  no  |  || count | number |  no  |  || enable_tracking | boolean |  no  |  || expire_at | string |  no  |  || hash | string |  no  |  || personalized | boolean |  no  |  || redirects | [Redirects](#Redirects) |  no  |  || social_media_tags | [SocialMediaTags](#SocialMediaTags) |  no  |  || title | string |  yes  |  || url | string |  yes  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | active | boolean? |  yes  |  |
+ | attribution | [Attribution](#Attribution)? |  yes  |  |
+ | campaign | [CampaignShortLink](#CampaignShortLink)? |  yes  |  |
+ | count | number? |  yes  |  |
+ | enable_tracking | boolean? |  yes  |  |
+ | expire_at | string? |  yes  |  |
+ | hash | string? |  yes  |  |
+ | personalized | boolean? |  yes  | To create personalized short links. |
+ | redirects | [Redirects](#Redirects)? |  yes  |  |
+ | social_media_tags | [SocialMediaTags](#SocialMediaTags)? |  yes  |  |
+ | title | string |  no  | Give a name to the link. |
+ | url | string |  no  | The web address to shorten. |
+ 
 
 ---
 
 #### [ShortLinkRes](#ShortLinkRes)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || _id | string |  no  |  || active | boolean |  no  |  || app_redirect | boolean |  no  |  || application | string |  no  |  || attribution | [Attribution](#Attribution) |  no  |  || campaign | [CampaignShortLink](#CampaignShortLink) |  no  |  || count | number |  no  |  || created_at | string |  no  |  || created_by | string |  no  |  || enable_tracking | boolean |  no  |  || expire_at | string |  no  |  || fallback | string |  no  |  || meta | string |  no  |  || personalized | boolean |  no  |  || redirects | [Redirects](#Redirects) |  no  |  || social_media_tags | [SocialMediaTags](#SocialMediaTags) |  no  |  || title | string |  no  |  || updated_at | string |  no  |  || url | [UrlInfo](#UrlInfo) |  no  |  || user_id | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | _id | string? |  yes  |  |
+ | active | boolean? |  yes  |  |
+ | app_redirect | boolean? |  yes  |  |
+ | application | string? |  yes  |  |
+ | attribution | [Attribution](#Attribution)? |  yes  |  |
+ | campaign | [CampaignShortLink](#CampaignShortLink)? |  yes  |  |
+ | count | number? |  yes  |  |
+ | created_at | string? |  yes  |  |
+ | created_by | string? |  yes  |  |
+ | enable_tracking | boolean? |  yes  |  |
+ | expire_at | string? |  yes  |  |
+ | fallback | string? |  yes  |  |
+ | meta | string? |  yes  |  |
+ | personalized | boolean? |  yes  | To create personalized short links |
+ | redirects | [Redirects](#Redirects)? |  yes  |  |
+ | social_media_tags | [SocialMediaTags](#SocialMediaTags)? |  yes  |  |
+ | title | string? |  yes  |  |
+ | updated_at | string? |  yes  |  |
+ | url | [UrlInfo](#UrlInfo)? |  yes  |  |
+ | user_id | string? |  yes  |  |
+ 
 
 ---
 
 #### [SocialMediaTags](#SocialMediaTags)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || description | string |  no  |  || image | string |  no  |  || title | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | description | string? |  yes  |  |
+ | image | string? |  yes  |  |
+ | title | string? |  yes  |  |
+ 
 
 ---
 
 #### [UrlInfo](#UrlInfo)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || hash | string |  no  |  || original | string |  no  |  || short | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | hash | string? |  yes  |  |
+ | original | string? |  yes  |  |
+ | short | string? |  yes  |  |
+ 
 
 ---
 
 #### [WebRedirect](#WebRedirect)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || link | string |  no  |  || type | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | link | string? |  yes  |  |
+ | type | string? |  yes  |  |
+ 
 
 ---
 

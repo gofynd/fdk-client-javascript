@@ -110,12 +110,6 @@ class UserModel {
       page: UserModel.PaginationSchema(),
     });
   }
-  static Debug() {
-    return Joi.object({
-      platform: Joi.string().allow(""),
-      source: Joi.string().allow(""),
-    });
-  }
   static DeleteAccountConsent() {
     return Joi.object({
       consent_text: Joi.string().allow(""),
@@ -632,12 +626,10 @@ class UserModel {
       active: Joi.boolean(),
       application_id: Joi.string().allow(""),
       created_at: Joi.string().allow(""),
-      debug: UserModel.Debug(),
       dob: Joi.string().allow(""),
       emails: Joi.array().items(UserModel.Email()),
       first_name: Joi.string().allow(""),
       gender: Joi.string().allow(""),
-      has_old_password_hash: Joi.boolean(),
       last_name: Joi.string().allow(""),
       meta: Joi.any(),
       phone_numbers: Joi.array().items(UserModel.PhoneNumber()),

@@ -1,12 +1,19 @@
 export = CartModel;
 declare class CartModel {
+    static AbandonedCart(): any;
+    static AbandonedCartResponse(): any;
     static ActionQuery(): any;
+    static AddCartDetailResponse(): any;
+    static AddCartRequest(): any;
+    static AddProductCart(): any;
     static AppliedPromotion(): any;
     static ArticlePriceInfo(): any;
     static BaseInfo(): any;
     static BasePrice(): any;
     static BulkBundleRestriction(): any;
     static CartBreakup(): any;
+    static CartCurrency(): any;
+    static CartDetailResponse(): any;
     static CartItem(): any;
     static CartItemMeta(): any;
     static CartProduct(): any;
@@ -50,6 +57,7 @@ declare class CartModel {
     static PaymentAllowValue(): any;
     static PaymentAllowValue1(): any;
     static PaymentModes(): any;
+    static PaymentSelectionLock(): any;
     static PostOrder(): any;
     static PostOrder1(): any;
     static PriceRange(): any;
@@ -81,6 +89,9 @@ declare class CartModel {
     static ShippingAddress(): any;
     static State(): any;
     static SuccessMessage(): any;
+    static UpdateCartDetailResponse(): any;
+    static UpdateCartRequest(): any;
+    static UpdateProductCart(): any;
     static UserRegistered(): any;
     static UsesRemaining(): any;
     static UsesRemaining1(): any;
