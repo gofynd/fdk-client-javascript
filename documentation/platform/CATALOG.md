@@ -147,7 +147,7 @@ Catalog - Platform Front API's' API's allows you to access list of products, pri
 
 
 ### addCollectionItems
-Add items to a collection
+Add/Remove items for a collection.
 
 
 
@@ -167,11 +167,11 @@ const data = await platformClient.application("<APPLICATION_ID>").catalog.addCol
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
-| id | string | yes | A `id` is a unique identifier of a collection. |  
+| id | string | yes | An `id` is a unique identifier of a collection. |  
 | body | [CollectionItemUpdate](#CollectionItemUpdate) | yes | Request body |
 
 
-Adds items to a collection specified by its `id`. See `CollectionItemRequest` for the list of attributes needed to add items to an collection.
+Adds items to a collection specified by its `id`. This API allows you to add items to a specific collection identified by its unique `id`. By utilizing this endpoint, you can expand and enhance the product offerings within a collection, providing users with a wider range of options and choices.
 
 *Returned Response:*
 
@@ -180,7 +180,7 @@ Adds items to a collection specified by its `id`. See `CollectionItemRequest` fo
 
 [UpdatedResponse](#UpdatedResponse)
 
-Status object. Tells whether the operation was successful.
+A successful response contains the success message if the collection is updated with the provided items. See example below or refer `UpdatedResponse` for details
 
 
 
@@ -634,7 +634,7 @@ Category Meta. See example below or refer `CategoryCreateResponse` for details
 
 
 ### createCollection
-Add a Collection
+Create a collection.
 
 
 
@@ -655,7 +655,7 @@ const data = await platformClient.application("<APPLICATION_ID>").catalog.create
 | body | [CreateCollection](#CreateCollection) | yes | Request body |
 
 
-Create a collection. See `CreateCollectionRequestSchema` for the list of attributes needed to create a collection and collections/query-options for the available options to create a collection. On successful request, returns a paginated list of collections specified in `CollectionCreateResponse`
+A Collection allows you to organize your products into hierarchical groups. This API helps you in creating the collection.
 
 *Returned Response:*
 
@@ -664,7 +664,7 @@ Create a collection. See `CreateCollectionRequestSchema` for the list of attribu
 
 [CollectionCreateResponse](#CollectionCreateResponse)
 
-List of all the collections including the one you added. See example below or refer `CollectionCreateResponse` for details
+A successful response contains the details of the created collection. See the example below or refer to `CollectionCreateResponse` for details.
 
 
 
@@ -1876,7 +1876,7 @@ Returns a success response
 
 
 ### deleteCollection
-Delete a Collection
+Delete a collection.
 
 
 
@@ -1894,11 +1894,11 @@ const data = await platformClient.application("<APPLICATION_ID>").catalog.delete
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
-| id | string | yes | A `id` is a unique identifier of a collection. |  
+| id | string | yes | An `id` is a unique identifier of a collection. |  
 
 
 
-Delete a collection by it's id. Returns an object that tells whether the collection was deleted successfully
+This API allows you to delete the collection of an application.
 
 *Returned Response:*
 
@@ -1907,7 +1907,7 @@ Delete a collection by it's id. Returns an object that tells whether the collect
 
 [DeleteResponse](#DeleteResponse)
 
-Status object. Tells whether the operation was successful. See example below or refer `DeleteResponse`
+A successful response contains the success message if the collection is deleted. See example below or refer `DeleteResponse` for details
 
 
 
@@ -2693,7 +2693,7 @@ returns filters configuration for inventory export
 
 
 ### getAllCollections
-List all the collections
+List collections of an application.
 
 
 
@@ -2702,7 +2702,7 @@ List all the collections
 const promise = platformClient.application("<APPLICATION_ID>").catalog.getAllCollections({  q : value,
  scheduleStatus : value,
  type : value,
- tags : value,
+ tag : value,
  isActive : value,
  pageNo : value,
  pageSize : value });
@@ -2711,7 +2711,7 @@ const promise = platformClient.application("<APPLICATION_ID>").catalog.getAllCol
 const data = await platformClient.application("<APPLICATION_ID>").catalog.getAllCollections({  q : value,
  scheduleStatus : value,
  type : value,
- tags : value,
+ tag : value,
  isActive : value,
  pageNo : value,
  pageSize : value });
@@ -2723,13 +2723,13 @@ const data = await platformClient.application("<APPLICATION_ID>").catalog.getAll
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
-| q | string | no | Get collection list filtered by q string, |    
-| scheduleStatus | string | no | Get collection list filtered by scheduled status, |    
-| type | string | no | type of the collections |    
-| tags | Array<string> | no | Each response will contain next_id param, which should be sent back to make pagination work. |    
-| isActive | boolean | no | get collections filtered by active status. |    
+| q | string | no | The query string for searching collections. |    
+| scheduleStatus | string | no | Filter collections by their schedule status. |    
+| type | string | no | It is the type of collection. |    
+| tag | Array<string> | no | Filter the collections by a tag. |    
+| isActive | boolean | no | Filter collections by active status. |    
 | pageNo | number | no | The page number to navigate through the given set of results. |    
-| pageSize | number | no | Number of items to retrieve in each page. Default is 12. |  
+| pageSize | number | no | Number of items to retrieve in each page. |  
 
 
 
@@ -2742,7 +2742,7 @@ A Collection allows you to organize your products into hierarchical groups. For 
 
 [GetCollectionListingResponse](#GetCollectionListingResponse)
 
-List of collections. See example below or refer `GetCollectionListingResponse` for details
+A successful response contains the list of collection in an application. See the example below or refer to `GetCollectionListingResponse` for details.
 
 
 
@@ -5440,7 +5440,7 @@ configuration details for catalog. See example below or refer `GetCatalogConfigu
 
 
 ### getCatalogInsights
-Analytics data of catalog and inventory.
+Retrieve the analytics data of catalog and inventory.
 
 
 
@@ -5458,11 +5458,11 @@ const data = await platformClient.application("<APPLICATION_ID>").catalog.getCat
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
-| brand | string | no | Brand slug |  
+| brand | string | no | The slug of the brand. |  
 
 
 
-Catalog Insights api returns the count of catalog related data like products, brands, departments and categories that have been made live as per configuration of the app.
+The Catalog Insights API provides information about the count of catalog-related data, including products, brands, departments, and categories that have been made available based on the configuration of the application. This API allows you to retrieve statistical insights and metrics regarding the catalog, helping you gain valuable information about the live data in your catalog.
 
 *Returned Response:*
 
@@ -5471,7 +5471,7 @@ Catalog Insights api returns the count of catalog related data like products, br
 
 [CatalogInsightResponse](#CatalogInsightResponse)
 
-Response Data
+A successful response contains the insights of the catalog. See the example below or refer to `CatalogInsightResponseSchema` for details.
 
 
 
@@ -5485,6 +5485,15 @@ Response Data
     "count": 637707,
     "out_of_stock_count": 452806,
     "sellable_count": 184901
+  },
+  "brand_distribution": {
+    "name": "fynd",
+    "available_articles": 5,
+    "total_articles": 10,
+    "available_sizes": 3,
+    "total_sizes": 5,
+    "article_freshness": 2,
+    "count": 0
   }
 }
 ```
@@ -5740,7 +5749,7 @@ Get Data for one category. See example below or refer `CategoryResponse` for det
 
 
 ### getCollectionDetail
-Get a particular collection
+Retrieve the collection details by its slug.
 
 
 
@@ -5762,7 +5771,7 @@ const data = await platformClient.application("<APPLICATION_ID>").catalog.getCol
 
 
 
-Get the details of a collection by its `slug`. If successful, returns a Collection resource in the response body specified in `CollectionDetailResponse`
+This API retrieves the detail of the collection in an application.
 
 *Returned Response:*
 
@@ -5771,7 +5780,7 @@ Get the details of a collection by its `slug`. If successful, returns a Collecti
 
 [CollectionDetailResponse](#CollectionDetailResponse)
 
-The Collection object. See example below or refer `CollectionDetailResponse` for details
+A successful response contains the collection object. See example below or refer `CollectionDetailResponse` for details
 
 
 
@@ -5857,22 +5866,26 @@ The Collection object. See example below or refer `CollectionDetailResponse` for
 
 
 ### getCollectionItems
-Get the items for a collection
+Retrieve items of a collection.
 
 
 
 ```javascript
 // Promise
 const promise = platformClient.application("<APPLICATION_ID>").catalog.getCollectionItems({  id : value,
+ f : value,
  sortOn : value,
  pageId : value,
- pageSize : value });
+ pageSize : value,
+ xCurrencyCode : value });
 
 // Async/Await
 const data = await platformClient.application("<APPLICATION_ID>").catalog.getCollectionItems({  id : value,
+ f : value,
  sortOn : value,
  pageId : value,
- pageSize : value });
+ pageSize : value,
+ xCurrencyCode : value });
 ```
 
 
@@ -5881,14 +5894,16 @@ const data = await platformClient.application("<APPLICATION_ID>").catalog.getCol
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
-| id | string | yes | A `id` is a unique identifier of a collection. |    
-| sortOn | string | no | Each response will contain sort_on param, which should be sent back to make pagination work. |    
-| pageId | string | no | Each response will contain next_id param, which should be sent back to make pagination work. |    
-| pageSize | number | no | Number of items to retrieve in each page. Default is 12. |  
+| id | string | yes | An `id` is a unique identifier of a collection. |    
+| f | string | no | Filter the products in the collection using key-value pairs. |    
+| sortOn | string | no | It is the attribute's value on which the products will be sorted for a collection. |    
+| pageId | number | no | It is the currency id of the page in the pagniation. |    
+| pageSize | number | no | Number of items to retrieve in each page. Default is 12. |    
+| xCurrencyCode | string | no | The currency code used for pricing and monetary transactions. |  
 
 
 
-Get items from a collection specified by its `id`.
+A Collection API allows you to organize your products into hierarchical groups. This API provides a list of items and filters that can be applied to the items within a collection. It enables you to retrieve specific items based on various filter criteria.The API allows you to fetch information about items in the collection, including their attributes, categories, media URLs, pricing details, and more. Additionally, you can apply filters such as size and color to narrow down the search results and find the desired items. By utilizing this API, you can efficiently manage and display collections of products, making it easier for users to navigate and explore your e-commerce platform. It offers flexibility in organizing and presenting products, enhancing the overall user experience.
 
 *Returned Response:*
 
@@ -5897,7 +5912,7 @@ Get items from a collection specified by its `id`.
 
 [GetCollectionItemsResponse](#GetCollectionItemsResponse)
 
-The attached items of an collection. See example below or refer `GetCollectionItemsResponseSchema` for details
+A successful response contains the attached items of an collection. See example below or refer `GetCollectionItemsResponseSchema` for details
 
 
 
@@ -5906,7 +5921,176 @@ The attached items of an collection. See example below or refer `GetCollectionIt
 <summary><i>&nbsp; Example:</i></summary>
 
 ```json
-
+{
+  "filters": [
+    {
+      "key": {
+        "display": "Size",
+        "name": "sizes",
+        "kind": "multivalued",
+        "logo": "https://hdn-1.fynd.com/products/pictures/attribute/logo/original/M45tOYu45x-Sizes.png"
+      },
+      "values": [
+        {
+          "display": "L",
+          "count": 17,
+          "is_selected": false,
+          "value": "L"
+        },
+        {
+          "display": "M",
+          "count": 17,
+          "is_selected": false,
+          "value": "M"
+        }
+      ]
+    }
+  ],
+  "items": [
+    {
+      "type": "product",
+      "attributes": {
+        "primary_color_hex": "Navy Blue",
+        "care_instructions": "Wash at 30 (Degree) C, Cold Machine Wash, Iron at Medium Heat, Dry Clean, Do Not Tumble Dry, Do Not Bleach, Do Not Iron On, Print or Embroidery",
+        "description": "Official Mumbai Indians T-Shirts! Finally, the epic Tees are out, and now you can show your support for the GOATS with this coolest outfit. This is the best #ootd you could ever have. The durable, 100% cotton fabric is soft and comfortable, making it perfect for the season. Whether cheering for our Men in Blue at the stadium or cheering them on from home, this T-shirt is the perfect way to show your love for Mumbai Indians.",
+        "gender": "unisex",
+        "marketer-address": "DUDE ME DESIGNS LLP 15-1, VLB NAGAR, KOVAIPUDUR, LANDMARK: ABOVE IDFC BANK, Coimbatore, TAMIL NADU, 641042",
+        "marketer-name": "DUDE ME DESIGNS LLP",
+        "material": "100% Cotton",
+        "name": "MI:  Love MI  T-Shirt (Navy)",
+        "neck_type": "Round Neck",
+        "net-quantity": "1 N",
+        "pattern": "Solid",
+        "primary_color": null,
+        "primary_material": "Cotton",
+        "product_fit": "Regular",
+        "sleeve_length": "Short",
+        "topwear_length": "Long"
+      },
+      "categories": [
+        {
+          "id": 192,
+          "uid": 192,
+          "name": "T-Shirts",
+          "slug": "t-shirts",
+          "logo": {
+            "type": "image",
+            "url": "https://cdn.pixelbin.io/v2/falling-surf-7c8bb8/fyprod/wrkr/media/banner_portrait/brand/original/540_ecba3a1af141467da8abc20500f983db.jpg"
+          },
+          "action": {
+            "page": {
+              "type": "category",
+              "query": {
+                "category": [
+                  "t-shirts"
+                ]
+              }
+            },
+            "type": "page"
+          },
+          "_custom_json": {}
+        }
+      ],
+      "_custom_meta": [],
+      "sellable": true,
+      "name": "MI:  Love MI  T-Shirt (Navy)",
+      "slug": "mi--love-mi--t-shirt-navy-di1dctpbgz",
+      "uid": 8611670,
+      "item_type": "standard",
+      "item_code": "ILMI-N",
+      "brand": {
+        "type": "brand",
+        "uid": 5151,
+        "name": "Dudeme",
+        "logo": {
+          "type": "image",
+          "url": "https://cdn.pixelbin.io/v2/falling-surf-7c8bb8/fyprod/wrkr/brands/pictures/square-logo/original/sdm24nUQC-Logo.jpeg"
+        },
+        "action": {
+          "page": {
+            "type": "products",
+            "query": {
+              "brand": [
+                "dudeme"
+              ]
+            }
+          },
+          "type": "page"
+        },
+        "_custom_json": {}
+      },
+      "action": {
+        "page": {
+          "type": "product",
+          "query": {
+            "slug": "mi--love-mi--t-shirt-navy-di1dctpbgz"
+          }
+        },
+        "type": "page"
+      },
+      "medias": [
+        {
+          "type": "image",
+          "url": "https://cdn.pixelbin.io/v2/falling-surf-7c8bb8/fyprod/wrkr/products/pictures/item/free/original/DM-ILMI-N-S/BPewurvIXY-ILMI-N_1.jpg"
+        },
+        {
+          "type": "image",
+          "url": "https://cdn.pixelbin.io/v2/falling-surf-7c8bb8/fyprod/wrkr/products/pictures/item/free/original/DM-ILMI-N-S/7pvcuGISvN-ILMI-N_2.jpg"
+        },
+        {
+          "type": "image",
+          "url": "https://cdn.pixelbin.io/v2/falling-surf-7c8bb8/fyprod/wrkr/products/pictures/item/free/original/DM-ILMI-N-S/klF4Cjz5gr-ILMI-N_3.jpg"
+        }
+      ],
+      "discount": "44% OFF",
+      "price": {
+        "marked": {
+          "min": 999,
+          "max": 999,
+          "currency_code": "INR",
+          "currency_symbol": "₹"
+        },
+        "effective": {
+          "min": 550,
+          "max": 550,
+          "currency_code": "INR",
+          "currency_symbol": "₹"
+        }
+      },
+      "is_tryout": false,
+      "promo_meta": {},
+      "all_company_ids": [
+        3670
+      ],
+      "short_description": "",
+      "country_of_origin": "India"
+    }
+  ],
+  "sort_on": [
+    {
+      "display": "Latest Products",
+      "name": "Latest Products",
+      "logo": "https://hdn-1.fynd.com/products/pictures/attribute/logo/original/QEvUfhsfyg-Latest-Products.png",
+      "value": "latest",
+      "is_selected": true
+    },
+    {
+      "display": "Manual",
+      "name": "Manual",
+      "value": "manual",
+      "logo": "https://hdn-1.fynd.com/global/menu-icons/Size%20Depth.png",
+      "is_selected": true
+    }
+  ],
+  "page": {
+    "current": 1,
+    "type": "number",
+    "size": 1,
+    "has_previous": false,
+    "has_next": false,
+    "item_total": 17
+  }
+}
 ```
 </details>
 
@@ -12436,24 +12620,32 @@ Product Meta. See example below for details
 
 
 ### getQueryFilters
-Get query filters to configure a collection
+Retrieve the filters and sort options for collections.
 
 
 
 ```javascript
 // Promise
-const promise = platformClient.application("<APPLICATION_ID>").catalog.getQueryFilters();
+const promise = platformClient.application("<APPLICATION_ID>").catalog.getQueryFilters({  f : value,
+ sortOn : value });
 
 // Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").catalog.getQueryFilters();
+const data = await platformClient.application("<APPLICATION_ID>").catalog.getQueryFilters({  f : value,
+ sortOn : value });
 ```
 
 
 
 
 
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| f | string | no | Filter the products in the collection using key-value pairs. |    
+| sortOn | string | no | Attribute key on which the products should be sorted. |  
 
-Get query filters to configure a collection
+
+
+A Collection allows you to organize your products into hierarchical groups. This API retrieves the query filters that can be used to configure a collection for a specific seller account and sale channel.
 
 *Returned Response:*
 
@@ -12462,7 +12654,7 @@ Get query filters to configure a collection
 
 [GetCollectionQueryOptionResponse](#GetCollectionQueryOptionResponse)
 
-The attached items of an collection. See example below or refer `GetCollectionQueryOptionResponse` for details
+A successful response contains the options for query that can be applied for the application. See the example below or refer to `GetCollectionQueryOptionResponse` for details.
 
 
 
@@ -12909,7 +13101,7 @@ The Collection object. See example below or refer `GetSearchWordsDetailResponseS
 
 
 ### getSellerInsights
-Analytics data of catalog and inventory that are being cross-selled.
+Retrieve the analytics data of catalog and inventory that are being cross-selled.
 
 
 
@@ -12927,7 +13119,7 @@ const data = await platformClient.catalog.getSellerInsights({  sellerAppId : val
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
-| sellerAppId | string | yes | Id of the seller application which is serving the invetory/catalog of the company |  
+| sellerAppId | string | yes | A `seller_app_id` is alphanumeric ID allotted to a sales channel application created within a business account. |  
 
 
 
@@ -12938,9 +13130,9 @@ Analytics data of catalog and inventory that are being cross-selled.
 
 
 
-[CrossSellingResponse](#CrossSellingResponse)
+[CrossSellingDataResponse](#CrossSellingDataResponse)
 
-Response Data
+A successful response contains the insights of the catalog. See the example below or refer to `CrossSellingDataResponseSchema` for details.
 
 
 
@@ -17054,7 +17246,7 @@ Category Meta. See example below or refer `CategoryUpdateResponse` for details
 
 
 ### updateCollection
-Update a collection
+Update a collection by its ID.
 
 
 
@@ -17074,20 +17266,20 @@ const data = await platformClient.application("<APPLICATION_ID>").catalog.update
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
-| id | string | yes | A `id` is a unique identifier of a collection. |  
+| id | string | yes | An `id` is a unique identifier of a collection. |  
 | body | [UpdateCollection](#UpdateCollection) | yes | Request body |
 
 
-Update a collection by it's id. On successful request, returns the updated collection
+This API enables you to update a collection by specifying its unique identifier (`ID`). By utilizing this endpoint, you can easily modify and refine the attributes, settings, and contents of a specific collection, ensuring it remains relevant and aligned with your business goals.
 
 *Returned Response:*
 
 
 
 
-[UpdateCollection](#UpdateCollection)
+[CollectionUpdateResponse](#CollectionUpdateResponse)
 
-The Collection object. See example below or refer `UpdateCollectionSchema` for details.
+A successful response contains the data of the collection with the updated data. See example below or refer `CollectionUpdateResponse` for details
 
 
 
@@ -17097,65 +17289,101 @@ The Collection object. See example below or refer `UpdateCollectionSchema` for d
 
 ```json
 {
-  "uid": "604f585a7051e30001173ac1",
-  "type": "query",
-  "query": {},
-  "name": "New",
+  "app_id": "000000000000000000000001",
+  "name": "flat 10 summer sale",
+  "slug": "flat_10_summer_sale",
+  "modified_by": {
+    "id": 123,
+    "username": "john_doe"
+  },
   "banners": {
     "portrait": {
       "type": "image",
-      "url": "https://res.cloudinary.com/dwzm9bysq/image/upload/v1588858137/production/applications/app_000000000000000000000001/media/collection/portrait/xzuftshmmw4yuwzb12pm.png"
+      "url": "https://cdn.pixelbin.io/v2/falling-surf-7c8bb8/fyndnp/wrkr//addsale/misc/general/free/original/mlr7_3OLx-image.jpg"
     },
     "landscape": {
       "type": "image",
-      "url": "https://res.cloudinary.com/dwzm9bysq/image/upload/v1588857999/production/applications/app_000000000000000000000001/media/collection/landscape/avm7xibo2jgk8glc4bwl.png"
+      "url": "//addsale/misc/general/free/original/jMmfDuegs-image.jpg"
     }
   },
   "logo": {
-    "type": "image",
-    "url": "https://res.cloudinary.com/dwzm9bysq/image/upload/v1588857854/production/applications/app_000000000000000000000001/media/collection/logo/w9ns7nfgv7fk45xqrpoh.png"
+    "logo": {
+      "type": "image",
+      "url": "https://cdn.pixelbin.io/v2/falling-surf-7c8bb8/fyndnp/wrkr//addsale/misc/general/free/original/Enaw8jODo-image.jpg"
+    }
   },
-  "published": true,
-  "description": "",
-  "is_active": true,
-  "tags": [],
-  "slug": "new",
-  "action": {
-    "page": {
-      "type": "collection",
-      "query": {
-        "collection": [
-          "new"
-        ]
-      }
-    },
-    "type": "page"
-  },
-  "allow_facets": true,
-  "allow_sort": true,
-  "visible_facets_keys": [],
-  "meta": {},
-  "badge": {
-    "color": "#ffffff",
-    "text": ""
-  },
-  "sort_on": "depth_desc",
-  "_custom_json": {},
-  "_locale_language": {},
   "_schedule": {
-    "start": "2021-03-15T12:51:21.333000+00:00Z",
     "next_schedule": [
       {
-        "start": "2021-03-15T12:51:21.333000+00:00Z",
+        "start": "2023-02-15T11:00:03.412000Z",
         "end": null
       }
     ],
+    "start": null,
     "end": null
   },
+  "is_active": false,
+  "description": "Summer collection flat 10 off on all the products",
+  "query": [
+    {
+      "attribute": "l3_categories",
+      "op": "in",
+      "value": [
+        "mens",
+        "womens"
+      ]
+    }
+  ],
+  "sort_on": "popular",
+  "tags": [
+    "summer-sale",
+    "flat10",
+    "discount"
+  ],
+  "allow_facets": false,
+  "allow_sort": true,
+  "badge": {
+    "text": "New",
+    "color": "red"
+  },
+  "visible_facets_keys": [
+    "price",
+    "color",
+    "size"
+  ],
+  "published": true,
+  "meta": {
+    "job_id": "z98uashd",
+    "default": {}
+  },
+  "_custom_json": {
+    "custom_field1": "value1",
+    "custom_field2": [
+      "value2",
+      "value3"
+    ],
+    "custom_field3": {
+      "sub_field1": 10,
+      "sub_field2": "text"
+    }
+  },
+  "_locale_language": {
+    "en": {
+      "name": "Fynd Memes Collection",
+      "description": "Shop exclusive Fynd merchandise and fan gear inspired by internet memes."
+    },
+    "fr": {
+      "name": "Collection Fynd Memes",
+      "description": "Achetez des produits exclusifs de Fynd et des articles de fan inspirés des mèmes Internet."
+    }
+  },
   "seo": {
-    "title": "Test",
-    "description": "Test description"
-  }
+    "title": "Flat 10 Summer Sale - Shop Now!",
+    "description": "Explore our exclusive summer collection and enjoy a flat 10% discount on all products."
+  },
+  "is_visible": true,
+  "priority": 1,
+  "type": "query"
 }
 ```
 </details>
@@ -18204,8 +18432,8 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | page | [ActionPage](#ActionPage)? |  yes  |  |
- | type | string? |  yes  |  |
+ | page | [ActionPage](#ActionPage)? |  yes  | The page associated with the action. |
+ | type | string? |  yes  | The type of action. |
  
 
 ---
@@ -18214,8 +18442,8 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | query | string? |  yes  |  |
- | type | string? |  yes  |  |
+ | query | string? |  yes  | The query associated with the action page. |
+ | type | string? |  yes  | The type of the action page. |
  
 
 ---
@@ -18607,7 +18835,7 @@ List of fields and validation values fro each. See example below or refer `Inven
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | page | [AutocompletePageAction](#AutocompletePageAction)? |  yes  |  |
- | type | string? |  yes  |  |
+ | type | string? |  yes  | The type of action. |
  
 
 ---
@@ -18616,10 +18844,10 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | params | string? |  yes  |  |
- | query | string? |  yes  |  |
- | type | string? |  yes  |  |
- | url | string? |  yes  |  |
+ | params | string? |  yes  | The parameters associated with the autocomplete page. |
+ | query | string? |  yes  | The query associated with the action page. |
+ | type | string? |  yes  | The type of the action page. |
+ | url | string? |  yes  | The URL associated with the autocomplete page. |
  
 
 ---
@@ -18640,9 +18868,9 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | aspect_ratio | string? |  yes  |  |
- | type | string? |  yes  |  |
- | url | string? |  yes  |  |
+ | aspect_ratio | string? |  yes  | The aspect ratio of the banner image. |
+ | type | string? |  yes  | The type of the banner image. |
+ | url | string? |  yes  | URL of the banner image. |
  
 
 ---
@@ -18820,12 +19048,12 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | article_freshness | number? |  yes  |  |
- | available_articles | number? |  yes  |  |
- | available_sizes | number? |  yes  |  |
- | name | string? |  yes  |  |
- | total_articles | number? |  yes  |  |
- | total_sizes | number? |  yes  |  |
+ | article_freshness | number? |  yes  | The freshness score of the articles for the brand. |
+ | available_articles | number? |  yes  | The count of available articles for the brand. |
+ | available_sizes | number? |  yes  | The count of available sizes for the brand. |
+ | name | string? |  yes  | The name of the brand. |
+ | total_articles | number? |  yes  | The total count of articles for the brand. |
+ | total_sizes | number? |  yes  | The total count of sizes for the brand. |
  
 
 ---
@@ -18834,9 +19062,9 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | count | number? |  yes  |  |
- | out_of_stock_count | number? |  yes  |  |
- | sellable_count | number? |  yes  |  |
+ | count | number? |  yes  | The total count of items in the catalog. |
+ | out_of_stock_count | number? |  yes  | The count of items that are out of stock. |
+ | sellable_count | number? |  yes  | The count of items that are sellable. |
  
 
 ---
@@ -18845,8 +19073,8 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | brand_distribution | [CatalogInsightBrand](#CatalogInsightBrand)? |  yes  |  |
- | item | [CatalogInsightItem](#CatalogInsightItem)? |  yes  |  |
+ | brand_distribution | [CatalogInsightBrand](#CatalogInsightBrand)? |  yes  | Distribution information about brands in the catalog. |
+ | item | [CatalogInsightItem](#CatalogInsightItem)? |  yes  | Insight information about catalog items. |
  
 
 ---
@@ -19002,8 +19230,8 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | color | string? |  yes  |  |
- | text | string? |  yes  |  |
+ | color | string? |  yes  | It is the color of the badge to be shown on the collection. |
+ | text | string? |  yes  | It is the text value of the badge on the collection. |
  
 
 ---
@@ -19012,8 +19240,8 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | landscape | [CollectionImage](#CollectionImage) |  no  |  |
- | portrait | [CollectionImage](#CollectionImage) |  no  |  |
+ | landscape | [CollectionImage](#CollectionImage) |  no  | The landscape image of the item. |
+ | portrait | [CollectionImage](#CollectionImage) |  no  | The portrait image of the item. |
  
 
 ---
@@ -19022,25 +19250,25 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | _schedule | string? |  yes  |  |
- | allow_facets | boolean? |  yes  |  |
- | allow_sort | boolean? |  yes  |  |
- | app_id | string? |  yes  |  |
- | badge | string? |  yes  |  |
- | banners | [ImageUrls](#ImageUrls)? |  yes  |  |
- | cron | string? |  yes  |  |
- | description | string? |  yes  |  |
- | is_active | boolean? |  yes  |  |
- | logo | [BannerImage](#BannerImage)? |  yes  |  |
- | meta | string? |  yes  |  |
- | name | string? |  yes  |  |
- | priority | number? |  yes  |  |
- | query | [[CollectionQuery](#CollectionQuery)]? |  yes  |  |
- | slug | string? |  yes  |  |
- | sort_on | string? |  yes  |  |
- | tag | [string]? |  yes  |  |
- | type | string? |  yes  |  |
- | visible_facets_keys | [string]? |  yes  |  |
+ | _schedule | string? |  yes  | The schedule configuration for the collection. |
+ | allow_facets | boolean? |  yes  | Indicates whether facets are allowed for the collection. |
+ | allow_sort | boolean? |  yes  | Indicates whether sorting is allowed for the collection. |
+ | app_id | string? |  yes  | It is alphanumeric ID allotted to a sales channel application created within a business account. |
+ | badge | string? |  yes  | The badge configuration for the collection. |
+ | banners | [ImageUrls](#ImageUrls)? |  yes  | The URLs and aspect ratios of the collection banners. |
+ | cron | string? |  yes  | The cron configuration for the collection. |
+ | description | string? |  yes  | The description of the collection. |
+ | is_active | boolean? |  yes  | Indicates whether the collection is active or not. |
+ | logo | [Media1](#Media1)? |  yes  | The logo of the collection. |
+ | meta | string? |  yes  | Additional metadata for the collection. |
+ | name | string? |  yes  | The name of the collection. |
+ | priority | number? |  yes  | The priority level of the collection. |
+ | query | [[CollectionQuery](#CollectionQuery)]? |  yes  | The queries associated with the collection. |
+ | slug | string? |  yes  | The slug of the collection. |
+ | sort_on | string? |  yes  | The sort_on attribute on which the collection product will be sorted. |
+ | tags | [string]? |  yes  | The tags associated with the collection. |
+ | type | string? |  yes  | The type of the collection. |
+ | visible_facets_keys | [string]? |  yes  | The keys of the visible facets for the collection. |
  
 
 ---
@@ -19049,25 +19277,26 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | _schedule | string? |  yes  |  |
- | allow_facets | boolean? |  yes  |  |
- | allow_sort | boolean? |  yes  |  |
- | app_id | string? |  yes  |  |
- | badge | string? |  yes  |  |
- | banners | [ImageUrls](#ImageUrls)? |  yes  |  |
- | cron | string? |  yes  |  |
- | description | string? |  yes  |  |
- | is_active | boolean? |  yes  |  |
- | logo | [Media1](#Media1)? |  yes  |  |
- | meta | string? |  yes  |  |
- | name | string? |  yes  |  |
- | priority | number? |  yes  |  |
- | query | [[CollectionQuery](#CollectionQuery)]? |  yes  |  |
- | slug | string? |  yes  |  |
- | tag | [string]? |  yes  |  |
- | type | string? |  yes  |  |
- | uid | string? |  yes  |  |
- | visible_facets_keys | [string]? |  yes  |  |
+ | _schedule | string? |  yes  | The schedule configuration for the collection. |
+ | allow_facets | boolean? |  yes  | Indicates whether facets are allowed for the collection. |
+ | allow_sort | boolean? |  yes  | Indicates whether sorting is allowed for the collection. |
+ | app_id | string? |  yes  | It is alphanumeric ID allotted to a sales channel application created within a business account. |
+ | badge | string? |  yes  | The badge configuration for the collection. |
+ | banners | [ImageUrls](#ImageUrls)? |  yes  | The URLs and aspect ratios of the collection banners. |
+ | cron | string? |  yes  | The cron configuration for the collection. |
+ | description | string? |  yes  | The description of the collection. |
+ | is_active | boolean? |  yes  | Indicates whether the collection is active or not. |
+ | logo | [Media1](#Media1)? |  yes  | The logo of the collection. |
+ | meta | string? |  yes  | Additional metadata for the collection. |
+ | name | string? |  yes  | The name of the collection. |
+ | priority | number? |  yes  | The priority level of the collection. |
+ | query | [[CollectionQuery](#CollectionQuery)]? |  yes  | The queries associated with the collection. |
+ | slug | string? |  yes  | The slug of the collection. |
+ | sort_on | string? |  yes  | The sort_on attribute on which the collection product will be sorted. |
+ | tag | [string]? |  yes  | The tags associated with the collection. |
+ | type | string? |  yes  | The type of the collection. |
+ | uid | string? |  yes  | The unique identifier of the collection. |
+ | visible_facets_keys | [string]? |  yes  | The keys of the visible facets for the collection. |
  
 
 ---
@@ -19076,8 +19305,8 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | aspect_ratio | string |  no  |  |
- | url | string |  no  |  |
+ | aspect_ratio | string |  no  | The aspect ratio of the item. |
+ | url | string |  no  | The URL of the item. |
  
 
 ---
@@ -19086,9 +19315,9 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | action | string |  no  |  |
- | item_id | number |  no  |  |
- | priority | number? |  yes  |  |
+ | action | string |  no  | The action to perform on the item. |
+ | item_id | number |  no  | The ID of the item. |
+ | priority | number? |  yes  | The priority of the item. |
  
 
 ---
@@ -19097,12 +19326,12 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | allow_facets | boolean? |  yes  |  |
- | allow_sort | boolean? |  yes  |  |
- | items | [[CollectionItem](#CollectionItem)]? |  yes  |  |
- | query | [[CollectionQuery](#CollectionQuery)]? |  yes  |  |
- | type | string? |  yes  |  |
- | visible_facets_keys | [string]? |  yes  |  |
+ | allow_facets | boolean? |  yes  | Flag indicating if facets are allowed in the collection. |
+ | allow_sort | boolean? |  yes  | Flag indicating if sorting is allowed in the collection. |
+ | items | [[CollectionItem](#CollectionItem)]? |  yes  | List of items to update in the collection. |
+ | query | [[CollectionQuery](#CollectionQuery)]? |  yes  | List of queries to update in the collection. |
+ | type | string? |  yes  | The type of collection update. |
+ | visible_facets_keys | [string]? |  yes  | List of keys for visible facets in the collection. |
  
 
 ---
@@ -19111,8 +19340,8 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | tags | [[CollectionListingFilterTag](#CollectionListingFilterTag)]? |  yes  |  |
- | type | [[CollectionListingFilterType](#CollectionListingFilterType)]? |  yes  |  |
+ | tags | [[CollectionListingFilterTag](#CollectionListingFilterTag)]? |  yes  | It is the list of tagas filterable on the collections. |
+ | type | [[CollectionListingFilterType](#CollectionListingFilterType)]? |  yes  | It is the list of filters applicable on the filter listing |
  
 
 ---
@@ -19121,9 +19350,9 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | display | string? |  yes  |  |
- | is_selected | boolean? |  yes  |  |
- | name | string? |  yes  |  |
+ | display | string? |  yes  | The display name of the filter tag. |
+ | is_selected | boolean? |  yes  | Indicates whether the filter tag is selected or not. |
+ | name | string? |  yes  | The name of the filter tag. |
  
 
 ---
@@ -19132,9 +19361,9 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | display | string? |  yes  |  |
- | is_selected | boolean? |  yes  |  |
- | name | string? |  yes  |  |
+ | display | string? |  yes  | The display name of the filter tag. |
+ | is_selected | boolean? |  yes  | Indicates whether the filter tag is selected or not. |
+ | name | string? |  yes  | The name of the filter tag. |
  
 
 ---
@@ -19154,11 +19383,43 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | cron | string? |  yes  |  |
- | duration | number? |  yes  |  |
- | end | string? |  yes  |  |
- | next_schedule | [[NextSchedule](#NextSchedule)]? |  yes  |  |
- | start | string? |  yes  |  |
+ | cron | string? |  yes  | The cron expression for scheduling the collection. |
+ | duration | number? |  yes  | The duration of the collection in minutes. |
+ | end | string? |  yes  | The end date and time of the collection. |
+ | next_schedule | [[NextSchedule](#NextSchedule)]? |  yes  | List of next scheduled dates for the collection. |
+ | start | string? |  yes  | The start date and time of the collection. |
+ 
+
+---
+
+#### [CollectionUpdateResponse](#CollectionUpdateResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | _custom_json | string? |  yes  | It allows for flexibility in adding additional information or attributes that may not be explicitly defined by the existing schema or predefined fields. |
+ | _locale_language | string? |  yes  | It is translations or language-specific content related to the collection. |
+ | _schedule | [CollectionSchedule](#CollectionSchedule)? |  yes  | The schedule configuration for the collection. |
+ | allow_facets | boolean? |  yes  | Indicates whether facets are allowed for the collection. |
+ | allow_sort | boolean? |  yes  | Indicates whether sorting is allowed for the collection. |
+ | app_id | string? |  yes  | It is alphanumeric ID allotted to a sales channel application created within a business account. |
+ | badge | [CollectionBadge](#CollectionBadge)? |  yes  | It is the data of the badge to be shown on the store front collection listing. |
+ | banners | [CollectionBanner](#CollectionBanner)? |  yes  | The URLs and aspect ratios of the collection banners. |
+ | description | string? |  yes  | The description of the collection. |
+ | is_active | boolean? |  yes  | Indicates whether the collection is active or not. |
+ | is_visible | boolean? |  yes  | It represents whether the collection is visible on the store front application. |
+ | logo | [CollectionImage](#CollectionImage)? |  yes  | The logo of the collection. |
+ | meta | string? |  yes  | Additional metadata for the collection. |
+ | modified_by | [UserInfo](#UserInfo)? |  yes  |  |
+ | name | string? |  yes  | The name of the collection. |
+ | priority | number? |  yes  | The priority level of the collection. |
+ | published | boolean? |  yes  |  |
+ | query | [[CollectionQuery](#CollectionQuery)]? |  yes  | The queries associated with the collection. |
+ | seo | [SeoDetail](#SeoDetail)? |  yes  | It contains the SEO detail for the collection. |
+ | slug | string? |  yes  | The slug of the collection. |
+ | sort_on | string? |  yes  | Ihe attribute value on which the products within a collection to be sorted. |
+ | tags | [string]? |  yes  | The tags associated with the collection. |
+ | type | string? |  yes  | The type of the collection. |
+ | visible_facets_keys | [string]? |  yes  | The keys of the visible facets for the collection. |
  
 
 ---
@@ -19388,10 +19649,10 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | _custom_json | string? |  yes  |  |
- | app_id | string? |  yes  |  |
- | results | [string]? |  yes  |  |
- | words | [string]? |  yes  |  |
+ | _custom_json | string? |  yes  | Custom JSON data. |
+ | app_id | string? |  yes  | The ID of the application. |
+ | results | [string]? |  yes  | List of autocomplete results. |
+ | words | [string]? |  yes  | List of autocomplete words. |
  
 
 ---
@@ -19400,31 +19661,31 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | _custom_json | string? |  yes  |  |
- | _locale_language | string? |  yes  |  |
- | _schedule | [CollectionSchedule](#CollectionSchedule)? |  yes  |  |
- | allow_facets | boolean? |  yes  |  |
- | allow_sort | boolean? |  yes  |  |
- | app_id | string |  no  |  |
- | badge | [CollectionBadge](#CollectionBadge)? |  yes  |  |
- | banners | [CollectionBanner](#CollectionBanner) |  no  |  |
+ | _custom_json | string? |  yes  | It allows for flexibility in adding additional information or attributes that may not be explicitly defined by the existing schema or predefined fields. |
+ | _locale_language | string? |  yes  | It is translations or language-specific content related to the collection. |
+ | _schedule | [CollectionSchedule](#CollectionSchedule)? |  yes  | The schedule configuration for the collection. |
+ | allow_facets | boolean? |  yes  | Indicates whether facets are allowed for the collection. |
+ | allow_sort | boolean? |  yes  | Indicates whether sorting is allowed for the collection. |
+ | app_id | string |  no  | It is alphanumeric ID allotted to a sales channel application created within a business account. |
+ | badge | [CollectionBadge](#CollectionBadge)? |  yes  | It is the data of the badge to be shown on the store front collection listing. |
+ | banners | [CollectionBanner](#CollectionBanner) |  no  | The URLs and aspect ratios of the collection banners. |
  | created_by | [UserInfo](#UserInfo)? |  yes  |  |
- | description | string? |  yes  |  |
- | is_active | boolean? |  yes  |  |
- | is_visible | boolean? |  yes  |  |
- | logo | [CollectionImage](#CollectionImage) |  no  |  |
- | meta | string? |  yes  |  |
+ | description | string? |  yes  | The description of the collection. |
+ | is_active | boolean? |  yes  | Indicates whether the collection is active or not. |
+ | is_visible | boolean? |  yes  | It represents whether the collection is visible on the store front application. |
+ | logo | [CollectionImage](#CollectionImage) |  no  | The logo of the collection. |
+ | meta | string? |  yes  | Additional metadata for the collection. |
  | modified_by | [UserInfo](#UserInfo)? |  yes  |  |
- | name | string |  no  |  |
- | priority | number? |  yes  |  |
+ | name | string |  no  | The name of the collection. |
+ | priority | number? |  yes  | The priority level of the collection. |
  | published | boolean? |  yes  |  |
- | query | [[CollectionQuery](#CollectionQuery)]? |  yes  |  |
- | seo | [SeoDetail](#SeoDetail)? |  yes  |  |
- | slug | string |  no  |  |
- | sort_on | string? |  yes  |  |
- | tags | [string]? |  yes  |  |
- | type | string |  no  |  |
- | visible_facets_keys | [string]? |  yes  |  |
+ | query | [[CollectionQuery](#CollectionQuery)]? |  yes  | The queries associated with the collection. |
+ | seo | [SeoDetail](#SeoDetail)? |  yes  | It contains the SEO detail for the collection. |
+ | slug | string |  no  | The slug of the collection. |
+ | sort_on | string? |  yes  | Ihe attribute value on which the products within a collection to be sorted. |
+ | tags | [string]? |  yes  | The tags associated with the collection. |
+ | type | string |  no  | The type of the collection. |
+ | visible_facets_keys | [string]? |  yes  | The keys of the visible facets for the collection. |
  
 
 ---
@@ -19442,22 +19703,12 @@ List of fields and validation values fro each. See example below or refer `Inven
 
 ---
 
-#### [CrossSellingData](#CrossSellingData)
+#### [CrossSellingDataResponse](#CrossSellingDataResponse)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | articles | number? |  yes  |  |
- | products | number? |  yes  |  |
- 
-
----
-
-#### [CrossSellingResponse](#CrossSellingResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | brand_distribution | [CatalogInsightBrand](#CatalogInsightBrand)? |  yes  |  |
- | data | [CrossSellingData](#CrossSellingData)? |  yes  |  |
+ | articles | number? |  yes  | The count of articles for cross-selling. |
+ | products | number? |  yes  | The count of products for cross-selling. |
  
 
 ---
@@ -19498,7 +19749,7 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | message | string? |  yes  |  |
+ | message | string? |  yes  | A message indicating the status of the delete operation. |
  
 
 ---
@@ -19686,11 +19937,11 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | code | string? |  yes  |  |
- | error | string? |  yes  |  |
- | message | string? |  yes  |  |
- | meta | string? |  yes  |  |
- | status | number? |  yes  |  |
+ | code | string? |  yes  | The error code. |
+ | error | string? |  yes  | A detailed error description. |
+ | message | string? |  yes  | The error message. |
+ | meta | string? |  yes  | Additional metadata related to the error. |
+ | status | number? |  yes  | The HTTP status code of the error. |
  
 
 ---
@@ -19777,11 +20028,11 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | _custom_json | string? |  yes  |  |
- | app_id | string? |  yes  |  |
- | results | [string]? |  yes  |  |
- | uid | string? |  yes  |  |
- | words | [string]? |  yes  |  |
+ | _custom_json | string? |  yes  | Custom JSON data. |
+ | app_id | string? |  yes  | The ID of the application. |
+ | results | [string]? |  yes  | List of autocomplete results. |
+ | uid | string? |  yes  | The UID of the data. |
+ | words | [string]? |  yes  | List of autocomplete words. |
  
 
 ---
@@ -19832,26 +20083,27 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | _schedule | string? |  yes  |  |
- | action | [Action](#Action)? |  yes  |  |
- | allow_facets | boolean? |  yes  |  |
- | allow_sort | boolean? |  yes  |  |
- | app_id | string? |  yes  |  |
- | badge | string? |  yes  |  |
- | banners | [ImageUrls](#ImageUrls)? |  yes  |  |
- | cron | string? |  yes  |  |
- | description | string? |  yes  |  |
- | is_active | boolean? |  yes  |  |
- | logo | [Media1](#Media1)? |  yes  |  |
- | meta | string? |  yes  |  |
- | name | string? |  yes  |  |
- | priority | number? |  yes  |  |
- | query | [[CollectionQuery](#CollectionQuery)]? |  yes  |  |
- | slug | string? |  yes  |  |
- | tag | [string]? |  yes  |  |
- | type | string? |  yes  |  |
- | uid | string? |  yes  |  |
- | visible_facets_keys | [string]? |  yes  |  |
+ | _schedule | string? |  yes  | The schedule configuration for the collection. |
+ | action | [Action](#Action)? |  yes  | The action associated with the collection detail. |
+ | allow_facets | boolean? |  yes  | Indicates whether facets are allowed for the collection. |
+ | allow_sort | boolean? |  yes  | Indicates whether sorting is allowed for the collection. |
+ | app_id | string? |  yes  | It is alphanumeric ID allotted to a sales channel application created within a business account. |
+ | badge | string? |  yes  | The badge configuration for the collection. |
+ | banners | [ImageUrls](#ImageUrls)? |  yes  | The URLs and aspect ratios of the collection banners. |
+ | cron | string? |  yes  | The cron configuration for the collection. |
+ | description | string? |  yes  | The description of the collection. |
+ | is_active | boolean? |  yes  | Indicates whether the collection is active or not. |
+ | logo | [Media1](#Media1)? |  yes  | The logo of the collection. |
+ | meta | string? |  yes  | Additional metadata for the collection. |
+ | name | string? |  yes  | The name of the collection. |
+ | priority | number? |  yes  | The priority level of the collection. |
+ | query | [[CollectionQuery](#CollectionQuery)]? |  yes  | The queries associated with the collection. |
+ | slug | string? |  yes  | The slug of the collection. |
+ | sort_on | string? |  yes  | The sort_on attribute on which the collection product will be sorted. |
+ | tag | [string]? |  yes  | The tags associated with the collection. |
+ | type | string? |  yes  | The type of the collection. |
+ | uid | string? |  yes  | The UID of the collection detail. |
+ | visible_facets_keys | [string]? |  yes  | The keys of the visible facets for the collection. |
  
 
 ---
@@ -19860,10 +20112,10 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | filters | [[ProductFilters](#ProductFilters)]? |  yes  |  |
- | items | [[ProductListingDetail](#ProductListingDetail)]? |  yes  |  |
- | page | [Page](#Page)? |  yes  |  |
- | sort_on | [[ProductSortOn](#ProductSortOn)]? |  yes  |  |
+ | filters | [[ProductFilters](#ProductFilters)]? |  yes  | These are list of filter that can be applied on the items. |
+ | items | [[ProductListingDetail](#ProductListingDetail)]? |  yes  | It is the list of items available for the collection. |
+ | page | [Page](#Page)? |  yes  | It is the metadata of the page for pagination. |
+ | sort_on | [[ProductSortOn](#ProductSortOn)]? |  yes  | It is the list of sort that can be applied on the items. |
  
 
 ---
@@ -19872,8 +20124,8 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | filters | [CollectionListingFilter](#CollectionListingFilter)? |  yes  |  |
- | items | [[GetCollectionDetailNest](#GetCollectionDetailNest)]? |  yes  |  |
+ | filters | [CollectionListingFilter](#CollectionListingFilter)? |  yes  | It is the filters to filter the collections. |
+ | items | [[GetCollectionDetailNest](#GetCollectionDetailNest)]? |  yes  | It is the list of collections. |
  | page | [Page](#Page)? |  yes  |  |
  
 
@@ -19883,9 +20135,9 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | filters | [[ProductFilters](#ProductFilters)]? |  yes  |  |
- | operators | [String: string] |  no  |  |
- | sort_on | [[ProductSortOn](#ProductSortOn)]? |  yes  |  |
+ | filters | [[ProductFilters](#ProductFilters)]? |  yes  | These are list of filter that can be applied on the items. |
+ | operators | [String: string] |  no  | It is the key-value pair of operators that can be applied on the Product listing. |
+ | sort_on | [[ProductSortOn](#ProductSortOn)]? |  yes  | It is the list of sort that can be applied on the items. |
  
 
 ---
@@ -19897,15 +20149,15 @@ List of fields and validation values fro each. See example below or refer `Inven
  | addresses | [[GetAddressSerializer](#GetAddressSerializer)]? |  yes  |  |
  | business_type | string? |  yes  |  |
  | company_type | string? |  yes  |  |
- | created_by | [UserSerializer1](#UserSerializer1)? |  yes  |  |
+ | created_by | [UserSerializer2](#UserSerializer2)? |  yes  |  |
  | created_on | string? |  yes  |  |
- | modified_by | [UserSerializer1](#UserSerializer1)? |  yes  |  |
+ | modified_by | [UserSerializer2](#UserSerializer2)? |  yes  |  |
  | modified_on | string? |  yes  |  |
  | name | string? |  yes  |  |
  | reject_reason | string? |  yes  |  |
  | stage | string? |  yes  |  |
  | uid | number? |  yes  |  |
- | verified_by | [UserSerializer1](#UserSerializer1)? |  yes  |  |
+ | verified_by | [UserSerializer2](#UserSerializer2)? |  yes  |  |
  | verified_on | string? |  yes  |  |
  
 
@@ -20012,14 +20264,14 @@ List of fields and validation values fro each. See example below or refer `Inven
  | code | string |  no  |  |
  | company | [GetCompanySerializer](#GetCompanySerializer)? |  yes  |  |
  | contact_numbers | [[SellerPhoneNumber](#SellerPhoneNumber)]? |  yes  |  |
- | created_by | [UserSerializer2](#UserSerializer2)? |  yes  |  |
+ | created_by | [UserSerializer1](#UserSerializer1)? |  yes  |  |
  | created_on | string? |  yes  |  |
  | display_name | string |  no  |  |
  | documents | [[Document](#Document)]? |  yes  |  |
  | gst_credentials | [InvoiceDetailsSerializer](#InvoiceDetailsSerializer)? |  yes  |  |
  | integration_type | [LocationIntegrationType](#LocationIntegrationType)? |  yes  |  |
  | manager | [LocationManagerSerializer](#LocationManagerSerializer)? |  yes  |  |
- | modified_by | [UserSerializer2](#UserSerializer2)? |  yes  |  |
+ | modified_by | [UserSerializer1](#UserSerializer1)? |  yes  |  |
  | modified_on | string? |  yes  |  |
  | name | string |  no  |  |
  | notification_emails | [string]? |  yes  |  |
@@ -20029,7 +20281,7 @@ List of fields and validation values fro each. See example below or refer `Inven
  | store_type | string? |  yes  |  |
  | timing | [[LocationDayWiseSerializer](#LocationDayWiseSerializer)]? |  yes  |  |
  | uid | number? |  yes  |  |
- | verified_by | [UserSerializer2](#UserSerializer2)? |  yes  |  |
+ | verified_by | [UserSerializer1](#UserSerializer1)? |  yes  |  |
  | verified_on | string? |  yes  |  |
  | warnings | string? |  yes  |  |
  
@@ -20118,12 +20370,12 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | _custom_json | string? |  yes  |  |
- | app_id | string? |  yes  |  |
- | is_active | boolean? |  yes  |  |
- | result | string? |  yes  |  |
+ | _custom_json | string? |  yes  | Custom JSON data. |
+ | app_id | string? |  yes  | The ID of the application. |
+ | is_active | boolean? |  yes  | Indicates if the search words are active. |
+ | result | string? |  yes  | Search result information. |
  | uid | string? |  yes  |  |
- | words | [string]? |  yes  |  |
+ | words | [string]? |  yes  | List of search words. |
  
 
 ---
@@ -20305,8 +20557,8 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | landscape | [BannerImage](#BannerImage)? |  yes  |  |
- | portrait | [BannerImage](#BannerImage)? |  yes  |  |
+ | landscape | [BannerImage](#BannerImage)? |  yes  | The banner image in landscape orientation. |
+ | portrait | [BannerImage](#BannerImage)? |  yes  | The banner image in portrait orientation. |
  
 
 ---
@@ -21026,8 +21278,8 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | end | string? |  yes  |  |
- | start | string? |  yes  |  |
+ | end | string? |  yes  | The end date and time. |
+ | start | string? |  yes  | The start date and time. |
  
 
 ---
@@ -21106,13 +21358,13 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | current | number? |  yes  |  |
- | has_next | boolean? |  yes  |  |
- | has_previous | boolean? |  yes  |  |
- | item_total | number? |  yes  |  |
- | next_id | string? |  yes  |  |
- | size | number? |  yes  |  |
- | type | string |  no  |  |
+ | current | number? |  yes  | Current page number. |
+ | has_next | boolean? |  yes  | Indicates if there is a next page. |
+ | has_previous | boolean? |  yes  | Indicates if there is a previous page. |
+ | item_total | number? |  yes  | Total number of items. |
+ | next_id | string? |  yes  | Identifier for the next page. |
+ | size | number? |  yes  | Number of items per page. |
+ | type | string |  no  | Type of the page. |
  
 
 ---
@@ -21159,10 +21411,10 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | currency_code | string? |  yes  |  |
- | currency_symbol | string? |  yes  |  |
- | max | number? |  yes  |  |
- | min | number? |  yes  |  |
+ | currency_code | string? |  yes  | The currency code associated. |
+ | currency_symbol | string? |  yes  | The currency symbol associated for the currency associated. |
+ | max | number? |  yes  | The maximum value of the price. |
+ | min | number? |  yes  | The minimum value of the price. |
  
 
 ---
@@ -21287,10 +21539,10 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | action | [Action](#Action)? |  yes  |  |
- | logo | [Media1](#Media1)? |  yes  |  |
- | name | string? |  yes  |  |
- | uid | number? |  yes  |  |
+ | action | [Action](#Action)? |  yes  | It is the page action used to route the navigation. |
+ | logo | [Media1](#Media1)? |  yes  | It is the logo of the brand. |
+ | name | string? |  yes  | It is the name of the brand of the product. |
+ | uid | number? |  yes  | It is the unique identifier of the brand. |
  
 
 ---
@@ -21436,7 +21688,7 @@ List of fields and validation values fro each. See example below or refer `Inven
  | net_quantity | [NetQuantity](#NetQuantity)? |  yes  |  |
  | no_of_boxes | number? |  yes  |  |
  | product_group_tag | [string]? |  yes  |  |
- | product_publish | [ProductPublish1](#ProductPublish1)? |  yes  |  |
+ | product_publish | [ProductPublish](#ProductPublish)? |  yes  |  |
  | requester | string? |  yes  |  |
  | return_config | [ReturnConfig](#ReturnConfig) |  no  |  |
  | short_description | string? |  yes  |  |
@@ -21460,29 +21712,29 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | attributes | string? |  yes  |  |
- | brand | [ProductBrand](#ProductBrand)? |  yes  |  |
- | color | string? |  yes  |  |
- | description | string? |  yes  |  |
- | grouped_attributes | [[ProductDetailGroupedAttribute](#ProductDetailGroupedAttribute)]? |  yes  |  |
- | has_variant | boolean? |  yes  |  |
- | highlights | [string]? |  yes  |  |
- | image_nature | string? |  yes  |  |
- | item_code | string? |  yes  |  |
- | item_type | string? |  yes  |  |
+ | attributes | string? |  yes  | Additional attributes of the product. |
+ | brand | [ProductBrand](#ProductBrand)? |  yes  | The brand of the product. |
+ | color | string? |  yes  | The color of the product. |
+ | description | string? |  yes  | The description of the product. |
+ | grouped_attributes | [[ProductDetailGroupedAttribute](#ProductDetailGroupedAttribute)]? |  yes  | The grouped attributes of the product. |
+ | has_variant | boolean? |  yes  | Indicates whether the product has variants or not. |
+ | highlights | [string]? |  yes  | List of product highlights. |
+ | image_nature | string? |  yes  | The nature of the product image. |
+ | item_code | string? |  yes  | This is the unique identifier of the Item within a brand. |
+ | item_type | string? |  yes  | The type of item. |
  | medias | [[Media1](#Media1)]? |  yes  |  |
- | name | string? |  yes  |  |
- | product_online_date | string? |  yes  |  |
- | promo_meta | string? |  yes  |  |
- | rating | number? |  yes  |  |
- | rating_count | number? |  yes  |  |
- | short_description | string? |  yes  |  |
- | similars | [string]? |  yes  |  |
- | slug | string |  no  |  |
- | teaser_tag | string? |  yes  |  |
- | tryouts | [string]? |  yes  |  |
+ | name | string? |  yes  | The name of the product. |
+ | product_online_date | string? |  yes  | The date when the product was made available online. |
+ | promo_meta | string? |  yes  | Additional promotional metadata. |
+ | rating | number? |  yes  | The rating of the product. |
+ | rating_count | number? |  yes  | The count of ratings for the product. |
+ | short_description | string? |  yes  | The short description of the product. |
+ | similars | [string]? |  yes  | List of similar products. |
+ | slug | string |  no  | The unique slug of the product. |
+ | teaser_tag | string? |  yes  | The teaser tag of the product. |
+ | tryouts | [string]? |  yes  | List of tryouts available for the product. |
  | type | string? |  yes  |  |
- | uid | number? |  yes  |  |
+ | uid | number? |  yes  | The unique identifier of the product. |
  
 
 ---
@@ -21491,9 +21743,9 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | key | string? |  yes  |  |
- | type | string? |  yes  |  |
- | value | string? |  yes  |  |
+ | key | string? |  yes  | It is the key of the attribute in a detail group. |
+ | type | string? |  yes  | It is the display type of the attribute in a detail group. |
+ | value | string? |  yes  | It is the value of the attribute to be displayed in detail group. |
  
 
 ---
@@ -21502,8 +21754,8 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | details | [[ProductDetailAttribute](#ProductDetailAttribute)]? |  yes  |  |
- | title | string? |  yes  |  |
+ | details | [[ProductDetailAttribute](#ProductDetailAttribute)]? |  yes  | It is the list of attributes in the detail group. |
+ | title | string? |  yes  | It is the title of the product detail group. |
  
 
 ---
@@ -21521,8 +21773,8 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | key | [ProductFiltersKey](#ProductFiltersKey) |  no  |  |
- | values | [[ProductFiltersValue](#ProductFiltersValue)] |  no  |  |
+ | key | [ProductFiltersKey](#ProductFiltersKey) |  no  | It is the metadata of the filter key. |
+ | values | [[ProductFiltersValue](#ProductFiltersValue)] |  no  | It is the list of the values for the filter and the its metadata. |
  
 
 ---
@@ -21531,11 +21783,11 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | display | string |  no  |  |
- | kind | string? |  yes  |  |
- | logo | string? |  yes  |  |
- | name | string |  no  |  |
- | operators | [string]? |  yes  |  |
+ | display | string |  no  | The display name of the filter tag. |
+ | kind | string? |  yes  | This is the type of filter tag. |
+ | logo | string? |  yes  | This is the logo of the filter. |
+ | name | string |  no  | The name of the filter tag. |
+ | operators | [string]? |  yes  | This is operators that can be used with the filter tag. |
  
 
 ---
@@ -21544,18 +21796,18 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | count | number? |  yes  |  |
- | currency_code | string? |  yes  |  |
- | currency_symbol | string? |  yes  |  |
- | display | string |  no  |  |
- | display_format | string? |  yes  |  |
- | is_selected | boolean |  no  |  |
- | max | number? |  yes  |  |
- | min | number? |  yes  |  |
- | query_format | string? |  yes  |  |
- | selected_max | number? |  yes  |  |
- | selected_min | number? |  yes  |  |
- | value | any |  no  |  |
+ | count | number? |  yes  | The count of items associated with the filter value. |
+ | currency_code | string? |  yes  | The currency code associated with the filter value. |
+ | currency_symbol | string? |  yes  | The currency symbol associated with the filter value. |
+ | display | string |  no  | The display name of the filter value. |
+ | display_format | string? |  yes  | The display format of the filter value. |
+ | is_selected | boolean |  no  | Indicates whether the filter value is selected or not. |
+ | max | number? |  yes  | The maximum value of the filter range. |
+ | min | number? |  yes  | The minimum value of the filter range. |
+ | query_format | string? |  yes  | The query format of the filter value. |
+ | selected_max | number? |  yes  | The selected maximum value of the filter range. |
+ | selected_min | number? |  yes  | The selected minimum value of the filter range. |
+ | value | any |  no  | The value of the filter value. |
  
 
 ---
@@ -21564,32 +21816,32 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | attributes | string? |  yes  |  |
- | brand | [ProductBrand](#ProductBrand)? |  yes  |  |
- | color | string? |  yes  |  |
- | description | string? |  yes  |  |
+ | attributes | string? |  yes  | Additional attributes of the product. |
+ | brand | [ProductBrand](#ProductBrand)? |  yes  | The brand of the product. |
+ | color | string? |  yes  | The color of the product. |
+ | description | string? |  yes  | The description of the product. |
  | discount | string? |  yes  |  |
- | grouped_attributes | [[ProductDetailGroupedAttribute](#ProductDetailGroupedAttribute)]? |  yes  |  |
- | has_variant | boolean? |  yes  |  |
- | highlights | [string]? |  yes  |  |
- | image_nature | string? |  yes  |  |
- | item_code | string? |  yes  |  |
- | item_type | string? |  yes  |  |
+ | grouped_attributes | [[ProductDetailGroupedAttribute](#ProductDetailGroupedAttribute)]? |  yes  | The grouped attributes of the product. |
+ | has_variant | boolean? |  yes  | Indicates whether the product has variants or not. |
+ | highlights | [string]? |  yes  | List of product highlights. |
+ | image_nature | string? |  yes  | The nature of the product image. |
+ | item_code | string? |  yes  | This is the unique identifier of the Item within a brand. |
+ | item_type | string? |  yes  | The type of item. |
  | medias | [[Media1](#Media1)]? |  yes  |  |
- | name | string? |  yes  |  |
+ | name | string? |  yes  | The name of the product. |
  | price | [ProductListingPrice](#ProductListingPrice)? |  yes  |  |
- | product_online_date | string? |  yes  |  |
- | promo_meta | string? |  yes  |  |
- | rating | number? |  yes  |  |
- | rating_count | number? |  yes  |  |
+ | product_online_date | string? |  yes  | The date when the product was made available online. |
+ | promo_meta | string? |  yes  | Additional promotional metadata. |
+ | rating | number? |  yes  | The rating of the product. |
+ | rating_count | number? |  yes  | The count of ratings for the product. |
  | sellable | boolean? |  yes  |  |
- | short_description | string? |  yes  |  |
- | similars | [string]? |  yes  |  |
- | slug | string |  no  |  |
- | teaser_tag | string? |  yes  |  |
- | tryouts | [string]? |  yes  |  |
+ | short_description | string? |  yes  | The short description of the product. |
+ | similars | [string]? |  yes  | List of similar products. |
+ | slug | string |  no  | The unique slug of the product. |
+ | teaser_tag | string? |  yes  | The teaser tag of the product. |
+ | tryouts | [string]? |  yes  | List of tryouts available for the product. |
  | type | string? |  yes  |  |
- | uid | number? |  yes  |  |
+ | uid | number? |  yes  | The unique identifier of the product. |
  
 
 ---
@@ -21598,8 +21850,8 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | effective | [Price1](#Price1)? |  yes  |  |
- | marked | [Price1](#Price1)? |  yes  |  |
+ | effective | [Price1](#Price1)? |  yes  | It is the Effective selling price. |
+ | marked | [Price1](#Price1)? |  yes  | It is the Maximum retail price. |
  
 
 ---
@@ -21712,7 +21964,7 @@ List of fields and validation values fro each. See example below or refer `Inven
  | pending | string? |  yes  |  |
  | primary_color | string? |  yes  |  |
  | product_group_tag | [string]? |  yes  |  |
- | product_publish | [ProductPublish](#ProductPublish)? |  yes  |  |
+ | product_publish | [ProductPublish1](#ProductPublish1)? |  yes  |  |
  | return_config | [ReturnConfigResponse](#ReturnConfigResponse)? |  yes  |  |
  | short_description | string? |  yes  |  |
  | size_guide | string? |  yes  |  |
@@ -21769,9 +22021,9 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | is_selected | boolean? |  yes  |  |
- | name | string? |  yes  |  |
- | value | string? |  yes  |  |
+ | is_selected | boolean? |  yes  | Indicates whether the sort tag is selected or not. |
+ | name | string? |  yes  | The display name of the sort on. |
+ | value | string? |  yes  | The value of the sort on. |
  
 
 ---
@@ -22061,8 +22313,8 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | description | string? |  yes  |  |
- | title | string? |  yes  |  |
+ | description | string? |  yes  | It is the description that should be used for SEO. |
+ | title | string? |  yes  | It is the title of the collection. |
  
 
 ---
@@ -22347,29 +22599,29 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | _custom_json | string? |  yes  |  |
- | _locale_language | string? |  yes  |  |
- | _schedule | [CollectionSchedule](#CollectionSchedule)? |  yes  |  |
- | allow_facets | boolean? |  yes  |  |
- | allow_sort | boolean? |  yes  |  |
- | badge | [CollectionBadge](#CollectionBadge)? |  yes  |  |
- | banners | [CollectionBanner](#CollectionBanner)? |  yes  |  |
- | description | string? |  yes  |  |
- | is_active | boolean? |  yes  |  |
- | is_visible | boolean? |  yes  |  |
- | logo | [CollectionImage](#CollectionImage)? |  yes  |  |
- | meta | string? |  yes  |  |
+ | _custom_json | string? |  yes  | It allows for flexibility in adding additional information or attributes that may not be explicitly defined by the existing schema or predefined fields. |
+ | _locale_language | string? |  yes  | It is translations or language-specific content related to the collection. |
+ | _schedule | [CollectionSchedule](#CollectionSchedule)? |  yes  | The schedule configuration for the collection. |
+ | allow_facets | boolean? |  yes  | Indicates whether facets are allowed for the collection. |
+ | allow_sort | boolean? |  yes  | Indicates whether sorting is allowed for the collection. |
+ | badge | [CollectionBadge](#CollectionBadge)? |  yes  | It is the data of the badge to be shown on the store front collection listing. |
+ | banners | [CollectionBanner](#CollectionBanner)? |  yes  | The URLs and aspect ratios of the collection banners. |
+ | description | string? |  yes  | The description of the collection. |
+ | is_active | boolean? |  yes  | Indicates whether the collection is active or not. |
+ | is_visible | boolean? |  yes  | It represents whether the collection is visible on the store front application. |
+ | logo | [CollectionImage](#CollectionImage)? |  yes  | The logo of the collection. |
+ | meta | string? |  yes  | Additional metadata for the collection. |
  | modified_by | [UserInfo](#UserInfo)? |  yes  |  |
- | name | string? |  yes  |  |
- | priority | number? |  yes  |  |
+ | name | string? |  yes  | The name of the collection. |
+ | priority | number? |  yes  | The priority level of the collection. |
  | published | boolean? |  yes  |  |
- | query | [[CollectionQuery](#CollectionQuery)]? |  yes  |  |
- | seo | [SeoDetail](#SeoDetail)? |  yes  |  |
- | slug | string? |  yes  |  |
- | sort_on | string? |  yes  |  |
- | tags | [string]? |  yes  |  |
- | type | string? |  yes  |  |
- | visible_facets_keys | [string]? |  yes  |  |
+ | query | [[CollectionQuery](#CollectionQuery)]? |  yes  | The queries associated with the collection. |
+ | seo | [SeoDetail](#SeoDetail)? |  yes  | It contains the SEO detail for the collection. |
+ | slug | string? |  yes  | The slug of the collection. |
+ | sort_on | string? |  yes  | Ihe attribute value on which the products within a collection to be sorted. |
+ | tags | [string]? |  yes  | The tags associated with the collection. |
+ | type | string? |  yes  | The type of the collection. |
+ | visible_facets_keys | [string]? |  yes  | The keys of the visible facets for the collection. |
  
 
 ---
@@ -22378,8 +22630,8 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | items_not_updated | [number]? |  yes  |  |
- | message | string? |  yes  |  |
+ | items_not_updated | [number]? |  yes  | It is the list of item that are not added in the items of handpick collection. |
+ | message | string? |  yes  | A message indicating the status of the delete operation. |
  
 
 ---
@@ -22422,10 +22674,10 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | email | string? |  yes  |  |
- | uid | string? |  yes  |  |
- | user_id | string? |  yes  |  |
- | username | string? |  yes  |  |
+ | email | string? |  yes  | The email address of the user. |
+ | uid | string? |  yes  | The unique identifier of the user. |
+ | user_id | string? |  yes  | The user ID of the user. |
+ | username | string? |  yes  | The username of the user. |
  
 
 ---

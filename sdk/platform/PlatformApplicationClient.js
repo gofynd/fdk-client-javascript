@@ -904,6 +904,7 @@ class PlatformApplicationClient {
 /** @typedef CollectionListingFilterType */
 /** @typedef CollectionQuery */
 /** @typedef CollectionSchedule */
+/** @typedef CollectionUpdateResponse */
 /** @typedef CompanyBrandDetail */
 /** @typedef CompanyMeta */
 /** @typedef CompanyMeta1 */
@@ -926,8 +927,7 @@ class PlatformApplicationClient {
 /** @typedef CreateAutocompleteWordsResponse */
 /** @typedef CreateCollection */
 /** @typedef CreateSearchKeyword */
-/** @typedef CrossSellingData */
-/** @typedef CrossSellingResponse */
+/** @typedef CrossSellingDataResponse */
 /** @typedef CustomOrder */
 /** @typedef DateMeta */
 /** @typedef DefaultKeyRequest */

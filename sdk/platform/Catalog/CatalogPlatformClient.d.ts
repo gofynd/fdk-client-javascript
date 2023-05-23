@@ -665,15 +665,15 @@ declare class Catalog {
     }): Promise<ProductListingResponseV2>;
     /**
      * @param {Object} arg - Arg object.
-     * @param {string} arg.sellerAppId - Id of the seller application which is
-     *   serving the invetory/catalog of the company
-     * @returns {Promise<CrossSellingResponse>} - Success response
-     * @summary: Analytics data of catalog and inventory that are being cross-selled.
+     * @param {string} arg.sellerAppId - A `seller_app_id` is alphanumeric ID
+     *   allotted to a sales channel application created within a business account.
+     * @returns {Promise<CrossSellingDataResponse>} - Success response
+     * @summary: Retrieve the analytics data of catalog and inventory that are being cross-selled.
      * @description: Analytics data of catalog and inventory that are being cross-selled.
      */
     getSellerInsights({ sellerAppId }?: {
         sellerAppId: string;
-    }): Promise<CrossSellingResponse>;
+    }): Promise<CrossSellingDataResponse>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.reportingHsn - Reporting_hsn
