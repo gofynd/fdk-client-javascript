@@ -353,7 +353,7 @@ class CompanyProfileModel {
       name: Joi.string().allow("").required(),
       notification_emails: Joi.array().items(Joi.string().allow("")),
       product_return_config: CompanyProfileModel.ProductReturnConfigSerializer(),
-      slug: Joi.string().allow("").required(),
+      slug: Joi.string().allow(""),
       stage: Joi.string().allow(""),
       store_type: Joi.string().allow(""),
       timing: Joi.array().items(

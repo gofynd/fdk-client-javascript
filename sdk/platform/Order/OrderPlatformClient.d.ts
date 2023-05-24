@@ -496,16 +496,6 @@ declare class Order {
     }): Promise<ResponseDetail>;
     /**
      * @param {Object} arg - Arg object.
-     * @param {ManualAssignDPToShipment} arg.body
-     * @returns {Promise<ManualAssignDPToShipmentResponse>} - Success response
-     * @summary:
-     * @description:
-     */
-    platformManualAssignDPToShipment({ body }?: {
-        body: ManualAssignDPToShipment;
-    }): Promise<ManualAssignDPToShipmentResponse>;
-    /**
-     * @param {Object} arg - Arg object.
      * @param {PostShipmentHistory} arg.body
      * @returns {Promise<ShipmentHistoryResponse>} - Success response
      * @summary:

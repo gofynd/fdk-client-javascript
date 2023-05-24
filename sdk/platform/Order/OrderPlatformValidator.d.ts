@@ -33,7 +33,6 @@ declare class OrderValidator {
     static getfilters(): any;
     static invalidateShipmentCache(): any;
     static orderUpdate(): any;
-    static platformManualAssignDPToShipment(): any;
     static postShipmentHistory(): any;
     static processManifest(): any;
     static reassignLocation(): any;

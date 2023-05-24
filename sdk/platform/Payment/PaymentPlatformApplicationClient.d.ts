@@ -27,6 +27,16 @@ declare class Payment {
     }): Promise<RefundAccountResponse>;
     /**
      * @param {Object} arg - Arg object.
+     * @param {CancelOrResendPaymentLinkRequest} arg.body
+     * @returns {Promise<CancelPaymentLinkResponse>} - Success response
+     * @summary: Cancel payment link
+     * @description: Use this API to cancel a payment link for the customer
+     */
+    cancelPaymentLink({ body }?: {
+        body: CancelOrResendPaymentLinkRequest;
+    }): Promise<CancelPaymentLinkResponse>;
+    /**
+     * @param {Object} arg - Arg object.
      * @param {PaymentStatusUpdateRequest} arg.body
      * @returns {Promise<PaymentStatusUpdateResponse>} - Success response
      * @summary: Performs continuous polling to check status of payment on the server
@@ -45,6 +55,16 @@ declare class Payment {
     confirmPayment({ body }?: {
         body: PaymentConfirmationRequest;
     }): Promise<PaymentConfirmationResponse>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {CreatePaymentLinkRequest} arg.body
+     * @returns {Promise<CreatePaymentLinkResponse>} - Success response
+     * @summary: Create payment link
+     * @description: Use this API to create a payment link for the customer
+     */
+    createPaymentLink({ body }?: {
+        body: CreatePaymentLinkRequest;
+    }): Promise<CreatePaymentLinkResponse>;
     /**
      * @param {Object} arg - Arg object.
      * @returns {Promise<EdcAggregatorAndModelListResponse>} - Success response
@@ -106,6 +126,16 @@ declare class Payment {
     getEdcDevice({ terminalUniqueIdentifier }?: {
         terminalUniqueIdentifier: string;
     }): Promise<EdcDeviceDetailsResponse>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {string} [arg.paymentLinkId] -
+     * @returns {Promise<GetPaymentLinkResponse>} - Success response
+     * @summary: Get payment link
+     * @description: Use this API to get a payment link
+     */
+    getPaymentLink({ paymentLinkId }?: {
+        paymentLinkId?: string;
+    }): Promise<GetPaymentLinkResponse>;
     /**
      * @param {Object} arg - Arg object.
      * @param {boolean} arg.refresh -
@@ -223,6 +253,16 @@ declare class Payment {
     }): Promise<PaymentStatusBulkHandlerResponse>;
     /**
      * @param {Object} arg - Arg object.
+     * @param {string} [arg.paymentLinkId] -
+     * @returns {Promise<PollingPaymentLinkResponse>} - Success response
+     * @summary: Used for polling if payment successful or not
+     * @description: Use this API to poll if payment through payment was successful or not
+     */
+    pollingPaymentLink({ paymentLinkId }?: {
+        paymentLinkId?: string;
+    }): Promise<PollingPaymentLinkResponse>;
+    /**
+     * @param {Object} arg - Arg object.
      * @param {ResendOrCancelPaymentRequest} arg.body
      * @returns {Promise<ResendOrCancelPaymentResponse>} - Success response
      * @summary: API to resend and cancel a payment link which was already generated.
@@ -231,6 +271,16 @@ declare class Payment {
     resendOrCancelPayment({ body }?: {
         body: ResendOrCancelPaymentRequest;
     }): Promise<ResendOrCancelPaymentResponse>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {CancelOrResendPaymentLinkRequest} arg.body
+     * @returns {Promise<ResendPaymentLinkResponse>} - Success response
+     * @summary: Resend payment link
+     * @description: Use this API to resend a payment link for the customer
+     */
+    resendPaymentLink({ body }?: {
+        body: CancelOrResendPaymentLinkRequest;
+    }): Promise<ResendPaymentLinkResponse>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.aggregator - Aggregator_slug

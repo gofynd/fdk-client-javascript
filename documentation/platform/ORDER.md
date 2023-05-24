@@ -43,7 +43,6 @@ Handles all platform order and shipment api(s)
 * [getfilters](#getfilters)
 * [invalidateShipmentCache](#invalidateshipmentcache)
 * [orderUpdate](#orderupdate)
-* [platformManualAssignDPToShipment](#platformmanualassigndptoshipment)
 * [postShipmentHistory](#postshipmenthistory)
 * [processManifest](#processmanifest)
 * [reassignLocation](#reassignlocation)
@@ -4455,61 +4454,6 @@ We are processing the order!
 ---
 
 
-### platformManualAssignDPToShipment
-
-
-
-
-```javascript
-// Promise
-const promise = platformClient.order.platformManualAssignDPToShipment({  body : value });
-
-// Async/Await
-const data = await platformClient.order.platformManualAssignDPToShipment({  body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |
-| body | [ManualAssignDPToShipment](#ManualAssignDPToShipment) | yes | Request body |
-
-
-
-
-*Returned Response:*
-
-
-
-
-[ManualAssignDPToShipmentResponse](#ManualAssignDPToShipmentResponse)
-
-DP Assigned for the given shipment Ids.
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
 ### postShipmentHistory
 
 
@@ -5664,6 +5608,7 @@ Verify OTP
  | a_set | string? |  yes  |  |
  | child_details | string? |  yes  |  |
  | code | string? |  yes  |  |
+ | currency | string? |  yes  |  |
  | dimensions | [Dimensions](#Dimensions)? |  yes  |  |
  | esp_modified | boolean? |  yes  |  |
  | identifiers | [Identifier](#Identifier) |  no  |  |
@@ -7043,28 +6988,6 @@ Verify OTP
 
 ---
 
-#### [ManualAssignDPToShipment](#ManualAssignDPToShipment)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | dp_id | number |  no  |  |
- | order_type | string |  no  |  |
- | qc_required | string |  no  |  |
- | shipment_ids | [string]? |  yes  |  |
- 
-
----
-
-#### [ManualAssignDPToShipmentResponse](#ManualAssignDPToShipmentResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | errors | [string]? |  yes  |  |
- | success | string |  no  |  |
- 
-
----
-
 #### [MarketPlacePdf](#MarketPlacePdf)
 
  | Properties | Type | Nullable | Description |
@@ -7076,17 +6999,6 @@ Verify OTP
 ---
 
 #### [Meta](#Meta)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | dimension | [Dimensions](#Dimensions)? |  yes  |  |
- | dp_options | string? |  yes  |  |
- | lock_data | string? |  yes  |  |
- 
-
----
-
-#### [Meta1](#Meta1)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
@@ -7200,11 +7112,11 @@ Verify OTP
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | brand_name | string |  no  |  |
+ | brand_name | string? |  yes  |  |
  | company | string |  no  |  |
- | created_on | string |  no  |  |
+ | created_on | string? |  yes  |  |
  | id | number |  no  |  |
- | logo | string |  no  |  |
+ | logo | string? |  yes  |  |
  | modified_on | string? |  yes  |  |
  
 
@@ -7640,7 +7552,7 @@ Verify OTP
  | invoice_id | string? |  yes  |  |
  | journey_type | string? |  yes  |  |
  | lock_status | boolean? |  yes  |  |
- | meta | [Meta](#Meta)? |  yes  |  |
+ | meta | [ShipmentMeta](#ShipmentMeta)? |  yes  |  |
  | operational_status | string? |  yes  |  |
  | order | [OrderDetailsData](#OrderDetailsData)? |  yes  |  |
  | ordering_store | [OrderingStoreDetails](#OrderingStoreDetails)? |  yes  |  |
@@ -7653,7 +7565,7 @@ Verify OTP
  | prices | [Prices](#Prices)? |  yes  |  |
  | priority_text | string? |  yes  |  |
  | shipment_created_at | string? |  yes  |  |
- | shipment_details | string? |  yes  |  |
+ | shipment_details | [ShipmentDetails](#ShipmentDetails)? |  yes  |  |
  | shipment_id | string |  no  |  |
  | shipment_images | [string]? |  yes  |  |
  | shipment_quantity | number? |  yes  |  |
@@ -8036,7 +7948,7 @@ Verify OTP
  | journey | string |  no  |  |
  | location_details | [LocationDetails](#LocationDetails)? |  yes  |  |
  | payment_mode | string |  no  |  |
- | shipment | [[ShipmentDetails](#ShipmentDetails)] |  no  |  |
+ | shipment | [[ShipmentDetails1](#ShipmentDetails1)] |  no  |  |
  | source | string |  no  |  |
  | to_pincode | string |  no  |  |
  
@@ -8058,7 +7970,7 @@ Verify OTP
  | ---------- | ---- | -------- | ----------- |
  | bag_list | [number]? |  yes  |  |
  | id | number |  no  |  |
- | meta | [Meta1](#Meta1) |  no  |  |
+ | meta | [Meta](#Meta) |  no  |  |
  | remarks | string? |  yes  |  |
  | shipment_id | string? |  yes  |  |
  | status | string? |  yes  |  |
@@ -8067,6 +7979,17 @@ Verify OTP
 ---
 
 #### [ShipmentDetails](#ShipmentDetails)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | action_to_status | string? |  yes  |  |
+ | lock_message | string? |  yes  |  |
+ | lock_status | boolean? |  yes  |  |
+ 
+
+---
+
+#### [ShipmentDetails1](#ShipmentDetails1)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
@@ -8236,7 +8159,6 @@ Verify OTP
  | is_affiliate | boolean? |  yes  |  |
  | logo | string? |  yes  |  |
  | name | string? |  yes  |  |
- | ordering_channel | string |  no  |  |
  
 
 ---
@@ -8253,6 +8175,7 @@ Verify OTP
  | bag_weight | string? |  yes  |  |
  | box_type | string? |  yes  |  |
  | debug_info | [DebugInfo](#DebugInfo)? |  yes  |  |
+ | dimension | [Dimensions](#Dimensions)? |  yes  |  |
  | dp_id | string? |  yes  |  |
  | dp_name | string? |  yes  |  |
  | dp_options | string? |  yes  |  |
@@ -8269,6 +8192,7 @@ Verify OTP
  | marketplace_store_id | string? |  yes  |  |
  | order_type | string? |  yes  |  |
  | packaging_name | string? |  yes  |  |
+ | parent_dp_id | string? |  yes  |  |
  | po_number | string? |  yes  |  |
  | return_affiliate_order_id | string? |  yes  |  |
  | return_affiliate_shipment_id | string? |  yes  |  |
@@ -8276,6 +8200,7 @@ Verify OTP
  | return_details | string? |  yes  |  |
  | return_store_node | number? |  yes  |  |
  | same_store_available | boolean |  no  |  |
+ | shipment_tags | [[ShipmentTags1](#ShipmentTags1)]? |  yes  |  |
  | shipment_volumetric_weight | number? |  yes  |  |
  | shipment_weight | number? |  yes  |  |
  | store_invoice_updated_date | string? |  yes  |  |
@@ -8347,7 +8272,9 @@ Verify OTP
  | ---------- | ---- | -------- | ----------- |
  | bag_list | [string]? |  yes  |  |
  | created_at | string? |  yes  |  |
+ | display_name | string? |  yes  |  |
  | id | number? |  yes  |  |
+ | meta | string? |  yes  |  |
  | shipment_id | string? |  yes  |  |
  | status | string? |  yes  |  |
  
@@ -8355,6 +8282,17 @@ Verify OTP
 ---
 
 #### [ShipmentTags](#ShipmentTags)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | display_text | string? |  yes  |  |
+ | entity_type | string? |  yes  |  |
+ | slug | string? |  yes  |  |
+ 
+
+---
+
+#### [ShipmentTags1](#ShipmentTags1)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |

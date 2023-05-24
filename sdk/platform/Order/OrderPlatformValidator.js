@@ -277,12 +277,6 @@ class OrderValidator {
     }).required();
   }
 
-  static platformManualAssignDPToShipment() {
-    return Joi.object({
-      body: OrderModel.ManualAssignDPToShipment().required(),
-    }).required();
-  }
-
   static postShipmentHistory() {
     return Joi.object({
       body: OrderModel.PostShipmentHistory().required(),

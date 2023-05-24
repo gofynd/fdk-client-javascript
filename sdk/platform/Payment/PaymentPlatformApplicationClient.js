@@ -143,6 +143,67 @@ class Payment {
 
   /**
    * @param {Object} arg - Arg object.
+   * @param {CancelOrResendPaymentLinkRequest} arg.body
+   * @returns {Promise<CancelPaymentLinkResponse>} - Success response
+   * @summary: Cancel payment link
+   * @description: Use this API to cancel a payment link for the customer
+   */
+  async cancelPaymentLink({ body } = {}) {
+    const { error } = PaymentValidator.cancelPaymentLink().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = PaymentValidator.cancelPaymentLink().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for cancelPaymentLink",
+      });
+      Logger({ level: "WARN", message: warrning });
+    }
+
+    const query_params = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/payment/v1.0/company/${this.config.companyId}/application/${this.applicationId}/cancel-payment-link/`,
+      query_params,
+      body
+    );
+
+    const {
+      error: res_error,
+    } = PaymentModel.CancelPaymentLinkResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for cancelPaymentLink",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
    * @param {PaymentStatusUpdateRequest} arg.body
    * @returns {Promise<PaymentStatusUpdateResponse>} - Success response
    * @summary: Performs continuous polling to check status of payment on the server
@@ -260,6 +321,67 @@ class Payment {
       Logger({
         level: "WARN",
         message: "Response Validation Warnnings for confirmPayment",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {CreatePaymentLinkRequest} arg.body
+   * @returns {Promise<CreatePaymentLinkResponse>} - Success response
+   * @summary: Create payment link
+   * @description: Use this API to create a payment link for the customer
+   */
+  async createPaymentLink({ body } = {}) {
+    const { error } = PaymentValidator.createPaymentLink().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = PaymentValidator.createPaymentLink().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for createPaymentLink",
+      });
+      Logger({ level: "WARN", message: warrning });
+    }
+
+    const query_params = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/payment/v1.0/company/${this.config.companyId}/application/${this.applicationId}/create-payment-link/`,
+      query_params,
+      body
+    );
+
+    const {
+      error: res_error,
+    } = PaymentModel.CreatePaymentLinkResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for createPaymentLink",
       });
       Logger({ level: "WARN", message: res_error });
     }
@@ -650,6 +772,68 @@ class Payment {
       Logger({
         level: "WARN",
         message: "Response Validation Warnnings for getEdcDevice",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {string} [arg.paymentLinkId] -
+   * @returns {Promise<GetPaymentLinkResponse>} - Success response
+   * @summary: Get payment link
+   * @description: Use this API to get a payment link
+   */
+  async getPaymentLink({ paymentLinkId } = {}) {
+    const { error } = PaymentValidator.getPaymentLink().validate(
+      {
+        paymentLinkId,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = PaymentValidator.getPaymentLink().validate(
+      {
+        paymentLinkId,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getPaymentLink",
+      });
+      Logger({ level: "WARN", message: warrning });
+    }
+
+    const query_params = {};
+    query_params["payment_link_id"] = paymentLinkId;
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/payment/v1.0/company/${this.config.companyId}/application/${this.applicationId}/create-payment-link/`,
+      query_params,
+      undefined
+    );
+
+    const {
+      error: res_error,
+    } = PaymentModel.GetPaymentLinkResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getPaymentLink",
       });
       Logger({ level: "WARN", message: res_error });
     }
@@ -1275,6 +1459,68 @@ class Payment {
 
   /**
    * @param {Object} arg - Arg object.
+   * @param {string} [arg.paymentLinkId] -
+   * @returns {Promise<PollingPaymentLinkResponse>} - Success response
+   * @summary: Used for polling if payment successful or not
+   * @description: Use this API to poll if payment through payment was successful or not
+   */
+  async pollingPaymentLink({ paymentLinkId } = {}) {
+    const { error } = PaymentValidator.pollingPaymentLink().validate(
+      {
+        paymentLinkId,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = PaymentValidator.pollingPaymentLink().validate(
+      {
+        paymentLinkId,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for pollingPaymentLink",
+      });
+      Logger({ level: "WARN", message: warrning });
+    }
+
+    const query_params = {};
+    query_params["payment_link_id"] = paymentLinkId;
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/payment/v1.0/company/${this.config.companyId}/application/${this.applicationId}/polling-payment-link/`,
+      query_params,
+      undefined
+    );
+
+    const {
+      error: res_error,
+    } = PaymentModel.PollingPaymentLinkResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for pollingPaymentLink",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
    * @param {ResendOrCancelPaymentRequest} arg.body
    * @returns {Promise<ResendOrCancelPaymentResponse>} - Success response
    * @summary: API to resend and cancel a payment link which was already generated.
@@ -1329,6 +1575,67 @@ class Payment {
       Logger({
         level: "WARN",
         message: "Response Validation Warnnings for resendOrCancelPayment",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {CancelOrResendPaymentLinkRequest} arg.body
+   * @returns {Promise<ResendPaymentLinkResponse>} - Success response
+   * @summary: Resend payment link
+   * @description: Use this API to resend a payment link for the customer
+   */
+  async resendPaymentLink({ body } = {}) {
+    const { error } = PaymentValidator.resendPaymentLink().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = PaymentValidator.resendPaymentLink().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for resendPaymentLink",
+      });
+      Logger({ level: "WARN", message: warrning });
+    }
+
+    const query_params = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/payment/v1.0/company/${this.config.companyId}/application/${this.applicationId}/resend-payment-link/`,
+      query_params,
+      body
+    );
+
+    const {
+      error: res_error,
+    } = PaymentModel.ResendPaymentLinkResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for resendPaymentLink",
       });
       Logger({ level: "WARN", message: res_error });
     }

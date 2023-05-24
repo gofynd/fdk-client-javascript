@@ -1826,7 +1826,7 @@ Returns a success response
  | name | string |  no  |  |
  | notification_emails | [string]? |  yes  |  |
  | product_return_config | [ProductReturnConfigSerializer](#ProductReturnConfigSerializer)? |  yes  |  |
- | slug | string |  no  |  |
+ | slug | string? |  yes  |  |
  | stage | string? |  yes  |  |
  | store_type | string? |  yes  |  |
  | timing | [[LocationDayWiseSerializer](#LocationDayWiseSerializer)]? |  yes  |  |

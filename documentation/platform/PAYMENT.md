@@ -11,8 +11,10 @@ Collect payment through many payment gateway i.e Stripe, Razorpay, Juspay etc.in
 * [activateAndDectivatePayout](#activateanddectivatepayout)
 * [addEdcDevice](#addedcdevice)
 * [addRefundBankAccountUsingOTP](#addrefundbankaccountusingotp)
+* [cancelPaymentLink](#cancelpaymentlink)
 * [checkAndUpdatePaymentStatus](#checkandupdatepaymentstatus)
 * [confirmPayment](#confirmpayment)
+* [createPaymentLink](#createpaymentlink)
 * [deletePayout](#deletepayout)
 * [deleteSubscriptionPaymentMethod](#deletesubscriptionpaymentmethod)
 * [edcAggregatorsAndModelList](#edcaggregatorsandmodellist)
@@ -22,6 +24,7 @@ Collect payment through many payment gateway i.e Stripe, Razorpay, Juspay etc.in
 * [getBankAccountDetailsOpenAPI](#getbankaccountdetailsopenapi)
 * [getBrandPaymentGatewayConfig](#getbrandpaymentgatewayconfig)
 * [getEdcDevice](#getedcdevice)
+* [getPaymentLink](#getpaymentlink)
 * [getPaymentModeRoutes](#getpaymentmoderoutes)
 * [getPlatformPaymentConfig](#getplatformpaymentconfig)
 * [getPosPaymentModeRoutes](#getpospaymentmoderoutes)
@@ -33,7 +36,9 @@ Collect payment through many payment gateway i.e Stripe, Razorpay, Juspay etc.in
 * [initialisePayment](#initialisepayment)
 * [oauthGetUrl](#oauthgeturl)
 * [paymentStatusBulk](#paymentstatusbulk)
+* [pollingPaymentLink](#pollingpaymentlink)
 * [resendOrCancelPayment](#resendorcancelpayment)
+* [resendPaymentLink](#resendpaymentlink)
 * [revokeOauthToken](#revokeoauthtoken)
 * [saveBrandPaymentGatewayConfig](#savebrandpaymentgatewayconfig)
 * [savePayout](#savepayout)
@@ -234,6 +239,65 @@ Success
 ---
 
 
+### cancelPaymentLink
+Cancel payment link
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").payment.cancelPaymentLink({  body : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").payment.cancelPaymentLink({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [CancelOrResendPaymentLinkRequest](#CancelOrResendPaymentLinkRequest) | yes | Request body |
+
+
+Use this API to cancel a payment link for the customer
+
+*Returned Response:*
+
+
+
+
+[CancelPaymentLinkResponse](#CancelPaymentLinkResponse)
+
+Success. Check the example shown below
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "success": true,
+  "message": "Payment link cancelled",
+  "status_code": 200
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
 ### checkAndUpdatePaymentStatus
 Performs continuous polling to check status of payment on the server
 
@@ -337,6 +401,68 @@ Success. Returns the status of payment. Check the example shown below or refer `
   "success": true,
   "message": "Payment Successful",
   "order_id": "FY60F90AEF01FF43E878"
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### createPaymentLink
+Create payment link
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").payment.createPaymentLink({  body : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").payment.createPaymentLink({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [CreatePaymentLinkRequest](#CreatePaymentLinkRequest) | yes | Request body |
+
+
+Use this API to create a payment link for the customer
+
+*Returned Response:*
+
+
+
+
+[CreatePaymentLinkResponse](#CreatePaymentLinkResponse)
+
+Success. Check the example shown below
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "success": true,
+  "message": "Payment link created",
+  "status_code": 200,
+  "payment_link_url": "https://api.fyndx0.de/service/application/payment/v1.0/payment/options/link/?id=96b15ea2014a76c8d2774783e239ce26&refresh=false",
+  "payment_link_id": "96b15ea2014a76c8d2774783e239ce26",
+  "polling_timeout": 480
 }
 ```
 </details>
@@ -1106,6 +1232,72 @@ Success. Returns the single edc device mapped to the terminal. Check the example
     "is_active": true,
     "edc_model": "A910"
   }
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### getPaymentLink
+Get payment link
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").payment.getPaymentLink({  paymentLinkId : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").payment.getPaymentLink({  paymentLinkId : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| paymentLinkId | string | no |  |  
+
+
+
+Use this API to get a payment link
+
+*Returned Response:*
+
+
+
+
+[GetPaymentLinkResponse](#GetPaymentLinkResponse)
+
+Success. Check the example shown below
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "success": true,
+  "message": "Payment link",
+  "status_code": 200,
+  "payment_link_current_status": "resent",
+  "payment_link_url": "https://api.fyndx0.de/service/application/payment/v1.0/payment/options/link/?id=4adb4451720a82ee69a3c1c4cc9ab442&refresh=false",
+  "external_order_id": "FY62614DF9D5CF31D3D0",
+  "amount": 21900,
+  "merchant_name": "Fynd",
+  "polling_timeout": 1800
 }
 ```
 </details>
@@ -4429,6 +4621,70 @@ Success. Returns the status of payment. Check the example shown below or refer `
 ---
 
 
+### pollingPaymentLink
+Used for polling if payment successful or not
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").payment.pollingPaymentLink({  paymentLinkId : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").payment.pollingPaymentLink({  paymentLinkId : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| paymentLinkId | string | no |  |  
+
+
+
+Use this API to poll if payment through payment was successful or not
+
+*Returned Response:*
+
+
+
+
+[PollingPaymentLinkResponse](#PollingPaymentLinkResponse)
+
+Success. Check the example shown below
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "aggregator_name": "Fynd",
+  "status": "complete",
+  "redirect_url": "https://api.fyndx0.de/service/application/order/v1.0/orders/?success=true&order_id=FY62B3FF87016F24A4E6&aggregator_name=Fynd&cart_id=412&delivery_address_id=136&billing_address_id=136",
+  "payment_link_id": "223d2a8df39a5dcdd8525498bee73199",
+  "amount": 21900,
+  "order_id": "FY62B3FF87016F24A4E6",
+  "status_code": 200
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
 ### resendOrCancelPayment
 API to resend and cancel a payment link which was already generated.
 
@@ -4501,6 +4757,66 @@ Success. Returns the status of payment. Check the example shown below or refer `
 ```
 </details>
 
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### resendPaymentLink
+Resend payment link
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").payment.resendPaymentLink({  body : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").payment.resendPaymentLink({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [CancelOrResendPaymentLinkRequest](#CancelOrResendPaymentLinkRequest) | yes | Request body |
+
+
+Use this API to resend a payment link for the customer
+
+*Returned Response:*
+
+
+
+
+[ResendPaymentLinkResponse](#ResendPaymentLinkResponse)
+
+Success. Check the example shown below
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "success": true,
+  "message": "Payment link resent",
+  "status_code": 200,
+  "polling_timeout": 480
+}
+```
 </details>
 
 
@@ -5312,6 +5628,26 @@ Bank details on correct Ifsc Code
 
 ---
 
+#### [CancelOrResendPaymentLinkRequest](#CancelOrResendPaymentLinkRequest)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | payment_link_id | string |  no  | Unique id of payment link |
+ 
+
+---
+
+#### [CancelPaymentLinkResponse](#CancelPaymentLinkResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | message | string |  no  | Message |
+ | status_code | number |  no  | HTTP status code |
+ | success | boolean |  no  | Successful or failure |
+ 
+
+---
+
 #### [CODdata](#CODdata)
 
  | Properties | Type | Nullable | Description |
@@ -5321,6 +5657,47 @@ Bank details on correct Ifsc Code
  | remaining_limit | number |  no  | Remaining Limit for COD of User |
  | usages | number |  no  | Used COD limit from the user Limit |
  | user_id | string |  no  | Payment mode name |
+ 
+
+---
+
+#### [CreatePaymentLinkMeta](#CreatePaymentLinkMeta)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | amount | string |  no  |  |
+ | assign_card_id | string? |  yes  |  |
+ | cart_id | string |  no  |  |
+ | checkout_mode | string |  no  |  |
+ | pincode | string |  no  |  |
+ 
+
+---
+
+#### [CreatePaymentLinkRequest](#CreatePaymentLinkRequest)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | amount | number |  no  | Total value of order |
+ | description | string? |  yes  | Merchant order id |
+ | email | string |  no  | Email to which the payment link is to be sent |
+ | external_order_id | string |  no  | Merchant order id |
+ | meta | [CreatePaymentLinkMeta](#CreatePaymentLinkMeta) |  no  | Meta |
+ | mobile_number | string |  no  | Mobile number to which the payment link is to be sent |
+ 
+
+---
+
+#### [CreatePaymentLinkResponse](#CreatePaymentLinkResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | message | string |  no  | Message |
+ | payment_link_id | string? |  yes  | Unique id of payment link |
+ | payment_link_url | string? |  yes  | Url of payment link |
+ | polling_timeout | number? |  yes  | Polling request timeout |
+ | status_code | number |  no  | HTTP status code |
+ | success | boolean |  no  | Successful or failure |
  
 
 ---
@@ -5483,12 +5860,57 @@ Bank details on correct Ifsc Code
 
 ---
 
+#### [ErrorDescription](#ErrorDescription)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | amount | number? |  yes  | Amount paid |
+ | cancelled | boolean? |  yes  | Payment link is cancelled or not |
+ | expired | boolean? |  yes  | Payment link expired or not |
+ | invalid_id | boolean? |  yes  | Payment link id is valid or not |
+ | merchant_name | string? |  yes  | Name of merchant that created payment link |
+ | merchant_order_id | string? |  yes  | Order id |
+ | msg | string? |  yes  | Message |
+ | payment_transaction_id | string? |  yes  | Payment transaction id |
+ 
+
+---
+
+#### [ErrorResponse](#ErrorResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | error | [ErrorDescription](#ErrorDescription)? |  yes  |  |
+ | message | string |  no  | Message |
+ | status_code | number |  no  | HTTP status code |
+ | success | boolean |  no  | Successful or failure |
+ 
+
+---
+
 #### [GetOauthUrlResponse](#GetOauthUrlResponse)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | success | boolean |  no  | Response is successful or not |
  | url | string |  no  | The url to call for authenticating |
+ 
+
+---
+
+#### [GetPaymentLinkResponse](#GetPaymentLinkResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | amount | number? |  yes  | Total value of order |
+ | external_order_id | string? |  yes  | Merchant order id |
+ | merchant_name | string? |  yes  | Merchant name |
+ | message | string |  no  | Message |
+ | payment_link_current_status | string? |  yes  | Status of payment link |
+ | payment_link_url | string? |  yes  | Url of payment link |
+ | polling_timeout | number? |  yes  | Polling request timeout |
+ | status_code | number |  no  | HTTP status code |
+ | success | boolean |  no  | Successful or failure |
  
 
 ---
@@ -6068,6 +6490,24 @@ Bank details on correct Ifsc Code
 
 ---
 
+#### [PollingPaymentLinkResponse](#PollingPaymentLinkResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | aggregator_name | string? |  yes  | Aggregator name |
+ | amount | number? |  yes  | Amount |
+ | http_status | number? |  yes  | HTTP status code |
+ | message | string? |  yes  | Message |
+ | order_id | string? |  yes  | Fynd order id |
+ | payment_link_id | string? |  yes  | Payment link id |
+ | redirect_url | string? |  yes  | Url to redirect to |
+ | status | string? |  yes  | Status of payment link |
+ | status_code | number? |  yes  | HTTP status code |
+ | success | boolean? |  yes  | Successful or failure |
+ 
+
+---
+
 #### [RefundAccountResponse](#RefundAccountResponse)
 
  | Properties | Type | Nullable | Description |
@@ -6097,6 +6537,18 @@ Bank details on correct Ifsc Code
  | ---------- | ---- | -------- | ----------- |
  | data | [LinkStatus](#LinkStatus) |  no  | Data about link action status. |
  | success | boolean |  no  | Response is successful or not. |
+ 
+
+---
+
+#### [ResendPaymentLinkResponse](#ResendPaymentLinkResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | message | string |  no  | Message |
+ | polling_timeout | number? |  yes  | Polling request timeout |
+ | status_code | number |  no  | HTTP status code |
+ | success | boolean |  no  | Successful or failure |
  
 
 ---

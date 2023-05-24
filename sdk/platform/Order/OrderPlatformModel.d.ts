@@ -122,11 +122,8 @@ declare class OrderModel {
     static LineItem(): any;
     static LocationDetails(): any;
     static LockData(): any;
-    static ManualAssignDPToShipment(): any;
-    static ManualAssignDPToShipmentResponse(): any;
     static MarketPlacePdf(): any;
     static Meta(): any;
-    static Meta1(): any;
     static MetricCountResponse(): any;
     static MetricsCount(): any;
     static NestedErrorSchemaDataSet(): any;
@@ -198,6 +195,7 @@ declare class OrderModel {
     static ShipmentData(): any;
     static ShipmentDetail(): any;
     static ShipmentDetails(): any;
+    static ShipmentDetails1(): any;
     static ShipmentDetailsResponse(): any;
     static ShipmentHistoryResponse(): any;
     static ShipmentInfoResponse(): any;
@@ -214,6 +212,7 @@ declare class OrderModel {
     static ShipmentStatus(): any;
     static ShipmentStatusData(): any;
     static ShipmentTags(): any;
+    static ShipmentTags1(): any;
     static ShipmentTimeStamp(): any;
     static ShippingInfo(): any;
     static SingleRefundModeInfo(): any;

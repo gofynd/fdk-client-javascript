@@ -575,7 +575,12 @@ class PlatformApplicationClient {
 
 /** @typedef AddBeneficiaryDetailsOTPRequest */
 /** @typedef BankDetailsForOTP */
+/** @typedef CancelOrResendPaymentLinkRequest */
+/** @typedef CancelPaymentLinkResponse */
 /** @typedef CODdata */
+/** @typedef CreatePaymentLinkMeta */
+/** @typedef CreatePaymentLinkRequest */
+/** @typedef CreatePaymentLinkResponse */
 /** @typedef DeletePayoutResponse */
 /** @typedef DeleteSubscriptionPaymentMethodResponse */
 /** @typedef EdcAddRequest */
@@ -590,7 +595,10 @@ class PlatformApplicationClient {
 /** @typedef EdcUpdateRequest */
 /** @typedef ErrorCodeAndDescription */
 /** @typedef ErrorCodeDescription */
+/** @typedef ErrorDescription */
+/** @typedef ErrorResponse */
 /** @typedef GetOauthUrlResponse */
+/** @typedef GetPaymentLinkResponse */
 /** @typedef GetUserCODLimitResponse */
 /** @typedef HttpErrorCodeAndResponse */
 /** @typedef IfscCodeResponse */
@@ -631,9 +639,11 @@ class PlatformApplicationClient {
 /** @typedef PayoutsResponse */
 /** @typedef PlatformPaymentOptions */
 /** @typedef PlatfromPaymentConfig */
+/** @typedef PollingPaymentLinkResponse */
 /** @typedef RefundAccountResponse */
 /** @typedef ResendOrCancelPaymentRequest */
 /** @typedef ResendOrCancelPaymentResponse */
+/** @typedef ResendPaymentLinkResponse */
 /** @typedef RevokeOAuthToken */
 /** @typedef RootPaymentMode */
 /** @typedef SaveSubscriptionSetupIntentRequest */
@@ -771,11 +781,8 @@ class PlatformApplicationClient {
 /** @typedef LineItem */
 /** @typedef LocationDetails */
 /** @typedef LockData */
-/** @typedef ManualAssignDPToShipment */
-/** @typedef ManualAssignDPToShipmentResponse */
 /** @typedef MarketPlacePdf */
 /** @typedef Meta */
-/** @typedef Meta1 */
 /** @typedef MetricCountResponse */
 /** @typedef MetricsCount */
 /** @typedef NestedErrorSchemaDataSet */
@@ -847,6 +854,7 @@ class PlatformApplicationClient {
 /** @typedef ShipmentData */
 /** @typedef ShipmentDetail */
 /** @typedef ShipmentDetails */
+/** @typedef ShipmentDetails1 */
 /** @typedef ShipmentDetailsResponse */
 /** @typedef ShipmentHistoryResponse */
 /** @typedef ShipmentInfoResponse */
@@ -863,6 +871,7 @@ class PlatformApplicationClient {
 /** @typedef ShipmentStatus */
 /** @typedef ShipmentStatusData */
 /** @typedef ShipmentTags */
+/** @typedef ShipmentTags1 */
 /** @typedef ShipmentTimeStamp */
 /** @typedef ShippingInfo */
 /** @typedef SingleRefundModeInfo */

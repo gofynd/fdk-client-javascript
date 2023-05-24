@@ -15,6 +15,12 @@ class PaymentValidator {
     }).required();
   }
 
+  static cancelPaymentLink() {
+    return Joi.object({
+      body: PaymentModel.CancelOrResendPaymentLinkRequest().required(),
+    }).required();
+  }
+
   static checkAndUpdatePaymentStatus() {
     return Joi.object({
       body: PaymentModel.PaymentStatusUpdateRequest().required(),
@@ -24,6 +30,12 @@ class PaymentValidator {
   static confirmPayment() {
     return Joi.object({
       body: PaymentModel.PaymentConfirmationRequest().required(),
+    }).required();
+  }
+
+  static createPaymentLink() {
+    return Joi.object({
+      body: PaymentModel.CreatePaymentLinkRequest().required(),
     }).required();
   }
 
@@ -59,6 +71,12 @@ class PaymentValidator {
   static getEdcDevice() {
     return Joi.object({
       terminalUniqueIdentifier: Joi.string().allow("").required(),
+    }).required();
+  }
+
+  static getPaymentLink() {
+    return Joi.object({
+      paymentLinkId: Joi.string().allow(""),
     }).required();
   }
 
@@ -125,9 +143,21 @@ class PaymentValidator {
     }).required();
   }
 
+  static pollingPaymentLink() {
+    return Joi.object({
+      paymentLinkId: Joi.string().allow(""),
+    }).required();
+  }
+
   static resendOrCancelPayment() {
     return Joi.object({
       body: PaymentModel.ResendOrCancelPaymentRequest().required(),
+    }).required();
+  }
+
+  static resendPaymentLink() {
+    return Joi.object({
+      body: PaymentModel.CancelOrResendPaymentLinkRequest().required(),
     }).required();
   }
 

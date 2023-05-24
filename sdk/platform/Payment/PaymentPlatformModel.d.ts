@@ -2,7 +2,12 @@ export = PaymentModel;
 declare class PaymentModel {
     static AddBeneficiaryDetailsOTPRequest(): any;
     static BankDetailsForOTP(): any;
+    static CancelOrResendPaymentLinkRequest(): any;
+    static CancelPaymentLinkResponse(): any;
     static CODdata(): any;
+    static CreatePaymentLinkMeta(): any;
+    static CreatePaymentLinkRequest(): any;
+    static CreatePaymentLinkResponse(): any;
     static DeletePayoutResponse(): any;
     static DeleteSubscriptionPaymentMethodResponse(): any;
     static EdcAddRequest(): any;
@@ -17,7 +22,10 @@ declare class PaymentModel {
     static EdcUpdateRequest(): any;
     static ErrorCodeAndDescription(): any;
     static ErrorCodeDescription(): any;
+    static ErrorDescription(): any;
+    static ErrorResponse(): any;
     static GetOauthUrlResponse(): any;
+    static GetPaymentLinkResponse(): any;
     static GetUserCODLimitResponse(): any;
     static HttpErrorCodeAndResponse(): any;
     static IfscCodeResponse(): any;
@@ -58,9 +66,11 @@ declare class PaymentModel {
     static PayoutsResponse(): any;
     static PlatformPaymentOptions(): any;
     static PlatfromPaymentConfig(): any;
+    static PollingPaymentLinkResponse(): any;
     static RefundAccountResponse(): any;
     static ResendOrCancelPaymentRequest(): any;
     static ResendOrCancelPaymentResponse(): any;
+    static ResendPaymentLinkResponse(): any;
     static RevokeOAuthToken(): any;
     static RootPaymentMode(): any;
     static SaveSubscriptionSetupIntentRequest(): any;
