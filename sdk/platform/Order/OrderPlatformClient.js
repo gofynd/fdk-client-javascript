@@ -2301,6 +2301,65 @@ class Order {
 
   /**
    * @param {Object} arg - Arg object.
+   * @returns {Promise<BagStateTransitionMap>} - Success response
+   * @summary:
+   * @description:
+   */
+  async getStateTransitionMap({} = {}) {
+    const { error } = OrderValidator.getStateTransitionMap().validate(
+      {},
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = OrderValidator.getStateTransitionMap().validate(
+      {},
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getStateTransitionMap",
+      });
+      Logger({ level: "WARN", message: warrning });
+    }
+
+    const query_params = {};
+
+    const xHeaders = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/order-manage/v1.0/company/${this.config.companyId}/bag/state/transition`,
+      query_params,
+      undefined,
+      xHeaders
+    );
+
+    const {
+      error: res_error,
+    } = OrderModel.BagStateTransitionMap().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getStateTransitionMap",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
    * @param {string} arg.view -
    * @param {string} [arg.groupEntity] -
    * @returns {Promise<FiltersResponse>} - Success response
@@ -2822,65 +2881,6 @@ class Order {
 
   /**
    * @param {Object} arg - Arg object.
-   * @returns {Promise<OrderStatusResult>} - Success response
-   * @summary:
-   * @description:
-   */
-  async sendSmsNinjaPlatform({} = {}) {
-    const { error } = OrderValidator.sendSmsNinjaPlatform().validate(
-      {},
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = OrderValidator.sendSmsNinjaPlatform().validate(
-      {},
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: "Parameter Validation warrnings for sendSmsNinjaPlatform",
-      });
-      Logger({ level: "WARN", message: warrning });
-    }
-
-    const query_params = {};
-
-    const xHeaders = {};
-
-    const response = await PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/order-manage/v1.0/company/${this.config.companyId}/bag/state/transition`,
-      query_params,
-      undefined,
-      xHeaders
-    );
-
-    const {
-      error: res_error,
-    } = OrderModel.OrderStatusResult().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
-
-    if (res_error) {
-      Logger({
-        level: "WARN",
-        message: "Response Validation Warnnings for sendSmsNinjaPlatform",
-      });
-      Logger({ level: "WARN", message: res_error });
-    }
-
-    return response;
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
    * @param {SendUserMobileOTP} arg.body
    * @returns {Promise<SendUserMobileOtpResponse>} - Success response
    * @summary:
@@ -3069,7 +3069,7 @@ class Order {
   /**
    * @param {Object} arg - Arg object.
    * @param {UpdatePackagingDimensionsPayload} arg.body
-   * @returns {Promise<CreateOrderResponse>} - Success response
+   * @returns {Promise<UpdatePackagingDimensionsResponse>} - Success response
    * @summary:
    * @description:
    */
@@ -3116,7 +3116,7 @@ class Order {
 
     const {
       error: res_error,
-    } = OrderModel.CreateOrderResponse().validate(response, {
+    } = OrderModel.UpdatePackagingDimensionsResponse().validate(response, {
       abortEarly: false,
       allowUnknown: false,
     });

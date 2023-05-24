@@ -9701,7 +9701,7 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
  | seller | [BaseInfo](#BaseInfo)? |  yes  |  |
  | seller_identifier | string? |  yes  |  |
  | size | string? |  yes  |  |
- | store | [BaseInfo](#BaseInfo)? |  yes  |  |
+ | store | [StoreInfo](#StoreInfo)? |  yes  |  |
  | type | string? |  yes  |  |
  | uid | string? |  yes  |  |
  
@@ -9945,6 +9945,17 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | items | [[PickupStoreDetail](#PickupStoreDetail)]? |  yes  |  |
+ 
+
+---
+
+#### [StoreInfo](#StoreInfo)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | name | string? |  yes  |  |
+ | store_code | string? |  yes  |  |
+ | uid | number? |  yes  |  |
  
 
 ---

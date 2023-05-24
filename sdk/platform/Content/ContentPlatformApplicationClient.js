@@ -114,7 +114,7 @@ class Content {
     const response = await PlatformAPIClient.execute(
       this.config,
       "post",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/faq/category/${categoryId}/faqs`,
+      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/faq/category/${categoryId}/faq`,
       query_params,
       body
     );

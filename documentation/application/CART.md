@@ -10408,7 +10408,7 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
  | seller | [BaseInfo](#BaseInfo)? |  yes  |  |
  | seller_identifier | string? |  yes  |  |
  | size | string? |  yes  |  |
- | store | [BaseInfo](#BaseInfo)? |  yes  |  |
+ | store | [StoreInfo](#StoreInfo)? |  yes  |  |
  | type | string? |  yes  |  |
  | uid | string? |  yes  |  |
  
@@ -10668,6 +10668,17 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
  | first_name | string |  no  |  |
  | last_name | string |  no  |  |
  | user | string |  no  |  |
+ 
+
+---
+
+#### [StoreInfo](#StoreInfo)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | name | string? |  yes  |  |
+ | store_code | string? |  yes  |  |
+ | uid | number? |  yes  |  |
  
 
 ---

@@ -667,7 +667,7 @@ class CartModel {
       seller: CartModel.BaseInfo(),
       seller_identifier: Joi.string().allow(""),
       size: Joi.string().allow(""),
-      store: CartModel.BaseInfo(),
+      store: CartModel.StoreInfo(),
       type: Joi.string().allow(""),
       uid: Joi.string().allow(""),
     });
@@ -847,6 +847,13 @@ class CartModel {
       first_name: Joi.string().allow("").required(),
       last_name: Joi.string().allow("").required(),
       user: Joi.string().allow("").required(),
+    });
+  }
+  static StoreInfo() {
+    return Joi.object({
+      name: Joi.string().allow(""),
+      store_code: Joi.string().allow(""),
+      uid: Joi.number(),
     });
   }
   static Tags() {

@@ -1116,7 +1116,7 @@ class CartModel {
       seller: CartModel.BaseInfo(),
       seller_identifier: Joi.string().allow(""),
       size: Joi.string().allow(""),
-      store: CartModel.BaseInfo(),
+      store: CartModel.StoreInfo(),
       type: Joi.string().allow(""),
       uid: Joi.string().allow(""),
     });
@@ -1472,6 +1472,13 @@ class CartModel {
   static StoreDetailsResponse() {
     return Joi.object({
       items: Joi.array().items(CartModel.PickupStoreDetail()),
+    });
+  }
+  static StoreInfo() {
+    return Joi.object({
+      name: Joi.string().allow(""),
+      store_code: Joi.string().allow(""),
+      uid: Joi.number(),
     });
   }
   static SuccessMessage() {

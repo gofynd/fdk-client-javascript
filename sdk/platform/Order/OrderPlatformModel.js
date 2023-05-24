@@ -198,7 +198,6 @@ class OrderModel {
       a_set: Joi.any().allow(null),
       child_details: Joi.any().allow(null),
       code: Joi.string().allow(""),
-      currency: Joi.any().allow(null),
       dimensions: OrderModel.Dimensions(),
       esp_modified: Joi.boolean().allow(null),
       identifiers: OrderModel.Identifier().required(),
@@ -341,12 +340,20 @@ class OrderModel {
   static BagGST() {
     return Joi.object({
       brand_calculated_amount: Joi.number(),
+      cgst_gst_fee: Joi.string().allow(""),
+      cgst_tax_percentage: Joi.number(),
       gst_fee: Joi.number(),
       gst_tag: Joi.string().allow(""),
       gst_tax_percentage: Joi.number(),
       gstin_code: Joi.string().allow(""),
       hsn_code: Joi.string().allow(""),
+      hsn_code_id: Joi.string().allow(""),
+      igst_gst_fee: Joi.string().allow(""),
+      igst_tax_percentage: Joi.string().allow(""),
       is_default_hsn_code: Joi.boolean(),
+      sgst_gst_fee: Joi.string().allow(""),
+      sgst_tax_percentage: Joi.number(),
+      tax_collected_at_source: Joi.number(),
       value_of_good: Joi.number(),
     });
   }
@@ -429,6 +436,12 @@ class OrderModel {
       name: Joi.string().allow("").required(),
       notify_customer: Joi.boolean(),
       state_type: Joi.string().allow("").required(),
+    });
+  }
+  static BagStateTransitionMap() {
+    return Joi.object({
+      affiliate: Joi.any(),
+      fynd: Joi.any(),
     });
   }
   static BagStatusHistory() {
@@ -1616,6 +1629,7 @@ class OrderModel {
       platform_logo: Joi.string().allow(""),
       prices: OrderModel.Prices(),
       priority_text: Joi.string().allow("").allow(null),
+      shipment_created_at: Joi.string().allow(""),
       shipment_details: Joi.any(),
       shipment_id: Joi.string().allow("").required(),
       shipment_images: Joi.array().items(Joi.string().allow("")),
@@ -1944,7 +1958,7 @@ class OrderModel {
       fulfilling_store: OrderModel.ShipmentItemFulFillingStore(),
       invoice_id: Joi.string().allow("").allow(null),
       lock_status: Joi.boolean(),
-      meta: Joi.any(),
+      meta: OrderModel.ShipmentItemMeta(),
       order_date: Joi.string().allow(""),
       order_id: Joi.string().allow("").required(),
       ordering_channnel: Joi.string().allow(""),
@@ -1974,6 +1988,39 @@ class OrderModel {
       pincode: Joi.string().allow(""),
       state: Joi.string().allow(""),
       store_email: Joi.string().allow(""),
+    });
+  }
+  static ShipmentItemMeta() {
+    return Joi.object({
+      activity_comment: Joi.string().allow(""),
+      assign_dp_from_sb: Joi.boolean(),
+      auto_trigger_dp_assignment_acf: Joi.boolean(),
+      bag_weight: Joi.any(),
+      debug_info: Joi.any(),
+      dp_options: Joi.any(),
+      dp_sort_key: Joi.string().allow("").allow(null),
+      ewaybill_info: Joi.any(),
+      existing_dp_list: Joi.array().items(Joi.string().allow("")),
+      external: Joi.any(),
+      formatted: OrderModel.Formatted(),
+      fulfilment_priority_text: Joi.string().allow(""),
+      is_international: Joi.boolean(),
+      lock_data: OrderModel.LockData(),
+      order_type: Joi.string().allow("").allow(null),
+      packaging_name: Joi.string().allow(""),
+      parent_dp_id: Joi.string().allow(""),
+      pdf_media: Joi.array().items(Joi.any()),
+      same_store_available: Joi.boolean(),
+      shipment_chargeable_weight: Joi.number(),
+      shipment_tags: Joi.array().items(OrderModel.ShipmentTags()),
+      shipment_volumetric_weight: Joi.number(),
+      shipment_weight: Joi.number(),
+      shipping_zone: Joi.string().allow(""),
+      sla: Joi.number(),
+      store_invoice_updated_date: Joi.string().allow(""),
+      tags: Joi.array().items(Joi.any()),
+      timestamp: OrderModel.ShipmentTimeStamp(),
+      weight: Joi.number(),
     });
   }
   static ShipmentListingBrand() {
@@ -2080,6 +2127,13 @@ class OrderModel {
       id: Joi.number(),
       shipment_id: Joi.string().allow(""),
       status: Joi.string().allow(""),
+    });
+  }
+  static ShipmentTags() {
+    return Joi.object({
+      display_text: Joi.string().allow(""),
+      entity_type: Joi.string().allow(""),
+      slug: Joi.string().allow(""),
     });
   }
   static ShipmentTimeStamp() {
@@ -2346,6 +2400,11 @@ class OrderModel {
       current_status: Joi.string().allow("").required(),
       dimension: Joi.array().items(OrderModel.Dimension()).required(),
       shipment_id: Joi.string().allow("").required(),
+    });
+  }
+  static UpdatePackagingDimensionsResponse() {
+    return Joi.object({
+      message: Joi.string().allow(""),
     });
   }
   static UpdateShipmentLockPayload() {

@@ -597,7 +597,7 @@ class PosCartModel {
       seller: PosCartModel.BaseInfo(),
       seller_identifier: Joi.string().allow(""),
       size: Joi.string().allow(""),
-      store: PosCartModel.BaseInfo(),
+      store: PosCartModel.StoreInfo(),
       type: Joi.string().allow(""),
       uid: Joi.string().allow(""),
     });
@@ -767,6 +767,13 @@ class PosCartModel {
   static StoreDetailsResponse() {
     return Joi.object({
       items: Joi.array().items(PosCartModel.PickupStoreDetail()),
+    });
+  }
+  static StoreInfo() {
+    return Joi.object({
+      name: Joi.string().allow(""),
+      store_code: Joi.string().allow(""),
+      uid: Joi.number(),
     });
   }
   static Tags() {

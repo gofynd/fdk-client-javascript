@@ -14,11 +14,11 @@ class Catalog {
 
   /**
    * @param {Object} arg - Arg object.
-   * @param {string} arg.id - A `id` is a unique identifier of a collection.
+   * @param {string} arg.id - An `id` is a unique identifier of a collection.
    * @param {CollectionItemUpdate} arg.body
    * @returns {Promise<UpdatedResponse>} - Success response
-   * @summary: Add items to a collection
-   * @description: Adds items to a collection specified by its `id`. See `CollectionItemRequest` for the list of attributes needed to add items to an collection.
+   * @summary: Add/Remove items for a collection.
+   * @description: Adds items to a collection specified by its `id`. This API allows you to add items to a specific collection identified by its unique `id`. By utilizing this endpoint, you can expand and enhance the product offerings within a collection, providing users with a wider range of options and choices.
    */
   async addCollectionItems({ id, body } = {}) {
     const { error } = CatalogValidator.addCollectionItems().validate(
@@ -80,8 +80,8 @@ class Catalog {
    * @param {Object} arg - Arg object.
    * @param {CreateCollection} arg.body
    * @returns {Promise<CollectionCreateResponse>} - Success response
-   * @summary: Add a Collection
-   * @description: Create a collection. See `CreateCollectionRequestSchema` for the list of attributes needed to create a collection and collections/query-options for the available options to create a collection. On successful request, returns a paginated list of collections specified in `CollectionCreateResponse`
+   * @summary: Create a collection.
+   * @description: A Collection allows you to organize your products into hierarchical groups. This API helps you in creating the collection.
    */
   async createCollection({ body } = {}) {
     const { error } = CatalogValidator.createCollection().validate(
@@ -597,10 +597,10 @@ class Catalog {
 
   /**
    * @param {Object} arg - Arg object.
-   * @param {string} arg.id - A `id` is a unique identifier of a collection.
+   * @param {string} arg.id - An `id` is a unique identifier of a collection.
    * @returns {Promise<DeleteResponse>} - Success response
-   * @summary: Delete a Collection
-   * @description: Delete a collection by it's id. Returns an object that tells whether the collection was deleted successfully
+   * @summary: Delete a collection.
+   * @description: This API allows you to delete the collection of an application.
    */
   async deleteCollection({ id } = {}) {
     const { error } = CatalogValidator.deleteCollection().validate(
@@ -859,26 +859,23 @@ class Catalog {
 
   /**
    * @param {Object} arg - Arg object.
-   * @param {string} [arg.q] - Get collection list filtered by q string,
-   * @param {string} [arg.scheduleStatus] - Get collection list filtered by
-   *   scheduled status,
-   * @param {string} [arg.type] - Type of the collections
-   * @param {string[]} [arg.tags] - Each response will contain next_id param,
-   *   which should be sent back to make pagination work.
-   * @param {boolean} [arg.isActive] - Get collections filtered by active status.
+   * @param {string} [arg.q] - The query string for searching collections.
+   * @param {string} [arg.scheduleStatus] - Filter collections by their schedule status.
+   * @param {string} [arg.type] - It is the type of collection.
+   * @param {string[]} [arg.tag] - Filter the collections by a tag.
+   * @param {boolean} [arg.isActive] - Filter collections by active status.
    * @param {number} [arg.pageNo] - The page number to navigate through the
    *   given set of results.
-   * @param {number} [arg.pageSize] - Number of items to retrieve in each
-   *   page. Default is 12.
+   * @param {number} [arg.pageSize] - Number of items to retrieve in each page.
    * @returns {Promise<GetCollectionListingResponse>} - Success response
-   * @summary: List all the collections
+   * @summary: List collections of an application.
    * @description: A Collection allows you to organize your products into hierarchical groups. For example, a dress might be in the category _Clothing_, the individual product might also be in the collection _Summer_. On successful request, returns all the collections as specified in `CollectionListingSchema`
    */
   async getAllCollections({
     q,
     scheduleStatus,
     type,
-    tags,
+    tag,
     isActive,
     pageNo,
     pageSize,
@@ -888,7 +885,7 @@ class Catalog {
         q,
         scheduleStatus,
         type,
-        tags,
+        tag,
         isActive,
         pageNo,
         pageSize,
@@ -905,7 +902,7 @@ class Catalog {
         q,
         scheduleStatus,
         type,
-        tags,
+        tag,
         isActive,
         pageNo,
         pageSize,
@@ -924,7 +921,7 @@ class Catalog {
     query_params["q"] = q;
     query_params["schedule_status"] = scheduleStatus;
     query_params["type"] = type;
-    query_params["tags"] = tags;
+    query_params["tag"] = tag;
     query_params["is_active"] = isActive;
     query_params["page_no"] = pageNo;
     query_params["page_size"] = pageSize;
@@ -2313,10 +2310,10 @@ class Catalog {
 
   /**
    * @param {Object} arg - Arg object.
-   * @param {string} [arg.brand] - Brand slug
+   * @param {string} [arg.brand] - The slug of the brand.
    * @returns {Promise<CatalogInsightResponse>} - Success response
-   * @summary: Analytics data of catalog and inventory.
-   * @description: Catalog Insights api returns the count of catalog related data like products, brands, departments and categories that have been made live as per configuration of the app.
+   * @summary: Retrieve the analytics data of catalog and inventory.
+   * @description: The Catalog Insights API provides information about the count of catalog-related data, including products, brands, departments, and categories that have been made available based on the configuration of the application. This API allows you to retrieve statistical insights and metrics regarding the catalog, helping you gain valuable information about the live data in your catalog.
    */
   async getCatalogInsights({ brand } = {}) {
     const { error } = CatalogValidator.getCatalogInsights().validate(
@@ -2444,8 +2441,8 @@ class Catalog {
    *   unique identifier of an object. Pass the `slug` of the collection which
    *   you want to retrieve.
    * @returns {Promise<CollectionDetailResponse>} - Success response
-   * @summary: Get a particular collection
-   * @description: Get the details of a collection by its `slug`. If successful, returns a Collection resource in the response body specified in `CollectionDetailResponse`
+   * @summary: Retrieve the collection details by its slug.
+   * @description: This API retrieves the detail of the collection in an application.
    */
   async getCollectionDetail({ slug } = {}) {
     const { error } = CatalogValidator.getCollectionDetail().validate(
@@ -2503,24 +2500,36 @@ class Catalog {
 
   /**
    * @param {Object} arg - Arg object.
-   * @param {string} arg.id - A `id` is a unique identifier of a collection.
-   * @param {string} [arg.sortOn] - Each response will contain sort_on param,
-   *   which should be sent back to make pagination work.
-   * @param {string} [arg.pageId] - Each response will contain next_id param,
-   *   which should be sent back to make pagination work.
+   * @param {string} arg.id - An `id` is a unique identifier of a collection.
+   * @param {string} [arg.f] - Filter the products in the collection using
+   *   key-value pairs.
+   * @param {string} [arg.sortOn] - It is the attribute's value on which the
+   *   products will be sorted for a collection.
+   * @param {number} [arg.pageId] - It is the currency id of the page in the pagniation.
    * @param {number} [arg.pageSize] - Number of items to retrieve in each
    *   page. Default is 12.
+   * @param {string} [arg.xCurrencyCode] - The currency code used for pricing
+   *   and monetary transactions.
    * @returns {Promise<GetCollectionItemsResponse>} - Success response
-   * @summary: Get the items for a collection
-   * @description: Get items from a collection specified by its `id`.
+   * @summary: Retrieve items of a collection.
+   * @description: A Collection API allows you to organize your products into hierarchical groups. This API provides a list of items and filters that can be applied to the items within a collection. It enables you to retrieve specific items based on various filter criteria.The API allows you to fetch information about items in the collection, including their attributes, categories, media URLs, pricing details, and more. Additionally, you can apply filters such as size and color to narrow down the search results and find the desired items. By utilizing this API, you can efficiently manage and display collections of products, making it easier for users to navigate and explore your e-commerce platform. It offers flexibility in organizing and presenting products, enhancing the overall user experience.
    */
-  async getCollectionItems({ id, sortOn, pageId, pageSize } = {}) {
+  async getCollectionItems({
+    id,
+    f,
+    sortOn,
+    pageId,
+    pageSize,
+    xCurrencyCode,
+  } = {}) {
     const { error } = CatalogValidator.getCollectionItems().validate(
       {
         id,
+        f,
         sortOn,
         pageId,
         pageSize,
+        xCurrencyCode,
       },
       { abortEarly: false, allowUnknown: true }
     );
@@ -2532,9 +2541,11 @@ class Catalog {
     const { error: warrning } = CatalogValidator.getCollectionItems().validate(
       {
         id,
+        f,
         sortOn,
         pageId,
         pageSize,
+        xCurrencyCode,
       },
       { abortEarly: false, allowUnknown: false }
     );
@@ -2547,6 +2558,7 @@ class Catalog {
     }
 
     const query_params = {};
+    query_params["f"] = f;
     query_params["sort_on"] = sortOn;
     query_params["page_id"] = pageId;
     query_params["page_size"] = pageSize;
@@ -3154,13 +3166,20 @@ class Catalog {
 
   /**
    * @param {Object} arg - Arg object.
+   * @param {string} [arg.f] - Filter the products in the collection using
+   *   key-value pairs.
+   * @param {string} [arg.sortOn] - Attribute key on which the products should
+   *   be sorted.
    * @returns {Promise<GetCollectionQueryOptionResponse>} - Success response
-   * @summary: Get query filters to configure a collection
-   * @description: Get query filters to configure a collection
+   * @summary: Retrieve the filters and sort options for collections.
+   * @description: A Collection allows you to organize your products into hierarchical groups. This API retrieves the query filters that can be used to configure a collection for a specific seller account and sale channel.
    */
-  async getQueryFilters({} = {}) {
+  async getQueryFilters({ f, sortOn } = {}) {
     const { error } = CatalogValidator.getQueryFilters().validate(
-      {},
+      {
+        f,
+        sortOn,
+      },
       { abortEarly: false, allowUnknown: true }
     );
     if (error) {
@@ -3169,7 +3188,10 @@ class Catalog {
 
     // Showing warrnings if extra unknown parameters are found
     const { error: warrning } = CatalogValidator.getQueryFilters().validate(
-      {},
+      {
+        f,
+        sortOn,
+      },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
@@ -3181,6 +3203,8 @@ class Catalog {
     }
 
     const query_params = {};
+    query_params["f"] = f;
+    query_params["sort_on"] = sortOn;
 
     const response = await PlatformAPIClient.execute(
       this.config,
@@ -3722,11 +3746,11 @@ class Catalog {
 
   /**
    * @param {Object} arg - Arg object.
-   * @param {string} arg.id - A `id` is a unique identifier of a collection.
+   * @param {string} arg.id - An `id` is a unique identifier of a collection.
    * @param {UpdateCollection} arg.body
-   * @returns {Promise<UpdateCollection>} - Success response
-   * @summary: Update a collection
-   * @description: Update a collection by it's id. On successful request, returns the updated collection
+   * @returns {Promise<CollectionUpdateResponse>} - Success response
+   * @summary: Update a collection by its ID.
+   * @description: This API enables you to update a collection by specifying its unique identifier (`ID`). By utilizing this endpoint, you can easily modify and refine the attributes, settings, and contents of a specific collection, ensuring it remains relevant and aligned with your business goals.
    */
   async updateCollection({ id, body } = {}) {
     const { error } = CatalogValidator.updateCollection().validate(
@@ -3768,7 +3792,7 @@ class Catalog {
 
     const {
       error: res_error,
-    } = CatalogModel.UpdateCollection().validate(response, {
+    } = CatalogModel.CollectionUpdateResponse().validate(response, {
       abortEarly: false,
       allowUnknown: false,
     });

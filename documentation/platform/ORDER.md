@@ -39,6 +39,7 @@ Handles all platform order and shipment api(s)
 * [getShipmentHistory](#getshipmenthistory)
 * [getShipmentReasons](#getshipmentreasons)
 * [getShipments](#getshipments)
+* [getStateTransitionMap](#getstatetransitionmap)
 * [getfilters](#getfilters)
 * [invalidateShipmentCache](#invalidateshipmentcache)
 * [orderUpdate](#orderupdate)
@@ -47,7 +48,6 @@ Handles all platform order and shipment api(s)
 * [processManifest](#processmanifest)
 * [reassignLocation](#reassignlocation)
 * [sendSmsNinja](#sendsmsninja)
-* [sendSmsNinjaPlatform](#sendsmsninjaplatform)
 * [sendUserMobileOTP](#sendusermobileotp)
 * [trackShipmentPlatform](#trackshipmentplatform)
 * [updateAddress](#updateaddress)
@@ -3679,6 +3679,244 @@ We are processing the report!
 ---
 
 
+### getStateTransitionMap
+
+
+
+
+```javascript
+// Promise
+const promise = platformClient.order.getStateTransitionMap();
+
+// Async/Await
+const data = await platformClient.order.getStateTransitionMap();
+```
+
+
+
+
+
+
+
+
+*Returned Response:*
+
+
+
+
+[BagStateTransitionMap](#BagStateTransitionMap)
+
+State Transition Mapping, for next possible state
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "fynd": {
+    "placed": [
+      "bag_not_confirmed",
+      "cancelled_customer",
+      "cancelled_fynd",
+      "bag_confirmed",
+      "store_reassigned"
+    ],
+    "bag_confirmed": [
+      "handed_over_to_customer",
+      "bag_invoiced"
+    ],
+    "dp_assigned": [
+      "handed_over_to_customer",
+      "bag_packed"
+    ],
+    "bag_packed": [
+      "bag_not_picked",
+      "cancelled_customer"
+    ],
+    "handed_over_to_dg": [
+      "cancelled_at_dp",
+      "credit_note_generated"
+    ],
+    "out_for_delivery": [
+      "delivery_done"
+    ],
+    "delivery_done": [
+      "bag_lost",
+      "return_initiated"
+    ],
+    "return_initiated": [
+      "return_accepted"
+    ],
+    "bag_picked": [
+      "refund_completed",
+      "out_for_delivery",
+      "delivery_done"
+    ],
+    "pending": [
+      "pending",
+      "placed",
+      "payment_failed",
+      "manual_refund"
+    ],
+    "payment_failed": [
+      "awaiting_payment_confirmation",
+      "placed",
+      "manual_refund"
+    ],
+    "return_pre_qc": [
+      "return_initiated",
+      "return_request_cancelled",
+      "manual_refund"
+    ],
+    "bag_not_packed": [
+      "manual_refund"
+    ],
+    "bag_rescheduled": [
+      "manual_refund"
+    ],
+    "fluid_state": [
+      "manual_refund"
+    ],
+    "handed_over_to_customer": [
+      "manual_refund",
+      "return_initiated"
+    ],
+    "hold": [
+      "manual_refund"
+    ],
+    "product_not_available": [
+      "manual_refund"
+    ],
+    "qc_fail": [
+      "manual_refund"
+    ],
+    "qc_pass": [
+      "manual_refund"
+    ],
+    "refund_done": [
+      "manual_refund"
+    ],
+    "refund_processing": [
+      "manual_refund"
+    ],
+    "return_assigning_dp": [
+      "manual_refund"
+    ],
+    "return_bag_packed": [
+      "manual_refund"
+    ],
+    "return_dp_cancelled": [
+      "manual_refund"
+    ],
+    "unhold": [
+      "manual_refund"
+    ],
+    "web_store_rescheduled": [
+      "manual_refund"
+    ],
+    "credit_note_cancelled": [
+      "refund_initiated"
+    ]
+  },
+  "affiliate": {
+    "placed": [
+      "bag_not_confirmed",
+      "store_reassigned",
+      "product_not_available"
+    ],
+    "store_reassigned": [
+      "bag_not_confirmed"
+    ],
+    "bag_confirmed": [
+      "bag_invoiced",
+      "cancelled_fynd"
+    ],
+    "dp_assigned": [
+      "bag_packed"
+    ],
+    "pending": [
+      "payment_failed",
+      "placed",
+      "manual_refund"
+    ],
+    "ready_for_dp_assignment": [
+      "dp_assigned"
+    ],
+    "credit_note_generated": [
+      "refund_pending",
+      "refund_initiated"
+    ],
+    "assigning_return_dp": [
+      "manual_refund"
+    ],
+    "bag_not_packed": [
+      "manual_refund"
+    ],
+    "bag_rescheduled": [
+      "manual_refund"
+    ],
+    "fluid_state": [
+      "manual_refund"
+    ],
+    "handed_over_to_customer": [
+      "manual_refund",
+      "return_initiated"
+    ],
+    "hold": [
+      "manual_refund"
+    ],
+    "product_not_available": [
+      "manual_refund"
+    ],
+    "qc_fail": [
+      "manual_refund"
+    ],
+    "qc_pass": [
+      "manual_refund"
+    ],
+    "refund_done": [
+      "manual_refund"
+    ],
+    "refund_processing": [
+      "manual_refund"
+    ],
+    "return_assigning_dp": [
+      "manual_refund"
+    ],
+    "return_bag_packed": [
+      "manual_refund"
+    ],
+    "return_dp_cancelled": [
+      "manual_refund"
+    ],
+    "unhold": [
+      "manual_refund"
+    ],
+    "web_store_rescheduled": [
+      "manual_refund"
+    ],
+    "credit_note_cancelled": [
+      "refund_initiated"
+    ]
+  }
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
 ### getfilters
 
 
@@ -4535,57 +4773,6 @@ Sms Sent successfully
 ---
 
 
-### sendSmsNinjaPlatform
-
-
-
-
-```javascript
-// Promise
-const promise = platformClient.order.sendSmsNinjaPlatform();
-
-// Async/Await
-const data = await platformClient.order.sendSmsNinjaPlatform();
-```
-
-
-
-
-
-
-
-
-*Returned Response:*
-
-
-
-
-[OrderStatusResult](#OrderStatusResult)
-
-Sms Sent successfully
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
 ### sendUserMobileOTP
 
 
@@ -4840,7 +5027,7 @@ const data = await platformClient.order.updatePackagingDimensions({  body : valu
 
 
 
-[CreateOrderResponse](#CreateOrderResponse)
+[UpdatePackagingDimensionsResponse](#UpdatePackagingDimensionsResponse)
 
 Manifest will be processed!
 
@@ -5477,7 +5664,6 @@ Verify OTP
  | a_set | string? |  yes  |  |
  | child_details | string? |  yes  |  |
  | code | string? |  yes  |  |
- | currency | string? |  yes  |  |
  | dimensions | [Dimensions](#Dimensions)? |  yes  |  |
  | esp_modified | boolean? |  yes  |  |
  | identifiers | [Identifier](#Identifier) |  no  |  |
@@ -5666,12 +5852,20 @@ Verify OTP
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | brand_calculated_amount | number? |  yes  |  |
+ | cgst_gst_fee | string? |  yes  |  |
+ | cgst_tax_percentage | number? |  yes  |  |
  | gst_fee | number? |  yes  |  |
  | gst_tag | string? |  yes  |  |
  | gst_tax_percentage | number? |  yes  |  |
  | gstin_code | string? |  yes  |  |
  | hsn_code | string? |  yes  |  |
+ | hsn_code_id | string? |  yes  |  |
+ | igst_gst_fee | string? |  yes  |  |
+ | igst_tax_percentage | string? |  yes  |  |
  | is_default_hsn_code | boolean? |  yes  |  |
+ | sgst_gst_fee | string? |  yes  |  |
+ | sgst_tax_percentage | number? |  yes  |  |
+ | tax_collected_at_source | number? |  yes  |  |
  | value_of_good | number? |  yes  |  |
  
 
@@ -5782,6 +5976,16 @@ Verify OTP
  | name | string |  no  |  |
  | notify_customer | boolean? |  yes  |  |
  | state_type | string |  no  |  |
+ 
+
+---
+
+#### [BagStateTransitionMap](#BagStateTransitionMap)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | affiliate | string? |  yes  |  |
+ | fynd | string? |  yes  |  |
  
 
 ---
@@ -7448,6 +7652,7 @@ Verify OTP
  | platform_logo | string? |  yes  |  |
  | prices | [Prices](#Prices)? |  yes  |  |
  | priority_text | string? |  yes  |  |
+ | shipment_created_at | string? |  yes  |  |
  | shipment_details | string? |  yes  |  |
  | shipment_id | string |  no  |  |
  | shipment_images | [string]? |  yes  |  |
@@ -7936,7 +8141,7 @@ Verify OTP
  | fulfilling_store | [ShipmentItemFulFillingStore](#ShipmentItemFulFillingStore)? |  yes  |  |
  | invoice_id | string? |  yes  |  |
  | lock_status | boolean? |  yes  |  |
- | meta | string? |  yes  |  |
+ | meta | [ShipmentItemMeta](#ShipmentItemMeta)? |  yes  |  |
  | order_date | string? |  yes  |  |
  | order_id | string |  no  |  |
  | ordering_channnel | string? |  yes  |  |
@@ -7970,6 +8175,43 @@ Verify OTP
  | pincode | string? |  yes  |  |
  | state | string? |  yes  |  |
  | store_email | string? |  yes  |  |
+ 
+
+---
+
+#### [ShipmentItemMeta](#ShipmentItemMeta)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | activity_comment | string? |  yes  |  |
+ | assign_dp_from_sb | boolean? |  yes  |  |
+ | auto_trigger_dp_assignment_acf | boolean? |  yes  |  |
+ | bag_weight | string? |  yes  |  |
+ | debug_info | string? |  yes  |  |
+ | dp_options | string? |  yes  |  |
+ | dp_sort_key | string? |  yes  |  |
+ | ewaybill_info | string? |  yes  |  |
+ | existing_dp_list | [string]? |  yes  |  |
+ | external | string? |  yes  |  |
+ | formatted | [Formatted](#Formatted)? |  yes  |  |
+ | fulfilment_priority_text | string? |  yes  |  |
+ | is_international | boolean? |  yes  |  |
+ | lock_data | [LockData](#LockData)? |  yes  |  |
+ | order_type | string? |  yes  |  |
+ | packaging_name | string? |  yes  |  |
+ | parent_dp_id | string? |  yes  |  |
+ | pdf_media | [string]? |  yes  |  |
+ | same_store_available | boolean? |  yes  |  |
+ | shipment_chargeable_weight | number? |  yes  |  |
+ | shipment_tags | [[ShipmentTags](#ShipmentTags)]? |  yes  |  |
+ | shipment_volumetric_weight | number? |  yes  |  |
+ | shipment_weight | number? |  yes  |  |
+ | shipping_zone | string? |  yes  |  |
+ | sla | number? |  yes  |  |
+ | store_invoice_updated_date | string? |  yes  |  |
+ | tags | [string]? |  yes  |  |
+ | timestamp | [ShipmentTimeStamp](#ShipmentTimeStamp)? |  yes  |  |
+ | weight | number? |  yes  |  |
  
 
 ---
@@ -8108,6 +8350,17 @@ Verify OTP
  | id | number? |  yes  |  |
  | shipment_id | string? |  yes  |  |
  | status | string? |  yes  |  |
+ 
+
+---
+
+#### [ShipmentTags](#ShipmentTags)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | display_text | string? |  yes  |  |
+ | entity_type | string? |  yes  |  |
+ | slug | string? |  yes  |  |
  
 
 ---
@@ -8474,6 +8727,15 @@ Verify OTP
  | current_status | string |  no  |  |
  | dimension | [[Dimension](#Dimension)] |  no  |  |
  | shipment_id | string |  no  |  |
+ 
+
+---
+
+#### [UpdatePackagingDimensionsResponse](#UpdatePackagingDimensionsResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | message | string? |  yes  |  |
  
 
 ---

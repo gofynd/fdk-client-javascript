@@ -91,7 +91,7 @@ class CatalogValidator {
       q: Joi.string().allow(""),
       scheduleStatus: Joi.string().allow(""),
       type: Joi.string().allow(""),
-      tags: Joi.array().items(Joi.string().allow("")),
+      tag: Joi.array().items(Joi.string().allow("")),
       isActive: Joi.boolean(),
       pageNo: Joi.number(),
       pageSize: Joi.number(),
@@ -231,9 +231,11 @@ class CatalogValidator {
   static getCollectionItems() {
     return Joi.object({
       id: Joi.string().allow("").required(),
+      f: Joi.string().allow(""),
       sortOn: Joi.string().allow(""),
-      pageId: Joi.string().allow(""),
+      pageId: Joi.number(),
       pageSize: Joi.number(),
+      xCurrencyCode: Joi.string().allow(""),
     }).required();
   }
 
@@ -295,7 +297,10 @@ class CatalogValidator {
   }
 
   static getQueryFilters() {
-    return Joi.object({}).required();
+    return Joi.object({
+      f: Joi.string().allow(""),
+      sortOn: Joi.string().allow(""),
+    }).required();
   }
 
   static getSearchKeywords() {

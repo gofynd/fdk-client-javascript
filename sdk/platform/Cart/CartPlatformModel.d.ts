@@ -140,6 +140,7 @@ declare class CartModel {
     static StaffCheckout(): any;
     static State(): any;
     static StoreDetailsResponse(): any;
+    static StoreInfo(): any;
     static SuccessMessage(): any;
     static Tags(): any;
     static UpdateAddressResponse(): any;

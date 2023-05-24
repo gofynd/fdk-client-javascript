@@ -254,6 +254,10 @@ class OrderValidator {
     }).required();
   }
 
+  static getStateTransitionMap() {
+    return Joi.object({}).required();
+  }
+
   static getfilters() {
     return Joi.object({
       view: Joi.string().allow("").required(),
@@ -301,10 +305,6 @@ class OrderValidator {
     return Joi.object({
       body: OrderModel.SendSmsPayload().required(),
     }).required();
-  }
-
-  static sendSmsNinjaPlatform() {
-    return Joi.object({}).required();
   }
 
   static sendUserMobileOTP() {

@@ -40,6 +40,7 @@ declare class OrderModel {
     static Bags(): any;
     static BagsPage(): any;
     static BagStateMapper(): any;
+    static BagStateTransitionMap(): any;
     static BagStatusHistory(): any;
     static BagUnit(): any;
     static BaseResponse(): any;
@@ -203,6 +204,7 @@ declare class OrderModel {
     static ShipmentInternalPlatformViewResponse(): any;
     static ShipmentItem(): any;
     static ShipmentItemFulFillingStore(): any;
+    static ShipmentItemMeta(): any;
     static ShipmentListingBrand(): any;
     static ShipmentListingChannel(): any;
     static ShipmentMeta(): any;
@@ -211,6 +213,7 @@ declare class OrderModel {
     static ShipmentsResponse(): any;
     static ShipmentStatus(): any;
     static ShipmentStatusData(): any;
+    static ShipmentTags(): any;
     static ShipmentTimeStamp(): any;
     static ShippingInfo(): any;
     static SingleRefundModeInfo(): any;
@@ -236,6 +239,7 @@ declare class OrderModel {
     static TrackingList(): any;
     static TransactionData(): any;
     static UpdatePackagingDimensionsPayload(): any;
+    static UpdatePackagingDimensionsResponse(): any;
     static UpdateShipmentLockPayload(): any;
     static UpdateShipmentLockResponse(): any;
     static UpdateShipmentStatusRequest(): any;

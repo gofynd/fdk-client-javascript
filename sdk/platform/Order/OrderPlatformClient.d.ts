@@ -457,6 +457,13 @@ declare class Order {
     }): Promise<ShipmentInternalPlatformViewResponse>;
     /**
      * @param {Object} arg - Arg object.
+     * @returns {Promise<BagStateTransitionMap>} - Success response
+     * @summary:
+     * @description:
+     */
+    getStateTransitionMap({}?: any): Promise<BagStateTransitionMap>;
+    /**
+     * @param {Object} arg - Arg object.
      * @param {string} arg.view -
      * @param {string} [arg.groupEntity] -
      * @returns {Promise<FiltersResponse>} - Success response
@@ -539,13 +546,6 @@ declare class Order {
     }): Promise<OrderStatusResult>;
     /**
      * @param {Object} arg - Arg object.
-     * @returns {Promise<OrderStatusResult>} - Success response
-     * @summary:
-     * @description:
-     */
-    sendSmsNinjaPlatform({}?: any): Promise<OrderStatusResult>;
-    /**
-     * @param {Object} arg - Arg object.
      * @param {SendUserMobileOTP} arg.body
      * @returns {Promise<SendUserMobileOtpResponse>} - Success response
      * @summary:
@@ -589,13 +589,13 @@ declare class Order {
     /**
      * @param {Object} arg - Arg object.
      * @param {UpdatePackagingDimensionsPayload} arg.body
-     * @returns {Promise<CreateOrderResponse>} - Success response
+     * @returns {Promise<UpdatePackagingDimensionsResponse>} - Success response
      * @summary:
      * @description:
      */
     updatePackagingDimensions({ body }?: {
         body: UpdatePackagingDimensionsPayload;
-    }): Promise<CreateOrderResponse>;
+    }): Promise<UpdatePackagingDimensionsResponse>;
     /**
      * @param {Object} arg - Arg object.
      * @param {UpdateShipmentLockPayload} arg.body

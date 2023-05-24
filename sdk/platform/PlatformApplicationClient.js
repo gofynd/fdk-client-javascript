@@ -689,6 +689,7 @@ class PlatformApplicationClient {
 /** @typedef Bags */
 /** @typedef BagsPage */
 /** @typedef BagStateMapper */
+/** @typedef BagStateTransitionMap */
 /** @typedef BagStatusHistory */
 /** @typedef BagUnit */
 /** @typedef BaseResponse */
@@ -852,6 +853,7 @@ class PlatformApplicationClient {
 /** @typedef ShipmentInternalPlatformViewResponse */
 /** @typedef ShipmentItem */
 /** @typedef ShipmentItemFulFillingStore */
+/** @typedef ShipmentItemMeta */
 /** @typedef ShipmentListingBrand */
 /** @typedef ShipmentListingChannel */
 /** @typedef ShipmentMeta */
@@ -860,6 +862,7 @@ class PlatformApplicationClient {
 /** @typedef ShipmentsResponse */
 /** @typedef ShipmentStatus */
 /** @typedef ShipmentStatusData */
+/** @typedef ShipmentTags */
 /** @typedef ShipmentTimeStamp */
 /** @typedef ShippingInfo */
 /** @typedef SingleRefundModeInfo */
@@ -885,6 +888,7 @@ class PlatformApplicationClient {
 /** @typedef TrackingList */
 /** @typedef TransactionData */
 /** @typedef UpdatePackagingDimensionsPayload */
+/** @typedef UpdatePackagingDimensionsResponse */
 /** @typedef UpdateShipmentLockPayload */
 /** @typedef UpdateShipmentLockResponse */
 /** @typedef UpdateShipmentStatusRequest */
@@ -973,6 +977,7 @@ class PlatformApplicationClient {
 /** @typedef CollectionListingFilterType */
 /** @typedef CollectionQuery */
 /** @typedef CollectionSchedule */
+/** @typedef CollectionUpdateResponse */
 /** @typedef CompanyBrandDetail */
 /** @typedef CompanyMeta */
 /** @typedef CompanyMeta1 */
@@ -995,8 +1000,7 @@ class PlatformApplicationClient {
 /** @typedef CreateAutocompleteWordsResponse */
 /** @typedef CreateCollection */
 /** @typedef CreateSearchKeyword */
-/** @typedef CrossSellingData */
-/** @typedef CrossSellingResponse */
+/** @typedef CrossSellingDataResponse */
 /** @typedef CustomOrder */
 /** @typedef DateMeta */
 /** @typedef DefaultKeyRequest */
@@ -1685,6 +1689,7 @@ class PlatformApplicationClient {
 /** @typedef StaffCheckout */
 /** @typedef State */
 /** @typedef StoreDetailsResponse */
+/** @typedef StoreInfo */
 /** @typedef SuccessMessage */
 /** @typedef Tags */
 /** @typedef UpdateAddressResponse */

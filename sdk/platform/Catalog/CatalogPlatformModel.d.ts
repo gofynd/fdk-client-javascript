@@ -75,6 +75,7 @@ declare class CatalogModel {
     static CollectionListingFilterType(): any;
     static CollectionQuery(): any;
     static CollectionSchedule(): any;
+    static CollectionUpdateResponse(): any;
     static CompanyBrandDetail(): any;
     static CompanyMeta(): any;
     static CompanyMeta1(): any;
@@ -97,8 +98,7 @@ declare class CatalogModel {
     static CreateAutocompleteWordsResponse(): any;
     static CreateCollection(): any;
     static CreateSearchKeyword(): any;
-    static CrossSellingData(): any;
-    static CrossSellingResponse(): any;
+    static CrossSellingDataResponse(): any;
     static CustomOrder(): any;
     static DateMeta(): any;
     static DefaultKeyRequest(): any;
