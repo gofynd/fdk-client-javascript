@@ -62,12 +62,6 @@ class PaymentValidator {
       body: PaymentModel.SetCODForUserRequest().required(),
     }).required();
   }
-
-  static updateBrandPaymentGatewayConfig() {
-    return Joi.object({
-      body: PaymentModel.PaymentGatewayConfigRequest().required(),
-    }).required();
-  }
 }
 
 module.exports = PaymentValidator;

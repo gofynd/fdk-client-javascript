@@ -26,7 +26,6 @@ Collect payment through many payment gateway i.e Stripe, Razorpay, Juspay etc.in
 * [savePayout](#savepayout)
 * [saveSubscriptionSetupIntent](#savesubscriptionsetupintent)
 * [setUserCODlimitRoutes](#setusercodlimitroutes)
-* [updateBrandPaymentGatewayConfig](#updatebrandpaymentgatewayconfig)
 * [updatePayout](#updatepayout)
 * [verifyIfscCode](#verifyifsccode)
 
@@ -2629,66 +2628,6 @@ Success. Returns true/false for user cod option for payment. Check the example s
 {
   "success": true,
   "message": "COD option for user {} is set to {}"
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### updateBrandPaymentGatewayConfig
-Save Config Secret For Brand Payment Gateway
-
-
-
-```javascript
-// Promise
-const promise = platformClient.application("<APPLICATION_ID>").payment.updateBrandPaymentGatewayConfig({  body : value });
-
-// Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").payment.updateBrandPaymentGatewayConfig({  body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |
-| body | [PaymentGatewayConfigRequest](#PaymentGatewayConfigRequest) | yes | Request body |
-
-
-Save Config Secret For Brand Payment Gateway
-
-*Returned Response:*
-
-
-
-
-[PaymentGatewayToBeReviewed](#PaymentGatewayToBeReviewed)
-
-Save Config Secret For Brand Payment Gateway Success Response.
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "success": true,
-  "aggregators": [
-    "razorpay"
-  ]
 }
 ```
 </details>
