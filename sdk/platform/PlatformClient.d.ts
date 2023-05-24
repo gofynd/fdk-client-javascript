@@ -8091,9 +8091,11 @@ type HolidaySchemaSerializer = {
 type LocationSerializer = {
     _custom_json?: any;
     address: AddressSerializer;
+    auto_invoice?: boolean;
     code: string;
     company: number;
     contact_numbers?: SellerPhoneNumber[];
+    credit_note?: boolean;
     display_name: string;
     documents?: Document[];
     gst_credentials?: InvoiceDetailsSerializer;
@@ -8102,6 +8104,7 @@ type LocationSerializer = {
     name: string;
     notification_emails?: string[];
     product_return_config?: ProductReturnConfigSerializer;
+    slug: string;
     stage?: string;
     store_type?: string;
     timing?: LocationDayWiseSerializer[];
@@ -8134,6 +8137,7 @@ type UpdateCompany = {
     name?: string;
     notification_emails?: string[];
     reject_reason?: string;
+    slug?: string;
     taxes?: CompanyTaxesSerializer1[];
     warnings?: any;
 };

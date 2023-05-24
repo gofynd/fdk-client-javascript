@@ -9518,11 +9518,13 @@ class PlatformClient {
  * @typedef GetLocationSerializer
  * @property {Object} [_custom_json]
  * @property {GetAddressSerializer} address
+ * @property {boolean} [auto_invoice]
  * @property {string} code
  * @property {GetCompanySerializer} [company]
  * @property {SellerPhoneNumber[]} [contact_numbers]
  * @property {UserSerializer} [created_by]
  * @property {string} [created_on]
+ * @property {boolean} [credit_note]
  * @property {string} display_name
  * @property {Document[]} [documents]
  * @property {InvoiceDetailsSerializer} [gst_credentials]
@@ -9586,9 +9588,11 @@ class PlatformClient {
  * @typedef LocationSerializer
  * @property {Object} [_custom_json]
  * @property {AddressSerializer} address
+ * @property {boolean} [auto_invoice]
  * @property {string} code
  * @property {number} company
  * @property {SellerPhoneNumber[]} [contact_numbers]
+ * @property {boolean} [credit_note]
  * @property {string} display_name
  * @property {Document[]} [documents]
  * @property {InvoiceDetailsSerializer} [gst_credentials]
@@ -9597,6 +9601,7 @@ class PlatformClient {
  * @property {string} name
  * @property {string[]} [notification_emails]
  * @property {ProductReturnConfigSerializer} [product_return_config]
+ * @property {string} slug
  * @property {string} [stage]
  * @property {string} [store_type]
  * @property {LocationDayWiseSerializer[]} [timing]
@@ -9657,6 +9662,7 @@ class PlatformClient {
  * @property {string} [name]
  * @property {string[]} [notification_emails]
  * @property {string} [reject_reason]
+ * @property {string} [slug]
  * @property {CompanyTaxesSerializer1[]} [taxes]
  * @property {Object} [warnings]
  */
