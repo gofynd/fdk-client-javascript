@@ -21,7 +21,6 @@ Catalog - Platform Front API's' API's allows you to access list of products, pri
 * [createConfigurationProductListing](#createconfigurationproductlisting)
 * [createCustomAutocompleteRule](#createcustomautocompleterule)
 * [createCustomKeyword](#createcustomkeyword)
-* [createDepartments](#createdepartments)
 * [createGroupConfiguration](#creategroupconfiguration)
 * [createInventoryExport](#createinventoryexport)
 * [createInventoryExportJob](#createinventoryexportjob)
@@ -74,7 +73,7 @@ Catalog - Platform Front API's' API's allows you to access list of products, pri
 * [getConfigurationByType](#getconfigurationbytype)
 * [getConfigurationMetadata](#getconfigurationmetadata)
 * [getConfigurations](#getconfigurations)
-* [getDepartmentData](#getdepartmentdata)
+* [getDepartment](#getdepartment)
 * [getDepartments](#getdepartments)
 * [getDiscountedInventoryBySizeIdentifier](#getdiscountedinventorybysizeidentifier)
 * [getGenderAttribute](#getgenderattribute)
@@ -109,7 +108,7 @@ Catalog - Platform Front API's' API's allows you to access list of products, pri
 * [getStoreDetail](#getstoredetail)
 * [getVariantsOfProducts](#getvariantsofproducts)
 * [listCategories](#listcategories)
-* [listDepartmentsData](#listdepartmentsdata)
+* [listDepartments](#listdepartments)
 * [listHSNCodes](#listhsncodes)
 * [listInventoryExport](#listinventoryexport)
 * [listProductTemplate](#listproducttemplate)
@@ -126,7 +125,6 @@ Catalog - Platform Front API's' API's allows you to access list of products, pri
 * [updateCategory](#updatecategory)
 * [updateCollection](#updatecollection)
 * [updateDefaultSort](#updatedefaultsort)
-* [updateDepartment](#updatedepartment)
 * [updateGroupConfiguration](#updategroupconfiguration)
 * [updateHsnCode](#updatehsncode)
 * [updateInventories](#updateinventories)
@@ -972,64 +970,6 @@ Get keyword object with id that is added. See example below or refer `GetSearchW
     "sort_on": "popular"
   },
   "_custom_json": {}
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### createDepartments
-Create the department.
-
-
-
-```javascript
-// Promise
-const promise = platformClient.catalog.createDepartments({  body : value });
-
-// Async/Await
-const data = await platformClient.catalog.createDepartments({  body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |
-| body | [DepartmentCreateUpdate](#DepartmentCreateUpdate) | yes | Request body |
-
-
-Create departments using the API.
-
-*Returned Response:*
-
-
-
-
-[DepartmentCreateResponse](#DepartmentCreateResponse)
-
-Success Response. See example below or refer `DepartmentCreateResponseSchema` for details
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "message": "Success",
-  "uid": 2
 }
 ```
 </details>
@@ -7501,17 +7441,17 @@ Get application level configured catalog details. See example below or refer `Ge
 ---
 
 
-### getDepartmentData
-Get specific departments details by passing in unique id of the department.
+### getDepartment
+This API is used to retrieve detailed information about a specific department based on its UID.
 
 
 
 ```javascript
 // Promise
-const promise = platformClient.catalog.getDepartmentData({  uid : value });
+const promise = platformClient.catalog.getDepartment({  uid : value });
 
 // Async/Await
-const data = await platformClient.catalog.getDepartmentData({  uid : value });
+const data = await platformClient.catalog.getDepartment({  uid : value });
 ```
 
 
@@ -7520,20 +7460,20 @@ const data = await platformClient.catalog.getDepartmentData({  uid : value });
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
-| uid | string | yes | A `uid` is a unique identifier of a department. |  
+| uid | number | yes | A unique identifier of a department. Retrieve the department with the specified UID. |  
 
 
 
-Allows you to get department data, by uid.
+This API is used to retrieve detailed information about a specific department based on its UID.
 
 *Returned Response:*
 
 
 
 
-[DepartmentsResponse](#DepartmentsResponse)
+[DepartmentUpdate](#DepartmentUpdate)
 
-Departments Data. See example below or refer `DepartmentsResponse` for details
+A successful response containing the department data. See the example below or refer to the `DepartmentUpdateSchema` for more details.
 
 
 
@@ -7543,317 +7483,21 @@ Departments Data. See example below or refer `DepartmentsResponse` for details
 
 ```json
 {
-  "page": {},
-  "items": [
-    {
-      "uid": 5,
-      "_cls": "Department",
-      "_custom_json": {},
-      "created_by": {
-        "username": "918793638893_86554",
-        "user_id": "3"
-      },
-      "created_on": "2020-07-01T05:33:39.325000Z",
-      "is_active": true,
-      "logo": "https://hdn-1.addsale.com/x0/seller/pictures/logo/original/BSQ9Gk_123522-best-starry-sky-wallpaper-1920x1200-ipad-pro.jpgc7d0c15c-c1ff-47eb-8423-6e2df51f2ddf/BSQ9Gk_123522-best-starry-sky-wallpaper-1920x1200-ipad-pro.jpg",
-      "modified_by": {
-        "username": "917753852478_51632",
-        "user_id": "5677"
-      },
-      "modified_on": "2021-03-03T15:55:25.118000Z",
-      "name": "Sample Dept",
-      "platforms": {},
-      "priority_order": 111,
-      "slug": "sample-dept",
-      "synonyms": [
-        "test",
-        "sampe"
-      ],
-      "tags": [],
-      "id": "5efc2033623d390001782238"
-    },
-    {
-      "uid": 2,
-      "_cls": "Department",
-      "_custom_json": {},
-      "created_by": {
-        "username": "app@fynd.com",
-        "user_id": "0"
-      },
-      "created_on": "2020-05-19T06:53:37.629000Z",
-      "is_active": true,
-      "logo": "https://hdn-1.addsale.com/addsale/media/logo/department/original/15974_381e2236c2a348cc851c29a5d05c66a9.png",
-      "modified_by": {
-        "user_id": "10",
-        "username": "fahimsakri_gofynd_com_44938"
-      },
-      "modified_on": "2021-03-04T14:01:02.556000Z",
-      "name": "Men's Fashion",
-      "platforms": {
-        "fynd": true,
-        "fynd_store": true,
-        "marketplace": true,
-        "openapi": true,
-        "uniket_store": true,
-        "uniket_wholesale": true
-      },
-      "priority_order": 111,
-      "slug": "men-s-fashion",
-      "synonyms": [],
-      "tags": [],
-      "id": "5ec3827156a7200001c9aeea"
-    },
-    {
-      "uid": 4,
-      "_cls": "Department",
-      "_custom_json": {},
-      "created_by": {
-        "username": "fahimsakri_gofynd_com_44938",
-        "user_id": "10"
-      },
-      "created_on": "2020-06-29T10:59:33.620000Z",
-      "is_active": true,
-      "logo": "https://hdn-1.addsale.com/x0/seller/pictures/logo/original/ywPVrU_preview_a637ca6e4da6e38f03eb0d650ac5d6ba.jpgc73cc22f-b5ee-4fd4-a585-8ada35762d68/ywPVrU_preview_a637ca6e4da6e38f03eb0d650ac5d6ba.jpg",
-      "modified_by": {
-        "username": "918793638893_86554",
-        "user_id": "3"
-      },
-      "modified_on": "2020-08-06T18:08:02.675000Z",
-      "name": "Groceries",
-      "platforms": {},
-      "priority_order": 10,
-      "slug": "groceries",
-      "synonyms": [],
-      "tags": [],
-      "id": "5ef9c9959b04f00001e40dba"
-    },
-    {
-      "uid": 1,
-      "_cls": "Department",
-      "_custom_json": {},
-      "created_by": {
-        "username": "app@fynd.com",
-        "user_id": "0"
-      },
-      "created_on": "2020-05-18T16:14:41.689000Z",
-      "is_active": true,
-      "logo": "https://hdn-1.addsale.com/x0/platform/pictures/free-logo/original/_G1Z2Fg1L-http:d3p8ifzkmzds37.cloudfront.netmedialogodepartmentoriginal15870_c287d3c2431a432bb0e49363ef6b82bc.png.png",
-      "modified_by": {
-        "user_id": "5677",
-        "username": "917753852478_51632"
-      },
-      "modified_on": "2021-03-04T15:39:38.528000Z",
-      "name": "Electronics",
-      "platforms": {
-        "fynd": true,
-        "fynd_store": true,
-        "marketplace": true,
-        "openapi": true,
-        "uniket_store": true,
-        "uniket_wholesale": true
-      },
-      "priority_order": 100,
-      "slug": "electronics",
-      "synonyms": [],
-      "tags": [],
-      "id": "5ec2b471661a4100019fca0d"
-    },
-    {
-      "uid": 3,
-      "_cls": "Department",
-      "_custom_json": {},
-      "created_by": {
-        "username": "918793638893_86554",
-        "user_id": "3"
-      },
-      "created_on": "2020-05-27T12:04:19.111000Z",
-      "is_active": true,
-      "logo": "https://hdn-1.addsale.com/x0/seller/pictures/landscape-banner/original/g2plam_logo_Jio.pngeeb392ca-3958-46a0-9f13-23c205b596f7/g2plam_logo_Jio.png",
-      "modified_by": {
-        "username": "918793638893_86554",
-        "user_id": "3"
-      },
-      "modified_on": "2020-08-06T18:07:46.060000Z",
-      "name": "Industrial Supplies",
-      "platforms": {},
-      "priority_order": 111,
-      "slug": "industrial-supplies",
-      "synonyms": [],
-      "tags": [],
-      "id": "5ece5743cd1bae0001440427"
-    },
-    {
-      "uid": 6,
-      "_cls": "Department",
-      "_custom_json": {},
-      "created_by": {
-        "username": "abhinavsrivastava_gofynd_com_05674",
-        "user_id": "13"
-      },
-      "created_on": "2020-07-06T07:56:01.508000Z",
-      "is_active": false,
-      "logo": "https://hdn-1.addsale.com/x0/seller/pictures/logo/original/wTcfEi_crysis_-_1.jpg14580947-a659-486d-b2d3-d2ca025b1cac/wTcfEi_crysis_-_1.jpg",
-      "modified_by": {
-        "username": "918793638893_86554",
-        "user_id": "3"
-      },
-      "modified_on": "2020-08-06T18:08:12.576000Z",
-      "name": "Clothing",
-      "platforms": {},
-      "priority_order": 1,
-      "slug": "clothing",
-      "synonyms": [],
-      "tags": [],
-      "id": "5f02d9116b0ae500018923dd"
-    },
-    {
-      "uid": 8,
-      "_cls": "Department",
-      "_custom_json": {},
-      "created_by": {
-        "username": "asavarijadhav_gofynd_com_99880",
-        "user_id": "5634"
-      },
-      "created_on": "2020-08-05T09:04:33.604000Z",
-      "is_active": true,
-      "logo": "https://hdn-1.addsale.com/x0/seller/pictures/logo/original/RxTsd8_0DEFAULT-LOGO.jpg000ccfc1-2f79-4426-9ac3-de2468c2fcb9/RxTsd8_0DEFAULT-LOGO.jpg",
-      "modified_by": {
-        "username": "asavarijadhav_gofynd_com_99880",
-        "user_id": "5634"
-      },
-      "modified_on": "2020-08-05T09:44:01.234000Z",
-      "name": "Kids",
-      "platforms": {},
-      "priority_order": 3,
-      "slug": "kids",
-      "synonyms": [],
-      "tags": [],
-      "id": "5f2a762131c66700018cdc47"
-    },
-    {
-      "uid": 9,
-      "_cls": "Department",
-      "_custom_json": {},
-      "created_by": {
-        "username": "asavarijadhav_gofynd_com_99880",
-        "user_id": "5634"
-      },
-      "created_on": "2020-08-05T09:44:46.632000Z",
-      "is_active": true,
-      "logo": "https://hdn-1.addsale.com/x0/seller/pictures/logo/original/tKkDB8_0DEFAULT-LOGO.jpg1c324d4d-f667-4af8-8d98-37205d34e3b5/tKkDB8_0DEFAULT-LOGO.jpg",
-      "modified_by": {
-        "username": "918793638893_86554",
-        "user_id": "3"
-      },
-      "modified_on": "2020-08-06T18:07:35.231000Z",
-      "name": "Women's Fashion",
-      "platforms": {},
-      "priority_order": 2,
-      "slug": "women-s-fashion",
-      "synonyms": [],
-      "tags": [],
-      "id": "5f2a7f8e31c66700018cdc49"
-    },
-    {
-      "uid": 10,
-      "_cls": "Department",
-      "_custom_json": {},
-      "created_by": {
-        "username": "asavarijadhav_gofynd_com_99880",
-        "user_id": "5634"
-      },
-      "created_on": "2020-08-05T09:45:12.075000Z",
-      "is_active": true,
-      "logo": "https://hdn-1.addsale.com/x0/seller/pictures/logo/original/oLoxiL_0DEFAULT-LOGO.jpgbd050200-700a-4a3e-9da6-e6b78fbee943/oLoxiL_0DEFAULT-LOGO.jpg",
-      "modified_by": {
-        "username": "asavarijadhav_gofynd_com_99880",
-        "user_id": "5634"
-      },
-      "modified_on": "2020-08-05T09:48:01.660000Z",
-      "name": "Beauty & Personal Care",
-      "platforms": {},
-      "priority_order": 4,
-      "slug": "beauty-personal-care",
-      "synonyms": [],
-      "tags": [],
-      "id": "5f2a7fa831c66700018cdc4a"
-    },
-    {
-      "uid": 11,
-      "_cls": "Department",
-      "_custom_json": {},
-      "created_by": {
-        "username": "asavarijadhav_gofynd_com_99880",
-        "user_id": "5634"
-      },
-      "created_on": "2020-08-05T09:45:39.797000Z",
-      "is_active": true,
-      "logo": "https://hdn-1.addsale.com/x0/seller/pictures/logo/original/vQv4ot_0DEFAULT-LOGO.jpg701cb5af-2024-4abf-ae5d-b68bc1a3cd43/vQv4ot_0DEFAULT-LOGO.jpg",
-      "modified_by": {
-        "username": "918793638893_86554",
-        "user_id": "3"
-      },
-      "modified_on": "2020-08-06T11:38:57.599000Z",
-      "name": "Home & Living",
-      "platforms": {},
-      "priority_order": 5,
-      "slug": "home-living",
-      "synonyms": [],
-      "tags": [],
-      "id": "5f2a7fc331c66700018cdc4b"
-    },
-    {
-      "uid": 14,
-      "_cls": "Department",
-      "_custom_json": {},
-      "created_by": {
-        "username": "asavarijadhav_gofynd_com_99880",
-        "user_id": "5634"
-      },
-      "created_on": "2020-08-05T09:48:42.347000Z",
-      "is_active": false,
-      "logo": "https://hdn-1.addsale.com/x0/seller/pictures/logo/original/hTobjV_0DEFAULT-LOGO.jpga020159c-7fe7-4c1c-a11a-4be61a60da9f/hTobjV_0DEFAULT-LOGO.jpg",
-      "modified_by": {
-        "username": "asavarijadhav_gofynd_com_99880",
-        "user_id": "5634"
-      },
-      "modified_on": "2020-08-05T09:48:42.347000Z",
-      "name": "Baby Care & Kids Essentials",
-      "platforms": {},
-      "priority_order": 7,
-      "slug": "baby-care-kids-essentials",
-      "synonyms": [],
-      "tags": [],
-      "id": "5f2a807a31c66700018cdc4e"
-    },
-    {
-      "_cls": "Department",
-      "created_on": "2021-01-13T10:12:33.002000Z",
-      "modified_on": "2021-01-13T13:50:55.415000Z",
-      "created_by": {
-        "username": "919821012599_75351",
-        "user_id": "5721"
-      },
-      "modified_by": {
-        "username": "919821012599_75351",
-        "user_id": "5721"
-      },
-      "uid": 21,
-      "name": "Skin care products",
-      "slug": "skin-care-produts",
-      "logo": "https://hdn-1.addsale.com/x0/department/pictures/square-logo/original/rNz8grLys-.png",
-      "tags": [],
-      "is_active": true,
-      "priority_order": 10235,
-      "platforms": {},
-      "synonyms": [
-        "skin",
-        "care"
-      ],
-      "_custom_json": {},
-      "id": "5ffec79192813f0001eb6560"
-    }
-  ]
+  "is_active": true,
+  "name": "Fashion",
+  "slug": "fashion",
+  "priority_order": 1,
+  "logo": "https://hdn-1.addsale.com/x0/department/pictures/square-logo/original/xKDsQBbu4-department.png",
+  "synonyms": [
+    "fashion",
+    "mensfashion"
+  ],
+  "uid": 2,
+  "modified_by": {
+    "username": "31315573458_05620",
+    "user_id": "f5b6a546565146sdfg584c342"
+  },
+  "modified_on": "2022-08-09T15:44:02.540740"
 }
 ```
 </details>
@@ -14105,27 +13749,27 @@ Category Meta. See example below or refer `CategoryResponse` for details
 ---
 
 
-### listDepartmentsData
-List all Departments.
+### listDepartments
+Retrieve a list of departments using various filters
 
 
 
 ```javascript
 // Promise
-const promise = platformClient.catalog.listDepartmentsData({  pageNo : value,
- itemType : value,
+const promise = platformClient.catalog.listDepartments({  pageNo : value,
  pageSize : value,
  name : value,
  search : value,
- isActive : value });
+ isActive : value,
+ itemType : value });
 
 // Async/Await
-const data = await platformClient.catalog.listDepartmentsData({  pageNo : value,
- itemType : value,
+const data = await platformClient.catalog.listDepartments({  pageNo : value,
  pageSize : value,
  name : value,
  search : value,
- isActive : value });
+ isActive : value,
+ itemType : value });
 ```
 
 
@@ -14134,25 +13778,25 @@ const data = await platformClient.catalog.listDepartmentsData({  pageNo : value,
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
-| pageNo | number | no | The page number to navigate through the given set of results |    
-| itemType | string | no | A `item_type` is a type of product eg. set, standard, digital |    
-| pageSize | number | no | Number of items to retrieve in each page. Default is 10. |    
-| name | string | no | Can search departments by passing name. |    
-| search | string | no | Can search departments by passing name of the department in search parameter. |    
-| isActive | boolean | no | Can query for departments based on whether they are active or inactive. |  
+| pageNo | number | no | The page number of results to retrieve. Defaults to 1 if not provided. |    
+| pageSize | number | no | The number of results to retrieve per page. Defaults to 12 if not provided. |    
+| name | string | no | Filter departments by name. Performs a case-insensitive search across department names. If provided, only departments with matching names will be returned. |    
+| search | string | no | Filter departments by a search term. Performs a case-insensitive search across department names. If provided, departments with names containing the search term will be returned. |    
+| isActive | boolean | no | Filter departments by active status. If set to `true`, only active departments will be returned. If set to `false`, only inactive departments will be returned. |    
+| itemType | string | no | Filter departments by the type of product. |  
 
 
 
-Allows you to list all departments, also can search using name and filter active and incative departments, and item type.
+This API endpoint allows you to retrieve a paginated list of departments based on different filters, such as name, search term, and department status (active or inactive).
 
 *Returned Response:*
 
 
 
 
-[DepartmentsResponse](#DepartmentsResponse)
+[DepartmentListResponse](#DepartmentListResponse)
 
-List of departments data. See example below or refer `DepartmentsResponse` for details
+A successful response containing the list of departments. See the example below or refer to the `DepartmentListResponseSchema` for more details.
 
 
 
@@ -14164,319 +13808,34 @@ List of departments data. See example below or refer `DepartmentsResponse` for d
 {
   "page": {
     "current": 1,
-    "size": 1,
+    "type": "number",
+    "size": 118,
     "has_previous": false,
-    "has_next": false,
-    "item_total": 12
+    "has_next": true,
+    "item_total": 1176
   },
   "items": [
     {
-      "uid": 5,
-      "_cls": "Department",
-      "_custom_json": {},
-      "created_by": {
-        "username": "918793638893_86554",
-        "user_id": "3"
-      },
-      "created_on": "2020-07-01T05:33:39.325000Z",
-      "is_active": true,
-      "logo": "https://hdn-1.addsale.com/x0/seller/pictures/logo/original/BSQ9Gk_123522-best-starry-sky-wallpaper-1920x1200-ipad-pro.jpgc7d0c15c-c1ff-47eb-8423-6e2df51f2ddf/BSQ9Gk_123522-best-starry-sky-wallpaper-1920x1200-ipad-pro.jpg",
-      "modified_by": {
-        "username": "917753852478_51632",
-        "user_id": "5677"
-      },
-      "modified_on": "2021-03-03T15:55:25.118000Z",
-      "name": "Sample Dept",
-      "platforms": {},
-      "priority_order": 111,
-      "slug": "sample-dept",
       "synonyms": [
-        "test",
-        "sampe"
+        "hi-polka"
       ],
-      "tags": [],
-      "id": "5efc2033623d390001782238"
-    },
-    {
-      "uid": 2,
-      "_cls": "Department",
-      "_custom_json": {},
-      "created_by": {
-        "username": "app@fynd.com",
-        "user_id": "0"
-      },
-      "created_on": "2020-05-19T06:53:37.629000Z",
-      "is_active": true,
-      "logo": "https://hdn-1.addsale.com/addsale/media/logo/department/original/15974_381e2236c2a348cc851c29a5d05c66a9.png",
-      "modified_by": {
-        "user_id": "10",
-        "username": "fahimsakri_gofynd_com_44938"
-      },
-      "modified_on": "2021-03-04T14:01:02.556000Z",
-      "name": "Men's Fashion",
-      "platforms": {
-        "fynd": true,
-        "fynd_store": true,
-        "marketplace": true,
-        "openapi": true,
-        "uniket_store": true,
-        "uniket_wholesale": true
-      },
-      "priority_order": 111,
-      "slug": "men-s-fashion",
-      "synonyms": [],
-      "tags": [],
-      "id": "5ec3827156a7200001c9aeea"
-    },
-    {
-      "uid": 4,
-      "_cls": "Department",
-      "_custom_json": {},
-      "created_by": {
-        "username": "fahimsakri_gofynd_com_44938",
-        "user_id": "10"
-      },
-      "created_on": "2020-06-29T10:59:33.620000Z",
-      "is_active": true,
-      "logo": "https://hdn-1.addsale.com/x0/seller/pictures/logo/original/ywPVrU_preview_a637ca6e4da6e38f03eb0d650ac5d6ba.jpgc73cc22f-b5ee-4fd4-a585-8ada35762d68/ywPVrU_preview_a637ca6e4da6e38f03eb0d650ac5d6ba.jpg",
-      "modified_by": {
-        "username": "918793638893_86554",
-        "user_id": "3"
-      },
-      "modified_on": "2020-08-06T18:08:02.675000Z",
-      "name": "Groceries",
-      "platforms": {},
-      "priority_order": 10,
-      "slug": "groceries",
-      "synonyms": [],
-      "tags": [],
-      "id": "5ef9c9959b04f00001e40dba"
-    },
-    {
-      "uid": 1,
-      "_cls": "Department",
-      "_custom_json": {},
-      "created_by": {
-        "username": "app@fynd.com",
-        "user_id": "0"
-      },
-      "created_on": "2020-05-18T16:14:41.689000Z",
-      "is_active": true,
-      "logo": "https://hdn-1.addsale.com/x0/platform/pictures/free-logo/original/_G1Z2Fg1L-http:d3p8ifzkmzds37.cloudfront.netmedialogodepartmentoriginal15870_c287d3c2431a432bb0e49363ef6b82bc.png.png",
-      "modified_by": {
-        "user_id": "5677",
-        "username": "917753852478_51632"
-      },
-      "modified_on": "2021-03-04T15:39:38.528000Z",
-      "name": "Electronics",
-      "platforms": {
-        "fynd": true,
-        "fynd_store": true,
-        "marketplace": true,
-        "openapi": true,
-        "uniket_store": true,
-        "uniket_wholesale": true
-      },
-      "priority_order": 100,
+      "is_active": false,
       "slug": "electronics",
-      "synonyms": [],
-      "tags": [],
-      "id": "5ec2b471661a4100019fca0d"
-    },
-    {
-      "uid": 3,
-      "_cls": "Department",
-      "_custom_json": {},
-      "created_by": {
-        "username": "918793638893_86554",
-        "user_id": "3"
-      },
-      "created_on": "2020-05-27T12:04:19.111000Z",
-      "is_active": true,
-      "logo": "https://hdn-1.addsale.com/x0/seller/pictures/landscape-banner/original/g2plam_logo_Jio.pngeeb392ca-3958-46a0-9f13-23c205b596f7/g2plam_logo_Jio.png",
+      "modified_on": "2023-05-03T11:58:35.551000",
       "modified_by": {
-        "username": "918793638893_86554",
-        "user_id": "3"
+        "username": "akashjadhav_fynd_external_com_59909",
+        "user_id": "87d78bc345c88d9070a80d23"
       },
-      "modified_on": "2020-08-06T18:07:46.060000Z",
-      "name": "Industrial Supplies",
-      "platforms": {},
-      "priority_order": 111,
-      "slug": "industrial-supplies",
-      "synonyms": [],
-      "tags": [],
-      "id": "5ece5743cd1bae0001440427"
-    },
-    {
-      "uid": 6,
-      "_cls": "Department",
-      "_custom_json": {},
+      "created_on": "2019-09-09T07:04:37.949000",
       "created_by": {
-        "username": "abhinavsrivastava_gofynd_com_05674",
-        "user_id": "13"
+        "username": "meghagolecha@gofynd.com",
+        "user_id": "3230"
       },
-      "created_on": "2020-07-06T07:56:01.508000Z",
-      "is_active": false,
-      "logo": "https://hdn-1.addsale.com/x0/seller/pictures/logo/original/wTcfEi_crysis_-_1.jpg14580947-a659-486d-b2d3-d2ca025b1cac/wTcfEi_crysis_-_1.jpg",
-      "modified_by": {
-        "username": "918793638893_86554",
-        "user_id": "3"
-      },
-      "modified_on": "2020-08-06T18:08:12.576000Z",
-      "name": "Clothing",
-      "platforms": {},
-      "priority_order": 1,
-      "slug": "clothing",
-      "synonyms": [],
-      "tags": [],
-      "id": "5f02d9116b0ae500018923dd"
-    },
-    {
-      "uid": 8,
-      "_cls": "Department",
-      "_custom_json": {},
-      "created_by": {
-        "username": "asavarijadhav_gofynd_com_99880",
-        "user_id": "5634"
-      },
-      "created_on": "2020-08-05T09:04:33.604000Z",
-      "is_active": true,
-      "logo": "https://hdn-1.addsale.com/x0/seller/pictures/logo/original/RxTsd8_0DEFAULT-LOGO.jpg000ccfc1-2f79-4426-9ac3-de2468c2fcb9/RxTsd8_0DEFAULT-LOGO.jpg",
-      "modified_by": {
-        "username": "asavarijadhav_gofynd_com_99880",
-        "user_id": "5634"
-      },
-      "modified_on": "2020-08-05T09:44:01.234000Z",
-      "name": "Kids",
-      "platforms": {},
-      "priority_order": 3,
-      "slug": "kids",
-      "synonyms": [],
-      "tags": [],
-      "id": "5f2a762131c66700018cdc47"
-    },
-    {
-      "uid": 9,
-      "_cls": "Department",
-      "_custom_json": {},
-      "created_by": {
-        "username": "asavarijadhav_gofynd_com_99880",
-        "user_id": "5634"
-      },
-      "created_on": "2020-08-05T09:44:46.632000Z",
-      "is_active": true,
-      "logo": "https://hdn-1.addsale.com/x0/seller/pictures/logo/original/tKkDB8_0DEFAULT-LOGO.jpg1c324d4d-f667-4af8-8d98-37205d34e3b5/tKkDB8_0DEFAULT-LOGO.jpg",
-      "modified_by": {
-        "username": "918793638893_86554",
-        "user_id": "3"
-      },
-      "modified_on": "2020-08-06T18:07:35.231000Z",
-      "name": "Women's Fashion",
-      "platforms": {},
-      "priority_order": 2,
-      "slug": "women-s-fashion",
-      "synonyms": [],
-      "tags": [],
-      "id": "5f2a7f8e31c66700018cdc49"
-    },
-    {
       "uid": 10,
-      "_cls": "Department",
-      "_custom_json": {},
-      "created_by": {
-        "username": "asavarijadhav_gofynd_com_99880",
-        "user_id": "5634"
-      },
-      "created_on": "2020-08-05T09:45:12.075000Z",
-      "is_active": true,
-      "logo": "https://hdn-1.addsale.com/x0/seller/pictures/logo/original/oLoxiL_0DEFAULT-LOGO.jpgbd050200-700a-4a3e-9da6-e6b78fbee943/oLoxiL_0DEFAULT-LOGO.jpg",
-      "modified_by": {
-        "username": "asavarijadhav_gofynd_com_99880",
-        "user_id": "5634"
-      },
-      "modified_on": "2020-08-05T09:48:01.660000Z",
-      "name": "Beauty & Personal Care",
-      "platforms": {},
-      "priority_order": 4,
-      "slug": "beauty-personal-care",
-      "synonyms": [],
-      "tags": [],
-      "id": "5f2a7fa831c66700018cdc4a"
-    },
-    {
-      "uid": 11,
-      "_cls": "Department",
-      "_custom_json": {},
-      "created_by": {
-        "username": "asavarijadhav_gofynd_com_99880",
-        "user_id": "5634"
-      },
-      "created_on": "2020-08-05T09:45:39.797000Z",
-      "is_active": true,
-      "logo": "https://hdn-1.addsale.com/x0/seller/pictures/logo/original/vQv4ot_0DEFAULT-LOGO.jpg701cb5af-2024-4abf-ae5d-b68bc1a3cd43/vQv4ot_0DEFAULT-LOGO.jpg",
-      "modified_by": {
-        "username": "918793638893_86554",
-        "user_id": "3"
-      },
-      "modified_on": "2020-08-06T11:38:57.599000Z",
-      "name": "Home & Living",
-      "platforms": {},
-      "priority_order": 5,
-      "slug": "home-living",
-      "synonyms": [],
-      "tags": [],
-      "id": "5f2a7fc331c66700018cdc4b"
-    },
-    {
-      "uid": 14,
-      "_cls": "Department",
-      "_custom_json": {},
-      "created_by": {
-        "username": "asavarijadhav_gofynd_com_99880",
-        "user_id": "5634"
-      },
-      "created_on": "2020-08-05T09:48:42.347000Z",
-      "is_active": false,
-      "logo": "https://hdn-1.addsale.com/x0/seller/pictures/logo/original/hTobjV_0DEFAULT-LOGO.jpga020159c-7fe7-4c1c-a11a-4be61a60da9f/hTobjV_0DEFAULT-LOGO.jpg",
-      "modified_by": {
-        "username": "asavarijadhav_gofynd_com_99880",
-        "user_id": "5634"
-      },
-      "modified_on": "2020-08-05T09:48:42.347000Z",
-      "name": "Baby Care & Kids Essentials",
-      "platforms": {},
-      "priority_order": 7,
-      "slug": "baby-care-kids-essentials",
-      "synonyms": [],
-      "tags": [],
-      "id": "5f2a807a31c66700018cdc4e"
-    },
-    {
-      "_cls": "Department",
-      "created_on": "2021-01-13T10:12:33.002000Z",
-      "modified_on": "2021-01-13T13:50:55.415000Z",
-      "created_by": {
-        "username": "919821012599_75351",
-        "user_id": "5721"
-      },
-      "modified_by": {
-        "username": "919821012599_75351",
-        "user_id": "5721"
-      },
-      "uid": 21,
-      "name": "Skin care products",
-      "slug": "skin-care-produts",
-      "logo": "https://hdn-1.addsale.com/x0/department/pictures/square-logo/original/rNz8grLys-.png",
-      "tags": [],
-      "is_active": true,
-      "priority_order": 10235,
-      "platforms": {},
-      "synonyms": [
-        "skin",
-        "care"
-      ],
-      "_custom_json": {},
-      "id": "5ffec79192813f0001eb6560"
+      "priority_order": 100,
+      "name": "Electronics",
+      "logo": "https://hdn-1.fynd.com/media/logo/department/original/13239_660c6f5b2b8d458789de4552d241ea1b.jpg",
+      "_cls": "Department"
     }
   ]
 }
@@ -17460,80 +16819,6 @@ success message will tell whether the operation was successful.
 ---
 
 
-### updateDepartment
-Update the department by their uid.
-
-
-
-```javascript
-// Promise
-const promise = platformClient.catalog.updateDepartment({  uid : value,
- body : value });
-
-// Async/Await
-const data = await platformClient.catalog.updateDepartment({  uid : value,
- body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| uid | string | yes | A `uid` is a unique identifier of a department. |  
-| body | [DepartmentCreateUpdate](#DepartmentCreateUpdate) | yes | Request body |
-
-
-Update the department by their uid using this API.
-
-*Returned Response:*
-
-
-
-
-[DepartmentModel](#DepartmentModel)
-
-Success Response. See example below or refer `DepartmentCreateResponseSchema` for details
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "is_active": true,
-  "name": "Fashion",
-  "slug": "fashion",
-  "priority_order": 1,
-  "logo": "https://hdn-1.addsale.com/x0/department/pictures/square-logo/original/xKDsQBbu4-department.png",
-  "synonyms": [
-    "fashion",
-    "mensfashion"
-  ],
-  "uid": 2,
-  "modified_by": {
-    "username": "31315573458_05620",
-    "user_id": "f5b6a546565146sdfg584c342"
-  },
-  "modified_on": "2022-08-09T15:44:02.540740"
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
 ### updateGroupConfiguration
 Update the group configurations for the application.
 
@@ -19783,53 +19068,11 @@ List of fields and validation values fro each. See example below or refer `Inven
 
 ---
 
-#### [DepartmentCreateErrorResponse](#DepartmentCreateErrorResponse)
+#### [DepartmentCreateError](#DepartmentCreateError)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | error | string? |  yes  |  |
- 
-
----
-
-#### [DepartmentCreateResponse](#DepartmentCreateResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | message | string |  no  |  |
- | uid | number |  no  |  |
- 
-
----
-
-#### [DepartmentCreateUpdate](#DepartmentCreateUpdate)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | _cls | string? |  yes  |  |
- | _custom_json | string? |  yes  |  |
- | is_active | boolean? |  yes  |  |
- | logo | string |  no  |  |
- | name | string |  no  |  |
- | platforms | string? |  yes  |  |
- | priority_order | number |  no  |  |
- | slug | string? |  yes  |  |
- | synonyms | [string]? |  yes  |  |
- | tags | [string]? |  yes  |  |
- | uid | number? |  yes  |  |
- 
-
----
-
-#### [DepartmentErrorResponse](#DepartmentErrorResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | code | string? |  yes  |  |
- | errors | string? |  yes  |  |
- | message | string? |  yes  |  |
- | meta | string? |  yes  |  |
- | status | number? |  yes  |  |
+ | error | string |  no  | A message describing the reason for the error. |
  
 
 ---
@@ -19840,6 +19083,16 @@ List of fields and validation values fro each. See example below or refer `Inven
  | ---------- | ---- | -------- | ----------- |
  | slug | string? |  yes  |  |
  | uid | number? |  yes  |  |
+ 
+
+---
+
+#### [DepartmentListResponse](#DepartmentListResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | items | [[DepartmentModel](#DepartmentModel)]? |  yes  | The list of departments. |
+ | page | [DepartmentPageResponse](#DepartmentPageResponse)? |  yes  | Pagination information. |
  
 
 ---
@@ -19868,6 +19121,21 @@ List of fields and validation values fro each. See example below or refer `Inven
 
 ---
 
+#### [DepartmentPageResponse](#DepartmentPageResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | current | number? |  yes  | The current page number used in number pagination. |
+ | has_next | boolean |  no  | Indicates if there is a next page. |
+ | has_previous | boolean |  no  | Indicates if there is a previous page. |
+ | item_total | number |  no  | Total number of items. |
+ | next_id | string? |  yes  | The next identifier used in cursor pagination. |
+ | size | number? |  yes  | The number of items per page in number pagination. |
+ | type | string? |  yes  | Specifies the type of pagination being used. |
+ 
+
+---
+
 #### [DepartmentResponse](#DepartmentResponse)
 
  | Properties | Type | Nullable | Description |
@@ -19877,12 +19145,21 @@ List of fields and validation values fro each. See example below or refer `Inven
 
 ---
 
-#### [DepartmentsResponse](#DepartmentsResponse)
+#### [DepartmentUpdate](#DepartmentUpdate)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | items | [[GetDepartment](#GetDepartment)]? |  yes  |  |
- | page | [Page](#Page)? |  yes  |  |
+ | _cls | string? |  yes  | It is the cls of the entity |
+ | _custom_json | string? |  yes  | It is used to store the extra values in the form of JSON for departments. |
+ | is_active | boolean? |  yes  | It flag to identify the active status of department. |
+ | logo | string |  no  | It is the logo of the department. |
+ | name | string |  no  | It is the name of the department. |
+ | platform | string? |  yes  | It is the platform this should be for the department |
+ | priority_order | number |  no  | It is the priority of the department. |
+ | slug | string? |  yes  | It is the unique identifier for the department. |
+ | synonyms | [string]? |  yes  | It is the list of unique synonyms to be added for this department. |
+ | tags | [string]? |  yes  | It is the unique list of tags for the department. |
+ | uid | number |  no  | It is the uid of the department. |
  
 
 ---
@@ -20155,15 +19432,15 @@ List of fields and validation values fro each. See example below or refer `Inven
  | addresses | [[GetAddressSerializer](#GetAddressSerializer)]? |  yes  |  |
  | business_type | string? |  yes  |  |
  | company_type | string? |  yes  |  |
- | created_by | [UserSerializer1](#UserSerializer1)? |  yes  |  |
+ | created_by | [UserSerializer2](#UserSerializer2)? |  yes  |  |
  | created_on | string? |  yes  |  |
- | modified_by | [UserSerializer1](#UserSerializer1)? |  yes  |  |
+ | modified_by | [UserSerializer2](#UserSerializer2)? |  yes  |  |
  | modified_on | string? |  yes  |  |
  | name | string? |  yes  |  |
  | reject_reason | string? |  yes  |  |
  | stage | string? |  yes  |  |
  | uid | number? |  yes  |  |
- | verified_by | [UserSerializer1](#UserSerializer1)? |  yes  |  |
+ | verified_by | [UserSerializer2](#UserSerializer2)? |  yes  |  |
  | verified_on | string? |  yes  |  |
  
 
@@ -20186,29 +19463,6 @@ List of fields and validation values fro each. See example below or refer `Inven
  | ---------- | ---- | -------- | ----------- |
  | data | [string] |  no  |  |
  | page | [PageResponseType](#PageResponseType) |  no  |  |
- 
-
----
-
-#### [GetDepartment](#GetDepartment)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | created_by | [UserSerializer](#UserSerializer)? |  yes  |  |
- | created_on | string? |  yes  |  |
- | is_active | boolean? |  yes  |  |
- | item_type | string? |  yes  |  |
- | logo | string? |  yes  |  |
- | modified_by | [UserSerializer](#UserSerializer)? |  yes  |  |
- | modified_on | string? |  yes  |  |
- | name | string? |  yes  |  |
- | page_no | number? |  yes  |  |
- | page_size | number? |  yes  |  |
- | priority_order | number? |  yes  |  |
- | search | string? |  yes  |  |
- | slug | string? |  yes  |  |
- | synonyms | [string]? |  yes  |  |
- | uid | number? |  yes  |  |
  
 
 ---
@@ -20270,14 +19524,14 @@ List of fields and validation values fro each. See example below or refer `Inven
  | code | string |  no  |  |
  | company | [GetCompanySerializer](#GetCompanySerializer)? |  yes  |  |
  | contact_numbers | [[SellerPhoneNumber](#SellerPhoneNumber)]? |  yes  |  |
- | created_by | [UserSerializer2](#UserSerializer2)? |  yes  |  |
+ | created_by | [UserSerializer1](#UserSerializer1)? |  yes  |  |
  | created_on | string? |  yes  |  |
  | display_name | string |  no  |  |
  | documents | [[Document](#Document)]? |  yes  |  |
  | gst_credentials | [InvoiceDetailsSerializer](#InvoiceDetailsSerializer)? |  yes  |  |
  | integration_type | [LocationIntegrationType](#LocationIntegrationType)? |  yes  |  |
  | manager | [LocationManagerSerializer](#LocationManagerSerializer)? |  yes  |  |
- | modified_by | [UserSerializer2](#UserSerializer2)? |  yes  |  |
+ | modified_by | [UserSerializer1](#UserSerializer1)? |  yes  |  |
  | modified_on | string? |  yes  |  |
  | name | string |  no  |  |
  | notification_emails | [string]? |  yes  |  |
@@ -20287,7 +19541,7 @@ List of fields and validation values fro each. See example below or refer `Inven
  | store_type | string? |  yes  |  |
  | timing | [[LocationDayWiseSerializer](#LocationDayWiseSerializer)]? |  yes  |  |
  | uid | number? |  yes  |  |
- | verified_by | [UserSerializer2](#UserSerializer2)? |  yes  |  |
+ | verified_by | [UserSerializer1](#UserSerializer1)? |  yes  |  |
  | verified_on | string? |  yes  |  |
  | warnings | string? |  yes  |  |
  

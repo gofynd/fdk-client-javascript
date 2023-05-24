@@ -7,7 +7,6 @@ declare class CatalogValidator {
     static createBulkInventoryJob(): any;
     static createBulkProductUploadJob(): any;
     static createCategories(): any;
-    static createDepartments(): any;
     static createInventoryExport(): any;
     static createInventoryExportJob(): any;
     static createMarketplaceOptin(): any;
@@ -32,7 +31,7 @@ declare class CatalogValidator {
     static getCompanyBrandDetail(): any;
     static getCompanyDetail(): any;
     static getCompanyMetrics(): any;
-    static getDepartmentData(): any;
+    static getDepartment(): any;
     static getGenderAttribute(): any;
     static getHsnCode(): any;
     static getInventories(): any;
@@ -60,7 +59,7 @@ declare class CatalogValidator {
     static getStoreDetail(): any;
     static getVariantsOfProducts(): any;
     static listCategories(): any;
-    static listDepartmentsData(): any;
+    static listDepartments(): any;
     static listHSNCodes(): any;
     static listInventoryExport(): any;
     static listProductTemplate(): any;
@@ -68,7 +67,6 @@ declare class CatalogValidator {
     static listProductTemplateExportDetails(): any;
     static listTemplateBrandTypeValues(): any;
     static updateCategory(): any;
-    static updateDepartment(): any;
     static updateHsnCode(): any;
     static updateInventories(): any;
     static updateProductBundle(): any;

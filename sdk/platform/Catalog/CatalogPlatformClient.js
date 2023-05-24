@@ -469,70 +469,6 @@ class Catalog {
 
   /**
    * @param {Object} arg - Arg object.
-   * @param {DepartmentCreateUpdate} arg.body
-   * @returns {Promise<DepartmentCreateResponse>} - Success response
-   * @summary: Create the department.
-   * @description: Create departments using the API.
-   */
-  async createDepartments({ body } = {}) {
-    const { error } = CatalogValidator.createDepartments().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = CatalogValidator.createDepartments().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: "Parameter Validation warrnings for createDepartments",
-      });
-      Logger({ level: "WARN", message: warrning });
-    }
-
-    const query_params = {};
-
-    const xHeaders = {};
-
-    const response = await PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/catalog/v1.0/company/${this.config.companyId}/departments/`,
-      query_params,
-      body,
-      xHeaders
-    );
-
-    const {
-      error: res_error,
-    } = CatalogModel.DepartmentCreateResponse().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
-
-    if (res_error) {
-      Logger({
-        level: "WARN",
-        message: "Response Validation Warnnings for createDepartments",
-      });
-      Logger({ level: "WARN", message: res_error });
-    }
-
-    return response;
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
    * @param {InventoryCreateRequest} arg.body
    * @returns {Promise<InventoryExportResponse>} - Success response
    * @summary: Create an inventory export job.
@@ -2156,13 +2092,14 @@ class Catalog {
 
   /**
    * @param {Object} arg - Arg object.
-   * @param {string} arg.uid - A `uid` is a unique identifier of a department.
-   * @returns {Promise<DepartmentsResponse>} - Success response
-   * @summary: Get specific departments details by passing in unique id of the department.
-   * @description: Allows you to get department data, by uid.
+   * @param {number} arg.uid - A unique identifier of a department. Retrieve
+   *   the department with the specified UID.
+   * @returns {Promise<DepartmentUpdate>} - Success response
+   * @summary: This API is used to retrieve detailed information about a specific department based on its UID.
+   * @description: This API is used to retrieve detailed information about a specific department based on its UID.
    */
-  async getDepartmentData({ uid } = {}) {
-    const { error } = CatalogValidator.getDepartmentData().validate(
+  async getDepartment({ uid } = {}) {
+    const { error } = CatalogValidator.getDepartment().validate(
       {
         uid,
       },
@@ -2173,7 +2110,7 @@ class Catalog {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = CatalogValidator.getDepartmentData().validate(
+    const { error: warrning } = CatalogValidator.getDepartment().validate(
       {
         uid,
       },
@@ -2182,7 +2119,7 @@ class Catalog {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for getDepartmentData",
+        message: "Parameter Validation warrnings for getDepartment",
       });
       Logger({ level: "WARN", message: warrning });
     }
@@ -2202,7 +2139,7 @@ class Catalog {
 
     const {
       error: res_error,
-    } = CatalogModel.DepartmentsResponse().validate(response, {
+    } = CatalogModel.DepartmentUpdate().validate(response, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -2210,7 +2147,7 @@ class Catalog {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for getDepartmentData",
+        message: "Response Validation Warnnings for getDepartment",
       });
       Logger({ level: "WARN", message: res_error });
     }
@@ -4229,37 +4166,40 @@ class Catalog {
 
   /**
    * @param {Object} arg - Arg object.
-   * @param {number} [arg.pageNo] - The page number to navigate through the
-   *   given set of results
-   * @param {string} [arg.itemType] - A `item_type` is a type of product eg.
-   *   set, standard, digital
-   * @param {number} [arg.pageSize] - Number of items to retrieve in each
-   *   page. Default is 10.
-   * @param {string} [arg.name] - Can search departments by passing name.
-   * @param {string} [arg.search] - Can search departments by passing name of
-   *   the department in search parameter.
-   * @param {boolean} [arg.isActive] - Can query for departments based on
-   *   whether they are active or inactive.
-   * @returns {Promise<DepartmentsResponse>} - Success response
-   * @summary: List all Departments.
-   * @description: Allows you to list all departments, also can search using name and filter active and incative departments, and item type.
+   * @param {number} [arg.pageNo] - The page number of results to retrieve.
+   *   Defaults to 1 if not provided.
+   * @param {number} [arg.pageSize] - The number of results to retrieve per
+   *   page. Defaults to 12 if not provided.
+   * @param {string} [arg.name] - Filter departments by name. Performs a
+   *   case-insensitive search across department names. If provided, only
+   *   departments with matching names will be returned.
+   * @param {string} [arg.search] - Filter departments by a search term.
+   *   Performs a case-insensitive search across department names. If
+   *   provided, departments with names containing the search term will be returned.
+   * @param {boolean} [arg.isActive] - Filter departments by active status. If
+   *   set to `true`, only active departments will be returned. If set to
+   *   `false`, only inactive departments will be returned.
+   * @param {string} [arg.itemType] - Filter departments by the type of product.
+   * @returns {Promise<DepartmentListResponse>} - Success response
+   * @summary: Retrieve a list of departments using various filters
+   * @description: This API endpoint allows you to retrieve a paginated list of departments based on different filters, such as name, search term, and department status (active or inactive).
    */
-  async listDepartmentsData({
+  async listDepartments({
     pageNo,
-    itemType,
     pageSize,
     name,
     search,
     isActive,
+    itemType,
   } = {}) {
-    const { error } = CatalogValidator.listDepartmentsData().validate(
+    const { error } = CatalogValidator.listDepartments().validate(
       {
         pageNo,
-        itemType,
         pageSize,
         name,
         search,
         isActive,
+        itemType,
       },
       { abortEarly: false, allowUnknown: true }
     );
@@ -4268,32 +4208,32 @@ class Catalog {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = CatalogValidator.listDepartmentsData().validate(
+    const { error: warrning } = CatalogValidator.listDepartments().validate(
       {
         pageNo,
-        itemType,
         pageSize,
         name,
         search,
         isActive,
+        itemType,
       },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for listDepartmentsData",
+        message: "Parameter Validation warrnings for listDepartments",
       });
       Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
     query_params["page_no"] = pageNo;
-    query_params["item_type"] = itemType;
     query_params["page_size"] = pageSize;
     query_params["name"] = name;
     query_params["search"] = search;
     query_params["is_active"] = isActive;
+    query_params["item_type"] = itemType;
 
     const xHeaders = {};
 
@@ -4308,7 +4248,7 @@ class Catalog {
 
     const {
       error: res_error,
-    } = CatalogModel.DepartmentsResponse().validate(response, {
+    } = CatalogModel.DepartmentListResponse().validate(response, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -4316,7 +4256,7 @@ class Catalog {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for listDepartmentsData",
+        message: "Response Validation Warnnings for listDepartments",
       });
       Logger({ level: "WARN", message: res_error });
     }
@@ -4808,73 +4748,6 @@ class Catalog {
       Logger({
         level: "WARN",
         message: "Response Validation Warnnings for updateCategory",
-      });
-      Logger({ level: "WARN", message: res_error });
-    }
-
-    return response;
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.uid - A `uid` is a unique identifier of a department.
-   * @param {DepartmentCreateUpdate} arg.body
-   * @returns {Promise<DepartmentModel>} - Success response
-   * @summary: Update the department by their uid.
-   * @description: Update the department by their uid using this API.
-   */
-  async updateDepartment({ uid, body } = {}) {
-    const { error } = CatalogValidator.updateDepartment().validate(
-      {
-        uid,
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = CatalogValidator.updateDepartment().validate(
-      {
-        uid,
-        body,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: "Parameter Validation warrnings for updateDepartment",
-      });
-      Logger({ level: "WARN", message: warrning });
-    }
-
-    const query_params = {};
-
-    const xHeaders = {};
-
-    const response = await PlatformAPIClient.execute(
-      this.config,
-      "put",
-      `/service/platform/catalog/v1.0/company/${this.config.companyId}/departments/${uid}/`,
-      query_params,
-      body,
-      xHeaders
-    );
-
-    const {
-      error: res_error,
-    } = CatalogModel.DepartmentModel().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
-
-    if (res_error) {
-      Logger({
-        level: "WARN",
-        message: "Response Validation Warnnings for updateDepartment",
       });
       Logger({ level: "WARN", message: res_error });
     }

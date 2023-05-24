@@ -105,14 +105,13 @@ declare class CatalogModel {
     static DeleteResponse(): any;
     static Department(): any;
     static DepartmentCategoryTree(): any;
-    static DepartmentCreateErrorResponse(): any;
-    static DepartmentCreateResponse(): any;
-    static DepartmentCreateUpdate(): any;
-    static DepartmentErrorResponse(): any;
+    static DepartmentCreateError(): any;
     static DepartmentIdentifier(): any;
+    static DepartmentListResponse(): any;
     static DepartmentModel(): any;
+    static DepartmentPageResponse(): any;
     static DepartmentResponse(): any;
-    static DepartmentsResponse(): any;
+    static DepartmentUpdate(): any;
     static DimensionResponse(): any;
     static DimensionResponse1(): any;
     static Document(): any;
@@ -136,7 +135,6 @@ declare class CatalogModel {
     static GetCompanySerializer(): any;
     static GetConfigMetadataResponse(): any;
     static GetConfigResponse(): any;
-    static GetDepartment(): any;
     static GetInventories(): any;
     static GetInventoriesResponse(): any;
     static GetLocationSerializer(): any;

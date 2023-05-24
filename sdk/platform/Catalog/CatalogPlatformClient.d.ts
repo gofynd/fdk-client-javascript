@@ -80,16 +80,6 @@ declare class Catalog {
     }): Promise<CategoryCreateResponse>;
     /**
      * @param {Object} arg - Arg object.
-     * @param {DepartmentCreateUpdate} arg.body
-     * @returns {Promise<DepartmentCreateResponse>} - Success response
-     * @summary: Create the department.
-     * @description: Create departments using the API.
-     */
-    createDepartments({ body }?: {
-        body: DepartmentCreateUpdate;
-    }): Promise<DepartmentCreateResponse>;
-    /**
-     * @param {Object} arg - Arg object.
      * @param {InventoryCreateRequest} arg.body
      * @returns {Promise<InventoryExportResponse>} - Success response
      * @summary: Create an inventory export job.
@@ -363,14 +353,15 @@ declare class Catalog {
     getCompanyMetrics({}?: any): Promise<OptinCompanyMetrics>;
     /**
      * @param {Object} arg - Arg object.
-     * @param {string} arg.uid - A `uid` is a unique identifier of a department.
-     * @returns {Promise<DepartmentsResponse>} - Success response
-     * @summary: Get specific departments details by passing in unique id of the department.
-     * @description: Allows you to get department data, by uid.
+     * @param {number} arg.uid - A unique identifier of a department. Retrieve
+     *   the department with the specified UID.
+     * @returns {Promise<DepartmentUpdate>} - Success response
+     * @summary: This API is used to retrieve detailed information about a specific department based on its UID.
+     * @description: This API is used to retrieve detailed information about a specific department based on its UID.
      */
-    getDepartmentData({ uid }?: {
-        uid: string;
-    }): Promise<DepartmentsResponse>;
+    getDepartment({ uid }?: {
+        uid: number;
+    }): Promise<DepartmentUpdate>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.attributeSlug - Slug of the attribute for which you
@@ -769,29 +760,32 @@ declare class Catalog {
     }): Promise<CategoryResponse>;
     /**
      * @param {Object} arg - Arg object.
-     * @param {number} [arg.pageNo] - The page number to navigate through the
-     *   given set of results
-     * @param {string} [arg.itemType] - A `item_type` is a type of product eg.
-     *   set, standard, digital
-     * @param {number} [arg.pageSize] - Number of items to retrieve in each
-     *   page. Default is 10.
-     * @param {string} [arg.name] - Can search departments by passing name.
-     * @param {string} [arg.search] - Can search departments by passing name of
-     *   the department in search parameter.
-     * @param {boolean} [arg.isActive] - Can query for departments based on
-     *   whether they are active or inactive.
-     * @returns {Promise<DepartmentsResponse>} - Success response
-     * @summary: List all Departments.
-     * @description: Allows you to list all departments, also can search using name and filter active and incative departments, and item type.
+     * @param {number} [arg.pageNo] - The page number of results to retrieve.
+     *   Defaults to 1 if not provided.
+     * @param {number} [arg.pageSize] - The number of results to retrieve per
+     *   page. Defaults to 12 if not provided.
+     * @param {string} [arg.name] - Filter departments by name. Performs a
+     *   case-insensitive search across department names. If provided, only
+     *   departments with matching names will be returned.
+     * @param {string} [arg.search] - Filter departments by a search term.
+     *   Performs a case-insensitive search across department names. If
+     *   provided, departments with names containing the search term will be returned.
+     * @param {boolean} [arg.isActive] - Filter departments by active status. If
+     *   set to `true`, only active departments will be returned. If set to
+     *   `false`, only inactive departments will be returned.
+     * @param {string} [arg.itemType] - Filter departments by the type of product.
+     * @returns {Promise<DepartmentListResponse>} - Success response
+     * @summary: Retrieve a list of departments using various filters
+     * @description: This API endpoint allows you to retrieve a paginated list of departments based on different filters, such as name, search term, and department status (active or inactive).
      */
-    listDepartmentsData({ pageNo, itemType, pageSize, name, search, isActive, }?: {
+    listDepartments({ pageNo, pageSize, name, search, isActive, itemType, }?: {
         pageNo?: number;
-        itemType?: string;
         pageSize?: number;
         name?: string;
         search?: string;
         isActive?: boolean;
-    }): Promise<DepartmentsResponse>;
+        itemType?: string;
+    }): Promise<DepartmentListResponse>;
     /**
      * @param {Object} arg - Arg object.
      * @returns {Promise<HSNCodesResponse>} - Success response
@@ -878,18 +872,6 @@ declare class Catalog {
         uid: string;
         body: CategoryRequestBody;
     }): Promise<CategoryUpdateResponse>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.uid - A `uid` is a unique identifier of a department.
-     * @param {DepartmentCreateUpdate} arg.body
-     * @returns {Promise<DepartmentModel>} - Success response
-     * @summary: Update the department by their uid.
-     * @description: Update the department by their uid using this API.
-     */
-    updateDepartment({ uid, body }?: {
-        uid: string;
-        body: DepartmentCreateUpdate;
-    }): Promise<DepartmentModel>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.id - Unique id

@@ -871,7 +871,6 @@ class PlatformApplicationClient {
 /** @typedef ShipmentStatus */
 /** @typedef ShipmentStatusData */
 /** @typedef ShipmentTags */
-/** @typedef ShipmentTags1 */
 /** @typedef ShipmentTimeStamp */
 /** @typedef ShippingInfo */
 /** @typedef SingleRefundModeInfo */
@@ -1016,14 +1015,13 @@ class PlatformApplicationClient {
 /** @typedef DeleteResponse */
 /** @typedef Department */
 /** @typedef DepartmentCategoryTree */
-/** @typedef DepartmentCreateErrorResponse */
-/** @typedef DepartmentCreateResponse */
-/** @typedef DepartmentCreateUpdate */
-/** @typedef DepartmentErrorResponse */
+/** @typedef DepartmentCreateError */
 /** @typedef DepartmentIdentifier */
+/** @typedef DepartmentListResponse */
 /** @typedef DepartmentModel */
+/** @typedef DepartmentPageResponse */
 /** @typedef DepartmentResponse */
-/** @typedef DepartmentsResponse */
+/** @typedef DepartmentUpdate */
 /** @typedef DimensionResponse */
 /** @typedef DimensionResponse1 */
 /** @typedef Document */
@@ -1047,7 +1045,6 @@ class PlatformApplicationClient {
 /** @typedef GetCompanySerializer */
 /** @typedef GetConfigMetadataResponse */
 /** @typedef GetConfigResponse */
-/** @typedef GetDepartment */
 /** @typedef GetInventories */
 /** @typedef GetInventoriesResponse */
 /** @typedef GetLocationSerializer */

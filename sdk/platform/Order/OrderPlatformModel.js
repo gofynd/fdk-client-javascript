@@ -2061,7 +2061,7 @@ class OrderModel {
       return_details: Joi.any(),
       return_store_node: Joi.number(),
       same_store_available: Joi.boolean().required(),
-      shipment_tags: Joi.array().items(OrderModel.ShipmentTags1()),
+      shipment_tags: Joi.array().items(OrderModel.ShipmentTags()),
       shipment_volumetric_weight: Joi.number(),
       shipment_weight: Joi.number(),
       store_invoice_updated_date: Joi.string().allow(""),
@@ -2121,13 +2121,6 @@ class OrderModel {
     });
   }
   static ShipmentTags() {
-    return Joi.object({
-      display_text: Joi.string().allow(""),
-      entity_type: Joi.string().allow(""),
-      slug: Joi.string().allow(""),
-    });
-  }
-  static ShipmentTags1() {
     return Joi.object({
       display_text: Joi.string().allow(""),
       entity_type: Joi.string().allow(""),

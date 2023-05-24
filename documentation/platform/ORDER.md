@@ -8200,7 +8200,7 @@ Verify OTP
  | return_details | string? |  yes  |  |
  | return_store_node | number? |  yes  |  |
  | same_store_available | boolean |  no  |  |
- | shipment_tags | [[ShipmentTags1](#ShipmentTags1)]? |  yes  |  |
+ | shipment_tags | [[ShipmentTags](#ShipmentTags)]? |  yes  |  |
  | shipment_volumetric_weight | number? |  yes  |  |
  | shipment_weight | number? |  yes  |  |
  | store_invoice_updated_date | string? |  yes  |  |
@@ -8282,17 +8282,6 @@ Verify OTP
 ---
 
 #### [ShipmentTags](#ShipmentTags)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | display_text | string? |  yes  |  |
- | entity_type | string? |  yes  |  |
- | slug | string? |  yes  |  |
- 
-
----
-
-#### [ShipmentTags1](#ShipmentTags1)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |

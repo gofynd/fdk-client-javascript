@@ -6198,7 +6198,7 @@ class PlatformClient {
  * @property {Object} [return_details]
  * @property {number} [return_store_node]
  * @property {boolean} same_store_available
- * @property {ShipmentTags1[]} [shipment_tags]
+ * @property {ShipmentTags[]} [shipment_tags]
  * @property {number} [shipment_volumetric_weight]
  * @property {number} [shipment_weight]
  * @property {string} [store_invoice_updated_date]
@@ -6253,12 +6253,6 @@ class PlatformClient {
  */
 /**
  * @typedef ShipmentTags
- * @property {string} [display_text]
- * @property {string} [entity_type]
- * @property {string} [slug]
- */
-/**
- * @typedef ShipmentTags1
  * @property {string} [display_text]
  * @property {string} [entity_type]
  * @property {string} [slug]
@@ -7418,40 +7412,18 @@ class PlatformClient {
  * @property {CategoryItems[]} [items]
  */
 /**
- * @typedef DepartmentCreateErrorResponse
- * @property {string} [error]
- */
-/**
- * @typedef DepartmentCreateResponse
- * @property {string} message
- * @property {number} uid
- */
-/**
- * @typedef DepartmentCreateUpdate
- * @property {string} [_cls]
- * @property {Object} [_custom_json]
- * @property {boolean} [is_active]
- * @property {string} logo
- * @property {string} name
- * @property {Object} [platforms]
- * @property {number} priority_order
- * @property {string} [slug]
- * @property {string[]} [synonyms]
- * @property {string[]} [tags]
- * @property {number} [uid]
- */
-/**
- * @typedef DepartmentErrorResponse
- * @property {string} [code]
- * @property {Object} [errors]
- * @property {string} [message]
- * @property {Object} [meta]
- * @property {number} [status]
+ * @typedef DepartmentCreateError
+ * @property {string} error
  */
 /**
  * @typedef DepartmentIdentifier
  * @property {string} [slug]
  * @property {number} [uid]
+ */
+/**
+ * @typedef DepartmentListResponse
+ * @property {DepartmentModel[]} [items]
+ * @property {DepartmentPageResponse} [page]
  */
 /**
  * @typedef DepartmentModel
@@ -7473,13 +7445,32 @@ class PlatformClient {
  * @property {string} [verified_on]
  */
 /**
+ * @typedef DepartmentPageResponse
+ * @property {number} [current]
+ * @property {boolean} has_next
+ * @property {boolean} has_previous
+ * @property {number} item_total
+ * @property {string} [next_id]
+ * @property {number} [size]
+ * @property {string} [type]
+ */
+/**
  * @typedef DepartmentResponse
  * @property {Department[]} [items]
  */
 /**
- * @typedef DepartmentsResponse
- * @property {GetDepartment[]} [items]
- * @property {Page} [page]
+ * @typedef DepartmentUpdate
+ * @property {string} [_cls]
+ * @property {Object} [_custom_json]
+ * @property {boolean} [is_active]
+ * @property {string} logo
+ * @property {string} name
+ * @property {string} [platform]
+ * @property {number} priority_order
+ * @property {string} [slug]
+ * @property {string[]} [synonyms]
+ * @property {string[]} [tags]
+ * @property {number} uid
  */
 /**
  * @typedef DimensionResponse
@@ -7647,15 +7638,15 @@ class PlatformClient {
  * @property {GetAddressSerializer[]} [addresses]
  * @property {string} [business_type]
  * @property {string} [company_type]
- * @property {UserSerializer1} [created_by]
+ * @property {UserSerializer2} [created_by]
  * @property {string} [created_on]
- * @property {UserSerializer1} [modified_by]
+ * @property {UserSerializer2} [modified_by]
  * @property {string} [modified_on]
  * @property {string} [name]
  * @property {string} [reject_reason]
  * @property {string} [stage]
  * @property {number} [uid]
- * @property {UserSerializer1} [verified_by]
+ * @property {UserSerializer2} [verified_by]
  * @property {string} [verified_on]
  */
 /**
@@ -7668,24 +7659,6 @@ class PlatformClient {
  * @typedef GetConfigResponse
  * @property {Object[]} data
  * @property {PageResponseType} page
- */
-/**
- * @typedef GetDepartment
- * @property {UserSerializer} [created_by]
- * @property {string} [created_on]
- * @property {boolean} [is_active]
- * @property {string} [item_type]
- * @property {string} [logo]
- * @property {UserSerializer} [modified_by]
- * @property {string} [modified_on]
- * @property {string} [name]
- * @property {number} [page_no]
- * @property {number} [page_size]
- * @property {number} [priority_order]
- * @property {string} [search]
- * @property {string} [slug]
- * @property {string[]} [synonyms]
- * @property {number} [uid]
  */
 /**
  * @typedef GetInventories
@@ -7732,14 +7705,14 @@ class PlatformClient {
  * @property {string} code
  * @property {GetCompanySerializer} [company]
  * @property {SellerPhoneNumber[]} [contact_numbers]
- * @property {UserSerializer2} [created_by]
+ * @property {UserSerializer1} [created_by]
  * @property {string} [created_on]
  * @property {string} display_name
  * @property {Document[]} [documents]
  * @property {InvoiceDetailsSerializer} [gst_credentials]
  * @property {LocationIntegrationType} [integration_type]
  * @property {LocationManagerSerializer} [manager]
- * @property {UserSerializer2} [modified_by]
+ * @property {UserSerializer1} [modified_by]
  * @property {string} [modified_on]
  * @property {string} name
  * @property {string[]} [notification_emails]
@@ -7749,7 +7722,7 @@ class PlatformClient {
  * @property {string} [store_type]
  * @property {LocationDayWiseSerializer[]} [timing]
  * @property {number} [uid]
- * @property {UserSerializer2} [verified_by]
+ * @property {UserSerializer1} [verified_by]
  * @property {string} [verified_on]
  * @property {Object} [warnings]
  */
