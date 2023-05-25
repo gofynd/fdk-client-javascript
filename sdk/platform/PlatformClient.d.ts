@@ -3467,7 +3467,6 @@ type AffiliateMeta = {
     employee_discount?: number;
     is_priority?: boolean;
     loyalty_discount?: number;
-    marketplace_invoice_id?: string;
     order_item_id?: string;
     quantity?: number;
     size_level_total_qty?: number;
@@ -6957,7 +6956,7 @@ type ProductCreateUpdateSchemaV2 = {
     net_quantity?: NetQuantity;
     no_of_boxes?: number;
     product_group_tag?: string[];
-    product_publish?: ProductPublish;
+    product_publish?: ProductPublish1;
     requester?: string;
     return_config: ReturnConfig;
     short_description?: string;
@@ -7137,7 +7136,7 @@ type ProductSchemaV2 = {
     pending?: string;
     primary_color?: string;
     product_group_tag?: string[];
-    product_publish?: ProductPublish1;
+    product_publish?: ProductPublish;
     return_config?: ReturnConfigResponse;
     short_description?: string;
     size_guide?: string;

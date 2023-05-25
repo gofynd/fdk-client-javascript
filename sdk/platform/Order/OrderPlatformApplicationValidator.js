@@ -24,6 +24,7 @@ class OrderValidator {
       pageSize: Joi.number(),
       customerId: Joi.string().allow(""),
       isPrioritySort: Joi.boolean(),
+      excludeLockedShipments: Joi.boolean(),
     }).required();
   }
 

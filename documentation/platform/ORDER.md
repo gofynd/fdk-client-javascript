@@ -1248,7 +1248,8 @@ const promise = platformClient.application("<APPLICATION_ID>").order.getApplicat
  pageNo : value,
  pageSize : value,
  customerId : value,
- isPrioritySort : value });
+ isPrioritySort : value,
+ excludeLockedShipments : value });
 
 // Async/Await
 const data = await platformClient.application("<APPLICATION_ID>").order.getApplicationShipments({  lane : value,
@@ -1264,7 +1265,8 @@ const data = await platformClient.application("<APPLICATION_ID>").order.getAppli
  pageNo : value,
  pageSize : value,
  customerId : value,
- isPrioritySort : value });
+ isPrioritySort : value,
+ excludeLockedShipments : value });
 ```
 
 
@@ -1286,7 +1288,8 @@ const data = await platformClient.application("<APPLICATION_ID>").order.getAppli
 | pageNo | number | no |  |    
 | pageSize | number | no |  |    
 | customerId | string | no |  |    
-| isPrioritySort | boolean | no |  |  
+| isPrioritySort | boolean | no |  |    
+| excludeLockedShipments | boolean | no |  |  
 
 
 
@@ -5487,7 +5490,6 @@ Verify OTP
  | employee_discount | number? |  yes  |  |
  | is_priority | boolean? |  yes  |  |
  | loyalty_discount | number? |  yes  |  |
- | marketplace_invoice_id | string? |  yes  |  |
  | order_item_id | string? |  yes  |  |
  | quantity | number? |  yes  |  |
  | size_level_total_qty | number? |  yes  |  |

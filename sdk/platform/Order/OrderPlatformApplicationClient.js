@@ -93,6 +93,7 @@ class Order {
    * @param {number} [arg.pageSize] -
    * @param {string} [arg.customerId] -
    * @param {boolean} [arg.isPrioritySort] -
+   * @param {boolean} [arg.excludeLockedShipments] -
    * @returns {Promise<ShipmentInternalPlatformViewResponse>} - Success response
    * @summary:
    * @description:
@@ -112,6 +113,7 @@ class Order {
     pageSize,
     customerId,
     isPrioritySort,
+    excludeLockedShipments,
   } = {}) {
     const { error } = OrderValidator.getApplicationShipments().validate(
       {
@@ -129,6 +131,7 @@ class Order {
         pageSize,
         customerId,
         isPrioritySort,
+        excludeLockedShipments,
       },
       { abortEarly: false, allowUnknown: true }
     );
@@ -155,6 +158,7 @@ class Order {
         pageSize,
         customerId,
         isPrioritySort,
+        excludeLockedShipments,
       },
       { abortEarly: false, allowUnknown: false }
     );
@@ -181,6 +185,7 @@ class Order {
     query_params["page_size"] = pageSize;
     query_params["customer_id"] = customerId;
     query_params["is_priority_sort"] = isPrioritySort;
+    query_params["exclude_locked_shipments"] = excludeLockedShipments;
 
     const response = await PlatformAPIClient.execute(
       this.config,

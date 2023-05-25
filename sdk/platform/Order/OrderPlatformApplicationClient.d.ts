@@ -29,11 +29,12 @@ declare class Order {
      * @param {number} [arg.pageSize] -
      * @param {string} [arg.customerId] -
      * @param {boolean} [arg.isPrioritySort] -
+     * @param {boolean} [arg.excludeLockedShipments] -
      * @returns {Promise<ShipmentInternalPlatformViewResponse>} - Success response
      * @summary:
      * @description:
      */
-    getApplicationShipments({ lane, searchType, searchId, fromDate, toDate, dpIds, orderingCompanyId, stores, salesChannel, requestByExt, pageNo, pageSize, customerId, isPrioritySort, }?: {
+    getApplicationShipments({ lane, searchType, searchId, fromDate, toDate, dpIds, orderingCompanyId, stores, salesChannel, requestByExt, pageNo, pageSize, customerId, isPrioritySort, excludeLockedShipments, }?: {
         lane?: string;
         searchType?: string;
         searchId?: string;
@@ -48,6 +49,7 @@ declare class Order {
         pageSize?: number;
         customerId?: string;
         isPrioritySort?: boolean;
+        excludeLockedShipments?: boolean;
     }): Promise<ShipmentInternalPlatformViewResponse>;
     /**
      * @param {Object} arg - Arg object.
