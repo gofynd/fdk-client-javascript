@@ -1,11 +1,11 @@
 const Joi = require("joi");
-const CatalogModel = require("./CatalogPlatformModel");
 
+const CatalogModel = require("./CatalogPlatformModel");
 class CatalogValidator {
   static addCollectionItems() {
     return Joi.object({
       id: Joi.string().allow("").required(),
-      body: CatalogModel.CollectionItemRequest().required(),
+      body: CatalogModel.CollectionItemUpdate().required(),
     }).required();
   }
 
@@ -137,6 +137,7 @@ class CatalogValidator {
       categoryIds: Joi.array().items(Joi.number()),
       departmentIds: Joi.array().items(Joi.number()),
       tags: Joi.array().items(Joi.string().allow("")),
+      itemIds: Joi.array().items(Joi.number()),
       pageNo: Joi.number(),
       pageSize: Joi.number(),
       q: Joi.string().allow(""),

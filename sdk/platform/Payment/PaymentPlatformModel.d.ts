@@ -2,10 +2,12 @@ export = PaymentModel;
 declare class PaymentModel {
     static AddBeneficiaryDetailsOTPRequest(): any;
     static BankDetailsForOTP(): any;
+    static CODdata(): any;
     static DeletePayoutResponse(): any;
     static DeleteSubscriptionPaymentMethodResponse(): any;
     static ErrorCodeAndDescription(): any;
     static ErrorCodeDescription(): any;
+    static GetUserCODLimitResponse(): any;
     static HttpErrorCodeAndResponse(): any;
     static IfscCodeResponse(): any;
     static IntentApp(): any;
@@ -33,6 +35,8 @@ declare class PaymentModel {
     static RootPaymentMode(): any;
     static SaveSubscriptionSetupIntentRequest(): any;
     static SaveSubscriptionSetupIntentResponse(): any;
+    static SetCODForUserRequest(): any;
+    static SetCODOptionResponse(): any;
     static SubscriptionConfigResponse(): any;
     static SubscriptionPaymentMethodResponse(): any;
     static UpdatePayoutRequest(): any;

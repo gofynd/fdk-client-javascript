@@ -115,6 +115,18 @@ declare class Discount {
     }): Promise<DiscountJob>;
     /**
      * @param {Object} arg - Arg object.
+     * @param {string} arg.id - Job ID of the discount.
+     * @param {BulkDiscount} arg.body
+     * @returns {Promise<Object>} - Success response
+     * @summary: Create custom discount from bulk.
+     * @description: Create custom discounts through API.
+     */
+    upsertDiscountItems({ id, body }?: {
+        id: string;
+        body: BulkDiscount;
+    }): Promise<any>;
+    /**
+     * @param {Object} arg - Arg object.
      * @param {string} [arg.discount] - Discount
      * @param {DiscountJob} arg.body
      * @returns {Promise<FileJobResponse>} - Success response

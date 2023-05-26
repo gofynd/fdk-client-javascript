@@ -16,6 +16,15 @@ class PaymentModel {
       ifsc_code: Joi.string().allow("").required(),
     });
   }
+  static CODdata() {
+    return Joi.object({
+      is_active: Joi.boolean().required(),
+      limit: Joi.number().required(),
+      remaining_limit: Joi.number().required(),
+      usages: Joi.number().required(),
+      user_id: Joi.string().allow("").required(),
+    });
+  }
   static DeletePayoutResponse() {
     return Joi.object({
       success: Joi.boolean().required(),
@@ -37,6 +46,12 @@ class PaymentModel {
       code: Joi.string().allow("").required(),
       description: Joi.string().allow("").required(),
       success: Joi.boolean().required(),
+    });
+  }
+  static GetUserCODLimitResponse() {
+    return Joi.object({
+      success: Joi.boolean().required(),
+      user_cod_data: PaymentModel.CODdata().required(),
     });
   }
   static HttpErrorCodeAndResponse() {
@@ -180,6 +195,8 @@ class PaymentModel {
       card_reference: Joi.string().allow("").allow(null),
       card_token: Joi.string().allow("").allow(null),
       card_type: Joi.string().allow("").allow(null),
+      cod_limit: Joi.number().allow(null),
+      cod_limit_per_order: Joi.number().allow(null),
       code: Joi.string().allow("").allow(null),
       compliant_with_tokenisation_guidelines: Joi.boolean().allow(null),
       display_name: Joi.string().allow("").allow(null),
@@ -198,6 +215,7 @@ class PaymentModel {
       merchant_code: Joi.string().allow("").allow(null),
       name: Joi.string().allow("").allow(null),
       nickname: Joi.string().allow("").allow(null),
+      remaining_limit: Joi.number().allow(null),
       retry_count: Joi.number().allow(null),
       timeout: Joi.number().allow(null),
     });
@@ -299,6 +317,19 @@ class PaymentModel {
   static SaveSubscriptionSetupIntentResponse() {
     return Joi.object({
       data: Joi.any().required(),
+      success: Joi.boolean().required(),
+    });
+  }
+  static SetCODForUserRequest() {
+    return Joi.object({
+      is_active: Joi.boolean().required(),
+      merchant_user_id: Joi.string().allow("").required(),
+      mobileno: Joi.string().allow("").required(),
+    });
+  }
+  static SetCODOptionResponse() {
+    return Joi.object({
+      message: Joi.string().allow("").required(),
       success: Joi.boolean().required(),
     });
   }

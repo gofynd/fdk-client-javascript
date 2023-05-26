@@ -18,6 +18,7 @@ declare class ConfigurationValidator {
     static getOrderingStoresByFilter(): any;
     static getPreviousVersions(): any;
     static getStaffOrderingStores(): any;
+    static modifyAppFeatures(): any;
     static partiallyUpdateInventoryConfig(): any;
     static removeDomainById(): any;
     static updateAppApiTokens(): any;

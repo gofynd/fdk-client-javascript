@@ -136,6 +136,7 @@ class OrderModel {
       employee_discount: Joi.number(),
       is_priority: Joi.boolean(),
       loyalty_discount: Joi.number(),
+      marketplace_invoice_id: Joi.string().allow("").allow(null),
       order_item_id: Joi.string().allow(""),
       quantity: Joi.number(),
       size_level_total_qty: Joi.number().allow(null),
@@ -427,6 +428,7 @@ class OrderModel {
   }
   static BillingStaffDetails() {
     return Joi.object({
+      employee_code: Joi.string().allow(""),
       first_name: Joi.string().allow(""),
       last_name: Joi.string().allow(""),
       staff_id: Joi.number(),
@@ -450,100 +452,15 @@ class OrderModel {
       start_date: Joi.string().allow("").allow(null),
     });
   }
-  static BulkActionDetailsDataField() {
+  static BulkActionTemplate() {
     return Joi.object({
-      batch_id: Joi.string().allow(""),
-      company_id: Joi.string().allow(""),
-      failed_shipments_count: Joi.number(),
-      processing_shipments_count: Joi.number(),
-      successful_shipment_ids: Joi.array().items(Joi.string().allow("")),
-      successful_shipments_count: Joi.number(),
-      total_shipments_count: Joi.number(),
+      text: Joi.string().allow(""),
+      value: Joi.string().allow(""),
     });
   }
-  static BulkActionDetailsResponse() {
+  static BulkActionTemplateResponse() {
     return Joi.object({
-      data: Joi.array().items(OrderModel.BulkActionDetailsDataField()),
-      error: Joi.array().items(Joi.string().allow("")),
-      failed_records: Joi.array().items(Joi.string().allow("")),
-      message: Joi.string().allow(""),
-      status: Joi.boolean(),
-      success: Joi.string().allow(""),
-      uploaded_by: Joi.string().allow(""),
-      uploaded_on: Joi.string().allow(""),
-      user_id: Joi.string().allow(""),
-    });
-  }
-  static BulkActionPayload() {
-    return Joi.object({
-      url: Joi.string().allow("").required(),
-    });
-  }
-  static BulkActionResponse() {
-    return Joi.object({
-      message: Joi.string().allow(""),
-      status: Joi.boolean(),
-    });
-  }
-  static BulkInvoiceLabelResponse() {
-    return Joi.object({
-      batch_id: Joi.string().allow("").required(),
-      company_id: Joi.string().allow(""),
-      data: Joi.any(),
-      do_invoice_label_generated: Joi.boolean().required(),
-      invoice: Joi.any(),
-      invoice_status: Joi.string().allow(""),
-      label: Joi.any(),
-      store_code: Joi.string().allow(""),
-      store_id: Joi.string().allow(""),
-      store_name: Joi.string().allow(""),
-    });
-  }
-  static BulkInvoicingResponse() {
-    return Joi.object({
-      message: Joi.string().allow(""),
-      success: Joi.boolean().required(),
-    });
-  }
-  static bulkListingData() {
-    return Joi.object({
-      batch_id: Joi.string().allow(""),
-      company_id: Joi.number(),
-      excel_url: Joi.string().allow(""),
-      failed: Joi.number(),
-      failed_shipments: Joi.array().items(Joi.any()),
-      file_name: Joi.string().allow(""),
-      id: Joi.string().allow(""),
-      processing: Joi.number(),
-      processing_shipments: Joi.array().items(Joi.string().allow("")),
-      status: Joi.string().allow(""),
-      store_code: Joi.string().allow(""),
-      store_id: Joi.number(),
-      store_name: Joi.string().allow(""),
-      successful: Joi.number(),
-      successful_shipments: Joi.array().items(Joi.any()),
-      total: Joi.number(),
-      uploaded_on: Joi.string().allow(""),
-      user_id: Joi.string().allow(""),
-      user_name: Joi.string().allow(""),
-    });
-  }
-  static BulkListingPage() {
-    return Joi.object({
-      current: Joi.number(),
-      has_next: Joi.boolean(),
-      has_previous: Joi.boolean(),
-      size: Joi.number(),
-      total: Joi.number(),
-      type: Joi.string().allow(""),
-    });
-  }
-  static BulkListingResponse() {
-    return Joi.object({
-      data: Joi.array().items(OrderModel.bulkListingData()),
-      error: Joi.string().allow(""),
-      page: OrderModel.BulkListingPage(),
-      success: Joi.boolean(),
+      template_x_slug: Joi.array().items(OrderModel.BulkActionTemplate()),
     });
   }
   static BuyerDetails() {
@@ -593,10 +510,18 @@ class OrderModel {
   }
   static CompanyDetails() {
     return Joi.object({
+      address: Joi.any(),
       company_cin: Joi.string().allow(""),
+      company_contact: OrderModel.ContactDetails(),
+      company_gst: Joi.string().allow(""),
       company_id: Joi.number(),
       company_name: Joi.string().allow(""),
-      manufacturer_address: Joi.any(),
+    });
+  }
+  static ContactDetails() {
+    return Joi.object({
+      emails: Joi.array().items(Joi.string().allow("")),
+      phone: Joi.array().items(OrderModel.PhoneDetails()),
     });
   }
   static CreateChannelConfig() {
@@ -637,6 +562,7 @@ class OrderModel {
     return Joi.object({
       billing_info: OrderModel.BillingInfo().required(),
       charges: Joi.array().items(OrderModel.Charge()),
+      config: Joi.any(),
       currency_info: Joi.any(),
       external_creation_date: Joi.string().allow(""),
       external_order_id: Joi.string().allow(""),
@@ -1018,28 +944,6 @@ class OrderModel {
       item_brand: Joi.array().items(Joi.number()),
     });
   }
-  static JioCodeUpsertDataSet() {
-    return Joi.object({
-      article_id: Joi.string().allow(""),
-      company_id: Joi.string().allow(""),
-      item_id: Joi.string().allow(""),
-      jio_code: Joi.string().allow(""),
-    });
-  }
-  static JioCodeUpsertPayload() {
-    return Joi.object({
-      data: Joi.array().items(OrderModel.JioCodeUpsertDataSet()),
-    });
-  }
-  static JioCodeUpsertResponse() {
-    return Joi.object({
-      data: Joi.array().items(Joi.any()),
-      error: Joi.array().items(OrderModel.NestedErrorSchemaDataSet()),
-      identifier: Joi.string().allow(""),
-      success: Joi.boolean(),
-      trace_id: Joi.string().allow(""),
-    });
-  }
   static LaneConfigResponse() {
     return Joi.object({
       super_lanes: Joi.array().items(OrderModel.SuperLane()),
@@ -1098,45 +1002,6 @@ class OrderModel {
     return Joi.object({
       kafka_emission_status: Joi.number(),
       state_manager_used: Joi.string().allow(""),
-    });
-  }
-  static MetricCountResponse() {
-    return Joi.object({
-      items: Joi.array().items(OrderModel.MetricsCount()),
-    });
-  }
-  static MetricsCount() {
-    return Joi.object({
-      key: Joi.string().allow("").required(),
-      options: Joi.array().items(OrderModel.Options()),
-      text: Joi.string().allow("").required(),
-      value: Joi.number().required(),
-    });
-  }
-  static NestedErrorSchemaDataSet() {
-    return Joi.object({
-      message: Joi.string().allow(""),
-      type: Joi.string().allow(""),
-      value: Joi.string().allow(""),
-    });
-  }
-  static OmsReports() {
-    return Joi.object({
-      display_name: Joi.string().allow(""),
-      report_created_at: Joi.string().allow("").allow(null),
-      report_id: Joi.string().allow(""),
-      report_name: Joi.string().allow(""),
-      report_requested_at: Joi.string().allow("").allow(null),
-      report_type: Joi.string().allow(""),
-      request_details: Joi.any(),
-      s3_key: Joi.string().allow(""),
-      status: Joi.string().allow(""),
-    });
-  }
-  static Options() {
-    return Joi.object({
-      text: Joi.string().allow(""),
-      value: Joi.number(),
     });
   }
   static OrderBagArticle() {
@@ -1405,6 +1270,12 @@ class OrderModel {
       po_invoice: Joi.string().allow(""),
     });
   }
+  static PhoneDetails() {
+    return Joi.object({
+      country_code: Joi.number(),
+      mobile_number: Joi.string().allow(""),
+    });
+  }
   static PlatformBreakupValues() {
     return Joi.object({
       display: Joi.string().allow(""),
@@ -1550,6 +1421,7 @@ class OrderModel {
   }
   static PlatformUserDetails() {
     return Joi.object({
+      platform_user_employee_code: Joi.string().allow(""),
       platform_user_first_name: Joi.string().allow(""),
       platform_user_id: Joi.string().allow(""),
       platform_user_last_name: Joi.string().allow(""),
@@ -2071,12 +1943,6 @@ class OrderModel {
       value: Joi.string().allow(""),
     });
   }
-  static Success() {
-    return Joi.object({
-      message: Joi.string().allow(""),
-      success: Joi.boolean(),
-    });
-  }
   static SuccessResponse() {
     return Joi.object({
       message: Joi.string().allow(""),
@@ -2194,9 +2060,13 @@ class OrderModel {
   static UserDetailsData() {
     return Joi.object({
       address: Joi.string().allow("").required(),
+      address1: Joi.string().allow(""),
+      address_type: Joi.string().allow(""),
+      area: Joi.string().allow(""),
       city: Joi.string().allow("").required(),
       country: Joi.string().allow("").required(),
       email: Joi.string().allow(""),
+      landmark: Joi.string().allow(""),
       name: Joi.string().allow("").required(),
       phone: Joi.string().allow("").required(),
       pincode: Joi.string().allow("").required(),

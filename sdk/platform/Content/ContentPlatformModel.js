@@ -410,6 +410,20 @@ class ContentModel {
       secure_url: Joi.string().allow(""),
     });
   }
+  static GeneratedSEOContent() {
+    return Joi.object({
+      description: Joi.string().allow(""),
+      title: Joi.string().allow(""),
+    });
+  }
+  static GenerateSEOContent() {
+    return Joi.object({
+      existing_text: Joi.string().allow(""),
+      keywords: Joi.array().items(Joi.string().allow("")),
+      text: Joi.string().allow(""),
+      type: Joi.string().allow(""),
+    });
+  }
   static GetAnnouncementListSchema() {
     return Joi.object({
       items: Joi.array().items(ContentModel.AdminAnnouncementSchema()),
@@ -729,6 +743,7 @@ class ContentModel {
     return Joi.object({
       _id: Joi.string().allow(""),
       app: Joi.string().allow(""),
+      cannonical_enabled: Joi.boolean(),
       created_at: Joi.string().allow(""),
       custom_meta_tags: Joi.array().items(Joi.any()),
       details: ContentModel.Detail(),
@@ -837,6 +852,18 @@ class ContentModel {
   }
 
   /*
+        Enum: GenerationEntityType
+        Used By: Content
+    */
+  static GenerationEntityType() {
+    return Joi.string().valid(
+      "title",
+
+      "description"
+    );
+  }
+
+  /*
         Enum: PageType
         Used By: Content
     */
@@ -883,10 +910,6 @@ class ContentModel {
       "policy",
 
       "product",
-
-      "product-reviews",
-
-      "add-product-review",
 
       "product-request",
 

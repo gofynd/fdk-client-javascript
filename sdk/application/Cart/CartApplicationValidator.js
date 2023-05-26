@@ -46,12 +46,6 @@ class CartValidator {
     }).required();
   }
 
-  static deleteCart() {
-    return Joi.object({
-      id: Joi.number(),
-    });
-  }
-
   static getAddressById() {
     return Joi.object({
       id: Joi.string().allow("").required(),
@@ -92,7 +86,6 @@ class CartValidator {
       assignCardId: Joi.number(),
       areaCode: Joi.string().allow(""),
       buyNow: Joi.boolean(),
-      emptyCart: Joi.boolean(),
     });
   }
 
@@ -152,7 +145,6 @@ class CartValidator {
       buyNow: Joi.boolean(),
       addressId: Joi.string().allow(""),
       areaCode: Joi.string().allow(""),
-      orderType: Joi.string().allow(""),
     });
   }
 

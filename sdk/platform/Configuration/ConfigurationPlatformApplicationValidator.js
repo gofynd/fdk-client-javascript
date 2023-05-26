@@ -1,6 +1,6 @@
 const Joi = require("joi");
-const ConfigurationModel = require("./ConfigurationPlatformModel");
 
+const ConfigurationModel = require("./ConfigurationPlatformModel");
 class ConfigurationValidator {
   static addDomain() {
     return Joi.object({
@@ -96,6 +96,12 @@ class ConfigurationValidator {
       pageNo: Joi.number(),
       pageSize: Joi.number(),
       q: Joi.string().allow(""),
+    }).required();
+  }
+
+  static modifyAppFeatures() {
+    return Joi.object({
+      body: ConfigurationModel.AppFeatureRequest().required(),
     }).required();
   }
 

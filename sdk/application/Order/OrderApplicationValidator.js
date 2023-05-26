@@ -70,20 +70,6 @@ class OrderValidator {
     }).required();
   }
 
-  static updateShipmentStatus() {
-    return Joi.object({
-      shipmentId: Joi.string().allow("").required(),
-      body: OrderModel.UpdateShipmentStatusRequest().required(),
-    }).required();
-  }
-
-  static updateShipmentStatus1() {
-    return Joi.object({
-      shipmentId: Joi.string().allow("").required(),
-      body: OrderModel.UpdateShipmentStatusRequest().required(),
-    }).required();
-  }
-
   static verifyOtpShipmentCustomer() {
     return Joi.object({
       orderId: Joi.string().allow("").required(),

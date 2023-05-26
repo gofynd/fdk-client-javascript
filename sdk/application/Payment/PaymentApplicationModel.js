@@ -57,7 +57,7 @@ class PaymentModel {
       api_link: Joi.string().allow("").allow(null),
       data: Joi.any().allow(null),
       payment_flow: Joi.string().allow("").allow(null),
-      payment_flow_data: Joi.any().allow(null),
+      payment_flow_data: Joi.string().allow("").allow(null),
     });
   }
   static AggregatorsConfigDetailResponse() {
@@ -566,6 +566,8 @@ class PaymentModel {
       card_reference: Joi.string().allow("").allow(null),
       card_token: Joi.string().allow("").allow(null),
       card_type: Joi.string().allow("").allow(null),
+      cod_limit: Joi.number().allow(null),
+      cod_limit_per_order: Joi.number().allow(null),
       code: Joi.string().allow("").allow(null),
       compliant_with_tokenisation_guidelines: Joi.boolean().allow(null),
       display_name: Joi.string().allow("").allow(null),
@@ -584,6 +586,7 @@ class PaymentModel {
       merchant_code: Joi.string().allow("").allow(null),
       name: Joi.string().allow("").allow(null),
       nickname: Joi.string().allow("").allow(null),
+      remaining_limit: Joi.number().allow(null),
       retry_count: Joi.number().allow(null),
       timeout: Joi.number().allow(null),
     });

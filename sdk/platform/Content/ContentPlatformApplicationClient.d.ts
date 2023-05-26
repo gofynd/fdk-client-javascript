@@ -260,6 +260,19 @@ declare class Content {
     }): Promise<TagsSchema>;
     /**
      * @param {Object} arg - Arg object.
+     * @param {GenerationEntityType} arg.type - String representing the type of
+     *   SEO content to be generated. Possible values are: title, description
+     * @param {GenerateSEOContent} arg.body
+     * @returns {Promise<GeneratedSEOContent>} - Success response
+     * @summary: Get SEO meta tag title for content
+     * @description: Use this API to get GPT3 generated SEO meta tag title for content
+     */
+    generateSEOTitle({ type, body }?: {
+        type: GenerationEntityType;
+        body: GenerateSEOContent;
+    }): Promise<GeneratedSEOContent>;
+    /**
+     * @param {Object} arg - Arg object.
      * @param {string} arg.announcementId - ID allotted to the announcement.
      * @returns {Promise<AdminAnnouncementSchema>} - Success response
      * @summary: Get announcement by ID
@@ -298,6 +311,17 @@ declare class Content {
         applicationId: string;
         pageSize?: number;
     }): Paginator;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {string} arg.slug - A short, human-readable, URL-friendly
+     *   identifier of a blog page. You can get slug value of a blog from `getBlogs` API.
+     * @returns {Promise<BlogSchema>} - Success response
+     * @summary: Get blog by slug
+     * @description: Use this API to retrieve the components of a blog, such as title, slug, feature image, content, schedule, publish status, author, etc.
+     */
+    getBlogBySlug({ slug }?: {
+        slug: string;
+    }): Promise<BlogSchema>;
     /**
      * @param {Object} arg - Arg object.
      * @param {number} [arg.pageNo] - The page number to navigate through the
@@ -499,7 +523,7 @@ declare class Content {
      * @param {string} arg.slug - A short, human-readable, URL-friendly
      *   identifier of a page. You can get slug value of a page from `getPages` API.
      * @returns {Promise<PageSchema>} - Success response
-     * @summary: Get pages by component Id
+     * @summary: Get page by slug
      * @description: Use this API to retrieve the components of a page, such as its title, seo, publish status, feature image, tags, schedule, etc.
      */
     getPageBySlug({ slug }?: {

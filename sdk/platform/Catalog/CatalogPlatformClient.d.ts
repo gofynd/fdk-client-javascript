@@ -90,14 +90,14 @@ declare class Catalog {
     }): Promise<DepartmentCreateResponse>;
     /**
      * @param {Object} arg - Arg object.
-     * @param {HsnUpsert} arg.body
-     * @returns {Promise<HsnCode>} - Success response
-     * @summary: Create Hsn Code.
-     * @description: Create Hsn Code.
+     * @param {InventoryCreateRequest} arg.body
+     * @returns {Promise<InventoryExportResponse>} - Success response
+     * @summary: Create an inventory export job.
+     * @description: This API helps to create a Inventory export job.
      */
-    createHsnCode({ body }?: {
-        body: HsnUpsert;
-    }): Promise<HsnCode>;
+    createInventoryExport({ body }?: {
+        body: InventoryCreateRequest;
+    }): Promise<InventoryExportResponse>;
     /**
      * @param {Object} arg - Arg object.
      * @param {InventoryExportRequest} arg.body
@@ -151,6 +151,16 @@ declare class Catalog {
     createProductBundle({ body }?: {
         body: ProductBundleRequest;
     }): Promise<GetProductBundleCreateResponse>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {ProductTemplateDownloadsExport} arg.body
+     * @returns {Promise<ProductDownloadsResponse>} - Success response
+     * @summary: Create a product export job.
+     * @description: This API helps to create a Inventory export job.
+     */
+    createProductExportJob({ body }?: {
+        body: ProductTemplateDownloadsExport;
+    }): Promise<ProductDownloadsResponse>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.batchId - Batch Id in which assets to be uploaded.
@@ -295,20 +305,6 @@ declare class Catalog {
      * @param {Object} arg - Arg object.
      * @param {number} [arg.pageNo] - Page no
      * @param {number} [arg.pageSize] - Page size
-     * @param {string} [arg.q] - Search using hsn code.
-     * @returns {Promise<HsnCodesListingResponse>} - Success response
-     * @summary: Hsn Code List.
-     * @description: Hsn Code List.
-     */
-    getAllHsnCodes({ pageNo, pageSize, q }?: {
-        pageNo?: number;
-        pageSize?: number;
-        q?: string;
-    }): Promise<HsnCodesListingResponse>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {number} [arg.pageNo] - Page no
-     * @param {number} [arg.pageSize] - Page size
      * @param {string} [arg.q] - Search using hsn code, description, reporting_hsn
      * @param {string} [arg.type] - Search using type
      * @returns {Promise<HsnCodesListingResponseSchemaV2>} - Success response
@@ -334,7 +330,7 @@ declare class Catalog {
     /**
      * @param {Object} arg - Arg object.
      * @param {boolean} [arg.isActive] - The is_active status for the optin id.
-     * @param {boolean} [arg.q] - The search value to filter the list.
+     * @param {string} [arg.q] - The search value to filter the list.
      * @param {number} [arg.pageNo] - The number of page for the company id.
      * @param {number} [arg.pageSize] - Number of records that can be seen on
      *   the page for the company id.
@@ -346,7 +342,7 @@ declare class Catalog {
      */
     getCompanyBrandDetail({ isActive, q, pageNo, pageSize, marketplace, }?: {
         isActive?: boolean;
-        q?: boolean;
+        q?: string;
         pageNo?: number;
         pageSize?: number;
         marketplace?: string;
@@ -439,7 +435,7 @@ declare class Catalog {
     }): Promise<BulkInventoryGet>;
     /**
      * @param {Object} arg - Arg object.
-     * @param {string} arg.itemId - Item code of the product of which size is to be get.
+     * @param {number} arg.itemId - Item code of the product of which size is to be get.
      * @param {string} arg.size - Size of which inventory is to get.
      * @param {number} [arg.pageNo] - The page number to navigate through the
      *   given set of results
@@ -452,7 +448,7 @@ declare class Catalog {
      * @description: This API allows get Inventory data for particular company grouped by size and store.
      */
     getInventoryBySize({ itemId, size, pageNo, pageSize, q, sellable, }?: {
-        itemId: string;
+        itemId: number;
         size: string;
         pageNo?: number;
         pageSize?: number;
@@ -461,7 +457,7 @@ declare class Catalog {
     }): Promise<InventoryResponsePaginated>;
     /**
      * @param {Object} arg - Arg object.
-     * @param {string} arg.itemId - Item code of the product of which size is to be get.
+     * @param {number} arg.itemId - Item code of the product of which size is to be get.
      * @param {string} arg.sizeIdentifier - Size Identifier (Seller Identifier
      *   or Primary Identifier) of which inventory is to get.
      * @param {number} [arg.pageNo] - The page number to navigate through the
@@ -475,7 +471,7 @@ declare class Catalog {
      * @description: This API allows get Inventory data for particular company grouped by size and store.
      */
     getInventoryBySizeIdentifier({ itemId, sizeIdentifier, pageNo, pageSize, q, locationIds, }?: {
-        itemId: string;
+        itemId: number;
         sizeIdentifier: string;
         pageNo?: number;
         pageSize?: number;
@@ -589,6 +585,26 @@ declare class Catalog {
     }): Promise<GetProductBundleResponse>;
     /**
      * @param {Object} arg - Arg object.
+     * @param {string} [arg.status] - This is a parameter used to find all the
+     *   jobs with the specified status.
+     * @param {string} [arg.fromDate] - This is a parameter used to find the job
+     *   from the date specified to the current date.
+     * @param {string} [arg.toDate] - This is a parameter used to find the job
+     *   from the from_date specified to the to_date.
+     * @param {string} [arg.q] - It is a query parameter to search the export
+     *   job with the task ID.
+     * @returns {Promise<ProductDownloadsResponse>} - Success response
+     * @summary: Allows you to list all product templates export list details
+     * @description: Can view details including trigger data, task id , etc.
+     */
+    getProductExportJobs({ status, fromDate, toDate, q }?: {
+        status?: string;
+        fromDate?: string;
+        toDate?: string;
+        q?: string;
+    }): Promise<ProductDownloadsResponse>;
+    /**
+     * @param {Object} arg - Arg object.
      * @param {string} [arg.itemCode] - Item code of the product size.
      * @param {number} arg.itemId - Item Id of the product size.
      * @param {number} [arg.brandUid] - Brand Id of the product size.
@@ -632,7 +648,7 @@ declare class Catalog {
      *   given set of results
      * @param {number} [arg.pageSize] - Number of items to retrieve in each
      *   page. Default is 10.
-     * @returns {Promise<ProductListingResponse>} - Success response
+     * @returns {Promise<ProductListingResponseV2>} - Success response
      * @summary: Get product list
      * @description: This API gets meta associated to products.
      */
@@ -646,7 +662,7 @@ declare class Catalog {
         tags?: string[];
         pageNo?: number;
         pageSize?: number;
-    }): Promise<ProductListingResponse>;
+    }): Promise<ProductListingResponseV2>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.sellerAppId - Id of the seller application which is
@@ -755,6 +771,8 @@ declare class Catalog {
      * @param {Object} arg - Arg object.
      * @param {number} [arg.pageNo] - The page number to navigate through the
      *   given set of results
+     * @param {string} [arg.itemType] - A `item_type` is a type of product eg.
+     *   set, standard, digital
      * @param {number} [arg.pageSize] - Number of items to retrieve in each
      *   page. Default is 10.
      * @param {string} [arg.name] - Can search departments by passing name.
@@ -766,8 +784,9 @@ declare class Catalog {
      * @summary: List all Departments.
      * @description: Allows you to list all departments, also can search using name and filter active and incative departments, and item type.
      */
-    listDepartmentsData({ pageNo, pageSize, name, search, isActive }?: {
+    listDepartmentsData({ pageNo, itemType, pageSize, name, search, isActive, }?: {
         pageNo?: number;
+        itemType?: string;
         pageSize?: number;
         name?: string;
         search?: string;
@@ -780,6 +799,24 @@ declare class Catalog {
      * @description: Allows you to list all hsn Codes
      */
     listHSNCodes({}?: any): Promise<HSNCodesResponse>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {string} [arg.status] - Status of the export job.
+     * @param {string} [arg.fromDate] - Inventory export history filtered
+     *   according to from_date.
+     * @param {string} [arg.toDate] - Inventory export history filtered
+     *   according to from_date.
+     * @param {string} [arg.q] - Inventory export history filtered according to task ID.
+     * @returns {Promise<InventoryExportJobListResponse>} - Success response
+     * @summary: Get the history of the inventory export.
+     * @description: This API helps you the get the history of inventory jobs depending on the filtered criteria.
+     */
+    listInventoryExport({ status, fromDate, toDate, q }?: {
+        status?: string;
+        fromDate?: string;
+        toDate?: string;
+        q?: string;
+    }): Promise<InventoryExportJobListResponse>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.department - A `department` is the name of a
@@ -816,12 +853,18 @@ declare class Catalog {
      * @param {Object} arg - Arg object.
      * @param {string} arg.filter - A `filter` is the unique identifier of the
      *   type of value required.
+     * @param {string} [arg.templateTag] - A `template_tag` is the identifier of
+     *   the type of template required.
+     * @param {string} [arg.itemType] - A `item_type` is the identifier of the
+     *   type of template required.
      * @returns {Promise<ProductConfigurationDownloads>} - Success response
      * @summary: Allows you to list all values for Templates, Brands or Type
      * @description: The filter type query parameter defines what type of data to return. The type of query returns the valid values for the same
      */
-    listTemplateBrandTypeValues({ filter }?: {
+    listTemplateBrandTypeValues({ filter, templateTag, itemType }?: {
         filter: string;
+        templateTag?: string;
+        itemType?: string;
     }): Promise<ProductConfigurationDownloads>;
     /**
      * @param {Object} arg - Arg object.

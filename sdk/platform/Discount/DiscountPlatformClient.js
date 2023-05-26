@@ -1,9 +1,10 @@
-const Paginator = require("../../common/Paginator");
-const { FDKClientValidationError } = require("../../common/FDKError");
 const PlatformAPIClient = require("../PlatformAPIClient");
+const { FDKClientValidationError } = require("../../common/FDKError");
+const Paginator = require("../../common/Paginator");
 const DiscountValidator = require("./DiscountPlatformValidator");
 const DiscountModel = require("./DiscountPlatformModel");
 const { Logger } = require("./../../common/Logger");
+const Joi = require("joi");
 
 class Discount {
   constructor(config) {
@@ -627,6 +628,73 @@ class Discount {
       Logger({
         level: "WARN",
         message: "Response Validation Warnnings for updateDiscount",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.id - Job ID of the discount.
+   * @param {BulkDiscount} arg.body
+   * @returns {Promise<Object>} - Success response
+   * @summary: Create custom discount from bulk.
+   * @description: Create custom discounts through API.
+   */
+  async upsertDiscountItems({ id, body } = {}) {
+    const { error } = DiscountValidator.upsertDiscountItems().validate(
+      {
+        id,
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = DiscountValidator.upsertDiscountItems().validate(
+      {
+        id,
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for upsertDiscountItems",
+      });
+      Logger({ level: "WARN", message: warrning });
+    }
+
+    const query_params = {};
+
+    const xHeaders = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/discount/v1.0/company/${this.config.companyId}/job/${id}/items/`,
+      query_params,
+      body,
+      xHeaders
+    );
+
+    const { error: res_error } = Joi.any().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for upsertDiscountItems",
       });
       Logger({ level: "WARN", message: res_error });
     }

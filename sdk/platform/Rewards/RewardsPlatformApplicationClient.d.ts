@@ -5,12 +5,14 @@ declare class Rewards {
     applicationId: any;
     /**
      * @param {Object} arg - Arg object.
+     * @param {string} arg.id - Giveaway ID
      * @param {string} arg.audienceId - Audience id
      * @returns {Promise<GiveawayAudience>} - Success response
      * @summary: Get the Giveaway audience status
      * @description: Get giveaway audience status
      */
-    getGiveawayAudienceStatus({ audienceId }?: {
+    getGiveawayAudienceStatus({ id, audienceId }?: {
+        id: string;
         audienceId: string;
     }): Promise<GiveawayAudience>;
     /**
@@ -26,16 +28,12 @@ declare class Rewards {
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.name - The name given to the offer.
-     * @param {string} arg.cookie - User's session cookie. This cookie is set in
-     *   browser cookie when logged-in to fynd's authentication system i.e.
-     *   `Grimlock` or by using grimlock-backend SDK for backend implementation.
      * @returns {Promise<Offer>} - Success response
      * @summary: Get offer by name
      * @description: Use this API to get the offer details and configuration by entering the name of the offer.
      */
-    getOfferByName({ name, cookie }?: {
+    getOfferByName({ name }?: {
         name: string;
-        cookie: string;
     }): Promise<Offer>;
     /**
      * @param {Object} arg - Arg object.
@@ -47,6 +45,16 @@ declare class Rewards {
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.userId - User id
+     * @returns {Promise<UserRes>} - Success response
+     * @summary: Get user reward details
+     * @description: Use this API to get the user reward details
+     */
+    getUserDetails({ userId }?: {
+        userId: string;
+    }): Promise<UserRes>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {string} arg.userId - User id
      * @param {string} [arg.pageId] - PageID is the ID of the requested page.
      *   For first request it should be kept empty.
      * @param {number} [arg.pageSize] - The number of items to retrieve in each page.
@@ -54,7 +62,7 @@ declare class Rewards {
      * @summary: Get all transactions of reward points
      * @description: Use this API to get a list of points transactions.
      */
-    getUserPointsHistory({ userId, pageId, pageSize }?: {
+    getUserPointsHistory({ userId, pageId, pageSize, }?: {
         userId: string;
         pageId?: string;
         pageSize?: number;
@@ -133,7 +141,7 @@ declare class Rewards {
      * @summary: Update offer by name
      * @description: Use this API to update the offer details
      */
-    updateOfferByName({ name, body }?: {
+    updateOfferByName({ name, body, }?: {
         name: string;
         body: Offer;
     }): Promise<Offer>;
@@ -145,19 +153,9 @@ declare class Rewards {
      * @summary: Update user status
      * @description: Use this API to update the user status active/archive
      */
-    updateUserStatus({ userId, body }?: {
+    updateUserStatus({ userId, body, }?: {
         userId: string;
         body: AppUser;
     }): Promise<AppUser>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.userId - User id
-     * @returns {Promise<UserRes>} - Success response
-     * @summary: Get user reward details
-     * @description: Use this API to get the user reward details
-     */
-    user({ userId }?: {
-        userId: string;
-    }): Promise<UserRes>;
 }
 import Paginator = require("../../common/Paginator");

@@ -48,6 +48,8 @@ class OrderModel {
       applied_promos: Joi.array().items(OrderModel.AppliedPromos()),
       can_cancel: Joi.boolean(),
       can_return: Joi.boolean(),
+      currency_code: Joi.string().allow(""),
+      currency_symbol: Joi.string().allow(""),
       current_status: OrderModel.CurrentStatus(),
       delivery_date: Joi.string().allow(""),
       financial_breakup: Joi.array().items(OrderModel.FinancialBreakup()),
@@ -80,6 +82,8 @@ class OrderModel {
   }
   static BreakupValues() {
     return Joi.object({
+      currency_code: Joi.string().allow(""),
+      currency_symbol: Joi.string().allow(""),
       display: Joi.string().allow(""),
       name: Joi.string().allow(""),
       value: Joi.number(),
@@ -102,12 +106,6 @@ class OrderModel {
       shipment_id: Joi.string().allow(""),
     });
   }
-  static DataUpdates() {
-    return Joi.object({
-      entities: Joi.array().items(OrderModel.EntitiesDataUpdates()),
-      products: Joi.array().items(OrderModel.ProductsDataUpdates1()),
-    });
-  }
   static DeliveryAddress() {
     return Joi.object({
       address: Joi.string().allow(""),
@@ -119,6 +117,8 @@ class OrderModel {
       city: Joi.string().allow(""),
       contact_person: Joi.string().allow(""),
       country: Joi.string().allow(""),
+      country_iso_code: Joi.string().allow(""),
+      country_phone_code: Joi.string().allow(""),
       created_at: Joi.string().allow(""),
       email: Joi.string().allow(""),
       landmark: Joi.string().allow(""),
@@ -130,45 +130,6 @@ class OrderModel {
       state: Joi.string().allow(""),
       updated_at: Joi.string().allow(""),
       version: Joi.string().allow(""),
-    });
-  }
-  static EntitiesDataUpdates() {
-    return Joi.object({
-      data: Joi.any(),
-      filters: Joi.array().items(Joi.any()),
-    });
-  }
-  static EntitiesReasons() {
-    return Joi.object({
-      data: OrderModel.EntityReasonData(),
-      filters: Joi.array().items(Joi.any()),
-    });
-  }
-  static EntitiesReasons1() {
-    return Joi.object({
-      data: OrderModel.EntityReasonData1(),
-      filters: Joi.array().items(Joi.any()),
-    });
-  }
-  static EntityReasonData() {
-    return Joi.object({
-      reason_id: Joi.number(),
-      reason_text: Joi.string().allow(""),
-    });
-  }
-  static EntityReasonData1() {
-    return Joi.object({
-      reason_id: Joi.number(),
-      reason_text: Joi.string().allow(""),
-    });
-  }
-  static ErrorResponse() {
-    return Joi.object({
-      code: Joi.string().allow("").allow(null),
-      exception: Joi.string().allow("").allow(null),
-      message: Joi.string().allow("").allow(null),
-      stack_trace: Joi.string().allow("").allow(null),
-      status: Joi.number(),
     });
   }
   static FinancialBreakup() {
@@ -311,6 +272,8 @@ class OrderModel {
       cod_charges: Joi.number(),
       coupon_effective_discount: Joi.number(),
       coupon_value: Joi.number(),
+      currency_code: Joi.string().allow(""),
+      currency_symbol: Joi.string().allow(""),
       delivery_charge: Joi.number(),
       discount: Joi.number(),
       fynd_credits: Joi.number(),
@@ -324,82 +287,6 @@ class OrderModel {
       value_of_good: Joi.number(),
     });
   }
-  static Products() {
-    return Joi.object({
-      identifier: Joi.string().allow(""),
-      line_number: Joi.number(),
-      quantity: Joi.number(),
-    });
-  }
-  static Products1() {
-    return Joi.object({
-      identifier: Joi.string().allow(""),
-      line_number: Joi.number(),
-      quantity: Joi.number(),
-    });
-  }
-  static ProductsDataUpdates() {
-    return Joi.object({
-      data: Joi.any(),
-      filters: Joi.array().items(OrderModel.ProductsDataUpdatesFilters()),
-    });
-  }
-  static ProductsDataUpdates1() {
-    return Joi.object({
-      data: Joi.any(),
-      filters: Joi.array().items(OrderModel.ProductsDataUpdatesFilters1()),
-    });
-  }
-  static ProductsDataUpdatesFilters() {
-    return Joi.object({
-      identifier: Joi.string().allow(""),
-      line_number: Joi.number(),
-    });
-  }
-  static ProductsDataUpdatesFilters1() {
-    return Joi.object({
-      identifier: Joi.string().allow(""),
-      line_number: Joi.number(),
-    });
-  }
-  static ProductsReasons() {
-    return Joi.object({
-      data: OrderModel.ProductsReasonsData(),
-      filters: Joi.array().items(OrderModel.ProductsReasonsFilters()),
-    });
-  }
-  static ProductsReasons1() {
-    return Joi.object({
-      data: OrderModel.ProductsReasonsData1(),
-      filters: Joi.array().items(OrderModel.ProductsReasonsFilters1()),
-    });
-  }
-  static ProductsReasonsData() {
-    return Joi.object({
-      reason_id: Joi.number(),
-      reason_text: Joi.string().allow(""),
-    });
-  }
-  static ProductsReasonsData1() {
-    return Joi.object({
-      reason_id: Joi.number(),
-      reason_text: Joi.string().allow(""),
-    });
-  }
-  static ProductsReasonsFilters() {
-    return Joi.object({
-      identifier: Joi.string().allow(""),
-      line_number: Joi.number(),
-      quantity: Joi.number(),
-    });
-  }
-  static ProductsReasonsFilters1() {
-    return Joi.object({
-      identifier: Joi.string().allow(""),
-      line_number: Joi.number(),
-      quantity: Joi.number(),
-    });
-  }
   static Promise() {
     return Joi.object({
       show_promise: Joi.boolean(),
@@ -410,18 +297,6 @@ class OrderModel {
     return Joi.object({
       display_name: Joi.string().allow(""),
       id: Joi.number(),
-    });
-  }
-  static ReasonsData() {
-    return Joi.object({
-      entities: Joi.array().items(OrderModel.EntitiesReasons()),
-      products: Joi.array().items(OrderModel.ProductsReasons()),
-    });
-  }
-  static ReasonsData1() {
-    return Joi.object({
-      entities: Joi.array().items(OrderModel.EntitiesReasons1()),
-      products: Joi.array().items(OrderModel.ProductsReasons1()),
     });
   }
   static ResponseGetInvoiceShipment() {
@@ -438,11 +313,6 @@ class OrderModel {
       request_id: Joi.string().allow(""),
       resend_timer: Joi.number(),
       success: Joi.boolean(),
-    });
-  }
-  static ShipmentApplicationStatusResponse() {
-    return Joi.object({
-      statuses: Joi.array().items(OrderModel.StatusesBodyResponse()),
     });
   }
   static ShipmentBagReasons() {
@@ -505,6 +375,7 @@ class OrderModel {
       prices: OrderModel.Prices(),
       promise: OrderModel.Promise(),
       refund_details: Joi.any(),
+      return_meta: Joi.any(),
       returnable_date: Joi.string().allow(""),
       shipment_created_at: Joi.string().allow(""),
       shipment_id: Joi.string().allow(""),
@@ -518,22 +389,6 @@ class OrderModel {
       tracking_details: Joi.array().items(OrderModel.TrackingDetails()),
       traking_no: Joi.string().allow(""),
       user_info: OrderModel.ShipmentUserInfo(),
-    });
-  }
-  static ShipmentsRequest() {
-    return Joi.object({
-      data_updates: OrderModel.DataUpdates(),
-      identifier: Joi.string().allow("").required(),
-      products: Joi.array().items(OrderModel.Products()),
-      reasons: OrderModel.ReasonsData(),
-    });
-  }
-  static ShipmentsRequest1() {
-    return Joi.object({
-      data_updates: OrderModel.DataUpdates(),
-      identifier: Joi.string().allow("").required(),
-      products: Joi.array().items(OrderModel.Products1()),
-      reasons: OrderModel.ReasonsData1(),
     });
   }
   static ShipmentStatus() {
@@ -562,18 +417,6 @@ class OrderModel {
       mobile: Joi.string().allow(""),
     });
   }
-  static StatuesRequest() {
-    return Joi.object({
-      exclude_bags_next_state: Joi.string().allow(""),
-      shipments: Joi.array().items(OrderModel.ShipmentsRequest1()),
-      status: Joi.string().allow(""),
-    });
-  }
-  static StatusesBodyResponse() {
-    return Joi.object({
-      shipments: Joi.array().items(Joi.any()),
-    });
-  }
   static TimeStampData() {
     return Joi.object({
       max: Joi.string().allow(""),
@@ -599,15 +442,6 @@ class OrderModel {
       status: Joi.string().allow(""),
       time: Joi.string().allow(""),
       tracking_details: Joi.array().items(OrderModel.NestedTrackingDetails()),
-    });
-  }
-  static UpdateShipmentStatusRequest() {
-    return Joi.object({
-      force_transition: Joi.boolean(),
-      lock_after_transition: Joi.boolean(),
-      statuses: Joi.array().items(OrderModel.StatuesRequest()),
-      task: Joi.boolean(),
-      unlock_before_transition: Joi.boolean(),
     });
   }
   static UserInfo() {

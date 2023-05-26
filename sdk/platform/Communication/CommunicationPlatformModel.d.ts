@@ -3,6 +3,7 @@ declare class CommunicationModel {
     static Audience(): any;
     static AudienceReq(): any;
     static Audiences(): any;
+    static BadRequestSchema(): any;
     static BigqueryHeadersReq(): any;
     static BigqueryHeadersRes(): any;
     static BigqueryHeadersResHeaders(): any;
@@ -45,6 +46,7 @@ declare class CommunicationModel {
     static LogPushnotification(): any;
     static Logs(): any;
     static MetaStructure(): any;
+    static NotFound(): any;
     static Notification(): any;
     static Page(): any;
     static PayloadEmailProviderStructure(): any;

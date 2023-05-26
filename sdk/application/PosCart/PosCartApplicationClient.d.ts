@@ -191,19 +191,17 @@ declare class PosCart {
      * @param {number} [arg.assignCardId] -
      * @param {string} [arg.areaCode] -
      * @param {boolean} [arg.buyNow] -
-     * @param {boolean} [arg.emptyCart] -
      * @returns {Promise<CartDetailResponse>} - Success response
      * @summary: Fetch all items added to the cart
      * @description: Use this API to get details of all the items added to a cart.
      */
-    getCart({ id, i, b, assignCardId, areaCode, buyNow, emptyCart }?: {
+    getCart({ id, i, b, assignCardId, areaCode, buyNow }?: {
         id?: string;
         i?: boolean;
         b?: boolean;
         assignCardId?: number;
         areaCode?: string;
         buyNow?: boolean;
-        emptyCart?: boolean;
     }): Promise<CartDetailResponse>;
     /**
      * @param {Object} arg - Arg object.

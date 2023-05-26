@@ -20,7 +20,6 @@ class ConfigurationModel {
     return Joi.object({
       bulk_coupons: Joi.boolean(),
       delivery_charges: ConfigurationModel.DeliveryCharges(),
-      empty_cart: Joi.boolean(),
       enabled: Joi.boolean(),
       max_cart_items: Joi.number(),
       min_cart_value: Joi.number(),
@@ -105,6 +104,7 @@ class ConfigurationModel {
     return Joi.object({
       cart: ConfigurationModel.AppCartConfig(),
       comms_enabled: Joi.boolean(),
+      communication: ConfigurationModel.CommunicationConfig(),
       loyalty_points: ConfigurationModel.LoyaltyPointsConfig(),
       payment: ConfigurationModel.AppPaymentConfig(),
       reward_points: ConfigurationModel.RewardPointsConfig(),
@@ -200,6 +200,7 @@ class ConfigurationModel {
       business: Joi.string().allow(""),
       cart: ConfigurationModel.AppCartConfig(),
       comms_enabled: Joi.boolean(),
+      communication: ConfigurationModel.CommunicationConfig(),
       created_at: Joi.string().allow(""),
       inventory: ConfigurationModel.AppInventoryConfig(),
       logistics: ConfigurationModel.AppLogisticsConfig(),
@@ -388,6 +389,18 @@ class ConfigurationModel {
       listing_price: ConfigurationModel.ListingPriceFeature(),
       revenue_engine: ConfigurationModel.RevenueEngineFeature(),
       reward_points: ConfigurationModel.RewardPointsConfig(),
+    });
+  }
+  static CommsConfig() {
+    return Joi.object({
+      enabled: Joi.boolean(),
+    });
+  }
+  static CommunicationConfig() {
+    return Joi.object({
+      email: ConfigurationModel.CommsConfig(),
+      sms: ConfigurationModel.CommsConfig(),
+      voice: ConfigurationModel.CommsConfig(),
     });
   }
   static CommunicationOptinDialogFeature() {

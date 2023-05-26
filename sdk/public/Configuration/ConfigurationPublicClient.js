@@ -5,6 +5,7 @@ const Paginator = require("../../common/Paginator");
 const ConfigurationValidator = require("./ConfigurationPublicValidator");
 const ConfigurationModel = require("./ConfigurationPublicModel");
 const { Logger } = require("./../../common/Logger");
+const Joi = require("joi");
 
 class Configuration {
   constructor(_conf) {
@@ -167,4 +168,5 @@ class Configuration {
     return response;
   }
 }
+
 module.exports = Configuration;

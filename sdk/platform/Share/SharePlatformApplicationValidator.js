@@ -1,6 +1,6 @@
 const Joi = require("joi");
-const ShareModel = require("./SharePlatformModel");
 
+const ShareModel = require("./SharePlatformModel");
 class ShareValidator {
   static createShortLink() {
     return Joi.object({
@@ -11,6 +11,12 @@ class ShareValidator {
   static getShortLinkByHash() {
     return Joi.object({
       hash: Joi.string().allow("").required(),
+    }).required();
+  }
+
+  static getShortLinkClickStats() {
+    return Joi.object({
+      surlId: Joi.string().allow("").required(),
     }).required();
   }
 

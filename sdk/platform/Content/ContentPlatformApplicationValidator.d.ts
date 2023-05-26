@@ -25,8 +25,10 @@ declare class ContentValidator {
     static deleteSlideshow(): any;
     static editDataLoader(): any;
     static editInjectableTag(): any;
+    static generateSEOTitle(): any;
     static getAnnouncementById(): any;
     static getAnnouncementsList(): any;
+    static getBlogBySlug(): any;
     static getBlogs(): any;
     static getComponentById(): any;
     static getDataLoaders(): any;

@@ -114,6 +114,20 @@ declare class Cart {
     }): Paginator;
     /**
      * @param {Object} arg - Arg object.
+     * @param {string} [arg.id] -
+     * @param {boolean} [arg.i] -
+     * @param {boolean} [arg.b] -
+     * @returns {Promise<CartDetailResponse>} - Success response
+     * @summary: Fetch all items added to the cart
+     * @description: Use this API to get details of all the items added to a cart.
+     */
+    getAbandonedCartDetails({ id, i, b }?: {
+        id?: string;
+        i?: boolean;
+        b?: boolean;
+    }): Promise<CartDetailResponse>;
+    /**
+     * @param {Object} arg - Arg object.
      * @param {string} arg.id -
      * @returns {Promise<CouponUpdate>} - Success response
      * @summary: Get with single coupon details or coupon list
@@ -122,6 +136,23 @@ declare class Cart {
     getCouponById({ id }?: {
         id: string;
     }): Promise<CouponUpdate>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {string} [arg.code] -
+     * @returns {Promise<Object>} - Success response
+     * @summary: Check if coupon is already created with coupon code
+     * @description: Check if sent coupon code is already existing coupon code. As coupon code is to be unique.
+     */
+    getCouponCodeExists({ code }?: {
+        code?: string;
+    }): Promise<any>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @returns {Promise<Object>} - Success response
+     * @summary: Get coupon options enums with display values
+     * @description: Get coupon enum values for fields in valid coupon object. Used for front end to create, update and filter coupon lists via fields
+     */
+    getCouponOptionValues({}?: any): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @param {number} [arg.pageNo] -
@@ -173,13 +204,6 @@ declare class Cart {
     }): Paginator;
     /**
      * @param {Object} arg - Arg object.
-     * @returns {Promise<ActivePromosResponse>} - Success response
-     * @summary: Fetch all promos that are set as active
-     * @description: Use this API to get list of all the active promos/coupons.
-     */
-    getPromosCouponConfig({}?: any): Promise<ActivePromosResponse>;
-    /**
-     * @param {Object} arg - Arg object.
      * @param {string} arg.id -
      * @returns {Promise<PromotionUpdate>} - Success response
      * @summary: Get with single promotion details or promotion list
@@ -190,10 +214,20 @@ declare class Cart {
     }): Promise<PromotionUpdate>;
     /**
      * @param {Object} arg - Arg object.
+     * @param {string} [arg.code] -
+     * @returns {Promise<Object>} - Success response
+     * @summary: Check if promotion is already created with promotion code
+     * @description: Check if sent promotion code is already existing promotion code. As promotion code is to be unique.
+     */
+    getPromotionCodeExists({ code }?: {
+        code?: string;
+    }): Promise<any>;
+    /**
+     * @param {Object} arg - Arg object.
      * @param {number} [arg.pageNo] -
      * @param {number} [arg.pageSize] -
      * @param {string} [arg.q] -
-     * @param {string} [arg.status] -
+     * @param {boolean} [arg.isActive] -
      * @param {string} [arg.promoGroup] -
      * @param {string} [arg.promotionType] -
      * @param {string} [arg.fpPanel] -
@@ -202,11 +236,11 @@ declare class Cart {
      * @summary: Get promotion list
      * @description: Get promotion list with pagination
      */
-    getPromotions({ pageNo, pageSize, q, status, promoGroup, promotionType, fpPanel, promotionId, }?: {
+    getPromotions({ pageNo, pageSize, q, isActive, promoGroup, promotionType, fpPanel, promotionId, }?: {
         pageNo?: number;
         pageSize?: number;
         q?: string;
-        status?: string;
+        isActive?: boolean;
         promoGroup?: string;
         promotionType?: string;
         fpPanel?: string;
@@ -218,7 +252,7 @@ declare class Cart {
      * @param {string} arg.applicationId - Current Application _id
      * @param {number} [arg.pageSize] -
      * @param {string} [arg.q] -
-     * @param {string} [arg.status] -
+     * @param {boolean} [arg.isActive] -
      * @param {string} [arg.promoGroup] -
      * @param {string} [arg.promotionType] -
      * @param {string} [arg.fpPanel] -
@@ -226,27 +260,17 @@ declare class Cart {
      * @summary: Get promotion list
      * @description: Get promotion list with pagination
      */
-    getPromotionsPaginator({ companyId, applicationId, pageSize, q, status, promoGroup, promotionType, fpPanel, promotionId, }?: {
+    getPromotionsPaginator({ companyId, applicationId, pageSize, q, isActive, promoGroup, promotionType, fpPanel, promotionId, }?: {
         companyId: string;
         applicationId: string;
         pageSize?: number;
         q?: string;
-        status?: string;
+        isActive?: boolean;
         promoGroup?: string;
         promotionType?: string;
         fpPanel?: string;
         promotionId?: string;
     }): Paginator;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {OverrideCheckoutReq} arg.body
-     * @returns {Promise<OverrideCheckoutResponse>} - Success response
-     * @summary: Create Fynd order with overriding cart details
-     * @description: Generate Fynd order while overriding cart details sent with provided `cart_items`
-     */
-    overrideCart({ body }?: {
-        body: OverrideCheckoutReq;
-    }): Promise<OverrideCheckoutResponse>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.cartId - Current Cart _id

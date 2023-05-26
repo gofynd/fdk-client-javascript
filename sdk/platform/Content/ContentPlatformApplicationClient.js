@@ -1,9 +1,10 @@
-const Paginator = require("../../common/Paginator");
 const PlatformAPIClient = require("../PlatformAPIClient");
 const { FDKClientValidationError } = require("../../common/FDKError");
+const Paginator = require("../../common/Paginator");
 const ContentValidator = require("./ContentPlatformApplicationValidator");
 const ContentModel = require("./ContentPlatformModel");
 const { Logger } = require("./../../common/Logger");
+const Joi = require("joi");
 
 class Content {
   constructor(config, applicationId) {
@@ -113,7 +114,7 @@ class Content {
     const response = await PlatformAPIClient.execute(
       this.config,
       "post",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/faq/category/${categoryId}/faqs`,
+      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/faq/category/${categoryId}/faq`,
       query_params,
       body
     );
@@ -1532,6 +1533,71 @@ class Content {
 
   /**
    * @param {Object} arg - Arg object.
+   * @param {GenerationEntityType} arg.type - String representing the type of
+   *   SEO content to be generated. Possible values are: title, description
+   * @param {GenerateSEOContent} arg.body
+   * @returns {Promise<GeneratedSEOContent>} - Success response
+   * @summary: Get SEO meta tag title for content
+   * @description: Use this API to get GPT3 generated SEO meta tag title for content
+   */
+  async generateSEOTitle({ type, body } = {}) {
+    const { error } = ContentValidator.generateSEOTitle().validate(
+      {
+        type,
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = ContentValidator.generateSEOTitle().validate(
+      {
+        type,
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for generateSEOTitle",
+      });
+      Logger({ level: "WARN", message: warrning });
+    }
+
+    const query_params = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/generate-seo/${type}`,
+      query_params,
+      body
+    );
+
+    const {
+      error: res_error,
+    } = ContentModel.GeneratedSEOContent().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for generateSEOTitle",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
    * @param {string} arg.announcementId - ID allotted to the announcement.
    * @returns {Promise<AdminAnnouncementSchema>} - Success response
    * @summary: Get announcement by ID
@@ -1692,6 +1758,66 @@ class Content {
     };
     paginator.setCallback(callback.bind(this));
     return paginator;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.slug - A short, human-readable, URL-friendly
+   *   identifier of a blog page. You can get slug value of a blog from `getBlogs` API.
+   * @returns {Promise<BlogSchema>} - Success response
+   * @summary: Get blog by slug
+   * @description: Use this API to retrieve the components of a blog, such as title, slug, feature image, content, schedule, publish status, author, etc.
+   */
+  async getBlogBySlug({ slug } = {}) {
+    const { error } = ContentValidator.getBlogBySlug().validate(
+      {
+        slug,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = ContentValidator.getBlogBySlug().validate(
+      {
+        slug,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getBlogBySlug",
+      });
+      Logger({ level: "WARN", message: warrning });
+    }
+
+    const query_params = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/content/v2.0/company/${this.config.companyId}/application/${this.applicationId}/blogs/${slug}`,
+      query_params,
+      undefined
+    );
+
+    const { error: res_error } = ContentModel.BlogSchema().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getBlogBySlug",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
@@ -2617,7 +2743,7 @@ class Content {
    * @param {string} arg.slug - A short, human-readable, URL-friendly
    *   identifier of a page. You can get slug value of a page from `getPages` API.
    * @returns {Promise<PageSchema>} - Success response
-   * @summary: Get pages by component Id
+   * @summary: Get page by slug
    * @description: Use this API to retrieve the components of a page, such as its title, seo, publish status, feature image, tags, schedule, etc.
    */
   async getPageBySlug({ slug } = {}) {
@@ -4446,4 +4572,5 @@ class Content {
     return response;
   }
 }
+
 module.exports = Content;

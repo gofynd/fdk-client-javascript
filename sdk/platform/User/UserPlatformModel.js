@@ -72,6 +72,13 @@ class UserModel {
       code: Joi.string().allow(""),
     });
   }
+  static CreateUserGroupSchema() {
+    return Joi.object({
+      description: Joi.string().allow("").required(),
+      file_url: Joi.string().allow("").required(),
+      name: Joi.string().allow("").required(),
+    });
+  }
   static CreateUserRequestSchema() {
     return Joi.object({
       email: Joi.string().allow(""),
@@ -547,9 +554,18 @@ class UserModel {
       type: Joi.string().allow(""),
     });
   }
+  static SessionListResponseInfo() {
+    return Joi.object({
+      domain: Joi.string().allow(""),
+      expire_in: Joi.string().allow(""),
+      ip: Joi.string().allow(""),
+      session_id: Joi.string().allow(""),
+      user_agent: Joi.string().allow(""),
+    });
+  }
   static SessionListResponseSchema() {
     return Joi.object({
-      items: Joi.array().items(Joi.string().allow("")),
+      items: Joi.array().items(UserModel.SessionListResponseInfo()),
     });
   }
   static SessionListSuccess() {
@@ -605,18 +621,64 @@ class UserModel {
       old_password: Joi.string().allow(""),
     });
   }
+  static UpdateUserGroupSchema() {
+    return Joi.object({
+      description: Joi.string().allow(""),
+      file_url: Joi.string().allow(""),
+      name: Joi.string().allow(""),
+    });
+  }
   static UpdateUserRequestSchema() {
     return Joi.object({
+      emails: Joi.array().items(UserModel.UserEmails()),
       external_id: Joi.string().allow(""),
       first_name: Joi.string().allow(""),
       gender: Joi.string().allow(""),
       last_name: Joi.string().allow(""),
       meta: Joi.any(),
+      phone_numbers: Joi.array().items(UserModel.UserPhoneNumbers()),
+    });
+  }
+  static UserEmails() {
+    return Joi.object({
+      active: Joi.boolean(),
+      email: Joi.string().allow(""),
+      primary: Joi.boolean(),
+      verified: Joi.boolean(),
+    });
+  }
+  static UserGroupListResponseSchema() {
+    return Joi.object({
+      items: Joi.array().items(UserModel.UserGroupResponseSchema()),
+      page: UserModel.PaginationSchema(),
+    });
+  }
+  static UserGroupResponseSchema() {
+    return Joi.object({
+      __v: Joi.number(),
+      _id: Joi.string().allow(""),
+      application_id: Joi.string().allow(""),
+      created_at: Joi.string().allow(""),
+      description: Joi.string().allow(""),
+      file_url: Joi.string().allow(""),
+      modified_at: Joi.string().allow(""),
+      name: Joi.string().allow(""),
+      status: Joi.string().allow(""),
+      uid: Joi.number(),
     });
   }
   static UserObjectSchema() {
     return Joi.object({
       user: UserModel.UserSchema(),
+    });
+  }
+  static UserPhoneNumbers() {
+    return Joi.object({
+      active: Joi.boolean(),
+      country_code: Joi.string().allow(""),
+      phone: Joi.string().allow(""),
+      primary: Joi.boolean(),
+      verified: Joi.boolean(),
     });
   }
   static UserSchema() {

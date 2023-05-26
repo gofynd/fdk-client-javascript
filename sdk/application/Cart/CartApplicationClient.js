@@ -1,10 +1,11 @@
-const APIClient = require("../ApplicationAPIClient");
+const ApplicationAPIClient = require("../ApplicationAPIClient");
+const { FDKClientValidationError } = require("../../common/FDKError");
 const constructUrl = require("../constructUrl");
 const Paginator = require("../../common/Paginator");
-const { FDKClientValidationError } = require("../../common/FDKError");
 const CartValidator = require("./CartApplicationValidator");
 const CartModel = require("./CartApplicationModel");
 const { Logger } = require("./../../common/Logger");
+const Joi = require("joi");
 
 class Cart {
   constructor(_conf) {
@@ -15,7 +16,6 @@ class Cart {
       applyCoupon: "/service/application/cart/v1.0/coupon",
       applyRewardPoints: "/service/application/cart/v1.0/redeem/points/",
       checkoutCart: "/service/application/cart/v1.0/checkout",
-      deleteCart: "/service/application/cart/v1.0/cart_archive",
       getAddressById: "/service/application/cart/v1.0/address/{id}",
       getAddresses: "/service/application/cart/v1.0/address",
       getBulkDiscountOffers: "/service/application/cart/v1.0/bulk-price",
@@ -89,7 +89,7 @@ class Cart {
 
     const xHeaders = {};
 
-    const response = await APIClient.execute(
+    const response = await ApplicationAPIClient.execute(
       this._conf,
       "post",
       constructUrl({
@@ -160,7 +160,7 @@ class Cart {
 
     const xHeaders = {};
 
-    const response = await APIClient.execute(
+    const response = await ApplicationAPIClient.execute(
       this._conf,
       "post",
       constructUrl({
@@ -233,7 +233,7 @@ class Cart {
 
     const xHeaders = {};
 
-    const response = await APIClient.execute(
+    const response = await ApplicationAPIClient.execute(
       this._conf,
       "post",
       constructUrl({
@@ -304,7 +304,7 @@ class Cart {
 
     const xHeaders = {};
 
-    const response = await APIClient.execute(
+    const response = await ApplicationAPIClient.execute(
       this._conf,
       "post",
       constructUrl({
@@ -369,7 +369,7 @@ class Cart {
 
     const xHeaders = {};
 
-    const response = await APIClient.execute(
+    const response = await ApplicationAPIClient.execute(
       this._conf,
       "post",
       constructUrl({
@@ -392,70 +392,6 @@ class Cart {
       Logger({
         level: "WARN",
         message: "Response Validation Warnnings for checkoutCart",
-      });
-      Logger({ level: "WARN", message: res_error });
-    }
-
-    return response;
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {number} [arg.id] - The unique identifier of the cart.
-   * @returns {Promise<DeleteCartDetailResponse>} - Success response
-   * @summary: Delete cart once user made successful checkout
-   * @description: Use this API to delete the cart.
-   */
-  async deleteCart({ id } = {}) {
-    const { error } = CartValidator.deleteCart().validate(
-      { id },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = CartValidator.deleteCart().validate(
-      { id },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: "Parameter Validation warrnings for deleteCart",
-      });
-      Logger({ level: "WARN", message: warrning });
-    }
-
-    const query_params = {};
-    query_params["id"] = id;
-
-    const xHeaders = {};
-
-    const response = await APIClient.execute(
-      this._conf,
-      "put",
-      constructUrl({
-        url: this._urls["deleteCart"],
-        params: {},
-      }),
-      query_params,
-      undefined,
-      xHeaders
-    );
-
-    const {
-      error: res_error,
-    } = CartModel.DeleteCartDetailResponse().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
-
-    if (res_error) {
-      Logger({
-        level: "WARN",
-        message: "Response Validation Warnnings for deleteCart",
       });
       Logger({ level: "WARN", message: res_error });
     }
@@ -516,7 +452,7 @@ class Cart {
 
     const xHeaders = {};
 
-    const response = await APIClient.execute(
+    const response = await ApplicationAPIClient.execute(
       this._conf,
       "get",
       constructUrl({
@@ -595,7 +531,7 @@ class Cart {
 
     const xHeaders = {};
 
-    const response = await APIClient.execute(
+    const response = await ApplicationAPIClient.execute(
       this._conf,
       "get",
       constructUrl({
@@ -667,7 +603,7 @@ class Cart {
 
     const xHeaders = {};
 
-    const response = await APIClient.execute(
+    const response = await ApplicationAPIClient.execute(
       this._conf,
       "get",
       constructUrl({
@@ -705,14 +641,13 @@ class Cart {
    * @param {number} [arg.assignCardId] -
    * @param {string} [arg.areaCode] -
    * @param {boolean} [arg.buyNow] -
-   * @param {boolean} [arg.emptyCart] -
    * @returns {Promise<CartDetailResponse>} - Success response
    * @summary: Fetch all items added to the cart
    * @description: Use this API to get details of all the items added to a cart.
    */
-  async getCart({ id, i, b, assignCardId, areaCode, buyNow, emptyCart } = {}) {
+  async getCart({ id, i, b, assignCardId, areaCode, buyNow } = {}) {
     const { error } = CartValidator.getCart().validate(
-      { id, i, b, assignCardId, areaCode, buyNow, emptyCart },
+      { id, i, b, assignCardId, areaCode, buyNow },
       { abortEarly: false, allowUnknown: true }
     );
     if (error) {
@@ -721,7 +656,7 @@ class Cart {
 
     // Showing warrnings if extra unknown parameters are found
     const { error: warrning } = CartValidator.getCart().validate(
-      { id, i, b, assignCardId, areaCode, buyNow, emptyCart },
+      { id, i, b, assignCardId, areaCode, buyNow },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
@@ -739,11 +674,10 @@ class Cart {
     query_params["assign_card_id"] = assignCardId;
     query_params["area_code"] = areaCode;
     query_params["buy_now"] = buyNow;
-    query_params["empty_cart"] = emptyCart;
 
     const xHeaders = {};
 
-    const response = await APIClient.execute(
+    const response = await ApplicationAPIClient.execute(
       this._conf,
       "get",
       constructUrl({
@@ -807,7 +741,7 @@ class Cart {
 
     const xHeaders = {};
 
-    const response = await APIClient.execute(
+    const response = await ApplicationAPIClient.execute(
       this._conf,
       "head",
       constructUrl({
@@ -867,7 +801,7 @@ class Cart {
 
     const xHeaders = {};
 
-    const response = await APIClient.execute(
+    const response = await ApplicationAPIClient.execute(
       this._conf,
       "post",
       constructUrl({
@@ -930,7 +864,7 @@ class Cart {
 
     const xHeaders = {};
 
-    const response = await APIClient.execute(
+    const response = await ApplicationAPIClient.execute(
       this._conf,
       "get",
       constructUrl({
@@ -996,7 +930,7 @@ class Cart {
 
     const xHeaders = {};
 
-    const response = await APIClient.execute(
+    const response = await ApplicationAPIClient.execute(
       this._conf,
       "get",
       constructUrl({
@@ -1062,7 +996,7 @@ class Cart {
 
     const xHeaders = {};
 
-    const response = await APIClient.execute(
+    const response = await ApplicationAPIClient.execute(
       this._conf,
       "get",
       constructUrl({
@@ -1136,7 +1070,7 @@ class Cart {
 
     const xHeaders = {};
 
-    const response = await APIClient.execute(
+    const response = await ApplicationAPIClient.execute(
       this._conf,
       "get",
       constructUrl({
@@ -1206,7 +1140,7 @@ class Cart {
 
     const xHeaders = {};
 
-    const response = await APIClient.execute(
+    const response = await ApplicationAPIClient.execute(
       this._conf,
       "get",
       constructUrl({
@@ -1245,16 +1179,13 @@ class Cart {
    * @param {string} [arg.addressId] - ID allotted to the selected address
    * @param {string} [arg.areaCode] - The PIN Code of the destination address,
    *   e.g. 400059
-   * @param {string} [arg.orderType] - The order type of shipment HomeDelivery
-   *   - If the customer wants the order home-delivered PickAtStore - If the
-   *   customer wants the handover of an order at the store itself.
    * @returns {Promise<CartShipmentsResponse>} - Success response
    * @summary: Get delivery date and options before checkout
    * @description: Use this API to get shipment details, expected delivery date, items and price breakup of the shipment.
    */
-  async getShipments({ p, id, buyNow, addressId, areaCode, orderType } = {}) {
+  async getShipments({ p, id, buyNow, addressId, areaCode } = {}) {
     const { error } = CartValidator.getShipments().validate(
-      { p, id, buyNow, addressId, areaCode, orderType },
+      { p, id, buyNow, addressId, areaCode },
       { abortEarly: false, allowUnknown: true }
     );
     if (error) {
@@ -1263,7 +1194,7 @@ class Cart {
 
     // Showing warrnings if extra unknown parameters are found
     const { error: warrning } = CartValidator.getShipments().validate(
-      { p, id, buyNow, addressId, areaCode, orderType },
+      { p, id, buyNow, addressId, areaCode },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
@@ -1280,11 +1211,10 @@ class Cart {
     query_params["buy_now"] = buyNow;
     query_params["address_id"] = addressId;
     query_params["area_code"] = areaCode;
-    query_params["order_type"] = orderType;
 
     const xHeaders = {};
 
-    const response = await APIClient.execute(
+    const response = await ApplicationAPIClient.execute(
       this._conf,
       "get",
       constructUrl({
@@ -1347,7 +1277,7 @@ class Cart {
 
     const xHeaders = {};
 
-    const response = await APIClient.execute(
+    const response = await ApplicationAPIClient.execute(
       this._conf,
       "delete",
       constructUrl({
@@ -1413,7 +1343,7 @@ class Cart {
 
     const xHeaders = {};
 
-    const response = await APIClient.execute(
+    const response = await ApplicationAPIClient.execute(
       this._conf,
       "delete",
       constructUrl({
@@ -1484,7 +1414,7 @@ class Cart {
 
     const xHeaders = {};
 
-    const response = await APIClient.execute(
+    const response = await ApplicationAPIClient.execute(
       this._conf,
       "post",
       constructUrl({
@@ -1551,7 +1481,7 @@ class Cart {
 
     const xHeaders = {};
 
-    const response = await APIClient.execute(
+    const response = await ApplicationAPIClient.execute(
       this._conf,
       "put",
       constructUrl({
@@ -1615,7 +1545,7 @@ class Cart {
 
     const xHeaders = {};
 
-    const response = await APIClient.execute(
+    const response = await ApplicationAPIClient.execute(
       this._conf,
       "put",
       constructUrl({
@@ -1688,7 +1618,7 @@ class Cart {
 
     const xHeaders = {};
 
-    const response = await APIClient.execute(
+    const response = await ApplicationAPIClient.execute(
       this._conf,
       "put",
       constructUrl({
@@ -1755,7 +1685,7 @@ class Cart {
 
     const xHeaders = {};
 
-    const response = await APIClient.execute(
+    const response = await ApplicationAPIClient.execute(
       this._conf,
       "put",
       constructUrl({
@@ -1820,7 +1750,7 @@ class Cart {
 
     const xHeaders = {};
 
-    const response = await APIClient.execute(
+    const response = await ApplicationAPIClient.execute(
       this._conf,
       "post",
       constructUrl({
@@ -1922,7 +1852,7 @@ class Cart {
 
     const xHeaders = {};
 
-    const response = await APIClient.execute(
+    const response = await ApplicationAPIClient.execute(
       this._conf,
       "get",
       constructUrl({

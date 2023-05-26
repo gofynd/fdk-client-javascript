@@ -93,7 +93,6 @@ class PosCartValidator {
       assignCardId: Joi.number(),
       areaCode: Joi.string().allow(""),
       buyNow: Joi.boolean(),
-      emptyCart: Joi.boolean(),
     });
   }
 

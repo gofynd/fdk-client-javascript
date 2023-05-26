@@ -23,13 +23,14 @@ Catalog - Platform Front API's' API's allows you to access list of products, pri
 * [createCustomKeyword](#createcustomkeyword)
 * [createDepartments](#createdepartments)
 * [createGroupConfiguration](#creategroupconfiguration)
-* [createHsnCode](#createhsncode)
+* [createInventoryExport](#createinventoryexport)
 * [createInventoryExportJob](#createinventoryexportjob)
 * [createListingConfiguration](#createlistingconfiguration)
 * [createMarketplaceOptin](#createmarketplaceoptin)
 * [createProduct](#createproduct)
 * [createProductAssetsInBulk](#createproductassetsinbulk)
 * [createProductBundle](#createproductbundle)
+* [createProductExportJob](#createproductexportjob)
 * [createProductsInBulk](#createproductsinbulk)
 * [createSizeGuide](#createsizeguide)
 * [deleteAutocompleteKeyword](#deleteautocompletekeyword)
@@ -48,7 +49,6 @@ Catalog - Platform Front API's' API's allows you to access list of products, pri
 * [editProduct](#editproduct)
 * [exportInventoryConfig](#exportinventoryconfig)
 * [getAllCollections](#getallcollections)
-* [getAllHsnCodes](#getallhsncodes)
 * [getAllProductHsnCodes](#getallproducthsncodes)
 * [getAllSearchKeyword](#getallsearchkeyword)
 * [getAppInventory](#getappinventory)
@@ -95,6 +95,7 @@ Catalog - Platform Front API's' API's allows you to access list of products, pri
 * [getProductBundle](#getproductbundle)
 * [getProductBundleDetail](#getproductbundledetail)
 * [getProductDetailBySlug](#getproductdetailbyslug)
+* [getProductExportJobs](#getproductexportjobs)
 * [getProductSize](#getproductsize)
 * [getProductTags](#getproducttags)
 * [getProductValidation](#getproductvalidation)
@@ -110,6 +111,7 @@ Catalog - Platform Front API's' API's allows you to access list of products, pri
 * [listCategories](#listcategories)
 * [listDepartmentsData](#listdepartmentsdata)
 * [listHSNCodes](#listhsncodes)
+* [listInventoryExport](#listinventoryexport)
 * [listProductTemplate](#listproducttemplate)
 * [listProductTemplateCategories](#listproducttemplatecategories)
 * [listProductTemplateExportDetails](#listproducttemplateexportdetails)
@@ -151,11 +153,11 @@ Add items to a collection
 
 ```javascript
 // Promise
-const promise = client.application("<APPLICATION_ID>").catalog.addCollectionItems({  id : value,
+const promise = platformClient.application("<APPLICATION_ID>").catalog.addCollectionItems({  id : value,
  body : value });
 
 // Async/Await
-const data = await client.application("<APPLICATION_ID>").catalog.addCollectionItems({  id : value,
+const data = await platformClient.application("<APPLICATION_ID>").catalog.addCollectionItems({  id : value,
  body : value });
 ```
 
@@ -166,7 +168,7 @@ const data = await client.application("<APPLICATION_ID>").catalog.addCollectionI
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
 | id | string | yes | A `id` is a unique identifier of a collection. |  
-| body | [CollectionItemRequest](#CollectionItemRequest) | yes | Request body |
+| body | [CollectionItemUpdate](#CollectionItemUpdate) | yes | Request body |
 
 
 Adds items to a collection specified by its `id`. See `CollectionItemRequest` for the list of attributes needed to add items to an collection.
@@ -211,12 +213,12 @@ Add Inventory for particular size and store.
 
 ```javascript
 // Promise
-const promise = client.catalog.addInventory({  itemId : value,
+const promise = platformClient.catalog.addInventory({  itemId : value,
  size : value,
  body : value });
 
 // Async/Await
-const data = await client.catalog.addInventory({  itemId : value,
+const data = await platformClient.catalog.addInventory({  itemId : value,
  size : value,
  body : value });
 ```
@@ -274,10 +276,10 @@ All Sizes for a given Product
 
 ```javascript
 // Promise
-const promise = client.catalog.allSizes({  itemId : value });
+const promise = platformClient.catalog.allSizes({  itemId : value });
 
 // Async/Await
-const data = await client.catalog.allSizes({  itemId : value });
+const data = await platformClient.catalog.allSizes({  itemId : value });
 ```
 
 
@@ -349,10 +351,10 @@ Bulk Create or Update Hsn Code.
 
 ```javascript
 // Promise
-const promise = client.catalog.bulkHsnCode({  body : value });
+const promise = platformClient.catalog.bulkHsnCode({  body : value });
 
 // Async/Await
-const data = await client.catalog.bulkHsnCode({  body : value });
+const data = await platformClient.catalog.bulkHsnCode({  body : value });
 ```
 
 
@@ -406,11 +408,11 @@ Create products in bulk associated with given batch Id.
 
 ```javascript
 // Promise
-const promise = client.catalog.createBulkInventory({  batchId : value,
+const promise = platformClient.catalog.createBulkInventory({  batchId : value,
  body : value });
 
 // Async/Await
-const data = await client.catalog.createBulkInventory({  batchId : value,
+const data = await platformClient.catalog.createBulkInventory({  batchId : value,
  body : value });
 ```
 
@@ -466,10 +468,10 @@ Create a Bulk Inventory upload Job.
 
 ```javascript
 // Promise
-const promise = client.catalog.createBulkInventoryJob({  body : value });
+const promise = platformClient.catalog.createBulkInventoryJob({  body : value });
 
 // Async/Await
-const data = await client.catalog.createBulkInventoryJob({  body : value });
+const data = await platformClient.catalog.createBulkInventoryJob({  body : value });
 ```
 
 
@@ -523,10 +525,10 @@ Create a Bulk product to upload job.
 
 ```javascript
 // Promise
-const promise = client.catalog.createBulkProductUploadJob({  body : value });
+const promise = platformClient.catalog.createBulkProductUploadJob({  body : value });
 
 // Async/Await
-const data = await client.catalog.createBulkProductUploadJob({  body : value });
+const data = await platformClient.catalog.createBulkProductUploadJob({  body : value });
 ```
 
 
@@ -580,10 +582,10 @@ Create product categories
 
 ```javascript
 // Promise
-const promise = client.catalog.createCategories({  body : value });
+const promise = platformClient.catalog.createCategories({  body : value });
 
 // Async/Await
-const data = await client.catalog.createCategories({  body : value });
+const data = await platformClient.catalog.createCategories({  body : value });
 ```
 
 
@@ -638,10 +640,10 @@ Add a Collection
 
 ```javascript
 // Promise
-const promise = client.application("<APPLICATION_ID>").catalog.createCollection({  body : value });
+const promise = platformClient.application("<APPLICATION_ID>").catalog.createCollection({  body : value });
 
 // Async/Await
-const data = await client.application("<APPLICATION_ID>").catalog.createCollection({  body : value });
+const data = await platformClient.application("<APPLICATION_ID>").catalog.createCollection({  body : value });
 ```
 
 
@@ -753,11 +755,11 @@ Add configuration for categories and brands
 
 ```javascript
 // Promise
-const promise = client.application("<APPLICATION_ID>").catalog.createConfigurationByType({  type : value,
+const promise = platformClient.application("<APPLICATION_ID>").catalog.createConfigurationByType({  type : value,
  body : value });
 
 // Async/Await
-const data = await client.application("<APPLICATION_ID>").catalog.createConfigurationByType({  type : value,
+const data = await platformClient.application("<APPLICATION_ID>").catalog.createConfigurationByType({  type : value,
  body : value });
 ```
 
@@ -811,10 +813,10 @@ Add configuration for products & listings
 
 ```javascript
 // Promise
-const promise = client.application("<APPLICATION_ID>").catalog.createConfigurationProductListing({  body : value });
+const promise = platformClient.application("<APPLICATION_ID>").catalog.createConfigurationProductListing({  body : value });
 
 // Async/Await
-const data = await client.application("<APPLICATION_ID>").catalog.createConfigurationProductListing({  body : value });
+const data = await platformClient.application("<APPLICATION_ID>").catalog.createConfigurationProductListing({  body : value });
 ```
 
 
@@ -866,10 +868,10 @@ Add a Custom Autocomplete Keywords
 
 ```javascript
 // Promise
-const promise = client.application("<APPLICATION_ID>").catalog.createCustomAutocompleteRule({  body : value });
+const promise = platformClient.application("<APPLICATION_ID>").catalog.createCustomAutocompleteRule({  body : value });
 
 // Async/Await
-const data = await client.application("<APPLICATION_ID>").catalog.createCustomAutocompleteRule({  body : value });
+const data = await platformClient.application("<APPLICATION_ID>").catalog.createCustomAutocompleteRule({  body : value });
 ```
 
 
@@ -921,10 +923,10 @@ Add a Custom Search Keywords
 
 ```javascript
 // Promise
-const promise = client.application("<APPLICATION_ID>").catalog.createCustomKeyword({  body : value });
+const promise = platformClient.application("<APPLICATION_ID>").catalog.createCustomKeyword({  body : value });
 
 // Async/Await
-const data = await client.application("<APPLICATION_ID>").catalog.createCustomKeyword({  body : value });
+const data = await platformClient.application("<APPLICATION_ID>").catalog.createCustomKeyword({  body : value });
 ```
 
 
@@ -992,10 +994,10 @@ Create the department.
 
 ```javascript
 // Promise
-const promise = client.catalog.createDepartments({  body : value });
+const promise = platformClient.catalog.createDepartments({  body : value });
 
 // Async/Await
-const data = await client.catalog.createDepartments({  body : value });
+const data = await platformClient.catalog.createDepartments({  body : value });
 ```
 
 
@@ -1050,11 +1052,11 @@ Create configuration for Group config types.
 
 ```javascript
 // Promise
-const promise = client.application("<APPLICATION_ID>").catalog.createGroupConfiguration({  configType : value,
+const promise = platformClient.application("<APPLICATION_ID>").catalog.createGroupConfiguration({  configType : value,
  body : value });
 
 // Async/Await
-const data = await client.application("<APPLICATION_ID>").catalog.createGroupConfiguration({  configType : value,
+const data = await platformClient.application("<APPLICATION_ID>").catalog.createGroupConfiguration({  configType : value,
  body : value });
 ```
 
@@ -1122,17 +1124,17 @@ success flag will tell whether the operation was successful.
 ---
 
 
-### createHsnCode
-Create Hsn Code.
+### createInventoryExport
+Create an inventory export job.
 
 
 
 ```javascript
 // Promise
-const promise = client.catalog.createHsnCode({  body : value });
+const promise = platformClient.catalog.createInventoryExport({  body : value });
 
 // Async/Await
-const data = await client.catalog.createHsnCode({  body : value });
+const data = await platformClient.catalog.createInventoryExport({  body : value });
 ```
 
 
@@ -1141,19 +1143,19 @@ const data = await client.catalog.createHsnCode({  body : value });
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |
-| body | [HsnUpsert](#HsnUpsert) | yes | Request body |
+| body | [InventoryCreateRequest](#InventoryCreateRequest) | yes | Request body |
 
 
-Create Hsn Code.
+This API helps to create a Inventory export job.
 
 *Returned Response:*
 
 
 
 
-[HsnCode](#HsnCode)
+[InventoryExportResponse](#InventoryExportResponse)
 
-See example below for details
+Returns a success response
 
 
 
@@ -1162,29 +1164,7 @@ See example below for details
 <summary><i>&nbsp; Example:</i></summary>
 
 ```json
-{
-  "data": {
-    "company_id": 1,
-    "hs2_code": "xx",
-    "modified_by": {
-      "username": "narutouzumaki",
-      "user_id": "0"
-    },
-    "id": "xxxxxxxxxxxx",
-    "tax_on": "esp",
-    "slabs": [
-      {
-        "tax": 0,
-        "threshold": 999999
-      },
-      {
-        "tax": 0,
-        "threshold": 0
-      }
-    ],
-    "hsn_code": "xxxxxxxx"
-  }
-}
+
 ```
 </details>
 
@@ -1206,10 +1186,10 @@ Create a Inventory export Job.
 
 ```javascript
 // Promise
-const promise = client.catalog.createInventoryExportJob({  body : value });
+const promise = platformClient.catalog.createInventoryExportJob({  body : value });
 
 // Async/Await
-const data = await client.catalog.createInventoryExportJob({  body : value });
+const data = await platformClient.catalog.createInventoryExportJob({  body : value });
 ```
 
 
@@ -1261,11 +1241,11 @@ Add configuration for listings
 
 ```javascript
 // Promise
-const promise = client.application("<APPLICATION_ID>").catalog.createListingConfiguration({  configType : value,
+const promise = platformClient.application("<APPLICATION_ID>").catalog.createListingConfiguration({  configType : value,
  body : value });
 
 // Async/Await
-const data = await client.application("<APPLICATION_ID>").catalog.createListingConfiguration({  configType : value,
+const data = await platformClient.application("<APPLICATION_ID>").catalog.createListingConfiguration({  configType : value,
  body : value });
 ```
 
@@ -1329,11 +1309,11 @@ Create/Update opt-in infomation.
 
 ```javascript
 // Promise
-const promise = client.catalog.createMarketplaceOptin({  marketplace : value,
+const promise = platformClient.catalog.createMarketplaceOptin({  marketplace : value,
  body : value });
 
 // Async/Await
-const data = await client.catalog.createMarketplaceOptin({  marketplace : value,
+const data = await platformClient.catalog.createMarketplaceOptin({  marketplace : value,
  body : value });
 ```
 
@@ -1387,10 +1367,10 @@ Create a product.
 
 ```javascript
 // Promise
-const promise = client.catalog.createProduct({  body : value });
+const promise = platformClient.catalog.createProduct({  body : value });
 
 // Async/Await
-const data = await client.catalog.createProduct({  body : value });
+const data = await platformClient.catalog.createProduct({  body : value });
 ```
 
 
@@ -1444,10 +1424,10 @@ Create a Bulk asset upload Job.
 
 ```javascript
 // Promise
-const promise = client.catalog.createProductAssetsInBulk({  body : value });
+const promise = platformClient.catalog.createProductAssetsInBulk({  body : value });
 
 // Async/Await
-const data = await client.catalog.createProductAssetsInBulk({  body : value });
+const data = await platformClient.catalog.createProductAssetsInBulk({  body : value });
 ```
 
 
@@ -1501,10 +1481,10 @@ Create Product Bundle
 
 ```javascript
 // Promise
-const promise = client.catalog.createProductBundle({  body : value });
+const promise = platformClient.catalog.createProductBundle({  body : value });
 
 // Async/Await
-const data = await client.catalog.createProductBundle({  body : value });
+const data = await platformClient.catalog.createProductBundle({  body : value });
 ```
 
 
@@ -1582,6 +1562,86 @@ Get bundle with id that is added. See example below or refer `GetProductBundleCr
 ---
 
 
+### createProductExportJob
+Create a product export job.
+
+
+
+```javascript
+// Promise
+const promise = platformClient.catalog.createProductExportJob({  body : value });
+
+// Async/Await
+const data = await platformClient.catalog.createProductExportJob({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [ProductTemplateDownloadsExport](#ProductTemplateDownloadsExport) | yes | Request body |
+
+
+This API helps to create a Inventory export job.
+
+*Returned Response:*
+
+
+
+
+[ProductDownloadsResponse](#ProductDownloadsResponse)
+
+Returns a success response
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "data": {
+    "filters": {
+      "templates": [
+        "footwear"
+      ],
+      "brands": [],
+      "catalogue_types": [
+        "standard"
+      ]
+    },
+    "stats": {},
+    "modified_on": "2023-03-03T10:26:47.047179",
+    "type": "excel",
+    "created_by": {
+      "user_id": "550fe8ce436ea332b9e4b4b0",
+      "username": "purvashukla_gofynd_com_44895"
+    },
+    "notification_emails": [],
+    "status": "pending",
+    "_id": "6401cb6729885c34aa30b0c6",
+    "seller_id": 577,
+    "created_on": "2023-03-03T10:26:47.047171Z",
+    "task_id": "e6c47f1a-b9ad-11ed-b7a0-3ef7b700888d"
+  }
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
 ### createProductsInBulk
 Create products in bulk associated with given batch Id.
 
@@ -1589,11 +1649,11 @@ Create products in bulk associated with given batch Id.
 
 ```javascript
 // Promise
-const promise = client.catalog.createProductsInBulk({  batchId : value,
+const promise = platformClient.catalog.createProductsInBulk({  batchId : value,
  body : value });
 
 // Async/Await
-const data = await client.catalog.createProductsInBulk({  batchId : value,
+const data = await platformClient.catalog.createProductsInBulk({  batchId : value,
  body : value });
 ```
 
@@ -1649,10 +1709,10 @@ Create a size guide.
 
 ```javascript
 // Promise
-const promise = client.catalog.createSizeGuide({  body : value });
+const promise = platformClient.catalog.createSizeGuide({  body : value });
 
 // Async/Await
-const data = await client.catalog.createSizeGuide({  body : value });
+const data = await platformClient.catalog.createSizeGuide({  body : value });
 ```
 
 
@@ -1706,10 +1766,10 @@ Delete a Autocomplete Keywords
 
 ```javascript
 // Promise
-const promise = client.application("<APPLICATION_ID>").catalog.deleteAutocompleteKeyword({  id : value });
+const promise = platformClient.application("<APPLICATION_ID>").catalog.deleteAutocompleteKeyword({  id : value });
 
 // Async/Await
-const data = await client.application("<APPLICATION_ID>").catalog.deleteAutocompleteKeyword({  id : value });
+const data = await platformClient.application("<APPLICATION_ID>").catalog.deleteAutocompleteKeyword({  id : value });
 ```
 
 
@@ -1764,10 +1824,10 @@ Delete Bulk Inventory job.
 
 ```javascript
 // Promise
-const promise = client.catalog.deleteBulkInventoryJob({  batchId : value });
+const promise = platformClient.catalog.deleteBulkInventoryJob({  batchId : value });
 
 // Async/Await
-const data = await client.catalog.deleteBulkInventoryJob({  batchId : value });
+const data = await platformClient.catalog.deleteBulkInventoryJob({  batchId : value });
 ```
 
 
@@ -1822,10 +1882,10 @@ Delete a Collection
 
 ```javascript
 // Promise
-const promise = client.application("<APPLICATION_ID>").catalog.deleteCollection({  id : value });
+const promise = platformClient.application("<APPLICATION_ID>").catalog.deleteCollection({  id : value });
 
 // Async/Await
-const data = await client.application("<APPLICATION_ID>").catalog.deleteCollection({  id : value });
+const data = await platformClient.application("<APPLICATION_ID>").catalog.deleteCollection({  id : value });
 ```
 
 
@@ -1880,11 +1940,11 @@ Delete configuration of the product config type of the application.
 
 ```javascript
 // Promise
-const promise = client.application("<APPLICATION_ID>").catalog.deleteGroupConfiguration({  configType : value,
+const promise = platformClient.application("<APPLICATION_ID>").catalog.deleteGroupConfiguration({  configType : value,
  groupSlug : value });
 
 // Async/Await
-const data = await client.application("<APPLICATION_ID>").catalog.deleteGroupConfiguration({  configType : value,
+const data = await platformClient.application("<APPLICATION_ID>").catalog.deleteGroupConfiguration({  configType : value,
  groupSlug : value });
 ```
 
@@ -1941,12 +2001,12 @@ Delete a Inventory.
 
 ```javascript
 // Promise
-const promise = client.catalog.deleteInventory({  size : value,
+const promise = platformClient.catalog.deleteInventory({  size : value,
  itemId : value,
  locationId : value });
 
 // Async/Await
-const data = await client.catalog.deleteInventory({  size : value,
+const data = await platformClient.catalog.deleteInventory({  size : value,
  itemId : value,
  locationId : value });
 ```
@@ -2005,11 +2065,11 @@ Delete configuration for listings
 
 ```javascript
 // Promise
-const promise = client.application("<APPLICATION_ID>").catalog.deleteListingConfiguration({  configType : value,
+const promise = platformClient.application("<APPLICATION_ID>").catalog.deleteListingConfiguration({  configType : value,
  configId : value });
 
 // Async/Await
-const data = await client.application("<APPLICATION_ID>").catalog.deleteListingConfiguration({  configType : value,
+const data = await platformClient.application("<APPLICATION_ID>").catalog.deleteListingConfiguration({  configType : value,
  configId : value });
 ```
 
@@ -2066,10 +2126,10 @@ Delete a product.
 
 ```javascript
 // Promise
-const promise = client.catalog.deleteProduct({  itemId : value });
+const promise = platformClient.catalog.deleteProduct({  itemId : value });
 
 // Async/Await
-const data = await client.catalog.deleteProduct({  itemId : value });
+const data = await platformClient.catalog.deleteProduct({  itemId : value });
 ```
 
 
@@ -2124,10 +2184,10 @@ Delete Bulk product job.
 
 ```javascript
 // Promise
-const promise = client.catalog.deleteProductBulkJob({  batchId : value });
+const promise = platformClient.catalog.deleteProductBulkJob({  batchId : value });
 
 // Async/Await
-const data = await client.catalog.deleteProductBulkJob({  batchId : value });
+const data = await platformClient.catalog.deleteProductBulkJob({  batchId : value });
 ```
 
 
@@ -2182,12 +2242,12 @@ Add Inventory for particular size and store.
 
 ```javascript
 // Promise
-const promise = client.catalog.deleteRealtimeInventory({  itemId : value,
+const promise = platformClient.catalog.deleteRealtimeInventory({  itemId : value,
  sellerIdentifier : value,
  body : value });
 
 // Async/Await
-const data = await client.catalog.deleteRealtimeInventory({  itemId : value,
+const data = await platformClient.catalog.deleteRealtimeInventory({  itemId : value,
  sellerIdentifier : value,
  body : value });
 ```
@@ -2275,10 +2335,10 @@ Delete a Search Keywords
 
 ```javascript
 // Promise
-const promise = client.application("<APPLICATION_ID>").catalog.deleteSearchKeywords({  id : value });
+const promise = platformClient.application("<APPLICATION_ID>").catalog.deleteSearchKeywords({  id : value });
 
 // Async/Await
-const data = await client.application("<APPLICATION_ID>").catalog.deleteSearchKeywords({  id : value });
+const data = await platformClient.application("<APPLICATION_ID>").catalog.deleteSearchKeywords({  id : value });
 ```
 
 
@@ -2333,11 +2393,11 @@ Delete a Size associated with product.
 
 ```javascript
 // Promise
-const promise = client.catalog.deleteSize({  itemId : value,
+const promise = platformClient.catalog.deleteSize({  itemId : value,
  size : value });
 
 // Async/Await
-const data = await client.catalog.deleteSize({  itemId : value,
+const data = await platformClient.catalog.deleteSize({  itemId : value,
  size : value });
 ```
 
@@ -2399,10 +2459,10 @@ Download Product Template View
 
 ```javascript
 // Promise
-const promise = client.catalog.downloadInventoryTemplateView({  itemType : value });
+const promise = platformClient.catalog.downloadInventoryTemplateView({  itemType : value });
 
 // Async/Await
-const data = await client.catalog.downloadInventoryTemplateView({  itemType : value });
+const data = await platformClient.catalog.downloadInventoryTemplateView({  itemType : value });
 ```
 
 
@@ -2455,10 +2515,10 @@ Download Product Template View
 
 ```javascript
 // Promise
-const promise = client.catalog.downloadProductTemplateViews({  slug : value });
+const promise = platformClient.catalog.downloadProductTemplateViews({  slug : value });
 
 // Async/Await
-const data = await client.catalog.downloadProductTemplateViews({  slug : value });
+const data = await platformClient.catalog.downloadProductTemplateViews({  slug : value });
 ```
 
 
@@ -2511,11 +2571,11 @@ Edit a product.
 
 ```javascript
 // Promise
-const promise = client.catalog.editProduct({  itemId : value,
+const promise = platformClient.catalog.editProduct({  itemId : value,
  body : value });
 
 // Async/Await
-const data = await client.catalog.editProduct({  itemId : value,
+const data = await platformClient.catalog.editProduct({  itemId : value,
  body : value });
 ```
 
@@ -2571,10 +2631,10 @@ Get List of different filters for inventory export
 
 ```javascript
 // Promise
-const promise = client.catalog.exportInventoryConfig({  filterType : value });
+const promise = platformClient.catalog.exportInventoryConfig({  filterType : value });
 
 // Async/Await
-const data = await client.catalog.exportInventoryConfig({  filterType : value });
+const data = await platformClient.catalog.exportInventoryConfig({  filterType : value });
 ```
 
 
@@ -2639,7 +2699,7 @@ List all the collections
 
 ```javascript
 // Promise
-const promise = client.application("<APPLICATION_ID>").catalog.getAllCollections({  q : value,
+const promise = platformClient.application("<APPLICATION_ID>").catalog.getAllCollections({  q : value,
  scheduleStatus : value,
  type : value,
  tags : value,
@@ -2648,7 +2708,7 @@ const promise = client.application("<APPLICATION_ID>").catalog.getAllCollections
  pageSize : value });
 
 // Async/Await
-const data = await client.application("<APPLICATION_ID>").catalog.getAllCollections({  q : value,
+const data = await platformClient.application("<APPLICATION_ID>").catalog.getAllCollections({  q : value,
  scheduleStatus : value,
  type : value,
  tags : value,
@@ -2961,90 +3021,6 @@ List of collections. See example below or refer `GetCollectionListingResponse` f
 ---
 
 
-### getAllHsnCodes
-Hsn Code List.
-
-
-
-```javascript
-// Promise
-const promise = client.catalog.getAllHsnCodes({  pageNo : value,
- pageSize : value,
- q : value });
-
-// Async/Await
-const data = await client.catalog.getAllHsnCodes({  pageNo : value,
- pageSize : value,
- q : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| pageNo | number | no | page no |    
-| pageSize | number | no | page size |    
-| q | string | no | search using hsn code. |  
-
-
-
-Hsn Code List.
-
-*Returned Response:*
-
-
-
-
-[HsnCodesListingResponse](#HsnCodesListingResponse)
-
-List of all HSN Codes. See example below or refer `HsnCodesListingResponseSchema` for details
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "items": [
-    {
-      "company_id": 1,
-      "hs2_code": "xx",
-      "hsn_code": "xxxxxxxx",
-      "tax1": 0,
-      "tax2": 0,
-      "threshold1": 999999,
-      "threshold2": 0,
-      "tax_on_esp": true,
-      "tax_on_mrp": false,
-      "id": "xxxxxxxxxxxx"
-    }
-  ],
-  "page": {
-    "current": 1,
-    "size": 2,
-    "has_previous": false,
-    "has_next": true,
-    "item_total": 20
-  }
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
 ### getAllProductHsnCodes
 Hsn Code List.
 
@@ -3052,13 +3028,13 @@ Hsn Code List.
 
 ```javascript
 // Promise
-const promise = client.catalog.getAllProductHsnCodes({  pageNo : value,
+const promise = platformClient.catalog.getAllProductHsnCodes({  pageNo : value,
  pageSize : value,
  q : value,
  type : value });
 
 // Async/Await
-const data = await client.catalog.getAllProductHsnCodes({  pageNo : value,
+const data = await platformClient.catalog.getAllProductHsnCodes({  pageNo : value,
  pageSize : value,
  q : value,
  type : value });
@@ -3150,10 +3126,10 @@ List all Search Custom Keyword Listing
 
 ```javascript
 // Promise
-const promise = client.application("<APPLICATION_ID>").catalog.getAllSearchKeyword();
+const promise = platformClient.application("<APPLICATION_ID>").catalog.getAllSearchKeyword();
 
 // Async/Await
-const data = await client.application("<APPLICATION_ID>").catalog.getAllSearchKeyword();
+const data = await platformClient.application("<APPLICATION_ID>").catalog.getAllSearchKeyword();
 ```
 
 
@@ -3228,7 +3204,7 @@ Get the stock of a product
 
 ```javascript
 // Promise
-const promise = client.application("<APPLICATION_ID>").catalog.getAppInventory({  itemIds : value,
+const promise = platformClient.application("<APPLICATION_ID>").catalog.getAppInventory({  itemIds : value,
  storeIds : value,
  brandIds : value,
  sellerIdentifiers : value,
@@ -3237,7 +3213,7 @@ const promise = client.application("<APPLICATION_ID>").catalog.getAppInventory({
  pageId : value });
 
 // Async/Await
-const data = await client.application("<APPLICATION_ID>").catalog.getAppInventory({  itemIds : value,
+const data = await platformClient.application("<APPLICATION_ID>").catalog.getAppInventory({  itemIds : value,
  storeIds : value,
  brandIds : value,
  sellerIdentifiers : value,
@@ -3720,7 +3696,7 @@ Get list of locations
 
 ```javascript
 // Promise
-const promise = client.application("<APPLICATION_ID>").catalog.getAppLocations({  storeType : value,
+const promise = platformClient.application("<APPLICATION_ID>").catalog.getAppLocations({  storeType : value,
  uid : value,
  q : value,
  stage : value,
@@ -3728,7 +3704,7 @@ const promise = client.application("<APPLICATION_ID>").catalog.getAppLocations({
  pageSize : value });
 
 // Async/Await
-const data = await client.application("<APPLICATION_ID>").catalog.getAppLocations({  storeType : value,
+const data = await platformClient.application("<APPLICATION_ID>").catalog.getAppLocations({  storeType : value,
  uid : value,
  q : value,
  stage : value,
@@ -3827,10 +3803,10 @@ Get company application product data.
 
 ```javascript
 // Promise
-const promise = client.application("<APPLICATION_ID>").catalog.getAppProduct({  itemId : value });
+const promise = platformClient.application("<APPLICATION_ID>").catalog.getAppProduct({  itemId : value });
 
 // Async/Await
-const data = await client.application("<APPLICATION_ID>").catalog.getAppProduct({  itemId : value });
+const data = await platformClient.application("<APPLICATION_ID>").catalog.getAppProduct({  itemId : value });
 ```
 
 
@@ -3898,19 +3874,21 @@ Get applicationwise products
 
 ```javascript
 // Promise
-const promise = client.application("<APPLICATION_ID>").catalog.getAppProducts({  brandIds : value,
+const promise = platformClient.application("<APPLICATION_ID>").catalog.getAppProducts({  brandIds : value,
  categoryIds : value,
  departmentIds : value,
  tags : value,
+ itemIds : value,
  pageNo : value,
  pageSize : value,
  q : value });
 
 // Async/Await
-const data = await client.application("<APPLICATION_ID>").catalog.getAppProducts({  brandIds : value,
+const data = await platformClient.application("<APPLICATION_ID>").catalog.getAppProducts({  brandIds : value,
  categoryIds : value,
  departmentIds : value,
  tags : value,
+ itemIds : value,
  pageNo : value,
  pageSize : value,
  q : value });
@@ -3926,6 +3904,7 @@ const data = await client.application("<APPLICATION_ID>").catalog.getAppProducts
 | categoryIds | Array<number> | no | Get multiple products filtered by Category Ids |    
 | departmentIds | Array<number> | no | Get multiple products filtered by Department Ids |    
 | tags | Array<string> | no | Get multiple products filtered by tags |    
+| itemIds | Array<number> | no | Get multiple products filtered by Item Ids |    
 | pageNo | number | no | The page number to navigate through the given set of results |    
 | pageSize | number | no | Number of items to retrieve in each page. Default is 10. |    
 | q | string | no | Search with Item Code, Name, Slug or Identifier. |  
@@ -4134,7 +4113,7 @@ List the products
 
 ```javascript
 // Promise
-const promise = client.application("<APPLICATION_ID>").catalog.getAppicationProducts({  q : value,
+const promise = platformClient.application("<APPLICATION_ID>").catalog.getAppicationProducts({  q : value,
  f : value,
  c : value,
  filters : value,
@@ -4146,7 +4125,7 @@ const promise = client.application("<APPLICATION_ID>").catalog.getAppicationProd
  itemIds : value });
 
 // Async/Await
-const data = await client.application("<APPLICATION_ID>").catalog.getAppicationProducts({  q : value,
+const data = await platformClient.application("<APPLICATION_ID>").catalog.getAppicationProducts({  q : value,
  f : value,
  c : value,
  filters : value,
@@ -4833,12 +4812,12 @@ List all the brands for the application
 
 ```javascript
 // Promise
-const promise = client.application("<APPLICATION_ID>").catalog.getApplicationBrandListing({  pageNo : value,
+const promise = platformClient.application("<APPLICATION_ID>").catalog.getApplicationBrandListing({  pageNo : value,
  pageSize : value,
  q : value });
 
 // Async/Await
-const data = await client.application("<APPLICATION_ID>").catalog.getApplicationBrandListing({  pageNo : value,
+const data = await platformClient.application("<APPLICATION_ID>").catalog.getApplicationBrandListing({  pageNo : value,
  pageSize : value,
  q : value });
 ```
@@ -4933,14 +4912,14 @@ List all the brands
 
 ```javascript
 // Promise
-const promise = client.application("<APPLICATION_ID>").catalog.getApplicationBrands({  department : value,
+const promise = platformClient.application("<APPLICATION_ID>").catalog.getApplicationBrands({  department : value,
  pageNo : value,
  pageSize : value,
  q : value,
  brandId : value });
 
 // Async/Await
-const data = await client.application("<APPLICATION_ID>").catalog.getApplicationBrands({  department : value,
+const data = await platformClient.application("<APPLICATION_ID>").catalog.getApplicationBrands({  department : value,
  pageNo : value,
  pageSize : value,
  q : value,
@@ -5039,13 +5018,13 @@ List all the brands for the application
 
 ```javascript
 // Promise
-const promise = client.application("<APPLICATION_ID>").catalog.getApplicationCategoryListing({  departmentId : value,
+const promise = platformClient.application("<APPLICATION_ID>").catalog.getApplicationCategoryListing({  departmentId : value,
  pageNo : value,
  pageSize : value,
  q : value });
 
 // Async/Await
-const data = await client.application("<APPLICATION_ID>").catalog.getApplicationCategoryListing({  departmentId : value,
+const data = await platformClient.application("<APPLICATION_ID>").catalog.getApplicationCategoryListing({  departmentId : value,
  pageNo : value,
  pageSize : value,
  q : value });
@@ -5142,12 +5121,12 @@ List all the departments for the application
 
 ```javascript
 // Promise
-const promise = client.application("<APPLICATION_ID>").catalog.getApplicationDepartmentListing({  pageNo : value,
+const promise = platformClient.application("<APPLICATION_ID>").catalog.getApplicationDepartmentListing({  pageNo : value,
  pageSize : value,
  q : value });
 
 // Async/Await
-const data = await client.application("<APPLICATION_ID>").catalog.getApplicationDepartmentListing({  pageNo : value,
+const data = await platformClient.application("<APPLICATION_ID>").catalog.getApplicationDepartmentListing({  pageNo : value,
  pageSize : value,
  q : value });
 ```
@@ -5242,10 +5221,10 @@ List all Autocomplete Keyword Listing
 
 ```javascript
 // Promise
-const promise = client.application("<APPLICATION_ID>").catalog.getAutocompleteConfig();
+const promise = platformClient.application("<APPLICATION_ID>").catalog.getAutocompleteConfig();
 
 // Async/Await
-const data = await client.application("<APPLICATION_ID>").catalog.getAutocompleteConfig();
+const data = await platformClient.application("<APPLICATION_ID>").catalog.getAutocompleteConfig();
 ```
 
 
@@ -5332,10 +5311,10 @@ Get a Autocomplete Keywords Details
 
 ```javascript
 // Promise
-const promise = client.application("<APPLICATION_ID>").catalog.getAutocompleteKeywordDetail({  id : value });
+const promise = platformClient.application("<APPLICATION_ID>").catalog.getAutocompleteKeywordDetail({  id : value });
 
 // Async/Await
-const data = await client.application("<APPLICATION_ID>").catalog.getAutocompleteKeywordDetail({  id : value });
+const data = await platformClient.application("<APPLICATION_ID>").catalog.getAutocompleteKeywordDetail({  id : value });
 ```
 
 
@@ -5416,10 +5395,10 @@ Get configuration meta  details for catalog for admin panel
 
 ```javascript
 // Promise
-const promise = client.application("<APPLICATION_ID>").catalog.getCatalogConfiguration();
+const promise = platformClient.application("<APPLICATION_ID>").catalog.getCatalogConfiguration();
 
 // Async/Await
-const data = await client.application("<APPLICATION_ID>").catalog.getCatalogConfiguration();
+const data = await platformClient.application("<APPLICATION_ID>").catalog.getCatalogConfiguration();
 ```
 
 
@@ -5467,10 +5446,10 @@ Analytics data of catalog and inventory.
 
 ```javascript
 // Promise
-const promise = client.application("<APPLICATION_ID>").catalog.getCatalogInsights({  brand : value });
+const promise = platformClient.application("<APPLICATION_ID>").catalog.getCatalogInsights({  brand : value });
 
 // Async/Await
-const data = await client.application("<APPLICATION_ID>").catalog.getCatalogInsights({  brand : value });
+const data = await platformClient.application("<APPLICATION_ID>").catalog.getCatalogInsights({  brand : value });
 ```
 
 
@@ -5529,10 +5508,10 @@ List all the categories
 
 ```javascript
 // Promise
-const promise = client.application("<APPLICATION_ID>").catalog.getCategories({  department : value });
+const promise = platformClient.application("<APPLICATION_ID>").catalog.getCategories({  department : value });
 
 // Async/Await
-const data = await client.application("<APPLICATION_ID>").catalog.getCategories({  department : value });
+const data = await platformClient.application("<APPLICATION_ID>").catalog.getCategories({  department : value });
 ```
 
 
@@ -5673,10 +5652,10 @@ Get product category by uid
 
 ```javascript
 // Promise
-const promise = client.catalog.getCategoryData({  uid : value });
+const promise = platformClient.catalog.getCategoryData({  uid : value });
 
 // Async/Await
-const data = await client.catalog.getCategoryData({  uid : value });
+const data = await platformClient.catalog.getCategoryData({  uid : value });
 ```
 
 
@@ -5767,10 +5746,10 @@ Get a particular collection
 
 ```javascript
 // Promise
-const promise = client.application("<APPLICATION_ID>").catalog.getCollectionDetail({  slug : value });
+const promise = platformClient.application("<APPLICATION_ID>").catalog.getCollectionDetail({  slug : value });
 
 // Async/Await
-const data = await client.application("<APPLICATION_ID>").catalog.getCollectionDetail({  slug : value });
+const data = await platformClient.application("<APPLICATION_ID>").catalog.getCollectionDetail({  slug : value });
 ```
 
 
@@ -5884,13 +5863,13 @@ Get the items for a collection
 
 ```javascript
 // Promise
-const promise = client.application("<APPLICATION_ID>").catalog.getCollectionItems({  id : value,
+const promise = platformClient.application("<APPLICATION_ID>").catalog.getCollectionItems({  id : value,
  sortOn : value,
  pageId : value,
  pageSize : value });
 
 // Async/Await
-const data = await client.application("<APPLICATION_ID>").catalog.getCollectionItems({  id : value,
+const data = await platformClient.application("<APPLICATION_ID>").catalog.getCollectionItems({  id : value,
  sortOn : value,
  pageId : value,
  pageSize : value });
@@ -5949,14 +5928,14 @@ Get the Company Brand details of Optin.
 
 ```javascript
 // Promise
-const promise = client.catalog.getCompanyBrandDetail({  isActive : value,
+const promise = platformClient.catalog.getCompanyBrandDetail({  isActive : value,
  q : value,
  pageNo : value,
  pageSize : value,
  marketplace : value });
 
 // Async/Await
-const data = await client.catalog.getCompanyBrandDetail({  isActive : value,
+const data = await platformClient.catalog.getCompanyBrandDetail({  isActive : value,
  q : value,
  pageNo : value,
  pageSize : value,
@@ -5970,7 +5949,7 @@ const data = await client.catalog.getCompanyBrandDetail({  isActive : value,
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
 | isActive | boolean | no | The is_active status for the optin id. |    
-| q | boolean | no | The search value to filter the list. |    
+| q | string | no | The search value to filter the list. |    
 | pageNo | number | no | The number of page for the company id. |    
 | pageSize | number | no | Number of records that can be seen on the page for the company id. |    
 | marketplace | string | no | The marketplace platform associated with the company id. |  
@@ -6017,10 +5996,10 @@ Get the Company details.
 
 ```javascript
 // Promise
-const promise = client.catalog.getCompanyDetail();
+const promise = platformClient.catalog.getCompanyDetail();
 
 // Async/Await
-const data = await client.catalog.getCompanyDetail();
+const data = await platformClient.catalog.getCompanyDetail();
 ```
 
 
@@ -6068,10 +6047,10 @@ Get the Company metrics
 
 ```javascript
 // Promise
-const promise = client.catalog.getCompanyMetrics();
+const promise = platformClient.catalog.getCompanyMetrics();
 
 // Async/Await
-const data = await client.catalog.getCompanyMetrics();
+const data = await platformClient.catalog.getCompanyMetrics();
 ```
 
 
@@ -6119,10 +6098,10 @@ Get configured details for catalog
 
 ```javascript
 // Promise
-const promise = client.application("<APPLICATION_ID>").catalog.getConfigurationByType({  type : value });
+const promise = platformClient.application("<APPLICATION_ID>").catalog.getConfigurationByType({  type : value });
 
 // Async/Await
-const data = await client.application("<APPLICATION_ID>").catalog.getConfigurationByType({  type : value });
+const data = await platformClient.application("<APPLICATION_ID>").catalog.getConfigurationByType({  type : value });
 ```
 
 
@@ -6175,11 +6154,11 @@ Get configuration metadata details for catalog for admin panel
 
 ```javascript
 // Promise
-const promise = client.application("<APPLICATION_ID>").catalog.getConfigurationMetadata({  configType : value,
+const promise = platformClient.application("<APPLICATION_ID>").catalog.getConfigurationMetadata({  configType : value,
  templateSlug : value });
 
 // Async/Await
-const data = await client.application("<APPLICATION_ID>").catalog.getConfigurationMetadata({  configType : value,
+const data = await platformClient.application("<APPLICATION_ID>").catalog.getConfigurationMetadata({  configType : value,
  templateSlug : value });
 ```
 
@@ -6976,10 +6955,10 @@ Get configured details for catalog
 
 ```javascript
 // Promise
-const promise = client.application("<APPLICATION_ID>").catalog.getConfigurations();
+const promise = platformClient.application("<APPLICATION_ID>").catalog.getConfigurations();
 
 // Async/Await
-const data = await client.application("<APPLICATION_ID>").catalog.getConfigurations();
+const data = await platformClient.application("<APPLICATION_ID>").catalog.getConfigurations();
 ```
 
 
@@ -7339,10 +7318,10 @@ Get specific departments details by passing in unique id of the department.
 
 ```javascript
 // Promise
-const promise = client.catalog.getDepartmentData({  uid : value });
+const promise = platformClient.catalog.getDepartmentData({  uid : value });
 
 // Async/Await
-const data = await client.catalog.getDepartmentData({  uid : value });
+const data = await platformClient.catalog.getDepartmentData({  uid : value });
 ```
 
 
@@ -7707,10 +7686,10 @@ List all the departments
 
 ```javascript
 // Promise
-const promise = client.application("<APPLICATION_ID>").catalog.getDepartments();
+const promise = platformClient.application("<APPLICATION_ID>").catalog.getDepartments();
 
 // Async/Await
-const data = await client.application("<APPLICATION_ID>").catalog.getDepartments();
+const data = await platformClient.application("<APPLICATION_ID>").catalog.getDepartments();
 ```
 
 
@@ -7861,7 +7840,7 @@ Get Inventory for company
 
 ```javascript
 // Promise
-const promise = client.application("<APPLICATION_ID>").catalog.getDiscountedInventoryBySizeIdentifier({  itemId : value,
+const promise = platformClient.application("<APPLICATION_ID>").catalog.getDiscountedInventoryBySizeIdentifier({  itemId : value,
  sizeIdentifier : value,
  pageNo : value,
  pageSize : value,
@@ -7869,7 +7848,7 @@ const promise = client.application("<APPLICATION_ID>").catalog.getDiscountedInve
  locationIds : value });
 
 // Async/Await
-const data = await client.application("<APPLICATION_ID>").catalog.getDiscountedInventoryBySizeIdentifier({  itemId : value,
+const data = await platformClient.application("<APPLICATION_ID>").catalog.getDiscountedInventoryBySizeIdentifier({  itemId : value,
  sizeIdentifier : value,
  pageNo : value,
  pageSize : value,
@@ -8214,10 +8193,10 @@ Get gender attribute details
 
 ```javascript
 // Promise
-const promise = client.catalog.getGenderAttribute({  attributeSlug : value });
+const promise = platformClient.catalog.getGenderAttribute({  attributeSlug : value });
 
 // Async/Await
-const data = await client.catalog.getGenderAttribute({  attributeSlug : value });
+const data = await platformClient.catalog.getGenderAttribute({  attributeSlug : value });
 ```
 
 
@@ -8311,14 +8290,14 @@ Get the details of the application configured configurations of group config typ
 
 ```javascript
 // Promise
-const promise = client.application("<APPLICATION_ID>").catalog.getGroupConfigurations({  configType : value,
+const promise = platformClient.application("<APPLICATION_ID>").catalog.getGroupConfigurations({  configType : value,
  pageNo : value,
  pageSize : value,
  search : value,
  templateSlug : value });
 
 // Async/Await
-const data = await client.application("<APPLICATION_ID>").catalog.getGroupConfigurations({  configType : value,
+const data = await platformClient.application("<APPLICATION_ID>").catalog.getGroupConfigurations({  configType : value,
  pageNo : value,
  pageSize : value,
  search : value,
@@ -8472,10 +8451,10 @@ Fetch Hsn Code.
 
 ```javascript
 // Promise
-const promise = client.catalog.getHsnCode({  id : value });
+const promise = platformClient.catalog.getHsnCode({  id : value });
 
 // Async/Await
-const data = await client.catalog.getHsnCode({  id : value });
+const data = await platformClient.catalog.getHsnCode({  id : value });
 ```
 
 
@@ -8550,7 +8529,7 @@ Get Inventory for company
 
 ```javascript
 // Promise
-const promise = client.catalog.getInventories({  itemId : value,
+const promise = platformClient.catalog.getInventories({  itemId : value,
  size : value,
  pageNo : value,
  pageSize : value,
@@ -8560,7 +8539,7 @@ const promise = client.catalog.getInventories({  itemId : value,
  sizeIdentifier : value });
 
 // Async/Await
-const data = await client.catalog.getInventories({  itemId : value,
+const data = await platformClient.catalog.getInventories({  itemId : value,
  size : value,
  pageNo : value,
  pageSize : value,
@@ -9104,11 +9083,11 @@ Get a list of all bulk Inventory upload jobs.
 
 ```javascript
 // Promise
-const promise = client.catalog.getInventoryBulkUploadHistory({  pageNo : value,
+const promise = platformClient.catalog.getInventoryBulkUploadHistory({  pageNo : value,
  pageSize : value });
 
 // Async/Await
-const data = await client.catalog.getInventoryBulkUploadHistory({  pageNo : value,
+const data = await platformClient.catalog.getInventoryBulkUploadHistory({  pageNo : value,
  pageSize : value });
 ```
 
@@ -9468,7 +9447,7 @@ Get Inventory for company
 
 ```javascript
 // Promise
-const promise = client.catalog.getInventoryBySize({  itemId : value,
+const promise = platformClient.catalog.getInventoryBySize({  itemId : value,
  size : value,
  pageNo : value,
  pageSize : value,
@@ -9476,7 +9455,7 @@ const promise = client.catalog.getInventoryBySize({  itemId : value,
  sellable : value });
 
 // Async/Await
-const data = await client.catalog.getInventoryBySize({  itemId : value,
+const data = await platformClient.catalog.getInventoryBySize({  itemId : value,
  size : value,
  pageNo : value,
  pageSize : value,
@@ -9490,7 +9469,7 @@ const data = await client.catalog.getInventoryBySize({  itemId : value,
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
-| itemId | string | yes | Item code of the product of which size is to be get. |   
+| itemId | number | yes | Item code of the product of which size is to be get. |   
 | size | string | yes | Size of which inventory is to get. |    
 | pageNo | number | no | The page number to navigate through the given set of results |    
 | pageSize | number | no | Number of items to retrieve in each page. Default is 12. |    
@@ -9821,7 +9800,7 @@ Get Inventory for company
 
 ```javascript
 // Promise
-const promise = client.catalog.getInventoryBySizeIdentifier({  itemId : value,
+const promise = platformClient.catalog.getInventoryBySizeIdentifier({  itemId : value,
  sizeIdentifier : value,
  pageNo : value,
  pageSize : value,
@@ -9829,7 +9808,7 @@ const promise = client.catalog.getInventoryBySizeIdentifier({  itemId : value,
  locationIds : value });
 
 // Async/Await
-const data = await client.catalog.getInventoryBySizeIdentifier({  itemId : value,
+const data = await platformClient.catalog.getInventoryBySizeIdentifier({  itemId : value,
  sizeIdentifier : value,
  pageNo : value,
  pageSize : value,
@@ -9843,7 +9822,7 @@ const data = await client.catalog.getInventoryBySizeIdentifier({  itemId : value
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
-| itemId | string | yes | Item code of the product of which size is to be get. |   
+| itemId | number | yes | Item code of the product of which size is to be get. |   
 | sizeIdentifier | string | yes | Size Identifier (Seller Identifier or Primary Identifier) of which inventory is to get. |    
 | pageNo | number | no | The page number to navigate through the given set of results |    
 | pageSize | number | no | Number of items to retrieve in each page. Default is 12. |    
@@ -10174,10 +10153,10 @@ Get Inventory export history.
 
 ```javascript
 // Promise
-const promise = client.catalog.getInventoryExport();
+const promise = platformClient.catalog.getInventoryExport();
 
 // Async/Await
-const data = await client.catalog.getInventoryExport();
+const data = await platformClient.catalog.getInventoryExport();
 ```
 
 
@@ -10225,13 +10204,13 @@ Get the details of the application configured configurations of listing config t
 
 ```javascript
 // Promise
-const promise = client.application("<APPLICATION_ID>").catalog.getListingConfigurations({  configType : value,
+const promise = platformClient.application("<APPLICATION_ID>").catalog.getListingConfigurations({  configType : value,
  pageNo : value,
  pageSize : value,
  search : value });
 
 // Async/Await
-const data = await client.application("<APPLICATION_ID>").catalog.getListingConfigurations({  configType : value,
+const data = await platformClient.application("<APPLICATION_ID>").catalog.getListingConfigurations({  configType : value,
  pageNo : value,
  pageSize : value,
  search : value });
@@ -10383,10 +10362,10 @@ Get opt-in infomation.
 
 ```javascript
 // Promise
-const promise = client.catalog.getMarketplaceOptinDetail();
+const promise = platformClient.catalog.getMarketplaceOptinDetail();
 
 // Async/Await
-const data = await client.catalog.getMarketplaceOptinDetail();
+const data = await platformClient.catalog.getMarketplaceOptinDetail();
 ```
 
 
@@ -10434,10 +10413,10 @@ Location Reassignment
 
 ```javascript
 // Promise
-const promise = client.catalog.getOptimalLocations({  body : value });
+const promise = platformClient.catalog.getOptimalLocations({  body : value });
 
 // Async/Await
-const data = await client.catalog.getOptimalLocations({  body : value });
+const data = await platformClient.catalog.getOptimalLocations({  body : value });
 ```
 
 
@@ -10513,12 +10492,12 @@ Get a single product.
 
 ```javascript
 // Promise
-const promise = client.catalog.getProduct({  itemId : value,
+const promise = platformClient.catalog.getProduct({  itemId : value,
  brandUid : value,
  itemCode : value });
 
 // Async/Await
-const data = await client.catalog.getProduct({  itemId : value,
+const data = await platformClient.catalog.getProduct({  itemId : value,
  brandUid : value,
  itemCode : value });
 ```
@@ -10734,11 +10713,11 @@ Get a list of all bulk asset jobs.
 
 ```javascript
 // Promise
-const promise = client.catalog.getProductAssetsInBulk({  pageNo : value,
+const promise = platformClient.catalog.getProductAssetsInBulk({  pageNo : value,
  pageSize : value });
 
 // Async/Await
-const data = await client.catalog.getProductAssetsInBulk({  pageNo : value,
+const data = await platformClient.catalog.getProductAssetsInBulk({  pageNo : value,
  pageSize : value });
 ```
 
@@ -10829,11 +10808,11 @@ Get list of all the attributes by their l3_categories
 
 ```javascript
 // Promise
-const promise = client.catalog.getProductAttributes({  category : value,
+const promise = platformClient.catalog.getProductAttributes({  category : value,
  filter : value });
 
 // Async/Await
-const data = await client.catalog.getProductAttributes({  category : value,
+const data = await platformClient.catalog.getProductAttributes({  category : value,
  filter : value });
 ```
 
@@ -11272,12 +11251,12 @@ Get a list of all bulk product upload jobs.
 
 ```javascript
 // Promise
-const promise = client.catalog.getProductBulkUploadHistory({  search : value,
+const promise = platformClient.catalog.getProductBulkUploadHistory({  search : value,
  pageNo : value,
  pageSize : value });
 
 // Async/Await
-const data = await client.catalog.getProductBulkUploadHistory({  search : value,
+const data = await platformClient.catalog.getProductBulkUploadHistory({  search : value,
  pageNo : value,
  pageSize : value });
 ```
@@ -11382,11 +11361,11 @@ List all Product Bundles
 
 ```javascript
 // Promise
-const promise = client.catalog.getProductBundle({  q : value,
+const promise = platformClient.catalog.getProductBundle({  q : value,
  slug : value });
 
 // Async/Await
-const data = await client.catalog.getProductBundle({  q : value,
+const data = await platformClient.catalog.getProductBundle({  q : value,
  slug : value });
 ```
 
@@ -11587,10 +11566,10 @@ Get a particular Product Bundle details
 
 ```javascript
 // Promise
-const promise = client.catalog.getProductBundleDetail({  id : value });
+const promise = platformClient.catalog.getProductBundleDetail({  id : value });
 
 // Async/Await
-const data = await client.catalog.getProductBundleDetail({  id : value });
+const data = await platformClient.catalog.getProductBundleDetail({  id : value });
 ```
 
 
@@ -11677,10 +11656,10 @@ Get a product
 
 ```javascript
 // Promise
-const promise = client.application("<APPLICATION_ID>").catalog.getProductDetailBySlug({  slug : value });
+const promise = platformClient.application("<APPLICATION_ID>").catalog.getProductDetailBySlug({  slug : value });
 
 // Async/Await
-const data = await client.application("<APPLICATION_ID>").catalog.getProductDetailBySlug({  slug : value });
+const data = await platformClient.application("<APPLICATION_ID>").catalog.getProductDetailBySlug({  slug : value });
 ```
 
 
@@ -11843,6 +11822,103 @@ The Product object. See example below or refer `ProductDetail` for details.
 ---
 
 
+### getProductExportJobs
+Allows you to list all product templates export list details
+
+
+
+```javascript
+// Promise
+const promise = platformClient.catalog.getProductExportJobs({  status : value,
+ fromDate : value,
+ toDate : value,
+ q : value });
+
+// Async/Await
+const data = await platformClient.catalog.getProductExportJobs({  status : value,
+ fromDate : value,
+ toDate : value,
+ q : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| status | string | no | This is a parameter used to find all the jobs with the specified status. |    
+| fromDate | string | no | This is a parameter used to find the job from the date specified to the current date. |    
+| toDate | string | no | This is a parameter used to find the job from the from_date specified to the to_date. |    
+| q | string | no | It is a query parameter to search the export job with the task ID. |  
+
+
+
+Can view details including trigger data, task id , etc.
+
+*Returned Response:*
+
+
+
+
+[ProductDownloadsResponse](#ProductDownloadsResponse)
+
+List of Product Downloads Data. See example below or refer `ProductDownloadsResponse` for details
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "page": {},
+  "items": [
+    {
+      "created_by": {
+        "username": "917972410891_48194",
+        "user_id": "5646"
+      },
+      "data": {
+        "type": "csv",
+        "brand": [
+          "ruosh"
+        ],
+        "templates": [
+          "mobile-phones-and-tablet"
+        ]
+      },
+      "status": "success",
+      "task_id": "c4b54ace-44ef-11eb-9806-1ef9bc4a2da1",
+      "template_tags": {
+        "mobile-phones-and-tablet": {
+          "display": "Mobile Phones & Tablet",
+          "logo": "https://hdn-1.jiox0.de/jiox0/seller/pictures/logo/original/Oda39B_99946594-portable-devices-with-tablet-and-mobile-phone-vector-icon-for-apps-and-websites.jpgcc2dff44-7fae-4002-9ebe-d2b59c8bee91/Oda39B_99946594-portable-devices-with-tablet-and-mobile-phone-vector-icon-for-apps-and-websites.jpg"
+        }
+      },
+      "trigger_on": "2020-12-23T07:23:35.302000Z",
+      "seller_id": 3,
+      "completed_on": "2020-12-23T07:23:41.031000Z",
+      "url": "https://regrowth.s3.amazonaws.com/slingshot-catalogues/seller-catalog/3/c4b54ace-44ef-11eb-9806-1ef9bc4a2da1/c4b54ace-44ef-11eb-9806-1ef9bc4a2da1.zip",
+      "id": "5fe2f077516d980001880943"
+    }
+  ]
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
 ### getProductSize
 Get a single product size.
 
@@ -11850,13 +11926,13 @@ Get a single product size.
 
 ```javascript
 // Promise
-const promise = client.catalog.getProductSize({  itemId : value,
+const promise = platformClient.catalog.getProductSize({  itemId : value,
  itemCode : value,
  brandUid : value,
  uid : value });
 
 // Async/Await
-const data = await client.catalog.getProductSize({  itemId : value,
+const data = await platformClient.catalog.getProductSize({  itemId : value,
  itemCode : value,
  brandUid : value,
  uid : value });
@@ -12015,10 +12091,10 @@ Get a list of all tags associated with company.
 
 ```javascript
 // Promise
-const promise = client.catalog.getProductTags();
+const promise = platformClient.catalog.getProductTags();
 
 // Async/Await
-const data = await client.catalog.getProductTags();
+const data = await platformClient.catalog.getProductTags();
 ```
 
 
@@ -12071,10 +12147,10 @@ Validate product/size data
 
 ```javascript
 // Promise
-const promise = client.catalog.getProductValidation();
+const promise = platformClient.catalog.getProductValidation();
 
 // Async/Await
-const data = await client.catalog.getProductValidation();
+const data = await platformClient.catalog.getProductValidation();
 ```
 
 
@@ -12124,7 +12200,7 @@ Get product list
 
 ```javascript
 // Promise
-const promise = client.catalog.getProducts({  brandIds : value,
+const promise = platformClient.catalog.getProducts({  brandIds : value,
  categoryIds : value,
  itemIds : value,
  departmentIds : value,
@@ -12135,7 +12211,7 @@ const promise = client.catalog.getProducts({  brandIds : value,
  pageSize : value });
 
 // Async/Await
-const data = await client.catalog.getProducts({  brandIds : value,
+const data = await platformClient.catalog.getProducts({  brandIds : value,
  categoryIds : value,
  itemIds : value,
  departmentIds : value,
@@ -12171,7 +12247,7 @@ This API gets meta associated to products.
 
 
 
-[ProductListingResponse](#ProductListingResponse)
+[ProductListingResponseV2](#ProductListingResponseV2)
 
 Product Meta. See example below for details
 
@@ -12366,10 +12442,10 @@ Get query filters to configure a collection
 
 ```javascript
 // Promise
-const promise = client.application("<APPLICATION_ID>").catalog.getQueryFilters();
+const promise = platformClient.application("<APPLICATION_ID>").catalog.getQueryFilters();
 
 // Async/Await
-const data = await client.application("<APPLICATION_ID>").catalog.getQueryFilters();
+const data = await platformClient.application("<APPLICATION_ID>").catalog.getQueryFilters();
 ```
 
 
@@ -12767,10 +12843,10 @@ Get a Search Keywords Details
 
 ```javascript
 // Promise
-const promise = client.application("<APPLICATION_ID>").catalog.getSearchKeywords({  id : value });
+const promise = platformClient.application("<APPLICATION_ID>").catalog.getSearchKeywords({  id : value });
 
 // Async/Await
-const data = await client.application("<APPLICATION_ID>").catalog.getSearchKeywords({  id : value });
+const data = await platformClient.application("<APPLICATION_ID>").catalog.getSearchKeywords({  id : value });
 ```
 
 
@@ -12839,10 +12915,10 @@ Analytics data of catalog and inventory that are being cross-selled.
 
 ```javascript
 // Promise
-const promise = client.catalog.getSellerInsights({  sellerAppId : value });
+const promise = platformClient.catalog.getSellerInsights({  sellerAppId : value });
 
 // Async/Await
-const data = await client.catalog.getSellerInsights({  sellerAppId : value });
+const data = await platformClient.catalog.getSellerInsights({  sellerAppId : value });
 ```
 
 
@@ -12898,10 +12974,10 @@ Hsn Code List.
 
 ```javascript
 // Promise
-const promise = client.catalog.getSingleProductHSNCode({  reportingHsn : value });
+const promise = platformClient.catalog.getSingleProductHSNCode({  reportingHsn : value });
 
 // Async/Await
-const data = await client.catalog.getSingleProductHSNCode({  reportingHsn : value });
+const data = await platformClient.catalog.getSingleProductHSNCode({  reportingHsn : value });
 ```
 
 
@@ -12989,10 +13065,10 @@ Get a single size guide.
 
 ```javascript
 // Promise
-const promise = client.catalog.getSizeGuide({  id : value });
+const promise = platformClient.catalog.getSizeGuide({  id : value });
 
 // Async/Await
-const data = await client.catalog.getSizeGuide({  id : value });
+const data = await platformClient.catalog.getSizeGuide({  id : value });
 ```
 
 
@@ -13093,14 +13169,14 @@ Get list of size guides
 
 ```javascript
 // Promise
-const promise = client.catalog.getSizeGuides({  active : value,
+const promise = platformClient.catalog.getSizeGuides({  active : value,
  q : value,
  tag : value,
  pageNo : value,
  pageSize : value });
 
 // Async/Await
-const data = await client.catalog.getSizeGuides({  active : value,
+const data = await platformClient.catalog.getSizeGuides({  active : value,
  q : value,
  tag : value,
  pageNo : value,
@@ -13220,12 +13296,12 @@ Get the Store details.
 
 ```javascript
 // Promise
-const promise = client.catalog.getStoreDetail({  q : value,
+const promise = platformClient.catalog.getStoreDetail({  q : value,
  pageNo : value,
  pageSize : value });
 
 // Async/Await
-const data = await client.catalog.getStoreDetail({  q : value,
+const data = await platformClient.catalog.getStoreDetail({  q : value,
  pageNo : value,
  pageSize : value });
 ```
@@ -13282,13 +13358,13 @@ Get product list
 
 ```javascript
 // Promise
-const promise = client.catalog.getVariantsOfProducts({  itemId : value,
+const promise = platformClient.catalog.getVariantsOfProducts({  itemId : value,
  variantType : value,
  pageNo : value,
  pageSize : value });
 
 // Async/Await
-const data = await client.catalog.getVariantsOfProducts({  itemId : value,
+const data = await platformClient.catalog.getVariantsOfProducts({  itemId : value,
  variantType : value,
  pageNo : value,
  pageSize : value });
@@ -13372,14 +13448,14 @@ Get product categories list
 
 ```javascript
 // Promise
-const promise = client.catalog.listCategories({  level : value,
+const promise = platformClient.catalog.listCategories({  level : value,
  departments : value,
  q : value,
  pageNo : value,
  pageSize : value });
 
 // Async/Await
-const data = await client.catalog.listCategories({  level : value,
+const data = await platformClient.catalog.listCategories({  level : value,
  departments : value,
  q : value,
  pageNo : value,
@@ -13838,14 +13914,16 @@ List all Departments.
 
 ```javascript
 // Promise
-const promise = client.catalog.listDepartmentsData({  pageNo : value,
+const promise = platformClient.catalog.listDepartmentsData({  pageNo : value,
+ itemType : value,
  pageSize : value,
  name : value,
  search : value,
  isActive : value });
 
 // Async/Await
-const data = await client.catalog.listDepartmentsData({  pageNo : value,
+const data = await platformClient.catalog.listDepartmentsData({  pageNo : value,
+ itemType : value,
  pageSize : value,
  name : value,
  search : value,
@@ -13859,6 +13937,7 @@ const data = await client.catalog.listDepartmentsData({  pageNo : value,
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
 | pageNo | number | no | The page number to navigate through the given set of results |    
+| itemType | string | no | A `item_type` is a type of product eg. set, standard, digital |    
 | pageSize | number | no | Number of items to retrieve in each page. Default is 10. |    
 | name | string | no | Can search departments by passing name. |    
 | search | string | no | Can search departments by passing name of the department in search parameter. |    
@@ -14224,10 +14303,10 @@ List HSN Codes
 
 ```javascript
 // Promise
-const promise = client.catalog.listHSNCodes();
+const promise = platformClient.catalog.listHSNCodes();
 
 // Async/Await
-const data = await client.catalog.listHSNCodes();
+const data = await platformClient.catalog.listHSNCodes();
 ```
 
 
@@ -14278,6 +14357,105 @@ List of all HSN Codes. See example below or refer `HSNCodesResponse` for details
 ---
 
 
+### listInventoryExport
+Get the history of the inventory export.
+
+
+
+```javascript
+// Promise
+const promise = platformClient.catalog.listInventoryExport({  status : value,
+ fromDate : value,
+ toDate : value,
+ q : value });
+
+// Async/Await
+const data = await platformClient.catalog.listInventoryExport({  status : value,
+ fromDate : value,
+ toDate : value,
+ q : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| status | string | no | Status of the export job. |    
+| fromDate | string | no | Inventory export history filtered according to from_date. |    
+| toDate | string | no | Inventory export history filtered according to from_date. |    
+| q | string | no | Inventory export history filtered according to task ID. |  
+
+
+
+This API helps you the get the history of inventory jobs depending on the filtered criteria.
+
+*Returned Response:*
+
+
+
+
+[InventoryExportJobListResponse](#InventoryExportJobListResponse)
+
+Returns a list of inventory export jobs
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "items": [
+    {
+      "url": "https://regrowth.s3.amazonaws.com/slingshot-catalogues/seller-catalog/577/ab469da4-b9a5-11ed-955a-d6fb21611540/ab469da4-b9a5-11ed-955a-d6fb21611540.zip",
+      "type": "excel",
+      "created_on": "2023-03-03T09:27:51.262000Z",
+      "_id": "6401bd972a2e6c3d508c9203",
+      "task_id": "ab469da4-b9a5-11ed-955a-d6fb21611540",
+      "filters": {
+        "brand_ids": [
+          2751
+        ],
+        "store_ids": [
+          3622
+        ],
+        "brands": [
+          "Puma"
+        ],
+        "stores": [
+          "Vikings Cbs"
+        ]
+      },
+      "modified_on": "2023-03-03T09:27:51.262000",
+      "status": "success",
+      "notification_emails": [],
+      "created_by": {
+        "username": "rohanshah@fynd.com",
+        "user_id": "5e199e6998cfe1776f1385dc"
+      },
+      "completed_on": "2023-03-03T09:33:11.416000Z",
+      "seller_id": 577,
+      "id": "6401bd972a2e6c3d508c9203"
+    }
+  ]
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
 ### listProductTemplate
 List all Templates
 
@@ -14285,10 +14463,10 @@ List all Templates
 
 ```javascript
 // Promise
-const promise = client.catalog.listProductTemplate({  department : value });
+const promise = platformClient.catalog.listProductTemplate({  department : value });
 
 // Async/Await
-const data = await client.catalog.listProductTemplate({  department : value });
+const data = await platformClient.catalog.listProductTemplate({  department : value });
 ```
 
 
@@ -16192,11 +16370,11 @@ List Department specifiec product categories
 
 ```javascript
 // Promise
-const promise = client.catalog.listProductTemplateCategories({  departments : value,
+const promise = platformClient.catalog.listProductTemplateCategories({  departments : value,
  itemType : value });
 
 // Async/Await
-const data = await client.catalog.listProductTemplateCategories({  departments : value,
+const data = await platformClient.catalog.listProductTemplateCategories({  departments : value,
  itemType : value });
 ```
 
@@ -16254,10 +16432,10 @@ Allows you to list all product templates export list details
 
 ```javascript
 // Promise
-const promise = client.catalog.listProductTemplateExportDetails();
+const promise = platformClient.catalog.listProductTemplateExportDetails();
 
 // Async/Await
-const data = await client.catalog.listProductTemplateExportDetails();
+const data = await platformClient.catalog.listProductTemplateExportDetails();
 ```
 
 
@@ -16337,10 +16515,14 @@ Allows you to list all values for Templates, Brands or Type
 
 ```javascript
 // Promise
-const promise = client.catalog.listTemplateBrandTypeValues({  filter : value });
+const promise = platformClient.catalog.listTemplateBrandTypeValues({  filter : value,
+ templateTag : value,
+ itemType : value });
 
 // Async/Await
-const data = await client.catalog.listTemplateBrandTypeValues({  filter : value });
+const data = await platformClient.catalog.listTemplateBrandTypeValues({  filter : value,
+ templateTag : value,
+ itemType : value });
 ```
 
 
@@ -16349,7 +16531,9 @@ const data = await client.catalog.listTemplateBrandTypeValues({  filter : value 
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
-| filter | string | yes | A `filter` is the unique identifier of the type of value required. |  
+| filter | string | yes | A `filter` is the unique identifier of the type of value required. |    
+| templateTag | string | no | A `template_tag` is the identifier of the type of template required. |    
+| itemType | string | no | A `item_type` is the identifier of the type of template required. |  
 
 
 
@@ -16405,10 +16589,10 @@ Update allow single flag for filters of the application.
 
 ```javascript
 // Promise
-const promise = client.application("<APPLICATION_ID>").catalog.updateAllowSingle({  body : value });
+const promise = platformClient.application("<APPLICATION_ID>").catalog.updateAllowSingle({  body : value });
 
 // Async/Await
-const data = await client.application("<APPLICATION_ID>").catalog.updateAllowSingle({  body : value });
+const data = await platformClient.application("<APPLICATION_ID>").catalog.updateAllowSingle({  body : value });
 ```
 
 
@@ -16460,11 +16644,11 @@ Update a single custom json.
 
 ```javascript
 // Promise
-const promise = client.application("<APPLICATION_ID>").catalog.updateAppBrand({  brandUid : value,
+const promise = platformClient.application("<APPLICATION_ID>").catalog.updateAppBrand({  brandUid : value,
  body : value });
 
 // Async/Await
-const data = await client.application("<APPLICATION_ID>").catalog.updateAppBrand({  brandUid : value,
+const data = await platformClient.application("<APPLICATION_ID>").catalog.updateAppBrand({  brandUid : value,
  body : value });
 ```
 
@@ -16520,11 +16704,11 @@ Update a single custom json.
 
 ```javascript
 // Promise
-const promise = client.application("<APPLICATION_ID>").catalog.updateAppCategory({  categoryUid : value,
+const promise = platformClient.application("<APPLICATION_ID>").catalog.updateAppCategory({  categoryUid : value,
  body : value });
 
 // Async/Await
-const data = await client.application("<APPLICATION_ID>").catalog.updateAppCategory({  categoryUid : value,
+const data = await platformClient.application("<APPLICATION_ID>").catalog.updateAppCategory({  categoryUid : value,
  body : value });
 ```
 
@@ -16580,11 +16764,11 @@ Update a single custom json.
 
 ```javascript
 // Promise
-const promise = client.application("<APPLICATION_ID>").catalog.updateAppDepartment({  departmentUid : value,
+const promise = platformClient.application("<APPLICATION_ID>").catalog.updateAppDepartment({  departmentUid : value,
  body : value });
 
 // Async/Await
-const data = await client.application("<APPLICATION_ID>").catalog.updateAppDepartment({  departmentUid : value,
+const data = await platformClient.application("<APPLICATION_ID>").catalog.updateAppDepartment({  departmentUid : value,
  body : value });
 ```
 
@@ -16640,11 +16824,11 @@ Update a single custom json.
 
 ```javascript
 // Promise
-const promise = client.application("<APPLICATION_ID>").catalog.updateAppLocation({  storeUid : value,
+const promise = platformClient.application("<APPLICATION_ID>").catalog.updateAppLocation({  storeUid : value,
  body : value });
 
 // Async/Await
-const data = await client.application("<APPLICATION_ID>").catalog.updateAppLocation({  storeUid : value,
+const data = await platformClient.application("<APPLICATION_ID>").catalog.updateAppLocation({  storeUid : value,
  body : value });
 ```
 
@@ -16700,11 +16884,11 @@ Update a single custom meta.
 
 ```javascript
 // Promise
-const promise = client.application("<APPLICATION_ID>").catalog.updateAppProduct({  itemId : value,
+const promise = platformClient.application("<APPLICATION_ID>").catalog.updateAppProduct({  itemId : value,
  body : value });
 
 // Async/Await
-const data = await client.application("<APPLICATION_ID>").catalog.updateAppProduct({  itemId : value,
+const data = await platformClient.application("<APPLICATION_ID>").catalog.updateAppProduct({  itemId : value,
  body : value });
 ```
 
@@ -16760,11 +16944,11 @@ Create & Update Autocomplete Keyword
 
 ```javascript
 // Promise
-const promise = client.application("<APPLICATION_ID>").catalog.updateAutocompleteKeyword({  id : value,
+const promise = platformClient.application("<APPLICATION_ID>").catalog.updateAutocompleteKeyword({  id : value,
  body : value });
 
 // Async/Await
-const data = await client.application("<APPLICATION_ID>").catalog.updateAutocompleteKeyword({  id : value,
+const data = await platformClient.application("<APPLICATION_ID>").catalog.updateAutocompleteKeyword({  id : value,
  body : value });
 ```
 
@@ -16818,11 +17002,11 @@ Update product categories
 
 ```javascript
 // Promise
-const promise = client.catalog.updateCategory({  uid : value,
+const promise = platformClient.catalog.updateCategory({  uid : value,
  body : value });
 
 // Async/Await
-const data = await client.catalog.updateCategory({  uid : value,
+const data = await platformClient.catalog.updateCategory({  uid : value,
  body : value });
 ```
 
@@ -16876,11 +17060,11 @@ Update a collection
 
 ```javascript
 // Promise
-const promise = client.application("<APPLICATION_ID>").catalog.updateCollection({  id : value,
+const promise = platformClient.application("<APPLICATION_ID>").catalog.updateCollection({  id : value,
  body : value });
 
 // Async/Await
-const data = await client.application("<APPLICATION_ID>").catalog.updateCollection({  id : value,
+const data = await platformClient.application("<APPLICATION_ID>").catalog.updateCollection({  id : value,
  body : value });
 ```
 
@@ -16994,10 +17178,10 @@ Update the default sort key configuration for the application.
 
 ```javascript
 // Promise
-const promise = client.application("<APPLICATION_ID>").catalog.updateDefaultSort({  body : value });
+const promise = platformClient.application("<APPLICATION_ID>").catalog.updateDefaultSort({  body : value });
 
 // Async/Await
-const data = await client.application("<APPLICATION_ID>").catalog.updateDefaultSort({  body : value });
+const data = await platformClient.application("<APPLICATION_ID>").catalog.updateDefaultSort({  body : value });
 ```
 
 
@@ -17049,11 +17233,11 @@ Update the department by their uid.
 
 ```javascript
 // Promise
-const promise = client.catalog.updateDepartment({  uid : value,
+const promise = platformClient.catalog.updateDepartment({  uid : value,
  body : value });
 
 // Async/Await
-const data = await client.catalog.updateDepartment({  uid : value,
+const data = await platformClient.catalog.updateDepartment({  uid : value,
  body : value });
 ```
 
@@ -17123,12 +17307,12 @@ Update the group configurations for the application.
 
 ```javascript
 // Promise
-const promise = client.application("<APPLICATION_ID>").catalog.updateGroupConfiguration({  configType : value,
+const promise = platformClient.application("<APPLICATION_ID>").catalog.updateGroupConfiguration({  configType : value,
  groupSlug : value,
  body : value });
 
 // Async/Await
-const data = await client.application("<APPLICATION_ID>").catalog.updateGroupConfiguration({  configType : value,
+const data = await platformClient.application("<APPLICATION_ID>").catalog.updateGroupConfiguration({  configType : value,
  groupSlug : value,
  body : value });
 ```
@@ -17205,11 +17389,11 @@ Update Hsn Code.
 
 ```javascript
 // Promise
-const promise = client.catalog.updateHsnCode({  id : value,
+const promise = platformClient.catalog.updateHsnCode({  id : value,
  body : value });
 
 // Async/Await
-const data = await client.catalog.updateHsnCode({  id : value,
+const data = await platformClient.catalog.updateHsnCode({  id : value,
  body : value });
 ```
 
@@ -17285,10 +17469,10 @@ Add Inventory for particular size and store.
 
 ```javascript
 // Promise
-const promise = client.catalog.updateInventories({  body : value });
+const promise = platformClient.catalog.updateInventories({  body : value });
 
 // Async/Await
-const data = await client.catalog.updateInventories({  body : value });
+const data = await platformClient.catalog.updateInventories({  body : value });
 ```
 
 
@@ -17372,12 +17556,12 @@ Update configuration for listings
 
 ```javascript
 // Promise
-const promise = client.application("<APPLICATION_ID>").catalog.updateListingConfiguration({  configType : value,
+const promise = platformClient.application("<APPLICATION_ID>").catalog.updateListingConfiguration({  configType : value,
  configId : value,
  body : value });
 
 // Async/Await
-const data = await client.application("<APPLICATION_ID>").catalog.updateListingConfiguration({  configType : value,
+const data = await platformClient.application("<APPLICATION_ID>").catalog.updateListingConfiguration({  configType : value,
  configId : value,
  body : value });
 ```
@@ -17442,11 +17626,11 @@ Update a Product Bundle
 
 ```javascript
 // Promise
-const promise = client.catalog.updateProductBundle({  id : value,
+const promise = platformClient.catalog.updateProductBundle({  id : value,
  body : value });
 
 // Async/Await
-const data = await client.catalog.updateProductBundle({  id : value,
+const data = await platformClient.catalog.updateProductBundle({  id : value,
  body : value });
 ```
 
@@ -17533,12 +17717,12 @@ Add Inventory for particular size and store.
 
 ```javascript
 // Promise
-const promise = client.catalog.updateRealtimeInventory({  itemId : value,
+const promise = platformClient.catalog.updateRealtimeInventory({  itemId : value,
  sellerIdentifier : value,
  body : value });
 
 // Async/Await
-const data = await client.catalog.updateRealtimeInventory({  itemId : value,
+const data = await platformClient.catalog.updateRealtimeInventory({  itemId : value,
  sellerIdentifier : value,
  body : value });
 ```
@@ -17626,11 +17810,11 @@ Update Search Keyword
 
 ```javascript
 // Promise
-const promise = client.application("<APPLICATION_ID>").catalog.updateSearchKeywords({  id : value,
+const promise = platformClient.application("<APPLICATION_ID>").catalog.updateSearchKeywords({  id : value,
  body : value });
 
 // Async/Await
-const data = await client.application("<APPLICATION_ID>").catalog.updateSearchKeywords({  id : value,
+const data = await platformClient.application("<APPLICATION_ID>").catalog.updateSearchKeywords({  id : value,
  body : value });
 ```
 
@@ -17684,11 +17868,11 @@ Edit a size guide.
 
 ```javascript
 // Promise
-const promise = client.catalog.updateSizeGuide({  id : value,
+const promise = platformClient.catalog.updateSizeGuide({  id : value,
  body : value });
 
 // Async/Await
-const data = await client.catalog.updateSizeGuide({  id : value,
+const data = await platformClient.catalog.updateSizeGuide({  id : value,
  body : value });
 ```
 
@@ -17744,12 +17928,12 @@ Create a Bulk product to upload job.
 
 ```javascript
 // Promise
-const promise = client.catalog.uploadBulkProducts({  department : value,
+const promise = platformClient.catalog.uploadBulkProducts({  department : value,
  productType : value,
  body : value });
 
 // Async/Await
-const data = await client.catalog.uploadBulkProducts({  department : value,
+const data = await platformClient.catalog.uploadBulkProducts({  department : value,
  productType : value,
  body : value });
 ```
@@ -17807,10 +17991,10 @@ Validate Product Template Schema
 
 ```javascript
 // Promise
-const promise = client.catalog.validateProductTemplate({  slug : value });
+const promise = platformClient.catalog.validateProductTemplate({  slug : value });
 
 // Async/Await
-const data = await client.catalog.validateProductTemplate({  slug : value });
+const data = await platformClient.catalog.validateProductTemplate({  slug : value });
 ```
 
 
@@ -17863,10 +18047,10 @@ Validate Product Template Schema
 
 ```javascript
 // Promise
-const promise = client.catalog.validateProductTemplateSchema({  itemType : value });
+const promise = platformClient.catalog.validateProductTemplateSchema({  itemType : value });
 
 // Async/Await
-const data = await client.catalog.validateProductTemplateSchema({  itemType : value });
+const data = await platformClient.catalog.validateProductTemplateSchema({  itemType : value });
 ```
 
 
@@ -18020,8 +18204,8 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | page | [ActionPage](#ActionPage) |  no  |  |
- | type | string |  no  |  |
+ | page | [ActionPage](#ActionPage)? |  yes  |  |
+ | type | string? |  yes  |  |
  
 
 ---
@@ -18030,8 +18214,8 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | query | string |  no  |  |
- | type | string |  no  |  |
+ | query | string? |  yes  |  |
+ | type | string? |  yes  |  |
  
 
 ---
@@ -18040,7 +18224,7 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | allow_single | boolean |  yes  |  |
+ | allow_single | boolean |  no  |  |
  
 
 ---
@@ -18049,14 +18233,14 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | identifiers | [[ValidateIdentifier](#ValidateIdentifier)] |  no  |  |
- | item_dimensions_unit_of_measure | string |  yes  |  |
- | item_height | number |  yes  |  |
- | item_length | number |  yes  |  |
- | item_weight | number |  yes  |  |
- | item_weight_unit_of_measure | any |  yes  |  |
- | item_width | number |  yes  |  |
- | size | any |  yes  |  |
+ | identifiers | [[ValidateIdentifier](#ValidateIdentifier)]? |  yes  |  |
+ | item_dimensions_unit_of_measure | string |  no  |  |
+ | item_height | number |  no  |  |
+ | item_length | number |  no  |  |
+ | item_weight | number |  no  |  |
+ | item_weight_unit_of_measure | any |  no  |  |
+ | item_width | number |  no  |  |
+ | size | any |  no  |  |
  
 
 ---
@@ -18065,17 +18249,17 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | app_id | string |  yes  |  |
- | config_id | string |  no  |  |
- | config_type | string |  yes  |  |
- | created_by | string |  no  |  |
- | created_on | string |  no  |  |
- | id | string |  no  |  |
- | listing | [ConfigurationListing](#ConfigurationListing) |  no  |  |
- | modified_by | string |  no  |  |
- | modified_on | string |  no  |  |
- | product | [ConfigurationProduct](#ConfigurationProduct) |  no  |  |
- | type | string |  no  |  |
+ | app_id | string |  no  |  |
+ | config_id | string? |  yes  |  |
+ | config_type | string |  no  |  |
+ | created_by | string? |  yes  |  |
+ | created_on | string? |  yes  |  |
+ | id | string? |  yes  |  |
+ | listing | [ConfigurationListing](#ConfigurationListing)? |  yes  |  |
+ | modified_by | string? |  yes  |  |
+ | modified_on | string? |  yes  |  |
+ | product | [ConfigurationProduct](#ConfigurationProduct)? |  yes  |  |
+ | type | string? |  yes  |  |
  
 
 ---
@@ -18084,16 +18268,16 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | app_id | string |  yes  |  |
- | config_id | string |  no  |  |
- | config_type | string |  yes  |  |
- | created_by | string |  no  |  |
- | created_on | string |  no  |  |
- | listing | [ConfigurationListing](#ConfigurationListing) |  no  |  |
- | modified_by | string |  no  |  |
- | modified_on | string |  no  |  |
- | product | [ConfigurationProduct](#ConfigurationProduct) |  no  |  |
- | type | string |  no  |  |
+ | app_id | string |  no  |  |
+ | config_id | string? |  yes  |  |
+ | config_type | string |  no  |  |
+ | created_by | string? |  yes  |  |
+ | created_on | string? |  yes  |  |
+ | listing | [ConfigurationListing](#ConfigurationListing)? |  yes  |  |
+ | modified_by | string? |  yes  |  |
+ | modified_on | string? |  yes  |  |
+ | product | [ConfigurationProduct](#ConfigurationProduct)? |  yes  |  |
+ | type | string? |  yes  |  |
  
 
 ---
@@ -18102,15 +18286,15 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | app_id | string |  yes  |  |
- | attributes | [[AttributeDetailsGroup](#AttributeDetailsGroup)] |  no  |  |
- | is_active | boolean |  yes  |  |
- | is_default | boolean |  yes  |  |
- | logo | string |  no  |  |
- | name | string |  no  |  |
- | priority | number |  yes  |  |
- | slug | string |  yes  |  |
- | template_slugs | [string] |  no  |  |
+ | app_id | string |  no  |  |
+ | attributes | [[AttributeDetailsGroup](#AttributeDetailsGroup)]? |  yes  |  |
+ | is_active | boolean |  no  |  |
+ | is_default | boolean |  no  |  |
+ | logo | string? |  yes  |  |
+ | name | string? |  yes  |  |
+ | priority | number |  no  |  |
+ | slug | string |  no  |  |
+ | template_slugs | [string]? |  yes  |  |
  
 
 ---
@@ -18119,14 +18303,14 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | app_id | string |  yes  |  |
- | default_key | string |  yes  |  |
- | is_active | boolean |  yes  |  |
- | is_default | boolean |  yes  |  |
- | key | string |  yes  |  |
- | logo | string |  no  |  |
- | name | string |  no  |  |
- | priority | number |  yes  |  |
+ | app_id | string |  no  |  |
+ | default_key | string |  no  |  |
+ | is_active | boolean |  no  |  |
+ | is_default | boolean |  no  |  |
+ | key | string |  no  |  |
+ | logo | string? |  yes  |  |
+ | name | string? |  yes  |  |
+ | priority | number |  no  |  |
  
 
 ---
@@ -18135,7 +18319,7 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | _custom_json | string |  yes  |  |
+ | _custom_json | string |  no  |  |
  
 
 ---
@@ -18144,7 +18328,7 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | _custom_json | string |  yes  |  |
+ | _custom_json | string |  no  |  |
  
 
 ---
@@ -18153,12 +18337,12 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | _custom_json | string |  no  |  |
- | app_id | string |  yes  |  |
- | is_active | boolean |  no  |  |
- | logo | string |  no  |  |
- | name | string |  no  |  |
- | uid | number |  yes  |  |
+ | _custom_json | string? |  yes  |  |
+ | app_id | string |  no  |  |
+ | is_active | boolean? |  yes  |  |
+ | logo | string? |  yes  |  |
+ | name | string? |  yes  |  |
+ | uid | number |  no  |  |
  
 
 ---
@@ -18167,7 +18351,7 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | _custom_json | string |  yes  |  |
+ | _custom_json | string |  no  |  |
  
 
 ---
@@ -18176,8 +18360,8 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | items | [[ApplicationDepartment](#ApplicationDepartment)] |  no  |  |
- | page | [Page](#Page) |  yes  |  |
+ | items | [[ApplicationDepartment](#ApplicationDepartment)]? |  yes  |  |
+ | page | [Page](#Page) |  no  |  |
  
 
 ---
@@ -18186,13 +18370,13 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | _custom_json | string |  no  |  |
- | _custom_meta | [[MetaFields](#MetaFields)] |  no  |  |
- | alt_text | string |  no  |  |
- | is_cod | boolean |  no  |  |
- | is_gift | boolean |  no  |  |
- | moq | [ApplicationItemMOQ](#ApplicationItemMOQ) |  no  |  |
- | seo | [ApplicationItemSEO](#ApplicationItemSEO) |  no  |  |
+ | _custom_json | string? |  yes  |  |
+ | _custom_meta | [[MetaFields](#MetaFields)]? |  yes  |  |
+ | alt_text | string? |  yes  |  |
+ | is_cod | boolean? |  yes  |  |
+ | is_gift | boolean? |  yes  |  |
+ | moq | [ApplicationItemMOQ](#ApplicationItemMOQ)? |  yes  |  |
+ | seo | [ApplicationItemSEO](#ApplicationItemSEO)? |  yes  |  |
  
 
 ---
@@ -18201,9 +18385,9 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | increment_unit | number |  no  |  |
- | maximum | number |  no  |  |
- | minimum | number |  no  |  |
+ | increment_unit | number? |  yes  |  |
+ | maximum | number? |  yes  |  |
+ | minimum | number? |  yes  |  |
  
 
 ---
@@ -18212,8 +18396,8 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | description | any |  no  |  |
- | title | any |  no  |  |
+ | description | any? |  yes  |  |
+ | title | any? |  yes  |  |
  
 
 ---
@@ -18222,11 +18406,11 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | filters | [[ProductFilters](#ProductFilters)] |  no  |  |
- | items | [[ProductListingDetail](#ProductListingDetail)] |  no  |  |
- | operators | string |  no  |  |
- | page | [Page](#Page) |  yes  |  |
- | sort_on | [[ProductSortOn](#ProductSortOn)] |  no  |  |
+ | filters | [[ProductFilters](#ProductFilters)]? |  yes  |  |
+ | items | [[ProductListingDetail](#ProductListingDetail)]? |  yes  |  |
+ | operators | string? |  yes  |  |
+ | page | [Page](#Page) |  no  |  |
+ | sort_on | [[ProductSortOn](#ProductSortOn)]? |  yes  |  |
  
 
 ---
@@ -18235,7 +18419,7 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | _custom_json | string |  yes  |  |
+ | _custom_json | string |  no  |  |
  
 
 ---
@@ -18244,8 +18428,8 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | level | string |  no  |  |
- | strategy | string |  no  |  |
+ | level | string? |  yes  |  |
+ | strategy | string? |  yes  |  |
  
 
 ---
@@ -18254,8 +18438,8 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | level | string |  no  |  |
- | strategy | string |  no  |  |
+ | level | string? |  yes  |  |
+ | strategy | string? |  yes  |  |
  
 
 ---
@@ -18264,9 +18448,9 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | ignored_stores | [number] |  no  |  |
- | item_id | number |  yes  |  |
- | size | string |  yes  |  |
+ | ignored_stores | [number]? |  yes  |  |
+ | item_id | number |  no  |  |
+ | size | string |  no  |  |
  
 
 ---
@@ -18275,10 +18459,10 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | name | string |  no  |  |
- | store_code | string |  no  |  |
- | store_type | string |  no  |  |
- | uid | number |  no  |  |
+ | name | string? |  yes  |  |
+ | store_code | string? |  yes  |  |
+ | store_type | string? |  yes  |  |
+ | uid | number? |  yes  |  |
  
 
 ---
@@ -18287,13 +18471,13 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | app_id | string |  yes  |  |
- | articles | [[AssignStoreArticle](#AssignStoreArticle)] |  yes  |  |
- | channel_identifier | string |  no  |  |
- | channel_type | string |  no  |  |
- | company_id | number |  no  |  |
- | pincode | string |  yes  |  |
- | store_ids | [number] |  no  |  |
+ | app_id | string |  no  |  |
+ | articles | [[AssignStoreArticle](#AssignStoreArticle)] |  no  |  |
+ | channel_identifier | string? |  yes  |  |
+ | channel_type | string? |  yes  |  |
+ | company_id | number? |  yes  |  |
+ | pincode | string |  no  |  |
+ | store_ids | [number]? |  yes  |  |
  
 
 ---
@@ -18302,11 +18486,11 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | article_assignment | [ArticleAssignment](#ArticleAssignment) |  no  |  |
- | group_id | string |  no  |  |
- | meta | string |  no  |  |
- | quantity | number |  no  |  |
- | query | [ArticleQuery](#ArticleQuery) |  no  |  |
+ | article_assignment | [ArticleAssignment](#ArticleAssignment)? |  yes  |  |
+ | group_id | string? |  yes  |  |
+ | meta | string? |  yes  |  |
+ | quantity | number? |  yes  |  |
+ | query | [ArticleQuery](#ArticleQuery)? |  yes  |  |
  
 
 ---
@@ -18315,14 +18499,14 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | display_type | string |  yes  |  |
- | is_active | boolean |  yes  |  |
- | key | string |  no  |  |
- | logo | string |  no  |  |
- | name | string |  yes  |  |
- | priority | number |  yes  |  |
- | slug | string |  no  |  |
- | unit | string |  no  |  |
+ | display_type | string |  no  |  |
+ | is_active | boolean |  no  |  |
+ | key | string? |  yes  |  |
+ | logo | string? |  yes  |  |
+ | name | string |  no  |  |
+ | priority | number |  no  |  |
+ | slug | string? |  yes  |  |
+ | unit | string? |  yes  |  |
  
 
 ---
@@ -18331,12 +18515,12 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | allowed_values | [string] |  no  |  |
- | format | string |  no  |  |
- | mandatory | boolean |  no  |  |
- | multi | boolean |  no  |  |
- | range | [AttributeSchemaRange](#AttributeSchemaRange) |  no  |  |
- | type | string |  yes  |  |
+ | allowed_values | [string]? |  yes  |  |
+ | format | string? |  yes  |  |
+ | mandatory | boolean? |  yes  |  |
+ | multi | boolean? |  yes  |  |
+ | range | [AttributeSchemaRange](#AttributeSchemaRange)? |  yes  |  |
+ | type | string |  no  |  |
  
 
 ---
@@ -18345,7 +18529,7 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | display_type | string |  yes  |  |
+ | display_type | string |  no  |  |
  
 
 ---
@@ -18354,9 +18538,9 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | depends_on | [string] |  no  |  |
- | indexing | boolean |  yes  |  |
- | priority | number |  no  |  |
+ | depends_on | [string]? |  yes  |  |
+ | indexing | boolean |  no  |  |
+ | priority | number? |  yes  |  |
  
 
 ---
@@ -18365,7 +18549,7 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | l3_keys | [string] |  no  |  |
+ | l3_keys | [string]? |  yes  |  |
  
 
 ---
@@ -18374,8 +18558,8 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | enriched | boolean |  no  |  |
- | mandatory_details | [AttributeMasterMandatoryDetails](#AttributeMasterMandatoryDetails) |  yes  |  |
+ | enriched | boolean? |  yes  |  |
+ | mandatory_details | [AttributeMasterMandatoryDetails](#AttributeMasterMandatoryDetails) |  no  |  |
  
 
 ---
@@ -18384,26 +18568,26 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | created_by | string |  no  |  |
- | created_on | string |  no  |  |
- | departments | [string] |  yes  |  |
- | description | string |  no  |  |
- | details | [AttributeMasterDetails](#AttributeMasterDetails) |  yes  |  |
- | enabled_for_end_consumer | boolean |  no  |  |
- | filters | [AttributeMasterFilter](#AttributeMasterFilter) |  yes  |  |
- | is_nested | boolean |  no  |  |
- | logo | string |  no  |  |
- | modified_by | string |  no  |  |
- | modified_on | string |  no  |  |
- | name | string |  no  |  |
- | raw_key | string |  no  |  |
- | schema | [AttributeMaster](#AttributeMaster) |  yes  |  |
- | slug | string |  yes  |  |
- | suggestion | string |  no  |  |
- | synonyms | string |  no  |  |
- | tags | [string] |  no  |  |
- | unit | string |  no  |  |
- | variant | boolean |  no  |  |
+ | created_by | string? |  yes  |  |
+ | created_on | string? |  yes  |  |
+ | departments | [string] |  no  |  |
+ | description | string? |  yes  |  |
+ | details | [AttributeMasterDetails](#AttributeMasterDetails) |  no  |  |
+ | enabled_for_end_consumer | boolean? |  yes  |  |
+ | filters | [AttributeMasterFilter](#AttributeMasterFilter) |  no  |  |
+ | is_nested | boolean? |  yes  |  |
+ | logo | string? |  yes  |  |
+ | modified_by | string? |  yes  |  |
+ | modified_on | string? |  yes  |  |
+ | name | string? |  yes  |  |
+ | raw_key | string? |  yes  |  |
+ | schema | [AttributeMaster](#AttributeMaster) |  no  |  |
+ | slug | string |  no  |  |
+ | suggestion | string? |  yes  |  |
+ | synonyms | string? |  yes  |  |
+ | tags | [string]? |  yes  |  |
+ | unit | string? |  yes  |  |
+ | variant | boolean? |  yes  |  |
  
 
 ---
@@ -18412,8 +18596,8 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | max | number |  no  |  |
- | min | number |  no  |  |
+ | max | number? |  yes  |  |
+ | min | number? |  yes  |  |
  
 
 ---
@@ -18422,8 +18606,8 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | page | [AutocompletePageAction](#AutocompletePageAction) |  no  |  |
- | type | string |  no  |  |
+ | page | [AutocompletePageAction](#AutocompletePageAction)? |  yes  |  |
+ | type | string? |  yes  |  |
  
 
 ---
@@ -18432,10 +18616,10 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | params | string |  no  |  |
- | query | string |  no  |  |
- | type | string |  no  |  |
- | url | string |  no  |  |
+ | params | string? |  yes  |  |
+ | query | string? |  yes  |  |
+ | type | string? |  yes  |  |
+ | url | string? |  yes  |  |
  
 
 ---
@@ -18444,10 +18628,10 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | _custom_json | string |  no  |  |
- | action | [AutocompleteAction](#AutocompleteAction) |  no  |  |
- | display | string |  no  |  |
- | logo | [Media](#Media) |  no  |  |
+ | _custom_json | string? |  yes  |  |
+ | action | [AutocompleteAction](#AutocompleteAction)? |  yes  |  |
+ | display | string? |  yes  |  |
+ | logo | [Media](#Media)? |  yes  |  |
  
 
 ---
@@ -18456,9 +18640,9 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | aspect_ratio | string |  no  |  |
- | type | string |  no  |  |
- | url | string |  no  |  |
+ | aspect_ratio | string? |  yes  |  |
+ | type | string? |  yes  |  |
+ | url | string? |  yes  |  |
  
 
 ---
@@ -18467,9 +18651,9 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | logo | [Logo](#Logo) |  no  |  |
- | name | string |  no  |  |
- | uid | number |  no  |  |
+ | logo | [Logo](#Logo)? |  yes  |  |
+ | name | string? |  yes  |  |
+ | uid | number? |  yes  |  |
  
 
 ---
@@ -18478,14 +18662,14 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | action | [Action](#Action) |  no  |  |
- | banners | [ImageUrls](#ImageUrls) |  no  |  |
- | departments | [string] |  no  |  |
- | discount | string |  no  |  |
- | logo | [Media](#Media) |  no  |  |
- | name | string |  no  |  |
- | slug | string |  no  |  |
- | uid | number |  no  |  |
+ | action | [Action](#Action)? |  yes  |  |
+ | banners | [ImageUrls](#ImageUrls)? |  yes  |  |
+ | departments | [string]? |  yes  |  |
+ | discount | string? |  yes  |  |
+ | logo | [Media](#Media)? |  yes  |  |
+ | name | string? |  yes  |  |
+ | slug | string? |  yes  |  |
+ | uid | number? |  yes  |  |
  
 
 ---
@@ -18494,8 +18678,8 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | items | [[BrandItem](#BrandItem)] |  no  |  |
- | page | [Page](#Page) |  yes  |  |
+ | items | [[BrandItem](#BrandItem)]? |  yes  |  |
+ | page | [Page](#Page) |  no  |  |
  
 
 ---
@@ -18504,8 +18688,8 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | id | number |  yes  |  |
- | name | string |  yes  |  |
+ | id | number |  no  |  |
+ | name | string |  no  |  |
  
 
 ---
@@ -18514,8 +18698,8 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | id | number |  no  |  |
- | name | string |  no  |  |
+ | id | number? |  yes  |  |
+ | name | string? |  yes  |  |
  
 
 ---
@@ -18524,8 +18708,8 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | items | [[Items](#Items)] |  no  |  |
- | page | [Page](#Page) |  no  |  |
+ | items | [[Items](#Items)]? |  yes  |  |
+ | page | [Page](#Page)? |  yes  |  |
  
 
 ---
@@ -18534,7 +18718,7 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | success | boolean |  no  |  |
+ | success | boolean? |  yes  |  |
  
 
 ---
@@ -18543,7 +18727,7 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | data | [[HsnUpsert](#HsnUpsert)] |  yes  |  |
+ | data | [[HsnUpsert](#HsnUpsert)] |  no  |  |
  
 
 ---
@@ -18552,8 +18736,8 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | items | [[BulkInventoryGetItems](#BulkInventoryGetItems)] |  no  |  |
- | page | [Page](#Page) |  no  |  |
+ | items | [[BulkInventoryGetItems](#BulkInventoryGetItems)]? |  yes  |  |
+ | page | [Page](#Page)? |  yes  |  |
  
 
 ---
@@ -18562,21 +18746,21 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | cancelled | number |  no  |  |
- | cancelled_records | [string] |  no  |  |
- | company_id | number |  no  |  |
- | created_by | string |  no  |  |
- | created_on | string |  no  |  |
- | failed | number |  no  |  |
- | failed_records | [string] |  no  |  |
- | file_path | string |  no  |  |
- | id | string |  no  |  |
- | is_active | boolean |  no  |  |
- | modified_by | string |  no  |  |
- | modified_on | string |  no  |  |
- | stage | string |  no  |  |
- | succeed | number |  no  |  |
- | total | number |  no  |  |
+ | cancelled | number? |  yes  |  |
+ | cancelled_records | [string]? |  yes  |  |
+ | company_id | number? |  yes  |  |
+ | created_by | string? |  yes  |  |
+ | created_on | string? |  yes  |  |
+ | failed | number? |  yes  |  |
+ | failed_records | [string]? |  yes  |  |
+ | file_path | string? |  yes  |  |
+ | id | string? |  yes  |  |
+ | is_active | boolean? |  yes  |  |
+ | modified_by | string? |  yes  |  |
+ | modified_on | string? |  yes  |  |
+ | stage | string? |  yes  |  |
+ | succeed | number? |  yes  |  |
+ | total | number? |  yes  |  |
  
 
 ---
@@ -18585,23 +18769,23 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | cancelled | number |  no  |  |
- | cancelled_records | [string] |  no  |  |
- | company_id | number |  yes  |  |
- | created_by | [UserInfo1](#UserInfo1) |  no  |  |
- | created_on | string |  yes  |  |
- | custom_template_tag | string |  no  |  |
- | failed | number |  no  |  |
- | failed_records | [string] |  no  |  |
- | file_path | string |  no  |  |
- | is_active | boolean |  no  |  |
- | modified_by | [UserInfo1](#UserInfo1) |  no  |  |
- | modified_on | string |  no  |  |
- | stage | string |  no  |  |
- | succeed | number |  no  |  |
- | template_tag | string |  no  |  |
- | total | number |  no  |  |
- | tracking_url | string |  no  |  |
+ | cancelled | number? |  yes  |  |
+ | cancelled_records | [string]? |  yes  |  |
+ | company_id | number |  no  |  |
+ | created_by | [UserInfo1](#UserInfo1)? |  yes  |  |
+ | created_on | string |  no  |  |
+ | custom_template_tag | string? |  yes  |  |
+ | failed | number? |  yes  |  |
+ | failed_records | [string]? |  yes  |  |
+ | file_path | string? |  yes  |  |
+ | is_active | boolean? |  yes  |  |
+ | modified_by | [UserInfo1](#UserInfo1)? |  yes  |  |
+ | modified_on | string? |  yes  |  |
+ | stage | string? |  yes  |  |
+ | succeed | number? |  yes  |  |
+ | template_tag | string? |  yes  |  |
+ | total | number? |  yes  |  |
+ | tracking_url | string? |  yes  |  |
  
 
 ---
@@ -18610,10 +18794,10 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | batch_id | string |  yes  |  |
- | company_id | number |  yes  |  |
- | data | [string] |  yes  |  |
- | template_tag | string |  yes  |  |
+ | batch_id | string |  no  |  |
+ | company_id | number |  no  |  |
+ | data | [string] |  no  |  |
+ | template_tag | string |  no  |  |
  
 
 ---
@@ -18622,12 +18806,12 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | batch_id | string |  yes  |  |
- | created_by | [UserInfo1](#UserInfo1) |  no  |  |
- | created_on | string |  yes  |  |
- | is_active | boolean |  no  |  |
- | modified_by | [UserInfo1](#UserInfo1) |  no  |  |
- | modified_on | string |  no  |  |
+ | batch_id | string |  no  |  |
+ | created_by | [UserInfo1](#UserInfo1)? |  yes  |  |
+ | created_on | string |  no  |  |
+ | is_active | boolean? |  yes  |  |
+ | modified_by | [UserInfo1](#UserInfo1)? |  yes  |  |
+ | modified_on | string? |  yes  |  |
  
 
 ---
@@ -18636,12 +18820,12 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | article_freshness | number |  no  |  |
- | available_articles | number |  no  |  |
- | available_sizes | number |  no  |  |
- | name | string |  no  |  |
- | total_articles | number |  no  |  |
- | total_sizes | number |  no  |  |
+ | article_freshness | number? |  yes  |  |
+ | available_articles | number? |  yes  |  |
+ | available_sizes | number? |  yes  |  |
+ | name | string? |  yes  |  |
+ | total_articles | number? |  yes  |  |
+ | total_sizes | number? |  yes  |  |
  
 
 ---
@@ -18650,9 +18834,9 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | count | number |  no  |  |
- | out_of_stock_count | number |  no  |  |
- | sellable_count | number |  no  |  |
+ | count | number? |  yes  |  |
+ | out_of_stock_count | number? |  yes  |  |
+ | sellable_count | number? |  yes  |  |
  
 
 ---
@@ -18661,8 +18845,21 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | brand_distribution | [CatalogInsightBrand](#CatalogInsightBrand) |  no  |  |
- | item | [CatalogInsightItem](#CatalogInsightItem) |  no  |  |
+ | brand_distribution | [CatalogInsightBrand](#CatalogInsightBrand)? |  yes  |  |
+ | item | [CatalogInsightItem](#CatalogInsightItem)? |  yes  |  |
+ 
+
+---
+
+#### [CategoriesResponse](#CategoriesResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | name | string? |  yes  |  |
+ | slug | string? |  yes  |  |
+ | slug_key | string? |  yes  |  |
+ | template_slug | string? |  yes  |  |
+ | uid | number? |  yes  |  |
  
 
 ---
@@ -18671,23 +18868,23 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | created_by | string |  no  |  |
- | created_on | string |  no  |  |
- | departments | [number] |  yes  |  |
- | hierarchy | [[Hierarchy](#Hierarchy)] |  no  |  |
- | id | string |  no  |  |
- | is_active | boolean |  yes  |  |
- | level | number |  yes  |  |
- | marketplaces | [CategoryMapping](#CategoryMapping) |  no  |  |
- | media | [Media2](#Media2) |  no  |  |
- | modified_by | string |  no  |  |
- | modified_on | string |  no  |  |
- | name | string |  yes  |  |
- | priority | number |  no  |  |
- | slug | string |  no  |  |
- | synonyms | [string] |  no  |  |
- | tryouts | [string] |  no  |  |
- | uid | number |  no  |  |
+ | created_by | string? |  yes  |  |
+ | created_on | string? |  yes  |  |
+ | departments | [number] |  no  |  |
+ | hierarchy | [[Hierarchy](#Hierarchy)]? |  yes  |  |
+ | id | string? |  yes  |  |
+ | is_active | boolean |  no  |  |
+ | level | number |  no  |  |
+ | marketplaces | [CategoryMapping](#CategoryMapping)? |  yes  |  |
+ | media | [Media2](#Media2)? |  yes  |  |
+ | modified_by | string? |  yes  |  |
+ | modified_on | string? |  yes  |  |
+ | name | string |  no  |  |
+ | priority | number? |  yes  |  |
+ | slug | string? |  yes  |  |
+ | synonyms | [string]? |  yes  |  |
+ | tryouts | [string]? |  yes  |  |
+ | uid | number? |  yes  |  |
  
 
 ---
@@ -18696,8 +18893,8 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | message | string |  no  |  |
- | uid | number |  no  |  |
+ | message | string? |  yes  |  |
+ | uid | number? |  yes  |  |
  
 
 ---
@@ -18706,12 +18903,12 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | action | [Action](#Action) |  no  |  |
- | banners | [ImageUrls](#ImageUrls) |  no  |  |
- | childs | [[Child](#Child)] |  no  |  |
- | name | string |  no  |  |
- | slug | string |  no  |  |
- | uid | number |  no  |  |
+ | action | [Action](#Action)? |  yes  |  |
+ | banners | [ImageUrls](#ImageUrls)? |  yes  |  |
+ | childs | [[Child](#Child)]? |  yes  |  |
+ | name | string? |  yes  |  |
+ | slug | string? |  yes  |  |
+ | uid | number? |  yes  |  |
  
 
 ---
@@ -18720,8 +18917,8 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | data | [[DepartmentCategoryTree](#DepartmentCategoryTree)] |  no  |  |
- | departments | [[DepartmentIdentifier](#DepartmentIdentifier)] |  no  |  |
+ | data | [[DepartmentCategoryTree](#DepartmentCategoryTree)]? |  yes  |  |
+ | departments | [[DepartmentIdentifier](#DepartmentIdentifier)]? |  yes  |  |
  
 
 ---
@@ -18730,9 +18927,9 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | ajio | [CategoryMappingValues](#CategoryMappingValues) |  no  |  |
- | facebook | [CategoryMappingValues](#CategoryMappingValues) |  no  |  |
- | google | [CategoryMappingValues](#CategoryMappingValues) |  no  |  |
+ | ajio | [CategoryMappingValues](#CategoryMappingValues)? |  yes  |  |
+ | facebook | [CategoryMappingValues](#CategoryMappingValues)? |  yes  |  |
+ | google | [CategoryMappingValues](#CategoryMappingValues)? |  yes  |  |
  
 
 ---
@@ -18741,8 +18938,8 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | catalog_id | number |  no  |  |
- | name | string |  yes  |  |
+ | catalog_id | number? |  yes  |  |
+ | name | string |  no  |  |
  
 
 ---
@@ -18751,17 +18948,17 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | departments | [number] |  yes  |  |
- | hierarchy | [[Hierarchy](#Hierarchy)] |  no  |  |
- | is_active | boolean |  yes  |  |
- | level | number |  yes  |  |
- | marketplaces | [CategoryMapping](#CategoryMapping) |  no  |  |
- | media | [Media2](#Media2) |  no  |  |
- | name | string |  yes  |  |
- | priority | number |  no  |  |
- | slug | string |  no  |  |
- | synonyms | [string] |  no  |  |
- | tryouts | [string] |  no  |  |
+ | departments | [number] |  no  |  |
+ | hierarchy | [[Hierarchy](#Hierarchy)]? |  yes  |  |
+ | is_active | boolean |  no  |  |
+ | level | number |  no  |  |
+ | marketplaces | [CategoryMapping](#CategoryMapping)? |  yes  |  |
+ | media | [Media2](#Media2)? |  yes  |  |
+ | name | string |  no  |  |
+ | priority | number? |  yes  |  |
+ | slug | string? |  yes  |  |
+ | synonyms | [string]? |  yes  |  |
+ | tryouts | [string]? |  yes  |  |
  
 
 ---
@@ -18770,8 +18967,8 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | items | [[Category](#Category)] |  no  |  |
- | page | [Page](#Page) |  no  |  |
+ | items | [[Category](#Category)]? |  yes  |  |
+ | page | [Page](#Page)? |  yes  |  |
  
 
 ---
@@ -18780,8 +18977,8 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | message | string |  no  |  |
- | success | boolean |  no  |  |
+ | message | string? |  yes  |  |
+ | success | boolean? |  yes  |  |
  
 
 ---
@@ -18790,13 +18987,13 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | _custom_json | string |  no  |  |
- | action | [Action](#Action) |  no  |  |
- | banners | [ImageUrls](#ImageUrls) |  no  |  |
- | childs | [[SecondLevelChild](#SecondLevelChild)] |  no  |  |
- | name | string |  no  |  |
- | slug | string |  no  |  |
- | uid | number |  no  |  |
+ | _custom_json | string? |  yes  |  |
+ | action | [Action](#Action)? |  yes  |  |
+ | banners | [ImageUrls](#ImageUrls)? |  yes  |  |
+ | childs | [[SecondLevelChild](#SecondLevelChild)]? |  yes  |  |
+ | name | string? |  yes  |  |
+ | slug | string? |  yes  |  |
+ | uid | number? |  yes  |  |
  
 
 ---
@@ -18805,8 +19002,8 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | color | string |  no  |  |
- | text | string |  no  |  |
+ | color | string? |  yes  |  |
+ | text | string? |  yes  |  |
  
 
 ---
@@ -18815,8 +19012,8 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | landscape | [CollectionImage](#CollectionImage) |  yes  |  |
- | portrait | [CollectionImage](#CollectionImage) |  yes  |  |
+ | landscape | [CollectionImage](#CollectionImage) |  no  |  |
+ | portrait | [CollectionImage](#CollectionImage) |  no  |  |
  
 
 ---
@@ -18825,25 +19022,25 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | _schedule | string |  no  |  |
- | allow_facets | boolean |  no  |  |
- | allow_sort | boolean |  no  |  |
- | app_id | string |  no  |  |
- | badge | string |  no  |  |
- | banners | [ImageUrls](#ImageUrls) |  no  |  |
- | cron | string |  no  |  |
- | description | string |  no  |  |
- | is_active | boolean |  no  |  |
- | logo | [BannerImage](#BannerImage) |  no  |  |
- | meta | string |  no  |  |
- | name | string |  no  |  |
- | priority | number |  no  |  |
- | query | [[CollectionQuery](#CollectionQuery)] |  no  |  |
- | slug | string |  no  |  |
- | sort_on | string |  no  |  |
- | tag | [string] |  no  |  |
- | type | string |  no  |  |
- | visible_facets_keys | [string] |  no  |  |
+ | _schedule | string? |  yes  |  |
+ | allow_facets | boolean? |  yes  |  |
+ | allow_sort | boolean? |  yes  |  |
+ | app_id | string? |  yes  |  |
+ | badge | string? |  yes  |  |
+ | banners | [ImageUrls](#ImageUrls)? |  yes  |  |
+ | cron | string? |  yes  |  |
+ | description | string? |  yes  |  |
+ | is_active | boolean? |  yes  |  |
+ | logo | [BannerImage](#BannerImage)? |  yes  |  |
+ | meta | string? |  yes  |  |
+ | name | string? |  yes  |  |
+ | priority | number? |  yes  |  |
+ | query | [[CollectionQuery](#CollectionQuery)]? |  yes  |  |
+ | slug | string? |  yes  |  |
+ | sort_on | string? |  yes  |  |
+ | tag | [string]? |  yes  |  |
+ | type | string? |  yes  |  |
+ | visible_facets_keys | [string]? |  yes  |  |
  
 
 ---
@@ -18852,25 +19049,25 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | _schedule | string |  no  |  |
- | allow_facets | boolean |  no  |  |
- | allow_sort | boolean |  no  |  |
- | app_id | string |  no  |  |
- | badge | string |  no  |  |
- | banners | [ImageUrls](#ImageUrls) |  no  |  |
- | cron | string |  no  |  |
- | description | string |  no  |  |
- | is_active | boolean |  no  |  |
- | logo | [Media1](#Media1) |  no  |  |
- | meta | string |  no  |  |
- | name | string |  no  |  |
- | priority | number |  no  |  |
- | query | [[CollectionQuery](#CollectionQuery)] |  no  |  |
- | slug | string |  no  |  |
- | tag | [string] |  no  |  |
- | type | string |  no  |  |
- | uid | string |  no  |  |
- | visible_facets_keys | [string] |  no  |  |
+ | _schedule | string? |  yes  |  |
+ | allow_facets | boolean? |  yes  |  |
+ | allow_sort | boolean? |  yes  |  |
+ | app_id | string? |  yes  |  |
+ | badge | string? |  yes  |  |
+ | banners | [ImageUrls](#ImageUrls)? |  yes  |  |
+ | cron | string? |  yes  |  |
+ | description | string? |  yes  |  |
+ | is_active | boolean? |  yes  |  |
+ | logo | [Media1](#Media1)? |  yes  |  |
+ | meta | string? |  yes  |  |
+ | name | string? |  yes  |  |
+ | priority | number? |  yes  |  |
+ | query | [[CollectionQuery](#CollectionQuery)]? |  yes  |  |
+ | slug | string? |  yes  |  |
+ | tag | [string]? |  yes  |  |
+ | type | string? |  yes  |  |
+ | uid | string? |  yes  |  |
+ | visible_facets_keys | [string]? |  yes  |  |
  
 
 ---
@@ -18879,19 +19076,33 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | aspect_ratio | string |  yes  |  |
- | url | string |  yes  |  |
+ | aspect_ratio | string |  no  |  |
+ | url | string |  no  |  |
  
 
 ---
 
-#### [CollectionItemRequest](#CollectionItemRequest)
+#### [CollectionItem](#CollectionItem)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | item | [[ItemQueryForUserCollection](#ItemQueryForUserCollection)] |  no  |  |
- | query | [[CollectionQuery](#CollectionQuery)] |  no  |  |
- | type | string |  no  |  |
+ | action | string |  no  |  |
+ | item_id | number |  no  |  |
+ | priority | number? |  yes  |  |
+ 
+
+---
+
+#### [CollectionItemUpdate](#CollectionItemUpdate)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | allow_facets | boolean? |  yes  |  |
+ | allow_sort | boolean? |  yes  |  |
+ | items | [[CollectionItem](#CollectionItem)]? |  yes  |  |
+ | query | [[CollectionQuery](#CollectionQuery)]? |  yes  |  |
+ | type | string? |  yes  |  |
+ | visible_facets_keys | [string]? |  yes  |  |
  
 
 ---
@@ -18900,8 +19111,8 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | tags | [[CollectionListingFilterTag](#CollectionListingFilterTag)] |  no  |  |
- | type | [[CollectionListingFilterType](#CollectionListingFilterType)] |  no  |  |
+ | tags | [[CollectionListingFilterTag](#CollectionListingFilterTag)]? |  yes  |  |
+ | type | [[CollectionListingFilterType](#CollectionListingFilterType)]? |  yes  |  |
  
 
 ---
@@ -18910,9 +19121,9 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | display | string |  no  |  |
- | is_selected | boolean |  no  |  |
- | name | string |  no  |  |
+ | display | string? |  yes  |  |
+ | is_selected | boolean? |  yes  |  |
+ | name | string? |  yes  |  |
  
 
 ---
@@ -18921,9 +19132,9 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | display | string |  no  |  |
- | is_selected | boolean |  no  |  |
- | name | string |  no  |  |
+ | display | string? |  yes  |  |
+ | is_selected | boolean? |  yes  |  |
+ | name | string? |  yes  |  |
  
 
 ---
@@ -18932,9 +19143,9 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | attribute | string |  yes  |  |
- | op | string |  yes  |  |
- | value | [any] |  yes  |  |
+ | attribute | string |  no  |  |
+ | op | string |  no  |  |
+ | value | [any] |  no  |  |
  
 
 ---
@@ -18943,11 +19154,11 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | cron | string |  no  |  |
- | duration | number |  no  |  |
- | end | string |  no  |  |
- | next_schedule | [[NextSchedule](#NextSchedule)] |  no  |  |
- | start | string |  no  |  |
+ | cron | string? |  yes  |  |
+ | duration | number? |  yes  |  |
+ | end | string? |  yes  |  |
+ | next_schedule | [[NextSchedule](#NextSchedule)]? |  yes  |  |
+ | start | string? |  yes  |  |
  
 
 ---
@@ -18956,10 +19167,10 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | brand_id | number |  no  |  |
- | brand_name | string |  no  |  |
- | company_id | number |  no  |  |
- | total_article | number |  no  |  |
+ | brand_id | number? |  yes  |  |
+ | brand_name | string? |  yes  |  |
+ | company_id | number? |  yes  |  |
+ | total_article | number? |  yes  |  |
  
 
 ---
@@ -18968,7 +19179,7 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | id | number |  yes  |  |
+ | id | number |  no  |  |
  
 
 ---
@@ -18977,7 +19188,7 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | id | number |  no  |  |
+ | id | number? |  yes  |  |
  
 
 ---
@@ -18986,16 +19197,16 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | brand_ids | [number] |  yes  |  |
- | company_id | number |  yes  |  |
- | created_by | string |  no  |  |
- | created_on | number |  yes  |  |
- | enabled | boolean |  yes  |  |
- | modified_by | string |  no  |  |
- | modified_on | number |  yes  |  |
- | opt_level | string |  yes  |  |
- | platform | string |  yes  |  |
- | store_ids | [number] |  yes  |  |
+ | brand_ids | [number] |  no  |  |
+ | company_id | number |  no  |  |
+ | created_by | string? |  yes  |  |
+ | created_on | number |  no  |  |
+ | enabled | boolean |  no  |  |
+ | modified_by | string? |  yes  |  |
+ | modified_on | number |  no  |  |
+ | opt_level | string |  no  |  |
+ | platform | string |  no  |  |
+ | store_ids | [number] |  no  |  |
  
 
 ---
@@ -19004,7 +19215,7 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | message | string |  yes  |  |
+ | message | string |  no  |  |
  
 
 ---
@@ -19013,7 +19224,7 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | message | string |  yes  |  |
+ | message | string |  no  |  |
  
 
 ---
@@ -19022,9 +19233,9 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | display | string |  no  |  |
- | end | number |  no  |  |
- | start | number |  no  |  |
+ | display | string? |  yes  |  |
+ | end | number? |  yes  |  |
+ | start | number? |  yes  |  |
  
 
 ---
@@ -19033,8 +19244,8 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | filter | [ConfigurationListingFilter](#ConfigurationListingFilter) |  yes  |  |
- | sort | [ConfigurationListingSort](#ConfigurationListingSort) |  yes  |  |
+ | filter | [ConfigurationListingFilter](#ConfigurationListingFilter) |  no  |  |
+ | sort | [ConfigurationListingSort](#ConfigurationListingSort) |  no  |  |
  
 
 ---
@@ -19043,8 +19254,8 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | allow_single | boolean |  yes  |  |
- | attribute_config | [[ConfigurationListingFilterConfig](#ConfigurationListingFilterConfig)] |  no  |  |
+ | allow_single | boolean |  no  |  |
+ | attribute_config | [[ConfigurationListingFilterConfig](#ConfigurationListingFilterConfig)]? |  yes  |  |
  
 
 ---
@@ -19053,14 +19264,14 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | display_name | string |  no  |  |
- | is_active | boolean |  yes  |  |
- | key | string |  yes  |  |
- | logo | string |  no  |  |
- | name | string |  no  |  |
- | priority | number |  yes  |  |
- | type | string |  yes  |  |
- | value_config | [ConfigurationListingFilterValue](#ConfigurationListingFilterValue) |  no  |  |
+ | display_name | string? |  yes  |  |
+ | is_active | boolean |  no  |  |
+ | key | string |  no  |  |
+ | logo | string? |  yes  |  |
+ | name | string? |  yes  |  |
+ | priority | number |  no  |  |
+ | type | string |  no  |  |
+ | value_config | [ConfigurationListingFilterValue](#ConfigurationListingFilterValue)? |  yes  |  |
  
 
 ---
@@ -19069,12 +19280,12 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | bucket_points | [[ConfigurationBucketPoints](#ConfigurationBucketPoints)] |  no  |  |
- | condition | string |  no  |  |
- | map | string |  no  |  |
- | map_values | [string] |  no  |  |
- | sort | string |  no  |  |
- | value | string |  no  |  |
+ | bucket_points | [[ConfigurationBucketPoints](#ConfigurationBucketPoints)]? |  yes  |  |
+ | condition | string? |  yes  |  |
+ | map | string? |  yes  |  |
+ | map_values | [string]? |  yes  |  |
+ | sort | string? |  yes  |  |
+ | value | string? |  yes  |  |
  
 
 ---
@@ -19083,8 +19294,8 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | config | [[ConfigurationListingSortConfig](#ConfigurationListingSortConfig)] |  no  |  |
- | default_key | string |  yes  |  |
+ | config | [[ConfigurationListingSortConfig](#ConfigurationListingSortConfig)]? |  yes  |  |
+ | default_key | string |  no  |  |
  
 
 ---
@@ -19093,11 +19304,11 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | is_active | boolean |  yes  |  |
- | key | string |  yes  |  |
- | logo | string |  no  |  |
- | name | string |  no  |  |
- | priority | number |  yes  |  |
+ | is_active | boolean |  no  |  |
+ | key | string |  no  |  |
+ | logo | string? |  yes  |  |
+ | name | string? |  yes  |  |
+ | priority | number |  no  |  |
  
 
 ---
@@ -19106,8 +19317,8 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | similar | [ConfigurationProductSimilar](#ConfigurationProductSimilar) |  yes  |  |
- | variant | [ConfigurationProductVariant](#ConfigurationProductVariant) |  yes  |  |
+ | similar | [ConfigurationProductSimilar](#ConfigurationProductSimilar) |  no  |  |
+ | variant | [ConfigurationProductVariant](#ConfigurationProductVariant) |  no  |  |
  
 
 ---
@@ -19116,13 +19327,13 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | is_active | boolean |  yes  |  |
- | key | string |  yes  |  |
- | logo | string |  no  |  |
- | priority | number |  yes  |  |
- | size | [ProductSize](#ProductSize) |  no  |  |
- | subtitle | string |  no  |  |
- | title | string |  no  |  |
+ | is_active | boolean |  no  |  |
+ | key | string |  no  |  |
+ | logo | string? |  yes  |  |
+ | priority | number |  no  |  |
+ | size | [ProductSize](#ProductSize)? |  yes  |  |
+ | subtitle | string? |  yes  |  |
+ | title | string? |  yes  |  |
  
 
 ---
@@ -19131,7 +19342,7 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | config | [[ConfigurationProductConfig](#ConfigurationProductConfig)] |  no  |  |
+ | config | [[ConfigurationProductConfig](#ConfigurationProductConfig)]? |  yes  |  |
  
 
 ---
@@ -19140,7 +19351,7 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | config | [[ConfigurationProductVariantConfig](#ConfigurationProductVariantConfig)] |  no  |  |
+ | config | [[ConfigurationProductVariantConfig](#ConfigurationProductVariantConfig)]? |  yes  |  |
  
 
 ---
@@ -19149,13 +19360,13 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | display_type | string |  yes  |  |
- | is_active | boolean |  yes  |  |
- | key | string |  yes  |  |
- | logo | string |  no  |  |
- | name | string |  yes  |  |
- | priority | number |  yes  |  |
- | size | [ProductSize](#ProductSize) |  yes  |  |
+ | display_type | string |  no  |  |
+ | is_active | boolean |  no  |  |
+ | key | string |  no  |  |
+ | logo | string? |  yes  |  |
+ | name | string |  no  |  |
+ | priority | number |  no  |  |
+ | size | [ProductSize](#ProductSize) |  no  |  |
  
 
 ---
@@ -19164,11 +19375,11 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | _custom_json | string |  no  |  |
- | app_id | string |  no  |  |
- | is_active | boolean |  no  |  |
- | results | [[AutocompleteResult](#AutocompleteResult)] |  no  |  |
- | words | [string] |  no  |  |
+ | _custom_json | string? |  yes  |  |
+ | app_id | string? |  yes  |  |
+ | is_active | boolean? |  yes  |  |
+ | results | [[AutocompleteResult](#AutocompleteResult)]? |  yes  |  |
+ | words | [string]? |  yes  |  |
  
 
 ---
@@ -19177,10 +19388,10 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | _custom_json | string |  no  |  |
- | app_id | string |  no  |  |
- | results | [string] |  no  |  |
- | words | [string] |  no  |  |
+ | _custom_json | string? |  yes  |  |
+ | app_id | string? |  yes  |  |
+ | results | [string]? |  yes  |  |
+ | words | [string]? |  yes  |  |
  
 
 ---
@@ -19189,31 +19400,31 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | _custom_json | string |  no  |  |
- | _locale_language | string |  no  |  |
- | _schedule | [CollectionSchedule](#CollectionSchedule) |  no  |  |
- | allow_facets | boolean |  no  |  |
- | allow_sort | boolean |  no  |  |
- | app_id | string |  yes  |  |
- | badge | [CollectionBadge](#CollectionBadge) |  no  |  |
- | banners | [CollectionBanner](#CollectionBanner) |  yes  |  |
- | created_by | [UserInfo](#UserInfo) |  no  |  |
- | description | string |  no  |  |
- | is_active | boolean |  no  |  |
- | is_visible | boolean |  no  |  |
- | logo | [CollectionImage](#CollectionImage) |  yes  |  |
- | meta | string |  no  |  |
- | modified_by | [UserInfo](#UserInfo) |  no  |  |
- | name | string |  yes  |  |
- | priority | number |  no  |  |
- | published | boolean |  no  |  |
- | query | [[CollectionQuery](#CollectionQuery)] |  no  |  |
- | seo | [SeoDetail](#SeoDetail) |  no  |  |
- | slug | string |  yes  |  |
- | sort_on | string |  no  |  |
- | tags | [string] |  no  |  |
- | type | string |  yes  |  |
- | visible_facets_keys | [string] |  no  |  |
+ | _custom_json | string? |  yes  |  |
+ | _locale_language | string? |  yes  |  |
+ | _schedule | [CollectionSchedule](#CollectionSchedule)? |  yes  |  |
+ | allow_facets | boolean? |  yes  |  |
+ | allow_sort | boolean? |  yes  |  |
+ | app_id | string |  no  |  |
+ | badge | [CollectionBadge](#CollectionBadge)? |  yes  |  |
+ | banners | [CollectionBanner](#CollectionBanner) |  no  |  |
+ | created_by | [UserInfo](#UserInfo)? |  yes  |  |
+ | description | string? |  yes  |  |
+ | is_active | boolean? |  yes  |  |
+ | is_visible | boolean? |  yes  |  |
+ | logo | [CollectionImage](#CollectionImage) |  no  |  |
+ | meta | string? |  yes  |  |
+ | modified_by | [UserInfo](#UserInfo)? |  yes  |  |
+ | name | string |  no  |  |
+ | priority | number? |  yes  |  |
+ | published | boolean? |  yes  |  |
+ | query | [[CollectionQuery](#CollectionQuery)]? |  yes  |  |
+ | seo | [SeoDetail](#SeoDetail)? |  yes  |  |
+ | slug | string |  no  |  |
+ | sort_on | string? |  yes  |  |
+ | tags | [string]? |  yes  |  |
+ | type | string |  no  |  |
+ | visible_facets_keys | [string]? |  yes  |  |
  
 
 ---
@@ -19222,11 +19433,11 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | _custom_json | string |  no  |  |
- | app_id | string |  no  |  |
- | is_active | boolean |  no  |  |
- | result | [SearchKeywordResult](#SearchKeywordResult) |  yes  |  |
- | words | [string] |  no  |  |
+ | _custom_json | string? |  yes  |  |
+ | app_id | string? |  yes  |  |
+ | is_active | boolean? |  yes  |  |
+ | result | [SearchKeywordResult](#SearchKeywordResult) |  no  |  |
+ | words | [string]? |  yes  |  |
  
 
 ---
@@ -19235,8 +19446,8 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | articles | number |  no  |  |
- | products | number |  no  |  |
+ | articles | number? |  yes  |  |
+ | products | number? |  yes  |  |
  
 
 ---
@@ -19245,8 +19456,8 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | brand_distribution | [CatalogInsightBrand](#CatalogInsightBrand) |  no  |  |
- | data | [CrossSellingData](#CrossSellingData) |  no  |  |
+ | brand_distribution | [CatalogInsightBrand](#CatalogInsightBrand)? |  yes  |  |
+ | data | [CrossSellingData](#CrossSellingData)? |  yes  |  |
  
 
 ---
@@ -19255,9 +19466,9 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | is_custom_order | boolean |  no  |  |
- | manufacturing_time | number |  no  |  |
- | manufacturing_time_unit | string |  no  |  |
+ | is_custom_order | boolean? |  yes  |  |
+ | manufacturing_time | number? |  yes  |  |
+ | manufacturing_time_unit | string? |  yes  |  |
  
 
 ---
@@ -19266,10 +19477,10 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | added_on_store | string |  no  |  |
- | created_on | string |  no  |  |
- | inventory_updated_on | string |  no  |  |
- | modified_on | string |  no  |  |
+ | added_on_store | string? |  yes  |  |
+ | created_on | string? |  yes  |  |
+ | inventory_updated_on | string? |  yes  |  |
+ | modified_on | string? |  yes  |  |
  
 
 ---
@@ -19278,7 +19489,7 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | default_key | string |  yes  |  |
+ | default_key | string |  no  |  |
  
 
 ---
@@ -19287,7 +19498,7 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | message | string |  no  |  |
+ | message | string? |  yes  |  |
  
 
 ---
@@ -19296,11 +19507,11 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | logo | [Media](#Media) |  no  |  |
- | name | string |  no  |  |
- | priority_order | number |  no  |  |
- | slug | string |  no  |  |
- | uid | number |  no  |  |
+ | logo | [Media](#Media)? |  yes  |  |
+ | name | string? |  yes  |  |
+ | priority_order | number? |  yes  |  |
+ | slug | string? |  yes  |  |
+ | uid | number? |  yes  |  |
  
 
 ---
@@ -19309,8 +19520,8 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | department | string |  no  |  |
- | items | [[CategoryItems](#CategoryItems)] |  no  |  |
+ | department | string? |  yes  |  |
+ | items | [[CategoryItems](#CategoryItems)]? |  yes  |  |
  
 
 ---
@@ -19319,7 +19530,7 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | error | string |  no  |  |
+ | error | string? |  yes  |  |
  
 
 ---
@@ -19328,8 +19539,8 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | message | string |  yes  |  |
- | uid | number |  yes  |  |
+ | message | string |  no  |  |
+ | uid | number |  no  |  |
  
 
 ---
@@ -19338,17 +19549,17 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | _cls | string |  no  |  |
- | _custom_json | string |  no  |  |
- | is_active | boolean |  no  |  |
- | logo | string |  yes  |  |
- | name | string |  yes  |  |
- | platforms | string |  no  |  |
- | priority_order | number |  yes  |  |
- | slug | string |  no  |  |
- | synonyms | [string] |  no  |  |
- | tags | [string] |  no  |  |
- | uid | number |  no  |  |
+ | _cls | string? |  yes  |  |
+ | _custom_json | string? |  yes  |  |
+ | is_active | boolean? |  yes  |  |
+ | logo | string |  no  |  |
+ | name | string |  no  |  |
+ | platforms | string? |  yes  |  |
+ | priority_order | number |  no  |  |
+ | slug | string? |  yes  |  |
+ | synonyms | [string]? |  yes  |  |
+ | tags | [string]? |  yes  |  |
+ | uid | number? |  yes  |  |
  
 
 ---
@@ -19357,11 +19568,11 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | code | string |  no  |  |
- | errors | string |  no  |  |
- | message | string |  no  |  |
- | meta | string |  no  |  |
- | status | number |  no  |  |
+ | code | string? |  yes  |  |
+ | errors | string? |  yes  |  |
+ | message | string? |  yes  |  |
+ | meta | string? |  yes  |  |
+ | status | number? |  yes  |  |
  
 
 ---
@@ -19370,8 +19581,8 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | slug | string |  no  |  |
- | uid | number |  no  |  |
+ | slug | string? |  yes  |  |
+ | uid | number? |  yes  |  |
  
 
 ---
@@ -19380,22 +19591,22 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | _cls | any |  no  |  |
- | _custom_json | string |  no  |  |
- | _id | any |  no  |  |
- | created_by | [UserDetail](#UserDetail) |  no  |  |
- | created_on | string |  yes  |  |
- | is_active | boolean |  no  |  |
- | logo | string |  yes  |  |
- | modified_by | [UserDetail](#UserDetail) |  no  |  |
- | modified_on | string |  yes  |  |
- | name | any |  yes  |  |
- | priority_order | number |  yes  |  |
+ | _cls | any? |  yes  |  |
+ | _custom_json | string? |  yes  |  |
+ | _id | any? |  yes  |  |
+ | created_by | [UserDetail](#UserDetail)? |  yes  |  |
+ | created_on | string |  no  |  |
+ | is_active | boolean? |  yes  |  |
+ | logo | string |  no  |  |
+ | modified_by | [UserDetail](#UserDetail)? |  yes  |  |
+ | modified_on | string |  no  |  |
+ | name | any |  no  |  |
+ | priority_order | number |  no  |  |
  | slug | any |  no  |  |
- | synonyms | [any] |  no  |  |
+ | synonyms | [any]? |  yes  |  |
  | uid | number |  no  |  |
- | verified_by | [UserDetail](#UserDetail) |  no  |  |
- | verified_on | string |  no  |  |
+ | verified_by | [UserDetail](#UserDetail)? |  yes  |  |
+ | verified_on | string? |  yes  |  |
  
 
 ---
@@ -19404,7 +19615,7 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | items | [[Department](#Department)] |  no  |  |
+ | items | [[Department](#Department)]? |  yes  |  |
  
 
 ---
@@ -19413,8 +19624,8 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | items | [[GetDepartment](#GetDepartment)] |  no  |  |
- | page | [Page](#Page) |  no  |  |
+ | items | [[GetDepartment](#GetDepartment)]? |  yes  |  |
+ | page | [Page](#Page)? |  yes  |  |
  
 
 ---
@@ -19423,11 +19634,11 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | height | number |  yes  |  |
- | is_default | boolean |  yes  |  |
- | length | number |  yes  |  |
- | unit | string |  yes  |  |
- | width | number |  yes  |  |
+ | height | number |  no  |  |
+ | is_default | boolean |  no  |  |
+ | length | number |  no  |  |
+ | unit | string |  no  |  |
+ | width | number |  no  |  |
  
 
 ---
@@ -19436,10 +19647,10 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | height | number |  no  |  |
- | length | number |  no  |  |
- | unit | string |  no  |  |
- | width | number |  no  |  |
+ | height | number? |  yes  |  |
+ | length | number? |  yes  |  |
+ | unit | string? |  yes  |  |
+ | width | number? |  yes  |  |
  
 
 ---
@@ -19448,11 +19659,11 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | legal_name | string |  no  |  |
- | type | string |  yes  |  |
- | url | string |  no  |  |
- | value | string |  yes  |  |
- | verified | boolean |  no  |  |
+ | legal_name | string? |  yes  |  |
+ | type | string |  no  |  |
+ | url | string? |  yes  |  |
+ | value | string |  no  |  |
+ | verified | boolean? |  yes  |  |
  
 
 ---
@@ -19461,12 +19672,12 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | app_id | string |  yes  |  |
- | config_id | string |  no  |  |
- | config_type | string |  yes  |  |
- | id | string |  no  |  |
- | listing | [GetCatalogConfigurationDetailsSchemaListing](#GetCatalogConfigurationDetailsSchemaListing) |  no  |  |
- | product | [GetCatalogConfigurationDetailsProduct](#GetCatalogConfigurationDetailsProduct) |  no  |  |
+ | app_id | string |  no  |  |
+ | config_id | string? |  yes  |  |
+ | config_type | string |  no  |  |
+ | id | string? |  yes  |  |
+ | listing | [GetCatalogConfigurationDetailsSchemaListing](#GetCatalogConfigurationDetailsSchemaListing)? |  yes  |  |
+ | product | [GetCatalogConfigurationDetailsProduct](#GetCatalogConfigurationDetailsProduct)? |  yes  |  |
  
 
 ---
@@ -19475,11 +19686,11 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | code | string |  no  |  |
- | error | string |  no  |  |
- | message | string |  no  |  |
- | meta | string |  no  |  |
- | status | number |  no  |  |
+ | code | string? |  yes  |  |
+ | error | string? |  yes  |  |
+ | message | string? |  yes  |  |
+ | meta | string? |  yes  |  |
+ | status | number? |  yes  |  |
  
 
 ---
@@ -19488,8 +19699,8 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | display | string |  no  |  |
- | value | string |  no  |  |
+ | display | string? |  yes  |  |
+ | value | string? |  yes  |  |
  
 
 ---
@@ -19498,18 +19709,18 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | departments | [string] |  no  |  |
- | description | string |  no  |  |
- | details | [AttributeMasterDetails](#AttributeMasterDetails) |  no  |  |
- | enabled_for_end_consumer | boolean |  no  |  |
- | filters | [AttributeMasterFilter](#AttributeMasterFilter) |  no  |  |
- | id | string |  no  |  |
- | is_nested | boolean |  no  |  |
- | logo | string |  no  |  |
- | meta | [AttributeMasterMeta](#AttributeMasterMeta) |  no  |  |
- | name | string |  no  |  |
- | schema | [AttributeMaster](#AttributeMaster) |  no  |  |
- | slug | string |  no  |  |
+ | departments | [string]? |  yes  |  |
+ | description | string? |  yes  |  |
+ | details | [AttributeMasterDetails](#AttributeMasterDetails)? |  yes  |  |
+ | enabled_for_end_consumer | boolean? |  yes  |  |
+ | filters | [AttributeMasterFilter](#AttributeMasterFilter)? |  yes  |  |
+ | id | string? |  yes  |  |
+ | is_nested | boolean? |  yes  |  |
+ | logo | string? |  yes  |  |
+ | meta | [AttributeMasterMeta](#AttributeMasterMeta)? |  yes  |  |
+ | name | string? |  yes  |  |
+ | schema | [AttributeMaster](#AttributeMaster)? |  yes  |  |
+ | slug | string? |  yes  |  |
  
 
 ---
@@ -19518,17 +19729,17 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | address1 | string |  no  |  |
- | address2 | string |  no  |  |
- | address_type | string |  no  |  |
- | city | string |  no  |  |
- | country | string |  no  |  |
- | country_code | string |  no  |  |
- | landmark | string |  no  |  |
- | latitude | number |  no  |  |
- | longitude | number |  no  |  |
- | pincode | number |  no  |  |
- | state | string |  no  |  |
+ | address1 | string? |  yes  |  |
+ | address2 | string? |  yes  |  |
+ | address_type | string? |  yes  |  |
+ | city | string? |  yes  |  |
+ | country | string? |  yes  |  |
+ | country_code | string? |  yes  |  |
+ | landmark | string? |  yes  |  |
+ | latitude | number? |  yes  |  |
+ | longitude | number? |  yes  |  |
+ | pincode | number? |  yes  |  |
+ | state | string? |  yes  |  |
  
 
 ---
@@ -19537,7 +19748,7 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | all_sizes | [[AllSizes](#AllSizes)] |  no  |  |
+ | all_sizes | [[AllSizes](#AllSizes)]? |  yes  |  |
  
 
 ---
@@ -19546,8 +19757,8 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | data | [AppCatalogConfiguration](#AppCatalogConfiguration) |  no  |  |
- | is_default | boolean |  no  |  |
+ | data | [AppCatalogConfiguration](#AppCatalogConfiguration)? |  yes  |  |
+ | is_default | boolean? |  yes  |  |
  
 
 ---
@@ -19556,8 +19767,8 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | data | [EntityConfiguration](#EntityConfiguration) |  no  |  |
- | is_default | boolean |  no  |  |
+ | data | [EntityConfiguration](#EntityConfiguration)? |  yes  |  |
+ | is_default | boolean? |  yes  |  |
  
 
 ---
@@ -19566,11 +19777,11 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | _custom_json | string |  no  |  |
- | app_id | string |  no  |  |
- | results | [string] |  no  |  |
- | uid | string |  no  |  |
- | words | [string] |  no  |  |
+ | _custom_json | string? |  yes  |  |
+ | app_id | string? |  yes  |  |
+ | results | [string]? |  yes  |  |
+ | uid | string? |  yes  |  |
+ | words | [string]? |  yes  |  |
  
 
 ---
@@ -19579,8 +19790,8 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | items | [[GetAutocompleteWordsData](#GetAutocompleteWordsData)] |  no  |  |
- | page | [Page](#Page) |  no  |  |
+ | items | [[GetAutocompleteWordsData](#GetAutocompleteWordsData)]? |  yes  |  |
+ | page | [Page](#Page)? |  yes  |  |
  
 
 ---
@@ -19589,10 +19800,10 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | compare | string |  no  |  |
- | detail | string |  no  |  |
- | similar | string |  no  |  |
- | variant | string |  no  |  |
+ | compare | string? |  yes  |  |
+ | detail | string? |  yes  |  |
+ | similar | string? |  yes  |  |
+ | variant | string? |  yes  |  |
  
 
 ---
@@ -19601,8 +19812,8 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | filter | string |  no  |  |
- | sort | string |  no  |  |
+ | filter | string? |  yes  |  |
+ | sort | string? |  yes  |  |
  
 
 ---
@@ -19611,8 +19822,8 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | listing | [MetaDataListingResponse](#MetaDataListingResponse) |  no  |  |
- | product | [GetCatalogConfigurationDetailsProduct](#GetCatalogConfigurationDetailsProduct) |  no  |  |
+ | listing | [MetaDataListingResponse](#MetaDataListingResponse)? |  yes  |  |
+ | product | [GetCatalogConfigurationDetailsProduct](#GetCatalogConfigurationDetailsProduct)? |  yes  |  |
  
 
 ---
@@ -19621,26 +19832,26 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | _schedule | string |  no  |  |
- | action | [Action](#Action) |  no  |  |
- | allow_facets | boolean |  no  |  |
- | allow_sort | boolean |  no  |  |
- | app_id | string |  no  |  |
- | badge | string |  no  |  |
- | banners | [ImageUrls](#ImageUrls) |  no  |  |
- | cron | string |  no  |  |
- | description | string |  no  |  |
- | is_active | boolean |  no  |  |
- | logo | [Media1](#Media1) |  no  |  |
- | meta | string |  no  |  |
- | name | string |  no  |  |
- | priority | number |  no  |  |
- | query | [[CollectionQuery](#CollectionQuery)] |  no  |  |
- | slug | string |  no  |  |
- | tag | [string] |  no  |  |
- | type | string |  no  |  |
- | uid | string |  no  |  |
- | visible_facets_keys | [string] |  no  |  |
+ | _schedule | string? |  yes  |  |
+ | action | [Action](#Action)? |  yes  |  |
+ | allow_facets | boolean? |  yes  |  |
+ | allow_sort | boolean? |  yes  |  |
+ | app_id | string? |  yes  |  |
+ | badge | string? |  yes  |  |
+ | banners | [ImageUrls](#ImageUrls)? |  yes  |  |
+ | cron | string? |  yes  |  |
+ | description | string? |  yes  |  |
+ | is_active | boolean? |  yes  |  |
+ | logo | [Media1](#Media1)? |  yes  |  |
+ | meta | string? |  yes  |  |
+ | name | string? |  yes  |  |
+ | priority | number? |  yes  |  |
+ | query | [[CollectionQuery](#CollectionQuery)]? |  yes  |  |
+ | slug | string? |  yes  |  |
+ | tag | [string]? |  yes  |  |
+ | type | string? |  yes  |  |
+ | uid | string? |  yes  |  |
+ | visible_facets_keys | [string]? |  yes  |  |
  
 
 ---
@@ -19649,10 +19860,10 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | filters | [[ProductFilters](#ProductFilters)] |  no  |  |
- | items | [[ProductListingDetail](#ProductListingDetail)] |  no  |  |
- | page | [Page](#Page) |  no  |  |
- | sort_on | [[ProductSortOn](#ProductSortOn)] |  no  |  |
+ | filters | [[ProductFilters](#ProductFilters)]? |  yes  |  |
+ | items | [[ProductListingDetail](#ProductListingDetail)]? |  yes  |  |
+ | page | [Page](#Page)? |  yes  |  |
+ | sort_on | [[ProductSortOn](#ProductSortOn)]? |  yes  |  |
  
 
 ---
@@ -19661,9 +19872,9 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | filters | [CollectionListingFilter](#CollectionListingFilter) |  no  |  |
- | items | [[GetCollectionDetailNest](#GetCollectionDetailNest)] |  no  |  |
- | page | [Page](#Page) |  no  |  |
+ | filters | [CollectionListingFilter](#CollectionListingFilter)? |  yes  |  |
+ | items | [[GetCollectionDetailNest](#GetCollectionDetailNest)]? |  yes  |  |
+ | page | [Page](#Page)? |  yes  |  |
  
 
 ---
@@ -19672,9 +19883,9 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | filters | [[ProductFilters](#ProductFilters)] |  no  |  |
- | operators | [String: string] |  yes  |  |
- | sort_on | [[ProductSortOn](#ProductSortOn)] |  no  |  |
+ | filters | [[ProductFilters](#ProductFilters)]? |  yes  |  |
+ | operators | [String: string] |  no  |  |
+ | sort_on | [[ProductSortOn](#ProductSortOn)]? |  yes  |  |
  
 
 ---
@@ -19683,19 +19894,19 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | addresses | [[GetAddressSerializer](#GetAddressSerializer)] |  no  |  |
- | business_type | string |  no  |  |
- | company_type | string |  no  |  |
- | created_by | [UserSerializer1](#UserSerializer1) |  no  |  |
- | created_on | string |  no  |  |
- | modified_by | [UserSerializer1](#UserSerializer1) |  no  |  |
- | modified_on | string |  no  |  |
- | name | string |  no  |  |
- | reject_reason | string |  no  |  |
- | stage | string |  no  |  |
- | uid | number |  no  |  |
- | verified_by | [UserSerializer1](#UserSerializer1) |  no  |  |
- | verified_on | string |  no  |  |
+ | addresses | [[GetAddressSerializer](#GetAddressSerializer)]? |  yes  |  |
+ | business_type | string? |  yes  |  |
+ | company_type | string? |  yes  |  |
+ | created_by | [UserSerializer2](#UserSerializer2)? |  yes  |  |
+ | created_on | string? |  yes  |  |
+ | modified_by | [UserSerializer2](#UserSerializer2)? |  yes  |  |
+ | modified_on | string? |  yes  |  |
+ | name | string? |  yes  |  |
+ | reject_reason | string? |  yes  |  |
+ | stage | string? |  yes  |  |
+ | uid | number? |  yes  |  |
+ | verified_by | [UserSerializer2](#UserSerializer2)? |  yes  |  |
+ | verified_on | string? |  yes  |  |
  
 
 ---
@@ -19704,9 +19915,9 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | condition | [string] |  no  |  |
- | data | [string] |  yes  |  |
- | values | [string] |  no  |  |
+ | condition | [string]? |  yes  |  |
+ | data | [string] |  no  |  |
+ | values | [string]? |  yes  |  |
  
 
 ---
@@ -19715,8 +19926,8 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | data | [string] |  yes  |  |
- | page | [PageResponseType](#PageResponseType) |  yes  |  |
+ | data | [string] |  no  |  |
+ | page | [PageResponseType](#PageResponseType) |  no  |  |
  
 
 ---
@@ -19725,21 +19936,21 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | created_by | [UserSerializer](#UserSerializer) |  no  |  |
- | created_on | string |  no  |  |
- | is_active | boolean |  no  |  |
- | item_type | string |  no  |  |
- | logo | string |  no  |  |
- | modified_by | [UserSerializer](#UserSerializer) |  no  |  |
- | modified_on | string |  no  |  |
- | name | string |  no  |  |
- | page_no | number |  no  |  |
- | page_size | number |  no  |  |
- | priority_order | number |  no  |  |
- | search | string |  no  |  |
- | slug | string |  no  |  |
- | synonyms | [string] |  no  |  |
- | uid | number |  no  |  |
+ | created_by | [UserSerializer](#UserSerializer)? |  yes  |  |
+ | created_on | string? |  yes  |  |
+ | is_active | boolean? |  yes  |  |
+ | item_type | string? |  yes  |  |
+ | logo | string? |  yes  |  |
+ | modified_by | [UserSerializer](#UserSerializer)? |  yes  |  |
+ | modified_on | string? |  yes  |  |
+ | name | string? |  yes  |  |
+ | page_no | number? |  yes  |  |
+ | page_size | number? |  yes  |  |
+ | priority_order | number? |  yes  |  |
+ | search | string? |  yes  |  |
+ | slug | string? |  yes  |  |
+ | synonyms | [string]? |  yes  |  |
+ | uid | number? |  yes  |  |
  
 
 ---
@@ -19748,36 +19959,36 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | brand | [BrandMeta1](#BrandMeta1) |  no  |  |
- | company | [CompanyMeta1](#CompanyMeta1) |  no  |  |
- | country_of_origin | string |  no  |  |
- | created_by | [UserSerializer](#UserSerializer) |  no  |  |
- | date_meta | [DateMeta](#DateMeta) |  no  |  |
- | dimension | [DimensionResponse1](#DimensionResponse1) |  no  |  |
- | expiration_date | string |  no  |  |
- | id | string |  no  |  |
- | identifier | string |  no  |  |
- | inventory_updated_on | string |  no  |  |
- | is_set | boolean |  no  |  |
- | item_id | number |  no  |  |
- | manufacturer | [ManufacturerResponse1](#ManufacturerResponse1) |  no  |  |
- | modified_by | [UserSerializer](#UserSerializer) |  no  |  |
- | platforms | string |  no  |  |
- | price | [PriceArticle](#PriceArticle) |  no  |  |
- | quantities | [QuantitiesArticle](#QuantitiesArticle) |  no  |  |
- | return_config | [ReturnConfig2](#ReturnConfig2) |  no  |  |
- | seller_identifier | string |  no  |  |
- | size | string |  no  |  |
- | stage | string |  no  |  |
- | store | [ArticleStoreResponse](#ArticleStoreResponse) |  no  |  |
- | tags | [string] |  no  |  |
- | tax_identifier | string |  no  |  |
- | total_quantity | number |  no  |  |
- | trace_id | string |  no  |  |
- | track_inventory | boolean |  no  |  |
- | trader | [[Trader2](#Trader2)] |  no  |  |
- | uid | string |  no  |  |
- | weight | [WeightResponse1](#WeightResponse1) |  no  |  |
+ | brand | [BrandMeta1](#BrandMeta1)? |  yes  |  |
+ | company | [CompanyMeta1](#CompanyMeta1)? |  yes  |  |
+ | country_of_origin | string? |  yes  |  |
+ | created_by | [UserSerializer](#UserSerializer)? |  yes  |  |
+ | date_meta | [DateMeta](#DateMeta)? |  yes  |  |
+ | dimension | [DimensionResponse1](#DimensionResponse1)? |  yes  |  |
+ | expiration_date | string? |  yes  |  |
+ | id | string? |  yes  |  |
+ | identifier | string? |  yes  |  |
+ | inventory_updated_on | string? |  yes  |  |
+ | is_set | boolean? |  yes  |  |
+ | item_id | number? |  yes  |  |
+ | manufacturer | [ManufacturerResponse1](#ManufacturerResponse1)? |  yes  |  |
+ | modified_by | [UserSerializer](#UserSerializer)? |  yes  |  |
+ | platforms | string? |  yes  |  |
+ | price | [PriceArticle](#PriceArticle)? |  yes  |  |
+ | quantities | [QuantitiesArticle](#QuantitiesArticle)? |  yes  |  |
+ | return_config | [ReturnConfig2](#ReturnConfig2)? |  yes  |  |
+ | seller_identifier | string? |  yes  |  |
+ | size | string? |  yes  |  |
+ | stage | string? |  yes  |  |
+ | store | [ArticleStoreResponse](#ArticleStoreResponse)? |  yes  |  |
+ | tags | [string]? |  yes  |  |
+ | tax_identifier | string? |  yes  |  |
+ | total_quantity | number? |  yes  |  |
+ | trace_id | string? |  yes  |  |
+ | track_inventory | boolean? |  yes  |  |
+ | trader | [[Trader2](#Trader2)]? |  yes  |  |
+ | uid | string? |  yes  |  |
+ | weight | [WeightResponse1](#WeightResponse1)? |  yes  |  |
  
 
 ---
@@ -19786,8 +19997,8 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | items | [[GetInventories](#GetInventories)] |  no  |  |
- | page | [Page](#Page) |  no  |  |
+ | items | [[GetInventories](#GetInventories)]? |  yes  |  |
+ | page | [Page](#Page)? |  yes  |  |
  
 
 ---
@@ -19796,31 +20007,31 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | _custom_json | string |  no  |  |
- | address | [GetAddressSerializer](#GetAddressSerializer) |  yes  |  |
- | code | string |  yes  |  |
- | company | [GetCompanySerializer](#GetCompanySerializer) |  no  |  |
- | contact_numbers | [[SellerPhoneNumber](#SellerPhoneNumber)] |  no  |  |
- | created_by | [UserSerializer2](#UserSerializer2) |  no  |  |
- | created_on | string |  no  |  |
- | display_name | string |  yes  |  |
- | documents | [[Document](#Document)] |  no  |  |
- | gst_credentials | [InvoiceDetailsSerializer](#InvoiceDetailsSerializer) |  no  |  |
- | integration_type | [LocationIntegrationType](#LocationIntegrationType) |  no  |  |
- | manager | [LocationManagerSerializer](#LocationManagerSerializer) |  no  |  |
- | modified_by | [UserSerializer2](#UserSerializer2) |  no  |  |
- | modified_on | string |  no  |  |
- | name | string |  yes  |  |
- | notification_emails | [string] |  no  |  |
- | phone_number | string |  yes  |  |
- | product_return_config | [ProductReturnConfigSerializer](#ProductReturnConfigSerializer) |  no  |  |
- | stage | string |  no  |  |
- | store_type | string |  no  |  |
- | timing | [[LocationDayWiseSerializer](#LocationDayWiseSerializer)] |  no  |  |
- | uid | number |  no  |  |
- | verified_by | [UserSerializer2](#UserSerializer2) |  no  |  |
- | verified_on | string |  no  |  |
- | warnings | string |  no  |  |
+ | _custom_json | string? |  yes  |  |
+ | address | [GetAddressSerializer](#GetAddressSerializer) |  no  |  |
+ | code | string |  no  |  |
+ | company | [GetCompanySerializer](#GetCompanySerializer)? |  yes  |  |
+ | contact_numbers | [[SellerPhoneNumber](#SellerPhoneNumber)]? |  yes  |  |
+ | created_by | [UserSerializer1](#UserSerializer1)? |  yes  |  |
+ | created_on | string? |  yes  |  |
+ | display_name | string |  no  |  |
+ | documents | [[Document](#Document)]? |  yes  |  |
+ | gst_credentials | [InvoiceDetailsSerializer](#InvoiceDetailsSerializer)? |  yes  |  |
+ | integration_type | [LocationIntegrationType](#LocationIntegrationType)? |  yes  |  |
+ | manager | [LocationManagerSerializer](#LocationManagerSerializer)? |  yes  |  |
+ | modified_by | [UserSerializer1](#UserSerializer1)? |  yes  |  |
+ | modified_on | string? |  yes  |  |
+ | name | string |  no  |  |
+ | notification_emails | [string]? |  yes  |  |
+ | phone_number | string |  no  |  |
+ | product_return_config | [ProductReturnConfigSerializer](#ProductReturnConfigSerializer)? |  yes  |  |
+ | stage | string? |  yes  |  |
+ | store_type | string? |  yes  |  |
+ | timing | [[LocationDayWiseSerializer](#LocationDayWiseSerializer)]? |  yes  |  |
+ | uid | number? |  yes  |  |
+ | verified_by | [UserSerializer1](#UserSerializer1)? |  yes  |  |
+ | verified_on | string? |  yes  |  |
+ | warnings | string? |  yes  |  |
  
 
 ---
@@ -19829,8 +20040,8 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | items | [[CompanyOptIn](#CompanyOptIn)] |  yes  |  |
- | page | [Page](#Page) |  yes  |  |
+ | items | [[CompanyOptIn](#CompanyOptIn)] |  no  |  |
+ | page | [Page](#Page) |  no  |  |
  
 
 ---
@@ -19839,21 +20050,21 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | choice | string |  yes  |  |
- | company_id | number |  no  |  |
- | created_by | string |  no  |  |
- | created_on | string |  no  |  |
- | id | string |  no  |  |
- | is_active | boolean |  yes  |  |
- | logo | string |  no  |  |
- | meta | string |  no  |  |
- | modified_by | string |  no  |  |
- | modified_on | string |  no  |  |
- | name | string |  yes  |  |
- | page_visibility | [string] |  no  |  |
- | products | [[ProductBundleItem](#ProductBundleItem)] |  yes  |  |
- | same_store_assignment | boolean |  no  |  |
- | slug | string |  yes  |  |
+ | choice | string |  no  |  |
+ | company_id | number? |  yes  |  |
+ | created_by | string? |  yes  |  |
+ | created_on | string? |  yes  |  |
+ | id | string? |  yes  |  |
+ | is_active | boolean |  no  |  |
+ | logo | string? |  yes  |  |
+ | meta | string? |  yes  |  |
+ | modified_by | string? |  yes  |  |
+ | modified_on | string? |  yes  |  |
+ | name | string |  no  |  |
+ | page_visibility | [string]? |  yes  |  |
+ | products | [[ProductBundleItem](#ProductBundleItem)] |  no  |  |
+ | same_store_assignment | boolean? |  yes  |  |
+ | slug | string |  no  |  |
  
 
 ---
@@ -19862,8 +20073,8 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | items | [[GetProductBundleCreateResponse](#GetProductBundleCreateResponse)] |  no  |  |
- | page | [Page](#Page) |  no  |  |
+ | items | [[GetProductBundleCreateResponse](#GetProductBundleCreateResponse)]? |  yes  |  |
+ | page | [Page](#Page)? |  yes  |  |
  
 
 ---
@@ -19872,16 +20083,16 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | choice | string |  no  |  |
- | company_id | number |  no  |  |
- | is_active | boolean |  no  |  |
- | logo | string |  no  |  |
- | meta | string |  no  |  |
- | name | string |  no  |  |
- | page_visibility | [string] |  no  |  |
- | products | [[GetProducts](#GetProducts)] |  no  |  |
- | same_store_assignment | boolean |  no  |  |
- | slug | string |  no  |  |
+ | choice | string? |  yes  |  |
+ | company_id | number? |  yes  |  |
+ | is_active | boolean? |  yes  |  |
+ | logo | string? |  yes  |  |
+ | meta | string? |  yes  |  |
+ | name | string? |  yes  |  |
+ | page_visibility | [string]? |  yes  |  |
+ | products | [[GetProducts](#GetProducts)]? |  yes  |  |
+ | same_store_assignment | boolean? |  yes  |  |
+ | slug | string? |  yes  |  |
  
 
 ---
@@ -19890,15 +20101,15 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | allow_remove | boolean |  no  |  |
- | auto_add_to_cart | boolean |  no  |  |
- | auto_select | boolean |  no  |  |
- | max_quantity | number |  no  |  |
- | min_quantity | number |  no  |  |
- | price | [Price](#Price) |  no  |  |
- | product_details | [LimitedProductData](#LimitedProductData) |  no  |  |
- | product_uid | number |  no  |  |
- | sizes | [[Size](#Size)] |  no  |  |
+ | allow_remove | boolean? |  yes  |  |
+ | auto_add_to_cart | boolean? |  yes  |  |
+ | auto_select | boolean? |  yes  |  |
+ | max_quantity | number? |  yes  |  |
+ | min_quantity | number? |  yes  |  |
+ | price | [Price](#Price)? |  yes  |  |
+ | product_details | [LimitedProductData](#LimitedProductData)? |  yes  |  |
+ | product_uid | number? |  yes  |  |
+ | sizes | [[Size](#Size)]? |  yes  |  |
  
 
 ---
@@ -19907,12 +20118,12 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | _custom_json | string |  no  |  |
- | app_id | string |  no  |  |
- | is_active | boolean |  no  |  |
- | result | string |  no  |  |
- | uid | string |  no  |  |
- | words | [string] |  no  |  |
+ | _custom_json | string? |  yes  |  |
+ | app_id | string? |  yes  |  |
+ | is_active | boolean? |  yes  |  |
+ | result | string? |  yes  |  |
+ | uid | string? |  yes  |  |
+ | words | [string]? |  yes  |  |
  
 
 ---
@@ -19921,8 +20132,8 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | items | [GetSearchWordsData](#GetSearchWordsData) |  no  |  |
- | page | [Page](#Page) |  no  |  |
+ | items | [GetSearchWordsData](#GetSearchWordsData)? |  yes  |  |
+ | page | [Page](#Page)? |  yes  |  |
  
 
 ---
@@ -19931,8 +20142,8 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | items | [[GetSearchWordsData](#GetSearchWordsData)] |  no  |  |
- | page | [Page](#Page) |  no  |  |
+ | items | [[GetSearchWordsData](#GetSearchWordsData)]? |  yes  |  |
+ | page | [Page](#Page)? |  yes  |  |
  
 
 ---
@@ -19941,12 +20152,12 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | definitions | string |  no  |  |
- | description | string |  no  |  |
- | properties | [Properties](#Properties) |  no  |  |
- | required | [string] |  no  |  |
- | title | string |  no  |  |
- | type | string |  no  |  |
+ | definitions | string? |  yes  |  |
+ | description | string? |  yes  |  |
+ | properties | [Properties](#Properties)? |  yes  |  |
+ | required | [string]? |  yes  |  |
+ | title | string? |  yes  |  |
+ | type | string? |  yes  |  |
  
 
 ---
@@ -19955,9 +20166,9 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | gtin_type | string |  yes  |  |
- | gtin_value | any |  yes  |  |
- | primary | boolean |  no  |  |
+ | gtin_type | string |  no  |  |
+ | gtin_value | any |  no  |  |
+ | primary | boolean? |  yes  |  |
  
 
 ---
@@ -19966,7 +20177,7 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | meta | [Meta](#Meta) |  no  |  |
+ | meta | [Meta](#Meta)? |  yes  |  |
  
 
 ---
@@ -19975,9 +20186,9 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | department | number |  yes  |  |
- | l1 | number |  yes  |  |
- | l2 | number |  yes  |  |
+ | department | number |  no  |  |
+ | l1 | number |  no  |  |
+ | l2 | number |  no  |  |
  
 
 ---
@@ -19986,17 +20197,7 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | data | [HsnCodesObject](#HsnCodesObject) |  no  |  |
- 
-
----
-
-#### [HsnCodesListingResponse](#HsnCodesListingResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | items | [[HsnCodesObject](#HsnCodesObject)] |  no  |  |
- | page | [PageResponse](#PageResponse) |  no  |  |
+ | data | [HsnCodesObject](#HsnCodesObject)? |  yes  |  |
  
 
 ---
@@ -20005,8 +20206,8 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | items | [[HSNDataInsertV2](#HSNDataInsertV2)] |  no  |  |
- | page | [PageResponse](#PageResponse) |  no  |  |
+ | items | [[HSNDataInsertV2](#HSNDataInsertV2)]? |  yes  |  |
+ | page | [PageResponse](#PageResponse)? |  yes  |  |
  
 
 ---
@@ -20015,17 +20216,17 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | company_id | number |  no  |  |
- | hs2_code | string |  no  |  |
- | hsn_code | string |  no  |  |
- | id | string |  no  |  |
- | modified_on | string |  no  |  |
- | tax1 | number |  no  |  |
- | tax2 | number |  no  |  |
- | tax_on_esp | boolean |  no  |  |
- | tax_on_mrp | boolean |  no  |  |
- | threshold1 | number |  no  |  |
- | threshold2 | number |  no  |  |
+ | company_id | number? |  yes  |  |
+ | hs2_code | string? |  yes  |  |
+ | hsn_code | string? |  yes  |  |
+ | id | string? |  yes  |  |
+ | modified_on | string? |  yes  |  |
+ | tax1 | number? |  yes  |  |
+ | tax2 | number? |  yes  |  |
+ | tax_on_esp | boolean? |  yes  |  |
+ | tax_on_mrp | boolean? |  yes  |  |
+ | threshold1 | number? |  yes  |  |
+ | threshold2 | number? |  yes  |  |
  
 
 ---
@@ -20034,8 +20235,8 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | data | [HSNData](#HSNData) |  no  |  |
- | message | string |  no  |  |
+ | data | [HSNData](#HSNData)? |  yes  |  |
+ | message | string? |  yes  |  |
  
 
 ---
@@ -20044,8 +20245,8 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | country_of_origin | [string] |  no  |  |
- | hsn_code | [string] |  no  |  |
+ | country_of_origin | [string]? |  yes  |  |
+ | hsn_code | [string]? |  yes  |  |
  
 
 ---
@@ -20054,16 +20255,17 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | country_code | string |  yes  |  |
- | created_by | string |  no  |  |
- | created_on | string |  no  |  |
- | description | string |  yes  |  |
- | hsn_code | string |  yes  |  |
- | modified_by | string |  no  |  |
- | modified_on | string |  no  |  |
- | reporting_hsn | string |  yes  |  |
- | taxes | [[TaxSlab](#TaxSlab)] |  yes  |  |
- | type | string |  yes  |  |
+ | country_code | string |  no  |  |
+ | created_by | string? |  yes  |  |
+ | created_on | string? |  yes  |  |
+ | description | string |  no  |  |
+ | hsn_code | string |  no  |  |
+ | hsn_code_id | string? |  yes  |  |
+ | modified_by | string? |  yes  |  |
+ | modified_on | string? |  yes  |  |
+ | reporting_hsn | string |  no  |  |
+ | taxes | [[TaxSlab](#TaxSlab)] |  no  |  |
+ | type | string |  no  |  |
  
 
 ---
@@ -20072,17 +20274,17 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | company_id | number |  yes  |  |
- | hs2_code | string |  yes  |  |
- | hsn_code | string |  yes  |  |
- | is_active | boolean |  no  |  |
- | tax1 | number |  yes  |  |
- | tax2 | number |  no  |  |
- | tax_on_esp | boolean |  no  |  |
- | tax_on_mrp | boolean |  yes  |  |
- | threshold1 | number |  yes  |  |
- | threshold2 | number |  no  |  |
- | uid | number |  no  |  |
+ | company_id | number |  no  |  |
+ | hs2_code | string |  no  |  |
+ | hsn_code | string |  no  |  |
+ | is_active | boolean? |  yes  |  |
+ | tax1 | number |  no  |  |
+ | tax2 | number? |  yes  |  |
+ | tax_on_esp | boolean? |  yes  |  |
+ | tax_on_mrp | boolean |  no  |  |
+ | threshold1 | number |  no  |  |
+ | threshold2 | number? |  yes  |  |
+ | uid | number? |  yes  |  |
  
 
 ---
@@ -20091,10 +20293,10 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | aspect_ratio | string |  no  |  |
- | aspect_ratio_f | number |  no  |  |
- | secure_url | string |  no  |  |
- | url | string |  no  |  |
+ | aspect_ratio | string? |  yes  |  |
+ | aspect_ratio_f | number? |  yes  |  |
+ | secure_url | string? |  yes  |  |
+ | url | string? |  yes  |  |
  
 
 ---
@@ -20103,8 +20305,8 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | landscape | [BannerImage](#BannerImage) |  no  |  |
- | portrait | [BannerImage](#BannerImage) |  no  |  |
+ | landscape | [BannerImage](#BannerImage)? |  yes  |  |
+ | portrait | [BannerImage](#BannerImage)? |  yes  |  |
  
 
 ---
@@ -20113,10 +20315,10 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | batch_id | string |  yes  |  |
- | company_id | number |  yes  |  |
- | sizes | [[InventoryJobPayload](#InventoryJobPayload)] |  yes  |  |
- | user | string |  no  |  |
+ | batch_id | string |  no  |  |
+ | company_id | number |  no  |  |
+ | sizes | [[InventoryJobPayload](#InventoryJobPayload)] |  no  |  |
+ | user | string? |  yes  |  |
  
 
 ---
@@ -20125,8 +20327,46 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | data | [[FilerList](#FilerList)] |  no  |  |
- | multivalues | boolean |  no  |  |
+ | data | [[FilerList](#FilerList)]? |  yes  |  |
+ | multivalues | boolean? |  yes  |  |
+ 
+
+---
+
+#### [InventoryCreateRequest](#InventoryCreateRequest)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | data | [string]? |  yes  | The list of attributes that you want to extract in the export job. |
+ | filters | [InventoryExportFilter](#InventoryExportFilter) |  no  | This filters that are applied for the export of the inventory. |
+ | notification_emails | [string]? |  yes  | The list of the emails to be notified after the completion of the job. |
+ | type | string? |  yes  | The type of file that needs to be exported. |
+ 
+
+---
+
+#### [InventoryExportAdvanceOption](#InventoryExportAdvanceOption)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | brand_ids | [number]? |  yes  |  |
+ | from_date | string? |  yes  |  |
+ | quantity | [InventoryExportQuantityFilter](#InventoryExportQuantityFilter)? |  yes  |  |
+ | store_ids | [number]? |  yes  |  |
+ | to_date | string? |  yes  |  |
+ 
+
+---
+
+#### [InventoryExportFilter](#InventoryExportFilter)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | brand_ids | [number]? |  yes  | The list of the brand ids that needs to be exported. |
+ | from_date | string? |  yes  | The modified on date from which the data needs to be exported. |
+ | quantity | [InventoryExportQuantityFilter](#InventoryExportQuantityFilter)? |  yes  | The quantity range that needs to be exported. |
+ | store_ids | [number] |  no  | The list of the store ids that needs to be exported. |
+ | to_date | string? |  yes  | The modified on date till when the data needs to be exported. |
  
 
 ---
@@ -20135,13 +20375,34 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | completed_on | string |  no  |  |
- | request_params | string |  no  |  |
- | seller_id | number |  yes  |  |
- | status | string |  no  |  |
- | task_id | string |  yes  |  |
- | trigger_on | string |  no  |  |
- | url | string |  no  |  |
+ | completed_on | string? |  yes  | Completion datetime of the job. |
+ | filters | [InventoryExportAdvanceOption](#InventoryExportAdvanceOption)? |  yes  | The filters that needs to be exported. |
+ | notification_emails | [string]? |  yes  | The notification emails for the job. |
+ | seller_id | number |  no  | The seller id that needs to be exported. |
+ | status | string? |  yes  | The status of the job. |
+ | task_id | string |  no  | The task id of the job. |
+ | type | string |  no  | The type of file that needs to be exported. |
+ | url | string? |  yes  | URL odf the exported file. |
+ 
+
+---
+
+#### [InventoryExportJobListResponse](#InventoryExportJobListResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | items | [InventoryJobDetailResponse](#InventoryJobDetailResponse) |  no  | This is the list/history of all the jobs. |
+ 
+
+---
+
+#### [InventoryExportQuantityFilter](#InventoryExportQuantityFilter)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | max | number? |  yes  | The maximum quantity that needs to be exported. |
+ | min | number? |  yes  | The minimum quantity that needs to be exported. |
+ | operators | string |  no  | Condition for the quantity that needs to be exported. |
  
 
 ---
@@ -20150,9 +20411,9 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | brand | [number] |  no  |  |
- | store | [number] |  no  |  |
- | type | string |  no  |  |
+ | brand | [number]? |  yes  |  |
+ | store | [number]? |  yes  |  |
+ | type | string? |  yes  |  |
  
 
 ---
@@ -20161,11 +20422,15 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | request_params | string |  no  |  |
- | seller_id | number |  yes  |  |
- | status | string |  no  |  |
- | task_id | string |  yes  |  |
- | trigger_on | string |  no  |  |
+ | created_by | string? |  yes  | The user that created the job. |
+ | created_on | string? |  yes  | Creation datetime of the job |
+ | filters | string? |  yes  | The filters that needs to be exported. |
+ | modified_on | string? |  yes  | Modification date of the job |
+ | notification_emails | [string]? |  yes  | The notification emails for the job. |
+ | seller_id | number |  no  | The seller id that needs to be exported. |
+ | status | string? |  yes  | The status of the job. |
+ | task_id | string |  no  | The task id of the job. |
+ | type | string? |  yes  | The type of file that needs to be exported. |
  
 
 ---
@@ -20174,8 +20439,43 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | errors | string |  no  |  |
- | message | string |  yes  |  |
+ | errors | string? |  yes  |  |
+ | message | string |  no  |  |
+ 
+
+---
+
+#### [InventoryJobDetailResponse](#InventoryJobDetailResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | cancelled_by | [UserDetail](#UserDetail)? |  yes  | This is the user detail of the user who cancelled the job. |
+ | cancelled_on | string? |  yes  | This is the timestamp of the cacellation for this job. |
+ | completed_on | string? |  yes  | This is the timestamp of the completion for this job. |
+ | created_by | [UserDetail](#UserDetail)? |  yes  | This is the user detail of the user who cancelled the job. |
+ | created_on | string? |  yes  | This is the timestamp of the creation for this job. |
+ | filters | [InventoryJobFilters](#InventoryJobFilters) |  no  | This is the filter criteria applied for the export job. |
+ | id | string |  no  | This is the ID of the job. |
+ | modified_on | string? |  yes  | This is the timestamp of the modification for this job. |
+ | notification_emails | [string]? |  yes  | User email to get notification post completion of the job. |
+ | seller_id | number |  no  | This ID of the company. |
+ | status | any? |  yes  | This tells you the current status of the export job. |
+ | task_id | string |  no  | This is the task id of the jobs that is used for search. |
+ | type | string? |  yes  | This is the file type of the export. |
+ | url | string |  no  | This is the url to download the export. |
+ 
+
+---
+
+#### [InventoryJobFilters](#InventoryJobFilters)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | brands | [string]? |  yes  | The list of all the brands selected. |
+ | from_date | string? |  yes  | The modified on date from which the data needs to be exported. |
+ | quantity | [InventoryExportQuantityFilter](#InventoryExportQuantityFilter)? |  yes  | The quantity range that needs to be exported. |
+ | stores | [string]? |  yes  | The list of all the store selected. |
+ | to_date | string? |  yes  | The modified on date till when the data needs to be exported. |
  
 
 ---
@@ -20184,19 +20484,19 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | currency | string |  no  |  |
- | expiration_date | string |  no  |  |
- | item_dimensions_unit_of_measure | string |  no  |  |
- | item_weight_unit_of_measure | string |  no  |  |
- | price | number |  no  |  |
- | price_effective | number |  no  |  |
- | price_marked | number |  no  |  |
- | quantity | number |  no  |  |
- | seller_identifier | string |  yes  |  |
- | store_code | string |  yes  |  |
- | tags | [string] |  no  |  |
- | total_quantity | number |  no  |  |
- | trace_id | string |  no  |  |
+ | currency | string? |  yes  |  |
+ | expiration_date | string? |  yes  |  |
+ | item_dimensions_unit_of_measure | string? |  yes  |  |
+ | item_weight_unit_of_measure | string? |  yes  |  |
+ | price | number? |  yes  |  |
+ | price_effective | number? |  yes  |  |
+ | price_marked | number? |  yes  |  |
+ | quantity | number? |  yes  |  |
+ | seller_identifier | string |  no  |  |
+ | store_code | string |  no  |  |
+ | tags | [string]? |  yes  |  |
+ | total_quantity | number? |  yes  |  |
+ | trace_id | string? |  yes  |  |
  
 
 ---
@@ -20205,11 +20505,11 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | has_next | boolean |  no  |  |
- | has_previous | boolean |  no  |  |
- | item_total | number |  yes  |  |
- | next_id | string |  no  |  |
- | type | string |  yes  |  |
+ | has_next | boolean? |  yes  |  |
+ | has_previous | boolean? |  yes  |  |
+ | item_total | number |  no  |  |
+ | next_id | string? |  yes  |  |
+ | type | string |  no  |  |
  
 
 ---
@@ -20218,14 +20518,14 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | expiration_date | string |  no  |  |
- | price_effective | number |  no  |  |
- | price_marked | number |  no  |  |
- | seller_identifier | string |  yes  |  |
- | store_id | number |  yes  |  |
- | tags | [string] |  no  |  |
- | total_quantity | number |  no  |  |
- | trace_id | string |  no  |  |
+ | expiration_date | string? |  yes  |  |
+ | price_effective | number? |  yes  |  |
+ | price_marked | number? |  yes  |  |
+ | seller_identifier | string |  no  |  |
+ | store_id | number |  no  |  |
+ | tags | [string]? |  yes  |  |
+ | total_quantity | number? |  yes  |  |
+ | trace_id | string? |  yes  |  |
  
 
 ---
@@ -20234,9 +20534,9 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | company_id | number |  yes  |  |
- | item | [ItemQuery](#ItemQuery) |  yes  |  |
- | sizes | [[InvSize](#InvSize)] |  yes  |  |
+ | company_id | number |  no  |  |
+ | item | [ItemQuery](#ItemQuery) |  no  |  |
+ | sizes | [[InvSize](#InvSize)] |  no  |  |
  
 
 ---
@@ -20245,9 +20545,9 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | company_id | number |  yes  |  |
- | meta | string |  no  |  |
- | payload | [[InventoryPayload](#InventoryPayload)] |  no  |  |
+ | company_id | number |  no  |  |
+ | meta | string? |  yes  |  |
+ | payload | [[InventoryPayload](#InventoryPayload)]? |  yes  |  |
  
 
 ---
@@ -20256,19 +20556,19 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | currency | string |  no  |  |
- | identifiers | string |  no  |  |
- | inventory_updated_on | string |  no  |  |
- | item_id | number |  no  |  |
- | price | number |  no  |  |
- | price_effective | number |  no  |  |
- | price_transfer | number |  no  |  |
- | quantity | number |  no  |  |
- | sellable_quantity | number |  no  |  |
- | seller_identifier | string |  no  |  |
- | size | string |  no  |  |
- | store | string |  no  |  |
- | uid | string |  no  |  |
+ | currency | string? |  yes  |  |
+ | identifiers | string? |  yes  |  |
+ | inventory_updated_on | string? |  yes  |  |
+ | item_id | number? |  yes  |  |
+ | price | number? |  yes  |  |
+ | price_effective | number? |  yes  |  |
+ | price_transfer | number? |  yes  |  |
+ | quantity | number? |  yes  |  |
+ | sellable_quantity | number? |  yes  |  |
+ | seller_identifier | string? |  yes  |  |
+ | size | string? |  yes  |  |
+ | store | string? |  yes  |  |
+ | uid | string? |  yes  |  |
  
 
 ---
@@ -20277,8 +20577,8 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | data | [InventoryPayload](#InventoryPayload) |  no  |  |
- | reason | [InventoryFailedReason](#InventoryFailedReason) |  no  |  |
+ | data | [InventoryPayload](#InventoryPayload)? |  yes  |  |
+ | reason | [InventoryFailedReason](#InventoryFailedReason)? |  yes  |  |
  
 
 ---
@@ -20287,8 +20587,8 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | items | [[InventoryResponse](#InventoryResponse)] |  no  |  |
- | page | [Page](#Page) |  no  |  |
+ | items | [[InventoryResponse](#InventoryResponse)]? |  yes  |  |
+ | page | [Page](#Page)? |  yes  |  |
  
 
 ---
@@ -20297,8 +20597,8 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | items | [[InventorySellerResponse](#InventorySellerResponse)] |  no  |  |
- | page | [Page](#Page) |  no  |  |
+ | items | [[InventorySellerResponse](#InventorySellerResponse)]? |  yes  |  |
+ | page | [Page](#Page)? |  yes  |  |
  
 
 ---
@@ -20307,42 +20607,42 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | _custom_json | string |  no  |  |
- | added_on_store | string |  no  |  |
- | brand | [BrandMeta](#BrandMeta) |  yes  |  |
- | company | [CompanyMeta](#CompanyMeta) |  yes  |  |
- | country_of_origin | string |  yes  |  |
- | created_by | [UserSerializer](#UserSerializer) |  no  |  |
- | dimension | [DimensionResponse](#DimensionResponse) |  yes  |  |
- | expiration_date | string |  no  |  |
- | fragile | boolean |  yes  |  |
- | fynd_article_code | string |  yes  |  |
- | fynd_item_code | string |  yes  |  |
- | fynd_meta | string |  no  |  |
- | identifier | string |  yes  |  |
- | is_active | boolean |  no  |  |
- | is_set | boolean |  no  |  |
- | item_id | number |  yes  |  |
- | manufacturer | [ManufacturerResponse](#ManufacturerResponse) |  yes  |  |
- | meta | string |  no  |  |
- | modified_by | [UserSerializer](#UserSerializer) |  no  |  |
- | price | [PriceMeta](#PriceMeta) |  yes  |  |
- | quantities | [Quantities](#Quantities) |  no  |  |
- | raw_meta | string |  no  |  |
- | return_config | [ReturnConfig1](#ReturnConfig1) |  no  |  |
- | seller_identifier | string |  yes  |  |
- | set | [InventorySet](#InventorySet) |  no  |  |
- | size | string |  yes  |  |
- | stage | string |  no  |  |
- | store | [StoreMeta](#StoreMeta) |  yes  |  |
- | tags | [string] |  no  |  |
- | tax_identifier | string |  no  |  |
- | total_quantity | number |  yes  |  |
- | trace_id | string |  no  |  |
- | track_inventory | boolean |  no  |  |
- | trader | [[Trader1](#Trader1)] |  no  |  |
- | uid | string |  yes  |  |
- | weight | [WeightResponse](#WeightResponse) |  yes  |  |
+ | _custom_json | string? |  yes  |  |
+ | added_on_store | string? |  yes  |  |
+ | brand | [BrandMeta](#BrandMeta) |  no  |  |
+ | company | [CompanyMeta](#CompanyMeta) |  no  |  |
+ | country_of_origin | string |  no  |  |
+ | created_by | [UserSerializer](#UserSerializer)? |  yes  |  |
+ | dimension | [DimensionResponse](#DimensionResponse) |  no  |  |
+ | expiration_date | string? |  yes  |  |
+ | fragile | boolean |  no  |  |
+ | fynd_article_code | string |  no  |  |
+ | fynd_item_code | string |  no  |  |
+ | fynd_meta | string? |  yes  |  |
+ | identifier | string |  no  |  |
+ | is_active | boolean? |  yes  |  |
+ | is_set | boolean? |  yes  |  |
+ | item_id | number |  no  |  |
+ | manufacturer | [ManufacturerResponse](#ManufacturerResponse) |  no  |  |
+ | meta | string? |  yes  |  |
+ | modified_by | [UserSerializer](#UserSerializer)? |  yes  |  |
+ | price | [PriceMeta](#PriceMeta) |  no  |  |
+ | quantities | [Quantities](#Quantities)? |  yes  |  |
+ | raw_meta | string? |  yes  |  |
+ | return_config | [ReturnConfig1](#ReturnConfig1)? |  yes  |  |
+ | seller_identifier | string |  no  |  |
+ | set | [InventorySet](#InventorySet)? |  yes  |  |
+ | size | string |  no  |  |
+ | stage | string? |  yes  |  |
+ | store | [StoreMeta](#StoreMeta) |  no  |  |
+ | tags | [string]? |  yes  |  |
+ | tax_identifier | string? |  yes  |  |
+ | total_quantity | number |  no  |  |
+ | trace_id | string? |  yes  |  |
+ | track_inventory | boolean? |  yes  |  |
+ | trader | [[Trader1](#Trader1)]? |  yes  |  |
+ | uid | string |  no  |  |
+ | weight | [WeightResponse](#WeightResponse) |  no  |  |
  
 
 ---
@@ -20351,9 +20651,9 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | name | string |  no  |  |
- | quantity | number |  no  |  |
- | size_distribution | [SizeDistribution](#SizeDistribution) |  yes  |  |
+ | name | string? |  yes  |  |
+ | quantity | number? |  yes  |  |
+ | size_distribution | [SizeDistribution](#SizeDistribution) |  no  |  |
  
 
 ---
@@ -20362,8 +20662,8 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | items | [string] |  no  |  |
- | page | [InventoryPage](#InventoryPage) |  yes  |  |
+ | items | [string]? |  yes  |  |
+ | page | [InventoryPage](#InventoryPage) |  no  |  |
  
 
 ---
@@ -20372,8 +20672,8 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | items | [[InventoryResponseItem](#InventoryResponseItem)] |  no  |  |
- | message | string |  yes  |  |
+ | items | [[InventoryResponseItem](#InventoryResponseItem)]? |  yes  |  |
+ | message | string |  no  |  |
  
 
 ---
@@ -20382,8 +20682,8 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | data | string |  no  |  |
- | message | string |  no  |  |
+ | data | string? |  yes  |  |
+ | message | string? |  yes  |  |
  
 
 ---
@@ -20392,9 +20692,9 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | enabled | boolean |  no  |  |
- | password | string |  no  |  |
- | username | string |  no  |  |
+ | enabled | boolean? |  yes  |  |
+ | password | string? |  yes  |  |
+ | username | string? |  yes  |  |
  
 
 ---
@@ -20403,8 +20703,8 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | e_invoice | [InvoiceCredSerializer](#InvoiceCredSerializer) |  no  |  |
- | e_waybill | [InvoiceCredSerializer](#InvoiceCredSerializer) |  no  |  |
+ | e_invoice | [InvoiceCredSerializer](#InvoiceCredSerializer)? |  yes  |  |
+ | e_waybill | [InvoiceCredSerializer](#InvoiceCredSerializer)? |  yes  |  |
  
 
 ---
@@ -20413,23 +20713,23 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | currency | string |  yes  |  |
- | expiration_date | string |  no  |  |
- | identifiers | [[GTIN](#GTIN)] |  yes  |  |
- | is_set | boolean |  no  |  |
- | item_dimensions_unit_of_measure | string |  no  |  |
- | item_height | number |  no  |  |
- | item_length | number |  no  |  |
- | item_weight | number |  no  |  |
- | item_weight_unit_of_measure | string |  no  |  |
- | item_width | number |  no  |  |
- | price | number |  no  |  |
- | price_effective | number |  yes  |  |
- | price_transfer | number |  no  |  |
- | quantity | number |  yes  |  |
- | set | [InventorySet](#InventorySet) |  no  |  |
- | size | any |  yes  |  |
- | store_code | string |  yes  |  |
+ | currency | string |  no  |  |
+ | expiration_date | string? |  yes  |  |
+ | identifiers | [[GTIN](#GTIN)] |  no  |  |
+ | is_set | boolean? |  yes  |  |
+ | item_dimensions_unit_of_measure | string? |  yes  |  |
+ | item_height | number? |  yes  |  |
+ | item_length | number? |  yes  |  |
+ | item_weight | number? |  yes  |  |
+ | item_weight_unit_of_measure | string? |  yes  |  |
+ | item_width | number? |  yes  |  |
+ | price | number? |  yes  |  |
+ | price_effective | number |  no  |  |
+ | price_transfer | number? |  yes  |  |
+ | quantity | number |  no  |  |
+ | set | [InventorySet](#InventorySet)? |  yes  |  |
+ | size | any |  no  |  |
+ | store_code | string |  no  |  |
  
 
 ---
@@ -20438,19 +20738,9 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | brand_uid | number |  no  |  |
- | item_code | string |  no  |  |
- | uid | number |  no  |  |
- 
-
----
-
-#### [ItemQueryForUserCollection](#ItemQueryForUserCollection)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | action | string |  no  |  |
- | item_id | number |  no  |  |
+ | brand_uid | number? |  yes  |  |
+ | item_code | string? |  yes  |  |
+ | uid | number? |  yes  |  |
  
 
 ---
@@ -20459,23 +20749,23 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | cancelled | number |  no  |  |
- | cancelled_records | [string] |  no  |  |
- | company_id | number |  no  |  |
- | created_by | [UserCommon](#UserCommon) |  no  |  |
- | created_on | string |  no  |  |
- | failed | number |  no  |  |
- | failed_records | [string] |  no  |  |
- | file_path | string |  no  |  |
- | id | string |  no  |  |
- | is_active | boolean |  no  |  |
- | modified_by | [UserCommon](#UserCommon) |  no  |  |
- | modified_on | string |  no  |  |
- | retry | number |  no  |  |
- | stage | string |  no  |  |
- | succeed | number |  no  |  |
- | total | number |  no  |  |
- | tracking_url | string |  no  |  |
+ | cancelled | number? |  yes  |  |
+ | cancelled_records | [string]? |  yes  |  |
+ | company_id | number? |  yes  |  |
+ | created_by | [UserCommon](#UserCommon)? |  yes  |  |
+ | created_on | string? |  yes  |  |
+ | failed | number? |  yes  |  |
+ | failed_records | [string]? |  yes  |  |
+ | file_path | string? |  yes  |  |
+ | id | string? |  yes  |  |
+ | is_active | boolean? |  yes  |  |
+ | modified_by | [UserCommon](#UserCommon)? |  yes  |  |
+ | modified_on | string? |  yes  |  |
+ | retry | number? |  yes  |  |
+ | stage | string? |  yes  |  |
+ | succeed | number? |  yes  |  |
+ | total | number? |  yes  |  |
+ | tracking_url | string? |  yes  |  |
  
 
 ---
@@ -20484,18 +20774,18 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | attributes | string |  no  |  |
- | country_of_origin | string |  no  |  |
- | identifier | string |  no  |  |
- | images | [string] |  no  |  |
- | item_code | string |  no  |  |
- | name | string |  no  |  |
- | price | string |  no  |  |
- | quantity | number |  no  |  |
- | short_description | string |  no  |  |
- | sizes | [string] |  no  |  |
- | slug | string |  no  |  |
- | uid | number |  no  |  |
+ | attributes | string? |  yes  |  |
+ | country_of_origin | string? |  yes  |  |
+ | identifier | string? |  yes  |  |
+ | images | [string]? |  yes  |  |
+ | item_code | string? |  yes  |  |
+ | name | string? |  yes  |  |
+ | price | string? |  yes  |  |
+ | quantity | number? |  yes  |  |
+ | short_description | string? |  yes  |  |
+ | sizes | [string]? |  yes  |  |
+ | slug | string? |  yes  |  |
+ | uid | number? |  yes  |  |
  
 
 ---
@@ -20504,8 +20794,8 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | items | [string] |  no  |  |
- | page | string |  no  |  |
+ | items | [string]? |  yes  |  |
+ | page | string? |  yes  |  |
  
 
 ---
@@ -20514,10 +20804,10 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | closing | [LocationTimingSerializer](#LocationTimingSerializer) |  no  |  |
- | open | boolean |  yes  |  |
- | opening | [LocationTimingSerializer](#LocationTimingSerializer) |  no  |  |
- | weekday | string |  yes  |  |
+ | closing | [LocationTimingSerializer](#LocationTimingSerializer)? |  yes  |  |
+ | open | boolean |  no  |  |
+ | opening | [LocationTimingSerializer](#LocationTimingSerializer)? |  yes  |  |
+ | weekday | string |  no  |  |
  
 
 ---
@@ -20526,8 +20816,8 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | inventory | string |  no  |  |
- | order | string |  no  |  |
+ | inventory | string? |  yes  |  |
+ | order | string? |  yes  |  |
  
 
 ---
@@ -20536,8 +20826,8 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | items | [[GetLocationSerializer](#GetLocationSerializer)] |  no  |  |
- | page | [Page](#Page) |  no  |  |
+ | items | [[GetLocationSerializer](#GetLocationSerializer)]? |  yes  |  |
+ | page | [Page](#Page)? |  yes  |  |
  
 
 ---
@@ -20546,9 +20836,9 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | email | string |  no  |  |
- | mobile_no | [SellerPhoneNumber](#SellerPhoneNumber) |  yes  |  |
- | name | string |  no  |  |
+ | email | string? |  yes  |  |
+ | mobile_no | [SellerPhoneNumber](#SellerPhoneNumber) |  no  |  |
+ | name | string? |  yes  |  |
  
 
 ---
@@ -20557,8 +20847,8 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | hour | number |  no  |  |
- | minute | number |  no  |  |
+ | hour | number? |  yes  |  |
+ | minute | number? |  yes  |  |
  
 
 ---
@@ -20567,26 +20857,15 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | aspect_ratio | string |  no  |  |
- | aspect_ratio_f | number |  no  |  |
- | secure_url | string |  no  |  |
- | url | string |  no  |  |
+ | aspect_ratio | string? |  yes  |  |
+ | aspect_ratio_f | number? |  yes  |  |
+ | secure_url | string? |  yes  |  |
+ | url | string? |  yes  |  |
  
 
 ---
 
 #### [ManufacturerResponse](#ManufacturerResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | address | string |  yes  |  |
- | is_default | boolean |  yes  |  |
- | name | string |  yes  |  |
- 
-
----
-
-#### [ManufacturerResponse1](#ManufacturerResponse1)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
@@ -20597,13 +20876,24 @@ List of fields and validation values fro each. See example below or refer `Inven
 
 ---
 
+#### [ManufacturerResponse1](#ManufacturerResponse1)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | address | string? |  yes  |  |
+ | is_default | boolean? |  yes  |  |
+ | name | string? |  yes  |  |
+ 
+
+---
+
 #### [Media](#Media)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | aspect_ratio | string |  no  |  |
- | type | string |  no  |  |
- | url | string |  no  |  |
+ | aspect_ratio | string? |  yes  |  |
+ | type | string? |  yes  |  |
+ | url | string? |  yes  |  |
  
 
 ---
@@ -20612,9 +20902,9 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | meta | string |  no  |  |
- | type | string |  no  |  |
- | url | string |  yes  |  |
+ | meta | string? |  yes  |  |
+ | type | string? |  yes  |  |
+ | url | string |  no  |  |
  
 
 ---
@@ -20623,9 +20913,9 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | landscape | string |  yes  |  |
- | logo | string |  yes  |  |
- | portrait | string |  yes  |  |
+ | landscape | string |  no  |  |
+ | logo | string |  no  |  |
+ | portrait | string |  no  |  |
  
 
 ---
@@ -20634,9 +20924,9 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | headers | string |  no  |  |
- | unit | string |  no  |  |
- | values | [string] |  no  |  |
+ | headers | string? |  yes  |  |
+ | unit | string? |  yes  |  |
+ | values | [string]? |  yes  |  |
  
 
 ---
@@ -20645,10 +20935,10 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | display | string |  no  |  |
- | filter_types | [string] |  no  |  |
- | key | string |  no  |  |
- | units | [string] |  no  |  |
+ | display | string? |  yes  |  |
+ | filter_types | [string]? |  yes  |  |
+ | key | string? |  yes  |  |
+ | units | [string]? |  yes  |  |
  
 
 ---
@@ -20657,7 +20947,7 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | data | [[MetaDataListingFilterMetaResponse](#MetaDataListingFilterMetaResponse)] |  no  |  |
+ | data | [[MetaDataListingFilterMetaResponse](#MetaDataListingFilterMetaResponse)]? |  yes  |  |
  
 
 ---
@@ -20666,8 +20956,8 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | filter | [MetaDataListingFilterResponse](#MetaDataListingFilterResponse) |  yes  |  |
- | sort | [MetaDataListingSortResponse](#MetaDataListingSortResponse) |  yes  |  |
+ | filter | [MetaDataListingFilterResponse](#MetaDataListingFilterResponse) |  no  |  |
+ | sort | [MetaDataListingSortResponse](#MetaDataListingSortResponse) |  no  |  |
  
 
 ---
@@ -20676,8 +20966,8 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | display | string |  no  |  |
- | key | string |  no  |  |
+ | display | string? |  yes  |  |
+ | key | string? |  yes  |  |
  
 
 ---
@@ -20686,7 +20976,7 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | data | [[MetaDataListingSortMetaResponse](#MetaDataListingSortMetaResponse)] |  no  |  |
+ | data | [[MetaDataListingSortMetaResponse](#MetaDataListingSortMetaResponse)]? |  yes  |  |
  
 
 ---
@@ -20695,8 +20985,8 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | key | any |  yes  |  |
- | value | any |  yes  |  |
+ | key | any |  no  |  |
+ | value | any |  no  |  |
  
 
 ---
@@ -20705,18 +20995,9 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | increment_unit | number |  no  |  |
- | maximum | number |  no  |  |
- | minimum | number |  no  |  |
- 
-
----
-
-#### [NestedTags](#NestedTags)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | tags | [string] |  no  |  |
+ | increment_unit | number? |  yes  |  |
+ | maximum | number? |  yes  |  |
+ | minimum | number? |  yes  |  |
  
 
 ---
@@ -20725,8 +21006,8 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | unit | any |  no  |  |
- | value | number |  no  |  |
+ | unit | any? |  yes  |  |
+ | value | number? |  yes  |  |
  
 
 ---
@@ -20735,8 +21016,8 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | unit | string |  no  |  |
- | value | number |  no  |  |
+ | unit | string? |  yes  |  |
+ | value | number? |  yes  |  |
  
 
 ---
@@ -20745,8 +21026,8 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | end | string |  no  |  |
- | start | string |  no  |  |
+ | end | string? |  yes  |  |
+ | start | string? |  yes  |  |
  
 
 ---
@@ -20755,8 +21036,8 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | items | [[CompanyBrandDetail](#CompanyBrandDetail)] |  no  |  |
- | page | [Page](#Page) |  no  |  |
+ | items | [[CompanyBrandDetail](#CompanyBrandDetail)]? |  yes  |  |
+ | page | [Page](#Page)? |  yes  |  |
  
 
 ---
@@ -20765,10 +21046,10 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | business_type | string |  no  |  |
- | company_type | string |  no  |  |
- | name | string |  no  |  |
- | uid | number |  no  |  |
+ | business_type | string? |  yes  |  |
+ | company_type | string? |  yes  |  |
+ | name | string? |  yes  |  |
+ | uid | number? |  yes  |  |
  
 
 ---
@@ -20777,9 +21058,9 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | brand | number |  no  |  |
- | company | string |  no  |  |
- | store | number |  no  |  |
+ | brand | number? |  yes  |  |
+ | company | string? |  yes  |  |
+ | store | number? |  yes  |  |
  
 
 ---
@@ -20788,12 +21069,12 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | brand_ids | [number] |  no  |  |
- | company_id | number |  no  |  |
- | enabled | boolean |  no  |  |
- | opt_level | string |  yes  |  |
- | platform | string |  no  |  |
- | store_ids | [number] |  no  |  |
+ | brand_ids | [number]? |  yes  |  |
+ | company_id | number? |  yes  |  |
+ | enabled | boolean? |  yes  |  |
+ | opt_level | string |  no  |  |
+ | platform | string? |  yes  |  |
+ | store_ids | [number]? |  yes  |  |
  
 
 ---
@@ -20802,8 +21083,8 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | items | [[StoreDetail](#StoreDetail)] |  no  |  |
- | page | [Page](#Page) |  no  |  |
+ | items | [[StoreDetail](#StoreDetail)]? |  yes  |  |
+ | page | [Page](#Page)? |  yes  |  |
  
 
 ---
@@ -20812,11 +21093,11 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | alt_text | string |  no  |  |
- | is_cod | boolean |  no  |  |
- | is_gift | boolean |  no  |  |
- | moq | [MOQData](#MOQData) |  no  |  |
- | seo | [SEOData](#SEOData) |  no  |  |
+ | alt_text | string? |  yes  |  |
+ | is_cod | boolean? |  yes  |  |
+ | is_gift | boolean? |  yes  |  |
+ | moq | [MOQData](#MOQData)? |  yes  |  |
+ | seo | [SEOData](#SEOData)? |  yes  |  |
  
 
 ---
@@ -20825,13 +21106,13 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | current | number |  no  |  |
- | has_next | boolean |  no  |  |
- | has_previous | boolean |  no  |  |
- | item_total | number |  no  |  |
- | next_id | string |  no  |  |
- | size | number |  no  |  |
- | type | string |  yes  |  |
+ | current | number? |  yes  |  |
+ | has_next | boolean? |  yes  |  |
+ | has_previous | boolean? |  yes  |  |
+ | item_total | number? |  yes  |  |
+ | next_id | string? |  yes  |  |
+ | size | number? |  yes  |  |
+ | type | string |  no  |  |
  
 
 ---
@@ -20840,11 +21121,11 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | current | string |  no  |  |
- | has_next | boolean |  no  |  |
- | has_previous | boolean |  no  |  |
- | item_total | number |  no  |  |
- | size | number |  no  |  |
+ | current | string? |  yes  |  |
+ | has_next | boolean? |  yes  |  |
+ | has_previous | boolean? |  yes  |  |
+ | item_total | number? |  yes  |  |
+ | size | number? |  yes  |  |
  
 
 ---
@@ -20853,10 +21134,10 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | current | number |  yes  |  |
- | has_next | boolean |  yes  |  |
- | next | number |  yes  |  |
- | total_count | number |  yes  |  |
+ | current | number |  no  |  |
+ | has_next | boolean |  no  |  |
+ | next | number |  no  |  |
+ | total_count | number |  no  |  |
  
 
 ---
@@ -20865,11 +21146,11 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | currency | string |  no  |  |
- | max_effective | number |  no  |  |
- | max_marked | number |  no  |  |
- | min_effective | number |  no  |  |
- | min_marked | number |  no  |  |
+ | currency | string? |  yes  |  |
+ | max_effective | number? |  yes  |  |
+ | max_marked | number? |  yes  |  |
+ | min_effective | number? |  yes  |  |
+ | min_marked | number? |  yes  |  |
  
 
 ---
@@ -20878,10 +21159,10 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | currency_code | string |  no  |  |
- | currency_symbol | string |  no  |  |
- | max | number |  no  |  |
- | min | number |  no  |  |
+ | currency_code | string? |  yes  |  |
+ | currency_symbol | string? |  yes  |  |
+ | max | number? |  yes  |  |
+ | min | number? |  yes  |  |
  
 
 ---
@@ -20890,11 +21171,11 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | currency | string |  no  |  |
- | effective | number |  no  |  |
- | marked | number |  no  |  |
- | tp_notes | string |  no  |  |
- | transfer | number |  no  |  |
+ | currency | string? |  yes  |  |
+ | effective | number? |  yes  |  |
+ | marked | number? |  yes  |  |
+ | tp_notes | string? |  yes  |  |
+ | transfer | number? |  yes  |  |
  
 
 ---
@@ -20903,12 +21184,12 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | currency | string |  yes  |  |
- | effective | number |  yes  |  |
- | marked | number |  yes  |  |
- | tp_notes | string |  no  |  |
- | transfer | number |  yes  |  |
- | updated_at | string |  no  |  |
+ | currency | string |  no  |  |
+ | effective | number |  no  |  |
+ | marked | number |  no  |  |
+ | tp_notes | string? |  yes  |  |
+ | transfer | number |  no  |  |
+ | updated_at | string? |  yes  |  |
  
 
 ---
@@ -20917,7 +21198,8 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | items | [[ProductTemplateCategory](#ProductTemplateCategory)] |  no  |  |
+ | items | [[CategoriesResponse](#CategoriesResponse)]? |  yes  |  |
+ | page | [Page](#Page)? |  yes  |  |
  
 
 ---
@@ -20926,68 +21208,68 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | _custom_json | string |  no  |  |
- | all_company_ids | [number] |  no  |  |
- | all_identifiers | [string] |  no  |  |
- | all_sizes | [string] |  no  |  |
- | attributes | string |  no  |  |
- | brand | [Brand](#Brand) |  no  |  |
- | brand_uid | number |  no  |  |
- | category | string |  no  |  |
- | category_slug | string |  no  |  |
- | category_uid | number |  no  |  |
- | color | string |  no  |  |
- | company_id | number |  no  |  |
- | country_of_origin | string |  no  |  |
- | created_by | string |  no  |  |
- | created_on | string |  no  |  |
- | currency | string |  no  |  |
- | custom_order | string |  no  |  |
- | departments | [number] |  no  |  |
- | description | string |  no  |  |
- | highlights | [string] |  no  |  |
- | hsn_code | string |  no  |  |
- | id | string |  no  |  |
- | image_nature | string |  no  |  |
- | images | [[Image](#Image)] |  no  |  |
- | is_active | boolean |  no  |  |
- | is_dependent | boolean |  no  |  |
- | is_expirable | boolean |  no  |  |
- | is_image_less_product | boolean |  no  |  |
- | is_physical | boolean |  no  |  |
- | is_set | boolean |  no  |  |
- | item_code | string |  no  |  |
- | item_type | string |  no  |  |
- | l3_mapping | [string] |  no  |  |
- | media | [[Media1](#Media1)] |  no  |  |
- | modified_by | string |  no  |  |
- | modified_on | string |  no  |  |
- | moq | string |  no  |  |
- | multi_size | boolean |  no  |  |
- | name | string |  no  |  |
- | net_quantity | [NetQuantityResponse](#NetQuantityResponse) |  no  |  |
- | no_of_boxes | number |  no  |  |
- | pending | string |  no  |  |
- | primary_color | string |  no  |  |
- | product_group_tag | [string] |  no  |  |
- | product_publish | [ProductPublished](#ProductPublished) |  no  |  |
- | return_config | [ReturnConfigResponse](#ReturnConfigResponse) |  no  |  |
- | short_description | string |  no  |  |
- | size_guide | string |  no  |  |
- | sizes | [string] |  no  |  |
- | slug | string |  no  |  |
- | stage | string |  no  |  |
- | tags | [string] |  no  |  |
- | tax_identifier | string |  no  |  |
- | teaser_tag | string |  no  |  |
- | template_tag | string |  no  |  |
- | trader | [string] |  no  |  |
- | uid | number |  no  |  |
- | variant_group | string |  no  |  |
- | variant_media | string |  no  |  |
- | variants | string |  no  |  |
- | verified_by | [VerifiedBy](#VerifiedBy) |  no  |  |
- | verified_on | string |  no  |  |
+ | _custom_json | string? |  yes  |  |
+ | all_company_ids | [number]? |  yes  |  |
+ | all_identifiers | [string]? |  yes  |  |
+ | all_sizes | [string]? |  yes  |  |
+ | attributes | string? |  yes  |  |
+ | brand | [Brand](#Brand)? |  yes  |  |
+ | brand_uid | number? |  yes  |  |
+ | category | string? |  yes  |  |
+ | category_slug | string? |  yes  |  |
+ | category_uid | number? |  yes  |  |
+ | color | string? |  yes  |  |
+ | company_id | number? |  yes  |  |
+ | country_of_origin | string? |  yes  |  |
+ | created_by | string? |  yes  |  |
+ | created_on | string? |  yes  |  |
+ | currency | string? |  yes  |  |
+ | custom_order | string? |  yes  |  |
+ | departments | [number]? |  yes  |  |
+ | description | string? |  yes  |  |
+ | highlights | [string]? |  yes  |  |
+ | hsn_code | string? |  yes  |  |
+ | id | string? |  yes  |  |
+ | image_nature | string? |  yes  |  |
+ | images | [[Image](#Image)]? |  yes  |  |
+ | is_active | boolean? |  yes  |  |
+ | is_dependent | boolean? |  yes  |  |
+ | is_expirable | boolean? |  yes  |  |
+ | is_image_less_product | boolean? |  yes  |  |
+ | is_physical | boolean? |  yes  |  |
+ | is_set | boolean? |  yes  |  |
+ | item_code | string? |  yes  |  |
+ | item_type | string? |  yes  |  |
+ | l3_mapping | [string]? |  yes  |  |
+ | media | [[Media1](#Media1)]? |  yes  |  |
+ | modified_by | string? |  yes  |  |
+ | modified_on | string? |  yes  |  |
+ | moq | string? |  yes  |  |
+ | multi_size | boolean? |  yes  |  |
+ | name | string? |  yes  |  |
+ | net_quantity | [NetQuantityResponse](#NetQuantityResponse)? |  yes  |  |
+ | no_of_boxes | number? |  yes  |  |
+ | pending | string? |  yes  |  |
+ | primary_color | string? |  yes  |  |
+ | product_group_tag | [string]? |  yes  |  |
+ | product_publish | [ProductPublished](#ProductPublished)? |  yes  |  |
+ | return_config | [ReturnConfigResponse](#ReturnConfigResponse)? |  yes  |  |
+ | short_description | string? |  yes  |  |
+ | size_guide | string? |  yes  |  |
+ | sizes | [string]? |  yes  |  |
+ | slug | string? |  yes  |  |
+ | stage | string? |  yes  |  |
+ | tags | [string]? |  yes  |  |
+ | tax_identifier | string? |  yes  |  |
+ | teaser_tag | string? |  yes  |  |
+ | template_tag | string? |  yes  |  |
+ | trader | [[Trader](#Trader)]? |  yes  |  |
+ | uid | number? |  yes  |  |
+ | variant_group | string? |  yes  |  |
+ | variant_media | string? |  yes  |  |
+ | variants | string? |  yes  |  |
+ | verified_by | [VerifiedBy](#VerifiedBy)? |  yes  |  |
+ | verified_on | string? |  yes  |  |
  
 
 ---
@@ -20996,7 +21278,7 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | items | [[AttributeMasterSerializer](#AttributeMasterSerializer)] |  yes  |  |
+ | items | [[AttributeMasterSerializer](#AttributeMasterSerializer)] |  no  |  |
  
 
 ---
@@ -21005,10 +21287,10 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | action | [Action](#Action) |  no  |  |
- | logo | [Media1](#Media1) |  no  |  |
- | name | string |  no  |  |
- | uid | number |  no  |  |
+ | action | [Action](#Action)? |  yes  |  |
+ | logo | [Media1](#Media1)? |  yes  |  |
+ | name | string? |  yes  |  |
+ | uid | number? |  yes  |  |
  
 
 ---
@@ -21017,9 +21299,9 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | company_id | number |  no  |  |
- | url | string |  yes  |  |
- | user | string |  yes  |  |
+ | company_id | number? |  yes  |  |
+ | url | string |  no  |  |
+ | user | string |  no  |  |
  
 
 ---
@@ -21028,22 +21310,22 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | cancelled | number |  no  |  |
- | cancelled_records | [string] |  no  |  |
- | company_id | number |  no  |  |
- | created_by | [UserDetail1](#UserDetail1) |  no  |  |
- | created_on | string |  no  |  |
- | failed | number |  no  |  |
- | failed_records | [string] |  no  |  |
- | file_path | string |  no  |  |
- | is_active | boolean |  no  |  |
- | modified_by | [UserDetail1](#UserDetail1) |  no  |  |
- | modified_on | string |  no  |  |
- | stage | string |  no  |  |
- | succeed | number |  no  |  |
- | template | [ProductTemplate](#ProductTemplate) |  no  |  |
- | template_tag | string |  no  |  |
- | total | number |  no  |  |
+ | cancelled | number? |  yes  |  |
+ | cancelled_records | [string]? |  yes  |  |
+ | company_id | number? |  yes  |  |
+ | created_by | [UserDetail1](#UserDetail1)? |  yes  |  |
+ | created_on | string? |  yes  |  |
+ | failed | number? |  yes  |  |
+ | failed_records | [string]? |  yes  |  |
+ | file_path | string? |  yes  |  |
+ | is_active | boolean? |  yes  |  |
+ | modified_by | [UserDetail1](#UserDetail1)? |  yes  |  |
+ | modified_on | string? |  yes  |  |
+ | stage | string? |  yes  |  |
+ | succeed | number? |  yes  |  |
+ | template | [ProductTemplate](#ProductTemplate)? |  yes  |  |
+ | template_tag | string? |  yes  |  |
+ | total | number? |  yes  |  |
  
 
 ---
@@ -21052,8 +21334,8 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | items | [ProductBulkRequest](#ProductBulkRequest) |  no  |  |
- | page | [Page](#Page) |  no  |  |
+ | items | [ProductBulkRequest](#ProductBulkRequest)? |  yes  |  |
+ | page | [Page](#Page)? |  yes  |  |
  
 
 ---
@@ -21062,12 +21344,12 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | allow_remove | boolean |  no  |  |
- | auto_add_to_cart | boolean |  no  |  |
- | auto_select | boolean |  no  |  |
- | max_quantity | number |  yes  |  |
- | min_quantity | number |  yes  |  |
- | product_uid | number |  yes  |  |
+ | allow_remove | boolean? |  yes  |  |
+ | auto_add_to_cart | boolean? |  yes  |  |
+ | auto_select | boolean? |  yes  |  |
+ | max_quantity | number |  no  |  |
+ | min_quantity | number |  no  |  |
+ | product_uid | number |  no  |  |
  
 
 ---
@@ -21076,20 +21358,20 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | choice | string |  yes  |  |
- | company_id | number |  no  |  |
- | created_by | string |  no  |  |
- | created_on | string |  no  |  |
- | is_active | boolean |  yes  |  |
- | logo | string |  no  |  |
- | meta | string |  no  |  |
- | modified_by | string |  no  |  |
- | modified_on | string |  no  |  |
- | name | string |  yes  |  |
- | page_visibility | [string] |  no  |  |
- | products | [[ProductBundleItem](#ProductBundleItem)] |  yes  |  |
- | same_store_assignment | boolean |  no  |  |
- | slug | string |  yes  |  |
+ | choice | string |  no  |  |
+ | company_id | number? |  yes  |  |
+ | created_by | string? |  yes  |  |
+ | created_on | string? |  yes  |  |
+ | is_active | boolean |  no  |  |
+ | logo | string? |  yes  |  |
+ | meta | string? |  yes  |  |
+ | modified_by | string? |  yes  |  |
+ | modified_on | string? |  yes  |  |
+ | name | string |  no  |  |
+ | page_visibility | [string]? |  yes  |  |
+ | products | [[ProductBundleItem](#ProductBundleItem)] |  no  |  |
+ | same_store_assignment | boolean? |  yes  |  |
+ | slug | string |  no  |  |
  
 
 ---
@@ -21098,18 +21380,18 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | choice | string |  yes  |  |
- | company_id | number |  no  |  |
- | is_active | boolean |  yes  |  |
- | logo | string |  no  |  |
- | meta | string |  no  |  |
- | modified_by | string |  no  |  |
- | modified_on | string |  no  |  |
- | name | string |  yes  |  |
- | page_visibility | [string] |  no  |  |
- | products | [[ProductBundleItem](#ProductBundleItem)] |  yes  |  |
- | same_store_assignment | boolean |  no  |  |
- | slug | string |  yes  |  |
+ | choice | string |  no  |  |
+ | company_id | number? |  yes  |  |
+ | is_active | boolean |  no  |  |
+ | logo | string? |  yes  |  |
+ | meta | string? |  yes  |  |
+ | modified_by | string? |  yes  |  |
+ | modified_on | string? |  yes  |  |
+ | name | string |  no  |  |
+ | page_visibility | [string]? |  yes  |  |
+ | products | [[ProductBundleItem](#ProductBundleItem)] |  no  |  |
+ | same_store_assignment | boolean? |  yes  |  |
+ | slug | string |  no  |  |
  
 
 ---
@@ -21118,8 +21400,8 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | data | [string] |  no  |  |
- | multivalue | boolean |  no  |  |
+ | data | [string]? |  yes  |  |
+ | multivalue | boolean? |  yes  |  |
  
 
 ---
@@ -21128,48 +21410,48 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | _custom_json | string |  no  |  |
- | action | string |  no  |  |
- | attributes | string |  no  |  |
- | brand_uid | number |  yes  |  |
- | bulk_job_id | string |  no  |  |
- | category_slug | string |  yes  |  |
- | change_request_id | any |  no  |  |
- | company_id | number |  yes  |  |
- | country_of_origin | string |  yes  |  |
- | currency | string |  yes  |  |
- | custom_order | [CustomOrder](#CustomOrder) |  no  |  |
- | departments | [number] |  yes  |  |
- | description | string |  no  |  |
- | highlights | [string] |  no  |  |
- | is_active | boolean |  no  |  |
- | is_dependent | boolean |  no  |  |
- | is_image_less_product | boolean |  no  |  |
- | is_set | boolean |  no  |  |
- | item_code | string |  yes  |  |
- | item_type | string |  yes  |  |
- | media | [[Media1](#Media1)] |  no  |  |
- | multi_size | boolean |  no  |  |
- | name | string |  yes  |  |
- | net_quantity | [NetQuantity](#NetQuantity) |  no  |  |
- | no_of_boxes | number |  no  |  |
- | product_group_tag | [string] |  no  |  |
- | product_publish | [ProductPublish](#ProductPublish) |  no  |  |
- | requester | string |  no  |  |
- | return_config | [ReturnConfig](#ReturnConfig) |  yes  |  |
- | short_description | string |  no  |  |
- | size_guide | string |  no  |  |
- | sizes | [string] |  yes  |  |
- | slug | string |  yes  |  |
- | tags | [string] |  no  |  |
- | tax_identifier | [TaxIdentifier](#TaxIdentifier) |  yes  |  |
- | teaser_tag | [TeaserTag](#TeaserTag) |  no  |  |
- | template_tag | string |  yes  |  |
- | trader | [[Trader](#Trader)] |  yes  |  |
- | uid | number |  no  |  |
- | variant_group | string |  no  |  |
- | variant_media | string |  no  |  |
- | variants | string |  no  |  |
+ | _custom_json | string? |  yes  |  |
+ | action | string? |  yes  |  |
+ | attributes | string? |  yes  |  |
+ | brand_uid | number |  no  |  |
+ | bulk_job_id | string? |  yes  |  |
+ | category_slug | string |  no  |  |
+ | change_request_id | any? |  yes  |  |
+ | company_id | number |  no  |  |
+ | country_of_origin | string |  no  |  |
+ | currency | string |  no  |  |
+ | custom_order | [CustomOrder](#CustomOrder)? |  yes  |  |
+ | departments | [number] |  no  |  |
+ | description | string? |  yes  |  |
+ | highlights | [string]? |  yes  |  |
+ | is_active | boolean? |  yes  |  |
+ | is_dependent | boolean? |  yes  |  |
+ | is_image_less_product | boolean? |  yes  |  |
+ | is_set | boolean? |  yes  |  |
+ | item_code | string |  no  |  |
+ | item_type | string |  no  |  |
+ | media | [[Media1](#Media1)]? |  yes  |  |
+ | multi_size | boolean? |  yes  |  |
+ | name | string |  no  |  |
+ | net_quantity | [NetQuantity](#NetQuantity)? |  yes  |  |
+ | no_of_boxes | number? |  yes  |  |
+ | product_group_tag | [string]? |  yes  |  |
+ | product_publish | [ProductPublish1](#ProductPublish1)? |  yes  |  |
+ | requester | string? |  yes  |  |
+ | return_config | [ReturnConfig](#ReturnConfig) |  no  |  |
+ | short_description | string? |  yes  |  |
+ | size_guide | string? |  yes  |  |
+ | sizes | [string] |  no  |  |
+ | slug | string |  no  |  |
+ | tags | [string]? |  yes  |  |
+ | tax_identifier | [TaxIdentifier](#TaxIdentifier) |  no  |  |
+ | teaser_tag | [TeaserTag](#TeaserTag)? |  yes  |  |
+ | template_tag | string |  no  |  |
+ | trader | [[Trader](#Trader)] |  no  |  |
+ | uid | number? |  yes  |  |
+ | variant_group | string? |  yes  |  |
+ | variant_media | string? |  yes  |  |
+ | variants | string? |  yes  |  |
  
 
 ---
@@ -21178,29 +21460,29 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | attributes | string |  no  |  |
- | brand | [ProductBrand](#ProductBrand) |  no  |  |
- | color | string |  no  |  |
- | description | string |  no  |  |
- | grouped_attributes | [[ProductDetailGroupedAttribute](#ProductDetailGroupedAttribute)] |  no  |  |
- | has_variant | boolean |  no  |  |
- | highlights | [string] |  no  |  |
- | image_nature | string |  no  |  |
- | item_code | string |  no  |  |
- | item_type | string |  no  |  |
- | medias | [[Media1](#Media1)] |  no  |  |
- | name | string |  no  |  |
- | product_online_date | string |  no  |  |
- | promo_meta | string |  no  |  |
- | rating | number |  no  |  |
- | rating_count | number |  no  |  |
- | short_description | string |  no  |  |
- | similars | [string] |  no  |  |
- | slug | string |  yes  |  |
- | teaser_tag | string |  no  |  |
- | tryouts | [string] |  no  |  |
- | type | string |  no  |  |
- | uid | number |  no  |  |
+ | attributes | string? |  yes  |  |
+ | brand | [ProductBrand](#ProductBrand)? |  yes  |  |
+ | color | string? |  yes  |  |
+ | description | string? |  yes  |  |
+ | grouped_attributes | [[ProductDetailGroupedAttribute](#ProductDetailGroupedAttribute)]? |  yes  |  |
+ | has_variant | boolean? |  yes  |  |
+ | highlights | [string]? |  yes  |  |
+ | image_nature | string? |  yes  |  |
+ | item_code | string? |  yes  |  |
+ | item_type | string? |  yes  |  |
+ | medias | [[Media1](#Media1)]? |  yes  |  |
+ | name | string? |  yes  |  |
+ | product_online_date | string? |  yes  |  |
+ | promo_meta | string? |  yes  |  |
+ | rating | number? |  yes  |  |
+ | rating_count | number? |  yes  |  |
+ | short_description | string? |  yes  |  |
+ | similars | [string]? |  yes  |  |
+ | slug | string |  no  |  |
+ | teaser_tag | string? |  yes  |  |
+ | tryouts | [string]? |  yes  |  |
+ | type | string? |  yes  |  |
+ | uid | number? |  yes  |  |
  
 
 ---
@@ -21209,9 +21491,9 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | key | string |  no  |  |
- | type | string |  no  |  |
- | value | string |  no  |  |
+ | key | string? |  yes  |  |
+ | type | string? |  yes  |  |
+ | value | string? |  yes  |  |
  
 
 ---
@@ -21220,37 +21502,8 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | details | [[ProductDetailAttribute](#ProductDetailAttribute)] |  no  |  |
- | title | string |  no  |  |
- 
-
----
-
-#### [ProductDownloadItemsData](#ProductDownloadItemsData)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | brand | [string] |  no  |  |
- | templates | [string] |  no  |  |
- | type | string |  no  |  |
- 
-
----
-
-#### [ProductDownloadsItems](#ProductDownloadsItems)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | completed_on | string |  no  |  |
- | created_by | [VerifiedBy](#VerifiedBy) |  no  |  |
- | data | [ProductDownloadItemsData](#ProductDownloadItemsData) |  no  |  |
- | id | string |  no  |  |
- | seller_id | number |  no  |  |
- | status | string |  no  |  |
- | task_id | string |  no  |  |
- | template_tags | string |  no  |  |
- | trigger_on | string |  no  |  |
- | url | string |  no  |  |
+ | details | [[ProductDetailAttribute](#ProductDetailAttribute)]? |  yes  |  |
+ | title | string? |  yes  |  |
  
 
 ---
@@ -21259,8 +21512,7 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | items | [ProductDownloadsItems](#ProductDownloadsItems) |  no  |  |
- | page | [Page](#Page) |  no  |  |
+ | items | [[ProductTemplateExportResponse](#ProductTemplateExportResponse)]? |  yes  | The items of the job. |
  
 
 ---
@@ -21269,8 +21521,8 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | key | [ProductFiltersKey](#ProductFiltersKey) |  yes  |  |
- | values | [[ProductFiltersValue](#ProductFiltersValue)] |  yes  |  |
+ | key | [ProductFiltersKey](#ProductFiltersKey) |  no  |  |
+ | values | [[ProductFiltersValue](#ProductFiltersValue)] |  no  |  |
  
 
 ---
@@ -21279,11 +21531,11 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | display | string |  yes  |  |
- | kind | string |  no  |  |
- | logo | string |  no  |  |
- | name | string |  yes  |  |
- | operators | [string] |  no  |  |
+ | display | string |  no  |  |
+ | kind | string? |  yes  |  |
+ | logo | string? |  yes  |  |
+ | name | string |  no  |  |
+ | operators | [string]? |  yes  |  |
  
 
 ---
@@ -21292,18 +21544,18 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | count | number |  no  |  |
- | currency_code | string |  no  |  |
- | currency_symbol | string |  no  |  |
- | display | string |  yes  |  |
- | display_format | string |  no  |  |
- | is_selected | boolean |  yes  |  |
- | max | number |  no  |  |
- | min | number |  no  |  |
- | query_format | string |  no  |  |
- | selected_max | number |  no  |  |
- | selected_min | number |  no  |  |
- | value | any |  yes  |  |
+ | count | number? |  yes  |  |
+ | currency_code | string? |  yes  |  |
+ | currency_symbol | string? |  yes  |  |
+ | display | string |  no  |  |
+ | display_format | string? |  yes  |  |
+ | is_selected | boolean |  no  |  |
+ | max | number? |  yes  |  |
+ | min | number? |  yes  |  |
+ | query_format | string? |  yes  |  |
+ | selected_max | number? |  yes  |  |
+ | selected_min | number? |  yes  |  |
+ | value | any |  no  |  |
  
 
 ---
@@ -21312,32 +21564,32 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | attributes | string |  no  |  |
- | brand | [ProductBrand](#ProductBrand) |  no  |  |
- | color | string |  no  |  |
- | description | string |  no  |  |
- | discount | string |  no  |  |
- | grouped_attributes | [[ProductDetailGroupedAttribute](#ProductDetailGroupedAttribute)] |  no  |  |
- | has_variant | boolean |  no  |  |
- | highlights | [string] |  no  |  |
- | image_nature | string |  no  |  |
- | item_code | string |  no  |  |
- | item_type | string |  no  |  |
- | medias | [[Media1](#Media1)] |  no  |  |
- | name | string |  no  |  |
- | price | [ProductListingPrice](#ProductListingPrice) |  no  |  |
- | product_online_date | string |  no  |  |
- | promo_meta | string |  no  |  |
- | rating | number |  no  |  |
- | rating_count | number |  no  |  |
- | sellable | boolean |  no  |  |
- | short_description | string |  no  |  |
- | similars | [string] |  no  |  |
- | slug | string |  yes  |  |
- | teaser_tag | string |  no  |  |
- | tryouts | [string] |  no  |  |
- | type | string |  no  |  |
- | uid | number |  no  |  |
+ | attributes | string? |  yes  |  |
+ | brand | [ProductBrand](#ProductBrand)? |  yes  |  |
+ | color | string? |  yes  |  |
+ | description | string? |  yes  |  |
+ | discount | string? |  yes  |  |
+ | grouped_attributes | [[ProductDetailGroupedAttribute](#ProductDetailGroupedAttribute)]? |  yes  |  |
+ | has_variant | boolean? |  yes  |  |
+ | highlights | [string]? |  yes  |  |
+ | image_nature | string? |  yes  |  |
+ | item_code | string? |  yes  |  |
+ | item_type | string? |  yes  |  |
+ | medias | [[Media1](#Media1)]? |  yes  |  |
+ | name | string? |  yes  |  |
+ | price | [ProductListingPrice](#ProductListingPrice)? |  yes  |  |
+ | product_online_date | string? |  yes  |  |
+ | promo_meta | string? |  yes  |  |
+ | rating | number? |  yes  |  |
+ | rating_count | number? |  yes  |  |
+ | sellable | boolean? |  yes  |  |
+ | short_description | string? |  yes  |  |
+ | similars | [string]? |  yes  |  |
+ | slug | string |  no  |  |
+ | teaser_tag | string? |  yes  |  |
+ | tryouts | [string]? |  yes  |  |
+ | type | string? |  yes  |  |
+ | uid | number? |  yes  |  |
  
 
 ---
@@ -21346,8 +21598,8 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | effective | [Price1](#Price1) |  no  |  |
- | marked | [Price1](#Price1) |  no  |  |
+ | effective | [Price1](#Price1)? |  yes  |  |
+ | marked | [Price1](#Price1)? |  yes  |  |
  
 
 ---
@@ -21356,8 +21608,18 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | items | [[Product](#Product)] |  no  |  |
- | page | [Page](#Page) |  no  |  |
+ | items | [[Product](#Product)]? |  yes  |  |
+ | page | [Page](#Page)? |  yes  |  |
+ 
+
+---
+
+#### [ProductListingResponseV2](#ProductListingResponseV2)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | items | [[ProductSchemaV2](#ProductSchemaV2)]? |  yes  |  |
+ | page | [Page](#Page)? |  yes  |  |
  
 
 ---
@@ -21366,8 +21628,18 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | is_set | boolean |  no  |  |
- | product_online_date | string |  no  |  |
+ | is_set | boolean? |  yes  |  |
+ | product_online_date | string? |  yes  |  |
+ 
+
+---
+
+#### [ProductPublish1](#ProductPublish1)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | is_set | boolean? |  yes  |  |
+ | product_online_date | string? |  yes  |  |
  
 
 ---
@@ -21376,8 +21648,8 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | is_set | boolean |  no  |  |
- | product_online_date | number |  no  |  |
+ | is_set | boolean? |  yes  |  |
+ | product_online_date | number? |  yes  |  |
  
 
 ---
@@ -21386,8 +21658,78 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | on_same_store | boolean |  no  |  |
- | store_uid | number |  no  |  |
+ | on_same_store | boolean? |  yes  |  |
+ | store_uid | number? |  yes  |  |
+ 
+
+---
+
+#### [ProductSchemaV2](#ProductSchemaV2)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | _custom_json | string? |  yes  |  |
+ | all_company_ids | [number]? |  yes  |  |
+ | all_identifiers | [string]? |  yes  |  |
+ | all_sizes | [string]? |  yes  |  |
+ | attributes | string? |  yes  |  |
+ | brand | [Brand](#Brand)? |  yes  |  |
+ | brand_uid | number? |  yes  |  |
+ | category | string? |  yes  |  |
+ | category_slug | string? |  yes  |  |
+ | category_uid | number? |  yes  |  |
+ | color | string? |  yes  |  |
+ | company_id | number? |  yes  |  |
+ | country_of_origin | string? |  yes  |  |
+ | created_by | string? |  yes  |  |
+ | created_on | string? |  yes  |  |
+ | currency | string? |  yes  |  |
+ | custom_order | string? |  yes  |  |
+ | departments | [number]? |  yes  |  |
+ | description | string? |  yes  |  |
+ | highlights | [string]? |  yes  |  |
+ | hsn_code | string? |  yes  |  |
+ | id | string? |  yes  |  |
+ | image_nature | string? |  yes  |  |
+ | images | [[Image](#Image)]? |  yes  |  |
+ | is_active | boolean? |  yes  |  |
+ | is_dependent | boolean? |  yes  |  |
+ | is_expirable | boolean? |  yes  |  |
+ | is_image_less_product | boolean? |  yes  |  |
+ | is_physical | boolean? |  yes  |  |
+ | is_set | boolean? |  yes  |  |
+ | item_code | string? |  yes  |  |
+ | item_type | string? |  yes  |  |
+ | l3_mapping | [string]? |  yes  |  |
+ | media | [[Media1](#Media1)]? |  yes  |  |
+ | modified_by | string? |  yes  |  |
+ | modified_on | string? |  yes  |  |
+ | moq | string? |  yes  |  |
+ | multi_size | boolean? |  yes  |  |
+ | name | string? |  yes  |  |
+ | net_quantity | [NetQuantityResponse](#NetQuantityResponse)? |  yes  |  |
+ | no_of_boxes | number? |  yes  |  |
+ | pending | string? |  yes  |  |
+ | primary_color | string? |  yes  |  |
+ | product_group_tag | [string]? |  yes  |  |
+ | product_publish | [ProductPublish](#ProductPublish)? |  yes  |  |
+ | return_config | [ReturnConfigResponse](#ReturnConfigResponse)? |  yes  |  |
+ | short_description | string? |  yes  |  |
+ | size_guide | string? |  yes  |  |
+ | sizes | [string]? |  yes  |  |
+ | slug | string? |  yes  |  |
+ | stage | string? |  yes  |  |
+ | tags | [string]? |  yes  |  |
+ | tax_identifier | string? |  yes  |  |
+ | teaser_tag | string? |  yes  |  |
+ | template_tag | string? |  yes  |  |
+ | trader | [[Trader](#Trader)]? |  yes  |  |
+ | uid | number? |  yes  |  |
+ | variant_group | string? |  yes  |  |
+ | variant_media | string? |  yes  |  |
+ | variants | string? |  yes  |  |
+ | verified_by | [VerifiedBy](#VerifiedBy)? |  yes  |  |
+ | verified_on | string? |  yes  |  |
  
 
 ---
@@ -21396,8 +21738,8 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | max | number |  yes  |  |
- | min | number |  yes  |  |
+ | max | number |  no  |  |
+ | min | number |  no  |  |
  
 
 ---
@@ -21406,9 +21748,9 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | company_id | number |  no  |  |
- | item_id | number |  no  |  |
- | size | string |  no  |  |
+ | company_id | number? |  yes  |  |
+ | item_id | number? |  yes  |  |
+ | size | string? |  yes  |  |
  
 
 ---
@@ -21417,8 +21759,8 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | data | [ProductSizeDeleteDataResponse](#ProductSizeDeleteDataResponse) |  no  |  |
- | success | boolean |  no  |  |
+ | data | [ProductSizeDeleteDataResponse](#ProductSizeDeleteDataResponse)? |  yes  |  |
+ | success | boolean? |  yes  |  |
  
 
 ---
@@ -21427,9 +21769,9 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | is_selected | boolean |  no  |  |
- | name | string |  no  |  |
- | value | string |  no  |  |
+ | is_selected | boolean? |  yes  |  |
+ | name | string? |  yes  |  |
+ | value | string? |  yes  |  |
  
 
 ---
@@ -21438,7 +21780,7 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | items | [NestedTags](#NestedTags) |  no  |  |
+ | items | [string]? |  yes  |  |
  
 
 ---
@@ -21447,35 +21789,64 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | attributes | [string] |  no  |  |
- | categories | [string] |  no  |  |
- | created_by | string |  no  |  |
- | created_on | string |  no  |  |
- | departments | [string] |  no  |  |
- | description | string |  no  |  |
- | is_active | boolean |  no  |  |
- | is_archived | boolean |  no  |  |
- | is_expirable | boolean |  yes  |  |
- | is_physical | boolean |  yes  |  |
- | logo | string |  no  |  |
- | modified_by | string |  no  |  |
- | modified_on | string |  no  |  |
- | name | string |  no  |  |
- | slug | string |  yes  |  |
- | tag | string |  no  |  |
+ | attributes | [string]? |  yes  |  |
+ | categories | [string]? |  yes  |  |
+ | created_by | string? |  yes  |  |
+ | created_on | string? |  yes  |  |
+ | departments | [string]? |  yes  |  |
+ | description | string? |  yes  |  |
+ | is_active | boolean? |  yes  |  |
+ | is_archived | boolean? |  yes  |  |
+ | is_expirable | boolean |  no  |  |
+ | is_physical | boolean |  no  |  |
+ | logo | string? |  yes  |  |
+ | modified_by | string? |  yes  |  |
+ | modified_on | string? |  yes  |  |
+ | name | string? |  yes  |  |
+ | slug | string |  no  |  |
+ | tag | string? |  yes  |  |
  
 
 ---
 
-#### [ProductTemplateCategory](#ProductTemplateCategory)
+#### [ProductTemplateDownloadsExport](#ProductTemplateDownloadsExport)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | name | string |  no  |  |
- | slug | string |  no  |  |
- | slug_key | string |  no  |  |
- | template_slug | string |  no  |  |
- | uid | number |  no  |  |
+ | filters | [ProductTemplateExportFilterRequest](#ProductTemplateExportFilterRequest)? |  yes  | This is the filters of the file for the export. |
+ | notification_emails | [string]? |  yes  | The list of the emails to be notified after the completion of the job. |
+ | type | string? |  yes  | This is the type of the file for the export. |
+ 
+
+---
+
+#### [ProductTemplateExportFilterRequest](#ProductTemplateExportFilterRequest)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | brands | [string]? |  yes  | The list of the brands that needs to be exported. |
+ | catalogue_types | [string] |  no  | The list of the type of the catalog such as set, standard and composite. |
+ | from_date | string? |  yes  | The modified on date from which the data needs to be exported. |
+ | templates | [string] |  no  | The list of the templates that needs to be exported. |
+ | to_date | string? |  yes  | The modified on date till when the data needs to be exported. |
+ 
+
+---
+
+#### [ProductTemplateExportResponse](#ProductTemplateExportResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | completed_on | string? |  yes  | Completion datetime of the job |
+ | created_by | [UserInfo1](#UserInfo1)? |  yes  | The user that created the job. |
+ | filters | string? |  yes  | The filters that needs to be exported. |
+ | modified_on | string? |  yes  | Modification date of the job |
+ | notification_emails | [string]? |  yes  | The notification emails for the job. |
+ | seller_id | number |  no  | The seller id that needs to be exported. |
+ | status | string? |  yes  | The status of the job. |
+ | task_id | string |  no  | The task id of the job. |
+ | type | string? |  yes  | The type of file that needs to be exported. |
+ | url | string? |  yes  | The filters that needs to be exported. |
  
 
 ---
@@ -21484,12 +21855,12 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | brand_uid | number |  no  |  |
- | category_uid | number |  no  |  |
- | item_code | string |  no  |  |
- | media | [[Media1](#Media1)] |  no  |  |
- | name | string |  no  |  |
- | uid | number |  no  |  |
+ | brand_uid | number? |  yes  |  |
+ | category_uid | number? |  yes  |  |
+ | item_code | string? |  yes  |  |
+ | media | [[Media1](#Media1)]? |  yes  |  |
+ | name | string? |  yes  |  |
+ | uid | number? |  yes  |  |
  
 
 ---
@@ -21498,8 +21869,8 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | page | [Page](#Page) |  no  |  |
- | variants | [[ProductVariants](#ProductVariants)] |  no  |  |
+ | page | [Page](#Page)? |  yes  |  |
+ | variants | [[ProductVariants](#ProductVariants)]? |  yes  |  |
  
 
 ---
@@ -21508,35 +21879,35 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | brand_uid | string |  no  |  |
- | category_slug | string |  no  |  |
- | command | string |  no  |  |
- | country_of_origin | string |  no  |  |
- | currency | string |  no  |  |
- | custom_order | string |  no  |  |
- | description | string |  no  |  |
- | highlights | string |  no  |  |
- | hsn_code | string |  no  |  |
- | is_active | string |  no  |  |
- | is_dependent | string |  no  |  |
- | item_code | string |  no  |  |
- | item_type | string |  no  |  |
- | media | string |  no  |  |
- | multi_size | string |  no  |  |
- | name | string |  no  |  |
- | no_of_boxes | string |  no  |  |
- | product_group_tag | string |  no  |  |
- | product_publish | string |  no  |  |
- | return_config | string |  no  |  |
- | short_description | string |  no  |  |
- | size_guide | string |  no  |  |
- | sizes | string |  no  |  |
- | slug | string |  no  |  |
- | tags | string |  no  |  |
- | teaser_tag | string |  no  |  |
- | trader | string |  no  |  |
- | trader_type | string |  no  |  |
- | variants | string |  no  |  |
+ | brand_uid | string? |  yes  |  |
+ | category_slug | string? |  yes  |  |
+ | command | string? |  yes  |  |
+ | country_of_origin | string? |  yes  |  |
+ | currency | string? |  yes  |  |
+ | custom_order | string? |  yes  |  |
+ | description | string? |  yes  |  |
+ | highlights | string? |  yes  |  |
+ | hsn_code | string? |  yes  |  |
+ | is_active | string? |  yes  |  |
+ | is_dependent | string? |  yes  |  |
+ | item_code | string? |  yes  |  |
+ | item_type | string? |  yes  |  |
+ | media | string? |  yes  |  |
+ | multi_size | string? |  yes  |  |
+ | name | string? |  yes  |  |
+ | no_of_boxes | string? |  yes  |  |
+ | product_group_tag | string? |  yes  |  |
+ | product_publish | string? |  yes  |  |
+ | return_config | string? |  yes  |  |
+ | short_description | string? |  yes  |  |
+ | size_guide | string? |  yes  |  |
+ | sizes | string? |  yes  |  |
+ | slug | string? |  yes  |  |
+ | tags | string? |  yes  |  |
+ | teaser_tag | string? |  yes  |  |
+ | trader | string? |  yes  |  |
+ | trader_type | string? |  yes  |  |
+ | variants | string? |  yes  |  |
  
 
 ---
@@ -21545,11 +21916,11 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | code | string |  no  |  |
- | errors | string |  no  |  |
- | message | string |  no  |  |
- | meta | string |  no  |  |
- | status | number |  no  |  |
+ | code | string? |  yes  |  |
+ | errors | string? |  yes  |  |
+ | message | string? |  yes  |  |
+ | meta | string? |  yes  |  |
+ | status | number? |  yes  |  |
  
 
 ---
@@ -21558,10 +21929,10 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | damaged | [QuantityBase](#QuantityBase) |  no  |  |
- | not_available | [QuantityBase](#QuantityBase) |  no  |  |
- | order_committed | [QuantityBase](#QuantityBase) |  no  |  |
- | sellable | [QuantityBase](#QuantityBase) |  no  |  |
+ | damaged | [QuantityBase](#QuantityBase)? |  yes  |  |
+ | not_available | [QuantityBase](#QuantityBase)? |  yes  |  |
+ | order_committed | [QuantityBase](#QuantityBase)? |  yes  |  |
+ | sellable | [QuantityBase](#QuantityBase)? |  yes  |  |
  
 
 ---
@@ -21570,10 +21941,10 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | damaged | [Quantity](#Quantity) |  no  |  |
- | not_available | [Quantity](#Quantity) |  no  |  |
- | order_committed | [Quantity](#Quantity) |  no  |  |
- | sellable | [Quantity](#Quantity) |  no  |  |
+ | damaged | [Quantity](#Quantity)? |  yes  |  |
+ | not_available | [Quantity](#Quantity)? |  yes  |  |
+ | order_committed | [Quantity](#Quantity)? |  yes  |  |
+ | sellable | [Quantity](#Quantity)? |  yes  |  |
  
 
 ---
@@ -21582,7 +21953,7 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | count | number |  no  |  |
+ | count | number? |  yes  |  |
  
 
 ---
@@ -21591,8 +21962,8 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | count | number |  no  |  |
- | updated_at | string |  no  |  |
+ | count | number? |  yes  |  |
+ | updated_at | string? |  yes  |  |
  
 
 ---
@@ -21601,9 +21972,9 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | returnable | boolean |  yes  |  |
- | time | number |  yes  |  |
- | unit | string |  yes  |  |
+ | returnable | boolean |  no  |  |
+ | time | number |  no  |  |
+ | unit | string |  no  |  |
  
 
 ---
@@ -21612,9 +21983,9 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | returnable | boolean |  no  |  |
- | time | number |  no  |  |
- | unit | string |  no  |  |
+ | returnable | boolean? |  yes  |  |
+ | time | number? |  yes  |  |
+ | unit | string? |  yes  |  |
  
 
 ---
@@ -21623,9 +21994,9 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | returnable | boolean |  no  |  |
- | time | number |  no  |  |
- | unit | string |  no  |  |
+ | returnable | boolean? |  yes  |  |
+ | time | number? |  yes  |  |
+ | unit | string? |  yes  |  |
  
 
 ---
@@ -21634,9 +22005,9 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | returnable | boolean |  no  |  |
- | time | number |  no  |  |
- | unit | string |  no  |  |
+ | returnable | boolean? |  yes  |  |
+ | time | number? |  yes  |  |
+ | unit | string? |  yes  |  |
  
 
 ---
@@ -21645,8 +22016,8 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | query | string |  yes  |  |
- | sort_on | string |  yes  |  |
+ | query | string |  no  |  |
+ | sort_on | string |  no  |  |
  
 
 ---
@@ -21655,13 +22026,13 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | _custom_json | string |  no  |  |
- | action | [Action](#Action) |  no  |  |
- | banners | [ImageUrls](#ImageUrls) |  no  |  |
- | childs | [[ThirdLevelChild](#ThirdLevelChild)] |  no  |  |
- | name | string |  no  |  |
- | slug | string |  no  |  |
- | uid | number |  no  |  |
+ | _custom_json | string? |  yes  |  |
+ | action | [Action](#Action)? |  yes  |  |
+ | banners | [ImageUrls](#ImageUrls)? |  yes  |  |
+ | childs | [[ThirdLevelChild](#ThirdLevelChild)]? |  yes  |  |
+ | name | string? |  yes  |  |
+ | slug | string? |  yes  |  |
+ | uid | number? |  yes  |  |
  
 
 ---
@@ -21670,8 +22041,8 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | country_code | number |  yes  |  |
- | number | string |  yes  |  |
+ | country_code | number |  no  |  |
+ | number | string |  no  |  |
  
 
 ---
@@ -21680,8 +22051,8 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | description | any |  no  |  |
- | title | any |  no  |  |
+ | description | any? |  yes  |  |
+ | title | any? |  yes  |  |
  
 
 ---
@@ -21690,8 +22061,8 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | description | string |  no  |  |
- | title | string |  no  |  |
+ | description | string? |  yes  |  |
+ | title | string? |  yes  |  |
  
 
 ---
@@ -21700,8 +22071,8 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | pieces | number |  yes  |  |
- | size | string |  yes  |  |
+ | pieces | number |  no  |  |
+ | size | string |  no  |  |
  
 
 ---
@@ -21710,7 +22081,7 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | data | [Category](#Category) |  no  |  |
+ | data | [Category](#Category)? |  yes  |  |
  
 
 ---
@@ -21719,7 +22090,7 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | data | [Product](#Product) |  no  |  |
+ | data | [ProductSchemaV2](#ProductSchemaV2)? |  yes  |  |
  
 
 ---
@@ -21728,10 +22099,10 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | display | string |  no  |  |
- | is_available | boolean |  no  |  |
- | quantity | number |  no  |  |
- | value | string |  no  |  |
+ | display | string? |  yes  |  |
+ | is_available | boolean? |  yes  |  |
+ | quantity | number? |  yes  |  |
+ | value | string? |  yes  |  |
  
 
 ---
@@ -21740,7 +22111,7 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | sizes | [[SetSize](#SetSize)] |  yes  |  |
+ | sizes | [[SetSize](#SetSize)] |  no  |  |
  
 
 ---
@@ -21749,19 +22120,19 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | active | boolean |  no  |  |
- | brand_id | number |  no  |  |
- | company_id | number |  no  |  |
- | created_by | string |  no  |  |
- | created_on | string |  no  |  |
- | guide | string |  no  |  |
- | id | string |  no  |  |
- | modified_by | string |  no  |  |
- | modified_on | string |  no  |  |
- | name | string |  no  |  |
- | subtitle | string |  no  |  |
- | tag | string |  no  |  |
- | title | string |  no  |  |
+ | active | boolean? |  yes  |  |
+ | brand_id | number? |  yes  |  |
+ | company_id | number? |  yes  |  |
+ | created_by | string? |  yes  |  |
+ | created_on | string? |  yes  |  |
+ | guide | string? |  yes  |  |
+ | id | string? |  yes  |  |
+ | modified_by | string? |  yes  |  |
+ | modified_on | string? |  yes  |  |
+ | name | string? |  yes  |  |
+ | subtitle | string? |  yes  |  |
+ | tag | string? |  yes  |  |
+ | title | string? |  yes  |  |
  
 
 ---
@@ -21770,23 +22141,23 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | _id | string |  no  |  |
- | article_assignment | [ArticleAssignment1](#ArticleAssignment1) |  yes  |  |
- | company_id | number |  no  |  |
- | group_id | string |  no  |  |
- | index | number |  no  |  |
- | item_id | number |  yes  |  |
- | meta | string |  no  |  |
- | price_effective | number |  no  |  |
- | price_marked | number |  no  |  |
- | quantity | number |  yes  |  |
- | s_city | string |  no  |  |
- | size | string |  yes  |  |
- | status | boolean |  yes  |  |
- | store_id | number |  no  |  |
- | store_pincode | number |  no  |  |
- | strategy_wise_listing | [string] |  no  |  |
- | uid | string |  no  |  |
+ | _id | string? |  yes  |  |
+ | article_assignment | [ArticleAssignment1](#ArticleAssignment1) |  no  |  |
+ | company_id | number? |  yes  |  |
+ | group_id | string? |  yes  |  |
+ | index | number? |  yes  |  |
+ | item_id | number |  no  |  |
+ | meta | string? |  yes  |  |
+ | price_effective | number? |  yes  |  |
+ | price_marked | number? |  yes  |  |
+ | quantity | number |  no  |  |
+ | s_city | string? |  yes  |  |
+ | size | string |  no  |  |
+ | status | boolean |  no  |  |
+ | store_id | number? |  yes  |  |
+ | store_pincode | number? |  yes  |  |
+ | strategy_wise_listing | [string]? |  yes  |  |
+ | uid | string? |  yes  |  |
  
 
 ---
@@ -21795,19 +22166,19 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | additional_contacts | [string] |  no  |  |
- | address | string |  no  |  |
- | company_id | number |  no  |  |
- | created_on | string |  no  |  |
- | display_name | string |  no  |  |
- | documents | [string] |  no  |  |
- | manager | string |  no  |  |
- | modified_on | string |  no  |  |
- | name | string |  no  |  |
- | store_code | string |  no  |  |
- | store_type | string |  no  |  |
- | timing | string |  no  |  |
- | uid | number |  no  |  |
+ | additional_contacts | [string]? |  yes  |  |
+ | address | string? |  yes  |  |
+ | company_id | number? |  yes  |  |
+ | created_on | string? |  yes  |  |
+ | display_name | string? |  yes  |  |
+ | documents | [string]? |  yes  |  |
+ | manager | string? |  yes  |  |
+ | modified_on | string? |  yes  |  |
+ | name | string? |  yes  |  |
+ | store_code | string? |  yes  |  |
+ | store_type | string? |  yes  |  |
+ | timing | string? |  yes  |  |
+ | uid | number? |  yes  |  |
  
 
 ---
@@ -21816,7 +22187,7 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | id | number |  yes  |  |
+ | id | number |  no  |  |
  
 
 ---
@@ -21825,7 +22196,7 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | success | boolean |  no  |  |
+ | success | boolean? |  yes  |  |
  
 
 ---
@@ -21834,8 +22205,8 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | success | boolean |  no  |  |
- | uid | number |  no  |  |
+ | success | boolean? |  yes  |  |
+ | uid | number? |  yes  |  |
  
 
 ---
@@ -21844,9 +22215,9 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | hsn_code | string |  no  |  |
- | hsn_code_id | string |  no  |  |
- | reporting_hsn | string |  no  |  |
+ | hsn_code | string? |  yes  |  |
+ | hsn_code_id | string? |  yes  |  |
+ | reporting_hsn | string? |  yes  |  |
  
 
 ---
@@ -21855,10 +22226,10 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | cess | number |  no  |  |
- | effective_date | string |  yes  |  |
- | rate | number |  yes  |  |
- | threshold | number |  yes  |  |
+ | cess | number? |  yes  |  |
+ | effective_date | string |  no  |  |
+ | rate | number |  no  |  |
+ | threshold | number |  no  |  |
  
 
 ---
@@ -21867,8 +22238,8 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | tag | string |  no  |  |
- | url | string |  no  |  |
+ | tag | string? |  yes  |  |
+ | url | string? |  yes  |  |
  
 
 ---
@@ -21877,19 +22248,19 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | attributes | [string] |  no  |  |
- | categories | [string] |  no  |  |
- | departments | [string] |  no  |  |
- | description | string |  no  |  |
- | id | string |  no  |  |
- | is_active | boolean |  no  |  |
- | is_archived | boolean |  no  |  |
- | is_expirable | boolean |  yes  |  |
- | is_physical | boolean |  yes  |  |
- | logo | string |  no  |  |
- | name | string |  no  |  |
- | slug | string |  yes  |  |
- | tag | string |  no  |  |
+ | attributes | [string]? |  yes  |  |
+ | categories | [string]? |  yes  |  |
+ | departments | [string]? |  yes  |  |
+ | description | string? |  yes  |  |
+ | id | string? |  yes  |  |
+ | is_active | boolean? |  yes  |  |
+ | is_archived | boolean? |  yes  |  |
+ | is_expirable | boolean |  no  |  |
+ | is_physical | boolean |  no  |  |
+ | logo | string? |  yes  |  |
+ | name | string? |  yes  |  |
+ | slug | string |  no  |  |
+ | tag | string? |  yes  |  |
  
 
 ---
@@ -21898,8 +22269,8 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | items | [ProductTemplate](#ProductTemplate) |  no  |  |
- | page | [Page](#Page) |  no  |  |
+ | items | [ProductTemplate](#ProductTemplate)? |  yes  |  |
+ | page | [Page](#Page)? |  yes  |  |
  
 
 ---
@@ -21908,8 +22279,8 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | data | [TemplateValidationData](#TemplateValidationData) |  no  |  |
- | template_details | [TemplateDetails](#TemplateDetails) |  no  |  |
+ | data | [TemplateValidationData](#TemplateValidationData)? |  yes  |  |
+ | template_details | [TemplateDetails](#TemplateDetails)? |  yes  |  |
  
 
 ---
@@ -21918,8 +22289,8 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | global_validation | [GlobalValidation](#GlobalValidation) |  no  |  |
- | template_validation | string |  no  |  |
+ | global_validation | [GlobalValidation](#GlobalValidation)? |  yes  |  |
+ | template_validation | string? |  yes  |  |
  
 
 ---
@@ -21928,13 +22299,13 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | _custom_json | string |  no  |  |
- | action | [Action](#Action) |  no  |  |
- | banners | [ImageUrls](#ImageUrls) |  no  |  |
- | childs | [string] |  no  |  |
- | name | string |  no  |  |
- | slug | string |  no  |  |
- | uid | number |  no  |  |
+ | _custom_json | string? |  yes  |  |
+ | action | [Action](#Action)? |  yes  |  |
+ | banners | [ImageUrls](#ImageUrls)? |  yes  |  |
+ | childs | [string]? |  yes  |  |
+ | name | string? |  yes  |  |
+ | slug | string? |  yes  |  |
+ | uid | number? |  yes  |  |
  
 
 ---
@@ -21943,9 +22314,9 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | address | [string] |  no  |  |
- | name | any |  yes  |  |
- | type | string |  no  |  |
+ | address | [string]? |  yes  |  |
+ | name | any |  no  |  |
+ | type | string? |  yes  |  |
  
 
 ---
@@ -21954,9 +22325,9 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | address | [string] |  yes  |  |
- | name | string |  yes  |  |
- | type | string |  yes  |  |
+ | address | [string] |  no  |  |
+ | name | string |  no  |  |
+ | type | string |  no  |  |
  
 
 ---
@@ -21965,9 +22336,9 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | address | [string] |  no  |  |
- | name | string |  no  |  |
- | type | string |  no  |  |
+ | address | [string]? |  yes  |  |
+ | name | string? |  yes  |  |
+ | type | string? |  yes  |  |
  
 
 ---
@@ -21976,29 +22347,29 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | _custom_json | string |  no  |  |
- | _locale_language | string |  no  |  |
- | _schedule | [CollectionSchedule](#CollectionSchedule) |  no  |  |
- | allow_facets | boolean |  no  |  |
- | allow_sort | boolean |  no  |  |
- | badge | [CollectionBadge](#CollectionBadge) |  no  |  |
- | banners | [CollectionBanner](#CollectionBanner) |  no  |  |
- | description | string |  no  |  |
- | is_active | boolean |  no  |  |
- | is_visible | boolean |  no  |  |
- | logo | [CollectionImage](#CollectionImage) |  no  |  |
- | meta | string |  no  |  |
- | modified_by | [UserInfo](#UserInfo) |  no  |  |
- | name | string |  no  |  |
- | priority | number |  no  |  |
- | published | boolean |  no  |  |
- | query | [[CollectionQuery](#CollectionQuery)] |  no  |  |
- | seo | [SeoDetail](#SeoDetail) |  no  |  |
- | slug | string |  no  |  |
- | sort_on | string |  no  |  |
- | tags | [string] |  no  |  |
- | type | string |  no  |  |
- | visible_facets_keys | [string] |  no  |  |
+ | _custom_json | string? |  yes  |  |
+ | _locale_language | string? |  yes  |  |
+ | _schedule | [CollectionSchedule](#CollectionSchedule)? |  yes  |  |
+ | allow_facets | boolean? |  yes  |  |
+ | allow_sort | boolean? |  yes  |  |
+ | badge | [CollectionBadge](#CollectionBadge)? |  yes  |  |
+ | banners | [CollectionBanner](#CollectionBanner)? |  yes  |  |
+ | description | string? |  yes  |  |
+ | is_active | boolean? |  yes  |  |
+ | is_visible | boolean? |  yes  |  |
+ | logo | [CollectionImage](#CollectionImage)? |  yes  |  |
+ | meta | string? |  yes  |  |
+ | modified_by | [UserInfo](#UserInfo)? |  yes  |  |
+ | name | string? |  yes  |  |
+ | priority | number? |  yes  |  |
+ | published | boolean? |  yes  |  |
+ | query | [[CollectionQuery](#CollectionQuery)]? |  yes  |  |
+ | seo | [SeoDetail](#SeoDetail)? |  yes  |  |
+ | slug | string? |  yes  |  |
+ | sort_on | string? |  yes  |  |
+ | tags | [string]? |  yes  |  |
+ | type | string? |  yes  |  |
+ | visible_facets_keys | [string]? |  yes  |  |
  
 
 ---
@@ -22007,8 +22378,8 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | items_not_updated | [number] |  no  |  |
- | message | string |  no  |  |
+ | items_not_updated | [number]? |  yes  |  |
+ | message | string? |  yes  |  |
  
 
 ---
@@ -22017,9 +22388,9 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | company_id | number |  no  |  |
- | user_id | string |  no  |  |
- | username | string |  no  |  |
+ | company_id | number? |  yes  |  |
+ | user_id | string? |  yes  |  |
+ | username | string? |  yes  |  |
  
 
 ---
@@ -22028,10 +22399,10 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | contact | string |  no  |  |
- | super_user | boolean |  no  |  |
- | user_id | string |  yes  |  |
- | username | string |  yes  |  |
+ | contact | string? |  yes  |  |
+ | super_user | boolean? |  yes  |  |
+ | user_id | string |  no  |  |
+ | username | string |  no  |  |
  
 
 ---
@@ -22040,9 +22411,9 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | full_name | string |  no  |  |
- | user_id | string |  no  |  |
- | username | string |  no  |  |
+ | full_name | string? |  yes  |  |
+ | user_id | string? |  yes  |  |
+ | username | string? |  yes  |  |
  
 
 ---
@@ -22051,10 +22422,10 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | email | string |  no  |  |
- | uid | string |  no  |  |
- | user_id | string |  no  |  |
- | username | string |  no  |  |
+ | email | string? |  yes  |  |
+ | uid | string? |  yes  |  |
+ | user_id | string? |  yes  |  |
+ | username | string? |  yes  |  |
  
 
 ---
@@ -22063,10 +22434,10 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | email | string |  no  |  |
- | uid | string |  no  |  |
- | user_id | string |  no  |  |
- | username | string |  no  |  |
+ | email | string? |  yes  |  |
+ | uid | string? |  yes  |  |
+ | user_id | string? |  yes  |  |
+ | username | string? |  yes  |  |
  
 
 ---
@@ -22075,11 +22446,11 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | _id | string |  no  |  |
- | contact | string |  no  |  |
- | uid | string |  no  |  |
- | user_id | string |  no  |  |
- | username | string |  no  |  |
+ | _id | string? |  yes  |  |
+ | contact | string? |  yes  |  |
+ | uid | string? |  yes  |  |
+ | user_id | string? |  yes  |  |
+ | username | string? |  yes  |  |
  
 
 ---
@@ -22088,9 +22459,9 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | contact | string |  no  |  |
- | user_id | string |  no  |  |
- | username | string |  no  |  |
+ | contact | string? |  yes  |  |
+ | user_id | string? |  yes  |  |
+ | username | string? |  yes  |  |
  
 
 ---
@@ -22099,9 +22470,9 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | contact | string |  no  |  |
- | user_id | string |  no  |  |
- | username | string |  no  |  |
+ | contact | string? |  yes  |  |
+ | user_id | string? |  yes  |  |
+ | username | string? |  yes  |  |
  
 
 ---
@@ -22110,9 +22481,9 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | gtin_type | string |  yes  |  |
- | gtin_value | string |  yes  |  |
- | primary | boolean |  no  |  |
+ | gtin_type | string |  no  |  |
+ | gtin_value | string |  no  |  |
+ | primary | boolean? |  yes  |  |
  
 
 ---
@@ -22121,7 +22492,7 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | valid | boolean |  no  |  |
+ | valid | boolean? |  yes  |  |
  
 
 ---
@@ -22130,21 +22501,21 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | active | boolean |  no  |  |
- | brand_id | number |  no  |  |
- | company_id | number |  no  |  |
- | created_by | string |  no  |  |
- | created_on | string |  no  |  |
- | description | string |  no  |  |
- | guide | [Guide](#Guide) |  no  |  |
- | id | string |  no  |  |
- | image | string |  no  |  |
- | modified_by | string |  no  |  |
- | modified_on | string |  no  |  |
- | name | string |  yes  |  |
- | subtitle | string |  no  |  |
- | tag | string |  no  |  |
- | title | string |  yes  |  |
+ | active | boolean? |  yes  |  |
+ | brand_id | number? |  yes  |  |
+ | company_id | number? |  yes  |  |
+ | created_by | string? |  yes  |  |
+ | created_on | string? |  yes  |  |
+ | description | string? |  yes  |  |
+ | guide | [Guide](#Guide)? |  yes  |  |
+ | id | string? |  yes  |  |
+ | image | string? |  yes  |  |
+ | modified_by | string? |  yes  |  |
+ | modified_on | string? |  yes  |  |
+ | name | string |  no  |  |
+ | subtitle | string? |  yes  |  |
+ | tag | string? |  yes  |  |
+ | title | string |  no  |  |
  
 
 ---
@@ -22153,8 +22524,8 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | user_id | string |  no  |  |
- | username | string |  no  |  |
+ | user_id | string? |  yes  |  |
+ | username | string? |  yes  |  |
  
 
 ---
@@ -22163,9 +22534,9 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | is_default | boolean |  yes  |  |
- | shipping | number |  yes  |  |
- | unit | string |  yes  |  |
+ | is_default | boolean |  no  |  |
+ | shipping | number |  no  |  |
+ | unit | string |  no  |  |
  
 
 ---
@@ -22174,8 +22545,8 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | shipping | number |  no  |  |
- | unit | string |  no  |  |
+ | shipping | number? |  yes  |  |
+ | unit | string? |  yes  |  |
  
 
 ---
@@ -22215,8 +22586,6 @@ List of fields and validation values fro each. See example below or refer `Inven
  | page | page | Symbolic link for Page: /page/:slug |
  | policy | policy | Symbolic link for Privacy Policy: /privacy-policy |
  | product | product | Symbolic link for Product: /product/:slug |
- | productReviews | product-reviews | Symbolic link for Product Reviews: /product/:slug/reviews |
- | addProductReview | add-product-review | Symbolic link for Add Product review: /product/:slug/add-review |
  | productRequest | product-request | Symbolic link for Product Request: /product-request/ |
  | products | products | Symbolic link for Products: /products/ |
  | profile | profile | Symbolic link for Profile: /profile |

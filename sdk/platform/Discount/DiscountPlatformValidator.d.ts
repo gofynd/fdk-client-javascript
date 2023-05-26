@@ -9,5 +9,6 @@ declare class DiscountValidator {
     static getDownloadJob(): any;
     static getValidationJob(): any;
     static updateDiscount(): any;
+    static upsertDiscountItems(): any;
     static validateDiscountFile(): any;
 }

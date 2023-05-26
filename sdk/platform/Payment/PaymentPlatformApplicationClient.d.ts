@@ -31,7 +31,7 @@ declare class Payment {
      * @summary: Get bank details
      * @description: Use this API to get saved bank details for returned/cancelled order using order id.
      */
-    getBankAccountDetailsOpenAPI({ orderId, requestHash }?: {
+    getBankAccountDetailsOpenAPI({ orderId, requestHash, }?: {
         orderId: string;
         requestHash?: string;
     }): Promise<RefundAccountResponse>;
@@ -66,6 +66,18 @@ declare class Payment {
     }): Promise<OrderBeneficiaryResponse>;
     /**
      * @param {Object} arg - Arg object.
+     * @param {string} arg.merchantUserId -
+     * @param {string} arg.mobileNo -
+     * @returns {Promise<GetUserCODLimitResponse>} - Success response
+     * @summary: Get COD limit for user
+     * @description: Use this API to get user cod limit and reamining limit for the payment
+     */
+    getUserCODlimitRoutes({ merchantUserId, mobileNo }?: {
+        merchantUserId: string;
+        mobileNo: string;
+    }): Promise<GetUserCODLimitResponse>;
+    /**
+     * @param {Object} arg - Arg object.
      * @param {string} arg.orderId -
      * @returns {Promise<OrderBeneficiaryResponse>} - Success response
      * @summary: List Order Beneficiary
@@ -84,6 +96,16 @@ declare class Payment {
     saveBrandPaymentGatewayConfig({ body }?: {
         body: PaymentGatewayConfigRequest;
     }): Promise<PaymentGatewayToBeReviewed>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {SetCODForUserRequest} arg.body
+     * @returns {Promise<SetCODOptionResponse>} - Success response
+     * @summary: Set COD option for user for payment
+     * @description: Use this API to set cod option as true or false for the payment
+     */
+    setUserCODlimitRoutes({ body }?: {
+        body: SetCODForUserRequest;
+    }): Promise<SetCODOptionResponse>;
     /**
      * @param {Object} arg - Arg object.
      * @param {PaymentGatewayConfigRequest} arg.body

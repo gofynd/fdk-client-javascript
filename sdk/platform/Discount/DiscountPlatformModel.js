@@ -6,6 +6,12 @@ class DiscountModel {
       message: Joi.string().allow("").required(),
     });
   }
+  static BulkDiscount() {
+    return Joi.object({
+      company_id: Joi.number().required(),
+      items: Joi.array().items(DiscountModel.DiscountItems()).required(),
+    });
+  }
   static CancelJobResponse() {
     return Joi.object({
       success: Joi.boolean().required(),
@@ -26,6 +32,15 @@ class DiscountModel {
       store_ids: Joi.array().items(Joi.number()),
       validity: DiscountModel.ValidityObject().required(),
       value: Joi.number(),
+    });
+  }
+  static DiscountItems() {
+    return Joi.object({
+      brand_uid: Joi.number(),
+      discount_type: Joi.string().allow("").required(),
+      item_code: Joi.string().allow(""),
+      seller_identifier: Joi.string().allow(""),
+      value: Joi.number().required(),
     });
   }
   static DiscountJob() {

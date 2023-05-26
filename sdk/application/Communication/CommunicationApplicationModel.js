@@ -1,6 +1,12 @@
 const Joi = require("joi");
 
 class CommunicationModel {
+  static BadRequestSchema() {
+    return Joi.object({
+      message: Joi.string().allow(""),
+      status: Joi.string().allow(""),
+    });
+  }
   static CommunicationConsent() {
     return Joi.object({
       app_id: Joi.string().allow(""),
@@ -47,6 +53,11 @@ class CommunicationModel {
       app_id: Joi.string().allow(""),
       channels: CommunicationModel.CommunicationConsentChannels(),
       user_id: Joi.string().allow(""),
+    });
+  }
+  static NotFound() {
+    return Joi.object({
+      message: Joi.string().allow(""),
     });
   }
   static Page() {

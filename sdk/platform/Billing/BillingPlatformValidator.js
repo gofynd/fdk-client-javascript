@@ -28,10 +28,24 @@ class BillingValidator {
     }).required();
   }
 
+  static createOneTimeCharge() {
+    return Joi.object({
+      extensionId: Joi.string().allow("").required(),
+      body: BillingModel.CreateOneTimeCharge().required(),
+    }).required();
+  }
+
   static createSubscriptionCharge() {
     return Joi.object({
       extensionId: Joi.string().allow("").required(),
       body: BillingModel.CreateSubscriptionCharge().required(),
+    }).required();
+  }
+
+  static getChargeDetails() {
+    return Joi.object({
+      extensionId: Joi.string().allow("").required(),
+      chargeId: Joi.string().allow("").required(),
     }).required();
   }
 
@@ -70,4 +84,5 @@ class BillingValidator {
     }).required();
   }
 }
+
 module.exports = BillingValidator;

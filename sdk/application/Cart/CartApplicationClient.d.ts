@@ -8,7 +8,6 @@ declare class Cart {
         applyCoupon: string;
         applyRewardPoints: string;
         checkoutCart: string;
-        deleteCart: string;
         getAddressById: string;
         getAddresses: string;
         getBulkDiscountOffers: string;
@@ -113,16 +112,6 @@ declare class Cart {
     }): Promise<CartCheckoutResponse>;
     /**
      * @param {Object} arg - Arg object.
-     * @param {number} [arg.id] - The unique identifier of the cart.
-     * @returns {Promise<DeleteCartDetailResponse>} - Success response
-     * @summary: Delete cart once user made successful checkout
-     * @description: Use this API to delete the cart.
-     */
-    deleteCart({ id }?: {
-        id?: number;
-    }): Promise<DeleteCartDetailResponse>;
-    /**
-     * @param {Object} arg - Arg object.
      * @param {string} arg.id -
      * @param {string} [arg.cartId] -
      * @param {boolean} [arg.buyNow] -
@@ -189,19 +178,17 @@ declare class Cart {
      * @param {number} [arg.assignCardId] -
      * @param {string} [arg.areaCode] -
      * @param {boolean} [arg.buyNow] -
-     * @param {boolean} [arg.emptyCart] -
      * @returns {Promise<CartDetailResponse>} - Success response
      * @summary: Fetch all items added to the cart
      * @description: Use this API to get details of all the items added to a cart.
      */
-    getCart({ id, i, b, assignCardId, areaCode, buyNow, emptyCart }?: {
+    getCart({ id, i, b, assignCardId, areaCode, buyNow }?: {
         id?: string;
         i?: boolean;
         b?: boolean;
         assignCardId?: number;
         areaCode?: string;
         buyNow?: boolean;
-        emptyCart?: boolean;
     }): Promise<CartDetailResponse>;
     /**
      * @param {Object} arg - Arg object.
@@ -302,20 +289,16 @@ declare class Cart {
      * @param {string} [arg.addressId] - ID allotted to the selected address
      * @param {string} [arg.areaCode] - The PIN Code of the destination address,
      *   e.g. 400059
-     * @param {string} [arg.orderType] - The order type of shipment HomeDelivery
-     *   - If the customer wants the order home-delivered PickAtStore - If the
-     *   customer wants the handover of an order at the store itself.
      * @returns {Promise<CartShipmentsResponse>} - Success response
      * @summary: Get delivery date and options before checkout
      * @description: Use this API to get shipment details, expected delivery date, items and price breakup of the shipment.
      */
-    getShipments({ p, id, buyNow, addressId, areaCode, orderType }?: {
+    getShipments({ p, id, buyNow, addressId, areaCode }?: {
         p?: boolean;
         id?: string;
         buyNow?: boolean;
         addressId?: string;
         areaCode?: string;
-        orderType?: string;
     }): Promise<CartShipmentsResponse>;
     /**
      * @param {Object} arg - Arg object.

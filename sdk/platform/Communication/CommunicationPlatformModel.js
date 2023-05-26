@@ -38,6 +38,12 @@ class CommunicationModel {
       page: CommunicationModel.Page(),
     });
   }
+  static BadRequestSchema() {
+    return Joi.object({
+      message: Joi.string().allow(""),
+      status: Joi.string().allow(""),
+    });
+  }
   static BigqueryHeadersReq() {
     return Joi.object({
       query: Joi.string().allow(""),
@@ -412,6 +418,11 @@ class CommunicationModel {
       job_type: Joi.string().allow(""),
       timestamp: Joi.string().allow(""),
       trace: Joi.string().allow(""),
+    });
+  }
+  static NotFound() {
+    return Joi.object({
+      message: Joi.string().allow(""),
     });
   }
   static Notification() {

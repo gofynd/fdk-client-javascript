@@ -1,10 +1,11 @@
-const APIClient = require("../ApplicationAPIClient");
+const ApplicationAPIClient = require("../ApplicationAPIClient");
+const { FDKClientValidationError } = require("../../common/FDKError");
 const constructUrl = require("../constructUrl");
 const Paginator = require("../../common/Paginator");
-const { FDKClientValidationError } = require("../../common/FDKError");
 const PosCartValidator = require("./PosCartApplicationValidator");
 const PosCartModel = require("./PosCartApplicationModel");
 const { Logger } = require("./../../common/Logger");
+const Joi = require("joi");
 
 class PosCart {
   constructor(_conf) {
@@ -91,7 +92,7 @@ class PosCart {
 
     const xHeaders = {};
 
-    const response = await APIClient.execute(
+    const response = await ApplicationAPIClient.execute(
       this._conf,
       "post",
       constructUrl({
@@ -162,7 +163,7 @@ class PosCart {
 
     const xHeaders = {};
 
-    const response = await APIClient.execute(
+    const response = await ApplicationAPIClient.execute(
       this._conf,
       "post",
       constructUrl({
@@ -235,7 +236,7 @@ class PosCart {
 
     const xHeaders = {};
 
-    const response = await APIClient.execute(
+    const response = await ApplicationAPIClient.execute(
       this._conf,
       "post",
       constructUrl({
@@ -306,7 +307,7 @@ class PosCart {
 
     const xHeaders = {};
 
-    const response = await APIClient.execute(
+    const response = await ApplicationAPIClient.execute(
       this._conf,
       "post",
       constructUrl({
@@ -371,7 +372,7 @@ class PosCart {
 
     const xHeaders = {};
 
-    const response = await APIClient.execute(
+    const response = await ApplicationAPIClient.execute(
       this._conf,
       "post",
       constructUrl({
@@ -454,7 +455,7 @@ class PosCart {
 
     const xHeaders = {};
 
-    const response = await APIClient.execute(
+    const response = await ApplicationAPIClient.execute(
       this._conf,
       "get",
       constructUrl({
@@ -533,7 +534,7 @@ class PosCart {
 
     const xHeaders = {};
 
-    const response = await APIClient.execute(
+    const response = await ApplicationAPIClient.execute(
       this._conf,
       "get",
       constructUrl({
@@ -601,7 +602,7 @@ class PosCart {
 
     const xHeaders = {};
 
-    const response = await APIClient.execute(
+    const response = await ApplicationAPIClient.execute(
       this._conf,
       "get",
       constructUrl({
@@ -675,7 +676,7 @@ class PosCart {
 
     const xHeaders = {};
 
-    const response = await APIClient.execute(
+    const response = await ApplicationAPIClient.execute(
       this._conf,
       "get",
       constructUrl({
@@ -713,14 +714,13 @@ class PosCart {
    * @param {number} [arg.assignCardId] -
    * @param {string} [arg.areaCode] -
    * @param {boolean} [arg.buyNow] -
-   * @param {boolean} [arg.emptyCart] -
    * @returns {Promise<CartDetailResponse>} - Success response
    * @summary: Fetch all items added to the cart
    * @description: Use this API to get details of all the items added to a cart.
    */
-  async getCart({ id, i, b, assignCardId, areaCode, buyNow, emptyCart } = {}) {
+  async getCart({ id, i, b, assignCardId, areaCode, buyNow } = {}) {
     const { error } = PosCartValidator.getCart().validate(
-      { id, i, b, assignCardId, areaCode, buyNow, emptyCart },
+      { id, i, b, assignCardId, areaCode, buyNow },
       { abortEarly: false, allowUnknown: true }
     );
     if (error) {
@@ -729,7 +729,7 @@ class PosCart {
 
     // Showing warrnings if extra unknown parameters are found
     const { error: warrning } = PosCartValidator.getCart().validate(
-      { id, i, b, assignCardId, areaCode, buyNow, emptyCart },
+      { id, i, b, assignCardId, areaCode, buyNow },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
@@ -747,11 +747,10 @@ class PosCart {
     query_params["assign_card_id"] = assignCardId;
     query_params["area_code"] = areaCode;
     query_params["buy_now"] = buyNow;
-    query_params["empty_cart"] = emptyCart;
 
     const xHeaders = {};
 
-    const response = await APIClient.execute(
+    const response = await ApplicationAPIClient.execute(
       this._conf,
       "get",
       constructUrl({
@@ -815,7 +814,7 @@ class PosCart {
 
     const xHeaders = {};
 
-    const response = await APIClient.execute(
+    const response = await ApplicationAPIClient.execute(
       this._conf,
       "head",
       constructUrl({
@@ -875,7 +874,7 @@ class PosCart {
 
     const xHeaders = {};
 
-    const response = await APIClient.execute(
+    const response = await ApplicationAPIClient.execute(
       this._conf,
       "post",
       constructUrl({
@@ -938,7 +937,7 @@ class PosCart {
 
     const xHeaders = {};
 
-    const response = await APIClient.execute(
+    const response = await ApplicationAPIClient.execute(
       this._conf,
       "get",
       constructUrl({
@@ -1004,7 +1003,7 @@ class PosCart {
 
     const xHeaders = {};
 
-    const response = await APIClient.execute(
+    const response = await ApplicationAPIClient.execute(
       this._conf,
       "get",
       constructUrl({
@@ -1070,7 +1069,7 @@ class PosCart {
 
     const xHeaders = {};
 
-    const response = await APIClient.execute(
+    const response = await ApplicationAPIClient.execute(
       this._conf,
       "get",
       constructUrl({
@@ -1174,7 +1173,7 @@ class PosCart {
 
     const xHeaders = {};
 
-    const response = await APIClient.execute(
+    const response = await ApplicationAPIClient.execute(
       this._conf,
       "get",
       constructUrl({
@@ -1240,7 +1239,7 @@ class PosCart {
 
     const xHeaders = {};
 
-    const response = await APIClient.execute(
+    const response = await ApplicationAPIClient.execute(
       this._conf,
       "get",
       constructUrl({
@@ -1303,7 +1302,7 @@ class PosCart {
 
     const xHeaders = {};
 
-    const response = await APIClient.execute(
+    const response = await ApplicationAPIClient.execute(
       this._conf,
       "delete",
       constructUrl({
@@ -1369,7 +1368,7 @@ class PosCart {
 
     const xHeaders = {};
 
-    const response = await APIClient.execute(
+    const response = await ApplicationAPIClient.execute(
       this._conf,
       "delete",
       constructUrl({
@@ -1440,7 +1439,7 @@ class PosCart {
 
     const xHeaders = {};
 
-    const response = await APIClient.execute(
+    const response = await ApplicationAPIClient.execute(
       this._conf,
       "post",
       constructUrl({
@@ -1507,7 +1506,7 @@ class PosCart {
 
     const xHeaders = {};
 
-    const response = await APIClient.execute(
+    const response = await ApplicationAPIClient.execute(
       this._conf,
       "put",
       constructUrl({
@@ -1571,7 +1570,7 @@ class PosCart {
 
     const xHeaders = {};
 
-    const response = await APIClient.execute(
+    const response = await ApplicationAPIClient.execute(
       this._conf,
       "put",
       constructUrl({
@@ -1644,7 +1643,7 @@ class PosCart {
 
     const xHeaders = {};
 
-    const response = await APIClient.execute(
+    const response = await ApplicationAPIClient.execute(
       this._conf,
       "put",
       constructUrl({
@@ -1711,7 +1710,7 @@ class PosCart {
 
     const xHeaders = {};
 
-    const response = await APIClient.execute(
+    const response = await ApplicationAPIClient.execute(
       this._conf,
       "put",
       constructUrl({
@@ -1778,7 +1777,7 @@ class PosCart {
 
     const xHeaders = {};
 
-    const response = await APIClient.execute(
+    const response = await ApplicationAPIClient.execute(
       this._conf,
       "post",
       constructUrl({
@@ -1855,7 +1854,7 @@ class PosCart {
 
     const xHeaders = {};
 
-    const response = await APIClient.execute(
+    const response = await ApplicationAPIClient.execute(
       this._conf,
       "put",
       constructUrl({
@@ -1957,7 +1956,7 @@ class PosCart {
 
     const xHeaders = {};
 
-    const response = await APIClient.execute(
+    const response = await ApplicationAPIClient.execute(
       this._conf,
       "get",
       constructUrl({

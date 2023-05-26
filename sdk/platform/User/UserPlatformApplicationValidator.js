@@ -1,6 +1,6 @@
 const Joi = require("joi");
-const UserModel = require("./UserPlatformModel");
 
+const UserModel = require("./UserPlatformModel");
 class UserValidator {
   static archiveUser() {
     return Joi.object({
@@ -20,6 +20,12 @@ class UserValidator {
     }).required();
   }
 
+  static createUserGroup() {
+    return Joi.object({
+      body: UserModel.CreateUserGroupSchema().required(),
+    }).required();
+  }
+
   static createUserSession() {
     return Joi.object({
       body: UserModel.CreateUserSessionRequestSchema().required(),
@@ -29,6 +35,15 @@ class UserValidator {
   static deleteActiveSessions() {
     return Joi.object({
       id: Joi.string().allow("").required(),
+      reason: Joi.string().allow("").required(),
+    }).required();
+  }
+
+  static deleteSession() {
+    return Joi.object({
+      id: Joi.string().allow("").required(),
+      sessionId: Joi.string().allow("").required(),
+      reason: Joi.string().allow("").required(),
     }).required();
   }
 
@@ -48,6 +63,22 @@ class UserValidator {
 
   static getPlatformConfig() {
     return Joi.object({}).required();
+  }
+
+  static getUserGroupById() {
+    return Joi.object({
+      groupId: Joi.string().allow("").required(),
+    }).required();
+  }
+
+  static getUserGroups() {
+    return Joi.object({
+      pageNo: Joi.string().allow(""),
+      pageSize: Joi.string().allow(""),
+      name: Joi.string().allow(""),
+      status: Joi.string().allow(""),
+      groupUid: Joi.number(),
+    }).required();
   }
 
   static searchUsers() {
@@ -72,6 +103,13 @@ class UserValidator {
     return Joi.object({
       userId: Joi.string().allow("").required(),
       body: UserModel.UpdateUserRequestSchema().required(),
+    }).required();
+  }
+
+  static updateUserGroup() {
+    return Joi.object({
+      groupId: Joi.string().allow("").required(),
+      body: UserModel.UpdateUserGroupSchema().required(),
     }).required();
   }
 }

@@ -1,6 +1,6 @@
 const Joi = require("joi");
-const PaymentModel = require("./PaymentPlatformModel");
 
+const PaymentModel = require("./PaymentPlatformModel");
 class PaymentValidator {
   static addRefundBankAccountUsingOTP() {
     return Joi.object({
@@ -38,6 +38,13 @@ class PaymentValidator {
     }).required();
   }
 
+  static getUserCODlimitRoutes() {
+    return Joi.object({
+      merchantUserId: Joi.string().allow("").required(),
+      mobileNo: Joi.string().allow("").required(),
+    }).required();
+  }
+
   static getUserOrderBeneficiaries() {
     return Joi.object({
       orderId: Joi.string().allow("").required(),
@@ -47,6 +54,12 @@ class PaymentValidator {
   static saveBrandPaymentGatewayConfig() {
     return Joi.object({
       body: PaymentModel.PaymentGatewayConfigRequest().required(),
+    }).required();
+  }
+
+  static setUserCODlimitRoutes() {
+    return Joi.object({
+      body: PaymentModel.SetCODForUserRequest().required(),
     }).required();
   }
 

@@ -1,6 +1,6 @@
 const Joi = require("joi");
-const ContentModel = require("./ContentPlatformModel");
 
+const ContentModel = require("./ContentPlatformModel");
 class ContentValidator {
   static addDataLoader() {
     return Joi.object({
@@ -154,6 +154,13 @@ class ContentValidator {
     }).required();
   }
 
+  static generateSEOTitle() {
+    return Joi.object({
+      type: ContentModel.GenerationEntityType().required(),
+      body: ContentModel.GenerateSEOContent().required(),
+    }).required();
+  }
+
   static getAnnouncementById() {
     return Joi.object({
       announcementId: Joi.string().allow("").required(),
@@ -164,6 +171,12 @@ class ContentValidator {
     return Joi.object({
       pageNo: Joi.number(),
       pageSize: Joi.number(),
+    }).required();
+  }
+
+  static getBlogBySlug() {
+    return Joi.object({
+      slug: Joi.string().allow("").required(),
     }).required();
   }
 

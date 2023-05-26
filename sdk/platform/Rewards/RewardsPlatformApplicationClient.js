@@ -1,9 +1,10 @@
-const Paginator = require("../../common/Paginator");
 const PlatformAPIClient = require("../PlatformAPIClient");
 const { FDKClientValidationError } = require("../../common/FDKError");
+const Paginator = require("../../common/Paginator");
 const RewardsValidator = require("./RewardsPlatformApplicationValidator");
 const RewardsModel = require("./RewardsPlatformModel");
 const { Logger } = require("./../../common/Logger");
+const Joi = require("joi");
 
 class Rewards {
   constructor(config, applicationId) {
@@ -13,16 +14,15 @@ class Rewards {
 
   /**
    * @param {Object} arg - Arg object.
+   * @param {string} arg.id - Giveaway ID
    * @param {string} arg.audienceId - Audience id
    * @returns {Promise<GiveawayAudience>} - Success response
    * @summary: Get the Giveaway audience status
    * @description: Get giveaway audience status
    */
-  async getGiveawayAudienceStatus({ audienceId } = {}) {
+  async getGiveawayAudienceStatus({ id, audienceId } = {}) {
     const { error } = RewardsValidator.getGiveawayAudienceStatus().validate(
-      {
-        audienceId,
-      },
+      { id, audienceId },
       { abortEarly: false, allowUnknown: true }
     );
     if (error) {
@@ -33,9 +33,7 @@ class Rewards {
     const {
       error: warrning,
     } = RewardsValidator.getGiveawayAudienceStatus().validate(
-      {
-        audienceId,
-      },
+      { id, audienceId },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
@@ -51,7 +49,7 @@ class Rewards {
     const response = await PlatformAPIClient.execute(
       this.config,
       "get",
-      `/service/platform/rewards/v1.0/company/${this.config.companyId}/application/${this.applicationId}/giveaways/audience/${audienceId}/status`,
+      `/service/platform/rewards/v1.0/company/${this.config.companyId}/application/${this.applicationId}/giveaways/:id/audience/${audienceId}/status`,
       query_params,
       undefined
     );
@@ -136,19 +134,13 @@ class Rewards {
   /**
    * @param {Object} arg - Arg object.
    * @param {string} arg.name - The name given to the offer.
-   * @param {string} arg.cookie - User's session cookie. This cookie is set in
-   *   browser cookie when logged-in to fynd's authentication system i.e.
-   *   `Grimlock` or by using grimlock-backend SDK for backend implementation.
    * @returns {Promise<Offer>} - Success response
    * @summary: Get offer by name
    * @description: Use this API to get the offer details and configuration by entering the name of the offer.
    */
-  async getOfferByName({ name, cookie } = {}) {
+  async getOfferByName({ name } = {}) {
     const { error } = RewardsValidator.getOfferByName().validate(
-      {
-        name,
-        cookie,
-      },
+      { name },
       { abortEarly: false, allowUnknown: true }
     );
     if (error) {
@@ -157,10 +149,7 @@ class Rewards {
 
     // Showing warrnings if extra unknown parameters are found
     const { error: warrning } = RewardsValidator.getOfferByName().validate(
-      {
-        name,
-        cookie,
-      },
+      { name },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
@@ -258,6 +247,61 @@ class Rewards {
   /**
    * @param {Object} arg - Arg object.
    * @param {string} arg.userId - User id
+   * @returns {Promise<UserRes>} - Success response
+   * @summary: Get user reward details
+   * @description: Use this API to get the user reward details
+   */
+  async getUserDetails({ userId } = {}) {
+    const { error } = RewardsValidator.getUserDetails().validate(
+      { userId },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = RewardsValidator.getUserDetails().validate(
+      { userId },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getUserDetails",
+      });
+      Logger({ level: "WARN", message: warrning });
+    }
+
+    const query_params = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/rewards/v1.0/company/${this.config.companyId}/application/${this.applicationId}/users/${userId}/`,
+      query_params,
+      undefined
+    );
+
+    const { error: res_error } = RewardsModel.UserRes().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getUserDetails",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.userId - User id
    * @param {string} [arg.pageId] - PageID is the ID of the requested page.
    *   For first request it should be kept empty.
    * @param {number} [arg.pageSize] - The number of items to retrieve in each page.
@@ -265,10 +309,16 @@ class Rewards {
    * @summary: Get all transactions of reward points
    * @description: Use this API to get a list of points transactions.
    */
-  async getUserPointsHistory({ userId, pageId, pageSize } = {}) {
+  async getUserPointsHistory({
+    userId,
+
+    pageId,
+    pageSize,
+  } = {}) {
     const { error } = RewardsValidator.getUserPointsHistory().validate(
       {
         userId,
+
         pageId,
         pageSize,
       },
@@ -284,6 +334,7 @@ class Rewards {
     } = RewardsValidator.getUserPointsHistory().validate(
       {
         userId,
+
         pageId,
         pageSize,
       },
@@ -673,10 +724,15 @@ class Rewards {
    * @summary: Update offer by name
    * @description: Use this API to update the offer details
    */
-  async updateOfferByName({ name, body } = {}) {
+  async updateOfferByName({
+    name,
+
+    body,
+  } = {}) {
     const { error } = RewardsValidator.updateOfferByName().validate(
       {
         name,
+
         body,
       },
       { abortEarly: false, allowUnknown: true }
@@ -689,6 +745,7 @@ class Rewards {
     const { error: warrning } = RewardsValidator.updateOfferByName().validate(
       {
         name,
+
         body,
       },
       { abortEarly: false, allowUnknown: false }
@@ -735,10 +792,15 @@ class Rewards {
    * @summary: Update user status
    * @description: Use this API to update the user status active/archive
    */
-  async updateUserStatus({ userId, body } = {}) {
+  async updateUserStatus({
+    userId,
+
+    body,
+  } = {}) {
     const { error } = RewardsValidator.updateUserStatus().validate(
       {
         userId,
+
         body,
       },
       { abortEarly: false, allowUnknown: true }
@@ -751,6 +813,7 @@ class Rewards {
     const { error: warrning } = RewardsValidator.updateUserStatus().validate(
       {
         userId,
+
         body,
       },
       { abortEarly: false, allowUnknown: false }
@@ -788,64 +851,6 @@ class Rewards {
 
     return response;
   }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.userId - User id
-   * @returns {Promise<UserRes>} - Success response
-   * @summary: Get user reward details
-   * @description: Use this API to get the user reward details
-   */
-  async user({ userId } = {}) {
-    const { error } = RewardsValidator.user().validate(
-      {
-        userId,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = RewardsValidator.user().validate(
-      {
-        userId,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: "Parameter Validation warrnings for user",
-      });
-      Logger({ level: "WARN", message: warrning });
-    }
-
-    const query_params = {};
-
-    const response = await PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/rewards/v1.0/company/${this.config.companyId}/application/${this.applicationId}/users/${userId}/`,
-      query_params,
-      undefined
-    );
-
-    const { error: res_error } = RewardsModel.UserRes().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
-
-    if (res_error) {
-      Logger({
-        level: "WARN",
-        message: "Response Validation Warnnings for user",
-      });
-      Logger({ level: "WARN", message: res_error });
-    }
-
-    return response;
-  }
 }
+
 module.exports = Rewards;

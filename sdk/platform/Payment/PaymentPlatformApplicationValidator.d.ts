@@ -6,7 +6,9 @@ declare class PaymentValidator {
     static getBrandPaymentGatewayConfig(): any;
     static getPaymentModeRoutes(): any;
     static getUserBeneficiaries(): any;
+    static getUserCODlimitRoutes(): any;
     static getUserOrderBeneficiaries(): any;
     static saveBrandPaymentGatewayConfig(): any;
+    static setUserCODlimitRoutes(): any;
     static updateBrandPaymentGatewayConfig(): any;
 }

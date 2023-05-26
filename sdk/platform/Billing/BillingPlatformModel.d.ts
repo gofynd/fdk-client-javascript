@@ -5,6 +5,8 @@ declare class BillingModel {
     static CancelSubscriptionRes(): any;
     static ChargeLineItem(): any;
     static CheckValidityResponse(): any;
+    static CreateOneTimeCharge(): any;
+    static CreateOneTimeChargeResponse(): any;
     static CreateSubscriptionCharge(): any;
     static CreateSubscriptionResponse(): any;
     static CurrentPeriod(): any;
@@ -34,6 +36,8 @@ declare class BillingModel {
     static InvoicesDataClient(): any;
     static InvoicesDataPaymentMethod(): any;
     static InvoicesDataPeriod(): any;
+    static OneTimeChargeEntity(): any;
+    static OneTimeChargeItem(): any;
     static Page(): any;
     static Phone(): any;
     static Plan(): any;

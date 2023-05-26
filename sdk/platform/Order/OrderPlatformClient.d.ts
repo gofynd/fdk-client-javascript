@@ -4,26 +4,6 @@ declare class Order {
     config: any;
     /**
      * @param {Object} arg - Arg object.
-     * @param {string} arg.batchId -
-     * @returns {Promise<BulkActionDetailsResponse>} - Success response
-     * @summary: Returns failed, processing and successfully processed shipments.
-     * @description: Returns failed, processing and successfully processed shipments along with their counts and failed reasons.
-     */
-    bulkActionDetails({ batchId }?: {
-        batchId: string;
-    }): Promise<BulkActionDetailsResponse>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {BulkActionPayload} arg.body
-     * @returns {Promise<BulkActionResponse>} - Success response
-     * @summary: emits uuid to kafka topic.
-     * @description: Use this API to start processing Xlsx file.
-     */
-    bulkActionProcessXlsxFile({ body }?: {
-        body: BulkActionPayload;
-    }): Promise<BulkActionResponse>;
-    /**
-     * @param {Object} arg - Arg object.
      * @param {OrderStatus} arg.body
      * @returns {Promise<OrderStatusResult>} - Success response
      * @summary:
@@ -43,7 +23,7 @@ declare class Order {
      * @summary:
      * @description:
      */
-    click2Call({ caller, receiver, bagId, callingTo, callerId }?: {
+    click2Call({ caller, receiver, bagId, callingTo, callerId, }?: {
         caller: string;
         receiver: string;
         bagId: string;
@@ -72,18 +52,6 @@ declare class Order {
     }): Promise<CreateOrderResponse>;
     /**
      * @param {Object} arg - Arg object.
-     * @param {string} [arg.fromDate] -
-     * @param {string} [arg.toDate] -
-     * @returns {Promise<Success>} - Success response
-     * @summary:
-     * @description:
-     */
-    createShipmentReport({ fromDate, toDate }?: {
-        fromDate?: string;
-        toDate?: string;
-    }): Promise<Success>;
-    /**
-     * @param {Object} arg - Arg object.
      * @param {DispatchManifest} arg.body
      * @returns {Promise<SuccessResponse>} - Success response
      * @summary:
@@ -92,6 +60,16 @@ declare class Order {
     dispatchManifest({ body }?: {
         body: DispatchManifest;
     }): Promise<SuccessResponse>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {string} [arg.templateSlug] - Slug name of template to be downloaded
+     * @returns {Promise<FileResponse>} - Success response
+     * @summary:
+     * @description:
+     */
+    downloadBulkActionTemplate({ templateSlug }?: {
+        templateSlug?: string;
+    }): Promise<FileResponse>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} [arg.date] -
@@ -144,109 +122,42 @@ declare class Order {
     }): Promise<GetBagsPlatformResponse>;
     /**
      * @param {Object} arg - Arg object.
-     * @param {string} arg.batchId -
-     * @param {string} [arg.reportType] -
+     * @returns {Promise<BulkActionTemplateResponse>} - Success response
+     * @summary:
+     * @description:
+     */
+    getBulkActionTemplate({}?: any): Promise<BulkActionTemplateResponse>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {string} [arg.salesChannels] - Comma seperated values of sales channel ids
+     * @param {string} [arg.dpIds] - Comma seperated values of delivery partner ids
+     * @param {string} [arg.fromDate] - Start Date in DD-MM-YYYY format
+     * @param {string} [arg.toDate] - End Date in DD-MM-YYYY format
+     * @param {string} [arg.stores] - Comma seperated values of store ids
+     * @param {string} [arg.tags] - Comma seperated values of tags
+     * @param {string} [arg.bagStatus] - Comma seperated values of bag statuses
+     * @param {string} [arg.paymentMethods] - Comma seperated values of payment methods
+     * @param {string} [arg.fileType] - File type to be downloaded
+     * @param {number} [arg.timeToDispatch] - Sla breached or not breached
+     * @param {number} [arg.pageNo] -
+     * @param {number} [arg.pageSize] -
      * @returns {Promise<FileResponse>} - Success response
      * @summary:
      * @description:
      */
-    getBulkActionFailedReport({ batchId, reportType }?: {
-        batchId: string;
-        reportType?: string;
-    }): Promise<FileResponse>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.batchId -
-     * @param {string} arg.docType -
-     * @returns {Promise<BulkInvoicingResponse>} - Success response
-     * @summary:
-     * @description:
-     */
-    getBulkInvoice({ batchId, docType }?: {
-        batchId: string;
-        docType: string;
-    }): Promise<BulkInvoicingResponse>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.batchId -
-     * @returns {Promise<BulkInvoiceLabelResponse>} - Success response
-     * @summary:
-     * @description:
-     */
-    getBulkInvoiceLabel({ batchId }?: {
-        batchId: string;
-    }): Promise<BulkInvoiceLabelResponse>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {string} [arg.lane] -
-     * @param {string} [arg.searchType] -
-     * @param {string} [arg.searchId] -
-     * @param {string} [arg.fromDate] -
-     * @param {string} [arg.toDate] -
-     * @param {string} [arg.dpIds] -
-     * @param {string} [arg.orderingCompanyId] -
-     * @param {string} [arg.stores] -
-     * @param {string} [arg.salesChannel] -
-     * @param {string} [arg.requestByExt] -
-     * @param {number} [arg.pageNo] -
-     * @param {number} [arg.pageSize] -
-     * @param {string} [arg.customerId] -
-     * @param {boolean} [arg.isPrioritySort] -
-     * @returns {Promise<BulkListingResponse>} - Success response
-     * @summary:
-     * @description:
-     */
-    getBulkList({ lane, searchType, searchId, fromDate, toDate, dpIds, orderingCompanyId, stores, salesChannel, requestByExt, pageNo, pageSize, customerId, isPrioritySort, }?: {
-        lane?: string;
-        searchType?: string;
-        searchId?: string;
+    getBulkShipmentExcelFile({ salesChannels, dpIds, fromDate, toDate, stores, tags, bagStatus, paymentMethods, fileType, timeToDispatch, pageNo, pageSize, }?: {
+        salesChannels?: string;
+        dpIds?: string;
         fromDate?: string;
         toDate?: string;
-        dpIds?: string;
-        orderingCompanyId?: string;
         stores?: string;
-        salesChannel?: string;
-        requestByExt?: string;
+        tags?: string;
+        bagStatus?: string;
+        paymentMethods?: string;
+        fileType?: string;
+        timeToDispatch?: number;
         pageNo?: number;
         pageSize?: number;
-        customerId?: string;
-        isPrioritySort?: boolean;
-    }): Promise<BulkListingResponse>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {string} [arg.lane] -
-     * @param {string} [arg.searchType] -
-     * @param {string} [arg.searchId] -
-     * @param {string} [arg.fromDate] -
-     * @param {string} [arg.toDate] -
-     * @param {string} [arg.dpIds] -
-     * @param {string} [arg.orderingCompanyId] -
-     * @param {string} [arg.stores] -
-     * @param {string} [arg.salesChannel] -
-     * @param {string} [arg.requestByExt] -
-     * @param {number} [arg.pageNo] -
-     * @param {number} [arg.pageSize] -
-     * @param {string} [arg.customerId] -
-     * @param {boolean} [arg.isPrioritySort] -
-     * @returns {Promise<FileResponse>} - Success response
-     * @summary:
-     * @description:
-     */
-    getBulkShipmentExcelFile({ lane, searchType, searchId, fromDate, toDate, dpIds, orderingCompanyId, stores, salesChannel, requestByExt, pageNo, pageSize, customerId, isPrioritySort, }?: {
-        lane?: string;
-        searchType?: string;
-        searchId?: string;
-        fromDate?: string;
-        toDate?: string;
-        dpIds?: string;
-        orderingCompanyId?: string;
-        stores?: string;
-        salesChannel?: string;
-        requestByExt?: string;
-        pageNo?: number;
-        pageSize?: number;
-        customerId?: string;
-        isPrioritySort?: boolean;
     }): Promise<FileResponse>;
     /**
      * @param {Object} arg - Arg object.
@@ -281,18 +192,6 @@ declare class Order {
         paymentMode?: string;
         bagStatus?: string;
     }): Promise<LaneConfigResponse>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {string} [arg.fromDate] -
-     * @param {string} [arg.toDate] -
-     * @returns {Promise<MetricCountResponse>} - Success response
-     * @summary:
-     * @description:
-     */
-    getMetricCount({ fromDate, toDate }?: {
-        fromDate?: string;
-        toDate?: string;
-    }): Promise<MetricCountResponse>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.orderId -
@@ -343,18 +242,6 @@ declare class Order {
         isPrioritySort?: boolean;
         customMeta?: string;
     }): Promise<OrderListingResponse>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {number} [arg.pageNo] -
-     * @param {number} [arg.pageSize] -
-     * @returns {Promise<OmsReports>} - Success response
-     * @summary:
-     * @description:
-     */
-    getReportsShipmentListing({ pageNo, pageSize }?: {
-        pageNo?: number;
-        pageSize?: number;
-    }): Promise<OmsReports>;
     /**
      * @param {Object} arg - Arg object.
      * @returns {Promise<GetActionsResponse>} - Success response
@@ -624,14 +511,4 @@ declare class Order {
     uploadConsent({ body }?: {
         body: UploadConsent;
     }): Promise<SuccessResponse>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {JioCodeUpsertPayload} arg.body
-     * @returns {Promise<JioCodeUpsertResponse>} - Success response
-     * @summary:
-     * @description:
-     */
-    upsertJioCode({ body }?: {
-        body: JioCodeUpsertPayload;
-    }): Promise<JioCodeUpsertResponse>;
 }
