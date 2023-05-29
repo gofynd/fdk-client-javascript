@@ -81,32 +81,6 @@ class Communication {
 
     return response;
   }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {number} [arg.pageSize] -
-   * @summary: Get system notifications
-   * @description: Get system notifications
-   */
-  getSystemNotificationsPaginator({ pageSize } = {}) {
-    const paginator = new Paginator();
-    const callback = async () => {
-      const pageId = paginator.nextId;
-      const pageNo = paginator.pageNo;
-      const pageType = "number";
-      const data = await this.getSystemNotifications({
-        pageNo: pageNo,
-        pageSize: pageSize,
-      });
-      paginator.setPaginator({
-        hasNext: data.page.has_next ? true : false,
-        nextId: data.page.next_id,
-      });
-      return data;
-    };
-    paginator.setCallback(callback.bind(this));
-    return paginator;
-  }
 }
 
 module.exports = Communication;
