@@ -11,9 +11,11 @@ Cart APIs
 * [addItems](#additems)
 * [checkCartServiceability](#checkcartserviceability)
 * [checkoutCart](#checkoutcart)
+* [createCartMetaConfig](#createcartmetaconfig)
 * [createCoupon](#createcoupon)
 * [createPromotion](#createpromotion)
 * [fetchAndvalidateCartItems](#fetchandvalidatecartitems)
+* [fetchCartMetaConfig](#fetchcartmetaconfig)
 * [getAbandonedCart](#getabandonedcart)
 * [getAbandonedCartDetails](#getabandonedcartdetails)
 * [getCouponById](#getcouponbyid)
@@ -24,6 +26,7 @@ Cart APIs
 * [getPromotionCodeExists](#getpromotioncodeexists)
 * [getPromotions](#getpromotions)
 * [updateCart](#updatecart)
+* [updateCartMetaConfig](#updatecartmetaconfig)
 * [updateCoupon](#updatecoupon)
 * [updateCouponPartially](#updatecouponpartially)
 * [updatePromotion](#updatepromotion)
@@ -1387,6 +1390,77 @@ Checkout cart and create Fynd order id
 ---
 
 
+### createCartMetaConfig
+Create new cart meta configuration
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").cart.createCartMetaConfig({  body : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").cart.createCartMetaConfig({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [CartMetaConfigAdd](#CartMetaConfigAdd) | yes | Request body |
+
+
+Create new cart meta configuration
+
+*Returned Response:*
+
+
+
+
+[CartMetaConfigAdd](#CartMetaConfigAdd)
+
+Cart Meta Config Created successfully
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "_id": "645ba594d414eb0669e6ee14",
+  "app_id": "60792ded7826bd09330ed90d",
+  "company_id": 884,
+  "bulk_coupons": false,
+  "delivery_charges": {
+    "charges": [],
+    "enabled": false
+  },
+  "empty_cart": false,
+  "enabled": true,
+  "max_cart_items": 50,
+  "min_cart_value": 0,
+  "revenue_engine_coupon": false,
+  "gift_pricing": 50,
+  "gift_display_text": ""
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
 ### createCoupon
 Create new coupon
 
@@ -1928,6 +2002,73 @@ Cart details with breakup
       "you_saved": 0
     }
   }
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### fetchCartMetaConfig
+Fetch cart meta configuration
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").cart.fetchCartMetaConfig();
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").cart.fetchCartMetaConfig();
+```
+
+
+
+
+
+
+Fetch cart meta configuration
+
+*Returned Response:*
+
+
+
+
+[CartMetaConfigAdd](#CartMetaConfigAdd)
+
+Cart Meta Config Fetched successfully
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "_id": "645ba594d414eb0669e6ee14",
+  "app_id": "60792ded7826bd09330ed90d",
+  "company_id": 884,
+  "bulk_coupons": false,
+  "delivery_charges": {
+    "charges": [],
+    "enabled": false
+  },
+  "empty_cart": false,
+  "enabled": true,
+  "max_cart_items": 50,
+  "min_cart_value": 0,
+  "revenue_engine_coupon": false,
+  "gift_pricing": 50,
+  "gift_display_text": ""
 }
 ```
 </details>
@@ -3851,6 +3992,80 @@ Success. Updates and returns a cart object as shown below. Refer `UpdateCartDeta
 ---
 
 
+### updateCartMetaConfig
+Update cart meta configuration
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").cart.updateCartMetaConfig({  cartMetaId : value,
+ body : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").cart.updateCartMetaConfig({  cartMetaId : value,
+ body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| cartMetaId | string | yes |  |  
+| body | [CartMetaConfigUpdate](#CartMetaConfigUpdate) | yes | Request body |
+
+
+Update cart meta configuration
+
+*Returned Response:*
+
+
+
+
+[CartMetaConfigUpdate](#CartMetaConfigUpdate)
+
+Cart Meta Config Created successfully
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "_id": "645ba594d414eb0669e6ee14",
+  "app_id": "60792ded7826bd09330ed90d",
+  "company_id": 884,
+  "bulk_coupons": false,
+  "delivery_charges": {
+    "charges": [],
+    "enabled": false
+  },
+  "empty_cart": false,
+  "enabled": true,
+  "max_cart_items": 50,
+  "min_cart_value": 0,
+  "revenue_engine_coupon": false,
+  "gift_pricing": 50,
+  "gift_display_text": ""
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
 ### updateCoupon
 Update existing coupon configuration
 
@@ -4481,6 +4696,38 @@ Promotion updated successfully
 
 ---
 
+#### [CartMetaConfigAdd](#CartMetaConfigAdd)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | bulk_coupons | boolean? |  yes  |  |
+ | delivery_charges | [DeliveryCharges](#DeliveryCharges)? |  yes  |  |
+ | enabled | boolean? |  yes  |  |
+ | gift_display_text | string? |  yes  |  |
+ | gift_pricing | number? |  yes  |  |
+ | max_cart_items | number? |  yes  |  |
+ | min_cart_value | number? |  yes  |  |
+ | revenue_engine_coupon | boolean? |  yes  |  |
+ 
+
+---
+
+#### [CartMetaConfigUpdate](#CartMetaConfigUpdate)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | bulk_coupons | boolean? |  yes  |  |
+ | delivery_charges | [DeliveryCharges](#DeliveryCharges)? |  yes  |  |
+ | enabled | boolean? |  yes  |  |
+ | gift_display_text | string? |  yes  |  |
+ | gift_pricing | number? |  yes  |  |
+ | max_cart_items | number? |  yes  |  |
+ | min_cart_value | number? |  yes  |  |
+ | revenue_engine_coupon | boolean? |  yes  |  |
+ 
+
+---
+
 #### [CartProduct](#CartProduct)
 
  | Properties | Type | Nullable | Description |
@@ -4538,6 +4785,16 @@ Promotion updated successfully
  | ---------- | ---- | -------- | ----------- |
  | name | string? |  yes  |  |
  | uid | number? |  yes  | Product Category Id |
+ 
+
+---
+
+#### [Charges](#Charges)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | charges | number? |  yes  |  |
+ | threshold | number? |  yes  |  |
  
 
 ---
@@ -4676,6 +4933,16 @@ Promotion updated successfully
  | type_slug | string |  no  |  |
  | validation | [Validation](#Validation)? |  yes  |  |
  | validity | [Validity](#Validity) |  no  |  |
+ 
+
+---
+
+#### [DeliveryCharges](#DeliveryCharges)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | charges | [[Charges](#Charges)]? |  yes  |  |
+ | enabled | boolean? |  yes  |  |
  
 
 ---

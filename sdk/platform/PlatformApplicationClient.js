@@ -568,6 +568,7 @@ class PlatformApplicationClient {
 /** @typedef DeleteSubscriptionPaymentMethodResponse */
 /** @typedef ErrorCodeAndDescription */
 /** @typedef ErrorCodeDescription */
+/** @typedef GetOauthUrlResponse */
 /** @typedef GetUserCODLimitResponse */
 /** @typedef HttpErrorCodeAndResponse */
 /** @typedef IfscCodeResponse */
@@ -593,6 +594,7 @@ class PlatformApplicationClient {
 /** @typedef PayoutResponse */
 /** @typedef PayoutsResponse */
 /** @typedef RefundAccountResponse */
+/** @typedef RevokeOAuthToken */
 /** @typedef RootPaymentMode */
 /** @typedef SaveSubscriptionSetupIntentRequest */
 /** @typedef SaveSubscriptionSetupIntentResponse */
@@ -1490,10 +1492,13 @@ class PlatformApplicationClient {
 /** @typedef CartDetailResponse */
 /** @typedef CartItem */
 /** @typedef CartItemMeta */
+/** @typedef CartMetaConfigAdd */
+/** @typedef CartMetaConfigUpdate */
 /** @typedef CartProduct */
 /** @typedef CartProductIdentifer */
 /** @typedef CartProductInfo */
 /** @typedef CategoryInfo */
+/** @typedef Charges */
 /** @typedef CompareObject */
 /** @typedef CouponAction */
 /** @typedef CouponAdd */
@@ -1504,6 +1509,7 @@ class PlatformApplicationClient {
 /** @typedef CouponSchedule */
 /** @typedef CouponsResponse */
 /** @typedef CouponUpdate */
+/** @typedef DeliveryCharges */
 /** @typedef DiscountOffer */
 /** @typedef DiscountRule */
 /** @typedef DisplayBreakup */

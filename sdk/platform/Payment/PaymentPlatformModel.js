@@ -48,6 +48,12 @@ class PaymentModel {
       success: Joi.boolean().required(),
     });
   }
+  static GetOauthUrlResponse() {
+    return Joi.object({
+      success: Joi.boolean().required(),
+      url: Joi.string().allow("").required(),
+    });
+  }
   static GetUserCODLimitResponse() {
     return Joi.object({
       success: Joi.boolean().required(),
@@ -292,6 +298,12 @@ class PaymentModel {
     return Joi.object({
       data: Joi.any(),
       is_verified_flag: Joi.boolean(),
+      message: Joi.string().allow("").required(),
+      success: Joi.boolean().required(),
+    });
+  }
+  static RevokeOAuthToken() {
+    return Joi.object({
       message: Joi.string().allow("").required(),
       success: Joi.boolean().required(),
     });

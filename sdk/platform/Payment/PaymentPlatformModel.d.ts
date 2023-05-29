@@ -7,6 +7,7 @@ declare class PaymentModel {
     static DeleteSubscriptionPaymentMethodResponse(): any;
     static ErrorCodeAndDescription(): any;
     static ErrorCodeDescription(): any;
+    static GetOauthUrlResponse(): any;
     static GetUserCODLimitResponse(): any;
     static HttpErrorCodeAndResponse(): any;
     static IfscCodeResponse(): any;
@@ -32,6 +33,7 @@ declare class PaymentModel {
     static PayoutResponse(): any;
     static PayoutsResponse(): any;
     static RefundAccountResponse(): any;
+    static RevokeOAuthToken(): any;
     static RootPaymentMode(): any;
     static SaveSubscriptionSetupIntentRequest(): any;
     static SaveSubscriptionSetupIntentResponse(): any;

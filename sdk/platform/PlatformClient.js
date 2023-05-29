@@ -3577,6 +3577,11 @@ class PlatformClient {
  * @property {boolean} success
  */
 /**
+ * @typedef GetOauthUrlResponse
+ * @property {boolean} success
+ * @property {string} url
+ */
+/**
  * @typedef GetUserCODLimitResponse
  * @property {boolean} success
  * @property {CODdata} user_cod_data
@@ -3790,6 +3795,11 @@ class PlatformClient {
  * @typedef RefundAccountResponse
  * @property {Object} [data]
  * @property {boolean} [is_verified_flag]
+ * @property {string} message
+ * @property {boolean} success
+ */
+/**
+ * @typedef RevokeOAuthToken
  * @property {string} message
  * @property {boolean} success
  */
@@ -6914,15 +6924,15 @@ class PlatformClient {
  * @property {GetAddressSerializer[]} [addresses]
  * @property {string} [business_type]
  * @property {string} [company_type]
- * @property {UserSerializer1} [created_by]
+ * @property {UserSerializer2} [created_by]
  * @property {string} [created_on]
- * @property {UserSerializer1} [modified_by]
+ * @property {UserSerializer2} [modified_by]
  * @property {string} [modified_on]
  * @property {string} [name]
  * @property {string} [reject_reason]
  * @property {string} [stage]
  * @property {number} [uid]
- * @property {UserSerializer1} [verified_by]
+ * @property {UserSerializer2} [verified_by]
  * @property {string} [verified_on]
  */
 /**
@@ -6999,14 +7009,14 @@ class PlatformClient {
  * @property {string} code
  * @property {GetCompanySerializer} [company]
  * @property {SellerPhoneNumber[]} [contact_numbers]
- * @property {UserSerializer2} [created_by]
+ * @property {UserSerializer1} [created_by]
  * @property {string} [created_on]
  * @property {string} display_name
  * @property {Document[]} [documents]
  * @property {InvoiceDetailsSerializer} [gst_credentials]
  * @property {LocationIntegrationType} [integration_type]
  * @property {LocationManagerSerializer} [manager]
- * @property {UserSerializer2} [modified_by]
+ * @property {UserSerializer1} [modified_by]
  * @property {string} [modified_on]
  * @property {string} name
  * @property {string[]} [notification_emails]
@@ -7016,7 +7026,7 @@ class PlatformClient {
  * @property {string} [store_type]
  * @property {LocationDayWiseSerializer[]} [timing]
  * @property {number} [uid]
- * @property {UserSerializer2} [verified_by]
+ * @property {UserSerializer1} [verified_by]
  * @property {string} [verified_on]
  * @property {Object} [warnings]
  */
@@ -7913,7 +7923,7 @@ class PlatformClient {
  * @property {NetQuantity} [net_quantity]
  * @property {number} [no_of_boxes]
  * @property {string[]} [product_group_tag]
- * @property {ProductPublish} [product_publish]
+ * @property {ProductPublish1} [product_publish]
  * @property {string} [requester]
  * @property {ReturnConfig} return_config
  * @property {string} [short_description]
@@ -8109,7 +8119,7 @@ class PlatformClient {
  * @property {string} [pending]
  * @property {string} [primary_color]
  * @property {string[]} [product_group_tag]
- * @property {ProductPublish1} [product_publish]
+ * @property {ProductPublish} [product_publish]
  * @property {ReturnConfigResponse} [return_config]
  * @property {string} [short_description]
  * @property {string} [size_guide]
@@ -11290,6 +11300,28 @@ class PlatformClient {
  * @property {boolean} [primary_item]
  */
 /**
+ * @typedef CartMetaConfigAdd
+ * @property {boolean} [bulk_coupons]
+ * @property {DeliveryCharges} [delivery_charges]
+ * @property {boolean} [enabled]
+ * @property {string} [gift_display_text]
+ * @property {number} [gift_pricing]
+ * @property {number} [max_cart_items]
+ * @property {number} [min_cart_value]
+ * @property {boolean} [revenue_engine_coupon]
+ */
+/**
+ * @typedef CartMetaConfigUpdate
+ * @property {boolean} [bulk_coupons]
+ * @property {DeliveryCharges} [delivery_charges]
+ * @property {boolean} [enabled]
+ * @property {string} [gift_display_text]
+ * @property {number} [gift_pricing]
+ * @property {number} [max_cart_items]
+ * @property {number} [min_cart_value]
+ * @property {boolean} [revenue_engine_coupon]
+ */
+/**
  * @typedef CartProduct
  * @property {ProductAction} [action]
  * @property {BaseInfo} [brand]
@@ -11329,6 +11361,11 @@ class PlatformClient {
  * @typedef CategoryInfo
  * @property {string} [name]
  * @property {number} [uid]
+ */
+/**
+ * @typedef Charges
+ * @property {number} [charges]
+ * @property {number} [threshold]
  */
 /**
  * @typedef CompareObject
@@ -11417,6 +11454,11 @@ class PlatformClient {
  * @property {string} type_slug
  * @property {Validation} [validation]
  * @property {Validity} validity
+ */
+/**
+ * @typedef DeliveryCharges
+ * @property {Charges[]} [charges]
+ * @property {boolean} [enabled]
  */
 /**
  * @typedef DiscountOffer
