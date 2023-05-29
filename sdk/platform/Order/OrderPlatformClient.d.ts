@@ -464,8 +464,8 @@ declare class Order {
     getStateTransitionMap({}?: any): Promise<BagStateTransitionMap>;
     /**
      * @param {Object} arg - Arg object.
-     * @param {string} arg.view -
-     * @param {string} [arg.groupEntity] -
+     * @param {string} arg.view - Name of View
+     * @param {string} [arg.groupEntity] - Group Entity Name
      * @returns {Promise<FiltersResponse>} - Success response
      * @summary:
      * @description:

@@ -917,14 +917,19 @@ class OrderModel {
   }
   static FilterInfoOption() {
     return Joi.object({
+      min_search_size: Joi.number(),
       name: Joi.string().allow(""),
+      placeholder_text: Joi.string().allow(""),
+      show_ui: Joi.boolean(),
       text: Joi.string().allow("").required(),
-      value: Joi.string().allow(""),
+      value: Joi.any(),
     });
   }
   static FiltersInfo() {
     return Joi.object({
       options: Joi.array().items(OrderModel.FilterInfoOption()),
+      placeholder_text: Joi.string().allow(""),
+      required: Joi.boolean(),
       text: Joi.string().allow("").required(),
       type: Joi.string().allow("").required(),
       value: Joi.string().allow("").required(),
