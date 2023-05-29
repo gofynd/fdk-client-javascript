@@ -32,6 +32,7 @@ declare class CartValidator {
     static getPromotions(): any;
     static getShipments(): any;
     static getStoreAddressByUid(): any;
+    static overrideCart(): any;
     static platformAddItems(): any;
     static platformCheckoutCart(): any;
     static platformCheckoutCartV2(): any;

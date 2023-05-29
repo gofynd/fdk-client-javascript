@@ -15,69 +15,9 @@ class Rewards {
   /**
    * @param {Object} arg - Arg object.
    * @param {string} arg.id - Giveaway ID
-   * @param {string} arg.audienceId - Audience id
-   * @returns {Promise<GiveawayAudience>} - Success response
-   * @summary: Get the Giveaway audience status
-   * @description: Get giveaway audience status
-   */
-  async getGiveawayAudienceStatus({ id, audienceId } = {}) {
-    const { error } = RewardsValidator.getGiveawayAudienceStatus().validate(
-      { id, audienceId },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = RewardsValidator.getGiveawayAudienceStatus().validate(
-      { id, audienceId },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: "Parameter Validation warrnings for getGiveawayAudienceStatus",
-      });
-      Logger({ level: "WARN", message: warrning });
-    }
-
-    const query_params = {};
-
-    const response = await PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/rewards/v1.0/company/${this.config.companyId}/application/${this.applicationId}/giveaways/:id/audience/${audienceId}/status`,
-      query_params,
-      undefined
-    );
-
-    const {
-      error: res_error,
-    } = RewardsModel.GiveawayAudience().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
-
-    if (res_error) {
-      Logger({
-        level: "WARN",
-        message: "Response Validation Warnnings for getGiveawayAudienceStatus",
-      });
-      Logger({ level: "WARN", message: res_error });
-    }
-
-    return response;
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.id - Giveaway ID
    * @returns {Promise<Giveaway>} - Success response
    * @summary: Get giveaway by ID.
-   * @description: Get giveaway by ID.
+   * @description: Retrieve the specific giveaway by giveaway ID. It will show all the details of the requested giveaway.
    */
   async getGiveawayById({ id } = {}) {
     const { error } = RewardsValidator.getGiveawayById().validate(
@@ -135,8 +75,8 @@ class Rewards {
    * @param {Object} arg - Arg object.
    * @param {string} arg.name - The name given to the offer.
    * @returns {Promise<Offer>} - Success response
-   * @summary: Get offer by name
-   * @description: Use this API to get the offer details and configuration by entering the name of the offer.
+   * @summary: Fetch a offer by its name
+   * @description: Fetch the specific offer details and configuration by the name of the offer.
    */
   async getOfferByName({ name } = {}) {
     const { error } = RewardsValidator.getOfferByName().validate(
@@ -190,7 +130,7 @@ class Rewards {
    * @param {Object} arg - Arg object.
    * @returns {Promise<ConfigurationRes>} - Success response
    * @summary: Get all valid android paths
-   * @description: Use this API to get a list of valid android paths required by the Rewards INIT API to validate a fradualent device.
+   * @description: Use this API to get a list of valid android paths required by the Rewards INIT API to validate a fraudulent device.
    */
   async getRewardsConfiguration({} = {}) {
     const { error } = RewardsValidator.getRewardsConfiguration().validate(
@@ -249,7 +189,7 @@ class Rewards {
    * @param {string} arg.userId - User id
    * @returns {Promise<UserRes>} - Success response
    * @summary: Get user reward details
-   * @description: Use this API to get the user reward details
+   * @description: Fetches the user details and the user reward details with their current reward points for the specific user.
    */
   async getUserDetails({ userId } = {}) {
     const { error } = RewardsValidator.getUserDetails().validate(
@@ -307,7 +247,7 @@ class Rewards {
    * @param {number} [arg.pageSize] - The number of items to retrieve in each page.
    * @returns {Promise<HistoryRes>} - Success response
    * @summary: Get all transactions of reward points
-   * @description: Use this API to get a list of points transactions.
+   * @description: Fetches a list of points transactions like giveaway points, signup points, referral points, order earn points, redeem points and expired points.
    */
   async getUserPointsHistory({
     userId,
@@ -383,7 +323,7 @@ class Rewards {
    * @param {string} arg.applicationId - Application id
    * @param {number} [arg.pageSize] - The number of items to retrieve in each page.
    * @summary: Get all transactions of reward points
-   * @description: Use this API to get a list of points transactions.
+   * @description: Fetches a list of points transactions like giveaway points, signup points, referral points, order earn points, redeem points and expired points.
    */
   getUserPointsHistoryPaginator({
     userId,
@@ -418,7 +358,7 @@ class Rewards {
    * @param {Giveaway} arg.body
    * @returns {Promise<Giveaway>} - Success response
    * @summary: List of giveaways of the current application.
-   * @description: Adds a new giveaway.
+   * @description: Creates a new giveaway in the current application, specifying the target audience, points allocation, as well as the name and display name of the giveaway.
    */
   async saveGiveAway({ body } = {}) {
     const { error } = RewardsValidator.saveGiveAway().validate(
@@ -477,7 +417,7 @@ class Rewards {
    * @param {ConfigurationRequest} arg.body
    * @returns {Promise<SetConfigurationRes>} - Success response
    * @summary: Updates the collection with given android paths.
-   * @description: Updates the configuration or inserts new records.
+   * @description: Updates the configuration or inserts new records with the given android paths.
    */
   async setRewardsConfiguration({ body } = {}) {
     const { error } = RewardsValidator.setRewardsConfiguration().validate(
@@ -541,7 +481,7 @@ class Rewards {
    * @param {number} arg.pageSize - Pagination page size
    * @returns {Promise<GiveawayResponse>} - Success response
    * @summary: List of giveaways of the current application.
-   * @description: List of giveaways of the current application.
+   * @description: Fetch the detailed compilation of live, completed, and scheduled point-based giveaways created.
    */
   async showGiveaways({ pageId, pageSize } = {}) {
     const { error } = RewardsValidator.showGiveaways().validate(
@@ -605,7 +545,7 @@ class Rewards {
    * @param {Object} arg - Arg object.
    * @returns {Promise<Offer[]>} - Success response
    * @summary: List of offers of the current application.
-   * @description: List of offers of the current application.
+   * @description: Retrieve the list of offers within the current application, including order_discount, order, sign_up, and referral, along with their respective details.
    */
   async showOffers({} = {}) {
     const { error } = RewardsValidator.showOffers().validate(
@@ -660,7 +600,7 @@ class Rewards {
    * @param {Giveaway} arg.body
    * @returns {Promise<Giveaway>} - Success response
    * @summary: Updates the giveaway by it's ID.
-   * @description: Updates the giveaway by it's ID.
+   * @description: Make the necessary updates to the giveaway based on its giveaway ID.
    */
   async updateGiveAway({ id, body } = {}) {
     const { error } = RewardsValidator.updateGiveAway().validate(
@@ -722,7 +662,7 @@ class Rewards {
    * @param {Offer} arg.body
    * @returns {Promise<Offer>} - Success response
    * @summary: Update offer by name
-   * @description: Use this API to update the offer details
+   * @description: Update the specific offer details and its configuration by offer name.
    */
   async updateOfferByName({
     name,
@@ -790,7 +730,7 @@ class Rewards {
    * @param {AppUser} arg.body
    * @returns {Promise<AppUser>} - Success response
    * @summary: Update user status
-   * @description: Use this API to update the user status active/archive
+   * @description: Update the user status by marking them as a block or unblock. It can be done by changing the active flag in request body.
    */
   async updateUserStatus({
     userId,

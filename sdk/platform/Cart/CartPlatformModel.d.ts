@@ -81,6 +81,10 @@ declare class CartModel {
     static OpenApiOrderItem(): any;
     static OpenApiPlatformCheckoutReq(): any;
     static OperationErrorResponse(): any;
+    static OverrideCartItem(): any;
+    static OverrideCartItemPromo(): any;
+    static OverrideCheckoutReq(): any;
+    static OverrideCheckoutResponse(): any;
     static Ownership(): any;
     static Ownership1(): any;
     static Ownership2(): any;

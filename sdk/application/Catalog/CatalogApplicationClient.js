@@ -523,6 +523,8 @@ class Catalog {
    *   will be passed in f parameter as shown in the example below. Double
    *   Pipe (||) denotes the OR condition, whereas Triple-colon (:::)
    *   indicates a new filter paramater applied as an AND condition.
+   * @param {string} [arg.q] - The search query for entering partial or full
+   *   name of product, brand, category, or collection.
    * @param {boolean} [arg.filters] - This is a boolean value, True for
    *   fetching all filter parameters and False for disabling the filter parameters.
    * @param {string} [arg.sortOn] - The order in which the list of products
@@ -540,6 +542,7 @@ class Catalog {
   async getCollectionItemsBySlug({
     slug,
     f,
+    q,
     filters,
     sortOn,
     pageId,
@@ -548,7 +551,7 @@ class Catalog {
     pageType,
   } = {}) {
     const { error } = CatalogValidator.getCollectionItemsBySlug().validate(
-      { slug, f, filters, sortOn, pageId, pageSize, pageNo, pageType },
+      { slug, f, q, filters, sortOn, pageId, pageSize, pageNo, pageType },
       { abortEarly: false, allowUnknown: true }
     );
     if (error) {
@@ -559,7 +562,7 @@ class Catalog {
     const {
       error: warrning,
     } = CatalogValidator.getCollectionItemsBySlug().validate(
-      { slug, f, filters, sortOn, pageId, pageSize, pageNo, pageType },
+      { slug, f, q, filters, sortOn, pageId, pageSize, pageNo, pageType },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
@@ -572,6 +575,7 @@ class Catalog {
 
     const query_params = {};
     query_params["f"] = f;
+    query_params["q"] = q;
     query_params["filters"] = filters;
     query_params["sort_on"] = sortOn;
     query_params["page_id"] = pageId;
@@ -620,6 +624,8 @@ class Catalog {
    *   will be passed in f parameter as shown in the example below. Double
    *   Pipe (||) denotes the OR condition, whereas Triple-colon (:::)
    *   indicates a new filter paramater applied as an AND condition.
+   * @param {string} [arg.q] - The search query for entering partial or full
+   *   name of product, brand, category, or collection.
    * @param {boolean} [arg.filters] - This is a boolean value, True for
    *   fetching all filter parameters and False for disabling the filter parameters.
    * @param {string} [arg.sortOn] - The order in which the list of products
@@ -632,6 +638,7 @@ class Catalog {
   getCollectionItemsBySlugPaginator({
     slug,
     f,
+    q,
     filters,
     sortOn,
     pageSize,
@@ -644,6 +651,7 @@ class Catalog {
       const data = await this.getCollectionItemsBySlug({
         slug: slug,
         f: f,
+        q: q,
         filters: filters,
         sortOn: sortOn,
         pageId: pageId,

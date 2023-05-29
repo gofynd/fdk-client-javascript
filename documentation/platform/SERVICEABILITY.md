@@ -5,15 +5,18 @@
 
 ##### [Back to Platform docs](./README.md)
 
-## Logistics Methods
+## Serviceability Methods
 Logistics Configuration API's allows you to configure zone, application logistics and many more useful features. 
 
+* [addAppDp](#addappdp)
 * [createZone](#createzone)
+* [deleteAppDp](#deleteappdp)
 * [getAllStores](#getallstores)
 * [getApplicationServiceability](#getapplicationserviceability)
 * [getCompanyStoreView](#getcompanystoreview)
 * [getEntityRegionView](#getentityregionview)
 * [getListView](#getlistview)
+* [getOptimalLocations](#getoptimallocations)
 * [getStore](#getstore)
 * [getZoneDataView](#getzonedataview)
 * [getZoneFromPincodeView](#getzonefrompincodeview)
@@ -31,6 +34,61 @@ Logistics Configuration API's allows you to configure zone, application logistic
 
 
 
+### addAppDp
+Add application dp data
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").serviceability.addAppDp({  body : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").serviceability.addAppDp({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [ApplicationCompanyDpViewRequest](#ApplicationCompanyDpViewRequest) | yes | Request body |
+
+
+This API add application dp data.
+
+*Returned Response:*
+
+
+
+
+[ApplicationCompanyDpViewResponse](#ApplicationCompanyDpViewResponse)
+
+Response status_code
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
 ### createZone
 Insertion of zone in database.
 
@@ -38,10 +96,10 @@ Insertion of zone in database.
 
 ```javascript
 // Promise
-const promise = platformClient.logistics.createZone({  body : value });
+const promise = platformClient.serviceability.createZone({  body : value });
 
 // Async/Await
-const data = await platformClient.logistics.createZone({  body : value });
+const data = await platformClient.serviceability.createZone({  body : value });
 ```
 
 
@@ -86,6 +144,62 @@ Response status_code
 ---
 
 
+### deleteAppDp
+Delete application dp data
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").serviceability.deleteAppDp({  courierPartnerId : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").serviceability.deleteAppDp({  courierPartnerId : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| courierPartnerId | number | yes | A `courier_partner_id` is a unique identifier of a particular delivery partner. |  
+
+
+
+This API remove application dp data.
+
+*Returned Response:*
+
+
+
+
+[ApplicationCompanyDpViewResponse](#ApplicationCompanyDpViewResponse)
+
+Response status_code
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
 ### getAllStores
 GET stores data
 
@@ -93,10 +207,10 @@ GET stores data
 
 ```javascript
 // Promise
-const promise = platformClient.logistics.getAllStores();
+const promise = platformClient.serviceability.getAllStores();
 
 // Async/Await
-const data = await platformClient.logistics.getAllStores();
+const data = await platformClient.serviceability.getAllStores();
 ```
 
 
@@ -144,10 +258,10 @@ Zone configuration of application.
 
 ```javascript
 // Promise
-const promise = platformClient.application("<APPLICATION_ID>").logistics.getApplicationServiceability();
+const promise = platformClient.application("<APPLICATION_ID>").serviceability.getApplicationServiceability();
 
 // Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").logistics.getApplicationServiceability();
+const data = await platformClient.application("<APPLICATION_ID>").serviceability.getApplicationServiceability();
 ```
 
 
@@ -207,10 +321,10 @@ Company Store View of application.
 
 ```javascript
 // Promise
-const promise = platformClient.logistics.getCompanyStoreView();
+const promise = platformClient.serviceability.getCompanyStoreView();
 
 // Async/Await
-const data = await platformClient.logistics.getCompanyStoreView();
+const data = await platformClient.serviceability.getCompanyStoreView();
 ```
 
 
@@ -258,10 +372,10 @@ Get country and state list
 
 ```javascript
 // Promise
-const promise = platformClient.logistics.getEntityRegionView({  body : value });
+const promise = platformClient.serviceability.getEntityRegionView({  body : value });
 
 // Async/Await
-const data = await platformClient.logistics.getEntityRegionView({  body : value });
+const data = await platformClient.serviceability.getEntityRegionView({  body : value });
 ```
 
 
@@ -313,7 +427,7 @@ Zone List of application.
 
 ```javascript
 // Promise
-const promise = platformClient.logistics.getListView({  pageNumber : value,
+const promise = platformClient.serviceability.getListView({  pageNumber : value,
  pageSize : value,
  name : value,
  isActive : value,
@@ -321,7 +435,7 @@ const promise = platformClient.logistics.getListView({  pageNumber : value,
  q : value });
 
 // Async/Await
-const data = await platformClient.logistics.getListView({  pageNumber : value,
+const data = await platformClient.serviceability.getListView({  pageNumber : value,
  pageSize : value,
  name : value,
  isActive : value,
@@ -377,6 +491,61 @@ Zone List of application in descending order of their last modified date.
 ---
 
 
+### getOptimalLocations
+Get serviceable store of the item
+
+
+
+```javascript
+// Promise
+const promise = platformClient.serviceability.getOptimalLocations({  body : value });
+
+// Async/Await
+const data = await platformClient.serviceability.getOptimalLocations({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [ReAssignStoreRequest](#ReAssignStoreRequest) | yes | Request body |
+
+
+This API returns serviceable store of the item.
+
+*Returned Response:*
+
+
+
+
+[ReAssignStoreResponse](#ReAssignStoreResponse)
+
+Response status_code
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
 ### getStore
 GET stores data
 
@@ -384,10 +553,10 @@ GET stores data
 
 ```javascript
 // Promise
-const promise = platformClient.logistics.getStore({  storeUid : value });
+const promise = platformClient.serviceability.getStore({  storeUid : value });
 
 // Async/Await
-const data = await platformClient.logistics.getStore({  storeUid : value });
+const data = await platformClient.serviceability.getStore({  storeUid : value });
 ```
 
 
@@ -649,10 +818,10 @@ Zone Data View of application.
 
 ```javascript
 // Promise
-const promise = platformClient.logistics.getZoneDataView({  zoneId : value });
+const promise = platformClient.serviceability.getZoneDataView({  zoneId : value });
 
 // Async/Await
-const data = await platformClient.logistics.getZoneDataView({  zoneId : value });
+const data = await platformClient.serviceability.getZoneDataView({  zoneId : value });
 ```
 
 
@@ -705,10 +874,10 @@ GET zone from the Pincode.
 
 ```javascript
 // Promise
-const promise = platformClient.application("<APPLICATION_ID>").logistics.getZoneFromPincodeView({  body : value });
+const promise = platformClient.application("<APPLICATION_ID>").serviceability.getZoneFromPincodeView({  body : value });
 
 // Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").logistics.getZoneFromPincodeView({  body : value });
+const data = await platformClient.application("<APPLICATION_ID>").serviceability.getZoneFromPincodeView({  body : value });
 ```
 
 
@@ -760,13 +929,13 @@ GET zones from the application_id.
 
 ```javascript
 // Promise
-const promise = platformClient.application("<APPLICATION_ID>").logistics.getZonesFromApplicationIdView({  pageNo : value,
+const promise = platformClient.application("<APPLICATION_ID>").serviceability.getZonesFromApplicationIdView({  pageNo : value,
  pageSize : value,
  zoneId : value,
  q : value });
 
 // Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").logistics.getZonesFromApplicationIdView({  pageNo : value,
+const data = await platformClient.application("<APPLICATION_ID>").serviceability.getZonesFromApplicationIdView({  pageNo : value,
  pageSize : value,
  zoneId : value,
  q : value });
@@ -825,10 +994,10 @@ Auditlog configuration of application.
 
 ```javascript
 // Promise
-const promise = platformClient.application("<APPLICATION_ID>").logistics.updatePincodeAuditHistory({  body : value });
+const promise = platformClient.application("<APPLICATION_ID>").serviceability.updatePincodeAuditHistory({  body : value });
 
 // Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").logistics.updatePincodeAuditHistory({  body : value });
+const data = await platformClient.application("<APPLICATION_ID>").serviceability.updatePincodeAuditHistory({  body : value });
 ```
 
 
@@ -880,10 +1049,10 @@ Bulk Update of pincode in the application.
 
 ```javascript
 // Promise
-const promise = platformClient.application("<APPLICATION_ID>").logistics.updatePincodeBulkView({  body : value });
+const promise = platformClient.application("<APPLICATION_ID>").serviceability.updatePincodeBulkView({  body : value });
 
 // Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").logistics.updatePincodeBulkView({  body : value });
+const data = await platformClient.application("<APPLICATION_ID>").serviceability.updatePincodeBulkView({  body : value });
 ```
 
 
@@ -938,10 +1107,10 @@ Pincode count view of application.
 
 ```javascript
 // Promise
-const promise = platformClient.application("<APPLICATION_ID>").logistics.updatePincodeCoDListing({  body : value });
+const promise = platformClient.application("<APPLICATION_ID>").serviceability.updatePincodeCoDListing({  body : value });
 
 // Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").logistics.updatePincodeCoDListing({  body : value });
+const data = await platformClient.application("<APPLICATION_ID>").serviceability.updatePincodeCoDListing({  body : value });
 ```
 
 
@@ -993,10 +1162,10 @@ PincodeView update of MOP.
 
 ```javascript
 // Promise
-const promise = platformClient.application("<APPLICATION_ID>").logistics.updatePincodeMopView({  body : value });
+const promise = platformClient.application("<APPLICATION_ID>").serviceability.updatePincodeMopView({  body : value });
 
 // Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").logistics.updatePincodeMopView({  body : value });
+const data = await platformClient.application("<APPLICATION_ID>").serviceability.updatePincodeMopView({  body : value });
 ```
 
 
@@ -1048,11 +1217,11 @@ Updation of zone collections in database.
 
 ```javascript
 // Promise
-const promise = platformClient.logistics.updateZoneControllerView({  zoneId : value,
+const promise = platformClient.serviceability.updateZoneControllerView({  zoneId : value,
  body : value });
 
 // Async/Await
-const data = await platformClient.logistics.updateZoneControllerView({  zoneId : value,
+const data = await platformClient.serviceability.updateZoneControllerView({  zoneId : value,
  body : value });
 ```
 
@@ -1120,6 +1289,27 @@ Response status_code
 
 ---
 
+#### [ApplicationCompanyDpViewRequest](#ApplicationCompanyDpViewRequest)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | dp_id | string? |  yes  |  |
+ 
+
+---
+
+#### [ApplicationCompanyDpViewResponse](#ApplicationCompanyDpViewResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | application_id | string |  no  |  |
+ | company_id | number |  no  |  |
+ | courier_partner_id | number? |  yes  |  |
+ | success | boolean |  no  |  |
+ 
+
+---
+
 #### [ApplicationServiceabilityConfig](#ApplicationServiceabilityConfig)
 
  | Properties | Type | Nullable | Description |
@@ -1138,17 +1328,6 @@ Response status_code
  | data | [ApplicationServiceabilityConfig](#ApplicationServiceabilityConfig)? |  yes  |  |
  | error | [ServiceabilityrErrorResponse](#ServiceabilityrErrorResponse)? |  yes  |  |
  | success | boolean |  no  |  |
- 
-
----
-
-#### [CommonError](#CommonError)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | error | any? |  yes  |  |
- | status_code | string? |  yes  |  |
- | success | string? |  yes  |  |
  
 
 ---
@@ -1344,7 +1523,7 @@ Response status_code
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | items | [[ItemResponse](#ItemResponse)]? |  yes  |  |
- | page | [PageResponse](#PageResponse) |  no  |  |
+ | page | [ServiceabilityPageResponse](#ServiceabilityPageResponse) |  no  |  |
  
 
 ---
@@ -1365,7 +1544,7 @@ Response status_code
  | ---------- | ---- | -------- | ----------- |
  | assignment_preference | string? |  yes  |  |
  | channels | [[GetZoneDataViewChannels](#GetZoneDataViewChannels)] |  no  |  |
- | company_id | number? |  yes  |  |
+ | company_id | number |  no  |  |
  | is_active | boolean |  no  |  |
  | mapping | [[ZoneMappingType](#ZoneMappingType)] |  no  |  |
  | name | string |  no  |  |
@@ -1576,19 +1755,6 @@ Response status_code
 
 ---
 
-#### [PageResponse](#PageResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | current | number? |  yes  |  |
- | has_next | boolean? |  yes  |  |
- | item_total | number? |  yes  |  |
- | size | number? |  yes  |  |
- | type | string? |  yes  |  |
- 
-
----
-
 #### [PincodeBulkViewResponse](#PincodeBulkViewResponse)
 
  | Properties | Type | Nullable | Description |
@@ -1603,7 +1769,7 @@ Response status_code
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | current | number |  no  |  |
+ | current_page_number | number |  no  |  |
  | has_next | boolean |  no  |  |
  | item_total | number |  no  |  |
  | size | number |  no  |  |
@@ -1617,7 +1783,7 @@ Response status_code
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | country | string? |  yes  |  |
- | current | number? |  yes  |  |
+ | current_page_number | number? |  yes  |  |
  | is_active | boolean? |  yes  |  |
  | page_size | number? |  yes  |  |
  | pincode | number? |  yes  |  |
@@ -1756,6 +1922,31 @@ Response status_code
 
 ---
 
+#### [ReAssignStoreRequest](#ReAssignStoreRequest)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | articles | [string] |  no  |  |
+ | configuration | string |  no  |  |
+ | identifier | string |  no  |  |
+ | ignored_locations | [string] |  no  |  |
+ | to_pincode | string |  no  |  |
+ 
+
+---
+
+#### [ReAssignStoreResponse](#ReAssignStoreResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | articles | [string]? |  yes  |  |
+ | error | string |  no  |  |
+ | success | boolean |  no  |  |
+ | to_pincode | string |  no  |  |
+ 
+
+---
+
 #### [ServiceabilityErrorResponse](#ServiceabilityErrorResponse)
 
  | Properties | Type | Nullable | Description |
@@ -1763,6 +1954,19 @@ Response status_code
  | message | string |  no  |  |
  | type | string |  no  |  |
  | value | string |  no  |  |
+ 
+
+---
+
+#### [ServiceabilityPageResponse](#ServiceabilityPageResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | current | number? |  yes  |  |
+ | has_next | boolean? |  yes  |  |
+ | item_total | number? |  yes  |  |
+ | size | number? |  yes  |  |
+ | type | string? |  yes  |  |
  
 
 ---

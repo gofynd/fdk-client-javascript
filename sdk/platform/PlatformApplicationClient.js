@@ -26,7 +26,7 @@ const Rewards = require("./Rewards/RewardsPlatformApplicationClient");
 
 const Partner = require("./Partner/PartnerPlatformApplicationClient");
 
-const Logistics = require("./Logistics/LogisticsPlatformApplicationClient");
+const Serviceability = require("./Serviceability/ServiceabilityPlatformApplicationClient");
 
 const { FDKClientValidationError } = require("../common/FDKError");
 
@@ -64,7 +64,7 @@ class PlatformApplicationClient {
 
     this.partner = new Partner(config, applicationId);
 
-    this.logistics = new Logistics(config, applicationId);
+    this.serviceability = new Serviceability(config, applicationId);
   }
 
   setExtraHeaders(header) {
@@ -843,6 +843,7 @@ class PlatformApplicationClient {
 /** @typedef RefundModeConfigRequestPayload */
 /** @typedef RefundModeConfigResponsePayload */
 /** @typedef RefundModeInfo */
+/** @typedef ReplacementDetails */
 /** @typedef ResponseDetail */
 /** @typedef ResponseGetAssetShipment */
 /** @typedef ReturnConfig */
@@ -977,6 +978,7 @@ class PlatformApplicationClient {
 /** @typedef CollectionBanner */
 /** @typedef CollectionCreateResponse */
 /** @typedef CollectionDetailResponse */
+/** @typedef CollectionErrorResponse */
 /** @typedef CollectionImage */
 /** @typedef CollectionItem */
 /** @typedef CollectionItemUpdate */
@@ -985,6 +987,8 @@ class PlatformApplicationClient {
 /** @typedef CollectionListingFilterType */
 /** @typedef CollectionQuery */
 /** @typedef CollectionSchedule */
+/** @typedef CollectionUpdateBanner */
+/** @typedef CollectionUpdateImage */
 /** @typedef CollectionUpdateResponse */
 /** @typedef CompanyBrandDetail */
 /** @typedef CompanyMeta */
@@ -1636,6 +1640,10 @@ class PlatformApplicationClient {
 /** @typedef OpenApiOrderItem */
 /** @typedef OpenApiPlatformCheckoutReq */
 /** @typedef OperationErrorResponse */
+/** @typedef OverrideCartItem */
+/** @typedef OverrideCartItemPromo */
+/** @typedef OverrideCheckoutReq */
+/** @typedef OverrideCheckoutResponse */
 /** @typedef Ownership */
 /** @typedef Ownership1 */
 /** @typedef Ownership2 */
@@ -1757,7 +1765,46 @@ class PlatformApplicationClient {
 /** @typedef AddProxyReq */
 /** @typedef AddProxyResponse */
 /** @typedef APIError */
+/** @typedef ApplicationPermissions */
+/** @typedef ApprovedPermissions */
+/** @typedef ApprovedPermissionsInfo */
+/** @typedef Benefits */
+/** @typedef Callback */
+/** @typedef Category */
+/** @typedef CategoryL1 */
+/** @typedef CategoryL2 */
+/** @typedef CommingSoon */
+/** @typedef ContactInfo */
+/** @typedef ExtensionCommon */
+/** @typedef ExtensionDetails */
+/** @typedef ExtensionItems */
+/** @typedef ExtensionList */
+/** @typedef ExtensionListItems */
+/** @typedef ExtensionResponse */
+/** @typedef ExtensionSuggestion */
+/** @typedef ExtensionSuggestionList */
+/** @typedef getProxyPathRes */
+/** @typedef ListingInfo */
+/** @typedef Logo */
+/** @typedef ModifyPartnerReq */
+/** @typedef OrganizationBasicInfo */
+/** @typedef Pagination */
+/** @typedef PartnerInviteDetails */
+/** @typedef PartnerList */
+/** @typedef PartnerRequestList */
+/** @typedef Plan */
+/** @typedef Plans */
+/** @typedef Price */
+/** @typedef PublicExtension */
 /** @typedef RemoveProxyResponse */
+/** @typedef RequestedPermissions */
+/** @typedef Scope */
+/** @typedef Screenshots */
+/** @typedef SetupProductRes */
+/** @typedef SubscriptionRequest */
+/** @typedef SubscriptionRes */
+/** @typedef Support */
+/** @typedef UninstallExtension */
 
 /** @typedef Association */
 /** @typedef AuthMeta */
@@ -1790,9 +1837,10 @@ class PlatformApplicationClient {
 /** @typedef ResourceNotFound */
 
 /** @typedef AddressResponse */
+/** @typedef ApplicationCompanyDpViewRequest */
+/** @typedef ApplicationCompanyDpViewResponse */
 /** @typedef ApplicationServiceabilityConfig */
 /** @typedef ApplicationServiceabilityConfigResponse */
-/** @typedef CommonError */
 /** @typedef CompanyStoreView_PageItems */
 /** @typedef CompanyStoreView_Response */
 /** @typedef ContactNumberResponse */
@@ -1828,7 +1876,6 @@ class PlatformApplicationClient {
 /** @typedef MobileNo */
 /** @typedef ModifiedByResponse */
 /** @typedef OpeningClosing */
-/** @typedef PageResponse */
 /** @typedef PincodeBulkViewResponse */
 /** @typedef PincodeCodStatusListingPage */
 /** @typedef PincodeCodStatusListingRequest */
@@ -1843,7 +1890,10 @@ class PlatformApplicationClient {
 /** @typedef PincodeMopUpdateAuditHistoryResponseData */
 /** @typedef PincodeMopUpdateResponse */
 /** @typedef ProductReturnConfigResponse */
+/** @typedef ReAssignStoreRequest */
+/** @typedef ReAssignStoreResponse */
 /** @typedef ServiceabilityErrorResponse */
+/** @typedef ServiceabilityPageResponse */
 /** @typedef ServiceabilityrErrorResponse */
 /** @typedef TimmingResponse */
 /** @typedef UpdateZoneData */

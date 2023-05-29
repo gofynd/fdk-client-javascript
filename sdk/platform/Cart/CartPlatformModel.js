@@ -819,6 +819,53 @@ class CartModel {
       success: Joi.boolean(),
     });
   }
+  static OverrideCartItem() {
+    return Joi.object({
+      amount_paid: Joi.number().required(),
+      discount: Joi.number().required(),
+      extra_meta: Joi.any(),
+      item_id: Joi.number().required(),
+      price_effective: Joi.number().required(),
+      price_marked: Joi.number().required(),
+      promo_list: Joi.array().items(CartModel.OverrideCartItemPromo()),
+      quantity: Joi.number(),
+      seller_identifier: Joi.string().allow(""),
+      size: Joi.string().allow("").required(),
+    });
+  }
+  static OverrideCartItemPromo() {
+    return Joi.object({
+      item_list: Joi.array().items(Joi.any().allow(null)),
+      promo_amount: Joi.string().allow("").required(),
+      promo_desc: Joi.string().allow(""),
+      promo_id: Joi.string().allow("").required(),
+      rwrd_tndr: Joi.string().allow(""),
+    });
+  }
+  static OverrideCheckoutReq() {
+    return Joi.object({
+      aggregator: Joi.string().allow("").required(),
+      billing_address: Joi.any(),
+      cart_id: Joi.string().allow("").required(),
+      cart_items: Joi.array().items(CartModel.OverrideCartItem()).required(),
+      currency_code: Joi.string().allow("").required(),
+      merchant_code: Joi.string().allow("").required(),
+      order_type: Joi.string().allow("").required(),
+      ordering_store: Joi.number().allow(null),
+      payment_identifier: Joi.string().allow("").allow(null).required(),
+      payment_mode: Joi.string().allow("").required(),
+      shipping_address: Joi.any(),
+    });
+  }
+  static OverrideCheckoutResponse() {
+    return Joi.object({
+      cart: Joi.any().required(),
+      data: Joi.any().required(),
+      message: Joi.string().allow("").required(),
+      order_id: Joi.string().allow("").required(),
+      success: Joi.string().allow("").required(),
+    });
+  }
   static Ownership() {
     return Joi.object({
       payable_by: Joi.string().allow("").required(),

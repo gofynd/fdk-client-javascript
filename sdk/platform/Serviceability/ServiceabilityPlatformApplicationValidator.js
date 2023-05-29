@@ -1,14 +1,26 @@
 const Joi = require("joi");
 
-const LogisticsModel = require("./LogisticsPlatformModel");
-class LogisticsValidator {
+const ServiceabilityModel = require("./ServiceabilityPlatformModel");
+class ServiceabilityValidator {
+  static addAppDp() {
+    return Joi.object({
+      body: ServiceabilityModel.ApplicationCompanyDpViewRequest().required(),
+    }).required();
+  }
+
+  static deleteAppDp() {
+    return Joi.object({
+      courierPartnerId: Joi.number().required(),
+    }).required();
+  }
+
   static getApplicationServiceability() {
     return Joi.object({}).required();
   }
 
   static getZoneFromPincodeView() {
     return Joi.object({
-      body: LogisticsModel.GetZoneFromPincodeViewRequest().required(),
+      body: ServiceabilityModel.GetZoneFromPincodeViewRequest().required(),
     }).required();
   }
 
@@ -23,27 +35,27 @@ class LogisticsValidator {
 
   static updatePincodeAuditHistory() {
     return Joi.object({
-      body: LogisticsModel.PincodeMopUpdateAuditHistoryRequest().required(),
+      body: ServiceabilityModel.PincodeMopUpdateAuditHistoryRequest().required(),
     }).required();
   }
 
   static updatePincodeBulkView() {
     return Joi.object({
-      body: LogisticsModel.PincodeMopBulkData().required(),
+      body: ServiceabilityModel.PincodeMopBulkData().required(),
     }).required();
   }
 
   static updatePincodeCoDListing() {
     return Joi.object({
-      body: LogisticsModel.PincodeCodStatusListingRequest().required(),
+      body: ServiceabilityModel.PincodeCodStatusListingRequest().required(),
     }).required();
   }
 
   static updatePincodeMopView() {
     return Joi.object({
-      body: LogisticsModel.PincodeMopData().required(),
+      body: ServiceabilityModel.PincodeMopData().required(),
     }).required();
   }
 }
 
-module.exports = LogisticsValidator;
+module.exports = ServiceabilityValidator;

@@ -1,9 +1,10 @@
-export = LogisticsModel;
-declare class LogisticsModel {
+export = ServiceabilityModel;
+declare class ServiceabilityModel {
     static AddressResponse(): any;
+    static ApplicationCompanyDpViewRequest(): any;
+    static ApplicationCompanyDpViewResponse(): any;
     static ApplicationServiceabilityConfig(): any;
     static ApplicationServiceabilityConfigResponse(): any;
-    static CommonError(): any;
     static CompanyStoreView_PageItems(): any;
     static CompanyStoreView_Response(): any;
     static ContactNumberResponse(): any;
@@ -39,7 +40,6 @@ declare class LogisticsModel {
     static MobileNo(): any;
     static ModifiedByResponse(): any;
     static OpeningClosing(): any;
-    static PageResponse(): any;
     static PincodeBulkViewResponse(): any;
     static PincodeCodStatusListingPage(): any;
     static PincodeCodStatusListingRequest(): any;
@@ -54,7 +54,10 @@ declare class LogisticsModel {
     static PincodeMopUpdateAuditHistoryResponseData(): any;
     static PincodeMopUpdateResponse(): any;
     static ProductReturnConfigResponse(): any;
+    static ReAssignStoreRequest(): any;
+    static ReAssignStoreResponse(): any;
     static ServiceabilityErrorResponse(): any;
+    static ServiceabilityPageResponse(): any;
     static ServiceabilityrErrorResponse(): any;
     static TimmingResponse(): any;
     static UpdateZoneData(): any;

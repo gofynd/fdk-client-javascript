@@ -184,6 +184,7 @@ declare class OrderModel {
     static RefundModeConfigRequestPayload(): any;
     static RefundModeConfigResponsePayload(): any;
     static RefundModeInfo(): any;
+    static ReplacementDetails(): any;
     static ResponseDetail(): any;
     static ResponseGetAssetShipment(): any;
     static ReturnConfig(): any;

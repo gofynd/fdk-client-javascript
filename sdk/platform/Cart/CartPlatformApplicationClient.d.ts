@@ -17,14 +17,16 @@ declare class Cart {
      * @param {Object} arg - Arg object.
      * @param {string} arg.cartId - Current Cart _id
      * @param {boolean} [arg.b] -
+     * @param {string} [arg.userId] -
      * @param {AddCartRequest} arg.body
      * @returns {Promise<AddCartDetailResponse>} - Success response
      * @summary: Add items to abandoned cart
      * @description: Use this API to add items to the abandoned cart.
      */
-    addItems({ cartId, body, b }?: {
+    addItems({ cartId, body, b, userId }?: {
         cartId: string;
         b?: boolean;
+        userId?: string;
         body: AddCartRequest;
     }): Promise<AddCartDetailResponse>;
     /**
@@ -128,6 +130,7 @@ declare class Cart {
     fetchCartMetaConfig({}?: any): Promise<CartMetaConfigAdd>;
     /**
      * @param {Object} arg - Arg object.
+     * @param {string} [arg.userId] -
      * @param {number} [arg.pageNo] -
      * @param {number} [arg.pageSize] -
      * @param {string} [arg.fromDate] -
@@ -139,7 +142,8 @@ declare class Cart {
      * @summary: Get with abandoned cart list
      * @description: Get abandoned cart list with pagination
      */
-    getAbandonedCart({ pageNo, pageSize, fromDate, toDate, anonymousCart, lastId, sortOn, }?: {
+    getAbandonedCart({ userId, pageNo, pageSize, fromDate, toDate, anonymousCart, lastId, sortOn, }?: {
+        userId?: string;
         pageNo?: number;
         pageSize?: number;
         fromDate?: string;
@@ -152,6 +156,7 @@ declare class Cart {
      * @param {Object} arg - Arg object.
      * @param {string} arg.companyId - Current company id
      * @param {string} arg.applicationId - Current Application _id
+     * @param {string} [arg.userId] -
      * @param {number} [arg.pageSize] -
      * @param {string} [arg.fromDate] -
      * @param {string} [arg.toDate] -
@@ -161,9 +166,10 @@ declare class Cart {
      * @summary: Get with abandoned cart list
      * @description: Get abandoned cart list with pagination
      */
-    getAbandonedCartPaginator({ companyId, applicationId, pageSize, fromDate, toDate, anonymousCart, lastId, sortOn, }?: {
+    getAbandonedCartPaginator({ companyId, applicationId, userId, pageSize, fromDate, toDate, anonymousCart, lastId, sortOn, }?: {
         companyId: string;
         applicationId: string;
+        userId?: string;
         pageSize?: number;
         fromDate?: string;
         toDate?: string;
@@ -173,6 +179,7 @@ declare class Cart {
     }): Paginator;
     /**
      * @param {Object} arg - Arg object.
+     * @param {string} [arg.userId] -
      * @param {string} [arg.id] -
      * @param {boolean} [arg.i] -
      * @param {boolean} [arg.b] -
@@ -180,7 +187,8 @@ declare class Cart {
      * @summary: Fetch all items added to the cart
      * @description: Use this API to get details of all the items added to a cart.
      */
-    getAbandonedCartDetails({ id, i, b }?: {
+    getAbandonedCartDetails({ userId, id, i, b }?: {
+        userId?: string;
         id?: string;
         i?: boolean;
         b?: boolean;
@@ -427,7 +435,7 @@ declare class Cart {
      * @param {number} [arg.pageNo] -
      * @param {number} [arg.pageSize] -
      * @param {string} [arg.q] -
-     * @param {string} [arg.status] -
+     * @param {boolean} [arg.isActive] -
      * @param {string} [arg.promoGroup] -
      * @param {string} [arg.promotionType] -
      * @param {string} [arg.fpPanel] -
@@ -436,11 +444,11 @@ declare class Cart {
      * @summary: Get promotion list
      * @description: Get promotion list with pagination
      */
-    getPromotions({ pageNo, pageSize, q, status, promoGroup, promotionType, fpPanel, promotionId, }?: {
+    getPromotions({ pageNo, pageSize, q, isActive, promoGroup, promotionType, fpPanel, promotionId, }?: {
         pageNo?: number;
         pageSize?: number;
         q?: string;
-        status?: string;
+        isActive?: boolean;
         promoGroup?: string;
         promotionType?: string;
         fpPanel?: string;
@@ -452,7 +460,7 @@ declare class Cart {
      * @param {string} arg.applicationId - Current Application _id
      * @param {number} [arg.pageSize] -
      * @param {string} [arg.q] -
-     * @param {string} [arg.status] -
+     * @param {boolean} [arg.isActive] -
      * @param {string} [arg.promoGroup] -
      * @param {string} [arg.promotionType] -
      * @param {string} [arg.fpPanel] -
@@ -460,12 +468,12 @@ declare class Cart {
      * @summary: Get promotion list
      * @description: Get promotion list with pagination
      */
-    getPromotionsPaginator({ companyId, applicationId, pageSize, q, status, promoGroup, promotionType, fpPanel, promotionId, }?: {
+    getPromotionsPaginator({ companyId, applicationId, pageSize, q, isActive, promoGroup, promotionType, fpPanel, promotionId, }?: {
         companyId: string;
         applicationId: string;
         pageSize?: number;
         q?: string;
-        status?: string;
+        isActive?: boolean;
         promoGroup?: string;
         promotionType?: string;
         fpPanel?: string;
@@ -510,6 +518,16 @@ declare class Cart {
     getStoreAddressByUid({ storeUid }?: {
         storeUid: number;
     }): Promise<StoreDetailsResponse>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {OverrideCheckoutReq} arg.body
+     * @returns {Promise<OverrideCheckoutResponse>} - Success response
+     * @summary: Create Fynd order with overriding cart details
+     * @description: Generate Fynd order while overriding cart details sent with provided `cart_items`
+     */
+    overrideCart({ body }?: {
+        body: OverrideCheckoutReq;
+    }): Promise<OverrideCheckoutResponse>;
     /**
      * @param {Object} arg - Arg object.
      * @param {boolean} [arg.i] -
@@ -656,14 +674,16 @@ declare class Cart {
      * @param {Object} arg - Arg object.
      * @param {string} arg.cartId - Current Cart _id
      * @param {boolean} [arg.b] -
+     * @param {string} [arg.userId] -
      * @param {UpdateCartRequest} arg.body
      * @returns {Promise<UpdateCartDetailResponse>} - Success response
      * @summary: Update items in the abandoned cart
      * @description: <p>Use this API to update items added to the cart with the help of a request object containing attributes like item_quantity and item_size. These attributes will be fetched from the following APIs</p> <ul> <li><font color="monochrome">operation</font> Operation for current api call. <b>update_item</b> for update items. <b>remove_item</b> for removing items.</li> <li> <font color="monochrome">item_id</font>  "/platform/content/v1/products/"</li> <li> <font color="monochrome">item_size</font>   "/platform/content/v1/products/:slug/sizes/"</li> <li> <font color="monochrome">quantity</font>  item quantity (must be greater than or equal to 1)</li> <li> <font color="monochrome">article_id</font>   "/content​/v1​/products​/:identifier​/sizes​/price​/"</li> <li> <font color="monochrome">item_index</font>  item position in the cart (must be greater than or equal to 0)</li> </ul>
      */
-    updateCart({ cartId, body, b }?: {
+    updateCart({ cartId, body, b, userId }?: {
         cartId: string;
         b?: boolean;
+        userId?: string;
         body: UpdateCartRequest;
     }): Promise<UpdateCartDetailResponse>;
     /**

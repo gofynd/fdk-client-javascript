@@ -370,14 +370,14 @@ declare class Order {
     }): Promise<ShipmentInfoResponse>;
     /**
      * @param {Object} arg - Arg object.
-     * @param {number} [arg.shipmentId] - Shipment Id
+     * @param {string} [arg.shipmentId] - Shipment Id
      * @param {number} [arg.bagId] - Bag/Product Id
      * @returns {Promise<ShipmentHistoryResponse>} - Success response
      * @summary:
      * @description:
      */
     getShipmentHistory({ shipmentId, bagId }?: {
-        shipmentId?: number;
+        shipmentId?: string;
         bagId?: number;
     }): Promise<ShipmentHistoryResponse>;
     /**

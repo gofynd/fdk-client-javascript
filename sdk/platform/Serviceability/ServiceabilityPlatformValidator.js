@@ -1,10 +1,10 @@
 const Joi = require("joi");
 
-const LogisticsModel = require("./LogisticsPlatformModel");
-class LogisticsValidator {
+const ServiceabilityModel = require("./ServiceabilityPlatformModel");
+class ServiceabilityValidator {
   static createZone() {
     return Joi.object({
-      body: LogisticsModel.ZoneRequest().required(),
+      body: ServiceabilityModel.ZoneRequest().required(),
     }).required();
   }
 
@@ -18,7 +18,7 @@ class LogisticsValidator {
 
   static getEntityRegionView() {
     return Joi.object({
-      body: LogisticsModel.EntityRegionView_Request().required(),
+      body: ServiceabilityModel.EntityRegionView_Request().required(),
     }).required();
   }
 
@@ -30,6 +30,12 @@ class LogisticsValidator {
       isActive: Joi.boolean(),
       channelIds: Joi.string().allow(""),
       q: Joi.string().allow(""),
+    }).required();
+  }
+
+  static getOptimalLocations() {
+    return Joi.object({
+      body: ServiceabilityModel.ReAssignStoreRequest().required(),
     }).required();
   }
 
@@ -48,9 +54,9 @@ class LogisticsValidator {
   static updateZoneControllerView() {
     return Joi.object({
       zoneId: Joi.string().allow("").required(),
-      body: LogisticsModel.ZoneUpdateRequest().required(),
+      body: ServiceabilityModel.ZoneUpdateRequest().required(),
     }).required();
   }
 }
 
-module.exports = LogisticsValidator;
+module.exports = ServiceabilityValidator;

@@ -45,6 +45,7 @@ class CatalogValidator {
     return Joi.object({
       slug: Joi.string().allow("").required(),
       f: Joi.string().allow(""),
+      q: Joi.string().allow(""),
       filters: Joi.boolean(),
       sortOn: Joi.string().allow(""),
       pageId: Joi.string().allow(""),

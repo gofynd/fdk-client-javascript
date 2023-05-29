@@ -1,15 +1,138 @@
 const PlatformAPIClient = require("../PlatformAPIClient");
 const { FDKClientValidationError } = require("../../common/FDKError");
 const Paginator = require("../../common/Paginator");
-const LogisticsValidator = require("./LogisticsPlatformApplicationValidator");
-const LogisticsModel = require("./LogisticsPlatformModel");
+const ServiceabilityValidator = require("./ServiceabilityPlatformApplicationValidator");
+const ServiceabilityModel = require("./ServiceabilityPlatformModel");
 const { Logger } = require("./../../common/Logger");
 const Joi = require("joi");
 
-class Logistics {
+class Serviceability {
   constructor(config, applicationId) {
     this.config = config;
     this.applicationId = applicationId;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {ApplicationCompanyDpViewRequest} arg.body
+   * @returns {Promise<ApplicationCompanyDpViewResponse>} - Success response
+   * @summary: Add application dp data
+   * @description: This API add application dp data.
+   */
+  async addAppDp({ body } = {}) {
+    const { error } = ServiceabilityValidator.addAppDp().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = ServiceabilityValidator.addAppDp().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for addAppDp",
+      });
+      Logger({ level: "WARN", message: warrning });
+    }
+
+    const query_params = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/logistics/v1.0/company/${this.config.companyId}/application/${this.applicationId}`,
+      query_params,
+      body
+    );
+
+    const {
+      error: res_error,
+    } = ServiceabilityModel.ApplicationCompanyDpViewResponse().validate(
+      response,
+      { abortEarly: false, allowUnknown: false }
+    );
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for addAppDp",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {number} arg.courierPartnerId - A `courier_partner_id` is a unique
+   *   identifier of a particular delivery partner.
+   * @returns {Promise<ApplicationCompanyDpViewResponse>} - Success response
+   * @summary: Delete application dp data
+   * @description: This API remove application dp data.
+   */
+  async deleteAppDp({ courierPartnerId } = {}) {
+    const { error } = ServiceabilityValidator.deleteAppDp().validate(
+      {
+        courierPartnerId,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = ServiceabilityValidator.deleteAppDp().validate(
+      {
+        courierPartnerId,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for deleteAppDp",
+      });
+      Logger({ level: "WARN", message: warrning });
+    }
+
+    const query_params = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "delete",
+      `/service/platform/logistics/v1.0/company/${this.config.companyId}/application/${this.applicationId}/courier-partner/${courierPartnerId}`,
+      query_params,
+      undefined
+    );
+
+    const {
+      error: res_error,
+    } = ServiceabilityModel.ApplicationCompanyDpViewResponse().validate(
+      response,
+      { abortEarly: false, allowUnknown: false }
+    );
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for deleteAppDp",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
@@ -21,7 +144,7 @@ class Logistics {
   async getApplicationServiceability({} = {}) {
     const {
       error,
-    } = LogisticsValidator.getApplicationServiceability().validate(
+    } = ServiceabilityValidator.getApplicationServiceability().validate(
       {},
       { abortEarly: false, allowUnknown: true }
     );
@@ -32,7 +155,7 @@ class Logistics {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = LogisticsValidator.getApplicationServiceability().validate(
+    } = ServiceabilityValidator.getApplicationServiceability().validate(
       {},
       { abortEarly: false, allowUnknown: false }
     );
@@ -57,7 +180,7 @@ class Logistics {
 
     const {
       error: res_error,
-    } = LogisticsModel.ApplicationServiceabilityConfigResponse().validate(
+    } = ServiceabilityModel.ApplicationServiceabilityConfigResponse().validate(
       response,
       { abortEarly: false, allowUnknown: false }
     );
@@ -82,7 +205,7 @@ class Logistics {
    * @description: This API returns zone from the Pincode View.
    */
   async getZoneFromPincodeView({ body } = {}) {
-    const { error } = LogisticsValidator.getZoneFromPincodeView().validate(
+    const { error } = ServiceabilityValidator.getZoneFromPincodeView().validate(
       {
         body,
       },
@@ -95,7 +218,7 @@ class Logistics {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = LogisticsValidator.getZoneFromPincodeView().validate(
+    } = ServiceabilityValidator.getZoneFromPincodeView().validate(
       {
         body,
       },
@@ -121,10 +244,10 @@ class Logistics {
 
     const {
       error: res_error,
-    } = LogisticsModel.GetZoneFromPincodeViewResponse().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
+    } = ServiceabilityModel.GetZoneFromPincodeViewResponse().validate(
+      response,
+      { abortEarly: false, allowUnknown: false }
+    );
 
     if (res_error) {
       Logger({
@@ -150,7 +273,7 @@ class Logistics {
   async getZonesFromApplicationIdView({ pageNo, pageSize, zoneId, q } = {}) {
     const {
       error,
-    } = LogisticsValidator.getZonesFromApplicationIdView().validate(
+    } = ServiceabilityValidator.getZonesFromApplicationIdView().validate(
       {
         pageNo,
         pageSize,
@@ -166,7 +289,7 @@ class Logistics {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = LogisticsValidator.getZonesFromApplicationIdView().validate(
+    } = ServiceabilityValidator.getZonesFromApplicationIdView().validate(
       {
         pageNo,
         pageSize,
@@ -200,7 +323,7 @@ class Logistics {
 
     const {
       error: res_error,
-    } = LogisticsModel.GetZoneFromApplicationIdViewResponse().validate(
+    } = ServiceabilityModel.GetZoneFromApplicationIdViewResponse().validate(
       response,
       { abortEarly: false, allowUnknown: false }
     );
@@ -225,7 +348,9 @@ class Logistics {
    * @description: This API returns Audit logs of Pincode.
    */
   async updatePincodeAuditHistory({ body } = {}) {
-    const { error } = LogisticsValidator.updatePincodeAuditHistory().validate(
+    const {
+      error,
+    } = ServiceabilityValidator.updatePincodeAuditHistory().validate(
       {
         body,
       },
@@ -238,7 +363,7 @@ class Logistics {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = LogisticsValidator.updatePincodeAuditHistory().validate(
+    } = ServiceabilityValidator.updatePincodeAuditHistory().validate(
       {
         body,
       },
@@ -264,7 +389,7 @@ class Logistics {
 
     const {
       error: res_error,
-    } = LogisticsModel.PincodeMopUpdateAuditHistoryResponseData().validate(
+    } = ServiceabilityModel.PincodeMopUpdateAuditHistoryResponseData().validate(
       response,
       { abortEarly: false, allowUnknown: false }
     );
@@ -288,7 +413,7 @@ class Logistics {
    * @description: This API constructs bulk write operations to update the MOP data for each pincode in the payload.
    */
   async updatePincodeBulkView({ body } = {}) {
-    const { error } = LogisticsValidator.updatePincodeBulkView().validate(
+    const { error } = ServiceabilityValidator.updatePincodeBulkView().validate(
       {
         body,
       },
@@ -301,7 +426,7 @@ class Logistics {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = LogisticsValidator.updatePincodeBulkView().validate(
+    } = ServiceabilityValidator.updatePincodeBulkView().validate(
       {
         body,
       },
@@ -327,7 +452,7 @@ class Logistics {
 
     const {
       error: res_error,
-    } = LogisticsModel.PincodeBulkViewResponse().validate(response, {
+    } = ServiceabilityModel.PincodeBulkViewResponse().validate(response, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -351,7 +476,9 @@ class Logistics {
    * @description: This API returns count of active pincode.
    */
   async updatePincodeCoDListing({ body } = {}) {
-    const { error } = LogisticsValidator.updatePincodeCoDListing().validate(
+    const {
+      error,
+    } = ServiceabilityValidator.updatePincodeCoDListing().validate(
       {
         body,
       },
@@ -364,7 +491,7 @@ class Logistics {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = LogisticsValidator.updatePincodeCoDListing().validate(
+    } = ServiceabilityValidator.updatePincodeCoDListing().validate(
       {
         body,
       },
@@ -390,10 +517,10 @@ class Logistics {
 
     const {
       error: res_error,
-    } = LogisticsModel.PincodeCodStatusListingResponse().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
+    } = ServiceabilityModel.PincodeCodStatusListingResponse().validate(
+      response,
+      { abortEarly: false, allowUnknown: false }
+    );
 
     if (res_error) {
       Logger({
@@ -414,7 +541,7 @@ class Logistics {
    * @description: This API updates Pincode method of payment.
    */
   async updatePincodeMopView({ body } = {}) {
-    const { error } = LogisticsValidator.updatePincodeMopView().validate(
+    const { error } = ServiceabilityValidator.updatePincodeMopView().validate(
       {
         body,
       },
@@ -427,7 +554,7 @@ class Logistics {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = LogisticsValidator.updatePincodeMopView().validate(
+    } = ServiceabilityValidator.updatePincodeMopView().validate(
       {
         body,
       },
@@ -453,7 +580,7 @@ class Logistics {
 
     const {
       error: res_error,
-    } = LogisticsModel.PincodeMOPresponse().validate(response, {
+    } = ServiceabilityModel.PincodeMOPresponse().validate(response, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -470,4 +597,4 @@ class Logistics {
   }
 }
 
-module.exports = Logistics;
+module.exports = Serviceability;

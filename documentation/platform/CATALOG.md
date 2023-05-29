@@ -184,13 +184,38 @@ A successful response contains the success message if the collection is updated 
 
 
 <details>
-<summary><i>&nbsp; Example:</i></summary>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; All items update</i></summary>
 
 ```json
 {
-  "message": "items updated"
+  "summary": "All the given items are updated in the collection.",
+  "value": {
+    "message": "items updated"
+  }
 }
 ```
+</details>
+
+<details>
+<summary><i>&nbsp; Partial items update</i></summary>
+
+```json
+{
+  "summary": "Partial update of items in a collection.",
+  "value": {
+    "items_not_updated": [
+      2343423,
+      2342352
+    ]
+  }
+}
+```
+</details>
+
 </details>
 
 
@@ -5423,26 +5448,57 @@ A successful response contains the insights of the catalog. See the example belo
 
 
 <details>
-<summary><i>&nbsp; Example:</i></summary>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; Get all the catalog insights for the application</i></summary>
 
 ```json
 {
-  "item": {
-    "count": 637707,
-    "out_of_stock_count": 452806,
-    "sellable_count": 184901
-  },
-  "brand_distribution": {
-    "name": "fynd",
-    "available_articles": 5,
-    "total_articles": 10,
-    "available_sizes": 3,
-    "total_sizes": 5,
-    "article_freshness": 2,
-    "count": 0
+  "summary": "Get all the catalog insights for the application.",
+  "value": {
+    "item": {
+      "count": 637707,
+      "out_of_stock_count": 452806,
+      "sellable_count": 184901
+    }
   }
 }
 ```
+</details>
+
+<details>
+<summary><i>&nbsp; Get the brand distribution for the application</i></summary>
+
+```json
+{
+  "summary": "Get the brand distribution catalog insights for the application by providing the brand slug in the brand parameter.",
+  "value": {
+    "brand_distribution": {
+      "name": "fynd",
+      "available_articles": 5,
+      "total_articles": 10,
+      "available_sizes": 3,
+      "total_sizes": 5,
+      "article_freshness": 2
+    }
+  }
+}
+```
+</details>
+
+<details>
+<summary><i>&nbsp; Response for invalid brand slug</i></summary>
+
+```json
+{
+  "summary": "Response for invaid brand slug.",
+  "value": {}
+}
+```
+</details>
+
 </details>
 
 
@@ -12320,245 +12376,122 @@ A successful response contains the options for query that can be applied for the
         "display": "Department",
         "name": "department",
         "kind": "multivalued",
-        "logo": "https://hdn-1.fynd.com/global/menu-icons/Department.png"
+        "logo": "https://hdn-1.fynd.com/products/pictures/attribute/logo/original/FiQP7BeJbz-Department.png",
+        "operators": [
+          "in",
+          "nin"
+        ]
       },
       "values": [
         {
-          "display": "Men's Fashion",
-          "count": 2113,
+          "display": "Home & Living",
+          "count": 54353,
           "is_selected": false,
-          "value": "men",
+          "value": "home--living",
           "logo": {
             "type": "image",
-            "url": "https://hdn-1.fynd.com/media/category_tab_icons/department/Men.png"
+            "url": "https://hdn-1.fynd.com/media/category_tab_icons/department/HomeDecor.png"
           }
-        }
-      ]
-    },
-    {
-      "key": {
-        "display": "Category",
-        "name": "category",
-        "kind": "multivalued",
-        "logo": "https://hdn-1.fynd.com/global/menu-icons/Category.png"
-      },
-      "values": [
-        {
-          "display": "T-Shirts",
-          "count": 968,
-          "is_selected": false,
-          "value": "192",
-          "logo": "https://hdn-1.fynd.com/media/logo/category/original/15442_57fdc97abfd248aaaf8841f097a4ed67.jpg"
-        }
-      ]
-    },
-    {
-      "key": {
-        "display": "Size",
-        "name": "sizes",
-        "kind": "multivalued",
-        "logo": "https://hdn-1.fynd.com/global/menu-icons/Sizes.png"
-      },
-      "values": [
-        {
-          "display": "S",
-          "count": 1438,
-          "is_selected": false,
-          "value": "S"
-        }
-      ]
-    },
-    {
-      "key": {
-        "display": "Brand",
-        "name": "brand",
-        "kind": "multivalued",
-        "logo": "https://hdn-1.fynd.com/global/menu-icons/Brand%20ID.png"
-      },
-      "values": [
-        {
-          "display": "Superdry",
-          "count": 4263,
-          "is_selected": false,
-          "value": "235",
-          "logo": "https://hdn-1.fynd.com/media/logo/brand/original/1008_238113b8e11448f792e9bf860aac30f2.jpg"
-        }
-      ]
-    },
-    {
-      "key": {
-        "display": "Rating",
-        "name": "rating",
-        "kind": "multivalued",
-        "logo": "https://hdn-1.fynd.com/global/menu-icons/Rating.png"
-      },
-      "values": [
-        {
-          "count": 3,
-          "display": "5 ★",
-          "value": "[4 TO *}",
-          "is_selected": false
-        }
-      ]
-    },
-    {
-      "key": {
-        "display": "Company",
-        "name": "company_id_list",
-        "kind": "multivalued",
-        "logo": "https://hdn-1.fynd.com/global/menu-icons/Store%20ID%20List.png"
-      },
-      "values": [
-        {
-          "display": "RELIANCE BRANDS LIMITED",
-          "count": 4262,
-          "is_selected": false,
-          "value": "46"
-        }
-      ]
-    },
-    {
-      "key": {
-        "display": "Store Ids",
-        "name": "store_id_list",
-        "kind": "multivalued",
-        "logo": "https://hdn-1.fynd.com/global/menu-icons/Store%20ID%20List.png"
-      },
-      "values": [
-        {
-          "display": "PHOENIX, ,PALLADIUM,  LOWER PAREL - 5410",
-          "count": 1385,
-          "is_selected": false,
-          "value": "2201"
-        }
-      ]
-    },
-    {
-      "key": {
-        "display": "Image",
-        "name": "image_nature",
-        "kind": "multivalued",
-        "logo": "https://hdn-1.fynd.com/global/menu-icons/image%20Nature.png"
-      },
-      "values": [
-        {
-          "display": "Good Quality",
-          "count": 3111,
-          "is_selected": false,
-          "value": "standard"
         },
         {
-          "display": "No Image",
-          "count": 1152,
+          "display": "j",
+          "count": 20149,
           "is_selected": false,
-          "value": "default"
-        }
-      ]
-    },
-    {
-      "key": {
-        "display": "Set",
-        "name": "is_set",
-        "kind": "multivalued",
-        "logo": ""
-      },
-      "values": [
+          "value": "mens-fashions",
+          "logo": {
+            "type": "image",
+            "url": "https://cdn.pixelbin.io/v2/falling-surf-7c8bb8/fyndnp/wrkr/addsale/department/pictures/square-logo/original/FnYlrpol3-department.webp"
+          }
+        },
         {
-          "display": "No",
-          "count": 4263,
+          "display": "Fashion",
+          "count": 6184,
           "is_selected": false,
-          "value": false
-        }
-      ]
-    },
-    {
-      "key": {
-        "display": "Product Fit",
-        "name": "product_fit",
-        "kind": "multivalued",
-        "logo": ""
-      },
-      "values": [
+          "value": "fashion",
+          "logo": {
+            "type": "image",
+            "url": "https://cdn.pixelbin.io/v2/falling-surf-7c8bb8/fyndnp/wrkr/addsale/department/pictures/square-logo/original/7rZN3ToJ3-.png"
+          }
+        },
         {
-          "display": "Regular",
+          "display": "Asma111",
+          "count": 38,
+          "is_selected": false,
+          "value": "asmasssaa",
+          "logo": {
+            "type": "image",
+            "url": "https://hdn-1.jiox0.de/jiox5/department/pictures/square-logo/original/rLdO59CM--department.jpeg"
+          }
+        },
+        {
+          "display": "Toys & games",
           "count": 14,
           "is_selected": false,
-          "value": "Regular"
-        }
-      ]
-    },
-    {
-      "key": {
-        "display": "Primary Material",
-        "name": "primary_material",
-        "kind": "multivalued",
-        "logo": ""
-      },
-      "values": [
-        {
-          "display": "Cotton",
-          "count": 1246,
-          "is_selected": false,
-          "value": "Cotton"
-        }
-      ]
-    },
-    {
-      "key": {
-        "display": "Gender",
-        "name": "gender",
-        "kind": "multivalued",
-        "logo": ""
-      },
-      "values": [
-        {
-          "display": "Men",
-          "count": 2125,
-          "is_selected": false,
-          "value": "Men"
+          "value": "toys",
+          "logo": {
+            "type": "image",
+            "url": "https://hdn-1.fynd.com/media/category_tab_icons/department/Toys.png"
+          }
         },
         {
-          "display": "Women",
-          "count": 1492,
+          "display": "Baby Care & Kids Essentials",
+          "count": 10,
           "is_selected": false,
-          "value": "Women"
-        }
-      ]
-    },
-    {
-      "key": {
-        "display": "Primary Colour",
-        "name": "primary_color",
-        "kind": "multivalued",
-        "logo": ""
-      },
-      "values": [
+          "value": "baby-care-kids-essentials",
+          "logo": {
+            "type": "image",
+            "url": "https://hdn-1.fynd.com/media/category_tab_icons/department/Babycareandkidsessential.png"
+          }
+        },
         {
-          "display": "Multi",
-          "count": 1403,
+          "display": "Electronics",
+          "count": 5,
           "is_selected": false,
-          "value": "Multi"
-        }
-      ]
-    },
-    {
-      "key": {
-        "display": "Size Depth",
-        "name": "size_depth",
-        "kind": "range",
-        "logo": "https://hdn-1.fynd.com/global/menu-icons/Size%20Depth.png"
-      },
-      "values": [
+          "value": "electronics",
+          "logo": {
+            "type": "image",
+            "url": "https://hdn-1.fynd.com/media/logo/department/original/13239_660c6f5b2b8d458789de4552d241ea1b.jpg"
+          }
+        },
         {
-          "count": 4263,
-          "min": 0,
-          "max": 9,
+          "display": "APPAREL & ACCESSORIES",
+          "count": 1,
           "is_selected": false,
-          "selected_min": 0,
-          "selected_max": 9,
-          "query_format": "[{} TO {}]",
-          "display_format": "{} - {}",
-          "display": "0 - 9"
+          "value": "apparel-accessories",
+          "logo": {
+            "type": "image",
+            "url": "https://cdn.pixelbin.io/v2/falling-surf-7c8bb8/fyndnp/wrkr/addsale/department/pictures/square-logo/original/Yu0vJvcEE-department.jpeg"
+          }
+        },
+        {
+          "display": "Electronicstesting",
+          "count": 1,
+          "is_selected": false,
+          "value": "electronicstesting",
+          "logo": {
+            "type": "image",
+            "url": "https://cdn.pixelbin.io/v2/falling-surf-7c8bb8/fyndnp/wrkr/addsale/department/pictures/square-logo/original/JuzodT3tk-department.webp"
+          }
+        },
+        {
+          "display": "Kids fashion",
+          "count": 1,
+          "is_selected": false,
+          "value": "kids",
+          "logo": {
+            "type": "image",
+            "url": "https://hdn-1.fynd.com/media/category_tab_icons/department/Kids.png"
+          }
+        },
+        {
+          "display": "test-dept",
+          "count": 1,
+          "is_selected": false,
+          "value": "test-dept",
+          "logo": {
+            "type": "image",
+            "url": "https://cdn.pixelbin.io/v2/falling-surf-7c8bb8/fyndnp/wrkr/addsale/department/pictures/square-logo/original/B-WiKG2_B-department.png"
+          }
         }
       ]
     },
@@ -12567,40 +12500,28 @@ A successful response contains the options for query that can be applied for the
         "display": "Price",
         "name": "min_price_effective",
         "kind": "range",
-        "logo": "https://hdn-1.fynd.com/global/menu-icons/Min%20price%20effective.png"
+        "logo": "https://hdn-1.fynd.com/products/pictures/attribute/logo/original/m4SDdD279_-Min-price-effective.png",
+        "operators": [
+          "btw",
+          "lte",
+          "gte",
+          "lt",
+          "gt"
+        ]
       },
       "values": [
         {
-          "count": 4263,
-          "min": 398,
-          "max": 24999,
+          "count": 80740,
+          "min": 0,
+          "max": 250000,
           "is_selected": false,
-          "selected_min": 398.8,
-          "selected_max": 24998.77,
+          "selected_min": 0.82,
+          "selected_max": 250000,
+          "display_format": "{} to {}",
           "currency_code": "INR",
           "currency_symbol": "₹",
-          "query_format": "[{},INR TO {},INR]"
-        }
-      ]
-    },
-    {
-      "key": {
-        "display": "Discount",
-        "name": "platform_discount",
-        "kind": "range",
-        "logo": "https://hdn-1.fynd.com/global/menu-icons/Platform%20Discount.png"
-      },
-      "values": [
-        {
-          "count": 4263,
-          "min": 0,
-          "max": 50,
-          "is_selected": false,
-          "selected_min": 0,
-          "selected_max": 50,
-          "query_format": "[{} TO {}]",
-          "display_format": "{} - {}",
-          "display": "0 - 50"
+          "query_format": "[{},INR TO {},INR]",
+          "display": "₹0.82 to ₹250000.0"
         }
       ]
     }
@@ -12609,60 +12530,27 @@ A successful response contains the options for query that can be applied for the
     {
       "display": "Latest Products",
       "name": "Latest Products",
-      "logo": "https://hdn-1.fynd.com/global/menu-icons/Latest%20Products.png",
+      "logo": "https://hdn-1.fynd.com/products/pictures/attribute/logo/original/QEvUfhsfyg-Latest-Products.png",
       "value": "latest",
       "is_selected": true
     },
     {
-      "display": "Popularity",
-      "name": "Popularity",
-      "logo": "https://hdn-1.fynd.com/global/menu-icons/Popularity.png",
-      "value": "popular",
-      "is_selected": false
-    },
-    {
-      "display": "Price Low to High",
-      "name": "Price Low to High",
-      "logo": "https://hdn-1.fynd.com/global/menu-icons/Price%20High%20to%20Low.png",
-      "value": "price_asc",
-      "is_selected": false
-    },
-    {
-      "display": "Price High to Low",
-      "name": "Price High to Low",
-      "logo": "https://hdn-1.fynd.com/global/menu-icons/Price%20High%20to%20Low.png",
-      "value": "price_dsc",
-      "is_selected": false
-    },
-    {
-      "display": "Discount Low to High",
-      "name": "Discount Low to High",
-      "logo": "https://hdn-1.fynd.com/global/menu-icons/Discount%20Low%20to%20High.png",
-      "value": "discount_asc",
-      "is_selected": false
-    },
-    {
-      "display": "Discount High to Low",
-      "name": "Discount High to Low",
-      "logo": "https://hdn-1.fynd.com/global/menu-icons/Discount%20Low%20to%20High.png",
-      "value": "discount_dsc",
-      "is_selected": false
-    },
-    {
-      "display": "Rating",
-      "name": "Rating",
-      "logo": "https://hdn-1.fynd.com/global/menu-icons/Rating.png",
-      "value": "rating_dsc",
-      "is_selected": false
-    },
-    {
-      "display": "Size Depth (High to Low)",
-      "name": "Size Depth (High to Low)",
+      "display": "Manual",
+      "name": "Manual",
+      "value": "manual",
       "logo": "https://hdn-1.fynd.com/global/menu-icons/Size%20Depth.png",
-      "value": "depth_desc",
-      "is_selected": false
+      "is_selected": true
     }
-  ]
+  ],
+  "operators": {
+    "btw": "Between",
+    "lte": "Less than Equals",
+    "gte": "Greater than Equals",
+    "gt": "Greater than",
+    "lt": "Less than",
+    "in": "Equal to",
+    "nin": "Not Equal to"
+  }
 }
 ```
 </details>
@@ -18093,6 +17981,7 @@ List of fields and validation values fro each. See example below or refer `Inven
  | description | string? |  yes  |  |
  | details | [AttributeMasterDetails](#AttributeMasterDetails) |  no  |  |
  | enabled_for_end_consumer | boolean? |  yes  |  |
+ | example | string? |  yes  |  |
  | filters | [AttributeMasterFilter](#AttributeMasterFilter) |  no  |  |
  | is_nested | boolean? |  yes  |  |
  | logo | string? |  yes  |  |
@@ -18592,6 +18481,17 @@ List of fields and validation values fro each. See example below or refer `Inven
 
 ---
 
+#### [CollectionErrorResponse](#CollectionErrorResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | code | number |  no  | The HTTP status code indicating the error. |
+ | errors | string? |  yes  | Additional errors related to the request, if applicable. |
+ | message | string |  no  | A descriptive message providing details about the error. |
+ 
+
+---
+
 #### [CollectionImage](#CollectionImage)
 
  | Properties | Type | Nullable | Description |
@@ -18683,6 +18583,26 @@ List of fields and validation values fro each. See example below or refer `Inven
 
 ---
 
+#### [CollectionUpdateBanner](#CollectionUpdateBanner)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | landscape | [CollectionUpdateImage](#CollectionUpdateImage) |  no  | The landscape image of the item. |
+ | portrait | [CollectionUpdateImage](#CollectionUpdateImage) |  no  | The portrait image of the item. |
+ 
+
+---
+
+#### [CollectionUpdateImage](#CollectionUpdateImage)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | type | string |  no  | This is the type of the URL. |
+ | url | string |  no  | The URL of the item. |
+ 
+
+---
+
 #### [CollectionUpdateResponse](#CollectionUpdateResponse)
 
  | Properties | Type | Nullable | Description |
@@ -18694,11 +18614,11 @@ List of fields and validation values fro each. See example below or refer `Inven
  | allow_sort | boolean? |  yes  | Indicates whether sorting is allowed for the collection. |
  | app_id | string? |  yes  | It is alphanumeric ID allotted to a sales channel application created within a business account. |
  | badge | [CollectionBadge](#CollectionBadge)? |  yes  | It is the data of the badge to be shown on the store front collection listing. |
- | banners | [CollectionBanner](#CollectionBanner)? |  yes  | The URLs and aspect ratios of the collection banners. |
+ | banners | [CollectionUpdateBanner](#CollectionUpdateBanner)? |  yes  | The URLs and aspect ratios of the collection banners. |
  | description | string? |  yes  | The description of the collection. |
  | is_active | boolean? |  yes  | Indicates whether the collection is active or not. |
  | is_visible | boolean? |  yes  | It represents whether the collection is visible on the store front application. |
- | logo | [CollectionImage](#CollectionImage)? |  yes  | The logo of the collection. |
+ | logo | [CollectionUpdateImage](#CollectionUpdateImage)? |  yes  | The logo of the collection. |
  | meta | string? |  yes  | Additional metadata for the collection. |
  | modified_by | [UserInfo](#UserInfo)? |  yes  |  |
  | name | string? |  yes  | The name of the collection. |
@@ -19432,15 +19352,15 @@ List of fields and validation values fro each. See example below or refer `Inven
  | addresses | [[GetAddressSerializer](#GetAddressSerializer)]? |  yes  |  |
  | business_type | string? |  yes  |  |
  | company_type | string? |  yes  |  |
- | created_by | [UserSerializer2](#UserSerializer2)? |  yes  |  |
+ | created_by | [UserSerializer1](#UserSerializer1)? |  yes  |  |
  | created_on | string? |  yes  |  |
- | modified_by | [UserSerializer2](#UserSerializer2)? |  yes  |  |
+ | modified_by | [UserSerializer1](#UserSerializer1)? |  yes  |  |
  | modified_on | string? |  yes  |  |
  | name | string? |  yes  |  |
  | reject_reason | string? |  yes  |  |
  | stage | string? |  yes  |  |
  | uid | number? |  yes  |  |
- | verified_by | [UserSerializer2](#UserSerializer2)? |  yes  |  |
+ | verified_by | [UserSerializer1](#UserSerializer1)? |  yes  |  |
  | verified_on | string? |  yes  |  |
  
 
@@ -19524,14 +19444,14 @@ List of fields and validation values fro each. See example below or refer `Inven
  | code | string |  no  |  |
  | company | [GetCompanySerializer](#GetCompanySerializer)? |  yes  |  |
  | contact_numbers | [[SellerPhoneNumber](#SellerPhoneNumber)]? |  yes  |  |
- | created_by | [UserSerializer1](#UserSerializer1)? |  yes  |  |
+ | created_by | [UserSerializer2](#UserSerializer2)? |  yes  |  |
  | created_on | string? |  yes  |  |
  | display_name | string |  no  |  |
  | documents | [[Document](#Document)]? |  yes  |  |
  | gst_credentials | [InvoiceDetailsSerializer](#InvoiceDetailsSerializer)? |  yes  |  |
  | integration_type | [LocationIntegrationType](#LocationIntegrationType)? |  yes  |  |
  | manager | [LocationManagerSerializer](#LocationManagerSerializer)? |  yes  |  |
- | modified_by | [UserSerializer1](#UserSerializer1)? |  yes  |  |
+ | modified_by | [UserSerializer2](#UserSerializer2)? |  yes  |  |
  | modified_on | string? |  yes  |  |
  | name | string |  no  |  |
  | notification_emails | [string]? |  yes  |  |
@@ -19541,7 +19461,7 @@ List of fields and validation values fro each. See example below or refer `Inven
  | store_type | string? |  yes  |  |
  | timing | [[LocationDayWiseSerializer](#LocationDayWiseSerializer)]? |  yes  |  |
  | uid | number? |  yes  |  |
- | verified_by | [UserSerializer1](#UserSerializer1)? |  yes  |  |
+ | verified_by | [UserSerializer2](#UserSerializer2)? |  yes  |  |
  | verified_on | string? |  yes  |  |
  | warnings | string? |  yes  |  |
  
@@ -21281,7 +21201,9 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | display | string? |  yes  | The display name of the sort on. |
  | is_selected | boolean? |  yes  | Indicates whether the sort tag is selected or not. |
+ | logo | string? |  yes  | It is the logo to be shown for the sort in the listing. |
  | name | string? |  yes  | The display name of the sort on. |
  | value | string? |  yes  | The value of the sort on. |
  

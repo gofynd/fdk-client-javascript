@@ -12,6 +12,7 @@ class CartValidator {
     return Joi.object({
       cartId: Joi.string().allow("").required(),
       b: Joi.boolean(),
+      userId: Joi.string().allow(""),
       body: CartModel.AddCartRequest().required(),
     }).required();
   }
@@ -76,6 +77,7 @@ class CartValidator {
 
   static getAbandonedCart() {
     return Joi.object({
+      userId: Joi.string().allow(""),
       pageNo: Joi.number(),
       pageSize: Joi.number(),
       fromDate: Joi.string().allow(""),
@@ -88,6 +90,7 @@ class CartValidator {
 
   static getAbandonedCartDetails() {
     return Joi.object({
+      userId: Joi.string().allow(""),
       id: Joi.string().allow(""),
       i: Joi.boolean(),
       b: Joi.boolean(),
@@ -220,7 +223,7 @@ class CartValidator {
       pageNo: Joi.number(),
       pageSize: Joi.number(),
       q: Joi.string().allow(""),
-      status: Joi.string().allow(""),
+      isActive: Joi.boolean(),
       promoGroup: Joi.string().allow(""),
       promotionType: Joi.string().allow(""),
       fpPanel: Joi.string().allow(""),
@@ -244,6 +247,12 @@ class CartValidator {
   static getStoreAddressByUid() {
     return Joi.object({
       storeUid: Joi.number().required(),
+    }).required();
+  }
+
+  static overrideCart() {
+    return Joi.object({
+      body: CartModel.OverrideCheckoutReq().required(),
     }).required();
   }
 
@@ -332,6 +341,7 @@ class CartValidator {
     return Joi.object({
       cartId: Joi.string().allow("").required(),
       b: Joi.boolean(),
+      userId: Joi.string().allow(""),
       body: CartModel.UpdateCartRequest().required(),
     }).required();
   }

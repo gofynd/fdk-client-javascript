@@ -3383,7 +3383,7 @@ const data = await platformClient.order.getShipmentHistory({  shipmentId : value
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
-| shipmentId | number | no | Shipment Id |    
+| shipmentId | string | no | Shipment Id |    
 | bagId | number | no | Bag/Product Id |  
 
 
@@ -5540,6 +5540,7 @@ Verify OTP
  | marketplace_invoice_id | string? |  yes  |  |
  | order_item_id | string? |  yes  |  |
  | quantity | number? |  yes  |  |
+ | replacement_details | [ReplacementDetails](#ReplacementDetails) |  no  |  |
  | size_level_total_qty | number? |  yes  |  |
  
 
@@ -7857,6 +7858,16 @@ Verify OTP
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | refund_mode_name | [SingleRefundModeInfo](#SingleRefundModeInfo)? |  yes  |  |
+ 
+
+---
+
+#### [ReplacementDetails](#ReplacementDetails)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | original_affiliate_order_id | string? |  yes  |  |
+ | replacement_type | string? |  yes  |  |
  
 
 ---

@@ -262,6 +262,7 @@ class CatalogModel {
       description: Joi.string().allow(""),
       details: CatalogModel.AttributeMasterDetails().required(),
       enabled_for_end_consumer: Joi.boolean(),
+      example: Joi.string().allow(""),
       filters: CatalogModel.AttributeMasterFilter().required(),
       is_nested: Joi.boolean(),
       logo: Joi.string().allow(""),
@@ -615,6 +616,13 @@ class CatalogModel {
       visible_facets_keys: Joi.array().items(Joi.string().allow("")),
     });
   }
+  static CollectionErrorResponse() {
+    return Joi.object({
+      code: Joi.number().required(),
+      errors: Joi.any().allow(null),
+      message: Joi.string().allow("").required(),
+    });
+  }
   static CollectionImage() {
     return Joi.object({
       aspect_ratio: Joi.string().allow("").required(),
@@ -674,6 +682,18 @@ class CatalogModel {
       start: Joi.string().allow(""),
     });
   }
+  static CollectionUpdateBanner() {
+    return Joi.object({
+      landscape: CatalogModel.CollectionUpdateImage().required(),
+      portrait: CatalogModel.CollectionUpdateImage().required(),
+    });
+  }
+  static CollectionUpdateImage() {
+    return Joi.object({
+      type: Joi.string().allow("").required(),
+      url: Joi.string().allow("").required(),
+    });
+  }
   static CollectionUpdateResponse() {
     return Joi.object({
       _custom_json: Joi.any(),
@@ -683,11 +703,11 @@ class CatalogModel {
       allow_sort: Joi.boolean(),
       app_id: Joi.string().allow(""),
       badge: CatalogModel.CollectionBadge(),
-      banners: CatalogModel.CollectionBanner(),
+      banners: CatalogModel.CollectionUpdateBanner(),
       description: Joi.string().allow(""),
       is_active: Joi.boolean(),
       is_visible: Joi.boolean(),
-      logo: CatalogModel.CollectionImage(),
+      logo: CatalogModel.CollectionUpdateImage(),
       meta: Joi.any(),
       modified_by: CatalogModel.UserInfo(),
       name: Joi.string().allow(""),
@@ -1199,15 +1219,15 @@ class CatalogModel {
       addresses: Joi.array().items(CatalogModel.GetAddressSerializer()),
       business_type: Joi.string().allow(""),
       company_type: Joi.string().allow(""),
-      created_by: CatalogModel.UserSerializer2(),
+      created_by: CatalogModel.UserSerializer1(),
       created_on: Joi.string().allow(""),
-      modified_by: CatalogModel.UserSerializer2(),
+      modified_by: CatalogModel.UserSerializer1(),
       modified_on: Joi.string().allow(""),
       name: Joi.string().allow(""),
       reject_reason: Joi.string().allow(""),
       stage: Joi.string().allow(""),
       uid: Joi.number(),
-      verified_by: CatalogModel.UserSerializer2(),
+      verified_by: CatalogModel.UserSerializer1(),
       verified_on: Joi.string().allow(""),
     });
   }
@@ -1271,14 +1291,14 @@ class CatalogModel {
       code: Joi.string().allow("").required(),
       company: CatalogModel.GetCompanySerializer(),
       contact_numbers: Joi.array().items(CatalogModel.SellerPhoneNumber()),
-      created_by: CatalogModel.UserSerializer1(),
+      created_by: CatalogModel.UserSerializer2(),
       created_on: Joi.string().allow(""),
       display_name: Joi.string().allow("").required(),
       documents: Joi.array().items(CatalogModel.Document()),
       gst_credentials: CatalogModel.InvoiceDetailsSerializer(),
       integration_type: CatalogModel.LocationIntegrationType(),
       manager: CatalogModel.LocationManagerSerializer(),
-      modified_by: CatalogModel.UserSerializer1(),
+      modified_by: CatalogModel.UserSerializer2(),
       modified_on: Joi.string().allow(""),
       name: Joi.string().allow("").required(),
       notification_emails: Joi.array().items(Joi.string().allow("")),
@@ -1288,7 +1308,7 @@ class CatalogModel {
       store_type: Joi.string().allow(""),
       timing: Joi.array().items(CatalogModel.LocationDayWiseSerializer()),
       uid: Joi.number(),
-      verified_by: CatalogModel.UserSerializer1(),
+      verified_by: CatalogModel.UserSerializer2(),
       verified_on: Joi.string().allow(""),
       warnings: Joi.any(),
     });
@@ -2546,7 +2566,9 @@ class CatalogModel {
   }
   static ProductSortOn() {
     return Joi.object({
+      display: Joi.string().allow(""),
       is_selected: Joi.boolean(),
+      logo: Joi.string().allow(""),
       name: Joi.string().allow(""),
       value: Joi.string().allow(""),
     });

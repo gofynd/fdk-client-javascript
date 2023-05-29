@@ -1972,7 +1972,7 @@ class Order {
 
   /**
    * @param {Object} arg - Arg object.
-   * @param {number} [arg.shipmentId] - Shipment Id
+   * @param {string} [arg.shipmentId] - Shipment Id
    * @param {number} [arg.bagId] - Bag/Product Id
    * @returns {Promise<ShipmentHistoryResponse>} - Success response
    * @summary:

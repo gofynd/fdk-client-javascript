@@ -77,17 +77,19 @@ class Cart {
    * @param {Object} arg - Arg object.
    * @param {string} arg.cartId - Current Cart _id
    * @param {boolean} [arg.b] -
+   * @param {string} [arg.userId] -
    * @param {AddCartRequest} arg.body
    * @returns {Promise<AddCartDetailResponse>} - Success response
    * @summary: Add items to abandoned cart
    * @description: Use this API to add items to the abandoned cart.
    */
-  async addItems({ cartId, body, b } = {}) {
+  async addItems({ cartId, body, b, userId } = {}) {
     const { error } = CartValidator.addItems().validate(
       {
         cartId,
         body,
         b,
+        userId,
       },
       { abortEarly: false, allowUnknown: true }
     );
@@ -101,6 +103,7 @@ class Cart {
         cartId,
         body,
         b,
+        userId,
       },
       { abortEarly: false, allowUnknown: false }
     );
@@ -114,6 +117,7 @@ class Cart {
 
     const query_params = {};
     query_params["b"] = b;
+    query_params["user_id"] = userId;
 
     const response = await PlatformAPIClient.execute(
       this.config,
@@ -711,6 +715,7 @@ class Cart {
 
   /**
    * @param {Object} arg - Arg object.
+   * @param {string} [arg.userId] -
    * @param {number} [arg.pageNo] -
    * @param {number} [arg.pageSize] -
    * @param {string} [arg.fromDate] -
@@ -723,6 +728,7 @@ class Cart {
    * @description: Get abandoned cart list with pagination
    */
   async getAbandonedCart({
+    userId,
     pageNo,
     pageSize,
     fromDate,
@@ -733,6 +739,7 @@ class Cart {
   } = {}) {
     const { error } = CartValidator.getAbandonedCart().validate(
       {
+        userId,
         pageNo,
         pageSize,
         fromDate,
@@ -750,6 +757,7 @@ class Cart {
     // Showing warrnings if extra unknown parameters are found
     const { error: warrning } = CartValidator.getAbandonedCart().validate(
       {
+        userId,
         pageNo,
         pageSize,
         fromDate,
@@ -769,6 +777,7 @@ class Cart {
     }
 
     const query_params = {};
+    query_params["user_id"] = userId;
     query_params["page_no"] = pageNo;
     query_params["page_size"] = pageSize;
     query_params["from_date"] = fromDate;
@@ -807,6 +816,7 @@ class Cart {
    * @param {Object} arg - Arg object.
    * @param {string} arg.companyId - Current company id
    * @param {string} arg.applicationId - Current Application _id
+   * @param {string} [arg.userId] -
    * @param {number} [arg.pageSize] -
    * @param {string} [arg.fromDate] -
    * @param {string} [arg.toDate] -
@@ -819,6 +829,7 @@ class Cart {
   getAbandonedCartPaginator({
     companyId,
     applicationId,
+    userId,
     pageSize,
     fromDate,
     toDate,
@@ -834,6 +845,7 @@ class Cart {
       const data = await this.getAbandonedCart({
         companyId: companyId,
         applicationId: applicationId,
+        userId: userId,
         pageNo: pageNo,
         pageSize: pageSize,
         fromDate: fromDate,
@@ -854,6 +866,7 @@ class Cart {
 
   /**
    * @param {Object} arg - Arg object.
+   * @param {string} [arg.userId] -
    * @param {string} [arg.id] -
    * @param {boolean} [arg.i] -
    * @param {boolean} [arg.b] -
@@ -861,9 +874,10 @@ class Cart {
    * @summary: Fetch all items added to the cart
    * @description: Use this API to get details of all the items added to a cart.
    */
-  async getAbandonedCartDetails({ id, i, b } = {}) {
+  async getAbandonedCartDetails({ userId, id, i, b } = {}) {
     const { error } = CartValidator.getAbandonedCartDetails().validate(
       {
+        userId,
         id,
         i,
         b,
@@ -879,6 +893,7 @@ class Cart {
       error: warrning,
     } = CartValidator.getAbandonedCartDetails().validate(
       {
+        userId,
         id,
         i,
         b,
@@ -894,6 +909,7 @@ class Cart {
     }
 
     const query_params = {};
+    query_params["user_id"] = userId;
     query_params["id"] = id;
     query_params["i"] = i;
     query_params["b"] = b;
@@ -2086,7 +2102,7 @@ class Cart {
    * @param {number} [arg.pageNo] -
    * @param {number} [arg.pageSize] -
    * @param {string} [arg.q] -
-   * @param {string} [arg.status] -
+   * @param {boolean} [arg.isActive] -
    * @param {string} [arg.promoGroup] -
    * @param {string} [arg.promotionType] -
    * @param {string} [arg.fpPanel] -
@@ -2099,7 +2115,7 @@ class Cart {
     pageNo,
     pageSize,
     q,
-    status,
+    isActive,
     promoGroup,
     promotionType,
     fpPanel,
@@ -2110,7 +2126,7 @@ class Cart {
         pageNo,
         pageSize,
         q,
-        status,
+        isActive,
         promoGroup,
         promotionType,
         fpPanel,
@@ -2128,7 +2144,7 @@ class Cart {
         pageNo,
         pageSize,
         q,
-        status,
+        isActive,
         promoGroup,
         promotionType,
         fpPanel,
@@ -2148,7 +2164,7 @@ class Cart {
     query_params["page_no"] = pageNo;
     query_params["page_size"] = pageSize;
     query_params["q"] = q;
-    query_params["status"] = status;
+    query_params["is_active"] = isActive;
     query_params["promo_group"] = promoGroup;
     query_params["promotion_type"] = promotionType;
     query_params["fp_panel"] = fpPanel;
@@ -2186,7 +2202,7 @@ class Cart {
    * @param {string} arg.applicationId - Current Application _id
    * @param {number} [arg.pageSize] -
    * @param {string} [arg.q] -
-   * @param {string} [arg.status] -
+   * @param {boolean} [arg.isActive] -
    * @param {string} [arg.promoGroup] -
    * @param {string} [arg.promotionType] -
    * @param {string} [arg.fpPanel] -
@@ -2199,7 +2215,7 @@ class Cart {
     applicationId,
     pageSize,
     q,
-    status,
+    isActive,
     promoGroup,
     promotionType,
     fpPanel,
@@ -2216,7 +2232,7 @@ class Cart {
         pageNo: pageNo,
         pageSize: pageSize,
         q: q,
-        status: status,
+        isActive: isActive,
         promoGroup: promoGroup,
         promotionType: promotionType,
         fpPanel: fpPanel,
@@ -2391,6 +2407,67 @@ class Cart {
       Logger({
         level: "WARN",
         message: "Response Validation Warnnings for getStoreAddressByUid",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {OverrideCheckoutReq} arg.body
+   * @returns {Promise<OverrideCheckoutResponse>} - Success response
+   * @summary: Create Fynd order with overriding cart details
+   * @description: Generate Fynd order while overriding cart details sent with provided `cart_items`
+   */
+  async overrideCart({ body } = {}) {
+    const { error } = CartValidator.overrideCart().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = CartValidator.overrideCart().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for overrideCart",
+      });
+      Logger({ level: "WARN", message: warrning });
+    }
+
+    const query_params = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/cart/v1.0/company/${this.config.companyId}/application/${this.applicationId}/checkout/over-ride`,
+      query_params,
+      body
+    );
+
+    const {
+      error: res_error,
+    } = CartModel.OverrideCheckoutResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for overrideCart",
       });
       Logger({ level: "WARN", message: res_error });
     }
@@ -3096,17 +3173,19 @@ class Cart {
    * @param {Object} arg - Arg object.
    * @param {string} arg.cartId - Current Cart _id
    * @param {boolean} [arg.b] -
+   * @param {string} [arg.userId] -
    * @param {UpdateCartRequest} arg.body
    * @returns {Promise<UpdateCartDetailResponse>} - Success response
    * @summary: Update items in the abandoned cart
    * @description: <p>Use this API to update items added to the cart with the help of a request object containing attributes like item_quantity and item_size. These attributes will be fetched from the following APIs</p> <ul> <li><font color="monochrome">operation</font> Operation for current api call. <b>update_item</b> for update items. <b>remove_item</b> for removing items.</li> <li> <font color="monochrome">item_id</font>  "/platform/content/v1/products/"</li> <li> <font color="monochrome">item_size</font>   "/platform/content/v1/products/:slug/sizes/"</li> <li> <font color="monochrome">quantity</font>  item quantity (must be greater than or equal to 1)</li> <li> <font color="monochrome">article_id</font>   "/content​/v1​/products​/:identifier​/sizes​/price​/"</li> <li> <font color="monochrome">item_index</font>  item position in the cart (must be greater than or equal to 0)</li> </ul>
    */
-  async updateCart({ cartId, body, b } = {}) {
+  async updateCart({ cartId, body, b, userId } = {}) {
     const { error } = CartValidator.updateCart().validate(
       {
         cartId,
         body,
         b,
+        userId,
       },
       { abortEarly: false, allowUnknown: true }
     );
@@ -3120,6 +3199,7 @@ class Cart {
         cartId,
         body,
         b,
+        userId,
       },
       { abortEarly: false, allowUnknown: false }
     );
@@ -3133,6 +3213,7 @@ class Cart {
 
     const query_params = {};
     query_params["b"] = b;
+    query_params["user_id"] = userId;
 
     const response = await PlatformAPIClient.execute(
       this.config,
