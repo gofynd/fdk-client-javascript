@@ -11,7 +11,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [12.x, 14.x, 15.x]
+        node-version: [14.x, 15.x, 16.x]
 
     steps:
     - uses: actions/checkout@v2
@@ -30,6 +30,7 @@ jobs:
         API_SECRET: ${{ secrets.API_SECRET }}
         APP_USERNAME: ${{ secrets.APP_USERNAME }}
         PASSWORD: ${{ secrets.PASSWORD }}
+        AUTH_HEADER: ${{ secrets.AUTH_HEADER}}
     
     - name: Coveralls (Uploading test report)
       uses: coverallsapp/github-action@master

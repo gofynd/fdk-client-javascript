@@ -1,8 +1,6 @@
 const { FdkAxios } = require("../../index.js");
-const setupCookieInterceptor = require("./cookie.helper");
 
 async function setAccesstoken(platformConfig) {
-  setupCookieInterceptor();
   await loginUser(platformConfig);
   let reqData = {
     grant_type: "client_credentials",

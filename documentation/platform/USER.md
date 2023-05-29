@@ -2,25 +2,442 @@
 
 
 
+
 ##### [Back to Platform docs](./README.md)
 
 ## User Methods
 Authentication Service
-* [getCustomers](#getcustomers)
-* [searchUsers](#searchusers)
-* [createUser](#createuser)
-* [blockOrUnblockUsers](#blockorunblockusers)
+
 * [archiveUser](#archiveuser)
-* [updateUser](#updateuser)
+* [blockOrUnblockUsers](#blockorunblockusers)
+* [createUser](#createuser)
 * [createUserSession](#createusersession)
-* [getActiveSessions](#getactivesessions)
 * [deleteActiveSessions](#deleteactivesessions)
+* [getActiveSessions](#getactivesessions)
+* [getCustomers](#getcustomers)
 * [getPlatformConfig](#getplatformconfig)
+* [searchUsers](#searchusers)
+* [unDeleteUser](#undeleteuser)
 * [updatePlatformConfig](#updateplatformconfig)
+* [updateUser](#updateuser)
 
 
 
 ## Methods with example and description
+
+
+
+
+### archiveUser
+archive user
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").user.archiveUser({  body : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").user.archiveUser({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [ArchiveUserRequestSchema](#ArchiveUserRequestSchema) | yes | Request body |
+
+
+archive user
+
+*Returned Response:*
+
+
+
+
+[ArchiveUserSuccess](#ArchiveUserSuccess)
+
+Success
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "success": true
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### blockOrUnblockUsers
+Block/Unblock user
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").user.blockOrUnblockUsers({  body : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").user.blockOrUnblockUsers({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [BlockUserRequestSchema](#BlockUserRequestSchema) | yes | Request body |
+
+
+Block/Unblock user
+
+*Returned Response:*
+
+
+
+
+[BlockUserSuccess](#BlockUserSuccess)
+
+Success
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "success": true
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### createUser
+Create user
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").user.createUser({  body : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").user.createUser({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [CreateUserRequestSchema](#CreateUserRequestSchema) | yes | Request body |
+
+
+Create user
+
+*Returned Response:*
+
+
+
+
+[CreateUserResponseSchema](#CreateUserResponseSchema)
+
+User create
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "user": {
+    "_id": "5e68af49cfa09bf7233022f1",
+    "gender": "male",
+    "active": true,
+    "emails": [
+      {
+        "active": true,
+        "primary": true,
+        "verified": true,
+        "email": "akashmane@gofynd.com"
+      },
+      {
+        "active": true,
+        "primary": false,
+        "verified": true,
+        "email": "akashmane@fynd.com"
+      },
+      {
+        "active": true,
+        "primary": false,
+        "verified": true,
+        "email": "akashmane@uniket.store"
+      }
+    ],
+    "external_id": "100002000036789",
+    "account_type": "user",
+    "first_name": "Akash",
+    "last_name": "Mane",
+    "phone_numbers": [
+      {
+        "active": true,
+        "primary": true,
+        "verified": true,
+        "phone": "8652523958",
+        "country_code": 91
+      }
+    ],
+    "meta": {},
+    "created_at": "2020-03-11T09:28:41.982Z",
+    "updated_at": "2020-03-11T09:28:41.982Z"
+  }
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### createUserSession
+Create user session
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").user.createUserSession({  body : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").user.createUserSession({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [CreateUserSessionRequestSchema](#CreateUserSessionRequestSchema) | yes | Request body |
+
+
+Create user session
+
+*Returned Response:*
+
+
+
+
+[CreateUserSessionResponseSchema](#CreateUserSessionResponseSchema)
+
+Create user session
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "domain": "vinit.com",
+  "max_age": 4555555,
+  "secure": true,
+  "http_only": true,
+  "cookie": {
+    "f.session": "s%3A-LrEF5FVR8jrT5DCtCHSbAy7JFyX-f9T.uXOQwzje8nOfx4ODANrLi4yNX5fW2W5kLQ2rkBdO2xE"
+  }
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### deleteActiveSessions
+Delete a list of all session for a user
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").user.deleteActiveSessions({  id : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").user.deleteActiveSessions({  id : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| id | string | yes | ID of a customer. |  
+
+
+
+Use this API to Delete a list of session of customers who have registered in the application.
+
+*Returned Response:*
+
+
+
+
+[SessionDeleteResponseSchema](#SessionDeleteResponseSchema)
+
+Success. Refer `SessionDeleteResponseSchema` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; Success</i></summary>
+
+```json
+{
+  "value": {
+    "items": [
+      "sess:123",
+      "sess:456"
+    ]
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### getActiveSessions
+Get a list of all session for a user
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").user.getActiveSessions({  id : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").user.getActiveSessions({  id : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| id | string | yes | ID of a customer. |  
+
+
+
+Use this API to retrieve a list of session of customers who have registered in the application.
+
+*Returned Response:*
+
+
+
+
+[SessionListResponseSchema](#SessionListResponseSchema)
+
+Success. Refer `SessionListResponseSchema` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; Success</i></summary>
+
+```json
+{
+  "value": {
+    "items": [
+      "sess:123",
+      "sess:456"
+    ]
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
 
 
 ### getCustomers
@@ -30,12 +447,12 @@ Get a list of customers
 
 ```javascript
 // Promise
-const promise = client.application("<APPLICATION_ID>").user.getCustomers({  q : value,
+const promise = platformClient.application("<APPLICATION_ID>").user.getCustomers({  q : value,
  pageSize : value,
  pageNo : value });
 
 // Async/Await
-const data = await client.application("<APPLICATION_ID>").user.getCustomers({  q : value,
+const data = await platformClient.application("<APPLICATION_ID>").user.getCustomers({  q : value,
  pageSize : value,
  pageNo : value });
 ```
@@ -140,6 +557,138 @@ Success. Refer `CustomerListResponseSchema` for more details.
 ---
 
 
+### getPlatformConfig
+Get platform configurations
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").user.getPlatformConfig();
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").user.getPlatformConfig();
+```
+
+
+
+
+
+
+Use this API to get all the platform configurations such as mobile image, desktop image, social logins, and all other text.
+
+*Returned Response:*
+
+
+
+
+[PlatformSchema](#PlatformSchema)
+
+Success. Returns a JSON object containing the all the platform configurations. Refer `PlatformSchema` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "active": true,
+  "mobile_image": "",
+  "desktop_image": "",
+  "social": {
+    "facebook": true,
+    "google": true,
+    "account_kit": true
+  },
+  "flash_card": {
+    "text": "",
+    "text_color": "#FFFFFF",
+    "background_color": "#EF5350"
+  },
+  "register": true,
+  "forgot_password": true,
+  "login": {
+    "password": true,
+    "otp": true
+  },
+  "skip_captcha": false,
+  "display": "Fynd",
+  "subtext": "Login to Fynd",
+  "name": "Fynd",
+  "meta": {},
+  "required_fields": {
+    "email": {
+      "is_required": false,
+      "level": "hard"
+    },
+    "mobile": {
+      "is_required": true,
+      "level": "hard"
+    }
+  },
+  "register_required_fields": {
+    "email": {
+      "is_required": false,
+      "level": "hard"
+    },
+    "mobile": {
+      "is_required": true,
+      "level": "hard"
+    }
+  },
+  "skip_login": false,
+  "look_and_feel": {
+    "background_color": "#F5F5F5",
+    "card_position": "center"
+  },
+  "social_tokens": {
+    "google": {
+      "appId": "token_123"
+    },
+    "facebook": {
+      "appId": "token_123"
+    },
+    "account_kit": {
+      "appId": "token_123"
+    }
+  },
+  "session_config": {
+    "duration": 30,
+    "type": "Days",
+    "is_rolling": false
+  },
+  "delete_account_reasons": [
+    {
+      "reason_text": "test",
+      "reason_id": "123",
+      "show_text_area": true
+    }
+  ],
+  "delete_account_day": 7,
+  "delete_account_consent": {
+    "consent_text": ""
+  },
+  "_id": "5e04a5e5220bc15839ad9bc0",
+  "created_at": "2019-12-26T12:21:57.878Z",
+  "updated_at": "2020-08-13T14:31:09.878Z",
+  "__v": 0
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
 ### searchUsers
 Search an existing user.
 
@@ -147,10 +696,10 @@ Search an existing user.
 
 ```javascript
 // Promise
-const promise = client.application("<APPLICATION_ID>").user.searchUsers({  q : value });
+const promise = platformClient.application("<APPLICATION_ID>").user.searchUsers({  q : value });
 
 // Async/Await
-const data = await client.application("<APPLICATION_ID>").user.searchUsers({  q : value });
+const data = await platformClient.application("<APPLICATION_ID>").user.searchUsers({  q : value });
 ```
 
 
@@ -238,17 +787,17 @@ Success. Returns first name, last name, emails, phone number and gender of the u
 ---
 
 
-### createUser
-Create user
+### unDeleteUser
+undelete user who deleted from application and have not elapsed the platform configured delete days
 
 
 
 ```javascript
 // Promise
-const promise = client.application("<APPLICATION_ID>").user.createUser({  body : value });
+const promise = platformClient.application("<APPLICATION_ID>").user.unDeleteUser({  body : value });
 
 // Async/Await
-const data = await client.application("<APPLICATION_ID>").user.createUser({  body : value });
+const data = await platformClient.application("<APPLICATION_ID>").user.unDeleteUser({  body : value });
 ```
 
 
@@ -257,114 +806,17 @@ const data = await client.application("<APPLICATION_ID>").user.createUser({  bod
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |
-| body | [CreateUserRequestSchema](#CreateUserRequestSchema) | yes | Request body |
+| body | [UnDeleteUserRequestSchema](#UnDeleteUserRequestSchema) | yes | Request body |
 
 
-Create user
-
-*Returned Response:*
-
-
-
-
-[CreateUserResponseSchema](#CreateUserResponseSchema)
-
-User create
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "user": {
-    "_id": "5e68af49cfa09bf7233022f1",
-    "gender": "male",
-    "active": true,
-    "emails": [
-      {
-        "active": true,
-        "primary": true,
-        "verified": true,
-        "email": "akashmane@gofynd.com"
-      },
-      {
-        "active": true,
-        "primary": false,
-        "verified": true,
-        "email": "akashmane@fynd.com"
-      },
-      {
-        "active": true,
-        "primary": false,
-        "verified": true,
-        "email": "akashmane@uniket.store"
-      }
-    ],
-    "external_id": "100002000036789",
-    "account_type": "user",
-    "first_name": "Akash",
-    "last_name": "Mane",
-    "phone_numbers": [
-      {
-        "active": true,
-        "primary": true,
-        "verified": true,
-        "phone": "8652523958",
-        "country_code": 91
-      }
-    ],
-    "meta": {},
-    "created_at": "2020-03-11T09:28:41.982Z",
-    "updated_at": "2020-03-11T09:28:41.982Z"
-  }
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### blockOrUnblockUsers
-Block/Unblock user
-
-
-
-```javascript
-// Promise
-const promise = client.application("<APPLICATION_ID>").user.blockOrUnblockUsers({  body : value });
-
-// Async/Await
-const data = await client.application("<APPLICATION_ID>").user.blockOrUnblockUsers({  body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |
-| body | [BlockUserRequestSchema](#BlockUserRequestSchema) | yes | Request body |
-
-
-Block/Unblock user
+undelete user who deleted from application and have not elapsed the platform configured delete days
 
 *Returned Response:*
 
 
 
 
-[BlockUserSuccess](#BlockUserSuccess)
+[UnDeleteUserSuccess](#UnDeleteUserSuccess)
 
 Success
 
@@ -377,480 +829,6 @@ Success
 ```json
 {
   "success": true
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### archiveUser
-archive user
-
-
-
-```javascript
-// Promise
-const promise = client.application("<APPLICATION_ID>").user.archiveUser({  body : value });
-
-// Async/Await
-const data = await client.application("<APPLICATION_ID>").user.archiveUser({  body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |
-| body | [ArchiveUserRequestSchema](#ArchiveUserRequestSchema) | yes | Request body |
-
-
-archive user
-
-*Returned Response:*
-
-
-
-
-[ArchiveUserSuccess](#ArchiveUserSuccess)
-
-Success
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "success": true
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### updateUser
-Update user
-
-
-
-```javascript
-// Promise
-const promise = client.application("<APPLICATION_ID>").user.updateUser({  userId : value,
- body : value });
-
-// Async/Await
-const data = await client.application("<APPLICATION_ID>").user.updateUser({  userId : value,
- body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| userId | string | yes | User ID |  
-| body | [UpdateUserRequestSchema](#UpdateUserRequestSchema) | yes | Request body |
-
-
-Update user
-
-*Returned Response:*
-
-
-
-
-[CreateUserResponseSchema](#CreateUserResponseSchema)
-
-User update
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "user": {
-    "_id": "5e68af49cfa09bf7233022f1",
-    "gender": "male",
-    "active": true,
-    "emails": [
-      {
-        "active": true,
-        "primary": true,
-        "verified": true,
-        "email": "akashmane@gofynd.com"
-      },
-      {
-        "active": true,
-        "primary": false,
-        "verified": true,
-        "email": "akashmane@fynd.com"
-      },
-      {
-        "active": true,
-        "primary": false,
-        "verified": true,
-        "email": "akashmane@uniket.store"
-      }
-    ],
-    "external_id": "100002000036789",
-    "account_type": "user",
-    "first_name": "Akash",
-    "last_name": "Mane",
-    "phone_numbers": [
-      {
-        "active": true,
-        "primary": true,
-        "verified": true,
-        "phone": "8652523958",
-        "country_code": 91
-      }
-    ],
-    "meta": {},
-    "created_at": "2020-03-11T09:28:41.982Z",
-    "updated_at": "2020-03-11T09:28:41.982Z"
-  }
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### createUserSession
-Create user session
-
-
-
-```javascript
-// Promise
-const promise = client.application("<APPLICATION_ID>").user.createUserSession({  body : value });
-
-// Async/Await
-const data = await client.application("<APPLICATION_ID>").user.createUserSession({  body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |
-| body | [CreateUserSessionRequestSchema](#CreateUserSessionRequestSchema) | yes | Request body |
-
-
-Create user session
-
-*Returned Response:*
-
-
-
-
-[CreateUserSessionResponseSchema](#CreateUserSessionResponseSchema)
-
-Create user session
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "domain": "vinit.com",
-  "max_age": 4555555,
-  "secure": true,
-  "http_only": true,
-  "cookie": {
-    "f.session": "s%3A-LrEF5FVR8jrT5DCtCHSbAy7JFyX-f9T.uXOQwzje8nOfx4ODANrLi4yNX5fW2W5kLQ2rkBdO2xE"
-  }
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### getActiveSessions
-Get a list of all session for a user
-
-
-
-```javascript
-// Promise
-const promise = client.application("<APPLICATION_ID>").user.getActiveSessions({  id : value });
-
-// Async/Await
-const data = await client.application("<APPLICATION_ID>").user.getActiveSessions({  id : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| id | string | yes | ID of a customer. |  
-
-
-
-Use this API to retrieve a list of session of customers who have registered in the application.
-
-*Returned Response:*
-
-
-
-
-[SessionListResponseSchema](#SessionListResponseSchema)
-
-Success. Refer `SessionListResponseSchema` for more details.
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; Success</i></summary>
-
-```json
-{
-  "value": {
-    "items": [
-      "sess:123",
-      "sess:456"
-    ]
-  }
-}
-```
-</details>
-
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### deleteActiveSessions
-Delete a list of all session for a user
-
-
-
-```javascript
-// Promise
-const promise = client.application("<APPLICATION_ID>").user.deleteActiveSessions({  id : value });
-
-// Async/Await
-const data = await client.application("<APPLICATION_ID>").user.deleteActiveSessions({  id : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| id | string | yes | ID of a customer. |  
-
-
-
-Use this API to Delete a list of session of customers who have registered in the application.
-
-*Returned Response:*
-
-
-
-
-[SessionDeleteResponseSchema](#SessionDeleteResponseSchema)
-
-Success. Refer `SessionDeleteResponseSchema` for more details.
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; Success</i></summary>
-
-```json
-{
-  "value": {
-    "items": [
-      "sess:123",
-      "sess:456"
-    ]
-  }
-}
-```
-</details>
-
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### getPlatformConfig
-Get platform configurations
-
-
-
-```javascript
-// Promise
-const promise = client.application("<APPLICATION_ID>").user.getPlatformConfig();
-
-// Async/Await
-const data = await client.application("<APPLICATION_ID>").user.getPlatformConfig();
-```
-
-
-
-
-
-
-Use this API to get all the platform configurations such as mobile image, desktop image, social logins, and all other text.
-
-*Returned Response:*
-
-
-
-
-[PlatformSchema](#PlatformSchema)
-
-Success. Returns a JSON object containing the all the platform configurations. Refer `PlatformSchema` for more details.
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "active": true,
-  "mobile_image": "",
-  "desktop_image": "",
-  "social": {
-    "facebook": true,
-    "google": true,
-    "account_kit": true
-  },
-  "flash_card": {
-    "text": "",
-    "text_color": "#FFFFFF",
-    "background_color": "#EF5350"
-  },
-  "register": true,
-  "forgot_password": true,
-  "login": {
-    "password": true,
-    "otp": true
-  },
-  "skip_captcha": false,
-  "display": "Fynd",
-  "subtext": "Login to Fynd",
-  "name": "Fynd",
-  "meta": {},
-  "required_fields": {
-    "email": {
-      "is_required": false,
-      "level": "hard"
-    },
-    "mobile": {
-      "is_required": true,
-      "level": "hard"
-    }
-  },
-  "register_required_fields": {
-    "email": {
-      "is_required": false,
-      "level": "hard"
-    },
-    "mobile": {
-      "is_required": true,
-      "level": "hard"
-    }
-  },
-  "skip_login": false,
-  "look_and_feel": {
-    "background_color": "#F5F5F5",
-    "card_position": "center"
-  },
-  "social_tokens": {
-    "google": {
-      "appId": "token_123"
-    },
-    "facebook": {
-      "appId": "token_123"
-    },
-    "account_kit": {
-      "appId": "token_123"
-    }
-  },
-  "_id": "5e04a5e5220bc15839ad9bc0",
-  "created_at": "2019-12-26T12:21:57.878Z",
-  "updated_at": "2020-08-13T14:31:09.878Z",
-  "__v": 0
 }
 ```
 </details>
@@ -873,10 +851,10 @@ Update platform configurations
 
 ```javascript
 // Promise
-const promise = client.application("<APPLICATION_ID>").user.updatePlatformConfig({  body : value });
+const promise = platformClient.application("<APPLICATION_ID>").user.updatePlatformConfig({  body : value });
 
 // Async/Await
-const data = await client.application("<APPLICATION_ID>").user.updatePlatformConfig({  body : value });
+const data = await platformClient.application("<APPLICATION_ID>").user.updatePlatformConfig({  body : value });
 ```
 
 
@@ -967,6 +945,22 @@ Success. Returns a JSON object with the updated platform configurations. Refer `
       "appId": "token_123"
     }
   },
+  "session_config": {
+    "duration": 30,
+    "type": "Days",
+    "is_rolling": false
+  },
+  "delete_account_reasons": [
+    {
+      "reason_text": "test",
+      "reason_id": "123",
+      "show_text_area": true
+    }
+  ],
+  "delete_account_day": 7,
+  "delete_account_consent": {
+    "consent_text": ""
+  },
   "_id": "5e04a5e5220bc15839ad9bc0",
   "created_at": "2019-12-26T12:21:57.878Z",
   "updated_at": "2020-08-13T14:31:09.878Z",
@@ -986,1146 +980,1155 @@ Success. Returns a JSON object with the updated platform configurations. Refer `
 ---
 
 
+### updateUser
+Update user
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").user.updateUser({  userId : value,
+ body : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").user.updateUser({  userId : value,
+ body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| userId | string | yes | User ID |  
+| body | [UpdateUserRequestSchema](#UpdateUserRequestSchema) | yes | Request body |
+
+
+Update user
+
+*Returned Response:*
+
+
+
+
+[CreateUserResponseSchema](#CreateUserResponseSchema)
+
+User update
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "user": {
+    "_id": "5e68af49cfa09bf7233022f1",
+    "gender": "male",
+    "active": true,
+    "emails": [
+      {
+        "active": true,
+        "primary": true,
+        "verified": true,
+        "email": "akashmane@gofynd.com"
+      },
+      {
+        "active": true,
+        "primary": false,
+        "verified": true,
+        "email": "akashmane@fynd.com"
+      },
+      {
+        "active": true,
+        "primary": false,
+        "verified": true,
+        "email": "akashmane@uniket.store"
+      }
+    ],
+    "external_id": "100002000036789",
+    "account_type": "user",
+    "first_name": "Akash",
+    "last_name": "Mane",
+    "phone_numbers": [
+      {
+        "active": true,
+        "primary": true,
+        "verified": true,
+        "phone": "8652523958",
+        "country_code": 91
+      }
+    ],
+    "meta": {},
+    "created_at": "2020-03-11T09:28:41.982Z",
+    "updated_at": "2020-03-11T09:28:41.982Z"
+  }
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
 
 ### Schemas
 
- 
- 
- #### [BlockUserRequestSchema](#BlockUserRequestSchema)
+
+#### [Accountkit](#Accountkit)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | status | boolean |  no  |  |
- | user_id | [string] |  no  |  |
- | reason | string |  no  |  |
+ | app_id | string? |  yes  |  |
+ 
 
 ---
 
-
- 
- 
- #### [ArchiveUserRequestSchema](#ArchiveUserRequestSchema)
+#### [ArchiveUserRequestSchema](#ArchiveUserRequestSchema)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | user_id | string |  no  |  |
+ | user_id | string? |  yes  |  |
+ 
 
 ---
 
-
- 
- 
- #### [EditEmailRequestSchema](#EditEmailRequestSchema)
+#### [ArchiveUserSuccess](#ArchiveUserSuccess)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | email | string |  no  |  |
+ | success | boolean? |  yes  |  |
+ 
 
 ---
 
-
- 
- 
- #### [SendVerificationLinkMobileRequestSchema](#SendVerificationLinkMobileRequestSchema)
+#### [AuthenticationApiErrorSchema](#AuthenticationApiErrorSchema)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | verified | boolean |  no  |  |
- | active | boolean |  no  |  |
- | country_code | string |  no  |  |
- | phone | string |  no  |  |
- | primary | boolean |  no  |  |
+ | message | string? |  yes  |  |
+ 
 
 ---
 
-
- 
- 
- #### [EditMobileRequestSchema](#EditMobileRequestSchema)
+#### [AuthenticationInternalServerErrorSchema](#AuthenticationInternalServerErrorSchema)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | country_code | string |  no  |  |
- | phone | string |  no  |  |
+ | message | string? |  yes  |  |
+ 
 
 ---
 
-
- 
- 
- #### [EditProfileRequestSchema](#EditProfileRequestSchema)
+#### [AuthSuccess](#AuthSuccess)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | first_name | string |  no  |  |
- | last_name | string |  no  |  |
- | mobile | [EditProfileMobileSchema](#EditProfileMobileSchema) |  no  |  |
- | country_code | string |  no  |  |
- | email | string |  no  |  |
- | gender | string |  no  |  |
- | dob | string |  no  |  |
- | profile_pic_url | string |  no  |  |
- | android_hash | string |  no  |  |
- | sender | string |  no  |  |
- | register_token | string |  no  |  |
+ | register_token | string? |  yes  |  |
+ | user | [UserSchema](#UserSchema)? |  yes  |  |
+ | user_exists | boolean? |  yes  |  |
+ 
 
 ---
 
-
- 
- 
- #### [EditProfileMobileSchema](#EditProfileMobileSchema)
+#### [AuthSuccessUser](#AuthSuccessUser)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | phone | string |  no  |  |
- | country_code | string |  no  |  |
+ | active | boolean? |  yes  |  |
+ | debug | [AuthSuccessUserDebug](#AuthSuccessUserDebug)? |  yes  |  |
+ | emails | [AuthSuccessUserEmails](#AuthSuccessUserEmails)? |  yes  |  |
+ | first_name | string? |  yes  |  |
+ | last_name | string? |  yes  |  |
+ 
 
 ---
 
-
- 
- 
- #### [SendEmailOtpRequestSchema](#SendEmailOtpRequestSchema)
+#### [AuthSuccessUserDebug](#AuthSuccessUserDebug)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | email | string |  no  |  |
- | action | string |  no  |  |
- | token | string |  no  |  |
- | register_token | string |  no  |  |
+ | platform | string? |  yes  |  |
+ 
 
 ---
 
-
- 
- 
- #### [VerifyEmailOtpRequestSchema](#VerifyEmailOtpRequestSchema)
+#### [AuthSuccessUserEmails](#AuthSuccessUserEmails)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | email | string |  no  |  |
- | action | string |  no  |  |
- | register_token | string |  no  |  |
- | otp | string |  no  |  |
+ | active | boolean? |  yes  |  |
+ | email | string? |  yes  |  |
+ | primary | boolean? |  yes  |  |
+ | verified | boolean? |  yes  |  |
+ 
 
 ---
 
-
- 
- 
- #### [VerifyOtpRequestSchema](#VerifyOtpRequestSchema)
+#### [BlockUserRequestSchema](#BlockUserRequestSchema)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | request_id | string |  no  |  |
- | register_token | string |  no  |  |
- | otp | string |  no  |  |
+ | reason | string? |  yes  |  |
+ | status | boolean? |  yes  |  |
+ | user_id | [string]? |  yes  |  |
+ 
 
 ---
 
-
- 
- 
- #### [SendMobileOtpRequestSchema](#SendMobileOtpRequestSchema)
+#### [BlockUserSuccess](#BlockUserSuccess)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | mobile | string |  no  |  |
- | country_code | string |  no  |  |
- | action | string |  no  |  |
- | token | string |  no  |  |
- | android_hash | string |  no  |  |
- | force | string |  no  |  |
- | captcha_code | string |  no  |  |
+ | success | boolean? |  yes  |  |
+ 
 
 ---
 
-
- 
- 
- #### [UpdatePasswordRequestSchema](#UpdatePasswordRequestSchema)
+#### [CodeRequestBodySchema](#CodeRequestBodySchema)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | old_password | string |  no  |  |
- | new_password | string |  no  |  |
+ | code | string? |  yes  |  |
+ 
 
 ---
 
-
- 
- 
- #### [FormRegisterRequestSchema](#FormRegisterRequestSchema)
+#### [CreateUserRequestSchema](#CreateUserRequestSchema)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | first_name | string |  no  |  |
- | last_name | string |  no  |  |
- | gender | string |  no  |  |
- | email | string |  no  |  |
- | password | string |  no  |  |
- | phone | [FormRegisterRequestSchemaPhone](#FormRegisterRequestSchemaPhone) |  no  |  |
- | register_token | string |  no  |  |
-
----
-
-
- 
- 
- #### [TokenRequestBodySchema](#TokenRequestBodySchema)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | token | string |  no  |  |
-
----
-
-
- 
- 
- #### [ForgotPasswordRequestSchema](#ForgotPasswordRequestSchema)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | code | string |  no  |  |
- | password | string |  no  |  |
-
----
-
-
- 
- 
- #### [CodeRequestBodySchema](#CodeRequestBodySchema)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | code | string |  no  |  |
-
----
-
-
- 
- 
- #### [SendResetPasswordEmailRequestSchema](#SendResetPasswordEmailRequestSchema)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | email | string |  no  |  |
- | captcha_code | string |  no  |  |
-
----
-
-
- 
- 
- #### [PasswordLoginRequestSchema](#PasswordLoginRequestSchema)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | captcha_code | string |  no  |  |
- | password | string |  no  |  |
+ | email | string? |  yes  |  |
+ | first_name | string? |  yes  |  |
+ | gender | string? |  yes  |  |
+ | last_name | string? |  yes  |  |
+ | meta | string? |  yes  |  |
+ | phone_number | string |  no  |  |
  | username | string |  no  |  |
+ 
 
 ---
-
 
- 
- 
- #### [SendOtpRequestSchema](#SendOtpRequestSchema)
+#### [CreateUserResponseSchema](#CreateUserResponseSchema)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | country_code | string |  no  |  |
- | captcha_code | string |  no  |  |
- | mobile | string |  no  |  |
+ | user | [UserSchema](#UserSchema)? |  yes  |  |
+ 
 
 ---
-
 
- 
- 
- #### [OAuthRequestSchema](#OAuthRequestSchema)
+#### [CreateUserSessionRequestSchema](#CreateUserSessionRequestSchema)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | is_signed_in | boolean |  no  |  |
- | oauth2 | [OAuthRequestSchemaOauth2](#OAuthRequestSchemaOauth2) |  no  |  |
- | profile | [OAuthRequestSchemaProfile](#OAuthRequestSchemaProfile) |  no  |  |
+ | domain | string? |  yes  |  |
+ | max_age | number? |  yes  |  |
+ | user_id | string? |  yes  |  |
+ 
 
 ---
 
+#### [CreateUserSessionResponseSchema](#CreateUserSessionResponseSchema)
 
- 
- 
- #### [OAuthRequestAppleSchema](#OAuthRequestAppleSchema)
-
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | user_identifier | string |  no  |  |
- | oauth | [OAuthRequestAppleSchemaOauth](#OAuthRequestAppleSchemaOauth) |  no  |  |
- | profile | [OAuthRequestAppleSchemaProfile](#OAuthRequestAppleSchemaProfile) |  no  |  |
+ | cookie | string? |  yes  |  |
+ | domain | string? |  yes  |  |
+ | http_only | boolean? |  yes  |  |
+ | max_age | number? |  yes  |  |
+ | secure | boolean? |  yes  |  |
+ 
 
 ---
-
 
- 
- 
- #### [UserObjectSchema](#UserObjectSchema)
+#### [CustomerListResponseSchema](#CustomerListResponseSchema)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | user | [UserSchema](#UserSchema) |  no  |  |
+ | items | [[UserSchema](#UserSchema)]? |  yes  |  |
+ | page | [PaginationSchema](#PaginationSchema)? |  yes  |  |
+ 
 
 ---
 
-
- 
- 
- #### [AuthSuccess](#AuthSuccess)
+#### [DeleteAccountConsent](#DeleteAccountConsent)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | register_token | string |  no  |  |
- | user_exists | boolean |  no  |  |
- | user | [UserSchema](#UserSchema) |  no  |  |
+ | consent_text | string? |  yes  |  |
+ 
 
 ---
 
-
- 
- 
- #### [SendOtpResponse](#SendOtpResponse)
+#### [DeleteAccountReasons](#DeleteAccountReasons)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | resend_timer | number |  no  |  |
- | resend_token | string |  no  |  |
- | success | boolean |  no  |  |
- | request_id | string |  no  |  |
- | message | string |  no  |  |
- | mobile | string |  no  |  |
- | country_code | string |  no  |  |
- | email | string |  no  |  |
- | resend_email_token | string |  no  |  |
- | register_token | string |  no  |  |
- | verify_email_otp | boolean |  no  |  |
- | verify_mobile_otp | boolean |  no  |  |
- | user_exists | boolean |  no  |  |
+ | reason_id | string? |  yes  |  |
+ | reason_text | string? |  yes  |  |
+ | show_text_area | boolean? |  yes  |  |
+ 
 
 ---
 
-
- 
- 
- #### [ProfileEditSuccess](#ProfileEditSuccess)
+#### [DeleteApplicationUserRequestSchema](#DeleteApplicationUserRequestSchema)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | user | [UserSchema](#UserSchema) |  no  |  |
- | register_token | string |  no  |  |
- | resend_email_token | string |  no  |  |
- | user_exists | boolean |  no  |  |
- | verify_email_link | boolean |  no  |  |
- | verify_email_otp | boolean |  no  |  |
- | verify_mobile_otp | boolean |  no  |  |
- | email | string |  no  |  |
- | request_id | string |  no  |  |
- | country_code | string |  no  |  |
- | mobile | string |  no  |  |
- | success | boolean |  no  |  |
- | message | string |  no  |  |
- | resend_timer | number |  no  |  |
- | resend_token | string |  no  |  |
+ | otp | string? |  yes  |  |
+ | reason | string? |  yes  |  |
+ | reason_id | string? |  yes  |  |
+ | request_id | string? |  yes  |  |
+ | user_id | string? |  yes  |  |
+ 
 
 ---
-
 
- 
- 
- #### [LoginSuccess](#LoginSuccess)
+#### [DeleteUserSuccess](#DeleteUserSuccess)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | user | [UserSchema](#UserSchema) |  no  |  |
- | request_id | string |  no  |  |
- | register_token | string |  no  |  |
+ | success | boolean? |  yes  |  |
+ 
 
 ---
 
+#### [EditEmailRequestSchema](#EditEmailRequestSchema)
 
- 
- 
- #### [VerifyOtpSuccess](#VerifyOtpSuccess)
-
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | user | [UserSchema](#UserSchema) |  no  |  |
- | user_exists | boolean |  no  |  |
- | register_token | string |  no  |  |
+ | email | string? |  yes  |  |
+ 
 
 ---
-
 
- 
- 
- #### [ResetPasswordSuccess](#ResetPasswordSuccess)
+#### [EditMobileRequestSchema](#EditMobileRequestSchema)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | status | string |  no  |  |
+ | country_code | string? |  yes  |  |
+ | phone | string? |  yes  |  |
+ 
 
 ---
-
 
- 
- 
- #### [RegisterFormSuccess](#RegisterFormSuccess)
+#### [EditProfileMobileSchema](#EditProfileMobileSchema)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | email | string |  no  |  |
- | resend_timer | number |  no  |  |
- | resend_token | string |  no  |  |
- | resend_email_token | string |  no  |  |
- | register_token | string |  no  |  |
- | success | boolean |  no  |  |
- | request_id | string |  no  |  |
- | message | string |  no  |  |
- | mobile | string |  no  |  |
- | country_code | string |  no  |  |
- | verify_email_otp | boolean |  no  |  |
- | verify_mobile_otp | boolean |  no  |  |
- | user_exists | boolean |  no  |  |
+ | country_code | string? |  yes  |  |
+ | phone | string? |  yes  |  |
+ 
 
 ---
 
-
- 
- 
- #### [VerifyEmailSuccess](#VerifyEmailSuccess)
+#### [EditProfileRequestSchema](#EditProfileRequestSchema)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | message | string |  no  |  |
+ | android_hash | string? |  yes  |  |
+ | country_code | string? |  yes  |  |
+ | dob | string? |  yes  |  |
+ | email | string? |  yes  |  |
+ | first_name | string? |  yes  |  |
+ | gender | string? |  yes  |  |
+ | last_name | string? |  yes  |  |
+ | mobile | [EditProfileMobileSchema](#EditProfileMobileSchema)? |  yes  |  |
+ | profile_pic_url | string? |  yes  |  |
+ | register_token | string? |  yes  |  |
+ | sender | string? |  yes  |  |
+ 
 
 ---
 
-
- 
- 
- #### [HasPasswordSuccess](#HasPasswordSuccess)
+#### [Email](#Email)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | result | boolean |  no  |  |
+ | active | boolean? |  yes  |  |
+ | email | string? |  yes  |  |
+ | primary | boolean? |  yes  |  |
+ | verified | boolean? |  yes  |  |
+ 
 
 ---
-
 
- 
- 
- #### [LogoutSuccess](#LogoutSuccess)
+#### [EmailOtpSuccess](#EmailOtpSuccess)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | logout | boolean |  no  |  |
+ | success | boolean? |  yes  |  |
+ 
 
 ---
 
+#### [Facebook](#Facebook)
 
- 
- 
- #### [BlockUserSuccess](#BlockUserSuccess)
-
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | success | boolean |  no  |  |
+ | app_id | string? |  yes  |  |
+ 
 
 ---
 
+#### [FlashCard](#FlashCard)
 
- 
- 
- #### [ArchiveUserSuccess](#ArchiveUserSuccess)
-
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | success | boolean |  no  |  |
+ | background_color | string? |  yes  |  |
+ | text | string? |  yes  |  |
+ | text_color | string? |  yes  |  |
+ 
 
 ---
-
 
- 
- 
- #### [OtpSuccess](#OtpSuccess)
+#### [ForgotPasswordRequestSchema](#ForgotPasswordRequestSchema)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | resend_timer | number |  no  |  |
- | resend_token | string |  no  |  |
- | register_token | string |  no  |  |
- | success | boolean |  no  |  |
- | request_id | string |  no  |  |
- | message | string |  no  |  |
- | mobile | string |  no  |  |
- | country_code | string |  no  |  |
+ | code | string? |  yes  |  |
+ | password | string? |  yes  |  |
+ 
 
 ---
 
-
- 
- 
- #### [EmailOtpSuccess](#EmailOtpSuccess)
+#### [FormRegisterRequestSchema](#FormRegisterRequestSchema)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | success | boolean |  no  |  |
+ | email | string? |  yes  |  |
+ | first_name | string? |  yes  |  |
+ | gender | string? |  yes  |  |
+ | last_name | string? |  yes  |  |
+ | password | string? |  yes  |  |
+ | phone | [FormRegisterRequestSchemaPhone](#FormRegisterRequestSchemaPhone)? |  yes  |  |
+ | register_token | string? |  yes  |  |
+ 
 
 ---
 
-
- 
- 
- #### [SessionListSuccess](#SessionListSuccess)
+#### [FormRegisterRequestSchemaPhone](#FormRegisterRequestSchemaPhone)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | sessions | [string] |  no  |  |
+ | country_code | string? |  yes  |  |
+ | mobile | string? |  yes  |  |
+ 
 
 ---
-
 
- 
- 
- #### [VerifyMobileOTPSuccess](#VerifyMobileOTPSuccess)
+#### [Google](#Google)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | user | [UserSchema](#UserSchema) |  no  |  |
- | verify_mobile_link | boolean |  no  |  |
+ | app_id | string? |  yes  |  |
+ 
 
 ---
-
 
- 
- 
- #### [VerifyEmailOTPSuccess](#VerifyEmailOTPSuccess)
+#### [HasPasswordSuccess](#HasPasswordSuccess)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | user | [UserSchema](#UserSchema) |  no  |  |
- | verify_email_link | boolean |  no  |  |
+ | result | boolean? |  yes  |  |
+ 
 
 ---
 
+#### [Login](#Login)
 
- 
- 
- #### [SendMobileVerifyLinkSuccess](#SendMobileVerifyLinkSuccess)
-
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | verify_mobile_link | boolean |  no  |  |
+ | otp | boolean? |  yes  |  |
+ | password | boolean? |  yes  |  |
+ 
 
 ---
-
 
- 
- 
- #### [SendEmailVerifyLinkSuccess](#SendEmailVerifyLinkSuccess)
+#### [LoginSuccess](#LoginSuccess)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | verify_email_link | boolean |  no  |  |
+ | register_token | string? |  yes  |  |
+ | request_id | string? |  yes  |  |
+ | user | [UserSchema](#UserSchema)? |  yes  |  |
+ 
 
 ---
 
-
- 
- 
- #### [UserSearchResponseSchema](#UserSearchResponseSchema)
+#### [LogoutSuccess](#LogoutSuccess)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | users | [[UserSchema](#UserSchema)] |  no  |  |
+ | logout | boolean? |  yes  |  |
+ 
 
 ---
 
-
- 
- 
- #### [CustomerListResponseSchema](#CustomerListResponseSchema)
+#### [LookAndFeel](#LookAndFeel)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | items | [[UserSchema](#UserSchema)] |  no  |  |
- | page | [PaginationSchema](#PaginationSchema) |  no  |  |
+ | background_color | string? |  yes  |  |
+ | card_position | string? |  yes  |  |
+ 
 
 ---
 
-
- 
- 
- #### [PaginationSchema](#PaginationSchema)
+#### [MetaSchema](#MetaSchema)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | size | number |  no  |  |
- | item_total | number |  no  |  |
- | has_next | boolean |  no  |  |
- | type | string |  no  |  |
- | current | number |  no  |  |
+ | fynd_default | boolean? |  yes  |  |
+ 
 
 ---
-
 
- 
- 
- #### [SessionListResponseSchema](#SessionListResponseSchema)
+#### [NotFoundSchema](#NotFoundSchema)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | items | [string] |  no  |  |
+ | message | string? |  yes  |  |
+ 
 
 ---
 
+#### [OAuthRequestAppleSchema](#OAuthRequestAppleSchema)
 
- 
- 
- #### [SessionDeleteResponseSchema](#SessionDeleteResponseSchema)
-
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | items | [string] |  no  |  |
+ | oauth | [OAuthRequestAppleSchemaOauth](#OAuthRequestAppleSchemaOauth)? |  yes  |  |
+ | profile | [OAuthRequestAppleSchemaProfile](#OAuthRequestAppleSchemaProfile)? |  yes  |  |
+ | user_identifier | string? |  yes  |  |
+ 
 
 ---
-
 
- 
- 
- #### [UnauthorizedSchema](#UnauthorizedSchema)
+#### [OAuthRequestAppleSchemaOauth](#OAuthRequestAppleSchemaOauth)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | message | string |  no  |  |
+ | identity_token | string? |  yes  |  |
+ 
 
 ---
-
 
- 
- 
- #### [UnauthenticatedSchema](#UnauthenticatedSchema)
+#### [OAuthRequestAppleSchemaProfile](#OAuthRequestAppleSchemaProfile)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | authenticated | boolean |  no  |  |
+ | first_name | string? |  yes  |  |
+ | full_name | string? |  yes  |  |
+ | last_name | string? |  yes  |  |
+ 
 
 ---
 
-
- 
- 
- #### [NotFoundSchema](#NotFoundSchema)
+#### [OAuthRequestSchema](#OAuthRequestSchema)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | message | string |  no  |  |
+ | is_signed_in | boolean? |  yes  |  |
+ | oauth2 | [OAuthRequestSchemaOauth2](#OAuthRequestSchemaOauth2)? |  yes  |  |
+ | profile | [OAuthRequestSchemaProfile](#OAuthRequestSchemaProfile)? |  yes  |  |
+ 
 
 ---
 
-
- 
- 
- #### [AuthenticationInternalServerErrorSchema](#AuthenticationInternalServerErrorSchema)
+#### [OAuthRequestSchemaOauth2](#OAuthRequestSchemaOauth2)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | message | string |  no  |  |
+ | access_token | string? |  yes  |  |
+ | expiry | number? |  yes  |  |
+ | refresh_token | string? |  yes  |  |
+ 
 
 ---
-
 
- 
- 
- #### [AuthenticationApiErrorSchema](#AuthenticationApiErrorSchema)
+#### [OAuthRequestSchemaProfile](#OAuthRequestSchemaProfile)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | message | string |  no  |  |
+ | email | string? |  yes  |  |
+ | first_name | string? |  yes  |  |
+ | full_name | string? |  yes  |  |
+ | id | string? |  yes  |  |
+ | image | string? |  yes  |  |
+ | last_name | string? |  yes  |  |
+ 
 
 ---
 
+#### [OtpSuccess](#OtpSuccess)
 
- 
- 
- #### [ProfileEditSuccessSchema](#ProfileEditSuccessSchema)
-
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | email | string |  no  |  |
- | verify_email_otp | boolean |  no  |  |
- | verify_email_link | boolean |  no  |  |
- | verify_mobile_otp | boolean |  no  |  |
- | user | string |  no  |  |
- | register_token | string |  no  |  |
- | user_exists | boolean |  no  |  |
+ | country_code | string? |  yes  |  |
+ | message | string? |  yes  |  |
+ | mobile | string? |  yes  |  |
+ | register_token | string? |  yes  |  |
+ | request_id | string? |  yes  |  |
+ | resend_timer | number? |  yes  |  |
+ | resend_token | string? |  yes  |  |
+ | success | boolean? |  yes  |  |
+ 
 
 ---
 
+#### [PaginationSchema](#PaginationSchema)
 
- 
- 
- #### [FormRegisterRequestSchemaPhone](#FormRegisterRequestSchemaPhone)
-
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | country_code | string |  no  |  |
- | mobile | string |  no  |  |
+ | current | number? |  yes  |  |
+ | has_next | boolean? |  yes  |  |
+ | item_total | number? |  yes  |  |
+ | size | number? |  yes  |  |
+ | type | string? |  yes  |  |
+ 
 
 ---
-
 
- 
- 
- #### [OAuthRequestSchemaOauth2](#OAuthRequestSchemaOauth2)
+#### [PasswordLoginRequestSchema](#PasswordLoginRequestSchema)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | access_token | string |  no  |  |
- | expiry | number |  no  |  |
- | refresh_token | string |  no  |  |
+ | captcha_code | string? |  yes  |  |
+ | password | string? |  yes  |  |
+ | username | string? |  yes  |  |
+ 
 
 ---
 
-
- 
- 
- #### [OAuthRequestSchemaProfile](#OAuthRequestSchemaProfile)
+#### [PhoneNumber](#PhoneNumber)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | last_name | string |  no  |  |
- | image | string |  no  |  |
- | id | string |  no  |  |
- | email | string |  no  |  |
- | full_name | string |  no  |  |
- | first_name | string |  no  |  |
+ | active | boolean? |  yes  |  |
+ | country_code | number? |  yes  |  |
+ | phone | string? |  yes  |  |
+ | primary | boolean? |  yes  |  |
+ | verified | boolean? |  yes  |  |
+ 
 
 ---
 
-
- 
- 
- #### [OAuthRequestAppleSchemaOauth](#OAuthRequestAppleSchemaOauth)
+#### [PlatformEmail](#PlatformEmail)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | identity_token | string |  no  |  |
+ | is_required | boolean? |  yes  |  |
+ | level | string? |  yes  |  |
+ 
 
 ---
-
 
- 
- 
- #### [OAuthRequestAppleSchemaProfile](#OAuthRequestAppleSchemaProfile)
+#### [PlatformMobile](#PlatformMobile)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | last_name | string |  no  |  |
- | full_name | string |  no  |  |
- | first_name | string |  no  |  |
+ | is_required | boolean? |  yes  |  |
+ | level | string? |  yes  |  |
+ 
 
 ---
-
 
- 
- 
- #### [AuthSuccessUser](#AuthSuccessUser)
+#### [PlatformSchema](#PlatformSchema)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | first_name | string |  no  |  |
- | last_name | string |  no  |  |
- | debug | [AuthSuccessUserDebug](#AuthSuccessUserDebug) |  no  |  |
- | active | boolean |  no  |  |
- | emails | [AuthSuccessUserEmails](#AuthSuccessUserEmails) |  no  |  |
+ | _id | string? |  yes  |  |
+ | active | boolean? |  yes  |  |
+ | created_at | string? |  yes  |  |
+ | delete_account_consent | string? |  yes  |  |
+ | delete_account_day | number? |  yes  |  |
+ | delete_account_reasons | [[DeleteAccountReasons](#DeleteAccountReasons)]? |  yes  |  |
+ | desktop_image | string? |  yes  |  |
+ | display | string? |  yes  |  |
+ | flash_card | [FlashCard](#FlashCard)? |  yes  |  |
+ | forgot_password | boolean? |  yes  |  |
+ | login | [Login](#Login)? |  yes  |  |
+ | look_and_feel | [LookAndFeel](#LookAndFeel)? |  yes  |  |
+ | meta | [MetaSchema](#MetaSchema)? |  yes  |  |
+ | mobile_image | string? |  yes  |  |
+ | name | string? |  yes  |  |
+ | register | boolean? |  yes  |  |
+ | register_required_fields | [RegisterRequiredFields](#RegisterRequiredFields)? |  yes  |  |
+ | required_fields | [RequiredFields](#RequiredFields)? |  yes  |  |
+ | session_config | string? |  yes  |  |
+ | skip_captcha | boolean? |  yes  |  |
+ | skip_login | boolean? |  yes  |  |
+ | social | [Social](#Social)? |  yes  |  |
+ | social_tokens | [SocialTokens](#SocialTokens)? |  yes  |  |
+ | subtext | string? |  yes  |  |
+ | updated_at | string? |  yes  |  |
+ 
 
 ---
 
+#### [ProfileEditSuccess](#ProfileEditSuccess)
 
- 
- 
- #### [AuthSuccessUserDebug](#AuthSuccessUserDebug)
-
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | platform | string |  no  |  |
+ | country_code | string? |  yes  |  |
+ | email | string? |  yes  |  |
+ | message | string? |  yes  |  |
+ | mobile | string? |  yes  |  |
+ | register_token | string? |  yes  |  |
+ | request_id | string? |  yes  |  |
+ | resend_email_token | string? |  yes  |  |
+ | resend_timer | number? |  yes  |  |
+ | resend_token | string? |  yes  |  |
+ | success | boolean? |  yes  |  |
+ | user | [UserSchema](#UserSchema)? |  yes  |  |
+ | user_exists | boolean? |  yes  |  |
+ | verify_email_link | boolean? |  yes  |  |
+ | verify_email_otp | boolean? |  yes  |  |
+ | verify_mobile_otp | boolean? |  yes  |  |
+ 
 
 ---
-
 
- 
- 
- #### [AuthSuccessUserEmails](#AuthSuccessUserEmails)
+#### [ProfileEditSuccessSchema](#ProfileEditSuccessSchema)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | email | string |  no  |  |
- | verified | boolean |  no  |  |
- | primary | boolean |  no  |  |
- | active | boolean |  no  |  |
+ | email | string? |  yes  |  |
+ | register_token | string? |  yes  |  |
+ | user | string? |  yes  |  |
+ | user_exists | boolean? |  yes  |  |
+ | verify_email_link | boolean? |  yes  |  |
+ | verify_email_otp | boolean? |  yes  |  |
+ | verify_mobile_otp | boolean? |  yes  |  |
+ 
 
 ---
 
-
- 
- 
- #### [CreateUserRequestSchema](#CreateUserRequestSchema)
+#### [RegisterFormSuccess](#RegisterFormSuccess)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | phone_number | string |  yes  |  |
- | email | string |  no  |  |
- | first_name | string |  no  |  |
- | last_name | string |  no  |  |
- | gender | string |  no  |  |
- | username | string |  yes  |  |
- | meta | string |  no  |  |
+ | country_code | string? |  yes  |  |
+ | email | string? |  yes  |  |
+ | message | string? |  yes  |  |
+ | mobile | string? |  yes  |  |
+ | register_token | string? |  yes  |  |
+ | request_id | string? |  yes  |  |
+ | resend_email_token | string? |  yes  |  |
+ | resend_timer | number? |  yes  |  |
+ | resend_token | string? |  yes  |  |
+ | success | boolean? |  yes  |  |
+ | user_exists | boolean? |  yes  |  |
+ | verify_email_otp | boolean? |  yes  |  |
+ | verify_mobile_otp | boolean? |  yes  |  |
+ 
 
 ---
 
-
- 
- 
- #### [CreateUserResponseSchema](#CreateUserResponseSchema)
+#### [RegisterRequiredFields](#RegisterRequiredFields)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | user | [UserSchema](#UserSchema) |  no  |  |
+ | email | [RegisterRequiredFieldsEmail](#RegisterRequiredFieldsEmail)? |  yes  |  |
+ | mobile | [RegisterRequiredFieldsMobile](#RegisterRequiredFieldsMobile)? |  yes  |  |
+ 
 
 ---
 
-
- 
- 
- #### [CreateUserSessionRequestSchema](#CreateUserSessionRequestSchema)
+#### [RegisterRequiredFieldsEmail](#RegisterRequiredFieldsEmail)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | domain | string |  no  |  |
- | max_age | number |  no  |  |
- | user_id | string |  no  |  |
+ | is_required | boolean? |  yes  |  |
+ | level | string? |  yes  |  |
+ 
 
 ---
-
 
- 
- 
- #### [CreateUserSessionResponseSchema](#CreateUserSessionResponseSchema)
+#### [RegisterRequiredFieldsMobile](#RegisterRequiredFieldsMobile)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | domain | string |  no  |  |
- | max_age | number |  no  |  |
- | secure | boolean |  no  |  |
- | http_only | boolean |  no  |  |
- | cookie | string |  no  |  |
+ | is_required | boolean? |  yes  |  |
+ | level | string? |  yes  |  |
+ 
 
 ---
 
+#### [RequiredFields](#RequiredFields)
 
- 
- 
- #### [PlatformSchema](#PlatformSchema)
-
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | display | string |  no  |  |
- | look_and_feel | [LookAndFeel](#LookAndFeel) |  no  |  |
- | updated_at | string |  no  |  |
- | active | boolean |  no  |  |
- | forgot_password | boolean |  no  |  |
- | login | [Login](#Login) |  no  |  |
- | skip_captcha | boolean |  no  |  |
- | name | string |  no  |  |
- | meta | [MetaSchema](#MetaSchema) |  no  |  |
- | _id | string |  no  |  |
- | social | [Social](#Social) |  no  |  |
- | required_fields | [RequiredFields](#RequiredFields) |  no  |  |
- | register_required_fields | [RegisterRequiredFields](#RegisterRequiredFields) |  no  |  |
- | skip_login | boolean |  no  |  |
- | flash_card | [FlashCard](#FlashCard) |  no  |  |
- | subtext | string |  no  |  |
- | social_tokens | [SocialTokens](#SocialTokens) |  no  |  |
- | created_at | string |  no  |  |
- | register | boolean |  no  |  |
- | mobile_image | string |  no  |  |
- | desktop_image | string |  no  |  |
+ | email | [PlatformEmail](#PlatformEmail)? |  yes  |  |
+ | mobile | [PlatformMobile](#PlatformMobile)? |  yes  |  |
+ 
 
 ---
-
 
- 
- 
- #### [LookAndFeel](#LookAndFeel)
+#### [ResetPasswordSuccess](#ResetPasswordSuccess)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | card_position | string |  no  |  |
- | background_color | string |  no  |  |
+ | status | string? |  yes  |  |
+ 
 
 ---
-
 
- 
- 
- #### [Login](#Login)
+#### [SendEmailOtpRequestSchema](#SendEmailOtpRequestSchema)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | password | boolean |  no  |  |
- | otp | boolean |  no  |  |
+ | action | string? |  yes  |  |
+ | email | string? |  yes  |  |
+ | register_token | string? |  yes  |  |
+ | token | string? |  yes  |  |
+ 
 
 ---
 
-
- 
- 
- #### [MetaSchema](#MetaSchema)
+#### [SendEmailVerifyLinkSuccess](#SendEmailVerifyLinkSuccess)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | fynd_default | boolean |  no  |  |
+ | verify_email_link | boolean? |  yes  |  |
+ 
 
 ---
 
-
- 
- 
- #### [Social](#Social)
+#### [SendMobileOtpRequestSchema](#SendMobileOtpRequestSchema)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | account_kit | boolean |  no  |  |
- | facebook | boolean |  no  |  |
- | google | boolean |  no  |  |
- | apple | boolean |  no  |  |
+ | action | string? |  yes  |  |
+ | android_hash | string? |  yes  |  |
+ | captcha_code | string? |  yes  |  |
+ | country_code | string? |  yes  |  |
+ | force | string? |  yes  |  |
+ | mobile | string? |  yes  |  |
+ | token | string? |  yes  |  |
+ 
 
 ---
-
 
- 
- 
- #### [RequiredFields](#RequiredFields)
+#### [SendMobileVerifyLinkSuccess](#SendMobileVerifyLinkSuccess)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | email | [PlatformEmail](#PlatformEmail) |  no  |  |
- | mobile | [PlatformMobile](#PlatformMobile) |  no  |  |
+ | verify_mobile_link | boolean? |  yes  |  |
+ 
 
 ---
 
+#### [SendOtpRequestSchema](#SendOtpRequestSchema)
 
- 
- 
- #### [PlatformEmail](#PlatformEmail)
-
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | is_required | boolean |  no  |  |
- | level | string |  no  |  |
+ | android_hash | string? |  yes  |  |
+ | captcha_code | string? |  yes  |  |
+ | country_code | string? |  yes  |  |
+ | mobile | string? |  yes  |  |
+ 
 
 ---
 
+#### [SendOtpResponse](#SendOtpResponse)
 
- 
- 
- #### [PlatformMobile](#PlatformMobile)
-
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | is_required | boolean |  no  |  |
- | level | string |  no  |  |
+ | country_code | string? |  yes  |  |
+ | email | string? |  yes  |  |
+ | message | string? |  yes  |  |
+ | mobile | string? |  yes  |  |
+ | register_token | string? |  yes  |  |
+ | request_id | string? |  yes  |  |
+ | resend_email_token | string? |  yes  |  |
+ | resend_timer | number? |  yes  |  |
+ | resend_token | string? |  yes  |  |
+ | success | boolean? |  yes  |  |
+ | user_exists | boolean? |  yes  |  |
+ | verify_email_otp | boolean? |  yes  |  |
+ | verify_mobile_otp | boolean? |  yes  |  |
+ 
 
 ---
-
 
- 
- 
- #### [RegisterRequiredFields](#RegisterRequiredFields)
+#### [SendResetPasswordEmailRequestSchema](#SendResetPasswordEmailRequestSchema)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | email | [RegisterRequiredFieldsEmail](#RegisterRequiredFieldsEmail) |  no  |  |
- | mobile | [RegisterRequiredFieldsMobile](#RegisterRequiredFieldsMobile) |  no  |  |
+ | captcha_code | string? |  yes  |  |
+ | email | string? |  yes  |  |
+ 
 
 ---
 
+#### [SendResetPasswordMobileRequestSchema](#SendResetPasswordMobileRequestSchema)
 
- 
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | captcha_code | string? |  yes  |  |
+ | country_code | string? |  yes  |  |
+ | mobile | string? |  yes  |  |
  
- #### [RegisterRequiredFieldsEmail](#RegisterRequiredFieldsEmail)
+
+---
 
+#### [SendVerificationLinkMobileRequestSchema](#SendVerificationLinkMobileRequestSchema)
+
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | is_required | boolean |  no  |  |
- | level | string |  no  |  |
+ | active | boolean? |  yes  |  |
+ | country_code | string? |  yes  |  |
+ | phone | string? |  yes  |  |
+ | primary | boolean? |  yes  |  |
+ | verified | boolean? |  yes  |  |
+ 
 
 ---
 
+#### [SessionDeleteResponseSchema](#SessionDeleteResponseSchema)
 
- 
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | items | [string]? |  yes  |  |
  
- #### [RegisterRequiredFieldsMobile](#RegisterRequiredFieldsMobile)
+
+---
+
+#### [SessionExpiry](#SessionExpiry)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | is_required | boolean |  no  |  |
- | level | string |  no  |  |
+ | duration | number? |  yes  |  |
+ | is_rolling | boolean? |  yes  |  |
+ | type | string? |  yes  |  |
+ 
 
 ---
 
+#### [SessionListResponseSchema](#SessionListResponseSchema)
 
- 
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | items | [string]? |  yes  |  |
  
- #### [FlashCard](#FlashCard)
+
+---
 
+#### [SessionListSuccess](#SessionListSuccess)
+
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | text | string |  no  |  |
- | text_color | string |  no  |  |
- | background_color | string |  no  |  |
+ | sessions | [string]? |  yes  |  |
+ 
 
 ---
 
+#### [Social](#Social)
 
- 
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | account_kit | boolean? |  yes  |  |
+ | apple | boolean? |  yes  |  |
+ | facebook | boolean? |  yes  |  |
+ | google | boolean? |  yes  |  |
  
- #### [SocialTokens](#SocialTokens)
+
+---
 
+#### [SocialTokens](#SocialTokens)
+
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | facebook | [Facebook](#Facebook) |  no  |  |
- | account_kit | [Accountkit](#Accountkit) |  no  |  |
- | google | [Google](#Google) |  no  |  |
+ | account_kit | [Accountkit](#Accountkit)? |  yes  |  |
+ | facebook | [Facebook](#Facebook)? |  yes  |  |
+ | google | [Google](#Google)? |  yes  |  |
+ 
 
 ---
 
+#### [TokenRequestBodySchema](#TokenRequestBodySchema)
 
- 
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | token | string? |  yes  |  |
  
- #### [Facebook](#Facebook)
+
+---
 
+#### [UnauthenticatedSchema](#UnauthenticatedSchema)
+
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | app_id | string |  no  |  |
+ | authenticated | boolean? |  yes  |  |
+ 
 
 ---
 
+#### [UnauthorizedSchema](#UnauthorizedSchema)
 
- 
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | message | string? |  yes  |  |
  
- #### [Accountkit](#Accountkit)
+
+---
 
+#### [UnDeleteUserRequestSchema](#UnDeleteUserRequestSchema)
+
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | app_id | string |  no  |  |
+ | reason | string? |  yes  |  |
+ | reason_id | string? |  yes  |  |
+ | user_id | string? |  yes  |  |
+ 
 
 ---
 
+#### [UnDeleteUserSuccess](#UnDeleteUserSuccess)
 
- 
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | success | boolean? |  yes  |  |
  
- #### [Google](#Google)
 
+---
+
+#### [UpdatePasswordRequestSchema](#UpdatePasswordRequestSchema)
+
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | app_id | string |  no  |  |
+ | new_password | string? |  yes  |  |
+ | old_password | string? |  yes  |  |
+ 
 
 ---
 
+#### [UpdateUserRequestSchema](#UpdateUserRequestSchema)
 
- 
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | external_id | string? |  yes  |  |
+ | first_name | string? |  yes  |  |
+ | gender | string? |  yes  |  |
+ | last_name | string? |  yes  |  |
+ | meta | string? |  yes  |  |
  
- #### [UpdateUserRequestSchema](#UpdateUserRequestSchema)
+
+---
 
+#### [UserObjectSchema](#UserObjectSchema)
+
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | first_name | string |  no  |  |
- | last_name | string |  no  |  |
- | gender | string |  no  |  |
- | external_id | string |  no  |  |
- | meta | string |  no  |  |
+ | user | [UserSchema](#UserSchema)? |  yes  |  |
+ 
 
 ---
 
+#### [UserSchema](#UserSchema)
 
- 
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | _id | string? |  yes  |  |
+ | account_type | string? |  yes  |  |
+ | active | boolean? |  yes  |  |
+ | application_id | string? |  yes  |  |
+ | created_at | string? |  yes  |  |
+ | dob | string? |  yes  |  |
+ | emails | [[Email](#Email)]? |  yes  |  |
+ | first_name | string? |  yes  |  |
+ | gender | string? |  yes  |  |
+ | last_name | string? |  yes  |  |
+ | meta | string? |  yes  |  |
+ | phone_numbers | [[PhoneNumber](#PhoneNumber)]? |  yes  |  |
+ | profile_pic_url | string? |  yes  |  |
+ | updated_at | string? |  yes  |  |
+ | user_id | string? |  yes  |  |
+ | username | string? |  yes  |  |
  
- #### [UserSchema](#UserSchema)
 
+---
+
+#### [UserSearchResponseSchema](#UserSearchResponseSchema)
+
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | application_id | string |  no  |  |
- | user_id | string |  no  |  |
- | first_name | string |  no  |  |
- | meta | string |  no  |  |
- | last_name | string |  no  |  |
- | phone_numbers | [[PhoneNumber](#PhoneNumber)] |  no  |  |
- | emails | [[Email](#Email)] |  no  |  |
- | gender | string |  no  |  |
- | dob | string |  no  |  |
- | active | boolean |  no  |  |
- | profile_pic_url | string |  no  |  |
- | username | string |  no  |  |
- | account_type | string |  no  |  |
- | debug | [Debug](#Debug) |  no  |  |
- | has_old_password_hash | boolean |  no  |  |
- | _id | string |  no  |  |
- | created_at | string |  no  |  |
- | updated_at | string |  no  |  |
+ | users | [[UserSchema](#UserSchema)]? |  yes  |  |
+ 
 
 ---
 
+#### [VerifyEmailOtpRequestSchema](#VerifyEmailOtpRequestSchema)
 
- 
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | action | string? |  yes  |  |
+ | email | string? |  yes  |  |
+ | otp | string? |  yes  |  |
+ | register_token | string? |  yes  |  |
  
- #### [PhoneNumber](#PhoneNumber)
+
+---
+
+#### [VerifyEmailOTPSuccess](#VerifyEmailOTPSuccess)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | active | boolean |  no  |  |
- | primary | boolean |  no  |  |
- | verified | boolean |  no  |  |
- | phone | string |  no  |  |
- | country_code | number |  no  |  |
+ | user | [UserSchema](#UserSchema)? |  yes  |  |
+ | verify_email_link | boolean? |  yes  |  |
+ 
 
 ---
 
+#### [VerifyEmailSuccess](#VerifyEmailSuccess)
 
- 
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | message | string? |  yes  |  |
  
- #### [Email](#Email)
+
+---
+
+#### [VerifyMobileOTPSuccess](#VerifyMobileOTPSuccess)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | primary | boolean |  no  |  |
- | verified | boolean |  no  |  |
- | email | string |  no  |  |
- | active | boolean |  no  |  |
+ | user | [UserSchema](#UserSchema)? |  yes  |  |
+ | verify_mobile_link | boolean? |  yes  |  |
+ 
 
 ---
 
+#### [VerifyOtpRequestSchema](#VerifyOtpRequestSchema)
 
- 
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | otp | string? |  yes  |  |
+ | register_token | string? |  yes  |  |
+ | request_id | string? |  yes  |  |
  
- #### [Debug](#Debug)
+
+---
 
+#### [VerifyOtpSuccess](#VerifyOtpSuccess)
+
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | source | string |  no  |  |
- | platform | string |  no  |  |
+ | register_token | string? |  yes  |  |
+ | user | [UserSchema](#UserSchema)? |  yes  |  |
+ | user_exists | boolean? |  yes  |  |
+ 
 
 ---
 

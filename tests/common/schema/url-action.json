@@ -276,6 +276,22 @@
       }
     },
     {
+      "name": "profile orders shipments",
+      "path": "/profile/orders/shipment/16720482187091110000",
+      "result": {
+        "action": {
+          "type": "page",
+          "page": {
+            "type": "profile-order-shipment",
+            "params": {
+              "shipmentid": [16720482187091110000]
+            }
+          }
+        }
+      }
+    },
+
+    {
       "name": "faq with category",
       "path": "/faq/:category",
       "result": {
@@ -415,6 +431,34 @@
           "type": "page",
           "page": {
             "type": "policy",
+            "query": {},
+            "params": {}
+          }
+        }
+      }
+    },
+    {
+      "name": "Shipping policy",
+      "path": "/shipping-policy",
+      "result": {
+        "action": {
+          "type": "page",
+          "page": {
+            "type": "shipping-policy",
+            "query": {},
+            "params": {}
+          }
+        }
+      }
+    },
+    {
+      "name": "Return policy",
+      "path": "/return-policy",
+      "result": {
+        "action": {
+          "type": "page",
+          "page": {
+            "type": "return-policy",
             "query": {},
             "params": {}
           }

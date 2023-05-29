@@ -3,7 +3,7 @@ const {
   FDKClientValidationError,
 } = require("../common/FDKError");
 const { Logger, setLoggerLevel } = require("../common/Logger");
-const { LocationValidator } = require("../application/ApplicationModels");
+const { LocationValidator } = require("./ApplicationModels");
 class ApplicationConfig {
   /**
    * @param {object} _conf
@@ -18,11 +18,13 @@ class ApplicationConfig {
     this.setLogLevel(this.logLevel);
     this.extraHeaders = [];
     this.locationDetails = _conf.locationDetails;
+    this.currencyCode = _conf.currencyCode || "INR";
     this.validate();
   }
 
   setLogLevel(level) {
-    setLoggerLevel(level);
+    setLoggerLevel(level.toUpperCase());
+    this.logLevel = level.toUpperCase();
   }
 
   setCookie(cookie) {
@@ -38,7 +40,7 @@ class ApplicationConfig {
       throw new FDKClientValidationError(error);
     }
     if (!this.applicationID) {
-      Logger({ type: "ERROR", message: "No Application ID Present" });
+      Logger({ level: "ERROR", message: "No Application ID Present" });
       throw new FDKInvalidCredentialError("No Application ID Present");
     }
     if (!this.applicationToken) {

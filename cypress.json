@@ -1,0 +1,7 @@
+{
+    "chromeWebSecurity": false,
+    "supportFile": false,
+    "screenshotOnRunFailure": false,
+    "video": false,
+    "pluginsFile": false
+}

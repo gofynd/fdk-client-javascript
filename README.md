@@ -13,8 +13,10 @@ Get started with the Javascript Development SDK for Fynd Platform
 
 ### Usage
 
+#### Node
+
 ```
-npm install fdk-client-javascript --save
+npm install @gofynd/fdk-client-javascript
 ```
 
 Using this method, you can `require` fdk-client-javascript like so:
@@ -25,6 +27,22 @@ const {
   ApplicationClient,
 } = require("fdk-client-javascript");
 ```
+
+#### Browser
+you can load fdk-client-javascript's application browser bundle from CDN; `ApplicationConfig`, `ApplicationClient` and `ApplicationModels` will be attached to browser's `window` object.
+
+```html
+<script src="https://cdn.jsdelivr.net/gh/gofynd/fdk-client-javascript@<version>/dist/application.js"></script>
+```
+Install Specific version
+```html
+<script src="https://cdn.jsdelivr.net/gh/gofynd/fdk-client-javascript@1.0.1/dist/application.js"></script>
+```
+
+```js
+const { ApplicationConfig, ApplicationClient } = window;
+```
+
 
 ### Logging
 
@@ -103,7 +121,58 @@ async function getData() {
 
 getData();
 ```
+---
+### Cookie
 
+Following code snippet will read and write cookies on behalf of you <br />
+Cookies will get appended in subsequent requests.
+
+```javascript
+const { FdkAxios } = require('@gofynd/fdk-client-javascript');
+const { wrapper } =  require("axios-cookiejar-support");
+const { CookieJar } = require("tough-cookie");
+
+
+wrapper(FdkAxios);
+const cookieJar = new CookieJar();
+FdkAxios.defaults.jar = cookieJar;
+
+
+module.exports = cookieJar
+```
+
+get the stored cookie from the CookieJar instance
+```javascript
+const cookieJar = require('path/to/cookieJar') // replace with actual path
+
+let cookies = await cookieJar.getCookies("https://api.fynd.com");
+```
+---
+
+### Log Curl
+To print the curl command in the console for all network calls made using `applicationClient` or `platformClient`, set the logger level to debug.
+```javascript
+const {
+  ApplicationClient, ApplicationConfig,
+} = require("fdk-client-javascript");
+
+let applicationConfig = new ApplicationConfig({
+  applicationID: "YOUR_APPLICATION_ID",
+  applicationToken: "YOUR_APPLICATION_TOKEN",
+});
+
+applicationConfig.setLogLevel("debug");
+let applicationClient = new ApplicationClient(applicationConfig);
+
+let response = await applicationClient.theme.getAppliedTheme(); 
+console.log("Active Theme: ", response.information.name);
+```
+The above code will log the curl command in the console
+```bash
+curl --request GET "https://api.fynd.com/service/application/theme/v1.0/applied-theme" --header 'authorization: Bearer <authorization-token>' --header 'x-fp-sdk-version: 0.1.36' --header 'x-fp-date: 20230222T115108Z' --header 'x-fp-signature: v1.1:1e3ab3b02b5bc626e3c32a37ee844266ade02bbcbaafc28fc7a0e46a76a7a1a8'
+Active Theme: Emerge
+```
+---
 ### TypeScript
 
 fdk-client-javascript includes Typescript definitions.
@@ -111,8 +180,11 @@ fdk-client-javascript includes Typescript definitions.
 ```typescript
 import { ApplicationConfig, ApplicationClient } from "fdk-client-javascript";
 ```
-
+---
 ### Documentation
 
+- [Public Front](documentation/public/README.md)
 - [Application Front](documentation/application/README.md)
 - [Platform Front](documentation/platform/README.md)
+- [Partner Front](documentation/partner/README.md)
+
