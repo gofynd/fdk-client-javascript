@@ -2714,7 +2714,7 @@ const promise = platformClient.order.getOrders({  lane : value,
  toDate : value,
  dpIds : value,
  stores : value,
- salesChannel : value,
+ salesChannels : value,
  pageNo : value,
  pageSize : value,
  isPrioritySort : value,
@@ -2732,7 +2732,7 @@ const data = await platformClient.order.getOrders({  lane : value,
  toDate : value,
  dpIds : value,
  stores : value,
- salesChannel : value,
+ salesChannels : value,
  pageNo : value,
  pageSize : value,
  isPrioritySort : value,
@@ -2756,7 +2756,7 @@ const data = await platformClient.order.getOrders({  lane : value,
 | toDate | string | no |  |    
 | dpIds | string | no |  |    
 | stores | string | no |  |    
-| salesChannel | string | no |  |    
+| salesChannels | string | no |  |    
 | pageNo | number | no |  |    
 | pageSize | number | no |  |    
 | isPrioritySort | boolean | no |  |    

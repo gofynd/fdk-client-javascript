@@ -898,6 +898,7 @@ class PlatformApplicationClient {
 /** @typedef CollectionBanner */
 /** @typedef CollectionCreateResponse */
 /** @typedef CollectionDetailResponse */
+/** @typedef CollectionErrorResponse */
 /** @typedef CollectionImage */
 /** @typedef CollectionItem */
 /** @typedef CollectionItemUpdate */
@@ -906,6 +907,8 @@ class PlatformApplicationClient {
 /** @typedef CollectionListingFilterType */
 /** @typedef CollectionQuery */
 /** @typedef CollectionSchedule */
+/** @typedef CollectionUpdateBanner */
+/** @typedef CollectionUpdateImage */
 /** @typedef CollectionUpdateResponse */
 /** @typedef CompanyBrandDetail */
 /** @typedef CompanyMeta */

@@ -615,6 +615,13 @@ class CatalogModel {
       visible_facets_keys: Joi.array().items(Joi.string().allow("")),
     });
   }
+  static CollectionErrorResponse() {
+    return Joi.object({
+      code: Joi.number().required(),
+      errors: Joi.any().allow(null),
+      message: Joi.string().allow("").required(),
+    });
+  }
   static CollectionImage() {
     return Joi.object({
       aspect_ratio: Joi.string().allow("").required(),
@@ -674,6 +681,18 @@ class CatalogModel {
       start: Joi.string().allow(""),
     });
   }
+  static CollectionUpdateBanner() {
+    return Joi.object({
+      landscape: CatalogModel.CollectionUpdateImage().required(),
+      portrait: CatalogModel.CollectionUpdateImage().required(),
+    });
+  }
+  static CollectionUpdateImage() {
+    return Joi.object({
+      type: Joi.string().allow("").required(),
+      url: Joi.string().allow("").required(),
+    });
+  }
   static CollectionUpdateResponse() {
     return Joi.object({
       _custom_json: Joi.any(),
@@ -683,11 +702,11 @@ class CatalogModel {
       allow_sort: Joi.boolean(),
       app_id: Joi.string().allow(""),
       badge: CatalogModel.CollectionBadge(),
-      banners: CatalogModel.CollectionBanner(),
+      banners: CatalogModel.CollectionUpdateBanner(),
       description: Joi.string().allow(""),
       is_active: Joi.boolean(),
       is_visible: Joi.boolean(),
-      logo: CatalogModel.CollectionImage(),
+      logo: CatalogModel.CollectionUpdateImage(),
       meta: Joi.any(),
       modified_by: CatalogModel.UserInfo(),
       name: Joi.string().allow(""),
@@ -2312,7 +2331,7 @@ class CatalogModel {
       net_quantity: CatalogModel.NetQuantity(),
       no_of_boxes: Joi.number(),
       product_group_tag: Joi.array().items(Joi.string().allow("")),
-      product_publish: CatalogModel.ProductPublish(),
+      product_publish: CatalogModel.ProductPublish1(),
       requester: Joi.string().allow(""),
       return_config: CatalogModel.ReturnConfig().required(),
       short_description: Joi.string().allow(""),
@@ -2528,7 +2547,7 @@ class CatalogModel {
       pending: Joi.string().allow(""),
       primary_color: Joi.string().allow(""),
       product_group_tag: Joi.array().items(Joi.string().allow("")),
-      product_publish: CatalogModel.ProductPublish1(),
+      product_publish: CatalogModel.ProductPublish(),
       return_config: CatalogModel.ReturnConfigResponse(),
       short_description: Joi.string().allow(""),
       size_guide: Joi.string().allow(""),
@@ -2569,7 +2588,9 @@ class CatalogModel {
   }
   static ProductSortOn() {
     return Joi.object({
+      display: Joi.string().allow(""),
       is_selected: Joi.boolean(),
+      logo: Joi.string().allow(""),
       name: Joi.string().allow(""),
       value: Joi.string().allow(""),
     });

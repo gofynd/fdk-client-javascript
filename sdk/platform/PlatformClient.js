@@ -6409,6 +6409,12 @@ class PlatformClient {
  * @property {string[]} [visible_facets_keys]
  */
 /**
+ * @typedef CollectionErrorResponse
+ * @property {number} code
+ * @property {Object} [errors]
+ * @property {string} message
+ */
+/**
  * @typedef CollectionImage
  * @property {string} aspect_ratio
  * @property {string} url
@@ -6460,6 +6466,16 @@ class PlatformClient {
  * @property {string} [start]
  */
 /**
+ * @typedef CollectionUpdateBanner
+ * @property {CollectionUpdateImage} landscape
+ * @property {CollectionUpdateImage} portrait
+ */
+/**
+ * @typedef CollectionUpdateImage
+ * @property {string} type
+ * @property {string} url
+ */
+/**
  * @typedef CollectionUpdateResponse
  * @property {Object} [_custom_json]
  * @property {Object} [_locale_language]
@@ -6468,11 +6484,11 @@ class PlatformClient {
  * @property {boolean} [allow_sort]
  * @property {string} [app_id]
  * @property {CollectionBadge} [badge]
- * @property {CollectionBanner} [banners]
+ * @property {CollectionUpdateBanner} [banners]
  * @property {string} [description]
  * @property {boolean} [is_active]
  * @property {boolean} [is_visible]
- * @property {CollectionImage} [logo]
+ * @property {CollectionUpdateImage} [logo]
  * @property {Object} [meta]
  * @property {UserInfo} [modified_by]
  * @property {string} [name]
@@ -7923,7 +7939,7 @@ class PlatformClient {
  * @property {NetQuantity} [net_quantity]
  * @property {number} [no_of_boxes]
  * @property {string[]} [product_group_tag]
- * @property {ProductPublish} [product_publish]
+ * @property {ProductPublish1} [product_publish]
  * @property {string} [requester]
  * @property {ReturnConfig} return_config
  * @property {string} [short_description]
@@ -8119,7 +8135,7 @@ class PlatformClient {
  * @property {string} [pending]
  * @property {string} [primary_color]
  * @property {string[]} [product_group_tag]
- * @property {ProductPublish1} [product_publish]
+ * @property {ProductPublish} [product_publish]
  * @property {ReturnConfigResponse} [return_config]
  * @property {string} [short_description]
  * @property {string} [size_guide]
@@ -8156,7 +8172,9 @@ class PlatformClient {
  */
 /**
  * @typedef ProductSortOn
+ * @property {string} [display]
  * @property {boolean} [is_selected]
+ * @property {string} [logo]
  * @property {string} [name]
  * @property {string} [value]
  */
