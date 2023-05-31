@@ -4190,6 +4190,7 @@ Successful Manifest upload!
  | marketplace_invoice_id | string? |  yes  |  |
  | order_item_id | string? |  yes  |  |
  | quantity | number? |  yes  |  |
+ | replacement_details | [ReplacementDetails](#ReplacementDetails)? |  yes  |  |
  | size_level_total_qty | number? |  yes  |  |
  
 
@@ -6161,6 +6162,16 @@ Successful Manifest upload!
  | ---------- | ---- | -------- | ----------- |
  | entities | [[EntitiesReasons](#EntitiesReasons)]? |  yes  |  |
  | products | [[ProductsReasons](#ProductsReasons)]? |  yes  |  |
+ 
+
+---
+
+#### [ReplacementDetails](#ReplacementDetails)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | original_affiliate_order_id | string? |  yes  |  |
+ | replacement_type | string? |  yes  |  |
  
 
 ---

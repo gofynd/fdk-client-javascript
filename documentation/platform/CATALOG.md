@@ -17020,7 +17020,7 @@ const data = await platformClient.catalog.updateCategory({  uid : value,
 | body | [CategoryRequestBody](#CategoryRequestBody) | yes | Request body |
 
 
-Update a product category using this apu
+Update a product category using this api
 
 *Returned Response:*
 
@@ -19597,7 +19597,7 @@ List of fields and validation values fro each. See example below or refer `Inven
  | created_by | [UserDetail](#UserDetail)? |  yes  | User details of the creator of the document |
  | created_on | string |  no  | Timestamp of the creation of the document |
  | is_active | boolean? |  yes  | Whether the department is currently active |
- | logo | string |  no  | The URL of the department's logo |
+ | logo | any |  no  | The URL of the department's logo |
  | modified_by | [UserDetail](#UserDetail)? |  yes  | User details of the last modifier of the document |
  | modified_on | string |  no  | Timestamp of the last modification of the document |
  | name | any |  no  | The name of the department |

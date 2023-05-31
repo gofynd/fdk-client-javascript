@@ -16,10 +16,13 @@ declare class CartModel {
     static CartDetailResponse(): any;
     static CartItem(): any;
     static CartItemMeta(): any;
+    static CartMetaConfigAdd(): any;
+    static CartMetaConfigUpdate(): any;
     static CartProduct(): any;
     static CartProductIdentifer(): any;
     static CartProductInfo(): any;
     static CategoryInfo(): any;
+    static Charges(): any;
     static CompareObject(): any;
     static CouponAction(): any;
     static CouponAdd(): any;
@@ -30,6 +33,7 @@ declare class CartModel {
     static CouponSchedule(): any;
     static CouponsResponse(): any;
     static CouponUpdate(): any;
+    static DeliveryCharges(): any;
     static DiscountOffer(): any;
     static DiscountRule(): any;
     static DisplayBreakup(): any;

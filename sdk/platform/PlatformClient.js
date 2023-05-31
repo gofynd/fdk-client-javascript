@@ -3576,6 +3576,11 @@ class PlatformClient {
  * @property {boolean} success
  */
 /**
+ * @typedef GetOauthUrlResponse
+ * @property {boolean} success
+ * @property {string} url
+ */
+/**
  * @typedef GetUserCODLimitResponse
  * @property {boolean} success
  * @property {CODdata} user_cod_data
@@ -3793,6 +3798,11 @@ class PlatformClient {
  * @property {boolean} success
  */
 /**
+ * @typedef RevokeOAuthToken
+ * @property {string} message
+ * @property {boolean} success
+ */
+/**
  * @typedef RootPaymentMode
  * @property {boolean} [add_card_enabled]
  * @property {string} [aggregator_name]
@@ -3972,6 +3982,7 @@ class PlatformClient {
  * @property {string} [marketplace_invoice_id]
  * @property {string} [order_item_id]
  * @property {number} [quantity]
+ * @property {ReplacementDetails} [replacement_details]
  * @property {number} [size_level_total_qty]
  */
 /**
@@ -5234,6 +5245,11 @@ class PlatformClient {
  * @typedef ReasonsData
  * @property {EntitiesReasons[]} [entities]
  * @property {ProductsReasons[]} [products]
+ */
+/**
+ * @typedef ReplacementDetails
+ * @property {string} [original_affiliate_order_id]
+ * @property {string} [replacement_type]
  */
 /**
  * @typedef ResponseDetail
@@ -6568,7 +6584,7 @@ class PlatformClient {
  * @property {UserDetail} [created_by]
  * @property {string} created_on
  * @property {boolean} [is_active]
- * @property {string} logo
+ * @property {Object} logo
  * @property {UserDetail} [modified_by]
  * @property {string} modified_on
  * @property {Object} name
@@ -11121,6 +11137,28 @@ class PlatformClient {
  * @property {boolean} [primary_item]
  */
 /**
+ * @typedef CartMetaConfigAdd
+ * @property {boolean} [bulk_coupons]
+ * @property {DeliveryCharges} [delivery_charges]
+ * @property {boolean} [enabled]
+ * @property {string} [gift_display_text]
+ * @property {number} [gift_pricing]
+ * @property {number} [max_cart_items]
+ * @property {number} [min_cart_value]
+ * @property {boolean} [revenue_engine_coupon]
+ */
+/**
+ * @typedef CartMetaConfigUpdate
+ * @property {boolean} [bulk_coupons]
+ * @property {DeliveryCharges} [delivery_charges]
+ * @property {boolean} [enabled]
+ * @property {string} [gift_display_text]
+ * @property {number} [gift_pricing]
+ * @property {number} [max_cart_items]
+ * @property {number} [min_cart_value]
+ * @property {boolean} [revenue_engine_coupon]
+ */
+/**
  * @typedef CartProduct
  * @property {ProductAction} [action]
  * @property {BaseInfo} [brand]
@@ -11160,6 +11198,11 @@ class PlatformClient {
  * @typedef CategoryInfo
  * @property {string} [name]
  * @property {number} [uid]
+ */
+/**
+ * @typedef Charges
+ * @property {number} [charges]
+ * @property {number} [threshold]
  */
 /**
  * @typedef CompareObject
@@ -11248,6 +11291,11 @@ class PlatformClient {
  * @property {string} type_slug
  * @property {Validation} [validation]
  * @property {Validity} validity
+ */
+/**
+ * @typedef DeliveryCharges
+ * @property {Charges[]} [charges]
+ * @property {boolean} [enabled]
  */
 /**
  * @typedef DiscountOffer

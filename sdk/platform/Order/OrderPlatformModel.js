@@ -139,6 +139,7 @@ class OrderModel {
       marketplace_invoice_id: Joi.string().allow("").allow(null),
       order_item_id: Joi.string().allow(""),
       quantity: Joi.number(),
+      replacement_details: OrderModel.ReplacementDetails(),
       size_level_total_qty: Joi.number().allow(null),
     });
   }
@@ -1551,6 +1552,12 @@ class OrderModel {
     return Joi.object({
       entities: Joi.array().items(OrderModel.EntitiesReasons()),
       products: Joi.array().items(OrderModel.ProductsReasons()),
+    });
+  }
+  static ReplacementDetails() {
+    return Joi.object({
+      original_affiliate_order_id: Joi.string().allow("").allow(null),
+      replacement_type: Joi.string().allow("").allow(null),
     });
   }
   static ResponseDetail() {

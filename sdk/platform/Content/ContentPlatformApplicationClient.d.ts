@@ -313,6 +313,17 @@ declare class Content {
     }): Paginator;
     /**
      * @param {Object} arg - Arg object.
+     * @param {string} arg.slug - A short, human-readable, URL-friendly
+     *   identifier of a blog page. You can get slug value of a blog from `getBlogs` API.
+     * @returns {Promise<BlogSchema>} - Success response
+     * @summary: Get blog by slug
+     * @description: Use this API to retrieve the components of a blog, such as title, slug, feature image, content, schedule, publish status, author, etc.
+     */
+    getBlogBySlug({ slug }?: {
+        slug: string;
+    }): Promise<BlogSchema>;
+    /**
+     * @param {Object} arg - Arg object.
      * @param {number} [arg.pageNo] - The page number to navigate through the
      *   given set of results. Default value is 1.
      * @param {number} [arg.pageSize] - The number of items to retrieve in each
@@ -512,7 +523,7 @@ declare class Content {
      * @param {string} arg.slug - A short, human-readable, URL-friendly
      *   identifier of a page. You can get slug value of a page from `getPages` API.
      * @returns {Promise<PageSchema>} - Success response
-     * @summary: Get pages by component Id
+     * @summary: Get page by slug
      * @description: Use this API to retrieve the components of a page, such as its title, seo, publish status, feature image, tags, schedule, etc.
      */
     getPageBySlug({ slug }?: {
