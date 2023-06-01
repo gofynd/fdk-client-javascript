@@ -109,21 +109,6 @@ declare class Communication {
     }): Promise<Audiences>;
     /**
      * @param {Object} arg - Arg object.
-     * @param {string} arg.companyId - Company id
-     * @param {string} arg.applicationId - Application id
-     * @param {number} [arg.pageSize] - Current request items count
-     * @param {Object} [arg.sort] - To sort based on created_at
-     * @summary: Get audiences
-     * @description: Get audiences
-     */
-    getAudiencesPaginator({ companyId, applicationId, pageSize, sort }?: {
-        companyId: string;
-        applicationId: string;
-        pageSize?: number;
-        sort?: any;
-    }): Paginator;
-    /**
-     * @param {Object} arg - Arg object.
      * @param {BigqueryHeadersReq} arg.body
      * @returns {Promise<BigqueryHeadersRes>} - Success response
      * @summary: Get bigquery headers
@@ -158,21 +143,6 @@ declare class Communication {
     }): Promise<Campaigns>;
     /**
      * @param {Object} arg - Arg object.
-     * @param {string} arg.companyId - Company id
-     * @param {string} arg.applicationId - Application id
-     * @param {number} [arg.pageSize] - Current request items count
-     * @param {Object} [arg.sort] - To sort based on created_at
-     * @summary: Get campaigns
-     * @description: Get campaigns
-     */
-    getCampaignsPaginator({ companyId, applicationId, pageSize, sort }?: {
-        companyId: string;
-        applicationId: string;
-        pageSize?: number;
-        sort?: any;
-    }): Paginator;
-    /**
-     * @param {Object} arg - Arg object.
      * @param {string} [arg.pageId] - Current page no
      * @param {number} [arg.pageSize] - Current request items count
      * @param {Object} [arg.sort] - To sort based on _id
@@ -187,23 +157,6 @@ declare class Communication {
         sort?: any;
         query?: any;
     }): Promise<Logs>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.companyId - Company id
-     * @param {string} arg.applicationId - Application id
-     * @param {number} [arg.pageSize] - Current request items count
-     * @param {Object} [arg.sort] - To sort based on _id
-     * @param {Object} [arg.query] -
-     * @summary: Get communication logs
-     * @description: Get communication logs
-     */
-    getCommunicationLogsPaginator({ companyId, applicationId, pageSize, sort, query, }?: {
-        companyId: string;
-        applicationId: string;
-        pageSize?: number;
-        sort?: any;
-        query?: any;
-    }): Paginator;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.id - Email provider id
@@ -230,21 +183,6 @@ declare class Communication {
     }): Promise<EmailProviders>;
     /**
      * @param {Object} arg - Arg object.
-     * @param {string} arg.companyId - Company id
-     * @param {string} arg.applicationId - Application id
-     * @param {number} [arg.pageSize] - Current request items count
-     * @param {Object} [arg.sort] - To sort based on created_at
-     * @summary: Get email providers
-     * @description: Get email providers
-     */
-    getEmailProvidersPaginator({ companyId, applicationId, pageSize, sort, }?: {
-        companyId: string;
-        applicationId: string;
-        pageSize?: number;
-        sort?: any;
-    }): Paginator;
-    /**
-     * @param {Object} arg - Arg object.
      * @param {string} arg.id - Email template id
      * @returns {Promise<EmailTemplate>} - Success response
      * @summary: Get email template by id
@@ -269,21 +207,6 @@ declare class Communication {
     }): Promise<EmailTemplates>;
     /**
      * @param {Object} arg - Arg object.
-     * @param {string} arg.companyId - Company id
-     * @param {string} arg.applicationId - Application id
-     * @param {number} [arg.pageSize] - Current request items count
-     * @param {Object} [arg.sort] - To sort based on created_at
-     * @summary: Get email templates
-     * @description: Get email templates
-     */
-    getEmailTemplatesPaginator({ companyId, applicationId, pageSize, sort, }?: {
-        companyId: string;
-        applicationId: string;
-        pageSize?: number;
-        sort?: any;
-    }): Paginator;
-    /**
-     * @param {Object} arg - Arg object.
      * @param {number} [arg.pageNo] - Current page no
      * @param {number} [arg.pageSize] - Current request items count
      * @param {string} [arg.populate] - Populate fields
@@ -296,21 +219,6 @@ declare class Communication {
         pageSize?: number;
         populate?: string;
     }): Promise<EventSubscriptions>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.companyId - Company id
-     * @param {string} arg.applicationId - Application id
-     * @param {number} [arg.pageSize] - Current request items count
-     * @param {string} [arg.populate] - Populate fields
-     * @summary: Get event subscriptions
-     * @description: Get event subscriptions
-     */
-    getEventSubscriptionsPaginator({ companyId, applicationId, pageSize, populate, }?: {
-        companyId: string;
-        applicationId: string;
-        pageSize?: number;
-        populate?: string;
-    }): Paginator;
     /**
      * @param {Object} arg - Arg object.
      * @param {number} [arg.pageNo] - Current page no
@@ -327,21 +235,6 @@ declare class Communication {
     }): Promise<JobLogs>;
     /**
      * @param {Object} arg - Arg object.
-     * @param {string} arg.companyId - Company id
-     * @param {string} arg.applicationId - Application id
-     * @param {number} [arg.pageSize] - Current request items count
-     * @param {Object} [arg.sort] - To sort based on created_at
-     * @summary: Get job logs
-     * @description: Get job logs
-     */
-    getJobLogsPaginator({ companyId, applicationId, pageSize, sort }?: {
-        companyId: string;
-        applicationId: string;
-        pageSize?: number;
-        sort?: any;
-    }): Paginator;
-    /**
-     * @param {Object} arg - Arg object.
      * @param {number} [arg.pageNo] - Current page no
      * @param {number} [arg.pageSize] - Current request items count
      * @param {Object} [arg.sort] - To sort based on created_at
@@ -354,21 +247,6 @@ declare class Communication {
         pageSize?: number;
         sort?: any;
     }): Promise<Jobs>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.companyId - Company id
-     * @param {string} arg.applicationId - Application id
-     * @param {number} [arg.pageSize] - Current request items count
-     * @param {Object} [arg.sort] - To sort based on created_at
-     * @summary: Get jobs
-     * @description: Get jobs
-     */
-    getJobsPaginator({ companyId, applicationId, pageSize, sort }?: {
-        companyId: string;
-        applicationId: string;
-        pageSize?: number;
-        sort?: any;
-    }): Paginator;
     /**
      * @param {Object} arg - Arg object.
      * @param {GetNRecordsCsvReq} arg.body
@@ -405,21 +283,6 @@ declare class Communication {
     }): Promise<SmsProviders>;
     /**
      * @param {Object} arg - Arg object.
-     * @param {string} arg.companyId - Company id
-     * @param {string} arg.applicationId - Application id
-     * @param {number} [arg.pageSize] - Current request items count
-     * @param {Object} [arg.sort] - To sort based on created_at
-     * @summary: Get sms providers
-     * @description: Get sms providers
-     */
-    getSmsProvidersPaginator({ companyId, applicationId, pageSize, sort }?: {
-        companyId: string;
-        applicationId: string;
-        pageSize?: number;
-        sort?: any;
-    }): Paginator;
-    /**
-     * @param {Object} arg - Arg object.
      * @param {string} arg.id - Sms template id
      * @returns {Promise<SmsTemplate>} - Success response
      * @summary: Get sms template by id
@@ -442,21 +305,6 @@ declare class Communication {
         pageSize?: number;
         sort?: any;
     }): Promise<SmsTemplates>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.companyId - Company id
-     * @param {string} arg.applicationId - Application id
-     * @param {number} [arg.pageSize] - Current request items count
-     * @param {Object} [arg.sort] - To sort based on created_at
-     * @summary: Get sms templates
-     * @description: Get sms templates
-     */
-    getSmsTemplatesPaginator({ companyId, applicationId, pageSize, sort }?: {
-        companyId: string;
-        applicationId: string;
-        pageSize?: number;
-        sort?: any;
-    }): Paginator;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.id - Campaign id
@@ -483,21 +331,6 @@ declare class Communication {
     }): Promise<SystemEmailTemplates>;
     /**
      * @param {Object} arg - Arg object.
-     * @param {string} arg.companyId - Company id
-     * @param {string} arg.applicationId - Application id
-     * @param {number} [arg.pageSize] - Current request items count
-     * @param {Object} [arg.sort] - To sort based on created_at
-     * @summary: Get system email templates
-     * @description: Get system email templates
-     */
-    getSystemEmailTemplatesPaginator({ companyId, applicationId, pageSize, sort, }?: {
-        companyId: string;
-        applicationId: string;
-        pageSize?: number;
-        sort?: any;
-    }): Paginator;
-    /**
-     * @param {Object} arg - Arg object.
      * @param {number} [arg.pageNo] - Current page no
      * @param {number} [arg.pageSize] - Current request items count
      * @param {Object} [arg.sort] - To sort based on created_at
@@ -510,21 +343,6 @@ declare class Communication {
         pageSize?: number;
         sort?: any;
     }): Promise<SystemSmsTemplates>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.companyId - Company id
-     * @param {string} arg.applicationId - Application id
-     * @param {number} [arg.pageSize] - Current request items count
-     * @param {Object} [arg.sort] - To sort based on created_at
-     * @summary: Get system sms templates
-     * @description: Get system sms templates
-     */
-    getSystemSystemTemplatesPaginator({ companyId, applicationId, pageSize, sort, }?: {
-        companyId: string;
-        applicationId: string;
-        pageSize?: number;
-        sort?: any;
-    }): Paginator;
     /**
      * @param {Object} arg - Arg object.
      * @param {EngineRequest} arg.body
@@ -648,4 +466,3 @@ declare class Communication {
         body: VerifyOtpCommsReq;
     }): Promise<VerifyOtpCommsSuccessRes>;
 }
-import Paginator = require("../../common/Paginator");
