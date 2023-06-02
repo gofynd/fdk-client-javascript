@@ -2975,7 +2975,7 @@ Success. Returns a JSON object containing all the tags injected in the applicati
  | ---------- | ---- | -------- | ----------- |
  | active | boolean? |  yes  |  |
  | configuration | [ConfigurationSchema](#ConfigurationSchema)? |  yes  |  |
- | media | [SlideshowMedia](#SlideshowMedia)? |  yes  |  |
+ | media | [[SlideshowMedia](#SlideshowMedia)]? |  yes  |  |
  | platform | string? |  yes  |  |
  | slug | string? |  yes  |  |
  

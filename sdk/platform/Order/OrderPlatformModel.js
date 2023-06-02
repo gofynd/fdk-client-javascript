@@ -420,6 +420,12 @@ class OrderModel {
       state_type: Joi.string().allow("").required(),
     });
   }
+  static BagStateTransitionMap() {
+    return Joi.object({
+      affiliate: Joi.any(),
+      fynd: Joi.any(),
+    });
+  }
   static BagStatusHistory() {
     return Joi.object({
       app_display_name: Joi.string().allow(""),
@@ -1113,20 +1119,6 @@ class OrderModel {
       lock_message: Joi.string().allow(""),
       locked: Joi.boolean(),
       mto: Joi.boolean(),
-    });
-  }
-  static ManualAssignDPToShipment() {
-    return Joi.object({
-      dp_id: Joi.number().required(),
-      order_type: Joi.string().allow("").required(),
-      qc_required: Joi.string().allow("").required(),
-      shipment_ids: Joi.array().items(Joi.string().allow("")),
-    });
-  }
-  static ManualAssignDPToShipmentResponse() {
-    return Joi.object({
-      errors: Joi.array().items(Joi.string().allow("")),
-      success: Joi.string().allow("").required(),
     });
   }
   static MarketPlacePdf() {

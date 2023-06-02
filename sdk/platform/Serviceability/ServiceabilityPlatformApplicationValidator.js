@@ -2,18 +2,6 @@ const Joi = require("joi");
 
 const ServiceabilityModel = require("./ServiceabilityPlatformModel");
 class ServiceabilityValidator {
-  static addAppDp() {
-    return Joi.object({
-      body: ServiceabilityModel.ApplicationCompanyDpViewRequest().required(),
-    }).required();
-  }
-
-  static deleteAppDp() {
-    return Joi.object({
-      courierPartnerId: Joi.number().required(),
-    }).required();
-  }
-
   static getApplicationServiceability() {
     return Joi.object({}).required();
   }

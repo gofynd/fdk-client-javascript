@@ -696,6 +696,7 @@ class PlatformApplicationClient {
 /** @typedef Bags */
 /** @typedef BagsPage */
 /** @typedef BagStateMapper */
+/** @typedef BagStateTransitionMap */
 /** @typedef BagStatusHistory */
 /** @typedef BagUnit */
 /** @typedef BaseResponse */
@@ -769,8 +770,6 @@ class PlatformApplicationClient {
 /** @typedef LineItem */
 /** @typedef LocationDetails */
 /** @typedef LockData */
-/** @typedef ManualAssignDPToShipment */
-/** @typedef ManualAssignDPToShipmentResponse */
 /** @typedef MarketPlacePdf */
 /** @typedef Meta */
 /** @typedef MetricCountResponse */
@@ -1831,8 +1830,6 @@ class PlatformApplicationClient {
 /** @typedef ResourceNotFound */
 
 /** @typedef AddressResponse */
-/** @typedef ApplicationCompanyDpViewRequest */
-/** @typedef ApplicationCompanyDpViewResponse */
 /** @typedef ApplicationServiceabilityConfig */
 /** @typedef ApplicationServiceabilityConfigResponse */
 /** @typedef CommonError */
@@ -1871,6 +1868,7 @@ class PlatformApplicationClient {
 /** @typedef MobileNo */
 /** @typedef ModifiedByResponse */
 /** @typedef OpeningClosing */
+/** @typedef PageResponse */
 /** @typedef PincodeBulkViewResponse */
 /** @typedef PincodeCodStatusListingPage */
 /** @typedef PincodeCodStatusListingRequest */
@@ -1885,10 +1883,7 @@ class PlatformApplicationClient {
 /** @typedef PincodeMopUpdateAuditHistoryResponseData */
 /** @typedef PincodeMopUpdateResponse */
 /** @typedef ProductReturnConfigResponse */
-/** @typedef ReAssignStoreRequest */
-/** @typedef ReAssignStoreResponse */
 /** @typedef ServiceabilityErrorResponse */
-/** @typedef ServiceabilityPageResponse */
 /** @typedef ServiceabilityrErrorResponse */
 /** @typedef TimmingResponse */
 /** @typedef UpdateZoneData */
@@ -1904,6 +1899,7 @@ class PlatformApplicationClient {
 /** @typedef DownloadCreditDebitNote */
 /** @typedef DownloadCreditDebitNoteRequest */
 /** @typedef DownloadCreditDebitNoteResponse */
+/** @typedef DownloadCreditDebitNoteResponseData */
 /** @typedef DownloadReport */
 /** @typedef DownloadReportItems */
 /** @typedef DownloadReportList */

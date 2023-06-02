@@ -3,6 +3,7 @@ declare class FinanceModel {
     static DownloadCreditDebitNote(): any;
     static DownloadCreditDebitNoteRequest(): any;
     static DownloadCreditDebitNoteResponse(): any;
+    static DownloadCreditDebitNoteResponseData(): any;
     static DownloadReport(): any;
     static DownloadReportItems(): any;
     static DownloadReportList(): any;

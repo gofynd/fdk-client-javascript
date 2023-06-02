@@ -14,21 +14,21 @@ declare class Order {
     }): Promise<OrderStatusResult>;
     /**
      * @param {Object} arg - Arg object.
-     * @param {string} arg.caller -
-     * @param {string} arg.receiver -
-     * @param {string} arg.bagId -
-     * @param {string} [arg.callingTo] -
-     * @param {string} [arg.callerId] -
+     * @param {string} arg.caller - Call Number
+     * @param {string} arg.receiver - Receiver Number
+     * @param {string} arg.bagId - Bag Id for the query
+     * @param {string} [arg.callerId] - Caller Id
+     * @param {string} [arg.method] - Provider Method to Call
      * @returns {Promise<Click2CallResponse>} - Success response
      * @summary:
      * @description:
      */
-    click2Call({ caller, receiver, bagId, callingTo, callerId, }?: {
+    click2Call({ caller, receiver, bagId, callerId, method, }?: {
         caller: string;
         receiver: string;
         bagId: string;
-        callingTo?: string;
         callerId?: string;
+        method?: string;
     }): Promise<Click2CallResponse>;
     /**
      * @param {Object} arg - Arg object.
@@ -281,11 +281,12 @@ declare class Order {
      * @param {number} [arg.pageSize] -
      * @param {boolean} [arg.isPrioritySort] -
      * @param {string} [arg.customMeta] -
+     * @param {string} [arg.platformUserId] -
      * @returns {Promise<OrderListingResponse>} - Success response
      * @summary:
      * @description:
      */
-    getOrders({ lane, searchType, bagStatus, timeToDispatch, paymentMethods, tags, searchValue, fromDate, toDate, dpIds, stores, salesChannels, pageNo, pageSize, isPrioritySort, customMeta, }?: {
+    getOrders({ lane, searchType, bagStatus, timeToDispatch, paymentMethods, tags, searchValue, fromDate, toDate, dpIds, stores, salesChannels, pageNo, pageSize, isPrioritySort, customMeta, platformUserId, }?: {
         lane?: string;
         searchType?: string;
         bagStatus?: string;
@@ -302,6 +303,7 @@ declare class Order {
         pageSize?: number;
         isPrioritySort?: boolean;
         customMeta?: string;
+        platformUserId?: string;
     }): Promise<OrderListingResponse>;
     /**
      * @param {Object} arg - Arg object.
@@ -340,14 +342,14 @@ declare class Order {
     }): Promise<ShipmentInfoResponse>;
     /**
      * @param {Object} arg - Arg object.
-     * @param {number} [arg.shipmentId] -
-     * @param {number} [arg.bagId] -
+     * @param {string} [arg.shipmentId] - Shipment Id
+     * @param {number} [arg.bagId] - Bag/Product Id
      * @returns {Promise<ShipmentHistoryResponse>} - Success response
      * @summary:
      * @description:
      */
     getShipmentHistory({ shipmentId, bagId }?: {
-        shipmentId?: number;
+        shipmentId?: string;
         bagId?: number;
     }): Promise<ShipmentHistoryResponse>;
     /**
@@ -394,11 +396,12 @@ declare class Order {
      * @param {string} [arg.customMeta] -
      * @param {string} [arg.orderingChannel] -
      * @param {string} [arg.companyAffiliateTag] -
+     * @param {string} [arg.platformUserId] -
      * @returns {Promise<ShipmentInternalPlatformViewResponse>} - Success response
      * @summary:
      * @description:
      */
-    getShipments({ lane, bagStatus, statusOverrideLane, timeToDispatch, searchType, searchValue, searchId, fromDate, toDate, dpIds, orderingCompanyId, stores, salesChannels, requestByExt, pageNo, pageSize, isPrioritySort, fetchActiveShipment, excludeLockedShipments, paymentMethods, channelShipmentId, channelOrderId, customMeta, orderingChannel, companyAffiliateTag, }?: {
+    getShipments({ lane, bagStatus, statusOverrideLane, timeToDispatch, searchType, searchValue, searchId, fromDate, toDate, dpIds, orderingCompanyId, stores, salesChannels, requestByExt, pageNo, pageSize, isPrioritySort, fetchActiveShipment, excludeLockedShipments, paymentMethods, channelShipmentId, channelOrderId, customMeta, orderingChannel, companyAffiliateTag, platformUserId, }?: {
         lane?: string;
         bagStatus?: string;
         statusOverrideLane?: boolean;
@@ -424,7 +427,15 @@ declare class Order {
         customMeta?: string;
         orderingChannel?: string;
         companyAffiliateTag?: string;
+        platformUserId?: string;
     }): Promise<ShipmentInternalPlatformViewResponse>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @returns {Promise<BagStateTransitionMap>} - Success response
+     * @summary:
+     * @description:
+     */
+    getStateTransitionMap({}?: any): Promise<BagStateTransitionMap>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.view - Name of View
@@ -457,16 +468,6 @@ declare class Order {
     orderUpdate({ body }?: {
         body: PlatformOrderUpdate;
     }): Promise<ResponseDetail>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {ManualAssignDPToShipment} arg.body
-     * @returns {Promise<ManualAssignDPToShipmentResponse>} - Success response
-     * @summary:
-     * @description:
-     */
-    platformManualAssignDPToShipment({ body }?: {
-        body: ManualAssignDPToShipment;
-    }): Promise<ManualAssignDPToShipmentResponse>;
     /**
      * @param {Object} arg - Arg object.
      * @param {PostShipmentHistory} arg.body
@@ -507,13 +508,6 @@ declare class Order {
     sendSmsNinja({ body }?: {
         body: SendSmsPayload;
     }): Promise<OrderStatusResult>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @returns {Promise<OrderStatusResult>} - Success response
-     * @summary:
-     * @description:
-     */
-    sendSmsNinjaPlatform({}?: any): Promise<OrderStatusResult>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.shipmentId -

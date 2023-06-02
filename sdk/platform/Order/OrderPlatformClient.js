@@ -77,11 +77,11 @@ class Order {
 
   /**
    * @param {Object} arg - Arg object.
-   * @param {string} arg.caller -
-   * @param {string} arg.receiver -
-   * @param {string} arg.bagId -
-   * @param {string} [arg.callingTo] -
-   * @param {string} [arg.callerId] -
+   * @param {string} arg.caller - Call Number
+   * @param {string} arg.receiver - Receiver Number
+   * @param {string} arg.bagId - Bag Id for the query
+   * @param {string} [arg.callerId] - Caller Id
+   * @param {string} [arg.method] - Provider Method to Call
    * @returns {Promise<Click2CallResponse>} - Success response
    * @summary:
    * @description:
@@ -91,8 +91,8 @@ class Order {
     receiver,
     bagId,
 
-    callingTo,
     callerId,
+    method,
   } = {}) {
     const { error } = OrderValidator.click2Call().validate(
       {
@@ -100,8 +100,8 @@ class Order {
         receiver,
         bagId,
 
-        callingTo,
         callerId,
+        method,
       },
       { abortEarly: false, allowUnknown: true }
     );
@@ -116,8 +116,8 @@ class Order {
         receiver,
         bagId,
 
-        callingTo,
         callerId,
+        method,
       },
       { abortEarly: false, allowUnknown: false }
     );
@@ -133,8 +133,8 @@ class Order {
     query_params["caller"] = caller;
     query_params["receiver"] = receiver;
     query_params["bag_id"] = bagId;
-    query_params["calling_to"] = callingTo;
     query_params["caller_id"] = callerId;
+    query_params["method"] = method;
 
     const xHeaders = {};
 
@@ -1403,6 +1403,7 @@ class Order {
    * @param {number} [arg.pageSize] -
    * @param {boolean} [arg.isPrioritySort] -
    * @param {string} [arg.customMeta] -
+   * @param {string} [arg.platformUserId] -
    * @returns {Promise<OrderListingResponse>} - Success response
    * @summary:
    * @description:
@@ -1424,6 +1425,7 @@ class Order {
     pageSize,
     isPrioritySort,
     customMeta,
+    platformUserId,
   } = {}) {
     const { error } = OrderValidator.getOrders().validate(
       {
@@ -1443,6 +1445,7 @@ class Order {
         pageSize,
         isPrioritySort,
         customMeta,
+        platformUserId,
       },
       { abortEarly: false, allowUnknown: true }
     );
@@ -1469,6 +1472,7 @@ class Order {
         pageSize,
         isPrioritySort,
         customMeta,
+        platformUserId,
       },
       { abortEarly: false, allowUnknown: false }
     );
@@ -1497,6 +1501,7 @@ class Order {
     query_params["page_size"] = pageSize;
     query_params["is_priority_sort"] = isPrioritySort;
     query_params["custom_meta"] = customMeta;
+    query_params["platform_user_id"] = platformUserId;
 
     const xHeaders = {};
 
@@ -1739,8 +1744,8 @@ class Order {
 
   /**
    * @param {Object} arg - Arg object.
-   * @param {number} [arg.shipmentId] -
-   * @param {number} [arg.bagId] -
+   * @param {string} [arg.shipmentId] - Shipment Id
+   * @param {number} [arg.bagId] - Bag/Product Id
    * @returns {Promise<ShipmentHistoryResponse>} - Success response
    * @summary:
    * @description:
@@ -1906,6 +1911,7 @@ class Order {
    * @param {string} [arg.customMeta] -
    * @param {string} [arg.orderingChannel] -
    * @param {string} [arg.companyAffiliateTag] -
+   * @param {string} [arg.platformUserId] -
    * @returns {Promise<ShipmentInternalPlatformViewResponse>} - Success response
    * @summary:
    * @description:
@@ -1936,6 +1942,7 @@ class Order {
     customMeta,
     orderingChannel,
     companyAffiliateTag,
+    platformUserId,
   } = {}) {
     const { error } = OrderValidator.getShipments().validate(
       {
@@ -1964,6 +1971,7 @@ class Order {
         customMeta,
         orderingChannel,
         companyAffiliateTag,
+        platformUserId,
       },
       { abortEarly: false, allowUnknown: true }
     );
@@ -1999,6 +2007,7 @@ class Order {
         customMeta,
         orderingChannel,
         companyAffiliateTag,
+        platformUserId,
       },
       { abortEarly: false, allowUnknown: false }
     );
@@ -2036,6 +2045,7 @@ class Order {
     query_params["custom_meta"] = customMeta;
     query_params["ordering_channel"] = orderingChannel;
     query_params["company_affiliate_tag"] = companyAffiliateTag;
+    query_params["platform_user_id"] = platformUserId;
 
     const xHeaders = {};
 
@@ -2059,6 +2069,65 @@ class Order {
       Logger({
         level: "WARN",
         message: "Response Validation Warnnings for getShipments",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @returns {Promise<BagStateTransitionMap>} - Success response
+   * @summary:
+   * @description:
+   */
+  async getStateTransitionMap({} = {}) {
+    const { error } = OrderValidator.getStateTransitionMap().validate(
+      {},
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = OrderValidator.getStateTransitionMap().validate(
+      {},
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getStateTransitionMap",
+      });
+      Logger({ level: "WARN", message: warrning });
+    }
+
+    const query_params = {};
+
+    const xHeaders = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/order-manage/v1.0/company/${this.config.companyId}/bag/state/transition`,
+      query_params,
+      undefined,
+      xHeaders
+    );
+
+    const {
+      error: res_error,
+    } = OrderModel.BagStateTransitionMap().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getStateTransitionMap",
       });
       Logger({ level: "WARN", message: res_error });
     }
@@ -2254,76 +2323,6 @@ class Order {
       Logger({
         level: "WARN",
         message: "Response Validation Warnnings for orderUpdate",
-      });
-      Logger({ level: "WARN", message: res_error });
-    }
-
-    return response;
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {ManualAssignDPToShipment} arg.body
-   * @returns {Promise<ManualAssignDPToShipmentResponse>} - Success response
-   * @summary:
-   * @description:
-   */
-  async platformManualAssignDPToShipment({ body } = {}) {
-    const {
-      error,
-    } = OrderValidator.platformManualAssignDPToShipment().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = OrderValidator.platformManualAssignDPToShipment().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message:
-          "Parameter Validation warrnings for platformManualAssignDPToShipment",
-      });
-      Logger({ level: "WARN", message: warrning });
-    }
-
-    const query_params = {};
-
-    const xHeaders = {};
-
-    const response = await PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/order-manage/v1.0/company/${this.config.companyId}/oms/manual-place-shipment`,
-      query_params,
-      body,
-      xHeaders
-    );
-
-    const {
-      error: res_error,
-    } = OrderModel.ManualAssignDPToShipmentResponse().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
-
-    if (res_error) {
-      Logger({
-        level: "WARN",
-        message:
-          "Response Validation Warnnings for platformManualAssignDPToShipment",
       });
       Logger({ level: "WARN", message: res_error });
     }
@@ -2580,65 +2579,6 @@ class Order {
       Logger({
         level: "WARN",
         message: "Response Validation Warnnings for sendSmsNinja",
-      });
-      Logger({ level: "WARN", message: res_error });
-    }
-
-    return response;
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @returns {Promise<OrderStatusResult>} - Success response
-   * @summary:
-   * @description:
-   */
-  async sendSmsNinjaPlatform({} = {}) {
-    const { error } = OrderValidator.sendSmsNinjaPlatform().validate(
-      {},
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = OrderValidator.sendSmsNinjaPlatform().validate(
-      {},
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: "Parameter Validation warrnings for sendSmsNinjaPlatform",
-      });
-      Logger({ level: "WARN", message: warrning });
-    }
-
-    const query_params = {};
-
-    const xHeaders = {};
-
-    const response = await PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/order-manage/v1.0/company/${this.config.companyId}/bag/state/transition`,
-      query_params,
-      undefined,
-      xHeaders
-    );
-
-    const {
-      error: res_error,
-    } = OrderModel.OrderStatusResult().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
-
-    if (res_error) {
-      Logger({
-        level: "WARN",
-        message: "Response Validation Warnnings for sendSmsNinjaPlatform",
       });
       Logger({ level: "WARN", message: res_error });
     }

@@ -5,27 +5,6 @@ declare class Serviceability {
     applicationId: any;
     /**
      * @param {Object} arg - Arg object.
-     * @param {ApplicationCompanyDpViewRequest} arg.body
-     * @returns {Promise<ApplicationCompanyDpViewResponse>} - Success response
-     * @summary: Add application dp data
-     * @description: This API add application dp data.
-     */
-    addAppDp({ body }?: {
-        body: ApplicationCompanyDpViewRequest;
-    }): Promise<ApplicationCompanyDpViewResponse>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {number} arg.courierPartnerId - A `courier_partner_id` is a unique
-     *   identifier of a particular delivery partner.
-     * @returns {Promise<ApplicationCompanyDpViewResponse>} - Success response
-     * @summary: Delete application dp data
-     * @description: This API remove application dp data.
-     */
-    deleteAppDp({ courierPartnerId }?: {
-        courierPartnerId: number;
-    }): Promise<ApplicationCompanyDpViewResponse>;
-    /**
-     * @param {Object} arg - Arg object.
      * @returns {Promise<ApplicationServiceabilityConfigResponse>} - Success response
      * @summary: Zone configuration of application.
      * @description: This API returns serviceability config of the application.

@@ -13,8 +13,8 @@ class OrderValidator {
       caller: Joi.string().allow("").required(),
       receiver: Joi.string().allow("").required(),
       bagId: Joi.string().allow("").required(),
-      callingTo: Joi.string().allow(""),
       callerId: Joi.string().allow(""),
+      method: Joi.string().allow(""),
     }).required();
   }
 
@@ -167,6 +167,7 @@ class OrderValidator {
       pageSize: Joi.number(),
       isPrioritySort: Joi.boolean(),
       customMeta: Joi.string().allow(""),
+      platformUserId: Joi.string().allow(""),
     }).required();
   }
 
@@ -192,7 +193,7 @@ class OrderValidator {
 
   static getShipmentHistory() {
     return Joi.object({
-      shipmentId: Joi.number(),
+      shipmentId: Joi.string().allow(""),
       bagId: Joi.number(),
     }).required();
   }
@@ -232,7 +233,12 @@ class OrderValidator {
       customMeta: Joi.string().allow(""),
       orderingChannel: Joi.string().allow(""),
       companyAffiliateTag: Joi.string().allow(""),
+      platformUserId: Joi.string().allow(""),
     }).required();
+  }
+
+  static getStateTransitionMap() {
+    return Joi.object({}).required();
   }
 
   static getfilters() {
@@ -251,12 +257,6 @@ class OrderValidator {
   static orderUpdate() {
     return Joi.object({
       body: OrderModel.PlatformOrderUpdate().required(),
-    }).required();
-  }
-
-  static platformManualAssignDPToShipment() {
-    return Joi.object({
-      body: OrderModel.ManualAssignDPToShipment().required(),
     }).required();
   }
 
@@ -282,10 +282,6 @@ class OrderValidator {
     return Joi.object({
       body: OrderModel.SendSmsPayload().required(),
     }).required();
-  }
-
-  static sendSmsNinjaPlatform() {
-    return Joi.object({}).required();
   }
 
   static updateAddress() {

@@ -490,8 +490,18 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | data | [string]? |  yes  |  |
+ | data | [[DownloadCreditDebitNoteResponseData](#DownloadCreditDebitNoteResponseData)]? |  yes  |  |
  | success | boolean? |  yes  |  |
+ 
+
+---
+
+#### [DownloadCreditDebitNoteResponseData](#DownloadCreditDebitNoteResponseData)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | id | string? |  yes  |  |
+ | pdf_s3_url | string? |  yes  |  |
  
 
 ---

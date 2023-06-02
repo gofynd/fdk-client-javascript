@@ -8810,7 +8810,7 @@ Success. Refer `Support` for more details.
  | ---------- | ---- | -------- | ----------- |
  | active | boolean? |  yes  |  |
  | configuration | [ConfigurationSchema](#ConfigurationSchema)? |  yes  |  |
- | media | [SlideshowMedia](#SlideshowMedia)? |  yes  |  |
+ | media | [[SlideshowMedia](#SlideshowMedia)]? |  yes  |  |
  | platform | string? |  yes  |  |
  | slug | string? |  yes  |  |
  

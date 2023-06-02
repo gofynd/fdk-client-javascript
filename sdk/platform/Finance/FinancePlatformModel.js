@@ -13,8 +13,16 @@ class FinanceModel {
   }
   static DownloadCreditDebitNoteResponse() {
     return Joi.object({
-      data: Joi.array().items(Joi.any()),
+      data: Joi.array().items(
+        FinanceModel.DownloadCreditDebitNoteResponseData()
+      ),
       success: Joi.boolean(),
+    });
+  }
+  static DownloadCreditDebitNoteResponseData() {
+    return Joi.object({
+      id: Joi.string().allow(""),
+      pdf_s3_url: Joi.string().allow(""),
     });
   }
   static DownloadReport() {
