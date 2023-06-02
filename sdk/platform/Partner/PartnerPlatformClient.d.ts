@@ -33,16 +33,18 @@ declare class Partner {
      * @param {string} [arg.currentPage] - Tag
      * @param {number} [arg.pageNo] - Current page number
      * @param {string} [arg.filterBy] - Filter by
+     * @param {string} [arg.query] - Query
      * @returns {Promise<ExtensionList>} - Success response
      * @summary: Get the list of all the extensions
      * @description: Use this API to get the the extensions for the company
      */
-    getExtensionsForCompany({ pageSize, tag, currentPage, pageNo, filterBy, }?: {
+    getExtensionsForCompany({ pageSize, tag, currentPage, pageNo, filterBy, query, }?: {
         pageSize?: number;
         tag?: string;
         currentPage?: string;
         pageNo?: number;
         filterBy?: string;
+        query?: string;
     }): Promise<ExtensionList>;
     /**
      * @param {Object} arg - Arg object.

@@ -23,6 +23,7 @@ class PartnerValidator {
       currentPage: Joi.string().allow(""),
       pageNo: Joi.number(),
       filterBy: Joi.string().allow(""),
+      query: Joi.string().allow(""),
     }).required();
   }
 

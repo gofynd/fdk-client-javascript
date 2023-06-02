@@ -1332,6 +1332,17 @@ Response status_code
 
 ---
 
+#### [CommonError](#CommonError)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | error | any? |  yes  |  |
+ | status_code | string? |  yes  |  |
+ | success | string? |  yes  |  |
+ 
+
+---
+
 #### [CompanyStoreView_PageItems](#CompanyStoreView_PageItems)
 
  | Properties | Type | Nullable | Description |
@@ -1544,7 +1555,7 @@ Response status_code
  | ---------- | ---- | -------- | ----------- |
  | assignment_preference | string? |  yes  |  |
  | channels | [[GetZoneDataViewChannels](#GetZoneDataViewChannels)] |  no  |  |
- | company_id | number |  no  |  |
+ | company_id | number? |  yes  |  |
  | is_active | boolean |  no  |  |
  | mapping | [[ZoneMappingType](#ZoneMappingType)] |  no  |  |
  | name | string |  no  |  |
@@ -1769,7 +1780,7 @@ Response status_code
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | current_page_number | number |  no  |  |
+ | current | number |  no  |  |
  | has_next | boolean |  no  |  |
  | item_total | number |  no  |  |
  | size | number |  no  |  |
@@ -1783,7 +1794,7 @@ Response status_code
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | country | string? |  yes  |  |
- | current_page_number | number? |  yes  |  |
+ | current | number? |  yes  |  |
  | is_active | boolean? |  yes  |  |
  | page_size | number? |  yes  |  |
  | pincode | number? |  yes  |  |

@@ -255,14 +255,16 @@ const promise = platformClient.partner.getExtensionsForCompany({  pageSize : val
  tag : value,
  currentPage : value,
  pageNo : value,
- filterBy : value });
+ filterBy : value,
+ query : value });
 
 // Async/Await
 const data = await platformClient.partner.getExtensionsForCompany({  pageSize : value,
  tag : value,
  currentPage : value,
  pageNo : value,
- filterBy : value });
+ filterBy : value,
+ query : value });
 ```
 
 
@@ -275,7 +277,8 @@ const data = await platformClient.partner.getExtensionsForCompany({  pageSize : 
 | tag | string | no | tag |    
 | currentPage | string | no | tag |    
 | pageNo | number | no | Current page number |    
-| filterBy | string | no | Filter by |  
+| filterBy | string | no | Filter by |    
+| query | string | no | query |  
 
 
 

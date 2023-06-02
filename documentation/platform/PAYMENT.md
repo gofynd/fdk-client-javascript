@@ -5161,12 +5161,10 @@ map new edc device to the terminal
 
 ```javascript
 // Promise
-const promise = platformClient.application("<APPLICATION_ID>").payment.updateEdcDevice({  terminalUniqueIdentifier : value,
- body : value });
+const promise = platformClient.application("<APPLICATION_ID>").payment.updateEdcDevice({  body : value });
 
 // Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").payment.updateEdcDevice({  terminalUniqueIdentifier : value,
- body : value });
+const data = await platformClient.application("<APPLICATION_ID>").payment.updateEdcDevice({  body : value });
 ```
 
 
@@ -5174,8 +5172,7 @@ const data = await platformClient.application("<APPLICATION_ID>").payment.update
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| terminalUniqueIdentifier | string | yes | Terminal unique identifier |  
+| --------- | -----  | -------- | ----------- |
 | body | [EdcAddRequest](#EdcAddRequest) | yes | Request body |
 
 
@@ -6395,6 +6392,7 @@ Bank details on correct Ifsc Code
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | email | string? |  yes  | Customer Email |
  | id | number? |  yes  | Customer ID |
  | mobile | string? |  yes  | Customer Mobile No |
  | name | string? |  yes  | Customer Name |

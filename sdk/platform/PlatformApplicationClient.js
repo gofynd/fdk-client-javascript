@@ -666,6 +666,7 @@ class PlatformApplicationClient {
 /** @typedef AffiliateAppConfigMeta */
 /** @typedef AffiliateBag */
 /** @typedef AffiliateBagDetails */
+/** @typedef AffiliateBagsDetails */
 /** @typedef AffiliateConfig */
 /** @typedef AffiliateDetails */
 /** @typedef AffiliateInventoryArticleAssignmentConfig */
@@ -683,10 +684,6 @@ class PlatformApplicationClient {
 /** @typedef ArticleDetails */
 /** @typedef ArticleDetails1 */
 /** @typedef AssetByShipment */
-/** @typedef AttachOrderUser */
-/** @typedef AttachOrderUserResponse */
-/** @typedef AttachUserInfo */
-/** @typedef AttachUserOtpData */
 /** @typedef Attributes */
 /** @typedef B2BPODetails */
 /** @typedef BagConfigs */
@@ -699,7 +696,6 @@ class PlatformApplicationClient {
 /** @typedef Bags */
 /** @typedef BagsPage */
 /** @typedef BagStateMapper */
-/** @typedef BagStateTransitionMap */
 /** @typedef BagStatusHistory */
 /** @typedef BagUnit */
 /** @typedef BaseResponse */
@@ -724,12 +720,10 @@ class PlatformApplicationClient {
 /** @typedef CreateOrderErrorReponse */
 /** @typedef CreateOrderPayload */
 /** @typedef CreateOrderResponse */
-/** @typedef CreditBalanceInfo */
 /** @typedef CurrentStatus */
 /** @typedef DataUpdates */
 /** @typedef Dates */
 /** @typedef DebugInfo */
-/** @typedef Dimension */
 /** @typedef Dimensions */
 /** @typedef DiscountRules */
 /** @typedef DispatchManifest */
@@ -738,10 +732,6 @@ class PlatformApplicationClient {
 /** @typedef DPDetailsData */
 /** @typedef EinvoiceInfo */
 /** @typedef EInvoicePortalDetails */
-/** @typedef EinvoiceResponseData */
-/** @typedef EInvoiceRetry */
-/** @typedef EInvoiceRetryResponse */
-/** @typedef EInvoiceRetryShipmentData */
 /** @typedef Entities */
 /** @typedef EntitiesDataUpdates */
 /** @typedef EntitiesReasons */
@@ -750,8 +740,6 @@ class PlatformApplicationClient {
 /** @typedef ErrorDetail */
 /** @typedef ErrorResponse */
 /** @typedef ErrorResponse1 */
-/** @typedef FetchCreditBalanceRequestPayload */
-/** @typedef FetchCreditBalanceResponsePayload */
 /** @typedef FileResponse */
 /** @typedef FileUploadResponse */
 /** @typedef FilterInfoOption */
@@ -781,6 +769,8 @@ class PlatformApplicationClient {
 /** @typedef LineItem */
 /** @typedef LocationDetails */
 /** @typedef LockData */
+/** @typedef ManualAssignDPToShipment */
+/** @typedef ManualAssignDPToShipmentResponse */
 /** @typedef MarketPlacePdf */
 /** @typedef Meta */
 /** @typedef MetricCountResponse */
@@ -823,7 +813,6 @@ class PlatformApplicationClient {
 /** @typedef PlatformShipmentTrack */
 /** @typedef PlatformTrack */
 /** @typedef PlatformUserDetails */
-/** @typedef PointBlankOtpData */
 /** @typedef PostActivityHistory */
 /** @typedef PostHistoryData */
 /** @typedef PostHistoryDict */
@@ -840,16 +829,12 @@ class PlatformApplicationClient {
 /** @typedef QuestionSet */
 /** @typedef Reason */
 /** @typedef ReasonsData */
-/** @typedef RefundModeConfigRequestPayload */
-/** @typedef RefundModeConfigResponsePayload */
-/** @typedef RefundModeInfo */
 /** @typedef ReplacementDetails */
 /** @typedef ResponseDetail */
 /** @typedef ResponseGetAssetShipment */
 /** @typedef ReturnConfig */
+/** @typedef ReturnConfig1 */
 /** @typedef SendSmsPayload */
-/** @typedef SendUserMobileOTP */
-/** @typedef SendUserMobileOtpResponse */
 /** @typedef Shipment */
 /** @typedef ShipmentConfig */
 /** @typedef ShipmentData */
@@ -874,7 +859,6 @@ class PlatformApplicationClient {
 /** @typedef ShipmentTags */
 /** @typedef ShipmentTimeStamp */
 /** @typedef ShippingInfo */
-/** @typedef SingleRefundModeInfo */
 /** @typedef SmsDataPayload */
 /** @typedef StatuesRequest */
 /** @typedef StatuesResponse */
@@ -896,8 +880,6 @@ class PlatformApplicationClient {
 /** @typedef TaxInfo */
 /** @typedef TrackingList */
 /** @typedef TransactionData */
-/** @typedef UpdatePackagingDimensionsPayload */
-/** @typedef UpdatePackagingDimensionsResponse */
 /** @typedef UpdateShipmentLockPayload */
 /** @typedef UpdateShipmentLockResponse */
 /** @typedef UpdateShipmentStatusRequest */
@@ -907,8 +889,6 @@ class PlatformApplicationClient {
 /** @typedef UserData */
 /** @typedef UserDataInfo */
 /** @typedef UserDetailsData */
-/** @typedef VerifyMobileOTP */
-/** @typedef VerifyOtpData */
 /** @typedef Weight */
 
 /** @typedef Action */
@@ -944,9 +924,15 @@ class PlatformApplicationClient {
 /** @typedef AttributeMasterSerializer */
 /** @typedef AttributeSchemaRange */
 /** @typedef AutocompleteAction */
+/** @typedef AutocompleteAction1 */
 /** @typedef AutocompletePageAction */
+/** @typedef AutocompletePageAction1 */
 /** @typedef AutocompleteResult */
+/** @typedef AutocompleteResult1 */
 /** @typedef BannerImage */
+/** @typedef BaseErrorResponse */
+/** @typedef BoostBury */
+/** @typedef BoostBury1 */
 /** @typedef Brand */
 /** @typedef BrandItem */
 /** @typedef BrandListingResponse */
@@ -1009,13 +995,14 @@ class PlatformApplicationClient {
 /** @typedef ConfigurationProductVariant */
 /** @typedef ConfigurationProductVariantConfig */
 /** @typedef CreateAutocompleteKeyword */
-/** @typedef CreateAutocompleteWordsResponse */
 /** @typedef CreateCollection */
 /** @typedef CreateSearchKeyword */
+/** @typedef CreateSearchReranking */
 /** @typedef CrossSellingDataResponse */
 /** @typedef CustomOrder */
 /** @typedef DateMeta */
 /** @typedef DefaultKeyRequest */
+/** @typedef DeleteRerankResponse */
 /** @typedef DeleteResponse */
 /** @typedef Department */
 /** @typedef DepartmentCategoryTree */
@@ -1058,7 +1045,6 @@ class PlatformApplicationClient {
 /** @typedef GetProductBundleResponse */
 /** @typedef GetProducts */
 /** @typedef GetSearchWordsData */
-/** @typedef GetSearchWordsDetailResponse */
 /** @typedef GetSearchWordsResponse */
 /** @typedef GlobalValidation */
 /** @typedef GTIN */
@@ -1118,6 +1104,7 @@ class PlatformApplicationClient {
 /** @typedef Media */
 /** @typedef Media1 */
 /** @typedef Media2 */
+/** @typedef Media3 */
 /** @typedef Meta */
 /** @typedef MetaDataListingFilterMetaResponse */
 /** @typedef MetaDataListingFilterResponse */
@@ -1187,11 +1174,17 @@ class PlatformApplicationClient {
 /** @typedef QuantitiesArticle */
 /** @typedef Quantity */
 /** @typedef QuantityBase */
+/** @typedef RerankingAttribute */
+/** @typedef RerankingAttribute1 */
 /** @typedef ReturnConfig */
 /** @typedef ReturnConfig1 */
 /** @typedef ReturnConfig2 */
 /** @typedef ReturnConfigResponse */
+/** @typedef SearchErrorResponse */
 /** @typedef SearchKeywordResult */
+/** @typedef SearchKeywordResult1 */
+/** @typedef SearchRerankingModel */
+/** @typedef SearchRerankListing */
 /** @typedef SecondLevelChild */
 /** @typedef SellerPhoneNumber */
 /** @typedef SEOData */
@@ -1220,6 +1213,7 @@ class PlatformApplicationClient {
 /** @typedef Trader */
 /** @typedef Trader1 */
 /** @typedef Trader2 */
+/** @typedef UpdateAutocompleteWordData */
 /** @typedef UpdateCollection */
 /** @typedef UpdatedResponse */
 /** @typedef UserCommon */
@@ -1841,6 +1835,7 @@ class PlatformApplicationClient {
 /** @typedef ApplicationCompanyDpViewResponse */
 /** @typedef ApplicationServiceabilityConfig */
 /** @typedef ApplicationServiceabilityConfigResponse */
+/** @typedef CommonError */
 /** @typedef CompanyStoreView_PageItems */
 /** @typedef CompanyStoreView_Response */
 /** @typedef ContactNumberResponse */
@@ -1905,5 +1900,34 @@ class PlatformApplicationClient {
 /** @typedef ZoneResponse */
 /** @typedef ZoneSuccessResponse */
 /** @typedef ZoneUpdateRequest */
+
+/** @typedef DownloadCreditDebitNote */
+/** @typedef DownloadCreditDebitNoteRequest */
+/** @typedef DownloadCreditDebitNoteResponse */
+/** @typedef DownloadReport */
+/** @typedef DownloadReportItems */
+/** @typedef DownloadReportList */
+/** @typedef Error */
+/** @typedef GenerateReportFilters */
+/** @typedef GenerateReportJson */
+/** @typedef GenerateReportMeta */
+/** @typedef GenerateReportPlatform */
+/** @typedef GenerateReportRequest */
+/** @typedef GetAffiliate */
+/** @typedef GetAffiliateResponse */
+/** @typedef GetDocs */
+/** @typedef GetEngineData */
+/** @typedef GetEngineFilters */
+/** @typedef GetEngineRequest */
+/** @typedef GetEngineResponse */
+/** @typedef GetReason */
+/** @typedef GetReasonRequest */
+/** @typedef GetReasonResponse */
+/** @typedef GetReportListData */
+/** @typedef GetReportListRequest */
+/** @typedef Page */
+/** @typedef PaymentProcessPayload */
+/** @typedef PaymentProcessRequest */
+/** @typedef PaymentProcessResponse */
 
 module.exports = PlatformApplicationClient;

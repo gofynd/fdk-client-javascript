@@ -1834,16 +1834,14 @@ class Payment {
 
   /**
    * @param {Object} arg - Arg object.
-   * @param {string} arg.terminalUniqueIdentifier - Terminal unique identifier
    * @param {EdcAddRequest} arg.body
    * @returns {Promise<EdcDeviceAddResponse>} - Success response
    * @summary: map new edc device to the terminal
    * @description: Use this API to map new edc device to the terminal
    */
-  async updateEdcDevice({ terminalUniqueIdentifier, body } = {}) {
+  async updateEdcDevice({ body } = {}) {
     const { error } = PaymentValidator.updateEdcDevice().validate(
       {
-        terminalUniqueIdentifier,
         body,
       },
       { abortEarly: false, allowUnknown: true }
@@ -1855,7 +1853,6 @@ class Payment {
     // Showing warrnings if extra unknown parameters are found
     const { error: warrning } = PaymentValidator.updateEdcDevice().validate(
       {
-        terminalUniqueIdentifier,
         body,
       },
       { abortEarly: false, allowUnknown: false }

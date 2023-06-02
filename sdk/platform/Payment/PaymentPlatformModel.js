@@ -563,6 +563,7 @@ class PaymentModel {
   }
   static PayoutCustomer() {
     return Joi.object({
+      email: Joi.string().allow("").allow(null),
       id: Joi.number().allow(null),
       mobile: Joi.string().allow("").allow(null),
       name: Joi.string().allow("").allow(null),

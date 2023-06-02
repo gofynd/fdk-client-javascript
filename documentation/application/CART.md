@@ -6452,6 +6452,7 @@ Success. Returns delivery promise along with shipment details and price breakup.
       {
         "fulfillment_id": 3009,
         "shipment_type": "single_shipment",
+        "order_type": "HomeDelivery",
         "fulfillment_type": "store",
         "dp_id": "29",
         "dp_options": {

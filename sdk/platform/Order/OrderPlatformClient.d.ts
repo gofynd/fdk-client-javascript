@@ -4,16 +4,6 @@ declare class Order {
     config: any;
     /**
      * @param {Object} arg - Arg object.
-     * @param {AttachOrderUser} arg.body
-     * @returns {Promise<AttachOrderUserResponse>} - Success response
-     * @summary:
-     * @description:
-     */
-    attachOrderUser({ body }?: {
-        body: AttachOrderUser;
-    }): Promise<AttachOrderUserResponse>;
-    /**
-     * @param {Object} arg - Arg object.
      * @param {OrderStatus} arg.body
      * @returns {Promise<OrderStatusResult>} - Success response
      * @summary:
@@ -24,21 +14,21 @@ declare class Order {
     }): Promise<OrderStatusResult>;
     /**
      * @param {Object} arg - Arg object.
-     * @param {string} arg.caller - Call Number
-     * @param {string} arg.receiver - Receiver Number
-     * @param {string} arg.bagId - Bag Id for the query
-     * @param {string} [arg.callerId] - Caller Id
-     * @param {string} [arg.method] - Provider Method to Call
+     * @param {string} arg.caller -
+     * @param {string} arg.receiver -
+     * @param {string} arg.bagId -
+     * @param {string} [arg.callingTo] -
+     * @param {string} [arg.callerId] -
      * @returns {Promise<Click2CallResponse>} - Success response
      * @summary:
      * @description:
      */
-    click2Call({ caller, receiver, bagId, callerId, method, }?: {
+    click2Call({ caller, receiver, bagId, callingTo, callerId, }?: {
         caller: string;
         receiver: string;
         bagId: string;
+        callingTo?: string;
         callerId?: string;
-        method?: string;
     }): Promise<Click2CallResponse>;
     /**
      * @param {Object} arg - Arg object.
@@ -92,36 +82,6 @@ declare class Order {
     downloadBulkActionTemplate({ templateSlug }?: {
         templateSlug?: string;
     }): Promise<FileResponse>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {EInvoiceRetry} arg.body
-     * @returns {Promise<EInvoiceRetryResponse>} - Success response
-     * @summary:
-     * @description:
-     */
-    eInvoiceRetry({ body }?: {
-        body: EInvoiceRetry;
-    }): Promise<EInvoiceRetryResponse>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {FetchCreditBalanceRequestPayload} arg.body
-     * @returns {Promise<FetchCreditBalanceResponsePayload>} - Success response
-     * @summary:
-     * @description:
-     */
-    fetchCreditBalanceDetail({ body }?: {
-        body: FetchCreditBalanceRequestPayload;
-    }): Promise<FetchCreditBalanceResponsePayload>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {RefundModeConfigRequestPayload} arg.body
-     * @returns {Promise<RefundModeConfigResponsePayload>} - Success response
-     * @summary:
-     * @description:
-     */
-    fetchRefundModeConfig({ body }?: {
-        body: RefundModeConfigRequestPayload;
-    }): Promise<RefundModeConfigResponsePayload>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.orderId -
@@ -253,23 +213,33 @@ declare class Order {
      * @param {string} [arg.toDate] -
      * @param {string} [arg.dpIds] -
      * @param {string} [arg.stores] -
-     * @param {string} [arg.salesChannel] -
+     * @param {string} [arg.salesChannels] -
      * @param {string} [arg.paymentMode] -
      * @param {string} [arg.bagStatus] -
+     * @param {string} [arg.searchType] -
+     * @param {string} [arg.searchValue] -
+     * @param {string} [arg.tags] -
+     * @param {string} [arg.timeToDispatch] -
+     * @param {string} [arg.paymentMethods] -
      * @returns {Promise<LaneConfigResponse>} - Success response
      * @summary:
      * @description:
      */
-    getLaneConfig({ superLane, groupEntity, fromDate, toDate, dpIds, stores, salesChannel, paymentMode, bagStatus, }?: {
+    getLaneConfig({ superLane, groupEntity, fromDate, toDate, dpIds, stores, salesChannels, paymentMode, bagStatus, searchType, searchValue, tags, timeToDispatch, paymentMethods, }?: {
         superLane?: string;
         groupEntity?: string;
         fromDate?: string;
         toDate?: string;
         dpIds?: string;
         stores?: string;
-        salesChannel?: string;
+        salesChannels?: string;
         paymentMode?: string;
         bagStatus?: string;
+        searchType?: string;
+        searchValue?: string;
+        tags?: string;
+        timeToDispatch?: string;
+        paymentMethods?: string;
     }): Promise<LaneConfigResponse>;
     /**
      * @param {Object} arg - Arg object.
@@ -370,14 +340,14 @@ declare class Order {
     }): Promise<ShipmentInfoResponse>;
     /**
      * @param {Object} arg - Arg object.
-     * @param {string} [arg.shipmentId] - Shipment Id
-     * @param {number} [arg.bagId] - Bag/Product Id
+     * @param {number} [arg.shipmentId] -
+     * @param {number} [arg.bagId] -
      * @returns {Promise<ShipmentHistoryResponse>} - Success response
      * @summary:
      * @description:
      */
     getShipmentHistory({ shipmentId, bagId }?: {
-        shipmentId?: string;
+        shipmentId?: number;
         bagId?: number;
     }): Promise<ShipmentHistoryResponse>;
     /**
@@ -457,13 +427,6 @@ declare class Order {
     }): Promise<ShipmentInternalPlatformViewResponse>;
     /**
      * @param {Object} arg - Arg object.
-     * @returns {Promise<BagStateTransitionMap>} - Success response
-     * @summary:
-     * @description:
-     */
-    getStateTransitionMap({}?: any): Promise<BagStateTransitionMap>;
-    /**
-     * @param {Object} arg - Arg object.
      * @param {string} arg.view - Name of View
      * @param {string} [arg.groupEntity] - Group Entity Name
      * @returns {Promise<FiltersResponse>} - Success response
@@ -494,6 +457,16 @@ declare class Order {
     orderUpdate({ body }?: {
         body: PlatformOrderUpdate;
     }): Promise<ResponseDetail>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {ManualAssignDPToShipment} arg.body
+     * @returns {Promise<ManualAssignDPToShipmentResponse>} - Success response
+     * @summary:
+     * @description:
+     */
+    platformManualAssignDPToShipment({ body }?: {
+        body: ManualAssignDPToShipment;
+    }): Promise<ManualAssignDPToShipmentResponse>;
     /**
      * @param {Object} arg - Arg object.
      * @param {PostShipmentHistory} arg.body
@@ -536,14 +509,11 @@ declare class Order {
     }): Promise<OrderStatusResult>;
     /**
      * @param {Object} arg - Arg object.
-     * @param {SendUserMobileOTP} arg.body
-     * @returns {Promise<SendUserMobileOtpResponse>} - Success response
+     * @returns {Promise<OrderStatusResult>} - Success response
      * @summary:
      * @description:
      */
-    sendUserMobileOTP({ body }?: {
-        body: SendUserMobileOTP;
-    }): Promise<SendUserMobileOtpResponse>;
+    sendSmsNinjaPlatform({}?: any): Promise<OrderStatusResult>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.shipmentId -
@@ -578,14 +548,14 @@ declare class Order {
     }): Promise<BaseResponse>;
     /**
      * @param {Object} arg - Arg object.
-     * @param {UpdatePackagingDimensionsPayload} arg.body
-     * @returns {Promise<UpdatePackagingDimensionsResponse>} - Success response
+     * @param {CreateOrderPayload} arg.body
+     * @returns {Promise<CreateOrderResponse>} - Success response
      * @summary:
      * @description:
      */
     updatePackagingDimensions({ body }?: {
-        body: UpdatePackagingDimensionsPayload;
-    }): Promise<UpdatePackagingDimensionsResponse>;
+        body: CreateOrderPayload;
+    }): Promise<CreateOrderResponse>;
     /**
      * @param {Object} arg - Arg object.
      * @param {UpdateShipmentLockPayload} arg.body
@@ -626,14 +596,4 @@ declare class Order {
     upsertJioCode({ body }?: {
         body: JioCodeUpsertPayload;
     }): Promise<JioCodeUpsertResponse>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {VerifyMobileOTP} arg.body
-     * @returns {Promise<PointBlankOtpData>} - Success response
-     * @summary:
-     * @description:
-     */
-    verifyMobileOTP({ body }?: {
-        body: VerifyMobileOTP;
-    }): Promise<PointBlankOtpData>;
 }

@@ -523,8 +523,6 @@ class Catalog {
    *   will be passed in f parameter as shown in the example below. Double
    *   Pipe (||) denotes the OR condition, whereas Triple-colon (:::)
    *   indicates a new filter paramater applied as an AND condition.
-   * @param {string} [arg.q] - The search query for entering partial or full
-   *   name of product, brand, category, or collection.
    * @param {boolean} [arg.filters] - This is a boolean value, True for
    *   fetching all filter parameters and False for disabling the filter parameters.
    * @param {string} [arg.sortOn] - The order in which the list of products
@@ -542,7 +540,6 @@ class Catalog {
   async getCollectionItemsBySlug({
     slug,
     f,
-    q,
     filters,
     sortOn,
     pageId,
@@ -551,7 +548,7 @@ class Catalog {
     pageType,
   } = {}) {
     const { error } = CatalogValidator.getCollectionItemsBySlug().validate(
-      { slug, f, q, filters, sortOn, pageId, pageSize, pageNo, pageType },
+      { slug, f, filters, sortOn, pageId, pageSize, pageNo, pageType },
       { abortEarly: false, allowUnknown: true }
     );
     if (error) {
@@ -562,7 +559,7 @@ class Catalog {
     const {
       error: warrning,
     } = CatalogValidator.getCollectionItemsBySlug().validate(
-      { slug, f, q, filters, sortOn, pageId, pageSize, pageNo, pageType },
+      { slug, f, filters, sortOn, pageId, pageSize, pageNo, pageType },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
@@ -575,7 +572,6 @@ class Catalog {
 
     const query_params = {};
     query_params["f"] = f;
-    query_params["q"] = q;
     query_params["filters"] = filters;
     query_params["sort_on"] = sortOn;
     query_params["page_id"] = pageId;
@@ -624,8 +620,6 @@ class Catalog {
    *   will be passed in f parameter as shown in the example below. Double
    *   Pipe (||) denotes the OR condition, whereas Triple-colon (:::)
    *   indicates a new filter paramater applied as an AND condition.
-   * @param {string} [arg.q] - The search query for entering partial or full
-   *   name of product, brand, category, or collection.
    * @param {boolean} [arg.filters] - This is a boolean value, True for
    *   fetching all filter parameters and False for disabling the filter parameters.
    * @param {string} [arg.sortOn] - The order in which the list of products
@@ -638,7 +632,6 @@ class Catalog {
   getCollectionItemsBySlugPaginator({
     slug,
     f,
-    q,
     filters,
     sortOn,
     pageSize,
@@ -651,7 +644,6 @@ class Catalog {
       const data = await this.getCollectionItemsBySlug({
         slug: slug,
         f: f,
-        q: q,
         filters: filters,
         sortOn: sortOn,
         pageId: pageId,
@@ -675,14 +667,13 @@ class Catalog {
    *   given set of results.
    * @param {number} [arg.pageSize] - The number of items to retrieve in each page.
    * @param {string[]} [arg.tag] - List of tags to filter collections
-   * @param {string} [arg.q] - Name of the collection to filter collection
    * @returns {Promise<GetCollectionListingResponse>} - Success response
    * @summary: List all the collections
    * @description: Collections are a great way to organize your products and can improve the ability for customers to find items quickly and efficiently.
    */
-  async getCollections({ pageNo, pageSize, tag, q } = {}) {
+  async getCollections({ pageNo, pageSize, tag } = {}) {
     const { error } = CatalogValidator.getCollections().validate(
-      { pageNo, pageSize, tag, q },
+      { pageNo, pageSize, tag },
       { abortEarly: false, allowUnknown: true }
     );
     if (error) {
@@ -691,7 +682,7 @@ class Catalog {
 
     // Showing warrnings if extra unknown parameters are found
     const { error: warrning } = CatalogValidator.getCollections().validate(
-      { pageNo, pageSize, tag, q },
+      { pageNo, pageSize, tag },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
@@ -706,7 +697,6 @@ class Catalog {
     query_params["page_no"] = pageNo;
     query_params["page_size"] = pageSize;
     query_params["tag"] = tag;
-    query_params["q"] = q;
 
     const xHeaders = {};
 
@@ -744,11 +734,10 @@ class Catalog {
    * @param {Object} arg - Arg object.
    * @param {number} [arg.pageSize] - The number of items to retrieve in each page.
    * @param {string[]} [arg.tag] - List of tags to filter collections
-   * @param {string} [arg.q] - Name of the collection to filter collection
    * @summary: List all the collections
    * @description: Collections are a great way to organize your products and can improve the ability for customers to find items quickly and efficiently.
    */
-  getCollectionsPaginator({ pageSize, tag, q } = {}) {
+  getCollectionsPaginator({ pageSize, tag } = {}) {
     const paginator = new Paginator();
     const callback = async () => {
       const pageId = paginator.nextId;
@@ -758,7 +747,6 @@ class Catalog {
         pageNo: pageNo,
         pageSize: pageSize,
         tag: tag,
-        q: q,
       });
       paginator.setPaginator({
         hasNext: data.page.has_next ? true : false,

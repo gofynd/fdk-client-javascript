@@ -181,7 +181,6 @@ class PaymentValidator {
 
   static updateEdcDevice() {
     return Joi.object({
-      terminalUniqueIdentifier: Joi.string().allow("").required(),
       body: PaymentModel.EdcAddRequest().required(),
     }).required();
   }

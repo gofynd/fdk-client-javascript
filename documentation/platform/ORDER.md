@@ -8,7 +8,6 @@
 ## Order Methods
 Handles all platform order and shipment api(s)
 
-* [attachOrderUser](#attachorderuser)
 * [checkOrderStatus](#checkorderstatus)
 * [click2Call](#click2call)
 * [createChannelConfig](#createchannelconfig)
@@ -16,9 +15,6 @@ Handles all platform order and shipment api(s)
 * [createShipmentReport](#createshipmentreport)
 * [dispatchManifest](#dispatchmanifest)
 * [downloadBulkActionTemplate](#downloadbulkactiontemplate)
-* [eInvoiceRetry](#einvoiceretry)
-* [fetchCreditBalanceDetail](#fetchcreditbalancedetail)
-* [fetchRefundModeConfig](#fetchrefundmodeconfig)
 * [generatePOSReceiptByOrderId](#generateposreceiptbyorderid)
 * [getAnnouncements](#getannouncements)
 * [getAppOrderShipmentDetails](#getappordershipmentdetails)
@@ -39,15 +35,15 @@ Handles all platform order and shipment api(s)
 * [getShipmentHistory](#getshipmenthistory)
 * [getShipmentReasons](#getshipmentreasons)
 * [getShipments](#getshipments)
-* [getStateTransitionMap](#getstatetransitionmap)
 * [getfilters](#getfilters)
 * [invalidateShipmentCache](#invalidateshipmentcache)
 * [orderUpdate](#orderupdate)
+* [platformManualAssignDPToShipment](#platformmanualassigndptoshipment)
 * [postShipmentHistory](#postshipmenthistory)
 * [processManifest](#processmanifest)
 * [reassignLocation](#reassignlocation)
 * [sendSmsNinja](#sendsmsninja)
-* [sendUserMobileOTP](#sendusermobileotp)
+* [sendSmsNinjaPlatform](#sendsmsninjaplatform)
 * [trackShipmentPlatform](#trackshipmentplatform)
 * [updateAddress](#updateaddress)
 * [updatePackagingDimensions](#updatepackagingdimensions)
@@ -55,68 +51,12 @@ Handles all platform order and shipment api(s)
 * [updateShipmentStatus](#updateshipmentstatus)
 * [uploadConsent](#uploadconsent)
 * [upsertJioCode](#upsertjiocode)
-* [verifyMobileOTP](#verifymobileotp)
 
 
 
 ## Methods with example and description
 
 
-
-
-### attachOrderUser
-
-
-
-
-```javascript
-// Promise
-const promise = platformClient.order.attachOrderUser({  body : value });
-
-// Async/Await
-const data = await platformClient.order.attachOrderUser({  body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |
-| body | [AttachOrderUser](#AttachOrderUser) | yes | Request body |
-
-
-
-
-*Returned Response:*
-
-
-
-
-[AttachOrderUserResponse](#AttachOrderUserResponse)
-
-Attach user to order
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-
-```
-</details>
-
-
-
-
-
-
-
-
-
----
 
 
 ### checkOrderStatus
@@ -184,15 +124,15 @@ Order Status retrieved successfully
 const promise = platformClient.order.click2Call({  caller : value,
  receiver : value,
  bagId : value,
- callerId : value,
- method : value });
+ callingTo : value,
+ callerId : value });
 
 // Async/Await
 const data = await platformClient.order.click2Call({  caller : value,
  receiver : value,
  bagId : value,
- callerId : value,
- method : value });
+ callingTo : value,
+ callerId : value });
 ```
 
 
@@ -201,11 +141,11 @@ const data = await platformClient.order.click2Call({  caller : value,
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
-| caller | string | yes | Call Number |   
-| receiver | string | yes | Receiver Number |   
-| bagId | string | yes | Bag Id for the query |    
-| callerId | string | no | Caller Id |    
-| method | string | no | Provider Method to Call |  
+| caller | string | yes |  |   
+| receiver | string | yes |  |   
+| bagId | string | yes |  |    
+| callingTo | string | no |  |    
+| callerId | string | no |  |  
 
 
 
@@ -227,10 +167,7 @@ Process call on request!
 <summary><i>&nbsp; Example:</i></summary>
 
 ```json
-{
-  "success": true,
-  "call_id": "c2c_646b00bc-984c-4c10-bb8d-0e850a1e0022"
-}
+
 ```
 </details>
 
@@ -533,171 +470,6 @@ We are processing the file!
     "url": "https://cdn.pixelbin.io/v2/falling-surf-7c8bb8/fyndnp/wrkr/x0/misc/general/free/original/0Ex0-zTyw-placed_352_1668856953.7936668.xlsx"
   }
 }
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### eInvoiceRetry
-
-
-
-
-```javascript
-// Promise
-const promise = platformClient.order.eInvoiceRetry({  body : value });
-
-// Async/Await
-const data = await platformClient.order.eInvoiceRetry({  body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |
-| body | [EInvoiceRetry](#EInvoiceRetry) | yes | Request body |
-
-
-
-
-*Returned Response:*
-
-
-
-
-[EInvoiceRetryResponse](#EInvoiceRetryResponse)
-
-Manifest will be processed!
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### fetchCreditBalanceDetail
-
-
-
-
-```javascript
-// Promise
-const promise = platformClient.order.fetchCreditBalanceDetail({  body : value });
-
-// Async/Await
-const data = await platformClient.order.fetchCreditBalanceDetail({  body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |
-| body | [FetchCreditBalanceRequestPayload](#FetchCreditBalanceRequestPayload) | yes | Request body |
-
-
-
-
-*Returned Response:*
-
-
-
-
-[FetchCreditBalanceResponsePayload](#FetchCreditBalanceResponsePayload)
-
-Credit Balance will be fetched
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### fetchRefundModeConfig
-
-
-
-
-```javascript
-// Promise
-const promise = platformClient.order.fetchRefundModeConfig({  body : value });
-
-// Async/Await
-const data = await platformClient.order.fetchRefundModeConfig({  body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |
-| body | [RefundModeConfigRequestPayload](#RefundModeConfigRequestPayload) | yes | Request body |
-
-
-
-
-*Returned Response:*
-
-
-
-
-[RefundModeConfigResponsePayload](#RefundModeConfigResponsePayload)
-
-Refund mode config is returned based on input parameter
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-
 ```
 </details>
 
@@ -1770,9 +1542,14 @@ const promise = platformClient.order.getLaneConfig({  superLane : value,
  toDate : value,
  dpIds : value,
  stores : value,
- salesChannel : value,
+ salesChannels : value,
  paymentMode : value,
- bagStatus : value });
+ bagStatus : value,
+ searchType : value,
+ searchValue : value,
+ tags : value,
+ timeToDispatch : value,
+ paymentMethods : value });
 
 // Async/Await
 const data = await platformClient.order.getLaneConfig({  superLane : value,
@@ -1781,9 +1558,14 @@ const data = await platformClient.order.getLaneConfig({  superLane : value,
  toDate : value,
  dpIds : value,
  stores : value,
- salesChannel : value,
+ salesChannels : value,
  paymentMode : value,
- bagStatus : value });
+ bagStatus : value,
+ searchType : value,
+ searchValue : value,
+ tags : value,
+ timeToDispatch : value,
+ paymentMethods : value });
 ```
 
 
@@ -1798,9 +1580,14 @@ const data = await platformClient.order.getLaneConfig({  superLane : value,
 | toDate | string | no |  |    
 | dpIds | string | no |  |    
 | stores | string | no |  |    
-| salesChannel | string | no |  |    
+| salesChannels | string | no |  |    
 | paymentMode | string | no |  |    
-| bagStatus | string | no |  |  
+| bagStatus | string | no |  |    
+| searchType | string | no |  |    
+| searchValue | string | no |  |    
+| tags | string | no |  |    
+| timeToDispatch | string | no |  |    
+| paymentMethods | string | no |  |  
 
 
 
@@ -3383,8 +3170,8 @@ const data = await platformClient.order.getShipmentHistory({  shipmentId : value
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
-| shipmentId | string | no | Shipment Id |    
-| bagId | number | no | Bag/Product Id |  
+| shipmentId | number | no |  |    
+| bagId | number | no |  |  
 
 
 
@@ -3664,244 +3451,6 @@ We are processing the report!
 
 ```json
 
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### getStateTransitionMap
-
-
-
-
-```javascript
-// Promise
-const promise = platformClient.order.getStateTransitionMap();
-
-// Async/Await
-const data = await platformClient.order.getStateTransitionMap();
-```
-
-
-
-
-
-
-
-
-*Returned Response:*
-
-
-
-
-[BagStateTransitionMap](#BagStateTransitionMap)
-
-State Transition Mapping, for next possible state
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "fynd": {
-    "placed": [
-      "bag_not_confirmed",
-      "cancelled_customer",
-      "cancelled_fynd",
-      "bag_confirmed",
-      "store_reassigned"
-    ],
-    "bag_confirmed": [
-      "handed_over_to_customer",
-      "bag_invoiced"
-    ],
-    "dp_assigned": [
-      "handed_over_to_customer",
-      "bag_packed"
-    ],
-    "bag_packed": [
-      "bag_not_picked",
-      "cancelled_customer"
-    ],
-    "handed_over_to_dg": [
-      "cancelled_at_dp",
-      "credit_note_generated"
-    ],
-    "out_for_delivery": [
-      "delivery_done"
-    ],
-    "delivery_done": [
-      "bag_lost",
-      "return_initiated"
-    ],
-    "return_initiated": [
-      "return_accepted"
-    ],
-    "bag_picked": [
-      "refund_completed",
-      "out_for_delivery",
-      "delivery_done"
-    ],
-    "pending": [
-      "pending",
-      "placed",
-      "payment_failed",
-      "manual_refund"
-    ],
-    "payment_failed": [
-      "awaiting_payment_confirmation",
-      "placed",
-      "manual_refund"
-    ],
-    "return_pre_qc": [
-      "return_initiated",
-      "return_request_cancelled",
-      "manual_refund"
-    ],
-    "bag_not_packed": [
-      "manual_refund"
-    ],
-    "bag_rescheduled": [
-      "manual_refund"
-    ],
-    "fluid_state": [
-      "manual_refund"
-    ],
-    "handed_over_to_customer": [
-      "manual_refund",
-      "return_initiated"
-    ],
-    "hold": [
-      "manual_refund"
-    ],
-    "product_not_available": [
-      "manual_refund"
-    ],
-    "qc_fail": [
-      "manual_refund"
-    ],
-    "qc_pass": [
-      "manual_refund"
-    ],
-    "refund_done": [
-      "manual_refund"
-    ],
-    "refund_processing": [
-      "manual_refund"
-    ],
-    "return_assigning_dp": [
-      "manual_refund"
-    ],
-    "return_bag_packed": [
-      "manual_refund"
-    ],
-    "return_dp_cancelled": [
-      "manual_refund"
-    ],
-    "unhold": [
-      "manual_refund"
-    ],
-    "web_store_rescheduled": [
-      "manual_refund"
-    ],
-    "credit_note_cancelled": [
-      "refund_initiated"
-    ]
-  },
-  "affiliate": {
-    "placed": [
-      "bag_not_confirmed",
-      "store_reassigned",
-      "product_not_available"
-    ],
-    "store_reassigned": [
-      "bag_not_confirmed"
-    ],
-    "bag_confirmed": [
-      "bag_invoiced",
-      "cancelled_fynd"
-    ],
-    "dp_assigned": [
-      "bag_packed"
-    ],
-    "pending": [
-      "payment_failed",
-      "placed",
-      "manual_refund"
-    ],
-    "ready_for_dp_assignment": [
-      "dp_assigned"
-    ],
-    "credit_note_generated": [
-      "refund_pending",
-      "refund_initiated"
-    ],
-    "assigning_return_dp": [
-      "manual_refund"
-    ],
-    "bag_not_packed": [
-      "manual_refund"
-    ],
-    "bag_rescheduled": [
-      "manual_refund"
-    ],
-    "fluid_state": [
-      "manual_refund"
-    ],
-    "handed_over_to_customer": [
-      "manual_refund",
-      "return_initiated"
-    ],
-    "hold": [
-      "manual_refund"
-    ],
-    "product_not_available": [
-      "manual_refund"
-    ],
-    "qc_fail": [
-      "manual_refund"
-    ],
-    "qc_pass": [
-      "manual_refund"
-    ],
-    "refund_done": [
-      "manual_refund"
-    ],
-    "refund_processing": [
-      "manual_refund"
-    ],
-    "return_assigning_dp": [
-      "manual_refund"
-    ],
-    "return_bag_packed": [
-      "manual_refund"
-    ],
-    "return_dp_cancelled": [
-      "manual_refund"
-    ],
-    "unhold": [
-      "manual_refund"
-    ],
-    "web_store_rescheduled": [
-      "manual_refund"
-    ],
-    "credit_note_cancelled": [
-      "refund_initiated"
-    ]
-  }
-}
 ```
 </details>
 
@@ -5743,6 +5292,61 @@ We are processing the order!
 ---
 
 
+### platformManualAssignDPToShipment
+
+
+
+
+```javascript
+// Promise
+const promise = platformClient.order.platformManualAssignDPToShipment({  body : value });
+
+// Async/Await
+const data = await platformClient.order.platformManualAssignDPToShipment({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [ManualAssignDPToShipment](#ManualAssignDPToShipment) | yes | Request body |
+
+
+
+
+*Returned Response:*
+
+
+
+
+[ManualAssignDPToShipmentResponse](#ManualAssignDPToShipmentResponse)
+
+DP Assigned for the given shipment Ids.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
 ### postShipmentHistory
 
 
@@ -5988,10 +5592,7 @@ Sms Sent successfully
 <summary><i>&nbsp; Example:</i></summary>
 
 ```json
-{
-  "success": true,
-  "message": "Successfully emitted aldaviz-delayed-shipment-event"
-}
+
 ```
 </details>
 
@@ -6006,26 +5607,22 @@ Sms Sent successfully
 ---
 
 
-### sendUserMobileOTP
+### sendSmsNinjaPlatform
 
 
 
 
 ```javascript
 // Promise
-const promise = platformClient.order.sendUserMobileOTP({  body : value });
+const promise = platformClient.order.sendSmsNinjaPlatform();
 
 // Async/Await
-const data = await platformClient.order.sendUserMobileOTP({  body : value });
+const data = await platformClient.order.sendSmsNinjaPlatform();
 ```
 
 
 
 
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |
-| body | [SendUserMobileOTP](#SendUserMobileOTP) | yes | Request body |
 
 
 
@@ -6035,9 +5632,9 @@ const data = await platformClient.order.sendUserMobileOTP({  body : value });
 
 
 
-[SendUserMobileOtpResponse](#SendUserMobileOtpResponse)
+[OrderStatusResult](#OrderStatusResult)
 
-Send OTP to user mobile
+Sms Sent successfully
 
 
 
@@ -6046,16 +5643,7 @@ Send OTP to user mobile
 <summary><i>&nbsp; Example:</i></summary>
 
 ```json
-{
-  "success": true,
-  "data": {
-    "request_id": "112312312",
-    "message": "Text",
-    "resend_timer": "600",
-    "mobile": 99990000
-  },
-  "message": "Text"
-}
+
 ```
 </details>
 
@@ -6250,7 +5838,7 @@ const data = await platformClient.order.updatePackagingDimensions({  body : valu
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |
-| body | [UpdatePackagingDimensionsPayload](#UpdatePackagingDimensionsPayload) | yes | Request body |
+| body | [CreateOrderPayload](#CreateOrderPayload) | yes | Request body |
 
 
 
@@ -6260,7 +5848,7 @@ const data = await platformClient.order.updatePackagingDimensions({  body : valu
 
 
 
-[UpdatePackagingDimensionsResponse](#UpdatePackagingDimensionsResponse)
+[CreateOrderResponse](#CreateOrderResponse)
 
 Manifest will be processed!
 
@@ -6559,61 +6147,6 @@ We are processing the report!
 ---
 
 
-### verifyMobileOTP
-
-
-
-
-```javascript
-// Promise
-const promise = platformClient.order.verifyMobileOTP({  body : value });
-
-// Async/Await
-const data = await platformClient.order.verifyMobileOTP({  body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |
-| body | [VerifyMobileOTP](#VerifyMobileOTP) | yes | Request body |
-
-
-
-
-*Returned Response:*
-
-
-
-
-[PointBlankOtpData](#PointBlankOtpData)
-
-Verify OTP
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
 
 ### Schemas
 
@@ -6727,6 +6260,16 @@ Verify OTP
 
 ---
 
+#### [AffiliateBagsDetails](#AffiliateBagsDetails)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | affiliate_bag_id | string? |  yes  |  |
+ | coupon_code | string? |  yes  |  |
+ 
+
+---
+
 #### [AffiliateConfig](#AffiliateConfig)
 
  | Properties | Type | Nullable | Description |
@@ -6829,7 +6372,7 @@ Verify OTP
  | marketplace_invoice_id | string? |  yes  |  |
  | order_item_id | string? |  yes  |  |
  | quantity | number? |  yes  |  |
- | replacement_details | [ReplacementDetails](#ReplacementDetails) |  no  |  |
+ | replacement_details | [ReplacementDetails](#ReplacementDetails)? |  yes  |  |
  | size_level_total_qty | number? |  yes  |  |
  
 
@@ -6901,7 +6444,7 @@ Verify OTP
  | currency | string? |  yes  |  |
  | dimensions | [Dimensions](#Dimensions)? |  yes  |  |
  | esp_modified | boolean? |  yes  |  |
- | identifiers | [Identifier](#Identifier) |  no  |  |
+ | identifiers | string |  no  |  |
  | is_set | boolean? |  yes  |  |
  | raw_meta | string? |  yes  |  |
  | return_config | [ReturnConfig](#ReturnConfig)? |  yes  |  |
@@ -6944,48 +6487,6 @@ Verify OTP
  | assets | [String: string]? |  yes  |  |
  | expires_in | string |  no  |  |
  | shipment_id | string |  no  |  |
- 
-
----
-
-#### [AttachOrderUser](#AttachOrderUser)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | fynd_order_id | string |  no  |  |
- | otp_data | [AttachUserOtpData](#AttachUserOtpData) |  no  |  |
- | user_info | [AttachUserInfo](#AttachUserInfo) |  no  |  |
- 
-
----
-
-#### [AttachOrderUserResponse](#AttachOrderUserResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | message | string? |  yes  |  |
- | success | boolean? |  yes  |  |
- 
-
----
-
-#### [AttachUserInfo](#AttachUserInfo)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | country_code | string? |  yes  |  |
- | first_name | string |  no  |  |
- | last_name | string |  no  |  |
- | mobile | number |  no  |  |
- 
-
----
-
-#### [AttachUserOtpData](#AttachUserOtpData)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | request_id | string |  no  |  |
  
 
 ---
@@ -7096,7 +6597,7 @@ Verify OTP
  | hsn_code | string? |  yes  |  |
  | hsn_code_id | string? |  yes  |  |
  | igst_gst_fee | string? |  yes  |  |
- | igst_tax_percentage | string? |  yes  |  |
+ | igst_tax_percentage | number? |  yes  |  |
  | is_default_hsn_code | boolean? |  yes  |  |
  | sgst_gst_fee | string? |  yes  |  |
  | sgst_tax_percentage | number? |  yes  |  |
@@ -7215,16 +6716,6 @@ Verify OTP
 
 ---
 
-#### [BagStateTransitionMap](#BagStateTransitionMap)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | affiliate | string? |  yes  |  |
- | fynd | string? |  yes  |  |
- 
-
----
-
 #### [BagStatusHistory](#BagStatusHistory)
 
  | Properties | Type | Nullable | Description |
@@ -7271,6 +6762,7 @@ Verify OTP
  | financial_breakup | [[FinancialBreakup](#FinancialBreakup)] |  no  |  |
  | gst | [GSTDetailsData](#GSTDetailsData)? |  yes  |  |
  | item | [PlatformItem](#PlatformItem)? |  yes  |  |
+ | line_number | number? |  yes  |  |
  | meta | string? |  yes  |  |
  | prices | [Prices](#Prices)? |  yes  |  |
  | product_quantity | number |  no  |  |
@@ -7432,8 +6924,8 @@ Verify OTP
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | call_id | string |  no  | Call ID from the provider |
- | success | boolean |  no  | Success |
+ | call_id | string |  no  |  |
+ | status | boolean |  no  |  |
  
 
 ---
@@ -7571,17 +7063,6 @@ Verify OTP
 
 ---
 
-#### [CreditBalanceInfo](#CreditBalanceInfo)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | customer_mobile_number | string? |  yes  |  |
- | reason | string? |  yes  |  |
- | total_credited_balance | string? |  yes  |  |
- 
-
----
-
 #### [CurrentStatus](#CurrentStatus)
 
  | Properties | Type | Nullable | Description |
@@ -7628,19 +7109,6 @@ Verify OTP
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | stormbreaker_uuid | string? |  yes  |  |
- 
-
----
-
-#### [Dimension](#Dimension)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | height | string? |  yes  |  |
- | length | number? |  yes  |  |
- | packaging_type | string? |  yes  |  |
- | weight | string? |  yes  |  |
- | width | number? |  yes  |  |
  
 
 ---
@@ -7736,43 +7204,6 @@ Verify OTP
 
 ---
 
-#### [EinvoiceResponseData](#EinvoiceResponseData)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | message | string? |  yes  |  |
- 
-
----
-
-#### [EInvoiceRetry](#EInvoiceRetry)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | shipments_data | [[EInvoiceRetryShipmentData](#EInvoiceRetryShipmentData)]? |  yes  |  |
- 
-
----
-
-#### [EInvoiceRetryResponse](#EInvoiceRetryResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | response_data | [[EinvoiceResponseData](#EinvoiceResponseData)]? |  yes  |  |
- 
-
----
-
-#### [EInvoiceRetryShipmentData](#EInvoiceRetryShipmentData)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | einvoice_type | string? |  yes  |  |
- | shipment_id | string? |  yes  |  |
- 
-
----
-
 #### [Entities](#Entities)
 
  | Properties | Type | Nullable | Description |
@@ -7855,27 +7286,6 @@ Verify OTP
  | message | string? |  yes  |  |
  | status | number? |  yes  |  |
  | success | boolean? |  yes  |  |
- 
-
----
-
-#### [FetchCreditBalanceRequestPayload](#FetchCreditBalanceRequestPayload)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | affiliate_id | string |  no  |  |
- | customer_mobile_number | string |  no  |  |
- | seller_id | string |  no  |  |
- 
-
----
-
-#### [FetchCreditBalanceResponsePayload](#FetchCreditBalanceResponsePayload)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | data | [CreditBalanceInfo](#CreditBalanceInfo) |  no  |  |
- | success | boolean |  no  |  |
  
 
 ---
@@ -8091,19 +7501,19 @@ Verify OTP
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | assigned_agent | string? |  yes  | Assigned Agent |
- | bag_id | number? |  yes  | Bag ID |
- | createdat | string |  no  | Create date |
- | display_message | string? |  yes  | Display Message |
- | l1_detail | string? |  yes  | L1 details of bag |
- | l2_detail | string? |  yes  | L2 details of bag |
- | l3_detail | string? |  yes  | L3 details of bag |
- | message | string |  no  | History Message or comment |
- | meta | string? |  yes  | meta |
- | ticket_id | string? |  yes  | Ticket ID |
- | ticket_url | string? |  yes  | Ticket URL |
- | type | string |  no  | type of history, Expected Values:             [ activity_status, activity_escalation, activity_comment, outbound_notification, outbound_voice ] |
- | user | string |  no  | User who created the history |
+ | assigned_agent | string? |  yes  |  |
+ | bag_id | number? |  yes  |  |
+ | createdat | string |  no  |  |
+ | display_message | string? |  yes  |  |
+ | l1_detail | string? |  yes  |  |
+ | l2_detail | string? |  yes  |  |
+ | l3_detail | string? |  yes  |  |
+ | message | string |  no  |  |
+ | meta | string? |  yes  |  |
+ | ticket_id | string? |  yes  |  |
+ | ticket_url | string? |  yes  |  |
+ | type | string |  no  |  |
+ | user | string |  no  |  |
  
 
 ---
@@ -8112,7 +7522,11 @@ Verify OTP
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | alu | string? |  yes  |  |
  | ean | string? |  yes  |  |
+ | isbn | string? |  yes  |  |
+ | sku_code | string? |  yes  |  |
+ | upc | string? |  yes  |  |
  
 
 ---
@@ -8283,6 +7697,28 @@ Verify OTP
 
 ---
 
+#### [ManualAssignDPToShipment](#ManualAssignDPToShipment)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | dp_id | number |  no  |  |
+ | order_type | string |  no  |  |
+ | qc_required | string |  no  |  |
+ | shipment_ids | [string]? |  yes  |  |
+ 
+
+---
+
+#### [ManualAssignDPToShipmentResponse](#ManualAssignDPToShipmentResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | errors | [string]? |  yes  |  |
+ | success | string |  no  |  |
+ 
+
+---
+
 #### [MarketPlacePdf](#MarketPlacePdf)
 
  | Properties | Type | Nullable | Description |
@@ -8367,7 +7803,8 @@ Verify OTP
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | identifiers | string? |  yes  |  |
- | return_config | string? |  yes  |  |
+ | return_config | [ReturnConfig1](#ReturnConfig1)? |  yes  |  |
+ | size | string? |  yes  |  |
  | uid | string? |  yes  |  |
  
 
@@ -8377,6 +7814,7 @@ Verify OTP
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | affiliate_bag_details | [AffiliateBagsDetails](#AffiliateBagsDetails)? |  yes  |  |
  | applied_promos | [[AppliedPromos](#AppliedPromos)]? |  yes  |  |
  | article | [OrderBagArticle](#OrderBagArticle)? |  yes  |  |
  | bag_configs | [BagConfigs](#BagConfigs)? |  yes  |  |
@@ -8830,12 +8268,14 @@ Verify OTP
  | bag_status_history | [[BagStatusHistory](#BagStatusHistory)]? |  yes  |  |
  | bags | [[OrderBags](#OrderBags)]? |  yes  |  |
  | billing_details | [UserDetailsData](#UserDetailsData)? |  yes  |  |
+ | can_update_dimension | boolean? |  yes  |  |
  | company_details | [CompanyDetails](#CompanyDetails)? |  yes  |  |
  | coupon | string? |  yes  |  |
  | custom_message | string? |  yes  |  |
  | custom_meta | [string]? |  yes  |  |
  | delivery_details | [UserDetailsData](#UserDetailsData)? |  yes  |  |
  | delivery_slot | string? |  yes  |  |
+ | dp_assignment | boolean? |  yes  |  |
  | dp_details | [DPDetailsData](#DPDetailsData)? |  yes  |  |
  | enable_dp_tracking | boolean? |  yes  |  |
  | estimated_sla_time | string? |  yes  |  |
@@ -8845,6 +8285,7 @@ Verify OTP
  | gst_details | [GSTDetailsData](#GSTDetailsData)? |  yes  |  |
  | invoice | [InvoiceInfo](#InvoiceInfo)? |  yes  |  |
  | invoice_id | string? |  yes  |  |
+ | is_dp_assign_enabled | boolean? |  yes  |  |
  | journey_type | string? |  yes  |  |
  | lock_status | boolean? |  yes  |  |
  | meta | [ShipmentMeta](#ShipmentMeta)? |  yes  |  |
@@ -8922,18 +8363,6 @@ Verify OTP
  | platform_user_first_name | string? |  yes  |  |
  | platform_user_id | string? |  yes  |  |
  | platform_user_last_name | string? |  yes  |  |
- 
-
----
-
-#### [PointBlankOtpData](#PointBlankOtpData)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | message | string? |  yes  |  |
- | mobile | number? |  yes  |  |
- | request_id | string? |  yes  |  |
- | resend_timer | number? |  yes  |  |
  
 
 ---
@@ -9124,38 +8553,6 @@ Verify OTP
 
 ---
 
-#### [RefundModeConfigRequestPayload](#RefundModeConfigRequestPayload)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | affiliate_id | string |  no  |  |
- | customer_mobile_number | string? |  yes  |  |
- | fynd_order_id | string |  no  |  |
- | ordering_channel | string |  no  |  |
- | seller_id | string |  no  |  |
- 
-
----
-
-#### [RefundModeConfigResponsePayload](#RefundModeConfigResponsePayload)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | data | [RefundModeInfo](#RefundModeInfo) |  no  |  |
- | success | boolean |  no  |  |
- 
-
----
-
-#### [RefundModeInfo](#RefundModeInfo)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | refund_mode_name | [SingleRefundModeInfo](#SingleRefundModeInfo)? |  yes  |  |
- 
-
----
-
 #### [ReplacementDetails](#ReplacementDetails)
 
  | Properties | Type | Nullable | Description |
@@ -9198,34 +8595,24 @@ Verify OTP
 
 ---
 
+#### [ReturnConfig1](#ReturnConfig1)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | returnable | boolean? |  yes  |  |
+ | time | number? |  yes  |  |
+ | unit | string? |  yes  |  |
+ 
+
+---
+
 #### [SendSmsPayload](#SendSmsPayload)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | bag_id | number |  no  | bag_id for the activity history track |
- | data | [SmsDataPayload](#SmsDataPayload)? |  yes  | SMS Data |
- | slug | string |  no  | slug name for the template mapped in pointblank |
- 
-
----
-
-#### [SendUserMobileOTP](#SendUserMobileOTP)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | country_code | string? |  yes  |  |
- | mobile | number |  no  |  |
- 
-
----
-
-#### [SendUserMobileOtpResponse](#SendUserMobileOtpResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | data | [PointBlankOtpData](#PointBlankOtpData)? |  yes  |  |
- | message | string? |  yes  |  |
- | success | boolean? |  yes  |  |
+ | bag_id | number |  no  |  |
+ | data | [SmsDataPayload](#SmsDataPayload)? |  yes  |  |
+ | slug | string |  no  |  |
  
 
 ---
@@ -9641,30 +9028,19 @@ Verify OTP
 
 ---
 
-#### [SingleRefundModeInfo](#SingleRefundModeInfo)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | display_name | string? |  yes  |  |
- | is_active | boolean? |  yes  |  |
- | slug | string? |  yes  |  |
- 
-
----
-
 #### [SmsDataPayload](#SmsDataPayload)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | amount_paid | number? |  yes  | Data mapped in Communication template: amount_paid |
- | brand_name | string? |  yes  | Data mapped in Communication template: brand_name |
- | country_code | string |  no  | country code for SMS |
- | customer_name | string? |  yes  | Data mapped in Communication template: customer_name |
- | message | string |  no  | message to be send in SMS |
- | order_id | string |  no  | orderId |
- | payment_mode | string? |  yes  | Data mapped in Communication template: payment_mode |
- | phone_number | number |  no  | phone number for communication |
- | shipment_id | number |  no  | ShipmentId |
+ | amount_paid | number |  no  |  |
+ | brand_name | string |  no  |  |
+ | country_code | string |  no  |  |
+ | customer_name | string |  no  |  |
+ | message | string |  no  |  |
+ | order_id | string |  no  |  |
+ | payment_mode | string |  no  |  |
+ | phone_number | number |  no  |  |
+ | shipment_id | number |  no  |  |
  
 
 ---
@@ -9940,7 +9316,7 @@ Verify OTP
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | amount_paid | string? |  yes  |  |
+ | amount_paid | number? |  yes  |  |
  | currency | string? |  yes  |  |
  | entity | string? |  yes  |  |
  | payment_id | string? |  yes  |  |
@@ -9948,26 +9324,6 @@ Verify OTP
  | terminal_id | string? |  yes  |  |
  | transaction_id | string? |  yes  |  |
  | unique_reference_number | string? |  yes  |  |
- 
-
----
-
-#### [UpdatePackagingDimensionsPayload](#UpdatePackagingDimensionsPayload)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | current_status | string |  no  |  |
- | dimension | [[Dimension](#Dimension)] |  no  |  |
- | shipment_id | string |  no  |  |
- 
-
----
-
-#### [UpdatePackagingDimensionsResponse](#UpdatePackagingDimensionsResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | message | string? |  yes  |  |
  
 
 ---
@@ -10079,25 +9435,6 @@ Verify OTP
  | phone | string |  no  |  |
  | pincode | string |  no  |  |
  | state | string |  no  |  |
- 
-
----
-
-#### [VerifyMobileOTP](#VerifyMobileOTP)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | otp_data | [VerifyOtpData](#VerifyOtpData) |  no  |  |
- 
-
----
-
-#### [VerifyOtpData](#VerifyOtpData)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | otp_code | number |  no  |  |
- | request_id | string |  no  |  |
  
 
 ---

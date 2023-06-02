@@ -5,6 +5,7 @@ declare class ServiceabilityModel {
     static ApplicationCompanyDpViewResponse(): any;
     static ApplicationServiceabilityConfig(): any;
     static ApplicationServiceabilityConfigResponse(): any;
+    static CommonError(): any;
     static CompanyStoreView_PageItems(): any;
     static CompanyStoreView_Response(): any;
     static ContactNumberResponse(): any;

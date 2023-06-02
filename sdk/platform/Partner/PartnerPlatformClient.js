@@ -158,6 +158,7 @@ class Partner {
    * @param {string} [arg.currentPage] - Tag
    * @param {number} [arg.pageNo] - Current page number
    * @param {string} [arg.filterBy] - Filter by
+   * @param {string} [arg.query] - Query
    * @returns {Promise<ExtensionList>} - Success response
    * @summary: Get the list of all the extensions
    * @description: Use this API to get the the extensions for the company
@@ -168,6 +169,7 @@ class Partner {
     currentPage,
     pageNo,
     filterBy,
+    query,
   } = {}) {
     const { error } = PartnerValidator.getExtensionsForCompany().validate(
       {
@@ -176,6 +178,7 @@ class Partner {
         currentPage,
         pageNo,
         filterBy,
+        query,
       },
       { abortEarly: false, allowUnknown: true }
     );
@@ -193,6 +196,7 @@ class Partner {
         currentPage,
         pageNo,
         filterBy,
+        query,
       },
       { abortEarly: false, allowUnknown: false }
     );
@@ -210,6 +214,7 @@ class Partner {
     query_params["current_page"] = currentPage;
     query_params["page_no"] = pageNo;
     query_params["filter_by"] = filterBy;
+    query_params["query"] = query;
 
     const xHeaders = {};
 

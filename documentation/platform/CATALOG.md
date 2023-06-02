@@ -31,6 +31,7 @@ Catalog - Platform Front API's' API's allows you to access list of products, pri
 * [createProductBundle](#createproductbundle)
 * [createProductExportJob](#createproductexportjob)
 * [createProductsInBulk](#createproductsinbulk)
+* [createSearchRerankingConfig](#createsearchrerankingconfig)
 * [createSizeGuide](#createsizeguide)
 * [deleteAutocompleteKeyword](#deleteautocompletekeyword)
 * [deleteBulkInventoryJob](#deletebulkinventoryjob)
@@ -42,6 +43,7 @@ Catalog - Platform Front API's' API's allows you to access list of products, pri
 * [deleteProductBulkJob](#deleteproductbulkjob)
 * [deleteRealtimeInventory](#deleterealtimeinventory)
 * [deleteSearchKeywords](#deletesearchkeywords)
+* [deleteSearchRerankConfig](#deletesearchrerankconfig)
 * [deleteSize](#deletesize)
 * [downloadInventoryTemplateView](#downloadinventorytemplateview)
 * [downloadProductTemplateViews](#downloadproducttemplateviews)
@@ -101,6 +103,7 @@ Catalog - Platform Front API's' API's allows you to access list of products, pri
 * [getProducts](#getproducts)
 * [getQueryFilters](#getqueryfilters)
 * [getSearchKeywords](#getsearchkeywords)
+* [getSearchRerankingConfig](#getsearchrerankingconfig)
 * [getSellerInsights](#getsellerinsights)
 * [getSingleProductHSNCode](#getsingleproducthsncode)
 * [getSizeGuide](#getsizeguide)
@@ -114,6 +117,7 @@ Catalog - Platform Front API's' API's allows you to access list of products, pri
 * [listProductTemplate](#listproducttemplate)
 * [listProductTemplateCategories](#listproducttemplatecategories)
 * [listProductTemplateExportDetails](#listproducttemplateexportdetails)
+* [listSearchRerankConfig](#listsearchrerankconfig)
 * [listTemplateBrandTypeValues](#listtemplatebrandtypevalues)
 * [updateAllowSingle](#updateallowsingle)
 * [updateAppBrand](#updateappbrand)
@@ -132,6 +136,7 @@ Catalog - Platform Front API's' API's allows you to access list of products, pri
 * [updateProductBundle](#updateproductbundle)
 * [updateRealtimeInventory](#updaterealtimeinventory)
 * [updateSearchKeywords](#updatesearchkeywords)
+* [updateSearchRerankConfig](#updatesearchrerankconfig)
 * [updateSizeGuide](#updatesizeguide)
 * [uploadBulkProducts](#uploadbulkproducts)
 * [validateProductTemplate](#validateproducttemplate)
@@ -885,7 +890,7 @@ success flag will tell whether the operation was successful.
 
 
 ### createCustomAutocompleteRule
-Add a Custom Autocomplete Keywords
+Add a custom autocomplete keyword configuration.
 
 
 
@@ -906,16 +911,16 @@ const data = await platformClient.application("<APPLICATION_ID>").catalog.create
 | body | [CreateAutocompleteKeyword](#CreateAutocompleteKeyword) | yes | Request body |
 
 
-Create a Custom Autocomplete Keywords. See `CreateAutocompleteKeywordSchema` for the list of attributes needed to create a mapping and /collections/query-options for the available options to create a rule. On successful request, returns a paginated list of collections specified in `CreateAutocompleteKeywordSchema`
+Autocomplete keywords configuration help you to extend and customize the behaviour of autocomplete search results in Fynd Platform. This API allows to create the auto-complete configuration for the application.
 
 *Returned Response:*
 
 
 
 
-[CreateAutocompleteWordsResponse](#CreateAutocompleteWordsResponse)
+[GetAutocompleteWordsData](#GetAutocompleteWordsData)
 
-List of all the collections including the one you added. See example below or refer `CreateAutocompleteWordsResponseSchema` for details
+A successful response contains the data of the autocomplete config with UID. See example below or refer `GetAutocompleteWordsDataSchema` for details
 
 
 
@@ -924,7 +929,35 @@ List of all the collections including the one you added. See example below or re
 <summary><i>&nbsp; Example:</i></summary>
 
 ```json
-
+{
+  "uid": "602fa1eaa596ce349563f6c6",
+  "app_id": "000000000000000000000001",
+  "words": [
+    "dasd"
+  ],
+  "is_active": true,
+  "results": [
+    {
+      "_custom_json": {},
+      "display": "Helllow",
+      "logo": {
+        "url": "https://hdn-1.addsale.com/addsale/company/61/applications/600a5b3fe0991a4718cdb448/company/1/application/000000000000000000000001/search/pictures/square-logo/original/n_8bvEaBw-Helllow.png"
+      },
+      "action": {
+        "type": "page",
+        "page": {
+          "query": {
+            "brand": [
+              "nike"
+            ]
+          },
+          "type": "products",
+          "url": "/products/?brand=nike"
+        }
+      }
+    }
+  ]
+}
 ```
 </details>
 
@@ -940,7 +973,7 @@ List of all the collections including the one you added. See example below or re
 
 
 ### createCustomKeyword
-Add a Custom Search Keywords
+Add custom keywords search for an application.
 
 
 
@@ -961,7 +994,7 @@ const data = await platformClient.application("<APPLICATION_ID>").catalog.create
 | body | [CreateSearchKeyword](#CreateSearchKeyword) | yes | Request body |
 
 
-Create a Custom Search Keywords. See `CreateSearchKeywordSchema` for the list of attributes needed to create a mapping and /collections/query-options for the available options to create a rule. On successful request, returns a paginated list of collections specified in `CreateSearchKeywordSchema`
+Custom Search Keyword allows you to map conditions with keywords to give you the ultimate results. This API allows you to add a rule for the custom keyword to a search behaviour for an application. See `CreateSearchKeywordSchema` for the list of attributes needed to create a mapping and /collections/query-options for the available options to create a rule. On successful request, returns a paginated list of collections specified in `CreateSearchKeywordSchema`
 
 *Returned Response:*
 
@@ -970,7 +1003,7 @@ Create a Custom Search Keywords. See `CreateSearchKeywordSchema` for the list of
 
 [GetSearchWordsData](#GetSearchWordsData)
 
-Get keyword object with id that is added. See example below or refer `GetSearchWordsDataSchema` for details
+A successful response contains the keyword object with id that is added. See example below or refer `GetSearchWordsDataSchema` for details
 
 
 
@@ -1667,6 +1700,80 @@ Returns a success response
 ---
 
 
+### createSearchRerankingConfig
+Add a Custom Search Keywords and boosting score against it
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").catalog.createSearchRerankingConfig({  body : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").catalog.createSearchRerankingConfig({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [CreateSearchReranking](#CreateSearchReranking) | yes | Request body |
+
+
+Search Reranking allows you rank and boost the search of the keywords and products in the product listing. Create a Custom Search Reranking rule. This API allows you to create a custom search re rank rule to re-rank the search in the listing of an application.
+
+*Returned Response:*
+
+
+
+
+[SearchRerankingModel](#SearchRerankingModel)
+
+A successful response contains the data of the search re ranking with the ID. See example below or refer `SearchRerankingModelSchema` for details
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "ranking": {
+    "boost": [
+      {
+        "attribute_key": "brand_slug",
+        "attribute_value": "rishikaaa"
+      }
+    ]
+  },
+  "words": [
+    "test"
+  ],
+  "app_id": "637f6d91f605ecc8a0454f48",
+  "is_active": true,
+  "modified_on": "2023-05-29T18:38:28.360981",
+  "modified_by": {
+    "username": "test_gmail_com",
+    "user_id": "df03898d9fe7aa3aa63d9cd3"
+  }
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
 ### createSizeGuide
 Create a size guide.
 
@@ -1725,7 +1832,7 @@ Returns a success response
 
 
 ### deleteAutocompleteKeyword
-Delete a Autocomplete Keywords
+Delete a autocomplete keyword config by ID.
 
 
 
@@ -1743,11 +1850,11 @@ const data = await platformClient.application("<APPLICATION_ID>").catalog.delete
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
-| id | string | yes | A `id` is a unique identifier for a particular detail. Pass the `id` of the keywords which you want to delete. |  
+| id | string | yes | A `id` is a unique identifier for a specific autocomplete keyword map. Pass the `id` of the keywords which you want to delete. |  
 
 
 
-Delete a keywords by it's id. Returns an object that tells whether the keywords was deleted successfully
+Autocomplete keywords configuration help you to extend and customize the behaviour of autocomplete search results in Fynd Platform. This API allows you to delete a keywords by it's `id`.
 
 *Returned Response:*
 
@@ -1756,7 +1863,7 @@ Delete a keywords by it's id. Returns an object that tells whether the keywords 
 
 [DeleteResponse](#DeleteResponse)
 
-Status object. Tells whether the operation was successful. See example below or refer `DeleteResponse`
+A successful response contains success message if config is deleted. See example below or refer `DeleteResponse`
 
 
 
@@ -2294,7 +2401,7 @@ Returns a success response
 
 
 ### deleteSearchKeywords
-Delete a Search Keywords
+Delete a custom keyword mapping by thier ID.
 
 
 
@@ -2312,11 +2419,11 @@ const data = await platformClient.application("<APPLICATION_ID>").catalog.delete
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
-| id | string | yes | A `id` is a unique identifier for a particular detail. Pass the `id` of the keywords which you want to delete. |  
+| id | string | yes | A `id` is a unique identifier for a specific keyword search configuration. Pass the `id` of the keywords which you want to delete. |  
 
 
 
-Delete a keywords by it's id. Returns an object that tells whether the keywords was deleted successfully
+This API allows you to delete a custom keyword mapping by their ID within an application. Returns an object that tells whether the keywords was deleted successfully
 
 *Returned Response:*
 
@@ -2325,7 +2432,7 @@ Delete a keywords by it's id. Returns an object that tells whether the keywords 
 
 [DeleteResponse](#DeleteResponse)
 
-Status object. Tells whether the operation was successful. See example below or refer `DeleteResponse`
+A successful response contains the success message if the keyword search mapping is deleted. See example below or refer `DeleteResponse`
 
 
 
@@ -2336,6 +2443,65 @@ Status object. Tells whether the operation was successful. See example below or 
 ```json
 {
   "message": "Words Deleted"
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### deleteSearchRerankConfig
+Delete the search re-ranking configured for an application bt its ID.
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").catalog.deleteSearchRerankConfig({  id : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").catalog.deleteSearchRerankConfig({  id : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| id | string | yes | A `id` is a unique identifier for a specific keyword search configuration. Pass the `id` of the keywords which you want to delete. |  
+
+
+
+Search Reranking allows you rank and boost the search of the keywords and products in the product listing. This API allows you to delete a search re-ranking configured for the application.
+
+*Returned Response:*
+
+
+
+
+[DeleteRerankResponse](#DeleteRerankResponse)
+
+A successful response contains the success response for the deleted custom search rerank configured for the application. See example below or refer `DeleteRerankResponseSchema` for details
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "success": true,
+  "message": "Ranking Config deleted"
 }
 ```
 </details>
@@ -3085,24 +3251,32 @@ List of all HSN Codes. See example below or refer `HsnCodesListingResponseSchema
 
 
 ### getAllSearchKeyword
-List all Search Custom Keyword Listing
+List all the custom keyword search added in the application.
 
 
 
 ```javascript
 // Promise
-const promise = platformClient.application("<APPLICATION_ID>").catalog.getAllSearchKeyword();
+const promise = platformClient.application("<APPLICATION_ID>").catalog.getAllSearchKeyword({  isActive : value,
+ q : value });
 
 // Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").catalog.getAllSearchKeyword();
+const data = await platformClient.application("<APPLICATION_ID>").catalog.getAllSearchKeyword({  isActive : value,
+ q : value });
 ```
 
 
 
 
 
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| isActive | boolean | no | Filter the custom keyword listing by their active status. |    
+| q | string | no | It is to search by keywords. |  
 
-Custom Search Keyword allows you to map conditions with keywords to give you the ultimate results
+
+
+Custom Search Keyword allows you to map conditions with keywords to give you the ultimate results. This API allows you to list all the custom keyword search configured for the application.
 
 *Returned Response:*
 
@@ -3111,7 +3285,7 @@ Custom Search Keyword allows you to map conditions with keywords to give you the
 
 [GetSearchWordsResponse](#GetSearchWordsResponse)
 
-List of custom search keywords. See example below or refer `GetSearchWordsResponseSchema` for details
+A successful response contains the list of the custom keywords searches configured for the application. See example below or refer `GetSearchWordsResponseSchema` for details
 
 
 
@@ -5186,7 +5360,7 @@ List of Departments. See example below or refer `BrandListingResponse` for detai
 
 
 ### getAutocompleteConfig
-List all Autocomplete Keyword Listing
+List all autocomplete keyword configuration of an application.
 
 
 
@@ -5203,7 +5377,7 @@ const data = await platformClient.application("<APPLICATION_ID>").catalog.getAut
 
 
 
-Custom Autocomplete Keyword allows you to map conditions with keywords to give you the ultimate results
+The custom autocomplete keyword allows you to map conditions with keywords to give you the autocomplete results. This API allows you to list all the autocomplete keyword configured for an application.
 
 *Returned Response:*
 
@@ -5212,7 +5386,7 @@ Custom Autocomplete Keyword allows you to map conditions with keywords to give y
 
 [GetAutocompleteWordsResponse](#GetAutocompleteWordsResponse)
 
-List of custom autocomplete keywords. See example below or refer `GetAutocompleteWordsResponseSchema` for details
+A successful response contains the list of custom autocomplete keywords. See example below or refer `GetAutocompleteWordsResponseSchema` for details
 
 
 
@@ -5276,7 +5450,7 @@ List of custom autocomplete keywords. See example below or refer `GetAutocomplet
 
 
 ### getAutocompleteKeywordDetail
-Get a Autocomplete Keywords Details
+Get the detail of the autocomplete config by ID.
 
 
 
@@ -5294,20 +5468,20 @@ const data = await platformClient.application("<APPLICATION_ID>").catalog.getAut
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
-| id | string | yes | A `id` is a unique identifier for a particular detail. Pass the `id` of the keywords which you want to retrieve. |  
+| id | string | yes | A `id` is a unique identifier for a specific autocomplete keyword map. Pass the `id` of the keywords which you want to retrieve. |  
 
 
 
-Get the details of a words by its `id`. If successful, returns a keywords resource in the response body specified in `GetAutocompleteWordsResponseSchema`
+Autocomplete keywords configuration help you to extend and customize the behaviour of autocomplete search results in Fynd Platform. This API allows you to get the details of a words by its `id`.
 
 *Returned Response:*
 
 
 
 
-[GetAutocompleteWordsResponse](#GetAutocompleteWordsResponse)
+[GetAutocompleteWordsData](#GetAutocompleteWordsData)
 
-The mapping object. See example below or refer `GetAutocompleteWordsResponseSchema` for details
+A successful response contains the data of the autocomplete with its specific ID. See example below or refer `GetAutocompleteWordsResponseSchema` for details
 
 
 
@@ -12567,7 +12741,7 @@ A successful response contains the options for query that can be applied for the
 
 
 ### getSearchKeywords
-Get a Search Keywords Details
+Get a custom keyword search detail by their ID.
 
 
 
@@ -12585,20 +12759,20 @@ const data = await platformClient.application("<APPLICATION_ID>").catalog.getSea
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
-| id | string | yes | A `id` is a unique identifier for a particular detail. Pass the `id` of the keywords which you want to retrieve. |  
+| id | string | yes | A `id` is a unique identifier for a specific keyword search configuration. Pass the `id` of the keywords which you want to retrieve. |  
 
 
 
-Get the details of a words by its `id`. If successful, returns a Collection resource in the response body specified in `GetSearchWordsDetailResponseSchema`
+The API allows you to get the details of a words by its `id`. If successful, returns a Collection resource in the response body specified in `GetSearchWordsDetailResponseSchema`
 
 *Returned Response:*
 
 
 
 
-[GetSearchWordsDetailResponse](#GetSearchWordsDetailResponse)
+[GetSearchWordsData](#GetSearchWordsData)
 
-The Collection object. See example below or refer `GetSearchWordsDetailResponseSchema` for details
+A successful response contains the detail of the custom keyword search mapping if exists. See example below or refer `GetSearchWordsDetailResponseSchema` for details
 
 
 
@@ -12623,6 +12797,92 @@ The Collection object. See example below or refer `GetSearchWordsDetailResponseS
     "sort_on": "popular"
   },
   "_custom_json": {}
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### getSearchRerankingConfig
+Get the search rerank details of an application by its ID.
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").catalog.getSearchRerankingConfig({  id : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").catalog.getSearchRerankingConfig({  id : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| id | string | yes | A `id` is a unique identifier for a specific keyword search configuration. Pass the `id` of the keywords which you want to retrieve. |  
+
+
+
+Search Reranking allows you rank and boost the search of the keywords and products in the product listing. This API allows you to get the data of a search re-ranking configured for the application by their ID.
+
+*Returned Response:*
+
+
+
+
+[SearchRerankingModel](#SearchRerankingModel)
+
+A successful response contains the detail of the custom search rerank configured for the application. See example below or refer `GetSearchWordsResponseSchema` for details
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "ranking": {
+    "boost": [
+      {
+        "attribute_key": "brand_slug",
+        "attribute_value": "soulflower"
+      },
+      {
+        "attribute_key": "l3_category_slugs",
+        "attribute_value": "categorylevel3"
+      }
+    ]
+  },
+  "modified_by": {
+    "username": "test_gmail_com_com_45636",
+    "user_id": "8a5a962f98cadea5b3569ce8"
+  },
+  "created_on": "2023-05-29T17:59:29.757000",
+  "app_id": "64679f0adf5dd8b4db6c8e5b",
+  "words": [
+    "test",
+    "tira"
+  ],
+  "is_active": true,
+  "created_by": {
+    "username": "test_gmail_com_com_45636",
+    "user_id": "8a5a962f98cadea5b3569ce8"
+  },
+  "modified_on": "2023-05-29T17:59:29.757000",
+  "id": "6474e801227f5e8d15299b97"
 }
 ```
 </details>
@@ -15953,6 +16213,108 @@ List of Product Downloads Data. See example below or refer `ProductDownloadsResp
 ---
 
 
+### listSearchRerankConfig
+List all the search reranking config in an application.
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").catalog.listSearchRerankConfig({  isActive : value,
+ q : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").catalog.listSearchRerankConfig({  isActive : value,
+ q : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| isActive | boolean | no | Filter the custom keyword listing by their active status. |    
+| q | string | no | It is to search by keywords. |  
+
+
+
+Search Reranking allows you rank and boost the search of the keywords and products in the product listing. This API allows you to list all the search re-ranking configured for the application.
+
+*Returned Response:*
+
+
+
+
+[SearchRerankListing](#SearchRerankListing)
+
+A successful response contains the list of the custom search rerank configured for the application. See example below or refer `GetSearchWordsResponseSchema` for details
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "page": {
+    "current": 1,
+    "type": "number",
+    "size": 1,
+    "has_previous": false,
+    "has_next": false,
+    "item_total": 1
+  },
+  "items": [
+    {
+      "_id": "6474e801227f5e8d15299b97",
+      "modified_by": {
+        "username": "test_gmail_com",
+        "user_id": "8a5a962f98cadea5b3569ce8"
+      },
+      "created_by": {
+        "username": "test_gmail_com",
+        "user_id": "8a5a962f98cadea5b3569ce8"
+      },
+      "is_active": true,
+      "app_id": "64679f0adf5dd8b4db6c8e5b",
+      "words": [
+        "test",
+        "tira"
+      ],
+      "modified_on": "2023-05-29T17:59:29.757000",
+      "ranking": {
+        "boost": [
+          {
+            "attribute_key": "brand_slug",
+            "attribute_value": "soulflower"
+          },
+          {
+            "attribute_key": "l3_category_slugs",
+            "attribute_value": "categorylevel3"
+          }
+        ]
+      },
+      "created_on": "2023-05-29T17:59:29.757000",
+      "id": "6474e801227f5e8d15299b97"
+    }
+  ]
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
 ### listTemplateBrandTypeValues
 Allows you to list all values for Templates, Brands or Type
 
@@ -16383,7 +16745,7 @@ Returns a success response
 
 
 ### updateAutocompleteKeyword
-Create & Update Autocomplete Keyword
+Update a autocomplete keyword config by ID.
 
 
 
@@ -16403,18 +16765,18 @@ const data = await platformClient.application("<APPLICATION_ID>").catalog.update
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
-| id | string | yes | A `id` is a unique identifier for a particular detail. Pass the `id` of the keywords which you want to delete. |  
-| body | [CreateAutocompleteKeyword](#CreateAutocompleteKeyword) | yes | Request body |
+| id | string | yes | A `id` is a unique identifier for a specific autocomplete keyword map. Pass the `id` of the keywords which you want to delete. |  
+| body | [GetAutocompleteWordsData](#GetAutocompleteWordsData) | yes | Request body |
 
 
-Update a mapping by it's id. On successful request, returns the updated Keyword mapping
+Autocomplete keywords configuration help you to extend and customize the behaviour of autocomplete search results in Fynd Platform. This API allows you to update a mapping by it's `id`.
 
 *Returned Response:*
 
 
 
 
-[GetAutocompleteWordsResponse](#GetAutocompleteWordsResponse)
+[UpdateAutocompleteWordData](#UpdateAutocompleteWordData)
 
 The Mapping object. See example below or refer `GetAutocompleteWordsResponseSchema` for details.
 
@@ -16425,7 +16787,36 @@ The Mapping object. See example below or refer `GetAutocompleteWordsResponseSche
 <summary><i>&nbsp; Example:</i></summary>
 
 ```json
-
+{
+  "_id": "602fa1eaa596ce349563f6c6",
+  "uid": "602fa1eaa596ce349563f6c6",
+  "app_id": "000000000000000000000001",
+  "words": [
+    "dasd"
+  ],
+  "is_active": true,
+  "results": [
+    {
+      "_custom_json": {},
+      "display": "Helllow",
+      "logo": {
+        "url": "https://hdn-1.addsale.com/addsale/company/61/applications/600a5b3fe0991a4718cdb448/company/1/application/000000000000000000000001/search/pictures/square-logo/original/n_8bvEaBw-Helllow.png"
+      },
+      "action": {
+        "type": "page",
+        "page": {
+          "query": {
+            "brand": [
+              "nike"
+            ]
+          },
+          "type": "products",
+          "url": "/products/?brand=nike"
+        }
+      }
+    }
+  ]
+}
 ```
 </details>
 
@@ -17211,7 +17602,7 @@ Returns a success response
 
 
 ### updateSearchKeywords
-Update Search Keyword
+Update the search keyword configuraton by their ID.
 
 
 
@@ -17231,11 +17622,11 @@ const data = await platformClient.application("<APPLICATION_ID>").catalog.update
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
-| id | string | yes | A `id` is a unique identifier for a particular detail. Pass the `id` of the keywords which you want to delete. |  
+| id | string | yes | A `id` is a unique identifier for a specific keyword search configuration. |  
 | body | [CreateSearchKeyword](#CreateSearchKeyword) | yes | Request body |
 
 
-Update Search Keyword by its id. On successful request, returns the updated collection
+Thist API allows you to update the search keyword configuration by their ID.
 
 *Returned Response:*
 
@@ -17244,7 +17635,7 @@ Update Search Keyword by its id. On successful request, returns the updated coll
 
 [GetSearchWordsData](#GetSearchWordsData)
 
-The Collection object. See example below or refer `GetSearchWordsDataSchema` for details.
+A successful response contains the keyword object with id that is updated. See example below or refer `GetSearchWordsDataSchema` for details
 
 
 
@@ -17253,7 +17644,100 @@ The Collection object. See example below or refer `GetSearchWordsDataSchema` for
 <summary><i>&nbsp; Example:</i></summary>
 
 ```json
+{
+  "uid": "602fa1e9a596ce349563f6b9",
+  "words": [
+    "sds"
+  ],
+  "app_id": "000000000000000000000001",
+  "is_active": true,
+  "result": {
+    "query": {
+      "department": [
+        "men"
+      ]
+    },
+    "sort_on": "popular"
+  },
+  "_custom_json": {}
+}
+```
+</details>
 
+
+
+
+
+
+
+
+
+---
+
+
+### updateSearchRerankConfig
+Update the search rerank details of an application by its ID.
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").catalog.updateSearchRerankConfig({  id : value,
+ body : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").catalog.updateSearchRerankConfig({  id : value,
+ body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| id | string | yes | A `id` is a unique identifier for a specific keyword search configuration. Pass the `id` of the keywords which you want to retrieve. |  
+| body | [CreateSearchReranking](#CreateSearchReranking) | yes | Request body |
+
+
+Search Reranking allows you rank and boost the search of the keywords and products in the product listing. This API allows you to update the search re-ranking configured for the application.
+
+*Returned Response:*
+
+
+
+
+[SearchRerankingModel](#SearchRerankingModel)
+
+A successful response contains the data of the updated custom search rerank configured for the application. See example below or refer `SearchRerankingModelSchema` for details
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "ranking": {
+    "boost": [
+      {
+        "attribute_key": "brand_slug",
+        "attribute_value": "rishikaaa"
+      }
+    ]
+  },
+  "words": [
+    "test"
+  ],
+  "app_id": "637f6d91f605ecc8a0454f48",
+  "is_active": true,
+  "modified_on": "2023-05-29T18:38:28.360981",
+  "modified_by": {
+    "username": "test_gmail_com",
+    "user_id": "df03898d9fe7aa3aa63d9cd3"
+  }
+}
 ```
 </details>
 
@@ -18014,13 +18498,35 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | page | [AutocompletePageAction](#AutocompletePageAction)? |  yes  |  |
+ | page | [AutocompletePageAction](#AutocompletePageAction)? |  yes  | The page where the autocomplete action is performed |
+ | type | string? |  yes  | The type of the action performed |
+ 
+
+---
+
+#### [AutocompleteAction1](#AutocompleteAction1)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | page | [AutocompletePageAction1](#AutocompletePageAction1)? |  yes  |  |
  | type | string? |  yes  | The type of action. |
  
 
 ---
 
 #### [AutocompletePageAction](#AutocompletePageAction)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | params | string? |  yes  | Additional parameters for the autocomplete page action |
+ | query | string? |  yes  | Query parameters for the action page |
+ | type | string? |  yes  | The type of the action page |
+ | url | string? |  yes  | The URL for the autocomplete page action |
+ 
+
+---
+
+#### [AutocompletePageAction1](#AutocompletePageAction1)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
@@ -18036,10 +18542,22 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | _custom_json | string? |  yes  | Any custom JSON data for the autocomplete result. |
+ | action | [AutocompleteAction](#AutocompleteAction)? |  yes  | The action to be performed when the autocomplete result is selected. |
+ | display | string? |  yes  | The display name of the autocomplete result. |
+ | logo | [Media](#Media)? |  yes  | The logo of the autocomplete result. |
+ 
+
+---
+
+#### [AutocompleteResult1](#AutocompleteResult1)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
  | _custom_json | string? |  yes  |  |
- | action | [AutocompleteAction](#AutocompleteAction)? |  yes  |  |
+ | action | [AutocompleteAction1](#AutocompleteAction1)? |  yes  |  |
  | display | string? |  yes  |  |
- | logo | [Media](#Media)? |  yes  |  |
+ | logo | [Media1](#Media1)? |  yes  |  |
  
 
 ---
@@ -18051,6 +18569,35 @@ List of fields and validation values fro each. See example below or refer `Inven
  | aspect_ratio | string? |  yes  | The aspect ratio of the banner image. |
  | type | string? |  yes  | The type of the banner image. |
  | url | string? |  yes  | URL of the banner image. |
+ 
+
+---
+
+#### [BaseErrorResponse](#BaseErrorResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | code | number |  no  | The HTTP status code indicating the error. |
+ | errors | string? |  yes  | Additional errors related to the request, if applicable. |
+ | message | string |  no  | A descriptive message providing details about the error. |
+ 
+
+---
+
+#### [BoostBury](#BoostBury)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | boost | [[RerankingAttribute](#RerankingAttribute)]? |  yes  | A list of attributes to boost the relevance of the search results. |
+ 
+
+---
+
+#### [BoostBury1](#BoostBury1)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | boost | [[RerankingAttribute1](#RerankingAttribute1)]? |  yes  |  |
  
 
 ---
@@ -18074,7 +18621,7 @@ List of fields and validation values fro each. See example below or refer `Inven
  | banners | [ImageUrls](#ImageUrls)? |  yes  |  |
  | departments | [string]? |  yes  |  |
  | discount | string? |  yes  |  |
- | logo | [Media](#Media)? |  yes  |  |
+ | logo | [Media1](#Media1)? |  yes  |  |
  | name | string? |  yes  |  |
  | slug | string? |  yes  |  |
  | uid | number? |  yes  |  |
@@ -18284,7 +18831,7 @@ List of fields and validation values fro each. See example below or refer `Inven
  | is_active | boolean |  no  |  |
  | level | number |  no  |  |
  | marketplaces | [CategoryMapping](#CategoryMapping)? |  yes  |  |
- | media | [Media2](#Media2)? |  yes  |  |
+ | media | [Media3](#Media3)? |  yes  |  |
  | modified_by | string? |  yes  |  |
  | modified_on | string? |  yes  |  |
  | name | string |  no  |  |
@@ -18361,7 +18908,7 @@ List of fields and validation values fro each. See example below or refer `Inven
  | is_active | boolean |  no  |  |
  | level | number |  no  |  |
  | marketplaces | [CategoryMapping](#CategoryMapping)? |  yes  |  |
- | media | [Media2](#Media2)? |  yes  |  |
+ | media | [Media3](#Media3)? |  yes  |  |
  | name | string |  no  |  |
  | priority | number? |  yes  |  |
  | slug | string? |  yes  |  |
@@ -18439,7 +18986,7 @@ List of fields and validation values fro each. See example below or refer `Inven
  | cron | string? |  yes  | The cron configuration for the collection. |
  | description | string? |  yes  | The description of the collection. |
  | is_active | boolean? |  yes  | Indicates whether the collection is active or not. |
- | logo | [Media1](#Media1)? |  yes  | The logo of the collection. |
+ | logo | [Media2](#Media2)? |  yes  | The logo of the collection. |
  | meta | string? |  yes  | Additional metadata for the collection. |
  | name | string? |  yes  | The name of the collection. |
  | priority | number? |  yes  | The priority level of the collection. |
@@ -18466,7 +19013,7 @@ List of fields and validation values fro each. See example below or refer `Inven
  | cron | string? |  yes  | The cron configuration for the collection. |
  | description | string? |  yes  | The description of the collection. |
  | is_active | boolean? |  yes  | Indicates whether the collection is active or not. |
- | logo | [Media1](#Media1)? |  yes  | The logo of the collection. |
+ | logo | [Media2](#Media2)? |  yes  | The logo of the collection. |
  | meta | string? |  yes  | Additional metadata for the collection. |
  | name | string? |  yes  | The name of the collection. |
  | priority | number? |  yes  | The priority level of the collection. |
@@ -18847,23 +19394,11 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | _custom_json | string? |  yes  |  |
- | app_id | string? |  yes  |  |
- | is_active | boolean? |  yes  |  |
- | results | [[AutocompleteResult](#AutocompleteResult)]? |  yes  |  |
- | words | [string]? |  yes  |  |
- 
-
----
-
-#### [CreateAutocompleteWordsResponse](#CreateAutocompleteWordsResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | _custom_json | string? |  yes  | Custom JSON data. |
- | app_id | string? |  yes  | The ID of the application. |
- | results | [string]? |  yes  | List of autocomplete results. |
- | words | [string]? |  yes  | List of autocomplete words. |
+ | _custom_json | string? |  yes  | Custom JSON data that can be attached to the search model. |
+ | app_id | string? |  yes  | The ID of the application performing the search. |
+ | is_active | boolean? |  yes  | It is a flag that indicate the active status of the config. |
+ | results | [[AutocompleteResult1](#AutocompleteResult1)] |  no  | It contains the action page related to the autocomplete keywords. |
+ | words | [string]? |  yes  | A list of search keywords to search for in the database. |
  
 
 ---
@@ -18905,11 +19440,27 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | _custom_json | string? |  yes  |  |
+ | _custom_json | string? |  yes  | Custom JSON data that can be attached to the search model. |
+ | app_id | string |  no  | The ID of the application performing the search. |
+ | is_active | boolean? |  yes  | A flag indicating whether the search is active or not. |
+ | result | [SearchKeywordResult1](#SearchKeywordResult1) |  no  | The search result containing the search query and sort field. |
+ | words | [string]? |  yes  | A list of search keywords to search for in the database. |
+ 
+
+---
+
+#### [CreateSearchReranking](#CreateSearchReranking)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
  | app_id | string? |  yes  |  |
+ | created_by | string? |  yes  |  |
+ | created_on | string? |  yes  |  |
  | is_active | boolean? |  yes  |  |
- | result | [SearchKeywordResult](#SearchKeywordResult) |  no  |  |
- | words | [string]? |  yes  |  |
+ | modified_by | string? |  yes  |  |
+ | modified_on | string? |  yes  |  |
+ | ranking | [BoostBury1](#BoostBury1)? |  yes  |  |
+ | words | [string] |  no  |  |
  
 
 ---
@@ -18956,11 +19507,21 @@ List of fields and validation values fro each. See example below or refer `Inven
 
 ---
 
+#### [DeleteRerankResponse](#DeleteRerankResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | message | string? |  yes  | It is the succes message. |
+ | success | boolean? |  yes  | It is the flag that indicates the success of the action performed. |
+ 
+
+---
+
 #### [DeleteResponse](#DeleteResponse)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | message | string? |  yes  | A message indicating the status of the delete operation. |
+ | message | string? |  yes  | It is the success message of the action. |
  
 
 ---
@@ -18969,7 +19530,7 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | logo | [Media](#Media)? |  yes  |  |
+ | logo | [Media1](#Media1)? |  yes  |  |
  | name | string? |  yes  |  |
  | priority_order | number? |  yes  |  |
  | slug | string? |  yes  |  |
@@ -19231,11 +19792,12 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | _custom_json | string? |  yes  | Custom JSON data. |
- | app_id | string? |  yes  | The ID of the application. |
- | results | [string]? |  yes  | List of autocomplete results. |
- | uid | string? |  yes  | The UID of the data. |
- | words | [string]? |  yes  | List of autocomplete words. |
+ | _custom_json | string? |  yes  | Custom JSON data that can be attached to the search model. |
+ | app_id | string? |  yes  | The ID of the application performing the search. |
+ | is_active | boolean? |  yes  | It is a flag that indicate the active status of the config. |
+ | results | [[AutocompleteResult](#AutocompleteResult)]? |  yes  | It contains the action page related to the autocomplete keywords. |
+ | uid | string? |  yes  | The UID of the autocomplete config. |
+ | words | [string]? |  yes  | A list of search keywords to search for in the database. |
  
 
 ---
@@ -19244,7 +19806,7 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | items | [[GetAutocompleteWordsData](#GetAutocompleteWordsData)]? |  yes  |  |
+ | items | [[GetAutocompleteWordsData](#GetAutocompleteWordsData)]? |  yes  | It is the list of the autocomplete config for the application. |
  | page | [Page](#Page)? |  yes  |  |
  
 
@@ -19296,7 +19858,7 @@ List of fields and validation values fro each. See example below or refer `Inven
  | cron | string? |  yes  | The cron configuration for the collection. |
  | description | string? |  yes  | The description of the collection. |
  | is_active | boolean? |  yes  | Indicates whether the collection is active or not. |
- | logo | [Media1](#Media1)? |  yes  | The logo of the collection. |
+ | logo | [Media2](#Media2)? |  yes  | The logo of the collection. |
  | meta | string? |  yes  | Additional metadata for the collection. |
  | name | string? |  yes  | The name of the collection. |
  | priority | number? |  yes  | The priority level of the collection. |
@@ -19550,22 +20112,12 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | _custom_json | string? |  yes  | Custom JSON data. |
- | app_id | string? |  yes  | The ID of the application. |
- | is_active | boolean? |  yes  | Indicates if the search words are active. |
- | result | string? |  yes  | Search result information. |
- | uid | string? |  yes  |  |
- | words | [string]? |  yes  | List of search words. |
- 
-
----
-
-#### [GetSearchWordsDetailResponse](#GetSearchWordsDetailResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | items | [GetSearchWordsData](#GetSearchWordsData)? |  yes  |  |
- | page | [Page](#Page)? |  yes  |  |
+ | _custom_json | string? |  yes  | Custom JSON data that can be attached to the search model. |
+ | app_id | string |  no  | The ID of the application performing the search. |
+ | is_active | boolean? |  yes  | A flag indicating whether the search is active or not. |
+ | result | [SearchKeywordResult](#SearchKeywordResult) |  no  | The search result containing the search query and sort field. |
+ | uid | string? |  yes  | The UID of the search words data. |
+ | words | [string]? |  yes  | A list of search keywords to search for in the database. |
  
 
 ---
@@ -19574,8 +20126,8 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | items | [[GetSearchWordsData](#GetSearchWordsData)]? |  yes  |  |
- | page | [Page](#Page)? |  yes  |  |
+ | items | [[GetSearchWordsData](#GetSearchWordsData)]? |  yes  | A list of search words data. |
+ | page | [Page](#Page)? |  yes  | The pagniation detail for the listing. |
  
 
 ---
@@ -20323,6 +20875,17 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | aspect_ratio | string? |  yes  | The aspect ratio of the media, e.g. 16:9. |
+ | type | string? |  yes  | The type of the media, e.g. image, video. |
+ | url | string |  no  | The URL of the media. |
+ 
+
+---
+
+#### [Media1](#Media1)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
  | aspect_ratio | string? |  yes  |  |
  | type | string? |  yes  |  |
  | url | string? |  yes  |  |
@@ -20330,7 +20893,7 @@ List of fields and validation values fro each. See example below or refer `Inven
 
 ---
 
-#### [Media1](#Media1)
+#### [Media2](#Media2)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
@@ -20341,7 +20904,7 @@ List of fields and validation values fro each. See example below or refer `Inven
 
 ---
 
-#### [Media2](#Media2)
+#### [Media3](#Media3)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
@@ -20673,7 +21236,7 @@ List of fields and validation values fro each. See example below or refer `Inven
  | item_code | string? |  yes  |  |
  | item_type | string? |  yes  |  |
  | l3_mapping | [string]? |  yes  |  |
- | media | [[Media1](#Media1)]? |  yes  |  |
+ | media | [[Media2](#Media2)]? |  yes  |  |
  | modified_by | string? |  yes  |  |
  | modified_on | string? |  yes  |  |
  | moq | string? |  yes  |  |
@@ -20720,7 +21283,7 @@ List of fields and validation values fro each. See example below or refer `Inven
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | action | [Action](#Action)? |  yes  | It is the page action used to route the navigation. |
- | logo | [Media1](#Media1)? |  yes  | It is the logo of the brand. |
+ | logo | [Media2](#Media2)? |  yes  | It is the logo of the brand. |
  | name | string? |  yes  | It is the name of the brand of the product. |
  | uid | number? |  yes  | It is the unique identifier of the brand. |
  
@@ -20862,7 +21425,7 @@ List of fields and validation values fro each. See example below or refer `Inven
  | is_set | boolean? |  yes  |  |
  | item_code | string |  no  |  |
  | item_type | string |  no  |  |
- | media | [[Media1](#Media1)]? |  yes  |  |
+ | media | [[Media2](#Media2)]? |  yes  |  |
  | multi_size | boolean? |  yes  |  |
  | name | string |  no  |  |
  | net_quantity | [NetQuantity](#NetQuantity)? |  yes  |  |
@@ -20902,7 +21465,7 @@ List of fields and validation values fro each. See example below or refer `Inven
  | image_nature | string? |  yes  | The nature of the product image. |
  | item_code | string? |  yes  | This is the unique identifier of the Item within a brand. |
  | item_type | string? |  yes  | The type of item. |
- | medias | [[Media1](#Media1)]? |  yes  |  |
+ | medias | [[Media2](#Media2)]? |  yes  |  |
  | name | string? |  yes  | The name of the product. |
  | product_online_date | string? |  yes  | The date when the product was made available online. |
  | promo_meta | string? |  yes  | Additional promotional metadata. |
@@ -21007,7 +21570,7 @@ List of fields and validation values fro each. See example below or refer `Inven
  | image_nature | string? |  yes  | The nature of the product image. |
  | item_code | string? |  yes  | This is the unique identifier of the Item within a brand. |
  | item_type | string? |  yes  | The type of item. |
- | medias | [[Media1](#Media1)]? |  yes  |  |
+ | medias | [[Media2](#Media2)]? |  yes  |  |
  | name | string? |  yes  | The name of the product. |
  | price | [ProductListingPrice](#ProductListingPrice)? |  yes  |  |
  | product_online_date | string? |  yes  | The date when the product was made available online. |
@@ -21133,7 +21696,7 @@ List of fields and validation values fro each. See example below or refer `Inven
  | item_code | string? |  yes  |  |
  | item_type | string? |  yes  |  |
  | l3_mapping | [string]? |  yes  |  |
- | media | [[Media1](#Media1)]? |  yes  |  |
+ | media | [[Media2](#Media2)]? |  yes  |  |
  | modified_by | string? |  yes  |  |
  | modified_on | string? |  yes  |  |
  | moq | string? |  yes  |  |
@@ -21292,7 +21855,7 @@ List of fields and validation values fro each. See example below or refer `Inven
  | brand_uid | number? |  yes  |  |
  | category_uid | number? |  yes  |  |
  | item_code | string? |  yes  |  |
- | media | [[Media1](#Media1)]? |  yes  |  |
+ | media | [[Media2](#Media2)]? |  yes  |  |
  | name | string? |  yes  |  |
  | uid | number? |  yes  |  |
  
@@ -21402,6 +21965,26 @@ List of fields and validation values fro each. See example below or refer `Inven
 
 ---
 
+#### [RerankingAttribute](#RerankingAttribute)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | attribute_key | string |  no  | The key of the attribute to rerank on. |
+ | attribute_value | string |  no  | The value of the attribute to rerank on. |
+ 
+
+---
+
+#### [RerankingAttribute1](#RerankingAttribute1)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | attribute_key | string |  no  |  |
+ | attribute_value | string |  no  |  |
+ 
+
+---
+
 #### [ReturnConfig](#ReturnConfig)
 
  | Properties | Type | Nullable | Description |
@@ -21446,12 +22029,62 @@ List of fields and validation values fro each. See example below or refer `Inven
 
 ---
 
+#### [SearchErrorResponse](#SearchErrorResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | code | number |  no  | The HTTP status code indicating the error. |
+ | errors | [string]? |  yes  | Additional errors related to the request, if applicable. |
+ | message | string |  no  | A descriptive message providing details about the error. |
+ 
+
+---
+
 #### [SearchKeywordResult](#SearchKeywordResult)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | query | string |  no  |  |
- | sort_on | string |  no  |  |
+ | query | string |  no  | The search query containing various search parameters. |
+ | sort_on | string |  no  | The field to sort the search results on. |
+ 
+
+---
+
+#### [SearchKeywordResult1](#SearchKeywordResult1)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | query | string |  no  | It is the query of the keyword search config. |
+ | sort_on | string |  no  | It is the sort on the listing page of the keyword config. |
+ 
+
+---
+
+#### [SearchRerankingModel](#SearchRerankingModel)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | _id | any? |  yes  |  |
+ | app_id | string |  no  | The ID of the application making the search request. |
+ | created_by | [UserDetail](#UserDetail)? |  yes  | User details of the creator of the document |
+ | created_on | string |  no  | Timestamp of the creation of the document |
+ | is_active | boolean? |  yes  | A boolean indicating whether the search reranking model is active. |
+ | modified_by | [UserDetail](#UserDetail)? |  yes  | User details of the last modifier of the document |
+ | modified_on | string |  no  | Timestamp of the last modification of the document |
+ | ranking | [BoostBury](#BoostBury)? |  yes  | A schema containing the attributes to boost the relevance of the search results. |
+ | verified_by | [UserDetail](#UserDetail)? |  yes  | User details of the verifier of the document, if applicable |
+ | verified_on | string? |  yes  | Timestamp of when the document was verified, if applicable |
+ | words | [string] |  no  | A list of search keywords. |
+ 
+
+---
+
+#### [SearchRerankListing](#SearchRerankListing)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | items | [[SearchRerankingModel](#SearchRerankingModel)]? |  yes  |  |
+ | page | [Page](#Page)? |  yes  |  |
  
 
 ---
@@ -21799,6 +22432,21 @@ List of fields and validation values fro each. See example below or refer `Inven
 
 ---
 
+#### [UpdateAutocompleteWordData](#UpdateAutocompleteWordData)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | _custom_json | string? |  yes  | Custom JSON data that can be attached to the search model. |
+ | _id | string? |  yes  | The UID of the autocomplete config. |
+ | app_id | string? |  yes  | The ID of the application performing the search. |
+ | is_active | boolean? |  yes  | It is a flag that indicate the active status of the config. |
+ | results | [[AutocompleteResult](#AutocompleteResult)]? |  yes  | It contains the action page related to the autocomplete keywords. |
+ | uid | string? |  yes  | The UID of the autocomplete config. |
+ | words | [string]? |  yes  | A list of search keywords to search for in the database. |
+ 
+
+---
+
 #### [UpdateCollection](#UpdateCollection)
 
  | Properties | Type | Nullable | Description |
@@ -21835,7 +22483,7 @@ List of fields and validation values fro each. See example below or refer `Inven
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | items_not_updated | [number]? |  yes  | It is the list of item that are not added in the items of handpick collection. |
- | message | string? |  yes  | A message indicating the status of the delete operation. |
+ | message | string? |  yes  | It is the success message of the action. |
  
 
 ---

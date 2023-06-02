@@ -313,14 +313,12 @@ declare class Payment {
     }): Promise<SetCODOptionResponse>;
     /**
      * @param {Object} arg - Arg object.
-     * @param {string} arg.terminalUniqueIdentifier - Terminal unique identifier
      * @param {EdcAddRequest} arg.body
      * @returns {Promise<EdcDeviceAddResponse>} - Success response
      * @summary: map new edc device to the terminal
      * @description: Use this API to map new edc device to the terminal
      */
-    updateEdcDevice({ terminalUniqueIdentifier, body }?: {
-        terminalUniqueIdentifier: string;
+    updateEdcDevice({ body }?: {
         body: EdcAddRequest;
     }): Promise<EdcDeviceAddResponse>;
     /**
