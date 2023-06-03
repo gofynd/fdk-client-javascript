@@ -136,6 +136,23 @@ class FinanceModel {
       success: Joi.boolean(),
     });
   }
+  static GetInvoiceListPayloadData() {
+    return Joi.object({
+      is_active: Joi.boolean(),
+    });
+  }
+  static GetInvoiceListRequest() {
+    return Joi.object({
+      data: FinanceModel.GetInvoiceListPayloadData(),
+    });
+  }
+  static GetInvoiceListResponse() {
+    return Joi.object({
+      invoice_type_list: Joi.array().items(Joi.any()),
+      payment_status_list: Joi.array().items(Joi.any()),
+      success: Joi.boolean(),
+    });
+  }
   static GetReason() {
     return Joi.object({
       reason_type: Joi.string().allow(""),
@@ -161,6 +178,45 @@ class FinanceModel {
   static GetReportListRequest() {
     return Joi.object({
       data: FinanceModel.GetReportListData(),
+    });
+  }
+  static InvoiceListingPayloadData() {
+    return Joi.object({
+      end_end: Joi.string().allow(""),
+      filters: Joi.array().items(Joi.any()),
+      page: Joi.number(),
+      pagesize: Joi.number(),
+      search: Joi.string().allow(""),
+      start_end: Joi.string().allow(""),
+    });
+  }
+  static InvoiceListingRequest() {
+    return Joi.object({
+      data: FinanceModel.InvoiceListingPayloadData(),
+    });
+  }
+  static InvoiceListingResponse() {
+    return Joi.object({
+      item_count: Joi.number(),
+      items: Joi.array().items(Joi.any()),
+      page: FinanceModel.Page(),
+    });
+  }
+  static InvoicePdfPayloadData() {
+    return Joi.object({
+      invoice_number: Joi.array().items(Joi.string().allow("")),
+    });
+  }
+  static InvoicePdfRequest() {
+    return Joi.object({
+      data: FinanceModel.InvoicePdfPayloadData(),
+    });
+  }
+  static InvoicePdfResponse() {
+    return Joi.object({
+      data: Joi.array().items(Joi.string().allow("")),
+      error: Joi.array().items(Joi.string().allow("")),
+      success: Joi.boolean(),
     });
   }
   static Page() {

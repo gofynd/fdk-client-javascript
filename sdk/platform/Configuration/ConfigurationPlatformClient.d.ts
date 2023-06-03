@@ -16,7 +16,7 @@ declare class Configuration {
      * @param {Object} arg - Arg object.
      * @param {number} [arg.pageNo] -
      * @param {number} [arg.pageSize] -
-     * @param {string} [arg.q] - Search string to search saleschannel by name
+     * @param {string} [arg.q] - Search param by name or domain
      * @returns {Promise<ApplicationsResponse>} - Success response
      * @summary: Get list of application under company
      * @description: Get list of application under company
@@ -29,7 +29,7 @@ declare class Configuration {
     /**
      * @param {Object} arg - Arg object.
      * @param {number} [arg.pageSize] -
-     * @param {string} [arg.q] - Search string to search saleschannel by name
+     * @param {string} [arg.q] - Search param by name or domain
      * @summary: Get list of application under company
      * @description: Get list of application under company
      */

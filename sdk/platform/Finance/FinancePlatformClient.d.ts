@@ -54,6 +54,16 @@ declare class Finance {
     }): Promise<GetEngineResponse>;
     /**
      * @param {Object} arg - Arg object.
+     * @param {GetInvoiceListRequest} arg.body
+     * @returns {Promise<GetInvoiceListResponse>} - Success response
+     * @summary:
+     * @description:
+     */
+    getInvoiceList({ body }?: {
+        body: GetInvoiceListRequest;
+    }): Promise<GetInvoiceListResponse>;
+    /**
+     * @param {Object} arg - Arg object.
      * @param {GetReasonRequest} arg.body
      * @returns {Promise<GetReasonResponse>} - Success response
      * @summary:
@@ -72,6 +82,26 @@ declare class Finance {
     getReportList({ body }?: {
         body: GetReportListRequest;
     }): Promise<GetEngineResponse>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {InvoiceListingRequest} arg.body
+     * @returns {Promise<InvoiceListingResponse>} - Success response
+     * @summary:
+     * @description:
+     */
+    invoiceListing({ body }?: {
+        body: InvoiceListingRequest;
+    }): Promise<InvoiceListingResponse>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {InvoicePdfRequest} arg.body
+     * @returns {Promise<InvoicePdfResponse>} - Success response
+     * @summary:
+     * @description:
+     */
+    invoicePDF({ body }?: {
+        body: InvoicePdfRequest;
+    }): Promise<InvoicePdfResponse>;
     /**
      * @param {Object} arg - Arg object.
      * @param {PaymentProcessRequest} arg.body

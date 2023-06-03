@@ -13,7 +13,7 @@ File Storage
 * [appCompleteUpload](#appcompleteupload)
 * [appCopyFiles](#appcopyfiles)
 * [appStartUpload](#appstartupload)
-* [browse](#browse)
+* [appbrowse](#appbrowse)
 * [browse](#browse)
 * [completeUpload](#completeupload)
 * [copyFiles](#copyfiles)
@@ -128,7 +128,7 @@ const data = await platformClient.application("<APPLICATION_ID>").fileStorage.ap
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
-| namespace | string | yes | bucket name |  
+| namespace | string | yes | Segregation of different types of files(prodcuts, orders, logistics etc), Required for validating the data of the file being uploaded, decides where exactly the file will be stored inside the storage bucket. |  
 | body | [StartResponse](#StartResponse) | yes | Request body |
 
 
@@ -289,7 +289,7 @@ const data = await platformClient.application("<APPLICATION_ID>").fileStorage.ap
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
-| namespace | string | yes | bucket name |  
+| namespace | string | yes | Segregation of different types of files(prodcuts, orders, logistics etc), Required for validating the data of the file being uploaded, decides where exactly the file will be stored inside the storage bucket. |  
 | body | [StartRequest](#StartRequest) | yes | Request body |
 
 
@@ -319,6 +319,65 @@ This operation will return the url for the uploaded file.
 
 
 [StartResponse](#StartResponse)
+
+Success
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### appbrowse
+Browse Files
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").fileStorage.appbrowse({  namespace : value,
+ pageNo : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").fileStorage.appbrowse({  namespace : value,
+ pageNo : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| namespace | string | yes | bucket name |    
+| pageNo | number | no | page no |  
+
+
+
+Browse Files
+
+*Returned Response:*
+
+
+
+
+[BrowseResponse](#BrowseResponse)
 
 Success
 
@@ -403,65 +462,6 @@ Success
 ---
 
 
-### browse
-Browse Files
-
-
-
-```javascript
-// Promise
-const promise = platformClient.application("<APPLICATION_ID>").fileStorage.browse({  namespace : value,
- pageNo : value });
-
-// Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").fileStorage.browse({  namespace : value,
- pageNo : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| namespace | string | yes | bucket name |    
-| pageNo | number | no | page no |  
-
-
-
-Browse Files
-
-*Returned Response:*
-
-
-
-
-[BrowseResponse](#BrowseResponse)
-
-Success
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
 ### completeUpload
 This will complete the upload process. After successfully uploading file, you can call this operation to complete the upload process.
 
@@ -483,7 +483,7 @@ const data = await platformClient.fileStorage.completeUpload({  namespace : valu
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
-| namespace | string | yes | bucket name |  
+| namespace | string | yes | Segregation of different types of files(prodcuts, orders, logistics etc), Required for validating the data of the file being uploaded, decides where exactly the file will be stored inside the storage bucket. |  
 | body | [StartResponse](#StartResponse) | yes | Request body |
 
 
@@ -755,7 +755,7 @@ const data = await platformClient.fileStorage.startUpload({  namespace : value,
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
-| namespace | string | yes | bucket name |  
+| namespace | string | yes | Segregation of different types of files(prodcuts, orders, logistics etc), Required for validating the data of the file being uploaded, decides where exactly the file will be stored inside the storage bucket. |  
 | body | [StartRequest](#StartRequest) | yes | Request body |
 
 
@@ -849,8 +849,8 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | absolute_url | string? |  yes  |  |
- | relative_url | string? |  yes  |  |
+ | absolute_url | string |  no  |  |
+ | relative_url | string |  no  |  |
  | url | string |  no  |  |
  
 

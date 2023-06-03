@@ -2,6 +2,12 @@ const Joi = require("joi");
 
 const OrderModel = require("./OrderPlatformModel");
 class OrderValidator {
+  static attachOrderUser() {
+    return Joi.object({
+      body: OrderModel.AttachOrderUser().required(),
+    }).required();
+  }
+
   static checkOrderStatus() {
     return Joi.object({
       body: OrderModel.OrderStatus().required(),
@@ -46,6 +52,18 @@ class OrderValidator {
   static downloadBulkActionTemplate() {
     return Joi.object({
       templateSlug: Joi.string().allow(""),
+    }).required();
+  }
+
+  static fetchCreditBalanceDetail() {
+    return Joi.object({
+      body: OrderModel.FetchCreditBalanceRequestPayload().required(),
+    }).required();
+  }
+
+  static fetchRefundModeConfig() {
+    return Joi.object({
+      body: OrderModel.RefundModeConfigRequestPayload().required(),
     }).required();
   }
 
@@ -161,13 +179,10 @@ class OrderValidator {
       fromDate: Joi.string().allow(""),
       toDate: Joi.string().allow(""),
       dpIds: Joi.string().allow(""),
-      stores: Joi.string().allow(""),
-      salesChannels: Joi.string().allow(""),
       pageNo: Joi.number(),
       pageSize: Joi.number(),
       isPrioritySort: Joi.boolean(),
       customMeta: Joi.string().allow(""),
-      platformUserId: Joi.string().allow(""),
     }).required();
   }
 
@@ -233,7 +248,6 @@ class OrderValidator {
       customMeta: Joi.string().allow(""),
       orderingChannel: Joi.string().allow(""),
       companyAffiliateTag: Joi.string().allow(""),
-      platformUserId: Joi.string().allow(""),
     }).required();
   }
 
@@ -284,6 +298,12 @@ class OrderValidator {
     }).required();
   }
 
+  static sendUserMobileOTP() {
+    return Joi.object({
+      body: OrderModel.SendUserMobileOTP().required(),
+    }).required();
+  }
+
   static updateAddress() {
     return Joi.object({
       shipmentId: Joi.string().allow("").required(),
@@ -303,7 +323,7 @@ class OrderValidator {
 
   static updatePackagingDimensions() {
     return Joi.object({
-      body: OrderModel.CreateOrderPayload().required(),
+      body: OrderModel.UpdatePackagingDimensionsPayload().required(),
     }).required();
   }
 
@@ -328,6 +348,12 @@ class OrderValidator {
   static upsertJioCode() {
     return Joi.object({
       body: OrderModel.JioCodeUpsertPayload().required(),
+    }).required();
+  }
+
+  static verifyMobileOTP() {
+    return Joi.object({
+      body: OrderModel.VerifyMobileOTP().required(),
     }).required();
   }
 }

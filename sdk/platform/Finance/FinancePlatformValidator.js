@@ -32,6 +32,12 @@ class FinanceValidator {
     }).required();
   }
 
+  static getInvoiceList() {
+    return Joi.object({
+      body: FinanceModel.GetInvoiceListRequest().required(),
+    }).required();
+  }
+
   static getReason() {
     return Joi.object({
       body: FinanceModel.GetReasonRequest().required(),
@@ -41,6 +47,18 @@ class FinanceValidator {
   static getReportList() {
     return Joi.object({
       body: FinanceModel.GetReportListRequest().required(),
+    }).required();
+  }
+
+  static invoiceListing() {
+    return Joi.object({
+      body: FinanceModel.InvoiceListingRequest().required(),
+    }).required();
+  }
+
+  static invoicePDF() {
+    return Joi.object({
+      body: FinanceModel.InvoicePdfRequest().required(),
     }).required();
   }
 

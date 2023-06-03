@@ -8,6 +8,7 @@
 ## Order Methods
 Handles all platform order and shipment api(s)
 
+* [attachOrderUser](#attachorderuser)
 * [checkOrderStatus](#checkorderstatus)
 * [click2Call](#click2call)
 * [createChannelConfig](#createchannelconfig)
@@ -15,6 +16,8 @@ Handles all platform order and shipment api(s)
 * [createShipmentReport](#createshipmentreport)
 * [dispatchManifest](#dispatchmanifest)
 * [downloadBulkActionTemplate](#downloadbulkactiontemplate)
+* [fetchCreditBalanceDetail](#fetchcreditbalancedetail)
+* [fetchRefundModeConfig](#fetchrefundmodeconfig)
 * [generatePOSReceiptByOrderId](#generateposreceiptbyorderid)
 * [getAnnouncements](#getannouncements)
 * [getAppOrderShipmentDetails](#getappordershipmentdetails)
@@ -43,6 +46,7 @@ Handles all platform order and shipment api(s)
 * [processManifest](#processmanifest)
 * [reassignLocation](#reassignlocation)
 * [sendSmsNinja](#sendsmsninja)
+* [sendUserMobileOTP](#sendusermobileotp)
 * [trackShipmentPlatform](#trackshipmentplatform)
 * [updateAddress](#updateaddress)
 * [updatePackagingDimensions](#updatepackagingdimensions)
@@ -50,12 +54,68 @@ Handles all platform order and shipment api(s)
 * [updateShipmentStatus](#updateshipmentstatus)
 * [uploadConsent](#uploadconsent)
 * [upsertJioCode](#upsertjiocode)
+* [verifyMobileOTP](#verifymobileotp)
 
 
 
 ## Methods with example and description
 
 
+
+
+### attachOrderUser
+
+
+
+
+```javascript
+// Promise
+const promise = platformClient.order.attachOrderUser({  body : value });
+
+// Async/Await
+const data = await platformClient.order.attachOrderUser({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [AttachOrderUser](#AttachOrderUser) | yes | Request body |
+
+
+
+
+*Returned Response:*
+
+
+
+
+[AttachOrderUserResponse](#AttachOrderUserResponse)
+
+Attach user to order
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
 
 
 ### checkOrderStatus
@@ -457,21 +517,120 @@ We are processing the file!
 ```json
 {
   "file_name": "placed_352_1668856953.7936668.xlsx",
-  "operation": "putObject",
-  "size": 13245,
-  "namespace": "misc",
-  "content_type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
-  "file_path": "/misc/general/free/original/0Ex0-zTyw-placed_352_1668856953.7936668.xlsx",
-  "method": "PUT",
-  "tags": [],
-  "upload": {
-    "url": "https://fynd-staging-assets.s3-accelerate.amazonaws.com/x0/misc/general/free/original/0Ex0-zTyw-placed_352_1668856953.7936668.xlsx?Content-Type=application%2Fvnd.openxmlformats-officedocument.spreadsheetml.sheet&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAJUADR2WMPQT6ZJ2Q%2F20221119%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20221119T112233Z&X-Amz-Expires=1800&X-Amz-Signature=3408400dbe95ff12d0ea5487846aab74b0f2ae6963a58ac980fb46c11cd0b7be&X-Amz-SignedHeaders=host%3Bx-amz-acl&x-amz-acl=public-read",
-    "expiry": 1800
-  },
   "cdn": {
     "url": "https://cdn.pixelbin.io/v2/falling-surf-7c8bb8/fyndnp/wrkr/x0/misc/general/free/original/0Ex0-zTyw-placed_352_1668856953.7936668.xlsx"
   }
 }
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### fetchCreditBalanceDetail
+
+
+
+
+```javascript
+// Promise
+const promise = platformClient.order.fetchCreditBalanceDetail({  body : value });
+
+// Async/Await
+const data = await platformClient.order.fetchCreditBalanceDetail({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [FetchCreditBalanceRequestPayload](#FetchCreditBalanceRequestPayload) | yes | Request body |
+
+
+
+
+*Returned Response:*
+
+
+
+
+[FetchCreditBalanceResponsePayload](#FetchCreditBalanceResponsePayload)
+
+Credit Balance will be fetched
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### fetchRefundModeConfig
+
+
+
+
+```javascript
+// Promise
+const promise = platformClient.order.fetchRefundModeConfig({  body : value });
+
+// Async/Await
+const data = await platformClient.order.fetchRefundModeConfig({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [RefundModeConfigRequestPayload](#RefundModeConfigRequestPayload) | yes | Request body |
+
+
+
+
+*Returned Response:*
+
+
+
+
+[RefundModeConfigResponsePayload](#RefundModeConfigResponsePayload)
+
+Refund mode config is returned based on input parameter
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
 ```
 </details>
 
@@ -631,7 +790,7 @@ const data = await platformClient.application("<APPLICATION_ID>").order.getAppOr
 
 
 
-[ShipmentDetailsResponse](#ShipmentDetailsResponse)
+[OrderDetailsResponse](#OrderDetailsResponse)
 
 We render shipment details.
 
@@ -1428,17 +1587,6 @@ We are processing the file!
 ```json
 {
   "file_name": "placed_352_1668856953.7936668.xlsx",
-  "operation": "putObject",
-  "size": 13245,
-  "namespace": "misc",
-  "content_type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
-  "file_path": "/misc/general/free/original/0Ex0-zTyw-placed_352_1668856953.7936668.xlsx",
-  "method": "PUT",
-  "tags": [],
-  "upload": {
-    "url": "https://fynd-staging-assets.s3-accelerate.amazonaws.com/x0/misc/general/free/original/0Ex0-zTyw-placed_352_1668856953.7936668.xlsx?Content-Type=application%2Fvnd.openxmlformats-officedocument.spreadsheetml.sheet&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAJUADR2WMPQT6ZJ2Q%2F20221119%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20221119T112233Z&X-Amz-Expires=1800&X-Amz-Signature=3408400dbe95ff12d0ea5487846aab74b0f2ae6963a58ac980fb46c11cd0b7be&X-Amz-SignedHeaders=host%3Bx-amz-acl&x-amz-acl=public-read",
-    "expiry": 1800
-  },
   "cdn": {
     "url": "https://cdn.pixelbin.io/v2/falling-surf-7c8bb8/fyndnp/wrkr/x0/misc/general/free/original/0Ex0-zTyw-placed_352_1668856953.7936668.xlsx"
   }
@@ -1788,7 +1936,7 @@ const data = await platformClient.order.getOrderById({  orderId : value });
 
 
 
-[ShipmentDetailsResponse](#ShipmentDetailsResponse)
+[OrderDetailsResponse](#OrderDetailsResponse)
 
 We are processing the report!
 
@@ -2554,13 +2702,10 @@ const promise = platformClient.order.getOrders({  lane : value,
  fromDate : value,
  toDate : value,
  dpIds : value,
- stores : value,
- salesChannels : value,
  pageNo : value,
  pageSize : value,
  isPrioritySort : value,
- customMeta : value,
- platformUserId : value });
+ customMeta : value });
 
 // Async/Await
 const data = await platformClient.order.getOrders({  lane : value,
@@ -2573,13 +2718,10 @@ const data = await platformClient.order.getOrders({  lane : value,
  fromDate : value,
  toDate : value,
  dpIds : value,
- stores : value,
- salesChannels : value,
  pageNo : value,
  pageSize : value,
  isPrioritySort : value,
- customMeta : value,
- platformUserId : value });
+ customMeta : value });
 ```
 
 
@@ -2588,23 +2730,20 @@ const data = await platformClient.order.getOrders({  lane : value,
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
-| lane | string | no |  |    
-| searchType | string | no |  |    
-| bagStatus | string | no |  |    
-| timeToDispatch | string | no |  |    
+| lane | string | no | lane refers to a section where orders are assigned, indicating its grouping |    
+| searchType | string | no | search_type refers to the specific field that will be used as the target for the search operation |    
+| bagStatus | string | no | bag_status refers to status of the entity. Filters orders based on the status. |    
+| timeToDispatch | string | no | time_to_dispatch refers to estimated SLA time. |    
 | paymentMethods | string | no |  |    
-| tags | string | no |  |    
-| searchValue | string | no |  |    
+| tags | string | no | tags refers to additional descriptive labels associated with the order |    
+| searchValue | string | no | search_value is matched against the field specified by the search_type |    
 | fromDate | string | no |  |    
 | toDate | string | no |  |    
-| dpIds | string | no |  |    
-| stores | string | no |  |    
-| salesChannels | string | no |  |    
+| dpIds | string | no | Delivery Partner IDs to which shipments are assigned. |    
 | pageNo | number | no |  |    
 | pageSize | number | no |  |    
 | isPrioritySort | boolean | no |  |    
-| customMeta | string | no |  |    
-| platformUserId | string | no |  |  
+| customMeta | string | no |  |  
 
 
 
@@ -3388,8 +3527,7 @@ const promise = platformClient.order.getShipments({  lane : value,
  channelOrderId : value,
  customMeta : value,
  orderingChannel : value,
- companyAffiliateTag : value,
- platformUserId : value });
+ companyAffiliateTag : value });
 
 // Async/Await
 const data = await platformClient.order.getShipments({  lane : value,
@@ -3416,8 +3554,7 @@ const data = await platformClient.order.getShipments({  lane : value,
  channelOrderId : value,
  customMeta : value,
  orderingChannel : value,
- companyAffiliateTag : value,
- platformUserId : value });
+ companyAffiliateTag : value });
 ```
 
 
@@ -3450,8 +3587,7 @@ const data = await platformClient.order.getShipments({  lane : value,
 | channelOrderId | string | no |  |    
 | customMeta | string | no |  |    
 | orderingChannel | string | no |  |    
-| companyAffiliateTag | string | no |  |    
-| platformUserId | string | no |  |  
+| companyAffiliateTag | string | no |  |  
 
 
 
@@ -5816,6 +5952,70 @@ Sms Sent successfully
 ---
 
 
+### sendUserMobileOTP
+
+
+
+
+```javascript
+// Promise
+const promise = platformClient.order.sendUserMobileOTP({  body : value });
+
+// Async/Await
+const data = await platformClient.order.sendUserMobileOTP({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [SendUserMobileOTP](#SendUserMobileOTP) | yes | Request body |
+
+
+
+
+*Returned Response:*
+
+
+
+
+[SendUserMobileOtpResponse](#SendUserMobileOtpResponse)
+
+Send OTP to user mobile
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "success": true,
+  "data": {
+    "request_id": "112312312",
+    "message": "Text",
+    "resend_timer": "600",
+    "mobile": 99990000
+  },
+  "message": "Text"
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
 ### trackShipmentPlatform
 Track shipment
 
@@ -5996,7 +6196,7 @@ const data = await platformClient.order.updatePackagingDimensions({  body : valu
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |
-| body | [CreateOrderPayload](#CreateOrderPayload) | yes | Request body |
+| body | [UpdatePackagingDimensionsPayload](#UpdatePackagingDimensionsPayload) | yes | Request body |
 
 
 
@@ -6006,7 +6206,7 @@ const data = await platformClient.order.updatePackagingDimensions({  body : valu
 
 
 
-[CreateOrderResponse](#CreateOrderResponse)
+[UpdatePackagingDimensionsResponse](#UpdatePackagingDimensionsResponse)
 
 Manifest will be processed!
 
@@ -6282,6 +6482,61 @@ const data = await platformClient.order.upsertJioCode({  body : value });
 [JioCodeUpsertResponse](#JioCodeUpsertResponse)
 
 We are processing the report!
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### verifyMobileOTP
+
+
+
+
+```javascript
+// Promise
+const promise = platformClient.order.verifyMobileOTP({  body : value });
+
+// Async/Await
+const data = await platformClient.order.verifyMobileOTP({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [VerifyMobileOTP](#VerifyMobileOTP) | yes | Request body |
+
+
+
+
+*Returned Response:*
+
+
+
+
+[PointBlankOtpData](#PointBlankOtpData)
+
+Verify OTP
 
 
 
@@ -6649,6 +6904,48 @@ We are processing the report!
 
 ---
 
+#### [AttachOrderUser](#AttachOrderUser)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | fynd_order_id | string |  no  |  |
+ | otp_data | [AttachUserOtpData](#AttachUserOtpData) |  no  |  |
+ | user_info | [AttachUserInfo](#AttachUserInfo) |  no  |  |
+ 
+
+---
+
+#### [AttachOrderUserResponse](#AttachOrderUserResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | message | string? |  yes  |  |
+ | success | boolean? |  yes  |  |
+ 
+
+---
+
+#### [AttachUserInfo](#AttachUserInfo)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | country_code | string? |  yes  |  |
+ | first_name | string |  no  |  |
+ | last_name | string |  no  |  |
+ | mobile | number |  no  |  |
+ 
+
+---
+
+#### [AttachUserOtpData](#AttachUserOtpData)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | request_id | string |  no  |  |
+ 
+
+---
+
 #### [Attributes](#Attributes)
 
  | Properties | Type | Nullable | Description |
@@ -6863,8 +7160,8 @@ We are processing the report!
  | app_display_name | string? |  yes  |  |
  | app_facing | boolean? |  yes  |  |
  | app_state_name | string? |  yes  |  |
- | bs_id | number |  no  |  |
  | display_name | string |  no  |  |
+ | id | number |  no  |  |
  | is_active | boolean? |  yes  |  |
  | journey_type | string |  no  |  |
  | name | string |  no  |  |
@@ -7028,7 +7325,7 @@ We are processing the report!
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | template_x_slug | [[BulkActionTemplate](#BulkActionTemplate)]? |  yes  |  |
+ | template_x_slug | [[BulkActionTemplate](#BulkActionTemplate)]? |  yes  | Allowed bulk action template slugs |
  
 
 ---
@@ -7231,6 +7528,17 @@ We are processing the report!
 
 ---
 
+#### [CreditBalanceInfo](#CreditBalanceInfo)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | customer_mobile_number | string? |  yes  |  |
+ | reason | string? |  yes  |  |
+ | total_credited_balance | string? |  yes  |  |
+ 
+
+---
+
 #### [CurrentStatus](#CurrentStatus)
 
  | Properties | Type | Nullable | Description |
@@ -7238,16 +7546,16 @@ We are processing the report!
  | bag_id | number? |  yes  |  |
  | bag_state_mapper | [BagStateMapper](#BagStateMapper)? |  yes  |  |
  | created_at | string? |  yes  |  |
- | current_status_id | number |  no  |  |
  | delivery_awb_number | string? |  yes  |  |
  | delivery_partner_id | number? |  yes  |  |
+ | id | number |  no  |  |
  | kafka_sync | boolean? |  yes  |  |
  | shipment_id | string? |  yes  |  |
  | state_id | number? |  yes  |  |
  | state_type | string? |  yes  |  |
  | status | string? |  yes  |  |
  | store_id | number? |  yes  |  |
- | updated_at | string? |  yes  |  |
+ | updated_at | number? |  yes  |  |
  
 
 ---
@@ -7277,6 +7585,19 @@ We are processing the report!
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | stormbreaker_uuid | string? |  yes  |  |
+ 
+
+---
+
+#### [Dimension](#Dimension)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | height | string? |  yes  |  |
+ | length | number? |  yes  |  |
+ | packaging_type | string? |  yes  |  |
+ | weight | string? |  yes  |  |
+ | width | number? |  yes  |  |
  
 
 ---
@@ -7458,30 +7779,33 @@ We are processing the report!
 
 ---
 
+#### [FetchCreditBalanceRequestPayload](#FetchCreditBalanceRequestPayload)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | affiliate_id | string |  no  |  |
+ | customer_mobile_number | string |  no  |  |
+ | seller_id | string |  no  |  |
+ 
+
+---
+
+#### [FetchCreditBalanceResponsePayload](#FetchCreditBalanceResponsePayload)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | data | [CreditBalanceInfo](#CreditBalanceInfo) |  no  |  |
+ | success | boolean |  no  |  |
+ 
+
+---
+
 #### [FileResponse](#FileResponse)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | cdn | [URL](#URL)? |  yes  |  |
- | content_type | string? |  yes  |  |
- | file_name | string? |  yes  |  |
- | file_path | string? |  yes  |  |
- | method | string? |  yes  |  |
- | namespace | string? |  yes  |  |
- | operation | string? |  yes  |  |
- | size | number? |  yes  |  |
- | tags | [string]? |  yes  |  |
- | upload | [FileUploadResponse](#FileUploadResponse)? |  yes  |  |
- 
-
----
-
-#### [FileUploadResponse](#FileUploadResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | expiry | number? |  yes  |  |
- | url | string? |  yes  |  |
+ | file_name | string? |  yes  | Name of the file |
  
 
 ---
@@ -7563,8 +7887,8 @@ We are processing the report!
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | f_max | string? |  yes  |  |
- | f_min | string? |  yes  |  |
+ | max | string? |  yes  |  |
+ | min | string? |  yes  |  |
  
 
 ---
@@ -7879,6 +8203,19 @@ We are processing the report!
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | logo_url | [String: string]? |  yes  |  |
+ | merchant_code | string? |  yes  |  |
+ | payment_gateway | string? |  yes  |  |
+ | payment_id | string? |  yes  |  |
+ | payment_identifier | string? |  yes  |  |
+ 
+
+---
+
+#### [Meta1](#Meta1)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
  | kafka_emission_status | number? |  yes  |  |
  | state_manager_used | string? |  yes  |  |
  
@@ -8015,6 +8352,20 @@ We are processing the report!
 
 ---
 
+#### [OrderData](#OrderData)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | fynd_order_id | string |  no  |  |
+ | meta | [OrderMeta](#OrderMeta)? |  yes  |  |
+ | order_date | string |  no  |  |
+ | payment_methods | [String: [PaymentMethod](#PaymentMethod)]? |  yes  |  |
+ | prices | [Prices](#Prices)? |  yes  |  |
+ | tax_details | [TaxDetails](#TaxDetails)? |  yes  |  |
+ 
+
+---
+
 #### [OrderDetails](#OrderDetails)
 
  | Properties | Type | Nullable | Description |
@@ -8042,16 +8393,13 @@ We are processing the report!
 
 ---
 
-#### [OrderDict](#OrderDict)
+#### [OrderDetailsResponse](#OrderDetailsResponse)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | fynd_order_id | string |  no  |  |
- | meta | [OrderMeta](#OrderMeta)? |  yes  |  |
- | order_date | string |  no  |  |
- | payment_methods | string? |  yes  |  |
- | prices | [Prices](#Prices)? |  yes  |  |
- | tax_details | [TaxDetails](#TaxDetails)? |  yes  |  |
+ | order | [OrderData](#OrderData)? |  yes  |  |
+ | shipments | [[PlatformShipment](#PlatformShipment)]? |  yes  |  |
+ | success | boolean |  no  |  |
  
 
 ---
@@ -8083,17 +8431,17 @@ We are processing the report!
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | address | string |  no  |  |
+ | address | string? |  yes  |  |
  | city | string |  no  |  |
  | code | string |  no  |  |
  | contact_person | string |  no  |  |
  | country | string |  no  |  |
+ | id | number |  no  |  |
  | meta | string |  no  |  |
- | ordering_store_id | number |  no  |  |
  | phone | string |  no  |  |
  | pincode | string |  no  |  |
  | state | string |  no  |  |
- | store_name | string |  no  |  |
+ | store_name | string? |  yes  |  |
  
 
 ---
@@ -8230,13 +8578,27 @@ We are processing the report!
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | payment_methods | [[PaymentMethod](#PaymentMethod)]? |  yes  |  |
+ | payment_methods | [[PaymentMethod1](#PaymentMethod1)]? |  yes  |  |
  | primary_mode | string |  no  |  |
  
 
 ---
 
 #### [PaymentMethod](#PaymentMethod)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | amount | number? |  yes  |  |
+ | collect_by | string? |  yes  |  |
+ | meta | [Meta](#Meta)? |  yes  |  |
+ | mode | string? |  yes  |  |
+ | name | string? |  yes  |  |
+ | refund_by | string? |  yes  |  |
+ 
+
+---
+
+#### [PaymentMethod1](#PaymentMethod1)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
@@ -8289,7 +8651,7 @@ We are processing the report!
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | country_code | number? |  yes  |  |
- | mobile_number | string? |  yes  |  |
+ | number | string? |  yes  |  |
  
 
 ---
@@ -8439,7 +8801,7 @@ We are processing the report!
  | order | [OrderDetailsData](#OrderDetailsData)? |  yes  |  |
  | ordering_store | [OrderingStoreDetails](#OrderingStoreDetails)? |  yes  |  |
  | packaging_type | string? |  yes  |  |
- | payment_methods | string? |  yes  |  |
+ | payment_methods | [String: [PaymentMethod](#PaymentMethod)]? |  yes  |  |
  | payment_mode | string? |  yes  |  |
  | payments | [ShipmentPayments](#ShipmentPayments)? |  yes  |  |
  | picked_date | string? |  yes  |  |
@@ -8509,6 +8871,18 @@ We are processing the report!
  | platform_user_first_name | string? |  yes  |  |
  | platform_user_id | string? |  yes  |  |
  | platform_user_last_name | string? |  yes  |  |
+ 
+
+---
+
+#### [PointBlankOtpData](#PointBlankOtpData)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | message | string? |  yes  |  |
+ | mobile | number? |  yes  |  |
+ | request_id | string? |  yes  |  |
+ | resend_timer | number? |  yes  |  |
  
 
 ---
@@ -8699,6 +9073,38 @@ We are processing the report!
 
 ---
 
+#### [RefundModeConfigRequestPayload](#RefundModeConfigRequestPayload)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | affiliate_id | string |  no  |  |
+ | customer_mobile_number | string? |  yes  |  |
+ | fynd_order_id | string |  no  |  |
+ | ordering_channel | string |  no  |  |
+ | seller_id | string |  no  |  |
+ 
+
+---
+
+#### [RefundModeConfigResponsePayload](#RefundModeConfigResponsePayload)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | data | [RefundModeInfo](#RefundModeInfo) |  no  |  |
+ | success | boolean |  no  |  |
+ 
+
+---
+
+#### [RefundModeInfo](#RefundModeInfo)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | refund_mode_name | [SingleRefundModeInfo](#SingleRefundModeInfo)? |  yes  |  |
+ 
+
+---
+
 #### [ReplacementDetails](#ReplacementDetails)
 
  | Properties | Type | Nullable | Description |
@@ -8763,6 +9169,27 @@ We are processing the report!
 
 ---
 
+#### [SendUserMobileOTP](#SendUserMobileOTP)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | country_code | string? |  yes  |  |
+ | mobile | number |  no  |  |
+ 
+
+---
+
+#### [SendUserMobileOtpResponse](#SendUserMobileOtpResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | data | [PointBlankOtpData](#PointBlankOtpData)? |  yes  |  |
+ | message | string? |  yes  |  |
+ | success | boolean? |  yes  |  |
+ 
+
+---
+
 #### [Shipment](#Shipment)
 
  | Properties | Type | Nullable | Description |
@@ -8808,7 +9235,7 @@ We are processing the report!
  | ---------- | ---- | -------- | ----------- |
  | bag_list | [number]? |  yes  |  |
  | id | number |  no  |  |
- | meta | [Meta](#Meta) |  no  |  |
+ | meta | [Meta1](#Meta1) |  no  |  |
  | remarks | string? |  yes  |  |
  | shipment_id | string? |  yes  |  |
  | status | string? |  yes  |  |
@@ -8838,17 +9265,6 @@ We are processing the report!
  | fulfillment_id | number |  no  |  |
  | meta | string? |  yes  |  |
  | shipments | number |  no  |  |
- 
-
----
-
-#### [ShipmentDetailsResponse](#ShipmentDetailsResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | order | [OrderDict](#OrderDict)? |  yes  |  |
- | shipments | [[PlatformShipment](#PlatformShipment)]? |  yes  |  |
- | success | boolean |  no  |  |
  
 
 ---
@@ -9134,8 +9550,8 @@ We are processing the report!
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | t_max | string? |  yes  |  |
- | t_min | string? |  yes  |  |
+ | max | number? |  yes  |  |
+ | min | number? |  yes  |  |
  
 
 ---
@@ -9170,6 +9586,17 @@ We are processing the report!
  | state | string |  no  |  |
  | state_code | string? |  yes  |  |
  | title | string? |  yes  |  |
+ 
+
+---
+
+#### [SingleRefundModeInfo](#SingleRefundModeInfo)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | display_name | string? |  yes  |  |
+ | is_active | boolean? |  yes  |  |
+ | slug | string? |  yes  |  |
  
 
 ---
@@ -9474,6 +9901,26 @@ We are processing the report!
 
 ---
 
+#### [UpdatePackagingDimensionsPayload](#UpdatePackagingDimensionsPayload)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | current_status | string |  no  |  |
+ | dimension | [[Dimension](#Dimension)] |  no  |  |
+ | shipment_id | string |  no  |  |
+ 
+
+---
+
+#### [UpdatePackagingDimensionsResponse](#UpdatePackagingDimensionsResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | message | string? |  yes  |  |
+ 
+
+---
+
 #### [UpdateShipmentLockPayload](#UpdateShipmentLockPayload)
 
  | Properties | Type | Nullable | Description |
@@ -9581,6 +10028,26 @@ We are processing the report!
  | phone | string |  no  |  |
  | pincode | string |  no  |  |
  | state | string |  no  |  |
+ 
+
+---
+
+#### [VerifyMobileOTP](#VerifyMobileOTP)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | fynd_order_id | string |  no  |  |
+ | otp_data | [VerifyOtpData](#VerifyOtpData) |  no  |  |
+ 
+
+---
+
+#### [VerifyOtpData](#VerifyOtpData)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | otp_code | number |  no  |  |
+ | request_id | string |  no  |  |
  
 
 ---

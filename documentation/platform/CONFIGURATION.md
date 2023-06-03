@@ -1189,7 +1189,7 @@ const data = await platformClient.configuration.getApplications({  pageNo : valu
 | --------- | -----  | -------- | ----------- |  
 | pageNo | number | no |  |    
 | pageSize | number | no |  |    
-| q | string | no | Search string to search saleschannel by name |  
+| q | string | no | Search param by name or domain |  
 
 
 

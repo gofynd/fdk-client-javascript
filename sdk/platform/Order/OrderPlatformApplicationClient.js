@@ -15,7 +15,7 @@ class Order {
   /**
    * @param {Object} arg - Arg object.
    * @param {string} arg.orderId -
-   * @returns {Promise<ShipmentDetailsResponse>} - Success response
+   * @returns {Promise<OrderDetailsResponse>} - Success response
    * @summary:
    * @description:
    */
@@ -61,7 +61,7 @@ class Order {
 
     const {
       error: res_error,
-    } = OrderModel.ShipmentDetailsResponse().validate(response, {
+    } = OrderModel.OrderDetailsResponse().validate(response, {
       abortEarly: false,
       allowUnknown: false,
     });

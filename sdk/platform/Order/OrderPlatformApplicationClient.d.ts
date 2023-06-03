@@ -6,13 +6,13 @@ declare class Order {
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.orderId -
-     * @returns {Promise<ShipmentDetailsResponse>} - Success response
+     * @returns {Promise<OrderDetailsResponse>} - Success response
      * @summary:
      * @description:
      */
     getAppOrderShipmentDetails({ orderId }?: {
         orderId: string;
-    }): Promise<ShipmentDetailsResponse>;
+    }): Promise<OrderDetailsResponse>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} [arg.lane] -

@@ -13,8 +13,11 @@ Handles all finance related activities
 * [generateReport](#generatereport)
 * [getAffiliate](#getaffiliate)
 * [getData](#getdata)
+* [getInvoiceList](#getinvoicelist)
 * [getReason](#getreason)
 * [getReportList](#getreportlist)
+* [invoiceListing](#invoicelisting)
+* [invoicePDF](#invoicepdf)
 * [paymentProcess](#paymentprocess)
 
 
@@ -299,6 +302,61 @@ Success
 ---
 
 
+### getInvoiceList
+
+
+
+
+```javascript
+// Promise
+const promise = platformClient.finance.getInvoiceList({  body : value });
+
+// Async/Await
+const data = await platformClient.finance.getInvoiceList({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [GetInvoiceListRequest](#GetInvoiceListRequest) | yes | Request body |
+
+
+
+
+*Returned Response:*
+
+
+
+
+[GetInvoiceListResponse](#GetInvoiceListResponse)
+
+Success
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
 ### getReason
 
 
@@ -384,6 +442,116 @@ const data = await platformClient.finance.getReportList({  body : value });
 
 
 [GetEngineResponse](#GetEngineResponse)
+
+Success
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### invoiceListing
+
+
+
+
+```javascript
+// Promise
+const promise = platformClient.finance.invoiceListing({  body : value });
+
+// Async/Await
+const data = await platformClient.finance.invoiceListing({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [InvoiceListingRequest](#InvoiceListingRequest) | yes | Request body |
+
+
+
+
+*Returned Response:*
+
+
+
+
+[InvoiceListingResponse](#InvoiceListingResponse)
+
+Success
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### invoicePDF
+
+
+
+
+```javascript
+// Promise
+const promise = platformClient.finance.invoicePDF({  body : value });
+
+// Async/Await
+const data = await platformClient.finance.invoicePDF({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [InvoicePdfRequest](#InvoicePdfRequest) | yes | Request body |
+
+
+
+
+*Returned Response:*
+
+
+
+
+[InvoicePdfResponse](#InvoicePdfResponse)
 
 Success
 
@@ -681,6 +849,35 @@ Success
 
 ---
 
+#### [GetInvoiceListPayloadData](#GetInvoiceListPayloadData)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | is_active | boolean? |  yes  |  |
+ 
+
+---
+
+#### [GetInvoiceListRequest](#GetInvoiceListRequest)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | data | [GetInvoiceListPayloadData](#GetInvoiceListPayloadData)? |  yes  |  |
+ 
+
+---
+
+#### [GetInvoiceListResponse](#GetInvoiceListResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | invoice_type_list | [string]? |  yes  |  |
+ | payment_status_list | [string]? |  yes  |  |
+ | success | boolean? |  yes  |  |
+ 
+
+---
+
 #### [GetReason](#GetReason)
 
  | Properties | Type | Nullable | Description |
@@ -724,6 +921,69 @@ Success
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | data | [GetReportListData](#GetReportListData)? |  yes  |  |
+ 
+
+---
+
+#### [InvoiceListingPayloadData](#InvoiceListingPayloadData)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | end_end | string? |  yes  |  |
+ | filters | [string]? |  yes  |  |
+ | page | number? |  yes  |  |
+ | pagesize | number? |  yes  |  |
+ | search | string? |  yes  |  |
+ | start_end | string? |  yes  |  |
+ 
+
+---
+
+#### [InvoiceListingRequest](#InvoiceListingRequest)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | data | [InvoiceListingPayloadData](#InvoiceListingPayloadData)? |  yes  |  |
+ 
+
+---
+
+#### [InvoiceListingResponse](#InvoiceListingResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | item_count | number? |  yes  |  |
+ | items | [string]? |  yes  |  |
+ | page | [Page](#Page)? |  yes  |  |
+ 
+
+---
+
+#### [InvoicePdfPayloadData](#InvoicePdfPayloadData)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | invoice_number | [string]? |  yes  |  |
+ 
+
+---
+
+#### [InvoicePdfRequest](#InvoicePdfRequest)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | data | [InvoicePdfPayloadData](#InvoicePdfPayloadData)? |  yes  |  |
+ 
+
+---
+
+#### [InvoicePdfResponse](#InvoicePdfResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | data | [string]? |  yes  |  |
+ | error | [string]? |  yes  |  |
+ | success | boolean? |  yes  |  |
  
 
 ---
