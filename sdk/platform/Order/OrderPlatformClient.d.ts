@@ -316,11 +316,12 @@ declare class Order {
      * @param {number} [arg.pageSize] -
      * @param {boolean} [arg.isPrioritySort] -
      * @param {string} [arg.customMeta] -
+     * @param {string} [arg.platformUserId] -
      * @returns {Promise<OrderListingResponse>} - Success response
      * @summary:
      * @description:
      */
-    getOrders({ lane, searchType, bagStatus, timeToDispatch, paymentMethods, tags, searchValue, fromDate, toDate, dpIds, salesChannel, pageNo, pageSize, isPrioritySort, customMeta, }?: {
+    getOrders({ lane, searchType, bagStatus, timeToDispatch, paymentMethods, tags, searchValue, fromDate, toDate, dpIds, salesChannel, pageNo, pageSize, isPrioritySort, customMeta, platformUserId, }?: {
         lane?: string;
         searchType?: string;
         bagStatus?: string;
@@ -336,6 +337,7 @@ declare class Order {
         pageSize?: number;
         isPrioritySort?: boolean;
         customMeta?: string;
+        platformUserId?: string;
     }): Promise<OrderListingResponse>;
     /**
      * @param {Object} arg - Arg object.
@@ -403,53 +405,47 @@ declare class Order {
     }): Promise<PlatformShipmentReasonsResponse>;
     /**
      * @param {Object} arg - Arg object.
-     * @param {string} [arg.lane] -
-     * @param {string} [arg.bagStatus] -
-     * @param {boolean} [arg.statusOverrideLane] -
+     * @param {string} [arg.lane] - Name of lane for which data is to be fetched
+     * @param {string} [arg.bagStatus] - Comma seperated values of bag statuses
+     * @param {boolean} [arg.statusOverrideLane] - Use this flag to fetch by
+     *   bag_status and override lane
      * @param {string} [arg.timeToDispatch] -
-     * @param {string} [arg.searchType] -
-     * @param {string} [arg.searchValue] -
-     * @param {string} [arg.searchId] -
-     * @param {string} [arg.fromDate] -
-     * @param {string} [arg.toDate] -
-     * @param {string} [arg.dpIds] -
-     * @param {string} [arg.orderingCompanyId] -
-     * @param {string} [arg.stores] -
-     * @param {string} [arg.salesChannels] -
-     * @param {string} [arg.requestByExt] -
-     * @param {number} [arg.pageNo] -
-     * @param {number} [arg.pageSize] -
-     * @param {boolean} [arg.isPrioritySort] -
-     * @param {boolean} [arg.fetchActiveShipment] -
-     * @param {boolean} [arg.excludeLockedShipments] -
-     * @param {string} [arg.paymentMethods] -
-     * @param {string} [arg.channelShipmentId] -
-     * @param {string} [arg.channelOrderId] -
+     * @param {string} [arg.searchType] - Search type key
+     * @param {string} [arg.searchValue] - Search type value
+     * @param {string} [arg.fromDate] - Start Date in DD-MM-YYYY format
+     * @param {string} [arg.toDate] - End Date in DD-MM-YYYY format
+     * @param {string} [arg.dpIds] - Comma seperated values of delivery partner ids
+     * @param {string} [arg.stores] - Comma seperated values of store ids
+     * @param {string} [arg.salesChannel] - Comma seperated values of sales channel ids
+     * @param {number} [arg.pageNo] - Page number for paginated data
+     * @param {number} [arg.pageSize] - Page size of data received per page
+     * @param {boolean} [arg.fetchActiveShipment] - Flag to fetch active shipments
+     * @param {boolean} [arg.excludeLockedShipments] - Flag to fetch locked shipments
+     * @param {string} [arg.paymentMethods] - Comma seperated values of payment methods
+     * @param {string} [arg.channelShipmentId] - App Shipment Id
+     * @param {string} [arg.channelOrderId] - App Order Id
      * @param {string} [arg.customMeta] -
      * @param {string} [arg.orderingChannel] -
      * @param {string} [arg.companyAffiliateTag] -
+     * @param {string} [arg.platformUserId] -
      * @returns {Promise<ShipmentInternalPlatformViewResponse>} - Success response
      * @summary:
      * @description:
      */
-    getShipments({ lane, bagStatus, statusOverrideLane, timeToDispatch, searchType, searchValue, searchId, fromDate, toDate, dpIds, orderingCompanyId, stores, salesChannels, requestByExt, pageNo, pageSize, isPrioritySort, fetchActiveShipment, excludeLockedShipments, paymentMethods, channelShipmentId, channelOrderId, customMeta, orderingChannel, companyAffiliateTag, }?: {
+    getShipments({ lane, bagStatus, statusOverrideLane, timeToDispatch, searchType, searchValue, fromDate, toDate, dpIds, stores, salesChannel, pageNo, pageSize, fetchActiveShipment, excludeLockedShipments, paymentMethods, channelShipmentId, channelOrderId, customMeta, orderingChannel, companyAffiliateTag, platformUserId, }?: {
         lane?: string;
         bagStatus?: string;
         statusOverrideLane?: boolean;
         timeToDispatch?: string;
         searchType?: string;
         searchValue?: string;
-        searchId?: string;
         fromDate?: string;
         toDate?: string;
         dpIds?: string;
-        orderingCompanyId?: string;
         stores?: string;
-        salesChannels?: string;
-        requestByExt?: string;
+        salesChannel?: string;
         pageNo?: number;
         pageSize?: number;
-        isPrioritySort?: boolean;
         fetchActiveShipment?: boolean;
         excludeLockedShipments?: boolean;
         paymentMethods?: string;
@@ -458,6 +454,7 @@ declare class Order {
         customMeta?: string;
         orderingChannel?: string;
         companyAffiliateTag?: string;
+        platformUserId?: string;
     }): Promise<ShipmentInternalPlatformViewResponse>;
     /**
      * @param {Object} arg - Arg object.

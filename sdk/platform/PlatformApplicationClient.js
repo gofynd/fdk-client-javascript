@@ -1670,6 +1670,7 @@ class PlatformApplicationClient {
 /** @typedef PaymentModes */
 /** @typedef PaymentSelectionLock */
 /** @typedef PickupStoreDetail */
+/** @typedef PlatformAddCartRequest */
 /** @typedef PlatformAddress */
 /** @typedef PlatformCartCheckoutDetailRequest */
 /** @typedef PlatformCartCheckoutDetailV2Request */
@@ -1678,6 +1679,7 @@ class PlatformApplicationClient {
 /** @typedef PlatformGetAddressesResponse */
 /** @typedef PlatformSelectCartAddressRequest */
 /** @typedef PlatformShipmentResponse */
+/** @typedef PlatformUpdateCartRequest */
 /** @typedef PostOrder */
 /** @typedef PostOrder1 */
 /** @typedef PriceRange */

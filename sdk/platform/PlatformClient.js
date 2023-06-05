@@ -6139,7 +6139,7 @@ class PlatformClient {
  * @property {string} [brand_store_tags]
  * @property {string} [city]
  * @property {string} code
- * @property {number} fulfilling_store_id
+ * @property {number} id
  * @property {string} [location_type]
  * @property {Object} [meta]
  * @property {string} [name]
@@ -7444,7 +7444,7 @@ class PlatformClient {
  * @property {Object} [_custom_json]
  * @property {string} app_id
  * @property {boolean} [is_active]
- * @property {SearchKeywordResult1} result
+ * @property {SearchKeywordResult} result
  * @property {string[]} [words]
  */
 /**
@@ -7455,7 +7455,7 @@ class PlatformClient {
  * @property {boolean} [is_active]
  * @property {Object} [modified_by]
  * @property {string} [modified_on]
- * @property {BoostBury} [ranking]
+ * @property {BoostBury1} [ranking]
  * @property {string[]} words
  */
 /**
@@ -7876,7 +7876,7 @@ class PlatformClient {
  * @property {Object} [_custom_json]
  * @property {string} app_id
  * @property {boolean} [is_active]
- * @property {SearchKeywordResult} result
+ * @property {SearchKeywordResult1} result
  * @property {string} [uid]
  * @property {string[]} [words]
  */
@@ -8712,7 +8712,7 @@ class PlatformClient {
  * @property {NetQuantity} [net_quantity]
  * @property {number} [no_of_boxes]
  * @property {string[]} [product_group_tag]
- * @property {ProductPublish} [product_publish]
+ * @property {ProductPublish1} [product_publish]
  * @property {string} [requester]
  * @property {ReturnConfig} return_config
  * @property {string} [short_description]
@@ -8908,7 +8908,7 @@ class PlatformClient {
  * @property {string} [pending]
  * @property {string} [primary_color]
  * @property {string[]} [product_group_tag]
- * @property {ProductPublish1} [product_publish]
+ * @property {ProductPublish} [product_publish]
  * @property {ReturnConfigResponse} [return_config]
  * @property {string} [short_description]
  * @property {string} [size_guide]
@@ -9137,7 +9137,7 @@ class PlatformClient {
  * @property {boolean} [is_active]
  * @property {UserDetail} [modified_by]
  * @property {string} modified_on
- * @property {BoostBury1} [ranking]
+ * @property {BoostBury} [ranking]
  * @property {UserDetail} [verified_by]
  * @property {string} [verified_on]
  * @property {string[]} words
@@ -9682,7 +9682,7 @@ class PlatformClient {
  * @property {BusinessCountryInfo} [business_country_info]
  * @property {BusinessDetails} [business_details]
  * @property {string} [business_info]
- * @property {string} business_type
+ * @property {string} [business_type]
  * @property {string} company_type
  * @property {ContactDetails} [contact_details]
  * @property {UserSerializer} [created_by]
@@ -12879,6 +12879,12 @@ class PlatformClient {
  * @property {number} [uid]
  */
 /**
+ * @typedef PlatformAddCartRequest
+ * @property {AddProductCart[]} [items]
+ * @property {boolean} [new_cart]
+ * @property {string} [user_id]
+ */
+/**
  * @typedef PlatformAddress
  * @property {string} [address]
  * @property {string} [address_type]
@@ -13019,6 +13025,12 @@ class PlatformClient {
  * @property {ShipmentPromise} [promise]
  * @property {string} [shipment_type]
  * @property {number} [shipments]
+ */
+/**
+ * @typedef PlatformUpdateCartRequest
+ * @property {UpdateProductCart[]} [items]
+ * @property {string} operation
+ * @property {string} [user_id]
  */
 /**
  * @typedef PostOrder

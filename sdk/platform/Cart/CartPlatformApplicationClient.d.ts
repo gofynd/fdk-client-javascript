@@ -266,6 +266,7 @@ declare class Cart {
     /**
      * @param {Object} arg - Arg object.
      * @param {string} [arg.id] -
+     * @param {string} [arg.userId] -
      * @param {boolean} [arg.i] -
      * @param {boolean} [arg.b] -
      * @param {number} [arg.assignCardId] -
@@ -274,8 +275,9 @@ declare class Cart {
      * @summary: Fetch all items added to the customer cart using cart id
      * @description: Use this API to get details of all the items added to a cart.
      */
-    getCart({ id, i, b, assignCardId, buyNow }?: {
+    getCart({ id, userId, i, b, assignCardId, buyNow }?: {
         id?: string;
+        userId?: string;
         i?: boolean;
         b?: boolean;
         assignCardId?: number;
@@ -534,7 +536,7 @@ declare class Cart {
      * @param {boolean} [arg.b] -
      * @param {boolean} [arg.buyNow] -
      * @param {string} [arg.id] -
-     * @param {AddCartRequest} arg.body
+     * @param {PlatformAddCartRequest} arg.body
      * @returns {Promise<AddCartDetailResponse>} - Success response
      * @summary: Add items to cart
      * @description: Use this API to add items to the cart.
@@ -544,7 +546,7 @@ declare class Cart {
         b?: boolean;
         buyNow?: boolean;
         id?: string;
-        body: AddCartRequest;
+        body: PlatformAddCartRequest;
     }): Promise<AddCartDetailResponse>;
     /**
      * @param {Object} arg - Arg object.
@@ -576,7 +578,7 @@ declare class Cart {
      * @param {boolean} [arg.i] -
      * @param {boolean} [arg.b] -
      * @param {boolean} [arg.buyNow] -
-     * @param {UpdateCartRequest} arg.body
+     * @param {PlatformUpdateCartRequest} arg.body
      * @returns {Promise<UpdateCartDetailResponse>} - Success response
      * @summary: Update items in the customer 's cart using cart id
      * @description: <p>Use this API to update items added to the cart with the help of a request object containing attributes like item_quantity and item_size. These attributes will be fetched from the following APIs</p> <ul> <li><font color="monochrome">operation</font> Operation for current api call. <b>update_item</b> for update items. <b>remove_item</b> for removing items.</li> <li> <font color="monochrome">item_id</font>  "/platform/content/v1/products/"</li> <li> <font color="monochrome">item_size</font>   "/platform/content/v1/products/:slug/sizes/"</li> <li> <font color="monochrome">quantity</font>  item quantity (must be greater than or equal to 1)</li> <li> <font color="monochrome">article_id</font>   "/content​/v1​/products​/:identifier​/sizes​/price​/"</li> <li> <font color="monochrome">item_index</font>  item position in the cart (must be greater than or equal to 0)</li> </ul>
@@ -586,7 +588,7 @@ declare class Cart {
         i?: boolean;
         b?: boolean;
         buyNow?: boolean;
-        body: UpdateCartRequest;
+        body: PlatformUpdateCartRequest;
     }): Promise<UpdateCartDetailResponse>;
     /**
      * @param {Object} arg - Arg object.

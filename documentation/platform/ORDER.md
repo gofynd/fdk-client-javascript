@@ -2706,7 +2706,8 @@ const promise = platformClient.order.getOrders({  lane : value,
  pageNo : value,
  pageSize : value,
  isPrioritySort : value,
- customMeta : value });
+ customMeta : value,
+ platformUserId : value });
 
 // Async/Await
 const data = await platformClient.order.getOrders({  lane : value,
@@ -2723,7 +2724,8 @@ const data = await platformClient.order.getOrders({  lane : value,
  pageNo : value,
  pageSize : value,
  isPrioritySort : value,
- customMeta : value });
+ customMeta : value,
+ platformUserId : value });
 ```
 
 
@@ -2746,7 +2748,8 @@ const data = await platformClient.order.getOrders({  lane : value,
 | pageNo | number | no |  |    
 | pageSize | number | no |  |    
 | isPrioritySort | boolean | no |  |    
-| customMeta | string | no |  |  
+| customMeta | string | no |  |    
+| platformUserId | string | no |  |  
 
 
 
@@ -3512,17 +3515,13 @@ const promise = platformClient.order.getShipments({  lane : value,
  timeToDispatch : value,
  searchType : value,
  searchValue : value,
- searchId : value,
  fromDate : value,
  toDate : value,
  dpIds : value,
- orderingCompanyId : value,
  stores : value,
- salesChannels : value,
- requestByExt : value,
+ salesChannel : value,
  pageNo : value,
  pageSize : value,
- isPrioritySort : value,
  fetchActiveShipment : value,
  excludeLockedShipments : value,
  paymentMethods : value,
@@ -3530,7 +3529,8 @@ const promise = platformClient.order.getShipments({  lane : value,
  channelOrderId : value,
  customMeta : value,
  orderingChannel : value,
- companyAffiliateTag : value });
+ companyAffiliateTag : value,
+ platformUserId : value });
 
 // Async/Await
 const data = await platformClient.order.getShipments({  lane : value,
@@ -3539,17 +3539,13 @@ const data = await platformClient.order.getShipments({  lane : value,
  timeToDispatch : value,
  searchType : value,
  searchValue : value,
- searchId : value,
  fromDate : value,
  toDate : value,
  dpIds : value,
- orderingCompanyId : value,
  stores : value,
- salesChannels : value,
- requestByExt : value,
+ salesChannel : value,
  pageNo : value,
  pageSize : value,
- isPrioritySort : value,
  fetchActiveShipment : value,
  excludeLockedShipments : value,
  paymentMethods : value,
@@ -3557,7 +3553,8 @@ const data = await platformClient.order.getShipments({  lane : value,
  channelOrderId : value,
  customMeta : value,
  orderingChannel : value,
- companyAffiliateTag : value });
+ companyAffiliateTag : value,
+ platformUserId : value });
 ```
 
 
@@ -3566,31 +3563,28 @@ const data = await platformClient.order.getShipments({  lane : value,
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
-| lane | string | no |  |    
-| bagStatus | string | no |  |    
-| statusOverrideLane | boolean | no |  |    
+| lane | string | no | Name of lane for which data is to be fetched |    
+| bagStatus | string | no | Comma seperated values of bag statuses |    
+| statusOverrideLane | boolean | no | Use this flag to fetch by bag_status and override lane |    
 | timeToDispatch | string | no |  |    
-| searchType | string | no |  |    
-| searchValue | string | no |  |    
-| searchId | string | no |  |    
-| fromDate | string | no |  |    
-| toDate | string | no |  |    
-| dpIds | string | no |  |    
-| orderingCompanyId | string | no |  |    
-| stores | string | no |  |    
-| salesChannels | string | no |  |    
-| requestByExt | string | no |  |    
-| pageNo | number | no |  |    
-| pageSize | number | no |  |    
-| isPrioritySort | boolean | no |  |    
-| fetchActiveShipment | boolean | no |  |    
-| excludeLockedShipments | boolean | no |  |    
-| paymentMethods | string | no |  |    
-| channelShipmentId | string | no |  |    
-| channelOrderId | string | no |  |    
+| searchType | string | no | Search type key |    
+| searchValue | string | no | Search type value |    
+| fromDate | string | no | Start Date in DD-MM-YYYY format |    
+| toDate | string | no | End Date in DD-MM-YYYY format |    
+| dpIds | string | no | Comma seperated values of delivery partner ids |    
+| stores | string | no | Comma seperated values of store ids |    
+| salesChannel | string | no | Comma seperated values of sales channel ids |    
+| pageNo | number | no | Page number for paginated data |    
+| pageSize | number | no | Page size of data received per page |    
+| fetchActiveShipment | boolean | no | flag to fetch active shipments |    
+| excludeLockedShipments | boolean | no | flag to fetch locked shipments |    
+| paymentMethods | string | no | Comma seperated values of payment methods |    
+| channelShipmentId | string | no | App Shipment Id |    
+| channelOrderId | string | no | App Order Id |    
 | customMeta | string | no |  |    
 | orderingChannel | string | no |  |    
-| companyAffiliateTag | string | no |  |  
+| companyAffiliateTag | string | no |  |    
+| platformUserId | string | no |  |  
 
 
 
@@ -9349,7 +9343,7 @@ Verify OTP
  | brand_store_tags | string? |  yes  |  |
  | city | string? |  yes  |  |
  | code | string |  no  |  |
- | fulfilling_store_id | number |  no  |  |
+ | id | number |  no  |  |
  | location_type | string? |  yes  |  |
  | meta | string? |  yes  |  |
  | name | string? |  yes  |  |

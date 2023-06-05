@@ -215,7 +215,7 @@ class CompanyProfileModel {
       business_country_info: CompanyProfileModel.BusinessCountryInfo(),
       business_details: CompanyProfileModel.BusinessDetails(),
       business_info: Joi.string().allow(""),
-      business_type: Joi.string().allow("").required(),
+      business_type: Joi.string().allow(""),
       company_type: Joi.string().allow("").required(),
       contact_details: CompanyProfileModel.ContactDetails(),
       created_by: CompanyProfileModel.UserSerializer(),

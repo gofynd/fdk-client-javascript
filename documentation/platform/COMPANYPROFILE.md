@@ -1654,7 +1654,7 @@ Returns a success response
  | business_country_info | [BusinessCountryInfo](#BusinessCountryInfo)? |  yes  |  |
  | business_details | [BusinessDetails](#BusinessDetails)? |  yes  |  |
  | business_info | string? |  yes  |  |
- | business_type | string |  no  |  |
+ | business_type | string? |  yes  |  |
  | company_type | string |  no  |  |
  | contact_details | [ContactDetails](#ContactDetails)? |  yes  |  |
  | created_by | [UserSerializer](#UserSerializer)? |  yes  |  |

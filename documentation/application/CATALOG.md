@@ -7908,8 +7908,8 @@ Success. Returns a response object. Check the example shown below or refer `Foll
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | description | any? |  yes  | The SEO description of the item |
- | title | any? |  yes  | The SEO title of the item |
+ | description | string? |  yes  | The SEO description of the item |
+ | title | string? |  yes  | The SEO title of the item |
  
 
 ---
@@ -8456,7 +8456,7 @@ Success. Returns a response object. Check the example shown below or refer `Foll
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | unit | any? |  yes  | The unit of measurement used for the net quantity of the product. |
+ | unit | string? |  yes  | The unit of measurement used for the net quantity of the product. |
  | value | number? |  yes  | The value of the net quantity of the product. |
  
 
@@ -8603,25 +8603,25 @@ Success. Returns a response object. Check the example shown below or refer `Foll
  | ---------- | ---- | -------- | ----------- |
  | attributes | string? |  yes  | A dictionary of product attributes |
  | brand_uid | number? |  yes  | The unique ID of the product's brand |
- | country_of_origin | any? |  yes  | The country of origin for the product |
- | description | any? |  yes  | The long description of the product |
+ | country_of_origin | string? |  yes  | The country of origin for the product |
+ | description | string? |  yes  | The long description of the product |
  | grouped_attributes | string? |  yes  | A dictionary of grouped product attributes |
  | has_variant | boolean? |  yes  | Whether or not the product has a variant |
- | highlights | [any]? |  yes  | A list of highlights for the product |
+ | highlights | [string]? |  yes  | A list of highlights for the product |
  | hsn_code | number? |  yes  | The HSN code of the product |
  | identifier | string? |  yes  | A dictionary of product identifiers |
- | image_nature | any? |  yes  | The nature of the product's images |
- | images | [any]? |  yes  | A list of image URLs for the product |
+ | image_nature | string? |  yes  | The nature of the product's images |
+ | images | [string]? |  yes  | A list of image URLs for the product |
  | is_set | boolean? |  yes  | Whether or not the product is a set of items |
- | item_code | any? |  yes  | The item code of the product |
+ | item_code | string? |  yes  | The item code of the product |
  | media | [string]? |  yes  | A list of media objects for the product |
- | name | any? |  yes  | The name of the product |
+ | name | string? |  yes  | The name of the product |
  | out_of_stock | boolean? |  yes  | Whether or not the product is out of stock |
  | rating | number? |  yes  | The rating of the product |
  | rating_count | number? |  yes  | The number of ratings the product has received |
- | short_description | any? |  yes  | The short description of the product |
- | slug | any? |  yes  | The slug of the product |
- | template_tag | any? |  yes  | The template tag of the product |
+ | short_description | string? |  yes  | The short description of the product |
+ | slug | string? |  yes  | The slug of the product |
+ | template_tag | string? |  yes  | The template tag of the product |
  
 
 ---
@@ -8682,20 +8682,20 @@ Success. Returns a response object. Check the example shown below or refer `Foll
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | _id | any? |  yes  |  |
- | choice | any? |  yes  | The choice of the product grouping. |
+ | choice | string? |  yes  | The choice of the product grouping. |
  | company_id | number? |  yes  | The ID of the company that owns the product grouping. |
  | created_by | [UserDetail](#UserDetail)? |  yes  | User details of the creator of the document |
  | created_on | string |  no  | Timestamp of the creation of the document |
  | is_active | boolean? |  yes  | Whether the product grouping is active. |
- | logo | any? |  yes  | The URL for the logo of the product grouping. |
+ | logo | string? |  yes  | The URL for the logo of the product grouping. |
  | meta | string? |  yes  | A dictionary containing metadata information. |
  | modified_by | [UserDetail](#UserDetail)? |  yes  | User details of the last modifier of the document |
  | modified_on | string |  no  | Timestamp of the last modification of the document |
- | name | any |  no  | The name of the product grouping. |
- | page_visibility | [any]? |  yes  | A list of page visibilities of the product grouping. |
+ | name | string |  no  | The name of the product grouping. |
+ | page_visibility | [string]? |  yes  | A list of page visibilities of the product grouping. |
  | products | [[ProductInGroup](#ProductInGroup)] |  no  | A list of products in the grouping. |
  | same_store_assignment | boolean? |  yes  | Whether the products are assigned to the same store. |
- | slug | any? |  yes  | The unique identifier for the product grouping. |
+ | slug | string? |  yes  | The unique identifier for the product grouping. |
  | verified_by | [UserDetail](#UserDetail)? |  yes  | User details of the verifier of the document, if applicable |
  | verified_on | string? |  yes  | Timestamp of when the document was verified, if applicable |
  
@@ -8706,7 +8706,7 @@ Success. Returns a response object. Check the example shown below or refer `Foll
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | currency | any? |  yes  | The currency code for the prices. |
+ | currency | string? |  yes  | The currency code for the prices. |
  | max_effective | number? |  yes  | The maximum effective price of the product group. |
  | max_marked | number? |  yes  | The maximum marked price of the product group. |
  | min_effective | number? |  yes  | The minimum effective price of the product group. |
@@ -9155,10 +9155,10 @@ Success. Returns a response object. Check the example shown below or refer `Foll
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | display | any? |  yes  | The display string for the size |
+ | display | string? |  yes  | The display string for the size |
  | is_available | boolean? |  yes  | Whether or not this size is available |
  | quantity | number? |  yes  | The quantity of this size available |
- | value | any? |  yes  | The value of the size |
+ | value | string? |  yes  | The value of the size |
  
 
 ---

@@ -98,6 +98,7 @@ declare class CartModel {
     static PaymentModes(): any;
     static PaymentSelectionLock(): any;
     static PickupStoreDetail(): any;
+    static PlatformAddCartRequest(): any;
     static PlatformAddress(): any;
     static PlatformCartCheckoutDetailRequest(): any;
     static PlatformCartCheckoutDetailV2Request(): any;
@@ -106,6 +107,7 @@ declare class CartModel {
     static PlatformGetAddressesResponse(): any;
     static PlatformSelectCartAddressRequest(): any;
     static PlatformShipmentResponse(): any;
+    static PlatformUpdateCartRequest(): any;
     static PostOrder(): any;
     static PostOrder1(): any;
     static PriceRange(): any;

@@ -946,7 +946,7 @@ class CatalogModel {
       _custom_json: Joi.any(),
       app_id: Joi.string().allow("").required(),
       is_active: Joi.boolean(),
-      result: CatalogModel.SearchKeywordResult1().required(),
+      result: CatalogModel.SearchKeywordResult().required(),
       words: Joi.array().items(Joi.string().allow("")),
     });
   }
@@ -958,7 +958,7 @@ class CatalogModel {
       is_active: Joi.boolean(),
       modified_by: Joi.any(),
       modified_on: Joi.string().allow(""),
-      ranking: CatalogModel.BoostBury(),
+      ranking: CatalogModel.BoostBury1(),
       words: Joi.array().items(Joi.string().allow("")).required(),
     });
   }
@@ -1426,7 +1426,7 @@ class CatalogModel {
       _custom_json: Joi.any(),
       app_id: Joi.string().allow("").required(),
       is_active: Joi.boolean(),
-      result: CatalogModel.SearchKeywordResult().required(),
+      result: CatalogModel.SearchKeywordResult1().required(),
       uid: Joi.string().allow(""),
       words: Joi.array().items(Joi.string().allow("")),
     });
@@ -2360,7 +2360,7 @@ class CatalogModel {
       net_quantity: CatalogModel.NetQuantity(),
       no_of_boxes: Joi.number(),
       product_group_tag: Joi.array().items(Joi.string().allow("")),
-      product_publish: CatalogModel.ProductPublish(),
+      product_publish: CatalogModel.ProductPublish1(),
       requester: Joi.string().allow(""),
       return_config: CatalogModel.ReturnConfig().required(),
       short_description: Joi.string().allow(""),
@@ -2576,7 +2576,7 @@ class CatalogModel {
       pending: Joi.string().allow(""),
       primary_color: Joi.string().allow(""),
       product_group_tag: Joi.array().items(Joi.string().allow("")),
-      product_publish: CatalogModel.ProductPublish1(),
+      product_publish: CatalogModel.ProductPublish(),
       return_config: CatalogModel.ReturnConfigResponse(),
       short_description: Joi.string().allow(""),
       size_guide: Joi.string().allow(""),
@@ -2832,7 +2832,7 @@ class CatalogModel {
       is_active: Joi.boolean(),
       modified_by: CatalogModel.UserDetail(),
       modified_on: Joi.string().allow("").required(),
-      ranking: CatalogModel.BoostBury1(),
+      ranking: CatalogModel.BoostBury(),
       verified_by: CatalogModel.UserDetail(),
       verified_on: Joi.string().allow(""),
       words: Joi.array().items(Joi.string().allow("")).required(),

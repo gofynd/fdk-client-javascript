@@ -184,6 +184,7 @@ class OrderValidator {
       pageSize: Joi.number(),
       isPrioritySort: Joi.boolean(),
       customMeta: Joi.string().allow(""),
+      platformUserId: Joi.string().allow(""),
     }).required();
   }
 
@@ -230,17 +231,13 @@ class OrderValidator {
       timeToDispatch: Joi.string().allow(""),
       searchType: Joi.string().allow(""),
       searchValue: Joi.string().allow(""),
-      searchId: Joi.string().allow(""),
       fromDate: Joi.string().allow(""),
       toDate: Joi.string().allow(""),
       dpIds: Joi.string().allow(""),
-      orderingCompanyId: Joi.string().allow(""),
       stores: Joi.string().allow(""),
-      salesChannels: Joi.string().allow(""),
-      requestByExt: Joi.string().allow(""),
+      salesChannel: Joi.string().allow(""),
       pageNo: Joi.number(),
       pageSize: Joi.number(),
-      isPrioritySort: Joi.boolean(),
       fetchActiveShipment: Joi.boolean(),
       excludeLockedShipments: Joi.boolean(),
       paymentMethods: Joi.string().allow(""),
@@ -249,6 +246,7 @@ class OrderValidator {
       customMeta: Joi.string().allow(""),
       orderingChannel: Joi.string().allow(""),
       companyAffiliateTag: Joi.string().allow(""),
+      platformUserId: Joi.string().allow(""),
     }).required();
   }
 

@@ -1545,7 +1545,7 @@ class OrderModel {
   static PlatformItem() {
     return Joi.object({
       attributes: OrderModel.PlatformArticleAttributes(),
-      branch_url: Joi.string().allow(""),
+      branch_url: Joi.string().allow("").allow(null),
       brand: Joi.string().allow(""),
       brand_id: Joi.number(),
       can_cancel: Joi.boolean(),
@@ -1962,7 +1962,7 @@ class OrderModel {
       customer_note: Joi.string().allow(""),
       delivery_address: OrderModel.PlatformDeliveryAddress(),
       display_name: Joi.string().allow(""),
-      estimated_sla_time: Joi.string().allow(""),
+      estimated_sla_time: Joi.string().allow("").allow(null),
       fulfilling_store: OrderModel.ShipmentItemFulFillingStore(),
       invoice_id: Joi.string().allow("").allow(null),
       lock_status: Joi.boolean(),
@@ -1985,10 +1985,10 @@ class OrderModel {
   static ShipmentItemFulFillingStore() {
     return Joi.object({
       address: Joi.string().allow("").allow(null),
-      brand_store_tags: Joi.string().allow(""),
+      brand_store_tags: Joi.string().allow("").allow(null),
       city: Joi.string().allow(""),
       code: Joi.string().allow("").required(),
-      fulfilling_store_id: Joi.number().required(),
+      id: Joi.number().required(),
       location_type: Joi.string().allow(""),
       meta: Joi.any().allow(null),
       name: Joi.string().allow(""),
@@ -2011,7 +2011,7 @@ class OrderModel {
       existing_dp_list: Joi.array().items(Joi.string().allow("")),
       external: Joi.any(),
       formatted: OrderModel.Formatted(),
-      fulfilment_priority_text: Joi.string().allow(""),
+      fulfilment_priority_text: Joi.string().allow("").allow(null),
       is_international: Joi.boolean(),
       lock_data: OrderModel.LockData(),
       order_type: Joi.string().allow("").allow(null),
@@ -2468,12 +2468,12 @@ class OrderModel {
   static UserDataInfo() {
     return Joi.object({
       avis_user_id: Joi.string().allow(""),
-      email: Joi.string().allow(""),
+      email: Joi.string().allow("").allow(null),
       first_name: Joi.string().allow(""),
-      gender: Joi.string().allow(""),
+      gender: Joi.string().allow("").allow(null),
       is_anonymous_user: Joi.boolean(),
       last_name: Joi.string().allow(""),
-      mobile: Joi.string().allow(""),
+      mobile: Joi.string().allow("").allow(null),
       name: Joi.string().allow(""),
       uid: Joi.number(),
     });

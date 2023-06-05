@@ -3695,6 +3695,7 @@ Fetch all items added to the customer cart using cart id
 ```javascript
 // Promise
 const promise = platformClient.application("<APPLICATION_ID>").cart.getCart({  id : value,
+ userId : value,
  i : value,
  b : value,
  assignCardId : value,
@@ -3702,6 +3703,7 @@ const promise = platformClient.application("<APPLICATION_ID>").cart.getCart({  i
 
 // Async/Await
 const data = await platformClient.application("<APPLICATION_ID>").cart.getCart({  id : value,
+ userId : value,
  i : value,
  b : value,
  assignCardId : value,
@@ -3715,6 +3717,7 @@ const data = await platformClient.application("<APPLICATION_ID>").cart.getCart({
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
 | id | string | no |  |    
+| userId | string | no |  |    
 | i | boolean | no |  |    
 | b | boolean | no |  |    
 | assignCardId | number | no |  |    
@@ -6620,7 +6623,7 @@ const data = await platformClient.application("<APPLICATION_ID>").cart.platformA
 | b | boolean | no |  |    
 | buyNow | boolean | no |  |    
 | id | string | no |  |  
-| body | [AddCartRequest](#AddCartRequest) | yes | Request body |
+| body | [PlatformAddCartRequest](#PlatformAddCartRequest) | yes | Request body |
 
 
 Use this API to add items to the cart.
@@ -8208,7 +8211,7 @@ const data = await platformClient.application("<APPLICATION_ID>").cart.platformU
 | i | boolean | no |  |    
 | b | boolean | no |  |    
 | buyNow | boolean | no |  |  
-| body | [UpdateCartRequest](#UpdateCartRequest) | yes | Request body |
+| body | [PlatformUpdateCartRequest](#PlatformUpdateCartRequest) | yes | Request body |
 
 
 <p>Use this API to update items added to the cart with the help of a request object containing attributes like item_quantity and item_size. These attributes will be fetched from the following APIs</p> <ul> <li><font color="monochrome">operation</font> Operation for current api call. <b>update_item</b> for update items. <b>remove_item</b> for removing items.</li> <li> <font color="monochrome">item_id</font>  "/platform/content/v1/products/"</li> <li> <font color="monochrome">item_size</font>   "/platform/content/v1/products/:slug/sizes/"</li> <li> <font color="monochrome">quantity</font>  item quantity (must be greater than or equal to 1)</li> <li> <font color="monochrome">article_id</font>   "/content​/v1​/products​/:identifier​/sizes​/price​/"</li> <li> <font color="monochrome">item_index</font>  item position in the cart (must be greater than or equal to 0)</li> </ul>
@@ -13939,6 +13942,17 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
 
 ---
 
+#### [PlatformAddCartRequest](#PlatformAddCartRequest)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | items | [[AddProductCart](#AddProductCart)]? |  yes  |  |
+ | new_cart | boolean? |  yes  |  |
+ | user_id | string? |  yes  |  |
+ 
+
+---
+
 #### [PlatformAddress](#PlatformAddress)
 
  | Properties | Type | Nullable | Description |
@@ -14117,6 +14131,17 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
  | promise | [ShipmentPromise](#ShipmentPromise)? |  yes  |  |
  | shipment_type | string? |  yes  |  |
  | shipments | number? |  yes  |  |
+ 
+
+---
+
+#### [PlatformUpdateCartRequest](#PlatformUpdateCartRequest)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | items | [[UpdateProductCart](#UpdateProductCart)]? |  yes  |  |
+ | operation | string |  no  |  |
+ | user_id | string? |  yes  |  |
  
 
 ---

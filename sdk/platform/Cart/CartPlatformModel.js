@@ -973,6 +973,13 @@ class CartModel {
       uid: Joi.number(),
     });
   }
+  static PlatformAddCartRequest() {
+    return Joi.object({
+      items: Joi.array().items(CartModel.AddProductCart()),
+      new_cart: Joi.boolean(),
+      user_id: Joi.string().allow(""),
+    });
+  }
   static PlatformAddress() {
     return Joi.object({
       address: Joi.string().allow(""),
@@ -1121,6 +1128,13 @@ class CartModel {
       promise: CartModel.ShipmentPromise(),
       shipment_type: Joi.string().allow(""),
       shipments: Joi.number(),
+    });
+  }
+  static PlatformUpdateCartRequest() {
+    return Joi.object({
+      items: Joi.array().items(CartModel.UpdateProductCart()),
+      operation: Joi.string().allow("").required(),
+      user_id: Joi.string().allow(""),
     });
   }
   static PostOrder() {

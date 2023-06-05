@@ -139,6 +139,7 @@ class CartValidator {
   static getCart() {
     return Joi.object({
       id: Joi.string().allow(""),
+      userId: Joi.string().allow(""),
       i: Joi.boolean(),
       b: Joi.boolean(),
       assignCardId: Joi.number(),
@@ -262,7 +263,7 @@ class CartValidator {
       b: Joi.boolean(),
       buyNow: Joi.boolean(),
       id: Joi.string().allow(""),
-      body: CartModel.AddCartRequest().required(),
+      body: CartModel.PlatformAddCartRequest().required(),
     }).required();
   }
 
@@ -286,7 +287,7 @@ class CartValidator {
       i: Joi.boolean(),
       b: Joi.boolean(),
       buyNow: Joi.boolean(),
-      body: CartModel.UpdateCartRequest().required(),
+      body: CartModel.PlatformUpdateCartRequest().required(),
     }).required();
   }
 
