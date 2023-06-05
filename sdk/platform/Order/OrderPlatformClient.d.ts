@@ -311,6 +311,7 @@ declare class Order {
      * @param {string} [arg.fromDate] -
      * @param {string} [arg.toDate] -
      * @param {string} [arg.dpIds] - Delivery Partner IDs to which shipments are assigned.
+     * @param {string} [arg.salesChannel] -
      * @param {number} [arg.pageNo] -
      * @param {number} [arg.pageSize] -
      * @param {boolean} [arg.isPrioritySort] -
@@ -319,7 +320,7 @@ declare class Order {
      * @summary:
      * @description:
      */
-    getOrders({ lane, searchType, bagStatus, timeToDispatch, paymentMethods, tags, searchValue, fromDate, toDate, dpIds, pageNo, pageSize, isPrioritySort, customMeta, }?: {
+    getOrders({ lane, searchType, bagStatus, timeToDispatch, paymentMethods, tags, searchValue, fromDate, toDate, dpIds, salesChannel, pageNo, pageSize, isPrioritySort, customMeta, }?: {
         lane?: string;
         searchType?: string;
         bagStatus?: string;
@@ -330,6 +331,7 @@ declare class Order {
         fromDate?: string;
         toDate?: string;
         dpIds?: string;
+        salesChannel?: string;
         pageNo?: number;
         pageSize?: number;
         isPrioritySort?: boolean;

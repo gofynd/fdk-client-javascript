@@ -2702,6 +2702,7 @@ const promise = platformClient.order.getOrders({  lane : value,
  fromDate : value,
  toDate : value,
  dpIds : value,
+ salesChannel : value,
  pageNo : value,
  pageSize : value,
  isPrioritySort : value,
@@ -2718,6 +2719,7 @@ const data = await platformClient.order.getOrders({  lane : value,
  fromDate : value,
  toDate : value,
  dpIds : value,
+ salesChannel : value,
  pageNo : value,
  pageSize : value,
  isPrioritySort : value,
@@ -2740,6 +2742,7 @@ const data = await platformClient.order.getOrders({  lane : value,
 | fromDate | string | no |  |    
 | toDate | string | no |  |    
 | dpIds | string | no | Delivery Partner IDs to which shipments are assigned. |    
+| salesChannel | string | no |  |    
 | pageNo | number | no |  |    
 | pageSize | number | no |  |    
 | isPrioritySort | boolean | no |  |    
@@ -6897,9 +6900,11 @@ Verify OTP
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | assets | [String: string]? |  yes  |  |
  | expires_in | string |  no  |  |
+ | presigned_type | string |  no  |  |
+ | presigned_urls | [String: string]? |  yes  |  |
  | shipment_id | string |  no  |  |
+ | success | boolean |  no  |  |
  
 
 ---
@@ -9129,8 +9134,8 @@ Verify OTP
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | presigned_type | string |  no  |  |
- | result | [[AssetByShipment](#AssetByShipment)] |  no  |  |
+ | data | [[AssetByShipment](#AssetByShipment)] |  no  |  |
+ | message | string |  no  |  |
  | success | boolean |  no  |  |
  
 

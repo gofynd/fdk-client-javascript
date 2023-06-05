@@ -236,9 +236,11 @@ class OrderModel {
   }
   static AssetByShipment() {
     return Joi.object({
-      assets: Joi.object().pattern(/\S/, Joi.string().allow("")),
       expires_in: Joi.string().allow("").required(),
+      presigned_type: Joi.string().allow("").required(),
+      presigned_urls: Joi.object().pattern(/\S/, Joi.string().allow("")),
       shipment_id: Joi.string().allow("").required(),
+      success: Joi.boolean().required(),
     });
   }
   static AttachOrderUser() {
@@ -1835,8 +1837,8 @@ class OrderModel {
   }
   static ResponseGetAssetShipment() {
     return Joi.object({
-      presigned_type: Joi.string().allow("").required(),
-      result: Joi.array().items(OrderModel.AssetByShipment()).required(),
+      data: Joi.array().items(OrderModel.AssetByShipment()).required(),
+      message: Joi.string().allow("").required(),
       success: Joi.boolean().required(),
     });
   }

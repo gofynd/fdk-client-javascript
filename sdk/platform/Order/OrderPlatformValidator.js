@@ -179,6 +179,7 @@ class OrderValidator {
       fromDate: Joi.string().allow(""),
       toDate: Joi.string().allow(""),
       dpIds: Joi.string().allow(""),
+      salesChannel: Joi.string().allow(""),
       pageNo: Joi.number(),
       pageSize: Joi.number(),
       isPrioritySort: Joi.boolean(),

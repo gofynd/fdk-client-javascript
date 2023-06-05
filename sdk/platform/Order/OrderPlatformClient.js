@@ -1597,6 +1597,7 @@ class Order {
    * @param {string} [arg.fromDate] -
    * @param {string} [arg.toDate] -
    * @param {string} [arg.dpIds] - Delivery Partner IDs to which shipments are assigned.
+   * @param {string} [arg.salesChannel] -
    * @param {number} [arg.pageNo] -
    * @param {number} [arg.pageSize] -
    * @param {boolean} [arg.isPrioritySort] -
@@ -1616,6 +1617,7 @@ class Order {
     fromDate,
     toDate,
     dpIds,
+    salesChannel,
     pageNo,
     pageSize,
     isPrioritySort,
@@ -1633,6 +1635,7 @@ class Order {
         fromDate,
         toDate,
         dpIds,
+        salesChannel,
         pageNo,
         pageSize,
         isPrioritySort,
@@ -1657,6 +1660,7 @@ class Order {
         fromDate,
         toDate,
         dpIds,
+        salesChannel,
         pageNo,
         pageSize,
         isPrioritySort,
@@ -1683,6 +1687,7 @@ class Order {
     query_params["from_date"] = fromDate;
     query_params["to_date"] = toDate;
     query_params["dp_ids"] = dpIds;
+    query_params["sales_channel"] = salesChannel;
     query_params["page_no"] = pageNo;
     query_params["page_size"] = pageSize;
     query_params["is_priority_sort"] = isPrioritySort;
