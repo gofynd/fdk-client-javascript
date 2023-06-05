@@ -606,7 +606,7 @@ class OrderModel {
       bags: Joi.array().items(OrderModel.Bags()),
       is_bag_locked: Joi.boolean(),
       is_shipment_locked: Joi.boolean(),
-      lock_status: Joi.string().allow("").allow(null),
+      lock_status: Joi.string().allow(""),
       original_filter: OrderModel.OriginalFilter(),
       shipment_id: Joi.string().allow(""),
       status: Joi.string().allow(""),
@@ -685,13 +685,13 @@ class OrderModel {
   }
   static CreateOrderErrorReponse() {
     return Joi.object({
-      code: Joi.string().allow("").allow(null),
-      exception: Joi.string().allow("").allow(null),
+      code: Joi.string().allow(""),
+      exception: Joi.string().allow(""),
       info: Joi.any(),
       message: Joi.string().allow("").required(),
-      meta: Joi.string().allow("").allow(null),
-      request_id: Joi.string().allow("").allow(null),
-      stack_trace: Joi.string().allow("").allow(null),
+      meta: Joi.string().allow(""),
+      request_id: Joi.string().allow(""),
+      stack_trace: Joi.string().allow(""),
       status: Joi.number().required(),
     });
   }
@@ -1166,8 +1166,8 @@ class OrderModel {
   }
   static MarketPlacePdf() {
     return Joi.object({
-      invoice: Joi.string().allow("").allow(null),
-      label: Joi.string().allow("").allow(null),
+      invoice: Joi.string().allow(""),
+      label: Joi.string().allow(""),
     });
   }
   static Meta() {
@@ -1262,7 +1262,7 @@ class OrderModel {
   static OrderBrandName() {
     return Joi.object({
       brand_name: Joi.string().allow(""),
-      company: Joi.string().allow("").allow(null).required(),
+      company: Joi.number().allow(null).required(),
       created_on: Joi.string().allow(""),
       id: Joi.number().required(),
       logo: Joi.string().allow(""),
@@ -1323,7 +1323,7 @@ class OrderModel {
       bags: Joi.array().items(OrderModel.AffiliateBag()).required(),
       billing_address: OrderModel.OrderUser().required(),
       cod_charges: Joi.number().required(),
-      coupon: Joi.string().allow("").allow(null),
+      coupon: Joi.string().allow(""),
       delivery_charges: Joi.number().required(),
       discount: Joi.number().required(),
       items: Joi.any().required(),
@@ -1386,8 +1386,8 @@ class OrderModel {
   }
   static OrderPriority() {
     return Joi.object({
-      affiliate_priority_code: Joi.string().allow("").allow(null),
-      fulfilment_priority: Joi.number().allow(null),
+      affiliate_priority_code: Joi.string().allow(""),
+      fulfilment_priority: Joi.number(),
       fulfilment_priority_text: Joi.string().allow(""),
     });
   }
@@ -1414,8 +1414,8 @@ class OrderModel {
   }
   static OrderUser() {
     return Joi.object({
-      address1: Joi.string().allow("").allow(null),
-      address2: Joi.string().allow("").allow(null),
+      address1: Joi.string().allow(""),
+      address2: Joi.string().allow(""),
       city: Joi.string().allow("").required(),
       country: Joi.string().allow("").required(),
       email: Joi.string().allow("").required(),
@@ -1866,7 +1866,7 @@ class OrderModel {
   static SendUserMobileOTP() {
     return Joi.object({
       country_code: Joi.string().allow(""),
-      mobile: Joi.number().required(),
+      mobile: Joi.string().allow("").required(),
     });
   }
   static SendUserMobileOtpResponse() {
@@ -1924,8 +1924,8 @@ class OrderModel {
     return Joi.object({
       affiliate_shipment_id: Joi.string().allow("").required(),
       articles: Joi.array().items(OrderModel.ArticleDetails1()).required(),
-      box_type: Joi.string().allow("").allow(null),
-      dp_id: Joi.number().allow(null),
+      box_type: Joi.string().allow(""),
+      dp_id: Joi.number(),
       fulfillment_id: Joi.number().required(),
       meta: Joi.any(),
       shipments: Joi.number().required(),
@@ -2319,15 +2319,15 @@ class OrderModel {
   }
   static StoreReassign() {
     return Joi.object({
-      affiliate_bag_id: Joi.string().allow("").allow(null),
-      affiliate_id: Joi.string().allow("").allow(null),
-      affiliate_order_id: Joi.string().allow("").allow(null),
-      bag_id: Joi.number().allow(null),
-      fynd_order_id: Joi.string().allow("").allow(null),
-      item_id: Joi.string().allow("").allow(null),
-      mongo_article_id: Joi.string().allow("").allow(null),
-      reason_ids: Joi.array().items(Joi.number()),
-      set_id: Joi.string().allow("").allow(null),
+      affiliate_bag_id: Joi.string().allow("").allow(null).required(),
+      affiliate_id: Joi.string().allow("").allow(null).required(),
+      affiliate_order_id: Joi.string().allow("").allow(null).required(),
+      bag_id: Joi.number().allow(null).required(),
+      fynd_order_id: Joi.string().allow("").allow(null).required(),
+      item_id: Joi.string().allow("").allow(null).required(),
+      mongo_article_id: Joi.string().allow("").allow(null).required(),
+      reason_ids: Joi.array().items(Joi.number()).required(),
+      set_id: Joi.string().allow("").allow(null).required(),
       store_id: Joi.number().required(),
     });
   }

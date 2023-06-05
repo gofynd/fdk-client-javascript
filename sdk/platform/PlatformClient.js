@@ -2644,6 +2644,7 @@ class PlatformClient {
  * @typedef Subscription
  * @property {string} [_id]
  * @property {boolean} [cancel_at_period_end]
+ * @property {string} [channel_type]
  * @property {string} [collection_method]
  * @property {string} [created_at]
  * @property {SubscriptionCurrentPeriod} [current_period]
@@ -2653,7 +2654,7 @@ class PlatformClient {
  * @property {string} [latest_invoice]
  * @property {string} [modified_at]
  * @property {SubscriptionPauseCollection} [pause_collection]
- * @property {Object} [plan_data]
+ * @property {Plan} [plan_data]
  * @property {string} [plan_id]
  * @property {string} [product_suite_id]
  * @property {string} [subscriber_id]
@@ -2708,7 +2709,6 @@ class PlatformClient {
  * @property {string} [_id]
  * @property {SubscriptionBillingAddress} [billing_address]
  * @property {string} [created_at]
- * @property {number} [credit_balance]
  * @property {Object} [data]
  * @property {string} [email]
  * @property {string} [modified_at]
@@ -2782,8 +2782,11 @@ class PlatformClient {
  */
 /**
  * @typedef SubscriptionStatus
+ * @property {Subscription[]} [current_subscriptions]
  * @property {boolean} [is_enabled]
- * @property {number} [mandate_amount]
+ * @property {InvoicesData} [latest_invoice]
+ * @property {string} [mandate_amount]
+ * @property {Plan} [next_plan]
  * @property {Subscription} [subscription]
  */
 /**
@@ -5488,7 +5491,7 @@ class PlatformClient {
 /**
  * @typedef OrderBrandName
  * @property {string} [brand_name]
- * @property {string} company
+ * @property {number} company
  * @property {string} [created_on]
  * @property {number} id
  * @property {string} [logo]
@@ -6029,7 +6032,7 @@ class PlatformClient {
 /**
  * @typedef SendUserMobileOTP
  * @property {string} [country_code]
- * @property {number} mobile
+ * @property {string} mobile
  */
 /**
  * @typedef SendUserMobileOtpResponse
@@ -6446,15 +6449,15 @@ class PlatformClient {
  */
 /**
  * @typedef StoreReassign
- * @property {string} [affiliate_bag_id]
- * @property {string} [affiliate_id]
- * @property {string} [affiliate_order_id]
- * @property {number} [bag_id]
- * @property {string} [fynd_order_id]
- * @property {string} [item_id]
- * @property {string} [mongo_article_id]
- * @property {number[]} [reason_ids]
- * @property {string} [set_id]
+ * @property {string} affiliate_bag_id
+ * @property {string} affiliate_id
+ * @property {string} affiliate_order_id
+ * @property {number} bag_id
+ * @property {string} fynd_order_id
+ * @property {string} item_id
+ * @property {string} mongo_article_id
+ * @property {number[]} reason_ids
+ * @property {string} set_id
  * @property {number} store_id
  */
 /**
@@ -7444,7 +7447,7 @@ class PlatformClient {
  * @property {Object} [_custom_json]
  * @property {string} app_id
  * @property {boolean} [is_active]
- * @property {SearchKeywordResult} result
+ * @property {SearchKeywordResult1} result
  * @property {string[]} [words]
  */
 /**
@@ -7730,15 +7733,15 @@ class PlatformClient {
  * @property {GetAddressSerializer[]} [addresses]
  * @property {string} [business_type]
  * @property {string} [company_type]
- * @property {UserSerializer2} [created_by]
+ * @property {UserSerializer1} [created_by]
  * @property {string} [created_on]
- * @property {UserSerializer2} [modified_by]
+ * @property {UserSerializer1} [modified_by]
  * @property {string} [modified_on]
  * @property {string} [name]
  * @property {string} [reject_reason]
  * @property {string} [stage]
  * @property {number} [uid]
- * @property {UserSerializer2} [verified_by]
+ * @property {UserSerializer1} [verified_by]
  * @property {string} [verified_on]
  */
 /**
@@ -7797,14 +7800,14 @@ class PlatformClient {
  * @property {string} code
  * @property {GetCompanySerializer} [company]
  * @property {SellerPhoneNumber[]} [contact_numbers]
- * @property {UserSerializer1} [created_by]
+ * @property {UserSerializer2} [created_by]
  * @property {string} [created_on]
  * @property {string} display_name
  * @property {Document[]} [documents]
  * @property {InvoiceDetailsSerializer} [gst_credentials]
  * @property {LocationIntegrationType} [integration_type]
  * @property {LocationManagerSerializer} [manager]
- * @property {UserSerializer1} [modified_by]
+ * @property {UserSerializer2} [modified_by]
  * @property {string} [modified_on]
  * @property {string} name
  * @property {string[]} [notification_emails]
@@ -7814,7 +7817,7 @@ class PlatformClient {
  * @property {string} [store_type]
  * @property {LocationDayWiseSerializer[]} [timing]
  * @property {number} [uid]
- * @property {UserSerializer1} [verified_by]
+ * @property {UserSerializer2} [verified_by]
  * @property {string} [verified_on]
  * @property {Object} [warnings]
  */
@@ -7876,7 +7879,7 @@ class PlatformClient {
  * @property {Object} [_custom_json]
  * @property {string} app_id
  * @property {boolean} [is_active]
- * @property {SearchKeywordResult1} result
+ * @property {SearchKeywordResult} result
  * @property {string} [uid]
  * @property {string[]} [words]
  */

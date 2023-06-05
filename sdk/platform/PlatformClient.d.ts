@@ -2166,6 +2166,7 @@ type ResourceNotFound = {
 type Subscription = {
     _id?: string;
     cancel_at_period_end?: boolean;
+    channel_type?: string;
     collection_method?: string;
     created_at?: string;
     current_period?: SubscriptionCurrentPeriod;
@@ -2175,7 +2176,7 @@ type Subscription = {
     latest_invoice?: string;
     modified_at?: string;
     pause_collection?: SubscriptionPauseCollection;
-    plan_data?: any;
+    plan_data?: Plan;
     plan_id?: string;
     product_suite_id?: string;
     subscriber_id?: string;
@@ -2224,7 +2225,6 @@ type SubscriptionCustomer = {
     _id?: string;
     billing_address?: SubscriptionBillingAddress;
     created_at?: string;
-    credit_balance?: number;
     data?: any;
     email?: string;
     modified_at?: string;
@@ -2286,8 +2286,11 @@ type SubscriptionPauseCollection = {
     resume_at?: string;
 };
 type SubscriptionStatus = {
+    current_subscriptions?: Subscription[];
     is_enabled?: boolean;
-    mandate_amount?: number;
+    latest_invoice?: InvoicesData;
+    mandate_amount?: string;
+    next_plan?: Plan;
     subscription?: Subscription;
 };
 type SubscriptionTrial = {
@@ -4630,7 +4633,7 @@ type OrderBags = {
 };
 type OrderBrandName = {
     brand_name?: string;
-    company: string;
+    company: number;
     created_on?: string;
     id: number;
     logo?: string;
@@ -5101,7 +5104,7 @@ type SendSmsPayload = {
 };
 type SendUserMobileOTP = {
     country_code?: string;
-    mobile: number;
+    mobile: string;
 };
 type SendUserMobileOtpResponse = {
     data?: PointBlankOtpData;
@@ -5482,15 +5485,15 @@ type StoreMeta = {
     timing?: any[];
 };
 type StoreReassign = {
-    affiliate_bag_id?: string;
-    affiliate_id?: string;
-    affiliate_order_id?: string;
-    bag_id?: number;
-    fynd_order_id?: string;
-    item_id?: string;
-    mongo_article_id?: string;
-    reason_ids?: number[];
-    set_id?: string;
+    affiliate_bag_id: string;
+    affiliate_id: string;
+    affiliate_order_id: string;
+    bag_id: number;
+    fynd_order_id: string;
+    item_id: string;
+    mongo_article_id: string;
+    reason_ids: number[];
+    set_id: string;
     store_id: number;
 };
 type StoreReassignResponse = {
@@ -6333,7 +6336,7 @@ type CreateSearchKeyword = {
     _custom_json?: any;
     app_id: string;
     is_active?: boolean;
-    result: SearchKeywordResult;
+    result: SearchKeywordResult1;
     words?: string[];
 };
 type CreateSearchReranking = {
@@ -6562,15 +6565,15 @@ type GetCompanySerializer = {
     addresses?: GetAddressSerializer[];
     business_type?: string;
     company_type?: string;
-    created_by?: UserSerializer2;
+    created_by?: UserSerializer1;
     created_on?: string;
-    modified_by?: UserSerializer2;
+    modified_by?: UserSerializer1;
     modified_on?: string;
     name?: string;
     reject_reason?: string;
     stage?: string;
     uid?: number;
-    verified_by?: UserSerializer2;
+    verified_by?: UserSerializer1;
     verified_on?: string;
 };
 type GetConfigMetadataResponse = {
@@ -6624,14 +6627,14 @@ type GetLocationSerializer = {
     code: string;
     company?: GetCompanySerializer;
     contact_numbers?: SellerPhoneNumber[];
-    created_by?: UserSerializer1;
+    created_by?: UserSerializer2;
     created_on?: string;
     display_name: string;
     documents?: Document[];
     gst_credentials?: InvoiceDetailsSerializer;
     integration_type?: LocationIntegrationType;
     manager?: LocationManagerSerializer;
-    modified_by?: UserSerializer1;
+    modified_by?: UserSerializer2;
     modified_on?: string;
     name: string;
     notification_emails?: string[];
@@ -6641,7 +6644,7 @@ type GetLocationSerializer = {
     store_type?: string;
     timing?: LocationDayWiseSerializer[];
     uid?: number;
-    verified_by?: UserSerializer1;
+    verified_by?: UserSerializer2;
     verified_on?: string;
     warnings?: any;
 };
@@ -6697,7 +6700,7 @@ type GetSearchWordsData = {
     _custom_json?: any;
     app_id: string;
     is_active?: boolean;
-    result: SearchKeywordResult1;
+    result: SearchKeywordResult;
     uid?: string;
     words?: string[];
 };

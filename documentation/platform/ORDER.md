@@ -8328,7 +8328,7 @@ Verify OTP
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | brand_name | string? |  yes  |  |
- | company | string |  no  |  |
+ | company | number |  no  |  |
  | created_on | string? |  yes  |  |
  | id | number |  no  |  |
  | logo | string? |  yes  |  |
@@ -9173,7 +9173,7 @@ Verify OTP
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | country_code | string? |  yes  |  |
- | mobile | number |  no  |  |
+ | mobile | string |  no  |  |
  
 
 ---
@@ -9770,15 +9770,15 @@ Verify OTP
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | affiliate_bag_id | string? |  yes  |  |
- | affiliate_id | string? |  yes  |  |
- | affiliate_order_id | string? |  yes  |  |
- | bag_id | number? |  yes  |  |
- | fynd_order_id | string? |  yes  |  |
- | item_id | string? |  yes  |  |
- | mongo_article_id | string? |  yes  |  |
- | reason_ids | [number]? |  yes  |  |
- | set_id | string? |  yes  |  |
+ | affiliate_bag_id | string |  no  |  |
+ | affiliate_id | string |  no  |  |
+ | affiliate_order_id | string |  no  |  |
+ | bag_id | number |  no  |  |
+ | fynd_order_id | string |  no  |  |
+ | item_id | string |  no  |  |
+ | mongo_article_id | string |  no  |  |
+ | reason_ids | [number] |  no  |  |
+ | set_id | string |  no  |  |
  | store_id | number |  no  |  |
  
 

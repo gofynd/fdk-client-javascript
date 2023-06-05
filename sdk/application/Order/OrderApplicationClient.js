@@ -339,7 +339,7 @@ class Order {
    * @param {Object} arg - Arg object.
    * @param {string} arg.orderId - A unique number used for identifying and
    *   tracking your orders.
-   * @returns {Promise<OrderList>} - Success response
+   * @returns {Promise<OrderById>} - Success response
    * @summary: Get POS Order
    * @description: Use this API to retrieve a POS order and all its details such as tracking details, shipment, store information using Fynd Order ID.
    */
@@ -381,7 +381,7 @@ class Order {
       xHeaders
     );
 
-    const { error: res_error } = OrderModel.OrderList().validate(response, {
+    const { error: res_error } = OrderModel.OrderById().validate(response, {
       abortEarly: false,
       allowUnknown: false,
     });

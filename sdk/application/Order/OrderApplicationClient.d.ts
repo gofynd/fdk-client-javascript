@@ -86,13 +86,13 @@ declare class Order {
      * @param {Object} arg - Arg object.
      * @param {string} arg.orderId - A unique number used for identifying and
      *   tracking your orders.
-     * @returns {Promise<OrderList>} - Success response
+     * @returns {Promise<OrderById>} - Success response
      * @summary: Get POS Order
      * @description: Use this API to retrieve a POS order and all its details such as tracking details, shipment, store information using Fynd Order ID.
      */
     getPosOrderById({ orderId }?: {
         orderId: string;
-    }): Promise<OrderList>;
+    }): Promise<OrderById>;
     /**
      * @param {Object} arg - Arg object.
      * @param {number} arg.companyId -
