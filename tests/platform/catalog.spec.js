@@ -7,7 +7,7 @@ beforeAll(async () => {
   try {
     let platformConfig = new PlatformConfig({
       companyId: 1,
-      domain: "https://api.fyndx0.de",
+      domain: "https://api.fyndx1.de",
       apiKey: process.env.API_KEY,
       apiSecret: process.env.API_SECRET,
     });
@@ -42,7 +42,7 @@ describe("Platform Common Test Cases", () => {
   it("search application by name", async () => {
     let locations = await platformClient.common.searchApplication({
       authorization: `Basic ${process.env.AUTH_HEADER}`,
-      query: "cirnum.hostx0.de",
+      query: "shoplune.hostx1.de",
     });
     expect(locations && typeof locations === "object").toBe(true);
   });

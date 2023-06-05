@@ -1,4 +1,5 @@
 const { fdkAxios } = require("../common/AxiosHelper");
+const { btoa } = require("isomorphic-base64");
 
 class APIClient {
   /**
@@ -10,10 +11,7 @@ class APIClient {
    */
 
   static execute(conf, method, url, query, body, xHeaders) {
-    const token = Buffer.from(
-      `${conf.applicationID}:${conf.applicationToken}`,
-      "utf8"
-    ).toString("base64");
+    const token = btoa(`${conf.applicationID}:${conf.applicationToken}`);
 
     let headers = { Authorization: "Bearer " + token };
     if (conf.cookie) {
@@ -25,18 +23,23 @@ class APIClient {
         "x-location-detail": JSON.stringify(conf.locationDetails),
       };
     }
+    if (conf.currencyCode) {
+      headers = { ...headers, "x-currency-code": conf.currencyCode };
+    }
     const extraHeaders = conf.extraHeaders.reduce((acc, curr) => {
       acc = { ...acc, ...curr };
       return acc;
     }, {});
 
-    const rawRequest = {
+    let rawRequest = {
       method: method,
       url: url,
       params: query,
       data: body,
       headers: { ...headers, ...extraHeaders, ...xHeaders },
     };
+    rawRequest = JSON.parse(JSON.stringify(rawRequest));
+
     return fdkAxios.request(rawRequest);
   }
 }

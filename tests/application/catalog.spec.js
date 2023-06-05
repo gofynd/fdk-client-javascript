@@ -1,10 +1,8 @@
 const { ApplicationConfig, ApplicationClient } = require("../../index.js");
-const setupCookieInterceptor = require("../helpers/cookie.helper");
 require("dotenv").config();
 let applicationClient;
 
 beforeAll(() => {
-  setupCookieInterceptor();
   const config = new ApplicationConfig({
     domain: "https://api.fynd.com",
     applicationID: "000000000000000000000001",
@@ -43,5 +41,12 @@ describe("Application Common Test Cases ", () => {
       query: "pc.fyndstore.co",
     });
     expect(locations && typeof locations === "object").toBe(true);
+  });
+});
+
+describe("Application Content Test Cases ", () => {
+  it("getNavigations test", async () => {
+    let res = await applicationClient.content.getNavigations();
+    expect(res).not.toBeNull();
   });
 });

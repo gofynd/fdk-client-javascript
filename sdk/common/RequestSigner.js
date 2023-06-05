@@ -1,6 +1,5 @@
 "use strict";
 
-const url = require("url");
 const querystring = require("query-string");
 const sha256 = require("crypto-js/sha256");
 const hmacSHA256 = require("crypto-js/hmac-sha256");
@@ -39,10 +38,6 @@ const HEADERS_TO_INCLUDE = ["x-fp-.*", "host"];
 // request: { path | body, [host], [method], [headers], [service], [region] }
 class RequestSigner {
   constructor(request) {
-    if (typeof request === "string") {
-      request = url.parse(request);
-    }
-
     let headers = (request.headers = request.headers || {});
     this.request = request;
 

@@ -2,55 +2,1092 @@
 
 
 
+
 ##### [Back to Platform docs](./README.md)
 
 ## Communication Methods
 Manages email, sms, push notifications sent to users
-* [getCampaigns](#getcampaigns)
-* [createCampaign](#createcampaign)
-* [getCampaignById](#getcampaignbyid)
-* [updateCampaignById](#updatecampaignbyid)
-* [getStatsOfCampaignById](#getstatsofcampaignbyid)
-* [getAudiences](#getaudiences)
+
 * [createAudience](#createaudience)
-* [getBigqueryHeaders](#getbigqueryheaders)
-* [getAudienceById](#getaudiencebyid)
-* [updateAudienceById](#updateaudiencebyid)
-* [getNSampleRecordsFromCsv](#getnsamplerecordsfromcsv)
-* [getEmailProviders](#getemailproviders)
+* [createCampaign](#createcampaign)
 * [createEmailProvider](#createemailprovider)
-* [getEmailProviderById](#getemailproviderbyid)
-* [updateEmailProviderById](#updateemailproviderbyid)
-* [getEmailTemplates](#getemailtemplates)
 * [createEmailTemplate](#createemailtemplate)
-* [getSystemEmailTemplates](#getsystememailtemplates)
-* [getEmailTemplateById](#getemailtemplatebyid)
-* [updateEmailTemplateById](#updateemailtemplatebyid)
-* [deleteEmailTemplateById](#deleteemailtemplatebyid)
-* [sendCommunicationSynchronously](#sendcommunicationsynchronously)
-* [sendCommunicationAsynchronously](#sendcommunicationasynchronously)
-* [getEventSubscriptions](#geteventsubscriptions)
-* [getJobs](#getjobs)
-* [triggerCampaignJob](#triggercampaignjob)
-* [getJobLogs](#getjoblogs)
-* [getCommunicationLogs](#getcommunicationlogs)
-* [getSystemNotifications](#getsystemnotifications)
-* [sendOtp](#sendotp)
-* [verfiyOtp](#verfiyotp)
-* [getSmsProviders](#getsmsproviders)
 * [createSmsProvider](#createsmsprovider)
-* [getSmsProviderById](#getsmsproviderbyid)
-* [updateSmsProviderById](#updatesmsproviderbyid)
-* [getSmsTemplates](#getsmstemplates)
 * [createSmsTemplate](#createsmstemplate)
-* [getSmsTemplateById](#getsmstemplatebyid)
-* [updateSmsTemplateById](#updatesmstemplatebyid)
+* [deleteEmailTemplateById](#deleteemailtemplatebyid)
 * [deleteSmsTemplateById](#deletesmstemplatebyid)
+* [getAudienceById](#getaudiencebyid)
+* [getAudiences](#getaudiences)
+* [getBigqueryHeaders](#getbigqueryheaders)
+* [getCampaignById](#getcampaignbyid)
+* [getCampaigns](#getcampaigns)
+* [getCommunicationLogs](#getcommunicationlogs)
+* [getEmailProviderById](#getemailproviderbyid)
+* [getEmailProviders](#getemailproviders)
+* [getEmailTemplateById](#getemailtemplatebyid)
+* [getEmailTemplates](#getemailtemplates)
+* [getEventSubscriptions](#geteventsubscriptions)
+* [getJobLogs](#getjoblogs)
+* [getJobs](#getjobs)
+* [getNSampleRecordsFromCsv](#getnsamplerecordsfromcsv)
+* [getSmsProviderById](#getsmsproviderbyid)
+* [getSmsProviders](#getsmsproviders)
+* [getSmsTemplateById](#getsmstemplatebyid)
+* [getSmsTemplates](#getsmstemplates)
+* [getStatsOfCampaignById](#getstatsofcampaignbyid)
+* [getSystemEmailTemplates](#getsystememailtemplates)
+* [getSystemNotifications](#getsystemnotifications)
 * [getSystemSystemTemplates](#getsystemsystemtemplates)
+* [sendCommunicationAsynchronously](#sendcommunicationasynchronously)
+* [sendCommunicationSynchronously](#sendcommunicationsynchronously)
+* [sendOtp](#sendotp)
+* [triggerCampaignJob](#triggercampaignjob)
+* [updateAudienceById](#updateaudiencebyid)
+* [updateCampaignById](#updatecampaignbyid)
+* [updateEmailProviderById](#updateemailproviderbyid)
+* [updateEmailTemplateById](#updateemailtemplatebyid)
+* [updateSmsProviderById](#updatesmsproviderbyid)
+* [updateSmsTemplateById](#updatesmstemplatebyid)
+* [verfiyOtp](#verfiyotp)
 
 
 
 ## Methods with example and description
+
+
+
+
+### createAudience
+Create audience
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").communication.createAudience({  body : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").communication.createAudience({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [AudienceReq](#AudienceReq) | yes | Request body |
+
+
+Create audience
+
+*Returned Response:*
+
+
+
+
+[Audience](#Audience)
+
+Success
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; default</i></summary>
+
+```json
+{
+  "value": {
+    "description": "test description",
+    "tags": [
+      "csv"
+    ],
+    "headers": [
+      "phone_number",
+      "email",
+      "firstname",
+      "lastname",
+      "orderid"
+    ],
+    "is_active": true,
+    "_id": "5fb6675c09fd901023917a5f",
+    "name": "Test csv",
+    "file_url": "https://hdn-1.addsale.com/x0/application/000000000000000000000004/datasources/2_r_D1jt6-test-1-entries.csv",
+    "type": "raw_csv",
+    "records_count": 3,
+    "application": "000000000000000000000004",
+    "created_at": "2020-11-19T12:38:52.580Z",
+    "updated_at": "2020-11-19T12:38:52.580Z",
+    "slug": "Test-csv",
+    "__v": 0
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### createCampaign
+Create campaign
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").communication.createCampaign({  body : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").communication.createCampaign({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [CampaignReq](#CampaignReq) | yes | Request body |
+
+
+Create campaign
+
+*Returned Response:*
+
+
+
+
+[Campaign](#Campaign)
+
+Success
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; default</i></summary>
+
+```json
+{
+  "value": {
+    "recipient_headers": {
+      "email": "email"
+    },
+    "email": {
+      "template": {
+        "key": "_id",
+        "value": "5fb6757a09fd90ca91917a60"
+      },
+      "provider": {
+        "_id": "5e560652b5eb4b1f13b4d601",
+        "from_name": "Fynd",
+        "from_email": "hey@gofynd.com"
+      }
+    },
+    "description": "",
+    "tags": [],
+    "is_active": true,
+    "_id": "6009a1ea1f6a61d88e80a867",
+    "datasource": "6009a1be1f6a61a13180a866",
+    "type": "email",
+    "name": "testing bq email",
+    "application": "000000000000000000000004",
+    "created_at": "2021-01-21T15:46:50.357Z",
+    "updated_at": "2021-01-21T15:46:50.357Z",
+    "slug": "testing-bq-email-vPyAd1YB1",
+    "__v": 0
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### createEmailProvider
+Create email provider
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").communication.createEmailProvider({  body : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").communication.createEmailProvider({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [EmailProviderReq](#EmailProviderReq) | yes | Request body |
+
+
+Create email provider
+
+*Returned Response:*
+
+
+
+
+[EmailProvider](#EmailProvider)
+
+Success
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; default</i></summary>
+
+```json
+{
+  "value": {
+    "type": "application",
+    "provider": "falconide",
+    "from_address": [
+      {
+        "is_default": true,
+        "name": "abc",
+        "email": "abc@test.com"
+      }
+    ],
+    "_id": "5fd9fd44c474a7e3d5d376d6",
+    "name": "test falconide",
+    "description": "test",
+    "api_key": "testtttt",
+    "application": "000000000000000000000004",
+    "created_at": "2020-12-16T12:27:48.051Z",
+    "updated_at": "2020-12-16T12:27:48.051Z",
+    "slug": "test-falconide-application-falconide-ZTD-D7wbB",
+    "__v": 0
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### createEmailTemplate
+Create email template
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").communication.createEmailTemplate({  body : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").communication.createEmailTemplate({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [EmailTemplateReq](#EmailTemplateReq) | yes | Request body |
+
+
+Create email template
+
+*Returned Response:*
+
+
+
+
+[EmailTemplateRes](#EmailTemplateRes)
+
+Success
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; default</i></summary>
+
+```json
+{
+  "value": {
+    "is_system": false,
+    "is_internal": false,
+    "description": "test template",
+    "static_to": [
+      "abc@gofynd.com"
+    ],
+    "static_cc": [
+      "abc@gofynd.com"
+    ],
+    "static_bcc": [
+      "abc@gofynd.com"
+    ],
+    "tags": [],
+    "priority": "low",
+    "published": false,
+    "_id": "5ef42a49c8b67d279c27a980",
+    "name": "test",
+    "keys": {
+      "bcc": "abc@gofynd.com"
+    },
+    "reply_to": "abc@gofynd.com",
+    "headers": [
+      {
+        "key": "x-test-header",
+        "value": "test123"
+      }
+    ],
+    "subject": {
+      "template_type": "static",
+      "template": "This is test email"
+    },
+    "html": {
+      "template_type": "static",
+      "template": "This is test email"
+    },
+    "text": {
+      "template_type": "static",
+      "template": "This is test email"
+    },
+    "attachments": [],
+    "created_at": "2021-02-08T03:33:42.103Z",
+    "updated_at": "2021-02-08T03:33:42.103Z",
+    "slug": "test-fZfGq0lSQ",
+    "__v": 0
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### createSmsProvider
+Create sms provider
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").communication.createSmsProvider({  body : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").communication.createSmsProvider({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [SmsProviderReq](#SmsProviderReq) | yes | Request body |
+
+
+Create sms provider
+
+*Returned Response:*
+
+
+
+
+[SmsProvider](#SmsProvider)
+
+Success
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; default</i></summary>
+
+```json
+{
+  "value": {
+    "rpt": 1,
+    "type": "application",
+    "provider": "telspiel",
+    "_id": "5fd9fd07c474a7710dd376d5",
+    "name": "test telspiel",
+    "description": "test",
+    "sender": "test",
+    "username": "test",
+    "authkey": "test",
+    "application": "000000000000000000000004",
+    "created_at": "2020-12-16T12:26:47.794Z",
+    "updated_at": "2020-12-16T12:26:47.794Z",
+    "slug": "test-telspiel-application-telspiel-p9UY1r7nG",
+    "__v": 0
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### createSmsTemplate
+Create sms template
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").communication.createSmsTemplate({  body : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").communication.createSmsTemplate({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [SmsTemplateReq](#SmsTemplateReq) | yes | Request body |
+
+
+Create sms template
+
+*Returned Response:*
+
+
+
+
+[SmsTemplateRes](#SmsTemplateRes)
+
+Success
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; default</i></summary>
+
+```json
+{
+  "value": {
+    "is_system": false,
+    "is_internal": true,
+    "description": "This is a test sms template",
+    "priority": "high",
+    "tags": [],
+    "published": true,
+    "_id": "5fd447728394dbf0d21329b3",
+    "slug": "test-sms",
+    "name": "Test sms",
+    "message": {
+      "template_type": "nunjucks",
+      "template": "This is a test sms for order - {{ orderId }}"
+    },
+    "template_variables": {
+      "orderId": "12345"
+    },
+    "created_at": "2020-12-12T04:30:42.456Z",
+    "updated_at": "2020-12-24T15:13:20.558Z",
+    "__v": 0
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### deleteEmailTemplateById
+Delete email template by id
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").communication.deleteEmailTemplateById({  id : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").communication.deleteEmailTemplateById({  id : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| id | string | yes | Email template id |  
+
+
+
+Delete email template by id
+
+*Returned Response:*
+
+
+
+
+[EmailTemplateDeleteSuccessRes](#EmailTemplateDeleteSuccessRes)
+
+Success
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; default</i></summary>
+
+```json
+{
+  "value": {
+    "success": true,
+    "message": "Deleted successfully"
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### deleteSmsTemplateById
+Delete sms template by id
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").communication.deleteSmsTemplateById({  id : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").communication.deleteSmsTemplateById({  id : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| id | string | yes | Sms template id |  
+
+
+
+Delete sms template by id
+
+*Returned Response:*
+
+
+
+
+[SmsTemplateDeleteSuccessRes](#SmsTemplateDeleteSuccessRes)
+
+Success
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; default</i></summary>
+
+```json
+{
+  "value": {
+    "success": true,
+    "message": "Deleted successfully"
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### getAudienceById
+Get audience by id
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").communication.getAudienceById({  id : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").communication.getAudienceById({  id : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| id | string | yes | Audience id |  
+
+
+
+Get audience by id
+
+*Returned Response:*
+
+
+
+
+[Audience](#Audience)
+
+Success
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; default</i></summary>
+
+```json
+{
+  "value": {
+    "description": "test description",
+    "tags": [
+      "csv"
+    ],
+    "headers": [
+      "phone_number",
+      "email",
+      "firstname",
+      "lastname",
+      "orderid"
+    ],
+    "is_active": true,
+    "_id": "5fb6675c09fd901023917a5f",
+    "name": "Test csv",
+    "file_url": "https://hdn-1.addsale.com/x0/application/000000000000000000000004/datasources/2_r_D1jt6-test-1-entries.csv",
+    "type": "raw_csv",
+    "records_count": 3,
+    "application": "000000000000000000000004",
+    "created_at": "2020-11-19T12:38:52.580Z",
+    "updated_at": "2020-11-19T12:38:52.580Z",
+    "slug": "Test-csv",
+    "__v": 0
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### getAudiences
+Get audiences
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").communication.getAudiences({  pageNo : value,
+ pageSize : value,
+ sort : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").communication.getAudiences({  pageNo : value,
+ pageSize : value,
+ sort : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| pageNo | number | no | Current page no |    
+| pageSize | number | no | Current request items count |    
+| sort | Object | no | To sort based on created_at |  
+
+
+
+Get audiences
+
+*Returned Response:*
+
+
+
+
+[Audiences](#Audiences)
+
+Success
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; default</i></summary>
+
+```json
+{
+  "value": {
+    "items": [
+      {
+        "description": "test description",
+        "tags": [
+          "csv"
+        ],
+        "headers": [
+          "phone_number",
+          "email",
+          "firstname",
+          "lastname",
+          "orderid"
+        ],
+        "is_active": true,
+        "_id": "5fb6675c09fd901023917a5f",
+        "name": "Test csv",
+        "file_url": "https://hdn-1.addsale.com/x0/application/000000000000000000000004/datasources/2_r_D1jt6-test-1-entries.csv",
+        "type": "raw_csv",
+        "records_count": 3,
+        "application": "000000000000000000000004",
+        "created_at": "2020-11-19T12:38:52.580Z",
+        "updated_at": "2020-11-19T12:38:52.580Z",
+        "slug": "Test-csv",
+        "__v": 0
+      }
+    ],
+    "page": {
+      "type": "number",
+      "current": 1,
+      "size": 1,
+      "item_total": 1,
+      "has_next": false
+    }
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### getBigqueryHeaders
+Get bigquery headers
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").communication.getBigqueryHeaders({  body : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").communication.getBigqueryHeaders({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [BigqueryHeadersReq](#BigqueryHeadersReq) | yes | Request body |
+
+
+Get bigquery headers
+
+*Returned Response:*
+
+
+
+
+[BigqueryHeadersRes](#BigqueryHeadersRes)
+
+Success
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; default</i></summary>
+
+```json
+{
+  "value": {
+    "headers": [
+      {
+        "name": "firstname",
+        "type": "STRING"
+      },
+      {
+        "name": "lastname",
+        "type": "STRING"
+      },
+      {
+        "name": "email",
+        "type": "STRING"
+      },
+      {
+        "name": "phone",
+        "type": "STRING"
+      },
+      {
+        "name": "countryCode",
+        "type": "STRING"
+      },
+      {
+        "name": "application",
+        "type": "STRING"
+      }
+    ]
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### getCampaignById
+Get campaign by id
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").communication.getCampaignById({  id : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").communication.getCampaignById({  id : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| id | string | yes | Campaign id |  
+
+
+
+Get campaign by id
+
+*Returned Response:*
+
+
+
+
+[Campaign](#Campaign)
+
+Success
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; default</i></summary>
+
+```json
+{
+  "value": {
+    "recipient_headers": {
+      "email": "email"
+    },
+    "email": {
+      "template": {
+        "key": "_id",
+        "value": "5fb6757a09fd90ca91917a60"
+      },
+      "provider": {
+        "_id": "5e560652b5eb4b1f13b4d601",
+        "from_name": "Fynd",
+        "from_email": "hey@gofynd.com"
+      }
+    },
+    "description": "",
+    "tags": [],
+    "is_active": true,
+    "_id": "6009a1ea1f6a61d88e80a867",
+    "datasource": "6009a1be1f6a61a13180a866",
+    "type": "email",
+    "name": "testing bq email",
+    "application": "000000000000000000000004",
+    "created_at": "2021-01-21T15:46:50.357Z",
+    "updated_at": "2021-01-21T15:46:50.357Z",
+    "slug": "testing-bq-email-vPyAd1YB1",
+    "__v": 0
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
 
 
 ### getCampaigns
@@ -60,12 +1097,12 @@ Get campaigns
 
 ```javascript
 // Promise
-const promise = client.application("<APPLICATION_ID>").communication.getCampaigns({  pageNo : value,
+const promise = platformClient.application("<APPLICATION_ID>").communication.getCampaigns({  pageNo : value,
  pageSize : value,
  sort : value });
 
 // Async/Await
-const data = await client.application("<APPLICATION_ID>").communication.getCampaigns({  pageNo : value,
+const data = await platformClient.application("<APPLICATION_ID>").communication.getCampaigns({  pageNo : value,
  pageSize : value,
  sort : value });
 ```
@@ -187,378 +1224,23 @@ Success
 ---
 
 
-### createCampaign
-Create campaign
+### getCommunicationLogs
+Get communication logs
 
 
 
 ```javascript
 // Promise
-const promise = client.application("<APPLICATION_ID>").communication.createCampaign({  body : value });
-
-// Async/Await
-const data = await client.application("<APPLICATION_ID>").communication.createCampaign({  body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |
-| body | [CampaignReq](#CampaignReq) | yes | Request body |
-
-
-Create campaign
-
-*Returned Response:*
-
-
-
-
-[Campaign](#Campaign)
-
-Success
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; default</i></summary>
-
-```json
-{
-  "value": {
-    "recipient_headers": {
-      "email": "email"
-    },
-    "email": {
-      "template": {
-        "key": "_id",
-        "value": "5fb6757a09fd90ca91917a60"
-      },
-      "provider": {
-        "_id": "5e560652b5eb4b1f13b4d601",
-        "from_name": "Fynd",
-        "from_email": "hey@gofynd.com"
-      }
-    },
-    "description": "",
-    "tags": [],
-    "is_active": true,
-    "_id": "6009a1ea1f6a61d88e80a867",
-    "datasource": "6009a1be1f6a61a13180a866",
-    "type": "email",
-    "name": "testing bq email",
-    "application": "000000000000000000000004",
-    "created_at": "2021-01-21T15:46:50.357Z",
-    "updated_at": "2021-01-21T15:46:50.357Z",
-    "slug": "testing-bq-email-vPyAd1YB1",
-    "__v": 0
-  }
-}
-```
-</details>
-
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### getCampaignById
-Get campaign by id
-
-
-
-```javascript
-// Promise
-const promise = client.application("<APPLICATION_ID>").communication.getCampaignById({  id : value });
-
-// Async/Await
-const data = await client.application("<APPLICATION_ID>").communication.getCampaignById({  id : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| id | string | yes | Campaign id |  
-
-
-
-Get campaign by id
-
-*Returned Response:*
-
-
-
-
-[Campaign](#Campaign)
-
-Success
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; default</i></summary>
-
-```json
-{
-  "value": {
-    "recipient_headers": {
-      "email": "email"
-    },
-    "email": {
-      "template": {
-        "key": "_id",
-        "value": "5fb6757a09fd90ca91917a60"
-      },
-      "provider": {
-        "_id": "5e560652b5eb4b1f13b4d601",
-        "from_name": "Fynd",
-        "from_email": "hey@gofynd.com"
-      }
-    },
-    "description": "",
-    "tags": [],
-    "is_active": true,
-    "_id": "6009a1ea1f6a61d88e80a867",
-    "datasource": "6009a1be1f6a61a13180a866",
-    "type": "email",
-    "name": "testing bq email",
-    "application": "000000000000000000000004",
-    "created_at": "2021-01-21T15:46:50.357Z",
-    "updated_at": "2021-01-21T15:46:50.357Z",
-    "slug": "testing-bq-email-vPyAd1YB1",
-    "__v": 0
-  }
-}
-```
-</details>
-
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### updateCampaignById
-Update campaign by id
-
-
-
-```javascript
-// Promise
-const promise = client.application("<APPLICATION_ID>").communication.updateCampaignById({  id : value,
- body : value });
-
-// Async/Await
-const data = await client.application("<APPLICATION_ID>").communication.updateCampaignById({  id : value,
- body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| id | string | yes | Campaign id |  
-| body | [CampaignReq](#CampaignReq) | yes | Request body |
-
-
-Update campaign by id
-
-*Returned Response:*
-
-
-
-
-[Campaign](#Campaign)
-
-Success
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; default</i></summary>
-
-```json
-{
-  "value": {
-    "recipient_headers": {
-      "email": "email"
-    },
-    "email": {
-      "template": {
-        "key": "_id",
-        "value": "5fb6757a09fd90ca91917a60"
-      },
-      "provider": {
-        "_id": "5e560652b5eb4b1f13b4d601",
-        "from_name": "Fynd",
-        "from_email": "hey@gofynd.com"
-      }
-    },
-    "description": "",
-    "tags": [],
-    "is_active": true,
-    "_id": "6009a1ea1f6a61d88e80a867",
-    "datasource": "6009a1be1f6a61a13180a866",
-    "type": "email",
-    "name": "testing bq email",
-    "application": "000000000000000000000004",
-    "created_at": "2021-01-21T15:46:50.357Z",
-    "updated_at": "2021-01-21T15:46:50.357Z",
-    "slug": "testing-bq-email-vPyAd1YB1",
-    "__v": 0
-  }
-}
-```
-</details>
-
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### getStatsOfCampaignById
-Get stats of campaign by id
-
-
-
-```javascript
-// Promise
-const promise = client.application("<APPLICATION_ID>").communication.getStatsOfCampaignById({  id : value });
-
-// Async/Await
-const data = await client.application("<APPLICATION_ID>").communication.getStatsOfCampaignById({  id : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| id | string | yes | Campaign id |  
-
-
-
-Get stats of campaign by id
-
-*Returned Response:*
-
-
-
-
-[GetStats](#GetStats)
-
-Success
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; default</i></summary>
-
-```json
-{
-  "value": [
-    {
-      "_id": "6009a1ea1f6a61d88e80a867",
-      "imported": {
-        "count": 2
-      },
-      "processed": {
-        "email": {
-          "success": 2,
-          "failed": 0,
-          "suppressed": 0
-        },
-        "sms": {
-          "success": 0,
-          "failed": 0,
-          "suppressed": 0
-        }
-      }
-    }
-  ]
-}
-```
-</details>
-
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### getAudiences
-Get audiences
-
-
-
-```javascript
-// Promise
-const promise = client.application("<APPLICATION_ID>").communication.getAudiences({  pageNo : value,
+const promise = platformClient.application("<APPLICATION_ID>").communication.getCommunicationLogs({  pageId : value,
  pageSize : value,
- sort : value });
+ sort : value,
+ query : value });
 
 // Async/Await
-const data = await client.application("<APPLICATION_ID>").communication.getAudiences({  pageNo : value,
+const data = await platformClient.application("<APPLICATION_ID>").communication.getCommunicationLogs({  pageId : value,
  pageSize : value,
- sort : value });
+ sort : value,
+ query : value });
 ```
 
 
@@ -567,20 +1249,21 @@ const data = await client.application("<APPLICATION_ID>").communication.getAudie
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
-| pageNo | number | no | Current page no |    
+| pageId | string | no | Current page no |    
 | pageSize | number | no | Current request items count |    
-| sort | Object | no | To sort based on created_at |  
+| sort | Object | no | To sort based on _id |    
+| query | Object | no |  |  
 
 
 
-Get audiences
+Get communication logs
 
 *Returned Response:*
 
 
 
 
-[Audiences](#Audiences)
+[Logs](#Logs)
 
 Success
 
@@ -599,35 +1282,35 @@ Success
   "value": {
     "items": [
       {
-        "description": "test description",
-        "tags": [
-          "csv"
-        ],
-        "headers": [
-          "phone_number",
-          "email",
-          "firstname",
-          "lastname",
-          "orderid"
-        ],
-        "is_active": true,
-        "_id": "5fb6675c09fd901023917a5f",
-        "name": "Test csv",
-        "file_url": "https://hdn-1.addsale.com/x0/application/000000000000000000000004/datasources/2_r_D1jt6-test-1-entries.csv",
-        "type": "raw_csv",
-        "records_count": 3,
+        "sms": {
+          "phone_number": "1234567890",
+          "country_code": "+91",
+          "template": "603e00649014219f87943213",
+          "provider": "5f8ee2234d70f7c5624f0413"
+        },
+        "pushnotification": {
+          "pushtokens": []
+        },
+        "meta": {
+          "type": "job",
+          "job": "603e021f171b19ee5a4324f4",
+          "campaign": "603e0217171b19556e4324f3",
+          "identifier": "pointblank.00395d65-c0a9-f9dc-0c46-5d65c0aa0c46"
+        },
+        "_id": "603e02300b9f817e1592fcbd",
         "application": "000000000000000000000004",
-        "created_at": "2020-11-19T12:38:52.580Z",
-        "updated_at": "2020-11-19T12:38:52.580Z",
-        "slug": "Test-csv",
-        "__v": 0
+        "service": "sms-consumer",
+        "step": "MSG_SENT",
+        "status": "success",
+        "pod": "fynd-core-pointblank-smslow-cnsmr-dply-d6dbf9d7f-b6h2f",
+        "expire_at": "2021-04-01T09:15:28.526Z",
+        "created_at": "2021-03-02T09:15:28.527Z"
       }
     ],
     "page": {
-      "type": "number",
-      "current": 1,
-      "size": 1,
-      "item_total": 1,
+      "type": "cursor",
+      "next_id": null,
+      "has_previous": false,
       "has_next": false
     }
   }
@@ -648,17 +1331,17 @@ Success
 ---
 
 
-### createAudience
-Create audience
+### getEmailProviderById
+Get email provider by id
 
 
 
 ```javascript
 // Promise
-const promise = client.application("<APPLICATION_ID>").communication.createAudience({  body : value });
+const promise = platformClient.application("<APPLICATION_ID>").communication.getEmailProviderById({  id : value });
 
 // Async/Await
-const data = await client.application("<APPLICATION_ID>").communication.createAudience({  body : value });
+const data = await platformClient.application("<APPLICATION_ID>").communication.getEmailProviderById({  id : value });
 ```
 
 
@@ -666,18 +1349,19 @@ const data = await client.application("<APPLICATION_ID>").communication.createAu
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |
-| body | [AudienceReq](#AudienceReq) | yes | Request body |
+| --------- | -----  | -------- | ----------- | 
+| id | string | yes | Email provider id |  
 
 
-Create audience
+
+Get email provider by id
 
 *Returned Response:*
 
 
 
 
-[Audience](#Audience)
+[EmailProvider](#EmailProvider)
 
 Success
 
@@ -694,366 +1378,25 @@ Success
 ```json
 {
   "value": {
-    "description": "test description",
-    "tags": [
-      "csv"
-    ],
-    "headers": [
-      "phone_number",
-      "email",
-      "firstname",
-      "lastname",
-      "orderid"
-    ],
-    "is_active": true,
-    "_id": "5fb6675c09fd901023917a5f",
-    "name": "Test csv",
-    "file_url": "https://hdn-1.addsale.com/x0/application/000000000000000000000004/datasources/2_r_D1jt6-test-1-entries.csv",
-    "type": "raw_csv",
-    "records_count": 3,
-    "application": "000000000000000000000004",
-    "created_at": "2020-11-19T12:38:52.580Z",
-    "updated_at": "2020-11-19T12:38:52.580Z",
-    "slug": "Test-csv",
-    "__v": 0
-  }
-}
-```
-</details>
-
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### getBigqueryHeaders
-Get bigquery headers
-
-
-
-```javascript
-// Promise
-const promise = client.application("<APPLICATION_ID>").communication.getBigqueryHeaders({  body : value });
-
-// Async/Await
-const data = await client.application("<APPLICATION_ID>").communication.getBigqueryHeaders({  body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |
-| body | [BigqueryHeadersReq](#BigqueryHeadersReq) | yes | Request body |
-
-
-Get bigquery headers
-
-*Returned Response:*
-
-
-
-
-[BigqueryHeadersRes](#BigqueryHeadersRes)
-
-Success
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; default</i></summary>
-
-```json
-{
-  "value": {
-    "headers": [
+    "type": "application",
+    "provider": "falconide",
+    "from_address": [
       {
-        "name": "firstname",
-        "type": "STRING"
-      },
-      {
-        "name": "lastname",
-        "type": "STRING"
-      },
-      {
-        "name": "email",
-        "type": "STRING"
-      },
-      {
-        "name": "phone",
-        "type": "STRING"
-      },
-      {
-        "name": "countryCode",
-        "type": "STRING"
-      },
-      {
-        "name": "application",
-        "type": "STRING"
+        "is_default": true,
+        "name": "abc",
+        "email": "abc@test.com"
       }
-    ]
-  }
-}
-```
-</details>
-
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### getAudienceById
-Get audience by id
-
-
-
-```javascript
-// Promise
-const promise = client.application("<APPLICATION_ID>").communication.getAudienceById({  id : value });
-
-// Async/Await
-const data = await client.application("<APPLICATION_ID>").communication.getAudienceById({  id : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| id | string | yes | Audience id |  
-
-
-
-Get audience by id
-
-*Returned Response:*
-
-
-
-
-[Audience](#Audience)
-
-Success
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; default</i></summary>
-
-```json
-{
-  "value": {
-    "description": "test description",
-    "tags": [
-      "csv"
     ],
-    "headers": [
-      "phone_number",
-      "email",
-      "firstname",
-      "lastname",
-      "orderid"
-    ],
-    "is_active": true,
-    "_id": "5fb6675c09fd901023917a5f",
-    "name": "Test csv",
-    "file_url": "https://hdn-1.addsale.com/x0/application/000000000000000000000004/datasources/2_r_D1jt6-test-1-entries.csv",
-    "type": "raw_csv",
-    "records_count": 3,
+    "_id": "5fd9fd44c474a7e3d5d376d6",
+    "name": "test falconide",
+    "description": "test",
+    "api_key": "testtttt",
     "application": "000000000000000000000004",
-    "created_at": "2020-11-19T12:38:52.580Z",
-    "updated_at": "2020-11-19T12:38:52.580Z",
-    "slug": "Test-csv",
+    "created_at": "2020-12-16T12:27:48.051Z",
+    "updated_at": "2020-12-16T12:27:48.051Z",
+    "slug": "test-falconide-application-falconide-ZTD-D7wbB",
     "__v": 0
   }
-}
-```
-</details>
-
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### updateAudienceById
-Update audience by id
-
-
-
-```javascript
-// Promise
-const promise = client.application("<APPLICATION_ID>").communication.updateAudienceById({  id : value,
- body : value });
-
-// Async/Await
-const data = await client.application("<APPLICATION_ID>").communication.updateAudienceById({  id : value,
- body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| id | string | yes | Audience id |  
-| body | [AudienceReq](#AudienceReq) | yes | Request body |
-
-
-Update audience by id
-
-*Returned Response:*
-
-
-
-
-[Audience](#Audience)
-
-Success
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; default</i></summary>
-
-```json
-{
-  "value": {
-    "description": "test description",
-    "tags": [
-      "csv"
-    ],
-    "headers": [
-      "phone_number",
-      "email",
-      "firstname",
-      "lastname",
-      "orderid"
-    ],
-    "is_active": true,
-    "_id": "5fb6675c09fd901023917a5f",
-    "name": "Test csv",
-    "file_url": "https://hdn-1.addsale.com/x0/application/000000000000000000000004/datasources/2_r_D1jt6-test-1-entries.csv",
-    "type": "raw_csv",
-    "records_count": 3,
-    "application": "000000000000000000000004",
-    "created_at": "2020-11-19T12:38:52.580Z",
-    "updated_at": "2020-11-19T12:38:52.580Z",
-    "slug": "Test-csv",
-    "__v": 0
-  }
-}
-```
-</details>
-
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### getNSampleRecordsFromCsv
-Get n sample records from csv
-
-
-
-```javascript
-// Promise
-const promise = client.application("<APPLICATION_ID>").communication.getNSampleRecordsFromCsv({  body : value });
-
-// Async/Await
-const data = await client.application("<APPLICATION_ID>").communication.getNSampleRecordsFromCsv({  body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |
-| body | [GetNRecordsCsvReq](#GetNRecordsCsvReq) | yes | Request body |
-
-
-Get n sample records from csv
-
-*Returned Response:*
-
-
-
-
-[GetNRecordsCsvRes](#GetNRecordsCsvRes)
-
-Success
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; default</i></summary>
-
-```json
-{
-  "value": [
-    {
-      "phone_number": "1234567890",
-      "email": "abcxyz@gofynd.com",
-      "firstname": "Abc",
-      "lastname": "Xyz",
-      "orderid": "1"
-    }
-  ]
 }
 ```
 </details>
@@ -1078,12 +1421,12 @@ Get email providers
 
 ```javascript
 // Promise
-const promise = client.application("<APPLICATION_ID>").communication.getEmailProviders({  pageNo : value,
+const promise = platformClient.application("<APPLICATION_ID>").communication.getEmailProviders({  pageNo : value,
  pageSize : value,
  sort : value });
 
 // Async/Await
-const data = await client.application("<APPLICATION_ID>").communication.getEmailProviders({  pageNo : value,
+const data = await platformClient.application("<APPLICATION_ID>").communication.getEmailProviders({  pageNo : value,
  pageSize : value,
  sort : value });
 ```
@@ -1171,99 +1514,17 @@ Success
 ---
 
 
-### createEmailProvider
-Create email provider
+### getEmailTemplateById
+Get email template by id
 
 
 
 ```javascript
 // Promise
-const promise = client.application("<APPLICATION_ID>").communication.createEmailProvider({  body : value });
+const promise = platformClient.application("<APPLICATION_ID>").communication.getEmailTemplateById({  id : value });
 
 // Async/Await
-const data = await client.application("<APPLICATION_ID>").communication.createEmailProvider({  body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |
-| body | [EmailProviderReq](#EmailProviderReq) | yes | Request body |
-
-
-Create email provider
-
-*Returned Response:*
-
-
-
-
-[EmailProvider](#EmailProvider)
-
-Success
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; default</i></summary>
-
-```json
-{
-  "value": {
-    "type": "application",
-    "provider": "falconide",
-    "from_address": [
-      {
-        "is_default": true,
-        "name": "abc",
-        "email": "abc@test.com"
-      }
-    ],
-    "_id": "5fd9fd44c474a7e3d5d376d6",
-    "name": "test falconide",
-    "description": "test",
-    "api_key": "testtttt",
-    "application": "000000000000000000000004",
-    "created_at": "2020-12-16T12:27:48.051Z",
-    "updated_at": "2020-12-16T12:27:48.051Z",
-    "slug": "test-falconide-application-falconide-ZTD-D7wbB",
-    "__v": 0
-  }
-}
-```
-</details>
-
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### getEmailProviderById
-Get email provider by id
-
-
-
-```javascript
-// Promise
-const promise = client.application("<APPLICATION_ID>").communication.getEmailProviderById({  id : value });
-
-// Async/Await
-const data = await client.application("<APPLICATION_ID>").communication.getEmailProviderById({  id : value });
+const data = await platformClient.application("<APPLICATION_ID>").communication.getEmailTemplateById({  id : value });
 ```
 
 
@@ -1272,18 +1533,18 @@ const data = await client.application("<APPLICATION_ID>").communication.getEmail
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
-| id | string | yes | Email provider id |  
+| id | string | yes | Email template id |  
 
 
 
-Get email provider by id
+Get email template by id
 
 *Returned Response:*
 
 
 
 
-[EmailProvider](#EmailProvider)
+[EmailTemplate](#EmailTemplate)
 
 Success
 
@@ -1300,108 +1561,35 @@ Success
 ```json
 {
   "value": {
-    "type": "application",
-    "provider": "falconide",
-    "from_address": [
-      {
-        "is_default": true,
-        "name": "abc",
-        "email": "abc@test.com"
-      }
-    ],
-    "_id": "5fd9fd44c474a7e3d5d376d6",
-    "name": "test falconide",
-    "description": "test",
-    "api_key": "testtttt",
-    "application": "000000000000000000000004",
-    "created_at": "2020-12-16T12:27:48.051Z",
-    "updated_at": "2020-12-16T12:27:48.051Z",
-    "slug": "test-falconide-application-falconide-ZTD-D7wbB",
-    "__v": 0
-  }
-}
-```
-</details>
-
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### updateEmailProviderById
-Update email provider by id
-
-
-
-```javascript
-// Promise
-const promise = client.application("<APPLICATION_ID>").communication.updateEmailProviderById({  id : value,
- body : value });
-
-// Async/Await
-const data = await client.application("<APPLICATION_ID>").communication.updateEmailProviderById({  id : value,
- body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| id | string | yes | Email provider id |  
-| body | [EmailProviderReq](#EmailProviderReq) | yes | Request body |
-
-
-Update email provider by id
-
-*Returned Response:*
-
-
-
-
-[EmailProvider](#EmailProvider)
-
-Success
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; default</i></summary>
-
-```json
-{
-  "value": {
-    "type": "application",
-    "provider": "falconide",
-    "from_address": [
-      {
-        "is_default": true,
-        "name": "abc",
-        "email": "abc@test.com"
-      }
-    ],
-    "_id": "5fd9fd44c474a7e3d5d376d6",
-    "name": "test falconide",
-    "description": "test",
-    "api_key": "testtttt",
-    "application": "000000000000000000000004",
-    "created_at": "2020-12-16T12:27:48.051Z",
-    "updated_at": "2020-12-16T12:27:48.051Z",
-    "slug": "test-falconide-application-falconide-ZTD-D7wbB",
+    "is_system": false,
+    "is_internal": true,
+    "description": "Application creation",
+    "static_to": [],
+    "static_cc": [],
+    "static_bcc": [],
+    "tags": [],
+    "priority": "high",
+    "published": true,
+    "_id": "5ef42a49c8b67d279c27a980",
+    "slug": "application-creation",
+    "name": "Application creation",
+    "from_name": "Fynd",
+    "subject": {
+      "template_type": "nunjucks",
+      "template": "This is a test email subject"
+    },
+    "html": {
+      "template_type": "nunjucks",
+      "template": "This is a test email body"
+    },
+    "text": {
+      "template_type": "nunjucks",
+      "template": "This is a test email body"
+    },
+    "headers": [],
+    "attachments": [],
+    "created_at": "2020-06-25T04:38:34.003Z",
+    "updated_at": "2020-08-10T12:27:43.583Z",
     "__v": 0
   }
 }
@@ -1428,12 +1616,12 @@ Get email templates
 
 ```javascript
 // Promise
-const promise = client.application("<APPLICATION_ID>").communication.getEmailTemplates({  pageNo : value,
+const promise = platformClient.application("<APPLICATION_ID>").communication.getEmailTemplates({  pageNo : value,
  pageSize : value,
  sort : value });
 
 // Async/Await
-const data = await client.application("<APPLICATION_ID>").communication.getEmailTemplates({  pageNo : value,
+const data = await platformClient.application("<APPLICATION_ID>").communication.getEmailTemplates({  pageNo : value,
  pageSize : value,
  sort : value });
 ```
@@ -1533,629 +1721,6 @@ Success
 ---
 
 
-### createEmailTemplate
-Create email template
-
-
-
-```javascript
-// Promise
-const promise = client.application("<APPLICATION_ID>").communication.createEmailTemplate({  body : value });
-
-// Async/Await
-const data = await client.application("<APPLICATION_ID>").communication.createEmailTemplate({  body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |
-| body | [EmailTemplateReq](#EmailTemplateReq) | yes | Request body |
-
-
-Create email template
-
-*Returned Response:*
-
-
-
-
-[EmailTemplateRes](#EmailTemplateRes)
-
-Success
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; default</i></summary>
-
-```json
-{
-  "value": {
-    "is_system": false,
-    "is_internal": false,
-    "description": "test template",
-    "static_to": [
-      "abc@gofynd.com"
-    ],
-    "static_cc": [
-      "abc@gofynd.com"
-    ],
-    "static_bcc": [
-      "abc@gofynd.com"
-    ],
-    "tags": [],
-    "priority": "low",
-    "published": false,
-    "_id": "5ef42a49c8b67d279c27a980",
-    "name": "test",
-    "keys": {
-      "bcc": "abc@gofynd.com"
-    },
-    "reply_to": "abc@gofynd.com",
-    "headers": [
-      {
-        "key": "x-test-header",
-        "value": "test123"
-      }
-    ],
-    "subject": {
-      "template_type": "static",
-      "template": "This is test email"
-    },
-    "html": {
-      "template_type": "static",
-      "template": "This is test email"
-    },
-    "text": {
-      "template_type": "static",
-      "template": "This is test email"
-    },
-    "attachments": [],
-    "created_at": "2021-02-08T03:33:42.103Z",
-    "updated_at": "2021-02-08T03:33:42.103Z",
-    "slug": "test-fZfGq0lSQ",
-    "__v": 0
-  }
-}
-```
-</details>
-
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### getSystemEmailTemplates
-Get system email templates
-
-
-
-```javascript
-// Promise
-const promise = client.application("<APPLICATION_ID>").communication.getSystemEmailTemplates({  pageNo : value,
- pageSize : value,
- sort : value });
-
-// Async/Await
-const data = await client.application("<APPLICATION_ID>").communication.getSystemEmailTemplates({  pageNo : value,
- pageSize : value,
- sort : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| pageNo | number | no | Current page no |    
-| pageSize | number | no | Current request items count |    
-| sort | Object | no | To sort based on created_at |  
-
-
-
-Get system email templates
-
-*Returned Response:*
-
-
-
-
-[SystemEmailTemplates](#SystemEmailTemplates)
-
-Success
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; default</i></summary>
-
-```json
-{
-  "value": {
-    "items": [
-      {
-        "is_system": true,
-        "is_internal": true,
-        "description": "Application creation",
-        "static_to": [],
-        "static_cc": [],
-        "static_bcc": [],
-        "tags": [],
-        "priority": "high",
-        "published": true,
-        "_id": "5ef42a49c8b67d279c27a980",
-        "slug": "application-creation",
-        "name": "Application creation",
-        "from_name": "Fynd",
-        "subject": {
-          "template_type": "nunjucks",
-          "template": "This is a test email subject"
-        },
-        "html": {
-          "template_type": "nunjucks",
-          "template": "This is a test email body"
-        },
-        "text": {
-          "template_type": "nunjucks",
-          "template": "This is a test email body"
-        },
-        "headers": [],
-        "attachments": [],
-        "created_at": "2020-06-25T04:38:34.003Z",
-        "updated_at": "2020-08-10T12:27:43.583Z",
-        "__v": 0
-      }
-    ],
-    "page": {
-      "type": "number",
-      "current": 1,
-      "size": 1,
-      "item_total": 66,
-      "has_next": true
-    }
-  }
-}
-```
-</details>
-
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### getEmailTemplateById
-Get email template by id
-
-
-
-```javascript
-// Promise
-const promise = client.application("<APPLICATION_ID>").communication.getEmailTemplateById({  id : value });
-
-// Async/Await
-const data = await client.application("<APPLICATION_ID>").communication.getEmailTemplateById({  id : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| id | string | yes | Email template id |  
-
-
-
-Get email template by id
-
-*Returned Response:*
-
-
-
-
-[EmailTemplate](#EmailTemplate)
-
-Success
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; default</i></summary>
-
-```json
-{
-  "value": {
-    "is_system": false,
-    "is_internal": true,
-    "description": "Application creation",
-    "static_to": [],
-    "static_cc": [],
-    "static_bcc": [],
-    "tags": [],
-    "priority": "high",
-    "published": true,
-    "_id": "5ef42a49c8b67d279c27a980",
-    "slug": "application-creation",
-    "name": "Application creation",
-    "from_name": "Fynd",
-    "subject": {
-      "template_type": "nunjucks",
-      "template": "This is a test email subject"
-    },
-    "html": {
-      "template_type": "nunjucks",
-      "template": "This is a test email body"
-    },
-    "text": {
-      "template_type": "nunjucks",
-      "template": "This is a test email body"
-    },
-    "headers": [],
-    "attachments": [],
-    "created_at": "2020-06-25T04:38:34.003Z",
-    "updated_at": "2020-08-10T12:27:43.583Z",
-    "__v": 0
-  }
-}
-```
-</details>
-
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### updateEmailTemplateById
-Update email template by id
-
-
-
-```javascript
-// Promise
-const promise = client.application("<APPLICATION_ID>").communication.updateEmailTemplateById({  id : value,
- body : value });
-
-// Async/Await
-const data = await client.application("<APPLICATION_ID>").communication.updateEmailTemplateById({  id : value,
- body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| id | string | yes | Email template id |  
-| body | [EmailTemplateReq](#EmailTemplateReq) | yes | Request body |
-
-
-Update email template by id
-
-*Returned Response:*
-
-
-
-
-[EmailTemplateRes](#EmailTemplateRes)
-
-Success
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; default</i></summary>
-
-```json
-{
-  "value": {
-    "is_system": false,
-    "is_internal": false,
-    "description": "test template",
-    "static_to": [
-      "abc@gofynd.com"
-    ],
-    "static_cc": [
-      "abc@gofynd.com"
-    ],
-    "static_bcc": [
-      "abc@gofynd.com"
-    ],
-    "tags": [],
-    "priority": "low",
-    "published": false,
-    "_id": "5ef42a49c8b67d279c27a980",
-    "name": "test",
-    "keys": {
-      "bcc": "abc@gofynd.com"
-    },
-    "reply_to": "abc@gofynd.com",
-    "headers": [
-      {
-        "key": "x-test-header",
-        "value": "test123"
-      }
-    ],
-    "subject": {
-      "template_type": "static",
-      "template": "This is test email"
-    },
-    "html": {
-      "template_type": "static",
-      "template": "This is test email"
-    },
-    "text": {
-      "template_type": "static",
-      "template": "This is test email"
-    },
-    "attachments": [],
-    "created_at": "2021-02-08T03:33:42.103Z",
-    "updated_at": "2021-02-08T03:33:42.103Z",
-    "slug": "test-fZfGq0lSQ",
-    "__v": 0
-  }
-}
-```
-</details>
-
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### deleteEmailTemplateById
-Delete email template by id
-
-
-
-```javascript
-// Promise
-const promise = client.application("<APPLICATION_ID>").communication.deleteEmailTemplateById({  id : value });
-
-// Async/Await
-const data = await client.application("<APPLICATION_ID>").communication.deleteEmailTemplateById({  id : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| id | string | yes | Email template id |  
-
-
-
-Delete email template by id
-
-*Returned Response:*
-
-
-
-
-[EmailTemplateDeleteSuccessRes](#EmailTemplateDeleteSuccessRes)
-
-Success
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; default</i></summary>
-
-```json
-{
-  "value": {
-    "success": true,
-    "message": "Deleted successfully"
-  }
-}
-```
-</details>
-
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### sendCommunicationSynchronously
-Send email or sms synchronously
-
-
-
-```javascript
-// Promise
-const promise = client.application("<APPLICATION_ID>").communication.sendCommunicationSynchronously({  body : value });
-
-// Async/Await
-const data = await client.application("<APPLICATION_ID>").communication.sendCommunicationSynchronously({  body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |
-| body | [EngineRequest](#EngineRequest) | yes | Request body |
-
-
-Send email or sms synchronously
-
-*Returned Response:*
-
-
-
-
-[EngineResponse](#EngineResponse)
-
-Success
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; default</i></summary>
-
-```json
-{
-  "value": {
-    "success": true
-  }
-}
-```
-</details>
-
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### sendCommunicationAsynchronously
-Send email or sms asynchronously
-
-
-
-```javascript
-// Promise
-const promise = client.application("<APPLICATION_ID>").communication.sendCommunicationAsynchronously({  body : value });
-
-// Async/Await
-const data = await client.application("<APPLICATION_ID>").communication.sendCommunicationAsynchronously({  body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |
-| body | [EngineRequest](#EngineRequest) | yes | Request body |
-
-
-Send email or sms asynchronously
-
-*Returned Response:*
-
-
-
-
-[EngineResponse](#EngineResponse)
-
-Success
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; default</i></summary>
-
-```json
-{
-  "value": {
-    "success": true
-  }
-}
-```
-</details>
-
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
 ### getEventSubscriptions
 Get event subscriptions
 
@@ -2163,12 +1728,12 @@ Get event subscriptions
 
 ```javascript
 // Promise
-const promise = client.application("<APPLICATION_ID>").communication.getEventSubscriptions({  pageNo : value,
+const promise = platformClient.application("<APPLICATION_ID>").communication.getEventSubscriptions({  pageNo : value,
  pageSize : value,
  populate : value });
 
 // Async/Await
-const data = await client.application("<APPLICATION_ID>").communication.getEventSubscriptions({  pageNo : value,
+const data = await platformClient.application("<APPLICATION_ID>").communication.getEventSubscriptions({  pageNo : value,
  pageSize : value,
  populate : value });
 ```
@@ -2796,161 +2361,6 @@ Success
 ---
 
 
-### getJobs
-Get jobs
-
-
-
-```javascript
-// Promise
-const promise = client.application("<APPLICATION_ID>").communication.getJobs({  pageNo : value,
- pageSize : value,
- sort : value });
-
-// Async/Await
-const data = await client.application("<APPLICATION_ID>").communication.getJobs({  pageNo : value,
- pageSize : value,
- sort : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| pageNo | number | no | Current page no |    
-| pageSize | number | no | Current request items count |    
-| sort | Object | no | To sort based on created_at |  
-
-
-
-Get jobs
-
-*Returned Response:*
-
-
-
-
-[Jobs](#Jobs)
-
-Success
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; default</i></summary>
-
-```json
-{
-  "value": {
-    "items": [
-      {
-        "completed": true,
-        "is_active": false,
-        "_id": "6044be260c92a7be0624f1cf",
-        "campaign": "6044be1e0c92a7026924f1ce",
-        "application": "000000000000000000000001",
-        "created_at": "2021-03-07T11:51:02.234Z",
-        "updated_at": "2021-03-07T12:12:36.587Z",
-        "__v": 0
-      }
-    ],
-    "page": {
-      "type": "number",
-      "current": 1,
-      "size": 50,
-      "item_total": 1,
-      "has_next": false
-    }
-  }
-}
-```
-</details>
-
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### triggerCampaignJob
-Trigger campaign job
-
-
-
-```javascript
-// Promise
-const promise = client.application("<APPLICATION_ID>").communication.triggerCampaignJob({  body : value });
-
-// Async/Await
-const data = await client.application("<APPLICATION_ID>").communication.triggerCampaignJob({  body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |
-| body | [TriggerJobRequest](#TriggerJobRequest) | yes | Request body |
-
-
-Trigger campaign job
-
-*Returned Response:*
-
-
-
-
-[TriggerJobResponse](#TriggerJobResponse)
-
-Success
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; default</i></summary>
-
-```json
-{
-  "value": {
-    "status": 200
-  }
-}
-```
-</details>
-
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
 ### getJobLogs
 Get job logs
 
@@ -2958,12 +2368,12 @@ Get job logs
 
 ```javascript
 // Promise
-const promise = client.application("<APPLICATION_ID>").communication.getJobLogs({  pageNo : value,
+const promise = platformClient.application("<APPLICATION_ID>").communication.getJobLogs({  pageNo : value,
  pageSize : value,
  sort : value });
 
 // Async/Await
-const data = await client.application("<APPLICATION_ID>").communication.getJobLogs({  pageNo : value,
+const data = await platformClient.application("<APPLICATION_ID>").communication.getJobLogs({  pageNo : value,
  pageSize : value,
  sort : value });
 ```
@@ -3054,23 +2464,21 @@ Success
 ---
 
 
-### getCommunicationLogs
-Get communication logs
+### getJobs
+Get jobs
 
 
 
 ```javascript
 // Promise
-const promise = client.application("<APPLICATION_ID>").communication.getCommunicationLogs({  pageId : value,
+const promise = platformClient.application("<APPLICATION_ID>").communication.getJobs({  pageNo : value,
  pageSize : value,
- sort : value,
- query : value });
+ sort : value });
 
 // Async/Await
-const data = await client.application("<APPLICATION_ID>").communication.getCommunicationLogs({  pageId : value,
+const data = await platformClient.application("<APPLICATION_ID>").communication.getJobs({  pageNo : value,
  pageSize : value,
- sort : value,
- query : value });
+ sort : value });
 ```
 
 
@@ -3079,21 +2487,20 @@ const data = await client.application("<APPLICATION_ID>").communication.getCommu
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
-| pageId | string | no | Current page no |    
+| pageNo | number | no | Current page no |    
 | pageSize | number | no | Current request items count |    
-| sort | Object | no | To sort based on _id |    
-| query | Object | no |  |  
+| sort | Object | no | To sort based on created_at |  
 
 
 
-Get communication logs
+Get jobs
 
 *Returned Response:*
 
 
 
 
-[Logs](#Logs)
+[Jobs](#Jobs)
 
 Success
 
@@ -3112,134 +2519,20 @@ Success
   "value": {
     "items": [
       {
-        "sms": {
-          "phone_number": "1234567890",
-          "country_code": "+91",
-          "template": "603e00649014219f87943213",
-          "provider": "5f8ee2234d70f7c5624f0413"
-        },
-        "pushnotification": {
-          "pushtokens": []
-        },
-        "meta": {
-          "type": "job",
-          "job": "603e021f171b19ee5a4324f4",
-          "campaign": "603e0217171b19556e4324f3",
-          "identifier": "pointblank.00395d65-c0a9-f9dc-0c46-5d65c0aa0c46"
-        },
-        "_id": "603e02300b9f817e1592fcbd",
-        "application": "000000000000000000000004",
-        "service": "sms-consumer",
-        "step": "MSG_SENT",
-        "status": "success",
-        "pod": "fynd-core-pointblank-smslow-cnsmr-dply-d6dbf9d7f-b6h2f",
-        "expire_at": "2021-04-01T09:15:28.526Z",
-        "created_at": "2021-03-02T09:15:28.527Z"
+        "completed": true,
+        "is_active": false,
+        "_id": "6044be260c92a7be0624f1cf",
+        "campaign": "6044be1e0c92a7026924f1ce",
+        "application": "000000000000000000000001",
+        "created_at": "2021-03-07T11:51:02.234Z",
+        "updated_at": "2021-03-07T12:12:36.587Z",
+        "__v": 0
       }
     ],
-    "page": {
-      "type": "cursor",
-      "next_id": null,
-      "has_previous": false,
-      "has_next": false
-    }
-  }
-}
-```
-</details>
-
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### getSystemNotifications
-Get system notifications
-
-
-
-```javascript
-// Promise
-const promise = client.communication.getSystemNotifications({  pageNo : value,
- pageSize : value });
-
-// Async/Await
-const data = await client.communication.getSystemNotifications({  pageNo : value,
- pageSize : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| pageNo | number | no |  |    
-| pageSize | number | no |  |  
-
-
-
-Get system notifications
-
-*Returned Response:*
-
-
-
-
-[SystemNotifications](#SystemNotifications)
-
-Success
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; default</i></summary>
-
-```json
-{
-  "value": {
-    "items": [
-      {
-        "notification": {
-          "title": "Xyz Company is verified!",
-          "body": "",
-          "subtitle": "",
-          "icon": "icon.png",
-          "deeplink": "",
-          "click_action": ""
-        },
-        "user": {
-          "type": "company",
-          "value": "1"
-        },
-        "settings": {
-          "sound": true,
-          "priority": "normal",
-          "time_to_live": "60"
-        },
-        "_id": "60619f167dbd13ff0722f6dd",
-        "group": "fynd-platform",
-        "created_at": "2021-03-29T09:34:14.182Z"
-      }
-    ],
-    "last_read_anchor": 1616748860,
     "page": {
       "type": "number",
       "current": 1,
-      "size": 1,
+      "size": 50,
       "item_total": 1,
       "has_next": false
     }
@@ -3261,17 +2554,17 @@ Success
 ---
 
 
-### sendOtp
-Send OTP using email and sms
+### getNSampleRecordsFromCsv
+Get n sample records from csv
 
 
 
 ```javascript
 // Promise
-const promise = client.application("<APPLICATION_ID>").communication.sendOtp({  body : value });
+const promise = platformClient.application("<APPLICATION_ID>").communication.getNSampleRecordsFromCsv({  body : value });
 
 // Async/Await
-const data = await client.application("<APPLICATION_ID>").communication.sendOtp({  body : value });
+const data = await platformClient.application("<APPLICATION_ID>").communication.getNSampleRecordsFromCsv({  body : value });
 ```
 
 
@@ -3280,17 +2573,17 @@ const data = await client.application("<APPLICATION_ID>").communication.sendOtp(
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |
-| body | [SendOtpCommsReq](#SendOtpCommsReq) | yes | Request body |
+| body | [GetNRecordsCsvReq](#GetNRecordsCsvReq) | yes | Request body |
 
 
-Send OTP Comms via email and sms
+Get n sample records from csv
 
 *Returned Response:*
 
 
 
 
-[SendOtpCommsRes](#SendOtpCommsRes)
+[GetNRecordsCsvRes](#GetNRecordsCsvRes)
 
 Success
 
@@ -3306,23 +2599,15 @@ Success
 
 ```json
 {
-  "value": {
-    "sms": {
-      "success": true,
-      "request_id": "c8d1bd63d56a2d368aae9dbd4e7d8326",
-      "message": "OTP sent",
-      "mobile": "9096686804",
-      "country_code": "91",
-      "resend_timer": 30
-    },
-    "email": {
-      "success": true,
-      "request_id": "1cc79c911923971580d903039ea9ee05",
-      "message": "OTP sent",
-      "to": "parvezshaikh@gofynd.com",
-      "resend_timer": 30
+  "value": [
+    {
+      "phone_number": "1234567890",
+      "email": "abcxyz@gofynd.com",
+      "firstname": "Abc",
+      "lastname": "Xyz",
+      "orderid": "1"
     }
-  }
+  ]
 }
 ```
 </details>
@@ -3340,17 +2625,17 @@ Success
 ---
 
 
-### verfiyOtp
-Verify OTP sent via email and sms
+### getSmsProviderById
+Get sms provider by id
 
 
 
 ```javascript
 // Promise
-const promise = client.application("<APPLICATION_ID>").communication.verfiyOtp({  body : value });
+const promise = platformClient.application("<APPLICATION_ID>").communication.getSmsProviderById({  id : value });
 
 // Async/Await
-const data = await client.application("<APPLICATION_ID>").communication.verfiyOtp({  body : value });
+const data = await platformClient.application("<APPLICATION_ID>").communication.getSmsProviderById({  id : value });
 ```
 
 
@@ -3358,18 +2643,19 @@ const data = await client.application("<APPLICATION_ID>").communication.verfiyOt
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |
-| body | [VerifyOtpCommsReq](#VerifyOtpCommsReq) | yes | Request body |
+| --------- | -----  | -------- | ----------- | 
+| id | string | yes | Sms provider id |  
 
 
-Verify OTP sent via email and sms
+
+Get sms provider by id
 
 *Returned Response:*
 
 
 
 
-[VerifyOtpCommsSuccessRes](#VerifyOtpCommsSuccessRes)
+[SmsProvider](#SmsProvider)
 
 Success
 
@@ -3386,10 +2672,20 @@ Success
 ```json
 {
   "value": {
-    "success": true,
-    "mobile": "9096686804",
-    "country_code": "91",
-    "message": "OTP verified"
+    "rpt": 1,
+    "type": "application",
+    "provider": "telspiel",
+    "_id": "5fd9fd07c474a7710dd376d5",
+    "name": "test telspiel",
+    "description": "test",
+    "sender": "test",
+    "username": "test",
+    "authkey": "test",
+    "application": "000000000000000000000004",
+    "created_at": "2020-12-16T12:26:47.794Z",
+    "updated_at": "2020-12-16T12:26:47.794Z",
+    "slug": "test-telspiel-application-telspiel-p9UY1r7nG",
+    "__v": 0
   }
 }
 ```
@@ -3415,12 +2711,12 @@ Get sms providers
 
 ```javascript
 // Promise
-const promise = client.application("<APPLICATION_ID>").communication.getSmsProviders({  pageNo : value,
+const promise = platformClient.application("<APPLICATION_ID>").communication.getSmsProviders({  pageNo : value,
  pageSize : value,
  sort : value });
 
 // Async/Await
-const data = await client.application("<APPLICATION_ID>").communication.getSmsProviders({  pageNo : value,
+const data = await platformClient.application("<APPLICATION_ID>").communication.getSmsProviders({  pageNo : value,
  pageSize : value,
  sort : value });
 ```
@@ -3504,95 +2800,17 @@ Success
 ---
 
 
-### createSmsProvider
-Create sms provider
+### getSmsTemplateById
+Get sms template by id
 
 
 
 ```javascript
 // Promise
-const promise = client.application("<APPLICATION_ID>").communication.createSmsProvider({  body : value });
+const promise = platformClient.application("<APPLICATION_ID>").communication.getSmsTemplateById({  id : value });
 
 // Async/Await
-const data = await client.application("<APPLICATION_ID>").communication.createSmsProvider({  body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |
-| body | [SmsProviderReq](#SmsProviderReq) | yes | Request body |
-
-
-Create sms provider
-
-*Returned Response:*
-
-
-
-
-[SmsProvider](#SmsProvider)
-
-Success
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; default</i></summary>
-
-```json
-{
-  "value": {
-    "rpt": 1,
-    "type": "application",
-    "provider": "telspiel",
-    "_id": "5fd9fd07c474a7710dd376d5",
-    "name": "test telspiel",
-    "description": "test",
-    "sender": "test",
-    "username": "test",
-    "authkey": "test",
-    "application": "000000000000000000000004",
-    "created_at": "2020-12-16T12:26:47.794Z",
-    "updated_at": "2020-12-16T12:26:47.794Z",
-    "slug": "test-telspiel-application-telspiel-p9UY1r7nG",
-    "__v": 0
-  }
-}
-```
-</details>
-
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### getSmsProviderById
-Get sms provider by id
-
-
-
-```javascript
-// Promise
-const promise = client.application("<APPLICATION_ID>").communication.getSmsProviderById({  id : value });
-
-// Async/Await
-const data = await client.application("<APPLICATION_ID>").communication.getSmsProviderById({  id : value });
+const data = await platformClient.application("<APPLICATION_ID>").communication.getSmsTemplateById({  id : value });
 ```
 
 
@@ -3601,18 +2819,18 @@ const data = await client.application("<APPLICATION_ID>").communication.getSmsPr
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
-| id | string | yes | Sms provider id |  
+| id | string | yes | Sms template id |  
 
 
 
-Get sms provider by id
+Get sms template by id
 
 *Returned Response:*
 
 
 
 
-[SmsProvider](#SmsProvider)
+[SmsTemplate](#SmsTemplate)
 
 Success
 
@@ -3629,100 +2847,24 @@ Success
 ```json
 {
   "value": {
-    "rpt": 1,
-    "type": "application",
-    "provider": "telspiel",
-    "_id": "5fd9fd07c474a7710dd376d5",
-    "name": "test telspiel",
-    "description": "test",
-    "sender": "test",
-    "username": "test",
-    "authkey": "test",
-    "application": "000000000000000000000004",
-    "created_at": "2020-12-16T12:26:47.794Z",
-    "updated_at": "2020-12-16T12:26:47.794Z",
-    "slug": "test-telspiel-application-telspiel-p9UY1r7nG",
-    "__v": 0
-  }
-}
-```
-</details>
-
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### updateSmsProviderById
-Update sms provider by id
-
-
-
-```javascript
-// Promise
-const promise = client.application("<APPLICATION_ID>").communication.updateSmsProviderById({  id : value,
- body : value });
-
-// Async/Await
-const data = await client.application("<APPLICATION_ID>").communication.updateSmsProviderById({  id : value,
- body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| id | string | yes | Sms provider id |  
-| body | [SmsProviderReq](#SmsProviderReq) | yes | Request body |
-
-
-Update sms provider by id
-
-*Returned Response:*
-
-
-
-
-[SmsProvider](#SmsProvider)
-
-Success
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; default</i></summary>
-
-```json
-{
-  "value": {
-    "rpt": 1,
-    "type": "application",
-    "provider": "telspiel",
-    "_id": "5fd9fd07c474a7710dd376d5",
-    "name": "test telspiel",
-    "description": "test",
-    "sender": "test",
-    "username": "test",
-    "authkey": "test",
-    "application": "000000000000000000000004",
-    "created_at": "2020-12-16T12:26:47.794Z",
-    "updated_at": "2020-12-16T12:26:47.794Z",
-    "slug": "test-telspiel-application-telspiel-p9UY1r7nG",
+    "is_system": false,
+    "is_internal": true,
+    "description": "This is a test sms template",
+    "priority": "high",
+    "tags": [],
+    "published": true,
+    "_id": "5fd447728394dbf0d21329b3",
+    "slug": "test-sms",
+    "name": "Test sms",
+    "message": {
+      "template_type": "nunjucks",
+      "template": "This is a test sms for order - {{ orderId }}"
+    },
+    "template_variables": {
+      "orderId": "12345"
+    },
+    "created_at": "2020-12-12T04:30:42.456Z",
+    "updated_at": "2020-12-24T15:13:20.558Z",
     "__v": 0
   }
 }
@@ -3749,12 +2891,12 @@ Get sms templates
 
 ```javascript
 // Promise
-const promise = client.application("<APPLICATION_ID>").communication.getSmsTemplates({  pageNo : value,
+const promise = platformClient.application("<APPLICATION_ID>").communication.getSmsTemplates({  pageNo : value,
  pageSize : value,
  sort : value });
 
 // Async/Await
-const data = await client.application("<APPLICATION_ID>").communication.getSmsTemplates({  pageNo : value,
+const data = await platformClient.application("<APPLICATION_ID>").communication.getSmsTemplates({  pageNo : value,
  pageSize : value,
  sort : value });
 ```
@@ -3843,17 +2985,17 @@ Success
 ---
 
 
-### createSmsTemplate
-Create sms template
+### getStatsOfCampaignById
+Get stats of campaign by id
 
 
 
 ```javascript
 // Promise
-const promise = client.application("<APPLICATION_ID>").communication.createSmsTemplate({  body : value });
+const promise = platformClient.application("<APPLICATION_ID>").communication.getStatsOfCampaignById({  id : value });
 
 // Async/Await
-const data = await client.application("<APPLICATION_ID>").communication.createSmsTemplate({  body : value });
+const data = await platformClient.application("<APPLICATION_ID>").communication.getStatsOfCampaignById({  id : value });
 ```
 
 
@@ -3861,18 +3003,108 @@ const data = await client.application("<APPLICATION_ID>").communication.createSm
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |
-| body | [SmsTemplateReq](#SmsTemplateReq) | yes | Request body |
+| --------- | -----  | -------- | ----------- | 
+| id | string | yes | Campaign id |  
 
 
-Create sms template
+
+Get stats of campaign by id
 
 *Returned Response:*
 
 
 
 
-[SmsTemplateRes](#SmsTemplateRes)
+[GetStats](#GetStats)
+
+Success
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; default</i></summary>
+
+```json
+{
+  "value": [
+    {
+      "_id": "6009a1ea1f6a61d88e80a867",
+      "imported": {
+        "count": 2
+      },
+      "processed": {
+        "email": {
+          "success": 2,
+          "failed": 0,
+          "suppressed": 0
+        },
+        "sms": {
+          "success": 0,
+          "failed": 0,
+          "suppressed": 0
+        }
+      }
+    }
+  ]
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### getSystemEmailTemplates
+Get system email templates
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").communication.getSystemEmailTemplates({  pageNo : value,
+ pageSize : value,
+ sort : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").communication.getSystemEmailTemplates({  pageNo : value,
+ pageSize : value,
+ sort : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| pageNo | number | no | Current page no |    
+| pageSize | number | no | Current request items count |    
+| sort | Object | no | To sort based on created_at |  
+
+
+
+Get system email templates
+
+*Returned Response:*
+
+
+
+
+[SystemEmailTemplates](#SystemEmailTemplates)
 
 Success
 
@@ -3889,25 +3121,47 @@ Success
 ```json
 {
   "value": {
-    "is_system": false,
-    "is_internal": true,
-    "description": "This is a test sms template",
-    "priority": "high",
-    "tags": [],
-    "published": true,
-    "_id": "5fd447728394dbf0d21329b3",
-    "slug": "test-sms",
-    "name": "Test sms",
-    "message": {
-      "template_type": "nunjucks",
-      "template": "This is a test sms for order - {{ orderId }}"
-    },
-    "template_variables": {
-      "orderId": "12345"
-    },
-    "created_at": "2020-12-12T04:30:42.456Z",
-    "updated_at": "2020-12-24T15:13:20.558Z",
-    "__v": 0
+    "items": [
+      {
+        "is_system": true,
+        "is_internal": true,
+        "description": "Application creation",
+        "static_to": [],
+        "static_cc": [],
+        "static_bcc": [],
+        "tags": [],
+        "priority": "high",
+        "published": true,
+        "_id": "5ef42a49c8b67d279c27a980",
+        "slug": "application-creation",
+        "name": "Application creation",
+        "from_name": "Fynd",
+        "subject": {
+          "template_type": "nunjucks",
+          "template": "This is a test email subject"
+        },
+        "html": {
+          "template_type": "nunjucks",
+          "template": "This is a test email body"
+        },
+        "text": {
+          "template_type": "nunjucks",
+          "template": "This is a test email body"
+        },
+        "headers": [],
+        "attachments": [],
+        "created_at": "2020-06-25T04:38:34.003Z",
+        "updated_at": "2020-08-10T12:27:43.583Z",
+        "__v": 0
+      }
+    ],
+    "page": {
+      "type": "number",
+      "current": 1,
+      "size": 1,
+      "item_total": 66,
+      "has_next": true
+    }
   }
 }
 ```
@@ -3926,17 +3180,19 @@ Success
 ---
 
 
-### getSmsTemplateById
-Get sms template by id
+### getSystemNotifications
+Get system notifications
 
 
 
 ```javascript
 // Promise
-const promise = client.application("<APPLICATION_ID>").communication.getSmsTemplateById({  id : value });
+const promise = platformClient.communication.getSystemNotifications({  pageNo : value,
+ pageSize : value });
 
 // Async/Await
-const data = await client.application("<APPLICATION_ID>").communication.getSmsTemplateById({  id : value });
+const data = await platformClient.communication.getSystemNotifications({  pageNo : value,
+ pageSize : value });
 ```
 
 
@@ -3944,19 +3200,20 @@ const data = await client.application("<APPLICATION_ID>").communication.getSmsTe
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| id | string | yes | Sms template id |  
+| --------- | -----  | -------- | ----------- |  
+| pageNo | number | no |  |    
+| pageSize | number | no |  |  
 
 
 
-Get sms template by id
+Get system notifications
 
 *Returned Response:*
 
 
 
 
-[SmsTemplate](#SmsTemplate)
+[SystemNotifications](#SystemNotifications)
 
 Success
 
@@ -3973,178 +3230,38 @@ Success
 ```json
 {
   "value": {
-    "is_system": false,
-    "is_internal": true,
-    "description": "This is a test sms template",
-    "priority": "high",
-    "tags": [],
-    "published": true,
-    "_id": "5fd447728394dbf0d21329b3",
-    "slug": "test-sms",
-    "name": "Test sms",
-    "message": {
-      "template_type": "nunjucks",
-      "template": "This is a test sms for order - {{ orderId }}"
-    },
-    "template_variables": {
-      "orderId": "12345"
-    },
-    "created_at": "2020-12-12T04:30:42.456Z",
-    "updated_at": "2020-12-24T15:13:20.558Z",
-    "__v": 0
-  }
-}
-```
-</details>
-
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### updateSmsTemplateById
-Update sms template by id
-
-
-
-```javascript
-// Promise
-const promise = client.application("<APPLICATION_ID>").communication.updateSmsTemplateById({  id : value,
- body : value });
-
-// Async/Await
-const data = await client.application("<APPLICATION_ID>").communication.updateSmsTemplateById({  id : value,
- body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| id | string | yes | Sms template id |  
-| body | [SmsTemplateReq](#SmsTemplateReq) | yes | Request body |
-
-
-Update sms template by id
-
-*Returned Response:*
-
-
-
-
-[SmsTemplateRes](#SmsTemplateRes)
-
-Success
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; default</i></summary>
-
-```json
-{
-  "value": {
-    "is_system": false,
-    "is_internal": true,
-    "description": "This is a test sms template",
-    "priority": "high",
-    "tags": [],
-    "published": true,
-    "_id": "5fd447728394dbf0d21329b3",
-    "slug": "test-sms",
-    "name": "Test sms",
-    "message": {
-      "template_type": "nunjucks",
-      "template": "This is a test sms for order - {{ orderId }}"
-    },
-    "template_variables": {
-      "orderId": "12345"
-    },
-    "created_at": "2020-12-12T04:30:42.456Z",
-    "updated_at": "2020-12-24T15:13:20.558Z",
-    "__v": 0
-  }
-}
-```
-</details>
-
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### deleteSmsTemplateById
-Delete sms template by id
-
-
-
-```javascript
-// Promise
-const promise = client.application("<APPLICATION_ID>").communication.deleteSmsTemplateById({  id : value });
-
-// Async/Await
-const data = await client.application("<APPLICATION_ID>").communication.deleteSmsTemplateById({  id : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| id | string | yes | Sms template id |  
-
-
-
-Delete sms template by id
-
-*Returned Response:*
-
-
-
-
-[SmsTemplateDeleteSuccessRes](#SmsTemplateDeleteSuccessRes)
-
-Success
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; default</i></summary>
-
-```json
-{
-  "value": {
-    "success": true,
-    "message": "Deleted successfully"
+    "items": [
+      {
+        "notification": {
+          "title": "Xyz Company is verified!",
+          "body": "",
+          "subtitle": "",
+          "icon": "icon.png",
+          "deeplink": "",
+          "click_action": ""
+        },
+        "user": {
+          "type": "company",
+          "value": "1"
+        },
+        "settings": {
+          "sound": true,
+          "priority": "normal",
+          "time_to_live": "60"
+        },
+        "_id": "60619f167dbd13ff0722f6dd",
+        "group": "fynd-platform",
+        "created_at": "2021-03-29T09:34:14.182Z"
+      }
+    ],
+    "last_read_anchor": 1616748860,
+    "page": {
+      "type": "number",
+      "current": 1,
+      "size": 1,
+      "item_total": 1,
+      "has_next": false
+    }
   }
 }
 ```
@@ -4170,12 +3287,12 @@ Get system sms templates
 
 ```javascript
 // Promise
-const promise = client.application("<APPLICATION_ID>").communication.getSystemSystemTemplates({  pageNo : value,
+const promise = platformClient.application("<APPLICATION_ID>").communication.getSystemSystemTemplates({  pageNo : value,
  pageSize : value,
  sort : value });
 
 // Async/Await
-const data = await client.application("<APPLICATION_ID>").communication.getSystemSystemTemplates({  pageNo : value,
+const data = await platformClient.application("<APPLICATION_ID>").communication.getSystemSystemTemplates({  pageNo : value,
  pageSize : value,
  sort : value });
 ```
@@ -4264,1448 +3381,2139 @@ Success
 ---
 
 
+### sendCommunicationAsynchronously
+Send email or sms asynchronously
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").communication.sendCommunicationAsynchronously({  body : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").communication.sendCommunicationAsynchronously({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [EngineRequest](#EngineRequest) | yes | Request body |
+
+
+Send email or sms asynchronously
+
+*Returned Response:*
+
+
+
+
+[EngineResponse](#EngineResponse)
+
+Success
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; default</i></summary>
+
+```json
+{
+  "value": {
+    "success": true
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### sendCommunicationSynchronously
+Send email or sms synchronously
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").communication.sendCommunicationSynchronously({  body : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").communication.sendCommunicationSynchronously({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [EngineRequest](#EngineRequest) | yes | Request body |
+
+
+Send email or sms synchronously
+
+*Returned Response:*
+
+
+
+
+[EngineResponse](#EngineResponse)
+
+Success
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; default</i></summary>
+
+```json
+{
+  "value": {
+    "success": true
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### sendOtp
+Send OTP using email and sms
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").communication.sendOtp({  body : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").communication.sendOtp({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [SendOtpCommsReq](#SendOtpCommsReq) | yes | Request body |
+
+
+Send OTP Comms via email and sms
+
+*Returned Response:*
+
+
+
+
+[SendOtpCommsRes](#SendOtpCommsRes)
+
+Success
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; default</i></summary>
+
+```json
+{
+  "value": {
+    "sms": {
+      "success": true,
+      "request_id": "c8d1bd63d56a2d368aae9dbd4e7d8326",
+      "message": "OTP sent",
+      "mobile": "9096686804",
+      "country_code": "91",
+      "resend_timer": 30
+    },
+    "email": {
+      "success": true,
+      "request_id": "1cc79c911923971580d903039ea9ee05",
+      "message": "OTP sent",
+      "to": "parvezshaikh@gofynd.com",
+      "resend_timer": 30
+    }
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### triggerCampaignJob
+Trigger campaign job
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").communication.triggerCampaignJob({  body : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").communication.triggerCampaignJob({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [TriggerJobRequest](#TriggerJobRequest) | yes | Request body |
+
+
+Trigger campaign job
+
+*Returned Response:*
+
+
+
+
+[TriggerJobResponse](#TriggerJobResponse)
+
+Success
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; default</i></summary>
+
+```json
+{
+  "value": {
+    "status": 200
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### updateAudienceById
+Update audience by id
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").communication.updateAudienceById({  id : value,
+ body : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").communication.updateAudienceById({  id : value,
+ body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| id | string | yes | Audience id |  
+| body | [AudienceReq](#AudienceReq) | yes | Request body |
+
+
+Update audience by id
+
+*Returned Response:*
+
+
+
+
+[Audience](#Audience)
+
+Success
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; default</i></summary>
+
+```json
+{
+  "value": {
+    "description": "test description",
+    "tags": [
+      "csv"
+    ],
+    "headers": [
+      "phone_number",
+      "email",
+      "firstname",
+      "lastname",
+      "orderid"
+    ],
+    "is_active": true,
+    "_id": "5fb6675c09fd901023917a5f",
+    "name": "Test csv",
+    "file_url": "https://hdn-1.addsale.com/x0/application/000000000000000000000004/datasources/2_r_D1jt6-test-1-entries.csv",
+    "type": "raw_csv",
+    "records_count": 3,
+    "application": "000000000000000000000004",
+    "created_at": "2020-11-19T12:38:52.580Z",
+    "updated_at": "2020-11-19T12:38:52.580Z",
+    "slug": "Test-csv",
+    "__v": 0
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### updateCampaignById
+Update campaign by id
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").communication.updateCampaignById({  id : value,
+ body : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").communication.updateCampaignById({  id : value,
+ body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| id | string | yes | Campaign id |  
+| body | [CampaignReq](#CampaignReq) | yes | Request body |
+
+
+Update campaign by id
+
+*Returned Response:*
+
+
+
+
+[Campaign](#Campaign)
+
+Success
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; default</i></summary>
+
+```json
+{
+  "value": {
+    "recipient_headers": {
+      "email": "email"
+    },
+    "email": {
+      "template": {
+        "key": "_id",
+        "value": "5fb6757a09fd90ca91917a60"
+      },
+      "provider": {
+        "_id": "5e560652b5eb4b1f13b4d601",
+        "from_name": "Fynd",
+        "from_email": "hey@gofynd.com"
+      }
+    },
+    "description": "",
+    "tags": [],
+    "is_active": true,
+    "_id": "6009a1ea1f6a61d88e80a867",
+    "datasource": "6009a1be1f6a61a13180a866",
+    "type": "email",
+    "name": "testing bq email",
+    "application": "000000000000000000000004",
+    "created_at": "2021-01-21T15:46:50.357Z",
+    "updated_at": "2021-01-21T15:46:50.357Z",
+    "slug": "testing-bq-email-vPyAd1YB1",
+    "__v": 0
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### updateEmailProviderById
+Update email provider by id
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").communication.updateEmailProviderById({  id : value,
+ body : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").communication.updateEmailProviderById({  id : value,
+ body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| id | string | yes | Email provider id |  
+| body | [EmailProviderReq](#EmailProviderReq) | yes | Request body |
+
+
+Update email provider by id
+
+*Returned Response:*
+
+
+
+
+[EmailProvider](#EmailProvider)
+
+Success
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; default</i></summary>
+
+```json
+{
+  "value": {
+    "type": "application",
+    "provider": "falconide",
+    "from_address": [
+      {
+        "is_default": true,
+        "name": "abc",
+        "email": "abc@test.com"
+      }
+    ],
+    "_id": "5fd9fd44c474a7e3d5d376d6",
+    "name": "test falconide",
+    "description": "test",
+    "api_key": "testtttt",
+    "application": "000000000000000000000004",
+    "created_at": "2020-12-16T12:27:48.051Z",
+    "updated_at": "2020-12-16T12:27:48.051Z",
+    "slug": "test-falconide-application-falconide-ZTD-D7wbB",
+    "__v": 0
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### updateEmailTemplateById
+Update email template by id
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").communication.updateEmailTemplateById({  id : value,
+ body : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").communication.updateEmailTemplateById({  id : value,
+ body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| id | string | yes | Email template id |  
+| body | [EmailTemplateReq](#EmailTemplateReq) | yes | Request body |
+
+
+Update email template by id
+
+*Returned Response:*
+
+
+
+
+[EmailTemplateRes](#EmailTemplateRes)
+
+Success
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; default</i></summary>
+
+```json
+{
+  "value": {
+    "is_system": false,
+    "is_internal": false,
+    "description": "test template",
+    "static_to": [
+      "abc@gofynd.com"
+    ],
+    "static_cc": [
+      "abc@gofynd.com"
+    ],
+    "static_bcc": [
+      "abc@gofynd.com"
+    ],
+    "tags": [],
+    "priority": "low",
+    "published": false,
+    "_id": "5ef42a49c8b67d279c27a980",
+    "name": "test",
+    "keys": {
+      "bcc": "abc@gofynd.com"
+    },
+    "reply_to": "abc@gofynd.com",
+    "headers": [
+      {
+        "key": "x-test-header",
+        "value": "test123"
+      }
+    ],
+    "subject": {
+      "template_type": "static",
+      "template": "This is test email"
+    },
+    "html": {
+      "template_type": "static",
+      "template": "This is test email"
+    },
+    "text": {
+      "template_type": "static",
+      "template": "This is test email"
+    },
+    "attachments": [],
+    "created_at": "2021-02-08T03:33:42.103Z",
+    "updated_at": "2021-02-08T03:33:42.103Z",
+    "slug": "test-fZfGq0lSQ",
+    "__v": 0
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### updateSmsProviderById
+Update sms provider by id
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").communication.updateSmsProviderById({  id : value,
+ body : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").communication.updateSmsProviderById({  id : value,
+ body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| id | string | yes | Sms provider id |  
+| body | [SmsProviderReq](#SmsProviderReq) | yes | Request body |
+
+
+Update sms provider by id
+
+*Returned Response:*
+
+
+
+
+[SmsProvider](#SmsProvider)
+
+Success
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; default</i></summary>
+
+```json
+{
+  "value": {
+    "rpt": 1,
+    "type": "application",
+    "provider": "telspiel",
+    "_id": "5fd9fd07c474a7710dd376d5",
+    "name": "test telspiel",
+    "description": "test",
+    "sender": "test",
+    "username": "test",
+    "authkey": "test",
+    "application": "000000000000000000000004",
+    "created_at": "2020-12-16T12:26:47.794Z",
+    "updated_at": "2020-12-16T12:26:47.794Z",
+    "slug": "test-telspiel-application-telspiel-p9UY1r7nG",
+    "__v": 0
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### updateSmsTemplateById
+Update sms template by id
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").communication.updateSmsTemplateById({  id : value,
+ body : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").communication.updateSmsTemplateById({  id : value,
+ body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| id | string | yes | Sms template id |  
+| body | [SmsTemplateReq](#SmsTemplateReq) | yes | Request body |
+
+
+Update sms template by id
+
+*Returned Response:*
+
+
+
+
+[SmsTemplateRes](#SmsTemplateRes)
+
+Success
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; default</i></summary>
+
+```json
+{
+  "value": {
+    "is_system": false,
+    "is_internal": true,
+    "description": "This is a test sms template",
+    "priority": "high",
+    "tags": [],
+    "published": true,
+    "_id": "5fd447728394dbf0d21329b3",
+    "slug": "test-sms",
+    "name": "Test sms",
+    "message": {
+      "template_type": "nunjucks",
+      "template": "This is a test sms for order - {{ orderId }}"
+    },
+    "template_variables": {
+      "orderId": "12345"
+    },
+    "created_at": "2020-12-12T04:30:42.456Z",
+    "updated_at": "2020-12-24T15:13:20.558Z",
+    "__v": 0
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### verfiyOtp
+Verify OTP sent via email and sms
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").communication.verfiyOtp({  body : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").communication.verfiyOtp({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [VerifyOtpCommsReq](#VerifyOtpCommsReq) | yes | Request body |
+
+
+Verify OTP sent via email and sms
+
+*Returned Response:*
+
+
+
+
+[VerifyOtpCommsSuccessRes](#VerifyOtpCommsSuccessRes)
+
+Success
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; default</i></summary>
+
+```json
+{
+  "value": {
+    "success": true,
+    "mobile": "9096686804",
+    "country_code": "91",
+    "message": "OTP verified"
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
 
 ### Schemas
 
- 
- 
- #### [StatsImported](#StatsImported)
+
+#### [Audience](#Audience)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | count | number |  no  |  |
+ | __v | number? |  yes  |  |
+ | _id | string? |  yes  |  |
+ | application | string? |  yes  |  |
+ | created_at | string? |  yes  |  |
+ | description | string? |  yes  |  |
+ | file_url | string? |  yes  |  |
+ | headers | [string]? |  yes  |  |
+ | is_active | boolean? |  yes  |  |
+ | name | string? |  yes  |  |
+ | records_count | number? |  yes  |  |
+ | slug | string? |  yes  |  |
+ | tags | [string]? |  yes  |  |
+ | type | string? |  yes  |  |
+ | updated_at | string? |  yes  |  |
+ 
 
 ---
 
-
- 
- 
- #### [StatsProcessedEmail](#StatsProcessedEmail)
+#### [AudienceReq](#AudienceReq)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | success | number |  no  |  |
- | failed | number |  no  |  |
- | suppressed | number |  no  |  |
+ | application | string? |  yes  |  |
+ | description | string? |  yes  |  |
+ | file_url | string? |  yes  |  |
+ | headers | [string]? |  yes  |  |
+ | is_active | boolean? |  yes  |  |
+ | name | string? |  yes  |  |
+ | records_count | number? |  yes  |  |
+ | tags | [string]? |  yes  |  |
+ | type | string? |  yes  |  |
+ 
 
 ---
 
-
- 
- 
- #### [StatsProcessedSms](#StatsProcessedSms)
+#### [Audiences](#Audiences)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | success | number |  no  |  |
- | failed | number |  no  |  |
- | suppressed | number |  no  |  |
+ | items | [[Audience](#Audience)]? |  yes  |  |
+ | page | [Page](#Page)? |  yes  |  |
+ 
 
 ---
 
-
- 
- 
- #### [StatsProcessed](#StatsProcessed)
+#### [BadRequestSchema](#BadRequestSchema)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | email | [StatsProcessedEmail](#StatsProcessedEmail) |  no  |  |
- | sms | [StatsProcessedSms](#StatsProcessedSms) |  no  |  |
+ | message | string? |  yes  | Failure message. |
+ | status | string? |  yes  | Response status. |
+ 
 
 ---
 
-
- 
- 
- #### [Stats](#Stats)
+#### [BigqueryHeadersReq](#BigqueryHeadersReq)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | _id | string |  no  |  |
- | imported | any |  no  |  |
- | processed | any |  no  |  |
+ | query | string? |  yes  |  |
+ | type | string? |  yes  |  |
+ 
 
 ---
 
-
- 
- 
- #### [GetStats](#GetStats)
+#### [BigqueryHeadersRes](#BigqueryHeadersRes)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | items | [[Stats](#Stats)] |  no  |  |
+ | headers | [[BigqueryHeadersResHeaders](#BigqueryHeadersResHeaders)]? |  yes  |  |
+ 
 
 ---
 
-
- 
- 
- #### [CampaignReq](#CampaignReq)
+#### [BigqueryHeadersResHeaders](#BigqueryHeadersResHeaders)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | description | string |  no  |  |
- | tags | [string] |  no  |  |
- | headers | [string] |  no  |  |
- | is_active | boolean |  no  |  |
- | name | string |  no  |  |
- | file_url | string |  no  |  |
+ | name | string? |  yes  |  |
+ | type | string? |  yes  |  |
+ 
+
+---
+
+#### [Campaign](#Campaign)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | __v | number? |  yes  |  |
+ | _id | string? |  yes  |  |
+ | application | string? |  yes  |  |
+ | created_at | string? |  yes  |  |
+ | datasource | string? |  yes  |  |
+ | description | string? |  yes  |  |
+ | email | [CampaignEmail](#CampaignEmail)? |  yes  |  |
+ | is_active | boolean? |  yes  |  |
+ | name | string? |  yes  |  |
+ | recipient_headers | [RecipientHeaders](#RecipientHeaders)? |  yes  |  |
+ | slug | string? |  yes  |  |
+ | tags | [any]? |  yes  |  |
+ | type | string? |  yes  |  |
+ | updated_at | string? |  yes  |  |
+ 
+
+---
+
+#### [CampaignEmail](#CampaignEmail)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | provider | [CampignEmailProvider](#CampignEmailProvider)? |  yes  |  |
+ | template | [CampaignEmailTemplate](#CampaignEmailTemplate)? |  yes  |  |
+ 
+
+---
+
+#### [CampaignEmailTemplate](#CampaignEmailTemplate)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | key | string? |  yes  |  |
+ | value | string? |  yes  |  |
+ 
+
+---
+
+#### [CampaignReq](#CampaignReq)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | application | string? |  yes  |  |
+ | description | string? |  yes  |  |
+ | file_url | string? |  yes  |  |
+ | headers | [string]? |  yes  |  |
+ | is_active | boolean? |  yes  |  |
+ | name | string? |  yes  |  |
+ | records_count | number? |  yes  |  |
+ | tags | [string]? |  yes  |  |
+ | type | string? |  yes  |  |
+ 
+
+---
+
+#### [Campaigns](#Campaigns)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | items | [[Campaign](#Campaign)]? |  yes  |  |
+ | page | [Page](#Page)? |  yes  |  |
+ 
+
+---
+
+#### [CampignEmailProvider](#CampignEmailProvider)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | _id | string? |  yes  |  |
+ | from_email | string? |  yes  |  |
+ | from_name | string? |  yes  |  |
+ 
+
+---
+
+#### [EmailProvider](#EmailProvider)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | __v | number? |  yes  |  |
+ | _id | string? |  yes  |  |
+ | api_key | string? |  yes  |  |
+ | application | string? |  yes  |  |
+ | created_at | string? |  yes  |  |
+ | description | string? |  yes  |  |
+ | from_address | [[EmailProviderReqFrom](#EmailProviderReqFrom)]? |  yes  |  |
+ | name | string? |  yes  |  |
+ | provider | string? |  yes  |  |
+ | slug | string? |  yes  |  |
+ | type | string? |  yes  |  |
+ | updated_at | string? |  yes  |  |
+ 
+
+---
+
+#### [EmailProviderReq](#EmailProviderReq)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | api_key | string? |  yes  |  |
+ | description | string? |  yes  |  |
+ | from_address | [[EmailProviderReqFrom](#EmailProviderReqFrom)]? |  yes  |  |
+ | name | string? |  yes  |  |
+ | provider | string? |  yes  |  |
+ | type | string? |  yes  |  |
+ 
+
+---
+
+#### [EmailProviderReqFrom](#EmailProviderReqFrom)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | email | string? |  yes  |  |
+ | is_default | boolean? |  yes  |  |
+ | name | string? |  yes  |  |
+ 
+
+---
+
+#### [EmailProviders](#EmailProviders)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | items | [[EmailProvider](#EmailProvider)]? |  yes  |  |
+ | page | [Page](#Page)? |  yes  |  |
+ 
+
+---
+
+#### [EmailTemplate](#EmailTemplate)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | __v | number? |  yes  |  |
+ | _id | string? |  yes  |  |
+ | attachments | [any]? |  yes  |  |
+ | created_at | string? |  yes  |  |
+ | description | string? |  yes  |  |
+ | from_name | string? |  yes  |  |
+ | headers | [any]? |  yes  |  |
+ | html | [TemplateAndType](#TemplateAndType)? |  yes  |  |
+ | is_internal | boolean? |  yes  |  |
+ | is_system | boolean? |  yes  |  |
+ | name | string? |  yes  |  |
+ | priority | string? |  yes  |  |
+ | published | boolean? |  yes  |  |
+ | slug | string? |  yes  |  |
+ | static_bcc | [any]? |  yes  |  |
+ | static_cc | [any]? |  yes  |  |
+ | static_to | [any]? |  yes  |  |
+ | subject | [TemplateAndType](#TemplateAndType)? |  yes  |  |
+ | tags | [any]? |  yes  |  |
+ | text | [TemplateAndType](#TemplateAndType)? |  yes  |  |
+ | updated_at | string? |  yes  |  |
+ 
+
+---
+
+#### [EmailTemplateDeleteFailureRes](#EmailTemplateDeleteFailureRes)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | message | string? |  yes  |  |
+ | success | boolean? |  yes  |  |
+ 
+
+---
+
+#### [EmailTemplateDeleteSuccessRes](#EmailTemplateDeleteSuccessRes)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | message | string? |  yes  |  |
+ | success | boolean? |  yes  |  |
+ 
+
+---
+
+#### [EmailTemplateHeaders](#EmailTemplateHeaders)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | key | string? |  yes  |  |
+ | value | string? |  yes  |  |
+ 
+
+---
+
+#### [EmailTemplateKeys](#EmailTemplateKeys)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | bcc | string? |  yes  |  |
+ | cc | string? |  yes  |  |
+ | to | string? |  yes  |  |
+ 
+
+---
+
+#### [EmailTemplateReq](#EmailTemplateReq)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | attachments | [any]? |  yes  |  |
+ | description | string? |  yes  |  |
+ | headers | [[EmailTemplateHeaders](#EmailTemplateHeaders)]? |  yes  |  |
+ | html | [TemplateAndType](#TemplateAndType)? |  yes  |  |
+ | keys | [EmailTemplateKeys](#EmailTemplateKeys)? |  yes  |  |
+ | name | string? |  yes  |  |
+ | priority | string? |  yes  |  |
+ | reply_to | string? |  yes  |  |
+ | static_bcc | [string]? |  yes  |  |
+ | static_cc | [string]? |  yes  |  |
+ | static_to | [string]? |  yes  |  |
+ | subject | [TemplateAndType](#TemplateAndType)? |  yes  |  |
+ | text | [TemplateAndType](#TemplateAndType)? |  yes  |  |
+ 
+
+---
+
+#### [EmailTemplateRes](#EmailTemplateRes)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | __v | number? |  yes  |  |
+ | _id | string? |  yes  |  |
+ | attachments | [any]? |  yes  |  |
+ | created_at | string? |  yes  |  |
+ | description | string? |  yes  |  |
+ | headers | [[EmailTemplateHeaders](#EmailTemplateHeaders)]? |  yes  |  |
+ | html | [TemplateAndType](#TemplateAndType)? |  yes  |  |
+ | is_internal | boolean? |  yes  |  |
+ | is_system | boolean? |  yes  |  |
+ | keys | [EmailTemplateKeys](#EmailTemplateKeys)? |  yes  |  |
+ | name | string? |  yes  |  |
+ | priority | string? |  yes  |  |
+ | published | boolean? |  yes  |  |
+ | reply_to | string? |  yes  |  |
+ | slug | string? |  yes  |  |
+ | static_bcc | [string]? |  yes  |  |
+ | static_cc | [string]? |  yes  |  |
+ | static_to | [string]? |  yes  |  |
+ | subject | [TemplateAndType](#TemplateAndType)? |  yes  |  |
+ | tags | [any]? |  yes  |  |
+ | text | [TemplateAndType](#TemplateAndType)? |  yes  |  |
+ | updated_at | string? |  yes  |  |
+ 
+
+---
+
+#### [EmailTemplates](#EmailTemplates)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | items | [[EmailTemplate](#EmailTemplate)]? |  yes  |  |
+ | page | [Page](#Page)? |  yes  |  |
+ 
+
+---
+
+#### [EngineRequest](#EngineRequest)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | meta | [MetaStructure](#MetaStructure)? |  yes  |  |
+ | payload | [PayloadStructure](#PayloadStructure)? |  yes  |  |
+ 
+
+---
+
+#### [EngineResponse](#EngineResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | success | boolean? |  yes  |  |
+ 
+
+---
+
+#### [EventSubscription](#EventSubscription)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | __v | number? |  yes  |  |
+ | _id | string? |  yes  |  |
+ | application | string? |  yes  |  |
+ | created_at | string? |  yes  |  |
+ | event | string? |  yes  |  |
+ | is_default | boolean? |  yes  |  |
+ | slug | string? |  yes  |  |
+ | template | [EventSubscriptionTemplate](#EventSubscriptionTemplate)? |  yes  |  |
+ | updated_at | string? |  yes  |  |
+ 
+
+---
+
+#### [EventSubscriptions](#EventSubscriptions)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | items | [[EventSubscription](#EventSubscription)]? |  yes  |  |
+ | page | [Page](#Page)? |  yes  |  |
+ 
+
+---
+
+#### [EventSubscriptionTemplate](#EventSubscriptionTemplate)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | email | [EventSubscriptionTemplateEmail](#EventSubscriptionTemplateEmail)? |  yes  |  |
+ | sms | [EventSubscriptionTemplateSms](#EventSubscriptionTemplateSms)? |  yes  |  |
+ 
+
+---
+
+#### [EventSubscriptionTemplateEmail](#EventSubscriptionTemplateEmail)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | subscribed | boolean? |  yes  |  |
+ | template | string? |  yes  |  |
+ 
+
+---
+
+#### [EventSubscriptionTemplateSms](#EventSubscriptionTemplateSms)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | subscribed | boolean? |  yes  |  |
+ | template | string? |  yes  |  |
+ 
+
+---
+
+#### [GetNRecordsCsvReq](#GetNRecordsCsvReq)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | count | number? |  yes  |  |
+ | header | boolean? |  yes  |  |
+ | url | string? |  yes  |  |
+ 
+
+---
+
+#### [GetNRecordsCsvRes](#GetNRecordsCsvRes)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | items | [[GetNRecordsCsvResItems](#GetNRecordsCsvResItems)]? |  yes  |  |
+ 
+
+---
+
+#### [GetNRecordsCsvResItems](#GetNRecordsCsvResItems)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | email | string? |  yes  |  |
+ | firstname | string? |  yes  |  |
+ | lastname | string? |  yes  |  |
+ | orderid | string? |  yes  |  |
+ | phone_number | string? |  yes  |  |
+ 
+
+---
+
+#### [GetStats](#GetStats)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | items | [[Stats](#Stats)]? |  yes  |  |
+ 
+
+---
+
+#### [Job](#Job)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | __v | number? |  yes  |  |
+ | _id | string? |  yes  |  |
+ | application | string? |  yes  |  |
+ | campaign | string? |  yes  |  |
+ | completed | boolean? |  yes  |  |
+ | created_at | string? |  yes  |  |
+ | is_active | boolean? |  yes  |  |
+ | updated_at | string? |  yes  |  |
+ 
+
+---
+
+#### [JobLog](#JobLog)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | __v | number? |  yes  |  |
+ | _id | string? |  yes  |  |
+ | campaign | string? |  yes  |  |
+ | created_at | string? |  yes  |  |
+ | imported | any? |  yes  |  |
+ | job | string? |  yes  |  |
+ | processed | any? |  yes  |  |
+ | updated_at | string? |  yes  |  |
+ 
+
+---
+
+#### [JobLogs](#JobLogs)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | items | [[JobLog](#JobLog)]? |  yes  |  |
+ | page | [Page](#Page)? |  yes  |  |
+ 
+
+---
+
+#### [Jobs](#Jobs)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | items | [[Job](#Job)]? |  yes  |  |
+ | page | [Page](#Page)? |  yes  |  |
+ 
+
+---
+
+#### [Log](#Log)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | _id | string? |  yes  |  |
+ | application | string? |  yes  |  |
+ | created_at | string? |  yes  |  |
+ | data | any? |  yes  |  |
+ | email | [LogEmail](#LogEmail)? |  yes  |  |
+ | expire_at | string? |  yes  |  |
+ | meta | [LogMeta](#LogMeta)? |  yes  |  |
+ | pushnotification | [LogPushnotification](#LogPushnotification)? |  yes  |  |
+ | service | string? |  yes  |  |
+ | status | string? |  yes  |  |
+ | step | string? |  yes  |  |
+ 
+
+---
+
+#### [LogEmail](#LogEmail)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | template | string? |  yes  |  |
+ 
+
+---
+
+#### [LogMeta](#LogMeta)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | identifier | string? |  yes  |  |
+ | key | string? |  yes  |  |
+ | offset | string? |  yes  |  |
+ | partition | string? |  yes  |  |
+ | topic | string? |  yes  |  |
+ | type | string? |  yes  |  |
+ 
+
+---
+
+#### [LogPushnotification](#LogPushnotification)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | pushtokens | [string]? |  yes  |  |
+ 
+
+---
+
+#### [Logs](#Logs)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | items | [[Log](#Log)]? |  yes  |  |
+ | page | [Page](#Page)? |  yes  |  |
+ 
+
+---
+
+#### [MetaStructure](#MetaStructure)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | action | string? |  yes  |  |
+ | job_type | string? |  yes  |  |
+ | timestamp | string? |  yes  |  |
+ | trace | string? |  yes  |  |
+ 
+
+---
+
+#### [NotFound](#NotFound)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | message | string? |  yes  | Failure message. |
+ 
+
+---
+
+#### [Notification](#Notification)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | body | string? |  yes  |  |
+ | click_action | string? |  yes  |  |
+ | deeplink | string? |  yes  |  |
+ | icon | string? |  yes  |  |
+ | subtitle | string? |  yes  |  |
+ | title | string? |  yes  |  |
+ 
+
+---
+
+#### [Page](#Page)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | current | number? |  yes  |  |
+ | has_next | boolean? |  yes  |  |
+ | has_previous | boolean? |  yes  |  |
+ | item_total | number? |  yes  |  |
+ | next_id | string? |  yes  |  |
+ | size | number? |  yes  |  |
  | type | string |  no  |  |
- | records_count | number |  no  |  |
- | application | string |  no  |  |
-
----
-
-
- 
  
- #### [RecipientHeaders](#RecipientHeaders)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | email | string |  no  |  |
 
 ---
-
 
- 
- 
- #### [CampaignEmailTemplate](#CampaignEmailTemplate)
+#### [PayloadEmailProviderStructure](#PayloadEmailProviderStructure)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | key | string |  no  |  |
- | value | string |  no  |  |
-
----
-
-
+ | _id | string? |  yes  |  |
  
- 
- #### [CampignEmailProvider](#CampignEmailProvider)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | _id | string |  no  |  |
- | from_name | string |  no  |  |
- | from_email | string |  no  |  |
 
 ---
-
 
- 
- 
- #### [CampaignEmail](#CampaignEmail)
+#### [PayloadEmailStructure](#PayloadEmailStructure)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | template | [CampaignEmailTemplate](#CampaignEmailTemplate) |  no  |  |
- | provider | [CampignEmailProvider](#CampignEmailProvider) |  no  |  |
-
----
-
-
+ | provider | [PayloadEmailProviderStructure](#PayloadEmailProviderStructure)? |  yes  |  |
+ | template | [PayloadEmailTemplateStructure](#PayloadEmailTemplateStructure)? |  yes  |  |
  
- 
- #### [Campaign](#Campaign)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | recipient_headers | [RecipientHeaders](#RecipientHeaders) |  no  |  |
- | email | [CampaignEmail](#CampaignEmail) |  no  |  |
- | description | string |  no  |  |
- | tags | [any] |  no  |  |
- | is_active | boolean |  no  |  |
- | _id | string |  no  |  |
- | datasource | string |  no  |  |
- | type | string |  no  |  |
- | name | string |  no  |  |
- | application | string |  no  |  |
- | created_at | string |  no  |  |
- | updated_at | string |  no  |  |
- | slug | string |  no  |  |
- | __v | number |  no  |  |
 
 ---
 
+#### [PayloadEmailTemplateStructure](#PayloadEmailTemplateStructure)
 
- 
- 
- #### [Campaigns](#Campaigns)
-
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | items | [[Campaign](#Campaign)] |  no  |  |
- | page | [Page](#Page) |  no  |  |
-
----
-
-
+ | key | string? |  yes  |  |
+ | value | any? |  yes  |  |
  
- 
- #### [BadRequestSchema](#BadRequestSchema)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | status | string |  no  | Response status. |
- | message | string |  no  | Failure message. |
 
 ---
 
+#### [PayloadSmsProviderStructure](#PayloadSmsProviderStructure)
 
- 
- 
- #### [NotFound](#NotFound)
-
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | message | string |  no  | Failure message. |
-
----
-
-
- 
+ | _id | string? |  yes  |  |
  
- #### [BigqueryHeadersReq](#BigqueryHeadersReq)
 
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | query | string |  no  |  |
- | type | string |  no  |  |
-
 ---
-
 
- 
- 
- #### [BigqueryHeadersResHeaders](#BigqueryHeadersResHeaders)
+#### [PayloadSmsStructure](#PayloadSmsStructure)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | name | string |  no  |  |
- | type | string |  no  |  |
-
----
-
-
+ | provider | [PayloadSmsProviderStructure](#PayloadSmsProviderStructure)? |  yes  |  |
+ | template | [PayloadSmsTemplateStructure](#PayloadSmsTemplateStructure)? |  yes  |  |
  
- 
- #### [BigqueryHeadersRes](#BigqueryHeadersRes)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | headers | [[BigqueryHeadersResHeaders](#BigqueryHeadersResHeaders)] |  no  |  |
 
 ---
-
 
- 
- 
- #### [GetNRecordsCsvReq](#GetNRecordsCsvReq)
+#### [PayloadSmsTemplateStructure](#PayloadSmsTemplateStructure)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | url | string |  no  |  |
- | header | boolean |  no  |  |
- | count | number |  no  |  |
-
----
-
-
+ | key | string? |  yes  |  |
+ | value | any? |  yes  |  |
  
- 
- #### [GetNRecordsCsvResItems](#GetNRecordsCsvResItems)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | phone_number | string |  no  |  |
- | email | string |  no  |  |
- | firstname | string |  no  |  |
- | lastname | string |  no  |  |
- | orderid | string |  no  |  |
 
 ---
 
-
- 
- 
- #### [GetNRecordsCsvRes](#GetNRecordsCsvRes)
+#### [PayloadStructure](#PayloadStructure)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | items | [[GetNRecordsCsvResItems](#GetNRecordsCsvResItems)] |  no  |  |
-
----
-
-
- 
+ | application | string? |  yes  |  |
+ | data | [string]? |  yes  |  |
+ | email | [PayloadEmailStructure](#PayloadEmailStructure)? |  yes  |  |
+ | sms | [PayloadSmsStructure](#PayloadSmsStructure)? |  yes  |  |
  
- #### [AudienceReq](#AudienceReq)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | description | string |  no  |  |
- | tags | [string] |  no  |  |
- | headers | [string] |  no  |  |
- | is_active | boolean |  no  |  |
- | name | string |  no  |  |
- | file_url | string |  no  |  |
- | type | string |  no  |  |
- | records_count | number |  no  |  |
- | application | string |  no  |  |
 
 ---
-
 
- 
- 
- #### [Audience](#Audience)
+#### [PushtokenReq](#PushtokenReq)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | description | string |  no  |  |
- | tags | [string] |  no  |  |
- | headers | [string] |  no  |  |
- | is_active | boolean |  no  |  |
- | _id | string |  no  |  |
- | name | string |  no  |  |
- | file_url | string |  no  |  |
- | type | string |  no  |  |
- | records_count | number |  no  |  |
- | application | string |  no  |  |
- | created_at | string |  no  |  |
- | updated_at | string |  no  |  |
- | slug | string |  no  |  |
- | __v | number |  no  |  |
-
----
-
-
+ | action | string? |  yes  |  |
+ | bundle_identifier | string? |  yes  |  |
+ | push_token | string? |  yes  |  |
+ | unique_device_id | string? |  yes  |  |
  
- 
- #### [Audiences](#Audiences)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | items | [[Audience](#Audience)] |  no  |  |
- | page | [Page](#Page) |  no  |  |
 
 ---
-
 
- 
- 
- #### [EmailProviderReqFrom](#EmailProviderReqFrom)
+#### [PushtokenRes](#PushtokenRes)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | name | string |  no  |  |
- | email | string |  no  |  |
- | is_default | boolean |  no  |  |
-
----
-
-
+ | _id | string? |  yes  |  |
+ | application_id | string? |  yes  |  |
+ | bundle_identifier | string? |  yes  |  |
+ | created_at | string? |  yes  |  |
+ | expired_at | string? |  yes  |  |
+ | platform | string? |  yes  |  |
+ | push_token | string? |  yes  |  |
+ | type | string? |  yes  |  |
+ | unique_device_id | string? |  yes  |  |
+ | updated_at | string? |  yes  |  |
+ | user_id | string? |  yes  |  |
  
- 
- #### [EmailProviderReq](#EmailProviderReq)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | name | string |  no  |  |
- | description | string |  no  |  |
- | api_key | string |  no  |  |
- | type | string |  no  |  |
- | provider | string |  no  |  |
- | from_address | [[EmailProviderReqFrom](#EmailProviderReqFrom)] |  no  |  |
 
 ---
 
+#### [RecipientHeaders](#RecipientHeaders)
 
- 
- 
- #### [EmailProvider](#EmailProvider)
-
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | type | string |  no  |  |
- | provider | string |  no  |  |
- | from_address | [[EmailProviderReqFrom](#EmailProviderReqFrom)] |  no  |  |
- | _id | string |  no  |  |
- | name | string |  no  |  |
- | description | string |  no  |  |
- | api_key | string |  no  |  |
- | application | string |  no  |  |
- | created_at | string |  no  |  |
- | updated_at | string |  no  |  |
- | slug | string |  no  |  |
- | __v | number |  no  |  |
-
----
-
-
- 
+ | email | string? |  yes  |  |
  
- #### [EmailProviders](#EmailProviders)
 
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | items | [[EmailProvider](#EmailProvider)] |  no  |  |
- | page | [Page](#Page) |  no  |  |
-
 ---
-
 
- 
- 
- #### [EmailTemplateDeleteSuccessRes](#EmailTemplateDeleteSuccessRes)
+#### [SendOtpCommsReq](#SendOtpCommsReq)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | success | boolean |  no  |  |
- | message | string |  no  |  |
-
----
-
-
- 
+ | data | [SendOtpCommsReqData](#SendOtpCommsReqData)? |  yes  |  |
+ | email | [SendOtpCommsReqEmail](#SendOtpCommsReqEmail)? |  yes  |  |
+ | sms | [SendOtpCommsReqSms](#SendOtpCommsReqSms)? |  yes  |  |
  
- #### [EmailTemplateDeleteFailureRes](#EmailTemplateDeleteFailureRes)
 
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | success | boolean |  no  |  |
- | message | string |  no  |  |
-
 ---
-
 
- 
- 
- #### [EmailTemplateKeys](#EmailTemplateKeys)
+#### [SendOtpCommsReqData](#SendOtpCommsReqData)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | to | string |  no  |  |
- | cc | string |  no  |  |
- | bcc | string |  no  |  |
-
----
-
-
+ | country_code | string? |  yes  |  |
+ | mobile | string? |  yes  |  |
+ | send_same_otp_to_channel | boolean? |  yes  |  |
+ | to | string? |  yes  |  |
  
- 
- #### [EmailTemplateHeaders](#EmailTemplateHeaders)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | key | string |  no  |  |
- | value | string |  no  |  |
 
 ---
 
-
- 
- 
- #### [EmailTemplateReq](#EmailTemplateReq)
+#### [SendOtpCommsReqEmail](#SendOtpCommsReqEmail)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | name | string |  no  |  |
- | description | string |  no  |  |
- | keys | [EmailTemplateKeys](#EmailTemplateKeys) |  no  |  |
- | static_to | [string] |  no  |  |
- | static_cc | [string] |  no  |  |
- | static_bcc | [string] |  no  |  |
- | reply_to | string |  no  |  |
- | headers | [[EmailTemplateHeaders](#EmailTemplateHeaders)] |  no  |  |
- | subject | [TemplateAndType](#TemplateAndType) |  no  |  |
- | html | [TemplateAndType](#TemplateAndType) |  no  |  |
- | text | [TemplateAndType](#TemplateAndType) |  no  |  |
- | attachments | [any] |  no  |  |
- | priority | string |  no  |  |
-
----
-
-
- 
+ | expiry | number? |  yes  |  |
+ | otp_length | number? |  yes  |  |
+ | template | [SendOtpEmailCommsTemplate](#SendOtpEmailCommsTemplate)? |  yes  |  |
  
- #### [TemplateAndType](#TemplateAndType)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | template_type | string |  no  |  |
- | template | string |  no  |  |
 
 ---
-
 
- 
- 
- #### [EmailTemplateRes](#EmailTemplateRes)
+#### [SendOtpCommsReqSms](#SendOtpCommsReqSms)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | is_system | boolean |  no  |  |
- | is_internal | boolean |  no  |  |
- | description | string |  no  |  |
- | static_to | [string] |  no  |  |
- | static_cc | [string] |  no  |  |
- | static_bcc | [string] |  no  |  |
- | tags | [any] |  no  |  |
- | priority | string |  no  |  |
- | published | boolean |  no  |  |
- | _id | string |  no  |  |
- | name | string |  no  |  |
- | keys | [EmailTemplateKeys](#EmailTemplateKeys) |  no  |  |
- | reply_to | string |  no  |  |
- | headers | [[EmailTemplateHeaders](#EmailTemplateHeaders)] |  no  |  |
- | subject | [TemplateAndType](#TemplateAndType) |  no  |  |
- | html | [TemplateAndType](#TemplateAndType) |  no  |  |
- | text | [TemplateAndType](#TemplateAndType) |  no  |  |
- | attachments | [any] |  no  |  |
- | created_at | string |  no  |  |
- | updated_at | string |  no  |  |
- | slug | string |  no  |  |
- | __v | number |  no  |  |
-
----
-
-
- 
+ | expiry | number? |  yes  |  |
+ | otp_length | number? |  yes  |  |
+ | provider | [SendOtpSmsCommsProvider](#SendOtpSmsCommsProvider)? |  yes  |  |
+ | template | [SendOtpSmsCommsTemplate](#SendOtpSmsCommsTemplate)? |  yes  |  |
  
- #### [EmailTemplate](#EmailTemplate)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | is_system | boolean |  no  |  |
- | is_internal | boolean |  no  |  |
- | description | string |  no  |  |
- | static_to | [any] |  no  |  |
- | static_cc | [any] |  no  |  |
- | static_bcc | [any] |  no  |  |
- | tags | [any] |  no  |  |
- | priority | string |  no  |  |
- | published | boolean |  no  |  |
- | _id | string |  no  |  |
- | slug | string |  no  |  |
- | name | string |  no  |  |
- | from_name | string |  no  |  |
- | subject | [TemplateAndType](#TemplateAndType) |  no  |  |
- | html | [TemplateAndType](#TemplateAndType) |  no  |  |
- | text | [TemplateAndType](#TemplateAndType) |  no  |  |
- | headers | [any] |  no  |  |
- | attachments | [any] |  no  |  |
- | created_at | string |  no  |  |
- | updated_at | string |  no  |  |
- | __v | number |  no  |  |
 
 ---
-
 
- 
- 
- #### [SystemEmailTemplate](#SystemEmailTemplate)
+#### [SendOtpCommsRes](#SendOtpCommsRes)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | is_system | boolean |  no  |  |
- | is_internal | boolean |  no  |  |
- | description | string |  no  |  |
- | static_to | [any] |  no  |  |
- | static_cc | [any] |  no  |  |
- | static_bcc | [any] |  no  |  |
- | tags | [any] |  no  |  |
- | priority | string |  no  |  |
- | published | boolean |  no  |  |
- | _id | string |  no  |  |
- | slug | string |  no  |  |
- | name | string |  no  |  |
- | from_name | string |  no  |  |
- | subject | [TemplateAndType](#TemplateAndType) |  no  |  |
- | html | [TemplateAndType](#TemplateAndType) |  no  |  |
- | text | [TemplateAndType](#TemplateAndType) |  no  |  |
- | headers | [any] |  no  |  |
- | attachments | [any] |  no  |  |
- | created_at | string |  no  |  |
- | updated_at | string |  no  |  |
- | __v | number |  no  |  |
-
----
-
-
+ | email | [SendOtpCommsResEmail](#SendOtpCommsResEmail)? |  yes  |  |
+ | sms | [SendOtpCommsResSms](#SendOtpCommsResSms)? |  yes  |  |
  
- 
- #### [EmailTemplates](#EmailTemplates)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | items | [[EmailTemplate](#EmailTemplate)] |  no  |  |
- | page | [Page](#Page) |  no  |  |
 
 ---
 
+#### [SendOtpCommsResEmail](#SendOtpCommsResEmail)
 
- 
- 
- #### [SystemEmailTemplates](#SystemEmailTemplates)
-
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | items | [[SystemEmailTemplate](#SystemEmailTemplate)] |  no  |  |
- | page | [Page](#Page) |  no  |  |
-
----
-
-
- 
+ | message | string? |  yes  |  |
+ | request_id | string? |  yes  |  |
+ | resend_timer | number? |  yes  |  |
+ | success | boolean? |  yes  |  |
+ | to | string? |  yes  |  |
  
- #### [PayloadEmailTemplateStructure](#PayloadEmailTemplateStructure)
 
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | key | string |  no  |  |
- | value | any |  no  |  |
-
 ---
-
 
- 
- 
- #### [PayloadEmailProviderStructure](#PayloadEmailProviderStructure)
+#### [SendOtpCommsResSms](#SendOtpCommsResSms)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | _id | string |  no  |  |
-
----
-
-
- 
+ | country_code | string? |  yes  |  |
+ | message | string? |  yes  |  |
+ | mobile | string? |  yes  |  |
+ | request_id | string? |  yes  |  |
+ | resend_timer | number? |  yes  |  |
+ | success | boolean? |  yes  |  |
  
- #### [PayloadEmailStructure](#PayloadEmailStructure)
 
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | template | [PayloadEmailTemplateStructure](#PayloadEmailTemplateStructure) |  no  |  |
- | provider | [PayloadEmailProviderStructure](#PayloadEmailProviderStructure) |  no  |  |
-
 ---
-
 
- 
- 
- #### [PayloadSmsTemplateStructure](#PayloadSmsTemplateStructure)
+#### [SendOtpEmailCommsTemplate](#SendOtpEmailCommsTemplate)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | key | string |  no  |  |
- | value | any |  no  |  |
-
----
-
-
+ | key | string? |  yes  |  |
+ | value | any? |  yes  |  |
  
- 
- #### [PayloadSmsProviderStructure](#PayloadSmsProviderStructure)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | _id | string |  no  |  |
 
 ---
 
-
- 
- 
- #### [PayloadSmsStructure](#PayloadSmsStructure)
+#### [SendOtpSmsCommsProvider](#SendOtpSmsCommsProvider)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | template | [PayloadSmsTemplateStructure](#PayloadSmsTemplateStructure) |  no  |  |
- | provider | [PayloadSmsProviderStructure](#PayloadSmsProviderStructure) |  no  |  |
-
----
-
-
- 
+ | _id | string? |  yes  |  |
+ | slug | string? |  yes  |  |
  
- #### [PayloadStructure](#PayloadStructure)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | data | [string] |  no  |  |
- | email | [PayloadEmailStructure](#PayloadEmailStructure) |  no  |  |
- | sms | [PayloadSmsStructure](#PayloadSmsStructure) |  no  |  |
- | application | string |  no  |  |
 
 ---
 
-
- 
- 
- #### [MetaStructure](#MetaStructure)
+#### [SendOtpSmsCommsTemplate](#SendOtpSmsCommsTemplate)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | job_type | string |  no  |  |
- | action | string |  no  |  |
- | trace | string |  no  |  |
- | timestamp | string |  no  |  |
-
----
-
-
- 
+ | key | string? |  yes  |  |
+ | value | any? |  yes  |  |
  
- #### [EngineRequest](#EngineRequest)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | payload | [PayloadStructure](#PayloadStructure) |  no  |  |
- | meta | [MetaStructure](#MetaStructure) |  no  |  |
 
 ---
-
 
- 
- 
- #### [EngineResponse](#EngineResponse)
+#### [SmsProvider](#SmsProvider)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | success | boolean |  no  |  |
-
----
-
-
+ | __v | number? |  yes  |  |
+ | _id | string? |  yes  |  |
+ | application | string? |  yes  |  |
+ | authkey | string? |  yes  |  |
+ | created_at | string? |  yes  |  |
+ | description | string? |  yes  |  |
+ | name | string? |  yes  |  |
+ | provider | string? |  yes  |  |
+ | rpt | number? |  yes  |  |
+ | sender | string? |  yes  |  |
+ | slug | string? |  yes  |  |
+ | type | string? |  yes  |  |
+ | updated_at | string? |  yes  |  |
+ | username | string? |  yes  |  |
  
- 
- #### [EventSubscriptionTemplateSms](#EventSubscriptionTemplateSms)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | subscribed | boolean |  no  |  |
- | template | string |  no  |  |
 
 ---
 
+#### [SmsProviderReq](#SmsProviderReq)
 
- 
- 
- #### [EventSubscriptionTemplateEmail](#EventSubscriptionTemplateEmail)
-
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | subscribed | boolean |  no  |  |
- | template | string |  no  |  |
-
----
-
-
- 
+ | authkey | string? |  yes  |  |
+ | description | string? |  yes  |  |
+ | name | string? |  yes  |  |
+ | provider | string? |  yes  |  |
+ | sender | string? |  yes  |  |
+ | type | string? |  yes  |  |
+ | username | string? |  yes  |  |
  
- #### [EventSubscriptionTemplate](#EventSubscriptionTemplate)
 
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | sms | [EventSubscriptionTemplateSms](#EventSubscriptionTemplateSms) |  no  |  |
- | email | [EventSubscriptionTemplateEmail](#EventSubscriptionTemplateEmail) |  no  |  |
-
 ---
 
+#### [SmsProviders](#SmsProviders)
 
- 
- 
- #### [EventSubscription](#EventSubscription)
-
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | template | [EventSubscriptionTemplate](#EventSubscriptionTemplate) |  no  |  |
- | is_default | boolean |  no  |  |
- | _id | string |  no  |  |
- | application | string |  no  |  |
- | event | string |  no  |  |
- | slug | string |  no  |  |
- | created_at | string |  no  |  |
- | updated_at | string |  no  |  |
- | __v | number |  no  |  |
-
----
-
-
- 
+ | items | [[SmsProvider](#SmsProvider)]? |  yes  |  |
+ | page | [Page](#Page)? |  yes  |  |
  
- #### [EventSubscriptions](#EventSubscriptions)
 
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | items | [[EventSubscription](#EventSubscription)] |  no  |  |
- | page | [Page](#Page) |  no  |  |
-
 ---
-
 
- 
- 
- #### [TriggerJobResponse](#TriggerJobResponse)
+#### [SmsTemplate](#SmsTemplate)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | status | number |  no  |  |
-
----
-
-
+ | __v | number? |  yes  |  |
+ | _id | string? |  yes  |  |
+ | created_at | string? |  yes  |  |
+ | description | string? |  yes  |  |
+ | is_internal | boolean? |  yes  |  |
+ | is_system | boolean? |  yes  |  |
+ | message | [SmsTemplateMessage](#SmsTemplateMessage)? |  yes  |  |
+ | name | string? |  yes  |  |
+ | priority | string? |  yes  |  |
+ | published | boolean? |  yes  |  |
+ | slug | string? |  yes  |  |
+ | tags | [any]? |  yes  |  |
+ | template_variables | any? |  yes  |  |
+ | updated_at | string? |  yes  |  |
  
- 
- #### [TriggerJobRequest](#TriggerJobRequest)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | job_id | string |  no  |  |
 
 ---
 
-
- 
- 
- #### [Job](#Job)
+#### [SmsTemplateDeleteFailureRes](#SmsTemplateDeleteFailureRes)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | completed | boolean |  no  |  |
- | is_active | boolean |  no  |  |
- | _id | string |  no  |  |
- | campaign | string |  no  |  |
- | application | string |  no  |  |
- | created_at | string |  no  |  |
- | updated_at | string |  no  |  |
- | __v | number |  no  |  |
-
----
-
-
+ | message | string? |  yes  |  |
+ | success | boolean? |  yes  |  |
  
- 
- #### [Jobs](#Jobs)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | items | [[Job](#Job)] |  no  |  |
- | page | [Page](#Page) |  no  |  |
 
 ---
 
-
- 
- 
- #### [JobLog](#JobLog)
+#### [SmsTemplateDeleteSuccessRes](#SmsTemplateDeleteSuccessRes)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | imported | any |  no  |  |
- | processed | any |  no  |  |
- | _id | string |  no  |  |
- | job | string |  no  |  |
- | campaign | string |  no  |  |
- | created_at | string |  no  |  |
- | updated_at | string |  no  |  |
- | __v | number |  no  |  |
-
----
-
-
- 
+ | message | string? |  yes  |  |
+ | success | boolean? |  yes  |  |
  
- #### [JobLogs](#JobLogs)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | items | [[JobLog](#JobLog)] |  no  |  |
- | page | [Page](#Page) |  no  |  |
 
 ---
-
 
- 
- 
- #### [LogEmail](#LogEmail)
+#### [SmsTemplateMessage](#SmsTemplateMessage)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | template | string |  no  |  |
-
----
-
-
+ | template | string? |  yes  |  |
+ | template_type | string? |  yes  |  |
  
- 
- #### [LogPushnotification](#LogPushnotification)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | pushtokens | [string] |  no  |  |
 
 ---
 
+#### [SmsTemplateReq](#SmsTemplateReq)
 
- 
- 
- #### [LogMeta](#LogMeta)
-
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | type | string |  no  |  |
- | identifier | string |  no  |  |
- | key | string |  no  |  |
- | offset | string |  no  |  |
- | partition | string |  no  |  |
- | topic | string |  no  |  |
-
----
-
-
+ | attachments | [any]? |  yes  |  |
+ | description | string? |  yes  |  |
+ | message | [SmsTemplateMessage](#SmsTemplateMessage)? |  yes  |  |
+ | name | string? |  yes  |  |
+ | priority | string? |  yes  |  |
+ | template_variables | any? |  yes  |  |
  
- 
- #### [Log](#Log)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | email | [LogEmail](#LogEmail) |  no  |  |
- | pushnotification | [LogPushnotification](#LogPushnotification) |  no  |  |
- | meta | [LogMeta](#LogMeta) |  no  |  |
- | _id | string |  no  |  |
- | application | string |  no  |  |
- | service | string |  no  |  |
- | step | string |  no  |  |
- | status | string |  no  |  |
- | data | any |  no  |  |
- | expire_at | string |  no  |  |
- | created_at | string |  no  |  |
 
 ---
 
+#### [SmsTemplateRes](#SmsTemplateRes)
 
- 
- 
- #### [Logs](#Logs)
-
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | items | [[Log](#Log)] |  no  |  |
- | page | [Page](#Page) |  no  |  |
-
----
-
-
- 
+ | __v | number? |  yes  |  |
+ | _id | string? |  yes  |  |
+ | created_at | string? |  yes  |  |
+ | description | string? |  yes  |  |
+ | is_internal | boolean? |  yes  |  |
+ | is_system | boolean? |  yes  |  |
+ | message | [SmsTemplateMessage](#SmsTemplateMessage)? |  yes  |  |
+ | name | string? |  yes  |  |
+ | priority | string? |  yes  |  |
+ | published | boolean? |  yes  |  |
+ | slug | string? |  yes  |  |
+ | tags | [any]? |  yes  |  |
+ | template_variables | any? |  yes  |  |
+ | updated_at | string? |  yes  |  |
  
- #### [SendOtpSmsCommsTemplate](#SendOtpSmsCommsTemplate)
 
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | key | string |  no  |  |
- | value | any |  no  |  |
-
 ---
-
 
- 
- 
- #### [SendOtpSmsCommsProvider](#SendOtpSmsCommsProvider)
+#### [SmsTemplates](#SmsTemplates)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | slug | string |  no  |  |
- | _id | string |  no  |  |
-
----
-
-
+ | items | [[SmsTemplate](#SmsTemplate)]? |  yes  |  |
+ | page | [Page](#Page)? |  yes  |  |
  
- 
- #### [SendOtpEmailCommsTemplate](#SendOtpEmailCommsTemplate)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | key | string |  no  |  |
- | value | any |  no  |  |
 
 ---
 
-
- 
- 
- #### [SendOtpCommsReqData](#SendOtpCommsReqData)
+#### [Stats](#Stats)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | send_same_otp_to_channel | boolean |  no  |  |
- | mobile | string |  no  |  |
- | country_code | string |  no  |  |
- | to | string |  no  |  |
-
----
-
-
+ | _id | string? |  yes  |  |
+ | imported | any? |  yes  |  |
+ | processed | any? |  yes  |  |
  
- 
- #### [SendOtpCommsReqSms](#SendOtpCommsReqSms)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | otp_length | number |  no  |  |
- | expiry | number |  no  |  |
- | template | [SendOtpSmsCommsTemplate](#SendOtpSmsCommsTemplate) |  no  |  |
- | provider | [SendOtpSmsCommsProvider](#SendOtpSmsCommsProvider) |  no  |  |
 
 ---
 
-
- 
- 
- #### [SendOtpCommsReqEmail](#SendOtpCommsReqEmail)
+#### [StatsImported](#StatsImported)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | otp_length | number |  no  |  |
- | expiry | number |  no  |  |
- | template | [SendOtpEmailCommsTemplate](#SendOtpEmailCommsTemplate) |  no  |  |
-
----
-
-
- 
+ | count | number? |  yes  |  |
  
- #### [SendOtpCommsResSms](#SendOtpCommsResSms)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | success | boolean |  no  |  |
- | request_id | string |  no  |  |
- | message | string |  no  |  |
- | mobile | string |  no  |  |
- | country_code | string |  no  |  |
- | resend_timer | number |  no  |  |
 
 ---
-
 
- 
- 
- #### [SendOtpCommsResEmail](#SendOtpCommsResEmail)
+#### [StatsProcessed](#StatsProcessed)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | success | boolean |  no  |  |
- | request_id | string |  no  |  |
- | message | string |  no  |  |
- | to | string |  no  |  |
- | resend_timer | number |  no  |  |
-
----
-
-
+ | email | [StatsProcessedEmail](#StatsProcessedEmail)? |  yes  |  |
+ | sms | [StatsProcessedSms](#StatsProcessedSms)? |  yes  |  |
  
- 
- #### [SendOtpCommsReq](#SendOtpCommsReq)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | data | [SendOtpCommsReqData](#SendOtpCommsReqData) |  no  |  |
- | sms | [SendOtpCommsReqSms](#SendOtpCommsReqSms) |  no  |  |
- | email | [SendOtpCommsReqEmail](#SendOtpCommsReqEmail) |  no  |  |
 
 ---
 
+#### [StatsProcessedEmail](#StatsProcessedEmail)
 
- 
- 
- #### [SendOtpCommsRes](#SendOtpCommsRes)
-
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | sms | [SendOtpCommsResSms](#SendOtpCommsResSms) |  no  |  |
- | email | [SendOtpCommsResEmail](#SendOtpCommsResEmail) |  no  |  |
-
----
-
-
+ | failed | number? |  yes  |  |
+ | success | number? |  yes  |  |
+ | suppressed | number? |  yes  |  |
  
- 
- #### [VerifyOtpCommsReq](#VerifyOtpCommsReq)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | request_id | string |  no  |  |
- | otp | string |  no  |  |
 
 ---
 
+#### [StatsProcessedSms](#StatsProcessedSms)
 
- 
- 
- #### [VerifyOtpCommsSuccessRes](#VerifyOtpCommsSuccessRes)
-
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | success | boolean |  no  |  |
- | mobile | string |  no  |  |
- | country_code | string |  no  |  |
- | message | string |  no  |  |
-
----
-
-
- 
+ | failed | number? |  yes  |  |
+ | success | number? |  yes  |  |
+ | suppressed | number? |  yes  |  |
  
- #### [VerifyOtpCommsErrorRes](#VerifyOtpCommsErrorRes)
 
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | success | boolean |  no  |  |
- | message | string |  no  |  |
-
 ---
-
 
- 
- 
- #### [PushtokenReq](#PushtokenReq)
+#### [SystemEmailTemplate](#SystemEmailTemplate)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | action | string |  no  |  |
- | bundle_identifier | string |  no  |  |
- | push_token | string |  no  |  |
- | unique_device_id | string |  no  |  |
-
----
-
-
+ | __v | number? |  yes  |  |
+ | _id | string? |  yes  |  |
+ | attachments | [any]? |  yes  |  |
+ | created_at | string? |  yes  |  |
+ | description | string? |  yes  |  |
+ | from_name | string? |  yes  |  |
+ | headers | [any]? |  yes  |  |
+ | html | [TemplateAndType](#TemplateAndType)? |  yes  |  |
+ | is_internal | boolean? |  yes  |  |
+ | is_system | boolean? |  yes  |  |
+ | name | string? |  yes  |  |
+ | priority | string? |  yes  |  |
+ | published | boolean? |  yes  |  |
+ | slug | string? |  yes  |  |
+ | static_bcc | [any]? |  yes  |  |
+ | static_cc | [any]? |  yes  |  |
+ | static_to | [any]? |  yes  |  |
+ | subject | [TemplateAndType](#TemplateAndType)? |  yes  |  |
+ | tags | [any]? |  yes  |  |
+ | text | [TemplateAndType](#TemplateAndType)? |  yes  |  |
+ | updated_at | string? |  yes  |  |
  
- 
- #### [PushtokenRes](#PushtokenRes)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | _id | string |  no  |  |
- | bundle_identifier | string |  no  |  |
- | push_token | string |  no  |  |
- | unique_device_id | string |  no  |  |
- | type | string |  no  |  |
- | platform | string |  no  |  |
- | application_id | string |  no  |  |
- | user_id | string |  no  |  |
- | created_at | string |  no  |  |
- | updated_at | string |  no  |  |
- | expired_at | string |  no  |  |
 
 ---
-
 
- 
- 
- #### [SmsProviderReq](#SmsProviderReq)
+#### [SystemEmailTemplates](#SystemEmailTemplates)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | name | string |  no  |  |
- | description | string |  no  |  |
- | sender | string |  no  |  |
- | username | string |  no  |  |
- | authkey | string |  no  |  |
- | type | string |  no  |  |
- | provider | string |  no  |  |
-
----
-
-
+ | items | [[SystemEmailTemplate](#SystemEmailTemplate)]? |  yes  |  |
+ | page | [Page](#Page)? |  yes  |  |
  
- 
- #### [SmsProvider](#SmsProvider)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | rpt | number |  no  |  |
- | type | string |  no  |  |
- | provider | string |  no  |  |
- | _id | string |  no  |  |
- | name | string |  no  |  |
- | description | string |  no  |  |
- | sender | string |  no  |  |
- | username | string |  no  |  |
- | authkey | string |  no  |  |
- | application | string |  no  |  |
- | created_at | string |  no  |  |
- | updated_at | string |  no  |  |
- | slug | string |  no  |  |
- | __v | number |  no  |  |
 
 ---
 
-
- 
- 
- #### [SmsProviders](#SmsProviders)
+#### [SystemNotification](#SystemNotification)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | items | [[SmsProvider](#SmsProvider)] |  no  |  |
- | page | [Page](#Page) |  no  |  |
-
----
-
-
- 
+ | _id | string? |  yes  |  |
+ | created_at | string? |  yes  |  |
+ | group | string? |  yes  |  |
+ | notification | [Notification](#Notification)? |  yes  |  |
+ | settings | [SystemNotificationUser](#SystemNotificationUser)? |  yes  |  |
+ | user | [SystemNotificationUser](#SystemNotificationUser)? |  yes  |  |
  
- #### [SmsTemplateDeleteSuccessRes](#SmsTemplateDeleteSuccessRes)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | success | boolean |  no  |  |
- | message | string |  no  |  |
 
 ---
-
 
- 
- 
- #### [SmsTemplateDeleteFailureRes](#SmsTemplateDeleteFailureRes)
+#### [SystemNotifications](#SystemNotifications)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | success | boolean |  no  |  |
- | message | string |  no  |  |
-
----
-
-
+ | items | [[SystemNotification](#SystemNotification)]? |  yes  |  |
+ | last_read_anchor | number? |  yes  |  |
+ | page | [Page](#Page)? |  yes  |  |
  
- 
- #### [SmsTemplateMessage](#SmsTemplateMessage)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | template_type | string |  no  |  |
- | template | string |  no  |  |
 
 ---
-
 
- 
- 
- #### [SmsTemplateReq](#SmsTemplateReq)
+#### [SystemNotificationSettings](#SystemNotificationSettings)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | name | string |  no  |  |
- | description | string |  no  |  |
- | message | [SmsTemplateMessage](#SmsTemplateMessage) |  no  |  |
- | template_variables | any |  no  |  |
- | attachments | [any] |  no  |  |
- | priority | string |  no  |  |
-
----
-
-
+ | priority | string? |  yes  |  |
+ | sound | boolean? |  yes  |  |
+ | time_to_live | string? |  yes  |  |
  
- 
- #### [SmsTemplateRes](#SmsTemplateRes)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | is_system | boolean |  no  |  |
- | is_internal | boolean |  no  |  |
- | description | string |  no  |  |
- | tags | [any] |  no  |  |
- | priority | string |  no  |  |
- | published | boolean |  no  |  |
- | _id | string |  no  |  |
- | name | string |  no  |  |
- | message | [SmsTemplateMessage](#SmsTemplateMessage) |  no  |  |
- | template_variables | any |  no  |  |
- | created_at | string |  no  |  |
- | updated_at | string |  no  |  |
- | slug | string |  no  |  |
- | __v | number |  no  |  |
 
 ---
 
+#### [SystemNotificationsPage](#SystemNotificationsPage)
 
- 
- 
- #### [SmsTemplate](#SmsTemplate)
-
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | is_system | boolean |  no  |  |
- | is_internal | boolean |  no  |  |
- | description | string |  no  |  |
- | priority | string |  no  |  |
- | tags | [any] |  no  |  |
- | published | boolean |  no  |  |
- | _id | string |  no  |  |
- | slug | string |  no  |  |
- | name | string |  no  |  |
- | message | [SmsTemplateMessage](#SmsTemplateMessage) |  no  |  |
- | template_variables | any |  no  |  |
- | created_at | string |  no  |  |
- | updated_at | string |  no  |  |
- | __v | number |  no  |  |
-
----
-
-
- 
+ | current | number? |  yes  |  |
+ | has_next | boolean? |  yes  |  |
+ | item_total | number? |  yes  |  |
+ | size | number? |  yes  |  |
+ | type | string? |  yes  |  |
  
- #### [SystemSmsTemplate](#SystemSmsTemplate)
 
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | is_system | boolean |  no  |  |
- | is_internal | boolean |  no  |  |
- | description | string |  no  |  |
- | tags | [any] |  no  |  |
- | priority | string |  no  |  |
- | published | boolean |  no  |  |
- | _id | string |  no  |  |
- | slug | string |  no  |  |
- | name | string |  no  |  |
- | message | [SmsTemplateMessage](#SmsTemplateMessage) |  no  |  |
- | template_variables | any |  no  |  |
- | created_at | string |  no  |  |
- | updated_at | string |  no  |  |
- | __v | number |  no  |  |
-
 ---
-
 
- 
- 
- #### [SmsTemplates](#SmsTemplates)
+#### [SystemNotificationUser](#SystemNotificationUser)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | items | [[SmsTemplate](#SmsTemplate)] |  no  |  |
- | page | [Page](#Page) |  no  |  |
+ | type | string? |  yes  |  |
+ | value | string? |  yes  |  |
+ 
 
 ---
-
 
- 
- 
- #### [SystemSmsTemplates](#SystemSmsTemplates)
+#### [SystemSmsTemplate](#SystemSmsTemplate)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | items | [[SystemSmsTemplate](#SystemSmsTemplate)] |  no  |  |
- | page | [Page](#Page) |  no  |  |
+ | __v | number? |  yes  |  |
+ | _id | string? |  yes  |  |
+ | created_at | string? |  yes  |  |
+ | description | string? |  yes  |  |
+ | is_internal | boolean? |  yes  |  |
+ | is_system | boolean? |  yes  |  |
+ | message | [SmsTemplateMessage](#SmsTemplateMessage)? |  yes  |  |
+ | name | string? |  yes  |  |
+ | priority | string? |  yes  |  |
+ | published | boolean? |  yes  |  |
+ | slug | string? |  yes  |  |
+ | tags | [any]? |  yes  |  |
+ | template_variables | any? |  yes  |  |
+ | updated_at | string? |  yes  |  |
+ 
 
 ---
 
+#### [SystemSmsTemplates](#SystemSmsTemplates)
 
- 
- 
- #### [Notification](#Notification)
-
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | title | string |  no  |  |
- | body | string |  no  |  |
- | subtitle | string |  no  |  |
- | icon | string |  no  |  |
- | deeplink | string |  no  |  |
- | click_action | string |  no  |  |
+ | items | [[SystemSmsTemplate](#SystemSmsTemplate)]? |  yes  |  |
+ | page | [Page](#Page)? |  yes  |  |
+ 
 
 ---
 
+#### [TemplateAndType](#TemplateAndType)
 
- 
- 
- #### [SystemNotificationUser](#SystemNotificationUser)
-
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | type | string |  no  |  |
- | value | string |  no  |  |
+ | template | string? |  yes  |  |
+ | template_type | string? |  yes  |  |
+ 
 
 ---
 
+#### [TriggerJobRequest](#TriggerJobRequest)
 
- 
- 
- #### [SystemNotificationSettings](#SystemNotificationSettings)
-
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | sound | boolean |  no  |  |
- | priority | string |  no  |  |
- | time_to_live | string |  no  |  |
+ | job_id | string? |  yes  |  |
+ 
 
 ---
 
+#### [TriggerJobResponse](#TriggerJobResponse)
 
- 
- 
- #### [SystemNotification](#SystemNotification)
-
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | notification | [Notification](#Notification) |  no  |  |
- | user | [SystemNotificationUser](#SystemNotificationUser) |  no  |  |
- | settings | [SystemNotificationUser](#SystemNotificationUser) |  no  |  |
- | _id | string |  no  |  |
- | group | string |  no  |  |
- | created_at | string |  no  |  |
+ | status | number? |  yes  |  |
+ 
 
 ---
 
+#### [VerifyOtpCommsErrorRes](#VerifyOtpCommsErrorRes)
 
- 
- 
- #### [SystemNotificationsPage](#SystemNotificationsPage)
-
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | type | string |  no  |  |
- | current | number |  no  |  |
- | size | number |  no  |  |
- | item_total | number |  no  |  |
- | has_next | boolean |  no  |  |
+ | message | string? |  yes  |  |
+ | success | boolean? |  yes  |  |
+ 
 
 ---
 
+#### [VerifyOtpCommsReq](#VerifyOtpCommsReq)
 
- 
- 
- #### [SystemNotifications](#SystemNotifications)
-
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | items | [[SystemNotification](#SystemNotification)] |  no  |  |
- | last_read_anchor | number |  no  |  |
- | page | [Page](#Page) |  no  |  |
+ | otp | string? |  yes  |  |
+ | request_id | string? |  yes  |  |
+ 
 
 ---
 
+#### [VerifyOtpCommsSuccessRes](#VerifyOtpCommsSuccessRes)
 
- 
- 
- #### [Page](#Page)
-
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | type | string |  yes  |  |
- | size | number |  no  |  |
- | current | number |  no  |  |
- | has_next | boolean |  no  |  |
- | item_total | number |  no  |  |
- | next_id | string |  no  |  |
- | has_previous | boolean |  no  |  |
+ | country_code | string? |  yes  |  |
+ | message | string? |  yes  |  |
+ | mobile | string? |  yes  |  |
+ | success | boolean? |  yes  |  |
+ 
 
 ---
 

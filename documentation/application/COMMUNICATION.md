@@ -2,17 +2,21 @@
 
 
 
+
 ##### [Back to Application docs](./README.md)
 
 ## Communication Methods
 Manages email, sms, push notifications sent to users
+
 * [getCommunicationConsent](#getcommunicationconsent)
-* [upsertCommunicationConsent](#upsertcommunicationconsent)
 * [upsertAppPushtoken](#upsertapppushtoken)
+* [upsertCommunicationConsent](#upsertcommunicationconsent)
 
 
 
 ## Methods with example and description
+
+
 
 
 ### getCommunicationConsent
@@ -22,10 +26,10 @@ Get communication consent
 
 ```javascript
 // Promise
-const promise = communication.getCommunicationConsent();
+const promise = applicationClient.communication.getCommunicationConsent();
 
 // Async/Await
-const data = await communication.getCommunicationConsent();
+const data = await applicationClient.communication.getCommunicationConsent();
 ```
 
 
@@ -93,86 +97,6 @@ Success. Returns all available communication opt-ins along with the consent deta
 ---
 
 
-### upsertCommunicationConsent
-Upsert communication consent
-
-
-
-```javascript
-// Promise
-const promise = communication.upsertCommunicationConsent({  body : value });
-
-// Async/Await
-const data = await communication.upsertCommunicationConsent({  body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |
-| body | [CommunicationConsentReq](#CommunicationConsentReq) | yes | Request body |
-
-
-Use this API to update and insert the consent provided by the user for receiving communication messages over Email/SMS/WhatsApp.
-
-*Returned Response:*
-
-
-
-
-[CommunicationConsentRes](#CommunicationConsentRes)
-
-Success. Updates the channels for which user has consented. Check the example shown below or refer `CommunicationConsentRes` for more details.
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; default</i></summary>
-
-```json
-{
-  "value": {
-    "appId": "000000000000000000000004",
-    "userId": "5e56021c4bda3ccab6d9f884",
-    "channels": {
-      "email": {
-        "response": "yes",
-        "displayName": "Email"
-      },
-      "sms": {
-        "response": "yes",
-        "displayName": "SMS"
-      },
-      "whatsapp": {
-        "response": "noaction",
-        "displayName": "WhatsApp"
-      }
-    }
-  }
-}
-```
-</details>
-
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
 ### upsertAppPushtoken
 Upsert push token of a user
 
@@ -180,10 +104,10 @@ Upsert push token of a user
 
 ```javascript
 // Promise
-const promise = communication.upsertAppPushtoken({  body : value });
+const promise = applicationClient.communication.upsertAppPushtoken({  body : value });
 
 // Async/Await
-const data = await communication.upsertAppPushtoken({  body : value });
+const data = await applicationClient.communication.upsertAppPushtoken({  body : value });
 ```
 
 
@@ -290,171 +214,229 @@ Success. Check the example shown below or refer `PushtokenRes` for more details.
 ---
 
 
+### upsertCommunicationConsent
+Upsert communication consent
+
+
+
+```javascript
+// Promise
+const promise = applicationClient.communication.upsertCommunicationConsent({  body : value });
+
+// Async/Await
+const data = await applicationClient.communication.upsertCommunicationConsent({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [CommunicationConsentReq](#CommunicationConsentReq) | yes | Request body |
+
+
+Use this API to update and insert the consent provided by the user for receiving communication messages over Email/SMS/WhatsApp.
+
+*Returned Response:*
+
+
+
+
+[CommunicationConsentRes](#CommunicationConsentRes)
+
+Success. Updates the channels for which user has consented. Check the example shown below or refer `CommunicationConsentRes` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; default</i></summary>
+
+```json
+{
+  "value": {
+    "appId": "000000000000000000000004",
+    "userId": "5e56021c4bda3ccab6d9f884",
+    "channels": {
+      "email": {
+        "response": "yes",
+        "displayName": "Email"
+      },
+      "sms": {
+        "response": "yes",
+        "displayName": "SMS"
+      },
+      "whatsapp": {
+        "response": "noaction",
+        "displayName": "WhatsApp"
+      }
+    }
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
 
 ### Schemas
 
- 
- 
- #### [CommunicationConsentReq](#CommunicationConsentReq)
+
+#### [BadRequestSchema](#BadRequestSchema)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | response | string |  no  |  |
- | action | string |  no  |  |
- | channel | string |  no  |  |
+ | message | string? |  yes  | Failure message. |
+ | status | string? |  yes  | Response status. |
+ 
 
 ---
 
-
- 
- 
- #### [CommunicationConsentRes](#CommunicationConsentRes)
+#### [CommunicationConsent](#CommunicationConsent)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | app_id | string |  no  |  |
- | user_id | string |  no  |  |
- | channels | [CommunicationConsentChannels](#CommunicationConsentChannels) |  no  |  |
+ | app_id | string? |  yes  |  |
+ | channels | [CommunicationConsentChannels](#CommunicationConsentChannels)? |  yes  |  |
+ | user_id | string? |  yes  |  |
+ 
 
 ---
 
-
- 
- 
- #### [CommunicationConsentChannelsEmail](#CommunicationConsentChannelsEmail)
+#### [CommunicationConsentChannels](#CommunicationConsentChannels)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | response | string |  no  |  |
- | display_name | string |  no  |  |
+ | email | [CommunicationConsentChannelsEmail](#CommunicationConsentChannelsEmail)? |  yes  |  |
+ | sms | [CommunicationConsentChannelsSms](#CommunicationConsentChannelsSms)? |  yes  |  |
+ | whatsapp | [CommunicationConsentChannelsWhatsapp](#CommunicationConsentChannelsWhatsapp)? |  yes  |  |
+ 
 
 ---
 
-
- 
- 
- #### [CommunicationConsentChannelsSms](#CommunicationConsentChannelsSms)
+#### [CommunicationConsentChannelsEmail](#CommunicationConsentChannelsEmail)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | response | string |  no  |  |
- | display_name | string |  no  |  |
+ | display_name | string? |  yes  |  |
+ | response | string? |  yes  |  |
+ 
 
 ---
 
-
- 
- 
- #### [CommunicationConsentChannelsWhatsapp](#CommunicationConsentChannelsWhatsapp)
+#### [CommunicationConsentChannelsSms](#CommunicationConsentChannelsSms)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | response | string |  no  |  |
- | display_name | string |  no  |  |
- | country_code | string |  no  |  |
- | phone_number | string |  no  |  |
+ | display_name | string? |  yes  |  |
+ | response | string? |  yes  |  |
+ 
 
 ---
 
-
- 
- 
- #### [CommunicationConsentChannels](#CommunicationConsentChannels)
+#### [CommunicationConsentChannelsWhatsapp](#CommunicationConsentChannelsWhatsapp)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | email | [CommunicationConsentChannelsEmail](#CommunicationConsentChannelsEmail) |  no  |  |
- | sms | [CommunicationConsentChannelsSms](#CommunicationConsentChannelsSms) |  no  |  |
- | whatsapp | [CommunicationConsentChannelsWhatsapp](#CommunicationConsentChannelsWhatsapp) |  no  |  |
+ | country_code | string? |  yes  |  |
+ | display_name | string? |  yes  |  |
+ | phone_number | string? |  yes  |  |
+ | response | string? |  yes  |  |
+ 
 
 ---
 
-
- 
- 
- #### [CommunicationConsent](#CommunicationConsent)
+#### [CommunicationConsentReq](#CommunicationConsentReq)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | app_id | string |  no  |  |
- | user_id | string |  no  |  |
- | channels | [CommunicationConsentChannels](#CommunicationConsentChannels) |  no  |  |
+ | action | string? |  yes  |  |
+ | channel | string? |  yes  |  |
+ | response | string? |  yes  |  |
+ 
 
 ---
 
-
- 
- 
- #### [BadRequestSchema](#BadRequestSchema)
+#### [CommunicationConsentRes](#CommunicationConsentRes)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | status | string |  no  | Response status. |
- | message | string |  no  | Failure message. |
+ | app_id | string? |  yes  |  |
+ | channels | [CommunicationConsentChannels](#CommunicationConsentChannels)? |  yes  |  |
+ | user_id | string? |  yes  |  |
+ 
 
 ---
 
-
- 
- 
- #### [NotFound](#NotFound)
+#### [NotFound](#NotFound)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | message | string |  no  | Failure message. |
+ | message | string? |  yes  | Failure message. |
+ 
 
 ---
 
-
- 
- 
- #### [PushtokenReq](#PushtokenReq)
+#### [Page](#Page)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | action | string |  no  |  |
- | bundle_identifier | string |  no  |  |
- | push_token | string |  no  |  |
- | unique_device_id | string |  no  |  |
+ | current | number? |  yes  |  |
+ | has_next | boolean? |  yes  |  |
+ | has_previous | boolean? |  yes  |  |
+ | item_total | number? |  yes  |  |
+ | next_id | string? |  yes  |  |
+ | size | number? |  yes  |  |
  | type | string |  no  |  |
+ 
 
 ---
 
-
- 
- 
- #### [PushtokenRes](#PushtokenRes)
+#### [PushtokenReq](#PushtokenReq)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | _id | string |  no  |  |
- | bundle_identifier | string |  no  |  |
- | push_token | string |  no  |  |
- | unique_device_id | string |  no  |  |
- | type | string |  no  |  |
- | platform | string |  no  |  |
- | application_id | string |  no  |  |
- | user_id | string |  no  |  |
- | created_at | string |  no  |  |
- | updated_at | string |  no  |  |
- | expired_at | string |  no  |  |
+ | action | string? |  yes  |  |
+ | bundle_identifier | string? |  yes  |  |
+ | push_token | string? |  yes  |  |
+ | type | string? |  yes  |  |
+ | unique_device_id | string? |  yes  |  |
+ 
 
 ---
 
-
- 
- 
- #### [Page](#Page)
+#### [PushtokenRes](#PushtokenRes)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | type | string |  yes  |  |
- | size | number |  no  |  |
- | current | number |  no  |  |
- | has_next | boolean |  no  |  |
- | item_total | number |  no  |  |
- | next_id | string |  no  |  |
- | has_previous | boolean |  no  |  |
+ | _id | string? |  yes  |  |
+ | application_id | string? |  yes  |  |
+ | bundle_identifier | string? |  yes  |  |
+ | created_at | string? |  yes  |  |
+ | expired_at | string? |  yes  |  |
+ | platform | string? |  yes  |  |
+ | push_token | string? |  yes  |  |
+ | type | string? |  yes  |  |
+ | unique_device_id | string? |  yes  |  |
+ | updated_at | string? |  yes  |  |
+ | user_id | string? |  yes  |  |
+ 
 
 ---
 
