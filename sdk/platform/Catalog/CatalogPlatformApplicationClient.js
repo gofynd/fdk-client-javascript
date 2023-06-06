@@ -273,9 +273,9 @@ class Catalog {
   /**
    * @param {Object} arg - Arg object.
    * @param {CreateAutocompleteKeyword} arg.body
-   * @returns {Promise<CreateAutocompleteWordsResponse>} - Success response
-   * @summary: Add a Custom Autocomplete Keywords
-   * @description: Create a Custom Autocomplete Keywords. See `CreateAutocompleteKeywordSchema` for the list of attributes needed to create a mapping and /collections/query-options for the available options to create a rule. On successful request, returns a paginated list of collections specified in `CreateAutocompleteKeywordSchema`
+   * @returns {Promise<GetAutocompleteWordsData>} - Success response
+   * @summary: Add a custom autocomplete keyword configuration.
+   * @description: Autocomplete keywords configuration help you to extend and customize the behaviour of autocomplete search results in Fynd Platform. This API allows to create the auto-complete configuration for the application.
    */
   async createCustomAutocompleteRule({ body } = {}) {
     const { error } = CatalogValidator.createCustomAutocompleteRule().validate(
@@ -318,7 +318,7 @@ class Catalog {
 
     const {
       error: res_error,
-    } = CatalogModel.CreateAutocompleteWordsResponse().validate(response, {
+    } = CatalogModel.GetAutocompleteWordsData().validate(response, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -339,8 +339,8 @@ class Catalog {
    * @param {Object} arg - Arg object.
    * @param {CreateSearchKeyword} arg.body
    * @returns {Promise<GetSearchWordsData>} - Success response
-   * @summary: Add a Custom Search Keywords
-   * @description: Create a Custom Search Keywords. See `CreateSearchKeywordSchema` for the list of attributes needed to create a mapping and /collections/query-options for the available options to create a rule. On successful request, returns a paginated list of collections specified in `CreateSearchKeywordSchema`
+   * @summary: Add custom keywords search for an application.
+   * @description: Custom Search Keyword allows you to map conditions with keywords to give you the ultimate results. This API allows you to add a rule for the custom keyword to a search behaviour for an application. See `CreateSearchKeywordSchema` for the list of attributes needed to create a mapping and /collections/query-options for the available options to create a rule. On successful request, returns a paginated list of collections specified in `CreateSearchKeywordSchema`
    */
   async createCustomKeyword({ body } = {}) {
     const { error } = CatalogValidator.createCustomKeyword().validate(
@@ -533,11 +533,77 @@ class Catalog {
 
   /**
    * @param {Object} arg - Arg object.
-   * @param {string} arg.id - A `id` is a unique identifier for a particular
-   *   detail. Pass the `id` of the keywords which you want to delete.
+   * @param {CreateSearchReranking} arg.body
+   * @returns {Promise<SearchRerankingModel>} - Success response
+   * @summary: Add a Custom Search Keywords and boosting score against it
+   * @description: Search Reranking allows you rank and boost the search of the keywords and products in the product listing. Create a Custom Search Reranking rule. This API allows you to create a custom search re rank rule to re-rank the search in the listing of an application.
+   */
+  async createSearchRerankingConfig({ body } = {}) {
+    const { error } = CatalogValidator.createSearchRerankingConfig().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = CatalogValidator.createSearchRerankingConfig().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message:
+          "Parameter Validation warrnings for createSearchRerankingConfig",
+      });
+      Logger({ level: "WARN", message: warrning });
+    }
+
+    const query_params = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/search/rerank/`,
+      query_params,
+      body
+    );
+
+    const {
+      error: res_error,
+    } = CatalogModel.SearchRerankingModel().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message:
+          "Response Validation Warnnings for createSearchRerankingConfig",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.id - A `id` is a unique identifier for a specific
+   *   autocomplete keyword map. Pass the `id` of the keywords which you want
+   *   to delete.
    * @returns {Promise<DeleteResponse>} - Success response
-   * @summary: Delete a Autocomplete Keywords
-   * @description: Delete a keywords by it's id. Returns an object that tells whether the keywords was deleted successfully
+   * @summary: Delete a autocomplete keyword config by ID.
+   * @description: Autocomplete keywords configuration help you to extend and customize the behaviour of autocomplete search results in Fynd Platform. This API allows you to delete a keywords by it's `id`.
    */
   async deleteAutocompleteKeyword({ id } = {}) {
     const { error } = CatalogValidator.deleteAutocompleteKeyword().validate(
@@ -795,11 +861,12 @@ class Catalog {
 
   /**
    * @param {Object} arg - Arg object.
-   * @param {string} arg.id - A `id` is a unique identifier for a particular
-   *   detail. Pass the `id` of the keywords which you want to delete.
+   * @param {string} arg.id - A `id` is a unique identifier for a specific
+   *   keyword search configuration. Pass the `id` of the keywords which you
+   *   want to delete.
    * @returns {Promise<DeleteResponse>} - Success response
-   * @summary: Delete a Search Keywords
-   * @description: Delete a keywords by it's id. Returns an object that tells whether the keywords was deleted successfully
+   * @summary: Delete a custom keyword mapping by thier ID.
+   * @description: This API allows you to delete a custom keyword mapping by their ID within an application. Returns an object that tells whether the keywords was deleted successfully
    */
   async deleteSearchKeywords({ id } = {}) {
     const { error } = CatalogValidator.deleteSearchKeywords().validate(
@@ -850,6 +917,71 @@ class Catalog {
       Logger({
         level: "WARN",
         message: "Response Validation Warnnings for deleteSearchKeywords",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.id - A `id` is a unique identifier for a specific
+   *   keyword search configuration. Pass the `id` of the keywords which you
+   *   want to delete.
+   * @returns {Promise<DeleteRerankResponse>} - Success response
+   * @summary: Delete the search re-ranking configured for an application bt its ID.
+   * @description: Search Reranking allows you rank and boost the search of the keywords and products in the product listing. This API allows you to delete a search re-ranking configured for the application.
+   */
+  async deleteSearchRerankConfig({ id } = {}) {
+    const { error } = CatalogValidator.deleteSearchRerankConfig().validate(
+      {
+        id,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = CatalogValidator.deleteSearchRerankConfig().validate(
+      {
+        id,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for deleteSearchRerankConfig",
+      });
+      Logger({ level: "WARN", message: warrning });
+    }
+
+    const query_params = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "delete",
+      `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/search/rerank/${id}/`,
+      query_params,
+      undefined
+    );
+
+    const {
+      error: res_error,
+    } = CatalogModel.DeleteRerankResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for deleteSearchRerankConfig",
       });
       Logger({ level: "WARN", message: res_error });
     }
@@ -954,13 +1086,19 @@ class Catalog {
 
   /**
    * @param {Object} arg - Arg object.
+   * @param {boolean} [arg.isActive] - Filter the custom keyword listing by
+   *   their active status.
+   * @param {string} [arg.q] - It is to search by keywords.
    * @returns {Promise<GetSearchWordsResponse>} - Success response
-   * @summary: List all Search Custom Keyword Listing
-   * @description: Custom Search Keyword allows you to map conditions with keywords to give you the ultimate results
+   * @summary: List all the custom keyword search added in the application.
+   * @description: Custom Search Keyword allows you to map conditions with keywords to give you the ultimate results. This API allows you to list all the custom keyword search configured for the application.
    */
-  async getAllSearchKeyword({} = {}) {
+  async getAllSearchKeyword({ isActive, q } = {}) {
     const { error } = CatalogValidator.getAllSearchKeyword().validate(
-      {},
+      {
+        isActive,
+        q,
+      },
       { abortEarly: false, allowUnknown: true }
     );
     if (error) {
@@ -969,7 +1107,10 @@ class Catalog {
 
     // Showing warrnings if extra unknown parameters are found
     const { error: warrning } = CatalogValidator.getAllSearchKeyword().validate(
-      {},
+      {
+        isActive,
+        q,
+      },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
@@ -981,6 +1122,8 @@ class Catalog {
     }
 
     const query_params = {};
+    query_params["is_active"] = isActive;
+    query_params["q"] = q;
 
     const response = await PlatformAPIClient.execute(
       this.config,
@@ -2113,8 +2256,8 @@ class Catalog {
   /**
    * @param {Object} arg - Arg object.
    * @returns {Promise<GetAutocompleteWordsResponse>} - Success response
-   * @summary: List all Autocomplete Keyword Listing
-   * @description: Custom Autocomplete Keyword allows you to map conditions with keywords to give you the ultimate results
+   * @summary: List all autocomplete keyword configuration of an application.
+   * @description: The custom autocomplete keyword allows you to map conditions with keywords to give you the autocomplete results. This API allows you to list all the autocomplete keyword configured for an application.
    */
   async getAutocompleteConfig({} = {}) {
     const { error } = CatalogValidator.getAutocompleteConfig().validate(
@@ -2170,11 +2313,12 @@ class Catalog {
 
   /**
    * @param {Object} arg - Arg object.
-   * @param {string} arg.id - A `id` is a unique identifier for a particular
-   *   detail. Pass the `id` of the keywords which you want to retrieve.
-   * @returns {Promise<GetAutocompleteWordsResponse>} - Success response
-   * @summary: Get a Autocomplete Keywords Details
-   * @description: Get the details of a words by its `id`. If successful, returns a keywords resource in the response body specified in `GetAutocompleteWordsResponseSchema`
+   * @param {string} arg.id - A `id` is a unique identifier for a specific
+   *   autocomplete keyword map. Pass the `id` of the keywords which you want
+   *   to retrieve.
+   * @returns {Promise<GetAutocompleteWordsData>} - Success response
+   * @summary: Get the detail of the autocomplete config by ID.
+   * @description: Autocomplete keywords configuration help you to extend and customize the behaviour of autocomplete search results in Fynd Platform. This API allows you to get the details of a words by its `id`.
    */
   async getAutocompleteKeywordDetail({ id } = {}) {
     const { error } = CatalogValidator.getAutocompleteKeywordDetail().validate(
@@ -2217,7 +2361,7 @@ class Catalog {
 
     const {
       error: res_error,
-    } = CatalogModel.GetAutocompleteWordsResponse().validate(response, {
+    } = CatalogModel.GetAutocompleteWordsData().validate(response, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -3218,11 +3362,12 @@ class Catalog {
 
   /**
    * @param {Object} arg - Arg object.
-   * @param {string} arg.id - A `id` is a unique identifier for a particular
-   *   detail. Pass the `id` of the keywords which you want to retrieve.
-   * @returns {Promise<GetSearchWordsDetailResponse>} - Success response
-   * @summary: Get a Search Keywords Details
-   * @description: Get the details of a words by its `id`. If successful, returns a Collection resource in the response body specified in `GetSearchWordsDetailResponseSchema`
+   * @param {string} arg.id - A `id` is a unique identifier for a specific
+   *   keyword search configuration. Pass the `id` of the keywords which you
+   *   want to retrieve.
+   * @returns {Promise<GetSearchWordsData>} - Success response
+   * @summary: Get a custom keyword search detail by their ID.
+   * @description: The API allows you to get the details of a words by its `id`. If successful, returns a Collection resource in the response body specified in `GetSearchWordsDetailResponseSchema`
    */
   async getSearchKeywords({ id } = {}) {
     const { error } = CatalogValidator.getSearchKeywords().validate(
@@ -3262,7 +3407,7 @@ class Catalog {
 
     const {
       error: res_error,
-    } = CatalogModel.GetSearchWordsDetailResponse().validate(response, {
+    } = CatalogModel.GetSearchWordsData().validate(response, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -3271,6 +3416,140 @@ class Catalog {
       Logger({
         level: "WARN",
         message: "Response Validation Warnnings for getSearchKeywords",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.id - A `id` is a unique identifier for a specific
+   *   keyword search configuration. Pass the `id` of the keywords which you
+   *   want to retrieve.
+   * @returns {Promise<SearchRerankingModel>} - Success response
+   * @summary: Get the search rerank details of an application by its ID.
+   * @description: Search Reranking allows you rank and boost the search of the keywords and products in the product listing. This API allows you to get the data of a search re-ranking configured for the application by their ID.
+   */
+  async getSearchRerankingConfig({ id } = {}) {
+    const { error } = CatalogValidator.getSearchRerankingConfig().validate(
+      {
+        id,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = CatalogValidator.getSearchRerankingConfig().validate(
+      {
+        id,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getSearchRerankingConfig",
+      });
+      Logger({ level: "WARN", message: warrning });
+    }
+
+    const query_params = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/search/rerank/${id}/`,
+      query_params,
+      undefined
+    );
+
+    const {
+      error: res_error,
+    } = CatalogModel.SearchRerankingModel().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getSearchRerankingConfig",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {boolean} [arg.isActive] - Filter the custom keyword listing by
+   *   their active status.
+   * @param {string} [arg.q] - It is to search by keywords.
+   * @returns {Promise<SearchRerankListing>} - Success response
+   * @summary: List all the search reranking config in an application.
+   * @description: Search Reranking allows you rank and boost the search of the keywords and products in the product listing. This API allows you to list all the search re-ranking configured for the application.
+   */
+  async listSearchRerankConfig({ isActive, q } = {}) {
+    const { error } = CatalogValidator.listSearchRerankConfig().validate(
+      {
+        isActive,
+        q,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = CatalogValidator.listSearchRerankConfig().validate(
+      {
+        isActive,
+        q,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for listSearchRerankConfig",
+      });
+      Logger({ level: "WARN", message: warrning });
+    }
+
+    const query_params = {};
+    query_params["is_active"] = isActive;
+    query_params["q"] = q;
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/search/rerank/`,
+      query_params,
+      undefined
+    );
+
+    const {
+      error: res_error,
+    } = CatalogModel.SearchRerankListing().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for listSearchRerankConfig",
       });
       Logger({ level: "WARN", message: res_error });
     }
@@ -3663,12 +3942,13 @@ class Catalog {
 
   /**
    * @param {Object} arg - Arg object.
-   * @param {string} arg.id - A `id` is a unique identifier for a particular
-   *   detail. Pass the `id` of the keywords which you want to delete.
-   * @param {CreateAutocompleteKeyword} arg.body
-   * @returns {Promise<GetAutocompleteWordsResponse>} - Success response
-   * @summary: Create & Update Autocomplete Keyword
-   * @description: Update a mapping by it's id. On successful request, returns the updated Keyword mapping
+   * @param {string} arg.id - A `id` is a unique identifier for a specific
+   *   autocomplete keyword map. Pass the `id` of the keywords which you want
+   *   to delete.
+   * @param {GetAutocompleteWordsData} arg.body
+   * @returns {Promise<UpdateAutocompleteWordData>} - Success response
+   * @summary: Update a autocomplete keyword config by ID.
+   * @description: Autocomplete keywords configuration help you to extend and customize the behaviour of autocomplete search results in Fynd Platform. This API allows you to update a mapping by it's `id`.
    */
   async updateAutocompleteKeyword({ id, body } = {}) {
     const { error } = CatalogValidator.updateAutocompleteKeyword().validate(
@@ -3712,7 +3992,7 @@ class Catalog {
 
     const {
       error: res_error,
-    } = CatalogModel.GetAutocompleteWordsResponse().validate(response, {
+    } = CatalogModel.UpdateAutocompleteWordData().validate(response, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -3998,12 +4278,12 @@ class Catalog {
 
   /**
    * @param {Object} arg - Arg object.
-   * @param {string} arg.id - A `id` is a unique identifier for a particular
-   *   detail. Pass the `id` of the keywords which you want to delete.
+   * @param {string} arg.id - A `id` is a unique identifier for a specific
+   *   keyword search configuration.
    * @param {CreateSearchKeyword} arg.body
    * @returns {Promise<GetSearchWordsData>} - Success response
-   * @summary: Update Search Keyword
-   * @description: Update Search Keyword by its id. On successful request, returns the updated collection
+   * @summary: Update the search keyword configuraton by their ID.
+   * @description: Thist API allows you to update the search keyword configuration by their ID.
    */
   async updateSearchKeywords({ id, body } = {}) {
     const { error } = CatalogValidator.updateSearchKeywords().validate(
@@ -4056,6 +4336,74 @@ class Catalog {
       Logger({
         level: "WARN",
         message: "Response Validation Warnnings for updateSearchKeywords",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.id - A `id` is a unique identifier for a specific
+   *   keyword search configuration. Pass the `id` of the keywords which you
+   *   want to retrieve.
+   * @param {CreateSearchReranking} arg.body
+   * @returns {Promise<SearchRerankingModel>} - Success response
+   * @summary: Update the search rerank details of an application by its ID.
+   * @description: Search Reranking allows you rank and boost the search of the keywords and products in the product listing. This API allows you to update the search re-ranking configured for the application.
+   */
+  async updateSearchRerankConfig({ id, body } = {}) {
+    const { error } = CatalogValidator.updateSearchRerankConfig().validate(
+      {
+        id,
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = CatalogValidator.updateSearchRerankConfig().validate(
+      {
+        id,
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for updateSearchRerankConfig",
+      });
+      Logger({ level: "WARN", message: warrning });
+    }
+
+    const query_params = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "put",
+      `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/search/rerank/${id}/`,
+      query_params,
+      body
+    );
+
+    const {
+      error: res_error,
+    } = CatalogModel.SearchRerankingModel().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for updateSearchRerankConfig",
       });
       Logger({ level: "WARN", message: res_error });
     }

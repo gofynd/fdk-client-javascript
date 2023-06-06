@@ -54,6 +54,12 @@ class CatalogValidator {
     }).required();
   }
 
+  static createSearchRerankingConfig() {
+    return Joi.object({
+      body: CatalogModel.CreateSearchReranking().required(),
+    }).required();
+  }
+
   static deleteAutocompleteKeyword() {
     return Joi.object({
       id: Joi.string().allow("").required(),
@@ -86,6 +92,12 @@ class CatalogValidator {
     }).required();
   }
 
+  static deleteSearchRerankConfig() {
+    return Joi.object({
+      id: Joi.string().allow("").required(),
+    }).required();
+  }
+
   static getAllCollections() {
     return Joi.object({
       q: Joi.string().allow(""),
@@ -99,7 +111,10 @@ class CatalogValidator {
   }
 
   static getAllSearchKeyword() {
-    return Joi.object({}).required();
+    return Joi.object({
+      isActive: Joi.boolean(),
+      q: Joi.string().allow(""),
+    }).required();
   }
 
   static getAppInventory() {
@@ -307,6 +322,19 @@ class CatalogValidator {
     }).required();
   }
 
+  static getSearchRerankingConfig() {
+    return Joi.object({
+      id: Joi.string().allow("").required(),
+    }).required();
+  }
+
+  static listSearchRerankConfig() {
+    return Joi.object({
+      isActive: Joi.boolean(),
+      q: Joi.string().allow(""),
+    }).required();
+  }
+
   static updateAllowSingle() {
     return Joi.object({
       body: CatalogModel.AllowSingleRequest().required(),
@@ -351,7 +379,7 @@ class CatalogValidator {
   static updateAutocompleteKeyword() {
     return Joi.object({
       id: Joi.string().allow("").required(),
-      body: CatalogModel.CreateAutocompleteKeyword().required(),
+      body: CatalogModel.GetAutocompleteWordsData().required(),
     }).required();
   }
 
@@ -388,6 +416,13 @@ class CatalogValidator {
     return Joi.object({
       id: Joi.string().allow("").required(),
       body: CatalogModel.CreateSearchKeyword().required(),
+    }).required();
+  }
+
+  static updateSearchRerankConfig() {
+    return Joi.object({
+      id: Joi.string().allow("").required(),
+      body: CatalogModel.CreateSearchReranking().required(),
     }).required();
   }
 }

@@ -8,11 +8,13 @@ declare class CatalogValidator {
     static createCustomKeyword(): any;
     static createGroupConfiguration(): any;
     static createListingConfiguration(): any;
+    static createSearchRerankingConfig(): any;
     static deleteAutocompleteKeyword(): any;
     static deleteCollection(): any;
     static deleteGroupConfiguration(): any;
     static deleteListingConfiguration(): any;
     static deleteSearchKeywords(): any;
+    static deleteSearchRerankConfig(): any;
     static getAllCollections(): any;
     static getAllSearchKeyword(): any;
     static getAppInventory(): any;
@@ -41,6 +43,8 @@ declare class CatalogValidator {
     static getProductDetailBySlug(): any;
     static getQueryFilters(): any;
     static getSearchKeywords(): any;
+    static getSearchRerankingConfig(): any;
+    static listSearchRerankConfig(): any;
     static updateAllowSingle(): any;
     static updateAppBrand(): any;
     static updateAppCategory(): any;
@@ -53,4 +57,5 @@ declare class CatalogValidator {
     static updateGroupConfiguration(): any;
     static updateListingConfiguration(): any;
     static updateSearchKeywords(): any;
+    static updateSearchRerankConfig(): any;
 }

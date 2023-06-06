@@ -24,8 +24,6 @@ const Cart = require("./Cart/CartPlatformApplicationClient");
 
 const Rewards = require("./Rewards/RewardsPlatformApplicationClient");
 
-const Analytics = require("./Analytics/AnalyticsPlatformApplicationClient");
-
 const Partner = require("./Partner/PartnerPlatformApplicationClient");
 
 const { FDKClientValidationError } = require("../common/FDKError");
@@ -61,8 +59,6 @@ class PlatformApplicationClient {
     this.cart = new Cart(config, applicationId);
 
     this.rewards = new Rewards(config, applicationId);
-
-    this.analytics = new Analytics(config, applicationId);
 
     this.partner = new Partner(config, applicationId);
   }
@@ -637,6 +633,7 @@ class PlatformApplicationClient {
 /** @typedef BagReturnableCancelableStatus */
 /** @typedef Bags */
 /** @typedef BagStateMapper */
+/** @typedef BagStateTransitionMap */
 /** @typedef BagStatusHistory */
 /** @typedef BagUnit */
 /** @typedef BaseResponse */
@@ -715,8 +712,6 @@ class PlatformApplicationClient {
 /** @typedef LineItem */
 /** @typedef LocationDetails */
 /** @typedef LockData */
-/** @typedef ManualAssignDPToShipment */
-/** @typedef ManualAssignDPToShipmentResponse */
 /** @typedef MarketPlacePdf */
 /** @typedef Meta */
 /** @typedef Meta1 */
@@ -864,9 +859,15 @@ class PlatformApplicationClient {
 /** @typedef AttributeMasterSerializer */
 /** @typedef AttributeSchemaRange */
 /** @typedef AutocompleteAction */
+/** @typedef AutocompleteAction1 */
 /** @typedef AutocompletePageAction */
+/** @typedef AutocompletePageAction1 */
 /** @typedef AutocompleteResult */
+/** @typedef AutocompleteResult1 */
 /** @typedef BannerImage */
+/** @typedef BaseErrorResponse */
+/** @typedef BoostBury */
+/** @typedef BoostBury1 */
 /** @typedef Brand */
 /** @typedef BrandItem */
 /** @typedef BrandListingResponse */
@@ -929,13 +930,14 @@ class PlatformApplicationClient {
 /** @typedef ConfigurationProductVariant */
 /** @typedef ConfigurationProductVariantConfig */
 /** @typedef CreateAutocompleteKeyword */
-/** @typedef CreateAutocompleteWordsResponse */
 /** @typedef CreateCollection */
 /** @typedef CreateSearchKeyword */
+/** @typedef CreateSearchReranking */
 /** @typedef CrossSellingDataResponse */
 /** @typedef CustomOrder */
 /** @typedef DateMeta */
 /** @typedef DefaultKeyRequest */
+/** @typedef DeleteRerankResponse */
 /** @typedef DeleteResponse */
 /** @typedef Department */
 /** @typedef DepartmentCategoryTree */
@@ -980,7 +982,6 @@ class PlatformApplicationClient {
 /** @typedef GetProductBundleResponse */
 /** @typedef GetProducts */
 /** @typedef GetSearchWordsData */
-/** @typedef GetSearchWordsDetailResponse */
 /** @typedef GetSearchWordsResponse */
 /** @typedef GlobalValidation */
 /** @typedef GTIN */
@@ -1040,6 +1041,7 @@ class PlatformApplicationClient {
 /** @typedef Media */
 /** @typedef Media1 */
 /** @typedef Media2 */
+/** @typedef Media3 */
 /** @typedef Meta */
 /** @typedef MetaDataListingFilterMetaResponse */
 /** @typedef MetaDataListingFilterResponse */
@@ -1109,11 +1111,17 @@ class PlatformApplicationClient {
 /** @typedef QuantitiesArticle */
 /** @typedef Quantity */
 /** @typedef QuantityBase */
+/** @typedef RerankingAttribute */
+/** @typedef RerankingAttribute1 */
 /** @typedef ReturnConfig */
 /** @typedef ReturnConfig1 */
 /** @typedef ReturnConfig2 */
 /** @typedef ReturnConfigResponse */
+/** @typedef SearchErrorResponse */
 /** @typedef SearchKeywordResult */
+/** @typedef SearchKeywordResult1 */
+/** @typedef SearchRerankingModel */
+/** @typedef SearchRerankListing */
 /** @typedef SecondLevelChild */
 /** @typedef SellerPhoneNumber */
 /** @typedef SEOData */
@@ -1140,6 +1148,7 @@ class PlatformApplicationClient {
 /** @typedef Trader */
 /** @typedef Trader1 */
 /** @typedef Trader2 */
+/** @typedef UpdateAutocompleteWordData */
 /** @typedef UpdateCollection */
 /** @typedef UpdatedResponse */
 /** @typedef UserCommon */
@@ -1608,27 +1617,6 @@ class PlatformApplicationClient {
 /** @typedef ShareMessages */
 /** @typedef UserRes */
 
-/** @typedef AbandonCartDetail */
-/** @typedef AbandonCartsDetail */
-/** @typedef AbandonCartsList */
-/** @typedef ErrorRes */
-/** @typedef ExportJobReq */
-/** @typedef ExportJobRes */
-/** @typedef ExportJobStatusRes */
-/** @typedef GetLogsListReq */
-/** @typedef GetLogsListRes */
-/** @typedef LogInfo */
-/** @typedef MkpLogsResp */
-/** @typedef Page */
-/** @typedef ReceivedAt */
-/** @typedef SearchLogReq */
-/** @typedef SearchLogRes */
-/** @typedef StatGroup */
-/** @typedef StatsGroupComponent */
-/** @typedef StatsGroupComponents */
-/** @typedef StatsGroups */
-/** @typedef StatsRes */
-
 /** @typedef BadRequestObject */
 /** @typedef BulkDiscount */
 /** @typedef CancelJobResponse */
@@ -1646,7 +1634,46 @@ class PlatformApplicationClient {
 /** @typedef AddProxyReq */
 /** @typedef AddProxyResponse */
 /** @typedef APIError */
+/** @typedef ApplicationPermissions */
+/** @typedef ApprovedPermissions */
+/** @typedef ApprovedPermissionsInfo */
+/** @typedef Benefits */
+/** @typedef Callback */
+/** @typedef Category */
+/** @typedef CategoryL1 */
+/** @typedef CategoryL2 */
+/** @typedef CommingSoon */
+/** @typedef ContactInfo */
+/** @typedef ExtensionCommon */
+/** @typedef ExtensionDetails */
+/** @typedef ExtensionItems */
+/** @typedef ExtensionList */
+/** @typedef ExtensionListItems */
+/** @typedef ExtensionResponse */
+/** @typedef ExtensionSuggestion */
+/** @typedef ExtensionSuggestionList */
+/** @typedef getProxyPathRes */
+/** @typedef ListingInfo */
+/** @typedef Logo */
+/** @typedef ModifyPartnerReq */
+/** @typedef OrganizationBasicInfo */
+/** @typedef Pagination */
+/** @typedef PartnerInviteDetails */
+/** @typedef PartnerList */
+/** @typedef PartnerRequestList */
+/** @typedef Plan */
+/** @typedef Plans */
+/** @typedef Price */
+/** @typedef PublicExtension */
 /** @typedef RemoveProxyResponse */
+/** @typedef RequestedPermissions */
+/** @typedef Scope */
+/** @typedef Screenshots */
+/** @typedef SetupProductRes */
+/** @typedef SubscriptionRequest */
+/** @typedef SubscriptionRes */
+/** @typedef Support */
+/** @typedef UninstallExtension */
 
 /** @typedef Association */
 /** @typedef AuthMeta */

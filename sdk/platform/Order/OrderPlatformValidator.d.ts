@@ -27,15 +27,14 @@ declare class OrderValidator {
     static getShipmentHistory(): any;
     static getShipmentReasons(): any;
     static getShipments(): any;
+    static getStateTransitionMap(): any;
     static getfilters(): any;
     static invalidateShipmentCache(): any;
     static orderUpdate(): any;
-    static platformManualAssignDPToShipment(): any;
     static postShipmentHistory(): any;
     static processManifest(): any;
     static reassignLocation(): any;
     static sendSmsNinja(): any;
-    static sendSmsNinjaPlatform(): any;
     static updateAddress(): any;
     static updatePackagingDimensions(): any;
     static updateShipmentLock(): any;
