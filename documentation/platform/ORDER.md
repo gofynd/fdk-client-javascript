@@ -6525,7 +6525,7 @@ const data = await platformClient.order.verifyMobileOTP({  body : value });
 
 
 
-[PointBlankOtpData](#PointBlankOtpData)
+[VerifyOtpResponse](#VerifyOtpResponse)
 
 Verify OTP
 
@@ -7919,7 +7919,9 @@ Verify OTP
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | customer_cn_receipt | string? |  yes  |  |
  | invoice_receipt | string? |  yes  |  |
+ | merchant_cn_receipt | string? |  yes  |  |
  | order_id | string? |  yes  |  |
  | payment_receipt | string? |  yes  |  |
  | success | boolean? |  yes  |  |
@@ -10043,6 +10045,30 @@ Verify OTP
  | ---------- | ---- | -------- | ----------- |
  | otp_code | number |  no  |  |
  | request_id | string |  no  |  |
+ 
+
+---
+
+#### [VerifyOtpResponse](#VerifyOtpResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | data | [VerifyOtpResponseData](#VerifyOtpResponseData) |  no  |  |
+ | message | string? |  yes  |  |
+ | status | number? |  yes  |  |
+ | success | boolean? |  yes  |  |
+ 
+
+---
+
+#### [VerifyOtpResponseData](#VerifyOtpResponseData)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | country_code | string? |  yes  |  |
+ | fynd_order_id | string? |  yes  |  |
+ | message | string? |  yes  |  |
+ | mobile | number? |  yes  |  |
  
 
 ---

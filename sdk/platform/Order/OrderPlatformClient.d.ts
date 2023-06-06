@@ -626,11 +626,11 @@ declare class Order {
     /**
      * @param {Object} arg - Arg object.
      * @param {VerifyMobileOTP} arg.body
-     * @returns {Promise<PointBlankOtpData>} - Success response
+     * @returns {Promise<VerifyOtpResponse>} - Success response
      * @summary:
      * @description:
      */
     verifyMobileOTP({ body }?: {
         body: VerifyMobileOTP;
-    }): Promise<PointBlankOtpData>;
+    }): Promise<VerifyOtpResponse>;
 }

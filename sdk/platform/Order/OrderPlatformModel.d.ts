@@ -249,5 +249,7 @@ declare class OrderModel {
     static UserDetailsData(): any;
     static VerifyMobileOTP(): any;
     static VerifyOtpData(): any;
+    static VerifyOtpResponse(): any;
+    static VerifyOtpResponseData(): any;
     static Weight(): any;
 }

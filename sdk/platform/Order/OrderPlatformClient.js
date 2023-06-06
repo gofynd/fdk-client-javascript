@@ -3259,7 +3259,7 @@ class Order {
   /**
    * @param {Object} arg - Arg object.
    * @param {VerifyMobileOTP} arg.body
-   * @returns {Promise<PointBlankOtpData>} - Success response
+   * @returns {Promise<VerifyOtpResponse>} - Success response
    * @summary:
    * @description:
    */
@@ -3304,7 +3304,7 @@ class Order {
 
     const {
       error: res_error,
-    } = OrderModel.PointBlankOtpData().validate(response, {
+    } = OrderModel.VerifyOtpResponse().validate(response, {
       abortEarly: false,
       allowUnknown: false,
     });

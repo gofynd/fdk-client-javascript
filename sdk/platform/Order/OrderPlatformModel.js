@@ -975,7 +975,9 @@ class OrderModel {
   }
   static GeneratePosOrderReceiptResponse() {
     return Joi.object({
+      customer_cn_receipt: Joi.string().allow(""),
       invoice_receipt: Joi.string().allow(""),
+      merchant_cn_receipt: Joi.string().allow(""),
       order_id: Joi.string().allow(""),
       payment_receipt: Joi.string().allow(""),
       success: Joi.boolean(),
@@ -2506,6 +2508,22 @@ class OrderModel {
     return Joi.object({
       otp_code: Joi.number().required(),
       request_id: Joi.string().allow("").required(),
+    });
+  }
+  static VerifyOtpResponse() {
+    return Joi.object({
+      data: OrderModel.VerifyOtpResponseData().required(),
+      message: Joi.string().allow(""),
+      status: Joi.number(),
+      success: Joi.boolean(),
+    });
+  }
+  static VerifyOtpResponseData() {
+    return Joi.object({
+      country_code: Joi.string().allow(""),
+      fynd_order_id: Joi.string().allow(""),
+      message: Joi.string().allow(""),
+      mobile: Joi.number(),
     });
   }
   static Weight() {

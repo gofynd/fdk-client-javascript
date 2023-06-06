@@ -5238,7 +5238,9 @@ class PlatformClient {
  */
 /**
  * @typedef GeneratePosOrderReceiptResponse
+ * @property {string} [customer_cn_receipt]
  * @property {string} [invoice_receipt]
+ * @property {string} [merchant_cn_receipt]
  * @property {string} [order_id]
  * @property {string} [payment_receipt]
  * @property {boolean} [success]
@@ -6615,6 +6617,20 @@ class PlatformClient {
  * @property {string} request_id
  */
 /**
+ * @typedef VerifyOtpResponse
+ * @property {VerifyOtpResponseData} data
+ * @property {string} [message]
+ * @property {number} [status]
+ * @property {boolean} [success]
+ */
+/**
+ * @typedef VerifyOtpResponseData
+ * @property {string} [country_code]
+ * @property {string} [fynd_order_id]
+ * @property {string} [message]
+ * @property {number} [mobile]
+ */
+/**
  * @typedef Weight
  * @property {boolean} [is_default]
  * @property {number} [shipping]
@@ -7460,7 +7476,7 @@ class PlatformClient {
  * @property {boolean} [is_active]
  * @property {Object} [modified_by]
  * @property {string} [modified_on]
- * @property {BoostBury} [ranking]
+ * @property {BoostBury1} [ranking]
  * @property {string[]} words
  */
 /**
@@ -8717,7 +8733,7 @@ class PlatformClient {
  * @property {NetQuantity} [net_quantity]
  * @property {number} [no_of_boxes]
  * @property {string[]} [product_group_tag]
- * @property {ProductPublish} [product_publish]
+ * @property {ProductPublish1} [product_publish]
  * @property {string} [requester]
  * @property {ReturnConfig} return_config
  * @property {string} [short_description]
@@ -8913,7 +8929,7 @@ class PlatformClient {
  * @property {string} [pending]
  * @property {string} [primary_color]
  * @property {string[]} [product_group_tag]
- * @property {ProductPublish1} [product_publish]
+ * @property {ProductPublish} [product_publish]
  * @property {ReturnConfigResponse} [return_config]
  * @property {string} [short_description]
  * @property {string} [size_guide]
@@ -9142,7 +9158,7 @@ class PlatformClient {
  * @property {boolean} [is_active]
  * @property {UserDetail} [modified_by]
  * @property {string} modified_on
- * @property {BoostBury1} [ranking]
+ * @property {BoostBury} [ranking]
  * @property {UserDetail} [verified_by]
  * @property {string} [verified_on]
  * @property {string[]} words

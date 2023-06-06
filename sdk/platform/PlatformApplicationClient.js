@@ -908,6 +908,8 @@ class PlatformApplicationClient {
 /** @typedef UserDetailsData */
 /** @typedef VerifyMobileOTP */
 /** @typedef VerifyOtpData */
+/** @typedef VerifyOtpResponse */
+/** @typedef VerifyOtpResponseData */
 /** @typedef Weight */
 
 /** @typedef Action */
