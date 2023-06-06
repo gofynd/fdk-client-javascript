@@ -684,6 +684,10 @@ class PlatformApplicationClient {
 /** @typedef ArticleDetails */
 /** @typedef ArticleDetails1 */
 /** @typedef AssetByShipment */
+/** @typedef AttachOrderUser */
+/** @typedef AttachOrderUserResponse */
+/** @typedef AttachUserInfo */
+/** @typedef AttachUserOtpData */
 /** @typedef Attributes */
 /** @typedef B2BPODetails */
 /** @typedef BagConfigs */
@@ -721,10 +725,12 @@ class PlatformApplicationClient {
 /** @typedef CreateOrderErrorReponse */
 /** @typedef CreateOrderPayload */
 /** @typedef CreateOrderResponse */
+/** @typedef CreditBalanceInfo */
 /** @typedef CurrentStatus */
 /** @typedef DataUpdates */
 /** @typedef Dates */
 /** @typedef DebugInfo */
+/** @typedef Dimension */
 /** @typedef Dimensions */
 /** @typedef DiscountRules */
 /** @typedef DispatchManifest */
@@ -741,6 +747,8 @@ class PlatformApplicationClient {
 /** @typedef ErrorDetail */
 /** @typedef ErrorResponse */
 /** @typedef ErrorResponse1 */
+/** @typedef FetchCreditBalanceRequestPayload */
+/** @typedef FetchCreditBalanceResponsePayload */
 /** @typedef FileResponse */
 /** @typedef FilterInfoOption */
 /** @typedef FiltersInfo */
@@ -814,6 +822,7 @@ class PlatformApplicationClient {
 /** @typedef PlatformShipmentTrack */
 /** @typedef PlatformTrack */
 /** @typedef PlatformUserDetails */
+/** @typedef PointBlankOtpData */
 /** @typedef PostActivityHistory */
 /** @typedef PostHistoryData */
 /** @typedef PostHistoryDict */
@@ -830,12 +839,17 @@ class PlatformApplicationClient {
 /** @typedef QuestionSet */
 /** @typedef Reason */
 /** @typedef ReasonsData */
+/** @typedef RefundModeConfigRequestPayload */
+/** @typedef RefundModeConfigResponsePayload */
+/** @typedef RefundModeInfo */
 /** @typedef ReplacementDetails */
 /** @typedef ResponseDetail */
 /** @typedef ResponseGetAssetShipment */
 /** @typedef ReturnConfig */
 /** @typedef ReturnConfig1 */
 /** @typedef SendSmsPayload */
+/** @typedef SendUserMobileOTP */
+/** @typedef SendUserMobileOtpResponse */
 /** @typedef Shipment */
 /** @typedef ShipmentConfig */
 /** @typedef ShipmentData */
@@ -859,6 +873,7 @@ class PlatformApplicationClient {
 /** @typedef ShipmentTags */
 /** @typedef ShipmentTimeStamp */
 /** @typedef ShippingInfo */
+/** @typedef SingleRefundModeInfo */
 /** @typedef SmsDataPayload */
 /** @typedef StatuesRequest */
 /** @typedef StatuesResponse */
@@ -880,6 +895,8 @@ class PlatformApplicationClient {
 /** @typedef TaxInfo */
 /** @typedef TrackingList */
 /** @typedef TransactionData */
+/** @typedef UpdatePackagingDimensionsPayload */
+/** @typedef UpdatePackagingDimensionsResponse */
 /** @typedef UpdateShipmentLockPayload */
 /** @typedef UpdateShipmentLockResponse */
 /** @typedef UpdateShipmentStatusRequest */
@@ -889,6 +906,8 @@ class PlatformApplicationClient {
 /** @typedef UserData */
 /** @typedef UserDataInfo */
 /** @typedef UserDetailsData */
+/** @typedef VerifyMobileOTP */
+/** @typedef VerifyOtpData */
 /** @typedef Weight */
 
 /** @typedef Action */
@@ -1833,6 +1852,8 @@ class PlatformApplicationClient {
 /** @typedef ResourceNotFound */
 
 /** @typedef AddressResponse */
+/** @typedef ApplicationCompanyDpViewRequest */
+/** @typedef ApplicationCompanyDpViewResponse */
 /** @typedef ApplicationServiceabilityConfig */
 /** @typedef ApplicationServiceabilityConfigResponse */
 /** @typedef CommonError */
@@ -1871,7 +1892,6 @@ class PlatformApplicationClient {
 /** @typedef MobileNo */
 /** @typedef ModifiedByResponse */
 /** @typedef OpeningClosing */
-/** @typedef PageResponse */
 /** @typedef PincodeBulkViewResponse */
 /** @typedef PincodeCodStatusListingPage */
 /** @typedef PincodeCodStatusListingRequest */
@@ -1886,7 +1906,10 @@ class PlatformApplicationClient {
 /** @typedef PincodeMopUpdateAuditHistoryResponseData */
 /** @typedef PincodeMopUpdateResponse */
 /** @typedef ProductReturnConfigResponse */
+/** @typedef ReAssignStoreRequest */
+/** @typedef ReAssignStoreResponse */
 /** @typedef ServiceabilityErrorResponse */
+/** @typedef ServiceabilityPageResponse */
 /** @typedef ServiceabilityrErrorResponse */
 /** @typedef TimmingResponse */
 /** @typedef UpdateZoneData */

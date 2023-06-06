@@ -8,12 +8,15 @@
 ## Serviceability Methods
 Logistics Configuration API's allows you to configure zone, application logistics and many more useful features. 
 
+* [addAppDp](#addappdp)
 * [createZone](#createzone)
+* [deleteAppDp](#deleteappdp)
 * [getAllStores](#getallstores)
 * [getApplicationServiceability](#getapplicationserviceability)
 * [getCompanyStoreView](#getcompanystoreview)
 * [getEntityRegionView](#getentityregionview)
 * [getListView](#getlistview)
+* [getOptimalLocations](#getoptimallocations)
 * [getStore](#getstore)
 * [getZoneDataView](#getzonedataview)
 * [getZoneFromPincodeView](#getzonefrompincodeview)
@@ -29,6 +32,61 @@ Logistics Configuration API's allows you to configure zone, application logistic
 ## Methods with example and description
 
 
+
+
+### addAppDp
+Add application dp data
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").serviceability.addAppDp({  body : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").serviceability.addAppDp({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [ApplicationCompanyDpViewRequest](#ApplicationCompanyDpViewRequest) | yes | Request body |
+
+
+This API add application dp data.
+
+*Returned Response:*
+
+
+
+
+[ApplicationCompanyDpViewResponse](#ApplicationCompanyDpViewResponse)
+
+Response status_code
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
 
 
 ### createZone
@@ -61,6 +119,62 @@ This API returns response of insertion of zone in mongo database.<br>Correction-
 
 
 [ZoneResponse](#ZoneResponse)
+
+Response status_code
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### deleteAppDp
+Delete application dp data
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").serviceability.deleteAppDp({  courierPartnerId : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").serviceability.deleteAppDp({  courierPartnerId : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| courierPartnerId | number | yes | A `courier_partner_id` is a unique identifier of a particular delivery partner. |  
+
+
+
+This API remove application dp data.
+
+*Returned Response:*
+
+
+
+
+[ApplicationCompanyDpViewResponse](#ApplicationCompanyDpViewResponse)
 
 Response status_code
 
@@ -354,6 +468,61 @@ This API returns Zone List View of the application.
 [ListViewResponse](#ListViewResponse)
 
 Zone List of application in descending order of their last modified date.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### getOptimalLocations
+Get serviceable store of the item
+
+
+
+```javascript
+// Promise
+const promise = platformClient.serviceability.getOptimalLocations({  body : value });
+
+// Async/Await
+const data = await platformClient.serviceability.getOptimalLocations({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [ReAssignStoreRequest](#ReAssignStoreRequest) | yes | Request body |
+
+
+This API returns serviceable store of the item.
+
+*Returned Response:*
+
+
+
+
+[ReAssignStoreResponse](#ReAssignStoreResponse)
+
+Response status_code
 
 
 
@@ -1120,6 +1289,27 @@ Response status_code
 
 ---
 
+#### [ApplicationCompanyDpViewRequest](#ApplicationCompanyDpViewRequest)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | dp_id | string? |  yes  |  |
+ 
+
+---
+
+#### [ApplicationCompanyDpViewResponse](#ApplicationCompanyDpViewResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | application_id | string |  no  |  |
+ | company_id | number |  no  |  |
+ | courier_partner_id | number? |  yes  |  |
+ | success | boolean |  no  |  |
+ 
+
+---
+
 #### [ApplicationServiceabilityConfig](#ApplicationServiceabilityConfig)
 
  | Properties | Type | Nullable | Description |
@@ -1344,7 +1534,7 @@ Response status_code
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | items | [[ItemResponse](#ItemResponse)]? |  yes  |  |
- | page | [PageResponse](#PageResponse) |  no  |  |
+ | page | [ServiceabilityPageResponse](#ServiceabilityPageResponse) |  no  |  |
  
 
 ---
@@ -1576,19 +1766,6 @@ Response status_code
 
 ---
 
-#### [PageResponse](#PageResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | current | number? |  yes  |  |
- | has_next | boolean? |  yes  |  |
- | item_total | number? |  yes  |  |
- | size | number? |  yes  |  |
- | type | string? |  yes  |  |
- 
-
----
-
 #### [PincodeBulkViewResponse](#PincodeBulkViewResponse)
 
  | Properties | Type | Nullable | Description |
@@ -1756,6 +1933,31 @@ Response status_code
 
 ---
 
+#### [ReAssignStoreRequest](#ReAssignStoreRequest)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | articles | [string] |  no  |  |
+ | configuration | string |  no  |  |
+ | identifier | string |  no  |  |
+ | ignored_locations | [string] |  no  |  |
+ | to_pincode | string |  no  |  |
+ 
+
+---
+
+#### [ReAssignStoreResponse](#ReAssignStoreResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | articles | [string]? |  yes  |  |
+ | error | string |  no  |  |
+ | success | boolean |  no  |  |
+ | to_pincode | string |  no  |  |
+ 
+
+---
+
 #### [ServiceabilityErrorResponse](#ServiceabilityErrorResponse)
 
  | Properties | Type | Nullable | Description |
@@ -1763,6 +1965,19 @@ Response status_code
  | message | string |  no  |  |
  | type | string |  no  |  |
  | value | string |  no  |  |
+ 
+
+---
+
+#### [ServiceabilityPageResponse](#ServiceabilityPageResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | current | number? |  yes  |  |
+ | has_next | boolean? |  yes  |  |
+ | item_total | number? |  yes  |  |
+ | size | number? |  yes  |  |
+ | type | string? |  yes  |  |
  
 
 ---

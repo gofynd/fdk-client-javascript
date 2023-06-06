@@ -1,5 +1,6 @@
 export = OrderValidator;
 declare class OrderValidator {
+    static attachOrderUser(): any;
     static checkOrderStatus(): any;
     static click2Call(): any;
     static createChannelConfig(): any;
@@ -7,6 +8,8 @@ declare class OrderValidator {
     static createShipmentReport(): any;
     static dispatchManifest(): any;
     static downloadBulkActionTemplate(): any;
+    static fetchCreditBalanceDetail(): any;
+    static fetchRefundModeConfig(): any;
     static generatePOSReceiptByOrderId(): any;
     static getAnnouncements(): any;
     static getAssetByShipmentIds(): any;
@@ -33,10 +36,12 @@ declare class OrderValidator {
     static processManifest(): any;
     static reassignLocation(): any;
     static sendSmsNinja(): any;
+    static sendUserMobileOTP(): any;
     static updateAddress(): any;
     static updatePackagingDimensions(): any;
     static updateShipmentLock(): any;
     static updateShipmentStatus(): any;
     static uploadConsent(): any;
     static upsertJioCode(): any;
+    static verifyMobileOTP(): any;
 }

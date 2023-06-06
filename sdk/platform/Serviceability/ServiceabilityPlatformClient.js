@@ -355,6 +355,72 @@ class Serviceability {
 
   /**
    * @param {Object} arg - Arg object.
+   * @param {ReAssignStoreRequest} arg.body
+   * @returns {Promise<ReAssignStoreResponse>} - Success response
+   * @summary: Get serviceable store of the item
+   * @description: This API returns serviceable store of the item.
+   */
+  async getOptimalLocations({ body } = {}) {
+    const { error } = ServiceabilityValidator.getOptimalLocations().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = ServiceabilityValidator.getOptimalLocations().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getOptimalLocations",
+      });
+      Logger({ level: "WARN", message: warrning });
+    }
+
+    const query_params = {};
+
+    const xHeaders = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/logistics/v1.0/company/${this.config.companyId}/reassign`,
+      query_params,
+      body,
+      xHeaders
+    );
+
+    const {
+      error: res_error,
+    } = ServiceabilityModel.ReAssignStoreResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getOptimalLocations",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
    * @param {number} arg.storeUid - A `store_uid` contains a specific ID of a store.
    * @returns {Promise<GetStoresViewResponse>} - Success response
    * @summary: GET stores data

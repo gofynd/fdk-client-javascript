@@ -4,6 +4,16 @@ declare class Order {
     config: any;
     /**
      * @param {Object} arg - Arg object.
+     * @param {AttachOrderUser} arg.body
+     * @returns {Promise<AttachOrderUserResponse>} - Success response
+     * @summary:
+     * @description:
+     */
+    attachOrderUser({ body }?: {
+        body: AttachOrderUser;
+    }): Promise<AttachOrderUserResponse>;
+    /**
+     * @param {Object} arg - Arg object.
      * @param {OrderStatus} arg.body
      * @returns {Promise<OrderStatusResult>} - Success response
      * @summary:
@@ -82,6 +92,26 @@ declare class Order {
     downloadBulkActionTemplate({ templateSlug }?: {
         templateSlug?: string;
     }): Promise<FileResponse>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {FetchCreditBalanceRequestPayload} arg.body
+     * @returns {Promise<FetchCreditBalanceResponsePayload>} - Success response
+     * @summary:
+     * @description:
+     */
+    fetchCreditBalanceDetail({ body }?: {
+        body: FetchCreditBalanceRequestPayload;
+    }): Promise<FetchCreditBalanceResponsePayload>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {RefundModeConfigRequestPayload} arg.body
+     * @returns {Promise<RefundModeConfigResponsePayload>} - Success response
+     * @summary:
+     * @description:
+     */
+    fetchRefundModeConfig({ body }?: {
+        body: RefundModeConfigRequestPayload;
+    }): Promise<RefundModeConfigResponsePayload>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.orderId -
@@ -281,7 +311,7 @@ declare class Order {
      * @param {string} [arg.fromDate] -
      * @param {string} [arg.toDate] -
      * @param {string} [arg.dpIds] - Delivery Partner IDs to which shipments are assigned.
-     * @param {string} [arg.salesChannel] -
+     * @param {string} [arg.salesChannels] -
      * @param {number} [arg.pageNo] -
      * @param {number} [arg.pageSize] -
      * @param {boolean} [arg.isPrioritySort] -
@@ -291,7 +321,7 @@ declare class Order {
      * @summary:
      * @description:
      */
-    getOrders({ lane, searchType, bagStatus, timeToDispatch, paymentMethods, tags, searchValue, fromDate, toDate, dpIds, salesChannel, pageNo, pageSize, isPrioritySort, customMeta, platformUserId, }?: {
+    getOrders({ lane, searchType, bagStatus, timeToDispatch, paymentMethods, tags, searchValue, fromDate, toDate, dpIds, salesChannels, pageNo, pageSize, isPrioritySort, customMeta, platformUserId, }?: {
         lane?: string;
         searchType?: string;
         bagStatus?: string;
@@ -302,7 +332,7 @@ declare class Order {
         fromDate?: string;
         toDate?: string;
         dpIds?: string;
-        salesChannel?: string;
+        salesChannels?: string;
         pageNo?: number;
         pageSize?: number;
         isPrioritySort?: boolean;
@@ -507,6 +537,16 @@ declare class Order {
     }): Promise<OrderStatusResult>;
     /**
      * @param {Object} arg - Arg object.
+     * @param {SendUserMobileOTP} arg.body
+     * @returns {Promise<SendUserMobileOtpResponse>} - Success response
+     * @summary:
+     * @description:
+     */
+    sendUserMobileOTP({ body }?: {
+        body: SendUserMobileOTP;
+    }): Promise<SendUserMobileOtpResponse>;
+    /**
+     * @param {Object} arg - Arg object.
      * @param {string} arg.shipmentId -
      * @param {string} [arg.name] -
      * @param {string} [arg.address] -
@@ -539,14 +579,14 @@ declare class Order {
     }): Promise<BaseResponse>;
     /**
      * @param {Object} arg - Arg object.
-     * @param {CreateOrderPayload} arg.body
-     * @returns {Promise<CreateOrderResponse>} - Success response
+     * @param {UpdatePackagingDimensionsPayload} arg.body
+     * @returns {Promise<UpdatePackagingDimensionsResponse>} - Success response
      * @summary:
      * @description:
      */
     updatePackagingDimensions({ body }?: {
-        body: CreateOrderPayload;
-    }): Promise<CreateOrderResponse>;
+        body: UpdatePackagingDimensionsPayload;
+    }): Promise<UpdatePackagingDimensionsResponse>;
     /**
      * @param {Object} arg - Arg object.
      * @param {UpdateShipmentLockPayload} arg.body
@@ -587,4 +627,14 @@ declare class Order {
     upsertJioCode({ body }?: {
         body: JioCodeUpsertPayload;
     }): Promise<JioCodeUpsertResponse>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {VerifyMobileOTP} arg.body
+     * @returns {Promise<PointBlankOtpData>} - Success response
+     * @summary:
+     * @description:
+     */
+    verifyMobileOTP({ body }?: {
+        body: VerifyMobileOTP;
+    }): Promise<PointBlankOtpData>;
 }

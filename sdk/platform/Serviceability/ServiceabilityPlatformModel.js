@@ -14,6 +14,19 @@ class ServiceabilityModel {
       state: Joi.string().allow(""),
     });
   }
+  static ApplicationCompanyDpViewRequest() {
+    return Joi.object({
+      dp_id: Joi.string().allow(""),
+    });
+  }
+  static ApplicationCompanyDpViewResponse() {
+    return Joi.object({
+      application_id: Joi.string().allow("").required(),
+      company_id: Joi.number().required(),
+      courier_partner_id: Joi.number(),
+      success: Joi.boolean().required(),
+    });
+  }
   static ApplicationServiceabilityConfig() {
     return Joi.object({
       channel_id: Joi.string().allow("").required(),
@@ -168,7 +181,7 @@ class ServiceabilityModel {
   static GetStoresViewResponse() {
     return Joi.object({
       items: Joi.array().items(ServiceabilityModel.ItemResponse()),
-      page: ServiceabilityModel.PageResponse().required(),
+      page: ServiceabilityModel.ServiceabilityPageResponse().required(),
     });
   }
   static GetZoneDataViewChannels() {
@@ -334,15 +347,6 @@ class ServiceabilityModel {
       minute: Joi.number(),
     });
   }
-  static PageResponse() {
-    return Joi.object({
-      current: Joi.number(),
-      has_next: Joi.boolean(),
-      item_total: Joi.number(),
-      size: Joi.number(),
-      type: Joi.string().allow(""),
-    });
-  }
   static PincodeBulkViewResponse() {
     return Joi.object({
       batch_id: Joi.string().allow("").required(),
@@ -460,11 +464,37 @@ class ServiceabilityModel {
       on_same_store: Joi.boolean(),
     });
   }
+  static ReAssignStoreRequest() {
+    return Joi.object({
+      articles: Joi.array().items(Joi.any()).required(),
+      configuration: Joi.any().required(),
+      identifier: Joi.string().allow("").required(),
+      ignored_locations: Joi.array().items(Joi.string().allow("")).required(),
+      to_pincode: Joi.string().allow("").required(),
+    });
+  }
+  static ReAssignStoreResponse() {
+    return Joi.object({
+      articles: Joi.array().items(Joi.any()),
+      error: Joi.any().required(),
+      success: Joi.boolean().required(),
+      to_pincode: Joi.string().allow("").required(),
+    });
+  }
   static ServiceabilityErrorResponse() {
     return Joi.object({
       message: Joi.string().allow("").required(),
       type: Joi.string().allow("").required(),
       value: Joi.string().allow("").required(),
+    });
+  }
+  static ServiceabilityPageResponse() {
+    return Joi.object({
+      current: Joi.number(),
+      has_next: Joi.boolean(),
+      item_total: Joi.number(),
+      size: Joi.number(),
+      type: Joi.string().allow(""),
     });
   }
   static ServiceabilityrErrorResponse() {

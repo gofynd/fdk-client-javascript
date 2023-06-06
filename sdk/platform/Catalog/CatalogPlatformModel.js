@@ -946,7 +946,7 @@ class CatalogModel {
       _custom_json: Joi.any(),
       app_id: Joi.string().allow("").required(),
       is_active: Joi.boolean(),
-      result: CatalogModel.SearchKeywordResult1().required(),
+      result: CatalogModel.SearchKeywordResult().required(),
       words: Joi.array().items(Joi.string().allow("")),
     });
   }
@@ -1426,7 +1426,7 @@ class CatalogModel {
       _custom_json: Joi.any(),
       app_id: Joi.string().allow("").required(),
       is_active: Joi.boolean(),
-      result: CatalogModel.SearchKeywordResult().required(),
+      result: CatalogModel.SearchKeywordResult1().required(),
       uid: Joi.string().allow(""),
       words: Joi.array().items(Joi.string().allow("")),
     });

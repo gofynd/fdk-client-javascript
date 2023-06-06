@@ -58,6 +58,16 @@ declare class Serviceability {
     }): Promise<ListViewResponse>;
     /**
      * @param {Object} arg - Arg object.
+     * @param {ReAssignStoreRequest} arg.body
+     * @returns {Promise<ReAssignStoreResponse>} - Success response
+     * @summary: Get serviceable store of the item
+     * @description: This API returns serviceable store of the item.
+     */
+    getOptimalLocations({ body }?: {
+        body: ReAssignStoreRequest;
+    }): Promise<ReAssignStoreResponse>;
+    /**
+     * @param {Object} arg - Arg object.
      * @param {number} arg.storeUid - A `store_uid` contains a specific ID of a store.
      * @returns {Promise<GetStoresViewResponse>} - Success response
      * @summary: GET stores data
