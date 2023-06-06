@@ -2919,15 +2919,11 @@ You will get an array of actions allowed for that particular user based on their
 ```javascript
 // Promise
 const promise = platformClient.order.getShipmentById({  channelShipmentId : value,
- shipmentId : value,
- orderingCompanyId : value,
- requestByExt : value });
+ shipmentId : value });
 
 // Async/Await
 const data = await platformClient.order.getShipmentById({  channelShipmentId : value,
- shipmentId : value,
- orderingCompanyId : value,
- requestByExt : value });
+ shipmentId : value });
 ```
 
 
@@ -2936,10 +2932,8 @@ const data = await platformClient.order.getShipmentById({  channelShipmentId : v
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
-| channelShipmentId | string | no |  |    
-| shipmentId | string | no |  |    
-| orderingCompanyId | string | no |  |    
-| requestByExt | string | no |  |  
+| channelShipmentId | string | no | App Shipment Id |    
+| shipmentId | string | no | Shipment Id |  
 
 
 
@@ -8431,15 +8425,15 @@ Verify OTP
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | address | string? |  yes  |  |
- | city | string |  no  |  |
- | code | string |  no  |  |
- | contact_person | string |  no  |  |
- | country | string |  no  |  |
- | id | number |  no  |  |
- | meta | string |  no  |  |
- | phone | string |  no  |  |
- | pincode | string |  no  |  |
- | state | string |  no  |  |
+ | city | string? |  yes  |  |
+ | code | string? |  yes  |  |
+ | contact_person | string? |  yes  |  |
+ | country | string? |  yes  |  |
+ | id | number? |  yes  |  |
+ | meta | string? |  yes  |  |
+ | phone | string? |  yes  |  |
+ | pincode | string? |  yes  |  |
+ | state | string? |  yes  |  |
  | store_name | string? |  yes  |  |
  
 
@@ -9363,7 +9357,7 @@ Verify OTP
  | ---------- | ---- | -------- | ----------- |
  | activity_comment | string? |  yes  |  |
  | assign_dp_from_sb | boolean? |  yes  |  |
- | auto_trigger_dp_assignment_acf | boolean? |  yes  |  |
+ | auto_trigger_dp_assignment_acf | boolean |  no  |  |
  | bag_weight | string? |  yes  |  |
  | debug_info | string? |  yes  |  |
  | dp_options | string? |  yes  |  |
@@ -9423,7 +9417,7 @@ Verify OTP
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | assign_dp_from_sb | boolean? |  yes  |  |
- | auto_trigger_dp_assignment_acf | boolean |  no  |  |
+ | auto_trigger_dp_assignment_acf | boolean? |  yes  |  |
  | awb_number | string? |  yes  |  |
  | b2b_buyer_details | [BuyerDetails](#BuyerDetails)? |  yes  |  |
  | b2c_buyer_details | string? |  yes  |  |

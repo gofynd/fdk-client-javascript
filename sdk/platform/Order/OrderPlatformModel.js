@@ -1339,15 +1339,15 @@ class OrderModel {
   static OrderingStoreDetails() {
     return Joi.object({
       address: Joi.string().allow(""),
-      city: Joi.string().allow("").required(),
-      code: Joi.string().allow("").required(),
-      contact_person: Joi.string().allow("").required(),
-      country: Joi.string().allow("").required(),
-      id: Joi.number().required(),
-      meta: Joi.any().required(),
-      phone: Joi.string().allow("").required(),
-      pincode: Joi.string().allow("").required(),
-      state: Joi.string().allow("").required(),
+      city: Joi.string().allow(""),
+      code: Joi.string().allow(""),
+      contact_person: Joi.string().allow(""),
+      country: Joi.string().allow(""),
+      id: Joi.number(),
+      meta: Joi.any(),
+      phone: Joi.string().allow(""),
+      pincode: Joi.string().allow(""),
+      state: Joi.string().allow(""),
       store_name: Joi.string().allow(""),
     });
   }
@@ -1605,7 +1605,7 @@ class OrderModel {
       dp_details: OrderModel.DPDetailsData(),
       enable_dp_tracking: Joi.boolean(),
       estimated_sla_time: Joi.string().allow(""),
-      forward_shipment_id: Joi.string().allow(""),
+      forward_shipment_id: Joi.string().allow("").allow(null),
       fulfilling_store: OrderModel.FulfillingStore(),
       fulfilment_priority: Joi.number(),
       gst_details: OrderModel.GSTDetailsData(),
@@ -2004,7 +2004,7 @@ class OrderModel {
     return Joi.object({
       activity_comment: Joi.string().allow(""),
       assign_dp_from_sb: Joi.boolean(),
-      auto_trigger_dp_assignment_acf: Joi.boolean(),
+      auto_trigger_dp_assignment_acf: Joi.boolean().required(),
       bag_weight: Joi.any(),
       debug_info: Joi.any(),
       dp_options: Joi.any(),
@@ -2052,7 +2052,7 @@ class OrderModel {
   static ShipmentMeta() {
     return Joi.object({
       assign_dp_from_sb: Joi.boolean(),
-      auto_trigger_dp_assignment_acf: Joi.boolean().required(),
+      auto_trigger_dp_assignment_acf: Joi.boolean(),
       awb_number: Joi.string().allow(""),
       b2b_buyer_details: OrderModel.BuyerDetails(),
       b2c_buyer_details: Joi.any().allow(null),

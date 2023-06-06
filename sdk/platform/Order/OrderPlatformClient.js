@@ -1857,26 +1857,17 @@ class Order {
 
   /**
    * @param {Object} arg - Arg object.
-   * @param {string} [arg.channelShipmentId] -
-   * @param {string} [arg.shipmentId] -
-   * @param {string} [arg.orderingCompanyId] -
-   * @param {string} [arg.requestByExt] -
+   * @param {string} [arg.channelShipmentId] - App Shipment Id
+   * @param {string} [arg.shipmentId] - Shipment Id
    * @returns {Promise<ShipmentInfoResponse>} - Success response
    * @summary:
    * @description:
    */
-  async getShipmentById({
-    channelShipmentId,
-    shipmentId,
-    orderingCompanyId,
-    requestByExt,
-  } = {}) {
+  async getShipmentById({ channelShipmentId, shipmentId } = {}) {
     const { error } = OrderValidator.getShipmentById().validate(
       {
         channelShipmentId,
         shipmentId,
-        orderingCompanyId,
-        requestByExt,
       },
       { abortEarly: false, allowUnknown: true }
     );
@@ -1889,8 +1880,6 @@ class Order {
       {
         channelShipmentId,
         shipmentId,
-        orderingCompanyId,
-        requestByExt,
       },
       { abortEarly: false, allowUnknown: false }
     );
@@ -1905,8 +1894,6 @@ class Order {
     const query_params = {};
     query_params["channel_shipment_id"] = channelShipmentId;
     query_params["shipment_id"] = shipmentId;
-    query_params["ordering_company_id"] = orderingCompanyId;
-    query_params["request_by_ext"] = requestByExt;
 
     const xHeaders = {};
 

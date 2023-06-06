@@ -360,19 +360,15 @@ declare class Order {
     getRoleBasedActions({}?: any): Promise<GetActionsResponse>;
     /**
      * @param {Object} arg - Arg object.
-     * @param {string} [arg.channelShipmentId] -
-     * @param {string} [arg.shipmentId] -
-     * @param {string} [arg.orderingCompanyId] -
-     * @param {string} [arg.requestByExt] -
+     * @param {string} [arg.channelShipmentId] - App Shipment Id
+     * @param {string} [arg.shipmentId] - Shipment Id
      * @returns {Promise<ShipmentInfoResponse>} - Success response
      * @summary:
      * @description:
      */
-    getShipmentById({ channelShipmentId, shipmentId, orderingCompanyId, requestByExt, }?: {
+    getShipmentById({ channelShipmentId, shipmentId }?: {
         channelShipmentId?: string;
         shipmentId?: string;
-        orderingCompanyId?: string;
-        requestByExt?: string;
     }): Promise<ShipmentInfoResponse>;
     /**
      * @param {Object} arg - Arg object.
