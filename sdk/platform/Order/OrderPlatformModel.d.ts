@@ -25,10 +25,6 @@ declare class OrderModel {
     static ArticleDetails(): any;
     static ArticleDetails1(): any;
     static AssetByShipment(): any;
-    static AttachOrderUser(): any;
-    static AttachOrderUserResponse(): any;
-    static AttachUserInfo(): any;
-    static AttachUserOtpData(): any;
     static Attributes(): any;
     static B2BPODetails(): any;
     static BagConfigs(): any;
@@ -66,12 +62,10 @@ declare class OrderModel {
     static CreateOrderErrorReponse(): any;
     static CreateOrderPayload(): any;
     static CreateOrderResponse(): any;
-    static CreditBalanceInfo(): any;
     static CurrentStatus(): any;
     static DataUpdates(): any;
     static Dates(): any;
     static DebugInfo(): any;
-    static Dimension(): any;
     static Dimensions(): any;
     static DiscountRules(): any;
     static DispatchManifest(): any;
@@ -88,8 +82,6 @@ declare class OrderModel {
     static ErrorDetail(): any;
     static ErrorResponse(): any;
     static ErrorResponse1(): any;
-    static FetchCreditBalanceRequestPayload(): any;
-    static FetchCreditBalanceResponsePayload(): any;
     static FileResponse(): any;
     static FilterInfoOption(): any;
     static FiltersInfo(): any;
@@ -163,7 +155,6 @@ declare class OrderModel {
     static PlatformShipmentTrack(): any;
     static PlatformTrack(): any;
     static PlatformUserDetails(): any;
-    static PointBlankOtpData(): any;
     static PostActivityHistory(): any;
     static PostHistoryData(): any;
     static PostHistoryDict(): any;
@@ -180,17 +171,12 @@ declare class OrderModel {
     static QuestionSet(): any;
     static Reason(): any;
     static ReasonsData(): any;
-    static RefundModeConfigRequestPayload(): any;
-    static RefundModeConfigResponsePayload(): any;
-    static RefundModeInfo(): any;
     static ReplacementDetails(): any;
     static ResponseDetail(): any;
     static ResponseGetAssetShipment(): any;
     static ReturnConfig(): any;
     static ReturnConfig1(): any;
     static SendSmsPayload(): any;
-    static SendUserMobileOTP(): any;
-    static SendUserMobileOtpResponse(): any;
     static Shipment(): any;
     static ShipmentConfig(): any;
     static ShipmentData(): any;
@@ -214,7 +200,6 @@ declare class OrderModel {
     static ShipmentTags(): any;
     static ShipmentTimeStamp(): any;
     static ShippingInfo(): any;
-    static SingleRefundModeInfo(): any;
     static SmsDataPayload(): any;
     static StatuesRequest(): any;
     static StatuesResponse(): any;
@@ -236,8 +221,6 @@ declare class OrderModel {
     static TaxInfo(): any;
     static TrackingList(): any;
     static TransactionData(): any;
-    static UpdatePackagingDimensionsPayload(): any;
-    static UpdatePackagingDimensionsResponse(): any;
     static UpdateShipmentLockPayload(): any;
     static UpdateShipmentLockResponse(): any;
     static UpdateShipmentStatusRequest(): any;
@@ -247,7 +230,5 @@ declare class OrderModel {
     static UserData(): any;
     static UserDataInfo(): any;
     static UserDetailsData(): any;
-    static VerifyMobileOTP(): any;
-    static VerifyOtpData(): any;
     static Weight(): any;
 }

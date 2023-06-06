@@ -4584,28 +4584,6 @@ class PlatformClient {
  * @property {boolean} success
  */
 /**
- * @typedef AttachOrderUser
- * @property {string} fynd_order_id
- * @property {AttachUserOtpData} otp_data
- * @property {AttachUserInfo} user_info
- */
-/**
- * @typedef AttachOrderUserResponse
- * @property {string} [message]
- * @property {boolean} [success]
- */
-/**
- * @typedef AttachUserInfo
- * @property {string} [country_code]
- * @property {string} first_name
- * @property {string} last_name
- * @property {number} mobile
- */
-/**
- * @typedef AttachUserOtpData
- * @property {string} request_id
- */
-/**
  * @typedef Attributes
  * @property {string} [brand_name]
  * @property {string} [essential]
@@ -4922,7 +4900,7 @@ class PlatformClient {
 /**
  * @typedef Click2CallResponse
  * @property {string} call_id
- * @property {boolean} status
+ * @property {boolean} success
  */
 /**
  * @typedef CompanyDetails
@@ -5003,12 +4981,6 @@ class PlatformClient {
  * @property {string} fynd_order_id
  */
 /**
- * @typedef CreditBalanceInfo
- * @property {string} [customer_mobile_number]
- * @property {string} [reason]
- * @property {string} [total_credited_balance]
- */
-/**
  * @typedef CurrentStatus
  * @property {number} [bag_id]
  * @property {BagStateMapper} [bag_state_mapper]
@@ -5037,14 +5009,6 @@ class PlatformClient {
 /**
  * @typedef DebugInfo
  * @property {string} [stormbreaker_uuid]
- */
-/**
- * @typedef Dimension
- * @property {string} [height]
- * @property {number} [length]
- * @property {string} [packaging_type]
- * @property {string} [weight]
- * @property {number} [width]
  */
 /**
  * @typedef Dimensions
@@ -5142,17 +5106,6 @@ class PlatformClient {
  * @property {string} [message]
  * @property {number} [status]
  * @property {boolean} [success]
- */
-/**
- * @typedef FetchCreditBalanceRequestPayload
- * @property {string} affiliate_id
- * @property {string} customer_mobile_number
- * @property {string} seller_id
- */
-/**
- * @typedef FetchCreditBalanceResponsePayload
- * @property {CreditBalanceInfo} data
- * @property {boolean} success
  */
 /**
  * @typedef FileResponse
@@ -5866,13 +5819,6 @@ class PlatformClient {
  * @property {string} [platform_user_last_name]
  */
 /**
- * @typedef PointBlankOtpData
- * @property {string} [message]
- * @property {number} [mobile]
- * @property {string} [request_id]
- * @property {number} [resend_timer]
- */
-/**
  * @typedef PostActivityHistory
  * @property {PostHistoryData} data
  * @property {PostHistoryFilters[]} filters
@@ -5979,23 +5925,6 @@ class PlatformClient {
  * @property {ProductsReasons[]} [products]
  */
 /**
- * @typedef RefundModeConfigRequestPayload
- * @property {string} affiliate_id
- * @property {string} [customer_mobile_number]
- * @property {string} fynd_order_id
- * @property {string} ordering_channel
- * @property {string} seller_id
- */
-/**
- * @typedef RefundModeConfigResponsePayload
- * @property {RefundModeInfo} data
- * @property {boolean} success
- */
-/**
- * @typedef RefundModeInfo
- * @property {SingleRefundModeInfo} [refund_mode_name]
- */
-/**
  * @typedef ReplacementDetails
  * @property {string} [original_affiliate_order_id]
  * @property {string} [replacement_type]
@@ -6028,17 +5957,6 @@ class PlatformClient {
  * @property {number} bag_id
  * @property {SmsDataPayload} [data]
  * @property {string} slug
- */
-/**
- * @typedef SendUserMobileOTP
- * @property {string} [country_code]
- * @property {string} mobile
- */
-/**
- * @typedef SendUserMobileOtpResponse
- * @property {PointBlankOtpData} [data]
- * @property {string} [message]
- * @property {boolean} [success]
  */
 /**
  * @typedef Shipment
@@ -6326,20 +6244,14 @@ class PlatformClient {
  * @property {string} [title]
  */
 /**
- * @typedef SingleRefundModeInfo
- * @property {string} [display_name]
- * @property {boolean} [is_active]
- * @property {string} [slug]
- */
-/**
  * @typedef SmsDataPayload
- * @property {number} amount_paid
- * @property {string} brand_name
+ * @property {number} [amount_paid]
+ * @property {string} [brand_name]
  * @property {string} country_code
- * @property {string} customer_name
+ * @property {string} [customer_name]
  * @property {string} message
  * @property {string} order_id
- * @property {string} payment_mode
+ * @property {string} [payment_mode]
  * @property {number} phone_number
  * @property {number} shipment_id
  */
@@ -6449,15 +6361,15 @@ class PlatformClient {
  */
 /**
  * @typedef StoreReassign
- * @property {string} affiliate_bag_id
- * @property {string} affiliate_id
- * @property {string} affiliate_order_id
- * @property {number} bag_id
- * @property {string} fynd_order_id
- * @property {string} item_id
- * @property {string} mongo_article_id
- * @property {number[]} reason_ids
- * @property {string} set_id
+ * @property {string} [affiliate_bag_id]
+ * @property {string} [affiliate_id]
+ * @property {string} [affiliate_order_id]
+ * @property {number} [bag_id]
+ * @property {string} [fynd_order_id]
+ * @property {string} [item_id]
+ * @property {string} [mongo_article_id]
+ * @property {number[]} [reason_ids]
+ * @property {string} [set_id]
  * @property {number} store_id
  */
 /**
@@ -6527,16 +6439,6 @@ class PlatformClient {
  * @property {string} [unique_reference_number]
  */
 /**
- * @typedef UpdatePackagingDimensionsPayload
- * @property {string} current_status
- * @property {Dimension[]} dimension
- * @property {string} shipment_id
- */
-/**
- * @typedef UpdatePackagingDimensionsResponse
- * @property {string} [message]
- */
-/**
  * @typedef UpdateShipmentLockPayload
  * @property {string} action
  * @property {string} action_type
@@ -6601,16 +6503,6 @@ class PlatformClient {
  * @property {string} phone
  * @property {string} pincode
  * @property {string} state
- */
-/**
- * @typedef VerifyMobileOTP
- * @property {string} fynd_order_id
- * @property {VerifyOtpData} otp_data
- */
-/**
- * @typedef VerifyOtpData
- * @property {number} otp_code
- * @property {string} request_id
  */
 /**
  * @typedef Weight
@@ -7733,15 +7625,15 @@ class PlatformClient {
  * @property {GetAddressSerializer[]} [addresses]
  * @property {string} [business_type]
  * @property {string} [company_type]
- * @property {UserSerializer1} [created_by]
+ * @property {UserSerializer2} [created_by]
  * @property {string} [created_on]
- * @property {UserSerializer1} [modified_by]
+ * @property {UserSerializer2} [modified_by]
  * @property {string} [modified_on]
  * @property {string} [name]
  * @property {string} [reject_reason]
  * @property {string} [stage]
  * @property {number} [uid]
- * @property {UserSerializer1} [verified_by]
+ * @property {UserSerializer2} [verified_by]
  * @property {string} [verified_on]
  */
 /**
@@ -7800,14 +7692,14 @@ class PlatformClient {
  * @property {string} code
  * @property {GetCompanySerializer} [company]
  * @property {SellerPhoneNumber[]} [contact_numbers]
- * @property {UserSerializer2} [created_by]
+ * @property {UserSerializer1} [created_by]
  * @property {string} [created_on]
  * @property {string} display_name
  * @property {Document[]} [documents]
  * @property {InvoiceDetailsSerializer} [gst_credentials]
  * @property {LocationIntegrationType} [integration_type]
  * @property {LocationManagerSerializer} [manager]
- * @property {UserSerializer2} [modified_by]
+ * @property {UserSerializer1} [modified_by]
  * @property {string} [modified_on]
  * @property {string} name
  * @property {string[]} [notification_emails]
@@ -7817,7 +7709,7 @@ class PlatformClient {
  * @property {string} [store_type]
  * @property {LocationDayWiseSerializer[]} [timing]
  * @property {number} [uid]
- * @property {UserSerializer2} [verified_by]
+ * @property {UserSerializer1} [verified_by]
  * @property {string} [verified_on]
  * @property {Object} [warnings]
  */

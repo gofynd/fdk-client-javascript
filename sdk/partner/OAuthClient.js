@@ -2,7 +2,7 @@ const { fdkAxios } = require("../common/AxiosHelper");
 const { FDKTokenIssueError } = require("../common/FDKError");
 const { Logger } = require("../common/Logger");
 const BaseOAuthClient = require("../common/BaseOAuthClient");
-const querystring = require("querystring");
+const querystring = require("query-string");
 const { sign } = require("../common/RequestSigner");
 
 class OAuthClient extends BaseOAuthClient {
