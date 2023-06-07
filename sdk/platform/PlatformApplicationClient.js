@@ -568,6 +568,7 @@ class PlatformApplicationClient {
 /** @typedef DeleteSubscriptionPaymentMethodResponse */
 /** @typedef ErrorCodeAndDescription */
 /** @typedef ErrorCodeDescription */
+/** @typedef GetOauthUrlResponse */
 /** @typedef GetUserCODLimitResponse */
 /** @typedef HttpErrorCodeAndResponse */
 /** @typedef IfscCodeResponse */
@@ -593,6 +594,7 @@ class PlatformApplicationClient {
 /** @typedef PayoutResponse */
 /** @typedef PayoutsResponse */
 /** @typedef RefundAccountResponse */
+/** @typedef RevokeOAuthToken */
 /** @typedef RootPaymentMode */
 /** @typedef SaveSubscriptionSetupIntentRequest */
 /** @typedef SaveSubscriptionSetupIntentResponse */
@@ -641,15 +643,8 @@ class PlatformApplicationClient {
 /** @typedef BillingInfo */
 /** @typedef BillingStaffDetails */
 /** @typedef Brand */
-/** @typedef BulkActionDetailsDataField */
-/** @typedef BulkActionDetailsResponse */
-/** @typedef BulkActionPayload */
-/** @typedef BulkActionResponse */
-/** @typedef BulkInvoiceLabelResponse */
-/** @typedef BulkInvoicingResponse */
-/** @typedef bulkListingData */
-/** @typedef BulkListingPage */
-/** @typedef BulkListingResponse */
+/** @typedef BulkActionTemplate */
+/** @typedef BulkActionTemplateResponse */
 /** @typedef BuyerDetails */
 /** @typedef BuyRules */
 /** @typedef Charge */
@@ -706,9 +701,6 @@ class PlatformApplicationClient {
 /** @typedef InvoiceInfo */
 /** @typedef Item */
 /** @typedef ItemCriterias */
-/** @typedef JioCodeUpsertDataSet */
-/** @typedef JioCodeUpsertPayload */
-/** @typedef JioCodeUpsertResponse */
 /** @typedef LaneConfigResponse */
 /** @typedef LineItem */
 /** @typedef LocationDetails */
@@ -718,11 +710,6 @@ class PlatformApplicationClient {
 /** @typedef MarketPlacePdf */
 /** @typedef Meta */
 /** @typedef Meta1 */
-/** @typedef MetricCountResponse */
-/** @typedef MetricsCount */
-/** @typedef NestedErrorSchemaDataSet */
-/** @typedef OmsReports */
-/** @typedef Options */
 /** @typedef OrderBagArticle */
 /** @typedef OrderBags */
 /** @typedef OrderBrandName */
@@ -775,6 +762,7 @@ class PlatformApplicationClient {
 /** @typedef QuestionSet */
 /** @typedef Reason */
 /** @typedef ReasonsData */
+/** @typedef ReplacementDetails */
 /** @typedef ResponseDetail */
 /** @typedef ReturnConfig */
 /** @typedef SendSmsPayload */
@@ -810,7 +798,6 @@ class PlatformApplicationClient {
 /** @typedef StoreReassign */
 /** @typedef StoreReassignResponse */
 /** @typedef SubLane */
-/** @typedef Success */
 /** @typedef SuccessResponse */
 /** @typedef SuperLane */
 /** @typedef Tax */
@@ -1215,6 +1202,8 @@ class PlatformApplicationClient {
 
 /** @typedef Attribution */
 /** @typedef CampaignShortLink */
+/** @typedef ClickStatsItem */
+/** @typedef ClickStatsResponse */
 /** @typedef ErrorRes */
 /** @typedef Page */
 /** @typedef RedirectDevice */
@@ -1487,10 +1476,13 @@ class PlatformApplicationClient {
 /** @typedef CartDetailResponse */
 /** @typedef CartItem */
 /** @typedef CartItemMeta */
+/** @typedef CartMetaConfigAdd */
+/** @typedef CartMetaConfigUpdate */
 /** @typedef CartProduct */
 /** @typedef CartProductIdentifer */
 /** @typedef CartProductInfo */
 /** @typedef CategoryInfo */
+/** @typedef Charges */
 /** @typedef CompareObject */
 /** @typedef CouponAction */
 /** @typedef CouponAdd */
@@ -1501,6 +1493,7 @@ class PlatformApplicationClient {
 /** @typedef CouponSchedule */
 /** @typedef CouponsResponse */
 /** @typedef CouponUpdate */
+/** @typedef DeliveryCharges */
 /** @typedef DiscountOffer */
 /** @typedef DiscountRule */
 /** @typedef DisplayBreakup */

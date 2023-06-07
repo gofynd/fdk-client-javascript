@@ -2,18 +2,6 @@ const Joi = require("joi");
 
 const OrderModel = require("./OrderPlatformModel");
 class OrderValidator {
-  static bulkActionDetails() {
-    return Joi.object({
-      batchId: Joi.string().allow("").required(),
-    }).required();
-  }
-
-  static bulkActionProcessXlsxFile() {
-    return Joi.object({
-      body: OrderModel.BulkActionPayload().required(),
-    }).required();
-  }
-
   static checkOrderStatus() {
     return Joi.object({
       body: OrderModel.OrderStatus().required(),
@@ -42,16 +30,15 @@ class OrderValidator {
     }).required();
   }
 
-  static createShipmentReport() {
-    return Joi.object({
-      fromDate: Joi.string().allow(""),
-      toDate: Joi.string().allow(""),
-    }).required();
-  }
-
   static dispatchManifest() {
     return Joi.object({
       body: OrderModel.DispatchManifest().required(),
+    }).required();
+  }
+
+  static downloadBulkActionTemplate() {
+    return Joi.object({
+      templateSlug: Joi.string().allow(""),
     }).required();
   }
 
@@ -83,61 +70,24 @@ class OrderValidator {
     }).required();
   }
 
-  static getBulkActionFailedReport() {
-    return Joi.object({
-      batchId: Joi.string().allow("").required(),
-      reportType: Joi.string().allow(""),
-    }).required();
-  }
-
-  static getBulkInvoice() {
-    return Joi.object({
-      batchId: Joi.string().allow("").required(),
-      docType: Joi.string().allow("").required(),
-    }).required();
-  }
-
-  static getBulkInvoiceLabel() {
-    return Joi.object({
-      batchId: Joi.string().allow("").required(),
-    }).required();
-  }
-
-  static getBulkList() {
-    return Joi.object({
-      lane: Joi.string().allow(""),
-      searchType: Joi.string().allow(""),
-      searchId: Joi.string().allow(""),
-      fromDate: Joi.string().allow(""),
-      toDate: Joi.string().allow(""),
-      dpIds: Joi.string().allow(""),
-      orderingCompanyId: Joi.string().allow(""),
-      stores: Joi.string().allow(""),
-      salesChannel: Joi.string().allow(""),
-      requestByExt: Joi.string().allow(""),
-      pageNo: Joi.number(),
-      pageSize: Joi.number(),
-      customerId: Joi.string().allow(""),
-      isPrioritySort: Joi.boolean(),
-    }).required();
+  static getBulkActionTemplate() {
+    return Joi.object({}).required();
   }
 
   static getBulkShipmentExcelFile() {
     return Joi.object({
-      lane: Joi.string().allow(""),
-      searchType: Joi.string().allow(""),
-      searchId: Joi.string().allow(""),
+      salesChannels: Joi.string().allow(""),
+      dpIds: Joi.string().allow(""),
       fromDate: Joi.string().allow(""),
       toDate: Joi.string().allow(""),
-      dpIds: Joi.string().allow(""),
-      orderingCompanyId: Joi.string().allow(""),
       stores: Joi.string().allow(""),
-      salesChannel: Joi.string().allow(""),
-      requestByExt: Joi.string().allow(""),
+      tags: Joi.string().allow(""),
+      bagStatus: Joi.string().allow(""),
+      paymentMethods: Joi.string().allow(""),
+      fileType: Joi.string().allow(""),
+      timeToDispatch: Joi.number(),
       pageNo: Joi.number(),
       pageSize: Joi.number(),
-      customerId: Joi.string().allow(""),
-      isPrioritySort: Joi.boolean(),
     }).required();
   }
 
@@ -156,13 +106,6 @@ class OrderValidator {
       salesChannel: Joi.string().allow(""),
       paymentMode: Joi.string().allow(""),
       bagStatus: Joi.string().allow(""),
-    }).required();
-  }
-
-  static getMetricCount() {
-    return Joi.object({
-      fromDate: Joi.string().allow(""),
-      toDate: Joi.string().allow(""),
     }).required();
   }
 
@@ -190,13 +133,6 @@ class OrderValidator {
       pageSize: Joi.number(),
       isPrioritySort: Joi.boolean(),
       customMeta: Joi.string().allow(""),
-    }).required();
-  }
-
-  static getReportsShipmentListing() {
-    return Joi.object({
-      pageNo: Joi.number(),
-      pageSize: Joi.number(),
     }).required();
   }
 
@@ -348,12 +284,6 @@ class OrderValidator {
   static uploadConsent() {
     return Joi.object({
       body: OrderModel.UploadConsent().required(),
-    }).required();
-  }
-
-  static upsertJioCode() {
-    return Joi.object({
-      body: OrderModel.JioCodeUpsertPayload().required(),
     }).required();
   }
 }

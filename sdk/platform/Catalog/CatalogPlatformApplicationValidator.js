@@ -137,6 +137,7 @@ class CatalogValidator {
       categoryIds: Joi.array().items(Joi.number()),
       departmentIds: Joi.array().items(Joi.number()),
       tags: Joi.array().items(Joi.string().allow("")),
+      itemIds: Joi.array().items(Joi.number()),
       pageNo: Joi.number(),
       pageSize: Joi.number(),
       q: Joi.string().allow(""),

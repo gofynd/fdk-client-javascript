@@ -51,6 +51,20 @@ class PaymentValidator {
     }).required();
   }
 
+  static oauthGetUrl() {
+    return Joi.object({
+      aggregator: Joi.string().allow("").required(),
+      successRedirectUrl: Joi.string().allow(""),
+      failureRedirectUrl: Joi.string().allow(""),
+    }).required();
+  }
+
+  static revokeOauthToken() {
+    return Joi.object({
+      aggregator: Joi.string().allow("").required(),
+    }).required();
+  }
+
   static saveBrandPaymentGatewayConfig() {
     return Joi.object({
       body: PaymentModel.PaymentGatewayConfigRequest().required(),
@@ -60,12 +74,6 @@ class PaymentValidator {
   static setUserCODlimitRoutes() {
     return Joi.object({
       body: PaymentModel.SetCODForUserRequest().required(),
-    }).required();
-  }
-
-  static updateBrandPaymentGatewayConfig() {
-    return Joi.object({
-      body: PaymentModel.PaymentGatewayConfigRequest().required(),
     }).required();
   }
 }

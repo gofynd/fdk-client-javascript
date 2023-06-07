@@ -36,6 +36,7 @@ Content System
 * [generateSEOTitle](#generateseotitle)
 * [getAnnouncementById](#getannouncementbyid)
 * [getAnnouncementsList](#getannouncementslist)
+* [getBlogBySlug](#getblogbyslug)
 * [getBlogs](#getblogs)
 * [getComponentById](#getcomponentbyid)
 * [getDataLoaders](#getdataloaders)
@@ -2817,6 +2818,107 @@ Success. Refer `GetAnnouncementListSchema` for more details.
 ---
 
 
+### getBlogBySlug
+Get blog by slug
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").content.getBlogBySlug({  slug : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").content.getBlogBySlug({  slug : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| slug | string | yes | A short, human-readable, URL-friendly identifier of a blog page. You can get slug value of a blog from `getBlogs` API. |  
+
+
+
+Use this API to retrieve the components of a blog, such as title, slug, feature image, content, schedule, publish status, author, etc.
+
+*Returned Response:*
+
+
+
+
+[BlogSchema](#BlogSchema)
+
+Success. Returns a a JSON object with components. Refer `BlogSchema` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; default</i></summary>
+
+```json
+{
+  "value": {
+    "_id": "5eaa451a21a4dd75f0fd96c5",
+    "application": "5d3ebd89f540e7506b8b3548",
+    "tags": [
+      "abhinav"
+    ],
+    "title": "my first blog",
+    "slug": "1st_blog",
+    "feature_image": {
+      "secure_url": "https://google.com"
+    },
+    "content": [
+      {
+        "type": "html",
+        "value": "<p>hey there!</p>"
+      }
+    ],
+    "_schedule": {
+      "cron": "* 10 * * *",
+      "start": "2021-03-31T23:30:00.000Z",
+      "end": "2021-03-31T23:55:00.000Z",
+      "duration": 1000,
+      "next_schedule": [
+        {
+          "start": "2021-03-17T04:30:00.000Z",
+          "end": "2021-03-17T04:46:40.000Z"
+        }
+      ]
+    },
+    "published": true,
+    "author": {
+      "name": "Fynd App"
+    },
+    "date_meta": {
+      "created_on": "2021-03-14T06:49:03.945Z",
+      "modified_on": "2021-03-14T06:49:03.945Z"
+    }
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
 ### getBlogs
 Get blogs
 
@@ -4869,7 +4971,7 @@ Success. Refer `NavigationGetResponse` for more details.
 
 
 ### getPageBySlug
-Get pages by component Id
+Get page by slug
 
 
 
@@ -8856,8 +8958,6 @@ Success. Refer `Support` for more details.
  | page | page | Symbolic link for Page: /page/:slug |
  | policy | policy | Symbolic link for Privacy Policy: /privacy-policy |
  | product | product | Symbolic link for Product: /product/:slug |
- | productReviews | product-reviews | Symbolic link for Product Reviews: /product/:slug/reviews |
- | addProductReview | add-product-review | Symbolic link for Add Product review: /product/:slug/add-review |
  | productRequest | product-request | Symbolic link for Product Request: /product-request/ |
  | products | products | Symbolic link for Products: /products/ |
  | profile | profile | Symbolic link for Profile: /profile |
