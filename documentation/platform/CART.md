@@ -8598,10 +8598,10 @@ Success. Updates and returns a cart object as shown below. Refer `UpdateCartDeta
     "result": {
       "437414_7": {
         "success": true,
-        "message": "Item updated in the bag"
+        "message": "Item updated to cart"
       }
     },
-    "message": "Item updated in the bag",
+    "message": "Item updated to cart",
     "success": true
   }
 }
@@ -10497,7 +10497,7 @@ Success. Updates and returns a cart object as shown below. Refer `UpdateCartDeta
       },
       "last_modified": "Mon, 01 Aug 2022 09:33:20 GMT"
     },
-    "message": "Item updated in the bag",
+    "message": "Item updated to cart",
     "success": true
   }
 }

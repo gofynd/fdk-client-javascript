@@ -653,10 +653,12 @@ Refund mode config is returned based on input parameter
 ```javascript
 // Promise
 const promise = platformClient.order.generatePOSReceiptByOrderId({  orderId : value,
+ shipmentId : value,
  documentType : value });
 
 // Async/Await
 const data = await platformClient.order.generatePOSReceiptByOrderId({  orderId : value,
+ shipmentId : value,
  documentType : value });
 ```
 
@@ -667,6 +669,7 @@ const data = await platformClient.order.generatePOSReceiptByOrderId({  orderId :
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
 | orderId | string | yes |  |    
+| shipmentId | string | no |  |    
 | documentType | string | no |  |  
 
 
@@ -2702,6 +2705,7 @@ const promise = platformClient.order.getOrders({  lane : value,
  fromDate : value,
  toDate : value,
  dpIds : value,
+ stores : value,
  salesChannels : value,
  pageNo : value,
  pageSize : value,
@@ -2720,6 +2724,7 @@ const data = await platformClient.order.getOrders({  lane : value,
  fromDate : value,
  toDate : value,
  dpIds : value,
+ stores : value,
  salesChannels : value,
  pageNo : value,
  pageSize : value,
@@ -2744,6 +2749,7 @@ const data = await platformClient.order.getOrders({  lane : value,
 | fromDate | string | no |  |    
 | toDate | string | no |  |    
 | dpIds | string | no | Delivery Partner IDs to which shipments are assigned. |    
+| stores | string | no |  |    
 | salesChannels | string | no |  |    
 | pageNo | number | no |  |    
 | pageSize | number | no |  |    

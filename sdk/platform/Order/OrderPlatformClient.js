@@ -685,15 +685,21 @@ class Order {
   /**
    * @param {Object} arg - Arg object.
    * @param {string} arg.orderId -
+   * @param {string} [arg.shipmentId] -
    * @param {string} [arg.documentType] -
    * @returns {Promise<GeneratePosOrderReceiptResponse>} - Success response
    * @summary:
    * @description:
    */
-  async generatePOSReceiptByOrderId({ orderId, documentType } = {}) {
+  async generatePOSReceiptByOrderId({
+    orderId,
+    shipmentId,
+    documentType,
+  } = {}) {
     const { error } = OrderValidator.generatePOSReceiptByOrderId().validate(
       {
         orderId,
+        shipmentId,
         documentType,
       },
       { abortEarly: false, allowUnknown: true }
@@ -708,6 +714,7 @@ class Order {
     } = OrderValidator.generatePOSReceiptByOrderId().validate(
       {
         orderId,
+        shipmentId,
         documentType,
       },
       { abortEarly: false, allowUnknown: false }
@@ -722,6 +729,7 @@ class Order {
     }
 
     const query_params = {};
+    query_params["shipment_id"] = shipmentId;
     query_params["document_type"] = documentType;
 
     const xHeaders = {};
@@ -1597,6 +1605,7 @@ class Order {
    * @param {string} [arg.fromDate] -
    * @param {string} [arg.toDate] -
    * @param {string} [arg.dpIds] - Delivery Partner IDs to which shipments are assigned.
+   * @param {string} [arg.stores] -
    * @param {string} [arg.salesChannels] -
    * @param {number} [arg.pageNo] -
    * @param {number} [arg.pageSize] -
@@ -1618,6 +1627,7 @@ class Order {
     fromDate,
     toDate,
     dpIds,
+    stores,
     salesChannels,
     pageNo,
     pageSize,
@@ -1637,6 +1647,7 @@ class Order {
         fromDate,
         toDate,
         dpIds,
+        stores,
         salesChannels,
         pageNo,
         pageSize,
@@ -1663,6 +1674,7 @@ class Order {
         fromDate,
         toDate,
         dpIds,
+        stores,
         salesChannels,
         pageNo,
         pageSize,
@@ -1691,6 +1703,7 @@ class Order {
     query_params["from_date"] = fromDate;
     query_params["to_date"] = toDate;
     query_params["dp_ids"] = dpIds;
+    query_params["stores"] = stores;
     query_params["sales_channels"] = salesChannels;
     query_params["page_no"] = pageNo;
     query_params["page_size"] = pageSize;

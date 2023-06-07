@@ -115,13 +115,15 @@ declare class Order {
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.orderId -
+     * @param {string} [arg.shipmentId] -
      * @param {string} [arg.documentType] -
      * @returns {Promise<GeneratePosOrderReceiptResponse>} - Success response
      * @summary:
      * @description:
      */
-    generatePOSReceiptByOrderId({ orderId, documentType }?: {
+    generatePOSReceiptByOrderId({ orderId, shipmentId, documentType, }?: {
         orderId: string;
+        shipmentId?: string;
         documentType?: string;
     }): Promise<GeneratePosOrderReceiptResponse>;
     /**
@@ -311,6 +313,7 @@ declare class Order {
      * @param {string} [arg.fromDate] -
      * @param {string} [arg.toDate] -
      * @param {string} [arg.dpIds] - Delivery Partner IDs to which shipments are assigned.
+     * @param {string} [arg.stores] -
      * @param {string} [arg.salesChannels] -
      * @param {number} [arg.pageNo] -
      * @param {number} [arg.pageSize] -
@@ -321,7 +324,7 @@ declare class Order {
      * @summary:
      * @description:
      */
-    getOrders({ lane, searchType, bagStatus, timeToDispatch, paymentMethods, tags, searchValue, fromDate, toDate, dpIds, salesChannels, pageNo, pageSize, isPrioritySort, customMeta, platformUserId, }?: {
+    getOrders({ lane, searchType, bagStatus, timeToDispatch, paymentMethods, tags, searchValue, fromDate, toDate, dpIds, stores, salesChannels, pageNo, pageSize, isPrioritySort, customMeta, platformUserId, }?: {
         lane?: string;
         searchType?: string;
         bagStatus?: string;
@@ -332,6 +335,7 @@ declare class Order {
         fromDate?: string;
         toDate?: string;
         dpIds?: string;
+        stores?: string;
         salesChannels?: string;
         pageNo?: number;
         pageSize?: number;

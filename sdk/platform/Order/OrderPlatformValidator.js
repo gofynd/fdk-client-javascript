@@ -70,6 +70,7 @@ class OrderValidator {
   static generatePOSReceiptByOrderId() {
     return Joi.object({
       orderId: Joi.string().allow("").required(),
+      shipmentId: Joi.string().allow(""),
       documentType: Joi.string().allow(""),
     }).required();
   }
@@ -179,6 +180,7 @@ class OrderValidator {
       fromDate: Joi.string().allow(""),
       toDate: Joi.string().allow(""),
       dpIds: Joi.string().allow(""),
+      stores: Joi.string().allow(""),
       salesChannels: Joi.string().allow(""),
       pageNo: Joi.number(),
       pageSize: Joi.number(),
