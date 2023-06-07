@@ -139,6 +139,7 @@ class OrderModel {
       marketplace_invoice_id: Joi.string().allow("").allow(null),
       order_item_id: Joi.string().allow(""),
       quantity: Joi.number(),
+      replacement_details: OrderModel.ReplacementDetails().required(),
       size_level_total_qty: Joi.number().allow(null),
     });
   }
@@ -1691,6 +1692,12 @@ class OrderModel {
       products: Joi.array().items(OrderModel.ProductsReasons()),
     });
   }
+  static ReplacementDetails() {
+    return Joi.object({
+      original_affiliate_order_id: Joi.string().allow("").allow(null),
+      replacement_type: Joi.string().allow("").allow(null),
+    });
+  }
   static ResponseDetail() {
     return Joi.object({
       message: Joi.array().items(Joi.string().allow("")),
@@ -1792,6 +1799,7 @@ class OrderModel {
       application: Joi.any(),
       bags: Joi.array().items(OrderModel.BagUnit()),
       channel: Joi.any(),
+      company: Joi.any(),
       created_at: Joi.string().allow("").required(),
       fulfilling_centre: Joi.string().allow("").required(),
       fulfilling_store: OrderModel.ShipmentItemFulFillingStore(),

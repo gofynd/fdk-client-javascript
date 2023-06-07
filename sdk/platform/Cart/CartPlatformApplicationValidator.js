@@ -99,6 +99,10 @@ class CartValidator {
     }).required();
   }
 
+  static getPromosCouponConfig() {
+    return Joi.object({}).required();
+  }
+
   static getPromotionById() {
     return Joi.object({
       id: Joi.string().allow("").required(),
@@ -121,6 +125,12 @@ class CartValidator {
       promotionType: Joi.string().allow(""),
       fpPanel: Joi.string().allow(""),
       promotionId: Joi.string().allow(""),
+    }).required();
+  }
+
+  static overrideCart() {
+    return Joi.object({
+      body: CartModel.OverrideCheckoutReq().required(),
     }).required();
   }
 

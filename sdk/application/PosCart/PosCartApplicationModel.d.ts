@@ -5,6 +5,7 @@ declare class PosCartModel {
     static AddCartRequest(): any;
     static AddProductCart(): any;
     static Address(): any;
+    static AppliedFreeArticles(): any;
     static AppliedPromotion(): any;
     static ApplyCouponRequest(): any;
     static ArticlePriceInfo(): any;
@@ -12,6 +13,7 @@ declare class PosCartModel {
     static BasePrice(): any;
     static BulkPriceOffer(): any;
     static BulkPriceResponse(): any;
+    static BuyRules(): any;
     static CartBreakup(): any;
     static CartCheckoutCustomMeta(): any;
     static CartCheckoutResponse(): any;
@@ -33,8 +35,10 @@ declare class PosCartModel {
     static CouponBreakup(): any;
     static CouponValidity(): any;
     static DeleteAddressResponse(): any;
+    static DiscountRulesApp(): any;
     static DisplayBreakup(): any;
     static Files(): any;
+    static FreeGiftItem(): any;
     static GeoLocation(): any;
     static GetAddressesResponse(): any;
     static GetCouponResponse(): any;

@@ -1041,6 +1041,62 @@ class Cart {
 
   /**
    * @param {Object} arg - Arg object.
+   * @returns {Promise<ActivePromosResponse>} - Success response
+   * @summary: Fetch all promos that are set as active
+   * @description: Use this API to get list of all the active promos/coupons.
+   */
+  async getPromosCouponConfig({} = {}) {
+    const { error } = CartValidator.getPromosCouponConfig().validate(
+      {},
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = CartValidator.getPromosCouponConfig().validate(
+      {},
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getPromosCouponConfig",
+      });
+      Logger({ level: "WARN", message: warrning });
+    }
+
+    const query_params = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/cart/v1.0/company/${this.config.companyId}/application/${this.applicationId}/promo-coupons`,
+      query_params,
+      undefined
+    );
+
+    const {
+      error: res_error,
+    } = CartModel.ActivePromosResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getPromosCouponConfig",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
    * @param {string} arg.id -
    * @returns {Promise<PromotionUpdate>} - Success response
    * @summary: Get with single promotion details or promotion list
@@ -1307,6 +1363,67 @@ class Cart {
     };
     paginator.setCallback(callback.bind(this));
     return paginator;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {OverrideCheckoutReq} arg.body
+   * @returns {Promise<OverrideCheckoutResponse>} - Success response
+   * @summary: Create Fynd order with overriding cart details
+   * @description: Generate Fynd order while overriding cart details sent with provided `cart_items`
+   */
+  async overrideCart({ body } = {}) {
+    const { error } = CartValidator.overrideCart().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = CartValidator.overrideCart().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for overrideCart",
+      });
+      Logger({ level: "WARN", message: warrning });
+    }
+
+    const query_params = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/cart/v1.0/company/${this.config.companyId}/application/${this.applicationId}/checkout/over-ride`,
+      query_params,
+      body
+    );
+
+    const {
+      error: res_error,
+    } = CartModel.OverrideCheckoutResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for overrideCart",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**

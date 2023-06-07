@@ -171,6 +171,7 @@ declare class OrderModel {
     static QuestionSet(): any;
     static Reason(): any;
     static ReasonsData(): any;
+    static ReplacementDetails(): any;
     static ResponseDetail(): any;
     static ReturnConfig(): any;
     static SendSmsPayload(): any;

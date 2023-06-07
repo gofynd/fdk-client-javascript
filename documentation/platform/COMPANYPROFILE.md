@@ -1892,6 +1892,7 @@ Returns a success response
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | message | string? |  yes  |  |
  | success | boolean? |  yes  |  |
  | uid | number? |  yes  |  |
  

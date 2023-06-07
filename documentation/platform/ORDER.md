@@ -5368,6 +5368,7 @@ We are processing the report!
  | marketplace_invoice_id | string? |  yes  |  |
  | order_item_id | string? |  yes  |  |
  | quantity | number? |  yes  |  |
+ | replacement_details | [ReplacementDetails](#ReplacementDetails) |  no  |  |
  | size_level_total_qty | number? |  yes  |  |
  
 
@@ -7537,6 +7538,16 @@ We are processing the report!
 
 ---
 
+#### [ReplacementDetails](#ReplacementDetails)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | original_affiliate_order_id | string? |  yes  |  |
+ | replacement_type | string? |  yes  |  |
+ 
+
+---
+
 #### [ResponseDetail](#ResponseDetail)
 
  | Properties | Type | Nullable | Description |
@@ -7688,6 +7699,7 @@ We are processing the report!
  | application | string? |  yes  |  |
  | bags | [[BagUnit](#BagUnit)]? |  yes  |  |
  | channel | string? |  yes  |  |
+ | company | string? |  yes  |  |
  | created_at | string |  no  |  |
  | fulfilling_centre | string |  no  |  |
  | fulfilling_store | [ShipmentItemFulFillingStore](#ShipmentItemFulFillingStore)? |  yes  |  |

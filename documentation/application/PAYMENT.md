@@ -2926,7 +2926,12 @@ Success. Check the example shown below or refer `PaymentInitializationResponse` 
   "timeout": 240,
   "virtual_id": null,
   "razorpay_payment_id": "pay_dummy_001",
-  "customer_id": "cust_dummy_001"
+  "payment_id": "pay_dummy_001",
+  "customer_id": "cust_dummy_001",
+  "amount": 10000,
+  "contact": "9999999999",
+  "order_id": "FY000120000101",
+  "email": "abc@xyz.com"
 }
 ```
 </details>
@@ -2993,7 +2998,8 @@ Success. Check the example shown below or refer `PaymentInitializationResponse` 
   "timeout": 240,
   "virtual_id": null,
   "razorpay_payment_id": "pay_dummy_001",
-  "customer_id": "cust_dummy_001"
+  "customer_id": "cust_dummy_001",
+  "amount": 100
 }
 ```
 </details>
@@ -4579,10 +4585,15 @@ Success. Sends the OTP to the given mobile number. Check the example shown below
  | aggregator_order_id | string? |  yes  | Payment order id |
  | amount | number? |  yes  | Payable amount. |
  | bqr_image | string? |  yes  | Bharath qr image url. |
+ | contact | string? |  yes  | Customer valid mobile number |
  | currency | string? |  yes  | Currency code. |
  | customer_id | string? |  yes  | Payment gateway customer id. |
+ | device_id | string? |  yes  | EDC machine Unique Identifier |
+ | email | string? |  yes  | Customer valid email |
  | merchant_order_id | string |  no  | order id |
  | method | string |  no  | Payment method |
+ | order_id | string? |  yes  | Payment gateway order id |
+ | payment_id | string? |  yes  | Payment id. |
  | polling_url | string |  no  | Polling url. |
  | razorpay_payment_id | string? |  yes  | Payment  id. |
  | status | string? |  yes  | Status of payment. |
@@ -4683,14 +4694,17 @@ Success. Sends the OTP to the given mobile number. Check the example shown below
  | ---------- | ---- | -------- | ----------- |
  | aggregator | string |  no  | Payment gateway name |
  | amount | number |  no  | Payable amount. |
- | contact | string |  no  | Customer valid mobile number |
- | currency | string |  no  | Currency code. |
+ | contact | string? |  yes  | Customer valid mobile number |
+ | currency | string? |  yes  | Currency code. |
  | customer_id | string |  no  | Payment gateway customer id. |
- | email | string |  no  | Customer valid email |
+ | email | string? |  yes  | Customer valid email |
  | merchant_order_id | string |  no  | Unique fynd order id |
  | method | string |  no  | Payment method |
- | order_id | string |  no  | Payment gateway order id |
+ | order_id | string? |  yes  | Payment gateway order id |
+ | payment_id | string? |  yes  | Payment id. |
+ | razorpay_payment_id | string? |  yes  | Payment  id. |
  | status | string |  no  | Status of payment. |
+ | success | boolean? |  yes  | Response is successful or not. |
  | vpa | string |  no  | Customer vpa address |
  
 

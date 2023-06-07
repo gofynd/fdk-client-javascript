@@ -2167,7 +2167,7 @@ class PlatformClient {
  * @typedef SlideshowRequest
  * @property {boolean} [active]
  * @property {ConfigurationSchema} [configuration]
- * @property {SlideshowMedia} [media]
+ * @property {SlideshowMedia[]} [media]
  * @property {string} [platform]
  * @property {string} [slug]
  */
@@ -3747,6 +3747,22 @@ class PlatformClient {
  * @property {boolean} success
  */
 /**
+ * @typedef Payout
+ * @property {PayoutCustomer} customers
+ * @property {boolean} is_active
+ * @property {boolean} is_default
+ * @property {PayoutMoreAttributes} more_attributes
+ * @property {PayoutAggregator[]} [payouts_aggregators]
+ * @property {string} transfer_type
+ * @property {string} unique_transfer_no
+ */
+/**
+ * @typedef PayoutAggregator
+ * @property {number} [aggregator_fund_id]
+ * @property {number} [aggregator_id]
+ * @property {number} [payout_details_id]
+ */
+/**
  * @typedef PayoutBankDetails
  * @property {string} [account_holder]
  * @property {string} [account_no]
@@ -3757,6 +3773,26 @@ class PlatformClient {
  * @property {string} [country]
  * @property {string} ifsc_code
  * @property {number} [pincode]
+ * @property {string} [state]
+ */
+/**
+ * @typedef PayoutCustomer
+ * @property {string} [email]
+ * @property {number} [id]
+ * @property {string} [mobile]
+ * @property {string} [name]
+ * @property {string} [unique_external_id]
+ */
+/**
+ * @typedef PayoutMoreAttributes
+ * @property {string} [account_holder]
+ * @property {string} [account_no]
+ * @property {string} [account_type]
+ * @property {string} [bank_name]
+ * @property {string} [branch_name]
+ * @property {string} [city]
+ * @property {string} [country]
+ * @property {string} [ifsc_code]
  * @property {string} [state]
  */
 /**
@@ -3783,13 +3819,8 @@ class PlatformClient {
  */
 /**
  * @typedef PayoutsResponse
- * @property {Object} customers
- * @property {boolean} is_active
- * @property {boolean} is_default
- * @property {Object} more_attributes
- * @property {Object[]} payouts_aggregators
- * @property {string} transfer_type
- * @property {Object} unique_transfer_no
+ * @property {Payout[]} items
+ * @property {boolean} success
  */
 /**
  * @typedef RefundAccountResponse
@@ -3983,6 +4014,7 @@ class PlatformClient {
  * @property {string} [marketplace_invoice_id]
  * @property {string} [order_item_id]
  * @property {number} [quantity]
+ * @property {ReplacementDetails} replacement_details
  * @property {number} [size_level_total_qty]
  */
 /**
@@ -5371,6 +5403,11 @@ class PlatformClient {
  * @property {ProductsReasons[]} [products]
  */
 /**
+ * @typedef ReplacementDetails
+ * @property {string} [original_affiliate_order_id]
+ * @property {string} [replacement_type]
+ */
+/**
  * @typedef ResponseDetail
  * @property {string[]} [message]
  * @property {boolean} [success]
@@ -5459,6 +5496,7 @@ class PlatformClient {
  * @property {Object} [application]
  * @property {BagUnit[]} [bags]
  * @property {Object} [channel]
+ * @property {Object} [company]
  * @property {string} created_at
  * @property {string} fulfilling_centre
  * @property {ShipmentItemFulFillingStore} [fulfilling_store]
@@ -6687,7 +6725,7 @@ class PlatformClient {
  * @property {Object} [_custom_json]
  * @property {string} app_id
  * @property {boolean} [is_active]
- * @property {SearchKeywordResult} result
+ * @property {SearchKeywordResult1} result
  * @property {string[]} [words]
  */
 /**
@@ -6698,7 +6736,7 @@ class PlatformClient {
  * @property {boolean} [is_active]
  * @property {Object} [modified_by]
  * @property {string} [modified_on]
- * @property {BoostBury} [ranking]
+ * @property {BoostBury1} [ranking]
  * @property {string[]} words
  */
 /**
@@ -7140,7 +7178,7 @@ class PlatformClient {
  * @property {Object} [_custom_json]
  * @property {string} app_id
  * @property {boolean} [is_active]
- * @property {SearchKeywordResult1} result
+ * @property {SearchKeywordResult} result
  * @property {string} [uid]
  * @property {string[]} [words]
  */
@@ -7976,7 +8014,7 @@ class PlatformClient {
  * @property {NetQuantity} [net_quantity]
  * @property {number} [no_of_boxes]
  * @property {string[]} [product_group_tag]
- * @property {ProductPublish} [product_publish]
+ * @property {ProductPublish1} [product_publish]
  * @property {string} [requester]
  * @property {ReturnConfig} return_config
  * @property {string} [short_description]
@@ -8172,7 +8210,7 @@ class PlatformClient {
  * @property {string} [pending]
  * @property {string} [primary_color]
  * @property {string[]} [product_group_tag]
- * @property {ProductPublish1} [product_publish]
+ * @property {ProductPublish} [product_publish]
  * @property {ReturnConfigResponse} [return_config]
  * @property {string} [short_description]
  * @property {string} [size_guide]
@@ -8401,7 +8439,7 @@ class PlatformClient {
  * @property {boolean} [is_active]
  * @property {UserDetail} [modified_by]
  * @property {string} modified_on
- * @property {BoostBury1} [ranking]
+ * @property {BoostBury} [ranking]
  * @property {UserDetail} [verified_by]
  * @property {string} [verified_on]
  * @property {string[]} words
@@ -9097,6 +9135,7 @@ class PlatformClient {
  */
 /**
  * @typedef ProfileSuccessResponse
+ * @property {string} [message]
  * @property {boolean} [success]
  * @property {number} [uid]
  */
@@ -11308,6 +11347,19 @@ class PlatformClient {
  * @property {string[]} [product_slug]
  */
 /**
+ * @typedef ActivePromosResponse
+ * @property {string} [created_on]
+ * @property {string} [description]
+ * @property {string} [entity_slug]
+ * @property {string} [entity_type]
+ * @property {string} [example]
+ * @property {boolean} [is_hidden]
+ * @property {string} [modified_on]
+ * @property {string} [subtitle]
+ * @property {string} [title]
+ * @property {string} [type]
+ */
+/**
  * @typedef AddCartDetailResponse
  * @property {CartDetailResponse} [cart]
  * @property {string} [message]
@@ -11335,13 +11387,25 @@ class PlatformClient {
  * @property {number} [store_id]
  */
 /**
+ * @typedef AppliedFreeArticles
+ * @property {string} [article_id]
+ * @property {FreeGiftItem} [free_gift_item_details]
+ * @property {string} [parent_item_identifier]
+ * @property {number} [quantity]
+ */
+/**
  * @typedef AppliedPromotion
  * @property {number} [amount]
+ * @property {AppliedFreeArticles[]} [applied_free_articles]
  * @property {number} [article_quantity]
+ * @property {BuyRules[]} [buy_rules]
+ * @property {DiscountRulesApp[]} [discount_rules]
  * @property {boolean} [mrp_promotion]
  * @property {string} [offer_text]
  * @property {Ownership2} [ownership]
  * @property {string} [promo_id]
+ * @property {string} [promotion_group]
+ * @property {string} [promotion_name]
  * @property {string} [promotion_type]
  */
 /**
@@ -11364,6 +11428,11 @@ class PlatformClient {
 /**
  * @typedef BulkBundleRestriction
  * @property {boolean} multi_store_allowed
+ */
+/**
+ * @typedef BuyRules
+ * @property {Object} [cart_conditions]
+ * @property {Object} [item_criteria]
  */
 /**
  * @typedef CartBreakup
@@ -11516,8 +11585,15 @@ class PlatformClient {
 /**
  * @typedef CouponBreakup
  * @property {string} [code]
+ * @property {string} [coupon_type]
+ * @property {number} [coupon_value]
+ * @property {string} [description]
  * @property {boolean} [is_applied]
+ * @property {number} [max_discount_value]
  * @property {string} [message]
+ * @property {number} [minimum_cart_value]
+ * @property {string} [sub_title]
+ * @property {string} [title]
  * @property {string} [type]
  * @property {string} [uid]
  * @property {number} [value]
@@ -11571,13 +11647,16 @@ class PlatformClient {
  */
 /**
  * @typedef DiscountOffer
+ * @property {boolean} [apportion_discount]
  * @property {string} [code]
  * @property {number} [discount_amount]
  * @property {number} [discount_percentage]
  * @property {number} [discount_price]
  * @property {number} [max_discount_amount]
  * @property {number} [max_offer_quantity]
+ * @property {number} [max_usage_per_transaction]
  * @property {number} [min_offer_quantity]
+ * @property {boolean} [partial_can_ret]
  */
 /**
  * @typedef DiscountRule
@@ -11585,6 +11664,13 @@ class PlatformClient {
  * @property {string} discount_type
  * @property {ItemCriteria} item_criteria
  * @property {DiscountOffer} offer
+ */
+/**
+ * @typedef DiscountRulesApp
+ * @property {Object} [item_criteria]
+ * @property {string[]} [matched_buy_rules]
+ * @property {Object} [offer]
+ * @property {Object} [raw_offer]
  */
 /**
  * @typedef DisplayBreakup
@@ -11616,6 +11702,15 @@ class PlatformClient {
  * @property {string} [title]
  */
 /**
+ * @typedef FreeGiftItem
+ * @property {string} [item_brand_name]
+ * @property {number} [item_id]
+ * @property {string[]} [item_images_url]
+ * @property {string} [item_name]
+ * @property {Object} [item_price_details]
+ * @property {string} [item_slug]
+ */
+/**
  * @typedef Identifier
  * @property {string[]} [article_id]
  * @property {number[]} [brand_id]
@@ -11630,15 +11725,19 @@ class PlatformClient {
 /**
  * @typedef ItemCriteria
  * @property {boolean} [all_items]
+ * @property {string[]} [available_zones]
  * @property {string[]} [buy_rules]
  * @property {CompareObject} [cart_quantity]
  * @property {CompareObject} [cart_total]
+ * @property {CompareObject} [cart_unique_item_amount]
+ * @property {CompareObject} [cart_unique_item_quantity]
  * @property {number[]} [item_brand]
  * @property {number[]} [item_category]
  * @property {number[]} [item_company]
  * @property {number[]} [item_exclude_brand]
  * @property {number[]} [item_exclude_category]
  * @property {number[]} [item_exclude_company]
+ * @property {number[]} [item_exclude_id]
  * @property {string[]} [item_exclude_sku]
  * @property {number[]} [item_exclude_store]
  * @property {number[]} [item_id]
@@ -11759,6 +11858,49 @@ class PlatformClient {
  * @property {boolean} [success]
  */
 /**
+ * @typedef OverrideCartItem
+ * @property {number} amount_paid
+ * @property {number} discount
+ * @property {Object} [extra_meta]
+ * @property {number} item_id
+ * @property {number} price_effective
+ * @property {number} price_marked
+ * @property {OverrideCartItemPromo[]} [promo_list]
+ * @property {number} [quantity]
+ * @property {string} [seller_identifier]
+ * @property {string} size
+ */
+/**
+ * @typedef OverrideCartItemPromo
+ * @property {Object[]} [item_list]
+ * @property {string} promo_amount
+ * @property {string} [promo_desc]
+ * @property {string} promo_id
+ * @property {string} [rwrd_tndr]
+ */
+/**
+ * @typedef OverrideCheckoutReq
+ * @property {string} aggregator
+ * @property {Object} [billing_address]
+ * @property {string} cart_id
+ * @property {OverrideCartItem[]} cart_items
+ * @property {string} currency_code
+ * @property {string} merchant_code
+ * @property {string} order_type
+ * @property {number} [ordering_store]
+ * @property {string} payment_identifier
+ * @property {string} payment_mode
+ * @property {Object} [shipping_address]
+ */
+/**
+ * @typedef OverrideCheckoutResponse
+ * @property {Object} cart
+ * @property {Object} data
+ * @property {string} message
+ * @property {string} order_id
+ * @property {string} success
+ */
+/**
  * @typedef Ownership
  * @property {string} payable_by
  * @property {string} payable_category
@@ -11829,11 +11971,13 @@ class PlatformClient {
  * @typedef ProductArticle
  * @property {Object} [_custom_json]
  * @property {Object} [extra_meta]
+ * @property {Object} [identifier]
  * @property {Object} [parent_item_identifiers]
  * @property {ArticlePriceInfo} [price]
  * @property {string[]} [product_group_tags]
  * @property {number} [quantity]
  * @property {BaseInfo} [seller]
+ * @property {string} [seller_identifier]
  * @property {string} [size]
  * @property {BaseInfo} [store]
  * @property {string} [type]
@@ -11903,6 +12047,7 @@ class PlatformClient {
  * @property {number} [apply_priority]
  * @property {PromotionAuthor} [author]
  * @property {Object} buy_rules
+ * @property {string} [calculate_on]
  * @property {string} [code]
  * @property {string} [currency]
  * @property {PromotionDateMeta} [date_meta]
@@ -11937,6 +12082,7 @@ class PlatformClient {
  * @property {number} [apply_priority]
  * @property {PromotionAuthor} [author]
  * @property {Object} buy_rules
+ * @property {string} [calculate_on]
  * @property {string} [code]
  * @property {string} [currency]
  * @property {PromotionDateMeta} [date_meta]
@@ -11986,6 +12132,7 @@ class PlatformClient {
  * @property {number} [apply_priority]
  * @property {PromotionAuthor} [author]
  * @property {Object} buy_rules
+ * @property {string} [calculate_on]
  * @property {string} [code]
  * @property {string} [currency]
  * @property {PromotionDateMeta} [date_meta]

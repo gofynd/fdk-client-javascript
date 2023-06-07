@@ -765,7 +765,7 @@ class ContentModel {
     return Joi.object({
       active: Joi.boolean(),
       configuration: ContentModel.ConfigurationSchema(),
-      media: ContentModel.SlideshowMedia(),
+      media: Joi.array().items(ContentModel.SlideshowMedia()),
       platform: Joi.string().allow(""),
       slug: Joi.string().allow(""),
     });

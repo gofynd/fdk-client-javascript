@@ -401,6 +401,7 @@ class CompanyProfileModel {
   }
   static ProfileSuccessResponse() {
     return Joi.object({
+      message: Joi.string().allow(""),
       success: Joi.boolean(),
       uid: Joi.number(),
     });

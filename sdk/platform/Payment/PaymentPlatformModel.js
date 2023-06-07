@@ -245,6 +245,24 @@ class PaymentModel {
       success: Joi.boolean().required(),
     });
   }
+  static Payout() {
+    return Joi.object({
+      customers: PaymentModel.PayoutCustomer().required(),
+      is_active: Joi.boolean().required(),
+      is_default: Joi.boolean().required(),
+      more_attributes: PaymentModel.PayoutMoreAttributes().required(),
+      payouts_aggregators: Joi.array().items(PaymentModel.PayoutAggregator()),
+      transfer_type: Joi.string().allow("").required(),
+      unique_transfer_no: Joi.string().allow("").required(),
+    });
+  }
+  static PayoutAggregator() {
+    return Joi.object({
+      aggregator_fund_id: Joi.number().allow(null),
+      aggregator_id: Joi.number().allow(null),
+      payout_details_id: Joi.number().allow(null),
+    });
+  }
   static PayoutBankDetails() {
     return Joi.object({
       account_holder: Joi.string().allow(""),
@@ -257,6 +275,28 @@ class PaymentModel {
       ifsc_code: Joi.string().allow("").required(),
       pincode: Joi.number(),
       state: Joi.string().allow(""),
+    });
+  }
+  static PayoutCustomer() {
+    return Joi.object({
+      email: Joi.string().allow("").allow(null),
+      id: Joi.number().allow(null),
+      mobile: Joi.string().allow("").allow(null),
+      name: Joi.string().allow("").allow(null),
+      unique_external_id: Joi.string().allow("").allow(null),
+    });
+  }
+  static PayoutMoreAttributes() {
+    return Joi.object({
+      account_holder: Joi.string().allow("").allow(null),
+      account_no: Joi.string().allow("").allow(null),
+      account_type: Joi.string().allow("").allow(null),
+      bank_name: Joi.string().allow("").allow(null),
+      branch_name: Joi.string().allow("").allow(null),
+      city: Joi.string().allow("").allow(null),
+      country: Joi.string().allow("").allow(null),
+      ifsc_code: Joi.string().allow("").allow(null),
+      state: Joi.string().allow("").allow(null),
     });
   }
   static PayoutRequest() {
@@ -285,13 +325,8 @@ class PaymentModel {
   }
   static PayoutsResponse() {
     return Joi.object({
-      customers: Joi.any().required(),
-      is_active: Joi.boolean().required(),
-      is_default: Joi.boolean().required(),
-      more_attributes: Joi.any().required(),
-      payouts_aggregators: Joi.array().items(Joi.any()).required(),
-      transfer_type: Joi.string().allow("").required(),
-      unique_transfer_no: Joi.any().required(),
+      items: Joi.array().items(PaymentModel.Payout()).required(),
+      success: Joi.boolean().required(),
     });
   }
   static RefundAccountResponse() {

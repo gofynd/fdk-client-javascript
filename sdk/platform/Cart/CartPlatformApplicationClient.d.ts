@@ -221,6 +221,13 @@ declare class Cart {
     }): Paginator;
     /**
      * @param {Object} arg - Arg object.
+     * @returns {Promise<ActivePromosResponse>} - Success response
+     * @summary: Fetch all promos that are set as active
+     * @description: Use this API to get list of all the active promos/coupons.
+     */
+    getPromosCouponConfig({}?: any): Promise<ActivePromosResponse>;
+    /**
+     * @param {Object} arg - Arg object.
      * @param {string} arg.id -
      * @returns {Promise<PromotionUpdate>} - Success response
      * @summary: Get with single promotion details or promotion list
@@ -288,6 +295,16 @@ declare class Cart {
         fpPanel?: string;
         promotionId?: string;
     }): Paginator;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {OverrideCheckoutReq} arg.body
+     * @returns {Promise<OverrideCheckoutResponse>} - Success response
+     * @summary: Create Fynd order with overriding cart details
+     * @description: Generate Fynd order while overriding cart details sent with provided `cart_items`
+     */
+    overrideCart({ body }?: {
+        body: OverrideCheckoutReq;
+    }): Promise<OverrideCheckoutResponse>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.cartId - Current Cart _id
