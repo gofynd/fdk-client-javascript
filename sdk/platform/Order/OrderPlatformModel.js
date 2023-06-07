@@ -1653,6 +1653,7 @@ class OrderModel {
       application: Joi.any(),
       bags: Joi.array().items(OrderModel.BagUnit()),
       channel: Joi.any(),
+      company: Joi.any(),
       created_at: Joi.string().allow("").required(),
       fulfilling_centre: Joi.string().allow("").required(),
       fulfilling_store: OrderModel.ShipmentItemFulFillingStore(),

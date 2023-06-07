@@ -1442,6 +1442,7 @@ type DefaultNavigationResponse = {
 };
 type Detail = {
     description?: string;
+    image_url?: string;
     title?: string;
 };
 type EditorMeta = {
@@ -4500,6 +4501,7 @@ type ShipmentItem = {
     application?: any;
     bags?: BagUnit[];
     channel?: any;
+    company?: any;
     created_at: string;
     fulfilling_centre: string;
     fulfilling_store?: ShipmentItemFulFillingStore;

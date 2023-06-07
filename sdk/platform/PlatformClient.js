@@ -1786,6 +1786,7 @@ class PlatformClient {
 /**
  * @typedef Detail
  * @property {string} [description]
+ * @property {string} [image_url]
  * @property {string} [title]
  */
 /**
@@ -5330,6 +5331,7 @@ class PlatformClient {
  * @property {Object} [application]
  * @property {BagUnit[]} [bags]
  * @property {Object} [channel]
+ * @property {Object} [company]
  * @property {string} created_at
  * @property {string} fulfilling_centre
  * @property {ShipmentItemFulFillingStore} [fulfilling_store]

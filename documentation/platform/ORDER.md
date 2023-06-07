@@ -1804,7 +1804,7 @@ const promise = platformClient.order.getOrders({  lane : value,
  toDate : value,
  dpIds : value,
  stores : value,
- salesChannel : value,
+ salesChannels : value,
  pageNo : value,
  pageSize : value,
  isPrioritySort : value,
@@ -1822,7 +1822,7 @@ const data = await platformClient.order.getOrders({  lane : value,
  toDate : value,
  dpIds : value,
  stores : value,
- salesChannel : value,
+ salesChannels : value,
  pageNo : value,
  pageSize : value,
  isPrioritySort : value,
@@ -1846,7 +1846,7 @@ const data = await platformClient.order.getOrders({  lane : value,
 | toDate | string | no |  |    
 | dpIds | string | no |  |    
 | stores | string | no |  |    
-| salesChannel | string | no |  |    
+| salesChannels | string | no |  |    
 | pageNo | number | no |  |    
 | pageSize | number | no |  |    
 | isPrioritySort | boolean | no |  |    
@@ -6467,6 +6467,7 @@ Successful Manifest upload!
  | application | string? |  yes  |  |
  | bags | [[BagUnit](#BagUnit)]? |  yes  |  |
  | channel | string? |  yes  |  |
+ | company | string? |  yes  |  |
  | created_at | string |  no  |  |
  | fulfilling_centre | string |  no  |  |
  | fulfilling_store | [ShipmentItemFulFillingStore](#ShipmentItemFulFillingStore)? |  yes  |  |
