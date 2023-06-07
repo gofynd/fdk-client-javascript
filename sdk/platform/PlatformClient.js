@@ -20,8 +20,6 @@ const Inventory = require("./Inventory/InventoryPlatformClient");
 
 const Configuration = require("./Configuration/ConfigurationPlatformClient");
 
-const Analytics = require("./Analytics/AnalyticsPlatformClient");
-
 const Discount = require("./Discount/DiscountPlatformClient");
 
 const Webhook = require("./Webhook/WebhookPlatformClient");
@@ -56,8 +54,6 @@ class PlatformClient {
     this.inventory = new Inventory(config);
 
     this.configuration = new Configuration(config);
-
-    this.analytics = new Analytics(config);
 
     this.discount = new Discount(config);
 
@@ -439,6 +435,7 @@ class PlatformClient {
  * @property {CommunicationDetails} [support_email]
  * @property {CommunicationDetails} [support_faq]
  * @property {CommunicationDetails} [support_phone]
+ * @property {string} [type]
  */
 /**
  * @typedef Ticket
@@ -4186,6 +4183,11 @@ class PlatformClient {
  * @property {string} state_type
  */
 /**
+ * @typedef BagStateTransitionMap
+ * @property {Object} [affiliate]
+ * @property {Object} [fynd]
+ */
+/**
  * @typedef BagStatusHistory
  * @property {string} [app_display_name]
  * @property {number} [bag_id]
@@ -4319,7 +4321,7 @@ class PlatformClient {
 /**
  * @typedef Click2CallResponse
  * @property {string} call_id
- * @property {boolean} status
+ * @property {boolean} success
  */
 /**
  * @typedef CompanyDetails
@@ -4732,18 +4734,6 @@ class PlatformClient {
  * @property {string} [lock_message]
  * @property {boolean} [locked]
  * @property {boolean} [mto]
- */
-/**
- * @typedef ManualAssignDPToShipment
- * @property {number} dp_id
- * @property {string} order_type
- * @property {string} qc_required
- * @property {string[]} [shipment_ids]
- */
-/**
- * @typedef ManualAssignDPToShipmentResponse
- * @property {string[]} [errors]
- * @property {string} success
  */
 /**
  * @typedef MarketPlacePdf
@@ -5475,13 +5465,13 @@ class PlatformClient {
  */
 /**
  * @typedef SmsDataPayload
- * @property {number} amount_paid
- * @property {string} brand_name
+ * @property {number} [amount_paid]
+ * @property {string} [brand_name]
  * @property {string} country_code
- * @property {string} customer_name
+ * @property {string} [customer_name]
  * @property {string} message
  * @property {string} order_id
- * @property {string} payment_mode
+ * @property {string} [payment_mode]
  * @property {number} phone_number
  * @property {number} shipment_id
  */
@@ -6769,15 +6759,15 @@ class PlatformClient {
  * @property {GetAddressSerializer[]} [addresses]
  * @property {string} [business_type]
  * @property {string} [company_type]
- * @property {UserSerializer1} [created_by]
+ * @property {UserSerializer2} [created_by]
  * @property {string} [created_on]
- * @property {UserSerializer1} [modified_by]
+ * @property {UserSerializer2} [modified_by]
  * @property {string} [modified_on]
  * @property {string} [name]
  * @property {string} [reject_reason]
  * @property {string} [stage]
  * @property {number} [uid]
- * @property {UserSerializer1} [verified_by]
+ * @property {UserSerializer2} [verified_by]
  * @property {string} [verified_on]
  */
 /**
@@ -6854,14 +6844,14 @@ class PlatformClient {
  * @property {string} code
  * @property {GetCompanySerializer} [company]
  * @property {SellerPhoneNumber[]} [contact_numbers]
- * @property {UserSerializer2} [created_by]
+ * @property {UserSerializer1} [created_by]
  * @property {string} [created_on]
  * @property {string} display_name
  * @property {Document[]} [documents]
  * @property {InvoiceDetailsSerializer} [gst_credentials]
  * @property {LocationIntegrationType} [integration_type]
  * @property {LocationManagerSerializer} [manager]
- * @property {UserSerializer2} [modified_by]
+ * @property {UserSerializer1} [modified_by]
  * @property {string} [modified_on]
  * @property {string} name
  * @property {string[]} [notification_emails]
@@ -6871,7 +6861,7 @@ class PlatformClient {
  * @property {string} [store_type]
  * @property {LocationDayWiseSerializer[]} [timing]
  * @property {number} [uid]
- * @property {UserSerializer2} [verified_by]
+ * @property {UserSerializer1} [verified_by]
  * @property {string} [verified_on]
  * @property {Object} [warnings]
  */
@@ -8716,11 +8706,13 @@ class PlatformClient {
  * @typedef GetLocationSerializer
  * @property {Object} [_custom_json]
  * @property {GetAddressSerializer} address
+ * @property {boolean} [auto_invoice]
  * @property {string} code
  * @property {GetCompanySerializer} [company]
  * @property {SellerPhoneNumber[]} [contact_numbers]
  * @property {UserSerializer} [created_by]
  * @property {string} [created_on]
+ * @property {boolean} [credit_note]
  * @property {string} display_name
  * @property {Document[]} [documents]
  * @property {InvoiceDetailsSerializer} [gst_credentials]
@@ -8784,9 +8776,11 @@ class PlatformClient {
  * @typedef LocationSerializer
  * @property {Object} [_custom_json]
  * @property {AddressSerializer} address
+ * @property {boolean} [auto_invoice]
  * @property {string} code
  * @property {number} company
  * @property {SellerPhoneNumber[]} [contact_numbers]
+ * @property {boolean} [credit_note]
  * @property {string} display_name
  * @property {Document[]} [documents]
  * @property {InvoiceDetailsSerializer} [gst_credentials]
@@ -11759,6 +11753,7 @@ class PlatformClient {
  * @typedef Restrictions1
  * @property {boolean} [anonymous_users]
  * @property {number} [order_quantity]
+ * @property {number[]} [ordering_stores]
  * @property {PromotionPaymentModes[]} [payments]
  * @property {string[]} [platforms]
  * @property {PostOrder1} [post_order]
@@ -12055,151 +12050,6 @@ class PlatformClient {
  */
 
 /**
- * @typedef AbandonCartDetail
- * @property {string} [_id]
- * @property {Object} [address]
- * @property {Object[]} [articles]
- * @property {Object} [breakup]
- * @property {string} [cart_value]
- * @property {string} [user_id]
- */
-/**
- * @typedef AbandonCartsDetail
- * @property {string} [context_app_application_id]
- * @property {string} [context_traits_email]
- * @property {string} [context_traits_first_name]
- * @property {string} [context_traits_last_name]
- * @property {string} [context_traits_phone_number]
- * @property {string} [properties_breakup_values_raw_total]
- * @property {string} [properties_cart_id]
- * @property {ReceivedAt} [received_at]
- */
-/**
- * @typedef AbandonCartsList
- * @property {string} [cart_total]
- * @property {AbandonCartsDetail[]} [items]
- * @property {Page} [page]
- */
-/**
- * @typedef ErrorRes
- * @property {string} [message]
- */
-/**
- * @typedef ExportJobReq
- * @property {string} [end_time]
- * @property {string} [event_type]
- * @property {string} [marketplace_name]
- * @property {string} [start_time]
- * @property {string} [trace_id]
- */
-/**
- * @typedef ExportJobRes
- * @property {string} [job_id]
- * @property {string} [status]
- */
-/**
- * @typedef ExportJobStatusRes
- * @property {string} [download_url]
- * @property {string} [job_id]
- * @property {string} [status]
- */
-/**
- * @typedef GetLogsListReq
- * @property {string} [company_id]
- * @property {string} [end_date]
- * @property {string} [marketplace_name]
- * @property {string} [start_date]
- */
-/**
- * @typedef GetLogsListRes
- * @property {MkpLogsResp[]} [items]
- * @property {Page} [page]
- */
-/**
- * @typedef LogInfo
- * @property {string} [_id]
- * @property {string} [article_id]
- * @property {number} [brand_id]
- * @property {number} [company_id]
- * @property {string} [event]
- * @property {string} [event_type]
- * @property {number} [item_id]
- * @property {string} [marketplace_name]
- * @property {string} [seller_identifier]
- * @property {string} [status]
- * @property {string} [store_code]
- * @property {number} [store_id]
- * @property {string} [trace_id]
- */
-/**
- * @typedef MkpLogsResp
- * @property {string} [count]
- * @property {string} [end_time_iso]
- * @property {string} [event_type]
- * @property {string} [start_time_iso]
- * @property {string} [status]
- * @property {string} [trace_id]
- */
-/**
- * @typedef Page
- * @property {number} [current]
- * @property {boolean} [has_next]
- * @property {boolean} [has_previous]
- * @property {number} [item_total]
- * @property {string} [next_id]
- * @property {number} [size]
- * @property {string} type
- */
-/**
- * @typedef ReceivedAt
- * @property {string} [value]
- */
-/**
- * @typedef SearchLogReq
- * @property {string} [company_id]
- * @property {string} [end_date]
- * @property {string} [identifier]
- * @property {string} [identifier_value]
- * @property {string} [marketplace_name]
- * @property {string} [start_date]
- */
-/**
- * @typedef SearchLogRes
- * @property {LogInfo[]} [items]
- * @property {Page} [page]
- */
-/**
- * @typedef StatGroup
- * @property {string} [key]
- * @property {string} [title]
- * @property {string} [url]
- */
-/**
- * @typedef StatsGroupComponent
- * @property {Object} [filters]
- * @property {string} [key]
- * @property {string} [title]
- * @property {string} [type]
- * @property {string} [url]
- */
-/**
- * @typedef StatsGroupComponents
- * @property {StatsGroupComponent[]} [components]
- * @property {string} [title]
- */
-/**
- * @typedef StatsGroups
- * @property {StatGroup[]} [groups]
- */
-/**
- * @typedef StatsRes
- * @property {Object} [data]
- * @property {string} [key]
- * @property {string} [title]
- * @property {string} [type]
- */
-
-/**
  * @typedef BadRequestObject
  * @property {string} message
  */
@@ -12261,6 +12111,20 @@ class PlatformClient {
  * @typedef DownloadFileJob
  * @property {number[]} [brand_ids]
  * @property {number[]} [store_ids]
+ */
+/**
+ * @typedef FileJobRequest
+ * @property {string[]} [app_ids]
+ * @property {number[]} [brand_ids]
+ * @property {string} [discount_level]
+ * @property {string} [discount_type]
+ * @property {string} [file_path]
+ * @property {boolean} is_active
+ * @property {string} [job_type]
+ * @property {Object} [meta]
+ * @property {string} name
+ * @property {number[]} [store_ids]
+ * @property {ValidityObject} validity
  */
 /**
  * @typedef FileJobResponse

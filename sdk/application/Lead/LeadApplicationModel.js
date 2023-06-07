@@ -258,6 +258,7 @@ class LeadModel {
       support_email: LeadModel.CommunicationDetails(),
       support_faq: LeadModel.CommunicationDetails(),
       support_phone: LeadModel.CommunicationDetails(),
+      type: Joi.string().allow(""),
     });
   }
   static Ticket() {

@@ -259,6 +259,7 @@ class CompanyProfileModel {
     return Joi.object({
       _custom_json: Joi.any(),
       address: CompanyProfileModel.GetAddressSerializer().required(),
+      auto_invoice: Joi.boolean(),
       code: Joi.string().allow("").required(),
       company: CompanyProfileModel.GetCompanySerializer(),
       contact_numbers: Joi.array().items(
@@ -266,6 +267,7 @@ class CompanyProfileModel {
       ),
       created_by: CompanyProfileModel.UserSerializer(),
       created_on: Joi.string().allow(""),
+      credit_note: Joi.boolean(),
       display_name: Joi.string().allow("").required(),
       documents: Joi.array().items(CompanyProfileModel.Document()),
       gst_credentials: CompanyProfileModel.InvoiceDetailsSerializer(),
@@ -339,11 +341,13 @@ class CompanyProfileModel {
     return Joi.object({
       _custom_json: Joi.any(),
       address: CompanyProfileModel.AddressSerializer().required(),
+      auto_invoice: Joi.boolean(),
       code: Joi.string().allow("").required(),
       company: Joi.number().required(),
       contact_numbers: Joi.array().items(
         CompanyProfileModel.SellerPhoneNumber()
       ),
+      credit_note: Joi.boolean(),
       display_name: Joi.string().allow("").required(),
       documents: Joi.array().items(CompanyProfileModel.Document()),
       gst_credentials: CompanyProfileModel.InvoiceDetailsSerializer(),
