@@ -362,6 +362,12 @@ class OrderModel {
       state_type: Joi.string().allow("").required(),
     });
   }
+  static BagStateTransitionMap() {
+    return Joi.object({
+      affiliate: Joi.any(),
+      fynd: Joi.any(),
+    });
+  }
   static BagStatusHistory() {
     return Joi.object({
       app_display_name: Joi.string().allow(""),
@@ -508,7 +514,7 @@ class OrderModel {
   static Click2CallResponse() {
     return Joi.object({
       call_id: Joi.string().allow("").required(),
-      status: Joi.boolean().required(),
+      success: Joi.boolean().required(),
     });
   }
   static CompanyDetails() {
@@ -980,20 +986,6 @@ class OrderModel {
       lock_message: Joi.string().allow(""),
       locked: Joi.boolean(),
       mto: Joi.boolean(),
-    });
-  }
-  static ManualAssignDPToShipment() {
-    return Joi.object({
-      dp_id: Joi.number().required(),
-      order_type: Joi.string().allow("").required(),
-      qc_required: Joi.string().allow("").required(),
-      shipment_ids: Joi.array().items(Joi.string().allow("")),
-    });
-  }
-  static ManualAssignDPToShipmentResponse() {
-    return Joi.object({
-      errors: Joi.array().items(Joi.string().allow("")),
-      success: Joi.string().allow("").required(),
     });
   }
   static MarketPlacePdf() {
@@ -1806,13 +1798,13 @@ class OrderModel {
   }
   static SmsDataPayload() {
     return Joi.object({
-      amount_paid: Joi.number().required(),
-      brand_name: Joi.string().allow("").required(),
+      amount_paid: Joi.number(),
+      brand_name: Joi.string().allow(""),
       country_code: Joi.string().allow("").required(),
-      customer_name: Joi.string().allow("").required(),
+      customer_name: Joi.string().allow(""),
       message: Joi.string().allow("").required(),
       order_id: Joi.string().allow("").required(),
-      payment_mode: Joi.string().allow("").required(),
+      payment_mode: Joi.string().allow(""),
       phone_number: Joi.number().required(),
       shipment_id: Joi.number().required(),
     });

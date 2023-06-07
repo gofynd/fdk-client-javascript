@@ -28,15 +28,14 @@ Handles all platform order and shipment api(s)
 * [getShipmentHistory](#getshipmenthistory)
 * [getShipmentReasons](#getshipmentreasons)
 * [getShipments](#getshipments)
+* [getStateTransitionMap](#getstatetransitionmap)
 * [getfilters](#getfilters)
 * [invalidateShipmentCache](#invalidateshipmentcache)
 * [orderUpdate](#orderupdate)
-* [platformManualAssignDPToShipment](#platformmanualassigndptoshipment)
 * [postShipmentHistory](#postshipmenthistory)
 * [processManifest](#processmanifest)
 * [reassignLocation](#reassignlocation)
 * [sendSmsNinja](#sendsmsninja)
-* [sendSmsNinjaPlatform](#sendsmsninjaplatform)
 * [trackShipmentPlatform](#trackshipmentplatform)
 * [updateAddress](#updateaddress)
 * [updatePackagingDimensions](#updatepackagingdimensions)
@@ -116,15 +115,15 @@ Order Status retrieved successfully
 const promise = platformClient.order.click2Call({  caller : value,
  receiver : value,
  bagId : value,
- callingTo : value,
- callerId : value });
+ callerId : value,
+ method : value });
 
 // Async/Await
 const data = await platformClient.order.click2Call({  caller : value,
  receiver : value,
  bagId : value,
- callingTo : value,
- callerId : value });
+ callerId : value,
+ method : value });
 ```
 
 
@@ -133,11 +132,11 @@ const data = await platformClient.order.click2Call({  caller : value,
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
-| caller | string | yes |  |   
-| receiver | string | yes |  |   
-| bagId | string | yes |  |    
-| callingTo | string | no |  |    
-| callerId | string | no |  |  
+| caller | string | yes | Call Number |   
+| receiver | string | yes | Receiver Number |   
+| bagId | string | yes | Bag Id for the query |    
+| callerId | string | no | Caller Id |    
+| method | string | no | Provider Method to Call |  
 
 
 
@@ -159,7 +158,10 @@ Process call on request!
 <summary><i>&nbsp; Example:</i></summary>
 
 ```json
-
+{
+  "success": true,
+  "call_id": "c2c_646b00bc-984c-4c10-bb8d-0e850a1e0022"
+}
 ```
 </details>
 
@@ -1921,7 +1923,22 @@ You will get an array of actions allowed for that particular user based on their
 <summary><i>&nbsp; Example:</i></summary>
 
 ```json
-
+{
+  "permissions": [
+    {
+      "slug": "create_invoice_s3",
+      "display_text": "Create Invoice (s3)",
+      "id": 2,
+      "description": "Create Invoice (s3)"
+    },
+    {
+      "slug": "call",
+      "display_text": "Call",
+      "id": 3,
+      "description": "Call"
+    }
+  ]
+}
 ```
 </details>
 
@@ -2360,8 +2377,8 @@ const data = await platformClient.order.getShipmentHistory({  shipmentId : value
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
-| shipmentId | number | no |  |    
-| bagId | number | no |  |  
+| shipmentId | string | no | Shipment Id |    
+| bagId | number | no | Bag/Product Id |  
 
 
 
@@ -2638,6 +2655,244 @@ We are processing the report!
 
 ```json
 
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### getStateTransitionMap
+
+
+
+
+```javascript
+// Promise
+const promise = platformClient.order.getStateTransitionMap();
+
+// Async/Await
+const data = await platformClient.order.getStateTransitionMap();
+```
+
+
+
+
+
+
+
+
+*Returned Response:*
+
+
+
+
+[BagStateTransitionMap](#BagStateTransitionMap)
+
+State Transition Mapping, for next possible state
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "fynd": {
+    "placed": [
+      "bag_not_confirmed",
+      "cancelled_customer",
+      "cancelled_fynd",
+      "bag_confirmed",
+      "store_reassigned"
+    ],
+    "bag_confirmed": [
+      "handed_over_to_customer",
+      "bag_invoiced"
+    ],
+    "dp_assigned": [
+      "handed_over_to_customer",
+      "bag_packed"
+    ],
+    "bag_packed": [
+      "bag_not_picked",
+      "cancelled_customer"
+    ],
+    "handed_over_to_dg": [
+      "cancelled_at_dp",
+      "credit_note_generated"
+    ],
+    "out_for_delivery": [
+      "delivery_done"
+    ],
+    "delivery_done": [
+      "bag_lost",
+      "return_initiated"
+    ],
+    "return_initiated": [
+      "return_accepted"
+    ],
+    "bag_picked": [
+      "refund_completed",
+      "out_for_delivery",
+      "delivery_done"
+    ],
+    "pending": [
+      "pending",
+      "placed",
+      "payment_failed",
+      "manual_refund"
+    ],
+    "payment_failed": [
+      "awaiting_payment_confirmation",
+      "placed",
+      "manual_refund"
+    ],
+    "return_pre_qc": [
+      "return_initiated",
+      "return_request_cancelled",
+      "manual_refund"
+    ],
+    "bag_not_packed": [
+      "manual_refund"
+    ],
+    "bag_rescheduled": [
+      "manual_refund"
+    ],
+    "fluid_state": [
+      "manual_refund"
+    ],
+    "handed_over_to_customer": [
+      "manual_refund",
+      "return_initiated"
+    ],
+    "hold": [
+      "manual_refund"
+    ],
+    "product_not_available": [
+      "manual_refund"
+    ],
+    "qc_fail": [
+      "manual_refund"
+    ],
+    "qc_pass": [
+      "manual_refund"
+    ],
+    "refund_done": [
+      "manual_refund"
+    ],
+    "refund_processing": [
+      "manual_refund"
+    ],
+    "return_assigning_dp": [
+      "manual_refund"
+    ],
+    "return_bag_packed": [
+      "manual_refund"
+    ],
+    "return_dp_cancelled": [
+      "manual_refund"
+    ],
+    "unhold": [
+      "manual_refund"
+    ],
+    "web_store_rescheduled": [
+      "manual_refund"
+    ],
+    "credit_note_cancelled": [
+      "refund_initiated"
+    ]
+  },
+  "affiliate": {
+    "placed": [
+      "bag_not_confirmed",
+      "store_reassigned",
+      "product_not_available"
+    ],
+    "store_reassigned": [
+      "bag_not_confirmed"
+    ],
+    "bag_confirmed": [
+      "bag_invoiced",
+      "cancelled_fynd"
+    ],
+    "dp_assigned": [
+      "bag_packed"
+    ],
+    "pending": [
+      "payment_failed",
+      "placed",
+      "manual_refund"
+    ],
+    "ready_for_dp_assignment": [
+      "dp_assigned"
+    ],
+    "credit_note_generated": [
+      "refund_pending",
+      "refund_initiated"
+    ],
+    "assigning_return_dp": [
+      "manual_refund"
+    ],
+    "bag_not_packed": [
+      "manual_refund"
+    ],
+    "bag_rescheduled": [
+      "manual_refund"
+    ],
+    "fluid_state": [
+      "manual_refund"
+    ],
+    "handed_over_to_customer": [
+      "manual_refund",
+      "return_initiated"
+    ],
+    "hold": [
+      "manual_refund"
+    ],
+    "product_not_available": [
+      "manual_refund"
+    ],
+    "qc_fail": [
+      "manual_refund"
+    ],
+    "qc_pass": [
+      "manual_refund"
+    ],
+    "refund_done": [
+      "manual_refund"
+    ],
+    "refund_processing": [
+      "manual_refund"
+    ],
+    "return_assigning_dp": [
+      "manual_refund"
+    ],
+    "return_bag_packed": [
+      "manual_refund"
+    ],
+    "return_dp_cancelled": [
+      "manual_refund"
+    ],
+    "unhold": [
+      "manual_refund"
+    ],
+    "web_store_rescheduled": [
+      "manual_refund"
+    ],
+    "credit_note_cancelled": [
+      "refund_initiated"
+    ]
+  }
+}
 ```
 </details>
 
@@ -3190,61 +3445,6 @@ We are processing the order!
 ---
 
 
-### platformManualAssignDPToShipment
-
-
-
-
-```javascript
-// Promise
-const promise = platformClient.order.platformManualAssignDPToShipment({  body : value });
-
-// Async/Await
-const data = await platformClient.order.platformManualAssignDPToShipment({  body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |
-| body | [ManualAssignDPToShipment](#ManualAssignDPToShipment) | yes | Request body |
-
-
-
-
-*Returned Response:*
-
-
-
-
-[ManualAssignDPToShipmentResponse](#ManualAssignDPToShipmentResponse)
-
-DP Assigned for the given shipment Ids.
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
 ### postShipmentHistory
 
 
@@ -3490,58 +3690,10 @@ Sms Sent successfully
 <summary><i>&nbsp; Example:</i></summary>
 
 ```json
-
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### sendSmsNinjaPlatform
-
-
-
-
-```javascript
-// Promise
-const promise = platformClient.order.sendSmsNinjaPlatform();
-
-// Async/Await
-const data = await platformClient.order.sendSmsNinjaPlatform();
-```
-
-
-
-
-
-
-
-
-*Returned Response:*
-
-
-
-
-[OrderStatusResult](#OrderStatusResult)
-
-Sms Sent successfully
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-
+{
+  "success": true,
+  "message": "Successfully emitted aldaviz-delayed-shipment-event"
+}
 ```
 </details>
 
@@ -4481,6 +4633,16 @@ Successful Manifest upload!
 
 ---
 
+#### [BagStateTransitionMap](#BagStateTransitionMap)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | affiliate | string? |  yes  |  |
+ | fynd | string? |  yes  |  |
+ 
+
+---
+
 #### [BagStatusHistory](#BagStatusHistory)
 
  | Properties | Type | Nullable | Description |
@@ -4676,8 +4838,8 @@ Successful Manifest upload!
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | call_id | string |  no  |  |
- | status | boolean |  no  |  |
+ | call_id | string |  no  | Call ID from the provider |
+ | success | boolean |  no  | Success |
  
 
 ---
@@ -5212,19 +5374,19 @@ Successful Manifest upload!
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | assigned_agent | string? |  yes  |  |
- | bag_id | number? |  yes  |  |
- | createdat | string |  no  |  |
- | display_message | string? |  yes  |  |
- | l1_detail | string? |  yes  |  |
- | l2_detail | string? |  yes  |  |
- | l3_detail | string? |  yes  |  |
- | message | string |  no  |  |
- | meta | string? |  yes  |  |
- | ticket_id | string? |  yes  |  |
- | ticket_url | string? |  yes  |  |
- | type | string |  no  |  |
- | user | string |  no  |  |
+ | assigned_agent | string? |  yes  | Assigned Agent |
+ | bag_id | number? |  yes  | Bag ID |
+ | createdat | string |  no  | Create date |
+ | display_message | string? |  yes  | Display Message |
+ | l1_detail | string? |  yes  | L1 details of bag |
+ | l2_detail | string? |  yes  | L2 details of bag |
+ | l3_detail | string? |  yes  | L3 details of bag |
+ | message | string |  no  | History Message or comment |
+ | meta | string? |  yes  | meta |
+ | ticket_id | string? |  yes  | Ticket ID |
+ | ticket_url | string? |  yes  | Ticket URL |
+ | type | string |  no  | type of history, Expected Values:             [ activity_status, activity_escalation, activity_comment, outbound_notification, outbound_voice ] |
+ | user | string |  no  | User who created the history |
  
 
 ---
@@ -5365,28 +5527,6 @@ Successful Manifest upload!
  | lock_message | string? |  yes  |  |
  | locked | boolean? |  yes  |  |
  | mto | boolean? |  yes  |  |
- 
-
----
-
-#### [ManualAssignDPToShipment](#ManualAssignDPToShipment)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | dp_id | number |  no  |  |
- | order_type | string |  no  |  |
- | qc_required | string |  no  |  |
- | shipment_ids | [string]? |  yes  |  |
- 
-
----
-
-#### [ManualAssignDPToShipmentResponse](#ManualAssignDPToShipmentResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | errors | [string]? |  yes  |  |
- | success | string |  no  |  |
  
 
 ---
@@ -6201,9 +6341,9 @@ Successful Manifest upload!
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | bag_id | number |  no  |  |
- | data | [SmsDataPayload](#SmsDataPayload)? |  yes  |  |
- | slug | string |  no  |  |
+ | bag_id | number |  no  | bag_id for the activity history track |
+ | data | [SmsDataPayload](#SmsDataPayload)? |  yes  | SMS Data |
+ | slug | string |  no  | slug name for the template mapped in pointblank |
  
 
 ---
@@ -6512,15 +6652,15 @@ Successful Manifest upload!
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | amount_paid | number |  no  |  |
- | brand_name | string |  no  |  |
- | country_code | string |  no  |  |
- | customer_name | string |  no  |  |
- | message | string |  no  |  |
- | order_id | string |  no  |  |
- | payment_mode | string |  no  |  |
- | phone_number | number |  no  |  |
- | shipment_id | number |  no  |  |
+ | amount_paid | number? |  yes  | Data mapped in Communication template: amount_paid |
+ | brand_name | string? |  yes  | Data mapped in Communication template: brand_name |
+ | country_code | string |  no  | country code for SMS |
+ | customer_name | string? |  yes  | Data mapped in Communication template: customer_name |
+ | message | string |  no  | message to be send in SMS |
+ | order_id | string |  no  | orderId |
+ | payment_mode | string? |  yes  | Data mapped in Communication template: payment_mode |
+ | phone_number | number |  no  | phone number for communication |
+ | shipment_id | number |  no  | ShipmentId |
  
 
 ---

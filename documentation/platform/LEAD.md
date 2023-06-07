@@ -4363,6 +4363,7 @@ Success
  | support_email | [CommunicationDetails](#CommunicationDetails)? |  yes  | Support e-mail details |
  | support_faq | [CommunicationDetails](#CommunicationDetails)? |  yes  | Support FAQ details |
  | support_phone | [CommunicationDetails](#CommunicationDetails)? |  yes  | Support Phone number details |
+ | type | string? |  yes  | The enity/platform for which the config is stored |
  
 
 ---

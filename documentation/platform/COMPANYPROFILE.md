@@ -1706,11 +1706,13 @@ Returns a success response
  | ---------- | ---- | -------- | ----------- |
  | _custom_json | string? |  yes  |  |
  | address | [GetAddressSerializer](#GetAddressSerializer) |  no  |  |
+ | auto_invoice | boolean? |  yes  |  |
  | code | string |  no  |  |
  | company | [GetCompanySerializer](#GetCompanySerializer)? |  yes  |  |
  | contact_numbers | [[SellerPhoneNumber](#SellerPhoneNumber)]? |  yes  |  |
  | created_by | [UserSerializer](#UserSerializer)? |  yes  |  |
  | created_on | string? |  yes  |  |
+ | credit_note | boolean? |  yes  |  |
  | display_name | string |  no  |  |
  | documents | [[Document](#Document)]? |  yes  |  |
  | gst_credentials | [InvoiceDetailsSerializer](#InvoiceDetailsSerializer)? |  yes  |  |
@@ -1814,9 +1816,11 @@ Returns a success response
  | ---------- | ---- | -------- | ----------- |
  | _custom_json | string? |  yes  |  |
  | address | [AddressSerializer](#AddressSerializer) |  no  |  |
+ | auto_invoice | boolean? |  yes  |  |
  | code | string |  no  |  |
  | company | number |  no  |  |
  | contact_numbers | [[SellerPhoneNumber](#SellerPhoneNumber)]? |  yes  |  |
+ | credit_note | boolean? |  yes  |  |
  | display_name | string |  no  |  |
  | documents | [[Document](#Document)]? |  yes  |  |
  | gst_credentials | [InvoiceDetailsSerializer](#InvoiceDetailsSerializer)? |  yes  |  |

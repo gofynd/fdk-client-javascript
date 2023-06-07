@@ -38,7 +38,7 @@ function requestInterceptorFn() {
     }
     const { host, pathname, search } = new URL(url);
     const { data, headers, method, params } = config;
-    headers["x-fp-sdk-version"] = "1.0.3";
+    headers["x-fp-sdk-version"] = "1.1.1";
     let querySearchObj = querystring.parse(search);
     querySearchObj = { ...querySearchObj, ...params };
     let queryParam = "";
