@@ -8,9 +8,9 @@
 ## Rewards Methods
 Earn and redeem reward points
 
-* [catalogueOrder](#catalogueorder)
 * [getOfferByName](#getofferbyname)
 * [getOrderDiscount](#getorderdiscount)
+* [getPointsOnProduct](#getpointsonproduct)
 * [getUserPoints](#getuserpoints)
 * [getUserPointsHistory](#getuserpointshistory)
 * [getUserReferralDetails](#getuserreferraldetails)
@@ -21,61 +21,6 @@ Earn and redeem reward points
 ## Methods with example and description
 
 
-
-
-### catalogueOrder
-Get all transactions of reward points
-
-
-
-```javascript
-// Promise
-const promise = applicationClient.rewards.catalogueOrder({  body : value });
-
-// Async/Await
-const data = await applicationClient.rewards.catalogueOrder({  body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |
-| body | [CatalogueOrderRequest](#CatalogueOrderRequest) | yes | Request body |
-
-
-Use this API to evaluate the amount of reward points that could be earned on any catalogue product.
-
-*Returned Response:*
-
-
-
-
-[CatalogueOrderResponse](#CatalogueOrderResponse)
-
-Success. Check example below or refer `CatalogueOrderResponse` for more details.
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-
-```
-</details>
-
-
-
-
-
-
-
-
-
----
 
 
 ### getOfferByName
@@ -189,8 +134,63 @@ Success. Check example below or refer `OrderDiscountResponse` for more details.
 ---
 
 
+### getPointsOnProduct
+Get the eligibility of reward points on a product
+
+
+
+```javascript
+// Promise
+const promise = applicationClient.rewards.getPointsOnProduct({  body : value });
+
+// Async/Await
+const data = await applicationClient.rewards.getPointsOnProduct({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [CatalogueOrderRequest](#CatalogueOrderRequest) | yes | Request body |
+
+
+Use this API to evaluate the amount of reward points that could be earned on any catalogue product.
+
+*Returned Response:*
+
+
+
+
+[CatalogueOrderResponse](#CatalogueOrderResponse)
+
+Success. Check example below or refer `CatalogueOrderRequest` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
 ### getUserPoints
-Get referral details of a user
+Get reward points available with a user
 
 
 
@@ -266,7 +266,7 @@ const data = await applicationClient.rewards.getUserPointsHistory({  pageId : va
 
 
 
-Use this API to get a list of points transactions.
+Use this API to get a list of points transactions. The list of points history is paginated.
 
 *Returned Response:*
 
@@ -409,6 +409,15 @@ Success. Check example below or refer `RedeemReferralCodeResponse` for more deta
 ### Schemas
 
 
+#### [ActionPageParams](#ActionPageParams)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | slug | [string]? |  yes  |  |
+ 
+
+---
+
 #### [Asset](#Asset)
 
  | Properties | Type | Nullable | Description |
@@ -531,7 +540,7 @@ Success. Check example below or refer `RedeemReferralCodeResponse` for more deta
  | item_total | number? |  yes  |  |
  | next_id | string? |  yes  |  |
  | size | number? |  yes  |  |
- | type | string? |  yes  |  |
+ | type | string |  no  |  |
  
 
 ---
@@ -572,7 +581,7 @@ Success. Check example below or refer `RedeemReferralCodeResponse` for more deta
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | points | number? |  yes  | Total points available |
+ | points | number? |  yes  | Points is the total available |
  
 
 ---
@@ -581,8 +590,8 @@ Success. Check example below or refer `RedeemReferralCodeResponse` for more deta
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | device_id | string? |  yes  |  |
- | referral_code | string? |  yes  |  |
+ | device_id | string |  no  |  |
+ | referral_code | string |  no  |  |
  
 
 ---
@@ -607,7 +616,6 @@ Success. Check example below or refer `RedeemReferralCodeResponse` for more deta
  | referral | [Offer](#Offer)? |  yes  |  |
  | referrer_info | string? |  yes  |  |
  | share | [ShareMessages](#ShareMessages)? |  yes  |  |
- | terms_conditions_link | string? |  yes  |  |
  | user | [ReferralDetailsUser](#ReferralDetailsUser)? |  yes  |  |
  
 
@@ -652,7 +660,7 @@ Success. Check example below or refer `RedeemReferralCodeResponse` for more deta
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | email | number? |  yes  |  |
+ | email | string? |  yes  |  |
  | facebook | string? |  yes  |  |
  | fallback | string? |  yes  |  |
  | message | string? |  yes  |  |

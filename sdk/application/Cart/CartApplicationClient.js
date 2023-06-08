@@ -16,6 +16,8 @@ class Cart {
       applyCoupon: "/service/application/cart/v1.0/coupon",
       applyRewardPoints: "/service/application/cart/v1.0/redeem/points/",
       checkoutCart: "/service/application/cart/v1.0/checkout",
+      checkoutCartV2: "/service/application/cart/v2.0/checkout",
+      deleteCart: "/service/application/cart/v1.0/cart_archive",
       getAddressById: "/service/application/cart/v1.0/address/{id}",
       getAddresses: "/service/application/cart/v1.0/address",
       getBulkDiscountOffers: "/service/application/cart/v1.0/bulk-price",
@@ -123,16 +125,15 @@ class Cart {
    * @param {Object} arg - Arg object.
    * @param {boolean} [arg.i] -
    * @param {boolean} [arg.b] -
-   * @param {string} [arg.areaCode] -
    * @param {boolean} [arg.buyNow] -
    * @param {AddCartRequest} arg.body
    * @returns {Promise<AddCartDetailResponse>} - Success response
    * @summary: Add items to cart
    * @description: Use this API to add items to the cart.
    */
-  async addItems({ body, i, b, areaCode, buyNow } = {}) {
+  async addItems({ body, i, b, buyNow } = {}) {
     const { error } = CartValidator.addItems().validate(
-      { body, i, b, areaCode, buyNow },
+      { body, i, b, buyNow },
       { abortEarly: false, allowUnknown: true }
     );
     if (error) {
@@ -141,7 +142,7 @@ class Cart {
 
     // Showing warrnings if extra unknown parameters are found
     const { error: warrning } = CartValidator.addItems().validate(
-      { body, i, b, areaCode, buyNow },
+      { body, i, b, buyNow },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
@@ -155,7 +156,6 @@ class Cart {
     const query_params = {};
     query_params["i"] = i;
     query_params["b"] = b;
-    query_params["area_code"] = areaCode;
     query_params["buy_now"] = buyNow;
 
     const xHeaders = {};
@@ -392,6 +392,135 @@ class Cart {
       Logger({
         level: "WARN",
         message: "Response Validation Warnnings for checkoutCart",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {boolean} [arg.buyNow] - This indicates the type of cart to checkout
+   * @param {CartCheckoutDetailV2Request} arg.body
+   * @returns {Promise<CartCheckoutResponse>} - Success response
+   * @summary: Checkout all items in the cart
+   * @description: Use this API to checkout all items in the cart for payment and order generation. For COD, order will be directly generated, whereas for other checkout modes, user will be redirected to a payment gateway.
+   */
+  async checkoutCartV2({ body, buyNow } = {}) {
+    const { error } = CartValidator.checkoutCartV2().validate(
+      { body, buyNow },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = CartValidator.checkoutCartV2().validate(
+      { body, buyNow },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for checkoutCartV2",
+      });
+      Logger({ level: "WARN", message: warrning });
+    }
+
+    const query_params = {};
+    query_params["buy_now"] = buyNow;
+
+    const xHeaders = {};
+
+    const response = await ApplicationAPIClient.execute(
+      this._conf,
+      "post",
+      constructUrl({
+        url: this._urls["checkoutCartV2"],
+        params: {},
+      }),
+      query_params,
+      body,
+      xHeaders
+    );
+
+    const {
+      error: res_error,
+    } = CartModel.CartCheckoutResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for checkoutCartV2",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {number} [arg.id] - The unique identifier of the cart.
+   * @returns {Promise<DeleteCartDetailResponse>} - Success response
+   * @summary: Delete cart once user made successful checkout
+   * @description: Use this API to delete the cart.
+   */
+  async deleteCart({ id } = {}) {
+    const { error } = CartValidator.deleteCart().validate(
+      { id },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = CartValidator.deleteCart().validate(
+      { id },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for deleteCart",
+      });
+      Logger({ level: "WARN", message: warrning });
+    }
+
+    const query_params = {};
+    query_params["id"] = id;
+
+    const xHeaders = {};
+
+    const response = await ApplicationAPIClient.execute(
+      this._conf,
+      "put",
+      constructUrl({
+        url: this._urls["deleteCart"],
+        params: {},
+      }),
+      query_params,
+      undefined,
+      xHeaders
+    );
+
+    const {
+      error: res_error,
+    } = CartModel.DeleteCartDetailResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for deleteCart",
       });
       Logger({ level: "WARN", message: res_error });
     }
@@ -639,15 +768,14 @@ class Cart {
    * @param {boolean} [arg.i] -
    * @param {boolean} [arg.b] -
    * @param {number} [arg.assignCardId] -
-   * @param {string} [arg.areaCode] -
    * @param {boolean} [arg.buyNow] -
    * @returns {Promise<CartDetailResponse>} - Success response
    * @summary: Fetch all items added to the cart
    * @description: Use this API to get details of all the items added to a cart.
    */
-  async getCart({ id, i, b, assignCardId, areaCode, buyNow } = {}) {
+  async getCart({ id, i, b, assignCardId, buyNow } = {}) {
     const { error } = CartValidator.getCart().validate(
-      { id, i, b, assignCardId, areaCode, buyNow },
+      { id, i, b, assignCardId, buyNow },
       { abortEarly: false, allowUnknown: true }
     );
     if (error) {
@@ -656,7 +784,7 @@ class Cart {
 
     // Showing warrnings if extra unknown parameters are found
     const { error: warrning } = CartValidator.getCart().validate(
-      { id, i, b, assignCardId, areaCode, buyNow },
+      { id, i, b, assignCardId, buyNow },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
@@ -672,7 +800,6 @@ class Cart {
     query_params["i"] = i;
     query_params["b"] = b;
     query_params["assign_card_id"] = assignCardId;
-    query_params["area_code"] = areaCode;
     query_params["buy_now"] = buyNow;
 
     const xHeaders = {};
@@ -1580,16 +1707,15 @@ class Cart {
    * @param {string} [arg.id] -
    * @param {boolean} [arg.i] -
    * @param {boolean} [arg.b] -
-   * @param {string} [arg.areaCode] -
    * @param {boolean} [arg.buyNow] -
    * @param {UpdateCartRequest} arg.body
    * @returns {Promise<UpdateCartDetailResponse>} - Success response
    * @summary: Update items in the cart
    * @description: <p>Use this API to update items added to the cart with the help of a request object containing attributes like item_quantity and item_size. These attributes will be fetched from the following APIs</p> <ul> <li><font color="monochrome">operation</font> Operation for current api call. <b>update_item</b> for update items. <b>remove_item</b> for removing items.</li> <li> <font color="monochrome">item_id</font>  "/platform/content/v1/products/"</li> <li> <font color="monochrome">item_size</font>   "/platform/content/v1/products/:slug/sizes/"</li> <li> <font color="monochrome">quantity</font>  item quantity (must be greater than or equal to 1)</li> <li> <font color="monochrome">article_id</font>   "/content​/v1​/products​/:identifier​/sizes​/price​/"</li> <li> <font color="monochrome">item_index</font>  item position in the cart (must be greater than or equal to 0)</li> </ul>
    */
-  async updateCart({ body, id, i, b, areaCode, buyNow } = {}) {
+  async updateCart({ body, id, i, b, buyNow } = {}) {
     const { error } = CartValidator.updateCart().validate(
-      { body, id, i, b, areaCode, buyNow },
+      { body, id, i, b, buyNow },
       { abortEarly: false, allowUnknown: true }
     );
     if (error) {
@@ -1598,7 +1724,7 @@ class Cart {
 
     // Showing warrnings if extra unknown parameters are found
     const { error: warrning } = CartValidator.updateCart().validate(
-      { body, id, i, b, areaCode, buyNow },
+      { body, id, i, b, buyNow },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
@@ -1613,7 +1739,6 @@ class Cart {
     query_params["id"] = id;
     query_params["i"] = i;
     query_params["b"] = b;
-    query_params["area_code"] = areaCode;
     query_params["buy_now"] = buyNow;
 
     const xHeaders = {};

@@ -31,7 +31,5 @@ module.exports = {
     RewardsApplicationModel: require("./Rewards/RewardsApplicationModel"),
 
     PosCartApplicationModel: require("./PosCart/PosCartApplicationModel"),
-
-    LogisticApplicationModel: require("./Logistic/LogisticApplicationModel"),
   },
 };

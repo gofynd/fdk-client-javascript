@@ -17,7 +17,6 @@ Discount
 * [getDownloadJob](#getdownloadjob)
 * [getValidationJob](#getvalidationjob)
 * [updateDiscount](#updatediscount)
-* [upsertDiscountItems](#upsertdiscountitems)
 * [validateDiscountFile](#validatediscountfile)
 
 
@@ -558,64 +557,6 @@ Success
 ---
 
 
-### upsertDiscountItems
-Create custom discount from bulk.
-
-
-
-```javascript
-// Promise
-const promise = platformClient.discount.upsertDiscountItems({  id : value,
- body : value });
-
-// Async/Await
-const data = await platformClient.discount.upsertDiscountItems({  id : value,
- body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| id | string | yes | Job ID of the discount. |  
-| body | [BulkDiscount](#BulkDiscount) | yes | Request body |
-
-
-Create custom discounts through API.
-
-*Returned Response:*
-
-
-
-
-[Object](#Object)
-
-Success
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
 ### validateDiscountFile
 Validate File.
 
@@ -638,7 +579,7 @@ const data = await platformClient.discount.validateDiscountFile({  body : value,
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
 | discount | string | no | discount |  
-| body | [FileJobRequest](#FileJobRequest) | yes | Request body |
+| body | [DiscountJob](#DiscountJob) | yes | Request body |
 
 
 Validate File.
@@ -687,16 +628,6 @@ Success
 
 ---
 
-#### [BulkDiscount](#BulkDiscount)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | company_id | number |  no  |  |
- | items | [[DiscountItems](#DiscountItems)] |  no  |  |
- 
-
----
-
 #### [CancelJobResponse](#CancelJobResponse)
 
  | Properties | Type | Nullable | Description |
@@ -723,19 +654,6 @@ Success
  | store_ids | [number]? |  yes  |  |
  | validity | [ValidityObject](#ValidityObject) |  no  |  |
  | value | number? |  yes  |  |
- 
-
----
-
-#### [DiscountItems](#DiscountItems)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | brand_uid | number? |  yes  |  |
- | discount_type | string |  no  |  |
- | item_code | string? |  yes  |  |
- | seller_identifier | string? |  yes  |  |
- | value | number |  no  |  |
  
 
 ---
@@ -772,25 +690,6 @@ Success
  | ---------- | ---- | -------- | ----------- |
  | brand_ids | [number]? |  yes  |  |
  | store_ids | [number]? |  yes  |  |
- 
-
----
-
-#### [FileJobRequest](#FileJobRequest)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | app_ids | [string]? |  yes  |  |
- | brand_ids | [number]? |  yes  |  |
- | discount_level | string? |  yes  |  |
- | discount_type | string? |  yes  |  |
- | file_path | string? |  yes  |  |
- | is_active | boolean |  no  |  |
- | job_type | string? |  yes  |  |
- | meta | string? |  yes  |  |
- | name | string |  no  |  |
- | store_ids | [number]? |  yes  |  |
- | validity | [ValidityObject](#ValidityObject) |  no  |  |
  
 
 ---

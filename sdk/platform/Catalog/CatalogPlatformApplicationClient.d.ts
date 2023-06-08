@@ -6,14 +6,14 @@ declare class Catalog {
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.id - A `id` is a unique identifier of a collection.
-     * @param {CollectionItemUpdate} arg.body
+     * @param {CollectionItemRequest} arg.body
      * @returns {Promise<UpdatedResponse>} - Success response
      * @summary: Add items to a collection
      * @description: Adds items to a collection specified by its `id`. See `CollectionItemRequest` for the list of attributes needed to add items to an collection.
      */
     addCollectionItems({ id, body }?: {
         id: string;
-        body: CollectionItemUpdate;
+        body: CollectionItemRequest;
     }): Promise<UpdatedResponse>;
     /**
      * @param {Object} arg - Arg object.
@@ -263,13 +263,15 @@ declare class Catalog {
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.itemId - Product id for a particular product.
-     * @returns {Promise<OwnerAppItemResponse>} - Success response
+     * @param {string} arg.sliceAttr - Get product's data sliced by attribute
+     * @returns {Promise<ApplicationItemResponse>} - Success response
      * @summary: Get company application product data.
      * @description: Products are the core resource of an application. If successful, returns a Company Application Product resource in the response body depending upon filter sent.
      */
-    getAppProduct({ itemId }?: {
+    getAppProduct({ itemId, sliceAttr }?: {
         itemId: string;
-    }): Promise<OwnerAppItemResponse>;
+        sliceAttr: string;
+    }): Promise<ApplicationItemResponse>;
     /**
      * @param {Object} arg - Arg object.
      * @param {number[]} [arg.brandIds] - Get multiple products filtered by Brand Ids
@@ -278,7 +280,6 @@ declare class Catalog {
      * @param {number[]} [arg.departmentIds] - Get multiple products filtered by
      *   Department Ids
      * @param {string[]} [arg.tags] - Get multiple products filtered by tags
-     * @param {number[]} [arg.itemIds] - Get multiple products filtered by Item Ids
      * @param {number} [arg.pageNo] - The page number to navigate through the
      *   given set of results
      * @param {number} [arg.pageSize] - Number of items to retrieve in each
@@ -288,12 +289,11 @@ declare class Catalog {
      * @summary: Get applicationwise products
      * @description: Products are the core resource of an application. Products can be associated by categories, collections, brands and more. If successful, returns a Product resource in the response body specified in `ApplicationProductListingResponseDatabasePowered`
      */
-    getAppProducts({ brandIds, categoryIds, departmentIds, tags, itemIds, pageNo, pageSize, q, }?: {
+    getAppProducts({ brandIds, categoryIds, departmentIds, tags, pageNo, pageSize, q, }?: {
         brandIds?: number[];
         categoryIds?: number[];
         departmentIds?: number[];
         tags?: string[];
-        itemIds?: number[];
         pageNo?: number;
         pageSize?: number;
         q?: string;

@@ -11,20 +11,15 @@ Authentication Service
 * [archiveUser](#archiveuser)
 * [blockOrUnblockUsers](#blockorunblockusers)
 * [createUser](#createuser)
-* [createUserGroup](#createusergroup)
 * [createUserSession](#createusersession)
 * [deleteActiveSessions](#deleteactivesessions)
-* [deleteSession](#deletesession)
 * [getActiveSessions](#getactivesessions)
 * [getCustomers](#getcustomers)
 * [getPlatformConfig](#getplatformconfig)
-* [getUserGroupById](#getusergroupbyid)
-* [getUserGroups](#getusergroups)
 * [searchUsers](#searchusers)
 * [unDeleteUser](#undeleteuser)
 * [updatePlatformConfig](#updateplatformconfig)
 * [updateUser](#updateuser)
-* [updateUserGroup](#updateusergroup)
 
 
 
@@ -244,73 +239,6 @@ User create
 ---
 
 
-### createUserGroup
-Create an User Group
-
-
-
-```javascript
-// Promise
-const promise = platformClient.application("<APPLICATION_ID>").user.createUserGroup({  body : value });
-
-// Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").user.createUserGroup({  body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |
-| body | [CreateUserGroupSchema](#CreateUserGroupSchema) | yes | Request body |
-
-
-Use this API to create new user Group
-
-*Returned Response:*
-
-
-
-
-[UserGroupResponseSchema](#UserGroupResponseSchema)
-
-Success. returns created User Group. `UserGroupResponseSchema` for more details.
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "is_active": true,
-  "_id": "6345677535474fbb6944b7ce",
-  "name": "Group 1",
-  "description": "description",
-  "file_url": "url",
-  "status": "pending",
-  "uid": 1,
-  "application_id": "000000000000000000000001",
-  "created_at": "2022-10-11T12:54:13.539Z",
-  "modified_at": "2022-10-11T12:54:13.539Z",
-  "__v": 0
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
 ### createUserSession
 Create user session
 
@@ -381,12 +309,10 @@ Delete a list of all session for a user
 
 ```javascript
 // Promise
-const promise = platformClient.application("<APPLICATION_ID>").user.deleteActiveSessions({  id : value,
- reason : value });
+const promise = platformClient.application("<APPLICATION_ID>").user.deleteActiveSessions({  id : value });
 
 // Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").user.deleteActiveSessions({  id : value,
- reason : value });
+const data = await platformClient.application("<APPLICATION_ID>").user.deleteActiveSessions({  id : value });
 ```
 
 
@@ -395,8 +321,7 @@ const data = await platformClient.application("<APPLICATION_ID>").user.deleteAct
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
-| id | string | yes | ID of a customer. |   
-| reason | string | yes | Reason to delete sessions. |  
+| id | string | yes | ID of a customer. |  
 
 
 
@@ -446,83 +371,8 @@ Success. Refer `SessionDeleteResponseSchema` for more details.
 ---
 
 
-### deleteSession
-Delete a session for a user
-
-
-
-```javascript
-// Promise
-const promise = platformClient.application("<APPLICATION_ID>").user.deleteSession({  id : value,
- sessionId : value,
- reason : value });
-
-// Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").user.deleteSession({  id : value,
- sessionId : value,
- reason : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| id | string | yes | ID of a customer. |   
-| sessionId | string | yes | Session ID of a customer. |   
-| reason | string | yes | Reason for deleting session. |  
-
-
-
-Use this API to Delete a session of customers who have registered in the application.
-
-*Returned Response:*
-
-
-
-
-[SessionDeleteResponseSchema](#SessionDeleteResponseSchema)
-
-Success. Refer `SessionDeleteResponseSchema` for more details.
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; Success</i></summary>
-
-```json
-{
-  "value": {
-    "items": [
-      "sess:123",
-      "sess:456"
-    ]
-  }
-}
-```
-</details>
-
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
 ### getActiveSessions
-Get a list of all session with info for a user
+Get a list of all session for a user
 
 
 
@@ -544,7 +394,7 @@ const data = await platformClient.application("<APPLICATION_ID>").user.getActive
 
 
 
-Use this API to retrieve a list of session with info of customers who have registered in the application.
+Use this API to retrieve a list of session of customers who have registered in the application.
 
 *Returned Response:*
 
@@ -804,11 +654,6 @@ Success. Returns a JSON object containing the all the platform configurations. R
       "appId": "token_123"
     }
   },
-  "session_config": {
-    "duration": 30,
-    "type": "Days",
-    "is_rolling": false
-  },
   "delete_account_reasons": [
     {
       "reason_text": "test",
@@ -824,178 +669,6 @@ Success. Returns a JSON object containing the all the platform configurations. R
   "created_at": "2019-12-26T12:21:57.878Z",
   "updated_at": "2020-08-13T14:31:09.878Z",
   "__v": 0
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### getUserGroupById
-Get an User Group by Id
-
-
-
-```javascript
-// Promise
-const promise = platformClient.application("<APPLICATION_ID>").user.getUserGroupById({  groupId : value });
-
-// Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").user.getUserGroupById({  groupId : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| groupId | string | yes | Numeric ID allotted to a User Group |  
-
-
-
-Use this API to get details of an existing user Group
-
-*Returned Response:*
-
-
-
-
-[UserGroupResponseSchema](#UserGroupResponseSchema)
-
-Success. User Group details. `UserGroupResponseSchema` for more details.
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "is_active": true,
-  "_id": "6345677535474fbb6944b7ce",
-  "name": "Group 1",
-  "description": "description",
-  "file_url": "url",
-  "status": "pending",
-  "uid": 1,
-  "application_id": "000000000000000000000001",
-  "created_at": "2022-10-11T12:54:13.539Z",
-  "modified_at": "2022-10-11T12:54:13.539Z",
-  "__v": 0
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### getUserGroups
-Get User Groups mathcing criteria
-
-
-
-```javascript
-// Promise
-const promise = platformClient.application("<APPLICATION_ID>").user.getUserGroups({  pageNo : value,
- pageSize : value,
- name : value,
- status : value,
- groupUid : value });
-
-// Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").user.getUserGroups({  pageNo : value,
- pageSize : value,
- name : value,
- status : value,
- groupUid : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| pageNo | string | no | page number for pagination result |    
-| pageSize | string | no | page size for pagination result |    
-| name | string | no | to seartch for User Groups which contains given string in their name |    
-| status | string | no | to get User Groups with given status |    
-| groupUid | number | no | to get User Groups with given uid |  
-
-
-
-Use this API to get User Groups mathing criteria passed in query
-
-*Returned Response:*
-
-
-
-
-[UserGroupListResponseSchema](#UserGroupListResponseSchema)
-
-Success. User Group details. `UserGroupListResponseSchema` for more details.
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "items": [
-    {
-      "is_active": true,
-      "_id": "6345677535474fbb6944b7ce",
-      "name": "Group 1",
-      "description": "description",
-      "file_url": "url",
-      "status": "pending",
-      "uid": 1,
-      "application_id": "000000000000000000000001",
-      "created_at": "2022-10-11T12:54:13.539Z",
-      "modified_at": "2022-10-11T12:54:13.539Z",
-      "__v": 0
-    },
-    {
-      "is_active": true,
-      "_id": "6345677535474fbb6944b7ced",
-      "name": "Group 2",
-      "description": "description",
-      "file_url": "url2",
-      "status": "pending",
-      "uid": 1,
-      "application_id": "000000000000000000000001",
-      "created_at": "2022-10-11T12:54:13.539Z",
-      "modified_at": "2022-10-11T12:54:13.539Z",
-      "__v": 0
-    }
-  ],
-  "page": {
-    "type": "number",
-    "current": 1,
-    "size": 10,
-    "item_total": 0,
-    "has_next": false
-  }
 }
 ```
 </details>
@@ -1267,11 +940,6 @@ Success. Returns a JSON object with the updated platform configurations. Refer `
       "appId": "token_123"
     }
   },
-  "session_config": {
-    "duration": 30,
-    "type": "Days",
-    "is_rolling": false
-  },
   "delete_account_reasons": [
     {
       "reason_text": "test",
@@ -1327,7 +995,7 @@ const data = await platformClient.application("<APPLICATION_ID>").user.updateUse
 | body | [UpdateUserRequestSchema](#UpdateUserRequestSchema) | yes | Request body |
 
 
-Use this API to update user details, Note: Existing emails and phone numbers of user will be replaced directly if phone_numbers or emails field sent in request data.
+Update user
 
 *Returned Response:*
 
@@ -1387,76 +1055,6 @@ User update
     "created_at": "2020-03-11T09:28:41.982Z",
     "updated_at": "2020-03-11T09:28:41.982Z"
   }
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### updateUserGroup
-Update an User Group
-
-
-
-```javascript
-// Promise
-const promise = platformClient.application("<APPLICATION_ID>").user.updateUserGroup({  groupId : value,
- body : value });
-
-// Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").user.updateUserGroup({  groupId : value,
- body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| groupId | string | yes | Numeric ID allotted to a User Group |  
-| body | [UpdateUserGroupSchema](#UpdateUserGroupSchema) | yes | Request body |
-
-
-Use this API to update an existing user Group
-
-*Returned Response:*
-
-
-
-
-[UserGroupResponseSchema](#UserGroupResponseSchema)
-
-Success. returns updated User Group. `UserGroupResponseSchema` for more details.
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "is_active": true,
-  "_id": "6345677535474fbb6944b7ce",
-  "name": "Group 1",
-  "description": "description",
-  "file_url": "url",
-  "status": "pending",
-  "uid": 1,
-  "application_id": "000000000000000000000001",
-  "created_at": "2022-10-11T12:54:13.539Z",
-  "modified_at": "2022-10-11T12:54:13.539Z",
-  "__v": 0
 }
 ```
 </details>
@@ -1595,17 +1193,6 @@ Success. returns updated User Group. `UserGroupResponseSchema` for more details.
 
 ---
 
-#### [CreateUserGroupSchema](#CreateUserGroupSchema)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | description | string |  no  |  |
- | file_url | string |  no  |  |
- | name | string |  no  |  |
- 
-
----
-
 #### [CreateUserRequestSchema](#CreateUserRequestSchema)
 
  | Properties | Type | Nullable | Description |
@@ -1660,6 +1247,16 @@ Success. returns updated User Group. `UserGroupResponseSchema` for more details.
  | ---------- | ---- | -------- | ----------- |
  | items | [[UserSchema](#UserSchema)]? |  yes  |  |
  | page | [PaginationSchema](#PaginationSchema)? |  yes  |  |
+ 
+
+---
+
+#### [Debug](#Debug)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | platform | string? |  yes  |  |
+ | source | string? |  yes  |  |
  
 
 ---
@@ -2068,7 +1665,6 @@ Success. returns updated User Group. `UserGroupResponseSchema` for more details.
  | register | boolean? |  yes  |  |
  | register_required_fields | [RegisterRequiredFields](#RegisterRequiredFields)? |  yes  |  |
  | required_fields | [RequiredFields](#RequiredFields)? |  yes  |  |
- | session_config | string? |  yes  |  |
  | skip_captcha | boolean? |  yes  |  |
  | skip_login | boolean? |  yes  |  |
  | social | [Social](#Social)? |  yes  |  |
@@ -2308,35 +1904,11 @@ Success. returns updated User Group. `UserGroupResponseSchema` for more details.
 
 ---
 
-#### [SessionExpiry](#SessionExpiry)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | duration | number? |  yes  |  |
- | is_rolling | boolean? |  yes  |  |
- | type | string? |  yes  |  |
- 
-
----
-
-#### [SessionListResponseInfo](#SessionListResponseInfo)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | domain | string? |  yes  |  |
- | expire_in | string? |  yes  |  |
- | ip | string? |  yes  |  |
- | session_id | string? |  yes  |  |
- | user_agent | string? |  yes  |  |
- 
-
----
-
 #### [SessionListResponseSchema](#SessionListResponseSchema)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | items | [[SessionListResponseInfo](#SessionListResponseInfo)]? |  yes  |  |
+ | items | [string]? |  yes  |  |
  
 
 ---
@@ -2430,68 +2002,15 @@ Success. returns updated User Group. `UserGroupResponseSchema` for more details.
 
 ---
 
-#### [UpdateUserGroupSchema](#UpdateUserGroupSchema)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | description | string? |  yes  |  |
- | file_url | string? |  yes  |  |
- | name | string? |  yes  |  |
- 
-
----
-
 #### [UpdateUserRequestSchema](#UpdateUserRequestSchema)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | emails | [[UserEmails](#UserEmails)]? |  yes  |  |
  | external_id | string? |  yes  |  |
  | first_name | string? |  yes  |  |
  | gender | string? |  yes  |  |
  | last_name | string? |  yes  |  |
  | meta | string? |  yes  |  |
- | phone_numbers | [[UserPhoneNumbers](#UserPhoneNumbers)]? |  yes  |  |
- 
-
----
-
-#### [UserEmails](#UserEmails)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | active | boolean? |  yes  |  |
- | email | string? |  yes  |  |
- | primary | boolean? |  yes  |  |
- | verified | boolean? |  yes  |  |
- 
-
----
-
-#### [UserGroupListResponseSchema](#UserGroupListResponseSchema)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | items | [[UserGroupResponseSchema](#UserGroupResponseSchema)]? |  yes  |  |
- | page | [PaginationSchema](#PaginationSchema)? |  yes  |  |
- 
-
----
-
-#### [UserGroupResponseSchema](#UserGroupResponseSchema)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | __v | number? |  yes  |  |
- | _id | string? |  yes  |  |
- | application_id | string? |  yes  |  |
- | created_at | string? |  yes  |  |
- | description | string? |  yes  |  |
- | file_url | string? |  yes  |  |
- | modified_at | string? |  yes  |  |
- | name | string? |  yes  |  |
- | status | string? |  yes  |  |
- | uid | number? |  yes  |  |
  
 
 ---
@@ -2505,19 +2024,6 @@ Success. returns updated User Group. `UserGroupResponseSchema` for more details.
 
 ---
 
-#### [UserPhoneNumbers](#UserPhoneNumbers)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | active | boolean? |  yes  |  |
- | country_code | string? |  yes  |  |
- | phone | string? |  yes  |  |
- | primary | boolean? |  yes  |  |
- | verified | boolean? |  yes  |  |
- 
-
----
-
 #### [UserSchema](#UserSchema)
 
  | Properties | Type | Nullable | Description |
@@ -2527,10 +2033,12 @@ Success. returns updated User Group. `UserGroupResponseSchema` for more details.
  | active | boolean? |  yes  |  |
  | application_id | string? |  yes  |  |
  | created_at | string? |  yes  |  |
+ | debug | [Debug](#Debug)? |  yes  |  |
  | dob | string? |  yes  |  |
  | emails | [[Email](#Email)]? |  yes  |  |
  | first_name | string? |  yes  |  |
  | gender | string? |  yes  |  |
+ | has_old_password_hash | boolean? |  yes  |  |
  | last_name | string? |  yes  |  |
  | meta | string? |  yes  |  |
  | phone_numbers | [[PhoneNumber](#PhoneNumber)]? |  yes  |  |

@@ -14,12 +14,6 @@ class ShareValidator {
     }).required();
   }
 
-  static getShortLinkClickStats() {
-    return Joi.object({
-      surlId: Joi.string().allow("").required(),
-    }).required();
-  }
-
   static getShortLinks() {
     return Joi.object({
       pageNo: Joi.number(),

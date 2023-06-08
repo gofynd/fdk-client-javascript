@@ -167,6 +167,7 @@ class InventoryModel {
   static GCompany() {
     return Joi.object({
       _id: Joi.string().allow(""),
+      gstores: Joi.array().items(InventoryModel.GStore()),
       integration: Joi.string().allow(""),
       level: Joi.string().allow(""),
       name: Joi.string().allow(""),
@@ -435,6 +436,7 @@ class InventoryModel {
       ignore_if_not_exists: Joi.boolean(),
       include: Joi.boolean(),
       index_field: Joi.string().allow(""),
+      mapping: Joi.object().pattern(/\S/, Joi.link("#PropBeanConfig")),
       optional: Joi.boolean(),
       projection_query: Joi.object().pattern(/\S/, Joi.any()),
       required: Joi.boolean(),

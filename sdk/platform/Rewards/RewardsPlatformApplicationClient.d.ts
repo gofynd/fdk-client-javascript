@@ -5,16 +5,14 @@ declare class Rewards {
     applicationId: any;
     /**
      * @param {Object} arg - Arg object.
-     * @param {string} arg.id - Giveaway ID
-     * @param {string} arg.audienceId - Audience id
-     * @returns {Promise<GiveawayAudience>} - Success response
-     * @summary: Get the Giveaway audience status
-     * @description: Get giveaway audience status
+     * @param {Giveaway} arg.body
+     * @returns {Promise<Giveaway>} - Success response
+     * @summary: Adds a new giveaway.
+     * @description: Adds a new giveaway.
      */
-    getGiveawayAudienceStatus({ id, audienceId }?: {
-        id: string;
-        audienceId: string;
-    }): Promise<GiveawayAudience>;
+    createGiveaway({ body }?: {
+        body: Giveaway;
+    }): Promise<Giveaway>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.id - Giveaway ID
@@ -22,34 +20,63 @@ declare class Rewards {
      * @summary: Get giveaway by ID.
      * @description: Get giveaway by ID.
      */
-    getGiveawayById({ id }?: {
+    getGiveawayByID({ id }?: {
         id: string;
     }): Promise<Giveaway>;
     /**
      * @param {Object} arg - Arg object.
-     * @param {string} arg.name - The name given to the offer.
-     * @returns {Promise<Offer>} - Success response
-     * @summary: Get offer by name
-     * @description: Use this API to get the offer details and configuration by entering the name of the offer.
+     * @param {string} [arg.pageId] - Pagination page id
+     * @param {number} [arg.pageSize] - Pagination page size
+     * @returns {Promise<GiveawayResponse>} - Success response
+     * @summary: List of giveaways of the current application.
+     * @description: List of giveaways of the current application.
      */
-    getOfferByName({ name }?: {
+    getGiveaways({ pageId, pageSize }?: {
+        pageId?: string;
+        pageSize?: number;
+    }): Promise<GiveawayResponse>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {string} arg.companyId - Company id
+     * @param {string} arg.applicationId - Application id
+     * @param {number} [arg.pageSize] - Pagination page size
+     * @summary: List of giveaways of the current application.
+     * @description: List of giveaways of the current application.
+     */
+    getGiveawaysPaginator({ companyId, applicationId, pageSize }?: {
+        companyId: string;
+        applicationId: string;
+        pageSize?: number;
+    }): Paginator;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {string} arg.cookie - User's session cookie. This cookie is set in
+     *   browser cookie when logged-in to fynd's authentication system i.e.
+     *   `Grimlock` or by using grimlock-backend SDK for backend implementation.
+     * @param {string} arg.name - Offer name
+     * @returns {Promise<Offer>} - Success response
+     * @summary: Get offer by name.
+     * @description: Get offer by name.
+     */
+    getOfferByName({ cookie, name }?: {
+        cookie: string;
         name: string;
     }): Promise<Offer>;
     /**
      * @param {Object} arg - Arg object.
-     * @returns {Promise<ConfigurationRes>} - Success response
-     * @summary: Get all valid android paths
-     * @description: Use this API to get a list of valid android paths required by the Rewards INIT API to validate a fradualent device.
+     * @returns {Promise<Offer[]>} - Success response
+     * @summary: List of offer of the current application.
+     * @description: List of offer of the current application.
      */
-    getRewardsConfiguration({}?: any): Promise<ConfigurationRes>;
+    getOffers({}?: any): Promise<Offer[]>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.userId - User id
      * @returns {Promise<UserRes>} - Success response
-     * @summary: Get user reward details
-     * @description: Use this API to get the user reward details
+     * @summary: User's reward details.
+     * @description: User's reward details.
      */
-    getUserDetails({ userId }?: {
+    getUserAvailablePoints({ userId }?: {
         userId: string;
     }): Promise<UserRes>;
     /**
@@ -57,70 +84,38 @@ declare class Rewards {
      * @param {string} arg.userId - User id
      * @param {string} [arg.pageId] - PageID is the ID of the requested page.
      *   For first request it should be kept empty.
-     * @param {number} [arg.pageSize] - The number of items to retrieve in each page.
+     * @param {number} [arg.pageLimit] - PageLimit is the number of requested
+     *   items in response.
+     * @param {number} [arg.pageSize] - PageSize is the number of requested
+     *   items in response.
      * @returns {Promise<HistoryRes>} - Success response
-     * @summary: Get all transactions of reward points
-     * @description: Use this API to get a list of points transactions.
+     * @summary: Get list of points transactions.
+     * @description: Get list of points transactions.
+     * The list of points history is paginated.
      */
-    getUserPointsHistory({ userId, pageId, pageSize, }?: {
+    getUserPointsHistory({ userId, pageId, pageLimit, pageSize }?: {
         userId: string;
         pageId?: string;
+        pageLimit?: number;
         pageSize?: number;
     }): Promise<HistoryRes>;
     /**
      * @param {Object} arg - Arg object.
-     * @param {string} arg.userId - User id
      * @param {string} arg.companyId - Company id
      * @param {string} arg.applicationId - Application id
-     * @param {number} [arg.pageSize] - The number of items to retrieve in each page.
-     * @summary: Get all transactions of reward points
-     * @description: Use this API to get a list of points transactions.
+     * @param {string} arg.userId - User id
+     * @param {number} [arg.pageSize] - PageSize is the number of requested
+     *   items in response.
+     * @summary: Get list of points transactions.
+     * @description: Get list of points transactions.
+     * The list of points history is paginated.
      */
-    getUserPointsHistoryPaginator({ userId, companyId, applicationId, pageSize, }?: {
-        userId: string;
+    getUserPointsHistoryPaginator({ companyId, applicationId, userId, pageSize, }?: {
         companyId: string;
         applicationId: string;
+        userId: string;
         pageSize?: number;
     }): Paginator;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {Giveaway} arg.body
-     * @returns {Promise<Giveaway>} - Success response
-     * @summary: List of giveaways of the current application.
-     * @description: Adds a new giveaway.
-     */
-    saveGiveAway({ body }?: {
-        body: Giveaway;
-    }): Promise<Giveaway>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {ConfigurationRequest} arg.body
-     * @returns {Promise<SetConfigurationRes>} - Success response
-     * @summary: Updates the collection with given android paths.
-     * @description: Updates the configuration or inserts new records.
-     */
-    setRewardsConfiguration({ body }?: {
-        body: ConfigurationRequest;
-    }): Promise<SetConfigurationRes>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.pageId - Pagination page id
-     * @param {number} arg.pageSize - Pagination page size
-     * @returns {Promise<GiveawayResponse>} - Success response
-     * @summary: List of giveaways of the current application.
-     * @description: List of giveaways of the current application.
-     */
-    showGiveaways({ pageId, pageSize }?: {
-        pageId: string;
-        pageSize: number;
-    }): Promise<GiveawayResponse>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @returns {Promise<Offer[]>} - Success response
-     * @summary: List of offers of the current application.
-     * @description: List of offers of the current application.
-     */
-    showOffers({}?: any): Promise<Offer[]>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.id - Giveaway ID
@@ -129,19 +124,19 @@ declare class Rewards {
      * @summary: Updates the giveaway by it's ID.
      * @description: Updates the giveaway by it's ID.
      */
-    updateGiveAway({ id, body }?: {
+    updateGiveaway({ id, body }?: {
         id: string;
         body: Giveaway;
     }): Promise<Giveaway>;
     /**
      * @param {Object} arg - Arg object.
-     * @param {string} arg.name - The name given to the offer.
+     * @param {string} arg.name - Offer name
      * @param {Offer} arg.body
      * @returns {Promise<Offer>} - Success response
-     * @summary: Update offer by name
-     * @description: Use this API to update the offer details
+     * @summary: Updates the offer by name.
+     * @description: Updates the offer by name.
      */
-    updateOfferByName({ name, body, }?: {
+    updateOfferByName({ name, body }?: {
         name: string;
         body: Offer;
     }): Promise<Offer>;
@@ -150,10 +145,10 @@ declare class Rewards {
      * @param {string} arg.userId - User id
      * @param {AppUser} arg.body
      * @returns {Promise<AppUser>} - Success response
-     * @summary: Update user status
-     * @description: Use this API to update the user status active/archive
+     * @summary: Update User status
+     * @description: Update user status, active/archive
      */
-    updateUserStatus({ userId, body, }?: {
+    updateUserStatus({ userId, body }?: {
         userId: string;
         body: AppUser;
     }): Promise<AppUser>;

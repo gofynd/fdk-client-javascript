@@ -114,7 +114,7 @@ class Content {
     const response = await PlatformAPIClient.execute(
       this.config,
       "post",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/faq/category/${categoryId}/faq`,
+      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/faq/category/${categoryId}/faqs`,
       query_params,
       body
     );
@@ -1762,66 +1762,6 @@ class Content {
 
   /**
    * @param {Object} arg - Arg object.
-   * @param {string} arg.slug - A short, human-readable, URL-friendly
-   *   identifier of a blog page. You can get slug value of a blog from `getBlogs` API.
-   * @returns {Promise<BlogSchema>} - Success response
-   * @summary: Get blog by slug
-   * @description: Use this API to retrieve the components of a blog, such as title, slug, feature image, content, schedule, publish status, author, etc.
-   */
-  async getBlogBySlug({ slug } = {}) {
-    const { error } = ContentValidator.getBlogBySlug().validate(
-      {
-        slug,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = ContentValidator.getBlogBySlug().validate(
-      {
-        slug,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: "Parameter Validation warrnings for getBlogBySlug",
-      });
-      Logger({ level: "WARN", message: warrning });
-    }
-
-    const query_params = {};
-
-    const response = await PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/content/v2.0/company/${this.config.companyId}/application/${this.applicationId}/blogs/${slug}`,
-      query_params,
-      undefined
-    );
-
-    const { error: res_error } = ContentModel.BlogSchema().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
-
-    if (res_error) {
-      Logger({
-        level: "WARN",
-        message: "Response Validation Warnnings for getBlogBySlug",
-      });
-      Logger({ level: "WARN", message: res_error });
-    }
-
-    return response;
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
    * @param {number} [arg.pageNo] - The page number to navigate through the
    *   given set of results. Default value is 1.
    * @param {number} [arg.pageSize] - The number of items to retrieve in each
@@ -2743,7 +2683,7 @@ class Content {
    * @param {string} arg.slug - A short, human-readable, URL-friendly
    *   identifier of a page. You can get slug value of a page from `getPages` API.
    * @returns {Promise<PageSchema>} - Success response
-   * @summary: Get page by slug
+   * @summary: Get pages by component Id
    * @description: Use this API to retrieve the components of a page, such as its title, seo, publish status, feature image, tags, schedule, etc.
    */
   async getPageBySlug({ slug } = {}) {

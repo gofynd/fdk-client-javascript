@@ -162,6 +162,16 @@ declare class CompanyProfile {
     }): Paginator;
     /**
      * @param {Object} arg - Arg object.
+     * @param {AssignStoreRequestValidator} arg.body
+     * @returns {Promise<AssignStoreResponseSerializer>} - Success response
+     * @summary: Location Reassignment
+     * @description:
+     */
+    getOptimalLocations({ body }?: {
+        body: AssignStoreRequestValidator;
+    }): Promise<AssignStoreResponseSerializer>;
+    /**
+     * @param {Object} arg - Arg object.
      * @param {UpdateCompany} arg.body
      * @returns {Promise<ProfileSuccessResponse>} - Success response
      * @summary: Edit company profile

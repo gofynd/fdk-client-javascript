@@ -43,8 +43,6 @@ declare class ConfigurationModel {
     static CartFeature(): any;
     static Charges(): any;
     static CommonFeature(): any;
-    static CommsConfig(): any;
-    static CommunicationConfig(): any;
     static CommunicationOptinDialogFeature(): any;
     static CompaniesResponse(): any;
     static CompanyAboutAddress(): any;

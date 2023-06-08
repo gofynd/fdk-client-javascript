@@ -11,22 +11,16 @@ Cart APIs
 * [addItems](#additems)
 * [checkCartServiceability](#checkcartserviceability)
 * [checkoutCart](#checkoutcart)
-* [createCartMetaConfig](#createcartmetaconfig)
 * [createCoupon](#createcoupon)
 * [createPromotion](#createpromotion)
 * [fetchAndvalidateCartItems](#fetchandvalidatecartitems)
-* [fetchCartMetaConfig](#fetchcartmetaconfig)
 * [getAbandonedCart](#getabandonedcart)
 * [getAbandonedCartDetails](#getabandonedcartdetails)
 * [getCouponById](#getcouponbyid)
-* [getCouponCodeExists](#getcouponcodeexists)
-* [getCouponOptionValues](#getcouponoptionvalues)
 * [getCoupons](#getcoupons)
 * [getPromotionById](#getpromotionbyid)
-* [getPromotionCodeExists](#getpromotioncodeexists)
 * [getPromotions](#getpromotions)
 * [updateCart](#updatecart)
-* [updateCartMetaConfig](#updatecartmetaconfig)
 * [updateCoupon](#updatecoupon)
 * [updateCouponPartially](#updatecouponpartially)
 * [updatePromotion](#updatepromotion)
@@ -1390,77 +1384,6 @@ Checkout cart and create Fynd order id
 ---
 
 
-### createCartMetaConfig
-Create new cart meta configuration
-
-
-
-```javascript
-// Promise
-const promise = platformClient.application("<APPLICATION_ID>").cart.createCartMetaConfig({  body : value });
-
-// Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").cart.createCartMetaConfig({  body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |
-| body | [CartMetaConfigAdd](#CartMetaConfigAdd) | yes | Request body |
-
-
-Create new cart meta configuration
-
-*Returned Response:*
-
-
-
-
-[CartMetaConfigAdd](#CartMetaConfigAdd)
-
-Cart Meta Config Created successfully
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "_id": "645ba594d414eb0669e6ee14",
-  "app_id": "60792ded7826bd09330ed90d",
-  "company_id": 884,
-  "bulk_coupons": false,
-  "delivery_charges": {
-    "charges": [],
-    "enabled": false
-  },
-  "empty_cart": false,
-  "enabled": true,
-  "max_cart_items": 50,
-  "min_cart_value": 0,
-  "revenue_engine_coupon": false,
-  "gift_pricing": 50,
-  "gift_display_text": ""
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
 ### createCoupon
 Create new coupon
 
@@ -2002,73 +1925,6 @@ Cart details with breakup
       "you_saved": 0
     }
   }
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### fetchCartMetaConfig
-Fetch cart meta configuration
-
-
-
-```javascript
-// Promise
-const promise = platformClient.application("<APPLICATION_ID>").cart.fetchCartMetaConfig();
-
-// Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").cart.fetchCartMetaConfig();
-```
-
-
-
-
-
-
-Fetch cart meta configuration
-
-*Returned Response:*
-
-
-
-
-[CartMetaConfigAdd](#CartMetaConfigAdd)
-
-Cart Meta Config Fetched successfully
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "_id": "645ba594d414eb0669e6ee14",
-  "app_id": "60792ded7826bd09330ed90d",
-  "company_id": 884,
-  "bulk_coupons": false,
-  "delivery_charges": {
-    "charges": [],
-    "enabled": false
-  },
-  "empty_cart": false,
-  "enabled": true,
-  "max_cart_items": 50,
-  "min_cart_value": 0,
-  "revenue_engine_coupon": false,
-  "gift_pricing": 50,
-  "gift_display_text": ""
 }
 ```
 </details>
@@ -2744,183 +2600,6 @@ Coupon object for sent `id`
 ---
 
 
-### getCouponCodeExists
-Check if coupon is already created with coupon code
-
-
-
-```javascript
-// Promise
-const promise = platformClient.application("<APPLICATION_ID>").cart.getCouponCodeExists({  code : value });
-
-// Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").cart.getCouponCodeExists({  code : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| code | string | no |  |  
-
-
-
-Check if sent coupon code is already existing coupon code. As coupon code is to be unique.
-
-*Returned Response:*
-
-
-
-
-[Object](#Object)
-
-Valid response with existing coupon code count
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; Coupon code exists</i></summary>
-
-```json
-{
-  "value": {
-    "success": true,
-    "count": 1
-  }
-}
-```
-</details>
-
-<details>
-<summary><i>&nbsp; Coupon code is new</i></summary>
-
-```json
-{
-  "value": {
-    "success": true,
-    "count": 0
-  }
-}
-```
-</details>
-
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### getCouponOptionValues
-Get coupon options enums with display values
-
-
-
-```javascript
-// Promise
-const promise = platformClient.application("<APPLICATION_ID>").cart.getCouponOptionValues();
-
-// Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").cart.getCouponOptionValues();
-```
-
-
-
-
-
-
-Get coupon enum values for fields in valid coupon object. Used for front end to create, update and filter coupon lists via fields
-
-*Returned Response:*
-
-
-
-
-[Object](#Object)
-
-Coupon options enums
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "types": {
-    "absolute": "Absolute",
-    "percentage": "Percentage",
-    "bogo": "BOGO",
-    "bundle": "Bundle"
-  },
-  "scopes": {
-    "category_id": "Categories",
-    "brand_id": "Brands",
-    "company_id": "Sellers",
-    "store_id": "Stores",
-    "collection_id": "Collections"
-  },
-  "applicable_on": {
-    "amount": "Amount",
-    "quantity": "Quantity"
-  },
-  "value_types": {
-    "absolute": "Absolute",
-    "percentage": "Percentage",
-    "quantity": "Quantity",
-    "flat_price": "Absolute Price"
-  },
-  "calculate_on": {
-    "mrp": "MRP",
-    "esp": "ESP",
-    "tp": "TP"
-  },
-  "payable_category": {
-    "fynd": "Fynd",
-    "seller": "Seller"
-  },
-  "txn_mode": {
-    "fynd_cash": "Fynd Cash",
-    "cash": "Cashback",
-    "coupon": "Coupon Discount"
-  },
-  "payable_by": {
-    "Fynd Marketing": "Fynd Marketing",
-    "Fynd": "Fynd",
-    "Fynd Store": "Fynd Store",
-    "Fynd Delights": "Fynd Delights",
-    "Fynd Ops": "Fynd Ops",
-    "Fynd Inventory": "Fynd Inventory"
-  }
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
 ### getCoupons
 Get with single coupon details or coupon list
 
@@ -3207,86 +2886,6 @@ Promotion object for sent `id`
   }
 }
 ```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### getPromotionCodeExists
-Check if promotion is already created with promotion code
-
-
-
-```javascript
-// Promise
-const promise = platformClient.application("<APPLICATION_ID>").cart.getPromotionCodeExists({  code : value });
-
-// Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").cart.getPromotionCodeExists({  code : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| code | string | no |  |  
-
-
-
-Check if sent promotion code is already existing promotion code. As promotion code is to be unique.
-
-*Returned Response:*
-
-
-
-
-[Object](#Object)
-
-Valid response with existing promotion code count
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; Promotion code exists</i></summary>
-
-```json
-{
-  "value": {
-    "success": true,
-    "count": 1
-  }
-}
-```
-</details>
-
-<details>
-<summary><i>&nbsp; Promotion code is new</i></summary>
-
-```json
-{
-  "value": {
-    "success": true,
-    "count": 0
-  }
-}
-```
-</details>
-
 </details>
 
 
@@ -3992,80 +3591,6 @@ Success. Updates and returns a cart object as shown below. Refer `UpdateCartDeta
 ---
 
 
-### updateCartMetaConfig
-Update cart meta configuration
-
-
-
-```javascript
-// Promise
-const promise = platformClient.application("<APPLICATION_ID>").cart.updateCartMetaConfig({  cartMetaId : value,
- body : value });
-
-// Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").cart.updateCartMetaConfig({  cartMetaId : value,
- body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| cartMetaId | string | yes |  |  
-| body | [CartMetaConfigUpdate](#CartMetaConfigUpdate) | yes | Request body |
-
-
-Update cart meta configuration
-
-*Returned Response:*
-
-
-
-
-[CartMetaConfigUpdate](#CartMetaConfigUpdate)
-
-Cart Meta Config Created successfully
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "_id": "645ba594d414eb0669e6ee14",
-  "app_id": "60792ded7826bd09330ed90d",
-  "company_id": 884,
-  "bulk_coupons": false,
-  "delivery_charges": {
-    "charges": [],
-    "enabled": false
-  },
-  "empty_cart": false,
-  "enabled": true,
-  "max_cart_items": 50,
-  "min_cart_value": 0,
-  "revenue_engine_coupon": false,
-  "gift_pricing": 50,
-  "gift_display_text": ""
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
 ### updateCoupon
 Update existing coupon configuration
 
@@ -4555,14 +4080,14 @@ Promotion updated successfully
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | _custom_json | string? |  yes  |  |
  | article_assignment | string? |  yes  |  |
  | article_id | string? |  yes  |  |
  | display | string? |  yes  |  |
  | extra_meta | string? |  yes  |  |
  | item_id | number? |  yes  |  |
  | item_size | string? |  yes  |  |
- | parent_item_identifiers | [[String: string]]? |  yes  |  |
+ | meta | string? |  yes  |  |
+ | parent_item_identifiers | string? |  yes  |  |
  | pos | boolean? |  yes  |  |
  | product_group_tags | [string]? |  yes  |  |
  | quantity | number? |  yes  |  |
@@ -4580,7 +4105,6 @@ Promotion updated successfully
  | article_quantity | number? |  yes  | Quantity of article on which promotion is applicable |
  | mrp_promotion | boolean? |  yes  | If applied promotion is applied on product MRP or ESP |
  | offer_text | string? |  yes  | Offer text of current promotion |
- | ownership | [Ownership2](#Ownership2)? |  yes  | Ownership of promotion |
  | promo_id | string? |  yes  | Promotion id |
  | promotion_type | string? |  yes  | Promotion type of current promotion |
  
@@ -4654,7 +4178,6 @@ Promotion updated successfully
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | applied_promo_details | [[AppliedPromotion](#AppliedPromotion)]? |  yes  |  |
  | breakup_values | [CartBreakup](#CartBreakup)? |  yes  |  |
  | buy_now | boolean? |  yes  |  |
  | checkout_mode | string? |  yes  |  |
@@ -4696,38 +4219,6 @@ Promotion updated successfully
 
 ---
 
-#### [CartMetaConfigAdd](#CartMetaConfigAdd)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | bulk_coupons | boolean? |  yes  |  |
- | delivery_charges | [DeliveryCharges](#DeliveryCharges)? |  yes  |  |
- | enabled | boolean? |  yes  |  |
- | gift_display_text | string? |  yes  |  |
- | gift_pricing | number? |  yes  |  |
- | max_cart_items | number? |  yes  |  |
- | min_cart_value | number? |  yes  |  |
- | revenue_engine_coupon | boolean? |  yes  |  |
- 
-
----
-
-#### [CartMetaConfigUpdate](#CartMetaConfigUpdate)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | bulk_coupons | boolean? |  yes  |  |
- | delivery_charges | [DeliveryCharges](#DeliveryCharges)? |  yes  |  |
- | enabled | boolean? |  yes  |  |
- | gift_display_text | string? |  yes  |  |
- | gift_pricing | number? |  yes  |  |
- | max_cart_items | number? |  yes  |  |
- | min_cart_value | number? |  yes  |  |
- | revenue_engine_coupon | boolean? |  yes  |  |
- 
-
----
-
 #### [CartProduct](#CartProduct)
 
  | Properties | Type | Nullable | Description |
@@ -4761,13 +4252,11 @@ Promotion updated successfully
  | availability | [ProductAvailability](#ProductAvailability)? |  yes  |  |
  | bulk_offer | string? |  yes  |  |
  | coupon_message | string? |  yes  |  |
- | delivery_promise | [ShipmentPromise](#ShipmentPromise)? |  yes  |  |
  | discount | string? |  yes  |  |
  | identifiers | [CartProductIdentifer](#CartProductIdentifer) |  no  |  |
  | is_set | boolean? |  yes  |  |
  | key | string? |  yes  |  |
  | message | string? |  yes  |  |
- | moq | string? |  yes  |  |
  | parent_item_identifiers | string? |  yes  |  |
  | price | [ProductPriceInfo](#ProductPriceInfo)? |  yes  |  |
  | price_per_unit | [ProductPriceInfo](#ProductPriceInfo)? |  yes  |  |
@@ -4785,16 +4274,6 @@ Promotion updated successfully
  | ---------- | ---- | -------- | ----------- |
  | name | string? |  yes  |  |
  | uid | number? |  yes  | Product Category Id |
- 
-
----
-
-#### [Charges](#Charges)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | charges | number? |  yes  |  |
- | threshold | number? |  yes  |  |
  
 
 ---
@@ -4933,16 +4412,6 @@ Promotion updated successfully
  | type_slug | string |  no  |  |
  | validation | [Validation](#Validation)? |  yes  |  |
  | validity | [Validity](#Validity) |  no  |  |
- 
-
----
-
-#### [DeliveryCharges](#DeliveryCharges)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | charges | [[Charges](#Charges)]? |  yes  |  |
- | enabled | boolean? |  yes  |  |
  
 
 ---
@@ -5105,7 +4574,7 @@ Promotion updated successfully
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | cart_items | [[CartItem](#CartItem)] |  no  |  |
+ | cart_items | [CartItem](#CartItem)? |  yes  |  |
  
 
 ---
@@ -5126,7 +4595,7 @@ Promotion updated successfully
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | cart_items | [[CartItem](#CartItem)] |  no  |  |
+ | cart_items | [CartItem](#CartItem)? |  yes  |  |
  | shipping_address | [ShippingAddress](#ShippingAddress) |  no  |  |
  
 
@@ -5261,16 +4730,6 @@ Promotion updated successfully
 
 ---
 
-#### [Ownership2](#Ownership2)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | payable_by | string? |  yes  | promo amount bearable party |
- | payable_category | string? |  yes  | promo amount payable category |
- 
-
----
-
 #### [Page](#Page)
 
  | Properties | Type | Nullable | Description |
@@ -5374,8 +4833,8 @@ Promotion updated successfully
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | _custom_json | string? |  yes  |  |
  | extra_meta | string? |  yes  |  |
+ | meta | string? |  yes  |  |
  | parent_item_identifiers | string? |  yes  |  |
  | price | [ArticlePriceInfo](#ArticlePriceInfo)? |  yes  |  |
  | product_group_tags | [string]? |  yes  |  |
@@ -5393,23 +4852,11 @@ Promotion updated successfully
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | available_sizes | [[ProductAvailabilitySize](#ProductAvailabilitySize)]? |  yes  |  |
  | deliverable | boolean? |  yes  |  |
  | is_valid | boolean? |  yes  |  |
  | other_store_quantity | number? |  yes  |  |
  | out_of_stock | boolean? |  yes  |  |
  | sizes | [string]? |  yes  |  |
- 
-
----
-
-#### [ProductAvailabilitySize](#ProductAvailabilitySize)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | display | string? |  yes  |  |
- | is_available | boolean? |  yes  |  |
- | value | string? |  yes  |  |
  
 
 ---
@@ -5683,7 +5130,6 @@ Promotion updated successfully
  | ---------- | ---- | -------- | ----------- |
  | anonymous_users | boolean? |  yes  |  |
  | order_quantity | number? |  yes  |  |
- | ordering_stores | [number]? |  yes  |  |
  | payments | [[PromotionPaymentModes](#PromotionPaymentModes)]? |  yes  |  |
  | platforms | [string]? |  yes  |  |
  | post_order | [PostOrder1](#PostOrder1)? |  yes  |  |
@@ -5746,8 +5192,6 @@ Promotion updated successfully
  | city | string? |  yes  |  |
  | country | string? |  yes  |  |
  | country_code | string? |  yes  |  |
- | country_iso_code | string? |  yes  |  |
- | country_phone_code | string? |  yes  |  |
  | email | string? |  yes  |  |
  | landmark | string? |  yes  |  |
  | meta | string? |  yes  |  |
@@ -5805,13 +5249,13 @@ Promotion updated successfully
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | _custom_json | string? |  yes  |  |
  | article_id | string? |  yes  |  |
  | extra_meta | string? |  yes  |  |
  | identifiers | [CartProductIdentifer](#CartProductIdentifer) |  no  |  |
  | item_id | number? |  yes  |  |
  | item_index | number? |  yes  |  |
  | item_size | string? |  yes  |  |
+ | meta | string? |  yes  |  |
  | parent_item_identifiers | string? |  yes  |  |
  | quantity | number? |  yes  |  |
  

@@ -28,6 +28,7 @@ class InventoryModel {
   static GCompany() {
     return Joi.object({
       _id: Joi.string().allow(""),
+      gstores: Joi.array().items(InventoryModel.GStore()),
       integration: Joi.string().allow(""),
       level: Joi.string().allow(""),
       name: Joi.string().allow(""),

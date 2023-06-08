@@ -10,7 +10,6 @@ Catalog - Platform Front API's' API's allows you to access list of products, pri
 
 * [addCollectionItems](#addcollectionitems)
 * [addInventory](#addinventory)
-* [allSizes](#allsizes)
 * [bulkHsnCode](#bulkhsncode)
 * [createBulkInventory](#createbulkinventory)
 * [createBulkInventoryJob](#createbulkinventoryjob)
@@ -23,14 +22,13 @@ Catalog - Platform Front API's' API's allows you to access list of products, pri
 * [createCustomKeyword](#createcustomkeyword)
 * [createDepartments](#createdepartments)
 * [createGroupConfiguration](#creategroupconfiguration)
-* [createInventoryExport](#createinventoryexport)
+* [createHsnCode](#createhsncode)
 * [createInventoryExportJob](#createinventoryexportjob)
 * [createListingConfiguration](#createlistingconfiguration)
 * [createMarketplaceOptin](#createmarketplaceoptin)
 * [createProduct](#createproduct)
 * [createProductAssetsInBulk](#createproductassetsinbulk)
 * [createProductBundle](#createproductbundle)
-* [createProductExportJob](#createproductexportjob)
 * [createProductsInBulk](#createproductsinbulk)
 * [createSizeGuide](#createsizeguide)
 * [deleteAutocompleteKeyword](#deleteautocompletekeyword)
@@ -44,11 +42,12 @@ Catalog - Platform Front API's' API's allows you to access list of products, pri
 * [deleteRealtimeInventory](#deleterealtimeinventory)
 * [deleteSearchKeywords](#deletesearchkeywords)
 * [deleteSize](#deletesize)
-* [downloadInventoryTemplateView](#downloadinventorytemplateview)
+* [downloadProductTemplateView](#downloadproducttemplateview)
 * [downloadProductTemplateViews](#downloadproducttemplateviews)
 * [editProduct](#editproduct)
 * [exportInventoryConfig](#exportinventoryconfig)
 * [getAllCollections](#getallcollections)
+* [getAllHsnCodes](#getallhsncodes)
 * [getAllProductHsnCodes](#getallproducthsncodes)
 * [getAllSearchKeyword](#getallsearchkeyword)
 * [getAppInventory](#getappinventory)
@@ -80,7 +79,6 @@ Catalog - Platform Front API's' API's allows you to access list of products, pri
 * [getGenderAttribute](#getgenderattribute)
 * [getGroupConfigurations](#getgroupconfigurations)
 * [getHsnCode](#gethsncode)
-* [getInventories](#getinventories)
 * [getInventoryBulkUploadHistory](#getinventorybulkuploadhistory)
 * [getInventoryBySize](#getinventorybysize)
 * [getInventoryBySizeIdentifier](#getinventorybysizeidentifier)
@@ -95,7 +93,6 @@ Catalog - Platform Front API's' API's allows you to access list of products, pri
 * [getProductBundle](#getproductbundle)
 * [getProductBundleDetail](#getproductbundledetail)
 * [getProductDetailBySlug](#getproductdetailbyslug)
-* [getProductExportJobs](#getproductexportjobs)
 * [getProductSize](#getproductsize)
 * [getProductTags](#getproducttags)
 * [getProductValidation](#getproductvalidation)
@@ -107,11 +104,9 @@ Catalog - Platform Front API's' API's allows you to access list of products, pri
 * [getSizeGuide](#getsizeguide)
 * [getSizeGuides](#getsizeguides)
 * [getStoreDetail](#getstoredetail)
-* [getVariantsOfProducts](#getvariantsofproducts)
 * [listCategories](#listcategories)
 * [listDepartmentsData](#listdepartmentsdata)
 * [listHSNCodes](#listhsncodes)
-* [listInventoryExport](#listinventoryexport)
 * [listProductTemplate](#listproducttemplate)
 * [listProductTemplateCategories](#listproducttemplatecategories)
 * [listProductTemplateExportDetails](#listproducttemplateexportdetails)
@@ -135,7 +130,6 @@ Catalog - Platform Front API's' API's allows you to access list of products, pri
 * [updateRealtimeInventory](#updaterealtimeinventory)
 * [updateSearchKeywords](#updatesearchkeywords)
 * [updateSizeGuide](#updatesizeguide)
-* [uploadBulkProducts](#uploadbulkproducts)
 * [validateProductTemplate](#validateproducttemplate)
 * [validateProductTemplateSchema](#validateproducttemplateschema)
 
@@ -168,7 +162,7 @@ const data = await platformClient.application("<APPLICATION_ID>").catalog.addCol
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
 | id | string | yes | A `id` is a unique identifier of a collection. |  
-| body | [CollectionItemUpdate](#CollectionItemUpdate) | yes | Request body |
+| body | [CollectionItemRequest](#CollectionItemRequest) | yes | Request body |
 
 
 Adds items to a collection specified by its `id`. See `CollectionItemRequest` for the list of attributes needed to add items to an collection.
@@ -254,81 +248,6 @@ Returns a success response
 ```json
 {
   "success": true
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### allSizes
-All Sizes for a given Product
-
-
-
-```javascript
-// Promise
-const promise = platformClient.catalog.allSizes({  itemId : value });
-
-// Async/Await
-const data = await platformClient.catalog.allSizes({  itemId : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| itemId | number | yes | Id of the product to be updated. |  
-
-
-
-This API allows to get  All Sizes for a given Product.
-
-*Returned Response:*
-
-
-
-
-[GetAllSizes](#GetAllSizes)
-
-List Product Sizes. See example below or refer `AllSizes` for details
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "all_sizes": [
-    {
-      "size": "OS",
-      "identifiers": [
-        {
-          "primary": true,
-          "gtin_type": "ean",
-          "gtin_value": "74352323423"
-        }
-      ],
-      "item_length": 1000,
-      "item_weight": 100,
-      "item_height": 100,
-      "item_width": 1000,
-      "item_weight_unit_of_measure": "gram",
-      "item_dimensions_unit_of_measure": "cm"
-    }
-  ]
 }
 ```
 </details>
@@ -1124,17 +1043,17 @@ success flag will tell whether the operation was successful.
 ---
 
 
-### createInventoryExport
-Create an inventory export job.
+### createHsnCode
+Create Hsn Code.
 
 
 
 ```javascript
 // Promise
-const promise = platformClient.catalog.createInventoryExport({  body : value });
+const promise = platformClient.catalog.createHsnCode({  body : value });
 
 // Async/Await
-const data = await platformClient.catalog.createInventoryExport({  body : value });
+const data = await platformClient.catalog.createHsnCode({  body : value });
 ```
 
 
@@ -1143,19 +1062,19 @@ const data = await platformClient.catalog.createInventoryExport({  body : value 
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |
-| body | [InventoryCreateRequest](#InventoryCreateRequest) | yes | Request body |
+| body | [HsnUpsert](#HsnUpsert) | yes | Request body |
 
 
-This API helps to create a Inventory export job.
+Create Hsn Code.
 
 *Returned Response:*
 
 
 
 
-[InventoryExportResponse](#InventoryExportResponse)
+[HsnCode](#HsnCode)
 
-Returns a success response
+See example below for details
 
 
 
@@ -1164,7 +1083,29 @@ Returns a success response
 <summary><i>&nbsp; Example:</i></summary>
 
 ```json
-
+{
+  "data": {
+    "company_id": 1,
+    "hs2_code": "xx",
+    "modified_by": {
+      "username": "narutouzumaki",
+      "user_id": "0"
+    },
+    "id": "xxxxxxxxxxxx",
+    "tax_on": "esp",
+    "slabs": [
+      {
+        "tax": 0,
+        "threshold": 999999
+      },
+      {
+        "tax": 0,
+        "threshold": 0
+      }
+    ],
+    "hsn_code": "xxxxxxxx"
+  }
+}
 ```
 </details>
 
@@ -1379,7 +1320,7 @@ const data = await platformClient.catalog.createProduct({  body : value });
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |
-| body | [ProductCreateUpdateSchemaV2](#ProductCreateUpdateSchemaV2) | yes | Request body |
+| body | [ProductCreateUpdate](#ProductCreateUpdate) | yes | Request body |
 
 
 This API allows to create product.
@@ -1547,86 +1488,6 @@ Get bundle with id that is added. See example below or refer `GetProductBundleCr
   },
   "modified_on": "2021-02-19 16:40:26.310027",
   "id": "602f9ca2a596ce312f5956f9"
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### createProductExportJob
-Create a product export job.
-
-
-
-```javascript
-// Promise
-const promise = platformClient.catalog.createProductExportJob({  body : value });
-
-// Async/Await
-const data = await platformClient.catalog.createProductExportJob({  body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |
-| body | [ProductTemplateDownloadsExport](#ProductTemplateDownloadsExport) | yes | Request body |
-
-
-This API helps to create a Inventory export job.
-
-*Returned Response:*
-
-
-
-
-[ProductDownloadsResponse](#ProductDownloadsResponse)
-
-Returns a success response
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "data": {
-    "filters": {
-      "templates": [
-        "footwear"
-      ],
-      "brands": [],
-      "catalogue_types": [
-        "standard"
-      ]
-    },
-    "stats": {},
-    "modified_on": "2023-03-03T10:26:47.047179",
-    "type": "excel",
-    "created_by": {
-      "user_id": "550fe8ce436ea332b9e4b4b0",
-      "username": "purvashukla_gofynd_com_44895"
-    },
-    "notification_emails": [],
-    "status": "pending",
-    "_id": "6401cb6729885c34aa30b0c6",
-    "seller_id": 577,
-    "created_on": "2023-03-03T10:26:47.047171Z",
-    "task_id": "e6c47f1a-b9ad-11ed-b7a0-3ef7b700888d"
-  }
 }
 ```
 </details>
@@ -2408,7 +2269,7 @@ const data = await platformClient.catalog.deleteSize({  itemId : value,
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
 | itemId | number | yes | Item Id of the product associated with size to be deleted. |   
-| size | string | yes | size to be deleted. |  
+| size | number | yes | size to be deleted. |  
 
 
 
@@ -2452,17 +2313,17 @@ Returns a success response
 ---
 
 
-### downloadInventoryTemplateView
+### downloadProductTemplateView
 Download Product Template View
 
 
 
 ```javascript
 // Promise
-const promise = platformClient.catalog.downloadInventoryTemplateView({  itemType : value });
+const promise = platformClient.catalog.downloadProductTemplateView({  itemType : value });
 
 // Async/Await
-const data = await platformClient.catalog.downloadInventoryTemplateView({  itemType : value });
+const data = await platformClient.catalog.downloadProductTemplateView({  itemType : value });
 ```
 
 
@@ -2586,7 +2447,7 @@ const data = await platformClient.catalog.editProduct({  itemId : value,
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
 | itemId | number | yes | Id of the product to be updated. |  
-| body | [ProductCreateUpdateSchemaV2](#ProductCreateUpdateSchemaV2) | yes | Request body |
+| body | [ProductCreateUpdate](#ProductCreateUpdate) | yes | Request body |
 
 
 This API allows to edit product.
@@ -3005,6 +2866,90 @@ List of collections. See example below or refer `GetCollectionListingResponse` f
         "display": "query"
       }
     ]
+  }
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### getAllHsnCodes
+Hsn Code List.
+
+
+
+```javascript
+// Promise
+const promise = platformClient.catalog.getAllHsnCodes({  pageNo : value,
+ pageSize : value,
+ q : value });
+
+// Async/Await
+const data = await platformClient.catalog.getAllHsnCodes({  pageNo : value,
+ pageSize : value,
+ q : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| pageNo | number | no | page no |    
+| pageSize | number | no | page size |    
+| q | string | no | search using hsn code. |  
+
+
+
+Hsn Code List.
+
+*Returned Response:*
+
+
+
+
+[HsnCodesListingResponse](#HsnCodesListingResponse)
+
+List of all HSN Codes. See example below or refer `HsnCodesListingResponseSchema` for details
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "items": [
+    {
+      "company_id": 1,
+      "hs2_code": "xx",
+      "hsn_code": "xxxxxxxx",
+      "tax1": 0,
+      "tax2": 0,
+      "threshold1": 999999,
+      "threshold2": 0,
+      "tax_on_esp": true,
+      "tax_on_mrp": false,
+      "id": "xxxxxxxxxxxx"
+    }
+  ],
+  "page": {
+    "current": 1,
+    "size": 2,
+    "has_previous": false,
+    "has_next": true,
+    "item_total": 20
   }
 }
 ```
@@ -3803,10 +3748,12 @@ Get company application product data.
 
 ```javascript
 // Promise
-const promise = platformClient.application("<APPLICATION_ID>").catalog.getAppProduct({  itemId : value });
+const promise = platformClient.application("<APPLICATION_ID>").catalog.getAppProduct({  itemId : value,
+ sliceAttr : value });
 
 // Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").catalog.getAppProduct({  itemId : value });
+const data = await platformClient.application("<APPLICATION_ID>").catalog.getAppProduct({  itemId : value,
+ sliceAttr : value });
 ```
 
 
@@ -3815,7 +3762,8 @@ const data = await platformClient.application("<APPLICATION_ID>").catalog.getApp
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
-| itemId | string | yes | product id for a particular product. |  
+| itemId | string | yes | product id for a particular product. |   
+| sliceAttr | string | yes | Get product's data sliced by attribute |  
 
 
 
@@ -3826,7 +3774,7 @@ Products are the core resource of an application. If successful, returns a Compa
 
 
 
-[OwnerAppItemResponse](#OwnerAppItemResponse)
+[ApplicationItemResponse](#ApplicationItemResponse)
 
 The Company Applicaton Product Data(MOQ/SEO).
 
@@ -3843,15 +3791,7 @@ The Company Applicaton Product Data(MOQ/SEO).
     "maximum": 10,
     "increment_unit": 2
   },
-  "seo": {
-    "title": "test-title",
-    "description": "test-description"
-  },
-  "alt_text": {
-    "https://test-url.com/test.png": "test-alt"
-  },
-  "is_gift": false,
-  "is_cod": false
+  "seo": {}
 }
 ```
 </details>
@@ -3878,7 +3818,6 @@ const promise = platformClient.application("<APPLICATION_ID>").catalog.getAppPro
  categoryIds : value,
  departmentIds : value,
  tags : value,
- itemIds : value,
  pageNo : value,
  pageSize : value,
  q : value });
@@ -3888,7 +3827,6 @@ const data = await platformClient.application("<APPLICATION_ID>").catalog.getApp
  categoryIds : value,
  departmentIds : value,
  tags : value,
- itemIds : value,
  pageNo : value,
  pageSize : value,
  q : value });
@@ -3904,7 +3842,6 @@ const data = await platformClient.application("<APPLICATION_ID>").catalog.getApp
 | categoryIds | Array<number> | no | Get multiple products filtered by Category Ids |    
 | departmentIds | Array<number> | no | Get multiple products filtered by Department Ids |    
 | tags | Array<string> | no | Get multiple products filtered by tags |    
-| itemIds | Array<number> | no | Get multiple products filtered by Item Ids |    
 | pageNo | number | no | The page number to navigate through the given set of results |    
 | pageSize | number | no | Number of items to retrieve in each page. Default is 10. |    
 | q | string | no | Search with Item Code, Name, Slug or Identifier. |  
@@ -5949,7 +5886,7 @@ const data = await platformClient.catalog.getCompanyBrandDetail({  isActive : va
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
 | isActive | boolean | no | The is_active status for the optin id. |    
-| q | string | no | The search value to filter the list. |    
+| q | boolean | no | The search value to filter the list. |    
 | pageNo | number | no | The number of page for the company id. |    
 | pageSize | number | no | Number of records that can be seen on the page for the company id. |    
 | marketplace | string | no | The marketplace platform associated with the company id. |  
@@ -8522,560 +8459,6 @@ See example below details
 ---
 
 
-### getInventories
-Get Inventory for company
-
-
-
-```javascript
-// Promise
-const promise = platformClient.catalog.getInventories({  itemId : value,
- size : value,
- pageNo : value,
- pageSize : value,
- q : value,
- sellable : value,
- storeIds : value,
- sizeIdentifier : value });
-
-// Async/Await
-const data = await platformClient.catalog.getInventories({  itemId : value,
- size : value,
- pageNo : value,
- pageSize : value,
- q : value,
- sellable : value,
- storeIds : value,
- sizeIdentifier : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| itemId | string | no | Item code of the product of which size is to be get. |    
-| size | string | no | Size of which inventory is to get. |    
-| pageNo | number | no | The page number to navigate through the given set of results |    
-| pageSize | number | no | Number of items to retrieve in each page. Default is 12. |    
-| q | string | no | Search with help of store code. |    
-| sellable | boolean | no | Filter on whether product is in stock or not. |    
-| storeIds | Array<number> | no | The Store Id of products to fetch inventory. |    
-| sizeIdentifier | string | no | Size Identifier (Seller Identifier or Primary Identifier) of which inventory is to get. |  
-
-
-
-This API allows get Inventories data for particular company.
-
-*Returned Response:*
-
-
-
-
-[GetInventoriesResponse](#GetInventoriesResponse)
-
-returns a list of all inventory grouped by size and store
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "items": [
-    {
-      "is_set": false,
-      "size": "S",
-      "trader": [
-        {
-          "type": "Importer",
-          "name": "Imported & Marketed by Brooks Brothers India Pvt.Ltd",
-          "address": [
-            "Brooks Brothers India Private Limited registered address is 8th Floor, Maker Tower 'E' Cuffe Parade Mumbai MH 400005 IN"
-          ]
-        }
-      ],
-      "weight": {
-        "shipping": 999,
-        "unit": "gram"
-      },
-      "date_meta": {
-        "modified_on": "2023-01-20T07:26:18.828000",
-        "added_on_store": "2023-01-20T07:26:18.834000",
-        "created_on": "2023-01-20T07:26:18.828000",
-        "inventory_updated_on": "2023-01-20T07:26:18.828000"
-      },
-      "created_by": {
-        "user_id": "68c3800d602c0fda0dab4fea",
-        "username": "abhishekbhakurlekar_gofynd_com_63787"
-      },
-      "modified_by": {
-        "user_id": "68c3800d602c0fda0dab4fea",
-        "username": "abhishekbhakurlekar_gofynd_com_63787"
-      },
-      "brand": {
-        "id": 355
-      },
-      "price": {
-        "marked": 8000,
-        "transfer": 0,
-        "currency": "INR",
-        "effective": 8000
-      },
-      "total_quantity": 12,
-      "quantities": {
-        "sellable": {
-          "count": 12
-        }
-      },
-      "stage": "verified",
-      "seller_identifier": "410163085004",
-      "expiration_date": "9998-01-30T23:59:00",
-      "manufacturer": {
-        "name": "RELIANCE BRANDS LIMITED",
-        "is_default": true,
-        "address": "5TH FLOOR, COURT HOUSE,LOKMANYA TILAK MARGA, DHOBI TALAOMUMBAI MAHARASHTRA, , MAHARASHTRA, MUMBAI"
-      },
-      "id": "63ca421a6fb0ce930685f46e",
-      "country_of_origin": "Malaysia",
-      "identifier": {
-        "upc": "777697046",
-        "alu": "410163085004"
-      },
-      "return_config": {
-        "unit": "days",
-        "returnable": true,
-        "time": 30
-      },
-      "trace_id": "inventory.bb475064-9893-11ed-88db-2efc0f0504bd",
-      "uid": "10444_410163085004",
-      "platforms": {
-        "fynd": false,
-        "uniket_wholesale": false
-      },
-      "store": {
-        "store_code": "THR1",
-        "store_type": "high_street",
-        "uid": 10444,
-        "name": "Khan Market"
-      },
-      "company": {
-        "id": 46
-      },
-      "tax_identifier": {
-        "hsn_code_id": "000000000000000000000001"
-      },
-      "dimension": {
-        "unit": "cm",
-        "width": 15,
-        "length": 25,
-        "height": 10
-      },
-      "track_inventory": true
-    },
-    {
-      "is_set": false,
-      "size": "M",
-      "trader": [
-        {
-          "type": "Importer",
-          "name": "Imported & Marketed by Brooks Brothers India Pvt.Ltd",
-          "address": [
-            "Brooks Brothers India Private Limited registered address is 8th Floor, Maker Tower 'E' Cuffe Parade Mumbai MH 400005 IN"
-          ]
-        }
-      ],
-      "weight": {
-        "shipping": 999,
-        "unit": "gram"
-      },
-      "date_meta": {
-        "modified_on": "2023-01-16T05:25:49.482000",
-        "added_on_store": "2023-01-16T05:25:49.491000",
-        "created_on": "2023-01-16T05:25:49.482000",
-        "inventory_updated_on": "2023-01-16T05:25:49.482000"
-      },
-      "created_by": {
-        "user_id": "68c3800d602c0fda0dab4fea",
-        "username": "abhishekbhakurlekar_gofynd_com_63787"
-      },
-      "modified_by": {
-        "user_id": "68c3800d602c0fda0dab4fea",
-        "username": "abhishekbhakurlekar_gofynd_com_63787"
-      },
-      "brand": {
-        "id": 355
-      },
-      "price": {
-        "marked": 8000,
-        "transfer": 0,
-        "currency": "INR",
-        "effective": 8000
-      },
-      "total_quantity": 12,
-      "quantities": {
-        "sellable": {
-          "count": 12
-        }
-      },
-      "stage": "verified",
-      "seller_identifier": "410163085005",
-      "expiration_date": "9998-01-30T23:59:00",
-      "manufacturer": {
-        "name": "RELIANCE BRANDS LIMITED",
-        "is_default": true,
-        "address": "5TH FLOOR, COURT HOUSE,LOKMANYA TILAK MARGA, DHOBI TALAOMUMBAI MAHARASHTRA, , MAHARASHTRA, MUMBAI"
-      },
-      "id": "63c4dfdd11e44ffd96d600bc",
-      "country_of_origin": "Malaysia",
-      "identifier": {
-        "upc": "777697038",
-        "alu": "410163085005"
-      },
-      "return_config": {
-        "unit": "days",
-        "returnable": true,
-        "time": 30
-      },
-      "trace_id": "inventory.3c9a25e4-955e-11ed-8584-92a07e366903",
-      "uid": "10444_410163085005",
-      "platforms": {
-        "fynd": false,
-        "uniket_wholesale": false
-      },
-      "store": {
-        "store_code": "THR1",
-        "store_type": "high_street",
-        "uid": 10444,
-        "name": "Khan Market"
-      },
-      "company": {
-        "id": 46
-      },
-      "tax_identifier": {
-        "hsn_code_id": "000000000000000000000001"
-      },
-      "dimension": {
-        "unit": "cm",
-        "width": 15,
-        "length": 25,
-        "height": 10
-      },
-      "track_inventory": true
-    },
-    {
-      "is_set": false,
-      "size": "S",
-      "trader": [
-        {
-          "type": "Importer",
-          "name": "Imported & Marketed by Brooks Brothers India Pvt.Ltd",
-          "address": [
-            "Brooks Brothers India Private Limited registered address is 8th Floor, Maker Tower 'E' Cuffe Parade Mumbai MH 400005 IN"
-          ]
-        }
-      ],
-      "weight": {
-        "shipping": 999,
-        "unit": "gram"
-      },
-      "date_meta": {
-        "modified_on": "2023-01-19T10:37:00.504000",
-        "added_on_store": "2023-01-05T10:45:41.988000",
-        "created_on": "2023-01-05T10:45:41.979000",
-        "inventory_updated_on": "2023-01-19T10:37:00.504000"
-      },
-      "created_by": {
-        "user_id": "bc5fbaf5e6f4b5288e9a9a22",
-        "username": "sagardhiman_gofynd_com_43846"
-      },
-      "modified_by": {
-        "user_id": "68c3800d602c0fda0dab4fea",
-        "username": "abhishekbhakurlekar_gofynd_com_63787"
-      },
-      "brand": {
-        "id": 355
-      },
-      "price": {
-        "marked": 8000,
-        "transfer": 0,
-        "currency": "INR",
-        "effective": 7001
-      },
-      "total_quantity": 5001,
-      "quantities": {
-        "not_available": {
-          "count": 0
-        },
-        "damaged": {
-          "count": 0
-        },
-        "sellable": {
-          "count": 5001
-        }
-      },
-      "stage": "verified",
-      "seller_identifier": "410163085004",
-      "expiration_date": "9998-01-30T23:59:00",
-      "manufacturer": {
-        "name": "RELIANCE BRANDS LIMITED",
-        "is_default": true,
-        "address": "5TH FLOOR, COURT HOUSE,LOKMANYA TILAK MARGA, DHOBI TALAOMUMBAI MAHARASHTRA, , MAHARASHTRA, MUMBAI"
-      },
-      "id": "63b6aa5558bf3ed100740c10",
-      "country_of_origin": "Malaysia",
-      "identifier": {
-        "upc": "777697046",
-        "alu": "410163085004"
-      },
-      "return_config": {
-        "unit": "days",
-        "returnable": true,
-        "time": 30
-      },
-      "trace_id": "inventory.3485e8b4-97e5-11ed-a9d9-5eca1fff6de0",
-      "uid": "11336_410163085004",
-      "platforms": {
-        "fynd": false,
-        "uniket_wholesale": false
-      },
-      "store": {
-        "store_code": "R591",
-        "store_type": "warehouse",
-        "uid": 11336,
-        "name": "Reliance 2"
-      },
-      "company": {
-        "id": 46
-      },
-      "tax_identifier": {
-        "hsn_code_id": "000000000000000000000001"
-      },
-      "dimension": {
-        "unit": "cm",
-        "width": 15,
-        "length": 25,
-        "height": 10
-      },
-      "track_inventory": true
-    },
-    {
-      "is_set": false,
-      "size": "XXL",
-      "trader": [
-        {
-          "type": "Importer",
-          "name": "Imported & Marketed by Brooks Brothers India Pvt.Ltd",
-          "address": [
-            "Brooks Brothers India Private Limited registered address is 8th Floor, Maker Tower 'E' Cuffe Parade Mumbai MH 400005 IN"
-          ]
-        }
-      ],
-      "weight": {
-        "shipping": 999,
-        "unit": "gram"
-      },
-      "date_meta": {
-        "modified_on": "2022-11-29T11:18:35.183000",
-        "added_on_store": "2022-11-29T11:17:42.271000",
-        "created_on": "2022-11-29T11:17:42.263000",
-        "inventory_updated_on": "2022-11-29T11:18:35.183000"
-      },
-      "created_by": {
-        "user_id": "5f200182ee4d3377e83330c2",
-        "username": "meghanakate_gofynd_com_58351"
-      },
-      "modified_by": {
-        "user_id": "5f200182ee4d3377e83330c2",
-        "username": "meghanakate_gofynd_com_58351"
-      },
-      "brand": {
-        "id": 355
-      },
-      "price": {
-        "marked": 8000,
-        "transfer": 0,
-        "currency": "INR",
-        "effective": 8000
-      },
-      "total_quantity": 1000,
-      "quantities": {
-        "not_available": {
-          "count": 0
-        },
-        "damaged": {
-          "count": 0
-        },
-        "sellable": {
-          "count": 1000
-        }
-      },
-      "stage": "verified",
-      "seller_identifier": "410163085001",
-      "expiration_date": "9998-01-30T23:59:00",
-      "manufacturer": {
-        "name": "RELIANCE BRANDS LIMITED",
-        "is_default": true,
-        "address": "5TH FLOOR, COURT HOUSE,LOKMANYA TILAK MARGA, DHOBI TALAOMUMBAI MAHARASHTRA, , MAHARASHTRA, MUMBAI"
-      },
-      "id": "6385ea569715e74d8a92ce88",
-      "country_of_origin": "Malaysia",
-      "identifier": {
-        "upc": "777697079",
-        "alu": "410163085001"
-      },
-      "return_config": {
-        "unit": "days",
-        "returnable": true,
-        "time": 30
-      },
-      "uid": "11701_410163085001",
-      "platforms": {
-        "fynd": false,
-        "uniket_wholesale": false
-      },
-      "store": {
-        "store_code": "SRT91",
-        "store_type": "warehouse",
-        "uid": 11701,
-        "name": "Shopsense Retail Technologies"
-      },
-      "company": {
-        "id": 46
-      },
-      "tax_identifier": {
-        "hsn_code_id": "000000000000000000000001"
-      },
-      "dimension": {
-        "unit": "cm",
-        "width": 15,
-        "length": 25,
-        "height": 10
-      },
-      "track_inventory": true
-    },
-    {
-      "is_set": false,
-      "size": "XL",
-      "trader": [
-        {
-          "type": "Importer",
-          "name": "Imported & Marketed by Brooks Brothers India Pvt.Ltd",
-          "address": [
-            "Brooks Brothers India Private Limited registered address is 8th Floor, Maker Tower 'E' Cuffe Parade Mumbai MH 400005 IN"
-          ]
-        }
-      ],
-      "weight": {
-        "shipping": 999,
-        "unit": "gram"
-      },
-      "date_meta": {
-        "modified_on": "2022-11-29T11:18:27.331000",
-        "added_on_store": "2022-11-29T11:17:34.431000",
-        "created_on": "2022-11-29T11:17:34.424000",
-        "inventory_updated_on": "2022-11-29T11:18:27.331000"
-      },
-      "created_by": {
-        "user_id": "5f200182ee4d3377e83330c2",
-        "username": "meghanakate_gofynd_com_58351"
-      },
-      "modified_by": {
-        "user_id": "5f200182ee4d3377e83330c2",
-        "username": "meghanakate_gofynd_com_58351"
-      },
-      "brand": {
-        "id": 355
-      },
-      "price": {
-        "marked": 8000,
-        "transfer": 0,
-        "currency": "INR",
-        "effective": 8000
-      },
-      "total_quantity": 1000,
-      "quantities": {
-        "not_available": {
-          "count": 0
-        },
-        "damaged": {
-          "count": 0
-        },
-        "sellable": {
-          "count": 1000
-        }
-      },
-      "stage": "verified",
-      "seller_identifier": "410163085003",
-      "expiration_date": "9998-01-30T23:59:00",
-      "manufacturer": {
-        "name": "RELIANCE BRANDS LIMITED",
-        "is_default": true,
-        "address": "5TH FLOOR, COURT HOUSE,LOKMANYA TILAK MARGA, DHOBI TALAOMUMBAI MAHARASHTRA, , MAHARASHTRA, MUMBAI"
-      },
-      "id": "6385ea4e9715e74d8a92ce86",
-      "country_of_origin": "Malaysia",
-      "identifier": {
-        "upc": "777697053",
-        "alu": "410163085003"
-      },
-      "return_config": {
-        "unit": "days",
-        "returnable": true,
-        "time": 30
-      },
-      "uid": "11701_410163085003",
-      "platforms": {
-        "fynd": false,
-        "uniket_wholesale": false
-      },
-      "store": {
-        "store_code": "SRT91",
-        "store_type": "warehouse",
-        "uid": 11701,
-        "name": "Shopsense Retail Technologies"
-      },
-      "company": {
-        "id": 46
-      },
-      "tax_identifier": {
-        "hsn_code_id": "000000000000000000000001"
-      },
-      "dimension": {
-        "unit": "cm",
-        "width": 15,
-        "length": 25,
-        "height": 10
-      },
-      "track_inventory": true
-    }
-  ],
-  "page": {
-    "type": "number",
-    "current": 1,
-    "size": 1,
-    "item_total": 5,
-    "has_previous": false,
-    "has_next": false
-  }
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
 ### getInventoryBulkUploadHistory
 Get a list of all bulk Inventory upload jobs.
 
@@ -9469,7 +8852,7 @@ const data = await platformClient.catalog.getInventoryBySize({  itemId : value,
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
-| itemId | number | yes | Item code of the product of which size is to be get. |   
+| itemId | string | yes | Item code of the product of which size is to be get. |   
 | size | string | yes | Size of which inventory is to get. |    
 | pageNo | number | no | The page number to navigate through the given set of results |    
 | pageSize | number | no | Number of items to retrieve in each page. Default is 12. |    
@@ -9822,7 +9205,7 @@ const data = await platformClient.catalog.getInventoryBySizeIdentifier({  itemId
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
-| itemId | number | yes | Item code of the product of which size is to be get. |   
+| itemId | string | yes | Item code of the product of which size is to be get. |   
 | sizeIdentifier | string | yes | Size Identifier (Seller Identifier or Primary Identifier) of which inventory is to get. |    
 | pageNo | number | no | The page number to navigate through the given set of results |    
 | pageSize | number | no | Number of items to retrieve in each page. Default is 12. |    
@@ -10493,13 +9876,13 @@ Get a single product.
 ```javascript
 // Promise
 const promise = platformClient.catalog.getProduct({  itemId : value,
- brandUid : value,
- itemCode : value });
+ itemCode : value,
+ brandUid : value });
 
 // Async/Await
 const data = await platformClient.catalog.getProduct({  itemId : value,
- brandUid : value,
- itemCode : value });
+ itemCode : value,
+ brandUid : value });
 ```
 
 
@@ -10507,10 +9890,10 @@ const data = await platformClient.catalog.getProduct({  itemId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
+| --------- | -----  | -------- | ----------- |  
+| itemCode | string | no | Item code of the product. |   
 | itemId | number | yes | Item Id of the product. |    
-| brandUid | number | no | Brand Id of the product. |    
-| itemCode | string | no | Item code of the product. |  
+| brandUid | number | no | Brand Id of the product. |  
 
 
 
@@ -10521,7 +9904,7 @@ This API helps to get data associated to a particular product.
 
 
 
-[SingleProductResponse](#SingleProductResponse)
+[Product](#Product)
 
 Product object. See example below or refer `product.utils.format_product_response` for details
 
@@ -10534,161 +9917,123 @@ Product object. See example below or refer `product.utils.format_product_respons
 ```json
 {
   "data": {
-    "is_image_less_product": false,
-    "short_description": "",
-    "departments": [
-      21
-    ],
+    "template_tag": "industrial-supplies",
+    "brand_uid": 1486,
+    "currency": "INR",
+    "item_code": "TP_FS_01",
+    "slug": "printed-fyndstore-packaging-tape-4inch-x-6-meter-length-pack-of-2-49d7343fc677",
+    "name": "Printed Fyndstore Packaging Tape (4inch X 6 Meter length) - Pack of 2",
+    "hsn_code": "48190000",
     "country_of_origin": "India",
-    "net_quantity": {},
-    "is_set": false,
-    "variant_media": {},
-    "brand_uid": 3272,
-    "item_type": "standard",
-    "category_slug": "abayas",
+    "description": "FyndStore 4 inch Printed BOPP Tapes ",
+    "is_set": true,
+    "is_active": true,
+    "departments": [
+      11
+    ],
+    "uid": 1282497,
+    "category_slug": "printed-tape",
+    "company_id": 884,
     "media": [
       {
-        "type": "image",
-        "url": "/x0/products/pictures/item/free/original/Hsw-U3Kut-Test-01.jpeg"
+        "url": "https://hdn-1.fynd.com/media/pictures/tagged_items/original/TPFS01/IMG20200624130956.jpg",
+        "type": "image"
       }
     ],
+    "variants": {},
+    "is_dependent": false,
+    "item_type": "set",
+    "multi_size": true,
     "product_publish": {
       "is_set": false,
-      "product_online_date": "2023-02-16T09:37:29.620000Z"
+      "product_online_date": "2020-09-10T15:16:12.322000Z"
     },
-    "return_config": {
-      "returnable": false,
-      "unit": "days",
-      "time": 0
-    },
-    "slug": "test-01-7542894",
-    "teaser_tag": {},
-    "no_of_boxes": 1,
-    "_custom_json": {},
-    "is_dependent": false,
-    "item_code": "TEST-01",
-    "custom_order": {
-      "manufacturing_time_unit": "days",
-      "is_custom_order": false,
-      "manufacturing_time": 0
-    },
-    "highlights": [],
-    "currency": "INR",
-    "product_group_tag": [],
-    "name": "Test-01",
-    "description": "",
-    "multi_size": false,
-    "tags": [],
-    "size_guide": "",
-    "template_tag": "ethnicwear",
-    "category_uid": 441,
-    "variants": {},
-    "created_on": "2023-02-16T09:37:31.304000",
-    "created_by": {
-      "username": "mdnehalahmed_fynd_external_com_90136",
-      "user_id": "757bf08ff5dd4ba95f8778cf",
-      "super_user": false
-    },
-    "modified_on": "2023-02-16T09:37:31.304000",
-    "modified_by": {
-      "username": "mdnehalahmed_fynd_external_com_90136",
-      "user_id": "757bf08ff5dd4ba95f8778cf",
-      "super_user": false
-    },
-    "stage": "pending",
-    "uid": 7542894,
-    "all_company_ids": [
-      835
-    ],
-    "all_identifiers": [
-      "TEST-015434"
-    ],
-    "id": "63edf95bf314486d44a6b361",
+    "id": "5f5a433c74f3f400017cdaa0",
     "brand": {
-      "name": null,
+      "name": "RollUp",
       "logo": {
         "aspect_ratio": "1:1",
         "aspect_ratio_f": 1,
-        "url": "",
-        "secure_url": ""
+        "url": "https://hdn-1.fynd.com/brands/pictures/square-logo/50x0/mPBaWqGRnjR-RMOnlpdMPKm-yjn5mua63gfmzdpombb1.png",
+        "secure_url": "https://hdn-1.fynd.com/brands/pictures/square-logo/50x0/mPBaWqGRnjR-RMOnlpdMPKm-yjn5mua63gfmzdpombb1.png"
       },
-      "uid": 3272
+      "uid": 1486
+    },
+    "return_config": {
+      "returnable": true,
+      "time": 30,
+      "unit": "days"
     },
     "sizes": [
       {
-        "price_transfer": 0,
-        "is_set": false,
         "item_dimensions_unit_of_measure": "cm",
-        "item_weight_unit_of_measure": "gram",
-        "item_width": 10,
-        "item_length": 10,
+        "item_weight": 0.15,
+        "set": {
+          "quantity": 1,
+          "size_distribution": {
+            "sizes": [
+              {
+                "pieces": 1,
+                "size": "OS"
+              }
+            ]
+          }
+        },
+        "item_height": 10.16,
+        "item_width": 10.16,
+        "price_effective": 999,
         "size": "OS",
-        "price_effective": 10,
+        "seller_identifier": "TP_FS_01",
+        "brand_uid": 1486,
+        "price": 1000,
+        "item_weight_unit_of_measure": "gram",
+        "currency": "INR",
+        "item_length": 10.16,
+        "item_code": "TP_FS_01",
+        "company_id": 884,
+        "is_set": true,
+        "track_inventory": true,
         "identifiers": [
           {
-            "gtin_value": "TEST-015434",
+            "gtin_value": "TP_FS_01",
             "primary": true,
-            "gtin_type": "ean"
+            "gtin_type": "sku_code"
           }
         ],
-        "price": 10,
-        "item_weight": 10,
-        "seller_identifier": "TEST-015434",
-        "track_inventory": true,
-        "item_height": 10,
-        "_custom_json": {},
-        "item_code": "TEST-01",
-        "company_id": 835,
-        "currency": "INR",
-        "modified_on": "2023-02-16T09:37:31.352000",
-        "brand_uid": 3272,
-        "created_on": "2023-02-16T09:37:31.352000",
-        "id": "63edf95bf314486d44a6b364"
+        "price_transfer": 0,
+        "id": "5f5a433c74f3f400017cdaa1",
+        "store_count": 1
       }
     ],
-    "is_expirable": false,
-    "is_active": true,
-    "trader": [
-      {
-        "type": "Manufacturer",
-        "address": [
-          "fdgh"
-        ],
-        "name": "fgt"
-      }
-    ],
-    "tax_identifier": {
-      "hsn_code_id": "63d78f483c1714abdd406766",
-      "reporting_hsn": "97211110H1",
-      "hsn_code": "97211110"
-    },
-    "category": {
-      "l3": {
-        "name": "Abayas",
-        "uid": 441,
-        "slug": "abayas"
-      },
-      "l1": {
-        "uid": 443,
-        "name": "Ethnic Wear",
-        "slug": "ethnic-wear"
-      },
-      "l2": {
-        "uid": 414,
-        "name": "Hijabs & Abayas",
-        "slug": "hijabs-abayas"
-      }
-    },
     "attributes": {
-      "marketer-address": "dfg",
-      "primary_color": "Black",
-      "essential": "No",
-      "pattern": "Printed",
-      "primary_material": "Cotton Blend",
-      "marketer-name": "gfdfd",
-      "gender": [
-        "Men"
-      ]
+      "style": "TPFS01",
+      "color": "White",
+      "pallet": 1,
+      "l3_mapping": [
+        "industrial_supplies>printed_tape"
+      ],
+      "image_nature": "standard",
+      "created_on": "2020-09-10T15:16:12.322000Z",
+      "created_by": {
+        "username": "sumitdafda_gofynd_com_68387",
+        "user_id": "23108029",
+        "company_id": 884
+      },
+      "modified_on": "2020-09-24T04:51:00.229000Z",
+      "modified_by": {
+        "username": "sumitdafda_gofynd_com_68387",
+        "user_id": "23108029",
+        "company_id": 884
+      },
+      "stage": "verified",
+      "verified_by": {
+        "username": "sumitdafda_gofynd_com_68387",
+        "user_id": "23108029",
+        "company_id": 884
+      },
+      "verified_on": 1600923060,
+      "is_image_less_product": false,
+      "other_available_sizes": []
     }
   }
 }
@@ -11251,13 +10596,11 @@ Get a list of all bulk product upload jobs.
 
 ```javascript
 // Promise
-const promise = platformClient.catalog.getProductBulkUploadHistory({  search : value,
- pageNo : value,
+const promise = platformClient.catalog.getProductBulkUploadHistory({  pageNo : value,
  pageSize : value });
 
 // Async/Await
-const data = await platformClient.catalog.getProductBulkUploadHistory({  search : value,
- pageNo : value,
+const data = await platformClient.catalog.getProductBulkUploadHistory({  pageNo : value,
  pageSize : value });
 ```
 
@@ -11267,7 +10610,6 @@ const data = await platformClient.catalog.getProductBulkUploadHistory({  search 
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
-| search | string | no | Search string to filter the results by batch id |    
 | pageNo | number | no | The page number to navigate through the given set of results |    
 | pageSize | number | no | Number of items to retrieve in each page. Default is 12. |  
 
@@ -11822,103 +11164,6 @@ The Product object. See example below or refer `ProductDetail` for details.
 ---
 
 
-### getProductExportJobs
-Allows you to list all product templates export list details
-
-
-
-```javascript
-// Promise
-const promise = platformClient.catalog.getProductExportJobs({  status : value,
- fromDate : value,
- toDate : value,
- q : value });
-
-// Async/Await
-const data = await platformClient.catalog.getProductExportJobs({  status : value,
- fromDate : value,
- toDate : value,
- q : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| status | string | no | This is a parameter used to find all the jobs with the specified status. |    
-| fromDate | string | no | This is a parameter used to find the job from the date specified to the current date. |    
-| toDate | string | no | This is a parameter used to find the job from the from_date specified to the to_date. |    
-| q | string | no | It is a query parameter to search the export job with the task ID. |  
-
-
-
-Can view details including trigger data, task id , etc.
-
-*Returned Response:*
-
-
-
-
-[ProductDownloadsResponse](#ProductDownloadsResponse)
-
-List of Product Downloads Data. See example below or refer `ProductDownloadsResponse` for details
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "page": {},
-  "items": [
-    {
-      "created_by": {
-        "username": "917972410891_48194",
-        "user_id": "5646"
-      },
-      "data": {
-        "type": "csv",
-        "brand": [
-          "ruosh"
-        ],
-        "templates": [
-          "mobile-phones-and-tablet"
-        ]
-      },
-      "status": "success",
-      "task_id": "c4b54ace-44ef-11eb-9806-1ef9bc4a2da1",
-      "template_tags": {
-        "mobile-phones-and-tablet": {
-          "display": "Mobile Phones & Tablet",
-          "logo": "https://hdn-1.jiox0.de/jiox0/seller/pictures/logo/original/Oda39B_99946594-portable-devices-with-tablet-and-mobile-phone-vector-icon-for-apps-and-websites.jpgcc2dff44-7fae-4002-9ebe-d2b59c8bee91/Oda39B_99946594-portable-devices-with-tablet-and-mobile-phone-vector-icon-for-apps-and-websites.jpg"
-        }
-      },
-      "trigger_on": "2020-12-23T07:23:35.302000Z",
-      "seller_id": 3,
-      "completed_on": "2020-12-23T07:23:41.031000Z",
-      "url": "https://regrowth.s3.amazonaws.com/slingshot-catalogues/seller-catalog/3/c4b54ace-44ef-11eb-9806-1ef9bc4a2da1/c4b54ace-44ef-11eb-9806-1ef9bc4a2da1.zip",
-      "id": "5fe2f077516d980001880943"
-    }
-  ]
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
 ### getProductSize
 Get a single product size.
 
@@ -12247,7 +11492,7 @@ This API gets meta associated to products.
 
 
 
-[ProductListingResponseV2](#ProductListingResponseV2)
+[ProductListingResponse](#ProductListingResponse)
 
 Product Meta. See example below for details
 
@@ -13351,96 +12596,6 @@ See example below or refer `OptinStoreDetailsSchema` for details
 ---
 
 
-### getVariantsOfProducts
-Get product list
-
-
-
-```javascript
-// Promise
-const promise = platformClient.catalog.getVariantsOfProducts({  itemId : value,
- variantType : value,
- pageNo : value,
- pageSize : value });
-
-// Async/Await
-const data = await platformClient.catalog.getVariantsOfProducts({  itemId : value,
- variantType : value,
- pageNo : value,
- pageSize : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| itemId | number | yes | Get list of variants of item Id |   
-| variantType | string | yes | Get multiple products filtered by variant type |    
-| pageNo | number | no | The page number to navigate through the given set of results |    
-| pageSize | number | no | Number of items to retrieve in each page. Default is 10. |  
-
-
-
-This API gets meta associated to products.
-
-*Returned Response:*
-
-
-
-
-[ProductVariantsResponse](#ProductVariantsResponse)
-
-Product Meta. See example below for details
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "variants": [
-    {
-      "slug": "test-msa-6",
-      "item_code": "TEST-MSA-6",
-      "brand_uid": 401,
-      "media": [
-        {
-          "type": "image",
-          "url": "https://hdn-1.jiox0.de/jiox0/products/pictures/item/free/original/7cGLXZLpO-iN3Jd9uro-Wiv-7J9qC-product.png"
-        }
-      ],
-      "name": "test-msa-6",
-      "category_uid": 3938,
-      "uid": 7526471
-    }
-  ],
-  "page": {
-    "type": "number",
-    "current": 1,
-    "size": 1,
-    "item_total": 1,
-    "has_previous": false,
-    "has_next": false
-  }
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
 ### listCategories
 Get product categories list
 
@@ -13915,7 +13070,6 @@ List all Departments.
 ```javascript
 // Promise
 const promise = platformClient.catalog.listDepartmentsData({  pageNo : value,
- itemType : value,
  pageSize : value,
  name : value,
  search : value,
@@ -13923,7 +13077,6 @@ const promise = platformClient.catalog.listDepartmentsData({  pageNo : value,
 
 // Async/Await
 const data = await platformClient.catalog.listDepartmentsData({  pageNo : value,
- itemType : value,
  pageSize : value,
  name : value,
  search : value,
@@ -13937,7 +13090,6 @@ const data = await platformClient.catalog.listDepartmentsData({  pageNo : value,
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
 | pageNo | number | no | The page number to navigate through the given set of results |    
-| itemType | string | no | A `item_type` is a type of product eg. set, standard, digital |    
 | pageSize | number | no | Number of items to retrieve in each page. Default is 10. |    
 | name | string | no | Can search departments by passing name. |    
 | search | string | no | Can search departments by passing name of the department in search parameter. |    
@@ -14342,105 +13494,6 @@ List of all HSN Codes. See example below or refer `HSNCodesResponse` for details
     ]
   },
   "message": "Success"
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### listInventoryExport
-Get the history of the inventory export.
-
-
-
-```javascript
-// Promise
-const promise = platformClient.catalog.listInventoryExport({  status : value,
- fromDate : value,
- toDate : value,
- q : value });
-
-// Async/Await
-const data = await platformClient.catalog.listInventoryExport({  status : value,
- fromDate : value,
- toDate : value,
- q : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| status | string | no | Status of the export job. |    
-| fromDate | string | no | Inventory export history filtered according to from_date. |    
-| toDate | string | no | Inventory export history filtered according to from_date. |    
-| q | string | no | Inventory export history filtered according to task ID. |  
-
-
-
-This API helps you the get the history of inventory jobs depending on the filtered criteria.
-
-*Returned Response:*
-
-
-
-
-[InventoryExportJobListResponse](#InventoryExportJobListResponse)
-
-Returns a list of inventory export jobs
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "items": [
-    {
-      "url": "https://regrowth.s3.amazonaws.com/slingshot-catalogues/seller-catalog/577/ab469da4-b9a5-11ed-955a-d6fb21611540/ab469da4-b9a5-11ed-955a-d6fb21611540.zip",
-      "type": "excel",
-      "created_on": "2023-03-03T09:27:51.262000Z",
-      "_id": "6401bd972a2e6c3d508c9203",
-      "task_id": "ab469da4-b9a5-11ed-955a-d6fb21611540",
-      "filters": {
-        "brand_ids": [
-          2751
-        ],
-        "store_ids": [
-          3622
-        ],
-        "brands": [
-          "Puma"
-        ],
-        "stores": [
-          "Vikings Cbs"
-        ]
-      },
-      "modified_on": "2023-03-03T09:27:51.262000",
-      "status": "success",
-      "notification_emails": [],
-      "created_by": {
-        "username": "rohanshah@fynd.com",
-        "user_id": "5e199e6998cfe1776f1385dc"
-      },
-      "completed_on": "2023-03-03T09:33:11.416000Z",
-      "seller_id": 577,
-      "id": "6401bd972a2e6c3d508c9203"
-    }
-  ]
 }
 ```
 </details>
@@ -16515,14 +15568,10 @@ Allows you to list all values for Templates, Brands or Type
 
 ```javascript
 // Promise
-const promise = platformClient.catalog.listTemplateBrandTypeValues({  filter : value,
- templateTag : value,
- itemType : value });
+const promise = platformClient.catalog.listTemplateBrandTypeValues({  filter : value });
 
 // Async/Await
-const data = await platformClient.catalog.listTemplateBrandTypeValues({  filter : value,
- templateTag : value,
- itemType : value });
+const data = await platformClient.catalog.listTemplateBrandTypeValues({  filter : value });
 ```
 
 
@@ -16531,9 +15580,7 @@ const data = await platformClient.catalog.listTemplateBrandTypeValues({  filter 
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
-| filter | string | yes | A `filter` is the unique identifier of the type of value required. |    
-| templateTag | string | no | A `template_tag` is the identifier of the type of template required. |    
-| itemType | string | no | A `item_type` is the identifier of the type of template required. |  
+| filter | string | yes | A `filter` is the unique identifier of the type of value required. |  
 
 
 
@@ -17020,7 +16067,7 @@ const data = await platformClient.catalog.updateCategory({  uid : value,
 | body | [CategoryRequestBody](#CategoryRequestBody) | yes | Request body |
 
 
-Update a product category using this api
+Update a product category using this apu
 
 *Returned Response:*
 
@@ -17921,69 +16968,6 @@ Returns a success response
 ---
 
 
-### uploadBulkProducts
-Create a Bulk product to upload job.
-
-
-
-```javascript
-// Promise
-const promise = platformClient.catalog.uploadBulkProducts({  department : value,
- productType : value,
- body : value });
-
-// Async/Await
-const data = await platformClient.catalog.uploadBulkProducts({  department : value,
- productType : value,
- body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| department | string | yes | Department of the product to be uploaded. |   
-| productType | string | yes | Product type of the product to be uploaded i.e. set, standard , digital. |  
-| body | [BulkJob](#BulkJob) | yes | Request body |
-
-
-This API helps to create a bulk products upload job.
-
-*Returned Response:*
-
-
-
-
-[BulkResponse](#BulkResponse)
-
-Returns a success response
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "batch_id": "507f1f77bcf86cd799439011"
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
 ### validateProductTemplate
 Validate Product Template Schema
 
@@ -18229,22 +17213,6 @@ List of fields and validation values fro each. See example below or refer `Inven
 
 ---
 
-#### [AllSizes](#AllSizes)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | identifiers | [[ValidateIdentifier](#ValidateIdentifier)]? |  yes  |  |
- | item_dimensions_unit_of_measure | string |  no  |  |
- | item_height | number |  no  |  |
- | item_length | number |  no  |  |
- | item_weight | number |  no  |  |
- | item_weight_unit_of_measure | any |  no  |  |
- | item_width | number |  no  |  |
- | size | any |  no  |  |
- 
-
----
-
 #### [AppCatalogConfiguration](#AppCatalogConfiguration)
 
  | Properties | Type | Nullable | Description |
@@ -18370,34 +17338,19 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | _custom_json | string? |  yes  | Custom JSON data for the item |
- | _custom_meta | [[MetaFields](#MetaFields)]? |  yes  | Custom meta fields for the item |
- | alt_text | string? |  yes  | Alternative text for the item's images |
- | is_cod | boolean? |  yes  | Whether the item is available for Cash on Delivery (COD) or not |
- | is_gift | boolean? |  yes  | Whether the item is a gift or not |
- | moq | [ApplicationItemMOQ](#ApplicationItemMOQ)? |  yes  | Minimum Order Quantity information for the item |
- | seo | [ApplicationItemSEO](#ApplicationItemSEO)? |  yes  | Search Engine Optimization information for the item |
+ | _custom_json | string? |  yes  |  |
+ | _custom_meta | [[MetaFields](#MetaFields)]? |  yes  |  |
  
 
 ---
 
-#### [ApplicationItemMOQ](#ApplicationItemMOQ)
+#### [ApplicationItemResponse](#ApplicationItemResponse)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | increment_unit | number? |  yes  | The minimum quantity increment in which the item can be purchased. |
- | maximum | number? |  yes  | The maximum quantity allowed for purchase. |
- | minimum | number? |  yes  | The minimum quantity required for purchase. |
- 
-
----
-
-#### [ApplicationItemSEO](#ApplicationItemSEO)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | description | any? |  yes  | The SEO description of the item |
- | title | any? |  yes  | The SEO title of the item |
+ | alt_text | string? |  yes  |  |
+ | moq | [MOQ](#MOQ)? |  yes  |  |
+ | seo | [SEO](#SEO)? |  yes  |  |
  
 
 ---
@@ -18451,18 +17404,6 @@ List of fields and validation values fro each. See example below or refer `Inven
  | ignored_stores | [number]? |  yes  |  |
  | item_id | number |  no  |  |
  | size | string |  no  |  |
- 
-
----
-
-#### [ArticleStoreResponse](#ArticleStoreResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | name | string? |  yes  |  |
- | store_code | string? |  yes  |  |
- | store_type | string? |  yes  |  |
- | uid | number? |  yes  |  |
  
 
 ---
@@ -18694,16 +17635,6 @@ List of fields and validation values fro each. See example below or refer `Inven
 
 ---
 
-#### [BrandMeta1](#BrandMeta1)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | id | number? |  yes  |  |
- | name | string? |  yes  |  |
- 
-
----
-
 #### [BulkAssetResponse](#BulkAssetResponse)
 
  | Properties | Type | Nullable | Description |
@@ -18772,19 +17703,19 @@ List of fields and validation values fro each. See example below or refer `Inven
  | cancelled | number? |  yes  |  |
  | cancelled_records | [string]? |  yes  |  |
  | company_id | number |  no  |  |
- | created_by | [UserInfo1](#UserInfo1)? |  yes  | The user who created the item. |
- | created_on | string |  no  | The date and time when the item was created. |
+ | created_by | [UserInfo1](#UserInfo1)? |  yes  |  |
+ | created_on | string |  no  |  |
  | custom_template_tag | string? |  yes  |  |
  | failed | number? |  yes  |  |
  | failed_records | [string]? |  yes  |  |
  | file_path | string? |  yes  |  |
- | is_active | boolean? |  yes  | Whether the item is active or not. |
- | modified_by | [UserInfo1](#UserInfo1)? |  yes  | The user who last modified the item. |
- | modified_on | string? |  yes  | The date and time when the item was last modified. |
+ | is_active | boolean? |  yes  |  |
+ | modified_by | [UserInfo1](#UserInfo1)? |  yes  |  |
+ | modified_on | string? |  yes  |  |
  | stage | string? |  yes  |  |
  | succeed | number? |  yes  |  |
  | template_tag | string? |  yes  |  |
- | total | number? |  yes  |  |
+ | total | number |  no  |  |
  | tracking_url | string? |  yes  |  |
  
 
@@ -18807,11 +17738,11 @@ List of fields and validation values fro each. See example below or refer `Inven
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | batch_id | string |  no  |  |
- | created_by | [UserInfo1](#UserInfo1)? |  yes  | The user who created the item. |
- | created_on | string |  no  | The date and time when the item was created. |
- | is_active | boolean? |  yes  | Whether the item is active or not. |
- | modified_by | [UserInfo1](#UserInfo1)? |  yes  | The user who last modified the item. |
- | modified_on | string? |  yes  | The date and time when the item was last modified. |
+ | created_by | [UserInfo1](#UserInfo1)? |  yes  |  |
+ | created_on | string |  no  |  |
+ | is_active | boolean? |  yes  |  |
+ | modified_by | [UserInfo1](#UserInfo1)? |  yes  |  |
+ | modified_on | string? |  yes  |  |
  
 
 ---
@@ -18847,19 +17778,6 @@ List of fields and validation values fro each. See example below or refer `Inven
  | ---------- | ---- | -------- | ----------- |
  | brand_distribution | [CatalogInsightBrand](#CatalogInsightBrand)? |  yes  |  |
  | item | [CatalogInsightItem](#CatalogInsightItem)? |  yes  |  |
- 
-
----
-
-#### [CategoriesResponse](#CategoriesResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | name | string? |  yes  |  |
- | slug | string? |  yes  |  |
- | slug_key | string? |  yes  |  |
- | template_slug | string? |  yes  |  |
- | uid | number? |  yes  |  |
  
 
 ---
@@ -19066,7 +17984,6 @@ List of fields and validation values fro each. See example below or refer `Inven
  | slug | string? |  yes  |  |
  | tag | [string]? |  yes  |  |
  | type | string? |  yes  |  |
- | uid | string? |  yes  |  |
  | visible_facets_keys | [string]? |  yes  |  |
  
 
@@ -19082,27 +17999,13 @@ List of fields and validation values fro each. See example below or refer `Inven
 
 ---
 
-#### [CollectionItem](#CollectionItem)
+#### [CollectionItemRequest](#CollectionItemRequest)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | action | string |  no  |  |
- | item_id | number |  no  |  |
- | priority | number? |  yes  |  |
- 
-
----
-
-#### [CollectionItemUpdate](#CollectionItemUpdate)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | allow_facets | boolean? |  yes  |  |
- | allow_sort | boolean? |  yes  |  |
- | items | [[CollectionItem](#CollectionItem)]? |  yes  |  |
+ | item | [[ItemQueryForUserCollection](#ItemQueryForUserCollection)]? |  yes  |  |
  | query | [[CollectionQuery](#CollectionQuery)]? |  yes  |  |
  | type | string? |  yes  |  |
- | visible_facets_keys | [string]? |  yes  |  |
  
 
 ---
@@ -19143,9 +18046,9 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | attribute | string |  no  | The attribute of the collection query |
- | op | string |  no  | The operation to be performed on the attribute of the collection query |
- | value | [any] |  no  | The value of the attribute of the collection query |
+ | attribute | string |  no  |  |
+ | op | string |  no  |  |
+ | value | [any] |  no  |  |
  
 
 ---
@@ -19180,15 +18083,6 @@ List of fields and validation values fro each. See example below or refer `Inven
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | id | number |  no  |  |
- 
-
----
-
-#### [CompanyMeta1](#CompanyMeta1)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | id | number? |  yes  |  |
  
 
 ---
@@ -19473,18 +18367,6 @@ List of fields and validation values fro each. See example below or refer `Inven
 
 ---
 
-#### [DateMeta](#DateMeta)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | added_on_store | string? |  yes  |  |
- | created_on | string? |  yes  |  |
- | inventory_updated_on | string? |  yes  |  |
- | modified_on | string? |  yes  |  |
- 
-
----
-
 #### [DefaultKeyRequest](#DefaultKeyRequest)
 
  | Properties | Type | Nullable | Description |
@@ -19594,19 +18476,19 @@ List of fields and validation values fro each. See example below or refer `Inven
  | _cls | any? |  yes  |  |
  | _custom_json | string? |  yes  |  |
  | _id | any? |  yes  |  |
- | created_by | [UserDetail](#UserDetail)? |  yes  | User details of the creator of the document |
- | created_on | string |  no  | Timestamp of the creation of the document |
- | is_active | boolean? |  yes  | Whether the department is currently active |
- | logo | any |  no  | The URL of the department's logo |
- | modified_by | [UserDetail](#UserDetail)? |  yes  | User details of the last modifier of the document |
- | modified_on | string |  no  | Timestamp of the last modification of the document |
- | name | any |  no  | The name of the department |
- | priority_order | number |  no  | The priority order of the department |
- | slug | any |  no  | The unique slug identifier for the department |
- | synonyms | [any]? |  yes  | A list of synonyms for the department name |
- | uid | number |  no  | The unique ID for the department |
- | verified_by | [UserDetail](#UserDetail)? |  yes  | User details of the verifier of the document, if applicable |
- | verified_on | string? |  yes  | Timestamp of when the document was verified, if applicable |
+ | created_by | [UserDetail](#UserDetail)? |  yes  |  |
+ | created_on | string |  no  |  |
+ | is_active | boolean? |  yes  |  |
+ | logo | string |  no  |  |
+ | modified_by | [UserDetail](#UserDetail)? |  yes  |  |
+ | modified_on | string |  no  |  |
+ | name | any |  no  |  |
+ | priority_order | number |  no  |  |
+ | slug | any? |  yes  |  |
+ | synonyms | [any]? |  yes  |  |
+ | uid | number? |  yes  |  |
+ | verified_by | [UserDetail](#UserDetail)? |  yes  |  |
+ | verified_on | string? |  yes  |  |
  
 
 ---
@@ -19639,18 +18521,6 @@ List of fields and validation values fro each. See example below or refer `Inven
  | length | number |  no  |  |
  | unit | string |  no  |  |
  | width | number |  no  |  |
- 
-
----
-
-#### [DimensionResponse1](#DimensionResponse1)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | height | number? |  yes  |  |
- | length | number? |  yes  |  |
- | unit | string? |  yes  |  |
- | width | number? |  yes  |  |
  
 
 ---
@@ -19740,15 +18610,6 @@ List of fields and validation values fro each. See example below or refer `Inven
  | longitude | number? |  yes  |  |
  | pincode | number? |  yes  |  |
  | state | string? |  yes  |  |
- 
-
----
-
-#### [GetAllSizes](#GetAllSizes)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | all_sizes | [[AllSizes](#AllSizes)]? |  yes  |  |
  
 
 ---
@@ -19955,54 +18816,6 @@ List of fields and validation values fro each. See example below or refer `Inven
 
 ---
 
-#### [GetInventories](#GetInventories)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | brand | [BrandMeta1](#BrandMeta1)? |  yes  |  |
- | company | [CompanyMeta1](#CompanyMeta1)? |  yes  |  |
- | country_of_origin | string? |  yes  |  |
- | created_by | [UserSerializer](#UserSerializer)? |  yes  |  |
- | date_meta | [DateMeta](#DateMeta)? |  yes  |  |
- | dimension | [DimensionResponse1](#DimensionResponse1)? |  yes  |  |
- | expiration_date | string? |  yes  |  |
- | id | string? |  yes  |  |
- | identifier | string? |  yes  |  |
- | inventory_updated_on | string? |  yes  |  |
- | is_set | boolean? |  yes  |  |
- | item_id | number? |  yes  |  |
- | manufacturer | [ManufacturerResponse1](#ManufacturerResponse1)? |  yes  |  |
- | modified_by | [UserSerializer](#UserSerializer)? |  yes  |  |
- | platforms | string? |  yes  |  |
- | price | [PriceArticle](#PriceArticle)? |  yes  |  |
- | quantities | [QuantitiesArticle](#QuantitiesArticle)? |  yes  |  |
- | return_config | [ReturnConfig2](#ReturnConfig2)? |  yes  |  |
- | seller_identifier | string? |  yes  |  |
- | size | string? |  yes  |  |
- | stage | string? |  yes  |  |
- | store | [ArticleStoreResponse](#ArticleStoreResponse)? |  yes  |  |
- | tags | [string]? |  yes  |  |
- | tax_identifier | string? |  yes  |  |
- | total_quantity | number? |  yes  |  |
- | trace_id | string? |  yes  |  |
- | track_inventory | boolean? |  yes  |  |
- | trader | [[Trader2](#Trader2)]? |  yes  |  |
- | uid | string? |  yes  |  |
- | weight | [WeightResponse1](#WeightResponse1)? |  yes  |  |
- 
-
----
-
-#### [GetInventoriesResponse](#GetInventoriesResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | items | [[GetInventories](#GetInventories)]? |  yes  |  |
- | page | [Page](#Page)? |  yes  |  |
- 
-
----
-
 #### [GetLocationSerializer](#GetLocationSerializer)
 
  | Properties | Type | Nullable | Description |
@@ -20202,6 +19015,16 @@ List of fields and validation values fro each. See example below or refer `Inven
 
 ---
 
+#### [HsnCodesListingResponse](#HsnCodesListingResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | items | [[HsnCodesObject](#HsnCodesObject)]? |  yes  |  |
+ | page | [PageResponse](#PageResponse)? |  yes  |  |
+ 
+
+---
+
 #### [HsnCodesListingResponseSchemaV2](#HsnCodesListingResponseSchemaV2)
 
  | Properties | Type | Nullable | Description |
@@ -20260,7 +19083,6 @@ List of fields and validation values fro each. See example below or refer `Inven
  | created_on | string? |  yes  |  |
  | description | string |  no  |  |
  | hsn_code | string |  no  |  |
- | hsn_code_id | string? |  yes  |  |
  | modified_by | string? |  yes  |  |
  | modified_on | string? |  yes  |  |
  | reporting_hsn | string |  no  |  |
@@ -20333,76 +19155,17 @@ List of fields and validation values fro each. See example below or refer `Inven
 
 ---
 
-#### [InventoryCreateRequest](#InventoryCreateRequest)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | data | [string]? |  yes  | The list of attributes that you want to extract in the export job. |
- | filters | [InventoryExportFilter](#InventoryExportFilter) |  no  | This filters that are applied for the export of the inventory. |
- | notification_emails | [string]? |  yes  | The list of the emails to be notified after the completion of the job. |
- | type | string? |  yes  | The type of file that needs to be exported. |
- 
-
----
-
-#### [InventoryExportAdvanceOption](#InventoryExportAdvanceOption)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | brand_ids | [number]? |  yes  |  |
- | from_date | string? |  yes  |  |
- | quantity | [InventoryExportQuantityFilter](#InventoryExportQuantityFilter)? |  yes  |  |
- | store_ids | [number]? |  yes  |  |
- | to_date | string? |  yes  |  |
- 
-
----
-
-#### [InventoryExportFilter](#InventoryExportFilter)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | brand_ids | [number]? |  yes  | The list of the brand ids that needs to be exported. |
- | from_date | string? |  yes  | The modified on date from which the data needs to be exported. |
- | quantity | [InventoryExportQuantityFilter](#InventoryExportQuantityFilter)? |  yes  | The quantity range that needs to be exported. |
- | store_ids | [number] |  no  | The list of the store ids that needs to be exported. |
- | to_date | string? |  yes  | The modified on date till when the data needs to be exported. |
- 
-
----
-
 #### [InventoryExportJob](#InventoryExportJob)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | completed_on | string? |  yes  | Completion datetime of the job. |
- | filters | [InventoryExportAdvanceOption](#InventoryExportAdvanceOption)? |  yes  | The filters that needs to be exported. |
- | notification_emails | [string]? |  yes  | The notification emails for the job. |
- | seller_id | number |  no  | The seller id that needs to be exported. |
- | status | string? |  yes  | The status of the job. |
- | task_id | string |  no  | The task id of the job. |
- | type | string |  no  | The type of file that needs to be exported. |
- | url | string? |  yes  | URL odf the exported file. |
- 
-
----
-
-#### [InventoryExportJobListResponse](#InventoryExportJobListResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | items | [InventoryJobDetailResponse](#InventoryJobDetailResponse) |  no  | This is the list/history of all the jobs. |
- 
-
----
-
-#### [InventoryExportQuantityFilter](#InventoryExportQuantityFilter)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | max | number? |  yes  | The maximum quantity that needs to be exported. |
- | min | number? |  yes  | The minimum quantity that needs to be exported. |
- | operators | string |  no  | Condition for the quantity that needs to be exported. |
+ | completed_on | string? |  yes  |  |
+ | request_params | string? |  yes  |  |
+ | seller_id | number |  no  |  |
+ | status | string? |  yes  |  |
+ | task_id | string |  no  |  |
+ | trigger_on | string? |  yes  |  |
+ | url | string? |  yes  |  |
  
 
 ---
@@ -20422,15 +19185,11 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | created_by | string? |  yes  | The user that created the job. |
- | created_on | string? |  yes  | Creation datetime of the job |
- | filters | string? |  yes  | The filters that needs to be exported. |
- | modified_on | string? |  yes  | Modification date of the job |
- | notification_emails | [string]? |  yes  | The notification emails for the job. |
- | seller_id | number |  no  | The seller id that needs to be exported. |
- | status | string? |  yes  | The status of the job. |
- | task_id | string |  no  | The task id of the job. |
- | type | string? |  yes  | The type of file that needs to be exported. |
+ | request_params | string? |  yes  |  |
+ | seller_id | number |  no  |  |
+ | status | string? |  yes  |  |
+ | task_id | string |  no  |  |
+ | trigger_on | string? |  yes  |  |
  
 
 ---
@@ -20441,41 +19200,6 @@ List of fields and validation values fro each. See example below or refer `Inven
  | ---------- | ---- | -------- | ----------- |
  | errors | string? |  yes  |  |
  | message | string |  no  |  |
- 
-
----
-
-#### [InventoryJobDetailResponse](#InventoryJobDetailResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | cancelled_by | [UserDetail](#UserDetail)? |  yes  | This is the user detail of the user who cancelled the job. |
- | cancelled_on | string? |  yes  | This is the timestamp of the cacellation for this job. |
- | completed_on | string? |  yes  | This is the timestamp of the completion for this job. |
- | created_by | [UserDetail](#UserDetail)? |  yes  | This is the user detail of the user who cancelled the job. |
- | created_on | string? |  yes  | This is the timestamp of the creation for this job. |
- | filters | [InventoryJobFilters](#InventoryJobFilters) |  no  | This is the filter criteria applied for the export job. |
- | id | string |  no  | This is the ID of the job. |
- | modified_on | string? |  yes  | This is the timestamp of the modification for this job. |
- | notification_emails | [string]? |  yes  | User email to get notification post completion of the job. |
- | seller_id | number |  no  | This ID of the company. |
- | status | any? |  yes  | This tells you the current status of the export job. |
- | task_id | string |  no  | This is the task id of the jobs that is used for search. |
- | type | string? |  yes  | This is the file type of the export. |
- | url | string |  no  | This is the url to download the export. |
- 
-
----
-
-#### [InventoryJobFilters](#InventoryJobFilters)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | brands | [string]? |  yes  | The list of all the brands selected. |
- | from_date | string? |  yes  | The modified on date from which the data needs to be exported. |
- | quantity | [InventoryExportQuantityFilter](#InventoryExportQuantityFilter)? |  yes  | The quantity range that needs to be exported. |
- | stores | [string]? |  yes  | The list of all the store selected. |
- | to_date | string? |  yes  | The modified on date till when the data needs to be exported. |
  
 
 ---
@@ -20745,6 +19469,16 @@ List of fields and validation values fro each. See example below or refer `Inven
 
 ---
 
+#### [ItemQueryForUserCollection](#ItemQueryForUserCollection)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | action | string? |  yes  |  |
+ | item_id | number? |  yes  |  |
+ 
+
+---
+
 #### [Items](#Items)
 
  | Properties | Type | Nullable | Description |
@@ -20876,17 +19610,6 @@ List of fields and validation values fro each. See example below or refer `Inven
 
 ---
 
-#### [ManufacturerResponse1](#ManufacturerResponse1)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | address | string? |  yes  |  |
- | is_default | boolean? |  yes  |  |
- | name | string? |  yes  |  |
- 
-
----
-
 #### [Media](#Media)
 
  | Properties | Type | Nullable | Description |
@@ -20985,13 +19708,13 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | key | any |  no  | The key of the metadata. Should be a non-empty string and length should not exceed 30 characters. |
- | value | any |  no  | The value of the metadata. Should be a non-empty string and length should not exceed 100 characters. |
+ | key | string |  no  |  |
+ | value | string |  no  |  |
  
 
 ---
 
-#### [MOQData](#MOQData)
+#### [MOQ](#MOQ)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
@@ -21002,21 +19725,20 @@ List of fields and validation values fro each. See example below or refer `Inven
 
 ---
 
-#### [NetQuantity](#NetQuantity)
+#### [NestedTags](#NestedTags)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | unit | any? |  yes  | The unit of measurement used for the net quantity of the product. |
- | value | number? |  yes  | The value of the net quantity of the product. |
+ | tags | [string]? |  yes  |  |
  
 
 ---
 
-#### [NetQuantityResponse](#NetQuantityResponse)
+#### [NetQuantity](#NetQuantity)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | unit | string? |  yes  |  |
+ | unit | any? |  yes  |  |
  | value | number? |  yes  |  |
  
 
@@ -21089,19 +19811,6 @@ List of fields and validation values fro each. See example below or refer `Inven
 
 ---
 
-#### [OwnerAppItemResponse](#OwnerAppItemResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | alt_text | string? |  yes  |  |
- | is_cod | boolean? |  yes  |  |
- | is_gift | boolean? |  yes  |  |
- | moq | [MOQData](#MOQData)? |  yes  |  |
- | seo | [SEOData](#SEOData)? |  yes  |  |
- 
-
----
-
 #### [Page](#Page)
 
  | Properties | Type | Nullable | Description |
@@ -21167,19 +19876,6 @@ List of fields and validation values fro each. See example below or refer `Inven
 
 ---
 
-#### [PriceArticle](#PriceArticle)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | currency | string? |  yes  |  |
- | effective | number? |  yes  |  |
- | marked | number? |  yes  |  |
- | tp_notes | string? |  yes  |  |
- | transfer | number? |  yes  |  |
- 
-
----
-
 #### [PriceMeta](#PriceMeta)
 
  | Properties | Type | Nullable | Description |
@@ -21198,7 +19894,7 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | items | [[CategoriesResponse](#CategoriesResponse)]? |  yes  |  |
+ | items | [string]? |  yes  |  |
  | page | [Page](#Page)? |  yes  |  |
  
 
@@ -21209,20 +19905,13 @@ List of fields and validation values fro each. See example below or refer `Inven
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | _custom_json | string? |  yes  |  |
- | all_company_ids | [number]? |  yes  |  |
- | all_identifiers | [string]? |  yes  |  |
  | all_sizes | [string]? |  yes  |  |
- | attributes | string? |  yes  |  |
  | brand | [Brand](#Brand)? |  yes  |  |
  | brand_uid | number? |  yes  |  |
- | category | string? |  yes  |  |
  | category_slug | string? |  yes  |  |
  | category_uid | number? |  yes  |  |
  | color | string? |  yes  |  |
- | company_id | number? |  yes  |  |
  | country_of_origin | string? |  yes  |  |
- | created_by | string? |  yes  |  |
- | created_on | string? |  yes  |  |
  | currency | string? |  yes  |  |
  | custom_order | string? |  yes  |  |
  | departments | [number]? |  yes  |  |
@@ -21235,41 +19924,25 @@ List of fields and validation values fro each. See example below or refer `Inven
  | is_active | boolean? |  yes  |  |
  | is_dependent | boolean? |  yes  |  |
  | is_expirable | boolean? |  yes  |  |
- | is_image_less_product | boolean? |  yes  |  |
  | is_physical | boolean? |  yes  |  |
  | is_set | boolean? |  yes  |  |
  | item_code | string? |  yes  |  |
  | item_type | string? |  yes  |  |
  | l3_mapping | [string]? |  yes  |  |
  | media | [[Media1](#Media1)]? |  yes  |  |
- | modified_by | string? |  yes  |  |
- | modified_on | string? |  yes  |  |
- | moq | string? |  yes  |  |
  | multi_size | boolean? |  yes  |  |
  | name | string? |  yes  |  |
- | net_quantity | [NetQuantityResponse](#NetQuantityResponse)? |  yes  |  |
- | no_of_boxes | number? |  yes  |  |
- | pending | string? |  yes  |  |
  | primary_color | string? |  yes  |  |
- | product_group_tag | [string]? |  yes  |  |
  | product_publish | [ProductPublished](#ProductPublished)? |  yes  |  |
- | return_config | [ReturnConfigResponse](#ReturnConfigResponse)? |  yes  |  |
  | short_description | string? |  yes  |  |
  | size_guide | string? |  yes  |  |
  | sizes | [string]? |  yes  |  |
  | slug | string? |  yes  |  |
- | stage | string? |  yes  |  |
- | tags | [string]? |  yes  |  |
  | tax_identifier | string? |  yes  |  |
- | teaser_tag | string? |  yes  |  |
  | template_tag | string? |  yes  |  |
- | trader | [[Trader](#Trader)]? |  yes  |  |
  | uid | number? |  yes  |  |
  | variant_group | string? |  yes  |  |
- | variant_media | string? |  yes  |  |
  | variants | string? |  yes  |  |
- | verified_by | [VerifiedBy](#VerifiedBy)? |  yes  |  |
- | verified_on | string? |  yes  |  |
  
 
 ---
@@ -21406,13 +20079,12 @@ List of fields and validation values fro each. See example below or refer `Inven
 
 ---
 
-#### [ProductCreateUpdateSchemaV2](#ProductCreateUpdateSchemaV2)
+#### [ProductCreateUpdate](#ProductCreateUpdate)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | _custom_json | string? |  yes  |  |
  | action | string? |  yes  |  |
- | attributes | string? |  yes  |  |
  | brand_uid | number |  no  |  |
  | bulk_job_id | string? |  yes  |  |
  | category_slug | string |  no  |  |
@@ -21428,11 +20100,11 @@ List of fields and validation values fro each. See example below or refer `Inven
  | is_dependent | boolean? |  yes  |  |
  | is_image_less_product | boolean? |  yes  |  |
  | is_set | boolean? |  yes  |  |
- | item_code | string |  no  |  |
+ | item_code | any |  no  |  |
  | item_type | string |  no  |  |
  | media | [[Media1](#Media1)]? |  yes  |  |
  | multi_size | boolean? |  yes  |  |
- | name | string |  no  |  |
+ | name | any |  no  |  |
  | net_quantity | [NetQuantity](#NetQuantity)? |  yes  |  |
  | no_of_boxes | number? |  yes  |  |
  | product_group_tag | [string]? |  yes  |  |
@@ -21441,7 +20113,6 @@ List of fields and validation values fro each. See example below or refer `Inven
  | return_config | [ReturnConfig](#ReturnConfig) |  no  |  |
  | short_description | string? |  yes  |  |
  | size_guide | string? |  yes  |  |
- | sizes | [string] |  no  |  |
  | slug | string |  no  |  |
  | tags | [string]? |  yes  |  |
  | tax_identifier | [TaxIdentifier](#TaxIdentifier) |  no  |  |
@@ -21449,9 +20120,9 @@ List of fields and validation values fro each. See example below or refer `Inven
  | template_tag | string |  no  |  |
  | trader | [[Trader](#Trader)] |  no  |  |
  | uid | number? |  yes  |  |
- | variant_group | string? |  yes  |  |
  | variant_media | string? |  yes  |  |
  | variants | string? |  yes  |  |
+ | variants_group | string? |  yes  |  |
  
 
 ---
@@ -21508,11 +20179,41 @@ List of fields and validation values fro each. See example below or refer `Inven
 
 ---
 
+#### [ProductDownloadItemsData](#ProductDownloadItemsData)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | brand | [string]? |  yes  |  |
+ | templates | [string]? |  yes  |  |
+ | type | string? |  yes  |  |
+ 
+
+---
+
+#### [ProductDownloadsItems](#ProductDownloadsItems)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | completed_on | string? |  yes  |  |
+ | created_by | [VerifiedBy](#VerifiedBy)? |  yes  |  |
+ | data | [ProductDownloadItemsData](#ProductDownloadItemsData)? |  yes  |  |
+ | id | string? |  yes  |  |
+ | seller_id | number? |  yes  |  |
+ | status | string? |  yes  |  |
+ | task_id | string? |  yes  |  |
+ | template_tags | string? |  yes  |  |
+ | trigger_on | string? |  yes  |  |
+ | url | string? |  yes  |  |
+ 
+
+---
+
 #### [ProductDownloadsResponse](#ProductDownloadsResponse)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | items | [[ProductTemplateExportResponse](#ProductTemplateExportResponse)]? |  yes  | The items of the job. |
+ | items | [ProductDownloadsItems](#ProductDownloadsItems)? |  yes  |  |
+ | page | [Page](#Page)? |  yes  |  |
  
 
 ---
@@ -21614,27 +20315,7 @@ List of fields and validation values fro each. See example below or refer `Inven
 
 ---
 
-#### [ProductListingResponseV2](#ProductListingResponseV2)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | items | [[ProductSchemaV2](#ProductSchemaV2)]? |  yes  |  |
- | page | [Page](#Page)? |  yes  |  |
- 
-
----
-
 #### [ProductPublish](#ProductPublish)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | is_set | boolean? |  yes  |  |
- | product_online_date | string? |  yes  |  |
- 
-
----
-
-#### [ProductPublish1](#ProductPublish1)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
@@ -21660,76 +20341,6 @@ List of fields and validation values fro each. See example below or refer `Inven
  | ---------- | ---- | -------- | ----------- |
  | on_same_store | boolean? |  yes  |  |
  | store_uid | number? |  yes  |  |
- 
-
----
-
-#### [ProductSchemaV2](#ProductSchemaV2)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | _custom_json | string? |  yes  |  |
- | all_company_ids | [number]? |  yes  |  |
- | all_identifiers | [string]? |  yes  |  |
- | all_sizes | [string]? |  yes  |  |
- | attributes | string? |  yes  |  |
- | brand | [Brand](#Brand)? |  yes  |  |
- | brand_uid | number? |  yes  |  |
- | category | string? |  yes  |  |
- | category_slug | string? |  yes  |  |
- | category_uid | number? |  yes  |  |
- | color | string? |  yes  |  |
- | company_id | number? |  yes  |  |
- | country_of_origin | string? |  yes  |  |
- | created_by | string? |  yes  |  |
- | created_on | string? |  yes  |  |
- | currency | string? |  yes  |  |
- | custom_order | string? |  yes  |  |
- | departments | [number]? |  yes  |  |
- | description | string? |  yes  |  |
- | highlights | [string]? |  yes  |  |
- | hsn_code | string? |  yes  |  |
- | id | string? |  yes  |  |
- | image_nature | string? |  yes  |  |
- | images | [[Image](#Image)]? |  yes  |  |
- | is_active | boolean? |  yes  |  |
- | is_dependent | boolean? |  yes  |  |
- | is_expirable | boolean? |  yes  |  |
- | is_image_less_product | boolean? |  yes  |  |
- | is_physical | boolean? |  yes  |  |
- | is_set | boolean? |  yes  |  |
- | item_code | string? |  yes  |  |
- | item_type | string? |  yes  |  |
- | l3_mapping | [string]? |  yes  |  |
- | media | [[Media1](#Media1)]? |  yes  |  |
- | modified_by | string? |  yes  |  |
- | modified_on | string? |  yes  |  |
- | moq | string? |  yes  |  |
- | multi_size | boolean? |  yes  |  |
- | name | string? |  yes  |  |
- | net_quantity | [NetQuantityResponse](#NetQuantityResponse)? |  yes  |  |
- | no_of_boxes | number? |  yes  |  |
- | pending | string? |  yes  |  |
- | primary_color | string? |  yes  |  |
- | product_group_tag | [string]? |  yes  |  |
- | product_publish | [ProductPublish1](#ProductPublish1)? |  yes  |  |
- | return_config | [ReturnConfigResponse](#ReturnConfigResponse)? |  yes  |  |
- | short_description | string? |  yes  |  |
- | size_guide | string? |  yes  |  |
- | sizes | [string]? |  yes  |  |
- | slug | string? |  yes  |  |
- | stage | string? |  yes  |  |
- | tags | [string]? |  yes  |  |
- | tax_identifier | string? |  yes  |  |
- | teaser_tag | string? |  yes  |  |
- | template_tag | string? |  yes  |  |
- | trader | [[Trader](#Trader)]? |  yes  |  |
- | uid | number? |  yes  |  |
- | variant_group | string? |  yes  |  |
- | variant_media | string? |  yes  |  |
- | variants | string? |  yes  |  |
- | verified_by | [VerifiedBy](#VerifiedBy)? |  yes  |  |
- | verified_on | string? |  yes  |  |
  
 
 ---
@@ -21780,7 +20391,7 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | items | [string]? |  yes  |  |
+ | items | [NestedTags](#NestedTags)? |  yes  |  |
  
 
 ---
@@ -21805,72 +20416,6 @@ List of fields and validation values fro each. See example below or refer `Inven
  | name | string? |  yes  |  |
  | slug | string |  no  |  |
  | tag | string? |  yes  |  |
- 
-
----
-
-#### [ProductTemplateDownloadsExport](#ProductTemplateDownloadsExport)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | filters | [ProductTemplateExportFilterRequest](#ProductTemplateExportFilterRequest)? |  yes  | This is the filters of the file for the export. |
- | notification_emails | [string]? |  yes  | The list of the emails to be notified after the completion of the job. |
- | type | string? |  yes  | This is the type of the file for the export. |
- 
-
----
-
-#### [ProductTemplateExportFilterRequest](#ProductTemplateExportFilterRequest)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | brands | [string]? |  yes  | The list of the brands that needs to be exported. |
- | catalogue_types | [string] |  no  | The list of the type of the catalog such as set, standard and composite. |
- | from_date | string? |  yes  | The modified on date from which the data needs to be exported. |
- | templates | [string] |  no  | The list of the templates that needs to be exported. |
- | to_date | string? |  yes  | The modified on date till when the data needs to be exported. |
- 
-
----
-
-#### [ProductTemplateExportResponse](#ProductTemplateExportResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | completed_on | string? |  yes  | Completion datetime of the job |
- | created_by | [UserInfo1](#UserInfo1)? |  yes  | The user that created the job. |
- | filters | string? |  yes  | The filters that needs to be exported. |
- | modified_on | string? |  yes  | Modification date of the job |
- | notification_emails | [string]? |  yes  | The notification emails for the job. |
- | seller_id | number |  no  | The seller id that needs to be exported. |
- | status | string? |  yes  | The status of the job. |
- | task_id | string |  no  | The task id of the job. |
- | type | string? |  yes  | The type of file that needs to be exported. |
- | url | string? |  yes  | The filters that needs to be exported. |
- 
-
----
-
-#### [ProductVariants](#ProductVariants)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | brand_uid | number? |  yes  |  |
- | category_uid | number? |  yes  |  |
- | item_code | string? |  yes  |  |
- | media | [[Media1](#Media1)]? |  yes  |  |
- | name | string? |  yes  |  |
- | uid | number? |  yes  |  |
- 
-
----
-
-#### [ProductVariantsResponse](#ProductVariantsResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | page | [Page](#Page)? |  yes  |  |
- | variants | [[ProductVariants](#ProductVariants)]? |  yes  |  |
  
 
 ---
@@ -21937,27 +20482,6 @@ List of fields and validation values fro each. See example below or refer `Inven
 
 ---
 
-#### [QuantitiesArticle](#QuantitiesArticle)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | damaged | [Quantity](#Quantity)? |  yes  |  |
- | not_available | [Quantity](#Quantity)? |  yes  |  |
- | order_committed | [Quantity](#Quantity)? |  yes  |  |
- | sellable | [Quantity](#Quantity)? |  yes  |  |
- 
-
----
-
-#### [Quantity](#Quantity)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | count | number? |  yes  |  |
- 
-
----
-
 #### [QuantityBase](#QuantityBase)
 
  | Properties | Type | Nullable | Description |
@@ -21980,28 +20504,6 @@ List of fields and validation values fro each. See example below or refer `Inven
 ---
 
 #### [ReturnConfig1](#ReturnConfig1)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | returnable | boolean? |  yes  |  |
- | time | number? |  yes  |  |
- | unit | string? |  yes  |  |
- 
-
----
-
-#### [ReturnConfig2](#ReturnConfig2)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | returnable | boolean? |  yes  |  |
- | time | number? |  yes  |  |
- | unit | string? |  yes  |  |
- 
-
----
-
-#### [ReturnConfigResponse](#ReturnConfigResponse)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
@@ -22047,7 +20549,7 @@ List of fields and validation values fro each. See example below or refer `Inven
 
 ---
 
-#### [SEOData](#SEOData)
+#### [SEO](#SEO)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
@@ -22082,15 +20584,6 @@ List of fields and validation values fro each. See example below or refer `Inven
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | data | [Category](#Category)? |  yes  |  |
- 
-
----
-
-#### [SingleProductResponse](#SingleProductResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | data | [ProductSchemaV2](#ProductSchemaV2)? |  yes  |  |
  
 
 ---
@@ -22332,17 +20825,6 @@ List of fields and validation values fro each. See example below or refer `Inven
 
 ---
 
-#### [Trader2](#Trader2)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | address | [string]? |  yes  |  |
- | name | string? |  yes  |  |
- | type | string? |  yes  |  |
- 
-
----
-
 #### [UpdateCollection](#UpdateCollection)
 
  | Properties | Type | Nullable | Description |
@@ -22399,10 +20881,10 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | contact | string? |  yes  | The contact details of the user. |
- | super_user | boolean? |  yes  | A flag indicating whether the user is a super user. |
- | user_id | string |  no  | The user ID of the user. |
- | username | string |  no  | The username of the user. |
+ | contact | string? |  yes  |  |
+ | super_user | boolean? |  yes  |  |
+ | user_id | string |  no  |  |
+ | username | string |  no  |  |
  
 
 ---
@@ -22434,10 +20916,10 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | email | string? |  yes  | The email address of the user. |
- | uid | string? |  yes  | The unique ID of the user. |
- | user_id | string? |  yes  | The ID of the user. |
- | username | string? |  yes  | The username of the user. |
+ | email | string? |  yes  |  |
+ | uid | string? |  yes  |  |
+ | user_id | string? |  yes  |  |
+ | username | string? |  yes  |  |
  
 
 ---
@@ -22473,17 +20955,6 @@ List of fields and validation values fro each. See example below or refer `Inven
  | contact | string? |  yes  |  |
  | user_id | string? |  yes  |  |
  | username | string? |  yes  |  |
- 
-
----
-
-#### [ValidateIdentifier](#ValidateIdentifier)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | gtin_type | string |  no  |  |
- | gtin_value | string |  no  |  |
- | primary | boolean? |  yes  |  |
  
 
 ---
@@ -22537,16 +21008,6 @@ List of fields and validation values fro each. See example below or refer `Inven
  | is_default | boolean |  no  |  |
  | shipping | number |  no  |  |
  | unit | string |  no  |  |
- 
-
----
-
-#### [WeightResponse1](#WeightResponse1)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | shipping | number? |  yes  |  |
- | unit | string? |  yes  |  |
  
 
 ---

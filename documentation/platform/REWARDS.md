@@ -6,19 +6,16 @@
 ##### [Back to Platform docs](./README.md)
 
 ## Rewards Methods
-Earn and redeem reward points
+Rewards
 
-* [getGiveawayAudienceStatus](#getgiveawayaudiencestatus)
-* [getGiveawayById](#getgiveawaybyid)
+* [createGiveaway](#creategiveaway)
+* [getGiveawayByID](#getgiveawaybyid)
+* [getGiveaways](#getgiveaways)
 * [getOfferByName](#getofferbyname)
-* [getRewardsConfiguration](#getrewardsconfiguration)
-* [getUserDetails](#getuserdetails)
+* [getOffers](#getoffers)
+* [getUserAvailablePoints](#getuseravailablepoints)
 * [getUserPointsHistory](#getuserpointshistory)
-* [saveGiveAway](#savegiveaway)
-* [setRewardsConfiguration](#setrewardsconfiguration)
-* [showGiveaways](#showgiveaways)
-* [showOffers](#showoffers)
-* [updateGiveAway](#updategiveaway)
+* [updateGiveaway](#updategiveaway)
 * [updateOfferByName](#updateofferbyname)
 * [updateUserStatus](#updateuserstatus)
 
@@ -29,19 +26,17 @@ Earn and redeem reward points
 
 
 
-### getGiveawayAudienceStatus
-Get the Giveaway audience status
+### createGiveaway
+Adds a new giveaway.
 
 
 
 ```javascript
 // Promise
-const promise = platformClient.application("<APPLICATION_ID>").rewards.getGiveawayAudienceStatus({  id : value,
- audienceId : value });
+const promise = platformClient.application("<APPLICATION_ID>").rewards.createGiveaway({  body : value });
 
 // Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").rewards.getGiveawayAudienceStatus({  id : value,
- audienceId : value });
+const data = await platformClient.application("<APPLICATION_ID>").rewards.createGiveaway({  body : value });
 ```
 
 
@@ -49,22 +44,20 @@ const data = await platformClient.application("<APPLICATION_ID>").rewards.getGiv
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| id | string | yes | Giveaway ID |   
-| audienceId | string | yes | audience id |  
+| --------- | -----  | -------- | ----------- |
+| body | [Giveaway](#Giveaway) | yes | Request body |
 
 
-
-Get giveaway audience status
+Adds a new giveaway.
 
 *Returned Response:*
 
 
 
 
-[GiveawayAudience](#GiveawayAudience)
+[Giveaway](#Giveaway)
 
-Success
+ok
 
 
 
@@ -88,17 +81,17 @@ Success
 ---
 
 
-### getGiveawayById
+### getGiveawayByID
 Get giveaway by ID.
 
 
 
 ```javascript
 // Promise
-const promise = platformClient.application("<APPLICATION_ID>").rewards.getGiveawayById({  id : value });
+const promise = platformClient.application("<APPLICATION_ID>").rewards.getGiveawayByID({  id : value });
 
 // Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").rewards.getGiveawayById({  id : value });
+const data = await platformClient.application("<APPLICATION_ID>").rewards.getGiveawayByID({  id : value });
 ```
 
 
@@ -144,353 +137,18 @@ ok
 ---
 
 
-### getOfferByName
-Get offer by name
-
-
-
-```javascript
-// Promise
-const promise = platformClient.application("<APPLICATION_ID>").rewards.getOfferByName({  name : value });
-
-// Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").rewards.getOfferByName({  name : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| name | string | yes | The name given to the offer. |  
-
-
-
-Use this API to get the offer details and configuration by entering the name of the offer.
-
-*Returned Response:*
-
-
-
-
-[Offer](#Offer)
-
-Success. Check example below or refer `Offer` for more details.
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### getRewardsConfiguration
-Get all valid android paths
-
-
-
-```javascript
-// Promise
-const promise = platformClient.application("<APPLICATION_ID>").rewards.getRewardsConfiguration();
-
-// Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").rewards.getRewardsConfiguration();
-```
-
-
-
-
-
-
-Use this API to get a list of valid android paths required by the Rewards INIT API to validate a fradualent device.
-
-*Returned Response:*
-
-
-
-
-[ConfigurationRes](#ConfigurationRes)
-
-Success. Refer `ConfigurationRes` for more details.
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### getUserDetails
-Get user reward details
-
-
-
-```javascript
-// Promise
-const promise = platformClient.application("<APPLICATION_ID>").rewards.getUserDetails({  userId : value });
-
-// Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").rewards.getUserDetails({  userId : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| userId | string | yes | user id |  
-
-
-
-Use this API to get the user reward details
-
-*Returned Response:*
-
-
-
-
-[UserRes](#UserRes)
-
-Success. Check example below or refer `UserRes` for more details.
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### getUserPointsHistory
-Get all transactions of reward points
-
-
-
-```javascript
-// Promise
-const promise = platformClient.application("<APPLICATION_ID>").rewards.getUserPointsHistory({  userId : value,
- pageId : value,
- pageSize : value });
-
-// Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").rewards.getUserPointsHistory({  userId : value,
- pageId : value,
- pageSize : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| userId | string | yes | user id |    
-| pageId | string | no | PageID is the ID of the requested page. For first request it should be kept empty. |    
-| pageSize | number | no | The number of items to retrieve in each page. |  
-
-
-
-Use this API to get a list of points transactions.
-
-*Returned Response:*
-
-
-
-
-[HistoryRes](#HistoryRes)
-
-Success. Check example below or refer `HistoryRes` for more details.
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### saveGiveAway
+### getGiveaways
 List of giveaways of the current application.
 
 
 
 ```javascript
 // Promise
-const promise = platformClient.application("<APPLICATION_ID>").rewards.saveGiveAway({  body : value });
-
-// Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").rewards.saveGiveAway({  body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |
-| body | [Giveaway](#Giveaway) | yes | Request body |
-
-
-Adds a new giveaway.
-
-*Returned Response:*
-
-
-
-
-[Giveaway](#Giveaway)
-
-ok
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### setRewardsConfiguration
-Updates the collection with given android paths.
-
-
-
-```javascript
-// Promise
-const promise = platformClient.application("<APPLICATION_ID>").rewards.setRewardsConfiguration({  body : value });
-
-// Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").rewards.setRewardsConfiguration({  body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |
-| body | [ConfigurationRequest](#ConfigurationRequest) | yes | Request body |
-
-
-Updates the configuration or inserts new records.
-
-*Returned Response:*
-
-
-
-
-[SetConfigurationRes](#SetConfigurationRes)
-
-ok
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### showGiveaways
-List of giveaways of the current application.
-
-
-
-```javascript
-// Promise
-const promise = platformClient.application("<APPLICATION_ID>").rewards.showGiveaways({  pageId : value,
+const promise = platformClient.application("<APPLICATION_ID>").rewards.getGiveaways({  pageId : value,
  pageSize : value });
 
 // Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").rewards.showGiveaways({  pageId : value,
+const data = await platformClient.application("<APPLICATION_ID>").rewards.getGiveaways({  pageId : value,
  pageSize : value });
 ```
 
@@ -499,9 +157,9 @@ const data = await platformClient.application("<APPLICATION_ID>").rewards.showGi
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| pageId | string | yes | pagination page id |   
-| pageSize | number | yes | pagination page size |  
+| --------- | -----  | -------- | ----------- |  
+| pageId | string | no | pagination page id |    
+| pageSize | number | no | pagination page size |  
 
 
 
@@ -538,17 +196,76 @@ ok
 ---
 
 
-### showOffers
-List of offers of the current application.
+### getOfferByName
+Get offer by name.
 
 
 
 ```javascript
 // Promise
-const promise = platformClient.application("<APPLICATION_ID>").rewards.showOffers();
+const promise = platformClient.application("<APPLICATION_ID>").rewards.getOfferByName({  cookie : value,
+ name : value });
 
 // Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").rewards.showOffers();
+const data = await platformClient.application("<APPLICATION_ID>").rewards.getOfferByName({  cookie : value,
+ name : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| cookie | string | yes | User's session cookie. This cookie is set in browser cookie when logged-in to fynd's authentication system i.e. `Grimlock` or by using grimlock-backend SDK for backend implementation. |   
+| name | string | yes | Offer name |  
+
+
+
+Get offer by name.
+
+*Returned Response:*
+
+
+
+
+[Offer](#Offer)
+
+ok
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### getOffers
+List of offer of the current application.
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").rewards.getOffers();
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").rewards.getOffers();
 ```
 
 
@@ -556,7 +273,7 @@ const data = await platformClient.application("<APPLICATION_ID>").rewards.showOf
 
 
 
-List of offers of the current application.
+List of offer of the current application.
 
 *Returned Response:*
 
@@ -589,18 +306,140 @@ ok
 ---
 
 
-### updateGiveAway
+### getUserAvailablePoints
+User's reward details.
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").rewards.getUserAvailablePoints({  userId : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").rewards.getUserAvailablePoints({  userId : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| userId | string | yes | user id |  
+
+
+
+User's reward details.
+
+*Returned Response:*
+
+
+
+
+[UserRes](#UserRes)
+
+ok
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### getUserPointsHistory
+Get list of points transactions.
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").rewards.getUserPointsHistory({  userId : value,
+ pageId : value,
+ pageLimit : value,
+ pageSize : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").rewards.getUserPointsHistory({  userId : value,
+ pageId : value,
+ pageLimit : value,
+ pageSize : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| userId | string | yes | user id |    
+| pageId | string | no | PageID is the ID of the requested page. For first request it should be kept empty. |    
+| pageLimit | number | no | PageLimit is the number of requested items in response. |    
+| pageSize | number | no | PageSize is the number of requested items in response. |  
+
+
+
+Get list of points transactions.
+The list of points history is paginated.
+
+*Returned Response:*
+
+
+
+
+[HistoryRes](#HistoryRes)
+
+ok
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### updateGiveaway
 Updates the giveaway by it's ID.
 
 
 
 ```javascript
 // Promise
-const promise = platformClient.application("<APPLICATION_ID>").rewards.updateGiveAway({  id : value,
+const promise = platformClient.application("<APPLICATION_ID>").rewards.updateGiveaway({  id : value,
  body : value });
 
 // Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").rewards.updateGiveAway({  id : value,
+const data = await platformClient.application("<APPLICATION_ID>").rewards.updateGiveaway({  id : value,
  body : value });
 ```
 
@@ -648,7 +487,7 @@ ok
 
 
 ### updateOfferByName
-Update offer by name
+Updates the offer by name.
 
 
 
@@ -668,11 +507,11 @@ const data = await platformClient.application("<APPLICATION_ID>").rewards.update
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
-| name | string | yes | The name given to the offer. |  
+| name | string | yes | Offer name |  
 | body | [Offer](#Offer) | yes | Request body |
 
 
-Use this API to update the offer details
+Updates the offer by name.
 
 *Returned Response:*
 
@@ -681,7 +520,7 @@ Use this API to update the offer details
 
 [Offer](#Offer)
 
-Success. Check example below or refer `Offer` for more details.
+ok
 
 
 
@@ -706,7 +545,7 @@ Success. Check example below or refer `Offer` for more details.
 
 
 ### updateUserStatus
-Update user status
+Update User status
 
 
 
@@ -730,7 +569,7 @@ const data = await platformClient.application("<APPLICATION_ID>").rewards.update
 | body | [AppUser](#AppUser) | yes | Request body |
 
 
-Use this API to update the user status active/archive
+Update user status, active/archive
 
 *Returned Response:*
 
@@ -793,36 +632,17 @@ Success
 
 ---
 
-#### [ConfigurationRequest](#ConfigurationRequest)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | terms_conditions_link | string? |  yes  |  |
- | valid_android_packages | [string]? |  yes  |  |
- 
-
----
-
-#### [ConfigurationRes](#ConfigurationRes)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | application_id | string? |  yes  |  |
- | success | boolean? |  yes  |  |
- | terms_conditions_link | string? |  yes  | A URL that redirects to the referral information suport page link |
- | valid_android_packages | [string]? |  yes  | Contains array of string items, Valid android package names. |
- 
-
----
-
 #### [E](#E)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | code | number? |  yes  |  |
+ | code | string? |  yes  |  |
  | exception | string? |  yes  |  |
  | info | string? |  yes  |  |
  | message | string? |  yes  |  |
+ | request_id | string? |  yes  |  |
+ | stack_trace | string? |  yes  |  |
+ | status | number? |  yes  |  |
  
 
 ---
@@ -847,16 +667,6 @@ Success
 
 ---
 
-#### [GiveawayAudience](#GiveawayAudience)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | audience_id | string? |  yes  |  |
- | current_count | number? |  yes  |  |
- 
-
----
-
 #### [GiveawayResponse](#GiveawayResponse)
 
  | Properties | Type | Nullable | Description |
@@ -867,11 +677,32 @@ Success
 
 ---
 
+#### [HistoryPretty](#HistoryPretty)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | _id | string? |  yes  |  |
+ | application_id | string? |  yes  |  |
+ | claimed | boolean? |  yes  |  |
+ | created_at | string? |  yes  |  |
+ | expires_on | string? |  yes  |  |
+ | points | number? |  yes  |  |
+ | remaining_points | number? |  yes  |  |
+ | text_1 | string? |  yes  |  |
+ | text_2 | string? |  yes  |  |
+ | text_3 | string? |  yes  |  |
+ | txn_name | string? |  yes  |  |
+ | updated_at | string? |  yes  |  |
+ | user_id | string? |  yes  |  |
+ 
+
+---
+
 #### [HistoryRes](#HistoryRes)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | items | [[PointsHistory](#PointsHistory)]? |  yes  | History is the list of points transaction. |
+ | items | [[HistoryPretty](#HistoryPretty)]? |  yes  |  |
  | page | [Page](#Page)? |  yes  |  |
  | points | number? |  yes  |  |
  
@@ -920,28 +751,6 @@ Success
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | available | number? |  yes  |  |
- 
-
----
-
-#### [PointsHistory](#PointsHistory)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | _id | string? |  yes  |  |
- | application_id | string? |  yes  |  |
- | claimed | boolean? |  yes  |  |
- | created_at | string? |  yes  |  |
- | expires_on | string? |  yes  |  |
- | meta | string? |  yes  |  |
- | points | number? |  yes  |  |
- | remaining_points | number? |  yes  |  |
- | text_1 | string? |  yes  |  |
- | text_2 | string? |  yes  |  |
- | text_3 | string? |  yes  |  |
- | txn_name | string? |  yes  |  |
- | updated_at | string? |  yes  |  |
- | user_id | string? |  yes  |  |
  
 
 ---
@@ -1002,20 +811,11 @@ Success
 
 ---
 
-#### [SetConfigurationRes](#SetConfigurationRes)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | success | boolean? |  yes  |  |
- 
-
----
-
 #### [ShareMessages](#ShareMessages)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | email | number? |  yes  |  |
+ | email | string? |  yes  |  |
  | facebook | string? |  yes  |  |
  | fallback | string? |  yes  |  |
  | message | string? |  yes  |  |

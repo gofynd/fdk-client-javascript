@@ -411,6 +411,7 @@ JobCode Metrics entry Created Successfully
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | _id | string? |  yes  |  |
+ | gstores | [[GStore](#GStore)]? |  yes  |  |
  | integration | string? |  yes  |  |
  | level | string? |  yes  |  |
  | name | string? |  yes  |  |

@@ -12,7 +12,6 @@ class PosCartValidator {
     return Joi.object({
       i: Joi.boolean(),
       b: Joi.boolean(),
-      areaCode: Joi.string().allow(""),
       buyNow: Joi.boolean(),
       body: PosCartModel.AddCartRequest().required(),
     }).required();
@@ -91,7 +90,6 @@ class PosCartValidator {
       i: Joi.boolean(),
       b: Joi.boolean(),
       assignCardId: Joi.number(),
-      areaCode: Joi.string().allow(""),
       buyNow: Joi.boolean(),
     });
   }
@@ -189,7 +187,6 @@ class PosCartValidator {
       id: Joi.string().allow(""),
       i: Joi.boolean(),
       b: Joi.boolean(),
-      areaCode: Joi.string().allow(""),
       buyNow: Joi.boolean(),
       body: PosCartModel.UpdateCartRequest().required(),
     }).required();

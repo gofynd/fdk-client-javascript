@@ -146,22 +146,17 @@ declare class Catalog {
      *   either ascending or descending order. See the supported values below.
      * @param {string} [arg.pageId] - Page ID to retrieve next set of results.
      * @param {number} [arg.pageSize] - The number of items to retrieve in each page.
-     * @param {number} [arg.pageNo] - Page Number to retrieve next set of results.
-     * @param {string} [arg.pageType] - Page Type to retrieve set of results can
-     *   be cursor or number.
      * @returns {Promise<ProductListingResponse>} - Success response
      * @summary: Get the items in a collection
      * @description: Get items in a collection specified by its `slug`.
      */
-    getCollectionItemsBySlug({ slug, f, filters, sortOn, pageId, pageSize, pageNo, pageType, }?: {
+    getCollectionItemsBySlug({ slug, f, filters, sortOn, pageId, pageSize, }?: {
         slug: string;
         f?: string;
         filters?: boolean;
         sortOn?: string;
         pageId?: string;
         pageSize?: number;
-        pageNo?: number;
-        pageType?: string;
     }): Promise<ProductListingResponse>;
     /**
      * @param {Object} arg - Arg object.
@@ -419,19 +414,16 @@ declare class Catalog {
      *   product, e.g. 1,2,3.
      * @param {string} [arg.pincode] - The PIN Code of the area near which the
      *   selling locations should be searched, e.g. 400059.
-     * @param {number} [arg.moq] - An Integer indication the Minimum Order
-     *   Quantity of a product, e.g. 100.
-     * @returns {Promise<ProductSizePriceResponseV3>} - Success response
+     * @returns {Promise<ProductSizePriceResponseV2>} - Success response
      * @summary: Get the price of a product size at a PIN Code
      * @description: Prices may vary for different sizes of a product. Use this API to retrieve the price of a product size at all the selling locations near to a PIN Code.
      */
-    getProductPriceBySlug({ slug, size, storeId, pincode, moq }?: {
+    getProductPriceBySlug({ slug, size, storeId, pincode }?: {
         slug: string;
         size: string;
         storeId?: number;
         pincode?: string;
-        moq?: number;
-    }): Promise<ProductSizePriceResponseV3>;
+    }): Promise<ProductSizePriceResponseV2>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.slug - A short, human-readable, URL-friendly
@@ -447,7 +439,7 @@ declare class Catalog {
      * @param {number} [arg.pageNo] - The page number to navigate through the
      *   given set of results.
      * @param {number} [arg.pageSize] - The number of items to retrieve in each page.
-     * @returns {Promise<ProductSizeSellersResponseV3>} - Success response
+     * @returns {Promise<ProductSizeSellersResponseV2>} - Success response
      * @summary: Get the sellers of a product size at a PIN Code
      * @description: A product of a particular size may be sold by multiple sellers. Use this API to fetch the sellers having the stock of a particular size at a given PIN Code.
      */
@@ -458,7 +450,7 @@ declare class Catalog {
         strategy?: string;
         pageNo?: number;
         pageSize?: number;
-    }): Promise<ProductSizeSellersResponseV3>;
+    }): Promise<ProductSizeSellersResponseV2>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.slug - A short, human-readable, URL-friendly

@@ -346,8 +346,6 @@ Success. Next, call the `completeUpload` API and pass the response payload of th
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | absolute_url | string? |  yes  |  |
- | relative_url | string? |  yes  |  |
  | url | string |  no  |  |
  
 

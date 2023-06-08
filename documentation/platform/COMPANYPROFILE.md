@@ -19,6 +19,7 @@
 * [getCompanyMetrics](#getcompanymetrics)
 * [getLocationDetail](#getlocationdetail)
 * [getLocations](#getlocations)
+* [getOptimalLocations](#getoptimallocations)
 * [updateCompany](#updatecompany)
 * [updateLocation](#updatelocation)
 
@@ -1231,6 +1232,85 @@ Company profile object. See example below or refer `LocationListSerializer` for 
 ---
 
 
+### getOptimalLocations
+Location Reassignment
+
+
+
+```javascript
+// Promise
+const promise = platformClient.companyProfile.getOptimalLocations({  body : value });
+
+// Async/Await
+const data = await platformClient.companyProfile.getOptimalLocations({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [AssignStoreRequestValidator](#AssignStoreRequestValidator) | yes | Request body |
+
+
+
+
+*Returned Response:*
+
+
+
+
+[AssignStoreResponseSerializer](#AssignStoreResponseSerializer)
+
+Returns a success response
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "items": [
+    {
+      "meta": {},
+      "store_id": 11550,
+      "size": "OS",
+      "_id": "61161830f1061e7c7f81d8ed",
+      "store_pincode": 201303,
+      "company_id": 783,
+      "s_city": "NOIDA",
+      "quantity": 1,
+      "price_effective": 995,
+      "status": true,
+      "price_marked": 995,
+      "uid": "11550_000000410234883001",
+      "article_assignment": {
+        "strategy": "app-config",
+        "level": "multi-company"
+      },
+      "item_id": 75252658,
+      "strategy_wise_listing": [],
+      "index": 0
+    }
+  ]
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
 ### updateCompany
 Edit company profile
 
@@ -1354,21 +1434,74 @@ Returns a success response
 ### Schemas
 
 
-#### [AddressSerializer](#AddressSerializer)
+#### [_ArticleAssignment](#_ArticleAssignment)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | address1 | string? |  yes  |  |
- | address2 | string? |  yes  |  |
- | address_type | string? |  yes  |  |
- | city | string? |  yes  |  |
- | country | string? |  yes  |  |
- | country_code | string? |  yes  |  |
- | landmark | string? |  yes  |  |
- | latitude | number |  no  |  |
- | longitude | number |  no  |  |
- | pincode | number? |  yes  |  |
- | state | string? |  yes  |  |
+ | level | string? |  yes  |  |
+ | strategy | string? |  yes  |  |
+ 
+
+---
+
+#### [_ArticleQuery](#_ArticleQuery)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | ignored_stores | [number]? |  yes  |  |
+ | item_id | number? |  yes  |  |
+ | size | string? |  yes  |  |
+ 
+
+---
+
+#### [_AssignStoreArticle](#_AssignStoreArticle)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | article_assignment | [_ArticleAssignment](#_ArticleAssignment)? |  yes  |  |
+ | group_id | string? |  yes  |  |
+ | meta | string? |  yes  |  |
+ | quantity | number? |  yes  |  |
+ | query | [_ArticleQuery](#_ArticleQuery)? |  yes  |  |
+ 
+
+---
+
+#### [AssignStoreRequestValidator](#AssignStoreRequestValidator)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | app_id | string? |  yes  |  |
+ | articles | [[_AssignStoreArticle](#_AssignStoreArticle)]? |  yes  |  |
+ | channel_identifier | string? |  yes  |  |
+ | channel_type | string? |  yes  |  |
+ | company_id | number? |  yes  |  |
+ | pincode | string? |  yes  |  |
+ | store_ids | [number]? |  yes  |  |
+ 
+
+---
+
+#### [AssignStoreResponseSerializer](#AssignStoreResponseSerializer)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | _id | string? |  yes  |  |
+ | article_assignment | [_ArticleAssignment](#_ArticleAssignment)? |  yes  |  |
+ | company_id | number? |  yes  |  |
+ | index | number? |  yes  |  |
+ | item_id | number? |  yes  |  |
+ | meta | string? |  yes  |  |
+ | preice_effective | number? |  yes  |  |
+ | price_marked | number? |  yes  |  |
+ | quantity | number? |  yes  |  |
+ | s_city | string? |  yes  |  |
+ | size | string? |  yes  |  |
+ | status | boolean? |  yes  |  |
+ | store_id | number? |  yes  |  |
+ | store_pincode | string? |  yes  |  |
+ | uid | string? |  yes  |  |
  
 
 ---
@@ -1706,23 +1839,20 @@ Returns a success response
  | ---------- | ---- | -------- | ----------- |
  | _custom_json | string? |  yes  |  |
  | address | [GetAddressSerializer](#GetAddressSerializer) |  no  |  |
- | auto_invoice | boolean? |  yes  |  |
  | code | string |  no  |  |
  | company | [GetCompanySerializer](#GetCompanySerializer)? |  yes  |  |
  | contact_numbers | [[SellerPhoneNumber](#SellerPhoneNumber)]? |  yes  |  |
  | created_by | [UserSerializer](#UserSerializer)? |  yes  |  |
  | created_on | string? |  yes  |  |
- | credit_note | boolean? |  yes  |  |
  | display_name | string |  no  |  |
  | documents | [[Document](#Document)]? |  yes  |  |
  | gst_credentials | [InvoiceDetailsSerializer](#InvoiceDetailsSerializer)? |  yes  |  |
- | holiday | [[HolidaySchemaSerializer](#HolidaySchemaSerializer)]? |  yes  |  |
  | manager | [LocationManagerSerializer](#LocationManagerSerializer)? |  yes  |  |
  | modified_by | [UserSerializer](#UserSerializer)? |  yes  |  |
  | modified_on | string? |  yes  |  |
  | name | string |  no  |  |
  | notification_emails | [string]? |  yes  |  |
- | phone_number | string? |  yes  |  |
+ | phone_number | string |  no  |  |
  | product_return_config | [ProductReturnConfigSerializer](#ProductReturnConfigSerializer)? |  yes  |  |
  | stage | string? |  yes  |  |
  | store_type | string? |  yes  |  |
@@ -1731,27 +1861,6 @@ Returns a success response
  | verified_by | [UserSerializer](#UserSerializer)? |  yes  |  |
  | verified_on | string? |  yes  |  |
  | warnings | string? |  yes  |  |
- 
-
----
-
-#### [HolidayDateSerializer](#HolidayDateSerializer)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | end_date | string |  no  |  |
- | start_date | string |  no  |  |
- 
-
----
-
-#### [HolidaySchemaSerializer](#HolidaySchemaSerializer)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | date | [HolidayDateSerializer](#HolidayDateSerializer) |  no  |  |
- | holiday_type | string |  no  |  |
- | title | string |  no  |  |
  
 
 ---
@@ -1815,16 +1924,13 @@ Returns a success response
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | _custom_json | string? |  yes  |  |
- | address | [AddressSerializer](#AddressSerializer) |  no  |  |
- | auto_invoice | boolean? |  yes  |  |
+ | address | [GetAddressSerializer](#GetAddressSerializer) |  no  |  |
  | code | string |  no  |  |
  | company | number |  no  |  |
  | contact_numbers | [[SellerPhoneNumber](#SellerPhoneNumber)]? |  yes  |  |
- | credit_note | boolean? |  yes  |  |
  | display_name | string |  no  |  |
  | documents | [[Document](#Document)]? |  yes  |  |
  | gst_credentials | [InvoiceDetailsSerializer](#InvoiceDetailsSerializer)? |  yes  |  |
- | holiday | [[HolidaySchemaSerializer](#HolidaySchemaSerializer)]? |  yes  |  |
  | manager | [LocationManagerSerializer](#LocationManagerSerializer)? |  yes  |  |
  | name | string |  no  |  |
  | notification_emails | [string]? |  yes  |  |

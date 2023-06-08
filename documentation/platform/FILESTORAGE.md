@@ -849,8 +849,6 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | absolute_url | string? |  yes  |  |
- | relative_url | string? |  yes  |  |
  | url | string |  no  |  |
  
 

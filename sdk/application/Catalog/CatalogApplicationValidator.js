@@ -49,8 +49,6 @@ class CatalogValidator {
       sortOn: Joi.string().allow(""),
       pageId: Joi.string().allow(""),
       pageSize: Joi.number(),
-      pageNo: Joi.number(),
-      pageType: Joi.string().allow(""),
     }).required();
   }
 
@@ -144,7 +142,6 @@ class CatalogValidator {
       size: Joi.string().allow("").required(),
       storeId: Joi.number(),
       pincode: Joi.string().allow(""),
-      moq: Joi.number(),
     }).required();
   }
 

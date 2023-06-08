@@ -66,17 +66,10 @@ class DiscountValidator {
     }).required();
   }
 
-  static upsertDiscountItems() {
-    return Joi.object({
-      id: Joi.string().allow("").required(),
-      body: DiscountModel.BulkDiscount().required(),
-    }).required();
-  }
-
   static validateDiscountFile() {
     return Joi.object({
       discount: Joi.string().allow(""),
-      body: DiscountModel.FileJobRequest().required(),
+      body: DiscountModel.DiscountJob().required(),
     }).required();
   }
 }

@@ -1,16 +1,13 @@
 export = RewardsValidator;
 declare class RewardsValidator {
-    static getGiveawayAudienceStatus(): any;
-    static getGiveawayById(): any;
+    static createGiveaway(): any;
+    static getGiveawayByID(): any;
+    static getGiveaways(): any;
     static getOfferByName(): any;
-    static getRewardsConfiguration(): any;
-    static getUserDetails(): any;
+    static getOffers(): any;
+    static getUserAvailablePoints(): any;
     static getUserPointsHistory(): any;
-    static saveGiveAway(): any;
-    static setRewardsConfiguration(): any;
-    static showGiveaways(): any;
-    static showOffers(): any;
-    static updateGiveAway(): any;
+    static updateGiveaway(): any;
     static updateOfferByName(): any;
     static updateUserStatus(): any;
 }

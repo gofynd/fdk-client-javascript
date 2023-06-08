@@ -2,12 +2,6 @@ const Joi = require("joi");
 
 const RewardsModel = require("./RewardsApplicationModel");
 class RewardsValidator {
-  static catalogueOrder() {
-    return Joi.object({
-      body: RewardsModel.CatalogueOrderRequest().required(),
-    }).required();
-  }
-
   static getOfferByName() {
     return Joi.object({
       name: Joi.string().allow("").required(),
@@ -17,6 +11,12 @@ class RewardsValidator {
   static getOrderDiscount() {
     return Joi.object({
       body: RewardsModel.OrderDiscountRequest().required(),
+    }).required();
+  }
+
+  static getPointsOnProduct() {
+    return Joi.object({
+      body: RewardsModel.CatalogueOrderRequest().required(),
     }).required();
   }
 

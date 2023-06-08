@@ -3,9 +3,9 @@ declare class Rewards {
     constructor(_conf: any);
     _conf: any;
     _relativeUrls: {
-        catalogueOrder: string;
         getOfferByName: string;
         getOrderDiscount: string;
+        getPointsOnProduct: string;
         getUserPoints: string;
         getUserPointsHistory: string;
         getUserReferralDetails: string;
@@ -13,16 +13,6 @@ declare class Rewards {
     };
     _urls: {};
     updateUrls(urls: any): void;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {CatalogueOrderRequest} arg.body
-     * @returns {Promise<CatalogueOrderResponse>} - Success response
-     * @summary: Get all transactions of reward points
-     * @description: Use this API to evaluate the amount of reward points that could be earned on any catalogue product.
-     */
-    catalogueOrder({ body }?: {
-        body: CatalogueOrderRequest;
-    }): Promise<CatalogueOrderResponse>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.name - The name given to the offer.
@@ -45,8 +35,18 @@ declare class Rewards {
     }): Promise<OrderDiscountResponse>;
     /**
      * @param {Object} arg - Arg object.
+     * @param {CatalogueOrderRequest} arg.body
+     * @returns {Promise<CatalogueOrderResponse>} - Success response
+     * @summary: Get the eligibility of reward points on a product
+     * @description: Use this API to evaluate the amount of reward points that could be earned on any catalogue product.
+     */
+    getPointsOnProduct({ body }?: {
+        body: CatalogueOrderRequest;
+    }): Promise<CatalogueOrderResponse>;
+    /**
+     * @param {Object} arg - Arg object.
      * @returns {Promise<PointsResponse>} - Success response
-     * @summary: Get referral details of a user
+     * @summary: Get reward points available with a user
      * @description: Use this API to retrieve total available points of a user for current application
      */
     getUserPoints({}?: any): Promise<PointsResponse>;
@@ -57,7 +57,7 @@ declare class Rewards {
      * @param {number} [arg.pageSize] - The number of items to retrieve in each page.
      * @returns {Promise<PointsHistoryResponse>} - Success response
      * @summary: Get all transactions of reward points
-     * @description: Use this API to get a list of points transactions.
+     * @description: Use this API to get a list of points transactions. The list of points history is paginated.
      */
     getUserPointsHistory({ pageId, pageSize }?: {
         pageId?: string;
@@ -67,7 +67,7 @@ declare class Rewards {
      * @param {Object} arg - Arg object.
      * @param {number} [arg.pageSize] - The number of items to retrieve in each page.
      * @summary: Get all transactions of reward points
-     * @description: Use this API to get a list of points transactions.
+     * @description: Use this API to get a list of points transactions. The list of points history is paginated.
      */
     getUserPointsHistoryPaginator({ pageSize }?: {
         pageSize?: number;

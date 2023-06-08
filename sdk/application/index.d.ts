@@ -16,5 +16,4 @@ export namespace ApplicationModel {
     const OrderApplicationModel: typeof import("./Order/OrderApplicationModel");
     const RewardsApplicationModel: typeof import("./Rewards/RewardsApplicationModel");
     const PosCartApplicationModel: typeof import("./PosCart/PosCartApplicationModel");
-    const LogisticApplicationModel: typeof import("./Logistic/LogisticApplicationModel");
 }

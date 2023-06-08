@@ -4688,6 +4688,7 @@ Success. Sends the OTP to the given mobile number. Check the example shown below
  | customer_id | string |  no  | Payment gateway customer id. |
  | email | string |  no  | Customer valid email |
  | merchant_order_id | string |  no  | Unique fynd order id |
+ | merchant_transaction_id | string |  no  | Unique fynd transaction id |
  | method | string |  no  | Payment method |
  | order_id | string |  no  | Payment gateway order id |
  | status | string |  no  | Status of payment. |

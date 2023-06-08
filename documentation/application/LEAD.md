@@ -202,7 +202,7 @@ Success
           "primary": true,
           "verified": true,
           "countryCode": 91,
-          "phone": "9999999999"
+          "phone": "9890425946"
         }
       ],
       "firstName": "Nikhil",
@@ -212,10 +212,10 @@ Success
           "active": true,
           "primary": true,
           "verified": true,
-          "email": "niktest@xyz.com"
+          "email": "nikhilmshchs@gmail.com"
         }
       ],
-      "username": "niktest_xyz_com_38425_20500281",
+      "username": "nikhilmshchs_gmail_com_38425_20500281",
       "createdAt": "2019-01-01T17:22:38.528Z",
       "updatedAt": "2021-01-22T10:02:42.258Z",
       "uid": "20500281",
@@ -263,7 +263,7 @@ Success
             "primary": true,
             "verified": true,
             "countryCode": 91,
-            "phone": "9999999999"
+            "phone": "9890425946"
           }
         ],
         "firstName": "Nikhil",
@@ -273,10 +273,10 @@ Success
             "active": true,
             "primary": true,
             "verified": true,
-            "email": "niktest@xyz.com"
+            "email": "nikhilmshchs@gmail.com"
           }
         ],
-        "username": "niktest_xyz_com_38425_20500281",
+        "username": "nikhilmshchs_gmail_com_38425_20500281",
         "createdAt": "2019-01-01T17:22:38.528Z",
         "updatedAt": "2021-01-22T10:02:42.258Z",
         "uid": "20500281",
@@ -631,7 +631,7 @@ Success
           "primary": true,
           "verified": true,
           "countryCode": 91,
-          "phone": "9999999999"
+          "phone": "9890425946"
         }
       ],
       "firstName": "Nikhil",
@@ -641,10 +641,10 @@ Success
           "active": true,
           "primary": true,
           "verified": true,
-          "email": "niktest@xyz.com"
+          "email": "nikhilmshchs@gmail.com"
         }
       ],
-      "username": "niktest_xyz_com_38425_20500281",
+      "username": "nikhilmshchs_gmail_com_38425_20500281",
       "createdAt": "2019-01-01T17:22:38.528Z",
       "updatedAt": "2021-01-22T10:02:42.258Z",
       "uid": "20500281",
@@ -692,7 +692,7 @@ Success
             "primary": true,
             "verified": true,
             "countryCode": 91,
-            "phone": "9999999999"
+            "phone": "9890425946"
           }
         ],
         "firstName": "Nikhil",
@@ -702,10 +702,10 @@ Success
             "active": true,
             "primary": true,
             "verified": true,
-            "email": "niktest@xyz.com"
+            "email": "nikhilmshchs@gmail.com"
           }
         ],
-        "username": "niktest_xyz_com_38425_20500281",
+        "username": "nikhilmshchs_gmail_com_38425_20500281",
         "createdAt": "2019-01-01T17:22:38.528Z",
         "updatedAt": "2021-01-22T10:02:42.258Z",
         "uid": "20500281",
@@ -955,7 +955,7 @@ Success
             "primary": true,
             "verified": true,
             "countryCode": 91,
-            "phone": "9999999999"
+            "phone": "9890425946"
           }
         ],
         "firstName": "Nikhil",
@@ -965,10 +965,10 @@ Success
             "active": true,
             "primary": true,
             "verified": true,
-            "email": "niktest@xyz.com"
+            "email": "nikhilmshchs@gmail.com"
           }
         ],
-        "username": "niktest_xyz_com_38425_20500281",
+        "username": "nikhilmshchs_gmail_com_38425_20500281",
         "createdAt": "2019-01-01T17:22:38.528Z",
         "updatedAt": "2021-01-22T10:02:42.258Z",
         "uid": "20500281",
@@ -1016,7 +1016,7 @@ Success
               "primary": true,
               "verified": true,
               "countryCode": 91,
-              "phone": "9999999999"
+              "phone": "9890425946"
             }
           ],
           "firstName": "Nikhil",
@@ -1026,10 +1026,10 @@ Success
               "active": true,
               "primary": true,
               "verified": true,
-              "email": "niktest@xyz.com"
+              "email": "nikhilmshchs@gmail.com"
             }
           ],
-          "username": "niktest_xyz_com_38425_20500281",
+          "username": "nikhilmshchs_gmail_com_38425_20500281",
           "createdAt": "2019-01-01T17:22:38.528Z",
           "updatedAt": "2021-01-22T10:02:42.258Z",
           "uid": "20500281",
@@ -1501,7 +1501,7 @@ Success
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | message | string |  no  | Success message for form submission |
- | ticket | [Ticket](#Ticket)? |  yes  | Ticket created on form submission |
+ | ticket | [Ticket](#Ticket) |  no  | Ticket created on form submission |
  
 
 ---
@@ -1518,7 +1518,6 @@ Success
  | support_email | [CommunicationDetails](#CommunicationDetails)? |  yes  | Support e-mail details |
  | support_faq | [CommunicationDetails](#CommunicationDetails)? |  yes  | Support FAQ details |
  | support_phone | [CommunicationDetails](#CommunicationDetails)? |  yes  | Support Phone number details |
- | type | string? |  yes  | The enity/platform for which the config is stored |
  
 
 ---
@@ -1530,7 +1529,7 @@ Success
  | _custom_json | string? |  yes  | custom json relevant to the ticket |
  | _id | string |  no  | Unique identifier for the ticket |
  | assigned_to | string? |  yes  | Details of support staff to whom ticket is assigned |
- | category | [TicketCategory](#TicketCategory) |  no  | Category assigned to the ticket |
+ | category | string |  no  | Category assigned to the ticket |
  | content | [TicketContent](#TicketContent)? |  yes  | Ticket conetent details |
  | context | [TicketContext](#TicketContext)? |  yes  | Details of company and application realated to the ticket |
  | created_at | string? |  yes  | Time when the ticket was created |

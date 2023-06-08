@@ -614,9 +614,7 @@ const promise = applicationClient.catalog.getCollectionItemsBySlug({  slug : val
  filters : value,
  sortOn : value,
  pageId : value,
- pageSize : value,
- pageNo : value,
- pageType : value });
+ pageSize : value });
 
 // Async/Await
 const data = await applicationClient.catalog.getCollectionItemsBySlug({  slug : value,
@@ -624,9 +622,7 @@ const data = await applicationClient.catalog.getCollectionItemsBySlug({  slug : 
  filters : value,
  sortOn : value,
  pageId : value,
- pageSize : value,
- pageNo : value,
- pageType : value });
+ pageSize : value });
 ```
 
 
@@ -640,9 +636,7 @@ const data = await applicationClient.catalog.getCollectionItemsBySlug({  slug : 
 | filters | boolean | no | This is a boolean value, True for fetching all filter parameters and False for disabling the filter parameters. |    
 | sortOn | string | no | The order in which the list of products should be sorted, e.g. popularity, price, latest and discount, in either ascending or descending order. See the supported values below. |    
 | pageId | string | no | Page ID to retrieve next set of results. |    
-| pageSize | number | no | The number of items to retrieve in each page. |    
-| pageNo | number | no | Page Number to retrieve next set of results. |    
-| pageType | string | no | Page Type to retrieve set of results can be cursor or number. |  
+| pageSize | number | no | The number of items to retrieve in each page. |  
 
 
 
@@ -4711,15 +4705,13 @@ Get the price of a product size at a PIN Code
 const promise = applicationClient.catalog.getProductPriceBySlug({  slug : value,
  size : value,
  storeId : value,
- pincode : value,
- moq : value });
+ pincode : value });
 
 // Async/Await
 const data = await applicationClient.catalog.getProductPriceBySlug({  slug : value,
  size : value,
  storeId : value,
- pincode : value,
- moq : value });
+ pincode : value });
 ```
 
 
@@ -4731,8 +4723,7 @@ const data = await applicationClient.catalog.getProductPriceBySlug({  slug : val
 | slug | string | yes | A short, human-readable, URL-friendly identifier of a product. You can get slug value from the endpoint /service/application/catalog/v1.0/products/ |   
 | size | string | yes | A string indicating the size of the product, e.g. S, M, XL. You can get slug value from the endpoint /service/application/catalog/v1.0/products/sizes |    
 | storeId | number | no | The ID of the store that is selling the product, e.g. 1,2,3. |    
-| pincode | string | no | The PIN Code of the area near which the selling locations should be searched, e.g. 400059. |    
-| moq | number | no | An Integer indication the Minimum Order Quantity of a product, e.g. 100. |  
+| pincode | string | no | The PIN Code of the area near which the selling locations should be searched, e.g. 400059. |  
 
 
 
@@ -4743,9 +4734,9 @@ Prices may vary for different sizes of a product. Use this API to retrieve the p
 
 
 
-[ProductSizePriceResponseV3](#ProductSizePriceResponseV3)
+[ProductSizePriceResponseV2](#ProductSizePriceResponseV2)
 
-Success. Returns a ProductSizePriceV3 object. Check the example shown below or refer `ProductSizePriceResponseV3` for more details.
+Success. Returns a ProductSizePriceV2 object. Check the example shown below or refer `ProductSizePriceResponseV2` for more details.
 
 
 
@@ -4829,9 +4820,7 @@ Success. Returns a ProductSizePriceV3 object. Check the example shown below or r
       ]
     },
     "quantity": 6
-  },
-  "is_gift": true,
-  "is_cod": false
+  }
 }
 ```
 </details>
@@ -4892,9 +4881,9 @@ A product of a particular size may be sold by multiple sellers. Use this API to 
 
 
 
-[ProductSizeSellersResponseV3](#ProductSizeSellersResponseV3)
+[ProductSizeSellersResponseV2](#ProductSizeSellersResponseV2)
 
-Success. Returns a ProductSizeSellerV3 object. Check the example shown below or refer `ProductSizeSellersResponseV3` for more details.
+Success. Returns a ProductSizeSellerV2 object. Check the example shown below or refer `ProductSizeSellersResponseV2` for more details.
 
 
 
@@ -4933,9 +4922,7 @@ Success. Returns a ProductSizeSellerV3 object. Check the example shown below or 
       "store": {
         "uid": 1,
         "name": "Wayne Lamb"
-      },
-      "is_gift": true,
-      "is_cod": false
+      }
     },
     {
       "price_per_piece": {
@@ -4965,9 +4952,7 @@ Success. Returns a ProductSizeSellerV3 object. Check the example shown below or 
       "store": {
         "uid": 1,
         "name": "Wayne Lamb"
-      },
-      "is_gift": true,
-      "is_cod": false
+      }
     }
   ],
   "page": {
@@ -7897,9 +7882,9 @@ Success. Returns a response object. Check the example shown below or refer `Foll
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | increment_unit | number? |  yes  | The minimum quantity increment in which the item can be purchased. |
- | maximum | number? |  yes  | The maximum quantity allowed for purchase. |
- | minimum | number? |  yes  | The minimum quantity required for purchase. |
+ | increment_unit | number? |  yes  |  |
+ | maximum | number? |  yes  |  |
+ | minimum | number? |  yes  |  |
  
 
 ---
@@ -7908,8 +7893,8 @@ Success. Returns a response object. Check the example shown below or refer `Foll
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | description | any? |  yes  | The SEO description of the item |
- | title | any? |  yes  | The SEO title of the item |
+ | description | any? |  yes  |  |
+ | title | any? |  yes  |  |
  
 
 ---
@@ -7918,7 +7903,7 @@ Success. Returns a response object. Check the example shown below or refer `Foll
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | filters | [string]? |  yes  |  |
+ | filters | [[StoreDepartments](#StoreDepartments)]? |  yes  |  |
  | items | [[AppStore](#AppStore)]? |  yes  |  |
  | page | [Page](#Page)? |  yes  |  |
  
@@ -7935,13 +7920,12 @@ Success. Returns a response object. Check the example shown below or refer `Foll
  | departments | [[StoreDepartments](#StoreDepartments)]? |  yes  |  |
  | manager | [StoreManagerSerializer](#StoreManagerSerializer)? |  yes  |  |
  | name | string? |  yes  |  |
- | store_code | string? |  yes  |  |
  | uid | number? |  yes  |  |
  
 
 ---
 
-#### [ArticleAssignmentV3](#ArticleAssignmentV3)
+#### [ArticleAssignmentV2](#ArticleAssignmentV2)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
@@ -7999,7 +7983,6 @@ Success. Returns a response object. Check the example shown below or refer `Foll
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | _custom_json | string? |  yes  |  |
  | banners | [ImageUrls](#ImageUrls)? |  yes  |  |
  | description | string? |  yes  |  |
  | logo | [Media](#Media)? |  yes  |  |
@@ -8036,26 +8019,16 @@ Success. Returns a response object. Check the example shown below or refer `Foll
 
 ---
 
-#### [CategoryBanner](#CategoryBanner)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | landscape | [Media](#Media) |  no  |  |
- | portrait | [Media](#Media) |  no  |  |
- 
-
----
-
 #### [CategoryItems](#CategoryItems)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | action | [ProductListingAction](#ProductListingAction) |  no  |  |
- | banners | [CategoryBanner](#CategoryBanner) |  no  |  |
+ | action | [ProductListingAction](#ProductListingAction)? |  yes  |  |
+ | banners | [ImageUrls](#ImageUrls)? |  yes  |  |
  | childs | [[Child](#Child)]? |  yes  |  |
- | name | string |  no  |  |
- | slug | string |  no  |  |
- | uid | number |  no  |  |
+ | name | string? |  yes  |  |
+ | slug | string? |  yes  |  |
+ | uid | number? |  yes  |  |
  
 
 ---
@@ -8074,7 +8047,6 @@ Success. Returns a response object. Check the example shown below or refer `Foll
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | _custom_json | string? |  yes  |  |
  | banners | [ImageUrls](#ImageUrls)? |  yes  |  |
  | logo | [Media](#Media)? |  yes  |  |
  | name | string? |  yes  |  |
@@ -8102,7 +8074,6 @@ Success. Returns a response object. Check the example shown below or refer `Foll
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | _custom_json | string? |  yes  |  |
  | _schedule | string? |  yes  |  |
  | allow_facets | boolean? |  yes  |  |
  | allow_sort | boolean? |  yes  |  |
@@ -8219,8 +8190,8 @@ Success. Returns a response object. Check the example shown below or refer `Foll
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | key | string |  no  | A key to store a custom field. |
- | value | string |  no  | A value to store in the custom field. |
+ | key | string |  no  |  |
+ | value | string |  no  |  |
  
 
 ---
@@ -8242,7 +8213,7 @@ Success. Returns a response object. Check the example shown below or refer `Foll
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | department | string |  no  |  |
+ | department | string? |  yes  |  |
  | items | [[CategoryItems](#CategoryItems)]? |  yes  |  |
  
 
@@ -8267,26 +8238,13 @@ Success. Returns a response object. Check the example shown below or refer `Foll
 
 ---
 
-#### [DetailsSchemaV3](#DetailsSchemaV3)
+#### [DetailsSchemaV2](#DetailsSchemaV2)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | key | string? |  yes  |  |
  | type | string? |  yes  |  |
  | value | string? |  yes  |  |
- 
-
----
-
-#### [Dimension](#Dimension)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | height | number |  no  | The height of the product |
- | is_default | boolean |  no  | Whether the dimension is the default one or not |
- | length | number |  no  | The length of the product |
- | unit | string |  no  | The unit of dimension |
- | width | number |  no  | The width of the product |
  
 
 ---
@@ -8343,7 +8301,6 @@ Success. Returns a response object. Check the example shown below or refer `Foll
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | _custom_json | string? |  yes  |  |
  | _schedule | string? |  yes  |  |
  | action | [ProductListingAction](#ProductListingAction)? |  yes  |  |
  | allow_facets | boolean? |  yes  |  |
@@ -8421,11 +8378,11 @@ Success. Returns a response object. Check the example shown below or refer `Foll
 
 ---
 
-#### [MarketPlaceSttributesSchemaV3](#MarketPlaceSttributesSchemaV3)
+#### [MarketPlaceSttributesSchemaV2](#MarketPlaceSttributesSchemaV2)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | details | [[DetailsSchemaV3](#DetailsSchemaV3)]? |  yes  |  |
+ | details | [[DetailsSchemaV2](#DetailsSchemaV2)]? |  yes  |  |
  | title | string? |  yes  |  |
  
 
@@ -8456,8 +8413,8 @@ Success. Returns a response object. Check the example shown below or refer `Foll
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | unit | any? |  yes  | The unit of measurement used for the net quantity of the product. |
- | value | number? |  yes  | The value of the net quantity of the product. |
+ | unit | any? |  yes  |  |
+ | value | number? |  yes  |  |
  
 
 ---
@@ -8511,17 +8468,6 @@ Success. Returns a response object. Check the example shown below or refer `Foll
 
 ---
 
-#### [ProductCategoryMap](#ProductCategoryMap)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | l1 | [ProductBrand](#ProductBrand)? |  yes  |  |
- | l2 | [ProductBrand](#ProductBrand)? |  yes  |  |
- | l3 | [ProductBrand](#ProductBrand)? |  yes  |  |
- 
-
----
-
 #### [ProductCompareResponse](#ProductCompareResponse)
 
  | Properties | Type | Nullable | Description |
@@ -8544,7 +8490,6 @@ Success. Returns a response object. Check the example shown below or refer `Foll
  | attributes | string? |  yes  |  |
  | brand | [ProductBrand](#ProductBrand)? |  yes  |  |
  | categories | [[ProductBrand](#ProductBrand)]? |  yes  |  |
- | category_map | [ProductCategoryMap](#ProductCategoryMap)? |  yes  |  |
  | color | string? |  yes  |  |
  | description | string? |  yes  |  |
  | discount | string? |  yes  |  |
@@ -8558,7 +8503,6 @@ Success. Returns a response object. Check the example shown below or refer `Foll
  | medias | [[Media](#Media)]? |  yes  |  |
  | moq | [ApplicationItemMOQ](#ApplicationItemMOQ)? |  yes  |  |
  | name | string? |  yes  |  |
- | net_quantity | [NetQuantity](#NetQuantity)? |  yes  |  |
  | price | [ProductListingPrice](#ProductListingPrice)? |  yes  |  |
  | product_online_date | string? |  yes  |  |
  | rating | number? |  yes  |  |
@@ -8601,27 +8545,27 @@ Success. Returns a response object. Check the example shown below or refer `Foll
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | attributes | string? |  yes  | A dictionary of product attributes |
- | brand_uid | number? |  yes  | The unique ID of the product's brand |
- | country_of_origin | any? |  yes  | The country of origin for the product |
- | description | any? |  yes  | The long description of the product |
- | grouped_attributes | string? |  yes  | A dictionary of grouped product attributes |
- | has_variant | boolean? |  yes  | Whether or not the product has a variant |
- | highlights | [any]? |  yes  | A list of highlights for the product |
- | hsn_code | number? |  yes  | The HSN code of the product |
- | identifier | string? |  yes  | A dictionary of product identifiers |
- | image_nature | any? |  yes  | The nature of the product's images |
- | images | [any]? |  yes  | A list of image URLs for the product |
- | is_set | boolean? |  yes  | Whether or not the product is a set of items |
- | item_code | any? |  yes  | The item code of the product |
- | media | [string]? |  yes  | A list of media objects for the product |
- | name | any? |  yes  | The name of the product |
- | out_of_stock | boolean? |  yes  | Whether or not the product is out of stock |
- | rating | number? |  yes  | The rating of the product |
- | rating_count | number? |  yes  | The number of ratings the product has received |
- | short_description | any? |  yes  | The short description of the product |
- | slug | any? |  yes  | The slug of the product |
- | template_tag | any? |  yes  | The template tag of the product |
+ | attributes | string? |  yes  |  |
+ | brand_uid | number? |  yes  |  |
+ | country_of_origin | any? |  yes  |  |
+ | description | any? |  yes  |  |
+ | grouped_attributes | string? |  yes  |  |
+ | has_variant | boolean? |  yes  |  |
+ | highlights | [any]? |  yes  |  |
+ | hsn_code | number? |  yes  |  |
+ | identifier | string? |  yes  |  |
+ | image_nature | any? |  yes  |  |
+ | images | [any]? |  yes  |  |
+ | is_set | boolean? |  yes  |  |
+ | item_code | any? |  yes  |  |
+ | media | [string]? |  yes  |  |
+ | name | any? |  yes  |  |
+ | out_of_stock | boolean? |  yes  |  |
+ | rating | number? |  yes  |  |
+ | rating_count | number? |  yes  |  |
+ | short_description | any? |  yes  |  |
+ | slug | any? |  yes  |  |
+ | template_tag | any? |  yes  |  |
  
 
 ---
@@ -8682,22 +8626,22 @@ Success. Returns a response object. Check the example shown below or refer `Foll
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | _id | any? |  yes  |  |
- | choice | any? |  yes  | The choice of the product grouping. |
- | company_id | number? |  yes  | The ID of the company that owns the product grouping. |
- | created_by | [UserDetail](#UserDetail)? |  yes  | User details of the creator of the document |
- | created_on | string |  no  | Timestamp of the creation of the document |
- | is_active | boolean? |  yes  | Whether the product grouping is active. |
- | logo | any? |  yes  | The URL for the logo of the product grouping. |
- | meta | string? |  yes  | A dictionary containing metadata information. |
- | modified_by | [UserDetail](#UserDetail)? |  yes  | User details of the last modifier of the document |
- | modified_on | string |  no  | Timestamp of the last modification of the document |
- | name | any |  no  | The name of the product grouping. |
- | page_visibility | [any]? |  yes  | A list of page visibilities of the product grouping. |
- | products | [[ProductInGroup](#ProductInGroup)] |  no  | A list of products in the grouping. |
- | same_store_assignment | boolean? |  yes  | Whether the products are assigned to the same store. |
- | slug | any? |  yes  | The unique identifier for the product grouping. |
- | verified_by | [UserDetail](#UserDetail)? |  yes  | User details of the verifier of the document, if applicable |
- | verified_on | string? |  yes  | Timestamp of when the document was verified, if applicable |
+ | choice | any? |  yes  |  |
+ | company_id | number? |  yes  |  |
+ | created_by | [UserDetail](#UserDetail)? |  yes  |  |
+ | created_on | string |  no  |  |
+ | is_active | boolean? |  yes  |  |
+ | logo | string? |  yes  |  |
+ | meta | string? |  yes  |  |
+ | modified_by | [UserDetail](#UserDetail)? |  yes  |  |
+ | modified_on | string |  no  |  |
+ | name | any |  no  |  |
+ | page_visibility | [any]? |  yes  |  |
+ | products | [[ProductInGroup](#ProductInGroup)] |  no  |  |
+ | same_store_assignment | boolean? |  yes  |  |
+ | slug | any? |  yes  |  |
+ | verified_by | [UserDetail](#UserDetail)? |  yes  |  |
+ | verified_on | string? |  yes  |  |
  
 
 ---
@@ -8706,11 +8650,11 @@ Success. Returns a response object. Check the example shown below or refer `Foll
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | currency | any? |  yes  | The currency code for the prices. |
- | max_effective | number? |  yes  | The maximum effective price of the product group. |
- | max_marked | number? |  yes  | The maximum marked price of the product group. |
- | min_effective | number? |  yes  | The minimum effective price of the product group. |
- | min_marked | number? |  yes  | The minimum marked price of the product group. |
+ | currency | any? |  yes  |  |
+ | max_effective | number? |  yes  |  |
+ | max_marked | number? |  yes  |  |
+ | min_effective | number? |  yes  |  |
+ | min_marked | number? |  yes  |  |
  
 
 ---
@@ -8719,15 +8663,15 @@ Success. Returns a response object. Check the example shown below or refer `Foll
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | allow_remove | boolean? |  yes  | A flag indicating whether the product can be removed from the cart. |
- | auto_add_to_cart | boolean? |  yes  | A flag indicating whether the product should be automatically added to the cart. |
- | auto_select | boolean? |  yes  | A flag indicating whether the product should be automatically selected. |
- | max_quantity | number |  no  | The maximum quantity of the product that can be added to the cart. |
- | min_quantity | number? |  yes  | The minimum quantity of the product that can be added to the cart. |
- | price | [ProductGroupPrice](#ProductGroupPrice)? |  yes  | The price details for the product group. |
- | product_details | [ProductDetails](#ProductDetails)? |  yes  | The details of the product. |
- | product_uid | number |  no  | The unique ID of the product in the group. |
- | sizes | [[Size](#Size)]? |  yes  | The available sizes for the product. |
+ | allow_remove | boolean? |  yes  |  |
+ | auto_add_to_cart | boolean? |  yes  |  |
+ | auto_select | boolean? |  yes  |  |
+ | max_quantity | number |  no  |  |
+ | min_quantity | number? |  yes  |  |
+ | price | [ProductGroupPrice](#ProductGroupPrice)? |  yes  |  |
+ | product_details | [ProductDetails](#ProductDetails)? |  yes  |  |
+ | product_uid | number |  no  |  |
+ | sizes | [[Size](#Size)]? |  yes  |  |
  
 
 ---
@@ -8763,7 +8707,6 @@ Success. Returns a response object. Check the example shown below or refer `Foll
  | attributes | string? |  yes  |  |
  | brand | [ProductBrand](#ProductBrand)? |  yes  |  |
  | categories | [[ProductBrand](#ProductBrand)]? |  yes  |  |
- | category_map | [ProductCategoryMap](#ProductCategoryMap)? |  yes  |  |
  | color | string? |  yes  |  |
  | description | string? |  yes  |  |
  | discount | string? |  yes  |  |
@@ -8831,7 +8774,7 @@ Success. Returns a response object. Check the example shown below or refer `Foll
 
 ---
 
-#### [ProductSetDistributionSizeV3](#ProductSetDistributionSizeV3)
+#### [ProductSetDistributionSizeV2](#ProductSetDistributionSizeV2)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
@@ -8841,21 +8784,21 @@ Success. Returns a response object. Check the example shown below or refer `Foll
 
 ---
 
-#### [ProductSetDistributionV3](#ProductSetDistributionV3)
+#### [ProductSetDistributionV2](#ProductSetDistributionV2)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | sizes | [[ProductSetDistributionSizeV3](#ProductSetDistributionSizeV3)]? |  yes  |  |
+ | sizes | [[ProductSetDistributionSizeV2](#ProductSetDistributionSizeV2)]? |  yes  |  |
  
 
 ---
 
-#### [ProductSetV3](#ProductSetV3)
+#### [ProductSetV2](#ProductSetV2)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | quantity | number? |  yes  |  |
- | size_distribution | [ProductSetDistributionV3](#ProductSetDistributionV3)? |  yes  |  |
+ | size_distribution | [ProductSetDistributionV2](#ProductSetDistributionV2)? |  yes  |  |
  
 
 ---
@@ -8864,42 +8807,38 @@ Success. Returns a response object. Check the example shown below or refer `Foll
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | dimension | [Dimension](#Dimension)? |  yes  |  |
  | display | string? |  yes  |  |
  | is_available | boolean? |  yes  |  |
  | quantity | number? |  yes  |  |
  | seller_identifiers | [string]? |  yes  |  |
  | value | string? |  yes  |  |
- | weight | [Weight](#Weight)? |  yes  |  |
  
 
 ---
 
-#### [ProductSizePriceResponseV3](#ProductSizePriceResponseV3)
+#### [ProductSizePriceResponseV2](#ProductSizePriceResponseV2)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | article_assignment | [ArticleAssignmentV3](#ArticleAssignmentV3)? |  yes  |  |
+ | article_assignment | [ArticleAssignmentV2](#ArticleAssignmentV2)? |  yes  |  |
  | article_id | string? |  yes  |  |
  | discount | string? |  yes  |  |
  | grouped_attributes | [[SellerGroupAttributes](#SellerGroupAttributes)]? |  yes  |  |
- | is_cod | boolean? |  yes  |  |
- | is_gift | boolean? |  yes  |  |
  | item_type | string? |  yes  |  |
  | long_lat | [number]? |  yes  |  |
- | marketplace_attributes | [[MarketPlaceSttributesSchemaV3](#MarketPlaceSttributesSchemaV3)]? |  yes  |  |
+ | marketplace_attributes | [[MarketPlaceSttributesSchemaV2](#MarketPlaceSttributesSchemaV2)]? |  yes  |  |
  | pincode | number? |  yes  |  |
- | price | [ProductStockPriceV3](#ProductStockPriceV3)? |  yes  |  |
- | price_per_piece | [ProductStockPriceV3](#ProductStockPriceV3)? |  yes  |  |
- | price_per_unit | [ProductStockUnitPriceV3](#ProductStockUnitPriceV3)? |  yes  |  |
+ | price | [ProductStockPriceV2](#ProductStockPriceV2)? |  yes  |  |
+ | price_per_piece | [ProductStockPriceV2](#ProductStockPriceV2)? |  yes  |  |
+ | price_per_unit | [ProductStockUnitPriceV2](#ProductStockUnitPriceV2)? |  yes  |  |
  | quantity | number? |  yes  |  |
- | return_config | [ReturnConfigSchemaV3](#ReturnConfigSchemaV3)? |  yes  |  |
- | seller | [SellerV3](#SellerV3)? |  yes  |  |
+ | return_config | [ReturnConfigSchemaV2](#ReturnConfigSchemaV2)? |  yes  |  |
+ | seller | [SellerV2](#SellerV2)? |  yes  |  |
  | seller_count | number? |  yes  |  |
- | set | [ProductSetV3](#ProductSetV3)? |  yes  |  |
+ | set | [ProductSetV2](#ProductSetV2)? |  yes  |  |
  | special_badge | string? |  yes  |  |
- | store | [StoreV3](#StoreV3)? |  yes  |  |
- | strategy_wise_listing | [[StrategyWiseListingSchemaV3](#StrategyWiseListingSchemaV3)]? |  yes  |  |
+ | store | [StoreV2](#StoreV2)? |  yes  |  |
+ | strategy_wise_listing | [[StrategyWiseListingSchemaV2](#StrategyWiseListingSchemaV2)]? |  yes  |  |
  
 
 ---
@@ -8919,7 +8858,7 @@ Success. Returns a response object. Check the example shown below or refer `Foll
 
 ---
 
-#### [ProductSizeSellerFilterSchemaV3](#ProductSizeSellerFilterSchemaV3)
+#### [ProductSizeSellerFilterSchemaV2](#ProductSizeSellerFilterSchemaV2)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
@@ -8930,13 +8869,13 @@ Success. Returns a response object. Check the example shown below or refer `Foll
 
 ---
 
-#### [ProductSizeSellersResponseV3](#ProductSizeSellersResponseV3)
+#### [ProductSizeSellersResponseV2](#ProductSizeSellersResponseV2)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | items | [[ProductSizePriceResponseV3](#ProductSizePriceResponseV3)]? |  yes  |  |
+ | items | [[ProductSizePriceResponseV2](#ProductSizePriceResponseV2)]? |  yes  |  |
  | page | [Page](#Page) |  no  |  |
- | sort_on | [[ProductSizeSellerFilterSchemaV3](#ProductSizeSellerFilterSchemaV3)]? |  yes  |  |
+ | sort_on | [[ProductSizeSellerFilterSchemaV2](#ProductSizeSellerFilterSchemaV2)]? |  yes  |  |
  
 
 ---
@@ -8982,7 +8921,7 @@ Success. Returns a response object. Check the example shown below or refer `Foll
 
 ---
 
-#### [ProductStockPriceV3](#ProductStockPriceV3)
+#### [ProductStockPriceV2](#ProductStockPriceV2)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
@@ -9019,7 +8958,7 @@ Success. Returns a response object. Check the example shown below or refer `Foll
 
 ---
 
-#### [ProductStockUnitPriceV3](#ProductStockUnitPriceV3)
+#### [ProductStockUnitPriceV2](#ProductStockUnitPriceV2)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
@@ -9035,7 +8974,6 @@ Success. Returns a response object. Check the example shown below or refer `Foll
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | _custom_meta | [[CustomMetaFields](#CustomMetaFields)]? |  yes  |  |
  | action | [ProductListingAction](#ProductListingAction)? |  yes  |  |
  | color | string? |  yes  |  |
  | color_name | string? |  yes  |  |
@@ -9083,7 +9021,7 @@ Success. Returns a response object. Check the example shown below or refer `Foll
 
 ---
 
-#### [ReturnConfigSchemaV3](#ReturnConfigSchemaV3)
+#### [ReturnConfigSchemaV2](#ReturnConfigSchemaV2)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
@@ -9124,7 +9062,7 @@ Success. Returns a response object. Check the example shown below or refer `Foll
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | details | [[DetailsSchemaV3](#DetailsSchemaV3)]? |  yes  |  |
+ | details | [[DetailsSchemaV2](#DetailsSchemaV2)]? |  yes  |  |
  | title | string? |  yes  |  |
  
 
@@ -9140,7 +9078,7 @@ Success. Returns a response object. Check the example shown below or refer `Foll
 
 ---
 
-#### [SellerV3](#SellerV3)
+#### [SellerV2](#SellerV2)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
@@ -9155,10 +9093,10 @@ Success. Returns a response object. Check the example shown below or refer `Foll
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | display | any? |  yes  | The display string for the size |
- | is_available | boolean? |  yes  | Whether or not this size is available |
- | quantity | number? |  yes  | The quantity of this size available |
- | value | any? |  yes  | The value of the size |
+ | display | any? |  yes  |  |
+ | is_available | boolean? |  yes  |  |
+ | quantity | number? |  yes  |  |
+ | value | any? |  yes  |  |
  
 
 ---
@@ -9263,7 +9201,6 @@ Success. Returns a response object. Check the example shown below or refer `Foll
  | departments | [[StoreDepartments](#StoreDepartments)]? |  yes  |  |
  | manager | [StoreManagerSerializer](#StoreManagerSerializer)? |  yes  |  |
  | name | string? |  yes  |  |
- | store_code | string? |  yes  |  |
  | timing | [[StoreTiming](#StoreTiming)]? |  yes  |  |
  | uid | number? |  yes  |  |
  
@@ -9303,7 +9240,7 @@ Success. Returns a response object. Check the example shown below or refer `Foll
 
 ---
 
-#### [StoreV3](#StoreV3)
+#### [StoreV2](#StoreV2)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
@@ -9314,7 +9251,7 @@ Success. Returns a response object. Check the example shown below or refer `Foll
 
 ---
 
-#### [StrategyWiseListingSchemaV3](#StrategyWiseListingSchemaV3)
+#### [StrategyWiseListingSchemaV2](#StrategyWiseListingSchemaV2)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
@@ -9355,21 +9292,10 @@ Success. Returns a response object. Check the example shown below or refer `Foll
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | contact | string? |  yes  | The contact details of the user. |
- | super_user | boolean? |  yes  | A flag indicating whether the user is a super user. |
- | user_id | string |  no  | The user ID of the user. |
- | username | string |  no  | The username of the user. |
- 
-
----
-
-#### [Weight](#Weight)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | is_default | boolean |  no  | Whether the weight is the default one or not |
- | shipping | number |  no  | The shipping weight of the product |
- | unit | string |  no  | The unit of weight |
+ | contact | string? |  yes  |  |
+ | super_user | boolean? |  yes  |  |
+ | user_id | string |  no  |  |
+ | username | string |  no  |  |
  
 
 ---

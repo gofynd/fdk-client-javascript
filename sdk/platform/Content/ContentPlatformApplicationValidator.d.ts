@@ -28,7 +28,6 @@ declare class ContentValidator {
     static generateSEOTitle(): any;
     static getAnnouncementById(): any;
     static getAnnouncementsList(): any;
-    static getBlogBySlug(): any;
     static getBlogs(): any;
     static getComponentById(): any;
     static getDataLoaders(): any;

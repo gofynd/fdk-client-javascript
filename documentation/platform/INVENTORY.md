@@ -942,6 +942,7 @@ Job Config Updated Successfully
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | _id | string? |  yes  |  |
+ | gstores | [[GStore](#GStore)]? |  yes  |  |
  | integration | string? |  yes  |  |
  | level | string? |  yes  |  |
  | name | string? |  yes  |  |
@@ -1292,6 +1293,7 @@ Job Config Updated Successfully
  | ignore_if_not_exists | boolean? |  yes  |  |
  | include | boolean? |  yes  |  |
  | index_field | string? |  yes  |  |
+ | mapping | [String: [PropBeanConfig](#PropBeanConfig)]? |  yes  |  |
  | optional | boolean? |  yes  |  |
  | projection_query | string? |  yes  |  |
  | required | boolean? |  yes  |  |

@@ -18,8 +18,6 @@ module.exports = {
 
     PaymentPlatformModel: require("./Payment/PaymentPlatformModel"),
 
-    OrderPlatformModel: require("./Order/OrderPlatformModel"),
-
     CatalogPlatformModel: require("./Catalog/CatalogPlatformModel"),
 
     CompanyProfilePlatformModel: require("./CompanyProfile/CompanyProfilePlatformModel"),

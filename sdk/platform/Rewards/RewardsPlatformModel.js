@@ -19,26 +19,15 @@ class RewardsModel {
       secure_url: Joi.string().allow(""),
     });
   }
-  static ConfigurationRequest() {
-    return Joi.object({
-      terms_conditions_link: Joi.string().allow(""),
-      valid_android_packages: Joi.array().items(Joi.string().allow("")),
-    });
-  }
-  static ConfigurationRes() {
-    return Joi.object({
-      application_id: Joi.string().allow(""),
-      success: Joi.boolean(),
-      terms_conditions_link: Joi.string().allow(""),
-      valid_android_packages: Joi.array().items(Joi.string().allow("")),
-    });
-  }
   static E() {
     return Joi.object({
-      code: Joi.number(),
+      code: Joi.any(),
       exception: Joi.string().allow(""),
       info: Joi.string().allow(""),
       message: Joi.string().allow(""),
+      request_id: Joi.string().allow(""),
+      stack_trace: Joi.string().allow(""),
+      status: Joi.number(),
     });
   }
   static Giveaway() {
@@ -57,21 +46,32 @@ class RewardsModel {
       updated_at: Joi.string().allow(""),
     });
   }
-  static GiveawayAudience() {
-    return Joi.object({
-      audience_id: Joi.string().allow(""),
-      current_count: Joi.number(),
-    });
-  }
   static GiveawayResponse() {
     return Joi.object({
       items: Joi.array().items(RewardsModel.Giveaway()),
       page: RewardsModel.Page(),
     });
   }
+  static HistoryPretty() {
+    return Joi.object({
+      _id: Joi.string().allow(""),
+      application_id: Joi.string().allow(""),
+      claimed: Joi.boolean(),
+      created_at: Joi.string().allow(""),
+      expires_on: Joi.string().allow(""),
+      points: Joi.number(),
+      remaining_points: Joi.number(),
+      text_1: Joi.string().allow(""),
+      text_2: Joi.string().allow(""),
+      text_3: Joi.string().allow(""),
+      txn_name: Joi.string().allow(""),
+      updated_at: Joi.string().allow(""),
+      user_id: Joi.string().allow(""),
+    });
+  }
   static HistoryRes() {
     return Joi.object({
-      items: Joi.array().items(RewardsModel.PointsHistory()),
+      items: Joi.array().items(RewardsModel.HistoryPretty()),
       page: RewardsModel.Page(),
       points: Joi.number(),
     });
@@ -110,24 +110,6 @@ class RewardsModel {
       available: Joi.number(),
     });
   }
-  static PointsHistory() {
-    return Joi.object({
-      _id: Joi.string().allow(""),
-      application_id: Joi.string().allow(""),
-      claimed: Joi.boolean(),
-      created_at: Joi.string().allow(""),
-      expires_on: Joi.string().allow(""),
-      meta: Joi.any(),
-      points: Joi.number(),
-      remaining_points: Joi.number(),
-      text_1: Joi.string().allow(""),
-      text_2: Joi.string().allow(""),
-      text_3: Joi.string().allow(""),
-      txn_name: Joi.string().allow(""),
-      updated_at: Joi.string().allow(""),
-      user_id: Joi.string().allow(""),
-    });
-  }
   static Referral() {
     return Joi.object({
       code: Joi.string().allow(""),
@@ -164,14 +146,9 @@ class RewardsModel {
       start: Joi.string().allow(""),
     });
   }
-  static SetConfigurationRes() {
-    return Joi.object({
-      success: Joi.boolean(),
-    });
-  }
   static ShareMessages() {
     return Joi.object({
-      email: Joi.number(),
+      email: Joi.string().allow(""),
       facebook: Joi.string().allow(""),
       fallback: Joi.string().allow(""),
       message: Joi.string().allow(""),

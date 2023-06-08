@@ -174,12 +174,6 @@ class ContentValidator {
     }).required();
   }
 
-  static getBlogBySlug() {
-    return Joi.object({
-      slug: Joi.string().allow("").required(),
-    }).required();
-  }
-
   static getBlogs() {
     return Joi.object({
       pageNo: Joi.number(),

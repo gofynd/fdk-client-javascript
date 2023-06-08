@@ -11,11 +11,11 @@ class Rewards {
   constructor(_conf) {
     this._conf = _conf;
     this._relativeUrls = {
-      catalogueOrder:
-        "/service/application/rewards/v1.0/catalogue/offer/order/",
       getOfferByName: "/service/application/rewards/v1.0/offers/{name}/",
       getOrderDiscount:
-        "/service/application/rewards/v1.0/user/offer/order-discount/",
+        "/service/application/rewards/v1.0/user/offers/order-discount/",
+      getPointsOnProduct:
+        "/service/application/rewards/v1.0/catalogue/offer/order/",
       getUserPoints: "/service/application/rewards/v1.0/user/points/",
       getUserPointsHistory:
         "/service/application/rewards/v1.0/user/points/history/",
@@ -38,69 +38,6 @@ class Rewards {
       ...this._urls,
       ...urls,
     };
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {CatalogueOrderRequest} arg.body
-   * @returns {Promise<CatalogueOrderResponse>} - Success response
-   * @summary: Get all transactions of reward points
-   * @description: Use this API to evaluate the amount of reward points that could be earned on any catalogue product.
-   */
-  async catalogueOrder({ body } = {}) {
-    const { error } = RewardsValidator.catalogueOrder().validate(
-      { body },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = RewardsValidator.catalogueOrder().validate(
-      { body },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: "Parameter Validation warrnings for catalogueOrder",
-      });
-      Logger({ level: "WARN", message: warrning });
-    }
-
-    const query_params = {};
-
-    const xHeaders = {};
-
-    const response = await ApplicationAPIClient.execute(
-      this._conf,
-      "post",
-      constructUrl({
-        url: this._urls["catalogueOrder"],
-        params: {},
-      }),
-      query_params,
-      body,
-      xHeaders
-    );
-
-    const {
-      error: res_error,
-    } = RewardsModel.CatalogueOrderResponse().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
-
-    if (res_error) {
-      Logger({
-        level: "WARN",
-        message: "Response Validation Warnnings for catalogueOrder",
-      });
-      Logger({ level: "WARN", message: res_error });
-    }
-
-    return response;
   }
 
   /**
@@ -229,8 +166,71 @@ class Rewards {
 
   /**
    * @param {Object} arg - Arg object.
+   * @param {CatalogueOrderRequest} arg.body
+   * @returns {Promise<CatalogueOrderResponse>} - Success response
+   * @summary: Get the eligibility of reward points on a product
+   * @description: Use this API to evaluate the amount of reward points that could be earned on any catalogue product.
+   */
+  async getPointsOnProduct({ body } = {}) {
+    const { error } = RewardsValidator.getPointsOnProduct().validate(
+      { body },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = RewardsValidator.getPointsOnProduct().validate(
+      { body },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getPointsOnProduct",
+      });
+      Logger({ level: "WARN", message: warrning });
+    }
+
+    const query_params = {};
+
+    const xHeaders = {};
+
+    const response = await ApplicationAPIClient.execute(
+      this._conf,
+      "post",
+      constructUrl({
+        url: this._urls["getPointsOnProduct"],
+        params: {},
+      }),
+      query_params,
+      body,
+      xHeaders
+    );
+
+    const {
+      error: res_error,
+    } = RewardsModel.CatalogueOrderResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getPointsOnProduct",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
    * @returns {Promise<PointsResponse>} - Success response
-   * @summary: Get referral details of a user
+   * @summary: Get reward points available with a user
    * @description: Use this API to retrieve total available points of a user for current application
    */
   async getUserPoints({} = {}) {
@@ -296,7 +296,7 @@ class Rewards {
    * @param {number} [arg.pageSize] - The number of items to retrieve in each page.
    * @returns {Promise<PointsHistoryResponse>} - Success response
    * @summary: Get all transactions of reward points
-   * @description: Use this API to get a list of points transactions.
+   * @description: Use this API to get a list of points transactions. The list of points history is paginated.
    */
   async getUserPointsHistory({ pageId, pageSize } = {}) {
     const { error } = RewardsValidator.getUserPointsHistory().validate(
@@ -362,7 +362,7 @@ class Rewards {
    * @param {Object} arg - Arg object.
    * @param {number} [arg.pageSize] - The number of items to retrieve in each page.
    * @summary: Get all transactions of reward points
-   * @description: Use this API to get a list of points transactions.
+   * @description: Use this API to get a list of points transactions. The list of points history is paginated.
    */
   getUserPointsHistoryPaginator({ pageSize } = {}) {
     const paginator = new Paginator();

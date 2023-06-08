@@ -39,20 +39,6 @@ class BillingModel {
       is_valid: Joi.boolean(),
     });
   }
-  static CreateOneTimeCharge() {
-    return Joi.object({
-      charge: BillingModel.OneTimeChargeItem().required(),
-      is_test: Joi.boolean(),
-      name: Joi.string().allow("").required(),
-      return_url: Joi.string().allow("").required(),
-    });
-  }
-  static CreateOneTimeChargeResponse() {
-    return Joi.object({
-      charge: BillingModel.OneTimeChargeEntity(),
-      confirm_url: Joi.string().allow(""),
-    });
-  }
   static CreateSubscriptionCharge() {
     return Joi.object({
       is_test: Joi.boolean(),
@@ -354,35 +340,6 @@ class BillingModel {
       start: Joi.string().allow(""),
     });
   }
-  static OneTimeChargeEntity() {
-    return Joi.object({
-      _id: Joi.string().allow(""),
-      activated_on: Joi.string().allow(""),
-      cancelled_on: Joi.string().allow(""),
-      entity_id: Joi.string().allow(""),
-      entity_type: Joi.string().allow(""),
-      is_test: Joi.boolean(),
-      meta: Joi.any(),
-      metadata: Joi.any(),
-      name: Joi.string().allow(""),
-      price: BillingModel.EntityChargePrice(),
-      pricing_type: Joi.string().allow(""),
-      return_url: Joi.string().allow(""),
-      status: Joi.string().allow(""),
-      subscriber_id: Joi.string().allow(""),
-    });
-  }
-  static OneTimeChargeItem() {
-    return Joi.object({
-      capped_amount: Joi.number(),
-      is_test: Joi.boolean(),
-      metadata: Joi.any(),
-      name: Joi.string().allow("").required(),
-      price: BillingModel.EntityChargePrice().required(),
-      pricing_type: Joi.string().allow("").required(),
-      term: Joi.string().allow(""),
-    });
-  }
   static Page() {
     return Joi.object({
       current: Joi.number(),
@@ -594,7 +551,6 @@ class BillingModel {
   static SubscriptionStatus() {
     return Joi.object({
       is_enabled: Joi.boolean(),
-      mandate_amount: Joi.number(),
       subscription: BillingModel.Subscription(),
     });
   }

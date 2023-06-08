@@ -11,6 +11,7 @@ declare class CompanyProfileValidator {
     static getCompanyMetrics(): any;
     static getLocationDetail(): any;
     static getLocations(): any;
+    static getOptimalLocations(): any;
     static updateCompany(): any;
     static updateLocation(): any;
 }

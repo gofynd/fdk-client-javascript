@@ -19,8 +19,6 @@ class Order {
       getOrders: "/service/application/order/v1.0/orders",
       getPosOrderById:
         "/service/application/order/v1.0/orders/pos-order/{order_id}",
-      getShipmentBagReasons:
-        "/service/application/order/v1.0/orders/shipments/{shipment_id}/bags/{bag_id}/reasons",
       getShipmentById:
         "/service/application/order/v1.0/orders/shipments/{shipment_id}",
       getShipmentReasons:
@@ -29,8 +27,10 @@ class Order {
         "/service/application/order/v1.0/orders/{order_id}/shipments/{shipment_id}/otp/send/",
       trackShipment:
         "/service/application/order/v1.0/orders/shipments/{shipment_id}/track",
+      updateShipmentStatus:
+        "/service/application/order/v1.0/orders/shipments/{shipment_id}/status",
       verifyOtpShipmentCustomer:
-        "/service/application/order/v1.0/orders/{order_id}/shipments/{shipment_id}/otp/verify/",
+        "/service/application/order/v1.0/orders/{order_id}/shipments/{shipment_id}/otp/verify",
     };
     this._urls = Object.entries(this._relativeUrls).reduce(
       (urls, [method, relativeUrl]) => {
@@ -50,12 +50,12 @@ class Order {
 
   /**
    * @param {Object} arg - Arg object.
-   * @param {string} arg.orderId - ID of the shipment. An order may contain
+   * @param {string} arg.orderId - A unique number used for identifying and
+   *   tracking your orders.
+   * @param {string} arg.shipmentId - ID of the shipment. An order may contain
    *   multiple items and may get divided into one or more shipment, each
    *   having its own ID.
-   * @param {string} arg.shipmentId - A unique number used for identifying and
-   *   tracking your orders.
-   * @returns {Promise<CustomerDetailsResponse>} - Success response
+   * @returns {Promise<CustomerDetailsByShipmentId>} - Success response
    * @summary: Get Customer Details by Shipment Id
    * @description: Use this API to retrieve customer details such as mobileno using Shipment ID.
    */
@@ -102,7 +102,7 @@ class Order {
 
     const {
       error: res_error,
-    } = OrderModel.CustomerDetailsResponse().validate(response, {
+    } = OrderModel.CustomerDetailsByShipmentId().validate(response, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -121,10 +121,12 @@ class Order {
 
   /**
    * @param {Object} arg - Arg object.
-   * @param {string} arg.shipmentId - ID of the shipment.
+   * @param {string} arg.shipmentId - ID of the shipment. An order may contain
+   *   multiple items and may get divided into one or more shipment, each
+   *   having its own ID.
    * @returns {Promise<ResponseGetInvoiceShipment>} - Success response
-   * @summary: Get Invoice of a shipment
-   * @description: Use this API to retrieve shipment invoice.
+   * @summary: Get Invoice URL
+   * @description: Use this API to get a generated Invoice URL for viewing or download.
    */
   async getInvoiceByShipmentId({ shipmentId } = {}) {
     const { error } = OrderValidator.getInvoiceByShipmentId().validate(
@@ -248,8 +250,6 @@ class Order {
 
   /**
    * @param {Object} arg - Arg object.
-   * @param {number} [arg.status] - A filter to retrieve orders by their
-   *   current status such as _placed_, _delivered_, etc.
    * @param {number} [arg.pageNo] - The page number to navigate through the
    *   given set of results. Default value is 1.
    * @param {number} [arg.pageSize] - The number of items to retrieve in each
@@ -257,22 +257,15 @@ class Order {
    * @param {string} [arg.fromDate] - The date from which the orders should be
    *   retrieved.
    * @param {string} [arg.toDate] - The date till which the orders should be retrieved.
-   * @param {string} [arg.customMeta] - A filter and retrieve data using
-   *   special fields included for special use-cases
+   * @param {number} [arg.status] - A filter to retrieve orders by their
+   *   current status such as _placed_, _delivered_, etc.
    * @returns {Promise<OrderList>} - Success response
    * @summary: Get all orders
    * @description: Use this API to retrieve all the orders.
    */
-  async getOrders({
-    status,
-    pageNo,
-    pageSize,
-    fromDate,
-    toDate,
-    customMeta,
-  } = {}) {
+  async getOrders({ pageNo, pageSize, fromDate, toDate, status } = {}) {
     const { error } = OrderValidator.getOrders().validate(
-      { status, pageNo, pageSize, fromDate, toDate, customMeta },
+      { pageNo, pageSize, fromDate, toDate, status },
       { abortEarly: false, allowUnknown: true }
     );
     if (error) {
@@ -281,7 +274,7 @@ class Order {
 
     // Showing warrnings if extra unknown parameters are found
     const { error: warrning } = OrderValidator.getOrders().validate(
-      { status, pageNo, pageSize, fromDate, toDate, customMeta },
+      { pageNo, pageSize, fromDate, toDate, status },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
@@ -293,12 +286,11 @@ class Order {
     }
 
     const query_params = {};
-    query_params["status"] = status;
     query_params["page_no"] = pageNo;
     query_params["page_size"] = pageSize;
     query_params["from_date"] = fromDate;
     query_params["to_date"] = toDate;
-    query_params["custom_meta"] = customMeta;
+    query_params["status"] = status;
 
     const xHeaders = {};
 
@@ -334,7 +326,7 @@ class Order {
    * @param {Object} arg - Arg object.
    * @param {string} arg.orderId - A unique number used for identifying and
    *   tracking your orders.
-   * @returns {Promise<OrderList>} - Success response
+   * @returns {Promise<PosOrderById>} - Success response
    * @summary: Get POS Order
    * @description: Use this API to retrieve a POS order and all its details such as tracking details, shipment, store information using Fynd Order ID.
    */
@@ -376,7 +368,7 @@ class Order {
       xHeaders
     );
 
-    const { error: res_error } = OrderModel.OrderList().validate(response, {
+    const { error: res_error } = OrderModel.PosOrderById().validate(response, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -385,73 +377,6 @@ class Order {
       Logger({
         level: "WARN",
         message: "Response Validation Warnnings for getPosOrderById",
-      });
-      Logger({ level: "WARN", message: res_error });
-    }
-
-    return response;
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.shipmentId - ID of the bag. An order may contain
-   *   multiple items and may get divided into one or more shipment, each
-   *   having its own ID.
-   * @param {string} arg.bagId - ID of the bag. An order may contain multiple
-   *   items and may get divided into one or more shipment, each having its own ID.
-   * @returns {Promise<ShipmentBagReasons>} - Success response
-   * @summary: Get reasons behind full or partial cancellation of a shipment
-   * @description: Use this API to retrieve the issues that led to the cancellation of bags within a shipment.
-   */
-  async getShipmentBagReasons({ shipmentId, bagId } = {}) {
-    const { error } = OrderValidator.getShipmentBagReasons().validate(
-      { shipmentId, bagId },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = OrderValidator.getShipmentBagReasons().validate(
-      { shipmentId, bagId },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: "Parameter Validation warrnings for getShipmentBagReasons",
-      });
-      Logger({ level: "WARN", message: warrning });
-    }
-
-    const query_params = {};
-
-    const xHeaders = {};
-
-    const response = await ApplicationAPIClient.execute(
-      this._conf,
-      "get",
-      constructUrl({
-        url: this._urls["getShipmentBagReasons"],
-        params: { shipmentId, bagId },
-      }),
-      query_params,
-      undefined,
-      xHeaders
-    );
-
-    const {
-      error: res_error,
-    } = OrderModel.ShipmentBagReasons().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
-
-    if (res_error) {
-      Logger({
-        level: "WARN",
-        message: "Response Validation Warnnings for getShipmentBagReasons",
       });
       Logger({ level: "WARN", message: res_error });
     }
@@ -592,7 +517,7 @@ class Order {
    * @param {string} arg.shipmentId - ID of the shipment. An order may contain
    *   multiple items and may get divided into one or more shipment, each
    *   having its own ID.
-   * @returns {Promise<SendOtpToCustomerResponse>} - Success response
+   * @returns {Promise<sendOTPApplicationResponse>} - Success response
    * @summary: Send and Resend Otp code to Order-Shipment customer
    * @description: Use this API to send OTP to the customer of the mapped Shipment.
    */
@@ -638,7 +563,7 @@ class Order {
 
     const {
       error: res_error,
-    } = OrderModel.SendOtpToCustomerResponse().validate(response, {
+    } = OrderModel.sendOTPApplicationResponse().validate(response, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -661,7 +586,7 @@ class Order {
    *   having its own ID.
    * @returns {Promise<ShipmentTrack>} - Success response
    * @summary: Track shipment
-   * @description: Track Shipment by shipment id, for application based on application Id
+   * @description: Use this API to track a shipment using its shipment ID.
    */
   async trackShipment({ shipmentId } = {}) {
     const { error } = OrderValidator.trackShipment().validate(
@@ -719,13 +644,79 @@ class Order {
 
   /**
    * @param {Object} arg - Arg object.
+   * @param {string} arg.shipmentId - ID of the shipment. An order may contain
+   *   multiple items and may get divided into one or more shipment, each
+   *   having its own ID.
+   * @param {ShipmentStatusUpdateBody} arg.body
+   * @returns {Promise<ShipmentStatusUpdate>} - Success response
+   * @summary: Update the shipment status
+   * @description: Use this API to update the status of a shipment using its shipment ID.
+   */
+  async updateShipmentStatus({ shipmentId, body } = {}) {
+    const { error } = OrderValidator.updateShipmentStatus().validate(
+      { shipmentId, body },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = OrderValidator.updateShipmentStatus().validate(
+      { shipmentId, body },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for updateShipmentStatus",
+      });
+      Logger({ level: "WARN", message: warrning });
+    }
+
+    const query_params = {};
+
+    const xHeaders = {};
+
+    const response = await ApplicationAPIClient.execute(
+      this._conf,
+      "put",
+      constructUrl({
+        url: this._urls["updateShipmentStatus"],
+        params: { shipmentId },
+      }),
+      query_params,
+      body,
+      xHeaders
+    );
+
+    const {
+      error: res_error,
+    } = OrderModel.ShipmentStatusUpdate().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for updateShipmentStatus",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
    * @param {string} arg.orderId - A unique number used for identifying and
    *   tracking your orders.
    * @param {string} arg.shipmentId - ID of the shipment. An order may contain
    *   multiple items and may get divided into one or more shipment, each
    *   having its own ID.
-   * @param {VerifyOtp} arg.body
-   * @returns {Promise<VerifyOtpResponse>} - Success response
+   * @param {ReqBodyVerifyOTPShipment} arg.body
+   * @returns {Promise<ResponseVerifyOTPShipment>} - Success response
    * @summary: Verify Otp code
    * @description: Use this API to verify OTP and create a session token with custom payload.
    */
@@ -771,7 +762,7 @@ class Order {
 
     const {
       error: res_error,
-    } = OrderModel.VerifyOtpResponse().validate(response, {
+    } = OrderModel.ResponseVerifyOTPShipment().validate(response, {
       abortEarly: false,
       allowUnknown: false,
     });

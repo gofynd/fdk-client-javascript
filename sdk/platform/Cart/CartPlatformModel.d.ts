@@ -16,13 +16,10 @@ declare class CartModel {
     static CartDetailResponse(): any;
     static CartItem(): any;
     static CartItemMeta(): any;
-    static CartMetaConfigAdd(): any;
-    static CartMetaConfigUpdate(): any;
     static CartProduct(): any;
     static CartProductIdentifer(): any;
     static CartProductInfo(): any;
     static CategoryInfo(): any;
-    static Charges(): any;
     static CompareObject(): any;
     static CouponAction(): any;
     static CouponAdd(): any;
@@ -33,7 +30,6 @@ declare class CartModel {
     static CouponSchedule(): any;
     static CouponsResponse(): any;
     static CouponUpdate(): any;
-    static DeliveryCharges(): any;
     static DiscountOffer(): any;
     static DiscountRule(): any;
     static DisplayBreakup(): any;
@@ -57,7 +53,6 @@ declare class CartModel {
     static OperationErrorResponse(): any;
     static Ownership(): any;
     static Ownership1(): any;
-    static Ownership2(): any;
     static Page(): any;
     static PaymentAllowValue(): any;
     static PaymentAllowValue1(): any;
@@ -69,7 +64,6 @@ declare class CartModel {
     static ProductAction(): any;
     static ProductArticle(): any;
     static ProductAvailability(): any;
-    static ProductAvailabilitySize(): any;
     static ProductImage(): any;
     static ProductPrice(): any;
     static ProductPriceInfo(): any;

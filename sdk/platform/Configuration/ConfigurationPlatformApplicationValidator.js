@@ -99,12 +99,6 @@ class ConfigurationValidator {
     }).required();
   }
 
-  static modifyAppFeatures() {
-    return Joi.object({
-      body: ConfigurationModel.AppFeatureRequest().required(),
-    }).required();
-  }
-
   static partiallyUpdateInventoryConfig() {
     return Joi.object({
       body: ConfigurationModel.AppInventoryPartialUpdate().required(),

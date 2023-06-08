@@ -13,8 +13,8 @@ declare class CartModel {
     static BulkPriceOffer(): any;
     static BulkPriceResponse(): any;
     static CartBreakup(): any;
-    static CartCheckoutCustomMeta(): any;
     static CartCheckoutDetailRequest(): any;
+    static CartCheckoutDetailV2Request(): any;
     static CartCheckoutResponse(): any;
     static CartCurrency(): any;
     static CartDetailResponse(): any;
@@ -32,7 +32,9 @@ declare class CartModel {
     static CouponBreakup(): any;
     static CouponValidity(): any;
     static CurrencyInfo(): any;
+    static CustomerDetails(): any;
     static DeleteAddressResponse(): any;
+    static DeleteCartDetailResponse(): any;
     static DisplayBreakup(): any;
     static GeoLocation(): any;
     static GetAddressesResponse(): any;
@@ -48,14 +50,14 @@ declare class CartModel {
     static OfferPrice(): any;
     static OfferSeller(): any;
     static OperationErrorResponse(): any;
-    static Ownership(): any;
     static PageCoupon(): any;
     static PaymentCouponValidate(): any;
+    static PaymentMeta(): any;
+    static PaymentMethod(): any;
     static PaymentSelectionLock(): any;
     static ProductAction(): any;
     static ProductArticle(): any;
     static ProductAvailability(): any;
-    static ProductAvailabilitySize(): any;
     static ProductImage(): any;
     static ProductPrice(): any;
     static ProductPriceInfo(): any;

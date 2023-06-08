@@ -12,7 +12,6 @@ class CartValidator {
     return Joi.object({
       i: Joi.boolean(),
       b: Joi.boolean(),
-      areaCode: Joi.string().allow(""),
       buyNow: Joi.boolean(),
       body: CartModel.AddCartRequest().required(),
     }).required();
@@ -44,6 +43,19 @@ class CartValidator {
       buyNow: Joi.boolean(),
       body: CartModel.CartCheckoutDetailRequest().required(),
     }).required();
+  }
+
+  static checkoutCartV2() {
+    return Joi.object({
+      buyNow: Joi.boolean(),
+      body: CartModel.CartCheckoutDetailV2Request().required(),
+    }).required();
+  }
+
+  static deleteCart() {
+    return Joi.object({
+      id: Joi.number(),
+    });
   }
 
   static getAddressById() {
@@ -84,7 +96,6 @@ class CartValidator {
       i: Joi.boolean(),
       b: Joi.boolean(),
       assignCardId: Joi.number(),
-      areaCode: Joi.string().allow(""),
       buyNow: Joi.boolean(),
     });
   }
@@ -191,7 +202,6 @@ class CartValidator {
       id: Joi.string().allow(""),
       i: Joi.boolean(),
       b: Joi.boolean(),
-      areaCode: Joi.string().allow(""),
       buyNow: Joi.boolean(),
       body: CartModel.UpdateCartRequest().required(),
     }).required();

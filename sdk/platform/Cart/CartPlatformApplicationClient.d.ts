@@ -39,16 +39,6 @@ declare class Cart {
     }): Promise<OpenApiCheckoutResponse>;
     /**
      * @param {Object} arg - Arg object.
-     * @param {CartMetaConfigAdd} arg.body
-     * @returns {Promise<CartMetaConfigAdd>} - Success response
-     * @summary: Create new cart meta configuration
-     * @description: Create new cart meta configuration
-     */
-    createCartMetaConfig({ body }?: {
-        body: CartMetaConfigAdd;
-    }): Promise<CartMetaConfigAdd>;
-    /**
-     * @param {Object} arg - Arg object.
      * @param {CouponAdd} arg.body
      * @returns {Promise<SuccessMessage>} - Success response
      * @summary: Create new coupon
@@ -77,13 +67,6 @@ declare class Cart {
     fetchAndvalidateCartItems({ body }?: {
         body: OpenapiCartDetailsRequest;
     }): Promise<OpenapiCartDetailsResponse>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @returns {Promise<CartMetaConfigAdd>} - Success response
-     * @summary: Fetch cart meta configuration
-     * @description: Fetch cart meta configuration
-     */
-    fetchCartMetaConfig({}?: any): Promise<CartMetaConfigAdd>;
     /**
      * @param {Object} arg - Arg object.
      * @param {number} [arg.pageNo] -
@@ -155,23 +138,6 @@ declare class Cart {
     }): Promise<CouponUpdate>;
     /**
      * @param {Object} arg - Arg object.
-     * @param {string} [arg.code] -
-     * @returns {Promise<Object>} - Success response
-     * @summary: Check if coupon is already created with coupon code
-     * @description: Check if sent coupon code is already existing coupon code. As coupon code is to be unique.
-     */
-    getCouponCodeExists({ code }?: {
-        code?: string;
-    }): Promise<any>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @returns {Promise<Object>} - Success response
-     * @summary: Get coupon options enums with display values
-     * @description: Get coupon enum values for fields in valid coupon object. Used for front end to create, update and filter coupon lists via fields
-     */
-    getCouponOptionValues({}?: any): Promise<any>;
-    /**
-     * @param {Object} arg - Arg object.
      * @param {number} [arg.pageNo] -
      * @param {number} [arg.pageSize] -
      * @param {boolean} [arg.isArchived] -
@@ -229,16 +195,6 @@ declare class Cart {
     getPromotionById({ id }?: {
         id: string;
     }): Promise<PromotionUpdate>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {string} [arg.code] -
-     * @returns {Promise<Object>} - Success response
-     * @summary: Check if promotion is already created with promotion code
-     * @description: Check if sent promotion code is already existing promotion code. As promotion code is to be unique.
-     */
-    getPromotionCodeExists({ code }?: {
-        code?: string;
-    }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @param {number} [arg.pageNo] -
@@ -302,18 +258,6 @@ declare class Cart {
         b?: boolean;
         body: UpdateCartRequest;
     }): Promise<UpdateCartDetailResponse>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.cartMetaId -
-     * @param {CartMetaConfigUpdate} arg.body
-     * @returns {Promise<CartMetaConfigUpdate>} - Success response
-     * @summary: Update cart meta configuration
-     * @description: Update cart meta configuration
-     */
-    updateCartMetaConfig({ cartMetaId, body }?: {
-        cartMetaId: string;
-        body: CartMetaConfigUpdate;
-    }): Promise<CartMetaConfigUpdate>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.id -

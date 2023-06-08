@@ -22,8 +22,6 @@ class FileStorageModel {
   }
   static CDN() {
     return Joi.object({
-      absolute_url: Joi.string().allow(""),
-      relative_url: Joi.string().allow(""),
       url: Joi.string().allow("").required(),
     });
   }
