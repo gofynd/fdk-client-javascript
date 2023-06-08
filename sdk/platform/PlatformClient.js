@@ -5166,7 +5166,7 @@ class PlatformClient {
  * @property {string} [placeholder_text]
  * @property {boolean} [show_ui]
  * @property {string} text
- * @property {Object} [value]
+ * @property {string} [value]
  */
 /**
  * @typedef FiltersInfo

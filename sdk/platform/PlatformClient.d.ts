@@ -4350,7 +4350,7 @@ type FilterInfoOption = {
     placeholder_text?: string;
     show_ui?: boolean;
     text: string;
-    value?: any;
+    value?: string;
 };
 type FiltersInfo = {
     options?: FilterInfoOption[];

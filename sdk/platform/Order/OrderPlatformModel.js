@@ -892,11 +892,11 @@ class OrderModel {
   static FilterInfoOption() {
     return Joi.object({
       min_search_size: Joi.number(),
-      name: Joi.string().allow(""),
+      name: Joi.string().allow("").allow(null),
       placeholder_text: Joi.string().allow(""),
       show_ui: Joi.boolean(),
-      text: Joi.string().allow("").required(),
-      value: Joi.any(),
+      text: Joi.string().allow("").allow(null).required(),
+      value: Joi.string().allow("").allow(null),
     });
   }
   static FiltersInfo() {
