@@ -1866,7 +1866,6 @@ class PlatformApplicationClient {
 /** @typedef ContactNumberResponse */
 /** @typedef CreatedByResponse */
 /** @typedef CreateZoneData */
-/** @typedef DataObjectResponse */
 /** @typedef DocumentsResponse */
 /** @typedef Dp */
 /** @typedef DP */

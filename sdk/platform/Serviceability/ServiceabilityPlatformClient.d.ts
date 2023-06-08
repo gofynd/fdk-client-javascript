@@ -32,14 +32,14 @@ declare class Serviceability {
      * @summary: Get All DpCompanyRules applied to company from database.
      * @description: This API returns response of all DpCompanyRules from mongo database.
      */
-    getDpCompanyRulesView({}?: any): Promise<DPCompanyRuleResponse>;
+    getDpCompanyRules({}?: any): Promise<DPCompanyRuleResponse>;
     /**
      * @param {Object} arg - Arg object.
      * @returns {Promise<DpMultipleRuleSuccessResponse>} - Success response
      * @summary: Fetching of DpRules from database.
      * @description: This API returns response of DpRules from mongo database.
      */
-    getDpRuleInsertView({}?: any): Promise<DpMultipleRuleSuccessResponse>;
+    getDpRuleInsert({}?: any): Promise<DpMultipleRuleSuccessResponse>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.ruleUid - A `rule_uid` is a unique identifier for a
@@ -48,7 +48,7 @@ declare class Serviceability {
      * @summary: Fetching of DpRules from database.
      * @description: This API returns response of DpRules from mongo database.
      */
-    getDpRulesView({ ruleUid }?: {
+    getDpRules({ ruleUid }?: {
         ruleUid: string;
     }): Promise<DpRuleSuccessResponse>;
     /**
@@ -121,7 +121,7 @@ declare class Serviceability {
      * @summary: Updating of DpRules from database.
      * @description: This API updates and returns response of DpRules from mongo database.
      */
-    updateDpRuleView({ ruleUid, body }?: {
+    updateDpRule({ ruleUid, body }?: {
         ruleUid: string;
         body: DpRulesUpdateRequest;
     }): Promise<DpRuleUpdateSuccessResponse>;
@@ -145,7 +145,7 @@ declare class Serviceability {
      * @summary: Upsertion of DpAccount in database.
      * @description: This API returns response of upsertion of DpAccount in mongo database.
      */
-    upsertDpAccountView({ body }?: {
+    upsertDpAccount({ body }?: {
         body: CompanyDpAccountRequest;
     }): Promise<CompanyDpAccountResponse>;
     /**
@@ -155,7 +155,7 @@ declare class Serviceability {
      * @summary: Upsert of DpCompanyRules in database.
      * @description: This API returns response of upsert of DpCompanyRules in mongo database.
      */
-    upsertDpCompanyRulesView({ body }?: {
+    upsertDpCompanyRules({ body }?: {
         body: DPCompanyRuleRequest;
     }): Promise<DPCompanyRuleResponse>;
     /**
@@ -165,7 +165,7 @@ declare class Serviceability {
      * @summary: Upsert of DpRules in database.
      * @description: This API returns response of upsert of DpRules in mongo database.
      */
-    upsertDpRulesView({ body }?: {
+    upsertDpRules({ body }?: {
         body: DpRuleRequest;
     }): Promise<DpRuleSuccessResponse>;
 }

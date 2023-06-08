@@ -4599,7 +4599,7 @@ class PlatformClient {
  * @property {string} [country_code]
  * @property {string} first_name
  * @property {string} last_name
- * @property {number} mobile
+ * @property {string} mobile
  */
 /**
  * @typedef AttachUserOtpData
@@ -6453,15 +6453,15 @@ class PlatformClient {
  */
 /**
  * @typedef StoreReassign
- * @property {string} affiliate_bag_id
- * @property {string} affiliate_id
- * @property {string} affiliate_order_id
- * @property {number} bag_id
- * @property {string} fynd_order_id
- * @property {string} item_id
- * @property {string} mongo_article_id
- * @property {number[]} reason_ids
- * @property {string} set_id
+ * @property {string} [affiliate_bag_id]
+ * @property {string} [affiliate_id]
+ * @property {string} [affiliate_order_id]
+ * @property {number} [bag_id]
+ * @property {string} [fynd_order_id]
+ * @property {string} [item_id]
+ * @property {string} [mongo_article_id]
+ * @property {number[]} [reason_ids]
+ * @property {string} [set_id]
  * @property {number} store_id
  */
 /**
@@ -6613,6 +6613,7 @@ class PlatformClient {
  */
 /**
  * @typedef VerifyOtpData
+ * @property {string} mobile
  * @property {number} otp_code
  * @property {string} request_id
  */
@@ -6628,7 +6629,7 @@ class PlatformClient {
  * @property {string} [country_code]
  * @property {string} [fynd_order_id]
  * @property {string} [message]
- * @property {number} [mobile]
+ * @property {string} [mobile]
  */
 /**
  * @typedef Weight
@@ -14441,8 +14442,6 @@ class PlatformClient {
  */
 /**
  * @typedef CompanyDpAccountResponse
- * @property {DataObjectResponse[]} data
- * @property {number} [status_code]
  * @property {boolean} success
  */
 /**
@@ -14480,17 +14479,6 @@ class PlatformClient {
  * @property {string} region_type
  * @property {string} slug
  * @property {number[]} store_ids
- */
-/**
- * @typedef DataObjectResponse
- * @property {number} account_id
- * @property {number} company_id
- * @property {number} dp_id
- * @property {boolean} is_self_ship
- * @property {number} plan_id
- * @property {Object} [plan_rules]
- * @property {string} stage
- * @property {string} uid
  */
 /**
  * @typedef DocumentsResponse

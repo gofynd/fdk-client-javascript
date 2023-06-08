@@ -256,7 +256,11 @@ const promise = platformClient.partner.getExtensionsForCompany({  pageSize : val
  currentPage : value,
  pageNo : value,
  filterBy : value,
- query : value });
+ query : value,
+ q : value,
+ isApplicationLevel : value,
+ isSaleschannel : value,
+ extentionType : value });
 
 // Async/Await
 const data = await platformClient.partner.getExtensionsForCompany({  pageSize : value,
@@ -264,7 +268,11 @@ const data = await platformClient.partner.getExtensionsForCompany({  pageSize : 
  currentPage : value,
  pageNo : value,
  filterBy : value,
- query : value });
+ query : value,
+ q : value,
+ isApplicationLevel : value,
+ isSaleschannel : value,
+ extentionType : value });
 ```
 
 
@@ -278,7 +286,11 @@ const data = await platformClient.partner.getExtensionsForCompany({  pageSize : 
 | currentPage | string | no | tag |    
 | pageNo | number | no | Current page number |    
 | filterBy | string | no | Filter by |    
-| query | string | no | query |  
+| query | string | no | query |    
+| q | string | no | Search value |    
+| isApplicationLevel | string | no | Flag to mark application level |    
+| isSaleschannel | string | no | Flag to mark sales channel level |    
+| extentionType | string | no | Extension type |  
 
 
 
@@ -707,12 +719,16 @@ Get the list of private extensions
 // Promise
 const promise = platformClient.partner.getPrivateExtensions({  pageSize : value,
  pageNo : value,
- query : value });
+ query : value,
+ q : value,
+ installed : value });
 
 // Async/Await
 const data = await platformClient.partner.getPrivateExtensions({  pageSize : value,
  pageNo : value,
- query : value });
+ query : value,
+ q : value,
+ installed : value });
 ```
 
 
@@ -723,7 +739,9 @@ const data = await platformClient.partner.getPrivateExtensions({  pageSize : val
 | --------- | -----  | -------- | ----------- |  
 | pageSize | number | no | Number of records you want to get in single page |    
 | pageNo | number | no | Number of page |    
-| query | string | no | Filter query which we want to pass |  
+| query | string | no | Filter query which we want to pass |    
+| q | string | no | Search value |    
+| installed | string | no | Filter flag for installed extension |  
 
 
 

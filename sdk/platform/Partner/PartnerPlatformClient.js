@@ -159,6 +159,10 @@ class Partner {
    * @param {number} [arg.pageNo] - Current page number
    * @param {string} [arg.filterBy] - Filter by
    * @param {string} [arg.query] - Query
+   * @param {string} [arg.q] - Search value
+   * @param {string} [arg.isApplicationLevel] - Flag to mark application level
+   * @param {string} [arg.isSaleschannel] - Flag to mark sales channel level
+   * @param {string} [arg.extentionType] - Extension type
    * @returns {Promise<ExtensionList>} - Success response
    * @summary: Get the list of all the extensions
    * @description: Use this API to get the the extensions for the company
@@ -170,6 +174,10 @@ class Partner {
     pageNo,
     filterBy,
     query,
+    q,
+    isApplicationLevel,
+    isSaleschannel,
+    extentionType,
   } = {}) {
     const { error } = PartnerValidator.getExtensionsForCompany().validate(
       {
@@ -179,6 +187,10 @@ class Partner {
         pageNo,
         filterBy,
         query,
+        q,
+        isApplicationLevel,
+        isSaleschannel,
+        extentionType,
       },
       { abortEarly: false, allowUnknown: true }
     );
@@ -197,6 +209,10 @@ class Partner {
         pageNo,
         filterBy,
         query,
+        q,
+        isApplicationLevel,
+        isSaleschannel,
+        extentionType,
       },
       { abortEarly: false, allowUnknown: false }
     );
@@ -215,6 +231,10 @@ class Partner {
     query_params["page_no"] = pageNo;
     query_params["filter_by"] = filterBy;
     query_params["query"] = query;
+    query_params["q"] = q;
+    query_params["is_application_level"] = isApplicationLevel;
+    query_params["is_saleschannel"] = isSaleschannel;
+    query_params["extention_type"] = extentionType;
 
     const xHeaders = {};
 
@@ -454,16 +474,20 @@ class Partner {
    * @param {number} [arg.pageSize] - Number of records you want to get in single page
    * @param {number} [arg.pageNo] - Number of page
    * @param {string} [arg.query] - Filter query which we want to pass
+   * @param {string} [arg.q] - Search value
+   * @param {string} [arg.installed] - Filter flag for installed extension
    * @returns {Promise<ExtensionResponse>} - Success response
    * @summary: Get the list of private extensions
    * @description: Use this API to get the list of private extensions
    */
-  async getPrivateExtensions({ pageSize, pageNo, query } = {}) {
+  async getPrivateExtensions({ pageSize, pageNo, query, q, installed } = {}) {
     const { error } = PartnerValidator.getPrivateExtensions().validate(
       {
         pageSize,
         pageNo,
         query,
+        q,
+        installed,
       },
       { abortEarly: false, allowUnknown: true }
     );
@@ -479,6 +503,8 @@ class Partner {
         pageSize,
         pageNo,
         query,
+        q,
+        installed,
       },
       { abortEarly: false, allowUnknown: false }
     );
@@ -494,6 +520,8 @@ class Partner {
     query_params["page_size"] = pageSize;
     query_params["page_no"] = pageNo;
     query_params["query"] = query;
+    query_params["q"] = q;
+    query_params["installed"] = installed;
 
     const xHeaders = {};
 

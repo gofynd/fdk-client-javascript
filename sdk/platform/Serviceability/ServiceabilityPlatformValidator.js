@@ -16,15 +16,15 @@ class ServiceabilityValidator {
     return Joi.object({}).required();
   }
 
-  static getDpCompanyRulesView() {
+  static getDpCompanyRules() {
     return Joi.object({}).required();
   }
 
-  static getDpRuleInsertView() {
+  static getDpRuleInsert() {
     return Joi.object({}).required();
   }
 
-  static getDpRulesView() {
+  static getDpRules() {
     return Joi.object({
       ruleUid: Joi.string().allow("").required(),
     }).required();
@@ -65,7 +65,7 @@ class ServiceabilityValidator {
     }).required();
   }
 
-  static updateDpRuleView() {
+  static updateDpRule() {
     return Joi.object({
       ruleUid: Joi.string().allow("").required(),
       body: ServiceabilityModel.DpRulesUpdateRequest().required(),
@@ -79,19 +79,19 @@ class ServiceabilityValidator {
     }).required();
   }
 
-  static upsertDpAccountView() {
+  static upsertDpAccount() {
     return Joi.object({
       body: ServiceabilityModel.CompanyDpAccountRequest().required(),
     }).required();
   }
 
-  static upsertDpCompanyRulesView() {
+  static upsertDpCompanyRules() {
     return Joi.object({
       body: ServiceabilityModel.DPCompanyRuleRequest().required(),
     }).required();
   }
 
-  static upsertDpRulesView() {
+  static upsertDpRules() {
     return Joi.object({
       body: ServiceabilityModel.DpRuleRequest().required(),
     }).required();

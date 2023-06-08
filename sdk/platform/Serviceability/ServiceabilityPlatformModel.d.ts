@@ -13,7 +13,6 @@ declare class ServiceabilityModel {
     static ContactNumberResponse(): any;
     static CreatedByResponse(): any;
     static CreateZoneData(): any;
-    static DataObjectResponse(): any;
     static DocumentsResponse(): any;
     static Dp(): any;
     static DP(): any;

@@ -14,10 +14,10 @@ Logistics Configuration API's allows you to configure zone, application logistic
 * [getAllStores](#getallstores)
 * [getApplicationServiceability](#getapplicationserviceability)
 * [getCompanyStoreView](#getcompanystoreview)
-* [getDpApplicationRulesView](#getdpapplicationrulesview)
-* [getDpCompanyRulesView](#getdpcompanyrulesview)
-* [getDpRuleInsertView](#getdpruleinsertview)
-* [getDpRulesView](#getdprulesview)
+* [getDpApplicationRules](#getdpapplicationrules)
+* [getDpCompanyRules](#getdpcompanyrules)
+* [getDpRuleInsert](#getdpruleinsert)
+* [getDpRules](#getdprules)
 * [getEntityRegionView](#getentityregionview)
 * [getListView](#getlistview)
 * [getOptimalLocations](#getoptimallocations)
@@ -25,16 +25,16 @@ Logistics Configuration API's allows you to configure zone, application logistic
 * [getZoneDataView](#getzonedataview)
 * [getZoneFromPincodeView](#getzonefrompincodeview)
 * [getZonesFromApplicationIdView](#getzonesfromapplicationidview)
-* [updateDpRuleView](#updatedpruleview)
+* [updateDpRule](#updatedprule)
 * [updatePincodeAuditHistory](#updatepincodeaudithistory)
 * [updatePincodeBulkView](#updatepincodebulkview)
 * [updatePincodeCoDListing](#updatepincodecodlisting)
 * [updatePincodeMopView](#updatepincodemopview)
 * [updateZoneControllerView](#updatezonecontrollerview)
-* [upsertDpAccountView](#upsertdpaccountview)
-* [upsertDpApplicationRulesView](#upsertdpapplicationrulesview)
-* [upsertDpCompanyRulesView](#upsertdpcompanyrulesview)
-* [upsertDpRulesView](#upsertdprulesview)
+* [upsertDpAccount](#upsertdpaccount)
+* [upsertDpApplicationRules](#upsertdpapplicationrules)
+* [upsertDpCompanyRules](#upsertdpcompanyrules)
+* [upsertDpRules](#upsertdprules)
 
 
 
@@ -374,17 +374,17 @@ Get Company Store View Data
 ---
 
 
-### getDpApplicationRulesView
+### getDpApplicationRules
 Get All DpApplicationRules rules added at application level from database.
 
 
 
 ```javascript
 // Promise
-const promise = platformClient.application("<APPLICATION_ID>").serviceability.getDpApplicationRulesView();
+const promise = platformClient.application("<APPLICATION_ID>").serviceability.getDpApplicationRules();
 
 // Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").serviceability.getDpApplicationRulesView();
+const data = await platformClient.application("<APPLICATION_ID>").serviceability.getDpApplicationRules();
 ```
 
 
@@ -425,17 +425,17 @@ Response status_code
 ---
 
 
-### getDpCompanyRulesView
+### getDpCompanyRules
 Get All DpCompanyRules applied to company from database.
 
 
 
 ```javascript
 // Promise
-const promise = platformClient.serviceability.getDpCompanyRulesView();
+const promise = platformClient.serviceability.getDpCompanyRules();
 
 // Async/Await
-const data = await platformClient.serviceability.getDpCompanyRulesView();
+const data = await platformClient.serviceability.getDpCompanyRules();
 ```
 
 
@@ -476,17 +476,17 @@ Response status_code
 ---
 
 
-### getDpRuleInsertView
+### getDpRuleInsert
 Fetching of DpRules from database.
 
 
 
 ```javascript
 // Promise
-const promise = platformClient.serviceability.getDpRuleInsertView();
+const promise = platformClient.serviceability.getDpRuleInsert();
 
 // Async/Await
-const data = await platformClient.serviceability.getDpRuleInsertView();
+const data = await platformClient.serviceability.getDpRuleInsert();
 ```
 
 
@@ -527,17 +527,17 @@ Response status_code
 ---
 
 
-### getDpRulesView
+### getDpRules
 Fetching of DpRules from database.
 
 
 
 ```javascript
 // Promise
-const promise = platformClient.serviceability.getDpRulesView({  ruleUid : value });
+const promise = platformClient.serviceability.getDpRules({  ruleUid : value });
 
 // Async/Await
-const data = await platformClient.serviceability.getDpRulesView({  ruleUid : value });
+const data = await platformClient.serviceability.getDpRules({  ruleUid : value });
 ```
 
 
@@ -1205,18 +1205,18 @@ List of zones for the given application_id
 ---
 
 
-### updateDpRuleView
+### updateDpRule
 Updating of DpRules from database.
 
 
 
 ```javascript
 // Promise
-const promise = platformClient.serviceability.updateDpRuleView({  ruleUid : value,
+const promise = platformClient.serviceability.updateDpRule({  ruleUid : value,
  body : value });
 
 // Async/Await
-const data = await platformClient.serviceability.updateDpRuleView({  ruleUid : value,
+const data = await platformClient.serviceability.updateDpRule({  ruleUid : value,
  body : value });
 ```
 
@@ -1544,17 +1544,17 @@ Response status_code
 ---
 
 
-### upsertDpAccountView
+### upsertDpAccount
 Upsertion of DpAccount in database.
 
 
 
 ```javascript
 // Promise
-const promise = platformClient.serviceability.upsertDpAccountView({  body : value });
+const promise = platformClient.serviceability.upsertDpAccount({  body : value });
 
 // Async/Await
-const data = await platformClient.serviceability.upsertDpAccountView({  body : value });
+const data = await platformClient.serviceability.upsertDpAccount({  body : value });
 ```
 
 
@@ -1599,17 +1599,17 @@ Response status_code
 ---
 
 
-### upsertDpApplicationRulesView
+### upsertDpApplicationRules
 Upsert of DpApplicationRules in database.
 
 
 
 ```javascript
 // Promise
-const promise = platformClient.application("<APPLICATION_ID>").serviceability.upsertDpApplicationRulesView({  body : value });
+const promise = platformClient.application("<APPLICATION_ID>").serviceability.upsertDpApplicationRules({  body : value });
 
 // Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").serviceability.upsertDpApplicationRulesView({  body : value });
+const data = await platformClient.application("<APPLICATION_ID>").serviceability.upsertDpApplicationRules({  body : value });
 ```
 
 
@@ -1654,17 +1654,17 @@ Response status_code
 ---
 
 
-### upsertDpCompanyRulesView
+### upsertDpCompanyRules
 Upsert of DpCompanyRules in database.
 
 
 
 ```javascript
 // Promise
-const promise = platformClient.serviceability.upsertDpCompanyRulesView({  body : value });
+const promise = platformClient.serviceability.upsertDpCompanyRules({  body : value });
 
 // Async/Await
-const data = await platformClient.serviceability.upsertDpCompanyRulesView({  body : value });
+const data = await platformClient.serviceability.upsertDpCompanyRules({  body : value });
 ```
 
 
@@ -1709,17 +1709,17 @@ Response status_code
 ---
 
 
-### upsertDpRulesView
+### upsertDpRules
 Upsert of DpRules in database.
 
 
 
 ```javascript
 // Promise
-const promise = platformClient.serviceability.upsertDpRulesView({  body : value });
+const promise = platformClient.serviceability.upsertDpRules({  body : value });
 
 // Async/Await
-const data = await platformClient.serviceability.upsertDpRulesView({  body : value });
+const data = await platformClient.serviceability.upsertDpRules({  body : value });
 ```
 
 
@@ -1853,8 +1853,6 @@ Response status_code
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | data | [[DataObjectResponse](#DataObjectResponse)] |  no  |  |
- | status_code | number? |  yes  |  |
  | success | boolean |  no  |  |
  
 
@@ -1917,22 +1915,6 @@ Response status_code
  | region_type | string |  no  |  |
  | slug | string |  no  |  |
  | store_ids | [number] |  no  |  |
- 
-
----
-
-#### [DataObjectResponse](#DataObjectResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | account_id | number |  no  |  |
- | company_id | number |  no  |  |
- | dp_id | number |  no  |  |
- | is_self_ship | boolean |  no  |  |
- | plan_id | number |  no  |  |
- | plan_rules | string? |  yes  |  |
- | stage | string |  no  |  |
- | uid | string |  no  |  |
  
 
 ---

@@ -37,7 +37,7 @@ declare class Serviceability {
      * @summary: Get All DpApplicationRules rules added at application level from database.
      * @description: This API returns response of all rules of DpApplicationRules from mongo database.
      */
-    getDpApplicationRulesView({}?: any): Promise<DPApplicationRuleResponse>;
+    getDpApplicationRules({}?: any): Promise<DPApplicationRuleResponse>;
     /**
      * @param {Object} arg - Arg object.
      * @param {GetZoneFromPincodeViewRequest} arg.body
@@ -111,7 +111,7 @@ declare class Serviceability {
      * @summary: Upsert of DpApplicationRules in database.
      * @description: This API returns response of upsert of DpApplicationRules in mongo database.
      */
-    upsertDpApplicationRulesView({ body }?: {
+    upsertDpApplicationRules({ body }?: {
         body: DPApplicationRuleRequest;
     }): Promise<DPApplicationRuleResponse>;
 }

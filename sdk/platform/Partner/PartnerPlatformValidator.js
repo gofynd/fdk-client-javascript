@@ -24,6 +24,10 @@ class PartnerValidator {
       pageNo: Joi.number(),
       filterBy: Joi.string().allow(""),
       query: Joi.string().allow(""),
+      q: Joi.string().allow(""),
+      isApplicationLevel: Joi.string().allow(""),
+      isSaleschannel: Joi.string().allow(""),
+      extentionType: Joi.string().allow(""),
     }).required();
   }
 
@@ -52,6 +56,8 @@ class PartnerValidator {
       pageSize: Joi.number(),
       pageNo: Joi.number(),
       query: Joi.string().allow(""),
+      q: Joi.string().allow(""),
+      installed: Joi.string().allow(""),
     }).required();
   }
 

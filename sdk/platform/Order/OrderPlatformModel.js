@@ -261,7 +261,7 @@ class OrderModel {
       country_code: Joi.string().allow(""),
       first_name: Joi.string().allow("").required(),
       last_name: Joi.string().allow("").required(),
-      mobile: Joi.number().required(),
+      mobile: Joi.string().allow("").required(),
     });
   }
   static AttachUserOtpData() {
@@ -2323,15 +2323,15 @@ class OrderModel {
   }
   static StoreReassign() {
     return Joi.object({
-      affiliate_bag_id: Joi.string().allow("").allow(null).required(),
-      affiliate_id: Joi.string().allow("").allow(null).required(),
-      affiliate_order_id: Joi.string().allow("").allow(null).required(),
-      bag_id: Joi.number().allow(null).required(),
-      fynd_order_id: Joi.string().allow("").allow(null).required(),
-      item_id: Joi.string().allow("").allow(null).required(),
-      mongo_article_id: Joi.string().allow("").allow(null).required(),
-      reason_ids: Joi.array().items(Joi.number()).required(),
-      set_id: Joi.string().allow("").allow(null).required(),
+      affiliate_bag_id: Joi.string().allow(""),
+      affiliate_id: Joi.string().allow(""),
+      affiliate_order_id: Joi.string().allow(""),
+      bag_id: Joi.number(),
+      fynd_order_id: Joi.string().allow(""),
+      item_id: Joi.string().allow(""),
+      mongo_article_id: Joi.string().allow(""),
+      reason_ids: Joi.array().items(Joi.number()),
+      set_id: Joi.string().allow(""),
       store_id: Joi.number().required(),
     });
   }
@@ -2506,6 +2506,7 @@ class OrderModel {
   }
   static VerifyOtpData() {
     return Joi.object({
+      mobile: Joi.string().allow("").required(),
       otp_code: Joi.number().required(),
       request_id: Joi.string().allow("").required(),
     });
@@ -2523,7 +2524,7 @@ class OrderModel {
       country_code: Joi.string().allow(""),
       fynd_order_id: Joi.string().allow(""),
       message: Joi.string().allow(""),
-      mobile: Joi.number(),
+      mobile: Joi.string().allow(""),
     });
   }
   static Weight() {

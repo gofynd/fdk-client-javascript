@@ -34,17 +34,25 @@ declare class Partner {
      * @param {number} [arg.pageNo] - Current page number
      * @param {string} [arg.filterBy] - Filter by
      * @param {string} [arg.query] - Query
+     * @param {string} [arg.q] - Search value
+     * @param {string} [arg.isApplicationLevel] - Flag to mark application level
+     * @param {string} [arg.isSaleschannel] - Flag to mark sales channel level
+     * @param {string} [arg.extentionType] - Extension type
      * @returns {Promise<ExtensionList>} - Success response
      * @summary: Get the list of all the extensions
      * @description: Use this API to get the the extensions for the company
      */
-    getExtensionsForCompany({ pageSize, tag, currentPage, pageNo, filterBy, query, }?: {
+    getExtensionsForCompany({ pageSize, tag, currentPage, pageNo, filterBy, query, q, isApplicationLevel, isSaleschannel, extentionType, }?: {
         pageSize?: number;
         tag?: string;
         currentPage?: string;
         pageNo?: number;
         filterBy?: string;
         query?: string;
+        q?: string;
+        isApplicationLevel?: string;
+        isSaleschannel?: string;
+        extentionType?: string;
     }): Promise<ExtensionList>;
     /**
      * @param {Object} arg - Arg object.
@@ -85,14 +93,18 @@ declare class Partner {
      * @param {number} [arg.pageSize] - Number of records you want to get in single page
      * @param {number} [arg.pageNo] - Number of page
      * @param {string} [arg.query] - Filter query which we want to pass
+     * @param {string} [arg.q] - Search value
+     * @param {string} [arg.installed] - Filter flag for installed extension
      * @returns {Promise<ExtensionResponse>} - Success response
      * @summary: Get the list of private extensions
      * @description: Use this API to get the list of private extensions
      */
-    getPrivateExtensions({ pageSize, pageNo, query }?: {
+    getPrivateExtensions({ pageSize, pageNo, query, q, installed }?: {
         pageSize?: number;
         pageNo?: number;
         query?: string;
+        q?: string;
+        installed?: string;
     }): Promise<ExtensionResponse>;
     /**
      * @param {Object} arg - Arg object.

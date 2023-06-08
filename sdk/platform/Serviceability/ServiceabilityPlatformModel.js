@@ -56,10 +56,6 @@ class ServiceabilityModel {
   }
   static CompanyDpAccountResponse() {
     return Joi.object({
-      data: Joi.array()
-        .items(ServiceabilityModel.DataObjectResponse())
-        .required(),
-      status_code: Joi.number(),
       success: Joi.boolean().required(),
     });
   }
@@ -108,18 +104,6 @@ class ServiceabilityModel {
       region_type: Joi.string().allow("").required(),
       slug: Joi.string().allow("").required(),
       store_ids: Joi.array().items(Joi.number()).required(),
-    });
-  }
-  static DataObjectResponse() {
-    return Joi.object({
-      account_id: Joi.number().required(),
-      company_id: Joi.number().required(),
-      dp_id: Joi.number().required(),
-      is_self_ship: Joi.boolean().required(),
-      plan_id: Joi.number().required(),
-      plan_rules: Joi.any(),
-      stage: Joi.string().allow("").required(),
-      uid: Joi.string().allow("").required(),
     });
   }
   static DocumentsResponse() {

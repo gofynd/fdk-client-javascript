@@ -201,8 +201,8 @@ class Serviceability {
    * @summary: Get All DpCompanyRules applied to company from database.
    * @description: This API returns response of all DpCompanyRules from mongo database.
    */
-  async getDpCompanyRulesView({} = {}) {
-    const { error } = ServiceabilityValidator.getDpCompanyRulesView().validate(
+  async getDpCompanyRules({} = {}) {
+    const { error } = ServiceabilityValidator.getDpCompanyRules().validate(
       {},
       { abortEarly: false, allowUnknown: true }
     );
@@ -213,14 +213,14 @@ class Serviceability {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = ServiceabilityValidator.getDpCompanyRulesView().validate(
+    } = ServiceabilityValidator.getDpCompanyRules().validate(
       {},
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for getDpCompanyRulesView",
+        message: "Parameter Validation warrnings for getDpCompanyRules",
       });
       Logger({ level: "WARN", message: warrning });
     }
@@ -232,7 +232,7 @@ class Serviceability {
     const response = await PlatformAPIClient.execute(
       this.config,
       "get",
-      `/service/platform/logistics/v1.0/company/${this.config.companyId}/logistics`,
+      `/service/platform/logistics/v1.0/company/${this.config.companyId}/courier/priority`,
       query_params,
       undefined,
       xHeaders
@@ -248,7 +248,7 @@ class Serviceability {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for getDpCompanyRulesView",
+        message: "Response Validation Warnnings for getDpCompanyRules",
       });
       Logger({ level: "WARN", message: res_error });
     }
@@ -262,8 +262,8 @@ class Serviceability {
    * @summary: Fetching of DpRules from database.
    * @description: This API returns response of DpRules from mongo database.
    */
-  async getDpRuleInsertView({} = {}) {
-    const { error } = ServiceabilityValidator.getDpRuleInsertView().validate(
+  async getDpRuleInsert({} = {}) {
+    const { error } = ServiceabilityValidator.getDpRuleInsert().validate(
       {},
       { abortEarly: false, allowUnknown: true }
     );
@@ -274,14 +274,14 @@ class Serviceability {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = ServiceabilityValidator.getDpRuleInsertView().validate(
+    } = ServiceabilityValidator.getDpRuleInsert().validate(
       {},
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for getDpRuleInsertView",
+        message: "Parameter Validation warrnings for getDpRuleInsert",
       });
       Logger({ level: "WARN", message: warrning });
     }
@@ -293,7 +293,7 @@ class Serviceability {
     const response = await PlatformAPIClient.execute(
       this.config,
       "get",
-      `/service/platform/logistics/v1.0/company/${this.config.companyId}/dp-rules`,
+      `/service/platform/logistics/v1.0/company/${this.config.companyId}/courier/rules`,
       query_params,
       undefined,
       xHeaders
@@ -309,7 +309,7 @@ class Serviceability {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for getDpRuleInsertView",
+        message: "Response Validation Warnnings for getDpRuleInsert",
       });
       Logger({ level: "WARN", message: res_error });
     }
@@ -325,8 +325,8 @@ class Serviceability {
    * @summary: Fetching of DpRules from database.
    * @description: This API returns response of DpRules from mongo database.
    */
-  async getDpRulesView({ ruleUid } = {}) {
-    const { error } = ServiceabilityValidator.getDpRulesView().validate(
+  async getDpRules({ ruleUid } = {}) {
+    const { error } = ServiceabilityValidator.getDpRules().validate(
       {
         ruleUid,
       },
@@ -337,9 +337,7 @@ class Serviceability {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = ServiceabilityValidator.getDpRulesView().validate(
+    const { error: warrning } = ServiceabilityValidator.getDpRules().validate(
       {
         ruleUid,
       },
@@ -348,7 +346,7 @@ class Serviceability {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for getDpRulesView",
+        message: "Parameter Validation warrnings for getDpRules",
       });
       Logger({ level: "WARN", message: warrning });
     }
@@ -360,7 +358,7 @@ class Serviceability {
     const response = await PlatformAPIClient.execute(
       this.config,
       "get",
-      `/service/platform/logistics/v1.0/company/${this.config.companyId}/dp-rules/${ruleUid}`,
+      `/service/platform/logistics/v1.0/company/${this.config.companyId}/courier/rules/${ruleUid}`,
       query_params,
       undefined,
       xHeaders
@@ -376,7 +374,7 @@ class Serviceability {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for getDpRulesView",
+        message: "Response Validation Warnnings for getDpRules",
       });
       Logger({ level: "WARN", message: res_error });
     }
@@ -748,8 +746,8 @@ class Serviceability {
    * @summary: Updating of DpRules from database.
    * @description: This API updates and returns response of DpRules from mongo database.
    */
-  async updateDpRuleView({ ruleUid, body } = {}) {
-    const { error } = ServiceabilityValidator.updateDpRuleView().validate(
+  async updateDpRule({ ruleUid, body } = {}) {
+    const { error } = ServiceabilityValidator.updateDpRule().validate(
       {
         ruleUid,
         body,
@@ -761,9 +759,7 @@ class Serviceability {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = ServiceabilityValidator.updateDpRuleView().validate(
+    const { error: warrning } = ServiceabilityValidator.updateDpRule().validate(
       {
         ruleUid,
         body,
@@ -773,7 +769,7 @@ class Serviceability {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for updateDpRuleView",
+        message: "Parameter Validation warrnings for updateDpRule",
       });
       Logger({ level: "WARN", message: warrning });
     }
@@ -785,7 +781,7 @@ class Serviceability {
     const response = await PlatformAPIClient.execute(
       this.config,
       "put",
-      `/service/platform/logistics/v1.0/company/${this.config.companyId}/dp-rules/${ruleUid}`,
+      `/service/platform/logistics/v1.0/company/${this.config.companyId}/courier/rules/${ruleUid}`,
       query_params,
       body,
       xHeaders
@@ -801,7 +797,7 @@ class Serviceability {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for updateDpRuleView",
+        message: "Response Validation Warnnings for updateDpRule",
       });
       Logger({ level: "WARN", message: res_error });
     }
@@ -894,8 +890,8 @@ class Serviceability {
    * @summary: Upsertion of DpAccount in database.
    * @description: This API returns response of upsertion of DpAccount in mongo database.
    */
-  async upsertDpAccountView({ body } = {}) {
-    const { error } = ServiceabilityValidator.upsertDpAccountView().validate(
+  async upsertDpAccount({ body } = {}) {
+    const { error } = ServiceabilityValidator.upsertDpAccount().validate(
       {
         body,
       },
@@ -908,7 +904,7 @@ class Serviceability {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = ServiceabilityValidator.upsertDpAccountView().validate(
+    } = ServiceabilityValidator.upsertDpAccount().validate(
       {
         body,
       },
@@ -917,7 +913,7 @@ class Serviceability {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for upsertDpAccountView",
+        message: "Parameter Validation warrnings for upsertDpAccount",
       });
       Logger({ level: "WARN", message: warrning });
     }
@@ -929,7 +925,7 @@ class Serviceability {
     const response = await PlatformAPIClient.execute(
       this.config,
       "post",
-      `/service/platform/logistics/v1.0/company/${this.config.companyId}/dp-account`,
+      `/service/platform/logistics/v1.0/company/${this.config.companyId}/courier/account`,
       query_params,
       body,
       xHeaders
@@ -945,7 +941,7 @@ class Serviceability {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for upsertDpAccountView",
+        message: "Response Validation Warnnings for upsertDpAccount",
       });
       Logger({ level: "WARN", message: res_error });
     }
@@ -960,10 +956,8 @@ class Serviceability {
    * @summary: Upsert of DpCompanyRules in database.
    * @description: This API returns response of upsert of DpCompanyRules in mongo database.
    */
-  async upsertDpCompanyRulesView({ body } = {}) {
-    const {
-      error,
-    } = ServiceabilityValidator.upsertDpCompanyRulesView().validate(
+  async upsertDpCompanyRules({ body } = {}) {
+    const { error } = ServiceabilityValidator.upsertDpCompanyRules().validate(
       {
         body,
       },
@@ -976,7 +970,7 @@ class Serviceability {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = ServiceabilityValidator.upsertDpCompanyRulesView().validate(
+    } = ServiceabilityValidator.upsertDpCompanyRules().validate(
       {
         body,
       },
@@ -985,7 +979,7 @@ class Serviceability {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for upsertDpCompanyRulesView",
+        message: "Parameter Validation warrnings for upsertDpCompanyRules",
       });
       Logger({ level: "WARN", message: warrning });
     }
@@ -997,7 +991,7 @@ class Serviceability {
     const response = await PlatformAPIClient.execute(
       this.config,
       "put",
-      `/service/platform/logistics/v1.0/company/${this.config.companyId}/logistics`,
+      `/service/platform/logistics/v1.0/company/${this.config.companyId}/courier/priority`,
       query_params,
       body,
       xHeaders
@@ -1013,7 +1007,7 @@ class Serviceability {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for upsertDpCompanyRulesView",
+        message: "Response Validation Warnnings for upsertDpCompanyRules",
       });
       Logger({ level: "WARN", message: res_error });
     }
@@ -1028,8 +1022,8 @@ class Serviceability {
    * @summary: Upsert of DpRules in database.
    * @description: This API returns response of upsert of DpRules in mongo database.
    */
-  async upsertDpRulesView({ body } = {}) {
-    const { error } = ServiceabilityValidator.upsertDpRulesView().validate(
+  async upsertDpRules({ body } = {}) {
+    const { error } = ServiceabilityValidator.upsertDpRules().validate(
       {
         body,
       },
@@ -1042,7 +1036,7 @@ class Serviceability {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = ServiceabilityValidator.upsertDpRulesView().validate(
+    } = ServiceabilityValidator.upsertDpRules().validate(
       {
         body,
       },
@@ -1051,7 +1045,7 @@ class Serviceability {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for upsertDpRulesView",
+        message: "Parameter Validation warrnings for upsertDpRules",
       });
       Logger({ level: "WARN", message: warrning });
     }
@@ -1063,7 +1057,7 @@ class Serviceability {
     const response = await PlatformAPIClient.execute(
       this.config,
       "post",
-      `/service/platform/logistics/v1.0/company/${this.config.companyId}/dp-rules`,
+      `/service/platform/logistics/v1.0/company/${this.config.companyId}/courier/rules`,
       query_params,
       body,
       xHeaders
@@ -1079,7 +1073,7 @@ class Serviceability {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for upsertDpRulesView",
+        message: "Response Validation Warnnings for upsertDpRules",
       });
       Logger({ level: "WARN", message: res_error });
     }

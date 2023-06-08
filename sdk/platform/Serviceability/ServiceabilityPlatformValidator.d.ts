@@ -3,17 +3,17 @@ declare class ServiceabilityValidator {
     static createZone(): any;
     static getAllStores(): any;
     static getCompanyStoreView(): any;
-    static getDpCompanyRulesView(): any;
-    static getDpRuleInsertView(): any;
-    static getDpRulesView(): any;
+    static getDpCompanyRules(): any;
+    static getDpRuleInsert(): any;
+    static getDpRules(): any;
     static getEntityRegionView(): any;
     static getListView(): any;
     static getOptimalLocations(): any;
     static getStore(): any;
     static getZoneDataView(): any;
-    static updateDpRuleView(): any;
+    static updateDpRule(): any;
     static updateZoneControllerView(): any;
-    static upsertDpAccountView(): any;
-    static upsertDpCompanyRulesView(): any;
-    static upsertDpRulesView(): any;
+    static upsertDpAccount(): any;
+    static upsertDpCompanyRules(): any;
+    static upsertDpRules(): any;
 }

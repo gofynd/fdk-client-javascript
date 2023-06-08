@@ -18,7 +18,7 @@ class ServiceabilityValidator {
     return Joi.object({}).required();
   }
 
-  static getDpApplicationRulesView() {
+  static getDpApplicationRules() {
     return Joi.object({}).required();
   }
 
@@ -61,7 +61,7 @@ class ServiceabilityValidator {
     }).required();
   }
 
-  static upsertDpApplicationRulesView() {
+  static upsertDpApplicationRules() {
     return Joi.object({
       body: ServiceabilityModel.DPApplicationRuleRequest().required(),
     }).required();
