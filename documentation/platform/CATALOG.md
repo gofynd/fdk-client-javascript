@@ -20151,7 +20151,7 @@ List of fields and validation values fro each. See example below or refer `Inven
  | _custom_json | string? |  yes  | Custom JSON data that can be attached to the search model. |
  | app_id | string |  no  | The ID of the application performing the search. |
  | is_active | boolean? |  yes  | A flag indicating whether the search is active or not. |
- | result | [SearchKeywordResult](#SearchKeywordResult) |  no  | The search result containing the search query and sort field. |
+ | result | [SearchKeywordResult1](#SearchKeywordResult1) |  no  | The search result containing the search query and sort field. |
  | words | [string]? |  yes  | A list of search keywords to search for in the database. |
  
 
@@ -20854,7 +20854,7 @@ List of fields and validation values fro each. See example below or refer `Inven
  | _custom_json | string? |  yes  | Custom JSON data that can be attached to the search model. |
  | app_id | string |  no  | The ID of the application performing the search. |
  | is_active | boolean? |  yes  | A flag indicating whether the search is active or not. |
- | result | [SearchKeywordResult1](#SearchKeywordResult1) |  no  | The search result containing the search query and sort field. |
+ | result | [SearchKeywordResult](#SearchKeywordResult) |  no  | The search result containing the search query and sort field. |
  | uid | string? |  yes  | The UID of the search words data. |
  | words | [string]? |  yes  | A list of search keywords to search for in the database. |
  
@@ -22783,8 +22783,8 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | query | string |  no  | It is the query of the keyword search config. |
- | sort_on | string |  no  | It is the sort on the listing page of the keyword config. |
+ | query | string |  no  | The search query containing various search parameters. |
+ | sort_on | string |  no  | The field to sort the search results on. |
  
 
 ---
@@ -22793,8 +22793,8 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | query | string |  no  | The search query containing various search parameters. |
- | sort_on | string |  no  | The field to sort the search results on. |
+ | query | string |  no  | It is the query of the keyword search config. |
+ | sort_on | string |  no  | It is the sort on the listing page of the keyword config. |
  
 
 ---
