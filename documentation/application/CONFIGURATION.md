@@ -1541,6 +1541,7 @@ Success
  | name | string? |  yes  |  |
  | owner | string? |  yes  |  |
  | redirections | [[ApplicationRedirections](#ApplicationRedirections)]? |  yes  |  |
+ | slug | string? |  yes  |  |
  | token | string? |  yes  |  |
  | updated_at | string? |  yes  |  |
  | website | [ApplicationWebsite](#ApplicationWebsite)? |  yes  |  |
@@ -1582,14 +1583,15 @@ Success
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | _id | string? |  yes  |  |
- | banner | [SecureUrl](#SecureUrl) |  no  |  |
- | description | string |  no  |  |
+ | banner | [SecureUrl](#SecureUrl)? |  yes  |  |
+ | description | string? |  yes  |  |
  | domain | [Domain](#Domain)? |  yes  |  |
  | domains | [[Domain](#Domain)]? |  yes  |  |
- | favicon | [SecureUrl](#SecureUrl) |  no  |  |
- | logo | [SecureUrl](#SecureUrl) |  no  |  |
- | mobile_logo | [SecureUrl](#SecureUrl) |  no  |  |
- | name | string |  no  |  |
+ | favicon | [SecureUrl](#SecureUrl)? |  yes  |  |
+ | logo | [SecureUrl](#SecureUrl)? |  yes  |  |
+ | mobile_logo | [SecureUrl](#SecureUrl)? |  yes  |  |
+ | name | string? |  yes  |  |
+ | slug | string? |  yes  |  |
  
 
 ---
@@ -2099,7 +2101,7 @@ Success
  | city | string? |  yes  |  |
  | country | string? |  yes  |  |
  | loc | string? |  yes  |  |
- | phone | [InformationPhone](#InformationPhone)? |  yes  |  |
+ | phone | [[InformationPhone](#InformationPhone)]? |  yes  |  |
  | pincode | number? |  yes  |  |
  
 

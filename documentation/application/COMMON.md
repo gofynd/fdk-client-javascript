@@ -201,7 +201,25 @@ Success
 ### Schemas
 
 
-#### [Application](#Application)
+#### [ApplicationAuth](#ApplicationAuth)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | enabled | boolean? |  yes  |  |
+ 
+
+---
+
+#### [ApplicationCors](#ApplicationCors)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | domains | [string]? |  yes  |  |
+ 
+
+---
+
+#### [ApplicationData](#ApplicationData)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
@@ -227,27 +245,10 @@ Success
  | name | string? |  yes  |  |
  | owner | string? |  yes  |  |
  | redirections | [[ApplicationRedirections](#ApplicationRedirections)]? |  yes  |  |
+ | slug | string? |  yes  |  |
  | token | string? |  yes  |  |
  | updated_at | string? |  yes  |  |
  | website | [ApplicationWebsite](#ApplicationWebsite)? |  yes  |  |
- 
-
----
-
-#### [ApplicationAuth](#ApplicationAuth)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | enabled | boolean? |  yes  |  |
- 
-
----
-
-#### [ApplicationCors](#ApplicationCors)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | domains | [string]? |  yes  |  |
  
 
 ---
@@ -277,7 +278,7 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | application | [Application](#Application)? |  yes  |  |
+ | application | [ApplicationData](#ApplicationData)? |  yes  |  |
  
 
 ---
@@ -331,27 +332,6 @@ Success
 
 ---
 
-#### [LocationCountry](#LocationCountry)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | __v | number? |  yes  |  |
- | _id | string? |  yes  |  |
- | capital | string? |  yes  |  |
- | currency | string? |  yes  |  |
- | default_currency | [LocationDefaultCurrency](#LocationDefaultCurrency)? |  yes  |  |
- | default_language | [LocationDefaultLanguage](#LocationDefaultLanguage)? |  yes  |  |
- | iso2 | string? |  yes  |  |
- | iso3 | string? |  yes  |  |
- | name | string? |  yes  |  |
- | parent | string? |  yes  |  |
- | phone_code | string? |  yes  |  |
- | type | string? |  yes  |  |
- | uid | number? |  yes  |  |
- 
-
----
-
 #### [LocationDefaultCurrency](#LocationDefaultCurrency)
 
  | Properties | Type | Nullable | Description |
@@ -373,11 +353,36 @@ Success
 
 ---
 
+#### [LocationDetails](#LocationDetails)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | __v | number? |  yes  |  |
+ | _id | string? |  yes  |  |
+ | capital | string? |  yes  |  |
+ | country_code | string? |  yes  |  |
+ | currency | string? |  yes  |  |
+ | default_currency | [LocationDefaultCurrency](#LocationDefaultCurrency)? |  yes  |  |
+ | default_language | [LocationDefaultLanguage](#LocationDefaultLanguage)? |  yes  |  |
+ | iso2 | string? |  yes  |  |
+ | iso3 | string? |  yes  |  |
+ | latitude | string? |  yes  |  |
+ | longitude | string? |  yes  |  |
+ | name | string? |  yes  |  |
+ | parent | string? |  yes  |  |
+ | phone_code | string? |  yes  |  |
+ | state_code | string? |  yes  |  |
+ | type | string? |  yes  |  |
+ | uid | number? |  yes  |  |
+ 
+
+---
+
 #### [Locations](#Locations)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | items | [string]? |  yes  |  |
+ | items | [[LocationDetails](#LocationDetails)]? |  yes  |  |
  
 
 ---

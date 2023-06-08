@@ -11,7 +11,10 @@ declare class FileStorage {
     updateUrls(urls: any): void;
     /**
      * @param {Object} arg - Arg object.
-     * @param {string} arg.namespace - Name of the bucket created for storing objects.
+     * @param {string} arg.namespace - Segregation of different types of
+     *   files(prodcuts, orders, logistics etc), Required for validating the
+     *   data of the file being uploaded, decides where exactly the file will be
+     *   stored inside the storage bucket.
      * @param {StartResponse} arg.body
      * @returns {Promise<CompleteResponse>} - Success response
      * @summary: Completes the upload process. After successfully uploading a file, call this API to finish the upload process.
@@ -50,7 +53,10 @@ declare class FileStorage {
     }): Promise<SignUrlResponse>;
     /**
      * @param {Object} arg - Arg object.
-     * @param {string} arg.namespace - Name of the bucket created for storing objects.
+     * @param {string} arg.namespace - Segregation of different types of
+     *   files(prodcuts, orders, logistics etc), Required for validating the
+     *   data of the file being uploaded, decides where exactly the file will be
+     *   stored inside the storage bucket.
      * @param {StartRequest} arg.body
      * @returns {Promise<StartResponse>} - Success response
      * @summary: Initiates an upload and returns a storage link that is valid for 30 minutes. You can use the storage link to make subsequent upload request with file buffer or blob.

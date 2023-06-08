@@ -84,7 +84,15 @@ class PlatformClient {
 }
 
 /**
- * @typedef Application
+ * @typedef ApplicationAuth
+ * @property {boolean} [enabled]
+ */
+/**
+ * @typedef ApplicationCors
+ * @property {string[]} [domains]
+ */
+/**
+ * @typedef ApplicationData
  * @property {number} [__v]
  * @property {string} [_id]
  * @property {string} [app_type]
@@ -107,17 +115,10 @@ class PlatformClient {
  * @property {string} [name]
  * @property {string} [owner]
  * @property {ApplicationRedirections[]} [redirections]
+ * @property {string} [slug]
  * @property {string} [token]
  * @property {string} [updated_at]
  * @property {ApplicationWebsite} [website]
- */
-/**
- * @typedef ApplicationAuth
- * @property {boolean} [enabled]
- */
-/**
- * @typedef ApplicationCors
- * @property {string[]} [domains]
  */
 /**
  * @typedef ApplicationMeta
@@ -132,7 +133,7 @@ class PlatformClient {
  */
 /**
  * @typedef ApplicationResponse
- * @property {Application} [application]
+ * @property {ApplicationData} [application]
  */
 /**
  * @typedef ApplicationWebsite
@@ -164,22 +165,6 @@ class PlatformClient {
  * @property {boolean} [verified]
  */
 /**
- * @typedef LocationCountry
- * @property {number} [__v]
- * @property {string} [_id]
- * @property {string} [capital]
- * @property {string} [currency]
- * @property {LocationDefaultCurrency} [default_currency]
- * @property {LocationDefaultLanguage} [default_language]
- * @property {string} [iso2]
- * @property {string} [iso3]
- * @property {string} [name]
- * @property {string} [parent]
- * @property {string} [phone_code]
- * @property {string} [type]
- * @property {number} [uid]
- */
-/**
  * @typedef LocationDefaultCurrency
  * @property {string} [code]
  * @property {string} [name]
@@ -191,8 +176,28 @@ class PlatformClient {
  * @property {string} [name]
  */
 /**
+ * @typedef LocationDetails
+ * @property {number} [__v]
+ * @property {string} [_id]
+ * @property {string} [capital]
+ * @property {string} [country_code]
+ * @property {string} [currency]
+ * @property {LocationDefaultCurrency} [default_currency]
+ * @property {LocationDefaultLanguage} [default_language]
+ * @property {string} [iso2]
+ * @property {string} [iso3]
+ * @property {string} [latitude]
+ * @property {string} [longitude]
+ * @property {string} [name]
+ * @property {string} [parent]
+ * @property {string} [phone_code]
+ * @property {string} [state_code]
+ * @property {string} [type]
+ * @property {number} [uid]
+ */
+/**
  * @typedef Locations
- * @property {Object[]} [items]
+ * @property {LocationDetails[]} [items]
  */
 /**
  * @typedef NotFound
@@ -6725,7 +6730,7 @@ class PlatformClient {
  * @property {Object} [_custom_json]
  * @property {string} app_id
  * @property {boolean} [is_active]
- * @property {SearchKeywordResult1} result
+ * @property {SearchKeywordResult} result
  * @property {string[]} [words]
  */
 /**
@@ -6736,7 +6741,7 @@ class PlatformClient {
  * @property {boolean} [is_active]
  * @property {Object} [modified_by]
  * @property {string} [modified_on]
- * @property {BoostBury1} [ranking]
+ * @property {BoostBury} [ranking]
  * @property {string[]} words
  */
 /**
@@ -7178,7 +7183,7 @@ class PlatformClient {
  * @property {Object} [_custom_json]
  * @property {string} app_id
  * @property {boolean} [is_active]
- * @property {SearchKeywordResult} result
+ * @property {SearchKeywordResult1} result
  * @property {string} [uid]
  * @property {string[]} [words]
  */
@@ -8014,7 +8019,7 @@ class PlatformClient {
  * @property {NetQuantity} [net_quantity]
  * @property {number} [no_of_boxes]
  * @property {string[]} [product_group_tag]
- * @property {ProductPublish1} [product_publish]
+ * @property {ProductPublish} [product_publish]
  * @property {string} [requester]
  * @property {ReturnConfig} return_config
  * @property {string} [short_description]
@@ -8210,7 +8215,7 @@ class PlatformClient {
  * @property {string} [pending]
  * @property {string} [primary_color]
  * @property {string[]} [product_group_tag]
- * @property {ProductPublish} [product_publish]
+ * @property {ProductPublish1} [product_publish]
  * @property {ReturnConfigResponse} [return_config]
  * @property {string} [short_description]
  * @property {string} [size_guide]
@@ -8439,7 +8444,7 @@ class PlatformClient {
  * @property {boolean} [is_active]
  * @property {UserDetail} [modified_by]
  * @property {string} modified_on
- * @property {BoostBury} [ranking]
+ * @property {BoostBury1} [ranking]
  * @property {UserDetail} [verified_by]
  * @property {string} [verified_on]
  * @property {string[]} words
@@ -9190,8 +9195,8 @@ class PlatformClient {
  */
 /**
  * @typedef CDN
- * @property {string} [absolute_url]
- * @property {string} [relative_url]
+ * @property {string} absolute_url
+ * @property {string} relative_url
  * @property {string} url
  */
 /**
@@ -10196,6 +10201,7 @@ class PlatformClient {
  * @property {string} [name]
  * @property {string} [owner]
  * @property {ApplicationRedirections[]} [redirections]
+ * @property {string} [slug]
  * @property {string} [token]
  * @property {string} [updated_at]
  * @property {ApplicationWebsite} [website]
@@ -10211,14 +10217,15 @@ class PlatformClient {
 /**
  * @typedef ApplicationDetail
  * @property {string} [_id]
- * @property {SecureUrl} banner
- * @property {string} description
+ * @property {SecureUrl} [banner]
+ * @property {string} [description]
  * @property {Domain} [domain]
  * @property {Domain[]} [domains]
- * @property {SecureUrl} favicon
- * @property {SecureUrl} logo
- * @property {SecureUrl} mobile_logo
- * @property {string} name
+ * @property {SecureUrl} [favicon]
+ * @property {SecureUrl} [logo]
+ * @property {SecureUrl} [mobile_logo]
+ * @property {string} [name]
+ * @property {string} [slug]
  */
 /**
  * @typedef ApplicationInformation
@@ -10681,7 +10688,7 @@ class PlatformClient {
  * @property {string} [city]
  * @property {string} [country]
  * @property {string} [loc]
- * @property {InformationPhone} [phone]
+ * @property {InformationPhone[]} [phone]
  * @property {number} [pincode]
  */
 /**

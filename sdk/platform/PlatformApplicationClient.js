@@ -72,9 +72,9 @@ class PlatformApplicationClient {
   }
 }
 
-/** @typedef Application */
 /** @typedef ApplicationAuth */
 /** @typedef ApplicationCors */
+/** @typedef ApplicationData */
 /** @typedef ApplicationMeta */
 /** @typedef ApplicationRedirections */
 /** @typedef ApplicationResponse */
@@ -82,9 +82,9 @@ class PlatformApplicationClient {
 /** @typedef BadRequest */
 /** @typedef Currency */
 /** @typedef Domain */
-/** @typedef LocationCountry */
 /** @typedef LocationDefaultCurrency */
 /** @typedef LocationDefaultLanguage */
+/** @typedef LocationDetails */
 /** @typedef Locations */
 /** @typedef NotFound */
 /** @typedef Page */
