@@ -4,9 +4,27 @@ declare class Webhook {
     config: any;
     /**
      * @param {Object} arg - Arg object.
+     * @returns {Promise<EventConfigResponse>} - Success response
+     * @summary:
+     * @description: Get All Webhook Events
+     */
+    fetchAllEventConfigurations({}?: any): Promise<EventConfigResponse>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {number} arg.subscriberId - Subscriber ID
+     * @returns {Promise<SubscriberResponse>} - Success response
+     * @summary: Get Subscriber By Subscriber ID
+     * @description: Get Subscriber By Subscriber ID
+     */
+    getSubscriberById({ subscriberId }?: {
+        subscriberId: number;
+    }): Promise<SubscriberResponse>;
+    /**
+     * @param {Object} arg - Arg object.
      * @param {number} [arg.pageNo] - Page Number
      * @param {number} [arg.pageSize] - Page Size
      * @param {string} [arg.extensionId] - Extension ID
+     * @returns {Promise<SubscriberResponse>} - Success response
      * @summary: Get Subscribers By Company ID
      * @description: Get Subscribers By CompanyId
      */
@@ -14,30 +32,13 @@ declare class Webhook {
         pageNo?: number;
         pageSize?: number;
         extensionId?: string;
-    }): Promise<any>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {SubscriberConfig} arg.body
-     * @summary: Register Subscriber
-     * @description: Register Subscriber
-     */
-    registerSubscriberToEvent({ body }?: {
-        body: SubscriberConfig;
-    }): Promise<any>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {SubscriberConfig} arg.body
-     * @summary: Update Subscriber
-     * @description: Update Subscriber
-     */
-    updateSubscriberConfig({ body }?: {
-        body: SubscriberConfig;
-    }): Promise<any>;
+    }): Promise<SubscriberResponse>;
     /**
      * @param {Object} arg - Arg object.
      * @param {number} [arg.pageNo] - Page Number
      * @param {number} [arg.pageSize] - Page Size
      * @param {string} arg.extensionId - Extension ID
+     * @returns {Promise<SubscriberConfigList>} - Success response
      * @summary: Get Subscribers By Extension ID
      * @description: Get Subscribers By ExtensionID
      */
@@ -45,20 +46,25 @@ declare class Webhook {
         pageNo?: number;
         pageSize?: number;
         extensionId: string;
-    }): Promise<any>;
+    }): Promise<SubscriberConfigList>;
     /**
      * @param {Object} arg - Arg object.
-     * @param {number} arg.subscriberId - Subscriber ID
-     * @summary: Get Subscriber By Subscriber ID
-     * @description: Get Subscriber By Subscriber ID
+     * @param {SubscriberConfig} arg.body
+     * @returns {Promise<SubscriberConfig>} - Success response
+     * @summary: Register Subscriber
+     * @description: Register Subscriber
      */
-    getSubscriberById({ subscriberId }?: {
-        subscriberId: number;
-    }): Promise<any>;
+    registerSubscriberToEvent({ body }?: {
+        body: SubscriberConfig;
+    }): Promise<SubscriberConfig>;
     /**
      * @param {Object} arg - Arg object.
-     * @summary:
-     * @description: Get All Webhook Events
+     * @param {SubscriberConfig} arg.body
+     * @returns {Promise<SubscriberConfig>} - Success response
+     * @summary: Update Subscriber
+     * @description: Update Subscriber
      */
-    fetchAllEventConfigurations({}?: any): Promise<any>;
+    updateSubscriberConfig({ body }?: {
+        body: SubscriberConfig;
+    }): Promise<SubscriberConfig>;
 }

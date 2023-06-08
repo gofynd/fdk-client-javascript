@@ -3,25 +3,15 @@ declare class Inventory {
     constructor(_conf: any);
     _conf: any;
     _relativeUrls: {
-        getConfigByApiKey: string;
         getApiKey: string;
+        getConfigByApiKey: string;
         getJobByCode: string;
-        getJobConfigByIntegrationType: string;
         getJobCodesMetrics: string;
+        getJobConfigByIntegrationType: string;
         saveJobCodesMetrics: string;
     };
     _urls: {};
     updateUrls(urls: any): void;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.apikey - Api key
-     * @returns {Promise<ResponseEnvelopeSlingshotConfigurationDetail>} - Success response
-     * @summary: Get Slingshot Configuration Of  A Company using API key
-     * @description: REST Endpoint that returns all configuration detail of a company
-     */
-    getConfigByApiKey({ apikey }?: {
-        apikey: string;
-    }): Promise<ResponseEnvelopeSlingshotConfigurationDetail>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.userName - Integration id
@@ -36,6 +26,16 @@ declare class Inventory {
     }): Promise<ResponseEnvelopeApikeyModel>;
     /**
      * @param {Object} arg - Arg object.
+     * @param {string} arg.apikey - Api key
+     * @returns {Promise<ResponseEnvelopeSlingshotConfigurationDetail>} - Success response
+     * @summary: Get Slingshot Configuration Of  A Company using API key
+     * @description: REST Endpoint that returns all configuration detail of a company
+     */
+    getConfigByApiKey({ apikey }?: {
+        apikey: string;
+    }): Promise<ResponseEnvelopeSlingshotConfigurationDetail>;
+    /**
+     * @param {Object} arg - Arg object.
      * @param {string} arg.code - Job Code
      * @returns {Promise<ResponseEnvelopeJobConfigDTO>} - Success response
      * @summary: Get Job Config By Code
@@ -44,18 +44,6 @@ declare class Inventory {
     getJobByCode({ code }?: {
         code: string;
     }): Promise<ResponseEnvelopeJobConfigDTO>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.integrationType - Integration Type
-     * @param {boolean} [arg.disable] - JobConfig current state
-     * @returns {Promise<ResponseEnvelopeListJobConfigDTO>} - Success response
-     * @summary: Get Job Configs By Integration Type
-     * @description: REST Endpoint that returns all job Configs by Integration Type
-     */
-    getJobConfigByIntegrationType({ integrationType, disable }?: {
-        integrationType: string;
-        disable?: boolean;
-    }): Promise<ResponseEnvelopeListJobConfigDTO>;
     /**
      * @param {Object} arg - Arg object.
      * @param {boolean} [arg.dailyJob] - Daily Job Flag
@@ -68,6 +56,18 @@ declare class Inventory {
         dailyJob?: boolean;
         jobCode?: string;
     }): Promise<ResponseEnvelopeObject>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {string} arg.integrationType - Integration Type
+     * @param {boolean} [arg.disable] - JobConfig current state
+     * @returns {Promise<ResponseEnvelopeListJobConfigDTO>} - Success response
+     * @summary: Get Job Configs By Integration Type
+     * @description: REST Endpoint that returns all job Configs by Integration Type
+     */
+    getJobConfigByIntegrationType({ integrationType, disable }?: {
+        integrationType: string;
+        disable?: boolean;
+    }): Promise<ResponseEnvelopeListJobConfigDTO>;
     /**
      * @param {Object} arg - Arg object.
      * @param {EmailJobMetrics} arg.body

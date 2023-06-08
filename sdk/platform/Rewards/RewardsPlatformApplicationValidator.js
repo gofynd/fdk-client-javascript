@@ -1,17 +1,11 @@
 const Joi = require("joi");
+
 const RewardsModel = require("./RewardsPlatformModel");
-
 class RewardsValidator {
-  static showGiveaways() {
+  static getGiveawayAudienceStatus() {
     return Joi.object({
-      pageId: Joi.string().allow("").required(),
-      pageSize: Joi.number().required(),
-    }).required();
-  }
-
-  static saveGiveAway() {
-    return Joi.object({
-      body: RewardsModel.Giveaway().required(),
+      id: Joi.string().allow("").required(),
+      audienceId: Joi.string().allow("").required(),
     }).required();
   }
 
@@ -21,16 +15,47 @@ class RewardsValidator {
     }).required();
   }
 
-  static updateGiveAway() {
+  static getOfferByName() {
     return Joi.object({
-      id: Joi.string().allow("").required(),
+      name: Joi.string().allow("").required(),
+    }).required();
+  }
+
+  static getRewardsConfiguration() {
+    return Joi.object({}).required();
+  }
+
+  static getUserDetails() {
+    return Joi.object({
+      userId: Joi.string().allow("").required(),
+    }).required();
+  }
+
+  static getUserPointsHistory() {
+    return Joi.object({
+      userId: Joi.string().allow("").required(),
+
+      pageId: Joi.string().allow(""),
+      pageSize: Joi.number(),
+    }).required();
+  }
+
+  static saveGiveAway() {
+    return Joi.object({
       body: RewardsModel.Giveaway().required(),
     }).required();
   }
 
-  static getGiveawayAudienceStatus() {
+  static setRewardsConfiguration() {
     return Joi.object({
-      audienceId: Joi.string().allow("").required(),
+      body: RewardsModel.ConfigurationRequest().required(),
+    }).required();
+  }
+
+  static showGiveaways() {
+    return Joi.object({
+      pageId: Joi.string().allow("").required(),
+      pageSize: Joi.number().required(),
     }).required();
   }
 
@@ -38,11 +63,10 @@ class RewardsValidator {
     return Joi.object({}).required();
   }
 
-  static getOfferByName() {
+  static updateGiveAway() {
     return Joi.object({
-      name: Joi.string().allow("").required(),
-
-      cookie: Joi.string().allow("").required(),
+      id: Joi.string().allow("").required(),
+      body: RewardsModel.Giveaway().required(),
     }).required();
   }
 
@@ -59,31 +83,6 @@ class RewardsValidator {
       userId: Joi.string().allow("").required(),
 
       body: RewardsModel.AppUser().required(),
-    }).required();
-  }
-
-  static user() {
-    return Joi.object({
-      userId: Joi.string().allow("").required(),
-    }).required();
-  }
-
-  static getUserPointsHistory() {
-    return Joi.object({
-      userId: Joi.string().allow("").required(),
-
-      pageId: Joi.string().allow(""),
-      pageSize: Joi.number(),
-    }).required();
-  }
-
-  static getRewardsConfiguration() {
-    return Joi.object({}).required();
-  }
-
-  static setRewardsConfiguration() {
-    return Joi.object({
-      body: RewardsModel.ConfigurationRequest().required(),
     }).required();
   }
 }

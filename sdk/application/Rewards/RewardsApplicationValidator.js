@@ -2,16 +2,26 @@ const Joi = require("joi");
 
 const RewardsModel = require("./RewardsApplicationModel");
 class RewardsValidator {
+  static catalogueOrder() {
+    return Joi.object({
+      body: RewardsModel.CatalogueOrderRequest().required(),
+    }).required();
+  }
+
   static getOfferByName() {
     return Joi.object({
       name: Joi.string().allow("").required(),
     }).required();
   }
 
-  static catalogueOrder() {
+  static getOrderDiscount() {
     return Joi.object({
-      body: RewardsModel.CatalogueOrderRequest().required(),
+      body: RewardsModel.OrderDiscountRequest().required(),
     }).required();
+  }
+
+  static getUserPoints() {
+    return Joi.object({});
   }
 
   static getUserPointsHistory() {
@@ -21,18 +31,8 @@ class RewardsValidator {
     });
   }
 
-  static getUserPoints() {
-    return Joi.object({});
-  }
-
   static getUserReferralDetails() {
     return Joi.object({});
-  }
-
-  static getOrderDiscount() {
-    return Joi.object({
-      body: RewardsModel.OrderDiscountRequest().required(),
-    }).required();
   }
 
   static redeemReferralCode() {
@@ -41,4 +41,5 @@ class RewardsValidator {
     }).required();
   }
 }
+
 module.exports = RewardsValidator;

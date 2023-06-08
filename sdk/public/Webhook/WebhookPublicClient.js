@@ -1,7 +1,12 @@
 const PublicAPIClient = require("../PublicAPIClient");
 const { FDKClientValidationError } = require("../../common/FDKError");
 const constructUrl = require("../constructUrl");
+const Paginator = require("../../common/Paginator");
 const WebhookValidator = require("./WebhookPublicValidator");
+const WebhookModel = require("./WebhookPublicModel");
+const { Logger } = require("./../../common/Logger");
+const Joi = require("joi");
+
 class Webhook {
   constructor(_conf) {
     this._conf = _conf;
@@ -32,7 +37,7 @@ class Webhook {
    * @summary: Get All Webhook Events
    * @description: Get All Webhook Events
    */
-  fetchAllWebhookEvents({} = {}) {
+  async fetchAllWebhookEvents({} = {}) {
     const { error } = WebhookValidator.fetchAllWebhookEvents().validate(
       {},
       { abortEarly: false, allowUnknown: true }
@@ -40,11 +45,27 @@ class Webhook {
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
     }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = WebhookValidator.fetchAllWebhookEvents().validate(
+      {},
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for fetchAllWebhookEvents",
+      });
+      Logger({ level: "WARN", message: warrning });
+    }
+
     const query_params = {};
 
     const xHeaders = {};
 
-    return PublicAPIClient.execute(
+    const response = await PublicAPIClient.execute(
       this._conf,
       "get",
       constructUrl({
@@ -55,6 +76,23 @@ class Webhook {
       undefined,
       xHeaders
     );
+
+    const {
+      error: res_error,
+    } = WebhookModel.EventConfigResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for fetchAllWebhookEvents",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
@@ -64,7 +102,7 @@ class Webhook {
    * @summary: Send webhook event name, type, version, category in request body to get complete details of event from server
    * @description: Get Webhook Event Details for provided events
    */
-  queryWebhookEventDetails({ body } = {}) {
+  async queryWebhookEventDetails({ body } = {}) {
     const { error } = WebhookValidator.queryWebhookEventDetails().validate(
       { body },
       { abortEarly: false, allowUnknown: true }
@@ -72,11 +110,27 @@ class Webhook {
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
     }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = WebhookValidator.queryWebhookEventDetails().validate(
+      { body },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for queryWebhookEventDetails",
+      });
+      Logger({ level: "WARN", message: warrning });
+    }
+
     const query_params = {};
 
     const xHeaders = {};
 
-    return PublicAPIClient.execute(
+    const response = await PublicAPIClient.execute(
       this._conf,
       "post",
       constructUrl({
@@ -87,6 +141,24 @@ class Webhook {
       body,
       xHeaders
     );
+
+    const {
+      error: res_error,
+    } = WebhookModel.EventConfigResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for queryWebhookEventDetails",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 }
+
 module.exports = Webhook;

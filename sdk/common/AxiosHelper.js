@@ -38,7 +38,7 @@ function requestInterceptorFn() {
     }
     const { host, pathname, search } = new URL(url);
     const { data, headers, method, params } = config;
-    headers["x-fp-sdk-version"] = "0.1.30";
+    headers["x-fp-sdk-version"] = "1.1.1";
     let querySearchObj = querystring.parse(search);
     querySearchObj = { ...querySearchObj, ...params };
     let queryParam = "";
@@ -102,7 +102,11 @@ fdkAxios.interceptors.request.use(
     }
   },
   function (error) {
-    Logger({ level: "ERROR", message: error });
+    Logger({
+      level: "ERROR",
+      message: error.data || error.message,
+      stack: error.data.stack || error.stack,
+    });
   }
 );
 
@@ -115,16 +119,19 @@ fdkAxios.interceptors.response.use(
     Logger({
       level: "DEBUG",
       type: "RESPONSE",
-      message: response.config,
+      message: response.data,
       url: response.config.url,
-      response: response.data,
     });
     return response.data; // IF 2XX then return response.data only
   },
   function (error) {
     if (error.response) {
       // Request made and server responded
-      Logger({ level: "ERROR", message: error });
+      Logger({
+        level: "ERROR",
+        message: error.response.data || error.message,
+        stack: error.response.data.stack || error.stack,
+      });
       throw new FDKServerResponseError(
         error.response.data.message || error.message,
         error.response.data.stack || error.stack,
@@ -134,7 +141,11 @@ fdkAxios.interceptors.response.use(
       );
     } else if (error.request) {
       // The request was made but no error.response was received
-      Logger({ level: "ERROR", message: error });
+      Logger({
+        level: "ERROR",
+        message: error.data || error.message,
+        stack: error.data.stack || error.stack,
+      });
       throw new FDKServerResponseError(
         error.message,
         error.stack,
@@ -143,7 +154,7 @@ fdkAxios.interceptors.response.use(
       );
     } else {
       // Something happened in setting up the request that triggered an Error
-      Logger({ level: "ERROR", message: error });
+      Logger({ level: "ERROR", message: error.message });
       throw new FDKServerResponseError(error.message, error.stack);
     }
   }

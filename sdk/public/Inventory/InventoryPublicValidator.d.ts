@@ -1,9 +1,9 @@
 export = InventoryValidator;
 declare class InventoryValidator {
-    static getConfigByApiKey(): any;
     static getApiKey(): any;
+    static getConfigByApiKey(): any;
     static getJobByCode(): any;
-    static getJobConfigByIntegrationType(): any;
     static getJobCodesMetrics(): any;
+    static getJobConfigByIntegrationType(): any;
     static saveJobCodesMetrics(): any;
 }

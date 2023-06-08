@@ -2,14 +2,14 @@ const Joi = require("joi");
 
 const ShareModel = require("./ShareApplicationModel");
 class ShareValidator {
-  static getApplicationQRCode() {
-    return Joi.object({});
+  static createShortLink() {
+    return Joi.object({
+      body: ShareModel.ShortLinkReq().required(),
+    }).required();
   }
 
-  static getProductQRCodeBySlug() {
-    return Joi.object({
-      slug: Joi.string().allow("").required(),
-    }).required();
+  static getApplicationQRCode() {
+    return Joi.object({});
   }
 
   static getCollectionQRCodeBySlug() {
@@ -18,15 +18,15 @@ class ShareValidator {
     }).required();
   }
 
-  static getUrlQRCode() {
+  static getOriginalShortLinkByHash() {
     return Joi.object({
-      url: Joi.string().allow("").required(),
+      hash: Joi.string().allow("").required(),
     }).required();
   }
 
-  static createShortLink() {
+  static getProductQRCodeBySlug() {
     return Joi.object({
-      body: ShareModel.ShortLinkReq().required(),
+      slug: Joi.string().allow("").required(),
     }).required();
   }
 
@@ -36,10 +36,11 @@ class ShareValidator {
     }).required();
   }
 
-  static getOriginalShortLinkByHash() {
+  static getUrlQRCode() {
     return Joi.object({
-      hash: Joi.string().allow("").required(),
+      url: Joi.string().allow("").required(),
     }).required();
   }
 }
+
 module.exports = ShareValidator;

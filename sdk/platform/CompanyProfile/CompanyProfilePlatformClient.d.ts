@@ -4,54 +4,73 @@ declare class CompanyProfile {
     config: any;
     /**
      * @param {Object} arg - Arg object.
+     * @returns {Promise<GetCompanyProfileSerializerResponse>} - Success response
      * @summary: Get company profile
      * @description: This API allows to view the company profile of the seller account.
      */
-    cbsOnboardGet({}?: any): Promise<any>;
+    cbsOnboardGet({}?: any): Promise<GetCompanyProfileSerializerResponse>;
     /**
      * @param {Object} arg - Arg object.
-     * @param {UpdateCompany} arg.body
-     * @summary: Edit company profile
-     * @description: This API allows to edit the company profile of the seller account.
+     * @param {CreateUpdateBrandRequestSerializer} arg.body
+     * @returns {Promise<ProfileSuccessResponse>} - Success response
+     * @summary: Create a Brand.
+     * @description: This API allows to create a brand associated to a company.
      */
-    updateCompany({ body }?: {
-        body: UpdateCompany;
-    }): Promise<any>;
+    createBrand({ body }?: {
+        body: CreateUpdateBrandRequestSerializer;
+    }): Promise<ProfileSuccessResponse>;
     /**
      * @param {Object} arg - Arg object.
-     * @summary: Get company metrics
-     * @description: This API allows to view the company metrics, i.e. the status of its brand and stores. Also its allows to view the number of products, company documents & store documents which are verified and unverified.
+     * @param {CompanyBrandPostRequestSerializer} arg.body
+     * @returns {Promise<ProfileSuccessResponse>} - Success response
+     * @summary: Create a company brand mapping.
+     * @description: This API allows to create a company brand mapping, for a already existing brand in the system.
      */
-    getCompanyMetrics({}?: any): Promise<any>;
+    createCompanyBrandMapping({ body }?: {
+        body: CompanyBrandPostRequestSerializer;
+    }): Promise<ProfileSuccessResponse>;
     /**
      * @param {Object} arg - Arg object.
-     * @param {string} arg.brandId - Id of the brand to be viewed.
-     * @summary: Get a single brand.
-     * @description: This API helps to get data associated to a particular brand.
+     * @param {LocationSerializer} arg.body
+     * @returns {Promise<ProfileSuccessResponse>} - Success response
+     * @summary: Create a location associated to a company.
+     * @description: This API allows to edit a location associated to a company.
      */
-    getBrand({ brandId }?: {
-        brandId: string;
-    }): Promise<any>;
+    createLocation({ body }?: {
+        body: LocationSerializer;
+    }): Promise<ProfileSuccessResponse>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {BulkLocationSerializer} arg.body
+     * @returns {Promise<ProfileSuccessResponse>} - Success response
+     * @summary: Create a location asscoiated to a company in bulk.
+     * @description: This API allows to create a location associated to a company.
+     */
+    createLocationBulk({ body }?: {
+        body: BulkLocationSerializer;
+    }): Promise<ProfileSuccessResponse>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.brandId - Id of the brand to be viewed.
      * @param {CreateUpdateBrandRequestSerializer} arg.body
+     * @returns {Promise<ProfileSuccessResponse>} - Success response
      * @summary: Edit a brand.
      * @description: This API allows to edit meta of a brand.
      */
     editBrand({ brandId, body }?: {
         brandId: string;
         body: CreateUpdateBrandRequestSerializer;
-    }): Promise<any>;
+    }): Promise<ProfileSuccessResponse>;
     /**
      * @param {Object} arg - Arg object.
-     * @param {CreateUpdateBrandRequestSerializer} arg.body
-     * @summary: Create a Brand.
-     * @description: This API allows to create a brand associated to a company.
+     * @param {string} arg.brandId - Id of the brand to be viewed.
+     * @returns {Promise<GetBrandResponseSerializer>} - Success response
+     * @summary: Get a single brand.
+     * @description: This API helps to get data associated to a particular brand.
      */
-    createBrand({ body }?: {
-        body: CreateUpdateBrandRequestSerializer;
-    }): Promise<any>;
+    getBrand({ brandId }?: {
+        brandId: string;
+    }): Promise<GetBrandResponseSerializer>;
     /**
      * @param {Object} arg - Arg object.
      * @param {number} [arg.pageNo] - The page number to navigate through the
@@ -59,6 +78,7 @@ declare class CompanyProfile {
      * @param {number} [arg.pageSize] - Number of items to retrieve in each
      *   page. Default is 10.
      * @param {string} [arg.q] - Search term for name.
+     * @returns {Promise<CompanyBrandListSerializer>} - Success response
      * @summary: Get brands associated to a company
      * @description: This API helps to get view brands associated to a particular company.
      */
@@ -66,7 +86,7 @@ declare class CompanyProfile {
         pageNo?: number;
         pageSize?: number;
         q?: string;
-    }): Promise<any>;
+    }): Promise<CompanyBrandListSerializer>;
     /**
      * @param {Object} arg - Arg object.
      * @param {number} [arg.pageSize] - Number of items to retrieve in each
@@ -81,13 +101,21 @@ declare class CompanyProfile {
     }): Paginator;
     /**
      * @param {Object} arg - Arg object.
-     * @param {CompanyBrandPostRequestSerializer} arg.body
-     * @summary: Create a company brand mapping.
-     * @description: This API allows to create a company brand mapping, for a already existing brand in the system.
+     * @returns {Promise<MetricsSerializer>} - Success response
+     * @summary: Get company metrics
+     * @description: This API allows to view the company metrics, i.e. the status of its brand and stores. Also its allows to view the number of products, company documents & store documents which are verified and unverified.
      */
-    createCompanyBrandMapping({ body }?: {
-        body: CompanyBrandPostRequestSerializer;
-    }): Promise<any>;
+    getCompanyMetrics({}?: any): Promise<MetricsSerializer>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {string} arg.locationId - Id of the location which you want to view.
+     * @returns {Promise<GetLocationSerializer>} - Success response
+     * @summary: Get details of a specific location.
+     * @description: This API helps to get data associated to a specific location.
+     */
+    getLocationDetail({ locationId }?: {
+        locationId: string;
+    }): Promise<GetLocationSerializer>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} [arg.storeType] - Helps to sort the location list on the
@@ -100,17 +128,18 @@ declare class CompanyProfile {
      * @param {number} [arg.pageSize] - Number of items to retrieve in each
      *   page. Default is 10.
      * @param {number[]} [arg.locationIds] - Helps to filter stores on the basis of uids.
+     * @returns {Promise<LocationListSerializer>} - Success response
      * @summary: Get list of locations
      * @description: This API allows to view all the locations associated to a company.
      */
-    getLocations({ storeType, q, stage, pageNo, pageSize, locationIds }?: {
+    getLocations({ storeType, q, stage, pageNo, pageSize, locationIds, }?: {
         storeType?: string;
         q?: string;
         stage?: string;
         pageNo?: number;
         pageSize?: number;
         locationIds?: number[];
-    }): Promise<any>;
+    }): Promise<LocationListSerializer>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} [arg.storeType] - Helps to sort the location list on the
@@ -133,41 +162,25 @@ declare class CompanyProfile {
     }): Paginator;
     /**
      * @param {Object} arg - Arg object.
-     * @param {LocationSerializer} arg.body
-     * @summary: Create a location associated to a company.
-     * @description: This API allows to edit a location associated to a company.
+     * @param {UpdateCompany} arg.body
+     * @returns {Promise<ProfileSuccessResponse>} - Success response
+     * @summary: Edit company profile
+     * @description: This API allows to edit the company profile of the seller account.
      */
-    createLocation({ body }?: {
-        body: LocationSerializer;
-    }): Promise<any>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.locationId - Id of the location which you want to view.
-     * @summary: Get details of a specific location.
-     * @description: This API helps to get data associated to a specific location.
-     */
-    getLocationDetail({ locationId }?: {
-        locationId: string;
-    }): Promise<any>;
+    updateCompany({ body }?: {
+        body: UpdateCompany;
+    }): Promise<ProfileSuccessResponse>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.locationId - Id of the location which you want to edit.
      * @param {LocationSerializer} arg.body
+     * @returns {Promise<ProfileSuccessResponse>} - Success response
      * @summary: Edit a location asscoiated to a company.
      * @description: This API allows to edit a location associated to a company.
      */
     updateLocation({ locationId, body }?: {
         locationId: string;
         body: LocationSerializer;
-    }): Promise<any>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {BulkLocationSerializer} arg.body
-     * @summary: Create a location asscoiated to a company in bulk.
-     * @description: This API allows to create a location associated to a company.
-     */
-    createLocationBulk({ body }?: {
-        body: BulkLocationSerializer;
-    }): Promise<any>;
+    }): Promise<ProfileSuccessResponse>;
 }
 import Paginator = require("../../common/Paginator");

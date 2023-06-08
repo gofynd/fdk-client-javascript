@@ -24,24 +24,24 @@ class ContentValidator {
     return Joi.object({});
   }
 
-  static getFaqs() {
-    return Joi.object({});
-  }
-
-  static getFaqCategories() {
-    return Joi.object({});
-  }
-
   static getFaqBySlug() {
     return Joi.object({
       slug: Joi.string().allow("").required(),
     }).required();
   }
 
+  static getFaqCategories() {
+    return Joi.object({});
+  }
+
   static getFaqCategoryBySlug() {
     return Joi.object({
       slug: Joi.string().allow("").required(),
     }).required();
+  }
+
+  static getFaqs() {
+    return Joi.object({});
   }
 
   static getFaqsByCategorySlug() {
@@ -65,31 +65,6 @@ class ContentValidator {
     });
   }
 
-  static getSEOConfiguration() {
-    return Joi.object({});
-  }
-
-  static getSlideshows() {
-    return Joi.object({
-      pageNo: Joi.number(),
-      pageSize: Joi.number(),
-    });
-  }
-
-  static getSlideshow() {
-    return Joi.object({
-      slug: Joi.string().allow("").required(),
-    }).required();
-  }
-
-  static getSupportInformation() {
-    return Joi.object({});
-  }
-
-  static getTags() {
-    return Joi.object({});
-  }
-
   static getPage() {
     return Joi.object({
       slug: Joi.string().allow("").required(),
@@ -103,5 +78,31 @@ class ContentValidator {
       pageSize: Joi.number(),
     });
   }
+
+  static getSEOConfiguration() {
+    return Joi.object({});
+  }
+
+  static getSlideshow() {
+    return Joi.object({
+      slug: Joi.string().allow("").required(),
+    }).required();
+  }
+
+  static getSlideshows() {
+    return Joi.object({
+      pageNo: Joi.number(),
+      pageSize: Joi.number(),
+    });
+  }
+
+  static getSupportInformation() {
+    return Joi.object({});
+  }
+
+  static getTags() {
+    return Joi.object({});
+  }
 }
+
 module.exports = ContentValidator;

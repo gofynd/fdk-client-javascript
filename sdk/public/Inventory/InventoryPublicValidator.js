@@ -1,12 +1,7 @@
-const InventoryModel = require("./InventoryPublicModel");
 const Joi = require("joi");
-class InventoryValidator {
-  static getConfigByApiKey() {
-    return Joi.object({
-      apikey: Joi.string().allow("").required(),
-    }).required();
-  }
 
+const InventoryModel = require("./InventoryPublicModel");
+class InventoryValidator {
   static getApiKey() {
     return Joi.object({
       userName: Joi.string().allow("").required(),
@@ -14,16 +9,15 @@ class InventoryValidator {
     }).required();
   }
 
-  static getJobByCode() {
+  static getConfigByApiKey() {
     return Joi.object({
-      code: Joi.string().allow("").required(),
+      apikey: Joi.string().allow("").required(),
     }).required();
   }
 
-  static getJobConfigByIntegrationType() {
+  static getJobByCode() {
     return Joi.object({
-      integrationType: Joi.string().allow("").required(),
-      disable: Joi.boolean(),
+      code: Joi.string().allow("").required(),
     }).required();
   }
 
@@ -34,10 +28,18 @@ class InventoryValidator {
     });
   }
 
+  static getJobConfigByIntegrationType() {
+    return Joi.object({
+      integrationType: Joi.string().allow("").required(),
+      disable: Joi.boolean(),
+    }).required();
+  }
+
   static saveJobCodesMetrics() {
     return Joi.object({
       body: InventoryModel.EmailJobMetrics().required(),
     }).required();
   }
 }
+
 module.exports = InventoryValidator;

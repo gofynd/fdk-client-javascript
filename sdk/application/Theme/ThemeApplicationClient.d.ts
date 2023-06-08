@@ -4,8 +4,8 @@ declare class Theme {
     _conf: any;
     _relativeUrls: {
         getAllPages: string;
-        getPage: string;
         getAppliedTheme: string;
+        getPage: string;
         getThemeForPreview: string;
     };
     _urls: {};
@@ -22,6 +22,13 @@ declare class Theme {
     }): Promise<AllAvailablePageSchema>;
     /**
      * @param {Object} arg - Arg object.
+     * @returns {Promise<ThemesSchema>} - Success response
+     * @summary: Get the theme currently applied to an application
+     * @description: An application has multiple themes, but only one theme can be applied at a time. Use this API to retrieve the theme currently applied to the application.
+     */
+    getAppliedTheme({}?: any): Promise<ThemesSchema>;
+    /**
+     * @param {Object} arg - Arg object.
      * @param {string} arg.themeId - ID of the theme to be retrieved
      * @param {string} arg.pageValue - Value of the page to be retrieved
      * @returns {Promise<AvailablePageSchema>} - Success response
@@ -32,13 +39,6 @@ declare class Theme {
         themeId: string;
         pageValue: string;
     }): Promise<AvailablePageSchema>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @returns {Promise<ThemesSchema>} - Success response
-     * @summary: Get the theme currently applied to an application
-     * @description: An application has multiple themes, but only one theme can be applied at a time. Use this API to retrieve the theme currently applied to the application.
-     */
-    getAppliedTheme({}?: any): Promise<ThemesSchema>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.themeId - ID of the theme to be retrieved

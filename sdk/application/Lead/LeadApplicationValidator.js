@@ -2,12 +2,6 @@ const Joi = require("joi");
 
 const LeadModel = require("./LeadApplicationModel");
 class LeadValidator {
-  static getTicket() {
-    return Joi.object({
-      id: Joi.string().allow("").required(),
-    }).required();
-  }
-
   static createHistory() {
     return Joi.object({
       id: Joi.string().allow("").required(),
@@ -27,16 +21,15 @@ class LeadValidator {
     }).required();
   }
 
-  static submitCustomForm() {
-    return Joi.object({
-      slug: Joi.string().allow("").required(),
-      body: LeadModel.CustomFormSubmissionPayload().required(),
-    }).required();
-  }
-
   static getParticipantsInsideVideoRoom() {
     return Joi.object({
       uniqueName: Joi.string().allow("").required(),
+    }).required();
+  }
+
+  static getTicket() {
+    return Joi.object({
+      id: Joi.string().allow("").required(),
     }).required();
   }
 
@@ -45,5 +38,13 @@ class LeadValidator {
       uniqueName: Joi.string().allow("").required(),
     }).required();
   }
+
+  static submitCustomForm() {
+    return Joi.object({
+      slug: Joi.string().allow("").required(),
+      body: LeadModel.CustomFormSubmissionPayload().required(),
+    }).required();
+  }
 }
+
 module.exports = LeadValidator;

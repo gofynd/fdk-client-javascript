@@ -1,18 +1,18 @@
 export = AuditTrailModel;
 declare class AuditTrailModel {
-    static RequestBodyAuditLog(): any;
-    static CreateLogResponse(): any;
-    static LogMetaObj(): any;
-    static EntityObject(): any;
-    static LogSchemaResponse(): any;
-    static LogDocs(): any;
-    static EntityObj(): any;
-    static Modifier(): any;
-    static DeviceInfo(): any;
-    static Location(): any;
     static BadRequest(): any;
-    static ResourceNotFound(): any;
-    static InternalServerError(): any;
-    static EntityTypesResponse(): any;
+    static CreateLogResponse(): any;
+    static DeviceInfo(): any;
+    static EntityObj(): any;
+    static EntityObject(): any;
     static EntityTypeObj(): any;
+    static EntityTypesResponse(): any;
+    static InternalServerError(): any;
+    static Location(): any;
+    static LogDocs(): any;
+    static LogMetaObj(): any;
+    static LogSchemaResponse(): any;
+    static Modifier(): any;
+    static RequestBodyAuditLog(): any;
+    static ResourceNotFound(): any;
 }
