@@ -5165,7 +5165,7 @@ class PlatformClient {
  * @property {string} [name]
  * @property {string} [placeholder_text]
  * @property {boolean} [show_ui]
- * @property {string} text
+ * @property {string} [text]
  * @property {string} [value]
  */
 /**
@@ -14407,17 +14407,6 @@ class PlatformClient {
  * @property {string} [state]
  */
 /**
- * @typedef ApplicationCompanyDpViewRequest
- * @property {string} [dp_id]
- */
-/**
- * @typedef ApplicationCompanyDpViewResponse
- * @property {string} application_id
- * @property {number} company_id
- * @property {number} [courier_partner_id]
- * @property {boolean} success
- */
-/**
  * @typedef ApplicationServiceabilityConfig
  * @property {string} channel_id
  * @property {string} channel_type
@@ -14434,14 +14423,6 @@ class PlatformClient {
  * @property {Object} [error]
  * @property {string} [status_code]
  * @property {string} [success]
- */
-/**
- * @typedef CompanyDpAccountRequest
- * @property {DP[]} data
- */
-/**
- * @typedef CompanyDpAccountResponse
- * @property {boolean} success
  */
 /**
  * @typedef CompanyStoreView_PageItems
@@ -14500,94 +14481,6 @@ class PlatformClient {
  * @property {string} [transport_mode]
  */
 /**
- * @typedef DP
- * @property {string} account_id
- * @property {string} dp_id
- * @property {boolean} is_self_ship
- * @property {string} plan_id
- * @property {Object} plan_rules
- * @property {string} stage
- */
-/**
- * @typedef DpAccountFailureResponse
- * @property {ErrorResponse[]} error
- * @property {number} status_code
- * @property {boolean} success
- */
-/**
- * @typedef DPApplicationRuleRequest
- * @property {string[]} shipping_rules
- */
-/**
- * @typedef DPApplicationRuleResponse
- * @property {DpRuleResponse[]} data
- * @property {boolean} status_code
- * @property {boolean} success
- */
-/**
- * @typedef DPCompanyRuleRequest
- * @property {string[]} rule_ids
- */
-/**
- * @typedef DPCompanyRuleResponse
- * @property {DpRuleResponse[]} data
- * @property {number} status_code
- * @property {boolean} success
- */
-/**
- * @typedef DpIds
- * @property {boolean} enabled
- * @property {Object} [meta]
- * @property {number} priority
- */
-/**
- * @typedef DpMultipleRuleSuccessResponse
- * @property {DpRuleResponse[]} items
- * @property {Page} page
- * @property {boolean} success
- * @property {number} total_count
- */
-/**
- * @typedef DpRuleRequest
- * @property {number} [company_id]
- * @property {Object[]} conditions
- * @property {Object} dp_ids
- * @property {boolean} [is_active]
- * @property {string} name
- */
-/**
- * @typedef DpRuleResponse
- * @property {number} company_id
- * @property {string[]} conditions
- * @property {Object} [created_by]
- * @property {string} [created_on]
- * @property {Object} dp_ids
- * @property {boolean} [is_active]
- * @property {Object} [modified_by]
- * @property {string} [modified_on]
- * @property {string} name
- * @property {string} uid
- */
-/**
- * @typedef DpRuleSuccessResponse
- * @property {DpRuleResponse} data
- * @property {number} status_code
- * @property {boolean} success
- */
-/**
- * @typedef DpRulesUpdateRequest
- * @property {Object[]} conditions
- * @property {Object} dp_ids
- * @property {boolean} is_active
- * @property {string} name
- */
-/**
- * @typedef DpRuleUpdateSuccessResponse
- * @property {DpRuleResponse} data
- * @property {number} status_code
- * @property {boolean} success
- */
-/**
  * @typedef EinvoiceResponse
  * @property {boolean} [enabled]
  */
@@ -14630,26 +14523,8 @@ class PlatformClient {
  * @property {string} [value]
  */
 /**
- * @typedef ErrorResponse
- * @property {string} message
- * @property {string} type
- * @property {string} value
- */
-/**
- * @typedef ErrorResponse1
- * @property {string} message
- * @property {string} type
- * @property {string} value
- */
-/**
  * @typedef EwayBillResponse
  * @property {boolean} [enabled]
- */
-/**
- * @typedef FailureResponse
- * @property {ErrorResponse1[]} error
- * @property {number} status_code
- * @property {boolean} success
  */
 /**
  * @typedef GetSingleZoneDataViewResponse
@@ -14658,7 +14533,7 @@ class PlatformClient {
 /**
  * @typedef GetStoresViewResponse
  * @property {ItemResponse[]} [items]
- * @property {ServiceabilityPageResponse} page
+ * @property {PageResponse} page
  */
 /**
  * @typedef GetZoneDataViewChannels
@@ -14798,14 +14673,12 @@ class PlatformClient {
  * @property {number} [minute]
  */
 /**
- * @typedef Page
+ * @typedef PageResponse
  * @property {number} [current]
  * @property {boolean} [has_next]
- * @property {boolean} [has_previous]
  * @property {number} [item_total]
- * @property {string} [next_id]
  * @property {number} [size]
- * @property {string} type
+ * @property {string} [type]
  */
 /**
  * @typedef PincodeBulkViewResponse
@@ -14905,33 +14778,10 @@ class PlatformClient {
  * @property {boolean} [on_same_store]
  */
 /**
- * @typedef ReAssignStoreRequest
- * @property {Object[]} articles
- * @property {Object} configuration
- * @property {string} identifier
- * @property {string[]} ignored_locations
- * @property {string} to_pincode
- */
-/**
- * @typedef ReAssignStoreResponse
- * @property {Object[]} [articles]
- * @property {Object} error
- * @property {boolean} success
- * @property {string} to_pincode
- */
-/**
  * @typedef ServiceabilityErrorResponse
  * @property {string} message
  * @property {string} type
  * @property {string} value
- */
-/**
- * @typedef ServiceabilityPageResponse
- * @property {number} [current]
- * @property {boolean} [has_next]
- * @property {number} [item_total]
- * @property {number} [size]
- * @property {string} [type]
  */
 /**
  * @typedef ServiceabilityrErrorResponse

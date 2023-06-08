@@ -7817,7 +7817,7 @@ Verify OTP
  | name | string? |  yes  |  |
  | placeholder_text | string? |  yes  |  |
  | show_ui | boolean? |  yes  |  |
- | text | string |  no  |  |
+ | text | string? |  yes  |  |
  | value | string? |  yes  |  |
  
 

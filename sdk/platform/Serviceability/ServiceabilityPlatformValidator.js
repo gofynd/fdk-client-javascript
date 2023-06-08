@@ -16,20 +16,6 @@ class ServiceabilityValidator {
     return Joi.object({}).required();
   }
 
-  static getDpCompanyRules() {
-    return Joi.object({}).required();
-  }
-
-  static getDpRuleInsert() {
-    return Joi.object({}).required();
-  }
-
-  static getDpRules() {
-    return Joi.object({
-      ruleUid: Joi.string().allow("").required(),
-    }).required();
-  }
-
   static getEntityRegionView() {
     return Joi.object({
       body: ServiceabilityModel.EntityRegionView_Request().required(),
@@ -47,12 +33,6 @@ class ServiceabilityValidator {
     }).required();
   }
 
-  static getOptimalLocations() {
-    return Joi.object({
-      body: ServiceabilityModel.ReAssignStoreRequest().required(),
-    }).required();
-  }
-
   static getStore() {
     return Joi.object({
       storeUid: Joi.number().required(),
@@ -65,35 +45,10 @@ class ServiceabilityValidator {
     }).required();
   }
 
-  static updateDpRule() {
-    return Joi.object({
-      ruleUid: Joi.string().allow("").required(),
-      body: ServiceabilityModel.DpRulesUpdateRequest().required(),
-    }).required();
-  }
-
   static updateZoneControllerView() {
     return Joi.object({
       zoneId: Joi.string().allow("").required(),
       body: ServiceabilityModel.ZoneUpdateRequest().required(),
-    }).required();
-  }
-
-  static upsertDpAccount() {
-    return Joi.object({
-      body: ServiceabilityModel.CompanyDpAccountRequest().required(),
-    }).required();
-  }
-
-  static upsertDpCompanyRules() {
-    return Joi.object({
-      body: ServiceabilityModel.DPCompanyRuleRequest().required(),
-    }).required();
-  }
-
-  static upsertDpRules() {
-    return Joi.object({
-      body: ServiceabilityModel.DpRuleRequest().required(),
     }).required();
   }
 }

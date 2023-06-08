@@ -28,31 +28,6 @@ declare class Serviceability {
     getCompanyStoreView({}?: any): Promise<CompanyStoreView_Response>;
     /**
      * @param {Object} arg - Arg object.
-     * @returns {Promise<DPCompanyRuleResponse>} - Success response
-     * @summary: Get All DpCompanyRules applied to company from database.
-     * @description: This API returns response of all DpCompanyRules from mongo database.
-     */
-    getDpCompanyRules({}?: any): Promise<DPCompanyRuleResponse>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @returns {Promise<DpMultipleRuleSuccessResponse>} - Success response
-     * @summary: Fetching of DpRules from database.
-     * @description: This API returns response of DpRules from mongo database.
-     */
-    getDpRuleInsert({}?: any): Promise<DpMultipleRuleSuccessResponse>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.ruleUid - A `rule_uid` is a unique identifier for a
-     *   particular Dp.
-     * @returns {Promise<DpRuleSuccessResponse>} - Success response
-     * @summary: Fetching of DpRules from database.
-     * @description: This API returns response of DpRules from mongo database.
-     */
-    getDpRules({ ruleUid }?: {
-        ruleUid: string;
-    }): Promise<DpRuleSuccessResponse>;
-    /**
-     * @param {Object} arg - Arg object.
      * @param {EntityRegionView_Request} arg.body
      * @returns {Promise<EntityRegionView_Response>} - Success response
      * @summary: Get country and state list
@@ -83,16 +58,6 @@ declare class Serviceability {
     }): Promise<ListViewResponse>;
     /**
      * @param {Object} arg - Arg object.
-     * @param {ReAssignStoreRequest} arg.body
-     * @returns {Promise<ReAssignStoreResponse>} - Success response
-     * @summary: Get serviceable store of the item
-     * @description: This API returns serviceable store of the item.
-     */
-    getOptimalLocations({ body }?: {
-        body: ReAssignStoreRequest;
-    }): Promise<ReAssignStoreResponse>;
-    /**
-     * @param {Object} arg - Arg object.
      * @param {number} arg.storeUid - A `store_uid` contains a specific ID of a store.
      * @returns {Promise<GetStoresViewResponse>} - Success response
      * @summary: GET stores data
@@ -114,19 +79,6 @@ declare class Serviceability {
     }): Promise<GetSingleZoneDataViewResponse>;
     /**
      * @param {Object} arg - Arg object.
-     * @param {string} arg.ruleUid - A `rule_uid` is a unique identifier for a
-     *   particular Dp.
-     * @param {DpRulesUpdateRequest} arg.body
-     * @returns {Promise<DpRuleUpdateSuccessResponse>} - Success response
-     * @summary: Updating of DpRules from database.
-     * @description: This API updates and returns response of DpRules from mongo database.
-     */
-    updateDpRule({ ruleUid, body }?: {
-        ruleUid: string;
-        body: DpRulesUpdateRequest;
-    }): Promise<DpRuleUpdateSuccessResponse>;
-    /**
-     * @param {Object} arg - Arg object.
      * @param {string} arg.zoneId - A `zone_id` is a unique identifier for a
      *   particular zone.
      * @param {ZoneUpdateRequest} arg.body
@@ -138,34 +90,4 @@ declare class Serviceability {
         zoneId: string;
         body: ZoneUpdateRequest;
     }): Promise<ZoneSuccessResponse>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {CompanyDpAccountRequest} arg.body
-     * @returns {Promise<CompanyDpAccountResponse>} - Success response
-     * @summary: Upsertion of DpAccount in database.
-     * @description: This API returns response of upsertion of DpAccount in mongo database.
-     */
-    upsertDpAccount({ body }?: {
-        body: CompanyDpAccountRequest;
-    }): Promise<CompanyDpAccountResponse>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {DPCompanyRuleRequest} arg.body
-     * @returns {Promise<DPCompanyRuleResponse>} - Success response
-     * @summary: Upsert of DpCompanyRules in database.
-     * @description: This API returns response of upsert of DpCompanyRules in mongo database.
-     */
-    upsertDpCompanyRules({ body }?: {
-        body: DPCompanyRuleRequest;
-    }): Promise<DPCompanyRuleResponse>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {DpRuleRequest} arg.body
-     * @returns {Promise<DpRuleSuccessResponse>} - Success response
-     * @summary: Upsert of DpRules in database.
-     * @description: This API returns response of upsert of DpRules in mongo database.
-     */
-    upsertDpRules({ body }?: {
-        body: DpRuleRequest;
-    }): Promise<DpRuleSuccessResponse>;
 }

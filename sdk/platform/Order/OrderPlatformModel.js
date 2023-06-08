@@ -895,7 +895,7 @@ class OrderModel {
       name: Joi.string().allow("").allow(null),
       placeholder_text: Joi.string().allow(""),
       show_ui: Joi.boolean(),
-      text: Joi.string().allow("").allow(null).required(),
+      text: Joi.string().allow("").allow(null),
       value: Joi.string().allow("").allow(null),
     });
   }
