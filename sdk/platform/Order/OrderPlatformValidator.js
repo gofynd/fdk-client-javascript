@@ -153,9 +153,14 @@ class OrderValidator {
       toDate: Joi.string().allow(""),
       dpIds: Joi.string().allow(""),
       stores: Joi.string().allow(""),
-      salesChannel: Joi.string().allow(""),
+      salesChannels: Joi.string().allow(""),
       paymentMode: Joi.string().allow(""),
       bagStatus: Joi.string().allow(""),
+      searchType: Joi.string().allow(""),
+      searchValue: Joi.string().allow(""),
+      tags: Joi.string().allow(""),
+      timeToDispatch: Joi.string().allow(""),
+      paymentMethods: Joi.string().allow(""),
     }).required();
   }
 
@@ -233,6 +238,7 @@ class OrderValidator {
       lane: Joi.string().allow(""),
       bagStatus: Joi.string().allow(""),
       statusOverrideLane: Joi.boolean(),
+      timeToDispatch: Joi.string().allow(""),
       searchType: Joi.string().allow(""),
       searchValue: Joi.string().allow(""),
       searchId: Joi.string().allow(""),
@@ -241,7 +247,7 @@ class OrderValidator {
       dpIds: Joi.string().allow(""),
       orderingCompanyId: Joi.string().allow(""),
       stores: Joi.string().allow(""),
-      salesChannel: Joi.string().allow(""),
+      salesChannels: Joi.string().allow(""),
       requestByExt: Joi.string().allow(""),
       pageNo: Joi.number(),
       pageSize: Joi.number(),
@@ -323,7 +329,7 @@ class OrderValidator {
 
   static updatePackagingDimensions() {
     return Joi.object({
-      body: OrderModel.CreateOrderPayload().required(),
+      body: OrderModel.UpdatePackagingDimensionsPayload().required(),
     }).required();
   }
 

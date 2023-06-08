@@ -1332,9 +1332,14 @@ class Order {
    * @param {string} [arg.toDate] -
    * @param {string} [arg.dpIds] -
    * @param {string} [arg.stores] -
-   * @param {string} [arg.salesChannel] -
+   * @param {string} [arg.salesChannels] -
    * @param {string} [arg.paymentMode] -
    * @param {string} [arg.bagStatus] -
+   * @param {string} [arg.searchType] -
+   * @param {string} [arg.searchValue] -
+   * @param {string} [arg.tags] -
+   * @param {string} [arg.timeToDispatch] -
+   * @param {string} [arg.paymentMethods] -
    * @returns {Promise<LaneConfigResponse>} - Success response
    * @summary:
    * @description:
@@ -1346,9 +1351,14 @@ class Order {
     toDate,
     dpIds,
     stores,
-    salesChannel,
+    salesChannels,
     paymentMode,
     bagStatus,
+    searchType,
+    searchValue,
+    tags,
+    timeToDispatch,
+    paymentMethods,
   } = {}) {
     const { error } = OrderValidator.getLaneConfig().validate(
       {
@@ -1358,9 +1368,14 @@ class Order {
         toDate,
         dpIds,
         stores,
-        salesChannel,
+        salesChannels,
         paymentMode,
         bagStatus,
+        searchType,
+        searchValue,
+        tags,
+        timeToDispatch,
+        paymentMethods,
       },
       { abortEarly: false, allowUnknown: true }
     );
@@ -1377,9 +1392,14 @@ class Order {
         toDate,
         dpIds,
         stores,
-        salesChannel,
+        salesChannels,
         paymentMode,
         bagStatus,
+        searchType,
+        searchValue,
+        tags,
+        timeToDispatch,
+        paymentMethods,
       },
       { abortEarly: false, allowUnknown: false }
     );
@@ -1398,9 +1418,14 @@ class Order {
     query_params["to_date"] = toDate;
     query_params["dp_ids"] = dpIds;
     query_params["stores"] = stores;
-    query_params["sales_channel"] = salesChannel;
+    query_params["sales_channels"] = salesChannels;
     query_params["payment_mode"] = paymentMode;
     query_params["bag_status"] = bagStatus;
+    query_params["search_type"] = searchType;
+    query_params["search_value"] = searchValue;
+    query_params["tags"] = tags;
+    query_params["time_to_dispatch"] = timeToDispatch;
+    query_params["payment_methods"] = paymentMethods;
 
     const xHeaders = {};
 
@@ -2064,6 +2089,7 @@ class Order {
    * @param {string} [arg.lane] -
    * @param {string} [arg.bagStatus] -
    * @param {boolean} [arg.statusOverrideLane] -
+   * @param {string} [arg.timeToDispatch] -
    * @param {string} [arg.searchType] -
    * @param {string} [arg.searchValue] -
    * @param {string} [arg.searchId] -
@@ -2072,7 +2098,7 @@ class Order {
    * @param {string} [arg.dpIds] -
    * @param {string} [arg.orderingCompanyId] -
    * @param {string} [arg.stores] -
-   * @param {string} [arg.salesChannel] -
+   * @param {string} [arg.salesChannels] -
    * @param {string} [arg.requestByExt] -
    * @param {number} [arg.pageNo] -
    * @param {number} [arg.pageSize] -
@@ -2093,6 +2119,7 @@ class Order {
     lane,
     bagStatus,
     statusOverrideLane,
+    timeToDispatch,
     searchType,
     searchValue,
     searchId,
@@ -2101,7 +2128,7 @@ class Order {
     dpIds,
     orderingCompanyId,
     stores,
-    salesChannel,
+    salesChannels,
     requestByExt,
     pageNo,
     pageSize,
@@ -2120,6 +2147,7 @@ class Order {
         lane,
         bagStatus,
         statusOverrideLane,
+        timeToDispatch,
         searchType,
         searchValue,
         searchId,
@@ -2128,7 +2156,7 @@ class Order {
         dpIds,
         orderingCompanyId,
         stores,
-        salesChannel,
+        salesChannels,
         requestByExt,
         pageNo,
         pageSize,
@@ -2154,6 +2182,7 @@ class Order {
         lane,
         bagStatus,
         statusOverrideLane,
+        timeToDispatch,
         searchType,
         searchValue,
         searchId,
@@ -2162,7 +2191,7 @@ class Order {
         dpIds,
         orderingCompanyId,
         stores,
-        salesChannel,
+        salesChannels,
         requestByExt,
         pageNo,
         pageSize,
@@ -2190,6 +2219,7 @@ class Order {
     query_params["lane"] = lane;
     query_params["bag_status"] = bagStatus;
     query_params["status_override_lane"] = statusOverrideLane;
+    query_params["time_to_dispatch"] = timeToDispatch;
     query_params["search_type"] = searchType;
     query_params["search_value"] = searchValue;
     query_params["search_id"] = searchId;
@@ -2198,7 +2228,7 @@ class Order {
     query_params["dp_ids"] = dpIds;
     query_params["ordering_company_id"] = orderingCompanyId;
     query_params["stores"] = stores;
-    query_params["sales_channel"] = salesChannel;
+    query_params["sales_channels"] = salesChannels;
     query_params["request_by_ext"] = requestByExt;
     query_params["page_no"] = pageNo;
     query_params["page_size"] = pageSize;
@@ -2876,8 +2906,8 @@ class Order {
 
   /**
    * @param {Object} arg - Arg object.
-   * @param {CreateOrderPayload} arg.body
-   * @returns {Promise<CreateOrderResponse>} - Success response
+   * @param {UpdatePackagingDimensionsPayload} arg.body
+   * @returns {Promise<UpdatePackagingDimensionsResponse>} - Success response
    * @summary:
    * @description:
    */
@@ -2924,7 +2954,7 @@ class Order {
 
     const {
       error: res_error,
-    } = OrderModel.CreateOrderResponse().validate(response, {
+    } = OrderModel.UpdatePackagingDimensionsResponse().validate(response, {
       abortEarly: false,
       allowUnknown: false,
     });

@@ -264,23 +264,33 @@ declare class Order {
      * @param {string} [arg.toDate] -
      * @param {string} [arg.dpIds] -
      * @param {string} [arg.stores] -
-     * @param {string} [arg.salesChannel] -
+     * @param {string} [arg.salesChannels] -
      * @param {string} [arg.paymentMode] -
      * @param {string} [arg.bagStatus] -
+     * @param {string} [arg.searchType] -
+     * @param {string} [arg.searchValue] -
+     * @param {string} [arg.tags] -
+     * @param {string} [arg.timeToDispatch] -
+     * @param {string} [arg.paymentMethods] -
      * @returns {Promise<LaneConfigResponse>} - Success response
      * @summary:
      * @description:
      */
-    getLaneConfig({ superLane, groupEntity, fromDate, toDate, dpIds, stores, salesChannel, paymentMode, bagStatus, }?: {
+    getLaneConfig({ superLane, groupEntity, fromDate, toDate, dpIds, stores, salesChannels, paymentMode, bagStatus, searchType, searchValue, tags, timeToDispatch, paymentMethods, }?: {
         superLane?: string;
         groupEntity?: string;
         fromDate?: string;
         toDate?: string;
         dpIds?: string;
         stores?: string;
-        salesChannel?: string;
+        salesChannels?: string;
         paymentMode?: string;
         bagStatus?: string;
+        searchType?: string;
+        searchValue?: string;
+        tags?: string;
+        timeToDispatch?: string;
+        paymentMethods?: string;
     }): Promise<LaneConfigResponse>;
     /**
      * @param {Object} arg - Arg object.
@@ -413,6 +423,7 @@ declare class Order {
      * @param {string} [arg.lane] -
      * @param {string} [arg.bagStatus] -
      * @param {boolean} [arg.statusOverrideLane] -
+     * @param {string} [arg.timeToDispatch] -
      * @param {string} [arg.searchType] -
      * @param {string} [arg.searchValue] -
      * @param {string} [arg.searchId] -
@@ -421,7 +432,7 @@ declare class Order {
      * @param {string} [arg.dpIds] -
      * @param {string} [arg.orderingCompanyId] -
      * @param {string} [arg.stores] -
-     * @param {string} [arg.salesChannel] -
+     * @param {string} [arg.salesChannels] -
      * @param {string} [arg.requestByExt] -
      * @param {number} [arg.pageNo] -
      * @param {number} [arg.pageSize] -
@@ -438,10 +449,11 @@ declare class Order {
      * @summary:
      * @description:
      */
-    getShipments({ lane, bagStatus, statusOverrideLane, searchType, searchValue, searchId, fromDate, toDate, dpIds, orderingCompanyId, stores, salesChannel, requestByExt, pageNo, pageSize, isPrioritySort, fetchActiveShipment, excludeLockedShipments, paymentMethods, channelShipmentId, channelOrderId, customMeta, orderingChannel, companyAffiliateTag, }?: {
+    getShipments({ lane, bagStatus, statusOverrideLane, timeToDispatch, searchType, searchValue, searchId, fromDate, toDate, dpIds, orderingCompanyId, stores, salesChannels, requestByExt, pageNo, pageSize, isPrioritySort, fetchActiveShipment, excludeLockedShipments, paymentMethods, channelShipmentId, channelOrderId, customMeta, orderingChannel, companyAffiliateTag, }?: {
         lane?: string;
         bagStatus?: string;
         statusOverrideLane?: boolean;
+        timeToDispatch?: string;
         searchType?: string;
         searchValue?: string;
         searchId?: string;
@@ -450,7 +462,7 @@ declare class Order {
         dpIds?: string;
         orderingCompanyId?: string;
         stores?: string;
-        salesChannel?: string;
+        salesChannels?: string;
         requestByExt?: string;
         pageNo?: number;
         pageSize?: number;
@@ -577,14 +589,14 @@ declare class Order {
     }): Promise<BaseResponse>;
     /**
      * @param {Object} arg - Arg object.
-     * @param {CreateOrderPayload} arg.body
-     * @returns {Promise<CreateOrderResponse>} - Success response
+     * @param {UpdatePackagingDimensionsPayload} arg.body
+     * @returns {Promise<UpdatePackagingDimensionsResponse>} - Success response
      * @summary:
      * @description:
      */
     updatePackagingDimensions({ body }?: {
-        body: CreateOrderPayload;
-    }): Promise<CreateOrderResponse>;
+        body: UpdatePackagingDimensionsPayload;
+    }): Promise<UpdatePackagingDimensionsResponse>;
     /**
      * @param {Object} arg - Arg object.
      * @param {UpdateShipmentLockPayload} arg.body
