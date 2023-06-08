@@ -12689,19 +12689,19 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | _custom_json | string? |  yes  |  |
- | article_assignment | string? |  yes  |  |
+ | _custom_json | string? |  yes  | custom json to supporting article customization |
+ | article_assignment | string? |  yes  | strategy and level information for article assignment |
  | article_id | string? |  yes  |  |
  | display | string? |  yes  |  |
- | extra_meta | string? |  yes  |  |
- | item_id | number? |  yes  |  |
- | item_size | string? |  yes  |  |
- | parent_item_identifiers | [[String: string]]? |  yes  |  |
- | pos | boolean? |  yes  |  |
- | product_group_tags | [string]? |  yes  |  |
- | quantity | number? |  yes  |  |
- | seller_id | number? |  yes  |  |
- | store_id | number? |  yes  |  |
+ | extra_meta | string? |  yes  | any extra meta information related to article |
+ | item_id | number? |  yes  | item_id of added product |
+ | item_size | string? |  yes  | article size |
+ | parent_item_identifiers | [[String: string]]? |  yes  | contains information about parent item in case of parent-child relation |
+ | pos | boolean? |  yes  | True for pos systems |
+ | product_group_tags | [string]? |  yes  | product_group_tags to group articles in same group |
+ | quantity | number? |  yes  | article quantity |
+ | seller_id | number? |  yes  | seller id |
+ | store_id | number? |  yes  | store id |
  
 
 ---
@@ -12831,7 +12831,7 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | code | string? |  yes  | Currency code defined by ISO 4217:2015 |
- | symbol | string? |  yes  |  |
+ | symbol | string? |  yes  | refers to a graphic symbol or sign that is used to denote a specific currency |
  
 
 ---
@@ -12852,19 +12852,19 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
  | ---------- | ---- | -------- | ----------- |
  | applied_promo_details | [[AppliedPromotion](#AppliedPromotion)]? |  yes  |  |
  | breakup_values | [CartBreakup](#CartBreakup)? |  yes  |  |
- | buy_now | boolean? |  yes  |  |
- | checkout_mode | string? |  yes  |  |
- | comment | string? |  yes  |  |
- | coupon_text | string? |  yes  |  |
+ | buy_now | boolean? |  yes  | True for buy_now cart. Default value is False |
+ | checkout_mode | string? |  yes  | describe checkout mode(self/other) of the cart |
+ | comment | string? |  yes  | comment related to cart |
+ | coupon_text | string? |  yes  | static coupon text |
  | currency | [CartCurrency](#CartCurrency)? |  yes  |  |
- | delivery_charge_info | string? |  yes  |  |
+ | delivery_charge_info | string? |  yes  | information related to delivery charge |
  | delivery_promise | [ShipmentPromise](#ShipmentPromise)? |  yes  |  |
- | gstin | string? |  yes  |  |
- | id | string? |  yes  |  |
- | is_valid | boolean? |  yes  |  |
+ | gstin | string? |  yes  | gstin number |
+ | id | string? |  yes  | unique cart id |
+ | is_valid | boolean? |  yes  | boolean flag to check if response is valid |
  | items | [[CartProductInfo](#CartProductInfo)]? |  yes  |  |
- | last_modified | string? |  yes  |  |
- | message | string? |  yes  |  |
+ | last_modified | string? |  yes  | last modified cart date |
+ | message | string? |  yes  | display error message if any else empty string |
  | pan_config | string? |  yes  |  |
  | pan_no | string? |  yes  |  |
  | payment_selection_lock | [PaymentSelectionLock](#PaymentSelectionLock)? |  yes  |  |
@@ -12963,7 +12963,7 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | is_valid | boolean? |  yes  |  |
- | message | string? |  yes  |  |
+ | message | string? |  yes  | cart meta update response message |
  
 
 ---
@@ -12974,17 +12974,17 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
  | ---------- | ---- | -------- | ----------- |
  | _custom_json | string? |  yes  |  |
  | action | [ProductAction](#ProductAction)? |  yes  |  |
- | brand | [BaseInfo](#BaseInfo)? |  yes  |  |
- | categories | [[CategoryInfo](#CategoryInfo)]? |  yes  |  |
+ | brand | [BaseInfo](#BaseInfo)? |  yes  | contains name and identifier of brand |
+ | categories | [[CategoryInfo](#CategoryInfo)]? |  yes  | contains name and identifier of categories |
  | images | [[ProductImage](#ProductImage)]? |  yes  |  |
  | item_code | string? |  yes  |  |
- | name | string? |  yes  |  |
+ | name | string? |  yes  | product name |
  | net_quantity | [NetQuantity](#NetQuantity)? |  yes  |  |
  | slug | string? |  yes  | Unique product url name generated via product name and other meta data |
  | tags | [string]? |  yes  |  |
  | teaser_tag | [Tags](#Tags)? |  yes  |  |
- | type | string? |  yes  |  |
- | uid | number? |  yes  |  |
+ | type | string? |  yes  | product type |
+ | uid | number? |  yes  | product unique identifier |
  
 
 ---
@@ -13004,24 +13004,24 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
  | ---------- | ---- | -------- | ----------- |
  | article | [ProductArticle](#ProductArticle)? |  yes  |  |
  | availability | [ProductAvailability](#ProductAvailability)? |  yes  |  |
- | bulk_offer | string? |  yes  |  |
+ | bulk_offer | string? |  yes  | product bulk offer |
  | coupon | [CouponDetails](#CouponDetails)? |  yes  |  |
- | coupon_message | string? |  yes  |  |
+ | coupon_message | string? |  yes  | coupon applied message along with coupon code |
  | custom_order | string? |  yes  |  |
  | delivery_promise | [ShipmentPromise](#ShipmentPromise)? |  yes  |  |
- | discount | string? |  yes  |  |
+ | discount | string? |  yes  | discount for the selected product |
  | identifiers | [CartProductIdentifer](#CartProductIdentifer) |  no  |  |
  | is_set | boolean? |  yes  |  |
- | key | string? |  yes  |  |
- | message | string? |  yes  |  |
- | moq | string? |  yes  |  |
- | parent_item_identifiers | string? |  yes  |  |
- | price | [ProductPriceInfo](#ProductPriceInfo)? |  yes  |  |
- | price_per_unit | [ProductPriceInfo](#ProductPriceInfo)? |  yes  |  |
+ | key | string? |  yes  | key of product created by combining product unique id and size |
+ | message | string? |  yes  | product related messages if any error else empty string |
+ | moq | string? |  yes  | maximum & minimum order quantity information |
+ | parent_item_identifiers | string? |  yes  | contains information about parent item in case of parent-child relation |
+ | price | [ProductPriceInfo](#ProductPriceInfo)? |  yes  | refers to product's base and converted price |
+ | price_per_unit | [ProductPriceInfo](#ProductPriceInfo)? |  yes  | refers to product's base and converted price per unit |
  | product | [CartProduct](#CartProduct)? |  yes  |  |
- | promo_meta | [PromoMeta](#PromoMeta)? |  yes  |  |
+ | promo_meta | [PromoMeta](#PromoMeta)? |  yes  | promo meta information |
  | promotions_applied | [[AppliedPromotion](#AppliedPromotion)]? |  yes  |  |
- | quantity | number? |  yes  |  |
+ | quantity | number? |  yes  | quantity of product |
  
 
 ---
@@ -13031,7 +13031,7 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | name | string? |  yes  |  |
- | uid | number? |  yes  | Product Category Id |
+ | uid | number? |  yes  | product Category Id |
  
 
 ---
@@ -13164,19 +13164,19 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | code | string? |  yes  |  |
+ | code | string? |  yes  | coupon code |
  | coupon_type | string? |  yes  |  |
  | coupon_value | number? |  yes  |  |
  | description | string? |  yes  |  |
- | is_applied | boolean? |  yes  |  |
+ | is_applied | boolean? |  yes  | boolean flag that denotes if coupon is applied or not. True if applied else False |
  | max_discount_value | number? |  yes  |  |
- | message | string? |  yes  |  |
+ | message | string? |  yes  | coupon message |
  | minimum_cart_value | number? |  yes  |  |
  | sub_title | string? |  yes  |  |
  | title | string? |  yes  |  |
- | type | string? |  yes  |  |
- | uid | string? |  yes  |  |
- | value | number? |  yes  |  |
+ | type | string? |  yes  | type of coupon (absolute/percentage/bogo/bundle/payment) |
+ | uid | string? |  yes  | unique coupon identifier |
+ | value | number? |  yes  | coupon discount amount value |
  
 
 ---
@@ -13357,12 +13357,12 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | currency_code | string? |  yes  |  |
- | currency_symbol | string? |  yes  |  |
- | display | string? |  yes  |  |
- | key | string? |  yes  |  |
- | message | [string]? |  yes  |  |
- | value | number? |  yes  |  |
+ | currency_code | string? |  yes  | refers to identify currencies in a standardized and globally recognized manner |
+ | currency_symbol | string? |  yes  | refers to a graphic symbol or sign that is used to denote a specific currency |
+ | display | string? |  yes  | refers to display text for breakup |
+ | key | string? |  yes  | refers to key name of display attribute |
+ | message | [string]? |  yes  | Display error message if any, else an empty list |
+ | value | number? |  yes  | refers to value of display attribute |
  
 
 ---
@@ -13525,10 +13525,10 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | applicable | number? |  yes  |  |
- | description | string? |  yes  |  |
- | is_applied | boolean? |  yes  |  |
- | total | number? |  yes  |  |
+ | applicable | number? |  yes  | refers to applicable credit value |
+ | description | string? |  yes  | loyalty points description text |
+ | is_applied | boolean? |  yes  | boolean flag that denotes if coupon is applied or not. True if applied else False |
+ | total | number? |  yes  | refers to total value of loyalty points |
  
 
 ---
@@ -13912,7 +13912,7 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | default_options | string? |  yes  |  |
- | enabled | boolean? |  yes  |  |
+ | enabled | boolean? |  yes  | boolean flag to check if payment selection lock is enabled or not. |
  | payment_identifier | string? |  yes  |  |
  
 
@@ -14071,20 +14071,20 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
  | ---------- | ---- | -------- | ----------- |
  | applied_promo_details | [[AppliedPromotion](#AppliedPromotion)]? |  yes  |  |
  | breakup_values | [CartBreakup](#CartBreakup)? |  yes  |  |
- | buy_now | boolean? |  yes  |  |
- | checkout_mode | string? |  yes  |  |
- | comment | string? |  yes  |  |
- | coupon_text | string? |  yes  |  |
+ | buy_now | boolean? |  yes  | True for buy_now cart. Default value is False |
+ | checkout_mode | string? |  yes  | describe checkout mode(self/other) of the cart |
+ | comment | string? |  yes  | comment related to cart |
+ | coupon_text | string? |  yes  | static coupon text |
  | currency | [CartCurrency](#CartCurrency)? |  yes  |  |
- | delivery_charge_info | string? |  yes  |  |
+ | delivery_charge_info | string? |  yes  | information related to delivery charge |
  | delivery_promise | [ShipmentPromise](#ShipmentPromise)? |  yes  |  |
  | error | boolean? |  yes  |  |
- | gstin | string? |  yes  |  |
- | id | string? |  yes  |  |
- | is_valid | boolean? |  yes  |  |
+ | gstin | string? |  yes  | gstin number |
+ | id | string? |  yes  | unique cart id |
+ | is_valid | boolean? |  yes  | boolean flag to check if response is valid |
  | items | [[CartProductInfo](#CartProductInfo)]? |  yes  |  |
- | last_modified | string? |  yes  |  |
- | message | string? |  yes  |  |
+ | last_modified | string? |  yes  | last modified cart date |
+ | message | string? |  yes  | display error message if any else empty string |
  | pan_config | string? |  yes  |  |
  | pan_no | string? |  yes  |  |
  | payment_selection_lock | [PaymentSelectionLock](#PaymentSelectionLock)? |  yes  |  |
@@ -14181,8 +14181,8 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | query | [ActionQuery](#ActionQuery)? |  yes  |  |
- | type | string? |  yes  |  |
- | url | string? |  yes  |  |
+ | type | string? |  yes  | product type |
+ | url | string? |  yes  | product action url |
  
 
 ---
@@ -14191,22 +14191,22 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | _custom_json | string? |  yes  |  |
+ | _custom_json | string? |  yes  | custom json to supporting article customization |
  | cart_item_meta | string? |  yes  |  |
- | extra_meta | string? |  yes  |  |
+ | extra_meta | string? |  yes  | any extra meta information related to article |
  | gift_card | string? |  yes  |  |
  | identifier | string? |  yes  |  |
  | is_gift_visible | boolean? |  yes  |  |
- | parent_item_identifiers | string? |  yes  |  |
- | price | [ArticlePriceInfo](#ArticlePriceInfo)? |  yes  |  |
- | product_group_tags | [string]? |  yes  |  |
- | quantity | number? |  yes  |  |
- | seller | [BaseInfo](#BaseInfo)? |  yes  |  |
+ | parent_item_identifiers | string? |  yes  | contains information about parent item in case of parent-child relation |
+ | price | [ArticlePriceInfo](#ArticlePriceInfo)? |  yes  | refers to article's base and converted price |
+ | product_group_tags | [string]? |  yes  | product_group_tags to group articles in same group |
+ | quantity | number? |  yes  | available quantity for the article |
+ | seller | [BaseInfo](#BaseInfo)? |  yes  | contains name and identifier of seller |
  | seller_identifier | string? |  yes  |  |
- | size | string? |  yes  |  |
- | store | [StoreInfo](#StoreInfo)? |  yes  |  |
- | type | string? |  yes  |  |
- | uid | string? |  yes  |  |
+ | size | string? |  yes  | article size |
+ | store | [StoreInfo](#StoreInfo)? |  yes  | contains name and identifier of store |
+ | type | string? |  yes  | type of article |
+ | uid | string? |  yes  | article unique identifier |
  
 
 ---
@@ -14216,11 +14216,11 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | available_sizes | [[ProductAvailabilitySize](#ProductAvailabilitySize)]? |  yes  |  |
- | deliverable | boolean? |  yes  |  |
- | is_valid | boolean? |  yes  |  |
- | other_store_quantity | number? |  yes  |  |
- | out_of_stock | boolean? |  yes  |  |
- | sizes | [string]? |  yes  |  |
+ | deliverable | boolean? |  yes  | boolean flag to check if product is deliverable |
+ | is_valid | boolean? |  yes  | boolean flag to check if required product is available and deliverable |
+ | other_store_quantity | number? |  yes  | refers to other store quantity |
+ | out_of_stock | boolean? |  yes  | boolean flag to check if product is out of stock |
+ | sizes | [string]? |  yes  | refers to list of available product sizes |
  
 
 ---
@@ -14229,9 +14229,9 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | display | string? |  yes  |  |
- | is_available | boolean? |  yes  |  |
- | value | string? |  yes  |  |
+ | display | string? |  yes  | refers to size of product |
+ | is_available | boolean? |  yes  | boolean refers to product available size. True if available else False |
+ | value | string? |  yes  | refers to size of product |
  
 
 ---
@@ -14240,9 +14240,9 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | aspect_ratio | string? |  yes  |  |
- | secure_url | string? |  yes  |  |
- | url | string? |  yes  |  |
+ | aspect_ratio | string? |  yes  | product image aspect ratio |
+ | secure_url | string? |  yes  | product image secure url |
+ | url | string? |  yes  | product image url |
  
 
 ---
@@ -14275,8 +14275,8 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | max | string? |  yes  |  |
- | min | string? |  yes  |  |
+ | max | string? |  yes  | string value for max delivery promise |
+ | min | string? |  yes  | string value for min delivery promise |
  
 
 ---
@@ -14285,8 +14285,8 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | max | number? |  yes  |  |
- | min | number? |  yes  |  |
+ | max | number? |  yes  | float value for max delivery promise |
+ | min | number? |  yes  | float value for min delivery promise |
  
 
 ---
@@ -14469,19 +14469,19 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | cod_charge | number? |  yes  |  |
- | convenience_fee | number? |  yes  |  |
- | coupon | number? |  yes  |  |
- | delivery_charge | number? |  yes  |  |
- | discount | number? |  yes  |  |
- | fynd_cash | number? |  yes  |  |
+ | cod_charge | number? |  yes  | cash on delivery charges value |
+ | convenience_fee | number? |  yes  | refers to additional cost associated with providing convenience or special services to the customer |
+ | coupon | number? |  yes  | coupon value to show breakup. |
+ | delivery_charge | number? |  yes  | delivery charges value |
+ | discount | number? |  yes  | refers to discount price value |
+ | fynd_cash | number? |  yes  | fynd cash value |
  | gift_card | number? |  yes  |  |
- | gst_charges | number? |  yes  |  |
- | mrp_total | number? |  yes  |  |
- | subtotal | number? |  yes  |  |
- | total | number? |  yes  |  |
- | vog | number? |  yes  |  |
- | you_saved | number? |  yes  |  |
+ | gst_charges | number? |  yes  | refer to the Goods and Services Tax applied to the products or services included in the cart |
+ | mrp_total | number? |  yes  | represents the total cost based on the maximum retail prices of the items |
+ | subtotal | number? |  yes  | represents the total cost of the items before any additional charges or discounts |
+ | total | number? |  yes  | represents the complete cost that the customer will be charged for their cart, considering all relevant factors such as item prices, taxes, fees, and discounts |
+ | vog | number? |  yes  | total value of good refers to the cumulative value or cost of all the goods or products included in the cart |
+ | you_saved | number? |  yes  | refers to the amount of money that a customer has saved due to discounts, promotions, or any other cost reductions applied to their cart |
  
 
 ---
@@ -14807,15 +14807,15 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | _custom_json | string? |  yes  |  |
+ | _custom_json | string? |  yes  | custom json to supporting article customization |
  | article_id | string? |  yes  |  |
- | extra_meta | string? |  yes  |  |
+ | extra_meta | string? |  yes  | any extra meta information related to article |
  | identifiers | [CartProductIdentifer](#CartProductIdentifer) |  no  |  |
- | item_id | number? |  yes  |  |
- | item_index | number? |  yes  |  |
- | item_size | string? |  yes  |  |
- | parent_item_identifiers | string? |  yes  |  |
- | quantity | number? |  yes  |  |
+ | item_id | number? |  yes  | item_id of added product |
+ | item_index | number? |  yes  | index of updated article |
+ | item_size | string? |  yes  | article size |
+ | parent_item_identifiers | string? |  yes  | contains information about parent item in case of parent-child relation |
+ | quantity | number? |  yes  | article updated quantity |
  
 
 ---
@@ -14835,19 +14835,19 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
  | ---------- | ---- | -------- | ----------- |
  | applied_promo_details | [[AppliedPromotion](#AppliedPromotion)]? |  yes  |  |
  | breakup_values | [CartBreakup](#CartBreakup)? |  yes  |  |
- | buy_now | boolean? |  yes  |  |
- | checkout_mode | string? |  yes  |  |
- | comment | string? |  yes  |  |
- | coupon_text | string? |  yes  |  |
+ | buy_now | boolean? |  yes  | True for buy_now cart. Default value is False |
+ | checkout_mode | string? |  yes  | describe checkout mode(self/other) of the cart |
+ | comment | string? |  yes  | comment related to cart |
+ | coupon_text | string? |  yes  | static coupon text |
  | currency | [CartCurrency](#CartCurrency)? |  yes  |  |
- | delivery_charge_info | string? |  yes  |  |
+ | delivery_charge_info | string? |  yes  | information related to delivery charge |
  | delivery_promise | [ShipmentPromise](#ShipmentPromise)? |  yes  |  |
- | gstin | string? |  yes  |  |
- | id | string? |  yes  |  |
- | is_valid | boolean? |  yes  |  |
+ | gstin | string? |  yes  | gstin number |
+ | id | string? |  yes  | unique cart id |
+ | is_valid | boolean? |  yes  | boolean flag to check if response is valid |
  | items | [[CartProductInfo](#CartProductInfo)]? |  yes  |  |
- | last_modified | string? |  yes  |  |
- | message | string? |  yes  |  |
+ | last_modified | string? |  yes  | last modified cart date |
+ | message | string? |  yes  | display error message if any else empty string |
  | pan_config | string? |  yes  |  |
  | pan_no | string? |  yes  |  |
  | payment_selection_lock | [PaymentSelectionLock](#PaymentSelectionLock)? |  yes  |  |

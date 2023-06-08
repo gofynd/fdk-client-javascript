@@ -12,6 +12,7 @@ class CartValidator {
     return Joi.object({
       i: Joi.boolean(),
       b: Joi.boolean(),
+      p: Joi.boolean(),
       areaCode: Joi.string().allow(""),
       buyNow: Joi.boolean(),
       id: Joi.string().allow(""),
@@ -97,6 +98,7 @@ class CartValidator {
       id: Joi.string().allow(""),
       i: Joi.boolean(),
       b: Joi.boolean(),
+      p: Joi.boolean(),
       assignCardId: Joi.number(),
       areaCode: Joi.string().allow(""),
       buyNow: Joi.boolean(),
@@ -206,6 +208,7 @@ class CartValidator {
       id: Joi.string().allow(""),
       i: Joi.boolean(),
       b: Joi.boolean(),
+      p: Joi.boolean(),
       areaCode: Joi.string().allow(""),
       buyNow: Joi.boolean(),
       body: CartModel.UpdateCartRequest().required(),

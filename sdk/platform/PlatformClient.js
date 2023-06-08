@@ -7477,7 +7477,7 @@ class PlatformClient {
  * @property {boolean} [is_active]
  * @property {Object} [modified_by]
  * @property {string} [modified_on]
- * @property {BoostBury1} [ranking]
+ * @property {BoostBury} [ranking]
  * @property {string[]} words
  */
 /**
@@ -7752,15 +7752,15 @@ class PlatformClient {
  * @property {GetAddressSerializer[]} [addresses]
  * @property {string} [business_type]
  * @property {string} [company_type]
- * @property {UserSerializer2} [created_by]
+ * @property {UserSerializer1} [created_by]
  * @property {string} [created_on]
- * @property {UserSerializer2} [modified_by]
+ * @property {UserSerializer1} [modified_by]
  * @property {string} [modified_on]
  * @property {string} [name]
  * @property {string} [reject_reason]
  * @property {string} [stage]
  * @property {number} [uid]
- * @property {UserSerializer2} [verified_by]
+ * @property {UserSerializer1} [verified_by]
  * @property {string} [verified_on]
  */
 /**
@@ -7819,14 +7819,14 @@ class PlatformClient {
  * @property {string} code
  * @property {GetCompanySerializer} [company]
  * @property {SellerPhoneNumber[]} [contact_numbers]
- * @property {UserSerializer1} [created_by]
+ * @property {UserSerializer2} [created_by]
  * @property {string} [created_on]
  * @property {string} display_name
  * @property {Document[]} [documents]
  * @property {InvoiceDetailsSerializer} [gst_credentials]
  * @property {LocationIntegrationType} [integration_type]
  * @property {LocationManagerSerializer} [manager]
- * @property {UserSerializer1} [modified_by]
+ * @property {UserSerializer2} [modified_by]
  * @property {string} [modified_on]
  * @property {string} name
  * @property {string[]} [notification_emails]
@@ -7836,7 +7836,7 @@ class PlatformClient {
  * @property {string} [store_type]
  * @property {LocationDayWiseSerializer[]} [timing]
  * @property {number} [uid]
- * @property {UserSerializer1} [verified_by]
+ * @property {UserSerializer2} [verified_by]
  * @property {string} [verified_on]
  * @property {Object} [warnings]
  */
@@ -8734,7 +8734,7 @@ class PlatformClient {
  * @property {NetQuantity} [net_quantity]
  * @property {number} [no_of_boxes]
  * @property {string[]} [product_group_tag]
- * @property {ProductPublish1} [product_publish]
+ * @property {ProductPublish} [product_publish]
  * @property {string} [requester]
  * @property {ReturnConfig} return_config
  * @property {string} [short_description]
@@ -8930,7 +8930,7 @@ class PlatformClient {
  * @property {string} [pending]
  * @property {string} [primary_color]
  * @property {string[]} [product_group_tag]
- * @property {ProductPublish} [product_publish]
+ * @property {ProductPublish1} [product_publish]
  * @property {ReturnConfigResponse} [return_config]
  * @property {string} [short_description]
  * @property {string} [size_guide]
@@ -9159,7 +9159,7 @@ class PlatformClient {
  * @property {boolean} [is_active]
  * @property {UserDetail} [modified_by]
  * @property {string} modified_on
- * @property {BoostBury} [ranking]
+ * @property {BoostBury1} [ranking]
  * @property {UserDetail} [verified_by]
  * @property {string} [verified_on]
  * @property {string[]} words
@@ -14438,7 +14438,6 @@ class PlatformClient {
 /**
  * @typedef CompanyDpAccountRequest
  * @property {DP[]} data
- * @property {string} [identifier]
  */
 /**
  * @typedef CompanyDpAccountResponse
@@ -14502,10 +14501,10 @@ class PlatformClient {
  */
 /**
  * @typedef DP
- * @property {number} account_id
- * @property {number} dp_id
+ * @property {string} account_id
+ * @property {string} dp_id
  * @property {boolean} is_self_ship
- * @property {number} plan_id
+ * @property {string} plan_id
  * @property {Object} plan_rules
  * @property {string} stage
  */
@@ -14536,6 +14535,12 @@ class PlatformClient {
  * @property {boolean} success
  */
 /**
+ * @typedef DpIds
+ * @property {boolean} enabled
+ * @property {Object} [meta]
+ * @property {number} priority
+ */
+/**
  * @typedef DpMultipleRuleSuccessResponse
  * @property {DpRuleResponse[]} items
  * @property {Page} page
@@ -14547,7 +14552,6 @@ class PlatformClient {
  * @property {number} [company_id]
  * @property {Object[]} conditions
  * @property {Object} dp_ids
- * @property {string} identifier
  * @property {boolean} [is_active]
  * @property {string} name
  */
@@ -14555,11 +14559,11 @@ class PlatformClient {
  * @typedef DpRuleResponse
  * @property {number} company_id
  * @property {string[]} conditions
- * @property {string} [created_by]
+ * @property {Object} [created_by]
  * @property {string} [created_on]
  * @property {Object} dp_ids
  * @property {boolean} [is_active]
- * @property {string} [modified_by]
+ * @property {Object} [modified_by]
  * @property {string} [modified_on]
  * @property {string} name
  * @property {string} uid
@@ -14574,7 +14578,6 @@ class PlatformClient {
  * @typedef DpRulesUpdateRequest
  * @property {Object[]} conditions
  * @property {Object} dp_ids
- * @property {string} [identifier]
  * @property {boolean} is_active
  * @property {string} name
  */

@@ -1874,6 +1874,7 @@ class PlatformApplicationClient {
 /** @typedef DPApplicationRuleResponse */
 /** @typedef DPCompanyRuleRequest */
 /** @typedef DPCompanyRuleResponse */
+/** @typedef DpIds */
 /** @typedef DpMultipleRuleSuccessResponse */
 /** @typedef DpRuleRequest */
 /** @typedef DpRuleResponse */

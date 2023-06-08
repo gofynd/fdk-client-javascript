@@ -21,6 +21,7 @@ declare class ServiceabilityModel {
     static DPApplicationRuleResponse(): any;
     static DPCompanyRuleRequest(): any;
     static DPCompanyRuleResponse(): any;
+    static DpIds(): any;
     static DpMultipleRuleSuccessResponse(): any;
     static DpRuleRequest(): any;
     static DpRuleResponse(): any;

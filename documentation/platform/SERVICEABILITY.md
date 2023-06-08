@@ -1844,7 +1844,6 @@ Response status_code
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | data | [[DP](#DP)] |  no  |  |
- | identifier | string? |  yes  |  |
  
 
 ---
@@ -1953,10 +1952,10 @@ Response status_code
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | account_id | number |  no  |  |
- | dp_id | number |  no  |  |
+ | account_id | string |  no  |  |
+ | dp_id | string |  no  |  |
  | is_self_ship | boolean |  no  |  |
- | plan_id | number |  no  |  |
+ | plan_id | string |  no  |  |
  | plan_rules | string |  no  |  |
  | stage | string |  no  |  |
  
@@ -2014,6 +2013,17 @@ Response status_code
 
 ---
 
+#### [DpIds](#DpIds)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | enabled | boolean |  no  |  |
+ | meta | string? |  yes  |  |
+ | priority | number |  no  |  |
+ 
+
+---
+
 #### [DpMultipleRuleSuccessResponse](#DpMultipleRuleSuccessResponse)
 
  | Properties | Type | Nullable | Description |
@@ -2032,8 +2042,7 @@ Response status_code
  | ---------- | ---- | -------- | ----------- |
  | company_id | number? |  yes  |  |
  | conditions | [string] |  no  |  |
- | dp_ids | string |  no  |  |
- | identifier | string |  no  |  |
+ | dp_ids | [String: [DpIds](#DpIds)] |  no  |  |
  | is_active | boolean? |  yes  |  |
  | name | string |  no  |  |
  
@@ -2075,7 +2084,6 @@ Response status_code
  | ---------- | ---- | -------- | ----------- |
  | conditions | [string] |  no  |  |
  | dp_ids | string |  no  |  |
- | identifier | string? |  yes  |  |
  | is_active | boolean |  no  |  |
  | name | string |  no  |  |
  

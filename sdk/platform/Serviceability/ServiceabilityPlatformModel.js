@@ -51,7 +51,6 @@ class ServiceabilityModel {
   static CompanyDpAccountRequest() {
     return Joi.object({
       data: Joi.array().items(ServiceabilityModel.DP()).required(),
-      identifier: Joi.string().allow(""),
     });
   }
   static CompanyDpAccountResponse() {
@@ -130,10 +129,10 @@ class ServiceabilityModel {
   }
   static DP() {
     return Joi.object({
-      account_id: Joi.number().required(),
-      dp_id: Joi.number().required(),
+      account_id: Joi.string().allow("").required(),
+      dp_id: Joi.string().allow("").required(),
       is_self_ship: Joi.boolean().required(),
-      plan_id: Joi.number().required(),
+      plan_id: Joi.string().allow("").required(),
       plan_rules: Joi.any().required(),
       stage: Joi.string().allow("").required(),
     });
@@ -169,6 +168,13 @@ class ServiceabilityModel {
       success: Joi.boolean().required(),
     });
   }
+  static DpIds() {
+    return Joi.object({
+      enabled: Joi.boolean().required(),
+      meta: Joi.any(),
+      priority: Joi.number().required(),
+    });
+  }
   static DpMultipleRuleSuccessResponse() {
     return Joi.object({
       items: Joi.array().items(ServiceabilityModel.DpRuleResponse()).required(),
@@ -181,8 +187,9 @@ class ServiceabilityModel {
     return Joi.object({
       company_id: Joi.number(),
       conditions: Joi.array().items(Joi.any()).required(),
-      dp_ids: Joi.object().pattern(/\S/, Joi.any()).required(),
-      identifier: Joi.string().allow("").required(),
+      dp_ids: Joi.object()
+        .pattern(/\S/, ServiceabilityModel.DpIds())
+        .required(),
       is_active: Joi.boolean(),
       name: Joi.string().allow("").required(),
     });
@@ -191,11 +198,11 @@ class ServiceabilityModel {
     return Joi.object({
       company_id: Joi.number().required(),
       conditions: Joi.array().items(Joi.string().allow("")).required(),
-      created_by: Joi.string().allow(""),
+      created_by: Joi.any(),
       created_on: Joi.string().allow(""),
       dp_ids: Joi.any().required(),
       is_active: Joi.boolean(),
-      modified_by: Joi.string().allow(""),
+      modified_by: Joi.any(),
       modified_on: Joi.string().allow(""),
       name: Joi.string().allow("").required(),
       uid: Joi.string().allow("").required(),
@@ -212,7 +219,6 @@ class ServiceabilityModel {
     return Joi.object({
       conditions: Joi.array().items(Joi.any()).required(),
       dp_ids: Joi.object().pattern(/\S/, Joi.any()).required(),
-      identifier: Joi.string().allow(""),
       is_active: Joi.boolean().required(),
       name: Joi.string().allow("").required(),
     });
