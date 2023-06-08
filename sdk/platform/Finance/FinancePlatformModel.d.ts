@@ -28,9 +28,11 @@ declare class FinanceModel {
     static GetReasonResponse(): any;
     static GetReportListData(): any;
     static GetReportListRequest(): any;
+    static InoviceListingPayloadDataFilters(): any;
     static InvoiceListingPayloadData(): any;
     static InvoiceListingRequest(): any;
     static InvoiceListingResponse(): any;
+    static InvoiceListingResponseItems(): any;
     static InvoicePdfPayloadData(): any;
     static InvoicePdfRequest(): any;
     static InvoicePdfResponse(): any;

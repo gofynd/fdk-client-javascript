@@ -15152,13 +15152,19 @@ class PlatformClient {
  * @property {GetReportListData} [data]
  */
 /**
+ * @typedef InoviceListingPayloadDataFilters
+ * @property {string[]} [company_id]
+ * @property {string[]} [invoice_type]
+ * @property {string[]} [payment_status]
+ */
+/**
  * @typedef InvoiceListingPayloadData
- * @property {string} [end_end]
- * @property {Object[]} [filters]
+ * @property {string} [end_date]
+ * @property {InoviceListingPayloadDataFilters} [filters]
  * @property {number} [page]
  * @property {number} [pagesize]
  * @property {string} [search]
- * @property {string} [start_end]
+ * @property {string} [start_date]
  */
 /**
  * @typedef InvoiceListingRequest
@@ -15167,8 +15173,21 @@ class PlatformClient {
 /**
  * @typedef InvoiceListingResponse
  * @property {number} [item_count]
- * @property {Object[]} [items]
+ * @property {InvoiceListingResponseItems[]} [items]
  * @property {Page} [page]
+ */
+/**
+ * @typedef InvoiceListingResponseItems
+ * @property {number} [amount]
+ * @property {string} [company]
+ * @property {string} [due_date]
+ * @property {string} [invoice_date]
+ * @property {string} [invoice_id]
+ * @property {string} [invoice_number]
+ * @property {string} [invoice_type]
+ * @property {boolean} [is_downloadable]
+ * @property {string} [period]
+ * @property {string} [status]
  */
 /**
  * @typedef InvoicePdfPayloadData

@@ -59,7 +59,7 @@ declare class Finance {
      * @summary:
      * @description:
      */
-    getInvoiceList({ body }?: {
+    getInvoiceType({ body }?: {
         body: GetInvoiceListRequest;
     }): Promise<GetInvoiceListResponse>;
     /**

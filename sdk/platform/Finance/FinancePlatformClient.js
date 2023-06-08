@@ -340,8 +340,8 @@ class Finance {
    * @summary:
    * @description:
    */
-  async getInvoiceList({ body } = {}) {
-    const { error } = FinanceValidator.getInvoiceList().validate(
+  async getInvoiceType({ body } = {}) {
+    const { error } = FinanceValidator.getInvoiceType().validate(
       {
         body,
       },
@@ -352,7 +352,7 @@ class Finance {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = FinanceValidator.getInvoiceList().validate(
+    const { error: warrning } = FinanceValidator.getInvoiceType().validate(
       {
         body,
       },
@@ -361,7 +361,7 @@ class Finance {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for getInvoiceList",
+        message: "Parameter Validation warrnings for getInvoiceType",
       });
       Logger({ level: "WARN", message: warrning });
     }
@@ -389,7 +389,7 @@ class Finance {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for getInvoiceList",
+        message: "Response Validation Warnnings for getInvoiceType",
       });
       Logger({ level: "WARN", message: res_error });
     }

@@ -180,14 +180,21 @@ class FinanceModel {
       data: FinanceModel.GetReportListData(),
     });
   }
+  static InoviceListingPayloadDataFilters() {
+    return Joi.object({
+      company_id: Joi.array().items(Joi.string().allow("")),
+      invoice_type: Joi.array().items(Joi.string().allow("")),
+      payment_status: Joi.array().items(Joi.string().allow("")),
+    });
+  }
   static InvoiceListingPayloadData() {
     return Joi.object({
-      end_end: Joi.string().allow(""),
-      filters: Joi.array().items(Joi.any()),
+      end_date: Joi.string().allow(""),
+      filters: FinanceModel.InoviceListingPayloadDataFilters(),
       page: Joi.number(),
       pagesize: Joi.number(),
       search: Joi.string().allow(""),
-      start_end: Joi.string().allow(""),
+      start_date: Joi.string().allow(""),
     });
   }
   static InvoiceListingRequest() {
@@ -198,8 +205,22 @@ class FinanceModel {
   static InvoiceListingResponse() {
     return Joi.object({
       item_count: Joi.number(),
-      items: Joi.array().items(Joi.any()),
+      items: Joi.array().items(FinanceModel.InvoiceListingResponseItems()),
       page: FinanceModel.Page(),
+    });
+  }
+  static InvoiceListingResponseItems() {
+    return Joi.object({
+      amount: Joi.number(),
+      company: Joi.string().allow(""),
+      due_date: Joi.string().allow(""),
+      invoice_date: Joi.string().allow(""),
+      invoice_id: Joi.string().allow(""),
+      invoice_number: Joi.string().allow(""),
+      invoice_type: Joi.string().allow(""),
+      is_downloadable: Joi.boolean(),
+      period: Joi.string().allow(""),
+      status: Joi.string().allow(""),
     });
   }
   static InvoicePdfPayloadData() {

@@ -1970,9 +1970,11 @@ class PlatformApplicationClient {
 /** @typedef GetReasonResponse */
 /** @typedef GetReportListData */
 /** @typedef GetReportListRequest */
+/** @typedef InoviceListingPayloadDataFilters */
 /** @typedef InvoiceListingPayloadData */
 /** @typedef InvoiceListingRequest */
 /** @typedef InvoiceListingResponse */
+/** @typedef InvoiceListingResponseItems */
 /** @typedef InvoicePdfPayloadData */
 /** @typedef InvoicePdfRequest */
 /** @typedef InvoicePdfResponse */

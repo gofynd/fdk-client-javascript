@@ -5,7 +5,7 @@ declare class FinanceValidator {
     static generateReport(): any;
     static getAffiliate(): any;
     static getData(): any;
-    static getInvoiceList(): any;
+    static getInvoiceType(): any;
     static getReason(): any;
     static getReportList(): any;
     static invoiceListing(): any;

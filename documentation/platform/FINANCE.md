@@ -13,7 +13,7 @@ Handles all finance related activities
 * [generateReport](#generatereport)
 * [getAffiliate](#getaffiliate)
 * [getData](#getdata)
-* [getInvoiceList](#getinvoicelist)
+* [getInvoiceType](#getinvoicetype)
 * [getReason](#getreason)
 * [getReportList](#getreportlist)
 * [invoiceListing](#invoicelisting)
@@ -302,17 +302,17 @@ Success
 ---
 
 
-### getInvoiceList
+### getInvoiceType
 
 
 
 
 ```javascript
 // Promise
-const promise = platformClient.finance.getInvoiceList({  body : value });
+const promise = platformClient.finance.getInvoiceType({  body : value });
 
 // Async/Await
-const data = await platformClient.finance.getInvoiceList({  body : value });
+const data = await platformClient.finance.getInvoiceType({  body : value });
 ```
 
 
@@ -925,16 +925,27 @@ Success
 
 ---
 
+#### [InoviceListingPayloadDataFilters](#InoviceListingPayloadDataFilters)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | company_id | [string]? |  yes  |  |
+ | invoice_type | [string]? |  yes  |  |
+ | payment_status | [string]? |  yes  |  |
+ 
+
+---
+
 #### [InvoiceListingPayloadData](#InvoiceListingPayloadData)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | end_end | string? |  yes  |  |
- | filters | [string]? |  yes  |  |
+ | end_date | string? |  yes  |  |
+ | filters | [InoviceListingPayloadDataFilters](#InoviceListingPayloadDataFilters)? |  yes  |  |
  | page | number? |  yes  |  |
  | pagesize | number? |  yes  |  |
  | search | string? |  yes  |  |
- | start_end | string? |  yes  |  |
+ | start_date | string? |  yes  |  |
  
 
 ---
@@ -953,8 +964,26 @@ Success
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | item_count | number? |  yes  |  |
- | items | [string]? |  yes  |  |
+ | items | [[InvoiceListingResponseItems](#InvoiceListingResponseItems)]? |  yes  |  |
  | page | [Page](#Page)? |  yes  |  |
+ 
+
+---
+
+#### [InvoiceListingResponseItems](#InvoiceListingResponseItems)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | amount | number? |  yes  |  |
+ | company | string? |  yes  |  |
+ | due_date | string? |  yes  |  |
+ | invoice_date | string? |  yes  |  |
+ | invoice_id | string? |  yes  |  |
+ | invoice_number | string? |  yes  |  |
+ | invoice_type | string? |  yes  |  |
+ | is_downloadable | boolean? |  yes  |  |
+ | period | string? |  yes  |  |
+ | status | string? |  yes  |  |
  
 
 ---

@@ -32,7 +32,7 @@ class FinanceValidator {
     }).required();
   }
 
-  static getInvoiceList() {
+  static getInvoiceType() {
     return Joi.object({
       body: FinanceModel.GetInvoiceListRequest().required(),
     }).required();
