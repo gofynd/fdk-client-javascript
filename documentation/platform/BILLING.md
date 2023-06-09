@@ -1715,6 +1715,7 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | config | string? |  yes  |  |
  | description | string? |  yes  |  |
  | display_text | string? |  yes  |  |
  | enabled | boolean? |  yes  |  |
@@ -2190,7 +2191,7 @@ Success
  | latest_invoice | string? |  yes  |  |
  | modified_at | string? |  yes  |  |
  | pause_collection | [SubscriptionPauseCollection](#SubscriptionPauseCollection)? |  yes  |  |
- | plan_data | [Plan](#Plan)? |  yes  |  |
+ | plan_data | string? |  yes  |  |
  | plan_id | string? |  yes  |  |
  | product_suite_id | string? |  yes  |  |
  | subscriber_id | string? |  yes  |  |

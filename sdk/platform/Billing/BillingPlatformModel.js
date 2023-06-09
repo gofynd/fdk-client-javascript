@@ -100,6 +100,7 @@ class BillingModel {
   }
   static DetailedPlanComponents() {
     return Joi.object({
+      config: Joi.any(),
       description: Joi.string().allow(""),
       display_text: Joi.string().allow(""),
       enabled: Joi.boolean(),
@@ -447,7 +448,7 @@ class BillingModel {
       latest_invoice: Joi.string().allow(""),
       modified_at: Joi.string().allow(""),
       pause_collection: BillingModel.SubscriptionPauseCollection(),
-      plan_data: BillingModel.Plan(),
+      plan_data: Joi.any(),
       plan_id: Joi.string().allow(""),
       product_suite_id: Joi.string().allow(""),
       subscriber_id: Joi.string().allow(""),

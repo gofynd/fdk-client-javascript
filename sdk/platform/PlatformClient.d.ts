@@ -1893,6 +1893,7 @@ type DetailedPlan = {
     type?: string;
 };
 type DetailedPlanComponents = {
+    config?: any;
     description?: string;
     display_text?: string;
     enabled?: boolean;
@@ -2167,7 +2168,7 @@ type Subscription = {
     latest_invoice?: string;
     modified_at?: string;
     pause_collection?: SubscriptionPauseCollection;
-    plan_data?: Plan;
+    plan_data?: any;
     plan_id?: string;
     product_suite_id?: string;
     subscriber_id?: string;
@@ -5906,7 +5907,7 @@ type CreateSearchReranking = {
     is_active?: boolean;
     modified_by?: any;
     modified_on?: string;
-    ranking?: BoostBury;
+    ranking?: BoostBury1;
     words: string[];
 };
 type CrossSellingDataResponse = {
@@ -7001,7 +7002,7 @@ type ProductCreateUpdateSchemaV2 = {
     net_quantity?: NetQuantity;
     no_of_boxes?: number;
     product_group_tag?: string[];
-    product_publish?: ProductPublish;
+    product_publish?: ProductPublish1;
     requester?: string;
     return_config: ReturnConfig;
     short_description?: string;
@@ -7181,7 +7182,7 @@ type ProductSchemaV2 = {
     pending?: string;
     primary_color?: string;
     product_group_tag?: string[];
-    product_publish?: ProductPublish1;
+    product_publish?: ProductPublish;
     return_config?: ReturnConfigResponse;
     short_description?: string;
     size_guide?: string;
@@ -7373,7 +7374,7 @@ type SearchRerankingModel = {
     is_active?: boolean;
     modified_by?: UserDetail;
     modified_on: string;
-    ranking?: BoostBury1;
+    ranking?: BoostBury;
     verified_by?: UserDetail;
     verified_on?: string;
     words: string[];

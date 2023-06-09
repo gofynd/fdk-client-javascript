@@ -19296,7 +19296,7 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | boost | [[RerankingAttribute](#RerankingAttribute)]? |  yes  |  |
+ | boost | [[RerankingAttribute](#RerankingAttribute)]? |  yes  | A list of attributes to boost the relevance of the search results. |
  
 
 ---
@@ -19305,7 +19305,7 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | boost | [[RerankingAttribute1](#RerankingAttribute1)]? |  yes  | A list of attributes to boost the relevance of the search results. |
+ | boost | [[RerankingAttribute1](#RerankingAttribute1)]? |  yes  |  |
  
 
 ---
@@ -19381,7 +19381,7 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | success | boolean? |  yes  |  |
+ | success | boolean? |  yes  | Flag indicating the success status of the bulk HSN operation. |
  
 
 ---
@@ -19531,23 +19531,23 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | created_by | string? |  yes  |  |
- | created_on | string? |  yes  |  |
- | departments | [number] |  no  |  |
- | hierarchy | [[Hierarchy](#Hierarchy)]? |  yes  |  |
- | id | string? |  yes  |  |
- | is_active | boolean |  no  |  |
- | level | number |  no  |  |
- | marketplaces | [CategoryMapping](#CategoryMapping)? |  yes  |  |
- | media | [Media3](#Media3)? |  yes  |  |
- | modified_by | string? |  yes  |  |
- | modified_on | string? |  yes  |  |
- | name | string |  no  |  |
- | priority | number? |  yes  |  |
- | slug | string? |  yes  |  |
- | synonyms | [string]? |  yes  |  |
- | tryouts | [string]? |  yes  |  |
- | uid | number? |  yes  |  |
+ | created_by | string? |  yes  | It is the details of the user who created the category. |
+ | created_on | string? |  yes  | It is Date and time when the category was created. |
+ | departments | [number] |  no  | It is the list of unique department the category belongs to. |
+ | hierarchy | [[Hierarchy](#Hierarchy)]? |  yes  | It is the list of category hierarchies for each department of an L3 category. |
+ | id | string? |  yes  | It is the unique identifier of the category. |
+ | is_active | boolean |  no  | It is the flag indicating if the category is active. |
+ | level | number |  no  | It is the level of category |
+ | marketplaces | [CategoryMapping](#CategoryMapping)? |  yes  | It is the mapping of the category in different marketplaces. |
+ | media | [Media3](#Media3)? |  yes  | It is the details of the media such as banner and logo.. |
+ | modified_by | string? |  yes  | It is the details of the user who last modified the category. |
+ | modified_on | string? |  yes  | It is the date and time when the category was last modified. |
+ | name | string |  no  | It is the name of the category |
+ | priority | number? |  yes  | It is the priority of the category. |
+ | slug | string? |  yes  | It is the slug of the category. |
+ | synonyms | [string]? |  yes  | It is the list of synonyms. |
+ | tryouts | [string]? |  yes  | It is the list of tryouts. |
+ | uid | number? |  yes  | It is the unique identifier of the category. |
  
 
 ---
@@ -19556,8 +19556,8 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | message | string? |  yes  |  |
- | uid | number? |  yes  |  |
+ | message | string? |  yes  | It is the message of the response from the category. |
+ | uid | number? |  yes  | It is the unique identifier of the category. |
  
 
 ---
@@ -19590,9 +19590,9 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | ajio | [CategoryMappingValues](#CategoryMappingValues)? |  yes  |  |
- | facebook | [CategoryMappingValues](#CategoryMappingValues)? |  yes  |  |
- | google | [CategoryMappingValues](#CategoryMappingValues)? |  yes  |  |
+ | ajio | [CategoryMappingValues](#CategoryMappingValues)? |  yes  | It is the category id mapping for ajio platform. |
+ | facebook | [CategoryMappingValues](#CategoryMappingValues)? |  yes  | It is the category id mapping for facebook platform. |
+ | google | [CategoryMappingValues](#CategoryMappingValues)? |  yes  | It is the category id mapping for google platform. |
  
 
 ---
@@ -19601,8 +19601,8 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | catalog_id | number? |  yes  |  |
- | name | string |  no  |  |
+ | catalog_id | number? |  yes  | It is the category id mapping of the respective platform with Fynd Platform. |
+ | name | string |  no  | It is the name of the Category in the respective platform. |
  
 
 ---
@@ -19611,17 +19611,17 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | departments | [number] |  no  |  |
- | hierarchy | [[Hierarchy](#Hierarchy)]? |  yes  |  |
- | is_active | boolean |  no  |  |
- | level | number |  no  |  |
- | marketplaces | [CategoryMapping](#CategoryMapping)? |  yes  |  |
- | media | [Media3](#Media3)? |  yes  |  |
- | name | string |  no  |  |
- | priority | number? |  yes  |  |
- | slug | string? |  yes  |  |
- | synonyms | [string]? |  yes  |  |
- | tryouts | [string]? |  yes  |  |
+ | departments | [number] |  no  | It is the list of unique department the category belongs to. |
+ | hierarchy | [[Hierarchy](#Hierarchy)]? |  yes  | It is the list of category hierarchies for each department of an L3 category. |
+ | is_active | boolean |  no  | It is the flag indicating if the category is active. |
+ | level | number |  no  | It is the level of category |
+ | marketplaces | [CategoryMapping](#CategoryMapping)? |  yes  | It is the mapping of the category in different marketplaces. |
+ | media | [Media3](#Media3)? |  yes  | It is the details of the media such as banner and logo.. |
+ | name | string |  no  | It is the name of the category |
+ | priority | number? |  yes  | It is the priority of the category. |
+ | slug | string? |  yes  | It is the slug of the category. |
+ | synonyms | [string]? |  yes  | It is the list of synonyms. |
+ | tryouts | [string]? |  yes  | It is the list of tryouts. |
  
 
 ---
@@ -19640,8 +19640,8 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | message | string? |  yes  |  |
- | success | boolean? |  yes  |  |
+ | message | string? |  yes  | It is the message of the response from the category. |
+ | success | boolean? |  yes  | It is the flag indication the success response. |
  
 
 ---
@@ -20167,7 +20167,7 @@ List of fields and validation values fro each. See example below or refer `Inven
  | is_active | boolean? |  yes  |  |
  | modified_by | string? |  yes  |  |
  | modified_on | string? |  yes  |  |
- | ranking | [BoostBury](#BoostBury)? |  yes  |  |
+ | ranking | [BoostBury1](#BoostBury1)? |  yes  |  |
  | words | [string] |  no  |  |
  
 
@@ -20365,11 +20365,11 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | height | number |  no  |  |
- | is_default | boolean |  no  |  |
- | length | number |  no  |  |
- | unit | string |  no  |  |
- | width | number |  no  |  |
+ | height | number |  no  | The height dimension. |
+ | is_default | boolean |  no  | Indicates if it is the default dimension. |
+ | length | number |  no  | The length dimension. |
+ | unit | string |  no  | The unit of dimension. |
+ | width | number |  no  | The width dimension. |
  
 
 ---
@@ -20909,9 +20909,9 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | department | number |  no  |  |
- | l1 | number |  no  |  |
- | l2 | number |  no  |  |
+ | department | number |  no  | It is the unique identifier of the department the category is mapped to. |
+ | l1 | number |  no  | It is the unique id of the L1 category mapped to the L3 category. |
+ | l2 | number |  no  | It is the unique id of the L2 category mapped to the L3 category. |
  
 
 ---
@@ -20920,7 +20920,7 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | data | [HsnCodesObject](#HsnCodesObject)? |  yes  |  |
+ | data | [HsnCodesObject](#HsnCodesObject)? |  yes  | The HSN code data. |
  
 
 ---
@@ -20939,17 +20939,17 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | company_id | number? |  yes  |  |
- | hs2_code | string? |  yes  |  |
- | hsn_code | string? |  yes  |  |
- | id | string? |  yes  |  |
- | modified_on | string? |  yes  |  |
- | tax1 | number? |  yes  |  |
- | tax2 | number? |  yes  |  |
- | tax_on_esp | boolean? |  yes  |  |
- | tax_on_mrp | boolean? |  yes  |  |
- | threshold1 | number? |  yes  |  |
- | threshold2 | number? |  yes  |  |
+ | company_id | number? |  yes  | The ID of the company. |
+ | hs2_code | string? |  yes  | The HS2 code. |
+ | hsn_code | string? |  yes  | The HSN code. |
+ | id | string? |  yes  | The identifier of the HSN code. |
+ | modified_on | string? |  yes  | The date and time when the HSN code was last modified. |
+ | tax1 | number? |  yes  | The first tax rate. |
+ | tax2 | number? |  yes  | The second tax rate. |
+ | tax_on_esp | boolean? |  yes  | Flag indicating whether tax is applicable on ESP. |
+ | tax_on_mrp | boolean? |  yes  | Flag indicating whether tax is applicable on MRP. |
+ | threshold1 | number? |  yes  | The threshold for the first tax rate. |
+ | threshold2 | number? |  yes  | The threshold for the second tax rate. |
  
 
 ---
@@ -20978,17 +20978,17 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | country_code | string |  no  |  |
- | created_by | string? |  yes  |  |
- | created_on | string? |  yes  |  |
- | description | string |  no  |  |
- | hsn_code | string |  no  |  |
- | hsn_code_id | string? |  yes  |  |
- | modified_by | string? |  yes  |  |
- | modified_on | string? |  yes  |  |
- | reporting_hsn | string |  no  |  |
- | taxes | [[TaxSlab](#TaxSlab)] |  no  |  |
- | type | string |  no  |  |
+ | country_code | string |  no  | Country code. |
+ | created_by | string? |  yes  | Details of the user who created the HSN data. |
+ | created_on | string? |  yes  | Date and time when the HSN data was created. |
+ | description | string |  no  | Description of the HSN data. |
+ | hsn_code | string |  no  | HSN code. |
+ | hsn_code_id | string? |  yes  | Unique identifier of the HSN code. |
+ | modified_by | string? |  yes  | Details of the user who last modified the HSN data. |
+ | modified_on | string? |  yes  | Date and time when the HSN data was last modified. |
+ | reporting_hsn | string |  no  | HSN code. |
+ | taxes | [[TaxSlab](#TaxSlab)] |  no  | List of tax slabs. |
+ | type | string |  no  | Type of HSN data (goods or services). |
  
 
 ---
@@ -20997,17 +20997,17 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | company_id | number |  no  |  |
- | hs2_code | string |  no  |  |
- | hsn_code | string |  no  |  |
- | is_active | boolean? |  yes  |  |
- | tax1 | number |  no  |  |
- | tax2 | number? |  yes  |  |
- | tax_on_esp | boolean? |  yes  |  |
- | tax_on_mrp | boolean |  no  |  |
- | threshold1 | number |  no  |  |
- | threshold2 | number? |  yes  |  |
- | uid | number? |  yes  |  |
+ | company_id | number |  no  | The ID of the company. |
+ | hs2_code | string |  no  | The HS2 code. |
+ | hsn_code | string |  no  | The HSN code. |
+ | is_active | boolean? |  yes  | Flag indicating whether the entry is active. |
+ | tax1 | number |  no  | The first tax rate. |
+ | tax2 | number? |  yes  | The second tax rate. |
+ | tax_on_esp | boolean? |  yes  | Flag indicating whether tax is applicable on ESP. |
+ | tax_on_mrp | boolean |  no  | Flag indicating whether tax is applicable on MRP. |
+ | threshold1 | number |  no  | The threshold for the first tax rate. |
+ | threshold2 | number? |  yes  | The threshold for the second tax rate. |
+ | uid | number? |  yes  | The unique identifier. |
  
 
 ---
@@ -21162,8 +21162,8 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | errors | string? |  yes  |  |
- | message | string |  no  |  |
+ | errors | string? |  yes  | It is the error message of the inventory error response. |
+ | message | string |  no  | It is the message of the activity performed. |
  
 
 ---
@@ -21207,19 +21207,19 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | currency | string? |  yes  |  |
- | expiration_date | string? |  yes  |  |
- | item_dimensions_unit_of_measure | string? |  yes  |  |
- | item_weight_unit_of_measure | string? |  yes  |  |
- | price | number? |  yes  |  |
- | price_effective | number? |  yes  |  |
- | price_marked | number? |  yes  |  |
- | quantity | number? |  yes  |  |
- | seller_identifier | string |  no  |  |
- | store_code | string |  no  |  |
- | tags | [string]? |  yes  |  |
- | total_quantity | number? |  yes  |  |
- | trace_id | string? |  yes  |  |
+ | currency | string? |  yes  | The currency used for the item price. |
+ | expiration_date | string? |  yes  | The expiration date of the item. |
+ | item_dimensions_unit_of_measure | string? |  yes  | The unit of measure for the item dimensions. |
+ | item_weight_unit_of_measure | string? |  yes  | The unit of measure for the item weight. |
+ | price | number? |  yes  | The price of the item. |
+ | price_effective | number? |  yes  | The effective price of the item. |
+ | price_marked | number? |  yes  | The marked price of the item. |
+ | quantity | number? |  yes  | The quantity of the item. |
+ | seller_identifier | string |  no  | The identifier of the seller. |
+ | store_code | string |  no  | The code of the store. |
+ | tags | [string]? |  yes  | The tags associated with the item. |
+ | total_quantity | number? |  yes  | The total quantity of the item. |
+ | trace_id | string? |  yes  | The trace ID of the inventory job payload. |
  
 
 ---
@@ -21241,14 +21241,14 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | expiration_date | string? |  yes  |  |
- | price_effective | number? |  yes  |  |
- | price_marked | number? |  yes  |  |
- | seller_identifier | string |  no  |  |
- | store_id | number |  no  |  |
- | tags | [string]? |  yes  |  |
- | total_quantity | number? |  yes  |  |
- | trace_id | string? |  yes  |  |
+ | expiration_date | string? |  yes  | The expiration date of the inventory item. |
+ | price_effective | number? |  yes  | The effective price of the inventory item. |
+ | price_marked | number? |  yes  | The marked price of the inventory item. |
+ | seller_identifier | string |  no  | The identifier of the seller. |
+ | store_id | number |  no  | The ID of the store. |
+ | tags | [string]? |  yes  | The tags associated with the inventory item. |
+ | total_quantity | number? |  yes  | The total quantity of the inventory item. |
+ | trace_id | string? |  yes  | The trace ID of the inventory payload. |
  
 
 ---
@@ -21268,9 +21268,9 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | company_id | number |  no  |  |
- | meta | string? |  yes  |  |
- | payload | [[InventoryPayload](#InventoryPayload)]? |  yes  |  |
+ | company_id | number |  no  | The ID of the company. |
+ | meta | string? |  yes  | Additional metadata for the inventory request. |
+ | payload | [[InventoryPayload](#InventoryPayload)]? |  yes  | The list of inventory payloads. |
  
 
 ---
@@ -21330,42 +21330,42 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | _custom_json | string? |  yes  |  |
- | added_on_store | string? |  yes  |  |
- | brand | [BrandMeta](#BrandMeta) |  no  |  |
- | company | [CompanyMeta](#CompanyMeta) |  no  |  |
- | country_of_origin | string |  no  |  |
- | created_by | [UserSerializer](#UserSerializer)? |  yes  |  |
- | dimension | [DimensionResponse](#DimensionResponse) |  no  |  |
- | expiration_date | string? |  yes  |  |
- | fragile | boolean |  no  |  |
- | fynd_article_code | string |  no  |  |
- | fynd_item_code | string |  no  |  |
- | fynd_meta | string? |  yes  |  |
- | identifier | string |  no  |  |
- | is_active | boolean? |  yes  |  |
+ | _custom_json | string? |  yes  | Custom JSON data for the article. |
+ | added_on_store | string? |  yes  | The date and time when the article was added to the store. |
+ | brand | [BrandMeta](#BrandMeta) |  no  | The metadata of the brand. |
+ | company | [CompanyMeta](#CompanyMeta) |  no  | The metadata of the company. |
+ | country_of_origin | string |  no  | The country of origin of the article. |
+ | created_by | [UserSerializer](#UserSerializer)? |  yes  | The user who created the article. |
+ | dimension | [DimensionResponse](#DimensionResponse) |  no  | The dimensions of the article. |
+ | expiration_date | string? |  yes  | The expiration date of the article. |
+ | fragile | boolean |  no  | Indicates if the article is fragile. |
+ | fynd_article_code | string |  no  | The Fynd article code. |
+ | fynd_item_code | string |  no  | The Fynd item code. |
+ | fynd_meta | string? |  yes  | The Fynd metadata of the article. |
+ | identifier | string |  no  | The identifier of the article. |
+ | is_active | boolean? |  yes  | Indicates if the article is active. |
  | is_set | boolean? |  yes  |  |
- | item_id | number |  no  |  |
- | manufacturer | [ManufacturerResponse](#ManufacturerResponse) |  no  |  |
- | meta | string? |  yes  |  |
- | modified_by | [UserSerializer](#UserSerializer)? |  yes  |  |
- | price | [PriceMeta](#PriceMeta) |  no  |  |
+ | item_id | number |  no  | The ID of the item. |
+ | manufacturer | [ManufacturerResponse](#ManufacturerResponse) |  no  | The manufacturer of the article. |
+ | meta | string? |  yes  | Additional metadata for the article. |
+ | modified_by | [UserSerializer](#UserSerializer)? |  yes  | The user who modified the article. |
+ | price | [PriceMeta](#PriceMeta) |  no  | The price metadata of the article. |
  | quantities | [Quantities](#Quantities)? |  yes  |  |
- | raw_meta | string? |  yes  |  |
- | return_config | [ReturnConfig1](#ReturnConfig1)? |  yes  |  |
- | seller_identifier | string |  no  |  |
+ | raw_meta | string? |  yes  | The raw metadata of the article. |
+ | return_config | [ReturnConfig1](#ReturnConfig1)? |  yes  | The return configuration of the article. |
+ | seller_identifier | string |  no  | The seller identifier of the article. |
  | set | [InventorySet](#InventorySet)? |  yes  |  |
- | size | string |  no  |  |
- | stage | string? |  yes  |  |
- | store | [StoreMeta](#StoreMeta) |  no  |  |
- | tags | [string]? |  yes  |  |
- | tax_identifier | string? |  yes  |  |
- | total_quantity | number |  no  |  |
- | trace_id | string? |  yes  |  |
- | track_inventory | boolean? |  yes  |  |
- | trader | [[Trader1](#Trader1)]? |  yes  |  |
- | uid | string |  no  |  |
- | weight | [WeightResponse](#WeightResponse) |  no  |  |
+ | size | string |  no  | The size of the article. |
+ | stage | string? |  yes  | The stage of the article. |
+ | store | [StoreMeta](#StoreMeta) |  no  | The metadata of the store. |
+ | tags | [string]? |  yes  | The tags associated with the article. |
+ | tax_identifier | string? |  yes  | The tax identifier of the article. |
+ | total_quantity | number |  no  | The total quantity of the article. |
+ | trace_id | string? |  yes  | The trace ID of the article. |
+ | track_inventory | boolean? |  yes  | Indicates if the inventory is tracked for the article. |
+ | trader | [[Trader1](#Trader1)]? |  yes  | The traders associated with the article. |
+ | uid | string |  no  | The unique identifier of the article. |
+ | weight | [WeightResponse](#WeightResponse) |  no  | The weight of the article. |
  
 
 ---
@@ -21396,7 +21396,7 @@ List of fields and validation values fro each. See example below or refer `Inven
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | items | [[InventoryResponseItem](#InventoryResponseItem)]? |  yes  |  |
- | message | string |  no  |  |
+ | message | string |  no  | It is the success message of the inventory update. |
  
 
 ---
@@ -21436,16 +21436,16 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | currency | string |  no  |  |
+ | currency | string |  no  | The currency used for the item price. |
  | expiration_date | string? |  yes  |  |
  | identifiers | [[GTIN](#GTIN)] |  no  |  |
  | is_set | boolean? |  yes  |  |
- | item_dimensions_unit_of_measure | string? |  yes  |  |
- | item_height | number? |  yes  |  |
- | item_length | number? |  yes  |  |
- | item_weight | number? |  yes  |  |
- | item_weight_unit_of_measure | string? |  yes  |  |
- | item_width | number? |  yes  |  |
+ | item_dimensions_unit_of_measure | string? |  yes  | The unit of measure for the item dimensions. |
+ | item_height | number? |  yes  | The height of the item. |
+ | item_length | number? |  yes  | The length of the item. |
+ | item_weight | number? |  yes  | The weight of the item. |
+ | item_weight_unit_of_measure | string? |  yes  | The unit of measure for the item weight. |
+ | item_width | number? |  yes  | The width of the item. |
  | price | number? |  yes  |  |
  | price_effective | number |  no  |  |
  | price_transfer | number? |  yes  |  |
@@ -21592,9 +21592,9 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | address | string |  no  |  |
- | is_default | boolean |  no  |  |
- | name | string |  no  |  |
+ | address | string |  no  | The address of the manufacturer. |
+ | is_default | boolean |  no  | Indicates if it is the default manufacturer. |
+ | name | string |  no  | The name of the manufacturer. |
  
 
 ---
@@ -21647,9 +21647,9 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | landscape | string |  no  |  |
- | logo | string |  no  |  |
- | portrait | string |  no  |  |
+ | landscape | string |  no  | It is the landscape cdn url for the category. |
+ | logo | string |  no  | It is the logo cdn url for the category. |
+ | portrait | string |  no  | It is the portrait cdn url for the category. |
  
 
 ---
@@ -21855,11 +21855,11 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | current | string? |  yes  |  |
- | has_next | boolean? |  yes  |  |
- | has_previous | boolean? |  yes  |  |
- | item_total | number? |  yes  |  |
- | size | number? |  yes  |  |
+ | current | string? |  yes  | It is the current page of the page response schema. |
+ | has_next | boolean? |  yes  | It is the bool indicates if there is a  next page. |
+ | has_previous | boolean? |  yes  | It is the bool indicates if there is a  previous page. |
+ | item_total | number? |  yes  | It is the total number of item present for the filter. |
+ | size | number? |  yes  | It is the size of each page. |
  
 
 ---
@@ -21918,12 +21918,12 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | currency | string |  no  |  |
- | effective | number |  no  |  |
- | marked | number |  no  |  |
- | tp_notes | string? |  yes  |  |
- | transfer | number |  no  |  |
- | updated_at | string? |  yes  |  |
+ | currency | string |  no  | The currency used for the prices. |
+ | effective | number |  no  | The effective price. |
+ | marked | number |  no  | The marked price. |
+ | tp_notes | string? |  yes  | Additional notes for the transfer price. |
+ | transfer | number |  no  | The transfer price. |
+ | updated_at | string? |  yes  | The date and time of the last update. |
  
 
 ---
@@ -22170,7 +22170,7 @@ List of fields and validation values fro each. See example below or refer `Inven
  | net_quantity | [NetQuantity](#NetQuantity)? |  yes  |  |
  | no_of_boxes | number? |  yes  |  |
  | product_group_tag | [string]? |  yes  |  |
- | product_publish | [ProductPublish](#ProductPublish)? |  yes  |  |
+ | product_publish | [ProductPublish1](#ProductPublish1)? |  yes  |  |
  | requester | string? |  yes  |  |
  | return_config | [ReturnConfig](#ReturnConfig) |  no  |  |
  | short_description | string? |  yes  |  |
@@ -22446,7 +22446,7 @@ List of fields and validation values fro each. See example below or refer `Inven
  | pending | string? |  yes  |  |
  | primary_color | string? |  yes  |  |
  | product_group_tag | [string]? |  yes  |  |
- | product_publish | [ProductPublish1](#ProductPublish1)? |  yes  |  |
+ | product_publish | [ProductPublish](#ProductPublish)? |  yes  |  |
  | return_config | [ReturnConfigResponse](#ReturnConfigResponse)? |  yes  |  |
  | short_description | string? |  yes  |  |
  | size_guide | string? |  yes  |  |
@@ -22708,8 +22708,8 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | attribute_key | string |  no  |  |
- | attribute_value | string |  no  |  |
+ | attribute_key | string |  no  | The key of the attribute to rerank on. |
+ | attribute_value | string |  no  | The value of the attribute to rerank on. |
  
 
 ---
@@ -22718,8 +22718,8 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | attribute_key | string |  no  | The key of the attribute to rerank on. |
- | attribute_value | string |  no  | The value of the attribute to rerank on. |
+ | attribute_key | string |  no  |  |
+ | attribute_value | string |  no  |  |
  
 
 ---
@@ -22739,9 +22739,9 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | returnable | boolean? |  yes  |  |
- | time | number? |  yes  |  |
- | unit | string? |  yes  |  |
+ | returnable | boolean? |  yes  | Indicates if the item is returnable. |
+ | time | number? |  yes  | The return time in days or hours. |
+ | unit | string? |  yes  | The unit of return time. |
  
 
 ---
@@ -22810,7 +22810,7 @@ List of fields and validation values fro each. See example below or refer `Inven
  | is_active | boolean? |  yes  | A boolean indicating whether the search reranking model is active. |
  | modified_by | [UserDetail](#UserDetail)? |  yes  | User details of the last modifier of the document |
  | modified_on | string |  no  | Timestamp of the last modification of the document |
- | ranking | [BoostBury1](#BoostBury1)? |  yes  | A schema containing the attributes to boost the relevance of the search results. |
+ | ranking | [BoostBury](#BoostBury)? |  yes  | A schema containing the attributes to boost the relevance of the search results. |
  | verified_by | [UserDetail](#UserDetail)? |  yes  | User details of the verifier of the document, if applicable |
  | verified_on | string? |  yes  | Timestamp of when the document was verified, if applicable |
  | words | [string] |  no  | A list of search keywords. |
@@ -23355,9 +23355,9 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | is_default | boolean |  no  |  |
- | shipping | number |  no  |  |
- | unit | string |  no  |  |
+ | is_default | boolean |  no  | Indicates if it is the default weight. |
+ | shipping | number |  no  | The shipping weight. |
+ | unit | string |  no  | The unit of weight. |
  
 
 ---

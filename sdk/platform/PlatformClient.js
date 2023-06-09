@@ -2328,6 +2328,7 @@ class PlatformClient {
  */
 /**
  * @typedef DetailedPlanComponents
+ * @property {Object} [config]
  * @property {string} [description]
  * @property {string} [display_text]
  * @property {boolean} [enabled]
@@ -2643,7 +2644,7 @@ class PlatformClient {
  * @property {string} [latest_invoice]
  * @property {string} [modified_at]
  * @property {SubscriptionPauseCollection} [pause_collection]
- * @property {Plan} [plan_data]
+ * @property {Object} [plan_data]
  * @property {string} [plan_id]
  * @property {string} [product_suite_id]
  * @property {string} [subscriber_id]
@@ -6938,7 +6939,7 @@ class PlatformClient {
  * @property {boolean} [is_active]
  * @property {Object} [modified_by]
  * @property {string} [modified_on]
- * @property {BoostBury} [ranking]
+ * @property {BoostBury1} [ranking]
  * @property {string[]} words
  */
 /**
@@ -8216,7 +8217,7 @@ class PlatformClient {
  * @property {NetQuantity} [net_quantity]
  * @property {number} [no_of_boxes]
  * @property {string[]} [product_group_tag]
- * @property {ProductPublish} [product_publish]
+ * @property {ProductPublish1} [product_publish]
  * @property {string} [requester]
  * @property {ReturnConfig} return_config
  * @property {string} [short_description]
@@ -8412,7 +8413,7 @@ class PlatformClient {
  * @property {string} [pending]
  * @property {string} [primary_color]
  * @property {string[]} [product_group_tag]
- * @property {ProductPublish1} [product_publish]
+ * @property {ProductPublish} [product_publish]
  * @property {ReturnConfigResponse} [return_config]
  * @property {string} [short_description]
  * @property {string} [size_guide]
@@ -8641,7 +8642,7 @@ class PlatformClient {
  * @property {boolean} [is_active]
  * @property {UserDetail} [modified_by]
  * @property {string} modified_on
- * @property {BoostBury1} [ranking]
+ * @property {BoostBury} [ranking]
  * @property {UserDetail} [verified_by]
  * @property {string} [verified_on]
  * @property {string[]} words
