@@ -7654,10 +7654,10 @@ Success. Updates and returns a cart object as shown below. Refer `UpdateCartDeta
     "result": {
       "437414_7": {
         "success": true,
-        "message": "Item updated to cart"
+        "message": "Quantity of item updated"
       }
     },
-    "message": "Item updated to cart",
+    "message": "Quantity of item updated",
     "success": true
   }
 }

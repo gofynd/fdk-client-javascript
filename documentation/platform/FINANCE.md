@@ -943,7 +943,7 @@ Success
  | end_date | string? |  yes  |  |
  | filters | [InoviceListingPayloadDataFilters](#InoviceListingPayloadDataFilters)? |  yes  |  |
  | page | number? |  yes  |  |
- | pagesize | number? |  yes  |  |
+ | page_size | number? |  yes  |  |
  | search | string? |  yes  |  |
  | start_date | string? |  yes  |  |
  
@@ -974,7 +974,7 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | amount | number? |  yes  |  |
+ | amount | string? |  yes  |  |
  | company | string? |  yes  |  |
  | due_date | string? |  yes  |  |
  | invoice_date | string? |  yes  |  |

@@ -192,7 +192,7 @@ class FinanceModel {
       end_date: Joi.string().allow(""),
       filters: FinanceModel.InoviceListingPayloadDataFilters(),
       page: Joi.number(),
-      pagesize: Joi.number(),
+      page_size: Joi.number(),
       search: Joi.string().allow(""),
       start_date: Joi.string().allow(""),
     });
@@ -211,7 +211,7 @@ class FinanceModel {
   }
   static InvoiceListingResponseItems() {
     return Joi.object({
-      amount: Joi.number(),
+      amount: Joi.string().allow(""),
       company: Joi.string().allow(""),
       due_date: Joi.string().allow(""),
       invoice_date: Joi.string().allow(""),

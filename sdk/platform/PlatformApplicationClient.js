@@ -1854,9 +1854,13 @@ class PlatformApplicationClient {
 /** @typedef ResourceNotFound */
 
 /** @typedef AddressResponse */
+/** @typedef ApplicationCompanyDpViewRequest */
+/** @typedef ApplicationCompanyDpViewResponse */
 /** @typedef ApplicationServiceabilityConfig */
 /** @typedef ApplicationServiceabilityConfigResponse */
 /** @typedef CommonError */
+/** @typedef CompanyDpAccountRequest */
+/** @typedef CompanyDpAccountResponse */
 /** @typedef CompanyStoreView_PageItems */
 /** @typedef CompanyStoreView_Response */
 /** @typedef ContactNumberResponse */
@@ -1864,6 +1868,19 @@ class PlatformApplicationClient {
 /** @typedef CreateZoneData */
 /** @typedef DocumentsResponse */
 /** @typedef Dp */
+/** @typedef DP */
+/** @typedef DpAccountFailureResponse */
+/** @typedef DPApplicationRuleRequest */
+/** @typedef DPApplicationRuleResponse */
+/** @typedef DPCompanyRuleRequest */
+/** @typedef DPCompanyRuleResponse */
+/** @typedef DpIds */
+/** @typedef DpMultipleRuleSuccessResponse */
+/** @typedef DpRuleRequest */
+/** @typedef DpRuleResponse */
+/** @typedef DpRuleSuccessResponse */
+/** @typedef DpRulesUpdateRequest */
+/** @typedef DpRuleUpdateSuccessResponse */
 /** @typedef EinvoiceResponse */
 /** @typedef EntityRegionView_Error */
 /** @typedef EntityRegionView_Items */
@@ -1871,7 +1888,10 @@ class PlatformApplicationClient {
 /** @typedef EntityRegionView_Request */
 /** @typedef EntityRegionView_Response */
 /** @typedef Error */
+/** @typedef ErrorResponse */
+/** @typedef ErrorResponse1 */
 /** @typedef EwayBillResponse */
+/** @typedef FailureResponse */
 /** @typedef GetSingleZoneDataViewResponse */
 /** @typedef GetStoresViewResponse */
 /** @typedef GetZoneDataViewChannels */
@@ -1892,7 +1912,7 @@ class PlatformApplicationClient {
 /** @typedef MobileNo */
 /** @typedef ModifiedByResponse */
 /** @typedef OpeningClosing */
-/** @typedef PageResponse */
+/** @typedef Page */
 /** @typedef PincodeBulkViewResponse */
 /** @typedef PincodeCodStatusListingPage */
 /** @typedef PincodeCodStatusListingRequest */
@@ -1907,7 +1927,10 @@ class PlatformApplicationClient {
 /** @typedef PincodeMopUpdateAuditHistoryResponseData */
 /** @typedef PincodeMopUpdateResponse */
 /** @typedef ProductReturnConfigResponse */
+/** @typedef ReAssignStoreRequest */
+/** @typedef ReAssignStoreResponse */
 /** @typedef ServiceabilityErrorResponse */
+/** @typedef ServiceabilityPageResponse */
 /** @typedef ServiceabilityrErrorResponse */
 /** @typedef TimmingResponse */
 /** @typedef UpdateZoneData */

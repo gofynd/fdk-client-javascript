@@ -5,11 +5,39 @@ declare class Serviceability {
     applicationId: any;
     /**
      * @param {Object} arg - Arg object.
+     * @param {ApplicationCompanyDpViewRequest} arg.body
+     * @returns {Promise<ApplicationCompanyDpViewResponse>} - Success response
+     * @summary: Add application dp data
+     * @description: This API add application dp data.
+     */
+    addAppDp({ body }?: {
+        body: ApplicationCompanyDpViewRequest;
+    }): Promise<ApplicationCompanyDpViewResponse>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {number} arg.courierPartnerId - A `courier_partner_id` is a unique
+     *   identifier of a particular delivery partner.
+     * @returns {Promise<ApplicationCompanyDpViewResponse>} - Success response
+     * @summary: Delete application dp data
+     * @description: This API remove application dp data.
+     */
+    deleteAppDp({ courierPartnerId }?: {
+        courierPartnerId: number;
+    }): Promise<ApplicationCompanyDpViewResponse>;
+    /**
+     * @param {Object} arg - Arg object.
      * @returns {Promise<ApplicationServiceabilityConfigResponse>} - Success response
      * @summary: Zone configuration of application.
      * @description: This API returns serviceability config of the application.
      */
     getApplicationServiceability({}?: any): Promise<ApplicationServiceabilityConfigResponse>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @returns {Promise<DPApplicationRuleResponse>} - Success response
+     * @summary: Get All DpApplicationRules rules added at application level from database.
+     * @description: This API returns response of all rules of DpApplicationRules from mongo database.
+     */
+    getDpApplicationRules({}?: any): Promise<DPApplicationRuleResponse>;
     /**
      * @param {Object} arg - Arg object.
      * @param {GetZoneFromPincodeViewRequest} arg.body
@@ -76,4 +104,14 @@ declare class Serviceability {
     updatePincodeMopView({ body }?: {
         body: PincodeMopData;
     }): Promise<PincodeMOPresponse>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {DPApplicationRuleRequest} arg.body
+     * @returns {Promise<DPApplicationRuleResponse>} - Success response
+     * @summary: Upsert of DpApplicationRules in database.
+     * @description: This API returns response of upsert of DpApplicationRules in mongo database.
+     */
+    upsertDpApplicationRules({ body }?: {
+        body: DPApplicationRuleRequest;
+    }): Promise<DPApplicationRuleResponse>;
 }
