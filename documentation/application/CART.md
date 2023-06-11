@@ -134,11 +134,11 @@ const data = await applicationClient.cart.addItems({  body : value,
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
-| i | boolean | no |  |    
-| b | boolean | no |  |    
-| p | boolean | no |  |    
-| areaCode | string | no |  |    
-| buyNow | boolean | no |  |    
+| i | boolean | no | This is a boolean value. Select `true` to retrieve all the items added in the cart. |    
+| b | boolean | no | This is a boolean value. Select `true` to retrieve the price breakup of cart items. |    
+| p | boolean | no | This is a boolean value. Select `true` for getting a payment option in response. |    
+| areaCode | string | no | Customer servicable area_code |    
+| buyNow | boolean | no | This is a boolen value. Select `true` to set/initialize buy now cart |    
 | id | string | no |  |  
 | body | [AddCartRequest](#AddCartRequest) | yes | Request body |
 
@@ -4415,13 +4415,13 @@ const data = await applicationClient.cart.getCart({  id : value,
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
-| id | string | no |  |    
-| i | boolean | no |  |    
-| b | boolean | no |  |    
-| p | boolean | no |  |    
-| assignCardId | number | no |  |    
-| areaCode | string | no |  |    
-| buyNow | boolean | no |  |  
+| id | string | no | The unique identifier of the cart |    
+| i | boolean | no | This is a boolean value. Select `true` to retrieve all the items added in the cart. |    
+| b | boolean | no | This is a boolean value. Select `true` to retrieve the price breakup of cart items. |    
+| p | boolean | no | This is a boolean value. Select `true` for getting a payment option in response. |    
+| assignCardId | number | no | Token of user's debit or credit card |    
+| areaCode | string | no | Customer servicable area_code |    
+| buyNow | boolean | no | This is a boolen value. Select `true` to set/initialize buy now cart |  
 
 
 
@@ -5315,7 +5315,7 @@ const data = await applicationClient.cart.getCartLastModified({  id : value });
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
-| id | string | no |  |  
+| id | string | no | The unique identifier of the cart |  
 
 
 
@@ -5848,7 +5848,7 @@ const data = await applicationClient.cart.getItemCount({  id : value,
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
 | id | string | no | The unique identifier of the cart. |    
-| buyNow | boolean | no |  |  
+| buyNow | boolean | no | Boolean value to get buy_now cart. |  
 
 
 
@@ -7894,12 +7894,12 @@ const data = await applicationClient.cart.updateCart({  body : value,
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
-| id | string | no |  |    
-| i | boolean | no |  |    
-| b | boolean | no |  |    
-| p | boolean | no |  |    
-| areaCode | string | no |  |    
-| buyNow | boolean | no |  |  
+| id | string | no | The unique identifier of the cart |    
+| i | boolean | no | This is a boolean value. Select `true` to retrieve all the items added in the cart. |    
+| b | boolean | no | This is a boolean value. Select `true` to retrieve the price breakup of cart items. |    
+| p | boolean | no | This is a boolean value. Select `true` for getting a payment option in response. |    
+| areaCode | string | no | Customer servicable area_code |    
+| buyNow | boolean | no | This is a boolen value. Select `true` to set/initialize buy now cart |  
 | body | [UpdateCartRequest](#UpdateCartRequest) | yes | Request body |
 
 
@@ -9018,8 +9018,8 @@ const data = await applicationClient.cart.updateCartMeta({  body : value,
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
-| id | string | no |  |    
-| buyNow | boolean | no |  |  
+| id | string | no | The unique identifier of the cart |    
+| buyNow | boolean | no | this is boolean to get buy_now cart |  
 | body | [CartMetaRequest](#CartMetaRequest) | yes | Request body |
 
 

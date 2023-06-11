@@ -124,11 +124,15 @@ class PosCart {
 
   /**
    * @param {Object} arg - Arg object.
-   * @param {boolean} [arg.i] -
-   * @param {boolean} [arg.b] -
-   * @param {boolean} [arg.p] -
-   * @param {string} [arg.areaCode] -
-   * @param {boolean} [arg.buyNow] -
+   * @param {boolean} [arg.i] - This is a boolean value. Select `true` to
+   *   retrieve all the items added in the cart.
+   * @param {boolean} [arg.b] - This is a boolean value. Select `true` to
+   *   retrieve the price breakup of cart items.
+   * @param {boolean} [arg.p] - This is a boolean value. Select `true` for
+   *   getting a payment option in response.
+   * @param {string} [arg.areaCode] - Customer servicable area_code
+   * @param {boolean} [arg.buyNow] - This is a boolen value. Select `true` to
+   *   set/initialize buy now cart
    * @param {string} [arg.id] -
    * @param {AddCartRequest} arg.body
    * @returns {Promise<AddCartDetailResponse>} - Success response
@@ -712,13 +716,17 @@ class PosCart {
 
   /**
    * @param {Object} arg - Arg object.
-   * @param {string} [arg.id] -
-   * @param {boolean} [arg.i] -
-   * @param {boolean} [arg.b] -
-   * @param {boolean} [arg.p] -
-   * @param {number} [arg.assignCardId] -
-   * @param {string} [arg.areaCode] -
-   * @param {boolean} [arg.buyNow] -
+   * @param {string} [arg.id] - The unique identifier of the cart
+   * @param {boolean} [arg.i] - This is a boolean value. Select `true` to
+   *   retrieve all the items added in the cart.
+   * @param {boolean} [arg.b] - This is a boolean value. Select `true` to
+   *   retrieve the price breakup of cart items.
+   * @param {boolean} [arg.p] - This is a boolean value. Select `true` for
+   *   getting a payment option in response.
+   * @param {number} [arg.assignCardId] - Token of user's debit or credit card
+   * @param {string} [arg.areaCode] - Customer servicable area_code
+   * @param {boolean} [arg.buyNow] - This is a boolen value. Select `true` to
+   *   set/initialize buy now cart
    * @returns {Promise<CartDetailResponse>} - Success response
    * @summary: Fetch all items added to the cart
    * @description: Use this API to get details of all the items added to a cart.
@@ -788,7 +796,7 @@ class PosCart {
 
   /**
    * @param {Object} arg - Arg object.
-   * @param {string} [arg.id] -
+   * @param {string} [arg.id] - The unique identifier of the cart
    * @returns {Promise<any>} - Success response
    * @summary: Fetch last-modified timestamp
    * @description: Use this API to fetch Last-Modified timestamp in header metadata.
@@ -1042,7 +1050,7 @@ class PosCart {
   /**
    * @param {Object} arg - Arg object.
    * @param {string} [arg.id] - The unique identifier of the cart.
-   * @param {boolean} [arg.buyNow] -
+   * @param {boolean} [arg.buyNow] - Boolean value to get buy_now cart.
    * @returns {Promise<CartItemCountResponse>} - Success response
    * @summary: Count items in the cart
    * @description: Use this API to get the total number of items present in cart.
@@ -1608,12 +1616,16 @@ class PosCart {
 
   /**
    * @param {Object} arg - Arg object.
-   * @param {string} [arg.id] -
-   * @param {boolean} [arg.i] -
-   * @param {boolean} [arg.b] -
-   * @param {boolean} [arg.p] -
-   * @param {string} [arg.areaCode] -
-   * @param {boolean} [arg.buyNow] -
+   * @param {string} [arg.id] - The unique identifier of the cart
+   * @param {boolean} [arg.i] - This is a boolean value. Select `true` to
+   *   retrieve all the items added in the cart.
+   * @param {boolean} [arg.b] - This is a boolean value. Select `true` to
+   *   retrieve the price breakup of cart items.
+   * @param {boolean} [arg.p] - This is a boolean value. Select `true` for
+   *   getting a payment option in response.
+   * @param {string} [arg.areaCode] - Customer servicable area_code
+   * @param {boolean} [arg.buyNow] - This is a boolen value. Select `true` to
+   *   set/initialize buy now cart
    * @param {UpdateCartRequest} arg.body
    * @returns {Promise<UpdateCartDetailResponse>} - Success response
    * @summary: Update items in the cart
@@ -1683,8 +1695,8 @@ class PosCart {
 
   /**
    * @param {Object} arg - Arg object.
-   * @param {string} [arg.id] -
-   * @param {boolean} [arg.buyNow] -
+   * @param {string} [arg.id] - The unique identifier of the cart
+   * @param {boolean} [arg.buyNow] - This is boolean to get buy_now cart
    * @param {CartMetaRequest} arg.body
    * @returns {Promise<CartMetaResponse>} - Success response
    * @summary: Update the cart meta

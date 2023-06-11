@@ -22,7 +22,13 @@
 * [Rewards](REWARDS.md) - Earn and redeem reward points 
 * [Discount](DISCOUNT.md) - Discount 
 * [Partner](PARTNER.md) - Partner configuration apis 
-* [Webhook](WEBHOOK.md) - Webhook dispatcher with retry and one event to many subscriber vice versa 
+* [Webhook](WEBHOOK.md) - Sureshot is a webhook system where user can register their webhook to all available events in Fynd Platform, On event trigger. Sureshot will call all registered webhook endpoints for that specific event.This is the feature where sellers can subscribe(register webhook) to events provided. 
+
+ Sellers can view list of events available for subscription. 
+
+ They can register their webhook to specific event. 
+
+ Once that event gets triggered in system, sellers will receive event data on their registered webhook 
 * [AuditTrail](AUDITTRAIL.md) - Audit Logging Service that logs the crucial updates on the Platform 
 * [Serviceability](SERVICEABILITY.md) - Logistics Configuration API's allows you to configure zone, application logistics and many more useful features.  
 * [Finance](FINANCE.md) - Handles all finance related activities 

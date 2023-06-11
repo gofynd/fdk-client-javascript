@@ -14230,6 +14230,16 @@ class PlatformClient {
  * @property {string} [version]
  */
 /**
+ * @typedef EventConfigDetails
+ * @property {string} [created_on]
+ * @property {string} [description]
+ * @property {string} [display_name]
+ * @property {string} [event_category]
+ * @property {string} [event_name]
+ * @property {string} [event_type]
+ * @property {string} [version]
+ */
+/**
  * @typedef EventConfigList
  * @property {EventConfig[]} [items]
  * @property {Page} [page]
@@ -14277,6 +14287,17 @@ class PlatformClient {
  * @property {string} [email_id]
  * @property {number[]} [event_id]
  * @property {number} [id]
+ * @property {string} [name]
+ * @property {SubscriberStatus} [status]
+ * @property {string} [webhook_url]
+ */
+/**
+ * @typedef SubscriberConfigDetails
+ * @property {Association} [association]
+ * @property {AuthMeta} [auth_meta]
+ * @property {Object} [custom_headers]
+ * @property {string} [email_id]
+ * @property {number[]} [event_id]
  * @property {string} [name]
  * @property {SubscriberStatus} [status]
  * @property {string} [webhook_url]

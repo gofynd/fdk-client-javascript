@@ -1827,12 +1827,14 @@ class PlatformApplicationClient {
 /** @typedef AuthMeta */
 /** @typedef EventConfig */
 /** @typedef EventConfigBase */
+/** @typedef EventConfigDetails */
 /** @typedef EventConfigList */
 /** @typedef EventConfigResponse */
 /** @typedef EventPayload */
 /** @typedef EventProcessedStatus */
 /** @typedef Page */
 /** @typedef SubscriberConfig */
+/** @typedef SubscriberConfigDetails */
 /** @typedef SubscriberConfigList */
 /** @typedef SubscriberEvent */
 /** @typedef SubscriberResponse */
