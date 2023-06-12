@@ -40,4 +40,5 @@ declare class FinanceModel {
     static PaymentProcessPayload(): any;
     static PaymentProcessRequest(): any;
     static PaymentProcessResponse(): any;
+    static UnpaidInvoiceDataItems(): any;
 }

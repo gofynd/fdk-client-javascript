@@ -14458,7 +14458,7 @@ class PlatformClient {
  */
 /**
  * @typedef CompanyDpAccountRequest
- * @property {Dp1[]} data
+ * @property {DP[]} data
  */
 /**
  * @typedef CompanyDpAccountResponse
@@ -14521,7 +14521,7 @@ class PlatformClient {
  * @property {string} [transport_mode]
  */
 /**
- * @typedef Dp1
+ * @typedef DP
  * @property {string} account_id
  * @property {string} dp_id
  * @property {boolean} is_self_ship
@@ -15199,6 +15199,7 @@ class PlatformClient {
  * @property {number} [item_count]
  * @property {InvoiceListingResponseItems[]} [items]
  * @property {Page} [page]
+ * @property {UnpaidInvoiceDataItems} [unpaid_invoice_data]
  */
 /**
  * @typedef InvoiceListingResponseItems
@@ -15261,6 +15262,12 @@ class PlatformClient {
  * @property {Object} [meta]
  * @property {string} [redirect_url]
  * @property {string} [transaction_id]
+ */
+/**
+ * @typedef UnpaidInvoiceDataItems
+ * @property {string} [currency]
+ * @property {number} [total_unpaid_amount]
+ * @property {number} [total_unpaid_invoice_count]
  */
 
 module.exports = PlatformClient;

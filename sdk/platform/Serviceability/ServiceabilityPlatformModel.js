@@ -50,7 +50,7 @@ class ServiceabilityModel {
   }
   static CompanyDpAccountRequest() {
     return Joi.object({
-      data: Joi.array().items(ServiceabilityModel.Dp1()).required(),
+      data: Joi.array().items(ServiceabilityModel.DP()).required(),
     });
   }
   static CompanyDpAccountResponse() {
@@ -127,7 +127,7 @@ class ServiceabilityModel {
       transport_mode: Joi.string().allow(""),
     });
   }
-  static Dp1() {
+  static DP() {
     return Joi.object({
       account_id: Joi.string().allow("").required(),
       dp_id: Joi.string().allow("").required(),

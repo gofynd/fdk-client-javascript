@@ -207,6 +207,7 @@ class FinanceModel {
       item_count: Joi.number(),
       items: Joi.array().items(FinanceModel.InvoiceListingResponseItems()),
       page: FinanceModel.Page(),
+      unpaid_invoice_data: FinanceModel.UnpaidInvoiceDataItems(),
     });
   }
   static InvoiceListingResponseItems() {
@@ -277,6 +278,13 @@ class FinanceModel {
       meta: Joi.any(),
       redirect_url: Joi.string().allow(""),
       transaction_id: Joi.string().allow(""),
+    });
+  }
+  static UnpaidInvoiceDataItems() {
+    return Joi.object({
+      currency: Joi.string().allow(""),
+      total_unpaid_amount: Joi.number(),
+      total_unpaid_invoice_count: Joi.number(),
     });
   }
 }

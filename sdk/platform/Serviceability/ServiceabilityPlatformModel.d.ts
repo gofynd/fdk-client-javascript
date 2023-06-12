@@ -15,7 +15,7 @@ declare class ServiceabilityModel {
     static CreateZoneData(): any;
     static DocumentsResponse(): any;
     static Dp(): any;
-    static Dp1(): any;
+    static DP(): any;
     static DpAccountFailureResponse(): any;
     static DPApplicationRuleRequest(): any;
     static DPApplicationRuleResponse(): any;

@@ -966,6 +966,7 @@ Success
  | item_count | number? |  yes  |  |
  | items | [[InvoiceListingResponseItems](#InvoiceListingResponseItems)]? |  yes  |  |
  | page | [Page](#Page)? |  yes  |  |
+ | unpaid_invoice_data | [UnpaidInvoiceDataItems](#UnpaidInvoiceDataItems)? |  yes  |  |
  
 
 ---
@@ -1066,6 +1067,17 @@ Success
  | meta | string? |  yes  |  |
  | redirect_url | string? |  yes  |  |
  | transaction_id | string? |  yes  |  |
+ 
+
+---
+
+#### [UnpaidInvoiceDataItems](#UnpaidInvoiceDataItems)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | currency | string? |  yes  |  |
+ | total_unpaid_amount | number? |  yes  |  |
+ | total_unpaid_invoice_count | number? |  yes  |  |
  
 
 ---

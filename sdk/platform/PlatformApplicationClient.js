@@ -1870,7 +1870,7 @@ class PlatformApplicationClient {
 /** @typedef CreateZoneData */
 /** @typedef DocumentsResponse */
 /** @typedef Dp */
-/** @typedef Dp1 */
+/** @typedef DP */
 /** @typedef DpAccountFailureResponse */
 /** @typedef DPApplicationRuleRequest */
 /** @typedef DPApplicationRuleResponse */
@@ -1985,5 +1985,6 @@ class PlatformApplicationClient {
 /** @typedef PaymentProcessPayload */
 /** @typedef PaymentProcessRequest */
 /** @typedef PaymentProcessResponse */
+/** @typedef UnpaidInvoiceDataItems */
 
 module.exports = PlatformApplicationClient;
