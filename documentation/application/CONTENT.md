@@ -12,21 +12,21 @@ Content System
 * [getBlog](#getblog)
 * [getBlogs](#getblogs)
 * [getDataLoaders](#getdataloaders)
-* [getFaqs](#getfaqs)
-* [getFaqCategories](#getfaqcategories)
 * [getFaqBySlug](#getfaqbyslug)
+* [getFaqCategories](#getfaqcategories)
 * [getFaqCategoryBySlug](#getfaqcategorybyslug)
+* [getFaqs](#getfaqs)
 * [getFaqsByCategorySlug](#getfaqsbycategoryslug)
 * [getLandingPage](#getlandingpage)
 * [getLegalInformation](#getlegalinformation)
 * [getNavigations](#getnavigations)
-* [getSEOConfiguration](#getseoconfiguration)
-* [getSlideshows](#getslideshows)
-* [getSlideshow](#getslideshow)
-* [getSupportInformation](#getsupportinformation)
-* [getTags](#gettags)
 * [getPage](#getpage)
 * [getPages](#getpages)
+* [getSEOConfiguration](#getseoconfiguration)
+* [getSlideshow](#getslideshow)
+* [getSlideshows](#getslideshows)
+* [getSupportInformation](#getsupportinformation)
+* [getTags](#gettags)
 
 
 
@@ -42,10 +42,10 @@ Get live announcements
 
 ```javascript
 // Promise
-const promise = content.getAnnouncements();
+const promise = applicationClient.content.getAnnouncements();
 
 // Async/Await
-const data = await content.getAnnouncements();
+const data = await applicationClient.content.getAnnouncements();
 ```
 
 
@@ -128,11 +128,11 @@ Get a blog
 
 ```javascript
 // Promise
-const promise = content.getBlog({  slug : value,
+const promise = applicationClient.content.getBlog({  slug : value,
  rootId : value });
 
 // Async/Await
-const data = await content.getBlog({  slug : value,
+const data = await applicationClient.content.getBlog({  slug : value,
  rootId : value });
 ```
 
@@ -232,11 +232,11 @@ Get a list of blogs
 
 ```javascript
 // Promise
-const promise = content.getBlogs({  pageNo : value,
+const promise = applicationClient.content.getBlogs({  pageNo : value,
  pageSize : value });
 
 // Async/Await
-const data = await content.getBlogs({  pageNo : value,
+const data = await applicationClient.content.getBlogs({  pageNo : value,
  pageSize : value });
 ```
 
@@ -340,10 +340,10 @@ Get the data loaders associated with an application
 
 ```javascript
 // Promise
-const promise = content.getDataLoaders();
+const promise = applicationClient.content.getDataLoaders();
 
 // Async/Await
-const data = await content.getDataLoaders();
+const data = await applicationClient.content.getDataLoaders();
 ```
 
 
@@ -405,62 +405,55 @@ Success. Returns a JSON object containing all the data loaders injected in the a
 ---
 
 
-### getFaqs
-Get a list of FAQs
+### getFaqBySlug
+Get an FAQ
 
 
 
 ```javascript
 // Promise
-const promise = content.getFaqs();
+const promise = applicationClient.content.getFaqBySlug({  slug : value });
 
 // Async/Await
-const data = await content.getFaqs();
+const data = await applicationClient.content.getFaqBySlug({  slug : value });
 ```
 
 
 
 
 
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| slug | string | yes | A short, human-readable, URL-friendly identifier of an FAQ. You can get slug value from the endpoint /service/application/content/v1.0/faq. |  
 
-Use this API to get a list of frequently asked questions. Users will benefit from it when facing any issue with the website.
+
+
+Use this API to get a particular FAQ by its slug.
 
 *Returned Response:*
 
 
 
 
-[FaqResponseSchema](#FaqResponseSchema)
+[FaqSchema](#FaqSchema)
 
-Success. Returns a JSON object with question and answers. Check the example shown below or refer `FaqResponseSchema` for more details.
-
-
+Success. Returns a question and answer by its slug. Check the example shown below or refer `FaqSchema` for more details.
 
 
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
 
 
 <details>
-<summary><i>&nbsp; default</i></summary>
+<summary><i>&nbsp; Example:</i></summary>
 
 ```json
 {
-  "value": {
-    "faqs": [
-      {
-        "_id": "5eb2db750a8ebf497e315028",
-        "question": "how to refer my friend",
-        "answer": "1. Click on refer and earn image in fynd app\n2. Click on share the code\n3. Use any method for sharing\n4. Once the user activates the app with your code, both of you will get the refereal credits.",
-        "slug": "how to refer",
-        "application": "000000000000000000000001"
-      }
-    ]
-  }
+  "_id": "5eb2db750a8ebf497e315028",
+  "question": "how to refer my friend",
+  "answer": "1. Click on refer and earn image in fynd app\n2. Click on share the code\n3. Use any method for sharing\n4. Once the user activates the app with your code, both of you will get the refereal credits.",
+  "slug": "how to refer",
+  "application": "000000000000000000000001"
 }
 ```
-</details>
-
 </details>
 
 
@@ -481,10 +474,10 @@ Get a list of FAQ categories
 
 ```javascript
 // Promise
-const promise = content.getFaqCategories();
+const promise = applicationClient.content.getFaqCategories();
 
 // Async/Await
-const data = await content.getFaqCategories();
+const data = await applicationClient.content.getFaqCategories();
 ```
 
 
@@ -538,68 +531,6 @@ Success. Returns a JSON object with categories of FAQ. Check the example shown b
 ---
 
 
-### getFaqBySlug
-Get an FAQ
-
-
-
-```javascript
-// Promise
-const promise = content.getFaqBySlug({  slug : value });
-
-// Async/Await
-const data = await content.getFaqBySlug({  slug : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| slug | string | yes | A short, human-readable, URL-friendly identifier of an FAQ. You can get slug value from the endpoint /service/application/content/v1.0/faq. |  
-
-
-
-Use this API to get a particular FAQ by its slug.
-
-*Returned Response:*
-
-
-
-
-[FaqSchema](#FaqSchema)
-
-Success. Returns a question and answer by its slug. Check the example shown below or refer `FaqSchema` for more details.
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "_id": "5eb2db750a8ebf497e315028",
-  "question": "how to refer my friend",
-  "answer": "1. Click on refer and earn image in fynd app\n2. Click on share the code\n3. Use any method for sharing\n4. Once the user activates the app with your code, both of you will get the refereal credits.",
-  "slug": "how to refer",
-  "application": "000000000000000000000001"
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
 ### getFaqCategoryBySlug
 Get the FAQ category
 
@@ -607,10 +538,10 @@ Get the FAQ category
 
 ```javascript
 // Promise
-const promise = content.getFaqCategoryBySlug({  slug : value });
+const promise = applicationClient.content.getFaqCategoryBySlug({  slug : value });
 
 // Async/Await
-const data = await content.getFaqCategoryBySlug({  slug : value });
+const data = await applicationClient.content.getFaqCategoryBySlug({  slug : value });
 ```
 
 
@@ -673,6 +604,75 @@ Success. Returns a FAQ category with its slug. Check the example shown below or 
 ---
 
 
+### getFaqs
+Get a list of FAQs
+
+
+
+```javascript
+// Promise
+const promise = applicationClient.content.getFaqs();
+
+// Async/Await
+const data = await applicationClient.content.getFaqs();
+```
+
+
+
+
+
+
+Use this API to get a list of frequently asked questions. Users will benefit from it when facing any issue with the website.
+
+*Returned Response:*
+
+
+
+
+[FaqResponseSchema](#FaqResponseSchema)
+
+Success. Returns a JSON object with question and answers. Check the example shown below or refer `FaqResponseSchema` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; default</i></summary>
+
+```json
+{
+  "value": {
+    "faqs": [
+      {
+        "_id": "5eb2db750a8ebf497e315028",
+        "question": "how to refer my friend",
+        "answer": "1. Click on refer and earn image in fynd app\n2. Click on share the code\n3. Use any method for sharing\n4. Once the user activates the app with your code, both of you will get the refereal credits.",
+        "slug": "how to refer",
+        "application": "000000000000000000000001"
+      }
+    ]
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
 ### getFaqsByCategorySlug
 Get FAQs using the slug of FAQ category
 
@@ -680,10 +680,10 @@ Get FAQs using the slug of FAQ category
 
 ```javascript
 // Promise
-const promise = content.getFaqsByCategorySlug({  slug : value });
+const promise = applicationClient.content.getFaqsByCategorySlug({  slug : value });
 
 // Async/Await
-const data = await content.getFaqsByCategorySlug({  slug : value });
+const data = await applicationClient.content.getFaqsByCategorySlug({  slug : value });
 ```
 
 
@@ -746,10 +746,10 @@ Get the landing page
 
 ```javascript
 // Promise
-const promise = content.getLandingPage();
+const promise = applicationClient.content.getLandingPage();
 
 // Async/Await
-const data = await content.getLandingPage();
+const data = await applicationClient.content.getLandingPage();
 ```
 
 
@@ -828,10 +828,10 @@ Get legal information
 
 ```javascript
 // Promise
-const promise = content.getLegalInformation();
+const promise = applicationClient.content.getLegalInformation();
 
 // Async/Await
-const data = await content.getLegalInformation();
+const data = await applicationClient.content.getLegalInformation();
 ```
 
 
@@ -919,11 +919,11 @@ Get the navigation
 
 ```javascript
 // Promise
-const promise = content.getNavigations({  pageNo : value,
+const promise = applicationClient.content.getNavigations({  pageNo : value,
  pageSize : value });
 
 // Async/Await
-const data = await content.getNavigations({  pageNo : value,
+const data = await applicationClient.content.getNavigations({  pageNo : value,
  pageSize : value });
 ```
 
@@ -1166,6 +1166,225 @@ Success. Returns a JSON object with navigation details. Check the example shown 
 ---
 
 
+### getPage
+Get a page
+
+
+
+```javascript
+// Promise
+const promise = applicationClient.content.getPage({  slug : value,
+ rootId : value });
+
+// Async/Await
+const data = await applicationClient.content.getPage({  slug : value,
+ rootId : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| slug | string | yes | A short, human-readable, URL-friendly identifier of a page. You can get slug value from the endpoint /service/application/content/v2.0/pages/. |    
+| rootId | string | no | ID given to the HTML element |  
+
+
+
+Use this API to get the details of a page using its slug. Details include the title, seo, publish status, feature image, tags, meta, etc.
+
+*Returned Response:*
+
+
+
+
+[PageSchema](#PageSchema)
+
+Success. Returns a JSON object with page details. Check the example shown below or refer `CustomPageSchema` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; default</i></summary>
+
+```json
+{
+  "value": {
+    "date_meta": {
+      "created_on": "2021-03-16T08:24:19.197Z",
+      "modified_on": "2021-03-16T08:24:19.197Z"
+    },
+    "tags": [
+      "my first page"
+    ],
+    "published": true,
+    "component_ids": [],
+    "archived": false,
+    "_id": "60506dcad18cb33946026862",
+    "title": "my first page",
+    "slug": "1st_page",
+    "feature_image": {
+      "secure_url": "https://google.com/some-image"
+    },
+    "content_path": "https://hdn-1.fynd.com/company/1526/applications/61012f6a9250ccd1b9ef8a1d/pages/content/page_slug.html",
+    "platform": "web",
+    "description": "hey this is my first page",
+    "visibility": {
+      "test": true
+    },
+    "_schedule": {
+      "start": "2021-04-23T23:50:00.000Z",
+      "next_schedule": [
+        {}
+      ]
+    },
+    "seo": {
+      "title": "my first page",
+      "description": "hey this is my first page",
+      "image": {
+        "url": ""
+      }
+    },
+    "type": "rawhtml",
+    "application": "000000000000000000000001",
+    "orientation": "portrait",
+    "page_meta": []
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### getPages
+Get all pages
+
+
+
+```javascript
+// Promise
+const promise = applicationClient.content.getPages({  pageNo : value,
+ pageSize : value });
+
+// Async/Await
+const data = await applicationClient.content.getPages({  pageNo : value,
+ pageSize : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| pageNo | number | no | The page number to navigate through the given set of results. Default value is 1.  |    
+| pageSize | number | no | The number of items to retrieve in each page. |  
+
+
+
+Use this API to get a list of pages.
+
+*Returned Response:*
+
+
+
+
+[PageGetResponse](#PageGetResponse)
+
+Success. Returns a list of pages along with their details. Check the example shown below or refer `PageGetStorefrontResponse` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; default</i></summary>
+
+```json
+{
+  "value": {
+    "items": [
+      {
+        "date_meta": {
+          "created_on": "2021-03-14T06:49:03.945Z",
+          "modified_on": "2021-03-14T06:49:03.945Z"
+        },
+        "tags": [
+          "my first page"
+        ],
+        "_id": "604db275b3ae202873964d94",
+        "content_path": "https://hdn-1.fynd.com/company/1526/applications/61012f6a9250ccd1b9ef8a1d/pages/content/page_slug.html",
+        "title": "test-page",
+        "slug": "test-page",
+        "published": true,
+        "_schedule": {
+          "next_schedule": [
+            {}
+          ],
+          "start": "2021-04-08T07:15:13.000Z",
+          "end": "2021-04-10T02:00:00.000Z"
+        },
+        "feature_image": {
+          "secure_url": "https://google.com/some-image"
+        },
+        "seo": {
+          "title": "my first page",
+          "description": "hey this is my first page",
+          "image": {
+            "url": ""
+          }
+        },
+        "application": "000000000000000000000001",
+        "author": {
+          "name": "Abhinav Maurya"
+        }
+      }
+    ],
+    "page": {
+      "type": "number",
+      "current": 1,
+      "size": 1,
+      "item_total": 2,
+      "has_next": true
+    }
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
 ### getSEOConfiguration
 Get the SEO of an application
 
@@ -1173,10 +1392,10 @@ Get the SEO of an application
 
 ```javascript
 // Promise
-const promise = content.getSEOConfiguration();
+const promise = applicationClient.content.getSEOConfiguration();
 
 // Async/Await
-const data = await content.getSEOConfiguration();
+const data = await applicationClient.content.getSEOConfiguration();
 ```
 
 
@@ -1251,6 +1470,109 @@ Success. Returns a JSON object SEO details such as robots.txt, meta-tags, and si
 ---
 
 
+### getSlideshow
+Get a slideshow
+
+
+
+```javascript
+// Promise
+const promise = applicationClient.content.getSlideshow({  slug : value });
+
+// Async/Await
+const data = await applicationClient.content.getSlideshow({  slug : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| slug | string | yes | A short, human-readable, URL-friendly identifier of a slideshow. You can get slug value from the endpoint /service/application/content/v1.0/slideshow/. |  
+
+
+
+A slideshow is a group of images, videos or a combination of both that are shown on the website in the form of slides. Use this API to fetch a slideshow using its `slug`.
+
+*Returned Response:*
+
+
+
+
+[SlideshowSchema](#SlideshowSchema)
+
+Success. Returns the details of how a slideshow is configured. Check the example shown below or refer `SlideshowSchema` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; default</i></summary>
+
+```json
+{
+  "value": {
+    "date_meta": {
+      "created_on": "2021-03-14T05:27:12.319Z",
+      "modified_on": "2021-03-14T05:27:12.319Z"
+    },
+    "archived": false,
+    "_id": "604d9eb975e9d136bb1b8b83",
+    "configuration": {
+      "start_on_launch": false,
+      "duration": 50,
+      "sleep_time": 100,
+      "slide_direction": "horizontal"
+    },
+    "slug": "ss-sfsd-updated",
+    "platform": "ios",
+    "media": [
+      {
+        "auto_decide_duration": false,
+        "type": "image",
+        "url": "https://res.cloudinary.com/dwzm9bysq/image/upload/v1567148153/production/system/icons/brands-tab_sfinpk.png",
+        "bg_color": "#ffffff",
+        "duration": 10,
+        "action": {
+          "type": ""
+        }
+      },
+      {
+        "auto_decide_duration": true,
+        "type": "youtube",
+        "url": "https://www.youtube.com/embed/9vJRopau0g0",
+        "bg_color": "#ffffff",
+        "duration": 909,
+        "action": {
+          "type": ""
+        }
+      }
+    ],
+    "application": "5cd3db5e9d692cfe5302a7bb",
+    "active": true
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
 ### getSlideshows
 Get the slideshows
 
@@ -1258,11 +1580,11 @@ Get the slideshows
 
 ```javascript
 // Promise
-const promise = content.getSlideshows({  pageNo : value,
+const promise = applicationClient.content.getSlideshows({  pageNo : value,
  pageSize : value });
 
 // Async/Await
-const data = await content.getSlideshows({  pageNo : value,
+const data = await applicationClient.content.getSlideshows({  pageNo : value,
  pageSize : value });
 ```
 
@@ -1369,109 +1691,6 @@ Success. Check the example shown below or refer `SlideshowGetResponse` for more 
 ---
 
 
-### getSlideshow
-Get a slideshow
-
-
-
-```javascript
-// Promise
-const promise = content.getSlideshow({  slug : value });
-
-// Async/Await
-const data = await content.getSlideshow({  slug : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| slug | string | yes | A short, human-readable, URL-friendly identifier of a slideshow. You can get slug value from the endpoint /service/application/content/v1.0/slideshow/. |  
-
-
-
-A slideshow is a group of images, videos or a combination of both that are shown on the website in the form of slides. Use this API to fetch a slideshow using its `slug`.
-
-*Returned Response:*
-
-
-
-
-[SlideshowSchema](#SlideshowSchema)
-
-Success. Returns the details of how a slideshow is configured. Check the example shown below or refer `SlideshowSchema` for more details.
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; default</i></summary>
-
-```json
-{
-  "value": {
-    "date_meta": {
-      "created_on": "2021-03-14T05:27:12.319Z",
-      "modified_on": "2021-03-14T05:27:12.319Z"
-    },
-    "archived": false,
-    "_id": "604d9eb975e9d136bb1b8b83",
-    "configuration": {
-      "start_on_launch": false,
-      "duration": 50,
-      "sleep_time": 100,
-      "slide_direction": "horizontal"
-    },
-    "slug": "ss-sfsd-updated",
-    "platform": "ios",
-    "media": [
-      {
-        "auto_decide_duration": false,
-        "type": "image",
-        "url": "https://res.cloudinary.com/dwzm9bysq/image/upload/v1567148153/production/system/icons/brands-tab_sfinpk.png",
-        "bg_color": "#ffffff",
-        "duration": 10,
-        "action": {
-          "type": ""
-        }
-      },
-      {
-        "auto_decide_duration": true,
-        "type": "youtube",
-        "url": "https://www.youtube.com/embed/9vJRopau0g0",
-        "bg_color": "#ffffff",
-        "duration": 909,
-        "action": {
-          "type": ""
-        }
-      }
-    ],
-    "application": "5cd3db5e9d692cfe5302a7bb",
-    "active": true
-  }
-}
-```
-</details>
-
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
 ### getSupportInformation
 Get the support information
 
@@ -1479,10 +1698,10 @@ Get the support information
 
 ```javascript
 // Promise
-const promise = content.getSupportInformation();
+const promise = applicationClient.content.getSupportInformation();
 
 // Async/Await
-const data = await content.getSupportInformation();
+const data = await applicationClient.content.getSupportInformation();
 ```
 
 
@@ -1561,10 +1780,10 @@ Get the tags associated with an application
 
 ```javascript
 // Promise
-const promise = content.getTags();
+const promise = applicationClient.content.getTags();
 
 // Async/Await
-const data = await content.getTags();
+const data = await applicationClient.content.getTags();
 ```
 
 
@@ -1621,1662 +1840,1241 @@ Success. Returns a JSON object containing all the tags injected in the applicati
 ---
 
 
-### getPage
-Get a page
-
-
-
-```javascript
-// Promise
-const promise = content.getPage({  slug : value,
- rootId : value });
-
-// Async/Await
-const data = await content.getPage({  slug : value,
- rootId : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| slug | string | yes | A short, human-readable, URL-friendly identifier of a page. You can get slug value from the endpoint /service/application/content/v2.0/pages/. |    
-| rootId | string | no | ID given to the HTML element |  
-
-
-
-Use this API to get the details of a page using its slug. Details include the title, seo, publish status, feature image, tags, meta, etc.
-
-*Returned Response:*
-
-
-
-
-[PageSchema](#PageSchema)
-
-Success. Returns a JSON object with page details. Check the example shown below or refer `CustomPageSchema` for more details.
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; default</i></summary>
-
-```json
-{
-  "value": {
-    "date_meta": {
-      "created_on": "2021-03-16T08:24:19.197Z",
-      "modified_on": "2021-03-16T08:24:19.197Z"
-    },
-    "tags": [
-      "my first page"
-    ],
-    "published": true,
-    "component_ids": [],
-    "archived": false,
-    "_id": "60506dcad18cb33946026862",
-    "title": "my first page",
-    "slug": "1st_page",
-    "feature_image": {
-      "secure_url": "https://google.com/some-image"
-    },
-    "content_path": "https://hdn-1.fynd.com/company/1526/applications/61012f6a9250ccd1b9ef8a1d/pages/content/page_slug.html",
-    "platform": "web",
-    "description": "hey this is my first page",
-    "visibility": {
-      "test": true
-    },
-    "_schedule": {
-      "start": "2021-04-23T23:50:00.000Z",
-      "next_schedule": [
-        {}
-      ]
-    },
-    "seo": {
-      "title": "my first page",
-      "description": "hey this is my first page",
-      "image": {
-        "url": ""
-      }
-    },
-    "type": "rawhtml",
-    "application": "000000000000000000000001",
-    "orientation": "portrait",
-    "page_meta": []
-  }
-}
-```
-</details>
-
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### getPages
-Get all pages
-
-
-
-```javascript
-// Promise
-const promise = content.getPages({  pageNo : value,
- pageSize : value });
-
-// Async/Await
-const data = await content.getPages({  pageNo : value,
- pageSize : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| pageNo | number | no | The page number to navigate through the given set of results. Default value is 1.  |    
-| pageSize | number | no | The number of items to retrieve in each page. |  
-
-
-
-Use this API to get a list of pages.
-
-*Returned Response:*
-
-
-
-
-[PageGetResponse](#PageGetResponse)
-
-Success. Returns a list of pages along with their details. Check the example shown below or refer `PageGetStorefrontResponse` for more details.
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; default</i></summary>
-
-```json
-{
-  "value": {
-    "items": [
-      {
-        "date_meta": {
-          "created_on": "2021-03-14T06:49:03.945Z",
-          "modified_on": "2021-03-14T06:49:03.945Z"
-        },
-        "tags": [
-          "my first page"
-        ],
-        "_id": "604db275b3ae202873964d94",
-        "content_path": "https://hdn-1.fynd.com/company/1526/applications/61012f6a9250ccd1b9ef8a1d/pages/content/page_slug.html",
-        "title": "test-page",
-        "slug": "test-page",
-        "published": true,
-        "_schedule": {
-          "next_schedule": [
-            {}
-          ],
-          "start": "2021-04-08T07:15:13.000Z",
-          "end": "2021-04-10T02:00:00.000Z"
-        },
-        "feature_image": {
-          "secure_url": "https://google.com/some-image"
-        },
-        "seo": {
-          "title": "my first page",
-          "description": "hey this is my first page",
-          "image": {
-            "url": ""
-          }
-        },
-        "application": "000000000000000000000001",
-        "author": {
-          "name": "Abhinav Maurya"
-        }
-      }
-    ],
-    "page": {
-      "type": "number",
-      "current": 1,
-      "size": 1,
-      "item_total": 2,
-      "has_next": true
-    }
-  }
-}
-```
-</details>
-
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
 
 ### Schemas
 
- 
- 
- #### [ApplicationLegal](#ApplicationLegal)
+
+#### [Action](#Action)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | application | string |  no  |  |
- | tnc | string |  no  |  |
- | policy | string |  no  |  |
- | shipping | string |  no  |  |
- | returns | string |  no  |  |
- | faq | [[ApplicationLegalFAQ](#ApplicationLegalFAQ)] |  no  |  |
- | _id | string |  no  |  |
- | updated_at | string |  no  |  |
- | created_at | string |  no  |  |
+ | page | [ActionPage](#ActionPage)? |  yes  |  |
+ | popup | [ActionPage](#ActionPage)? |  yes  |  |
+ | type | string? |  yes  |  |
+ 
 
 ---
 
-
- 
- 
- #### [ApplicationLegalFAQ](#ApplicationLegalFAQ)
+#### [ActionPage](#ActionPage)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | question | string |  no  |  |
- | answer | string |  no  |  |
+ | params | [String: [string]]? |  yes  |  |
+ | query | [String: [string]]? |  yes  |  |
+ | type | string? |  yes  |  |
+ | url | string? |  yes  |  |
+ 
 
 ---
 
-
- 
- 
- #### [PathMappingSchema](#PathMappingSchema)
+#### [AdminAnnouncementSchema](#AdminAnnouncementSchema)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | application | string |  no  |  |
- | _id | string |  no  |  |
- | redirect_from | string |  no  |  |
- | redirect_to | string |  no  |  |
- | updated_at | string |  no  |  |
- | created_at | string |  no  |  |
- | __source | [PathSourceSchema](#PathSourceSchema) |  no  |  |
+ | _id | string? |  yes  |  |
+ | _schedule | [ScheduleSchema](#ScheduleSchema)? |  yes  |  |
+ | announcement | string? |  yes  |  |
+ | app | string? |  yes  |  |
+ | author | [AnnouncementAuthorSchema](#AnnouncementAuthorSchema)? |  yes  |  |
+ | created_at | string? |  yes  |  |
+ | editor_meta | [EditorMeta](#EditorMeta)? |  yes  |  |
+ | modified_at | string? |  yes  |  |
+ | pages | [[AnnouncementPageSchema](#AnnouncementPageSchema)]? |  yes  |  |
+ | platforms | [string]? |  yes  |  |
+ | title | string? |  yes  |  |
+ 
 
 ---
 
-
- 
- 
- #### [PathSourceSchema](#PathSourceSchema)
+#### [AnnouncementAuthorSchema](#AnnouncementAuthorSchema)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | created_by | string? |  yes  |  |
+ | modified_by | string? |  yes  |  |
+ 
+
+---
+
+#### [AnnouncementPageSchema](#AnnouncementPageSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | page_slug | string? |  yes  |  |
+ | type | string? |  yes  |  |
+ 
+
+---
+
+#### [AnnouncementSchema](#AnnouncementSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | announcement | string? |  yes  |  |
+ | schedule | [ScheduleStartSchema](#ScheduleStartSchema)? |  yes  |  |
+ 
+
+---
+
+#### [AnnouncementsResponseSchema](#AnnouncementsResponseSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | announcements | [String: [[AnnouncementSchema](#AnnouncementSchema)]]? |  yes  |  |
+ | refresh_pages | [string]? |  yes  | list of page slugs on which announcement should be fetched as soon as they are loaded |
+ | refresh_rate | number? |  yes  | number of seconds after which api should hit again to fetch new announcements |
+ 
+
+---
+
+#### [ApplicationLegal](#ApplicationLegal)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | _id | string? |  yes  |  |
+ | application | string? |  yes  |  |
+ | created_at | string? |  yes  |  |
+ | faq | [[ApplicationLegalFAQ](#ApplicationLegalFAQ)]? |  yes  |  |
+ | policy | string? |  yes  |  |
+ | returns | string? |  yes  |  |
+ | shipping | string? |  yes  |  |
+ | tnc | string? |  yes  |  |
+ | updated_at | string? |  yes  |  |
+ 
+
+---
+
+#### [ApplicationLegalFAQ](#ApplicationLegalFAQ)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | answer | string? |  yes  |  |
+ | question | string? |  yes  |  |
+ 
+
+---
+
+#### [Asset](#Asset)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | aspect_ratio | string? |  yes  |  |
+ | id | string? |  yes  |  |
+ | secure_url | string? |  yes  |  |
+ 
+
+---
+
+#### [Author](#Author)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | designation | string? |  yes  |  |
+ | id | string? |  yes  |  |
+ | name | string? |  yes  |  |
+ 
+
+---
+
+#### [BlogGetResponse](#BlogGetResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | items | [[BlogSchema](#BlogSchema)]? |  yes  |  |
+ | page | [Page](#Page)? |  yes  |  |
+ 
+
+---
+
+#### [BlogRequest](#BlogRequest)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | _custom_json | string? |  yes  |  |
+ | _schedule | [CronSchedule](#CronSchedule)? |  yes  |  |
+ | application | string? |  yes  |  |
+ | author | [Author](#Author)? |  yes  |  |
+ | content | [[ResourceContent](#ResourceContent)]? |  yes  |  |
+ | feature_image | [Asset](#Asset)? |  yes  |  |
+ | published | boolean? |  yes  |  |
+ | reading_time | string? |  yes  |  |
+ | seo | [SEO](#SEO)? |  yes  |  |
+ | slug | string? |  yes  |  |
+ | tags | [string]? |  yes  |  |
+ | title | string? |  yes  |  |
+ 
+
+---
+
+#### [BlogSchema](#BlogSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | _custom_json | string? |  yes  |  |
+ | _id | string? |  yes  |  |
+ | _schedule | [CronSchedule](#CronSchedule)? |  yes  |  |
+ | application | string? |  yes  |  |
+ | archived | boolean? |  yes  |  |
+ | author | [Author](#Author)? |  yes  |  |
+ | content | [[ResourceContent](#ResourceContent)]? |  yes  |  |
+ | date_meta | [DateMeta](#DateMeta)? |  yes  |  |
+ | feature_image | [Asset](#Asset)? |  yes  |  |
+ | published | boolean? |  yes  |  |
+ | reading_time | string? |  yes  |  |
+ | seo | [SEO](#SEO)? |  yes  |  |
+ | slug | string? |  yes  |  |
+ | tags | [string]? |  yes  |  |
+ | title | string? |  yes  |  |
+ 
+
+---
+
+#### [CategoryRequestSchema](#CategoryRequestSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | slug | string? |  yes  |  |
+ | title | string? |  yes  |  |
+ 
+
+---
+
+#### [CategorySchema](#CategorySchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | _custom_json | string? |  yes  |  |
+ | _id | string? |  yes  |  |
+ | application | string? |  yes  |  |
+ | children | [string]? |  yes  |  |
+ | description | string? |  yes  |  |
+ | icon_url | string? |  yes  |  |
+ | index | number? |  yes  |  |
+ | slug | string? |  yes  |  |
+ | title | string? |  yes  |  |
+ 
+
+---
+
+#### [ChildrenSchema](#ChildrenSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | _id | string? |  yes  |  |
+ | answer | string? |  yes  |  |
+ | application | string? |  yes  |  |
+ | question | string? |  yes  |  |
+ | slug | string? |  yes  |  |
+ 
+
+---
+
+#### [CommonError](#CommonError)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | message | string? |  yes  |  |
+ 
+
+---
+
+#### [ConfigurationSchema](#ConfigurationSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | duration | number? |  yes  |  |
+ | sleep_time | number? |  yes  |  |
+ | slide_direction | string? |  yes  |  |
+ | start_on_launch | boolean? |  yes  |  |
+ 
+
+---
+
+#### [ContactSchema](#ContactSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | email | [EmailSchema](#EmailSchema)? |  yes  |  |
+ | phone | [PhoneSchema](#PhoneSchema)? |  yes  |  |
+ 
+
+---
+
+#### [ContentAPIError](#ContentAPIError)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | code | string? |  yes  |  |
+ | exception | string? |  yes  |  |
+ | info | string? |  yes  |  |
+ | message | string? |  yes  |  |
+ | meta | string? |  yes  |  |
+ | request_id | string? |  yes  |  |
+ | stack_trace | string? |  yes  |  |
+ | status | number? |  yes  |  |
+ 
+
+---
+
+#### [ContentSchema](#ContentSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | type | string? |  yes  |  |
+ | value | string? |  yes  |  |
+ 
+
+---
+
+#### [CreateAnnouncementSchema](#CreateAnnouncementSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | data | [AdminAnnouncementSchema](#AdminAnnouncementSchema)? |  yes  |  |
+ | message | string? |  yes  |  |
+ 
+
+---
+
+#### [CreatedBySchema](#CreatedBySchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | id | string? |  yes  |  |
+ 
+
+---
+
+#### [CreateFaqCategoryRequestSchema](#CreateFaqCategoryRequestSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | category | [CategoryRequestSchema](#CategoryRequestSchema)? |  yes  |  |
+ 
+
+---
+
+#### [CreateFaqCategorySchema](#CreateFaqCategorySchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | category | [CategorySchema](#CategorySchema)? |  yes  |  |
+ 
+
+---
+
+#### [CreateFaqResponseSchema](#CreateFaqResponseSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | faq | [FaqSchema](#FaqSchema)? |  yes  |  |
+ 
+
+---
+
+#### [CreateFaqSchema](#CreateFaqSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | faq | [FAQ](#FAQ)? |  yes  |  |
+ 
+
+---
+
+#### [CreateTagRequestSchema](#CreateTagRequestSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | tags | [[CreateTagSchema](#CreateTagSchema)]? |  yes  |  |
+ 
+
+---
+
+#### [CreateTagSchema](#CreateTagSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | _id | string? |  yes  |  |
+ | attributes | string? |  yes  |  |
+ | content | string? |  yes  |  |
+ | name | string? |  yes  |  |
+ | pages | [string]? |  yes  |  |
+ | position | string? |  yes  |  |
+ | sub_type | string? |  yes  |  |
+ | type | string? |  yes  |  |
+ | url | string? |  yes  |  |
+ 
+
+---
+
+#### [CronSchedule](#CronSchedule)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | cron | string? |  yes  |  |
+ | duration | number? |  yes  |  |
+ | end | string? |  yes  |  |
+ | start | string? |  yes  |  |
+ 
+
+---
+
+#### [CustomMetaTag](#CustomMetaTag)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | _id | string? |  yes  |  |
+ | content | string? |  yes  |  |
+ | name | string? |  yes  |  |
+ 
+
+---
+
+#### [CustomPage](#CustomPage)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | data | [CustomPageSchema](#CustomPageSchema)? |  yes  |  |
+ 
+
+---
+
+#### [CustomPageSchema](#CustomPageSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | _id | string? |  yes  |  |
+ | _schedule | [ScheduleSchema](#ScheduleSchema)? |  yes  |  |
+ | application | string? |  yes  |  |
+ | content | [string]? |  yes  |  |
+ | created_by | [CreatedBySchema](#CreatedBySchema)? |  yes  |  |
+ | date_meta | [DateMeta](#DateMeta)? |  yes  |  |
+ | description | string? |  yes  |  |
+ | orientation | string? |  yes  |  |
+ | platform | string? |  yes  |  |
+ | published | boolean? |  yes  |  |
+ | slug | string? |  yes  |  |
+ | tags | [string]? |  yes  |  |
+ | title | string? |  yes  |  |
+ | type | string? |  yes  |  |
+ 
+
+---
+
+#### [DataLoaderResetResponseSchema](#DataLoaderResetResponseSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | reset | string? |  yes  |  |
+ 
+
+---
+
+#### [DataLoaderResponseSchema](#DataLoaderResponseSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | __source | [DataLoaderSourceSchema](#DataLoaderSourceSchema)? |  yes  |  |
+ | _id | string? |  yes  |  |
+ | application | string? |  yes  |  |
+ | company | string? |  yes  |  |
+ | content | string? |  yes  |  |
+ | name | string? |  yes  |  |
+ | operation_id | string? |  yes  |  |
+ | service | string? |  yes  |  |
+ | type | string? |  yes  |  |
+ | url | string? |  yes  |  |
+ 
+
+---
+
+#### [DataLoaderSchema](#DataLoaderSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | __source | [DataLoaderSourceSchema](#DataLoaderSourceSchema)? |  yes  |  |
+ | _id | string? |  yes  |  |
+ | content | string? |  yes  |  |
+ | name | string? |  yes  |  |
+ | operation_id | string? |  yes  |  |
+ | service | string? |  yes  |  |
+ | type | string? |  yes  |  |
+ | url | string? |  yes  |  |
+ 
+
+---
+
+#### [DataLoaderSourceSchema](#DataLoaderSourceSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | id | string? |  yes  |  |
+ | type | string? |  yes  |  |
+ 
+
+---
+
+#### [DataLoadersSchema](#DataLoadersSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | items | [[DataLoaderSchema](#DataLoaderSchema)]? |  yes  |  |
+ 
+
+---
+
+#### [DateMeta](#DateMeta)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | created_on | string? |  yes  |  |
+ | modified_on | string? |  yes  |  |
+ 
+
+---
+
+#### [DefaultNavigationResponse](#DefaultNavigationResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | items | [[NavigationSchema](#NavigationSchema)]? |  yes  |  |
+ 
+
+---
+
+#### [Detail](#Detail)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | description | string? |  yes  |  |
+ | title | string? |  yes  |  |
+ 
+
+---
+
+#### [EditorMeta](#EditorMeta)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | background_color | string? |  yes  |  |
+ | content | string? |  yes  |  |
+ | content_type | string? |  yes  |  |
+ | foreground_color | string? |  yes  |  |
+ 
+
+---
+
+#### [EmailProperties](#EmailProperties)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | key | string? |  yes  |  |
+ | value | string? |  yes  |  |
+ 
+
+---
+
+#### [EmailSchema](#EmailSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | active | boolean? |  yes  |  |
+ | email | [[EmailProperties](#EmailProperties)]? |  yes  |  |
+ 
+
+---
+
+#### [FAQ](#FAQ)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | answer | string? |  yes  |  |
+ | question | string? |  yes  |  |
+ | slug | string? |  yes  |  |
+ 
+
+---
+
+#### [FAQCategorySchema](#FAQCategorySchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | _custom_json | string? |  yes  |  |
+ | _id | string? |  yes  |  |
+ | application | string? |  yes  |  |
+ | children | [[ChildrenSchema](#ChildrenSchema)]? |  yes  |  |
+ | description | string? |  yes  |  |
+ | icon_url | string? |  yes  |  |
+ | index | number? |  yes  |  |
+ | slug | string? |  yes  |  |
+ | title | string? |  yes  |  |
+ 
+
+---
+
+#### [FaqResponseSchema](#FaqResponseSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | faqs | [[FaqSchema](#FaqSchema)]? |  yes  |  |
+ 
+
+---
+
+#### [FaqSchema](#FaqSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | _id | string? |  yes  |  |
+ | answer | string? |  yes  |  |
+ | application | string? |  yes  |  |
+ | question | string? |  yes  |  |
+ | slug | string? |  yes  |  |
+ | tags | [string]? |  yes  |  |
+ 
+
+---
+
+#### [FeatureImage](#FeatureImage)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | secure_url | string? |  yes  |  |
+ 
+
+---
+
+#### [GetAnnouncementListSchema](#GetAnnouncementListSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | items | [[AdminAnnouncementSchema](#AdminAnnouncementSchema)]? |  yes  |  |
+ | page | [Page](#Page)? |  yes  |  |
+ 
+
+---
+
+#### [GetFaqCategoriesSchema](#GetFaqCategoriesSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | categories | [[CategorySchema](#CategorySchema)]? |  yes  |  |
+ 
+
+---
+
+#### [GetFaqCategoryBySlugSchema](#GetFaqCategoryBySlugSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | category | [FAQCategorySchema](#FAQCategorySchema)? |  yes  |  |
+ 
+
+---
+
+#### [GetFaqSchema](#GetFaqSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | faqs | [[FaqSchema](#FaqSchema)]? |  yes  |  |
+ 
+
+---
+
+#### [HandpickedTagSchema](#HandpickedTagSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | attributes | string? |  yes  |  |
+ | content | string? |  yes  |  |
+ | name | string? |  yes  |  |
+ | position | string? |  yes  |  |
+ | sub_type | string? |  yes  |  |
+ | type | string? |  yes  |  |
+ | url | string? |  yes  |  |
+ 
+
+---
+
+#### [LandingPage](#LandingPage)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | data | [LandingPageSchema](#LandingPageSchema)? |  yes  |  |
+ | success | boolean? |  yes  |  |
+ 
+
+---
+
+#### [LandingPageGetResponse](#LandingPageGetResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | items | [[LandingPageSchema](#LandingPageSchema)]? |  yes  |  |
+ | page | [Page](#Page)? |  yes  |  |
+ 
+
+---
+
+#### [LandingPageSchema](#LandingPageSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | _custom_json | string? |  yes  |  |
+ | _id | string? |  yes  |  |
+ | action | [Action](#Action)? |  yes  |  |
+ | application | string? |  yes  |  |
+ | archived | boolean? |  yes  |  |
+ | created_by | [CreatedBySchema](#CreatedBySchema)? |  yes  |  |
+ | date_meta | [DateMeta](#DateMeta)? |  yes  |  |
+ | platform | [string]? |  yes  |  |
+ | slug | string? |  yes  |  |
+ 
+
+---
+
+#### [Language](#Language)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | display | string? |  yes  |  |
+ 
+
+---
+
+#### [LocaleLanguage](#LocaleLanguage)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | ar | [Language](#Language)? |  yes  |  |
+ | en_us | [Language](#Language)? |  yes  |  |
+ | hi | [Language](#Language)? |  yes  |  |
+ 
+
+---
+
+#### [Navigation](#Navigation)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | _id | string? |  yes  |  |
+ | application | string? |  yes  |  |
+ | created_by | [CreatedBySchema](#CreatedBySchema)? |  yes  |  |
+ | date_meta | [DateMeta](#DateMeta)? |  yes  |  |
+ | name | string? |  yes  |  |
+ | navigation | [NavigationReference](#NavigationReference)? |  yes  |  |
+ | orientation | string? |  yes  |  |
+ | platform | string? |  yes  |  |
+ | position | string? |  yes  |  |
+ | slug | string? |  yes  |  |
+ 
+
+---
+
+#### [NavigationGetResponse](#NavigationGetResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | items | [[NavigationSchema](#NavigationSchema)]? |  yes  |  |
+ | page | [Page](#Page)? |  yes  |  |
+ 
+
+---
+
+#### [NavigationReference](#NavigationReference)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | _locale_language | [LocaleLanguage](#LocaleLanguage)? |  yes  |  |
+ | acl | [string]? |  yes  |  |
+ | action | [Action](#Action)? |  yes  |  |
+ | active | boolean? |  yes  |  |
+ | display | string? |  yes  |  |
+ | image | string? |  yes  |  |
+ | sort_order | number? |  yes  |  |
+ | sub_navigation | [[NavigationReference](#NavigationReference)]? |  yes  |  |
+ | tags | [string]? |  yes  |  |
+ | type | string? |  yes  |  |
+ 
+
+---
+
+#### [NavigationRequest](#NavigationRequest)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | name | string? |  yes  |  |
+ | navigation | [[NavigationReference](#NavigationReference)]? |  yes  |  |
+ | orientation | [Orientation](#Orientation)? |  yes  |  |
+ | platform | [string]? |  yes  |  |
+ | slug | string? |  yes  |  |
+ 
+
+---
+
+#### [NavigationSchema](#NavigationSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | _id | string? |  yes  |  |
+ | application | string? |  yes  |  |
+ | archived | boolean? |  yes  |  |
+ | created_by | [CreatedBySchema](#CreatedBySchema)? |  yes  |  |
+ | date_meta | [DateMeta](#DateMeta)? |  yes  |  |
+ | name | string? |  yes  |  |
+ | navigation | [[NavigationReference](#NavigationReference)]? |  yes  |  |
+ | orientation | [Orientation](#Orientation)? |  yes  |  |
+ | platform | [string]? |  yes  |  |
+ | slug | string? |  yes  |  |
+ | version | number? |  yes  |  |
+ 
+
+---
+
+#### [NextSchedule](#NextSchedule)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | end | string? |  yes  |  |
+ | start | string? |  yes  |  |
+ 
+
+---
+
+#### [Orientation](#Orientation)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | landscape | [string]? |  yes  |  |
+ | portrait | [string]? |  yes  |  |
+ 
+
+---
+
+#### [Page](#Page)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | current | number? |  yes  |  |
+ | has_next | boolean? |  yes  |  |
+ | has_previous | boolean? |  yes  |  |
+ | item_total | number? |  yes  |  |
+ | next_id | string? |  yes  |  |
+ | size | number? |  yes  |  |
  | type | string |  no  |  |
- | id | string |  no  |  |
-
----
-
-
- 
- 
- #### [SeoComponent](#SeoComponent)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | seo | [SeoSchema](#SeoSchema) |  no  |  |
-
----
-
-
- 
- 
- #### [SeoSchema](#SeoSchema)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | app | string |  no  |  |
- | _id | string |  no  |  |
- | robots_txt | string |  no  |  |
- | sitemap_enabled | boolean |  no  |  |
- | cannonical_enabled | boolean |  no  |  |
- | custom_meta_tags | [[CustomMetaTag](#CustomMetaTag)] |  no  |  |
- | details | [Detail](#Detail) |  no  |  |
- | created_at | string |  no  |  |
- | updated_at | string |  no  |  |
-
----
-
-
- 
- 
- #### [CustomMetaTag](#CustomMetaTag)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | name | string |  no  |  |
- | content | string |  no  |  |
- | _id | string |  no  |  |
-
----
-
-
- 
- 
- #### [Detail](#Detail)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | title | string |  no  |  |
- | description | string |  no  |  |
-
----
-
-
- 
- 
- #### [AnnouncementPageSchema](#AnnouncementPageSchema)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | page_slug | string |  no  |  |
- | type | string |  no  |  |
-
----
-
-
- 
- 
- #### [EditorMeta](#EditorMeta)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | foreground_color | string |  no  |  |
- | background_color | string |  no  |  |
- | content_type | string |  no  |  |
- | content | string |  no  |  |
-
----
-
-
- 
- 
- #### [AnnouncementAuthorSchema](#AnnouncementAuthorSchema)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | created_by | string |  no  |  |
- | modified_by | string |  no  |  |
-
----
-
-
- 
- 
- #### [AdminAnnouncementSchema](#AdminAnnouncementSchema)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | _id | string |  no  |  |
- | platforms | [string] |  no  |  |
- | title | string |  no  |  |
- | announcement | string |  no  |  |
- | pages | [[AnnouncementPageSchema](#AnnouncementPageSchema)] |  no  |  |
- | editor_meta | [EditorMeta](#EditorMeta) |  no  |  |
- | author | [AnnouncementAuthorSchema](#AnnouncementAuthorSchema) |  no  |  |
- | created_at | string |  no  |  |
- | app | string |  no  |  |
- | modified_at | string |  no  |  |
- | _schedule | [ScheduleSchema](#ScheduleSchema) |  no  |  |
-
----
-
-
- 
- 
- #### [ScheduleSchema](#ScheduleSchema)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | cron | string |  no  |  |
- | start | string |  no  |  |
- | end | string |  no  |  |
- | duration | number |  no  |  |
- | next_schedule | [[NextSchedule](#NextSchedule)] |  no  |  |
-
----
-
-
- 
- 
- #### [NextSchedule](#NextSchedule)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | start | string |  no  |  |
- | end | string |  no  |  |
-
----
-
-
- 
- 
- #### [AnnouncementSchema](#AnnouncementSchema)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | announcement | string |  no  |  |
- | schedule | [ScheduleStartSchema](#ScheduleStartSchema) |  no  |  |
-
----
-
-
- 
- 
- #### [ScheduleStartSchema](#ScheduleStartSchema)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | start | string |  no  |  |
- | end | string |  no  |  |
-
----
-
-
- 
- 
- #### [BlogGetResponse](#BlogGetResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | items | [[BlogSchema](#BlogSchema)] |  no  |  |
- | page | [Page](#Page) |  no  |  |
-
----
-
-
- 
- 
- #### [ResourceContent](#ResourceContent)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | type | string |  no  |  |
- | value | string |  no  |  |
-
----
-
-
- 
- 
- #### [Asset](#Asset)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | aspect_ratio | string |  no  |  |
- | id | string |  no  |  |
- | secure_url | string |  no  |  |
-
----
-
-
- 
- 
- #### [Author](#Author)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | designation | string |  no  |  |
- | id | string |  no  |  |
- | name | string |  no  |  |
-
----
-
-
- 
- 
- #### [BlogSchema](#BlogSchema)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | _id | string |  no  |  |
- | _custom_json | string |  no  |  |
- | application | string |  no  |  |
- | archived | boolean |  no  |  |
- | author | [Author](#Author) |  no  |  |
- | content | [[ResourceContent](#ResourceContent)] |  no  |  |
- | feature_image | [Asset](#Asset) |  no  |  |
- | published | boolean |  no  |  |
- | reading_time | string |  no  |  |
- | slug | string |  no  |  |
- | tags | [string] |  no  |  |
- | seo | [SEO](#SEO) |  no  |  |
- | _schedule | [CronSchedule](#CronSchedule) |  no  |  |
- | title | string |  no  |  |
- | date_meta | [DateMeta](#DateMeta) |  no  |  |
-
----
-
-
- 
- 
- #### [SEO](#SEO)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | description | string |  no  |  |
- | image | [SEOImage](#SEOImage) |  no  |  |
- | title | string |  no  |  |
-
----
-
-
- 
- 
- #### [SEOImage](#SEOImage)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | url | string |  no  |  |
-
----
-
-
- 
- 
- #### [DateMeta](#DateMeta)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | created_on | string |  no  |  |
- | modified_on | string |  no  |  |
-
----
-
-
- 
- 
- #### [BlogRequest](#BlogRequest)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | application | string |  no  |  |
- | _custom_json | string |  no  |  |
- | author | [Author](#Author) |  no  |  |
- | content | [[ResourceContent](#ResourceContent)] |  no  |  |
- | feature_image | [Asset](#Asset) |  no  |  |
- | published | boolean |  no  |  |
- | reading_time | string |  no  |  |
- | slug | string |  no  |  |
- | tags | [string] |  no  |  |
- | title | string |  no  |  |
- | seo | [SEO](#SEO) |  no  |  |
- | _schedule | [CronSchedule](#CronSchedule) |  no  |  |
-
----
-
-
- 
- 
- #### [GetAnnouncementListSchema](#GetAnnouncementListSchema)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | items | [[AdminAnnouncementSchema](#AdminAnnouncementSchema)] |  no  |  |
- | page | [Page](#Page) |  no  |  |
-
----
-
-
- 
- 
- #### [CreateAnnouncementSchema](#CreateAnnouncementSchema)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | message | string |  no  |  |
- | data | [AdminAnnouncementSchema](#AdminAnnouncementSchema) |  no  |  |
-
----
-
-
- 
- 
- #### [DataLoaderResponseSchema](#DataLoaderResponseSchema)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | application | string |  no  |  |
- | company | string |  no  |  |
- | _id | string |  no  |  |
- | name | string |  no  |  |
- | service | string |  no  |  |
- | operation_id | string |  no  |  |
- | type | string |  no  |  |
- | url | string |  no  |  |
- | content | string |  no  |  |
- | __source | [DataLoaderSourceSchema](#DataLoaderSourceSchema) |  no  |  |
-
----
-
-
- 
- 
- #### [DataLoaderResetResponseSchema](#DataLoaderResetResponseSchema)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | reset | string |  no  |  |
-
----
-
-
- 
- 
- #### [Navigation](#Navigation)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | name | string |  no  |  |
- | slug | string |  no  |  |
- | orientation | string |  no  |  |
- | created_by | [CreatedBySchema](#CreatedBySchema) |  no  |  |
- | date_meta | [DateMeta](#DateMeta) |  no  |  |
- | _id | string |  no  |  |
- | position | string |  no  |  |
- | application | string |  no  |  |
- | platform | string |  no  |  |
- | navigation | [NavigationReference](#NavigationReference) |  no  |  |
-
----
-
-
- 
- 
- #### [LocaleLanguage](#LocaleLanguage)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | hi | [Language](#Language) |  no  |  |
- | ar | [Language](#Language) |  no  |  |
- | en_us | [Language](#Language) |  no  |  |
-
----
-
-
- 
- 
- #### [Language](#Language)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | display | string |  no  |  |
-
----
-
-
- 
- 
- #### [Action](#Action)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | page | [ActionPage](#ActionPage) |  no  |  |
- | popup | [ActionPage](#ActionPage) |  no  |  |
- | type | string |  no  |  |
-
----
-
-
- 
- 
- #### [ActionPage](#ActionPage)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | params | [String: [string]] |  no  |  |
- | query | [String: [string]] |  no  |  |
- | url | string |  no  |  |
- | type | string |  no  |  |
-
----
-
-
- 
- 
- #### [NavigationReference](#NavigationReference)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | acl | [string] |  no  |  |
- | tags | [string] |  no  |  |
- | _locale_language | [LocaleLanguage](#LocaleLanguage) |  no  |  |
- | image | string |  no  |  |
- | type | string |  no  |  |
- | action | [Action](#Action) |  no  |  |
- | active | boolean |  no  |  |
- | display | string |  no  |  |
- | sort_order | number |  no  |  |
- | sub_navigation | [[NavigationReference](#NavigationReference)] |  no  |  |
-
----
-
-
- 
- 
- #### [LandingPage](#LandingPage)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | data | [LandingPageSchema](#LandingPageSchema) |  no  |  |
- | success | boolean |  no  |  |
-
----
-
-
- 
- 
- #### [ConfigurationSchema](#ConfigurationSchema)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | sleep_time | number |  no  |  |
- | start_on_launch | boolean |  no  |  |
- | duration | number |  no  |  |
- | slide_direction | string |  no  |  |
-
----
-
-
- 
- 
- #### [SlideshowMedia](#SlideshowMedia)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | type | string |  no  |  |
- | url | string |  no  |  |
- | bg_color | string |  no  |  |
- | duration | number |  no  |  |
- | auto_decide_duration | boolean |  no  |  |
- | action | [Action](#Action) |  no  |  |
-
----
-
-
- 
- 
- #### [Slideshow](#Slideshow)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | data | [SlideshowSchema](#SlideshowSchema) |  no  |  |
- | success | boolean |  no  |  |
-
----
-
-
- 
- 
- #### [AnnouncementsResponseSchema](#AnnouncementsResponseSchema)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | announcements | [String: [[AnnouncementSchema](#AnnouncementSchema)]] |  no  |  |
- | refresh_rate | number |  no  | number of seconds after which api should hit again to fetch new announcements |
- | refresh_pages | [string] |  no  | list of page slugs on which announcement should be fetched as soon as they are loaded |
-
----
-
-
- 
- 
- #### [FaqResponseSchema](#FaqResponseSchema)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | faqs | [[FaqSchema](#FaqSchema)] |  no  |  |
-
----
-
-
- 
- 
- #### [UpdateHandpickedSchema](#UpdateHandpickedSchema)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | tag | [HandpickedTagSchema](#HandpickedTagSchema) |  no  |  |
-
----
-
-
- 
- 
- #### [HandpickedTagSchema](#HandpickedTagSchema)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | position | string |  no  |  |
- | attributes | string |  no  |  |
- | name | string |  no  |  |
- | url | string |  no  |  |
- | type | string |  no  |  |
- | sub_type | string |  no  |  |
- | content | string |  no  |  |
-
----
-
-
- 
- 
- #### [RemoveHandpickedSchema](#RemoveHandpickedSchema)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | tags | [string] |  no  |  |
-
----
-
-
- 
- 
- #### [CreateTagSchema](#CreateTagSchema)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | name | string |  no  |  |
- | sub_type | string |  no  |  |
- | _id | string |  no  |  |
- | type | string |  no  |  |
- | url | string |  no  |  |
- | position | string |  no  |  |
- | attributes | string |  no  |  |
- | pages | [string] |  no  |  |
- | content | string |  no  |  |
-
----
-
-
- 
- 
- #### [CreateTagRequestSchema](#CreateTagRequestSchema)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | tags | [[CreateTagSchema](#CreateTagSchema)] |  no  |  |
-
----
-
-
- 
- 
- #### [DataLoaderSchema](#DataLoaderSchema)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | name | string |  no  |  |
- | service | string |  no  |  |
- | operation_id | string |  no  |  |
- | type | string |  no  |  |
- | url | string |  no  |  |
- | content | string |  no  |  |
- | __source | [DataLoaderSourceSchema](#DataLoaderSourceSchema) |  no  |  |
- | _id | string |  no  |  |
-
----
-
-
- 
- 
- #### [DataLoaderSourceSchema](#DataLoaderSourceSchema)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | type | string |  no  |  |
- | id | string |  no  |  |
-
----
-
-
- 
- 
- #### [DataLoadersSchema](#DataLoadersSchema)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | items | [[DataLoaderSchema](#DataLoaderSchema)] |  no  |  |
-
----
-
-
- 
- 
- #### [TagDeleteSuccessResponse](#TagDeleteSuccessResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | success | boolean |  no  |  |
-
----
-
-
- 
- 
- #### [ContentAPIError](#ContentAPIError)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | message | string |  no  |  |
- | status | number |  no  |  |
- | code | string |  no  |  |
- | exception | string |  no  |  |
- | info | string |  no  |  |
- | request_id | string |  no  |  |
- | stack_trace | string |  no  |  |
- | meta | string |  no  |  |
-
----
-
-
- 
  
- #### [CommonError](#CommonError)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | message | string |  no  |  |
 
 ---
-
 
- 
- 
- #### [CategorySchema](#CategorySchema)
+#### [PageContent](#PageContent)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | index | number |  no  |  |
- | title | string |  no  |  |
- | description | string |  no  |  |
- | children | [string] |  no  |  |
- | _id | string |  no  |  |
- | slug | string |  no  |  |
- | application | string |  no  |  |
- | icon_url | string |  no  |  |
- | _custom_json | string |  no  |  |
-
----
-
-
+ | type | string? |  yes  |  |
+ | value | string? |  yes  |  |
  
- 
- #### [ChildrenSchema](#ChildrenSchema)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | question | string |  no  |  |
- | answer | string |  no  |  |
- | slug | string |  no  |  |
- | application | string |  no  |  |
- | _id | string |  no  |  |
 
 ---
 
+#### [PageGetResponse](#PageGetResponse)
 
- 
- 
- #### [CategoryRequestSchema](#CategoryRequestSchema)
-
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | slug | string |  no  |  |
- | title | string |  no  |  |
-
----
-
-
- 
+ | items | [[PageSchema](#PageSchema)]? |  yes  |  |
+ | page | [Page](#Page)? |  yes  |  |
  
- #### [FAQCategorySchema](#FAQCategorySchema)
 
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | index | number |  no  |  |
- | title | string |  no  |  |
- | description | string |  no  |  |
- | children | [[ChildrenSchema](#ChildrenSchema)] |  no  |  |
- | _id | string |  no  |  |
- | slug | string |  no  |  |
- | application | string |  no  |  |
- | icon_url | string |  no  |  |
- | _custom_json | string |  no  |  |
-
 ---
-
 
- 
- 
- #### [FaqSchema](#FaqSchema)
+#### [PageMeta](#PageMeta)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | slug | string |  no  |  |
- | application | string |  no  |  |
- | _id | string |  no  |  |
- | question | string |  no  |  |
- | answer | string |  no  |  |
- | tags | [string] |  no  |  |
-
----
-
-
+ | key | string? |  yes  |  |
+ | value | string? |  yes  |  |
  
- 
- #### [FAQ](#FAQ)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | slug | string |  no  |  |
- | question | string |  no  |  |
- | answer | string |  no  |  |
 
 ---
 
-
- 
- 
- #### [CreateFaqResponseSchema](#CreateFaqResponseSchema)
+#### [PageMetaSchema](#PageMetaSchema)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | faq | [FaqSchema](#FaqSchema) |  no  |  |
-
----
-
-
- 
+ | application_id | string? |  yes  |  |
+ | custom_pages | [[PageSchema](#PageSchema)]? |  yes  |  |
+ | system_pages | [[NavigationSchema](#NavigationSchema)]? |  yes  |  |
  
- #### [CreateFaqSchema](#CreateFaqSchema)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | faq | [FAQ](#FAQ) |  no  |  |
 
 ---
-
 
- 
- 
- #### [GetFaqSchema](#GetFaqSchema)
+#### [PagePublishRequest](#PagePublishRequest)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | faqs | [[FaqSchema](#FaqSchema)] |  no  |  |
-
----
-
-
+ | publish | boolean? |  yes  |  |
  
- 
- #### [UpdateFaqCategoryRequestSchema](#UpdateFaqCategoryRequestSchema)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | category | [CategorySchema](#CategorySchema) |  no  |  |
 
 ---
 
+#### [PageRequest](#PageRequest)
 
- 
- 
- #### [CreateFaqCategoryRequestSchema](#CreateFaqCategoryRequestSchema)
-
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | category | [CategoryRequestSchema](#CategoryRequestSchema) |  no  |  |
-
----
-
-
- 
+ | _custom_json | string? |  yes  |  |
+ | _schedule | [CronSchedule](#CronSchedule)? |  yes  |  |
+ | application | string? |  yes  |  |
+ | author | [Author](#Author)? |  yes  |  |
+ | content | [string]? |  yes  |  |
+ | feature_image | [Asset](#Asset)? |  yes  |  |
+ | orientation | string? |  yes  |  |
+ | published | boolean? |  yes  |  |
+ | reading_time | string? |  yes  |  |
+ | seo | [SEO](#SEO)? |  yes  |  |
+ | slug | string? |  yes  |  |
+ | tags | [string]? |  yes  |  |
+ | title | string? |  yes  |  |
  
- #### [CreateFaqCategorySchema](#CreateFaqCategorySchema)
 
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | category | [CategorySchema](#CategorySchema) |  no  |  |
-
 ---
-
 
- 
- 
- #### [GetFaqCategoriesSchema](#GetFaqCategoriesSchema)
+#### [PageSchema](#PageSchema)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | categories | [[CategorySchema](#CategorySchema)] |  no  |  |
-
----
-
-
+ | _custom_json | string? |  yes  |  |
+ | _id | string? |  yes  |  |
+ | _schedule | [ScheduleSchema](#ScheduleSchema)? |  yes  |  |
+ | application | string? |  yes  |  |
+ | archived | boolean? |  yes  |  |
+ | component_ids | [string]? |  yes  | Components can be used to store multiple components |
+ | content | [string]? |  yes  |  |
+ | content_path | string? |  yes  |  |
+ | created_by | [CreatedBySchema](#CreatedBySchema)? |  yes  |  |
+ | date_meta | [DateMeta](#DateMeta)? |  yes  |  |
+ | description | string? |  yes  |  |
+ | feature_image | [Asset](#Asset)? |  yes  |  |
+ | orientation | string? |  yes  |  |
+ | page_meta | [string]? |  yes  |  |
+ | platform | string? |  yes  |  |
+ | published | boolean? |  yes  |  |
+ | seo | [SEO](#SEO)? |  yes  |  |
+ | slug | string? |  yes  |  |
+ | tags | [string]? |  yes  |  |
+ | title | string? |  yes  |  |
+ | type | string? |  yes  |  |
+ | visibility | string? |  yes  |  |
  
- 
- #### [GetFaqCategoryBySlugSchema](#GetFaqCategoryBySlugSchema)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | category | [FAQCategorySchema](#FAQCategorySchema) |  no  |  |
 
 ---
 
-
- 
- 
- #### [Page](#Page)
+#### [PageSpec](#PageSpec)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | item_total | number |  no  |  |
- | next_id | string |  no  |  |
- | has_previous | boolean |  no  |  |
- | has_next | boolean |  no  |  |
- | current | number |  no  |  |
- | type | string |  yes  |  |
- | size | number |  no  |  |
-
----
-
-
- 
+ | specifications | [[PageSpecItem](#PageSpecItem)]? |  yes  |  |
  
- #### [LandingPageGetResponse](#LandingPageGetResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | items | [[LandingPageSchema](#LandingPageSchema)] |  no  |  |
- | page | [Page](#Page) |  no  |  |
 
 ---
-
 
- 
- 
- #### [LandingPageSchema](#LandingPageSchema)
+#### [PageSpecItem](#PageSpecItem)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | slug | string |  no  |  |
- | action | [Action](#Action) |  no  |  |
- | platform | [string] |  no  |  |
- | created_by | [CreatedBySchema](#CreatedBySchema) |  no  |  |
- | date_meta | [DateMeta](#DateMeta) |  no  |  |
- | _id | string |  no  |  |
- | application | string |  no  |  |
- | archived | boolean |  no  |  |
- | _custom_json | string |  no  |  |
-
----
-
-
+ | display_name | string? |  yes  |  |
+ | page_type | string? |  yes  |  |
+ | params | [[PageSpecParam](#PageSpecParam)]? |  yes  |  |
+ | query | [[PageSpecParam](#PageSpecParam)]? |  yes  |  |
  
- 
- #### [DefaultNavigationResponse](#DefaultNavigationResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | items | [[NavigationSchema](#NavigationSchema)] |  no  |  |
 
 ---
 
+#### [PageSpecParam](#PageSpecParam)
 
- 
- 
- #### [NavigationGetResponse](#NavigationGetResponse)
-
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | items | [[NavigationSchema](#NavigationSchema)] |  no  |  |
- | page | [Page](#Page) |  no  |  |
-
----
-
-
- 
+ | key | string? |  yes  |  |
+ | required | boolean? |  yes  |  |
  
- #### [Orientation](#Orientation)
 
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | portrait | [string] |  no  |  |
- | landscape | [string] |  no  |  |
-
 ---
-
 
- 
- 
- #### [NavigationSchema](#NavigationSchema)
+#### [PathMappingSchema](#PathMappingSchema)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | _id | string |  no  |  |
- | application | string |  no  |  |
- | archived | boolean |  no  |  |
- | name | string |  no  |  |
- | slug | string |  no  |  |
- | platform | [string] |  no  |  |
- | created_by | [CreatedBySchema](#CreatedBySchema) |  no  |  |
- | date_meta | [DateMeta](#DateMeta) |  no  |  |
- | orientation | [Orientation](#Orientation) |  no  |  |
- | version | number |  no  |  |
- | navigation | [[NavigationReference](#NavigationReference)] |  no  |  |
-
----
-
-
+ | __source | [PathSourceSchema](#PathSourceSchema)? |  yes  |  |
+ | _id | string? |  yes  |  |
+ | application | string? |  yes  |  |
+ | created_at | string? |  yes  |  |
+ | redirect_from | string? |  yes  |  |
+ | redirect_to | string? |  yes  |  |
+ | updated_at | string? |  yes  |  |
  
- 
- #### [NavigationRequest](#NavigationRequest)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | name | string |  no  |  |
- | slug | string |  no  |  |
- | platform | [string] |  no  |  |
- | orientation | [Orientation](#Orientation) |  no  |  |
- | navigation | [[NavigationReference](#NavigationReference)] |  no  |  |
 
 ---
 
-
- 
- 
- #### [CustomPageSchema](#CustomPageSchema)
+#### [PathSourceSchema](#PathSourceSchema)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | _id | string |  no  |  |
- | platform | string |  no  |  |
- | title | string |  no  |  |
- | slug | string |  no  |  |
- | type | string |  no  |  |
- | orientation | string |  no  |  |
- | application | string |  no  |  |
- | description | string |  no  |  |
- | published | boolean |  no  |  |
- | tags | [string] |  no  |  |
- | content | [string] |  no  |  |
- | created_by | [CreatedBySchema](#CreatedBySchema) |  no  |  |
- | date_meta | [DateMeta](#DateMeta) |  no  |  |
- | _schedule | [ScheduleSchema](#ScheduleSchema) |  no  |  |
-
----
-
-
- 
+ | id | string? |  yes  |  |
+ | type | string? |  yes  |  |
  
- #### [ContentSchema](#ContentSchema)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | type | string |  no  |  |
- | value | string |  no  |  |
 
 ---
-
 
- 
- 
- #### [CustomPage](#CustomPage)
+#### [PhoneProperties](#PhoneProperties)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | data | [CustomPageSchema](#CustomPageSchema) |  no  |  |
-
----
-
-
+ | code | string? |  yes  |  |
+ | key | string? |  yes  |  |
+ | number | string? |  yes  |  |
  
- 
- #### [FeatureImage](#FeatureImage)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | secure_url | string |  no  |  |
 
 ---
 
+#### [PhoneSchema](#PhoneSchema)
 
- 
- 
- #### [PageGetResponse](#PageGetResponse)
-
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | items | [[PageSchema](#PageSchema)] |  no  |  |
- | page | [Page](#Page) |  no  |  |
-
----
-
-
- 
+ | active | boolean? |  yes  |  |
+ | phone | [[PhoneProperties](#PhoneProperties)]? |  yes  |  |
  
- #### [PageSpec](#PageSpec)
 
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | specifications | [[PageSpecItem](#PageSpecItem)] |  no  |  |
-
 ---
-
 
- 
- 
- #### [PageSpecParam](#PageSpecParam)
+#### [RemoveHandpickedSchema](#RemoveHandpickedSchema)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | key | string |  no  |  |
- | required | boolean |  no  |  |
-
----
-
-
+ | tags | [string]? |  yes  |  |
  
- 
- #### [PageSpecItem](#PageSpecItem)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | page_type | string |  no  |  |
- | display_name | string |  no  |  |
- | params | [[PageSpecParam](#PageSpecParam)] |  no  |  |
- | query | [[PageSpecParam](#PageSpecParam)] |  no  |  |
 
 ---
 
-
- 
- 
- #### [PageSchema](#PageSchema)
+#### [ResourceContent](#ResourceContent)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | _id | string |  no  |  |
- | application | string |  no  |  |
- | component_ids | [string] |  no  | Components can be used to store multiple components |
- | content | [string] |  no  |  |
- | content_path | string |  no  |  |
- | created_by | [CreatedBySchema](#CreatedBySchema) |  no  |  |
- | date_meta | [DateMeta](#DateMeta) |  no  |  |
- | description | string |  no  |  |
- | feature_image | [Asset](#Asset) |  no  |  |
- | page_meta | [string] |  no  |  |
- | _schedule | [ScheduleSchema](#ScheduleSchema) |  no  |  |
- | _custom_json | string |  no  |  |
- | orientation | string |  no  |  |
- | platform | string |  no  |  |
- | published | boolean |  no  |  |
- | slug | string |  no  |  |
- | tags | [string] |  no  |  |
- | title | string |  no  |  |
- | type | string |  no  |  |
- | seo | [SEO](#SEO) |  no  |  |
- | visibility | string |  no  |  |
- | archived | boolean |  no  |  |
-
----
-
-
- 
+ | type | string? |  yes  |  |
+ | value | string? |  yes  |  |
  
- #### [CreatedBySchema](#CreatedBySchema)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | id | string |  no  |  |
 
 ---
-
 
- 
- 
- #### [PageContent](#PageContent)
+#### [ScheduleSchema](#ScheduleSchema)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | type | string |  no  |  |
- | value | string |  no  |  |
+ | cron | string? |  yes  |  |
+ | duration | number? |  yes  |  |
+ | end | string? |  yes  |  |
+ | next_schedule | [[NextSchedule](#NextSchedule)]? |  yes  |  |
+ | start | string? |  yes  |  |
+ 
 
 ---
-
 
- 
- 
- #### [PageMeta](#PageMeta)
+#### [ScheduleStartSchema](#ScheduleStartSchema)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | key | string |  no  |  |
- | value | string |  no  |  |
+ | end | string? |  yes  |  |
+ | start | string? |  yes  |  |
+ 
 
 ---
-
 
- 
- 
- #### [PageRequest](#PageRequest)
+#### [SEO](#SEO)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | _schedule | [CronSchedule](#CronSchedule) |  no  |  |
- | application | string |  no  |  |
- | author | [Author](#Author) |  no  |  |
- | _custom_json | string |  no  |  |
- | orientation | string |  no  |  |
- | content | [string] |  no  |  |
- | feature_image | [Asset](#Asset) |  no  |  |
- | published | boolean |  no  |  |
- | reading_time | string |  no  |  |
- | slug | string |  no  |  |
- | tags | [string] |  no  |  |
- | seo | [SEO](#SEO) |  no  |  |
- | title | string |  no  |  |
+ | description | string? |  yes  |  |
+ | image | [SEOImage](#SEOImage)? |  yes  |  |
+ | title | string? |  yes  |  |
+ 
 
 ---
-
 
- 
- 
- #### [CronSchedule](#CronSchedule)
+#### [SeoComponent](#SeoComponent)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | cron | string |  no  |  |
- | start | string |  no  |  |
- | end | string |  no  |  |
- | duration | number |  no  |  |
+ | seo | [SeoSchema](#SeoSchema)? |  yes  |  |
+ 
 
 ---
-
 
- 
- 
- #### [PagePublishRequest](#PagePublishRequest)
+#### [SEOImage](#SEOImage)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | publish | boolean |  no  |  |
+ | url | string? |  yes  |  |
+ 
 
 ---
-
 
- 
- 
- #### [PageMetaSchema](#PageMetaSchema)
+#### [SeoSchema](#SeoSchema)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | system_pages | [[NavigationSchema](#NavigationSchema)] |  no  |  |
- | custom_pages | [[PageSchema](#PageSchema)] |  no  |  |
- | application_id | string |  no  |  |
+ | _id | string? |  yes  |  |
+ | app | string? |  yes  |  |
+ | cannonical_enabled | boolean? |  yes  |  |
+ | created_at | string? |  yes  |  |
+ | custom_meta_tags | [[CustomMetaTag](#CustomMetaTag)]? |  yes  |  |
+ | details | [Detail](#Detail)? |  yes  |  |
+ | robots_txt | string? |  yes  |  |
+ | sitemap_enabled | boolean? |  yes  |  |
+ | updated_at | string? |  yes  |  |
+ 
 
 ---
-
 
- 
- 
- #### [SlideshowGetResponse](#SlideshowGetResponse)
+#### [Slideshow](#Slideshow)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | items | [[SlideshowSchema](#SlideshowSchema)] |  no  |  |
- | page | [Page](#Page) |  no  |  |
+ | data | [SlideshowSchema](#SlideshowSchema)? |  yes  |  |
+ | success | boolean? |  yes  |  |
+ 
 
 ---
-
 
- 
- 
- #### [SlideshowSchema](#SlideshowSchema)
+#### [SlideshowGetResponse](#SlideshowGetResponse)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | _id | string |  no  |  |
- | slug | string |  no  |  |
- | date_meta | [DateMeta](#DateMeta) |  no  |  |
- | application | string |  no  |  |
- | platform | string |  no  |  |
- | configuration | [ConfigurationSchema](#ConfigurationSchema) |  no  |  |
- | media | [[SlideshowMedia](#SlideshowMedia)] |  no  |  |
- | active | boolean |  no  |  |
- | archived | boolean |  no  |  |
- | _custom_json | string |  no  |  |
+ | items | [[SlideshowSchema](#SlideshowSchema)]? |  yes  |  |
+ | page | [Page](#Page)? |  yes  |  |
+ 
 
 ---
-
 
- 
- 
- #### [SlideshowRequest](#SlideshowRequest)
+#### [SlideshowMedia](#SlideshowMedia)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | slug | string |  no  |  |
- | platform | string |  no  |  |
- | configuration | [ConfigurationSchema](#ConfigurationSchema) |  no  |  |
- | media | [SlideshowMedia](#SlideshowMedia) |  no  |  |
- | active | boolean |  no  |  |
+ | action | [Action](#Action)? |  yes  |  |
+ | auto_decide_duration | boolean? |  yes  |  |
+ | bg_color | string? |  yes  |  |
+ | duration | number? |  yes  |  |
+ | type | string? |  yes  |  |
+ | url | string? |  yes  |  |
+ 
 
 ---
-
 
- 
- 
- #### [Support](#Support)
+#### [SlideshowRequest](#SlideshowRequest)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | created | boolean |  no  |  |
- | _id | string |  no  |  |
- | config_type | string |  no  |  |
- | application | string |  no  |  |
- | created_at | string |  no  |  |
- | updated_at | string |  no  |  |
- | contact | [ContactSchema](#ContactSchema) |  no  |  |
+ | active | boolean? |  yes  |  |
+ | configuration | [ConfigurationSchema](#ConfigurationSchema)? |  yes  |  |
+ | media | [SlideshowMedia](#SlideshowMedia)? |  yes  |  |
+ | platform | string? |  yes  |  |
+ | slug | string? |  yes  |  |
+ 
 
 ---
-
 
- 
- 
- #### [PhoneProperties](#PhoneProperties)
+#### [SlideshowSchema](#SlideshowSchema)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | key | string |  no  |  |
- | code | string |  no  |  |
- | number | string |  no  |  |
+ | _custom_json | string? |  yes  |  |
+ | _id | string? |  yes  |  |
+ | active | boolean? |  yes  |  |
+ | application | string? |  yes  |  |
+ | archived | boolean? |  yes  |  |
+ | configuration | [ConfigurationSchema](#ConfigurationSchema)? |  yes  |  |
+ | date_meta | [DateMeta](#DateMeta)? |  yes  |  |
+ | media | [[SlideshowMedia](#SlideshowMedia)]? |  yes  |  |
+ | platform | string? |  yes  |  |
+ | slug | string? |  yes  |  |
+ 
 
 ---
-
 
- 
- 
- #### [PhoneSchema](#PhoneSchema)
+#### [Support](#Support)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | active | boolean |  no  |  |
- | phone | [[PhoneProperties](#PhoneProperties)] |  no  |  |
+ | _id | string? |  yes  |  |
+ | application | string? |  yes  |  |
+ | config_type | string? |  yes  |  |
+ | contact | [ContactSchema](#ContactSchema)? |  yes  |  |
+ | created | boolean? |  yes  |  |
+ | created_at | string? |  yes  |  |
+ | updated_at | string? |  yes  |  |
+ 
 
 ---
-
 
- 
- 
- #### [EmailProperties](#EmailProperties)
+#### [TagDeleteSuccessResponse](#TagDeleteSuccessResponse)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | key | string |  no  |  |
- | value | string |  no  |  |
+ | success | boolean? |  yes  |  |
+ 
 
 ---
-
 
- 
- 
- #### [EmailSchema](#EmailSchema)
+#### [TagSchema](#TagSchema)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | active | boolean |  no  |  |
- | email | [[EmailProperties](#EmailProperties)] |  no  |  |
+ | __source | [TagSourceSchema](#TagSourceSchema)? |  yes  |  |
+ | _id | string? |  yes  |  |
+ | attributes | string? |  yes  |  |
+ | content | string? |  yes  |  |
+ | name | string? |  yes  |  |
+ | pages | [string]? |  yes  |  |
+ | position | string? |  yes  |  |
+ | sub_type | string? |  yes  |  |
+ | type | string? |  yes  |  |
+ | url | string? |  yes  |  |
+ 
 
 ---
-
 
- 
- 
- #### [ContactSchema](#ContactSchema)
+#### [TagSourceSchema](#TagSourceSchema)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | phone | [PhoneSchema](#PhoneSchema) |  no  |  |
- | email | [EmailSchema](#EmailSchema) |  no  |  |
+ | id | string? |  yes  |  |
+ | type | string? |  yes  |  |
+ 
 
 ---
-
 
- 
- 
- #### [TagsSchema](#TagsSchema)
+#### [TagsSchema](#TagsSchema)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | application | string |  no  |  |
- | _id | string |  no  |  |
- | tags | [[TagSchema](#TagSchema)] |  no  |  |
+ | _id | string? |  yes  |  |
+ | application | string? |  yes  |  |
+ | tags | [[TagSchema](#TagSchema)]? |  yes  |  |
+ 
 
 ---
-
 
- 
- 
- #### [TagSchema](#TagSchema)
+#### [UpdateFaqCategoryRequestSchema](#UpdateFaqCategoryRequestSchema)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | name | string |  no  |  |
- | url | string |  no  |  |
- | type | string |  no  |  |
- | sub_type | string |  no  |  |
- | _id | string |  no  |  |
- | position | string |  no  |  |
- | attributes | string |  no  |  |
- | content | string |  no  |  |
- | pages | [string] |  no  |  |
- | __source | [TagSourceSchema](#TagSourceSchema) |  no  |  |
+ | category | [CategorySchema](#CategorySchema)? |  yes  |  |
+ 
 
 ---
-
 
- 
- 
- #### [TagSourceSchema](#TagSourceSchema)
+#### [UpdateHandpickedSchema](#UpdateHandpickedSchema)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | type | string |  no  |  |
- | id | string |  no  |  |
+ | tag | [HandpickedTagSchema](#HandpickedTagSchema)? |  yes  |  |
+ 
 
 ---
 
@@ -3315,8 +3113,6 @@ Success. Returns a list of pages along with their details. Check the example sho
  | page | page | Symbolic link for Page: /page/:slug |
  | policy | policy | Symbolic link for Privacy Policy: /privacy-policy |
  | product | product | Symbolic link for Product: /product/:slug |
- | productReviews | product-reviews | Symbolic link for Product Reviews: /product/:slug/reviews |
- | addProductReview | add-product-review | Symbolic link for Add Product review: /product/:slug/add-review |
  | productRequest | product-request | Symbolic link for Product Request: /product-request/ |
  | products | products | Symbolic link for Products: /products/ |
  | profile | profile | Symbolic link for Profile: /profile |

@@ -3,16 +3,70 @@ const { fdkAxios } = require("../common/AxiosHelper");
 const { sign } = require("../common/RequestSigner");
 const { FDKTokenIssueError, FDKOAuthCodeError } = require("../common/FDKError");
 const { Logger } = require("../common/Logger");
-const BaseOAuthClient = require("../common/BaseOAuthClient");
+const { btoa } = require("isomorphic-base64");
 
 const refreshTokenRequestCache = {};
-class OAuthClient extends BaseOAuthClient {
+class OAuthClient {
   constructor(config) {
-    super(config);
+    this.config = config;
+    this.token = null;
+    this.refreshToken = null;
+    this.retryOAuthTokenTimer = null;
+    this.raw_token = null;
+    this.token_expires_in = null;
+    this.token_expires_at = 0;
+    this.useAutoRenewTimer =
+      config.useAutoRenewTimer !== undefined ? config.useAutoRenewTimer : true;
+  }
+
+  async getAccessToken() {
+    if (
+      !this.useAutoRenewTimer &&
+      this.refreshToken &&
+      this.isTokenExpired(120)
+    ) {
+      // Check if token is about to expire in less than 2 mins.
+      // Renew if to be expired and auto renew timer is not enabled.
+      await this.renewAccessToken();
+    }
+    return this.token;
+  }
+
+  // default TTL checked 0 seconds
+  isTokenExpired(ttl = 0) {
+    const currentTimestamp = new Date().getTime();
+    // Check if token is about to expire in less than 2 mins
+    if ((this.token_expires_at - currentTimestamp) / 1000 < ttl) {
+      return true;
+    }
+    return false;
+  }
+
+  setToken(token) {
+    this.raw_token = token;
+    this.token_expires_in = token.expires_in;
+    this.token = token.access_token;
+    this.refreshToken = token.refresh_token ? token.refresh_token : null;
+    if (this.refreshToken && this.useAutoRenewTimer) {
+      this.retryOAuthToken(token.expires_in);
+    }
+    Logger({ level: "INFO", message: "Token set." });
+  }
+
+  retryOAuthToken(expires_in) {
+    Logger({ level: "INFO", message: "Retrying OAuth Token..." });
+    if (this.retryOAuthTokenTimer) {
+      clearTimeout(this.retryOAuthTokenTimer);
+    }
+    if (expires_in > 60) {
+      this.retryOAuthTokenTimer = setTimeout(() => {
+        this.renewAccessToken();
+      }, (expires_in - 60) * 1000);
+    }
   }
 
   startAuthorization(options) {
-    Logger({ type: "INFO", message: "Starting Authorization..." });
+    Logger({ level: "INFO", message: "Starting Authorization..." });
     let query = {
       client_id: this.config.apiKey,
       scope: options.scope.join(","),
@@ -33,7 +87,7 @@ class OAuthClient extends BaseOAuthClient {
       signQuery: true,
     };
     signingOptions = sign(signingOptions);
-    Logger({ type: "INFO", message: "Authorization successful.!" });
+    Logger({ level: "INFO", message: "Authorization successful.!" });
 
     return `${this.config.domain}${signingOptions.path}`;
   }
@@ -50,9 +104,9 @@ class OAuthClient extends BaseOAuthClient {
         grant_type: "authorization_code",
         code: query.code,
       });
-      res.expires_at =
-        res.expires_at || new Date().getTime() + res.expires_in * 1000;
       this.setToken(res);
+      this.token_expires_at =
+        new Date().getTime() + this.token_expires_in * 1000;
     } catch (error) {
       if (error.isAxiosError) {
         throw new FDKTokenIssueError(error.message);
@@ -63,7 +117,7 @@ class OAuthClient extends BaseOAuthClient {
 
   async renewAccessToken(isOfflineToken = false) {
     try {
-      Logger({ type: "INFO", message: "Renewing Access token..." });
+      Logger({ level: "INFO", message: "Renewing Access token..." });
       let res;
       if (isOfflineToken) {
         let requestCacheKey = `${this.config.apiKey}:${this.config.companyId}`;
@@ -82,10 +136,10 @@ class OAuthClient extends BaseOAuthClient {
           refresh_token: this.refreshToken,
         });
       }
-      res.expires_at =
-        res.expires_at || new Date().getTime() + res.expires_in * 1000;
       this.setToken(res);
-      Logger({ type: "INFO", message: "Done." });
+      this.token_expires_at =
+        new Date().getTime() + this.token_expires_in * 1000;
+      Logger({ level: "INFO", message: "Done." });
       return res;
     } catch (error) {
       if (error.isAxiosError) {
@@ -96,7 +150,7 @@ class OAuthClient extends BaseOAuthClient {
   }
 
   async getAccesstokenObj({ grant_type, refresh_token, code }) {
-    Logger({ type: "INFO", message: "Processing Access token object..." });
+    Logger({ level: "INFO", message: "Processing Access token object..." });
     let reqData = {
       grant_type: grant_type,
     };
@@ -105,11 +159,7 @@ class OAuthClient extends BaseOAuthClient {
     } else if (grant_type === "authorization_code") {
       reqData = { ...reqData, code };
     }
-
-    const token = Buffer.from(
-      `${this.config.apiKey}:${this.config.apiSecret}`,
-      "utf8"
-    ).toString("base64");
+    const token = btoa(`${this.config.apiKey}:${this.config.apiSecret}`);
     let url = `${this.config.domain}/service/panel/authentication/v1.0/company/${this.config.companyId}/oauth/token`;
     const rawRequest = {
       method: "post",
@@ -120,16 +170,16 @@ class OAuthClient extends BaseOAuthClient {
         "Content-Type": "application/x-www-form-urlencoded",
       },
     };
-    Logger({ type: "INFO", message: "Done." });
+    Logger({ level: "INFO", message: "Done." });
     return fdkAxios.request(rawRequest);
   }
 
   async getOfflineAccessToken(scopes, code) {
     try {
       let res = await this.getOfflineAccessTokenObj(scopes, code);
-      res.expires_at =
-        res.expires_at || new Date().getTime() + res.expires_in * 1000;
       this.setToken(res);
+      this.token_expires_at =
+        new Date().getTime() + this.token_expires_in * 1000;
       return res;
     } catch (error) {
       if (error.isAxiosError) {
@@ -148,10 +198,7 @@ class OAuthClient extends BaseOAuthClient {
       scope: scopes,
       code: code,
     };
-    const token = Buffer.from(
-      `${this.config.apiKey}:${this.config.apiSecret}`,
-      "utf8"
-    ).toString("base64");
+    const token = btoa(`${this.config.apiKey}:${this.config.apiSecret}`);
     const rawRequest = {
       method: "post",
       url: url,
