@@ -1870,7 +1870,7 @@ class PlatformApplicationClient {
 /** @typedef CreateZoneData */
 /** @typedef DocumentsResponse */
 /** @typedef Dp */
-/** @typedef DP */
+/** @typedef Dp1 */
 /** @typedef DpAccountFailureResponse */
 /** @typedef DPApplicationRuleRequest */
 /** @typedef DPApplicationRuleResponse */
