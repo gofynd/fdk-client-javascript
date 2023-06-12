@@ -1241,7 +1241,7 @@ Use this API to retrieve a POS order and all its details such as tracking detail
 
 
 
-[OrderList](#OrderList)
+[OrderById](#OrderById)
 
 Success. Check the example shown below or refer `PosOrderById` for more details.
 
@@ -3172,6 +3172,7 @@ Success, the code is valid and returns a session token
  | ---------- | ---- | -------- | ----------- |
  | hex_code | string? |  yes  |  |
  | title | string? |  yes  |  |
+ | value | string? |  yes  |  |
  
 
 ---
@@ -3200,10 +3201,12 @@ Success, the code is valid and returns a session token
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | email | string? |  yes  |  |
  | first_name | string? |  yes  |  |
  | gender | string? |  yes  |  |
  | last_name | string? |  yes  |  |
  | mobile | string? |  yes  |  |
+ | name | string? |  yes  |  |
  
 
 ---
@@ -3263,6 +3266,7 @@ Success, the code is valid and returns a session token
  | status | string? |  yes  |  |
  | time | string? |  yes  |  |
  | tracking_details | [[NestedTrackingDetails](#NestedTrackingDetails)]? |  yes  |  |
+ | value | string? |  yes  |  |
  
 
 ---
@@ -3285,7 +3289,9 @@ Success, the code is valid and returns a session token
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | email | string? |  yes  |  |
+ | first_name | string? |  yes  |  |
  | gender | string? |  yes  |  |
+ | last_name | string? |  yes  |  |
  | mobile | string? |  yes  |  |
  | name | string? |  yes  |  |
  

@@ -6928,7 +6928,7 @@ class PlatformClient {
  * @property {Object} [_custom_json]
  * @property {string} app_id
  * @property {boolean} [is_active]
- * @property {SearchKeywordResult1} result
+ * @property {SearchKeywordResult} result
  * @property {string[]} [words]
  */
 /**
@@ -7381,7 +7381,7 @@ class PlatformClient {
  * @property {Object} [_custom_json]
  * @property {string} app_id
  * @property {boolean} [is_active]
- * @property {SearchKeywordResult} result
+ * @property {SearchKeywordResult1} result
  * @property {string} [uid]
  * @property {string[]} [words]
  */
@@ -12383,6 +12383,7 @@ class PlatformClient {
  * @typedef Restrictions1
  * @property {boolean} [anonymous_users]
  * @property {number} [order_quantity]
+ * @property {number[]} [ordering_stores]
  * @property {PromotionPaymentModes[]} [payments]
  * @property {string[]} [platforms]
  * @property {PostOrder1} [post_order]

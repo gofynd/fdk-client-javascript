@@ -5897,7 +5897,7 @@ type CreateSearchKeyword = {
     _custom_json?: any;
     app_id: string;
     is_active?: boolean;
-    result: SearchKeywordResult1;
+    result: SearchKeywordResult;
     words?: string[];
 };
 type CreateSearchReranking = {
@@ -6280,7 +6280,7 @@ type GetSearchWordsData = {
     _custom_json?: any;
     app_id: string;
     is_active?: boolean;
-    result: SearchKeywordResult;
+    result: SearchKeywordResult1;
     uid?: string;
     words?: string[];
 };
@@ -10387,6 +10387,7 @@ type Restrictions = {
 type Restrictions1 = {
     anonymous_users?: boolean;
     order_quantity?: number;
+    ordering_stores?: number[];
     payments?: PromotionPaymentModes[];
     platforms?: string[];
     post_order?: PostOrder1;

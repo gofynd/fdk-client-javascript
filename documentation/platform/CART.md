@@ -6282,6 +6282,7 @@ Promotion updated successfully
  | ---------- | ---- | -------- | ----------- |
  | anonymous_users | boolean? |  yes  |  |
  | order_quantity | number? |  yes  |  |
+ | ordering_stores | [number]? |  yes  |  |
  | payments | [[PromotionPaymentModes](#PromotionPaymentModes)]? |  yes  |  |
  | platforms | [string]? |  yes  |  |
  | post_order | [PostOrder1](#PostOrder1)? |  yes  |  |

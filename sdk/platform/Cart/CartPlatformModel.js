@@ -990,6 +990,7 @@ class CartModel {
     return Joi.object({
       anonymous_users: Joi.boolean(),
       order_quantity: Joi.number(),
+      ordering_stores: Joi.array().items(Joi.number()),
       payments: Joi.array().items(CartModel.PromotionPaymentModes()),
       platforms: Joi.array().items(Joi.string().allow("")),
       post_order: CartModel.PostOrder1(),
