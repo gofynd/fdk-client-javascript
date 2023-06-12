@@ -39,6 +39,16 @@ declare class Cart {
     }): Promise<OpenApiCheckoutResponse>;
     /**
      * @param {Object} arg - Arg object.
+     * @param {CartMetaConfigAdd} arg.body
+     * @returns {Promise<CartMetaConfigAdd>} - Success response
+     * @summary: Create new cart meta configuration
+     * @description: Create new cart meta configuration
+     */
+    createCartMetaConfig({ body }?: {
+        body: CartMetaConfigAdd;
+    }): Promise<CartMetaConfigAdd>;
+    /**
+     * @param {Object} arg - Arg object.
      * @param {CouponAdd} arg.body
      * @returns {Promise<SuccessMessage>} - Success response
      * @summary: Create new coupon
@@ -67,6 +77,13 @@ declare class Cart {
     fetchAndvalidateCartItems({ body }?: {
         body: OpenapiCartDetailsRequest;
     }): Promise<OpenapiCartDetailsResponse>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @returns {Promise<CartMetaConfigAdd>} - Success response
+     * @summary: Fetch cart meta configuration
+     * @description: Fetch cart meta configuration
+     */
+    fetchCartMetaConfig({}?: any): Promise<CartMetaConfigAdd>;
     /**
      * @param {Object} arg - Arg object.
      * @param {number} [arg.pageNo] -
@@ -204,6 +221,13 @@ declare class Cart {
     }): Paginator;
     /**
      * @param {Object} arg - Arg object.
+     * @returns {Promise<ActivePromosResponse>} - Success response
+     * @summary: Fetch all promos that are set as active
+     * @description: Use this API to get list of all the active promos/coupons.
+     */
+    getPromosCouponConfig({}?: any): Promise<ActivePromosResponse>;
+    /**
+     * @param {Object} arg - Arg object.
      * @param {string} arg.id -
      * @returns {Promise<PromotionUpdate>} - Success response
      * @summary: Get with single promotion details or promotion list
@@ -273,6 +297,16 @@ declare class Cart {
     }): Paginator;
     /**
      * @param {Object} arg - Arg object.
+     * @param {OverrideCheckoutReq} arg.body
+     * @returns {Promise<OverrideCheckoutResponse>} - Success response
+     * @summary: Create Fynd order with overriding cart details
+     * @description: Generate Fynd order while overriding cart details sent with provided `cart_items`
+     */
+    overrideCart({ body }?: {
+        body: OverrideCheckoutReq;
+    }): Promise<OverrideCheckoutResponse>;
+    /**
+     * @param {Object} arg - Arg object.
      * @param {string} arg.cartId - Current Cart _id
      * @param {boolean} [arg.b] -
      * @param {UpdateCartRequest} arg.body
@@ -285,6 +319,18 @@ declare class Cart {
         b?: boolean;
         body: UpdateCartRequest;
     }): Promise<UpdateCartDetailResponse>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {string} arg.cartMetaId -
+     * @param {CartMetaConfigUpdate} arg.body
+     * @returns {Promise<CartMetaConfigUpdate>} - Success response
+     * @summary: Update cart meta configuration
+     * @description: Update cart meta configuration
+     */
+    updateCartMetaConfig({ cartMetaId, body }?: {
+        cartMetaId: string;
+        body: CartMetaConfigUpdate;
+    }): Promise<CartMetaConfigUpdate>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.id -

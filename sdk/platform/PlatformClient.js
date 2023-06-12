@@ -22,6 +22,8 @@ const Analytics = require("./Analytics/AnalyticsPlatformClient");
 
 const Discount = require("./Discount/DiscountPlatformClient");
 
+const Partner = require("./Partner/PartnerPlatformClient");
+
 const Webhook = require("./Webhook/WebhookPlatformClient");
 
 const AuditTrail = require("./AuditTrail/AuditTrailPlatformClient");
@@ -56,6 +58,8 @@ class PlatformClient {
     this.analytics = new Analytics(config);
 
     this.discount = new Discount(config);
+
+    this.partner = new Partner(config);
 
     this.webhook = new Webhook(config);
 
@@ -1786,6 +1790,7 @@ class PlatformClient {
 /**
  * @typedef Detail
  * @property {string} [description]
+ * @property {string} [image_url]
  * @property {string} [title]
  */
 /**
@@ -3573,6 +3578,11 @@ class PlatformClient {
  * @property {boolean} success
  */
 /**
+ * @typedef GetOauthUrlResponse
+ * @property {boolean} success
+ * @property {string} url
+ */
+/**
  * @typedef GetUserCODLimitResponse
  * @property {boolean} success
  * @property {CODdata} user_cod_data
@@ -3786,6 +3796,11 @@ class PlatformClient {
  * @typedef RefundAccountResponse
  * @property {Object} [data]
  * @property {boolean} [is_verified_flag]
+ * @property {string} message
+ * @property {boolean} success
+ */
+/**
+ * @typedef RevokeOAuthToken
  * @property {string} message
  * @property {boolean} success
  */
@@ -10362,6 +10377,19 @@ class PlatformClient {
  * @property {string[]} [product_slug]
  */
 /**
+ * @typedef ActivePromosResponse
+ * @property {string} [created_on]
+ * @property {string} [description]
+ * @property {string} [entity_slug]
+ * @property {string} [entity_type]
+ * @property {string} [example]
+ * @property {boolean} [is_hidden]
+ * @property {string} [modified_on]
+ * @property {string} [subtitle]
+ * @property {string} [title]
+ * @property {string} [type]
+ */
+/**
  * @typedef AddCartDetailResponse
  * @property {CartDetailResponse} [cart]
  * @property {string} [message]
@@ -10389,13 +10417,25 @@ class PlatformClient {
  * @property {number} [store_id]
  */
 /**
+ * @typedef AppliedFreeArticles
+ * @property {string} [article_id]
+ * @property {FreeGiftItem} [free_gift_item_details]
+ * @property {string} [parent_item_identifier]
+ * @property {number} [quantity]
+ */
+/**
  * @typedef AppliedPromotion
  * @property {number} [amount]
+ * @property {AppliedFreeArticles[]} [applied_free_articles]
  * @property {number} [article_quantity]
+ * @property {BuyRules[]} [buy_rules]
+ * @property {DiscountRulesApp[]} [discount_rules]
  * @property {boolean} [mrp_promotion]
  * @property {string} [offer_text]
  * @property {Ownership2} [ownership]
  * @property {string} [promo_id]
+ * @property {string} [promotion_group]
+ * @property {string} [promotion_name]
  * @property {string} [promotion_type]
  */
 /**
@@ -10418,6 +10458,11 @@ class PlatformClient {
 /**
  * @typedef BulkBundleRestriction
  * @property {boolean} multi_store_allowed
+ */
+/**
+ * @typedef BuyRules
+ * @property {Object} [cart_conditions]
+ * @property {Object} [item_criteria]
  */
 /**
  * @typedef CartBreakup
@@ -10463,6 +10508,28 @@ class PlatformClient {
  * @property {boolean} [primary_item]
  */
 /**
+ * @typedef CartMetaConfigAdd
+ * @property {boolean} [bulk_coupons]
+ * @property {DeliveryCharges} [delivery_charges]
+ * @property {boolean} [enabled]
+ * @property {string} [gift_display_text]
+ * @property {number} [gift_pricing]
+ * @property {number} [max_cart_items]
+ * @property {number} [min_cart_value]
+ * @property {boolean} [revenue_engine_coupon]
+ */
+/**
+ * @typedef CartMetaConfigUpdate
+ * @property {boolean} [bulk_coupons]
+ * @property {DeliveryCharges} [delivery_charges]
+ * @property {boolean} [enabled]
+ * @property {string} [gift_display_text]
+ * @property {number} [gift_pricing]
+ * @property {number} [max_cart_items]
+ * @property {number} [min_cart_value]
+ * @property {boolean} [revenue_engine_coupon]
+ */
+/**
  * @typedef CartProduct
  * @property {ProductAction} [action]
  * @property {BaseInfo} [brand]
@@ -10504,6 +10571,11 @@ class PlatformClient {
  * @property {number} [uid]
  */
 /**
+ * @typedef Charges
+ * @property {number} [charges]
+ * @property {number} [threshold]
+ */
+/**
  * @typedef CompareObject
  * @property {number} [equals]
  * @property {number} [greater_than]
@@ -10543,8 +10615,15 @@ class PlatformClient {
 /**
  * @typedef CouponBreakup
  * @property {string} [code]
+ * @property {string} [coupon_type]
+ * @property {number} [coupon_value]
+ * @property {string} [description]
  * @property {boolean} [is_applied]
+ * @property {number} [max_discount_value]
  * @property {string} [message]
+ * @property {number} [minimum_cart_value]
+ * @property {string} [sub_title]
+ * @property {string} [title]
  * @property {string} [type]
  * @property {string} [uid]
  * @property {number} [value]
@@ -10592,14 +10671,22 @@ class PlatformClient {
  * @property {Validity} validity
  */
 /**
+ * @typedef DeliveryCharges
+ * @property {Charges[]} [charges]
+ * @property {boolean} [enabled]
+ */
+/**
  * @typedef DiscountOffer
+ * @property {boolean} [apportion_discount]
  * @property {string} [code]
  * @property {number} [discount_amount]
  * @property {number} [discount_percentage]
  * @property {number} [discount_price]
  * @property {number} [max_discount_amount]
  * @property {number} [max_offer_quantity]
+ * @property {number} [max_usage_per_transaction]
  * @property {number} [min_offer_quantity]
+ * @property {boolean} [partial_can_ret]
  */
 /**
  * @typedef DiscountRule
@@ -10607,6 +10694,13 @@ class PlatformClient {
  * @property {string} discount_type
  * @property {ItemCriteria} item_criteria
  * @property {DiscountOffer} offer
+ */
+/**
+ * @typedef DiscountRulesApp
+ * @property {Object} [item_criteria]
+ * @property {string[]} [matched_buy_rules]
+ * @property {Object} [offer]
+ * @property {Object} [raw_offer]
  */
 /**
  * @typedef DisplayBreakup
@@ -10638,6 +10732,15 @@ class PlatformClient {
  * @property {string} [title]
  */
 /**
+ * @typedef FreeGiftItem
+ * @property {string} [item_brand_name]
+ * @property {number} [item_id]
+ * @property {string[]} [item_images_url]
+ * @property {string} [item_name]
+ * @property {Object} [item_price_details]
+ * @property {string} [item_slug]
+ */
+/**
  * @typedef Identifier
  * @property {string[]} [article_id]
  * @property {number[]} [brand_id]
@@ -10652,15 +10755,19 @@ class PlatformClient {
 /**
  * @typedef ItemCriteria
  * @property {boolean} [all_items]
+ * @property {string[]} [available_zones]
  * @property {string[]} [buy_rules]
  * @property {CompareObject} [cart_quantity]
  * @property {CompareObject} [cart_total]
+ * @property {CompareObject} [cart_unique_item_amount]
+ * @property {CompareObject} [cart_unique_item_quantity]
  * @property {number[]} [item_brand]
  * @property {number[]} [item_category]
  * @property {number[]} [item_company]
  * @property {number[]} [item_exclude_brand]
  * @property {number[]} [item_exclude_category]
  * @property {number[]} [item_exclude_company]
+ * @property {number[]} [item_exclude_id]
  * @property {string[]} [item_exclude_sku]
  * @property {number[]} [item_exclude_store]
  * @property {number[]} [item_id]
@@ -10781,6 +10888,49 @@ class PlatformClient {
  * @property {boolean} [success]
  */
 /**
+ * @typedef OverrideCartItem
+ * @property {number} amount_paid
+ * @property {number} discount
+ * @property {Object} [extra_meta]
+ * @property {number} item_id
+ * @property {number} price_effective
+ * @property {number} price_marked
+ * @property {OverrideCartItemPromo[]} [promo_list]
+ * @property {number} [quantity]
+ * @property {string} [seller_identifier]
+ * @property {string} size
+ */
+/**
+ * @typedef OverrideCartItemPromo
+ * @property {Object[]} [item_list]
+ * @property {string} promo_amount
+ * @property {string} [promo_desc]
+ * @property {string} promo_id
+ * @property {string} [rwrd_tndr]
+ */
+/**
+ * @typedef OverrideCheckoutReq
+ * @property {string} aggregator
+ * @property {Object} [billing_address]
+ * @property {string} cart_id
+ * @property {OverrideCartItem[]} cart_items
+ * @property {string} currency_code
+ * @property {string} merchant_code
+ * @property {string} order_type
+ * @property {number} [ordering_store]
+ * @property {string} payment_identifier
+ * @property {string} payment_mode
+ * @property {Object} [shipping_address]
+ */
+/**
+ * @typedef OverrideCheckoutResponse
+ * @property {Object} cart
+ * @property {Object} data
+ * @property {string} message
+ * @property {string} order_id
+ * @property {string} success
+ */
+/**
  * @typedef Ownership
  * @property {string} payable_by
  * @property {string} payable_category
@@ -10851,11 +11001,13 @@ class PlatformClient {
  * @typedef ProductArticle
  * @property {Object} [_custom_json]
  * @property {Object} [extra_meta]
+ * @property {Object} [identifier]
  * @property {Object} [parent_item_identifiers]
  * @property {ArticlePriceInfo} [price]
  * @property {string[]} [product_group_tags]
  * @property {number} [quantity]
  * @property {BaseInfo} [seller]
+ * @property {string} [seller_identifier]
  * @property {string} [size]
  * @property {BaseInfo} [store]
  * @property {string} [type]
@@ -10925,6 +11077,7 @@ class PlatformClient {
  * @property {number} [apply_priority]
  * @property {PromotionAuthor} [author]
  * @property {Object} buy_rules
+ * @property {string} [calculate_on]
  * @property {string} [code]
  * @property {string} [currency]
  * @property {PromotionDateMeta} [date_meta]
@@ -10959,6 +11112,7 @@ class PlatformClient {
  * @property {number} [apply_priority]
  * @property {PromotionAuthor} [author]
  * @property {Object} buy_rules
+ * @property {string} [calculate_on]
  * @property {string} [code]
  * @property {string} [currency]
  * @property {PromotionDateMeta} [date_meta]
@@ -11008,6 +11162,7 @@ class PlatformClient {
  * @property {number} [apply_priority]
  * @property {PromotionAuthor} [author]
  * @property {Object} buy_rules
+ * @property {string} [calculate_on]
  * @property {string} [code]
  * @property {string} [currency]
  * @property {PromotionDateMeta} [date_meta]
@@ -11053,6 +11208,7 @@ class PlatformClient {
  * @typedef Restrictions1
  * @property {boolean} [anonymous_users]
  * @property {number} [order_quantity]
+ * @property {number[]} [ordering_stores]
  * @property {PromotionPaymentModes[]} [payments]
  * @property {string[]} [platforms]
  * @property {PostOrder1} [post_order]
@@ -11617,9 +11773,334 @@ class PlatformClient {
  * @property {string} [request_id]
  */
 /**
+ * @typedef ApplicationPermissions
+ * @property {string[]} [permissions]
+ * @property {string[]} [roles]
+ */
+/**
+ * @typedef ApprovedPermissions
+ * @property {string[]} [application_role]
+ * @property {string[]} [company_permissions]
+ * @property {string[]} [company_role]
+ */
+/**
+ * @typedef ApprovedPermissionsInfo
+ * @property {Object} [application_permissions]
+ * @property {string[]} [company_permissions]
+ */
+/**
+ * @typedef Benefits
+ * @property {string} [description]
+ * @property {string} [title]
+ */
+/**
+ * @typedef Callback
+ * @property {string} [auth]
+ * @property {string} [auto_install]
+ * @property {string} [install]
+ * @property {string} [setup]
+ * @property {string} [uninstall]
+ */
+/**
+ * @typedef Category
+ * @property {CategoryL1[]} [category_l1]
+ * @property {CategoryL2[]} [category_l2]
+ */
+/**
+ * @typedef CategoryL1
+ * @property {string} [_id]
+ * @property {string} [description]
+ * @property {string} [display]
+ * @property {number} [level]
+ * @property {string} [logo]
+ * @property {string} [slug]
+ * @property {string} [value]
+ */
+/**
+ * @typedef CategoryL2
+ * @property {string} [_id]
+ * @property {string} [display]
+ * @property {number} [level]
+ * @property {string} [parent]
+ * @property {string} [slug]
+ * @property {string} [value]
+ */
+/**
+ * @typedef CommingSoon
+ * @property {boolean} [is_coming_soon]
+ * @property {number} [upvote_count]
+ */
+/**
+ * @typedef ContactInfo
+ * @property {Support} [support]
+ */
+/**
+ * @typedef ExtensionCommon
+ * @property {string} [base_url]
+ * @property {Callback} [callbacks]
+ * @property {string} [contact_email]
+ * @property {string} [current_status]
+ * @property {string} [description]
+ * @property {string} [developed_by_name]
+ * @property {string} [ext_version]
+ * @property {string} [extention_type]
+ * @property {boolean} [is_application_level]
+ * @property {boolean} [is_coming_soon]
+ * @property {boolean} [is_saleschannel]
+ * @property {Logo} [logo]
+ * @property {string} [name]
+ * @property {string[]} [scope]
+ */
+/**
+ * @typedef ExtensionDetails
+ * @property {Benefits[]} [benefits]
+ * @property {string} [demo_url]
+ * @property {string} [description]
+ * @property {string[]} [integration]
+ * @property {Screenshots} [screenshots]
+ * @property {Object[]} [video_url]
+ * @property {string[]} [youtube]
+ */
+/**
+ * @typedef ExtensionItems
+ * @property {string} [base_url]
+ * @property {string} [company]
+ * @property {string} [description]
+ * @property {string} [developed_by_name]
+ * @property {string} [ext_version]
+ * @property {string} [extension_id]
+ * @property {string} [extention_type]
+ * @property {boolean} [installed]
+ * @property {boolean} [is_saleschannel]
+ * @property {string} [launch_url]
+ * @property {Logo} [logo]
+ * @property {string} [name]
+ * @property {Scope[]} [scope]
+ */
+/**
+ * @typedef ExtensionList
+ * @property {ExtensionItems[]} [items]
+ * @property {Pagination} [page]
+ */
+/**
+ * @typedef ExtensionListItems
+ * @property {string} [_id]
+ * @property {string} [base_url]
+ * @property {Callback} [callbacks]
+ * @property {string} [contact_email]
+ * @property {string} [created_at]
+ * @property {string} [current_status]
+ * @property {string} [description]
+ * @property {string} [developed_by_name]
+ * @property {string} [ext_version]
+ * @property {string} [extention_type]
+ * @property {boolean} [is_application_level]
+ * @property {boolean} [is_coming_soon]
+ * @property {boolean} [is_hidden]
+ * @property {boolean} [is_saleschannel]
+ * @property {Logo} [logo]
+ * @property {string} [modified_at]
+ * @property {string} [name]
+ * @property {string} [organization_id]
+ * @property {string[]} [scope]
+ * @property {string[]} [whitelisted_urls]
+ */
+/**
+ * @typedef ExtensionResponse
+ * @property {ExtensionListItems[]} [items]
+ * @property {Pagination} [page]
+ */
+/**
+ * @typedef ExtensionSuggestion
+ * @property {ListingInfo} [listing_info]
+ * @property {OrganizationBasicInfo} [organization]
+ * @property {string} [organization_id]
+ * @property {Plan[]} [plans]
+ * @property {string} [slug]
+ */
+/**
+ * @typedef ExtensionSuggestionList
+ * @property {ExtensionSuggestion[]} [items]
+ */
+/**
+ * @typedef getProxyPathRes
+ * @property {AddProxyResponse[]} [items]
+ * @property {Pagination} [page]
+ */
+/**
+ * @typedef ListingInfo
+ * @property {string} [icon]
+ * @property {string[]} [keywords]
+ * @property {string} [name]
+ * @property {string} [tagline]
+ */
+/**
+ * @typedef Logo
+ * @property {string} [large]
+ * @property {string} [small]
+ */
+/**
+ * @typedef ModifyPartnerReq
+ * @property {string} [_id]
+ * @property {string} [account_type]
+ * @property {ApprovedPermissionsInfo} [approved_permissions]
+ * @property {string} [comment]
+ * @property {number} [company_id]
+ * @property {string} [company_name]
+ * @property {string} [organization_id]
+ * @property {string} [organization_name]
+ * @property {string} [request_status]
+ * @property {RequestedPermissions} [requested_permissions]
+ * @property {string} [user_id]
+ */
+/**
+ * @typedef OrganizationBasicInfo
+ * @property {string} [name]
+ * @property {string} [slug]
+ */
+/**
+ * @typedef Pagination
+ * @property {number} [current]
+ * @property {boolean} [has_next]
+ * @property {number} [item_total]
+ * @property {number} [size]
+ * @property {string} [type]
+ */
+/**
+ * @typedef PartnerInviteDetails
+ * @property {string} [_id]
+ * @property {string} [account_type]
+ * @property {ApprovedPermissions} [approved_permissions]
+ * @property {string} [comment]
+ * @property {number} [company_id]
+ * @property {string} [company_name]
+ * @property {string} [created_at]
+ * @property {string} [modified_at]
+ * @property {string} [organization_id]
+ * @property {string} [organization_name]
+ * @property {string} [request_status]
+ * @property {RequestedPermissions} [requested_permissions]
+ * @property {string} [user_id]
+ */
+/**
+ * @typedef PartnerList
+ * @property {string} [_id]
+ * @property {string} [account_type]
+ * @property {ApprovedPermissionsInfo} [approved_permissions]
+ * @property {string} [approver_id]
+ * @property {string} [comment]
+ * @property {number} [company_id]
+ * @property {string} [company_name]
+ * @property {string} [created_at]
+ * @property {string} [modified_at]
+ * @property {string} [organization_id]
+ * @property {string} [organization_name]
+ * @property {string} [request_status]
+ * @property {RequestedPermissions} [requested_permissions]
+ * @property {string} [user_id]
+ */
+/**
+ * @typedef PartnerRequestList
+ * @property {PartnerList} [items]
+ * @property {Pagination} [page]
+ */
+/**
+ * @typedef Plan
+ * @property {string} [additional_charges]
+ * @property {string} [features]
+ * @property {string} [name]
+ * @property {Price} [price]
+ * @property {number} [trial_days]
+ * @property {string} [type]
+ */
+/**
+ * @typedef Plans
+ * @property {string} [additional_charges]
+ * @property {string} [features]
+ * @property {string} [name]
+ * @property {Price} [price]
+ * @property {number} [trial_days]
+ * @property {string} [type]
+ */
+/**
+ * @typedef Price
+ * @property {number} [amount]
+ * @property {string} [currency]
+ */
+/**
+ * @typedef PublicExtension
+ * @property {string} [_id]
+ * @property {Category} [category]
+ * @property {CommingSoon} [coming_soon]
+ * @property {ContactInfo} [contact_info]
+ * @property {string} [created_at]
+ * @property {string} [current_status]
+ * @property {ExtensionDetails} [details]
+ * @property {string} [extension_id]
+ * @property {boolean} [is_coming_soon]
+ * @property {ListingInfo} [listing_info]
+ * @property {string} [modified_at]
+ * @property {OrganizationBasicInfo} [organization]
+ * @property {string} [organization_id]
+ * @property {string} [plan_type]
+ * @property {Plans[]} [plans]
+ * @property {string} [plans_url]
+ * @property {string} [review_instructions]
+ * @property {string[]} [scope]
+ * @property {string} [slug]
+ */
+/**
  * @typedef RemoveProxyResponse
  * @property {Object} [data]
  * @property {string} [message]
+ */
+/**
+ * @typedef RequestedPermissions
+ * @property {string[]} [application_permissions]
+ * @property {string[]} [application_role]
+ * @property {string[]} [company_permissions]
+ * @property {string[]} [company_role]
+ */
+/**
+ * @typedef Scope
+ * @property {string} [description]
+ * @property {string} [name]
+ */
+/**
+ * @typedef Screenshots
+ * @property {string[]} [desktop]
+ * @property {string[]} [mobile]
+ */
+/**
+ * @typedef SetupProductRes
+ * @property {number} [cli_wait_time]
+ * @property {string} [message]
+ * @property {number} [next_step]
+ * @property {string} [request_id]
+ */
+/**
+ * @typedef SubscriptionRequest
+ * @property {string} [approved]
+ * @property {string} [client_id]
+ * @property {string} [company_id]
+ * @property {string} [credit_balance]
+ * @property {string} [request_id]
+ */
+/**
+ * @typedef SubscriptionRes
+ * @property {string} [redirect_url]
+ */
+/**
+ * @typedef Support
+ * @property {string} [email]
+ * @property {string} [faq_url]
+ * @property {string} [phone]
+ * @property {string} [privacy_policy_url]
+ * @property {string} [website_url]
+ */
+/**
+ * @typedef UninstallExtension
+ * @property {boolean} [success]
  */
 
 /**

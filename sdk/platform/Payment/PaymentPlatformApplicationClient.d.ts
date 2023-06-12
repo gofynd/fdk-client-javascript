@@ -88,6 +88,30 @@ declare class Payment {
     }): Promise<OrderBeneficiaryResponse>;
     /**
      * @param {Object} arg - Arg object.
+     * @param {string} arg.aggregator - Aggregator
+     * @param {string} [arg.successRedirectUrl] -
+     * @param {string} [arg.failureRedirectUrl] -
+     * @returns {Promise<GetOauthUrlResponse>} - Success response
+     * @summary: API to Get the url to call for oauth
+     * @description: Use this API to Get the url to call for oauth.
+     */
+    oauthGetUrl({ aggregator, successRedirectUrl, failureRedirectUrl, }?: {
+        aggregator: string;
+        successRedirectUrl?: string;
+        failureRedirectUrl?: string;
+    }): Promise<GetOauthUrlResponse>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {string} arg.aggregator - Aggregator_slug
+     * @returns {Promise<RevokeOAuthToken>} - Success response
+     * @summary: API to Revoke oauth for razorpay partnership
+     * @description: Use this API to Revoke oauth for razorpay partnership
+     */
+    revokeOauthToken({ aggregator }?: {
+        aggregator: string;
+    }): Promise<RevokeOAuthToken>;
+    /**
+     * @param {Object} arg - Arg object.
      * @param {PaymentGatewayConfigRequest} arg.body
      * @returns {Promise<PaymentGatewayToBeReviewed>} - Success response
      * @summary: Save Config Secret For Brand Payment Gateway
@@ -106,14 +130,4 @@ declare class Payment {
     setUserCODlimitRoutes({ body }?: {
         body: SetCODForUserRequest;
     }): Promise<SetCODOptionResponse>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {PaymentGatewayConfigRequest} arg.body
-     * @returns {Promise<PaymentGatewayToBeReviewed>} - Success response
-     * @summary: Save Config Secret For Brand Payment Gateway
-     * @description: Save Config Secret For Brand Payment Gateway
-     */
-    updateBrandPaymentGatewayConfig({ body }?: {
-        body: PaymentGatewayConfigRequest;
-    }): Promise<PaymentGatewayToBeReviewed>;
 }

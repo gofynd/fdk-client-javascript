@@ -8,7 +8,8 @@ declare class PaymentValidator {
     static getUserBeneficiaries(): any;
     static getUserCODlimitRoutes(): any;
     static getUserOrderBeneficiaries(): any;
+    static oauthGetUrl(): any;
+    static revokeOauthToken(): any;
     static saveBrandPaymentGatewayConfig(): any;
     static setUserCODlimitRoutes(): any;
-    static updateBrandPaymentGatewayConfig(): any;
 }

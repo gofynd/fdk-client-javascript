@@ -8,6 +8,7 @@ declare class Cart {
         applyCoupon: string;
         applyRewardPoints: string;
         checkoutCart: string;
+        deleteCart: string;
         getAddressById: string;
         getAddresses: string;
         getBulkDiscountOffers: string;
@@ -110,6 +111,16 @@ declare class Cart {
         buyNow?: boolean;
         body: CartCheckoutDetailRequest;
     }): Promise<CartCheckoutResponse>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {number} [arg.id] - The unique identifier of the cart.
+     * @returns {Promise<DeleteCartDetailResponse>} - Success response
+     * @summary: Delete cart once user made successful checkout
+     * @description: Use this API to delete the cart.
+     */
+    deleteCart({ id }?: {
+        id?: number;
+    }): Promise<DeleteCartDetailResponse>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.id -

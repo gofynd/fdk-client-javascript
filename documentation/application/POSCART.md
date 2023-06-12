@@ -1612,11 +1612,18 @@ Success. Returns coupons applied to the cart along with item details and price b
     },
     "coupon": {
       "type": "cash",
+      "coupon_type": "percentage",
       "code": "PRISMC22250111",
       "uid": 17743,
       "value": 2250,
       "is_applied": true,
-      "message": "coupn applied"
+      "message": "coupn applied",
+      "title": "Only Test Coupon",
+      "sub_title": "TEST",
+      "description": "",
+      "minimum_cart_value": 100,
+      "maximum_discount_value": 100000,
+      "coupon_value": 10
     },
     "loyalty_points": {
       "total": 0,
@@ -8914,16 +8921,33 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
 
 ---
 
+#### [AppliedFreeArticles](#AppliedFreeArticles)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | article_id | string? |  yes  | free article id |
+ | free_gift_item_details | [FreeGiftItem](#FreeGiftItem)? |  yes  | Free gift items details |
+ | parent_item_identifier | string? |  yes  | Parent item identifier for free article |
+ | quantity | number? |  yes  | Free article quantity |
+ 
+
+---
+
 #### [AppliedPromotion](#AppliedPromotion)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | amount | number? |  yes  | Per unit discount amount applied with current promotion |
+ | applied_free_articles | [[AppliedFreeArticles](#AppliedFreeArticles)]? |  yes  | Applied free article for free gift item promotions |
  | article_quantity | number? |  yes  | Quantity of article on which promotion is applicable |
+ | buy_rules | [[BuyRules](#BuyRules)]? |  yes  | Buy rules for promotions |
+ | discount_rules | [[DiscountRulesApp](#DiscountRulesApp)]? |  yes  | Discount rules for promotions |
  | mrp_promotion | boolean? |  yes  | If applied promotion is applied on product MRP or ESP |
  | offer_text | string? |  yes  | Offer text of current promotion |
  | ownership | [Ownership](#Ownership)? |  yes  | Ownership of promotion |
  | promo_id | string? |  yes  | Promotion id |
+ | promotion_group | string? |  yes  | Promotion group for the promotion |
+ | promotion_name | string? |  yes  | Promotion name of current promotion |
  | promotion_type | string? |  yes  | Promotion type of current promotion |
  
 
@@ -8985,6 +9009,16 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | data | [[BulkPriceOffer](#BulkPriceOffer)]? |  yes  | Consist of offers from multiple seller |
+ 
+
+---
+
+#### [BuyRules](#BuyRules)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | cart_conditions | string? |  yes  | Cart conditions details for promotion |
+ | item_criteria | string? |  yes  | Item criteria of promotion |
  
 
 ---
@@ -9269,7 +9303,9 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | coupon_code | string? |  yes  |  |
+ | coupon_type | string? |  yes  |  |
  | coupon_value | number? |  yes  |  |
+ | description | string? |  yes  |  |
  | expires_on | string? |  yes  |  |
  | is_applicable | boolean? |  yes  |  |
  | is_applied | boolean? |  yes  |  |
@@ -9287,8 +9323,15 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | code | string? |  yes  |  |
+ | coupon_type | string? |  yes  |  |
+ | coupon_value | number? |  yes  |  |
+ | description | string? |  yes  |  |
  | is_applied | boolean? |  yes  |  |
+ | max_discount_value | number? |  yes  |  |
  | message | string? |  yes  |  |
+ | minimum_cart_value | number? |  yes  |  |
+ | sub_title | string? |  yes  |  |
+ | title | string? |  yes  |  |
  | type | string? |  yes  |  |
  | uid | string? |  yes  |  |
  | value | number? |  yes  |  |
@@ -9319,6 +9362,18 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
 
 ---
 
+#### [DiscountRulesApp](#DiscountRulesApp)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | item_criteria | string? |  yes  | Item criteria of promotion |
+ | matched_buy_rules | [string]? |  yes  | Matched buy rules for promotion |
+ | offer | string? |  yes  | offer for promotion |
+ | raw_offer | string? |  yes  | raw offer details for promotion |
+ 
+
+---
+
 #### [DisplayBreakup](#DisplayBreakup)
 
  | Properties | Type | Nullable | Description |
@@ -9339,6 +9394,20 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
  | ---------- | ---- | -------- | ----------- |
  | key | string |  no  |  |
  | values | [string] |  no  |  |
+ 
+
+---
+
+#### [FreeGiftItem](#FreeGiftItem)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | item_brand_name | string? |  yes  | item brand name |
+ | item_id | number? |  yes  | Item id |
+ | item_images_url | [string]? |  yes  | item images URL |
+ | item_name | string? |  yes  | Item name |
+ | item_price_details | string? |  yes  | item price details |
+ | item_slug | string? |  yes  | item slug |
  
 
 ---
@@ -9529,11 +9598,13 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
  | ---------- | ---- | -------- | ----------- |
  | _custom_json | string? |  yes  |  |
  | extra_meta | string? |  yes  |  |
+ | identifier | string? |  yes  |  |
  | parent_item_identifiers | string? |  yes  |  |
  | price | [ArticlePriceInfo](#ArticlePriceInfo)? |  yes  |  |
  | product_group_tags | [string]? |  yes  |  |
  | quantity | number? |  yes  |  |
  | seller | [BaseInfo](#BaseInfo)? |  yes  |  |
+ | seller_identifier | string? |  yes  |  |
  | size | string? |  yes  |  |
  | store | [BaseInfo](#BaseInfo)? |  yes  |  |
  | type | string? |  yes  |  |

@@ -16,6 +16,7 @@ class Cart {
       applyCoupon: "/service/application/cart/v1.0/coupon",
       applyRewardPoints: "/service/application/cart/v1.0/redeem/points/",
       checkoutCart: "/service/application/cart/v1.0/checkout",
+      deleteCart: "/service/application/cart/v1.0/cart_archive",
       getAddressById: "/service/application/cart/v1.0/address/{id}",
       getAddresses: "/service/application/cart/v1.0/address",
       getBulkDiscountOffers: "/service/application/cart/v1.0/bulk-price",
@@ -392,6 +393,70 @@ class Cart {
       Logger({
         level: "WARN",
         message: "Response Validation Warnnings for checkoutCart",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {number} [arg.id] - The unique identifier of the cart.
+   * @returns {Promise<DeleteCartDetailResponse>} - Success response
+   * @summary: Delete cart once user made successful checkout
+   * @description: Use this API to delete the cart.
+   */
+  async deleteCart({ id } = {}) {
+    const { error } = CartValidator.deleteCart().validate(
+      { id },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = CartValidator.deleteCart().validate(
+      { id },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for deleteCart",
+      });
+      Logger({ level: "WARN", message: warrning });
+    }
+
+    const query_params = {};
+    query_params["id"] = id;
+
+    const xHeaders = {};
+
+    const response = await ApplicationAPIClient.execute(
+      this._conf,
+      "put",
+      constructUrl({
+        url: this._urls["deleteCart"],
+        params: {},
+      }),
+      query_params,
+      undefined,
+      xHeaders
+    );
+
+    const {
+      error: res_error,
+    } = CartModel.DeleteCartDetailResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for deleteCart",
       });
       Logger({ level: "WARN", message: res_error });
     }

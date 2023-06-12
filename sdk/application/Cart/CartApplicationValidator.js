@@ -46,6 +46,12 @@ class CartValidator {
     }).required();
   }
 
+  static deleteCart() {
+    return Joi.object({
+      id: Joi.number(),
+    });
+  }
+
   static getAddressById() {
     return Joi.object({
       id: Joi.string().allow("").required(),

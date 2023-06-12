@@ -22,11 +22,12 @@ Collect payment through many payment gateway i.e Stripe, Razorpay, Juspay etc.in
 * [getUserBeneficiaries](#getuserbeneficiaries)
 * [getUserCODlimitRoutes](#getusercodlimitroutes)
 * [getUserOrderBeneficiaries](#getuserorderbeneficiaries)
+* [oauthGetUrl](#oauthgeturl)
+* [revokeOauthToken](#revokeoauthtoken)
 * [saveBrandPaymentGatewayConfig](#savebrandpaymentgatewayconfig)
 * [savePayout](#savepayout)
 * [saveSubscriptionSetupIntent](#savesubscriptionsetupintent)
 * [setUserCODlimitRoutes](#setusercodlimitroutes)
-* [updateBrandPaymentGatewayConfig](#updatebrandpaymentgatewayconfig)
 * [updatePayout](#updatepayout)
 * [verifyIfscCode](#verifyifsccode)
 
@@ -2379,6 +2380,130 @@ List Order Beneficiary
 ---
 
 
+### oauthGetUrl
+API to Get the url to call for oauth
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").payment.oauthGetUrl({  aggregator : value,
+ successRedirectUrl : value,
+ failureRedirectUrl : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").payment.oauthGetUrl({  aggregator : value,
+ successRedirectUrl : value,
+ failureRedirectUrl : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| aggregator | string | yes | aggregator |    
+| successRedirectUrl | string | no |  |    
+| failureRedirectUrl | string | no |  |  
+
+
+
+Use this API to Get the url to call for oauth.
+
+*Returned Response:*
+
+
+
+
+[GetOauthUrlResponse](#GetOauthUrlResponse)
+
+Success. Returns the status of payment. Check the example shown below or refer `GetOauthUrlResponseSchema` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "success": true,
+  "url": "https://auth.razorpay.com/authorize?client_id=LlCp1Mj6YW6jFc&response_type=code&redirect_uri=http://localhost:8000/v1.0/partnership/authorize/razorpay&scope=read_only&state=000000000000000000000001"
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### revokeOauthToken
+API to Revoke oauth for razorpay partnership
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").payment.revokeOauthToken({  aggregator : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").payment.revokeOauthToken({  aggregator : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| aggregator | string | yes | aggregator_slug |  
+
+
+
+Use this API to Revoke oauth for razorpay partnership
+
+*Returned Response:*
+
+
+
+
+[RevokeOAuthToken](#RevokeOAuthToken)
+
+Success. Returns the status of revokation. Check the example shown below or refer `RevokeOAuthTokenSchema` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "success": true,
+  "message": "Token Revoked"
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
 ### saveBrandPaymentGatewayConfig
 Save Config Secret For Brand Payment Gateway
 
@@ -2644,66 +2769,6 @@ Success. Returns true/false for user cod option for payment. Check the example s
 ---
 
 
-### updateBrandPaymentGatewayConfig
-Save Config Secret For Brand Payment Gateway
-
-
-
-```javascript
-// Promise
-const promise = platformClient.application("<APPLICATION_ID>").payment.updateBrandPaymentGatewayConfig({  body : value });
-
-// Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").payment.updateBrandPaymentGatewayConfig({  body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |
-| body | [PaymentGatewayConfigRequest](#PaymentGatewayConfigRequest) | yes | Request body |
-
-
-Save Config Secret For Brand Payment Gateway
-
-*Returned Response:*
-
-
-
-
-[PaymentGatewayToBeReviewed](#PaymentGatewayToBeReviewed)
-
-Save Config Secret For Brand Payment Gateway Success Response.
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "success": true,
-  "aggregators": [
-    "razorpay"
-  ]
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
 ### updatePayout
 Update Payout
 
@@ -2917,6 +2982,16 @@ Bank details on correct Ifsc Code
  | code | string |  no  | Error descrption code. |
  | description | string |  no  | Error human understandable description. |
  | success | boolean |  no  | Response is successful or not |
+ 
+
+---
+
+#### [GetOauthUrlResponse](#GetOauthUrlResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | success | boolean |  no  | Response is successful or not |
+ | url | string |  no  | The url to call for authenticating |
  
 
 ---
@@ -3259,6 +3334,16 @@ Bank details on correct Ifsc Code
  | is_verified_flag | boolean? |  yes  |  |
  | message | string |  no  | Response message |
  | success | boolean |  no  | Success or failure flag. |
+ 
+
+---
+
+#### [RevokeOAuthToken](#RevokeOAuthToken)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | message | string |  no  | The confirmation message of the token revoke. |
+ | success | boolean |  no  | Response is successful or not |
  
 
 ---
