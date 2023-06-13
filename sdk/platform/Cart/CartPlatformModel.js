@@ -344,6 +344,12 @@ class CartModel {
       validity: CartModel.Validity().required(),
     });
   }
+  static DeleteAddressResponse() {
+    return Joi.object({
+      id: Joi.string().allow(""),
+      is_deleted: Joi.boolean(),
+    });
+  }
   static DiscountOffer() {
     return Joi.object({
       apportion_discount: Joi.boolean(),
@@ -415,6 +421,12 @@ class CartModel {
       item_name: Joi.string().allow(""),
       item_price_details: Joi.any(),
       item_slug: Joi.string().allow(""),
+    });
+  }
+  static GeoLocation() {
+    return Joi.object({
+      latitude: Joi.number(),
+      longitude: Joi.number(),
     });
   }
   static Identifier() {
@@ -631,6 +643,39 @@ class CartModel {
       default_options: Joi.string().allow(""),
       enabled: Joi.boolean(),
       payment_identifier: Joi.string().allow(""),
+    });
+  }
+  static PlatformAddress() {
+    return Joi.object({
+      address: Joi.string().allow(""),
+      address_type: Joi.string().allow(""),
+      area: Joi.string().allow(""),
+      area_code: Joi.string().allow(""),
+      area_code_slug: Joi.string().allow(""),
+      cart_id: Joi.string().allow(""),
+      checkout_mode: Joi.string().allow(""),
+      city: Joi.string().allow(""),
+      country: Joi.string().allow(""),
+      country_code: Joi.string().allow(""),
+      created_by_user_id: Joi.string().allow(""),
+      email: Joi.string().allow(""),
+      geo_location: CartModel.GeoLocation(),
+      google_map_point: Joi.any(),
+      id: Joi.string().allow(""),
+      is_active: Joi.boolean(),
+      is_default_address: Joi.boolean(),
+      landmark: Joi.string().allow(""),
+      meta: Joi.any(),
+      name: Joi.string().allow(""),
+      phone: Joi.string().allow(""),
+      state: Joi.string().allow(""),
+      tags: Joi.array().items(Joi.string().allow("")),
+      user_id: Joi.string().allow(""),
+    });
+  }
+  static PlatformGetAddressesResponse() {
+    return Joi.object({
+      address: Joi.array().items(CartModel.PlatformAddress()),
     });
   }
   static PostOrder() {
@@ -915,6 +960,13 @@ class CartModel {
       value_type: Joi.string().allow("").required(),
     });
   }
+  static SaveAddressResponse() {
+    return Joi.object({
+      id: Joi.string().allow(""),
+      is_default_address: Joi.boolean(),
+      success: Joi.boolean(),
+    });
+  }
   static ShipmentPromise() {
     return Joi.object({
       formatted: CartModel.PromiseFormatted(),
@@ -950,6 +1002,14 @@ class CartModel {
   static SuccessMessage() {
     return Joi.object({
       message: Joi.string().allow(""),
+      success: Joi.boolean(),
+    });
+  }
+  static UpdateAddressResponse() {
+    return Joi.object({
+      id: Joi.string().allow(""),
+      is_default_address: Joi.boolean(),
+      is_updated: Joi.boolean(),
       success: Joi.boolean(),
     });
   }

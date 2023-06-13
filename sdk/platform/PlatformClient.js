@@ -5740,9 +5740,9 @@ class PlatformClient {
  * @property {number} item_height
  * @property {number} item_length
  * @property {number} item_weight
- * @property {Object} item_weight_unit_of_measure
+ * @property {string} item_weight_unit_of_measure
  * @property {number} item_width
- * @property {Object} size
+ * @property {string} size
  */
 /**
  * @typedef AppCatalogConfiguration
@@ -5838,8 +5838,8 @@ class PlatformClient {
  */
 /**
  * @typedef ApplicationItemSEO
- * @property {Object} [description]
- * @property {Object} [title]
+ * @property {string} [description]
+ * @property {string} [title]
  */
 /**
  * @typedef ApplicationProductListingResponse
@@ -5854,45 +5854,11 @@ class PlatformClient {
  * @property {Object} _custom_json
  */
 /**
- * @typedef ArticleAssignment
- * @property {string} [level]
- * @property {string} [strategy]
- */
-/**
- * @typedef ArticleAssignment1
- * @property {string} [level]
- * @property {string} [strategy]
- */
-/**
- * @typedef ArticleQuery
- * @property {number[]} [ignored_stores]
- * @property {number} item_id
- * @property {string} size
- */
-/**
  * @typedef ArticleStoreResponse
  * @property {string} [name]
  * @property {string} [store_code]
  * @property {string} [store_type]
  * @property {number} [uid]
- */
-/**
- * @typedef AssignStore
- * @property {string} app_id
- * @property {AssignStoreArticle[]} articles
- * @property {string} [channel_identifier]
- * @property {string} [channel_type]
- * @property {number} [company_id]
- * @property {string} pincode
- * @property {number[]} [store_ids]
- */
-/**
- * @typedef AssignStoreArticle
- * @property {ArticleAssignment} [article_assignment]
- * @property {string} [group_id]
- * @property {Object} [meta]
- * @property {number} [quantity]
- * @property {ArticleQuery} [query]
  */
 /**
  * @typedef AttributeDetailsGroup
@@ -6558,7 +6524,7 @@ class PlatformClient {
  */
 /**
  * @typedef DepartmentModel
- * @property {Object} [_cls]
+ * @property {string} [_cls]
  * @property {Object} [_custom_json]
  * @property {Object} [_id]
  * @property {UserDetail} [created_by]
@@ -6567,10 +6533,10 @@ class PlatformClient {
  * @property {string} logo
  * @property {UserDetail} [modified_by]
  * @property {string} modified_on
- * @property {Object} name
+ * @property {string} name
  * @property {number} priority_order
- * @property {Object} slug
- * @property {Object[]} [synonyms]
+ * @property {string} slug
+ * @property {string[]} [synonyms]
  * @property {number} uid
  * @property {UserDetail} [verified_by]
  * @property {string} [verified_on]
@@ -6939,7 +6905,7 @@ class PlatformClient {
 /**
  * @typedef GTIN
  * @property {string} gtin_type
- * @property {Object} gtin_value
+ * @property {string} gtin_value
  * @property {boolean} [primary]
  */
 /**
@@ -7116,7 +7082,7 @@ class PlatformClient {
  * @property {string} [modified_on]
  * @property {string[]} [notification_emails]
  * @property {number} seller_id
- * @property {Object} [status]
+ * @property {string} [status]
  * @property {string} task_id
  * @property {string} [type]
  * @property {string} url
@@ -7295,7 +7261,7 @@ class PlatformClient {
  * @property {number} [price_transfer]
  * @property {number} quantity
  * @property {InventorySet} [set]
- * @property {Object} size
+ * @property {string} size
  * @property {string} store_code
  */
 /**
@@ -7442,8 +7408,8 @@ class PlatformClient {
  */
 /**
  * @typedef MetaFields
- * @property {Object} key
- * @property {Object} value
+ * @property {string} key
+ * @property {string} value
  */
 /**
  * @typedef MOQData
@@ -7453,7 +7419,7 @@ class PlatformClient {
  */
 /**
  * @typedef NetQuantity
- * @property {Object} [unit]
+ * @property {string} [unit]
  * @property {number} [value]
  */
 /**
@@ -7748,7 +7714,7 @@ class PlatformClient {
  * @property {NetQuantity} [net_quantity]
  * @property {number} [no_of_boxes]
  * @property {string[]} [product_group_tag]
- * @property {ProductPublish} [product_publish]
+ * @property {ProductPublish1} [product_publish]
  * @property {string} [requester]
  * @property {ReturnConfig} return_config
  * @property {string} [short_description]
@@ -7944,7 +7910,7 @@ class PlatformClient {
  * @property {string} [pending]
  * @property {string} [primary_color]
  * @property {string[]} [product_group_tag]
- * @property {ProductPublish1} [product_publish]
+ * @property {ProductPublish} [product_publish]
  * @property {ReturnConfigResponse} [return_config]
  * @property {string} [short_description]
  * @property {string} [size_guide]
@@ -8158,8 +8124,8 @@ class PlatformClient {
  */
 /**
  * @typedef SEOData
- * @property {Object} [description]
- * @property {Object} [title]
+ * @property {string} [description]
+ * @property {string} [title]
  */
 /**
  * @typedef SeoDetail
@@ -8205,26 +8171,6 @@ class PlatformClient {
  * @property {string} [subtitle]
  * @property {string} [tag]
  * @property {string} [title]
- */
-/**
- * @typedef StoreAssignResponse
- * @property {string} [_id]
- * @property {ArticleAssignment1} article_assignment
- * @property {number} [company_id]
- * @property {string} [group_id]
- * @property {number} [index]
- * @property {number} item_id
- * @property {Object} [meta]
- * @property {number} [price_effective]
- * @property {number} [price_marked]
- * @property {number} quantity
- * @property {string} [s_city]
- * @property {string} size
- * @property {boolean} status
- * @property {number} [store_id]
- * @property {number} [store_pincode]
- * @property {Object[]} [strategy_wise_listing]
- * @property {string} [uid]
  */
 /**
  * @typedef StoreDetail
@@ -8317,7 +8263,7 @@ class PlatformClient {
 /**
  * @typedef Trader
  * @property {string[]} [address]
- * @property {Object} name
+ * @property {string} name
  * @property {string} [type]
  */
 /**
@@ -11273,6 +11219,11 @@ class PlatformClient {
  * @property {Validity} validity
  */
 /**
+ * @typedef DeleteAddressResponse
+ * @property {string} [id]
+ * @property {boolean} [is_deleted]
+ */
+/**
  * @typedef DiscountOffer
  * @property {boolean} [apportion_discount]
  * @property {string} [code]
@@ -11336,6 +11287,11 @@ class PlatformClient {
  * @property {string} [item_name]
  * @property {Object} [item_price_details]
  * @property {string} [item_slug]
+ */
+/**
+ * @typedef GeoLocation
+ * @property {number} [latitude]
+ * @property {number} [longitude]
  */
 /**
  * @typedef Identifier
@@ -11526,6 +11482,37 @@ class PlatformClient {
  * @property {string} [default_options]
  * @property {boolean} [enabled]
  * @property {string} [payment_identifier]
+ */
+/**
+ * @typedef PlatformAddress
+ * @property {string} [address]
+ * @property {string} [address_type]
+ * @property {string} [area]
+ * @property {string} [area_code]
+ * @property {string} [area_code_slug]
+ * @property {string} [cart_id]
+ * @property {string} [checkout_mode]
+ * @property {string} [city]
+ * @property {string} [country]
+ * @property {string} [country_code]
+ * @property {string} [created_by_user_id]
+ * @property {string} [email]
+ * @property {GeoLocation} [geo_location]
+ * @property {Object} [google_map_point]
+ * @property {string} [id]
+ * @property {boolean} [is_active]
+ * @property {boolean} [is_default_address]
+ * @property {string} [landmark]
+ * @property {Object} [meta]
+ * @property {string} [name]
+ * @property {string} [phone]
+ * @property {string} [state]
+ * @property {string[]} [tags]
+ * @property {string} [user_id]
+ */
+/**
+ * @typedef PlatformGetAddressesResponse
+ * @property {PlatformAddress[]} [address]
  */
 /**
  * @typedef PostOrder
@@ -11777,6 +11764,12 @@ class PlatformClient {
  * @property {string} value_type
  */
 /**
+ * @typedef SaveAddressResponse
+ * @property {string} [id]
+ * @property {boolean} [is_default_address]
+ * @property {boolean} [success]
+ */
+/**
  * @typedef ShipmentPromise
  * @property {PromiseFormatted} [formatted]
  * @property {PromiseTimestamp} [timestamp]
@@ -11808,6 +11801,13 @@ class PlatformClient {
 /**
  * @typedef SuccessMessage
  * @property {string} [message]
+ * @property {boolean} [success]
+ */
+/**
+ * @typedef UpdateAddressResponse
+ * @property {string} [id]
+ * @property {boolean} [is_default_address]
+ * @property {boolean} [is_updated]
  * @property {boolean} [success]
  */
 /**

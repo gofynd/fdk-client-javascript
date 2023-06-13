@@ -835,12 +835,7 @@ class PlatformApplicationClient {
 /** @typedef ApplicationItemSEO */
 /** @typedef ApplicationProductListingResponse */
 /** @typedef ApplicationStoreJson */
-/** @typedef ArticleAssignment */
-/** @typedef ArticleAssignment1 */
-/** @typedef ArticleQuery */
 /** @typedef ArticleStoreResponse */
-/** @typedef AssignStore */
-/** @typedef AssignStoreArticle */
 /** @typedef AttributeDetailsGroup */
 /** @typedef AttributeMaster */
 /** @typedef AttributeMasterDetails */
@@ -1107,7 +1102,6 @@ class PlatformApplicationClient {
 /** @typedef Size */
 /** @typedef SizeDistribution */
 /** @typedef SizeGuideResponse */
-/** @typedef StoreAssignResponse */
 /** @typedef StoreDetail */
 /** @typedef StoreMeta */
 /** @typedef SuccessResponse */
@@ -1492,6 +1486,7 @@ class PlatformApplicationClient {
 /** @typedef CouponSchedule */
 /** @typedef CouponsResponse */
 /** @typedef CouponUpdate */
+/** @typedef DeleteAddressResponse */
 /** @typedef DiscountOffer */
 /** @typedef DiscountRule */
 /** @typedef DiscountRulesApp */
@@ -1500,6 +1495,7 @@ class PlatformApplicationClient {
 /** @typedef DisplayMeta1 */
 /** @typedef DisplayMetaDict */
 /** @typedef FreeGiftItem */
+/** @typedef GeoLocation */
 /** @typedef Identifier */
 /** @typedef ItemCriteria */
 /** @typedef LoyaltyPoints */
@@ -1522,6 +1518,8 @@ class PlatformApplicationClient {
 /** @typedef PaymentAllowValue1 */
 /** @typedef PaymentModes */
 /** @typedef PaymentSelectionLock */
+/** @typedef PlatformAddress */
+/** @typedef PlatformGetAddressesResponse */
 /** @typedef PostOrder */
 /** @typedef PostOrder1 */
 /** @typedef PriceRange */
@@ -1549,10 +1547,12 @@ class PlatformApplicationClient {
 /** @typedef Restrictions1 */
 /** @typedef Rule */
 /** @typedef RuleDefinition */
+/** @typedef SaveAddressResponse */
 /** @typedef ShipmentPromise */
 /** @typedef ShippingAddress */
 /** @typedef State */
 /** @typedef SuccessMessage */
+/** @typedef UpdateAddressResponse */
 /** @typedef UpdateCartDetailResponse */
 /** @typedef UpdateCartRequest */
 /** @typedef UpdateProductCart */

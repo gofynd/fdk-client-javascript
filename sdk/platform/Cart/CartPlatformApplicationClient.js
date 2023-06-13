@@ -14,6 +14,67 @@ class Cart {
 
   /**
    * @param {Object} arg - Arg object.
+   * @param {PlatformAddress} arg.body
+   * @returns {Promise<SaveAddressResponse>} - Success response
+   * @summary: Add address to an account
+   * @description: Use this API to add an address to an account.
+   */
+  async addAddress({ body } = {}) {
+    const { error } = CartValidator.addAddress().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = CartValidator.addAddress().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for addAddress",
+      });
+      Logger({ level: "WARN", message: warrning });
+    }
+
+    const query_params = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/cart/v1.0/company/${this.config.companyId}/application/${this.applicationId}/address`,
+      query_params,
+      body
+    );
+
+    const {
+      error: res_error,
+    } = CartModel.SaveAddressResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for addAddress",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
    * @param {string} arg.cartId - Current Cart _id
    * @param {boolean} [arg.b] -
    * @param {AddCartRequest} arg.body
@@ -531,6 +592,196 @@ class Cart {
   /**
    * @param {Object} arg - Arg object.
    * @param {string} arg.id -
+   * @param {string} [arg.cartId] -
+   * @param {boolean} [arg.buyNow] -
+   * @param {string} [arg.mobileNo] -
+   * @param {string} [arg.checkoutMode] -
+   * @param {string} [arg.tags] -
+   * @param {boolean} [arg.isDefault] -
+   * @param {string} [arg.userId] -
+   * @returns {Promise<PlatformAddress>} - Success response
+   * @summary: Fetch a single address by its ID
+   * @description: Use this API to get an addresses using its ID. If successful, returns a Address resource in the response body specified in `PlatformAddress`. Attibutes listed below are optional <ul> <li> <font color="monochrome">mobile_no</font></li> <li> <font color="monochrome">checkout_mode</font></li> <li> <font color="monochrome">tags</font></li> <li> <font color="monochrome">default</font></li> </ul>
+   */
+  async getAddressById({
+    id,
+    cartId,
+    buyNow,
+    mobileNo,
+    checkoutMode,
+    tags,
+    isDefault,
+    userId,
+  } = {}) {
+    const { error } = CartValidator.getAddressById().validate(
+      {
+        id,
+        cartId,
+        buyNow,
+        mobileNo,
+        checkoutMode,
+        tags,
+        isDefault,
+        userId,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = CartValidator.getAddressById().validate(
+      {
+        id,
+        cartId,
+        buyNow,
+        mobileNo,
+        checkoutMode,
+        tags,
+        isDefault,
+        userId,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getAddressById",
+      });
+      Logger({ level: "WARN", message: warrning });
+    }
+
+    const query_params = {};
+    query_params["cart_id"] = cartId;
+    query_params["buy_now"] = buyNow;
+    query_params["mobile_no"] = mobileNo;
+    query_params["checkout_mode"] = checkoutMode;
+    query_params["tags"] = tags;
+    query_params["is_default"] = isDefault;
+    query_params["user_id"] = userId;
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/cart/v1.0/company/${this.config.companyId}/application/${this.applicationId}/address/${id}`,
+      query_params,
+      undefined
+    );
+
+    const { error: res_error } = CartModel.PlatformAddress().validate(
+      response,
+      { abortEarly: false, allowUnknown: false }
+    );
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getAddressById",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {string} [arg.cartId] -
+   * @param {boolean} [arg.buyNow] -
+   * @param {string} [arg.mobileNo] -
+   * @param {string} [arg.checkoutMode] -
+   * @param {string} [arg.tags] -
+   * @param {boolean} [arg.isDefault] -
+   * @param {string} [arg.userId] -
+   * @returns {Promise<PlatformGetAddressesResponse>} - Success response
+   * @summary: Fetch address
+   * @description: Use this API to get all the addresses associated with an account. If successful, returns a Address resource in the response body specified in GetAddressesResponse.attibutes listed below are optional <ul> <li> <font color="monochrome">uid</font></li> <li> <font color="monochrome">address_id</font></li> <li> <font color="monochrome">mobile_no</font></li> <li> <font color="monochrome">checkout_mode</font></li> <li> <font color="monochrome">tags</font></li> <li> <font color="monochrome">default</font></li> </ul>
+   */
+  async getAddresses({
+    cartId,
+    buyNow,
+    mobileNo,
+    checkoutMode,
+    tags,
+    isDefault,
+    userId,
+  } = {}) {
+    const { error } = CartValidator.getAddresses().validate(
+      {
+        cartId,
+        buyNow,
+        mobileNo,
+        checkoutMode,
+        tags,
+        isDefault,
+        userId,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = CartValidator.getAddresses().validate(
+      {
+        cartId,
+        buyNow,
+        mobileNo,
+        checkoutMode,
+        tags,
+        isDefault,
+        userId,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getAddresses",
+      });
+      Logger({ level: "WARN", message: warrning });
+    }
+
+    const query_params = {};
+    query_params["cart_id"] = cartId;
+    query_params["buy_now"] = buyNow;
+    query_params["mobile_no"] = mobileNo;
+    query_params["checkout_mode"] = checkoutMode;
+    query_params["tags"] = tags;
+    query_params["is_default"] = isDefault;
+    query_params["user_id"] = userId;
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/cart/v1.0/company/${this.config.companyId}/application/${this.applicationId}/address`,
+      query_params,
+      undefined
+    );
+
+    const {
+      error: res_error,
+    } = CartModel.PlatformGetAddressesResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getAddresses",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.id -
    * @returns {Promise<CouponUpdate>} - Success response
    * @summary: Get with single coupon details or coupon list
    * @description: Get single coupon details with `id` in path param
@@ -1000,6 +1251,135 @@ class Cart {
     };
     paginator.setCallback(callback.bind(this));
     return paginator;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.id - ID allotted to the selected address
+   * @param {string} [arg.userId] - Option to delete address for the provided user_id.
+   * @returns {Promise<DeleteAddressResponse>} - Success response
+   * @summary: Remove address associated with an account
+   * @description: Use this API to delete an address by its ID. This will returns an object that will indicate whether the address was deleted successfully or not.
+   */
+  async removeAddress({ id, userId } = {}) {
+    const { error } = CartValidator.removeAddress().validate(
+      {
+        id,
+        userId,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = CartValidator.removeAddress().validate(
+      {
+        id,
+        userId,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for removeAddress",
+      });
+      Logger({ level: "WARN", message: warrning });
+    }
+
+    const query_params = {};
+    query_params["user_id"] = userId;
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "delete",
+      `/service/platform/cart/v1.0/company/${this.config.companyId}/application/${this.applicationId}/address/${id}`,
+      query_params,
+      undefined
+    );
+
+    const {
+      error: res_error,
+    } = CartModel.DeleteAddressResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for removeAddress",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.id - ID allotted to the selected address
+   * @param {PlatformAddress} arg.body
+   * @returns {Promise<UpdateAddressResponse>} - Success response
+   * @summary: Update address added to an account
+   * @description: <p>Use this API to update an existing address in the account. Request object should contain attributes mentioned in  <font color="blue">Address </font> can be updated. These attributes are:</p> <ul> <li> <font color="monochrome">is_default_address</font></li> <li> <font color="monochrome">landmark</font></li> <li> <font color="monochrome">area</font></li> <li> <font color="monochrome">pincode</font></li> <li> <font color="monochrome">email</font></li> <li> <font color="monochrome">address_type</font></li> <li> <font color="monochrome">name</font></li> <li> <font color="monochrome">address_id</font></li> <li> <font color="monochrome">address</font></li> </ul>
+   */
+  async updateAddress({ id, body } = {}) {
+    const { error } = CartValidator.updateAddress().validate(
+      {
+        id,
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = CartValidator.updateAddress().validate(
+      {
+        id,
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for updateAddress",
+      });
+      Logger({ level: "WARN", message: warrning });
+    }
+
+    const query_params = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "put",
+      `/service/platform/cart/v1.0/company/${this.config.companyId}/application/${this.applicationId}/address/${id}`,
+      query_params,
+      body
+    );
+
+    const {
+      error: res_error,
+    } = CartModel.UpdateAddressResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for updateAddress",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**

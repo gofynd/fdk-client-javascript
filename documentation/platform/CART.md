@@ -8,6 +8,7 @@
 ## Cart Methods
 Cart APIs
 
+* [addAddress](#addaddress)
 * [addItems](#additems)
 * [checkCartServiceability](#checkcartserviceability)
 * [checkoutCart](#checkoutcart)
@@ -15,11 +16,15 @@ Cart APIs
 * [createPromotion](#createpromotion)
 * [fetchAndvalidateCartItems](#fetchandvalidatecartitems)
 * [getAbandonedCart](#getabandonedcart)
+* [getAddressById](#getaddressbyid)
+* [getAddresses](#getaddresses)
 * [getCouponById](#getcouponbyid)
 * [getCoupons](#getcoupons)
 * [getPromosCouponConfig](#getpromoscouponconfig)
 * [getPromotionById](#getpromotionbyid)
 * [getPromotions](#getpromotions)
+* [removeAddress](#removeaddress)
+* [updateAddress](#updateaddress)
 * [updateCart](#updatecart)
 * [updateCoupon](#updatecoupon)
 * [updateCouponPartially](#updatecouponpartially)
@@ -31,6 +36,65 @@ Cart APIs
 ## Methods with example and description
 
 
+
+
+### addAddress
+Add address to an account
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").cart.addAddress({  body : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").cart.addAddress({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [PlatformAddress](#PlatformAddress) | yes | Request body |
+
+
+Use this API to add an address to an account.
+
+*Returned Response:*
+
+
+
+
+[SaveAddressResponse](#SaveAddressResponse)
+
+Success. Returns the address ID, a flag whether the address is set as default, and a success message. Refer `SaveAddressResponse` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "id": "mongo_object_id",
+  "is_default_address": true,
+  "success": true
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
 
 
 ### addItems
@@ -2175,6 +2239,216 @@ Abandoned Cart List for sent page_size and page_no
 ---
 
 
+### getAddressById
+Fetch a single address by its ID
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").cart.getAddressById({  id : value,
+ cartId : value,
+ buyNow : value,
+ mobileNo : value,
+ checkoutMode : value,
+ tags : value,
+ isDefault : value,
+ userId : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").cart.getAddressById({  id : value,
+ cartId : value,
+ buyNow : value,
+ mobileNo : value,
+ checkoutMode : value,
+ tags : value,
+ isDefault : value,
+ userId : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| id | string | yes |  |    
+| cartId | string | no |  |    
+| buyNow | boolean | no |  |    
+| mobileNo | string | no |  |    
+| checkoutMode | string | no |  |    
+| tags | string | no |  |    
+| isDefault | boolean | no |  |    
+| userId | string | no |  |  
+
+
+
+Use this API to get an addresses using its ID. If successful, returns a Address resource in the response body specified in `PlatformAddress`. Attibutes listed below are optional <ul> <li> <font color="monochrome">mobile_no</font></li> <li> <font color="monochrome">checkout_mode</font></li> <li> <font color="monochrome">tags</font></li> <li> <font color="monochrome">default</font></li> </ul>
+
+*Returned Response:*
+
+
+
+
+[PlatformAddress](#PlatformAddress)
+
+Success. Returns an PlatformAddress object containing a list of address saved in the account. Refer `PlatformAddress` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "landmark": "",
+  "area_code": {
+    "slug": "pincode",
+    "id": 400093
+  },
+  "state": "Maharashtra",
+  "meta": {},
+  "user_id": "8b526f521bb14a2593a8b9e3ce8c76b3",
+  "created_by_user_id": "8b526f521bb14a2593a8b9e3ce8c76b3",
+  "country_code": "IND",
+  "phone": 9915347757,
+  "geo_location": {},
+  "country": "India",
+  "is_default_address": true,
+  "is_active": true,
+  "city": "Mumbai",
+  "pincode": 400093,
+  "checkout_mode": "self",
+  "address_type": "home",
+  "uid": 1145,
+  "tags": [],
+  "area": "Sector 127",
+  "name": "abc",
+  "address_id": 1145,
+  "email": "ankur@gofynd1.com",
+  "address": "Megatron2",
+  "store_name": "store123"
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### getAddresses
+Fetch address
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").cart.getAddresses({  cartId : value,
+ buyNow : value,
+ mobileNo : value,
+ checkoutMode : value,
+ tags : value,
+ isDefault : value,
+ userId : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").cart.getAddresses({  cartId : value,
+ buyNow : value,
+ mobileNo : value,
+ checkoutMode : value,
+ tags : value,
+ isDefault : value,
+ userId : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| cartId | string | no |  |    
+| buyNow | boolean | no |  |    
+| mobileNo | string | no |  |    
+| checkoutMode | string | no |  |    
+| tags | string | no |  |    
+| isDefault | boolean | no |  |    
+| userId | string | no |  |  
+
+
+
+Use this API to get all the addresses associated with an account. If successful, returns a Address resource in the response body specified in GetAddressesResponse.attibutes listed below are optional <ul> <li> <font color="monochrome">uid</font></li> <li> <font color="monochrome">address_id</font></li> <li> <font color="monochrome">mobile_no</font></li> <li> <font color="monochrome">checkout_mode</font></li> <li> <font color="monochrome">tags</font></li> <li> <font color="monochrome">default</font></li> </ul>
+
+*Returned Response:*
+
+
+
+
+[PlatformGetAddressesResponse](#PlatformGetAddressesResponse)
+
+Success. Returns an Address object containing a list of address saved in the account. Refer `GetAddressesResponse` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "address": [
+    {
+      "landmark": "",
+      "area_code": {
+        "slug": "pincode",
+        "id": 400093
+      },
+      "id": "8b526f521bb14a2593a8b9e3ce8c76b3",
+      "state": "Maharashtra",
+      "meta": {},
+      "user_id": "8b526f521bb14a2593a8b9e3ce8c76b3",
+      "created_by_user_id": "8b526f521bb14a2593a8b9e3ce8c76b3",
+      "country_code": "IND",
+      "phone": 9915347757,
+      "geo_location": {},
+      "country": "India",
+      "is_default_address": true,
+      "is_active": true,
+      "city": "Mumbai",
+      "pincode": 400093,
+      "checkout_mode": "self",
+      "address_type": "home",
+      "tags": [],
+      "area": "Sector 127",
+      "name": "abc",
+      "email": "ankur@gofynd1.com",
+      "address": "Megatron2",
+      "store_name": "store123"
+    }
+  ]
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
 ### getCouponById
 Get with single coupon details or coupon list
 
@@ -2847,6 +3121,131 @@ Promotion List for sent page_size and page_no
 ```
 </details>
 
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### removeAddress
+Remove address associated with an account
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").cart.removeAddress({  id : value,
+ userId : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").cart.removeAddress({  id : value,
+ userId : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| id | string | yes | ID allotted to the selected address |    
+| userId | string | no | Option to delete address for the provided user_id. |  
+
+
+
+Use this API to delete an address by its ID. This will returns an object that will indicate whether the address was deleted successfully or not.
+
+*Returned Response:*
+
+
+
+
+[DeleteAddressResponse](#DeleteAddressResponse)
+
+Returns a Status object indicating the success or failure of address deletion.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "id": "<mongo_object_id>",
+  "is_deleted": true
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### updateAddress
+Update address added to an account
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").cart.updateAddress({  id : value,
+ body : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").cart.updateAddress({  id : value,
+ body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| id | string | yes | ID allotted to the selected address |  
+| body | [PlatformAddress](#PlatformAddress) | yes | Request body |
+
+
+<p>Use this API to update an existing address in the account. Request object should contain attributes mentioned in  <font color="blue">Address </font> can be updated. These attributes are:</p> <ul> <li> <font color="monochrome">is_default_address</font></li> <li> <font color="monochrome">landmark</font></li> <li> <font color="monochrome">area</font></li> <li> <font color="monochrome">pincode</font></li> <li> <font color="monochrome">email</font></li> <li> <font color="monochrome">address_type</font></li> <li> <font color="monochrome">name</font></li> <li> <font color="monochrome">address_id</font></li> <li> <font color="monochrome">address</font></li> </ul>
+
+*Returned Response:*
+
+
+
+
+[UpdateAddressResponse](#UpdateAddressResponse)
+
+Success. Returns the address ID and a message indicating a successful address updation.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "is_updated": true,
+  "id": "<mongo_object_id>",
+  "is_default_address": true,
+  "success": true
+}
+```
 </details>
 
 
@@ -4306,6 +4705,16 @@ Promotion updated successfully
 
 ---
 
+#### [DeleteAddressResponse](#DeleteAddressResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | id | string? |  yes  |  |
+ | is_deleted | boolean? |  yes  |  |
+ 
+
+---
+
 #### [DiscountOffer](#DiscountOffer)
 
  | Properties | Type | Nullable | Description |
@@ -4407,6 +4816,16 @@ Promotion updated successfully
  | item_name | string? |  yes  | Item name |
  | item_price_details | string? |  yes  | item price details |
  | item_slug | string? |  yes  | item slug |
+ 
+
+---
+
+#### [GeoLocation](#GeoLocation)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | latitude | number? |  yes  |  |
+ | longitude | number? |  yes  |  |
  
 
 ---
@@ -4709,6 +5128,47 @@ Promotion updated successfully
  | default_options | string? |  yes  |  |
  | enabled | boolean? |  yes  |  |
  | payment_identifier | string? |  yes  |  |
+ 
+
+---
+
+#### [PlatformAddress](#PlatformAddress)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | address | string? |  yes  |  |
+ | address_type | string? |  yes  |  |
+ | area | string? |  yes  |  |
+ | area_code | string? |  yes  |  |
+ | area_code_slug | string? |  yes  |  |
+ | cart_id | string? |  yes  |  |
+ | checkout_mode | string? |  yes  |  |
+ | city | string? |  yes  |  |
+ | country | string? |  yes  |  |
+ | country_code | string? |  yes  |  |
+ | created_by_user_id | string? |  yes  |  |
+ | email | string? |  yes  |  |
+ | geo_location | [GeoLocation](#GeoLocation)? |  yes  |  |
+ | google_map_point | string? |  yes  |  |
+ | id | string? |  yes  |  |
+ | is_active | boolean? |  yes  |  |
+ | is_default_address | boolean? |  yes  |  |
+ | landmark | string? |  yes  |  |
+ | meta | string? |  yes  |  |
+ | name | string? |  yes  |  |
+ | phone | string? |  yes  |  |
+ | state | string? |  yes  |  |
+ | tags | [string]? |  yes  |  |
+ | user_id | string? |  yes  |  |
+ 
+
+---
+
+#### [PlatformGetAddressesResponse](#PlatformGetAddressesResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | address | [[PlatformAddress](#PlatformAddress)]? |  yes  |  |
  
 
 ---
@@ -5097,6 +5557,17 @@ Promotion updated successfully
 
 ---
 
+#### [SaveAddressResponse](#SaveAddressResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | id | string? |  yes  |  |
+ | is_default_address | boolean? |  yes  |  |
+ | success | boolean? |  yes  |  |
+ 
+
+---
+
 #### [ShipmentPromise](#ShipmentPromise)
 
  | Properties | Type | Nullable | Description |
@@ -5146,6 +5617,18 @@ Promotion updated successfully
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | message | string? |  yes  |  |
+ | success | boolean? |  yes  |  |
+ 
+
+---
+
+#### [UpdateAddressResponse](#UpdateAddressResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | id | string? |  yes  |  |
+ | is_default_address | boolean? |  yes  |  |
+ | is_updated | boolean? |  yes  |  |
  | success | boolean? |  yes  |  |
  
 

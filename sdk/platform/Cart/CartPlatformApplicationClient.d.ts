@@ -5,6 +5,16 @@ declare class Cart {
     applicationId: any;
     /**
      * @param {Object} arg - Arg object.
+     * @param {PlatformAddress} arg.body
+     * @returns {Promise<SaveAddressResponse>} - Success response
+     * @summary: Add address to an account
+     * @description: Use this API to add an address to an account.
+     */
+    addAddress({ body }?: {
+        body: PlatformAddress;
+    }): Promise<SaveAddressResponse>;
+    /**
+     * @param {Object} arg - Arg object.
      * @param {string} arg.cartId - Current Cart _id
      * @param {boolean} [arg.b] -
      * @param {AddCartRequest} arg.body
@@ -112,6 +122,52 @@ declare class Cart {
         lastId?: string;
         sortOn?: string;
     }): Paginator;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {string} arg.id -
+     * @param {string} [arg.cartId] -
+     * @param {boolean} [arg.buyNow] -
+     * @param {string} [arg.mobileNo] -
+     * @param {string} [arg.checkoutMode] -
+     * @param {string} [arg.tags] -
+     * @param {boolean} [arg.isDefault] -
+     * @param {string} [arg.userId] -
+     * @returns {Promise<PlatformAddress>} - Success response
+     * @summary: Fetch a single address by its ID
+     * @description: Use this API to get an addresses using its ID. If successful, returns a Address resource in the response body specified in `PlatformAddress`. Attibutes listed below are optional <ul> <li> <font color="monochrome">mobile_no</font></li> <li> <font color="monochrome">checkout_mode</font></li> <li> <font color="monochrome">tags</font></li> <li> <font color="monochrome">default</font></li> </ul>
+     */
+    getAddressById({ id, cartId, buyNow, mobileNo, checkoutMode, tags, isDefault, userId, }?: {
+        id: string;
+        cartId?: string;
+        buyNow?: boolean;
+        mobileNo?: string;
+        checkoutMode?: string;
+        tags?: string;
+        isDefault?: boolean;
+        userId?: string;
+    }): Promise<PlatformAddress>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {string} [arg.cartId] -
+     * @param {boolean} [arg.buyNow] -
+     * @param {string} [arg.mobileNo] -
+     * @param {string} [arg.checkoutMode] -
+     * @param {string} [arg.tags] -
+     * @param {boolean} [arg.isDefault] -
+     * @param {string} [arg.userId] -
+     * @returns {Promise<PlatformGetAddressesResponse>} - Success response
+     * @summary: Fetch address
+     * @description: Use this API to get all the addresses associated with an account. If successful, returns a Address resource in the response body specified in GetAddressesResponse.attibutes listed below are optional <ul> <li> <font color="monochrome">uid</font></li> <li> <font color="monochrome">address_id</font></li> <li> <font color="monochrome">mobile_no</font></li> <li> <font color="monochrome">checkout_mode</font></li> <li> <font color="monochrome">tags</font></li> <li> <font color="monochrome">default</font></li> </ul>
+     */
+    getAddresses({ cartId, buyNow, mobileNo, checkoutMode, tags, isDefault, userId, }?: {
+        cartId?: string;
+        buyNow?: boolean;
+        mobileNo?: string;
+        checkoutMode?: string;
+        tags?: string;
+        isDefault?: boolean;
+        userId?: string;
+    }): Promise<PlatformGetAddressesResponse>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.id -
@@ -237,6 +293,30 @@ declare class Cart {
         fpPanel?: string;
         promotionId?: string;
     }): Paginator;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {string} arg.id - ID allotted to the selected address
+     * @param {string} [arg.userId] - Option to delete address for the provided user_id.
+     * @returns {Promise<DeleteAddressResponse>} - Success response
+     * @summary: Remove address associated with an account
+     * @description: Use this API to delete an address by its ID. This will returns an object that will indicate whether the address was deleted successfully or not.
+     */
+    removeAddress({ id, userId }?: {
+        id: string;
+        userId?: string;
+    }): Promise<DeleteAddressResponse>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {string} arg.id - ID allotted to the selected address
+     * @param {PlatformAddress} arg.body
+     * @returns {Promise<UpdateAddressResponse>} - Success response
+     * @summary: Update address added to an account
+     * @description: <p>Use this API to update an existing address in the account. Request object should contain attributes mentioned in  <font color="blue">Address </font> can be updated. These attributes are:</p> <ul> <li> <font color="monochrome">is_default_address</font></li> <li> <font color="monochrome">landmark</font></li> <li> <font color="monochrome">area</font></li> <li> <font color="monochrome">pincode</font></li> <li> <font color="monochrome">email</font></li> <li> <font color="monochrome">address_type</font></li> <li> <font color="monochrome">name</font></li> <li> <font color="monochrome">address_id</font></li> <li> <font color="monochrome">address</font></li> </ul>
+     */
+    updateAddress({ id, body }?: {
+        id: string;
+        body: PlatformAddress;
+    }): Promise<UpdateAddressResponse>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.cartId - Current Cart _id

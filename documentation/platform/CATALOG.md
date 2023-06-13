@@ -87,7 +87,6 @@ Catalog - Platform Front API's' API's allows you to access list of products, pri
 * [getInventoryExport](#getinventoryexport)
 * [getListingConfigurations](#getlistingconfigurations)
 * [getMarketplaceOptinDetail](#getmarketplaceoptindetail)
-* [getOptimalLocations](#getoptimallocations)
 * [getProduct](#getproduct)
 * [getProductAssetsInBulk](#getproductassetsinbulk)
 * [getProductAttributes](#getproductattributes)
@@ -4117,6 +4116,7 @@ const promise = platformClient.application("<APPLICATION_ID>").catalog.getAppica
  f : value,
  c : value,
  filters : value,
+ isDependent : value,
  sortOn : value,
  pageId : value,
  pageSize : value,
@@ -4129,6 +4129,7 @@ const data = await platformClient.application("<APPLICATION_ID>").catalog.getApp
  f : value,
  c : value,
  filters : value,
+ isDependent : value,
  sortOn : value,
  pageId : value,
  pageSize : value,
@@ -4147,6 +4148,7 @@ const data = await platformClient.application("<APPLICATION_ID>").catalog.getApp
 | f | string | no | The search filter parameters. All the parameter filtered from filter parameters will be passed in **f** parameter in this format. **?f=brand:voi-jeans\|\|and:::category:t-shirts\|\|shirts** |    
 | c | string | no | The search filter parameters for collection items. All the parameter filtered from filter parameters will be passed in **c** parameter in this format. **?c=brand:in:voi-jeans\|and:::category:nin:t-shirts\|shirts** |    
 | filters | boolean | no | Pass `filters` parameter to fetch the filter details. This flag is used to fetch all filters |    
+| isDependent | boolean | no | This query parameter is used to get the dependent products in the listing. |    
 | sortOn | string | no | The order to sort the list of products on. The supported sort parameters are popularity, price, redemption and discount in either ascending or descending order. See the supported values below. |    
 | pageId | string | no | Each response will contain **page_id** param, which should be sent back to make pagination work. |    
 | pageSize | number | no | Number of items to retrieve in each page. Default is 12. |    
@@ -10392,85 +10394,6 @@ See example below or refer `GetOptInPlatformSchema` for details.
 
 ```json
 
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### getOptimalLocations
-Location Reassignment
-
-
-
-```javascript
-// Promise
-const promise = platformClient.catalog.getOptimalLocations({  body : value });
-
-// Async/Await
-const data = await platformClient.catalog.getOptimalLocations({  body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |
-| body | [AssignStore](#AssignStore) | yes | Request body |
-
-
-
-
-*Returned Response:*
-
-
-
-
-[StoreAssignResponse](#StoreAssignResponse)
-
-Returns a success response
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "items": [
-    {
-      "meta": {},
-      "store_id": 11550,
-      "size": "OS",
-      "_id": "61161830f1061e7c7f81d8ed",
-      "store_pincode": 201303,
-      "company_id": 783,
-      "s_city": "NOIDA",
-      "quantity": 1,
-      "price_effective": 995,
-      "status": true,
-      "price_marked": 995,
-      "uid": "11550_000000410234883001",
-      "article_assignment": {
-        "strategy": "app-config",
-        "level": "multi-company"
-      },
-      "item_id": 75252658,
-      "strategy_wise_listing": [],
-      "index": 0
-    }
-  ]
-}
 ```
 </details>
 
@@ -18238,9 +18161,9 @@ List of fields and validation values fro each. See example below or refer `Inven
  | item_height | number |  no  |  |
  | item_length | number |  no  |  |
  | item_weight | number |  no  |  |
- | item_weight_unit_of_measure | any |  no  |  |
+ | item_weight_unit_of_measure | string |  no  |  |
  | item_width | number |  no  |  |
- | size | any |  no  |  |
+ | size | string |  no  |  |
  
 
 ---
@@ -18396,8 +18319,8 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | description | any? |  yes  | The SEO description of the item |
- | title | any? |  yes  | The SEO title of the item |
+ | description | string? |  yes  | The SEO description of the item |
+ | title | string? |  yes  | The SEO title of the item |
  
 
 ---
@@ -18424,37 +18347,6 @@ List of fields and validation values fro each. See example below or refer `Inven
 
 ---
 
-#### [ArticleAssignment](#ArticleAssignment)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | level | string? |  yes  |  |
- | strategy | string? |  yes  |  |
- 
-
----
-
-#### [ArticleAssignment1](#ArticleAssignment1)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | level | string? |  yes  |  |
- | strategy | string? |  yes  |  |
- 
-
----
-
-#### [ArticleQuery](#ArticleQuery)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | ignored_stores | [number]? |  yes  |  |
- | item_id | number |  no  |  |
- | size | string |  no  |  |
- 
-
----
-
 #### [ArticleStoreResponse](#ArticleStoreResponse)
 
  | Properties | Type | Nullable | Description |
@@ -18463,34 +18355,6 @@ List of fields and validation values fro each. See example below or refer `Inven
  | store_code | string? |  yes  |  |
  | store_type | string? |  yes  |  |
  | uid | number? |  yes  |  |
- 
-
----
-
-#### [AssignStore](#AssignStore)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | app_id | string |  no  |  |
- | articles | [[AssignStoreArticle](#AssignStoreArticle)] |  no  |  |
- | channel_identifier | string? |  yes  |  |
- | channel_type | string? |  yes  |  |
- | company_id | number? |  yes  |  |
- | pincode | string |  no  |  |
- | store_ids | [number]? |  yes  |  |
- 
-
----
-
-#### [AssignStoreArticle](#AssignStoreArticle)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | article_assignment | [ArticleAssignment](#ArticleAssignment)? |  yes  |  |
- | group_id | string? |  yes  |  |
- | meta | string? |  yes  |  |
- | quantity | number? |  yes  |  |
- | query | [ArticleQuery](#ArticleQuery)? |  yes  |  |
  
 
 ---
@@ -19591,7 +19455,7 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | _cls | any? |  yes  |  |
+ | _cls | string? |  yes  |  |
  | _custom_json | string? |  yes  |  |
  | _id | any? |  yes  |  |
  | created_by | [UserDetail](#UserDetail)? |  yes  | User details of the creator of the document |
@@ -19600,10 +19464,10 @@ List of fields and validation values fro each. See example below or refer `Inven
  | logo | string |  no  | The URL of the department's logo |
  | modified_by | [UserDetail](#UserDetail)? |  yes  | User details of the last modifier of the document |
  | modified_on | string |  no  | Timestamp of the last modification of the document |
- | name | any |  no  | The name of the department |
+ | name | string |  no  | The name of the department |
  | priority_order | number |  no  | The priority order of the department |
- | slug | any |  no  | The unique slug identifier for the department |
- | synonyms | [any]? |  yes  | A list of synonyms for the department name |
+ | slug | string |  no  | The unique slug identifier for the department |
+ | synonyms | [string]? |  yes  | A list of synonyms for the department name |
  | uid | number |  no  | The unique ID for the department |
  | verified_by | [UserDetail](#UserDetail)? |  yes  | User details of the verifier of the document, if applicable |
  | verified_on | string? |  yes  | Timestamp of when the document was verified, if applicable |
@@ -20167,7 +20031,7 @@ List of fields and validation values fro each. See example below or refer `Inven
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | gtin_type | string |  no  |  |
- | gtin_value | any |  no  |  |
+ | gtin_value | string |  no  |  |
  | primary | boolean? |  yes  |  |
  
 
@@ -20459,7 +20323,7 @@ List of fields and validation values fro each. See example below or refer `Inven
  | modified_on | string? |  yes  | This is the timestamp of the modification for this job. |
  | notification_emails | [string]? |  yes  | User email to get notification post completion of the job. |
  | seller_id | number |  no  | This ID of the company. |
- | status | any? |  yes  | This tells you the current status of the export job. |
+ | status | string? |  yes  | This tells you the current status of the export job. |
  | task_id | string |  no  | This is the task id of the jobs that is used for search. |
  | type | string? |  yes  | This is the file type of the export. |
  | url | string |  no  | This is the url to download the export. |
@@ -20728,7 +20592,7 @@ List of fields and validation values fro each. See example below or refer `Inven
  | price_transfer | number? |  yes  |  |
  | quantity | number |  no  |  |
  | set | [InventorySet](#InventorySet)? |  yes  |  |
- | size | any |  no  |  |
+ | size | string |  no  |  |
  | store_code | string |  no  |  |
  
 
@@ -20985,8 +20849,8 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | key | any |  no  | The key of the metadata. Should be a non-empty string and length should not exceed 30 characters. |
- | value | any |  no  | The value of the metadata. Should be a non-empty string and length should not exceed 100 characters. |
+ | key | string |  no  | The key of the metadata. Should be a non-empty string and length should not exceed 30 characters. |
+ | value | string |  no  | The value of the metadata. Should be a non-empty string and length should not exceed 100 characters. |
  
 
 ---
@@ -21006,7 +20870,7 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | unit | any? |  yes  | The unit of measurement used for the net quantity of the product. |
+ | unit | string? |  yes  | The unit of measurement used for the net quantity of the product. |
  | value | number? |  yes  | The value of the net quantity of the product. |
  
 
@@ -21436,7 +21300,7 @@ List of fields and validation values fro each. See example below or refer `Inven
  | net_quantity | [NetQuantity](#NetQuantity)? |  yes  |  |
  | no_of_boxes | number? |  yes  |  |
  | product_group_tag | [string]? |  yes  |  |
- | product_publish | [ProductPublish](#ProductPublish)? |  yes  |  |
+ | product_publish | [ProductPublish1](#ProductPublish1)? |  yes  |  |
  | requester | string? |  yes  |  |
  | return_config | [ReturnConfig](#ReturnConfig) |  no  |  |
  | short_description | string? |  yes  |  |
@@ -21712,7 +21576,7 @@ List of fields and validation values fro each. See example below or refer `Inven
  | pending | string? |  yes  |  |
  | primary_color | string? |  yes  |  |
  | product_group_tag | [string]? |  yes  |  |
- | product_publish | [ProductPublish1](#ProductPublish1)? |  yes  |  |
+ | product_publish | [ProductPublish](#ProductPublish)? |  yes  |  |
  | return_config | [ReturnConfigResponse](#ReturnConfigResponse)? |  yes  |  |
  | short_description | string? |  yes  |  |
  | size_guide | string? |  yes  |  |
@@ -22051,8 +21915,8 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | description | any? |  yes  |  |
- | title | any? |  yes  |  |
+ | description | string? |  yes  |  |
+ | title | string? |  yes  |  |
  
 
 ---
@@ -22133,31 +21997,6 @@ List of fields and validation values fro each. See example below or refer `Inven
  | subtitle | string? |  yes  |  |
  | tag | string? |  yes  |  |
  | title | string? |  yes  |  |
- 
-
----
-
-#### [StoreAssignResponse](#StoreAssignResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | _id | string? |  yes  |  |
- | article_assignment | [ArticleAssignment1](#ArticleAssignment1) |  no  |  |
- | company_id | number? |  yes  |  |
- | group_id | string? |  yes  |  |
- | index | number? |  yes  |  |
- | item_id | number |  no  |  |
- | meta | string? |  yes  |  |
- | price_effective | number? |  yes  |  |
- | price_marked | number? |  yes  |  |
- | quantity | number |  no  |  |
- | s_city | string? |  yes  |  |
- | size | string |  no  |  |
- | status | boolean |  no  |  |
- | store_id | number? |  yes  |  |
- | store_pincode | number? |  yes  |  |
- | strategy_wise_listing | [string]? |  yes  |  |
- | uid | string? |  yes  |  |
  
 
 ---
@@ -22315,7 +22154,7 @@ List of fields and validation values fro each. See example below or refer `Inven
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | address | [string]? |  yes  |  |
- | name | any |  no  |  |
+ | name | string |  no  |  |
  | type | string? |  yes  |  |
  
 

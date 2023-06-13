@@ -41,7 +41,6 @@ declare class CatalogValidator {
     static getInventoryBySizeIdentifier(): any;
     static getInventoryExport(): any;
     static getMarketplaceOptinDetail(): any;
-    static getOptimalLocations(): any;
     static getProduct(): any;
     static getProductAssetsInBulk(): any;
     static getProductAttributes(): any;

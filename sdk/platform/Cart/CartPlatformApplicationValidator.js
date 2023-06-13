@@ -2,6 +2,12 @@ const Joi = require("joi");
 
 const CartModel = require("./CartPlatformModel");
 class CartValidator {
+  static addAddress() {
+    return Joi.object({
+      body: CartModel.PlatformAddress().required(),
+    }).required();
+  }
+
   static addItems() {
     return Joi.object({
       cartId: Joi.string().allow("").required(),
@@ -52,6 +58,31 @@ class CartValidator {
     }).required();
   }
 
+  static getAddressById() {
+    return Joi.object({
+      id: Joi.string().allow("").required(),
+      cartId: Joi.string().allow(""),
+      buyNow: Joi.boolean(),
+      mobileNo: Joi.string().allow(""),
+      checkoutMode: Joi.string().allow(""),
+      tags: Joi.string().allow(""),
+      isDefault: Joi.boolean(),
+      userId: Joi.string().allow(""),
+    }).required();
+  }
+
+  static getAddresses() {
+    return Joi.object({
+      cartId: Joi.string().allow(""),
+      buyNow: Joi.boolean(),
+      mobileNo: Joi.string().allow(""),
+      checkoutMode: Joi.string().allow(""),
+      tags: Joi.string().allow(""),
+      isDefault: Joi.boolean(),
+      userId: Joi.string().allow(""),
+    }).required();
+  }
+
   static getCouponById() {
     return Joi.object({
       id: Joi.string().allow("").required(),
@@ -91,6 +122,20 @@ class CartValidator {
       promotionType: Joi.string().allow(""),
       fpPanel: Joi.string().allow(""),
       promotionId: Joi.string().allow(""),
+    }).required();
+  }
+
+  static removeAddress() {
+    return Joi.object({
+      id: Joi.string().allow("").required(),
+      userId: Joi.string().allow(""),
+    }).required();
+  }
+
+  static updateAddress() {
+    return Joi.object({
+      id: Joi.string().allow("").required(),
+      body: CartModel.PlatformAddress().required(),
     }).required();
   }
 

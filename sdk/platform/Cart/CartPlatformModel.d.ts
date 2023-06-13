@@ -33,6 +33,7 @@ declare class CartModel {
     static CouponSchedule(): any;
     static CouponsResponse(): any;
     static CouponUpdate(): any;
+    static DeleteAddressResponse(): any;
     static DiscountOffer(): any;
     static DiscountRule(): any;
     static DiscountRulesApp(): any;
@@ -41,6 +42,7 @@ declare class CartModel {
     static DisplayMeta1(): any;
     static DisplayMetaDict(): any;
     static FreeGiftItem(): any;
+    static GeoLocation(): any;
     static Identifier(): any;
     static ItemCriteria(): any;
     static LoyaltyPoints(): any;
@@ -63,6 +65,8 @@ declare class CartModel {
     static PaymentAllowValue1(): any;
     static PaymentModes(): any;
     static PaymentSelectionLock(): any;
+    static PlatformAddress(): any;
+    static PlatformGetAddressesResponse(): any;
     static PostOrder(): any;
     static PostOrder1(): any;
     static PriceRange(): any;
@@ -90,10 +94,12 @@ declare class CartModel {
     static Restrictions1(): any;
     static Rule(): any;
     static RuleDefinition(): any;
+    static SaveAddressResponse(): any;
     static ShipmentPromise(): any;
     static ShippingAddress(): any;
     static State(): any;
     static SuccessMessage(): any;
+    static UpdateAddressResponse(): any;
     static UpdateCartDetailResponse(): any;
     static UpdateCartRequest(): any;
     static UpdateProductCart(): any;
