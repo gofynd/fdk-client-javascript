@@ -9,19 +9,6 @@ class PartnerValidator {
     }).required();
   }
 
-  static getProxyPath() {
-    return Joi.object({
-      extensionId: Joi.string().allow(""),
-    }).required();
-  }
-
-  static getProxyPathAttachedPath() {
-    return Joi.object({
-      extensionId: Joi.string().allow(""),
-      attachedPath: Joi.string().allow(""),
-    }).required();
-  }
-
   static removeProxyPath() {
     return Joi.object({
       extensionId: Joi.string().allow("").required(),

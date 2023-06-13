@@ -22,8 +22,6 @@ const Configuration = require("./Configuration/ConfigurationPlatformClient");
 
 const Discount = require("./Discount/DiscountPlatformClient");
 
-const Partner = require("./Partner/PartnerPlatformClient");
-
 const Webhook = require("./Webhook/WebhookPlatformClient");
 
 const AuditTrail = require("./AuditTrail/AuditTrailPlatformClient");
@@ -62,8 +60,6 @@ class PlatformClient {
     this.configuration = new Configuration(config);
 
     this.discount = new Discount(config);
-
-    this.partner = new Partner(config);
 
     this.webhook = new Webhook(config);
 
@@ -13869,334 +13865,9 @@ class PlatformClient {
  * @property {string} [request_id]
  */
 /**
- * @typedef ApplicationPermissions
- * @property {string[]} [permissions]
- * @property {string[]} [roles]
- */
-/**
- * @typedef ApprovedPermissions
- * @property {string[]} [application_role]
- * @property {string[]} [company_permissions]
- * @property {string[]} [company_role]
- */
-/**
- * @typedef ApprovedPermissionsInfo
- * @property {Object} [application_permissions]
- * @property {string[]} [company_permissions]
- */
-/**
- * @typedef Benefits
- * @property {string} [description]
- * @property {string} [title]
- */
-/**
- * @typedef Callback
- * @property {string} [auth]
- * @property {string} [auto_install]
- * @property {string} [install]
- * @property {string} [setup]
- * @property {string} [uninstall]
- */
-/**
- * @typedef Category
- * @property {CategoryL1[]} [category_l1]
- * @property {CategoryL2[]} [category_l2]
- */
-/**
- * @typedef CategoryL1
- * @property {string} [_id]
- * @property {string} [description]
- * @property {string} [display]
- * @property {number} [level]
- * @property {string} [logo]
- * @property {string} [slug]
- * @property {string} [value]
- */
-/**
- * @typedef CategoryL2
- * @property {string} [_id]
- * @property {string} [display]
- * @property {number} [level]
- * @property {string} [parent]
- * @property {string} [slug]
- * @property {string} [value]
- */
-/**
- * @typedef CommingSoon
- * @property {boolean} [is_coming_soon]
- * @property {number} [upvote_count]
- */
-/**
- * @typedef ContactInfo
- * @property {Support} [support]
- */
-/**
- * @typedef ExtensionCommon
- * @property {string} [base_url]
- * @property {Callback} [callbacks]
- * @property {string} [contact_email]
- * @property {string} [current_status]
- * @property {string} [description]
- * @property {string} [developed_by_name]
- * @property {string} [ext_version]
- * @property {string} [extention_type]
- * @property {boolean} [is_application_level]
- * @property {boolean} [is_coming_soon]
- * @property {boolean} [is_saleschannel]
- * @property {Logo} [logo]
- * @property {string} [name]
- * @property {string[]} [scope]
- */
-/**
- * @typedef ExtensionDetails
- * @property {Benefits[]} [benefits]
- * @property {string} [demo_url]
- * @property {string} [description]
- * @property {string[]} [integration]
- * @property {Screenshots} [screenshots]
- * @property {Object[]} [video_url]
- * @property {string[]} [youtube]
- */
-/**
- * @typedef ExtensionItems
- * @property {string} [base_url]
- * @property {string} [company]
- * @property {string} [description]
- * @property {string} [developed_by_name]
- * @property {string} [ext_version]
- * @property {string} [extension_id]
- * @property {string} [extention_type]
- * @property {boolean} [installed]
- * @property {boolean} [is_saleschannel]
- * @property {string} [launch_url]
- * @property {Logo} [logo]
- * @property {string} [name]
- * @property {Scope[]} [scope]
- */
-/**
- * @typedef ExtensionList
- * @property {ExtensionItems[]} [items]
- * @property {Pagination} [page]
- */
-/**
- * @typedef ExtensionListItems
- * @property {string} [_id]
- * @property {string} [base_url]
- * @property {Callback} [callbacks]
- * @property {string} [contact_email]
- * @property {string} [created_at]
- * @property {string} [current_status]
- * @property {string} [description]
- * @property {string} [developed_by_name]
- * @property {string} [ext_version]
- * @property {string} [extention_type]
- * @property {boolean} [is_application_level]
- * @property {boolean} [is_coming_soon]
- * @property {boolean} [is_hidden]
- * @property {boolean} [is_saleschannel]
- * @property {Logo} [logo]
- * @property {string} [modified_at]
- * @property {string} [name]
- * @property {string} [organization_id]
- * @property {string[]} [scope]
- * @property {string[]} [whitelisted_urls]
- */
-/**
- * @typedef ExtensionResponse
- * @property {ExtensionListItems[]} [items]
- * @property {Pagination} [page]
- */
-/**
- * @typedef ExtensionSuggestion
- * @property {ListingInfo} [listing_info]
- * @property {OrganizationBasicInfo} [organization]
- * @property {string} [organization_id]
- * @property {Plan[]} [plans]
- * @property {string} [slug]
- */
-/**
- * @typedef ExtensionSuggestionList
- * @property {ExtensionSuggestion[]} [items]
- */
-/**
- * @typedef getProxyPathRes
- * @property {AddProxyResponse[]} [items]
- * @property {Pagination} [page]
- */
-/**
- * @typedef ListingInfo
- * @property {string} [icon]
- * @property {string[]} [keywords]
- * @property {string} [name]
- * @property {string} [tagline]
- */
-/**
- * @typedef Logo
- * @property {string} [large]
- * @property {string} [small]
- */
-/**
- * @typedef ModifyPartnerReq
- * @property {string} [_id]
- * @property {string} [account_type]
- * @property {ApprovedPermissionsInfo} [approved_permissions]
- * @property {string} [comment]
- * @property {number} [company_id]
- * @property {string} [company_name]
- * @property {string} [organization_id]
- * @property {string} [organization_name]
- * @property {string} [request_status]
- * @property {RequestedPermissions} [requested_permissions]
- * @property {string} [user_id]
- */
-/**
- * @typedef OrganizationBasicInfo
- * @property {string} [name]
- * @property {string} [slug]
- */
-/**
- * @typedef Pagination
- * @property {number} [current]
- * @property {boolean} [has_next]
- * @property {number} [item_total]
- * @property {number} [size]
- * @property {string} [type]
- */
-/**
- * @typedef PartnerInviteDetails
- * @property {string} [_id]
- * @property {string} [account_type]
- * @property {ApprovedPermissions} [approved_permissions]
- * @property {string} [comment]
- * @property {number} [company_id]
- * @property {string} [company_name]
- * @property {string} [created_at]
- * @property {string} [modified_at]
- * @property {string} [organization_id]
- * @property {string} [organization_name]
- * @property {string} [request_status]
- * @property {RequestedPermissions} [requested_permissions]
- * @property {string} [user_id]
- */
-/**
- * @typedef PartnerList
- * @property {string} [_id]
- * @property {string} [account_type]
- * @property {ApprovedPermissionsInfo} [approved_permissions]
- * @property {string} [approver_id]
- * @property {string} [comment]
- * @property {number} [company_id]
- * @property {string} [company_name]
- * @property {string} [created_at]
- * @property {string} [modified_at]
- * @property {string} [organization_id]
- * @property {string} [organization_name]
- * @property {string} [request_status]
- * @property {RequestedPermissions} [requested_permissions]
- * @property {string} [user_id]
- */
-/**
- * @typedef PartnerRequestList
- * @property {PartnerList} [items]
- * @property {Pagination} [page]
- */
-/**
- * @typedef Plan
- * @property {string} [additional_charges]
- * @property {string} [features]
- * @property {string} [name]
- * @property {Price} [price]
- * @property {number} [trial_days]
- * @property {string} [type]
- */
-/**
- * @typedef Plans
- * @property {string} [additional_charges]
- * @property {string} [features]
- * @property {string} [name]
- * @property {Price} [price]
- * @property {number} [trial_days]
- * @property {string} [type]
- */
-/**
- * @typedef Price
- * @property {number} [amount]
- * @property {string} [currency]
- */
-/**
- * @typedef PublicExtension
- * @property {string} [_id]
- * @property {Category} [category]
- * @property {CommingSoon} [coming_soon]
- * @property {ContactInfo} [contact_info]
- * @property {string} [created_at]
- * @property {string} [current_status]
- * @property {ExtensionDetails} [details]
- * @property {string} [extension_id]
- * @property {boolean} [is_coming_soon]
- * @property {ListingInfo} [listing_info]
- * @property {string} [modified_at]
- * @property {OrganizationBasicInfo} [organization]
- * @property {string} [organization_id]
- * @property {string} [plan_type]
- * @property {Plans[]} [plans]
- * @property {string} [plans_url]
- * @property {string} [review_instructions]
- * @property {string[]} [scope]
- * @property {string} [slug]
- */
-/**
  * @typedef RemoveProxyResponse
  * @property {Object} [data]
  * @property {string} [message]
- */
-/**
- * @typedef RequestedPermissions
- * @property {string[]} [application_permissions]
- * @property {string[]} [application_role]
- * @property {string[]} [company_permissions]
- * @property {string[]} [company_role]
- */
-/**
- * @typedef Scope
- * @property {string} [description]
- * @property {string} [name]
- */
-/**
- * @typedef Screenshots
- * @property {string[]} [desktop]
- * @property {string[]} [mobile]
- */
-/**
- * @typedef SetupProductRes
- * @property {number} [cli_wait_time]
- * @property {string} [message]
- * @property {number} [next_step]
- * @property {string} [request_id]
- */
-/**
- * @typedef SubscriptionRequest
- * @property {string} [approved]
- * @property {string} [client_id]
- * @property {string} [company_id]
- * @property {string} [credit_balance]
- * @property {string} [request_id]
- */
-/**
- * @typedef SubscriptionRes
- * @property {string} [redirect_url]
- */
-/**
- * @typedef Support
- * @property {string} [email]
- * @property {string} [faq_url]
- * @property {string} [phone]
- * @property {string} [privacy_policy_url]
- * @property {string} [website_url]
- */
-/**
- * @typedef UninstallExtension
- * @property {boolean} [success]
  */
 
 /**
@@ -14458,7 +14129,7 @@ class PlatformClient {
  */
 /**
  * @typedef CompanyDpAccountRequest
- * @property {Dp1[]} data
+ * @property {DP[]} data
  */
 /**
  * @typedef CompanyDpAccountResponse
@@ -14521,7 +14192,7 @@ class PlatformClient {
  * @property {string} [transport_mode]
  */
 /**
- * @typedef Dp1
+ * @typedef DP
  * @property {string} account_id
  * @property {string} dp_id
  * @property {boolean} is_self_ship
