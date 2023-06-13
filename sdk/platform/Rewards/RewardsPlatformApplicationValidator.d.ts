@@ -1,6 +1,5 @@
 export = RewardsValidator;
 declare class RewardsValidator {
-    static getGiveawayAudienceStatus(): any;
     static getGiveawayById(): any;
     static getOfferByName(): any;
     static getRewardsConfiguration(): any;

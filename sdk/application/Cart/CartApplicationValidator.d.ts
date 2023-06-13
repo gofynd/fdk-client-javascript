@@ -5,6 +5,7 @@ declare class CartValidator {
     static applyCoupon(): any;
     static applyRewardPoints(): any;
     static checkoutCart(): any;
+    static deleteCart(): any;
     static getAddressById(): any;
     static getAddresses(): any;
     static getBulkDiscountOffers(): any;
