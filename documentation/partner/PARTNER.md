@@ -533,8 +533,8 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | category_l1 | [[CategoryL1](#CategoryL1)]? |  yes  |  |
- | category_l2 | [[CategoryL2](#CategoryL2)]? |  yes  |  |
+ | categories_l1 | [[CategoryL1](#CategoryL1)]? |  yes  |  |
+ | categories_l2 | [[CategoryL2](#CategoryL2)]? |  yes  |  |
  
 
 ---
@@ -684,6 +684,7 @@ Success
  | extension_id | string? |  yes  |  |
  | is_coming_soon | boolean? |  yes  |  |
  | listing_info | [ListingInfo](#ListingInfo)? |  yes  |  |
+ | meta | string? |  yes  |  |
  | modified_at | string? |  yes  |  |
  | organization | [OrganizationBasicInfo](#OrganizationBasicInfo)? |  yes  |  |
  | organization_id | string? |  yes  |  |
@@ -706,7 +707,7 @@ Success
  | description | string? |  yes  |  |
  | featured_banner | string? |  yes  |  |
  | integration | [string]? |  yes  |  |
- | integrations | string? |  yes  |  |
+ | integrations | [string]? |  yes  |  |
  | screenshots | [Screenshots](#Screenshots)? |  yes  |  |
  | video_url | [string]? |  yes  |  |
  | youtube | [string]? |  yes  |  |
@@ -787,6 +788,7 @@ Success
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | additional_charges | string? |  yes  |  |
+ | custom_meta | string? |  yes  |  |
  | features | string? |  yes  |  |
  | name | string? |  yes  |  |
  | price | [Price](#Price)? |  yes  |  |

@@ -131,8 +131,8 @@ class PartnerClient {
 
 /**
  * @typedef Category
- * @property {CategoryL1[]} [category_l1]
- * @property {CategoryL2[]} [category_l2]
+ * @property {CategoryL1[]} [categories_l1]
+ * @property {CategoryL2[]} [categories_l2]
  */
 
 /**
@@ -164,7 +164,7 @@ class PartnerClient {
  * @property {Object[]} [video_url]
  * @property {string[]} [youtube]
  * @property {Screenshots} [screenshots]
- * @property {string} [integrations]
+ * @property {string[]} [integrations]
  * @property {string} [featured_banner]
  */
 
@@ -190,6 +190,7 @@ class PartnerClient {
  * @property {Price} [price]
  * @property {number} [trial_days]
  * @property {string} [type]
+ * @property {Object} [custom_meta]
  */
 
 /**
@@ -249,6 +250,7 @@ class PartnerClient {
  * @property {string[]} [scope]
  * @property {string} [slug]
  * @property {string} [_id]
+ * @property {Object} [meta]
  */
 
 /**

@@ -300,7 +300,7 @@ class PaymentModel {
       device: PaymentModel.DeviceDetails(),
       marketplace_info: PaymentModel.MarketplaceInfo(),
       mcc: Joi.string().allow("").allow(null),
-      personal_info: PaymentModel.UserPersonalInfoInDetails().required(),
+      personal_info: PaymentModel.UserPersonalInfoInDetails(),
       source: Joi.string().allow("").required(),
     });
   }

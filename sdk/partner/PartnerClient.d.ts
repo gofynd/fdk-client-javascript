@@ -106,8 +106,8 @@ type CategoryL2 = {
     _id?: string;
 };
 type Category = {
-    category_l1?: CategoryL1[];
-    category_l2?: CategoryL2[];
+    categories_l1?: CategoryL1[];
+    categories_l2?: CategoryL2[];
 };
 type ContactInfo = {
     review_notification_email?: string;
@@ -131,7 +131,7 @@ type ExtensionExtraDetails = {
     video_url?: any[];
     youtube?: string[];
     screenshots?: Screenshots;
-    integrations?: string;
+    integrations?: string[];
     featured_banner?: string;
 };
 type ListingInfo = {
@@ -151,6 +151,7 @@ type Plans = {
     price?: Price;
     trial_days?: number;
     type?: string;
+    custom_meta?: any;
 };
 type ExtensionLatestReview = {
     category?: Category;
@@ -202,6 +203,7 @@ type ExtensionDraftRequest = {
     scope?: string[];
     slug?: string;
     _id?: string;
+    meta?: any;
 };
 type ExtensionUnpublishRequest = {
     reason?: string;

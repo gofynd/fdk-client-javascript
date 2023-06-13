@@ -4249,7 +4249,7 @@ Success. Sends the OTP to the given mobile number. Check the example shown below
  | device | [DeviceDetails](#DeviceDetails)? |  yes  | Device Details. |
  | marketplace_info | [MarketplaceInfo](#MarketplaceInfo)? |  yes  | Market Place info. |
  | mcc | string? |  yes  | Mcc |
- | personal_info | [UserPersonalInfoInDetails](#UserPersonalInfoInDetails) |  no  | Credit summary of user. |
+ | personal_info | [UserPersonalInfoInDetails](#UserPersonalInfoInDetails)? |  yes  | Credit summary of user. |
  | source | string |  no  | callbackURL |
  
 

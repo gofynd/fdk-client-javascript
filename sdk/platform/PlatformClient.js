@@ -14129,7 +14129,7 @@ class PlatformClient {
  */
 /**
  * @typedef CompanyDpAccountRequest
- * @property {DP[]} data
+ * @property {Dp1[]} data
  */
 /**
  * @typedef CompanyDpAccountResponse
@@ -14192,7 +14192,7 @@ class PlatformClient {
  * @property {string} [transport_mode]
  */
 /**
- * @typedef DP
+ * @typedef Dp1
  * @property {string} account_id
  * @property {string} dp_id
  * @property {boolean} is_self_ship

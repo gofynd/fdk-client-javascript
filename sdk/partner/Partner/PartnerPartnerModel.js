@@ -19,8 +19,8 @@ class PartnerModel {
   }
   static Category() {
     return Joi.object({
-      category_l1: Joi.array().items(PartnerModel.CategoryL1()),
-      category_l2: Joi.array().items(PartnerModel.CategoryL2()),
+      categories_l1: Joi.array().items(PartnerModel.CategoryL1()),
+      categories_l2: Joi.array().items(PartnerModel.CategoryL2()),
     });
   }
   static CategoryL1() {
@@ -138,6 +138,7 @@ class PartnerModel {
       extension_id: Joi.string().allow(""),
       is_coming_soon: Joi.boolean(),
       listing_info: PartnerModel.ListingInfo(),
+      meta: Joi.any(),
       modified_at: Joi.string().allow(""),
       organization: PartnerModel.OrganizationBasicInfo(),
       organization_id: Joi.string().allow(""),
@@ -156,7 +157,7 @@ class PartnerModel {
       description: Joi.string().allow(""),
       featured_banner: Joi.string().allow(""),
       integration: Joi.array().items(Joi.string().allow("")),
-      integrations: Joi.string().allow(""),
+      integrations: Joi.array().items(Joi.string().allow("")),
       screenshots: PartnerModel.Screenshots(),
       video_url: Joi.array().items(Joi.any()),
       youtube: Joi.array().items(Joi.string().allow("")),
@@ -213,6 +214,7 @@ class PartnerModel {
   static Plans() {
     return Joi.object({
       additional_charges: Joi.string().allow(""),
+      custom_meta: Joi.any(),
       features: Joi.string().allow(""),
       name: Joi.string().allow(""),
       price: PartnerModel.Price(),
