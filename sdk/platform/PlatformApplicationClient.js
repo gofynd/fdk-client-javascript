@@ -610,6 +610,7 @@ class PlatformApplicationClient {
 /** @typedef UpdatePayoutResponse */
 
 /** @typedef ActionInfo */
+/** @typedef AdvanceFilterInfo */
 /** @typedef Affiliate */
 /** @typedef AffiliateAppConfig */
 /** @typedef AffiliateAppConfigMeta */
@@ -632,6 +633,7 @@ class PlatformApplicationClient {
 /** @typedef Article */
 /** @typedef ArticleDetails */
 /** @typedef ArticleDetails1 */
+/** @typedef AssetByShipment */
 /** @typedef Attributes */
 /** @typedef B2BPODetails */
 /** @typedef BagConfigs */
@@ -696,7 +698,8 @@ class PlatformApplicationClient {
 /** @typedef ErrorResponse */
 /** @typedef ErrorResponse1 */
 /** @typedef FileResponse */
-/** @typedef FileUploadResponse */
+/** @typedef FilterInfoOption */
+/** @typedef FiltersInfo */
 /** @typedef FiltersResponse */
 /** @typedef FinancialBreakup */
 /** @typedef Formatted */
@@ -704,6 +707,7 @@ class PlatformApplicationClient {
 /** @typedef FyndOrderIdList */
 /** @typedef GetActionsResponse */
 /** @typedef GetBagsPlatformResponse */
+/** @typedef GiftCard */
 /** @typedef GSTDetailsData */
 /** @typedef HistoryDict */
 /** @typedef HistoryMeta */
@@ -724,6 +728,7 @@ class PlatformApplicationClient {
 /** @typedef LockData */
 /** @typedef MarketPlacePdf */
 /** @typedef Meta */
+/** @typedef Meta1 */
 /** @typedef MetricCountResponse */
 /** @typedef MetricsCount */
 /** @typedef NestedErrorSchemaDataSet */
@@ -733,9 +738,10 @@ class PlatformApplicationClient {
 /** @typedef OrderBags */
 /** @typedef OrderBrandName */
 /** @typedef OrderConfig */
+/** @typedef OrderData */
 /** @typedef OrderDetails */
 /** @typedef OrderDetailsData */
-/** @typedef OrderDict */
+/** @typedef OrderDetailsResponse */
 /** @typedef OrderInfo */
 /** @typedef OrderingStoreDetails */
 /** @typedef OrderListingResponse */
@@ -750,6 +756,7 @@ class PlatformApplicationClient {
 /** @typedef Page1 */
 /** @typedef PaymentInfo */
 /** @typedef PaymentMethod */
+/** @typedef PaymentMethod1 */
 /** @typedef PaymentMethods */
 /** @typedef PDFLinks */
 /** @typedef PhoneDetails */
@@ -783,8 +790,8 @@ class PlatformApplicationClient {
 /** @typedef ReasonsData */
 /** @typedef ReplacementDetails */
 /** @typedef ResponseDetail */
+/** @typedef ResponseGetAssetShipment */
 /** @typedef ReturnConfig */
-/** @typedef ReturnConfig1 */
 /** @typedef SendSmsPayload */
 /** @typedef Shipment */
 /** @typedef ShipmentConfig */
@@ -792,7 +799,6 @@ class PlatformApplicationClient {
 /** @typedef ShipmentDetail */
 /** @typedef ShipmentDetails */
 /** @typedef ShipmentDetails1 */
-/** @typedef ShipmentDetailsResponse */
 /** @typedef ShipmentHistoryResponse */
 /** @typedef ShipmentInfoResponse */
 /** @typedef ShipmentInternalPlatformViewResponse */
@@ -808,7 +814,6 @@ class PlatformApplicationClient {
 /** @typedef ShipmentStatus */
 /** @typedef ShipmentStatusData */
 /** @typedef ShipmentTags */
-/** @typedef ShipmentTags1 */
 /** @typedef ShipmentTimeStamp */
 /** @typedef ShippingInfo */
 /** @typedef SmsDataPayload */

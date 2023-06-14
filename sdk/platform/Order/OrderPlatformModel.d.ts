@@ -1,6 +1,7 @@
 export = OrderModel;
 declare class OrderModel {
     static ActionInfo(): any;
+    static AdvanceFilterInfo(): any;
     static Affiliate(): any;
     static AffiliateAppConfig(): any;
     static AffiliateAppConfigMeta(): any;
@@ -23,6 +24,7 @@ declare class OrderModel {
     static Article(): any;
     static ArticleDetails(): any;
     static ArticleDetails1(): any;
+    static AssetByShipment(): any;
     static Attributes(): any;
     static B2BPODetails(): any;
     static BagConfigs(): any;
@@ -87,7 +89,8 @@ declare class OrderModel {
     static ErrorResponse(): any;
     static ErrorResponse1(): any;
     static FileResponse(): any;
-    static FileUploadResponse(): any;
+    static FilterInfoOption(): any;
+    static FiltersInfo(): any;
     static FiltersResponse(): any;
     static FinancialBreakup(): any;
     static Formatted(): any;
@@ -95,6 +98,7 @@ declare class OrderModel {
     static FyndOrderIdList(): any;
     static GetActionsResponse(): any;
     static GetBagsPlatformResponse(): any;
+    static GiftCard(): any;
     static GSTDetailsData(): any;
     static HistoryDict(): any;
     static HistoryMeta(): any;
@@ -115,6 +119,7 @@ declare class OrderModel {
     static LockData(): any;
     static MarketPlacePdf(): any;
     static Meta(): any;
+    static Meta1(): any;
     static MetricCountResponse(): any;
     static MetricsCount(): any;
     static NestedErrorSchemaDataSet(): any;
@@ -124,9 +129,10 @@ declare class OrderModel {
     static OrderBags(): any;
     static OrderBrandName(): any;
     static OrderConfig(): any;
+    static OrderData(): any;
     static OrderDetails(): any;
     static OrderDetailsData(): any;
-    static OrderDict(): any;
+    static OrderDetailsResponse(): any;
     static OrderInfo(): any;
     static OrderingStoreDetails(): any;
     static OrderListingResponse(): any;
@@ -141,6 +147,7 @@ declare class OrderModel {
     static Page1(): any;
     static PaymentInfo(): any;
     static PaymentMethod(): any;
+    static PaymentMethod1(): any;
     static PaymentMethods(): any;
     static PDFLinks(): any;
     static PhoneDetails(): any;
@@ -174,8 +181,8 @@ declare class OrderModel {
     static ReasonsData(): any;
     static ReplacementDetails(): any;
     static ResponseDetail(): any;
+    static ResponseGetAssetShipment(): any;
     static ReturnConfig(): any;
-    static ReturnConfig1(): any;
     static SendSmsPayload(): any;
     static Shipment(): any;
     static ShipmentConfig(): any;
@@ -183,7 +190,6 @@ declare class OrderModel {
     static ShipmentDetail(): any;
     static ShipmentDetails(): any;
     static ShipmentDetails1(): any;
-    static ShipmentDetailsResponse(): any;
     static ShipmentHistoryResponse(): any;
     static ShipmentInfoResponse(): any;
     static ShipmentInternalPlatformViewResponse(): any;
@@ -199,7 +205,6 @@ declare class OrderModel {
     static ShipmentStatus(): any;
     static ShipmentStatusData(): any;
     static ShipmentTags(): any;
-    static ShipmentTags1(): any;
     static ShipmentTimeStamp(): any;
     static ShippingInfo(): any;
     static SmsDataPayload(): any;

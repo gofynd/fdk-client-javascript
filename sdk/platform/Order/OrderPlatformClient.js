@@ -620,6 +620,79 @@ class Order {
 
   /**
    * @param {Object} arg - Arg object.
+   * @param {string} arg.shipmentIds -
+   * @param {boolean} [arg.invoice] -
+   * @param {string} [arg.expiresIn] -
+   * @returns {Promise<ResponseGetAssetShipment>} - Success response
+   * @summary: Get Invoice or Label or Pos of a shipment
+   * @description: Use this API to retrieve shipments invoice, label and pos.
+   */
+  async getAssetByShipmentIds({ shipmentIds, invoice, expiresIn } = {}) {
+    const { error } = OrderValidator.getAssetByShipmentIds().validate(
+      {
+        shipmentIds,
+        invoice,
+        expiresIn,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = OrderValidator.getAssetByShipmentIds().validate(
+      {
+        shipmentIds,
+        invoice,
+        expiresIn,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getAssetByShipmentIds",
+      });
+      Logger({ level: "WARN", message: warrning });
+    }
+
+    const query_params = {};
+    query_params["shipment_ids"] = shipmentIds;
+    query_params["invoice"] = invoice;
+    query_params["expires_in"] = expiresIn;
+
+    const xHeaders = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/orders/v1.0/company/${this.config.companyId}/shipments-invoice`,
+      query_params,
+      undefined,
+      xHeaders
+    );
+
+    const {
+      error: res_error,
+    } = OrderModel.ResponseGetAssetShipment().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getAssetByShipmentIds",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
    * @param {string} [arg.bagId] -
    * @param {string} [arg.channelBagId] -
    * @param {string} [arg.channelId] -
@@ -1528,7 +1601,7 @@ class Order {
   /**
    * @param {Object} arg - Arg object.
    * @param {string} arg.orderId -
-   * @returns {Promise<ShipmentDetailsResponse>} - Success response
+   * @returns {Promise<OrderDetailsResponse>} - Success response
    * @summary:
    * @description:
    */
@@ -1574,7 +1647,7 @@ class Order {
 
     const {
       error: res_error,
-    } = OrderModel.ShipmentDetailsResponse().validate(response, {
+    } = OrderModel.OrderDetailsResponse().validate(response, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -1592,16 +1665,22 @@ class Order {
 
   /**
    * @param {Object} arg - Arg object.
-   * @param {string} [arg.lane] -
-   * @param {string} [arg.searchType] -
-   * @param {string} [arg.bagStatus] -
-   * @param {string} [arg.timeToDispatch] -
+   * @param {string} [arg.lane] - Lane refers to a section where orders are
+   *   assigned, indicating its grouping
+   * @param {string} [arg.searchType] - Search_type refers to the field that
+   *   will be used as the target for the search operation
+   * @param {string} [arg.bagStatus] - Bag_status refers to status of the
+   *   entity. Filters orders based on the status.
+   * @param {string} [arg.timeToDispatch] - Time_to_dispatch refers to
+   *   estimated SLA time.
    * @param {string} [arg.paymentMethods] -
-   * @param {string} [arg.tags] -
-   * @param {string} [arg.searchValue] -
+   * @param {string} [arg.tags] - Tags refers to additional descriptive labels
+   *   associated with the order
+   * @param {string} [arg.searchValue] - Search_value is matched against the
+   *   field specified by the search_type
    * @param {string} [arg.fromDate] -
    * @param {string} [arg.toDate] -
-   * @param {string} [arg.dpIds] -
+   * @param {string} [arg.dpIds] - Delivery Partner IDs to which shipments are assigned.
    * @param {string} [arg.stores] -
    * @param {string} [arg.salesChannels] -
    * @param {number} [arg.pageNo] -

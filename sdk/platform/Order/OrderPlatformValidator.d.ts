@@ -9,6 +9,7 @@ declare class OrderValidator {
     static createShipmentReport(): any;
     static dispatchManifest(): any;
     static getAnnouncements(): any;
+    static getAssetByShipmentIds(): any;
     static getBagById(): any;
     static getBags(): any;
     static getBulkActionFailedReport(): any;

@@ -19,6 +19,7 @@ Handles all platform order and shipment api(s)
 * [getAnnouncements](#getannouncements)
 * [getAppOrderShipmentDetails](#getappordershipmentdetails)
 * [getApplicationShipments](#getapplicationshipments)
+* [getAssetByShipmentIds](#getassetbyshipmentids)
 * [getBagById](#getbagbyid)
 * [getBags](#getbags)
 * [getBulkActionFailedReport](#getbulkactionfailedreport)
@@ -636,7 +637,7 @@ const data = await platformClient.application("<APPLICATION_ID>").order.getAppOr
 
 
 
-[ShipmentDetailsResponse](#ShipmentDetailsResponse)
+[OrderDetailsResponse](#OrderDetailsResponse)
 
 We render shipment details.
 
@@ -1095,6 +1096,68 @@ We are processing the report!
 ---
 
 
+### getAssetByShipmentIds
+Get Invoice or Label or Pos of a shipment
+
+
+
+```javascript
+// Promise
+const promise = platformClient.order.getAssetByShipmentIds({  shipmentIds : value,
+ invoice : value,
+ expiresIn : value });
+
+// Async/Await
+const data = await platformClient.order.getAssetByShipmentIds({  shipmentIds : value,
+ invoice : value,
+ expiresIn : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| shipmentIds | string | yes |  |    
+| invoice | boolean | no |  |    
+| expiresIn | string | no |  |  
+
+
+
+Use this API to retrieve shipments invoice, label and pos.
+
+*Returned Response:*
+
+
+
+
+[ResponseGetAssetShipment](#ResponseGetAssetShipment)
+
+Success. Check the example shown below or refer `ShipmentByIds` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
 ### getBagById
 
 
@@ -1282,20 +1345,9 @@ File Processed!
 
 ```json
 {
-  "file_name": "requirements.txt",
-  "operation": "putObject",
-  "size": 8493,
-  "namespace": "misc",
-  "content_type": "text/plain",
-  "file_path": "/misc/general/free/original/CEQ64hj8--requirements.txt",
-  "method": "PUT",
-  "tags": [],
-  "upload": {
-    "url": "https://fynd-staging-assets.s3-accelerate.amazonaws.com/x0/misc/general/free/original/CEQ64hj8--requirements.txt?Content-Type=text%2Fplain&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAJUADR2WMPQT6ZJ2Q%2F20221118%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20221118T064720Z&X-Amz-Expires=1800&X-Amz-Signature=088ae87da27ef49644176f751ad2e642ab6cfad015cf01564ab5201c404000ec&X-Amz-SignedHeaders=host%3Bx-amz-acl&x-amz-acl=public-read",
-    "expiry": 1800
-  },
+  "file_name": "placed_352_1668856953.7936668.xlsx",
   "cdn": {
-    "url": "https://cdn.pixelbin.io/v2/falling-surf-7c8bb8/fyndnp/wrkr/x0/misc/general/free/original/CEQ64hj8--requirements.txt"
+    "url": "https://cdn.pixelbin.io/v2/falling-surf-7c8bb8/fyndnp/wrkr/x0/misc/general/free/original/0Ex0-zTyw-placed_352_1668856953.7936668.xlsx"
   }
 }
 ```
@@ -1604,17 +1656,6 @@ We are processing the file!
 ```json
 {
   "file_name": "placed_352_1668856953.7936668.xlsx",
-  "operation": "putObject",
-  "size": 13245,
-  "namespace": "misc",
-  "content_type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
-  "file_path": "/misc/general/free/original/0Ex0-zTyw-placed_352_1668856953.7936668.xlsx",
-  "method": "PUT",
-  "tags": [],
-  "upload": {
-    "url": "https://fynd-staging-assets.s3-accelerate.amazonaws.com/x0/misc/general/free/original/0Ex0-zTyw-placed_352_1668856953.7936668.xlsx?Content-Type=application%2Fvnd.openxmlformats-officedocument.spreadsheetml.sheet&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAJUADR2WMPQT6ZJ2Q%2F20221119%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20221119T112233Z&X-Amz-Expires=1800&X-Amz-Signature=3408400dbe95ff12d0ea5487846aab74b0f2ae6963a58ac980fb46c11cd0b7be&X-Amz-SignedHeaders=host%3Bx-amz-acl&x-amz-acl=public-read",
-    "expiry": 1800
-  },
   "cdn": {
     "url": "https://cdn.pixelbin.io/v2/falling-surf-7c8bb8/fyndnp/wrkr/x0/misc/general/free/original/0Ex0-zTyw-placed_352_1668856953.7936668.xlsx"
   }
@@ -1964,7 +2005,7 @@ const data = await platformClient.order.getOrderById({  orderId : value });
 
 
 
-[ShipmentDetailsResponse](#ShipmentDetailsResponse)
+[OrderDetailsResponse](#OrderDetailsResponse)
 
 We are processing the report!
 
@@ -2762,16 +2803,16 @@ const data = await platformClient.order.getOrders({  lane : value,
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
-| lane | string | no |  |    
-| searchType | string | no |  |    
-| bagStatus | string | no |  |    
-| timeToDispatch | string | no |  |    
+| lane | string | no | lane refers to a section where orders are assigned, indicating its grouping |    
+| searchType | string | no | search_type refers to the field that will be used as the target for the search operation |    
+| bagStatus | string | no | bag_status refers to status of the entity. Filters orders based on the status. |    
+| timeToDispatch | string | no | time_to_dispatch refers to estimated SLA time. |    
 | paymentMethods | string | no |  |    
-| tags | string | no |  |    
-| searchValue | string | no |  |    
+| tags | string | no | tags refers to additional descriptive labels associated with the order |    
+| searchValue | string | no | search_value is matched against the field specified by the search_type |    
 | fromDate | string | no |  |    
 | toDate | string | no |  |    
-| dpIds | string | no |  |    
+| dpIds | string | no | Delivery Partner IDs to which shipments are assigned. |    
 | stores | string | no |  |    
 | salesChannels | string | no |  |    
 | pageNo | number | no |  |    
@@ -5202,6 +5243,21 @@ We are processing the report!
 
 ---
 
+#### [AdvanceFilterInfo](#AdvanceFilterInfo)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | action_centre | [[FiltersInfo](#FiltersInfo)]? |  yes  |  |
+ | applied_filters | string? |  yes  |  |
+ | filters | [[FiltersInfo](#FiltersInfo)]? |  yes  |  |
+ | page | string? |  yes  |  |
+ | processed | [[FiltersInfo](#FiltersInfo)]? |  yes  |  |
+ | returned | [[FiltersInfo](#FiltersInfo)]? |  yes  |  |
+ | unfulfilled | [[FiltersInfo](#FiltersInfo)]? |  yes  |  |
+ 
+
+---
+
 #### [Affiliate](#Affiliate)
 
  | Properties | Type | Nullable | Description |
@@ -5504,6 +5560,19 @@ We are processing the report!
 
 ---
 
+#### [AssetByShipment](#AssetByShipment)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | expires_in | string |  no  |  |
+ | presigned_type | string |  no  |  |
+ | presigned_urls | [String: string]? |  yes  |  |
+ | shipment_id | string |  no  |  |
+ | success | boolean |  no  |  |
+ 
+
+---
+
 #### [Attributes](#Attributes)
 
  | Properties | Type | Nullable | Description |
@@ -5649,6 +5718,13 @@ We are processing the report!
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | b2b_po_details | [B2BPODetails](#B2BPODetails)? |  yes  |  |
+ | custom_json | string? |  yes  |  |
+ | custom_message | string? |  yes  |  |
+ | docket_number | string? |  yes  |  |
+ | extra_meta | string? |  yes  |  |
+ | gift_card | [GiftCard](#GiftCard)? |  yes  |  |
+ | group_id | string? |  yes  |  |
+ | partial_can_ret | boolean? |  yes  |  |
  
 
 ---
@@ -5872,7 +5948,7 @@ We are processing the report!
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | url | string |  no  |  |
+ | url | string |  no  | CDN URL of the generated file |
  
 
 ---
@@ -6173,16 +6249,16 @@ We are processing the report!
  | bag_id | number? |  yes  |  |
  | bag_state_mapper | [BagStateMapper](#BagStateMapper)? |  yes  |  |
  | created_at | string? |  yes  |  |
- | current_status_id | number |  no  |  |
  | delivery_awb_number | string? |  yes  |  |
  | delivery_partner_id | number? |  yes  |  |
+ | id | number |  no  |  |
  | kafka_sync | boolean? |  yes  |  |
  | shipment_id | string? |  yes  |  |
  | state_id | number? |  yes  |  |
  | state_type | string? |  yes  |  |
  | status | string? |  yes  |  |
  | store_id | number? |  yes  |  |
- | updated_at | string? |  yes  |  |
+ | updated_at | number? |  yes  |  |
  
 
 ---
@@ -6411,25 +6487,35 @@ We are processing the report!
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | cdn | [URL](#URL)? |  yes  |  |
- | content_type | string? |  yes  |  |
- | file_name | string? |  yes  |  |
- | file_path | string? |  yes  |  |
- | method | string? |  yes  |  |
- | namespace | string? |  yes  |  |
- | operation | string? |  yes  |  |
- | size | number? |  yes  |  |
- | tags | [string]? |  yes  |  |
- | upload | [FileUploadResponse](#FileUploadResponse)? |  yes  |  |
+ | file_name | string? |  yes  | Name of the file |
  
 
 ---
 
-#### [FileUploadResponse](#FileUploadResponse)
+#### [FilterInfoOption](#FilterInfoOption)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | expiry | number? |  yes  |  |
- | url | string? |  yes  |  |
+ | min_search_size | number? |  yes  |  |
+ | name | string? |  yes  |  |
+ | placeholder_text | string? |  yes  |  |
+ | show_ui | boolean? |  yes  |  |
+ | text | string? |  yes  |  |
+ | value | string? |  yes  |  |
+ 
+
+---
+
+#### [FiltersInfo](#FiltersInfo)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | options | [[FilterInfoOption](#FilterInfoOption)]? |  yes  |  |
+ | placeholder_text | string? |  yes  |  |
+ | required | boolean? |  yes  |  |
+ | text | string |  no  |  |
+ | type | string |  no  |  |
+ | value | string |  no  |  |
  
 
 ---
@@ -6438,7 +6524,8 @@ We are processing the report!
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | advance | [string]? |  yes  |  |
+ | advance_filter | [AdvanceFilterInfo](#AdvanceFilterInfo)? |  yes  |  |
+ | global_filter | [[FiltersInfo](#FiltersInfo)]? |  yes  |  |
  
 
 ---
@@ -6532,6 +6619,18 @@ We are processing the report!
  | ---------- | ---- | -------- | ----------- |
  | items | [[BagDetailsPlatformResponse](#BagDetailsPlatformResponse)] |  no  |  |
  | page | [Page1](#Page1) |  no  |  |
+ 
+
+---
+
+#### [GiftCard](#GiftCard)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | display_text | string? |  yes  |  |
+ | gift_message | string? |  yes  |  |
+ | gift_price | number? |  yes  |  |
+ | is_gift_applied | boolean? |  yes  |  |
  
 
 ---
@@ -6676,6 +6775,7 @@ We are processing the report!
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | credit_note_id | string? |  yes  |  |
+ | external_invoice_id | string? |  yes  |  |
  | invoice_url | string? |  yes  |  |
  | label_url | string? |  yes  |  |
  | store_invoice_id | string? |  yes  |  |
@@ -6818,6 +6918,19 @@ We are processing the report!
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | logo_url | [String: string]? |  yes  |  |
+ | merchant_code | string? |  yes  |  |
+ | payment_gateway | string? |  yes  |  |
+ | payment_id | string? |  yes  |  |
+ | payment_identifier | string? |  yes  |  |
+ 
+
+---
+
+#### [Meta1](#Meta1)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
  | kafka_emission_status | number? |  yes  |  |
  | state_manager_used | string? |  yes  |  |
  
@@ -6888,7 +7001,7 @@ We are processing the report!
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | identifiers | string? |  yes  |  |
- | return_config | [ReturnConfig1](#ReturnConfig1)? |  yes  |  |
+ | return_config | [ReturnConfig](#ReturnConfig)? |  yes  |  |
  | size | string? |  yes  |  |
  | uid | string? |  yes  |  |
  
@@ -6912,10 +7025,12 @@ We are processing the report!
  | display_name | string? |  yes  |  |
  | entity_type | string? |  yes  |  |
  | financial_breakup | [FinancialBreakup](#FinancialBreakup)? |  yes  |  |
+ | group_id | string? |  yes  |  |
  | gst_details | [BagGST](#BagGST)? |  yes  |  |
  | identifier | string? |  yes  |  |
  | item | [PlatformItem](#PlatformItem)? |  yes  |  |
  | line_number | number? |  yes  |  |
+ | meta | [BagMeta](#BagMeta)? |  yes  |  |
  | parent_promo_bags | string? |  yes  |  |
  | prices | [Prices](#Prices)? |  yes  |  |
  | quantity | number? |  yes  |  |
@@ -6952,6 +7067,20 @@ We are processing the report!
 
 ---
 
+#### [OrderData](#OrderData)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | fynd_order_id | string |  no  |  |
+ | meta | [OrderMeta](#OrderMeta)? |  yes  |  |
+ | order_date | string |  no  |  |
+ | payment_methods | [String: [PaymentMethod](#PaymentMethod)]? |  yes  |  |
+ | prices | [Prices](#Prices)? |  yes  |  |
+ | tax_details | [TaxDetails](#TaxDetails)? |  yes  |  |
+ 
+
+---
+
 #### [OrderDetails](#OrderDetails)
 
  | Properties | Type | Nullable | Description |
@@ -6979,16 +7108,13 @@ We are processing the report!
 
 ---
 
-#### [OrderDict](#OrderDict)
+#### [OrderDetailsResponse](#OrderDetailsResponse)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | fynd_order_id | string |  no  |  |
- | meta | [OrderMeta](#OrderMeta)? |  yes  |  |
- | order_date | string |  no  |  |
- | payment_methods | string? |  yes  |  |
- | prices | [Prices](#Prices)? |  yes  |  |
- | tax_details | [TaxDetails](#TaxDetails)? |  yes  |  |
+ | order | [OrderData](#OrderData)? |  yes  |  |
+ | shipments | [[PlatformShipment](#PlatformShipment)]? |  yes  |  |
+ | success | boolean |  no  |  |
  
 
 ---
@@ -7020,17 +7146,17 @@ We are processing the report!
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | address | string |  no  |  |
- | city | string |  no  |  |
- | code | string |  no  |  |
- | contact_person | string |  no  |  |
- | country | string |  no  |  |
- | meta | string |  no  |  |
- | ordering_store_id | number |  no  |  |
- | phone | string |  no  |  |
- | pincode | string |  no  |  |
- | state | string |  no  |  |
- | store_name | string |  no  |  |
+ | address | string? |  yes  |  |
+ | city | string? |  yes  |  |
+ | code | string? |  yes  |  |
+ | contact_person | string? |  yes  |  |
+ | country | string? |  yes  |  |
+ | id | number? |  yes  |  |
+ | meta | string? |  yes  |  |
+ | phone | string? |  yes  |  |
+ | pincode | string? |  yes  |  |
+ | state | string? |  yes  |  |
+ | store_name | string? |  yes  |  |
  
 
 ---
@@ -7180,13 +7306,27 @@ We are processing the report!
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | payment_methods | [[PaymentMethod](#PaymentMethod)]? |  yes  |  |
+ | payment_methods | [[PaymentMethod1](#PaymentMethod1)]? |  yes  |  |
  | primary_mode | string |  no  |  |
  
 
 ---
 
 #### [PaymentMethod](#PaymentMethod)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | amount | number? |  yes  |  |
+ | collect_by | string? |  yes  |  |
+ | meta | [Meta](#Meta)? |  yes  |  |
+ | mode | string? |  yes  |  |
+ | name | string? |  yes  |  |
+ | refund_by | string? |  yes  |  |
+ 
+
+---
+
+#### [PaymentMethod1](#PaymentMethod1)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
@@ -7222,11 +7362,13 @@ We are processing the report!
  | invoice | string? |  yes  |  |
  | invoice_a4 | string? |  yes  |  |
  | invoice_a6 | string? |  yes  |  |
+ | invoice_export | string? |  yes  |  |
  | invoice_pos | string? |  yes  |  |
  | invoice_type | string |  no  |  |
  | label | string? |  yes  |  |
  | label_a4 | string? |  yes  |  |
  | label_a6 | string? |  yes  |  |
+ | label_export | string? |  yes  |  |
  | label_pos | string? |  yes  |  |
  | label_type | string |  no  |  |
  | po_invoice | string? |  yes  |  |
@@ -7239,7 +7381,7 @@ We are processing the report!
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | country_code | number? |  yes  |  |
- | mobile_number | string? |  yes  |  |
+ | number | string? |  yes  |  |
  
 
 ---
@@ -7367,12 +7509,14 @@ We are processing the report!
  | can_update_dimension | boolean? |  yes  |  |
  | company_details | [CompanyDetails](#CompanyDetails)? |  yes  |  |
  | coupon | string? |  yes  |  |
+ | custom_message | string? |  yes  |  |
  | custom_meta | [string]? |  yes  |  |
  | delivery_details | [UserDetailsData](#UserDetailsData)? |  yes  |  |
  | delivery_slot | string? |  yes  |  |
  | dp_assignment | boolean? |  yes  |  |
  | dp_details | [DPDetailsData](#DPDetailsData)? |  yes  |  |
  | enable_dp_tracking | boolean? |  yes  |  |
+ | estimated_sla_time | string? |  yes  |  |
  | forward_shipment_id | string? |  yes  |  |
  | fulfilling_store | [FulfillingStore](#FulfillingStore)? |  yes  |  |
  | fulfilment_priority | number? |  yes  |  |
@@ -7387,7 +7531,7 @@ We are processing the report!
  | order | [OrderDetailsData](#OrderDetailsData)? |  yes  |  |
  | ordering_store | [OrderingStoreDetails](#OrderingStoreDetails)? |  yes  |  |
  | packaging_type | string? |  yes  |  |
- | payment_methods | string? |  yes  |  |
+ | payment_methods | [String: [PaymentMethod](#PaymentMethod)]? |  yes  |  |
  | payment_mode | string? |  yes  |  |
  | payments | [ShipmentPayments](#ShipmentPayments)? |  yes  |  |
  | picked_date | string? |  yes  |  |
@@ -7667,18 +7811,18 @@ We are processing the report!
 
 ---
 
-#### [ReturnConfig](#ReturnConfig)
+#### [ResponseGetAssetShipment](#ResponseGetAssetShipment)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | returnable | boolean? |  yes  |  |
- | time | number? |  yes  |  |
- | unit | string? |  yes  |  |
+ | data | [[AssetByShipment](#AssetByShipment)] |  no  |  |
+ | message | string |  no  |  |
+ | success | boolean |  no  |  |
  
 
 ---
 
-#### [ReturnConfig1](#ReturnConfig1)
+#### [ReturnConfig](#ReturnConfig)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
@@ -7745,7 +7889,7 @@ We are processing the report!
  | ---------- | ---- | -------- | ----------- |
  | bag_list | [number]? |  yes  |  |
  | id | number |  no  |  |
- | meta | [Meta](#Meta) |  no  |  |
+ | meta | [Meta1](#Meta1) |  no  |  |
  | remarks | string? |  yes  |  |
  | shipment_id | string? |  yes  |  |
  | status | string? |  yes  |  |
@@ -7775,17 +7919,6 @@ We are processing the report!
  | fulfillment_id | number |  no  |  |
  | meta | string? |  yes  |  |
  | shipments | number |  no  |  |
- 
-
----
-
-#### [ShipmentDetailsResponse](#ShipmentDetailsResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | order | [OrderDict](#OrderDict)? |  yes  |  |
- | shipments | [[PlatformShipment](#PlatformShipment)]? |  yes  |  |
- | success | boolean |  no  |  |
  
 
 ---
@@ -7943,7 +8076,7 @@ We are processing the report!
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | assign_dp_from_sb | boolean? |  yes  |  |
- | auto_trigger_dp_assignment_acf | boolean |  no  |  |
+ | auto_trigger_dp_assignment_acf | boolean? |  yes  |  |
  | awb_number | string? |  yes  |  |
  | b2b_buyer_details | [BuyerDetails](#BuyerDetails)? |  yes  |  |
  | b2c_buyer_details | string? |  yes  |  |
@@ -7975,7 +8108,7 @@ We are processing the report!
  | return_details | string? |  yes  |  |
  | return_store_node | number? |  yes  |  |
  | same_store_available | boolean |  no  |  |
- | shipment_tags | [[ShipmentTags1](#ShipmentTags1)]? |  yes  |  |
+ | shipment_tags | [[ShipmentTags](#ShipmentTags)]? |  yes  |  |
  | shipment_volumetric_weight | number? |  yes  |  |
  | shipment_weight | number? |  yes  |  |
  | store_invoice_updated_date | string? |  yes  |  |
@@ -8057,17 +8190,6 @@ We are processing the report!
 ---
 
 #### [ShipmentTags](#ShipmentTags)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | display_text | string? |  yes  |  |
- | entity_type | string? |  yes  |  |
- | slug | string? |  yes  |  |
- 
-
----
-
-#### [ShipmentTags1](#ShipmentTags1)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
