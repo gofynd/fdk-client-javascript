@@ -7451,8 +7451,8 @@ type BulkUploadResponse = {
     tracking_url: string;
 };
 type CDN = {
-    absolute_url?: string;
-    relative_url?: string;
+    absolute_url: string;
+    relative_url: string;
     url: string;
 };
 type CompleteResponse = {

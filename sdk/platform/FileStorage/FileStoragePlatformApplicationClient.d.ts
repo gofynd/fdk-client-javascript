@@ -5,7 +5,10 @@ declare class FileStorage {
     applicationId: any;
     /**
      * @param {Object} arg - Arg object.
-     * @param {string} arg.namespace - Bucket name
+     * @param {string} arg.namespace - Segregation of different types of
+     *   files(products, orders, logistics etc), Required for validating the
+     *   data of the file being uploaded, decides where exactly the file will be
+     *   stored inside the storage bucket.
      * @param {StartResponse} arg.body
      * @returns {Promise<CompleteResponse>} - Success response
      * @summary: This will complete the upload process. After successfully uploading file, you can call this operation to complete the upload process.
@@ -46,7 +49,10 @@ declare class FileStorage {
     }): Promise<BulkUploadResponse>;
     /**
      * @param {Object} arg - Arg object.
-     * @param {string} arg.namespace - Bucket name
+     * @param {string} arg.namespace - Segregation of different types of
+     *   files(products, orders, logistics etc), Required for validating the
+     *   data of the file being uploaded, decides where exactly the file will be
+     *   stored inside the storage bucket.
      * @param {StartRequest} arg.body
      * @returns {Promise<StartResponse>} - Success response
      * @summary: This operation initiates upload and returns storage link which is valid for 30 Minutes. You can use that storage link to make subsequent upload request with file buffer or blob.
@@ -81,7 +87,7 @@ declare class FileStorage {
      * @summary: Browse Files
      * @description: Browse Files
      */
-    browse({ namespace, pageNo, }?: {
+    appbrowse({ namespace, pageNo, }?: {
         namespace: string;
         pageNo?: number;
     }): Promise<BrowseResponse>;
@@ -93,7 +99,7 @@ declare class FileStorage {
      * @summary: Browse Files
      * @description: Browse Files
      */
-    browsePaginator({ namespace, companyId, applicationId }?: {
+    appbrowsePaginator({ namespace, companyId, applicationId }?: {
         namespace: string;
         companyId: number;
         applicationId: number;

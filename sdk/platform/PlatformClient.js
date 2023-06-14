@@ -8883,8 +8883,8 @@ class PlatformClient {
  */
 /**
  * @typedef CDN
- * @property {string} [absolute_url]
- * @property {string} [relative_url]
+ * @property {string} absolute_url
+ * @property {string} relative_url
  * @property {string} url
  */
 /**
