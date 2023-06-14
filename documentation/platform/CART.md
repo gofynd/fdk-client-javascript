@@ -13,6 +13,7 @@ Cart APIs
 * [applyCoupon](#applycoupon)
 * [checkCartServiceability](#checkcartserviceability)
 * [checkoutCart](#checkoutcart)
+* [createCartDynamicInjection](#createcartdynamicinjection)
 * [createCartMetaConfig](#createcartmetaconfig)
 * [createCoupon](#createcoupon)
 * [createPromotion](#createpromotion)
@@ -46,12 +47,14 @@ Cart APIs
 * [platformCheckoutCartV2](#platformcheckoutcartv2)
 * [platformUpdateCart](#platformupdatecart)
 * [removeAddress](#removeaddress)
+* [removeCartMetaConfig](#removecartmetaconfig)
 * [removeCoupon](#removecoupon)
 * [selectAddress](#selectaddress)
 * [selectPaymentMode](#selectpaymentmode)
 * [selectPaymentModeV2](#selectpaymentmodev2)
 * [updateAddress](#updateaddress)
 * [updateCart](#updatecart)
+* [updateCartDynamicInjection](#updatecartdynamicinjection)
 * [updateCartMeta](#updatecartmeta)
 * [updateCartMetaConfig](#updatecartmetaconfig)
 * [updateCartUser](#updatecartuser)
@@ -2075,6 +2078,85 @@ Checkout cart and create Fynd order id
   "order_id": "FY5E182A9D0A5E405446",
   "message": "Order initiation completed",
   "order_ref_id": null
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### createCartDynamicInjection
+Create new cart dynamic injection
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").cart.createCartDynamicInjection({  body : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").cart.createCartDynamicInjection({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [CartDynamicInjectionAdd](#CartDynamicInjectionAdd) | yes | Request body |
+
+
+Create new cart dynamic injection
+
+*Returned Response:*
+
+
+
+
+[CartDynamicInjectionResponse](#CartDynamicInjectionResponse)
+
+Coupon Created successfully
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "success": true,
+  "injection_id": "skgjdfjge343456jjfd",
+  "cart_id": "dgdfhdfhdf646454dfhdf",
+  "user_id": "",
+  "user_type": "athenticated",
+  "article_ids": [
+    {
+      "id": "90876545567ad89",
+      "value": 100,
+      "code": "abs",
+      "meta": {}
+    }
+  ],
+  "type": "discount",
+  "message": "Donation for flood in MH",
+  "value": 100,
+  "article_level_distribution": true,
+  "allow_refund": true,
+  "meta": {},
+  "collection": {
+    "collected_by": "FYND",
+    "refund_by": "FYND"
+  }
 }
 ```
 </details>
@@ -8683,6 +8765,65 @@ Returns a Status object indicating the success or failure of address deletion.
 ---
 
 
+### removeCartMetaConfig
+Remove cart meta configuration
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").cart.removeCartMetaConfig({  id : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").cart.removeCartMetaConfig({  id : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| id | string | yes |  |  
+
+
+
+Remove cart meta configuration
+
+*Returned Response:*
+
+
+
+
+[SuccessMessage](#SuccessMessage)
+
+Cart injection data Removed successfully
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "success": true,
+  "message": "Cart Dynamic Injection removed successfully"
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
 ### removeCoupon
 Remove Applied Coupon for platform pos user
 
@@ -10504,6 +10645,88 @@ Success. Updates and returns a cart object as shown below. Refer `UpdateCartDeta
 ```
 </details>
 
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### updateCartDynamicInjection
+Update cart injection configuration
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").cart.updateCartDynamicInjection({  id : value,
+ body : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").cart.updateCartDynamicInjection({  id : value,
+ body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| id | string | yes |  |  
+| body | [CartDynamicInjectionUpdate](#CartDynamicInjectionUpdate) | yes | Request body |
+
+
+Update cart injection configuration
+
+*Returned Response:*
+
+
+
+
+[CartDynamicInjectionResponse](#CartDynamicInjectionResponse)
+
+Cart Dynamic injection Updated successfully
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "success": true,
+  "injection_id": "skgjdfjge343456jjfd",
+  "cart_id": "dgdfhdfhdf646454dfhdf",
+  "user_id": "",
+  "user_type": "athenticated",
+  "article_ids": [
+    {
+      "id": "90876545567ad89",
+      "value": 100,
+      "code": "abs",
+      "meta": {}
+    }
+  ],
+  "type": "discount",
+  "message": "Donation for flood in MH",
+  "value": 100,
+  "article_level_distribution": true,
+  "allow_refund": true,
+  "meta": {},
+  "collection": {
+    "collected_by": "FYND",
+    "refund_by": "FYND"
+  }
+}
+```
 </details>
 
 
@@ -12747,6 +12970,19 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
 
 ---
 
+#### [Article](#Article)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | article_id | string? |  yes  |  |
+ | code | string? |  yes  |  |
+ | meta | string? |  yes  |  |
+ | type | string? |  yes  |  |
+ | value | number? |  yes  |  |
+ 
+
+---
+
 #### [ArticlePriceInfo](#ArticlePriceInfo)
 
  | Properties | Type | Nullable | Description |
@@ -12869,6 +13105,67 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
  | pan_no | string? |  yes  |  |
  | payment_selection_lock | [PaymentSelectionLock](#PaymentSelectionLock)? |  yes  |  |
  | restrict_checkout | boolean? |  yes  |  |
+ 
+
+---
+
+#### [CartDynamicInjectionAdd](#CartDynamicInjectionAdd)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | allowed_refund | boolean? |  yes  |  |
+ | amount_value | number? |  yes  |  |
+ | apply_expiry | string? |  yes  |  |
+ | article_ids | [[Article](#Article)]? |  yes  |  |
+ | article_level_distribution | boolean? |  yes  |  |
+ | cart_id | string |  no  |  |
+ | collection | [Collecttion](#Collecttion)? |  yes  |  |
+ | message | string? |  yes  |  |
+ | meta | string? |  yes  |  |
+ | type | string? |  yes  |  |
+ | user_id | string? |  yes  |  |
+ | user_type | string |  no  |  |
+ 
+
+---
+
+#### [CartDynamicInjectionResponse](#CartDynamicInjectionResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | allowed_refund | boolean? |  yes  |  |
+ | amount_value | number? |  yes  |  |
+ | apply_expiry | string? |  yes  |  |
+ | article_ids | [[Article](#Article)]? |  yes  |  |
+ | article_level_distribution | boolean? |  yes  |  |
+ | cart_id | string |  no  |  |
+ | collection | [Collecttion](#Collecttion)? |  yes  |  |
+ | injection_id | string? |  yes  |  |
+ | message | string? |  yes  |  |
+ | meta | string? |  yes  |  |
+ | type | string? |  yes  |  |
+ | user_id | string? |  yes  |  |
+ | user_type | string |  no  |  |
+ 
+
+---
+
+#### [CartDynamicInjectionUpdate](#CartDynamicInjectionUpdate)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | allowed_refund | boolean? |  yes  |  |
+ | amount_value | number? |  yes  |  |
+ | apply_expiry | string? |  yes  |  |
+ | article_ids | [[Article](#Article)]? |  yes  |  |
+ | article_level_distribution | boolean? |  yes  |  |
+ | cart_id | string |  no  |  |
+ | collection | string? |  yes  |  |
+ | message | string? |  yes  |  |
+ | meta | [Collecttion](#Collecttion)? |  yes  |  |
+ | type | string? |  yes  |  |
+ | user_id | string? |  yes  |  |
+ | user_type | string |  no  |  |
  
 
 ---
@@ -13079,6 +13376,16 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
  | success | boolean? |  yes  |  |
  | uid | string? |  yes  |  |
  | user_type | string? |  yes  |  |
+ 
+
+---
+
+#### [Collecttion](#Collecttion)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | collected_by | string? |  yes  |  |
+ | refund_by | string? |  yes  |  |
  
 
 ---

@@ -5243,7 +5243,7 @@ class PlatformClient {
  */
 /**
  * @typedef GetActionsResponse
- * @property {ActionInfo} permissions
+ * @property {ActionInfo[]} permissions
  */
 /**
  * @typedef GetBagsPlatformResponse
@@ -6347,6 +6347,7 @@ class PlatformClient {
  * @typedef StatuesRequest
  * @property {string} [exclude_bags_next_state]
  * @property {ShipmentsRequest[]} [shipments]
+ * @property {boolean} [split_shipment]
  * @property {string} [status]
  */
 /**
@@ -7462,7 +7463,7 @@ class PlatformClient {
  * @property {Object} [_custom_json]
  * @property {string} app_id
  * @property {boolean} [is_active]
- * @property {SearchKeywordResult} result
+ * @property {SearchKeywordResult1} result
  * @property {string[]} [words]
  */
 /**
@@ -7473,7 +7474,7 @@ class PlatformClient {
  * @property {boolean} [is_active]
  * @property {Object} [modified_by]
  * @property {string} [modified_on]
- * @property {BoostBury} [ranking]
+ * @property {BoostBury1} [ranking]
  * @property {string[]} words
  */
 /**
@@ -7748,15 +7749,15 @@ class PlatformClient {
  * @property {GetAddressSerializer[]} [addresses]
  * @property {string} [business_type]
  * @property {string} [company_type]
- * @property {UserSerializer1} [created_by]
+ * @property {UserSerializer2} [created_by]
  * @property {string} [created_on]
- * @property {UserSerializer1} [modified_by]
+ * @property {UserSerializer2} [modified_by]
  * @property {string} [modified_on]
  * @property {string} [name]
  * @property {string} [reject_reason]
  * @property {string} [stage]
  * @property {number} [uid]
- * @property {UserSerializer1} [verified_by]
+ * @property {UserSerializer2} [verified_by]
  * @property {string} [verified_on]
  */
 /**
@@ -7815,14 +7816,14 @@ class PlatformClient {
  * @property {string} code
  * @property {GetCompanySerializer} [company]
  * @property {SellerPhoneNumber[]} [contact_numbers]
- * @property {UserSerializer2} [created_by]
+ * @property {UserSerializer1} [created_by]
  * @property {string} [created_on]
  * @property {string} display_name
  * @property {Document[]} [documents]
  * @property {InvoiceDetailsSerializer} [gst_credentials]
  * @property {LocationIntegrationType} [integration_type]
  * @property {LocationManagerSerializer} [manager]
- * @property {UserSerializer2} [modified_by]
+ * @property {UserSerializer1} [modified_by]
  * @property {string} [modified_on]
  * @property {string} name
  * @property {string[]} [notification_emails]
@@ -7832,7 +7833,7 @@ class PlatformClient {
  * @property {string} [store_type]
  * @property {LocationDayWiseSerializer[]} [timing]
  * @property {number} [uid]
- * @property {UserSerializer2} [verified_by]
+ * @property {UserSerializer1} [verified_by]
  * @property {string} [verified_on]
  * @property {Object} [warnings]
  */
@@ -7894,7 +7895,7 @@ class PlatformClient {
  * @property {Object} [_custom_json]
  * @property {string} app_id
  * @property {boolean} [is_active]
- * @property {SearchKeywordResult1} result
+ * @property {SearchKeywordResult} result
  * @property {string} [uid]
  * @property {string[]} [words]
  */
@@ -8730,7 +8731,7 @@ class PlatformClient {
  * @property {NetQuantity} [net_quantity]
  * @property {number} [no_of_boxes]
  * @property {string[]} [product_group_tag]
- * @property {ProductPublish} [product_publish]
+ * @property {ProductPublish1} [product_publish]
  * @property {string} [requester]
  * @property {ReturnConfig} return_config
  * @property {string} [short_description]
@@ -8926,7 +8927,7 @@ class PlatformClient {
  * @property {string} [pending]
  * @property {string} [primary_color]
  * @property {string[]} [product_group_tag]
- * @property {ProductPublish1} [product_publish]
+ * @property {ProductPublish} [product_publish]
  * @property {ReturnConfigResponse} [return_config]
  * @property {string} [short_description]
  * @property {string} [size_guide]
@@ -9155,7 +9156,7 @@ class PlatformClient {
  * @property {boolean} [is_active]
  * @property {UserDetail} [modified_by]
  * @property {string} modified_on
- * @property {BoostBury1} [ranking]
+ * @property {BoostBury} [ranking]
  * @property {UserDetail} [verified_by]
  * @property {string} [verified_on]
  * @property {string[]} words
@@ -12144,6 +12145,14 @@ class PlatformClient {
  * @property {string} coupon_code
  */
 /**
+ * @typedef Article
+ * @property {string} [article_id]
+ * @property {string} [code]
+ * @property {Object} [meta]
+ * @property {string} [type]
+ * @property {number} [value]
+ */
+/**
  * @typedef ArticlePriceInfo
  * @property {BasePrice} [base]
  * @property {BasePrice} [converted]
@@ -12218,6 +12227,52 @@ class PlatformClient {
  * @property {string} [pan_no]
  * @property {PaymentSelectionLock} [payment_selection_lock]
  * @property {boolean} [restrict_checkout]
+ */
+/**
+ * @typedef CartDynamicInjectionAdd
+ * @property {boolean} [allowed_refund]
+ * @property {number} [amount_value]
+ * @property {string} [apply_expiry]
+ * @property {Article[]} [article_ids]
+ * @property {boolean} [article_level_distribution]
+ * @property {string} cart_id
+ * @property {Collecttion} [collection]
+ * @property {string} [message]
+ * @property {Object} [meta]
+ * @property {string} [type]
+ * @property {string} [user_id]
+ * @property {string} user_type
+ */
+/**
+ * @typedef CartDynamicInjectionResponse
+ * @property {boolean} [allowed_refund]
+ * @property {number} [amount_value]
+ * @property {string} [apply_expiry]
+ * @property {Article[]} [article_ids]
+ * @property {boolean} [article_level_distribution]
+ * @property {string} cart_id
+ * @property {Collecttion} [collection]
+ * @property {string} [injection_id]
+ * @property {string} [message]
+ * @property {Object} [meta]
+ * @property {string} [type]
+ * @property {string} [user_id]
+ * @property {string} user_type
+ */
+/**
+ * @typedef CartDynamicInjectionUpdate
+ * @property {boolean} [allowed_refund]
+ * @property {number} [amount_value]
+ * @property {string} [apply_expiry]
+ * @property {Article[]} [article_ids]
+ * @property {boolean} [article_level_distribution]
+ * @property {string} cart_id
+ * @property {Object} [collection]
+ * @property {string} [message]
+ * @property {Collecttion} [meta]
+ * @property {string} [type]
+ * @property {string} [user_id]
+ * @property {string} user_type
  */
 /**
  * @typedef CartItem
@@ -12358,6 +12413,11 @@ class PlatformClient {
  * @property {boolean} [success]
  * @property {string} [uid]
  * @property {string} [user_type]
+ */
+/**
+ * @typedef Collecttion
+ * @property {string} [collected_by]
+ * @property {string} [refund_by]
  */
 /**
  * @typedef CompareObject

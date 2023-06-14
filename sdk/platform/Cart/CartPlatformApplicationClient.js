@@ -352,6 +352,70 @@ class Cart {
 
   /**
    * @param {Object} arg - Arg object.
+   * @param {CartDynamicInjectionAdd} arg.body
+   * @returns {Promise<CartDynamicInjectionResponse>} - Success response
+   * @summary: Create new cart dynamic injection
+   * @description: Create new cart dynamic injection
+   */
+  async createCartDynamicInjection({ body } = {}) {
+    const { error } = CartValidator.createCartDynamicInjection().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = CartValidator.createCartDynamicInjection().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message:
+          "Parameter Validation warrnings for createCartDynamicInjection",
+      });
+      Logger({ level: "WARN", message: warrning });
+    }
+
+    const query_params = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/cart/v1.0/company/${this.config.companyId}/application/${this.applicationId}/additional-charge-discount`,
+      query_params,
+      body
+    );
+
+    const {
+      error: res_error,
+    } = CartModel.CartDynamicInjectionResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for createCartDynamicInjection",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
    * @param {CartMetaConfigAdd} arg.body
    * @returns {Promise<CartMetaConfigAdd>} - Success response
    * @summary: Create new cart meta configuration
@@ -2830,6 +2894,65 @@ class Cart {
 
   /**
    * @param {Object} arg - Arg object.
+   * @param {string} arg.id -
+   * @returns {Promise<SuccessMessage>} - Success response
+   * @summary: Remove cart meta configuration
+   * @description: Remove cart meta configuration
+   */
+  async removeCartMetaConfig({ id } = {}) {
+    const { error } = CartValidator.removeCartMetaConfig().validate(
+      {
+        id,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = CartValidator.removeCartMetaConfig().validate(
+      {
+        id,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for removeCartMetaConfig",
+      });
+      Logger({ level: "WARN", message: warrning });
+    }
+
+    const query_params = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "delete",
+      `/service/platform/cart/v1.0/company/${this.config.companyId}/application/${this.applicationId}/additional-charge-discount/${id}`,
+      query_params,
+      undefined
+    );
+
+    const { error: res_error } = CartModel.SuccessMessage().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for removeCartMetaConfig",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
    * @param {string} [arg.uid] -
    * @param {boolean} [arg.buyNow] -
    * @returns {Promise<CartDetailResponse>} - Success response
@@ -3238,6 +3361,73 @@ class Cart {
       Logger({
         level: "WARN",
         message: "Response Validation Warnnings for updateCart",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.id -
+   * @param {CartDynamicInjectionUpdate} arg.body
+   * @returns {Promise<CartDynamicInjectionResponse>} - Success response
+   * @summary: Update cart injection configuration
+   * @description: Update cart injection configuration
+   */
+  async updateCartDynamicInjection({ id, body } = {}) {
+    const { error } = CartValidator.updateCartDynamicInjection().validate(
+      {
+        id,
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = CartValidator.updateCartDynamicInjection().validate(
+      {
+        id,
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message:
+          "Parameter Validation warrnings for updateCartDynamicInjection",
+      });
+      Logger({ level: "WARN", message: warrning });
+    }
+
+    const query_params = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "put",
+      `/service/platform/cart/v1.0/company/${this.config.companyId}/application/${this.applicationId}/additional-charge-discount/${id}`,
+      query_params,
+      body
+    );
+
+    const {
+      error: res_error,
+    } = CartModel.CartDynamicInjectionResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for updateCartDynamicInjection",
       });
       Logger({ level: "WARN", message: res_error });
     }

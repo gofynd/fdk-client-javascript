@@ -40,6 +40,12 @@ class CartValidator {
     }).required();
   }
 
+  static createCartDynamicInjection() {
+    return Joi.object({
+      body: CartModel.CartDynamicInjectionAdd().required(),
+    }).required();
+  }
+
   static createCartMetaConfig() {
     return Joi.object({
       body: CartModel.CartMetaConfigAdd().required(),
@@ -298,6 +304,12 @@ class CartValidator {
     }).required();
   }
 
+  static removeCartMetaConfig() {
+    return Joi.object({
+      id: Joi.string().allow("").required(),
+    }).required();
+  }
+
   static removeCoupon() {
     return Joi.object({
       uid: Joi.string().allow(""),
@@ -344,6 +356,13 @@ class CartValidator {
       b: Joi.boolean(),
       userId: Joi.string().allow(""),
       body: CartModel.UpdateCartRequest().required(),
+    }).required();
+  }
+
+  static updateCartDynamicInjection() {
+    return Joi.object({
+      id: Joi.string().allow("").required(),
+      body: CartModel.CartDynamicInjectionUpdate().required(),
     }).required();
   }
 

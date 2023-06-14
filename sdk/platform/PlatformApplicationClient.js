@@ -1584,6 +1584,7 @@ class PlatformApplicationClient {
 /** @typedef AppliedFreeArticles */
 /** @typedef AppliedPromotion */
 /** @typedef ApplyCouponRequest */
+/** @typedef Article */
 /** @typedef ArticlePriceInfo */
 /** @typedef BaseInfo */
 /** @typedef BasePrice */
@@ -1594,6 +1595,9 @@ class PlatformApplicationClient {
 /** @typedef CartCurrency */
 /** @typedef CartDeliveryModesResponse */
 /** @typedef CartDetailResponse */
+/** @typedef CartDynamicInjectionAdd */
+/** @typedef CartDynamicInjectionResponse */
+/** @typedef CartDynamicInjectionUpdate */
 /** @typedef CartItem */
 /** @typedef CartItemCountResponse */
 /** @typedef CartItemMeta */
@@ -1608,6 +1612,7 @@ class PlatformApplicationClient {
 /** @typedef CategoryInfo */
 /** @typedef Charges */
 /** @typedef CheckCart */
+/** @typedef Collecttion */
 /** @typedef CompareObject */
 /** @typedef Coupon */
 /** @typedef CouponAction */
