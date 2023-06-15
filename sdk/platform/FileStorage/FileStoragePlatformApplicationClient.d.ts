@@ -6,7 +6,7 @@ declare class FileStorage {
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.namespace - Segregation of different types of
-     *   files(prodcuts, orders, logistics etc), Required for validating the
+     *   files(products, orders, logistics etc), Required for validating the
      *   data of the file being uploaded, decides where exactly the file will be
      *   stored inside the storage bucket.
      * @param {StartResponse} arg.body
@@ -50,7 +50,7 @@ declare class FileStorage {
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.namespace - Segregation of different types of
-     *   files(prodcuts, orders, logistics etc), Required for validating the
+     *   files(products, orders, logistics etc), Required for validating the
      *   data of the file being uploaded, decides where exactly the file will be
      *   stored inside the storage bucket.
      * @param {StartRequest} arg.body

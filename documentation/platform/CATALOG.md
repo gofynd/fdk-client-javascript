@@ -19296,7 +19296,7 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | boost | [[RerankingAttribute](#RerankingAttribute)]? |  yes  | A list of attributes to boost the relevance of the search results. |
+ | boost | [[RerankingAttribute](#RerankingAttribute)]? |  yes  |  |
  
 
 ---
@@ -19305,7 +19305,7 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | boost | [[RerankingAttribute1](#RerankingAttribute1)]? |  yes  |  |
+ | boost | [[RerankingAttribute1](#RerankingAttribute1)]? |  yes  | A list of attributes to boost the relevance of the search results. |
  
 
 ---
@@ -20167,7 +20167,7 @@ List of fields and validation values fro each. See example below or refer `Inven
  | is_active | boolean? |  yes  |  |
  | modified_by | string? |  yes  |  |
  | modified_on | string? |  yes  |  |
- | ranking | [BoostBury1](#BoostBury1)? |  yes  |  |
+ | ranking | [BoostBury](#BoostBury)? |  yes  |  |
  | words | [string] |  no  |  |
  
 
@@ -20630,15 +20630,15 @@ List of fields and validation values fro each. See example below or refer `Inven
  | addresses | [[GetAddressSerializer](#GetAddressSerializer)]? |  yes  |  |
  | business_type | string? |  yes  |  |
  | company_type | string? |  yes  |  |
- | created_by | [UserSerializer1](#UserSerializer1)? |  yes  |  |
+ | created_by | [UserSerializer2](#UserSerializer2)? |  yes  |  |
  | created_on | string? |  yes  |  |
- | modified_by | [UserSerializer1](#UserSerializer1)? |  yes  |  |
+ | modified_by | [UserSerializer2](#UserSerializer2)? |  yes  |  |
  | modified_on | string? |  yes  |  |
  | name | string? |  yes  |  |
  | reject_reason | string? |  yes  |  |
  | stage | string? |  yes  |  |
  | uid | number? |  yes  |  |
- | verified_by | [UserSerializer1](#UserSerializer1)? |  yes  |  |
+ | verified_by | [UserSerializer2](#UserSerializer2)? |  yes  |  |
  | verified_on | string? |  yes  |  |
  
 
@@ -20745,14 +20745,14 @@ List of fields and validation values fro each. See example below or refer `Inven
  | code | string |  no  |  |
  | company | [GetCompanySerializer](#GetCompanySerializer)? |  yes  |  |
  | contact_numbers | [[SellerPhoneNumber](#SellerPhoneNumber)]? |  yes  |  |
- | created_by | [UserSerializer2](#UserSerializer2)? |  yes  |  |
+ | created_by | [UserSerializer1](#UserSerializer1)? |  yes  |  |
  | created_on | string? |  yes  |  |
  | display_name | string |  no  |  |
  | documents | [[Document](#Document)]? |  yes  |  |
  | gst_credentials | [InvoiceDetailsSerializer](#InvoiceDetailsSerializer)? |  yes  |  |
  | integration_type | [LocationIntegrationType](#LocationIntegrationType)? |  yes  |  |
  | manager | [LocationManagerSerializer](#LocationManagerSerializer)? |  yes  |  |
- | modified_by | [UserSerializer2](#UserSerializer2)? |  yes  |  |
+ | modified_by | [UserSerializer1](#UserSerializer1)? |  yes  |  |
  | modified_on | string? |  yes  |  |
  | name | string |  no  |  |
  | notification_emails | [string]? |  yes  |  |
@@ -20762,7 +20762,7 @@ List of fields and validation values fro each. See example below or refer `Inven
  | store_type | string? |  yes  |  |
  | timing | [[LocationDayWiseSerializer](#LocationDayWiseSerializer)]? |  yes  |  |
  | uid | number? |  yes  |  |
- | verified_by | [UserSerializer2](#UserSerializer2)? |  yes  |  |
+ | verified_by | [UserSerializer1](#UserSerializer1)? |  yes  |  |
  | verified_on | string? |  yes  |  |
  | warnings | string? |  yes  |  |
  
@@ -22170,7 +22170,7 @@ List of fields and validation values fro each. See example below or refer `Inven
  | net_quantity | [NetQuantity](#NetQuantity)? |  yes  |  |
  | no_of_boxes | number? |  yes  |  |
  | product_group_tag | [string]? |  yes  |  |
- | product_publish | [ProductPublish1](#ProductPublish1)? |  yes  |  |
+ | product_publish | [ProductPublish](#ProductPublish)? |  yes  |  |
  | requester | string? |  yes  |  |
  | return_config | [ReturnConfig](#ReturnConfig) |  no  |  |
  | short_description | string? |  yes  |  |
@@ -22446,7 +22446,7 @@ List of fields and validation values fro each. See example below or refer `Inven
  | pending | string? |  yes  |  |
  | primary_color | string? |  yes  |  |
  | product_group_tag | [string]? |  yes  |  |
- | product_publish | [ProductPublish](#ProductPublish)? |  yes  |  |
+ | product_publish | [ProductPublish1](#ProductPublish1)? |  yes  |  |
  | return_config | [ReturnConfigResponse](#ReturnConfigResponse)? |  yes  |  |
  | short_description | string? |  yes  |  |
  | size_guide | string? |  yes  |  |
@@ -22708,8 +22708,8 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | attribute_key | string |  no  | The key of the attribute to rerank on. |
- | attribute_value | string |  no  | The value of the attribute to rerank on. |
+ | attribute_key | string |  no  |  |
+ | attribute_value | string |  no  |  |
  
 
 ---
@@ -22718,8 +22718,8 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | attribute_key | string |  no  |  |
- | attribute_value | string |  no  |  |
+ | attribute_key | string |  no  | The key of the attribute to rerank on. |
+ | attribute_value | string |  no  | The value of the attribute to rerank on. |
  
 
 ---
@@ -22810,7 +22810,7 @@ List of fields and validation values fro each. See example below or refer `Inven
  | is_active | boolean? |  yes  | A boolean indicating whether the search reranking model is active. |
  | modified_by | [UserDetail](#UserDetail)? |  yes  | User details of the last modifier of the document |
  | modified_on | string |  no  | Timestamp of the last modification of the document |
- | ranking | [BoostBury](#BoostBury)? |  yes  | A schema containing the attributes to boost the relevance of the search results. |
+ | ranking | [BoostBury1](#BoostBury1)? |  yes  | A schema containing the attributes to boost the relevance of the search results. |
  | verified_by | [UserDetail](#UserDetail)? |  yes  | User details of the verifier of the document, if applicable |
  | verified_on | string? |  yes  | Timestamp of when the document was verified, if applicable |
  | words | [string] |  no  | A list of search keywords. |
