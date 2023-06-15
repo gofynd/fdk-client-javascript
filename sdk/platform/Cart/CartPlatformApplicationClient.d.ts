@@ -221,11 +221,16 @@ declare class Cart {
     }): Paginator;
     /**
      * @param {Object} arg - Arg object.
+     * @param {string} [arg.entityType] - Entity_type as coupon or promotion
+     * @param {boolean} [arg.isHidden] - Show Promo Coupon Config or not
      * @returns {Promise<ActivePromosResponse>} - Success response
      * @summary: Fetch all promos that are set as active
      * @description: Use this API to get list of all the active promos/coupons.
      */
-    getPromosCouponConfig({}?: any): Promise<ActivePromosResponse>;
+    getPromosCouponConfig({ entityType, isHidden }?: {
+        entityType?: string;
+        isHidden?: boolean;
+    }): Promise<ActivePromosResponse>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.id -

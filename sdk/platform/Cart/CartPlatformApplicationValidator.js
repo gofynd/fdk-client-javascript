@@ -100,7 +100,10 @@ class CartValidator {
   }
 
   static getPromosCouponConfig() {
-    return Joi.object({}).required();
+    return Joi.object({
+      entityType: Joi.string().allow(""),
+      isHidden: Joi.boolean(),
+    }).required();
   }
 
   static getPromotionById() {

@@ -6608,7 +6608,7 @@ We are processing the report!
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | permissions | [ActionInfo](#ActionInfo) |  no  |  |
+ | permissions | [[ActionInfo](#ActionInfo)]? |  yes  |  |
  
 
 ---

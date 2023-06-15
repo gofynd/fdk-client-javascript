@@ -4039,7 +4039,7 @@ type FyndOrderIdList = {
     fynd_order_id?: string[];
 };
 type GetActionsResponse = {
-    permissions: ActionInfo;
+    permissions?: ActionInfo[];
 };
 type GetBagsPlatformResponse = {
     items: BagDetailsPlatformResponse[];
@@ -5948,7 +5948,7 @@ type CreateSearchKeyword = {
     _custom_json?: any;
     app_id: string;
     is_active?: boolean;
-    result: SearchKeywordResult;
+    result: SearchKeywordResult1;
     words?: string[];
 };
 type CreateSearchReranking = {
@@ -5958,7 +5958,7 @@ type CreateSearchReranking = {
     is_active?: boolean;
     modified_by?: any;
     modified_on?: string;
-    ranking?: BoostBury;
+    ranking?: BoostBury1;
     words: string[];
 };
 type CrossSellingDataResponse = {
@@ -6331,7 +6331,7 @@ type GetSearchWordsData = {
     _custom_json?: any;
     app_id: string;
     is_active?: boolean;
-    result: SearchKeywordResult1;
+    result: SearchKeywordResult;
     uid?: string;
     words?: string[];
 };
@@ -7053,7 +7053,7 @@ type ProductCreateUpdateSchemaV2 = {
     net_quantity?: NetQuantity;
     no_of_boxes?: number;
     product_group_tag?: string[];
-    product_publish?: ProductPublish;
+    product_publish?: ProductPublish1;
     requester?: string;
     return_config: ReturnConfig;
     short_description?: string;
@@ -7233,7 +7233,7 @@ type ProductSchemaV2 = {
     pending?: string;
     primary_color?: string;
     product_group_tag?: string[];
-    product_publish?: ProductPublish1;
+    product_publish?: ProductPublish;
     return_config?: ReturnConfigResponse;
     short_description?: string;
     size_guide?: string;
@@ -7430,7 +7430,7 @@ type SearchRerankingModel = {
     is_active?: boolean;
     modified_by?: UserDetail;
     modified_on: string;
-    ranking?: BoostBury1;
+    ranking?: BoostBury;
     verified_by?: UserDetail;
     verified_on?: string;
     words: string[];

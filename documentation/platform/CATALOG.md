@@ -19296,7 +19296,7 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | boost | [[RerankingAttribute](#RerankingAttribute)]? |  yes  |  |
+ | boost | [[RerankingAttribute](#RerankingAttribute)]? |  yes  | A list of attributes to boost the relevance of the search results. |
  
 
 ---
@@ -19305,7 +19305,7 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | boost | [[RerankingAttribute1](#RerankingAttribute1)]? |  yes  | A list of attributes to boost the relevance of the search results. |
+ | boost | [[RerankingAttribute1](#RerankingAttribute1)]? |  yes  |  |
  
 
 ---
@@ -20151,7 +20151,7 @@ List of fields and validation values fro each. See example below or refer `Inven
  | _custom_json | string? |  yes  | Custom JSON data that can be attached to the search model. |
  | app_id | string |  no  | The ID of the application performing the search. |
  | is_active | boolean? |  yes  | A flag indicating whether the search is active or not. |
- | result | [SearchKeywordResult](#SearchKeywordResult) |  no  | The search result containing the search query and sort field. |
+ | result | [SearchKeywordResult1](#SearchKeywordResult1) |  no  | The search result containing the search query and sort field. |
  | words | [string]? |  yes  | A list of search keywords to search for in the database. |
  
 
@@ -20167,7 +20167,7 @@ List of fields and validation values fro each. See example below or refer `Inven
  | is_active | boolean? |  yes  |  |
  | modified_by | string? |  yes  |  |
  | modified_on | string? |  yes  |  |
- | ranking | [BoostBury](#BoostBury)? |  yes  |  |
+ | ranking | [BoostBury1](#BoostBury1)? |  yes  |  |
  | words | [string] |  no  |  |
  
 
@@ -20854,7 +20854,7 @@ List of fields and validation values fro each. See example below or refer `Inven
  | _custom_json | string? |  yes  | Custom JSON data that can be attached to the search model. |
  | app_id | string |  no  | The ID of the application performing the search. |
  | is_active | boolean? |  yes  | A flag indicating whether the search is active or not. |
- | result | [SearchKeywordResult1](#SearchKeywordResult1) |  no  | The search result containing the search query and sort field. |
+ | result | [SearchKeywordResult](#SearchKeywordResult) |  no  | The search result containing the search query and sort field. |
  | uid | string? |  yes  | The UID of the search words data. |
  | words | [string]? |  yes  | A list of search keywords to search for in the database. |
  
@@ -22170,7 +22170,7 @@ List of fields and validation values fro each. See example below or refer `Inven
  | net_quantity | [NetQuantity](#NetQuantity)? |  yes  |  |
  | no_of_boxes | number? |  yes  |  |
  | product_group_tag | [string]? |  yes  |  |
- | product_publish | [ProductPublish](#ProductPublish)? |  yes  |  |
+ | product_publish | [ProductPublish1](#ProductPublish1)? |  yes  |  |
  | requester | string? |  yes  |  |
  | return_config | [ReturnConfig](#ReturnConfig) |  no  |  |
  | short_description | string? |  yes  |  |
@@ -22446,7 +22446,7 @@ List of fields and validation values fro each. See example below or refer `Inven
  | pending | string? |  yes  |  |
  | primary_color | string? |  yes  |  |
  | product_group_tag | [string]? |  yes  |  |
- | product_publish | [ProductPublish1](#ProductPublish1)? |  yes  |  |
+ | product_publish | [ProductPublish](#ProductPublish)? |  yes  |  |
  | return_config | [ReturnConfigResponse](#ReturnConfigResponse)? |  yes  |  |
  | short_description | string? |  yes  |  |
  | size_guide | string? |  yes  |  |
@@ -22708,8 +22708,8 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | attribute_key | string |  no  |  |
- | attribute_value | string |  no  |  |
+ | attribute_key | string |  no  | The key of the attribute to rerank on. |
+ | attribute_value | string |  no  | The value of the attribute to rerank on. |
  
 
 ---
@@ -22718,8 +22718,8 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | attribute_key | string |  no  | The key of the attribute to rerank on. |
- | attribute_value | string |  no  | The value of the attribute to rerank on. |
+ | attribute_key | string |  no  |  |
+ | attribute_value | string |  no  |  |
  
 
 ---
@@ -22783,8 +22783,8 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | query | string |  no  | It is the query of the keyword search config. |
- | sort_on | string |  no  | It is the sort on the listing page of the keyword config. |
+ | query | string |  no  | The search query containing various search parameters. |
+ | sort_on | string |  no  | The field to sort the search results on. |
  
 
 ---
@@ -22793,8 +22793,8 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | query | string |  no  | The search query containing various search parameters. |
- | sort_on | string |  no  | The field to sort the search results on. |
+ | query | string |  no  | It is the query of the keyword search config. |
+ | sort_on | string |  no  | It is the sort on the listing page of the keyword config. |
  
 
 ---
@@ -22810,7 +22810,7 @@ List of fields and validation values fro each. See example below or refer `Inven
  | is_active | boolean? |  yes  | A boolean indicating whether the search reranking model is active. |
  | modified_by | [UserDetail](#UserDetail)? |  yes  | User details of the last modifier of the document |
  | modified_on | string |  no  | Timestamp of the last modification of the document |
- | ranking | [BoostBury1](#BoostBury1)? |  yes  | A schema containing the attributes to boost the relevance of the search results. |
+ | ranking | [BoostBury](#BoostBury)? |  yes  | A schema containing the attributes to boost the relevance of the search results. |
  | verified_by | [UserDetail](#UserDetail)? |  yes  | User details of the verifier of the document, if applicable |
  | verified_on | string? |  yes  | Timestamp of when the document was verified, if applicable |
  | words | [string] |  no  | A list of search keywords. |

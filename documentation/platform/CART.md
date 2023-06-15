@@ -3059,14 +3059,22 @@ Fetch all promos that are set as active
 
 ```javascript
 // Promise
-const promise = platformClient.application("<APPLICATION_ID>").cart.getPromosCouponConfig();
+const promise = platformClient.application("<APPLICATION_ID>").cart.getPromosCouponConfig({  entityType : value,
+ isHidden : value });
 
 // Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").cart.getPromosCouponConfig();
+const data = await platformClient.application("<APPLICATION_ID>").cart.getPromosCouponConfig({  entityType : value,
+ isHidden : value });
 ```
 
 
 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| entityType | string | no | entity_type as coupon or promotion |    
+| isHidden | boolean | no | show Promo Coupon Config or not |  
 
 
 

@@ -4795,7 +4795,7 @@ class PlatformClient {
  */
 /**
  * @typedef GetActionsResponse
- * @property {ActionInfo} permissions
+ * @property {ActionInfo[]} [permissions]
  */
 /**
  * @typedef GetBagsPlatformResponse
@@ -6984,7 +6984,7 @@ class PlatformClient {
  * @property {Object} [_custom_json]
  * @property {string} app_id
  * @property {boolean} [is_active]
- * @property {SearchKeywordResult} result
+ * @property {SearchKeywordResult1} result
  * @property {string[]} [words]
  */
 /**
@@ -6995,7 +6995,7 @@ class PlatformClient {
  * @property {boolean} [is_active]
  * @property {Object} [modified_by]
  * @property {string} [modified_on]
- * @property {BoostBury} [ranking]
+ * @property {BoostBury1} [ranking]
  * @property {string[]} words
  */
 /**
@@ -7437,7 +7437,7 @@ class PlatformClient {
  * @property {Object} [_custom_json]
  * @property {string} app_id
  * @property {boolean} [is_active]
- * @property {SearchKeywordResult1} result
+ * @property {SearchKeywordResult} result
  * @property {string} [uid]
  * @property {string[]} [words]
  */
@@ -8273,7 +8273,7 @@ class PlatformClient {
  * @property {NetQuantity} [net_quantity]
  * @property {number} [no_of_boxes]
  * @property {string[]} [product_group_tag]
- * @property {ProductPublish} [product_publish]
+ * @property {ProductPublish1} [product_publish]
  * @property {string} [requester]
  * @property {ReturnConfig} return_config
  * @property {string} [short_description]
@@ -8469,7 +8469,7 @@ class PlatformClient {
  * @property {string} [pending]
  * @property {string} [primary_color]
  * @property {string[]} [product_group_tag]
- * @property {ProductPublish1} [product_publish]
+ * @property {ProductPublish} [product_publish]
  * @property {ReturnConfigResponse} [return_config]
  * @property {string} [short_description]
  * @property {string} [size_guide]
@@ -8698,7 +8698,7 @@ class PlatformClient {
  * @property {boolean} [is_active]
  * @property {UserDetail} [modified_by]
  * @property {string} modified_on
- * @property {BoostBury1} [ranking]
+ * @property {BoostBury} [ranking]
  * @property {UserDetail} [verified_by]
  * @property {string} [verified_on]
  * @property {string[]} words
