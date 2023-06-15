@@ -108,9 +108,9 @@ class CartValidator {
     }).required();
   }
 
-  static removeCartMetaConfig() {
+  static removeCartDynamicInjection() {
     return Joi.object({
-      extensionId: Joi.string().allow("").required(),
+      id: Joi.string().allow("").required(),
     }).required();
   }
 
@@ -124,7 +124,7 @@ class CartValidator {
 
   static updateCartDynamicInjection() {
     return Joi.object({
-      extensionId: Joi.string().allow("").required(),
+      id: Joi.string().allow("").required(),
       body: CartModel.CartDynamicInjectionUpdate().required(),
     }).required();
   }

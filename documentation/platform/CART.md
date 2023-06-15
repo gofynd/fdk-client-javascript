@@ -22,7 +22,7 @@ Cart APIs
 * [getPromosCouponConfig](#getpromoscouponconfig)
 * [getPromotionById](#getpromotionbyid)
 * [getPromotions](#getpromotions)
-* [removeCartMetaConfig](#removecartmetaconfig)
+* [removeCartDynamicInjection](#removecartdynamicinjection)
 * [updateCart](#updatecart)
 * [updateCartDynamicInjection](#updatecartdynamicinjection)
 * [updateCoupon](#updatecoupon)
@@ -1417,7 +1417,7 @@ Create new cart dynamic injection
 
 
 
-[SuccessMessage](#SuccessMessage)
+[CartDynamicInjectionResponse](#CartDynamicInjectionResponse)
 
 Coupon Created successfully
 
@@ -1430,7 +1430,28 @@ Coupon Created successfully
 ```json
 {
   "success": true,
-  "message": "Cart Dynamic Injection Created"
+  "injection_id": "skgjdfjge343456jjfd",
+  "cart_id": "dgdfhdfhdf646454dfhdf",
+  "user_id": "",
+  "user_type": "athenticated",
+  "article_ids": [
+    {
+      "id": "90876545567ad89",
+      "value": 100,
+      "code": "abs",
+      "meta": {}
+    }
+  ],
+  "type": "discount",
+  "message": "Donation for flood in MH",
+  "value": 100,
+  "article_level_distribution": true,
+  "allow_refund": true,
+  "meta": {},
+  "collection": {
+    "collected_by": "FYND",
+    "refund_by": "FYND"
+  }
 }
 ```
 </details>
@@ -3151,17 +3172,17 @@ Promotion List for sent page_size and page_no
 ---
 
 
-### removeCartMetaConfig
-Remove cart meta configuration
+### removeCartDynamicInjection
+Remove cart dynamic injection
 
 
 
 ```javascript
 // Promise
-const promise = platformClient.application("<APPLICATION_ID>").cart.removeCartMetaConfig({  extensionId : value });
+const promise = platformClient.application("<APPLICATION_ID>").cart.removeCartDynamicInjection({  id : value });
 
 // Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").cart.removeCartMetaConfig({  extensionId : value });
+const data = await platformClient.application("<APPLICATION_ID>").cart.removeCartDynamicInjection({  id : value });
 ```
 
 
@@ -3170,11 +3191,11 @@ const data = await platformClient.application("<APPLICATION_ID>").cart.removeCar
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
-| extensionId | string | yes |  |  
+| id | string | yes |  |  
 
 
 
-Remove cart meta configuration
+Remove cart dynamic injection
 
 *Returned Response:*
 
@@ -3787,11 +3808,11 @@ Update cart injection configuration
 
 ```javascript
 // Promise
-const promise = platformClient.application("<APPLICATION_ID>").cart.updateCartDynamicInjection({  extensionId : value,
+const promise = platformClient.application("<APPLICATION_ID>").cart.updateCartDynamicInjection({  id : value,
  body : value });
 
 // Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").cart.updateCartDynamicInjection({  extensionId : value,
+const data = await platformClient.application("<APPLICATION_ID>").cart.updateCartDynamicInjection({  id : value,
  body : value });
 ```
 
@@ -3801,7 +3822,7 @@ const data = await platformClient.application("<APPLICATION_ID>").cart.updateCar
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
-| extensionId | string | yes |  |  
+| id | string | yes |  |  
 | body | [CartDynamicInjectionUpdate](#CartDynamicInjectionUpdate) | yes | Request body |
 
 
@@ -3812,7 +3833,7 @@ Update cart injection configuration
 
 
 
-[SuccessMessage](#SuccessMessage)
+[CartDynamicInjectionResponse](#CartDynamicInjectionResponse)
 
 Cart Dynamic injection Updated successfully
 
@@ -3825,7 +3846,28 @@ Cart Dynamic injection Updated successfully
 ```json
 {
   "success": true,
-  "message": "Cart Dynamic Injection Updated"
+  "injection_id": "skgjdfjge343456jjfd",
+  "cart_id": "dgdfhdfhdf646454dfhdf",
+  "user_id": "",
+  "user_type": "athenticated",
+  "article_ids": [
+    {
+      "id": "90876545567ad89",
+      "value": 100,
+      "code": "abs",
+      "meta": {}
+    }
+  ],
+  "type": "discount",
+  "message": "Donation for flood in MH",
+  "value": 100,
+  "article_level_distribution": true,
+  "allow_refund": true,
+  "meta": {},
+  "collection": {
+    "collected_by": "FYND",
+    "refund_by": "FYND"
+  }
 }
 ```
 </details>
@@ -4519,7 +4561,27 @@ Promotion updated successfully
  | article_level_distribution | boolean? |  yes  |  |
  | cart_id | string |  no  |  |
  | collection | [Collecttion](#Collecttion)? |  yes  |  |
- | extension_id | string |  no  |  |
+ | message | string? |  yes  |  |
+ | meta | string? |  yes  |  |
+ | type | string? |  yes  |  |
+ | user_id | string? |  yes  |  |
+ | user_type | string |  no  |  |
+ 
+
+---
+
+#### [CartDynamicInjectionResponse](#CartDynamicInjectionResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | allowed_refund | boolean? |  yes  |  |
+ | amount_value | number? |  yes  |  |
+ | apply_expiry | string? |  yes  |  |
+ | article_ids | [[Article](#Article)]? |  yes  |  |
+ | article_level_distribution | boolean? |  yes  |  |
+ | cart_id | string |  no  |  |
+ | collection | [Collecttion](#Collecttion)? |  yes  |  |
+ | injection_id | string? |  yes  |  |
  | message | string? |  yes  |  |
  | meta | string? |  yes  |  |
  | type | string? |  yes  |  |

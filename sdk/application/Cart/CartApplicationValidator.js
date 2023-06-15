@@ -47,6 +47,13 @@ class CartValidator {
     }).required();
   }
 
+  static checkoutCartV2() {
+    return Joi.object({
+      buyNow: Joi.boolean(),
+      body: CartModel.CartCheckoutDetailV2Request().required(),
+    }).required();
+  }
+
   static getAddressById() {
     return Joi.object({
       id: Joi.string().allow("").required(),

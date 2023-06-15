@@ -207,7 +207,7 @@ class Cart {
   /**
    * @param {Object} arg - Arg object.
    * @param {CartDynamicInjectionAdd} arg.body
-   * @returns {Promise<SuccessMessage>} - Success response
+   * @returns {Promise<CartDynamicInjectionResponse>} - Success response
    * @summary: Create new cart dynamic injection
    * @description: Create new cart dynamic injection
    */
@@ -250,7 +250,9 @@ class Cart {
       body
     );
 
-    const { error: res_error } = CartModel.SuccessMessage().validate(response, {
+    const {
+      error: res_error,
+    } = CartModel.CartDynamicInjectionResponse().validate(response, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -1138,15 +1140,15 @@ class Cart {
 
   /**
    * @param {Object} arg - Arg object.
-   * @param {string} arg.extensionId -
+   * @param {string} arg.id -
    * @returns {Promise<SuccessMessage>} - Success response
-   * @summary: Remove cart meta configuration
-   * @description: Remove cart meta configuration
+   * @summary: Remove cart dynamic injection
+   * @description: Remove cart dynamic injection
    */
-  async removeCartMetaConfig({ extensionId } = {}) {
-    const { error } = CartValidator.removeCartMetaConfig().validate(
+  async removeCartDynamicInjection({ id } = {}) {
+    const { error } = CartValidator.removeCartDynamicInjection().validate(
       {
-        extensionId,
+        id,
       },
       { abortEarly: false, allowUnknown: true }
     );
@@ -1155,16 +1157,19 @@ class Cart {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = CartValidator.removeCartMetaConfig().validate(
+    const {
+      error: warrning,
+    } = CartValidator.removeCartDynamicInjection().validate(
       {
-        extensionId,
+        id,
       },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for removeCartMetaConfig",
+        message:
+          "Parameter Validation warrnings for removeCartDynamicInjection",
       });
       Logger({ level: "WARN", message: warrning });
     }
@@ -1174,7 +1179,7 @@ class Cart {
     const response = await PlatformAPIClient.execute(
       this.config,
       "delete",
-      `/service/platform/cart/v1.0/company/${this.config.companyId}/application/${this.applicationId}/additional-charge-discount/${extensionId}`,
+      `/service/platform/cart/v1.0/company/${this.config.companyId}/application/${this.applicationId}/additional-charge-discount/${id}`,
       query_params,
       undefined
     );
@@ -1187,7 +1192,7 @@ class Cart {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for removeCartMetaConfig",
+        message: "Response Validation Warnnings for removeCartDynamicInjection",
       });
       Logger({ level: "WARN", message: res_error });
     }
@@ -1265,16 +1270,16 @@ class Cart {
 
   /**
    * @param {Object} arg - Arg object.
-   * @param {string} arg.extensionId -
+   * @param {string} arg.id -
    * @param {CartDynamicInjectionUpdate} arg.body
-   * @returns {Promise<SuccessMessage>} - Success response
+   * @returns {Promise<CartDynamicInjectionResponse>} - Success response
    * @summary: Update cart injection configuration
    * @description: Update cart injection configuration
    */
-  async updateCartDynamicInjection({ extensionId, body } = {}) {
+  async updateCartDynamicInjection({ id, body } = {}) {
     const { error } = CartValidator.updateCartDynamicInjection().validate(
       {
-        extensionId,
+        id,
         body,
       },
       { abortEarly: false, allowUnknown: true }
@@ -1288,7 +1293,7 @@ class Cart {
       error: warrning,
     } = CartValidator.updateCartDynamicInjection().validate(
       {
-        extensionId,
+        id,
         body,
       },
       { abortEarly: false, allowUnknown: false }
@@ -1307,12 +1312,14 @@ class Cart {
     const response = await PlatformAPIClient.execute(
       this.config,
       "put",
-      `/service/platform/cart/v1.0/company/${this.config.companyId}/application/${this.applicationId}/additional-charge-discount/${extensionId}`,
+      `/service/platform/cart/v1.0/company/${this.config.companyId}/application/${this.applicationId}/additional-charge-discount/${id}`,
       query_params,
       body
     );
 
-    const { error: res_error } = CartModel.SuccessMessage().validate(response, {
+    const {
+      error: res_error,
+    } = CartModel.CartDynamicInjectionResponse().validate(response, {
       abortEarly: false,
       allowUnknown: false,
     });

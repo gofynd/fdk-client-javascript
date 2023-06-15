@@ -40,13 +40,13 @@ declare class Cart {
     /**
      * @param {Object} arg - Arg object.
      * @param {CartDynamicInjectionAdd} arg.body
-     * @returns {Promise<SuccessMessage>} - Success response
+     * @returns {Promise<CartDynamicInjectionResponse>} - Success response
      * @summary: Create new cart dynamic injection
      * @description: Create new cart dynamic injection
      */
     createCartDynamicInjection({ body }?: {
         body: CartDynamicInjectionAdd;
-    }): Promise<SuccessMessage>;
+    }): Promise<CartDynamicInjectionResponse>;
     /**
      * @param {Object} arg - Arg object.
      * @param {CouponAdd} arg.body
@@ -263,13 +263,13 @@ declare class Cart {
     }): Paginator;
     /**
      * @param {Object} arg - Arg object.
-     * @param {string} arg.extensionId -
+     * @param {string} arg.id -
      * @returns {Promise<SuccessMessage>} - Success response
-     * @summary: Remove cart meta configuration
-     * @description: Remove cart meta configuration
+     * @summary: Remove cart dynamic injection
+     * @description: Remove cart dynamic injection
      */
-    removeCartMetaConfig({ extensionId }?: {
-        extensionId: string;
+    removeCartDynamicInjection({ id }?: {
+        id: string;
     }): Promise<SuccessMessage>;
     /**
      * @param {Object} arg - Arg object.
@@ -287,16 +287,16 @@ declare class Cart {
     }): Promise<UpdateCartDetailResponse>;
     /**
      * @param {Object} arg - Arg object.
-     * @param {string} arg.extensionId -
+     * @param {string} arg.id -
      * @param {CartDynamicInjectionUpdate} arg.body
-     * @returns {Promise<SuccessMessage>} - Success response
+     * @returns {Promise<CartDynamicInjectionResponse>} - Success response
      * @summary: Update cart injection configuration
      * @description: Update cart injection configuration
      */
-    updateCartDynamicInjection({ extensionId, body }?: {
-        extensionId: string;
+    updateCartDynamicInjection({ id, body }?: {
+        id: string;
         body: CartDynamicInjectionUpdate;
-    }): Promise<SuccessMessage>;
+    }): Promise<CartDynamicInjectionResponse>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.id -

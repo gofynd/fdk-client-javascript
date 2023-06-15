@@ -11115,7 +11115,22 @@ class PlatformClient {
  * @property {boolean} [article_level_distribution]
  * @property {string} cart_id
  * @property {Collecttion} [collection]
- * @property {string} extension_id
+ * @property {string} [message]
+ * @property {Object} [meta]
+ * @property {string} [type]
+ * @property {string} [user_id]
+ * @property {string} user_type
+ */
+/**
+ * @typedef CartDynamicInjectionResponse
+ * @property {boolean} [allowed_refund]
+ * @property {number} [amount_value]
+ * @property {string} [apply_expiry]
+ * @property {Article[]} [article_ids]
+ * @property {boolean} [article_level_distribution]
+ * @property {string} cart_id
+ * @property {Collecttion} [collection]
+ * @property {string} [injection_id]
  * @property {string} [message]
  * @property {Object} [meta]
  * @property {string} [type]

@@ -1473,6 +1473,7 @@ class PlatformApplicationClient {
 /** @typedef CartCurrency */
 /** @typedef CartDetailResponse */
 /** @typedef CartDynamicInjectionAdd */
+/** @typedef CartDynamicInjectionResponse */
 /** @typedef CartDynamicInjectionUpdate */
 /** @typedef CartItem */
 /** @typedef CartItemMeta */

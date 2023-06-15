@@ -14,7 +14,7 @@ declare class CartValidator {
     static getPromosCouponConfig(): any;
     static getPromotionById(): any;
     static getPromotions(): any;
-    static removeCartMetaConfig(): any;
+    static removeCartDynamicInjection(): any;
     static updateCart(): any;
     static updateCartDynamicInjection(): any;
     static updateCoupon(): any;

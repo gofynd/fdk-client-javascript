@@ -167,6 +167,29 @@ class CartModel {
       staff: CartModel.StaffCheckout(),
     });
   }
+  static CartCheckoutDetailV2Request() {
+    return Joi.object({
+      address_id: Joi.string().allow(""),
+      aggregator: Joi.string().allow(""),
+      billing_address: Joi.any(),
+      billing_address_id: Joi.string().allow(""),
+      callback_url: Joi.string().allow("").allow(null),
+      cart_id: Joi.string().allow(""),
+      custom_meta: Joi.any(),
+      delivery_address: Joi.any(),
+      extra_meta: Joi.any(),
+      id: Joi.string().allow("").allow(null),
+      merchant_code: Joi.string().allow(""),
+      meta: Joi.any(),
+      ordering_store: Joi.number().allow(null),
+      payment_auto_confirm: Joi.boolean(),
+      payment_identifier: Joi.string().allow("").allow(null),
+      payment_methods: Joi.array().items(CartModel.PaymentMethod()).required(),
+      payment_mode: Joi.string().allow("").required(),
+      payment_params: Joi.any().allow(null),
+      staff: CartModel.StaffCheckout(),
+    });
+  }
   static CartCheckoutResponse() {
     return Joi.object({
       app_intercept_url: Joi.string().allow(""),
@@ -538,6 +561,23 @@ class CartModel {
       coupon_validity: CartModel.CouponValidity(),
       message: Joi.string().allow(""),
       success: Joi.boolean().required(),
+    });
+  }
+  static PaymentMeta() {
+    return Joi.object({
+      merchant_code: Joi.string().allow(""),
+      payment_gateway: Joi.string().allow(""),
+      payment_identifier: Joi.string().allow("").allow(null),
+      type: Joi.string().allow(""),
+    });
+  }
+  static PaymentMethod() {
+    return Joi.object({
+      amount: Joi.number().allow(null),
+      mode: Joi.string().allow("").required(),
+      name: Joi.string().allow(""),
+      payment: Joi.string().allow(""),
+      payment_meta: CartModel.PaymentMeta().required(),
     });
   }
   static PaymentSelectionLock() {
