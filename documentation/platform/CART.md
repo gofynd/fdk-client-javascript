@@ -47,7 +47,7 @@ Cart APIs
 * [platformCheckoutCartV2](#platformcheckoutcartv2)
 * [platformUpdateCart](#platformupdatecart)
 * [removeAddress](#removeaddress)
-* [removeCartMetaConfig](#removecartmetaconfig)
+* [removeCartDynamicInjection](#removecartdynamicinjection)
 * [removeCoupon](#removecoupon)
 * [selectAddress](#selectaddress)
 * [selectPaymentMode](#selectpaymentmode)
@@ -8765,17 +8765,17 @@ Returns a Status object indicating the success or failure of address deletion.
 ---
 
 
-### removeCartMetaConfig
-Remove cart meta configuration
+### removeCartDynamicInjection
+Remove cart dynamic injection
 
 
 
 ```javascript
 // Promise
-const promise = platformClient.application("<APPLICATION_ID>").cart.removeCartMetaConfig({  id : value });
+const promise = platformClient.application("<APPLICATION_ID>").cart.removeCartDynamicInjection({  id : value });
 
 // Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").cart.removeCartMetaConfig({  id : value });
+const data = await platformClient.application("<APPLICATION_ID>").cart.removeCartDynamicInjection({  id : value });
 ```
 
 
@@ -8788,7 +8788,7 @@ const data = await platformClient.application("<APPLICATION_ID>").cart.removeCar
 
 
 
-Remove cart meta configuration
+Remove cart dynamic injection
 
 *Returned Response:*
 
@@ -12951,11 +12951,11 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
  | buy_rules | [[BuyRules](#BuyRules)]? |  yes  | Buy rules for promotions |
  | discount_rules | [[DiscountRulesApp](#DiscountRulesApp)]? |  yes  | Discount rules for promotions |
  | mrp_promotion | boolean? |  yes  | If applied promotion is applied on product MRP or ESP |
- | offer_text | string? |  yes  | Offer text of current promotion |
  | ownership | [Ownership2](#Ownership2)? |  yes  | Ownership of promotion |
  | promo_id | string? |  yes  | Promotion id |
  | promotion_group | string? |  yes  | Promotion group for the promotion |
  | promotion_name | string? |  yes  | Promotion name of current promotion |
+ | promotion_offer_text | string? |  yes  | Offer text of current promotion |
  | promotion_type | string? |  yes  | Promotion type of current promotion |
  
 
@@ -12974,7 +12974,7 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | article_id | string? |  yes  |  |
+ | article_id | string |  no  |  |
  | code | string? |  yes  |  |
  | meta | string? |  yes  |  |
  | type | string? |  yes  |  |
@@ -13114,17 +13114,17 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | allowed_refund | boolean? |  yes  |  |
- | amount_value | number? |  yes  |  |
  | apply_expiry | string? |  yes  |  |
- | article_ids | [[Article](#Article)]? |  yes  |  |
- | article_level_distribution | boolean? |  yes  |  |
+ | article_ids | [[Article](#Article)] |  no  |  |
+ | article_level_distribution | boolean |  no  |  |
  | cart_id | string |  no  |  |
- | collection | [Collecttion](#Collecttion)? |  yes  |  |
- | message | string? |  yes  |  |
+ | collection | [Collecttion](#Collecttion) |  no  |  |
+ | message | string |  no  |  |
  | meta | string? |  yes  |  |
- | type | string? |  yes  |  |
+ | type | string |  no  |  |
  | user_id | string? |  yes  |  |
  | user_type | string |  no  |  |
+ | value | number? |  yes  |  |
  
 
 ---
@@ -13134,18 +13134,18 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | allowed_refund | boolean? |  yes  |  |
- | amount_value | number? |  yes  |  |
  | apply_expiry | string? |  yes  |  |
- | article_ids | [[Article](#Article)]? |  yes  |  |
- | article_level_distribution | boolean? |  yes  |  |
+ | article_ids | [[Article](#Article)] |  no  |  |
+ | article_level_distribution | boolean |  no  |  |
  | cart_id | string |  no  |  |
- | collection | [Collecttion](#Collecttion)? |  yes  |  |
+ | collection | [Collecttion](#Collecttion) |  no  |  |
  | injection_id | string? |  yes  |  |
- | message | string? |  yes  |  |
+ | message | string |  no  |  |
  | meta | string? |  yes  |  |
- | type | string? |  yes  |  |
+ | type | string |  no  |  |
  | user_id | string? |  yes  |  |
  | user_type | string |  no  |  |
+ | value | number? |  yes  |  |
  
 
 ---
@@ -13155,17 +13155,17 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | allowed_refund | boolean? |  yes  |  |
- | amount_value | number? |  yes  |  |
  | apply_expiry | string? |  yes  |  |
- | article_ids | [[Article](#Article)]? |  yes  |  |
- | article_level_distribution | boolean? |  yes  |  |
+ | article_ids | [[Article](#Article)] |  no  |  |
+ | article_level_distribution | boolean |  no  |  |
  | cart_id | string |  no  |  |
- | collection | string? |  yes  |  |
- | message | string? |  yes  |  |
- | meta | [Collecttion](#Collecttion)? |  yes  |  |
- | type | string? |  yes  |  |
+ | collection | [Collecttion](#Collecttion) |  no  |  |
+ | message | string |  no  |  |
+ | meta | string? |  yes  |  |
+ | type | string |  no  |  |
  | user_id | string? |  yes  |  |
  | user_type | string |  no  |  |
+ | value | number? |  yes  |  |
  
 
 ---
@@ -13384,8 +13384,8 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | collected_by | string? |  yes  |  |
- | refund_by | string? |  yes  |  |
+ | collected_by | string |  no  |  |
+ | refund_by | string |  no  |  |
  
 
 ---
@@ -14368,6 +14368,7 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
  | gstin | string? |  yes  |  |
  | pan_no | string? |  yes  |  |
  | pick_up_customer_details | string? |  yes  | Customer contact details for customer pickup at store |
+ | staff_user_id | string? |  yes  | staff user id |
  
 
 ---
@@ -14397,6 +14398,7 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
  | payment_selection_lock | [PaymentSelectionLock](#PaymentSelectionLock)? |  yes  |  |
  | restrict_checkout | boolean? |  yes  |  |
  | shipments | [[PlatformShipmentResponse](#PlatformShipmentResponse)]? |  yes  |  |
+ | staff_user_id | string? |  yes  |  |
  
 
 ---

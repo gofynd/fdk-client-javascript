@@ -1,10 +1,27 @@
 const Joi = require("joi");
 
 class CommunicationModel {
+  static ApikeyValidatorError() {
+    return Joi.object({
+      message: CommunicationModel.ApikeyValidatorErrorMessage(),
+      sentry: Joi.string().allow(""),
+    });
+  }
+  static ApikeyValidatorErrorMessage() {
+    return Joi.object({
+      api_key: CommunicationModel.ValidatorErrorBody(),
+    });
+  }
   static BadRequestSchema() {
     return Joi.object({
       message: Joi.string().allow(""),
       status: Joi.string().allow(""),
+    });
+  }
+  static CastToStringFail() {
+    return Joi.object({
+      message: Joi.string().allow(""),
+      sentry: Joi.string().allow(""),
     });
   }
   static CommunicationConsent() {
@@ -55,6 +72,52 @@ class CommunicationModel {
       user_id: Joi.string().allow(""),
     });
   }
+  static FeedidValidatorError() {
+    return Joi.object({
+      message: CommunicationModel.FeedidValidatorErrorMessage(),
+      sentry: Joi.string().allow(""),
+    });
+  }
+  static FeedidValidatorErrorMessage() {
+    return Joi.object({
+      feedid: CommunicationModel.ValidatorErrorBody(),
+    });
+  }
+  static GenericSuccess() {
+    return Joi.object({
+      success: Joi.boolean(),
+    });
+  }
+  static InvalidID() {
+    return Joi.object({
+      message: Joi.string().allow(""),
+      sentry: Joi.string().allow(""),
+    });
+  }
+  static InvalidInputRequiredByteOrHexError() {
+    return Joi.object({
+      message: Joi.string().allow(""),
+      sentry: Joi.string().allow(""),
+    });
+  }
+  static InvalidRangeErrorReqPositive() {
+    return Joi.object({
+      code: Joi.number(),
+      message: Joi.string().allow(""),
+      sentry: Joi.string().allow(""),
+    });
+  }
+  static NameValidatorError() {
+    return Joi.object({
+      message: CommunicationModel.NameValidatorErrorMessage(),
+      sentry: Joi.string().allow(""),
+    });
+  }
+  static NameValidatorErrorMessage() {
+    return Joi.object({
+      name: CommunicationModel.ValidatorErrorBody(),
+    });
+  }
   static NotFound() {
     return Joi.object({
       message: Joi.string().allow(""),
@@ -69,6 +132,17 @@ class CommunicationModel {
       next_id: Joi.string().allow(""),
       size: Joi.number(),
       type: Joi.string().allow("").required(),
+    });
+  }
+  static PasswordValidatorError() {
+    return Joi.object({
+      message: CommunicationModel.PasswordValidatorErrorMessage(),
+      sentry: Joi.string().allow(""),
+    });
+  }
+  static PasswordValidatorErrorMessage() {
+    return Joi.object({
+      password: CommunicationModel.ValidatorErrorBody(),
     });
   }
   static PushtokenReq() {
@@ -93,6 +167,33 @@ class CommunicationModel {
       unique_device_id: Joi.string().allow(""),
       updated_at: Joi.string().allow(""),
       user_id: Joi.string().allow(""),
+    });
+  }
+  static UsernameValidatorError() {
+    return Joi.object({
+      message: CommunicationModel.UsernameValidatorErrorMessage(),
+      sentry: Joi.string().allow(""),
+    });
+  }
+  static UsernameValidatorErrorMessage() {
+    return Joi.object({
+      username: CommunicationModel.ValidatorErrorBody(),
+    });
+  }
+  static ValidatorErrorBody() {
+    return Joi.object({
+      kind: Joi.string().allow(""),
+      message: Joi.string().allow(""),
+      name: Joi.string().allow(""),
+      path: Joi.string().allow(""),
+      properties: CommunicationModel.ValidatorErrorMessageProperties(),
+    });
+  }
+  static ValidatorErrorMessageProperties() {
+    return Joi.object({
+      message: Joi.string().allow(""),
+      path: Joi.string().allow(""),
+      type: Joi.string().allow(""),
     });
   }
 }

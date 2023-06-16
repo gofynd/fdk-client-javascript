@@ -13,6 +13,70 @@ class Serviceability {
 
   /**
    * @param {Object} arg - Arg object.
+   * @param {DpRuleRequest} arg.body
+   * @returns {Promise<DpRuleSuccessResponse>} - Success response
+   * @summary: Upsert of DpRules in database.
+   * @description: This API returns response of upsert of DpRules in mongo database.
+   */
+  async createDpRule({ body } = {}) {
+    const { error } = ServiceabilityValidator.createDpRule().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = ServiceabilityValidator.createDpRule().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for createDpRule",
+      });
+      Logger({ level: "WARN", message: warrning });
+    }
+
+    const query_params = {};
+
+    const xHeaders = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/logistics/v1.0/company/${this.config.companyId}/courier/rules`,
+      query_params,
+      body,
+      xHeaders
+    );
+
+    const {
+      error: res_error,
+    } = ServiceabilityModel.DpRuleSuccessResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for createDpRule",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
    * @param {ZoneRequest} arg.body
    * @returns {Promise<ZoneResponse>} - Success response
    * @summary: Creation of a new zone
@@ -197,12 +261,103 @@ class Serviceability {
 
   /**
    * @param {Object} arg - Arg object.
+   * @param {number} [arg.pageNumber] - Index of the item to start returning with
+   * @param {number} [arg.pageSize] - Determines the items to be displayed in a page
+   * @param {string} [arg.stage] - Stage of the account. enabled/disabled
+   * @param {string} [arg.paymentMode] - Filters dp accounts based on payment mode
+   * @param {string} [arg.transportType] - Filters dp accounts based on transport_type
+   * @returns {Promise<CompanyDpAccountListResponse>} - Success response
+   * @summary: Getting DpAccount of a company from database.
+   * @description: This API returns response DpAccount of a company from mongo database.
+   */
+  async getDpAccountList({
+    pageNumber,
+    pageSize,
+    stage,
+    paymentMode,
+    transportType,
+  } = {}) {
+    const { error } = ServiceabilityValidator.getDpAccountList().validate(
+      {
+        pageNumber,
+        pageSize,
+        stage,
+        paymentMode,
+        transportType,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = ServiceabilityValidator.getDpAccountList().validate(
+      {
+        pageNumber,
+        pageSize,
+        stage,
+        paymentMode,
+        transportType,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getDpAccountList",
+      });
+      Logger({ level: "WARN", message: warrning });
+    }
+
+    const query_params = {};
+    query_params["page_number"] = pageNumber;
+    query_params["page_size"] = pageSize;
+    query_params["stage"] = stage;
+    query_params["payment_mode"] = paymentMode;
+    query_params["transport_type"] = transportType;
+
+    const xHeaders = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/logistics/v1.0/company/${this.config.companyId}/courier/account`,
+      query_params,
+      undefined,
+      xHeaders
+    );
+
+    const {
+      error: res_error,
+    } = ServiceabilityModel.CompanyDpAccountListResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getDpAccountList",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
    * @returns {Promise<DPCompanyRuleResponse>} - Success response
    * @summary: Get All DpCompanyRules applied to company from database.
    * @description: This API returns response of all DpCompanyRules from mongo database.
    */
-  async getDpCompanyRules({} = {}) {
-    const { error } = ServiceabilityValidator.getDpCompanyRules().validate(
+  async getDpCompanyRulePriority({} = {}) {
+    const {
+      error,
+    } = ServiceabilityValidator.getDpCompanyRulePriority().validate(
       {},
       { abortEarly: false, allowUnknown: true }
     );
@@ -213,14 +368,14 @@ class Serviceability {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = ServiceabilityValidator.getDpCompanyRules().validate(
+    } = ServiceabilityValidator.getDpCompanyRulePriority().validate(
       {},
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for getDpCompanyRules",
+        message: "Parameter Validation warrnings for getDpCompanyRulePriority",
       });
       Logger({ level: "WARN", message: warrning });
     }
@@ -248,68 +403,7 @@ class Serviceability {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for getDpCompanyRules",
-      });
-      Logger({ level: "WARN", message: res_error });
-    }
-
-    return response;
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @returns {Promise<DpMultipleRuleSuccessResponse>} - Success response
-   * @summary: Fetching of DpRules from database.
-   * @description: This API returns response of DpRules from mongo database.
-   */
-  async getDpRuleInsert({} = {}) {
-    const { error } = ServiceabilityValidator.getDpRuleInsert().validate(
-      {},
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = ServiceabilityValidator.getDpRuleInsert().validate(
-      {},
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: "Parameter Validation warrnings for getDpRuleInsert",
-      });
-      Logger({ level: "WARN", message: warrning });
-    }
-
-    const query_params = {};
-
-    const xHeaders = {};
-
-    const response = await PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/logistics/v1.0/company/${this.config.companyId}/courier/rules`,
-      query_params,
-      undefined,
-      xHeaders
-    );
-
-    const {
-      error: res_error,
-    } = ServiceabilityModel.DpMultipleRuleSuccessResponse().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
-
-    if (res_error) {
-      Logger({
-        level: "WARN",
-        message: "Response Validation Warnnings for getDpRuleInsert",
+        message: "Response Validation Warnnings for getDpCompanyRulePriority",
       });
       Logger({ level: "WARN", message: res_error });
     }
@@ -325,8 +419,8 @@ class Serviceability {
    * @summary: Fetching of DpRules from database.
    * @description: This API returns response of DpRules from mongo database.
    */
-  async getDpRules({ ruleUid } = {}) {
-    const { error } = ServiceabilityValidator.getDpRules().validate(
+  async getDpRule({ ruleUid } = {}) {
+    const { error } = ServiceabilityValidator.getDpRule().validate(
       {
         ruleUid,
       },
@@ -337,7 +431,7 @@ class Serviceability {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = ServiceabilityValidator.getDpRules().validate(
+    const { error: warrning } = ServiceabilityValidator.getDpRule().validate(
       {
         ruleUid,
       },
@@ -346,7 +440,7 @@ class Serviceability {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for getDpRules",
+        message: "Parameter Validation warrnings for getDpRule",
       });
       Logger({ level: "WARN", message: warrning });
     }
@@ -374,7 +468,78 @@ class Serviceability {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for getDpRules",
+        message: "Response Validation Warnnings for getDpRule",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {number} [arg.pageNumber] - Index of the item to start returning with
+   * @param {number} [arg.pageSize] - Determines the items to be displayed in a page
+   * @returns {Promise<DpMultipleRuleSuccessResponse>} - Success response
+   * @summary: Fetching of DpRules from database.
+   * @description: This API returns response of DpRules from mongo database.
+   */
+  async getDpRuleList({ pageNumber, pageSize } = {}) {
+    const { error } = ServiceabilityValidator.getDpRuleList().validate(
+      {
+        pageNumber,
+        pageSize,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = ServiceabilityValidator.getDpRuleList().validate(
+      {
+        pageNumber,
+        pageSize,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getDpRuleList",
+      });
+      Logger({ level: "WARN", message: warrning });
+    }
+
+    const query_params = {};
+    query_params["page_number"] = pageNumber;
+    query_params["page_size"] = pageSize;
+
+    const xHeaders = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/logistics/v1.0/company/${this.config.companyId}/courier/rules`,
+      query_params,
+      undefined,
+      xHeaders
+    );
+
+    const {
+      error: res_error,
+    } = ServiceabilityModel.DpMultipleRuleSuccessResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getDpRuleList",
       });
       Logger({ level: "WARN", message: res_error });
     }
@@ -533,72 +698,6 @@ class Serviceability {
       Logger({
         level: "WARN",
         message: "Response Validation Warnnings for getListView",
-      });
-      Logger({ level: "WARN", message: res_error });
-    }
-
-    return response;
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {ReAssignStoreRequest} arg.body
-   * @returns {Promise<ReAssignStoreResponse>} - Success response
-   * @summary: Get serviceable store of the item
-   * @description: This API returns serviceable store of the item.
-   */
-  async getOptimalLocations({ body } = {}) {
-    const { error } = ServiceabilityValidator.getOptimalLocations().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = ServiceabilityValidator.getOptimalLocations().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: "Parameter Validation warrnings for getOptimalLocations",
-      });
-      Logger({ level: "WARN", message: warrning });
-    }
-
-    const query_params = {};
-
-    const xHeaders = {};
-
-    const response = await PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/logistics/v1.0/company/${this.config.companyId}/reassign`,
-      query_params,
-      body,
-      xHeaders
-    );
-
-    const {
-      error: res_error,
-    } = ServiceabilityModel.ReAssignStoreResponse().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
-
-    if (res_error) {
-      Logger({
-        level: "WARN",
-        message: "Response Validation Warnnings for getOptimalLocations",
       });
       Logger({ level: "WARN", message: res_error });
     }
@@ -956,8 +1055,10 @@ class Serviceability {
    * @summary: Upsert of DpCompanyRules in database.
    * @description: This API returns response of upsert of DpCompanyRules in mongo database.
    */
-  async upsertDpCompanyRules({ body } = {}) {
-    const { error } = ServiceabilityValidator.upsertDpCompanyRules().validate(
+  async upsertDpCompanyRulePriority({ body } = {}) {
+    const {
+      error,
+    } = ServiceabilityValidator.upsertDpCompanyRulePriority().validate(
       {
         body,
       },
@@ -970,7 +1071,7 @@ class Serviceability {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = ServiceabilityValidator.upsertDpCompanyRules().validate(
+    } = ServiceabilityValidator.upsertDpCompanyRulePriority().validate(
       {
         body,
       },
@@ -979,7 +1080,8 @@ class Serviceability {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for upsertDpCompanyRules",
+        message:
+          "Parameter Validation warrnings for upsertDpCompanyRulePriority",
       });
       Logger({ level: "WARN", message: warrning });
     }
@@ -1007,73 +1109,8 @@ class Serviceability {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for upsertDpCompanyRules",
-      });
-      Logger({ level: "WARN", message: res_error });
-    }
-
-    return response;
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {DpRuleRequest} arg.body
-   * @returns {Promise<DpRuleSuccessResponse>} - Success response
-   * @summary: Upsert of DpRules in database.
-   * @description: This API returns response of upsert of DpRules in mongo database.
-   */
-  async upsertDpRules({ body } = {}) {
-    const { error } = ServiceabilityValidator.upsertDpRules().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = ServiceabilityValidator.upsertDpRules().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: "Parameter Validation warrnings for upsertDpRules",
-      });
-      Logger({ level: "WARN", message: warrning });
-    }
-
-    const query_params = {};
-
-    const xHeaders = {};
-
-    const response = await PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/logistics/v1.0/company/${this.config.companyId}/courier/rules`,
-      query_params,
-      body,
-      xHeaders
-    );
-
-    const {
-      error: res_error,
-    } = ServiceabilityModel.DpRuleSuccessResponse().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
-
-    if (res_error) {
-      Logger({
-        level: "WARN",
-        message: "Response Validation Warnnings for upsertDpRules",
+        message:
+          "Response Validation Warnnings for upsertDpCompanyRulePriority",
       });
       Logger({ level: "WARN", message: res_error });
     }

@@ -4,6 +4,16 @@ declare class Serviceability {
     config: any;
     /**
      * @param {Object} arg - Arg object.
+     * @param {DpRuleRequest} arg.body
+     * @returns {Promise<DpRuleSuccessResponse>} - Success response
+     * @summary: Upsert of DpRules in database.
+     * @description: This API returns response of upsert of DpRules in mongo database.
+     */
+    createDpRule({ body }?: {
+        body: DpRuleRequest;
+    }): Promise<DpRuleSuccessResponse>;
+    /**
+     * @param {Object} arg - Arg object.
      * @param {ZoneRequest} arg.body
      * @returns {Promise<ZoneResponse>} - Success response
      * @summary: Creation of a new zone
@@ -28,18 +38,29 @@ declare class Serviceability {
     getCompanyStoreView({}?: any): Promise<CompanyStoreView_Response>;
     /**
      * @param {Object} arg - Arg object.
+     * @param {number} [arg.pageNumber] - Index of the item to start returning with
+     * @param {number} [arg.pageSize] - Determines the items to be displayed in a page
+     * @param {string} [arg.stage] - Stage of the account. enabled/disabled
+     * @param {string} [arg.paymentMode] - Filters dp accounts based on payment mode
+     * @param {string} [arg.transportType] - Filters dp accounts based on transport_type
+     * @returns {Promise<CompanyDpAccountListResponse>} - Success response
+     * @summary: Getting DpAccount of a company from database.
+     * @description: This API returns response DpAccount of a company from mongo database.
+     */
+    getDpAccountList({ pageNumber, pageSize, stage, paymentMode, transportType, }?: {
+        pageNumber?: number;
+        pageSize?: number;
+        stage?: string;
+        paymentMode?: string;
+        transportType?: string;
+    }): Promise<CompanyDpAccountListResponse>;
+    /**
+     * @param {Object} arg - Arg object.
      * @returns {Promise<DPCompanyRuleResponse>} - Success response
      * @summary: Get All DpCompanyRules applied to company from database.
      * @description: This API returns response of all DpCompanyRules from mongo database.
      */
-    getDpCompanyRules({}?: any): Promise<DPCompanyRuleResponse>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @returns {Promise<DpMultipleRuleSuccessResponse>} - Success response
-     * @summary: Fetching of DpRules from database.
-     * @description: This API returns response of DpRules from mongo database.
-     */
-    getDpRuleInsert({}?: any): Promise<DpMultipleRuleSuccessResponse>;
+    getDpCompanyRulePriority({}?: any): Promise<DPCompanyRuleResponse>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.ruleUid - A `rule_uid` is a unique identifier for a
@@ -48,9 +69,21 @@ declare class Serviceability {
      * @summary: Fetching of DpRules from database.
      * @description: This API returns response of DpRules from mongo database.
      */
-    getDpRules({ ruleUid }?: {
+    getDpRule({ ruleUid }?: {
         ruleUid: string;
     }): Promise<DpRuleSuccessResponse>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {number} [arg.pageNumber] - Index of the item to start returning with
+     * @param {number} [arg.pageSize] - Determines the items to be displayed in a page
+     * @returns {Promise<DpMultipleRuleSuccessResponse>} - Success response
+     * @summary: Fetching of DpRules from database.
+     * @description: This API returns response of DpRules from mongo database.
+     */
+    getDpRuleList({ pageNumber, pageSize }?: {
+        pageNumber?: number;
+        pageSize?: number;
+    }): Promise<DpMultipleRuleSuccessResponse>;
     /**
      * @param {Object} arg - Arg object.
      * @param {EntityRegionView_Request} arg.body
@@ -81,16 +114,6 @@ declare class Serviceability {
         channelIds?: string;
         q?: string;
     }): Promise<ListViewResponse>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {ReAssignStoreRequest} arg.body
-     * @returns {Promise<ReAssignStoreResponse>} - Success response
-     * @summary: Get serviceable store of the item
-     * @description: This API returns serviceable store of the item.
-     */
-    getOptimalLocations({ body }?: {
-        body: ReAssignStoreRequest;
-    }): Promise<ReAssignStoreResponse>;
     /**
      * @param {Object} arg - Arg object.
      * @param {number} arg.storeUid - A `store_uid` contains a specific ID of a store.
@@ -155,17 +178,7 @@ declare class Serviceability {
      * @summary: Upsert of DpCompanyRules in database.
      * @description: This API returns response of upsert of DpCompanyRules in mongo database.
      */
-    upsertDpCompanyRules({ body }?: {
+    upsertDpCompanyRulePriority({ body }?: {
         body: DPCompanyRuleRequest;
     }): Promise<DPCompanyRuleResponse>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {DpRuleRequest} arg.body
-     * @returns {Promise<DpRuleSuccessResponse>} - Success response
-     * @summary: Upsert of DpRules in database.
-     * @description: This API returns response of upsert of DpRules in mongo database.
-     */
-    upsertDpRules({ body }?: {
-        body: DpRuleRequest;
-    }): Promise<DpRuleSuccessResponse>;
 }

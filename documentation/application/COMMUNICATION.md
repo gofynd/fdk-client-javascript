@@ -298,12 +298,41 @@ Success. Updates the channels for which user has consented. Check the example sh
 ### Schemas
 
 
+#### [ApikeyValidatorError](#ApikeyValidatorError)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | message | [ApikeyValidatorErrorMessage](#ApikeyValidatorErrorMessage)? |  yes  |  |
+ | sentry | string? |  yes  |  |
+ 
+
+---
+
+#### [ApikeyValidatorErrorMessage](#ApikeyValidatorErrorMessage)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | api_key | [ValidatorErrorBody](#ValidatorErrorBody)? |  yes  |  |
+ 
+
+---
+
 #### [BadRequestSchema](#BadRequestSchema)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | message | string? |  yes  | Failure message. |
  | status | string? |  yes  | Response status. |
+ 
+
+---
+
+#### [CastToStringFail](#CastToStringFail)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | message | string? |  yes  |  |
+ | sentry | string? |  yes  |  |
  
 
 ---
@@ -384,6 +413,84 @@ Success. Updates the channels for which user has consented. Check the example sh
 
 ---
 
+#### [FeedidValidatorError](#FeedidValidatorError)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | message | [FeedidValidatorErrorMessage](#FeedidValidatorErrorMessage)? |  yes  |  |
+ | sentry | string? |  yes  |  |
+ 
+
+---
+
+#### [FeedidValidatorErrorMessage](#FeedidValidatorErrorMessage)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | feedid | [ValidatorErrorBody](#ValidatorErrorBody)? |  yes  |  |
+ 
+
+---
+
+#### [GenericSuccess](#GenericSuccess)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | success | boolean? |  yes  |  |
+ 
+
+---
+
+#### [InvalidID](#InvalidID)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | message | string? |  yes  |  |
+ | sentry | string? |  yes  |  |
+ 
+
+---
+
+#### [InvalidInputRequiredByteOrHexError](#InvalidInputRequiredByteOrHexError)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | message | string? |  yes  |  |
+ | sentry | string? |  yes  |  |
+ 
+
+---
+
+#### [InvalidRangeErrorReqPositive](#InvalidRangeErrorReqPositive)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | code | number? |  yes  |  |
+ | message | string? |  yes  |  |
+ | sentry | string? |  yes  |  |
+ 
+
+---
+
+#### [NameValidatorError](#NameValidatorError)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | message | [NameValidatorErrorMessage](#NameValidatorErrorMessage)? |  yes  |  |
+ | sentry | string? |  yes  |  |
+ 
+
+---
+
+#### [NameValidatorErrorMessage](#NameValidatorErrorMessage)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | name | [ValidatorErrorBody](#ValidatorErrorBody)? |  yes  |  |
+ 
+
+---
+
 #### [NotFound](#NotFound)
 
  | Properties | Type | Nullable | Description |
@@ -404,6 +511,25 @@ Success. Updates the channels for which user has consented. Check the example sh
  | next_id | string? |  yes  |  |
  | size | number? |  yes  |  |
  | type | string |  no  |  |
+ 
+
+---
+
+#### [PasswordValidatorError](#PasswordValidatorError)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | message | [PasswordValidatorErrorMessage](#PasswordValidatorErrorMessage)? |  yes  |  |
+ | sentry | string? |  yes  |  |
+ 
+
+---
+
+#### [PasswordValidatorErrorMessage](#PasswordValidatorErrorMessage)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | password | [ValidatorErrorBody](#ValidatorErrorBody)? |  yes  |  |
  
 
 ---
@@ -436,6 +562,49 @@ Success. Updates the channels for which user has consented. Check the example sh
  | unique_device_id | string? |  yes  |  |
  | updated_at | string? |  yes  |  |
  | user_id | string? |  yes  |  |
+ 
+
+---
+
+#### [UsernameValidatorError](#UsernameValidatorError)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | message | [UsernameValidatorErrorMessage](#UsernameValidatorErrorMessage)? |  yes  |  |
+ | sentry | string? |  yes  |  |
+ 
+
+---
+
+#### [UsernameValidatorErrorMessage](#UsernameValidatorErrorMessage)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | username | [ValidatorErrorBody](#ValidatorErrorBody)? |  yes  |  |
+ 
+
+---
+
+#### [ValidatorErrorBody](#ValidatorErrorBody)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | kind | string? |  yes  |  |
+ | message | string? |  yes  |  |
+ | name | string? |  yes  |  |
+ | path | string? |  yes  |  |
+ | properties | [ValidatorErrorMessageProperties](#ValidatorErrorMessageProperties)? |  yes  |  |
+ 
+
+---
+
+#### [ValidatorErrorMessageProperties](#ValidatorErrorMessageProperties)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | message | string? |  yes  |  |
+ | path | string? |  yes  |  |
+ | type | string? |  yes  |  |
  
 
 ---

@@ -33,6 +33,7 @@ declare class CatalogModel {
     static DepartmentResponse(): any;
     static DetailsSchemaV3(): any;
     static Dimension(): any;
+    static DiscountMeta(): any;
     static ErrorResponse(): any;
     static FollowerCountResponse(): any;
     static FollowIdsData(): any;

@@ -19,7 +19,6 @@ class Order {
       getOrders: "/service/application/order/v1.0/orders",
       getPosOrderById:
         "/service/application/order/v1.0/orders/pos-order/{order_id}",
-      getProducts: "/service/application/order/v1.0/products",
       getShipmentBagReasons:
         "/service/application/order/v1.0/orders/shipments/{shipment_id}/bags/{bag_id}/reasons",
       getShipmentById:
@@ -30,8 +29,6 @@ class Order {
         "/service/application/order/v1.0/orders/{order_id}/shipments/{shipment_id}/otp/send/",
       trackShipment:
         "/service/application/order/v1.0/orders/shipments/{shipment_id}/track",
-      updateShipmentStatus:
-        "/service/application/order/v1.0/orders/shipments/{shipment_id}/status",
       verifyOtpShipmentCustomer:
         "/service/application/order/v1.0/orders/{order_id}/shipments/{shipment_id}/otp/verify/",
     };
@@ -125,14 +122,13 @@ class Order {
   /**
    * @param {Object} arg - Arg object.
    * @param {string} arg.shipmentId - ID of the shipment.
-   * @param {string} [arg.documentType] -
    * @returns {Promise<ResponseGetInvoiceShipment>} - Success response
    * @summary: Get Invoice of a shipment
    * @description: Use this API to retrieve shipment invoice.
    */
-  async getInvoiceByShipmentId({ shipmentId, documentType } = {}) {
+  async getInvoiceByShipmentId({ shipmentId } = {}) {
     const { error } = OrderValidator.getInvoiceByShipmentId().validate(
-      { shipmentId, documentType },
+      { shipmentId },
       { abortEarly: false, allowUnknown: true }
     );
     if (error) {
@@ -143,7 +139,7 @@ class Order {
     const {
       error: warrning,
     } = OrderValidator.getInvoiceByShipmentId().validate(
-      { shipmentId, documentType },
+      { shipmentId },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
@@ -155,7 +151,6 @@ class Order {
     }
 
     const query_params = {};
-    query_params["document_type"] = documentType;
 
     const xHeaders = {};
 
@@ -339,7 +334,7 @@ class Order {
    * @param {Object} arg - Arg object.
    * @param {string} arg.orderId - A unique number used for identifying and
    *   tracking your orders.
-   * @returns {Promise<OrderById>} - Success response
+   * @returns {Promise<OrderList>} - Success response
    * @summary: Get POS Order
    * @description: Use this API to retrieve a POS order and all its details such as tracking details, shipment, store information using Fynd Order ID.
    */
@@ -381,7 +376,7 @@ class Order {
       xHeaders
     );
 
-    const { error: res_error } = OrderModel.OrderById().validate(response, {
+    const { error: res_error } = OrderModel.OrderList().validate(response, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -390,93 +385,6 @@ class Order {
       Logger({
         level: "WARN",
         message: "Response Validation Warnnings for getPosOrderById",
-      });
-      Logger({ level: "WARN", message: res_error });
-    }
-
-    return response;
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {number} arg.companyId -
-   * @param {number} [arg.status] - A filter to retrieve orders by their
-   *   current status such as _placed_, _delivered_, etc.
-   * @param {number} [arg.pageNo] - The page number to navigate through the
-   *   given set of results. Default value is 1.
-   * @param {number} [arg.pageSize] - The number of items to retrieve in each
-   *   page. Default value is 10.
-   * @param {string} [arg.fromDate] - The date from which the orders should be
-   *   retrieved.
-   * @param {string} [arg.toDate] - The date till which the orders should be retrieved.
-   * @param {string} [arg.searchValue] -
-   * @returns {Promise<ProductListResponse>} - Success response
-   * @summary:
-   * @description:
-   */
-  async getProducts({
-    companyId,
-    status,
-    pageNo,
-    pageSize,
-    fromDate,
-    toDate,
-    searchValue,
-  } = {}) {
-    const { error } = OrderValidator.getProducts().validate(
-      { companyId, status, pageNo, pageSize, fromDate, toDate, searchValue },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = OrderValidator.getProducts().validate(
-      { companyId, status, pageNo, pageSize, fromDate, toDate, searchValue },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: "Parameter Validation warrnings for getProducts",
-      });
-      Logger({ level: "WARN", message: warrning });
-    }
-
-    const query_params = {};
-    query_params["status"] = status;
-    query_params["page_no"] = pageNo;
-    query_params["page_size"] = pageSize;
-    query_params["from_date"] = fromDate;
-    query_params["to_date"] = toDate;
-    query_params["search_value"] = searchValue;
-
-    const xHeaders = {};
-
-    const response = await ApplicationAPIClient.execute(
-      this._conf,
-      "get",
-      constructUrl({
-        url: this._urls["getProducts"],
-        params: { companyId },
-      }),
-      query_params,
-      undefined,
-      xHeaders
-    );
-
-    const {
-      error: res_error,
-    } = OrderModel.ProductListResponse().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
-
-    if (res_error) {
-      Logger({
-        level: "WARN",
-        message: "Response Validation Warnnings for getProducts",
       });
       Logger({ level: "WARN", message: res_error });
     }
@@ -802,72 +710,6 @@ class Order {
       Logger({
         level: "WARN",
         message: "Response Validation Warnnings for trackShipment",
-      });
-      Logger({ level: "WARN", message: res_error });
-    }
-
-    return response;
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.shipmentId - ID of the shipment. An order may contain
-   *   multiple items and may get divided into one or more shipment, each
-   *   having its own ID.
-   * @param {UpdateShipmentStatusRequest} arg.body
-   * @returns {Promise<ShipmentApplicationStatusResponse>} - Success response
-   * @summary: Update the shipment status
-   * @description: Use this API to update the status of a shipment using its shipment ID.
-   */
-  async updateShipmentStatus({ shipmentId, body } = {}) {
-    const { error } = OrderValidator.updateShipmentStatus().validate(
-      { shipmentId, body },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = OrderValidator.updateShipmentStatus().validate(
-      { shipmentId, body },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: "Parameter Validation warrnings for updateShipmentStatus",
-      });
-      Logger({ level: "WARN", message: warrning });
-    }
-
-    const query_params = {};
-
-    const xHeaders = {};
-
-    const response = await ApplicationAPIClient.execute(
-      this._conf,
-      "put",
-      constructUrl({
-        url: this._urls["updateShipmentStatus"],
-        params: { shipmentId },
-      }),
-      query_params,
-      body,
-      xHeaders
-    );
-
-    const {
-      error: res_error,
-    } = OrderModel.ShipmentApplicationStatusResponse().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
-
-    if (res_error) {
-      Logger({
-        level: "WARN",
-        message: "Response Validation Warnnings for updateShipmentStatus",
       });
       Logger({ level: "WARN", message: res_error });
     }

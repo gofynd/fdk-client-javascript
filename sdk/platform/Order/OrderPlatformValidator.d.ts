@@ -1,28 +1,20 @@
 export = OrderValidator;
 declare class OrderValidator {
-    static attachOrderUser(): any;
     static checkOrderStatus(): any;
     static click2Call(): any;
     static createChannelConfig(): any;
     static createOrder(): any;
-    static createShipmentReport(): any;
     static dispatchManifest(): any;
     static downloadBulkActionTemplate(): any;
-    static fetchCreditBalanceDetail(): any;
-    static fetchRefundModeConfig(): any;
-    static generatePOSReceiptByOrderId(): any;
     static getAnnouncements(): any;
-    static getAssetByShipmentIds(): any;
     static getBagById(): any;
     static getBags(): any;
     static getBulkActionTemplate(): any;
     static getBulkShipmentExcelFile(): any;
     static getChannelConfig(): any;
     static getLaneConfig(): any;
-    static getMetricCount(): any;
     static getOrderById(): any;
     static getOrders(): any;
-    static getReportsShipmentListing(): any;
     static getRoleBasedActions(): any;
     static getShipmentById(): any;
     static getShipmentHistory(): any;
@@ -36,12 +28,9 @@ declare class OrderValidator {
     static processManifest(): any;
     static reassignLocation(): any;
     static sendSmsNinja(): any;
-    static sendUserMobileOTP(): any;
     static updateAddress(): any;
     static updatePackagingDimensions(): any;
     static updateShipmentLock(): any;
     static updateShipmentStatus(): any;
     static uploadConsent(): any;
-    static upsertJioCode(): any;
-    static verifyMobileOTP(): any;
 }

@@ -1,6 +1,9 @@
 export = CommunicationModel;
 declare class CommunicationModel {
+    static ApikeyValidatorError(): any;
+    static ApikeyValidatorErrorMessage(): any;
     static BadRequestSchema(): any;
+    static CastToStringFail(): any;
     static CommunicationConsent(): any;
     static CommunicationConsentChannels(): any;
     static CommunicationConsentChannelsEmail(): any;
@@ -8,8 +11,22 @@ declare class CommunicationModel {
     static CommunicationConsentChannelsWhatsapp(): any;
     static CommunicationConsentReq(): any;
     static CommunicationConsentRes(): any;
+    static FeedidValidatorError(): any;
+    static FeedidValidatorErrorMessage(): any;
+    static GenericSuccess(): any;
+    static InvalidID(): any;
+    static InvalidInputRequiredByteOrHexError(): any;
+    static InvalidRangeErrorReqPositive(): any;
+    static NameValidatorError(): any;
+    static NameValidatorErrorMessage(): any;
     static NotFound(): any;
     static Page(): any;
+    static PasswordValidatorError(): any;
+    static PasswordValidatorErrorMessage(): any;
     static PushtokenReq(): any;
     static PushtokenRes(): any;
+    static UsernameValidatorError(): any;
+    static UsernameValidatorErrorMessage(): any;
+    static ValidatorErrorBody(): any;
+    static ValidatorErrorMessageProperties(): any;
 }

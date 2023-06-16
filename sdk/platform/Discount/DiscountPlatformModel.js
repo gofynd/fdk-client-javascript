@@ -37,6 +37,7 @@ class DiscountModel {
   static DiscountItems() {
     return Joi.object({
       brand_uid: Joi.number(),
+      discount_meta: DiscountModel.DiscountMeta(),
       discount_type: Joi.string().allow("").required(),
       item_code: Joi.string().allow(""),
       seller_identifier: Joi.string().allow(""),
@@ -63,6 +64,12 @@ class DiscountModel {
       store_ids: Joi.array().items(Joi.number()),
       validity: DiscountModel.ValidityObject().required(),
       value: Joi.number(),
+    });
+  }
+  static DiscountMeta() {
+    return Joi.object({
+      number_of_minutes: Joi.number().required(),
+      timer: Joi.boolean().required(),
     });
   }
   static DownloadFileJob() {

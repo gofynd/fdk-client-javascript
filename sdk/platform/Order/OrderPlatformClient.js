@@ -13,70 +13,6 @@ class Order {
 
   /**
    * @param {Object} arg - Arg object.
-   * @param {AttachOrderUser} arg.body
-   * @returns {Promise<AttachOrderUserResponse>} - Success response
-   * @summary:
-   * @description:
-   */
-  async attachOrderUser({ body } = {}) {
-    const { error } = OrderValidator.attachOrderUser().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = OrderValidator.attachOrderUser().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: "Parameter Validation warrnings for attachOrderUser",
-      });
-      Logger({ level: "WARN", message: warrning });
-    }
-
-    const query_params = {};
-
-    const xHeaders = {};
-
-    const response = await PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/order-manage/v1.0/company/${this.config.companyId}/user/attach`,
-      query_params,
-      body,
-      xHeaders
-    );
-
-    const {
-      error: res_error,
-    } = OrderModel.AttachOrderUserResponse().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
-
-    if (res_error) {
-      Logger({
-        level: "WARN",
-        message: "Response Validation Warnnings for attachOrderUser",
-      });
-      Logger({ level: "WARN", message: res_error });
-    }
-
-    return response;
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
    * @param {OrderStatus} arg.body
    * @returns {Promise<OrderStatusResult>} - Success response
    * @summary:
@@ -359,73 +295,6 @@ class Order {
 
   /**
    * @param {Object} arg - Arg object.
-   * @param {string} [arg.fromDate] -
-   * @param {string} [arg.toDate] -
-   * @returns {Promise<Success>} - Success response
-   * @summary:
-   * @description:
-   */
-  async createShipmentReport({ fromDate, toDate } = {}) {
-    const { error } = OrderValidator.createShipmentReport().validate(
-      {
-        fromDate,
-        toDate,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = OrderValidator.createShipmentReport().validate(
-      {
-        fromDate,
-        toDate,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: "Parameter Validation warrnings for createShipmentReport",
-      });
-      Logger({ level: "WARN", message: warrning });
-    }
-
-    const query_params = {};
-    query_params["from_date"] = fromDate;
-    query_params["to_date"] = toDate;
-
-    const xHeaders = {};
-
-    const response = await PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/orders/v1.0/company/${this.config.companyId}/reports/shipment`,
-      query_params,
-      undefined,
-      xHeaders
-    );
-
-    const { error: res_error } = OrderModel.Success().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
-
-    if (res_error) {
-      Logger({
-        level: "WARN",
-        message: "Response Validation Warnnings for createShipmentReport",
-      });
-      Logger({ level: "WARN", message: res_error });
-    }
-
-    return response;
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
    * @param {DispatchManifest} arg.body
    * @returns {Promise<SuccessResponse>} - Success response
    * @summary:
@@ -554,216 +423,6 @@ class Order {
 
   /**
    * @param {Object} arg - Arg object.
-   * @param {FetchCreditBalanceRequestPayload} arg.body
-   * @returns {Promise<FetchCreditBalanceResponsePayload>} - Success response
-   * @summary:
-   * @description:
-   */
-  async fetchCreditBalanceDetail({ body } = {}) {
-    const { error } = OrderValidator.fetchCreditBalanceDetail().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = OrderValidator.fetchCreditBalanceDetail().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: "Parameter Validation warrnings for fetchCreditBalanceDetail",
-      });
-      Logger({ level: "WARN", message: warrning });
-    }
-
-    const query_params = {};
-
-    const xHeaders = {};
-
-    const response = await PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/order-manage/v1.0/company/${this.config.companyId}/customer-credit-balance`,
-      query_params,
-      body,
-      xHeaders
-    );
-
-    const {
-      error: res_error,
-    } = OrderModel.FetchCreditBalanceResponsePayload().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
-
-    if (res_error) {
-      Logger({
-        level: "WARN",
-        message: "Response Validation Warnnings for fetchCreditBalanceDetail",
-      });
-      Logger({ level: "WARN", message: res_error });
-    }
-
-    return response;
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {RefundModeConfigRequestPayload} arg.body
-   * @returns {Promise<RefundModeConfigResponsePayload>} - Success response
-   * @summary:
-   * @description:
-   */
-  async fetchRefundModeConfig({ body } = {}) {
-    const { error } = OrderValidator.fetchRefundModeConfig().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = OrderValidator.fetchRefundModeConfig().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: "Parameter Validation warrnings for fetchRefundModeConfig",
-      });
-      Logger({ level: "WARN", message: warrning });
-    }
-
-    const query_params = {};
-
-    const xHeaders = {};
-
-    const response = await PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/order-manage/v1.0/company/${this.config.companyId}/refund-mode-config`,
-      query_params,
-      body,
-      xHeaders
-    );
-
-    const {
-      error: res_error,
-    } = OrderModel.RefundModeConfigResponsePayload().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
-
-    if (res_error) {
-      Logger({
-        level: "WARN",
-        message: "Response Validation Warnnings for fetchRefundModeConfig",
-      });
-      Logger({ level: "WARN", message: res_error });
-    }
-
-    return response;
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.orderId -
-   * @param {string} [arg.shipmentId] -
-   * @param {string} [arg.documentType] -
-   * @returns {Promise<GeneratePosOrderReceiptResponse>} - Success response
-   * @summary:
-   * @description:
-   */
-  async generatePOSReceiptByOrderId({
-    orderId,
-    shipmentId,
-    documentType,
-  } = {}) {
-    const { error } = OrderValidator.generatePOSReceiptByOrderId().validate(
-      {
-        orderId,
-        shipmentId,
-        documentType,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = OrderValidator.generatePOSReceiptByOrderId().validate(
-      {
-        orderId,
-        shipmentId,
-        documentType,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message:
-          "Parameter Validation warrnings for generatePOSReceiptByOrderId",
-      });
-      Logger({ level: "WARN", message: warrning });
-    }
-
-    const query_params = {};
-    query_params["shipment_id"] = shipmentId;
-    query_params["document_type"] = documentType;
-
-    const xHeaders = {};
-
-    const response = await PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/orders/v1.0/company/${this.config.companyId}/orders/${orderId}/generate/pos-receipt`,
-      query_params,
-      undefined,
-      xHeaders
-    );
-
-    const {
-      error: res_error,
-    } = OrderModel.GeneratePosOrderReceiptResponse().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
-
-    if (res_error) {
-      Logger({
-        level: "WARN",
-        message:
-          "Response Validation Warnnings for generatePOSReceiptByOrderId",
-      });
-      Logger({ level: "WARN", message: res_error });
-    }
-
-    return response;
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
    * @param {string} [arg.date] - Date On which the announcement is Active
    *   (Date should in ISO Datetime format IST Time)
    * @returns {Promise<AnnouncementsResponse>} - Success response
@@ -821,79 +480,6 @@ class Order {
       Logger({
         level: "WARN",
         message: "Response Validation Warnnings for getAnnouncements",
-      });
-      Logger({ level: "WARN", message: res_error });
-    }
-
-    return response;
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.shipmentIds -
-   * @param {boolean} [arg.invoice] -
-   * @param {string} [arg.expiresIn] -
-   * @returns {Promise<ResponseGetAssetShipment>} - Success response
-   * @summary: Get Invoice or Label or Pos of a shipment
-   * @description: Use this API to retrieve shipments invoice, label and pos.
-   */
-  async getAssetByShipmentIds({ shipmentIds, invoice, expiresIn } = {}) {
-    const { error } = OrderValidator.getAssetByShipmentIds().validate(
-      {
-        shipmentIds,
-        invoice,
-        expiresIn,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = OrderValidator.getAssetByShipmentIds().validate(
-      {
-        shipmentIds,
-        invoice,
-        expiresIn,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: "Parameter Validation warrnings for getAssetByShipmentIds",
-      });
-      Logger({ level: "WARN", message: warrning });
-    }
-
-    const query_params = {};
-    query_params["shipment_ids"] = shipmentIds;
-    query_params["invoice"] = invoice;
-    query_params["expires_in"] = expiresIn;
-
-    const xHeaders = {};
-
-    const response = await PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/orders/v1.0/company/${this.config.companyId}/shipments-invoice`,
-      query_params,
-      undefined,
-      xHeaders
-    );
-
-    const {
-      error: res_error,
-    } = OrderModel.ResponseGetAssetShipment().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
-
-    if (res_error) {
-      Logger({
-        level: "WARN",
-        message: "Response Validation Warnnings for getAssetByShipmentIds",
       });
       Logger({ level: "WARN", message: res_error });
     }
@@ -1329,14 +915,9 @@ class Order {
    * @param {string} [arg.toDate] -
    * @param {string} [arg.dpIds] -
    * @param {string} [arg.stores] -
-   * @param {string} [arg.salesChannels] -
+   * @param {string} [arg.salesChannel] -
    * @param {string} [arg.paymentMode] -
    * @param {string} [arg.bagStatus] -
-   * @param {string} [arg.searchType] -
-   * @param {string} [arg.searchValue] -
-   * @param {string} [arg.tags] -
-   * @param {string} [arg.timeToDispatch] -
-   * @param {string} [arg.paymentMethods] -
    * @returns {Promise<LaneConfigResponse>} - Success response
    * @summary:
    * @description:
@@ -1348,14 +929,9 @@ class Order {
     toDate,
     dpIds,
     stores,
-    salesChannels,
+    salesChannel,
     paymentMode,
     bagStatus,
-    searchType,
-    searchValue,
-    tags,
-    timeToDispatch,
-    paymentMethods,
   } = {}) {
     const { error } = OrderValidator.getLaneConfig().validate(
       {
@@ -1365,14 +941,9 @@ class Order {
         toDate,
         dpIds,
         stores,
-        salesChannels,
+        salesChannel,
         paymentMode,
         bagStatus,
-        searchType,
-        searchValue,
-        tags,
-        timeToDispatch,
-        paymentMethods,
       },
       { abortEarly: false, allowUnknown: true }
     );
@@ -1389,14 +960,9 @@ class Order {
         toDate,
         dpIds,
         stores,
-        salesChannels,
+        salesChannel,
         paymentMode,
         bagStatus,
-        searchType,
-        searchValue,
-        tags,
-        timeToDispatch,
-        paymentMethods,
       },
       { abortEarly: false, allowUnknown: false }
     );
@@ -1415,14 +981,9 @@ class Order {
     query_params["to_date"] = toDate;
     query_params["dp_ids"] = dpIds;
     query_params["stores"] = stores;
-    query_params["sales_channels"] = salesChannels;
+    query_params["sales_channel"] = salesChannel;
     query_params["payment_mode"] = paymentMode;
     query_params["bag_status"] = bagStatus;
-    query_params["search_type"] = searchType;
-    query_params["search_value"] = searchValue;
-    query_params["tags"] = tags;
-    query_params["time_to_dispatch"] = timeToDispatch;
-    query_params["payment_methods"] = paymentMethods;
 
     const xHeaders = {};
 
@@ -1455,77 +1016,8 @@ class Order {
 
   /**
    * @param {Object} arg - Arg object.
-   * @param {string} [arg.fromDate] -
-   * @param {string} [arg.toDate] -
-   * @returns {Promise<MetricCountResponse>} - Success response
-   * @summary:
-   * @description:
-   */
-  async getMetricCount({ fromDate, toDate } = {}) {
-    const { error } = OrderValidator.getMetricCount().validate(
-      {
-        fromDate,
-        toDate,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = OrderValidator.getMetricCount().validate(
-      {
-        fromDate,
-        toDate,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: "Parameter Validation warrnings for getMetricCount",
-      });
-      Logger({ level: "WARN", message: warrning });
-    }
-
-    const query_params = {};
-    query_params["from_date"] = fromDate;
-    query_params["to_date"] = toDate;
-
-    const xHeaders = {};
-
-    const response = await PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/orders/v1.0/company/${this.config.companyId}/shipment/metrics-count/`,
-      query_params,
-      undefined,
-      xHeaders
-    );
-
-    const {
-      error: res_error,
-    } = OrderModel.MetricCountResponse().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
-
-    if (res_error) {
-      Logger({
-        level: "WARN",
-        message: "Response Validation Warnnings for getMetricCount",
-      });
-      Logger({ level: "WARN", message: res_error });
-    }
-
-    return response;
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
    * @param {string} arg.orderId -
-   * @returns {Promise<OrderDetailsResponse>} - Success response
+   * @returns {Promise<ShipmentDetailsResponse>} - Success response
    * @summary:
    * @description:
    */
@@ -1571,7 +1063,7 @@ class Order {
 
     const {
       error: res_error,
-    } = OrderModel.OrderDetailsResponse().validate(response, {
+    } = OrderModel.ShipmentDetailsResponse().validate(response, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -1589,29 +1081,22 @@ class Order {
 
   /**
    * @param {Object} arg - Arg object.
-   * @param {string} [arg.lane] - Lane refers to a section where orders are
-   *   assigned, indicating its grouping
-   * @param {string} [arg.searchType] - Search_type refers to the specific
-   *   field that will be used as the target for the search operation
-   * @param {string} [arg.bagStatus] - Bag_status refers to status of the
-   *   entity. Filters orders based on the status.
-   * @param {string} [arg.timeToDispatch] - Time_to_dispatch refers to
-   *   estimated SLA time.
+   * @param {string} [arg.lane] -
+   * @param {string} [arg.searchType] -
+   * @param {string} [arg.bagStatus] -
+   * @param {string} [arg.timeToDispatch] -
    * @param {string} [arg.paymentMethods] -
-   * @param {string} [arg.tags] - Tags refers to additional descriptive labels
-   *   associated with the order
-   * @param {string} [arg.searchValue] - Search_value is matched against the
-   *   field specified by the search_type
+   * @param {string} [arg.tags] -
+   * @param {string} [arg.searchValue] -
    * @param {string} [arg.fromDate] -
    * @param {string} [arg.toDate] -
-   * @param {string} [arg.dpIds] - Delivery Partner IDs to which shipments are assigned.
+   * @param {string} [arg.dpIds] -
    * @param {string} [arg.stores] -
    * @param {string} [arg.salesChannels] -
    * @param {number} [arg.pageNo] -
    * @param {number} [arg.pageSize] -
    * @param {boolean} [arg.isPrioritySort] -
    * @param {string} [arg.customMeta] -
-   * @param {string} [arg.platformUserId] -
    * @returns {Promise<OrderListingResponse>} - Success response
    * @summary:
    * @description:
@@ -1633,7 +1118,6 @@ class Order {
     pageSize,
     isPrioritySort,
     customMeta,
-    platformUserId,
   } = {}) {
     const { error } = OrderValidator.getOrders().validate(
       {
@@ -1653,7 +1137,6 @@ class Order {
         pageSize,
         isPrioritySort,
         customMeta,
-        platformUserId,
       },
       { abortEarly: false, allowUnknown: true }
     );
@@ -1680,7 +1163,6 @@ class Order {
         pageSize,
         isPrioritySort,
         customMeta,
-        platformUserId,
       },
       { abortEarly: false, allowUnknown: false }
     );
@@ -1709,7 +1191,6 @@ class Order {
     query_params["page_size"] = pageSize;
     query_params["is_priority_sort"] = isPrioritySort;
     query_params["custom_meta"] = customMeta;
-    query_params["platform_user_id"] = platformUserId;
 
     const xHeaders = {};
 
@@ -1733,75 +1214,6 @@ class Order {
       Logger({
         level: "WARN",
         message: "Response Validation Warnnings for getOrders",
-      });
-      Logger({ level: "WARN", message: res_error });
-    }
-
-    return response;
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {number} [arg.pageNo] -
-   * @param {number} [arg.pageSize] -
-   * @returns {Promise<OmsReports>} - Success response
-   * @summary:
-   * @description:
-   */
-  async getReportsShipmentListing({ pageNo, pageSize } = {}) {
-    const { error } = OrderValidator.getReportsShipmentListing().validate(
-      {
-        pageNo,
-        pageSize,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = OrderValidator.getReportsShipmentListing().validate(
-      {
-        pageNo,
-        pageSize,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: "Parameter Validation warrnings for getReportsShipmentListing",
-      });
-      Logger({ level: "WARN", message: warrning });
-    }
-
-    const query_params = {};
-    query_params["page_no"] = pageNo;
-    query_params["page_size"] = pageSize;
-
-    const xHeaders = {};
-
-    const response = await PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/orders/v1.0/company/${this.config.companyId}/reports/shipment-listing`,
-      query_params,
-      undefined,
-      xHeaders
-    );
-
-    const { error: res_error } = OrderModel.OmsReports().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
-
-    if (res_error) {
-      Logger({
-        level: "WARN",
-        message: "Response Validation Warnnings for getReportsShipmentListing",
       });
       Logger({ level: "WARN", message: res_error });
     }
@@ -1870,17 +1282,26 @@ class Order {
 
   /**
    * @param {Object} arg - Arg object.
-   * @param {string} [arg.channelShipmentId] - App Shipment Id
-   * @param {string} [arg.shipmentId] - Shipment Id
+   * @param {string} [arg.channelShipmentId] -
+   * @param {string} [arg.shipmentId] -
+   * @param {string} [arg.orderingCompanyId] -
+   * @param {string} [arg.requestByExt] -
    * @returns {Promise<ShipmentInfoResponse>} - Success response
    * @summary:
    * @description:
    */
-  async getShipmentById({ channelShipmentId, shipmentId } = {}) {
+  async getShipmentById({
+    channelShipmentId,
+    shipmentId,
+    orderingCompanyId,
+    requestByExt,
+  } = {}) {
     const { error } = OrderValidator.getShipmentById().validate(
       {
         channelShipmentId,
         shipmentId,
+        orderingCompanyId,
+        requestByExt,
       },
       { abortEarly: false, allowUnknown: true }
     );
@@ -1893,6 +1314,8 @@ class Order {
       {
         channelShipmentId,
         shipmentId,
+        orderingCompanyId,
+        requestByExt,
       },
       { abortEarly: false, allowUnknown: false }
     );
@@ -1907,6 +1330,8 @@ class Order {
     const query_params = {};
     query_params["channel_shipment_id"] = channelShipmentId;
     query_params["shipment_id"] = shipmentId;
+    query_params["ordering_company_id"] = orderingCompanyId;
+    query_params["request_by_ext"] = requestByExt;
 
     const xHeaders = {};
 
@@ -2081,29 +1506,30 @@ class Order {
 
   /**
    * @param {Object} arg - Arg object.
-   * @param {string} [arg.lane] - Name of lane for which data is to be fetched
-   * @param {string} [arg.bagStatus] - Comma seperated values of bag statuses
-   * @param {boolean} [arg.statusOverrideLane] - Use this flag to fetch by
-   *   bag_status and override lane
-   * @param {string} [arg.timeToDispatch] -
-   * @param {string} [arg.searchType] - Search type key
-   * @param {string} [arg.searchValue] - Search type value
-   * @param {string} [arg.fromDate] - Start Date in DD-MM-YYYY format
-   * @param {string} [arg.toDate] - End Date in DD-MM-YYYY format
-   * @param {string} [arg.dpIds] - Comma seperated values of delivery partner ids
-   * @param {string} [arg.stores] - Comma seperated values of store ids
-   * @param {string} [arg.salesChannel] - Comma seperated values of sales channel ids
-   * @param {number} [arg.pageNo] - Page number for paginated data
-   * @param {number} [arg.pageSize] - Page size of data received per page
-   * @param {boolean} [arg.fetchActiveShipment] - Flag to fetch active shipments
-   * @param {boolean} [arg.excludeLockedShipments] - Flag to fetch locked shipments
-   * @param {string} [arg.paymentMethods] - Comma seperated values of payment methods
-   * @param {string} [arg.channelShipmentId] - App Shipment Id
-   * @param {string} [arg.channelOrderId] - App Order Id
+   * @param {string} [arg.lane] -
+   * @param {string} [arg.bagStatus] -
+   * @param {boolean} [arg.statusOverrideLane] -
+   * @param {string} [arg.searchType] -
+   * @param {string} [arg.searchValue] -
+   * @param {string} [arg.searchId] -
+   * @param {string} [arg.fromDate] -
+   * @param {string} [arg.toDate] -
+   * @param {string} [arg.dpIds] -
+   * @param {string} [arg.orderingCompanyId] -
+   * @param {string} [arg.stores] -
+   * @param {string} [arg.salesChannel] -
+   * @param {string} [arg.requestByExt] -
+   * @param {number} [arg.pageNo] -
+   * @param {number} [arg.pageSize] -
+   * @param {boolean} [arg.isPrioritySort] -
+   * @param {boolean} [arg.fetchActiveShipment] -
+   * @param {boolean} [arg.excludeLockedShipments] -
+   * @param {string} [arg.paymentMethods] -
+   * @param {string} [arg.channelShipmentId] -
+   * @param {string} [arg.channelOrderId] -
    * @param {string} [arg.customMeta] -
    * @param {string} [arg.orderingChannel] -
    * @param {string} [arg.companyAffiliateTag] -
-   * @param {string} [arg.platformUserId] -
    * @returns {Promise<ShipmentInternalPlatformViewResponse>} - Success response
    * @summary:
    * @description:
@@ -2112,16 +1538,19 @@ class Order {
     lane,
     bagStatus,
     statusOverrideLane,
-    timeToDispatch,
     searchType,
     searchValue,
+    searchId,
     fromDate,
     toDate,
     dpIds,
+    orderingCompanyId,
     stores,
     salesChannel,
+    requestByExt,
     pageNo,
     pageSize,
+    isPrioritySort,
     fetchActiveShipment,
     excludeLockedShipments,
     paymentMethods,
@@ -2130,23 +1559,25 @@ class Order {
     customMeta,
     orderingChannel,
     companyAffiliateTag,
-    platformUserId,
   } = {}) {
     const { error } = OrderValidator.getShipments().validate(
       {
         lane,
         bagStatus,
         statusOverrideLane,
-        timeToDispatch,
         searchType,
         searchValue,
+        searchId,
         fromDate,
         toDate,
         dpIds,
+        orderingCompanyId,
         stores,
         salesChannel,
+        requestByExt,
         pageNo,
         pageSize,
+        isPrioritySort,
         fetchActiveShipment,
         excludeLockedShipments,
         paymentMethods,
@@ -2155,7 +1586,6 @@ class Order {
         customMeta,
         orderingChannel,
         companyAffiliateTag,
-        platformUserId,
       },
       { abortEarly: false, allowUnknown: true }
     );
@@ -2169,16 +1599,19 @@ class Order {
         lane,
         bagStatus,
         statusOverrideLane,
-        timeToDispatch,
         searchType,
         searchValue,
+        searchId,
         fromDate,
         toDate,
         dpIds,
+        orderingCompanyId,
         stores,
         salesChannel,
+        requestByExt,
         pageNo,
         pageSize,
+        isPrioritySort,
         fetchActiveShipment,
         excludeLockedShipments,
         paymentMethods,
@@ -2187,7 +1620,6 @@ class Order {
         customMeta,
         orderingChannel,
         companyAffiliateTag,
-        platformUserId,
       },
       { abortEarly: false, allowUnknown: false }
     );
@@ -2203,16 +1635,19 @@ class Order {
     query_params["lane"] = lane;
     query_params["bag_status"] = bagStatus;
     query_params["status_override_lane"] = statusOverrideLane;
-    query_params["time_to_dispatch"] = timeToDispatch;
     query_params["search_type"] = searchType;
     query_params["search_value"] = searchValue;
+    query_params["search_id"] = searchId;
     query_params["from_date"] = fromDate;
     query_params["to_date"] = toDate;
     query_params["dp_ids"] = dpIds;
+    query_params["ordering_company_id"] = orderingCompanyId;
     query_params["stores"] = stores;
     query_params["sales_channel"] = salesChannel;
+    query_params["request_by_ext"] = requestByExt;
     query_params["page_no"] = pageNo;
     query_params["page_size"] = pageSize;
+    query_params["is_priority_sort"] = isPrioritySort;
     query_params["fetch_active_shipment"] = fetchActiveShipment;
     query_params["exclude_locked_shipments"] = excludeLockedShipments;
     query_params["payment_methods"] = paymentMethods;
@@ -2221,7 +1656,6 @@ class Order {
     query_params["custom_meta"] = customMeta;
     query_params["ordering_channel"] = orderingChannel;
     query_params["company_affiliate_tag"] = companyAffiliateTag;
-    query_params["platform_user_id"] = platformUserId;
 
     const xHeaders = {};
 
@@ -2313,8 +1747,8 @@ class Order {
 
   /**
    * @param {Object} arg - Arg object.
-   * @param {string} arg.view - Name of View
-   * @param {string} [arg.groupEntity] - Group Entity Name
+   * @param {string} arg.view -
+   * @param {string} [arg.groupEntity] -
    * @returns {Promise<FiltersResponse>} - Success response
    * @summary:
    * @description:
@@ -2764,70 +2198,6 @@ class Order {
 
   /**
    * @param {Object} arg - Arg object.
-   * @param {SendUserMobileOTP} arg.body
-   * @returns {Promise<SendUserMobileOtpResponse>} - Success response
-   * @summary:
-   * @description:
-   */
-  async sendUserMobileOTP({ body } = {}) {
-    const { error } = OrderValidator.sendUserMobileOTP().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = OrderValidator.sendUserMobileOTP().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: "Parameter Validation warrnings for sendUserMobileOTP",
-      });
-      Logger({ level: "WARN", message: warrning });
-    }
-
-    const query_params = {};
-
-    const xHeaders = {};
-
-    const response = await PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/order-manage/v1.0/company/${this.config.companyId}/user/send/otp/mobile`,
-      query_params,
-      body,
-      xHeaders
-    );
-
-    const {
-      error: res_error,
-    } = OrderModel.SendUserMobileOtpResponse().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
-
-    if (res_error) {
-      Logger({
-        level: "WARN",
-        message: "Response Validation Warnnings for sendUserMobileOTP",
-      });
-      Logger({ level: "WARN", message: res_error });
-    }
-
-    return response;
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
    * @param {string} arg.shipmentId -
    * @param {string} [arg.name] -
    * @param {string} [arg.address] -
@@ -2951,8 +2321,8 @@ class Order {
 
   /**
    * @param {Object} arg - Arg object.
-   * @param {UpdatePackagingDimensionsPayload} arg.body
-   * @returns {Promise<UpdatePackagingDimensionsResponse>} - Success response
+   * @param {CreateOrderPayload} arg.body
+   * @returns {Promise<CreateOrderResponse>} - Success response
    * @summary:
    * @description:
    */
@@ -2999,7 +2369,7 @@ class Order {
 
     const {
       error: res_error,
-    } = OrderModel.UpdatePackagingDimensionsResponse().validate(response, {
+    } = OrderModel.CreateOrderResponse().validate(response, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -3198,134 +2568,6 @@ class Order {
       Logger({
         level: "WARN",
         message: "Response Validation Warnnings for uploadConsent",
-      });
-      Logger({ level: "WARN", message: res_error });
-    }
-
-    return response;
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {JioCodeUpsertPayload} arg.body
-   * @returns {Promise<JioCodeUpsertResponse>} - Success response
-   * @summary:
-   * @description:
-   */
-  async upsertJioCode({ body } = {}) {
-    const { error } = OrderValidator.upsertJioCode().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = OrderValidator.upsertJioCode().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: "Parameter Validation warrnings for upsertJioCode",
-      });
-      Logger({ level: "WARN", message: warrning });
-    }
-
-    const query_params = {};
-
-    const xHeaders = {};
-
-    const response = await PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/orders/v1.0/company/${this.config.companyId}/upsert/jiocode/article`,
-      query_params,
-      body,
-      xHeaders
-    );
-
-    const {
-      error: res_error,
-    } = OrderModel.JioCodeUpsertResponse().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
-
-    if (res_error) {
-      Logger({
-        level: "WARN",
-        message: "Response Validation Warnnings for upsertJioCode",
-      });
-      Logger({ level: "WARN", message: res_error });
-    }
-
-    return response;
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {VerifyMobileOTP} arg.body
-   * @returns {Promise<VerifyOtpResponse>} - Success response
-   * @summary:
-   * @description:
-   */
-  async verifyMobileOTP({ body } = {}) {
-    const { error } = OrderValidator.verifyMobileOTP().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = OrderValidator.verifyMobileOTP().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: "Parameter Validation warrnings for verifyMobileOTP",
-      });
-      Logger({ level: "WARN", message: warrning });
-    }
-
-    const query_params = {};
-
-    const xHeaders = {};
-
-    const response = await PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/order-manage/v1.0/company/${this.config.companyId}/user/verify/otp`,
-      query_params,
-      body,
-      xHeaders
-    );
-
-    const {
-      error: res_error,
-    } = OrderModel.VerifyOtpResponse().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
-
-    if (res_error) {
-      Logger({
-        level: "WARN",
-        message: "Response Validation Warnnings for verifyMobileOTP",
       });
       Logger({ level: "WARN", message: res_error });
     }

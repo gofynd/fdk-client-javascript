@@ -6,13 +6,7 @@
 ##### [Back to Platform docs](./README.md)
 
 ## Webhook Methods
-Sureshot is a webhook system where user can register their webhook to all available events in Fynd Platform, On event trigger. Sureshot will call all registered webhook endpoints for that specific event.This is the feature where sellers can subscribe(register webhook) to events provided. 
-
- Sellers can view list of events available for subscription. 
-
- They can register their webhook to specific event. 
-
- Once that event gets triggered in system, sellers will receive event data on their registered webhook
+Webhook dispatcher with retry and one event to many subscriber vice versa
 
 * [fetchAllEventConfigurations](#fetchalleventconfigurations)
 * [getSubscriberById](#getsubscriberbyid)
@@ -423,21 +417,6 @@ Success
 
 ---
 
-#### [EventConfigDetails](#EventConfigDetails)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | created_on | string? |  yes  |  |
- | description | string? |  yes  |  |
- | display_name | string? |  yes  |  |
- | event_category | string? |  yes  |  |
- | event_name | string? |  yes  |  |
- | event_type | string? |  yes  |  |
- | version | string? |  yes  |  |
- 
-
----
-
 #### [EventConfigList](#EventConfigList)
 
  | Properties | Type | Nullable | Description |
@@ -513,22 +492,6 @@ Success
  | email_id | string? |  yes  |  |
  | event_id | [number]? |  yes  |  |
  | id | number? |  yes  |  |
- | name | string? |  yes  |  |
- | status | [SubscriberStatus](#SubscriberStatus)? |  yes  |  |
- | webhook_url | string? |  yes  |  |
- 
-
----
-
-#### [SubscriberConfigDetails](#SubscriberConfigDetails)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | association | [Association](#Association)? |  yes  |  |
- | auth_meta | [AuthMeta](#AuthMeta)? |  yes  |  |
- | custom_headers | string? |  yes  |  |
- | email_id | string? |  yes  |  |
- | event_id | [number]? |  yes  |  |
  | name | string? |  yes  |  |
  | status | [SubscriberStatus](#SubscriberStatus)? |  yes  |  |
  | webhook_url | string? |  yes  |  |

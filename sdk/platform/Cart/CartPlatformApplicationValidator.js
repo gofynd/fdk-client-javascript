@@ -304,7 +304,7 @@ class CartValidator {
     }).required();
   }
 
-  static removeCartMetaConfig() {
+  static removeCartDynamicInjection() {
     return Joi.object({
       id: Joi.string().allow("").required(),
     }).required();

@@ -732,6 +732,7 @@ Success
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | brand_uid | number? |  yes  |  |
+ | discount_meta | [DiscountMeta](#DiscountMeta)? |  yes  |  |
  | discount_type | string |  no  |  |
  | item_code | string? |  yes  |  |
  | seller_identifier | string? |  yes  |  |
@@ -762,6 +763,16 @@ Success
  | store_ids | [number]? |  yes  |  |
  | validity | [ValidityObject](#ValidityObject) |  no  |  |
  | value | number? |  yes  |  |
+ 
+
+---
+
+#### [DiscountMeta](#DiscountMeta)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | number_of_minutes | number |  no  |  |
+ | timer | boolean |  no  |  |
  
 
 ---

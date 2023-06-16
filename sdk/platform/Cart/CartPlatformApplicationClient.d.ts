@@ -616,10 +616,10 @@ declare class Cart {
      * @param {Object} arg - Arg object.
      * @param {string} arg.id -
      * @returns {Promise<SuccessMessage>} - Success response
-     * @summary: Remove cart meta configuration
-     * @description: Remove cart meta configuration
+     * @summary: Remove cart dynamic injection
+     * @description: Remove cart dynamic injection
      */
-    removeCartMetaConfig({ id }?: {
+    removeCartDynamicInjection({ id }?: {
         id: string;
     }): Promise<SuccessMessage>;
     /**

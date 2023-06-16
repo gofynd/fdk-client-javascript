@@ -121,7 +121,7 @@ const data = await applicationClient.fileStorage.completeUpload({  namespace : v
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
-| namespace | string | yes | Segregation of different types of files(prodcuts, orders, logistics etc), Required for validating the data of the file being uploaded, decides where exactly the file will be stored inside the storage bucket. |  
+| namespace | string | yes | Segregation of different types of files(products, orders, logistics etc), Required for validating the data of the file being uploaded, decides where exactly the file will be stored inside the storage bucket. |  
 | body | [StartResponse](#StartResponse) | yes | Request body |
 
 
@@ -252,7 +252,7 @@ const data = await applicationClient.fileStorage.startUpload({  namespace : valu
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
-| namespace | string | yes | Segregation of different types of files(prodcuts, orders, logistics etc), Required for validating the data of the file being uploaded, decides where exactly the file will be stored inside the storage bucket. |  
+| namespace | string | yes | Segregation of different types of files(products, orders, logistics etc), Required for validating the data of the file being uploaded, decides where exactly the file will be stored inside the storage bucket. |  
 | body | [StartRequest](#StartRequest) | yes | Request body |
 
 

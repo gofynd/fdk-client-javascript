@@ -2896,11 +2896,11 @@ class Cart {
    * @param {Object} arg - Arg object.
    * @param {string} arg.id -
    * @returns {Promise<SuccessMessage>} - Success response
-   * @summary: Remove cart meta configuration
-   * @description: Remove cart meta configuration
+   * @summary: Remove cart dynamic injection
+   * @description: Remove cart dynamic injection
    */
-  async removeCartMetaConfig({ id } = {}) {
-    const { error } = CartValidator.removeCartMetaConfig().validate(
+  async removeCartDynamicInjection({ id } = {}) {
+    const { error } = CartValidator.removeCartDynamicInjection().validate(
       {
         id,
       },
@@ -2911,7 +2911,9 @@ class Cart {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = CartValidator.removeCartMetaConfig().validate(
+    const {
+      error: warrning,
+    } = CartValidator.removeCartDynamicInjection().validate(
       {
         id,
       },
@@ -2920,7 +2922,8 @@ class Cart {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for removeCartMetaConfig",
+        message:
+          "Parameter Validation warrnings for removeCartDynamicInjection",
       });
       Logger({ level: "WARN", message: warrning });
     }
@@ -2943,7 +2946,7 @@ class Cart {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for removeCartMetaConfig",
+        message: "Response Validation Warnnings for removeCartDynamicInjection",
       });
       Logger({ level: "WARN", message: res_error });
     }

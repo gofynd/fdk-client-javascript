@@ -50,7 +50,19 @@ class CommunicationValidator {
     }).required();
   }
 
+  static deleteEmailProviderById() {
+    return Joi.object({
+      id: Joi.string().allow("").required(),
+    }).required();
+  }
+
   static deleteEmailTemplateById() {
+    return Joi.object({
+      id: Joi.string().allow("").required(),
+    }).required();
+  }
+
+  static deleteSmsProviderById() {
     return Joi.object({
       id: Joi.string().allow("").required(),
     }).required();
@@ -66,6 +78,10 @@ class CommunicationValidator {
     return Joi.object({
       id: Joi.string().allow("").required(),
     }).required();
+  }
+
+  static getAppProviders() {
+    return Joi.object({}).required();
   }
 
   static getAudienceById() {
@@ -111,6 +127,14 @@ class CommunicationValidator {
     }).required();
   }
 
+  static getDefaultEmailProviders() {
+    return Joi.object({}).required();
+  }
+
+  static getDefaultSmsProviders() {
+    return Joi.object({}).required();
+  }
+
   static getEmailProviderById() {
     return Joi.object({
       id: Joi.string().allow("").required(),
@@ -145,6 +169,10 @@ class CommunicationValidator {
       pageSize: Joi.number(),
       populate: Joi.string().allow(""),
     }).required();
+  }
+
+  static getGlobalProviders() {
+    return Joi.object({}).required();
   }
 
   static getJobLogs() {
@@ -276,6 +304,12 @@ class CommunicationValidator {
   static triggerCampaignJob() {
     return Joi.object({
       body: CommunicationModel.TriggerJobRequest().required(),
+    }).required();
+  }
+
+  static updateAppProviders() {
+    return Joi.object({
+      body: CommunicationModel.AppProviderReq().required(),
     }).required();
   }
 

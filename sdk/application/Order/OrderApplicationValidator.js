@@ -12,7 +12,6 @@ class OrderValidator {
   static getInvoiceByShipmentId() {
     return Joi.object({
       shipmentId: Joi.string().allow("").required(),
-      documentType: Joi.string().allow(""),
     }).required();
   }
 
@@ -36,18 +35,6 @@ class OrderValidator {
   static getPosOrderById() {
     return Joi.object({
       orderId: Joi.string().allow("").required(),
-    }).required();
-  }
-
-  static getProducts() {
-    return Joi.object({
-      companyId: Joi.number().required(),
-      status: Joi.number(),
-      pageNo: Joi.number(),
-      pageSize: Joi.number(),
-      fromDate: Joi.string().allow(""),
-      toDate: Joi.string().allow(""),
-      searchValue: Joi.string().allow(""),
     }).required();
   }
 
@@ -80,13 +67,6 @@ class OrderValidator {
   static trackShipment() {
     return Joi.object({
       shipmentId: Joi.string().allow("").required(),
-    }).required();
-  }
-
-  static updateShipmentStatus() {
-    return Joi.object({
-      shipmentId: Joi.string().allow("").required(),
-      body: OrderModel.UpdateShipmentStatusRequest().required(),
     }).required();
   }
 

@@ -8992,11 +8992,11 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
  | buy_rules | [[BuyRules](#BuyRules)]? |  yes  | Buy rules for promotions |
  | discount_rules | [[DiscountRulesApp](#DiscountRulesApp)]? |  yes  | Discount rules for promotions |
  | mrp_promotion | boolean? |  yes  | If applied promotion is applied on product MRP or ESP |
- | offer_text | string? |  yes  | Offer text of current promotion |
  | ownership | [Ownership](#Ownership)? |  yes  | Ownership of promotion |
  | promo_id | string? |  yes  | Promotion id |
  | promotion_group | string? |  yes  | Promotion group for the promotion |
  | promotion_name | string? |  yes  | Promotion name of current promotion |
+ | promotion_offer_text | string? |  yes  | Offer text of current promotion |
  | promotion_type | string? |  yes  | Promotion type of current promotion |
  
 

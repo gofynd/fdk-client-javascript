@@ -1,6 +1,67 @@
 const Joi = require("joi");
 
 class CommunicationModel {
+  static ApikeyValidatorError() {
+    return Joi.object({
+      message: CommunicationModel.ApikeyValidatorErrorMessage(),
+      sentry: Joi.string().allow(""),
+    });
+  }
+  static ApikeyValidatorErrorMessage() {
+    return Joi.object({
+      api_key: CommunicationModel.ValidatorErrorBody(),
+    });
+  }
+  static AppProvider() {
+    return Joi.object({
+      __v: Joi.number(),
+      _id: Joi.string().allow(""),
+      application: Joi.string().allow(""),
+      created_at: Joi.string().allow(""),
+      email: CommunicationModel.AppProviderRes(),
+      sms: CommunicationModel.AppProviderRes(),
+      updated_at: Joi.string().allow(""),
+      voice: CommunicationModel.AppProviderResVoice(),
+    });
+  }
+  static AppProviderAdmin() {
+    return Joi.object({
+      email: CommunicationModel.AppProviderAdminObj(),
+      sms: CommunicationModel.AppProviderAdminObj(),
+      voice: CommunicationModel.AppProviderAdminObj(),
+    });
+  }
+  static AppProviderAdminObj() {
+    return Joi.object({
+      otp: CommunicationModel.AppProviderResObj(),
+      transaction: CommunicationModel.AppProviderResObj(),
+    });
+  }
+  static AppProviderReq() {
+    return Joi.object({
+      email: CommunicationModel.AppProviderRes(),
+      sms: CommunicationModel.AppProviderRes(),
+      voice: CommunicationModel.AppProviderResVoice(),
+    });
+  }
+  static AppProviderRes() {
+    return Joi.object({
+      otp: CommunicationModel.AppProviderResObj(),
+      promotional: CommunicationModel.AppProviderResObj(),
+      transaction: CommunicationModel.AppProviderResObj(),
+    });
+  }
+  static AppProviderResObj() {
+    return Joi.object({
+      provider: Joi.string().allow(""),
+    });
+  }
+  static AppProviderResVoice() {
+    return Joi.object({
+      otp: CommunicationModel.AppProviderResObj(),
+      transaction: CommunicationModel.AppProviderResObj(),
+    });
+  }
   static Audience() {
     return Joi.object({
       __v: Joi.number(),
@@ -119,12 +180,59 @@ class CommunicationModel {
       from_name: Joi.string().allow(""),
     });
   }
+  static CastToStringFail() {
+    return Joi.object({
+      message: Joi.string().allow(""),
+      sentry: Joi.string().allow(""),
+    });
+  }
+  static DefaultEmailProviders() {
+    return Joi.object({
+      _id: Joi.string().allow(""),
+      from_address: Joi.array().items(
+        CommunicationModel.DefaultEmailProvidersObjFrom()
+      ),
+      is_default: Joi.boolean(),
+      name: Joi.string().allow(""),
+    });
+  }
+  static DefaultEmailProvidersObjFrom() {
+    return Joi.object({
+      email: Joi.string().allow(""),
+      is_default: Joi.boolean(),
+      name: Joi.string().allow(""),
+    });
+  }
+  static DefaultSmsProviders() {
+    return Joi.object({
+      _id: Joi.string().allow(""),
+      is_default: Joi.boolean(),
+      name: Joi.string().allow(""),
+    });
+  }
   static EmailProvider() {
     return Joi.object({
       __v: Joi.number(),
       _id: Joi.string().allow(""),
       api_key: Joi.string().allow(""),
       application: Joi.string().allow(""),
+      created_at: Joi.string().allow(""),
+      description: Joi.string().allow(""),
+      from_address: Joi.array().items(
+        CommunicationModel.EmailProviderReqFrom()
+      ),
+      name: Joi.string().allow(""),
+      provider: Joi.string().allow(""),
+      slug: Joi.string().allow(""),
+      type: Joi.string().allow(""),
+      updated_at: Joi.string().allow(""),
+    });
+  }
+  static EmailProviderAdmin() {
+    return Joi.object({
+      __v: Joi.number(),
+      _id: Joi.string().allow(""),
+      api_key: Joi.string().allow(""),
       created_at: Joi.string().allow(""),
       description: Joi.string().allow(""),
       from_address: Joi.array().items(
@@ -157,6 +265,12 @@ class CommunicationModel {
     });
   }
   static EmailProviders() {
+    return Joi.object({
+      items: Joi.array().items(CommunicationModel.EmailProvider()),
+      page: CommunicationModel.Page(),
+    });
+  }
+  static EmailProvidersAdmin() {
     return Joi.object({
       items: Joi.array().items(CommunicationModel.EmailProvider()),
       page: CommunicationModel.Page(),
@@ -309,6 +423,22 @@ class CommunicationModel {
       template: Joi.string().allow(""),
     });
   }
+  static FeedidValidatorError() {
+    return Joi.object({
+      message: CommunicationModel.FeedidValidatorErrorMessage(),
+      sentry: Joi.string().allow(""),
+    });
+  }
+  static FeedidValidatorErrorMessage() {
+    return Joi.object({
+      feedid: CommunicationModel.ValidatorErrorBody(),
+    });
+  }
+  static GenericSuccess() {
+    return Joi.object({
+      success: Joi.boolean(),
+    });
+  }
   static GetNRecordsCsvReq() {
     return Joi.object({
       count: Joi.number(),
@@ -333,6 +463,38 @@ class CommunicationModel {
   static GetStats() {
     return Joi.object({
       items: Joi.array().items(CommunicationModel.Stats()),
+    });
+  }
+  static GlobalProviders() {
+    return Joi.object({
+      email: Joi.array().items(CommunicationModel.GlobalProvidersResObj()),
+      sms: Joi.array().items(CommunicationModel.GlobalProvidersResObj()),
+      voice: Joi.array().items(CommunicationModel.GlobalProvidersResObj()),
+    });
+  }
+  static GlobalProvidersResObj() {
+    return Joi.object({
+      _id: Joi.string().allow(""),
+      name: Joi.string().allow(""),
+    });
+  }
+  static InvalidID() {
+    return Joi.object({
+      message: Joi.string().allow(""),
+      sentry: Joi.string().allow(""),
+    });
+  }
+  static InvalidInputRequiredByteOrHexError() {
+    return Joi.object({
+      message: Joi.string().allow(""),
+      sentry: Joi.string().allow(""),
+    });
+  }
+  static InvalidRangeErrorReqPositive() {
+    return Joi.object({
+      code: Joi.number(),
+      message: Joi.string().allow(""),
+      sentry: Joi.string().allow(""),
     });
   }
   static Job() {
@@ -420,6 +582,17 @@ class CommunicationModel {
       trace: Joi.string().allow(""),
     });
   }
+  static NameValidatorError() {
+    return Joi.object({
+      message: CommunicationModel.NameValidatorErrorMessage(),
+      sentry: Joi.string().allow(""),
+    });
+  }
+  static NameValidatorErrorMessage() {
+    return Joi.object({
+      name: CommunicationModel.ValidatorErrorBody(),
+    });
+  }
   static NotFound() {
     return Joi.object({
       message: Joi.string().allow(""),
@@ -444,6 +617,17 @@ class CommunicationModel {
       next_id: Joi.string().allow(""),
       size: Joi.number(),
       type: Joi.string().allow("").required(),
+    });
+  }
+  static PasswordValidatorError() {
+    return Joi.object({
+      message: CommunicationModel.PasswordValidatorErrorMessage(),
+      sentry: Joi.string().allow(""),
+    });
+  }
+  static PasswordValidatorErrorMessage() {
+    return Joi.object({
+      password: CommunicationModel.ValidatorErrorBody(),
     });
   }
   static PayloadEmailProviderStructure() {
@@ -597,6 +781,25 @@ class CommunicationModel {
       authkey: Joi.string().allow(""),
       created_at: Joi.string().allow(""),
       description: Joi.string().allow(""),
+      entity_id: Joi.string().allow(""),
+      name: Joi.string().allow(""),
+      provider: Joi.string().allow(""),
+      rpt: Joi.number(),
+      sender: Joi.string().allow(""),
+      slug: Joi.string().allow(""),
+      type: Joi.string().allow(""),
+      updated_at: Joi.string().allow(""),
+      username: Joi.string().allow(""),
+    });
+  }
+  static SmsProviderAdmin() {
+    return Joi.object({
+      __v: Joi.number(),
+      _id: Joi.string().allow(""),
+      authkey: Joi.string().allow(""),
+      created_at: Joi.string().allow(""),
+      description: Joi.string().allow(""),
+      entity_id: Joi.string().allow(""),
       name: Joi.string().allow(""),
       provider: Joi.string().allow(""),
       rpt: Joi.number(),
@@ -621,6 +824,12 @@ class CommunicationModel {
   static SmsProviders() {
     return Joi.object({
       items: Joi.array().items(CommunicationModel.SmsProvider()),
+      page: CommunicationModel.Page(),
+    });
+  }
+  static SmsProvidersAdmin() {
+    return Joi.object({
+      items: Joi.array().items(CommunicationModel.SmsProviderAdmin()),
       page: CommunicationModel.Page(),
     });
   }
@@ -858,6 +1067,50 @@ class CommunicationModel {
   static TriggerJobResponse() {
     return Joi.object({
       status: Joi.number(),
+    });
+  }
+  static UpdateGlobalProviders() {
+    return Joi.object({
+      __v: Joi.number(),
+      _id: Joi.string().allow(""),
+      created_at: Joi.string().allow(""),
+      email: CommunicationModel.UpdateGlobalProvidersObj(),
+      sms: CommunicationModel.UpdateGlobalProvidersObj(),
+      updated_at: Joi.string().allow(""),
+      voice: CommunicationModel.UpdateGlobalProvidersObj(),
+    });
+  }
+  static UpdateGlobalProvidersObj() {
+    return Joi.object({
+      default_provider: Joi.string().allow(""),
+      otp_provider: Joi.string().allow(""),
+    });
+  }
+  static UsernameValidatorError() {
+    return Joi.object({
+      message: CommunicationModel.UsernameValidatorErrorMessage(),
+      sentry: Joi.string().allow(""),
+    });
+  }
+  static UsernameValidatorErrorMessage() {
+    return Joi.object({
+      username: CommunicationModel.ValidatorErrorBody(),
+    });
+  }
+  static ValidatorErrorBody() {
+    return Joi.object({
+      kind: Joi.string().allow(""),
+      message: Joi.string().allow(""),
+      name: Joi.string().allow(""),
+      path: Joi.string().allow(""),
+      properties: CommunicationModel.ValidatorErrorMessageProperties(),
+    });
+  }
+  static ValidatorErrorMessageProperties() {
+    return Joi.object({
+      message: Joi.string().allow(""),
+      path: Joi.string().allow(""),
+      type: Joi.string().allow(""),
     });
   }
   static VerifyOtpCommsErrorRes() {

@@ -85,11 +85,11 @@ class CartModel {
       buy_rules: Joi.array().items(CartModel.BuyRules()),
       discount_rules: Joi.array().items(CartModel.DiscountRulesApp()),
       mrp_promotion: Joi.boolean(),
-      offer_text: Joi.string().allow(""),
       ownership: CartModel.Ownership(),
       promo_id: Joi.string().allow(""),
       promotion_group: Joi.string().allow(""),
       promotion_name: Joi.string().allow(""),
+      promotion_offer_text: Joi.string().allow(""),
       promotion_type: Joi.string().allow(""),
     });
   }

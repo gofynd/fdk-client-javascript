@@ -143,7 +143,7 @@ class Communication {
    * @param {EmailProviderReq} arg.body
    * @returns {Promise<EmailProvider>} - Success response
    * @summary: Create email provider
-   * @description: Create email provider
+   * @description: By using this API, a new email provider will be created based on the user's customised definitions.
    */
   async createEmailProvider({ body } = {}) {
     const { error } = CommunicationValidator.createEmailProvider().validate(
@@ -269,7 +269,7 @@ class Communication {
    * @param {SmsProviderReq} arg.body
    * @returns {Promise<SmsProvider>} - Success response
    * @summary: Create sms provider
-   * @description: Create sms provider
+   * @description: By using this API, a new SMS provider will be created based on the user's customised definitions.
    */
   async createSmsProvider({ body } = {}) {
     const { error } = CommunicationValidator.createSmsProvider().validate(
@@ -518,6 +518,69 @@ class Communication {
 
   /**
    * @param {Object} arg - Arg object.
+   * @param {string} arg.id - Email provider id
+   * @returns {Promise<GenericSuccess>} - Success response
+   * @summary: delete email provider by id
+   * @description: By using this api, you can delete a certain email provider based on its ID.
+   */
+  async deleteEmailProviderById({ id } = {}) {
+    const { error } = CommunicationValidator.deleteEmailProviderById().validate(
+      {
+        id,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = CommunicationValidator.deleteEmailProviderById().validate(
+      {
+        id,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for deleteEmailProviderById",
+      });
+      Logger({ level: "WARN", message: warrning });
+    }
+
+    const query_params = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "delete",
+      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/email/providers/${id}`,
+      query_params,
+      undefined
+    );
+
+    const {
+      error: res_error,
+    } = CommunicationModel.GenericSuccess().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for deleteEmailProviderById",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
    * @param {string} arg.id - Email template id
    * @returns {Promise<EmailTemplateDeleteSuccessRes>} - Success response
    * @summary: Delete email template by id
@@ -572,6 +635,69 @@ class Communication {
       Logger({
         level: "WARN",
         message: "Response Validation Warnnings for deleteEmailTemplateById",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.id - Sms provider id
+   * @returns {Promise<GenericSuccess>} - Success response
+   * @summary: delete sms provider by id
+   * @description: By using this api, you can delete a certain SMS provider based on its ID.
+   */
+  async deleteSmsProviderById({ id } = {}) {
+    const { error } = CommunicationValidator.deleteSmsProviderById().validate(
+      {
+        id,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = CommunicationValidator.deleteSmsProviderById().validate(
+      {
+        id,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for deleteSmsProviderById",
+      });
+      Logger({ level: "WARN", message: warrning });
+    }
+
+    const query_params = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "delete",
+      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/sms/providers/${id}`,
+      query_params,
+      undefined
+    );
+
+    const {
+      error: res_error,
+    } = CommunicationModel.GenericSuccess().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for deleteSmsProviderById",
       });
       Logger({ level: "WARN", message: res_error });
     }
@@ -698,6 +824,64 @@ class Communication {
       Logger({
         level: "WARN",
         message: "Response Validation Warnnings for deleteVoiceTemplateById",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @returns {Promise<AppProvider>} - Success response
+   * @summary: Get app providers
+   * @description: Using this API will return a list of application providers.
+   */
+  async getAppProviders({} = {}) {
+    const { error } = CommunicationValidator.getAppProviders().validate(
+      {},
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = CommunicationValidator.getAppProviders().validate(
+      {},
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getAppProviders",
+      });
+      Logger({ level: "WARN", message: warrning });
+    }
+
+    const query_params = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/app-provider/get-provider`,
+      query_params,
+      undefined
+    );
+
+    const {
+      error: res_error,
+    } = CommunicationModel.AppProvider().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getAppProviders",
       });
       Logger({ level: "WARN", message: res_error });
     }
@@ -1110,10 +1294,122 @@ class Communication {
 
   /**
    * @param {Object} arg - Arg object.
+   * @returns {Promise<DefaultEmailProviders[]>} - Success response
+   * @summary: Get default email providers
+   * @description: Using this api will fetch a list of email providers provided by the system i.e the default providers.
+   */
+  async getDefaultEmailProviders({} = {}) {
+    const {
+      error,
+    } = CommunicationValidator.getDefaultEmailProviders().validate(
+      {},
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = CommunicationValidator.getDefaultEmailProviders().validate(
+      {},
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getDefaultEmailProviders",
+      });
+      Logger({ level: "WARN", message: warrning });
+    }
+
+    const query_params = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/email/default-providers`,
+      query_params,
+      undefined
+    );
+
+    const { error: res_error } = Joi.array()
+      .items(CommunicationModel.DefaultEmailProviders())
+      .validate(response, { abortEarly: false, allowUnknown: false });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getDefaultEmailProviders",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @returns {Promise<DefaultSmsProviders[]>} - Success response
+   * @summary: Get default sms providers
+   * @description: Using this api will fetch a list of SMS providers provided by the system i.e the default providers.
+   */
+  async getDefaultSmsProviders({} = {}) {
+    const { error } = CommunicationValidator.getDefaultSmsProviders().validate(
+      {},
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = CommunicationValidator.getDefaultSmsProviders().validate(
+      {},
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getDefaultSmsProviders",
+      });
+      Logger({ level: "WARN", message: warrning });
+    }
+
+    const query_params = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/sms/default-providers`,
+      query_params,
+      undefined
+    );
+
+    const { error: res_error } = Joi.array()
+      .items(CommunicationModel.DefaultSmsProviders())
+      .validate(response, { abortEarly: false, allowUnknown: false });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getDefaultSmsProviders",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
    * @param {string} arg.id - Email provider id
    * @returns {Promise<EmailProvider>} - Success response
    * @summary: Get email provider by id
-   * @description: Get email provider by id
+   * @description: By using this API, a specific email provider will be returned that was retrieved based on the provider's id.
    */
   async getEmailProviderById({ id } = {}) {
     const { error } = CommunicationValidator.getEmailProviderById().validate(
@@ -1178,7 +1474,7 @@ class Communication {
    * @param {Object} [arg.sort] - To sort based on created_at
    * @returns {Promise<EmailProviders>} - Success response
    * @summary: Get email providers
-   * @description: Get email providers
+   * @description: By using this api, you may retrieve all the email providers that the user has setup. The outcome will be in a paginated form, fetching providers according to the current page and page number parameters.
    */
   async getEmailProviders({ pageNo, pageSize, sort } = {}) {
     const { error } = CommunicationValidator.getEmailProviders().validate(
@@ -1452,6 +1748,64 @@ class Communication {
 
   /**
    * @param {Object} arg - Arg object.
+   * @returns {Promise<GlobalProviders>} - Success response
+   * @summary: Get global providers
+   * @description: Using this API, will retrieve a list of global providers.
+   */
+  async getGlobalProviders({} = {}) {
+    const { error } = CommunicationValidator.getGlobalProviders().validate(
+      {},
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = CommunicationValidator.getGlobalProviders().validate(
+      {},
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getGlobalProviders",
+      });
+      Logger({ level: "WARN", message: warrning });
+    }
+
+    const query_params = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/app-provider/global-providers`,
+      query_params,
+      undefined
+    );
+
+    const {
+      error: res_error,
+    } = CommunicationModel.GlobalProviders().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getGlobalProviders",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
    * @param {number} [arg.pageNo] - Current page no
    * @param {number} [arg.pageSize] - Current request items count
    * @param {Object} [arg.sort] - To sort based on created_at
@@ -1656,7 +2010,7 @@ class Communication {
    * @param {string} arg.id - Sms provider id
    * @returns {Promise<SmsProvider>} - Success response
    * @summary: Get sms provider by id
-   * @description: Get sms provider by id
+   * @description: By using this API, a specific SMS provider will be returned that was retrieved based on the provider's id.
    */
   async getSmsProviderById({ id } = {}) {
     const { error } = CommunicationValidator.getSmsProviderById().validate(
@@ -1721,7 +2075,7 @@ class Communication {
    * @param {Object} [arg.sort] - To sort based on created_at
    * @returns {Promise<SmsProviders>} - Success response
    * @summary: Get sms providers
-   * @description: Get sms providers
+   * @description: By using this api, you may retrieve all the SMS providers that the user has setup. The outcome will be in a paginated form, fetching providers according to the current page and page number parameters.
    */
   async getSmsProviders({ pageNo, pageSize, sort } = {}) {
     const { error } = CommunicationValidator.getSmsProviders().validate(
@@ -2732,6 +3086,69 @@ class Communication {
 
   /**
    * @param {Object} arg - Arg object.
+   * @param {AppProviderReq} arg.body
+   * @returns {Promise<AppProvider>} - Success response
+   * @summary: update app providers
+   * @description: Using this API will update the application providers.
+   */
+  async updateAppProviders({ body } = {}) {
+    const { error } = CommunicationValidator.updateAppProviders().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = CommunicationValidator.updateAppProviders().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for updateAppProviders",
+      });
+      Logger({ level: "WARN", message: warrning });
+    }
+
+    const query_params = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/app-provider/update-provider`,
+      query_params,
+      body
+    );
+
+    const {
+      error: res_error,
+    } = CommunicationModel.AppProvider().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for updateAppProviders",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
    * @param {string} arg.id - Audience id
    * @param {AudienceReq} arg.body
    * @returns {Promise<Audience>} - Success response
@@ -2868,7 +3285,7 @@ class Communication {
    * @param {EmailProviderReq} arg.body
    * @returns {Promise<EmailProvider>} - Success response
    * @summary: Update email provider by id
-   * @description: Update email provider by id
+   * @description: By using this API, you can modify a certain email provider's definitions based on it's ID.
    */
   async updateEmailProviderById({ id, body } = {}) {
     const { error } = CommunicationValidator.updateEmailProviderById().validate(
@@ -3000,7 +3417,7 @@ class Communication {
    * @param {SmsProviderReq} arg.body
    * @returns {Promise<SmsProvider>} - Success response
    * @summary: Update sms provider by id
-   * @description: Update sms provider by id
+   * @description: By using this API, you can modify a certain SMS provider's definitions based on it's ID.
    */
   async updateSmsProviderById({ id, body } = {}) {
     const { error } = CommunicationValidator.updateSmsProviderById().validate(

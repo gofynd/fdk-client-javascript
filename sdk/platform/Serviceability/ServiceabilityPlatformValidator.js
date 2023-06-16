@@ -2,6 +2,12 @@ const Joi = require("joi");
 
 const ServiceabilityModel = require("./ServiceabilityPlatformModel");
 class ServiceabilityValidator {
+  static createDpRule() {
+    return Joi.object({
+      body: ServiceabilityModel.DpRuleRequest().required(),
+    }).required();
+  }
+
   static createZone() {
     return Joi.object({
       body: ServiceabilityModel.ZoneRequest().required(),
@@ -16,17 +22,30 @@ class ServiceabilityValidator {
     return Joi.object({}).required();
   }
 
-  static getDpCompanyRules() {
+  static getDpAccountList() {
+    return Joi.object({
+      pageNumber: Joi.number(),
+      pageSize: Joi.number(),
+      stage: Joi.string().allow(""),
+      paymentMode: Joi.string().allow(""),
+      transportType: Joi.string().allow(""),
+    }).required();
+  }
+
+  static getDpCompanyRulePriority() {
     return Joi.object({}).required();
   }
 
-  static getDpRuleInsert() {
-    return Joi.object({}).required();
-  }
-
-  static getDpRules() {
+  static getDpRule() {
     return Joi.object({
       ruleUid: Joi.string().allow("").required(),
+    }).required();
+  }
+
+  static getDpRuleList() {
+    return Joi.object({
+      pageNumber: Joi.number(),
+      pageSize: Joi.number(),
     }).required();
   }
 
@@ -44,12 +63,6 @@ class ServiceabilityValidator {
       isActive: Joi.boolean(),
       channelIds: Joi.string().allow(""),
       q: Joi.string().allow(""),
-    }).required();
-  }
-
-  static getOptimalLocations() {
-    return Joi.object({
-      body: ServiceabilityModel.ReAssignStoreRequest().required(),
     }).required();
   }
 
@@ -85,15 +98,9 @@ class ServiceabilityValidator {
     }).required();
   }
 
-  static upsertDpCompanyRules() {
+  static upsertDpCompanyRulePriority() {
     return Joi.object({
       body: ServiceabilityModel.DPCompanyRuleRequest().required(),
-    }).required();
-  }
-
-  static upsertDpRules() {
-    return Joi.object({
-      body: ServiceabilityModel.DpRuleRequest().required(),
     }).required();
   }
 }

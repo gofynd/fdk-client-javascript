@@ -39,7 +39,7 @@ declare class CartValidator {
     static platformCheckoutCartV2(): any;
     static platformUpdateCart(): any;
     static removeAddress(): any;
-    static removeCartMetaConfig(): any;
+    static removeCartDynamicInjection(): any;
     static removeCoupon(): any;
     static selectAddress(): any;
     static selectPaymentMode(): any;
