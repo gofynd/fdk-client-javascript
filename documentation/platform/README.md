@@ -20,7 +20,6 @@
 * [Configuration](CONFIGURATION.md) - Application configuration apis 
 * [Cart](CART.md) - Cart APIs 
 * [Rewards](REWARDS.md) - Earn and redeem reward points 
-* [Analytics](ANALYTICS.md) - Perceptor analytics 
 * [Discount](DISCOUNT.md) - Discount 
 * [Partner](PARTNER.md) - Partner configuration apis 
 * [Webhook](WEBHOOK.md) - Webhook dispatcher with retry and one event to many subscriber vice versa 
