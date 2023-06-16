@@ -32,7 +32,7 @@ Logistics Configuration API's allows you to configure zone, application logistic
 
 
 ### createZone
-Insertion of zone in database.
+Creation of a new zone
 
 
 
@@ -53,7 +53,7 @@ const data = await platformClient.serviceability.createZone({  body : value });
 | body | [ZoneRequest](#ZoneRequest) | yes | Request body |
 
 
-This API returns response of insertion of zone in mongo database.<br>Correction- `zone_id` in the path must be removed.<br> path is `/service/platform/logistics-internal/v1.0/company/{}/zone/`
+This API allows you to create a new zone with the specified information. A zone enables serviceability based on given pincodes or regions. By creating a zone and including specific pincodes or regions, you can ensure that the stores associated with the zone are serviceable for those added pincodes or regions. This functionality is particularly useful when you need to ensure serviceability for multiple pincodes or regions by grouping them into a single zone.
 
 *Returned Response:*
 
@@ -71,7 +71,11 @@ Response status_code
 <summary><i>&nbsp; Example:</i></summary>
 
 ```json
-
+{
+  "success": true,
+  "status_code": 200,
+  "zone_id": "64809f27f2b8f575d5cb9c56"
+}
 ```
 </details>
 
@@ -1136,8 +1140,19 @@ Response status_code
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | data | [ApplicationServiceabilityConfig](#ApplicationServiceabilityConfig)? |  yes  |  |
- | error | [ServiceabilityrErrorResponse](#ServiceabilityrErrorResponse)? |  yes  |  |
+ | error | [ServiceabilityErrorResponse](#ServiceabilityErrorResponse)? |  yes  |  |
  | success | boolean |  no  |  |
+ 
+
+---
+
+#### [CommonError](#CommonError)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | error | any? |  yes  |  |
+ | status_code | string? |  yes  |  |
+ | success | string? |  yes  |  |
  
 
 ---
@@ -1354,7 +1369,7 @@ Response status_code
  | ---------- | ---- | -------- | ----------- |
  | assignment_preference | string? |  yes  |  |
  | channels | [[GetZoneDataViewChannels](#GetZoneDataViewChannels)] |  no  |  |
- | company_id | number |  no  |  |
+ | company_id | number? |  yes  |  |
  | is_active | boolean |  no  |  |
  | mapping | [[ZoneMappingType](#ZoneMappingType)] |  no  |  |
  | name | string |  no  |  |
@@ -1592,7 +1607,7 @@ Response status_code
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | current_page_number | number |  no  |  |
+ | current | number |  no  |  |
  | has_next | boolean |  no  |  |
  | item_total | number |  no  |  |
  | size | number |  no  |  |
@@ -1606,7 +1621,7 @@ Response status_code
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | country | string? |  yes  |  |
- | current_page_number | number? |  yes  |  |
+ | current | number? |  yes  |  |
  | is_active | boolean? |  yes  |  |
  | page_size | number? |  yes  |  |
  | pincode | number? |  yes  |  |
@@ -1756,17 +1771,6 @@ Response status_code
 
 ---
 
-#### [ServiceabilityrErrorResponse](#ServiceabilityrErrorResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | message | string |  no  |  |
- | type | string |  no  |  |
- | value | string |  no  |  |
- 
-
----
-
 #### [TimmingResponse](#TimmingResponse)
 
  | Properties | Type | Nullable | Description |
@@ -1812,6 +1816,7 @@ Response status_code
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | assignment_preference | string |  no  |  |
+ | is_active | boolean |  no  |  |
  | name | string |  no  |  |
  | slug | string |  no  |  |
  | store_ids | [number] |  no  |  |

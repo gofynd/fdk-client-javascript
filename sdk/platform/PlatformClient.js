@@ -12417,8 +12417,14 @@ class PlatformClient {
 /**
  * @typedef ApplicationServiceabilityConfigResponse
  * @property {ApplicationServiceabilityConfig} [data]
- * @property {ServiceabilityrErrorResponse} [error]
+ * @property {ServiceabilityErrorResponse} [error]
  * @property {boolean} success
+ */
+/**
+ * @typedef CommonError
+ * @property {Object} [error]
+ * @property {string} [status_code]
+ * @property {string} [success]
  */
 /**
  * @typedef CompanyStoreView_PageItems
@@ -12540,7 +12546,7 @@ class PlatformClient {
  * @typedef GetZoneDataViewItems
  * @property {string} [assignment_preference]
  * @property {GetZoneDataViewChannels[]} channels
- * @property {number} company_id
+ * @property {number} [company_id]
  * @property {boolean} is_active
  * @property {ZoneMappingType[]} mapping
  * @property {string} name
@@ -12683,7 +12689,7 @@ class PlatformClient {
  */
 /**
  * @typedef PincodeCodStatusListingPage
- * @property {number} current_page_number
+ * @property {number} current
  * @property {boolean} has_next
  * @property {number} item_total
  * @property {number} size
@@ -12692,7 +12698,7 @@ class PlatformClient {
 /**
  * @typedef PincodeCodStatusListingRequest
  * @property {string} [country]
- * @property {number} [current_page_number]
+ * @property {number} [current]
  * @property {boolean} [is_active]
  * @property {number} [page_size]
  * @property {number} [pincode]
@@ -12780,12 +12786,6 @@ class PlatformClient {
  * @property {string} value
  */
 /**
- * @typedef ServiceabilityrErrorResponse
- * @property {string} message
- * @property {string} type
- * @property {string} value
- */
-/**
  * @typedef TimmingResponse
  * @property {OpeningClosing} [closing]
  * @property {boolean} [open]
@@ -12813,6 +12813,7 @@ class PlatformClient {
 /**
  * @typedef Zone
  * @property {string} assignment_preference
+ * @property {boolean} is_active
  * @property {string} name
  * @property {string} slug
  * @property {number[]} store_ids

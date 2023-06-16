@@ -1636,6 +1636,7 @@ class PlatformApplicationClient {
 /** @typedef AddressResponse */
 /** @typedef ApplicationServiceabilityConfig */
 /** @typedef ApplicationServiceabilityConfigResponse */
+/** @typedef CommonError */
 /** @typedef CompanyStoreView_PageItems */
 /** @typedef CompanyStoreView_Response */
 /** @typedef ContactNumberResponse */
@@ -1687,7 +1688,6 @@ class PlatformApplicationClient {
 /** @typedef PincodeMopUpdateResponse */
 /** @typedef ProductReturnConfigResponse */
 /** @typedef ServiceabilityErrorResponse */
-/** @typedef ServiceabilityrErrorResponse */
 /** @typedef TimmingResponse */
 /** @typedef UpdateZoneData */
 /** @typedef WarningsResponse */

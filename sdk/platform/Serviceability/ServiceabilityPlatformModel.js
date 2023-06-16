@@ -24,8 +24,15 @@ class ServiceabilityModel {
   static ApplicationServiceabilityConfigResponse() {
     return Joi.object({
       data: ServiceabilityModel.ApplicationServiceabilityConfig(),
-      error: ServiceabilityModel.ServiceabilityrErrorResponse(),
+      error: ServiceabilityModel.ServiceabilityErrorResponse(),
       success: Joi.boolean().required(),
+    });
+  }
+  static CommonError() {
+    return Joi.object({
+      error: Joi.any(),
+      status_code: Joi.string().allow(""),
+      success: Joi.string().allow(""),
     });
   }
   static CompanyStoreView_PageItems() {
@@ -143,9 +150,9 @@ class ServiceabilityModel {
   }
   static Error() {
     return Joi.object({
-      message: Joi.string().allow(""),
-      type: Joi.string().allow(""),
-      value: Joi.string().allow(""),
+      message: Joi.string().allow("").allow(null),
+      type: Joi.string().allow("").allow(null),
+      value: Joi.string().allow("").allow(null),
     });
   }
   static EwayBillResponse() {
@@ -176,7 +183,7 @@ class ServiceabilityModel {
       channels: Joi.array()
         .items(ServiceabilityModel.GetZoneDataViewChannels())
         .required(),
-      company_id: Joi.number().required(),
+      company_id: Joi.number(),
       is_active: Joi.boolean().required(),
       mapping: Joi.array()
         .items(ServiceabilityModel.ZoneMappingType())
@@ -344,7 +351,7 @@ class ServiceabilityModel {
   }
   static PincodeCodStatusListingPage() {
     return Joi.object({
-      current_page_number: Joi.number().required(),
+      current: Joi.number().required(),
       has_next: Joi.boolean().required(),
       item_total: Joi.number().required(),
       size: Joi.number().required(),
@@ -354,7 +361,7 @@ class ServiceabilityModel {
   static PincodeCodStatusListingRequest() {
     return Joi.object({
       country: Joi.string().allow(""),
-      current_page_number: Joi.number(),
+      current: Joi.number(),
       is_active: Joi.boolean(),
       page_size: Joi.number(),
       pincode: Joi.number().allow(null),
@@ -460,13 +467,6 @@ class ServiceabilityModel {
       value: Joi.string().allow("").required(),
     });
   }
-  static ServiceabilityrErrorResponse() {
-    return Joi.object({
-      message: Joi.string().allow("").required(),
-      type: Joi.string().allow("").required(),
-      value: Joi.string().allow("").required(),
-    });
-  }
   static TimmingResponse() {
     return Joi.object({
       closing: ServiceabilityModel.OpeningClosing(),
@@ -502,6 +502,7 @@ class ServiceabilityModel {
   static Zone() {
     return Joi.object({
       assignment_preference: Joi.string().allow("").required(),
+      is_active: Joi.boolean().required(),
       name: Joi.string().allow("").required(),
       slug: Joi.string().allow("").required(),
       store_ids: Joi.array().items(Joi.number()).required(),

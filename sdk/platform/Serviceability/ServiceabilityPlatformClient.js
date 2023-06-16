@@ -15,8 +15,8 @@ class Serviceability {
    * @param {Object} arg - Arg object.
    * @param {ZoneRequest} arg.body
    * @returns {Promise<ZoneResponse>} - Success response
-   * @summary: Insertion of zone in database.
-   * @description: This API returns response of insertion of zone in mongo database.<br>Correction- `zone_id` in the path must be removed.<br> path is `/service/platform/logistics-internal/v1.0/company/{}/zone/`
+   * @summary: Creation of a new zone
+   * @description: This API allows you to create a new zone with the specified information. A zone enables serviceability based on given pincodes or regions. By creating a zone and including specific pincodes or regions, you can ensure that the stores associated with the zone are serviceable for those added pincodes or regions. This functionality is particularly useful when you need to ensure serviceability for multiple pincodes or regions by grouping them into a single zone.
    */
   async createZone({ body } = {}) {
     const { error } = ServiceabilityValidator.createZone().validate(

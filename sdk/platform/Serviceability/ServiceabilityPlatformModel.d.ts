@@ -3,6 +3,7 @@ declare class ServiceabilityModel {
     static AddressResponse(): any;
     static ApplicationServiceabilityConfig(): any;
     static ApplicationServiceabilityConfigResponse(): any;
+    static CommonError(): any;
     static CompanyStoreView_PageItems(): any;
     static CompanyStoreView_Response(): any;
     static ContactNumberResponse(): any;
@@ -54,7 +55,6 @@ declare class ServiceabilityModel {
     static PincodeMopUpdateResponse(): any;
     static ProductReturnConfigResponse(): any;
     static ServiceabilityErrorResponse(): any;
-    static ServiceabilityrErrorResponse(): any;
     static TimmingResponse(): any;
     static UpdateZoneData(): any;
     static WarningsResponse(): any;
