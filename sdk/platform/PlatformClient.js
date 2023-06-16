@@ -4794,6 +4794,28 @@ class PlatformClient {
  * @property {boolean} success
  */
 /**
+ * @typedef AttachOrderUser
+ * @property {string} fynd_order_id
+ * @property {AttachUserOtpData} otp_data
+ * @property {AttachUserInfo} user_info
+ */
+/**
+ * @typedef AttachOrderUserResponse
+ * @property {string} [message]
+ * @property {boolean} [success]
+ */
+/**
+ * @typedef AttachUserInfo
+ * @property {string} [country_code]
+ * @property {string} first_name
+ * @property {string} last_name
+ * @property {string} mobile
+ */
+/**
+ * @typedef AttachUserOtpData
+ * @property {string} request_id
+ */
+/**
  * @typedef Attributes
  * @property {string} [brand_name]
  * @property {string} [essential]
@@ -5110,7 +5132,7 @@ class PlatformClient {
 /**
  * @typedef Click2CallResponse
  * @property {string} call_id
- * @property {boolean} success
+ * @property {boolean} status
  */
 /**
  * @typedef CompanyDetails
@@ -5191,6 +5213,12 @@ class PlatformClient {
  * @property {string} fynd_order_id
  */
 /**
+ * @typedef CreditBalanceInfo
+ * @property {string} [customer_mobile_number]
+ * @property {string} [reason]
+ * @property {string} [total_credited_balance]
+ */
+/**
  * @typedef CurrentStatus
  * @property {number} [bag_id]
  * @property {BagStateMapper} [bag_state_mapper]
@@ -5219,6 +5247,14 @@ class PlatformClient {
 /**
  * @typedef DebugInfo
  * @property {string} [stormbreaker_uuid]
+ */
+/**
+ * @typedef Dimension
+ * @property {string} [height]
+ * @property {number} [length]
+ * @property {string} [packaging_type]
+ * @property {string} [weight]
+ * @property {number} [width]
  */
 /**
  * @typedef Dimensions
@@ -5318,6 +5354,17 @@ class PlatformClient {
  * @property {boolean} [success]
  */
 /**
+ * @typedef FetchCreditBalanceRequestPayload
+ * @property {string} affiliate_id
+ * @property {string} customer_mobile_number
+ * @property {string} seller_id
+ */
+/**
+ * @typedef FetchCreditBalanceResponsePayload
+ * @property {CreditBalanceInfo} data
+ * @property {boolean} success
+ */
+/**
  * @typedef FileResponse
  * @property {URL} [cdn]
  * @property {string} [file_name]
@@ -5410,7 +5457,7 @@ class PlatformClient {
  */
 /**
  * @typedef GetActionsResponse
- * @property {ActionInfo} permissions
+ * @property {ActionInfo[]} permissions
  */
 /**
  * @typedef GetBagsPlatformResponse
@@ -6033,6 +6080,13 @@ class PlatformClient {
  * @property {string} [platform_user_last_name]
  */
 /**
+ * @typedef PointBlankOtpData
+ * @property {string} [message]
+ * @property {number} [mobile]
+ * @property {string} [request_id]
+ * @property {number} [resend_timer]
+ */
+/**
  * @typedef PostActivityHistory
  * @property {PostHistoryData} data
  * @property {PostHistoryFilters[]} filters
@@ -6139,6 +6193,23 @@ class PlatformClient {
  * @property {ProductsReasons[]} [products]
  */
 /**
+ * @typedef RefundModeConfigRequestPayload
+ * @property {string} affiliate_id
+ * @property {string} [customer_mobile_number]
+ * @property {string} fynd_order_id
+ * @property {string} ordering_channel
+ * @property {string} seller_id
+ */
+/**
+ * @typedef RefundModeConfigResponsePayload
+ * @property {RefundModeInfo} data
+ * @property {boolean} success
+ */
+/**
+ * @typedef RefundModeInfo
+ * @property {SingleRefundModeInfo} [refund_mode_name]
+ */
+/**
  * @typedef ReplacementDetails
  * @property {string} [original_affiliate_order_id]
  * @property {string} [replacement_type]
@@ -6171,6 +6242,17 @@ class PlatformClient {
  * @property {number} bag_id
  * @property {SmsDataPayload} [data]
  * @property {string} slug
+ */
+/**
+ * @typedef SendUserMobileOTP
+ * @property {string} [country_code]
+ * @property {string} mobile
+ */
+/**
+ * @typedef SendUserMobileOtpResponse
+ * @property {PointBlankOtpData} [data]
+ * @property {string} [message]
+ * @property {boolean} [success]
  */
 /**
  * @typedef Shipment
@@ -6458,14 +6540,20 @@ class PlatformClient {
  * @property {string} [title]
  */
 /**
+ * @typedef SingleRefundModeInfo
+ * @property {string} [display_name]
+ * @property {boolean} [is_active]
+ * @property {string} [slug]
+ */
+/**
  * @typedef SmsDataPayload
- * @property {number} [amount_paid]
- * @property {string} [brand_name]
+ * @property {number} amount_paid
+ * @property {string} brand_name
  * @property {string} country_code
- * @property {string} [customer_name]
+ * @property {string} customer_name
  * @property {string} message
  * @property {string} order_id
- * @property {string} [payment_mode]
+ * @property {string} payment_mode
  * @property {number} phone_number
  * @property {number} shipment_id
  */
@@ -6473,6 +6561,7 @@ class PlatformClient {
  * @typedef StatuesRequest
  * @property {string} [exclude_bags_next_state]
  * @property {ShipmentsRequest[]} [shipments]
+ * @property {boolean} [split_shipment]
  * @property {string} [status]
  */
 /**
@@ -6653,6 +6742,16 @@ class PlatformClient {
  * @property {string} [unique_reference_number]
  */
 /**
+ * @typedef UpdatePackagingDimensionsPayload
+ * @property {string} current_status
+ * @property {Dimension[]} dimension
+ * @property {string} shipment_id
+ */
+/**
+ * @typedef UpdatePackagingDimensionsResponse
+ * @property {string} [message]
+ */
+/**
  * @typedef UpdateShipmentLockPayload
  * @property {string} action
  * @property {string} action_type
@@ -6717,6 +6816,31 @@ class PlatformClient {
  * @property {string} phone
  * @property {string} pincode
  * @property {string} state
+ */
+/**
+ * @typedef VerifyMobileOTP
+ * @property {string} fynd_order_id
+ * @property {VerifyOtpData} otp_data
+ */
+/**
+ * @typedef VerifyOtpData
+ * @property {string} mobile
+ * @property {number} otp_code
+ * @property {string} request_id
+ */
+/**
+ * @typedef VerifyOtpResponse
+ * @property {VerifyOtpResponseData} data
+ * @property {string} [message]
+ * @property {number} [status]
+ * @property {boolean} [success]
+ */
+/**
+ * @typedef VerifyOtpResponseData
+ * @property {string} [country_code]
+ * @property {string} [fynd_order_id]
+ * @property {string} [message]
+ * @property {string} [mobile]
  */
 /**
  * @typedef Weight
