@@ -115,6 +115,7 @@ declare class ThemeModel {
     static ThemesSchema(): any;
     static UmdJs(): any;
     static UMDJs(): any;
+    static UpdateThemeNameRequestBodyV2(): any;
     static UpdateThemeRequestBodyV2(): any;
     static UpgradableThemeSchema(): any;
     static UrlPropV2(): any;

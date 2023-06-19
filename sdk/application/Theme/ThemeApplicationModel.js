@@ -873,6 +873,11 @@ class ThemeModel {
       links: Joi.array().items(Joi.string().allow("")),
     });
   }
+  static UpdateThemeNameRequestBodyV2() {
+    return Joi.object({
+      name: Joi.string().allow(""),
+    });
+  }
   static UpdateThemeRequestBodyV2() {
     return Joi.object({
       config: ThemeModel.ConfigV2(),

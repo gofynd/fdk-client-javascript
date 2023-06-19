@@ -33,6 +33,20 @@ declare class Serviceability {
     getApplicationServiceability({}?: any): Promise<ApplicationServiceabilityConfigResponse>;
     /**
      * @param {Object} arg - Arg object.
+     * @returns {Promise<ApplicationSelfShipConfigResponse>} - Success response
+     * @summary: Self-ship configuration of application.
+     * @description: This API returns Self-ship configuration of the application.
+     */
+    getApplicationServiceabilitySelfShipment({}?: any): Promise<ApplicationSelfShipConfigResponse>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @returns {Promise<DPApplicationRuleResponse>} - Success response
+     * @summary: Get All DpApplicationRules rules added at application level from database.
+     * @description: This API returns response of all rules of DpApplicationRules from mongo database.
+     */
+    getDpApplicationRules({}?: any): Promise<DPApplicationRuleResponse>;
+    /**
+     * @param {Object} arg - Arg object.
      * @param {GetZoneFromPincodeViewRequest} arg.body
      * @returns {Promise<GetZoneFromPincodeViewResponse>} - Success response
      * @summary: GET zone from the Pincode.
@@ -57,6 +71,16 @@ declare class Serviceability {
         zoneId?: string[];
         q?: string;
     }): Promise<GetZoneFromApplicationIdViewResponse>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {SelfShipResponse} arg.body
+     * @returns {Promise<ApplicationSelfShipConfigResponse>} - Success response
+     * @summary: Self-ship configuration of application.
+     * @description: This API updates Self-ship configuration of the application.
+     */
+    patchApplicationServiceabilitySelfShipment({ body }?: {
+        body: SelfShipResponse;
+    }): Promise<ApplicationSelfShipConfigResponse>;
     /**
      * @param {Object} arg - Arg object.
      * @param {PincodeMopUpdateAuditHistoryRequest} arg.body
@@ -97,4 +121,14 @@ declare class Serviceability {
     updatePincodeMopView({ body }?: {
         body: PincodeMopData;
     }): Promise<PincodeMOPresponse>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {DPApplicationRuleRequest} arg.body
+     * @returns {Promise<DPApplicationRuleResponse>} - Success response
+     * @summary: Upsert of DpApplicationRules in database.
+     * @description: This API returns response of upsert of DpApplicationRules in mongo database.
+     */
+    upsertDpApplicationRules({ body }?: {
+        body: DPApplicationRuleRequest;
+    }): Promise<DPApplicationRuleResponse>;
 }

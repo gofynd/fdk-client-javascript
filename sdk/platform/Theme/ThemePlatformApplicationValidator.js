@@ -165,6 +165,13 @@ class ThemeValidator {
     }).required();
   }
 
+  static updateThemeNameV2() {
+    return Joi.object({
+      themeId: Joi.string().allow("").required(),
+      body: ThemeModel.UpdateThemeNameRequestBodyV2().required(),
+    }).required();
+  }
+
   static updateThemeV2() {
     return Joi.object({
       themeId: Joi.string().allow("").required(),

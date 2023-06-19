@@ -38,6 +38,7 @@ Responsible for themes
 * [updateMultiplePages](#updatemultiplepages)
 * [updatePage](#updatepage)
 * [updateTheme](#updatetheme)
+* [updateThemeNameV2](#updatethemenamev2)
 * [updateThemeV2](#updatethemev2)
 * [upgradeTheme](#upgradetheme)
 
@@ -33122,6 +33123,64 @@ Success. Refer `ThemesSchema` for more details.
 ---
 
 
+### updateThemeNameV2
+Update Theme Name
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").theme.updateThemeNameV2({  themeId : value,
+ body : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").theme.updateThemeNameV2({  themeId : value,
+ body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| themeId | string | yes | The ID of the theme to be updated. |  
+| body | [UpdateThemeNameRequestBodyV2](#UpdateThemeNameRequestBodyV2) | yes | Request body |
+
+
+Update the name of a theme for a specific company and application.
+
+*Returned Response:*
+
+
+
+
+[AllThemesApplicationResponseV2](#AllThemesApplicationResponseV2)
+
+Theme name updated successfully.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
 ### updateThemeV2
 Update theme for a specific company and application
 
@@ -36694,6 +36753,15 @@ Success. Upgrades the theme and shares the details of the new version in the res
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | links | [string]? |  yes  |  |
+ 
+
+---
+
+#### [UpdateThemeNameRequestBodyV2](#UpdateThemeNameRequestBodyV2)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | name | string? |  yes  | The new name of the theme. |
  
 
 ---

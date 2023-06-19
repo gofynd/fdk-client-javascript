@@ -267,6 +267,14 @@ class CatalogModel {
       width: Joi.number().required(),
     });
   }
+  static DiscountMeta() {
+    return Joi.object({
+      end: Joi.number(),
+      number_of_minutes: Joi.number(),
+      start: Joi.number(),
+      timer: Joi.boolean(),
+    });
+  }
   static ErrorResponse() {
     return Joi.object({
       error: Joi.string().allow(""),
@@ -692,6 +700,7 @@ class CatalogModel {
       article_assignment: CatalogModel.ArticleAssignmentV3(),
       article_id: Joi.string().allow(""),
       discount: Joi.string().allow(""),
+      discount_meta: CatalogModel.DiscountMeta(),
       grouped_attributes: Joi.array().items(
         CatalogModel.SellerGroupAttributes()
       ),
@@ -775,6 +784,7 @@ class CatalogModel {
       currency: Joi.string().allow(""),
       effective: Joi.number(),
       marked: Joi.number(),
+      selling: Joi.number(),
     });
   }
   static ProductStockStatusItem() {

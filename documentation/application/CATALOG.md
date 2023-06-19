@@ -8297,6 +8297,18 @@ Success. Returns a response object. Check the example shown below or refer `Foll
 
 ---
 
+#### [DiscountMeta](#DiscountMeta)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | end | number? |  yes  |  |
+ | number_of_minutes | number? |  yes  |  |
+ | start | number? |  yes  |  |
+ | timer | boolean? |  yes  |  |
+ 
+
+---
+
 #### [ErrorResponse](#ErrorResponse)
 
  | Properties | Type | Nullable | Description |
@@ -8888,6 +8900,7 @@ Success. Returns a response object. Check the example shown below or refer `Foll
  | article_assignment | [ArticleAssignmentV3](#ArticleAssignmentV3)? |  yes  |  |
  | article_id | string? |  yes  |  |
  | discount | string? |  yes  |  |
+ | discount_meta | [DiscountMeta](#DiscountMeta)? |  yes  |  |
  | grouped_attributes | [[SellerGroupAttributes](#SellerGroupAttributes)]? |  yes  |  |
  | is_cod | boolean? |  yes  |  |
  | is_gift | boolean? |  yes  |  |
@@ -8995,6 +9008,7 @@ Success. Returns a response object. Check the example shown below or refer `Foll
  | currency | string? |  yes  |  |
  | effective | number? |  yes  |  |
  | marked | number? |  yes  |  |
+ | selling | number? |  yes  |  |
  
 
 ---

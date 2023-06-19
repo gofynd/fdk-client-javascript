@@ -1650,6 +1650,70 @@ class Theme {
 
   /**
    * @param {Object} arg - Arg object.
+   * @param {string} arg.themeId - The ID of the theme to be updated.
+   * @param {UpdateThemeNameRequestBodyV2} arg.body
+   * @returns {Promise<AllThemesApplicationResponseV2>} - Success response
+   * @summary: Update Theme Name
+   * @description: Update the name of a theme for a specific company and application.
+   */
+  async updateThemeNameV2({ themeId, body } = {}) {
+    const { error } = ThemeValidator.updateThemeNameV2().validate(
+      {
+        themeId,
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = ThemeValidator.updateThemeNameV2().validate(
+      {
+        themeId,
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for updateThemeNameV2",
+      });
+      Logger({ level: "WARN", message: warrning });
+    }
+
+    const query_params = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "patch",
+      `/service/platform/theme/v2.0/company/${this.config.companyId}/application/${this.applicationId}/${themeId}/name`,
+      query_params,
+      body
+    );
+
+    const {
+      error: res_error,
+    } = ThemeModel.AllThemesApplicationResponseV2().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for updateThemeNameV2",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
    * @param {string} arg.themeId - The ID of the theme.
    * @param {UpdateThemeRequestBodyV2} arg.body
    * @returns {Promise<AllThemesApplicationResponseV2>} - Success response

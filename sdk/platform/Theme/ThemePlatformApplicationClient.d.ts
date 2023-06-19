@@ -285,6 +285,18 @@ declare class Theme {
     }): Promise<ThemesSchema>;
     /**
      * @param {Object} arg - Arg object.
+     * @param {string} arg.themeId - The ID of the theme to be updated.
+     * @param {UpdateThemeNameRequestBodyV2} arg.body
+     * @returns {Promise<AllThemesApplicationResponseV2>} - Success response
+     * @summary: Update Theme Name
+     * @description: Update the name of a theme for a specific company and application.
+     */
+    updateThemeNameV2({ themeId, body }?: {
+        themeId: string;
+        body: UpdateThemeNameRequestBodyV2;
+    }): Promise<AllThemesApplicationResponseV2>;
+    /**
+     * @param {Object} arg - Arg object.
      * @param {string} arg.themeId - The ID of the theme.
      * @param {UpdateThemeRequestBodyV2} arg.body
      * @returns {Promise<AllThemesApplicationResponseV2>} - Success response

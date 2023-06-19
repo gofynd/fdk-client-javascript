@@ -1331,6 +1331,10 @@ class PlatformClient {
  * @property {string[]} [links]
  */
 /**
+ * @typedef UpdateThemeNameRequestBodyV2
+ * @property {string} [name]
+ */
+/**
  * @typedef UpdateThemeRequestBodyV2
  * @property {ConfigV2} [config]
  * @property {FontV2} [font]
@@ -4427,16 +4431,6 @@ class PlatformClient {
  * @property {string} ifsc_code
  */
 /**
- * @typedef CancelOrResendPaymentLinkRequest
- * @property {string} payment_link_id
- */
-/**
- * @typedef CancelPaymentLinkResponse
- * @property {string} message
- * @property {number} status_code
- * @property {boolean} success
- */
-/**
  * @typedef CODdata
  * @property {boolean} is_active
  * @property {number} limit
@@ -4445,30 +4439,10 @@ class PlatformClient {
  * @property {string} user_id
  */
 /**
- * @typedef CreatePaymentLinkMeta
- * @property {string} amount
- * @property {string} [assign_card_id]
- * @property {string} cart_id
- * @property {string} checkout_mode
- * @property {string} pincode
- */
-/**
- * @typedef CreatePaymentLinkRequest
- * @property {number} amount
- * @property {string} [description]
- * @property {string} email
- * @property {string} external_order_id
- * @property {CreatePaymentLinkMeta} meta
- * @property {string} mobile_number
- */
-/**
- * @typedef CreatePaymentLinkResponse
- * @property {string} message
- * @property {string} [payment_link_id]
- * @property {string} [payment_link_url]
- * @property {number} [polling_timeout]
- * @property {number} status_code
- * @property {boolean} success
+ * @typedef Code
+ * @property {string} code
+ * @property {string} merchant_code
+ * @property {string} name
  */
 /**
  * @typedef DeletePayoutResponse
@@ -4477,75 +4451,6 @@ class PlatformClient {
 /**
  * @typedef DeleteSubscriptionPaymentMethodResponse
  * @property {boolean} success
- */
-/**
- * @typedef EdcAddRequest
- * @property {number} aggregator_id
- * @property {string} [device_tag]
- * @property {string} edc_device_serial_no
- * @property {string} edc_model
- * @property {number} store_id
- * @property {string} terminal_serial_no
- */
-/**
- * @typedef EdcAggregatorAndModelListResponse
- * @property {EdcModelData[]} data
- * @property {boolean} success
- */
-/**
- * @typedef EdcDevice
- * @property {number} aggregator_id
- * @property {string} [aggregator_name]
- * @property {string} application_id
- * @property {string} device_tag
- * @property {string} edc_device_serial_no
- * @property {string} [edc_model]
- * @property {boolean} is_active
- * @property {string} [merchant_store_pos_code]
- * @property {number} store_id
- * @property {string} terminal_serial_no
- * @property {string} terminal_unique_identifier
- */
-/**
- * @typedef EdcDeviceAddResponse
- * @property {EdcDevice} data
- * @property {boolean} success
- */
-/**
- * @typedef EdcDeviceDetailsResponse
- * @property {EdcDevice} data
- * @property {boolean} success
- */
-/**
- * @typedef EdcDeviceListResponse
- * @property {EdcDevice[]} items
- * @property {Page} page
- * @property {boolean} success
- */
-/**
- * @typedef EdcDeviceStatsResponse
- * @property {StatisticsData} statistics
- * @property {boolean} success
- */
-/**
- * @typedef EdcDeviceUpdateResponse
- * @property {boolean} success
- */
-/**
- * @typedef EdcModelData
- * @property {string} aggregator
- * @property {number} aggregator_id
- * @property {string[]} models
- */
-/**
- * @typedef EdcUpdateRequest
- * @property {number} [aggregator_id]
- * @property {string} [device_tag]
- * @property {string} [edc_device_serial_no]
- * @property {string} [edc_model]
- * @property {boolean} [is_active]
- * @property {string} [merchant_store_pos_code]
- * @property {number} [store_id]
  */
 /**
  * @typedef ErrorCodeAndDescription
@@ -4559,38 +4464,17 @@ class PlatformClient {
  * @property {boolean} success
  */
 /**
- * @typedef ErrorDescription
- * @property {number} [amount]
- * @property {boolean} [cancelled]
- * @property {boolean} [expired]
- * @property {boolean} [invalid_id]
- * @property {string} [merchant_name]
- * @property {string} [merchant_order_id]
- * @property {string} [msg]
- * @property {string} [payment_transaction_id]
- */
-/**
- * @typedef ErrorResponse
- * @property {ErrorDescription} [error]
- * @property {string} message
- * @property {number} status_code
- * @property {boolean} success
- */
-/**
  * @typedef GetOauthUrlResponse
  * @property {boolean} success
  * @property {string} url
  */
 /**
- * @typedef GetPaymentLinkResponse
- * @property {number} [amount]
- * @property {string} [external_order_id]
- * @property {string} [merchant_name]
- * @property {string} message
- * @property {string} [payment_link_current_status]
- * @property {string} [payment_link_url]
- * @property {number} [polling_timeout]
- * @property {number} status_code
+ * @typedef GetPaymentCode
+ * @property {PaymentCode} method_code
+ */
+/**
+ * @typedef GetPaymentCodeResponse
+ * @property {GetPaymentCode} data
  * @property {boolean} success
  */
 /**
@@ -4622,9 +4506,17 @@ class PlatformClient {
  * @property {string} [package_name]
  */
 /**
- * @typedef LinkStatus
- * @property {string} message
- * @property {boolean} status
+ * @typedef MerchantOnBoardingRequest
+ * @property {string} aggregator
+ * @property {string} app_id
+ * @property {string} credit_line_id
+ * @property {string} status
+ * @property {string} user_id
+ */
+/**
+ * @typedef MerchantOnBoardingResponse
+ * @property {Object} data
+ * @property {boolean} success
  */
 /**
  * @typedef MultiTenderPaymentMeta
@@ -4675,14 +4567,11 @@ class PlatformClient {
  * @property {boolean} [show_beneficiary_details]
  */
 /**
- * @typedef Page
- * @property {number} [current]
- * @property {boolean} [has_next]
- * @property {boolean} [has_previous]
- * @property {number} [item_total]
- * @property {string} [next_id]
- * @property {number} [size]
- * @property {string} type
+ * @typedef PaymentCode
+ * @property {Code} codes
+ * @property {string} name
+ * @property {string} networks
+ * @property {string} types
  */
 /**
  * @typedef PaymentConfirmationRequest
@@ -4722,46 +4611,6 @@ class PlatformClient {
  * @typedef PaymentGatewayToBeReviewed
  * @property {string[]} aggregator
  * @property {boolean} success
- */
-/**
- * @typedef PaymentInitializationRequest
- * @property {string} aggregator
- * @property {number} amount
- * @property {string} contact
- * @property {string} currency
- * @property {string} customer_id
- * @property {string} [device_id]
- * @property {string} email
- * @property {string} merchant_order_id
- * @property {string} method
- * @property {string} order_id
- * @property {string} [razorpay_payment_id]
- * @property {number} [timeout]
- * @property {string} [vpa]
- */
-/**
- * @typedef PaymentInitializationResponse
- * @property {string} aggregator
- * @property {string} [aggregator_order_id]
- * @property {number} [amount]
- * @property {string} [bqr_image]
- * @property {string} [contact]
- * @property {string} [currency]
- * @property {string} [customer_id]
- * @property {string} [device_id]
- * @property {string} [email]
- * @property {string} merchant_order_id
- * @property {string} method
- * @property {string} [order_id]
- * @property {string} [payment_id]
- * @property {string} polling_url
- * @property {string} [razorpay_payment_id]
- * @property {string} [status]
- * @property {boolean} success
- * @property {number} [timeout]
- * @property {string} [upi_poll_url]
- * @property {string} [virtual_id]
- * @property {string} [vpa]
  */
 /**
  * @typedef PaymentModeList
@@ -4805,27 +4654,6 @@ class PlatformClient {
  * @property {string} small
  */
 /**
- * @typedef PaymentObjectListSerializer
- * @property {Object} [aggregator_payment_object]
- * @property {string[]} all_status
- * @property {string} amount_in_paisa
- * @property {string} application_id
- * @property {string} collected_by
- * @property {string} company_id
- * @property {string} created_on
- * @property {string} currency
- * @property {string} current_status
- * @property {string} id
- * @property {string} modified_on
- * @property {string} payment_gateway
- * @property {string} [payment_id]
- * @property {string} payment_mode
- * @property {string} payment_mode_identifier
- * @property {Object} [refund_object]
- * @property {string} refunded_by
- * @property {Object} user_object
- */
-/**
  * @typedef PaymentOptions
  * @property {RootPaymentMode[]} payment_option
  */
@@ -4833,65 +4661,6 @@ class PlatformClient {
  * @typedef PaymentOptionsResponse
  * @property {PaymentOptions} payment_options
  * @property {boolean} success
- */
-/**
- * @typedef PaymentStatusBulkHandlerRequest
- * @property {string[]} merchant_order_id
- */
-/**
- * @typedef PaymentStatusBulkHandlerResponse
- * @property {number} [count]
- * @property {PaymentStatusObject[]} [data]
- * @property {string} [error]
- * @property {number} status
- * @property {string} success
- */
-/**
- * @typedef PaymentStatusObject
- * @property {string} merchant_order_id
- * @property {PaymentObjectListSerializer[]} [payment_object_list]
- */
-/**
- * @typedef PaymentStatusUpdateRequest
- * @property {string} aggregator
- * @property {number} amount
- * @property {string} [contact]
- * @property {string} [currency]
- * @property {string} customer_id
- * @property {string} [device_id]
- * @property {string} [email]
- * @property {string} merchant_order_id
- * @property {string} merchant_transaction_id
- * @property {string} method
- * @property {string} [order_id]
- * @property {string} [payment_id]
- * @property {string} [razorpay_payment_id]
- * @property {string} status
- * @property {string} [vpa]
- */
-/**
- * @typedef PaymentStatusUpdateResponse
- * @property {string} aggregator_name
- * @property {string} [redirect_url]
- * @property {boolean} retry
- * @property {string} status
- * @property {boolean} [success]
- */
-/**
- * @typedef Payout
- * @property {PayoutCustomer} customers
- * @property {boolean} is_active
- * @property {boolean} is_default
- * @property {PayoutMoreAttributes} more_attributes
- * @property {PayoutAggregator[]} [payouts_aggregators]
- * @property {string} transfer_type
- * @property {string} unique_transfer_no
- */
-/**
- * @typedef PayoutAggregator
- * @property {number} [aggregator_fund_id]
- * @property {number} [aggregator_id]
- * @property {number} [payout_details_id]
  */
 /**
  * @typedef PayoutBankDetails
@@ -4904,26 +4673,6 @@ class PlatformClient {
  * @property {string} [country]
  * @property {string} ifsc_code
  * @property {number} [pincode]
- * @property {string} [state]
- */
-/**
- * @typedef PayoutCustomer
- * @property {string} [email]
- * @property {number} [id]
- * @property {string} [mobile]
- * @property {string} [name]
- * @property {string} [unique_external_id]
- */
-/**
- * @typedef PayoutMoreAttributes
- * @property {string} [account_holder]
- * @property {string} [account_no]
- * @property {string} [account_type]
- * @property {string} [bank_name]
- * @property {string} [branch_name]
- * @property {string} [city]
- * @property {string} [country]
- * @property {string} [ifsc_code]
  * @property {string} [state]
  */
 /**
@@ -4950,39 +4699,13 @@ class PlatformClient {
  */
 /**
  * @typedef PayoutsResponse
- * @property {Payout[]} items
- * @property {boolean} success
- */
-/**
- * @typedef PlatformPaymentOptions
- * @property {boolean} [anonymous_cod]
- * @property {Object} [callback_url]
- * @property {number} [cod_amount_limit]
- * @property {number} [cod_charges]
- * @property {boolean} enabled
- * @property {Object} methods
- * @property {string} mode_of_payment
- * @property {Object} [payment_selection_lock]
- * @property {string} source
- */
-/**
- * @typedef PlatfromPaymentConfig
- * @property {PlatformPaymentOptions} data
- * @property {string} message
- * @property {boolean} success
- */
-/**
- * @typedef PollingPaymentLinkResponse
- * @property {string} [aggregator_name]
- * @property {number} [amount]
- * @property {number} [http_status]
- * @property {string} [message]
- * @property {string} [order_id]
- * @property {string} [payment_link_id]
- * @property {string} [redirect_url]
- * @property {string} [status]
- * @property {number} [status_code]
- * @property {boolean} [success]
+ * @property {Object} customers
+ * @property {boolean} is_active
+ * @property {boolean} is_default
+ * @property {Object} more_attributes
+ * @property {Object[]} payouts_aggregators
+ * @property {string} transfer_type
+ * @property {Object} unique_transfer_no
  */
 /**
  * @typedef RefundAccountResponse
@@ -4992,21 +4715,29 @@ class PlatformClient {
  * @property {boolean} success
  */
 /**
- * @typedef ResendOrCancelPaymentRequest
- * @property {string} [device_id]
- * @property {string} order_id
- * @property {string} request_type
+ * @typedef RepaymentDetailsSerialiserPayAll
+ * @property {string} aggregator_order_id
+ * @property {string} aggregator_transaction_id
+ * @property {string} extension_order_id
+ * @property {RepaymentRequestDetails[]} [shipment_details]
+ * @property {number} total_amount
  */
 /**
- * @typedef ResendOrCancelPaymentResponse
- * @property {LinkStatus} data
- * @property {boolean} success
+ * @typedef RepaymentRequestDetails
+ * @property {string} aggregator
+ * @property {string} aggregator_order_id
+ * @property {string} aggregator_transaction_id
+ * @property {number} amount
+ * @property {string} current_status
+ * @property {string} fwd_shipment_id
+ * @property {string} merchant_order_id
+ * @property {number} outstanding_details_id
+ * @property {string} payment_mode
+ * @property {string} payment_mode_identifier
  */
 /**
- * @typedef ResendPaymentLinkResponse
- * @property {string} message
- * @property {number} [polling_timeout]
- * @property {number} status_code
+ * @typedef RepaymentResponse
+ * @property {Object} data
  * @property {boolean} success
  */
 /**
@@ -5047,11 +4778,6 @@ class PlatformClient {
  * @property {boolean} success
  */
 /**
- * @typedef StatisticsData
- * @property {number} active_device_count
- * @property {number} inactive_device_count
- */
-/**
  * @typedef SubscriptionConfigResponse
  * @property {string} aggregator
  * @property {Object} config
@@ -5072,32 +4798,6 @@ class PlatformClient {
  * @typedef UpdatePayoutResponse
  * @property {boolean} is_active
  * @property {boolean} is_default
- * @property {boolean} success
- */
-/**
- * @typedef UpdatePlatformPaymentConfig
- * @property {boolean} [anonymous_cod]
- * @property {number} [cod_amount_limit]
- * @property {number} [cod_charges]
- * @property {Object} methods
- * @property {Object} [payment_selection_lock]
- */
-/**
- * @typedef ValidateCustomerRequest
- * @property {string} aggregator
- * @property {Object} [billing_address]
- * @property {Object} [delivery_address]
- * @property {Object} [merchant_params]
- * @property {Object[]} [order_items]
- * @property {string} [payload]
- * @property {string} phone_number
- * @property {number} transaction_amount_in_paise
- */
-/**
- * @typedef ValidateCustomerResponse
- * @property {Object} [data]
- * @property {Object} [error]
- * @property {string} message
  * @property {boolean} success
  */
 
@@ -14422,6 +14122,7 @@ class PlatformClient {
 /**
  * @typedef DiscountItems
  * @property {number} [brand_uid]
+ * @property {DiscountMeta} [discount_meta]
  * @property {string} discount_type
  * @property {string} [item_code]
  * @property {string} [seller_identifier]
@@ -14449,9 +14150,28 @@ class PlatformClient {
  * @property {number} [value]
  */
 /**
+ * @typedef DiscountMeta
+ * @property {number} number_of_minutes
+ * @property {boolean} timer
+ */
+/**
  * @typedef DownloadFileJob
  * @property {number[]} [brand_ids]
  * @property {number[]} [store_ids]
+ */
+/**
+ * @typedef FileJobRequest
+ * @property {string[]} [app_ids]
+ * @property {number[]} [brand_ids]
+ * @property {string} [discount_level]
+ * @property {string} [discount_type]
+ * @property {string} [file_path]
+ * @property {boolean} is_active
+ * @property {string} [job_type]
+ * @property {Object} [meta]
+ * @property {string} name
+ * @property {number[]} [store_ids]
+ * @property {ValidityObject} validity
  */
 /**
  * @typedef FileJobResponse
@@ -14738,6 +14458,17 @@ class PlatformClient {
  * @property {boolean} success
  */
 /**
+ * @typedef ApplicationSelfShipConfig
+ * @property {SelfShipResponse} [self_ship]
+ */
+/**
+ * @typedef ApplicationSelfShipConfigResponse
+ * @property {ServiceabilityErrorResponse} [error]
+ * @property {string} id
+ * @property {ApplicationSelfShipConfig} [self_ship]
+ * @property {boolean} success
+ */
+/**
  * @typedef ApplicationServiceabilityConfig
  * @property {string} channel_id
  * @property {string} channel_type
@@ -14754,6 +14485,20 @@ class PlatformClient {
  * @property {Object} [error]
  * @property {string} [status_code]
  * @property {string} [success]
+ */
+/**
+ * @typedef CompanyDpAccountListResponse
+ * @property {Dp1[]} items
+ * @property {Page} page
+ * @property {boolean} success
+ */
+/**
+ * @typedef CompanyDpAccountRequest
+ * @property {Dp1[]} data
+ */
+/**
+ * @typedef CompanyDpAccountResponse
+ * @property {boolean} success
  */
 /**
  * @typedef CompanyStoreView_PageItems
@@ -14812,6 +14557,113 @@ class PlatformClient {
  * @property {string} [transport_mode]
  */
 /**
+ * @typedef Dp1
+ * @property {string} account_id
+ * @property {string} dp_id
+ * @property {boolean} is_self_ship
+ * @property {string} name
+ * @property {string} plan_id
+ * @property {Object} plan_rules
+ * @property {string} stage
+ */
+/**
+ * @typedef DpAccountFailureResponse
+ * @property {ErrorResponse[]} error
+ * @property {number} status_code
+ * @property {boolean} success
+ */
+/**
+ * @typedef DPApplicationRuleRequest
+ * @property {string[]} shipping_rules
+ */
+/**
+ * @typedef DPApplicationRuleResponse
+ * @property {DpRuleResponse[]} data
+ * @property {boolean} status_code
+ * @property {boolean} success
+ */
+/**
+ * @typedef DPCompanyRuleRequest
+ * @property {string[]} rule_ids
+ */
+/**
+ * @typedef DPCompanyRuleResponse
+ * @property {DpRuleResponse[]} data
+ * @property {number} status_code
+ * @property {boolean} success
+ */
+/**
+ * @typedef DpIds
+ * @property {boolean} enabled
+ * @property {Object} [meta]
+ * @property {number} priority
+ */
+/**
+ * @typedef DpMultipleRuleSuccessResponse
+ * @property {DpRule[]} items
+ * @property {Page} page
+ * @property {boolean} success
+ */
+/**
+ * @typedef DpRule
+ * @property {number} [company_id]
+ * @property {Object[]} conditions
+ * @property {Object} dp_ids
+ * @property {boolean} [is_active]
+ * @property {string} name
+ */
+/**
+ * @typedef DpRuleRequest
+ * @property {number} [company_id]
+ * @property {Object[]} conditions
+ * @property {Object} dp_ids
+ * @property {boolean} [is_active]
+ * @property {string} name
+ */
+/**
+ * @typedef DpRuleResponse
+ * @property {number} company_id
+ * @property {string[]} conditions
+ * @property {Object} [created_by]
+ * @property {string} [created_on]
+ * @property {Object} dp_ids
+ * @property {boolean} [is_active]
+ * @property {Object} [modified_by]
+ * @property {string} [modified_on]
+ * @property {string} name
+ * @property {string} uid
+ */
+/**
+ * @typedef DpRuleSuccessResponse
+ * @property {DpRule} data
+ * @property {number} status_code
+ * @property {boolean} success
+ */
+/**
+ * @typedef DpRulesUpdateRequest
+ * @property {Object[]} conditions
+ * @property {Object} dp_ids
+ * @property {boolean} is_active
+ * @property {string} name
+ */
+/**
+ * @typedef DpRuleUpdateSuccessResponse
+ * @property {DpRuleResponse} data
+ * @property {number} status_code
+ * @property {boolean} success
+ */
+/**
+ * @typedef DpSchemaInRuleListing
+ * @property {string} account_id
+ * @property {string} dp_id
+ * @property {boolean} is_self_ship
+ * @property {string} name
+ * @property {string} plan_id
+ * @property {Object} plan_rules
+ * @property {number} priority
+ * @property {string} stage
+ */
+/**
  * @typedef EinvoiceResponse
  * @property {boolean} [enabled]
  */
@@ -14854,8 +14706,20 @@ class PlatformClient {
  * @property {string} [value]
  */
 /**
+ * @typedef ErrorResponse
+ * @property {string} message
+ * @property {string} type
+ * @property {string} value
+ */
+/**
  * @typedef EwayBillResponse
  * @property {boolean} [enabled]
+ */
+/**
+ * @typedef FailureResponse
+ * @property {ErrorResponse[]} error
+ * @property {number} status_code
+ * @property {boolean} success
  */
 /**
  * @typedef GetSingleZoneDataViewResponse
@@ -14864,7 +14728,7 @@ class PlatformClient {
 /**
  * @typedef GetStoresViewResponse
  * @property {ItemResponse[]} [items]
- * @property {PageResponse} page
+ * @property {ServiceabilityPageResponse} page
  */
 /**
  * @typedef GetZoneDataViewChannels
@@ -15004,12 +14868,14 @@ class PlatformClient {
  * @property {number} [minute]
  */
 /**
- * @typedef PageResponse
+ * @typedef Page
  * @property {number} [current]
  * @property {boolean} [has_next]
+ * @property {boolean} [has_previous]
  * @property {number} [item_total]
+ * @property {string} [next_id]
  * @property {number} [size]
- * @property {string} [type]
+ * @property {string} type
  */
 /**
  * @typedef PincodeBulkViewResponse
@@ -15109,10 +14975,38 @@ class PlatformClient {
  * @property {boolean} [on_same_store]
  */
 /**
+ * @typedef ReAssignStoreRequest
+ * @property {Object[]} articles
+ * @property {Object} configuration
+ * @property {string} identifier
+ * @property {string[]} ignored_locations
+ * @property {string} to_pincode
+ */
+/**
+ * @typedef ReAssignStoreResponse
+ * @property {Object[]} [articles]
+ * @property {Object} error
+ * @property {boolean} success
+ * @property {string} to_pincode
+ */
+/**
+ * @typedef SelfShipResponse
+ * @property {boolean} active
+ * @property {number} tat
+ */
+/**
  * @typedef ServiceabilityErrorResponse
  * @property {string} message
  * @property {string} type
  * @property {string} value
+ */
+/**
+ * @typedef ServiceabilityPageResponse
+ * @property {number} [current]
+ * @property {boolean} [has_next]
+ * @property {number} [item_total]
+ * @property {number} [size]
+ * @property {string} [type]
  */
 /**
  * @typedef TimmingResponse

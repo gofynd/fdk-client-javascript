@@ -26,6 +26,13 @@ class PaymentValidator {
     }).required();
   }
 
+  static cardDetails() {
+    return Joi.object({
+      cardInfo: Joi.string().allow("").required(),
+      aggregator: Joi.string().allow(""),
+    }).required();
+  }
+
   static checkAndUpdatePaymentStatus() {
     return Joi.object({
       body: PaymentModel.PaymentStatusUpdateRequest().required(),
@@ -170,6 +177,18 @@ class PaymentValidator {
     return Joi.object({
       body: PaymentModel.PaymentInitializationRequest().required(),
     }).required();
+  }
+
+  static outstandingOrderDetails() {
+    return Joi.object({
+      aggregator: Joi.string().allow(""),
+    });
+  }
+
+  static paidOrderDetails() {
+    return Joi.object({
+      aggregator: Joi.string().allow(""),
+    });
   }
 
   static pollingPaymentLink() {

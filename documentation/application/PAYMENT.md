@@ -12,6 +12,7 @@ Collect payment through many payment gateway i.e Stripe, Razorpay, Juspay etc.in
 * [addRefundBankAccountUsingOTP](#addrefundbankaccountusingotp)
 * [attachCardToCustomer](#attachcardtocustomer)
 * [cancelPaymentLink](#cancelpaymentlink)
+* [cardDetails](#carddetails)
 * [checkAndUpdatePaymentStatus](#checkandupdatepaymentstatus)
 * [checkAndUpdatePaymentStatusPaymentLink](#checkandupdatepaymentstatuspaymentlink)
 * [checkCredit](#checkcredit)
@@ -35,6 +36,8 @@ Collect payment through many payment gateway i.e Stripe, Razorpay, Juspay etc.in
 * [getUserBeneficiariesDetail](#getuserbeneficiariesdetail)
 * [initialisePayment](#initialisepayment)
 * [initialisePaymentPaymentLink](#initialisepaymentpaymentlink)
+* [outstandingOrderDetails](#outstandingorderdetails)
+* [paidOrderDetails](#paidorderdetails)
 * [pollingPaymentLink](#pollingpaymentlink)
 * [redirectToAggregator](#redirecttoaggregator)
 * [renderHTML](#renderhtml)
@@ -303,6 +306,85 @@ Success. Check the example shown below
   "success": true,
   "message": "Payment link cancelled",
   "status_code": 200
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### cardDetails
+API to get Card info from PG
+
+
+
+```javascript
+// Promise
+const promise = applicationClient.payment.cardDetails({  cardInfo : value,
+ aggregator : value });
+
+// Async/Await
+const data = await applicationClient.payment.cardDetails({  cardInfo : value,
+ aggregator : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| cardInfo | string | yes | Card first 6 digit IIN(prefix) number. |    
+| aggregator | string | no |  |  
+
+
+
+API to get Card info from PG
+
+*Returned Response:*
+
+
+
+
+[CardDetailsResponse](#CardDetailsResponse)
+
+Success. Returns the status of payment. Check the example shown below or refer `CardDetailsResponseSchema` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "success": true,
+  "data": {
+    "country": "INDIA",
+    "extended_card_type": "DEBIT",
+    "card_brand": "MASTERCARD",
+    "card_object": "tkn_1416af8beba94c96a3dqer196cd9fce7",
+    "id": "529992",
+    "card_sub_type": null,
+    "type": "DEBIT",
+    "bank": "",
+    "is_domestic_card": true,
+    "status": true,
+    "user": "63b4fce75a2bca1dw0f08f3f9",
+    "name_on_card": "Dummy",
+    "bank_code": "HDFC",
+    "card_token": "tkn_1416af8beba94c96a3dqer196cd9fce7",
+    "card_exp_year": "2024",
+    "card_exp_month": "12"
+  }
 }
 ```
 </details>
@@ -2555,7 +2637,7 @@ Success. Returns all available options for payment. Check the example shown belo
           {
             "aggregator_name": "Fynd",
             "name": "CAS",
-            "display_name": "Cash",
+            "display_name": "CASH",
             "code": "CAS",
             "logo_url": {
               "large": "https://hdn-1.fynd.com/payment/cod.png",
@@ -2926,12 +3008,7 @@ Success. Check the example shown below or refer `PaymentInitializationResponse` 
   "timeout": 240,
   "virtual_id": null,
   "razorpay_payment_id": "pay_dummy_001",
-  "payment_id": "pay_dummy_001",
-  "customer_id": "cust_dummy_001",
-  "amount": 10000,
-  "contact": "9999999999",
-  "order_id": "FY000120000101",
-  "email": "abc@xyz.com"
+  "customer_id": "cust_dummy_001"
 }
 ```
 </details>
@@ -2999,6 +3076,144 @@ Success. Check the example shown below or refer `PaymentInitializationResponse` 
   "virtual_id": null,
   "razorpay_payment_id": "pay_dummy_001",
   "customer_id": "cust_dummy_001"
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### outstandingOrderDetails
+API to fetch the outstanding order details
+
+
+
+```javascript
+// Promise
+const promise = applicationClient.payment.outstandingOrderDetails({  aggregator : value });
+
+// Async/Await
+const data = await applicationClient.payment.outstandingOrderDetails({  aggregator : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| aggregator | string | no |  |  
+
+
+
+Use this API to fetch the outstanding order details.
+
+*Returned Response:*
+
+
+
+
+[OutstandingOrderDetailsResponse](#OutstandingOrderDetailsResponse)
+
+Success. Returns the status of API. Check the example shown below or refer `PaidOrderDetailsResponseSchema` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "success": true,
+  "data": [
+    {
+      "shipment_id": "16633226023641097847_1",
+      "order_id": "FY633B1E5C74383C591A",
+      "delivery_date": null,
+      "due_date": "1665685799999",
+      "status": "BillDue",
+      "amount": 2190
+    }
+  ],
+  "status_code": 200
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### paidOrderDetails
+API to fetch the paid order details
+
+
+
+```javascript
+// Promise
+const promise = applicationClient.payment.paidOrderDetails({  aggregator : value });
+
+// Async/Await
+const data = await applicationClient.payment.paidOrderDetails({  aggregator : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| aggregator | string | no |  |  
+
+
+
+Use this API to fetch the paid order details.
+
+*Returned Response:*
+
+
+
+
+[PaidOrderDetailsResponse](#PaidOrderDetailsResponse)
+
+Success. Returns the status of API. Check the example shown below or refer `PaidOrderDetailsResponseSchema` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "success": true,
+  "data": [
+    {
+      "shipment_id": "SSD-0000492872-22",
+      "order_id": "FY62F279815B79F3A281",
+      "due_date": "",
+      "payment_date": "",
+      "amount": 1116,
+      "transaction_id": ""
+    }
+  ],
+  "status_code": 200
 }
 ```
 </details>
@@ -3956,9 +4171,9 @@ Success. Sends the OTP to the given mobile number. Check the example shown below
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | currency | string |  no  | Currency Code |
- | formatted_value | string |  no  | Formated Amount with currency symbol |
- | value | number |  no  | Payment amount |
+ | currency | string? |  yes  | Currency Code |
+ | formatted_value | string? |  yes  | Formated Amount with currency symbol |
+ | value | number? |  yes  | Payment amount |
  
 
 ---
@@ -4055,6 +4270,40 @@ Success. Sends the OTP to the given mobile number. Check the example shown below
  | exp_year | number? |  yes  | exp_year |
  | expired | boolean? |  yes  | expired |
  | nickname | string? |  yes  | nickname |
+ 
+
+---
+
+#### [CardDetails](#CardDetails)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | bank | string |  no  | bank name |
+ | bank_code | string |  no  | Bank Code |
+ | card_brand | string |  no  | Card brand like VISA/RUPAY |
+ | card_exp_month | string? |  yes  | Card Expire Month |
+ | card_exp_year | string? |  yes  | Card Expire Year |
+ | card_object | string |  no  | Card bin or Card refrence |
+ | card_sub_type | string |  no  | Card Sub type |
+ | card_token | string? |  yes  | Card Token |
+ | country | string |  no  | Country Name |
+ | extended_card_type | string |  no  | Extended Card Type |
+ | id | string |  no  | id |
+ | is_domestic_card | boolean |  no  | Is card domestic or international |
+ | name_on_card | string? |  yes  | Name on Card |
+ | status | boolean |  no  | Status |
+ | type | string |  no  | Card Type Credit/Debit |
+ | user | string? |  yes  | Customer/User ID |
+ 
+
+---
+
+#### [CardDetailsResponse](#CardDetailsResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | data | [CardDetails](#CardDetails) |  no  | Saved Card Details |
+ | success | boolean |  no  | Response is successful or not. |
  
 
 ---
@@ -4222,10 +4471,13 @@ Success. Sends the OTP to the given mobile number. Check the example shown below
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | amount_available | [BalanceDetails](#BalanceDetails)? |  yes  | Credit summary of user. |
  | balance | [BalanceDetails](#BalanceDetails)? |  yes  | Credit summary of user. |
- | merchant_customer_ref_id | string |  no  | Unique aggregator customer id |
- | status | string |  no  | Customer Credit status |
- | status_message | string |  no  | message to customer |
+ | buyer_status | string? |  yes  | Status from Credit aggregator's end |
+ | credit_line_id | string? |  yes  | ID at Credit aggregator's end |
+ | merchant_customer_ref_id | string? |  yes  | Unique aggregator customer id |
+ | status | string? |  yes  | Customer Credit status |
+ | status_message | string? |  yes  | message to customer |
  
 
 ---
@@ -4249,8 +4501,8 @@ Success. Sends the OTP to the given mobile number. Check the example shown below
  | device | [DeviceDetails](#DeviceDetails)? |  yes  | Device Details. |
  | marketplace_info | [MarketplaceInfo](#MarketplaceInfo)? |  yes  | Market Place info. |
  | mcc | string? |  yes  | Mcc |
- | personal_info | [UserPersonalInfoInDetails](#UserPersonalInfoInDetails)? |  yes  | Credit summary of user. |
- | source | string? |  yes  | callbackURL |
+ | personal_info | [UserPersonalInfoInDetails](#UserPersonalInfoInDetails) |  no  | Credit summary of user. |
+ | source | string |  no  | callbackURL |
  
 
 ---
@@ -4535,10 +4787,35 @@ Success. Sends the OTP to the given mobile number. Check the example shown below
 
 ---
 
+#### [OutstandingOrderDetailsResponse](#OutstandingOrderDetailsResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | data | [string]? |  yes  | Dict containing the outstanding order details |
+ | message | string? |  yes  | Message |
+ | status_code | number |  no  | HTTP Status code |
+ | success | boolean |  no  | Response is successful or not. |
+ 
+
+---
+
+#### [PaidOrderDetailsResponse](#PaidOrderDetailsResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | data | [string]? |  yes  | Dict containing the paid order details |
+ | message | string? |  yes  | Message |
+ | status_code | number |  no  | HTTP Status code |
+ | success | boolean |  no  | Response is successful or not. |
+ 
+
+---
+
 #### [PaymentFlow](#PaymentFlow)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | ajiodhan | [AggregatorRoute](#AggregatorRoute)? |  yes  | Ajiodhan |
  | bqr_razorpay | [AggregatorRoute](#AggregatorRoute)? |  yes  | BQR_Razorpay |
  | ccavenue | [AggregatorRoute](#AggregatorRoute)? |  yes  | Ccavenue |
  | epaylater | [AggregatorRoute](#AggregatorRoute)? |  yes  | Epaylater |
@@ -4565,7 +4842,6 @@ Success. Sends the OTP to the given mobile number. Check the example shown below
  | contact | string |  no  | Customer valid mobile number |
  | currency | string |  no  | Currency code. |
  | customer_id | string |  no  | Payment gateway customer id. |
- | device_id | string? |  yes  | EDC machine Unique Identifier |
  | email | string |  no  | Customer valid email |
  | merchant_order_id | string |  no  | Unique fynd order id |
  | method | string |  no  | Payment method |
@@ -4585,15 +4861,10 @@ Success. Sends the OTP to the given mobile number. Check the example shown below
  | aggregator_order_id | string? |  yes  | Payment order id |
  | amount | number? |  yes  | Payable amount. |
  | bqr_image | string? |  yes  | Bharath qr image url. |
- | contact | string? |  yes  | Customer valid mobile number |
  | currency | string? |  yes  | Currency code. |
  | customer_id | string? |  yes  | Payment gateway customer id. |
- | device_id | string? |  yes  | EDC machine Unique Identifier |
- | email | string? |  yes  | Customer valid email |
  | merchant_order_id | string |  no  | order id |
  | method | string |  no  | Payment method |
- | order_id | string? |  yes  | Payment gateway order id |
- | payment_id | string? |  yes  | Payment id. |
  | polling_url | string |  no  | Polling url. |
  | razorpay_payment_id | string? |  yes  | Payment  id. |
  | status | string? |  yes  | Status of payment. |
@@ -4694,19 +4965,15 @@ Success. Sends the OTP to the given mobile number. Check the example shown below
  | ---------- | ---- | -------- | ----------- |
  | aggregator | string |  no  | Payment gateway name |
  | amount | number |  no  | Payable amount. |
- | contact | string? |  yes  | Customer valid mobile number |
- | currency | string? |  yes  | Currency code. |
+ | contact | string |  no  | Customer valid mobile number |
+ | currency | string |  no  | Currency code. |
  | customer_id | string |  no  | Payment gateway customer id. |
- | device_id | string? |  yes  | EDC machine Unique Identifier |
- | email | string? |  yes  | Customer valid email |
+ | email | string |  no  | Customer valid email |
  | merchant_order_id | string |  no  | Unique fynd order id |
- | merchant_transaction_id | string |  no  | Unique fynd transaction id |
  | method | string |  no  | Payment method |
- | order_id | string? |  yes  | Payment gateway order id |
- | payment_id | string? |  yes  | Payment id. |
- | razorpay_payment_id | string? |  yes  | Payment  id. |
+ | order_id | string |  no  | Payment gateway order id |
  | status | string |  no  | Status of payment. |
- | vpa | string? |  yes  | Customer vpa address |
+ | vpa | string |  no  | Customer vpa address |
  
 
 ---
@@ -4797,7 +5064,6 @@ Success. Sends the OTP to the given mobile number. Check the example shown below
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | device_id | string? |  yes  | EDC machine Unique Identifier |
  | order_id | string |  no  | Unique order id |
  | request_type | string |  no  | Either resend or cancel |
  
@@ -4978,8 +5244,7 @@ Success. Sends the OTP to the given mobile number. Check the example shown below
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | data | string? |  yes  | Payment gateway response data |
- | error | string? |  yes  | error details |
+ | data | string |  no  | Payment gateway response data |
  | message | string |  no  | Error or success message. |
  | success | boolean |  no  | Response is successful or not |
  
