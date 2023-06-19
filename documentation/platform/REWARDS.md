@@ -8,7 +8,6 @@
 ## Rewards Methods
 Earn and redeem reward points
 
-* [getGiveawayAudienceStatus](#getgiveawayaudiencestatus)
 * [getGiveawayById](#getgiveawaybyid)
 * [getOfferByName](#getofferbyname)
 * [getRewardsConfiguration](#getrewardsconfiguration)
@@ -27,65 +26,6 @@ Earn and redeem reward points
 ## Methods with example and description
 
 
-
-
-### getGiveawayAudienceStatus
-Get the Giveaway audience status
-
-
-
-```javascript
-// Promise
-const promise = platformClient.application("<APPLICATION_ID>").rewards.getGiveawayAudienceStatus({  id : value,
- audienceId : value });
-
-// Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").rewards.getGiveawayAudienceStatus({  id : value,
- audienceId : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| id | string | yes | Giveaway ID |   
-| audienceId | string | yes | audience id |  
-
-
-
-Get giveaway audience status
-
-*Returned Response:*
-
-
-
-
-[GiveawayAudience](#GiveawayAudience)
-
-Success
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-
-```
-</details>
-
-
-
-
-
-
-
-
-
----
 
 
 ### getGiveawayById
@@ -111,7 +51,7 @@ const data = await platformClient.application("<APPLICATION_ID>").rewards.getGiv
 
 
 
-Get giveaway by ID.
+Retrieve the specific giveaway by giveaway ID. It will show all the details of the requested giveaway.
 
 *Returned Response:*
 
@@ -126,11 +66,40 @@ ok
 
 
 <details>
-<summary><i>&nbsp; Example:</i></summary>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; Success</i></summary>
 
 ```json
-
+{
+  "value": {
+    "application_id": "5d5c304a4df829372e2ad6d1",
+    "name": "abhinav test",
+    "title": "abhinav test",
+    "description": "abhinav test",
+    "active": true,
+    "audience": {
+      "id": "6459029c9020a3d96599c528",
+      "header_user_id": "uid"
+    },
+    "rule": {
+      "amount": 1000
+    },
+    "_schedule": {
+      "start": "2023-05-24T09:35:02.800Z",
+      "end": "2023-05-24T18:30:00.000Z"
+    },
+    "banner_image": {
+      "secure_url": "",
+      "aspect_ratio": "2:1"
+    }
+  }
+}
 ```
+</details>
+
 </details>
 
 
@@ -145,7 +114,7 @@ ok
 
 
 ### getOfferByName
-Get offer by name
+Fetch a offer by its name
 
 
 
@@ -167,7 +136,7 @@ const data = await platformClient.application("<APPLICATION_ID>").rewards.getOff
 
 
 
-Use this API to get the offer details and configuration by entering the name of the offer.
+Fetch the specific offer details and configuration by the name of the offer.
 
 *Returned Response:*
 
@@ -182,11 +151,60 @@ Success. Check example below or refer `Offer` for more details.
 
 
 <details>
-<summary><i>&nbsp; Example:</i></summary>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; Success</i></summary>
 
 ```json
-
+{
+  "value": {
+    "_id": "63bfb9c1195d62ac089641cd",
+    "application_id": "5d5c304a4df829372e2ad6d1",
+    "name": "order",
+    "_schedule": {},
+    "active": true,
+    "banner_image": {
+      "aspect_ratio": "2:1",
+      "secure_url": "https://hdn-1.fynd.com/company/884/applications/000000000000000000000001/rewards/pictures/landscape-banner/original/dbY4bHh9d-reward-banner.png"
+    },
+    "created_at": "2023-01-12T07:41:53.356Z",
+    "display": {
+      "validity": 1000,
+      "validity_unit": "hours"
+    },
+    "info_action": {
+      "type": "",
+      "page": {
+        "type": "",
+        "params": {
+          "slug": null
+        },
+        "url": ""
+      }
+    },
+    "rule": {
+      "claimed": true,
+      "value": 10,
+      "value_type": "percent",
+      "validity": 60000
+    },
+    "share": {
+      "default": "Hey, join me on {{application_name}} and get exciting offers and reward points. Signup today and quickly earn Rs.{{offer_amount}}. Visit {{offer_link}} now!",
+      "text": ""
+    },
+    "sub_text": "Purchase and get reward points",
+    "text": "Order & Earn",
+    "type": "earn",
+    "updated_at": "2023-01-12T15:46:04.854Z",
+    "updated_by": "6678589f5d0df704c9996644",
+    "url": ""
+  }
+}
 ```
+</details>
+
 </details>
 
 
@@ -218,7 +236,7 @@ const data = await platformClient.application("<APPLICATION_ID>").rewards.getRew
 
 
 
-Use this API to get a list of valid android paths required by the Rewards INIT API to validate a fradualent device.
+Use this API to get a list of valid android paths required by the Rewards INIT API to validate a fraudulent device.
 
 *Returned Response:*
 
@@ -233,11 +251,26 @@ Success. Refer `ConfigurationRes` for more details.
 
 
 <details>
-<summary><i>&nbsp; Example:</i></summary>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; ConfigurationRes</i></summary>
 
 ```json
-
+{
+  "value": {
+    "success": true,
+    "terms_conditions_link": "https://fynd.freshdesk.com/support/solutions/folders/33000111619",
+    "valid_android_packages": [
+      "co.abc.com"
+    ],
+    "application_id": "5d5c304a4df829372e2ad6d1"
+  }
+}
 ```
+</details>
+
 </details>
 
 
@@ -274,7 +307,7 @@ const data = await platformClient.application("<APPLICATION_ID>").rewards.getUse
 
 
 
-Use this API to get the user reward details
+Fetches the user details and the user reward details with their current reward points for the specific user.
 
 *Returned Response:*
 
@@ -289,11 +322,35 @@ Success. Check example below or refer `UserRes` for more details.
 
 
 <details>
-<summary><i>&nbsp; Example:</i></summary>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; Success</i></summary>
 
 ```json
-
+{
+  "value": {
+    "user": {
+      "_id": "6362648a38693f31a29e51e2",
+      "user_id": "620f8234e517800d9497660d",
+      "referral": {
+        "code": "HASE02"
+      },
+      "application_id": "5d5c304a4df829372e2ad6d1",
+      "created_at": "2022-11-02T12:37:30.078Z",
+      "updated_at": "2022-11-02T12:37:30.078Z",
+      "active": false,
+      "block_reason": "test"
+    },
+    "points": {
+      "available": 0
+    }
+  }
+}
 ```
+</details>
+
 </details>
 
 
@@ -336,7 +393,7 @@ const data = await platformClient.application("<APPLICATION_ID>").rewards.getUse
 
 
 
-Use this API to get a list of points transactions.
+Fetches a list of points transactions like giveaway points, signup points, referral points, order earn points, redeem points and expired points.
 
 *Returned Response:*
 
@@ -351,11 +408,67 @@ Success. Check example below or refer `HistoryRes` for more details.
 
 
 <details>
-<summary><i>&nbsp; Example:</i></summary>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; Success</i></summary>
 
 ```json
-
+{
+  "value": {
+    "items": [
+      {
+        "_id": "6464a9eb70e0debb8462667d",
+        "application_id": "000000000000000000000001",
+        "user_id": "000000000000000009802478",
+        "points": 500,
+        "remaining_points": 500,
+        "txn_name": "signup_credit",
+        "claimed": true,
+        "expires_on": "2023-06-14T10:18:19.118Z",
+        "meta": {
+          "offer_id": "630e0b8e349f3f1cfbec572f"
+        },
+        "created_at": "2023-05-17T10:18:19.118Z",
+        "updated_at": "2023-05-17T10:18:19.118Z",
+        "text_1": "Signup points",
+        "text_2": "Additional Points",
+        "text_3": "Will expire on 3:48 PM, 14 Jun'23"
+      },
+      {
+        "_id": "6464a9d370e0debb84626677",
+        "application_id": "000000000000000000000001",
+        "user_id": "000000000000000009802478",
+        "points": 500,
+        "remaining_points": 500,
+        "txn_name": "signup_credit",
+        "claimed": true,
+        "expires_on": "2023-06-14T10:17:55.588Z",
+        "meta": {
+          "offer_id": "630e0b8e349f3f1cfbec572f"
+        },
+        "created_at": "2023-05-17T10:17:55.588Z",
+        "updated_at": "2023-05-17T10:17:55.588Z",
+        "text_1": "Signup points",
+        "text_2": "Additional Points",
+        "text_3": "Will expire on 3:47 PM, 14 Jun'23"
+      }
+    ],
+    "page": {
+      "current": 0,
+      "item_total": 2,
+      "type": "cursor",
+      "size": 1,
+      "has_previous": true,
+      "has_next": false,
+      "next_id": ""
+    }
+  }
+}
 ```
+</details>
+
 </details>
 
 
@@ -391,7 +504,7 @@ const data = await platformClient.application("<APPLICATION_ID>").rewards.saveGi
 | body | [Giveaway](#Giveaway) | yes | Request body |
 
 
-Adds a new giveaway.
+Creates a new giveaway in the current application, specifying the target audience, points allocation, as well as the name and display name of the giveaway.
 
 *Returned Response:*
 
@@ -406,11 +519,40 @@ ok
 
 
 <details>
-<summary><i>&nbsp; Example:</i></summary>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; Success</i></summary>
 
 ```json
-
+{
+  "value": {
+    "application_id": "5d5c304a4df829372e2ad6d1",
+    "name": "abhinav test",
+    "title": "abhinav test",
+    "description": "abhinav test",
+    "active": true,
+    "audience": {
+      "id": "6459029c9020a3d96599c528",
+      "header_user_id": "uid"
+    },
+    "rule": {
+      "amount": 1000
+    },
+    "_schedule": {
+      "start": "2023-05-24T09:35:02.800Z",
+      "end": "2023-05-24T18:30:00.000Z"
+    },
+    "banner_image": {
+      "secure_url": "",
+      "aspect_ratio": "2:1"
+    }
+  }
+}
 ```
+</details>
+
 </details>
 
 
@@ -446,7 +588,7 @@ const data = await platformClient.application("<APPLICATION_ID>").rewards.setRew
 | body | [ConfigurationRequest](#ConfigurationRequest) | yes | Request body |
 
 
-Updates the configuration or inserts new records.
+Updates the configuration or inserts new records with the given android paths.
 
 *Returned Response:*
 
@@ -461,11 +603,26 @@ ok
 
 
 <details>
-<summary><i>&nbsp; Example:</i></summary>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; Success</i></summary>
 
 ```json
-
+{
+  "value": {
+    "success": true,
+    "terms_conditions_link": "https://fynd.freshdesk.com/support/solutions/folders/33000111619",
+    "valid_android_packages": [
+      "co.abc.com"
+    ],
+    "application_id": "5d5c304a4df829372e2ad6d1"
+  }
+}
 ```
+</details>
+
 </details>
 
 
@@ -505,7 +662,7 @@ const data = await platformClient.application("<APPLICATION_ID>").rewards.showGi
 
 
 
-List of giveaways of the current application.
+Fetch the detailed compilation of live, completed, and scheduled point-based giveaways created.
 
 *Returned Response:*
 
@@ -520,11 +677,79 @@ ok
 
 
 <details>
-<summary><i>&nbsp; Example:</i></summary>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; Success</i></summary>
 
 ```json
-
+{
+  "value": {
+    "items": [
+      {
+        "_id": "645c9cdd199c5232d7848bc2",
+        "application_id": "5d5c304a4df829372e2ad6d1",
+        "name": "test deacs",
+        "title": "wscws",
+        "description": "wscfws",
+        "active": true,
+        "audience": {
+          "header_user_id": "uid",
+          "id": "645b6c682c6786d31eac6c89"
+        },
+        "rule": {
+          "amount": 100
+        },
+        "_schedule": {
+          "start": "2023-05-11T07:44:09.542Z",
+          "end": "2023-05-11T18:30:00.000Z"
+        },
+        "banner_image": {
+          "aspect_ratio": "2:1",
+          "secure_url": ""
+        },
+        "updated_by": "600693a01faf8695d70a15df",
+        "created_at": "2023-05-11T07:44:29.123Z",
+        "id": "645c9cdd199c5232d7848bc2"
+      },
+      {
+        "_id": "645b6e9be02d1131fc06c2b4",
+        "application_id": "5d5c304a4df829372e2ad6d1",
+        "name": "yedbx",
+        "title": "wdc",
+        "description": "wdfc",
+        "active": true,
+        "audience": {
+          "header_user_id": "uid",
+          "id": "645b6c682c6786d31eac6c89"
+        },
+        "rule": {
+          "amount": 100
+        },
+        "_schedule": {
+          "start": "2023-05-10T10:14:45.672Z",
+          "end": "2023-05-10T18:30:00.000Z"
+        },
+        "banner_image": {
+          "aspect_ratio": "2:1",
+          "secure_url": ""
+        },
+        "created_at": "2023-05-10T10:14:51.807Z",
+        "id": "645b6e9be02d1131fc06c2b4"
+      }
+    ],
+    "page": {
+      "item_total": 2,
+      "size": 10,
+      "current": 1,
+      "has_next": false
+    }
+  }
+}
 ```
+</details>
+
 </details>
 
 
@@ -556,7 +781,7 @@ const data = await platformClient.application("<APPLICATION_ID>").rewards.showOf
 
 
 
-List of offers of the current application.
+Retrieve the list of offers within the current application, including order_discount, order, sign_up, and referral, along with their respective details.
 
 *Returned Response:*
 
@@ -571,11 +796,229 @@ ok
 
 
 <details>
-<summary><i>&nbsp; Example:</i></summary>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; Offer</i></summary>
 
 ```json
-
+{
+  "value": [
+    {
+      "_id": "63bfb9c1195d62ac089641cd",
+      "application_id": "5d5c304a4df829372e2ad6d1",
+      "name": "order",
+      "_schedule": {},
+      "active": true,
+      "banner_image": {
+        "aspect_ratio": "2:1",
+        "secure_url": "https://hdn-1.fynd.com/company/884/applications/000000000000000000000001/rewards/pictures/landscape-banner/original/dbY4bHh9d-reward-banner.png"
+      },
+      "created_at": "2023-01-12T07:41:53.356Z",
+      "display": {
+        "validity": 1000,
+        "validity_unit": "hours"
+      },
+      "info_action": {
+        "type": "",
+        "page": {
+          "type": "",
+          "params": {
+            "slug": null
+          },
+          "url": ""
+        }
+      },
+      "rule": {
+        "claimed": true,
+        "value": 10,
+        "value_type": "percent",
+        "validity": 60000
+      },
+      "share": {
+        "default": "Hey, join me on {{application_name}} and get exciting offers and reward points. Signup today and quickly earn Rs.{{offer_amount}}. Visit {{offer_link}} now!",
+        "text": ""
+      },
+      "sub_text": "Purchase and get reward points",
+      "text": "Order & Earn",
+      "type": "earn",
+      "updated_at": "2023-01-12T15:46:04.854Z",
+      "updated_by": "6678589f5d0df704c9996644",
+      "url": ""
+    },
+    {
+      "_id": "6363f62638693f31a29e51ea",
+      "application_id": "5d5c304a4df829372e2ad6d1",
+      "name": "order_discount",
+      "_schedule": {},
+      "active": true,
+      "banner_image": {
+        "aspect_ratio": "2:1",
+        "secure_url": "https://hdn-1.fynd.com/company/884/applications/000000000000000000000001/rewards/pictures/landscape-banner/original/dbY4bHh9d-reward-banner.png"
+      },
+      "created_at": "2022-11-03T17:11:02.555Z",
+      "display": {
+        "validity": 0,
+        "validity_unit": ""
+      },
+      "info_action": {
+        "type": "",
+        "page": {
+          "type": "",
+          "params": {
+            "slug": null
+          },
+          "url": ""
+        }
+      },
+      "rule": {
+        "currency": "INR",
+        "buckets": [
+          {
+            "low": 1,
+            "high": 1000,
+            "max": 10000,
+            "value": 100,
+            "value_type": "percent"
+          },
+          {
+            "low": 1001,
+            "high": -1,
+            "max": 15000,
+            "value": 1000,
+            "value_type": "percent"
+          }
+        ]
+      },
+      "share": {
+        "default": "",
+        "text": ""
+      },
+      "sub_text": "Get flat discounts on total order amount. Shop now!",
+      "text": "Get flat discounts on total order amount",
+      "type": "redeem",
+      "updated_at": "2022-11-03T17:11:02.557Z",
+      "updated_by": "3d20f854d736c43f7fd4a9e3",
+      "url": ""
+    },
+    {
+      "_id": "6321aee18c981b2d5053942a",
+      "application_id": "5d5c304a4df829372e2ad6d1",
+      "name": "referral",
+      "_schedule": {},
+      "active": true,
+      "banner_image": {
+        "aspect_ratio": "2:1",
+        "secure_url": "https://hdn-1.fynd.com/company/884/applications/000000000000000000000001/rewards/pictures/landscape-banner/original/dbY4bHh9d-reward-banner.png"
+      },
+      "created_at": "0001-01-01T00:00:00.000Z",
+      "display": {
+        "validity": 10,
+        "validity_unit": "days"
+      },
+      "info_action": {
+        "type": "",
+        "page": {
+          "type": "",
+          "params": {
+            "slug": null
+          },
+          "url": ""
+        }
+      },
+      "rule": {
+        "counter": 0,
+        "amount": 100,
+        "referrer_amount": 100,
+        "amount_validity": 14400,
+        "threshold": 10000
+      },
+      "share": {
+        "default": "Hey, join me on {{application_name}} and get exciting offers and reward points. Signup today and quickly earn Rs.{{offer_amount}}. Visit {{offer_link}} now!",
+        "text": ""
+      },
+      "sub_text": "Share your referral code, invite your friends and you'll both get exciting reward points!",
+      "text": "Refer & Earn",
+      "type": "earn",
+      "updated_at": "2022-09-14T10:37:22.340Z",
+      "updated_by": "600693a01faf8695d70a15df",
+      "url": ""
+    },
+    {
+      "_id": "642312c095baca2e5ba4e8a7",
+      "application_id": "5d5c304a4df829372e2ad6d1",
+      "name": "refund_points",
+      "__v": 0,
+      "active": true,
+      "banner_image": {
+        "secure_url": "",
+        "aspect_ratio": "2:1"
+      },
+      "created_at": "2023-03-28T16:15:54.294Z",
+      "rule": {
+        "amount_validity": 60000,
+        "counter": 0
+      },
+      "sub_text": "Your wallet is configure with the points related to the most recent order cancellation. Happy shopping.",
+      "text": "Points Returned",
+      "type": "earn",
+      "updated_at": "2023-03-28T16:16:01.539Z",
+      "updated_by": "600693a01faf8695d70a15df",
+      "updated_by_name": "abhinavmaurya_gofynd_com_44493",
+      "display": {
+        "validity": 60000,
+        "validity_unit": "minutes"
+      },
+      "share": {}
+    },
+    {
+      "_id": "6385d7d8a30091f25bf71514",
+      "application_id": "5d5c304a4df829372e2ad6d1",
+      "name": "sign_up",
+      "_schedule": {},
+      "active": true,
+      "banner_image": {
+        "aspect_ratio": "2:1",
+        "secure_url": "https://hdn-1.fynd.com/company/884/applications/000000000000000000000001/rewards/pictures/landscape-banner/original/dbY4bHh9d-reward-banner.png"
+      },
+      "created_at": "2022-11-29T09:58:48.487Z",
+      "display": {
+        "validity": 10,
+        "validity_unit": "days"
+      },
+      "info_action": {
+        "type": "",
+        "page": {
+          "type": "",
+          "params": {
+            "slug": null
+          },
+          "url": ""
+        }
+      },
+      "rule": {
+        "counter": 0,
+        "amount": 1000,
+        "amount_validity": 14400,
+        "threshold": 10000
+      },
+      "share": {
+        "default": "",
+        "text": ""
+      },
+      "sub_text": "Sign-up today and get exclusive offers and reward points!",
+      "text": "Sign Up & Win",
+      "type": "earn",
+      "updated_at": "2022-11-29T09:58:48.491Z",
+      "updated_by": "600693a01faf8695d70a15df",
+      "url": ""
+    }
+  ]
+}
 ```
+</details>
+
 </details>
 
 
@@ -614,7 +1057,7 @@ const data = await platformClient.application("<APPLICATION_ID>").rewards.update
 | body | [Giveaway](#Giveaway) | yes | Request body |
 
 
-Updates the giveaway by it's ID.
+Make the necessary updates to the giveaway based on its giveaway ID.
 
 *Returned Response:*
 
@@ -629,11 +1072,40 @@ ok
 
 
 <details>
-<summary><i>&nbsp; Example:</i></summary>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; Success</i></summary>
 
 ```json
-
+{
+  "value": {
+    "application_id": "5d5c304a4df829372e2ad6d1",
+    "name": "abhinav test",
+    "title": "abhinav test",
+    "description": "abhinav test",
+    "active": true,
+    "audience": {
+      "id": "6459029c9020a3d96599c528",
+      "header_user_id": "uid"
+    },
+    "rule": {
+      "amount": 1000
+    },
+    "_schedule": {
+      "start": "2023-05-24T09:35:02.800Z",
+      "end": "2023-05-24T18:30:00.000Z"
+    },
+    "banner_image": {
+      "secure_url": "",
+      "aspect_ratio": "2:1"
+    }
+  }
+}
 ```
+</details>
+
 </details>
 
 
@@ -672,7 +1144,7 @@ const data = await platformClient.application("<APPLICATION_ID>").rewards.update
 | body | [Offer](#Offer) | yes | Request body |
 
 
-Use this API to update the offer details
+Update the specific offer details and its configuration by offer name.
 
 *Returned Response:*
 
@@ -687,11 +1159,60 @@ Success. Check example below or refer `Offer` for more details.
 
 
 <details>
-<summary><i>&nbsp; Example:</i></summary>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; Success</i></summary>
 
 ```json
-
+{
+  "value": {
+    "_id": "63bfb9c1195d62ac089641cd",
+    "application_id": "5d5c304a4df829372e2ad6d1",
+    "name": "order",
+    "_schedule": {},
+    "active": true,
+    "banner_image": {
+      "aspect_ratio": "2:1",
+      "secure_url": "https://hdn-1.fynd.com/company/884/applications/000000000000000000000001/rewards/pictures/landscape-banner/original/dbY4bHh9d-reward-banner.png"
+    },
+    "created_at": "2023-01-12T07:41:53.356Z",
+    "display": {
+      "validity": 1000,
+      "validity_unit": "hours"
+    },
+    "info_action": {
+      "type": "",
+      "page": {
+        "type": "",
+        "params": {
+          "slug": null
+        },
+        "url": ""
+      }
+    },
+    "rule": {
+      "claimed": true,
+      "value": 10,
+      "value_type": "percent",
+      "validity": 60000
+    },
+    "share": {
+      "default": "Hey, join me on {{application_name}} and get exciting offers and reward points. Signup today and quickly earn Rs.{{offer_amount}}. Visit {{offer_link}} now!",
+      "text": ""
+    },
+    "sub_text": "Purchase and get reward points",
+    "text": "Order & Earn",
+    "type": "earn",
+    "updated_at": "2023-01-12T15:46:04.854Z",
+    "updated_by": "6678589f5d0df704c9996644",
+    "url": ""
+  }
+}
 ```
+</details>
+
 </details>
 
 
@@ -730,7 +1251,7 @@ const data = await platformClient.application("<APPLICATION_ID>").rewards.update
 | body | [AppUser](#AppUser) | yes | Request body |
 
 
-Use this API to update the user status active/archive
+Update the user status by marking them as a block or unblock. It can be done by changing the active flag in request body.
 
 *Returned Response:*
 
@@ -745,11 +1266,35 @@ Success
 
 
 <details>
-<summary><i>&nbsp; Example:</i></summary>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; Success</i></summary>
 
 ```json
-
+{
+  "value": {
+    "user": {
+      "_id": "6362648a38693f31a29e51e2",
+      "user_id": "620f8234e517800d9497660d",
+      "referral": {
+        "code": "HASE02"
+      },
+      "application_id": "5d5c304a4df829372e2ad6d1",
+      "created_at": "2022-11-02T12:37:30.078Z",
+      "updated_at": "2022-11-02T12:37:30.078Z",
+      "active": false,
+      "block_reason": "test"
+    },
+    "points": {
+      "available": 0
+    }
+  }
+}
 ```
+</details>
+
 </details>
 
 
