@@ -2635,6 +2635,7 @@ class PlatformClient {
  * @typedef Subscription
  * @property {string} [_id]
  * @property {boolean} [cancel_at_period_end]
+ * @property {string} [channel_type]
  * @property {string} [collection_method]
  * @property {string} [created_at]
  * @property {SubscriptionCurrentPeriod} [current_period]
@@ -2644,7 +2645,7 @@ class PlatformClient {
  * @property {string} [latest_invoice]
  * @property {string} [modified_at]
  * @property {SubscriptionPauseCollection} [pause_collection]
- * @property {Object} [plan_data]
+ * @property {Plan} [plan_data]
  * @property {string} [plan_id]
  * @property {string} [product_suite_id]
  * @property {string} [subscriber_id]
@@ -2772,8 +2773,11 @@ class PlatformClient {
  */
 /**
  * @typedef SubscriptionStatus
+ * @property {Subscription[]} [current_subscriptions]
  * @property {boolean} [is_enabled]
- * @property {number} [mandate_amount]
+ * @property {InvoicesData} [latest_invoice]
+ * @property {string} [mandate_amount]
+ * @property {Plan} [next_plan]
  * @property {Subscription} [subscription]
  */
 /**
@@ -4795,7 +4799,7 @@ class PlatformClient {
  */
 /**
  * @typedef GetActionsResponse
- * @property {ActionInfo[]} [permissions]
+ * @property {ActionInfo} permissions
  */
 /**
  * @typedef GetBagsPlatformResponse

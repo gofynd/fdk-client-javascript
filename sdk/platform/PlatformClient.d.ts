@@ -2159,6 +2159,7 @@ type ResourceNotFound = {
 type Subscription = {
     _id?: string;
     cancel_at_period_end?: boolean;
+    channel_type?: string;
     collection_method?: string;
     created_at?: string;
     current_period?: SubscriptionCurrentPeriod;
@@ -2168,7 +2169,7 @@ type Subscription = {
     latest_invoice?: string;
     modified_at?: string;
     pause_collection?: SubscriptionPauseCollection;
-    plan_data?: any;
+    plan_data?: Plan;
     plan_id?: string;
     product_suite_id?: string;
     subscriber_id?: string;
@@ -2278,8 +2279,11 @@ type SubscriptionPauseCollection = {
     resume_at?: string;
 };
 type SubscriptionStatus = {
+    current_subscriptions?: Subscription[];
     is_enabled?: boolean;
-    mandate_amount?: number;
+    latest_invoice?: InvoicesData;
+    mandate_amount?: string;
+    next_plan?: Plan;
     subscription?: Subscription;
 };
 type SubscriptionTrial = {
@@ -4039,7 +4043,7 @@ type FyndOrderIdList = {
     fynd_order_id?: string[];
 };
 type GetActionsResponse = {
-    permissions?: ActionInfo[];
+    permissions: ActionInfo;
 };
 type GetBagsPlatformResponse = {
     items: BagDetailsPlatformResponse[];

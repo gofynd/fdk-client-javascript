@@ -996,7 +996,7 @@ class OrderModel {
   }
   static GetActionsResponse() {
     return Joi.object({
-      permissions: Joi.array().items(OrderModel.ActionInfo()),
+      permissions: OrderModel.ActionInfo().required(),
     });
   }
   static GetBagsPlatformResponse() {
