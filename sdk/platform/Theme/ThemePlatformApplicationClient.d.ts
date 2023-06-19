@@ -5,6 +5,16 @@ declare class Theme {
     applicationId: any;
     /**
      * @param {Object} arg - Arg object.
+     * @param {ApplyThemeRequestV2} arg.body
+     * @returns {Promise<ApplyThemeResponseV2>} - Success response
+     * @summary: Apply a theme to an application
+     * @description: Apply a theme to an application by providing the marketplace theme ID.
+     */
+    addThemeToApplicationV2({ body }?: {
+        body: ApplyThemeRequestV2;
+    }): Promise<ApplyThemeResponseV2>;
+    /**
+     * @param {Object} arg - Arg object.
      * @param {AddThemeRequestSchema} arg.body
      * @returns {Promise<ThemesSchema>} - Success response
      * @summary: Add a theme to the theme library
@@ -25,14 +35,14 @@ declare class Theme {
     }): Promise<ThemesSchema>;
     /**
      * @param {Object} arg - Arg object.
-     * @param {ApplyThemeRequestV2} arg.body
-     * @returns {Promise<ApplyThemeResponseV2>} - Success response
-     * @summary: Apply a theme to an application
-     * @description: Apply a theme to an application by providing the marketplace theme ID.
+     * @param {string} arg.themeId - The ID of the apply
+     * @returns {Promise<AllThemesApplicationResponseV2>} - Success response
+     * @summary: Apply theme to a specific application
+     * @description: Apply theme to a specific application by providing company_id, application_id, and theme_id.
      */
-    applyThemeV2({ body }?: {
-        body: ApplyThemeRequestV2;
-    }): Promise<ApplyThemeResponseV2>;
+    applyThemeV2({ themeId }?: {
+        themeId: string;
+    }): Promise<AllThemesApplicationResponseV2>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.themeId - ID allotted to the theme.
@@ -87,6 +97,26 @@ declare class Theme {
     deleteTheme({ themeId }?: {
         themeId: string;
     }): Promise<ThemesSchema>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {string} arg.themeId - The ID of the theme to be deleted.
+     * @returns {Promise<AllThemesApplicationResponseV2>} - Success response
+     * @summary: Delete a theme
+     * @description: This endpoint is used to delete a theme from the specified company and application.
+     */
+    deleteThemeV2({ themeId }?: {
+        themeId: string;
+    }): Promise<AllThemesApplicationResponseV2>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {string} arg.themeId - The ID of the theme to be duplicated
+     * @returns {Promise<AllThemesApplicationResponseV2>} - Success response
+     * @summary: Duplicate a Theme
+     * @description: This endpoint duplicates a Theme in the specified application.
+     */
+    duplicateThemeV2({ themeId }?: {
+        themeId: string;
+    }): Promise<AllThemesApplicationResponseV2>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.themeId - ID of the theme to be retrieved

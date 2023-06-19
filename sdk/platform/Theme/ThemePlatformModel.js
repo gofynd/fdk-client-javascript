@@ -368,6 +368,14 @@ class ThemeModel {
       url: Joi.string().allow(""),
     });
   }
+  static Email() {
+    return Joi.object({
+      active: Joi.boolean().required(),
+      email: Joi.string().allow("").required(),
+      primary: Joi.boolean().required(),
+      verified: Joi.boolean().required(),
+    });
+  }
   static ExploreInfo() {
     return Joi.object({
       description: Joi.string().allow(""),
@@ -605,6 +613,18 @@ class ThemeModel {
       slug: Joi.string().allow(""),
     });
   }
+  static Organization() {
+    return Joi.object({
+      _id: Joi.string().allow(""),
+      meta: ThemeModel.OrganizationMeta(),
+    });
+  }
+  static OrganizationMeta() {
+    return Joi.object({
+      ecomm_platform_used: Joi.array().items(Joi.string().allow("")),
+      goals: Joi.array().items(Joi.string().allow("")),
+    });
+  }
   static OverlayPopupSettingV2() {
     return Joi.object({
       dialog_backgroung: Joi.string().allow(""),
@@ -642,6 +662,15 @@ class ThemeModel {
     return Joi.object({
       amount: Joi.number(),
       is_paid: Joi.boolean(),
+    });
+  }
+  static PhoneNumber() {
+    return Joi.object({
+      active: Joi.boolean().required(),
+      country_code: Joi.number(),
+      phone: Joi.string().allow("").required(),
+      primary: Joi.boolean().required(),
+      verified: Joi.boolean().required(),
     });
   }
   static PredicateV2() {
@@ -786,6 +815,24 @@ class ThemeModel {
       text_secondary: Joi.string().allow(""),
     });
   }
+  static ThemeAndUserDetailsResponse() {
+    return Joi.object({
+      themes: Joi.array().items(ThemeModel.MarketplaceTheme()),
+      user: Joi.array().items(ThemeModel.ThemeCreator()),
+    });
+  }
+  static ThemeCreator() {
+    return Joi.object({
+      _id: Joi.string().allow("").required(),
+      account_type: Joi.string().allow(""),
+      active: Joi.boolean().required(),
+      emails: Joi.array().items(ThemeModel.Email()).required(),
+      first_name: Joi.string().allow(""),
+      gender: Joi.string().allow("").allow(null),
+      last_name: Joi.string().allow(""),
+      phone_numbers: Joi.array().items(ThemeModel.PhoneNumber()),
+    });
+  }
   static ThemeImages() {
     return Joi.object({
       desktop: Joi.string().allow(""),
@@ -833,6 +880,13 @@ class ThemeModel {
     return Joi.object({
       items: Joi.array().items(ThemeModel.ThemesSchema()),
       page: ThemeModel.PaginationSchema(),
+    });
+  }
+  static ThemeSlugResponse() {
+    return Joi.object({
+      organization: ThemeModel.Organization(),
+      theme: ThemeModel.MarketplaceTheme(),
+      user: Joi.array().items(ThemeModel.ThemeCreator()),
     });
   }
   static ThemesSchema() {

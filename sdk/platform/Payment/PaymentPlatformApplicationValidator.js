@@ -2,9 +2,9 @@ const Joi = require("joi");
 
 const PaymentModel = require("./PaymentPlatformModel");
 class PaymentValidator {
-  static addRefundBankAccountUsingOTP() {
+  static addBeneficiaryDetails() {
     return Joi.object({
-      body: PaymentModel.AddBeneficiaryDetailsOTPRequest().required(),
+      body: PaymentModel.AddBeneficiaryDetailsRequest().required(),
     }).required();
   }
 
@@ -14,18 +14,7 @@ class PaymentValidator {
     }).required();
   }
 
-  static getBankAccountDetailsOpenAPI() {
-    return Joi.object({
-      orderId: Joi.string().allow("").required(),
-      requestHash: Joi.string().allow(""),
-    }).required();
-  }
-
   static getBrandPaymentGatewayConfig() {
-    return Joi.object({}).required();
-  }
-
-  static getPaymentCodeOption() {
     return Joi.object({}).required();
   }
 
@@ -42,42 +31,9 @@ class PaymentValidator {
     }).required();
   }
 
-  static getUserCODlimitRoutes() {
-    return Joi.object({
-      merchantUserId: Joi.string().allow("").required(),
-      mobileNo: Joi.string().allow("").required(),
-    }).required();
-  }
-
   static getUserOrderBeneficiaries() {
     return Joi.object({
       orderId: Joi.string().allow("").required(),
-    }).required();
-  }
-
-  static merchantOnBoarding() {
-    return Joi.object({
-      body: PaymentModel.MerchantOnBoardingRequest().required(),
-    }).required();
-  }
-
-  static oauthGetUrl() {
-    return Joi.object({
-      aggregator: Joi.string().allow("").required(),
-      successRedirectUrl: Joi.string().allow(""),
-      failureRedirectUrl: Joi.string().allow(""),
-    }).required();
-  }
-
-  static repaymentDetails() {
-    return Joi.object({
-      body: PaymentModel.RepaymentDetailsSerialiserPayAll().required(),
-    }).required();
-  }
-
-  static revokeOauthToken() {
-    return Joi.object({
-      aggregator: Joi.string().allow("").required(),
     }).required();
   }
 
@@ -87,9 +43,9 @@ class PaymentValidator {
     }).required();
   }
 
-  static setUserCODlimitRoutes() {
+  static updateBrandPaymentGatewayConfig() {
     return Joi.object({
-      body: PaymentModel.SetCODForUserRequest().required(),
+      body: PaymentModel.PaymentGatewayConfigRequest().required(),
     }).required();
   }
 }

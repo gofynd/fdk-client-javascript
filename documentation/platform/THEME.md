@@ -9,6 +9,7 @@
 Responsible for themes
 
 * [addMarketplaceThemeToCompany](#addmarketplacethemetocompany)
+* [addThemeToApplicationV2](#addthemetoapplicationv2)
 * [addToThemeLibrary](#addtothemelibrary)
 * [applyTheme](#applytheme)
 * [applyThemeV2](#applythemev2)
@@ -18,6 +19,8 @@ Responsible for themes
 * [deleteCompanyTheme](#deletecompanytheme)
 * [deletePage](#deletepage)
 * [deleteTheme](#deletetheme)
+* [deleteThemeV2](#deletethemev2)
+* [duplicateThemeV2](#duplicatethemev2)
 * [getAllPages](#getallpages)
 * [getApplicationThemeByIdV2](#getapplicationthemebyidv2)
 * [getApplicationThemesCountV2](#getapplicationthemescountv2)
@@ -81,6 +84,61 @@ Add a marketplace theme to a company by providing the theme ID and company ID.
 [ThemeSchema](#ThemeSchema)
 
 The theme was successfully applied to the company.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### addThemeToApplicationV2
+Apply a theme to an application
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").theme.addThemeToApplicationV2({  body : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").theme.addThemeToApplicationV2({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [ApplyThemeRequestV2](#ApplyThemeRequestV2) | yes | Request body |
+
+
+Apply a theme to an application by providing the marketplace theme ID.
+
+*Returned Response:*
+
+
+
+
+[ApplyThemeResponseV2](#ApplyThemeResponseV2)
+
+Successfully applied the theme
 
 
 
@@ -4475,16 +4533,16 @@ Success. Refer `ThemesSchema` for more details.
 
 
 ### applyThemeV2
-Apply a theme to an application
+Apply theme to a specific application
 
 
 
 ```javascript
 // Promise
-const promise = platformClient.application("<APPLICATION_ID>").theme.applyThemeV2({  body : value });
+const promise = platformClient.application("<APPLICATION_ID>").theme.applyThemeV2({  themeId : value });
 
 // Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").theme.applyThemeV2({  body : value });
+const data = await platformClient.application("<APPLICATION_ID>").theme.applyThemeV2({  themeId : value });
 ```
 
 
@@ -4492,20 +4550,21 @@ const data = await platformClient.application("<APPLICATION_ID>").theme.applyThe
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |
-| body | [ApplyThemeRequestV2](#ApplyThemeRequestV2) | yes | Request body |
+| --------- | -----  | -------- | ----------- | 
+| themeId | string | yes | The ID of the apply |  
 
 
-Apply a theme to an application by providing the marketplace theme ID.
+
+Apply theme to a specific application by providing company_id, application_id, and theme_id.
 
 *Returned Response:*
 
 
 
 
-[ApplyThemeResponseV2](#ApplyThemeResponseV2)
+[AllThemesApplicationResponseV2](#AllThemesApplicationResponseV2)
 
-Successfully applied the theme
+Theme applied successfully
 
 
 
@@ -11982,6 +12041,118 @@ Success. Refer `ThemesSchema` for more details.
 ```
 </details>
 
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### deleteThemeV2
+Delete a theme
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").theme.deleteThemeV2({  themeId : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").theme.deleteThemeV2({  themeId : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| themeId | string | yes | The ID of the theme to be deleted. |  
+
+
+
+This endpoint is used to delete a theme from the specified company and application.
+
+*Returned Response:*
+
+
+
+
+[AllThemesApplicationResponseV2](#AllThemesApplicationResponseV2)
+
+Theme successfully deleted.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### duplicateThemeV2
+Duplicate a Theme
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").theme.duplicateThemeV2({  themeId : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").theme.duplicateThemeV2({  themeId : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| themeId | string | yes | The ID of the theme to be duplicated |  
+
+
+
+This endpoint duplicates a Theme in the specified application.
+
+*Returned Response:*
+
+
+
+
+[AllThemesApplicationResponseV2](#AllThemesApplicationResponseV2)
+
+Resource duplicated successfully
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
 </details>
 
 
@@ -35982,6 +36153,18 @@ Success. Upgrades the theme and shares the details of the new version in the res
 
 ---
 
+#### [Email](#Email)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | active | boolean |  no  | Whether the email address is active or not |
+ | email | string |  no  | Email address |
+ | primary | boolean |  no  | Whether the email address is the primary contact email for the user |
+ | verified | boolean |  no  | Whether the email address has been verified or not |
+ 
+
+---
+
 #### [ExploreInfo](#ExploreInfo)
 
  | Properties | Type | Nullable | Description |
@@ -36339,6 +36522,26 @@ Success. Upgrades the theme and shares the details of the new version in the res
 
 ---
 
+#### [Organization](#Organization)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | _id | string? |  yes  | The unique identifier of the organization |
+ | meta | [OrganizationMeta](#OrganizationMeta)? |  yes  |  |
+ 
+
+---
+
+#### [OrganizationMeta](#OrganizationMeta)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | ecomm_platform_used | [string]? |  yes  | List of e-commerce platforms used by the organization |
+ | goals | [string]? |  yes  | List of goals for the organization |
+ 
+
+---
+
 #### [OverlayPopupSettingV2](#OverlayPopupSettingV2)
 
  | Properties | Type | Nullable | Description |
@@ -36398,6 +36601,19 @@ Success. Upgrades the theme and shares the details of the new version in the res
  | ---------- | ---- | -------- | ----------- |
  | amount | number? |  yes  | The amount of the theme |
  | is_paid | boolean? |  yes  | Whether the theme is paid or not |
+ 
+
+---
+
+#### [PhoneNumber](#PhoneNumber)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | active | boolean |  no  | Whether the phone number is active or not |
+ | country_code | number? |  yes  | Country code for the phone number |
+ | phone | string |  no  | Phone number |
+ | primary | boolean |  no  | Whether the phone number is the primary contact number for the user |
+ | verified | boolean |  no  | Whether the phone number has been verified or not |
  
 
 ---
@@ -36632,6 +36848,32 @@ Success. Upgrades the theme and shares the details of the new version in the res
 
 ---
 
+#### [ThemeAndUserDetailsResponse](#ThemeAndUserDetailsResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | themes | [[MarketplaceTheme](#MarketplaceTheme)]? |  yes  | List of themes |
+ | user | [[ThemeCreator](#ThemeCreator)]? |  yes  | List of users |
+ 
+
+---
+
+#### [ThemeCreator](#ThemeCreator)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | _id | string |  no  | Unique identifier for the user |
+ | account_type | string? |  yes  | Type of user account |
+ | active | boolean |  no  | Whether the user is active or not |
+ | emails | [[Email](#Email)] |  no  | List of email addresses associated with the user |
+ | first_name | string? |  yes  | First name of the user |
+ | gender | string? |  yes  | Gender of the user (null if not specified) |
+ | last_name | string? |  yes  | Last name of the user |
+ | phone_numbers | [[PhoneNumber](#PhoneNumber)]? |  yes  | List of phone numbers associated with the user |
+ 
+
+---
+
 #### [ThemeImages](#ThemeImages)
 
  | Properties | Type | Nullable | Description |
@@ -36705,6 +36947,17 @@ Success. Upgrades the theme and shares the details of the new version in the res
  | ---------- | ---- | -------- | ----------- |
  | items | [[ThemesSchema](#ThemesSchema)]? |  yes  |  |
  | page | [PaginationSchema](#PaginationSchema)? |  yes  |  |
+ 
+
+---
+
+#### [ThemeSlugResponse](#ThemeSlugResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | organization | [Organization](#Organization)? |  yes  |  |
+ | theme | [MarketplaceTheme](#MarketplaceTheme)? |  yes  |  |
+ | user | [[ThemeCreator](#ThemeCreator)]? |  yes  | An array of user objects |
  
 
 ---

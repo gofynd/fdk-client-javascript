@@ -10062,6 +10062,18 @@ Success. Returns a JSON object of the theme. Check the example shown below or re
 
 ---
 
+#### [Email](#Email)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | active | boolean |  no  | Whether the email address is active or not |
+ | email | string |  no  | Email address |
+ | primary | boolean |  no  | Whether the email address is the primary contact email for the user |
+ | verified | boolean |  no  | Whether the email address has been verified or not |
+ 
+
+---
+
 #### [ExploreInfo](#ExploreInfo)
 
  | Properties | Type | Nullable | Description |
@@ -10419,6 +10431,26 @@ Success. Returns a JSON object of the theme. Check the example shown below or re
 
 ---
 
+#### [Organization](#Organization)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | _id | string? |  yes  | The unique identifier of the organization |
+ | meta | [OrganizationMeta](#OrganizationMeta)? |  yes  |  |
+ 
+
+---
+
+#### [OrganizationMeta](#OrganizationMeta)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | ecomm_platform_used | [string]? |  yes  | List of e-commerce platforms used by the organization |
+ | goals | [string]? |  yes  | List of goals for the organization |
+ 
+
+---
+
 #### [OverlayPopupSettingV2](#OverlayPopupSettingV2)
 
  | Properties | Type | Nullable | Description |
@@ -10478,6 +10510,19 @@ Success. Returns a JSON object of the theme. Check the example shown below or re
  | ---------- | ---- | -------- | ----------- |
  | amount | number? |  yes  | The amount of the theme |
  | is_paid | boolean? |  yes  | Whether the theme is paid or not |
+ 
+
+---
+
+#### [PhoneNumber](#PhoneNumber)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | active | boolean |  no  | Whether the phone number is active or not |
+ | country_code | number? |  yes  | Country code for the phone number |
+ | phone | string |  no  | Phone number |
+ | primary | boolean |  no  | Whether the phone number is the primary contact number for the user |
+ | verified | boolean |  no  | Whether the phone number has been verified or not |
  
 
 ---
@@ -10712,6 +10757,32 @@ Success. Returns a JSON object of the theme. Check the example shown below or re
 
 ---
 
+#### [ThemeAndUserDetailsResponse](#ThemeAndUserDetailsResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | themes | [[MarketplaceTheme](#MarketplaceTheme)]? |  yes  | List of themes |
+ | user | [[ThemeCreator](#ThemeCreator)]? |  yes  | List of users |
+ 
+
+---
+
+#### [ThemeCreator](#ThemeCreator)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | _id | string |  no  | Unique identifier for the user |
+ | account_type | string? |  yes  | Type of user account |
+ | active | boolean |  no  | Whether the user is active or not |
+ | emails | [[Email](#Email)] |  no  | List of email addresses associated with the user |
+ | first_name | string? |  yes  | First name of the user |
+ | gender | string? |  yes  | Gender of the user (null if not specified) |
+ | last_name | string? |  yes  | Last name of the user |
+ | phone_numbers | [[PhoneNumber](#PhoneNumber)]? |  yes  | List of phone numbers associated with the user |
+ 
+
+---
+
 #### [ThemeImages](#ThemeImages)
 
  | Properties | Type | Nullable | Description |
@@ -10785,6 +10856,17 @@ Success. Returns a JSON object of the theme. Check the example shown below or re
  | ---------- | ---- | -------- | ----------- |
  | items | [[ThemesSchema](#ThemesSchema)]? |  yes  |  |
  | page | [PaginationSchema](#PaginationSchema)? |  yes  |  |
+ 
+
+---
+
+#### [ThemeSlugResponse](#ThemeSlugResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | organization | [Organization](#Organization)? |  yes  |  |
+ | theme | [MarketplaceTheme](#MarketplaceTheme)? |  yes  |  |
+ | user | [[ThemeCreator](#ThemeCreator)]? |  yes  | An array of user objects |
  
 
 ---

@@ -896,6 +896,13 @@ class PlatformClient {
  * @property {string} [url]
  */
 /**
+ * @typedef Email
+ * @property {boolean} active
+ * @property {string} email
+ * @property {boolean} primary
+ * @property {boolean} verified
+ */
+/**
  * @typedef ExploreInfo
  * @property {string} [description]
  * @property {string} [title]
@@ -1103,6 +1110,16 @@ class PlatformClient {
  * @property {string} [slug]
  */
 /**
+ * @typedef Organization
+ * @property {string} [_id]
+ * @property {OrganizationMeta} [meta]
+ */
+/**
+ * @typedef OrganizationMeta
+ * @property {string[]} [ecomm_platform_used]
+ * @property {string[]} [goals]
+ */
+/**
  * @typedef OverlayPopupSettingV2
  * @property {string} [dialog_backgroung]
  * @property {string} [overlay]
@@ -1134,6 +1151,14 @@ class PlatformClient {
  * @typedef PaymentV2
  * @property {number} [amount]
  * @property {boolean} [is_paid]
+ */
+/**
+ * @typedef PhoneNumber
+ * @property {boolean} active
+ * @property {number} [country_code]
+ * @property {string} phone
+ * @property {boolean} primary
+ * @property {boolean} verified
  */
 /**
  * @typedef PredicateV2
@@ -1256,6 +1281,22 @@ class PlatformClient {
  * @property {string} [text_secondary]
  */
 /**
+ * @typedef ThemeAndUserDetailsResponse
+ * @property {MarketplaceTheme[]} [themes]
+ * @property {ThemeCreator[]} [user]
+ */
+/**
+ * @typedef ThemeCreator
+ * @property {string} _id
+ * @property {string} [account_type]
+ * @property {boolean} active
+ * @property {Email[]} emails
+ * @property {string} [first_name]
+ * @property {string} [gender]
+ * @property {string} [last_name]
+ * @property {PhoneNumber[]} [phone_numbers]
+ */
+/**
  * @typedef ThemeImages
  * @property {string} [desktop]
  * @property {string} [mobile]
@@ -1296,6 +1337,12 @@ class PlatformClient {
  * @typedef ThemesListingResponseSchema
  * @property {ThemesSchema[]} [items]
  * @property {PaginationSchema} [page]
+ */
+/**
+ * @typedef ThemeSlugResponse
+ * @property {Organization} [organization]
+ * @property {MarketplaceTheme} [theme]
+ * @property {ThemeCreator[]} [user]
  */
 /**
  * @typedef ThemesSchema
@@ -4418,31 +4465,28 @@ class PlatformClient {
  */
 
 /**
- * @typedef AddBeneficiaryDetailsOTPRequest
- * @property {BankDetailsForOTP} details
+ * @typedef AddBeneficiaryDetailsRequest
+ * @property {boolean} delights
+ * @property {BeneficiaryModeDetails} details
  * @property {string} order_id
+ * @property {string} [otp]
+ * @property {string} [request_id]
+ * @property {string} shipment_id
+ * @property {string} transfer_mode
  */
 /**
- * @typedef BankDetailsForOTP
+ * @typedef BeneficiaryModeDetails
  * @property {string} account_holder
  * @property {string} account_no
+ * @property {string} [address]
  * @property {string} bank_name
  * @property {string} branch_name
+ * @property {string} [comment]
+ * @property {string} email
  * @property {string} ifsc_code
- */
-/**
- * @typedef CODdata
- * @property {boolean} is_active
- * @property {number} limit
- * @property {number} remaining_limit
- * @property {number} usages
- * @property {string} user_id
- */
-/**
- * @typedef Code
- * @property {string} code
- * @property {string} merchant_code
- * @property {string} name
+ * @property {string} mobile
+ * @property {string} [vpa]
+ * @property {string} [wallet]
  */
 /**
  * @typedef DeletePayoutResponse
@@ -4464,25 +4508,6 @@ class PlatformClient {
  * @property {boolean} success
  */
 /**
- * @typedef GetOauthUrlResponse
- * @property {boolean} success
- * @property {string} url
- */
-/**
- * @typedef GetPaymentCode
- * @property {PaymentCode} method_code
- */
-/**
- * @typedef GetPaymentCodeResponse
- * @property {GetPaymentCode} data
- * @property {boolean} success
- */
-/**
- * @typedef GetUserCODLimitResponse
- * @property {boolean} success
- * @property {CODdata} user_cod_data
- */
-/**
  * @typedef HttpErrorCodeAndResponse
  * @property {ErrorCodeAndDescription} error
  * @property {boolean} success
@@ -4492,31 +4517,6 @@ class PlatformClient {
  * @property {string} bank_name
  * @property {string} branch_name
  * @property {boolean} [success]
- */
-/**
- * @typedef IntentApp
- * @property {string} [code]
- * @property {string} [display_name]
- * @property {PaymentModeLogo} [logos]
- * @property {string} [package_name]
- */
-/**
- * @typedef IntentAppErrorList
- * @property {string} [code]
- * @property {string} [package_name]
- */
-/**
- * @typedef MerchantOnBoardingRequest
- * @property {string} aggregator
- * @property {string} app_id
- * @property {string} credit_line_id
- * @property {string} status
- * @property {string} user_id
- */
-/**
- * @typedef MerchantOnBoardingResponse
- * @property {Object} data
- * @property {boolean} success
  */
 /**
  * @typedef MultiTenderPaymentMeta
@@ -4546,16 +4546,16 @@ class PlatformClient {
  * @property {string} address
  * @property {string} bank_name
  * @property {string} beneficiary_id
- * @property {string} [branch_name]
- * @property {string} [comment]
+ * @property {boolean} [branch_name]
+ * @property {boolean} [comment]
  * @property {string} created_on
- * @property {string} [delights_user_name]
+ * @property {string} delights_user_name
  * @property {string} display_name
  * @property {string} email
  * @property {number} id
  * @property {string} ifsc_code
  * @property {boolean} is_active
- * @property {string} [mobile]
+ * @property {boolean} [mobile]
  * @property {string} modified_on
  * @property {string} subtitle
  * @property {string} title
@@ -4563,15 +4563,8 @@ class PlatformClient {
  */
 /**
  * @typedef OrderBeneficiaryResponse
- * @property {OrderBeneficiaryDetails[]} [beneficiaries]
+ * @property {OrderBeneficiaryDetails[]} beneficiaries
  * @property {boolean} [show_beneficiary_details]
- */
-/**
- * @typedef PaymentCode
- * @property {Code} codes
- * @property {string} name
- * @property {string} networks
- * @property {string} types
  */
 /**
  * @typedef PaymentConfirmationRequest
@@ -4626,25 +4619,19 @@ class PlatformClient {
  * @property {string} [card_reference]
  * @property {string} [card_token]
  * @property {string} [card_type]
- * @property {number} [cod_limit]
- * @property {number} [cod_limit_per_order]
  * @property {string} [code]
- * @property {boolean} [compliant_with_tokenisation_guidelines]
  * @property {string} [display_name]
  * @property {number} [display_priority]
  * @property {number} [exp_month]
  * @property {number} [exp_year]
  * @property {boolean} [expired]
  * @property {string} [fynd_vpa]
- * @property {IntentApp[]} [intent_app]
- * @property {IntentAppErrorList[]} [intent_app_error_dict_list]
  * @property {string[]} [intent_app_error_list]
  * @property {boolean} [intent_flow]
  * @property {PaymentModeLogo} [logo_url]
  * @property {string} [merchant_code]
  * @property {string} [name]
  * @property {string} [nickname]
- * @property {number} [remaining_limit]
  * @property {number} [retry_count]
  * @property {number} [timeout]
  */
@@ -4715,47 +4702,14 @@ class PlatformClient {
  * @property {boolean} success
  */
 /**
- * @typedef RepaymentDetailsSerialiserPayAll
- * @property {string} aggregator_order_id
- * @property {string} aggregator_transaction_id
- * @property {string} extension_order_id
- * @property {RepaymentRequestDetails[]} [shipment_details]
- * @property {number} total_amount
- */
-/**
- * @typedef RepaymentRequestDetails
- * @property {string} aggregator
- * @property {string} aggregator_order_id
- * @property {string} aggregator_transaction_id
- * @property {number} amount
- * @property {string} current_status
- * @property {string} fwd_shipment_id
- * @property {string} merchant_order_id
- * @property {number} outstanding_details_id
- * @property {string} payment_mode
- * @property {string} payment_mode_identifier
- */
-/**
- * @typedef RepaymentResponse
- * @property {Object} data
- * @property {boolean} success
- */
-/**
- * @typedef RevokeOAuthToken
- * @property {string} message
- * @property {boolean} success
- */
-/**
  * @typedef RootPaymentMode
  * @property {boolean} [add_card_enabled]
  * @property {string} [aggregator_name]
  * @property {boolean} [anonymous_enable]
  * @property {string} display_name
  * @property {number} display_priority
- * @property {boolean} [is_pay_by_card_pl]
  * @property {PaymentModeList[]} [list]
  * @property {string} name
- * @property {boolean} [save_card]
  */
 /**
  * @typedef SaveSubscriptionSetupIntentRequest
@@ -4764,17 +4718,6 @@ class PlatformClient {
 /**
  * @typedef SaveSubscriptionSetupIntentResponse
  * @property {Object} data
- * @property {boolean} success
- */
-/**
- * @typedef SetCODForUserRequest
- * @property {boolean} is_active
- * @property {string} merchant_user_id
- * @property {string} mobileno
- */
-/**
- * @typedef SetCODOptionResponse
- * @property {string} message
  * @property {boolean} success
  */
 /**
@@ -9089,7 +9032,7 @@ class PlatformClient {
  * @property {NetQuantity} [net_quantity]
  * @property {number} [no_of_boxes]
  * @property {string[]} [product_group_tag]
- * @property {ProductPublish} [product_publish]
+ * @property {ProductPublish1} [product_publish]
  * @property {string} [requester]
  * @property {ReturnConfig} return_config
  * @property {string} [short_description]
@@ -9285,7 +9228,7 @@ class PlatformClient {
  * @property {string} [pending]
  * @property {string} [primary_color]
  * @property {string[]} [product_group_tag]
- * @property {ProductPublish1} [product_publish]
+ * @property {ProductPublish} [product_publish]
  * @property {ReturnConfigResponse} [return_config]
  * @property {string} [short_description]
  * @property {string} [size_guide]

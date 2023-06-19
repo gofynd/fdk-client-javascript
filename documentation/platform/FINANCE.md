@@ -342,7 +342,20 @@ Success
 <summary><i>&nbsp; Example:</i></summary>
 
 ```json
-
+{
+  "summary": "Example Response",
+  "value": {
+    "success": true,
+    "invoice_type_list": {
+      "text": "Seller Invoice",
+      "value": "1ec78cf4-2d25-4bba-9d42-6515dfaf1751"
+    },
+    "payment_status_list": {
+      "text": "Unpaid",
+      "value": "unaid"
+    }
+  }
+}
 ```
 </details>
 
@@ -507,7 +520,34 @@ Success
 <summary><i>&nbsp; Example:</i></summary>
 
 ```json
-
+{
+  "summary": "Example Response",
+  "value": {
+    "items": {
+      "company": "(2)Example Company 2",
+      "invoice_number": "INV-002",
+      "invoice_type": "Example Type",
+      "invoice_date": "05-06-23",
+      "period": "02-05-23 - 05-05-23",
+      "amount": 200,
+      "status": "PAID",
+      "due_date": "07-05-23",
+      "is_downloadable": true,
+      "invoice_id": 67890
+    },
+    "unpaid_invoice_data": {
+      "total_unpaid_amount": 500,
+      "total_unpaid_invoice_count": 5,
+      "currency": "INR",
+      "item_count": 10
+    },
+    "page": {
+      "page_number": 1,
+      "page_size": 10,
+      "total_pages": 2
+    }
+  }
+}
 ```
 </details>
 
@@ -562,7 +602,20 @@ Success
 <summary><i>&nbsp; Example:</i></summary>
 
 ```json
-
+{
+  "summary": "Example Response",
+  "value": {
+    "success": true,
+    "data": [
+      "example1.pdf",
+      "example2.pdf"
+    ],
+    "error": [
+      "invoice_no1",
+      "invoice_no2"
+    ]
+  }
+}
 ```
 </details>
 

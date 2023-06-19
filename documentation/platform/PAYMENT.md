@@ -9,28 +9,21 @@
 Collect payment through many payment gateway i.e Stripe, Razorpay, Juspay etc.into Fynd or Self account
 
 * [activateAndDectivatePayout](#activateanddectivatepayout)
-* [addRefundBankAccountUsingOTP](#addrefundbankaccountusingotp)
+* [addBeneficiaryDetails](#addbeneficiarydetails)
 * [confirmPayment](#confirmpayment)
 * [deletePayout](#deletepayout)
 * [deleteSubscriptionPaymentMethod](#deletesubscriptionpaymentmethod)
 * [getAllPayouts](#getallpayouts)
-* [getBankAccountDetailsOpenAPI](#getbankaccountdetailsopenapi)
 * [getBrandPaymentGatewayConfig](#getbrandpaymentgatewayconfig)
-* [getPaymentCodeOption](#getpaymentcodeoption)
 * [getPaymentModeRoutes](#getpaymentmoderoutes)
 * [getSubscriptionConfig](#getsubscriptionconfig)
 * [getSubscriptionPaymentMethod](#getsubscriptionpaymentmethod)
 * [getUserBeneficiaries](#getuserbeneficiaries)
-* [getUserCODlimitRoutes](#getusercodlimitroutes)
 * [getUserOrderBeneficiaries](#getuserorderbeneficiaries)
-* [merchantOnBoarding](#merchantonboarding)
-* [oauthGetUrl](#oauthgeturl)
-* [repaymentDetails](#repaymentdetails)
-* [revokeOauthToken](#revokeoauthtoken)
 * [saveBrandPaymentGatewayConfig](#savebrandpaymentgatewayconfig)
 * [savePayout](#savepayout)
 * [saveSubscriptionSetupIntent](#savesubscriptionsetupintent)
-* [setUserCODlimitRoutes](#setusercodlimitroutes)
+* [updateBrandPaymentGatewayConfig](#updatebrandpaymentgatewayconfig)
 * [updatePayout](#updatepayout)
 * [verifyIfscCode](#verifyifsccode)
 
@@ -103,17 +96,17 @@ save payout response object
 ---
 
 
-### addRefundBankAccountUsingOTP
+### addBeneficiaryDetails
 Save bank details for cancelled/returned order
 
 
 
 ```javascript
 // Promise
-const promise = platformClient.application("<APPLICATION_ID>").payment.addRefundBankAccountUsingOTP({  body : value });
+const promise = platformClient.application("<APPLICATION_ID>").payment.addBeneficiaryDetails({  body : value });
 
 // Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").payment.addRefundBankAccountUsingOTP({  body : value });
+const data = await platformClient.application("<APPLICATION_ID>").payment.addBeneficiaryDetails({  body : value });
 ```
 
 
@@ -122,7 +115,7 @@ const data = await platformClient.application("<APPLICATION_ID>").payment.addRef
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |
-| body | [AddBeneficiaryDetailsOTPRequest](#AddBeneficiaryDetailsOTPRequest) | yes | Request body |
+| body | [AddBeneficiaryDetailsRequest](#AddBeneficiaryDetailsRequest) | yes | Request body |
 
 
 Use this API to save bank details for returned/cancelled order to refund amount in his account.
@@ -460,78 +453,6 @@ payouts response object
 ---
 
 
-### getBankAccountDetailsOpenAPI
-Get bank details
-
-
-
-```javascript
-// Promise
-const promise = platformClient.application("<APPLICATION_ID>").payment.getBankAccountDetailsOpenAPI({  orderId : value,
- requestHash : value });
-
-// Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").payment.getBankAccountDetailsOpenAPI({  orderId : value,
- requestHash : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| orderId | string | yes |  |    
-| requestHash | string | no |  |  
-
-
-
-Use this API to get saved bank details for returned/cancelled order using order id.
-
-*Returned Response:*
-
-
-
-
-[RefundAccountResponse](#RefundAccountResponse)
-
-Success
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "success": true,
-  "data": {
-    "account_no": "XXXX-XXXX-6682",
-    "ifsc_code": "SBIEXAMPLE001",
-    "email": "loremipsum@example.com",
-    "address": "1773  Monroe Street",
-    "bank_name": "SBI",
-    "branch_name": "HOUSTON",
-    "comment": "Lorem Ipsum",
-    "account_holder": "Leslie Rice",
-    "mobile": "0987654321"
-  }
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
 ### getBrandPaymentGatewayConfig
 Get All Brand Payment Gateway Config Secret
 
@@ -700,122 +621,6 @@ Refund Transfer Mode
 ---
 
 
-### getPaymentCodeOption
-List Payment Options Method Codes
-
-
-
-```javascript
-// Promise
-const promise = platformClient.application("<APPLICATION_ID>").payment.getPaymentCodeOption();
-
-// Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").payment.getPaymentCodeOption();
-```
-
-
-
-
-
-
-Get all active List Payment Options Method Codes
-
-*Returned Response:*
-
-
-
-
-[GetPaymentCodeResponse](#GetPaymentCodeResponse)
-
-List Order Beneficiary
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "success": true,
-  "data": {
-    "WL": {
-      "codes": [
-        {
-          "code": "PAYTM",
-          "merchant_code": "PAYTM",
-          "name": "Paytm"
-        },
-        {
-          "code": "MOBIKWIK",
-          "merchant_code": "MOBIKWIK",
-          "name": "Mobikwik"
-        }
-      ],
-      "networks": [],
-      "types": [],
-      "name": "Wallet"
-    },
-    "NB": {
-      "codes": [
-        {
-          "code": "HDFC",
-          "merchant_code": "HDFC",
-          "name": "HDFC Bank"
-        },
-        {
-          "code": "ICIC",
-          "merchant_code": "ICIC",
-          "name": "ICICI Bank"
-        }
-      ],
-      "networks": [],
-      "types": [],
-      "name": "Net Banking"
-    },
-    "CARD": {
-      "codes": [
-        {
-          "code": "ICICI",
-          "merchant_code": "ICICI",
-          "name": "ICICI Bank"
-        },
-        {
-          "code": "AXIS",
-          "merchant_code": "AXIS",
-          "name": "AXIS Bank"
-        }
-      ],
-      "networks": [
-        "RUPAY",
-        "VISA",
-        "MASTERCARD",
-        "MAESTRO",
-        "AMERICANEXPRESS",
-        "DINERSCLUB"
-      ],
-      "types": [
-        "CREDIT",
-        "DEBIT"
-      ],
-      "name": "CARD"
-    }
-  }
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
 ### getPaymentModeRoutes
 Get All Valid Payment Options
 
@@ -873,7 +678,6 @@ Success
         "anonymous_enable": true,
         "aggregator_name": "Razorpay",
         "add_card_enabled": false,
-        "save_card": true,
         "types": [],
         "networks": [],
         "banks": []
@@ -1859,35 +1663,10 @@ Success
             "retry_count": 0,
             "fynd_vpa": "shopsense.rzp@hdfcbank",
             "intent_flow": true,
-            "intent_app": [
-              {
-                "code": "google_pay",
-                "display_name": "Google Pay",
-                "package_name": "com.google.android.apps.nbu.paisa.user",
-                "logos": {
-                  "small": "https://hdn-1.fynd.com/payment/upi-google-pay.png",
-                  "large": "https://hdn-1.fynd.com/payment/upi-google-pay.png"
-                }
-              }
-            ],
             "intent_app_error_list": [
               "com.csam.icici.bank.imobile",
               "in.org.npci.upiapp",
               "com.whatsapp"
-            ],
-            "intent_app_error_dict_list": [
-              {
-                "package_name": "com.csam.icici.bank.imobile",
-                "code": "icici"
-              },
-              {
-                "package_name": "in.org.npci.upiapp",
-                "code": "upiapp"
-              },
-              {
-                "package_name": "com.whatsapp",
-                "code": "whatsapp"
-              }
             ]
           }
         ]
@@ -2350,75 +2129,6 @@ List User Beneficiary
 ---
 
 
-### getUserCODlimitRoutes
-Get COD limit for user
-
-
-
-```javascript
-// Promise
-const promise = platformClient.application("<APPLICATION_ID>").payment.getUserCODlimitRoutes({  merchantUserId : value,
- mobileNo : value });
-
-// Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").payment.getUserCODlimitRoutes({  merchantUserId : value,
- mobileNo : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| merchantUserId | string | yes |  |   
-| mobileNo | string | yes |  |  
-
-
-
-Use this API to get user cod limit and reamining limit for the payment
-
-*Returned Response:*
-
-
-
-
-[GetUserCODLimitResponse](#GetUserCODLimitResponse)
-
-Success. Returns user cod limit , remaining limit and usage of user for COD. Check the example shown below or refer `GetUserCODLimitResponseSchema` for more details.
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "success": true,
-  "user_cod_data": {
-    "is_active": true,
-    "user_id": 5,
-    "usages": 1000,
-    "limit": 10000,
-    "remaining_limit": 9000,
-    "merchant_user_id": "5e199e6998cfe1776f1385dc"
-  }
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
 ### getUserOrderBeneficiaries
 List Order Beneficiary
 
@@ -2484,252 +2194,6 @@ List Order Beneficiary
       "delights_user_name": "shreeniwas_24x7_gmail_com_45978_16624463"
     }
   ]
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### merchantOnBoarding
-API to push Ajiodhan merchant data to Gringotts system
-
-
-
-```javascript
-// Promise
-const promise = platformClient.application("<APPLICATION_ID>").payment.merchantOnBoarding({  body : value });
-
-// Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").payment.merchantOnBoarding({  body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |
-| body | [MerchantOnBoardingRequest](#MerchantOnBoardingRequest) | yes | Request body |
-
-
-Use this API to push Ajiodhan merchant data to Gringotts system
-
-*Returned Response:*
-
-
-
-
-[MerchantOnBoardingResponse](#MerchantOnBoardingResponse)
-
-Success. Returns the status of API. Check the example shown below or refer `RepaymentResponseSchema` for more details.
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "success": true,
-  "data": {
-    "status": true,
-    "status_code": 200,
-    "message": "Merchant onboarding details saved"
-  }
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### oauthGetUrl
-API to Get the url to call for oauth
-
-
-
-```javascript
-// Promise
-const promise = platformClient.application("<APPLICATION_ID>").payment.oauthGetUrl({  aggregator : value,
- successRedirectUrl : value,
- failureRedirectUrl : value });
-
-// Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").payment.oauthGetUrl({  aggregator : value,
- successRedirectUrl : value,
- failureRedirectUrl : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| aggregator | string | yes | aggregator |    
-| successRedirectUrl | string | no |  |    
-| failureRedirectUrl | string | no |  |  
-
-
-
-Use this API to Get the url to call for oauth.
-
-*Returned Response:*
-
-
-
-
-[GetOauthUrlResponse](#GetOauthUrlResponse)
-
-Success. Returns the status of payment. Check the example shown below or refer `GetOauthUrlResponseSchema` for more details.
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "success": true,
-  "url": "https://auth.razorpay.com/authorize?client_id=LlCp1Mj6YW6jFc&response_type=code&redirect_uri=http://localhost:8000/v1.0/partnership/authorize/razorpay&scope=read_only&state=000000000000000000000001"
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### repaymentDetails
-API to register repayment details
-
-
-
-```javascript
-// Promise
-const promise = platformClient.application("<APPLICATION_ID>").payment.repaymentDetails({  body : value });
-
-// Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").payment.repaymentDetails({  body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |
-| body | [RepaymentDetailsSerialiserPayAll](#RepaymentDetailsSerialiserPayAll) | yes | Request body |
-
-
-Use this API to register any repayment record in the db and notify the aggrgator
-
-*Returned Response:*
-
-
-
-
-[RepaymentResponse](#RepaymentResponse)
-
-Success. Returns the status of API. Check the example shown below or refer `RepaymentResponseSchema` for more details.
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "success": true,
-  "data": {
-    "status": true
-  }
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### revokeOauthToken
-API to Revoke oauth for razorpay partnership
-
-
-
-```javascript
-// Promise
-const promise = platformClient.application("<APPLICATION_ID>").payment.revokeOauthToken({  aggregator : value });
-
-// Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").payment.revokeOauthToken({  aggregator : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| aggregator | string | yes | aggregator_slug |  
-
-
-
-Use this API to Revoke oauth for razorpay partnership
-
-*Returned Response:*
-
-
-
-
-[RevokeOAuthToken](#RevokeOAuthToken)
-
-Success. Returns the status of revokation. Check the example shown below or refer `RevokeOAuthTokenSchema` for more details.
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "success": true,
-  "message": "Token Revoked"
 }
 ```
 </details>
@@ -2952,17 +2416,17 @@ Save Subscription Setup Intent Response.
 ---
 
 
-### setUserCODlimitRoutes
-Set COD option for user for payment
+### updateBrandPaymentGatewayConfig
+Save Config Secret For Brand Payment Gateway
 
 
 
 ```javascript
 // Promise
-const promise = platformClient.application("<APPLICATION_ID>").payment.setUserCODlimitRoutes({  body : value });
+const promise = platformClient.application("<APPLICATION_ID>").payment.updateBrandPaymentGatewayConfig({  body : value });
 
 // Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").payment.setUserCODlimitRoutes({  body : value });
+const data = await platformClient.application("<APPLICATION_ID>").payment.updateBrandPaymentGatewayConfig({  body : value });
 ```
 
 
@@ -2971,19 +2435,19 @@ const data = await platformClient.application("<APPLICATION_ID>").payment.setUse
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |
-| body | [SetCODForUserRequest](#SetCODForUserRequest) | yes | Request body |
+| body | [PaymentGatewayConfigRequest](#PaymentGatewayConfigRequest) | yes | Request body |
 
 
-Use this API to set cod option as true or false for the payment
+Save Config Secret For Brand Payment Gateway
 
 *Returned Response:*
 
 
 
 
-[SetCODOptionResponse](#SetCODOptionResponse)
+[PaymentGatewayToBeReviewed](#PaymentGatewayToBeReviewed)
 
-Success. Returns true/false for user cod option for payment. Check the example shown below or refer `GetUserCODLimitResponseSchema` for more details.
+Save Config Secret For Brand Payment Gateway Success Response.
 
 
 
@@ -2994,7 +2458,9 @@ Success. Returns true/false for user cod option for payment. Check the example s
 ```json
 {
   "success": true,
-  "message": "COD option for user {} is set to {}"
+  "aggregators": [
+    "razorpay"
+  ]
 }
 ```
 </details>
@@ -3152,49 +2618,36 @@ Bank details on correct Ifsc Code
 ### Schemas
 
 
-#### [AddBeneficiaryDetailsOTPRequest](#AddBeneficiaryDetailsOTPRequest)
+#### [AddBeneficiaryDetailsRequest](#AddBeneficiaryDetailsRequest)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | details | [BankDetailsForOTP](#BankDetailsForOTP) |  no  |  |
- | order_id | string |  no  |  |
+ | delights | boolean |  no  | True if  beneficiary to be added by delights or False if by User |
+ | details | [BeneficiaryModeDetails](#BeneficiaryModeDetails) |  no  | Beneficiary bank details |
+ | order_id | string |  no  | Merchant Order Id |
+ | otp | string? |  yes  |  |
+ | request_id | string? |  yes  |  |
+ | shipment_id | string |  no  | Shipment Id of the respective Merchant Order Id |
+ | transfer_mode | string |  no  | Transfer Mode of the Beneficiary to be added |
  
 
 ---
 
-#### [BankDetailsForOTP](#BankDetailsForOTP)
+#### [BeneficiaryModeDetails](#BeneficiaryModeDetails)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | account_holder | string |  no  |  |
- | account_no | string |  no  |  |
- | bank_name | string |  no  |  |
- | branch_name | string |  no  |  |
- | ifsc_code | string |  no  |  |
- 
-
----
-
-#### [CODdata](#CODdata)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | is_active | boolean |  no  | COD option is active or not |
- | limit | number |  no  | Total Limit of user |
- | remaining_limit | number |  no  | Remaining Limit for COD of User |
- | usages | number |  no  | Used COD limit from the user Limit |
- | user_id | string |  no  | Payment mode name |
- 
-
----
-
-#### [Code](#Code)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | code | string |  no  | Payment Method Code |
- | merchant_code | string |  no  | Merchant Payment Code |
- | name | string |  no  | Name of payment method |
+ | account_holder | string |  no  | Name of the Account Holder |
+ | account_no | string |  no  | Account NUmber of the Account Holder |
+ | address | string? |  yes  | Address of the User |
+ | bank_name | string |  no  | Bank Name of the Account |
+ | branch_name | string |  no  | Branch Name of the Account |
+ | comment | string? |  yes  | Remarks added by The user |
+ | email | string |  no  | Email of the Account Holder |
+ | ifsc_code | string |  no  | Ifsc Code of the Account |
+ | mobile | string |  no  | Moblie Number of the User |
+ | vpa | string? |  yes  |  |
+ | wallet | string? |  yes  |  |
  
 
 ---
@@ -3238,45 +2691,6 @@ Bank details on correct Ifsc Code
 
 ---
 
-#### [GetOauthUrlResponse](#GetOauthUrlResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | success | boolean |  no  | Response is successful or not |
- | url | string |  no  | The url to call for authenticating |
- 
-
----
-
-#### [GetPaymentCode](#GetPaymentCode)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | method_code | [PaymentCode](#PaymentCode) |  no  | Payment method code |
- 
-
----
-
-#### [GetPaymentCodeResponse](#GetPaymentCodeResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | data | [GetPaymentCode](#GetPaymentCode) |  no  | Data about Payment Code. |
- | success | boolean |  no  | Response is successful or not. |
- 
-
----
-
-#### [GetUserCODLimitResponse](#GetUserCODLimitResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | success | boolean |  no  | Response is successful or not |
- | user_cod_data | [CODdata](#CODdata) |  no  | User COD Data |
- 
-
----
-
 #### [HttpErrorCodeAndResponse](#HttpErrorCodeAndResponse)
 
  | Properties | Type | Nullable | Description |
@@ -3294,51 +2708,6 @@ Bank details on correct Ifsc Code
  | bank_name | string |  no  | Bank Name Of Account |
  | branch_name | string |  no  | Branch Name Of Account |
  | success | boolean? |  yes  | Response is successful or not |
- 
-
----
-
-#### [IntentApp](#IntentApp)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | code | string? |  yes  | code |
- | display_name | string? |  yes  | display_name |
- | logos | [PaymentModeLogo](#PaymentModeLogo)? |  yes  | logos |
- | package_name | string? |  yes  | package_name |
- 
-
----
-
-#### [IntentAppErrorList](#IntentAppErrorList)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | code | string? |  yes  | code |
- | package_name | string? |  yes  | package_name |
- 
-
----
-
-#### [MerchantOnBoardingRequest](#MerchantOnBoardingRequest)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | aggregator | string |  no  | Payment aggregator name |
- | app_id | string |  no  | Application id |
- | credit_line_id | string |  no  | Merchant ID at Ajiodhan's end |
- | status | string |  no  | Status |
- | user_id | string |  no  | Deadlock/Grimlock user id |
- 
-
----
-
-#### [MerchantOnBoardingResponse](#MerchantOnBoardingResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | data | string |  no  |  |
- | success | boolean |  no  | Success/Failure of the transaction |
  
 
 ---
@@ -3388,16 +2757,16 @@ Bank details on correct Ifsc Code
  | address | string |  no  | Address of User |
  | bank_name | string |  no  | Bank Name Of Account |
  | beneficiary_id | string |  no  | Benenficiary Id |
- | branch_name | string? |  yes  | Branch Name Of Account |
- | comment | string? |  yes  | Remarks |
+ | branch_name | boolean? |  yes  | Branch Name Of Account |
+ | comment | boolean? |  yes  | Remarks |
  | created_on | string |  no  | Creation Date of Beneficiary |
- | delights_user_name | string? |  yes  | User Id Who filled the Beneficiary  |
+ | delights_user_name | string |  no  | User Id Who filled the Beneficiary  |
  | display_name | string |  no  | Display Name Of Account |
  | email | string |  no  | EMail of User |
  | id | number |  no  |   |
  | ifsc_code | string |  no  | Ifsc Code Of Account |
  | is_active | boolean |  no  | Boolean Flag whether Beneficiary set or not |
- | mobile | string? |  yes  | MObile no of User |
+ | mobile | boolean? |  yes  | MObile no of User |
  | modified_on | string |  no  | MOdification Date of Beneficiary |
  | subtitle | string |  no  | SHort Title Of Account |
  | title | string |  no  | Title Of Account |
@@ -3410,20 +2779,8 @@ Bank details on correct Ifsc Code
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | beneficiaries | [[OrderBeneficiaryDetails](#OrderBeneficiaryDetails)]? |  yes  | All Beneficiaries Of An Order |
+ | beneficiaries | [[OrderBeneficiaryDetails](#OrderBeneficiaryDetails)] |  no  | All Beneficiaries Of An Order |
  | show_beneficiary_details | boolean? |  yes  | Show beneficiary details or not. |
- 
-
----
-
-#### [PaymentCode](#PaymentCode)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | codes | [Code](#Code) |  no  | List of dict that contains payment method data |
- | name | string |  no  | name of payment name |
- | networks | string |  no  | payment networks |
- | types | string |  no  | Type of payment mode |
  
 
 ---
@@ -3513,25 +2870,19 @@ Bank details on correct Ifsc Code
  | card_reference | string? |  yes  | card_reference |
  | card_token | string? |  yes  | card_token |
  | card_type | string? |  yes  | card_type |
- | cod_limit | number? |  yes  | cod limit |
- | cod_limit_per_order | number? |  yes  | Cod limit per order |
  | code | string? |  yes  | code |
- | compliant_with_tokenisation_guidelines | boolean? |  yes  | If card is tokenised or not |
  | display_name | string? |  yes  | display name |
  | display_priority | number? |  yes  | Dispaly Priority |
  | exp_month | number? |  yes  | exp_month |
  | exp_year | number? |  yes  | exp_year |
  | expired | boolean? |  yes  | expired |
  | fynd_vpa | string? |  yes  | fynd_vpa |
- | intent_app | [[IntentApp](#IntentApp)]? |  yes  | intent_app |
- | intent_app_error_dict_list | [[IntentAppErrorList](#IntentAppErrorList)]? |  yes  | intent_app_error_dict_list |
  | intent_app_error_list | [string]? |  yes  | intent_app_error_list |
  | intent_flow | boolean? |  yes  | intent_flow |
  | logo_url | [PaymentModeLogo](#PaymentModeLogo)? |  yes  | Logo |
  | merchant_code | string? |  yes  | merchant code |
  | name | string? |  yes  | name |
  | nickname | string? |  yes  | nickname |
- | remaining_limit | number? |  yes  | Remaining limit |
  | retry_count | number? |  yes  | retry_count |
  | timeout | number? |  yes  | timeout |
  
@@ -3644,57 +2995,6 @@ Bank details on correct Ifsc Code
 
 ---
 
-#### [RepaymentDetailsSerialiserPayAll](#RepaymentDetailsSerialiserPayAll)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | aggregator_order_id | string |  no  | Id of payment gateway |
- | aggregator_transaction_id | string |  no  | Unique Id for the transaction |
- | extension_order_id | string |  no  | Order id created in extension |
- | shipment_details | [[RepaymentRequestDetails](#RepaymentRequestDetails)]? |  yes  |  |
- | total_amount | number |  no  | total amount |
- 
-
----
-
-#### [RepaymentRequestDetails](#RepaymentRequestDetails)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | aggregator | string |  no  | Name of Payment Gateway |
- | aggregator_order_id | string |  no  | Id of payment gateway |
- | aggregator_transaction_id | string |  no  | Unique Id for the transaction |
- | amount | number |  no  | Amount to paid back |
- | current_status | string |  no  | Status |
- | fwd_shipment_id | string |  no  | Purchase Shipment Id |
- | merchant_order_id | string |  no  | Merchant's Order Id |
- | outstanding_details_id | number |  no  | Outstanding details ID |
- | payment_mode | string |  no  | Payment Mode |
- | payment_mode_identifier | string |  no  | Payment Mode Id |
- 
-
----
-
-#### [RepaymentResponse](#RepaymentResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | data | string |  no  |  |
- | success | boolean |  no  | Success/Failure of the transaction |
- 
-
----
-
-#### [RevokeOAuthToken](#RevokeOAuthToken)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | message | string |  no  | The confirmation message of the token revoke. |
- | success | boolean |  no  | Response is successful or not |
- 
-
----
-
 #### [RootPaymentMode](#RootPaymentMode)
 
  | Properties | Type | Nullable | Description |
@@ -3704,10 +3004,8 @@ Bank details on correct Ifsc Code
  | anonymous_enable | boolean? |  yes  | Annonymous card flag |
  | display_name | string |  no  | Payment mode display name |
  | display_priority | number |  no  | Dispaly Priority |
- | is_pay_by_card_pl | boolean? |  yes  | This flag will be true in case of Payment link payment through card |
  | list | [[PaymentModeList](#PaymentModeList)]? |  yes  | Payment mode |
  | name | string |  no  | Payment mode name |
- | save_card | boolean? |  yes  | Card save or not |
  
 
 ---
@@ -3726,27 +3024,6 @@ Bank details on correct Ifsc Code
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | data | string |  no  | Subscription Payment Method Object |
- | success | boolean |  no  | Response is successful or not |
- 
-
----
-
-#### [SetCODForUserRequest](#SetCODForUserRequest)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | is_active | boolean |  no  | either true or false |
- | merchant_user_id | string |  no  | Merchant User id |
- | mobileno | string |  no  | Mobile No. of User |
- 
-
----
-
-#### [SetCODOptionResponse](#SetCODOptionResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | message | string |  no  | Message |
  | success | boolean |  no  | Response is successful or not |
  
 

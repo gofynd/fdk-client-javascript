@@ -14,6 +14,69 @@ class Theme {
 
   /**
    * @param {Object} arg - Arg object.
+   * @param {ApplyThemeRequestV2} arg.body
+   * @returns {Promise<ApplyThemeResponseV2>} - Success response
+   * @summary: Apply a theme to an application
+   * @description: Apply a theme to an application by providing the marketplace theme ID.
+   */
+  async addThemeToApplicationV2({ body } = {}) {
+    const { error } = ThemeValidator.addThemeToApplicationV2().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = ThemeValidator.addThemeToApplicationV2().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for addThemeToApplicationV2",
+      });
+      Logger({ level: "WARN", message: warrning });
+    }
+
+    const query_params = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/theme/v2.0/company/${this.config.companyId}/application/${this.applicationId}`,
+      query_params,
+      body
+    );
+
+    const {
+      error: res_error,
+    } = ThemeModel.ApplyThemeResponseV2().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for addThemeToApplicationV2",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
    * @param {AddThemeRequestSchema} arg.body
    * @returns {Promise<ThemesSchema>} - Success response
    * @summary: Add a theme to the theme library
@@ -132,15 +195,15 @@ class Theme {
 
   /**
    * @param {Object} arg - Arg object.
-   * @param {ApplyThemeRequestV2} arg.body
-   * @returns {Promise<ApplyThemeResponseV2>} - Success response
-   * @summary: Apply a theme to an application
-   * @description: Apply a theme to an application by providing the marketplace theme ID.
+   * @param {string} arg.themeId - The ID of the apply
+   * @returns {Promise<AllThemesApplicationResponseV2>} - Success response
+   * @summary: Apply theme to a specific application
+   * @description: Apply theme to a specific application by providing company_id, application_id, and theme_id.
    */
-  async applyThemeV2({ body } = {}) {
+  async applyThemeV2({ themeId } = {}) {
     const { error } = ThemeValidator.applyThemeV2().validate(
       {
-        body,
+        themeId,
       },
       { abortEarly: false, allowUnknown: true }
     );
@@ -151,7 +214,7 @@ class Theme {
     // Showing warrnings if extra unknown parameters are found
     const { error: warrning } = ThemeValidator.applyThemeV2().validate(
       {
-        body,
+        themeId,
       },
       { abortEarly: false, allowUnknown: false }
     );
@@ -167,15 +230,15 @@ class Theme {
 
     const response = await PlatformAPIClient.execute(
       this.config,
-      "post",
-      `/service/platform/theme/v2.0/company/${this.config.companyId}/application/${this.applicationId}`,
+      "patch",
+      `/service/platform/theme/v2.0/company/${this.config.companyId}/application/${this.applicationId}/${themeId}/apply`,
       query_params,
-      body
+      undefined
     );
 
     const {
       error: res_error,
-    } = ThemeModel.ApplyThemeResponseV2().validate(response, {
+    } = ThemeModel.AllThemesApplicationResponseV2().validate(response, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -489,6 +552,128 @@ class Theme {
       Logger({
         level: "WARN",
         message: "Response Validation Warnnings for deleteTheme",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.themeId - The ID of the theme to be deleted.
+   * @returns {Promise<AllThemesApplicationResponseV2>} - Success response
+   * @summary: Delete a theme
+   * @description: This endpoint is used to delete a theme from the specified company and application.
+   */
+  async deleteThemeV2({ themeId } = {}) {
+    const { error } = ThemeValidator.deleteThemeV2().validate(
+      {
+        themeId,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = ThemeValidator.deleteThemeV2().validate(
+      {
+        themeId,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for deleteThemeV2",
+      });
+      Logger({ level: "WARN", message: warrning });
+    }
+
+    const query_params = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "delete",
+      `/service/platform/theme/v2.0/company/${this.config.companyId}/application/${this.applicationId}/${themeId}`,
+      query_params,
+      undefined
+    );
+
+    const {
+      error: res_error,
+    } = ThemeModel.AllThemesApplicationResponseV2().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for deleteThemeV2",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.themeId - The ID of the theme to be duplicated
+   * @returns {Promise<AllThemesApplicationResponseV2>} - Success response
+   * @summary: Duplicate a Theme
+   * @description: This endpoint duplicates a Theme in the specified application.
+   */
+  async duplicateThemeV2({ themeId } = {}) {
+    const { error } = ThemeValidator.duplicateThemeV2().validate(
+      {
+        themeId,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = ThemeValidator.duplicateThemeV2().validate(
+      {
+        themeId,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for duplicateThemeV2",
+      });
+      Logger({ level: "WARN", message: warrning });
+    }
+
+    const query_params = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/theme/v2.0/company/${this.config.companyId}/application/${this.applicationId}/${themeId}/duplicate`,
+      query_params,
+      undefined
+    );
+
+    const {
+      error: res_error,
+    } = ThemeModel.AllThemesApplicationResponseV2().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for duplicateThemeV2",
       });
       Logger({ level: "WARN", message: res_error });
     }

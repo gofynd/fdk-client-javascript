@@ -373,7 +373,7 @@ class Finance {
     const response = await PlatformAPIClient.execute(
       this.config,
       "post",
-      `/service/platform/finance/v1.0/company/${this.config.companyId}/get-invoice-type`,
+      `/service/platform/finance/v1.0/company/${this.config.companyId}/invoice-type`,
       query_params,
       body,
       xHeaders

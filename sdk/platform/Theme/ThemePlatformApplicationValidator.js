@@ -2,6 +2,12 @@ const Joi = require("joi");
 
 const ThemeModel = require("./ThemePlatformModel");
 class ThemeValidator {
+  static addThemeToApplicationV2() {
+    return Joi.object({
+      body: ThemeModel.ApplyThemeRequestV2().required(),
+    }).required();
+  }
+
   static addToThemeLibrary() {
     return Joi.object({
       body: ThemeModel.AddThemeRequestSchema().required(),
@@ -16,7 +22,7 @@ class ThemeValidator {
 
   static applyThemeV2() {
     return Joi.object({
-      body: ThemeModel.ApplyThemeRequestV2().required(),
+      themeId: Joi.string().allow("").required(),
     }).required();
   }
 
@@ -47,6 +53,18 @@ class ThemeValidator {
   }
 
   static deleteTheme() {
+    return Joi.object({
+      themeId: Joi.string().allow("").required(),
+    }).required();
+  }
+
+  static deleteThemeV2() {
+    return Joi.object({
+      themeId: Joi.string().allow("").required(),
+    }).required();
+  }
+
+  static duplicateThemeV2() {
     return Joi.object({
       themeId: Joi.string().allow("").required(),
     }).required();

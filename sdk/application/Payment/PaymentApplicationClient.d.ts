@@ -6,40 +6,20 @@ declare class Payment {
         addBeneficiaryDetails: string;
         addRefundBankAccountUsingOTP: string;
         attachCardToCustomer: string;
-        cancelPaymentLink: string;
-        cardDetails: string;
         checkAndUpdatePaymentStatus: string;
-        checkAndUpdatePaymentStatusPaymentLink: string;
-        checkCredit: string;
-        createOrderHandlerPaymentLink: string;
-        createPaymentLink: string;
-        customerCreditSummary: string;
-        customerOnboard: string;
         deleteUserCard: string;
         enableOrDisableRefundTransferMode: string;
         getActiveCardAggregator: string;
         getActiveRefundTransferModes: string;
         getActiveUserCards: string;
         getAggregatorsConfig: string;
-        getEpaylaterBannerDetails: string;
         getOrderBeneficiariesDetail: string;
-        getPaymentLink: string;
         getPaymentModeRoutes: string;
-        getPaymentModeRoutesPaymentLink: string;
         getPosPaymentModeRoutes: string;
         getRupifiBannerDetails: string;
         getUserBeneficiariesDetail: string;
         initialisePayment: string;
-        initialisePaymentPaymentLink: string;
-        outstandingOrderDetails: string;
-        paidOrderDetails: string;
-        pollingPaymentLink: string;
-        redirectToAggregator: string;
-        renderHTML: string;
-        resendOrCancelPayment: string;
-        resendPaymentLink: string;
         updateDefaultBeneficiary: string;
-        validateVPA: string;
         verifyAndChargePayment: string;
         verifyCustomerForPayment: string;
         verifyIfscCode: string;
@@ -80,28 +60,6 @@ declare class Payment {
     }): Promise<AttachCardsResponse>;
     /**
      * @param {Object} arg - Arg object.
-     * @param {CancelOrResendPaymentLinkRequest} arg.body
-     * @returns {Promise<CancelPaymentLinkResponse>} - Success response
-     * @summary: Cancel payment link
-     * @description: Use this API to cancel a payment link for the customer
-     */
-    cancelPaymentLink({ body }?: {
-        body: CancelOrResendPaymentLinkRequest;
-    }): Promise<CancelPaymentLinkResponse>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.cardInfo - Card first 6 digit IIN(prefix) number.
-     * @param {string} [arg.aggregator] -
-     * @returns {Promise<CardDetailsResponse>} - Success response
-     * @summary: API to get Card info from PG
-     * @description: API to get Card info from PG
-     */
-    cardDetails({ cardInfo, aggregator }?: {
-        cardInfo: string;
-        aggregator?: string;
-    }): Promise<CardDetailsResponse>;
-    /**
-     * @param {Object} arg - Arg object.
      * @param {PaymentStatusUpdateRequest} arg.body
      * @returns {Promise<PaymentStatusUpdateResponse>} - Success response
      * @summary: Performs continuous polling to check status of payment on the server
@@ -110,66 +68,6 @@ declare class Payment {
     checkAndUpdatePaymentStatus({ body }?: {
         body: PaymentStatusUpdateRequest;
     }): Promise<PaymentStatusUpdateResponse>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {PaymentStatusUpdateRequest} arg.body
-     * @returns {Promise<PaymentStatusUpdateResponse>} - Success response
-     * @summary: Performs continuous polling to check status of payment on the server
-     * @description: Use this API to perform continuous polling at intervals to check the status of payment until timeout.
-     */
-    checkAndUpdatePaymentStatusPaymentLink({ body }?: {
-        body: PaymentStatusUpdateRequest;
-    }): Promise<PaymentStatusUpdateResponse>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {string} [arg.aggregator] -
-     * @returns {Promise<CheckCreditResponse>} - Success response
-     * @summary: API to fetch the customer credit summary
-     * @description: Use this API to fetch the customer credit summary.
-     */
-    checkCredit({ aggregator }?: {
-        aggregator?: string;
-    }): Promise<CheckCreditResponse>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {CreateOrderUserRequest} arg.body
-     * @returns {Promise<CreateOrderUserResponse>} - Success response
-     * @summary: Create Order user
-     * @description: Use this API to create a order and payment on aggregator side
-     */
-    createOrderHandlerPaymentLink({ body }?: {
-        body: CreateOrderUserRequest;
-    }): Promise<CreateOrderUserResponse>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {CreatePaymentLinkRequest} arg.body
-     * @returns {Promise<CreatePaymentLinkResponse>} - Success response
-     * @summary: Create payment link
-     * @description: Use this API to create a payment link for the customer
-     */
-    createPaymentLink({ body }?: {
-        body: CreatePaymentLinkRequest;
-    }): Promise<CreatePaymentLinkResponse>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {string} [arg.aggregator] -
-     * @returns {Promise<CustomerCreditSummaryResponse>} - Success response
-     * @summary: API to fetch the customer credit summary
-     * @description: Use this API to fetch the customer credit summary.
-     */
-    customerCreditSummary({ aggregator }?: {
-        aggregator?: string;
-    }): Promise<CustomerCreditSummaryResponse>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {CustomerOnboardingRequest} arg.body
-     * @returns {Promise<CustomerOnboardingResponse>} - Success response
-     * @summary: API to fetch the customer credit summary
-     * @description: Use this API to fetch the customer credit summary.
-     */
-    customerOnboard({ body }?: {
-        body: CustomerOnboardingRequest;
-    }): Promise<CustomerOnboardingResponse>;
     /**
      * @param {Object} arg - Arg object.
      * @param {DeletehCardRequest} arg.body
@@ -233,13 +131,6 @@ declare class Payment {
     }): Promise<AggregatorsConfigDetailResponse>;
     /**
      * @param {Object} arg - Arg object.
-     * @returns {Promise<EpaylaterBannerResponse>} - Success response
-     * @summary: Get Epaylater Enabled
-     * @description: Get Epaylater Enabled if user is tentatively approved by epaylater
-     */
-    getEpaylaterBannerDetails({}?: any): Promise<EpaylaterBannerResponse>;
-    /**
-     * @param {Object} arg - Arg object.
      * @param {string} arg.orderId - A unique number used for identifying and
      *   tracking your orders.
      * @returns {Promise<OrderBeneficiaryResponse>} - Success response
@@ -249,16 +140,6 @@ declare class Payment {
     getOrderBeneficiariesDetail({ orderId }?: {
         orderId: string;
     }): Promise<OrderBeneficiaryResponse>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {string} [arg.paymentLinkId] -
-     * @returns {Promise<GetPaymentLinkResponse>} - Success response
-     * @summary: Get payment link
-     * @description: Use this API to get a payment link
-     */
-    getPaymentLink({ paymentLinkId }?: {
-        paymentLinkId?: string;
-    }): Promise<GetPaymentLinkResponse>;
     /**
      * @param {Object} arg - Arg object.
      * @param {number} arg.amount - Payable amount.
@@ -284,16 +165,6 @@ declare class Payment {
         refresh?: boolean;
         cardReference?: string;
         userDetails?: string;
-    }): Promise<PaymentModeRouteResponse>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.paymentLinkId - Payment link id
-     * @returns {Promise<PaymentModeRouteResponse>} - Success response
-     * @summary: Get applicable payment options for payment link
-     * @description: Use this API to get all valid payment options for doing a payment through payment link
-     */
-    getPaymentModeRoutesPaymentLink({ paymentLinkId }?: {
-        paymentLinkId: string;
     }): Promise<PaymentModeRouteResponse>;
     /**
      * @param {Object} arg - Arg object.
@@ -355,90 +226,6 @@ declare class Payment {
     }): Promise<PaymentInitializationResponse>;
     /**
      * @param {Object} arg - Arg object.
-     * @param {PaymentInitializationRequest} arg.body
-     * @returns {Promise<PaymentInitializationResponse>} - Success response
-     * @summary: Initialize a payment (server-to-server) for UPI and BharatQR
-     * @description: Use this API to inititate payment using UPI, BharatQR, wherein the UPI requests are send to the app and QR code is displayed on the screen.
-     */
-    initialisePaymentPaymentLink({ body }?: {
-        body: PaymentInitializationRequest;
-    }): Promise<PaymentInitializationResponse>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {string} [arg.aggregator] -
-     * @returns {Promise<OutstandingOrderDetailsResponse>} - Success response
-     * @summary: API to fetch the outstanding order details
-     * @description: Use this API to fetch the outstanding order details.
-     */
-    outstandingOrderDetails({ aggregator }?: {
-        aggregator?: string;
-    }): Promise<OutstandingOrderDetailsResponse>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {string} [arg.aggregator] -
-     * @returns {Promise<PaidOrderDetailsResponse>} - Success response
-     * @summary: API to fetch the paid order details
-     * @description: Use this API to fetch the paid order details.
-     */
-    paidOrderDetails({ aggregator }?: {
-        aggregator?: string;
-    }): Promise<PaidOrderDetailsResponse>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {string} [arg.paymentLinkId] -
-     * @returns {Promise<PollingPaymentLinkResponse>} - Success response
-     * @summary: Used for polling if payment successful or not
-     * @description: Use this API to poll if payment through payment was successful or not
-     */
-    pollingPaymentLink({ paymentLinkId }?: {
-        paymentLinkId?: string;
-    }): Promise<PollingPaymentLinkResponse>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {string} [arg.source] - This is a String value that contains
-     *   callback URL as value.
-     * @param {string} [arg.aggregator] - This is a String value that contains
-     *   aggregator name as value.
-     * @returns {Promise<RedirectToAggregatorResponse>} - Success response
-     * @summary: API to get the redirect url to redirect the user to aggregator's page
-     * @description: Use this API to get the redirect url to redirect the user to aggregator's page
-     */
-    redirectToAggregator({ source, aggregator }?: {
-        source?: string;
-        aggregator?: string;
-    }): Promise<RedirectToAggregatorResponse>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {renderHTMLRequest} arg.body
-     * @returns {Promise<renderHTMLResponse>} - Success response
-     * @summary: Convert base64 string to HTML form
-     * @description: Use this API to decode base64 html form to plain HTML string.
-     */
-    renderHTML({ body }?: {
-        body: renderHTMLRequest;
-    }): Promise<renderHTMLResponse>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {ResendOrCancelPaymentRequest} arg.body
-     * @returns {Promise<ResendOrCancelPaymentResponse>} - Success response
-     * @summary: API to resend and cancel a payment link which was already generated.
-     * @description: Use this API to perform resend or cancel a payment link based on request payload.
-     */
-    resendOrCancelPayment({ body }?: {
-        body: ResendOrCancelPaymentRequest;
-    }): Promise<ResendOrCancelPaymentResponse>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {CancelOrResendPaymentLinkRequest} arg.body
-     * @returns {Promise<ResendPaymentLinkResponse>} - Success response
-     * @summary: Resend payment link
-     * @description: Use this API to resend a payment link for the customer
-     */
-    resendPaymentLink({ body }?: {
-        body: CancelOrResendPaymentLinkRequest;
-    }): Promise<ResendPaymentLinkResponse>;
-    /**
-     * @param {Object} arg - Arg object.
      * @param {SetDefaultBeneficiaryRequest} arg.body
      * @returns {Promise<SetDefaultBeneficiaryResponse>} - Success response
      * @summary: Set a default beneficiary for a refund
@@ -447,16 +234,6 @@ declare class Payment {
     updateDefaultBeneficiary({ body }?: {
         body: SetDefaultBeneficiaryRequest;
     }): Promise<SetDefaultBeneficiaryResponse>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {ValidateVPARequest} arg.body
-     * @returns {Promise<ValidateVPAResponse>} - Success response
-     * @summary: API to Validate UPI ID
-     * @description: API to Validate UPI ID
-     */
-    validateVPA({ body }?: {
-        body: ValidateVPARequest;
-    }): Promise<ValidateVPAResponse>;
     /**
      * @param {Object} arg - Arg object.
      * @param {ChargeCustomerRequest} arg.body

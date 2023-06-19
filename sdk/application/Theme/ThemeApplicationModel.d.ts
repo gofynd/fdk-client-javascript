@@ -47,6 +47,7 @@ declare class ThemeModel {
     static CustomPropsV2(): any;
     static DividerStrokeHighlightSettingV2(): any;
     static Documentation(): any;
+    static Email(): any;
     static ExploreInfo(): any;
     static Feature(): any;
     static FeatureItem(): any;
@@ -77,12 +78,15 @@ declare class ThemeModel {
     static MarketplaceThemeResponseBody(): any;
     static Medium(): any;
     static MetaV2(): any;
+    static Organization(): any;
+    static OrganizationMeta(): any;
     static OverlayPopupSettingV2(): any;
     static PageV2(): any;
     static PaginationSchema(): any;
     static PaletteConfigV2(): any;
     static PaymentInfo(): any;
     static PaymentV2(): any;
+    static PhoneNumber(): any;
     static PredicateV2(): any;
     static Preset(): any;
     static PresetV2(): any;
@@ -105,6 +109,8 @@ declare class ThemeModel {
     static StaticPropsV2(): any;
     static TextPropV2(): any;
     static TextSettingV2(): any;
+    static ThemeAndUserDetailsResponse(): any;
+    static ThemeCreator(): any;
     static ThemeImages(): any;
     static ThemeMeta(): any;
     static ThemePayment(): any;
@@ -112,6 +118,7 @@ declare class ThemeModel {
     static ThemeSchema(): any;
     static ThemeSettingV2(): any;
     static ThemesListingResponseSchema(): any;
+    static ThemeSlugResponse(): any;
     static ThemesSchema(): any;
     static UmdJs(): any;
     static UMDJs(): any;
