@@ -2,13 +2,6 @@ const Joi = require("joi");
 
 const RewardsModel = require("./RewardsPlatformModel");
 class RewardsValidator {
-  static getGiveawayAudienceStatus() {
-    return Joi.object({
-      id: Joi.string().allow("").required(),
-      audienceId: Joi.string().allow("").required(),
-    }).required();
-  }
-
   static getGiveawayById() {
     return Joi.object({
       id: Joi.string().allow("").required(),
