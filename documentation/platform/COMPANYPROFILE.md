@@ -434,7 +434,7 @@ Returns a success response
 
 
 ### getBrand
-Get a single brand.
+Get a single company brand.
 
 
 
@@ -456,7 +456,7 @@ const data = await platformClient.companyProfile.getBrand({  brandId : value });
 
 
 
-This API helps to get data associated to a particular brand.
+This API helps to get data associated to a particular company brand.
 
 *Returned Response:*
 
@@ -1377,8 +1377,8 @@ Returns a success response
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | landscape | string? |  yes  |  |
- | portrait | string? |  yes  |  |
+ | landscape | string |  no  |  |
+ | portrait | string |  no  |  |
  
 
 ---
@@ -1628,10 +1628,12 @@ Returns a success response
  | _custom_json | string? |  yes  |  |
  | _locale_language | string? |  yes  |  |
  | banner | [BrandBannerSerializer](#BrandBannerSerializer)? |  yes  |  |
+ | created_by | [UserSerializer](#UserSerializer)? |  yes  |  |
  | created_on | string? |  yes  |  |
  | description | string? |  yes  |  |
  | logo | string? |  yes  |  |
  | mode | string? |  yes  |  |
+ | modified_by | [UserSerializer](#UserSerializer)? |  yes  |  |
  | modified_on | string? |  yes  |  |
  | name | string |  no  |  |
  | reject_reason | string? |  yes  |  |
@@ -1639,6 +1641,7 @@ Returns a success response
  | stage | string? |  yes  |  |
  | synonyms | [string]? |  yes  |  |
  | uid | number? |  yes  |  |
+ | verified_by | [UserSerializer](#UserSerializer)? |  yes  |  |
  | verified_on | string? |  yes  |  |
  | warnings | string? |  yes  |  |
  
@@ -1826,7 +1829,6 @@ Returns a success response
  | name | string |  no  |  |
  | notification_emails | [string]? |  yes  |  |
  | product_return_config | [ProductReturnConfigSerializer](#ProductReturnConfigSerializer)? |  yes  |  |
- | slug | string? |  yes  |  |
  | stage | string? |  yes  |  |
  | store_type | string? |  yes  |  |
  | timing | [[LocationDayWiseSerializer](#LocationDayWiseSerializer)]? |  yes  |  |
@@ -1923,7 +1925,6 @@ Returns a success response
  | name | string? |  yes  |  |
  | notification_emails | [string]? |  yes  |  |
  | reject_reason | string? |  yes  |  |
- | slug | string? |  yes  |  |
  | taxes | [[CompanyTaxesSerializer1](#CompanyTaxesSerializer1)]? |  yes  |  |
  | warnings | string? |  yes  |  |
  

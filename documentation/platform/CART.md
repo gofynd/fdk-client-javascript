@@ -5068,14 +5068,22 @@ Fetch all promos that are set as active
 
 ```javascript
 // Promise
-const promise = platformClient.application("<APPLICATION_ID>").cart.getPromosCouponConfig();
+const promise = platformClient.application("<APPLICATION_ID>").cart.getPromosCouponConfig({  entityType : value,
+ isHidden : value });
 
 // Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").cart.getPromosCouponConfig();
+const data = await platformClient.application("<APPLICATION_ID>").cart.getPromosCouponConfig({  entityType : value,
+ isHidden : value });
 ```
 
 
 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| entityType | string | no | entity_type as promotion or coupon |    
+| isHidden | boolean | no | promo-coupon config shown or not |  
 
 
 
@@ -12919,6 +12927,7 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
  | extra_meta | string? |  yes  | any extra meta information related to article |
  | item_id | number? |  yes  | item_id of added product |
  | item_size | string? |  yes  | article size |
+ | meta | string? |  yes  |  |
  | parent_item_identifiers | [[String: string]]? |  yes  | contains information about parent item in case of parent-child relation |
  | pos | boolean? |  yes  | True for pos systems |
  | product_group_tags | [string]? |  yes  | product_group_tags to group articles in same group |
@@ -13573,6 +13582,7 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
  | code | string? |  yes  |  |
  | discount | number? |  yes  |  |
  | display_message_en | string? |  yes  |  |
+ | next_validation_required | boolean? |  yes  |  |
  | title | string? |  yes  |  |
  | valid | boolean? |  yes  |  |
  
@@ -14207,6 +14217,7 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | codes | [string]? |  yes  |  |
+ | iins | [string]? |  yes  |  |
  | networks | [string]? |  yes  |  |
  | types | [string]? |  yes  |  |
  | uses | [PaymentAllowValue](#PaymentAllowValue)? |  yes  |  |
@@ -14538,8 +14549,10 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | _custom_json | string? |  yes  |  |
  | display | string? |  yes  | refers to size of product |
  | is_available | boolean? |  yes  | boolean refers to product available size. True if available else False |
+ | meta | string? |  yes  |  |
  | value | string? |  yes  | refers to size of product |
  
 
@@ -14726,7 +14739,7 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
  | ---------- | ---- | -------- | ----------- |
  | cron | string? |  yes  |  |
  | duration | number? |  yes  |  |
- | end | string? |  yes  |  |
+ | end | string |  no  |  |
  | next_schedule | [string]? |  yes  |  |
  | published | boolean |  no  |  |
  | start | string |  no  |  |
@@ -15123,6 +15136,7 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
  | item_id | number? |  yes  | item_id of added product |
  | item_index | number? |  yes  | index of updated article |
  | item_size | string? |  yes  | article size |
+ | meta | string? |  yes  |  |
  | parent_item_identifiers | string? |  yes  | contains information about parent item in case of parent-child relation |
  | quantity | number? |  yes  | article updated quantity |
  

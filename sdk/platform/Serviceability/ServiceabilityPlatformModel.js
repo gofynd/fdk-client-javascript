@@ -14,21 +14,17 @@ class ServiceabilityModel {
       state: Joi.string().allow(""),
     });
   }
-  static ApplicationSelfShipConfig() {
+  static ApplicationCompanyDpViewRequest() {
     return Joi.object({
-      self_ship: ServiceabilityModel.SelfShipResponse(),
+      dp_id: Joi.string().allow(""),
     });
   }
-  static ApplicationSelfShipConfigResponse() {
+  static ApplicationCompanyDpViewResponse() {
     return Joi.object({
-      created_at: Joi.string().allow(""),
-      created_by: Joi.string().allow(""),
-      error: ServiceabilityModel.ServiceabilityErrorResponse(),
-      id: Joi.string().allow("").required(),
-      self_ship: ServiceabilityModel.ApplicationSelfShipConfig(),
+      application_id: Joi.string().allow("").required(),
+      company_id: Joi.number().required(),
+      courier_partner_id: Joi.number(),
       success: Joi.boolean().required(),
-      updated_at: Joi.string().allow(""),
-      updated_by: Joi.string().allow(""),
     });
   }
   static ApplicationServiceabilityConfig() {
@@ -50,23 +46,6 @@ class ServiceabilityModel {
       error: Joi.any(),
       status_code: Joi.string().allow(""),
       success: Joi.string().allow(""),
-    });
-  }
-  static CompanyDpAccountListResponse() {
-    return Joi.object({
-      items: Joi.array().items(ServiceabilityModel.Dp1()).required(),
-      page: ServiceabilityModel.Page().required(),
-      success: Joi.boolean().required(),
-    });
-  }
-  static CompanyDpAccountRequest() {
-    return Joi.object({
-      data: Joi.array().items(ServiceabilityModel.Dp1()).required(),
-    });
-  }
-  static CompanyDpAccountResponse() {
-    return Joi.object({
-      success: Joi.boolean().required(),
     });
   }
   static CompanyStoreView_PageItems() {
@@ -138,132 +117,6 @@ class ServiceabilityModel {
       transport_mode: Joi.string().allow(""),
     });
   }
-  static Dp1() {
-    return Joi.object({
-      account_id: Joi.string().allow("").required(),
-      dp_id: Joi.string().allow("").required(),
-      is_self_ship: Joi.boolean().required(),
-      name: Joi.string().allow("").required(),
-      plan_id: Joi.string().allow("").required(),
-      plan_rules: Joi.any().required(),
-      stage: Joi.string().allow("").required(),
-    });
-  }
-  static DpAccountFailureResponse() {
-    return Joi.object({
-      error: Joi.array().items(ServiceabilityModel.ErrorResponse()).required(),
-      status_code: Joi.number().required(),
-      success: Joi.boolean().required(),
-    });
-  }
-  static DPApplicationRuleRequest() {
-    return Joi.object({
-      shipping_rules: Joi.array().items(Joi.string().allow("")).required(),
-    });
-  }
-  static DPApplicationRuleResponse() {
-    return Joi.object({
-      data: Joi.array().items(ServiceabilityModel.DpRuleResponse()).required(),
-      status_code: Joi.boolean().required(),
-      success: Joi.boolean().required(),
-    });
-  }
-  static DPCompanyRuleRequest() {
-    return Joi.object({
-      rule_ids: Joi.array().items(Joi.string().allow("")).required(),
-    });
-  }
-  static DPCompanyRuleResponse() {
-    return Joi.object({
-      data: Joi.array().items(ServiceabilityModel.DpRuleResponse()).required(),
-      status_code: Joi.number().required(),
-      success: Joi.boolean().required(),
-    });
-  }
-  static DpIds() {
-    return Joi.object({
-      enabled: Joi.boolean().required(),
-      meta: Joi.any(),
-      priority: Joi.number().required(),
-    });
-  }
-  static DpMultipleRuleSuccessResponse() {
-    return Joi.object({
-      items: Joi.array().items(ServiceabilityModel.DpRule()).required(),
-      page: ServiceabilityModel.Page().required(),
-      success: Joi.boolean().required(),
-    });
-  }
-  static DpRule() {
-    return Joi.object({
-      company_id: Joi.number(),
-      conditions: Joi.array().items(Joi.any()).required(),
-      dp_ids: Joi.object()
-        .pattern(/\S/, ServiceabilityModel.DpSchemaInRuleListing())
-        .required(),
-      is_active: Joi.boolean(),
-      name: Joi.string().allow("").required(),
-    });
-  }
-  static DpRuleRequest() {
-    return Joi.object({
-      company_id: Joi.number(),
-      conditions: Joi.array().items(Joi.any()).required(),
-      dp_ids: Joi.object()
-        .pattern(/\S/, ServiceabilityModel.DpIds())
-        .required(),
-      is_active: Joi.boolean(),
-      name: Joi.string().allow("").required(),
-    });
-  }
-  static DpRuleResponse() {
-    return Joi.object({
-      company_id: Joi.number().required(),
-      conditions: Joi.array().items(Joi.string().allow("")).required(),
-      created_by: Joi.any(),
-      created_on: Joi.string().allow(""),
-      dp_ids: Joi.any().required(),
-      is_active: Joi.boolean(),
-      modified_by: Joi.any(),
-      modified_on: Joi.string().allow(""),
-      name: Joi.string().allow("").required(),
-      uid: Joi.string().allow("").required(),
-    });
-  }
-  static DpRuleSuccessResponse() {
-    return Joi.object({
-      data: ServiceabilityModel.DpRule().required(),
-      status_code: Joi.number().required(),
-      success: Joi.boolean().required(),
-    });
-  }
-  static DpRulesUpdateRequest() {
-    return Joi.object({
-      conditions: Joi.array().items(Joi.any()).required(),
-      dp_ids: Joi.object().pattern(/\S/, Joi.any()).required(),
-      is_active: Joi.boolean().required(),
-      name: Joi.string().allow("").required(),
-    });
-  }
-  static DpRuleUpdateSuccessResponse() {
-    return Joi.object({
-      data: ServiceabilityModel.DpRuleResponse().required(),
-      status_code: Joi.number().required(),
-      success: Joi.boolean().required(),
-    });
-  }
-  static DpSchemaInRuleListing() {
-    return Joi.object({
-      account_id: Joi.string().allow("").required(),
-      dp_id: Joi.string().allow("").required(),
-      is_self_ship: Joi.boolean().required(),
-      name: Joi.string().allow("").required(),
-      plan_id: Joi.string().allow("").required(),
-      plan_rules: Joi.any().required(),
-      priority: Joi.number().required(),
-      stage: Joi.string().allow("").required(),
-    });
-  }
   static EinvoiceResponse() {
     return Joi.object({
       enabled: Joi.boolean(),
@@ -315,23 +168,9 @@ class ServiceabilityModel {
       value: Joi.string().allow("").allow(null),
     });
   }
-  static ErrorResponse() {
-    return Joi.object({
-      message: Joi.string().allow("").required(),
-      type: Joi.string().allow("").required(),
-      value: Joi.string().allow("").required(),
-    });
-  }
   static EwayBillResponse() {
     return Joi.object({
       enabled: Joi.boolean(),
-    });
-  }
-  static FailureResponse() {
-    return Joi.object({
-      error: Joi.array().items(ServiceabilityModel.ErrorResponse()).required(),
-      status_code: Joi.number().required(),
-      success: Joi.boolean().required(),
     });
   }
   static GetSingleZoneDataViewResponse() {
@@ -508,17 +347,6 @@ class ServiceabilityModel {
       minute: Joi.number(),
     });
   }
-  static Page() {
-    return Joi.object({
-      current: Joi.number(),
-      has_next: Joi.boolean(),
-      has_previous: Joi.boolean(),
-      item_total: Joi.number(),
-      next_id: Joi.string().allow(""),
-      size: Joi.number(),
-      type: Joi.string().allow("").required(),
-    });
-  }
   static PageResponse() {
     return Joi.object({
       current: Joi.number(),
@@ -643,12 +471,6 @@ class ServiceabilityModel {
   static ProductReturnConfigResponse() {
     return Joi.object({
       on_same_store: Joi.boolean(),
-    });
-  }
-  static SelfShipResponse() {
-    return Joi.object({
-      active: Joi.boolean().required(),
-      tat: Joi.number().required(),
     });
   }
   static ServiceabilityErrorResponse() {

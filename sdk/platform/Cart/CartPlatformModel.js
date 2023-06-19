@@ -89,6 +89,7 @@ class CartModel {
       extra_meta: Joi.any(),
       item_id: Joi.number(),
       item_size: Joi.string().allow(""),
+      meta: Joi.any(),
       parent_item_identifiers: Joi.array().items(
         Joi.object().pattern(/\S/, Joi.string().allow(""))
       ),
@@ -565,6 +566,7 @@ class CartModel {
       code: Joi.string().allow("").allow(null),
       discount: Joi.number(),
       display_message_en: Joi.string().allow("").allow(null),
+      next_validation_required: Joi.boolean().allow(null),
       title: Joi.string().allow(""),
       valid: Joi.boolean(),
     });
@@ -1005,6 +1007,7 @@ class CartModel {
   static PaymentModes() {
     return Joi.object({
       codes: Joi.array().items(Joi.string().allow("")),
+      iins: Joi.array().items(Joi.string().allow("")),
       networks: Joi.array().items(Joi.string().allow("")),
       types: Joi.array().items(Joi.string().allow("")),
       uses: CartModel.PaymentAllowValue(),
@@ -1260,8 +1263,10 @@ class CartModel {
   }
   static ProductAvailabilitySize() {
     return Joi.object({
+      _custom_json: Joi.any(),
       display: Joi.string().allow(""),
       is_available: Joi.boolean(),
+      meta: Joi.any(),
       value: Joi.string().allow(""),
     });
   }
@@ -1396,7 +1401,7 @@ class CartModel {
     return Joi.object({
       cron: Joi.string().allow("").allow(null),
       duration: Joi.number().allow(null),
-      end: Joi.string().allow("").allow(null),
+      end: Joi.string().allow("").required(),
       next_schedule: Joi.array().items(Joi.any()),
       published: Joi.boolean().required(),
       start: Joi.string().allow("").required(),
@@ -1685,6 +1690,7 @@ class CartModel {
       item_id: Joi.number(),
       item_index: Joi.number(),
       item_size: Joi.string().allow(""),
+      meta: Joi.any(),
       parent_item_identifiers: Joi.any(),
       quantity: Joi.number(),
     });

@@ -8,15 +8,22 @@
 ## Theme Methods
 Responsible for themes
 
+* [addMarketplaceThemeToCompany](#addmarketplacethemetocompany)
 * [addToThemeLibrary](#addtothemelibrary)
 * [applyTheme](#applytheme)
+* [applyThemeV2](#applythemev2)
 * [archiveTheme](#archivetheme)
 * [createPage](#createpage)
 * [createTheme](#createtheme)
+* [deleteCompanyTheme](#deletecompanytheme)
 * [deletePage](#deletepage)
 * [deleteTheme](#deletetheme)
 * [getAllPages](#getallpages)
+* [getApplicationThemeByIdV2](#getapplicationthemebyidv2)
+* [getApplicationThemesCountV2](#getapplicationthemescountv2)
+* [getApplicationThemesV2](#getapplicationthemesv2)
 * [getAppliedTheme](#getappliedtheme)
+* [getCompanyLevelThemes](#getcompanylevelthemes)
 * [getFonts](#getfonts)
 * [getPage](#getpage)
 * [getPublicThemes](#getpublicthemes)
@@ -31,6 +38,7 @@ Responsible for themes
 * [updateMultiplePages](#updatemultiplepages)
 * [updatePage](#updatepage)
 * [updateTheme](#updatetheme)
+* [updateThemeV2](#updatethemev2)
 * [upgradeTheme](#upgradetheme)
 
 
@@ -38,6 +46,61 @@ Responsible for themes
 ## Methods with example and description
 
 
+
+
+### addMarketplaceThemeToCompany
+Apply a theme to a company
+
+
+
+```javascript
+// Promise
+const promise = platformClient.theme.addMarketplaceThemeToCompany({  body : value });
+
+// Async/Await
+const data = await platformClient.theme.addMarketplaceThemeToCompany({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [ThemeReq](#ThemeReq) | yes | Request body |
+
+
+Add a marketplace theme to a company by providing the theme ID and company ID.
+
+*Returned Response:*
+
+
+
+
+[ThemeSchema](#ThemeSchema)
+
+The theme was successfully applied to the company.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
 
 
 ### addToThemeLibrary
@@ -4397,6 +4460,61 @@ Success. Refer `ThemesSchema` for more details.
 ```
 </details>
 
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### applyThemeV2
+Apply a theme to an application
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").theme.applyThemeV2({  body : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").theme.applyThemeV2({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [ApplyThemeRequestV2](#ApplyThemeRequestV2) | yes | Request body |
+
+
+Apply a theme to an application by providing the marketplace theme ID.
+
+*Returned Response:*
+
+
+
+
+[ApplyThemeResponseV2](#ApplyThemeResponseV2)
+
+Successfully applied the theme
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
 </details>
 
 
@@ -9207,6 +9325,62 @@ Theme
 ---
 
 
+### deleteCompanyTheme
+Delete a theme
+
+
+
+```javascript
+// Promise
+const promise = platformClient.theme.deleteCompanyTheme({  themeId : value });
+
+// Async/Await
+const data = await platformClient.theme.deleteCompanyTheme({  themeId : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| themeId | string | yes | The ID of the theme. |  
+
+
+
+Delete a specific theme for a company by providing the company ID and theme ID.
+
+*Returned Response:*
+
+
+
+
+[ThemeSchema](#ThemeSchema)
+
+Theme deleted successfully.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
 ### deletePage
 Deletes a page 
 
@@ -12142,6 +12316,164 @@ Success. Returns an array all the pages of the theme. Refer `AllAvailablePageSch
 ---
 
 
+### getApplicationThemeByIdV2
+Get Theme By Theme Id
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").theme.getApplicationThemeByIdV2({  themeId : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").theme.getApplicationThemeByIdV2({  themeId : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| themeId | string | yes | The ID of the theme |  
+
+
+
+
+
+*Returned Response:*
+
+
+
+
+[AllThemesApplicationResponseV2](#AllThemesApplicationResponseV2)
+
+The list of themes for the application was fetched successfully.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### getApplicationThemesCountV2
+Get the count of themes for a specific application
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").theme.getApplicationThemesCountV2();
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").theme.getApplicationThemesCountV2();
+```
+
+
+
+
+
+
+
+
+*Returned Response:*
+
+
+
+
+[Object](#Object)
+
+The count of themes for the application was fetched successfully.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### getApplicationThemesV2
+Get all the themes for a specific application
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").theme.getApplicationThemesV2();
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").theme.getApplicationThemesV2();
+```
+
+
+
+
+
+
+
+
+*Returned Response:*
+
+
+
+
+[Array<AllThemesApplicationResponseV2>](#Array<AllThemesApplicationResponseV2>)
+
+The list of themes for the application was fetched successfully.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
 ### getAppliedTheme
 Get the applied theme
 
@@ -14310,6 +14642,57 @@ Success. Refer `ThemesSchema` for more details.
 ```
 </details>
 
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### getCompanyLevelThemes
+Get themes for a company
+
+
+
+```javascript
+// Promise
+const promise = platformClient.theme.getCompanyLevelThemes();
+
+// Async/Await
+const data = await platformClient.theme.getCompanyLevelThemes();
+```
+
+
+
+
+
+
+Retrieve a list of themes available for a specific company.
+
+*Returned Response:*
+
+
+
+
+[Array<ThemeSchema>](#Array<ThemeSchema>)
+
+A list of themes for the company.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
 </details>
 
 
@@ -32739,6 +33122,64 @@ Success. Refer `ThemesSchema` for more details.
 ---
 
 
+### updateThemeV2
+Update theme for a specific company and application
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").theme.updateThemeV2({  themeId : value,
+ body : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").theme.updateThemeV2({  themeId : value,
+ body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| themeId | string | yes | The ID of the theme. |  
+| body | [UpdateThemeRequestBodyV2](#UpdateThemeRequestBodyV2) | yes | Request body |
+
+
+
+
+*Returned Response:*
+
+
+
+
+[AllThemesApplicationResponseV2](#AllThemesApplicationResponseV2)
+
+Theme updated successfully
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
 ### upgradeTheme
 Upgrade a theme
 
@@ -34938,11 +35379,79 @@ Success. Upgrades the theme and shares the details of the new version in the res
 
 ---
 
+#### [AdvanceSettingV2](#AdvanceSettingV2)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | divider_stroke_highlight | [DividerStrokeHighlightSettingV2](#DividerStrokeHighlightSettingV2)? |  yes  |  |
+ | overlay_popup | [OverlayPopupSettingV2](#OverlayPopupSettingV2)? |  yes  |  |
+ | user_alerts | [UserAlertsSettingV2](#UserAlertsSettingV2)? |  yes  |  |
+ 
+
+---
+
 #### [AllAvailablePageSchema](#AllAvailablePageSchema)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | pages | [[AvailablePageSchema](#AvailablePageSchema)]? |  yes  |  |
+ 
+
+---
+
+#### [AllThemesApplicationResponseV2](#AllThemesApplicationResponseV2)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | _id | string? |  yes  | The unique identifier of the theme |
+ | application_id | string? |  yes  | The ID of the application |
+ | applied | boolean? |  yes  | Whether the theme has been applied or not |
+ | assets | [AssetsV2](#AssetsV2)? |  yes  |  |
+ | available_sections | [[SectionItem](#SectionItem)]? |  yes  | Available sections information |
+ | config | [ConfigV2](#ConfigV2)? |  yes  |  |
+ | created_at | string? |  yes  | The creation timestamp of the theme |
+ | font | [FontV2](#FontV2)? |  yes  |  |
+ | is_private | boolean? |  yes  | Whether the theme is private or not |
+ | marketplace_theme_id | string? |  yes  | The ID of the theme in the marketplace |
+ | meta | [MetaV2](#MetaV2)? |  yes  |  |
+ | name | string? |  yes  | The name of the theme |
+ | styles | string? |  yes  | The styles associated with the theme |
+ | tags | [string]? |  yes  | An array of tags associated with the theme |
+ | template_theme_id | string? |  yes  | The ID of the template theme |
+ | updated_at | string? |  yes  | The last update timestamp of the theme |
+ | version | string? |  yes  | The version of the theme |
+ 
+
+---
+
+#### [ApplyThemeRequestV2](#ApplyThemeRequestV2)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | marketplace_theme_id | string |  no  | The ID of the theme to be applied |
+ 
+
+---
+
+#### [ApplyThemeResponseV2](#ApplyThemeResponseV2)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | _id | string? |  yes  | The unique identifier of the theme |
+ | application_id | string? |  yes  | The ID of the application |
+ | applied | boolean? |  yes  | Whether the theme has been applied or not |
+ | config | [ConfigV2](#ConfigV2)? |  yes  |  |
+ | created_at | string? |  yes  | The creation timestamp of the theme |
+ | font | [FontV2](#FontV2)? |  yes  |  |
+ | is_private | boolean? |  yes  | Whether the theme is private or not |
+ | marketplace_theme_id | string? |  yes  | The ID of the theme in the marketplace |
+ | meta | [MetaV2](#MetaV2)? |  yes  |  |
+ | name | string? |  yes  | The name of the theme |
+ | styles | string? |  yes  | The styles associated with the theme |
+ | tags | [string]? |  yes  | An array of tags associated with the theme |
+ | template_theme_id | string? |  yes  | The ID of the template theme |
+ | updated_at | string? |  yes  | The last update timestamp of the theme |
+ | version | string? |  yes  | The version of the theme |
  
 
 ---
@@ -34954,6 +35463,27 @@ Success. Upgrades the theme and shares the details of the new version in the res
  | common_js | [CommonJs](#CommonJs)? |  yes  |  |
  | css | [Css](#Css)? |  yes  |  |
  | umd_js | [UmdJs](#UmdJs)? |  yes  |  |
+ 
+
+---
+
+#### [AssetsV2](#AssetsV2)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | common_js | [CommonJS](#CommonJS)? |  yes  |  |
+ | css | [CSS](#CSS)? |  yes  |  |
+ | umd_js | [UMDJs](#UMDJs)? |  yes  |  |
+ 
+
+---
+
+#### [AuthConfigV2](#AuthConfigV2)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | show_footer_auth | boolean? |  yes  | Whether to show footer authentication or not |
+ | show_header_auth | boolean? |  yes  | Whether to show header authentication or not |
  
 
 ---
@@ -35092,6 +35622,16 @@ Success. Upgrades the theme and shares the details of the new version in the res
 
 ---
 
+#### [BlockPropsV2](#BlockPropsV2)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | image | [ImagePickerPropV2](#ImagePickerPropV2)? |  yes  |  |
+ | slide_link | [UrlPropV2](#UrlPropV2)? |  yes  |  |
+ 
+
+---
+
 #### [Blocks](#Blocks)
 
  | Properties | Type | Nullable | Description |
@@ -35114,12 +35654,64 @@ Success. Upgrades the theme and shares the details of the new version in the res
 
 ---
 
+#### [BlockV2](#BlockV2)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | name | string? |  yes  | The name of the block. |
+ | props | [BlockPropsV2](#BlockPropsV2)? |  yes  |  |
+ | type | string? |  yes  | The type of the block. |
+ 
+
+---
+
 #### [Bold](#Bold)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | file | string? |  yes  |  |
  | name | string? |  yes  |  |
+ 
+
+---
+
+#### [ButtonSettingV2](#ButtonSettingV2)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | button_link | string? |  yes  | The button link color |
+ | button_primary | string? |  yes  | The primary button color |
+ | button_secondary | string? |  yes  | The secondary button color |
+ 
+
+---
+
+#### [CarouselItem](#CarouselItem)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | desktop | string? |  yes  | Desktop carousel image URL |
+ | mobile | string? |  yes  | Mobile carousel image URL |
+ 
+
+---
+
+#### [CatalogSize](#CatalogSize)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | max | number? |  yes  | Maximum catalog size |
+ | min | number? |  yes  | Minimum catalog size |
+ 
+
+---
+
+#### [CheckboxPropV2](#CheckboxPropV2)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | type | string? |  yes  | The type of the property. |
+ | value | boolean? |  yes  | The value of the checkbox property. |
  
 
 ---
@@ -35138,7 +35730,40 @@ Success. Upgrades the theme and shares the details of the new version in the res
 
 ---
 
+#### [ColorsV2](#ColorsV2)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | accent_color | string? |  yes  | The accent color |
+ | bg_color | string? |  yes  | The background color |
+ | button_secondary_color | string? |  yes  | The secondary button color |
+ | link_color | string? |  yes  | The link color |
+ | primary_color | string? |  yes  | The primary color |
+ | secondary_color | string? |  yes  | The secondary color |
+ 
+
+---
+
+#### [Comments](#Comments)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | developer_remark | string? |  yes  | Developer remark |
+ | reviewer_feedback | string? |  yes  | Reviewer feedback |
+ 
+
+---
+
 #### [CommonJs](#CommonJs)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | link | string? |  yes  |  |
+ 
+
+---
+
+#### [CommonJS](#CommonJS)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
@@ -35169,6 +35794,40 @@ Success. Upgrades the theme and shares the details of the new version in the res
 
 ---
 
+#### [ConfigurationV2](#ConfigurationV2)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | custom | [CustomConfigV2](#CustomConfigV2)? |  yes  |  |
+ | global_config | [GlobalConfigV2](#GlobalConfigV2)? |  yes  |  |
+ | name | string? |  yes  | The name of the configuration |
+ | page | [string]? |  yes  | An array of pages |
+ 
+
+---
+
+#### [ConfigV2](#ConfigV2)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | current | string |  no  | The current configuration |
+ | global_schema | [GlobalSchemaV2](#GlobalSchemaV2)? |  yes  |  |
+ | list | [[ConfigurationV2](#ConfigurationV2)] |  no  | A list of configurations |
+ | preset | [PresetV2](#PresetV2)? |  yes  |  |
+ 
+
+---
+
+#### [ContactInfo](#ContactInfo)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | developer_contact | [string]? |  yes  | Developer contact information |
+ | seller_contact | string? |  yes  | Seller contact information |
+ 
+
+---
+
 #### [Css](#Css)
 
  | Properties | Type | Nullable | Description |
@@ -35179,11 +35838,117 @@ Success. Upgrades the theme and shares the details of the new version in the res
 
 ---
 
+#### [CSS](#CSS)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | links | [string]? |  yes  |  |
+ 
+
+---
+
 #### [Custom](#Custom)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | props | string? |  yes  |  |
+ 
+
+---
+
+#### [CustomConfigV2](#CustomConfigV2)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | props | [CustomPropsV2](#CustomPropsV2)? |  yes  |  |
+ 
+
+---
+
+#### [CustomPropsV2](#CustomPropsV2)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | button_add_to_cart_color | string? |  yes  | The add to cart button color |
+ | button_add_to_cart_label_color | string? |  yes  | The add to cart button label color |
+ | button_primary_color | string? |  yes  | The primary button color |
+ | button_primary_label_color | string? |  yes  | The primary button label color |
+ | button_secondary_color | string? |  yes  | The secondary button color |
+ | button_secondary_label_color | string? |  yes  | The secondary button label color |
+ | button_tertiary_color | string? |  yes  | The tertiary button color |
+ | button_tertiary_hover_color | string? |  yes  | The tertiary button hover color |
+ | button_tertiary_hover_text_color | string? |  yes  | The tertiary button hover text color |
+ | button_tertiary_label_color | string? |  yes  | The tertiary button label color |
+ | disable_cart | boolean? |  yes  | Whether to disable the cart or not |
+ | footer_bg_color | string? |  yes  | The footer background color |
+ | footer_border_color | string? |  yes  | The footer border color |
+ | footer_nav_hover_color | string? |  yes  | The footer navigation hover color |
+ | footer_text_color | string? |  yes  | The footer text color |
+ | header_bg_color | string? |  yes  | The header background color |
+ | header_border_color | string? |  yes  | The header border color |
+ | header_cart_notification_bg_color | string? |  yes  | The header cart notification background color |
+ | header_cart_notification_text_color | string? |  yes  | The header cart notification text color |
+ | header_icon_color | string? |  yes  | The header icon color |
+ | header_nav_hover_color | string? |  yes  | The header navigation hover color |
+ | header_text_color | string? |  yes  | The header text color |
+ | is_menu_below_logo | boolean? |  yes  | Whether the menu is below the logo or not |
+ | menu_position | string? |  yes  | The position of the menu |
+ | text_body_color | string? |  yes  | The text body color |
+ | text_discount_color | string? |  yes  | The text discount color |
+ | text_heading_link_color | string? |  yes  | The text heading link color |
+ | text_price_color | string? |  yes  | The text price color |
+ | text_sale_price_color | string? |  yes  | The text sale price color |
+ | text_strikethrough_price_color | string? |  yes  | The text strikethrough price color |
+ 
+
+---
+
+#### [DividerStrokeHighlightSettingV2](#DividerStrokeHighlightSettingV2)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | divider_strokes | string? |  yes  | The divider strokes color |
+ | highlight | string? |  yes  | The highlight color |
+ 
+
+---
+
+#### [Documentation](#Documentation)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | notes | string? |  yes  | Documentation notes |
+ | url | string? |  yes  | Documentation URL |
+ 
+
+---
+
+#### [ExploreInfo](#ExploreInfo)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | description | string? |  yes  | Explore feature description |
+ | title | string? |  yes  | Explore feature title |
+ 
+
+---
+
+#### [Feature](#Feature)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | category | string? |  yes  | Feature category |
+ | list | [[FeatureItem](#FeatureItem)]? |  yes  |  |
+ 
+
+---
+
+#### [FeatureItem](#FeatureItem)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | description | string? |  yes  | Feature description |
+ | label | string? |  yes  | Feature label |
  
 
 ---
@@ -35235,6 +36000,77 @@ Success. Upgrades the theme and shares the details of the new version in the res
 
 ---
 
+#### [FontV2](#FontV2)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | family | string |  no  | The font family |
+ | variants | [FontVariantsV2](#FontVariantsV2) |  no  |  |
+ 
+
+---
+
+#### [FontVariantsV2](#FontVariantsV2)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | bold | [FontVariantV2](#FontVariantV2)? |  yes  |  |
+ | light | [FontVariantV2](#FontVariantV2)? |  yes  |  |
+ | medium | [FontVariantV2](#FontVariantV2)? |  yes  |  |
+ | regular | [FontVariantV2](#FontVariantV2)? |  yes  |  |
+ | semi_bold | [FontVariantV2](#FontVariantV2)? |  yes  |  |
+ 
+
+---
+
+#### [FontVariantV2](#FontVariantV2)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | file | string |  no  | The URL of the font file |
+ | name | string |  no  | The name of the font variant |
+ 
+
+---
+
+#### [FooterSettingV2](#FooterSettingV2)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | footer_background | string? |  yes  | The footer background color |
+ | footer_body_text | string? |  yes  | The footer body text color |
+ | footer_bottom_background | string? |  yes  | The footer bottom background color |
+ | footer_heading_text | string? |  yes  | The footer heading text color |
+ | footer_icon | string? |  yes  | The footer icon color |
+ 
+
+---
+
+#### [GeneralSettingV2](#GeneralSettingV2)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | button | [ButtonSettingV2](#ButtonSettingV2)? |  yes  |  |
+ | footer | [FooterSettingV2](#FooterSettingV2)? |  yes  |  |
+ | header | [HeaderSettingV2](#HeaderSettingV2)? |  yes  |  |
+ | sale_discount | [SaleDiscountSettingV2](#SaleDiscountSettingV2)? |  yes  |  |
+ | text | [TextSettingV2](#TextSettingV2)? |  yes  |  |
+ | theme | [ThemeSettingV2](#ThemeSettingV2)? |  yes  |  |
+ 
+
+---
+
+#### [GlobalConfigV2](#GlobalConfigV2)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | auth | [AuthConfigV2](#AuthConfigV2)? |  yes  |  |
+ | palette | [PaletteConfigV2](#PaletteConfigV2)? |  yes  |  |
+ | statics | [StaticConfigV2](#StaticConfigV2)? |  yes  |  |
+ 
+
+---
+
 #### [GlobalSchema](#GlobalSchema)
 
  | Properties | Type | Nullable | Description |
@@ -35256,14 +36092,66 @@ Success. Upgrades the theme and shares the details of the new version in the res
 
 ---
 
+#### [GlobalSchemaV2](#GlobalSchemaV2)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | props | [[PropV2](#PropV2)]? |  yes  |  |
+ 
+
+---
+
+#### [HeaderSettingV2](#HeaderSettingV2)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | header_background | string? |  yes  | The header background color |
+ | header_icon | string? |  yes  | The header icon color |
+ | header_nav | string? |  yes  | The header navigation color |
+ 
+
+---
+
+#### [Highlight](#Highlight)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | description | string? |  yes  | Highlight description |
+ | image | string? |  yes  | Highlight image URL |
+ | title | string? |  yes  | Highlight title |
+ 
+
+---
+
+#### [ImagePickerPropV2](#ImagePickerPropV2)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | type | string? |  yes  | The type of the property. |
+ | value | string? |  yes  | The value of the image picker property. |
+ 
+
+---
+
 #### [Images](#Images)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | android | [string]? |  yes  |  |
- | desktop | [string]? |  yes  |  |
+ | desktop | [string]? |  yes  | Desktop theme image URL |
  | ios | [string]? |  yes  |  |
+ | mobile | string? |  yes  | Mobile theme image URL |
  | thumbnail | [string]? |  yes  |  |
+ 
+
+---
+
+#### [ImagesV2](#ImagesV2)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | desktop | string? |  yes  | The URL of the desktop image |
+ | mobile | string? |  yes  | The URL of the mobile image |
  
 
 ---
@@ -35301,12 +36189,113 @@ Success. Upgrades the theme and shares the details of the new version in the res
 
 ---
 
+#### [MarketplaceTheme](#MarketplaceTheme)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | _id | string? |  yes  | Theme ID |
+ | carousel | [[CarouselItem](#CarouselItem)]? |  yes  |  |
+ | catalog_size | [CatalogSize](#CatalogSize)? |  yes  |  |
+ | comments | [Comments](#Comments)? |  yes  |  |
+ | contact | [ContactInfo](#ContactInfo)? |  yes  |  |
+ | created_at | string? |  yes  | Theme creation timestamp |
+ | description | string? |  yes  | Theme description |
+ | documentation | [Documentation](#Documentation)? |  yes  |  |
+ | explore | [ExploreInfo](#ExploreInfo)? |  yes  |  |
+ | features | [[Feature](#Feature)]? |  yes  |  |
+ | highlights | [[Highlight](#Highlight)]? |  yes  |  |
+ | images | [Images](#Images)? |  yes  |  |
+ | industry | [string]? |  yes  | Industries the theme is suitable for |
+ | is_default | boolean? |  yes  | Indicates if the theme is a default theme |
+ | is_update | boolean? |  yes  | Indicates if the theme is an update |
+ | name | string? |  yes  | Theme name |
+ | organization_id | string? |  yes  | Organization ID |
+ | payment | [PaymentInfo](#PaymentInfo)? |  yes  |  |
+ | release | [Release](#Release)? |  yes  |  |
+ | slug | string? |  yes  | Theme slug |
+ | src | string? |  yes  | Theme source URL |
+ | status | string? |  yes  | Theme status |
+ | step | number? |  yes  | Theme step |
+ | tagline | string? |  yes  | Theme tagline |
+ | template_theme_id | string? |  yes  | Template theme ID |
+ | updated_at | string? |  yes  | Theme update timestamp |
+ | user_id | string? |  yes  | User ID |
+ | variations | [[Variation](#Variation)]? |  yes  |  |
+ 
+
+---
+
+#### [MarketplaceThemeId](#MarketplaceThemeId)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | _id | string? |  yes  | The unique identifier for the marketplace theme. |
+ | is_default | boolean? |  yes  | Whether the theme is the default theme. |
+ 
+
+---
+
+#### [MarketplaceThemeResponse](#MarketplaceThemeResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | body | [MarketplaceThemeResponseBody](#MarketplaceThemeResponseBody)? |  yes  |  |
+ | status | number? |  yes  | HTTP status code |
+ 
+
+---
+
+#### [MarketplaceThemeResponseBody](#MarketplaceThemeResponseBody)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | items | [[MarketplaceTheme](#MarketplaceTheme)]? |  yes  |  |
+ | page | [PaginationSchema](#PaginationSchema)? |  yes  |  |
+ 
+
+---
+
 #### [Medium](#Medium)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | file | string? |  yes  |  |
  | name | string? |  yes  |  |
+ 
+
+---
+
+#### [MetaV2](#MetaV2)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | description | string? |  yes  | The description of the theme |
+ | images | [ImagesV2](#ImagesV2)? |  yes  |  |
+ | industry | [string]? |  yes  | An array of industries associated with the theme |
+ | name | string? |  yes  | The name of the theme |
+ | payment | [PaymentV2](#PaymentV2)? |  yes  |  |
+ | release | [ReleaseV2](#ReleaseV2)? |  yes  |  |
+ | slug | string? |  yes  | The slug of the theme |
+ 
+
+---
+
+#### [OverlayPopupSettingV2](#OverlayPopupSettingV2)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | dialog_backgroung | string? |  yes  | The dialog background color |
+ | overlay | string? |  yes  | The overlay color |
+ 
+
+---
+
+#### [PageV2](#PageV2)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | sections | [[SectionV2](#SectionV2)]? |  yes  |  |
+ | value | string? |  yes  | The value of the page. |
  
 
 ---
@@ -35324,11 +36313,84 @@ Success. Upgrades the theme and shares the details of the new version in the res
 
 ---
 
+#### [PaletteConfigV2](#PaletteConfigV2)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | advance_setting | [AdvanceSettingV2](#AdvanceSettingV2)? |  yes  |  |
+ | general_setting | [GeneralSettingV2](#GeneralSettingV2)? |  yes  |  |
+ 
+
+---
+
+#### [PaymentInfo](#PaymentInfo)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | amount | number? |  yes  | Amount of payment |
+ | is_paid | boolean? |  yes  | Indicates if the theme is paid |
+ 
+
+---
+
+#### [PaymentV2](#PaymentV2)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | amount | number? |  yes  | The amount of the theme |
+ | is_paid | boolean? |  yes  | Whether the theme is paid or not |
+ 
+
+---
+
+#### [PredicateV2](#PredicateV2)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | route | [RouteV2](#RouteV2)? |  yes  |  |
+ | screen | [ScreenV2](#ScreenV2)? |  yes  |  |
+ | user | [UserV2](#UserV2)? |  yes  |  |
+ 
+
+---
+
 #### [Preset](#Preset)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | pages | [[AvailablePageSchema](#AvailablePageSchema)]? |  yes  |  |
+ 
+
+---
+
+#### [PresetV2](#PresetV2)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | pages | [[PageV2](#PageV2)]? |  yes  |  |
+ 
+
+---
+
+#### [PropV2](#PropV2)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | category | string? |  yes  | The category of the property |
+ | id | string? |  yes  | The ID of the property |
+ | info | string? |  yes  | Additional information about the property |
+ | label | string? |  yes  | The label of the property |
+ | type | string? |  yes  | The type of the property |
+ 
+
+---
+
+#### [RangePropV2](#RangePropV2)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | type | string? |  yes  | The type of the property. |
+ | value | number? |  yes  | The value of the range property. |
  
 
 ---
@@ -35343,11 +36405,110 @@ Success. Upgrades the theme and shares the details of the new version in the res
 
 ---
 
+#### [Release](#Release)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | notes | string? |  yes  | Release notes |
+ | version | string? |  yes  | Release version |
+ 
+
+---
+
+#### [ReleaseV2](#ReleaseV2)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | notes | string? |  yes  | The release notes of the theme |
+ | version | string? |  yes  | The version of the theme |
+ 
+
+---
+
+#### [RouteV2](#RouteV2)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | exact_url | string? |  yes  | The exact URL of the route. |
+ | selected | string? |  yes  | The selected route. |
+ 
+
+---
+
+#### [SaleDiscountSettingV2](#SaleDiscountSettingV2)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | sale_badge_background | string? |  yes  | The sale badge background color |
+ | sale_badge_text | string? |  yes  | The sale badge text color |
+ | sale_discount_text | string? |  yes  | The sale discount text color |
+ | sale_timer | string? |  yes  | The sale timer color |
+ 
+
+---
+
+#### [ScreenV2](#ScreenV2)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | desktop | boolean? |  yes  | True if the screen is a desktop device. |
+ | mobile | boolean? |  yes  | True if the screen is a mobile device. |
+ | tablet | boolean? |  yes  | True if the screen is a tablet device. |
+ 
+
+---
+
+#### [SectionItem](#SectionItem)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | blocks | [any]? |  yes  | Blocks |
+ | label | string? |  yes  | Label for the section |
+ | name | string? |  yes  | Name of the section |
+ | props | [any]? |  yes  |  |
+ 
+
+---
+
+#### [SectionPresetV2](#SectionPresetV2)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | blocks | [[BlockV2](#BlockV2)]? |  yes  |  |
+ 
+
+---
+
+#### [SectionPropsV2](#SectionPropsV2)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | autoplay | [CheckboxPropV2](#CheckboxPropV2)? |  yes  |  |
+ | item_margin | [TextPropV2](#TextPropV2)? |  yes  |  |
+ | slide_interval | [RangePropV2](#RangePropV2)? |  yes  |  |
+ | title | [TextPropV2](#TextPropV2)? |  yes  |  |
+ 
+
+---
+
 #### [Sections](#Sections)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | attributes | string? |  yes  |  |
+ 
+
+---
+
+#### [SectionV2](#SectionV2)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | blocks | [[BlockV2](#BlockV2)]? |  yes  |  |
+ | name | string? |  yes  | The name of the section. |
+ | predicate | [PredicateV2](#PredicateV2)? |  yes  |  |
+ | preset | [SectionPresetV2](#SectionPresetV2)? |  yes  |  |
+ | props | [SectionPropsV2](#SectionPropsV2)? |  yes  |  |
  
 
 ---
@@ -35367,6 +36528,114 @@ Success. Upgrades the theme and shares the details of the new version in the res
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | link | string? |  yes  |  |
+ 
+
+---
+
+#### [StaticConfigV2](#StaticConfigV2)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | props | [StaticPropsV2](#StaticPropsV2)? |  yes  |  |
+ 
+
+---
+
+#### [StaticPropsV2](#StaticPropsV2)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | auth | [AuthConfigV2](#AuthConfigV2)? |  yes  |  |
+ | colors | [ColorsV2](#ColorsV2)? |  yes  |  |
+ 
+
+---
+
+#### [TextPropV2](#TextPropV2)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | type | string? |  yes  | The type of the property. |
+ | value | string? |  yes  | The value of the text property. |
+ 
+
+---
+
+#### [TextSettingV2](#TextSettingV2)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | text_body | string? |  yes  | The text body color |
+ | text_heading | string? |  yes  | The text heading color |
+ | text_label | string? |  yes  | The text label color |
+ | text_secondary | string? |  yes  | The secondary text color |
+ 
+
+---
+
+#### [ThemeImages](#ThemeImages)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | desktop | string? |  yes  | The URL of the desktop image for the theme. |
+ | mobile | string? |  yes  | The URL of the mobile image for the theme. |
+ 
+
+---
+
+#### [ThemeMeta](#ThemeMeta)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | description | string? |  yes  | A description of the theme. |
+ | images | [ThemeImages](#ThemeImages)? |  yes  |  |
+ | industry | [string]? |  yes  | A list of industry categories the theme is suitable for. |
+ | payment | [ThemePayment](#ThemePayment)? |  yes  |  |
+ | slug | string? |  yes  | The slug for the theme. |
+ 
+
+---
+
+#### [ThemePayment](#ThemePayment)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | amount | number? |  yes  | The amount to be paid for the theme. |
+ | is_paid | boolean? |  yes  | Whether the theme is a paid theme. |
+ 
+
+---
+
+#### [ThemeReq](#ThemeReq)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | marketplace_theme_id | string? |  yes  | The ID of the marketplace theme to apply to the company. |
+ 
+
+---
+
+#### [ThemeSchema](#ThemeSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | _id | string? |  yes  | The unique identifier for the theme. |
+ | company_id | number? |  yes  | The ID of the company that the theme belongs to. |
+ | created_at | string? |  yes  | The timestamp when the theme was created. |
+ | marketplace_theme_id | [MarketplaceThemeId](#MarketplaceThemeId)? |  yes  |  |
+ | meta | [ThemeMeta](#ThemeMeta)? |  yes  |  |
+ | name | string? |  yes  | The name of the theme. |
+ | updated_at | string? |  yes  | The timestamp when the theme was last updated. |
+ 
+
+---
+
+#### [ThemeSettingV2](#ThemeSettingV2)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | page_background | string? |  yes  | The page background color |
+ | theme_accent | string? |  yes  | The theme accent color |
  
 
 ---
@@ -35420,6 +36689,25 @@ Success. Upgrades the theme and shares the details of the new version in the res
 
 ---
 
+#### [UMDJs](#UMDJs)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | links | [string]? |  yes  |  |
+ 
+
+---
+
+#### [UpdateThemeRequestBodyV2](#UpdateThemeRequestBodyV2)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | config | [ConfigV2](#ConfigV2)? |  yes  |  |
+ | font | [FontV2](#FontV2)? |  yes  |  |
+ 
+
+---
+
 #### [UpgradableThemeSchema](#UpgradableThemeSchema)
 
  | Properties | Type | Nullable | Description |
@@ -35427,6 +36715,40 @@ Success. Upgrades the theme and shares the details of the new version in the res
  | applied_theme | string? |  yes  |  |
  | parent_theme | string? |  yes  |  |
  | upgrade | boolean? |  yes  |  |
+ 
+
+---
+
+#### [UrlPropV2](#UrlPropV2)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | type | string? |  yes  | The type of the property. |
+ | value | string? |  yes  | The value of the URL property. |
+ 
+
+---
+
+#### [UserAlertsSettingV2](#UserAlertsSettingV2)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | error_background | string? |  yes  | The error background color |
+ | error_text | string? |  yes  | The error text color |
+ | info_background | string? |  yes  | The info background color |
+ | info_text | string? |  yes  | The info text color |
+ | success_background | string? |  yes  | The success background color |
+ | success_text | string? |  yes  | The success text color |
+ 
+
+---
+
+#### [UserV2](#UserV2)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | anonymous | boolean? |  yes  | True if the user is anonymous. |
+ | authenticated | boolean? |  yes  | True if the user is authenticated. |
  
 
 ---
@@ -35440,6 +36762,18 @@ Success. Upgrades the theme and shares the details of the new version in the res
  | medium | [Medium](#Medium)? |  yes  |  |
  | regular | [Regular](#Regular)? |  yes  |  |
  | semi_bold | [SemiBold](#SemiBold)? |  yes  |  |
+ 
+
+---
+
+#### [Variation](#Variation)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | color | string? |  yes  | Variation color |
+ | demo_url | string? |  yes  | Variation demo URL |
+ | images | [Images](#Images)? |  yes  |  |
+ | name | string? |  yes  | Variation name |
  
 
 ---

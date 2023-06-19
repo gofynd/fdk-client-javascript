@@ -4,5 +4,6 @@
 
 
 * [Configuration](CONFIGURATION.md) - Application configuration apis 
-* [Webhook](WEBHOOK.md) - Sureshot is a webhook system where user can register their webhook to all available events in Fynd Platform, On event trigger. Sureshot will call all registered webhook endpoints for that specific event.This is the feature where sellers can subscribe(register webhook) to events provided. 
+* [Webhook](WEBHOOK.md) - Webhook dispatcher with retry and one event to many subscriber vice versa 
 * [Inventory](INVENTORY.md) -  
+* [Partner](PARTNER.md) - Partner configuration apis 

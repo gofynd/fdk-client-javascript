@@ -1,14 +1,11 @@
 export = ServiceabilityModel;
 declare class ServiceabilityModel {
     static AddressResponse(): any;
-    static ApplicationSelfShipConfig(): any;
-    static ApplicationSelfShipConfigResponse(): any;
+    static ApplicationCompanyDpViewRequest(): any;
+    static ApplicationCompanyDpViewResponse(): any;
     static ApplicationServiceabilityConfig(): any;
     static ApplicationServiceabilityConfigResponse(): any;
     static CommonError(): any;
-    static CompanyDpAccountListResponse(): any;
-    static CompanyDpAccountRequest(): any;
-    static CompanyDpAccountResponse(): any;
     static CompanyStoreView_PageItems(): any;
     static CompanyStoreView_Response(): any;
     static ContactNumberResponse(): any;
@@ -16,21 +13,6 @@ declare class ServiceabilityModel {
     static CreateZoneData(): any;
     static DocumentsResponse(): any;
     static Dp(): any;
-    static Dp1(): any;
-    static DpAccountFailureResponse(): any;
-    static DPApplicationRuleRequest(): any;
-    static DPApplicationRuleResponse(): any;
-    static DPCompanyRuleRequest(): any;
-    static DPCompanyRuleResponse(): any;
-    static DpIds(): any;
-    static DpMultipleRuleSuccessResponse(): any;
-    static DpRule(): any;
-    static DpRuleRequest(): any;
-    static DpRuleResponse(): any;
-    static DpRuleSuccessResponse(): any;
-    static DpRulesUpdateRequest(): any;
-    static DpRuleUpdateSuccessResponse(): any;
-    static DpSchemaInRuleListing(): any;
     static EinvoiceResponse(): any;
     static EntityRegionView_Error(): any;
     static EntityRegionView_Items(): any;
@@ -38,9 +20,7 @@ declare class ServiceabilityModel {
     static EntityRegionView_Request(): any;
     static EntityRegionView_Response(): any;
     static Error(): any;
-    static ErrorResponse(): any;
     static EwayBillResponse(): any;
-    static FailureResponse(): any;
     static GetSingleZoneDataViewResponse(): any;
     static GetStoresViewResponse(): any;
     static GetZoneDataViewChannels(): any;
@@ -61,7 +41,6 @@ declare class ServiceabilityModel {
     static MobileNo(): any;
     static ModifiedByResponse(): any;
     static OpeningClosing(): any;
-    static Page(): any;
     static PageResponse(): any;
     static PincodeBulkViewResponse(): any;
     static PincodeCodStatusListingPage(): any;
@@ -77,7 +56,6 @@ declare class ServiceabilityModel {
     static PincodeMopUpdateAuditHistoryResponseData(): any;
     static PincodeMopUpdateResponse(): any;
     static ProductReturnConfigResponse(): any;
-    static SelfShipResponse(): any;
     static ServiceabilityErrorResponse(): any;
     static TimmingResponse(): any;
     static UpdateZoneData(): any;

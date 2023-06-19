@@ -7,5 +7,7 @@ module.exports = {
     WebhookPublicModel: require("./Webhook/WebhookPublicModel"),
 
     InventoryPublicModel: require("./Inventory/InventoryPublicModel"),
+
+    PartnerPublicModel: require("./Partner/PartnerPublicModel"),
   },
 };

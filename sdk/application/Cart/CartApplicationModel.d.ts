@@ -37,6 +37,7 @@ declare class CartModel {
     static CouponDetails(): any;
     static CouponValidity(): any;
     static CurrencyInfo(): any;
+    static CustomerDetails(): any;
     static DeleteAddressResponse(): any;
     static DeleteCartDetailResponse(): any;
     static DiscountRulesApp(): any;

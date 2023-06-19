@@ -33,7 +33,6 @@ declare class CatalogModel {
     static DepartmentResponse(): any;
     static DetailsSchemaV3(): any;
     static Dimension(): any;
-    static DiscountMeta(): any;
     static ErrorResponse(): any;
     static FollowerCountResponse(): any;
     static FollowIdsData(): any;
@@ -57,7 +56,6 @@ declare class CatalogModel {
     static ProductCompareResponse(): any;
     static ProductDetail(): any;
     static ProductDetailAttribute(): any;
-    static ProductDetailCustomOrder(): any;
     static ProductDetailGroupedAttribute(): any;
     static ProductDetails(): any;
     static ProductFilters(): any;

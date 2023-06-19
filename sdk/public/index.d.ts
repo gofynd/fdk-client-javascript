@@ -4,4 +4,5 @@ export namespace PublicModel {
     const ConfigurationPublicModel: typeof import("./Configuration/ConfigurationPublicModel");
     const WebhookPublicModel: typeof import("./Webhook/WebhookPublicModel");
     const InventoryPublicModel: typeof import("./Inventory/InventoryPublicModel");
+    const PartnerPublicModel: typeof import("./Partner/PartnerPublicModel");
 }

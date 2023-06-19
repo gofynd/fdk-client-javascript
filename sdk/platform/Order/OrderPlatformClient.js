@@ -903,9 +903,9 @@ class Order {
 
   /**
    * @param {Object} arg - Arg object.
-   * @param {string} [arg.bagId] -
-   * @param {string} [arg.channelBagId] -
-   * @param {string} [arg.channelId] -
+   * @param {string} [arg.bagId] - Id of bag
+   * @param {string} [arg.channelBagId] - Id of application bag
+   * @param {string} [arg.channelId] - Id of application
    * @returns {Promise<BagDetailsPlatformResponse>} - Success response
    * @summary:
    * @description:
@@ -976,15 +976,16 @@ class Order {
 
   /**
    * @param {Object} arg - Arg object.
-   * @param {string} [arg.bagIds] -
-   * @param {string} [arg.shipmentIds] -
-   * @param {string} [arg.orderIds] -
-   * @param {string} [arg.channelBagIds] -
-   * @param {string} [arg.channelShipmentIds] -
-   * @param {string} [arg.channelOrderIds] -
-   * @param {string} [arg.channelId] -
-   * @param {number} [arg.pageNo] -
-   * @param {number} [arg.pageSize] -
+   * @param {string} [arg.bagIds] - Comma-seperated values of bag ids
+   * @param {string} [arg.shipmentIds] - Comma-seperated values of shipment ids
+   * @param {string} [arg.orderIds] - Comma-seperated values of order ids
+   * @param {string} [arg.channelBagIds] - Comma-seperated values of app bag ids
+   * @param {string} [arg.channelShipmentIds] - Comma-seperated values of app
+   *   shipment ids
+   * @param {string} [arg.channelOrderIds] - Comma-seperated values of app order ids
+   * @param {string} [arg.channelId] - Comma-seperated values of app ids
+   * @param {number} [arg.pageNo] - Page number for paginated data
+   * @param {number} [arg.pageSize] - Page size of data received per page
    * @returns {Promise<GetBagsPlatformResponse>} - Success response
    * @summary:
    * @description:
@@ -1323,15 +1324,15 @@ class Order {
 
   /**
    * @param {Object} arg - Arg object.
-   * @param {string} [arg.superLane] -
-   * @param {string} [arg.groupEntity] -
-   * @param {string} [arg.fromDate] -
-   * @param {string} [arg.toDate] -
-   * @param {string} [arg.dpIds] -
-   * @param {string} [arg.stores] -
+   * @param {string} [arg.superLane] - Name of lane for which data is to be fetched
+   * @param {string} [arg.groupEntity] - Name of group entity
+   * @param {string} [arg.fromDate] - Start Date in DD-MM-YYYY format
+   * @param {string} [arg.toDate] - End Date in DD-MM-YYYY format
+   * @param {string} [arg.dpIds] - Comma seperated values of delivery partner ids
+   * @param {string} [arg.stores] - Comma seperated values of store ids
    * @param {string} [arg.salesChannels] -
-   * @param {string} [arg.paymentMode] -
-   * @param {string} [arg.bagStatus] -
+   * @param {string} [arg.paymentMode] - Comma seperated values of payment modes
+   * @param {string} [arg.bagStatus] - Comma seperated values of bag statuses
    * @param {string} [arg.searchType] -
    * @param {string} [arg.searchValue] -
    * @param {string} [arg.tags] -
@@ -1591,8 +1592,8 @@ class Order {
    * @param {Object} arg - Arg object.
    * @param {string} [arg.lane] - Lane refers to a section where orders are
    *   assigned, indicating its grouping
-   * @param {string} [arg.searchType] - Search_type refers to the specific
-   *   field that will be used as the target for the search operation
+   * @param {string} [arg.searchType] - Search_type refers to the field that
+   *   will be used as the target for the search operation
    * @param {string} [arg.bagStatus] - Bag_status refers to status of the
    *   entity. Filters orders based on the status.
    * @param {string} [arg.timeToDispatch] - Time_to_dispatch refers to
@@ -2313,8 +2314,8 @@ class Order {
 
   /**
    * @param {Object} arg - Arg object.
-   * @param {string} arg.view - Name of View
-   * @param {string} [arg.groupEntity] - Group Entity Name
+   * @param {string} arg.view - Name of view
+   * @param {string} [arg.groupEntity] - Name of group entity
    * @returns {Promise<FiltersResponse>} - Success response
    * @summary:
    * @description:

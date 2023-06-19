@@ -120,7 +120,6 @@ declare class OrderModel {
     static LockData(): any;
     static MarketPlacePdf(): any;
     static Meta(): any;
-    static Meta1(): any;
     static MetricCountResponse(): any;
     static MetricsCount(): any;
     static NestedErrorSchemaDataSet(): any;
@@ -147,7 +146,6 @@ declare class OrderModel {
     static Page(): any;
     static PaymentInfo(): any;
     static PaymentMethod(): any;
-    static PaymentMethod1(): any;
     static PaymentMethods(): any;
     static PDFLinks(): any;
     static PhoneDetails(): any;

@@ -36,6 +36,7 @@ declare class PosCartModel {
     static CouponBreakup(): any;
     static CouponDetails(): any;
     static CouponValidity(): any;
+    static CustomerDetails(): any;
     static DeleteAddressResponse(): any;
     static DiscountRulesApp(): any;
     static DisplayBreakup(): any;

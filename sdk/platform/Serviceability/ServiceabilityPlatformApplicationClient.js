@@ -14,6 +14,129 @@ class Serviceability {
 
   /**
    * @param {Object} arg - Arg object.
+   * @param {ApplicationCompanyDpViewRequest} arg.body
+   * @returns {Promise<ApplicationCompanyDpViewResponse>} - Success response
+   * @summary: Add application dp data
+   * @description: This API add application dp data.
+   */
+  async addAppDp({ body } = {}) {
+    const { error } = ServiceabilityValidator.addAppDp().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = ServiceabilityValidator.addAppDp().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for addAppDp",
+      });
+      Logger({ level: "WARN", message: warrning });
+    }
+
+    const query_params = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/logistics/v1.0/company/${this.config.companyId}/application/${this.applicationId}`,
+      query_params,
+      body
+    );
+
+    const {
+      error: res_error,
+    } = ServiceabilityModel.ApplicationCompanyDpViewResponse().validate(
+      response,
+      { abortEarly: false, allowUnknown: false }
+    );
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for addAppDp",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {number} arg.courierPartnerId - A `courier_partner_id` is a unique
+   *   identifier of a particular delivery partner.
+   * @returns {Promise<ApplicationCompanyDpViewResponse>} - Success response
+   * @summary: Delete application dp data
+   * @description: This API remove application dp data.
+   */
+  async deleteAppDp({ courierPartnerId } = {}) {
+    const { error } = ServiceabilityValidator.deleteAppDp().validate(
+      {
+        courierPartnerId,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = ServiceabilityValidator.deleteAppDp().validate(
+      {
+        courierPartnerId,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for deleteAppDp",
+      });
+      Logger({ level: "WARN", message: warrning });
+    }
+
+    const query_params = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "delete",
+      `/service/platform/logistics/v1.0/company/${this.config.companyId}/application/${this.applicationId}/courier-partner/${courierPartnerId}`,
+      query_params,
+      undefined
+    );
+
+    const {
+      error: res_error,
+    } = ServiceabilityModel.ApplicationCompanyDpViewResponse().validate(
+      response,
+      { abortEarly: false, allowUnknown: false }
+    );
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for deleteAppDp",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
    * @returns {Promise<ApplicationServiceabilityConfigResponse>} - Success response
    * @summary: Zone configuration of application.
    * @description: This API returns serviceability config of the application.
@@ -67,130 +190,6 @@ class Serviceability {
         level: "WARN",
         message:
           "Response Validation Warnnings for getApplicationServiceability",
-      });
-      Logger({ level: "WARN", message: res_error });
-    }
-
-    return response;
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @returns {Promise<ApplicationSelfShipConfigResponse>} - Success response
-   * @summary: Self-ship configuration of application.
-   * @description: This API returns Self-ship configuration of the application.
-   */
-  async getApplicationServiceabilitySelfShipment({} = {}) {
-    const {
-      error,
-    } = ServiceabilityValidator.getApplicationServiceabilitySelfShipment().validate(
-      {},
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = ServiceabilityValidator.getApplicationServiceabilitySelfShipment().validate(
-      {},
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message:
-          "Parameter Validation warrnings for getApplicationServiceabilitySelfShipment",
-      });
-      Logger({ level: "WARN", message: warrning });
-    }
-
-    const query_params = {};
-
-    const response = await PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/logistics/v1.0/company/${this.config.companyId}/application/${this.applicationId}/selfship`,
-      query_params,
-      undefined
-    );
-
-    const {
-      error: res_error,
-    } = ServiceabilityModel.ApplicationSelfShipConfigResponse().validate(
-      response,
-      { abortEarly: false, allowUnknown: false }
-    );
-
-    if (res_error) {
-      Logger({
-        level: "WARN",
-        message:
-          "Response Validation Warnnings for getApplicationServiceabilitySelfShipment",
-      });
-      Logger({ level: "WARN", message: res_error });
-    }
-
-    return response;
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @returns {Promise<DPApplicationRuleResponse>} - Success response
-   * @summary: Get All DpApplicationRules rules added at application level from database.
-   * @description: This API returns response of all rules of DpApplicationRules from mongo database.
-   */
-  async getDpApplicationRulePriority({} = {}) {
-    const {
-      error,
-    } = ServiceabilityValidator.getDpApplicationRulePriority().validate(
-      {},
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = ServiceabilityValidator.getDpApplicationRulePriority().validate(
-      {},
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message:
-          "Parameter Validation warrnings for getDpApplicationRulePriority",
-      });
-      Logger({ level: "WARN", message: warrning });
-    }
-
-    const query_params = {};
-
-    const response = await PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/logistics/v1.0/company/${this.config.companyId}/application/${this.applicationId}/courier/priority`,
-      query_params,
-      undefined
-    );
-
-    const {
-      error: res_error,
-    } = ServiceabilityModel.DPApplicationRuleResponse().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
-
-    if (res_error) {
-      Logger({
-        level: "WARN",
-        message:
-          "Response Validation Warnnings for getDpApplicationRulePriority",
       });
       Logger({ level: "WARN", message: res_error });
     }
@@ -334,73 +333,6 @@ class Serviceability {
         level: "WARN",
         message:
           "Response Validation Warnnings for getZonesFromApplicationIdView",
-      });
-      Logger({ level: "WARN", message: res_error });
-    }
-
-    return response;
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {SelfShipResponse} arg.body
-   * @returns {Promise<ApplicationSelfShipConfigResponse>} - Success response
-   * @summary: Self-ship configuration of application.
-   * @description: This API updates Self-ship configuration of the application.
-   */
-  async patchApplicationServiceabilitySelfShipment({ body } = {}) {
-    const {
-      error,
-    } = ServiceabilityValidator.patchApplicationServiceabilitySelfShipment().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = ServiceabilityValidator.patchApplicationServiceabilitySelfShipment().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message:
-          "Parameter Validation warrnings for patchApplicationServiceabilitySelfShipment",
-      });
-      Logger({ level: "WARN", message: warrning });
-    }
-
-    const query_params = {};
-
-    const response = await PlatformAPIClient.execute(
-      this.config,
-      "patch",
-      `/service/platform/logistics/v1.0/company/${this.config.companyId}/application/${this.applicationId}/selfship`,
-      query_params,
-      body
-    );
-
-    const {
-      error: res_error,
-    } = ServiceabilityModel.ApplicationSelfShipConfigResponse().validate(
-      response,
-      { abortEarly: false, allowUnknown: false }
-    );
-
-    if (res_error) {
-      Logger({
-        level: "WARN",
-        message:
-          "Response Validation Warnnings for patchApplicationServiceabilitySelfShipment",
       });
       Logger({ level: "WARN", message: res_error });
     }
@@ -657,73 +589,6 @@ class Serviceability {
       Logger({
         level: "WARN",
         message: "Response Validation Warnnings for updatePincodeMopView",
-      });
-      Logger({ level: "WARN", message: res_error });
-    }
-
-    return response;
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {DPApplicationRuleRequest} arg.body
-   * @returns {Promise<DPApplicationRuleResponse>} - Success response
-   * @summary: Upsert of DpApplicationRules in database.
-   * @description: This API returns response of upsert of DpApplicationRules in mongo database.
-   */
-  async upsertDpApplicationRulePriority({ body } = {}) {
-    const {
-      error,
-    } = ServiceabilityValidator.upsertDpApplicationRulePriority().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = ServiceabilityValidator.upsertDpApplicationRulePriority().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message:
-          "Parameter Validation warrnings for upsertDpApplicationRulePriority",
-      });
-      Logger({ level: "WARN", message: warrning });
-    }
-
-    const query_params = {};
-
-    const response = await PlatformAPIClient.execute(
-      this.config,
-      "put",
-      `/service/platform/logistics/v1.0/company/${this.config.companyId}/application/${this.applicationId}/courier/priority`,
-      query_params,
-      body
-    );
-
-    const {
-      error: res_error,
-    } = ServiceabilityModel.DPApplicationRuleResponse().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
-
-    if (res_error) {
-      Logger({
-        level: "WARN",
-        message:
-          "Response Validation Warnnings for upsertDpApplicationRulePriority",
       });
       Logger({ level: "WARN", message: res_error });
     }

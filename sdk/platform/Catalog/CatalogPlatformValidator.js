@@ -47,6 +47,12 @@ class CatalogValidator {
     }).required();
   }
 
+  static createDepartments() {
+    return Joi.object({
+      body: CatalogModel.DepartmentCreateUpdate().required(),
+    }).required();
+  }
+
   static createInventoryExport() {
     return Joi.object({
       body: CatalogModel.InventoryCreateRequest().required(),
@@ -202,9 +208,9 @@ class CatalogValidator {
     return Joi.object({}).required();
   }
 
-  static getDepartment() {
+  static getDepartmentData() {
     return Joi.object({
-      uid: Joi.number().required(),
+      uid: Joi.string().allow("").required(),
     }).required();
   }
 
@@ -414,14 +420,14 @@ class CatalogValidator {
     }).required();
   }
 
-  static listDepartments() {
+  static listDepartmentsData() {
     return Joi.object({
       pageNo: Joi.number(),
+      itemType: Joi.string().allow(""),
       pageSize: Joi.number(),
       name: Joi.string().allow(""),
       search: Joi.string().allow(""),
       isActive: Joi.boolean(),
-      itemType: Joi.string().allow(""),
     }).required();
   }
 
@@ -467,6 +473,13 @@ class CatalogValidator {
     return Joi.object({
       uid: Joi.string().allow("").required(),
       body: CatalogModel.CategoryRequestBody().required(),
+    }).required();
+  }
+
+  static updateDepartment() {
+    return Joi.object({
+      uid: Joi.string().allow("").required(),
+      body: CatalogModel.DepartmentCreateUpdate().required(),
     }).required();
   }
 

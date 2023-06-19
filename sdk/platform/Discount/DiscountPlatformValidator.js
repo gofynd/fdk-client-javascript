@@ -76,7 +76,7 @@ class DiscountValidator {
   static validateDiscountFile() {
     return Joi.object({
       discount: Joi.string().allow(""),
-      body: DiscountModel.FileJobRequest().required(),
+      body: DiscountModel.DiscountJob().required(),
     }).required();
   }
 }

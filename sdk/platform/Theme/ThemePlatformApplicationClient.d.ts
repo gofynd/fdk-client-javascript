@@ -25,6 +25,16 @@ declare class Theme {
     }): Promise<ThemesSchema>;
     /**
      * @param {Object} arg - Arg object.
+     * @param {ApplyThemeRequestV2} arg.body
+     * @returns {Promise<ApplyThemeResponseV2>} - Success response
+     * @summary: Apply a theme to an application
+     * @description: Apply a theme to an application by providing the marketplace theme ID.
+     */
+    applyThemeV2({ body }?: {
+        body: ApplyThemeRequestV2;
+    }): Promise<ApplyThemeResponseV2>;
+    /**
+     * @param {Object} arg - Arg object.
      * @param {string} arg.themeId - ID allotted to the theme.
      * @returns {Promise<ThemesSchema>} - Success response
      * @summary: Archive a theme
@@ -87,6 +97,30 @@ declare class Theme {
     getAllPages({ themeId }?: {
         themeId: string;
     }): Promise<AllAvailablePageSchema>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {string} arg.themeId - The ID of the theme
+     * @returns {Promise<AllThemesApplicationResponseV2>} - Success response
+     * @summary: Get Theme By Theme Id
+     * @description:
+     */
+    getApplicationThemeByIdV2({ themeId }?: {
+        themeId: string;
+    }): Promise<AllThemesApplicationResponseV2>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @returns {Promise<Object>} - Success response
+     * @summary: Get the count of themes for a specific application
+     * @description:
+     */
+    getApplicationThemesCountV2({}?: any): Promise<any>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @returns {Promise<AllThemesApplicationResponseV2[]>} - Success response
+     * @summary: Get all the themes for a specific application
+     * @description:
+     */
+    getApplicationThemesV2({}?: any): Promise<AllThemesApplicationResponseV2[]>;
     /**
      * @param {Object} arg - Arg object.
      * @returns {Promise<ThemesSchema>} - Success response
@@ -249,6 +283,18 @@ declare class Theme {
         themeId: string;
         body: ThemesSchema;
     }): Promise<ThemesSchema>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {string} arg.themeId - The ID of the theme.
+     * @param {UpdateThemeRequestBodyV2} arg.body
+     * @returns {Promise<AllThemesApplicationResponseV2>} - Success response
+     * @summary: Update theme for a specific company and application
+     * @description:
+     */
+    updateThemeV2({ themeId, body }?: {
+        themeId: string;
+        body: UpdateThemeRequestBodyV2;
+    }): Promise<AllThemesApplicationResponseV2>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.themeId - ID allotted to the theme.

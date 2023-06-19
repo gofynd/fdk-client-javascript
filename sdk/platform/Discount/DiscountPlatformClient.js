@@ -705,7 +705,7 @@ class Discount {
   /**
    * @param {Object} arg - Arg object.
    * @param {string} [arg.discount] - Discount
-   * @param {FileJobRequest} arg.body
+   * @param {DiscountJob} arg.body
    * @returns {Promise<FileJobResponse>} - Success response
    * @summary: Validate File.
    * @description: Validate File.

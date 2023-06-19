@@ -1992,13 +1992,18 @@ class Cart {
 
   /**
    * @param {Object} arg - Arg object.
+   * @param {string} [arg.entityType] - Entity_type as promotion or coupon
+   * @param {boolean} [arg.isHidden] - Promo-coupon config shown or not
    * @returns {Promise<ActivePromosResponse>} - Success response
    * @summary: Fetch all promos that are set as active
    * @description: Use this API to get list of all the active promos/coupons.
    */
-  async getPromosCouponConfig({} = {}) {
+  async getPromosCouponConfig({ entityType, isHidden } = {}) {
     const { error } = CartValidator.getPromosCouponConfig().validate(
-      {},
+      {
+        entityType,
+        isHidden,
+      },
       { abortEarly: false, allowUnknown: true }
     );
     if (error) {
@@ -2007,7 +2012,10 @@ class Cart {
 
     // Showing warrnings if extra unknown parameters are found
     const { error: warrning } = CartValidator.getPromosCouponConfig().validate(
-      {},
+      {
+        entityType,
+        isHidden,
+      },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
@@ -2019,6 +2027,8 @@ class Cart {
     }
 
     const query_params = {};
+    query_params["entity_type"] = entityType;
+    query_params["is_hidden"] = isHidden;
 
     const response = await PlatformAPIClient.execute(
       this.config,

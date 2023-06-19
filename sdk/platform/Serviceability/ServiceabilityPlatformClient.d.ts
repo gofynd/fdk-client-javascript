@@ -4,16 +4,6 @@ declare class Serviceability {
     config: any;
     /**
      * @param {Object} arg - Arg object.
-     * @param {DpRuleRequest} arg.body
-     * @returns {Promise<DpRuleSuccessResponse>} - Success response
-     * @summary: Upsert of DpRules in database.
-     * @description: This API returns response of upsert of DpRules in mongo database.
-     */
-    createDpRule({ body }?: {
-        body: DpRuleRequest;
-    }): Promise<DpRuleSuccessResponse>;
-    /**
-     * @param {Object} arg - Arg object.
      * @param {ZoneRequest} arg.body
      * @returns {Promise<ZoneResponse>} - Success response
      * @summary: Creation of a new zone
@@ -31,59 +21,16 @@ declare class Serviceability {
     getAllStores({}?: any): Promise<GetStoresViewResponse>;
     /**
      * @param {Object} arg - Arg object.
+     * @param {number} [arg.pageNumber] - Index of the item to start returning with
+     * @param {number} [arg.pageSize] - Determines the items to be displayed in a page
      * @returns {Promise<CompanyStoreView_Response>} - Success response
      * @summary: Company Store View of application.
      * @description: This API returns Company Store View of the application.
      */
-    getCompanyStoreView({}?: any): Promise<CompanyStoreView_Response>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {number} [arg.pageNumber] - Index of the item to start returning with
-     * @param {number} [arg.pageSize] - Determines the items to be displayed in a page
-     * @param {string} [arg.stage] - Stage of the account. enabled/disabled
-     * @param {string} [arg.paymentMode] - Filters dp accounts based on payment mode
-     * @param {string} [arg.transportType] - Filters dp accounts based on transport_type
-     * @returns {Promise<CompanyDpAccountListResponse>} - Success response
-     * @summary: Getting DpAccount of a company from database.
-     * @description: This API returns response DpAccount of a company from mongo database.
-     */
-    getDpAccountList({ pageNumber, pageSize, stage, paymentMode, transportType, }?: {
+    getCompanyStoreView({ pageNumber, pageSize }?: {
         pageNumber?: number;
         pageSize?: number;
-        stage?: string;
-        paymentMode?: string;
-        transportType?: string;
-    }): Promise<CompanyDpAccountListResponse>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @returns {Promise<DPCompanyRuleResponse>} - Success response
-     * @summary: Get All DpCompanyRules applied to company from database.
-     * @description: This API returns response of all DpCompanyRules from mongo database.
-     */
-    getDpCompanyRulePriority({}?: any): Promise<DPCompanyRuleResponse>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.ruleUid - A `rule_uid` is a unique identifier for a
-     *   particular Dp.
-     * @returns {Promise<DpRuleSuccessResponse>} - Success response
-     * @summary: Fetching of DpRules from database.
-     * @description: This API returns response of DpRules from mongo database.
-     */
-    getDpRule({ ruleUid }?: {
-        ruleUid: string;
-    }): Promise<DpRuleSuccessResponse>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {number} [arg.pageNumber] - Index of the item to start returning with
-     * @param {number} [arg.pageSize] - Determines the items to be displayed in a page
-     * @returns {Promise<DpMultipleRuleSuccessResponse>} - Success response
-     * @summary: Fetching of DpRules from database.
-     * @description: This API returns response of DpRules from mongo database.
-     */
-    getDpRuleList({ pageNumber, pageSize }?: {
-        pageNumber?: number;
-        pageSize?: number;
-    }): Promise<DpMultipleRuleSuccessResponse>;
+    }): Promise<CompanyStoreView_Response>;
     /**
      * @param {Object} arg - Arg object.
      * @param {EntityRegionView_Request} arg.body
@@ -137,17 +84,28 @@ declare class Serviceability {
     }): Promise<GetSingleZoneDataViewResponse>;
     /**
      * @param {Object} arg - Arg object.
-     * @param {string} arg.ruleUid - A `rule_uid` is a unique identifier for a
-     *   particular Dp.
-     * @param {DpRulesUpdateRequest} arg.body
-     * @returns {Promise<DpRuleUpdateSuccessResponse>} - Success response
-     * @summary: Updating of DpRules from database.
-     * @description: This API updates and returns response of DpRules from mongo database.
+     * @param {number} [arg.pageNumber] - Index of the item to start returning with
+     * @param {number} [arg.pageNo] - Index of the item to start returning with
+     * @param {number} [arg.pageSize] - Determines the items to be displayed in a page
+     * @param {string} [arg.name] - Name of particular zone in the seller account
+     * @param {boolean} [arg.isActive] - Status of zone whether active or inactive
+     * @param {string} [arg.channelIds] - Zones associated with the given channel ids'
+     * @param {string} [arg.q] - Search with name as a free text
+     * @param {string[]} [arg.zoneId] - List of zones to query for
+     * @returns {Promise<ListViewResponse>} - Success response
+     * @summary: Zone List of application.
+     * @description: This API returns Zone List View of the application.
      */
-    updateDpRule({ ruleUid, body }?: {
-        ruleUid: string;
-        body: DpRulesUpdateRequest;
-    }): Promise<DpRuleUpdateSuccessResponse>;
+    getZoneListView({ pageNumber, pageNo, pageSize, name, isActive, channelIds, q, zoneId, }?: {
+        pageNumber?: number;
+        pageNo?: number;
+        pageSize?: number;
+        name?: string;
+        isActive?: boolean;
+        channelIds?: string;
+        q?: string;
+        zoneId?: string[];
+    }): Promise<ListViewResponse>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.zoneId - A `zone_id` is a unique identifier for a
@@ -161,24 +119,4 @@ declare class Serviceability {
         zoneId: string;
         body: ZoneUpdateRequest;
     }): Promise<ZoneSuccessResponse>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {CompanyDpAccountRequest} arg.body
-     * @returns {Promise<CompanyDpAccountResponse>} - Success response
-     * @summary: Upsertion of DpAccount in database.
-     * @description: This API returns response of upsertion of DpAccount in mongo database.
-     */
-    upsertDpAccount({ body }?: {
-        body: CompanyDpAccountRequest;
-    }): Promise<CompanyDpAccountResponse>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {DPCompanyRuleRequest} arg.body
-     * @returns {Promise<DPCompanyRuleResponse>} - Success response
-     * @summary: Upsert of DpCompanyRules in database.
-     * @description: This API returns response of upsert of DpCompanyRules in mongo database.
-     */
-    upsertDpCompanyRulePriority({ body }?: {
-        body: DPCompanyRuleRequest;
-    }): Promise<DPCompanyRuleResponse>;
 }

@@ -9413,7 +9413,11 @@ const promise = applicationClient.cart.validateCouponForPayment({  id : value,
  paymentMode : value,
  paymentIdentifier : value,
  aggregatorName : value,
- merchantCode : value });
+ merchantCode : value,
+ iin : value,
+ network : value,
+ type : value,
+ cardId : value });
 
 // Async/Await
 const data = await applicationClient.cart.validateCouponForPayment({  id : value,
@@ -9422,7 +9426,11 @@ const data = await applicationClient.cart.validateCouponForPayment({  id : value
  paymentMode : value,
  paymentIdentifier : value,
  aggregatorName : value,
- merchantCode : value });
+ merchantCode : value,
+ iin : value,
+ network : value,
+ type : value,
+ cardId : value });
 ```
 
 
@@ -9437,7 +9445,11 @@ const data = await applicationClient.cart.validateCouponForPayment({  id : value
 | paymentMode | string | no |  |    
 | paymentIdentifier | string | no |  |    
 | aggregatorName | string | no |  |    
-| merchantCode | string | no |  |  
+| merchantCode | string | no |  |    
+| iin | string | no |  |    
+| network | string | no |  |    
+| type | string | no |  |    
+| cardId | string | no |  |  
 
 
 
@@ -9467,7 +9479,8 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
     "discount": 499.5,
     "code": "testpayment",
     "display_message_en": "",
-    "title": "Coupon value will change."
+    "title": "Coupon value will change.",
+    "next_validation_required": false
   }
 }
 ```
@@ -9530,6 +9543,7 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
  | extra_meta | string? |  yes  | any extra meta information related to article |
  | item_id | number? |  yes  | item_id of added product |
  | item_size | string? |  yes  | article size |
+ | meta | string? |  yes  |  |
  | parent_item_identifiers | [[String: string]]? |  yes  | contains information about parent item in case of parent-child relation |
  | pos | boolean? |  yes  | True for pos systems |
  | product_group_tags | [string]? |  yes  | product_group_tags to group articles in same group |
@@ -9717,6 +9731,7 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
  | billing_address_id | string? |  yes  |  |
  | callback_url | string? |  yes  |  |
  | custom_meta | [[CartCheckoutCustomMeta](#CartCheckoutCustomMeta)]? |  yes  |  |
+ | customer_details | [CustomerDetails](#CustomerDetails)? |  yes  | Customer details |
  | delivery_address | string? |  yes  |  |
  | extra_meta | string? |  yes  |  |
  | id | string? |  yes  |  |
@@ -9744,6 +9759,7 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
  | callback_url | string? |  yes  |  |
  | cart_id | string? |  yes  |  |
  | custom_meta | string? |  yes  |  |
+ | customer_details | [CustomerDetails](#CustomerDetails)? |  yes  | Customer details |
  | delivery_address | string? |  yes  |  |
  | extra_meta | string? |  yes  |  |
  | id | string? |  yes  |  |
@@ -9838,6 +9854,7 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
  | ---------- | ---- | -------- | ----------- |
  | checkout_mode | string? |  yes  |  |
  | comment | string? |  yes  |  |
+ | delivery_slots | string? |  yes  |  |
  | gift_details | [ArticleGiftDetail](#ArticleGiftDetail)? |  yes  |  |
  | gstin | string? |  yes  |  |
  | pick_up_customer_details | string? |  yes  | Customer contact details for customer pickup at store |
@@ -10046,6 +10063,7 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
  | code | string? |  yes  |  |
  | discount | number? |  yes  |  |
  | display_message_en | string? |  yes  |  |
+ | next_validation_required | boolean? |  yes  |  |
  | title | string? |  yes  |  |
  | valid | boolean? |  yes  |  |
  
@@ -10058,6 +10076,17 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
  | ---------- | ---- | -------- | ----------- |
  | code | string? |  yes  |  |
  | symbol | string? |  yes  |  |
+ 
+
+---
+
+#### [CustomerDetails](#CustomerDetails)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | email | string? |  yes  |  |
+ | mobile | string |  no  |  |
+ | name | string? |  yes  |  |
  
 
 ---
@@ -10443,8 +10472,10 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | _custom_json | string? |  yes  |  |
  | display | string? |  yes  | refers to size of product |
  | is_available | boolean? |  yes  | boolean refers to product available size. True if available else False |
+ | meta | string? |  yes  |  |
  | value | string? |  yes  | refers to size of product |
  
 
@@ -10760,6 +10791,7 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
  | item_id | number? |  yes  | item_id of added product |
  | item_index | number? |  yes  | index of updated article |
  | item_size | string? |  yes  | article size |
+ | meta | string? |  yes  |  |
  | parent_item_identifiers | string? |  yes  | contains information about parent item in case of parent-child relation |
  | quantity | number? |  yes  | article updated quantity |
  

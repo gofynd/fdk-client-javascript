@@ -1337,9 +1337,9 @@ const data = await platformClient.order.getBagById({  bagId : value,
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
-| bagId | string | no |  |    
-| channelBagId | string | no |  |    
-| channelId | string | no |  |  
+| bagId | string | no | Id of bag |    
+| channelBagId | string | no | Id of application bag |    
+| channelId | string | no | Id of application |  
 
 
 
@@ -1411,15 +1411,15 @@ const data = await platformClient.order.getBags({  bagIds : value,
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
-| bagIds | string | no |  |    
-| shipmentIds | string | no |  |    
-| orderIds | string | no |  |    
-| channelBagIds | string | no |  |    
-| channelShipmentIds | string | no |  |    
-| channelOrderIds | string | no |  |    
-| channelId | string | no |  |    
-| pageNo | number | no |  |    
-| pageSize | number | no |  |  
+| bagIds | string | no | comma-seperated values of bag ids |    
+| shipmentIds | string | no | comma-seperated values of shipment ids |    
+| orderIds | string | no | comma-seperated values of order ids |    
+| channelBagIds | string | no | comma-seperated values of app bag ids |    
+| channelShipmentIds | string | no | comma-seperated values of app shipment ids |    
+| channelOrderIds | string | no | comma-seperated values of app order ids |    
+| channelId | string | no | comma-seperated values of app ids |    
+| pageNo | number | no | Page number for paginated data |    
+| pageSize | number | no | Page size of data received per page |  
 
 
 
@@ -1727,15 +1727,15 @@ const data = await platformClient.order.getLaneConfig({  superLane : value,
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
-| superLane | string | no |  |    
-| groupEntity | string | no |  |    
-| fromDate | string | no |  |    
-| toDate | string | no |  |    
-| dpIds | string | no |  |    
-| stores | string | no |  |    
+| superLane | string | no | Name of lane for which data is to be fetched |    
+| groupEntity | string | no | Name of group entity |    
+| fromDate | string | no | Start Date in DD-MM-YYYY format |    
+| toDate | string | no | End Date in DD-MM-YYYY format |    
+| dpIds | string | no | Comma seperated values of delivery partner ids |    
+| stores | string | no | Comma seperated values of store ids |    
 | salesChannels | string | no |  |    
-| paymentMode | string | no |  |    
-| bagStatus | string | no |  |    
+| paymentMode | string | no | Comma seperated values of payment modes |    
+| bagStatus | string | no | Comma seperated values of bag statuses |    
 | searchType | string | no |  |    
 | searchValue | string | no |  |    
 | tags | string | no |  |    
@@ -2740,7 +2740,7 @@ const data = await platformClient.order.getOrders({  lane : value,
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
 | lane | string | no | lane refers to a section where orders are assigned, indicating its grouping |    
-| searchType | string | no | search_type refers to the specific field that will be used as the target for the search operation |    
+| searchType | string | no | search_type refers to the field that will be used as the target for the search operation |    
 | bagStatus | string | no | bag_status refers to status of the entity. Filters orders based on the status. |    
 | timeToDispatch | string | no | time_to_dispatch refers to estimated SLA time. |    
 | paymentMethods | string | no |  |    
@@ -3880,8 +3880,8 @@ const data = await platformClient.order.getfilters({  view : value,
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
-| view | string | yes | Name of View |    
-| groupEntity | string | no | Group Entity Name |  
+| view | string | yes | Name of view |    
+| groupEntity | string | no | Name of group entity |  
 
 
 
@@ -6032,7 +6032,7 @@ const data = await platformClient.application("<APPLICATION_ID>").order.trackShi
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
-| shipmentId | string | yes |  |  
+| shipmentId | string | yes | Shipment Id |  
 
 
 
@@ -6931,7 +6931,7 @@ Verify OTP
  | country_code | string? |  yes  |  |
  | first_name | string |  no  |  |
  | last_name | string |  no  |  |
- | mobile | string |  no  |  |
+ | mobile | number |  no  |  |
  
 
 ---
@@ -6994,27 +6994,26 @@ Verify OTP
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | affiliate_bag_details | [AffiliateBagDetails](#AffiliateBagDetails) |  no  |  |
+ | affiliate_bag_details | [AffiliateBagDetails](#AffiliateBagDetails)? |  yes  |  |
  | affiliate_details | [AffiliateDetails](#AffiliateDetails)? |  yes  |  |
  | applied_promos | [string]? |  yes  |  |
- | article | [Article](#Article) |  no  |  |
+ | article | [Article](#Article)? |  yes  |  |
  | article_details | [ArticleDetails](#ArticleDetails)? |  yes  |  |
- | b_id | number |  no  |  |
- | b_type | string? |  yes  |  |
- | bag_status | [[BagStatusHistory](#BagStatusHistory)] |  no  |  |
+ | bag_status | [[BagStatusHistory](#BagStatusHistory)]? |  yes  |  |
  | bag_status_history | [BagStatusHistory](#BagStatusHistory)? |  yes  |  |
  | bag_update_time | number? |  yes  |  |
- | brand | [Brand](#Brand) |  no  |  |
- | current_operational_status | [BagStatusHistory](#BagStatusHistory) |  no  |  |
- | current_status | [BagStatusHistory](#BagStatusHistory) |  no  |  |
+ | brand | [Brand](#Brand)? |  yes  |  |
+ | current_operational_status | [BagStatusHistory](#BagStatusHistory)? |  yes  |  |
+ | current_status | [BagStatusHistory](#BagStatusHistory)? |  yes  |  |
  | dates | [Dates](#Dates)? |  yes  |  |
  | display_name | string? |  yes  |  |
  | entity_type | string? |  yes  |  |
- | financial_breakup | [[FinancialBreakup](#FinancialBreakup)] |  no  |  |
- | gst_details | [BagGSTDetails](#BagGSTDetails) |  no  |  |
+ | financial_breakup | [[FinancialBreakup](#FinancialBreakup)]? |  yes  |  |
+ | gst_details | [BagGSTDetails](#BagGSTDetails)? |  yes  |  |
+ | id | number? |  yes  |  |
  | identifier | string? |  yes  |  |
- | item | [Item](#Item) |  no  |  |
- | journey_type | string |  no  |  |
+ | item | [Item](#Item)? |  yes  |  |
+ | journey_type | string? |  yes  |  |
  | line_number | number? |  yes  |  |
  | meta | [BagMeta](#BagMeta)? |  yes  |  |
  | no_of_bags_order | number? |  yes  |  |
@@ -7023,7 +7022,7 @@ Verify OTP
  | ordering_store | [Store](#Store)? |  yes  |  |
  | original_bag_list | [number]? |  yes  |  |
  | parent_promo_bags | string? |  yes  |  |
- | prices | [Prices](#Prices) |  no  |  |
+ | prices | [Prices](#Prices)? |  yes  |  |
  | qc_required | any? |  yes  |  |
  | quantity | number? |  yes  |  |
  | reasons | [string]? |  yes  |  |
@@ -7031,8 +7030,9 @@ Verify OTP
  | restore_promos | string? |  yes  |  |
  | seller_identifier | string? |  yes  |  |
  | shipment_id | string? |  yes  |  |
- | status | [BagReturnableCancelableStatus1](#BagReturnableCancelableStatus1) |  no  |  |
+ | status | [BagReturnableCancelableStatus1](#BagReturnableCancelableStatus1)? |  yes  |  |
  | tags | [string]? |  yes  |  |
+ | type | string? |  yes  |  |
  
 
 ---
@@ -7939,7 +7939,7 @@ Verify OTP
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | permissions | [[ActionInfo](#ActionInfo)] |  no  |  |
+ | permissions | [ActionInfo](#ActionInfo) |  no  |  |
  
 
 ---
@@ -8204,19 +8204,6 @@ Verify OTP
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | logo_url | [String: string]? |  yes  |  |
- | merchant_code | string? |  yes  |  |
- | payment_gateway | string? |  yes  |  |
- | payment_id | string? |  yes  |  |
- | payment_identifier | string? |  yes  |  |
- 
-
----
-
-#### [Meta1](#Meta1)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
  | kafka_emission_status | number? |  yes  |  |
  | state_manager_used | string? |  yes  |  |
  
@@ -8360,7 +8347,7 @@ Verify OTP
  | fynd_order_id | string |  no  |  |
  | meta | [OrderMeta](#OrderMeta)? |  yes  |  |
  | order_date | string |  no  |  |
- | payment_methods | [String: [PaymentMethod](#PaymentMethod)]? |  yes  |  |
+ | payment_methods | string? |  yes  |  |
  | prices | [Prices](#Prices)? |  yes  |  |
  | tax_details | [TaxDetails](#TaxDetails)? |  yes  |  |
  
@@ -8579,27 +8566,13 @@ Verify OTP
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | payment_methods | [[PaymentMethod1](#PaymentMethod1)]? |  yes  |  |
+ | payment_methods | [[PaymentMethod](#PaymentMethod)]? |  yes  |  |
  | primary_mode | string |  no  |  |
  
 
 ---
 
 #### [PaymentMethod](#PaymentMethod)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | amount | number? |  yes  |  |
- | collect_by | string? |  yes  |  |
- | meta | [Meta](#Meta)? |  yes  |  |
- | mode | string? |  yes  |  |
- | name | string? |  yes  |  |
- | refund_by | string? |  yes  |  |
- 
-
----
-
-#### [PaymentMethod1](#PaymentMethod1)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
@@ -8804,7 +8777,7 @@ Verify OTP
  | order | [OrderDetailsData](#OrderDetailsData)? |  yes  |  |
  | ordering_store | [OrderingStoreDetails](#OrderingStoreDetails)? |  yes  |  |
  | packaging_type | string? |  yes  |  |
- | payment_methods | [String: [PaymentMethod](#PaymentMethod)]? |  yes  |  |
+ | payment_methods | string? |  yes  |  |
  | payment_mode | string? |  yes  |  |
  | payments | [ShipmentPayments](#ShipmentPayments)? |  yes  |  |
  | picked_date | string? |  yes  |  |
@@ -9177,7 +9150,7 @@ Verify OTP
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | country_code | string? |  yes  |  |
- | mobile | string |  no  |  |
+ | mobile | number |  no  |  |
  
 
 ---
@@ -9238,7 +9211,7 @@ Verify OTP
  | ---------- | ---- | -------- | ----------- |
  | bag_list | [number]? |  yes  |  |
  | id | number |  no  |  |
- | meta | [Meta1](#Meta1) |  no  |  |
+ | meta | [Meta](#Meta) |  no  |  |
  | remarks | string? |  yes  |  |
  | shipment_id | string? |  yes  |  |
  | status | string? |  yes  |  |
@@ -9627,7 +9600,6 @@ Verify OTP
  | ---------- | ---- | -------- | ----------- |
  | exclude_bags_next_state | string? |  yes  | State to be change for Remaining Bag/Products |
  | shipments | [[ShipmentsRequest](#ShipmentsRequest)]? |  yes  |  |
- | split_shipment | boolean? |  yes  | Flag to split shipment |
  | status | string? |  yes  |  |
  
 
@@ -10050,7 +10022,6 @@ Verify OTP
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | mobile | string |  no  |  |
  | otp_code | number |  no  |  |
  | request_id | string |  no  |  |
  
@@ -10061,7 +10032,7 @@ Verify OTP
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | data | [VerifyOtpResponseData](#VerifyOtpResponseData) |  no  |  |
+ | data | [VerifyOtpResponseData](#VerifyOtpResponseData)? |  yes  |  |
  | message | string? |  yes  |  |
  | status | number? |  yes  |  |
  | success | boolean? |  yes  |  |

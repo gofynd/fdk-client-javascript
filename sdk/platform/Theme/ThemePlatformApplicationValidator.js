@@ -14,6 +14,12 @@ class ThemeValidator {
     }).required();
   }
 
+  static applyThemeV2() {
+    return Joi.object({
+      body: ThemeModel.ApplyThemeRequestV2().required(),
+    }).required();
+  }
+
   static archiveTheme() {
     return Joi.object({
       themeId: Joi.string().allow("").required(),
@@ -50,6 +56,20 @@ class ThemeValidator {
     return Joi.object({
       themeId: Joi.string().allow("").required(),
     }).required();
+  }
+
+  static getApplicationThemeByIdV2() {
+    return Joi.object({
+      themeId: Joi.string().allow("").required(),
+    }).required();
+  }
+
+  static getApplicationThemesCountV2() {
+    return Joi.object({}).required();
+  }
+
+  static getApplicationThemesV2() {
+    return Joi.object({}).required();
   }
 
   static getAppliedTheme() {
@@ -142,6 +162,13 @@ class ThemeValidator {
     return Joi.object({
       themeId: Joi.string().allow("").required(),
       body: ThemeModel.ThemesSchema().required(),
+    }).required();
+  }
+
+  static updateThemeV2() {
+    return Joi.object({
+      themeId: Joi.string().allow("").required(),
+      body: ThemeModel.UpdateThemeRequestBodyV2().required(),
     }).required();
   }
 

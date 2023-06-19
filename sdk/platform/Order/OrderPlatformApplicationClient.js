@@ -210,7 +210,7 @@ class Order {
 
   /**
    * @param {Object} arg - Arg object.
-   * @param {string} arg.shipmentId -
+   * @param {string} arg.shipmentId - Shipment Id
    * @returns {Promise<PlatformShipmentTrack>} - Success response
    * @summary: Track shipment
    * @description: Track Shipment by shipment id, for application based on application Id

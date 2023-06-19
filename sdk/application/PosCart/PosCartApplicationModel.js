@@ -29,6 +29,7 @@ class PosCartModel {
       extra_meta: Joi.any(),
       item_id: Joi.number(),
       item_size: Joi.string().allow(""),
+      meta: Joi.any(),
       parent_item_identifiers: Joi.array().items(
         Joi.object().pattern(/\S/, Joi.string().allow(""))
       ),
@@ -217,6 +218,7 @@ class PosCartModel {
     return Joi.object({
       checkout_mode: Joi.string().allow(""),
       comment: Joi.string().allow(""),
+      delivery_slots: Joi.any(),
       gift_details: PosCartModel.ArticleGiftDetail(),
       gstin: Joi.string().allow(""),
       pick_up_customer_details: Joi.any(),
@@ -236,6 +238,7 @@ class PosCartModel {
       billing_address_id: Joi.string().allow(""),
       callback_url: Joi.string().allow("").allow(null),
       custom_meta: Joi.array().items(PosCartModel.CartCheckoutCustomMeta()),
+      customer_details: PosCartModel.CustomerDetails(),
       delivery_address: Joi.any(),
       extra_meta: Joi.any(),
       files: Joi.array().items(PosCartModel.Files()),
@@ -406,8 +409,16 @@ class PosCartModel {
       code: Joi.string().allow("").allow(null),
       discount: Joi.number(),
       display_message_en: Joi.string().allow("").allow(null),
+      next_validation_required: Joi.boolean().allow(null),
       title: Joi.string().allow(""),
       valid: Joi.boolean(),
+    });
+  }
+  static CustomerDetails() {
+    return Joi.object({
+      email: Joi.string().allow("").allow(null),
+      mobile: Joi.string().allow("").required(),
+      name: Joi.string().allow(""),
     });
   }
   static DeleteAddressResponse() {
@@ -616,8 +627,10 @@ class PosCartModel {
   }
   static ProductAvailabilitySize() {
     return Joi.object({
+      _custom_json: Joi.any(),
       display: Joi.string().allow(""),
       is_available: Joi.boolean(),
+      meta: Joi.any(),
       value: Joi.string().allow(""),
     });
   }
@@ -835,6 +848,7 @@ class PosCartModel {
       item_id: Joi.number(),
       item_index: Joi.number(),
       item_size: Joi.string().allow(""),
+      meta: Joi.any(),
       parent_item_identifiers: Joi.any(),
       quantity: Joi.number(),
     });
