@@ -6496,11 +6496,8 @@ We are processing the report!
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | min_search_size | number? |  yes  |  |
  | name | string? |  yes  |  |
- | placeholder_text | string? |  yes  |  |
- | show_ui | boolean? |  yes  |  |
- | text | string? |  yes  |  |
+ | text | string |  no  |  |
  | value | string? |  yes  |  |
  
 
@@ -6608,7 +6605,7 @@ We are processing the report!
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | permissions | [ActionInfo](#ActionInfo) |  no  |  |
+ | permissions | [[ActionInfo](#ActionInfo)]? |  yes  |  |
  
 
 ---
@@ -6775,7 +6772,6 @@ We are processing the report!
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | credit_note_id | string? |  yes  |  |
- | external_invoice_id | string? |  yes  |  |
  | invoice_url | string? |  yes  |  |
  | label_url | string? |  yes  |  |
  | store_invoice_id | string? |  yes  |  |
@@ -7147,15 +7143,15 @@ We are processing the report!
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | address | string? |  yes  |  |
- | city | string? |  yes  |  |
- | code | string? |  yes  |  |
- | contact_person | string? |  yes  |  |
- | country | string? |  yes  |  |
- | id | number? |  yes  |  |
- | meta | string? |  yes  |  |
- | phone | string? |  yes  |  |
- | pincode | string? |  yes  |  |
- | state | string? |  yes  |  |
+ | city | string |  no  |  |
+ | code | string |  no  |  |
+ | contact_person | string |  no  |  |
+ | country | string |  no  |  |
+ | id | number |  no  |  |
+ | meta | string |  no  |  |
+ | phone | string |  no  |  |
+ | pincode | string |  no  |  |
+ | state | string |  no  |  |
  | store_name | string? |  yes  |  |
  
 
@@ -7362,13 +7358,11 @@ We are processing the report!
  | invoice | string? |  yes  |  |
  | invoice_a4 | string? |  yes  |  |
  | invoice_a6 | string? |  yes  |  |
- | invoice_export | string? |  yes  |  |
  | invoice_pos | string? |  yes  |  |
  | invoice_type | string |  no  |  |
  | label | string? |  yes  |  |
  | label_a4 | string? |  yes  |  |
  | label_a6 | string? |  yes  |  |
- | label_export | string? |  yes  |  |
  | label_pos | string? |  yes  |  |
  | label_type | string |  no  |  |
  | po_invoice | string? |  yes  |  |
@@ -7509,14 +7503,12 @@ We are processing the report!
  | can_update_dimension | boolean? |  yes  |  |
  | company_details | [CompanyDetails](#CompanyDetails)? |  yes  |  |
  | coupon | string? |  yes  |  |
- | custom_message | string? |  yes  |  |
  | custom_meta | [string]? |  yes  |  |
  | delivery_details | [UserDetailsData](#UserDetailsData)? |  yes  |  |
  | delivery_slot | string? |  yes  |  |
  | dp_assignment | boolean? |  yes  |  |
  | dp_details | [DPDetailsData](#DPDetailsData)? |  yes  |  |
  | enable_dp_tracking | boolean? |  yes  |  |
- | estimated_sla_time | string? |  yes  |  |
  | forward_shipment_id | string? |  yes  |  |
  | fulfilling_store | [FulfillingStore](#FulfillingStore)? |  yes  |  |
  | fulfilment_priority | number? |  yes  |  |
@@ -8076,7 +8068,7 @@ We are processing the report!
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | assign_dp_from_sb | boolean? |  yes  |  |
- | auto_trigger_dp_assignment_acf | boolean? |  yes  |  |
+ | auto_trigger_dp_assignment_acf | boolean |  no  |  |
  | awb_number | string? |  yes  |  |
  | b2b_buyer_details | [BuyerDetails](#BuyerDetails)? |  yes  |  |
  | b2c_buyer_details | string? |  yes  |  |
@@ -8108,7 +8100,7 @@ We are processing the report!
  | return_details | string? |  yes  |  |
  | return_store_node | number? |  yes  |  |
  | same_store_available | boolean |  no  |  |
- | shipment_tags | [[ShipmentTags](#ShipmentTags)]? |  yes  |  |
+ | shipment_tags | [[ShipmentTags1](#ShipmentTags1)]? |  yes  |  |
  | shipment_volumetric_weight | number? |  yes  |  |
  | shipment_weight | number? |  yes  |  |
  | store_invoice_updated_date | string? |  yes  |  |
@@ -8190,6 +8182,17 @@ We are processing the report!
 ---
 
 #### [ShipmentTags](#ShipmentTags)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | display_text | string? |  yes  |  |
+ | entity_type | string? |  yes  |  |
+ | slug | string? |  yes  |  |
+ 
+
+---
+
+#### [ShipmentTags1](#ShipmentTags1)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |

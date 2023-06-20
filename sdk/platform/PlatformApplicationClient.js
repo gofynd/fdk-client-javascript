@@ -814,6 +814,7 @@ class PlatformApplicationClient {
 /** @typedef ShipmentStatus */
 /** @typedef ShipmentStatusData */
 /** @typedef ShipmentTags */
+/** @typedef ShipmentTags1 */
 /** @typedef ShipmentTimeStamp */
 /** @typedef ShippingInfo */
 /** @typedef SmsDataPayload */

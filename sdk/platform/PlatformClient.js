@@ -4722,11 +4722,8 @@ class PlatformClient {
  */
 /**
  * @typedef FilterInfoOption
- * @property {number} [min_search_size]
  * @property {string} [name]
- * @property {string} [placeholder_text]
- * @property {boolean} [show_ui]
- * @property {string} [text]
+ * @property {string} text
  * @property {string} [value]
  */
 /**
@@ -4799,7 +4796,7 @@ class PlatformClient {
  */
 /**
  * @typedef GetActionsResponse
- * @property {ActionInfo} permissions
+ * @property {ActionInfo[]} [permissions]
  */
 /**
  * @typedef GetBagsPlatformResponse
@@ -4911,7 +4908,6 @@ class PlatformClient {
 /**
  * @typedef InvoiceInfo
  * @property {string} [credit_note_id]
- * @property {string} [external_invoice_id]
  * @property {string} [invoice_url]
  * @property {string} [label_url]
  * @property {string} [store_invoice_id]
@@ -5148,15 +5144,15 @@ class PlatformClient {
 /**
  * @typedef OrderingStoreDetails
  * @property {string} [address]
- * @property {string} [city]
- * @property {string} [code]
- * @property {string} [contact_person]
- * @property {string} [country]
- * @property {number} [id]
- * @property {Object} [meta]
- * @property {string} [phone]
- * @property {string} [pincode]
- * @property {string} [state]
+ * @property {string} city
+ * @property {string} code
+ * @property {string} contact_person
+ * @property {string} country
+ * @property {number} id
+ * @property {Object} meta
+ * @property {string} phone
+ * @property {string} pincode
+ * @property {string} state
  * @property {string} [store_name]
  */
 /**
@@ -5289,13 +5285,11 @@ class PlatformClient {
  * @property {string} [invoice]
  * @property {string} [invoice_a4]
  * @property {string} [invoice_a6]
- * @property {string} [invoice_export]
  * @property {string} [invoice_pos]
  * @property {string} invoice_type
  * @property {string} [label]
  * @property {string} [label_a4]
  * @property {string} [label_a6]
- * @property {string} [label_export]
  * @property {string} [label_pos]
  * @property {string} label_type
  * @property {string} [po_invoice]
@@ -5391,14 +5385,12 @@ class PlatformClient {
  * @property {boolean} [can_update_dimension]
  * @property {CompanyDetails} [company_details]
  * @property {Object} [coupon]
- * @property {string} [custom_message]
  * @property {Object[]} [custom_meta]
  * @property {UserDetailsData} [delivery_details]
  * @property {Object} [delivery_slot]
  * @property {boolean} [dp_assignment]
  * @property {DPDetailsData} [dp_details]
  * @property {boolean} [enable_dp_tracking]
- * @property {string} [estimated_sla_time]
  * @property {string} [forward_shipment_id]
  * @property {FulfillingStore} [fulfilling_store]
  * @property {number} [fulfilment_priority]
@@ -5758,7 +5750,7 @@ class PlatformClient {
 /**
  * @typedef ShipmentMeta
  * @property {boolean} [assign_dp_from_sb]
- * @property {boolean} [auto_trigger_dp_assignment_acf]
+ * @property {boolean} auto_trigger_dp_assignment_acf
  * @property {string} [awb_number]
  * @property {BuyerDetails} [b2b_buyer_details]
  * @property {Object} [b2c_buyer_details]
@@ -5790,7 +5782,7 @@ class PlatformClient {
  * @property {Object} [return_details]
  * @property {number} [return_store_node]
  * @property {boolean} same_store_available
- * @property {ShipmentTags[]} [shipment_tags]
+ * @property {ShipmentTags1[]} [shipment_tags]
  * @property {number} [shipment_volumetric_weight]
  * @property {number} [shipment_weight]
  * @property {string} [store_invoice_updated_date]
@@ -5845,6 +5837,12 @@ class PlatformClient {
  */
 /**
  * @typedef ShipmentTags
+ * @property {string} [display_text]
+ * @property {string} [entity_type]
+ * @property {string} [slug]
+ */
+/**
+ * @typedef ShipmentTags1
  * @property {string} [display_text]
  * @property {string} [entity_type]
  * @property {string} [slug]
@@ -6988,7 +6986,7 @@ class PlatformClient {
  * @property {Object} [_custom_json]
  * @property {string} app_id
  * @property {boolean} [is_active]
- * @property {SearchKeywordResult1} result
+ * @property {SearchKeywordResult} result
  * @property {string[]} [words]
  */
 /**
@@ -6999,7 +6997,7 @@ class PlatformClient {
  * @property {boolean} [is_active]
  * @property {Object} [modified_by]
  * @property {string} [modified_on]
- * @property {BoostBury1} [ranking]
+ * @property {BoostBury} [ranking]
  * @property {string[]} words
  */
 /**
@@ -7441,7 +7439,7 @@ class PlatformClient {
  * @property {Object} [_custom_json]
  * @property {string} app_id
  * @property {boolean} [is_active]
- * @property {SearchKeywordResult} result
+ * @property {SearchKeywordResult1} result
  * @property {string} [uid]
  * @property {string[]} [words]
  */
@@ -8277,7 +8275,7 @@ class PlatformClient {
  * @property {NetQuantity} [net_quantity]
  * @property {number} [no_of_boxes]
  * @property {string[]} [product_group_tag]
- * @property {ProductPublish1} [product_publish]
+ * @property {ProductPublish} [product_publish]
  * @property {string} [requester]
  * @property {ReturnConfig} return_config
  * @property {string} [short_description]
@@ -8473,7 +8471,7 @@ class PlatformClient {
  * @property {string} [pending]
  * @property {string} [primary_color]
  * @property {string[]} [product_group_tag]
- * @property {ProductPublish} [product_publish]
+ * @property {ProductPublish1} [product_publish]
  * @property {ReturnConfigResponse} [return_config]
  * @property {string} [short_description]
  * @property {string} [size_guide]
@@ -8702,7 +8700,7 @@ class PlatformClient {
  * @property {boolean} [is_active]
  * @property {UserDetail} [modified_by]
  * @property {string} modified_on
- * @property {BoostBury} [ranking]
+ * @property {BoostBury1} [ranking]
  * @property {UserDetail} [verified_by]
  * @property {string} [verified_on]
  * @property {string[]} words

@@ -205,6 +205,7 @@ declare class OrderModel {
     static ShipmentStatus(): any;
     static ShipmentStatusData(): any;
     static ShipmentTags(): any;
+    static ShipmentTags1(): any;
     static ShipmentTimeStamp(): any;
     static ShippingInfo(): any;
     static SmsDataPayload(): any;
