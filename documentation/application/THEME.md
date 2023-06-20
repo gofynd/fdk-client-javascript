@@ -10900,6 +10900,27 @@ Success. Returns a JSON object of the theme. Check the example shown below or re
 
 ---
 
+#### [ThemeUpgradableResponseV2](#ThemeUpgradableResponseV2)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | message | string? |  yes  | A message describing the theme upgrade status |
+ | upgrade | boolean? |  yes  | Indicates if the theme is upgradable or not |
+ | versions | [ThemeVersionsV2](#ThemeVersionsV2)? |  yes  |  |
+ 
+
+---
+
+#### [ThemeVersionsV2](#ThemeVersionsV2)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | applied_theme | string? |  yes  | The version of the applied theme |
+ | parent_theme | string? |  yes  | The version of the parent theme |
+ 
+
+---
+
 #### [UmdJs](#UmdJs)
 
  | Properties | Type | Nullable | Description |

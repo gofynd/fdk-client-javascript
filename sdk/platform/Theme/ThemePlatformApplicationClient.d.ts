@@ -55,6 +55,16 @@ declare class Theme {
     }): Promise<ThemesSchema>;
     /**
      * @param {Object} arg - Arg object.
+     * @param {string} arg.themeId - The ID of the theme
+     * @returns {Promise<ThemeUpgradableResponseV2>} - Success response
+     * @summary: Check if the theme is upgradable
+     * @description: This API endpoint checks if the theme is upgradable for a specific company and application.
+     */
+    checkThemeUpgradableV2({ themeId }?: {
+        themeId: string;
+    }): Promise<ThemeUpgradableResponseV2>;
+    /**
+     * @param {Object} arg - Arg object.
      * @param {string} arg.themeId - ID of the theme
      * @param {AvailablePageSchema} arg.body
      * @returns {Promise<AvailablePageSchema>} - Success response
@@ -160,11 +170,25 @@ declare class Theme {
     getAppliedTheme({}?: any): Promise<ThemesSchema>;
     /**
      * @param {Object} arg - Arg object.
+     * @returns {Promise<ApplyThemeResponseV2>} - Success response
+     * @summary: Get the Applied theme of an Application
+     * @description: Get Applied Theme of an Application by Application Id
+     */
+    getAppliedThemeV2({}?: any): Promise<ApplyThemeResponseV2>;
+    /**
+     * @param {Object} arg - Arg object.
      * @returns {Promise<FontsSchema>} - Success response
      * @summary: Get all the supported fonts in a theme
      * @description: Font is a collection of characters with a similar design. Use this API to retrieve a list of website fonts.
      */
     getFonts({}?: any): Promise<FontsSchema>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @returns {Promise<FontsSchema>} - Success response
+     * @summary: Get all the supported fonts in a theme
+     * @description: Font is a collection of characters with a similar design. Use this API to retrieve a list of website fonts.
+     */
+    getFontsV2({}?: any): Promise<FontsSchema>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.themeId - ID of the theme to be retrieved
@@ -223,6 +247,16 @@ declare class Theme {
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
+     * @param {string} arg.themeId - ID allotted to the theme.
+     * @returns {Promise<any>} - Success response
+     * @summary: Fetch last modified timestamp
+     * @description: Use this API to fetch Last-Modified timestamp in header metadata.
+     */
+    getThemeLastModifiedV2({ themeId }?: {
+        themeId: string;
+    }): Promise<any>;
+    /**
+     * @param {Object} arg - Arg object.
      * @param {number} [arg.pageSize] - The number of items to retrieve in each
      *   page. Default value is 10.
      * @param {number} [arg.pageNo] - The page number to navigate through the
@@ -235,6 +269,16 @@ declare class Theme {
         pageSize?: number;
         pageNo?: number;
     }): Promise<ThemesListingResponseSchema>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {string} arg.themeId - The ID of the theme
+     * @returns {Promise<AllThemesApplicationResponseV2>} - Success response
+     * @summary: Get Theme Preview By Theme Id
+     * @description:
+     */
+    getThemePreviewByIdV2({ themeId }?: {
+        themeId: string;
+    }): Promise<AllThemesApplicationResponseV2>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.themeId - Theme ID

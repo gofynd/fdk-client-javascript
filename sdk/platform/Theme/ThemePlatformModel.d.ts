@@ -120,6 +120,8 @@ declare class ThemeModel {
     static ThemesListingResponseSchema(): any;
     static ThemeSlugResponse(): any;
     static ThemesSchema(): any;
+    static ThemeUpgradableResponseV2(): any;
+    static ThemeVersionsV2(): any;
     static UmdJs(): any;
     static UMDJs(): any;
     static UpdateThemeNameRequestBodyV2(): any;

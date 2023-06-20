@@ -18613,6 +18613,17 @@ List of fields and validation values fro each. See example below or refer `Inven
 
 ---
 
+#### [AutoCompleteMedia](#AutoCompleteMedia)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | aspect_ratio | string? |  yes  |  |
+ | type | string? |  yes  |  |
+ | url | string? |  yes  |  |
+ 
+
+---
+
 #### [AutocompletePageAction](#AutocompletePageAction)
 
  | Properties | Type | Nullable | Description |
@@ -18632,7 +18643,7 @@ List of fields and validation values fro each. See example below or refer `Inven
  | _custom_json | string? |  yes  |  |
  | action | [AutocompleteAction](#AutocompleteAction)? |  yes  |  |
  | display | string? |  yes  |  |
- | logo | [Media](#Media)? |  yes  |  |
+ | logo | [AutoCompleteMedia](#AutoCompleteMedia)? |  yes  |  |
  
 
 ---
@@ -18667,7 +18678,7 @@ List of fields and validation values fro each. See example below or refer `Inven
  | banners | [ImageUrls](#ImageUrls)? |  yes  |  |
  | departments | [string]? |  yes  |  |
  | discount | string? |  yes  |  |
- | logo | [Media](#Media)? |  yes  |  |
+ | logo | [Media2](#Media2)? |  yes  |  |
  | name | string? |  yes  |  |
  | slug | string? |  yes  |  |
  | uid | number? |  yes  |  |
@@ -18877,7 +18888,7 @@ List of fields and validation values fro each. See example below or refer `Inven
  | is_active | boolean |  no  | It is the flag indicating if the category is active. |
  | level | number |  no  | It is the level of category |
  | marketplaces | [CategoryMapping](#CategoryMapping)? |  yes  | It is the mapping of the category in different marketplaces. |
- | media | [Media2](#Media2)? |  yes  | It is the details of the media such as banner and logo.. |
+ | media | [Media1](#Media1)? |  yes  | It is the details of the media such as banner and logo.. |
  | modified_by | string? |  yes  | It is the details of the user who last modified the category. |
  | modified_on | string? |  yes  | It is the date and time when the category was last modified. |
  | name | string |  no  | It is the name of the category |
@@ -18954,7 +18965,7 @@ List of fields and validation values fro each. See example below or refer `Inven
  | is_active | boolean |  no  | It is the flag indicating if the category is active. |
  | level | number |  no  | It is the level of category |
  | marketplaces | [CategoryMapping](#CategoryMapping)? |  yes  | It is the mapping of the category in different marketplaces. |
- | media | [Media2](#Media2)? |  yes  | It is the details of the media such as banner and logo.. |
+ | media | [Media1](#Media1)? |  yes  | It is the details of the media such as banner and logo.. |
  | name | string |  no  | It is the name of the category |
  | priority | number? |  yes  | It is the priority of the category. |
  | slug | string? |  yes  | It is the slug of the category. |
@@ -19059,7 +19070,7 @@ List of fields and validation values fro each. See example below or refer `Inven
  | cron | string? |  yes  |  |
  | description | string? |  yes  |  |
  | is_active | boolean? |  yes  |  |
- | logo | [Media1](#Media1)? |  yes  |  |
+ | logo | [Media](#Media)? |  yes  |  |
  | meta | string? |  yes  |  |
  | name | string? |  yes  |  |
  | priority | number? |  yes  |  |
@@ -19509,7 +19520,7 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | logo | [Media](#Media)? |  yes  |  |
+ | logo | [Media2](#Media2)? |  yes  |  |
  | name | string? |  yes  |  |
  | priority_order | number? |  yes  |  |
  | slug | string? |  yes  |  |
@@ -19844,7 +19855,7 @@ List of fields and validation values fro each. See example below or refer `Inven
  | cron | string? |  yes  |  |
  | description | string? |  yes  |  |
  | is_active | boolean? |  yes  |  |
- | logo | [Media1](#Media1)? |  yes  |  |
+ | logo | [Media](#Media)? |  yes  |  |
  | meta | string? |  yes  |  |
  | name | string? |  yes  |  |
  | priority | number? |  yes  |  |
@@ -20893,9 +20904,9 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | aspect_ratio | string? |  yes  |  |
+ | meta | string? |  yes  |  |
  | type | string? |  yes  |  |
- | url | string? |  yes  |  |
+ | url | string |  no  |  |
  
 
 ---
@@ -20904,9 +20915,9 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | meta | string? |  yes  |  |
- | type | string? |  yes  |  |
- | url | string |  no  |  |
+ | landscape | string |  no  | It is the landscape cdn url for the category. |
+ | logo | string |  no  | It is the logo cdn url for the category. |
+ | portrait | string |  no  | It is the portrait cdn url for the category. |
  
 
 ---
@@ -20915,9 +20926,9 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | landscape | string |  no  | It is the landscape cdn url for the category. |
- | logo | string |  no  | It is the logo cdn url for the category. |
- | portrait | string |  no  | It is the portrait cdn url for the category. |
+ | aspect_ratio | string? |  yes  |  |
+ | type | string? |  yes  |  |
+ | url | string? |  yes  |  |
  
 
 ---
@@ -21243,7 +21254,7 @@ List of fields and validation values fro each. See example below or refer `Inven
  | item_code | string? |  yes  |  |
  | item_type | string? |  yes  |  |
  | l3_mapping | [string]? |  yes  |  |
- | media | [[Media1](#Media1)]? |  yes  |  |
+ | media | [[Media](#Media)]? |  yes  |  |
  | modified_by | string? |  yes  |  |
  | modified_on | string? |  yes  |  |
  | moq | string? |  yes  |  |
@@ -21290,7 +21301,7 @@ List of fields and validation values fro each. See example below or refer `Inven
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | action | [Action](#Action)? |  yes  |  |
- | logo | [Media1](#Media1)? |  yes  |  |
+ | logo | [Media](#Media)? |  yes  |  |
  | name | string? |  yes  |  |
  | uid | number? |  yes  |  |
  
@@ -21432,13 +21443,13 @@ List of fields and validation values fro each. See example below or refer `Inven
  | is_set | boolean? |  yes  |  |
  | item_code | string |  no  |  |
  | item_type | string |  no  |  |
- | media | [[Media1](#Media1)]? |  yes  |  |
+ | media | [[Media](#Media)]? |  yes  |  |
  | multi_size | boolean? |  yes  |  |
  | name | string |  no  |  |
  | net_quantity | [NetQuantity](#NetQuantity)? |  yes  |  |
  | no_of_boxes | number? |  yes  |  |
  | product_group_tag | [string]? |  yes  |  |
- | product_publish | [ProductPublish1](#ProductPublish1)? |  yes  |  |
+ | product_publish | [ProductPublish](#ProductPublish)? |  yes  |  |
  | requester | string? |  yes  |  |
  | return_config | [ReturnConfig](#ReturnConfig) |  no  |  |
  | short_description | string? |  yes  |  |
@@ -21472,7 +21483,7 @@ List of fields and validation values fro each. See example below or refer `Inven
  | image_nature | string? |  yes  |  |
  | item_code | string? |  yes  |  |
  | item_type | string? |  yes  |  |
- | medias | [[Media1](#Media1)]? |  yes  |  |
+ | medias | [[Media](#Media)]? |  yes  |  |
  | name | string? |  yes  |  |
  | product_online_date | string? |  yes  |  |
  | promo_meta | string? |  yes  |  |
@@ -21577,7 +21588,7 @@ List of fields and validation values fro each. See example below or refer `Inven
  | image_nature | string? |  yes  |  |
  | item_code | string? |  yes  |  |
  | item_type | string? |  yes  |  |
- | medias | [[Media1](#Media1)]? |  yes  |  |
+ | medias | [[Media](#Media)]? |  yes  |  |
  | name | string? |  yes  |  |
  | price | [ProductListingPrice](#ProductListingPrice)? |  yes  |  |
  | product_online_date | string? |  yes  |  |
@@ -21703,7 +21714,7 @@ List of fields and validation values fro each. See example below or refer `Inven
  | item_code | string? |  yes  |  |
  | item_type | string? |  yes  |  |
  | l3_mapping | [string]? |  yes  |  |
- | media | [[Media1](#Media1)]? |  yes  |  |
+ | media | [[Media](#Media)]? |  yes  |  |
  | modified_by | string? |  yes  |  |
  | modified_on | string? |  yes  |  |
  | moq | string? |  yes  |  |
@@ -21714,7 +21725,7 @@ List of fields and validation values fro each. See example below or refer `Inven
  | pending | string? |  yes  |  |
  | primary_color | string? |  yes  |  |
  | product_group_tag | [string]? |  yes  |  |
- | product_publish | [ProductPublish](#ProductPublish)? |  yes  |  |
+ | product_publish | [ProductPublish1](#ProductPublish1)? |  yes  |  |
  | return_config | [ReturnConfigResponse](#ReturnConfigResponse)? |  yes  |  |
  | short_description | string? |  yes  |  |
  | size_guide | string? |  yes  |  |
@@ -21860,7 +21871,7 @@ List of fields and validation values fro each. See example below or refer `Inven
  | brand_uid | number? |  yes  |  |
  | category_uid | number? |  yes  |  |
  | item_code | string? |  yes  |  |
- | media | [[Media1](#Media1)]? |  yes  |  |
+ | media | [[Media](#Media)]? |  yes  |  |
  | name | string? |  yes  |  |
  | uid | number? |  yes  |  |
  

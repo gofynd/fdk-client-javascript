@@ -14,6 +14,7 @@ Responsible for themes
 * [applyTheme](#applytheme)
 * [applyThemeV2](#applythemev2)
 * [archiveTheme](#archivetheme)
+* [checkThemeUpgradableV2](#checkthemeupgradablev2)
 * [createPage](#createpage)
 * [createTheme](#createtheme)
 * [deleteCompanyTheme](#deletecompanytheme)
@@ -26,14 +27,18 @@ Responsible for themes
 * [getApplicationThemesCountV2](#getapplicationthemescountv2)
 * [getApplicationThemesV2](#getapplicationthemesv2)
 * [getAppliedTheme](#getappliedtheme)
+* [getAppliedThemeV2](#getappliedthemev2)
 * [getCompanyLevelThemes](#getcompanylevelthemes)
 * [getFonts](#getfonts)
+* [getFontsV2](#getfontsv2)
 * [getPage](#getpage)
 * [getPublicThemes](#getpublicthemes)
 * [getThemeById](#getthemebyid)
 * [getThemeForPreview](#getthemeforpreview)
 * [getThemeLastModified](#getthemelastmodified)
+* [getThemeLastModifiedV2](#getthemelastmodifiedv2)
 * [getThemeLibrary](#getthemelibrary)
+* [getThemePreviewByIdV2](#getthemepreviewbyidv2)
 * [isUpgradable](#isupgradable)
 * [publishTheme](#publishtheme)
 * [unarchiveTheme](#unarchivetheme)
@@ -6761,6 +6766,62 @@ Success. Refer `ThemesSchema` for more details.
 ```
 </details>
 
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### checkThemeUpgradableV2
+Check if the theme is upgradable
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").theme.checkThemeUpgradableV2({  themeId : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").theme.checkThemeUpgradableV2({  themeId : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| themeId | string | yes | The ID of the theme |  
+
+
+
+This API endpoint checks if the theme is upgradable for a specific company and application.
+
+*Returned Response:*
+
+
+
+
+[ThemeUpgradableResponseV2](#ThemeUpgradableResponseV2)
+
+Successful response
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
 </details>
 
 
@@ -14827,6 +14888,57 @@ Success. Refer `ThemesSchema` for more details.
 ---
 
 
+### getAppliedThemeV2
+Get the Applied theme of an Application
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").theme.getAppliedThemeV2();
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").theme.getAppliedThemeV2();
+```
+
+
+
+
+
+
+Get Applied Theme of an Application by Application Id
+
+*Returned Response:*
+
+
+
+
+[ApplyThemeResponseV2](#ApplyThemeResponseV2)
+
+Successfully applied the theme
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
 ### getCompanyLevelThemes
 Get themes for a company
 
@@ -14889,6 +15001,87 @@ const promise = platformClient.application("<APPLICATION_ID>").theme.getFonts();
 
 // Async/Await
 const data = await platformClient.application("<APPLICATION_ID>").theme.getFonts();
+```
+
+
+
+
+
+
+Font is a collection of characters with a similar design. Use this API to retrieve a list of website fonts.
+
+*Returned Response:*
+
+
+
+
+[FontsSchema](#FontsSchema)
+
+Success. Refer `FontsSchema` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; Success</i></summary>
+
+```json
+{
+  "value": {
+    "kind": "webfonts#webfontList",
+    "items": [
+      {
+        "family": "ABeeZee",
+        "variants": [
+          "regular",
+          "italic"
+        ],
+        "subsets": [
+          "latin"
+        ],
+        "version": "v14",
+        "last_modified": "2020-09-02",
+        "files": {
+          "regular": "http://fonts.gstatic.com/s/abeezee/v14/esDR31xSG-6AGleN6tKukbcHCpE.ttf",
+          "italic": "http://fonts.gstatic.com/s/abeezee/v14/esDT31xSG-6AGleN2tCklZUCGpG-GQ.ttf"
+        },
+        "category": "sans-serif",
+        "kind": "webfonts#webfont"
+      }
+    ]
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### getFontsV2
+Get all the supported fonts in a theme
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").theme.getFontsV2();
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").theme.getFontsV2();
 ```
 
 
@@ -21761,6 +21954,43 @@ Use this API to fetch Last-Modified timestamp in header metadata.
 ---
 
 
+### getThemeLastModifiedV2
+Fetch last modified timestamp
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").theme.getThemeLastModifiedV2({  themeId : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").theme.getThemeLastModifiedV2({  themeId : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| themeId | string | yes | ID allotted to the theme. |  
+
+
+
+Use this API to fetch Last-Modified timestamp in header metadata.
+
+*Returned Response:*
+
+
+
+
+
+
+
+
+---
+
+
 ### getThemeLibrary
 Get a list of themes from the theme library
 
@@ -23714,6 +23944,62 @@ Success. Refer `ThemesListingResponseSchema` for more details.
 ```
 </details>
 
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### getThemePreviewByIdV2
+Get Theme Preview By Theme Id
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").theme.getThemePreviewByIdV2({  themeId : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").theme.getThemePreviewByIdV2({  themeId : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| themeId | string | yes | The ID of the theme |  
+
+
+
+
+
+*Returned Response:*
+
+
+
+
+[AllThemesApplicationResponseV2](#AllThemesApplicationResponseV2)
+
+The list of themes for the application was fetched successfully.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
 </details>
 
 
@@ -36987,6 +37273,27 @@ Success. Upgrades the theme and shares the details of the new version in the res
  | tags | [string]? |  yes  |  |
  | updated_at | string? |  yes  |  |
  | version | string? |  yes  |  |
+ 
+
+---
+
+#### [ThemeUpgradableResponseV2](#ThemeUpgradableResponseV2)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | message | string? |  yes  | A message describing the theme upgrade status |
+ | upgrade | boolean? |  yes  | Indicates if the theme is upgradable or not |
+ | versions | [ThemeVersionsV2](#ThemeVersionsV2)? |  yes  |  |
+ 
+
+---
+
+#### [ThemeVersionsV2](#ThemeVersionsV2)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | applied_theme | string? |  yes  | The version of the applied theme |
+ | parent_theme | string? |  yes  | The version of the parent theme |
  
 
 ---

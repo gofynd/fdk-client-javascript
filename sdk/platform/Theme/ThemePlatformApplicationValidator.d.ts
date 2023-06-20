@@ -5,6 +5,7 @@ declare class ThemeValidator {
     static applyTheme(): any;
     static applyThemeV2(): any;
     static archiveTheme(): any;
+    static checkThemeUpgradableV2(): any;
     static createPage(): any;
     static createTheme(): any;
     static deletePage(): any;
@@ -16,13 +17,17 @@ declare class ThemeValidator {
     static getApplicationThemesCountV2(): any;
     static getApplicationThemesV2(): any;
     static getAppliedTheme(): any;
+    static getAppliedThemeV2(): any;
     static getFonts(): any;
+    static getFontsV2(): any;
     static getPage(): any;
     static getPublicThemes(): any;
     static getThemeById(): any;
     static getThemeForPreview(): any;
     static getThemeLastModified(): any;
+    static getThemeLastModifiedV2(): any;
     static getThemeLibrary(): any;
+    static getThemePreviewByIdV2(): any;
     static isUpgradable(): any;
     static publishTheme(): any;
     static unarchiveTheme(): any;

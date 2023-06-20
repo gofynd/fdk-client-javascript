@@ -33,6 +33,7 @@ declare class CatalogModel {
     static AttributeMasterSerializer(): any;
     static AttributeSchemaRange(): any;
     static AutocompleteAction(): any;
+    static AutoCompleteMedia(): any;
     static AutocompletePageAction(): any;
     static AutocompleteResult(): any;
     static BannerImage(): any;

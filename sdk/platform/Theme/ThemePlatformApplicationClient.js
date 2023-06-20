@@ -315,6 +315,69 @@ class Theme {
 
   /**
    * @param {Object} arg - Arg object.
+   * @param {string} arg.themeId - The ID of the theme
+   * @returns {Promise<ThemeUpgradableResponseV2>} - Success response
+   * @summary: Check if the theme is upgradable
+   * @description: This API endpoint checks if the theme is upgradable for a specific company and application.
+   */
+  async checkThemeUpgradableV2({ themeId } = {}) {
+    const { error } = ThemeValidator.checkThemeUpgradableV2().validate(
+      {
+        themeId,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = ThemeValidator.checkThemeUpgradableV2().validate(
+      {
+        themeId,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for checkThemeUpgradableV2",
+      });
+      Logger({ level: "WARN", message: warrning });
+    }
+
+    const query_params = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/theme/v2.0/company/${this.config.companyId}/application/${this.applicationId}/${themeId}/upgradable`,
+      query_params,
+      undefined
+    );
+
+    const {
+      error: res_error,
+    } = ThemeModel.ThemeUpgradableResponseV2().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for checkThemeUpgradableV2",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
    * @param {string} arg.themeId - ID of the theme
    * @param {AvailablePageSchema} arg.body
    * @returns {Promise<AvailablePageSchema>} - Success response
@@ -974,6 +1037,62 @@ class Theme {
 
   /**
    * @param {Object} arg - Arg object.
+   * @returns {Promise<ApplyThemeResponseV2>} - Success response
+   * @summary: Get the Applied theme of an Application
+   * @description: Get Applied Theme of an Application by Application Id
+   */
+  async getAppliedThemeV2({} = {}) {
+    const { error } = ThemeValidator.getAppliedThemeV2().validate(
+      {},
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = ThemeValidator.getAppliedThemeV2().validate(
+      {},
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getAppliedThemeV2",
+      });
+      Logger({ level: "WARN", message: warrning });
+    }
+
+    const query_params = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/theme/v2.0/company/${this.config.companyId}/application/${this.applicationId}`,
+      query_params,
+      undefined
+    );
+
+    const {
+      error: res_error,
+    } = ThemeModel.ApplyThemeResponseV2().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getAppliedThemeV2",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
    * @returns {Promise<FontsSchema>} - Success response
    * @summary: Get all the supported fonts in a theme
    * @description: Font is a collection of characters with a similar design. Use this API to retrieve a list of website fonts.
@@ -1019,6 +1138,60 @@ class Theme {
       Logger({
         level: "WARN",
         message: "Response Validation Warnnings for getFonts",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @returns {Promise<FontsSchema>} - Success response
+   * @summary: Get all the supported fonts in a theme
+   * @description: Font is a collection of characters with a similar design. Use this API to retrieve a list of website fonts.
+   */
+  async getFontsV2({} = {}) {
+    const { error } = ThemeValidator.getFontsV2().validate(
+      {},
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = ThemeValidator.getFontsV2().validate(
+      {},
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getFontsV2",
+      });
+      Logger({ level: "WARN", message: warrning });
+    }
+
+    const query_params = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/theme/v2.0/company/${this.config.companyId}/application/${this.applicationId}/fonts`,
+      query_params,
+      undefined
+    );
+
+    const { error: res_error } = ThemeModel.FontsSchema().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getFontsV2",
       });
       Logger({ level: "WARN", message: res_error });
     }
@@ -1336,6 +1509,66 @@ class Theme {
 
   /**
    * @param {Object} arg - Arg object.
+   * @param {string} arg.themeId - ID allotted to the theme.
+   * @returns {Promise<any>} - Success response
+   * @summary: Fetch last modified timestamp
+   * @description: Use this API to fetch Last-Modified timestamp in header metadata.
+   */
+  async getThemeLastModifiedV2({ themeId } = {}) {
+    const { error } = ThemeValidator.getThemeLastModifiedV2().validate(
+      {
+        themeId,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = ThemeValidator.getThemeLastModifiedV2().validate(
+      {
+        themeId,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getThemeLastModifiedV2",
+      });
+      Logger({ level: "WARN", message: warrning });
+    }
+
+    const query_params = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "head",
+      `/service/platform/theme/v2.0/company/${this.config.companyId}/application/${this.applicationId}/${themeId}/polling`,
+      query_params,
+      undefined
+    );
+
+    const { error: res_error } = Joi.string()
+      .allow("")
+      .validate(response, { abortEarly: false, allowUnknown: false });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getThemeLastModifiedV2",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
    * @param {number} [arg.pageSize] - The number of items to retrieve in each
    *   page. Default value is 10.
    * @param {number} [arg.pageNo] - The page number to navigate through the
@@ -1395,6 +1628,67 @@ class Theme {
       Logger({
         level: "WARN",
         message: "Response Validation Warnnings for getThemeLibrary",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.themeId - The ID of the theme
+   * @returns {Promise<AllThemesApplicationResponseV2>} - Success response
+   * @summary: Get Theme Preview By Theme Id
+   * @description:
+   */
+  async getThemePreviewByIdV2({ themeId } = {}) {
+    const { error } = ThemeValidator.getThemePreviewByIdV2().validate(
+      {
+        themeId,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = ThemeValidator.getThemePreviewByIdV2().validate(
+      {
+        themeId,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getThemePreviewByIdV2",
+      });
+      Logger({ level: "WARN", message: warrning });
+    }
+
+    const query_params = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/theme/v2.0/company/${this.config.companyId}/application/${this.applicationId}/${themeId}/preview`,
+      query_params,
+      undefined
+    );
+
+    const {
+      error: res_error,
+    } = ThemeModel.AllThemesApplicationResponseV2().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getThemePreviewByIdV2",
       });
       Logger({ level: "WARN", message: res_error });
     }

@@ -1369,6 +1369,17 @@ class PlatformClient {
  * @property {string} [version]
  */
 /**
+ * @typedef ThemeUpgradableResponseV2
+ * @property {string} [message]
+ * @property {boolean} [upgrade]
+ * @property {ThemeVersionsV2} [versions]
+ */
+/**
+ * @typedef ThemeVersionsV2
+ * @property {string} [applied_theme]
+ * @property {string} [parent_theme]
+ */
+/**
  * @typedef UmdJs
  * @property {string} [link]
  * @property {string[]} [links]
@@ -4465,28 +4476,61 @@ class PlatformClient {
  */
 
 /**
- * @typedef AddBeneficiaryDetailsRequest
- * @property {boolean} delights
- * @property {BeneficiaryModeDetails} details
+ * @typedef AddBeneficiaryDetailsOTPRequest
+ * @property {BankDetailsForOTP} details
  * @property {string} order_id
- * @property {string} [otp]
- * @property {string} [request_id]
- * @property {string} shipment_id
- * @property {string} transfer_mode
  */
 /**
- * @typedef BeneficiaryModeDetails
+ * @typedef BankDetailsForOTP
  * @property {string} account_holder
  * @property {string} account_no
- * @property {string} [address]
  * @property {string} bank_name
  * @property {string} branch_name
- * @property {string} [comment]
- * @property {string} email
  * @property {string} ifsc_code
- * @property {string} mobile
- * @property {string} [vpa]
- * @property {string} [wallet]
+ */
+/**
+ * @typedef CancelOrResendPaymentLinkRequest
+ * @property {string} payment_link_id
+ */
+/**
+ * @typedef CancelPaymentLinkResponse
+ * @property {string} message
+ * @property {number} status_code
+ * @property {boolean} success
+ */
+/**
+ * @typedef CODdata
+ * @property {boolean} is_active
+ * @property {number} limit
+ * @property {number} remaining_limit
+ * @property {number} usages
+ * @property {string} user_id
+ */
+/**
+ * @typedef CreatePaymentLinkMeta
+ * @property {string} amount
+ * @property {string} [assign_card_id]
+ * @property {string} cart_id
+ * @property {string} checkout_mode
+ * @property {string} pincode
+ */
+/**
+ * @typedef CreatePaymentLinkRequest
+ * @property {number} amount
+ * @property {string} [description]
+ * @property {string} email
+ * @property {string} external_order_id
+ * @property {CreatePaymentLinkMeta} meta
+ * @property {string} mobile_number
+ */
+/**
+ * @typedef CreatePaymentLinkResponse
+ * @property {string} message
+ * @property {string} [payment_link_id]
+ * @property {string} [payment_link_url]
+ * @property {number} [polling_timeout]
+ * @property {number} status_code
+ * @property {boolean} success
  */
 /**
  * @typedef DeletePayoutResponse
@@ -4495,6 +4539,75 @@ class PlatformClient {
 /**
  * @typedef DeleteSubscriptionPaymentMethodResponse
  * @property {boolean} success
+ */
+/**
+ * @typedef EdcAddRequest
+ * @property {number} aggregator_id
+ * @property {string} [device_tag]
+ * @property {string} edc_device_serial_no
+ * @property {string} edc_model
+ * @property {number} store_id
+ * @property {string} terminal_serial_no
+ */
+/**
+ * @typedef EdcAggregatorAndModelListResponse
+ * @property {EdcModelData[]} data
+ * @property {boolean} success
+ */
+/**
+ * @typedef EdcDevice
+ * @property {number} aggregator_id
+ * @property {string} [aggregator_name]
+ * @property {string} application_id
+ * @property {string} device_tag
+ * @property {string} edc_device_serial_no
+ * @property {string} [edc_model]
+ * @property {boolean} is_active
+ * @property {string} [merchant_store_pos_code]
+ * @property {number} store_id
+ * @property {string} terminal_serial_no
+ * @property {string} terminal_unique_identifier
+ */
+/**
+ * @typedef EdcDeviceAddResponse
+ * @property {EdcDevice} data
+ * @property {boolean} success
+ */
+/**
+ * @typedef EdcDeviceDetailsResponse
+ * @property {EdcDevice} data
+ * @property {boolean} success
+ */
+/**
+ * @typedef EdcDeviceListResponse
+ * @property {EdcDevice[]} items
+ * @property {Page} page
+ * @property {boolean} success
+ */
+/**
+ * @typedef EdcDeviceStatsResponse
+ * @property {StatisticsData} statistics
+ * @property {boolean} success
+ */
+/**
+ * @typedef EdcDeviceUpdateResponse
+ * @property {boolean} success
+ */
+/**
+ * @typedef EdcModelData
+ * @property {string} aggregator
+ * @property {number} aggregator_id
+ * @property {string[]} models
+ */
+/**
+ * @typedef EdcUpdateRequest
+ * @property {number} [aggregator_id]
+ * @property {string} [device_tag]
+ * @property {string} [edc_device_serial_no]
+ * @property {string} [edc_model]
+ * @property {boolean} [is_active]
+ * @property {string} [merchant_store_pos_code]
+ * @property {number} [store_id]
  */
 /**
  * @typedef ErrorCodeAndDescription
@@ -4508,6 +4621,46 @@ class PlatformClient {
  * @property {boolean} success
  */
 /**
+ * @typedef ErrorDescription
+ * @property {number} [amount]
+ * @property {boolean} [cancelled]
+ * @property {boolean} [expired]
+ * @property {boolean} [invalid_id]
+ * @property {string} [merchant_name]
+ * @property {string} [merchant_order_id]
+ * @property {string} [msg]
+ * @property {string} [payment_transaction_id]
+ */
+/**
+ * @typedef ErrorResponse
+ * @property {ErrorDescription} [error]
+ * @property {string} message
+ * @property {number} status_code
+ * @property {boolean} success
+ */
+/**
+ * @typedef GetOauthUrlResponse
+ * @property {boolean} success
+ * @property {string} url
+ */
+/**
+ * @typedef GetPaymentLinkResponse
+ * @property {number} [amount]
+ * @property {string} [external_order_id]
+ * @property {string} [merchant_name]
+ * @property {string} message
+ * @property {string} [payment_link_current_status]
+ * @property {string} [payment_link_url]
+ * @property {number} [polling_timeout]
+ * @property {number} status_code
+ * @property {boolean} success
+ */
+/**
+ * @typedef GetUserCODLimitResponse
+ * @property {boolean} success
+ * @property {CODdata} user_cod_data
+ */
+/**
  * @typedef HttpErrorCodeAndResponse
  * @property {ErrorCodeAndDescription} error
  * @property {boolean} success
@@ -4517,6 +4670,23 @@ class PlatformClient {
  * @property {string} bank_name
  * @property {string} branch_name
  * @property {boolean} [success]
+ */
+/**
+ * @typedef IntentApp
+ * @property {string} [code]
+ * @property {string} [display_name]
+ * @property {PaymentModeLogo} [logos]
+ * @property {string} [package_name]
+ */
+/**
+ * @typedef IntentAppErrorList
+ * @property {string} [code]
+ * @property {string} [package_name]
+ */
+/**
+ * @typedef LinkStatus
+ * @property {string} message
+ * @property {boolean} status
  */
 /**
  * @typedef MultiTenderPaymentMeta
@@ -4546,16 +4716,16 @@ class PlatformClient {
  * @property {string} address
  * @property {string} bank_name
  * @property {string} beneficiary_id
- * @property {boolean} [branch_name]
- * @property {boolean} [comment]
+ * @property {string} [branch_name]
+ * @property {string} [comment]
  * @property {string} created_on
- * @property {string} delights_user_name
+ * @property {string} [delights_user_name]
  * @property {string} display_name
  * @property {string} email
  * @property {number} id
  * @property {string} ifsc_code
  * @property {boolean} is_active
- * @property {boolean} [mobile]
+ * @property {string} [mobile]
  * @property {string} modified_on
  * @property {string} subtitle
  * @property {string} title
@@ -4563,8 +4733,18 @@ class PlatformClient {
  */
 /**
  * @typedef OrderBeneficiaryResponse
- * @property {OrderBeneficiaryDetails[]} beneficiaries
+ * @property {OrderBeneficiaryDetails[]} [beneficiaries]
  * @property {boolean} [show_beneficiary_details]
+ */
+/**
+ * @typedef Page
+ * @property {number} [current]
+ * @property {boolean} [has_next]
+ * @property {boolean} [has_previous]
+ * @property {number} [item_total]
+ * @property {string} [next_id]
+ * @property {number} [size]
+ * @property {string} type
  */
 /**
  * @typedef PaymentConfirmationRequest
@@ -4606,6 +4786,46 @@ class PlatformClient {
  * @property {boolean} success
  */
 /**
+ * @typedef PaymentInitializationRequest
+ * @property {string} aggregator
+ * @property {number} amount
+ * @property {string} contact
+ * @property {string} currency
+ * @property {string} customer_id
+ * @property {string} [device_id]
+ * @property {string} email
+ * @property {string} merchant_order_id
+ * @property {string} method
+ * @property {string} order_id
+ * @property {string} [razorpay_payment_id]
+ * @property {number} [timeout]
+ * @property {string} [vpa]
+ */
+/**
+ * @typedef PaymentInitializationResponse
+ * @property {string} aggregator
+ * @property {string} [aggregator_order_id]
+ * @property {number} [amount]
+ * @property {string} [bqr_image]
+ * @property {string} [contact]
+ * @property {string} [currency]
+ * @property {string} [customer_id]
+ * @property {string} [device_id]
+ * @property {string} [email]
+ * @property {string} merchant_order_id
+ * @property {string} method
+ * @property {string} [order_id]
+ * @property {string} [payment_id]
+ * @property {string} polling_url
+ * @property {string} [razorpay_payment_id]
+ * @property {string} [status]
+ * @property {boolean} success
+ * @property {number} [timeout]
+ * @property {string} [upi_poll_url]
+ * @property {string} [virtual_id]
+ * @property {string} [vpa]
+ */
+/**
  * @typedef PaymentModeList
  * @property {string} aggregator_name
  * @property {string} [card_brand]
@@ -4619,19 +4839,25 @@ class PlatformClient {
  * @property {string} [card_reference]
  * @property {string} [card_token]
  * @property {string} [card_type]
+ * @property {number} [cod_limit]
+ * @property {number} [cod_limit_per_order]
  * @property {string} [code]
+ * @property {boolean} [compliant_with_tokenisation_guidelines]
  * @property {string} [display_name]
  * @property {number} [display_priority]
  * @property {number} [exp_month]
  * @property {number} [exp_year]
  * @property {boolean} [expired]
  * @property {string} [fynd_vpa]
+ * @property {IntentApp[]} [intent_app]
+ * @property {IntentAppErrorList[]} [intent_app_error_dict_list]
  * @property {string[]} [intent_app_error_list]
  * @property {boolean} [intent_flow]
  * @property {PaymentModeLogo} [logo_url]
  * @property {string} [merchant_code]
  * @property {string} [name]
  * @property {string} [nickname]
+ * @property {number} [remaining_limit]
  * @property {number} [retry_count]
  * @property {number} [timeout]
  */
@@ -4641,6 +4867,27 @@ class PlatformClient {
  * @property {string} small
  */
 /**
+ * @typedef PaymentObjectListSerializer
+ * @property {Object} [aggregator_payment_object]
+ * @property {string[]} all_status
+ * @property {string} amount_in_paisa
+ * @property {string} application_id
+ * @property {string} collected_by
+ * @property {string} company_id
+ * @property {string} created_on
+ * @property {string} currency
+ * @property {string} current_status
+ * @property {string} id
+ * @property {string} modified_on
+ * @property {string} payment_gateway
+ * @property {string} [payment_id]
+ * @property {string} payment_mode
+ * @property {string} payment_mode_identifier
+ * @property {Object} [refund_object]
+ * @property {string} refunded_by
+ * @property {Object} user_object
+ */
+/**
  * @typedef PaymentOptions
  * @property {RootPaymentMode[]} payment_option
  */
@@ -4648,6 +4895,65 @@ class PlatformClient {
  * @typedef PaymentOptionsResponse
  * @property {PaymentOptions} payment_options
  * @property {boolean} success
+ */
+/**
+ * @typedef PaymentStatusBulkHandlerRequest
+ * @property {string[]} merchant_order_id
+ */
+/**
+ * @typedef PaymentStatusBulkHandlerResponse
+ * @property {number} [count]
+ * @property {PaymentStatusObject[]} [data]
+ * @property {string} [error]
+ * @property {number} status
+ * @property {string} success
+ */
+/**
+ * @typedef PaymentStatusObject
+ * @property {string} merchant_order_id
+ * @property {PaymentObjectListSerializer[]} [payment_object_list]
+ */
+/**
+ * @typedef PaymentStatusUpdateRequest
+ * @property {string} aggregator
+ * @property {number} amount
+ * @property {string} [contact]
+ * @property {string} [currency]
+ * @property {string} customer_id
+ * @property {string} [device_id]
+ * @property {string} [email]
+ * @property {string} merchant_order_id
+ * @property {string} merchant_transaction_id
+ * @property {string} method
+ * @property {string} [order_id]
+ * @property {string} [payment_id]
+ * @property {string} [razorpay_payment_id]
+ * @property {string} status
+ * @property {string} [vpa]
+ */
+/**
+ * @typedef PaymentStatusUpdateResponse
+ * @property {string} aggregator_name
+ * @property {string} [redirect_url]
+ * @property {boolean} retry
+ * @property {string} status
+ * @property {boolean} [success]
+ */
+/**
+ * @typedef Payout
+ * @property {PayoutCustomer} customers
+ * @property {boolean} is_active
+ * @property {boolean} is_default
+ * @property {PayoutMoreAttributes} more_attributes
+ * @property {PayoutAggregator[]} [payouts_aggregators]
+ * @property {string} transfer_type
+ * @property {string} unique_transfer_no
+ */
+/**
+ * @typedef PayoutAggregator
+ * @property {number} [aggregator_fund_id]
+ * @property {number} [aggregator_id]
+ * @property {number} [payout_details_id]
  */
 /**
  * @typedef PayoutBankDetails
@@ -4660,6 +4966,26 @@ class PlatformClient {
  * @property {string} [country]
  * @property {string} ifsc_code
  * @property {number} [pincode]
+ * @property {string} [state]
+ */
+/**
+ * @typedef PayoutCustomer
+ * @property {string} [email]
+ * @property {number} [id]
+ * @property {string} [mobile]
+ * @property {string} [name]
+ * @property {string} [unique_external_id]
+ */
+/**
+ * @typedef PayoutMoreAttributes
+ * @property {string} [account_holder]
+ * @property {string} [account_no]
+ * @property {string} [account_type]
+ * @property {string} [bank_name]
+ * @property {string} [branch_name]
+ * @property {string} [city]
+ * @property {string} [country]
+ * @property {string} [ifsc_code]
  * @property {string} [state]
  */
 /**
@@ -4686,18 +5012,67 @@ class PlatformClient {
  */
 /**
  * @typedef PayoutsResponse
- * @property {Object} customers
- * @property {boolean} is_active
- * @property {boolean} is_default
- * @property {Object} more_attributes
- * @property {Object[]} payouts_aggregators
- * @property {string} transfer_type
- * @property {Object} unique_transfer_no
+ * @property {Payout[]} items
+ * @property {boolean} success
+ */
+/**
+ * @typedef PlatformPaymentOptions
+ * @property {boolean} [anonymous_cod]
+ * @property {Object} [callback_url]
+ * @property {number} [cod_amount_limit]
+ * @property {number} [cod_charges]
+ * @property {boolean} enabled
+ * @property {Object} methods
+ * @property {string} mode_of_payment
+ * @property {Object} [payment_selection_lock]
+ * @property {string} source
+ */
+/**
+ * @typedef PlatfromPaymentConfig
+ * @property {PlatformPaymentOptions} data
+ * @property {string} message
+ * @property {boolean} success
+ */
+/**
+ * @typedef PollingPaymentLinkResponse
+ * @property {string} [aggregator_name]
+ * @property {number} [amount]
+ * @property {number} [http_status]
+ * @property {string} [message]
+ * @property {string} [order_id]
+ * @property {string} [payment_link_id]
+ * @property {string} [redirect_url]
+ * @property {string} [status]
+ * @property {number} [status_code]
+ * @property {boolean} [success]
  */
 /**
  * @typedef RefundAccountResponse
  * @property {Object} [data]
  * @property {boolean} [is_verified_flag]
+ * @property {string} message
+ * @property {boolean} success
+ */
+/**
+ * @typedef ResendOrCancelPaymentRequest
+ * @property {string} [device_id]
+ * @property {string} order_id
+ * @property {string} request_type
+ */
+/**
+ * @typedef ResendOrCancelPaymentResponse
+ * @property {LinkStatus} data
+ * @property {boolean} success
+ */
+/**
+ * @typedef ResendPaymentLinkResponse
+ * @property {string} message
+ * @property {number} [polling_timeout]
+ * @property {number} status_code
+ * @property {boolean} success
+ */
+/**
+ * @typedef RevokeOAuthToken
  * @property {string} message
  * @property {boolean} success
  */
@@ -4708,8 +5083,10 @@ class PlatformClient {
  * @property {boolean} [anonymous_enable]
  * @property {string} display_name
  * @property {number} display_priority
+ * @property {boolean} [is_pay_by_card_pl]
  * @property {PaymentModeList[]} [list]
  * @property {string} name
+ * @property {boolean} [save_card]
  */
 /**
  * @typedef SaveSubscriptionSetupIntentRequest
@@ -4719,6 +5096,22 @@ class PlatformClient {
  * @typedef SaveSubscriptionSetupIntentResponse
  * @property {Object} data
  * @property {boolean} success
+ */
+/**
+ * @typedef SetCODForUserRequest
+ * @property {boolean} is_active
+ * @property {string} merchant_user_id
+ * @property {string} mobileno
+ */
+/**
+ * @typedef SetCODOptionResponse
+ * @property {string} message
+ * @property {boolean} success
+ */
+/**
+ * @typedef StatisticsData
+ * @property {number} active_device_count
+ * @property {number} inactive_device_count
  */
 /**
  * @typedef SubscriptionConfigResponse
@@ -4741,6 +5134,32 @@ class PlatformClient {
  * @typedef UpdatePayoutResponse
  * @property {boolean} is_active
  * @property {boolean} is_default
+ * @property {boolean} success
+ */
+/**
+ * @typedef UpdatePlatformPaymentConfig
+ * @property {boolean} [anonymous_cod]
+ * @property {number} [cod_amount_limit]
+ * @property {number} [cod_charges]
+ * @property {Object} methods
+ * @property {Object} [payment_selection_lock]
+ */
+/**
+ * @typedef ValidateCustomerRequest
+ * @property {string} aggregator
+ * @property {Object} [billing_address]
+ * @property {Object} [delivery_address]
+ * @property {Object} [merchant_params]
+ * @property {Object[]} [order_items]
+ * @property {string} [payload]
+ * @property {string} phone_number
+ * @property {number} transaction_amount_in_paise
+ */
+/**
+ * @typedef ValidateCustomerResponse
+ * @property {Object} [data]
+ * @property {Object} [error]
+ * @property {string} message
  * @property {boolean} success
  */
 
@@ -7250,6 +7669,12 @@ class PlatformClient {
  * @property {string} [type]
  */
 /**
+ * @typedef AutoCompleteMedia
+ * @property {string} [aspect_ratio]
+ * @property {string} [type]
+ * @property {string} [url]
+ */
+/**
  * @typedef AutocompletePageAction
  * @property {Object} [params]
  * @property {Object} [query]
@@ -7261,7 +7686,7 @@ class PlatformClient {
  * @property {Object} [_custom_json]
  * @property {AutocompleteAction} [action]
  * @property {string} [display]
- * @property {Media} [logo]
+ * @property {AutoCompleteMedia} [logo]
  */
 /**
  * @typedef BannerImage
@@ -7281,7 +7706,7 @@ class PlatformClient {
  * @property {ImageUrls} [banners]
  * @property {string[]} [departments]
  * @property {string} [discount]
- * @property {Media} [logo]
+ * @property {Media2} [logo]
  * @property {string} [name]
  * @property {string} [slug]
  * @property {number} [uid]
@@ -7411,7 +7836,7 @@ class PlatformClient {
  * @property {boolean} is_active
  * @property {number} level
  * @property {CategoryMapping} [marketplaces]
- * @property {Media2} [media]
+ * @property {Media1} [media]
  * @property {Object} [modified_by]
  * @property {string} [modified_on]
  * @property {string} name
@@ -7458,7 +7883,7 @@ class PlatformClient {
  * @property {boolean} is_active
  * @property {number} level
  * @property {CategoryMapping} [marketplaces]
- * @property {Media2} [media]
+ * @property {Media1} [media]
  * @property {string} name
  * @property {number} [priority]
  * @property {string} [slug]
@@ -7528,7 +7953,7 @@ class PlatformClient {
  * @property {Object} [cron]
  * @property {string} [description]
  * @property {boolean} [is_active]
- * @property {Media1} [logo]
+ * @property {Media} [logo]
  * @property {Object} [meta]
  * @property {string} [name]
  * @property {number} [priority]
@@ -7793,7 +8218,7 @@ class PlatformClient {
  */
 /**
  * @typedef Department
- * @property {Media} [logo]
+ * @property {Media2} [logo]
  * @property {string} [name]
  * @property {number} [priority_order]
  * @property {string} [slug]
@@ -7998,7 +8423,7 @@ class PlatformClient {
  * @property {Object} [cron]
  * @property {string} [description]
  * @property {boolean} [is_active]
- * @property {Media1} [logo]
+ * @property {Media} [logo]
  * @property {Object} [meta]
  * @property {string} [name]
  * @property {number} [priority]
@@ -8677,21 +9102,21 @@ class PlatformClient {
  */
 /**
  * @typedef Media
- * @property {string} [aspect_ratio]
- * @property {string} [type]
- * @property {string} [url]
- */
-/**
- * @typedef Media1
  * @property {Object} [meta]
  * @property {string} [type]
  * @property {string} url
  */
 /**
- * @typedef Media2
+ * @typedef Media1
  * @property {string} landscape
  * @property {string} logo
  * @property {string} portrait
+ */
+/**
+ * @typedef Media2
+ * @property {string} [aspect_ratio]
+ * @property {string} [type]
+ * @property {string} [url]
  */
 /**
  * @typedef Meta
@@ -8887,7 +9312,7 @@ class PlatformClient {
  * @property {string} [item_code]
  * @property {string} [item_type]
  * @property {string[]} [l3_mapping]
- * @property {Media1[]} [media]
+ * @property {Media[]} [media]
  * @property {Object} [modified_by]
  * @property {string} [modified_on]
  * @property {Object} [moq]
@@ -8924,7 +9349,7 @@ class PlatformClient {
 /**
  * @typedef ProductBrand
  * @property {Action} [action]
- * @property {Media1} [logo]
+ * @property {Media} [logo]
  * @property {string} [name]
  * @property {number} [uid]
  */
@@ -9026,13 +9451,13 @@ class PlatformClient {
  * @property {boolean} [is_set]
  * @property {string} item_code
  * @property {string} item_type
- * @property {Media1[]} [media]
+ * @property {Media[]} [media]
  * @property {boolean} [multi_size]
  * @property {string} name
  * @property {NetQuantity} [net_quantity]
  * @property {number} [no_of_boxes]
  * @property {string[]} [product_group_tag]
- * @property {ProductPublish1} [product_publish]
+ * @property {ProductPublish} [product_publish]
  * @property {string} [requester]
  * @property {ReturnConfig} return_config
  * @property {string} [short_description]
@@ -9061,7 +9486,7 @@ class PlatformClient {
  * @property {string} [image_nature]
  * @property {string} [item_code]
  * @property {string} [item_type]
- * @property {Media1[]} [medias]
+ * @property {Media[]} [medias]
  * @property {string} [name]
  * @property {string} [product_online_date]
  * @property {Object} [promo_meta]
@@ -9131,7 +9556,7 @@ class PlatformClient {
  * @property {string} [image_nature]
  * @property {string} [item_code]
  * @property {string} [item_type]
- * @property {Media1[]} [medias]
+ * @property {Media[]} [medias]
  * @property {string} [name]
  * @property {ProductListingPrice} [price]
  * @property {string} [product_online_date]
@@ -9217,7 +9642,7 @@ class PlatformClient {
  * @property {string} [item_code]
  * @property {string} [item_type]
  * @property {string[]} [l3_mapping]
- * @property {Media1[]} [media]
+ * @property {Media[]} [media]
  * @property {Object} [modified_by]
  * @property {string} [modified_on]
  * @property {Object} [moq]
@@ -9228,7 +9653,7 @@ class PlatformClient {
  * @property {string} [pending]
  * @property {string} [primary_color]
  * @property {string[]} [product_group_tag]
- * @property {ProductPublish} [product_publish]
+ * @property {ProductPublish1} [product_publish]
  * @property {ReturnConfigResponse} [return_config]
  * @property {string} [short_description]
  * @property {string} [size_guide]
@@ -9324,7 +9749,7 @@ class PlatformClient {
  * @property {number} [brand_uid]
  * @property {number} [category_uid]
  * @property {string} [item_code]
- * @property {Media1[]} [media]
+ * @property {Media[]} [media]
  * @property {string} [name]
  * @property {number} [uid]
  */
@@ -14213,6 +14638,16 @@ class PlatformClient {
  * @property {string} [version]
  */
 /**
+ * @typedef EventConfigDetails
+ * @property {string} [created_on]
+ * @property {string} [description]
+ * @property {string} [display_name]
+ * @property {string} [event_category]
+ * @property {string} [event_name]
+ * @property {string} [event_type]
+ * @property {string} [version]
+ */
+/**
  * @typedef EventConfigList
  * @property {EventConfig[]} [items]
  * @property {Page} [page]
@@ -14260,6 +14695,17 @@ class PlatformClient {
  * @property {string} [email_id]
  * @property {number[]} [event_id]
  * @property {number} [id]
+ * @property {string} [name]
+ * @property {SubscriberStatus} [status]
+ * @property {string} [webhook_url]
+ */
+/**
+ * @typedef SubscriberConfigDetails
+ * @property {Association} [association]
+ * @property {AuthMeta} [auth_meta]
+ * @property {Object} [custom_headers]
+ * @property {string} [email_id]
+ * @property {number[]} [event_id]
  * @property {string} [name]
  * @property {SubscriberStatus} [status]
  * @property {string} [webhook_url]

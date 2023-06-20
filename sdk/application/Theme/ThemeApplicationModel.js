@@ -916,6 +916,19 @@ class ThemeModel {
       version: Joi.string().allow(""),
     });
   }
+  static ThemeUpgradableResponseV2() {
+    return Joi.object({
+      message: Joi.string().allow(""),
+      upgrade: Joi.boolean(),
+      versions: ThemeModel.ThemeVersionsV2(),
+    });
+  }
+  static ThemeVersionsV2() {
+    return Joi.object({
+      applied_theme: Joi.string().allow(""),
+      parent_theme: Joi.string().allow(""),
+    });
+  }
   static UmdJs() {
     return Joi.object({
       link: Joi.string().allow(""),

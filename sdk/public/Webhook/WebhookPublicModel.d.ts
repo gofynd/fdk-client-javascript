@@ -4,12 +4,14 @@ declare class WebhookModel {
     static AuthMeta(): any;
     static EventConfig(): any;
     static EventConfigBase(): any;
+    static EventConfigDetails(): any;
     static EventConfigList(): any;
     static EventConfigResponse(): any;
     static EventPayload(): any;
     static EventProcessedStatus(): any;
     static Page(): any;
     static SubscriberConfig(): any;
+    static SubscriberConfigDetails(): any;
     static SubscriberConfigList(): any;
     static SubscriberEvent(): any;
     static SubscriberResponse(): any;

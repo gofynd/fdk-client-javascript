@@ -32,6 +32,12 @@ class ThemeValidator {
     }).required();
   }
 
+  static checkThemeUpgradableV2() {
+    return Joi.object({
+      themeId: Joi.string().allow("").required(),
+    }).required();
+  }
+
   static createPage() {
     return Joi.object({
       themeId: Joi.string().allow("").required(),
@@ -94,7 +100,15 @@ class ThemeValidator {
     return Joi.object({}).required();
   }
 
+  static getAppliedThemeV2() {
+    return Joi.object({}).required();
+  }
+
   static getFonts() {
+    return Joi.object({}).required();
+  }
+
+  static getFontsV2() {
     return Joi.object({}).required();
   }
 
@@ -130,10 +144,22 @@ class ThemeValidator {
     }).required();
   }
 
+  static getThemeLastModifiedV2() {
+    return Joi.object({
+      themeId: Joi.string().allow("").required(),
+    }).required();
+  }
+
   static getThemeLibrary() {
     return Joi.object({
       pageSize: Joi.number(),
       pageNo: Joi.number(),
+    }).required();
+  }
+
+  static getThemePreviewByIdV2() {
+    return Joi.object({
+      themeId: Joi.string().allow("").required(),
     }).required();
   }
 

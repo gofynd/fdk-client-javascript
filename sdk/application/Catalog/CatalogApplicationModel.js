@@ -269,9 +269,9 @@ class CatalogModel {
   }
   static DiscountMeta() {
     return Joi.object({
-      end: Joi.number(),
+      end: Joi.string().allow(""),
       number_of_minutes: Joi.number(),
-      start: Joi.number(),
+      start: Joi.string().allow(""),
       timer: Joi.boolean(),
     });
   }
@@ -444,6 +444,7 @@ class CatalogModel {
       categories: Joi.array().items(CatalogModel.ProductBrand()),
       category_map: CatalogModel.ProductCategoryMap(),
       color: Joi.string().allow(""),
+      custom_order: CatalogModel.ProductDetailCustomOrder(),
       description: Joi.string().allow(""),
       discount: Joi.string().allow(""),
       grouped_attributes: Joi.array().items(
@@ -460,6 +461,7 @@ class CatalogModel {
       name: Joi.string().allow(""),
       net_quantity: CatalogModel.NetQuantity(),
       price: CatalogModel.ProductListingPrice(),
+      product_group_tag: Joi.array().items(Joi.string().allow("")),
       product_online_date: Joi.string().allow(""),
       rating: Joi.number(),
       rating_count: Joi.number(),
@@ -479,6 +481,13 @@ class CatalogModel {
       key: Joi.string().allow(""),
       type: Joi.string().allow(""),
       value: Joi.string().allow(""),
+    });
+  }
+  static ProductDetailCustomOrder() {
+    return Joi.object({
+      is_custom_order: Joi.boolean(),
+      manufacturing_time: Joi.number(),
+      manufacturing_time_unit: Joi.string().allow(""),
     });
   }
   static ProductDetailGroupedAttribute() {
@@ -613,6 +622,7 @@ class CatalogModel {
       categories: Joi.array().items(CatalogModel.ProductBrand()),
       category_map: CatalogModel.ProductCategoryMap(),
       color: Joi.string().allow(""),
+      custom_order: CatalogModel.ProductDetailCustomOrder(),
       description: Joi.string().allow(""),
       discount: Joi.string().allow(""),
       grouped_attributes: Joi.array().items(
@@ -630,6 +640,7 @@ class CatalogModel {
       name: Joi.string().allow(""),
       net_quantity: CatalogModel.NetQuantity(),
       price: CatalogModel.ProductListingPrice(),
+      product_group_tag: Joi.array().items(Joi.string().allow("")),
       product_online_date: Joi.string().allow(""),
       rating: Joi.number(),
       rating_count: Joi.number(),
