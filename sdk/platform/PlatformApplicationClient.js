@@ -814,7 +814,6 @@ class PlatformApplicationClient {
 /** @typedef ShipmentStatus */
 /** @typedef ShipmentStatusData */
 /** @typedef ShipmentTags */
-/** @typedef ShipmentTags1 */
 /** @typedef ShipmentTimeStamp */
 /** @typedef ShippingInfo */
 /** @typedef SmsDataPayload */
@@ -1805,5 +1804,47 @@ class PlatformApplicationClient {
 /** @typedef ZoneResponse */
 /** @typedef ZoneSuccessResponse */
 /** @typedef ZoneUpdateRequest */
+
+/** @typedef DownloadCreditDebitNote */
+/** @typedef DownloadCreditDebitNoteRequest */
+/** @typedef DownloadCreditDebitNoteResponse */
+/** @typedef DownloadCreditDebitNoteResponseData */
+/** @typedef DownloadReport */
+/** @typedef DownloadReportItems */
+/** @typedef DownloadReportList */
+/** @typedef Error */
+/** @typedef GenerateReportFilters */
+/** @typedef GenerateReportJson */
+/** @typedef GenerateReportMeta */
+/** @typedef GenerateReportPlatform */
+/** @typedef GenerateReportRequest */
+/** @typedef GetAffiliate */
+/** @typedef GetAffiliateResponse */
+/** @typedef GetDocs */
+/** @typedef GetEngineData */
+/** @typedef GetEngineFilters */
+/** @typedef GetEngineRequest */
+/** @typedef GetEngineResponse */
+/** @typedef GetInvoiceListPayloadData */
+/** @typedef GetInvoiceListRequest */
+/** @typedef GetInvoiceListResponse */
+/** @typedef GetReason */
+/** @typedef GetReasonRequest */
+/** @typedef GetReasonResponse */
+/** @typedef GetReportListData */
+/** @typedef GetReportListRequest */
+/** @typedef InoviceListingPayloadDataFilters */
+/** @typedef InvoiceListingPayloadData */
+/** @typedef InvoiceListingRequest */
+/** @typedef InvoiceListingResponse */
+/** @typedef InvoiceListingResponseItems */
+/** @typedef InvoicePdfPayloadData */
+/** @typedef InvoicePdfRequest */
+/** @typedef InvoicePdfResponse */
+/** @typedef Page */
+/** @typedef PaymentProcessPayload */
+/** @typedef PaymentProcessRequest */
+/** @typedef PaymentProcessResponse */
+/** @typedef UnpaidInvoiceDataItems */
 
 module.exports = PlatformApplicationClient;

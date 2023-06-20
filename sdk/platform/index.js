@@ -45,5 +45,7 @@ module.exports = {
     AuditTrailPlatformModel: require("./AuditTrail/AuditTrailPlatformModel"),
 
     ServiceabilityPlatformModel: require("./Serviceability/ServiceabilityPlatformModel"),
+
+    FinancePlatformModel: require("./Finance/FinancePlatformModel"),
   },
 };

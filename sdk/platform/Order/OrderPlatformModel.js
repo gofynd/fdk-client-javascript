@@ -912,9 +912,12 @@ class OrderModel {
   }
   static FilterInfoOption() {
     return Joi.object({
-      name: Joi.string().allow(""),
-      text: Joi.string().allow("").required(),
-      value: Joi.string().allow(""),
+      min_search_size: Joi.number(),
+      name: Joi.string().allow("").allow(null),
+      placeholder_text: Joi.string().allow(""),
+      show_ui: Joi.boolean(),
+      text: Joi.string().allow("").allow(null),
+      value: Joi.string().allow("").allow(null),
     });
   }
   static FiltersInfo() {
@@ -1120,6 +1123,7 @@ class OrderModel {
   static InvoiceInfo() {
     return Joi.object({
       credit_note_id: Joi.string().allow("").allow(null),
+      external_invoice_id: Joi.string().allow(""),
       invoice_url: Joi.string().allow(""),
       label_url: Joi.string().allow(""),
       store_invoice_id: Joi.string().allow("").allow(null),
@@ -1385,15 +1389,15 @@ class OrderModel {
   static OrderingStoreDetails() {
     return Joi.object({
       address: Joi.string().allow(""),
-      city: Joi.string().allow("").required(),
-      code: Joi.string().allow("").required(),
-      contact_person: Joi.string().allow("").required(),
-      country: Joi.string().allow("").required(),
-      id: Joi.number().required(),
-      meta: Joi.any().required(),
-      phone: Joi.string().allow("").required(),
-      pincode: Joi.string().allow("").required(),
-      state: Joi.string().allow("").required(),
+      city: Joi.string().allow(""),
+      code: Joi.string().allow(""),
+      contact_person: Joi.string().allow(""),
+      country: Joi.string().allow(""),
+      id: Joi.number(),
+      meta: Joi.any(),
+      phone: Joi.string().allow(""),
+      pincode: Joi.string().allow(""),
+      state: Joi.string().allow(""),
       store_name: Joi.string().allow(""),
     });
   }
@@ -1541,11 +1545,13 @@ class OrderModel {
       invoice: Joi.string().allow(""),
       invoice_a4: Joi.string().allow(""),
       invoice_a6: Joi.string().allow(""),
+      invoice_export: Joi.string().allow(""),
       invoice_pos: Joi.string().allow(""),
       invoice_type: Joi.string().allow("").required(),
       label: Joi.string().allow(""),
       label_a4: Joi.string().allow(""),
       label_a6: Joi.string().allow(""),
+      label_export: Joi.string().allow(""),
       label_pos: Joi.string().allow(""),
       label_type: Joi.string().allow("").required(),
       po_invoice: Joi.string().allow(""),
@@ -1650,12 +1656,14 @@ class OrderModel {
       can_update_dimension: Joi.boolean(),
       company_details: OrderModel.CompanyDetails(),
       coupon: Joi.any(),
+      custom_message: Joi.string().allow(""),
       custom_meta: Joi.array().items(Joi.any()),
       delivery_details: OrderModel.UserDetailsData(),
       delivery_slot: Joi.any(),
       dp_assignment: Joi.boolean(),
       dp_details: OrderModel.DPDetailsData(),
       enable_dp_tracking: Joi.boolean(),
+      estimated_sla_time: Joi.string().allow(""),
       forward_shipment_id: Joi.string().allow("").allow(null),
       fulfilling_store: OrderModel.FulfillingStore(),
       fulfilment_priority: Joi.number(),
@@ -2055,7 +2063,7 @@ class OrderModel {
   static ShipmentMeta() {
     return Joi.object({
       assign_dp_from_sb: Joi.boolean(),
-      auto_trigger_dp_assignment_acf: Joi.boolean().required(),
+      auto_trigger_dp_assignment_acf: Joi.boolean(),
       awb_number: Joi.string().allow(""),
       b2b_buyer_details: OrderModel.BuyerDetails(),
       b2c_buyer_details: Joi.any().allow(null),
@@ -2087,7 +2095,7 @@ class OrderModel {
       return_details: Joi.any(),
       return_store_node: Joi.number(),
       same_store_available: Joi.boolean().required(),
-      shipment_tags: Joi.array().items(OrderModel.ShipmentTags1()),
+      shipment_tags: Joi.array().items(OrderModel.ShipmentTags()),
       shipment_volumetric_weight: Joi.number(),
       shipment_weight: Joi.number(),
       store_invoice_updated_date: Joi.string().allow(""),
@@ -2147,13 +2155,6 @@ class OrderModel {
     });
   }
   static ShipmentTags() {
-    return Joi.object({
-      display_text: Joi.string().allow(""),
-      entity_type: Joi.string().allow(""),
-      slug: Joi.string().allow(""),
-    });
-  }
-  static ShipmentTags1() {
     return Joi.object({
       display_text: Joi.string().allow(""),
       entity_type: Joi.string().allow(""),

@@ -30,6 +30,8 @@ const AuditTrail = require("./AuditTrail/AuditTrailPlatformClient");
 
 const Serviceability = require("./Serviceability/ServiceabilityPlatformClient");
 
+const Finance = require("./Finance/FinancePlatformClient");
+
 const PlatformApplicationClient = require("./PlatformApplicationClient");
 const { FDKClientValidationError } = require("../common/FDKError");
 
@@ -68,6 +70,8 @@ class PlatformClient {
     this.auditTrail = new AuditTrail(config);
 
     this.serviceability = new Serviceability(config);
+
+    this.finance = new Finance(config);
   }
   application(applicationId) {
     if (typeof applicationId == "string") {
@@ -4722,8 +4726,11 @@ class PlatformClient {
  */
 /**
  * @typedef FilterInfoOption
+ * @property {number} [min_search_size]
  * @property {string} [name]
- * @property {string} text
+ * @property {string} [placeholder_text]
+ * @property {boolean} [show_ui]
+ * @property {string} [text]
  * @property {string} [value]
  */
 /**
@@ -4908,6 +4915,7 @@ class PlatformClient {
 /**
  * @typedef InvoiceInfo
  * @property {string} [credit_note_id]
+ * @property {string} [external_invoice_id]
  * @property {string} [invoice_url]
  * @property {string} [label_url]
  * @property {string} [store_invoice_id]
@@ -5144,15 +5152,15 @@ class PlatformClient {
 /**
  * @typedef OrderingStoreDetails
  * @property {string} [address]
- * @property {string} city
- * @property {string} code
- * @property {string} contact_person
- * @property {string} country
- * @property {number} id
- * @property {Object} meta
- * @property {string} phone
- * @property {string} pincode
- * @property {string} state
+ * @property {string} [city]
+ * @property {string} [code]
+ * @property {string} [contact_person]
+ * @property {string} [country]
+ * @property {number} [id]
+ * @property {Object} [meta]
+ * @property {string} [phone]
+ * @property {string} [pincode]
+ * @property {string} [state]
  * @property {string} [store_name]
  */
 /**
@@ -5285,11 +5293,13 @@ class PlatformClient {
  * @property {string} [invoice]
  * @property {string} [invoice_a4]
  * @property {string} [invoice_a6]
+ * @property {string} [invoice_export]
  * @property {string} [invoice_pos]
  * @property {string} invoice_type
  * @property {string} [label]
  * @property {string} [label_a4]
  * @property {string} [label_a6]
+ * @property {string} [label_export]
  * @property {string} [label_pos]
  * @property {string} label_type
  * @property {string} [po_invoice]
@@ -5385,12 +5395,14 @@ class PlatformClient {
  * @property {boolean} [can_update_dimension]
  * @property {CompanyDetails} [company_details]
  * @property {Object} [coupon]
+ * @property {string} [custom_message]
  * @property {Object[]} [custom_meta]
  * @property {UserDetailsData} [delivery_details]
  * @property {Object} [delivery_slot]
  * @property {boolean} [dp_assignment]
  * @property {DPDetailsData} [dp_details]
  * @property {boolean} [enable_dp_tracking]
+ * @property {string} [estimated_sla_time]
  * @property {string} [forward_shipment_id]
  * @property {FulfillingStore} [fulfilling_store]
  * @property {number} [fulfilment_priority]
@@ -5750,7 +5762,7 @@ class PlatformClient {
 /**
  * @typedef ShipmentMeta
  * @property {boolean} [assign_dp_from_sb]
- * @property {boolean} auto_trigger_dp_assignment_acf
+ * @property {boolean} [auto_trigger_dp_assignment_acf]
  * @property {string} [awb_number]
  * @property {BuyerDetails} [b2b_buyer_details]
  * @property {Object} [b2c_buyer_details]
@@ -5782,7 +5794,7 @@ class PlatformClient {
  * @property {Object} [return_details]
  * @property {number} [return_store_node]
  * @property {boolean} same_store_available
- * @property {ShipmentTags1[]} [shipment_tags]
+ * @property {ShipmentTags[]} [shipment_tags]
  * @property {number} [shipment_volumetric_weight]
  * @property {number} [shipment_weight]
  * @property {string} [store_invoice_updated_date]
@@ -5837,12 +5849,6 @@ class PlatformClient {
  */
 /**
  * @typedef ShipmentTags
- * @property {string} [display_text]
- * @property {string} [entity_type]
- * @property {string} [slug]
- */
-/**
- * @typedef ShipmentTags1
  * @property {string} [display_text]
  * @property {string} [entity_type]
  * @property {string} [slug]
@@ -13859,6 +13865,250 @@ class PlatformClient {
  * @typedef ZoneUpdateRequest
  * @property {UpdateZoneData} data
  * @property {string} identifier
+ */
+
+/**
+ * @typedef DownloadCreditDebitNote
+ * @property {string[]} [note_id]
+ */
+/**
+ * @typedef DownloadCreditDebitNoteRequest
+ * @property {DownloadCreditDebitNote} [data]
+ */
+/**
+ * @typedef DownloadCreditDebitNoteResponse
+ * @property {DownloadCreditDebitNoteResponseData[]} [data]
+ * @property {boolean} [success]
+ */
+/**
+ * @typedef DownloadCreditDebitNoteResponseData
+ * @property {string} [id]
+ * @property {string} [pdf_s3_url]
+ */
+/**
+ * @typedef DownloadReport
+ * @property {string} [end_date]
+ * @property {number} [page]
+ * @property {number} [pagesize]
+ * @property {string} [start_date]
+ */
+/**
+ * @typedef DownloadReportItems
+ * @property {string} [end_date]
+ * @property {GenerateReportFilters} [filters]
+ * @property {GenerateReportMeta} [meta]
+ * @property {string} [report_id]
+ * @property {string} [start_date]
+ * @property {string} [type_of_request]
+ */
+/**
+ * @typedef DownloadReportList
+ * @property {number} [item_count]
+ * @property {DownloadReportItems[]} [items]
+ * @property {Page} [page]
+ */
+/**
+ * @typedef Error
+ * @property {string} [reason]
+ * @property {boolean} [success]
+ */
+/**
+ * @typedef GenerateReportFilters
+ * @property {string[]} [brand]
+ * @property {string[]} [channel]
+ * @property {string[]} [company]
+ */
+/**
+ * @typedef GenerateReportJson
+ * @property {string} [end_date]
+ * @property {string[]} [headers]
+ * @property {number} [item_count]
+ * @property {string[][]} [items]
+ * @property {Page} [page]
+ * @property {string} [start_date]
+ */
+/**
+ * @typedef GenerateReportMeta
+ * @property {string} [brand]
+ * @property {string} [channel]
+ * @property {string} [company]
+ */
+/**
+ * @typedef GenerateReportPlatform
+ * @property {string} [end_date]
+ * @property {GenerateReportFilters} [filters]
+ * @property {GenerateReportMeta} [meta]
+ * @property {string} [report_id]
+ * @property {string} [start_date]
+ */
+/**
+ * @typedef GenerateReportRequest
+ * @property {GenerateReportPlatform} [data]
+ */
+/**
+ * @typedef GetAffiliate
+ * @property {number} [company_id]
+ */
+/**
+ * @typedef GetAffiliateResponse
+ * @property {Object[]} [docs]
+ * @property {boolean} [success]
+ */
+/**
+ * @typedef GetDocs
+ * @property {Object[]} [docs]
+ * @property {Object[]} [items]
+ */
+/**
+ * @typedef GetEngineData
+ * @property {GetEngineFilters} [filters]
+ * @property {string[]} [project]
+ * @property {string} [table_name]
+ */
+/**
+ * @typedef GetEngineFilters
+ * @property {string} [config_field]
+ */
+/**
+ * @typedef GetEngineRequest
+ * @property {GetEngineData} [data]
+ */
+/**
+ * @typedef GetEngineResponse
+ * @property {number} [item_count]
+ * @property {Object[]} [items]
+ * @property {Page} [page]
+ * @property {boolean} [success]
+ */
+/**
+ * @typedef GetInvoiceListPayloadData
+ * @property {boolean} [is_active]
+ */
+/**
+ * @typedef GetInvoiceListRequest
+ * @property {GetInvoiceListPayloadData} [data]
+ */
+/**
+ * @typedef GetInvoiceListResponse
+ * @property {Object[]} [invoice_type_list]
+ * @property {Object[]} [payment_status_list]
+ * @property {boolean} [success]
+ */
+/**
+ * @typedef GetReason
+ * @property {string} [reason_type]
+ */
+/**
+ * @typedef GetReasonRequest
+ * @property {GetReason} [data]
+ */
+/**
+ * @typedef GetReasonResponse
+ * @property {GetDocs} [data]
+ * @property {boolean} [success]
+ */
+/**
+ * @typedef GetReportListData
+ * @property {boolean} [listing_enabled]
+ * @property {string} [role_name]
+ */
+/**
+ * @typedef GetReportListRequest
+ * @property {GetReportListData} [data]
+ */
+/**
+ * @typedef InoviceListingPayloadDataFilters
+ * @property {string[]} [company_id]
+ * @property {string[]} [invoice_type]
+ * @property {string[]} [payment_status]
+ */
+/**
+ * @typedef InvoiceListingPayloadData
+ * @property {string} [end_date]
+ * @property {InoviceListingPayloadDataFilters} [filters]
+ * @property {number} [page]
+ * @property {number} [page_size]
+ * @property {string} [search]
+ * @property {string} [start_date]
+ */
+/**
+ * @typedef InvoiceListingRequest
+ * @property {InvoiceListingPayloadData} [data]
+ */
+/**
+ * @typedef InvoiceListingResponse
+ * @property {number} [item_count]
+ * @property {InvoiceListingResponseItems[]} [items]
+ * @property {Page} [page]
+ * @property {UnpaidInvoiceDataItems} [unpaid_invoice_data]
+ */
+/**
+ * @typedef InvoiceListingResponseItems
+ * @property {string} [amount]
+ * @property {string} [company]
+ * @property {string} [due_date]
+ * @property {string} [invoice_date]
+ * @property {string} [invoice_id]
+ * @property {string} [invoice_number]
+ * @property {string} [invoice_type]
+ * @property {boolean} [is_downloadable]
+ * @property {string} [period]
+ * @property {string} [status]
+ */
+/**
+ * @typedef InvoicePdfPayloadData
+ * @property {string[]} [invoice_number]
+ */
+/**
+ * @typedef InvoicePdfRequest
+ * @property {InvoicePdfPayloadData} [data]
+ */
+/**
+ * @typedef InvoicePdfResponse
+ * @property {string[]} [data]
+ * @property {string[]} [error]
+ * @property {boolean} [success]
+ */
+/**
+ * @typedef Page
+ * @property {number} [current]
+ * @property {boolean} [has_next]
+ * @property {boolean} [has_previous]
+ * @property {number} [item_total]
+ * @property {string} [next_id]
+ * @property {number} [size]
+ * @property {string} type
+ */
+/**
+ * @typedef PaymentProcessPayload
+ * @property {string} [amount]
+ * @property {string} [currency]
+ * @property {string} [invoice_number]
+ * @property {Object} [meta]
+ * @property {string} [mode_of_payment]
+ * @property {string} [platform]
+ * @property {string} [seller_id]
+ * @property {string} [source_reference]
+ * @property {string} [total_amount]
+ * @property {string} [transaction_type]
+ */
+/**
+ * @typedef PaymentProcessRequest
+ * @property {PaymentProcessPayload} [data]
+ */
+/**
+ * @typedef PaymentProcessResponse
+ * @property {number} [code]
+ * @property {string} [message]
+ * @property {Object} [meta]
+ * @property {string} [redirect_url]
+ * @property {string} [transaction_id]
+ */
+/**
+ * @typedef UnpaidInvoiceDataItems
+ * @property {string} [currency]
+ * @property {number} [total_unpaid_amount]
+ * @property {number} [total_unpaid_invoice_count]
  */
 
 module.exports = PlatformClient;
