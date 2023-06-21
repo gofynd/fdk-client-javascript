@@ -181,6 +181,7 @@ declare class OrderModel {
     static RefundModeConfigRequestPayload(): any;
     static RefundModeConfigResponsePayload(): any;
     static RefundModeInfo(): any;
+    static RefundOption(): any;
     static ReplacementDetails(): any;
     static ResponseDetail(): any;
     static ResponseGetAssetShipment(): any;
@@ -212,7 +213,6 @@ declare class OrderModel {
     static ShipmentTags(): any;
     static ShipmentTimeStamp(): any;
     static ShippingInfo(): any;
-    static SingleRefundModeInfo(): any;
     static SmsDataPayload(): any;
     static StatuesRequest(): any;
     static StatuesResponse(): any;

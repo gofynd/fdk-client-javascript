@@ -24,9 +24,9 @@ Collect payment through many payment gateway i.e Stripe, Razorpay, Juspay etc.in
 * [getBankAccountDetailsOpenAPI](#getbankaccountdetailsopenapi)
 * [getBrandPaymentGatewayConfig](#getbrandpaymentgatewayconfig)
 * [getEdcDevice](#getedcdevice)
+* [getPaymentCodeOption](#getpaymentcodeoption)
 * [getPaymentLink](#getpaymentlink)
 * [getPaymentModeRoutes](#getpaymentmoderoutes)
-* [getPlatformPaymentConfig](#getplatformpaymentconfig)
 * [getPosPaymentModeRoutes](#getpospaymentmoderoutes)
 * [getSubscriptionConfig](#getsubscriptionconfig)
 * [getSubscriptionPaymentMethod](#getsubscriptionpaymentmethod)
@@ -34,9 +34,11 @@ Collect payment through many payment gateway i.e Stripe, Razorpay, Juspay etc.in
 * [getUserCODlimitRoutes](#getusercodlimitroutes)
 * [getUserOrderBeneficiaries](#getuserorderbeneficiaries)
 * [initialisePayment](#initialisepayment)
+* [merchantOnBoarding](#merchantonboarding)
 * [oauthGetUrl](#oauthgeturl)
 * [paymentStatusBulk](#paymentstatusbulk)
 * [pollingPaymentLink](#pollingpaymentlink)
+* [repaymentDetails](#repaymentdetails)
 * [resendOrCancelPayment](#resendorcancelpayment)
 * [resendPaymentLink](#resendpaymentlink)
 * [revokeOauthToken](#revokeoauthtoken)
@@ -46,7 +48,6 @@ Collect payment through many payment gateway i.e Stripe, Razorpay, Juspay etc.in
 * [setUserCODlimitRoutes](#setusercodlimitroutes)
 * [updateEdcDevice](#updateedcdevice)
 * [updatePayout](#updatepayout)
-* [updatePlatformPaymentConfig](#updateplatformpaymentconfig)
 * [verifyCustomerForPayment](#verifycustomerforpayment)
 * [verifyIfscCode](#verifyifsccode)
 
@@ -850,73 +851,70 @@ payouts response object
 <summary><i>&nbsp; Example:</i></summary>
 
 ```json
-{
-  "items": [
-    {
-      "unique_transfer_no": "d2ff79fcd3459831864824da8c9d7e5f",
-      "more_attributes": {
-        "city": "",
-        "state": "",
-        "country": "",
-        "bank_name": "YES",
-        "ifsc_code": "IFSCYES101",
-        "account_no": "9876541234",
-        "branch_name": "Mumbai",
-        "account_type": "current",
-        "account_holder": "Vikas Kumar"
-      },
-      "transfer_type": "bank",
-      "is_default": true,
-      "is_active": true,
-      "customers": {
-        "id": 2,
-        "name": "reliance retail",
-        "mobile": "1234567890",
-        "email": "reliance@gmail.com",
-        "unique_external_id": "company:1"
-      },
-      "payouts_aggregators": [
-        {
-          "payout_details_id": 888,
-          "aggregator_id": 3,
-          "aggregator_fund_id": null
-        }
-      ]
+[
+  {
+    "unique_transfer_no": "d2ff79fcd3459831864824da8c9d7e5f",
+    "more_attributes": {
+      "city": "",
+      "state": "",
+      "country": "",
+      "bank_name": "YES",
+      "ifsc_code": "IFSCYES101",
+      "account_no": "9876541234",
+      "branch_name": "Mumbai",
+      "account_type": "current",
+      "account_holder": "Vikas Kumar"
     },
-    {
-      "unique_transfer_no": "e388c1c5df4933fa01f6da9f92595589",
-      "more_attributes": {
-        "city": "",
-        "state": "",
-        "country": "",
-        "bank_name": "SBI",
-        "ifsc_code": "SBIN0011513",
-        "account_no": "9876543210",
-        "branch_name": "Mumbai",
-        "account_type": "saving",
-        "account_holder": "Vikas Kumar"
-      },
-      "transfer_type": "bank",
-      "is_default": false,
-      "is_active": true,
-      "customers": {
-        "id": 2,
-        "name": "reliance retail",
-        "mobile": "1234567890",
-        "email": "reliance@gmail.com",
-        "unique_external_id": "company:1"
-      },
-      "payouts_aggregators": [
-        {
-          "payout_details_id": 891,
-          "aggregator_id": 3,
-          "aggregator_fund_id": null
-        }
-      ]
-    }
-  ],
-  "success": true
-}
+    "transfer_type": "bank",
+    "is_default": true,
+    "is_active": true,
+    "customers": {
+      "id": 2,
+      "name": "reliance retail",
+      "mobile": "1234567890",
+      "email": "reliance@gmail.com",
+      "unique_external_id": "company:1"
+    },
+    "payouts_aggregators": [
+      {
+        "payout_details_id": 888,
+        "aggregator_id": 3,
+        "aggregator_fund_id": null
+      }
+    ]
+  },
+  {
+    "unique_transfer_no": "e388c1c5df4933fa01f6da9f92595589",
+    "more_attributes": {
+      "city": "",
+      "state": "",
+      "country": "",
+      "bank_name": "SBI",
+      "ifsc_code": "SBIN0011513",
+      "account_no": "9876543210",
+      "branch_name": "Mumbai",
+      "account_type": "saving",
+      "account_holder": "Vikas Kumar"
+    },
+    "transfer_type": "bank",
+    "is_default": false,
+    "is_active": true,
+    "customers": {
+      "id": 2,
+      "name": "reliance retail",
+      "mobile": "1234567890",
+      "email": "reliance@gmail.com",
+      "unique_external_id": "company:1"
+    },
+    "payouts_aggregators": [
+      {
+        "payout_details_id": 891,
+        "aggregator_id": 3,
+        "aggregator_fund_id": null
+      }
+    ]
+  }
+]
 ```
 </details>
 
@@ -1063,7 +1061,6 @@ Refund Transfer Mode
         "link": "",
         "text": "Review in under process. Please  wait while process completed or contact us for any further query.",
         "description": "Juspay is not a Payment Gateway (like Citrus, CCAvenue, PayU) but it works with any gateway or aggregator with zero interference in the Merchant-PG relations.",
-        "webhook_url": "https://api.fyndx0.de/service/webhooks/payment/v1.0/events/juspay",
         "reviewed": false
       },
       "logo": "https://hdn-1.fynd.com/payment/juspay-pg-logo.jpg"
@@ -1095,7 +1092,6 @@ Refund Transfer Mode
         "link": "",
         "text": "Review in under process. Please  wait while process completed or contact us for any further query.",
         "description": "PayUmoney supports wide range of options for making online payments via wallets, UPI, cards, and netbanking.",
-        "webhook_url": "https://api.fyndx0.de/service/webhooks/payment/v1.0/events/payumoney",
         "reviewed": false
       },
       "logo": "https://hdn-1.fynd.com/payment/payu_logo_large.png"
@@ -1111,7 +1107,6 @@ Refund Transfer Mode
         "link": "",
         "text": "Well done, You payment gateway successfully lived. Collect your payment at your end.",
         "description": "Razorpay is a payments platform which accept online payments via Credit Card, Debit Card, Net banking, UPI, BharatQR and Wallets.",
-        "webhook_url": "https://api.fyndx0.de/service/webhooks/payment/v1.0/events/razorpay",
         "reviewed": true
       },
       "logo": "https://hdn-1.fynd.com/payment/razorpay-pg-logo.jpg"
@@ -1125,8 +1120,7 @@ Refund Transfer Mode
       "display": {
         "link": "",
         "text": "Submitted request to be reviewed before going live. Please contact us for any further query.",
-        "description": "Rupifi enables businesses to avail credits and allows a 'Buy now, Pay later' system for making transactions and purchases.",
-        "webhook_url": "https://api.fyndx0.de/service/webhooks/payment/v1.0/events/rupifi"
+        "description": "Rupifi enables businesses to avail credits and allows a 'Buy now, Pay later' system for making transactions and purchases."
       },
       "logo": "https://hdn-1.fynd.com/payment/Rupifi.png"
     },
@@ -1155,8 +1149,7 @@ Refund Transfer Mode
       "display": {
         "link": "",
         "text": "Submitted request to be reviewed before going live. Please contact us for any further query.",
-        "description": "Stripe is a payment processor that supports online payments, credit cards, recurring subscriptions and direct payouts to bank accounts.",
-        "webhook_url": "https://api.fyndx0.de/service/webhooks/payment/v1.0/events/stripe"
+        "description": "Stripe is a payment processor that supports online payments, credit cards, recurring subscriptions and direct payouts to bank accounts."
       },
       "logo": "https://hdn-1.fynd.com/payment/Stripe.png"
     }
@@ -1231,6 +1224,122 @@ Success. Returns the single edc device mapped to the terminal. Check the example
     "device_tag": "Counter 2",
     "is_active": true,
     "edc_model": "A910"
+  }
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### getPaymentCodeOption
+List Payment Options Method Codes
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").payment.getPaymentCodeOption();
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").payment.getPaymentCodeOption();
+```
+
+
+
+
+
+
+Get all active List Payment Options Method Codes
+
+*Returned Response:*
+
+
+
+
+[GetPaymentCodeResponse](#GetPaymentCodeResponse)
+
+List Order Beneficiary
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "success": true,
+  "data": {
+    "WL": {
+      "codes": [
+        {
+          "code": "PAYTM",
+          "merchant_code": "PAYTM",
+          "name": "Paytm"
+        },
+        {
+          "code": "MOBIKWIK",
+          "merchant_code": "MOBIKWIK",
+          "name": "Mobikwik"
+        }
+      ],
+      "networks": [],
+      "types": [],
+      "name": "Wallet"
+    },
+    "NB": {
+      "codes": [
+        {
+          "code": "HDFC",
+          "merchant_code": "HDFC",
+          "name": "HDFC Bank"
+        },
+        {
+          "code": "ICIC",
+          "merchant_code": "ICIC",
+          "name": "ICICI Bank"
+        }
+      ],
+      "networks": [],
+      "types": [],
+      "name": "Net Banking"
+    },
+    "CARD": {
+      "codes": [
+        {
+          "code": "ICICI",
+          "merchant_code": "ICICI",
+          "name": "ICICI Bank"
+        },
+        {
+          "code": "AXIS",
+          "merchant_code": "AXIS",
+          "name": "AXIS Bank"
+        }
+      ],
+      "networks": [
+        "RUPAY",
+        "VISA",
+        "MASTERCARD",
+        "MAESTRO",
+        "AMERICANEXPRESS",
+        "DINERSCLUB"
+      ],
+      "types": [
+        "CREDIT",
+        "DEBIT"
+      ],
+      "name": "CARD"
+    }
   }
 }
 ```
@@ -2510,141 +2619,6 @@ Success
       }
     ]
   }
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### getPlatformPaymentConfig
-API to fetch the payment options of the merchant for paltform
-
-
-
-```javascript
-// Promise
-const promise = platformClient.application("<APPLICATION_ID>").payment.getPlatformPaymentConfig();
-
-// Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").payment.getPlatformPaymentConfig();
-```
-
-
-
-
-
-
-Use this API to fetch the payment options.
-
-*Returned Response:*
-
-
-
-
-[PlatfromPaymentConfig](#PlatfromPaymentConfig)
-
-Success. Returns the status of API. Check the example shown below or refer `PlatfromPaymentConfigSchema` for more details.
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "success": true,
-  "data": {
-    "payment": {
-      "source": "ECOMM",
-      "enabled": true,
-      "methods": {
-        "pl": {
-          "enabled": true
-        },
-        "card": {
-          "enabled": true
-        },
-        "nb": {
-          "enabled": true
-        },
-        "wl": {
-          "enabled": true
-        },
-        "ps": {
-          "enabled": true
-        },
-        "upi": {
-          "enabled": true
-        },
-        "qr": {
-          "enabled": true
-        },
-        "cod": {
-          "enabled": true
-        },
-        "pp": {
-          "enabled": false
-        },
-        "jp": {
-          "enabled": false
-        },
-        "pac": {
-          "enabled": false
-        },
-        "fc": {
-          "enabled": false
-        },
-        "jiopp": {
-          "enabled": false
-        },
-        "jiopplink": {
-          "enabled": false
-        },
-        "stripepg": {
-          "enabled": false
-        },
-        "juspaypg": {
-          "enabled": false
-        },
-        "payubizpg": {
-          "enabled": false
-        },
-        "payumoneypg": {
-          "enabled": false
-        },
-        "rupifipg": {
-          "enabled": false
-        },
-        "simpl": {
-          "enabled": true
-        }
-      },
-      "cod_charges": 0,
-      "callback_url": {
-        "app": "",
-        "web": ""
-      },
-      "anonymous_cod": false,
-      "mode_of_payment": "ECOMM",
-      "cod_amount_limit": 49000,
-      "payment_selection_lock": {
-        "enabled": false,
-        "default_options": "",
-        "payment_identifier": ""
-      }
-    }
-  },
-  "message": "Platform merchant payment data fetched"
 }
 ```
 </details>
@@ -4429,6 +4403,68 @@ Success. Check the example shown below or refer `PaymentInitializationResponse` 
 ---
 
 
+### merchantOnBoarding
+API to push Ajiodhan merchant data to Gringotts system
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").payment.merchantOnBoarding({  body : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").payment.merchantOnBoarding({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [MerchantOnBoardingRequest](#MerchantOnBoardingRequest) | yes | Request body |
+
+
+Use this API to push Ajiodhan merchant data to Gringotts system
+
+*Returned Response:*
+
+
+
+
+[MerchantOnBoardingResponse](#MerchantOnBoardingResponse)
+
+Success. Returns the status of API. Check the example shown below or refer `RepaymentResponseSchema` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "success": true,
+  "data": {
+    "status": true,
+    "status_code": 200,
+    "message": "Merchant onboarding details saved"
+  }
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
 ### oauthGetUrl
 API to Get the url to call for oauth
 
@@ -4670,6 +4706,66 @@ Success. Check the example shown below
   "amount": 21900,
   "order_id": "FY62B3FF87016F24A4E6",
   "status_code": 200
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### repaymentDetails
+API to register repayment details
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").payment.repaymentDetails({  body : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").payment.repaymentDetails({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [RepaymentDetailsSerialiserPayAll](#RepaymentDetailsSerialiserPayAll) | yes | Request body |
+
+
+Use this API to register any repayment record in the db and notify the aggrgator
+
+*Returned Response:*
+
+
+
+
+[RepaymentResponse](#RepaymentResponse)
+
+Success. Returns the status of API. Check the example shown below or refer `RepaymentResponseSchema` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "success": true,
+  "data": {
+    "status": true
+  }
 }
 ```
 </details>
@@ -5285,145 +5381,6 @@ save payout response object
 ---
 
 
-### updatePlatformPaymentConfig
-API to update the payment options of the merchant for paltform
-
-
-
-```javascript
-// Promise
-const promise = platformClient.application("<APPLICATION_ID>").payment.updatePlatformPaymentConfig({  body : value });
-
-// Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").payment.updatePlatformPaymentConfig({  body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |
-| body | [UpdatePlatformPaymentConfig](#UpdatePlatformPaymentConfig) | yes | Request body |
-
-
-Use this API to update the payment options.
-
-*Returned Response:*
-
-
-
-
-[PlatfromPaymentConfig](#PlatfromPaymentConfig)
-
-Success. Returns the status of API. Check the example shown below or refer `PlatfromPaymentConfigSchema` for more details.
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "success": true,
-  "data": {
-    "payment": {
-      "source": "ECOMM",
-      "enabled": true,
-      "methods": {
-        "pl": {
-          "enabled": true
-        },
-        "card": {
-          "enabled": true
-        },
-        "nb": {
-          "enabled": true
-        },
-        "wl": {
-          "enabled": true
-        },
-        "ps": {
-          "enabled": true
-        },
-        "upi": {
-          "enabled": true
-        },
-        "qr": {
-          "enabled": true
-        },
-        "cod": {
-          "enabled": true
-        },
-        "pp": {
-          "enabled": false
-        },
-        "jp": {
-          "enabled": false
-        },
-        "pac": {
-          "enabled": false
-        },
-        "fc": {
-          "enabled": false
-        },
-        "jiopp": {
-          "enabled": false
-        },
-        "jiopplink": {
-          "enabled": false
-        },
-        "stripepg": {
-          "enabled": false
-        },
-        "juspaypg": {
-          "enabled": false
-        },
-        "payubizpg": {
-          "enabled": false
-        },
-        "payumoneypg": {
-          "enabled": false
-        },
-        "rupifipg": {
-          "enabled": false
-        },
-        "simpl": {
-          "enabled": true
-        }
-      },
-      "cod_charges": 0,
-      "callback_url": {
-        "app": "",
-        "web": ""
-      },
-      "anonymous_cod": false,
-      "mode_of_payment": "ECOMM",
-      "cod_amount_limit": 49000,
-      "payment_selection_lock": {
-        "enabled": false,
-        "default_options": "",
-        "payment_identifier": ""
-      }
-    }
-  },
-  "message": "Platform merchant payment data fetched"
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
 ### verifyCustomerForPayment
 Validate customer for payment
 
@@ -5654,6 +5611,17 @@ Bank details on correct Ifsc Code
  | remaining_limit | number |  no  | Remaining Limit for COD of User |
  | usages | number |  no  | Used COD limit from the user Limit |
  | user_id | string |  no  | Payment mode name |
+ 
+
+---
+
+#### [Code](#Code)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | code | string |  no  | Payment Method Code |
+ | merchant_code | string |  no  | Merchant Payment Code |
+ | name | string |  no  | Name of payment method |
  
 
 ---
@@ -5895,6 +5863,25 @@ Bank details on correct Ifsc Code
 
 ---
 
+#### [GetPaymentCode](#GetPaymentCode)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | method_code | [PaymentCode](#PaymentCode) |  no  | Payment method code |
+ 
+
+---
+
+#### [GetPaymentCodeResponse](#GetPaymentCodeResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | data | [GetPaymentCode](#GetPaymentCode) |  no  | Data about Payment Code. |
+ | success | boolean |  no  | Response is successful or not. |
+ 
+
+---
+
 #### [GetPaymentLinkResponse](#GetPaymentLinkResponse)
 
  | Properties | Type | Nullable | Description |
@@ -5971,6 +5958,29 @@ Bank details on correct Ifsc Code
  | ---------- | ---- | -------- | ----------- |
  | message | string |  no  | Message |
  | status | boolean |  no  | Link action status |
+ 
+
+---
+
+#### [MerchantOnBoardingRequest](#MerchantOnBoardingRequest)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | aggregator | string |  no  | Payment aggregator name |
+ | app_id | string |  no  | Application id |
+ | credit_line_id | string |  no  | Merchant ID at Ajiodhan's end |
+ | status | string |  no  | Status |
+ | user_id | string |  no  | Deadlock/Grimlock user id |
+ 
+
+---
+
+#### [MerchantOnBoardingResponse](#MerchantOnBoardingResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | data | string |  no  |  |
+ | success | boolean |  no  | Success/Failure of the transaction |
  
 
 ---
@@ -6057,6 +6067,18 @@ Bank details on correct Ifsc Code
  | item_total | number |  no  | Total number of items |
  | size | number |  no  | Total number of pages |
  | type | string |  no  | Type of pagination used |
+ 
+
+---
+
+#### [PaymentCode](#PaymentCode)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | codes | [Code](#Code) |  no  | List of dict that contains payment method data |
+ | name | string |  no  | name of payment name |
+ | networks | string |  no  | payment networks |
+ | types | string |  no  | Type of payment mode |
  
 
 ---
@@ -6159,15 +6181,11 @@ Bank details on correct Ifsc Code
  | aggregator_order_id | string? |  yes  | Payment order id |
  | amount | number? |  yes  | Payable amount. |
  | bqr_image | string? |  yes  | Bharath qr image url. |
- | contact | string? |  yes  | Customer valid mobile number |
  | currency | string? |  yes  | Currency code. |
  | customer_id | string? |  yes  | Payment gateway customer id. |
  | device_id | string? |  yes  | EDC machine Unique Identifier |
- | email | string? |  yes  | Customer valid email |
  | merchant_order_id | string |  no  | order id |
  | method | string |  no  | Payment method |
- | order_id | string? |  yes  | Payment gateway order id |
- | payment_id | string? |  yes  | Payment id. |
  | polling_url | string |  no  | Polling url. |
  | razorpay_payment_id | string? |  yes  | Payment  id. |
  | status | string? |  yes  | Status of payment. |
@@ -6314,17 +6332,15 @@ Bank details on correct Ifsc Code
  | ---------- | ---- | -------- | ----------- |
  | aggregator | string |  no  | Payment gateway name |
  | amount | number |  no  | Payable amount. |
- | contact | string? |  yes  | Customer valid mobile number |
- | currency | string? |  yes  | Currency code. |
+ | contact | string |  no  | Customer valid mobile number |
+ | currency | string |  no  | Currency code. |
  | customer_id | string |  no  | Payment gateway customer id. |
  | device_id | string? |  yes  | EDC machine Unique Identifier |
- | email | string? |  yes  | Customer valid email |
+ | email | string |  no  | Customer valid email |
  | merchant_order_id | string |  no  | Unique fynd order id |
  | merchant_transaction_id | string |  no  | Unique fynd transaction id |
  | method | string |  no  | Payment method |
- | order_id | string? |  yes  | Payment gateway order id |
- | payment_id | string? |  yes  | Payment id. |
- | razorpay_payment_id | string? |  yes  | Payment  id. |
+ | order_id | string |  no  | Payment gateway order id |
  | status | string |  no  | Status of payment. |
  | vpa | string? |  yes  | Customer vpa address |
  
@@ -6344,32 +6360,6 @@ Bank details on correct Ifsc Code
 
 ---
 
-#### [Payout](#Payout)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | customers | [PayoutCustomer](#PayoutCustomer) |  no  | customers details object |
- | is_active | boolean |  no  | Enable/DIsable Flag Payout |
- | is_default | boolean |  no  | default or not  |
- | more_attributes | [PayoutMoreAttributes](#PayoutMoreAttributes) |  no  | bank details object |
- | payouts_aggregators | [[PayoutAggregator](#PayoutAggregator)]? |  yes  |  |
- | transfer_type | string |  no  | transafer type |
- | unique_transfer_no | string |  no  | display priority of the payment mode |
- 
-
----
-
-#### [PayoutAggregator](#PayoutAggregator)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | aggregator_fund_id | number? |  yes  | aggregator_fund_id |
- | aggregator_id | number? |  yes  | aggregator_id |
- | payout_details_id | number? |  yes  | payout_details_id |
- 
-
----
-
 #### [PayoutBankDetails](#PayoutBankDetails)
 
  | Properties | Type | Nullable | Description |
@@ -6384,36 +6374,6 @@ Bank details on correct Ifsc Code
  | ifsc_code | string |  no  |  |
  | pincode | number? |  yes  |  |
  | state | string? |  yes  |  |
- 
-
----
-
-#### [PayoutCustomer](#PayoutCustomer)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | email | string? |  yes  | Customer Email |
- | id | number? |  yes  | Customer ID |
- | mobile | string? |  yes  | Customer Mobile No |
- | name | string? |  yes  | Customer Name |
- | unique_external_id | string? |  yes  | unique_external_id |
- 
-
----
-
-#### [PayoutMoreAttributes](#PayoutMoreAttributes)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | account_holder | string? |  yes  | Account Holder Name |
- | account_no | string? |  yes  | Account Number |
- | account_type | string? |  yes  | Account Type Saving/Current |
- | bank_name | string? |  yes  | Name of Bank |
- | branch_name | string? |  yes  | Branch Name |
- | city | string? |  yes  | City |
- | country | string? |  yes  | Country |
- | ifsc_code | string? |  yes  | IFSC Code |
- | state | string? |  yes  | State |
  
 
 ---
@@ -6454,36 +6414,13 @@ Bank details on correct Ifsc Code
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | items | [[Payout](#Payout)] |  no  | contains list of PayoutSchema |
- | success | boolean |  no  | Response is successful or not |
- 
-
----
-
-#### [PlatformPaymentOptions](#PlatformPaymentOptions)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | anonymous_cod | boolean? |  yes  |  |
- | callback_url | string? |  yes  |  |
- | cod_amount_limit | number? |  yes  |  |
- | cod_charges | number? |  yes  |  |
- | enabled | boolean |  no  |  |
- | methods | string |  no  |  |
- | mode_of_payment | string |  no  |  |
- | payment_selection_lock | string? |  yes  |  |
- | source | string |  no  |  |
- 
-
----
-
-#### [PlatfromPaymentConfig](#PlatfromPaymentConfig)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | data | [PlatformPaymentOptions](#PlatformPaymentOptions) |  no  |  |
- | message | string |  no  | Human readable message. |
- | success | boolean |  no  |  |
+ | customers | string |  no  | customers details object |
+ | is_active | boolean |  no  | Enable/DIsable Flag Payout |
+ | is_default | boolean |  no  | default or not  |
+ | more_attributes | string |  no  | bank details object |
+ | payouts_aggregators | [string] |  no  | payout aggregator object |
+ | transfer_type | string |  no  | transafer type |
+ | unique_transfer_no | string |  no  | display priority of the payment mode |
  
 
 ---
@@ -6514,6 +6451,47 @@ Bank details on correct Ifsc Code
  | is_verified_flag | boolean? |  yes  |  |
  | message | string |  no  | Response message |
  | success | boolean |  no  | Success or failure flag. |
+ 
+
+---
+
+#### [RepaymentDetailsSerialiserPayAll](#RepaymentDetailsSerialiserPayAll)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | aggregator_order_id | string |  no  | Id of payment gateway |
+ | aggregator_transaction_id | string |  no  | Unique Id for the transaction |
+ | extension_order_id | string |  no  | Order id created in extension |
+ | shipment_details | [[RepaymentRequestDetails](#RepaymentRequestDetails)]? |  yes  |  |
+ | total_amount | number |  no  | total amount |
+ 
+
+---
+
+#### [RepaymentRequestDetails](#RepaymentRequestDetails)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | aggregator | string |  no  | Name of Payment Gateway |
+ | aggregator_order_id | string |  no  | Id of payment gateway |
+ | aggregator_transaction_id | string |  no  | Unique Id for the transaction |
+ | amount | number |  no  | Amount to paid back |
+ | current_status | string |  no  | Status |
+ | fwd_shipment_id | string |  no  | Purchase Shipment Id |
+ | merchant_order_id | string |  no  | Merchant's Order Id |
+ | outstanding_details_id | number |  no  | Outstanding details ID |
+ | payment_mode | string |  no  | Payment Mode |
+ | payment_mode_identifier | string |  no  | Payment Mode Id |
+ 
+
+---
+
+#### [RepaymentResponse](#RepaymentResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | data | string |  no  |  |
+ | success | boolean |  no  | Success/Failure of the transaction |
  
 
 ---
@@ -6671,19 +6649,6 @@ Bank details on correct Ifsc Code
 
 ---
 
-#### [UpdatePlatformPaymentConfig](#UpdatePlatformPaymentConfig)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | anonymous_cod | boolean? |  yes  |  |
- | cod_amount_limit | number? |  yes  |  |
- | cod_charges | number? |  yes  |  |
- | methods | string |  no  |  |
- | payment_selection_lock | string? |  yes  |  |
- 
-
----
-
 #### [ValidateCustomerRequest](#ValidateCustomerRequest)
 
  | Properties | Type | Nullable | Description |
@@ -6704,8 +6669,7 @@ Bank details on correct Ifsc Code
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | data | string? |  yes  | Payment gateway response data |
- | error | string? |  yes  | error details |
+ | data | string |  no  | Payment gateway response data |
  | message | string |  no  | Error or success message. |
  | success | boolean |  no  | Response is successful or not |
  

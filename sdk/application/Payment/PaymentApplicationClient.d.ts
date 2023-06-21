@@ -7,6 +7,7 @@ declare class Payment {
         addRefundBankAccountUsingOTP: string;
         attachCardToCustomer: string;
         cancelPaymentLink: string;
+        cardDetails: string;
         checkAndUpdatePaymentStatus: string;
         checkAndUpdatePaymentStatusPaymentLink: string;
         checkCredit: string;
@@ -30,6 +31,8 @@ declare class Payment {
         getUserBeneficiariesDetail: string;
         initialisePayment: string;
         initialisePaymentPaymentLink: string;
+        outstandingOrderDetails: string;
+        paidOrderDetails: string;
         pollingPaymentLink: string;
         redirectToAggregator: string;
         renderHTML: string;
@@ -85,6 +88,18 @@ declare class Payment {
     cancelPaymentLink({ body }?: {
         body: CancelOrResendPaymentLinkRequest;
     }): Promise<CancelPaymentLinkResponse>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {string} arg.cardInfo - Card first 6 digit IIN(prefix) number.
+     * @param {string} [arg.aggregator] -
+     * @returns {Promise<CardDetailsResponse>} - Success response
+     * @summary: API to get Card info from PG
+     * @description: API to get Card info from PG
+     */
+    cardDetails({ cardInfo, aggregator }?: {
+        cardInfo: string;
+        aggregator?: string;
+    }): Promise<CardDetailsResponse>;
     /**
      * @param {Object} arg - Arg object.
      * @param {PaymentStatusUpdateRequest} arg.body
@@ -348,6 +363,26 @@ declare class Payment {
     initialisePaymentPaymentLink({ body }?: {
         body: PaymentInitializationRequest;
     }): Promise<PaymentInitializationResponse>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {string} [arg.aggregator] -
+     * @returns {Promise<OutstandingOrderDetailsResponse>} - Success response
+     * @summary: API to fetch the outstanding order details
+     * @description: Use this API to fetch the outstanding order details.
+     */
+    outstandingOrderDetails({ aggregator }?: {
+        aggregator?: string;
+    }): Promise<OutstandingOrderDetailsResponse>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {string} [arg.aggregator] -
+     * @returns {Promise<PaidOrderDetailsResponse>} - Success response
+     * @summary: API to fetch the paid order details
+     * @description: Use this API to fetch the paid order details.
+     */
+    paidOrderDetails({ aggregator }?: {
+        aggregator?: string;
+    }): Promise<PaidOrderDetailsResponse>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} [arg.paymentLinkId] -

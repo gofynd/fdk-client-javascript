@@ -5,6 +5,7 @@ declare class PaymentModel {
     static CancelOrResendPaymentLinkRequest(): any;
     static CancelPaymentLinkResponse(): any;
     static CODdata(): any;
+    static Code(): any;
     static CreatePaymentLinkMeta(): any;
     static CreatePaymentLinkRequest(): any;
     static CreatePaymentLinkResponse(): any;
@@ -25,6 +26,8 @@ declare class PaymentModel {
     static ErrorDescription(): any;
     static ErrorResponse(): any;
     static GetOauthUrlResponse(): any;
+    static GetPaymentCode(): any;
+    static GetPaymentCodeResponse(): any;
     static GetPaymentLinkResponse(): any;
     static GetUserCODLimitResponse(): any;
     static HttpErrorCodeAndResponse(): any;
@@ -32,12 +35,15 @@ declare class PaymentModel {
     static IntentApp(): any;
     static IntentAppErrorList(): any;
     static LinkStatus(): any;
+    static MerchantOnBoardingRequest(): any;
+    static MerchantOnBoardingResponse(): any;
     static MultiTenderPaymentMeta(): any;
     static MultiTenderPaymentMethod(): any;
     static NotFoundResourceError(): any;
     static OrderBeneficiaryDetails(): any;
     static OrderBeneficiaryResponse(): any;
     static Page(): any;
+    static PaymentCode(): any;
     static PaymentConfirmationRequest(): any;
     static PaymentConfirmationResponse(): any;
     static PaymentGatewayConfig(): any;
@@ -56,18 +62,15 @@ declare class PaymentModel {
     static PaymentStatusObject(): any;
     static PaymentStatusUpdateRequest(): any;
     static PaymentStatusUpdateResponse(): any;
-    static Payout(): any;
-    static PayoutAggregator(): any;
     static PayoutBankDetails(): any;
-    static PayoutCustomer(): any;
-    static PayoutMoreAttributes(): any;
     static PayoutRequest(): any;
     static PayoutResponse(): any;
     static PayoutsResponse(): any;
-    static PlatformPaymentOptions(): any;
-    static PlatfromPaymentConfig(): any;
     static PollingPaymentLinkResponse(): any;
     static RefundAccountResponse(): any;
+    static RepaymentDetailsSerialiserPayAll(): any;
+    static RepaymentRequestDetails(): any;
+    static RepaymentResponse(): any;
     static ResendOrCancelPaymentRequest(): any;
     static ResendOrCancelPaymentResponse(): any;
     static ResendPaymentLinkResponse(): any;
@@ -82,7 +85,6 @@ declare class PaymentModel {
     static SubscriptionPaymentMethodResponse(): any;
     static UpdatePayoutRequest(): any;
     static UpdatePayoutResponse(): any;
-    static UpdatePlatformPaymentConfig(): any;
     static ValidateCustomerRequest(): any;
     static ValidateCustomerResponse(): any;
 }

@@ -700,6 +700,7 @@ class PlatformApplicationClient {
 /** @typedef CancelOrResendPaymentLinkRequest */
 /** @typedef CancelPaymentLinkResponse */
 /** @typedef CODdata */
+/** @typedef Code */
 /** @typedef CreatePaymentLinkMeta */
 /** @typedef CreatePaymentLinkRequest */
 /** @typedef CreatePaymentLinkResponse */
@@ -720,6 +721,8 @@ class PlatformApplicationClient {
 /** @typedef ErrorDescription */
 /** @typedef ErrorResponse */
 /** @typedef GetOauthUrlResponse */
+/** @typedef GetPaymentCode */
+/** @typedef GetPaymentCodeResponse */
 /** @typedef GetPaymentLinkResponse */
 /** @typedef GetUserCODLimitResponse */
 /** @typedef HttpErrorCodeAndResponse */
@@ -727,12 +730,15 @@ class PlatformApplicationClient {
 /** @typedef IntentApp */
 /** @typedef IntentAppErrorList */
 /** @typedef LinkStatus */
+/** @typedef MerchantOnBoardingRequest */
+/** @typedef MerchantOnBoardingResponse */
 /** @typedef MultiTenderPaymentMeta */
 /** @typedef MultiTenderPaymentMethod */
 /** @typedef NotFoundResourceError */
 /** @typedef OrderBeneficiaryDetails */
 /** @typedef OrderBeneficiaryResponse */
 /** @typedef Page */
+/** @typedef PaymentCode */
 /** @typedef PaymentConfirmationRequest */
 /** @typedef PaymentConfirmationResponse */
 /** @typedef PaymentGatewayConfig */
@@ -751,18 +757,15 @@ class PlatformApplicationClient {
 /** @typedef PaymentStatusObject */
 /** @typedef PaymentStatusUpdateRequest */
 /** @typedef PaymentStatusUpdateResponse */
-/** @typedef Payout */
-/** @typedef PayoutAggregator */
 /** @typedef PayoutBankDetails */
-/** @typedef PayoutCustomer */
-/** @typedef PayoutMoreAttributes */
 /** @typedef PayoutRequest */
 /** @typedef PayoutResponse */
 /** @typedef PayoutsResponse */
-/** @typedef PlatformPaymentOptions */
-/** @typedef PlatfromPaymentConfig */
 /** @typedef PollingPaymentLinkResponse */
 /** @typedef RefundAccountResponse */
+/** @typedef RepaymentDetailsSerialiserPayAll */
+/** @typedef RepaymentRequestDetails */
+/** @typedef RepaymentResponse */
 /** @typedef ResendOrCancelPaymentRequest */
 /** @typedef ResendOrCancelPaymentResponse */
 /** @typedef ResendPaymentLinkResponse */
@@ -777,7 +780,6 @@ class PlatformApplicationClient {
 /** @typedef SubscriptionPaymentMethodResponse */
 /** @typedef UpdatePayoutRequest */
 /** @typedef UpdatePayoutResponse */
-/** @typedef UpdatePlatformPaymentConfig */
 /** @typedef ValidateCustomerRequest */
 /** @typedef ValidateCustomerResponse */
 
@@ -962,6 +964,7 @@ class PlatformApplicationClient {
 /** @typedef RefundModeConfigRequestPayload */
 /** @typedef RefundModeConfigResponsePayload */
 /** @typedef RefundModeInfo */
+/** @typedef RefundOption */
 /** @typedef ReplacementDetails */
 /** @typedef ResponseDetail */
 /** @typedef ResponseGetAssetShipment */
@@ -993,7 +996,6 @@ class PlatformApplicationClient {
 /** @typedef ShipmentTags */
 /** @typedef ShipmentTimeStamp */
 /** @typedef ShippingInfo */
-/** @typedef SingleRefundModeInfo */
 /** @typedef SmsDataPayload */
 /** @typedef StatuesRequest */
 /** @typedef StatuesResponse */
@@ -1898,14 +1900,12 @@ class PlatformApplicationClient {
 /** @typedef AuthMeta */
 /** @typedef EventConfig */
 /** @typedef EventConfigBase */
-/** @typedef EventConfigDetails */
 /** @typedef EventConfigList */
 /** @typedef EventConfigResponse */
 /** @typedef EventPayload */
 /** @typedef EventProcessedStatus */
 /** @typedef Page */
 /** @typedef SubscriberConfig */
-/** @typedef SubscriberConfigDetails */
 /** @typedef SubscriberConfigList */
 /** @typedef SubscriberEvent */
 /** @typedef SubscriberResponse */

@@ -1377,8 +1377,8 @@ Returns a success response
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | landscape | string |  no  |  |
- | portrait | string |  no  |  |
+ | landscape | string? |  yes  |  |
+ | portrait | string? |  yes  |  |
  
 
 ---
@@ -1829,6 +1829,7 @@ Returns a success response
  | name | string |  no  |  |
  | notification_emails | [string]? |  yes  |  |
  | product_return_config | [ProductReturnConfigSerializer](#ProductReturnConfigSerializer)? |  yes  |  |
+ | slug | string? |  yes  |  |
  | stage | string? |  yes  |  |
  | store_type | string? |  yes  |  |
  | timing | [[LocationDayWiseSerializer](#LocationDayWiseSerializer)]? |  yes  |  |
@@ -1925,6 +1926,7 @@ Returns a success response
  | name | string? |  yes  |  |
  | notification_emails | [string]? |  yes  |  |
  | reject_reason | string? |  yes  |  |
+ | slug | string? |  yes  |  |
  | taxes | [[CompanyTaxesSerializer1](#CompanyTaxesSerializer1)]? |  yes  |  |
  | warnings | string? |  yes  |  |
  

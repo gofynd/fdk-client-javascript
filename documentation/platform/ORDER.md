@@ -1411,13 +1411,13 @@ const data = await platformClient.order.getBags({  bagIds : value,
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
-| bagIds | string | no | comma-seperated values of bag ids |    
-| shipmentIds | string | no | comma-seperated values of shipment ids |    
-| orderIds | string | no | comma-seperated values of order ids |    
-| channelBagIds | string | no | comma-seperated values of app bag ids |    
-| channelShipmentIds | string | no | comma-seperated values of app shipment ids |    
-| channelOrderIds | string | no | comma-seperated values of app order ids |    
-| channelId | string | no | comma-seperated values of app ids |    
+| bagIds | string | no | Comma separated values of bag ids |    
+| shipmentIds | string | no | Comma separated values of shipment ids |    
+| orderIds | string | no | Comma separated values of order ids |    
+| channelBagIds | string | no | Comma separated values of app bag ids |    
+| channelShipmentIds | string | no | Comma separated values of app shipment ids |    
+| channelOrderIds | string | no | Comma separated values of app order ids |    
+| channelId | string | no | Comma separated values of app ids |    
 | pageNo | number | no | Page number for paginated data |    
 | pageSize | number | no | Page size of data received per page |  
 
@@ -1555,14 +1555,14 @@ const data = await platformClient.order.getBulkShipmentExcelFile({  salesChannel
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
-| salesChannels | string | no | Comma seperated values of sales channel ids |    
-| dpIds | string | no | Comma seperated values of delivery partner ids |    
+| salesChannels | string | no | Comma separated values of sales channel ids |    
+| dpIds | string | no | Comma separated values of delivery partner ids |    
 | fromDate | string | no | Start Date in DD-MM-YYYY format |    
 | toDate | string | no | End Date in DD-MM-YYYY format |    
-| stores | string | no | Comma seperated values of store ids |    
-| tags | string | no | Comma seperated values of tags |    
-| bagStatus | string | no | Comma seperated values of bag statuses |    
-| paymentMethods | string | no | Comma seperated values of payment methods |    
+| stores | string | no | Comma separated values of store ids |    
+| tags | string | no | Comma separated values of tags |    
+| bagStatus | string | no | Comma separated values of bag statuses |    
+| paymentMethods | string | no | Comma separated values of payment methods |    
 | fileType | string | no | File type to be downloaded |    
 | timeToDispatch | number | no | Sla breached or not breached |    
 | pageNo | number | no |  |    
@@ -1731,11 +1731,11 @@ const data = await platformClient.order.getLaneConfig({  superLane : value,
 | groupEntity | string | no | Name of group entity |    
 | fromDate | string | no | Start Date in DD-MM-YYYY format |    
 | toDate | string | no | End Date in DD-MM-YYYY format |    
-| dpIds | string | no | Comma seperated values of delivery partner ids |    
-| stores | string | no | Comma seperated values of store ids |    
+| dpIds | string | no | Comma separated values of delivery partner ids |    
+| stores | string | no | Comma separated values of store ids |    
 | salesChannels | string | no |  |    
-| paymentMode | string | no | Comma seperated values of payment modes |    
-| bagStatus | string | no | Comma seperated values of bag statuses |    
+| paymentMode | string | no | Comma separated values of payment modes |    
+| bagStatus | string | no | Comma separated values of bag statuses |    
 | searchType | string | no |  |    
 | searchValue | string | no |  |    
 | tags | string | no |  |    
@@ -3564,21 +3564,21 @@ const data = await platformClient.order.getShipments({  lane : value,
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
 | lane | string | no | Name of lane for which data is to be fetched |    
-| bagStatus | string | no | Comma seperated values of bag statuses |    
+| bagStatus | string | no | Comma separated values of bag statuses |    
 | statusOverrideLane | boolean | no | Use this flag to fetch by bag_status and override lane |    
 | timeToDispatch | string | no |  |    
 | searchType | string | no | Search type key |    
 | searchValue | string | no | Search type value |    
 | fromDate | string | no | Start Date in DD-MM-YYYY format |    
 | toDate | string | no | End Date in DD-MM-YYYY format |    
-| dpIds | string | no | Comma seperated values of delivery partner ids |    
-| stores | string | no | Comma seperated values of store ids |    
-| salesChannels | string | no | Comma seperated values of sales channel ids |    
+| dpIds | string | no | Comma separated values of delivery partner ids |    
+| stores | string | no | Comma separated values of store ids |    
+| salesChannels | string | no | Comma separated values of sales channel ids |    
 | pageNo | number | no | Page number for paginated data |    
 | pageSize | number | no | Page size of data received per page |    
 | fetchActiveShipment | boolean | no | flag to fetch active shipments |    
 | excludeLockedShipments | boolean | no | flag to fetch locked shipments |    
-| paymentMethods | string | no | Comma seperated values of payment methods |    
+| paymentMethods | string | no | Comma separated values of payment methods |    
 | channelShipmentId | string | no | App Shipment Id |    
 | channelOrderId | string | no | App Order Id |    
 | customMeta | string | no |  |    
@@ -6931,7 +6931,7 @@ Verify OTP
  | country_code | string? |  yes  |  |
  | first_name | string |  no  |  |
  | last_name | string |  no  |  |
- | mobile | number |  no  |  |
+ | mobile | string |  no  |  |
  
 
 ---
@@ -6966,7 +6966,7 @@ Verify OTP
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | docker_number | string? |  yes  |  |
+ | docket_number | string? |  yes  |  |
  | item_base_price | number? |  yes  |  |
  | partial_can_ret | boolean? |  yes  |  |
  | po_line_amount | number? |  yes  |  |
@@ -7388,8 +7388,8 @@ Verify OTP
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | call_id | string |  no  |  |
- | status | boolean |  no  |  |
+ | call_id | string |  no  | Call ID from the provider |
+ | success | boolean |  no  | Success |
  
 
 ---
@@ -7994,19 +7994,19 @@ Verify OTP
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | assigned_agent | string? |  yes  |  |
- | bag_id | number? |  yes  |  |
- | createdat | string |  no  |  |
- | display_message | string? |  yes  |  |
- | l1_detail | string? |  yes  |  |
- | l2_detail | string? |  yes  |  |
- | l3_detail | string? |  yes  |  |
- | message | string |  no  |  |
- | meta | string? |  yes  |  |
- | ticket_id | string? |  yes  |  |
- | ticket_url | string? |  yes  |  |
- | type | string |  no  |  |
- | user | string |  no  |  |
+ | assigned_agent | string? |  yes  | Assigned Agent |
+ | bag_id | number? |  yes  | Bag ID |
+ | createdat | string |  no  | Create date |
+ | display_message | string? |  yes  | Display Message |
+ | l1_detail | string? |  yes  | L1 details of bag |
+ | l2_detail | string? |  yes  | L2 details of bag |
+ | l3_detail | string? |  yes  | L3 details of bag |
+ | message | string |  no  | History Message or comment |
+ | meta | string? |  yes  | meta |
+ | ticket_id | string? |  yes  | Ticket ID |
+ | ticket_url | string? |  yes  | Ticket URL |
+ | type | string |  no  | type of history, Expected Values:             [ activity_status, activity_escalation, activity_comment, outbound_notification, outbound_voice ] |
+ | user | string |  no  | User who created the history |
  
 
 ---
@@ -9056,7 +9056,6 @@ Verify OTP
  | affiliate_id | string |  no  |  |
  | customer_mobile_number | string? |  yes  |  |
  | fynd_order_id | string |  no  |  |
- | ordering_channel | string |  no  |  |
  | seller_id | string |  no  |  |
  
 
@@ -9066,7 +9065,7 @@ Verify OTP
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | data | [RefundModeInfo](#RefundModeInfo) |  no  |  |
+ | data | [[RefundModeInfo](#RefundModeInfo)] |  no  |  |
  | success | boolean |  no  |  |
  
 
@@ -9076,7 +9075,22 @@ Verify OTP
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | refund_mode_name | [SingleRefundModeInfo](#SingleRefundModeInfo)? |  yes  |  |
+ | display_name | string? |  yes  |  |
+ | is_active | boolean? |  yes  |  |
+ | options | [[RefundOption](#RefundOption)]? |  yes  |  |
+ | slug | string? |  yes  |  |
+ 
+
+---
+
+#### [RefundOption](#RefundOption)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | name | string? |  yes  |  |
+ | slug | string? |  yes  |  |
+ | type | string? |  yes  |  |
+ | value | string? |  yes  |  |
  
 
 ---
@@ -9138,9 +9152,9 @@ Verify OTP
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | bag_id | number |  no  |  |
- | data | [SmsDataPayload](#SmsDataPayload)? |  yes  |  |
- | slug | string |  no  |  |
+ | bag_id | number |  no  | bag_id for the activity history track |
+ | data | [SmsDataPayload](#SmsDataPayload)? |  yes  | SMS Data |
+ | slug | string |  no  | slug name for the template mapped in pointblank |
  
 
 ---
@@ -9150,7 +9164,7 @@ Verify OTP
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | country_code | string? |  yes  |  |
- | mobile | number |  no  |  |
+ | mobile | string |  no  |  |
  
 
 ---
@@ -9566,30 +9580,19 @@ Verify OTP
 
 ---
 
-#### [SingleRefundModeInfo](#SingleRefundModeInfo)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | display_name | string? |  yes  |  |
- | is_active | boolean? |  yes  |  |
- | slug | string? |  yes  |  |
- 
-
----
-
 #### [SmsDataPayload](#SmsDataPayload)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | amount_paid | number |  no  |  |
- | brand_name | string |  no  |  |
- | country_code | string |  no  |  |
- | customer_name | string |  no  |  |
- | message | string |  no  |  |
- | order_id | string |  no  |  |
- | payment_mode | string |  no  |  |
- | phone_number | number |  no  |  |
- | shipment_id | number |  no  |  |
+ | amount_paid | number? |  yes  | Data mapped in Communication template: amount_paid |
+ | brand_name | string? |  yes  | Data mapped in Communication template: brand_name |
+ | country_code | string |  no  | country code for SMS |
+ | customer_name | string? |  yes  | Data mapped in Communication template: customer_name |
+ | message | string |  no  | message to be send in SMS |
+ | order_id | string |  no  | orderId |
+ | payment_mode | string? |  yes  | Data mapped in Communication template: payment_mode |
+ | phone_number | number |  no  | phone number for communication |
+ | shipment_id | number |  no  | ShipmentId |
  
 
 ---
@@ -10022,6 +10025,7 @@ Verify OTP
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | mobile | string |  no  |  |
  | otp_code | number |  no  |  |
  | request_id | string |  no  |  |
  

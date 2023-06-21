@@ -128,6 +128,13 @@ declare class Payment {
     }): Promise<EdcDeviceDetailsResponse>;
     /**
      * @param {Object} arg - Arg object.
+     * @returns {Promise<GetPaymentCodeResponse>} - Success response
+     * @summary: List Payment Options Method Codes
+     * @description: Get all active List Payment Options Method Codes
+     */
+    getPaymentCodeOption({}?: any): Promise<GetPaymentCodeResponse>;
+    /**
+     * @param {Object} arg - Arg object.
      * @param {string} [arg.paymentLinkId] -
      * @returns {Promise<GetPaymentLinkResponse>} - Success response
      * @summary: Get payment link
@@ -148,13 +155,6 @@ declare class Payment {
         refresh: boolean;
         requestType: string;
     }): Promise<PaymentOptionsResponse>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @returns {Promise<PlatfromPaymentConfig>} - Success response
-     * @summary: API to fetch the payment options of the merchant for paltform
-     * @description: Use this API to fetch the payment options.
-     */
-    getPlatformPaymentConfig({}?: any): Promise<PlatfromPaymentConfig>;
     /**
      * @param {Object} arg - Arg object.
      * @param {number} arg.amount - Payable amount.
@@ -229,6 +229,16 @@ declare class Payment {
     }): Promise<PaymentInitializationResponse>;
     /**
      * @param {Object} arg - Arg object.
+     * @param {MerchantOnBoardingRequest} arg.body
+     * @returns {Promise<MerchantOnBoardingResponse>} - Success response
+     * @summary: API to push Ajiodhan merchant data to Gringotts system
+     * @description: Use this API to push Ajiodhan merchant data to Gringotts system
+     */
+    merchantOnBoarding({ body }?: {
+        body: MerchantOnBoardingRequest;
+    }): Promise<MerchantOnBoardingResponse>;
+    /**
+     * @param {Object} arg - Arg object.
      * @param {string} arg.aggregator - Aggregator
      * @param {string} [arg.successRedirectUrl] -
      * @param {string} [arg.failureRedirectUrl] -
@@ -261,6 +271,16 @@ declare class Payment {
     pollingPaymentLink({ paymentLinkId }?: {
         paymentLinkId?: string;
     }): Promise<PollingPaymentLinkResponse>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {RepaymentDetailsSerialiserPayAll} arg.body
+     * @returns {Promise<RepaymentResponse>} - Success response
+     * @summary: API to register repayment details
+     * @description: Use this API to register any repayment record in the db and notify the aggrgator
+     */
+    repaymentDetails({ body }?: {
+        body: RepaymentDetailsSerialiserPayAll;
+    }): Promise<RepaymentResponse>;
     /**
      * @param {Object} arg - Arg object.
      * @param {ResendOrCancelPaymentRequest} arg.body
@@ -321,16 +341,6 @@ declare class Payment {
     updateEdcDevice({ body }?: {
         body: EdcAddRequest;
     }): Promise<EdcDeviceAddResponse>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {UpdatePlatformPaymentConfig} arg.body
-     * @returns {Promise<PlatfromPaymentConfig>} - Success response
-     * @summary: API to update the payment options of the merchant for paltform
-     * @description: Use this API to update the payment options.
-     */
-    updatePlatformPaymentConfig({ body }?: {
-        body: UpdatePlatformPaymentConfig;
-    }): Promise<PlatfromPaymentConfig>;
     /**
      * @param {Object} arg - Arg object.
      * @param {ValidateCustomerRequest} arg.body

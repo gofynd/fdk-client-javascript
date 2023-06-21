@@ -74,6 +74,10 @@ class PaymentValidator {
     }).required();
   }
 
+  static getPaymentCodeOption() {
+    return Joi.object({}).required();
+  }
+
   static getPaymentLink() {
     return Joi.object({
       paymentLinkId: Joi.string().allow(""),
@@ -85,10 +89,6 @@ class PaymentValidator {
       refresh: Joi.boolean().required(),
       requestType: Joi.string().allow("").required(),
     }).required();
-  }
-
-  static getPlatformPaymentConfig() {
-    return Joi.object({}).required();
   }
 
   static getPosPaymentModeRoutes() {
@@ -129,6 +129,12 @@ class PaymentValidator {
     }).required();
   }
 
+  static merchantOnBoarding() {
+    return Joi.object({
+      body: PaymentModel.MerchantOnBoardingRequest().required(),
+    }).required();
+  }
+
   static oauthGetUrl() {
     return Joi.object({
       aggregator: Joi.string().allow("").required(),
@@ -146,6 +152,12 @@ class PaymentValidator {
   static pollingPaymentLink() {
     return Joi.object({
       paymentLinkId: Joi.string().allow(""),
+    }).required();
+  }
+
+  static repaymentDetails() {
+    return Joi.object({
+      body: PaymentModel.RepaymentDetailsSerialiserPayAll().required(),
     }).required();
   }
 
@@ -182,12 +194,6 @@ class PaymentValidator {
   static updateEdcDevice() {
     return Joi.object({
       body: PaymentModel.EdcAddRequest().required(),
-    }).required();
-  }
-
-  static updatePlatformPaymentConfig() {
-    return Joi.object({
-      body: PaymentModel.UpdatePlatformPaymentConfig().required(),
     }).required();
   }
 

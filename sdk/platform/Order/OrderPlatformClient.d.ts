@@ -167,14 +167,14 @@ declare class Order {
     }): Promise<BagDetailsPlatformResponse>;
     /**
      * @param {Object} arg - Arg object.
-     * @param {string} [arg.bagIds] - Comma-seperated values of bag ids
-     * @param {string} [arg.shipmentIds] - Comma-seperated values of shipment ids
-     * @param {string} [arg.orderIds] - Comma-seperated values of order ids
-     * @param {string} [arg.channelBagIds] - Comma-seperated values of app bag ids
-     * @param {string} [arg.channelShipmentIds] - Comma-seperated values of app
+     * @param {string} [arg.bagIds] - Comma separated values of bag ids
+     * @param {string} [arg.shipmentIds] - Comma separated values of shipment ids
+     * @param {string} [arg.orderIds] - Comma separated values of order ids
+     * @param {string} [arg.channelBagIds] - Comma separated values of app bag ids
+     * @param {string} [arg.channelShipmentIds] - Comma separated values of app
      *   shipment ids
-     * @param {string} [arg.channelOrderIds] - Comma-seperated values of app order ids
-     * @param {string} [arg.channelId] - Comma-seperated values of app ids
+     * @param {string} [arg.channelOrderIds] - Comma separated values of app order ids
+     * @param {string} [arg.channelId] - Comma separated values of app ids
      * @param {number} [arg.pageNo] - Page number for paginated data
      * @param {number} [arg.pageSize] - Page size of data received per page
      * @returns {Promise<GetBagsPlatformResponse>} - Success response
@@ -201,14 +201,14 @@ declare class Order {
     getBulkActionTemplate({}?: any): Promise<BulkActionTemplateResponse>;
     /**
      * @param {Object} arg - Arg object.
-     * @param {string} [arg.salesChannels] - Comma seperated values of sales channel ids
-     * @param {string} [arg.dpIds] - Comma seperated values of delivery partner ids
+     * @param {string} [arg.salesChannels] - Comma separated values of sales channel ids
+     * @param {string} [arg.dpIds] - Comma separated values of delivery partner ids
      * @param {string} [arg.fromDate] - Start Date in DD-MM-YYYY format
      * @param {string} [arg.toDate] - End Date in DD-MM-YYYY format
-     * @param {string} [arg.stores] - Comma seperated values of store ids
-     * @param {string} [arg.tags] - Comma seperated values of tags
-     * @param {string} [arg.bagStatus] - Comma seperated values of bag statuses
-     * @param {string} [arg.paymentMethods] - Comma seperated values of payment methods
+     * @param {string} [arg.stores] - Comma separated values of store ids
+     * @param {string} [arg.tags] - Comma separated values of tags
+     * @param {string} [arg.bagStatus] - Comma separated values of bag statuses
+     * @param {string} [arg.paymentMethods] - Comma separated values of payment methods
      * @param {string} [arg.fileType] - File type to be downloaded
      * @param {number} [arg.timeToDispatch] - Sla breached or not breached
      * @param {number} [arg.pageNo] -
@@ -244,11 +244,11 @@ declare class Order {
      * @param {string} [arg.groupEntity] - Name of group entity
      * @param {string} [arg.fromDate] - Start Date in DD-MM-YYYY format
      * @param {string} [arg.toDate] - End Date in DD-MM-YYYY format
-     * @param {string} [arg.dpIds] - Comma seperated values of delivery partner ids
-     * @param {string} [arg.stores] - Comma seperated values of store ids
+     * @param {string} [arg.dpIds] - Comma separated values of delivery partner ids
+     * @param {string} [arg.stores] - Comma separated values of store ids
      * @param {string} [arg.salesChannels] -
-     * @param {string} [arg.paymentMode] - Comma seperated values of payment modes
-     * @param {string} [arg.bagStatus] - Comma seperated values of bag statuses
+     * @param {string} [arg.paymentMode] - Comma separated values of payment modes
+     * @param {string} [arg.bagStatus] - Comma separated values of bag statuses
      * @param {string} [arg.searchType] -
      * @param {string} [arg.searchValue] -
      * @param {string} [arg.tags] -
@@ -407,7 +407,7 @@ declare class Order {
     /**
      * @param {Object} arg - Arg object.
      * @param {string} [arg.lane] - Name of lane for which data is to be fetched
-     * @param {string} [arg.bagStatus] - Comma seperated values of bag statuses
+     * @param {string} [arg.bagStatus] - Comma separated values of bag statuses
      * @param {boolean} [arg.statusOverrideLane] - Use this flag to fetch by
      *   bag_status and override lane
      * @param {string} [arg.timeToDispatch] -
@@ -415,14 +415,14 @@ declare class Order {
      * @param {string} [arg.searchValue] - Search type value
      * @param {string} [arg.fromDate] - Start Date in DD-MM-YYYY format
      * @param {string} [arg.toDate] - End Date in DD-MM-YYYY format
-     * @param {string} [arg.dpIds] - Comma seperated values of delivery partner ids
-     * @param {string} [arg.stores] - Comma seperated values of store ids
-     * @param {string} [arg.salesChannels] - Comma seperated values of sales channel ids
+     * @param {string} [arg.dpIds] - Comma separated values of delivery partner ids
+     * @param {string} [arg.stores] - Comma separated values of store ids
+     * @param {string} [arg.salesChannels] - Comma separated values of sales channel ids
      * @param {number} [arg.pageNo] - Page number for paginated data
      * @param {number} [arg.pageSize] - Page size of data received per page
      * @param {boolean} [arg.fetchActiveShipment] - Flag to fetch active shipments
      * @param {boolean} [arg.excludeLockedShipments] - Flag to fetch locked shipments
-     * @param {string} [arg.paymentMethods] - Comma seperated values of payment methods
+     * @param {string} [arg.paymentMethods] - Comma separated values of payment methods
      * @param {string} [arg.channelShipmentId] - App Shipment Id
      * @param {string} [arg.channelOrderId] - App Order Id
      * @param {string} [arg.customMeta] -

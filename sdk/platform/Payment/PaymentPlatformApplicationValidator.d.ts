@@ -12,23 +12,24 @@ declare class PaymentValidator {
     static getBankAccountDetailsOpenAPI(): any;
     static getBrandPaymentGatewayConfig(): any;
     static getEdcDevice(): any;
+    static getPaymentCodeOption(): any;
     static getPaymentLink(): any;
     static getPaymentModeRoutes(): any;
-    static getPlatformPaymentConfig(): any;
     static getPosPaymentModeRoutes(): any;
     static getUserBeneficiaries(): any;
     static getUserCODlimitRoutes(): any;
     static getUserOrderBeneficiaries(): any;
     static initialisePayment(): any;
+    static merchantOnBoarding(): any;
     static oauthGetUrl(): any;
     static paymentStatusBulk(): any;
     static pollingPaymentLink(): any;
+    static repaymentDetails(): any;
     static resendOrCancelPayment(): any;
     static resendPaymentLink(): any;
     static revokeOauthToken(): any;
     static saveBrandPaymentGatewayConfig(): any;
     static setUserCODlimitRoutes(): any;
     static updateEdcDevice(): any;
-    static updatePlatformPaymentConfig(): any;
     static verifyCustomerForPayment(): any;
 }
