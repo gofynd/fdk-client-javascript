@@ -74,6 +74,7 @@ declare class PosCartModel {
     static ShipmentResponse(): any;
     static StaffCheckout(): any;
     static StoreDetailsResponse(): any;
+    static StoreInfo(): any;
     static UpdateAddressResponse(): any;
     static UpdateCartDetailResponse(): any;
     static UpdateCartPaymentRequest(): any;

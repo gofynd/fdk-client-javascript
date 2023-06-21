@@ -434,7 +434,7 @@ Returns a success response
 
 
 ### getBrand
-Get a single brand.
+Get a single company brand.
 
 
 
@@ -456,7 +456,7 @@ const data = await platformClient.companyProfile.getBrand({  brandId : value });
 
 
 
-This API helps to get data associated to a particular brand.
+This API helps to get data associated to a particular company brand.
 
 *Returned Response:*
 

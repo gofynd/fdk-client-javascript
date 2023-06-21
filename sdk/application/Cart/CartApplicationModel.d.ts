@@ -17,6 +17,7 @@ declare class CartModel {
     static CartBreakup(): any;
     static CartCheckoutCustomMeta(): any;
     static CartCheckoutDetailRequest(): any;
+    static CartCheckoutDetailV2Request(): any;
     static CartCheckoutResponse(): any;
     static CartCurrency(): any;
     static CartDetailResponse(): any;
@@ -57,6 +58,8 @@ declare class CartModel {
     static Ownership(): any;
     static PageCoupon(): any;
     static PaymentCouponValidate(): any;
+    static PaymentMeta(): any;
+    static PaymentMethod(): any;
     static PaymentSelectionLock(): any;
     static ProductAction(): any;
     static ProductArticle(): any;
@@ -80,6 +83,7 @@ declare class CartModel {
     static ShipmentPromise(): any;
     static ShipmentResponse(): any;
     static StaffCheckout(): any;
+    static StoreInfo(): any;
     static UpdateAddressResponse(): any;
     static UpdateCartDetailResponse(): any;
     static UpdateCartPaymentRequest(): any;

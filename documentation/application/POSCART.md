@@ -2893,6 +2893,7 @@ Success. Returns an Address object containing a list of address saved in the acc
   "state": "Maharashtra",
   "meta": {},
   "user_id": "8b526f521bb14a2593a8b9e3ce8c76b3",
+  "created_by_user_id": "8b526f521bb14a2593a8b9e3ce8c76b3",
   "country_code": "IND",
   "country_phone_code": "91",
   "country_iso_code": "IND",
@@ -2996,6 +2997,7 @@ Success. Returns an Address object containing a list of address saved in the acc
       "state": "Maharashtra",
       "meta": {},
       "user_id": "8b526f521bb14a2593a8b9e3ce8c76b3",
+      "created_by_user_id": "8b526f521bb14a2593a8b9e3ce8c76b3",
       "country_code": "IND",
       "country_phone_code": "91",
       "country_iso_code": "IND",
@@ -7611,10 +7613,10 @@ Success. Updates and returns a cart object as shown below. Refer `UpdateCartDeta
     "result": {
       "437414_7": {
         "success": true,
-        "message": "Item updated in the bag"
+        "message": "Quantity of item updated"
       }
     },
-    "message": "Item updated in the bag",
+    "message": "Quantity of item updated",
     "success": true
   }
 }
@@ -8051,6 +8053,7 @@ const promise = applicationClient.posCart.updateShipments({  body : value,
  p : value,
  id : value,
  addressId : value,
+ areaCode : value,
  orderType : value });
 
 // Async/Await
@@ -8059,6 +8062,7 @@ const data = await applicationClient.posCart.updateShipments({  body : value,
  p : value,
  id : value,
  addressId : value,
+ areaCode : value,
  orderType : value });
 ```
 
@@ -8072,6 +8076,7 @@ const data = await applicationClient.posCart.updateShipments({  body : value,
 | p | boolean | no | This is a boolean value. Select `true` for getting a payment option in response. |    
 | id | string | no | The unique identifier of the cart |    
 | addressId | string | no | ID allotted to an address |    
+| areaCode | string | no | The PIN Code of the destination address, e.g. 400059 |    
 | orderType | string | no | The order type of shipment HomeDelivery - If the customer wants the order home-delivered PickAtStore - If the customer wants the handover of an order at the store itself. |  
 | body | [UpdateCartShipmentRequest](#UpdateCartShipmentRequest) | yes | Request body |
 
@@ -8864,6 +8869,7 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | items | [[AddProductCart](#AddProductCart)]? |  yes  |  |
+ | new_cart | boolean? |  yes  |  |
  
 
 ---
@@ -8904,6 +8910,7 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
  | country_code | string? |  yes  |  |
  | country_iso_code | string? |  yes  |  |
  | country_phone_code | string? |  yes  |  |
+ | created_by_user_id | string? |  yes  |  |
  | email | string? |  yes  |  |
  | geo_location | [GeoLocation](#GeoLocation)? |  yes  |  |
  | google_map_point | string? |  yes  |  |
@@ -9100,6 +9107,8 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
  | items | [[CartProductInfo](#CartProductInfo)]? |  yes  |  |
  | last_modified | string? |  yes  |  |
  | message | string? |  yes  |  |
+ | pan_config | string? |  yes  |  |
+ | pan_no | string? |  yes  |  |
  | payment_selection_lock | [PaymentSelectionLock](#PaymentSelectionLock)? |  yes  |  |
  | restrict_checkout | boolean? |  yes  |  |
  
@@ -9140,6 +9149,7 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | is_valid | boolean? |  yes  |  |
  | message | string? |  yes  |  |
  
 
@@ -9181,6 +9191,7 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
  | brand | [BaseInfo](#BaseInfo)? |  yes  |  |
  | categories | [[CategoryInfo](#CategoryInfo)]? |  yes  |  |
  | images | [[ProductImage](#ProductImage)]? |  yes  |  |
+ | item_code | string? |  yes  |  |
  | name | string? |  yes  |  |
  | slug | string? |  yes  | Unique product url name generated via product name and other meta data |
  | type | string? |  yes  |  |
@@ -9206,6 +9217,7 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
  | availability | [ProductAvailability](#ProductAvailability)? |  yes  |  |
  | bulk_offer | string? |  yes  |  |
  | coupon_message | string? |  yes  |  |
+ | custom_order | string? |  yes  |  |
  | delivery_promise | [ShipmentPromise](#ShipmentPromise)? |  yes  |  |
  | discount | string? |  yes  |  |
  | identifiers | [CartProductIdentifer](#CartProductIdentifer) |  no  |  |
@@ -9606,7 +9618,7 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
  | seller | [BaseInfo](#BaseInfo)? |  yes  |  |
  | seller_identifier | string? |  yes  |  |
  | size | string? |  yes  |  |
- | store | [BaseInfo](#BaseInfo)? |  yes  |  |
+ | store | [StoreInfo](#StoreInfo)? |  yes  |  |
  | type | string? |  yes  |  |
  | uid | string? |  yes  |  |
  
@@ -9849,6 +9861,17 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | items | [[PickupStoreDetail](#PickupStoreDetail)]? |  yes  |  |
+ 
+
+---
+
+#### [StoreInfo](#StoreInfo)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | name | string? |  yes  |  |
+ | store_code | string? |  yes  |  |
+ | uid | number? |  yes  |  |
  
 
 ---

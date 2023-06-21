@@ -34,6 +34,7 @@ declare class CatalogModel {
     static AttributeSchemaRange(): any;
     static AutocompleteAction(): any;
     static AutocompleteAction1(): any;
+    static AutoCompleteMedia(): any;
     static AutocompletePageAction(): any;
     static AutocompletePageAction1(): any;
     static AutocompleteResult(): any;
