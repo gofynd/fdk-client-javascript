@@ -14624,16 +14624,6 @@ class PlatformClient {
  * @property {string} [version]
  */
 /**
- * @typedef EventConfigDetails
- * @property {string} [created_on]
- * @property {string} [description]
- * @property {string} [display_name]
- * @property {string} [event_category]
- * @property {string} [event_name]
- * @property {string} [event_type]
- * @property {string} [version]
- */
-/**
  * @typedef EventConfigList
  * @property {EventConfig[]} [items]
  * @property {Page} [page]
@@ -14681,17 +14671,6 @@ class PlatformClient {
  * @property {string} [email_id]
  * @property {number[]} [event_id]
  * @property {number} [id]
- * @property {string} [name]
- * @property {SubscriberStatus} [status]
- * @property {string} [webhook_url]
- */
-/**
- * @typedef SubscriberConfigDetails
- * @property {Association} [association]
- * @property {AuthMeta} [auth_meta]
- * @property {Object} [custom_headers]
- * @property {string} [email_id]
- * @property {number[]} [event_id]
  * @property {string} [name]
  * @property {SubscriberStatus} [status]
  * @property {string} [webhook_url]
@@ -14856,6 +14835,32 @@ class PlatformClient {
  * @property {boolean} success
  */
 /**
+ * @typedef BulkRecordError
+ * @property {string[]} error
+ * @property {boolean} is_error
+ */
+/**
+ * @typedef BulkRegionData
+ * @property {string} action
+ * @property {string} batch_id
+ * @property {string} [created_on]
+ * @property {BulkRecordError} [error]
+ * @property {number} failed_count
+ * @property {CSVFileRecord[]} [failed_rec]
+ * @property {string} file_path
+ * @property {string} stage
+ * @property {number} success_count
+ * @property {number} total_rec
+ */
+/**
+ * @typedef BulkRegionJobSerializer
+ * @property {string} action
+ * @property {string} batch_id
+ * @property {string} [country_iso_code]
+ * @property {string} file_url
+ * @property {string} job_action
+ */
+/**
  * @typedef CommonError
  * @property {Object} [error]
  * @property {string} [status_code]
@@ -14910,6 +14915,21 @@ class PlatformClient {
  * @property {string} region_type
  * @property {string} slug
  * @property {number[]} store_ids
+ */
+/**
+ * @typedef CSVFileRecord
+ * @property {string} [country]
+ * @property {number} [dp_id]
+ * @property {string[]} [error]
+ * @property {string} [from_region]
+ * @property {boolean} [is_error]
+ * @property {number} [max_tat]
+ * @property {number} [min_tat]
+ * @property {number} [plan_id]
+ * @property {string} [region_type]
+ * @property {number} [s_no]
+ * @property {string} [tat_type]
+ * @property {string} [to_region]
  */
 /**
  * @typedef DocumentsResponse
@@ -15095,6 +15115,12 @@ class PlatformClient {
  * @property {ErrorResponse[]} error
  * @property {number} status_code
  * @property {boolean} success
+ */
+/**
+ * @typedef GetBulkRegionJobResponse
+ * @property {string} [batch_id]
+ * @property {number} [current_page_number]
+ * @property {BulkRegionData[]} data
  */
 /**
  * @typedef GetSingleZoneDataViewResponse
@@ -15344,6 +15370,13 @@ class PlatformClient {
  * @property {string} country
  * @property {boolean} is_active
  * @property {number} pincode
+ */
+/**
+ * @typedef PostBulkRegionJobResponse
+ * @property {string} batch_id
+ * @property {boolean} event_emitted
+ * @property {string} message
+ * @property {boolean} response
  */
 /**
  * @typedef ProductReturnConfigResponse

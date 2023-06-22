@@ -715,6 +715,141 @@ class Serviceability {
 
   /**
    * @param {Object} arg - Arg object.
+   * @param {number} [arg.currentPageNumber] - The current page number
+   * @param {number} [arg.pageSize] - The page size
+   * @returns {Promise<GetBulkRegionJobResponse>} - Success response
+   * @summary: Get bulk_export_job collection all records
+   * @description: This API takes gives all the records of bulk_export_job collection
+   */
+  async getRegionJobBulk({ currentPageNumber, pageSize } = {}) {
+    const { error } = ServiceabilityValidator.getRegionJobBulk().validate(
+      {
+        currentPageNumber,
+        pageSize,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = ServiceabilityValidator.getRegionJobBulk().validate(
+      {
+        currentPageNumber,
+        pageSize,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getRegionJobBulk",
+      });
+      Logger({ level: "WARN", message: warrning });
+    }
+
+    const query_params = {};
+    query_params["current_page_number"] = currentPageNumber;
+    query_params["page_size"] = pageSize;
+
+    const xHeaders = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/logistics/v1.0/company/${this.config.companyId}/tat/bulk`,
+      query_params,
+      undefined,
+      xHeaders
+    );
+
+    const {
+      error: res_error,
+    } = ServiceabilityModel.GetBulkRegionJobResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getRegionJobBulk",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.batchId - The batch ID
+   * @returns {Promise<GetBulkRegionJobResponse>} - Success response
+   * @summary: Get bulk_export_job data for a given batch_id
+   * @description: This API takes batch_id and gives the detail of bulk_export_job collection for the batch_id
+   */
+  async getRegionJobBulkBatchId({ batchId } = {}) {
+    const {
+      error,
+    } = ServiceabilityValidator.getRegionJobBulkBatchId().validate(
+      { batchId },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = ServiceabilityValidator.getRegionJobBulkBatchId().validate(
+      { batchId },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getRegionJobBulkBatchId",
+      });
+      Logger({ level: "WARN", message: warrning });
+    }
+
+    const query_params = {};
+
+    const xHeaders = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/logistics/v1.0/company/${this.config.companyId}/tat/bulk/${batchId}`,
+      query_params,
+      undefined,
+      xHeaders
+    );
+
+    const {
+      error: res_error,
+    } = ServiceabilityModel.GetBulkRegionJobResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getRegionJobBulkBatchId",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
    * @param {number} arg.storeUid - A `store_uid` contains a specific ID of a store.
    * @returns {Promise<GetStoresViewResponse>} - Success response
    * @summary: GET stores data
@@ -941,6 +1076,72 @@ class Serviceability {
       Logger({
         level: "WARN",
         message: "Response Validation Warnnings for getZoneListView",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {BulkRegionJobSerializer} arg.body
+   * @returns {Promise<PostBulkRegionJobResponse>} - Success response
+   * @summary: This Api creates a Bulk Job for region tat data upsert
+   * @description: This API takes request body, validates it and sends it to kafka topic
+   */
+  async postRegionJobBulk({ body } = {}) {
+    const { error } = ServiceabilityValidator.postRegionJobBulk().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = ServiceabilityValidator.postRegionJobBulk().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for postRegionJobBulk",
+      });
+      Logger({ level: "WARN", message: warrning });
+    }
+
+    const query_params = {};
+
+    const xHeaders = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/logistics/v1.0/company/${this.config.companyId}/tat/bulk`,
+      query_params,
+      body,
+      xHeaders
+    );
+
+    const {
+      error: res_error,
+    } = ServiceabilityModel.PostBulkRegionJobResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for postRegionJobBulk",
       });
       Logger({ level: "WARN", message: res_error });
     }

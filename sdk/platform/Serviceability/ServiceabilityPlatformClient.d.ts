@@ -121,6 +121,28 @@ declare class Serviceability {
     }): Promise<ReAssignStoreResponse>;
     /**
      * @param {Object} arg - Arg object.
+     * @param {number} [arg.currentPageNumber] - The current page number
+     * @param {number} [arg.pageSize] - The page size
+     * @returns {Promise<GetBulkRegionJobResponse>} - Success response
+     * @summary: Get bulk_export_job collection all records
+     * @description: This API takes gives all the records of bulk_export_job collection
+     */
+    getRegionJobBulk({ currentPageNumber, pageSize }?: {
+        currentPageNumber?: number;
+        pageSize?: number;
+    }): Promise<GetBulkRegionJobResponse>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {string} arg.batchId - The batch ID
+     * @returns {Promise<GetBulkRegionJobResponse>} - Success response
+     * @summary: Get bulk_export_job data for a given batch_id
+     * @description: This API takes batch_id and gives the detail of bulk_export_job collection for the batch_id
+     */
+    getRegionJobBulkBatchId({ batchId }?: {
+        batchId: string;
+    }): Promise<GetBulkRegionJobResponse>;
+    /**
+     * @param {Object} arg - Arg object.
      * @param {number} arg.storeUid - A `store_uid` contains a specific ID of a store.
      * @returns {Promise<GetStoresViewResponse>} - Success response
      * @summary: GET stores data
@@ -164,6 +186,16 @@ declare class Serviceability {
         q?: string;
         zoneId?: string[];
     }): Promise<ListViewResponse>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {BulkRegionJobSerializer} arg.body
+     * @returns {Promise<PostBulkRegionJobResponse>} - Success response
+     * @summary: This Api creates a Bulk Job for region tat data upsert
+     * @description: This API takes request body, validates it and sends it to kafka topic
+     */
+    postRegionJobBulk({ body }?: {
+        body: BulkRegionJobSerializer;
+    }): Promise<PostBulkRegionJobResponse>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.ruleUid - A `rule_uid` is a unique identifier for a

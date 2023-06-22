@@ -7,6 +7,9 @@ declare class ServiceabilityModel {
     static ApplicationSelfShipConfigResponse(): any;
     static ApplicationServiceabilityConfig(): any;
     static ApplicationServiceabilityConfigResponse(): any;
+    static BulkRecordError(): any;
+    static BulkRegionData(): any;
+    static BulkRegionJobSerializer(): any;
     static CommonError(): any;
     static CompanyDpAccountListResponse(): any;
     static CompanyDpAccountRequest(): any;
@@ -16,6 +19,7 @@ declare class ServiceabilityModel {
     static ContactNumberResponse(): any;
     static CreatedByResponse(): any;
     static CreateZoneData(): any;
+    static CSVFileRecord(): any;
     static DocumentsResponse(): any;
     static Dp(): any;
     static Dp1(): any;
@@ -43,6 +47,7 @@ declare class ServiceabilityModel {
     static ErrorResponse(): any;
     static EwayBillResponse(): any;
     static FailureResponse(): any;
+    static GetBulkRegionJobResponse(): any;
     static GetSingleZoneDataViewResponse(): any;
     static GetStoresViewResponse(): any;
     static GetZoneDataViewChannels(): any;
@@ -77,6 +82,7 @@ declare class ServiceabilityModel {
     static PincodeMopUpdateAuditHistoryResponse(): any;
     static PincodeMopUpdateAuditHistoryResponseData(): any;
     static PincodeMopUpdateResponse(): any;
+    static PostBulkRegionJobResponse(): any;
     static ProductReturnConfigResponse(): any;
     static ReAssignStoreRequest(): any;
     static ReAssignStoreResponse(): any;

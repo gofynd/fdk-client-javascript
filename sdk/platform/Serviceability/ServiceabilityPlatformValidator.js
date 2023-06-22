@@ -69,6 +69,19 @@ class ServiceabilityValidator {
     }).required();
   }
 
+  static getRegionJobBulk() {
+    return Joi.object({
+      currentPageNumber: Joi.number(),
+      pageSize: Joi.number(),
+    }).required();
+  }
+
+  static getRegionJobBulkBatchId() {
+    return Joi.object({
+      batchId: Joi.string().allow("").required(),
+    }).required();
+  }
+
   static getStore() {
     return Joi.object({
       storeUid: Joi.number().required(),
@@ -91,6 +104,12 @@ class ServiceabilityValidator {
       channelIds: Joi.string().allow(""),
       q: Joi.string().allow(""),
       zoneId: Joi.array().items(Joi.string().allow("")),
+    }).required();
+  }
+
+  static postRegionJobBulk() {
+    return Joi.object({
+      body: ServiceabilityModel.BulkRegionJobSerializer().required(),
     }).required();
   }
 

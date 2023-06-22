@@ -54,6 +54,35 @@ class ServiceabilityModel {
       success: Joi.boolean().required(),
     });
   }
+  static BulkRecordError() {
+    return Joi.object({
+      error: Joi.array().items(Joi.string().allow("")).required(),
+      is_error: Joi.boolean().required(),
+    });
+  }
+  static BulkRegionData() {
+    return Joi.object({
+      action: Joi.string().allow("").required(),
+      batch_id: Joi.string().allow("").required(),
+      created_on: Joi.string().allow(""),
+      error: ServiceabilityModel.BulkRecordError(),
+      failed_count: Joi.number().required(),
+      failed_rec: Joi.array().items(ServiceabilityModel.CSVFileRecord()),
+      file_path: Joi.string().allow("").required(),
+      stage: Joi.string().allow("").required(),
+      success_count: Joi.number().required(),
+      total_rec: Joi.number().required(),
+    });
+  }
+  static BulkRegionJobSerializer() {
+    return Joi.object({
+      action: Joi.string().allow("").required(),
+      batch_id: Joi.string().allow("").required(),
+      country_iso_code: Joi.string().allow(""),
+      file_url: Joi.string().allow("").required(),
+      job_action: Joi.string().allow("").required(),
+    });
+  }
   static CommonError() {
     return Joi.object({
       error: Joi.any(),
@@ -123,6 +152,22 @@ class ServiceabilityModel {
       region_type: Joi.string().allow("").required(),
       slug: Joi.string().allow("").required(),
       store_ids: Joi.array().items(Joi.number()).required(),
+    });
+  }
+  static CSVFileRecord() {
+    return Joi.object({
+      country: Joi.string().allow(""),
+      dp_id: Joi.number(),
+      error: Joi.array().items(Joi.string().allow("")),
+      from_region: Joi.string().allow(""),
+      is_error: Joi.boolean(),
+      max_tat: Joi.number(),
+      min_tat: Joi.number(),
+      plan_id: Joi.number(),
+      region_type: Joi.string().allow(""),
+      s_no: Joi.number(),
+      tat_type: Joi.string().allow(""),
+      to_region: Joi.string().allow(""),
     });
   }
   static DocumentsResponse() {
@@ -341,6 +386,13 @@ class ServiceabilityModel {
       error: Joi.array().items(ServiceabilityModel.ErrorResponse()).required(),
       status_code: Joi.number().required(),
       success: Joi.boolean().required(),
+    });
+  }
+  static GetBulkRegionJobResponse() {
+    return Joi.object({
+      batch_id: Joi.string().allow(""),
+      current_page_number: Joi.number(),
+      data: Joi.array().items(ServiceabilityModel.BulkRegionData()).required(),
     });
   }
   static GetSingleZoneDataViewResponse() {
@@ -638,6 +690,14 @@ class ServiceabilityModel {
       country: Joi.string().allow("").required(),
       is_active: Joi.boolean().required(),
       pincode: Joi.number().required(),
+    });
+  }
+  static PostBulkRegionJobResponse() {
+    return Joi.object({
+      batch_id: Joi.string().allow("").required(),
+      event_emitted: Joi.boolean().required(),
+      message: Joi.string().allow("").required(),
+      response: Joi.boolean().required(),
     });
   }
   static ProductReturnConfigResponse() {

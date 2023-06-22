@@ -23,12 +23,15 @@ Logistics Configuration API's allows you to configure zone, application logistic
 * [getEntityRegionView](#getentityregionview)
 * [getListView](#getlistview)
 * [getOptimalLocations](#getoptimallocations)
+* [getRegionJobBulk](#getregionjobbulk)
+* [getRegionJobBulkBatchId](#getregionjobbulkbatchid)
 * [getStore](#getstore)
 * [getZoneDataView](#getzonedataview)
 * [getZoneFromPincodeView](#getzonefrompincodeview)
 * [getZoneListView](#getzonelistview)
 * [getZonesFromApplicationIdView](#getzonesfromapplicationidview)
 * [patchApplicationServiceabilitySelfShipment](#patchapplicationserviceabilityselfshipment)
+* [postRegionJobBulk](#postregionjobbulk)
 * [updateDpRule](#updatedprule)
 * [updatePincodeAuditHistory](#updatepincodeaudithistory)
 * [updatePincodeBulkView](#updatepincodebulkview)
@@ -919,6 +922,121 @@ Response status_code
 ---
 
 
+### getRegionJobBulk
+Get bulk_export_job collection all records
+
+
+
+```javascript
+// Promise
+const promise = platformClient.serviceability.getRegionJobBulk({  currentPageNumber : value,
+ pageSize : value });
+
+// Async/Await
+const data = await platformClient.serviceability.getRegionJobBulk({  currentPageNumber : value,
+ pageSize : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| currentPageNumber | number | no | The current page number |    
+| pageSize | number | no | The page size |  
+
+
+
+This API takes gives all the records of bulk_export_job collection
+
+*Returned Response:*
+
+
+
+
+[GetBulkRegionJobResponse](#GetBulkRegionJobResponse)
+
+Successful response
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### getRegionJobBulkBatchId
+Get bulk_export_job data for a given batch_id
+
+
+
+```javascript
+// Promise
+const promise = platformClient.serviceability.getRegionJobBulkBatchId({  batchId : value });
+
+// Async/Await
+const data = await platformClient.serviceability.getRegionJobBulkBatchId({  batchId : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| batchId | string | yes | The batch ID |  
+
+
+
+This API takes batch_id and gives the detail of bulk_export_job collection for the batch_id
+
+*Returned Response:*
+
+
+
+
+[GetBulkRegionJobResponse](#GetBulkRegionJobResponse)
+
+Successful response
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
 ### getStore
 GET stores data
 
@@ -1490,6 +1608,61 @@ Response Data
     "message": null
   }
 }
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### postRegionJobBulk
+This Api creates a Bulk Job for region tat data upsert
+
+
+
+```javascript
+// Promise
+const promise = platformClient.serviceability.postRegionJobBulk({  body : value });
+
+// Async/Await
+const data = await platformClient.serviceability.postRegionJobBulk({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [BulkRegionJobSerializer](#BulkRegionJobSerializer) | yes | Request body |
+
+
+This API takes request body, validates it and sends it to kafka topic
+
+*Returned Response:*
+
+
+
+
+[PostBulkRegionJobResponse](#PostBulkRegionJobResponse)
+
+Successful response
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
 ```
 </details>
 
@@ -2148,6 +2321,47 @@ Response status_code
 
 ---
 
+#### [BulkRecordError](#BulkRecordError)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | error | [string] |  no  |  |
+ | is_error | boolean |  no  |  |
+ 
+
+---
+
+#### [BulkRegionData](#BulkRegionData)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | action | string |  no  |  |
+ | batch_id | string |  no  |  |
+ | created_on | string? |  yes  |  |
+ | error | [BulkRecordError](#BulkRecordError)? |  yes  |  |
+ | failed_count | number |  no  |  |
+ | failed_rec | [[CSVFileRecord](#CSVFileRecord)]? |  yes  |  |
+ | file_path | string |  no  |  |
+ | stage | string |  no  |  |
+ | success_count | number |  no  |  |
+ | total_rec | number |  no  |  |
+ 
+
+---
+
+#### [BulkRegionJobSerializer](#BulkRegionJobSerializer)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | action | string |  no  |  |
+ | batch_id | string |  no  |  |
+ | country_iso_code | string? |  yes  |  |
+ | file_url | string |  no  |  |
+ | job_action | string |  no  |  |
+ 
+
+---
+
 #### [CommonError](#CommonError)
 
  | Properties | Type | Nullable | Description |
@@ -2245,6 +2459,26 @@ Response status_code
  | region_type | string |  no  |  |
  | slug | string |  no  |  |
  | store_ids | [number] |  no  |  |
+ 
+
+---
+
+#### [CSVFileRecord](#CSVFileRecord)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | country | string? |  yes  |  |
+ | dp_id | number? |  yes  |  |
+ | error | [string]? |  yes  |  |
+ | from_region | string? |  yes  |  |
+ | is_error | boolean? |  yes  |  |
+ | max_tat | number? |  yes  |  |
+ | min_tat | number? |  yes  |  |
+ | plan_id | number? |  yes  |  |
+ | region_type | string? |  yes  |  |
+ | s_no | number? |  yes  |  |
+ | tat_type | string? |  yes  |  |
+ | to_region | string? |  yes  |  |
  
 
 ---
@@ -2565,6 +2799,17 @@ Response status_code
  | error | [[ErrorResponse](#ErrorResponse)] |  no  |  |
  | status_code | number |  no  |  |
  | success | boolean |  no  |  |
+ 
+
+---
+
+#### [GetBulkRegionJobResponse](#GetBulkRegionJobResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | batch_id | string? |  yes  |  |
+ | current_page_number | number? |  yes  |  |
+ | data | [[BulkRegionData](#BulkRegionData)] |  no  |  |
  
 
 ---
@@ -2984,6 +3229,18 @@ Response status_code
  | country | string |  no  |  |
  | is_active | boolean |  no  |  |
  | pincode | number |  no  |  |
+ 
+
+---
+
+#### [PostBulkRegionJobResponse](#PostBulkRegionJobResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | batch_id | string |  no  |  |
+ | event_emitted | boolean |  no  |  |
+ | message | string |  no  |  |
+ | response | boolean |  no  |  |
  
 
 ---

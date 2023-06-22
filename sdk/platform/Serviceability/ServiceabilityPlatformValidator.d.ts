@@ -10,9 +10,12 @@ declare class ServiceabilityValidator {
     static getEntityRegionView(): any;
     static getListView(): any;
     static getOptimalLocations(): any;
+    static getRegionJobBulk(): any;
+    static getRegionJobBulkBatchId(): any;
     static getStore(): any;
     static getZoneDataView(): any;
     static getZoneListView(): any;
+    static postRegionJobBulk(): any;
     static updateDpRule(): any;
     static updateZoneControllerView(): any;
     static upsertDpAccount(): any;

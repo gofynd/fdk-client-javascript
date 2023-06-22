@@ -1897,14 +1897,12 @@ class PlatformApplicationClient {
 /** @typedef AuthMeta */
 /** @typedef EventConfig */
 /** @typedef EventConfigBase */
-/** @typedef EventConfigDetails */
 /** @typedef EventConfigList */
 /** @typedef EventConfigResponse */
 /** @typedef EventPayload */
 /** @typedef EventProcessedStatus */
 /** @typedef Page */
 /** @typedef SubscriberConfig */
-/** @typedef SubscriberConfigDetails */
 /** @typedef SubscriberConfigList */
 /** @typedef SubscriberEvent */
 /** @typedef SubscriberResponse */
@@ -1932,6 +1930,9 @@ class PlatformApplicationClient {
 /** @typedef ApplicationSelfShipConfigResponse */
 /** @typedef ApplicationServiceabilityConfig */
 /** @typedef ApplicationServiceabilityConfigResponse */
+/** @typedef BulkRecordError */
+/** @typedef BulkRegionData */
+/** @typedef BulkRegionJobSerializer */
 /** @typedef CommonError */
 /** @typedef CompanyDpAccountListResponse */
 /** @typedef CompanyDpAccountRequest */
@@ -1941,6 +1942,7 @@ class PlatformApplicationClient {
 /** @typedef ContactNumberResponse */
 /** @typedef CreatedByResponse */
 /** @typedef CreateZoneData */
+/** @typedef CSVFileRecord */
 /** @typedef DocumentsResponse */
 /** @typedef Dp */
 /** @typedef Dp1 */
@@ -1968,6 +1970,7 @@ class PlatformApplicationClient {
 /** @typedef ErrorResponse */
 /** @typedef EwayBillResponse */
 /** @typedef FailureResponse */
+/** @typedef GetBulkRegionJobResponse */
 /** @typedef GetSingleZoneDataViewResponse */
 /** @typedef GetStoresViewResponse */
 /** @typedef GetZoneDataViewChannels */
@@ -2002,6 +2005,7 @@ class PlatformApplicationClient {
 /** @typedef PincodeMopUpdateAuditHistoryResponse */
 /** @typedef PincodeMopUpdateAuditHistoryResponseData */
 /** @typedef PincodeMopUpdateResponse */
+/** @typedef PostBulkRegionJobResponse */
 /** @typedef ProductReturnConfigResponse */
 /** @typedef ReAssignStoreRequest */
 /** @typedef ReAssignStoreResponse */
