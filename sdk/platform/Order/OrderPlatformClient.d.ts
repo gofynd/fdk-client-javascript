@@ -276,6 +276,93 @@ declare class Order {
     }): Promise<LaneConfigResponse>;
     /**
      * @param {Object} arg - Arg object.
+     * @param {string} arg.manifestId -
+     * @param {string} [arg.status] -
+     * @param {string} [arg.toDate] -
+     * @param {string} [arg.fromDate] -
+     * @param {string} [arg.searchType] -
+     * @param {string} [arg.searchValue] -
+     * @param {string} [arg.dpIds] - DP Ids separated by ',' (comma)
+     * @param {string} [arg.pageNo] -
+     * @param {string} [arg.pageSize] -
+     * @returns {Promise<ManifestDetails>} - Success response
+     * @summary:
+     * @description:
+     */
+    getManifestDetails({ manifestId, status, toDate, fromDate, searchType, searchValue, dpIds, pageNo, pageSize, }?: {
+        manifestId: string;
+        status?: string;
+        toDate?: string;
+        fromDate?: string;
+        searchType?: string;
+        searchValue?: string;
+        dpIds?: string;
+        pageNo?: string;
+        pageSize?: string;
+    }): Promise<ManifestDetails>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {number} arg.dpIds -
+     * @param {string} arg.stores -
+     * @param {string} arg.toDate -
+     * @param {string} arg.fromDate -
+     * @param {string} [arg.dpName] -
+     * @param {string} [arg.salesChannels] -
+     * @param {string} [arg.searchType] -
+     * @param {string} [arg.searchValue] -
+     * @param {string} [arg.pageNo] -
+     * @param {string} [arg.pageSize] -
+     * @returns {Promise<ManifestShipmentListing>} - Success response
+     * @summary:
+     * @description:
+     */
+    getManifestShipments({ dpIds, stores, toDate, fromDate, dpName, salesChannels, searchType, searchValue, pageNo, pageSize, }?: {
+        dpIds: number;
+        stores: string;
+        toDate: string;
+        fromDate: string;
+        dpName?: string;
+        salesChannels?: string;
+        searchType?: string;
+        searchValue?: string;
+        pageNo?: string;
+        pageSize?: string;
+    }): Promise<ManifestShipmentListing>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {string} arg.view - Name of View
+     * @returns {Promise<ManifestFiltersResponse>} - Success response
+     * @summary:
+     * @description:
+     */
+    getManifestfilters({ view }?: {
+        view: string;
+    }): Promise<ManifestFiltersResponse>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {string} [arg.status] - Possible Status [ active, closed ]
+     * @param {string} [arg.toDate] -
+     * @param {string} [arg.fromDate] -
+     * @param {string} [arg.searchValue] - Search values options [
+     *   fynd_order_id, shipment_id, manifest_id, dp_name, awb_no ]
+     * @param {string} [arg.dpIds] - DP Ids separated by ',' (comma)
+     * @param {string} [arg.pageNo] -
+     * @param {string} [arg.pageSize] -
+     * @returns {Promise<ManifestList>} - Success response
+     * @summary:
+     * @description:
+     */
+    getManifests({ status, toDate, fromDate, searchValue, dpIds, pageNo, pageSize, }?: {
+        status?: string;
+        toDate?: string;
+        fromDate?: string;
+        searchValue?: string;
+        dpIds?: string;
+        pageNo?: string;
+        pageSize?: string;
+    }): Promise<ManifestList>;
+    /**
+     * @param {Object} arg - Arg object.
      * @param {string} [arg.fromDate] -
      * @param {string} [arg.toDate] -
      * @returns {Promise<MetricCountResponse>} - Success response
@@ -508,14 +595,14 @@ declare class Order {
     }): Promise<ShipmentHistoryResponse>;
     /**
      * @param {Object} arg - Arg object.
-     * @param {CreateOrderPayload} arg.body
-     * @returns {Promise<CreateOrderResponse>} - Success response
+     * @param {ProcessManifest} arg.body
+     * @returns {Promise<ProcessManifestItemResponse>} - Success response
      * @summary:
      * @description:
      */
     processManifest({ body }?: {
-        body: CreateOrderPayload;
-    }): Promise<CreateOrderResponse>;
+        body: ProcessManifest;
+    }): Promise<ProcessManifestItemResponse>;
     /**
      * @param {Object} arg - Arg object.
      * @param {StoreReassign} arg.body

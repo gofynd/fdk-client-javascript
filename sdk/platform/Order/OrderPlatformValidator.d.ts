@@ -19,6 +19,10 @@ declare class OrderValidator {
     static getBulkShipmentExcelFile(): any;
     static getChannelConfig(): any;
     static getLaneConfig(): any;
+    static getManifestDetails(): any;
+    static getManifestShipments(): any;
+    static getManifestfilters(): any;
+    static getManifests(): any;
     static getMetricCount(): any;
     static getOrderById(): any;
     static getOrders(): any;

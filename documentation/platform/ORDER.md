@@ -29,6 +29,10 @@ Handles all platform order and shipment api(s)
 * [getBulkShipmentExcelFile](#getbulkshipmentexcelfile)
 * [getChannelConfig](#getchannelconfig)
 * [getLaneConfig](#getlaneconfig)
+* [getManifestDetails](#getmanifestdetails)
+* [getManifestShipments](#getmanifestshipments)
+* [getManifestfilters](#getmanifestfilters)
+* [getManifests](#getmanifests)
 * [getMetricCount](#getmetriccount)
 * [getOrderById](#getorderbyid)
 * [getOrders](#getorders)
@@ -1836,6 +1840,299 @@ Response containing count of shipments of the given status
     }
   ]
 }
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### getManifestDetails
+
+
+
+
+```javascript
+// Promise
+const promise = platformClient.order.getManifestDetails({  manifestId : value,
+ status : value,
+ toDate : value,
+ fromDate : value,
+ searchType : value,
+ searchValue : value,
+ dpIds : value,
+ pageNo : value,
+ pageSize : value });
+
+// Async/Await
+const data = await platformClient.order.getManifestDetails({  manifestId : value,
+ status : value,
+ toDate : value,
+ fromDate : value,
+ searchType : value,
+ searchValue : value,
+ dpIds : value,
+ pageNo : value,
+ pageSize : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| manifestId | string | yes |  |    
+| status | string | no |  |    
+| toDate | string | no |  |    
+| fromDate | string | no |  |    
+| searchType | string | no |  |    
+| searchValue | string | no |  |    
+| dpIds | string | no | DP Ids separated by ',' (comma) |    
+| pageNo | string | no |  |    
+| pageSize | string | no |  |  
+
+
+
+
+
+*Returned Response:*
+
+
+
+
+[ManifestDetails](#ManifestDetails)
+
+Successful Manifest upload!
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### getManifestShipments
+
+
+
+
+```javascript
+// Promise
+const promise = platformClient.order.getManifestShipments({  dpIds : value,
+ stores : value,
+ toDate : value,
+ fromDate : value,
+ dpName : value,
+ salesChannels : value,
+ searchType : value,
+ searchValue : value,
+ pageNo : value,
+ pageSize : value });
+
+// Async/Await
+const data = await platformClient.order.getManifestShipments({  dpIds : value,
+ stores : value,
+ toDate : value,
+ fromDate : value,
+ dpName : value,
+ salesChannels : value,
+ searchType : value,
+ searchValue : value,
+ pageNo : value,
+ pageSize : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| dpIds | number | yes |  |   
+| stores | string | yes |  |   
+| toDate | string | yes |  |   
+| fromDate | string | yes |  |    
+| dpName | string | no |  |    
+| salesChannels | string | no |  |    
+| searchType | string | no |  |    
+| searchValue | string | no |  |    
+| pageNo | string | no |  |    
+| pageSize | string | no |  |  
+
+
+
+
+
+*Returned Response:*
+
+
+
+
+[ManifestShipmentListing](#ManifestShipmentListing)
+
+Successful Manifest upload!
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### getManifestfilters
+
+
+
+
+```javascript
+// Promise
+const promise = platformClient.order.getManifestfilters({  view : value });
+
+// Async/Await
+const data = await platformClient.order.getManifestfilters({  view : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| view | string | yes | Name of View |  
+
+
+
+
+
+*Returned Response:*
+
+
+
+
+[ManifestFiltersResponse](#ManifestFiltersResponse)
+
+List of filters
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### getManifests
+
+
+
+
+```javascript
+// Promise
+const promise = platformClient.order.getManifests({  status : value,
+ toDate : value,
+ fromDate : value,
+ searchValue : value,
+ dpIds : value,
+ pageNo : value,
+ pageSize : value });
+
+// Async/Await
+const data = await platformClient.order.getManifests({  status : value,
+ toDate : value,
+ fromDate : value,
+ searchValue : value,
+ dpIds : value,
+ pageNo : value,
+ pageSize : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| status | string | no | Possible Status [ active, closed ] |    
+| toDate | string | no |  |    
+| fromDate | string | no |  |    
+| searchValue | string | no | Search values options [ fynd_order_id, shipment_id, manifest_id, dp_name, awb_no ] |    
+| dpIds | string | no | DP Ids separated by ',' (comma) |    
+| pageNo | string | no |  |    
+| pageSize | string | no |  |  
+
+
+
+
+
+*Returned Response:*
+
+
+
+
+[ManifestList](#ManifestList)
+
+Successful Manifest upload!
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
 ```
 </details>
 
@@ -5800,7 +6097,7 @@ const data = await platformClient.order.processManifest({  body : value });
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |
-| body | [CreateOrderPayload](#CreateOrderPayload) | yes | Request body |
+| body | [ProcessManifest](#ProcessManifest) | yes | Request body |
 
 
 
@@ -5810,7 +6107,7 @@ const data = await platformClient.order.processManifest({  body : value });
 
 
 
-[CreateOrderResponse](#CreateOrderResponse)
+[ProcessManifestItemResponse](#ProcessManifestItemResponse)
 
 Manifest will be processed!
 
@@ -6588,75 +6885,6 @@ Verify OTP
 
 ---
 
-#### [Affiliate](#Affiliate)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | config | [AffiliateConfig](#AffiliateConfig)? |  yes  |  |
- | id | string |  no  |  |
- | token | string |  no  |  |
- 
-
----
-
-#### [AffiliateAppConfig](#AffiliateAppConfig)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | created_at | string |  no  |  |
- | description | string? |  yes  |  |
- | id | string |  no  |  |
- | meta | [[AffiliateAppConfigMeta](#AffiliateAppConfigMeta)]? |  yes  |  |
- | name | string |  no  |  |
- | owner | string |  no  |  |
- | secret | string |  no  |  |
- | token | string |  no  |  |
- | updated_at | string |  no  |  |
- 
-
----
-
-#### [AffiliateAppConfigMeta](#AffiliateAppConfigMeta)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | name | string |  no  |  |
- | value | string |  no  |  |
- 
-
----
-
-#### [AffiliateBag](#AffiliateBag)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | _id | string |  no  |  |
- | affiliate_meta | string |  no  |  |
- | affiliate_store_id | string |  no  |  |
- | amount_paid | number |  no  |  |
- | avl_qty | number |  no  |  |
- | company_id | number |  no  |  |
- | delivery_charge | number |  no  |  |
- | discount | number |  no  |  |
- | fynd_store_id | string |  no  |  |
- | hsn_code_id | string |  no  |  |
- | identifier | string |  no  |  |
- | item_id | number |  no  |  |
- | item_size | string |  no  |  |
- | modified_on | string |  no  |  |
- | pdf_links | [MarketPlacePdf](#MarketPlacePdf)? |  yes  |  |
- | price_effective | number |  no  |  |
- | price_marked | number |  no  |  |
- | quantity | number |  no  |  |
- | seller_identifier | string |  no  |  |
- | sku | string |  no  |  |
- | store_id | number |  no  |  |
- | transfer_price | number |  no  |  |
- | unit_price | number |  no  |  |
- 
-
----
-
 #### [AffiliateBagDetails](#AffiliateBagDetails)
 
  | Properties | Type | Nullable | Description |
@@ -6680,16 +6908,6 @@ Verify OTP
 
 ---
 
-#### [AffiliateConfig](#AffiliateConfig)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | app | [AffiliateAppConfig](#AffiliateAppConfig)? |  yes  |  |
- | inventory | [AffiliateInventoryConfig](#AffiliateInventoryConfig)? |  yes  |  |
- 
-
----
-
 #### [AffiliateDetails](#AffiliateDetails)
 
  | Properties | Type | Nullable | Description |
@@ -6704,65 +6922,6 @@ Verify OTP
  | company_affiliate_tag | string? |  yes  |  |
  | pdf_links | [PDFLinks](#PDFLinks)? |  yes  |  |
  | shipment_meta | [ShipmentMeta](#ShipmentMeta) |  no  |  |
- 
-
----
-
-#### [AffiliateInventoryArticleAssignmentConfig](#AffiliateInventoryArticleAssignmentConfig)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | post_order_reassignment | boolean? |  yes  |  |
- 
-
----
-
-#### [AffiliateInventoryConfig](#AffiliateInventoryConfig)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | article_assignment | [AffiliateInventoryArticleAssignmentConfig](#AffiliateInventoryArticleAssignmentConfig)? |  yes  |  |
- | inventory | [AffiliateInventoryStoreConfig](#AffiliateInventoryStoreConfig)? |  yes  |  |
- | logistics | [AffiliateInventoryLogisticsConfig](#AffiliateInventoryLogisticsConfig)? |  yes  |  |
- | order | [AffiliateInventoryOrderConfig](#AffiliateInventoryOrderConfig)? |  yes  |  |
- | payment | [AffiliateInventoryPaymentConfig](#AffiliateInventoryPaymentConfig)? |  yes  |  |
- 
-
----
-
-#### [AffiliateInventoryLogisticsConfig](#AffiliateInventoryLogisticsConfig)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | dp_assignment | boolean? |  yes  |  |
- 
-
----
-
-#### [AffiliateInventoryOrderConfig](#AffiliateInventoryOrderConfig)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | force_reassignment | boolean? |  yes  |  |
- 
-
----
-
-#### [AffiliateInventoryPaymentConfig](#AffiliateInventoryPaymentConfig)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | mode_of_payment | string? |  yes  |  |
- | source | string? |  yes  |  |
- 
-
----
-
-#### [AffiliateInventoryStoreConfig](#AffiliateInventoryStoreConfig)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | store | string? |  yes  |  |
  
 
 ---
@@ -6784,16 +6943,6 @@ Verify OTP
  | quantity | number? |  yes  |  |
  | replacement_details | [ReplacementDetails](#ReplacementDetails)? |  yes  |  |
  | size_level_total_qty | number? |  yes  |  |
- 
-
----
-
-#### [AffiliateStoreIdMapping](#AffiliateStoreIdMapping)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | marketplace_store_id | string |  no  |  |
- | store_id | number |  no  |  |
  
 
 ---
@@ -6871,21 +7020,6 @@ Verify OTP
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | status | string? |  yes  |  |
- 
-
----
-
-#### [ArticleDetails1](#ArticleDetails1)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | _id | string |  no  |  |
- | attributes | string |  no  |  |
- | brand_id | number |  no  |  |
- | category | string |  no  |  |
- | dimension | string |  no  |  |
- | quantity | number |  no  |  |
- | weight | string |  no  |  |
  
 
 ---
@@ -7507,17 +7641,6 @@ Verify OTP
 
 ---
 
-#### [CreateOrderPayload](#CreateOrderPayload)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | affiliate_id | string |  no  |  |
- | order_config | [OrderConfig](#OrderConfig) |  no  |  |
- | order_info | [OrderInfo](#OrderInfo) |  no  |  |
- 
-
----
-
 #### [CreateOrderResponse](#CreateOrderResponse)
 
  | Properties | Type | Nullable | Description |
@@ -7565,6 +7688,16 @@ Verify OTP
  | ---------- | ---- | -------- | ----------- |
  | entities | [[EntitiesDataUpdates](#EntitiesDataUpdates)]? |  yes  |  |
  | products | [[ProductsDataUpdates](#ProductsDataUpdates)]? |  yes  |  |
+ 
+
+---
+
+#### [DateRange](#DateRange)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | from_date | string? |  yes  |  |
+ | to_date | string? |  yes  |  |
  
 
 ---
@@ -7823,6 +7956,38 @@ Verify OTP
 
 ---
 
+#### [FilterInfoOption1](#FilterInfoOption1)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | min_search_size | number? |  yes  |  |
+ | name | string? |  yes  |  |
+ | placeholder_text | string? |  yes  |  |
+ | show_ui | boolean? |  yes  |  |
+ | text | string? |  yes  |  |
+ | value | string? |  yes  |  |
+ 
+
+---
+
+#### [Filters](#Filters)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | date_range | [DateRange](#DateRange)? |  yes  |  |
+ | dp_ids | number? |  yes  |  |
+ | dp_name | string? |  yes  |  |
+ | from_date | string? |  yes  |  |
+ | lane | string? |  yes  |  |
+ | logo | string? |  yes  |  |
+ | selected_shipments | string? |  yes  |  |
+ | store_name | string? |  yes  |  |
+ | stores | number? |  yes  |  |
+ | to_date | string? |  yes  |  |
+ 
+
+---
+
 #### [FiltersInfo](#FiltersInfo)
 
  | Properties | Type | Nullable | Description |
@@ -7833,6 +7998,35 @@ Verify OTP
  | text | string |  no  |  |
  | type | string |  no  |  |
  | value | string |  no  |  |
+ 
+
+---
+
+#### [FiltersInfo1](#FiltersInfo1)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | options | [[FilterInfoOption1](#FilterInfoOption1)]? |  yes  |  |
+ | placeholder_text | string? |  yes  |  |
+ | required | boolean? |  yes  |  |
+ | text | string |  no  |  |
+ | type | string |  no  |  |
+ | value | string |  no  |  |
+ 
+
+---
+
+#### [FiltersRequest](#FiltersRequest)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | date_range | [DateRange](#DateRange)? |  yes  |  |
+ | dp_ids | number |  no  |  |
+ | dp_name | string |  no  |  |
+ | lane | string |  no  |  |
+ | logo | string? |  yes  |  |
+ | store_name | string |  no  |  |
+ | stores | number |  no  |  |
  
 
 ---
@@ -8168,17 +8362,6 @@ Verify OTP
 
 ---
 
-#### [LocationDetails](#LocationDetails)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | articles | [[ArticleDetails1](#ArticleDetails1)] |  no  |  |
- | fulfillment_id | number |  no  |  |
- | fulfillment_type | string |  no  |  |
- 
-
----
-
 #### [LockData](#LockData)
 
  | Properties | Type | Nullable | Description |
@@ -8190,12 +8373,132 @@ Verify OTP
 
 ---
 
-#### [MarketPlacePdf](#MarketPlacePdf)
+#### [Manifest](#Manifest)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | invoice | string? |  yes  |  |
- | label | string? |  yes  |  |
+ | company_id | number |  no  |  |
+ | created_at | string |  no  |  |
+ | created_by | string |  no  |  |
+ | filters | [Filters](#Filters)? |  yes  |  |
+ | id | number |  no  |  |
+ | is_active | boolean |  no  |  |
+ | manifest_id | string |  no  |  |
+ | meta | [ManifestMeta](#ManifestMeta)? |  yes  |  |
+ | pdf_meta | [PDFMeta](#PDFMeta)? |  yes  |  |
+ | status | string |  no  |  |
+ | uid | string |  no  |  |
+ | user_id | string |  no  |  |
+ 
+
+---
+
+#### [ManifestDetails](#ManifestDetails)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | additional_shipment_count | number? |  yes  |  |
+ | items | [[ManifestItemDetails](#ManifestItemDetails)]? |  yes  |  |
+ | manifest_details | [[Manifest](#Manifest)]? |  yes  |  |
+ | page | [ManifestPageInfo](#ManifestPageInfo)? |  yes  |  |
+ 
+
+---
+
+#### [ManifestFile](#ManifestFile)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | bucket | string? |  yes  |  |
+ | key | string? |  yes  |  |
+ | region | string? |  yes  |  |
+ 
+
+---
+
+#### [ManifestFiltersResponse](#ManifestFiltersResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | advance_filter | [[FiltersInfo1](#FiltersInfo1)]? |  yes  |  |
+ | global_filter | [[FiltersInfo1](#FiltersInfo1)]? |  yes  |  |
+ 
+
+---
+
+#### [ManifestItemDetails](#ManifestItemDetails)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | awb | string? |  yes  |  |
+ | invoice_id | string? |  yes  |  |
+ | item_qty | number? |  yes  |  |
+ | order_id | string |  no  |  |
+ | shipment_created_at | string? |  yes  |  |
+ | shipment_id | string |  no  |  |
+ 
+
+---
+
+#### [ManifestList](#ManifestList)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | items | [[Manifest](#Manifest)]? |  yes  |  |
+ | page | [ManifestPageInfo](#ManifestPageInfo)? |  yes  |  |
+ 
+
+---
+
+#### [ManifestMediaUpdate](#ManifestMediaUpdate)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | code | number? |  yes  |  |
+ | entity | string? |  yes  |  |
+ | file | [ManifestFile](#ManifestFile)? |  yes  |  |
+ | link | string? |  yes  |  |
+ | media_type | string? |  yes  |  |
+ | status | boolean? |  yes  |  |
+ 
+
+---
+
+#### [ManifestMeta](#ManifestMeta)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | filters | [Filters](#Filters)? |  yes  |  |
+ | total_shipment_prices_count | [TotalShipmentPricesCount](#TotalShipmentPricesCount)? |  yes  |  |
+ 
+
+---
+
+#### [ManifestPageInfo](#ManifestPageInfo)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | current | number |  no  |  |
+ | has_next | boolean |  no  |  |
+ | has_previous | boolean |  no  |  |
+ | size | number |  no  |  |
+ | total | number |  no  |  |
+ | type | string |  no  |  |
+ 
+
+---
+
+#### [ManifestShipmentListing](#ManifestShipmentListing)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | items | [[ManifestItemDetails](#ManifestItemDetails)]? |  yes  |  |
+ | lane | string? |  yes  |  |
+ | message | string? |  yes  |  |
+ | page | [ManifestPageInfo](#ManifestPageInfo) |  no  |  |
+ | status | number |  no  |  |
+ | success | boolean |  no  |  |
+ | total_count | number |  no  |  |
  
 
 ---
@@ -8326,20 +8629,6 @@ Verify OTP
 
 ---
 
-#### [OrderConfig](#OrderConfig)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | affiliate | [Affiliate](#Affiliate) |  no  |  |
- | affiliate_store_id_mapping | [[AffiliateStoreIdMapping](#AffiliateStoreIdMapping)] |  no  |  |
- | article_lookup | string? |  yes  |  |
- | bag_end_state | string? |  yes  |  |
- | create_user | boolean? |  yes  |  |
- | store_lookup | string? |  yes  |  |
- 
-
----
-
 #### [OrderData](#OrderData)
 
  | Properties | Type | Nullable | Description |
@@ -8388,29 +8677,6 @@ Verify OTP
  | order | [OrderData](#OrderData)? |  yes  |  |
  | shipments | [[PlatformShipment](#PlatformShipment)]? |  yes  |  |
  | success | boolean |  no  |  |
- 
-
----
-
-#### [OrderInfo](#OrderInfo)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | affiliate_order_id | string? |  yes  |  |
- | bags | [[AffiliateBag](#AffiliateBag)] |  no  |  |
- | billing_address | [OrderUser](#OrderUser) |  no  |  |
- | cod_charges | number |  no  |  |
- | coupon | string? |  yes  |  |
- | delivery_charges | number |  no  |  |
- | discount | number |  no  |  |
- | items | string |  no  |  |
- | order_priority | [OrderPriority](#OrderPriority)? |  yes  |  |
- | order_value | number |  no  |  |
- | payment | string? |  yes  |  |
- | payment_mode | string |  no  |  |
- | shipment | [ShipmentData](#ShipmentData)? |  yes  |  |
- | shipping_address | [OrderUser](#OrderUser) |  no  |  |
- | user | [UserData](#UserData) |  no  |  |
  
 
 ---
@@ -8475,17 +8741,6 @@ Verify OTP
 
 ---
 
-#### [OrderPriority](#OrderPriority)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | affiliate_priority_code | string? |  yes  |  |
- | fulfilment_priority | number? |  yes  |  |
- | fulfilment_priority_text | string? |  yes  |  |
- 
-
----
-
 #### [OrderStatus](#OrderStatus)
 
  | Properties | Type | Nullable | Description |
@@ -8515,25 +8770,6 @@ Verify OTP
  | ---------- | ---- | -------- | ----------- |
  | result | [[OrderStatusData](#OrderStatusData)]? |  yes  |  |
  | success | string |  no  |  |
- 
-
----
-
-#### [OrderUser](#OrderUser)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | address1 | string? |  yes  |  |
- | address2 | string? |  yes  |  |
- | city | string |  no  |  |
- | country | string |  no  |  |
- | email | string |  no  |  |
- | first_name | string |  no  |  |
- | last_name | string |  no  |  |
- | mobile | number |  no  |  |
- | phone | number |  no  |  |
- | pincode | string |  no  |  |
- | state | string |  no  |  |
  
 
 ---
@@ -8618,6 +8854,16 @@ Verify OTP
  | label_pos | string? |  yes  |  |
  | label_type | string |  no  |  |
  | po_invoice | string? |  yes  |  |
+ 
+
+---
+
+#### [PDFMeta](#PDFMeta)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | consent | string? |  yes  |  |
+ | media_updates | [[ManifestMediaUpdate](#ManifestMediaUpdate)]? |  yes  |  |
  
 
 ---
@@ -8770,6 +9016,7 @@ Verify OTP
  | invoice | [InvoiceInfo](#InvoiceInfo)? |  yes  |  |
  | invoice_id | string? |  yes  |  |
  | is_dp_assign_enabled | boolean? |  yes  |  |
+ | is_self_ship | boolean? |  yes  |  |
  | journey_type | string? |  yes  |  |
  | lock_status | boolean? |  yes  |  |
  | meta | [ShipmentMeta](#ShipmentMeta)? |  yes  |  |
@@ -8951,6 +9198,42 @@ Verify OTP
  | dispatch_by_date | string? |  yes  |  |
  | dp_pickup_slot | string? |  yes  |  |
  | pack_by_date | string? |  yes  |  |
+ 
+
+---
+
+#### [ProcessManifest](#ProcessManifest)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | action | string |  no  |  |
+ | filters | [FiltersRequest](#FiltersRequest) |  no  |  |
+ | manifest_id | string? |  yes  |  |
+ | unique_id | string |  no  |  |
+ 
+
+---
+
+#### [ProcessManifestItemResponse](#ProcessManifestItemResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | items | [ProcessManifestResponse](#ProcessManifestResponse)? |  yes  |  |
+ 
+
+---
+
+#### [ProcessManifestResponse](#ProcessManifestResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | action | string? |  yes  |  |
+ | company_id | number? |  yes  |  |
+ | created_by | string? |  yes  |  |
+ | filters | [Filters](#Filters)? |  yes  |  |
+ | manifest_id | string? |  yes  |  |
+ | uid | string? |  yes  |  |
+ | user_id | string? |  yes  |  |
  
 
 ---
@@ -9194,31 +9477,6 @@ Verify OTP
 
 ---
 
-#### [ShipmentConfig](#ShipmentConfig)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | action | string |  no  |  |
- | identifier | string |  no  |  |
- | journey | string |  no  |  |
- | location_details | [LocationDetails](#LocationDetails)? |  yes  |  |
- | payment_mode | string |  no  |  |
- | shipment | [[ShipmentDetails1](#ShipmentDetails1)] |  no  |  |
- | source | string |  no  |  |
- | to_pincode | string |  no  |  |
- 
-
----
-
-#### [ShipmentData](#ShipmentData)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | shipment_data | [ShipmentConfig](#ShipmentConfig) |  no  |  |
- 
-
----
-
 #### [ShipmentDetail](#ShipmentDetail)
 
  | Properties | Type | Nullable | Description |
@@ -9240,21 +9498,6 @@ Verify OTP
  | action_to_status | string? |  yes  |  |
  | lock_message | string? |  yes  |  |
  | lock_status | boolean? |  yes  |  |
- 
-
----
-
-#### [ShipmentDetails1](#ShipmentDetails1)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | affiliate_shipment_id | string |  no  |  |
- | articles | [[ArticleDetails1](#ArticleDetails1)] |  no  |  |
- | box_type | string? |  yes  |  |
- | dp_id | number? |  yes  |  |
- | fulfillment_id | number |  no  |  |
- | meta | string? |  yes  |  |
- | shipments | number |  no  |  |
  
 
 ---
@@ -9851,6 +10094,16 @@ Verify OTP
 
 ---
 
+#### [TotalShipmentPricesCount](#TotalShipmentPricesCount)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | shipment_count | number? |  yes  |  |
+ | total_price | number? |  yes  |  |
+ 
+
+---
+
 #### [TrackingList](#TrackingList)
 
  | Properties | Type | Nullable | Description |
@@ -9960,16 +10213,6 @@ Verify OTP
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | url | string? |  yes  |  |
- 
-
----
-
-#### [UserData](#UserData)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | billing_user | [OrderUser](#OrderUser)? |  yes  |  |
- | shipping_user | [OrderUser](#OrderUser)? |  yes  |  |
  
 
 ---

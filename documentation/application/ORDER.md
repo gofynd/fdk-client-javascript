@@ -2890,6 +2890,9 @@ Success, the code is valid and returns a session token
  | code | string? |  yes  |  |
  | id | number? |  yes  |  |
  | image | [string]? |  yes  |  |
+ | l1_categories | [string]? |  yes  |  |
+ | l2_categories | [string]? |  yes  |  |
+ | l3_category_name | string? |  yes  |  |
  | name | string? |  yes  |  |
  | seller_identifier | string? |  yes  |  |
  | size | string? |  yes  |  |

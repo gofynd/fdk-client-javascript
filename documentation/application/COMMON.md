@@ -205,7 +205,7 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | enabled | boolean? |  yes  |  |
+ | enabled | boolean? |  yes  | Shows sales channel auth is enabled or not enabled. |
  
 
 ---
@@ -223,31 +223,31 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | __v | number? |  yes  |  |
- | _id | string? |  yes  |  |
- | app_type | string? |  yes  |  |
+ | __v | number? |  yes  | Version key for tracking revisions. Default value is zero. |
+ | _id | string? |  yes  | The unique identifier (24-digit Mongo Object ID) of the sales channel |
+ | app_type | string? |  yes  | It shows whether application is live or in development mode |
  | auth | [ApplicationAuth](#ApplicationAuth)? |  yes  |  |
  | banner | [SecureUrl](#SecureUrl)? |  yes  |  |
- | cache_ttl | number? |  yes  |  |
- | channel_type | string? |  yes  |  |
- | company_id | number? |  yes  |  |
+ | cache_ttl | number? |  yes  | An integer value that specifies the number of seconds until the key expires |
+ | channel_type | string? |  yes  | It indicates different channel types like store, website-and-mobile-apps. Default value is store. |
+ | company_id | number? |  yes  | Numeric ID allotted to a business account where the sales channel exists |
  | cors | [ApplicationCors](#ApplicationCors)? |  yes  |  |
- | created_at | string? |  yes  |  |
- | description | string? |  yes  |  |
+ | created_at | string? |  yes  | ISO 8601 timestamp of sales channel creation |
+ | description | string? |  yes  | It contains detailed information about the sales channel |
  | domain | [Domain](#Domain)? |  yes  |  |
  | domains | [[Domain](#Domain)]? |  yes  |  |
  | favicon | [SecureUrl](#SecureUrl)? |  yes  |  |
- | is_active | boolean? |  yes  |  |
- | is_internal | boolean? |  yes  |  |
+ | is_active | boolean? |  yes  | Indicates whether a sales channel is active or not active |
+ | is_internal | boolean? |  yes  | Indicates whether a sales channel is internal or not |
  | logo | [SecureUrl](#SecureUrl)? |  yes  |  |
  | meta | [[ApplicationMeta](#ApplicationMeta)]? |  yes  |  |
  | mobile_logo | [SecureUrl](#SecureUrl)? |  yes  |  |
- | name | string? |  yes  |  |
- | owner | string? |  yes  |  |
+ | name | string? |  yes  | Name of the sales channel, e.g. Zenz Fashion |
+ | owner | string? |  yes  | The unique identifier (24-digit Mongo Object ID) of owner who owns the application |
  | redirections | [[ApplicationRedirections](#ApplicationRedirections)]? |  yes  |  |
  | slug | string? |  yes  |  |
- | token | string? |  yes  |  |
- | updated_at | string? |  yes  |  |
+ | token | string? |  yes  | Randomly generated fixed-length string for sales channel. It is required and auto-generated. |
+ | updated_at | string? |  yes  | ISO 8601 timestamp of sales channel updation |
  | website | [ApplicationWebsite](#ApplicationWebsite)? |  yes  |  |
  
 
@@ -257,8 +257,8 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | name | string? |  yes  |  |
- | value | string? |  yes  |  |
+ | name | string? |  yes  | Indicates the name of application meta |
+ | value | string? |  yes  | Value related to application meta name |
  
 
 ---
@@ -267,9 +267,9 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | redirect_from | string? |  yes  |  |
- | redirect_to | string? |  yes  |  |
- | type | string? |  yes  |  |
+ | redirect_from | string? |  yes  | Old domain URL of the sales channel |
+ | redirect_to | string? |  yes  | New domain URL of the sales channel. Users will be automatically redirected from old domain to new domain. |
+ | type | string? |  yes  | It shows domain redirection type. Permanent redirection is for long time period redirection, and temporary redirection for a short time period. |
  
 
 ---
@@ -287,8 +287,8 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | basepath | string? |  yes  |  |
- | enabled | boolean? |  yes  |  |
+ | basepath | string? |  yes  | Base path for the current sales channel website |
+ | enabled | boolean? |  yes  | Shows whether sales channel website URL is enabled or not |
  
 
 ---
@@ -297,7 +297,7 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | message | string? |  yes  | Failure message. |
+ | message | string? |  yes  | Failure message (in a string format) |
  
 
 ---
@@ -306,14 +306,14 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | _id | string? |  yes  |  |
- | code | string? |  yes  |  |
- | created_at | string? |  yes  |  |
- | decimal_digits | number? |  yes  |  |
- | is_active | boolean? |  yes  |  |
- | name | string? |  yes  |  |
- | symbol | string? |  yes  |  |
- | updated_at | string? |  yes  |  |
+ | _id | string? |  yes  | The unique identifier (24-digit Mongo Object ID) of the current sales channel supported currency |
+ | code | string? |  yes  | 3-character currency code, e.g. INR, USD, EUR. |
+ | created_at | string? |  yes  | ISO 8601 timestamp of sales channel support currency creation |
+ | decimal_digits | number? |  yes  | Acceptable decimal limits for a given currency, e.g. 1.05$ means upto 2 decimal digits can be accepted as a valid value of a currency. |
+ | is_active | boolean? |  yes  | Shows currency is enabled or not in current sales channel |
+ | name | string? |  yes  | Name of the currency, e.g. Indian Rupee |
+ | symbol | string? |  yes  | Unique symbol for identifying the currency, e.g. ₹ |
+ | updated_at | string? |  yes  | ISO 8601 timestamp of sales channel support currency updation |
  
 
 ---
@@ -322,12 +322,12 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | _id | string? |  yes  |  |
- | is_predefined | boolean? |  yes  | Domain is hosting domain or not. |
- | is_primary | boolean? |  yes  |  |
- | is_shortlink | boolean? |  yes  |  |
+ | _id | string? |  yes  | The unique identifier (24-digit Mongo Object ID) of the domain |
+ | is_predefined | boolean? |  yes  | Domain is hosting domain or not |
+ | is_primary | boolean? |  yes  | Indicates domain is primary or not. Primary domain is the default/main domain. |
+ | is_shortlink | boolean? |  yes  | Shortlink is present or not for the domain |
  | name | string? |  yes  |  |
- | verified | boolean? |  yes  |  |
+ | verified | boolean? |  yes  | Indicates domain is verified or not. TXT and A records should propagate correctly. |
  
 
 ---
@@ -391,7 +391,7 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | message | string? |  yes  |  |
+ | message | string? |  yes  | Response message for not found |
  
 
 ---
@@ -400,13 +400,13 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | current | number? |  yes  |  |
- | has_next | boolean? |  yes  |  |
- | has_previous | boolean? |  yes  |  |
- | item_total | number? |  yes  |  |
- | next_id | string? |  yes  |  |
- | size | number? |  yes  |  |
- | type | string |  no  |  |
+ | current | number? |  yes  | Current page number |
+ | has_next | boolean? |  yes  | Next page is present or not |
+ | has_previous | boolean? |  yes  | Previous page is present or not |
+ | item_total | number? |  yes  | Total number of items to retrieve |
+ | next_id | string? |  yes  | Next page ID |
+ | size | number? |  yes  | The number of items to retrieve in each page. Default value is 10. |
+ | type | string |  no  | Page type |
  
 
 ---

@@ -5178,55 +5178,6 @@ class PlatformClient {
  * @property {FiltersInfo[]} [unfulfilled]
  */
 /**
- * @typedef Affiliate
- * @property {AffiliateConfig} [config]
- * @property {string} id
- * @property {string} token
- */
-/**
- * @typedef AffiliateAppConfig
- * @property {string} created_at
- * @property {string} [description]
- * @property {string} id
- * @property {AffiliateAppConfigMeta[]} [meta]
- * @property {string} name
- * @property {string} owner
- * @property {string} secret
- * @property {string} token
- * @property {string} updated_at
- */
-/**
- * @typedef AffiliateAppConfigMeta
- * @property {string} name
- * @property {string} value
- */
-/**
- * @typedef AffiliateBag
- * @property {string} _id
- * @property {Object} affiliate_meta
- * @property {string} affiliate_store_id
- * @property {number} amount_paid
- * @property {number} avl_qty
- * @property {number} company_id
- * @property {number} delivery_charge
- * @property {number} discount
- * @property {string} fynd_store_id
- * @property {string} hsn_code_id
- * @property {Object} identifier
- * @property {number} item_id
- * @property {string} item_size
- * @property {string} modified_on
- * @property {MarketPlacePdf} [pdf_links]
- * @property {number} price_effective
- * @property {number} price_marked
- * @property {number} quantity
- * @property {string} seller_identifier
- * @property {string} sku
- * @property {number} store_id
- * @property {number} transfer_price
- * @property {number} unit_price
- */
-/**
  * @typedef AffiliateBagDetails
  * @property {string} affiliate_bag_id
  * @property {AffiliateMeta} affiliate_meta
@@ -5240,11 +5191,6 @@ class PlatformClient {
  * @property {string} [coupon_code]
  */
 /**
- * @typedef AffiliateConfig
- * @property {AffiliateAppConfig} [app]
- * @property {AffiliateInventoryConfig} [inventory]
- */
-/**
  * @typedef AffiliateDetails
  * @property {string} [ad_id]
  * @property {string} affiliate_bag_id
@@ -5256,35 +5202,6 @@ class PlatformClient {
  * @property {string} [company_affiliate_tag]
  * @property {PDFLinks} [pdf_links]
  * @property {ShipmentMeta} shipment_meta
- */
-/**
- * @typedef AffiliateInventoryArticleAssignmentConfig
- * @property {boolean} [post_order_reassignment]
- */
-/**
- * @typedef AffiliateInventoryConfig
- * @property {AffiliateInventoryArticleAssignmentConfig} [article_assignment]
- * @property {AffiliateInventoryStoreConfig} [inventory]
- * @property {AffiliateInventoryLogisticsConfig} [logistics]
- * @property {AffiliateInventoryOrderConfig} [order]
- * @property {AffiliateInventoryPaymentConfig} [payment]
- */
-/**
- * @typedef AffiliateInventoryLogisticsConfig
- * @property {boolean} [dp_assignment]
- */
-/**
- * @typedef AffiliateInventoryOrderConfig
- * @property {boolean} [force_reassignment]
- */
-/**
- * @typedef AffiliateInventoryPaymentConfig
- * @property {string} [mode_of_payment]
- * @property {string} [source]
- */
-/**
- * @typedef AffiliateInventoryStoreConfig
- * @property {Object} [store]
  */
 /**
  * @typedef AffiliateMeta
@@ -5301,11 +5218,6 @@ class PlatformClient {
  * @property {number} [quantity]
  * @property {ReplacementDetails} [replacement_details]
  * @property {number} [size_level_total_qty]
- */
-/**
- * @typedef AffiliateStoreIdMapping
- * @property {string} marketplace_store_id
- * @property {number} store_id
  */
 /**
  * @typedef AnnouncementResponse
@@ -5358,16 +5270,6 @@ class PlatformClient {
 /**
  * @typedef ArticleDetails
  * @property {Object} [status]
- */
-/**
- * @typedef ArticleDetails1
- * @property {string} _id
- * @property {Object} attributes
- * @property {number} brand_id
- * @property {Object} category
- * @property {Object} dimension
- * @property {number} quantity
- * @property {Object} weight
  */
 /**
  * @typedef AssetByShipment
@@ -5787,12 +5689,6 @@ class PlatformClient {
  * @property {number} status
  */
 /**
- * @typedef CreateOrderPayload
- * @property {string} affiliate_id
- * @property {OrderConfig} order_config
- * @property {OrderInfo} order_info
- */
-/**
  * @typedef CreateOrderResponse
  * @property {string} fynd_order_id
  */
@@ -5822,6 +5718,11 @@ class PlatformClient {
  * @typedef DataUpdates
  * @property {EntitiesDataUpdates[]} [entities]
  * @property {ProductsDataUpdates[]} [products]
+ */
+/**
+ * @typedef DateRange
+ * @property {string} [from_date]
+ * @property {string} [to_date]
  */
 /**
  * @typedef Dates
@@ -5963,6 +5864,28 @@ class PlatformClient {
  * @property {string} [value]
  */
 /**
+ * @typedef FilterInfoOption1
+ * @property {number} [min_search_size]
+ * @property {string} [name]
+ * @property {string} [placeholder_text]
+ * @property {boolean} [show_ui]
+ * @property {string} [text]
+ * @property {string} [value]
+ */
+/**
+ * @typedef Filters
+ * @property {DateRange} [date_range]
+ * @property {number} [dp_ids]
+ * @property {string} [dp_name]
+ * @property {string} [from_date]
+ * @property {string} [lane]
+ * @property {string} [logo]
+ * @property {string} [selected_shipments]
+ * @property {string} [store_name]
+ * @property {number} [stores]
+ * @property {string} [to_date]
+ */
+/**
  * @typedef FiltersInfo
  * @property {FilterInfoOption[]} [options]
  * @property {string} [placeholder_text]
@@ -5970,6 +5893,25 @@ class PlatformClient {
  * @property {string} text
  * @property {string} type
  * @property {string} value
+ */
+/**
+ * @typedef FiltersInfo1
+ * @property {FilterInfoOption1[]} [options]
+ * @property {string} [placeholder_text]
+ * @property {boolean} [required]
+ * @property {string} text
+ * @property {string} type
+ * @property {string} value
+ */
+/**
+ * @typedef FiltersRequest
+ * @property {DateRange} [date_range]
+ * @property {number} dp_ids
+ * @property {string} dp_name
+ * @property {string} lane
+ * @property {string} [logo]
+ * @property {string} store_name
+ * @property {number} stores
  */
 /**
  * @typedef FiltersResponse
@@ -6188,21 +6130,90 @@ class PlatformClient {
  * @property {string} seller_identifier
  */
 /**
- * @typedef LocationDetails
- * @property {ArticleDetails1[]} articles
- * @property {number} fulfillment_id
- * @property {string} fulfillment_type
- */
-/**
  * @typedef LockData
  * @property {string} [lock_message]
  * @property {boolean} [locked]
  * @property {boolean} [mto]
  */
 /**
- * @typedef MarketPlacePdf
- * @property {string} [invoice]
- * @property {string} [label]
+ * @typedef Manifest
+ * @property {number} company_id
+ * @property {string} created_at
+ * @property {string} created_by
+ * @property {Filters} [filters]
+ * @property {number} id
+ * @property {boolean} is_active
+ * @property {string} manifest_id
+ * @property {ManifestMeta} [meta]
+ * @property {PDFMeta} [pdf_meta]
+ * @property {string} status
+ * @property {string} uid
+ * @property {string} user_id
+ */
+/**
+ * @typedef ManifestDetails
+ * @property {number} [additional_shipment_count]
+ * @property {ManifestItemDetails[]} [items]
+ * @property {Manifest[]} [manifest_details]
+ * @property {ManifestPageInfo} [page]
+ */
+/**
+ * @typedef ManifestFile
+ * @property {string} [bucket]
+ * @property {string} [key]
+ * @property {string} [region]
+ */
+/**
+ * @typedef ManifestFiltersResponse
+ * @property {FiltersInfo1[]} [advance_filter]
+ * @property {FiltersInfo1[]} [global_filter]
+ */
+/**
+ * @typedef ManifestItemDetails
+ * @property {string} [awb]
+ * @property {string} [invoice_id]
+ * @property {number} [item_qty]
+ * @property {string} order_id
+ * @property {string} [shipment_created_at]
+ * @property {string} shipment_id
+ */
+/**
+ * @typedef ManifestList
+ * @property {Manifest[]} [items]
+ * @property {ManifestPageInfo} [page]
+ */
+/**
+ * @typedef ManifestMediaUpdate
+ * @property {number} [code]
+ * @property {string} [entity]
+ * @property {ManifestFile} [file]
+ * @property {string} [link]
+ * @property {string} [media_type]
+ * @property {boolean} [status]
+ */
+/**
+ * @typedef ManifestMeta
+ * @property {Filters} [filters]
+ * @property {TotalShipmentPricesCount} [total_shipment_prices_count]
+ */
+/**
+ * @typedef ManifestPageInfo
+ * @property {number} current
+ * @property {boolean} has_next
+ * @property {boolean} has_previous
+ * @property {number} size
+ * @property {number} total
+ * @property {string} type
+ */
+/**
+ * @typedef ManifestShipmentListing
+ * @property {ManifestItemDetails[]} [items]
+ * @property {string} [lane]
+ * @property {string} [message]
+ * @property {ManifestPageInfo} page
+ * @property {number} status
+ * @property {boolean} success
+ * @property {number} total_count
  */
 /**
  * @typedef Meta
@@ -6286,15 +6297,6 @@ class PlatformClient {
  * @property {string} [modified_on]
  */
 /**
- * @typedef OrderConfig
- * @property {Affiliate} affiliate
- * @property {AffiliateStoreIdMapping[]} affiliate_store_id_mapping
- * @property {string} [article_lookup]
- * @property {string} [bag_end_state]
- * @property {boolean} [create_user]
- * @property {string} [store_lookup]
- */
-/**
  * @typedef OrderData
  * @property {string} fynd_order_id
  * @property {OrderMeta} [meta]
@@ -6325,24 +6327,6 @@ class PlatformClient {
  * @property {OrderData} [order]
  * @property {PlatformShipment[]} [shipments]
  * @property {boolean} success
- */
-/**
- * @typedef OrderInfo
- * @property {string} [affiliate_order_id]
- * @property {AffiliateBag[]} bags
- * @property {OrderUser} billing_address
- * @property {number} cod_charges
- * @property {string} [coupon]
- * @property {number} delivery_charges
- * @property {number} discount
- * @property {Object} items
- * @property {OrderPriority} [order_priority]
- * @property {number} order_value
- * @property {Object} [payment]
- * @property {string} payment_mode
- * @property {ShipmentData} [shipment]
- * @property {OrderUser} shipping_address
- * @property {UserData} user
  */
 /**
  * @typedef OrderingStoreDetails
@@ -6390,12 +6374,6 @@ class PlatformClient {
  * @property {TransactionData} [transaction_data]
  */
 /**
- * @typedef OrderPriority
- * @property {string} [affiliate_priority_code]
- * @property {number} [fulfilment_priority]
- * @property {string} [fulfilment_priority_text]
- */
-/**
  * @typedef OrderStatus
  * @property {string} end_date
  * @property {number} mobile
@@ -6412,20 +6390,6 @@ class PlatformClient {
  * @typedef OrderStatusResult
  * @property {OrderStatusData[]} [result]
  * @property {string} success
- */
-/**
- * @typedef OrderUser
- * @property {string} [address1]
- * @property {string} [address2]
- * @property {string} city
- * @property {string} country
- * @property {string} email
- * @property {string} first_name
- * @property {string} last_name
- * @property {number} mobile
- * @property {number} phone
- * @property {string} pincode
- * @property {string} state
  */
 /**
  * @typedef OriginalFilter
@@ -6481,6 +6445,11 @@ class PlatformClient {
  * @property {string} [label_pos]
  * @property {string} label_type
  * @property {string} [po_invoice]
+ */
+/**
+ * @typedef PDFMeta
+ * @property {string} [consent]
+ * @property {ManifestMediaUpdate[]} [media_updates]
  */
 /**
  * @typedef PhoneDetails
@@ -6588,6 +6557,7 @@ class PlatformClient {
  * @property {InvoiceInfo} [invoice]
  * @property {string} [invoice_id]
  * @property {boolean} [is_dp_assign_enabled]
+ * @property {boolean} [is_self_ship]
  * @property {string} [journey_type]
  * @property {boolean} [lock_status]
  * @property {ShipmentMeta} [meta]
@@ -6709,6 +6679,27 @@ class PlatformClient {
  * @property {string} [dispatch_by_date]
  * @property {Object} [dp_pickup_slot]
  * @property {string} [pack_by_date]
+ */
+/**
+ * @typedef ProcessManifest
+ * @property {string} action
+ * @property {FiltersRequest} filters
+ * @property {string} [manifest_id]
+ * @property {string} unique_id
+ */
+/**
+ * @typedef ProcessManifestItemResponse
+ * @property {ProcessManifestResponse} [items]
+ */
+/**
+ * @typedef ProcessManifestResponse
+ * @property {string} [action]
+ * @property {number} [company_id]
+ * @property {string} [created_by]
+ * @property {Filters} [filters]
+ * @property {string} [manifest_id]
+ * @property {string} [uid]
+ * @property {string} [user_id]
  */
 /**
  * @typedef Products
@@ -6840,21 +6831,6 @@ class PlatformClient {
  * @property {ProcessingDates} [processing_dates]
  */
 /**
- * @typedef ShipmentConfig
- * @property {string} action
- * @property {string} identifier
- * @property {string} journey
- * @property {LocationDetails} [location_details]
- * @property {string} payment_mode
- * @property {ShipmentDetails1[]} shipment
- * @property {string} source
- * @property {string} to_pincode
- */
-/**
- * @typedef ShipmentData
- * @property {ShipmentConfig} shipment_data
- */
-/**
  * @typedef ShipmentDetail
  * @property {number[]} [bag_list]
  * @property {number} id
@@ -6868,16 +6844,6 @@ class PlatformClient {
  * @property {Object} [action_to_status]
  * @property {string} [lock_message]
  * @property {boolean} [lock_status]
- */
-/**
- * @typedef ShipmentDetails1
- * @property {string} affiliate_shipment_id
- * @property {ArticleDetails1[]} articles
- * @property {string} [box_type]
- * @property {number} [dp_id]
- * @property {number} fulfillment_id
- * @property {Object} [meta]
- * @property {number} shipments
  */
 /**
  * @typedef ShipmentHistoryResponse
@@ -7292,6 +7258,11 @@ class PlatformClient {
  * @property {string} [gstin]
  */
 /**
+ * @typedef TotalShipmentPricesCount
+ * @property {number} [shipment_count]
+ * @property {number} [total_price]
+ */
+/**
  * @typedef TrackingList
  * @property {boolean} [is_current]
  * @property {boolean} [is_passed]
@@ -7353,11 +7324,6 @@ class PlatformClient {
 /**
  * @typedef URL
  * @property {string} [url]
- */
-/**
- * @typedef UserData
- * @property {OrderUser} [billing_user]
- * @property {OrderUser} [shipping_user]
  */
 /**
  * @typedef UserDataInfo
@@ -9458,7 +9424,7 @@ class PlatformClient {
  * @property {NetQuantity} [net_quantity]
  * @property {number} [no_of_boxes]
  * @property {string[]} [product_group_tag]
- * @property {ProductPublish} [product_publish]
+ * @property {ProductPublish1} [product_publish]
  * @property {string} [requester]
  * @property {ReturnConfig} return_config
  * @property {string} [short_description]
@@ -9654,7 +9620,7 @@ class PlatformClient {
  * @property {string} [pending]
  * @property {string} [primary_color]
  * @property {string[]} [product_group_tag]
- * @property {ProductPublish1} [product_publish]
+ * @property {ProductPublish} [product_publish]
  * @property {ReturnConfigResponse} [return_config]
  * @property {string} [short_description]
  * @property {string} [size_guide]
@@ -11606,14 +11572,14 @@ class PlatformClient {
 /**
  * @typedef ApplicationDetail
  * @property {string} [_id]
- * @property {SecureUrl} [banner]
- * @property {string} [description]
+ * @property {SecureUrl} banner
+ * @property {string} description
  * @property {Domain} [domain]
  * @property {Domain[]} [domains]
- * @property {SecureUrl} [favicon]
- * @property {SecureUrl} [logo]
- * @property {SecureUrl} [mobile_logo]
- * @property {string} [name]
+ * @property {SecureUrl} favicon
+ * @property {SecureUrl} logo
+ * @property {SecureUrl} mobile_logo
+ * @property {string} name
  * @property {string} [slug]
  */
 /**
@@ -11687,6 +11653,7 @@ class PlatformClient {
  */
 /**
  * @typedef AppPaymentConfig
+ * @property {boolean} [anonymous_cod]
  * @property {CallbackUrl} [callback_url]
  * @property {number} [cod_amount_limit]
  * @property {number} [cod_charges]
@@ -11958,7 +11925,13 @@ class PlatformClient {
  */
 /**
  * @typedef DomainAdd
+ * @property {string} [_id]
+ * @property {boolean} [is_primary]
+ * @property {boolean} [is_shortlink]
+ * @property {string} [message]
  * @property {string} [name]
+ * @property {string[]} [txt_records]
+ * @property {boolean} [verified]
  */
 /**
  * @typedef DomainAddRequest
@@ -12269,6 +12242,7 @@ class PlatformClient {
  */
 /**
  * @typedef ListingPriceFeature
+ * @property {string} [sort]
  * @property {string} [value]
  */
 /**
@@ -12616,6 +12590,7 @@ class PlatformClient {
 /**
  * @typedef SuccessMessageResponse
  * @property {string} [message]
+ * @property {boolean} [success]
  */
 /**
  * @typedef TokenResponse
@@ -12650,6 +12625,10 @@ class PlatformClient {
 /**
  * @typedef UpdateDomain
  * @property {string} [_id]
+ * @property {boolean} [is_primary]
+ * @property {boolean} [is_shortlink]
+ * @property {string} [name]
+ * @property {boolean} [verified]
  */
 /**
  * @typedef UpdateDomainTypeRequest
@@ -12674,6 +12653,10 @@ class PlatformClient {
  * @property {string} [phone]
  * @property {boolean} [primary]
  * @property {boolean} [verified]
+ */
+/**
+ * @typedef ValidationFailedResponse
+ * @property {string} [message]
  */
 /**
  * @typedef Validators
@@ -14641,6 +14624,16 @@ class PlatformClient {
  * @property {string} [version]
  */
 /**
+ * @typedef EventConfigDetails
+ * @property {string} [created_on]
+ * @property {string} [description]
+ * @property {string} [display_name]
+ * @property {string} [event_category]
+ * @property {string} [event_name]
+ * @property {string} [event_type]
+ * @property {string} [version]
+ */
+/**
  * @typedef EventConfigList
  * @property {EventConfig[]} [items]
  * @property {Page} [page]
@@ -14688,6 +14681,17 @@ class PlatformClient {
  * @property {string} [email_id]
  * @property {number[]} [event_id]
  * @property {number} [id]
+ * @property {string} [name]
+ * @property {SubscriberStatus} [status]
+ * @property {string} [webhook_url]
+ */
+/**
+ * @typedef SubscriberConfigDetails
+ * @property {Association} [association]
+ * @property {AuthMeta} [auth_meta]
+ * @property {Object} [custom_headers]
+ * @property {string} [email_id]
+ * @property {number[]} [event_id]
  * @property {string} [name]
  * @property {SubscriberStatus} [status]
  * @property {string} [webhook_url]

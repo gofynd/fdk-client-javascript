@@ -1456,6 +1456,384 @@ class Order {
 
   /**
    * @param {Object} arg - Arg object.
+   * @param {string} arg.manifestId -
+   * @param {string} [arg.status] -
+   * @param {string} [arg.toDate] -
+   * @param {string} [arg.fromDate] -
+   * @param {string} [arg.searchType] -
+   * @param {string} [arg.searchValue] -
+   * @param {string} [arg.dpIds] - DP Ids separated by ',' (comma)
+   * @param {string} [arg.pageNo] -
+   * @param {string} [arg.pageSize] -
+   * @returns {Promise<ManifestDetails>} - Success response
+   * @summary:
+   * @description:
+   */
+  async getManifestDetails({
+    manifestId,
+    status,
+    toDate,
+    fromDate,
+    searchType,
+    searchValue,
+    dpIds,
+    pageNo,
+    pageSize,
+  } = {}) {
+    const { error } = OrderValidator.getManifestDetails().validate(
+      {
+        manifestId,
+        status,
+        toDate,
+        fromDate,
+        searchType,
+        searchValue,
+        dpIds,
+        pageNo,
+        pageSize,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = OrderValidator.getManifestDetails().validate(
+      {
+        manifestId,
+        status,
+        toDate,
+        fromDate,
+        searchType,
+        searchValue,
+        dpIds,
+        pageNo,
+        pageSize,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getManifestDetails",
+      });
+      Logger({ level: "WARN", message: warrning });
+    }
+
+    const query_params = {};
+    query_params["manifest_id"] = manifestId;
+    query_params["status"] = status;
+    query_params["to_date"] = toDate;
+    query_params["from_date"] = fromDate;
+    query_params["search_type"] = searchType;
+    query_params["search_value"] = searchValue;
+    query_params["dp_ids"] = dpIds;
+    query_params["page_no"] = pageNo;
+    query_params["page_size"] = pageSize;
+
+    const xHeaders = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/order-manage/v1.0/company/${this.config.companyId}/manifest/details`,
+      query_params,
+      undefined,
+      xHeaders
+    );
+
+    const { error: res_error } = OrderModel.ManifestDetails().validate(
+      response,
+      { abortEarly: false, allowUnknown: false }
+    );
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getManifestDetails",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {number} arg.dpIds -
+   * @param {string} arg.stores -
+   * @param {string} arg.toDate -
+   * @param {string} arg.fromDate -
+   * @param {string} [arg.dpName] -
+   * @param {string} [arg.salesChannels] -
+   * @param {string} [arg.searchType] -
+   * @param {string} [arg.searchValue] -
+   * @param {string} [arg.pageNo] -
+   * @param {string} [arg.pageSize] -
+   * @returns {Promise<ManifestShipmentListing>} - Success response
+   * @summary:
+   * @description:
+   */
+  async getManifestShipments({
+    dpIds,
+    stores,
+    toDate,
+    fromDate,
+    dpName,
+    salesChannels,
+    searchType,
+    searchValue,
+    pageNo,
+    pageSize,
+  } = {}) {
+    const { error } = OrderValidator.getManifestShipments().validate(
+      {
+        dpIds,
+        stores,
+        toDate,
+        fromDate,
+        dpName,
+        salesChannels,
+        searchType,
+        searchValue,
+        pageNo,
+        pageSize,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = OrderValidator.getManifestShipments().validate(
+      {
+        dpIds,
+        stores,
+        toDate,
+        fromDate,
+        dpName,
+        salesChannels,
+        searchType,
+        searchValue,
+        pageNo,
+        pageSize,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getManifestShipments",
+      });
+      Logger({ level: "WARN", message: warrning });
+    }
+
+    const query_params = {};
+    query_params["dp_ids"] = dpIds;
+    query_params["stores"] = stores;
+    query_params["to_date"] = toDate;
+    query_params["from_date"] = fromDate;
+    query_params["dp_name"] = dpName;
+    query_params["sales_channels"] = salesChannels;
+    query_params["search_type"] = searchType;
+    query_params["search_value"] = searchValue;
+    query_params["page_no"] = pageNo;
+    query_params["page_size"] = pageSize;
+
+    const xHeaders = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/order-manage/v1.0/company/${this.config.companyId}/manifest/shipments-listing`,
+      query_params,
+      undefined,
+      xHeaders
+    );
+
+    const {
+      error: res_error,
+    } = OrderModel.ManifestShipmentListing().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getManifestShipments",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.view - Name of View
+   * @returns {Promise<ManifestFiltersResponse>} - Success response
+   * @summary:
+   * @description:
+   */
+  async getManifestfilters({ view } = {}) {
+    const { error } = OrderValidator.getManifestfilters().validate(
+      {
+        view,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = OrderValidator.getManifestfilters().validate(
+      {
+        view,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getManifestfilters",
+      });
+      Logger({ level: "WARN", message: warrning });
+    }
+
+    const query_params = {};
+    query_params["view"] = view;
+
+    const xHeaders = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/order-manage/v1.0/company/${this.config.companyId}/filter/listing`,
+      query_params,
+      undefined,
+      xHeaders
+    );
+
+    const {
+      error: res_error,
+    } = OrderModel.ManifestFiltersResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getManifestfilters",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {string} [arg.status] - Possible Status [ active, closed ]
+   * @param {string} [arg.toDate] -
+   * @param {string} [arg.fromDate] -
+   * @param {string} [arg.searchValue] - Search values options [
+   *   fynd_order_id, shipment_id, manifest_id, dp_name, awb_no ]
+   * @param {string} [arg.dpIds] - DP Ids separated by ',' (comma)
+   * @param {string} [arg.pageNo] -
+   * @param {string} [arg.pageSize] -
+   * @returns {Promise<ManifestList>} - Success response
+   * @summary:
+   * @description:
+   */
+  async getManifests({
+    status,
+    toDate,
+    fromDate,
+    searchValue,
+    dpIds,
+    pageNo,
+    pageSize,
+  } = {}) {
+    const { error } = OrderValidator.getManifests().validate(
+      {
+        status,
+        toDate,
+        fromDate,
+        searchValue,
+        dpIds,
+        pageNo,
+        pageSize,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = OrderValidator.getManifests().validate(
+      {
+        status,
+        toDate,
+        fromDate,
+        searchValue,
+        dpIds,
+        pageNo,
+        pageSize,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getManifests",
+      });
+      Logger({ level: "WARN", message: warrning });
+    }
+
+    const query_params = {};
+    query_params["status"] = status;
+    query_params["to_date"] = toDate;
+    query_params["from_date"] = fromDate;
+    query_params["search_value"] = searchValue;
+    query_params["dp_ids"] = dpIds;
+    query_params["page_no"] = pageNo;
+    query_params["page_size"] = pageSize;
+
+    const xHeaders = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/order-manage/v1.0/company/${this.config.companyId}/manifest/listing`,
+      query_params,
+      undefined,
+      xHeaders
+    );
+
+    const { error: res_error } = OrderModel.ManifestList().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getManifests",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
    * @param {string} [arg.fromDate] -
    * @param {string} [arg.toDate] -
    * @returns {Promise<MetricCountResponse>} - Success response
@@ -2573,8 +2951,8 @@ class Order {
 
   /**
    * @param {Object} arg - Arg object.
-   * @param {CreateOrderPayload} arg.body
-   * @returns {Promise<CreateOrderResponse>} - Success response
+   * @param {ProcessManifest} arg.body
+   * @returns {Promise<ProcessManifestItemResponse>} - Success response
    * @summary:
    * @description:
    */
@@ -2619,7 +2997,7 @@ class Order {
 
     const {
       error: res_error,
-    } = OrderModel.CreateOrderResponse().validate(response, {
+    } = OrderModel.ProcessManifestItemResponse().validate(response, {
       abortEarly: false,
       allowUnknown: false,
     });

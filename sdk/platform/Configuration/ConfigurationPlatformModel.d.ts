@@ -182,6 +182,7 @@ declare class ConfigurationModel {
     static UpdateIntegrationLevelRequest(): any;
     static UserEmail(): any;
     static UserPhoneNumber(): any;
+    static ValidationFailedResponse(): any;
     static Validators(): any;
     static VimeoLink(): any;
     static YoutubeLink(): any;

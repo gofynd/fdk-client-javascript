@@ -155,6 +155,53 @@ class OrderValidator {
     }).required();
   }
 
+  static getManifestDetails() {
+    return Joi.object({
+      manifestId: Joi.string().allow("").required(),
+      status: Joi.string().allow(""),
+      toDate: Joi.string().allow(""),
+      fromDate: Joi.string().allow(""),
+      searchType: Joi.string().allow(""),
+      searchValue: Joi.string().allow(""),
+      dpIds: Joi.string().allow(""),
+      pageNo: Joi.string().allow(""),
+      pageSize: Joi.string().allow(""),
+    }).required();
+  }
+
+  static getManifestShipments() {
+    return Joi.object({
+      dpIds: Joi.number().required(),
+      stores: Joi.string().allow("").required(),
+      toDate: Joi.string().allow("").required(),
+      fromDate: Joi.string().allow("").required(),
+      dpName: Joi.string().allow(""),
+      salesChannels: Joi.string().allow(""),
+      searchType: Joi.string().allow(""),
+      searchValue: Joi.string().allow(""),
+      pageNo: Joi.string().allow(""),
+      pageSize: Joi.string().allow(""),
+    }).required();
+  }
+
+  static getManifestfilters() {
+    return Joi.object({
+      view: Joi.string().allow("").required(),
+    }).required();
+  }
+
+  static getManifests() {
+    return Joi.object({
+      status: Joi.string().allow(""),
+      toDate: Joi.string().allow(""),
+      fromDate: Joi.string().allow(""),
+      searchValue: Joi.string().allow(""),
+      dpIds: Joi.string().allow(""),
+      pageNo: Joi.string().allow(""),
+      pageSize: Joi.string().allow(""),
+    }).required();
+  }
+
   static getMetricCount() {
     return Joi.object({
       fromDate: Joi.string().allow(""),
@@ -281,7 +328,7 @@ class OrderValidator {
 
   static processManifest() {
     return Joi.object({
-      body: OrderModel.CreateOrderPayload().required(),
+      body: OrderModel.ProcessManifest().required(),
     }).required();
   }
 

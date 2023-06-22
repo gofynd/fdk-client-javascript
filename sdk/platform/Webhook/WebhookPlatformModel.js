@@ -35,6 +35,17 @@ class WebhookModel {
       version: Joi.string().allow(""),
     });
   }
+  static EventConfigDetails() {
+    return Joi.object({
+      created_on: Joi.string().allow(""),
+      description: Joi.string().allow(""),
+      display_name: Joi.string().allow(""),
+      event_category: Joi.string().allow(""),
+      event_name: Joi.string().allow(""),
+      event_type: Joi.string().allow(""),
+      version: Joi.string().allow(""),
+    });
+  }
   static EventConfigList() {
     return Joi.object({
       items: Joi.array().items(WebhookModel.EventConfig()),
@@ -88,6 +99,18 @@ class WebhookModel {
       email_id: Joi.string().allow(""),
       event_id: Joi.array().items(Joi.number()),
       id: Joi.number(),
+      name: Joi.string().allow(""),
+      status: WebhookModel.SubscriberStatus(),
+      webhook_url: Joi.string().allow(""),
+    });
+  }
+  static SubscriberConfigDetails() {
+    return Joi.object({
+      association: WebhookModel.Association(),
+      auth_meta: WebhookModel.AuthMeta(),
+      custom_headers: Joi.any(),
+      email_id: Joi.string().allow(""),
+      event_id: Joi.array().items(Joi.number()),
       name: Joi.string().allow(""),
       status: WebhookModel.SubscriberStatus(),
       webhook_url: Joi.string().allow(""),

@@ -94,14 +94,14 @@ class ConfigurationModel {
   static ApplicationDetail() {
     return Joi.object({
       _id: Joi.string().allow(""),
-      banner: ConfigurationModel.SecureUrl(),
-      description: Joi.string().allow(""),
+      banner: ConfigurationModel.SecureUrl().required(),
+      description: Joi.string().allow("").required(),
       domain: ConfigurationModel.Domain(),
       domains: Joi.array().items(ConfigurationModel.Domain()),
-      favicon: ConfigurationModel.SecureUrl(),
-      logo: ConfigurationModel.SecureUrl(),
-      mobile_logo: ConfigurationModel.SecureUrl(),
-      name: Joi.string().allow(""),
+      favicon: ConfigurationModel.SecureUrl().required(),
+      logo: ConfigurationModel.SecureUrl().required(),
+      mobile_logo: ConfigurationModel.SecureUrl().required(),
+      name: Joi.string().allow("").required(),
       slug: Joi.string().allow(""),
     });
   }
@@ -532,6 +532,7 @@ class ConfigurationModel {
   }
   static ListingPriceFeature() {
     return Joi.object({
+      sort: Joi.string().allow(""),
       value: Joi.string().allow(""),
     });
   }
