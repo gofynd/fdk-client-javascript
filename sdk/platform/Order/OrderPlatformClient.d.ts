@@ -114,20 +114,6 @@ declare class Order {
     }): Promise<RefundModeConfigResponsePayload>;
     /**
      * @param {Object} arg - Arg object.
-     * @param {string} arg.orderId -
-     * @param {string} [arg.shipmentId] -
-     * @param {string} [arg.documentType] -
-     * @returns {Promise<GeneratePosOrderReceiptResponse>} - Success response
-     * @summary:
-     * @description:
-     */
-    generatePOSReceiptByOrderId({ orderId, shipmentId, documentType, }?: {
-        orderId: string;
-        shipmentId?: string;
-        documentType?: string;
-    }): Promise<GeneratePosOrderReceiptResponse>;
-    /**
-     * @param {Object} arg - Arg object.
      * @param {string} [arg.date] - Date On which the announcement is Active
      *   (Date should in ISO Datetime format IST Time)
      * @returns {Promise<AnnouncementsResponse>} - Success response
@@ -407,12 +393,12 @@ declare class Order {
      * @param {number} [arg.pageSize] -
      * @param {boolean} [arg.isPrioritySort] -
      * @param {string} [arg.customMeta] -
-     * @param {string} [arg.platformUserId] -
+     * @param {boolean} [arg.myOrders] -
      * @returns {Promise<OrderListingResponse>} - Success response
      * @summary:
      * @description:
      */
-    getOrders({ lane, searchType, bagStatus, timeToDispatch, paymentMethods, tags, searchValue, fromDate, toDate, dpIds, stores, salesChannels, pageNo, pageSize, isPrioritySort, customMeta, platformUserId, }?: {
+    getOrders({ lane, searchType, bagStatus, timeToDispatch, paymentMethods, tags, searchValue, fromDate, toDate, dpIds, stores, salesChannels, pageNo, pageSize, isPrioritySort, customMeta, myOrders, }?: {
         lane?: string;
         searchType?: string;
         bagStatus?: string;
@@ -429,7 +415,7 @@ declare class Order {
         pageSize?: number;
         isPrioritySort?: boolean;
         customMeta?: string;
-        platformUserId?: string;
+        myOrders?: boolean;
     }): Promise<OrderListingResponse>;
     /**
      * @param {Object} arg - Arg object.
@@ -515,12 +501,11 @@ declare class Order {
      * @param {string} [arg.customMeta] -
      * @param {string} [arg.orderingChannel] -
      * @param {string} [arg.companyAffiliateTag] -
-     * @param {string} [arg.platformUserId] -
      * @returns {Promise<ShipmentInternalPlatformViewResponse>} - Success response
      * @summary:
      * @description:
      */
-    getShipments({ lane, bagStatus, statusOverrideLane, timeToDispatch, searchType, searchValue, fromDate, toDate, dpIds, stores, salesChannels, pageNo, pageSize, fetchActiveShipment, excludeLockedShipments, paymentMethods, channelShipmentId, channelOrderId, customMeta, orderingChannel, companyAffiliateTag, platformUserId, }?: {
+    getShipments({ lane, bagStatus, statusOverrideLane, timeToDispatch, searchType, searchValue, fromDate, toDate, dpIds, stores, salesChannels, pageNo, pageSize, fetchActiveShipment, excludeLockedShipments, paymentMethods, channelShipmentId, channelOrderId, customMeta, orderingChannel, companyAffiliateTag, }?: {
         lane?: string;
         bagStatus?: string;
         statusOverrideLane?: boolean;
@@ -542,7 +527,6 @@ declare class Order {
         customMeta?: string;
         orderingChannel?: string;
         companyAffiliateTag?: string;
-        platformUserId?: string;
     }): Promise<ShipmentInternalPlatformViewResponse>;
     /**
      * @param {Object} arg - Arg object.

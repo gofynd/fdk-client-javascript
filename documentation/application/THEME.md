@@ -9595,6 +9595,15 @@ Success. Returns a JSON object of the theme. Check the example shown below or re
 
 ---
 
+#### [ArrayOfMarketplaceTheme](#ArrayOfMarketplaceTheme)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | body | [[MarketplaceTheme](#MarketplaceTheme)]? |  yes  | An array containing the latest version of theme |
+ 
+
+---
+
 #### [AssetsSchema](#AssetsSchema)
 
  | Properties | Type | Nullable | Description |
@@ -10289,9 +10298,8 @@ Success. Returns a JSON object of the theme. Check the example shown below or re
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | android | [string]? |  yes  |  |
- | desktop | [string]? |  yes  | Desktop theme image URL |
+ | desktop | [string]? |  yes  |  |
  | ios | [string]? |  yes  |  |
- | mobile | string? |  yes  | Mobile theme image URL |
  | thumbnail | [string]? |  yes  |  |
  
 
@@ -10355,7 +10363,7 @@ Success. Returns a JSON object of the theme. Check the example shown below or re
  | explore | [ExploreInfo](#ExploreInfo)? |  yes  |  |
  | features | [[Feature](#Feature)]? |  yes  |  |
  | highlights | [[Highlight](#Highlight)]? |  yes  |  |
- | images | [Images](#Images)? |  yes  |  |
+ | images | [MarketplaceThemeImages](#MarketplaceThemeImages)? |  yes  |  |
  | industry | [string]? |  yes  | Industries the theme is suitable for |
  | is_default | boolean? |  yes  | Indicates if the theme is a default theme |
  | is_update | boolean? |  yes  | Indicates if the theme is an update |
@@ -10386,6 +10394,16 @@ Success. Returns a JSON object of the theme. Check the example shown below or re
 
 ---
 
+#### [MarketplaceThemeImages](#MarketplaceThemeImages)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | desktop | string? |  yes  | Desktop theme image URL |
+ | mobile | string? |  yes  | Mobile theme image URL |
+ 
+
+---
+
 #### [MarketplaceThemeResponse](#MarketplaceThemeResponse)
 
  | Properties | Type | Nullable | Description |
@@ -10400,8 +10418,8 @@ Success. Returns a JSON object of the theme. Check the example shown below or re
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | items | [[MarketplaceTheme](#MarketplaceTheme)]? |  yes  |  |
  | page | [PaginationSchema](#PaginationSchema)? |  yes  |  |
+ | themes | [[MarketplaceTheme](#MarketplaceTheme)]? |  yes  |  |
  
 
 ---
@@ -10589,6 +10607,15 @@ Success. Returns a JSON object of the theme. Check the example shown below or re
 
 ---
 
+#### [RejectionReason](#RejectionReason)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | message | string |  no  | The reason for rejecting the theme |
+ 
+
+---
+
 #### [Release](#Release)
 
  | Properties | Type | Nullable | Description |
@@ -10767,6 +10794,16 @@ Success. Returns a JSON object of the theme. Check the example shown below or re
 
 ---
 
+#### [ThemeCreateRequest](#ThemeCreateRequest)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | release | [Release](#Release)? |  yes  |  |
+ | src | string? |  yes  | The source URL of the theme file |
+ 
+
+---
+
 #### [ThemeCreator](#ThemeCreator)
 
  | Properties | Type | Nullable | Description |
@@ -10816,11 +10853,38 @@ Success. Returns a JSON object of the theme. Check the example shown below or re
 
 ---
 
+#### [ThemeRejectionReasons](#ThemeRejectionReasons)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | _id | string |  no  | The ID of the theme rejection reasons object |
+ | admin_id | string |  no  | The ID of the admin who rejected the theme |
+ | created_at | string? |  yes  | The date and time when the theme rejection reasons object was created |
+ | message | string? |  yes  | A general message about the rejection reasons |
+ | organization_id | string |  no  | The ID of the organization |
+ | rejection_reasons | string |  no  |  |
+ | status | string |  no  | The status of the theme (e.g., rejected) |
+ | theme_id | string |  no  | The ID of the rejected theme |
+ | updated_at | string? |  yes  | The date and time when the theme rejection reasons object was last updated |
+ | user_id | string |  no  | The ID of the user who submitted the theme |
+ 
+
+---
+
 #### [ThemeReq](#ThemeReq)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | marketplace_theme_id | string? |  yes  | The ID of the marketplace theme to apply to the company. |
+ 
+
+---
+
+#### [ThemeReviewRequest](#ThemeReviewRequest)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | dynamic_properties | string? |  yes  |  |
  
 
 ---
@@ -10940,6 +11004,15 @@ Success. Returns a JSON object of the theme. Check the example shown below or re
 
 ---
 
+#### [UpdateReviewStatusRequest](#UpdateReviewStatusRequest)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | status | string |  no  | The new status of the theme review |
+ 
+
+---
+
 #### [UpdateThemeNameRequestBodyV2](#UpdateThemeNameRequestBodyV2)
 
  | Properties | Type | Nullable | Description |
@@ -11023,7 +11096,7 @@ Success. Returns a JSON object of the theme. Check the example shown below or re
  | ---------- | ---- | -------- | ----------- |
  | color | string? |  yes  | Variation color |
  | demo_url | string? |  yes  | Variation demo URL |
- | images | [Images](#Images)? |  yes  |  |
+ | images | [MarketplaceThemeImages](#MarketplaceThemeImages)? |  yes  |  |
  | name | string? |  yes  | Variation name |
  
 

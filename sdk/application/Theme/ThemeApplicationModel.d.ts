@@ -6,6 +6,7 @@ declare class ThemeModel {
     static AllThemesApplicationResponseV2(): any;
     static ApplyThemeRequestV2(): any;
     static ApplyThemeResponseV2(): any;
+    static ArrayOfMarketplaceTheme(): any;
     static AssetsSchema(): any;
     static AssetsV2(): any;
     static AuthConfigV2(): any;
@@ -74,6 +75,7 @@ declare class ThemeModel {
     static ListSchemaItem(): any;
     static MarketplaceTheme(): any;
     static MarketplaceThemeId(): any;
+    static MarketplaceThemeImages(): any;
     static MarketplaceThemeResponse(): any;
     static MarketplaceThemeResponseBody(): any;
     static Medium(): any;
@@ -93,6 +95,7 @@ declare class ThemeModel {
     static PropV2(): any;
     static RangePropV2(): any;
     static Regular(): any;
+    static RejectionReason(): any;
     static Release(): any;
     static ReleaseV2(): any;
     static RouteV2(): any;
@@ -110,11 +113,14 @@ declare class ThemeModel {
     static TextPropV2(): any;
     static TextSettingV2(): any;
     static ThemeAndUserDetailsResponse(): any;
+    static ThemeCreateRequest(): any;
     static ThemeCreator(): any;
     static ThemeImages(): any;
     static ThemeMeta(): any;
     static ThemePayment(): any;
+    static ThemeRejectionReasons(): any;
     static ThemeReq(): any;
+    static ThemeReviewRequest(): any;
     static ThemeSchema(): any;
     static ThemeSettingV2(): any;
     static ThemesListingResponseSchema(): any;
@@ -124,6 +130,7 @@ declare class ThemeModel {
     static ThemeVersionsV2(): any;
     static UmdJs(): any;
     static UMDJs(): any;
+    static UpdateReviewStatusRequest(): any;
     static UpdateThemeNameRequestBodyV2(): any;
     static UpdateThemeRequestBodyV2(): any;
     static UpgradableThemeSchema(): any;

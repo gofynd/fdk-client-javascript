@@ -63,6 +63,11 @@ class ThemeModel {
       version: Joi.string().allow(""),
     });
   }
+  static ArrayOfMarketplaceTheme() {
+    return Joi.object({
+      body: Joi.array().items(ThemeModel.MarketplaceTheme()),
+    });
+  }
   static AssetsSchema() {
     return Joi.object({
       common_js: ThemeModel.CommonJs(),
@@ -515,7 +520,6 @@ class ThemeModel {
       android: Joi.array().items(Joi.string().allow("")),
       desktop: Joi.array().items(Joi.string().allow("")),
       ios: Joi.array().items(Joi.string().allow("")),
-      mobile: Joi.string().allow(""),
       thumbnail: Joi.array().items(Joi.string().allow("")),
     });
   }
@@ -559,7 +563,7 @@ class ThemeModel {
       explore: ThemeModel.ExploreInfo(),
       features: Joi.array().items(ThemeModel.Feature()),
       highlights: Joi.array().items(ThemeModel.Highlight()),
-      images: ThemeModel.Images(),
+      images: ThemeModel.MarketplaceThemeImages(),
       industry: Joi.array().items(Joi.string().allow("")),
       is_default: Joi.boolean(),
       is_update: Joi.boolean(),
@@ -584,6 +588,12 @@ class ThemeModel {
       is_default: Joi.boolean(),
     });
   }
+  static MarketplaceThemeImages() {
+    return Joi.object({
+      desktop: Joi.string().allow(""),
+      mobile: Joi.string().allow(""),
+    });
+  }
   static MarketplaceThemeResponse() {
     return Joi.object({
       body: ThemeModel.MarketplaceThemeResponseBody(),
@@ -592,8 +602,8 @@ class ThemeModel {
   }
   static MarketplaceThemeResponseBody() {
     return Joi.object({
-      items: Joi.array().items(ThemeModel.MarketplaceTheme()),
       page: ThemeModel.PaginationSchema(),
+      themes: Joi.array().items(ThemeModel.MarketplaceTheme()),
     });
   }
   static Medium() {
@@ -711,6 +721,11 @@ class ThemeModel {
       name: Joi.string().allow(""),
     });
   }
+  static RejectionReason() {
+    return Joi.object({
+      message: Joi.string().allow("").required(),
+    });
+  }
   static Release() {
     return Joi.object({
       notes: Joi.string().allow(""),
@@ -821,6 +836,12 @@ class ThemeModel {
       user: Joi.array().items(ThemeModel.ThemeCreator()),
     });
   }
+  static ThemeCreateRequest() {
+    return Joi.object({
+      release: ThemeModel.Release(),
+      src: Joi.string().allow(""),
+    });
+  }
   static ThemeCreator() {
     return Joi.object({
       _id: Joi.string().allow("").required(),
@@ -854,9 +875,28 @@ class ThemeModel {
       is_paid: Joi.boolean(),
     });
   }
+  static ThemeRejectionReasons() {
+    return Joi.object({
+      _id: Joi.string().allow("").required(),
+      admin_id: Joi.string().allow("").required(),
+      created_at: Joi.string().allow(""),
+      message: Joi.string().allow(""),
+      organization_id: Joi.string().allow("").required(),
+      rejection_reasons: Joi.object().pattern(/\S/, Joi.any()).required(),
+      status: Joi.string().allow("").required(),
+      theme_id: Joi.string().allow("").required(),
+      updated_at: Joi.string().allow(""),
+      user_id: Joi.string().allow("").required(),
+    });
+  }
   static ThemeReq() {
     return Joi.object({
       marketplace_theme_id: Joi.string().allow(""),
+    });
+  }
+  static ThemeReviewRequest() {
+    return Joi.object({
+      dynamic_properties: Joi.object().pattern(/\S/, Joi.any()),
     });
   }
   static ThemeSchema() {
@@ -940,6 +980,11 @@ class ThemeModel {
       links: Joi.array().items(Joi.string().allow("")),
     });
   }
+  static UpdateReviewStatusRequest() {
+    return Joi.object({
+      status: Joi.string().allow("").required(),
+    });
+  }
   static UpdateThemeNameRequestBodyV2() {
     return Joi.object({
       name: Joi.string().allow(""),
@@ -993,7 +1038,7 @@ class ThemeModel {
     return Joi.object({
       color: Joi.string().allow(""),
       demo_url: Joi.string().allow(""),
-      images: ThemeModel.Images(),
+      images: ThemeModel.MarketplaceThemeImages(),
       name: Joi.string().allow(""),
     });
   }

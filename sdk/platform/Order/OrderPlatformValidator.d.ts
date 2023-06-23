@@ -10,7 +10,6 @@ declare class OrderValidator {
     static downloadBulkActionTemplate(): any;
     static fetchCreditBalanceDetail(): any;
     static fetchRefundModeConfig(): any;
-    static generatePOSReceiptByOrderId(): any;
     static getAnnouncements(): any;
     static getAssetByShipmentIds(): any;
     static getBagById(): any;

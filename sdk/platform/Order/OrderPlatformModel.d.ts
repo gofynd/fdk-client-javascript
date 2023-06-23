@@ -23,6 +23,7 @@ declare class OrderModel {
     static BagGST(): any;
     static BagGSTDetails(): any;
     static BagMeta(): any;
+    static BagPaymentMethods(): any;
     static BagReturnableCancelableStatus(): any;
     static BagReturnableCancelableStatus1(): any;
     static Bags(): any;
@@ -89,7 +90,6 @@ declare class OrderModel {
     static Formatted(): any;
     static FulfillingStore(): any;
     static FyndOrderIdList(): any;
-    static GeneratePosOrderReceiptResponse(): any;
     static GetActionsResponse(): any;
     static GetBagsPlatformResponse(): any;
     static GiftCard(): any;
@@ -203,6 +203,8 @@ declare class OrderModel {
     static ShipmentListingChannel(): any;
     static ShipmentMeta(): any;
     static ShipmentPayments(): any;
+    static ShipmentReasonsResponse(): any;
+    static ShipmentResponseReasons(): any;
     static ShipmentsRequest(): any;
     static ShipmentsResponse(): any;
     static ShipmentStatus(): any;

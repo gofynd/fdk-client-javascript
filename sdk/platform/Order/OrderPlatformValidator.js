@@ -67,14 +67,6 @@ class OrderValidator {
     }).required();
   }
 
-  static generatePOSReceiptByOrderId() {
-    return Joi.object({
-      orderId: Joi.string().allow("").required(),
-      shipmentId: Joi.string().allow(""),
-      documentType: Joi.string().allow(""),
-    }).required();
-  }
-
   static getAnnouncements() {
     return Joi.object({
       date: Joi.string().allow(""),
@@ -233,7 +225,7 @@ class OrderValidator {
       pageSize: Joi.number(),
       isPrioritySort: Joi.boolean(),
       customMeta: Joi.string().allow(""),
-      platformUserId: Joi.string().allow(""),
+      myOrders: Joi.boolean(),
     }).required();
   }
 
@@ -293,7 +285,6 @@ class OrderValidator {
       customMeta: Joi.string().allow(""),
       orderingChannel: Joi.string().allow(""),
       companyAffiliateTag: Joi.string().allow(""),
-      platformUserId: Joi.string().allow(""),
     }).required();
   }
 

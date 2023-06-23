@@ -23,9 +23,6 @@ declare class FinanceModel {
     static GetEngineFilters(): any;
     static GetEngineRequest(): any;
     static GetEngineResponse(): any;
-    static GetInvoiceListPayloadData(): any;
-    static GetInvoiceListRequest(): any;
-    static GetInvoiceListResponse(): any;
     static GetReason(): any;
     static GetReasonRequest(): any;
     static GetReasonResponse(): any;
@@ -39,6 +36,10 @@ declare class FinanceModel {
     static InvoicePdfPayloadData(): any;
     static InvoicePdfRequest(): any;
     static InvoicePdfResponse(): any;
+    static InvoiceTypePayloadData(): any;
+    static InvoiceTypeRequest(): any;
+    static InvoiceTypeResponse(): any;
+    static InvoiceTypeResponseItems(): any;
     static IsCreditlinePayload(): any;
     static IsCreditlinePlatformRequest(): any;
     static IsCreditlinePlatformResponse(): any;

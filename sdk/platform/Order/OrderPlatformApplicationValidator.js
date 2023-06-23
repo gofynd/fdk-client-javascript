@@ -27,6 +27,12 @@ class OrderValidator {
     }).required();
   }
 
+  static getPlatformShipmentReasons() {
+    return Joi.object({
+      action: Joi.string().allow("").required(),
+    }).required();
+  }
+
   static trackShipmentPlatform() {
     return Joi.object({
       shipmentId: Joi.string().allow("").required(),

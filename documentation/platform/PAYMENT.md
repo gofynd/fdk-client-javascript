@@ -20,6 +20,7 @@ Collect payment through many payment gateway i.e Stripe, Razorpay, Juspay etc.in
 * [edcAggregatorsAndModelList](#edcaggregatorsandmodellist)
 * [edcDeviceList](#edcdevicelist)
 * [edcDeviceStats](#edcdevicestats)
+* [extensionPaymentUpdate](#extensionpaymentupdate)
 * [getAllPayouts](#getallpayouts)
 * [getBankAccountDetailsOpenAPI](#getbankaccountdetailsopenapi)
 * [getBrandPaymentGatewayConfig](#getbrandpaymentgatewayconfig)
@@ -794,6 +795,76 @@ Success. Returns the list of devices linked to the application Check the example
   "statistics": {
     "active_device_count": 2,
     "inactive_device_count": 0
+  }
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### extensionPaymentUpdate
+Extension will call this api to set the payment status of an order
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").payment.extensionPaymentUpdate({  body : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").payment.extensionPaymentUpdate({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [ExtensionPaymentUpdateRequestSerializer](#ExtensionPaymentUpdateRequestSerializer) | yes | Request body |
+
+
+Use this API to Extension will call this api to set the payment status of an order
+
+*Returned Response:*
+
+
+
+
+[ExtensionPaymentUpdateResponseSerializer](#ExtensionPaymentUpdateResponseSerializer)
+
+Success. Returns the status of Update or not. Check the example shown below or refer `ExtensionPaymentUpdateResponseSerializer` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "gid": "<fynd_order_id>",
+  "status": "initiated",
+  "total_amount": 10000,
+  "currency": "INR",
+  "platform_transaction_details": {
+    "type": "list",
+    "transaction_details": [
+      {
+        "object": "platform_payment",
+        "transaction_id": "",
+        "payment_id": ""
+      }
+    ]
   }
 }
 ```
@@ -5849,6 +5920,33 @@ Bank details on correct Ifsc Code
  | message | string |  no  | Message |
  | status_code | number |  no  | HTTP status code |
  | success | boolean |  no  | Successful or failure |
+ 
+
+---
+
+#### [ExtensionPaymentUpdateRequestSerializer](#ExtensionPaymentUpdateRequestSerializer)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | currency | string |  no  |  |
+ | gid | string |  no  |  |
+ | order_details | string |  no  |  |
+ | payment_details | string |  no  |  |
+ | status | string |  no  |  |
+ | total_amount | number |  no  |  |
+ 
+
+---
+
+#### [ExtensionPaymentUpdateResponseSerializer](#ExtensionPaymentUpdateResponseSerializer)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | currency | string |  no  |  |
+ | gid | string |  no  |  |
+ | platform_transaction_details | string |  no  |  |
+ | status | string |  no  |  |
+ | total_amount | number |  no  |  |
  
 
 ---

@@ -684,86 +684,6 @@ class Order {
 
   /**
    * @param {Object} arg - Arg object.
-   * @param {string} arg.orderId -
-   * @param {string} [arg.shipmentId] -
-   * @param {string} [arg.documentType] -
-   * @returns {Promise<GeneratePosOrderReceiptResponse>} - Success response
-   * @summary:
-   * @description:
-   */
-  async generatePOSReceiptByOrderId({
-    orderId,
-    shipmentId,
-    documentType,
-  } = {}) {
-    const { error } = OrderValidator.generatePOSReceiptByOrderId().validate(
-      {
-        orderId,
-        shipmentId,
-        documentType,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = OrderValidator.generatePOSReceiptByOrderId().validate(
-      {
-        orderId,
-        shipmentId,
-        documentType,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message:
-          "Parameter Validation warrnings for generatePOSReceiptByOrderId",
-      });
-      Logger({ level: "WARN", message: warrning });
-    }
-
-    const query_params = {};
-    query_params["shipment_id"] = shipmentId;
-    query_params["document_type"] = documentType;
-
-    const xHeaders = {};
-
-    const response = await PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/orders/v1.0/company/${this.config.companyId}/orders/${orderId}/generate/pos-receipt`,
-      query_params,
-      undefined,
-      xHeaders
-    );
-
-    const {
-      error: res_error,
-    } = OrderModel.GeneratePosOrderReceiptResponse().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
-
-    if (res_error) {
-      Logger({
-        level: "WARN",
-        message:
-          "Response Validation Warnnings for generatePOSReceiptByOrderId",
-      });
-      Logger({ level: "WARN", message: res_error });
-    }
-
-    return response;
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
    * @param {string} [arg.date] - Date On which the announcement is Active
    *   (Date should in ISO Datetime format IST Time)
    * @returns {Promise<AnnouncementsResponse>} - Success response
@@ -1990,7 +1910,7 @@ class Order {
    * @param {number} [arg.pageSize] -
    * @param {boolean} [arg.isPrioritySort] -
    * @param {string} [arg.customMeta] -
-   * @param {string} [arg.platformUserId] -
+   * @param {boolean} [arg.myOrders] -
    * @returns {Promise<OrderListingResponse>} - Success response
    * @summary:
    * @description:
@@ -2012,7 +1932,7 @@ class Order {
     pageSize,
     isPrioritySort,
     customMeta,
-    platformUserId,
+    myOrders,
   } = {}) {
     const { error } = OrderValidator.getOrders().validate(
       {
@@ -2032,7 +1952,7 @@ class Order {
         pageSize,
         isPrioritySort,
         customMeta,
-        platformUserId,
+        myOrders,
       },
       { abortEarly: false, allowUnknown: true }
     );
@@ -2059,7 +1979,7 @@ class Order {
         pageSize,
         isPrioritySort,
         customMeta,
-        platformUserId,
+        myOrders,
       },
       { abortEarly: false, allowUnknown: false }
     );
@@ -2088,7 +2008,7 @@ class Order {
     query_params["page_size"] = pageSize;
     query_params["is_priority_sort"] = isPrioritySort;
     query_params["custom_meta"] = customMeta;
-    query_params["platform_user_id"] = platformUserId;
+    query_params["my_orders"] = myOrders;
 
     const xHeaders = {};
 
@@ -2482,7 +2402,6 @@ class Order {
    * @param {string} [arg.customMeta] -
    * @param {string} [arg.orderingChannel] -
    * @param {string} [arg.companyAffiliateTag] -
-   * @param {string} [arg.platformUserId] -
    * @returns {Promise<ShipmentInternalPlatformViewResponse>} - Success response
    * @summary:
    * @description:
@@ -2509,7 +2428,6 @@ class Order {
     customMeta,
     orderingChannel,
     companyAffiliateTag,
-    platformUserId,
   } = {}) {
     const { error } = OrderValidator.getShipments().validate(
       {
@@ -2534,7 +2452,6 @@ class Order {
         customMeta,
         orderingChannel,
         companyAffiliateTag,
-        platformUserId,
       },
       { abortEarly: false, allowUnknown: true }
     );
@@ -2566,7 +2483,6 @@ class Order {
         customMeta,
         orderingChannel,
         companyAffiliateTag,
-        platformUserId,
       },
       { abortEarly: false, allowUnknown: false }
     );
@@ -2600,7 +2516,6 @@ class Order {
     query_params["custom_meta"] = customMeta;
     query_params["ordering_channel"] = orderingChannel;
     query_params["company_affiliate_tag"] = companyAffiliateTag;
-    query_params["platform_user_id"] = platformUserId;
 
     const xHeaders = {};
 

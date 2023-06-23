@@ -18,7 +18,6 @@ Handles all platform order and shipment api(s)
 * [downloadBulkActionTemplate](#downloadbulkactiontemplate)
 * [fetchCreditBalanceDetail](#fetchcreditbalancedetail)
 * [fetchRefundModeConfig](#fetchrefundmodeconfig)
-* [generatePOSReceiptByOrderId](#generateposreceiptbyorderid)
 * [getAnnouncements](#getannouncements)
 * [getAppOrderShipmentDetails](#getappordershipmentdetails)
 * [getApplicationShipments](#getapplicationshipments)
@@ -36,6 +35,7 @@ Handles all platform order and shipment api(s)
 * [getMetricCount](#getmetriccount)
 * [getOrderById](#getorderbyid)
 * [getOrders](#getorders)
+* [getPlatformShipmentReasons](#getplatformshipmentreasons)
 * [getReportsShipmentListing](#getreportsshipmentlisting)
 * [getRoleBasedActions](#getrolebasedactions)
 * [getShipmentById](#getshipmentbyid)
@@ -626,68 +626,6 @@ const data = await platformClient.order.fetchRefundModeConfig({  body : value })
 [RefundModeConfigResponsePayload](#RefundModeConfigResponsePayload)
 
 Refund mode config is returned based on input parameter
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### generatePOSReceiptByOrderId
-
-
-
-
-```javascript
-// Promise
-const promise = platformClient.order.generatePOSReceiptByOrderId({  orderId : value,
- shipmentId : value,
- documentType : value });
-
-// Async/Await
-const data = await platformClient.order.generatePOSReceiptByOrderId({  orderId : value,
- shipmentId : value,
- documentType : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| orderId | string | yes |  |    
-| shipmentId | string | no |  |    
-| documentType | string | no |  |  
-
-
-
-
-
-*Returned Response:*
-
-
-
-
-[GeneratePosOrderReceiptResponse](#GeneratePosOrderReceiptResponse)
-
-We are processing the request!
 
 
 
@@ -3008,7 +2946,7 @@ const promise = platformClient.order.getOrders({  lane : value,
  pageSize : value,
  isPrioritySort : value,
  customMeta : value,
- platformUserId : value });
+ myOrders : value });
 
 // Async/Await
 const data = await platformClient.order.getOrders({  lane : value,
@@ -3027,7 +2965,7 @@ const data = await platformClient.order.getOrders({  lane : value,
  pageSize : value,
  isPrioritySort : value,
  customMeta : value,
- platformUserId : value });
+ myOrders : value });
 ```
 
 
@@ -3052,7 +2990,7 @@ const data = await platformClient.order.getOrders({  lane : value,
 | pageSize | number | no |  |    
 | isPrioritySort | boolean | no |  |    
 | customMeta | string | no |  |    
-| platformUserId | string | no |  |  
+| myOrders | boolean | no |  |  
 
 
 
@@ -3066,6 +3004,62 @@ const data = await platformClient.order.getOrders({  lane : value,
 [OrderListingResponse](#OrderListingResponse)
 
 We are processing the report!
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### getPlatformShipmentReasons
+Use this API to retrieve the issues that led to the cancellation of bags within a shipment.
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").order.getPlatformShipmentReasons({  action : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").order.getPlatformShipmentReasons({  action : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| action | string | yes |  |  
+
+
+
+Using action, get reasons behind full or partial cancellation of a shipment
+
+*Returned Response:*
+
+
+
+
+[ShipmentReasonsResponse](#ShipmentReasonsResponse)
+
+Success. Check the example shown below or refer `ShipmentReasonsResponse` for more details.
 
 
 
@@ -3826,8 +3820,7 @@ const promise = platformClient.order.getShipments({  lane : value,
  channelOrderId : value,
  customMeta : value,
  orderingChannel : value,
- companyAffiliateTag : value,
- platformUserId : value });
+ companyAffiliateTag : value });
 
 // Async/Await
 const data = await platformClient.order.getShipments({  lane : value,
@@ -3850,8 +3843,7 @@ const data = await platformClient.order.getShipments({  lane : value,
  channelOrderId : value,
  customMeta : value,
  orderingChannel : value,
- companyAffiliateTag : value,
- platformUserId : value });
+ companyAffiliateTag : value });
 ```
 
 
@@ -3880,8 +3872,7 @@ const data = await platformClient.order.getShipments({  lane : value,
 | channelOrderId | string | no | App Order Id |    
 | customMeta | string | no |  |    
 | orderingChannel | string | no |  |    
-| companyAffiliateTag | string | no |  |    
-| platformUserId | string | no |  |  
+| companyAffiliateTag | string | no |  |  
 
 
 
@@ -7235,6 +7226,16 @@ Verify OTP
 
 ---
 
+#### [BagPaymentMethods](#BagPaymentMethods)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | amount | number? |  yes  |  |
+ | mode | string? |  yes  |  |
+ 
+
+---
+
 #### [BagReturnableCancelableStatus](#BagReturnableCancelableStatus)
 
  | Properties | Type | Nullable | Description |
@@ -8116,20 +8117,6 @@ Verify OTP
 
 ---
 
-#### [GeneratePosOrderReceiptResponse](#GeneratePosOrderReceiptResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | customer_cn_receipt | string? |  yes  |  |
- | invoice_receipt | string? |  yes  |  |
- | merchant_cn_receipt | string? |  yes  |  |
- | order_id | string? |  yes  |  |
- | payment_receipt | string? |  yes  |  |
- | success | boolean? |  yes  |  |
- 
-
----
-
 #### [GetActionsResponse](#GetActionsResponse)
 
  | Properties | Type | Nullable | Description |
@@ -8609,6 +8596,7 @@ Verify OTP
  | line_number | number? |  yes  |  |
  | meta | [BagMeta](#BagMeta)? |  yes  |  |
  | parent_promo_bags | string? |  yes  |  |
+ | payment_methods | [[BagPaymentMethods](#BagPaymentMethods)]? |  yes  |  |
  | prices | [Prices](#Prices)? |  yes  |  |
  | quantity | number? |  yes  |  |
  | seller_identifier | string? |  yes  |  |
@@ -9714,6 +9702,27 @@ Verify OTP
  | logo | string? |  yes  |  |
  | mode | string? |  yes  |  |
  | source | string? |  yes  |  |
+ 
+
+---
+
+#### [ShipmentReasonsResponse](#ShipmentReasonsResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | message | string |  no  |  |
+ | reasons | [[ShipmentResponseReasons](#ShipmentResponseReasons)] |  no  |  |
+ | success | boolean |  no  |  |
+ 
+
+---
+
+#### [ShipmentResponseReasons](#ShipmentResponseReasons)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | reason | string? |  yes  |  |
+ | reason_id | number? |  yes  |  |
  
 
 ---

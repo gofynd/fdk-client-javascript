@@ -634,6 +634,10 @@ class PlatformClient {
  * @property {string} [version]
  */
 /**
+ * @typedef ArrayOfMarketplaceTheme
+ * @property {MarketplaceTheme[]} [body]
+ */
+/**
  * @typedef AssetsSchema
  * @property {CommonJs} [common_js]
  * @property {Css} [css]
@@ -1022,7 +1026,6 @@ class PlatformClient {
  * @property {string[]} [android]
  * @property {string[]} [desktop]
  * @property {string[]} [ios]
- * @property {string} [mobile]
  * @property {string[]} [thumbnail]
  */
 /**
@@ -1061,7 +1064,7 @@ class PlatformClient {
  * @property {ExploreInfo} [explore]
  * @property {Feature[]} [features]
  * @property {Highlight[]} [highlights]
- * @property {Images} [images]
+ * @property {MarketplaceThemeImages} [images]
  * @property {string[]} [industry]
  * @property {boolean} [is_default]
  * @property {boolean} [is_update]
@@ -1085,14 +1088,19 @@ class PlatformClient {
  * @property {boolean} [is_default]
  */
 /**
+ * @typedef MarketplaceThemeImages
+ * @property {string} [desktop]
+ * @property {string} [mobile]
+ */
+/**
  * @typedef MarketplaceThemeResponse
  * @property {MarketplaceThemeResponseBody} [body]
  * @property {number} [status]
  */
 /**
  * @typedef MarketplaceThemeResponseBody
- * @property {MarketplaceTheme[]} [items]
  * @property {PaginationSchema} [page]
+ * @property {MarketplaceTheme[]} [themes]
  */
 /**
  * @typedef Medium
@@ -1193,6 +1201,10 @@ class PlatformClient {
  * @property {string} [name]
  */
 /**
+ * @typedef RejectionReason
+ * @property {string} message
+ */
+/**
  * @typedef Release
  * @property {string} [notes]
  * @property {string} [version]
@@ -1286,6 +1298,11 @@ class PlatformClient {
  * @property {ThemeCreator[]} [user]
  */
 /**
+ * @typedef ThemeCreateRequest
+ * @property {Release} [release]
+ * @property {string} [src]
+ */
+/**
  * @typedef ThemeCreator
  * @property {string} _id
  * @property {string} [account_type]
@@ -1315,8 +1332,25 @@ class PlatformClient {
  * @property {boolean} [is_paid]
  */
 /**
+ * @typedef ThemeRejectionReasons
+ * @property {string} _id
+ * @property {string} admin_id
+ * @property {string} [created_at]
+ * @property {string} [message]
+ * @property {string} organization_id
+ * @property {Object} rejection_reasons
+ * @property {string} status
+ * @property {string} theme_id
+ * @property {string} [updated_at]
+ * @property {string} user_id
+ */
+/**
  * @typedef ThemeReq
  * @property {string} [marketplace_theme_id]
+ */
+/**
+ * @typedef ThemeReviewRequest
+ * @property {Object} [dynamic_properties]
  */
 /**
  * @typedef ThemeSchema
@@ -1389,6 +1423,10 @@ class PlatformClient {
  * @property {string[]} [links]
  */
 /**
+ * @typedef UpdateReviewStatusRequest
+ * @property {string} status
+ */
+/**
  * @typedef UpdateThemeNameRequestBodyV2
  * @property {string} [name]
  */
@@ -1434,7 +1472,7 @@ class PlatformClient {
  * @typedef Variation
  * @property {string} [color]
  * @property {string} [demo_url]
- * @property {Images} [images]
+ * @property {MarketplaceThemeImages} [images]
  * @property {string} [name]
  */
 
@@ -4645,6 +4683,23 @@ class PlatformClient {
  * @property {boolean} success
  */
 /**
+ * @typedef ExtensionPaymentUpdateRequestSerializer
+ * @property {string} currency
+ * @property {string} gid
+ * @property {Object} order_details
+ * @property {Object} payment_details
+ * @property {string} status
+ * @property {number} total_amount
+ */
+/**
+ * @typedef ExtensionPaymentUpdateResponseSerializer
+ * @property {string} currency
+ * @property {string} gid
+ * @property {Object} platform_transaction_details
+ * @property {string} status
+ * @property {number} total_amount
+ */
+/**
  * @typedef GetOauthUrlResponse
  * @property {boolean} success
  * @property {string} url
@@ -5423,6 +5478,11 @@ class PlatformClient {
  * @property {boolean} [partial_can_ret]
  */
 /**
+ * @typedef BagPaymentMethods
+ * @property {number} [amount]
+ * @property {string} [mode]
+ */
+/**
  * @typedef BagReturnableCancelableStatus
  * @property {boolean} can_be_cancelled
  * @property {boolean} enable_tracking
@@ -5974,15 +6034,6 @@ class PlatformClient {
  * @property {string[]} [fynd_order_id]
  */
 /**
- * @typedef GeneratePosOrderReceiptResponse
- * @property {string} [customer_cn_receipt]
- * @property {string} [invoice_receipt]
- * @property {string} [merchant_cn_receipt]
- * @property {string} [order_id]
- * @property {string} [payment_receipt]
- * @property {boolean} [success]
- */
-/**
  * @typedef GetActionsResponse
  * @property {ActionInfo} permissions
  */
@@ -6284,6 +6335,7 @@ class PlatformClient {
  * @property {number} [line_number]
  * @property {BagMeta} [meta]
  * @property {Object} [parent_promo_bags]
+ * @property {BagPaymentMethods[]} [payment_methods]
  * @property {Prices} [prices]
  * @property {number} [quantity]
  * @property {string} [seller_identifier]
@@ -7005,6 +7057,17 @@ class PlatformClient {
  * @property {string} [logo]
  * @property {string} [mode]
  * @property {string} [source]
+ */
+/**
+ * @typedef ShipmentReasonsResponse
+ * @property {string} message
+ * @property {ShipmentResponseReasons[]} reasons
+ * @property {boolean} success
+ */
+/**
+ * @typedef ShipmentResponseReasons
+ * @property {string} [reason]
+ * @property {number} [reason_id]
  */
 /**
  * @typedef ShipmentsRequest
@@ -8430,15 +8493,15 @@ class PlatformClient {
  * @property {GetAddressSerializer[]} [addresses]
  * @property {string} [business_type]
  * @property {string} [company_type]
- * @property {UserSerializer1} [created_by]
+ * @property {UserSerializer2} [created_by]
  * @property {string} [created_on]
- * @property {UserSerializer1} [modified_by]
+ * @property {UserSerializer2} [modified_by]
  * @property {string} [modified_on]
  * @property {string} [name]
  * @property {string} [reject_reason]
  * @property {string} [stage]
  * @property {number} [uid]
- * @property {UserSerializer1} [verified_by]
+ * @property {UserSerializer2} [verified_by]
  * @property {string} [verified_on]
  */
 /**
@@ -8515,14 +8578,14 @@ class PlatformClient {
  * @property {string} code
  * @property {GetCompanySerializer} [company]
  * @property {SellerPhoneNumber[]} [contact_numbers]
- * @property {UserSerializer2} [created_by]
+ * @property {UserSerializer1} [created_by]
  * @property {string} [created_on]
  * @property {string} display_name
  * @property {Document[]} [documents]
  * @property {InvoiceDetailsSerializer} [gst_credentials]
  * @property {LocationIntegrationType} [integration_type]
  * @property {LocationManagerSerializer} [manager]
- * @property {UserSerializer2} [modified_by]
+ * @property {UserSerializer1} [modified_by]
  * @property {string} [modified_on]
  * @property {string} name
  * @property {string[]} [notification_emails]
@@ -8532,7 +8595,7 @@ class PlatformClient {
  * @property {string} [store_type]
  * @property {LocationDayWiseSerializer[]} [timing]
  * @property {number} [uid]
- * @property {UserSerializer2} [verified_by]
+ * @property {UserSerializer1} [verified_by]
  * @property {string} [verified_on]
  * @property {Object} [warnings]
  */
@@ -14810,6 +14873,28 @@ class PlatformClient {
  * @property {string} [state]
  */
 /**
+ * @typedef ApplicationCompanyDpViewRequest
+ * @property {string} [dp_id]
+ */
+/**
+ * @typedef ApplicationCompanyDpViewResponse
+ * @property {string} application_id
+ * @property {number} company_id
+ * @property {number} [courier_partner_id]
+ * @property {boolean} success
+ */
+/**
+ * @typedef ApplicationSelfShipConfig
+ * @property {SelfShipResponse} [self_ship]
+ */
+/**
+ * @typedef ApplicationSelfShipConfigResponse
+ * @property {ServiceabilityErrorResponse} [error]
+ * @property {string} id
+ * @property {ApplicationSelfShipConfig} [self_ship]
+ * @property {boolean} success
+ */
+/**
  * @typedef ApplicationServiceabilityConfig
  * @property {string} channel_id
  * @property {string} channel_type
@@ -14822,10 +14907,50 @@ class PlatformClient {
  * @property {boolean} success
  */
 /**
+ * @typedef BulkRecordError
+ * @property {string[]} error
+ * @property {boolean} is_error
+ */
+/**
+ * @typedef BulkRegionData
+ * @property {string} action
+ * @property {string} batch_id
+ * @property {string} [created_on]
+ * @property {BulkRecordError} [error]
+ * @property {number} failed_count
+ * @property {CSVFileRecord[]} [failed_rec]
+ * @property {string} file_path
+ * @property {string} stage
+ * @property {number} success_count
+ * @property {number} total_rec
+ */
+/**
+ * @typedef BulkRegionJobSerializer
+ * @property {string} action
+ * @property {string} batch_id
+ * @property {string} [country_iso_code]
+ * @property {string} file_url
+ * @property {string} job_action
+ */
+/**
  * @typedef CommonError
  * @property {Object} [error]
  * @property {string} [status_code]
  * @property {string} [success]
+ */
+/**
+ * @typedef CompanyDpAccountListResponse
+ * @property {Dp1[]} items
+ * @property {Page} page
+ * @property {boolean} success
+ */
+/**
+ * @typedef CompanyDpAccountRequest
+ * @property {Dp1[]} data
+ */
+/**
+ * @typedef CompanyDpAccountResponse
+ * @property {boolean} success
  */
 /**
  * @typedef CompanyStoreView_PageItems
@@ -14864,6 +14989,21 @@ class PlatformClient {
  * @property {number[]} store_ids
  */
 /**
+ * @typedef CSVFileRecord
+ * @property {string} [country]
+ * @property {number} [dp_id]
+ * @property {string[]} [error]
+ * @property {string} [from_region]
+ * @property {boolean} [is_error]
+ * @property {number} [max_tat]
+ * @property {number} [min_tat]
+ * @property {number} [plan_id]
+ * @property {string} [region_type]
+ * @property {number} [s_no]
+ * @property {string} [tat_type]
+ * @property {string} [to_region]
+ */
+/**
  * @typedef DocumentsResponse
  * @property {string} [legal_name]
  * @property {string} [type]
@@ -14882,6 +15022,113 @@ class PlatformClient {
  * @property {string} [payment_mode]
  * @property {number} [rvp_priority]
  * @property {string} [transport_mode]
+ */
+/**
+ * @typedef Dp1
+ * @property {string} account_id
+ * @property {string} dp_id
+ * @property {boolean} is_self_ship
+ * @property {string} name
+ * @property {string} plan_id
+ * @property {Object} plan_rules
+ * @property {string} stage
+ */
+/**
+ * @typedef DpAccountFailureResponse
+ * @property {ErrorResponse[]} error
+ * @property {number} status_code
+ * @property {boolean} success
+ */
+/**
+ * @typedef DPApplicationRuleRequest
+ * @property {string[]} shipping_rules
+ */
+/**
+ * @typedef DPApplicationRuleResponse
+ * @property {DpRuleResponse[]} data
+ * @property {boolean} status_code
+ * @property {boolean} success
+ */
+/**
+ * @typedef DPCompanyRuleRequest
+ * @property {string[]} rule_ids
+ */
+/**
+ * @typedef DPCompanyRuleResponse
+ * @property {DpRuleResponse[]} data
+ * @property {number} status_code
+ * @property {boolean} success
+ */
+/**
+ * @typedef DpIds
+ * @property {boolean} enabled
+ * @property {Object} [meta]
+ * @property {number} priority
+ */
+/**
+ * @typedef DpMultipleRuleSuccessResponse
+ * @property {DpRule[]} items
+ * @property {Page} page
+ * @property {boolean} success
+ */
+/**
+ * @typedef DpRule
+ * @property {number} [company_id]
+ * @property {Object[]} conditions
+ * @property {Object} dp_ids
+ * @property {boolean} [is_active]
+ * @property {string} name
+ */
+/**
+ * @typedef DpRuleRequest
+ * @property {number} [company_id]
+ * @property {Object[]} conditions
+ * @property {Object} dp_ids
+ * @property {boolean} [is_active]
+ * @property {string} name
+ */
+/**
+ * @typedef DpRuleResponse
+ * @property {number} company_id
+ * @property {string[]} conditions
+ * @property {Object} [created_by]
+ * @property {string} [created_on]
+ * @property {Object} dp_ids
+ * @property {boolean} [is_active]
+ * @property {Object} [modified_by]
+ * @property {string} [modified_on]
+ * @property {string} name
+ * @property {string} uid
+ */
+/**
+ * @typedef DpRuleSuccessResponse
+ * @property {DpRule} data
+ * @property {number} status_code
+ * @property {boolean} success
+ */
+/**
+ * @typedef DpRulesUpdateRequest
+ * @property {Object[]} conditions
+ * @property {Object} dp_ids
+ * @property {boolean} is_active
+ * @property {string} name
+ */
+/**
+ * @typedef DpRuleUpdateSuccessResponse
+ * @property {DpRuleResponse} data
+ * @property {number} status_code
+ * @property {boolean} success
+ */
+/**
+ * @typedef DpSchemaInRuleListing
+ * @property {string} account_id
+ * @property {string} dp_id
+ * @property {boolean} is_self_ship
+ * @property {string} name
+ * @property {string} plan_id
+ * @property {Object} plan_rules
+ * @property {number} priority
+ * @property {string} stage
  */
 /**
  * @typedef EinvoiceResponse
@@ -14926,8 +15173,26 @@ class PlatformClient {
  * @property {string} [value]
  */
 /**
+ * @typedef ErrorResponse
+ * @property {string} message
+ * @property {string} type
+ * @property {string} value
+ */
+/**
  * @typedef EwayBillResponse
  * @property {boolean} [enabled]
+ */
+/**
+ * @typedef FailureResponse
+ * @property {ErrorResponse[]} error
+ * @property {number} status_code
+ * @property {boolean} success
+ */
+/**
+ * @typedef GetBulkRegionJobResponse
+ * @property {string} [batch_id]
+ * @property {number} [current_page_number]
+ * @property {BulkRegionData[]} data
  */
 /**
  * @typedef GetSingleZoneDataViewResponse
@@ -14936,7 +15201,7 @@ class PlatformClient {
 /**
  * @typedef GetStoresViewResponse
  * @property {ItemResponse[]} [items]
- * @property {PageResponse} page
+ * @property {ServiceabilityPageResponse} page
  */
 /**
  * @typedef GetZoneDataViewChannels
@@ -15076,12 +15341,14 @@ class PlatformClient {
  * @property {number} [minute]
  */
 /**
- * @typedef PageResponse
+ * @typedef Page
  * @property {number} [current]
  * @property {boolean} [has_next]
+ * @property {boolean} [has_previous]
  * @property {number} [item_total]
+ * @property {string} [next_id]
  * @property {number} [size]
- * @property {string} [type]
+ * @property {string} type
  */
 /**
  * @typedef PincodeBulkViewResponse
@@ -15177,14 +15444,49 @@ class PlatformClient {
  * @property {number} pincode
  */
 /**
+ * @typedef PostBulkRegionJobResponse
+ * @property {string} batch_id
+ * @property {boolean} event_emitted
+ * @property {string} message
+ * @property {boolean} response
+ */
+/**
  * @typedef ProductReturnConfigResponse
  * @property {boolean} [on_same_store]
+ */
+/**
+ * @typedef ReAssignStoreRequest
+ * @property {Object[]} articles
+ * @property {Object} configuration
+ * @property {string} identifier
+ * @property {string[]} ignored_locations
+ * @property {string} to_pincode
+ */
+/**
+ * @typedef ReAssignStoreResponse
+ * @property {Object[]} [articles]
+ * @property {Object} error
+ * @property {boolean} success
+ * @property {string} to_pincode
+ */
+/**
+ * @typedef SelfShipResponse
+ * @property {boolean} active
+ * @property {number} tat
  */
 /**
  * @typedef ServiceabilityErrorResponse
  * @property {string} message
  * @property {string} type
  * @property {string} value
+ */
+/**
+ * @typedef ServiceabilityPageResponse
+ * @property {number} [current]
+ * @property {boolean} [has_next]
+ * @property {number} [item_total]
+ * @property {number} [size]
+ * @property {string} [type]
  */
 /**
  * @typedef TimmingResponse
@@ -15388,20 +15690,6 @@ class PlatformClient {
  * @property {boolean} [success]
  */
 /**
- * @typedef GetInvoiceListPayloadData
- * @property {boolean} [is_active]
- */
-/**
- * @typedef GetInvoiceListRequest
- * @property {GetInvoiceListPayloadData} [data]
- */
-/**
- * @typedef GetInvoiceListResponse
- * @property {Object[]} [invoice_type_list]
- * @property {Object[]} [payment_status_list]
- * @property {boolean} [success]
- */
-/**
  * @typedef GetReason
  * @property {string} [reason_type]
  */
@@ -15475,6 +15763,25 @@ class PlatformClient {
  * @property {string[]} [data]
  * @property {string[]} [error]
  * @property {boolean} [success]
+ */
+/**
+ * @typedef InvoiceTypePayloadData
+ * @property {boolean} [is_active]
+ */
+/**
+ * @typedef InvoiceTypeRequest
+ * @property {InvoiceTypePayloadData} [data]
+ */
+/**
+ * @typedef InvoiceTypeResponse
+ * @property {InvoiceTypeResponseItems[]} [invoice_type_list]
+ * @property {InvoiceTypeResponseItems[]} [payment_status_list]
+ * @property {boolean} [success]
+ */
+/**
+ * @typedef InvoiceTypeResponseItems
+ * @property {string} [text]
+ * @property {string} [value]
  */
 /**
  * @typedef IsCreditlinePayload
