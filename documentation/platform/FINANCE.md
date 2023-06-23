@@ -8,6 +8,7 @@
 ## Finance Methods
 Handles all finance related activities
 
+* [creditlineDataplatform](#creditlinedataplatform)
 * [downloadCreditDebitNote](#downloadcreditdebitnote)
 * [downloadReport](#downloadreport)
 * [generateReport](#generatereport)
@@ -18,6 +19,7 @@ Handles all finance related activities
 * [getReportList](#getreportlist)
 * [invoiceListing](#invoicelisting)
 * [invoicePDF](#invoicepdf)
+* [isCreditlinePlatform](#iscreditlineplatform)
 * [paymentProcess](#paymentprocess)
 
 
@@ -25,6 +27,106 @@ Handles all finance related activities
 ## Methods with example and description
 
 
+
+
+### creditlineDataplatform
+
+
+
+
+```javascript
+// Promise
+const promise = platformClient.finance.creditlineDataplatform({  body : value });
+
+// Async/Await
+const data = await platformClient.finance.creditlineDataplatform({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [CreditlineDataPlatformRequest](#CreditlineDataPlatformRequest) | yes | Request body |
+
+
+
+
+*Returned Response:*
+
+
+
+
+[CreditlineDataPlatformResponse](#CreditlineDataPlatformResponse)
+
+Success
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "summary": "Example Response",
+  "value": {
+    "headers": [
+      "Date",
+      "Purpose",
+      "Transaction Type",
+      "Amount",
+      "Credit Balance",
+      "MR Balance"
+    ],
+    "items": [
+      {
+        "table_data": [
+          {
+            "date": "2023-06-03",
+            "purpose": "Variable Commission Adjustment",
+            "transaction_type": "Credit",
+            "amount": "₹5.00",
+            "credit_balance": "₹3080.00",
+            "mr_balance": "₹1955.00"
+          }
+        ]
+      }
+    ],
+    "creditline": {
+      "total_amount": 3010,
+      "used_amount": -70,
+      "balance": 3080
+    },
+    "minimum_retainership": {
+      "total_amount": 2000,
+      "used_amount": 45,
+      "balance": 1955
+    },
+    "show_mr": true,
+    "item_count": 46,
+    "page": {
+      "type": "number",
+      "size": 10,
+      "current": 1,
+      "has_next": true,
+      "item_count": 46
+    }
+  }
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
 
 
 ### downloadCreditDebitNote
@@ -630,6 +732,64 @@ Success
 ---
 
 
+### isCreditlinePlatform
+
+
+
+
+```javascript
+// Promise
+const promise = platformClient.finance.isCreditlinePlatform({  body : value });
+
+// Async/Await
+const data = await platformClient.finance.isCreditlinePlatform({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [IsCreditlinePlatformRequest](#IsCreditlinePlatformRequest) | yes | Request body |
+
+
+
+
+*Returned Response:*
+
+
+
+
+[IsCreditlinePlatformResponse](#IsCreditlinePlatformResponse)
+
+Success
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "code": 200,
+  "is_creditline_opted": true
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
 ### paymentProcess
 
 
@@ -688,6 +848,43 @@ Success
 
 ### Schemas
 
+
+#### [CreditlineDataPlatformPayload](#CreditlineDataPlatformPayload)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | end_end | string? |  yes  |  |
+ | page | number? |  yes  |  |
+ | pagesize | number? |  yes  |  |
+ | seller_id | string? |  yes  |  |
+ | start_end | string? |  yes  |  |
+ 
+
+---
+
+#### [CreditlineDataPlatformRequest](#CreditlineDataPlatformRequest)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | data | [CreditlineDataPlatformPayload](#CreditlineDataPlatformPayload)? |  yes  |  |
+ 
+
+---
+
+#### [CreditlineDataPlatformResponse](#CreditlineDataPlatformResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | code | number? |  yes  |  |
+ | headers | [string]? |  yes  |  |
+ | item_count | number? |  yes  |  |
+ | items | [string]? |  yes  |  |
+ | message | string? |  yes  |  |
+ | page | string? |  yes  |  |
+ | show_mr | boolean? |  yes  |  |
+ 
+
+---
 
 #### [DownloadCreditDebitNote](#DownloadCreditDebitNote)
 
@@ -1067,6 +1264,34 @@ Success
  | data | [string]? |  yes  |  |
  | error | [string]? |  yes  |  |
  | success | boolean? |  yes  |  |
+ 
+
+---
+
+#### [IsCreditlinePayload](#IsCreditlinePayload)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | seller_id | string? |  yes  |  |
+ 
+
+---
+
+#### [IsCreditlinePlatformRequest](#IsCreditlinePlatformRequest)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | data | [IsCreditlinePayload](#IsCreditlinePayload)? |  yes  |  |
+ 
+
+---
+
+#### [IsCreditlinePlatformResponse](#IsCreditlinePlatformResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | code | number? |  yes  |  |
+ | is_creditline_opted | boolean? |  yes  |  |
  
 
 ---

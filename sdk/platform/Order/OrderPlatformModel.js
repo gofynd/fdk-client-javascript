@@ -614,6 +614,7 @@ class OrderModel {
   static DataUpdates() {
     return Joi.object({
       entities: Joi.array().items(OrderModel.EntitiesDataUpdates()),
+      order_item_status: Joi.array().items(OrderModel.OrderItemDataUpdates()),
       products: Joi.array().items(OrderModel.ProductsDataUpdates()),
     });
   }
@@ -1319,6 +1320,11 @@ class OrderModel {
       pincode: Joi.string().allow(""),
       state: Joi.string().allow(""),
       store_name: Joi.string().allow(""),
+    });
+  }
+  static OrderItemDataUpdates() {
+    return Joi.object({
+      data: Joi.any(),
     });
   }
   static OrderListingResponse() {

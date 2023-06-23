@@ -132,6 +132,7 @@ declare class OrderModel {
     static OrderDetailsData(): any;
     static OrderDetailsResponse(): any;
     static OrderingStoreDetails(): any;
+    static OrderItemDataUpdates(): any;
     static OrderListingResponse(): any;
     static OrderMeta(): any;
     static OrderStatus(): any;

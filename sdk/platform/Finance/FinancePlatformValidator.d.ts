@@ -1,5 +1,6 @@
 export = FinanceValidator;
 declare class FinanceValidator {
+    static creditlineDataplatform(): any;
     static downloadCreditDebitNote(): any;
     static downloadReport(): any;
     static generateReport(): any;
@@ -10,5 +11,6 @@ declare class FinanceValidator {
     static getReportList(): any;
     static invoiceListing(): any;
     static invoicePDF(): any;
+    static isCreditlinePlatform(): any;
     static paymentProcess(): any;
 }

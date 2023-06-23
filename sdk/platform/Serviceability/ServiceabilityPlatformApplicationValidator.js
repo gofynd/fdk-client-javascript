@@ -2,27 +2,7 @@ const Joi = require("joi");
 
 const ServiceabilityModel = require("./ServiceabilityPlatformModel");
 class ServiceabilityValidator {
-  static addAppDp() {
-    return Joi.object({
-      body: ServiceabilityModel.ApplicationCompanyDpViewRequest().required(),
-    }).required();
-  }
-
-  static deleteAppDp() {
-    return Joi.object({
-      courierPartnerId: Joi.number().required(),
-    }).required();
-  }
-
   static getApplicationServiceability() {
-    return Joi.object({}).required();
-  }
-
-  static getApplicationServiceabilitySelfShipment() {
-    return Joi.object({}).required();
-  }
-
-  static getDpApplicationRules() {
     return Joi.object({}).required();
   }
 
@@ -38,12 +18,6 @@ class ServiceabilityValidator {
       pageSize: Joi.number(),
       zoneId: Joi.array().items(Joi.string().allow("")),
       q: Joi.string().allow(""),
-    }).required();
-  }
-
-  static patchApplicationServiceabilitySelfShipment() {
-    return Joi.object({
-      body: ServiceabilityModel.SelfShipResponse().required(),
     }).required();
   }
 
@@ -68,12 +42,6 @@ class ServiceabilityValidator {
   static updatePincodeMopView() {
     return Joi.object({
       body: ServiceabilityModel.PincodeMopData().required(),
-    }).required();
-  }
-
-  static upsertDpApplicationRules() {
-    return Joi.object({
-      body: ServiceabilityModel.DPApplicationRuleRequest().required(),
     }).required();
   }
 }

@@ -4,6 +4,16 @@ declare class Finance {
     config: any;
     /**
      * @param {Object} arg - Arg object.
+     * @param {CreditlineDataPlatformRequest} arg.body
+     * @returns {Promise<CreditlineDataPlatformResponse>} - Success response
+     * @summary:
+     * @description:
+     */
+    creditlineDataplatform({ body }?: {
+        body: CreditlineDataPlatformRequest;
+    }): Promise<CreditlineDataPlatformResponse>;
+    /**
+     * @param {Object} arg - Arg object.
      * @param {DownloadCreditDebitNoteRequest} arg.body
      * @returns {Promise<DownloadCreditDebitNoteResponse>} - Success response
      * @summary:
@@ -102,6 +112,16 @@ declare class Finance {
     invoicePDF({ body }?: {
         body: InvoicePdfRequest;
     }): Promise<InvoicePdfResponse>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {IsCreditlinePlatformRequest} arg.body
+     * @returns {Promise<IsCreditlinePlatformResponse>} - Success response
+     * @summary:
+     * @description:
+     */
+    isCreditlinePlatform({ body }?: {
+        body: IsCreditlinePlatformRequest;
+    }): Promise<IsCreditlinePlatformResponse>;
     /**
      * @param {Object} arg - Arg object.
      * @param {PaymentProcessRequest} arg.body

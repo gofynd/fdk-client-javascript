@@ -1,6 +1,31 @@
 const Joi = require("joi");
 
 class FinanceModel {
+  static CreditlineDataPlatformPayload() {
+    return Joi.object({
+      end_end: Joi.string().allow(""),
+      page: Joi.number(),
+      pagesize: Joi.number(),
+      seller_id: Joi.string().allow(""),
+      start_end: Joi.string().allow(""),
+    });
+  }
+  static CreditlineDataPlatformRequest() {
+    return Joi.object({
+      data: FinanceModel.CreditlineDataPlatformPayload(),
+    });
+  }
+  static CreditlineDataPlatformResponse() {
+    return Joi.object({
+      code: Joi.number(),
+      headers: Joi.array().items(Joi.string().allow("")),
+      item_count: Joi.number(),
+      items: Joi.array().items(Joi.any()),
+      message: Joi.string().allow(""),
+      page: Joi.any(),
+      show_mr: Joi.boolean(),
+    });
+  }
   static DownloadCreditDebitNote() {
     return Joi.object({
       note_id: Joi.array().items(Joi.string().allow("")),
@@ -239,6 +264,22 @@ class FinanceModel {
       data: Joi.array().items(Joi.string().allow("")),
       error: Joi.array().items(Joi.string().allow("")),
       success: Joi.boolean(),
+    });
+  }
+  static IsCreditlinePayload() {
+    return Joi.object({
+      seller_id: Joi.string().allow(""),
+    });
+  }
+  static IsCreditlinePlatformRequest() {
+    return Joi.object({
+      data: FinanceModel.IsCreditlinePayload(),
+    });
+  }
+  static IsCreditlinePlatformResponse() {
+    return Joi.object({
+      code: Joi.number(),
+      is_creditline_opted: Joi.boolean(),
     });
   }
   static Page() {
