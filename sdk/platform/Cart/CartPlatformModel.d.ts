@@ -21,6 +21,7 @@ declare class CartModel {
     static CartCurrency(): any;
     static CartDeliveryModesResponse(): any;
     static CartDetailResponse(): any;
+    static CartDynamicInjection(): any;
     static CartDynamicInjectionAdd(): any;
     static CartDynamicInjectionResponse(): any;
     static CartDynamicInjectionUpdate(): any;

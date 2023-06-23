@@ -224,6 +224,23 @@ class CartModel {
       restrict_checkout: Joi.boolean(),
     });
   }
+  static CartDynamicInjection() {
+    return Joi.object({
+      allowed_refund: Joi.boolean(),
+      apply_expiry: Joi.string().allow(""),
+      article_ids: Joi.array().items(CartModel.Article()).required(),
+      article_level_distribution: Joi.boolean().required(),
+      cart_id: Joi.string().allow("").required(),
+      collection: CartModel.Collecttion().required(),
+      injection_id: Joi.string().allow(""),
+      message: Joi.string().allow("").allow(null).required(),
+      meta: Joi.any().allow(null),
+      type: Joi.string().allow("").required(),
+      user_id: Joi.string().allow(""),
+      user_type: Joi.string().allow("").required(),
+      value: Joi.number(),
+    });
+  }
   static CartDynamicInjectionAdd() {
     return Joi.object({
       allowed_refund: Joi.boolean(),
@@ -242,19 +259,7 @@ class CartModel {
   }
   static CartDynamicInjectionResponse() {
     return Joi.object({
-      allowed_refund: Joi.boolean(),
-      apply_expiry: Joi.string().allow(""),
-      article_ids: Joi.array().items(CartModel.Article()).required(),
-      article_level_distribution: Joi.boolean().required(),
-      cart_id: Joi.string().allow("").required(),
-      collection: CartModel.Collecttion().required(),
-      injection_id: Joi.string().allow(""),
-      message: Joi.string().allow("").allow(null).required(),
-      meta: Joi.any().allow(null),
-      type: Joi.string().allow("").required(),
-      user_id: Joi.string().allow(""),
-      user_type: Joi.string().allow("").required(),
-      value: Joi.number(),
+      data: CartModel.CartDynamicInjection(),
     });
   }
   static CartDynamicInjectionUpdate() {

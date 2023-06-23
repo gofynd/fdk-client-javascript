@@ -2135,27 +2135,29 @@ Coupon Created successfully
 ```json
 {
   "success": true,
-  "injection_id": "skgjdfjge343456jjfd",
-  "cart_id": "dgdfhdfhdf646454dfhdf",
-  "user_id": "",
-  "user_type": "athenticated",
-  "article_ids": [
-    {
-      "id": "90876545567ad89",
-      "value": 100,
-      "code": "abs",
-      "meta": {}
+  "data": {
+    "injection_id": "skgjdfjge343456jjfd",
+    "cart_id": "dgdfhdfhdf646454dfhdf",
+    "user_id": "",
+    "user_type": "athenticated",
+    "article_ids": [
+      {
+        "id": "90876545567ad89",
+        "value": 100,
+        "code": "abs",
+        "meta": {}
+      }
+    ],
+    "type": "discount",
+    "message": "Donation for flood in MH",
+    "value": 100,
+    "article_level_distribution": true,
+    "allow_refund": true,
+    "meta": {},
+    "collection": {
+      "collected_by": "FYND",
+      "refund_by": "FYND"
     }
-  ],
-  "type": "discount",
-  "message": "Donation for flood in MH",
-  "value": 100,
-  "article_level_distribution": true,
-  "allow_refund": true,
-  "meta": {},
-  "collection": {
-    "collected_by": "FYND",
-    "refund_by": "FYND"
   }
 }
 ```
@@ -10711,27 +10713,29 @@ Cart Dynamic injection Updated successfully
 ```json
 {
   "success": true,
-  "injection_id": "skgjdfjge343456jjfd",
-  "cart_id": "dgdfhdfhdf646454dfhdf",
-  "user_id": "",
-  "user_type": "athenticated",
-  "article_ids": [
-    {
-      "id": "90876545567ad89",
-      "value": 100,
-      "code": "abs",
-      "meta": {}
+  "data": {
+    "injection_id": "skgjdfjge343456jjfd",
+    "cart_id": "dgdfhdfhdf646454dfhdf",
+    "user_id": "",
+    "user_type": "athenticated",
+    "article_ids": [
+      {
+        "id": "90876545567ad89",
+        "value": 100,
+        "code": "abs",
+        "meta": {}
+      }
+    ],
+    "type": "discount",
+    "message": "Donation for flood in MH",
+    "value": 100,
+    "article_level_distribution": true,
+    "allow_refund": true,
+    "meta": {},
+    "collection": {
+      "collected_by": "FYND",
+      "refund_by": "FYND"
     }
-  ],
-  "type": "discount",
-  "message": "Donation for flood in MH",
-  "value": 100,
-  "article_level_distribution": true,
-  "allow_refund": true,
-  "meta": {},
-  "collection": {
-    "collected_by": "FYND",
-    "refund_by": "FYND"
   }
 }
 ```
@@ -13118,6 +13122,27 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
 
 ---
 
+#### [CartDynamicInjection](#CartDynamicInjection)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | allowed_refund | boolean? |  yes  |  |
+ | apply_expiry | string? |  yes  |  |
+ | article_ids | [[Article](#Article)] |  no  |  |
+ | article_level_distribution | boolean |  no  |  |
+ | cart_id | string |  no  |  |
+ | collection | [Collecttion](#Collecttion) |  no  |  |
+ | injection_id | string? |  yes  |  |
+ | message | string |  no  |  |
+ | meta | string? |  yes  |  |
+ | type | string |  no  |  |
+ | user_id | string? |  yes  |  |
+ | user_type | string |  no  |  |
+ | value | number? |  yes  |  |
+ 
+
+---
+
 #### [CartDynamicInjectionAdd](#CartDynamicInjectionAdd)
 
  | Properties | Type | Nullable | Description |
@@ -13142,19 +13167,7 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | allowed_refund | boolean? |  yes  |  |
- | apply_expiry | string? |  yes  |  |
- | article_ids | [[Article](#Article)] |  no  |  |
- | article_level_distribution | boolean |  no  |  |
- | cart_id | string |  no  |  |
- | collection | [Collecttion](#Collecttion) |  no  |  |
- | injection_id | string? |  yes  |  |
- | message | string |  no  |  |
- | meta | string? |  yes  |  |
- | type | string |  no  |  |
- | user_id | string? |  yes  |  |
- | user_type | string |  no  |  |
- | value | number? |  yes  |  |
+ | data | [CartDynamicInjection](#CartDynamicInjection)? |  yes  |  |
  
 
 ---
