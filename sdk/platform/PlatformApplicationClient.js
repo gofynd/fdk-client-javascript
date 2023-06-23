@@ -1733,6 +1733,7 @@ class PlatformApplicationClient {
 /** @typedef TimmingResponse */
 /** @typedef UpdateZoneData */
 /** @typedef WarningsResponse */
+/** @typedef Zone */
 /** @typedef ZoneDataItem */
 /** @typedef ZoneMappingType */
 /** @typedef ZoneProductTypes */

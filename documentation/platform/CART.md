@@ -1430,27 +1430,29 @@ Coupon Created successfully
 ```json
 {
   "success": true,
-  "injection_id": "skgjdfjge343456jjfd",
-  "cart_id": "dgdfhdfhdf646454dfhdf",
-  "user_id": "",
-  "user_type": "athenticated",
-  "article_ids": [
-    {
-      "id": "90876545567ad89",
-      "value": 100,
-      "code": "abs",
-      "meta": {}
+  "data": {
+    "injection_id": "skgjdfjge343456jjfd",
+    "cart_id": "dgdfhdfhdf646454dfhdf",
+    "user_id": "",
+    "user_type": "athenticated",
+    "article_ids": [
+      {
+        "id": "90876545567ad89",
+        "value": 100,
+        "code": "abs",
+        "meta": {}
+      }
+    ],
+    "type": "discount",
+    "message": "Donation for flood in MH",
+    "value": 100,
+    "article_level_distribution": true,
+    "allow_refund": true,
+    "meta": {},
+    "collection": {
+      "collected_by": "FYND",
+      "refund_by": "FYND"
     }
-  ],
-  "type": "discount",
-  "message": "Donation for flood in MH",
-  "value": 100,
-  "article_level_distribution": true,
-  "allow_refund": true,
-  "meta": {},
-  "collection": {
-    "collected_by": "FYND",
-    "refund_by": "FYND"
   }
 }
 ```
@@ -3846,27 +3848,29 @@ Cart Dynamic injection Updated successfully
 ```json
 {
   "success": true,
-  "injection_id": "skgjdfjge343456jjfd",
-  "cart_id": "dgdfhdfhdf646454dfhdf",
-  "user_id": "",
-  "user_type": "athenticated",
-  "article_ids": [
-    {
-      "id": "90876545567ad89",
-      "value": 100,
-      "code": "abs",
-      "meta": {}
+  "data": {
+    "injection_id": "skgjdfjge343456jjfd",
+    "cart_id": "dgdfhdfhdf646454dfhdf",
+    "user_id": "",
+    "user_type": "athenticated",
+    "article_ids": [
+      {
+        "id": "90876545567ad89",
+        "value": 100,
+        "code": "abs",
+        "meta": {}
+      }
+    ],
+    "type": "discount",
+    "message": "Donation for flood in MH",
+    "value": 100,
+    "article_level_distribution": true,
+    "allow_refund": true,
+    "meta": {},
+    "collection": {
+      "collected_by": "FYND",
+      "refund_by": "FYND"
     }
-  ],
-  "type": "discount",
-  "message": "Donation for flood in MH",
-  "value": 100,
-  "article_level_distribution": true,
-  "allow_refund": true,
-  "meta": {},
-  "collection": {
-    "collected_by": "FYND",
-    "refund_by": "FYND"
   }
 }
 ```

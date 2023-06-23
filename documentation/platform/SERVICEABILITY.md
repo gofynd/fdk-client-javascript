@@ -1495,7 +1495,7 @@ Response status_code
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | serviceability_type | string |  no  |  |
- | zones | [string] |  no  |  |
+ | zones | [[Zone](#Zone)] |  no  |  |
  
 
 ---
@@ -1893,6 +1893,22 @@ Response status_code
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | store_address | string? |  yes  |  |
+ 
+
+---
+
+#### [Zone](#Zone)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | assignment_preference | string |  no  |  |
+ | is_active | boolean |  no  |  |
+ | name | string |  no  |  |
+ | slug | string |  no  |  |
+ | store_ids | [number] |  no  |  |
+ | tags | [string] |  no  |  |
+ | type | string |  no  |  |
+ | zone_id | string |  no  |  |
  
 
 ---
