@@ -28,15 +28,14 @@ Handles all platform order and shipment api(s)
 * [getShipmentHistory](#getshipmenthistory)
 * [getShipmentReasons](#getshipmentreasons)
 * [getShipments](#getshipments)
+* [getStateTransitionMap](#getstatetransitionmap)
 * [getfilters](#getfilters)
 * [invalidateShipmentCache](#invalidateshipmentcache)
 * [orderUpdate](#orderupdate)
-* [platformManualAssignDPToShipment](#platformmanualassigndptoshipment)
 * [postShipmentHistory](#postshipmenthistory)
 * [processManifest](#processmanifest)
 * [reassignLocation](#reassignlocation)
 * [sendSmsNinja](#sendsmsninja)
-* [sendSmsNinjaPlatform](#sendsmsninjaplatform)
 * [trackShipmentPlatform](#trackshipmentplatform)
 * [updateAddress](#updateaddress)
 * [updatePackagingDimensions](#updatepackagingdimensions)
@@ -116,15 +115,15 @@ Order Status retrieved successfully
 const promise = platformClient.order.click2Call({  caller : value,
  receiver : value,
  bagId : value,
- callingTo : value,
- callerId : value });
+ callerId : value,
+ method : value });
 
 // Async/Await
 const data = await platformClient.order.click2Call({  caller : value,
  receiver : value,
  bagId : value,
- callingTo : value,
- callerId : value });
+ callerId : value,
+ method : value });
 ```
 
 
@@ -133,11 +132,11 @@ const data = await platformClient.order.click2Call({  caller : value,
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
-| caller | string | yes |  |   
-| receiver | string | yes |  |   
-| bagId | string | yes |  |    
-| callingTo | string | no |  |    
-| callerId | string | no |  |  
+| caller | string | yes | Call Number |   
+| receiver | string | yes | Receiver Number |   
+| bagId | string | yes | Bag Id for the query |    
+| callerId | string | no | Caller Id |    
+| method | string | no | Provider Method to Call |  
 
 
 
@@ -159,7 +158,10 @@ Process call on request!
 <summary><i>&nbsp; Example:</i></summary>
 
 ```json
-
+{
+  "success": true,
+  "call_id": "c2c_646b00bc-984c-4c10-bb8d-0e850a1e0022"
+}
 ```
 </details>
 
@@ -436,7 +438,7 @@ const data = await platformClient.order.getAnnouncements({  date : value });
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
-| date | string | no |  |  
+| date | string | no | Date On which the announcement is Active (Date should in ISO Datetime format IST Time) |  
 
 
 
@@ -1802,7 +1804,7 @@ const promise = platformClient.order.getOrders({  lane : value,
  toDate : value,
  dpIds : value,
  stores : value,
- salesChannel : value,
+ salesChannels : value,
  pageNo : value,
  pageSize : value,
  isPrioritySort : value,
@@ -1820,7 +1822,7 @@ const data = await platformClient.order.getOrders({  lane : value,
  toDate : value,
  dpIds : value,
  stores : value,
- salesChannel : value,
+ salesChannels : value,
  pageNo : value,
  pageSize : value,
  isPrioritySort : value,
@@ -1844,7 +1846,7 @@ const data = await platformClient.order.getOrders({  lane : value,
 | toDate | string | no |  |    
 | dpIds | string | no |  |    
 | stores | string | no |  |    
-| salesChannel | string | no |  |    
+| salesChannels | string | no |  |    
 | pageNo | number | no |  |    
 | pageSize | number | no |  |    
 | isPrioritySort | boolean | no |  |    
@@ -1921,7 +1923,22 @@ You will get an array of actions allowed for that particular user based on their
 <summary><i>&nbsp; Example:</i></summary>
 
 ```json
-
+{
+  "permissions": [
+    {
+      "slug": "create_invoice_s3",
+      "display_text": "Create Invoice (s3)",
+      "id": 2,
+      "description": "Create Invoice (s3)"
+    },
+    {
+      "slug": "call",
+      "display_text": "Call",
+      "id": 3,
+      "description": "Call"
+    }
+  ]
+}
 ```
 </details>
 
@@ -2360,8 +2377,8 @@ const data = await platformClient.order.getShipmentHistory({  shipmentId : value
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
-| shipmentId | number | no |  |    
-| bagId | number | no |  |  
+| shipmentId | string | no | Shipment Id |    
+| bagId | number | no | Bag/Product Id |  
 
 
 
@@ -2638,6 +2655,244 @@ We are processing the report!
 
 ```json
 
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### getStateTransitionMap
+
+
+
+
+```javascript
+// Promise
+const promise = platformClient.order.getStateTransitionMap();
+
+// Async/Await
+const data = await platformClient.order.getStateTransitionMap();
+```
+
+
+
+
+
+
+
+
+*Returned Response:*
+
+
+
+
+[BagStateTransitionMap](#BagStateTransitionMap)
+
+State Transition Mapping, for next possible state
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "fynd": {
+    "placed": [
+      "bag_not_confirmed",
+      "cancelled_customer",
+      "cancelled_fynd",
+      "bag_confirmed",
+      "store_reassigned"
+    ],
+    "bag_confirmed": [
+      "handed_over_to_customer",
+      "bag_invoiced"
+    ],
+    "dp_assigned": [
+      "handed_over_to_customer",
+      "bag_packed"
+    ],
+    "bag_packed": [
+      "bag_not_picked",
+      "cancelled_customer"
+    ],
+    "handed_over_to_dg": [
+      "cancelled_at_dp",
+      "credit_note_generated"
+    ],
+    "out_for_delivery": [
+      "delivery_done"
+    ],
+    "delivery_done": [
+      "bag_lost",
+      "return_initiated"
+    ],
+    "return_initiated": [
+      "return_accepted"
+    ],
+    "bag_picked": [
+      "refund_completed",
+      "out_for_delivery",
+      "delivery_done"
+    ],
+    "pending": [
+      "pending",
+      "placed",
+      "payment_failed",
+      "manual_refund"
+    ],
+    "payment_failed": [
+      "awaiting_payment_confirmation",
+      "placed",
+      "manual_refund"
+    ],
+    "return_pre_qc": [
+      "return_initiated",
+      "return_request_cancelled",
+      "manual_refund"
+    ],
+    "bag_not_packed": [
+      "manual_refund"
+    ],
+    "bag_rescheduled": [
+      "manual_refund"
+    ],
+    "fluid_state": [
+      "manual_refund"
+    ],
+    "handed_over_to_customer": [
+      "manual_refund",
+      "return_initiated"
+    ],
+    "hold": [
+      "manual_refund"
+    ],
+    "product_not_available": [
+      "manual_refund"
+    ],
+    "qc_fail": [
+      "manual_refund"
+    ],
+    "qc_pass": [
+      "manual_refund"
+    ],
+    "refund_done": [
+      "manual_refund"
+    ],
+    "refund_processing": [
+      "manual_refund"
+    ],
+    "return_assigning_dp": [
+      "manual_refund"
+    ],
+    "return_bag_packed": [
+      "manual_refund"
+    ],
+    "return_dp_cancelled": [
+      "manual_refund"
+    ],
+    "unhold": [
+      "manual_refund"
+    ],
+    "web_store_rescheduled": [
+      "manual_refund"
+    ],
+    "credit_note_cancelled": [
+      "refund_initiated"
+    ]
+  },
+  "affiliate": {
+    "placed": [
+      "bag_not_confirmed",
+      "store_reassigned",
+      "product_not_available"
+    ],
+    "store_reassigned": [
+      "bag_not_confirmed"
+    ],
+    "bag_confirmed": [
+      "bag_invoiced",
+      "cancelled_fynd"
+    ],
+    "dp_assigned": [
+      "bag_packed"
+    ],
+    "pending": [
+      "payment_failed",
+      "placed",
+      "manual_refund"
+    ],
+    "ready_for_dp_assignment": [
+      "dp_assigned"
+    ],
+    "credit_note_generated": [
+      "refund_pending",
+      "refund_initiated"
+    ],
+    "assigning_return_dp": [
+      "manual_refund"
+    ],
+    "bag_not_packed": [
+      "manual_refund"
+    ],
+    "bag_rescheduled": [
+      "manual_refund"
+    ],
+    "fluid_state": [
+      "manual_refund"
+    ],
+    "handed_over_to_customer": [
+      "manual_refund",
+      "return_initiated"
+    ],
+    "hold": [
+      "manual_refund"
+    ],
+    "product_not_available": [
+      "manual_refund"
+    ],
+    "qc_fail": [
+      "manual_refund"
+    ],
+    "qc_pass": [
+      "manual_refund"
+    ],
+    "refund_done": [
+      "manual_refund"
+    ],
+    "refund_processing": [
+      "manual_refund"
+    ],
+    "return_assigning_dp": [
+      "manual_refund"
+    ],
+    "return_bag_packed": [
+      "manual_refund"
+    ],
+    "return_dp_cancelled": [
+      "manual_refund"
+    ],
+    "unhold": [
+      "manual_refund"
+    ],
+    "web_store_rescheduled": [
+      "manual_refund"
+    ],
+    "credit_note_cancelled": [
+      "refund_initiated"
+    ]
+  }
+}
 ```
 </details>
 
@@ -3099,7 +3354,28 @@ Successfully updated shipment cache!
 <summary><i>&nbsp; Example:</i></summary>
 
 ```json
-
+{
+  "response": [
+    {
+      "message": "Shipment sync initiated",
+      "status": 200,
+      "shipment_id": "16838049724111283577",
+      "error": ""
+    },
+    {
+      "message": "Cannot update cache if shipment in pending, payment_failed or awaiting_payment_confirmation",
+      "status": 400,
+      "shipment_id": "16836368409661507353",
+      "error": ""
+    },
+    {
+      "message": "Problem while deleting the cache",
+      "status": 500,
+      "shipment_id": "16838049724111283577",
+      "error": "Internal Exception"
+    }
+  ]
+}
 ```
 </details>
 
@@ -3146,61 +3422,6 @@ const data = await platformClient.order.orderUpdate({  body : value });
 [ResponseDetail](#ResponseDetail)
 
 We are processing the order!
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### platformManualAssignDPToShipment
-
-
-
-
-```javascript
-// Promise
-const promise = platformClient.order.platformManualAssignDPToShipment({  body : value });
-
-// Async/Await
-const data = await platformClient.order.platformManualAssignDPToShipment({  body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |
-| body | [ManualAssignDPToShipment](#ManualAssignDPToShipment) | yes | Request body |
-
-
-
-
-*Returned Response:*
-
-
-
-
-[ManualAssignDPToShipmentResponse](#ManualAssignDPToShipmentResponse)
-
-DP Assigned for the given shipment Ids.
 
 
 
@@ -3302,7 +3523,8 @@ It shows the journey of the shipment!
       "ticket_id": null,
       "ticket_url": null
     }
-  ]
+  ],
+  "success": true
 }
 ```
 </details>
@@ -3468,58 +3690,10 @@ Sms Sent successfully
 <summary><i>&nbsp; Example:</i></summary>
 
 ```json
-
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### sendSmsNinjaPlatform
-
-
-
-
-```javascript
-// Promise
-const promise = platformClient.order.sendSmsNinjaPlatform();
-
-// Async/Await
-const data = await platformClient.order.sendSmsNinjaPlatform();
-```
-
-
-
-
-
-
-
-
-*Returned Response:*
-
-
-
-
-[OrderStatusResult](#OrderStatusResult)
-
-Sms Sent successfully
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-
+{
+  "success": true,
+  "message": "Successfully emitted aldaviz-delayed-shipment-event"
+}
 ```
 </details>
 
@@ -3772,7 +3946,7 @@ const data = await platformClient.order.updateShipmentLock({  body : value });
 | body | [UpdateShipmentLockPayload](#UpdateShipmentLockPayload) | yes | Request body |
 
 
-update shipment lock
+update shipment/bag lock and check status
 
 *Returned Response:*
 
@@ -3781,7 +3955,7 @@ update shipment lock
 
 [UpdateShipmentLockResponse](#UpdateShipmentLockResponse)
 
-Successfully updated shipment cache!
+Successfully update the Lock and get check status of the shipment/Bag
 
 
 
@@ -3790,7 +3964,32 @@ Successfully updated shipment cache!
 <summary><i>&nbsp; Example:</i></summary>
 
 ```json
-
+{
+  "success": true,
+  "message": "shipments checked successfully",
+  "check_response": [
+    {
+      "bags": [
+        {
+          "bag_id": 175644,
+          "is_locked": false,
+          "affiliate_bag_id": "def134",
+          "affiliate_order_id": "def134"
+        }
+      ],
+      "lock_status": "complete",
+      "is_bag_locked": false,
+      "is_shipment_locked": true,
+      "shipment_id": "16189206454951802898",
+      "affiliate_id": "5c764a6534add21972ef7b08",
+      "affiliate_shipment_id": "def134",
+      "original_filter": {
+        "shipment_id": "16189206454951802898"
+      },
+      "status": "dp_assigned"
+    }
+  ]
+}
 ```
 </details>
 
@@ -3827,7 +4026,7 @@ const data = await platformClient.order.updateShipmentStatus({  body : value });
 | body | [UpdateShipmentStatusRequest](#UpdateShipmentStatusRequest) | yes | Request body |
 
 
-Update shipment status
+This API is for Shipment State transition or Shipment data update or both below example is for partial state transition with data update
 
 *Returned Response:*
 
@@ -3836,7 +4035,7 @@ Update shipment status
 
 [UpdateShipmentStatusResponseBody](#UpdateShipmentStatusResponseBody)
 
-Successfully reassigned location!
+NOTE success response can contains success and failed result as well
 
 
 
@@ -3845,7 +4044,35 @@ Successfully reassigned location!
 <summary><i>&nbsp; Example:</i></summary>
 
 ```json
-
+{
+  "statuses": [
+    {
+      "shipments": [
+        {
+          "status": 200,
+          "final_state": {
+            "bag_confirmed": "bag_confirmed",
+            "shipment_id": "16836279770211860494"
+          },
+          "identifier": "16836279770211860494"
+        }
+      ]
+    },
+    {
+      "shipments": [
+        {
+          "status": 400,
+          "message": "Invalid State Transition bag_confirmed detected for given entity",
+          "code": null,
+          "exception": "ValidationError",
+          "stack_trace": null,
+          "meta": null,
+          "identifier": "16836279770211860494"
+        }
+      ]
+    }
+  ]
+}
 ```
 </details>
 
@@ -4115,6 +4342,7 @@ Successful Manifest upload!
  | marketplace_invoice_id | string? |  yes  |  |
  | order_item_id | string? |  yes  |  |
  | quantity | number? |  yes  |  |
+ | replacement_details | [ReplacementDetails](#ReplacementDetails)? |  yes  |  |
  | size_level_total_qty | number? |  yes  |  |
  
 
@@ -4153,6 +4381,8 @@ Successful Manifest upload!
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | announcements | [[AnnouncementResponse](#AnnouncementResponse)]? |  yes  |  |
+ | message | string? |  yes  |  |
+ | success | boolean? |  yes  |  |
  
 
 ---
@@ -4377,10 +4607,10 @@ Successful Manifest upload!
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | affiliate_bag_id | string? |  yes  |  |
- | affiliate_order_id | string? |  yes  |  |
- | bag_id | number? |  yes  |  |
- | is_locked | boolean? |  yes  |  |
+ | affiliate_bag_id | string? |  yes  | Application/Affiliate Bag ID, Required if the ID is missing |
+ | affiliate_order_id | string? |  yes  | Application/Affiliate Order ID, Required if the ID is missing |
+ | bag_id | number? |  yes  | Bag Id |
+ | is_locked | boolean? |  yes  | Is Bag Locked |
  
 
 ---
@@ -4399,6 +4629,16 @@ Successful Manifest upload!
  | name | string |  no  |  |
  | notify_customer | boolean? |  yes  |  |
  | state_type | string |  no  |  |
+ 
+
+---
+
+#### [BagStateTransitionMap](#BagStateTransitionMap)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | affiliate | string? |  yes  |  |
+ | fynd | string? |  yes  |  |
  
 
 ---
@@ -4451,8 +4691,8 @@ Successful Manifest upload!
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | message | string |  no  |  |
- | success | boolean |  no  |  |
+ | message | string? |  yes  |  |
+ | success | boolean? |  yes  |  |
  
 
 ---
@@ -4581,15 +4821,15 @@ Successful Manifest upload!
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | affiliate_id | string? |  yes  |  |
- | affiliate_shipment_id | string? |  yes  |  |
+ | affiliate_id | string? |  yes  | Affiliate ID |
+ | affiliate_shipment_id | string? |  yes  | Affiliate Shipment ID |
  | bags | [[Bags](#Bags)]? |  yes  |  |
- | is_bag_locked | boolean? |  yes  |  |
- | is_shipment_locked | boolean? |  yes  |  |
- | lock_status | boolean? |  yes  |  |
- | original_filter | [OriginalFilter](#OriginalFilter)? |  yes  |  |
- | shipment_id | string? |  yes  |  |
- | status | string? |  yes  |  |
+ | is_bag_locked | boolean? |  yes  | Is Bag Locked |
+ | is_shipment_locked | boolean? |  yes  | Is Shipment Locked |
+ | lock_status | string? |  yes  | Lock Status: Expected lock_status: [complete, operational, financial] |
+ | original_filter | [OriginalFilter](#OriginalFilter)? |  yes  | Filter |
+ | shipment_id | string? |  yes  | Shipment ID |
+ | status | string? |  yes  | Status |
  
 
 ---
@@ -4598,8 +4838,8 @@ Successful Manifest upload!
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | call_id | string |  no  |  |
- | status | boolean |  no  |  |
+ | call_id | string |  no  | Call ID from the provider |
+ | success | boolean |  no  | Success |
  
 
 ---
@@ -4882,12 +5122,12 @@ Successful Manifest upload!
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | affiliate_bag_id | string? |  yes  |  |
- | affiliate_id | string? |  yes  |  |
- | affiliate_order_id | string? |  yes  |  |
- | affiliate_shipment_id | string? |  yes  |  |
- | id | string? |  yes  |  |
- | reason_text | string |  no  |  |
+ | affiliate_bag_id | string? |  yes  | Application/Affiliate Bag ID, Required if the ID is missing |
+ | affiliate_id | string? |  yes  | Application/Affiliate ID, Required if the ID is missing |
+ | affiliate_order_id | string? |  yes  | Application/Affiliate Order ID, Required if the ID is missing |
+ | affiliate_shipment_id | string? |  yes  | Application/Affiliate Shipment ID, Required if the ID is missing |
+ | id | string? |  yes  | Shipment ID if 'entity_type': shipments \| Bag Id if 'entity_type': bags |
+ | reason_text | string |  no  | Reason For Shipment/Bag Action |
  
 
 ---
@@ -4957,8 +5197,9 @@ Successful Manifest upload!
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | error_trace | string? |  yes  |  |
- | message | string |  no  |  |
- | status | number |  no  |  |
+ | message | string? |  yes  |  |
+ | status | number? |  yes  |  |
+ | success | boolean? |  yes  |  |
  
 
 ---
@@ -5133,16 +5374,19 @@ Successful Manifest upload!
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | bag_id | number? |  yes  |  |
- | createdat | string |  no  |  |
- | l1_detail | string? |  yes  |  |
- | l2_detail | string? |  yes  |  |
- | l3_detail | string? |  yes  |  |
- | message | string |  no  |  |
- | ticket_id | string? |  yes  |  |
- | ticket_url | string? |  yes  |  |
- | type | string |  no  |  |
- | user | string |  no  |  |
+ | assigned_agent | string? |  yes  | Assigned Agent |
+ | bag_id | number? |  yes  | Bag ID |
+ | createdat | string |  no  | Create date |
+ | display_message | string? |  yes  | Display Message |
+ | l1_detail | string? |  yes  | L1 details of bag |
+ | l2_detail | string? |  yes  | L2 details of bag |
+ | l3_detail | string? |  yes  | L3 details of bag |
+ | message | string |  no  | History Message or comment |
+ | meta | string? |  yes  | meta |
+ | ticket_id | string? |  yes  | Ticket ID |
+ | ticket_url | string? |  yes  | Ticket URL |
+ | type | string |  no  | type of history, Expected Values:             [ activity_status, activity_escalation, activity_comment, outbound_notification, outbound_voice ] |
+ | user | string |  no  | User who created the history |
  
 
 ---
@@ -5172,7 +5416,9 @@ Successful Manifest upload!
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | shipment_ids | [string] |  no  |  |
+ | affiliate_bag_ids | [string]? |  yes  | Affiliate Bag Ids to clear cache of shipment Ids mapped to it |
+ | bag_ids | [string]? |  yes  | Bag Ids to clear cache of shipment Ids mapped to it |
+ | shipment_ids | [string]? |  yes  | Shipment Ids to clear cache |
  
 
 ---
@@ -5281,28 +5527,6 @@ Successful Manifest upload!
  | lock_message | string? |  yes  |  |
  | locked | boolean? |  yes  |  |
  | mto | boolean? |  yes  |  |
- 
-
----
-
-#### [ManualAssignDPToShipment](#ManualAssignDPToShipment)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | dp_id | number |  no  |  |
- | order_type | string |  no  |  |
- | qc_required | string |  no  |  |
- | shipment_ids | [string]? |  yes  |  |
- 
-
----
-
-#### [ManualAssignDPToShipmentResponse](#ManualAssignDPToShipmentResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | errors | [string]? |  yes  |  |
- | success | string |  no  |  |
  
 
 ---
@@ -5594,8 +5818,8 @@ Successful Manifest upload!
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | affiliate_id | string? |  yes  |  |
- | affiliate_shipment_id | string? |  yes  |  |
+ | affiliate_id | string? |  yes  | Affiliate ID |
+ | affiliate_shipment_id | string? |  yes  | Affiliate Shipment ID |
  
 
 ---
@@ -5993,8 +6217,8 @@ Successful Manifest upload!
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | identifier | string? |  yes  |  |
- | line_number | number? |  yes  |  |
+ | identifier | string? |  yes  | Product/Bag Article/Item Identifier |
+ | line_number | number? |  yes  | Product/Bag Line number for the Product/Bag Identifier |
  | quantity | number? |  yes  |  |
  
 
@@ -6005,7 +6229,7 @@ Successful Manifest upload!
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | data | string? |  yes  |  |
- | filters | [[ProductsDataUpdatesFilters](#ProductsDataUpdatesFilters)]? |  yes  |  |
+ | filters | [[ProductsDataUpdatesFilters](#ProductsDataUpdatesFilters)]? |  yes  | Filter for the Product/Bag |
  
 
 ---
@@ -6014,8 +6238,8 @@ Successful Manifest upload!
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | identifier | string? |  yes  |  |
- | line_number | number? |  yes  |  |
+ | identifier | string? |  yes  | Product/Bag Article/Item Identifier |
+ | line_number | number? |  yes  | Product/Bag Line number for the Product/Bag Identifier |
  
 
 ---
@@ -6044,8 +6268,8 @@ Successful Manifest upload!
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | identifier | string? |  yes  |  |
- | line_number | number? |  yes  |  |
+ | identifier | string? |  yes  | Product/Bag Article/Item Identifier |
+ | line_number | number? |  yes  | Product/Bag Line number for the Product/Bag Identifier |
  | quantity | number? |  yes  |  |
  
 
@@ -6083,6 +6307,16 @@ Successful Manifest upload!
 
 ---
 
+#### [ReplacementDetails](#ReplacementDetails)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | original_affiliate_order_id | string? |  yes  |  |
+ | replacement_type | string? |  yes  |  |
+ 
+
+---
+
 #### [ResponseDetail](#ResponseDetail)
 
  | Properties | Type | Nullable | Description |
@@ -6108,9 +6342,9 @@ Successful Manifest upload!
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | bag_id | number |  no  |  |
- | data | [SmsDataPayload](#SmsDataPayload)? |  yes  |  |
- | slug | string |  no  |  |
+ | bag_id | number |  no  | bag_id for the activity history track |
+ | data | [SmsDataPayload](#SmsDataPayload)? |  yes  | SMS Data |
+ | slug | string |  no  | slug name for the template mapped in pointblank |
  
 
 ---
@@ -6199,6 +6433,7 @@ Successful Manifest upload!
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | activity_history | [[HistoryDict](#HistoryDict)] |  no  |  |
+ | success | boolean? |  yes  |  |
  
 
 ---
@@ -6233,6 +6468,7 @@ Successful Manifest upload!
  | application | string? |  yes  |  |
  | bags | [[BagUnit](#BagUnit)]? |  yes  |  |
  | channel | string? |  yes  |  |
+ | company | string? |  yes  |  |
  | created_at | string |  no  |  |
  | fulfilling_centre | string |  no  |  |
  | fulfilling_store | [ShipmentItemFulFillingStore](#ShipmentItemFulFillingStore)? |  yes  |  |
@@ -6321,8 +6557,8 @@ Successful Manifest upload!
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | data_updates | [DataUpdates](#DataUpdates)? |  yes  |  |
- | identifier | string |  no  |  |
- | products | [[Products](#Products)]? |  yes  |  |
+ | identifier | string |  no  | Shipment ID |
+ | products | [[Products](#Products)]? |  yes  | Product/Bag to be updated |
  | reasons | [ReasonsData](#ReasonsData)? |  yes  |  |
  
 
@@ -6418,15 +6654,15 @@ Successful Manifest upload!
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | amount_paid | number |  no  |  |
- | brand_name | string |  no  |  |
- | country_code | string |  no  |  |
- | customer_name | string |  no  |  |
- | message | string |  no  |  |
- | order_id | string |  no  |  |
- | payment_mode | string |  no  |  |
- | phone_number | number |  no  |  |
- | shipment_id | number |  no  |  |
+ | amount_paid | number? |  yes  | Data mapped in Communication template: amount_paid |
+ | brand_name | string? |  yes  | Data mapped in Communication template: brand_name |
+ | country_code | string |  no  | country code for SMS |
+ | customer_name | string? |  yes  | Data mapped in Communication template: customer_name |
+ | message | string |  no  | message to be send in SMS |
+ | order_id | string |  no  | orderId |
+ | payment_mode | string? |  yes  | Data mapped in Communication template: payment_mode |
+ | phone_number | number |  no  | phone number for communication |
+ | shipment_id | number |  no  | ShipmentId |
  
 
 ---
@@ -6435,8 +6671,9 @@ Successful Manifest upload!
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | exclude_bags_next_state | string? |  yes  |  |
+ | exclude_bags_next_state | string? |  yes  | State to be change for Remaining Bag/Products |
  | shipments | [[ShipmentsRequest](#ShipmentsRequest)]? |  yes  |  |
+ | split_shipment | boolean? |  yes  | Flag to split shipment |
  | status | string? |  yes  |  |
  
 
@@ -6708,10 +6945,10 @@ Successful Manifest upload!
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | action | string |  no  |  |
- | action_type | string |  no  |  |
- | entities | [[Entities](#Entities)] |  no  |  |
- | entity_type | string |  no  |  |
+ | action | string |  no  | Expected Actions: [lock, unlock, check] |
+ | action_type | string |  no  | Expected action_type: [complete, operational, financial] |
+ | entities | [[Entities](#Entities)] |  no  | Shipment/Entity |
+ | entity_type | string |  no  | Expected entity_type: [bags, shipments] |
  
 
 ---
@@ -6720,7 +6957,7 @@ Successful Manifest upload!
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | check_response | [[CheckResponse](#CheckResponse)]? |  yes  |  |
+ | check_response | [[CheckResponse](#CheckResponse)]? |  yes  | Entity Lock Status, If the action input as 'check' |
  | message | string? |  yes  |  |
  | success | boolean? |  yes  |  |
  
@@ -6731,11 +6968,11 @@ Successful Manifest upload!
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | force_transition | boolean? |  yes  |  |
- | lock_after_transition | boolean? |  yes  |  |
+ | force_transition | boolean? |  yes  | Force Transition |
+ | lock_after_transition | boolean? |  yes  | Lock Shipment After Transition |
  | statuses | [[StatuesRequest](#StatuesRequest)]? |  yes  |  |
- | task | boolean? |  yes  |  |
- | unlock_before_transition | boolean? |  yes  |  |
+ | task | boolean? |  yes  | To Run Status Update as a background Task |
+ | unlock_before_transition | boolean? |  yes  | Unlock Shipment After Transition |
  
 
 ---

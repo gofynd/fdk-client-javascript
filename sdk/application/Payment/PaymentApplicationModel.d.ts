@@ -57,6 +57,8 @@ declare class PaymentModel {
     static OnboardSummary(): any;
     static OrderBeneficiaryDetails(): any;
     static OrderBeneficiaryResponse(): any;
+    static OutstandingOrderDetailsResponse(): any;
+    static PaidOrderDetailsResponse(): any;
     static PaymentFlow(): any;
     static PaymentInitializationRequest(): any;
     static PaymentInitializationResponse(): any;

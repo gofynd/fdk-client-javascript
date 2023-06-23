@@ -3,5 +3,5 @@ declare class FileStorageValidator {
     static appCompleteUpload(): any;
     static appCopyFiles(): any;
     static appStartUpload(): any;
-    static browse(): any;
+    static appbrowse(): any;
 }

@@ -276,6 +276,12 @@ class CatalogValidator {
     return Joi.object({}).required();
   }
 
+  static getOptimalLocations() {
+    return Joi.object({
+      body: CatalogModel.AssignStore().required(),
+    }).required();
+  }
+
   static getProduct() {
     return Joi.object({
       itemId: Joi.number().required(),

@@ -71,6 +71,21 @@ class DiscountModel {
       store_ids: Joi.array().items(Joi.number()),
     });
   }
+  static FileJobRequest() {
+    return Joi.object({
+      app_ids: Joi.array().items(Joi.string().allow("")),
+      brand_ids: Joi.array().items(Joi.number()),
+      discount_level: Joi.string().allow(""),
+      discount_type: Joi.string().allow(""),
+      file_path: Joi.string().allow(""),
+      is_active: Joi.boolean().required(),
+      job_type: Joi.string().allow(""),
+      meta: Joi.any(),
+      name: Joi.string().allow("").required(),
+      store_ids: Joi.array().items(Joi.number()),
+      validity: DiscountModel.ValidityObject().required(),
+    });
+  }
   static FileJobResponse() {
     return Joi.object({
       body: Joi.any(),

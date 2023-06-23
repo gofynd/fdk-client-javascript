@@ -14,21 +14,21 @@ declare class Order {
     }): Promise<OrderStatusResult>;
     /**
      * @param {Object} arg - Arg object.
-     * @param {string} arg.caller -
-     * @param {string} arg.receiver -
-     * @param {string} arg.bagId -
-     * @param {string} [arg.callingTo] -
-     * @param {string} [arg.callerId] -
+     * @param {string} arg.caller - Call Number
+     * @param {string} arg.receiver - Receiver Number
+     * @param {string} arg.bagId - Bag Id for the query
+     * @param {string} [arg.callerId] - Caller Id
+     * @param {string} [arg.method] - Provider Method to Call
      * @returns {Promise<Click2CallResponse>} - Success response
      * @summary:
      * @description:
      */
-    click2Call({ caller, receiver, bagId, callingTo, callerId, }?: {
+    click2Call({ caller, receiver, bagId, callerId, method, }?: {
         caller: string;
         receiver: string;
         bagId: string;
-        callingTo?: string;
         callerId?: string;
+        method?: string;
     }): Promise<Click2CallResponse>;
     /**
      * @param {Object} arg - Arg object.
@@ -72,7 +72,8 @@ declare class Order {
     }): Promise<FileResponse>;
     /**
      * @param {Object} arg - Arg object.
-     * @param {string} [arg.date] -
+     * @param {string} [arg.date] - Date On which the announcement is Active
+     *   (Date should in ISO Datetime format IST Time)
      * @returns {Promise<AnnouncementsResponse>} - Success response
      * @summary:
      * @description:
@@ -215,7 +216,7 @@ declare class Order {
      * @param {string} [arg.toDate] -
      * @param {string} [arg.dpIds] -
      * @param {string} [arg.stores] -
-     * @param {string} [arg.salesChannel] -
+     * @param {string} [arg.salesChannels] -
      * @param {number} [arg.pageNo] -
      * @param {number} [arg.pageSize] -
      * @param {boolean} [arg.isPrioritySort] -
@@ -224,7 +225,7 @@ declare class Order {
      * @summary:
      * @description:
      */
-    getOrders({ lane, searchType, bagStatus, timeToDispatch, paymentMethods, tags, searchValue, fromDate, toDate, dpIds, stores, salesChannel, pageNo, pageSize, isPrioritySort, customMeta, }?: {
+    getOrders({ lane, searchType, bagStatus, timeToDispatch, paymentMethods, tags, searchValue, fromDate, toDate, dpIds, stores, salesChannels, pageNo, pageSize, isPrioritySort, customMeta, }?: {
         lane?: string;
         searchType?: string;
         bagStatus?: string;
@@ -236,7 +237,7 @@ declare class Order {
         toDate?: string;
         dpIds?: string;
         stores?: string;
-        salesChannel?: string;
+        salesChannels?: string;
         pageNo?: number;
         pageSize?: number;
         isPrioritySort?: boolean;
@@ -267,14 +268,14 @@ declare class Order {
     }): Promise<ShipmentInfoResponse>;
     /**
      * @param {Object} arg - Arg object.
-     * @param {number} [arg.shipmentId] -
-     * @param {number} [arg.bagId] -
+     * @param {string} [arg.shipmentId] - Shipment Id
+     * @param {number} [arg.bagId] - Bag/Product Id
      * @returns {Promise<ShipmentHistoryResponse>} - Success response
      * @summary:
      * @description:
      */
     getShipmentHistory({ shipmentId, bagId }?: {
-        shipmentId?: number;
+        shipmentId?: string;
         bagId?: number;
     }): Promise<ShipmentHistoryResponse>;
     /**
@@ -352,6 +353,13 @@ declare class Order {
     }): Promise<ShipmentInternalPlatformViewResponse>;
     /**
      * @param {Object} arg - Arg object.
+     * @returns {Promise<BagStateTransitionMap>} - Success response
+     * @summary:
+     * @description:
+     */
+    getStateTransitionMap({}?: any): Promise<BagStateTransitionMap>;
+    /**
+     * @param {Object} arg - Arg object.
      * @param {string} arg.view -
      * @param {string} [arg.groupEntity] -
      * @returns {Promise<FiltersResponse>} - Success response
@@ -382,16 +390,6 @@ declare class Order {
     orderUpdate({ body }?: {
         body: PlatformOrderUpdate;
     }): Promise<ResponseDetail>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {ManualAssignDPToShipment} arg.body
-     * @returns {Promise<ManualAssignDPToShipmentResponse>} - Success response
-     * @summary:
-     * @description:
-     */
-    platformManualAssignDPToShipment({ body }?: {
-        body: ManualAssignDPToShipment;
-    }): Promise<ManualAssignDPToShipmentResponse>;
     /**
      * @param {Object} arg - Arg object.
      * @param {PostShipmentHistory} arg.body
@@ -432,13 +430,6 @@ declare class Order {
     sendSmsNinja({ body }?: {
         body: SendSmsPayload;
     }): Promise<OrderStatusResult>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @returns {Promise<OrderStatusResult>} - Success response
-     * @summary:
-     * @description:
-     */
-    sendSmsNinjaPlatform({}?: any): Promise<OrderStatusResult>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.shipmentId -
@@ -486,7 +477,7 @@ declare class Order {
      * @param {UpdateShipmentLockPayload} arg.body
      * @returns {Promise<UpdateShipmentLockResponse>} - Success response
      * @summary:
-     * @description: update shipment lock
+     * @description: update shipment/bag lock and check status
      */
     updateShipmentLock({ body }?: {
         body: UpdateShipmentLockPayload;
@@ -496,7 +487,7 @@ declare class Order {
      * @param {UpdateShipmentStatusRequest} arg.body
      * @returns {Promise<UpdateShipmentStatusResponseBody>} - Success response
      * @summary:
-     * @description: Update shipment status
+     * @description: This API is for Shipment State transition or Shipment data update or both below example is for partial state transition with data update
      */
     updateShipmentStatus({ body }?: {
         body: UpdateShipmentStatusRequest;

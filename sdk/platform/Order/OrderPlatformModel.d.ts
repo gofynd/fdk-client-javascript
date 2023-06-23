@@ -32,6 +32,7 @@ declare class OrderModel {
     static BagReturnableCancelableStatus(): any;
     static Bags(): any;
     static BagStateMapper(): any;
+    static BagStateTransitionMap(): any;
     static BagStatusHistory(): any;
     static BagUnit(): any;
     static BaseResponse(): any;
@@ -100,8 +101,6 @@ declare class OrderModel {
     static LineItem(): any;
     static LocationDetails(): any;
     static LockData(): any;
-    static ManualAssignDPToShipment(): any;
-    static ManualAssignDPToShipmentResponse(): any;
     static MarketPlacePdf(): any;
     static Meta(): any;
     static Meta1(): any;
@@ -157,6 +156,7 @@ declare class OrderModel {
     static QuestionSet(): any;
     static Reason(): any;
     static ReasonsData(): any;
+    static ReplacementDetails(): any;
     static ResponseDetail(): any;
     static ReturnConfig(): any;
     static SendSmsPayload(): any;

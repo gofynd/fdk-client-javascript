@@ -49,16 +49,18 @@ declare class PosCart {
      * @param {boolean} [arg.b] -
      * @param {string} [arg.areaCode] -
      * @param {boolean} [arg.buyNow] -
+     * @param {string} [arg.id] -
      * @param {AddCartRequest} arg.body
      * @returns {Promise<AddCartDetailResponse>} - Success response
      * @summary: Add items to cart
      * @description: Use this API to add items to the cart.
      */
-    addItems({ body, i, b, areaCode, buyNow }?: {
+    addItems({ body, i, b, areaCode, buyNow, id }?: {
         i?: boolean;
         b?: boolean;
         areaCode?: string;
         buyNow?: boolean;
+        id?: string;
         body: AddCartRequest;
     }): Promise<AddCartDetailResponse>;
     /**

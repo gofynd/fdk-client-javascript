@@ -8,6 +8,8 @@ declare class Cart {
         applyCoupon: string;
         applyRewardPoints: string;
         checkoutCart: string;
+        checkoutCartV2: string;
+        deleteCart: string;
         getAddressById: string;
         getAddresses: string;
         getBulkDiscountOffers: string;
@@ -48,16 +50,18 @@ declare class Cart {
      * @param {boolean} [arg.b] -
      * @param {string} [arg.areaCode] -
      * @param {boolean} [arg.buyNow] -
+     * @param {string} [arg.id] -
      * @param {AddCartRequest} arg.body
      * @returns {Promise<AddCartDetailResponse>} - Success response
      * @summary: Add items to cart
      * @description: Use this API to add items to the cart.
      */
-    addItems({ body, i, b, areaCode, buyNow }?: {
+    addItems({ body, i, b, areaCode, buyNow, id }?: {
         i?: boolean;
         b?: boolean;
         areaCode?: string;
         buyNow?: boolean;
+        id?: string;
         body: AddCartRequest;
     }): Promise<AddCartDetailResponse>;
     /**
@@ -110,6 +114,28 @@ declare class Cart {
         buyNow?: boolean;
         body: CartCheckoutDetailRequest;
     }): Promise<CartCheckoutResponse>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {boolean} [arg.buyNow] - This indicates the type of cart to checkout
+     * @param {CartCheckoutDetailV2Request} arg.body
+     * @returns {Promise<CartCheckoutResponse>} - Success response
+     * @summary: Checkout all items in the cart
+     * @description: Use this API to checkout all items in the cart for payment and order generation. For COD, order will be directly generated, whereas for other checkout modes, user will be redirected to a payment gateway.
+     */
+    checkoutCartV2({ body, buyNow }?: {
+        buyNow?: boolean;
+        body: CartCheckoutDetailV2Request;
+    }): Promise<CartCheckoutResponse>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {number} [arg.id] - The unique identifier of the cart.
+     * @returns {Promise<DeleteCartDetailResponse>} - Success response
+     * @summary: Delete cart once user made successful checkout
+     * @description: Use this API to delete the cart.
+     */
+    deleteCart({ id }?: {
+        id?: number;
+    }): Promise<DeleteCartDetailResponse>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.id -
@@ -271,14 +297,16 @@ declare class Cart {
      *   /service/application/catalog/v1.0/products/
      * @param {number} [arg.pageSize] - Number of offers to be fetched to show
      * @param {string} [arg.promotionGroup] - Type of promotion groups
+     * @param {number} [arg.storeId] - Store id
      * @returns {Promise<PromotionOffersResponse>} - Success response
      * @summary: Fetch available promotions
      * @description: Use this API to get top 5 offers available for current product
      */
-    getPromotionOffers({ slug, pageSize, promotionGroup }?: {
+    getPromotionOffers({ slug, pageSize, promotionGroup, storeId }?: {
         slug?: string;
         pageSize?: number;
         promotionGroup?: string;
+        storeId?: number;
     }): Promise<PromotionOffersResponse>;
     /**
      * @param {Object} arg - Arg object.

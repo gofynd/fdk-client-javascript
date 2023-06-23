@@ -28,6 +28,8 @@ declare class PaymentValidator {
     static getUserBeneficiariesDetail(): any;
     static initialisePayment(): any;
     static initialisePaymentPaymentLink(): any;
+    static outstandingOrderDetails(): any;
+    static paidOrderDetails(): any;
     static pollingPaymentLink(): any;
     static redirectToAggregator(): any;
     static renderHTML(): any;

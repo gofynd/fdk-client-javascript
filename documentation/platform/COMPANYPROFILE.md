@@ -1377,8 +1377,8 @@ Returns a success response
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | landscape | string? |  yes  |  |
- | portrait | string? |  yes  |  |
+ | landscape | string |  no  |  |
+ | portrait | string |  no  |  |
  
 
 ---
@@ -1555,7 +1555,7 @@ Returns a success response
  | ---------- | ---- | -------- | ----------- |
  | _custom_json | string? |  yes  |  |
  | _locale_language | string? |  yes  |  |
- | banner | [BrandBannerSerializer](#BrandBannerSerializer)? |  yes  |  |
+ | banner | [BrandBannerSerializer](#BrandBannerSerializer) |  no  |  |
  | brand_tier | string? |  yes  |  |
  | company_id | number? |  yes  |  |
  | description | string? |  yes  |  |
@@ -1657,7 +1657,7 @@ Returns a success response
  | business_country_info | [BusinessCountryInfo](#BusinessCountryInfo)? |  yes  |  |
  | business_details | [BusinessDetails](#BusinessDetails)? |  yes  |  |
  | business_info | string? |  yes  |  |
- | business_type | string |  no  |  |
+ | business_type | string? |  yes  |  |
  | company_type | string |  no  |  |
  | contact_details | [ContactDetails](#ContactDetails)? |  yes  |  |
  | created_by | [UserSerializer](#UserSerializer)? |  yes  |  |
@@ -1706,11 +1706,13 @@ Returns a success response
  | ---------- | ---- | -------- | ----------- |
  | _custom_json | string? |  yes  |  |
  | address | [GetAddressSerializer](#GetAddressSerializer) |  no  |  |
+ | auto_invoice | boolean? |  yes  |  |
  | code | string |  no  |  |
  | company | [GetCompanySerializer](#GetCompanySerializer)? |  yes  |  |
  | contact_numbers | [[SellerPhoneNumber](#SellerPhoneNumber)]? |  yes  |  |
  | created_by | [UserSerializer](#UserSerializer)? |  yes  |  |
  | created_on | string? |  yes  |  |
+ | credit_note | boolean? |  yes  |  |
  | display_name | string |  no  |  |
  | documents | [[Document](#Document)]? |  yes  |  |
  | gst_credentials | [InvoiceDetailsSerializer](#InvoiceDetailsSerializer)? |  yes  |  |
@@ -1814,9 +1816,11 @@ Returns a success response
  | ---------- | ---- | -------- | ----------- |
  | _custom_json | string? |  yes  |  |
  | address | [AddressSerializer](#AddressSerializer) |  no  |  |
+ | auto_invoice | boolean? |  yes  |  |
  | code | string |  no  |  |
  | company | number |  no  |  |
  | contact_numbers | [[SellerPhoneNumber](#SellerPhoneNumber)]? |  yes  |  |
+ | credit_note | boolean? |  yes  |  |
  | display_name | string |  no  |  |
  | documents | [[Document](#Document)]? |  yes  |  |
  | gst_credentials | [InvoiceDetailsSerializer](#InvoiceDetailsSerializer)? |  yes  |  |
@@ -1888,6 +1892,7 @@ Returns a success response
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | message | string? |  yes  |  |
  | success | boolean? |  yes  |  |
  | uid | number? |  yes  |  |
  

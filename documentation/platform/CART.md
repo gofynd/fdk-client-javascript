@@ -8,24 +8,27 @@
 ## Cart Methods
 Cart APIs
 
-* [addAddress](#addaddress)
 * [addItems](#additems)
 * [checkCartServiceability](#checkcartserviceability)
 * [checkoutCart](#checkoutcart)
+* [createCartMetaConfig](#createcartmetaconfig)
 * [createCoupon](#createcoupon)
 * [createPromotion](#createpromotion)
 * [fetchAndvalidateCartItems](#fetchandvalidatecartitems)
+* [fetchCartMetaConfig](#fetchcartmetaconfig)
 * [getAbandonedCart](#getabandonedcart)
-* [getAddressById](#getaddressbyid)
-* [getAddresses](#getaddresses)
+* [getAbandonedCartDetails](#getabandonedcartdetails)
 * [getCouponById](#getcouponbyid)
+* [getCouponCodeExists](#getcouponcodeexists)
+* [getCouponOptionValues](#getcouponoptionvalues)
 * [getCoupons](#getcoupons)
 * [getPromosCouponConfig](#getpromoscouponconfig)
 * [getPromotionById](#getpromotionbyid)
+* [getPromotionCodeExists](#getpromotioncodeexists)
 * [getPromotions](#getpromotions)
-* [removeAddress](#removeaddress)
-* [updateAddress](#updateaddress)
+* [overrideCart](#overridecart)
 * [updateCart](#updatecart)
+* [updateCartMetaConfig](#updatecartmetaconfig)
 * [updateCoupon](#updatecoupon)
 * [updateCouponPartially](#updatecouponpartially)
 * [updatePromotion](#updatepromotion)
@@ -36,65 +39,6 @@ Cart APIs
 ## Methods with example and description
 
 
-
-
-### addAddress
-Add address to an account
-
-
-
-```javascript
-// Promise
-const promise = platformClient.application("<APPLICATION_ID>").cart.addAddress({  body : value });
-
-// Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").cart.addAddress({  body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |
-| body | [PlatformAddress](#PlatformAddress) | yes | Request body |
-
-
-Use this API to add an address to an account.
-
-*Returned Response:*
-
-
-
-
-[SaveAddressResponse](#SaveAddressResponse)
-
-Success. Returns the address ID, a flag whether the address is set as default, and a success message. Refer `SaveAddressResponse` for more details.
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "id": "mongo_object_id",
-  "is_default_address": true,
-  "success": true
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
 
 
 ### addItems
@@ -1448,6 +1392,77 @@ Checkout cart and create Fynd order id
 ---
 
 
+### createCartMetaConfig
+Create new cart meta configuration
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").cart.createCartMetaConfig({  body : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").cart.createCartMetaConfig({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [CartMetaConfigAdd](#CartMetaConfigAdd) | yes | Request body |
+
+
+Create new cart meta configuration
+
+*Returned Response:*
+
+
+
+
+[CartMetaConfigAdd](#CartMetaConfigAdd)
+
+Cart Meta Config Created successfully
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "_id": "645ba594d414eb0669e6ee14",
+  "app_id": "60792ded7826bd09330ed90d",
+  "company_id": 884,
+  "bulk_coupons": false,
+  "delivery_charges": {
+    "charges": [],
+    "enabled": false
+  },
+  "empty_cart": false,
+  "enabled": true,
+  "max_cart_items": 50,
+  "min_cart_value": 0,
+  "revenue_engine_coupon": false,
+  "gift_pricing": 50,
+  "gift_display_text": ""
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
 ### createCoupon
 Create new coupon
 
@@ -2004,6 +2019,73 @@ Cart details with breakup
 ---
 
 
+### fetchCartMetaConfig
+Fetch cart meta configuration
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").cart.fetchCartMetaConfig();
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").cart.fetchCartMetaConfig();
+```
+
+
+
+
+
+
+Fetch cart meta configuration
+
+*Returned Response:*
+
+
+
+
+[CartMetaConfigAdd](#CartMetaConfigAdd)
+
+Cart Meta Config Fetched successfully
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "_id": "645ba594d414eb0669e6ee14",
+  "app_id": "60792ded7826bd09330ed90d",
+  "company_id": 884,
+  "bulk_coupons": false,
+  "delivery_charges": {
+    "charges": [],
+    "enabled": false
+  },
+  "empty_cart": false,
+  "enabled": true,
+  "max_cart_items": 50,
+  "min_cart_value": 0,
+  "revenue_engine_coupon": false,
+  "gift_pricing": 50,
+  "gift_display_text": ""
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
 ### getAbandonedCart
 Get with abandoned cart list
 
@@ -2239,134 +2321,21 @@ Abandoned Cart List for sent page_size and page_no
 ---
 
 
-### getAddressById
-Fetch a single address by its ID
+### getAbandonedCartDetails
+Fetch all items added to the cart
 
 
 
 ```javascript
 // Promise
-const promise = platformClient.application("<APPLICATION_ID>").cart.getAddressById({  id : value,
- cartId : value,
- buyNow : value,
- mobileNo : value,
- checkoutMode : value,
- tags : value,
- isDefault : value,
- userId : value });
+const promise = platformClient.application("<APPLICATION_ID>").cart.getAbandonedCartDetails({  id : value,
+ i : value,
+ b : value });
 
 // Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").cart.getAddressById({  id : value,
- cartId : value,
- buyNow : value,
- mobileNo : value,
- checkoutMode : value,
- tags : value,
- isDefault : value,
- userId : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| id | string | yes |  |    
-| cartId | string | no |  |    
-| buyNow | boolean | no |  |    
-| mobileNo | string | no |  |    
-| checkoutMode | string | no |  |    
-| tags | string | no |  |    
-| isDefault | boolean | no |  |    
-| userId | string | no |  |  
-
-
-
-Use this API to get an addresses using its ID. If successful, returns a Address resource in the response body specified in `PlatformAddress`. Attibutes listed below are optional <ul> <li> <font color="monochrome">mobile_no</font></li> <li> <font color="monochrome">checkout_mode</font></li> <li> <font color="monochrome">tags</font></li> <li> <font color="monochrome">default</font></li> </ul>
-
-*Returned Response:*
-
-
-
-
-[PlatformAddress](#PlatformAddress)
-
-Success. Returns an PlatformAddress object containing a list of address saved in the account. Refer `PlatformAddress` for more details.
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "landmark": "",
-  "area_code": {
-    "slug": "pincode",
-    "id": 400093
-  },
-  "state": "Maharashtra",
-  "meta": {},
-  "user_id": "8b526f521bb14a2593a8b9e3ce8c76b3",
-  "created_by_user_id": "8b526f521bb14a2593a8b9e3ce8c76b3",
-  "country_code": "IND",
-  "phone": 9915347757,
-  "geo_location": {},
-  "country": "India",
-  "is_default_address": true,
-  "is_active": true,
-  "city": "Mumbai",
-  "pincode": 400093,
-  "checkout_mode": "self",
-  "address_type": "home",
-  "uid": 1145,
-  "tags": [],
-  "area": "Sector 127",
-  "name": "abc",
-  "address_id": 1145,
-  "email": "ankur@gofynd1.com",
-  "address": "Megatron2",
-  "store_name": "store123"
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### getAddresses
-Fetch address
-
-
-
-```javascript
-// Promise
-const promise = platformClient.application("<APPLICATION_ID>").cart.getAddresses({  cartId : value,
- buyNow : value,
- mobileNo : value,
- checkoutMode : value,
- tags : value,
- isDefault : value,
- userId : value });
-
-// Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").cart.getAddresses({  cartId : value,
- buyNow : value,
- mobileNo : value,
- checkoutMode : value,
- tags : value,
- isDefault : value,
- userId : value });
+const data = await platformClient.application("<APPLICATION_ID>").cart.getAbandonedCartDetails({  id : value,
+ i : value,
+ b : value });
 ```
 
 
@@ -2375,26 +2344,22 @@ const data = await platformClient.application("<APPLICATION_ID>").cart.getAddres
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
-| cartId | string | no |  |    
-| buyNow | boolean | no |  |    
-| mobileNo | string | no |  |    
-| checkoutMode | string | no |  |    
-| tags | string | no |  |    
-| isDefault | boolean | no |  |    
-| userId | string | no |  |  
+| id | string | no |  |    
+| i | boolean | no |  |    
+| b | boolean | no |  |  
 
 
 
-Use this API to get all the addresses associated with an account. If successful, returns a Address resource in the response body specified in GetAddressesResponse.attibutes listed below are optional <ul> <li> <font color="monochrome">uid</font></li> <li> <font color="monochrome">address_id</font></li> <li> <font color="monochrome">mobile_no</font></li> <li> <font color="monochrome">checkout_mode</font></li> <li> <font color="monochrome">tags</font></li> <li> <font color="monochrome">default</font></li> </ul>
+Use this API to get details of all the items added to a cart.
 
 *Returned Response:*
 
 
 
 
-[PlatformGetAddressesResponse](#PlatformGetAddressesResponse)
+[CartDetailResponse](#CartDetailResponse)
 
-Success. Returns an Address object containing a list of address saved in the account. Refer `GetAddressesResponse` for more details.
+Success. Returns a Cart object. Check the example shown below or refer `CartDetailResponse` for more details.
 
 
 
@@ -2404,36 +2369,172 @@ Success. Returns an Address object containing a list of address saved in the acc
 
 ```json
 {
-  "address": [
+  "items": [
     {
-      "landmark": "",
-      "area_code": {
-        "slug": "pincode",
-        "id": 400093
+      "bulk_offer": {},
+      "discount": "67% OFF",
+      "article": {
+        "type": "article",
+        "uid": "604_902_SSTC60401_636BLUE_1",
+        "size": "1",
+        "seller": {
+          "uid": 604,
+          "name": "SHRI SHANTINATH TRADING COMPANY"
+        },
+        "store": {
+          "uid": 4579,
+          "name": "Gandhi Nagar"
+        },
+        "quantity": 108,
+        "price": {
+          "base": {
+            "marked": 2999,
+            "effective": 999,
+            "currency_code": "INR"
+          },
+          "converted": {
+            "marked": 2999,
+            "effective": 999,
+            "currency_code": "INR"
+          }
+        }
       },
-      "id": "8b526f521bb14a2593a8b9e3ce8c76b3",
-      "state": "Maharashtra",
-      "meta": {},
-      "user_id": "8b526f521bb14a2593a8b9e3ce8c76b3",
-      "created_by_user_id": "8b526f521bb14a2593a8b9e3ce8c76b3",
-      "country_code": "IND",
-      "phone": 9915347757,
-      "geo_location": {},
-      "country": "India",
-      "is_default_address": true,
-      "is_active": true,
-      "city": "Mumbai",
-      "pincode": 400093,
-      "checkout_mode": "self",
-      "address_type": "home",
-      "tags": [],
-      "area": "Sector 127",
-      "name": "abc",
-      "email": "ankur@gofynd1.com",
-      "address": "Megatron2",
-      "store_name": "store123"
+      "coupon_message": "",
+      "key": "707569_1",
+      "availability": {
+        "sizes": [
+          "1",
+          "8",
+          "7",
+          "2",
+          "9",
+          "5",
+          "3",
+          "6"
+        ],
+        "other_store_quantity": 107,
+        "out_of_stock": false,
+        "deliverable": true,
+        "is_valid": true
+      },
+      "product": {
+        "type": "product",
+        "uid": 707569,
+        "name": "Blue and Gold Printed Ethnic Set",
+        "slug": "aj-dezines-blue-and-gold-printed-ethnic-set-707569-bff01a",
+        "brand": {
+          "uid": 902,
+          "name": ""
+        },
+        "categories": [
+          {
+            "uid": 525,
+            "name": ""
+          }
+        ],
+        "images": [
+          {
+            "aspect_ratio": "16:25",
+            "url": "http://cdn4.gofynd.com/media/pictures/tagged_items/original/902_636BLUE/1_1540301094877.jpg",
+            "secure_url": "https://d2zv4gzhlr4ud6.cloudfront.net/media/pictures/tagged_items/original/902_636BLUE/1_1540301094877.jpg"
+          }
+        ],
+        "action": {
+          "type": "product",
+          "url": "https://api.addsale.com/v1/products/aj-dezines-blue-and-gold-printed-ethnic-set-707569-bff01a/",
+          "query": {
+            "product_slug": [
+              "aj-dezines-blue-and-gold-printed-ethnic-set-707569-bff01a"
+            ]
+          }
+        }
+      },
+      "price": {
+        "base": {
+          "add_on": 999,
+          "marked": 2999,
+          "effective": 999,
+          "selling": 999,
+          "currency_code": "INR"
+        },
+        "converted": {
+          "add_on": 999,
+          "marked": 2999,
+          "effective": 999,
+          "selling": 999,
+          "currency_code": "INR"
+        }
+      },
+      "message": "",
+      "quantity": 1
     }
-  ]
+  ],
+  "buy_now": false,
+  "cart_id": 54,
+  "uid": "54",
+  "breakup_values": {
+    "raw": {
+      "cod_charge": 0,
+      "convenience_fee": 0,
+      "coupon": 0,
+      "delivery_charge": 0,
+      "discount": -2000,
+      "fynd_cash": 0,
+      "gst_charges": 47.57,
+      "mrp_total": 2999,
+      "subtotal": 999,
+      "total": 999,
+      "vog": 951.43,
+      "you_saved": 0
+    },
+    "coupon": {
+      "type": "cash",
+      "code": "",
+      "uid": null,
+      "value": 0,
+      "is_applied": false,
+      "message": "Sorry! Invalid Coupon"
+    },
+    "display": [
+      {
+        "display": "MRP Total",
+        "key": "mrp_total",
+        "value": 2999,
+        "currency_code": "INR"
+      },
+      {
+        "display": "Discount",
+        "key": "discount",
+        "value": -2000,
+        "currency_code": "INR"
+      },
+      {
+        "display": "Subtotal",
+        "key": "subtotal",
+        "value": 999,
+        "currency_code": "INR"
+      },
+      {
+        "display": "Total",
+        "key": "total",
+        "value": 999,
+        "currency_code": "INR"
+      }
+    ],
+    "loyalty_points": {
+      "total": 0,
+      "applicable": 0,
+      "is_applied": false,
+      "description": "Your cashback, referrals, and refund amount get credited to Fynd Cash which can be redeemed while placing an order."
+    }
+  },
+  "delivery_charge_info": "",
+  "coupon_text": "View all offers",
+  "gstin": null,
+  "checkout_mode": "self",
+  "restrict_checkout": false,
+  "is_valid": true,
+  "last_modified": "Tue, 03 Sep 2019 05:35:59 GMT"
 }
 ```
 </details>
@@ -2645,6 +2746,183 @@ Coupon object for sent `id`
 ---
 
 
+### getCouponCodeExists
+Check if coupon is already created with coupon code
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").cart.getCouponCodeExists({  code : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").cart.getCouponCodeExists({  code : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| code | string | no |  |  
+
+
+
+Check if sent coupon code is already existing coupon code. As coupon code is to be unique.
+
+*Returned Response:*
+
+
+
+
+[Object](#Object)
+
+Valid response with existing coupon code count
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; Coupon code exists</i></summary>
+
+```json
+{
+  "value": {
+    "success": true,
+    "count": 1
+  }
+}
+```
+</details>
+
+<details>
+<summary><i>&nbsp; Coupon code is new</i></summary>
+
+```json
+{
+  "value": {
+    "success": true,
+    "count": 0
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### getCouponOptionValues
+Get coupon options enums with display values
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").cart.getCouponOptionValues();
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").cart.getCouponOptionValues();
+```
+
+
+
+
+
+
+Get coupon enum values for fields in valid coupon object. Used for front end to create, update and filter coupon lists via fields
+
+*Returned Response:*
+
+
+
+
+[Object](#Object)
+
+Coupon options enums
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "types": {
+    "absolute": "Absolute",
+    "percentage": "Percentage",
+    "bogo": "BOGO",
+    "bundle": "Bundle"
+  },
+  "scopes": {
+    "category_id": "Categories",
+    "brand_id": "Brands",
+    "company_id": "Sellers",
+    "store_id": "Stores",
+    "collection_id": "Collections"
+  },
+  "applicable_on": {
+    "amount": "Amount",
+    "quantity": "Quantity"
+  },
+  "value_types": {
+    "absolute": "Absolute",
+    "percentage": "Percentage",
+    "quantity": "Quantity",
+    "flat_price": "Absolute Price"
+  },
+  "calculate_on": {
+    "mrp": "MRP",
+    "esp": "ESP",
+    "tp": "TP"
+  },
+  "payable_category": {
+    "fynd": "Fynd",
+    "seller": "Seller"
+  },
+  "txn_mode": {
+    "fynd_cash": "Fynd Cash",
+    "cash": "Cashback",
+    "coupon": "Coupon Discount"
+  },
+  "payable_by": {
+    "Fynd Marketing": "Fynd Marketing",
+    "Fynd": "Fynd",
+    "Fynd Store": "Fynd Store",
+    "Fynd Delights": "Fynd Delights",
+    "Fynd Ops": "Fynd Ops",
+    "Fynd Inventory": "Fynd Inventory"
+  }
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
 ### getCoupons
 Get with single coupon details or coupon list
 
@@ -2781,14 +3059,22 @@ Fetch all promos that are set as active
 
 ```javascript
 // Promise
-const promise = platformClient.application("<APPLICATION_ID>").cart.getPromosCouponConfig();
+const promise = platformClient.application("<APPLICATION_ID>").cart.getPromosCouponConfig({  entityType : value,
+ isHidden : value });
 
 // Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").cart.getPromosCouponConfig();
+const data = await platformClient.application("<APPLICATION_ID>").cart.getPromosCouponConfig({  entityType : value,
+ isHidden : value });
 ```
 
 
 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| entityType | string | no | entity_type as promotion or coupon |    
+| isHidden | boolean | no | promo-coupon config shown or not |  
 
 
 
@@ -3012,6 +3298,86 @@ Promotion object for sent `id`
 ---
 
 
+### getPromotionCodeExists
+Check if promotion is already created with promotion code
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").cart.getPromotionCodeExists({  code : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").cart.getPromotionCodeExists({  code : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| code | string | no |  |  
+
+
+
+Check if sent promotion code is already existing promotion code. As promotion code is to be unique.
+
+*Returned Response:*
+
+
+
+
+[Object](#Object)
+
+Valid response with existing promotion code count
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; Promotion code exists</i></summary>
+
+```json
+{
+  "value": {
+    "success": true,
+    "count": 1
+  }
+}
+```
+</details>
+
+<details>
+<summary><i>&nbsp; Promotion code is new</i></summary>
+
+```json
+{
+  "value": {
+    "success": true,
+    "count": 0
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
 ### getPromotions
 Get promotion list
 
@@ -3022,7 +3388,7 @@ Get promotion list
 const promise = platformClient.application("<APPLICATION_ID>").cart.getPromotions({  pageNo : value,
  pageSize : value,
  q : value,
- status : value,
+ isActive : value,
  promoGroup : value,
  promotionType : value,
  fpPanel : value,
@@ -3032,7 +3398,7 @@ const promise = platformClient.application("<APPLICATION_ID>").cart.getPromotion
 const data = await platformClient.application("<APPLICATION_ID>").cart.getPromotions({  pageNo : value,
  pageSize : value,
  q : value,
- status : value,
+ isActive : value,
  promoGroup : value,
  promotionType : value,
  fpPanel : value,
@@ -3048,7 +3414,7 @@ const data = await platformClient.application("<APPLICATION_ID>").cart.getPromot
 | pageNo | number | no |  |    
 | pageSize | number | no |  |    
 | q | string | no |  |    
-| status | string | no |  |    
+| isActive | boolean | no |  |    
 | promoGroup | string | no |  |    
 | promotionType | string | no |  |    
 | fpPanel | string | no |  |    
@@ -3134,19 +3500,17 @@ Promotion List for sent page_size and page_no
 ---
 
 
-### removeAddress
-Remove address associated with an account
+### overrideCart
+Create Fynd order with overriding cart details
 
 
 
 ```javascript
 // Promise
-const promise = platformClient.application("<APPLICATION_ID>").cart.removeAddress({  id : value,
- userId : value });
+const promise = platformClient.application("<APPLICATION_ID>").cart.overrideCart({  body : value });
 
 // Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").cart.removeAddress({  id : value,
- userId : value });
+const data = await platformClient.application("<APPLICATION_ID>").cart.overrideCart({  body : value });
 ```
 
 
@@ -3154,22 +3518,20 @@ const data = await platformClient.application("<APPLICATION_ID>").cart.removeAdd
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| id | string | yes | ID allotted to the selected address |    
-| userId | string | no | Option to delete address for the provided user_id. |  
+| --------- | -----  | -------- | ----------- |
+| body | [OverrideCheckoutReq](#OverrideCheckoutReq) | yes | Request body |
 
 
-
-Use this API to delete an address by its ID. This will returns an object that will indicate whether the address was deleted successfully or not.
+Generate Fynd order while overriding cart details sent with provided `cart_items`
 
 *Returned Response:*
 
 
 
 
-[DeleteAddressResponse](#DeleteAddressResponse)
+[OverrideCheckoutResponse](#OverrideCheckoutResponse)
 
-Returns a Status object indicating the success or failure of address deletion.
+Checkout cart and create Fynd order id
 
 
 
@@ -3179,71 +3541,326 @@ Returns a Status object indicating the success or failure of address deletion.
 
 ```json
 {
-  "id": "<mongo_object_id>",
-  "is_deleted": true
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### updateAddress
-Update address added to an account
-
-
-
-```javascript
-// Promise
-const promise = platformClient.application("<APPLICATION_ID>").cart.updateAddress({  id : value,
- body : value });
-
-// Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").cart.updateAddress({  id : value,
- body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| id | string | yes | ID allotted to the selected address |  
-| body | [PlatformAddress](#PlatformAddress) | yes | Request body |
-
-
-<p>Use this API to update an existing address in the account. Request object should contain attributes mentioned in  <font color="blue">Address </font> can be updated. These attributes are:</p> <ul> <li> <font color="monochrome">is_default_address</font></li> <li> <font color="monochrome">landmark</font></li> <li> <font color="monochrome">area</font></li> <li> <font color="monochrome">pincode</font></li> <li> <font color="monochrome">email</font></li> <li> <font color="monochrome">address_type</font></li> <li> <font color="monochrome">name</font></li> <li> <font color="monochrome">address_id</font></li> <li> <font color="monochrome">address</font></li> </ul>
-
-*Returned Response:*
-
-
-
-
-[UpdateAddressResponse](#UpdateAddressResponse)
-
-Success. Returns the address ID and a message indicating a successful address updation.
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "is_updated": true,
-  "id": "<mongo_object_id>",
-  "is_default_address": true,
-  "success": true
+  "success": true,
+  "cart": {
+    "success": true,
+    "delivery_charges": 0,
+    "store_code": "",
+    "order_id": "FY630DDF8601EF037743",
+    "cod_message": "COD available",
+    "delivery_slots": [
+      {
+        "date": "Fri, 09 Nov",
+        "delivery_slot": [
+          {
+            "delivery_slot_timing": "By 9:00 PM",
+            "default": true,
+            "delivery_slot_id": 1
+          }
+        ]
+      }
+    ],
+    "user_type": "FYND Store user",
+    "cod_available": true,
+    "cod_charges": 0,
+    "store_emp_list": [],
+    "delivery_charge_order_value": 1500,
+    "breakup_values": {
+      "loyalty_points": {
+        "total": 0,
+        "applicable": 0,
+        "is_applied": false,
+        "description": "Your cashback, reward points, and refund amount get credited to Fynd Cash which can be redeemed while placing an order.",
+        "message": "No Fynd Cash Applied"
+      },
+      "coupon": {
+        "type": "cash",
+        "code": "",
+        "uid": null,
+        "value": 0,
+        "is_applied": false,
+        "message": "Coupon not applicable with Reward point"
+      },
+      "display": [
+        {
+          "display": "MRP Total",
+          "key": "mrp_total",
+          "original": 400,
+          "attr": "mrp_total",
+          "value": 400,
+          "currency_code": "INR",
+          "currency_symbol": "₹",
+          "message": []
+        },
+        {
+          "display": "Discount",
+          "key": "discount",
+          "original": -200,
+          "attr": "discount",
+          "value": -200,
+          "currency_code": "INR",
+          "currency_symbol": "₹",
+          "message": []
+        },
+        {
+          "display": "Subtotal",
+          "key": "subtotal",
+          "original": 200,
+          "attr": "subtotal",
+          "value": 200,
+          "currency_code": "INR",
+          "currency_symbol": "₹",
+          "message": []
+        },
+        {
+          "display": "Total",
+          "key": "total",
+          "original": 200,
+          "attr": "total",
+          "value": 200,
+          "currency_code": "INR",
+          "currency_symbol": "₹",
+          "message": []
+        }
+      ],
+      "raw": {
+        "sub_total": 200,
+        "subtotal": 200,
+        "coupon": 0,
+        "promotion": 0,
+        "delivery_charge": 0,
+        "you_saved": 0,
+        "fynd_cash": 0,
+        "cod_charge": 0,
+        "total": 200,
+        "gst_charges": 9.52,
+        "vog": 190.48,
+        "convenience_fee": 0,
+        "mrp_total": 400,
+        "discount": -200
+      }
+    },
+    "items": [
+      {
+        "message": "",
+        "quantity": 1,
+        "is_set": false,
+        "delivery_promise": {
+          "timestamp": {
+            "min": 1646257339,
+            "max": 1646689339
+          },
+          "formatted": {
+            "min": "03 Mar, Thursday",
+            "max": "08 Mar, Tuesday"
+          }
+        },
+        "identifiers": {
+          "identifier": "5mPyy88URXuh3Lo35uaTg"
+        },
+        "moq": {
+          "maximum": 4,
+          "minimum": 1
+        },
+        "coupon_message": "",
+        "product": {
+          "type": "product",
+          "uid": 7502730,
+          "name": "SLIM FIT JEANS",
+          "slug": "slim-fit-jeans1",
+          "brand": {
+            "uid": 29,
+            "name": "lacoste"
+          },
+          "categories": [
+            {
+              "uid": 3602,
+              "name": "Dresses"
+            }
+          ],
+          "attributes": {
+            "net-quantity": "17",
+            "occasion": "Beach Wear",
+            "gender": "Men",
+            "pattern": "Animal",
+            "brand-size": "UK46",
+            "style-type": "A-line Dresses",
+            "season-year": "2018",
+            "secondary-color": "Black",
+            "jiomart-allowed-size": "Free Size",
+            "fabric": "Chambray",
+            "wash-care": "Hand Wash Cold Separately",
+            "size-group": "Regular",
+            "brand-color": "Black",
+            "color-shade": "Bright",
+            "multi-brick": "Ethnic Bottoms",
+            "product-name": "Bodycon Dress",
+            "multi-segment": "Men",
+            "primary-color": "Navy",
+            "multi-vertical": "Western Wear",
+            "component-count": "100",
+            "manufactured-by": "RIL",
+            "year-of-packaging": "2017",
+            "product-code-x-catalog-option-color": "1",
+            "technique": "Sanganeri",
+            "waist-in-inches": "30",
+            "chest-size-in-inches": "12",
+            "shoulder-size-in-inches": "12",
+            "sleeve-length": "Half",
+            "neckline": "Collar",
+            "brand_name": "lacoste"
+          },
+          "images": [
+            {
+              "aspect_ratio": "16:25",
+              "url": "https://hdn-1.jiomarketx0.de/x0/products/pictures/item/free/original/LYa1_YA3_-console.png",
+              "secure_url": "https://hdn-1.jiomarketx0.de/x0/products/pictures/item/free/original/LYa1_YA3_-console.png"
+            }
+          ],
+          "action": {
+            "type": "product",
+            "url": "https://api.fyndx0.de/platform/content/v1/products/slim-fit-jeans1/",
+            "query": {
+              "product_slug": [
+                "slim-fit-jeans1"
+              ]
+            }
+          },
+          "item_code": "JEANS1232",
+          "_custom_json": {}
+        },
+        "key": "7502730_OS",
+        "price": {
+          "base": {
+            "add_on": 100,
+            "marked": 400,
+            "effective": 200,
+            "selling": 200,
+            "currency_code": "INR",
+            "currency_symbol": "₹"
+          },
+          "converted": {
+            "add_on": 100,
+            "marked": 400,
+            "effective": 200,
+            "selling": 200,
+            "currency_code": "INR",
+            "currency_symbol": "₹"
+          }
+        },
+        "price_per_unit": {
+          "base": {
+            "marked": 400,
+            "effective": 200,
+            "selling_price": 200,
+            "currency_code": "INR",
+            "currency_symbol": "₹"
+          },
+          "converted": {
+            "marked": 400,
+            "effective": 200,
+            "selling_price": 200,
+            "currency_code": "INR",
+            "currency_symbol": "₹"
+          }
+        },
+        "article": {
+          "type": "article",
+          "uid": "62e3ca42a2348dd4cb4cd693",
+          "size": "OS",
+          "seller": {
+            "uid": 1527,
+            "name": "SPEED-A-WAY PVT. LTD."
+          },
+          "store": {
+            "uid": 3484,
+            "name": "Location 1"
+          },
+          "quantity": 19,
+          "price": {
+            "base": {
+              "marked": 400,
+              "effective": 200,
+              "selling": 200,
+              "currency_code": "INR",
+              "currency_symbol": "₹"
+            },
+            "converted": {
+              "marked": 400,
+              "effective": 200,
+              "selling": 200,
+              "currency_code": "INR",
+              "currency_symbol": "INR"
+            }
+          },
+          "extra_meta": {}
+        },
+        "bulk_offer": {},
+        "discount": "50% OFF",
+        "promotions_applied": [],
+        "availability": {
+          "sizes": [
+            "OS"
+          ],
+          "other_store_quantity": 1,
+          "out_of_stock": false,
+          "deliverable": true,
+          "is_valid": true,
+          "available_sizes": [
+            {
+              "is_available": true,
+              "display": "OS",
+              "value": "OS"
+            }
+          ]
+        },
+        "promo_meta": {}
+      }
+    ],
+    "delivery_charge_info": "",
+    "notification": {},
+    "message": "",
+    "delivery_promise": {
+      "timestamp": {
+        "min": 1646257339,
+        "max": 1646689339
+      },
+      "formatted": {
+        "min": "03 Mar, Thursday",
+        "max": "08 Mar, Tuesday"
+      }
+    },
+    "coupon_text": "View all offers",
+    "cart_id": 21755,
+    "id": "63007e85f7df71d5a89758cf",
+    "uid": "21755",
+    "gstin": null,
+    "comment": "",
+    "checkout_mode": "self",
+    "payment_selection_lock": {
+      "enabled": true,
+      "default_options": "JIOPP",
+      "payment_identifier": "JIOPP"
+    },
+    "restrict_checkout": false,
+    "is_valid": true,
+    "currency": {
+      "code": "INR",
+      "symbol": "₹"
+    },
+    "last_modified": "Tue, 30 Aug 2022 09:59:34 GMT"
+  },
+  "message": "",
+  "data": {
+    "transactionRefNumber": "FY630DDF8601EF037743",
+    "base64_html": "PGh0bWw+PGhlYWQ+PG1ldGEgbmFtZT0ndmlld3BvcnQnIGNvbnRlbnQ9J3dpZHRoPWRldmljZS13aWR0aCwgaW5pdGlhbC1zY2FsZT0xICwgbWF4aW11bS1zY2FsZT0xLCB1c2VyLXNjYWxhYmxlPW5vJz48c2NyaXB0IHR5cGU9J3RleHQvamF2YXNjcmlwdCc+ZnVuY3Rpb24gZm9ybVN1Ym1pdCgpe2RvY3VtZW50LmdldEVsZW1lbnRCeUlkKCdwYXltZW50Jykuc3VibWl0KCk7fTwvc2NyaXB0PjwvaGVhZD48Ym9keSBvbmxvYWQ9J2phdmFzY3JpcHQ6Zm9ybVN1Ym1pdCgpOyc+PGZvcm0gbmFtZT0ncGF5bWVudCcgaWQ9J3BheW1lbnQnIG1ldGhvZD0nUE9TVCcgYWN0aW9uPSdodHRwczovL3J0c3Mtc2l0Lmppb2Nvbm5lY3QuY29tL2ppb3BheXBnL3YxL3BheW1lbnQtb3B0aW9ucyc+PGltZyBzcmM9J2h0dHBzOi8vcnRzcy1zaXQuamlvY29ubmVjdC5jb20vdXBsb2FkL215amlvY29yZXN0YXRpY2ZpbGVzL2ltYWdlcy9sb2FkZXIuZ2lmJyB3aWR0aD0nMjUlJyBoZWlnaHQ9J2F1dG8nIHN0eWxlPSdkaXNwbGF5OiBibG9jazsgbWFyZ2luLXRvcDogMTIwcHg7bWFyZ2luLWxlZnQ6IGF1dG87IG1hcmdpbi1yaWdodDogYXV0bzsgbWFyZ2luLWJvdHRvbToxMHB4OycvPjxkaXYgc3R5bGU9J3RleHQtYWxpZ246IGNlbnRlcic+PHAgc3R5bGU9J2Rpc3BsYXk6IGlubGluZS1ibG9jazt2ZXJ0aWNhbC1hbGlnbjogbWlkZGxlO2ZvbnQtc2l6ZToxNnB4Jz5SZWRpcmVjdGluZyB0byBwYXltZW50IGdhdGV3YXkuIFBsZWFzZSBkbyBub3QgY2xpY2sgb24gcmVmcmVzaCBvciBiYWNrIGJ1dHRvbi4gPC9wPjwvZGl2PjxpbnB1dCB0eXBlPSdoaWRkZW4nIG5hbWU9J3BhcmFtMScgdmFsdWU9J2Q5OTBlYWFlZDI3ODRmNWNiMDVmMjI0M2Y2Y2IzNDNjJy8+PGlucHV0IHR5cGU9J3N1Ym1pdCcgdmFsdWU9Jycgc3R5bGU9J2Rpc3BsYXk6IG5vbmU7Jy8+PC9mb3JtPjwvYm9keT48L2h0bWw+",
+    "render_url": "https://api.xxxx0.de/platform/payment/v2/external/payments/html/render",
+    "payment_confirm": "https://api.xxxx0.de/service/application/payment/v1.0/payment/confirm/"
+  },
+  "callback_url": "https://jio.xxxx0.de/cart/order-status",
+  "payment_confirm_url": "https://api.xxxx0.de/service/application/payment/v1.0/payment/confirm/",
+  "order_id": "FY630DDF8601EF037743",
+  "app_intercept_url": "https://jio.xxxx0.de/cart/order-status"
 }
 ```
 </details>
@@ -3829,6 +4446,80 @@ Success. Updates and returns a cart object as shown below. Refer `UpdateCartDeta
 ---
 
 
+### updateCartMetaConfig
+Update cart meta configuration
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").cart.updateCartMetaConfig({  cartMetaId : value,
+ body : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").cart.updateCartMetaConfig({  cartMetaId : value,
+ body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| cartMetaId | string | yes |  |  
+| body | [CartMetaConfigUpdate](#CartMetaConfigUpdate) | yes | Request body |
+
+
+Update cart meta configuration
+
+*Returned Response:*
+
+
+
+
+[CartMetaConfigUpdate](#CartMetaConfigUpdate)
+
+Cart Meta Config Created successfully
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "_id": "645ba594d414eb0669e6ee14",
+  "app_id": "60792ded7826bd09330ed90d",
+  "company_id": 884,
+  "bulk_coupons": false,
+  "delivery_charges": {
+    "charges": [],
+    "enabled": false
+  },
+  "empty_cart": false,
+  "enabled": true,
+  "max_cart_items": 50,
+  "min_cart_value": 0,
+  "revenue_engine_coupon": false,
+  "gift_pricing": 50,
+  "gift_display_text": ""
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
 ### updateCoupon
 Update existing coupon configuration
 
@@ -4328,6 +5019,7 @@ Promotion updated successfully
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | items | [[AddProductCart](#AddProductCart)]? |  yes  |  |
+ | new_cart | boolean? |  yes  |  |
  
 
 ---
@@ -4336,13 +5028,15 @@ Promotion updated successfully
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | _custom_json | string? |  yes  |  |
  | article_assignment | string? |  yes  |  |
  | article_id | string? |  yes  |  |
  | display | string? |  yes  |  |
  | extra_meta | string? |  yes  |  |
  | item_id | number? |  yes  |  |
  | item_size | string? |  yes  |  |
- | parent_item_identifiers | string? |  yes  |  |
+ | meta | string? |  yes  |  |
+ | parent_item_identifiers | [[String: string]]? |  yes  |  |
  | pos | boolean? |  yes  |  |
  | product_group_tags | [string]? |  yes  |  |
  | quantity | number? |  yes  |  |
@@ -4375,6 +5069,7 @@ Promotion updated successfully
  | discount_rules | [[DiscountRulesApp](#DiscountRulesApp)]? |  yes  | Discount rules for promotions |
  | mrp_promotion | boolean? |  yes  | If applied promotion is applied on product MRP or ESP |
  | offer_text | string? |  yes  | Offer text of current promotion |
+ | ownership | [Ownership2](#Ownership2)? |  yes  | Ownership of promotion |
  | promo_id | string? |  yes  | Promotion id |
  | promotion_group | string? |  yes  | Promotion group for the promotion |
  | promotion_name | string? |  yes  | Promotion name of current promotion |
@@ -4460,6 +5155,7 @@ Promotion updated successfully
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | applied_promo_details | [[AppliedPromotion](#AppliedPromotion)]? |  yes  |  |
  | breakup_values | [CartBreakup](#CartBreakup)? |  yes  |  |
  | buy_now | boolean? |  yes  |  |
  | checkout_mode | string? |  yes  |  |
@@ -4501,16 +5197,51 @@ Promotion updated successfully
 
 ---
 
+#### [CartMetaConfigAdd](#CartMetaConfigAdd)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | bulk_coupons | boolean? |  yes  |  |
+ | delivery_charges | [DeliveryCharges](#DeliveryCharges)? |  yes  |  |
+ | enabled | boolean? |  yes  |  |
+ | gift_display_text | string? |  yes  |  |
+ | gift_pricing | number? |  yes  |  |
+ | max_cart_items | number? |  yes  |  |
+ | min_cart_value | number? |  yes  |  |
+ | revenue_engine_coupon | boolean? |  yes  |  |
+ 
+
+---
+
+#### [CartMetaConfigUpdate](#CartMetaConfigUpdate)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | bulk_coupons | boolean? |  yes  |  |
+ | delivery_charges | [DeliveryCharges](#DeliveryCharges)? |  yes  |  |
+ | enabled | boolean? |  yes  |  |
+ | gift_display_text | string? |  yes  |  |
+ | gift_pricing | number? |  yes  |  |
+ | max_cart_items | number? |  yes  |  |
+ | min_cart_value | number? |  yes  |  |
+ | revenue_engine_coupon | boolean? |  yes  |  |
+ 
+
+---
+
 #### [CartProduct](#CartProduct)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | _custom_json | string? |  yes  |  |
  | action | [ProductAction](#ProductAction)? |  yes  |  |
  | brand | [BaseInfo](#BaseInfo)? |  yes  |  |
  | categories | [[CategoryInfo](#CategoryInfo)]? |  yes  |  |
  | images | [[ProductImage](#ProductImage)]? |  yes  |  |
  | name | string? |  yes  |  |
  | slug | string? |  yes  | Unique product url name generated via product name and other meta data |
+ | tags | [string]? |  yes  |  |
+ | teaser_tag | [Tags](#Tags)? |  yes  |  |
  | type | string? |  yes  |  |
  | uid | number? |  yes  |  |
  
@@ -4533,12 +5264,15 @@ Promotion updated successfully
  | article | [ProductArticle](#ProductArticle)? |  yes  |  |
  | availability | [ProductAvailability](#ProductAvailability)? |  yes  |  |
  | bulk_offer | string? |  yes  |  |
+ | coupon | [CouponDetails](#CouponDetails)? |  yes  |  |
  | coupon_message | string? |  yes  |  |
+ | delivery_promise | [ShipmentPromise](#ShipmentPromise)? |  yes  |  |
  | discount | string? |  yes  |  |
  | identifiers | [CartProductIdentifer](#CartProductIdentifer) |  no  |  |
  | is_set | boolean? |  yes  |  |
  | key | string? |  yes  |  |
  | message | string? |  yes  |  |
+ | moq | string? |  yes  |  |
  | parent_item_identifiers | string? |  yes  |  |
  | price | [ProductPriceInfo](#ProductPriceInfo)? |  yes  |  |
  | price_per_unit | [ProductPriceInfo](#ProductPriceInfo)? |  yes  |  |
@@ -4556,6 +5290,16 @@ Promotion updated successfully
  | ---------- | ---- | -------- | ----------- |
  | name | string? |  yes  |  |
  | uid | number? |  yes  | Product Category Id |
+ 
+
+---
+
+#### [Charges](#Charges)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | charges | number? |  yes  |  |
+ | threshold | number? |  yes  |  |
  
 
 ---
@@ -4648,6 +5392,17 @@ Promotion updated successfully
 
 ---
 
+#### [CouponDetails](#CouponDetails)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | code | string? |  yes  |  |
+ | discount_single_quantity | number? |  yes  |  |
+ | discount_total_quantity | number? |  yes  |  |
+ 
+
+---
+
 #### [CouponPartialUpdate](#CouponPartialUpdate)
 
  | Properties | Type | Nullable | Description |
@@ -4705,12 +5460,12 @@ Promotion updated successfully
 
 ---
 
-#### [DeleteAddressResponse](#DeleteAddressResponse)
+#### [DeliveryCharges](#DeliveryCharges)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | id | string? |  yes  |  |
- | is_deleted | boolean? |  yes  |  |
+ | charges | [[Charges](#Charges)]? |  yes  |  |
+ | enabled | boolean? |  yes  |  |
  
 
 ---
@@ -4791,6 +5546,7 @@ Promotion updated successfully
  | ---------- | ---- | -------- | ----------- |
  | description | string? |  yes  |  |
  | name | string? |  yes  |  |
+ | offer_label | string? |  yes  |  |
  | offer_text | string? |  yes  |  |
  
 
@@ -4816,16 +5572,6 @@ Promotion updated successfully
  | item_name | string? |  yes  | Item name |
  | item_price_details | string? |  yes  | item price details |
  | item_slug | string? |  yes  | item slug |
- 
-
----
-
-#### [GeoLocation](#GeoLocation)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | latitude | number? |  yes  |  |
- | longitude | number? |  yes  |  |
  
 
 ---
@@ -4862,16 +5608,23 @@ Promotion updated successfully
  | item_brand | [number]? |  yes  |  |
  | item_category | [number]? |  yes  |  |
  | item_company | [number]? |  yes  |  |
+ | item_department | [number]? |  yes  |  |
  | item_exclude_brand | [number]? |  yes  |  |
  | item_exclude_category | [number]? |  yes  |  |
  | item_exclude_company | [number]? |  yes  |  |
+ | item_exclude_department | [number]? |  yes  |  |
  | item_exclude_id | [number]? |  yes  |  |
+ | item_exclude_l1_category | [number]? |  yes  |  |
+ | item_exclude_l2_category | [number]? |  yes  |  |
  | item_exclude_sku | [string]? |  yes  |  |
  | item_exclude_store | [number]? |  yes  |  |
  | item_id | [number]? |  yes  |  |
+ | item_l1_category | [number]? |  yes  |  |
+ | item_l2_category | [number]? |  yes  |  |
  | item_size | [string]? |  yes  |  |
  | item_sku | [string]? |  yes  |  |
  | item_store | [number]? |  yes  |  |
+ | item_tags | [string]? |  yes  |  |
  
 
 ---
@@ -4917,7 +5670,7 @@ Promotion updated successfully
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | cart_items | [CartItem](#CartItem)? |  yes  |  |
+ | cart_items | [[CartItem](#CartItem)] |  no  |  |
  
 
 ---
@@ -4938,7 +5691,7 @@ Promotion updated successfully
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | cart_items | [CartItem](#CartItem)? |  yes  |  |
+ | cart_items | [[CartItem](#CartItem)] |  no  |  |
  | shipping_address | [ShippingAddress](#ShippingAddress) |  no  |  |
  
 
@@ -5053,6 +5806,69 @@ Promotion updated successfully
 
 ---
 
+#### [OverrideCartItem](#OverrideCartItem)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | amount_paid | number |  no  |  |
+ | discount | number |  no  |  |
+ | extra_meta | string? |  yes  |  |
+ | item_id | number |  no  |  |
+ | price_effective | number |  no  |  |
+ | price_marked | number |  no  |  |
+ | promo_list | [[OverrideCartItemPromo](#OverrideCartItemPromo)]? |  yes  |  |
+ | quantity | number? |  yes  |  |
+ | seller_identifier | string? |  yes  |  |
+ | size | string |  no  |  |
+ 
+
+---
+
+#### [OverrideCartItemPromo](#OverrideCartItemPromo)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | item_list | [string]? |  yes  |  |
+ | promo_amount | string |  no  |  |
+ | promo_desc | string? |  yes  |  |
+ | promo_id | string |  no  |  |
+ | rwrd_tndr | string? |  yes  |  |
+ 
+
+---
+
+#### [OverrideCheckoutReq](#OverrideCheckoutReq)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | aggregator | string |  no  |  |
+ | billing_address | string? |  yes  |  |
+ | cart_id | string |  no  |  |
+ | cart_items | [[OverrideCartItem](#OverrideCartItem)] |  no  |  |
+ | currency_code | string |  no  |  |
+ | merchant_code | string |  no  |  |
+ | order_type | string |  no  |  |
+ | ordering_store | number? |  yes  |  |
+ | payment_identifier | string |  no  |  |
+ | payment_mode | string |  no  |  |
+ | shipping_address | string? |  yes  |  |
+ 
+
+---
+
+#### [OverrideCheckoutResponse](#OverrideCheckoutResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | cart | string |  no  |  |
+ | data | string |  no  |  |
+ | message | string |  no  |  |
+ | order_id | string |  no  |  |
+ | success | string |  no  |  |
+ 
+
+---
+
 #### [Ownership](#Ownership)
 
  | Properties | Type | Nullable | Description |
@@ -5069,6 +5885,16 @@ Promotion updated successfully
  | ---------- | ---- | -------- | ----------- |
  | payable_by | string |  no  |  |
  | payable_category | string |  no  |  |
+ 
+
+---
+
+#### [Ownership2](#Ownership2)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | payable_by | string? |  yes  | promo amount bearable party |
+ | payable_category | string? |  yes  | promo amount payable category |
  
 
 ---
@@ -5132,47 +5958,6 @@ Promotion updated successfully
 
 ---
 
-#### [PlatformAddress](#PlatformAddress)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | address | string? |  yes  |  |
- | address_type | string? |  yes  |  |
- | area | string? |  yes  |  |
- | area_code | string? |  yes  |  |
- | area_code_slug | string? |  yes  |  |
- | cart_id | string? |  yes  |  |
- | checkout_mode | string? |  yes  |  |
- | city | string? |  yes  |  |
- | country | string? |  yes  |  |
- | country_code | string? |  yes  |  |
- | created_by_user_id | string? |  yes  |  |
- | email | string? |  yes  |  |
- | geo_location | [GeoLocation](#GeoLocation)? |  yes  |  |
- | google_map_point | string? |  yes  |  |
- | id | string? |  yes  |  |
- | is_active | boolean? |  yes  |  |
- | is_default_address | boolean? |  yes  |  |
- | landmark | string? |  yes  |  |
- | meta | string? |  yes  |  |
- | name | string? |  yes  |  |
- | phone | string? |  yes  |  |
- | state | string? |  yes  |  |
- | tags | [string]? |  yes  |  |
- | user_id | string? |  yes  |  |
- 
-
----
-
-#### [PlatformGetAddressesResponse](#PlatformGetAddressesResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | address | [[PlatformAddress](#PlatformAddress)]? |  yes  |  |
- 
-
----
-
 #### [PostOrder](#PostOrder)
 
  | Properties | Type | Nullable | Description |
@@ -5218,12 +6003,19 @@ Promotion updated successfully
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | _custom_json | string? |  yes  |  |
+ | cart_item_meta | string? |  yes  |  |
  | extra_meta | string? |  yes  |  |
+ | gift_card | string? |  yes  |  |
+ | identifier | string? |  yes  |  |
+ | is_gift_visible | boolean? |  yes  |  |
+ | meta | string? |  yes  |  |
  | parent_item_identifiers | string? |  yes  |  |
  | price | [ArticlePriceInfo](#ArticlePriceInfo)? |  yes  |  |
  | product_group_tags | [string]? |  yes  |  |
  | quantity | number? |  yes  |  |
  | seller | [BaseInfo](#BaseInfo)? |  yes  |  |
+ | seller_identifier | string? |  yes  |  |
  | size | string? |  yes  |  |
  | store | [BaseInfo](#BaseInfo)? |  yes  |  |
  | type | string? |  yes  |  |
@@ -5236,11 +6028,23 @@ Promotion updated successfully
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | available_sizes | [[ProductAvailabilitySize](#ProductAvailabilitySize)]? |  yes  |  |
  | deliverable | boolean? |  yes  |  |
  | is_valid | boolean? |  yes  |  |
  | other_store_quantity | number? |  yes  |  |
  | out_of_stock | boolean? |  yes  |  |
  | sizes | [string]? |  yes  |  |
+ 
+
+---
+
+#### [ProductAvailabilitySize](#ProductAvailabilitySize)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | display | string? |  yes  |  |
+ | is_available | boolean? |  yes  |  |
+ | value | string? |  yes  |  |
  
 
 ---
@@ -5426,7 +6230,7 @@ Promotion updated successfully
  | ---------- | ---- | -------- | ----------- |
  | cron | string? |  yes  |  |
  | duration | number? |  yes  |  |
- | end | string? |  yes  |  |
+ | end | string |  no  |  |
  | next_schedule | [string]? |  yes  |  |
  | published | boolean |  no  |  |
  | start | string |  no  |  |
@@ -5484,6 +6288,7 @@ Promotion updated successfully
  | delivery_charge | number? |  yes  |  |
  | discount | number? |  yes  |  |
  | fynd_cash | number? |  yes  |  |
+ | gift_card | number? |  yes  |  |
  | gst_charges | number? |  yes  |  |
  | mrp_total | number? |  yes  |  |
  | subtotal | number? |  yes  |  |
@@ -5506,6 +6311,7 @@ Promotion updated successfully
  | post_order | [PostOrder](#PostOrder)? |  yes  |  |
  | price_range | [PriceRange](#PriceRange)? |  yes  |  |
  | user_groups | [number]? |  yes  |  |
+ | user_type | string? |  yes  |  |
  | uses | [UsesRestriction](#UsesRestriction)? |  yes  |  |
  
 
@@ -5517,6 +6323,7 @@ Promotion updated successfully
  | ---------- | ---- | -------- | ----------- |
  | anonymous_users | boolean? |  yes  |  |
  | order_quantity | number? |  yes  |  |
+ | ordering_stores | [number]? |  yes  |  |
  | payments | [[PromotionPaymentModes](#PromotionPaymentModes)]? |  yes  |  |
  | platforms | [string]? |  yes  |  |
  | post_order | [PostOrder1](#PostOrder1)? |  yes  |  |
@@ -5557,17 +6364,6 @@ Promotion updated successfully
 
 ---
 
-#### [SaveAddressResponse](#SaveAddressResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | id | string? |  yes  |  |
- | is_default_address | boolean? |  yes  |  |
- | success | boolean? |  yes  |  |
- 
-
----
-
 #### [ShipmentPromise](#ShipmentPromise)
 
  | Properties | Type | Nullable | Description |
@@ -5590,6 +6386,8 @@ Promotion updated successfully
  | city | string? |  yes  |  |
  | country | string? |  yes  |  |
  | country_code | string? |  yes  |  |
+ | country_iso_code | string? |  yes  |  |
+ | country_phone_code | string? |  yes  |  |
  | email | string? |  yes  |  |
  | landmark | string? |  yes  |  |
  | meta | string? |  yes  |  |
@@ -5622,14 +6420,11 @@ Promotion updated successfully
 
 ---
 
-#### [UpdateAddressResponse](#UpdateAddressResponse)
+#### [Tags](#Tags)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | id | string? |  yes  |  |
- | is_default_address | boolean? |  yes  |  |
- | is_updated | boolean? |  yes  |  |
- | success | boolean? |  yes  |  |
+ | tags | string? |  yes  |  |
  
 
 ---
@@ -5659,12 +6454,14 @@ Promotion updated successfully
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | _custom_json | string? |  yes  |  |
  | article_id | string? |  yes  |  |
  | extra_meta | string? |  yes  |  |
  | identifiers | [CartProductIdentifer](#CartProductIdentifer) |  no  |  |
  | item_id | number? |  yes  |  |
  | item_index | number? |  yes  |  |
  | item_size | string? |  yes  |  |
+ | meta | string? |  yes  |  |
  | parent_item_identifiers | string? |  yes  |  |
  | quantity | number? |  yes  |  |
  

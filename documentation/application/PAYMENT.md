@@ -36,6 +36,8 @@ Collect payment through many payment gateway i.e Stripe, Razorpay, Juspay etc.in
 * [getUserBeneficiariesDetail](#getuserbeneficiariesdetail)
 * [initialisePayment](#initialisepayment)
 * [initialisePaymentPaymentLink](#initialisepaymentpaymentlink)
+* [outstandingOrderDetails](#outstandingorderdetails)
+* [paidOrderDetails](#paidorderdetails)
 * [pollingPaymentLink](#pollingpaymentlink)
 * [redirectToAggregator](#redirecttoaggregator)
 * [renderHTML](#renderhtml)
@@ -341,7 +343,7 @@ const data = await applicationClient.payment.cardDetails({  cardInfo : value,
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
 | cardInfo | string | yes | Card first 6 digit IIN(prefix) number. |    
-| aggregator | string | no | This is a string value decribing the aggregator name. |  
+| aggregator | string | no |  |  
 
 
 
@@ -625,8 +627,8 @@ Success. Check the example shown below
   "data": {
     "amount": 2190000,
     "order_id": "order_JeaZ5ryKO01rno",
-    "email": "pratikpatel@gofynd.com",
-    "contact": "8879805874",
+    "email": "abc@example.com",
+    "contact": "9999999999",
     "currency": "INR",
     "customer_id": "cust_CZgcLVGsGP8BUQ",
     "callback_url": "https://api.fyndx0.com/service/webhooks/payment/v1.0/callback/link/?razorpay_order_id=order_JeaZ5ryKO01rno",
@@ -1575,6 +1577,24 @@ Success. Returns all available options for payment. Check the example shown belo
   "payment_options": {
     "payment_option": [
       {
+        "name": "COD",
+        "display_name": "Cash on Delivery",
+        "display_priority": 1,
+        "payment_mode_id": 11,
+        "aggregator_name": "Fynd",
+        "logo": "https://hdn-1.fynd.com/payment/cod.png",
+        "logo_url": {
+          "small": "https://hdn-1.fynd.com/payment/cod.png",
+          "large": "https://hdn-1.fynd.com/payment/cod.png"
+        },
+        "list": [
+          {
+            "cod_limit": 1000,
+            "remaining_limit": 100
+          }
+        ]
+      },
+      {
         "name": "CARD",
         "display_priority": 2,
         "payment_mode_id": 2,
@@ -1604,10 +1624,7 @@ Success. Returns all available options for payment. Check the example shown belo
             },
             "merchant_code": "NB_ICICI",
             "display_priority": 1,
-            "display_name": "ICICI Bank",
-            "outage": {
-              "msg": "ICICI Bank is currently not accepting payment requests, try another option"
-            }
+            "display_name": "ICICI Bank"
           },
           {
             "aggregator_name": "Razorpay",
@@ -1622,10 +1639,7 @@ Success. Returns all available options for payment. Check the example shown belo
             },
             "merchant_code": "NB_HDFC",
             "display_priority": 2,
-            "display_name": "HDFC Bank",
-            "outage": {
-              "msg": "HDFC Bank is currently fluctuating, try another option"
-            }
+            "display_name": "HDFC Bank"
           },
           {
             "aggregator_name": "Razorpay",
@@ -1655,10 +1669,7 @@ Success. Returns all available options for payment. Check the example shown belo
             },
             "merchant_code": "NB_SBI",
             "display_priority": 4,
-            "display_name": "State Bank of India",
-            "outage": {
-              "msg": "State Bank of India is currently not accepting payment requests, try another option"
-            }
+            "display_name": "State Bank of India"
           },
           {
             "aggregator_name": "Razorpay",
@@ -1673,10 +1684,7 @@ Success. Returns all available options for payment. Check the example shown belo
             },
             "merchant_code": "NB_KOTAK",
             "display_priority": 5,
-            "display_name": "Kotak Mahindra Bank",
-            "outage": {
-              "msg": "Kotak Mahindra Bank is currently fluctuating, try another option"
-            }
+            "display_name": "Kotak Mahindra Bank"
           },
           {
             "aggregator_name": "Razorpay",
@@ -1706,10 +1714,7 @@ Success. Returns all available options for payment. Check the example shown belo
             },
             "merchant_code": "NB_CUB",
             "display_priority": 9,
-            "display_name": "City Union Bank",
-            "outage": {
-              "msg": "City Union Bank is currently not accepting payment requests, try another option"
-            }
+            "display_name": "City Union Bank"
           },
           {
             "aggregator_name": "Razorpay",
@@ -1724,10 +1729,7 @@ Success. Returns all available options for payment. Check the example shown belo
             },
             "merchant_code": "CSBK",
             "display_priority": 11,
-            "display_name": "Catholic Syrian Bank",
-            "outage": {
-              "msg": "Catholic Syrian Bank is currently fluctuating, try another option"
-            }
+            "display_name": "Catholic Syrian Bank"
           },
           {
             "aggregator_name": "Razorpay",
@@ -1757,10 +1759,7 @@ Success. Returns all available options for payment. Check the example shown belo
             },
             "merchant_code": "ALLA",
             "display_priority": 15,
-            "display_name": "Allahabad Bank",
-            "outage": {
-              "msg": "Allahabad Bank is currently not accepting payment requests, try another option"
-            }
+            "display_name": "Allahabad Bank"
           },
           {
             "aggregator_name": "Razorpay",
@@ -1775,10 +1774,7 @@ Success. Returns all available options for payment. Check the example shown belo
             },
             "merchant_code": "SYNB",
             "display_priority": 17,
-            "display_name": "Syndicate Bank",
-            "outage": {
-              "msg": "Syndicate Bank is currently fluctuating, try another option"
-            }
+            "display_name": "Syndicate Bank"
           }
         ]
       },
@@ -1801,10 +1797,7 @@ Success. Returns all available options for payment. Check the example shown belo
               "large": "https://hdn-1.fynd.com/payment/paytm_logo_large.png"
             },
             "aggregator_name": "Juspay",
-            "display_priority": 1,
-            "outage": {
-              "msg": "Paytm is currently not accepting payment requests, try another option"
-            }
+            "display_priority": 1
           },
           {
             "wallet_name": "Amazon Pay",
@@ -1819,10 +1812,7 @@ Success. Returns all available options for payment. Check the example shown belo
               "large": "https://hdn-1.fynd.com/payment/amazon-pay.png"
             },
             "aggregator_name": "Razorpay",
-            "display_priority": 9,
-            "outage": {
-              "msg": "Amazon Pay is currently fluctuating, try another option"
-            }
+            "display_priority": 9
           }
         ]
       },
@@ -1854,9 +1844,6 @@ Success. Returns all available options for payment. Check the example shown belo
                 "logos": {
                   "small": "https://hdn-1.fynd.com/payment/upi-google-pay.png",
                   "large": "https://hdn-1.fynd.com/payment/upi-google-pay.png"
-                },
-                "outage": {
-                  "msg": "Google Pay is currently fluctuating, try another option"
                 }
               }
             ],
@@ -2650,7 +2637,7 @@ Success. Returns all available options for payment. Check the example shown belo
           {
             "aggregator_name": "Fynd",
             "name": "CAS",
-            "display_name": "CASH",
+            "display_name": "Cash",
             "code": "CAS",
             "logo_url": {
               "large": "https://hdn-1.fynd.com/payment/cod.png",
@@ -3021,7 +3008,8 @@ Success. Check the example shown below or refer `PaymentInitializationResponse` 
   "timeout": 240,
   "virtual_id": null,
   "razorpay_payment_id": "pay_dummy_001",
-  "customer_id": "cust_dummy_001"
+  "customer_id": "cust_dummy_001",
+  "device_id": "1234567890"
 }
 ```
 </details>
@@ -3089,6 +3077,144 @@ Success. Check the example shown below or refer `PaymentInitializationResponse` 
   "virtual_id": null,
   "razorpay_payment_id": "pay_dummy_001",
   "customer_id": "cust_dummy_001"
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### outstandingOrderDetails
+API to fetch the outstanding order details
+
+
+
+```javascript
+// Promise
+const promise = applicationClient.payment.outstandingOrderDetails({  aggregator : value });
+
+// Async/Await
+const data = await applicationClient.payment.outstandingOrderDetails({  aggregator : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| aggregator | string | no |  |  
+
+
+
+Use this API to fetch the outstanding order details.
+
+*Returned Response:*
+
+
+
+
+[OutstandingOrderDetailsResponse](#OutstandingOrderDetailsResponse)
+
+Success. Returns the status of API. Check the example shown below or refer `PaidOrderDetailsResponseSchema` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "success": true,
+  "data": [
+    {
+      "shipment_id": "16633226023641097847_1",
+      "order_id": "FY633B1E5C74383C591A",
+      "delivery_date": null,
+      "due_date": "1665685799999",
+      "status": "BillDue",
+      "amount": 2190
+    }
+  ],
+  "status_code": 200
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### paidOrderDetails
+API to fetch the paid order details
+
+
+
+```javascript
+// Promise
+const promise = applicationClient.payment.paidOrderDetails({  aggregator : value });
+
+// Async/Await
+const data = await applicationClient.payment.paidOrderDetails({  aggregator : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| aggregator | string | no |  |  
+
+
+
+Use this API to fetch the paid order details.
+
+*Returned Response:*
+
+
+
+
+[PaidOrderDetailsResponse](#PaidOrderDetailsResponse)
+
+Success. Returns the status of API. Check the example shown below or refer `PaidOrderDetailsResponseSchema` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "success": true,
+  "data": [
+    {
+      "shipment_id": "SSD-0000492872-22",
+      "order_id": "FY62F279815B79F3A281",
+      "due_date": "",
+      "payment_date": "",
+      "amount": 1116,
+      "transaction_id": ""
+    }
+  ],
+  "status_code": 200
 }
 ```
 </details>
@@ -3273,7 +3399,9 @@ Success and return HTML decoded text
 <summary><i>&nbsp; Example:</i></summary>
 
 ```json
-"<html><body>Your HTML text</body></html>"
+{
+  "html": "<html><body>Your HTML text</body></html>"
+}
 ```
 </details>
 
@@ -3654,23 +3782,54 @@ Success. Check the example shown below or refer `ValidateCustomerResponse` for m
 
 
 <details>
-<summary><i>&nbsp; Example:</i></summary>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; success is True i.e user is allowed</i></summary>
 
 ```json
 {
-  "success": true,
-  "message": "data fetched",
-  "data": {
-    "api_version": 2,
+  "value": {
+    "success": true,
+    "message": "data fetched",
     "data": {
-      "approved": true,
-      "button_text": "Buy Now, Pay Later",
-      "first_transaction": false
-    },
-    "aggregator": "Simpl"
+      "api_version": 2,
+      "data": {
+        "approved": true,
+        "button_text": "Buy Now, Pay Later",
+        "first_transaction": false
+      },
+      "aggregator": "Simpl"
+    }
   }
 }
 ```
+</details>
+
+<details>
+<summary><i>&nbsp; success is True i.e user not allowed</i></summary>
+
+```json
+{
+  "value": {
+    "success": false,
+    "message": "data fetched",
+    "error": {
+      "api_version": 2,
+      "data": {
+        "approved": false,
+        "button_text": "Buy Now, Pay Later",
+        "first_transaction": false
+      },
+      "aggregator": "Simpl"
+    },
+    "data": {}
+  }
+}
+```
+</details>
+
 </details>
 
 
@@ -4013,9 +4172,9 @@ Success. Sends the OTP to the given mobile number. Check the example shown below
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | currency | string |  no  | Currency Code |
- | formatted_value | string |  no  | Formated Amount with currency symbol |
- | value | number |  no  | Payment amount |
+ | currency | string? |  yes  | Currency Code |
+ | formatted_value | string? |  yes  | Formated Amount with currency symbol |
+ | value | number? |  yes  | Payment amount |
  
 
 ---
@@ -4313,10 +4472,13 @@ Success. Sends the OTP to the given mobile number. Check the example shown below
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | amount_available | [BalanceDetails](#BalanceDetails)? |  yes  | Credit summary of user. |
  | balance | [BalanceDetails](#BalanceDetails)? |  yes  | Credit summary of user. |
- | merchant_customer_ref_id | string |  no  | Unique aggregator customer id |
- | status | string |  no  | Customer Credit status |
- | status_message | string |  no  | message to customer |
+ | buyer_status | string? |  yes  | Status from Credit aggregator's end |
+ | credit_line_id | string? |  yes  | ID at Credit aggregator's end |
+ | merchant_customer_ref_id | string? |  yes  | Unique aggregator customer id |
+ | status | string? |  yes  | Customer Credit status |
+ | status_message | string? |  yes  | message to customer |
  
 
 ---
@@ -4505,7 +4667,6 @@ Success. Sends the OTP to the given mobile number. Check the example shown below
  | code | string? |  yes  | code |
  | display_name | string? |  yes  | display_name |
  | logos | [PaymentModeLogo](#PaymentModeLogo)? |  yes  | logos |
- | outage | string? |  yes  | payment option outage status |
  | package_name | string? |  yes  | package_name |
  
 
@@ -4627,10 +4788,35 @@ Success. Sends the OTP to the given mobile number. Check the example shown below
 
 ---
 
+#### [OutstandingOrderDetailsResponse](#OutstandingOrderDetailsResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | data | [string]? |  yes  | Dict containing the outstanding order details |
+ | message | string? |  yes  | Message |
+ | status_code | number |  no  | HTTP Status code |
+ | success | boolean |  no  | Response is successful or not. |
+ 
+
+---
+
+#### [PaidOrderDetailsResponse](#PaidOrderDetailsResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | data | [string]? |  yes  | Dict containing the paid order details |
+ | message | string? |  yes  | Message |
+ | status_code | number |  no  | HTTP Status code |
+ | success | boolean |  no  | Response is successful or not. |
+ 
+
+---
+
 #### [PaymentFlow](#PaymentFlow)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | ajiodhan | [AggregatorRoute](#AggregatorRoute)? |  yes  | Ajiodhan |
  | bqr_razorpay | [AggregatorRoute](#AggregatorRoute)? |  yes  | BQR_Razorpay |
  | ccavenue | [AggregatorRoute](#AggregatorRoute)? |  yes  | Ccavenue |
  | epaylater | [AggregatorRoute](#AggregatorRoute)? |  yes  | Epaylater |
@@ -4657,6 +4843,7 @@ Success. Sends the OTP to the given mobile number. Check the example shown below
  | contact | string |  no  | Customer valid mobile number |
  | currency | string |  no  | Currency code. |
  | customer_id | string |  no  | Payment gateway customer id. |
+ | device_id | string? |  yes  | EDC machine Unique Identifier |
  | email | string |  no  | Customer valid email |
  | merchant_order_id | string |  no  | Unique fynd order id |
  | method | string |  no  | Payment method |
@@ -4678,6 +4865,7 @@ Success. Sends the OTP to the given mobile number. Check the example shown below
  | bqr_image | string? |  yes  | Bharath qr image url. |
  | currency | string? |  yes  | Currency code. |
  | customer_id | string? |  yes  | Payment gateway customer id. |
+ | device_id | string? |  yes  | EDC machine Unique Identifier |
  | merchant_order_id | string |  no  | order id |
  | method | string |  no  | Payment method |
  | polling_url | string |  no  | Polling url. |
@@ -4719,6 +4907,8 @@ Success. Sends the OTP to the given mobile number. Check the example shown below
  | card_reference | string? |  yes  | card_reference |
  | card_token | string? |  yes  | card_token |
  | card_type | string? |  yes  | card_type |
+ | cod_limit | number? |  yes  | cod limit |
+ | cod_limit_per_order | number? |  yes  | Cod limit per order |
  | code | string? |  yes  | code |
  | compliant_with_tokenisation_guidelines | boolean? |  yes  | If card is tokenised or not |
  | display_name | string? |  yes  | display name |
@@ -4735,7 +4925,7 @@ Success. Sends the OTP to the given mobile number. Check the example shown below
  | merchant_code | string? |  yes  | merchant code |
  | name | string? |  yes  | name |
  | nickname | string? |  yes  | nickname |
- | outage | string? |  yes  | payment option outage status |
+ | remaining_limit | number? |  yes  | Remaining limit |
  | retry_count | number? |  yes  | retry_count |
  | timeout | number? |  yes  | timeout |
  
@@ -4781,12 +4971,14 @@ Success. Sends the OTP to the given mobile number. Check the example shown below
  | contact | string |  no  | Customer valid mobile number |
  | currency | string |  no  | Currency code. |
  | customer_id | string |  no  | Payment gateway customer id. |
+ | device_id | string? |  yes  | EDC machine Unique Identifier |
  | email | string |  no  | Customer valid email |
  | merchant_order_id | string |  no  | Unique fynd order id |
+ | merchant_transaction_id | string |  no  | Unique fynd transaction id |
  | method | string |  no  | Payment method |
  | order_id | string |  no  | Payment gateway order id |
  | status | string |  no  | Status of payment. |
- | vpa | string |  no  | Customer vpa address |
+ | vpa | string? |  yes  | Customer vpa address |
  
 
 ---
@@ -4877,6 +5069,7 @@ Success. Sends the OTP to the given mobile number. Check the example shown below
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | device_id | string? |  yes  | EDC machine Unique Identifier |
  | order_id | string |  no  | Unique order id |
  | request_type | string |  no  | Either resend or cancel |
  
@@ -4916,8 +5109,6 @@ Success. Sends the OTP to the given mobile number. Check the example shown below
  | display_priority | number |  no  | Dispaly Priority |
  | is_pay_by_card_pl | boolean? |  yes  | This flag will be true in case of Payment link payment through card |
  | list | [[PaymentModeList](#PaymentModeList)]? |  yes  | Payment mode |
- | logo | string? |  yes  | Logo |
- | logo_url | [PaymentModeLogo](#PaymentModeLogo)? |  yes  | Logos dict with small and large logo url |
  | name | string |  no  | Payment mode name |
  | save_card | boolean? |  yes  | Card save or not |
  

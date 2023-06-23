@@ -2834,6 +2834,70 @@ class Catalog {
 
   /**
    * @param {Object} arg - Arg object.
+   * @param {AssignStore} arg.body
+   * @returns {Promise<StoreAssignResponse>} - Success response
+   * @summary: Location Reassignment
+   * @description:
+   */
+  async getOptimalLocations({ body } = {}) {
+    const { error } = CatalogValidator.getOptimalLocations().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = CatalogValidator.getOptimalLocations().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getOptimalLocations",
+      });
+      Logger({ level: "WARN", message: warrning });
+    }
+
+    const query_params = {};
+
+    const xHeaders = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/catalog/v1.0/company/${this.config.companyId}/location/reassign/`,
+      query_params,
+      body,
+      xHeaders
+    );
+
+    const {
+      error: res_error,
+    } = CatalogModel.StoreAssignResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getOptimalLocations",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
    * @param {number} arg.itemId - Item Id of the product.
    * @param {number} [arg.brandUid] - Brand Id of the product.
    * @param {string} [arg.itemCode] - Item code of the product.
@@ -4690,7 +4754,7 @@ class Catalog {
    * @param {CategoryRequestBody} arg.body
    * @returns {Promise<CategoryUpdateResponse>} - Success response
    * @summary: Update product categories
-   * @description: Update a product category using this apu
+   * @description: Update a product category using this api
    */
   async updateCategory({ uid, body } = {}) {
     const { error } = CatalogValidator.updateCategory().validate(

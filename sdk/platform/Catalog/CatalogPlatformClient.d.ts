@@ -494,6 +494,16 @@ declare class Catalog {
     getMarketplaceOptinDetail({}?: any): Promise<GetOptInPlatform>;
     /**
      * @param {Object} arg - Arg object.
+     * @param {AssignStore} arg.body
+     * @returns {Promise<StoreAssignResponse>} - Success response
+     * @summary: Location Reassignment
+     * @description:
+     */
+    getOptimalLocations({ body }?: {
+        body: AssignStore;
+    }): Promise<StoreAssignResponse>;
+    /**
+     * @param {Object} arg - Arg object.
      * @param {number} arg.itemId - Item Id of the product.
      * @param {number} [arg.brandUid] - Brand Id of the product.
      * @param {string} [arg.itemCode] - Item code of the product.
@@ -862,7 +872,7 @@ declare class Catalog {
      * @param {CategoryRequestBody} arg.body
      * @returns {Promise<CategoryUpdateResponse>} - Success response
      * @summary: Update product categories
-     * @description: Update a product category using this apu
+     * @description: Update a product category using this api
      */
     updateCategory({ uid, body }?: {
         uid: string;

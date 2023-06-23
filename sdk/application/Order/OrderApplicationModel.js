@@ -505,6 +505,7 @@ class OrderModel {
     return Joi.object({
       exclude_bags_next_state: Joi.string().allow(""),
       shipments: Joi.array().items(OrderModel.ShipmentsRequest()),
+      split_shipment: Joi.boolean(),
       status: Joi.string().allow(""),
     });
   }

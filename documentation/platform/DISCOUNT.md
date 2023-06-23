@@ -638,7 +638,7 @@ const data = await platformClient.discount.validateDiscountFile({  body : value,
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
 | discount | string | no | discount |  
-| body | [DiscountJob](#DiscountJob) | yes | Request body |
+| body | [FileJobRequest](#FileJobRequest) | yes | Request body |
 
 
 Validate File.
@@ -772,6 +772,25 @@ Success
  | ---------- | ---- | -------- | ----------- |
  | brand_ids | [number]? |  yes  |  |
  | store_ids | [number]? |  yes  |  |
+ 
+
+---
+
+#### [FileJobRequest](#FileJobRequest)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | app_ids | [string]? |  yes  |  |
+ | brand_ids | [number]? |  yes  |  |
+ | discount_level | string? |  yes  |  |
+ | discount_type | string? |  yes  |  |
+ | file_path | string? |  yes  |  |
+ | is_active | boolean |  no  |  |
+ | job_type | string? |  yes  |  |
+ | meta | string? |  yes  |  |
+ | name | string |  no  |  |
+ | store_ids | [number]? |  yes  |  |
+ | validity | [ValidityObject](#ValidityObject) |  no  |  |
  
 
 ---

@@ -5,16 +5,6 @@ declare class Cart {
     applicationId: any;
     /**
      * @param {Object} arg - Arg object.
-     * @param {PlatformAddress} arg.body
-     * @returns {Promise<SaveAddressResponse>} - Success response
-     * @summary: Add address to an account
-     * @description: Use this API to add an address to an account.
-     */
-    addAddress({ body }?: {
-        body: PlatformAddress;
-    }): Promise<SaveAddressResponse>;
-    /**
-     * @param {Object} arg - Arg object.
      * @param {string} arg.cartId - Current Cart _id
      * @param {boolean} [arg.b] -
      * @param {AddCartRequest} arg.body
@@ -49,6 +39,16 @@ declare class Cart {
     }): Promise<OpenApiCheckoutResponse>;
     /**
      * @param {Object} arg - Arg object.
+     * @param {CartMetaConfigAdd} arg.body
+     * @returns {Promise<CartMetaConfigAdd>} - Success response
+     * @summary: Create new cart meta configuration
+     * @description: Create new cart meta configuration
+     */
+    createCartMetaConfig({ body }?: {
+        body: CartMetaConfigAdd;
+    }): Promise<CartMetaConfigAdd>;
+    /**
+     * @param {Object} arg - Arg object.
      * @param {CouponAdd} arg.body
      * @returns {Promise<SuccessMessage>} - Success response
      * @summary: Create new coupon
@@ -77,6 +77,13 @@ declare class Cart {
     fetchAndvalidateCartItems({ body }?: {
         body: OpenapiCartDetailsRequest;
     }): Promise<OpenapiCartDetailsResponse>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @returns {Promise<CartMetaConfigAdd>} - Success response
+     * @summary: Fetch cart meta configuration
+     * @description: Fetch cart meta configuration
+     */
+    fetchCartMetaConfig({}?: any): Promise<CartMetaConfigAdd>;
     /**
      * @param {Object} arg - Arg object.
      * @param {number} [arg.pageNo] -
@@ -124,50 +131,18 @@ declare class Cart {
     }): Paginator;
     /**
      * @param {Object} arg - Arg object.
-     * @param {string} arg.id -
-     * @param {string} [arg.cartId] -
-     * @param {boolean} [arg.buyNow] -
-     * @param {string} [arg.mobileNo] -
-     * @param {string} [arg.checkoutMode] -
-     * @param {string} [arg.tags] -
-     * @param {boolean} [arg.isDefault] -
-     * @param {string} [arg.userId] -
-     * @returns {Promise<PlatformAddress>} - Success response
-     * @summary: Fetch a single address by its ID
-     * @description: Use this API to get an addresses using its ID. If successful, returns a Address resource in the response body specified in `PlatformAddress`. Attibutes listed below are optional <ul> <li> <font color="monochrome">mobile_no</font></li> <li> <font color="monochrome">checkout_mode</font></li> <li> <font color="monochrome">tags</font></li> <li> <font color="monochrome">default</font></li> </ul>
+     * @param {string} [arg.id] -
+     * @param {boolean} [arg.i] -
+     * @param {boolean} [arg.b] -
+     * @returns {Promise<CartDetailResponse>} - Success response
+     * @summary: Fetch all items added to the cart
+     * @description: Use this API to get details of all the items added to a cart.
      */
-    getAddressById({ id, cartId, buyNow, mobileNo, checkoutMode, tags, isDefault, userId, }?: {
-        id: string;
-        cartId?: string;
-        buyNow?: boolean;
-        mobileNo?: string;
-        checkoutMode?: string;
-        tags?: string;
-        isDefault?: boolean;
-        userId?: string;
-    }): Promise<PlatformAddress>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {string} [arg.cartId] -
-     * @param {boolean} [arg.buyNow] -
-     * @param {string} [arg.mobileNo] -
-     * @param {string} [arg.checkoutMode] -
-     * @param {string} [arg.tags] -
-     * @param {boolean} [arg.isDefault] -
-     * @param {string} [arg.userId] -
-     * @returns {Promise<PlatformGetAddressesResponse>} - Success response
-     * @summary: Fetch address
-     * @description: Use this API to get all the addresses associated with an account. If successful, returns a Address resource in the response body specified in GetAddressesResponse.attibutes listed below are optional <ul> <li> <font color="monochrome">uid</font></li> <li> <font color="monochrome">address_id</font></li> <li> <font color="monochrome">mobile_no</font></li> <li> <font color="monochrome">checkout_mode</font></li> <li> <font color="monochrome">tags</font></li> <li> <font color="monochrome">default</font></li> </ul>
-     */
-    getAddresses({ cartId, buyNow, mobileNo, checkoutMode, tags, isDefault, userId, }?: {
-        cartId?: string;
-        buyNow?: boolean;
-        mobileNo?: string;
-        checkoutMode?: string;
-        tags?: string;
-        isDefault?: boolean;
-        userId?: string;
-    }): Promise<PlatformGetAddressesResponse>;
+    getAbandonedCartDetails({ id, i, b }?: {
+        id?: string;
+        i?: boolean;
+        b?: boolean;
+    }): Promise<CartDetailResponse>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.id -
@@ -178,6 +153,23 @@ declare class Cart {
     getCouponById({ id }?: {
         id: string;
     }): Promise<CouponUpdate>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {string} [arg.code] -
+     * @returns {Promise<Object>} - Success response
+     * @summary: Check if coupon is already created with coupon code
+     * @description: Check if sent coupon code is already existing coupon code. As coupon code is to be unique.
+     */
+    getCouponCodeExists({ code }?: {
+        code?: string;
+    }): Promise<any>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @returns {Promise<Object>} - Success response
+     * @summary: Get coupon options enums with display values
+     * @description: Get coupon enum values for fields in valid coupon object. Used for front end to create, update and filter coupon lists via fields
+     */
+    getCouponOptionValues({}?: any): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @param {number} [arg.pageNo] -
@@ -229,11 +221,16 @@ declare class Cart {
     }): Paginator;
     /**
      * @param {Object} arg - Arg object.
+     * @param {string} [arg.entityType] - Entity_type as promotion or coupon
+     * @param {boolean} [arg.isHidden] - Promo-coupon config shown or not
      * @returns {Promise<ActivePromosResponse>} - Success response
      * @summary: Fetch all promos that are set as active
      * @description: Use this API to get list of all the active promos/coupons.
      */
-    getPromosCouponConfig({}?: any): Promise<ActivePromosResponse>;
+    getPromosCouponConfig({ entityType, isHidden }?: {
+        entityType?: string;
+        isHidden?: boolean;
+    }): Promise<ActivePromosResponse>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.id -
@@ -246,10 +243,20 @@ declare class Cart {
     }): Promise<PromotionUpdate>;
     /**
      * @param {Object} arg - Arg object.
+     * @param {string} [arg.code] -
+     * @returns {Promise<Object>} - Success response
+     * @summary: Check if promotion is already created with promotion code
+     * @description: Check if sent promotion code is already existing promotion code. As promotion code is to be unique.
+     */
+    getPromotionCodeExists({ code }?: {
+        code?: string;
+    }): Promise<any>;
+    /**
+     * @param {Object} arg - Arg object.
      * @param {number} [arg.pageNo] -
      * @param {number} [arg.pageSize] -
      * @param {string} [arg.q] -
-     * @param {string} [arg.status] -
+     * @param {boolean} [arg.isActive] -
      * @param {string} [arg.promoGroup] -
      * @param {string} [arg.promotionType] -
      * @param {string} [arg.fpPanel] -
@@ -258,11 +265,11 @@ declare class Cart {
      * @summary: Get promotion list
      * @description: Get promotion list with pagination
      */
-    getPromotions({ pageNo, pageSize, q, status, promoGroup, promotionType, fpPanel, promotionId, }?: {
+    getPromotions({ pageNo, pageSize, q, isActive, promoGroup, promotionType, fpPanel, promotionId, }?: {
         pageNo?: number;
         pageSize?: number;
         q?: string;
-        status?: string;
+        isActive?: boolean;
         promoGroup?: string;
         promotionType?: string;
         fpPanel?: string;
@@ -274,7 +281,7 @@ declare class Cart {
      * @param {string} arg.applicationId - Current Application _id
      * @param {number} [arg.pageSize] -
      * @param {string} [arg.q] -
-     * @param {string} [arg.status] -
+     * @param {boolean} [arg.isActive] -
      * @param {string} [arg.promoGroup] -
      * @param {string} [arg.promotionType] -
      * @param {string} [arg.fpPanel] -
@@ -282,12 +289,12 @@ declare class Cart {
      * @summary: Get promotion list
      * @description: Get promotion list with pagination
      */
-    getPromotionsPaginator({ companyId, applicationId, pageSize, q, status, promoGroup, promotionType, fpPanel, promotionId, }?: {
+    getPromotionsPaginator({ companyId, applicationId, pageSize, q, isActive, promoGroup, promotionType, fpPanel, promotionId, }?: {
         companyId: string;
         applicationId: string;
         pageSize?: number;
         q?: string;
-        status?: string;
+        isActive?: boolean;
         promoGroup?: string;
         promotionType?: string;
         fpPanel?: string;
@@ -295,28 +302,14 @@ declare class Cart {
     }): Paginator;
     /**
      * @param {Object} arg - Arg object.
-     * @param {string} arg.id - ID allotted to the selected address
-     * @param {string} [arg.userId] - Option to delete address for the provided user_id.
-     * @returns {Promise<DeleteAddressResponse>} - Success response
-     * @summary: Remove address associated with an account
-     * @description: Use this API to delete an address by its ID. This will returns an object that will indicate whether the address was deleted successfully or not.
+     * @param {OverrideCheckoutReq} arg.body
+     * @returns {Promise<OverrideCheckoutResponse>} - Success response
+     * @summary: Create Fynd order with overriding cart details
+     * @description: Generate Fynd order while overriding cart details sent with provided `cart_items`
      */
-    removeAddress({ id, userId }?: {
-        id: string;
-        userId?: string;
-    }): Promise<DeleteAddressResponse>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.id - ID allotted to the selected address
-     * @param {PlatformAddress} arg.body
-     * @returns {Promise<UpdateAddressResponse>} - Success response
-     * @summary: Update address added to an account
-     * @description: <p>Use this API to update an existing address in the account. Request object should contain attributes mentioned in  <font color="blue">Address </font> can be updated. These attributes are:</p> <ul> <li> <font color="monochrome">is_default_address</font></li> <li> <font color="monochrome">landmark</font></li> <li> <font color="monochrome">area</font></li> <li> <font color="monochrome">pincode</font></li> <li> <font color="monochrome">email</font></li> <li> <font color="monochrome">address_type</font></li> <li> <font color="monochrome">name</font></li> <li> <font color="monochrome">address_id</font></li> <li> <font color="monochrome">address</font></li> </ul>
-     */
-    updateAddress({ id, body }?: {
-        id: string;
-        body: PlatformAddress;
-    }): Promise<UpdateAddressResponse>;
+    overrideCart({ body }?: {
+        body: OverrideCheckoutReq;
+    }): Promise<OverrideCheckoutResponse>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.cartId - Current Cart _id
@@ -331,6 +324,18 @@ declare class Cart {
         b?: boolean;
         body: UpdateCartRequest;
     }): Promise<UpdateCartDetailResponse>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {string} arg.cartMetaId -
+     * @param {CartMetaConfigUpdate} arg.body
+     * @returns {Promise<CartMetaConfigUpdate>} - Success response
+     * @summary: Update cart meta configuration
+     * @description: Update cart meta configuration
+     */
+    updateCartMetaConfig({ cartMetaId, body }?: {
+        cartMetaId: string;
+        body: CartMetaConfigUpdate;
+    }): Promise<CartMetaConfigUpdate>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.id -

@@ -20,7 +20,6 @@ class ConfigurationModel {
     return Joi.object({
       bulk_coupons: Joi.boolean(),
       delivery_charges: ConfigurationModel.DeliveryCharges(),
-      empty_cart: Joi.boolean(),
       enabled: Joi.boolean(),
       max_cart_items: Joi.number(),
       min_cart_value: Joi.number(),
@@ -256,6 +255,7 @@ class ConfigurationModel {
   }
   static AppPaymentConfig() {
     return Joi.object({
+      anonymous_cod: Joi.boolean(),
       callback_url: ConfigurationModel.CallbackUrl(),
       cod_amount_limit: Joi.number(),
       cod_charges: Joi.number(),
@@ -569,7 +569,13 @@ class ConfigurationModel {
   }
   static DomainAdd() {
     return Joi.object({
+      _id: Joi.string().allow(""),
+      is_primary: Joi.boolean(),
+      is_shortlink: Joi.boolean(),
+      message: Joi.string().allow(""),
       name: Joi.string().allow(""),
+      txt_records: Joi.array().items(Joi.string().allow("")),
+      verified: Joi.boolean(),
     });
   }
   static DomainAddRequest() {
@@ -931,6 +937,7 @@ class ConfigurationModel {
   }
   static ListingPriceFeature() {
     return Joi.object({
+      sort: Joi.string().allow(""),
       value: Joi.string().allow(""),
     });
   }
@@ -946,7 +953,6 @@ class ConfigurationModel {
       cod: ConfigurationModel.PaymentModeConfig(),
       fc: ConfigurationModel.PaymentModeConfig(),
       jiopp: ConfigurationModel.PaymentModeConfig(),
-      jiopplink: ConfigurationModel.PaymentModeConfig(),
       jp: ConfigurationModel.PaymentModeConfig(),
       juspaypg: ConfigurationModel.PaymentModeConfig(),
       nb: ConfigurationModel.PaymentModeConfig(),
@@ -1325,6 +1331,7 @@ class ConfigurationModel {
   static SuccessMessageResponse() {
     return Joi.object({
       message: Joi.string().allow(""),
+      success: Joi.boolean(),
     });
   }
   static TokenResponse() {
@@ -1364,6 +1371,10 @@ class ConfigurationModel {
   static UpdateDomain() {
     return Joi.object({
       _id: Joi.string().allow(""),
+      is_primary: Joi.boolean(),
+      is_shortlink: Joi.boolean(),
+      name: Joi.string().allow(""),
+      verified: Joi.boolean(),
     });
   }
   static UpdateDomainTypeRequest() {
@@ -1392,6 +1403,11 @@ class ConfigurationModel {
       phone: Joi.string().allow(""),
       primary: Joi.boolean(),
       verified: Joi.boolean(),
+    });
+  }
+  static ValidationFailedResponse() {
+    return Joi.object({
+      message: Joi.string().allow(""),
     });
   }
   static Validators() {

@@ -16,7 +16,10 @@ class FileStorage {
 
   /**
    * @param {Object} arg - Arg object.
-   * @param {string} arg.namespace - Bucket name
+   * @param {string} arg.namespace - Segregation of different types of
+   *   files(products, orders, logistics etc), Required for validating the
+   *   data of the file being uploaded, decides where exactly the file will be
+   *   stored inside the storage bucket.
    * @param {StartResponse} arg.body
    * @returns {Promise<CompleteResponse>} - Success response
    * @summary: This will complete the upload process. After successfully uploading file, you can call this operation to complete the upload process.
@@ -170,7 +173,10 @@ class FileStorage {
 
   /**
    * @param {Object} arg - Arg object.
-   * @param {string} arg.namespace - Bucket name
+   * @param {string} arg.namespace - Segregation of different types of
+   *   files(products, orders, logistics etc), Required for validating the
+   *   data of the file being uploaded, decides where exactly the file will be
+   *   stored inside the storage bucket.
    * @param {StartRequest} arg.body
    * @returns {Promise<StartResponse>} - Success response
    * @summary: This operation initiates upload and returns storage link which is valid for 30 Minutes. You can use that storage link to make subsequent upload request with file buffer or blob.
@@ -263,12 +269,12 @@ class FileStorage {
    * @summary: Browse Files
    * @description: Browse Files
    */
-  async browse({
+  async appbrowse({
     namespace,
 
     pageNo,
   } = {}) {
-    const { error } = FileStorageValidator.browse().validate(
+    const { error } = FileStorageValidator.appbrowse().validate(
       {
         namespace,
 
@@ -281,7 +287,7 @@ class FileStorage {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = FileStorageValidator.browse().validate(
+    const { error: warrning } = FileStorageValidator.appbrowse().validate(
       {
         namespace,
 
@@ -292,7 +298,7 @@ class FileStorage {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for browse",
+        message: "Parameter Validation warrnings for appbrowse",
       });
       Logger({ level: "WARN", message: warrning });
     }
@@ -318,7 +324,7 @@ class FileStorage {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for browse",
+        message: "Response Validation Warnnings for appbrowse",
       });
       Logger({ level: "WARN", message: res_error });
     }
@@ -334,13 +340,13 @@ class FileStorage {
    * @summary: Browse Files
    * @description: Browse Files
    */
-  browsePaginator({ namespace, companyId, applicationId } = {}) {
+  appbrowsePaginator({ namespace, companyId, applicationId } = {}) {
     const paginator = new Paginator();
     const callback = async () => {
       const pageId = paginator.nextId;
       const pageNo = paginator.pageNo;
       const pageType = "number";
-      const data = await this.browse({
+      const data = await this.appbrowse({
         namespace: namespace,
         companyId: companyId,
         applicationId: applicationId,

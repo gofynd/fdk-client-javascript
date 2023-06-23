@@ -26,7 +26,7 @@ class FileStorageValidator {
     }).required();
   }
 
-  static browse() {
+  static appbrowse() {
     return Joi.object({
       namespace: Joi.string().allow("").required(),
 
