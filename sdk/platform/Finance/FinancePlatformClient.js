@@ -13,6 +13,72 @@ class Finance {
 
   /**
    * @param {Object} arg - Arg object.
+   * @param {CreditlineDataPlatformRequest} arg.body
+   * @returns {Promise<CreditlineDataPlatformResponse>} - Success response
+   * @summary:
+   * @description:
+   */
+  async creditlineDataplatform({ body } = {}) {
+    const { error } = FinanceValidator.creditlineDataplatform().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = FinanceValidator.creditlineDataplatform().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for creditlineDataplatform",
+      });
+      Logger({ level: "WARN", message: warrning });
+    }
+
+    const query_params = {};
+
+    const xHeaders = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/finance/v1.0/company/${this.config.companyId}/credit-line-data`,
+      query_params,
+      body,
+      xHeaders
+    );
+
+    const {
+      error: res_error,
+    } = FinanceModel.CreditlineDataPlatformResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for creditlineDataplatform",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
    * @param {DownloadCreditDebitNoteRequest} arg.body
    * @returns {Promise<DownloadCreditDebitNoteResponse>} - Success response
    * @summary:
@@ -646,6 +712,72 @@ class Finance {
       Logger({
         level: "WARN",
         message: "Response Validation Warnnings for invoicePDF",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {IsCreditlinePlatformRequest} arg.body
+   * @returns {Promise<IsCreditlinePlatformResponse>} - Success response
+   * @summary:
+   * @description:
+   */
+  async isCreditlinePlatform({ body } = {}) {
+    const { error } = FinanceValidator.isCreditlinePlatform().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = FinanceValidator.isCreditlinePlatform().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for isCreditlinePlatform",
+      });
+      Logger({ level: "WARN", message: warrning });
+    }
+
+    const query_params = {};
+
+    const xHeaders = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/finance/v1.0/company/${this.config.companyId}/creditline-opted`,
+      query_params,
+      body,
+      xHeaders
+    );
+
+    const {
+      error: res_error,
+    } = FinanceModel.IsCreditlinePlatformResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for isCreditlinePlatform",
       });
       Logger({ level: "WARN", message: res_error });
     }

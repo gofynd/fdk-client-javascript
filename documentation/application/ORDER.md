@@ -2386,23 +2386,7 @@ Successfully updateShipmentStatus!
 <summary><i>&nbsp; Example:</i></summary>
 
 ```json
-{
-  "statuses": [
-    {
-      "shipments": {
-        "16291129095851065963": {
-          "status": 400,
-          "message": {
-            "16291129095851065963": "Invalid State Transition bag_invoiced detected for given entity"
-          },
-          "code": null,
-          "exception": "ValidationError",
-          "stack_trace": null
-        }
-      }
-    }
-  ]
-}
+
 ```
 </details>
 
@@ -2559,7 +2543,6 @@ Success, the code is valid and returns a session token
  | id | number? |  yes  |  |
  | item | [Item](#Item)? |  yes  |  |
  | line_number | number? |  yes  |  |
- | meta | string? |  yes  |  |
  | parent_promo_bags | string? |  yes  |  |
  | prices | [Prices](#Prices)? |  yes  |  |
  | quantity | number? |  yes  |  |

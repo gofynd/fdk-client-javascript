@@ -1,5 +1,8 @@
 export = FinanceModel;
 declare class FinanceModel {
+    static CreditlineDataPlatformPayload(): any;
+    static CreditlineDataPlatformRequest(): any;
+    static CreditlineDataPlatformResponse(): any;
     static DownloadCreditDebitNote(): any;
     static DownloadCreditDebitNoteRequest(): any;
     static DownloadCreditDebitNoteResponse(): any;
@@ -36,6 +39,9 @@ declare class FinanceModel {
     static InvoicePdfPayloadData(): any;
     static InvoicePdfRequest(): any;
     static InvoicePdfResponse(): any;
+    static IsCreditlinePayload(): any;
+    static IsCreditlinePlatformRequest(): any;
+    static IsCreditlinePlatformResponse(): any;
     static Page(): any;
     static PaymentProcessPayload(): any;
     static PaymentProcessRequest(): any;

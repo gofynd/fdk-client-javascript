@@ -633,7 +633,6 @@ class PlatformApplicationClient {
 /** @typedef Article */
 /** @typedef ArticleDetails */
 /** @typedef ArticleDetails1 */
-/** @typedef AssetByShipment */
 /** @typedef Attributes */
 /** @typedef B2BPODetails */
 /** @typedef BagConfigs */
@@ -642,7 +641,9 @@ class PlatformApplicationClient {
 /** @typedef BagGSTDetails */
 /** @typedef BagMeta */
 /** @typedef BagReturnableCancelableStatus */
+/** @typedef BagReturnableCancelableStatus1 */
 /** @typedef Bags */
+/** @typedef BagsPage */
 /** @typedef BagStateMapper */
 /** @typedef BagStateTransitionMap */
 /** @typedef BagStatusHistory */
@@ -651,15 +652,8 @@ class PlatformApplicationClient {
 /** @typedef BillingInfo */
 /** @typedef BillingStaffDetails */
 /** @typedef Brand */
-/** @typedef BulkActionDetailsDataField */
-/** @typedef BulkActionDetailsResponse */
-/** @typedef BulkActionPayload */
-/** @typedef BulkActionResponse */
-/** @typedef BulkInvoiceLabelResponse */
-/** @typedef BulkInvoicingResponse */
-/** @typedef bulkListingData */
-/** @typedef BulkListingPage */
-/** @typedef BulkListingResponse */
+/** @typedef BulkActionTemplate */
+/** @typedef BulkActionTemplateResponse */
 /** @typedef BuyerDetails */
 /** @typedef BuyRules */
 /** @typedef Charge */
@@ -719,21 +713,12 @@ class PlatformApplicationClient {
 /** @typedef InvoiceInfo */
 /** @typedef Item */
 /** @typedef ItemCriterias */
-/** @typedef JioCodeUpsertDataSet */
-/** @typedef JioCodeUpsertPayload */
-/** @typedef JioCodeUpsertResponse */
 /** @typedef LaneConfigResponse */
 /** @typedef LineItem */
 /** @typedef LocationDetails */
 /** @typedef LockData */
 /** @typedef MarketPlacePdf */
 /** @typedef Meta */
-/** @typedef Meta1 */
-/** @typedef MetricCountResponse */
-/** @typedef MetricsCount */
-/** @typedef NestedErrorSchemaDataSet */
-/** @typedef OmsReports */
-/** @typedef Options */
 /** @typedef OrderBagArticle */
 /** @typedef OrderBags */
 /** @typedef OrderBrandName */
@@ -753,10 +738,8 @@ class PlatformApplicationClient {
 /** @typedef OrderUser */
 /** @typedef OriginalFilter */
 /** @typedef Page */
-/** @typedef Page1 */
 /** @typedef PaymentInfo */
 /** @typedef PaymentMethod */
-/** @typedef PaymentMethod1 */
 /** @typedef PaymentMethods */
 /** @typedef PDFLinks */
 /** @typedef PhoneDetails */
@@ -790,8 +773,8 @@ class PlatformApplicationClient {
 /** @typedef ReasonsData */
 /** @typedef ReplacementDetails */
 /** @typedef ResponseDetail */
-/** @typedef ResponseGetAssetShipment */
 /** @typedef ReturnConfig */
+/** @typedef ReturnConfig1 */
 /** @typedef SendSmsPayload */
 /** @typedef Shipment */
 /** @typedef ShipmentConfig */
@@ -809,6 +792,8 @@ class PlatformApplicationClient {
 /** @typedef ShipmentListingChannel */
 /** @typedef ShipmentMeta */
 /** @typedef ShipmentPayments */
+/** @typedef ShipmentReasonsResponse */
+/** @typedef ShipmentResponseReasons */
 /** @typedef ShipmentsRequest */
 /** @typedef ShipmentsResponse */
 /** @typedef ShipmentStatus */
@@ -829,7 +814,6 @@ class PlatformApplicationClient {
 /** @typedef StoreReassign */
 /** @typedef StoreReassignResponse */
 /** @typedef SubLane */
-/** @typedef Success */
 /** @typedef SuccessResponse */
 /** @typedef SuperLane */
 /** @typedef Tax */
@@ -1509,6 +1493,7 @@ class PlatformApplicationClient {
 /** @typedef UpdateIntegrationLevelRequest */
 /** @typedef UserEmail */
 /** @typedef UserPhoneNumber */
+/** @typedef ValidationFailedResponse */
 /** @typedef Validators */
 /** @typedef VimeoLink */
 /** @typedef YoutubeLink */
@@ -1856,6 +1841,9 @@ class PlatformApplicationClient {
 /** @typedef ZoneSuccessResponse */
 /** @typedef ZoneUpdateRequest */
 
+/** @typedef CreditlineDataPlatformPayload */
+/** @typedef CreditlineDataPlatformRequest */
+/** @typedef CreditlineDataPlatformResponse */
 /** @typedef DownloadCreditDebitNote */
 /** @typedef DownloadCreditDebitNoteRequest */
 /** @typedef DownloadCreditDebitNoteResponse */
@@ -1892,6 +1880,9 @@ class PlatformApplicationClient {
 /** @typedef InvoicePdfPayloadData */
 /** @typedef InvoicePdfRequest */
 /** @typedef InvoicePdfResponse */
+/** @typedef IsCreditlinePayload */
+/** @typedef IsCreditlinePlatformRequest */
+/** @typedef IsCreditlinePlatformResponse */
 /** @typedef Page */
 /** @typedef PaymentProcessPayload */
 /** @typedef PaymentProcessRequest */

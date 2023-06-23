@@ -56,7 +56,6 @@ class OrderModel {
       id: Joi.number(),
       item: OrderModel.Item(),
       line_number: Joi.number(),
-      meta: Joi.any(),
       parent_promo_bags: Joi.any(),
       prices: OrderModel.Prices(),
       quantity: Joi.number(),

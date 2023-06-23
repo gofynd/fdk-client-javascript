@@ -1,28 +1,20 @@
 export = OrderValidator;
 declare class OrderValidator {
-    static bulkActionDetails(): any;
-    static bulkActionProcessXlsxFile(): any;
     static checkOrderStatus(): any;
     static click2Call(): any;
     static createChannelConfig(): any;
     static createOrder(): any;
-    static createShipmentReport(): any;
     static dispatchManifest(): any;
+    static downloadBulkActionTemplate(): any;
     static getAnnouncements(): any;
-    static getAssetByShipmentIds(): any;
     static getBagById(): any;
     static getBags(): any;
-    static getBulkActionFailedReport(): any;
-    static getBulkInvoice(): any;
-    static getBulkInvoiceLabel(): any;
-    static getBulkList(): any;
+    static getBulkActionTemplate(): any;
     static getBulkShipmentExcelFile(): any;
     static getChannelConfig(): any;
     static getLaneConfig(): any;
-    static getMetricCount(): any;
     static getOrderById(): any;
     static getOrders(): any;
-    static getReportsShipmentListing(): any;
     static getRoleBasedActions(): any;
     static getShipmentById(): any;
     static getShipmentHistory(): any;
@@ -41,5 +33,4 @@ declare class OrderValidator {
     static updateShipmentLock(): any;
     static updateShipmentStatus(): any;
     static uploadConsent(): any;
-    static upsertJioCode(): any;
 }

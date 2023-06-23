@@ -2,6 +2,12 @@ const Joi = require("joi");
 
 const FinanceModel = require("./FinancePlatformModel");
 class FinanceValidator {
+  static creditlineDataplatform() {
+    return Joi.object({
+      body: FinanceModel.CreditlineDataPlatformRequest().required(),
+    }).required();
+  }
+
   static downloadCreditDebitNote() {
     return Joi.object({
       body: FinanceModel.DownloadCreditDebitNoteRequest().required(),
@@ -59,6 +65,12 @@ class FinanceValidator {
   static invoicePDF() {
     return Joi.object({
       body: FinanceModel.InvoicePdfRequest().required(),
+    }).required();
+  }
+
+  static isCreditlinePlatform() {
+    return Joi.object({
+      body: FinanceModel.IsCreditlinePlatformRequest().required(),
     }).required();
   }
 
