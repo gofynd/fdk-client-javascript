@@ -13,7 +13,10 @@ class ServiceabilityValidator {
   }
 
   static getCompanyStoreView() {
-    return Joi.object({}).required();
+    return Joi.object({
+      pageNumber: Joi.number(),
+      pageSize: Joi.number(),
+    }).required();
   }
 
   static getEntityRegionView() {
@@ -42,6 +45,19 @@ class ServiceabilityValidator {
   static getZoneDataView() {
     return Joi.object({
       zoneId: Joi.string().allow("").required(),
+    }).required();
+  }
+
+  static getZoneListView() {
+    return Joi.object({
+      pageNumber: Joi.number(),
+      pageNo: Joi.number(),
+      pageSize: Joi.number(),
+      name: Joi.string().allow(""),
+      isActive: Joi.boolean(),
+      channelIds: Joi.string().allow(""),
+      q: Joi.string().allow(""),
+      zoneId: Joi.array().items(Joi.string().allow("")),
     }).required();
   }
 

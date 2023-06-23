@@ -21,11 +21,16 @@ declare class Serviceability {
     getAllStores({}?: any): Promise<GetStoresViewResponse>;
     /**
      * @param {Object} arg - Arg object.
+     * @param {number} [arg.pageNumber] - Index of the item to start returning with
+     * @param {number} [arg.pageSize] - Determines the items to be displayed in a page
      * @returns {Promise<CompanyStoreView_Response>} - Success response
      * @summary: Company Store View of application.
      * @description: This API returns Company Store View of the application.
      */
-    getCompanyStoreView({}?: any): Promise<CompanyStoreView_Response>;
+    getCompanyStoreView({ pageNumber, pageSize }?: {
+        pageNumber?: number;
+        pageSize?: number;
+    }): Promise<CompanyStoreView_Response>;
     /**
      * @param {Object} arg - Arg object.
      * @param {EntityRegionView_Request} arg.body
@@ -77,6 +82,30 @@ declare class Serviceability {
     getZoneDataView({ zoneId }?: {
         zoneId: string;
     }): Promise<GetSingleZoneDataViewResponse>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {number} [arg.pageNumber] - Index of the item to start returning with
+     * @param {number} [arg.pageNo] - Index of the item to start returning with
+     * @param {number} [arg.pageSize] - Determines the items to be displayed in a page
+     * @param {string} [arg.name] - Name of particular zone in the seller account
+     * @param {boolean} [arg.isActive] - Status of zone whether active or inactive
+     * @param {string} [arg.channelIds] - Zones associated with the given channel ids'
+     * @param {string} [arg.q] - Search with name as a free text
+     * @param {string[]} [arg.zoneId] - List of zones to query for
+     * @returns {Promise<ListViewResponse>} - Success response
+     * @summary: Zone List of application.
+     * @description: This API returns Zone List View of the application.
+     */
+    getZoneListView({ pageNumber, pageNo, pageSize, name, isActive, channelIds, q, zoneId, }?: {
+        pageNumber?: number;
+        pageNo?: number;
+        pageSize?: number;
+        name?: string;
+        isActive?: boolean;
+        channelIds?: string;
+        q?: string;
+        zoneId?: string[];
+    }): Promise<ListViewResponse>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.zoneId - A `zone_id` is a unique identifier for a

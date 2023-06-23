@@ -1,16 +1,35 @@
 export = PaymentValidator;
 declare class PaymentValidator {
+    static addEdcDevice(): any;
     static addRefundBankAccountUsingOTP(): any;
+    static cancelPaymentLink(): any;
+    static checkAndUpdatePaymentStatus(): any;
     static confirmPayment(): any;
+    static createPaymentLink(): any;
+    static edcAggregatorsAndModelList(): any;
+    static edcDeviceList(): any;
+    static edcDeviceStats(): any;
     static getBankAccountDetailsOpenAPI(): any;
     static getBrandPaymentGatewayConfig(): any;
+    static getEdcDevice(): any;
+    static getPaymentCodeOption(): any;
+    static getPaymentLink(): any;
     static getPaymentModeRoutes(): any;
+    static getPosPaymentModeRoutes(): any;
     static getUserBeneficiaries(): any;
     static getUserCODlimitRoutes(): any;
     static getUserOrderBeneficiaries(): any;
+    static initialisePayment(): any;
     static merchantOnBoarding(): any;
+    static oauthGetUrl(): any;
+    static paymentStatusBulk(): any;
+    static pollingPaymentLink(): any;
     static repaymentDetails(): any;
+    static resendOrCancelPayment(): any;
+    static resendPaymentLink(): any;
+    static revokeOauthToken(): any;
     static saveBrandPaymentGatewayConfig(): any;
     static setUserCODlimitRoutes(): any;
-    static updateBrandPaymentGatewayConfig(): any;
+    static updateEdcDevice(): any;
+    static verifyCustomerForPayment(): any;
 }

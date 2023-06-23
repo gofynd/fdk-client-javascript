@@ -12,6 +12,7 @@ Collect payment through many payment gateway i.e Stripe, Razorpay, Juspay etc.in
 * [addRefundBankAccountUsingOTP](#addrefundbankaccountusingotp)
 * [attachCardToCustomer](#attachcardtocustomer)
 * [cancelPaymentLink](#cancelpaymentlink)
+* [cardDetails](#carddetails)
 * [checkAndUpdatePaymentStatus](#checkandupdatepaymentstatus)
 * [checkAndUpdatePaymentStatusPaymentLink](#checkandupdatepaymentstatuspaymentlink)
 * [checkCredit](#checkcredit)
@@ -305,6 +306,85 @@ Success. Check the example shown below
   "success": true,
   "message": "Payment link cancelled",
   "status_code": 200
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### cardDetails
+API to get Card info from PG
+
+
+
+```javascript
+// Promise
+const promise = applicationClient.payment.cardDetails({  cardInfo : value,
+ aggregator : value });
+
+// Async/Await
+const data = await applicationClient.payment.cardDetails({  cardInfo : value,
+ aggregator : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| cardInfo | string | yes | Card first 6 digit IIN(prefix) number. |    
+| aggregator | string | no |  |  
+
+
+
+API to get Card info from PG
+
+*Returned Response:*
+
+
+
+
+[CardDetailsResponse](#CardDetailsResponse)
+
+Success. Returns the status of payment. Check the example shown below or refer `CardDetailsResponseSchema` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "success": true,
+  "data": {
+    "country": "INDIA",
+    "extended_card_type": "DEBIT",
+    "card_brand": "MASTERCARD",
+    "card_object": "tkn_1416af8beba94c96a3dqer196cd9fce7",
+    "id": "529992",
+    "card_sub_type": null,
+    "type": "DEBIT",
+    "bank": "",
+    "is_domestic_card": true,
+    "status": true,
+    "user": "63b4fce75a2bca1dw0f08f3f9",
+    "name_on_card": "Dummy",
+    "bank_code": "HDFC",
+    "card_token": "tkn_1416af8beba94c96a3dqer196cd9fce7",
+    "card_exp_year": "2024",
+    "card_exp_month": "12"
+  }
 }
 ```
 </details>
@@ -2557,7 +2637,7 @@ Success. Returns all available options for payment. Check the example shown belo
           {
             "aggregator_name": "Fynd",
             "name": "CAS",
-            "display_name": "CASH",
+            "display_name": "Cash",
             "code": "CAS",
             "logo_url": {
               "large": "https://hdn-1.fynd.com/payment/cod.png",
@@ -2928,7 +3008,8 @@ Success. Check the example shown below or refer `PaymentInitializationResponse` 
   "timeout": 240,
   "virtual_id": null,
   "razorpay_payment_id": "pay_dummy_001",
-  "customer_id": "cust_dummy_001"
+  "customer_id": "cust_dummy_001",
+  "device_id": "1234567890"
 }
 ```
 </details>
@@ -4194,6 +4275,40 @@ Success. Sends the OTP to the given mobile number. Check the example shown below
 
 ---
 
+#### [CardDetails](#CardDetails)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | bank | string |  no  | bank name |
+ | bank_code | string |  no  | Bank Code |
+ | card_brand | string |  no  | Card brand like VISA/RUPAY |
+ | card_exp_month | string? |  yes  | Card Expire Month |
+ | card_exp_year | string? |  yes  | Card Expire Year |
+ | card_object | string |  no  | Card bin or Card refrence |
+ | card_sub_type | string |  no  | Card Sub type |
+ | card_token | string? |  yes  | Card Token |
+ | country | string |  no  | Country Name |
+ | extended_card_type | string |  no  | Extended Card Type |
+ | id | string |  no  | id |
+ | is_domestic_card | boolean |  no  | Is card domestic or international |
+ | name_on_card | string? |  yes  | Name on Card |
+ | status | boolean |  no  | Status |
+ | type | string |  no  | Card Type Credit/Debit |
+ | user | string? |  yes  | Customer/User ID |
+ 
+
+---
+
+#### [CardDetailsResponse](#CardDetailsResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | data | [CardDetails](#CardDetails) |  no  | Saved Card Details |
+ | success | boolean |  no  | Response is successful or not. |
+ 
+
+---
+
 #### [CardPaymentGateway](#CardPaymentGateway)
 
  | Properties | Type | Nullable | Description |
@@ -4728,6 +4843,7 @@ Success. Sends the OTP to the given mobile number. Check the example shown below
  | contact | string |  no  | Customer valid mobile number |
  | currency | string |  no  | Currency code. |
  | customer_id | string |  no  | Payment gateway customer id. |
+ | device_id | string? |  yes  | EDC machine Unique Identifier |
  | email | string |  no  | Customer valid email |
  | merchant_order_id | string |  no  | Unique fynd order id |
  | method | string |  no  | Payment method |
@@ -4749,6 +4865,7 @@ Success. Sends the OTP to the given mobile number. Check the example shown below
  | bqr_image | string? |  yes  | Bharath qr image url. |
  | currency | string? |  yes  | Currency code. |
  | customer_id | string? |  yes  | Payment gateway customer id. |
+ | device_id | string? |  yes  | EDC machine Unique Identifier |
  | merchant_order_id | string |  no  | order id |
  | method | string |  no  | Payment method |
  | polling_url | string |  no  | Polling url. |
@@ -4854,12 +4971,14 @@ Success. Sends the OTP to the given mobile number. Check the example shown below
  | contact | string |  no  | Customer valid mobile number |
  | currency | string |  no  | Currency code. |
  | customer_id | string |  no  | Payment gateway customer id. |
+ | device_id | string? |  yes  | EDC machine Unique Identifier |
  | email | string |  no  | Customer valid email |
  | merchant_order_id | string |  no  | Unique fynd order id |
+ | merchant_transaction_id | string |  no  | Unique fynd transaction id |
  | method | string |  no  | Payment method |
  | order_id | string |  no  | Payment gateway order id |
  | status | string |  no  | Status of payment. |
- | vpa | string |  no  | Customer vpa address |
+ | vpa | string? |  yes  | Customer vpa address |
  
 
 ---
@@ -4950,6 +5069,7 @@ Success. Sends the OTP to the given mobile number. Check the example shown below
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | device_id | string? |  yes  | EDC machine Unique Identifier |
  | order_id | string |  no  | Unique order id |
  | request_type | string |  no  | Either resend or cancel |
  

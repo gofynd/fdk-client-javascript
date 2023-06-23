@@ -17,6 +17,7 @@ class Payment {
       attachCardToCustomer: "/service/application/payment/v1.0/card/attach",
       cancelPaymentLink:
         "/service/application/payment/v1.0/cancel-payment-link/",
+      cardDetails: "/service/application/payment/v1.0/cards/info/{card_info}",
       checkAndUpdatePaymentStatus:
         "/service/application/payment/v1.0/payment/confirm/polling",
       checkAndUpdatePaymentStatusPaymentLink:
@@ -350,6 +351,71 @@ class Payment {
       Logger({
         level: "WARN",
         message: "Response Validation Warnnings for cancelPaymentLink",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.cardInfo - Card first 6 digit IIN(prefix) number.
+   * @param {string} [arg.aggregator] -
+   * @returns {Promise<CardDetailsResponse>} - Success response
+   * @summary: API to get Card info from PG
+   * @description: API to get Card info from PG
+   */
+  async cardDetails({ cardInfo, aggregator } = {}) {
+    const { error } = PaymentValidator.cardDetails().validate(
+      { cardInfo, aggregator },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = PaymentValidator.cardDetails().validate(
+      { cardInfo, aggregator },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for cardDetails",
+      });
+      Logger({ level: "WARN", message: warrning });
+    }
+
+    const query_params = {};
+    query_params["aggregator"] = aggregator;
+
+    const xHeaders = {};
+
+    const response = await ApplicationAPIClient.execute(
+      this._conf,
+      "get",
+      constructUrl({
+        url: this._urls["cardDetails"],
+        params: { cardInfo },
+      }),
+      query_params,
+      undefined,
+      xHeaders
+    );
+
+    const {
+      error: res_error,
+    } = PaymentModel.CardDetailsResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for cardDetails",
       });
       Logger({ level: "WARN", message: res_error });
     }

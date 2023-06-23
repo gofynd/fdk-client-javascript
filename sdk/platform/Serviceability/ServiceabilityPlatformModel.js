@@ -213,7 +213,7 @@ class ServiceabilityModel {
   static GetZoneFromPincodeViewResponse() {
     return Joi.object({
       serviceability_type: Joi.string().allow("").required(),
-      zones: Joi.array().items(ServiceabilityModel.Zone()).required(),
+      zones: Joi.array().items(Joi.string().allow("")).required(),
     });
   }
   static GstCredentialsResponse() {
@@ -497,18 +497,6 @@ class ServiceabilityModel {
   static WarningsResponse() {
     return Joi.object({
       store_address: Joi.string().allow(""),
-    });
-  }
-  static Zone() {
-    return Joi.object({
-      assignment_preference: Joi.string().allow("").required(),
-      is_active: Joi.boolean().required(),
-      name: Joi.string().allow("").required(),
-      slug: Joi.string().allow("").required(),
-      store_ids: Joi.array().items(Joi.number()).required(),
-      tags: Joi.array().items(Joi.string().allow("")).required(),
-      type: Joi.string().allow("").required(),
-      zone_id: Joi.string().allow("").required(),
     });
   }
   static ZoneDataItem() {

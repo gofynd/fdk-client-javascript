@@ -4444,7 +4444,7 @@ Promotion updated successfully
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | article_id | string? |  yes  |  |
+ | article_id | string |  no  |  |
  | code | string? |  yes  |  |
  | meta | string? |  yes  |  |
  | type | string? |  yes  |  |
@@ -4550,22 +4550,43 @@ Promotion updated successfully
 
 ---
 
+#### [CartDynamicInjection](#CartDynamicInjection)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | allowed_refund | boolean? |  yes  |  |
+ | apply_expiry | string? |  yes  |  |
+ | article_ids | [[Article](#Article)] |  no  |  |
+ | article_level_distribution | boolean |  no  |  |
+ | cart_id | string |  no  |  |
+ | collection | [Collecttion](#Collecttion) |  no  |  |
+ | injection_id | string? |  yes  |  |
+ | message | string |  no  |  |
+ | meta | string? |  yes  |  |
+ | type | string |  no  |  |
+ | user_id | string? |  yes  |  |
+ | user_type | string |  no  |  |
+ | value | number? |  yes  |  |
+ 
+
+---
+
 #### [CartDynamicInjectionAdd](#CartDynamicInjectionAdd)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | allowed_refund | boolean? |  yes  |  |
- | amount_value | number? |  yes  |  |
  | apply_expiry | string? |  yes  |  |
- | article_ids | [[Article](#Article)]? |  yes  |  |
- | article_level_distribution | boolean? |  yes  |  |
+ | article_ids | [[Article](#Article)] |  no  |  |
+ | article_level_distribution | boolean |  no  |  |
  | cart_id | string |  no  |  |
- | collection | [Collecttion](#Collecttion)? |  yes  |  |
- | message | string? |  yes  |  |
+ | collection | [Collecttion](#Collecttion) |  no  |  |
+ | message | string |  no  |  |
  | meta | string? |  yes  |  |
- | type | string? |  yes  |  |
+ | type | string |  no  |  |
  | user_id | string? |  yes  |  |
  | user_type | string |  no  |  |
+ | value | number? |  yes  |  |
  
 
 ---
@@ -4574,19 +4595,7 @@ Promotion updated successfully
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | allowed_refund | boolean? |  yes  |  |
- | amount_value | number? |  yes  |  |
- | apply_expiry | string? |  yes  |  |
- | article_ids | [[Article](#Article)]? |  yes  |  |
- | article_level_distribution | boolean? |  yes  |  |
- | cart_id | string |  no  |  |
- | collection | [Collecttion](#Collecttion)? |  yes  |  |
- | injection_id | string? |  yes  |  |
- | message | string? |  yes  |  |
- | meta | string? |  yes  |  |
- | type | string? |  yes  |  |
- | user_id | string? |  yes  |  |
- | user_type | string |  no  |  |
+ | data | [CartDynamicInjection](#CartDynamicInjection)? |  yes  |  |
  
 
 ---
@@ -4596,17 +4605,17 @@ Promotion updated successfully
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | allowed_refund | boolean? |  yes  |  |
- | amount_value | number? |  yes  |  |
  | apply_expiry | string? |  yes  |  |
- | article_ids | [[Article](#Article)]? |  yes  |  |
- | article_level_distribution | boolean? |  yes  |  |
+ | article_ids | [[Article](#Article)] |  no  |  |
+ | article_level_distribution | boolean |  no  |  |
  | cart_id | string |  no  |  |
- | collection | string? |  yes  |  |
- | message | string? |  yes  |  |
- | meta | [Collecttion](#Collecttion)? |  yes  |  |
- | type | string? |  yes  |  |
+ | collection | [Collecttion](#Collecttion) |  no  |  |
+ | message | string |  no  |  |
+ | meta | string? |  yes  |  |
+ | type | string |  no  |  |
  | user_id | string? |  yes  |  |
  | user_type | string |  no  |  |
+ | value | number? |  yes  |  |
  
 
 ---
@@ -4695,8 +4704,8 @@ Promotion updated successfully
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | collected_by | string? |  yes  |  |
- | refund_by | string? |  yes  |  |
+ | collected_by | string |  no  |  |
+ | refund_by | string |  no  |  |
  
 
 ---
