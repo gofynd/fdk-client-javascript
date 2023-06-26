@@ -530,6 +530,7 @@ class ConfigurationModel {
   }
   static ListingPriceFeature() {
     return Joi.object({
+      sort: Joi.string().allow(""),
       value: Joi.string().allow(""),
     });
   }
