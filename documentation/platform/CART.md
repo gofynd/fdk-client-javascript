@@ -2137,6 +2137,7 @@ Coupon Created successfully
   "success": true,
   "data": {
     "injection_id": "skgjdfjge343456jjfd",
+    "cart_value": 100,
     "cart_id": "dgdfhdfhdf646454dfhdf",
     "user_id": "",
     "user_type": "athenticated",
@@ -10715,6 +10716,7 @@ Cart Dynamic injection Updated successfully
   "success": true,
   "data": {
     "injection_id": "skgjdfjge343456jjfd",
+    "cart_value": 100,
     "cart_id": "dgdfhdfhdf646454dfhdf",
     "user_id": "",
     "user_type": "athenticated",
@@ -13127,10 +13129,11 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | allowed_refund | boolean? |  yes  |  |
- | apply_expiry | string? |  yes  |  |
+ | apply_expiry | string |  no  |  |
  | article_ids | [[Article](#Article)] |  no  |  |
  | article_level_distribution | boolean |  no  |  |
  | cart_id | string |  no  |  |
+ | cart_value | number |  no  |  |
  | collection | [Collecttion](#Collecttion) |  no  |  |
  | injection_id | string? |  yes  |  |
  | message | string |  no  |  |
@@ -13138,7 +13141,7 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
  | type | string |  no  |  |
  | user_id | string? |  yes  |  |
  | user_type | string |  no  |  |
- | value | number? |  yes  |  |
+ | value | number |  no  |  |
  
 
 ---
@@ -13152,13 +13155,14 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
  | article_ids | [[Article](#Article)] |  no  |  |
  | article_level_distribution | boolean |  no  |  |
  | cart_id | string |  no  |  |
+ | cart_value | number |  no  |  |
  | collection | [Collecttion](#Collecttion) |  no  |  |
  | message | string |  no  |  |
  | meta | string? |  yes  |  |
  | type | string |  no  |  |
  | user_id | string? |  yes  |  |
  | user_type | string |  no  |  |
- | value | number? |  yes  |  |
+ | value | number |  no  |  |
  
 
 ---
@@ -13181,13 +13185,14 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
  | article_ids | [[Article](#Article)] |  no  |  |
  | article_level_distribution | boolean |  no  |  |
  | cart_id | string |  no  |  |
+ | cart_value | number |  no  |  |
  | collection | [Collecttion](#Collecttion) |  no  |  |
  | message | string |  no  |  |
  | meta | string? |  yes  |  |
  | type | string |  no  |  |
  | user_id | string? |  yes  |  |
  | user_type | string |  no  |  |
- | value | number? |  yes  |  |
+ | value | number |  no  |  |
  
 
 ---
@@ -14530,6 +14535,7 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
  | gift_card | string? |  yes  |  |
  | identifier | string? |  yes  |  |
  | is_gift_visible | boolean? |  yes  |  |
+ | mto_quantity | number? |  yes  |  |
  | parent_item_identifiers | string? |  yes  | contains information about parent item in case of parent-child relation |
  | price | [ArticlePriceInfo](#ArticlePriceInfo)? |  yes  | refers to article's base and converted price |
  | product_group_tags | [string]? |  yes  | product_group_tags to group articles in same group |

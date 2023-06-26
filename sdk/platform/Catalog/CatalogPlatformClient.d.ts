@@ -234,15 +234,13 @@ declare class Catalog {
      * @param {number} arg.itemId - Item code of the product of which size is to be get.
      * @param {string} arg.sellerIdentifier - Size Identifier (Seller Identifier
      *   or Primary Identifier) of which inventory is to get.
-     * @param {InventoryRequestSchemaV2} arg.body
      * @returns {Promise<InventoryUpdateResponse>} - Success response
      * @summary: Add Inventory for particular size and store.
      * @description: This API allows add Inventory for particular size and store.
      */
-    deleteRealtimeInventory({ itemId, sellerIdentifier, body }?: {
+    deleteRealtimeInventory({ itemId, sellerIdentifier }?: {
         itemId: number;
         sellerIdentifier: string;
-        body: InventoryRequestSchemaV2;
     }): Promise<InventoryUpdateResponse>;
     /**
      * @param {Object} arg - Arg object.

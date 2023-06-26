@@ -2243,13 +2243,11 @@ Add Inventory for particular size and store.
 ```javascript
 // Promise
 const promise = platformClient.catalog.deleteRealtimeInventory({  itemId : value,
- sellerIdentifier : value,
- body : value });
+ sellerIdentifier : value });
 
 // Async/Await
 const data = await platformClient.catalog.deleteRealtimeInventory({  itemId : value,
- sellerIdentifier : value,
- body : value });
+ sellerIdentifier : value });
 ```
 
 
@@ -2260,7 +2258,7 @@ const data = await platformClient.catalog.deleteRealtimeInventory({  itemId : va
 | --------- | -----  | -------- | ----------- | 
 | itemId | number | yes | Item code of the product of which size is to be get. |   
 | sellerIdentifier | string | yes | Size Identifier (Seller Identifier or Primary Identifier) of which inventory is to get. |  
-| body | [InventoryRequestSchemaV2](#InventoryRequestSchemaV2) | yes | Request body |
+
 
 
 This API allows add Inventory for particular size and store.
@@ -19010,7 +19008,38 @@ List of fields and validation values fro each. See example below or refer `Inven
 
 ---
 
+#### [CollectionActionPage](#CollectionActionPage)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | query | [CollectionActionPageQuery](#CollectionActionPageQuery)? |  yes  |  |
+ | type | string? |  yes  |  |
+ 
+
+---
+
+#### [CollectionActionPageQuery](#CollectionActionPageQuery)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | attribute | string? |  yes  |  |
+ | op | string? |  yes  |  |
+ | value | [string]? |  yes  |  |
+ 
+
+---
+
 #### [CollectionBadge](#CollectionBadge)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | color | string? |  yes  |  |
+ | text | string? |  yes  |  |
+ 
+
+---
+
+#### [CollectionBadge1](#CollectionBadge1)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
@@ -19061,13 +19090,12 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | _schedule | string? |  yes  |  |
+ | _schedule | [CollectionSchedule1](#CollectionSchedule1)? |  yes  |  |
  | allow_facets | boolean? |  yes  |  |
  | allow_sort | boolean? |  yes  |  |
  | app_id | string? |  yes  |  |
- | badge | string? |  yes  |  |
+ | badge | [CollectionBadge1](#CollectionBadge1)? |  yes  |  |
  | banners | [ImageUrls](#ImageUrls)? |  yes  |  |
- | cron | string? |  yes  |  |
  | description | string? |  yes  |  |
  | is_active | boolean? |  yes  |  |
  | logo | [Media](#Media)? |  yes  |  |
@@ -19076,7 +19104,7 @@ List of fields and validation values fro each. See example below or refer `Inven
  | priority | number? |  yes  |  |
  | query | [[CollectionQuery](#CollectionQuery)]? |  yes  |  |
  | slug | string? |  yes  |  |
- | tag | [string]? |  yes  |  |
+ | tags | [string]? |  yes  |  |
  | type | string? |  yes  |  |
  | uid | string? |  yes  |  |
  | visible_facets_keys | [string]? |  yes  |  |
@@ -19170,6 +19198,27 @@ List of fields and validation values fro each. See example below or refer `Inven
  | duration | number? |  yes  |  |
  | end | string? |  yes  |  |
  | next_schedule | [[NextSchedule](#NextSchedule)]? |  yes  |  |
+ | start | string? |  yes  |  |
+ 
+
+---
+
+#### [CollectionSchedule1](#CollectionSchedule1)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | end | string? |  yes  |  |
+ | next_schedule | [[CollectionScheduleStartEnd](#CollectionScheduleStartEnd)]? |  yes  |  |
+ | start | string? |  yes  |  |
+ 
+
+---
+
+#### [CollectionScheduleStartEnd](#CollectionScheduleStartEnd)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | end | string? |  yes  |  |
  | start | string? |  yes  |  |
  
 
@@ -19845,14 +19894,13 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | _schedule | string? |  yes  |  |
- | action | [Action](#Action)? |  yes  |  |
+ | _schedule | [CollectionSchedule1](#CollectionSchedule1)? |  yes  |  |
+ | action | [CollectionActionPage](#CollectionActionPage)? |  yes  |  |
  | allow_facets | boolean? |  yes  |  |
  | allow_sort | boolean? |  yes  |  |
  | app_id | string? |  yes  |  |
- | badge | string? |  yes  |  |
+ | badge | [CollectionBadge1](#CollectionBadge1)? |  yes  |  |
  | banners | [ImageUrls](#ImageUrls)? |  yes  |  |
- | cron | string? |  yes  |  |
  | description | string? |  yes  |  |
  | is_active | boolean? |  yes  |  |
  | logo | [Media](#Media)? |  yes  |  |
@@ -19861,7 +19909,7 @@ List of fields and validation values fro each. See example below or refer `Inven
  | priority | number? |  yes  |  |
  | query | [[CollectionQuery](#CollectionQuery)]? |  yes  |  |
  | slug | string? |  yes  |  |
- | tag | [string]? |  yes  |  |
+ | tags | [string]? |  yes  |  |
  | type | string? |  yes  |  |
  | uid | string? |  yes  |  |
  | visible_facets_keys | [string]? |  yes  |  |
@@ -19910,15 +19958,15 @@ List of fields and validation values fro each. See example below or refer `Inven
  | addresses | [[GetAddressSerializer](#GetAddressSerializer)]? |  yes  |  |
  | business_type | string? |  yes  |  |
  | company_type | string? |  yes  |  |
- | created_by | [UserSerializer1](#UserSerializer1)? |  yes  |  |
+ | created_by | [UserSerializer2](#UserSerializer2)? |  yes  |  |
  | created_on | string? |  yes  |  |
- | modified_by | [UserSerializer1](#UserSerializer1)? |  yes  |  |
+ | modified_by | [UserSerializer2](#UserSerializer2)? |  yes  |  |
  | modified_on | string? |  yes  |  |
  | name | string? |  yes  |  |
  | reject_reason | string? |  yes  |  |
  | stage | string? |  yes  |  |
  | uid | number? |  yes  |  |
- | verified_by | [UserSerializer1](#UserSerializer1)? |  yes  |  |
+ | verified_by | [UserSerializer2](#UserSerializer2)? |  yes  |  |
  | verified_on | string? |  yes  |  |
  
 
@@ -20025,14 +20073,14 @@ List of fields and validation values fro each. See example below or refer `Inven
  | code | string |  no  |  |
  | company | [GetCompanySerializer](#GetCompanySerializer)? |  yes  |  |
  | contact_numbers | [[SellerPhoneNumber](#SellerPhoneNumber)]? |  yes  |  |
- | created_by | [UserSerializer2](#UserSerializer2)? |  yes  |  |
+ | created_by | [UserSerializer1](#UserSerializer1)? |  yes  |  |
  | created_on | string? |  yes  |  |
  | display_name | string |  no  |  |
  | documents | [[Document](#Document)]? |  yes  |  |
  | gst_credentials | [InvoiceDetailsSerializer](#InvoiceDetailsSerializer)? |  yes  |  |
  | integration_type | [LocationIntegrationType](#LocationIntegrationType)? |  yes  |  |
  | manager | [LocationManagerSerializer](#LocationManagerSerializer)? |  yes  |  |
- | modified_by | [UserSerializer2](#UserSerializer2)? |  yes  |  |
+ | modified_by | [UserSerializer1](#UserSerializer1)? |  yes  |  |
  | modified_on | string? |  yes  |  |
  | name | string |  no  |  |
  | notification_emails | [string]? |  yes  |  |
@@ -20042,7 +20090,7 @@ List of fields and validation values fro each. See example below or refer `Inven
  | store_type | string? |  yes  |  |
  | timing | [[LocationDayWiseSerializer](#LocationDayWiseSerializer)]? |  yes  |  |
  | uid | number? |  yes  |  |
- | verified_by | [UserSerializer2](#UserSerializer2)? |  yes  |  |
+ | verified_by | [UserSerializer1](#UserSerializer1)? |  yes  |  |
  | verified_on | string? |  yes  |  |
  | warnings | string? |  yes  |  |
  

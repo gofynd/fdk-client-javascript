@@ -1399,17 +1399,15 @@ class Catalog {
    * @param {number} arg.itemId - Item code of the product of which size is to be get.
    * @param {string} arg.sellerIdentifier - Size Identifier (Seller Identifier
    *   or Primary Identifier) of which inventory is to get.
-   * @param {InventoryRequestSchemaV2} arg.body
    * @returns {Promise<InventoryUpdateResponse>} - Success response
    * @summary: Add Inventory for particular size and store.
    * @description: This API allows add Inventory for particular size and store.
    */
-  async deleteRealtimeInventory({ itemId, sellerIdentifier, body } = {}) {
+  async deleteRealtimeInventory({ itemId, sellerIdentifier } = {}) {
     const { error } = CatalogValidator.deleteRealtimeInventory().validate(
       {
         itemId,
         sellerIdentifier,
-        body,
       },
       { abortEarly: false, allowUnknown: true }
     );
@@ -1424,7 +1422,6 @@ class Catalog {
       {
         itemId,
         sellerIdentifier,
-        body,
       },
       { abortEarly: false, allowUnknown: false }
     );
@@ -1445,7 +1442,7 @@ class Catalog {
       "delete",
       `/service/platform/catalog/v2.0/company/${this.config.companyId}/products/${itemId}/inventory/${sellerIdentifier}/`,
       query_params,
-      body,
+      undefined,
       xHeaders
     );
 

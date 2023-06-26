@@ -139,7 +139,6 @@ class CatalogValidator {
     return Joi.object({
       itemId: Joi.number().required(),
       sellerIdentifier: Joi.string().allow("").required(),
-      body: CatalogModel.InventoryRequestSchemaV2().required(),
     }).required();
   }
 

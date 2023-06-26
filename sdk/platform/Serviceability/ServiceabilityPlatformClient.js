@@ -13,6 +13,70 @@ class Serviceability {
 
   /**
    * @param {Object} arg - Arg object.
+   * @param {DpRuleRequest} arg.body
+   * @returns {Promise<DpRuleSuccessResponse>} - Success response
+   * @summary: Upsert of DpRules in database.
+   * @description: This API returns response of upsert of DpRules in mongo database.
+   */
+  async createDpRule({ body } = {}) {
+    const { error } = ServiceabilityValidator.createDpRule().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = ServiceabilityValidator.createDpRule().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for createDpRule",
+      });
+      Logger({ level: "WARN", message: warrning });
+    }
+
+    const query_params = {};
+
+    const xHeaders = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/logistics/v1.0/company/${this.config.companyId}/courier/rules`,
+      query_params,
+      body,
+      xHeaders
+    );
+
+    const {
+      error: res_error,
+    } = ServiceabilityModel.DpRuleSuccessResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for createDpRule",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
    * @param {ZoneRequest} arg.body
    * @returns {Promise<ZoneResponse>} - Success response
    * @summary: Creation of a new zone
@@ -207,6 +271,294 @@ class Serviceability {
 
   /**
    * @param {Object} arg - Arg object.
+   * @param {number} [arg.pageNumber] - Index of the item to start returning with
+   * @param {number} [arg.pageSize] - Determines the items to be displayed in a page
+   * @param {string} [arg.stage] - Stage of the account. enabled/disabled
+   * @param {string} [arg.paymentMode] - Filters dp accounts based on payment mode
+   * @param {string} [arg.transportType] - Filters dp accounts based on transport_type
+   * @returns {Promise<CompanyDpAccountListResponse>} - Success response
+   * @summary: Getting DpAccount of a company from database.
+   * @description: This API returns response DpAccount of a company from mongo database.
+   */
+  async getDpAccountList({
+    pageNumber,
+    pageSize,
+    stage,
+    paymentMode,
+    transportType,
+  } = {}) {
+    const { error } = ServiceabilityValidator.getDpAccountList().validate(
+      {
+        pageNumber,
+        pageSize,
+        stage,
+        paymentMode,
+        transportType,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = ServiceabilityValidator.getDpAccountList().validate(
+      {
+        pageNumber,
+        pageSize,
+        stage,
+        paymentMode,
+        transportType,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getDpAccountList",
+      });
+      Logger({ level: "WARN", message: warrning });
+    }
+
+    const query_params = {};
+    query_params["page_number"] = pageNumber;
+    query_params["page_size"] = pageSize;
+    query_params["stage"] = stage;
+    query_params["payment_mode"] = paymentMode;
+    query_params["transport_type"] = transportType;
+
+    const xHeaders = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/logistics/v1.0/company/${this.config.companyId}/courier/account`,
+      query_params,
+      undefined,
+      xHeaders
+    );
+
+    const {
+      error: res_error,
+    } = ServiceabilityModel.CompanyDpAccountListResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getDpAccountList",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @returns {Promise<DPCompanyRuleResponse>} - Success response
+   * @summary: Get All DpCompanyRules applied to company from database.
+   * @description: This API returns response of all DpCompanyRules from mongo database.
+   */
+  async getDpCompanyRulePriority({} = {}) {
+    const {
+      error,
+    } = ServiceabilityValidator.getDpCompanyRulePriority().validate(
+      {},
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = ServiceabilityValidator.getDpCompanyRulePriority().validate(
+      {},
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getDpCompanyRulePriority",
+      });
+      Logger({ level: "WARN", message: warrning });
+    }
+
+    const query_params = {};
+
+    const xHeaders = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/logistics/v1.0/company/${this.config.companyId}/courier/priority`,
+      query_params,
+      undefined,
+      xHeaders
+    );
+
+    const {
+      error: res_error,
+    } = ServiceabilityModel.DPCompanyRuleResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getDpCompanyRulePriority",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.ruleUid - A `rule_uid` is a unique identifier for a
+   *   particular Dp.
+   * @returns {Promise<DpRuleSuccessResponse>} - Success response
+   * @summary: Fetching of DpRules from database.
+   * @description: This API returns response of DpRules from mongo database.
+   */
+  async getDpRule({ ruleUid } = {}) {
+    const { error } = ServiceabilityValidator.getDpRule().validate(
+      {
+        ruleUid,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = ServiceabilityValidator.getDpRule().validate(
+      {
+        ruleUid,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getDpRule",
+      });
+      Logger({ level: "WARN", message: warrning });
+    }
+
+    const query_params = {};
+
+    const xHeaders = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/logistics/v1.0/company/${this.config.companyId}/courier/rules/${ruleUid}`,
+      query_params,
+      undefined,
+      xHeaders
+    );
+
+    const {
+      error: res_error,
+    } = ServiceabilityModel.DpRuleSuccessResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getDpRule",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {number} [arg.pageNumber] - Index of the item to start returning with
+   * @param {number} [arg.pageSize] - Determines the items to be displayed in a page
+   * @returns {Promise<DpMultipleRuleSuccessResponse>} - Success response
+   * @summary: Fetching of DpRules from database.
+   * @description: This API returns response of DpRules from mongo database.
+   */
+  async getDpRuleList({ pageNumber, pageSize } = {}) {
+    const { error } = ServiceabilityValidator.getDpRuleList().validate(
+      {
+        pageNumber,
+        pageSize,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = ServiceabilityValidator.getDpRuleList().validate(
+      {
+        pageNumber,
+        pageSize,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getDpRuleList",
+      });
+      Logger({ level: "WARN", message: warrning });
+    }
+
+    const query_params = {};
+    query_params["page_number"] = pageNumber;
+    query_params["page_size"] = pageSize;
+
+    const xHeaders = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/logistics/v1.0/company/${this.config.companyId}/courier/rules`,
+      query_params,
+      undefined,
+      xHeaders
+    );
+
+    const {
+      error: res_error,
+    } = ServiceabilityModel.DpMultipleRuleSuccessResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getDpRuleList",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
    * @param {EntityRegionView_Request} arg.body
    * @returns {Promise<EntityRegionView_Response>} - Success response
    * @summary: Get country and state list
@@ -356,6 +708,207 @@ class Serviceability {
       Logger({
         level: "WARN",
         message: "Response Validation Warnnings for getListView",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {ReAssignStoreRequest} arg.body
+   * @returns {Promise<ReAssignStoreResponse>} - Success response
+   * @summary: Get serviceable store of the item
+   * @description: This API returns serviceable store of the item.
+   */
+  async getOptimalLocations({ body } = {}) {
+    const { error } = ServiceabilityValidator.getOptimalLocations().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = ServiceabilityValidator.getOptimalLocations().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getOptimalLocations",
+      });
+      Logger({ level: "WARN", message: warrning });
+    }
+
+    const query_params = {};
+
+    const xHeaders = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/logistics/v1.0/company/${this.config.companyId}/reassign`,
+      query_params,
+      body,
+      xHeaders
+    );
+
+    const {
+      error: res_error,
+    } = ServiceabilityModel.ReAssignStoreResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getOptimalLocations",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {number} [arg.currentPageNumber] - The current page number
+   * @param {number} [arg.pageSize] - The page size
+   * @returns {Promise<GetBulkRegionJobResponse>} - Success response
+   * @summary: Get bulk_export_job collection all records
+   * @description: This API takes gives all the records of bulk_export_job collection
+   */
+  async getRegionJobBulk({ currentPageNumber, pageSize } = {}) {
+    const { error } = ServiceabilityValidator.getRegionJobBulk().validate(
+      {
+        currentPageNumber,
+        pageSize,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = ServiceabilityValidator.getRegionJobBulk().validate(
+      {
+        currentPageNumber,
+        pageSize,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getRegionJobBulk",
+      });
+      Logger({ level: "WARN", message: warrning });
+    }
+
+    const query_params = {};
+    query_params["current_page_number"] = currentPageNumber;
+    query_params["page_size"] = pageSize;
+
+    const xHeaders = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/logistics/v1.0/company/${this.config.companyId}/tat/bulk`,
+      query_params,
+      undefined,
+      xHeaders
+    );
+
+    const {
+      error: res_error,
+    } = ServiceabilityModel.GetBulkRegionJobResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getRegionJobBulk",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.batchId - The batch ID
+   * @returns {Promise<GetBulkRegionJobResponse>} - Success response
+   * @summary: Get bulk_export_job data for a given batch_id
+   * @description: This API takes batch_id and gives the detail of bulk_export_job collection for the batch_id
+   */
+  async getRegionJobBulkBatchId({ batchId } = {}) {
+    const {
+      error,
+    } = ServiceabilityValidator.getRegionJobBulkBatchId().validate(
+      { batchId },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = ServiceabilityValidator.getRegionJobBulkBatchId().validate(
+      { batchId },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getRegionJobBulkBatchId",
+      });
+      Logger({ level: "WARN", message: warrning });
+    }
+
+    const query_params = {};
+
+    const xHeaders = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/logistics/v1.0/company/${this.config.companyId}/tat/bulk/${batchId}`,
+      query_params,
+      undefined,
+      xHeaders
+    );
+
+    const {
+      error: res_error,
+    } = ServiceabilityModel.GetBulkRegionJobResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getRegionJobBulkBatchId",
       });
       Logger({ level: "WARN", message: res_error });
     }
@@ -600,6 +1153,140 @@ class Serviceability {
 
   /**
    * @param {Object} arg - Arg object.
+   * @param {BulkRegionJobSerializer} arg.body
+   * @returns {Promise<PostBulkRegionJobResponse>} - Success response
+   * @summary: This Api creates a Bulk Job for region tat data upsert
+   * @description: This API takes request body, validates it and sends it to kafka topic
+   */
+  async postRegionJobBulk({ body } = {}) {
+    const { error } = ServiceabilityValidator.postRegionJobBulk().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = ServiceabilityValidator.postRegionJobBulk().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for postRegionJobBulk",
+      });
+      Logger({ level: "WARN", message: warrning });
+    }
+
+    const query_params = {};
+
+    const xHeaders = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/logistics/v1.0/company/${this.config.companyId}/tat/bulk`,
+      query_params,
+      body,
+      xHeaders
+    );
+
+    const {
+      error: res_error,
+    } = ServiceabilityModel.PostBulkRegionJobResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for postRegionJobBulk",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.ruleUid - A `rule_uid` is a unique identifier for a
+   *   particular Dp.
+   * @param {DpRulesUpdateRequest} arg.body
+   * @returns {Promise<DpRuleUpdateSuccessResponse>} - Success response
+   * @summary: Updating of DpRules from database.
+   * @description: This API updates and returns response of DpRules from mongo database.
+   */
+  async updateDpRule({ ruleUid, body } = {}) {
+    const { error } = ServiceabilityValidator.updateDpRule().validate(
+      {
+        ruleUid,
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = ServiceabilityValidator.updateDpRule().validate(
+      {
+        ruleUid,
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for updateDpRule",
+      });
+      Logger({ level: "WARN", message: warrning });
+    }
+
+    const query_params = {};
+
+    const xHeaders = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "put",
+      `/service/platform/logistics/v1.0/company/${this.config.companyId}/courier/rules/${ruleUid}`,
+      query_params,
+      body,
+      xHeaders
+    );
+
+    const {
+      error: res_error,
+    } = ServiceabilityModel.DpRuleUpdateSuccessResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for updateDpRule",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
    * @param {string} arg.zoneId - A `zone_id` is a unique identifier for a
    *   particular zone.
    * @param {ZoneUpdateRequest} arg.body
@@ -669,6 +1356,142 @@ class Serviceability {
       Logger({
         level: "WARN",
         message: "Response Validation Warnnings for updateZoneControllerView",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {CompanyDpAccountRequest} arg.body
+   * @returns {Promise<CompanyDpAccountResponse>} - Success response
+   * @summary: Upsertion of DpAccount in database.
+   * @description: This API returns response of upsertion of DpAccount in mongo database.
+   */
+  async upsertDpAccount({ body } = {}) {
+    const { error } = ServiceabilityValidator.upsertDpAccount().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = ServiceabilityValidator.upsertDpAccount().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for upsertDpAccount",
+      });
+      Logger({ level: "WARN", message: warrning });
+    }
+
+    const query_params = {};
+
+    const xHeaders = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/logistics/v1.0/company/${this.config.companyId}/courier/account`,
+      query_params,
+      body,
+      xHeaders
+    );
+
+    const {
+      error: res_error,
+    } = ServiceabilityModel.CompanyDpAccountResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for upsertDpAccount",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {DPCompanyRuleRequest} arg.body
+   * @returns {Promise<DPCompanyRuleResponse>} - Success response
+   * @summary: Upsert of DpCompanyRules in database.
+   * @description: This API returns response of upsert of DpCompanyRules in mongo database.
+   */
+  async upsertDpCompanyRulePriority({ body } = {}) {
+    const {
+      error,
+    } = ServiceabilityValidator.upsertDpCompanyRulePriority().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = ServiceabilityValidator.upsertDpCompanyRulePriority().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message:
+          "Parameter Validation warrnings for upsertDpCompanyRulePriority",
+      });
+      Logger({ level: "WARN", message: warrning });
+    }
+
+    const query_params = {};
+
+    const xHeaders = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "put",
+      `/service/platform/logistics/v1.0/company/${this.config.companyId}/courier/priority`,
+      query_params,
+      body,
+      xHeaders
+    );
+
+    const {
+      error: res_error,
+    } = ServiceabilityModel.DPCompanyRuleResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message:
+          "Response Validation Warnnings for upsertDpCompanyRulePriority",
       });
       Logger({ level: "WARN", message: res_error });
     }

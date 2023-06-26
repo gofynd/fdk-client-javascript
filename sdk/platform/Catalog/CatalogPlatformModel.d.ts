@@ -64,7 +64,10 @@ declare class CatalogModel {
     static CategoryResponse(): any;
     static CategoryUpdateResponse(): any;
     static Child(): any;
+    static CollectionActionPage(): any;
+    static CollectionActionPageQuery(): any;
     static CollectionBadge(): any;
+    static CollectionBadge1(): any;
     static CollectionBanner(): any;
     static CollectionCreateResponse(): any;
     static CollectionDetailResponse(): any;
@@ -76,6 +79,8 @@ declare class CatalogModel {
     static CollectionListingFilterType(): any;
     static CollectionQuery(): any;
     static CollectionSchedule(): any;
+    static CollectionSchedule1(): any;
+    static CollectionScheduleStartEnd(): any;
     static CompanyBrandDetail(): any;
     static CompanyMeta(): any;
     static CompanyMeta1(): any;

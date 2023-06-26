@@ -227,10 +227,11 @@ class CartModel {
   static CartDynamicInjection() {
     return Joi.object({
       allowed_refund: Joi.boolean(),
-      apply_expiry: Joi.string().allow(""),
+      apply_expiry: Joi.string().allow("").required(),
       article_ids: Joi.array().items(CartModel.Article()).required(),
       article_level_distribution: Joi.boolean().required(),
       cart_id: Joi.string().allow("").required(),
+      cart_value: Joi.number().required(),
       collection: CartModel.Collecttion().required(),
       injection_id: Joi.string().allow(""),
       message: Joi.string().allow("").allow(null).required(),
@@ -238,7 +239,7 @@ class CartModel {
       type: Joi.string().allow("").required(),
       user_id: Joi.string().allow(""),
       user_type: Joi.string().allow("").required(),
-      value: Joi.number(),
+      value: Joi.number().required(),
     });
   }
   static CartDynamicInjectionAdd() {
@@ -248,13 +249,14 @@ class CartModel {
       article_ids: Joi.array().items(CartModel.Article()).required(),
       article_level_distribution: Joi.boolean().required(),
       cart_id: Joi.string().allow("").required(),
+      cart_value: Joi.number().required(),
       collection: CartModel.Collecttion().required(),
       message: Joi.string().allow("").required(),
       meta: Joi.any(),
       type: Joi.string().allow("").required(),
       user_id: Joi.string().allow(""),
       user_type: Joi.string().allow("").required(),
-      value: Joi.number(),
+      value: Joi.number().required(),
     });
   }
   static CartDynamicInjectionResponse() {
@@ -269,13 +271,14 @@ class CartModel {
       article_ids: Joi.array().items(CartModel.Article()).required(),
       article_level_distribution: Joi.boolean().required(),
       cart_id: Joi.string().allow("").required(),
+      cart_value: Joi.number().required(),
       collection: CartModel.Collecttion().required(),
       message: Joi.string().allow("").required(),
       meta: Joi.any(),
       type: Joi.string().allow("").required(),
       user_id: Joi.string().allow(""),
       user_type: Joi.string().allow("").required(),
-      value: Joi.number(),
+      value: Joi.number().required(),
     });
   }
   static CartItem() {
@@ -1244,6 +1247,7 @@ class CartModel {
       gift_card: Joi.any(),
       identifier: Joi.any(),
       is_gift_visible: Joi.boolean(),
+      mto_quantity: Joi.number(),
       parent_item_identifiers: Joi.any(),
       price: CartModel.ArticlePriceInfo(),
       product_group_tags: Joi.array().items(Joi.string().allow("")),

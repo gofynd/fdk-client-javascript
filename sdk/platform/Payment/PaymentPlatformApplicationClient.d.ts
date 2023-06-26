@@ -99,6 +99,16 @@ declare class Payment {
     edcDeviceStats({}?: any): Promise<EdcDeviceStatsResponse>;
     /**
      * @param {Object} arg - Arg object.
+     * @param {ExtensionPaymentUpdateRequestSerializer} arg.body
+     * @returns {Promise<ExtensionPaymentUpdateResponseSerializer>} - Success response
+     * @summary: Extension will call this api to set the payment status of an order
+     * @description: Use this API to Extension will call this api to set the payment status of an order
+     */
+    extensionPaymentUpdate({ body }?: {
+        body: ExtensionPaymentUpdateRequestSerializer;
+    }): Promise<ExtensionPaymentUpdateResponseSerializer>;
+    /**
+     * @param {Object} arg - Arg object.
      * @param {string} arg.orderId -
      * @param {string} [arg.requestHash] -
      * @returns {Promise<RefundAccountResponse>} - Success response

@@ -10440,6 +10440,7 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
  | gift_card | string? |  yes  |  |
  | identifier | string? |  yes  |  |
  | is_gift_visible | boolean? |  yes  |  |
+ | mto_quantity | number? |  yes  |  |
  | parent_item_identifiers | string? |  yes  | contains information about parent item in case of parent-child relation |
  | price | [ArticlePriceInfo](#ArticlePriceInfo)? |  yes  | refers to article's base and converted price |
  | product_group_tags | [string]? |  yes  | product_group_tags to group articles in same group |

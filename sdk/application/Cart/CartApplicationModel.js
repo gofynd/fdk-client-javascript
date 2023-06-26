@@ -672,6 +672,7 @@ class CartModel {
       gift_card: Joi.any(),
       identifier: Joi.any(),
       is_gift_visible: Joi.boolean(),
+      mto_quantity: Joi.number(),
       parent_item_identifiers: Joi.any(),
       price: CartModel.ArticlePriceInfo(),
       product_group_tags: Joi.array().items(Joi.string().allow("")),
