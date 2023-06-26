@@ -11442,10 +11442,11 @@ class PlatformClient {
 /**
  * @typedef CartDynamicInjection
  * @property {boolean} [allowed_refund]
- * @property {string} [apply_expiry]
+ * @property {string} apply_expiry
  * @property {Article[]} article_ids
  * @property {boolean} article_level_distribution
  * @property {string} cart_id
+ * @property {number} cart_value
  * @property {Collecttion} collection
  * @property {string} [injection_id]
  * @property {string} message
@@ -11453,7 +11454,7 @@ class PlatformClient {
  * @property {string} type
  * @property {string} [user_id]
  * @property {string} user_type
- * @property {number} [value]
+ * @property {number} value
  */
 /**
  * @typedef CartDynamicInjectionAdd
@@ -11462,13 +11463,14 @@ class PlatformClient {
  * @property {Article[]} article_ids
  * @property {boolean} article_level_distribution
  * @property {string} cart_id
+ * @property {number} cart_value
  * @property {Collecttion} collection
  * @property {string} message
  * @property {Object} [meta]
  * @property {string} type
  * @property {string} [user_id]
  * @property {string} user_type
- * @property {number} [value]
+ * @property {number} value
  */
 /**
  * @typedef CartDynamicInjectionResponse
@@ -11481,13 +11483,14 @@ class PlatformClient {
  * @property {Article[]} article_ids
  * @property {boolean} article_level_distribution
  * @property {string} cart_id
+ * @property {number} cart_value
  * @property {Collecttion} collection
  * @property {string} message
  * @property {Object} [meta]
  * @property {string} type
  * @property {string} [user_id]
  * @property {string} user_type
- * @property {number} [value]
+ * @property {number} value
  */
 /**
  * @typedef CartItem

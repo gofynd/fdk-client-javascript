@@ -1432,6 +1432,7 @@ Coupon Created successfully
   "success": true,
   "data": {
     "injection_id": "skgjdfjge343456jjfd",
+    "cart_value": 100,
     "cart_id": "dgdfhdfhdf646454dfhdf",
     "user_id": "",
     "user_type": "athenticated",
@@ -3850,6 +3851,7 @@ Cart Dynamic injection Updated successfully
   "success": true,
   "data": {
     "injection_id": "skgjdfjge343456jjfd",
+    "cart_value": 100,
     "cart_id": "dgdfhdfhdf646454dfhdf",
     "user_id": "",
     "user_type": "athenticated",
@@ -4559,10 +4561,11 @@ Promotion updated successfully
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | allowed_refund | boolean? |  yes  |  |
- | apply_expiry | string? |  yes  |  |
+ | apply_expiry | string |  no  |  |
  | article_ids | [[Article](#Article)] |  no  |  |
  | article_level_distribution | boolean |  no  |  |
  | cart_id | string |  no  |  |
+ | cart_value | number |  no  |  |
  | collection | [Collecttion](#Collecttion) |  no  |  |
  | injection_id | string? |  yes  |  |
  | message | string |  no  |  |
@@ -4570,7 +4573,7 @@ Promotion updated successfully
  | type | string |  no  |  |
  | user_id | string? |  yes  |  |
  | user_type | string |  no  |  |
- | value | number? |  yes  |  |
+ | value | number |  no  |  |
  
 
 ---
@@ -4584,13 +4587,14 @@ Promotion updated successfully
  | article_ids | [[Article](#Article)] |  no  |  |
  | article_level_distribution | boolean |  no  |  |
  | cart_id | string |  no  |  |
+ | cart_value | number |  no  |  |
  | collection | [Collecttion](#Collecttion) |  no  |  |
  | message | string |  no  |  |
  | meta | string? |  yes  |  |
  | type | string |  no  |  |
  | user_id | string? |  yes  |  |
  | user_type | string |  no  |  |
- | value | number? |  yes  |  |
+ | value | number |  no  |  |
  
 
 ---
@@ -4613,13 +4617,14 @@ Promotion updated successfully
  | article_ids | [[Article](#Article)] |  no  |  |
  | article_level_distribution | boolean |  no  |  |
  | cart_id | string |  no  |  |
+ | cart_value | number |  no  |  |
  | collection | [Collecttion](#Collecttion) |  no  |  |
  | message | string |  no  |  |
  | meta | string? |  yes  |  |
  | type | string |  no  |  |
  | user_id | string? |  yes  |  |
  | user_type | string |  no  |  |
- | value | number? |  yes  |  |
+ | value | number |  no  |  |
  
 
 ---

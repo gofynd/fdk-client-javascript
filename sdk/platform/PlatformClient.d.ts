@@ -9552,10 +9552,11 @@ type CartDetailResponse = {
 };
 type CartDynamicInjection = {
     allowed_refund?: boolean;
-    apply_expiry?: string;
+    apply_expiry: string;
     article_ids: Article[];
     article_level_distribution: boolean;
     cart_id: string;
+    cart_value: number;
     collection: Collecttion;
     injection_id?: string;
     message: string;
@@ -9563,7 +9564,7 @@ type CartDynamicInjection = {
     type: string;
     user_id?: string;
     user_type: string;
-    value?: number;
+    value: number;
 };
 type CartDynamicInjectionAdd = {
     allowed_refund?: boolean;
@@ -9571,13 +9572,14 @@ type CartDynamicInjectionAdd = {
     article_ids: Article[];
     article_level_distribution: boolean;
     cart_id: string;
+    cart_value: number;
     collection: Collecttion;
     message: string;
     meta?: any;
     type: string;
     user_id?: string;
     user_type: string;
-    value?: number;
+    value: number;
 };
 type CartDynamicInjectionResponse = {
     data?: CartDynamicInjection;
@@ -9588,13 +9590,14 @@ type CartDynamicInjectionUpdate = {
     article_ids: Article[];
     article_level_distribution: boolean;
     cart_id: string;
+    cart_value: number;
     collection: Collecttion;
     message: string;
     meta?: any;
     type: string;
     user_id?: string;
     user_type: string;
-    value?: number;
+    value: number;
 };
 type CartItem = {
     product_id: string;
