@@ -19,33 +19,6 @@ class ServiceabilityValidator {
     }).required();
   }
 
-  static getDpAccount() {
-    return Joi.object({
-      pageNumber: Joi.number(),
-      pageSize: Joi.number(),
-      stage: Joi.string().allow(""),
-      paymentMode: Joi.string().allow(""),
-      transportType: Joi.string().allow(""),
-    }).required();
-  }
-
-  static getDpCompanyRules() {
-    return Joi.object({}).required();
-  }
-
-  static getDpRuleInsert() {
-    return Joi.object({
-      pageNumber: Joi.number(),
-      pageSize: Joi.number(),
-    }).required();
-  }
-
-  static getDpRules() {
-    return Joi.object({
-      ruleUid: Joi.string().allow("").required(),
-    }).required();
-  }
-
   static getEntityRegionView() {
     return Joi.object({
       body: ServiceabilityModel.EntityRegionView_Request().required(),
@@ -60,25 +33,6 @@ class ServiceabilityValidator {
       isActive: Joi.boolean(),
       channelIds: Joi.string().allow(""),
       q: Joi.string().allow(""),
-    }).required();
-  }
-
-  static getOptimalLocations() {
-    return Joi.object({
-      body: ServiceabilityModel.ReAssignStoreRequest().required(),
-    }).required();
-  }
-
-  static getRegionJobBulk() {
-    return Joi.object({
-      currentPageNumber: Joi.number(),
-      pageSize: Joi.number(),
-    }).required();
-  }
-
-  static getRegionJobBulkBatchId() {
-    return Joi.object({
-      batchId: Joi.string().allow("").required(),
     }).required();
   }
 
@@ -107,41 +61,10 @@ class ServiceabilityValidator {
     }).required();
   }
 
-  static postRegionJobBulk() {
-    return Joi.object({
-      body: ServiceabilityModel.BulkRegionJobSerializer().required(),
-    }).required();
-  }
-
-  static updateDpRule() {
-    return Joi.object({
-      ruleUid: Joi.string().allow("").required(),
-      body: ServiceabilityModel.DpRulesUpdateRequest().required(),
-    }).required();
-  }
-
   static updateZoneControllerView() {
     return Joi.object({
       zoneId: Joi.string().allow("").required(),
       body: ServiceabilityModel.ZoneUpdateRequest().required(),
-    }).required();
-  }
-
-  static upsertDpAccount() {
-    return Joi.object({
-      body: ServiceabilityModel.CompanyDpAccountRequest().required(),
-    }).required();
-  }
-
-  static upsertDpCompanyRules() {
-    return Joi.object({
-      body: ServiceabilityModel.DPCompanyRuleRequest().required(),
-    }).required();
-  }
-
-  static upsertDpRules() {
-    return Joi.object({
-      body: ServiceabilityModel.DpRuleRequest().required(),
     }).required();
   }
 }

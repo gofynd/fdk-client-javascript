@@ -584,69 +584,6 @@ class Payment {
 
   /**
    * @param {Object} arg - Arg object.
-   * @param {ExtensionPaymentUpdateRequestSerializer} arg.body
-   * @returns {Promise<ExtensionPaymentUpdateResponseSerializer>} - Success response
-   * @summary: Extension will call this api to set the payment status of an order
-   * @description: Use this API to Extension will call this api to set the payment status of an order
-   */
-  async extensionPaymentUpdate({ body } = {}) {
-    const { error } = PaymentValidator.extensionPaymentUpdate().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = PaymentValidator.extensionPaymentUpdate().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: "Parameter Validation warrnings for extensionPaymentUpdate",
-      });
-      Logger({ level: "WARN", message: warrning });
-    }
-
-    const query_params = {};
-
-    const response = await PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/payment/v1.0/company/${this.config.companyId}/application/${this.applicationId}/payment/update/`,
-      query_params,
-      body
-    );
-
-    const {
-      error: res_error,
-    } = PaymentModel.ExtensionPaymentUpdateResponseSerializer().validate(
-      response,
-      { abortEarly: false, allowUnknown: false }
-    );
-
-    if (res_error) {
-      Logger({
-        level: "WARN",
-        message: "Response Validation Warnnings for extensionPaymentUpdate",
-      });
-      Logger({ level: "WARN", message: res_error });
-    }
-
-    return response;
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
    * @param {string} arg.orderId -
    * @param {string} [arg.requestHash] -
    * @returns {Promise<RefundAccountResponse>} - Success response

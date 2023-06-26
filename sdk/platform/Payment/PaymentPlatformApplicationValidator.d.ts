@@ -9,7 +9,6 @@ declare class PaymentValidator {
     static edcAggregatorsAndModelList(): any;
     static edcDeviceList(): any;
     static edcDeviceStats(): any;
-    static extensionPaymentUpdate(): any;
     static getBankAccountDetailsOpenAPI(): any;
     static getBrandPaymentGatewayConfig(): any;
     static getEdcDevice(): any;
