@@ -12,27 +12,25 @@ class Order {
     this._conf = _conf;
     this._relativeUrls = {
       getCustomerDetailsByShipmentId:
-        "/service/application/orders/v1.0/orders/{order_id}/shipments/{shipment_id}/customer-details",
+        "/service/application/order/v1.0/orders/{order_id}/shipments/{shipment_id}/customer-details",
       getInvoiceByShipmentId:
-        "/service/application/orders/v1.0/orders/shipments/{shipment_id}/invoice",
-      getOrderById: "/service/application/orders/v1.0/orders/{order_id}",
-      getOrders: "/service/application/orders/v1.0/orders",
+        "/service/application/order/v1.0/orders/shipments/{shipment_id}/invoice",
+      getOrderById: "/service/application/order/v1.0/orders/{order_id}",
+      getOrders: "/service/application/order/v1.0/orders",
       getPosOrderById:
-        "/service/application/orders/v1.0/orders/pos-order/{order_id}",
+        "/service/application/order/v1.0/orders/pos-order/{order_id}",
       getShipmentBagReasons:
-        "/service/application/orders/v1.0/orders/shipments/{shipment_id}/bags/{bag_id}/reasons",
+        "/service/application/order/v1.0/orders/shipments/{shipment_id}/bags/{bag_id}/reasons",
       getShipmentById:
-        "/service/application/orders/v1.0/orders/shipments/{shipment_id}",
+        "/service/application/order/v1.0/orders/shipments/{shipment_id}",
       getShipmentReasons:
-        "/service/application/orders/v1.0/orders/shipments/{shipment_id}/reasons",
+        "/service/application/order/v1.0/orders/shipments/{shipment_id}/reasons",
       sendOtpToShipmentCustomer:
-        "/service/application/orders/v1.0/orders/{order_id}/shipments/{shipment_id}/otp/send/",
+        "/service/application/order/v1.0/orders/{order_id}/shipments/{shipment_id}/otp/send/",
       trackShipment:
-        "/service/application/orders/v1.0/orders/shipments/{shipment_id}/track",
-      updateShipmentStatus:
-        "/service/application/order-manage/v1.0/orders/shipments/{shipment_id}/status",
+        "/service/application/order/v1.0/orders/shipments/{shipment_id}/track",
       verifyOtpShipmentCustomer:
-        "/service/application/orders/v1.0/orders/{order_id}/shipments/{shipment_id}/otp/verify/",
+        "/service/application/order/v1.0/orders/{order_id}/shipments/{shipment_id}/otp/verify/",
     };
     this._urls = Object.entries(this._relativeUrls).reduce(
       (urls, [method, relativeUrl]) => {
@@ -712,70 +710,6 @@ class Order {
       Logger({
         level: "WARN",
         message: "Response Validation Warnnings for trackShipment",
-      });
-      Logger({ level: "WARN", message: res_error });
-    }
-
-    return response;
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.shipmentId -
-   * @param {UpdateShipmentStatusRequest} arg.body
-   * @returns {Promise<ShipmentApplicationStatusResponse>} - Success response
-   * @summary:
-   * @description: updateShipmentStatus
-   */
-  async updateShipmentStatus({ shipmentId, body } = {}) {
-    const { error } = OrderValidator.updateShipmentStatus().validate(
-      { shipmentId, body },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = OrderValidator.updateShipmentStatus().validate(
-      { shipmentId, body },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: "Parameter Validation warrnings for updateShipmentStatus",
-      });
-      Logger({ level: "WARN", message: warrning });
-    }
-
-    const query_params = {};
-
-    const xHeaders = {};
-
-    const response = await ApplicationAPIClient.execute(
-      this._conf,
-      "put",
-      constructUrl({
-        url: this._urls["updateShipmentStatus"],
-        params: { shipmentId },
-      }),
-      query_params,
-      body,
-      xHeaders
-    );
-
-    const {
-      error: res_error,
-    } = OrderModel.ShipmentApplicationStatusResponse().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
-
-    if (res_error) {
-      Logger({
-        level: "WARN",
-        message: "Response Validation Warnnings for updateShipmentStatus",
       });
       Logger({ level: "WARN", message: res_error });
     }

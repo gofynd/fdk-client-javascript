@@ -26,8 +26,6 @@ const Rewards = require("./Rewards/RewardsPlatformApplicationClient");
 
 const Partner = require("./Partner/PartnerPlatformApplicationClient");
 
-const Serviceability = require("./Serviceability/ServiceabilityPlatformApplicationClient");
-
 const { FDKClientValidationError } = require("../common/FDKError");
 
 class PlatformApplicationClient {
@@ -63,8 +61,6 @@ class PlatformApplicationClient {
     this.rewards = new Rewards(config, applicationId);
 
     this.partner = new Partner(config, applicationId);
-
-    this.serviceability = new Serviceability(config, applicationId);
   }
 
   setExtraHeaders(header) {
@@ -1672,99 +1668,5 @@ class PlatformApplicationClient {
 /** @typedef Modifier */
 /** @typedef RequestBodyAuditLog */
 /** @typedef ResourceNotFound */
-
-/** @typedef AddressResponse */
-/** @typedef ApplicationCompanyDpViewRequest */
-/** @typedef ApplicationCompanyDpViewResponse */
-/** @typedef ApplicationSelfShipConfig */
-/** @typedef ApplicationSelfShipConfigResponse */
-/** @typedef ApplicationServiceabilityConfig */
-/** @typedef ApplicationServiceabilityConfigResponse */
-/** @typedef CommonError */
-/** @typedef CompanyDpAccountListResponse */
-/** @typedef CompanyDpAccountRequest */
-/** @typedef CompanyDpAccountResponse */
-/** @typedef CompanyStoreView_PageItems */
-/** @typedef CompanyStoreView_Response */
-/** @typedef ContactNumberResponse */
-/** @typedef CreatedByResponse */
-/** @typedef CreateZoneData */
-/** @typedef DocumentsResponse */
-/** @typedef Dp */
-/** @typedef Dp1 */
-/** @typedef DpAccountFailureResponse */
-/** @typedef DPApplicationRuleRequest */
-/** @typedef DPApplicationRuleResponse */
-/** @typedef DPCompanyRuleRequest */
-/** @typedef DPCompanyRuleResponse */
-/** @typedef DpIds */
-/** @typedef DpMultipleRuleSuccessResponse */
-/** @typedef DpRule */
-/** @typedef DpRuleRequest */
-/** @typedef DpRuleResponse */
-/** @typedef DpRuleSuccessResponse */
-/** @typedef DpRulesUpdateRequest */
-/** @typedef DpRuleUpdateSuccessResponse */
-/** @typedef DpSchemaInRuleListing */
-/** @typedef EinvoiceResponse */
-/** @typedef EntityRegionView_Error */
-/** @typedef EntityRegionView_Items */
-/** @typedef EntityRegionView_page */
-/** @typedef EntityRegionView_Request */
-/** @typedef EntityRegionView_Response */
-/** @typedef Error */
-/** @typedef ErrorResponse */
-/** @typedef EwayBillResponse */
-/** @typedef FailureResponse */
-/** @typedef GetSingleZoneDataViewResponse */
-/** @typedef GetStoresViewResponse */
-/** @typedef GetZoneDataViewChannels */
-/** @typedef GetZoneDataViewItems */
-/** @typedef GetZoneFromApplicationIdViewResponse */
-/** @typedef GetZoneFromPincodeViewRequest */
-/** @typedef GetZoneFromPincodeViewResponse */
-/** @typedef GstCredentialsResponse */
-/** @typedef IntegrationTypeResponse */
-/** @typedef ItemResponse */
-/** @typedef ListViewChannels */
-/** @typedef ListViewItems */
-/** @typedef ListViewProduct */
-/** @typedef ListViewResponse */
-/** @typedef ListViewSummary */
-/** @typedef LogisticsResponse */
-/** @typedef ManagerResponse */
-/** @typedef MobileNo */
-/** @typedef ModifiedByResponse */
-/** @typedef OpeningClosing */
-/** @typedef Page */
-/** @typedef PincodeBulkViewResponse */
-/** @typedef PincodeCodStatusListingPage */
-/** @typedef PincodeCodStatusListingRequest */
-/** @typedef PincodeCodStatusListingResponse */
-/** @typedef PincodeCodStatusListingSummary */
-/** @typedef PincodeMopBulkData */
-/** @typedef PincodeMopData */
-/** @typedef PincodeMOPresponse */
-/** @typedef PincodeMopUpdateAuditHistoryPaging */
-/** @typedef PincodeMopUpdateAuditHistoryRequest */
-/** @typedef PincodeMopUpdateAuditHistoryResponse */
-/** @typedef PincodeMopUpdateAuditHistoryResponseData */
-/** @typedef PincodeMopUpdateResponse */
-/** @typedef ProductReturnConfigResponse */
-/** @typedef ReAssignStoreRequest */
-/** @typedef ReAssignStoreResponse */
-/** @typedef SelfShipResponse */
-/** @typedef ServiceabilityErrorResponse */
-/** @typedef ServiceabilityPageResponse */
-/** @typedef TimmingResponse */
-/** @typedef UpdateZoneData */
-/** @typedef WarningsResponse */
-/** @typedef ZoneDataItem */
-/** @typedef ZoneMappingType */
-/** @typedef ZoneProductTypes */
-/** @typedef ZoneRequest */
-/** @typedef ZoneResponse */
-/** @typedef ZoneSuccessResponse */
-/** @typedef ZoneUpdateRequest */
 
 module.exports = PlatformApplicationClient;

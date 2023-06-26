@@ -13,7 +13,6 @@ declare class Order {
         getShipmentReasons: string;
         sendOtpToShipmentCustomer: string;
         trackShipment: string;
-        updateShipmentStatus: string;
         verifyOtpShipmentCustomer: string;
     };
     _urls: {};
@@ -156,18 +155,6 @@ declare class Order {
     trackShipment({ shipmentId }?: {
         shipmentId: string;
     }): Promise<ShipmentTrack>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.shipmentId -
-     * @param {UpdateShipmentStatusRequest} arg.body
-     * @returns {Promise<ShipmentApplicationStatusResponse>} - Success response
-     * @summary:
-     * @description: updateShipmentStatus
-     */
-    updateShipmentStatus({ shipmentId, body }?: {
-        shipmentId: string;
-        body: UpdateShipmentStatusRequest;
-    }): Promise<ShipmentApplicationStatusResponse>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.orderId - A unique number used for identifying and
