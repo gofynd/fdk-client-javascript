@@ -11449,11 +11449,11 @@ class PlatformClient {
  * @property {number} cart_value
  * @property {Collecttion} collection
  * @property {string} [injection_id]
+ * @property {boolean} is_authenticated
  * @property {string} message
  * @property {Object} [meta]
  * @property {string} type
  * @property {string} [user_id]
- * @property {string} user_type
  * @property {number} value
  */
 /**
@@ -11465,11 +11465,11 @@ class PlatformClient {
  * @property {string} cart_id
  * @property {number} cart_value
  * @property {Collecttion} collection
+ * @property {boolean} is_authenticated
  * @property {string} message
  * @property {Object} [meta]
  * @property {string} type
  * @property {string} [user_id]
- * @property {string} user_type
  * @property {number} value
  */
 /**
@@ -11485,11 +11485,11 @@ class PlatformClient {
  * @property {string} cart_id
  * @property {number} cart_value
  * @property {Collecttion} collection
+ * @property {boolean} is_authenticated
  * @property {string} message
  * @property {Object} [meta]
  * @property {string} type
  * @property {string} [user_id]
- * @property {string} user_type
  * @property {number} value
  */
 /**

@@ -1435,7 +1435,7 @@ Coupon Created successfully
     "cart_value": 100,
     "cart_id": "dgdfhdfhdf646454dfhdf",
     "user_id": "",
-    "user_type": "athenticated",
+    "is_authenticated": true,
     "article_ids": [
       {
         "id": "90876545567ad89",
@@ -3854,7 +3854,7 @@ Cart Dynamic injection Updated successfully
     "cart_value": 100,
     "cart_id": "dgdfhdfhdf646454dfhdf",
     "user_id": "",
-    "user_type": "athenticated",
+    "is_authenticated": true,
     "article_ids": [
       {
         "id": "90876545567ad89",
@@ -4568,11 +4568,11 @@ Promotion updated successfully
  | cart_value | number |  no  |  |
  | collection | [Collecttion](#Collecttion) |  no  |  |
  | injection_id | string? |  yes  |  |
+ | is_authenticated | boolean |  no  |  |
  | message | string |  no  |  |
  | meta | string? |  yes  |  |
  | type | string |  no  |  |
  | user_id | string? |  yes  |  |
- | user_type | string |  no  |  |
  | value | number |  no  |  |
  
 
@@ -4589,11 +4589,11 @@ Promotion updated successfully
  | cart_id | string |  no  |  |
  | cart_value | number |  no  |  |
  | collection | [Collecttion](#Collecttion) |  no  |  |
+ | is_authenticated | boolean |  no  |  |
  | message | string |  no  |  |
  | meta | string? |  yes  |  |
  | type | string |  no  |  |
  | user_id | string? |  yes  |  |
- | user_type | string |  no  |  |
  | value | number |  no  |  |
  
 
@@ -4619,11 +4619,11 @@ Promotion updated successfully
  | cart_id | string |  no  |  |
  | cart_value | number |  no  |  |
  | collection | [Collecttion](#Collecttion) |  no  |  |
+ | is_authenticated | boolean |  no  |  |
  | message | string |  no  |  |
  | meta | string? |  yes  |  |
  | type | string |  no  |  |
  | user_id | string? |  yes  |  |
- | user_type | string |  no  |  |
  | value | number |  no  |  |
  
 
