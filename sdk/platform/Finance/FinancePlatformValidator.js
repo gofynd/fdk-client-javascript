@@ -38,12 +38,6 @@ class FinanceValidator {
     }).required();
   }
 
-  static getInvoiceType() {
-    return Joi.object({
-      body: FinanceModel.GetInvoiceListRequest().required(),
-    }).required();
-  }
-
   static getReason() {
     return Joi.object({
       body: FinanceModel.GetReasonRequest().required(),
@@ -65,6 +59,12 @@ class FinanceValidator {
   static invoicePDF() {
     return Joi.object({
       body: FinanceModel.InvoicePdfRequest().required(),
+    }).required();
+  }
+
+  static invoiceType() {
+    return Joi.object({
+      body: FinanceModel.InvoiceTypeRequest().required(),
     }).required();
   }
 

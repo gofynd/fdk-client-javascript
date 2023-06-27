@@ -55,7 +55,6 @@ declare class ServiceabilityModel {
     static ProductReturnConfigResponse(): any;
     static ServiceabilityErrorResponse(): any;
     static ServiceabilityPageResponse(): any;
-    static ServiceabilityrErrorResponse(): any;
     static TimmingResponse(): any;
     static UpdateZoneData(): any;
     static WarningsResponse(): any;

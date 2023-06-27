@@ -427,42 +427,43 @@ Success
 ```json
 {
   "name": "Uniket B2B",
-  "description": "Uniket B2B - India's Fastest Growing Retail Store - Aapki Badhti Dukaan",
+  "description": "Uniket",
   "logo": {
-    "secure_url": "https://hdn-1.addsale.com/x0/company/1/applications/000000000000000000000004/application/pictures/free-logo/original/oEf3SQjda-Uniket-B2B.png"
+    "secure_url": "https://cdn.pixelbin.io/v2/falling-surf-7c8bb8/fyndnp/wrkr/x5/company/1/applications/000000000000000000000004/application/pictures/free-logo/original/9TiHPuNrQ-Uniket-B2B.png"
   },
   "mobile_logo": {
-    "secure_url": "https://hdn-1.addsale.com/x0/company/1/applications/000000000000000000000004/application/pictures/free-logo/original/oEf3SQjda-Uniket-B2B.png"
+    "secure_url": "https://cdn.pixelbin.io/v2/falling-surf-7c8bb8/fyndnp/wrkr/x5/company/1/applications/000000000000000000000004/application/pictures/free-logo/original/gWleT4PUn-Uniket-B2B.png"
   },
   "favicon": {
-    "secure_url": "https://hdn-1.addsale.com/x0/company/1/applications/000000000000000000000004/application/pictures/favicon/original/y3h6SSlY5-Uniket-B2B.png"
+    "secure_url": "https://cdn.pixelbin.io/v2/falling-surf-7c8bb8/fyndnp/wrkr/x5/company/1/applications/000000000000000000000004/application/pictures/favicon/original/U-pbhmQ0n-Uniket-B2B.png"
   },
   "banner": {
-    "secure_url": "https://hdn-1.addsale.com/x0/company/1/applications/000000000000000000000004/application/pictures/landscape-banner/original/uSwlNpygq-Uniket-B2B.png"
+    "secure_url": ""
   },
   "domain": {
     "verified": true,
     "is_primary": true,
-    "is_shortlink": false,
-    "_id": "5eb1177748312a3bd55d0f1e",
-    "name": "uniket.hostx0.de"
+    "is_shortlink": true,
+    "_id": "63a1586c57475b0b82154707",
+    "name": "uniket.hostx5.de"
   },
   "domains": [
     {
       "verified": true,
-      "is_primary": true,
+      "is_primary": false,
       "is_shortlink": false,
-      "_id": "5eb1177748312a3bd55d0f1e",
-      "name": "uniket.hostx0.de"
+      "_id": "63a06296820425006809fb44",
+      "name": "dbsfpkvtvh.hostx5.de"
     },
     {
       "verified": true,
-      "is_primary": false,
+      "is_primary": true,
       "is_shortlink": true,
-      "_id": "5f0858c5f86e00cd42dccc8d",
-      "name": "jd.hostx0.de"
+      "_id": "63a1586c57475b0b82154707",
+      "name": "uniket.hostx5.de"
     }
   ],
+  "slug": "Uniket-jb9-51",
   "company_id": 1,
   "_id": "000000000000000000000004"
 }
@@ -1211,7 +1212,82 @@ Success
 <summary><i>&nbsp; Example:</i></summary>
 
 ```json
-
+{
+  "items": [
+    {
+      "website": {
+        "enabled": true,
+        "basepath": "/"
+      },
+      "cors": {
+        "domains": []
+      },
+      "auth": {
+        "enabled": true
+      },
+      "_id": "6369fc8124ab1b2008130d8a",
+      "description": "shopsense_description",
+      "channel_type": "website-and-mobile-apps",
+      "cache_ttl": -1,
+      "internal": false,
+      "is_active": true,
+      "mode": "live",
+      "company_id": 1,
+      "name": "SHOPSENSE",
+      "owner": "f8a0be4408d00372226effa0",
+      "logo": {
+        "secure_url": "https://hdn-1.addsale.com/x0/company/164/applications/5efc9913f474c329718e3690/application/pictures/free-logo/original/olqHM8LNr-JioMart-Groceries.png"
+      },
+      "favicon": {
+        "secure_url": "https://hdn-1.addsale.com/x0/company/164/applications/5efc9913f474c329718e3690/application/pictures/free-logo/original/olqHM8LNr-JioMart-Groceries.png"
+      },
+      "banner": {
+        "secure_url": "https://hdn-1.addsale.com/x0/company/164/applications/5efc9913f474c329718e3690/application/pictures/landscape-banner/original/D2fr98CUH-JioMart-Groceries.png"
+      },
+      "domains": [
+        {
+          "verified": true,
+          "is_primary": true,
+          "is_shortlink": true,
+          "_id": "6369fc8124ab1b5b6a130d8b",
+          "name": "shopsenseretailtechnologies.hostx5.de"
+        }
+      ],
+      "token": "2Aj03u6rH",
+      "tokens": [
+        {
+          "token": "2Aj03u6rH",
+          "created_at": "2022-11-08T06:51:45.682Z"
+        }
+      ],
+      "redirections": [],
+      "meta": [],
+      "created_at": "2022-11-08T06:51:45.682Z",
+      "modified_at": "2023-05-26T06:04:32.907Z",
+      "slug": "SHOPSE-hgv-77",
+      "__v": 5,
+      "status": "active",
+      "mobile_logo": {
+        "secure_url": ""
+      },
+      "domain": {
+        "verified": true,
+        "is_primary": true,
+        "is_shortlink": true,
+        "_id": "6369fc8124ab1b5b6a130d8b",
+        "name": "shopsenseretailtechnologies.hostx5.de"
+      },
+      "id": "6369fc8124ab1b2008130d8a"
+    }
+  ],
+  "page": {
+    "type": "number",
+    "current": 1,
+    "size": 100,
+    "item_total": 40,
+    "has_next": false
+  }
+}
 ```
 </details>
 
@@ -5254,7 +5330,7 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | _id | string? |  yes  | The unique identifier for the sales channel details |
+ | _id | string? |  yes  | The unique identifier (24-digit Mongo Object ID) for the sales channel details |
  | banner | [SecureUrl](#SecureUrl) |  no  |  |
  | description | string |  no  | It gives a detailed information about the sales channel. It is required. |
  | domain | [Domain](#Domain)? |  yes  |  |
@@ -5263,7 +5339,7 @@ Success
  | logo | [SecureUrl](#SecureUrl) |  no  |  |
  | mobile_logo | [SecureUrl](#SecureUrl) |  no  |  |
  | name | string |  no  | Name of the sales channel. It is required. |
- | slug | string? |  yes  |  |
+ | slug | string? |  yes  | The unique identifier for the sales channel details |
  
 
 ---

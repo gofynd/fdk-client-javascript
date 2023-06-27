@@ -17,6 +17,7 @@ Logistics Configuration API's allows you to configure zone, application logistic
 * [getStore](#getstore)
 * [getZoneDataView](#getzonedataview)
 * [getZoneFromPincodeView](#getzonefrompincodeview)
+* [getZoneListView](#getzonelistview)
 * [getZonesFromApplicationIdView](#getzonesfromapplicationidview)
 * [updatePincodeAuditHistory](#updatepincodeaudithistory)
 * [updatePincodeBulkView](#updatepincodebulkview)
@@ -211,14 +212,22 @@ Company Store View of application.
 
 ```javascript
 // Promise
-const promise = platformClient.serviceability.getCompanyStoreView();
+const promise = platformClient.serviceability.getCompanyStoreView({  pageNumber : value,
+ pageSize : value });
 
 // Async/Await
-const data = await platformClient.serviceability.getCompanyStoreView();
+const data = await platformClient.serviceability.getCompanyStoreView({  pageNumber : value,
+ pageSize : value });
 ```
 
 
 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| pageNumber | number | no | index of the item to start returning with |    
+| pageSize | number | no | determines the items to be displayed in a page |  
 
 
 
@@ -757,6 +766,83 @@ Response status_code
 ---
 
 
+### getZoneListView
+Zone List of application.
+
+
+
+```javascript
+// Promise
+const promise = platformClient.serviceability.getZoneListView({  pageNumber : value,
+ pageNo : value,
+ pageSize : value,
+ name : value,
+ isActive : value,
+ channelIds : value,
+ q : value,
+ zoneId : value });
+
+// Async/Await
+const data = await platformClient.serviceability.getZoneListView({  pageNumber : value,
+ pageNo : value,
+ pageSize : value,
+ name : value,
+ isActive : value,
+ channelIds : value,
+ q : value,
+ zoneId : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| pageNumber | number | no | index of the item to start returning with |    
+| pageNo | number | no | index of the item to start returning with |    
+| pageSize | number | no | determines the items to be displayed in a page |    
+| name | string | no | Name of particular zone in the seller account |    
+| isActive | boolean | no | status of  zone whether active or inactive |    
+| channelIds | string | no | zones associated with the given channel ids' |    
+| q | string | no | search with name as a free text |    
+| zoneId | Array<string> | no | list of zones to query for |  
+
+
+
+This API returns Zone List View of the application.
+
+*Returned Response:*
+
+
+
+
+[ListViewResponse](#ListViewResponse)
+
+Zone List of application in descending order of their last modified date.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
 ### getZonesFromApplicationIdView
 GET zones from the application_id.
 
@@ -1140,7 +1226,7 @@ Response status_code
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | data | [ApplicationServiceabilityConfig](#ApplicationServiceabilityConfig)? |  yes  |  |
- | error | [ServiceabilityrErrorResponse](#ServiceabilityrErrorResponse)? |  yes  |  |
+ | error | [ServiceabilityErrorResponse](#ServiceabilityErrorResponse)? |  yes  |  |
  | success | boolean |  no  |  |
  
 
@@ -1767,17 +1853,6 @@ Response status_code
  | item_total | number? |  yes  |  |
  | size | number? |  yes  |  |
  | type | string? |  yes  |  |
- 
-
----
-
-#### [ServiceabilityrErrorResponse](#ServiceabilityrErrorResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | message | string |  no  |  |
- | type | string |  no  |  |
- | value | string |  no  |  |
  
 
 ---

@@ -14,11 +14,11 @@ Handles all finance related activities
 * [generateReport](#generatereport)
 * [getAffiliate](#getaffiliate)
 * [getData](#getdata)
-* [getInvoiceType](#getinvoicetype)
 * [getReason](#getreason)
 * [getReportList](#getreportlist)
 * [invoiceListing](#invoicelisting)
 * [invoicePDF](#invoicepdf)
+* [invoiceType](#invoicetype)
 * [isCreditlinePlatform](#iscreditlineplatform)
 * [paymentProcess](#paymentprocess)
 
@@ -404,74 +404,6 @@ Success
 ---
 
 
-### getInvoiceType
-
-
-
-
-```javascript
-// Promise
-const promise = platformClient.finance.getInvoiceType({  body : value });
-
-// Async/Await
-const data = await platformClient.finance.getInvoiceType({  body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |
-| body | [GetInvoiceListRequest](#GetInvoiceListRequest) | yes | Request body |
-
-
-
-
-*Returned Response:*
-
-
-
-
-[GetInvoiceListResponse](#GetInvoiceListResponse)
-
-Success
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "summary": "Example Response",
-  "value": {
-    "success": true,
-    "invoice_type_list": {
-      "text": "Seller Invoice",
-      "value": "1ec78cf4-2d25-4bba-9d42-6515dfaf1751"
-    },
-    "payment_status_list": {
-      "text": "Unpaid",
-      "value": "unaid"
-    }
-  }
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
 ### getReason
 
 
@@ -625,18 +557,32 @@ Success
 {
   "summary": "Example Response",
   "value": {
-    "items": {
-      "company": "(2)Example Company 2",
-      "invoice_number": "INV-002",
-      "invoice_type": "Example Type",
-      "invoice_date": "05-06-23",
-      "period": "02-05-23 - 05-05-23",
-      "amount": 200,
-      "status": "PAID",
-      "due_date": "07-05-23",
-      "is_downloadable": true,
-      "invoice_id": 67890
-    },
+    "items": [
+      {
+        "company": "(1)Example Company 1",
+        "invoice_number": "INV-001",
+        "invoice_type": "Example Type",
+        "invoice_date": "05-05-23",
+        "period": "02-05-23 - 05-05-23",
+        "amount": 100,
+        "status": "UNPAID",
+        "due_date": "07-05-23",
+        "is_downloadable": false,
+        "invoice_id": 12345
+      },
+      {
+        "company": "(2)Example Company 2",
+        "invoice_number": "INV-002",
+        "invoice_type": "Example Type",
+        "invoice_date": "05-06-23",
+        "period": "02-05-23 - 05-05-23",
+        "amount": 200,
+        "status": "PAID",
+        "due_date": "07-05-23",
+        "is_downloadable": true,
+        "invoice_id": 67890
+      }
+    ],
     "unpaid_invoice_data": {
       "total_unpaid_amount": 500,
       "total_unpaid_invoice_count": 5,
@@ -715,6 +661,86 @@ Success
     "error": [
       "invoice_no1",
       "invoice_no2"
+    ]
+  }
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### invoiceType
+
+
+
+
+```javascript
+// Promise
+const promise = platformClient.finance.invoiceType({  body : value });
+
+// Async/Await
+const data = await platformClient.finance.invoiceType({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [InvoiceTypeRequest](#InvoiceTypeRequest) | yes | Request body |
+
+
+
+
+*Returned Response:*
+
+
+
+
+[InvoiceTypeResponse](#InvoiceTypeResponse)
+
+Success
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "summary": "Example Response",
+  "value": {
+    "success": true,
+    "invoice_type_list": [
+      {
+        "text": "Creditline Invoice",
+        "value": "1zz78cf4-2d25-4bba-9d42-6515dfaf1751"
+      },
+      {
+        "text": "Seller Invoice",
+        "value": "1ec78cf4-2d25-4bba-9d42-6515dfaf1751"
+      }
+    ],
+    "payment_status_list": [
+      {
+        "text": "Paid",
+        "value": "paid"
+      },
+      {
+        "text": "Unpaid",
+        "value": "unaid"
+      }
     ]
   }
 }
@@ -1099,35 +1125,6 @@ Success
 
 ---
 
-#### [GetInvoiceListPayloadData](#GetInvoiceListPayloadData)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | is_active | boolean? |  yes  |  |
- 
-
----
-
-#### [GetInvoiceListRequest](#GetInvoiceListRequest)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | data | [GetInvoiceListPayloadData](#GetInvoiceListPayloadData)? |  yes  |  |
- 
-
----
-
-#### [GetInvoiceListResponse](#GetInvoiceListResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | invoice_type_list | [string]? |  yes  |  |
- | payment_status_list | [string]? |  yes  |  |
- | success | boolean? |  yes  |  |
- 
-
----
-
 #### [GetReason](#GetReason)
 
  | Properties | Type | Nullable | Description |
@@ -1264,6 +1261,45 @@ Success
  | data | [string]? |  yes  |  |
  | error | [string]? |  yes  |  |
  | success | boolean? |  yes  |  |
+ 
+
+---
+
+#### [InvoiceTypePayloadData](#InvoiceTypePayloadData)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | is_active | boolean? |  yes  |  |
+ 
+
+---
+
+#### [InvoiceTypeRequest](#InvoiceTypeRequest)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | data | [InvoiceTypePayloadData](#InvoiceTypePayloadData)? |  yes  |  |
+ 
+
+---
+
+#### [InvoiceTypeResponse](#InvoiceTypeResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | invoice_type_list | [[InvoiceTypeResponseItems](#InvoiceTypeResponseItems)]? |  yes  |  |
+ | payment_status_list | [[InvoiceTypeResponseItems](#InvoiceTypeResponseItems)]? |  yes  |  |
+ | success | boolean? |  yes  |  |
+ 
+
+---
+
+#### [InvoiceTypeResponseItems](#InvoiceTypeResponseItems)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | text | string? |  yes  |  |
+ | value | string? |  yes  |  |
  
 
 ---

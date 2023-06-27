@@ -64,16 +64,6 @@ declare class Finance {
     }): Promise<GetEngineResponse>;
     /**
      * @param {Object} arg - Arg object.
-     * @param {GetInvoiceListRequest} arg.body
-     * @returns {Promise<GetInvoiceListResponse>} - Success response
-     * @summary:
-     * @description:
-     */
-    getInvoiceType({ body }?: {
-        body: GetInvoiceListRequest;
-    }): Promise<GetInvoiceListResponse>;
-    /**
-     * @param {Object} arg - Arg object.
      * @param {GetReasonRequest} arg.body
      * @returns {Promise<GetReasonResponse>} - Success response
      * @summary:
@@ -112,6 +102,16 @@ declare class Finance {
     invoicePDF({ body }?: {
         body: InvoicePdfRequest;
     }): Promise<InvoicePdfResponse>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {InvoiceTypeRequest} arg.body
+     * @returns {Promise<InvoiceTypeResponse>} - Success response
+     * @summary:
+     * @description:
+     */
+    invoiceType({ body }?: {
+        body: InvoiceTypeRequest;
+    }): Promise<InvoiceTypeResponse>;
     /**
      * @param {Object} arg - Arg object.
      * @param {IsCreditlinePlatformRequest} arg.body

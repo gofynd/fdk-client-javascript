@@ -452,6 +452,7 @@ class PlatformClient {
  * @property {CommunicationDetails} [support_email]
  * @property {CommunicationDetails} [support_faq]
  * @property {CommunicationDetails} [support_phone]
+ * @property {string} [type]
  */
 /**
  * @typedef Ticket
@@ -6858,7 +6859,7 @@ class PlatformClient {
  * @property {Object} [_custom_json]
  * @property {string} app_id
  * @property {boolean} [is_active]
- * @property {SearchKeywordResult1} result
+ * @property {SearchKeywordResult} result
  * @property {string[]} [words]
  */
 /**
@@ -6869,7 +6870,7 @@ class PlatformClient {
  * @property {boolean} [is_active]
  * @property {Object} [modified_by]
  * @property {string} [modified_on]
- * @property {BoostBury1} [ranking]
+ * @property {BoostBury} [ranking]
  * @property {string[]} words
  */
 /**
@@ -7311,7 +7312,7 @@ class PlatformClient {
  * @property {Object} [_custom_json]
  * @property {string} app_id
  * @property {boolean} [is_active]
- * @property {SearchKeywordResult} result
+ * @property {SearchKeywordResult1} result
  * @property {string} [uid]
  * @property {string[]} [words]
  */
@@ -8147,7 +8148,7 @@ class PlatformClient {
  * @property {NetQuantity} [net_quantity]
  * @property {number} [no_of_boxes]
  * @property {string[]} [product_group_tag]
- * @property {ProductPublish1} [product_publish]
+ * @property {ProductPublish} [product_publish]
  * @property {string} [requester]
  * @property {ReturnConfig} return_config
  * @property {string} [short_description]
@@ -8343,7 +8344,7 @@ class PlatformClient {
  * @property {string} [pending]
  * @property {string} [primary_color]
  * @property {string[]} [product_group_tag]
- * @property {ProductPublish} [product_publish]
+ * @property {ProductPublish1} [product_publish]
  * @property {ReturnConfigResponse} [return_config]
  * @property {string} [short_description]
  * @property {string} [size_guide]
@@ -8572,7 +8573,7 @@ class PlatformClient {
  * @property {boolean} [is_active]
  * @property {UserDetail} [modified_by]
  * @property {string} modified_on
- * @property {BoostBury} [ranking]
+ * @property {BoostBury1} [ranking]
  * @property {UserDetail} [verified_by]
  * @property {string} [verified_on]
  * @property {string[]} words
@@ -13799,7 +13800,7 @@ class PlatformClient {
 /**
  * @typedef ApplicationServiceabilityConfigResponse
  * @property {ApplicationServiceabilityConfig} [data]
- * @property {ServiceabilityrErrorResponse} [error]
+ * @property {ServiceabilityErrorResponse} [error]
  * @property {boolean} success
  */
 /**
@@ -14168,12 +14169,6 @@ class PlatformClient {
  * @property {string} [type]
  */
 /**
- * @typedef ServiceabilityrErrorResponse
- * @property {string} message
- * @property {string} type
- * @property {string} value
- */
-/**
  * @typedef TimmingResponse
  * @property {OpeningClosing} [closing]
  * @property {boolean} [open]
@@ -14375,20 +14370,6 @@ class PlatformClient {
  * @property {boolean} [success]
  */
 /**
- * @typedef GetInvoiceListPayloadData
- * @property {boolean} [is_active]
- */
-/**
- * @typedef GetInvoiceListRequest
- * @property {GetInvoiceListPayloadData} [data]
- */
-/**
- * @typedef GetInvoiceListResponse
- * @property {Object[]} [invoice_type_list]
- * @property {Object[]} [payment_status_list]
- * @property {boolean} [success]
- */
-/**
  * @typedef GetReason
  * @property {string} [reason_type]
  */
@@ -14462,6 +14443,25 @@ class PlatformClient {
  * @property {string[]} [data]
  * @property {string[]} [error]
  * @property {boolean} [success]
+ */
+/**
+ * @typedef InvoiceTypePayloadData
+ * @property {boolean} [is_active]
+ */
+/**
+ * @typedef InvoiceTypeRequest
+ * @property {InvoiceTypePayloadData} [data]
+ */
+/**
+ * @typedef InvoiceTypeResponse
+ * @property {InvoiceTypeResponseItems[]} [invoice_type_list]
+ * @property {InvoiceTypeResponseItems[]} [payment_status_list]
+ * @property {boolean} [success]
+ */
+/**
+ * @typedef InvoiceTypeResponseItems
+ * @property {string} [text]
+ * @property {string} [value]
  */
 /**
  * @typedef IsCreditlinePayload

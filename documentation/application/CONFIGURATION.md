@@ -1586,7 +1586,7 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | _id | string? |  yes  | The unique identifier for the sales channel details |
+ | _id | string? |  yes  | The unique identifier (24-digit Mongo Object ID) for the sales channel details |
  | banner | [SecureUrl](#SecureUrl) |  no  |  |
  | description | string |  no  | It gives a detailed information about the sales channel. It is required. |
  | domain | [Domain](#Domain)? |  yes  |  |
@@ -1595,7 +1595,7 @@ Success
  | logo | [SecureUrl](#SecureUrl) |  no  |  |
  | mobile_logo | [SecureUrl](#SecureUrl) |  no  |  |
  | name | string |  no  | Name of the sales channel. It is required. |
- | slug | string? |  yes  |  |
+ | slug | string? |  yes  | The unique identifier for the sales channel details |
  
 
 ---

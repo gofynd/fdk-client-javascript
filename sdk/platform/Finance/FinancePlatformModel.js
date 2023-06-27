@@ -161,23 +161,6 @@ class FinanceModel {
       success: Joi.boolean(),
     });
   }
-  static GetInvoiceListPayloadData() {
-    return Joi.object({
-      is_active: Joi.boolean(),
-    });
-  }
-  static GetInvoiceListRequest() {
-    return Joi.object({
-      data: FinanceModel.GetInvoiceListPayloadData(),
-    });
-  }
-  static GetInvoiceListResponse() {
-    return Joi.object({
-      invoice_type_list: Joi.array().items(Joi.any()),
-      payment_status_list: Joi.array().items(Joi.any()),
-      success: Joi.boolean(),
-    });
-  }
   static GetReason() {
     return Joi.object({
       reason_type: Joi.string().allow(""),
@@ -264,6 +247,33 @@ class FinanceModel {
       data: Joi.array().items(Joi.string().allow("")),
       error: Joi.array().items(Joi.string().allow("")),
       success: Joi.boolean(),
+    });
+  }
+  static InvoiceTypePayloadData() {
+    return Joi.object({
+      is_active: Joi.boolean(),
+    });
+  }
+  static InvoiceTypeRequest() {
+    return Joi.object({
+      data: FinanceModel.InvoiceTypePayloadData(),
+    });
+  }
+  static InvoiceTypeResponse() {
+    return Joi.object({
+      invoice_type_list: Joi.array().items(
+        FinanceModel.InvoiceTypeResponseItems()
+      ),
+      payment_status_list: Joi.array().items(
+        FinanceModel.InvoiceTypeResponseItems()
+      ),
+      success: Joi.boolean(),
+    });
+  }
+  static InvoiceTypeResponseItems() {
+    return Joi.object({
+      text: Joi.string().allow(""),
+      value: Joi.string().allow(""),
     });
   }
   static IsCreditlinePayload() {

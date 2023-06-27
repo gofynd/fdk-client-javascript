@@ -401,70 +401,6 @@ class Finance {
 
   /**
    * @param {Object} arg - Arg object.
-   * @param {GetInvoiceListRequest} arg.body
-   * @returns {Promise<GetInvoiceListResponse>} - Success response
-   * @summary:
-   * @description:
-   */
-  async getInvoiceType({ body } = {}) {
-    const { error } = FinanceValidator.getInvoiceType().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = FinanceValidator.getInvoiceType().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: "Parameter Validation warrnings for getInvoiceType",
-      });
-      Logger({ level: "WARN", message: warrning });
-    }
-
-    const query_params = {};
-
-    const xHeaders = {};
-
-    const response = await PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/finance/v1.0/company/${this.config.companyId}/invoice-type`,
-      query_params,
-      body,
-      xHeaders
-    );
-
-    const {
-      error: res_error,
-    } = FinanceModel.GetInvoiceListResponse().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
-
-    if (res_error) {
-      Logger({
-        level: "WARN",
-        message: "Response Validation Warnnings for getInvoiceType",
-      });
-      Logger({ level: "WARN", message: res_error });
-    }
-
-    return response;
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
    * @param {GetReasonRequest} arg.body
    * @returns {Promise<GetReasonResponse>} - Success response
    * @summary:
@@ -712,6 +648,70 @@ class Finance {
       Logger({
         level: "WARN",
         message: "Response Validation Warnnings for invoicePDF",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {InvoiceTypeRequest} arg.body
+   * @returns {Promise<InvoiceTypeResponse>} - Success response
+   * @summary:
+   * @description:
+   */
+  async invoiceType({ body } = {}) {
+    const { error } = FinanceValidator.invoiceType().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = FinanceValidator.invoiceType().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for invoiceType",
+      });
+      Logger({ level: "WARN", message: warrning });
+    }
+
+    const query_params = {};
+
+    const xHeaders = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/finance/v1.0/company/${this.config.companyId}/invoice-type`,
+      query_params,
+      body,
+      xHeaders
+    );
+
+    const {
+      error: res_error,
+    } = FinanceModel.InvoiceTypeResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for invoiceType",
       });
       Logger({ level: "WARN", message: res_error });
     }

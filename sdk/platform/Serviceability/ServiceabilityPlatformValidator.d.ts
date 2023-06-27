@@ -7,5 +7,6 @@ declare class ServiceabilityValidator {
     static getListView(): any;
     static getStore(): any;
     static getZoneDataView(): any;
+    static getZoneListView(): any;
     static updateZoneControllerView(): any;
 }

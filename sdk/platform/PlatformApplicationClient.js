@@ -1829,7 +1829,6 @@ class PlatformApplicationClient {
 /** @typedef ProductReturnConfigResponse */
 /** @typedef ServiceabilityErrorResponse */
 /** @typedef ServiceabilityPageResponse */
-/** @typedef ServiceabilityrErrorResponse */
 /** @typedef TimmingResponse */
 /** @typedef UpdateZoneData */
 /** @typedef WarningsResponse */
@@ -1864,9 +1863,6 @@ class PlatformApplicationClient {
 /** @typedef GetEngineFilters */
 /** @typedef GetEngineRequest */
 /** @typedef GetEngineResponse */
-/** @typedef GetInvoiceListPayloadData */
-/** @typedef GetInvoiceListRequest */
-/** @typedef GetInvoiceListResponse */
 /** @typedef GetReason */
 /** @typedef GetReasonRequest */
 /** @typedef GetReasonResponse */
@@ -1880,6 +1876,10 @@ class PlatformApplicationClient {
 /** @typedef InvoicePdfPayloadData */
 /** @typedef InvoicePdfRequest */
 /** @typedef InvoicePdfResponse */
+/** @typedef InvoiceTypePayloadData */
+/** @typedef InvoiceTypeRequest */
+/** @typedef InvoiceTypeResponse */
+/** @typedef InvoiceTypeResponseItems */
 /** @typedef IsCreditlinePayload */
 /** @typedef IsCreditlinePlatformRequest */
 /** @typedef IsCreditlinePlatformResponse */

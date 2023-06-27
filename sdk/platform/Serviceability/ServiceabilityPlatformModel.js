@@ -24,7 +24,7 @@ class ServiceabilityModel {
   static ApplicationServiceabilityConfigResponse() {
     return Joi.object({
       data: ServiceabilityModel.ApplicationServiceabilityConfig(),
-      error: ServiceabilityModel.ServiceabilityrErrorResponse(),
+      error: ServiceabilityModel.ServiceabilityErrorResponse(),
       success: Joi.boolean().required(),
     });
   }
@@ -465,13 +465,6 @@ class ServiceabilityModel {
       item_total: Joi.number(),
       size: Joi.number(),
       type: Joi.string().allow(""),
-    });
-  }
-  static ServiceabilityrErrorResponse() {
-    return Joi.object({
-      message: Joi.string().allow("").required(),
-      type: Joi.string().allow("").required(),
-      value: Joi.string().allow("").required(),
     });
   }
   static TimmingResponse() {
