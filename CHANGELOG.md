@@ -5,7 +5,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ---
-## [v0.5.5] - 2023-06-27
+## [v0.6.0] - 2023-06-27
 ### Changed
 - Fixed an issue where the cluster was not being passed correctly during the initialization of the `applicationClient`.
 - Updated the client library to the latest version.
