@@ -10787,11 +10787,11 @@ type CartDynamicInjection = {
     cart_value: number;
     collection: Collecttion;
     injection_id?: string;
+    is_authenticated: boolean;
     message: string;
     meta?: any;
     type: string;
     user_id?: string;
-    user_type: string;
     value: number;
 };
 type CartDynamicInjectionAdd = {
@@ -10802,11 +10802,11 @@ type CartDynamicInjectionAdd = {
     cart_id: string;
     cart_value: number;
     collection: Collecttion;
+    is_authenticated: boolean;
     message: string;
     meta?: any;
     type: string;
     user_id?: string;
-    user_type: string;
     value: number;
 };
 type CartDynamicInjectionResponse = {
@@ -10820,11 +10820,11 @@ type CartDynamicInjectionUpdate = {
     cart_id: string;
     cart_value: number;
     collection: Collecttion;
+    is_authenticated: boolean;
     message: string;
     meta?: any;
     type: string;
     user_id?: string;
-    user_type: string;
     value: number;
 };
 type CartItem = {

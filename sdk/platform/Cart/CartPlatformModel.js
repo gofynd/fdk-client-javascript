@@ -234,11 +234,11 @@ class CartModel {
       cart_value: Joi.number().required(),
       collection: CartModel.Collecttion().required(),
       injection_id: Joi.string().allow(""),
+      is_authenticated: Joi.boolean().required(),
       message: Joi.string().allow("").allow(null).required(),
       meta: Joi.any().allow(null),
       type: Joi.string().allow("").required(),
       user_id: Joi.string().allow(""),
-      user_type: Joi.string().allow("").required(),
       value: Joi.number().required(),
     });
   }
@@ -251,11 +251,11 @@ class CartModel {
       cart_id: Joi.string().allow("").required(),
       cart_value: Joi.number().required(),
       collection: CartModel.Collecttion().required(),
+      is_authenticated: Joi.boolean().required(),
       message: Joi.string().allow("").required(),
       meta: Joi.any(),
       type: Joi.string().allow("").required(),
       user_id: Joi.string().allow(""),
-      user_type: Joi.string().allow("").required(),
       value: Joi.number().required(),
     });
   }
@@ -273,11 +273,11 @@ class CartModel {
       cart_id: Joi.string().allow("").required(),
       cart_value: Joi.number().required(),
       collection: CartModel.Collecttion().required(),
+      is_authenticated: Joi.boolean().required(),
       message: Joi.string().allow("").required(),
       meta: Joi.any(),
       type: Joi.string().allow("").required(),
       user_id: Joi.string().allow(""),
-      user_type: Joi.string().allow("").required(),
       value: Joi.number().required(),
     });
   }
