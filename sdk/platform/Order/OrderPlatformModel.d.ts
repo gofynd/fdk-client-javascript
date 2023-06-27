@@ -24,6 +24,7 @@ declare class OrderModel {
     static Article(): any;
     static ArticleDetails(): any;
     static ArticleDetails1(): any;
+    static AssetByShipment(): any;
     static Attributes(): any;
     static B2BPODetails(): any;
     static BagConfigs(): any;
@@ -31,6 +32,7 @@ declare class OrderModel {
     static BagGST(): any;
     static BagGSTDetails(): any;
     static BagMeta(): any;
+    static BagPaymentMethods(): any;
     static BagReturnableCancelableStatus(): any;
     static BagReturnableCancelableStatus1(): any;
     static Bags(): any;
@@ -90,6 +92,7 @@ declare class OrderModel {
     static Formatted(): any;
     static FulfillingStore(): any;
     static FyndOrderIdList(): any;
+    static GeneratePosOrderReceiptResponse(): any;
     static GetActionsResponse(): any;
     static GetBagsPlatformResponse(): any;
     static GiftCard(): any;
@@ -104,12 +107,20 @@ declare class OrderModel {
     static InvoiceInfo(): any;
     static Item(): any;
     static ItemCriterias(): any;
+    static JioCodeUpsertDataSet(): any;
+    static JioCodeUpsertPayload(): any;
+    static JioCodeUpsertResponse(): any;
     static LaneConfigResponse(): any;
     static LineItem(): any;
     static LocationDetails(): any;
     static LockData(): any;
     static MarketPlacePdf(): any;
     static Meta(): any;
+    static MetricCountResponse(): any;
+    static MetricsCount(): any;
+    static NestedErrorSchemaDataSet(): any;
+    static OmsReports(): any;
+    static Options(): any;
     static OrderBagArticle(): any;
     static OrderBags(): any;
     static OrderBrandName(): any;
@@ -164,6 +175,7 @@ declare class OrderModel {
     static ReasonsData(): any;
     static ReplacementDetails(): any;
     static ResponseDetail(): any;
+    static ResponseGetAssetShipment(): any;
     static ReturnConfig(): any;
     static ReturnConfig1(): any;
     static SendSmsPayload(): any;
@@ -205,6 +217,7 @@ declare class OrderModel {
     static StoreReassign(): any;
     static StoreReassignResponse(): any;
     static SubLane(): any;
+    static Success(): any;
     static SuccessResponse(): any;
     static SuperLane(): any;
     static Tax(): any;

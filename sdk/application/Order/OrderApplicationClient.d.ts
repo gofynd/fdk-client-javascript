@@ -8,6 +8,7 @@ declare class Order {
         getOrderById: string;
         getOrders: string;
         getPosOrderById: string;
+        getProducts: string;
         getShipmentBagReasons: string;
         getShipmentById: string;
         getShipmentReasons: string;
@@ -36,12 +37,14 @@ declare class Order {
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.shipmentId - ID of the shipment.
+     * @param {string} [arg.documentType] -
      * @returns {Promise<ResponseGetInvoiceShipment>} - Success response
      * @summary: Get Invoice of a shipment
      * @description: Use this API to retrieve shipment invoice.
      */
-    getInvoiceByShipmentId({ shipmentId }?: {
+    getInvoiceByShipmentId({ shipmentId, documentType }?: {
         shipmentId: string;
+        documentType?: string;
     }): Promise<ResponseGetInvoiceShipment>;
     /**
      * @param {Object} arg - Arg object.
@@ -90,6 +93,30 @@ declare class Order {
     getPosOrderById({ orderId }?: {
         orderId: string;
     }): Promise<OrderById>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {number} [arg.status] - A filter to retrieve orders by their
+     *   current status such as _placed_, _delivered_, etc.
+     * @param {number} [arg.pageNo] - The page number to navigate through the
+     *   given set of results. Default value is 1.
+     * @param {number} [arg.pageSize] - The number of items to retrieve in each
+     *   page. Default value is 10.
+     * @param {string} [arg.fromDate] - The date from which the orders should be
+     *   retrieved.
+     * @param {string} [arg.toDate] - The date till which the orders should be retrieved.
+     * @param {string} [arg.searchValue] -
+     * @returns {Promise<ProductListResponse>} - Success response
+     * @summary:
+     * @description:
+     */
+    getProducts({ status, pageNo, pageSize, fromDate, toDate, searchValue, }?: {
+        status?: number;
+        pageNo?: number;
+        pageSize?: number;
+        fromDate?: string;
+        toDate?: string;
+        searchValue?: string;
+    }): Promise<ProductListResponse>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.shipmentId - ID of the bag. An order may contain

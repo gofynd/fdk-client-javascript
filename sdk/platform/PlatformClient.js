@@ -4683,23 +4683,6 @@ class PlatformClient {
  * @property {boolean} success
  */
 /**
- * @typedef ExtensionPaymentUpdateRequestSerializer
- * @property {string} currency
- * @property {string} gid
- * @property {Object} order_details
- * @property {Object} payment_details
- * @property {string} status
- * @property {number} total_amount
- */
-/**
- * @typedef ExtensionPaymentUpdateResponseSerializer
- * @property {string} currency
- * @property {string} gid
- * @property {Object} platform_transaction_details
- * @property {string} status
- * @property {number} total_amount
- */
-/**
  * @typedef GetOauthUrlResponse
  * @property {boolean} success
  * @property {string} url
@@ -5425,6 +5408,14 @@ class PlatformClient {
  * @property {Object} weight
  */
 /**
+ * @typedef AssetByShipment
+ * @property {string} expires_in
+ * @property {string} presigned_type
+ * @property {Object} [presigned_urls]
+ * @property {string} shipment_id
+ * @property {boolean} success
+ */
+/**
  * @typedef Attributes
  * @property {string} [brand_name]
  * @property {string} [essential]
@@ -5544,6 +5535,11 @@ class PlatformClient {
  * @property {GiftCard} [gift_card]
  * @property {string} [group_id]
  * @property {boolean} [partial_can_ret]
+ */
+/**
+ * @typedef BagPaymentMethods
+ * @property {number} [amount]
+ * @property {string} [mode]
  */
 /**
  * @typedef BagReturnableCancelableStatus
@@ -6039,6 +6035,15 @@ class PlatformClient {
  * @property {string[]} [fynd_order_id]
  */
 /**
+ * @typedef GeneratePosOrderReceiptResponse
+ * @property {string} [customer_cn_receipt]
+ * @property {string} [invoice_receipt]
+ * @property {string} [merchant_cn_receipt]
+ * @property {string} [order_id]
+ * @property {string} [payment_receipt]
+ * @property {boolean} [success]
+ */
+/**
  * @typedef GetActionsResponse
  * @property {ActionInfo[]} [permissions]
  */
@@ -6190,6 +6195,25 @@ class PlatformClient {
  * @property {number[]} [item_brand]
  */
 /**
+ * @typedef JioCodeUpsertDataSet
+ * @property {string} [article_id]
+ * @property {string} [company_id]
+ * @property {string} [item_id]
+ * @property {string} [jio_code]
+ */
+/**
+ * @typedef JioCodeUpsertPayload
+ * @property {JioCodeUpsertDataSet[]} [data]
+ */
+/**
+ * @typedef JioCodeUpsertResponse
+ * @property {Object[]} [data]
+ * @property {NestedErrorSchemaDataSet[]} [error]
+ * @property {string} [identifier]
+ * @property {boolean} [success]
+ * @property {string} [trace_id]
+ */
+/**
  * @typedef LaneConfigResponse
  * @property {SuperLane[]} [super_lanes]
  */
@@ -6225,6 +6249,40 @@ class PlatformClient {
  * @property {string} [state_manager_used]
  */
 /**
+ * @typedef MetricCountResponse
+ * @property {MetricsCount[]} [items]
+ */
+/**
+ * @typedef MetricsCount
+ * @property {string} key
+ * @property {Options[]} [options]
+ * @property {string} text
+ * @property {number} value
+ */
+/**
+ * @typedef NestedErrorSchemaDataSet
+ * @property {string} [message]
+ * @property {string} [type]
+ * @property {string} [value]
+ */
+/**
+ * @typedef OmsReports
+ * @property {string} [display_name]
+ * @property {string} [report_created_at]
+ * @property {string} [report_id]
+ * @property {string} [report_name]
+ * @property {string} [report_requested_at]
+ * @property {string} [report_type]
+ * @property {Object} [request_details]
+ * @property {string} [s3_key]
+ * @property {string} [status]
+ */
+/**
+ * @typedef Options
+ * @property {string} [text]
+ * @property {number} [value]
+ */
+/**
  * @typedef OrderBagArticle
  * @property {Object} [identifiers]
  * @property {ReturnConfig1} [return_config]
@@ -6253,6 +6311,7 @@ class PlatformClient {
  * @property {number} [line_number]
  * @property {BagMeta} [meta]
  * @property {Object} [parent_promo_bags]
+ * @property {BagPaymentMethods[]} [payment_methods]
  * @property {Prices} [prices]
  * @property {number} [quantity]
  * @property {string} [seller_identifier]
@@ -6569,6 +6628,7 @@ class PlatformClient {
  * @property {InvoiceInfo} [invoice]
  * @property {string} [invoice_id]
  * @property {boolean} [is_dp_assign_enabled]
+ * @property {boolean} [is_self_ship]
  * @property {string} [journey_type]
  * @property {boolean} [lock_status]
  * @property {ShipmentMeta} [meta]
@@ -6579,7 +6639,6 @@ class PlatformClient {
  * @property {Object} [payment_methods]
  * @property {string} [payment_mode]
  * @property {ShipmentPayments} [payments]
- * @property {Object} [pdf_links]
  * @property {string} [picked_date]
  * @property {string} [platform_logo]
  * @property {Prices} [prices]
@@ -6743,6 +6802,12 @@ class PlatformClient {
  * @typedef ResponseDetail
  * @property {string[]} [message]
  * @property {boolean} [success]
+ */
+/**
+ * @typedef ResponseGetAssetShipment
+ * @property {AssetByShipment[]} data
+ * @property {string} message
+ * @property {boolean} success
  */
 /**
  * @typedef ReturnConfig
@@ -7200,6 +7265,11 @@ class PlatformClient {
  * @property {string} [text]
  * @property {number} [total_items]
  * @property {string} [value]
+ */
+/**
+ * @typedef Success
+ * @property {string} [message]
+ * @property {boolean} [success]
  */
 /**
  * @typedef SuccessResponse
@@ -8398,15 +8468,15 @@ class PlatformClient {
  * @property {GetAddressSerializer[]} [addresses]
  * @property {string} [business_type]
  * @property {string} [company_type]
- * @property {UserSerializer1} [created_by]
+ * @property {UserSerializer2} [created_by]
  * @property {string} [created_on]
- * @property {UserSerializer1} [modified_by]
+ * @property {UserSerializer2} [modified_by]
  * @property {string} [modified_on]
  * @property {string} [name]
  * @property {string} [reject_reason]
  * @property {string} [stage]
  * @property {number} [uid]
- * @property {UserSerializer1} [verified_by]
+ * @property {UserSerializer2} [verified_by]
  * @property {string} [verified_on]
  */
 /**
@@ -8483,14 +8553,14 @@ class PlatformClient {
  * @property {string} code
  * @property {GetCompanySerializer} [company]
  * @property {SellerPhoneNumber[]} [contact_numbers]
- * @property {UserSerializer2} [created_by]
+ * @property {UserSerializer1} [created_by]
  * @property {string} [created_on]
  * @property {string} display_name
  * @property {Document[]} [documents]
  * @property {InvoiceDetailsSerializer} [gst_credentials]
  * @property {LocationIntegrationType} [integration_type]
  * @property {LocationManagerSerializer} [manager]
- * @property {UserSerializer2} [modified_by]
+ * @property {UserSerializer1} [modified_by]
  * @property {string} [modified_on]
  * @property {string} name
  * @property {string[]} [notification_emails]
@@ -8500,7 +8570,7 @@ class PlatformClient {
  * @property {string} [store_type]
  * @property {LocationDayWiseSerializer[]} [timing]
  * @property {number} [uid]
- * @property {UserSerializer2} [verified_by]
+ * @property {UserSerializer1} [verified_by]
  * @property {string} [verified_on]
  * @property {Object} [warnings]
  */
@@ -14511,6 +14581,7 @@ class PlatformClient {
  */
 /**
  * @typedef FileJobResponse
+ * @property {string} _id
  * @property {Object} [body]
  * @property {number} company_id
  * @property {number} failed

@@ -95,6 +95,7 @@ class DiscountModel {
   }
   static FileJobResponse() {
     return Joi.object({
+      _id: Joi.string().allow("").required(),
       body: Joi.any(),
       company_id: Joi.number().required(),
       failed: Joi.number().required(),

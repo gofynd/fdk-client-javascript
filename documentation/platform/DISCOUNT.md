@@ -810,6 +810,7 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | _id | string |  no  |  |
  | body | string? |  yes  |  |
  | company_id | number |  no  |  |
  | failed | number |  no  |  |

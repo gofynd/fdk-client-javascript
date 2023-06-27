@@ -30,6 +30,13 @@ class OrderValidator {
     }).required();
   }
 
+  static createShipmentReport() {
+    return Joi.object({
+      fromDate: Joi.string().allow(""),
+      toDate: Joi.string().allow(""),
+    }).required();
+  }
+
   static dispatchManifest() {
     return Joi.object({
       body: OrderModel.DispatchManifest().required(),
@@ -42,9 +49,25 @@ class OrderValidator {
     }).required();
   }
 
+  static generatePOSReceiptByOrderId() {
+    return Joi.object({
+      orderId: Joi.string().allow("").required(),
+      shipmentId: Joi.string().allow(""),
+      documentType: Joi.string().allow(""),
+    }).required();
+  }
+
   static getAnnouncements() {
     return Joi.object({
       date: Joi.string().allow(""),
+    }).required();
+  }
+
+  static getAssetByShipmentIds() {
+    return Joi.object({
+      shipmentIds: Joi.string().allow("").required(),
+      invoice: Joi.boolean(),
+      expiresIn: Joi.string().allow(""),
     }).required();
   }
 
@@ -111,6 +134,14 @@ class OrderValidator {
       tags: Joi.string().allow(""),
       timeToDispatch: Joi.string().allow(""),
       paymentMethods: Joi.string().allow(""),
+      myOrders: Joi.boolean(),
+    }).required();
+  }
+
+  static getMetricCount() {
+    return Joi.object({
+      fromDate: Joi.string().allow(""),
+      toDate: Joi.string().allow(""),
     }).required();
   }
 
@@ -138,6 +169,14 @@ class OrderValidator {
       pageSize: Joi.number(),
       isPrioritySort: Joi.boolean(),
       customMeta: Joi.string().allow(""),
+      myOrders: Joi.boolean(),
+    }).required();
+  }
+
+  static getReportsShipmentListing() {
+    return Joi.object({
+      pageNo: Joi.number(),
+      pageSize: Joi.number(),
     }).required();
   }
 
@@ -190,7 +229,7 @@ class OrderValidator {
       customMeta: Joi.string().allow(""),
       orderingChannel: Joi.string().allow(""),
       companyAffiliateTag: Joi.string().allow(""),
-      platformUserId: Joi.string().allow(""),
+      myOrders: Joi.boolean(),
     }).required();
   }
 
@@ -279,6 +318,12 @@ class OrderValidator {
   static uploadConsent() {
     return Joi.object({
       body: OrderModel.UploadConsent().required(),
+    }).required();
+  }
+
+  static upsertJioCode() {
+    return Joi.object({
+      body: OrderModel.JioCodeUpsertPayload().required(),
     }).required();
   }
 }

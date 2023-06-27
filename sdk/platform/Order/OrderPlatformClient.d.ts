@@ -52,6 +52,18 @@ declare class Order {
     }): Promise<CreateOrderResponse>;
     /**
      * @param {Object} arg - Arg object.
+     * @param {string} [arg.fromDate] -
+     * @param {string} [arg.toDate] -
+     * @returns {Promise<Success>} - Success response
+     * @summary:
+     * @description:
+     */
+    createShipmentReport({ fromDate, toDate }?: {
+        fromDate?: string;
+        toDate?: string;
+    }): Promise<Success>;
+    /**
+     * @param {Object} arg - Arg object.
      * @param {DispatchManifest} arg.body
      * @returns {Promise<SuccessResponse>} - Success response
      * @summary:
@@ -72,6 +84,20 @@ declare class Order {
     }): Promise<FileResponse>;
     /**
      * @param {Object} arg - Arg object.
+     * @param {string} arg.orderId -
+     * @param {string} [arg.shipmentId] -
+     * @param {string} [arg.documentType] -
+     * @returns {Promise<GeneratePosOrderReceiptResponse>} - Success response
+     * @summary:
+     * @description:
+     */
+    generatePOSReceiptByOrderId({ orderId, shipmentId, documentType, }?: {
+        orderId: string;
+        shipmentId?: string;
+        documentType?: string;
+    }): Promise<GeneratePosOrderReceiptResponse>;
+    /**
+     * @param {Object} arg - Arg object.
      * @param {string} [arg.date] - Date On which the announcement is Active
      *   (Date should in ISO Datetime format IST Time)
      * @returns {Promise<AnnouncementsResponse>} - Success response
@@ -81,6 +107,20 @@ declare class Order {
     getAnnouncements({ date }?: {
         date?: string;
     }): Promise<AnnouncementsResponse>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {string} arg.shipmentIds -
+     * @param {boolean} [arg.invoice] -
+     * @param {string} [arg.expiresIn] -
+     * @returns {Promise<ResponseGetAssetShipment>} - Success response
+     * @summary: Get Invoice or Label or Pos of a shipment
+     * @description: Use this API to retrieve shipments invoice, label and pos.
+     */
+    getAssetByShipmentIds({ shipmentIds, invoice, expiresIn }?: {
+        shipmentIds: string;
+        invoice?: boolean;
+        expiresIn?: string;
+    }): Promise<ResponseGetAssetShipment>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} [arg.bagId] - Id of bag
@@ -184,11 +224,12 @@ declare class Order {
      * @param {string} [arg.tags] -
      * @param {string} [arg.timeToDispatch] -
      * @param {string} [arg.paymentMethods] -
+     * @param {boolean} [arg.myOrders] -
      * @returns {Promise<LaneConfigResponse>} - Success response
      * @summary:
      * @description:
      */
-    getLaneConfig({ superLane, groupEntity, fromDate, toDate, dpIds, stores, salesChannels, paymentMode, bagStatus, searchType, searchValue, tags, timeToDispatch, paymentMethods, }?: {
+    getLaneConfig({ superLane, groupEntity, fromDate, toDate, dpIds, stores, salesChannels, paymentMode, bagStatus, searchType, searchValue, tags, timeToDispatch, paymentMethods, myOrders, }?: {
         superLane?: string;
         groupEntity?: string;
         fromDate?: string;
@@ -203,7 +244,20 @@ declare class Order {
         tags?: string;
         timeToDispatch?: string;
         paymentMethods?: string;
+        myOrders?: boolean;
     }): Promise<LaneConfigResponse>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {string} [arg.fromDate] -
+     * @param {string} [arg.toDate] -
+     * @returns {Promise<MetricCountResponse>} - Success response
+     * @summary:
+     * @description:
+     */
+    getMetricCount({ fromDate, toDate }?: {
+        fromDate?: string;
+        toDate?: string;
+    }): Promise<MetricCountResponse>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.orderId -
@@ -238,11 +292,12 @@ declare class Order {
      * @param {number} [arg.pageSize] -
      * @param {boolean} [arg.isPrioritySort] -
      * @param {string} [arg.customMeta] -
+     * @param {boolean} [arg.myOrders] -
      * @returns {Promise<OrderListingResponse>} - Success response
      * @summary:
      * @description:
      */
-    getOrders({ lane, searchType, bagStatus, timeToDispatch, paymentMethods, tags, searchValue, fromDate, toDate, dpIds, stores, salesChannels, pageNo, pageSize, isPrioritySort, customMeta, }?: {
+    getOrders({ lane, searchType, bagStatus, timeToDispatch, paymentMethods, tags, searchValue, fromDate, toDate, dpIds, stores, salesChannels, pageNo, pageSize, isPrioritySort, customMeta, myOrders, }?: {
         lane?: string;
         searchType?: string;
         bagStatus?: string;
@@ -259,7 +314,20 @@ declare class Order {
         pageSize?: number;
         isPrioritySort?: boolean;
         customMeta?: string;
+        myOrders?: boolean;
     }): Promise<OrderListingResponse>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {number} [arg.pageNo] -
+     * @param {number} [arg.pageSize] -
+     * @returns {Promise<OmsReports>} - Success response
+     * @summary:
+     * @description:
+     */
+    getReportsShipmentListing({ pageNo, pageSize }?: {
+        pageNo?: number;
+        pageSize?: number;
+    }): Promise<OmsReports>;
     /**
      * @param {Object} arg - Arg object.
      * @returns {Promise<GetActionsResponse>} - Success response
@@ -332,12 +400,12 @@ declare class Order {
      * @param {string} [arg.customMeta] -
      * @param {string} [arg.orderingChannel] -
      * @param {string} [arg.companyAffiliateTag] -
-     * @param {string} [arg.platformUserId] -
+     * @param {boolean} [arg.myOrders] -
      * @returns {Promise<ShipmentInternalPlatformViewResponse>} - Success response
      * @summary:
      * @description:
      */
-    getShipments({ lane, bagStatus, statusOverrideLane, timeToDispatch, searchType, searchValue, fromDate, toDate, dpIds, stores, salesChannels, pageNo, pageSize, fetchActiveShipment, excludeLockedShipments, paymentMethods, channelShipmentId, channelOrderId, customMeta, orderingChannel, companyAffiliateTag, platformUserId, }?: {
+    getShipments({ lane, bagStatus, statusOverrideLane, timeToDispatch, searchType, searchValue, fromDate, toDate, dpIds, stores, salesChannels, pageNo, pageSize, fetchActiveShipment, excludeLockedShipments, paymentMethods, channelShipmentId, channelOrderId, customMeta, orderingChannel, companyAffiliateTag, myOrders, }?: {
         lane?: string;
         bagStatus?: string;
         statusOverrideLane?: boolean;
@@ -359,7 +427,7 @@ declare class Order {
         customMeta?: string;
         orderingChannel?: string;
         companyAffiliateTag?: string;
-        platformUserId?: string;
+        myOrders?: boolean;
     }): Promise<ShipmentInternalPlatformViewResponse>;
     /**
      * @param {Object} arg - Arg object.
@@ -512,4 +580,14 @@ declare class Order {
     uploadConsent({ body }?: {
         body: UploadConsent;
     }): Promise<SuccessResponse>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {JioCodeUpsertPayload} arg.body
+     * @returns {Promise<JioCodeUpsertResponse>} - Success response
+     * @summary:
+     * @description:
+     */
+    upsertJioCode({ body }?: {
+        body: JioCodeUpsertPayload;
+    }): Promise<JioCodeUpsertResponse>;
 }

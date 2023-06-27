@@ -195,25 +195,6 @@ class PaymentModel {
       success: Joi.boolean().required(),
     });
   }
-  static ExtensionPaymentUpdateRequestSerializer() {
-    return Joi.object({
-      currency: Joi.string().allow("").required(),
-      gid: Joi.string().allow("").required(),
-      order_details: Joi.any().required(),
-      payment_details: Joi.any().required(),
-      status: Joi.string().allow("").required(),
-      total_amount: Joi.number().required(),
-    });
-  }
-  static ExtensionPaymentUpdateResponseSerializer() {
-    return Joi.object({
-      currency: Joi.string().allow("").required(),
-      gid: Joi.string().allow("").required(),
-      platform_transaction_details: Joi.any().required(),
-      status: Joi.string().allow("").required(),
-      total_amount: Joi.number().required(),
-    });
-  }
   static GetOauthUrlResponse() {
     return Joi.object({
       success: Joi.boolean().required(),

@@ -727,8 +727,6 @@ class PlatformApplicationClient {
 /** @typedef ErrorCodeDescription */
 /** @typedef ErrorDescription */
 /** @typedef ErrorResponse */
-/** @typedef ExtensionPaymentUpdateRequestSerializer */
-/** @typedef ExtensionPaymentUpdateResponseSerializer */
 /** @typedef GetOauthUrlResponse */
 /** @typedef GetPaymentCode */
 /** @typedef GetPaymentCodeResponse */
@@ -816,6 +814,7 @@ class PlatformApplicationClient {
 /** @typedef Article */
 /** @typedef ArticleDetails */
 /** @typedef ArticleDetails1 */
+/** @typedef AssetByShipment */
 /** @typedef Attributes */
 /** @typedef B2BPODetails */
 /** @typedef BagConfigs */
@@ -823,6 +822,7 @@ class PlatformApplicationClient {
 /** @typedef BagGST */
 /** @typedef BagGSTDetails */
 /** @typedef BagMeta */
+/** @typedef BagPaymentMethods */
 /** @typedef BagReturnableCancelableStatus */
 /** @typedef BagReturnableCancelableStatus1 */
 /** @typedef Bags */
@@ -882,6 +882,7 @@ class PlatformApplicationClient {
 /** @typedef Formatted */
 /** @typedef FulfillingStore */
 /** @typedef FyndOrderIdList */
+/** @typedef GeneratePosOrderReceiptResponse */
 /** @typedef GetActionsResponse */
 /** @typedef GetBagsPlatformResponse */
 /** @typedef GiftCard */
@@ -896,12 +897,20 @@ class PlatformApplicationClient {
 /** @typedef InvoiceInfo */
 /** @typedef Item */
 /** @typedef ItemCriterias */
+/** @typedef JioCodeUpsertDataSet */
+/** @typedef JioCodeUpsertPayload */
+/** @typedef JioCodeUpsertResponse */
 /** @typedef LaneConfigResponse */
 /** @typedef LineItem */
 /** @typedef LocationDetails */
 /** @typedef LockData */
 /** @typedef MarketPlacePdf */
 /** @typedef Meta */
+/** @typedef MetricCountResponse */
+/** @typedef MetricsCount */
+/** @typedef NestedErrorSchemaDataSet */
+/** @typedef OmsReports */
+/** @typedef Options */
 /** @typedef OrderBagArticle */
 /** @typedef OrderBags */
 /** @typedef OrderBrandName */
@@ -956,6 +965,7 @@ class PlatformApplicationClient {
 /** @typedef ReasonsData */
 /** @typedef ReplacementDetails */
 /** @typedef ResponseDetail */
+/** @typedef ResponseGetAssetShipment */
 /** @typedef ReturnConfig */
 /** @typedef ReturnConfig1 */
 /** @typedef SendSmsPayload */
@@ -997,6 +1007,7 @@ class PlatformApplicationClient {
 /** @typedef StoreReassign */
 /** @typedef StoreReassignResponse */
 /** @typedef SubLane */
+/** @typedef Success */
 /** @typedef SuccessResponse */
 /** @typedef SuperLane */
 /** @typedef Tax */

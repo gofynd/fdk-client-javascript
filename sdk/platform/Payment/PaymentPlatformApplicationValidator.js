@@ -57,12 +57,6 @@ class PaymentValidator {
     return Joi.object({}).required();
   }
 
-  static extensionPaymentUpdate() {
-    return Joi.object({
-      body: PaymentModel.ExtensionPaymentUpdateRequestSerializer().required(),
-    }).required();
-  }
-
   static getBankAccountDetailsOpenAPI() {
     return Joi.object({
       orderId: Joi.string().allow("").required(),

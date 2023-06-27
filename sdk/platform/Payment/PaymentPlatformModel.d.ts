@@ -25,8 +25,6 @@ declare class PaymentModel {
     static ErrorCodeDescription(): any;
     static ErrorDescription(): any;
     static ErrorResponse(): any;
-    static ExtensionPaymentUpdateRequestSerializer(): any;
-    static ExtensionPaymentUpdateResponseSerializer(): any;
     static GetOauthUrlResponse(): any;
     static GetPaymentCode(): any;
     static GetPaymentCodeResponse(): any;
