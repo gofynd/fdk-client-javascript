@@ -269,6 +269,7 @@ class PosCartModel {
       is_set: Joi.boolean(),
       key: Joi.string().allow(""),
       message: Joi.string().allow(""),
+      moq: Joi.any(),
       parent_item_identifiers: Joi.any(),
       price: PosCartModel.ProductPriceInfo(),
       price_per_unit: PosCartModel.ProductPriceInfo(),

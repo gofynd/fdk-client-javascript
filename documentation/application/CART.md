@@ -7008,6 +7008,7 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
  | is_set | boolean? |  yes  |  |
  | key | string? |  yes  |  |
  | message | string? |  yes  |  |
+ | moq | string? |  yes  | maximum & minimum order quantity information |
  | parent_item_identifiers | string? |  yes  |  |
  | price | [ProductPriceInfo](#ProductPriceInfo)? |  yes  |  |
  | price_per_unit | [ProductPriceInfo](#ProductPriceInfo)? |  yes  |  |
