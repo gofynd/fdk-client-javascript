@@ -3,253 +3,203 @@ declare class Serviceability {
     constructor(config: any);
     config: any;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {DpRuleRequest} arg.body
-     * @returns {Promise<DpRuleSuccessResponse>} - Success response
+     * @param {ServiceabilityPlatformValidator.createDpRule} arg - Arg object
+     * @returns {Promise<ServiceabilityPlatformModel.DpRuleSuccessResponse>} -
+     *   Success response
+     * @name createDpRule
      * @summary: Upsert of DpRules in database.
      * @description: This API returns response of upsert of DpRules in mongo database.
      */
-    createDpRule({ body }?: {
-        body: DpRuleRequest;
-    }): Promise<DpRuleSuccessResponse>;
+    createDpRule({ body }?: ServiceabilityPlatformValidator.createDpRule): Promise<ServiceabilityPlatformModel.DpRuleSuccessResponse>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {ZoneRequest} arg.body
-     * @returns {Promise<ZoneResponse>} - Success response
+     * @param {ServiceabilityPlatformValidator.createZone} arg - Arg object
+     * @returns {Promise<ServiceabilityPlatformModel.ZoneResponse>} - Success response
+     * @name createZone
      * @summary: Creation of a new zone
      * @description: This API allows you to create a new zone with the specified information. A zone enables serviceability based on given pincodes or regions. By creating a zone and including specific pincodes or regions, you can ensure that the stores associated with the zone are serviceable for those added pincodes or regions. This functionality is particularly useful when you need to ensure serviceability for multiple pincodes or regions by grouping them into a single zone.
      */
-    createZone({ body }?: {
-        body: ZoneRequest;
-    }): Promise<ZoneResponse>;
+    createZone({ body }?: ServiceabilityPlatformValidator.createZone): Promise<ServiceabilityPlatformModel.ZoneResponse>;
     /**
-     * @param {Object} arg - Arg object.
-     * @returns {Promise<GetStoresViewResponse>} - Success response
+     * @param {ServiceabilityPlatformValidator.getAllStores} arg - Arg object
+     * @returns {Promise<ServiceabilityPlatformModel.GetStoresViewResponse>} -
+     *   Success response
+     * @name getAllStores
      * @summary: GET stores data
      * @description: This API returns stores data.
      */
-    getAllStores({}?: any): Promise<GetStoresViewResponse>;
+    getAllStores({}?: any): Promise<ServiceabilityPlatformModel.GetStoresViewResponse>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {number} [arg.pageNumber] - Index of the item to start returning with
-     * @param {number} [arg.pageSize] - Determines the items to be displayed in a page
-     * @returns {Promise<CompanyStoreView_Response>} - Success response
+     * @param {ServiceabilityPlatformValidator.getCompanyStoreView} arg - Arg object
+     * @returns {Promise<ServiceabilityPlatformModel.CompanyStoreView_Response>}
+     *   - Success response
+     *
+     * @name getCompanyStoreView
      * @summary: Company Store View of application.
      * @description: This API returns Company Store View of the application.
      */
-    getCompanyStoreView({ pageNumber, pageSize }?: {
-        pageNumber?: number;
-        pageSize?: number;
-    }): Promise<CompanyStoreView_Response>;
+    getCompanyStoreView({ pageNumber, pageSize }?: ServiceabilityPlatformValidator.getCompanyStoreView): Promise<ServiceabilityPlatformModel.CompanyStoreView_Response>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {number} [arg.pageNumber] - Index of the item to start returning with
-     * @param {number} [arg.pageSize] - Determines the items to be displayed in a page
-     * @param {string} [arg.stage] - Stage of the account. enabled/disabled
-     * @param {string} [arg.paymentMode] - Filters dp accounts based on payment mode
-     * @param {string} [arg.transportType] - Filters dp accounts based on transport_type
-     * @returns {Promise<CompanyDpAccountListResponse>} - Success response
+     * @param {ServiceabilityPlatformValidator.getDpAccountList} arg - Arg object
+     * @returns {Promise<ServiceabilityPlatformModel.CompanyDpAccountListResponse>}
+     *   - Success response
+     *
+     * @name getDpAccountList
      * @summary: Getting DpAccount of a company from database.
      * @description: This API returns response DpAccount of a company from mongo database.
      */
-    getDpAccountList({ pageNumber, pageSize, stage, paymentMode, transportType, }?: {
-        pageNumber?: number;
-        pageSize?: number;
-        stage?: string;
-        paymentMode?: string;
-        transportType?: string;
-    }): Promise<CompanyDpAccountListResponse>;
+    getDpAccountList({ pageNumber, pageSize, stage, paymentMode, transportType, }?: ServiceabilityPlatformValidator.getDpAccountList): Promise<ServiceabilityPlatformModel.CompanyDpAccountListResponse>;
     /**
-     * @param {Object} arg - Arg object.
-     * @returns {Promise<DPCompanyRuleResponse>} - Success response
+     * @param {ServiceabilityPlatformValidator.getDpCompanyRulePriority} arg - Arg object
+     * @returns {Promise<ServiceabilityPlatformModel.DPCompanyRuleResponse>} -
+     *   Success response
+     * @name getDpCompanyRulePriority
      * @summary: Get All DpCompanyRules applied to company from database.
      * @description: This API returns response of all DpCompanyRules from mongo database.
      */
-    getDpCompanyRulePriority({}?: any): Promise<DPCompanyRuleResponse>;
+    getDpCompanyRulePriority({}?: any): Promise<ServiceabilityPlatformModel.DPCompanyRuleResponse>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.ruleUid - A `rule_uid` is a unique identifier for a
-     *   particular Dp.
-     * @returns {Promise<DpRuleSuccessResponse>} - Success response
+     * @param {ServiceabilityPlatformValidator.getDpRule} arg - Arg object
+     * @returns {Promise<ServiceabilityPlatformModel.DpRuleSuccessResponse>} -
+     *   Success response
+     * @name getDpRule
      * @summary: Fetching of DpRules from database.
      * @description: This API returns response of DpRules from mongo database.
      */
-    getDpRule({ ruleUid }?: {
-        ruleUid: string;
-    }): Promise<DpRuleSuccessResponse>;
+    getDpRule({ ruleUid }?: ServiceabilityPlatformValidator.getDpRule): Promise<ServiceabilityPlatformModel.DpRuleSuccessResponse>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {number} [arg.pageNumber] - Index of the item to start returning with
-     * @param {number} [arg.pageSize] - Determines the items to be displayed in a page
-     * @returns {Promise<DpMultipleRuleSuccessResponse>} - Success response
+     * @param {ServiceabilityPlatformValidator.getDpRuleList} arg - Arg object
+     * @returns {Promise<ServiceabilityPlatformModel.DpMultipleRuleSuccessResponse>}
+     *   - Success response
+     *
+     * @name getDpRuleList
      * @summary: Fetching of DpRules from database.
      * @description: This API returns response of DpRules from mongo database.
      */
-    getDpRuleList({ pageNumber, pageSize }?: {
-        pageNumber?: number;
-        pageSize?: number;
-    }): Promise<DpMultipleRuleSuccessResponse>;
+    getDpRuleList({ pageNumber, pageSize }?: ServiceabilityPlatformValidator.getDpRuleList): Promise<ServiceabilityPlatformModel.DpMultipleRuleSuccessResponse>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {EntityRegionView_Request} arg.body
-     * @returns {Promise<EntityRegionView_Response>} - Success response
+     * @param {ServiceabilityPlatformValidator.getEntityRegionView} arg - Arg object
+     * @returns {Promise<ServiceabilityPlatformModel.EntityRegionView_Response>}
+     *   - Success response
+     *
+     * @name getEntityRegionView
      * @summary: Get country and state list
      * @description: This API returns response for Entity Region View.
      */
-    getEntityRegionView({ body }?: {
-        body: EntityRegionView_Request;
-    }): Promise<EntityRegionView_Response>;
+    getEntityRegionView({ body }?: ServiceabilityPlatformValidator.getEntityRegionView): Promise<ServiceabilityPlatformModel.EntityRegionView_Response>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {number} [arg.pageNumber] - Index of the item to start returning with
-     * @param {number} [arg.pageSize] - Determines the items to be displayed in a page
-     * @param {string} [arg.name] - Name of particular zone in the seller account
-     * @param {boolean} [arg.isActive] - Status of zone whether active or inactive
-     * @param {string} [arg.channelIds] - Zones associated with the given channel ids'
-     * @param {string} [arg.q] - Search with name as a free text
-     * @returns {Promise<ListViewResponse>} - Success response
+     * @param {ServiceabilityPlatformValidator.getListView} arg - Arg object
+     * @returns {Promise<ServiceabilityPlatformModel.ListViewResponse>} - Success response
+     * @name getListView
      * @summary: Zone List of application.
      * @description: This API returns Zone List View of the application.
      */
-    getListView({ pageNumber, pageSize, name, isActive, channelIds, q, }?: {
-        pageNumber?: number;
-        pageSize?: number;
-        name?: string;
-        isActive?: boolean;
-        channelIds?: string;
-        q?: string;
-    }): Promise<ListViewResponse>;
+    getListView({ pageNumber, pageSize, name, isActive, channelIds, q, }?: ServiceabilityPlatformValidator.getListView): Promise<ServiceabilityPlatformModel.ListViewResponse>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {ReAssignStoreRequest} arg.body
-     * @returns {Promise<ReAssignStoreResponse>} - Success response
+     * @param {ServiceabilityPlatformValidator.getOptimalLocations} arg - Arg object
+     * @returns {Promise<ServiceabilityPlatformModel.ReAssignStoreResponse>} -
+     *   Success response
+     * @name getOptimalLocations
      * @summary: Get serviceable store of the item
      * @description: This API returns serviceable store of the item.
      */
-    getOptimalLocations({ body }?: {
-        body: ReAssignStoreRequest;
-    }): Promise<ReAssignStoreResponse>;
+    getOptimalLocations({ body }?: ServiceabilityPlatformValidator.getOptimalLocations): Promise<ServiceabilityPlatformModel.ReAssignStoreResponse>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {number} [arg.currentPageNumber] - The current page number
-     * @param {number} [arg.pageSize] - The page size
-     * @returns {Promise<GetBulkRegionJobResponse>} - Success response
+     * @param {ServiceabilityPlatformValidator.getRegionJobBulk} arg - Arg object
+     * @returns {Promise<ServiceabilityPlatformModel.GetBulkRegionJobResponse>}
+     *   - Success response
+     *
+     * @name getRegionJobBulk
      * @summary: Get bulk_export_job collection all records
      * @description: This API takes gives all the records of bulk_export_job collection
      */
-    getRegionJobBulk({ currentPageNumber, pageSize }?: {
-        currentPageNumber?: number;
-        pageSize?: number;
-    }): Promise<GetBulkRegionJobResponse>;
+    getRegionJobBulk({ currentPageNumber, pageSize }?: ServiceabilityPlatformValidator.getRegionJobBulk): Promise<ServiceabilityPlatformModel.GetBulkRegionJobResponse>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.batchId - The batch ID
-     * @returns {Promise<GetBulkRegionJobResponse>} - Success response
+     * @param {ServiceabilityPlatformValidator.getRegionJobBulkBatchId} arg - Arg object
+     * @returns {Promise<ServiceabilityPlatformModel.GetBulkRegionJobResponse>}
+     *   - Success response
+     *
+     * @name getRegionJobBulkBatchId
      * @summary: Get bulk_export_job data for a given batch_id
      * @description: This API takes batch_id and gives the detail of bulk_export_job collection for the batch_id
      */
-    getRegionJobBulkBatchId({ batchId }?: {
-        batchId: string;
-    }): Promise<GetBulkRegionJobResponse>;
+    getRegionJobBulkBatchId({ batchId }?: ServiceabilityPlatformValidator.getRegionJobBulkBatchId): Promise<ServiceabilityPlatformModel.GetBulkRegionJobResponse>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {number} arg.storeUid - A `store_uid` contains a specific ID of a store.
-     * @returns {Promise<GetStoresViewResponse>} - Success response
+     * @param {ServiceabilityPlatformValidator.getStore} arg - Arg object
+     * @returns {Promise<ServiceabilityPlatformModel.GetStoresViewResponse>} -
+     *   Success response
+     * @name getStore
      * @summary: GET stores data
      * @description: This API returns stores data.
      */
-    getStore({ storeUid }?: {
-        storeUid: number;
-    }): Promise<GetStoresViewResponse>;
+    getStore({ storeUid }?: ServiceabilityPlatformValidator.getStore): Promise<ServiceabilityPlatformModel.GetStoresViewResponse>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.zoneId - A `zone_id` is a unique identifier for a
-     *   particular zone.
-     * @returns {Promise<GetSingleZoneDataViewResponse>} - Success response
+     * @param {ServiceabilityPlatformValidator.getZoneDataView} arg - Arg object
+     * @returns {Promise<ServiceabilityPlatformModel.GetSingleZoneDataViewResponse>}
+     *   - Success response
+     *
+     * @name getZoneDataView
      * @summary: Zone Data View of application.
      * @description: This API returns Zone Data View of the application.
      */
-    getZoneDataView({ zoneId }?: {
-        zoneId: string;
-    }): Promise<GetSingleZoneDataViewResponse>;
+    getZoneDataView({ zoneId }?: ServiceabilityPlatformValidator.getZoneDataView): Promise<ServiceabilityPlatformModel.GetSingleZoneDataViewResponse>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {number} [arg.pageNumber] - Index of the item to start returning with
-     * @param {number} [arg.pageNo] - Index of the item to start returning with
-     * @param {number} [arg.pageSize] - Determines the items to be displayed in a page
-     * @param {string} [arg.name] - Name of particular zone in the seller account
-     * @param {boolean} [arg.isActive] - Status of zone whether active or inactive
-     * @param {string} [arg.channelIds] - Zones associated with the given channel ids'
-     * @param {string} [arg.q] - Search with name as a free text
-     * @param {string[]} [arg.zoneId] - List of zones to query for
-     * @returns {Promise<ListViewResponse>} - Success response
+     * @param {ServiceabilityPlatformValidator.getZoneListView} arg - Arg object
+     * @returns {Promise<ServiceabilityPlatformModel.ListViewResponse>} - Success response
+     * @name getZoneListView
      * @summary: Zone List of application.
      * @description: This API returns Zone List View of the application.
      */
-    getZoneListView({ pageNumber, pageNo, pageSize, name, isActive, channelIds, q, zoneId, }?: {
-        pageNumber?: number;
-        pageNo?: number;
-        pageSize?: number;
-        name?: string;
-        isActive?: boolean;
-        channelIds?: string;
-        q?: string;
-        zoneId?: string[];
-    }): Promise<ListViewResponse>;
+    getZoneListView({ pageNumber, pageNo, pageSize, name, isActive, channelIds, q, zoneId, }?: ServiceabilityPlatformValidator.getZoneListView): Promise<ServiceabilityPlatformModel.ListViewResponse>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {BulkRegionJobSerializer} arg.body
-     * @returns {Promise<PostBulkRegionJobResponse>} - Success response
+     * @param {ServiceabilityPlatformValidator.postRegionJobBulk} arg - Arg object
+     * @returns {Promise<ServiceabilityPlatformModel.PostBulkRegionJobResponse>}
+     *   - Success response
+     *
+     * @name postRegionJobBulk
      * @summary: This Api creates a Bulk Job for region tat data upsert
      * @description: This API takes request body, validates it and sends it to kafka topic
      */
-    postRegionJobBulk({ body }?: {
-        body: BulkRegionJobSerializer;
-    }): Promise<PostBulkRegionJobResponse>;
+    postRegionJobBulk({ body }?: ServiceabilityPlatformValidator.postRegionJobBulk): Promise<ServiceabilityPlatformModel.PostBulkRegionJobResponse>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.ruleUid - A `rule_uid` is a unique identifier for a
-     *   particular Dp.
-     * @param {DpRulesUpdateRequest} arg.body
-     * @returns {Promise<DpRuleUpdateSuccessResponse>} - Success response
+     * @param {ServiceabilityPlatformValidator.updateDpRule} arg - Arg object
+     * @returns {Promise<ServiceabilityPlatformModel.DpRuleUpdateSuccessResponse>}
+     *   - Success response
+     *
+     * @name updateDpRule
      * @summary: Updating of DpRules from database.
      * @description: This API updates and returns response of DpRules from mongo database.
      */
-    updateDpRule({ ruleUid, body }?: {
-        ruleUid: string;
-        body: DpRulesUpdateRequest;
-    }): Promise<DpRuleUpdateSuccessResponse>;
+    updateDpRule({ ruleUid, body }?: ServiceabilityPlatformValidator.updateDpRule): Promise<ServiceabilityPlatformModel.DpRuleUpdateSuccessResponse>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.zoneId - A `zone_id` is a unique identifier for a
-     *   particular zone.
-     * @param {ZoneUpdateRequest} arg.body
-     * @returns {Promise<ZoneSuccessResponse>} - Success response
+     * @param {ServiceabilityPlatformValidator.updateZoneControllerView} arg - Arg object
+     * @returns {Promise<ServiceabilityPlatformModel.ZoneSuccessResponse>} -
+     *   Success response
+     * @name updateZoneControllerView
      * @summary: Updation of zone collections in database.
      * @description: This API returns response of updation of zone in mongo database.
      */
-    updateZoneControllerView({ zoneId, body, }?: {
-        zoneId: string;
-        body: ZoneUpdateRequest;
-    }): Promise<ZoneSuccessResponse>;
+    updateZoneControllerView({ zoneId, body, }?: ServiceabilityPlatformValidator.updateZoneControllerView): Promise<ServiceabilityPlatformModel.ZoneSuccessResponse>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {CompanyDpAccountRequest} arg.body
-     * @returns {Promise<CompanyDpAccountResponse>} - Success response
+     * @param {ServiceabilityPlatformValidator.upsertDpAccount} arg - Arg object
+     * @returns {Promise<ServiceabilityPlatformModel.CompanyDpAccountResponse>}
+     *   - Success response
+     *
+     * @name upsertDpAccount
      * @summary: Upsertion of DpAccount in database.
      * @description: This API returns response of upsertion of DpAccount in mongo database.
      */
-    upsertDpAccount({ body }?: {
-        body: CompanyDpAccountRequest;
-    }): Promise<CompanyDpAccountResponse>;
+    upsertDpAccount({ body }?: ServiceabilityPlatformValidator.upsertDpAccount): Promise<ServiceabilityPlatformModel.CompanyDpAccountResponse>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {DPCompanyRuleRequest} arg.body
-     * @returns {Promise<DPCompanyRuleResponse>} - Success response
+     * @param {ServiceabilityPlatformValidator.upsertDpCompanyRulePriority} arg
+     *   - Arg object
+     *
+     * @returns {Promise<ServiceabilityPlatformModel.DPCompanyRuleResponse>} -
+     *   Success response
+     * @name upsertDpCompanyRulePriority
      * @summary: Upsert of DpCompanyRules in database.
      * @description: This API returns response of upsert of DpCompanyRules in mongo database.
      */
-    upsertDpCompanyRulePriority({ body }?: {
-        body: DPCompanyRuleRequest;
-    }): Promise<DPCompanyRuleResponse>;
+    upsertDpCompanyRulePriority({ body }?: ServiceabilityPlatformValidator.upsertDpCompanyRulePriority): Promise<ServiceabilityPlatformModel.DPCompanyRuleResponse>;
 }
+import ServiceabilityPlatformValidator = require("./ServiceabilityPlatformValidator");
+import ServiceabilityPlatformModel = require("./ServiceabilityPlatformModel");

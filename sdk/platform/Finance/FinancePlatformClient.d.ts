@@ -3,133 +3,114 @@ declare class Finance {
     constructor(config: any);
     config: any;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {CreditlineDataPlatformRequest} arg.body
-     * @returns {Promise<CreditlineDataPlatformResponse>} - Success response
+     * @param {FinancePlatformValidator.creditlineDataplatform} arg - Arg object
+     * @returns {Promise<FinancePlatformModel.CreditlineDataPlatformResponse>}
+     *   - Success response
+     *
+     * @name creditlineDataplatform
      * @summary:
      * @description:
      */
-    creditlineDataplatform({ body }?: {
-        body: CreditlineDataPlatformRequest;
-    }): Promise<CreditlineDataPlatformResponse>;
+    creditlineDataplatform({ body }?: FinancePlatformValidator.creditlineDataplatform): Promise<FinancePlatformModel.CreditlineDataPlatformResponse>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {DownloadCreditDebitNoteRequest} arg.body
-     * @returns {Promise<DownloadCreditDebitNoteResponse>} - Success response
+     * @param {FinancePlatformValidator.downloadCreditDebitNote} arg - Arg object
+     * @returns {Promise<FinancePlatformModel.DownloadCreditDebitNoteResponse>}
+     *   - Success response
+     *
+     * @name downloadCreditDebitNote
      * @summary:
      * @description:
      */
-    downloadCreditDebitNote({ body }?: {
-        body: DownloadCreditDebitNoteRequest;
-    }): Promise<DownloadCreditDebitNoteResponse>;
+    downloadCreditDebitNote({ body }?: FinancePlatformValidator.downloadCreditDebitNote): Promise<FinancePlatformModel.DownloadCreditDebitNoteResponse>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {DownloadReport} arg.body
-     * @returns {Promise<DownloadReportList>} - Success response
+     * @param {FinancePlatformValidator.downloadReport} arg - Arg object
+     * @returns {Promise<FinancePlatformModel.DownloadReportList>} - Success response
+     * @name downloadReport
      * @summary:
      * @description:
      */
-    downloadReport({ body }?: {
-        body: DownloadReport;
-    }): Promise<DownloadReportList>;
+    downloadReport({ body }?: FinancePlatformValidator.downloadReport): Promise<FinancePlatformModel.DownloadReportList>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {GenerateReportRequest} arg.body
-     * @returns {Promise<GenerateReportJson>} - Success response
+     * @param {FinancePlatformValidator.generateReport} arg - Arg object
+     * @returns {Promise<FinancePlatformModel.GenerateReportJson>} - Success response
+     * @name generateReport
      * @summary:
      * @description:
      */
-    generateReport({ body }?: {
-        body: GenerateReportRequest;
-    }): Promise<GenerateReportJson>;
+    generateReport({ body }?: FinancePlatformValidator.generateReport): Promise<FinancePlatformModel.GenerateReportJson>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {GetAffiliate} arg.body
-     * @returns {Promise<GetAffiliateResponse>} - Success response
+     * @param {FinancePlatformValidator.getAffiliate} arg - Arg object
+     * @returns {Promise<FinancePlatformModel.GetAffiliateResponse>} - Success response
+     * @name getAffiliate
      * @summary:
      * @description:
      */
-    getAffiliate({ body }?: {
-        body: GetAffiliate;
-    }): Promise<GetAffiliateResponse>;
+    getAffiliate({ body }?: FinancePlatformValidator.getAffiliate): Promise<FinancePlatformModel.GetAffiliateResponse>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {GetEngineRequest} arg.body
-     * @returns {Promise<GetEngineResponse>} - Success response
+     * @param {FinancePlatformValidator.getData} arg - Arg object
+     * @returns {Promise<FinancePlatformModel.GetEngineResponse>} - Success response
+     * @name getData
      * @summary:
      * @description:
      */
-    getData({ body }?: {
-        body: GetEngineRequest;
-    }): Promise<GetEngineResponse>;
+    getData({ body }?: FinancePlatformValidator.getData): Promise<FinancePlatformModel.GetEngineResponse>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {GetReasonRequest} arg.body
-     * @returns {Promise<GetReasonResponse>} - Success response
+     * @param {FinancePlatformValidator.getReason} arg - Arg object
+     * @returns {Promise<FinancePlatformModel.GetReasonResponse>} - Success response
+     * @name getReason
      * @summary:
      * @description:
      */
-    getReason({ body }?: {
-        body: GetReasonRequest;
-    }): Promise<GetReasonResponse>;
+    getReason({ body }?: FinancePlatformValidator.getReason): Promise<FinancePlatformModel.GetReasonResponse>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {GetReportListRequest} arg.body
-     * @returns {Promise<GetEngineResponse>} - Success response
+     * @param {FinancePlatformValidator.getReportList} arg - Arg object
+     * @returns {Promise<FinancePlatformModel.GetEngineResponse>} - Success response
+     * @name getReportList
      * @summary:
      * @description:
      */
-    getReportList({ body }?: {
-        body: GetReportListRequest;
-    }): Promise<GetEngineResponse>;
+    getReportList({ body }?: FinancePlatformValidator.getReportList): Promise<FinancePlatformModel.GetEngineResponse>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {InvoiceListingRequest} arg.body
-     * @returns {Promise<InvoiceListingResponse>} - Success response
+     * @param {FinancePlatformValidator.invoiceListing} arg - Arg object
+     * @returns {Promise<FinancePlatformModel.InvoiceListingResponse>} - Success response
+     * @name invoiceListing
      * @summary:
      * @description:
      */
-    invoiceListing({ body }?: {
-        body: InvoiceListingRequest;
-    }): Promise<InvoiceListingResponse>;
+    invoiceListing({ body }?: FinancePlatformValidator.invoiceListing): Promise<FinancePlatformModel.InvoiceListingResponse>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {InvoicePdfRequest} arg.body
-     * @returns {Promise<InvoicePdfResponse>} - Success response
+     * @param {FinancePlatformValidator.invoicePDF} arg - Arg object
+     * @returns {Promise<FinancePlatformModel.InvoicePdfResponse>} - Success response
+     * @name invoicePDF
      * @summary:
      * @description:
      */
-    invoicePDF({ body }?: {
-        body: InvoicePdfRequest;
-    }): Promise<InvoicePdfResponse>;
+    invoicePDF({ body }?: FinancePlatformValidator.invoicePDF): Promise<FinancePlatformModel.InvoicePdfResponse>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {InvoiceTypeRequest} arg.body
-     * @returns {Promise<InvoiceTypeResponse>} - Success response
+     * @param {FinancePlatformValidator.invoiceType} arg - Arg object
+     * @returns {Promise<FinancePlatformModel.InvoiceTypeResponse>} - Success response
+     * @name invoiceType
      * @summary:
      * @description:
      */
-    invoiceType({ body }?: {
-        body: InvoiceTypeRequest;
-    }): Promise<InvoiceTypeResponse>;
+    invoiceType({ body }?: FinancePlatformValidator.invoiceType): Promise<FinancePlatformModel.InvoiceTypeResponse>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {IsCreditlinePlatformRequest} arg.body
-     * @returns {Promise<IsCreditlinePlatformResponse>} - Success response
+     * @param {FinancePlatformValidator.isCreditlinePlatform} arg - Arg object
+     * @returns {Promise<FinancePlatformModel.IsCreditlinePlatformResponse>} -
+     *   Success response
+     * @name isCreditlinePlatform
      * @summary:
      * @description:
      */
-    isCreditlinePlatform({ body }?: {
-        body: IsCreditlinePlatformRequest;
-    }): Promise<IsCreditlinePlatformResponse>;
+    isCreditlinePlatform({ body }?: FinancePlatformValidator.isCreditlinePlatform): Promise<FinancePlatformModel.IsCreditlinePlatformResponse>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {PaymentProcessRequest} arg.body
-     * @returns {Promise<PaymentProcessResponse>} - Success response
+     * @param {FinancePlatformValidator.paymentProcess} arg - Arg object
+     * @returns {Promise<FinancePlatformModel.PaymentProcessResponse>} - Success response
+     * @name paymentProcess
      * @summary:
      * @description:
      */
-    paymentProcess({ body }?: {
-        body: PaymentProcessRequest;
-    }): Promise<PaymentProcessResponse>;
+    paymentProcess({ body }?: FinancePlatformValidator.paymentProcess): Promise<FinancePlatformModel.PaymentProcessResponse>;
 }
+import FinancePlatformValidator = require("./FinancePlatformValidator");
+import FinancePlatformModel = require("./FinancePlatformModel");

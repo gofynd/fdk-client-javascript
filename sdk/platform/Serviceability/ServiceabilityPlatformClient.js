@@ -1,8 +1,8 @@
 const PlatformAPIClient = require("../PlatformAPIClient");
 const { FDKClientValidationError } = require("../../common/FDKError");
 const Paginator = require("../../common/Paginator");
-const ServiceabilityValidator = require("./ServiceabilityPlatformValidator");
-const ServiceabilityModel = require("./ServiceabilityPlatformModel");
+const ServiceabilityPlatformValidator = require("./ServiceabilityPlatformValidator");
+const ServiceabilityPlatformModel = require("./ServiceabilityPlatformModel");
 const { Logger } = require("./../../common/Logger");
 const Joi = require("joi");
 
@@ -12,14 +12,15 @@ class Serviceability {
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {DpRuleRequest} arg.body
-   * @returns {Promise<DpRuleSuccessResponse>} - Success response
+   * @param {ServiceabilityPlatformValidator.createDpRule} arg - Arg object
+   * @returns {Promise<ServiceabilityPlatformModel.DpRuleSuccessResponse>} -
+   *   Success response
+   * @name createDpRule
    * @summary: Upsert of DpRules in database.
    * @description: This API returns response of upsert of DpRules in mongo database.
    */
   async createDpRule({ body } = {}) {
-    const { error } = ServiceabilityValidator.createDpRule().validate(
+    const { error } = ServiceabilityPlatformValidator.createDpRule().validate(
       {
         body,
       },
@@ -30,7 +31,9 @@ class Serviceability {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = ServiceabilityValidator.createDpRule().validate(
+    const {
+      error: warrning,
+    } = ServiceabilityPlatformValidator.createDpRule().validate(
       {
         body,
       },
@@ -39,9 +42,8 @@ class Serviceability {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for createDpRule",
+        message: `Parameter Validation warrnings for platform > Serviceability > createDpRule \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -59,7 +61,7 @@ class Serviceability {
 
     const {
       error: res_error,
-    } = ServiceabilityModel.DpRuleSuccessResponse().validate(response, {
+    } = ServiceabilityPlatformModel.DpRuleSuccessResponse().validate(response, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -67,23 +69,22 @@ class Serviceability {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for createDpRule",
+        message: `Response Validation Warnnings for platform > Serviceability > createDpRule \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {ZoneRequest} arg.body
-   * @returns {Promise<ZoneResponse>} - Success response
+   * @param {ServiceabilityPlatformValidator.createZone} arg - Arg object
+   * @returns {Promise<ServiceabilityPlatformModel.ZoneResponse>} - Success response
+   * @name createZone
    * @summary: Creation of a new zone
    * @description: This API allows you to create a new zone with the specified information. A zone enables serviceability based on given pincodes or regions. By creating a zone and including specific pincodes or regions, you can ensure that the stores associated with the zone are serviceable for those added pincodes or regions. This functionality is particularly useful when you need to ensure serviceability for multiple pincodes or regions by grouping them into a single zone.
    */
   async createZone({ body } = {}) {
-    const { error } = ServiceabilityValidator.createZone().validate(
+    const { error } = ServiceabilityPlatformValidator.createZone().validate(
       {
         body,
       },
@@ -94,7 +95,9 @@ class Serviceability {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = ServiceabilityValidator.createZone().validate(
+    const {
+      error: warrning,
+    } = ServiceabilityPlatformValidator.createZone().validate(
       {
         body,
       },
@@ -103,9 +106,8 @@ class Serviceability {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for createZone",
+        message: `Parameter Validation warrnings for platform > Serviceability > createZone \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -123,7 +125,7 @@ class Serviceability {
 
     const {
       error: res_error,
-    } = ServiceabilityModel.ZoneResponse().validate(response, {
+    } = ServiceabilityPlatformModel.ZoneResponse().validate(response, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -131,22 +133,23 @@ class Serviceability {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for createZone",
+        message: `Response Validation Warnnings for platform > Serviceability > createZone \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @returns {Promise<GetStoresViewResponse>} - Success response
+   * @param {ServiceabilityPlatformValidator.getAllStores} arg - Arg object
+   * @returns {Promise<ServiceabilityPlatformModel.GetStoresViewResponse>} -
+   *   Success response
+   * @name getAllStores
    * @summary: GET stores data
    * @description: This API returns stores data.
    */
   async getAllStores({} = {}) {
-    const { error } = ServiceabilityValidator.getAllStores().validate(
+    const { error } = ServiceabilityPlatformValidator.getAllStores().validate(
       {},
       { abortEarly: false, allowUnknown: true }
     );
@@ -155,16 +158,17 @@ class Serviceability {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = ServiceabilityValidator.getAllStores().validate(
+    const {
+      error: warrning,
+    } = ServiceabilityPlatformValidator.getAllStores().validate(
       {},
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for getAllStores",
+        message: `Parameter Validation warrnings for platform > Serviceability > getAllStores \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -182,7 +186,7 @@ class Serviceability {
 
     const {
       error: res_error,
-    } = ServiceabilityModel.GetStoresViewResponse().validate(response, {
+    } = ServiceabilityPlatformModel.GetStoresViewResponse().validate(response, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -190,24 +194,26 @@ class Serviceability {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for getAllStores",
+        message: `Response Validation Warnnings for platform > Serviceability > getAllStores \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {number} [arg.pageNumber] - Index of the item to start returning with
-   * @param {number} [arg.pageSize] - Determines the items to be displayed in a page
-   * @returns {Promise<CompanyStoreView_Response>} - Success response
+   * @param {ServiceabilityPlatformValidator.getCompanyStoreView} arg - Arg object
+   * @returns {Promise<ServiceabilityPlatformModel.CompanyStoreView_Response>}
+   *   - Success response
+   *
+   * @name getCompanyStoreView
    * @summary: Company Store View of application.
    * @description: This API returns Company Store View of the application.
    */
   async getCompanyStoreView({ pageNumber, pageSize } = {}) {
-    const { error } = ServiceabilityValidator.getCompanyStoreView().validate(
+    const {
+      error,
+    } = ServiceabilityPlatformValidator.getCompanyStoreView().validate(
       {
         pageNumber,
         pageSize,
@@ -221,7 +227,7 @@ class Serviceability {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = ServiceabilityValidator.getCompanyStoreView().validate(
+    } = ServiceabilityPlatformValidator.getCompanyStoreView().validate(
       {
         pageNumber,
         pageSize,
@@ -231,9 +237,8 @@ class Serviceability {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for getCompanyStoreView",
+        message: `Parameter Validation warrnings for platform > Serviceability > getCompanyStoreView \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -253,30 +258,27 @@ class Serviceability {
 
     const {
       error: res_error,
-    } = ServiceabilityModel.CompanyStoreView_Response().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
+    } = ServiceabilityPlatformModel.CompanyStoreView_Response().validate(
+      response,
+      { abortEarly: false, allowUnknown: false }
+    );
 
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for getCompanyStoreView",
+        message: `Response Validation Warnnings for platform > Serviceability > getCompanyStoreView \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {number} [arg.pageNumber] - Index of the item to start returning with
-   * @param {number} [arg.pageSize] - Determines the items to be displayed in a page
-   * @param {string} [arg.stage] - Stage of the account. enabled/disabled
-   * @param {string} [arg.paymentMode] - Filters dp accounts based on payment mode
-   * @param {string} [arg.transportType] - Filters dp accounts based on transport_type
-   * @returns {Promise<CompanyDpAccountListResponse>} - Success response
+   * @param {ServiceabilityPlatformValidator.getDpAccountList} arg - Arg object
+   * @returns {Promise<ServiceabilityPlatformModel.CompanyDpAccountListResponse>}
+   *   - Success response
+   *
+   * @name getDpAccountList
    * @summary: Getting DpAccount of a company from database.
    * @description: This API returns response DpAccount of a company from mongo database.
    */
@@ -287,7 +289,9 @@ class Serviceability {
     paymentMode,
     transportType,
   } = {}) {
-    const { error } = ServiceabilityValidator.getDpAccountList().validate(
+    const {
+      error,
+    } = ServiceabilityPlatformValidator.getDpAccountList().validate(
       {
         pageNumber,
         pageSize,
@@ -304,7 +308,7 @@ class Serviceability {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = ServiceabilityValidator.getDpAccountList().validate(
+    } = ServiceabilityPlatformValidator.getDpAccountList().validate(
       {
         pageNumber,
         pageSize,
@@ -317,9 +321,8 @@ class Serviceability {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for getDpAccountList",
+        message: `Parameter Validation warrnings for platform > Serviceability > getDpAccountList \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -342,32 +345,33 @@ class Serviceability {
 
     const {
       error: res_error,
-    } = ServiceabilityModel.CompanyDpAccountListResponse().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
+    } = ServiceabilityPlatformModel.CompanyDpAccountListResponse().validate(
+      response,
+      { abortEarly: false, allowUnknown: false }
+    );
 
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for getDpAccountList",
+        message: `Response Validation Warnnings for platform > Serviceability > getDpAccountList \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @returns {Promise<DPCompanyRuleResponse>} - Success response
+   * @param {ServiceabilityPlatformValidator.getDpCompanyRulePriority} arg - Arg object
+   * @returns {Promise<ServiceabilityPlatformModel.DPCompanyRuleResponse>} -
+   *   Success response
+   * @name getDpCompanyRulePriority
    * @summary: Get All DpCompanyRules applied to company from database.
    * @description: This API returns response of all DpCompanyRules from mongo database.
    */
   async getDpCompanyRulePriority({} = {}) {
     const {
       error,
-    } = ServiceabilityValidator.getDpCompanyRulePriority().validate(
+    } = ServiceabilityPlatformValidator.getDpCompanyRulePriority().validate(
       {},
       { abortEarly: false, allowUnknown: true }
     );
@@ -378,16 +382,15 @@ class Serviceability {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = ServiceabilityValidator.getDpCompanyRulePriority().validate(
+    } = ServiceabilityPlatformValidator.getDpCompanyRulePriority().validate(
       {},
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for getDpCompanyRulePriority",
+        message: `Parameter Validation warrnings for platform > Serviceability > getDpCompanyRulePriority \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -405,7 +408,7 @@ class Serviceability {
 
     const {
       error: res_error,
-    } = ServiceabilityModel.DPCompanyRuleResponse().validate(response, {
+    } = ServiceabilityPlatformModel.DPCompanyRuleResponse().validate(response, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -413,24 +416,23 @@ class Serviceability {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for getDpCompanyRulePriority",
+        message: `Response Validation Warnnings for platform > Serviceability > getDpCompanyRulePriority \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.ruleUid - A `rule_uid` is a unique identifier for a
-   *   particular Dp.
-   * @returns {Promise<DpRuleSuccessResponse>} - Success response
+   * @param {ServiceabilityPlatformValidator.getDpRule} arg - Arg object
+   * @returns {Promise<ServiceabilityPlatformModel.DpRuleSuccessResponse>} -
+   *   Success response
+   * @name getDpRule
    * @summary: Fetching of DpRules from database.
    * @description: This API returns response of DpRules from mongo database.
    */
   async getDpRule({ ruleUid } = {}) {
-    const { error } = ServiceabilityValidator.getDpRule().validate(
+    const { error } = ServiceabilityPlatformValidator.getDpRule().validate(
       {
         ruleUid,
       },
@@ -441,7 +443,9 @@ class Serviceability {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = ServiceabilityValidator.getDpRule().validate(
+    const {
+      error: warrning,
+    } = ServiceabilityPlatformValidator.getDpRule().validate(
       {
         ruleUid,
       },
@@ -450,9 +454,8 @@ class Serviceability {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for getDpRule",
+        message: `Parameter Validation warrnings for platform > Serviceability > getDpRule \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -470,7 +473,7 @@ class Serviceability {
 
     const {
       error: res_error,
-    } = ServiceabilityModel.DpRuleSuccessResponse().validate(response, {
+    } = ServiceabilityPlatformModel.DpRuleSuccessResponse().validate(response, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -478,24 +481,24 @@ class Serviceability {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for getDpRule",
+        message: `Response Validation Warnnings for platform > Serviceability > getDpRule \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {number} [arg.pageNumber] - Index of the item to start returning with
-   * @param {number} [arg.pageSize] - Determines the items to be displayed in a page
-   * @returns {Promise<DpMultipleRuleSuccessResponse>} - Success response
+   * @param {ServiceabilityPlatformValidator.getDpRuleList} arg - Arg object
+   * @returns {Promise<ServiceabilityPlatformModel.DpMultipleRuleSuccessResponse>}
+   *   - Success response
+   *
+   * @name getDpRuleList
    * @summary: Fetching of DpRules from database.
    * @description: This API returns response of DpRules from mongo database.
    */
   async getDpRuleList({ pageNumber, pageSize } = {}) {
-    const { error } = ServiceabilityValidator.getDpRuleList().validate(
+    const { error } = ServiceabilityPlatformValidator.getDpRuleList().validate(
       {
         pageNumber,
         pageSize,
@@ -509,7 +512,7 @@ class Serviceability {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = ServiceabilityValidator.getDpRuleList().validate(
+    } = ServiceabilityPlatformValidator.getDpRuleList().validate(
       {
         pageNumber,
         pageSize,
@@ -519,9 +522,8 @@ class Serviceability {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for getDpRuleList",
+        message: `Parameter Validation warrnings for platform > Serviceability > getDpRuleList \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -541,31 +543,34 @@ class Serviceability {
 
     const {
       error: res_error,
-    } = ServiceabilityModel.DpMultipleRuleSuccessResponse().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
+    } = ServiceabilityPlatformModel.DpMultipleRuleSuccessResponse().validate(
+      response,
+      { abortEarly: false, allowUnknown: false }
+    );
 
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for getDpRuleList",
+        message: `Response Validation Warnnings for platform > Serviceability > getDpRuleList \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {EntityRegionView_Request} arg.body
-   * @returns {Promise<EntityRegionView_Response>} - Success response
+   * @param {ServiceabilityPlatformValidator.getEntityRegionView} arg - Arg object
+   * @returns {Promise<ServiceabilityPlatformModel.EntityRegionView_Response>}
+   *   - Success response
+   *
+   * @name getEntityRegionView
    * @summary: Get country and state list
    * @description: This API returns response for Entity Region View.
    */
   async getEntityRegionView({ body } = {}) {
-    const { error } = ServiceabilityValidator.getEntityRegionView().validate(
+    const {
+      error,
+    } = ServiceabilityPlatformValidator.getEntityRegionView().validate(
       {
         body,
       },
@@ -578,7 +583,7 @@ class Serviceability {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = ServiceabilityValidator.getEntityRegionView().validate(
+    } = ServiceabilityPlatformValidator.getEntityRegionView().validate(
       {
         body,
       },
@@ -587,9 +592,8 @@ class Serviceability {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for getEntityRegionView",
+        message: `Parameter Validation warrnings for platform > Serviceability > getEntityRegionView \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -607,31 +611,25 @@ class Serviceability {
 
     const {
       error: res_error,
-    } = ServiceabilityModel.EntityRegionView_Response().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
+    } = ServiceabilityPlatformModel.EntityRegionView_Response().validate(
+      response,
+      { abortEarly: false, allowUnknown: false }
+    );
 
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for getEntityRegionView",
+        message: `Response Validation Warnnings for platform > Serviceability > getEntityRegionView \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {number} [arg.pageNumber] - Index of the item to start returning with
-   * @param {number} [arg.pageSize] - Determines the items to be displayed in a page
-   * @param {string} [arg.name] - Name of particular zone in the seller account
-   * @param {boolean} [arg.isActive] - Status of zone whether active or inactive
-   * @param {string} [arg.channelIds] - Zones associated with the given channel ids'
-   * @param {string} [arg.q] - Search with name as a free text
-   * @returns {Promise<ListViewResponse>} - Success response
+   * @param {ServiceabilityPlatformValidator.getListView} arg - Arg object
+   * @returns {Promise<ServiceabilityPlatformModel.ListViewResponse>} - Success response
+   * @name getListView
    * @summary: Zone List of application.
    * @description: This API returns Zone List View of the application.
    */
@@ -643,7 +641,7 @@ class Serviceability {
     channelIds,
     q,
   } = {}) {
-    const { error } = ServiceabilityValidator.getListView().validate(
+    const { error } = ServiceabilityPlatformValidator.getListView().validate(
       {
         pageNumber,
         pageSize,
@@ -659,7 +657,9 @@ class Serviceability {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = ServiceabilityValidator.getListView().validate(
+    const {
+      error: warrning,
+    } = ServiceabilityPlatformValidator.getListView().validate(
       {
         pageNumber,
         pageSize,
@@ -673,9 +673,8 @@ class Serviceability {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for getListView",
+        message: `Parameter Validation warrnings for platform > Serviceability > getListView \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -699,7 +698,7 @@ class Serviceability {
 
     const {
       error: res_error,
-    } = ServiceabilityModel.ListViewResponse().validate(response, {
+    } = ServiceabilityPlatformModel.ListViewResponse().validate(response, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -707,23 +706,25 @@ class Serviceability {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for getListView",
+        message: `Response Validation Warnnings for platform > Serviceability > getListView \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {ReAssignStoreRequest} arg.body
-   * @returns {Promise<ReAssignStoreResponse>} - Success response
+   * @param {ServiceabilityPlatformValidator.getOptimalLocations} arg - Arg object
+   * @returns {Promise<ServiceabilityPlatformModel.ReAssignStoreResponse>} -
+   *   Success response
+   * @name getOptimalLocations
    * @summary: Get serviceable store of the item
    * @description: This API returns serviceable store of the item.
    */
   async getOptimalLocations({ body } = {}) {
-    const { error } = ServiceabilityValidator.getOptimalLocations().validate(
+    const {
+      error,
+    } = ServiceabilityPlatformValidator.getOptimalLocations().validate(
       {
         body,
       },
@@ -736,7 +737,7 @@ class Serviceability {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = ServiceabilityValidator.getOptimalLocations().validate(
+    } = ServiceabilityPlatformValidator.getOptimalLocations().validate(
       {
         body,
       },
@@ -745,9 +746,8 @@ class Serviceability {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for getOptimalLocations",
+        message: `Parameter Validation warrnings for platform > Serviceability > getOptimalLocations \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -765,7 +765,7 @@ class Serviceability {
 
     const {
       error: res_error,
-    } = ServiceabilityModel.ReAssignStoreResponse().validate(response, {
+    } = ServiceabilityPlatformModel.ReAssignStoreResponse().validate(response, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -773,24 +773,26 @@ class Serviceability {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for getOptimalLocations",
+        message: `Response Validation Warnnings for platform > Serviceability > getOptimalLocations \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {number} [arg.currentPageNumber] - The current page number
-   * @param {number} [arg.pageSize] - The page size
-   * @returns {Promise<GetBulkRegionJobResponse>} - Success response
+   * @param {ServiceabilityPlatformValidator.getRegionJobBulk} arg - Arg object
+   * @returns {Promise<ServiceabilityPlatformModel.GetBulkRegionJobResponse>}
+   *   - Success response
+   *
+   * @name getRegionJobBulk
    * @summary: Get bulk_export_job collection all records
    * @description: This API takes gives all the records of bulk_export_job collection
    */
   async getRegionJobBulk({ currentPageNumber, pageSize } = {}) {
-    const { error } = ServiceabilityValidator.getRegionJobBulk().validate(
+    const {
+      error,
+    } = ServiceabilityPlatformValidator.getRegionJobBulk().validate(
       {
         currentPageNumber,
         pageSize,
@@ -804,7 +806,7 @@ class Serviceability {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = ServiceabilityValidator.getRegionJobBulk().validate(
+    } = ServiceabilityPlatformValidator.getRegionJobBulk().validate(
       {
         currentPageNumber,
         pageSize,
@@ -814,9 +816,8 @@ class Serviceability {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for getRegionJobBulk",
+        message: `Parameter Validation warrnings for platform > Serviceability > getRegionJobBulk \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -836,33 +837,34 @@ class Serviceability {
 
     const {
       error: res_error,
-    } = ServiceabilityModel.GetBulkRegionJobResponse().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
+    } = ServiceabilityPlatformModel.GetBulkRegionJobResponse().validate(
+      response,
+      { abortEarly: false, allowUnknown: false }
+    );
 
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for getRegionJobBulk",
+        message: `Response Validation Warnnings for platform > Serviceability > getRegionJobBulk \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.batchId - The batch ID
-   * @returns {Promise<GetBulkRegionJobResponse>} - Success response
+   * @param {ServiceabilityPlatformValidator.getRegionJobBulkBatchId} arg - Arg object
+   * @returns {Promise<ServiceabilityPlatformModel.GetBulkRegionJobResponse>}
+   *   - Success response
+   *
+   * @name getRegionJobBulkBatchId
    * @summary: Get bulk_export_job data for a given batch_id
    * @description: This API takes batch_id and gives the detail of bulk_export_job collection for the batch_id
    */
   async getRegionJobBulkBatchId({ batchId } = {}) {
     const {
       error,
-    } = ServiceabilityValidator.getRegionJobBulkBatchId().validate(
+    } = ServiceabilityPlatformValidator.getRegionJobBulkBatchId().validate(
       { batchId },
       { abortEarly: false, allowUnknown: true }
     );
@@ -873,16 +875,15 @@ class Serviceability {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = ServiceabilityValidator.getRegionJobBulkBatchId().validate(
+    } = ServiceabilityPlatformValidator.getRegionJobBulkBatchId().validate(
       { batchId },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for getRegionJobBulkBatchId",
+        message: `Parameter Validation warrnings for platform > Serviceability > getRegionJobBulkBatchId \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -900,31 +901,31 @@ class Serviceability {
 
     const {
       error: res_error,
-    } = ServiceabilityModel.GetBulkRegionJobResponse().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
+    } = ServiceabilityPlatformModel.GetBulkRegionJobResponse().validate(
+      response,
+      { abortEarly: false, allowUnknown: false }
+    );
 
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for getRegionJobBulkBatchId",
+        message: `Response Validation Warnnings for platform > Serviceability > getRegionJobBulkBatchId \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {number} arg.storeUid - A `store_uid` contains a specific ID of a store.
-   * @returns {Promise<GetStoresViewResponse>} - Success response
+   * @param {ServiceabilityPlatformValidator.getStore} arg - Arg object
+   * @returns {Promise<ServiceabilityPlatformModel.GetStoresViewResponse>} -
+   *   Success response
+   * @name getStore
    * @summary: GET stores data
    * @description: This API returns stores data.
    */
   async getStore({ storeUid } = {}) {
-    const { error } = ServiceabilityValidator.getStore().validate(
+    const { error } = ServiceabilityPlatformValidator.getStore().validate(
       {
         storeUid,
       },
@@ -935,7 +936,9 @@ class Serviceability {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = ServiceabilityValidator.getStore().validate(
+    const {
+      error: warrning,
+    } = ServiceabilityPlatformValidator.getStore().validate(
       {
         storeUid,
       },
@@ -944,9 +947,8 @@ class Serviceability {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for getStore",
+        message: `Parameter Validation warrnings for platform > Serviceability > getStore \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -964,7 +966,7 @@ class Serviceability {
 
     const {
       error: res_error,
-    } = ServiceabilityModel.GetStoresViewResponse().validate(response, {
+    } = ServiceabilityPlatformModel.GetStoresViewResponse().validate(response, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -972,24 +974,26 @@ class Serviceability {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for getStore",
+        message: `Response Validation Warnnings for platform > Serviceability > getStore \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.zoneId - A `zone_id` is a unique identifier for a
-   *   particular zone.
-   * @returns {Promise<GetSingleZoneDataViewResponse>} - Success response
+   * @param {ServiceabilityPlatformValidator.getZoneDataView} arg - Arg object
+   * @returns {Promise<ServiceabilityPlatformModel.GetSingleZoneDataViewResponse>}
+   *   - Success response
+   *
+   * @name getZoneDataView
    * @summary: Zone Data View of application.
    * @description: This API returns Zone Data View of the application.
    */
   async getZoneDataView({ zoneId } = {}) {
-    const { error } = ServiceabilityValidator.getZoneDataView().validate(
+    const {
+      error,
+    } = ServiceabilityPlatformValidator.getZoneDataView().validate(
       {
         zoneId,
       },
@@ -1002,7 +1006,7 @@ class Serviceability {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = ServiceabilityValidator.getZoneDataView().validate(
+    } = ServiceabilityPlatformValidator.getZoneDataView().validate(
       {
         zoneId,
       },
@@ -1011,9 +1015,8 @@ class Serviceability {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for getZoneDataView",
+        message: `Parameter Validation warrnings for platform > Serviceability > getZoneDataView \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -1031,33 +1034,25 @@ class Serviceability {
 
     const {
       error: res_error,
-    } = ServiceabilityModel.GetSingleZoneDataViewResponse().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
+    } = ServiceabilityPlatformModel.GetSingleZoneDataViewResponse().validate(
+      response,
+      { abortEarly: false, allowUnknown: false }
+    );
 
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for getZoneDataView",
+        message: `Response Validation Warnnings for platform > Serviceability > getZoneDataView \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {number} [arg.pageNumber] - Index of the item to start returning with
-   * @param {number} [arg.pageNo] - Index of the item to start returning with
-   * @param {number} [arg.pageSize] - Determines the items to be displayed in a page
-   * @param {string} [arg.name] - Name of particular zone in the seller account
-   * @param {boolean} [arg.isActive] - Status of zone whether active or inactive
-   * @param {string} [arg.channelIds] - Zones associated with the given channel ids'
-   * @param {string} [arg.q] - Search with name as a free text
-   * @param {string[]} [arg.zoneId] - List of zones to query for
-   * @returns {Promise<ListViewResponse>} - Success response
+   * @param {ServiceabilityPlatformValidator.getZoneListView} arg - Arg object
+   * @returns {Promise<ServiceabilityPlatformModel.ListViewResponse>} - Success response
+   * @name getZoneListView
    * @summary: Zone List of application.
    * @description: This API returns Zone List View of the application.
    */
@@ -1071,7 +1066,9 @@ class Serviceability {
     q,
     zoneId,
   } = {}) {
-    const { error } = ServiceabilityValidator.getZoneListView().validate(
+    const {
+      error,
+    } = ServiceabilityPlatformValidator.getZoneListView().validate(
       {
         pageNumber,
         pageNo,
@@ -1091,7 +1088,7 @@ class Serviceability {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = ServiceabilityValidator.getZoneListView().validate(
+    } = ServiceabilityPlatformValidator.getZoneListView().validate(
       {
         pageNumber,
         pageNo,
@@ -1107,9 +1104,8 @@ class Serviceability {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for getZoneListView",
+        message: `Parameter Validation warrnings for platform > Serviceability > getZoneListView \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -1135,7 +1131,7 @@ class Serviceability {
 
     const {
       error: res_error,
-    } = ServiceabilityModel.ListViewResponse().validate(response, {
+    } = ServiceabilityPlatformModel.ListViewResponse().validate(response, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -1143,23 +1139,26 @@ class Serviceability {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for getZoneListView",
+        message: `Response Validation Warnnings for platform > Serviceability > getZoneListView \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {BulkRegionJobSerializer} arg.body
-   * @returns {Promise<PostBulkRegionJobResponse>} - Success response
+   * @param {ServiceabilityPlatformValidator.postRegionJobBulk} arg - Arg object
+   * @returns {Promise<ServiceabilityPlatformModel.PostBulkRegionJobResponse>}
+   *   - Success response
+   *
+   * @name postRegionJobBulk
    * @summary: This Api creates a Bulk Job for region tat data upsert
    * @description: This API takes request body, validates it and sends it to kafka topic
    */
   async postRegionJobBulk({ body } = {}) {
-    const { error } = ServiceabilityValidator.postRegionJobBulk().validate(
+    const {
+      error,
+    } = ServiceabilityPlatformValidator.postRegionJobBulk().validate(
       {
         body,
       },
@@ -1172,7 +1171,7 @@ class Serviceability {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = ServiceabilityValidator.postRegionJobBulk().validate(
+    } = ServiceabilityPlatformValidator.postRegionJobBulk().validate(
       {
         body,
       },
@@ -1181,9 +1180,8 @@ class Serviceability {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for postRegionJobBulk",
+        message: `Parameter Validation warrnings for platform > Serviceability > postRegionJobBulk \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -1201,33 +1199,32 @@ class Serviceability {
 
     const {
       error: res_error,
-    } = ServiceabilityModel.PostBulkRegionJobResponse().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
+    } = ServiceabilityPlatformModel.PostBulkRegionJobResponse().validate(
+      response,
+      { abortEarly: false, allowUnknown: false }
+    );
 
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for postRegionJobBulk",
+        message: `Response Validation Warnnings for platform > Serviceability > postRegionJobBulk \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.ruleUid - A `rule_uid` is a unique identifier for a
-   *   particular Dp.
-   * @param {DpRulesUpdateRequest} arg.body
-   * @returns {Promise<DpRuleUpdateSuccessResponse>} - Success response
+   * @param {ServiceabilityPlatformValidator.updateDpRule} arg - Arg object
+   * @returns {Promise<ServiceabilityPlatformModel.DpRuleUpdateSuccessResponse>}
+   *   - Success response
+   *
+   * @name updateDpRule
    * @summary: Updating of DpRules from database.
    * @description: This API updates and returns response of DpRules from mongo database.
    */
   async updateDpRule({ ruleUid, body } = {}) {
-    const { error } = ServiceabilityValidator.updateDpRule().validate(
+    const { error } = ServiceabilityPlatformValidator.updateDpRule().validate(
       {
         ruleUid,
         body,
@@ -1239,7 +1236,9 @@ class Serviceability {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = ServiceabilityValidator.updateDpRule().validate(
+    const {
+      error: warrning,
+    } = ServiceabilityPlatformValidator.updateDpRule().validate(
       {
         ruleUid,
         body,
@@ -1249,9 +1248,8 @@ class Serviceability {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for updateDpRule",
+        message: `Parameter Validation warrnings for platform > Serviceability > updateDpRule \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -1269,28 +1267,26 @@ class Serviceability {
 
     const {
       error: res_error,
-    } = ServiceabilityModel.DpRuleUpdateSuccessResponse().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
+    } = ServiceabilityPlatformModel.DpRuleUpdateSuccessResponse().validate(
+      response,
+      { abortEarly: false, allowUnknown: false }
+    );
 
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for updateDpRule",
+        message: `Response Validation Warnnings for platform > Serviceability > updateDpRule \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.zoneId - A `zone_id` is a unique identifier for a
-   *   particular zone.
-   * @param {ZoneUpdateRequest} arg.body
-   * @returns {Promise<ZoneSuccessResponse>} - Success response
+   * @param {ServiceabilityPlatformValidator.updateZoneControllerView} arg - Arg object
+   * @returns {Promise<ServiceabilityPlatformModel.ZoneSuccessResponse>} -
+   *   Success response
+   * @name updateZoneControllerView
    * @summary: Updation of zone collections in database.
    * @description: This API returns response of updation of zone in mongo database.
    */
@@ -1301,7 +1297,7 @@ class Serviceability {
   } = {}) {
     const {
       error,
-    } = ServiceabilityValidator.updateZoneControllerView().validate(
+    } = ServiceabilityPlatformValidator.updateZoneControllerView().validate(
       {
         zoneId,
 
@@ -1316,7 +1312,7 @@ class Serviceability {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = ServiceabilityValidator.updateZoneControllerView().validate(
+    } = ServiceabilityPlatformValidator.updateZoneControllerView().validate(
       {
         zoneId,
 
@@ -1327,9 +1323,8 @@ class Serviceability {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for updateZoneControllerView",
+        message: `Parameter Validation warrnings for platform > Serviceability > updateZoneControllerView \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -1347,7 +1342,7 @@ class Serviceability {
 
     const {
       error: res_error,
-    } = ServiceabilityModel.ZoneSuccessResponse().validate(response, {
+    } = ServiceabilityPlatformModel.ZoneSuccessResponse().validate(response, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -1355,23 +1350,26 @@ class Serviceability {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for updateZoneControllerView",
+        message: `Response Validation Warnnings for platform > Serviceability > updateZoneControllerView \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {CompanyDpAccountRequest} arg.body
-   * @returns {Promise<CompanyDpAccountResponse>} - Success response
+   * @param {ServiceabilityPlatformValidator.upsertDpAccount} arg - Arg object
+   * @returns {Promise<ServiceabilityPlatformModel.CompanyDpAccountResponse>}
+   *   - Success response
+   *
+   * @name upsertDpAccount
    * @summary: Upsertion of DpAccount in database.
    * @description: This API returns response of upsertion of DpAccount in mongo database.
    */
   async upsertDpAccount({ body } = {}) {
-    const { error } = ServiceabilityValidator.upsertDpAccount().validate(
+    const {
+      error,
+    } = ServiceabilityPlatformValidator.upsertDpAccount().validate(
       {
         body,
       },
@@ -1384,7 +1382,7 @@ class Serviceability {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = ServiceabilityValidator.upsertDpAccount().validate(
+    } = ServiceabilityPlatformValidator.upsertDpAccount().validate(
       {
         body,
       },
@@ -1393,9 +1391,8 @@ class Serviceability {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for upsertDpAccount",
+        message: `Parameter Validation warrnings for platform > Serviceability > upsertDpAccount \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -1413,33 +1410,35 @@ class Serviceability {
 
     const {
       error: res_error,
-    } = ServiceabilityModel.CompanyDpAccountResponse().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
+    } = ServiceabilityPlatformModel.CompanyDpAccountResponse().validate(
+      response,
+      { abortEarly: false, allowUnknown: false }
+    );
 
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for upsertDpAccount",
+        message: `Response Validation Warnnings for platform > Serviceability > upsertDpAccount \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {DPCompanyRuleRequest} arg.body
-   * @returns {Promise<DPCompanyRuleResponse>} - Success response
+   * @param {ServiceabilityPlatformValidator.upsertDpCompanyRulePriority} arg
+   *   - Arg object
+   *
+   * @returns {Promise<ServiceabilityPlatformModel.DPCompanyRuleResponse>} -
+   *   Success response
+   * @name upsertDpCompanyRulePriority
    * @summary: Upsert of DpCompanyRules in database.
    * @description: This API returns response of upsert of DpCompanyRules in mongo database.
    */
   async upsertDpCompanyRulePriority({ body } = {}) {
     const {
       error,
-    } = ServiceabilityValidator.upsertDpCompanyRulePriority().validate(
+    } = ServiceabilityPlatformValidator.upsertDpCompanyRulePriority().validate(
       {
         body,
       },
@@ -1452,7 +1451,7 @@ class Serviceability {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = ServiceabilityValidator.upsertDpCompanyRulePriority().validate(
+    } = ServiceabilityPlatformValidator.upsertDpCompanyRulePriority().validate(
       {
         body,
       },
@@ -1461,10 +1460,8 @@ class Serviceability {
     if (warrning) {
       Logger({
         level: "WARN",
-        message:
-          "Parameter Validation warrnings for upsertDpCompanyRulePriority",
+        message: `Parameter Validation warrnings for platform > Serviceability > upsertDpCompanyRulePriority \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -1482,7 +1479,7 @@ class Serviceability {
 
     const {
       error: res_error,
-    } = ServiceabilityModel.DPCompanyRuleResponse().validate(response, {
+    } = ServiceabilityPlatformModel.DPCompanyRuleResponse().validate(response, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -1490,10 +1487,8 @@ class Serviceability {
     if (res_error) {
       Logger({
         level: "WARN",
-        message:
-          "Response Validation Warnnings for upsertDpCompanyRulePriority",
+        message: `Response Validation Warnnings for platform > Serviceability > upsertDpCompanyRulePriority \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;

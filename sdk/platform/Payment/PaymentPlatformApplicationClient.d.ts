@@ -4,351 +4,298 @@ declare class Payment {
     config: any;
     applicationId: any;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.terminalUniqueIdentifier - Terminal unique identifier
-     * @param {EdcUpdateRequest} arg.body
-     * @returns {Promise<EdcDeviceUpdateResponse>} - Success response
+     * @param {PaymentPlatformApplicationValidator.addEdcDevice} arg - Arg object
+     * @returns {Promise<PaymentPlatformModel.EdcDeviceUpdateResponse>} - Success response
+     * @name addEdcDevice
      * @summary: Update store id and device tag of edc device
      * @description: Use this API to Update store id and device tag of edc device
      */
-    addEdcDevice({ terminalUniqueIdentifier, body }?: {
-        terminalUniqueIdentifier: string;
-        body: EdcUpdateRequest;
-    }): Promise<EdcDeviceUpdateResponse>;
+    addEdcDevice({ terminalUniqueIdentifier, body }?: PaymentPlatformApplicationValidator.addEdcDevice): Promise<PaymentPlatformModel.EdcDeviceUpdateResponse>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {AddBeneficiaryDetailsOTPRequest} arg.body
-     * @returns {Promise<RefundAccountResponse>} - Success response
+     * @param {PaymentPlatformApplicationValidator.addRefundBankAccountUsingOTP} arg
+     *   - Arg object
+     *
+     * @returns {Promise<PaymentPlatformModel.RefundAccountResponse>} - Success response
+     * @name addRefundBankAccountUsingOTP
      * @summary: Save bank details for cancelled/returned order
      * @description: Use this API to save bank details for returned/cancelled order to refund amount in his account.
      */
-    addRefundBankAccountUsingOTP({ body }?: {
-        body: AddBeneficiaryDetailsOTPRequest;
-    }): Promise<RefundAccountResponse>;
+    addRefundBankAccountUsingOTP({ body }?: PaymentPlatformApplicationValidator.addRefundBankAccountUsingOTP): Promise<PaymentPlatformModel.RefundAccountResponse>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {CancelOrResendPaymentLinkRequest} arg.body
-     * @returns {Promise<CancelPaymentLinkResponse>} - Success response
+     * @param {PaymentPlatformApplicationValidator.cancelPaymentLink} arg - Arg object
+     * @returns {Promise<PaymentPlatformModel.CancelPaymentLinkResponse>} -
+     *   Success response
+     * @name cancelPaymentLink
      * @summary: Cancel payment link
      * @description: Use this API to cancel a payment link for the customer
      */
-    cancelPaymentLink({ body }?: {
-        body: CancelOrResendPaymentLinkRequest;
-    }): Promise<CancelPaymentLinkResponse>;
+    cancelPaymentLink({ body }?: PaymentPlatformApplicationValidator.cancelPaymentLink): Promise<PaymentPlatformModel.CancelPaymentLinkResponse>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {PaymentStatusUpdateRequest} arg.body
-     * @returns {Promise<PaymentStatusUpdateResponse>} - Success response
+     * @param {PaymentPlatformApplicationValidator.checkAndUpdatePaymentStatus} arg
+     *   - Arg object
+     *
+     * @returns {Promise<PaymentPlatformModel.PaymentStatusUpdateResponse>} -
+     *   Success response
+     * @name checkAndUpdatePaymentStatus
      * @summary: Performs continuous polling to check status of payment on the server
      * @description: Use this API to perform continuous polling at intervals to check the status of payment until timeout.
      */
-    checkAndUpdatePaymentStatus({ body }?: {
-        body: PaymentStatusUpdateRequest;
-    }): Promise<PaymentStatusUpdateResponse>;
+    checkAndUpdatePaymentStatus({ body }?: PaymentPlatformApplicationValidator.checkAndUpdatePaymentStatus): Promise<PaymentPlatformModel.PaymentStatusUpdateResponse>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {PaymentConfirmationRequest} arg.body
-     * @returns {Promise<PaymentConfirmationResponse>} - Success response
+     * @param {PaymentPlatformApplicationValidator.confirmPayment} arg - Arg object
+     * @returns {Promise<PaymentPlatformModel.PaymentConfirmationResponse>} -
+     *   Success response
+     * @name confirmPayment
      * @summary: Confirm payment after successful payment from payment gateway
      * @description: Use this API to confirm payment after payment gateway accepted payment.
      */
-    confirmPayment({ body }?: {
-        body: PaymentConfirmationRequest;
-    }): Promise<PaymentConfirmationResponse>;
+    confirmPayment({ body }?: PaymentPlatformApplicationValidator.confirmPayment): Promise<PaymentPlatformModel.PaymentConfirmationResponse>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {CreatePaymentLinkRequest} arg.body
-     * @returns {Promise<CreatePaymentLinkResponse>} - Success response
+     * @param {PaymentPlatformApplicationValidator.createPaymentLink} arg - Arg object
+     * @returns {Promise<PaymentPlatformModel.CreatePaymentLinkResponse>} -
+     *   Success response
+     * @name createPaymentLink
      * @summary: Create payment link
      * @description: Use this API to create a payment link for the customer
      */
-    createPaymentLink({ body }?: {
-        body: CreatePaymentLinkRequest;
-    }): Promise<CreatePaymentLinkResponse>;
+    createPaymentLink({ body }?: PaymentPlatformApplicationValidator.createPaymentLink): Promise<PaymentPlatformModel.CreatePaymentLinkResponse>;
     /**
-     * @param {Object} arg - Arg object.
-     * @returns {Promise<EdcAggregatorAndModelListResponse>} - Success response
+     * @param {PaymentPlatformApplicationValidator.edcAggregatorsAndModelList} arg
+     *   - Arg object
+     *
+     * @returns {Promise<PaymentPlatformModel.EdcAggregatorAndModelListResponse>}
+     *   - Success response
+     *
+     * @name edcAggregatorsAndModelList
      * @summary: get some information about the store and edc device
      * @description: Use this API to get info of devices linked to a particular app.
      */
-    edcAggregatorsAndModelList({}?: any): Promise<EdcAggregatorAndModelListResponse>;
+    edcAggregatorsAndModelList({}?: any): Promise<PaymentPlatformModel.EdcAggregatorAndModelListResponse>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {number} [arg.pageNo] -
-     * @param {number} [arg.pageSize] -
-     * @param {boolean} [arg.isActive] -
-     * @param {number} [arg.storeId] -
-     * @param {string} [arg.deviceTag] -
-     * @returns {Promise<EdcDeviceListResponse>} - Success response
+     * @param {PaymentPlatformApplicationValidator.edcDeviceList} arg - Arg object
+     * @returns {Promise<PaymentPlatformModel.EdcDeviceListResponse>} - Success response
+     * @name edcDeviceList
      * @summary: get all the device list of an app
      * @description: Use this API to get all devices linked to a particular app.
      */
-    edcDeviceList({ pageNo, pageSize, isActive, storeId, deviceTag }?: {
-        pageNo?: number;
-        pageSize?: number;
-        isActive?: boolean;
-        storeId?: number;
-        deviceTag?: string;
-    }): Promise<EdcDeviceListResponse>;
+    edcDeviceList({ pageNo, pageSize, isActive, storeId, deviceTag }?: PaymentPlatformApplicationValidator.edcDeviceList): Promise<PaymentPlatformModel.EdcDeviceListResponse>;
     /**
-     * @param {Object} arg - Arg object.
-     * @returns {Promise<EdcDeviceStatsResponse>} - Success response
+     * @param {PaymentPlatformApplicationValidator.edcDeviceStats} arg - Arg object
+     * @returns {Promise<PaymentPlatformModel.EdcDeviceStatsResponse>} - Success response
+     * @name edcDeviceStats
      * @summary: get some information about the store and edc device
      * @description: Use this API to get info of devices linked to a particular app.
      */
-    edcDeviceStats({}?: any): Promise<EdcDeviceStatsResponse>;
+    edcDeviceStats({}?: any): Promise<PaymentPlatformModel.EdcDeviceStatsResponse>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.orderId -
-     * @param {string} [arg.requestHash] -
-     * @returns {Promise<RefundAccountResponse>} - Success response
+     * @param {PaymentPlatformApplicationValidator.getBankAccountDetailsOpenAPI} arg
+     *   - Arg object
+     *
+     * @returns {Promise<PaymentPlatformModel.RefundAccountResponse>} - Success response
+     * @name getBankAccountDetailsOpenAPI
      * @summary: Get bank details
      * @description: Use this API to get saved bank details for returned/cancelled order using order id.
      */
-    getBankAccountDetailsOpenAPI({ orderId, requestHash, }?: {
-        orderId: string;
-        requestHash?: string;
-    }): Promise<RefundAccountResponse>;
+    getBankAccountDetailsOpenAPI({ orderId, requestHash, }?: PaymentPlatformApplicationValidator.getBankAccountDetailsOpenAPI): Promise<PaymentPlatformModel.RefundAccountResponse>;
     /**
-     * @param {Object} arg - Arg object.
-     * @returns {Promise<PaymentGatewayConfigResponse>} - Success response
+     * @param {PaymentPlatformApplicationValidator.getBrandPaymentGatewayConfig} arg
+     *   - Arg object
+     *
+     * @returns {Promise<PaymentPlatformModel.PaymentGatewayConfigResponse>} -
+     *   Success response
+     * @name getBrandPaymentGatewayConfig
      * @summary: Get All Brand Payment Gateway Config Secret
      * @description: Get All Brand Payment Gateway Config Secret
      */
-    getBrandPaymentGatewayConfig({}?: any): Promise<PaymentGatewayConfigResponse>;
+    getBrandPaymentGatewayConfig({}?: any): Promise<PaymentPlatformModel.PaymentGatewayConfigResponse>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.terminalUniqueIdentifier - Terminal unique identifier
-     * @returns {Promise<EdcDeviceDetailsResponse>} - Success response
+     * @param {PaymentPlatformApplicationValidator.getEdcDevice} arg - Arg object
+     * @returns {Promise<PaymentPlatformModel.EdcDeviceDetailsResponse>} -
+     *   Success response
+     * @name getEdcDevice
      * @summary: get details of a single edc device
      * @description: Use this API to get details of a single edc device
      */
-    getEdcDevice({ terminalUniqueIdentifier }?: {
-        terminalUniqueIdentifier: string;
-    }): Promise<EdcDeviceDetailsResponse>;
+    getEdcDevice({ terminalUniqueIdentifier }?: PaymentPlatformApplicationValidator.getEdcDevice): Promise<PaymentPlatformModel.EdcDeviceDetailsResponse>;
     /**
-     * @param {Object} arg - Arg object.
-     * @returns {Promise<GetPaymentCodeResponse>} - Success response
+     * @param {PaymentPlatformApplicationValidator.getPaymentCodeOption} arg - Arg object
+     * @returns {Promise<PaymentPlatformModel.GetPaymentCodeResponse>} - Success response
+     * @name getPaymentCodeOption
      * @summary: List Payment Options Method Codes
      * @description: Get all active List Payment Options Method Codes
      */
-    getPaymentCodeOption({}?: any): Promise<GetPaymentCodeResponse>;
+    getPaymentCodeOption({}?: any): Promise<PaymentPlatformModel.GetPaymentCodeResponse>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {string} [arg.paymentLinkId] -
-     * @returns {Promise<GetPaymentLinkResponse>} - Success response
+     * @param {PaymentPlatformApplicationValidator.getPaymentLink} arg - Arg object
+     * @returns {Promise<PaymentPlatformModel.GetPaymentLinkResponse>} - Success response
+     * @name getPaymentLink
      * @summary: Get payment link
      * @description: Use this API to get a payment link
      */
-    getPaymentLink({ paymentLinkId }?: {
-        paymentLinkId?: string;
-    }): Promise<GetPaymentLinkResponse>;
+    getPaymentLink({ paymentLinkId }?: PaymentPlatformApplicationValidator.getPaymentLink): Promise<PaymentPlatformModel.GetPaymentLinkResponse>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {boolean} arg.refresh -
-     * @param {string} arg.requestType -
-     * @returns {Promise<PaymentOptionsResponse>} - Success response
+     * @param {PaymentPlatformApplicationValidator.getPaymentModeRoutes} arg - Arg object
+     * @returns {Promise<PaymentPlatformModel.PaymentOptionsResponse>} - Success response
+     * @name getPaymentModeRoutes
      * @summary: Get All Valid Payment Options
      * @description: Use this API to get Get All Valid Payment Options for making payment
      */
-    getPaymentModeRoutes({ refresh, requestType }?: {
-        refresh: boolean;
-        requestType: string;
-    }): Promise<PaymentOptionsResponse>;
+    getPaymentModeRoutes({ refresh, requestType }?: PaymentPlatformApplicationValidator.getPaymentModeRoutes): Promise<PaymentPlatformModel.PaymentOptionsResponse>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {number} arg.amount - Payable amount.
-     * @param {string} arg.cartId - Identifier of the cart.
-     * @param {string} arg.pincode - The PIN Code of the destination address, e.g. 400059
-     * @param {string} arg.checkoutMode - Option to checkout for self or for others.
-     * @param {boolean} [arg.refresh] - This is a boolean value. Select `true`
-     *   to remove temporary cache files on payment gateway and replace with the
-     *   latest one.
-     * @param {string} [arg.cardReference] - Card reference id of user's debit
-     *   or credit card.
-     * @param {string} arg.orderType - The order type of shipment * HomeDelivery
-     *   - If the customer wants the order home-delivered * PickAtStore - If the
-     *   customer wants the handover of an order at the store itself.
-     * @param {string} [arg.userDetails] - URIencoded JSON containing details of
-     *   an anonymous user.
-     * @returns {Promise<PaymentOptionsResponse>} - Success response
+     * @param {PaymentPlatformApplicationValidator.getPosPaymentModeRoutes} arg
+     *   - Arg object
+     *
+     * @returns {Promise<PaymentPlatformModel.PaymentOptionsResponse>} - Success response
+     * @name getPosPaymentModeRoutes
      * @summary: Get All Valid Payment Options
      * @description: Use this API to get Get All Valid Payment Options for making payment
      */
-    getPosPaymentModeRoutes({ amount, cartId, pincode, checkoutMode, orderType, refresh, cardReference, userDetails, }?: {
-        amount: number;
-        cartId: string;
-        pincode: string;
-        checkoutMode: string;
-        refresh?: boolean;
-        cardReference?: string;
-        orderType: string;
-        userDetails?: string;
-    }): Promise<PaymentOptionsResponse>;
+    getPosPaymentModeRoutes({ amount, cartId, pincode, checkoutMode, orderType, refresh, cardReference, userDetails, }?: PaymentPlatformApplicationValidator.getPosPaymentModeRoutes): Promise<PaymentPlatformModel.PaymentOptionsResponse>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.orderId -
-     * @returns {Promise<OrderBeneficiaryResponse>} - Success response
+     * @param {PaymentPlatformApplicationValidator.getUserBeneficiaries} arg - Arg object
+     * @returns {Promise<PaymentPlatformModel.OrderBeneficiaryResponse>} -
+     *   Success response
+     * @name getUserBeneficiaries
      * @summary: List User Beneficiary
      * @description: Get all active  beneficiary details added by the user for refund
      */
-    getUserBeneficiaries({ orderId }?: {
-        orderId: string;
-    }): Promise<OrderBeneficiaryResponse>;
+    getUserBeneficiaries({ orderId }?: PaymentPlatformApplicationValidator.getUserBeneficiaries): Promise<PaymentPlatformModel.OrderBeneficiaryResponse>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.merchantUserId -
-     * @param {string} arg.mobileNo -
-     * @returns {Promise<GetUserCODLimitResponse>} - Success response
+     * @param {PaymentPlatformApplicationValidator.getUserCODlimitRoutes} arg - Arg object
+     * @returns {Promise<PaymentPlatformModel.GetUserCODLimitResponse>} - Success response
+     * @name getUserCODlimitRoutes
      * @summary: Get COD limit for user
      * @description: Use this API to get user cod limit and reamining limit for the payment
      */
-    getUserCODlimitRoutes({ merchantUserId, mobileNo }?: {
-        merchantUserId: string;
-        mobileNo: string;
-    }): Promise<GetUserCODLimitResponse>;
+    getUserCODlimitRoutes({ merchantUserId, mobileNo }?: PaymentPlatformApplicationValidator.getUserCODlimitRoutes): Promise<PaymentPlatformModel.GetUserCODLimitResponse>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.orderId -
-     * @returns {Promise<OrderBeneficiaryResponse>} - Success response
+     * @param {PaymentPlatformApplicationValidator.getUserOrderBeneficiaries} arg
+     *   - Arg object
+     *
+     * @returns {Promise<PaymentPlatformModel.OrderBeneficiaryResponse>} -
+     *   Success response
+     * @name getUserOrderBeneficiaries
      * @summary: List Order Beneficiary
      * @description: Get all active  beneficiary details added by the user for refund
      */
-    getUserOrderBeneficiaries({ orderId }?: {
-        orderId: string;
-    }): Promise<OrderBeneficiaryResponse>;
+    getUserOrderBeneficiaries({ orderId }?: PaymentPlatformApplicationValidator.getUserOrderBeneficiaries): Promise<PaymentPlatformModel.OrderBeneficiaryResponse>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {PaymentInitializationRequest} arg.body
-     * @returns {Promise<PaymentInitializationResponse>} - Success response
+     * @param {PaymentPlatformApplicationValidator.initialisePayment} arg - Arg object
+     * @returns {Promise<PaymentPlatformModel.PaymentInitializationResponse>} -
+     *   Success response
+     * @name initialisePayment
      * @summary: Initialize a payment (server-to-server) for UPI and BharatQR
      * @description: PUse this API to inititate payment using UPI, BharatQR, wherein the UPI requests are send to the app and QR code is displayed on the screen.
      */
-    initialisePayment({ body }?: {
-        body: PaymentInitializationRequest;
-    }): Promise<PaymentInitializationResponse>;
+    initialisePayment({ body }?: PaymentPlatformApplicationValidator.initialisePayment): Promise<PaymentPlatformModel.PaymentInitializationResponse>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {MerchantOnBoardingRequest} arg.body
-     * @returns {Promise<MerchantOnBoardingResponse>} - Success response
+     * @param {PaymentPlatformApplicationValidator.merchantOnBoarding} arg - Arg object
+     * @returns {Promise<PaymentPlatformModel.MerchantOnBoardingResponse>} -
+     *   Success response
+     * @name merchantOnBoarding
      * @summary: API to push Ajiodhan merchant data to Gringotts system
      * @description: Use this API to push Ajiodhan merchant data to Gringotts system
      */
-    merchantOnBoarding({ body }?: {
-        body: MerchantOnBoardingRequest;
-    }): Promise<MerchantOnBoardingResponse>;
+    merchantOnBoarding({ body }?: PaymentPlatformApplicationValidator.merchantOnBoarding): Promise<PaymentPlatformModel.MerchantOnBoardingResponse>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.aggregator - Aggregator
-     * @param {string} [arg.successRedirectUrl] -
-     * @param {string} [arg.failureRedirectUrl] -
-     * @returns {Promise<GetOauthUrlResponse>} - Success response
+     * @param {PaymentPlatformApplicationValidator.oauthGetUrl} arg - Arg object
+     * @returns {Promise<PaymentPlatformModel.GetOauthUrlResponse>} - Success response
+     * @name oauthGetUrl
      * @summary: API to Get the url to call for oauth
      * @description: Use this API to Get the url to call for oauth.
      */
-    oauthGetUrl({ aggregator, successRedirectUrl, failureRedirectUrl, }?: {
-        aggregator: string;
-        successRedirectUrl?: string;
-        failureRedirectUrl?: string;
-    }): Promise<GetOauthUrlResponse>;
+    oauthGetUrl({ aggregator, successRedirectUrl, failureRedirectUrl, }?: PaymentPlatformApplicationValidator.oauthGetUrl): Promise<PaymentPlatformModel.GetOauthUrlResponse>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {PaymentStatusBulkHandlerRequest} arg.body
-     * @returns {Promise<PaymentStatusBulkHandlerResponse>} - Success response
+     * @param {PaymentPlatformApplicationValidator.paymentStatusBulk} arg - Arg object
+     * @returns {Promise<PaymentPlatformModel.PaymentStatusBulkHandlerResponse>}
+     *   - Success response
+     *
+     * @name paymentStatusBulk
      * @summary: Get Payment status and information for a list of order_ids
      * @description: Use this API to get Payment status and information for a list of order_ids
      */
-    paymentStatusBulk({ body }?: {
-        body: PaymentStatusBulkHandlerRequest;
-    }): Promise<PaymentStatusBulkHandlerResponse>;
+    paymentStatusBulk({ body }?: PaymentPlatformApplicationValidator.paymentStatusBulk): Promise<PaymentPlatformModel.PaymentStatusBulkHandlerResponse>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {string} [arg.paymentLinkId] -
-     * @returns {Promise<PollingPaymentLinkResponse>} - Success response
+     * @param {PaymentPlatformApplicationValidator.pollingPaymentLink} arg - Arg object
+     * @returns {Promise<PaymentPlatformModel.PollingPaymentLinkResponse>} -
+     *   Success response
+     * @name pollingPaymentLink
      * @summary: Used for polling if payment successful or not
      * @description: Use this API to poll if payment through payment was successful or not
      */
-    pollingPaymentLink({ paymentLinkId }?: {
-        paymentLinkId?: string;
-    }): Promise<PollingPaymentLinkResponse>;
+    pollingPaymentLink({ paymentLinkId }?: PaymentPlatformApplicationValidator.pollingPaymentLink): Promise<PaymentPlatformModel.PollingPaymentLinkResponse>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {RepaymentDetailsSerialiserPayAll} arg.body
-     * @returns {Promise<RepaymentResponse>} - Success response
+     * @param {PaymentPlatformApplicationValidator.repaymentDetails} arg - Arg object
+     * @returns {Promise<PaymentPlatformModel.RepaymentResponse>} - Success response
+     * @name repaymentDetails
      * @summary: API to register repayment details
      * @description: Use this API to register any repayment record in the db and notify the aggrgator
      */
-    repaymentDetails({ body }?: {
-        body: RepaymentDetailsSerialiserPayAll;
-    }): Promise<RepaymentResponse>;
+    repaymentDetails({ body }?: PaymentPlatformApplicationValidator.repaymentDetails): Promise<PaymentPlatformModel.RepaymentResponse>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {ResendOrCancelPaymentRequest} arg.body
-     * @returns {Promise<ResendOrCancelPaymentResponse>} - Success response
+     * @param {PaymentPlatformApplicationValidator.resendOrCancelPayment} arg - Arg object
+     * @returns {Promise<PaymentPlatformModel.ResendOrCancelPaymentResponse>} -
+     *   Success response
+     * @name resendOrCancelPayment
      * @summary: API to resend and cancel a payment link which was already generated.
      * @description: Use this API to perform resend or cancel a payment link based on request payload.
      */
-    resendOrCancelPayment({ body }?: {
-        body: ResendOrCancelPaymentRequest;
-    }): Promise<ResendOrCancelPaymentResponse>;
+    resendOrCancelPayment({ body }?: PaymentPlatformApplicationValidator.resendOrCancelPayment): Promise<PaymentPlatformModel.ResendOrCancelPaymentResponse>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {CancelOrResendPaymentLinkRequest} arg.body
-     * @returns {Promise<ResendPaymentLinkResponse>} - Success response
+     * @param {PaymentPlatformApplicationValidator.resendPaymentLink} arg - Arg object
+     * @returns {Promise<PaymentPlatformModel.ResendPaymentLinkResponse>} -
+     *   Success response
+     * @name resendPaymentLink
      * @summary: Resend payment link
      * @description: Use this API to resend a payment link for the customer
      */
-    resendPaymentLink({ body }?: {
-        body: CancelOrResendPaymentLinkRequest;
-    }): Promise<ResendPaymentLinkResponse>;
+    resendPaymentLink({ body }?: PaymentPlatformApplicationValidator.resendPaymentLink): Promise<PaymentPlatformModel.ResendPaymentLinkResponse>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.aggregator - Aggregator_slug
-     * @returns {Promise<RevokeOAuthToken>} - Success response
+     * @param {PaymentPlatformApplicationValidator.revokeOauthToken} arg - Arg object
+     * @returns {Promise<PaymentPlatformModel.RevokeOAuthToken>} - Success response
+     * @name revokeOauthToken
      * @summary: API to Revoke oauth for razorpay partnership
      * @description: Use this API to Revoke oauth for razorpay partnership
      */
-    revokeOauthToken({ aggregator }?: {
-        aggregator: string;
-    }): Promise<RevokeOAuthToken>;
+    revokeOauthToken({ aggregator }?: PaymentPlatformApplicationValidator.revokeOauthToken): Promise<PaymentPlatformModel.RevokeOAuthToken>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {PaymentGatewayConfigRequest} arg.body
-     * @returns {Promise<PaymentGatewayToBeReviewed>} - Success response
+     * @param {PaymentPlatformApplicationValidator.saveBrandPaymentGatewayConfig} arg
+     *   - Arg object
+     *
+     * @returns {Promise<PaymentPlatformModel.PaymentGatewayToBeReviewed>} -
+     *   Success response
+     * @name saveBrandPaymentGatewayConfig
      * @summary: Save Config Secret For Brand Payment Gateway
      * @description: Save Config Secret For Brand Payment Gateway
      */
-    saveBrandPaymentGatewayConfig({ body }?: {
-        body: PaymentGatewayConfigRequest;
-    }): Promise<PaymentGatewayToBeReviewed>;
+    saveBrandPaymentGatewayConfig({ body }?: PaymentPlatformApplicationValidator.saveBrandPaymentGatewayConfig): Promise<PaymentPlatformModel.PaymentGatewayToBeReviewed>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {SetCODForUserRequest} arg.body
-     * @returns {Promise<SetCODOptionResponse>} - Success response
+     * @param {PaymentPlatformApplicationValidator.setUserCODlimitRoutes} arg - Arg object
+     * @returns {Promise<PaymentPlatformModel.SetCODOptionResponse>} - Success response
+     * @name setUserCODlimitRoutes
      * @summary: Set COD option for user for payment
      * @description: Use this API to set cod option as true or false for the payment
      */
-    setUserCODlimitRoutes({ body }?: {
-        body: SetCODForUserRequest;
-    }): Promise<SetCODOptionResponse>;
+    setUserCODlimitRoutes({ body }?: PaymentPlatformApplicationValidator.setUserCODlimitRoutes): Promise<PaymentPlatformModel.SetCODOptionResponse>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {EdcAddRequest} arg.body
-     * @returns {Promise<EdcDeviceAddResponse>} - Success response
+     * @param {PaymentPlatformApplicationValidator.updateEdcDevice} arg - Arg object
+     * @returns {Promise<PaymentPlatformModel.EdcDeviceAddResponse>} - Success response
+     * @name updateEdcDevice
      * @summary: map new edc device to the terminal
      * @description: Use this API to map new edc device to the terminal
      */
-    updateEdcDevice({ body }?: {
-        body: EdcAddRequest;
-    }): Promise<EdcDeviceAddResponse>;
+    updateEdcDevice({ body }?: PaymentPlatformApplicationValidator.updateEdcDevice): Promise<PaymentPlatformModel.EdcDeviceAddResponse>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {ValidateCustomerRequest} arg.body
-     * @returns {Promise<ValidateCustomerResponse>} - Success response
+     * @param {PaymentPlatformApplicationValidator.verifyCustomerForPayment} arg
+     *   - Arg object
+     *
+     * @returns {Promise<PaymentPlatformModel.ValidateCustomerResponse>} -
+     *   Success response
+     * @name verifyCustomerForPayment
      * @summary: Validate customer for payment
      * @description: Use this API to check if the customer is eligible to use credit-line facilities such as Simpl Pay Later and Rupifi.
      */
-    verifyCustomerForPayment({ body }?: {
-        body: ValidateCustomerRequest;
-    }): Promise<ValidateCustomerResponse>;
+    verifyCustomerForPayment({ body }?: PaymentPlatformApplicationValidator.verifyCustomerForPayment): Promise<PaymentPlatformModel.ValidateCustomerResponse>;
 }
+import PaymentPlatformApplicationValidator = require("./PaymentPlatformApplicationValidator");
+import PaymentPlatformModel = require("./PaymentPlatformModel");

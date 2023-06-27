@@ -1,14 +1,29 @@
 const Joi = require("joi");
 
-const PartnerModel = require("./PartnerPlatformModel");
-class PartnerValidator {
+const PartnerPlatformModel = require("./PartnerPlatformModel");
+
+/**
+ * @typedef addProxyPath
+ * @property {string} extensionId - Extension id for which proxy URL will be generated
+ * @property {PartnerPlatformModel.AddProxyReq} body
+ */
+
+/**
+ * @typedef removeProxyPath
+ * @property {string} extensionId - Extension id for which proxy URL needs to be removed
+ * @property {string} attachedPath - Attachaed path slug
+ */
+
+class PartnerPlatformApplicationValidator {
+  /** @returns {addProxyPath} */
   static addProxyPath() {
     return Joi.object({
       extensionId: Joi.string().allow("").required(),
-      body: PartnerModel.AddProxyReq().required(),
+      body: PartnerPlatformModel.AddProxyReq().required(),
     }).required();
   }
 
+  /** @returns {removeProxyPath} */
   static removeProxyPath() {
     return Joi.object({
       extensionId: Joi.string().allow("").required(),
@@ -17,4 +32,4 @@ class PartnerValidator {
   }
 }
 
-module.exports = PartnerValidator;
+module.exports = PartnerPlatformApplicationValidator;

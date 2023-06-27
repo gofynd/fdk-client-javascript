@@ -13,59 +13,53 @@ declare class Theme {
     _urls: {};
     updateUrls(urls: any): void;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.themeId - ID of the theme to be retrieved
-     * @returns {Promise<AllAvailablePageSchema>} - Success response
+     * @param {ThemeApplicationValidator.getAllPages} arg - Arg object.
+     * @returns {Promise<ThemeApplicationModel.AllAvailablePageSchema>} - Success response
+     * @name getAllPages
      * @summary: Get all pages of a theme
      * @description: Use this API to retrieve all the available pages of a theme by its ID.
      */
-    getAllPages({ themeId }?: {
-        themeId: string;
-    }): Promise<AllAvailablePageSchema>;
+    getAllPages({ themeId }?: ThemeApplicationValidator.getAllPages): Promise<ThemeApplicationModel.AllAvailablePageSchema>;
     /**
-     * @param {Object} arg - Arg object.
-     * @returns {Promise<ThemesSchema>} - Success response
+     * @param {ThemeApplicationValidator.getAppliedTheme} arg - Arg object.
+     * @returns {Promise<ThemeApplicationModel.ThemesSchema>} - Success response
+     * @name getAppliedTheme
      * @summary: Get the theme currently applied to an application
      * @description: An application has multiple themes, but only one theme can be applied at a time. Use this API to retrieve the theme currently applied to the application.
      */
-    getAppliedTheme({}?: any): Promise<ThemesSchema>;
+    getAppliedTheme({}?: any): Promise<ThemeApplicationModel.ThemesSchema>;
     /**
-     * @param {Object} arg - Arg object.
-     * @returns {Promise<ThemesSchema>} - Success response
+     * @param {ThemeApplicationValidator.getAppliedThemeV2} arg - Arg object.
+     * @returns {Promise<ThemeApplicationModel.ThemesSchema>} - Success response
+     * @name getAppliedThemeV2
      * @summary: Get the theme currently applied to an application
      * @description: An application has multiple themes, but only one theme can be applied at a time. Use this API to retrieve the theme currently applied to the application.
      */
-    getAppliedThemeV2({}?: any): Promise<ThemesSchema>;
+    getAppliedThemeV2({}?: any): Promise<ThemeApplicationModel.ThemesSchema>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.themeId - ID of the theme to be retrieved
-     * @param {string} arg.pageValue - Value of the page to be retrieved
-     * @returns {Promise<AvailablePageSchema>} - Success response
+     * @param {ThemeApplicationValidator.getPage} arg - Arg object.
+     * @returns {Promise<ThemeApplicationModel.AvailablePageSchema>} - Success response
+     * @name getPage
      * @summary: Get page of a theme
      * @description: Use this API to retrieve a page of a theme.
      */
-    getPage({ themeId, pageValue }?: {
-        themeId: string;
-        pageValue: string;
-    }): Promise<AvailablePageSchema>;
+    getPage({ themeId, pageValue }?: ThemeApplicationValidator.getPage): Promise<ThemeApplicationModel.AvailablePageSchema>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.themeId - ID of the theme to be retrieved
-     * @returns {Promise<ThemesSchema>} - Success response
+     * @param {ThemeApplicationValidator.getThemeForPreview} arg - Arg object.
+     * @returns {Promise<ThemeApplicationModel.ThemesSchema>} - Success response
+     * @name getThemeForPreview
      * @summary: Get a theme for a preview
      * @description: A theme can be previewed before applying it. Use this API to retrieve the preview of a theme by its ID.
      */
-    getThemeForPreview({ themeId }?: {
-        themeId: string;
-    }): Promise<ThemesSchema>;
+    getThemeForPreview({ themeId }?: ThemeApplicationValidator.getThemeForPreview): Promise<ThemeApplicationModel.ThemesSchema>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.themeId - ID of the theme to be retrieved
-     * @returns {Promise<ThemesSchema>} - Success response
+     * @param {ThemeApplicationValidator.getThemeForPreviewV2} arg - Arg object.
+     * @returns {Promise<ThemeApplicationModel.ThemesSchema>} - Success response
+     * @name getThemeForPreviewV2
      * @summary: Get a theme for a preview
      * @description: A theme can be previewed before applying it. Use this API to retrieve the preview of a theme by its ID.
      */
-    getThemeForPreviewV2({ themeId }?: {
-        themeId: string;
-    }): Promise<ThemesSchema>;
+    getThemeForPreviewV2({ themeId }?: ThemeApplicationValidator.getThemeForPreviewV2): Promise<ThemeApplicationModel.ThemesSchema>;
 }
+import ThemeApplicationValidator = require("./ThemeApplicationValidator");
+import ThemeApplicationModel = require("./ThemeApplicationModel");

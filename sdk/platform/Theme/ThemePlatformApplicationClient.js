@@ -1,8 +1,8 @@
 const PlatformAPIClient = require("../PlatformAPIClient");
 const { FDKClientValidationError } = require("../../common/FDKError");
 const Paginator = require("../../common/Paginator");
-const ThemeValidator = require("./ThemePlatformApplicationValidator");
-const ThemeModel = require("./ThemePlatformModel");
+const ThemePlatformApplicationValidator = require("./ThemePlatformApplicationValidator");
+const ThemePlatformModel = require("./ThemePlatformModel");
 const { Logger } = require("./../../common/Logger");
 const Joi = require("joi");
 
@@ -13,14 +13,16 @@ class Theme {
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {ApplyThemeRequestV2} arg.body
-   * @returns {Promise<ApplyThemeResponseV2>} - Success response
+   * @param {ThemePlatformApplicationValidator.addThemeToApplicationV2} arg - Arg object
+   * @returns {Promise<ThemePlatformModel.ApplyThemeResponseV2>} - Success response
+   * @name addThemeToApplicationV2
    * @summary: Apply a theme to an application
    * @description: Apply a theme to an application by providing the marketplace theme ID.
    */
   async addThemeToApplicationV2({ body } = {}) {
-    const { error } = ThemeValidator.addThemeToApplicationV2().validate(
+    const {
+      error,
+    } = ThemePlatformApplicationValidator.addThemeToApplicationV2().validate(
       {
         body,
       },
@@ -33,7 +35,7 @@ class Theme {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = ThemeValidator.addThemeToApplicationV2().validate(
+    } = ThemePlatformApplicationValidator.addThemeToApplicationV2().validate(
       {
         body,
       },
@@ -42,9 +44,8 @@ class Theme {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for addThemeToApplicationV2",
+        message: `Parameter Validation warrnings for platform > Theme > addThemeToApplicationV2 \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -59,7 +60,7 @@ class Theme {
 
     const {
       error: res_error,
-    } = ThemeModel.ApplyThemeResponseV2().validate(response, {
+    } = ThemePlatformModel.ApplyThemeResponseV2().validate(response, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -67,23 +68,24 @@ class Theme {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for addThemeToApplicationV2",
+        message: `Response Validation Warnnings for platform > Theme > addThemeToApplicationV2 \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {AddThemeRequestSchema} arg.body
-   * @returns {Promise<ThemesSchema>} - Success response
+   * @param {ThemePlatformApplicationValidator.addToThemeLibrary} arg - Arg object
+   * @returns {Promise<ThemePlatformModel.ThemesSchema>} - Success response
+   * @name addToThemeLibrary
    * @summary: Add a theme to the theme library
    * @description: Theme library is a personalized collection of themes that are chosen and added from the available themes. Use this API to choose a theme and add it to the theme library.
    */
   async addToThemeLibrary({ body } = {}) {
-    const { error } = ThemeValidator.addToThemeLibrary().validate(
+    const {
+      error,
+    } = ThemePlatformApplicationValidator.addToThemeLibrary().validate(
       {
         body,
       },
@@ -94,7 +96,9 @@ class Theme {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = ThemeValidator.addToThemeLibrary().validate(
+    const {
+      error: warrning,
+    } = ThemePlatformApplicationValidator.addToThemeLibrary().validate(
       {
         body,
       },
@@ -103,9 +107,8 @@ class Theme {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for addToThemeLibrary",
+        message: `Parameter Validation warrnings for platform > Theme > addToThemeLibrary \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -118,7 +121,9 @@ class Theme {
       body
     );
 
-    const { error: res_error } = ThemeModel.ThemesSchema().validate(response, {
+    const {
+      error: res_error,
+    } = ThemePlatformModel.ThemesSchema().validate(response, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -126,23 +131,22 @@ class Theme {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for addToThemeLibrary",
+        message: `Response Validation Warnnings for platform > Theme > addToThemeLibrary \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {AddThemeRequestSchema} arg.body
-   * @returns {Promise<ThemesSchema>} - Success response
+   * @param {ThemePlatformApplicationValidator.applyTheme} arg - Arg object
+   * @returns {Promise<ThemePlatformModel.ThemesSchema>} - Success response
+   * @name applyTheme
    * @summary: Apply a theme
    * @description: Use this API to apply a theme to the website.
    */
   async applyTheme({ body } = {}) {
-    const { error } = ThemeValidator.applyTheme().validate(
+    const { error } = ThemePlatformApplicationValidator.applyTheme().validate(
       {
         body,
       },
@@ -153,7 +157,9 @@ class Theme {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = ThemeValidator.applyTheme().validate(
+    const {
+      error: warrning,
+    } = ThemePlatformApplicationValidator.applyTheme().validate(
       {
         body,
       },
@@ -162,9 +168,8 @@ class Theme {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for applyTheme",
+        message: `Parameter Validation warrnings for platform > Theme > applyTheme \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -177,7 +182,9 @@ class Theme {
       body
     );
 
-    const { error: res_error } = ThemeModel.ThemesSchema().validate(response, {
+    const {
+      error: res_error,
+    } = ThemePlatformModel.ThemesSchema().validate(response, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -185,23 +192,23 @@ class Theme {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for applyTheme",
+        message: `Response Validation Warnnings for platform > Theme > applyTheme \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.themeId - The ID of the apply
-   * @returns {Promise<AllThemesApplicationResponseV2>} - Success response
+   * @param {ThemePlatformApplicationValidator.applyThemeV2} arg - Arg object
+   * @returns {Promise<ThemePlatformModel.AllThemesApplicationResponseV2>} -
+   *   Success response
+   * @name applyThemeV2
    * @summary: Apply theme to a specific application
    * @description: Apply theme to a specific application by providing company_id, application_id, and theme_id.
    */
   async applyThemeV2({ themeId } = {}) {
-    const { error } = ThemeValidator.applyThemeV2().validate(
+    const { error } = ThemePlatformApplicationValidator.applyThemeV2().validate(
       {
         themeId,
       },
@@ -212,7 +219,9 @@ class Theme {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = ThemeValidator.applyThemeV2().validate(
+    const {
+      error: warrning,
+    } = ThemePlatformApplicationValidator.applyThemeV2().validate(
       {
         themeId,
       },
@@ -221,9 +230,8 @@ class Theme {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for applyThemeV2",
+        message: `Parameter Validation warrnings for platform > Theme > applyThemeV2 \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -238,7 +246,7 @@ class Theme {
 
     const {
       error: res_error,
-    } = ThemeModel.AllThemesApplicationResponseV2().validate(response, {
+    } = ThemePlatformModel.AllThemesApplicationResponseV2().validate(response, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -246,82 +254,22 @@ class Theme {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for applyThemeV2",
+        message: `Response Validation Warnnings for platform > Theme > applyThemeV2 \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.themeId - ID allotted to the theme.
-   * @returns {Promise<ThemesSchema>} - Success response
+   * @param {ThemePlatformApplicationValidator.archiveTheme} arg - Arg object
+   * @returns {Promise<ThemePlatformModel.ThemesSchema>} - Success response
+   * @name archiveTheme
    * @summary: Archive a theme
    * @description: Use this API to store an existing theme but not delete it so that it can be used in future if required.
    */
   async archiveTheme({ themeId } = {}) {
-    const { error } = ThemeValidator.archiveTheme().validate(
-      {
-        themeId,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = ThemeValidator.archiveTheme().validate(
-      {
-        themeId,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: "Parameter Validation warrnings for archiveTheme",
-      });
-      Logger({ level: "WARN", message: warrning });
-    }
-
-    const query_params = {};
-
-    const response = await PlatformAPIClient.execute(
-      this.config,
-      "put",
-      `/service/platform/theme/v1.0/company/${this.config.companyId}/application/${this.applicationId}/${themeId}/archive`,
-      query_params,
-      undefined
-    );
-
-    const { error: res_error } = ThemeModel.ThemesSchema().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
-
-    if (res_error) {
-      Logger({
-        level: "WARN",
-        message: "Response Validation Warnnings for archiveTheme",
-      });
-      Logger({ level: "WARN", message: res_error });
-    }
-
-    return response;
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.themeId - The ID of the theme
-   * @returns {Promise<ThemeUpgradableResponseV2>} - Success response
-   * @summary: Check if the theme is upgradable
-   * @description: This API endpoint checks if the theme is upgradable for a specific company and application.
-   */
-  async checkThemeUpgradableV2({ themeId } = {}) {
-    const { error } = ThemeValidator.checkThemeUpgradableV2().validate(
+    const { error } = ThemePlatformApplicationValidator.archiveTheme().validate(
       {
         themeId,
       },
@@ -334,7 +282,7 @@ class Theme {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = ThemeValidator.checkThemeUpgradableV2().validate(
+    } = ThemePlatformApplicationValidator.archiveTheme().validate(
       {
         themeId,
       },
@@ -343,9 +291,71 @@ class Theme {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for checkThemeUpgradableV2",
+        message: `Parameter Validation warrnings for platform > Theme > archiveTheme \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
+    }
+
+    const query_params = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "put",
+      `/service/platform/theme/v1.0/company/${this.config.companyId}/application/${this.applicationId}/${themeId}/archive`,
+      query_params,
+      undefined
+    );
+
+    const {
+      error: res_error,
+    } = ThemePlatformModel.ThemesSchema().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: `Response Validation Warnnings for platform > Theme > archiveTheme \n ${res_error}`,
+      });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {ThemePlatformApplicationValidator.checkThemeUpgradableV2} arg - Arg object
+   * @returns {Promise<ThemePlatformModel.ThemeUpgradableResponseV2>} - Success response
+   * @name checkThemeUpgradableV2
+   * @summary: Check if the theme is upgradable
+   * @description: This API endpoint checks if the theme is upgradable for a specific company and application.
+   */
+  async checkThemeUpgradableV2({ themeId } = {}) {
+    const {
+      error,
+    } = ThemePlatformApplicationValidator.checkThemeUpgradableV2().validate(
+      {
+        themeId,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = ThemePlatformApplicationValidator.checkThemeUpgradableV2().validate(
+      {
+        themeId,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for platform > Theme > checkThemeUpgradableV2 \n ${warrning}`,
+      });
     }
 
     const query_params = {};
@@ -360,7 +370,7 @@ class Theme {
 
     const {
       error: res_error,
-    } = ThemeModel.ThemeUpgradableResponseV2().validate(response, {
+    } = ThemePlatformModel.ThemeUpgradableResponseV2().validate(response, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -368,24 +378,22 @@ class Theme {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for checkThemeUpgradableV2",
+        message: `Response Validation Warnnings for platform > Theme > checkThemeUpgradableV2 \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.themeId - ID of the theme
-   * @param {AvailablePageSchema} arg.body
-   * @returns {Promise<AvailablePageSchema>} - Success response
+   * @param {ThemePlatformApplicationValidator.createPage} arg - Arg object
+   * @returns {Promise<ThemePlatformModel.AvailablePageSchema>} - Success response
+   * @name createPage
    * @summary: Create a page
    * @description: Use this API to create a page for a theme by its ID.
    */
   async createPage({ themeId, body } = {}) {
-    const { error } = ThemeValidator.createPage().validate(
+    const { error } = ThemePlatformApplicationValidator.createPage().validate(
       {
         themeId,
         body,
@@ -397,7 +405,9 @@ class Theme {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = ThemeValidator.createPage().validate(
+    const {
+      error: warrning,
+    } = ThemePlatformApplicationValidator.createPage().validate(
       {
         themeId,
         body,
@@ -407,9 +417,8 @@ class Theme {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for createPage",
+        message: `Parameter Validation warrnings for platform > Theme > createPage \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -424,7 +433,7 @@ class Theme {
 
     const {
       error: res_error,
-    } = ThemeModel.AvailablePageSchema().validate(response, {
+    } = ThemePlatformModel.AvailablePageSchema().validate(response, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -432,23 +441,22 @@ class Theme {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for createPage",
+        message: `Response Validation Warnnings for platform > Theme > createPage \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {ThemesSchema} arg.body
-   * @returns {Promise<ThemesSchema>} - Success response
+   * @param {ThemePlatformApplicationValidator.createTheme} arg - Arg object
+   * @returns {Promise<ThemePlatformModel.ThemesSchema>} - Success response
+   * @name createTheme
    * @summary: Create a new theme
    * @description: Themes improve the look and appearance of a website. Use this API to create a theme.
    */
   async createTheme({ body } = {}) {
-    const { error } = ThemeValidator.createTheme().validate(
+    const { error } = ThemePlatformApplicationValidator.createTheme().validate(
       {
         body,
       },
@@ -459,7 +467,9 @@ class Theme {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = ThemeValidator.createTheme().validate(
+    const {
+      error: warrning,
+    } = ThemePlatformApplicationValidator.createTheme().validate(
       {
         body,
       },
@@ -468,9 +478,8 @@ class Theme {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for createTheme",
+        message: `Parameter Validation warrnings for platform > Theme > createTheme \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -483,7 +492,9 @@ class Theme {
       body
     );
 
-    const { error: res_error } = ThemeModel.ThemesSchema().validate(response, {
+    const {
+      error: res_error,
+    } = ThemePlatformModel.ThemesSchema().validate(response, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -491,24 +502,22 @@ class Theme {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for createTheme",
+        message: `Response Validation Warnnings for platform > Theme > createTheme \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.themeId - ID of the theme
-   * @param {string} arg.pageValue - Value of the page to be updated
-   * @returns {Promise<AvailablePageSchema>} - Success response
+   * @param {ThemePlatformApplicationValidator.deletePage} arg - Arg object
+   * @returns {Promise<ThemePlatformModel.AvailablePageSchema>} - Success response
+   * @name deletePage
    * @summary: Deletes a page
    * @description: Use this API to delete a page for a theme by its ID and page_value.
    */
   async deletePage({ themeId, pageValue } = {}) {
-    const { error } = ThemeValidator.deletePage().validate(
+    const { error } = ThemePlatformApplicationValidator.deletePage().validate(
       {
         themeId,
         pageValue,
@@ -520,7 +529,9 @@ class Theme {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = ThemeValidator.deletePage().validate(
+    const {
+      error: warrning,
+    } = ThemePlatformApplicationValidator.deletePage().validate(
       {
         themeId,
         pageValue,
@@ -530,9 +541,8 @@ class Theme {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for deletePage",
+        message: `Parameter Validation warrnings for platform > Theme > deletePage \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -547,7 +557,7 @@ class Theme {
 
     const {
       error: res_error,
-    } = ThemeModel.AvailablePageSchema().validate(response, {
+    } = ThemePlatformModel.AvailablePageSchema().validate(response, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -555,23 +565,22 @@ class Theme {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for deletePage",
+        message: `Response Validation Warnnings for platform > Theme > deletePage \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.themeId - ID allotted to the theme.
-   * @returns {Promise<ThemesSchema>} - Success response
+   * @param {ThemePlatformApplicationValidator.deleteTheme} arg - Arg object
+   * @returns {Promise<ThemePlatformModel.ThemesSchema>} - Success response
+   * @name deleteTheme
    * @summary: Delete a theme
    * @description: Use this API to delete a theme from the theme library.
    */
   async deleteTheme({ themeId } = {}) {
-    const { error } = ThemeValidator.deleteTheme().validate(
+    const { error } = ThemePlatformApplicationValidator.deleteTheme().validate(
       {
         themeId,
       },
@@ -582,7 +591,9 @@ class Theme {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = ThemeValidator.deleteTheme().validate(
+    const {
+      error: warrning,
+    } = ThemePlatformApplicationValidator.deleteTheme().validate(
       {
         themeId,
       },
@@ -591,9 +602,8 @@ class Theme {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for deleteTheme",
+        message: `Parameter Validation warrnings for platform > Theme > deleteTheme \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -606,7 +616,9 @@ class Theme {
       undefined
     );
 
-    const { error: res_error } = ThemeModel.ThemesSchema().validate(response, {
+    const {
+      error: res_error,
+    } = ThemePlatformModel.ThemesSchema().validate(response, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -614,23 +626,25 @@ class Theme {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for deleteTheme",
+        message: `Response Validation Warnnings for platform > Theme > deleteTheme \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.themeId - The ID of the theme to be deleted.
-   * @returns {Promise<AllThemesApplicationResponseV2>} - Success response
+   * @param {ThemePlatformApplicationValidator.deleteThemeV2} arg - Arg object
+   * @returns {Promise<ThemePlatformModel.AllThemesApplicationResponseV2>} -
+   *   Success response
+   * @name deleteThemeV2
    * @summary: Delete a theme
    * @description: This endpoint is used to delete a theme from the specified company and application.
    */
   async deleteThemeV2({ themeId } = {}) {
-    const { error } = ThemeValidator.deleteThemeV2().validate(
+    const {
+      error,
+    } = ThemePlatformApplicationValidator.deleteThemeV2().validate(
       {
         themeId,
       },
@@ -641,7 +655,9 @@ class Theme {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = ThemeValidator.deleteThemeV2().validate(
+    const {
+      error: warrning,
+    } = ThemePlatformApplicationValidator.deleteThemeV2().validate(
       {
         themeId,
       },
@@ -650,9 +666,8 @@ class Theme {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for deleteThemeV2",
+        message: `Parameter Validation warrnings for platform > Theme > deleteThemeV2 \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -667,7 +682,7 @@ class Theme {
 
     const {
       error: res_error,
-    } = ThemeModel.AllThemesApplicationResponseV2().validate(response, {
+    } = ThemePlatformModel.AllThemesApplicationResponseV2().validate(response, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -675,23 +690,25 @@ class Theme {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for deleteThemeV2",
+        message: `Response Validation Warnnings for platform > Theme > deleteThemeV2 \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.themeId - The ID of the theme to be duplicated
-   * @returns {Promise<AllThemesApplicationResponseV2>} - Success response
+   * @param {ThemePlatformApplicationValidator.duplicateThemeV2} arg - Arg object
+   * @returns {Promise<ThemePlatformModel.AllThemesApplicationResponseV2>} -
+   *   Success response
+   * @name duplicateThemeV2
    * @summary: Duplicate a Theme
    * @description: This endpoint duplicates a Theme in the specified application.
    */
   async duplicateThemeV2({ themeId } = {}) {
-    const { error } = ThemeValidator.duplicateThemeV2().validate(
+    const {
+      error,
+    } = ThemePlatformApplicationValidator.duplicateThemeV2().validate(
       {
         themeId,
       },
@@ -702,7 +719,9 @@ class Theme {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = ThemeValidator.duplicateThemeV2().validate(
+    const {
+      error: warrning,
+    } = ThemePlatformApplicationValidator.duplicateThemeV2().validate(
       {
         themeId,
       },
@@ -711,9 +730,8 @@ class Theme {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for duplicateThemeV2",
+        message: `Parameter Validation warrnings for platform > Theme > duplicateThemeV2 \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -728,7 +746,7 @@ class Theme {
 
     const {
       error: res_error,
-    } = ThemeModel.AllThemesApplicationResponseV2().validate(response, {
+    } = ThemePlatformModel.AllThemesApplicationResponseV2().validate(response, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -736,23 +754,22 @@ class Theme {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for duplicateThemeV2",
+        message: `Response Validation Warnnings for platform > Theme > duplicateThemeV2 \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.themeId - ID of the theme to be retrieved
-   * @returns {Promise<AllAvailablePageSchema>} - Success response
+   * @param {ThemePlatformApplicationValidator.getAllPages} arg - Arg object
+   * @returns {Promise<ThemePlatformModel.AllAvailablePageSchema>} - Success response
+   * @name getAllPages
    * @summary: Get all pages of a theme
    * @description: Use this API to retrieve all the available pages of a theme by its ID.
    */
   async getAllPages({ themeId } = {}) {
-    const { error } = ThemeValidator.getAllPages().validate(
+    const { error } = ThemePlatformApplicationValidator.getAllPages().validate(
       {
         themeId,
       },
@@ -763,7 +780,9 @@ class Theme {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = ThemeValidator.getAllPages().validate(
+    const {
+      error: warrning,
+    } = ThemePlatformApplicationValidator.getAllPages().validate(
       {
         themeId,
       },
@@ -772,9 +791,8 @@ class Theme {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for getAllPages",
+        message: `Parameter Validation warrnings for platform > Theme > getAllPages \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -789,7 +807,7 @@ class Theme {
 
     const {
       error: res_error,
-    } = ThemeModel.AllAvailablePageSchema().validate(response, {
+    } = ThemePlatformModel.AllAvailablePageSchema().validate(response, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -797,23 +815,27 @@ class Theme {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for getAllPages",
+        message: `Response Validation Warnnings for platform > Theme > getAllPages \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.themeId - The ID of the theme
-   * @returns {Promise<AllThemesApplicationResponseV2>} - Success response
+   * @param {ThemePlatformApplicationValidator.getApplicationThemeByIdV2} arg
+   *   - Arg object
+   *
+   * @returns {Promise<ThemePlatformModel.AllThemesApplicationResponseV2>} -
+   *   Success response
+   * @name getApplicationThemeByIdV2
    * @summary: Get Theme By Theme Id
    * @description:
    */
   async getApplicationThemeByIdV2({ themeId } = {}) {
-    const { error } = ThemeValidator.getApplicationThemeByIdV2().validate(
+    const {
+      error,
+    } = ThemePlatformApplicationValidator.getApplicationThemeByIdV2().validate(
       {
         themeId,
       },
@@ -826,7 +848,7 @@ class Theme {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = ThemeValidator.getApplicationThemeByIdV2().validate(
+    } = ThemePlatformApplicationValidator.getApplicationThemeByIdV2().validate(
       {
         themeId,
       },
@@ -835,9 +857,8 @@ class Theme {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for getApplicationThemeByIdV2",
+        message: `Parameter Validation warrnings for platform > Theme > getApplicationThemeByIdV2 \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -852,7 +873,7 @@ class Theme {
 
     const {
       error: res_error,
-    } = ThemeModel.AllThemesApplicationResponseV2().validate(response, {
+    } = ThemePlatformModel.AllThemesApplicationResponseV2().validate(response, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -860,22 +881,26 @@ class Theme {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for getApplicationThemeByIdV2",
+        message: `Response Validation Warnnings for platform > Theme > getApplicationThemeByIdV2 \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
+   * @param {ThemePlatformApplicationValidator.getApplicationThemesCountV2} arg
+   *   - Arg object
+   *
    * @returns {Promise<Object>} - Success response
+   * @name getApplicationThemesCountV2
    * @summary: Get the count of themes for a specific application
    * @description:
    */
   async getApplicationThemesCountV2({} = {}) {
-    const { error } = ThemeValidator.getApplicationThemesCountV2().validate(
+    const {
+      error,
+    } = ThemePlatformApplicationValidator.getApplicationThemesCountV2().validate(
       {},
       { abortEarly: false, allowUnknown: true }
     );
@@ -886,17 +911,15 @@ class Theme {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = ThemeValidator.getApplicationThemesCountV2().validate(
+    } = ThemePlatformApplicationValidator.getApplicationThemesCountV2().validate(
       {},
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message:
-          "Parameter Validation warrnings for getApplicationThemesCountV2",
+        message: `Parameter Validation warrnings for platform > Theme > getApplicationThemesCountV2 \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -917,23 +940,26 @@ class Theme {
     if (res_error) {
       Logger({
         level: "WARN",
-        message:
-          "Response Validation Warnnings for getApplicationThemesCountV2",
+        message: `Response Validation Warnnings for platform > Theme > getApplicationThemesCountV2 \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @returns {Promise<AllThemesApplicationResponseV2[]>} - Success response
+   * @param {ThemePlatformApplicationValidator.getApplicationThemesV2} arg - Arg object
+   * @returns {Promise<ThemePlatformModel.AllThemesApplicationResponseV2[]>}
+   *   - Success response
+   *
+   * @name getApplicationThemesV2
    * @summary: Get all the themes for a specific application
    * @description:
    */
   async getApplicationThemesV2({} = {}) {
-    const { error } = ThemeValidator.getApplicationThemesV2().validate(
+    const {
+      error,
+    } = ThemePlatformApplicationValidator.getApplicationThemesV2().validate(
       {},
       { abortEarly: false, allowUnknown: true }
     );
@@ -944,16 +970,15 @@ class Theme {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = ThemeValidator.getApplicationThemesV2().validate(
+    } = ThemePlatformApplicationValidator.getApplicationThemesV2().validate(
       {},
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for getApplicationThemesV2",
+        message: `Parameter Validation warrnings for platform > Theme > getApplicationThemesV2 \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -967,28 +992,30 @@ class Theme {
     );
 
     const { error: res_error } = Joi.array()
-      .items(ThemeModel.AllThemesApplicationResponseV2())
+      .items(ThemePlatformModel.AllThemesApplicationResponseV2())
       .validate(response, { abortEarly: false, allowUnknown: false });
 
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for getApplicationThemesV2",
+        message: `Response Validation Warnnings for platform > Theme > getApplicationThemesV2 \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @returns {Promise<ThemesSchema>} - Success response
+   * @param {ThemePlatformApplicationValidator.getAppliedTheme} arg - Arg object
+   * @returns {Promise<ThemePlatformModel.ThemesSchema>} - Success response
+   * @name getAppliedTheme
    * @summary: Get the applied theme
    * @description: Use this API to retrieve the theme that is currently applied to the website along with its details.
    */
   async getAppliedTheme({} = {}) {
-    const { error } = ThemeValidator.getAppliedTheme().validate(
+    const {
+      error,
+    } = ThemePlatformApplicationValidator.getAppliedTheme().validate(
       {},
       { abortEarly: false, allowUnknown: true }
     );
@@ -997,16 +1024,17 @@ class Theme {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = ThemeValidator.getAppliedTheme().validate(
+    const {
+      error: warrning,
+    } = ThemePlatformApplicationValidator.getAppliedTheme().validate(
       {},
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for getAppliedTheme",
+        message: `Parameter Validation warrnings for platform > Theme > getAppliedTheme \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -1019,7 +1047,9 @@ class Theme {
       undefined
     );
 
-    const { error: res_error } = ThemeModel.ThemesSchema().validate(response, {
+    const {
+      error: res_error,
+    } = ThemePlatformModel.ThemesSchema().validate(response, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -1027,22 +1057,24 @@ class Theme {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for getAppliedTheme",
+        message: `Response Validation Warnnings for platform > Theme > getAppliedTheme \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @returns {Promise<ApplyThemeResponseV2>} - Success response
+   * @param {ThemePlatformApplicationValidator.getAppliedThemeV2} arg - Arg object
+   * @returns {Promise<ThemePlatformModel.ApplyThemeResponseV2>} - Success response
+   * @name getAppliedThemeV2
    * @summary: Get the Applied theme of an Application
    * @description: Get Applied Theme of an Application by Application Id
    */
   async getAppliedThemeV2({} = {}) {
-    const { error } = ThemeValidator.getAppliedThemeV2().validate(
+    const {
+      error,
+    } = ThemePlatformApplicationValidator.getAppliedThemeV2().validate(
       {},
       { abortEarly: false, allowUnknown: true }
     );
@@ -1051,16 +1083,17 @@ class Theme {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = ThemeValidator.getAppliedThemeV2().validate(
+    const {
+      error: warrning,
+    } = ThemePlatformApplicationValidator.getAppliedThemeV2().validate(
       {},
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for getAppliedThemeV2",
+        message: `Parameter Validation warrnings for platform > Theme > getAppliedThemeV2 \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -1075,7 +1108,7 @@ class Theme {
 
     const {
       error: res_error,
-    } = ThemeModel.ApplyThemeResponseV2().validate(response, {
+    } = ThemePlatformModel.ApplyThemeResponseV2().validate(response, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -1083,22 +1116,22 @@ class Theme {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for getAppliedThemeV2",
+        message: `Response Validation Warnnings for platform > Theme > getAppliedThemeV2 \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @returns {Promise<FontsSchema>} - Success response
+   * @param {ThemePlatformApplicationValidator.getFonts} arg - Arg object
+   * @returns {Promise<ThemePlatformModel.FontsSchema>} - Success response
+   * @name getFonts
    * @summary: Get all the supported fonts in a theme
    * @description: Font is a collection of characters with a similar design. Use this API to retrieve a list of website fonts.
    */
   async getFonts({} = {}) {
-    const { error } = ThemeValidator.getFonts().validate(
+    const { error } = ThemePlatformApplicationValidator.getFonts().validate(
       {},
       { abortEarly: false, allowUnknown: true }
     );
@@ -1107,16 +1140,17 @@ class Theme {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = ThemeValidator.getFonts().validate(
+    const {
+      error: warrning,
+    } = ThemePlatformApplicationValidator.getFonts().validate(
       {},
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for getFonts",
+        message: `Parameter Validation warrnings for platform > Theme > getFonts \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -1129,7 +1163,9 @@ class Theme {
       undefined
     );
 
-    const { error: res_error } = ThemeModel.FontsSchema().validate(response, {
+    const {
+      error: res_error,
+    } = ThemePlatformModel.FontsSchema().validate(response, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -1137,22 +1173,22 @@ class Theme {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for getFonts",
+        message: `Response Validation Warnnings for platform > Theme > getFonts \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @returns {Promise<FontsSchema>} - Success response
+   * @param {ThemePlatformApplicationValidator.getFontsV2} arg - Arg object
+   * @returns {Promise<ThemePlatformModel.FontsSchema>} - Success response
+   * @name getFontsV2
    * @summary: Get all the supported fonts in a theme
    * @description: Font is a collection of characters with a similar design. Use this API to retrieve a list of website fonts.
    */
   async getFontsV2({} = {}) {
-    const { error } = ThemeValidator.getFontsV2().validate(
+    const { error } = ThemePlatformApplicationValidator.getFontsV2().validate(
       {},
       { abortEarly: false, allowUnknown: true }
     );
@@ -1161,16 +1197,17 @@ class Theme {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = ThemeValidator.getFontsV2().validate(
+    const {
+      error: warrning,
+    } = ThemePlatformApplicationValidator.getFontsV2().validate(
       {},
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for getFontsV2",
+        message: `Parameter Validation warrnings for platform > Theme > getFontsV2 \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -1183,7 +1220,9 @@ class Theme {
       undefined
     );
 
-    const { error: res_error } = ThemeModel.FontsSchema().validate(response, {
+    const {
+      error: res_error,
+    } = ThemePlatformModel.FontsSchema().validate(response, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -1191,24 +1230,22 @@ class Theme {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for getFontsV2",
+        message: `Response Validation Warnnings for platform > Theme > getFontsV2 \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.themeId - ID of the theme to be retrieved
-   * @param {string} arg.pageValue - Value of the page to be retrieved
-   * @returns {Promise<AvailablePageSchema>} - Success response
+   * @param {ThemePlatformApplicationValidator.getPage} arg - Arg object
+   * @returns {Promise<ThemePlatformModel.AvailablePageSchema>} - Success response
+   * @name getPage
    * @summary: Get page of a theme
    * @description: Use this API to retrieve a page of a theme.
    */
   async getPage({ themeId, pageValue } = {}) {
-    const { error } = ThemeValidator.getPage().validate(
+    const { error } = ThemePlatformApplicationValidator.getPage().validate(
       {
         themeId,
         pageValue,
@@ -1220,7 +1257,9 @@ class Theme {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = ThemeValidator.getPage().validate(
+    const {
+      error: warrning,
+    } = ThemePlatformApplicationValidator.getPage().validate(
       {
         themeId,
         pageValue,
@@ -1230,9 +1269,8 @@ class Theme {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for getPage",
+        message: `Parameter Validation warrnings for platform > Theme > getPage \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -1247,7 +1285,7 @@ class Theme {
 
     const {
       error: res_error,
-    } = ThemeModel.AvailablePageSchema().validate(response, {
+    } = ThemePlatformModel.AvailablePageSchema().validate(response, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -1255,26 +1293,25 @@ class Theme {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for getPage",
+        message: `Response Validation Warnnings for platform > Theme > getPage \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {number} [arg.pageSize] - The number of items to retrieve in each
-   *   page. Default value is 10.
-   * @param {number} [arg.pageNo] - The page number to navigate through the
-   *   given set of results. Default value is 1.
-   * @returns {Promise<ThemesListingResponseSchema>} - Success response
+   * @param {ThemePlatformApplicationValidator.getPublicThemes} arg - Arg object
+   * @returns {Promise<ThemePlatformModel.ThemesListingResponseSchema>} -
+   *   Success response
+   * @name getPublicThemes
    * @summary: Get all public themes
    * @description: Use this API to get a list of free themes that you can apply to your website.
    */
   async getPublicThemes({ pageSize, pageNo } = {}) {
-    const { error } = ThemeValidator.getPublicThemes().validate(
+    const {
+      error,
+    } = ThemePlatformApplicationValidator.getPublicThemes().validate(
       {
         pageSize,
         pageNo,
@@ -1286,7 +1323,9 @@ class Theme {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = ThemeValidator.getPublicThemes().validate(
+    const {
+      error: warrning,
+    } = ThemePlatformApplicationValidator.getPublicThemes().validate(
       {
         pageSize,
         pageNo,
@@ -1296,9 +1335,8 @@ class Theme {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for getPublicThemes",
+        message: `Parameter Validation warrnings for platform > Theme > getPublicThemes \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -1315,7 +1353,7 @@ class Theme {
 
     const {
       error: res_error,
-    } = ThemeModel.ThemesListingResponseSchema().validate(response, {
+    } = ThemePlatformModel.ThemesListingResponseSchema().validate(response, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -1323,23 +1361,22 @@ class Theme {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for getPublicThemes",
+        message: `Response Validation Warnnings for platform > Theme > getPublicThemes \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.themeId - ID allotted to the theme.
-   * @returns {Promise<ThemesSchema>} - Success response
+   * @param {ThemePlatformApplicationValidator.getThemeById} arg - Arg object
+   * @returns {Promise<ThemePlatformModel.ThemesSchema>} - Success response
+   * @name getThemeById
    * @summary: Gets theme by id
    * @description: Use this API to retrieve the details of a specific theme by using its ID.
    */
   async getThemeById({ themeId } = {}) {
-    const { error } = ThemeValidator.getThemeById().validate(
+    const { error } = ThemePlatformApplicationValidator.getThemeById().validate(
       {
         themeId,
       },
@@ -1350,7 +1387,9 @@ class Theme {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = ThemeValidator.getThemeById().validate(
+    const {
+      error: warrning,
+    } = ThemePlatformApplicationValidator.getThemeById().validate(
       {
         themeId,
       },
@@ -1359,9 +1398,8 @@ class Theme {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for getThemeById",
+        message: `Parameter Validation warrnings for platform > Theme > getThemeById \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -1374,7 +1412,9 @@ class Theme {
       undefined
     );
 
-    const { error: res_error } = ThemeModel.ThemesSchema().validate(response, {
+    const {
+      error: res_error,
+    } = ThemePlatformModel.ThemesSchema().validate(response, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -1382,23 +1422,24 @@ class Theme {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for getThemeById",
+        message: `Response Validation Warnnings for platform > Theme > getThemeById \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.themeId - ID allotted to the theme.
-   * @returns {Promise<ThemesSchema>} - Success response
+   * @param {ThemePlatformApplicationValidator.getThemeForPreview} arg - Arg object
+   * @returns {Promise<ThemePlatformModel.ThemesSchema>} - Success response
+   * @name getThemeForPreview
    * @summary: Get a theme preview
    * @description: A theme can be previewed before applying it. Use this API to retrieve the theme preview by using its ID.
    */
   async getThemeForPreview({ themeId } = {}) {
-    const { error } = ThemeValidator.getThemeForPreview().validate(
+    const {
+      error,
+    } = ThemePlatformApplicationValidator.getThemeForPreview().validate(
       {
         themeId,
       },
@@ -1409,7 +1450,9 @@ class Theme {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = ThemeValidator.getThemeForPreview().validate(
+    const {
+      error: warrning,
+    } = ThemePlatformApplicationValidator.getThemeForPreview().validate(
       {
         themeId,
       },
@@ -1418,9 +1461,8 @@ class Theme {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for getThemeForPreview",
+        message: `Parameter Validation warrnings for platform > Theme > getThemeForPreview \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -1433,7 +1475,9 @@ class Theme {
       undefined
     );
 
-    const { error: res_error } = ThemeModel.ThemesSchema().validate(response, {
+    const {
+      error: res_error,
+    } = ThemePlatformModel.ThemesSchema().validate(response, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -1441,23 +1485,24 @@ class Theme {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for getThemeForPreview",
+        message: `Response Validation Warnnings for platform > Theme > getThemeForPreview \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.themeId - ID allotted to the theme.
+   * @param {ThemePlatformApplicationValidator.getThemeLastModified} arg - Arg object
    * @returns {Promise<any>} - Success response
+   * @name getThemeLastModified
    * @summary: Fetch last modified timestamp
    * @description: Use this API to fetch Last-Modified timestamp in header metadata.
    */
   async getThemeLastModified({ themeId } = {}) {
-    const { error } = ThemeValidator.getThemeLastModified().validate(
+    const {
+      error,
+    } = ThemePlatformApplicationValidator.getThemeLastModified().validate(
       {
         themeId,
       },
@@ -1468,7 +1513,9 @@ class Theme {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = ThemeValidator.getThemeLastModified().validate(
+    const {
+      error: warrning,
+    } = ThemePlatformApplicationValidator.getThemeLastModified().validate(
       {
         themeId,
       },
@@ -1477,9 +1524,8 @@ class Theme {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for getThemeLastModified",
+        message: `Parameter Validation warrnings for platform > Theme > getThemeLastModified \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -1499,23 +1545,24 @@ class Theme {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for getThemeLastModified",
+        message: `Response Validation Warnnings for platform > Theme > getThemeLastModified \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.themeId - ID allotted to the theme.
+   * @param {ThemePlatformApplicationValidator.getThemeLastModifiedV2} arg - Arg object
    * @returns {Promise<any>} - Success response
+   * @name getThemeLastModifiedV2
    * @summary: Fetch last modified timestamp
    * @description: Use this API to fetch Last-Modified timestamp in header metadata.
    */
   async getThemeLastModifiedV2({ themeId } = {}) {
-    const { error } = ThemeValidator.getThemeLastModifiedV2().validate(
+    const {
+      error,
+    } = ThemePlatformApplicationValidator.getThemeLastModifiedV2().validate(
       {
         themeId,
       },
@@ -1528,7 +1575,7 @@ class Theme {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = ThemeValidator.getThemeLastModifiedV2().validate(
+    } = ThemePlatformApplicationValidator.getThemeLastModifiedV2().validate(
       {
         themeId,
       },
@@ -1537,9 +1584,8 @@ class Theme {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for getThemeLastModifiedV2",
+        message: `Parameter Validation warrnings for platform > Theme > getThemeLastModifiedV2 \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -1559,26 +1605,25 @@ class Theme {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for getThemeLastModifiedV2",
+        message: `Response Validation Warnnings for platform > Theme > getThemeLastModifiedV2 \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {number} [arg.pageSize] - The number of items to retrieve in each
-   *   page. Default value is 10.
-   * @param {number} [arg.pageNo] - The page number to navigate through the
-   *   given set of results. Default value is 1.
-   * @returns {Promise<ThemesListingResponseSchema>} - Success response
+   * @param {ThemePlatformApplicationValidator.getThemeLibrary} arg - Arg object
+   * @returns {Promise<ThemePlatformModel.ThemesListingResponseSchema>} -
+   *   Success response
+   * @name getThemeLibrary
    * @summary: Get a list of themes from the theme library
    * @description: Theme library is a personalized collection of themes that are chosen and added from the available themes. Use this API to fetch a list of themes from the library along with their configuration details.
    */
   async getThemeLibrary({ pageSize, pageNo } = {}) {
-    const { error } = ThemeValidator.getThemeLibrary().validate(
+    const {
+      error,
+    } = ThemePlatformApplicationValidator.getThemeLibrary().validate(
       {
         pageSize,
         pageNo,
@@ -1590,7 +1635,9 @@ class Theme {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = ThemeValidator.getThemeLibrary().validate(
+    const {
+      error: warrning,
+    } = ThemePlatformApplicationValidator.getThemeLibrary().validate(
       {
         pageSize,
         pageNo,
@@ -1600,9 +1647,8 @@ class Theme {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for getThemeLibrary",
+        message: `Parameter Validation warrnings for platform > Theme > getThemeLibrary \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -1619,7 +1665,7 @@ class Theme {
 
     const {
       error: res_error,
-    } = ThemeModel.ThemesListingResponseSchema().validate(response, {
+    } = ThemePlatformModel.ThemesListingResponseSchema().validate(response, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -1627,23 +1673,25 @@ class Theme {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for getThemeLibrary",
+        message: `Response Validation Warnnings for platform > Theme > getThemeLibrary \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.themeId - The ID of the theme
-   * @returns {Promise<AllThemesApplicationResponseV2>} - Success response
+   * @param {ThemePlatformApplicationValidator.getThemePreviewByIdV2} arg - Arg object
+   * @returns {Promise<ThemePlatformModel.AllThemesApplicationResponseV2>} -
+   *   Success response
+   * @name getThemePreviewByIdV2
    * @summary: Get Theme Preview By Theme Id
    * @description:
    */
   async getThemePreviewByIdV2({ themeId } = {}) {
-    const { error } = ThemeValidator.getThemePreviewByIdV2().validate(
+    const {
+      error,
+    } = ThemePlatformApplicationValidator.getThemePreviewByIdV2().validate(
       {
         themeId,
       },
@@ -1654,7 +1702,9 @@ class Theme {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = ThemeValidator.getThemePreviewByIdV2().validate(
+    const {
+      error: warrning,
+    } = ThemePlatformApplicationValidator.getThemePreviewByIdV2().validate(
       {
         themeId,
       },
@@ -1663,9 +1713,8 @@ class Theme {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for getThemePreviewByIdV2",
+        message: `Parameter Validation warrnings for platform > Theme > getThemePreviewByIdV2 \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -1680,7 +1729,7 @@ class Theme {
 
     const {
       error: res_error,
-    } = ThemeModel.AllThemesApplicationResponseV2().validate(response, {
+    } = ThemePlatformModel.AllThemesApplicationResponseV2().validate(response, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -1688,23 +1737,22 @@ class Theme {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for getThemePreviewByIdV2",
+        message: `Response Validation Warnnings for platform > Theme > getThemePreviewByIdV2 \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.themeId - Theme ID
-   * @returns {Promise<UpgradableThemeSchema>} - Success response
+   * @param {ThemePlatformApplicationValidator.isUpgradable} arg - Arg object
+   * @returns {Promise<ThemePlatformModel.UpgradableThemeSchema>} - Success response
+   * @name isUpgradable
    * @summary: Checks if theme is upgradable
    * @description: There's always a possibility that new features get added to a theme. Use this API to check if the applied theme has an upgrade available.
    */
   async isUpgradable({ themeId } = {}) {
-    const { error } = ThemeValidator.isUpgradable().validate(
+    const { error } = ThemePlatformApplicationValidator.isUpgradable().validate(
       {
         themeId,
       },
@@ -1715,7 +1763,9 @@ class Theme {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = ThemeValidator.isUpgradable().validate(
+    const {
+      error: warrning,
+    } = ThemePlatformApplicationValidator.isUpgradable().validate(
       {
         themeId,
       },
@@ -1724,9 +1774,8 @@ class Theme {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for isUpgradable",
+        message: `Parameter Validation warrnings for platform > Theme > isUpgradable \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -1741,7 +1790,7 @@ class Theme {
 
     const {
       error: res_error,
-    } = ThemeModel.UpgradableThemeSchema().validate(response, {
+    } = ThemePlatformModel.UpgradableThemeSchema().validate(response, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -1749,23 +1798,22 @@ class Theme {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for isUpgradable",
+        message: `Response Validation Warnnings for platform > Theme > isUpgradable \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.themeId - ID allotted to the theme.
-   * @returns {Promise<ThemesSchema>} - Success response
+   * @param {ThemePlatformApplicationValidator.publishTheme} arg - Arg object
+   * @returns {Promise<ThemePlatformModel.ThemesSchema>} - Success response
+   * @name publishTheme
    * @summary: Publish a theme
    * @description: Use this API to publish a theme that is either newly created or edited.
    */
   async publishTheme({ themeId } = {}) {
-    const { error } = ThemeValidator.publishTheme().validate(
+    const { error } = ThemePlatformApplicationValidator.publishTheme().validate(
       {
         themeId,
       },
@@ -1776,7 +1824,9 @@ class Theme {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = ThemeValidator.publishTheme().validate(
+    const {
+      error: warrning,
+    } = ThemePlatformApplicationValidator.publishTheme().validate(
       {
         themeId,
       },
@@ -1785,9 +1835,8 @@ class Theme {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for publishTheme",
+        message: `Parameter Validation warrnings for platform > Theme > publishTheme \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -1800,7 +1849,9 @@ class Theme {
       undefined
     );
 
-    const { error: res_error } = ThemeModel.ThemesSchema().validate(response, {
+    const {
+      error: res_error,
+    } = ThemePlatformModel.ThemesSchema().validate(response, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -1808,23 +1859,24 @@ class Theme {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for publishTheme",
+        message: `Response Validation Warnnings for platform > Theme > publishTheme \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.themeId - ID allotted to the theme.
-   * @returns {Promise<ThemesSchema>} - Success response
+   * @param {ThemePlatformApplicationValidator.unarchiveTheme} arg - Arg object
+   * @returns {Promise<ThemePlatformModel.ThemesSchema>} - Success response
+   * @name unarchiveTheme
    * @summary: Unarchive a theme
    * @description: Use this API to restore an archived theme and bring it back for editing or publishing.
    */
   async unarchiveTheme({ themeId } = {}) {
-    const { error } = ThemeValidator.unarchiveTheme().validate(
+    const {
+      error,
+    } = ThemePlatformApplicationValidator.unarchiveTheme().validate(
       {
         themeId,
       },
@@ -1835,7 +1887,9 @@ class Theme {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = ThemeValidator.unarchiveTheme().validate(
+    const {
+      error: warrning,
+    } = ThemePlatformApplicationValidator.unarchiveTheme().validate(
       {
         themeId,
       },
@@ -1844,9 +1898,8 @@ class Theme {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for unarchiveTheme",
+        message: `Parameter Validation warrnings for platform > Theme > unarchiveTheme \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -1859,7 +1912,9 @@ class Theme {
       undefined
     );
 
-    const { error: res_error } = ThemeModel.ThemesSchema().validate(response, {
+    const {
+      error: res_error,
+    } = ThemePlatformModel.ThemesSchema().validate(response, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -1867,23 +1922,24 @@ class Theme {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for unarchiveTheme",
+        message: `Response Validation Warnnings for platform > Theme > unarchiveTheme \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.themeId - ID allotted to the theme.
-   * @returns {Promise<ThemesSchema>} - Success response
+   * @param {ThemePlatformApplicationValidator.unpublishTheme} arg - Arg object
+   * @returns {Promise<ThemePlatformModel.ThemesSchema>} - Success response
+   * @name unpublishTheme
    * @summary: Unpublish a theme
    * @description: Use this API to remove an existing theme from the list of available themes.
    */
   async unpublishTheme({ themeId } = {}) {
-    const { error } = ThemeValidator.unpublishTheme().validate(
+    const {
+      error,
+    } = ThemePlatformApplicationValidator.unpublishTheme().validate(
       {
         themeId,
       },
@@ -1894,7 +1950,9 @@ class Theme {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = ThemeValidator.unpublishTheme().validate(
+    const {
+      error: warrning,
+    } = ThemePlatformApplicationValidator.unpublishTheme().validate(
       {
         themeId,
       },
@@ -1903,9 +1961,8 @@ class Theme {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for unpublishTheme",
+        message: `Parameter Validation warrnings for platform > Theme > unpublishTheme \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -1918,7 +1975,9 @@ class Theme {
       undefined
     );
 
-    const { error: res_error } = ThemeModel.ThemesSchema().validate(response, {
+    const {
+      error: res_error,
+    } = ThemePlatformModel.ThemesSchema().validate(response, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -1926,24 +1985,24 @@ class Theme {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for unpublishTheme",
+        message: `Response Validation Warnnings for platform > Theme > unpublishTheme \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.themeId - ID of the theme to be retrieved
-   * @param {AllAvailablePageSchema} arg.body
-   * @returns {Promise<AllAvailablePageSchema>} - Success response
+   * @param {ThemePlatformApplicationValidator.updateMultiplePages} arg - Arg object
+   * @returns {Promise<ThemePlatformModel.AllAvailablePageSchema>} - Success response
+   * @name updateMultiplePages
    * @summary: Update multiple pages of a theme
    * @description: Use this API to update multiple pages of a theme by its ID.
    */
   async updateMultiplePages({ themeId, body } = {}) {
-    const { error } = ThemeValidator.updateMultiplePages().validate(
+    const {
+      error,
+    } = ThemePlatformApplicationValidator.updateMultiplePages().validate(
       {
         themeId,
         body,
@@ -1955,7 +2014,9 @@ class Theme {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = ThemeValidator.updateMultiplePages().validate(
+    const {
+      error: warrning,
+    } = ThemePlatformApplicationValidator.updateMultiplePages().validate(
       {
         themeId,
         body,
@@ -1965,9 +2026,8 @@ class Theme {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for updateMultiplePages",
+        message: `Parameter Validation warrnings for platform > Theme > updateMultiplePages \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -1982,7 +2042,7 @@ class Theme {
 
     const {
       error: res_error,
-    } = ThemeModel.AllAvailablePageSchema().validate(response, {
+    } = ThemePlatformModel.AllAvailablePageSchema().validate(response, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -1990,25 +2050,22 @@ class Theme {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for updateMultiplePages",
+        message: `Response Validation Warnnings for platform > Theme > updateMultiplePages \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.themeId - ID of the theme
-   * @param {string} arg.pageValue - Value of the page to be updated
-   * @param {AvailablePageSchema} arg.body
-   * @returns {Promise<AvailablePageSchema>} - Success response
+   * @param {ThemePlatformApplicationValidator.updatePage} arg - Arg object
+   * @returns {Promise<ThemePlatformModel.AvailablePageSchema>} - Success response
+   * @name updatePage
    * @summary: Updates a page
    * @description: Use this API to update a page for a theme by its ID.
    */
   async updatePage({ themeId, pageValue, body } = {}) {
-    const { error } = ThemeValidator.updatePage().validate(
+    const { error } = ThemePlatformApplicationValidator.updatePage().validate(
       {
         themeId,
         pageValue,
@@ -2021,7 +2078,9 @@ class Theme {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = ThemeValidator.updatePage().validate(
+    const {
+      error: warrning,
+    } = ThemePlatformApplicationValidator.updatePage().validate(
       {
         themeId,
         pageValue,
@@ -2032,9 +2091,8 @@ class Theme {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for updatePage",
+        message: `Parameter Validation warrnings for platform > Theme > updatePage \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -2049,7 +2107,7 @@ class Theme {
 
     const {
       error: res_error,
-    } = ThemeModel.AvailablePageSchema().validate(response, {
+    } = ThemePlatformModel.AvailablePageSchema().validate(response, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -2057,24 +2115,22 @@ class Theme {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for updatePage",
+        message: `Response Validation Warnnings for platform > Theme > updatePage \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.themeId - ID allotted to the theme.
-   * @param {ThemesSchema} arg.body
-   * @returns {Promise<ThemesSchema>} - Success response
+   * @param {ThemePlatformApplicationValidator.updateTheme} arg - Arg object
+   * @returns {Promise<ThemePlatformModel.ThemesSchema>} - Success response
+   * @name updateTheme
    * @summary: Update a theme
    * @description: Use this API to edit an existing theme. You can customize the website font, sections, images, styles, and many more.
    */
   async updateTheme({ themeId, body } = {}) {
-    const { error } = ThemeValidator.updateTheme().validate(
+    const { error } = ThemePlatformApplicationValidator.updateTheme().validate(
       {
         themeId,
         body,
@@ -2086,7 +2142,9 @@ class Theme {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = ThemeValidator.updateTheme().validate(
+    const {
+      error: warrning,
+    } = ThemePlatformApplicationValidator.updateTheme().validate(
       {
         themeId,
         body,
@@ -2096,9 +2154,8 @@ class Theme {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for updateTheme",
+        message: `Parameter Validation warrnings for platform > Theme > updateTheme \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -2111,7 +2168,9 @@ class Theme {
       body
     );
 
-    const { error: res_error } = ThemeModel.ThemesSchema().validate(response, {
+    const {
+      error: res_error,
+    } = ThemePlatformModel.ThemesSchema().validate(response, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -2119,24 +2178,25 @@ class Theme {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for updateTheme",
+        message: `Response Validation Warnnings for platform > Theme > updateTheme \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.themeId - The ID of the theme to be updated.
-   * @param {UpdateThemeNameRequestBodyV2} arg.body
-   * @returns {Promise<AllThemesApplicationResponseV2>} - Success response
+   * @param {ThemePlatformApplicationValidator.updateThemeNameV2} arg - Arg object
+   * @returns {Promise<ThemePlatformModel.AllThemesApplicationResponseV2>} -
+   *   Success response
+   * @name updateThemeNameV2
    * @summary: Update Theme Name
    * @description: Update the name of a theme for a specific company and application.
    */
   async updateThemeNameV2({ themeId, body } = {}) {
-    const { error } = ThemeValidator.updateThemeNameV2().validate(
+    const {
+      error,
+    } = ThemePlatformApplicationValidator.updateThemeNameV2().validate(
       {
         themeId,
         body,
@@ -2148,7 +2208,9 @@ class Theme {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = ThemeValidator.updateThemeNameV2().validate(
+    const {
+      error: warrning,
+    } = ThemePlatformApplicationValidator.updateThemeNameV2().validate(
       {
         themeId,
         body,
@@ -2158,9 +2220,8 @@ class Theme {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for updateThemeNameV2",
+        message: `Parameter Validation warrnings for platform > Theme > updateThemeNameV2 \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -2175,7 +2236,7 @@ class Theme {
 
     const {
       error: res_error,
-    } = ThemeModel.AllThemesApplicationResponseV2().validate(response, {
+    } = ThemePlatformModel.AllThemesApplicationResponseV2().validate(response, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -2183,24 +2244,25 @@ class Theme {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for updateThemeNameV2",
+        message: `Response Validation Warnnings for platform > Theme > updateThemeNameV2 \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.themeId - The ID of the theme.
-   * @param {UpdateThemeRequestBodyV2} arg.body
-   * @returns {Promise<AllThemesApplicationResponseV2>} - Success response
+   * @param {ThemePlatformApplicationValidator.updateThemeV2} arg - Arg object
+   * @returns {Promise<ThemePlatformModel.AllThemesApplicationResponseV2>} -
+   *   Success response
+   * @name updateThemeV2
    * @summary: Update theme for a specific company and application
    * @description:
    */
   async updateThemeV2({ themeId, body } = {}) {
-    const { error } = ThemeValidator.updateThemeV2().validate(
+    const {
+      error,
+    } = ThemePlatformApplicationValidator.updateThemeV2().validate(
       {
         themeId,
         body,
@@ -2212,7 +2274,9 @@ class Theme {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = ThemeValidator.updateThemeV2().validate(
+    const {
+      error: warrning,
+    } = ThemePlatformApplicationValidator.updateThemeV2().validate(
       {
         themeId,
         body,
@@ -2222,9 +2286,8 @@ class Theme {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for updateThemeV2",
+        message: `Parameter Validation warrnings for platform > Theme > updateThemeV2 \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -2239,7 +2302,7 @@ class Theme {
 
     const {
       error: res_error,
-    } = ThemeModel.AllThemesApplicationResponseV2().validate(response, {
+    } = ThemePlatformModel.AllThemesApplicationResponseV2().validate(response, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -2247,23 +2310,25 @@ class Theme {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for updateThemeV2",
+        message: `Response Validation Warnnings for platform > Theme > updateThemeV2 \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.themeId - The ID of the upgrade
-   * @returns {Promise<AllThemesApplicationResponseV2>} - Success response
+   * @param {ThemePlatformApplicationValidator.upgradeApplicationV2} arg - Arg object
+   * @returns {Promise<ThemePlatformModel.AllThemesApplicationResponseV2>} -
+   *   Success response
+   * @name upgradeApplicationV2
    * @summary: Upgrade an application
    * @description: This endpoint allows you to upgrade an application.
    */
   async upgradeApplicationV2({ themeId } = {}) {
-    const { error } = ThemeValidator.upgradeApplicationV2().validate(
+    const {
+      error,
+    } = ThemePlatformApplicationValidator.upgradeApplicationV2().validate(
       {
         themeId,
       },
@@ -2274,7 +2339,9 @@ class Theme {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = ThemeValidator.upgradeApplicationV2().validate(
+    const {
+      error: warrning,
+    } = ThemePlatformApplicationValidator.upgradeApplicationV2().validate(
       {
         themeId,
       },
@@ -2283,9 +2350,8 @@ class Theme {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for upgradeApplicationV2",
+        message: `Parameter Validation warrnings for platform > Theme > upgradeApplicationV2 \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -2300,7 +2366,7 @@ class Theme {
 
     const {
       error: res_error,
-    } = ThemeModel.AllThemesApplicationResponseV2().validate(response, {
+    } = ThemePlatformModel.AllThemesApplicationResponseV2().validate(response, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -2308,23 +2374,22 @@ class Theme {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for upgradeApplicationV2",
+        message: `Response Validation Warnnings for platform > Theme > upgradeApplicationV2 \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.themeId - ID allotted to the theme.
-   * @returns {Promise<ThemesSchema>} - Success response
+   * @param {ThemePlatformApplicationValidator.upgradeTheme} arg - Arg object
+   * @returns {Promise<ThemePlatformModel.ThemesSchema>} - Success response
+   * @name upgradeTheme
    * @summary: Upgrade a theme
    * @description: Use this API to upgrade the current theme to its latest version.
    */
   async upgradeTheme({ themeId } = {}) {
-    const { error } = ThemeValidator.upgradeTheme().validate(
+    const { error } = ThemePlatformApplicationValidator.upgradeTheme().validate(
       {
         themeId,
       },
@@ -2335,7 +2400,9 @@ class Theme {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = ThemeValidator.upgradeTheme().validate(
+    const {
+      error: warrning,
+    } = ThemePlatformApplicationValidator.upgradeTheme().validate(
       {
         themeId,
       },
@@ -2344,9 +2411,8 @@ class Theme {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for upgradeTheme",
+        message: `Parameter Validation warrnings for platform > Theme > upgradeTheme \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -2359,7 +2425,9 @@ class Theme {
       undefined
     );
 
-    const { error: res_error } = ThemeModel.ThemesSchema().validate(response, {
+    const {
+      error: res_error,
+    } = ThemePlatformModel.ThemesSchema().validate(response, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -2367,9 +2435,8 @@ class Theme {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for upgradeTheme",
+        message: `Response Validation Warnnings for platform > Theme > upgradeTheme \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;

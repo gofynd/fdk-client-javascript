@@ -3,138 +3,93 @@ declare class Discount {
     constructor(config: any);
     config: any;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.id - Id
-     * @returns {Promise<CancelJobResponse>} - Success response
+     * @param {DiscountPlatformValidator.cancelDownloadJob} arg - Arg object
+     * @returns {Promise<DiscountPlatformModel.CancelJobResponse>} - Success response
+     * @name cancelDownloadJob
      * @summary: Cancel Download Job.
      * @description: Cancel Download Job.
      */
-    cancelDownloadJob({ id }?: {
-        id: string;
-    }): Promise<CancelJobResponse>;
+    cancelDownloadJob({ id }?: DiscountPlatformValidator.cancelDownloadJob): Promise<DiscountPlatformModel.CancelJobResponse>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.id - Id
-     * @returns {Promise<CancelJobResponse>} - Success response
+     * @param {DiscountPlatformValidator.cancelValidationJob} arg - Arg object
+     * @returns {Promise<DiscountPlatformModel.CancelJobResponse>} - Success response
+     * @name cancelValidationJob
      * @summary: Cancel Validation Job.
      * @description: Cancel Validation Job.
      */
-    cancelValidationJob({ id }?: {
-        id: string;
-    }): Promise<CancelJobResponse>;
+    cancelValidationJob({ id }?: DiscountPlatformValidator.cancelValidationJob): Promise<DiscountPlatformModel.CancelJobResponse>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {CreateUpdateDiscount} arg.body
-     * @returns {Promise<DiscountJob>} - Success response
+     * @param {DiscountPlatformValidator.createDiscount} arg - Arg object
+     * @returns {Promise<DiscountPlatformModel.DiscountJob>} - Success response
+     * @name createDiscount
      * @summary: Create Discount.
      * @description: Create Discount.
      */
-    createDiscount({ body }?: {
-        body: CreateUpdateDiscount;
-    }): Promise<DiscountJob>;
+    createDiscount({ body }?: DiscountPlatformValidator.createDiscount): Promise<DiscountPlatformModel.DiscountJob>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.type - Type
-     * @param {DownloadFileJob} arg.body
-     * @returns {Promise<FileJobResponse>} - Success response
+     * @param {DiscountPlatformValidator.downloadDiscountFile} arg - Arg object
+     * @returns {Promise<DiscountPlatformModel.FileJobResponse>} - Success response
+     * @name downloadDiscountFile
      * @summary: Validate File.
      * @description: Validate File.
      */
-    downloadDiscountFile({ type, body }?: {
-        type: string;
-        body: DownloadFileJob;
-    }): Promise<FileJobResponse>;
+    downloadDiscountFile({ type, body }?: DiscountPlatformValidator.downloadDiscountFile): Promise<DiscountPlatformModel.FileJobResponse>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.id - Unique id.
-     * @returns {Promise<DiscountJob>} - Success response
+     * @param {DiscountPlatformValidator.getDiscount} arg - Arg object
+     * @returns {Promise<DiscountPlatformModel.DiscountJob>} - Success response
+     * @name getDiscount
      * @summary: Fetch discount.
      * @description: Fetch discount.
      */
-    getDiscount({ id }?: {
-        id: string;
-    }): Promise<DiscountJob>;
+    getDiscount({ id }?: DiscountPlatformValidator.getDiscount): Promise<DiscountPlatformModel.DiscountJob>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {string} [arg.view] - Listing or calender. Default is listing.
-     * @param {string} [arg.q] - The search query. This can be a partial or
-     *   complete name of a discount.
-     * @param {number} [arg.pageNo] - Page number. Default is 1.
-     * @param {number} [arg.pageSize] - Page size. Default is 12.
-     * @param {boolean} [arg.archived] - Archived. Default is false.
-     * @param {number} [arg.month] - Month. Default is current month.
-     * @param {number} [arg.year] - Year. Default is current year.
-     * @param {string} [arg.type] - Basic or custom.
-     * @param {string[]} [arg.appIds] - Application ids.
-     * @returns {Promise<ListOrCalender>} - Success response
+     * @param {DiscountPlatformValidator.getDiscounts} arg - Arg object
+     * @returns {Promise<DiscountPlatformModel.ListOrCalender>} - Success response
+     * @name getDiscounts
      * @summary: Fetch discount list.
      * @description: Fetch discount list.
      */
-    getDiscounts({ view, q, pageNo, pageSize, archived, month, year, type, appIds, }?: {
-        view?: string;
-        q?: string;
-        pageNo?: number;
-        pageSize?: number;
-        archived?: boolean;
-        month?: number;
-        year?: number;
-        type?: string;
-        appIds?: string[];
-    }): Promise<ListOrCalender>;
+    getDiscounts({ view, q, pageNo, pageSize, archived, month, year, type, appIds, }?: DiscountPlatformValidator.getDiscounts): Promise<DiscountPlatformModel.ListOrCalender>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.id - Id
-     * @returns {Promise<FileJobResponse>} - Success response
+     * @param {DiscountPlatformValidator.getDownloadJob} arg - Arg object
+     * @returns {Promise<DiscountPlatformModel.FileJobResponse>} - Success response
+     * @name getDownloadJob
      * @summary: Download File Job.
      * @description: Download File Job.
      */
-    getDownloadJob({ id }?: {
-        id: string;
-    }): Promise<FileJobResponse>;
+    getDownloadJob({ id }?: DiscountPlatformValidator.getDownloadJob): Promise<DiscountPlatformModel.FileJobResponse>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.id - Id
-     * @returns {Promise<FileJobResponse>} - Success response
+     * @param {DiscountPlatformValidator.getValidationJob} arg - Arg object
+     * @returns {Promise<DiscountPlatformModel.FileJobResponse>} - Success response
+     * @name getValidationJob
      * @summary: Validate File Job.
      * @description: Validate File Job.
      */
-    getValidationJob({ id }?: {
-        id: string;
-    }): Promise<FileJobResponse>;
+    getValidationJob({ id }?: DiscountPlatformValidator.getValidationJob): Promise<DiscountPlatformModel.FileJobResponse>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.id - Id
-     * @param {CreateUpdateDiscount} arg.body
-     * @returns {Promise<DiscountJob>} - Success response
+     * @param {DiscountPlatformValidator.updateDiscount} arg - Arg object
+     * @returns {Promise<DiscountPlatformModel.DiscountJob>} - Success response
+     * @name updateDiscount
      * @summary: Create Discount.
      * @description: Create Discount.
      */
-    updateDiscount({ id, body }?: {
-        id: string;
-        body: CreateUpdateDiscount;
-    }): Promise<DiscountJob>;
+    updateDiscount({ id, body }?: DiscountPlatformValidator.updateDiscount): Promise<DiscountPlatformModel.DiscountJob>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.id - Job ID of the discount.
-     * @param {BulkDiscount} arg.body
+     * @param {DiscountPlatformValidator.upsertDiscountItems} arg - Arg object
      * @returns {Promise<Object>} - Success response
+     * @name upsertDiscountItems
      * @summary: Create custom discount from bulk.
      * @description: Create custom discounts through API.
      */
-    upsertDiscountItems({ id, body }?: {
-        id: string;
-        body: BulkDiscount;
-    }): Promise<any>;
+    upsertDiscountItems({ id, body }?: DiscountPlatformValidator.upsertDiscountItems): Promise<any>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {string} [arg.discount] - Discount
-     * @param {FileJobRequest} arg.body
-     * @returns {Promise<FileJobResponse>} - Success response
+     * @param {DiscountPlatformValidator.validateDiscountFile} arg - Arg object
+     * @returns {Promise<DiscountPlatformModel.FileJobResponse>} - Success response
+     * @name validateDiscountFile
      * @summary: Validate File.
      * @description: Validate File.
      */
-    validateDiscountFile({ body, discount }?: {
-        discount?: string;
-        body: FileJobRequest;
-    }): Promise<FileJobResponse>;
+    validateDiscountFile({ body, discount }?: DiscountPlatformValidator.validateDiscountFile): Promise<DiscountPlatformModel.FileJobResponse>;
 }
+import DiscountPlatformValidator = require("./DiscountPlatformValidator");
+import DiscountPlatformModel = require("./DiscountPlatformModel");

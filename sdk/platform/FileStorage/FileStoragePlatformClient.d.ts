@@ -3,34 +3,27 @@ declare class FileStorage {
     constructor(config: any);
     config: any;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.namespace - Bucket name
-     * @param {number} [arg.pageNo] - Page no
-     * @returns {Promise<BrowseResponse>} - Success response
+     * @param {FileStoragePlatformValidator.browse} arg - Arg object
+     * @returns {Promise<FileStoragePlatformModel.BrowseResponse>} - Success response
+     * @name browse
      * @summary: Browse Files
      * @description: Browse Files
      */
-    browse({ namespace, pageNo, }?: {
-        namespace: string;
-        pageNo?: number;
-    }): Promise<BrowseResponse>;
+    browse({ namespace, pageNo, }?: FileStoragePlatformValidator.browse): Promise<FileStoragePlatformModel.BrowseResponse>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.namespace - Bucket name
+     * @returns {Paginator<FileStoragePlatformModel.BrowseResponse>}
      * @summary: Browse Files
      * @description: Browse Files
      */
     browsePaginator({ namespace }?: {
         namespace: string;
-    }): Paginator;
+    }): Paginator<FileStoragePlatformModel.BrowseResponse>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.namespace - Segregation of different types of
-     *   files(products, orders, logistics etc), Required for validating the
-     *   data of the file being uploaded, decides where exactly the file will be
-     *   stored inside the storage bucket.
-     * @param {StartResponse} arg.body
-     * @returns {Promise<CompleteResponse>} - Success response
+     * @param {FileStoragePlatformValidator.completeUpload} arg - Arg object
+     * @returns {Promise<FileStoragePlatformModel.CompleteResponse>} - Success response
+     * @name completeUpload
      * @summary: This will complete the upload process. After successfully uploading file, you can call this operation to complete the upload process.
      * @description: Uploads an arbitrarily sized buffer or blob.
      *
@@ -51,50 +44,35 @@ declare class FileStorage {
      * After successfully upload, call `completeUpload` api to complete the upload process.
      * This operation will return the url for the uploaded file.
      */
-    completeUpload({ namespace, body, }?: {
-        namespace: string;
-        body: StartResponse;
-    }): Promise<CompleteResponse>;
+    completeUpload({ namespace, body, }?: FileStoragePlatformValidator.completeUpload): Promise<FileStoragePlatformModel.CompleteResponse>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {boolean} [arg.sync] - Sync
-     * @param {BulkRequest} arg.body
-     * @returns {Promise<BulkUploadResponse>} - Success response
+     * @param {FileStoragePlatformValidator.copyFiles} arg - Arg object
+     * @returns {Promise<FileStoragePlatformModel.BulkUploadResponse>} - Success response
+     * @name copyFiles
      * @summary: Copy Files
      * @description: Copy Files
      */
-    copyFiles({ body, sync }?: {
-        sync?: boolean;
-        body: BulkRequest;
-    }): Promise<BulkUploadResponse>;
+    copyFiles({ body, sync }?: FileStoragePlatformValidator.copyFiles): Promise<FileStoragePlatformModel.BulkUploadResponse>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {SignUrlRequest} arg.body
-     * @returns {Promise<SignUrlResponse>} - Success response
+     * @param {FileStoragePlatformValidator.getSignUrls} arg - Arg object
+     * @returns {Promise<FileStoragePlatformModel.SignUrlResponse>} - Success response
+     * @name getSignUrls
      * @summary: Gives signed urls to access private files
      * @description: Describe here
      */
-    getSignUrls({ body }?: {
-        body: SignUrlRequest;
-    }): Promise<SignUrlResponse>;
+    getSignUrls({ body }?: FileStoragePlatformValidator.getSignUrls): Promise<FileStoragePlatformModel.SignUrlResponse>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.url - Url
+     * @param {FileStoragePlatformValidator.proxy} arg - Arg object
      * @returns {Promise<string>} - Success response
+     * @name proxy
      * @summary: Proxy
      * @description: Proxy
      */
-    proxy({ url }?: {
-        url: string;
-    }): Promise<string>;
+    proxy({ url }?: FileStoragePlatformValidator.proxy): Promise<string>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.namespace - Segregation of different types of
-     *   files(products, orders, logistics etc), Required for validating the
-     *   data of the file being uploaded, decides where exactly the file will be
-     *   stored inside the storage bucket.
-     * @param {StartRequest} arg.body
-     * @returns {Promise<StartResponse>} - Success response
+     * @param {FileStoragePlatformValidator.startUpload} arg - Arg object
+     * @returns {Promise<FileStoragePlatformModel.StartResponse>} - Success response
+     * @name startUpload
      * @summary: This operation initiates upload and returns storage link which is valid for 30 Minutes. You can use that storage link to make subsequent upload request with file buffer or blob.
      * @description: Uploads an arbitrarily sized buffer or blob.
      *
@@ -115,10 +93,7 @@ declare class FileStorage {
      * After successfully upload, call `completeUpload` api to complete the upload process.
      * This operation will return the url for the uploaded file.
      */
-    startUpload({ namespace, body, }?: {
-        namespace: string;
-        body: StartRequest;
-    }): Promise<StartResponse>;
+    startUpload({ namespace, body, }?: FileStoragePlatformValidator.startUpload): Promise<FileStoragePlatformModel.StartResponse>;
     /**
      * @param data
      * @param {string} file_name
@@ -136,4 +111,6 @@ declare class FileStorage {
         tags: any;
     }): Promise<any>;
 }
+import FileStoragePlatformValidator = require("./FileStoragePlatformValidator");
+import FileStoragePlatformModel = require("./FileStoragePlatformModel");
 import Paginator = require("../../common/Paginator");

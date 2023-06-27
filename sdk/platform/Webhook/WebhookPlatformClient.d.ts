@@ -3,68 +3,53 @@ declare class Webhook {
     constructor(config: any);
     config: any;
     /**
-     * @param {Object} arg - Arg object.
-     * @returns {Promise<EventConfigResponse>} - Success response
+     * @param {WebhookPlatformValidator.fetchAllEventConfigurations} arg - Arg object
+     * @returns {Promise<WebhookPlatformModel.EventConfigResponse>} - Success response
+     * @name fetchAllEventConfigurations
      * @summary:
      * @description: Get All Webhook Events
      */
-    fetchAllEventConfigurations({}?: any): Promise<EventConfigResponse>;
+    fetchAllEventConfigurations({}?: any): Promise<WebhookPlatformModel.EventConfigResponse>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {number} arg.subscriberId - Subscriber ID
-     * @returns {Promise<SubscriberResponse>} - Success response
+     * @param {WebhookPlatformValidator.getSubscriberById} arg - Arg object
+     * @returns {Promise<WebhookPlatformModel.SubscriberResponse>} - Success response
+     * @name getSubscriberById
      * @summary: Get Subscriber By Subscriber ID
      * @description: Get Subscriber By Subscriber ID
      */
-    getSubscriberById({ subscriberId }?: {
-        subscriberId: number;
-    }): Promise<SubscriberResponse>;
+    getSubscriberById({ subscriberId }?: WebhookPlatformValidator.getSubscriberById): Promise<WebhookPlatformModel.SubscriberResponse>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {number} [arg.pageNo] - Page Number
-     * @param {number} [arg.pageSize] - Page Size
-     * @param {string} [arg.extensionId] - Extension ID
-     * @returns {Promise<SubscriberResponse>} - Success response
+     * @param {WebhookPlatformValidator.getSubscribersByCompany} arg - Arg object
+     * @returns {Promise<WebhookPlatformModel.SubscriberResponse>} - Success response
+     * @name getSubscribersByCompany
      * @summary: Get Subscribers By Company ID
      * @description: Get Subscribers By CompanyId
      */
-    getSubscribersByCompany({ pageNo, pageSize, extensionId }?: {
-        pageNo?: number;
-        pageSize?: number;
-        extensionId?: string;
-    }): Promise<SubscriberResponse>;
+    getSubscribersByCompany({ pageNo, pageSize, extensionId }?: WebhookPlatformValidator.getSubscribersByCompany): Promise<WebhookPlatformModel.SubscriberResponse>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {number} [arg.pageNo] - Page Number
-     * @param {number} [arg.pageSize] - Page Size
-     * @param {string} arg.extensionId - Extension ID
-     * @returns {Promise<SubscriberConfigList>} - Success response
+     * @param {WebhookPlatformValidator.getSubscribersByExtensionId} arg - Arg object
+     * @returns {Promise<WebhookPlatformModel.SubscriberConfigList>} - Success response
+     * @name getSubscribersByExtensionId
      * @summary: Get Subscribers By Extension ID
      * @description: Get Subscribers By ExtensionID
      */
-    getSubscribersByExtensionId({ extensionId, pageNo, pageSize }?: {
-        pageNo?: number;
-        pageSize?: number;
-        extensionId: string;
-    }): Promise<SubscriberConfigList>;
+    getSubscribersByExtensionId({ extensionId, pageNo, pageSize }?: WebhookPlatformValidator.getSubscribersByExtensionId): Promise<WebhookPlatformModel.SubscriberConfigList>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {SubscriberConfig} arg.body
-     * @returns {Promise<SubscriberConfig>} - Success response
+     * @param {WebhookPlatformValidator.registerSubscriberToEvent} arg - Arg object
+     * @returns {Promise<WebhookPlatformModel.SubscriberConfig>} - Success response
+     * @name registerSubscriberToEvent
      * @summary: Register Subscriber
      * @description: Register Subscriber
      */
-    registerSubscriberToEvent({ body }?: {
-        body: SubscriberConfig;
-    }): Promise<SubscriberConfig>;
+    registerSubscriberToEvent({ body }?: WebhookPlatformValidator.registerSubscriberToEvent): Promise<WebhookPlatformModel.SubscriberConfig>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {SubscriberConfig} arg.body
-     * @returns {Promise<SubscriberConfig>} - Success response
+     * @param {WebhookPlatformValidator.updateSubscriberConfig} arg - Arg object
+     * @returns {Promise<WebhookPlatformModel.SubscriberConfig>} - Success response
+     * @name updateSubscriberConfig
      * @summary: Update Subscriber
      * @description: Update Subscriber
      */
-    updateSubscriberConfig({ body }?: {
-        body: SubscriberConfig;
-    }): Promise<SubscriberConfig>;
+    updateSubscriberConfig({ body }?: WebhookPlatformValidator.updateSubscriberConfig): Promise<WebhookPlatformModel.SubscriberConfig>;
 }
+import WebhookPlatformModel = require("./WebhookPlatformModel");
+import WebhookPlatformValidator = require("./WebhookPlatformValidator");

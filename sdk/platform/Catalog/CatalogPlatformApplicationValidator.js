@@ -1,71 +1,486 @@
 const Joi = require("joi");
 
-const CatalogModel = require("./CatalogPlatformModel");
-class CatalogValidator {
+const CatalogPlatformModel = require("./CatalogPlatformModel");
+
+/**
+ * @typedef addCollectionItems
+ * @property {string} id - A `id` is a unique identifier of a collection.
+ * @property {CatalogPlatformModel.CollectionItemUpdate} body
+ */
+
+/**
+ * @typedef createCollection
+ * @property {CatalogPlatformModel.CreateCollection} body
+ */
+
+/**
+ * @typedef createConfigurationByType
+ * @property {string} type - Type can be brands, categories etc.
+ * @property {CatalogPlatformModel.AppConfiguration} body
+ */
+
+/**
+ * @typedef createConfigurationProductListing
+ * @property {CatalogPlatformModel.AppConfiguration} body
+ */
+
+/**
+ * @typedef createCustomAutocompleteRule
+ * @property {CatalogPlatformModel.CreateAutocompleteKeyword} body
+ */
+
+/**
+ * @typedef createCustomKeyword
+ * @property {CatalogPlatformModel.CreateSearchKeyword} body
+ */
+
+/**
+ * @typedef createGroupConfiguration
+ * @property {string} configType - A `config_type` is a unique identifier for a
+ *   particular group configuration type.
+ * @property {CatalogPlatformModel.AppConfigurationDetail} body
+ */
+
+/**
+ * @typedef createListingConfiguration
+ * @property {string} configType - A `config_type` is a unique identifier for a
+ *   particular listing configuration type.
+ * @property {CatalogPlatformModel.AppConfigurationsSort} body
+ */
+
+/**
+ * @typedef deleteAutocompleteKeyword
+ * @property {string} id - A `id` is a unique identifier for a particular
+ *   detail. Pass the `id` of the keywords which you want to delete.
+ */
+
+/**
+ * @typedef deleteCollection
+ * @property {string} id - A `id` is a unique identifier of a collection.
+ */
+
+/**
+ * @typedef deleteGroupConfiguration
+ * @property {string} configType - A `config_type` is a unique identifier for a
+ *   particular group configuration type.
+ * @property {string} groupSlug - A `group_slug` is a unique identifier of a
+ *   particular configuration.
+ */
+
+/**
+ * @typedef deleteListingConfiguration
+ * @property {string} configType - A `config_type` is a unique identifier for a
+ *   particular listing configuration type.
+ * @property {string} configId - A `config_id` is a unique identifier of a
+ *   particular configuration.
+ */
+
+/**
+ * @typedef deleteSearchKeywords
+ * @property {string} id - A `id` is a unique identifier for a particular
+ *   detail. Pass the `id` of the keywords which you want to delete.
+ */
+
+/**
+ * @typedef getAllCollections
+ * @property {string} [q] - Get collection list filtered by q string,
+ * @property {string} [scheduleStatus] - Get collection list filtered by scheduled status,
+ * @property {string} [type] - Type of the collections
+ * @property {string[]} [tags] - Each response will contain next_id param, which
+ *   should be sent back to make pagination work.
+ * @property {boolean} [isActive] - Get collections filtered by active status.
+ * @property {number} [pageNo] - The page number to navigate through the given
+ *   set of results.
+ * @property {number} [pageSize] - Number of items to retrieve in each page.
+ *   Default is 12.
+ */
+
+/** @typedef getAllSearchKeyword */
+
+/**
+ * @typedef getAppInventory
+ * @property {number[]} [itemIds] - The Item Id of the product.
+ * @property {number[]} [storeIds] - The Store Id of products to fetch inventory.
+ * @property {number[]} [brandIds] - The Brand Id of products to fetch inventory.
+ * @property {string[]} [sellerIdentifiers] - Unique seller_identifier of the product.
+ * @property {string} [timestamp] - Timestamp in UTC format (2020-07-23T10:27:50Z)
+ * @property {number} [pageSize] - The number of items to retrieve in each page.
+ * @property {string} [pageId] - Page ID to retrieve next set of results.
+ */
+
+/**
+ * @typedef getAppLocations
+ * @property {string} [storeType] - Helps to sort the location list on the basis
+ *   of location type.
+ * @property {number[]} [uid] - Helps to sort the location list on the basis of uid list.
+ * @property {string} [q] - Query that is to be searched.
+ * @property {string} [stage] - To filter companies on basis of verified or
+ *   unverified companies.
+ * @property {number} [pageNo] - The page number to navigate through the given
+ *   set of results
+ * @property {number} [pageSize] - Number of items to retrieve in each page.
+ *   Default is 20.
+ */
+
+/**
+ * @typedef getAppProduct
+ * @property {string} itemId - Product id for a particular product.
+ */
+
+/**
+ * @typedef getAppProducts
+ * @property {number[]} [brandIds] - Get multiple products filtered by Brand Ids
+ * @property {number[]} [categoryIds] - Get multiple products filtered by Category Ids
+ * @property {number[]} [departmentIds] - Get multiple products filtered by Department Ids
+ * @property {string[]} [tags] - Get multiple products filtered by tags
+ * @property {number[]} [itemIds] - Get multiple products filtered by Item Ids
+ * @property {number} [pageNo] - The page number to navigate through the given
+ *   set of results
+ * @property {number} [pageSize] - Number of items to retrieve in each page.
+ *   Default is 10.
+ * @property {string} [q] - Search with Item Code, Name, Slug or Identifier.
+ */
+
+/**
+ * @typedef getAppicationProducts
+ * @property {string} [q] - The search query. This can be a partial or complete
+ *   name of a either a product, brand or category
+ * @property {string} [f] - The search filter parameters. All the parameter
+ *   filtered from filter parameters will be passed in **f** parameter in this
+ *   format. **?f=brand:voi-jeans||and:::category:t-shirts||shirts**
+ * @property {string} [c] - The search filter parameters for collection items.
+ *   All the parameter filtered from filter parameters will be passed in **c**
+ *   parameter in this format.
+ *   **?c=brand:in:voi-jeans|and:::category:nin:t-shirts|shirts**
+ * @property {boolean} [filters] - Pass `filters` parameter to fetch the filter
+ *   details. This flag is used to fetch all filters
+ * @property {string} [sortOn] - The order to sort the list of products on. The
+ *   supported sort parameters are popularity, price, redemption and discount in
+ *   either ascending or descending order. See the supported values below.
+ * @property {string} [pageId] - Each response will contain **page_id** param,
+ *   which should be sent back to make pagination work.
+ * @property {number} [pageSize] - Number of items to retrieve in each page.
+ *   Default is 12.
+ * @property {number} [pageNo] - If page_type is number then pass it to fetch
+ *   page items. Default is 1.
+ * @property {string} [pageType] - For pagination type should be cursor or
+ *   number. Default is cursor.
+ * @property {number[]} [itemIds] - Item Ids of product
+ */
+
+/**
+ * @typedef getApplicationBrandListing
+ * @property {number} [pageNo] - The page number to navigate through the given
+ *   set of results
+ * @property {number} [pageSize] - Number of items to retrieve in each page.
+ *   Default is 12.
+ * @property {string} [q] - Search query with brand name.Use this parameter to
+ *   search brands by brand name.
+ */
+
+/**
+ * @typedef getApplicationBrands
+ * @property {string} [department] - The name of the department. Use this
+ *   parameter to filter products by a particular department. See below the list
+ *   of available departments. You can retrieve available departments from the
+ *   **v1.0/departments/** API
+ * @property {number} [pageNo] - The page number to navigate through the given
+ *   set of results
+ * @property {number} [pageSize] - Number of items to retrieve in each page.
+ *   Default is 12.
+ * @property {string} [q] - Search query with brand name.Use this parameter to
+ *   search brands by brand name.
+ * @property {number[]} [brandId] - Helps to sort the brands list on the basis
+ *   of uid list.
+ */
+
+/**
+ * @typedef getApplicationCategoryListing
+ * @property {number} [departmentId] - A `department_id` is a unique identifier
+ *   for a particular department.
+ * @property {number} [pageNo] - The page number to navigate through the given
+ *   set of results
+ * @property {number} [pageSize] - Number of items to retrieve in each page.
+ *   Default is 12.
+ * @property {string} [q] - Search query with brand name.Use this parameter to
+ *   search brands by brand name.
+ */
+
+/**
+ * @typedef getApplicationDepartmentListing
+ * @property {number} [pageNo] - The page number to navigate through the given
+ *   set of results
+ * @property {number} [pageSize] - Number of items to retrieve in each page.
+ *   Default is 12.
+ * @property {string} [q] - Search query with brand name.Use this parameter to
+ *   search department by name.
+ */
+
+/** @typedef getAutocompleteConfig */
+
+/**
+ * @typedef getAutocompleteKeywordDetail
+ * @property {string} id - A `id` is a unique identifier for a particular
+ *   detail. Pass the `id` of the keywords which you want to retrieve.
+ */
+
+/** @typedef getCatalogConfiguration */
+
+/**
+ * @typedef getCatalogInsights
+ * @property {string} [brand] - Brand slug
+ */
+
+/**
+ * @typedef getCategories
+ * @property {string} [department] - The name of the department. Use this
+ *   parameter to filter products by a particular department. See below the list
+ *   of available departments. You can retrieve available departments from the
+ *   **v1.0/departments/** API
+ */
+
+/**
+ * @typedef getCollectionDetail
+ * @property {string} slug - A `slug` is a human readable, URL friendly unique
+ *   identifier of an object. Pass the `slug` of the collection which you want
+ *   to retrieve.
+ */
+
+/**
+ * @typedef getCollectionItems
+ * @property {string} id - A `id` is a unique identifier of a collection.
+ * @property {string} [sortOn] - Each response will contain sort_on param, which
+ *   should be sent back to make pagination work.
+ * @property {string} [pageId] - Each response will contain next_id param, which
+ *   should be sent back to make pagination work.
+ * @property {number} [pageSize] - Number of items to retrieve in each page.
+ *   Default is 12.
+ */
+
+/**
+ * @typedef getConfigurationByType
+ * @property {string} type - Type can be brands, categories etc.
+ */
+
+/**
+ * @typedef getConfigurationMetadata
+ * @property {string} configType - A `config_type` is an identifier that defines
+ *   a specific type of configuration.
+ * @property {string} [templateSlug] - Get configuration list filtered by
+ *   `template_slug` string. This is for the details and comparision groups.
+ */
+
+/** @typedef getConfigurations */
+
+/** @typedef getDepartments */
+
+/**
+ * @typedef getDiscountedInventoryBySizeIdentifier
+ * @property {number} itemId - Item code of the product of which size is to be get.
+ * @property {string} sizeIdentifier - Size Identifier (Seller Identifier or
+ *   Primary Identifier) of which inventory is to get.
+ * @property {number} [pageNo] - The page number to navigate through the given
+ *   set of results
+ * @property {number} [pageSize] - Number of items to retrieve in each page.
+ *   Default is 12.
+ * @property {string} [q] - Search with help of store code.
+ * @property {number[]} [locationIds] - Search by store ids.
+ */
+
+/**
+ * @typedef getGroupConfigurations
+ * @property {string} configType - A `config_type` is an identifier that defines
+ *   a specific type of configuration.
+ * @property {number} [pageNo] - The page number to navigate through the given
+ *   set of results.
+ * @property {number} [pageSize] - Number of items to retrieve in each page.
+ *   Default is 12.
+ * @property {string} [search] - Get configuration list filtered by `search` string.
+ * @property {string} [templateSlug] - Get configuration list filtered by
+ *   `template_slug` string. This is for the details and comparision groups.
+ */
+
+/**
+ * @typedef getListingConfigurations
+ * @property {string} configType - A `config_type` is an identifier that defines
+ *   a specific type of configuration.
+ * @property {number} [pageNo] - The page number to navigate through the given
+ *   set of results.
+ * @property {number} [pageSize] - Number of items to retrieve in each page.
+ *   Default is 12.
+ * @property {string} [search] - Get configuration list filtered by `search` string.
+ */
+
+/**
+ * @typedef getProductDetailBySlug
+ * @property {string} slug - The unique identifier of a product. i.e; `slug` of
+ *   a product. You can retrieve these from the APIs that list products like
+ *   **v1.0/products/**
+ */
+
+/** @typedef getQueryFilters */
+
+/**
+ * @typedef getSearchKeywords
+ * @property {string} id - A `id` is a unique identifier for a particular
+ *   detail. Pass the `id` of the keywords which you want to retrieve.
+ */
+
+/**
+ * @typedef updateAllowSingle
+ * @property {CatalogPlatformModel.AllowSingleRequest} body
+ */
+
+/**
+ * @typedef updateAppBrand
+ * @property {string} brandUid - Brand id for which the custom_json is associated.
+ * @property {CatalogPlatformModel.ApplicationBrandJson} body
+ */
+
+/**
+ * @typedef updateAppCategory
+ * @property {string} categoryUid - Category id for which the custom_json is associated.
+ * @property {CatalogPlatformModel.ApplicationCategoryJson} body
+ */
+
+/**
+ * @typedef updateAppDepartment
+ * @property {string} departmentUid - Department id for which the custom_json is
+ *   associated.
+ * @property {CatalogPlatformModel.ApplicationDepartmentJson} body
+ */
+
+/**
+ * @typedef updateAppLocation
+ * @property {string} storeUid - Store id for which the custom_json is associated.
+ * @property {CatalogPlatformModel.ApplicationStoreJson} body
+ */
+
+/**
+ * @typedef updateAppProduct
+ * @property {string} itemId - Product id for which the custom_meta is associated.
+ * @property {CatalogPlatformModel.ApplicationItemMeta} body
+ */
+
+/**
+ * @typedef updateAutocompleteKeyword
+ * @property {string} id - A `id` is a unique identifier for a particular
+ *   detail. Pass the `id` of the keywords which you want to delete.
+ * @property {CatalogPlatformModel.CreateAutocompleteKeyword} body
+ */
+
+/**
+ * @typedef updateCollection
+ * @property {string} id - A `id` is a unique identifier of a collection.
+ * @property {CatalogPlatformModel.UpdateCollection} body
+ */
+
+/**
+ * @typedef updateDefaultSort
+ * @property {CatalogPlatformModel.DefaultKeyRequest} body
+ */
+
+/**
+ * @typedef updateGroupConfiguration
+ * @property {string} configType - A `config_type` is a unique identifier for a
+ *   particular group configuration type.
+ * @property {string} groupSlug - A `group_slug` is a unique identifier of a
+ *   particular configuration.
+ * @property {CatalogPlatformModel.AppConfigurationDetail} body
+ */
+
+/**
+ * @typedef updateListingConfiguration
+ * @property {string} configType - A `config_type` is a unique identifier for a
+ *   particular listing configuration type.
+ * @property {string} configId - A `config_id` is a unique identifier of a
+ *   particular configuration.
+ * @property {CatalogPlatformModel.AppConfigurationsSort} body
+ */
+
+/**
+ * @typedef updateSearchKeywords
+ * @property {string} id - A `id` is a unique identifier for a particular
+ *   detail. Pass the `id` of the keywords which you want to delete.
+ * @property {CatalogPlatformModel.CreateSearchKeyword} body
+ */
+
+class CatalogPlatformApplicationValidator {
+  /** @returns {addCollectionItems} */
   static addCollectionItems() {
     return Joi.object({
       id: Joi.string().allow("").required(),
-      body: CatalogModel.CollectionItemUpdate().required(),
+      body: CatalogPlatformModel.CollectionItemUpdate().required(),
     }).required();
   }
 
+  /** @returns {createCollection} */
   static createCollection() {
     return Joi.object({
-      body: CatalogModel.CreateCollection().required(),
+      body: CatalogPlatformModel.CreateCollection().required(),
     }).required();
   }
 
+  /** @returns {createConfigurationByType} */
   static createConfigurationByType() {
     return Joi.object({
       type: Joi.string().allow("").required(),
-      body: CatalogModel.AppConfiguration().required(),
+      body: CatalogPlatformModel.AppConfiguration().required(),
     }).required();
   }
 
+  /** @returns {createConfigurationProductListing} */
   static createConfigurationProductListing() {
     return Joi.object({
-      body: CatalogModel.AppConfiguration().required(),
+      body: CatalogPlatformModel.AppConfiguration().required(),
     }).required();
   }
 
+  /** @returns {createCustomAutocompleteRule} */
   static createCustomAutocompleteRule() {
     return Joi.object({
-      body: CatalogModel.CreateAutocompleteKeyword().required(),
+      body: CatalogPlatformModel.CreateAutocompleteKeyword().required(),
     }).required();
   }
 
+  /** @returns {createCustomKeyword} */
   static createCustomKeyword() {
     return Joi.object({
-      body: CatalogModel.CreateSearchKeyword().required(),
+      body: CatalogPlatformModel.CreateSearchKeyword().required(),
     }).required();
   }
 
+  /** @returns {createGroupConfiguration} */
   static createGroupConfiguration() {
     return Joi.object({
       configType: Joi.string().allow("").required(),
-      body: CatalogModel.AppConfigurationDetail().required(),
+      body: CatalogPlatformModel.AppConfigurationDetail().required(),
     }).required();
   }
 
+  /** @returns {createListingConfiguration} */
   static createListingConfiguration() {
     return Joi.object({
       configType: Joi.string().allow("").required(),
-      body: CatalogModel.AppConfigurationsSort().required(),
+      body: CatalogPlatformModel.AppConfigurationsSort().required(),
     }).required();
   }
 
+  /** @returns {deleteAutocompleteKeyword} */
   static deleteAutocompleteKeyword() {
     return Joi.object({
       id: Joi.string().allow("").required(),
     }).required();
   }
 
+  /** @returns {deleteCollection} */
   static deleteCollection() {
     return Joi.object({
       id: Joi.string().allow("").required(),
     }).required();
   }
 
+  /** @returns {deleteGroupConfiguration} */
   static deleteGroupConfiguration() {
     return Joi.object({
       configType: Joi.string().allow("").required(),
@@ -73,6 +488,7 @@ class CatalogValidator {
     }).required();
   }
 
+  /** @returns {deleteListingConfiguration} */
   static deleteListingConfiguration() {
     return Joi.object({
       configType: Joi.string().allow("").required(),
@@ -80,12 +496,14 @@ class CatalogValidator {
     }).required();
   }
 
+  /** @returns {deleteSearchKeywords} */
   static deleteSearchKeywords() {
     return Joi.object({
       id: Joi.string().allow("").required(),
     }).required();
   }
 
+  /** @returns {getAllCollections} */
   static getAllCollections() {
     return Joi.object({
       q: Joi.string().allow(""),
@@ -98,10 +516,12 @@ class CatalogValidator {
     }).required();
   }
 
+  /** @returns {getAllSearchKeyword} */
   static getAllSearchKeyword() {
     return Joi.object({}).required();
   }
 
+  /** @returns {getAppInventory} */
   static getAppInventory() {
     return Joi.object({
       itemIds: Joi.array().items(Joi.number()),
@@ -114,6 +534,7 @@ class CatalogValidator {
     }).required();
   }
 
+  /** @returns {getAppLocations} */
   static getAppLocations() {
     return Joi.object({
       storeType: Joi.string().allow(""),
@@ -125,12 +546,14 @@ class CatalogValidator {
     }).required();
   }
 
+  /** @returns {getAppProduct} */
   static getAppProduct() {
     return Joi.object({
       itemId: Joi.string().allow("").required(),
     }).required();
   }
 
+  /** @returns {getAppProducts} */
   static getAppProducts() {
     return Joi.object({
       brandIds: Joi.array().items(Joi.number()),
@@ -144,6 +567,7 @@ class CatalogValidator {
     }).required();
   }
 
+  /** @returns {getAppicationProducts} */
   static getAppicationProducts() {
     return Joi.object({
       q: Joi.string().allow(""),
@@ -159,6 +583,7 @@ class CatalogValidator {
     }).required();
   }
 
+  /** @returns {getApplicationBrandListing} */
   static getApplicationBrandListing() {
     return Joi.object({
       pageNo: Joi.number(),
@@ -167,6 +592,7 @@ class CatalogValidator {
     }).required();
   }
 
+  /** @returns {getApplicationBrands} */
   static getApplicationBrands() {
     return Joi.object({
       department: Joi.string().allow(""),
@@ -177,6 +603,7 @@ class CatalogValidator {
     }).required();
   }
 
+  /** @returns {getApplicationCategoryListing} */
   static getApplicationCategoryListing() {
     return Joi.object({
       departmentId: Joi.number(),
@@ -186,6 +613,7 @@ class CatalogValidator {
     }).required();
   }
 
+  /** @returns {getApplicationDepartmentListing} */
   static getApplicationDepartmentListing() {
     return Joi.object({
       pageNo: Joi.number(),
@@ -194,38 +622,45 @@ class CatalogValidator {
     }).required();
   }
 
+  /** @returns {getAutocompleteConfig} */
   static getAutocompleteConfig() {
     return Joi.object({}).required();
   }
 
+  /** @returns {getAutocompleteKeywordDetail} */
   static getAutocompleteKeywordDetail() {
     return Joi.object({
       id: Joi.string().allow("").required(),
     }).required();
   }
 
+  /** @returns {getCatalogConfiguration} */
   static getCatalogConfiguration() {
     return Joi.object({}).required();
   }
 
+  /** @returns {getCatalogInsights} */
   static getCatalogInsights() {
     return Joi.object({
       brand: Joi.string().allow(""),
     }).required();
   }
 
+  /** @returns {getCategories} */
   static getCategories() {
     return Joi.object({
       department: Joi.string().allow(""),
     }).required();
   }
 
+  /** @returns {getCollectionDetail} */
   static getCollectionDetail() {
     return Joi.object({
       slug: Joi.string().allow("").required(),
     }).required();
   }
 
+  /** @returns {getCollectionItems} */
   static getCollectionItems() {
     return Joi.object({
       id: Joi.string().allow("").required(),
@@ -235,12 +670,14 @@ class CatalogValidator {
     }).required();
   }
 
+  /** @returns {getConfigurationByType} */
   static getConfigurationByType() {
     return Joi.object({
       type: Joi.string().allow("").required(),
     }).required();
   }
 
+  /** @returns {getConfigurationMetadata} */
   static getConfigurationMetadata() {
     return Joi.object({
       configType: Joi.string().allow("").required(),
@@ -248,14 +685,17 @@ class CatalogValidator {
     }).required();
   }
 
+  /** @returns {getConfigurations} */
   static getConfigurations() {
     return Joi.object({}).required();
   }
 
+  /** @returns {getDepartments} */
   static getDepartments() {
     return Joi.object({}).required();
   }
 
+  /** @returns {getDiscountedInventoryBySizeIdentifier} */
   static getDiscountedInventoryBySizeIdentifier() {
     return Joi.object({
       itemId: Joi.number().required(),
@@ -267,6 +707,7 @@ class CatalogValidator {
     }).required();
   }
 
+  /** @returns {getGroupConfigurations} */
   static getGroupConfigurations() {
     return Joi.object({
       configType: Joi.string().allow("").required(),
@@ -277,6 +718,7 @@ class CatalogValidator {
     }).required();
   }
 
+  /** @returns {getListingConfigurations} */
   static getListingConfigurations() {
     return Joi.object({
       configType: Joi.string().allow("").required(),
@@ -286,105 +728,120 @@ class CatalogValidator {
     }).required();
   }
 
+  /** @returns {getProductDetailBySlug} */
   static getProductDetailBySlug() {
     return Joi.object({
       slug: Joi.string().allow("").required(),
     }).required();
   }
 
+  /** @returns {getQueryFilters} */
   static getQueryFilters() {
     return Joi.object({}).required();
   }
 
+  /** @returns {getSearchKeywords} */
   static getSearchKeywords() {
     return Joi.object({
       id: Joi.string().allow("").required(),
     }).required();
   }
 
+  /** @returns {updateAllowSingle} */
   static updateAllowSingle() {
     return Joi.object({
-      body: CatalogModel.AllowSingleRequest().required(),
+      body: CatalogPlatformModel.AllowSingleRequest().required(),
     }).required();
   }
 
+  /** @returns {updateAppBrand} */
   static updateAppBrand() {
     return Joi.object({
       brandUid: Joi.string().allow("").required(),
-      body: CatalogModel.ApplicationBrandJson().required(),
+      body: CatalogPlatformModel.ApplicationBrandJson().required(),
     }).required();
   }
 
+  /** @returns {updateAppCategory} */
   static updateAppCategory() {
     return Joi.object({
       categoryUid: Joi.string().allow("").required(),
-      body: CatalogModel.ApplicationCategoryJson().required(),
+      body: CatalogPlatformModel.ApplicationCategoryJson().required(),
     }).required();
   }
 
+  /** @returns {updateAppDepartment} */
   static updateAppDepartment() {
     return Joi.object({
       departmentUid: Joi.string().allow("").required(),
-      body: CatalogModel.ApplicationDepartmentJson().required(),
+      body: CatalogPlatformModel.ApplicationDepartmentJson().required(),
     }).required();
   }
 
+  /** @returns {updateAppLocation} */
   static updateAppLocation() {
     return Joi.object({
       storeUid: Joi.string().allow("").required(),
-      body: CatalogModel.ApplicationStoreJson().required(),
+      body: CatalogPlatformModel.ApplicationStoreJson().required(),
     }).required();
   }
 
+  /** @returns {updateAppProduct} */
   static updateAppProduct() {
     return Joi.object({
       itemId: Joi.string().allow("").required(),
-      body: CatalogModel.ApplicationItemMeta().required(),
+      body: CatalogPlatformModel.ApplicationItemMeta().required(),
     }).required();
   }
 
+  /** @returns {updateAutocompleteKeyword} */
   static updateAutocompleteKeyword() {
     return Joi.object({
       id: Joi.string().allow("").required(),
-      body: CatalogModel.CreateAutocompleteKeyword().required(),
+      body: CatalogPlatformModel.CreateAutocompleteKeyword().required(),
     }).required();
   }
 
+  /** @returns {updateCollection} */
   static updateCollection() {
     return Joi.object({
       id: Joi.string().allow("").required(),
-      body: CatalogModel.UpdateCollection().required(),
+      body: CatalogPlatformModel.UpdateCollection().required(),
     }).required();
   }
 
+  /** @returns {updateDefaultSort} */
   static updateDefaultSort() {
     return Joi.object({
-      body: CatalogModel.DefaultKeyRequest().required(),
+      body: CatalogPlatformModel.DefaultKeyRequest().required(),
     }).required();
   }
 
+  /** @returns {updateGroupConfiguration} */
   static updateGroupConfiguration() {
     return Joi.object({
       configType: Joi.string().allow("").required(),
       groupSlug: Joi.string().allow("").required(),
-      body: CatalogModel.AppConfigurationDetail().required(),
+      body: CatalogPlatformModel.AppConfigurationDetail().required(),
     }).required();
   }
 
+  /** @returns {updateListingConfiguration} */
   static updateListingConfiguration() {
     return Joi.object({
       configType: Joi.string().allow("").required(),
       configId: Joi.string().allow("").required(),
-      body: CatalogModel.AppConfigurationsSort().required(),
+      body: CatalogPlatformModel.AppConfigurationsSort().required(),
     }).required();
   }
 
+  /** @returns {updateSearchKeywords} */
   static updateSearchKeywords() {
     return Joi.object({
       id: Joi.string().allow("").required(),
-      body: CatalogModel.CreateSearchKeyword().required(),
+      body: CatalogPlatformModel.CreateSearchKeyword().required(),
     }).required();
   }
 }
 
-module.exports = CatalogValidator;
+module.exports = CatalogPlatformApplicationValidator;

@@ -1,8 +1,8 @@
 const PlatformAPIClient = require("../PlatformAPIClient");
 const { FDKClientValidationError } = require("../../common/FDKError");
 const Paginator = require("../../common/Paginator");
-const FinanceValidator = require("./FinancePlatformValidator");
-const FinanceModel = require("./FinancePlatformModel");
+const FinancePlatformValidator = require("./FinancePlatformValidator");
+const FinancePlatformModel = require("./FinancePlatformModel");
 const { Logger } = require("./../../common/Logger");
 const Joi = require("joi");
 
@@ -12,14 +12,18 @@ class Finance {
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {CreditlineDataPlatformRequest} arg.body
-   * @returns {Promise<CreditlineDataPlatformResponse>} - Success response
+   * @param {FinancePlatformValidator.creditlineDataplatform} arg - Arg object
+   * @returns {Promise<FinancePlatformModel.CreditlineDataPlatformResponse>}
+   *   - Success response
+   *
+   * @name creditlineDataplatform
    * @summary:
    * @description:
    */
   async creditlineDataplatform({ body } = {}) {
-    const { error } = FinanceValidator.creditlineDataplatform().validate(
+    const {
+      error,
+    } = FinancePlatformValidator.creditlineDataplatform().validate(
       {
         body,
       },
@@ -32,7 +36,7 @@ class Finance {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = FinanceValidator.creditlineDataplatform().validate(
+    } = FinancePlatformValidator.creditlineDataplatform().validate(
       {
         body,
       },
@@ -41,9 +45,8 @@ class Finance {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for creditlineDataplatform",
+        message: `Parameter Validation warrnings for platform > Finance > creditlineDataplatform \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -61,31 +64,34 @@ class Finance {
 
     const {
       error: res_error,
-    } = FinanceModel.CreditlineDataPlatformResponse().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
+    } = FinancePlatformModel.CreditlineDataPlatformResponse().validate(
+      response,
+      { abortEarly: false, allowUnknown: false }
+    );
 
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for creditlineDataplatform",
+        message: `Response Validation Warnnings for platform > Finance > creditlineDataplatform \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {DownloadCreditDebitNoteRequest} arg.body
-   * @returns {Promise<DownloadCreditDebitNoteResponse>} - Success response
+   * @param {FinancePlatformValidator.downloadCreditDebitNote} arg - Arg object
+   * @returns {Promise<FinancePlatformModel.DownloadCreditDebitNoteResponse>}
+   *   - Success response
+   *
+   * @name downloadCreditDebitNote
    * @summary:
    * @description:
    */
   async downloadCreditDebitNote({ body } = {}) {
-    const { error } = FinanceValidator.downloadCreditDebitNote().validate(
+    const {
+      error,
+    } = FinancePlatformValidator.downloadCreditDebitNote().validate(
       {
         body,
       },
@@ -98,7 +104,7 @@ class Finance {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = FinanceValidator.downloadCreditDebitNote().validate(
+    } = FinancePlatformValidator.downloadCreditDebitNote().validate(
       {
         body,
       },
@@ -107,9 +113,8 @@ class Finance {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for downloadCreditDebitNote",
+        message: `Parameter Validation warrnings for platform > Finance > downloadCreditDebitNote \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -127,31 +132,30 @@ class Finance {
 
     const {
       error: res_error,
-    } = FinanceModel.DownloadCreditDebitNoteResponse().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
+    } = FinancePlatformModel.DownloadCreditDebitNoteResponse().validate(
+      response,
+      { abortEarly: false, allowUnknown: false }
+    );
 
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for downloadCreditDebitNote",
+        message: `Response Validation Warnnings for platform > Finance > downloadCreditDebitNote \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {DownloadReport} arg.body
-   * @returns {Promise<DownloadReportList>} - Success response
+   * @param {FinancePlatformValidator.downloadReport} arg - Arg object
+   * @returns {Promise<FinancePlatformModel.DownloadReportList>} - Success response
+   * @name downloadReport
    * @summary:
    * @description:
    */
   async downloadReport({ body } = {}) {
-    const { error } = FinanceValidator.downloadReport().validate(
+    const { error } = FinancePlatformValidator.downloadReport().validate(
       {
         body,
       },
@@ -162,7 +166,9 @@ class Finance {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = FinanceValidator.downloadReport().validate(
+    const {
+      error: warrning,
+    } = FinancePlatformValidator.downloadReport().validate(
       {
         body,
       },
@@ -171,9 +177,8 @@ class Finance {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for downloadReport",
+        message: `Parameter Validation warrnings for platform > Finance > downloadReport \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -191,7 +196,7 @@ class Finance {
 
     const {
       error: res_error,
-    } = FinanceModel.DownloadReportList().validate(response, {
+    } = FinancePlatformModel.DownloadReportList().validate(response, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -199,23 +204,22 @@ class Finance {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for downloadReport",
+        message: `Response Validation Warnnings for platform > Finance > downloadReport \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {GenerateReportRequest} arg.body
-   * @returns {Promise<GenerateReportJson>} - Success response
+   * @param {FinancePlatformValidator.generateReport} arg - Arg object
+   * @returns {Promise<FinancePlatformModel.GenerateReportJson>} - Success response
+   * @name generateReport
    * @summary:
    * @description:
    */
   async generateReport({ body } = {}) {
-    const { error } = FinanceValidator.generateReport().validate(
+    const { error } = FinancePlatformValidator.generateReport().validate(
       {
         body,
       },
@@ -226,7 +230,9 @@ class Finance {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = FinanceValidator.generateReport().validate(
+    const {
+      error: warrning,
+    } = FinancePlatformValidator.generateReport().validate(
       {
         body,
       },
@@ -235,9 +241,8 @@ class Finance {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for generateReport",
+        message: `Parameter Validation warrnings for platform > Finance > generateReport \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -255,7 +260,7 @@ class Finance {
 
     const {
       error: res_error,
-    } = FinanceModel.GenerateReportJson().validate(response, {
+    } = FinancePlatformModel.GenerateReportJson().validate(response, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -263,23 +268,22 @@ class Finance {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for generateReport",
+        message: `Response Validation Warnnings for platform > Finance > generateReport \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {GetAffiliate} arg.body
-   * @returns {Promise<GetAffiliateResponse>} - Success response
+   * @param {FinancePlatformValidator.getAffiliate} arg - Arg object
+   * @returns {Promise<FinancePlatformModel.GetAffiliateResponse>} - Success response
+   * @name getAffiliate
    * @summary:
    * @description:
    */
   async getAffiliate({ body } = {}) {
-    const { error } = FinanceValidator.getAffiliate().validate(
+    const { error } = FinancePlatformValidator.getAffiliate().validate(
       {
         body,
       },
@@ -290,7 +294,9 @@ class Finance {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = FinanceValidator.getAffiliate().validate(
+    const {
+      error: warrning,
+    } = FinancePlatformValidator.getAffiliate().validate(
       {
         body,
       },
@@ -299,9 +305,8 @@ class Finance {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for getAffiliate",
+        message: `Parameter Validation warrnings for platform > Finance > getAffiliate \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -319,7 +324,7 @@ class Finance {
 
     const {
       error: res_error,
-    } = FinanceModel.GetAffiliateResponse().validate(response, {
+    } = FinancePlatformModel.GetAffiliateResponse().validate(response, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -327,23 +332,22 @@ class Finance {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for getAffiliate",
+        message: `Response Validation Warnnings for platform > Finance > getAffiliate \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {GetEngineRequest} arg.body
-   * @returns {Promise<GetEngineResponse>} - Success response
+   * @param {FinancePlatformValidator.getData} arg - Arg object
+   * @returns {Promise<FinancePlatformModel.GetEngineResponse>} - Success response
+   * @name getData
    * @summary:
    * @description:
    */
   async getData({ body } = {}) {
-    const { error } = FinanceValidator.getData().validate(
+    const { error } = FinancePlatformValidator.getData().validate(
       {
         body,
       },
@@ -354,7 +358,7 @@ class Finance {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = FinanceValidator.getData().validate(
+    const { error: warrning } = FinancePlatformValidator.getData().validate(
       {
         body,
       },
@@ -363,9 +367,8 @@ class Finance {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for getData",
+        message: `Parameter Validation warrnings for platform > Finance > getData \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -383,7 +386,7 @@ class Finance {
 
     const {
       error: res_error,
-    } = FinanceModel.GetEngineResponse().validate(response, {
+    } = FinancePlatformModel.GetEngineResponse().validate(response, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -391,23 +394,22 @@ class Finance {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for getData",
+        message: `Response Validation Warnnings for platform > Finance > getData \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {GetReasonRequest} arg.body
-   * @returns {Promise<GetReasonResponse>} - Success response
+   * @param {FinancePlatformValidator.getReason} arg - Arg object
+   * @returns {Promise<FinancePlatformModel.GetReasonResponse>} - Success response
+   * @name getReason
    * @summary:
    * @description:
    */
   async getReason({ body } = {}) {
-    const { error } = FinanceValidator.getReason().validate(
+    const { error } = FinancePlatformValidator.getReason().validate(
       {
         body,
       },
@@ -418,7 +420,7 @@ class Finance {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = FinanceValidator.getReason().validate(
+    const { error: warrning } = FinancePlatformValidator.getReason().validate(
       {
         body,
       },
@@ -427,9 +429,8 @@ class Finance {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for getReason",
+        message: `Parameter Validation warrnings for platform > Finance > getReason \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -447,7 +448,7 @@ class Finance {
 
     const {
       error: res_error,
-    } = FinanceModel.GetReasonResponse().validate(response, {
+    } = FinancePlatformModel.GetReasonResponse().validate(response, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -455,23 +456,22 @@ class Finance {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for getReason",
+        message: `Response Validation Warnnings for platform > Finance > getReason \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {GetReportListRequest} arg.body
-   * @returns {Promise<GetEngineResponse>} - Success response
+   * @param {FinancePlatformValidator.getReportList} arg - Arg object
+   * @returns {Promise<FinancePlatformModel.GetEngineResponse>} - Success response
+   * @name getReportList
    * @summary:
    * @description:
    */
   async getReportList({ body } = {}) {
-    const { error } = FinanceValidator.getReportList().validate(
+    const { error } = FinancePlatformValidator.getReportList().validate(
       {
         body,
       },
@@ -482,7 +482,9 @@ class Finance {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = FinanceValidator.getReportList().validate(
+    const {
+      error: warrning,
+    } = FinancePlatformValidator.getReportList().validate(
       {
         body,
       },
@@ -491,9 +493,8 @@ class Finance {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for getReportList",
+        message: `Parameter Validation warrnings for platform > Finance > getReportList \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -511,7 +512,7 @@ class Finance {
 
     const {
       error: res_error,
-    } = FinanceModel.GetEngineResponse().validate(response, {
+    } = FinancePlatformModel.GetEngineResponse().validate(response, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -519,23 +520,22 @@ class Finance {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for getReportList",
+        message: `Response Validation Warnnings for platform > Finance > getReportList \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {InvoiceListingRequest} arg.body
-   * @returns {Promise<InvoiceListingResponse>} - Success response
+   * @param {FinancePlatformValidator.invoiceListing} arg - Arg object
+   * @returns {Promise<FinancePlatformModel.InvoiceListingResponse>} - Success response
+   * @name invoiceListing
    * @summary:
    * @description:
    */
   async invoiceListing({ body } = {}) {
-    const { error } = FinanceValidator.invoiceListing().validate(
+    const { error } = FinancePlatformValidator.invoiceListing().validate(
       {
         body,
       },
@@ -546,7 +546,9 @@ class Finance {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = FinanceValidator.invoiceListing().validate(
+    const {
+      error: warrning,
+    } = FinancePlatformValidator.invoiceListing().validate(
       {
         body,
       },
@@ -555,9 +557,8 @@ class Finance {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for invoiceListing",
+        message: `Parameter Validation warrnings for platform > Finance > invoiceListing \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -575,7 +576,7 @@ class Finance {
 
     const {
       error: res_error,
-    } = FinanceModel.InvoiceListingResponse().validate(response, {
+    } = FinancePlatformModel.InvoiceListingResponse().validate(response, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -583,23 +584,22 @@ class Finance {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for invoiceListing",
+        message: `Response Validation Warnnings for platform > Finance > invoiceListing \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {InvoicePdfRequest} arg.body
-   * @returns {Promise<InvoicePdfResponse>} - Success response
+   * @param {FinancePlatformValidator.invoicePDF} arg - Arg object
+   * @returns {Promise<FinancePlatformModel.InvoicePdfResponse>} - Success response
+   * @name invoicePDF
    * @summary:
    * @description:
    */
   async invoicePDF({ body } = {}) {
-    const { error } = FinanceValidator.invoicePDF().validate(
+    const { error } = FinancePlatformValidator.invoicePDF().validate(
       {
         body,
       },
@@ -610,7 +610,7 @@ class Finance {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = FinanceValidator.invoicePDF().validate(
+    const { error: warrning } = FinancePlatformValidator.invoicePDF().validate(
       {
         body,
       },
@@ -619,9 +619,8 @@ class Finance {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for invoicePDF",
+        message: `Parameter Validation warrnings for platform > Finance > invoicePDF \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -639,7 +638,7 @@ class Finance {
 
     const {
       error: res_error,
-    } = FinanceModel.InvoicePdfResponse().validate(response, {
+    } = FinancePlatformModel.InvoicePdfResponse().validate(response, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -647,23 +646,22 @@ class Finance {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for invoicePDF",
+        message: `Response Validation Warnnings for platform > Finance > invoicePDF \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {InvoiceTypeRequest} arg.body
-   * @returns {Promise<InvoiceTypeResponse>} - Success response
+   * @param {FinancePlatformValidator.invoiceType} arg - Arg object
+   * @returns {Promise<FinancePlatformModel.InvoiceTypeResponse>} - Success response
+   * @name invoiceType
    * @summary:
    * @description:
    */
   async invoiceType({ body } = {}) {
-    const { error } = FinanceValidator.invoiceType().validate(
+    const { error } = FinancePlatformValidator.invoiceType().validate(
       {
         body,
       },
@@ -674,7 +672,7 @@ class Finance {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = FinanceValidator.invoiceType().validate(
+    const { error: warrning } = FinancePlatformValidator.invoiceType().validate(
       {
         body,
       },
@@ -683,9 +681,8 @@ class Finance {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for invoiceType",
+        message: `Parameter Validation warrnings for platform > Finance > invoiceType \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -703,7 +700,7 @@ class Finance {
 
     const {
       error: res_error,
-    } = FinanceModel.InvoiceTypeResponse().validate(response, {
+    } = FinancePlatformModel.InvoiceTypeResponse().validate(response, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -711,23 +708,23 @@ class Finance {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for invoiceType",
+        message: `Response Validation Warnnings for platform > Finance > invoiceType \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {IsCreditlinePlatformRequest} arg.body
-   * @returns {Promise<IsCreditlinePlatformResponse>} - Success response
+   * @param {FinancePlatformValidator.isCreditlinePlatform} arg - Arg object
+   * @returns {Promise<FinancePlatformModel.IsCreditlinePlatformResponse>} -
+   *   Success response
+   * @name isCreditlinePlatform
    * @summary:
    * @description:
    */
   async isCreditlinePlatform({ body } = {}) {
-    const { error } = FinanceValidator.isCreditlinePlatform().validate(
+    const { error } = FinancePlatformValidator.isCreditlinePlatform().validate(
       {
         body,
       },
@@ -740,7 +737,7 @@ class Finance {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = FinanceValidator.isCreditlinePlatform().validate(
+    } = FinancePlatformValidator.isCreditlinePlatform().validate(
       {
         body,
       },
@@ -749,9 +746,8 @@ class Finance {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for isCreditlinePlatform",
+        message: `Parameter Validation warrnings for platform > Finance > isCreditlinePlatform \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -769,7 +765,7 @@ class Finance {
 
     const {
       error: res_error,
-    } = FinanceModel.IsCreditlinePlatformResponse().validate(response, {
+    } = FinancePlatformModel.IsCreditlinePlatformResponse().validate(response, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -777,23 +773,22 @@ class Finance {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for isCreditlinePlatform",
+        message: `Response Validation Warnnings for platform > Finance > isCreditlinePlatform \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {PaymentProcessRequest} arg.body
-   * @returns {Promise<PaymentProcessResponse>} - Success response
+   * @param {FinancePlatformValidator.paymentProcess} arg - Arg object
+   * @returns {Promise<FinancePlatformModel.PaymentProcessResponse>} - Success response
+   * @name paymentProcess
    * @summary:
    * @description:
    */
   async paymentProcess({ body } = {}) {
-    const { error } = FinanceValidator.paymentProcess().validate(
+    const { error } = FinancePlatformValidator.paymentProcess().validate(
       {
         body,
       },
@@ -804,7 +799,9 @@ class Finance {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = FinanceValidator.paymentProcess().validate(
+    const {
+      error: warrning,
+    } = FinancePlatformValidator.paymentProcess().validate(
       {
         body,
       },
@@ -813,9 +810,8 @@ class Finance {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for paymentProcess",
+        message: `Parameter Validation warrnings for platform > Finance > paymentProcess \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -833,7 +829,7 @@ class Finance {
 
     const {
       error: res_error,
-    } = FinanceModel.PaymentProcessResponse().validate(response, {
+    } = FinancePlatformModel.PaymentProcessResponse().validate(response, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -841,9 +837,8 @@ class Finance {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for paymentProcess",
+        message: `Response Validation Warnnings for platform > Finance > paymentProcess \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;

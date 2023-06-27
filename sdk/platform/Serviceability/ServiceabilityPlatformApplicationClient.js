@@ -1,8 +1,8 @@
 const PlatformAPIClient = require("../PlatformAPIClient");
 const { FDKClientValidationError } = require("../../common/FDKError");
 const Paginator = require("../../common/Paginator");
-const ServiceabilityValidator = require("./ServiceabilityPlatformApplicationValidator");
-const ServiceabilityModel = require("./ServiceabilityPlatformModel");
+const ServiceabilityPlatformApplicationValidator = require("./ServiceabilityPlatformApplicationValidator");
+const ServiceabilityPlatformModel = require("./ServiceabilityPlatformModel");
 const { Logger } = require("./../../common/Logger");
 const Joi = require("joi");
 
@@ -13,14 +13,18 @@ class Serviceability {
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {ApplicationCompanyDpViewRequest} arg.body
-   * @returns {Promise<ApplicationCompanyDpViewResponse>} - Success response
+   * @param {ServiceabilityPlatformApplicationValidator.addAppDp} arg - Arg object
+   * @returns {Promise<ServiceabilityPlatformModel.ApplicationCompanyDpViewResponse>}
+   *   - Success response
+   *
+   * @name addAppDp
    * @summary: Add application dp data
    * @description: This API add application dp data.
    */
   async addAppDp({ body } = {}) {
-    const { error } = ServiceabilityValidator.addAppDp().validate(
+    const {
+      error,
+    } = ServiceabilityPlatformApplicationValidator.addAppDp().validate(
       {
         body,
       },
@@ -31,7 +35,9 @@ class Serviceability {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = ServiceabilityValidator.addAppDp().validate(
+    const {
+      error: warrning,
+    } = ServiceabilityPlatformApplicationValidator.addAppDp().validate(
       {
         body,
       },
@@ -40,9 +46,8 @@ class Serviceability {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for addAppDp",
+        message: `Parameter Validation warrnings for platform > Serviceability > addAppDp \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -57,7 +62,7 @@ class Serviceability {
 
     const {
       error: res_error,
-    } = ServiceabilityModel.ApplicationCompanyDpViewResponse().validate(
+    } = ServiceabilityPlatformModel.ApplicationCompanyDpViewResponse().validate(
       response,
       { abortEarly: false, allowUnknown: false }
     );
@@ -65,24 +70,28 @@ class Serviceability {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for addAppDp",
+        message: `Response Validation Warnnings for platform > Serviceability > addAppDp \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @returns {Promise<ApplicationServiceabilityConfigResponse>} - Success response
+   * @param {ServiceabilityPlatformApplicationValidator.getApplicationServiceability} arg
+   *   - Arg object
+   *
+   * @returns {Promise<ServiceabilityPlatformModel.ApplicationServiceabilityConfigResponse>}
+   *   - Success response
+   *
+   * @name getApplicationServiceability
    * @summary: Zone configuration of application.
    * @description: This API returns serviceability config of the application.
    */
   async getApplicationServiceability({} = {}) {
     const {
       error,
-    } = ServiceabilityValidator.getApplicationServiceability().validate(
+    } = ServiceabilityPlatformApplicationValidator.getApplicationServiceability().validate(
       {},
       { abortEarly: false, allowUnknown: true }
     );
@@ -93,17 +102,15 @@ class Serviceability {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = ServiceabilityValidator.getApplicationServiceability().validate(
+    } = ServiceabilityPlatformApplicationValidator.getApplicationServiceability().validate(
       {},
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message:
-          "Parameter Validation warrnings for getApplicationServiceability",
+        message: `Parameter Validation warrnings for platform > Serviceability > getApplicationServiceability \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -118,7 +125,7 @@ class Serviceability {
 
     const {
       error: res_error,
-    } = ServiceabilityModel.ApplicationServiceabilityConfigResponse().validate(
+    } = ServiceabilityPlatformModel.ApplicationServiceabilityConfigResponse().validate(
       response,
       { abortEarly: false, allowUnknown: false }
     );
@@ -126,25 +133,28 @@ class Serviceability {
     if (res_error) {
       Logger({
         level: "WARN",
-        message:
-          "Response Validation Warnnings for getApplicationServiceability",
+        message: `Response Validation Warnnings for platform > Serviceability > getApplicationServiceability \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @returns {Promise<ApplicationSelfShipConfigResponse>} - Success response
+   * @param {ServiceabilityPlatformApplicationValidator.getApplicationServiceabilitySelfShipment} arg
+   *   - Arg object
+   *
+   * @returns {Promise<ServiceabilityPlatformModel.ApplicationSelfShipConfigResponse>}
+   *   - Success response
+   *
+   * @name getApplicationServiceabilitySelfShipment
    * @summary: Self-ship configuration of application.
    * @description: This API returns Self-ship configuration of the application.
    */
   async getApplicationServiceabilitySelfShipment({} = {}) {
     const {
       error,
-    } = ServiceabilityValidator.getApplicationServiceabilitySelfShipment().validate(
+    } = ServiceabilityPlatformApplicationValidator.getApplicationServiceabilitySelfShipment().validate(
       {},
       { abortEarly: false, allowUnknown: true }
     );
@@ -155,17 +165,15 @@ class Serviceability {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = ServiceabilityValidator.getApplicationServiceabilitySelfShipment().validate(
+    } = ServiceabilityPlatformApplicationValidator.getApplicationServiceabilitySelfShipment().validate(
       {},
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message:
-          "Parameter Validation warrnings for getApplicationServiceabilitySelfShipment",
+        message: `Parameter Validation warrnings for platform > Serviceability > getApplicationServiceabilitySelfShipment \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -180,7 +188,7 @@ class Serviceability {
 
     const {
       error: res_error,
-    } = ServiceabilityModel.ApplicationSelfShipConfigResponse().validate(
+    } = ServiceabilityPlatformModel.ApplicationSelfShipConfigResponse().validate(
       response,
       { abortEarly: false, allowUnknown: false }
     );
@@ -188,25 +196,28 @@ class Serviceability {
     if (res_error) {
       Logger({
         level: "WARN",
-        message:
-          "Response Validation Warnnings for getApplicationServiceabilitySelfShipment",
+        message: `Response Validation Warnnings for platform > Serviceability > getApplicationServiceabilitySelfShipment \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @returns {Promise<DPApplicationRuleResponse>} - Success response
+   * @param {ServiceabilityPlatformApplicationValidator.getDpApplicationRulePriority} arg
+   *   - Arg object
+   *
+   * @returns {Promise<ServiceabilityPlatformModel.DPApplicationRuleResponse>}
+   *   - Success response
+   *
+   * @name getDpApplicationRulePriority
    * @summary: Get All DpApplicationRules rules added at application level from database.
    * @description: This API returns response of all rules of DpApplicationRules from mongo database.
    */
   async getDpApplicationRulePriority({} = {}) {
     const {
       error,
-    } = ServiceabilityValidator.getDpApplicationRulePriority().validate(
+    } = ServiceabilityPlatformApplicationValidator.getDpApplicationRulePriority().validate(
       {},
       { abortEarly: false, allowUnknown: true }
     );
@@ -217,17 +228,15 @@ class Serviceability {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = ServiceabilityValidator.getDpApplicationRulePriority().validate(
+    } = ServiceabilityPlatformApplicationValidator.getDpApplicationRulePriority().validate(
       {},
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message:
-          "Parameter Validation warrnings for getDpApplicationRulePriority",
+        message: `Parameter Validation warrnings for platform > Serviceability > getDpApplicationRulePriority \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -242,32 +251,36 @@ class Serviceability {
 
     const {
       error: res_error,
-    } = ServiceabilityModel.DPApplicationRuleResponse().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
+    } = ServiceabilityPlatformModel.DPApplicationRuleResponse().validate(
+      response,
+      { abortEarly: false, allowUnknown: false }
+    );
 
     if (res_error) {
       Logger({
         level: "WARN",
-        message:
-          "Response Validation Warnnings for getDpApplicationRulePriority",
+        message: `Response Validation Warnnings for platform > Serviceability > getDpApplicationRulePriority \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {GetZoneFromPincodeViewRequest} arg.body
-   * @returns {Promise<GetZoneFromPincodeViewResponse>} - Success response
+   * @param {ServiceabilityPlatformApplicationValidator.getZoneFromPincodeView} arg
+   *   - Arg object
+   *
+   * @returns {Promise<ServiceabilityPlatformModel.GetZoneFromPincodeViewResponse>}
+   *   - Success response
+   *
+   * @name getZoneFromPincodeView
    * @summary: GET zone from the Pincode.
    * @description: This API returns zone from the Pincode View.
    */
   async getZoneFromPincodeView({ body } = {}) {
-    const { error } = ServiceabilityValidator.getZoneFromPincodeView().validate(
+    const {
+      error,
+    } = ServiceabilityPlatformApplicationValidator.getZoneFromPincodeView().validate(
       {
         body,
       },
@@ -280,7 +293,7 @@ class Serviceability {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = ServiceabilityValidator.getZoneFromPincodeView().validate(
+    } = ServiceabilityPlatformApplicationValidator.getZoneFromPincodeView().validate(
       {
         body,
       },
@@ -289,9 +302,8 @@ class Serviceability {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for getZoneFromPincodeView",
+        message: `Parameter Validation warrnings for platform > Serviceability > getZoneFromPincodeView \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -306,7 +318,7 @@ class Serviceability {
 
     const {
       error: res_error,
-    } = ServiceabilityModel.GetZoneFromPincodeViewResponse().validate(
+    } = ServiceabilityPlatformModel.GetZoneFromPincodeViewResponse().validate(
       response,
       { abortEarly: false, allowUnknown: false }
     );
@@ -314,28 +326,28 @@ class Serviceability {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for getZoneFromPincodeView",
+        message: `Response Validation Warnnings for platform > Serviceability > getZoneFromPincodeView \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {number} [arg.pageNo] - Index of the item to start returning with
-   * @param {number} [arg.pageSize] - Determines the items to be displayed in a page
-   * @param {string[]} [arg.zoneId] - List of zones to query for
-   * @param {string} [arg.q] - Search with name as a free text
-   * @returns {Promise<GetZoneFromApplicationIdViewResponse>} - Success response
+   * @param {ServiceabilityPlatformApplicationValidator.getZonesFromApplicationIdView} arg
+   *   - Arg object
+   *
+   * @returns {Promise<ServiceabilityPlatformModel.GetZoneFromApplicationIdViewResponse>}
+   *   - Success response
+   *
+   * @name getZonesFromApplicationIdView
    * @summary: GET zones from the application_id.
    * @description: This API returns zones from the application_id View.
    */
   async getZonesFromApplicationIdView({ pageNo, pageSize, zoneId, q } = {}) {
     const {
       error,
-    } = ServiceabilityValidator.getZonesFromApplicationIdView().validate(
+    } = ServiceabilityPlatformApplicationValidator.getZonesFromApplicationIdView().validate(
       {
         pageNo,
         pageSize,
@@ -351,7 +363,7 @@ class Serviceability {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = ServiceabilityValidator.getZonesFromApplicationIdView().validate(
+    } = ServiceabilityPlatformApplicationValidator.getZonesFromApplicationIdView().validate(
       {
         pageNo,
         pageSize,
@@ -363,10 +375,8 @@ class Serviceability {
     if (warrning) {
       Logger({
         level: "WARN",
-        message:
-          "Parameter Validation warrnings for getZonesFromApplicationIdView",
+        message: `Parameter Validation warrnings for platform > Serviceability > getZonesFromApplicationIdView \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -385,7 +395,7 @@ class Serviceability {
 
     const {
       error: res_error,
-    } = ServiceabilityModel.GetZoneFromApplicationIdViewResponse().validate(
+    } = ServiceabilityPlatformModel.GetZoneFromApplicationIdViewResponse().validate(
       response,
       { abortEarly: false, allowUnknown: false }
     );
@@ -393,26 +403,28 @@ class Serviceability {
     if (res_error) {
       Logger({
         level: "WARN",
-        message:
-          "Response Validation Warnnings for getZonesFromApplicationIdView",
+        message: `Response Validation Warnnings for platform > Serviceability > getZonesFromApplicationIdView \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {SelfShipResponse} arg.body
-   * @returns {Promise<ApplicationSelfShipConfigResponse>} - Success response
+   * @param {ServiceabilityPlatformApplicationValidator.patchApplicationServiceabilitySelfShipment} arg
+   *   - Arg object
+   *
+   * @returns {Promise<ServiceabilityPlatformModel.ApplicationSelfShipConfigResponse>}
+   *   - Success response
+   *
+   * @name patchApplicationServiceabilitySelfShipment
    * @summary: Self-ship configuration of application.
    * @description: This API updates Self-ship configuration of the application.
    */
   async patchApplicationServiceabilitySelfShipment({ body } = {}) {
     const {
       error,
-    } = ServiceabilityValidator.patchApplicationServiceabilitySelfShipment().validate(
+    } = ServiceabilityPlatformApplicationValidator.patchApplicationServiceabilitySelfShipment().validate(
       {
         body,
       },
@@ -425,7 +437,7 @@ class Serviceability {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = ServiceabilityValidator.patchApplicationServiceabilitySelfShipment().validate(
+    } = ServiceabilityPlatformApplicationValidator.patchApplicationServiceabilitySelfShipment().validate(
       {
         body,
       },
@@ -434,10 +446,8 @@ class Serviceability {
     if (warrning) {
       Logger({
         level: "WARN",
-        message:
-          "Parameter Validation warrnings for patchApplicationServiceabilitySelfShipment",
+        message: `Parameter Validation warrnings for platform > Serviceability > patchApplicationServiceabilitySelfShipment \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -452,7 +462,7 @@ class Serviceability {
 
     const {
       error: res_error,
-    } = ServiceabilityModel.ApplicationSelfShipConfigResponse().validate(
+    } = ServiceabilityPlatformModel.ApplicationSelfShipConfigResponse().validate(
       response,
       { abortEarly: false, allowUnknown: false }
     );
@@ -460,26 +470,28 @@ class Serviceability {
     if (res_error) {
       Logger({
         level: "WARN",
-        message:
-          "Response Validation Warnnings for patchApplicationServiceabilitySelfShipment",
+        message: `Response Validation Warnnings for platform > Serviceability > patchApplicationServiceabilitySelfShipment \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {PincodeMopUpdateAuditHistoryRequest} arg.body
-   * @returns {Promise<PincodeMopUpdateAuditHistoryResponseData>} - Success response
+   * @param {ServiceabilityPlatformApplicationValidator.updatePincodeAuditHistory} arg
+   *   - Arg object
+   *
+   * @returns {Promise<ServiceabilityPlatformModel.PincodeMopUpdateAuditHistoryResponseData>}
+   *   - Success response
+   *
+   * @name updatePincodeAuditHistory
    * @summary: Auditlog configuration of application.
    * @description: This API returns Audit logs of Pincode.
    */
   async updatePincodeAuditHistory({ body } = {}) {
     const {
       error,
-    } = ServiceabilityValidator.updatePincodeAuditHistory().validate(
+    } = ServiceabilityPlatformApplicationValidator.updatePincodeAuditHistory().validate(
       {
         body,
       },
@@ -492,7 +504,7 @@ class Serviceability {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = ServiceabilityValidator.updatePincodeAuditHistory().validate(
+    } = ServiceabilityPlatformApplicationValidator.updatePincodeAuditHistory().validate(
       {
         body,
       },
@@ -501,9 +513,8 @@ class Serviceability {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for updatePincodeAuditHistory",
+        message: `Parameter Validation warrnings for platform > Serviceability > updatePincodeAuditHistory \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -518,7 +529,7 @@ class Serviceability {
 
     const {
       error: res_error,
-    } = ServiceabilityModel.PincodeMopUpdateAuditHistoryResponseData().validate(
+    } = ServiceabilityPlatformModel.PincodeMopUpdateAuditHistoryResponseData().validate(
       response,
       { abortEarly: false, allowUnknown: false }
     );
@@ -526,23 +537,28 @@ class Serviceability {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for updatePincodeAuditHistory",
+        message: `Response Validation Warnnings for platform > Serviceability > updatePincodeAuditHistory \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {PincodeMopBulkData} arg.body
-   * @returns {Promise<PincodeBulkViewResponse>} - Success response
+   * @param {ServiceabilityPlatformApplicationValidator.updatePincodeBulkView} arg
+   *   - Arg object
+   *
+   * @returns {Promise<ServiceabilityPlatformModel.PincodeBulkViewResponse>}
+   *   - Success response
+   *
+   * @name updatePincodeBulkView
    * @summary: Bulk Update of pincode in the application.
    * @description: This API constructs bulk write operations to update the MOP data for each pincode in the payload.
    */
   async updatePincodeBulkView({ body } = {}) {
-    const { error } = ServiceabilityValidator.updatePincodeBulkView().validate(
+    const {
+      error,
+    } = ServiceabilityPlatformApplicationValidator.updatePincodeBulkView().validate(
       {
         body,
       },
@@ -555,7 +571,7 @@ class Serviceability {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = ServiceabilityValidator.updatePincodeBulkView().validate(
+    } = ServiceabilityPlatformApplicationValidator.updatePincodeBulkView().validate(
       {
         body,
       },
@@ -564,9 +580,8 @@ class Serviceability {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for updatePincodeBulkView",
+        message: `Parameter Validation warrnings for platform > Serviceability > updatePincodeBulkView \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -581,33 +596,36 @@ class Serviceability {
 
     const {
       error: res_error,
-    } = ServiceabilityModel.PincodeBulkViewResponse().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
+    } = ServiceabilityPlatformModel.PincodeBulkViewResponse().validate(
+      response,
+      { abortEarly: false, allowUnknown: false }
+    );
 
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for updatePincodeBulkView",
+        message: `Response Validation Warnnings for platform > Serviceability > updatePincodeBulkView \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {PincodeCodStatusListingRequest} arg.body
-   * @returns {Promise<PincodeCodStatusListingResponse>} - Success response
+   * @param {ServiceabilityPlatformApplicationValidator.updatePincodeCoDListing} arg
+   *   - Arg object
+   *
+   * @returns {Promise<ServiceabilityPlatformModel.PincodeCodStatusListingResponse>}
+   *   - Success response
+   *
+   * @name updatePincodeCoDListing
    * @summary: Pincode count view of application.
    * @description: This API returns count of active pincode.
    */
   async updatePincodeCoDListing({ body } = {}) {
     const {
       error,
-    } = ServiceabilityValidator.updatePincodeCoDListing().validate(
+    } = ServiceabilityPlatformApplicationValidator.updatePincodeCoDListing().validate(
       {
         body,
       },
@@ -620,7 +638,7 @@ class Serviceability {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = ServiceabilityValidator.updatePincodeCoDListing().validate(
+    } = ServiceabilityPlatformApplicationValidator.updatePincodeCoDListing().validate(
       {
         body,
       },
@@ -629,9 +647,8 @@ class Serviceability {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for updatePincodeCoDListing",
+        message: `Parameter Validation warrnings for platform > Serviceability > updatePincodeCoDListing \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -646,7 +663,7 @@ class Serviceability {
 
     const {
       error: res_error,
-    } = ServiceabilityModel.PincodeCodStatusListingResponse().validate(
+    } = ServiceabilityPlatformModel.PincodeCodStatusListingResponse().validate(
       response,
       { abortEarly: false, allowUnknown: false }
     );
@@ -654,23 +671,27 @@ class Serviceability {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for updatePincodeCoDListing",
+        message: `Response Validation Warnnings for platform > Serviceability > updatePincodeCoDListing \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {PincodeMopData} arg.body
-   * @returns {Promise<PincodeMOPresponse>} - Success response
+   * @param {ServiceabilityPlatformApplicationValidator.updatePincodeMopView} arg
+   *   - Arg object
+   *
+   * @returns {Promise<ServiceabilityPlatformModel.PincodeMOPresponse>} -
+   *   Success response
+   * @name updatePincodeMopView
    * @summary: PincodeView update of MOP.
    * @description: This API updates Pincode method of payment.
    */
   async updatePincodeMopView({ body } = {}) {
-    const { error } = ServiceabilityValidator.updatePincodeMopView().validate(
+    const {
+      error,
+    } = ServiceabilityPlatformApplicationValidator.updatePincodeMopView().validate(
       {
         body,
       },
@@ -683,7 +704,7 @@ class Serviceability {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = ServiceabilityValidator.updatePincodeMopView().validate(
+    } = ServiceabilityPlatformApplicationValidator.updatePincodeMopView().validate(
       {
         body,
       },
@@ -692,9 +713,8 @@ class Serviceability {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for updatePincodeMopView",
+        message: `Parameter Validation warrnings for platform > Serviceability > updatePincodeMopView \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -709,7 +729,7 @@ class Serviceability {
 
     const {
       error: res_error,
-    } = ServiceabilityModel.PincodeMOPresponse().validate(response, {
+    } = ServiceabilityPlatformModel.PincodeMOPresponse().validate(response, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -717,25 +737,28 @@ class Serviceability {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for updatePincodeMopView",
+        message: `Response Validation Warnnings for platform > Serviceability > updatePincodeMopView \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {DPApplicationRuleRequest} arg.body
-   * @returns {Promise<DPApplicationRuleResponse>} - Success response
+   * @param {ServiceabilityPlatformApplicationValidator.upsertDpApplicationRulePriority} arg
+   *   - Arg object
+   *
+   * @returns {Promise<ServiceabilityPlatformModel.DPApplicationRuleResponse>}
+   *   - Success response
+   *
+   * @name upsertDpApplicationRulePriority
    * @summary: Upsert of DpApplicationRules in database.
    * @description: This API returns response of upsert of DpApplicationRules in mongo database.
    */
   async upsertDpApplicationRulePriority({ body } = {}) {
     const {
       error,
-    } = ServiceabilityValidator.upsertDpApplicationRulePriority().validate(
+    } = ServiceabilityPlatformApplicationValidator.upsertDpApplicationRulePriority().validate(
       {
         body,
       },
@@ -748,7 +771,7 @@ class Serviceability {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = ServiceabilityValidator.upsertDpApplicationRulePriority().validate(
+    } = ServiceabilityPlatformApplicationValidator.upsertDpApplicationRulePriority().validate(
       {
         body,
       },
@@ -757,10 +780,8 @@ class Serviceability {
     if (warrning) {
       Logger({
         level: "WARN",
-        message:
-          "Parameter Validation warrnings for upsertDpApplicationRulePriority",
+        message: `Parameter Validation warrnings for platform > Serviceability > upsertDpApplicationRulePriority \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -775,18 +796,16 @@ class Serviceability {
 
     const {
       error: res_error,
-    } = ServiceabilityModel.DPApplicationRuleResponse().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
+    } = ServiceabilityPlatformModel.DPApplicationRuleResponse().validate(
+      response,
+      { abortEarly: false, allowUnknown: false }
+    );
 
     if (res_error) {
       Logger({
         level: "WARN",
-        message:
-          "Response Validation Warnnings for upsertDpApplicationRulePriority",
+        message: `Response Validation Warnnings for platform > Serviceability > upsertDpApplicationRulePriority \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;

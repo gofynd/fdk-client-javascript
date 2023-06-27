@@ -4,120 +4,146 @@ declare class Serviceability {
     config: any;
     applicationId: any;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {ApplicationCompanyDpViewRequest} arg.body
-     * @returns {Promise<ApplicationCompanyDpViewResponse>} - Success response
+     * @param {ServiceabilityPlatformApplicationValidator.addAppDp} arg - Arg object
+     * @returns {Promise<ServiceabilityPlatformModel.ApplicationCompanyDpViewResponse>}
+     *   - Success response
+     *
+     * @name addAppDp
      * @summary: Add application dp data
      * @description: This API add application dp data.
      */
-    addAppDp({ body }?: {
-        body: ApplicationCompanyDpViewRequest;
-    }): Promise<ApplicationCompanyDpViewResponse>;
+    addAppDp({ body }?: ServiceabilityPlatformApplicationValidator.addAppDp): Promise<ServiceabilityPlatformModel.ApplicationCompanyDpViewResponse>;
     /**
-     * @param {Object} arg - Arg object.
-     * @returns {Promise<ApplicationServiceabilityConfigResponse>} - Success response
+     * @param {ServiceabilityPlatformApplicationValidator.getApplicationServiceability} arg
+     *   - Arg object
+     *
+     * @returns {Promise<ServiceabilityPlatformModel.ApplicationServiceabilityConfigResponse>}
+     *   - Success response
+     *
+     * @name getApplicationServiceability
      * @summary: Zone configuration of application.
      * @description: This API returns serviceability config of the application.
      */
-    getApplicationServiceability({}?: any): Promise<ApplicationServiceabilityConfigResponse>;
+    getApplicationServiceability({}?: any): Promise<ServiceabilityPlatformModel.ApplicationServiceabilityConfigResponse>;
     /**
-     * @param {Object} arg - Arg object.
-     * @returns {Promise<ApplicationSelfShipConfigResponse>} - Success response
+     * @param {ServiceabilityPlatformApplicationValidator.getApplicationServiceabilitySelfShipment} arg
+     *   - Arg object
+     *
+     * @returns {Promise<ServiceabilityPlatformModel.ApplicationSelfShipConfigResponse>}
+     *   - Success response
+     *
+     * @name getApplicationServiceabilitySelfShipment
      * @summary: Self-ship configuration of application.
      * @description: This API returns Self-ship configuration of the application.
      */
-    getApplicationServiceabilitySelfShipment({}?: any): Promise<ApplicationSelfShipConfigResponse>;
+    getApplicationServiceabilitySelfShipment({}?: any): Promise<ServiceabilityPlatformModel.ApplicationSelfShipConfigResponse>;
     /**
-     * @param {Object} arg - Arg object.
-     * @returns {Promise<DPApplicationRuleResponse>} - Success response
+     * @param {ServiceabilityPlatformApplicationValidator.getDpApplicationRulePriority} arg
+     *   - Arg object
+     *
+     * @returns {Promise<ServiceabilityPlatformModel.DPApplicationRuleResponse>}
+     *   - Success response
+     *
+     * @name getDpApplicationRulePriority
      * @summary: Get All DpApplicationRules rules added at application level from database.
      * @description: This API returns response of all rules of DpApplicationRules from mongo database.
      */
-    getDpApplicationRulePriority({}?: any): Promise<DPApplicationRuleResponse>;
+    getDpApplicationRulePriority({}?: any): Promise<ServiceabilityPlatformModel.DPApplicationRuleResponse>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {GetZoneFromPincodeViewRequest} arg.body
-     * @returns {Promise<GetZoneFromPincodeViewResponse>} - Success response
+     * @param {ServiceabilityPlatformApplicationValidator.getZoneFromPincodeView} arg
+     *   - Arg object
+     *
+     * @returns {Promise<ServiceabilityPlatformModel.GetZoneFromPincodeViewResponse>}
+     *   - Success response
+     *
+     * @name getZoneFromPincodeView
      * @summary: GET zone from the Pincode.
      * @description: This API returns zone from the Pincode View.
      */
-    getZoneFromPincodeView({ body }?: {
-        body: GetZoneFromPincodeViewRequest;
-    }): Promise<GetZoneFromPincodeViewResponse>;
+    getZoneFromPincodeView({ body }?: ServiceabilityPlatformApplicationValidator.getZoneFromPincodeView): Promise<ServiceabilityPlatformModel.GetZoneFromPincodeViewResponse>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {number} [arg.pageNo] - Index of the item to start returning with
-     * @param {number} [arg.pageSize] - Determines the items to be displayed in a page
-     * @param {string[]} [arg.zoneId] - List of zones to query for
-     * @param {string} [arg.q] - Search with name as a free text
-     * @returns {Promise<GetZoneFromApplicationIdViewResponse>} - Success response
+     * @param {ServiceabilityPlatformApplicationValidator.getZonesFromApplicationIdView} arg
+     *   - Arg object
+     *
+     * @returns {Promise<ServiceabilityPlatformModel.GetZoneFromApplicationIdViewResponse>}
+     *   - Success response
+     *
+     * @name getZonesFromApplicationIdView
      * @summary: GET zones from the application_id.
      * @description: This API returns zones from the application_id View.
      */
-    getZonesFromApplicationIdView({ pageNo, pageSize, zoneId, q }?: {
-        pageNo?: number;
-        pageSize?: number;
-        zoneId?: string[];
-        q?: string;
-    }): Promise<GetZoneFromApplicationIdViewResponse>;
+    getZonesFromApplicationIdView({ pageNo, pageSize, zoneId, q }?: ServiceabilityPlatformApplicationValidator.getZonesFromApplicationIdView): Promise<ServiceabilityPlatformModel.GetZoneFromApplicationIdViewResponse>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {SelfShipResponse} arg.body
-     * @returns {Promise<ApplicationSelfShipConfigResponse>} - Success response
+     * @param {ServiceabilityPlatformApplicationValidator.patchApplicationServiceabilitySelfShipment} arg
+     *   - Arg object
+     *
+     * @returns {Promise<ServiceabilityPlatformModel.ApplicationSelfShipConfigResponse>}
+     *   - Success response
+     *
+     * @name patchApplicationServiceabilitySelfShipment
      * @summary: Self-ship configuration of application.
      * @description: This API updates Self-ship configuration of the application.
      */
-    patchApplicationServiceabilitySelfShipment({ body }?: {
-        body: SelfShipResponse;
-    }): Promise<ApplicationSelfShipConfigResponse>;
+    patchApplicationServiceabilitySelfShipment({ body }?: ServiceabilityPlatformApplicationValidator.patchApplicationServiceabilitySelfShipment): Promise<ServiceabilityPlatformModel.ApplicationSelfShipConfigResponse>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {PincodeMopUpdateAuditHistoryRequest} arg.body
-     * @returns {Promise<PincodeMopUpdateAuditHistoryResponseData>} - Success response
+     * @param {ServiceabilityPlatformApplicationValidator.updatePincodeAuditHistory} arg
+     *   - Arg object
+     *
+     * @returns {Promise<ServiceabilityPlatformModel.PincodeMopUpdateAuditHistoryResponseData>}
+     *   - Success response
+     *
+     * @name updatePincodeAuditHistory
      * @summary: Auditlog configuration of application.
      * @description: This API returns Audit logs of Pincode.
      */
-    updatePincodeAuditHistory({ body }?: {
-        body: PincodeMopUpdateAuditHistoryRequest;
-    }): Promise<PincodeMopUpdateAuditHistoryResponseData>;
+    updatePincodeAuditHistory({ body }?: ServiceabilityPlatformApplicationValidator.updatePincodeAuditHistory): Promise<ServiceabilityPlatformModel.PincodeMopUpdateAuditHistoryResponseData>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {PincodeMopBulkData} arg.body
-     * @returns {Promise<PincodeBulkViewResponse>} - Success response
+     * @param {ServiceabilityPlatformApplicationValidator.updatePincodeBulkView} arg
+     *   - Arg object
+     *
+     * @returns {Promise<ServiceabilityPlatformModel.PincodeBulkViewResponse>}
+     *   - Success response
+     *
+     * @name updatePincodeBulkView
      * @summary: Bulk Update of pincode in the application.
      * @description: This API constructs bulk write operations to update the MOP data for each pincode in the payload.
      */
-    updatePincodeBulkView({ body }?: {
-        body: PincodeMopBulkData;
-    }): Promise<PincodeBulkViewResponse>;
+    updatePincodeBulkView({ body }?: ServiceabilityPlatformApplicationValidator.updatePincodeBulkView): Promise<ServiceabilityPlatformModel.PincodeBulkViewResponse>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {PincodeCodStatusListingRequest} arg.body
-     * @returns {Promise<PincodeCodStatusListingResponse>} - Success response
+     * @param {ServiceabilityPlatformApplicationValidator.updatePincodeCoDListing} arg
+     *   - Arg object
+     *
+     * @returns {Promise<ServiceabilityPlatformModel.PincodeCodStatusListingResponse>}
+     *   - Success response
+     *
+     * @name updatePincodeCoDListing
      * @summary: Pincode count view of application.
      * @description: This API returns count of active pincode.
      */
-    updatePincodeCoDListing({ body }?: {
-        body: PincodeCodStatusListingRequest;
-    }): Promise<PincodeCodStatusListingResponse>;
+    updatePincodeCoDListing({ body }?: ServiceabilityPlatformApplicationValidator.updatePincodeCoDListing): Promise<ServiceabilityPlatformModel.PincodeCodStatusListingResponse>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {PincodeMopData} arg.body
-     * @returns {Promise<PincodeMOPresponse>} - Success response
+     * @param {ServiceabilityPlatformApplicationValidator.updatePincodeMopView} arg
+     *   - Arg object
+     *
+     * @returns {Promise<ServiceabilityPlatformModel.PincodeMOPresponse>} -
+     *   Success response
+     * @name updatePincodeMopView
      * @summary: PincodeView update of MOP.
      * @description: This API updates Pincode method of payment.
      */
-    updatePincodeMopView({ body }?: {
-        body: PincodeMopData;
-    }): Promise<PincodeMOPresponse>;
+    updatePincodeMopView({ body }?: ServiceabilityPlatformApplicationValidator.updatePincodeMopView): Promise<ServiceabilityPlatformModel.PincodeMOPresponse>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {DPApplicationRuleRequest} arg.body
-     * @returns {Promise<DPApplicationRuleResponse>} - Success response
+     * @param {ServiceabilityPlatformApplicationValidator.upsertDpApplicationRulePriority} arg
+     *   - Arg object
+     *
+     * @returns {Promise<ServiceabilityPlatformModel.DPApplicationRuleResponse>}
+     *   - Success response
+     *
+     * @name upsertDpApplicationRulePriority
      * @summary: Upsert of DpApplicationRules in database.
      * @description: This API returns response of upsert of DpApplicationRules in mongo database.
      */
-    upsertDpApplicationRulePriority({ body }?: {
-        body: DPApplicationRuleRequest;
-    }): Promise<DPApplicationRuleResponse>;
+    upsertDpApplicationRulePriority({ body }?: ServiceabilityPlatformApplicationValidator.upsertDpApplicationRulePriority): Promise<ServiceabilityPlatformModel.DPApplicationRuleResponse>;
 }
+import ServiceabilityPlatformApplicationValidator = require("./ServiceabilityPlatformApplicationValidator");
+import ServiceabilityPlatformModel = require("./ServiceabilityPlatformModel");

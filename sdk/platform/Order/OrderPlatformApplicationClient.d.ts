@@ -4,69 +4,43 @@ declare class Order {
     config: any;
     applicationId: any;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.orderId -
-     * @returns {Promise<OrderDetailsResponse>} - Success response
+     * @param {OrderPlatformApplicationValidator.getAppOrderShipmentDetails} arg
+     *   - Arg object
+     *
+     * @returns {Promise<OrderPlatformModel.OrderDetailsResponse>} - Success response
+     * @name getAppOrderShipmentDetails
      * @summary:
      * @description:
      */
-    getAppOrderShipmentDetails({ orderId }?: {
-        orderId: string;
-    }): Promise<OrderDetailsResponse>;
+    getAppOrderShipmentDetails({ orderId }?: OrderPlatformApplicationValidator.getAppOrderShipmentDetails): Promise<OrderPlatformModel.OrderDetailsResponse>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {string} [arg.lane] -
-     * @param {string} [arg.searchType] -
-     * @param {string} [arg.searchId] -
-     * @param {string} [arg.fromDate] -
-     * @param {string} [arg.toDate] -
-     * @param {string} [arg.dpIds] -
-     * @param {string} [arg.orderingCompanyId] -
-     * @param {string} [arg.stores] -
-     * @param {string} [arg.salesChannels] -
-     * @param {string} [arg.requestByExt] -
-     * @param {number} [arg.pageNo] -
-     * @param {number} [arg.pageSize] -
-     * @param {string} [arg.customerId] -
-     * @param {boolean} [arg.isPrioritySort] -
-     * @returns {Promise<ShipmentInternalPlatformViewResponse>} - Success response
+     * @param {OrderPlatformApplicationValidator.getApplicationShipments} arg - Arg object
+     * @returns {Promise<OrderPlatformModel.ShipmentInternalPlatformViewResponse>}
+     *   - Success response
+     *
+     * @name getApplicationShipments
      * @summary:
      * @description:
      */
-    getApplicationShipments({ lane, searchType, searchId, fromDate, toDate, dpIds, orderingCompanyId, stores, salesChannels, requestByExt, pageNo, pageSize, customerId, isPrioritySort, }?: {
-        lane?: string;
-        searchType?: string;
-        searchId?: string;
-        fromDate?: string;
-        toDate?: string;
-        dpIds?: string;
-        orderingCompanyId?: string;
-        stores?: string;
-        salesChannels?: string;
-        requestByExt?: string;
-        pageNo?: number;
-        pageSize?: number;
-        customerId?: string;
-        isPrioritySort?: boolean;
-    }): Promise<ShipmentInternalPlatformViewResponse>;
+    getApplicationShipments({ lane, searchType, searchId, fromDate, toDate, dpIds, orderingCompanyId, stores, salesChannels, requestByExt, pageNo, pageSize, customerId, isPrioritySort, }?: OrderPlatformApplicationValidator.getApplicationShipments): Promise<OrderPlatformModel.ShipmentInternalPlatformViewResponse>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.action -
-     * @returns {Promise<ShipmentReasonsResponse>} - Success response
+     * @param {OrderPlatformApplicationValidator.getPlatformShipmentReasons} arg
+     *   - Arg object
+     *
+     * @returns {Promise<OrderPlatformModel.ShipmentReasonsResponse>} - Success response
+     * @name getPlatformShipmentReasons
      * @summary: Use this API to retrieve the issues that led to the cancellation of bags within a shipment.
      * @description: Using action, get reasons behind full or partial cancellation of a shipment
      */
-    getPlatformShipmentReasons({ action }?: {
-        action: string;
-    }): Promise<ShipmentReasonsResponse>;
+    getPlatformShipmentReasons({ action }?: OrderPlatformApplicationValidator.getPlatformShipmentReasons): Promise<OrderPlatformModel.ShipmentReasonsResponse>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.shipmentId - Shipment Id
-     * @returns {Promise<PlatformShipmentTrack>} - Success response
+     * @param {OrderPlatformApplicationValidator.trackShipmentPlatform} arg - Arg object
+     * @returns {Promise<OrderPlatformModel.PlatformShipmentTrack>} - Success response
+     * @name trackShipmentPlatform
      * @summary: Track shipment
      * @description: Track Shipment by shipment id, for application based on application Id
      */
-    trackShipmentPlatform({ shipmentId }?: {
-        shipmentId: string;
-    }): Promise<PlatformShipmentTrack>;
+    trackShipmentPlatform({ shipmentId }?: OrderPlatformApplicationValidator.trackShipmentPlatform): Promise<OrderPlatformModel.PlatformShipmentTrack>;
 }
+import OrderPlatformApplicationValidator = require("./OrderPlatformApplicationValidator");
+import OrderPlatformModel = require("./OrderPlatformModel");

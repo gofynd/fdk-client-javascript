@@ -4,148 +4,112 @@ declare class Lead {
     config: any;
     applicationId: any;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.uniqueName - Unique name of Video Room
-     * @returns {Promise<CloseVideoRoomResponse>} - Success response
+     * @param {LeadPlatformApplicationValidator.closeVideoRoom} arg - Arg object
+     * @returns {Promise<LeadPlatformModel.CloseVideoRoomResponse>} - Success response
+     * @name closeVideoRoom
      * @summary: Close the video room and force all participants to leave.
      * @description: Close the video room and force all participants to leave.
      */
-    closeVideoRoom({ uniqueName }?: {
-        uniqueName: string;
-    }): Promise<CloseVideoRoomResponse>;
+    closeVideoRoom({ uniqueName }?: LeadPlatformApplicationValidator.closeVideoRoom): Promise<LeadPlatformModel.CloseVideoRoomResponse>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {CreateCustomFormPayload} arg.body
-     * @returns {Promise<CustomForm>} - Success response
+     * @param {LeadPlatformApplicationValidator.createCustomForm} arg - Arg object
+     * @returns {Promise<LeadPlatformModel.CustomForm>} - Success response
+     * @name createCustomForm
      * @summary: Creates a new custom form
      * @description: Creates a new custom form for given application
      */
-    createCustomForm({ body }?: {
-        body: CreateCustomFormPayload;
-    }): Promise<CustomForm>;
+    createCustomForm({ body }?: LeadPlatformApplicationValidator.createCustomForm): Promise<LeadPlatformModel.CustomForm>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.id - Ticket ID for which history is created
-     * @param {TicketHistoryPayload} arg.body
-     * @returns {Promise<TicketHistory>} - Success response
+     * @param {LeadPlatformApplicationValidator.createHistory} arg - Arg object
+     * @returns {Promise<LeadPlatformModel.TicketHistory>} - Success response
+     * @name createHistory
      * @summary: Create history for specific application level ticket
      * @description: Create history for specific application level ticket, this history is seen on ticket detail page, this can be comment, log or rating.
      */
-    createHistory({ id, body }?: {
-        id: string;
-        body: TicketHistoryPayload;
-    }): Promise<TicketHistory>;
+    createHistory({ id, body }?: LeadPlatformApplicationValidator.createHistory): Promise<LeadPlatformModel.TicketHistory>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.slug - Slug of form whose response is getting submitted
-     * @param {EditCustomFormPayload} arg.body
-     * @returns {Promise<CustomForm>} - Success response
+     * @param {LeadPlatformApplicationValidator.editCustomForm} arg - Arg object
+     * @returns {Promise<LeadPlatformModel.CustomForm>} - Success response
+     * @name editCustomForm
      * @summary: Edit the given custom form
      * @description: Edit the given custom form field such as adding or deleting input, assignee, title, decription, notification and polling information.
      */
-    editCustomForm({ slug, body }?: {
-        slug: string;
-        body: EditCustomFormPayload;
-    }): Promise<CustomForm>;
+    editCustomForm({ slug, body }?: LeadPlatformApplicationValidator.editCustomForm): Promise<LeadPlatformModel.CustomForm>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.id - Ticket ID of ticket to be edited
-     * @param {EditTicketPayload} arg.body
-     * @returns {Promise<Ticket>} - Success response
+     * @param {LeadPlatformApplicationValidator.editTicket} arg - Arg object
+     * @returns {Promise<LeadPlatformModel.Ticket>} - Success response
+     * @name editTicket
      * @summary: Edits ticket details of a application level ticket
      * @description: Edits ticket details of a application level ticket such as status, priority, category, tags, attachments, assigne & ticket content changes
      */
-    editTicket({ id, body }?: {
-        id: string;
-        body: EditTicketPayload;
-    }): Promise<Ticket>;
+    editTicket({ id, body }?: LeadPlatformApplicationValidator.editTicket): Promise<LeadPlatformModel.Ticket>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.slug - Slug of form whose response is getting submitted
-     * @returns {Promise<CustomForm>} - Success response
+     * @param {LeadPlatformApplicationValidator.getCustomForm} arg - Arg object
+     * @returns {Promise<LeadPlatformModel.CustomForm>} - Success response
+     * @name getCustomForm
      * @summary: Get specific custom form using it's slug
      * @description: Get specific custom form using it's slug, this is used to view the form.
      */
-    getCustomForm({ slug }?: {
-        slug: string;
-    }): Promise<CustomForm>;
+    getCustomForm({ slug }?: LeadPlatformApplicationValidator.getCustomForm): Promise<LeadPlatformModel.CustomForm>;
     /**
-     * @param {Object} arg - Arg object.
-     * @returns {Promise<CustomFormList>} - Success response
+     * @param {LeadPlatformApplicationValidator.getCustomForms} arg - Arg object
+     * @returns {Promise<LeadPlatformModel.CustomFormList>} - Success response
+     * @name getCustomForms
      * @summary: Get list of custom form
      * @description: Get list of custom form for given application
      */
-    getCustomForms({}?: any): Promise<CustomFormList>;
+    getCustomForms({}?: any): Promise<LeadPlatformModel.CustomFormList>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.id - Tiket ID of the ticket to be fetched
-     * @returns {Promise<Ticket>} - Success response
+     * @param {LeadPlatformApplicationValidator.getTicket} arg - Arg object
+     * @returns {Promise<LeadPlatformModel.Ticket>} - Success response
+     * @name getTicket
      * @summary: Retreives ticket details of a application level ticket
      * @description: Retreives ticket details of a application level ticket with ticket ID
      */
-    getTicket({ id }?: {
-        id: string;
-    }): Promise<Ticket>;
+    getTicket({ id }?: LeadPlatformApplicationValidator.getTicket): Promise<LeadPlatformModel.Ticket>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.id - Ticket ID for which history is to be fetched
-     * @returns {Promise<TicketHistoryList>} - Success response
+     * @param {LeadPlatformApplicationValidator.getTicketHistory} arg - Arg object
+     * @returns {Promise<LeadPlatformModel.TicketHistoryList>} - Success response
+     * @name getTicketHistory
      * @summary: Gets history list for specific application level ticket
      * @description: Gets history list for specific application level ticket, this history is seen on ticket detail page, this can be comment, log or rating.
      */
-    getTicketHistory({ id }?: {
-        id: string;
-    }): Promise<TicketHistoryList>;
+    getTicketHistory({ id }?: LeadPlatformApplicationValidator.getTicketHistory): Promise<LeadPlatformModel.TicketHistoryList>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {boolean} [arg.items] - Decides that the reponse will contain the
-     *   list of tickets
-     * @param {boolean} [arg.filters] - Decides that the reponse will contain
-     *   the ticket filters
-     * @param {string} [arg.q] - Search through ticket titles and description
-     * @param {string} [arg.status] - Filter tickets on status
-     * @param {PriorityEnum} [arg.priority] - Filter tickets on priority
-     * @param {string} [arg.category] - Filter tickets on category
-     * @returns {Promise<TicketList>} - Success response
+     * @param {LeadPlatformApplicationValidator.getTickets} arg - Arg object
+     * @returns {Promise<LeadPlatformModel.TicketList>} - Success response
+     * @name getTickets
      * @summary: Gets the list of Application level Tickets and/or ticket filters depending on query params
      * @description: Gets the list of Application level Tickets and/or ticket filters
      */
-    getTickets({ items, filters, q, status, priority, category }?: {
-        items?: boolean;
-        filters?: boolean;
-        q?: string;
-        status?: string;
-        priority?: PriorityEnum;
-        category?: string;
-    }): Promise<TicketList>;
+    getTickets({ items, filters, q, status, priority, category }?: LeadPlatformApplicationValidator.getTickets): Promise<LeadPlatformModel.TicketList>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.uniqueName - Unique name of video room
-     * @returns {Promise<GetTokenForVideoRoomResponse>} - Success response
+     * @param {LeadPlatformApplicationValidator.getTokenForVideoRoom} arg - Arg object
+     * @returns {Promise<LeadPlatformModel.GetTokenForVideoRoomResponse>} -
+     *   Success response
+     * @name getTokenForVideoRoom
      * @summary: Get Token to join a specific Video Room using it's unqiue name
      * @description: Get Token to join a specific Video Room using it's unqiue name, this Token is your ticket to Room and also creates your identity there.
      */
-    getTokenForVideoRoom({ uniqueName }?: {
-        uniqueName: string;
-    }): Promise<GetTokenForVideoRoomResponse>;
+    getTokenForVideoRoom({ uniqueName }?: LeadPlatformApplicationValidator.getTokenForVideoRoom): Promise<LeadPlatformModel.GetTokenForVideoRoomResponse>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.uniqueName - Unique name of Video Room
-     * @returns {Promise<GetParticipantsInsideVideoRoomResponse>} - Success response
+     * @param {LeadPlatformApplicationValidator.getVideoParticipants} arg - Arg object
+     * @returns {Promise<LeadPlatformModel.GetParticipantsInsideVideoRoomResponse>}
+     *   - Success response
+     *
+     * @name getVideoParticipants
      * @summary: Get participants of a specific Video Room using it's unique name
      * @description: Get participants of a specific Video Room using it's unique name, this can be used to check if people are already there in the room and also to show their names.
      */
-    getVideoParticipants({ uniqueName }?: {
-        uniqueName: string;
-    }): Promise<GetParticipantsInsideVideoRoomResponse>;
+    getVideoParticipants({ uniqueName }?: LeadPlatformApplicationValidator.getVideoParticipants): Promise<LeadPlatformModel.GetParticipantsInsideVideoRoomResponse>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {CreateVideoRoomPayload} arg.body
-     * @returns {Promise<CreateVideoRoomResponse>} - Success response
+     * @param {LeadPlatformApplicationValidator.openVideoRoom} arg - Arg object
+     * @returns {Promise<LeadPlatformModel.CreateVideoRoomResponse>} - Success response
+     * @name openVideoRoom
      * @summary: Open a video room.
      * @description: Open a video room.
      */
-    openVideoRoom({ body }?: {
-        body: CreateVideoRoomPayload;
-    }): Promise<CreateVideoRoomResponse>;
+    openVideoRoom({ body }?: LeadPlatformApplicationValidator.openVideoRoom): Promise<LeadPlatformModel.CreateVideoRoomResponse>;
 }
+import LeadPlatformApplicationValidator = require("./LeadPlatformApplicationValidator");
+import LeadPlatformModel = require("./LeadPlatformModel");

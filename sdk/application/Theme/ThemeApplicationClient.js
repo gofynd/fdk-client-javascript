@@ -2,8 +2,8 @@ const ApplicationAPIClient = require("../ApplicationAPIClient");
 const { FDKClientValidationError } = require("../../common/FDKError");
 const constructUrl = require("../constructUrl");
 const Paginator = require("../../common/Paginator");
-const ThemeValidator = require("./ThemeApplicationValidator");
-const ThemeModel = require("./ThemeApplicationModel");
+const ThemeApplicationValidator = require("./ThemeApplicationValidator");
+const ThemeApplicationModel = require("./ThemeApplicationModel");
 const { Logger } = require("./../../common/Logger");
 const Joi = require("joi");
 
@@ -36,14 +36,14 @@ class Theme {
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.themeId - ID of the theme to be retrieved
-   * @returns {Promise<AllAvailablePageSchema>} - Success response
+   * @param {ThemeApplicationValidator.getAllPages} arg - Arg object.
+   * @returns {Promise<ThemeApplicationModel.AllAvailablePageSchema>} - Success response
+   * @name getAllPages
    * @summary: Get all pages of a theme
    * @description: Use this API to retrieve all the available pages of a theme by its ID.
    */
   async getAllPages({ themeId } = {}) {
-    const { error } = ThemeValidator.getAllPages().validate(
+    const { error } = ThemeApplicationValidator.getAllPages().validate(
       { themeId },
       { abortEarly: false, allowUnknown: true }
     );
@@ -52,16 +52,17 @@ class Theme {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = ThemeValidator.getAllPages().validate(
+    const {
+      error: warrning,
+    } = ThemeApplicationValidator.getAllPages().validate(
       { themeId },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for getAllPages",
+        message: `Parameter Validation warrnings for application > Theme > getAllPages \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -82,7 +83,7 @@ class Theme {
 
     const {
       error: res_error,
-    } = ThemeModel.AllAvailablePageSchema().validate(response, {
+    } = ThemeApplicationModel.AllAvailablePageSchema().validate(response, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -90,22 +91,22 @@ class Theme {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for getAllPages",
+        message: `Response Validation Warnnings for application > Theme > getAllPages \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @returns {Promise<ThemesSchema>} - Success response
+   * @param {ThemeApplicationValidator.getAppliedTheme} arg - Arg object.
+   * @returns {Promise<ThemeApplicationModel.ThemesSchema>} - Success response
+   * @name getAppliedTheme
    * @summary: Get the theme currently applied to an application
    * @description: An application has multiple themes, but only one theme can be applied at a time. Use this API to retrieve the theme currently applied to the application.
    */
   async getAppliedTheme({} = {}) {
-    const { error } = ThemeValidator.getAppliedTheme().validate(
+    const { error } = ThemeApplicationValidator.getAppliedTheme().validate(
       {},
       { abortEarly: false, allowUnknown: true }
     );
@@ -114,16 +115,17 @@ class Theme {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = ThemeValidator.getAppliedTheme().validate(
+    const {
+      error: warrning,
+    } = ThemeApplicationValidator.getAppliedTheme().validate(
       {},
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for getAppliedTheme",
+        message: `Parameter Validation warrnings for application > Theme > getAppliedTheme \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -142,7 +144,9 @@ class Theme {
       xHeaders
     );
 
-    const { error: res_error } = ThemeModel.ThemesSchema().validate(response, {
+    const {
+      error: res_error,
+    } = ThemeApplicationModel.ThemesSchema().validate(response, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -150,22 +154,22 @@ class Theme {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for getAppliedTheme",
+        message: `Response Validation Warnnings for application > Theme > getAppliedTheme \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @returns {Promise<ThemesSchema>} - Success response
+   * @param {ThemeApplicationValidator.getAppliedThemeV2} arg - Arg object.
+   * @returns {Promise<ThemeApplicationModel.ThemesSchema>} - Success response
+   * @name getAppliedThemeV2
    * @summary: Get the theme currently applied to an application
    * @description: An application has multiple themes, but only one theme can be applied at a time. Use this API to retrieve the theme currently applied to the application.
    */
   async getAppliedThemeV2({} = {}) {
-    const { error } = ThemeValidator.getAppliedThemeV2().validate(
+    const { error } = ThemeApplicationValidator.getAppliedThemeV2().validate(
       {},
       { abortEarly: false, allowUnknown: true }
     );
@@ -174,16 +178,17 @@ class Theme {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = ThemeValidator.getAppliedThemeV2().validate(
+    const {
+      error: warrning,
+    } = ThemeApplicationValidator.getAppliedThemeV2().validate(
       {},
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for getAppliedThemeV2",
+        message: `Parameter Validation warrnings for application > Theme > getAppliedThemeV2 \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -202,7 +207,9 @@ class Theme {
       xHeaders
     );
 
-    const { error: res_error } = ThemeModel.ThemesSchema().validate(response, {
+    const {
+      error: res_error,
+    } = ThemeApplicationModel.ThemesSchema().validate(response, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -210,24 +217,22 @@ class Theme {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for getAppliedThemeV2",
+        message: `Response Validation Warnnings for application > Theme > getAppliedThemeV2 \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.themeId - ID of the theme to be retrieved
-   * @param {string} arg.pageValue - Value of the page to be retrieved
-   * @returns {Promise<AvailablePageSchema>} - Success response
+   * @param {ThemeApplicationValidator.getPage} arg - Arg object.
+   * @returns {Promise<ThemeApplicationModel.AvailablePageSchema>} - Success response
+   * @name getPage
    * @summary: Get page of a theme
    * @description: Use this API to retrieve a page of a theme.
    */
   async getPage({ themeId, pageValue } = {}) {
-    const { error } = ThemeValidator.getPage().validate(
+    const { error } = ThemeApplicationValidator.getPage().validate(
       { themeId, pageValue },
       { abortEarly: false, allowUnknown: true }
     );
@@ -236,16 +241,15 @@ class Theme {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = ThemeValidator.getPage().validate(
+    const { error: warrning } = ThemeApplicationValidator.getPage().validate(
       { themeId, pageValue },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for getPage",
+        message: `Parameter Validation warrnings for application > Theme > getPage \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -266,7 +270,7 @@ class Theme {
 
     const {
       error: res_error,
-    } = ThemeModel.AvailablePageSchema().validate(response, {
+    } = ThemeApplicationModel.AvailablePageSchema().validate(response, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -274,23 +278,22 @@ class Theme {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for getPage",
+        message: `Response Validation Warnnings for application > Theme > getPage \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.themeId - ID of the theme to be retrieved
-   * @returns {Promise<ThemesSchema>} - Success response
+   * @param {ThemeApplicationValidator.getThemeForPreview} arg - Arg object.
+   * @returns {Promise<ThemeApplicationModel.ThemesSchema>} - Success response
+   * @name getThemeForPreview
    * @summary: Get a theme for a preview
    * @description: A theme can be previewed before applying it. Use this API to retrieve the preview of a theme by its ID.
    */
   async getThemeForPreview({ themeId } = {}) {
-    const { error } = ThemeValidator.getThemeForPreview().validate(
+    const { error } = ThemeApplicationValidator.getThemeForPreview().validate(
       { themeId },
       { abortEarly: false, allowUnknown: true }
     );
@@ -299,16 +302,17 @@ class Theme {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = ThemeValidator.getThemeForPreview().validate(
+    const {
+      error: warrning,
+    } = ThemeApplicationValidator.getThemeForPreview().validate(
       { themeId },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for getThemeForPreview",
+        message: `Parameter Validation warrnings for application > Theme > getThemeForPreview \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -327,7 +331,9 @@ class Theme {
       xHeaders
     );
 
-    const { error: res_error } = ThemeModel.ThemesSchema().validate(response, {
+    const {
+      error: res_error,
+    } = ThemeApplicationModel.ThemesSchema().validate(response, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -335,23 +341,22 @@ class Theme {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for getThemeForPreview",
+        message: `Response Validation Warnnings for application > Theme > getThemeForPreview \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.themeId - ID of the theme to be retrieved
-   * @returns {Promise<ThemesSchema>} - Success response
+   * @param {ThemeApplicationValidator.getThemeForPreviewV2} arg - Arg object.
+   * @returns {Promise<ThemeApplicationModel.ThemesSchema>} - Success response
+   * @name getThemeForPreviewV2
    * @summary: Get a theme for a preview
    * @description: A theme can be previewed before applying it. Use this API to retrieve the preview of a theme by its ID.
    */
   async getThemeForPreviewV2({ themeId } = {}) {
-    const { error } = ThemeValidator.getThemeForPreviewV2().validate(
+    const { error } = ThemeApplicationValidator.getThemeForPreviewV2().validate(
       { themeId },
       { abortEarly: false, allowUnknown: true }
     );
@@ -360,16 +365,17 @@ class Theme {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = ThemeValidator.getThemeForPreviewV2().validate(
+    const {
+      error: warrning,
+    } = ThemeApplicationValidator.getThemeForPreviewV2().validate(
       { themeId },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for getThemeForPreviewV2",
+        message: `Parameter Validation warrnings for application > Theme > getThemeForPreviewV2 \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -388,7 +394,9 @@ class Theme {
       xHeaders
     );
 
-    const { error: res_error } = ThemeModel.ThemesSchema().validate(response, {
+    const {
+      error: res_error,
+    } = ThemeApplicationModel.ThemesSchema().validate(response, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -396,9 +404,8 @@ class Theme {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for getThemeForPreviewV2",
+        message: `Response Validation Warnnings for application > Theme > getThemeForPreviewV2 \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;

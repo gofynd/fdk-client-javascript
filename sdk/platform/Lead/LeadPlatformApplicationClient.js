@@ -1,8 +1,8 @@
 const PlatformAPIClient = require("../PlatformAPIClient");
 const { FDKClientValidationError } = require("../../common/FDKError");
 const Paginator = require("../../common/Paginator");
-const LeadValidator = require("./LeadPlatformApplicationValidator");
-const LeadModel = require("./LeadPlatformModel");
+const LeadPlatformApplicationValidator = require("./LeadPlatformApplicationValidator");
+const LeadPlatformModel = require("./LeadPlatformModel");
 const { Logger } = require("./../../common/Logger");
 const Joi = require("joi");
 
@@ -13,14 +13,16 @@ class Lead {
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.uniqueName - Unique name of Video Room
-   * @returns {Promise<CloseVideoRoomResponse>} - Success response
+   * @param {LeadPlatformApplicationValidator.closeVideoRoom} arg - Arg object
+   * @returns {Promise<LeadPlatformModel.CloseVideoRoomResponse>} - Success response
+   * @name closeVideoRoom
    * @summary: Close the video room and force all participants to leave.
    * @description: Close the video room and force all participants to leave.
    */
   async closeVideoRoom({ uniqueName } = {}) {
-    const { error } = LeadValidator.closeVideoRoom().validate(
+    const {
+      error,
+    } = LeadPlatformApplicationValidator.closeVideoRoom().validate(
       {
         uniqueName,
       },
@@ -31,7 +33,9 @@ class Lead {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = LeadValidator.closeVideoRoom().validate(
+    const {
+      error: warrning,
+    } = LeadPlatformApplicationValidator.closeVideoRoom().validate(
       {
         uniqueName,
       },
@@ -40,9 +44,8 @@ class Lead {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for closeVideoRoom",
+        message: `Parameter Validation warrnings for platform > Lead > closeVideoRoom \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -57,7 +60,7 @@ class Lead {
 
     const {
       error: res_error,
-    } = LeadModel.CloseVideoRoomResponse().validate(response, {
+    } = LeadPlatformModel.CloseVideoRoomResponse().validate(response, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -65,23 +68,24 @@ class Lead {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for closeVideoRoom",
+        message: `Response Validation Warnnings for platform > Lead > closeVideoRoom \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {CreateCustomFormPayload} arg.body
-   * @returns {Promise<CustomForm>} - Success response
+   * @param {LeadPlatformApplicationValidator.createCustomForm} arg - Arg object
+   * @returns {Promise<LeadPlatformModel.CustomForm>} - Success response
+   * @name createCustomForm
    * @summary: Creates a new custom form
    * @description: Creates a new custom form for given application
    */
   async createCustomForm({ body } = {}) {
-    const { error } = LeadValidator.createCustomForm().validate(
+    const {
+      error,
+    } = LeadPlatformApplicationValidator.createCustomForm().validate(
       {
         body,
       },
@@ -92,7 +96,9 @@ class Lead {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = LeadValidator.createCustomForm().validate(
+    const {
+      error: warrning,
+    } = LeadPlatformApplicationValidator.createCustomForm().validate(
       {
         body,
       },
@@ -101,9 +107,8 @@ class Lead {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for createCustomForm",
+        message: `Parameter Validation warrnings for platform > Lead > createCustomForm \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -116,7 +121,9 @@ class Lead {
       body
     );
 
-    const { error: res_error } = LeadModel.CustomForm().validate(response, {
+    const {
+      error: res_error,
+    } = LeadPlatformModel.CustomForm().validate(response, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -124,24 +131,22 @@ class Lead {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for createCustomForm",
+        message: `Response Validation Warnnings for platform > Lead > createCustomForm \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.id - Ticket ID for which history is created
-   * @param {TicketHistoryPayload} arg.body
-   * @returns {Promise<TicketHistory>} - Success response
+   * @param {LeadPlatformApplicationValidator.createHistory} arg - Arg object
+   * @returns {Promise<LeadPlatformModel.TicketHistory>} - Success response
+   * @name createHistory
    * @summary: Create history for specific application level ticket
    * @description: Create history for specific application level ticket, this history is seen on ticket detail page, this can be comment, log or rating.
    */
   async createHistory({ id, body } = {}) {
-    const { error } = LeadValidator.createHistory().validate(
+    const { error } = LeadPlatformApplicationValidator.createHistory().validate(
       {
         id,
         body,
@@ -153,7 +158,9 @@ class Lead {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = LeadValidator.createHistory().validate(
+    const {
+      error: warrning,
+    } = LeadPlatformApplicationValidator.createHistory().validate(
       {
         id,
         body,
@@ -163,9 +170,8 @@ class Lead {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for createHistory",
+        message: `Parameter Validation warrnings for platform > Lead > createHistory \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -178,7 +184,9 @@ class Lead {
       body
     );
 
-    const { error: res_error } = LeadModel.TicketHistory().validate(response, {
+    const {
+      error: res_error,
+    } = LeadPlatformModel.TicketHistory().validate(response, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -186,24 +194,24 @@ class Lead {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for createHistory",
+        message: `Response Validation Warnnings for platform > Lead > createHistory \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.slug - Slug of form whose response is getting submitted
-   * @param {EditCustomFormPayload} arg.body
-   * @returns {Promise<CustomForm>} - Success response
+   * @param {LeadPlatformApplicationValidator.editCustomForm} arg - Arg object
+   * @returns {Promise<LeadPlatformModel.CustomForm>} - Success response
+   * @name editCustomForm
    * @summary: Edit the given custom form
    * @description: Edit the given custom form field such as adding or deleting input, assignee, title, decription, notification and polling information.
    */
   async editCustomForm({ slug, body } = {}) {
-    const { error } = LeadValidator.editCustomForm().validate(
+    const {
+      error,
+    } = LeadPlatformApplicationValidator.editCustomForm().validate(
       {
         slug,
         body,
@@ -215,7 +223,9 @@ class Lead {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = LeadValidator.editCustomForm().validate(
+    const {
+      error: warrning,
+    } = LeadPlatformApplicationValidator.editCustomForm().validate(
       {
         slug,
         body,
@@ -225,9 +235,8 @@ class Lead {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for editCustomForm",
+        message: `Parameter Validation warrnings for platform > Lead > editCustomForm \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -240,7 +249,9 @@ class Lead {
       body
     );
 
-    const { error: res_error } = LeadModel.CustomForm().validate(response, {
+    const {
+      error: res_error,
+    } = LeadPlatformModel.CustomForm().validate(response, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -248,24 +259,22 @@ class Lead {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for editCustomForm",
+        message: `Response Validation Warnnings for platform > Lead > editCustomForm \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.id - Ticket ID of ticket to be edited
-   * @param {EditTicketPayload} arg.body
-   * @returns {Promise<Ticket>} - Success response
+   * @param {LeadPlatformApplicationValidator.editTicket} arg - Arg object
+   * @returns {Promise<LeadPlatformModel.Ticket>} - Success response
+   * @name editTicket
    * @summary: Edits ticket details of a application level ticket
    * @description: Edits ticket details of a application level ticket such as status, priority, category, tags, attachments, assigne & ticket content changes
    */
   async editTicket({ id, body } = {}) {
-    const { error } = LeadValidator.editTicket().validate(
+    const { error } = LeadPlatformApplicationValidator.editTicket().validate(
       {
         id,
         body,
@@ -277,7 +286,9 @@ class Lead {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = LeadValidator.editTicket().validate(
+    const {
+      error: warrning,
+    } = LeadPlatformApplicationValidator.editTicket().validate(
       {
         id,
         body,
@@ -287,9 +298,8 @@ class Lead {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for editTicket",
+        message: `Parameter Validation warrnings for platform > Lead > editTicket \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -302,7 +312,7 @@ class Lead {
       body
     );
 
-    const { error: res_error } = LeadModel.Ticket().validate(response, {
+    const { error: res_error } = LeadPlatformModel.Ticket().validate(response, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -310,23 +320,22 @@ class Lead {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for editTicket",
+        message: `Response Validation Warnnings for platform > Lead > editTicket \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.slug - Slug of form whose response is getting submitted
-   * @returns {Promise<CustomForm>} - Success response
+   * @param {LeadPlatformApplicationValidator.getCustomForm} arg - Arg object
+   * @returns {Promise<LeadPlatformModel.CustomForm>} - Success response
+   * @name getCustomForm
    * @summary: Get specific custom form using it's slug
    * @description: Get specific custom form using it's slug, this is used to view the form.
    */
   async getCustomForm({ slug } = {}) {
-    const { error } = LeadValidator.getCustomForm().validate(
+    const { error } = LeadPlatformApplicationValidator.getCustomForm().validate(
       {
         slug,
       },
@@ -337,7 +346,9 @@ class Lead {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = LeadValidator.getCustomForm().validate(
+    const {
+      error: warrning,
+    } = LeadPlatformApplicationValidator.getCustomForm().validate(
       {
         slug,
       },
@@ -346,9 +357,8 @@ class Lead {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for getCustomForm",
+        message: `Parameter Validation warrnings for platform > Lead > getCustomForm \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -361,7 +371,9 @@ class Lead {
       undefined
     );
 
-    const { error: res_error } = LeadModel.CustomForm().validate(response, {
+    const {
+      error: res_error,
+    } = LeadPlatformModel.CustomForm().validate(response, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -369,22 +381,24 @@ class Lead {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for getCustomForm",
+        message: `Response Validation Warnnings for platform > Lead > getCustomForm \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @returns {Promise<CustomFormList>} - Success response
+   * @param {LeadPlatformApplicationValidator.getCustomForms} arg - Arg object
+   * @returns {Promise<LeadPlatformModel.CustomFormList>} - Success response
+   * @name getCustomForms
    * @summary: Get list of custom form
    * @description: Get list of custom form for given application
    */
   async getCustomForms({} = {}) {
-    const { error } = LeadValidator.getCustomForms().validate(
+    const {
+      error,
+    } = LeadPlatformApplicationValidator.getCustomForms().validate(
       {},
       { abortEarly: false, allowUnknown: true }
     );
@@ -393,16 +407,17 @@ class Lead {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = LeadValidator.getCustomForms().validate(
+    const {
+      error: warrning,
+    } = LeadPlatformApplicationValidator.getCustomForms().validate(
       {},
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for getCustomForms",
+        message: `Parameter Validation warrnings for platform > Lead > getCustomForms \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -415,7 +430,9 @@ class Lead {
       undefined
     );
 
-    const { error: res_error } = LeadModel.CustomFormList().validate(response, {
+    const {
+      error: res_error,
+    } = LeadPlatformModel.CustomFormList().validate(response, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -423,23 +440,22 @@ class Lead {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for getCustomForms",
+        message: `Response Validation Warnnings for platform > Lead > getCustomForms \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.id - Tiket ID of the ticket to be fetched
-   * @returns {Promise<Ticket>} - Success response
+   * @param {LeadPlatformApplicationValidator.getTicket} arg - Arg object
+   * @returns {Promise<LeadPlatformModel.Ticket>} - Success response
+   * @name getTicket
    * @summary: Retreives ticket details of a application level ticket
    * @description: Retreives ticket details of a application level ticket with ticket ID
    */
   async getTicket({ id } = {}) {
-    const { error } = LeadValidator.getTicket().validate(
+    const { error } = LeadPlatformApplicationValidator.getTicket().validate(
       {
         id,
       },
@@ -450,7 +466,9 @@ class Lead {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = LeadValidator.getTicket().validate(
+    const {
+      error: warrning,
+    } = LeadPlatformApplicationValidator.getTicket().validate(
       {
         id,
       },
@@ -459,9 +477,8 @@ class Lead {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for getTicket",
+        message: `Parameter Validation warrnings for platform > Lead > getTicket \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -474,7 +491,7 @@ class Lead {
       undefined
     );
 
-    const { error: res_error } = LeadModel.Ticket().validate(response, {
+    const { error: res_error } = LeadPlatformModel.Ticket().validate(response, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -482,23 +499,24 @@ class Lead {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for getTicket",
+        message: `Response Validation Warnnings for platform > Lead > getTicket \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.id - Ticket ID for which history is to be fetched
-   * @returns {Promise<TicketHistoryList>} - Success response
+   * @param {LeadPlatformApplicationValidator.getTicketHistory} arg - Arg object
+   * @returns {Promise<LeadPlatformModel.TicketHistoryList>} - Success response
+   * @name getTicketHistory
    * @summary: Gets history list for specific application level ticket
    * @description: Gets history list for specific application level ticket, this history is seen on ticket detail page, this can be comment, log or rating.
    */
   async getTicketHistory({ id } = {}) {
-    const { error } = LeadValidator.getTicketHistory().validate(
+    const {
+      error,
+    } = LeadPlatformApplicationValidator.getTicketHistory().validate(
       {
         id,
       },
@@ -509,7 +527,9 @@ class Lead {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = LeadValidator.getTicketHistory().validate(
+    const {
+      error: warrning,
+    } = LeadPlatformApplicationValidator.getTicketHistory().validate(
       {
         id,
       },
@@ -518,9 +538,8 @@ class Lead {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for getTicketHistory",
+        message: `Parameter Validation warrnings for platform > Lead > getTicketHistory \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -535,7 +554,7 @@ class Lead {
 
     const {
       error: res_error,
-    } = LeadModel.TicketHistoryList().validate(response, {
+    } = LeadPlatformModel.TicketHistoryList().validate(response, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -543,30 +562,22 @@ class Lead {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for getTicketHistory",
+        message: `Response Validation Warnnings for platform > Lead > getTicketHistory \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {boolean} [arg.items] - Decides that the reponse will contain the
-   *   list of tickets
-   * @param {boolean} [arg.filters] - Decides that the reponse will contain
-   *   the ticket filters
-   * @param {string} [arg.q] - Search through ticket titles and description
-   * @param {string} [arg.status] - Filter tickets on status
-   * @param {PriorityEnum} [arg.priority] - Filter tickets on priority
-   * @param {string} [arg.category] - Filter tickets on category
-   * @returns {Promise<TicketList>} - Success response
+   * @param {LeadPlatformApplicationValidator.getTickets} arg - Arg object
+   * @returns {Promise<LeadPlatformModel.TicketList>} - Success response
+   * @name getTickets
    * @summary: Gets the list of Application level Tickets and/or ticket filters depending on query params
    * @description: Gets the list of Application level Tickets and/or ticket filters
    */
   async getTickets({ items, filters, q, status, priority, category } = {}) {
-    const { error } = LeadValidator.getTickets().validate(
+    const { error } = LeadPlatformApplicationValidator.getTickets().validate(
       {
         items,
         filters,
@@ -582,7 +593,9 @@ class Lead {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = LeadValidator.getTickets().validate(
+    const {
+      error: warrning,
+    } = LeadPlatformApplicationValidator.getTickets().validate(
       {
         items,
         filters,
@@ -596,9 +609,8 @@ class Lead {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for getTickets",
+        message: `Parameter Validation warrnings for platform > Lead > getTickets \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -617,7 +629,9 @@ class Lead {
       undefined
     );
 
-    const { error: res_error } = LeadModel.TicketList().validate(response, {
+    const {
+      error: res_error,
+    } = LeadPlatformModel.TicketList().validate(response, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -625,23 +639,25 @@ class Lead {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for getTickets",
+        message: `Response Validation Warnnings for platform > Lead > getTickets \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.uniqueName - Unique name of video room
-   * @returns {Promise<GetTokenForVideoRoomResponse>} - Success response
+   * @param {LeadPlatformApplicationValidator.getTokenForVideoRoom} arg - Arg object
+   * @returns {Promise<LeadPlatformModel.GetTokenForVideoRoomResponse>} -
+   *   Success response
+   * @name getTokenForVideoRoom
    * @summary: Get Token to join a specific Video Room using it's unqiue name
    * @description: Get Token to join a specific Video Room using it's unqiue name, this Token is your ticket to Room and also creates your identity there.
    */
   async getTokenForVideoRoom({ uniqueName } = {}) {
-    const { error } = LeadValidator.getTokenForVideoRoom().validate(
+    const {
+      error,
+    } = LeadPlatformApplicationValidator.getTokenForVideoRoom().validate(
       {
         uniqueName,
       },
@@ -652,7 +668,9 @@ class Lead {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = LeadValidator.getTokenForVideoRoom().validate(
+    const {
+      error: warrning,
+    } = LeadPlatformApplicationValidator.getTokenForVideoRoom().validate(
       {
         uniqueName,
       },
@@ -661,9 +679,8 @@ class Lead {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for getTokenForVideoRoom",
+        message: `Parameter Validation warrnings for platform > Lead > getTokenForVideoRoom \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -678,7 +695,7 @@ class Lead {
 
     const {
       error: res_error,
-    } = LeadModel.GetTokenForVideoRoomResponse().validate(response, {
+    } = LeadPlatformModel.GetTokenForVideoRoomResponse().validate(response, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -686,23 +703,26 @@ class Lead {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for getTokenForVideoRoom",
+        message: `Response Validation Warnnings for platform > Lead > getTokenForVideoRoom \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.uniqueName - Unique name of Video Room
-   * @returns {Promise<GetParticipantsInsideVideoRoomResponse>} - Success response
+   * @param {LeadPlatformApplicationValidator.getVideoParticipants} arg - Arg object
+   * @returns {Promise<LeadPlatformModel.GetParticipantsInsideVideoRoomResponse>}
+   *   - Success response
+   *
+   * @name getVideoParticipants
    * @summary: Get participants of a specific Video Room using it's unique name
    * @description: Get participants of a specific Video Room using it's unique name, this can be used to check if people are already there in the room and also to show their names.
    */
   async getVideoParticipants({ uniqueName } = {}) {
-    const { error } = LeadValidator.getVideoParticipants().validate(
+    const {
+      error,
+    } = LeadPlatformApplicationValidator.getVideoParticipants().validate(
       {
         uniqueName,
       },
@@ -713,7 +733,9 @@ class Lead {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = LeadValidator.getVideoParticipants().validate(
+    const {
+      error: warrning,
+    } = LeadPlatformApplicationValidator.getVideoParticipants().validate(
       {
         uniqueName,
       },
@@ -722,9 +744,8 @@ class Lead {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for getVideoParticipants",
+        message: `Parameter Validation warrnings for platform > Lead > getVideoParticipants \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -739,31 +760,30 @@ class Lead {
 
     const {
       error: res_error,
-    } = LeadModel.GetParticipantsInsideVideoRoomResponse().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
+    } = LeadPlatformModel.GetParticipantsInsideVideoRoomResponse().validate(
+      response,
+      { abortEarly: false, allowUnknown: false }
+    );
 
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for getVideoParticipants",
+        message: `Response Validation Warnnings for platform > Lead > getVideoParticipants \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {CreateVideoRoomPayload} arg.body
-   * @returns {Promise<CreateVideoRoomResponse>} - Success response
+   * @param {LeadPlatformApplicationValidator.openVideoRoom} arg - Arg object
+   * @returns {Promise<LeadPlatformModel.CreateVideoRoomResponse>} - Success response
+   * @name openVideoRoom
    * @summary: Open a video room.
    * @description: Open a video room.
    */
   async openVideoRoom({ body } = {}) {
-    const { error } = LeadValidator.openVideoRoom().validate(
+    const { error } = LeadPlatformApplicationValidator.openVideoRoom().validate(
       {
         body,
       },
@@ -774,7 +794,9 @@ class Lead {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = LeadValidator.openVideoRoom().validate(
+    const {
+      error: warrning,
+    } = LeadPlatformApplicationValidator.openVideoRoom().validate(
       {
         body,
       },
@@ -783,9 +805,8 @@ class Lead {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for openVideoRoom",
+        message: `Parameter Validation warrnings for platform > Lead > openVideoRoom \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -800,7 +821,7 @@ class Lead {
 
     const {
       error: res_error,
-    } = LeadModel.CreateVideoRoomResponse().validate(response, {
+    } = LeadPlatformModel.CreateVideoRoomResponse().validate(response, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -808,9 +829,8 @@ class Lead {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for openVideoRoom",
+        message: `Response Validation Warnnings for platform > Lead > openVideoRoom \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;

@@ -1,7 +1,24 @@
 const Joi = require("joi");
 
-const CommonModel = require("./CommonPlatformModel");
-class CommonValidator {
+const CommonPlatformModel = require("./CommonPlatformModel");
+
+/**
+ * @typedef getLocations
+ * @property {string} [locationType] - Provide location type to query on.
+ *   Possible values : country, state, city
+ * @property {string} [id] - Field is optional when location_type is country. If
+ *   querying for state, provide id of country. If querying for city, provide id
+ *   of state.
+ */
+
+/**
+ * @typedef searchApplication
+ * @property {string} [authorization]
+ * @property {string} [query] - Provide application name
+ */
+
+class CommonPlatformValidator {
+  /** @returns {getLocations} */
   static getLocations() {
     return Joi.object({
       locationType: Joi.string().allow(""),
@@ -9,6 +26,7 @@ class CommonValidator {
     });
   }
 
+  /** @returns {searchApplication} */
   static searchApplication() {
     return Joi.object({
       authorization: Joi.string().allow(""),
@@ -17,4 +35,4 @@ class CommonValidator {
   }
 }
 
-module.exports = CommonValidator;
+module.exports = CommonPlatformValidator;

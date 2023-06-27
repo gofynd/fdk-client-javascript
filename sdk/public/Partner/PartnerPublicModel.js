@@ -1,18 +1,166 @@
 const Joi = require("joi");
 
-class PartnerModel {
+/**
+ * @typedef Benefits
+ * @property {string} [description]
+ * @property {string} [title]
+ */
+
+/**
+ * @typedef CategoryCommon
+ * @property {CategoryL1[]} [category_l1]
+ * @property {CategoryL2[]} [category_l2]
+ */
+
+/**
+ * @typedef CategoryL1
+ * @property {string} [_id]
+ * @property {string} [description]
+ * @property {string} [display]
+ * @property {number} [level]
+ * @property {string} [logo]
+ * @property {string} [slug]
+ * @property {string} [value]
+ */
+
+/**
+ * @typedef CategoryL2
+ * @property {string} [_id]
+ * @property {string} [display]
+ * @property {number} [level]
+ * @property {string} [parent]
+ * @property {string} [slug]
+ * @property {string} [value]
+ */
+
+/**
+ * @typedef ContactInfo
+ * @property {Support} [support]
+ */
+
+/**
+ * @typedef Details
+ * @property {Benefits[]} [benefits]
+ * @property {string} [demo_url]
+ * @property {string} [description]
+ * @property {string[]} [integration]
+ * @property {Screenshots} [screenshots]
+ * @property {Object[]} [video_url]
+ * @property {string[]} [youtube]
+ */
+
+/**
+ * @typedef ExtensionUsingSlug
+ * @property {string} [_id]
+ * @property {CategoryCommon} [category]
+ * @property {ContactInfo} [contact_info]
+ * @property {string} [created_at]
+ * @property {string} [current_status]
+ * @property {Details} [details]
+ * @property {string} [extension_id]
+ * @property {boolean} [is_coming_soon]
+ * @property {ListingInfo} [listing_info]
+ * @property {string} [modified_at]
+ * @property {Organization} [organization]
+ * @property {string} [organization_id]
+ * @property {string} [plan_type]
+ * @property {Plans[]} [plans]
+ * @property {string} [plans_url]
+ * @property {string} [review_instructions]
+ * @property {string[]} [scope]
+ * @property {string} [slug]
+ */
+
+/**
+ * @typedef ListingInfo
+ * @property {string} [icon]
+ * @property {string[]} [keywords]
+ * @property {string} [name]
+ * @property {string} [tagline]
+ */
+
+/**
+ * @typedef Organization
+ * @property {string} [_id]
+ * @property {string} [created_at]
+ * @property {string} [details]
+ * @property {string} [name]
+ * @property {string} [slug]
+ */
+
+/**
+ * @typedef OrganizationList
+ * @property {Organization[]} [items]
+ * @property {Pagination} [page]
+ */
+
+/**
+ * @typedef Pagination
+ * @property {number} [current]
+ * @property {boolean} [has_next]
+ * @property {number} [is_of]
+ * @property {number} [item_total]
+ * @property {number} [size]
+ * @property {string} [type]
+ */
+
+/**
+ * @typedef Plans
+ * @property {string} [additional_charges]
+ * @property {string} [features]
+ * @property {string} [name]
+ * @property {Price} [price]
+ * @property {Recurring} [recurring]
+ * @property {number} [trial_days]
+ * @property {string} [type]
+ */
+
+/**
+ * @typedef Price
+ * @property {number} [amount]
+ * @property {string} [currency]
+ */
+
+/**
+ * @typedef Recurring
+ * @property {number} [recurring_time]
+ * @property {string} [type]
+ * @property {number} [yearly_amount]
+ */
+
+/**
+ * @typedef Screenshots
+ * @property {string[]} [desktop]
+ * @property {string[]} [mobile]
+ */
+
+/**
+ * @typedef Support
+ * @property {string} [email]
+ * @property {string} [faq_url]
+ * @property {string} [phone]
+ * @property {string} [privacy_policy_url]
+ * @property {string} [website_url]
+ */
+
+class PartnerPublicModel {
+  /** @returns {Benefits} */
   static Benefits() {
     return Joi.object({
       description: Joi.string().allow(""),
       title: Joi.string().allow(""),
     });
   }
+
+  /** @returns {CategoryCommon} */
   static CategoryCommon() {
     return Joi.object({
-      category_l1: Joi.array().items(PartnerModel.CategoryL1()),
-      category_l2: Joi.array().items(PartnerModel.CategoryL2()),
+      category_l1: Joi.array().items(PartnerPublicModel.CategoryL1()),
+      category_l2: Joi.array().items(PartnerPublicModel.CategoryL2()),
     });
   }
+
+  /** @returns {CategoryL1} */
   static CategoryL1() {
     return Joi.object({
       _id: Joi.string().allow(""),
@@ -24,6 +172,8 @@ class PartnerModel {
       value: Joi.string().allow(""),
     });
   }
+
+  /** @returns {CategoryL2} */
   static CategoryL2() {
     return Joi.object({
       _id: Joi.string().allow(""),
@@ -34,44 +184,52 @@ class PartnerModel {
       value: Joi.string().allow(""),
     });
   }
+
+  /** @returns {ContactInfo} */
   static ContactInfo() {
     return Joi.object({
-      support: PartnerModel.Support(),
+      support: PartnerPublicModel.Support(),
     });
   }
+
+  /** @returns {Details} */
   static Details() {
     return Joi.object({
-      benefits: Joi.array().items(PartnerModel.Benefits()),
+      benefits: Joi.array().items(PartnerPublicModel.Benefits()),
       demo_url: Joi.string().allow(""),
       description: Joi.string().allow(""),
       integration: Joi.array().items(Joi.string().allow("")),
-      screenshots: PartnerModel.Screenshots(),
+      screenshots: PartnerPublicModel.Screenshots(),
       video_url: Joi.array().items(Joi.any()),
       youtube: Joi.array().items(Joi.string().allow("")),
     });
   }
+
+  /** @returns {ExtensionUsingSlug} */
   static ExtensionUsingSlug() {
     return Joi.object({
       _id: Joi.string().allow(""),
-      category: PartnerModel.CategoryCommon(),
-      contact_info: PartnerModel.ContactInfo(),
+      category: PartnerPublicModel.CategoryCommon(),
+      contact_info: PartnerPublicModel.ContactInfo(),
       created_at: Joi.string().allow(""),
       current_status: Joi.string().allow(""),
-      details: PartnerModel.Details(),
+      details: PartnerPublicModel.Details(),
       extension_id: Joi.string().allow(""),
       is_coming_soon: Joi.boolean(),
-      listing_info: PartnerModel.ListingInfo(),
+      listing_info: PartnerPublicModel.ListingInfo(),
       modified_at: Joi.string().allow(""),
-      organization: PartnerModel.Organization(),
+      organization: PartnerPublicModel.Organization(),
       organization_id: Joi.string().allow(""),
       plan_type: Joi.string().allow(""),
-      plans: Joi.array().items(PartnerModel.Plans()),
+      plans: Joi.array().items(PartnerPublicModel.Plans()),
       plans_url: Joi.string().allow(""),
       review_instructions: Joi.string().allow(""),
       scope: Joi.array().items(Joi.string().allow("")),
       slug: Joi.string().allow(""),
     });
   }
+
+  /** @returns {ListingInfo} */
   static ListingInfo() {
     return Joi.object({
       icon: Joi.string().allow(""),
@@ -80,6 +238,8 @@ class PartnerModel {
       tagline: Joi.string().allow(""),
     });
   }
+
+  /** @returns {Organization} */
   static Organization() {
     return Joi.object({
       _id: Joi.string().allow(""),
@@ -89,12 +249,16 @@ class PartnerModel {
       slug: Joi.string().allow(""),
     });
   }
+
+  /** @returns {OrganizationList} */
   static OrganizationList() {
     return Joi.object({
-      items: Joi.array().items(PartnerModel.Organization()),
-      page: PartnerModel.Pagination(),
+      items: Joi.array().items(PartnerPublicModel.Organization()),
+      page: PartnerPublicModel.Pagination(),
     });
   }
+
+  /** @returns {Pagination} */
   static Pagination() {
     return Joi.object({
       current: Joi.number(),
@@ -105,23 +269,29 @@ class PartnerModel {
       type: Joi.string().allow(""),
     });
   }
+
+  /** @returns {Plans} */
   static Plans() {
     return Joi.object({
       additional_charges: Joi.string().allow(""),
       features: Joi.string().allow(""),
       name: Joi.string().allow(""),
-      price: PartnerModel.Price(),
-      recurring: PartnerModel.Recurring(),
+      price: PartnerPublicModel.Price(),
+      recurring: PartnerPublicModel.Recurring(),
       trial_days: Joi.number(),
       type: Joi.string().allow(""),
     });
   }
+
+  /** @returns {Price} */
   static Price() {
     return Joi.object({
       amount: Joi.number(),
       currency: Joi.string().allow(""),
     });
   }
+
+  /** @returns {Recurring} */
   static Recurring() {
     return Joi.object({
       recurring_time: Joi.number(),
@@ -129,12 +299,16 @@ class PartnerModel {
       yearly_amount: Joi.number(),
     });
   }
+
+  /** @returns {Screenshots} */
   static Screenshots() {
     return Joi.object({
       desktop: Joi.array().items(Joi.string().allow("")),
       mobile: Joi.array().items(Joi.string().allow("")),
     });
   }
+
+  /** @returns {Support} */
   static Support() {
     return Joi.object({
       email: Joi.string().allow(""),
@@ -145,4 +319,4 @@ class PartnerModel {
     });
   }
 }
-module.exports = PartnerModel;
+module.exports = PartnerPublicModel;

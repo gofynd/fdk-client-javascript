@@ -13,69 +13,61 @@ declare class Inventory {
     _urls: {};
     updateUrls(urls: any): void;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.userName - Integration id
-     * @param {string} arg.password - Company/store token
-     * @returns {Promise<ResponseEnvelopeApikeyModel>} - Success response
+     * @param {InventoryPublicValidator.getApiKey} arg - Arg object.
+     * @returns {Promise<InventoryPublicModel.ResponseEnvelopeApikeyModel>} -
+     *   Success response
+     * @name getApiKey
      * @summary: Get apikey  for  Company  to call other Slingshot Configuration APIs
      * @description: REST Endpoint that returns apikey by username by password
      */
-    getApiKey({ userName, password }?: {
-        userName: string;
-        password: string;
-    }): Promise<ResponseEnvelopeApikeyModel>;
+    getApiKey({ userName, password }?: InventoryPublicValidator.getApiKey): Promise<InventoryPublicModel.ResponseEnvelopeApikeyModel>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.apikey - Api key
-     * @returns {Promise<ResponseEnvelopeSlingshotConfigurationDetail>} - Success response
+     * @param {InventoryPublicValidator.getConfigByApiKey} arg - Arg object.
+     * @returns {Promise<InventoryPublicModel.ResponseEnvelopeSlingshotConfigurationDetail>}
+     *   - Success response
+     *
+     * @name getConfigByApiKey
      * @summary: Get Slingshot Configuration Of  A Company using API key
      * @description: REST Endpoint that returns all configuration detail of a company
      */
-    getConfigByApiKey({ apikey }?: {
-        apikey: string;
-    }): Promise<ResponseEnvelopeSlingshotConfigurationDetail>;
+    getConfigByApiKey({ apikey }?: InventoryPublicValidator.getConfigByApiKey): Promise<InventoryPublicModel.ResponseEnvelopeSlingshotConfigurationDetail>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.code - Job Code
-     * @returns {Promise<ResponseEnvelopeJobConfigDTO>} - Success response
+     * @param {InventoryPublicValidator.getJobByCode} arg - Arg object.
+     * @returns {Promise<InventoryPublicModel.ResponseEnvelopeJobConfigDTO>} -
+     *   Success response
+     * @name getJobByCode
      * @summary: Get Job Config By Code
      * @description: REST Endpoint that returns job config by code
      */
-    getJobByCode({ code }?: {
-        code: string;
-    }): Promise<ResponseEnvelopeJobConfigDTO>;
+    getJobByCode({ code }?: InventoryPublicValidator.getJobByCode): Promise<InventoryPublicModel.ResponseEnvelopeJobConfigDTO>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {boolean} [arg.dailyJob] - Daily Job Flag
-     * @param {string} [arg.jobCode] - Email Job Code
-     * @returns {Promise<ResponseEnvelopeObject>} - Success response
+     * @param {InventoryPublicValidator.getJobCodesMetrics} arg - Arg object.
+     * @returns {Promise<InventoryPublicModel.ResponseEnvelopeObject>} - Success response
+     * @name getJobCodesMetrics
      * @summary: Find all the JobCodes from Metrics Collection based on the field Values
      * @description: Endpoint to return all JobCodes present in Metrics Collection
      */
-    getJobCodesMetrics({ dailyJob, jobCode }?: {
-        dailyJob?: boolean;
-        jobCode?: string;
-    }): Promise<ResponseEnvelopeObject>;
+    getJobCodesMetrics({ dailyJob, jobCode }?: InventoryPublicValidator.getJobCodesMetrics): Promise<InventoryPublicModel.ResponseEnvelopeObject>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.integrationType - Integration Type
-     * @param {boolean} [arg.disable] - JobConfig current state
-     * @returns {Promise<ResponseEnvelopeListJobConfigDTO>} - Success response
+     * @param {InventoryPublicValidator.getJobConfigByIntegrationType} arg - Arg object.
+     * @returns {Promise<InventoryPublicModel.ResponseEnvelopeListJobConfigDTO>}
+     *   - Success response
+     *
+     * @name getJobConfigByIntegrationType
      * @summary: Get Job Configs By Integration Type
      * @description: REST Endpoint that returns all job Configs by Integration Type
      */
-    getJobConfigByIntegrationType({ integrationType, disable }?: {
-        integrationType: string;
-        disable?: boolean;
-    }): Promise<ResponseEnvelopeListJobConfigDTO>;
+    getJobConfigByIntegrationType({ integrationType, disable }?: InventoryPublicValidator.getJobConfigByIntegrationType): Promise<InventoryPublicModel.ResponseEnvelopeListJobConfigDTO>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {EmailJobMetrics} arg.body
-     * @returns {Promise<ResponseEnvelopeEmailJobMetrics>} - Success response
+     * @param {InventoryPublicValidator.saveJobCodesMetrics} arg - Arg object.
+     * @returns {Promise<InventoryPublicModel.ResponseEnvelopeEmailJobMetrics>}
+     *   - Success response
+     *
+     * @name saveJobCodesMetrics
      * @summary: Save JobCode Metrics
      * @description: Endpoint to save JobCode Metrics
      */
-    saveJobCodesMetrics({ body }?: {
-        body: EmailJobMetrics;
-    }): Promise<ResponseEnvelopeEmailJobMetrics>;
+    saveJobCodesMetrics({ body }?: InventoryPublicValidator.saveJobCodesMetrics): Promise<InventoryPublicModel.ResponseEnvelopeEmailJobMetrics>;
 }
+import InventoryPublicValidator = require("./InventoryPublicValidator");
+import InventoryPublicModel = require("./InventoryPublicModel");

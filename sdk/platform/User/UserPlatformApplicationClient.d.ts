@@ -4,197 +4,145 @@ declare class User {
     config: any;
     applicationId: any;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {ArchiveUserRequestSchema} arg.body
-     * @returns {Promise<ArchiveUserSuccess>} - Success response
+     * @param {UserPlatformApplicationValidator.archiveUser} arg - Arg object
+     * @returns {Promise<UserPlatformModel.ArchiveUserSuccess>} - Success response
+     * @name archiveUser
      * @summary: archive user
      * @description: archive user
      */
-    archiveUser({ body }?: {
-        body: ArchiveUserRequestSchema;
-    }): Promise<ArchiveUserSuccess>;
+    archiveUser({ body }?: UserPlatformApplicationValidator.archiveUser): Promise<UserPlatformModel.ArchiveUserSuccess>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {BlockUserRequestSchema} arg.body
-     * @returns {Promise<BlockUserSuccess>} - Success response
+     * @param {UserPlatformApplicationValidator.blockOrUnblockUsers} arg - Arg object
+     * @returns {Promise<UserPlatformModel.BlockUserSuccess>} - Success response
+     * @name blockOrUnblockUsers
      * @summary: Block/Unblock user
      * @description: Block/Unblock user
      */
-    blockOrUnblockUsers({ body }?: {
-        body: BlockUserRequestSchema;
-    }): Promise<BlockUserSuccess>;
+    blockOrUnblockUsers({ body }?: UserPlatformApplicationValidator.blockOrUnblockUsers): Promise<UserPlatformModel.BlockUserSuccess>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {CreateUserRequestSchema} arg.body
-     * @returns {Promise<CreateUserResponseSchema>} - Success response
+     * @param {UserPlatformApplicationValidator.createUser} arg - Arg object
+     * @returns {Promise<UserPlatformModel.CreateUserResponseSchema>} - Success response
+     * @name createUser
      * @summary: Create user
      * @description: Create user
      */
-    createUser({ body }?: {
-        body: CreateUserRequestSchema;
-    }): Promise<CreateUserResponseSchema>;
+    createUser({ body }?: UserPlatformApplicationValidator.createUser): Promise<UserPlatformModel.CreateUserResponseSchema>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {CreateUserGroupSchema} arg.body
-     * @returns {Promise<UserGroupResponseSchema>} - Success response
+     * @param {UserPlatformApplicationValidator.createUserGroup} arg - Arg object
+     * @returns {Promise<UserPlatformModel.UserGroupResponseSchema>} - Success response
+     * @name createUserGroup
      * @summary: Create an User Group
      * @description: Use this API to create new user Group
      */
-    createUserGroup({ body }?: {
-        body: CreateUserGroupSchema;
-    }): Promise<UserGroupResponseSchema>;
+    createUserGroup({ body }?: UserPlatformApplicationValidator.createUserGroup): Promise<UserPlatformModel.UserGroupResponseSchema>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {CreateUserSessionRequestSchema} arg.body
-     * @returns {Promise<CreateUserSessionResponseSchema>} - Success response
+     * @param {UserPlatformApplicationValidator.createUserSession} arg - Arg object
+     * @returns {Promise<UserPlatformModel.CreateUserSessionResponseSchema>} -
+     *   Success response
+     * @name createUserSession
      * @summary: Create user session
      * @description: Create user session
      */
-    createUserSession({ body }?: {
-        body: CreateUserSessionRequestSchema;
-    }): Promise<CreateUserSessionResponseSchema>;
+    createUserSession({ body }?: UserPlatformApplicationValidator.createUserSession): Promise<UserPlatformModel.CreateUserSessionResponseSchema>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.id - ID of a customer.
-     * @param {string} arg.reason - Reason to delete sessions.
-     * @returns {Promise<SessionDeleteResponseSchema>} - Success response
+     * @param {UserPlatformApplicationValidator.deleteActiveSessions} arg - Arg object
+     * @returns {Promise<UserPlatformModel.SessionDeleteResponseSchema>} -
+     *   Success response
+     * @name deleteActiveSessions
      * @summary: Delete a list of all session for a user
      * @description: Use this API to Delete a list of session of customers who have registered in the application.
      */
-    deleteActiveSessions({ id, reason }?: {
-        id: string;
-        reason: string;
-    }): Promise<SessionDeleteResponseSchema>;
+    deleteActiveSessions({ id, reason }?: UserPlatformApplicationValidator.deleteActiveSessions): Promise<UserPlatformModel.SessionDeleteResponseSchema>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.id - ID of a customer.
-     * @param {string} arg.sessionId - Session ID of a customer.
-     * @param {string} arg.reason - Reason for deleting session.
-     * @returns {Promise<SessionDeleteResponseSchema>} - Success response
+     * @param {UserPlatformApplicationValidator.deleteSession} arg - Arg object
+     * @returns {Promise<UserPlatformModel.SessionDeleteResponseSchema>} -
+     *   Success response
+     * @name deleteSession
      * @summary: Delete a session for a user
      * @description: Use this API to Delete a session of customers who have registered in the application.
      */
-    deleteSession({ id, sessionId, reason }?: {
-        id: string;
-        sessionId: string;
-        reason: string;
-    }): Promise<SessionDeleteResponseSchema>;
+    deleteSession({ id, sessionId, reason }?: UserPlatformApplicationValidator.deleteSession): Promise<UserPlatformModel.SessionDeleteResponseSchema>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.id - ID of a customer.
-     * @returns {Promise<SessionListResponseSchema>} - Success response
+     * @param {UserPlatformApplicationValidator.getActiveSessions} arg - Arg object
+     * @returns {Promise<UserPlatformModel.SessionListResponseSchema>} - Success response
+     * @name getActiveSessions
      * @summary: Get a list of all session with info for a user
      * @description: Use this API to retrieve a list of session with info of customers who have registered in the application.
      */
-    getActiveSessions({ id }?: {
-        id: string;
-    }): Promise<SessionListResponseSchema>;
+    getActiveSessions({ id }?: UserPlatformApplicationValidator.getActiveSessions): Promise<UserPlatformModel.SessionListResponseSchema>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {Object} [arg.q] - The search query. Mobile number or email ID of
-     *   a customer.
-     * @param {number} [arg.pageSize] - The number of items to retrieve in each
-     *   page. Default value is 10.
-     * @param {number} [arg.pageNo] - The page number to navigate through the
-     *   given set of results. Default value is 1.
-     * @returns {Promise<CustomerListResponseSchema>} - Success response
+     * @param {UserPlatformApplicationValidator.getCustomers} arg - Arg object
+     * @returns {Promise<UserPlatformModel.CustomerListResponseSchema>} - Success response
+     * @name getCustomers
      * @summary: Get a list of customers
      * @description: Use this API to retrieve a list of customers who have registered in the application.
      */
-    getCustomers({ q, pageSize, pageNo }?: {
-        q?: any;
-        pageSize?: number;
-        pageNo?: number;
-    }): Promise<CustomerListResponseSchema>;
+    getCustomers({ q, pageSize, pageNo }?: UserPlatformApplicationValidator.getCustomers): Promise<UserPlatformModel.CustomerListResponseSchema>;
     /**
-     * @param {Object} arg - Arg object.
-     * @returns {Promise<PlatformSchema>} - Success response
+     * @param {UserPlatformApplicationValidator.getPlatformConfig} arg - Arg object
+     * @returns {Promise<UserPlatformModel.PlatformSchema>} - Success response
+     * @name getPlatformConfig
      * @summary: Get platform configurations
      * @description: Use this API to get all the platform configurations such as mobile image, desktop image, social logins, and all other text.
      */
-    getPlatformConfig({}?: any): Promise<PlatformSchema>;
+    getPlatformConfig({}?: any): Promise<UserPlatformModel.PlatformSchema>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.groupId - Numeric ID allotted to a User Group
-     * @returns {Promise<UserGroupResponseSchema>} - Success response
+     * @param {UserPlatformApplicationValidator.getUserGroupById} arg - Arg object
+     * @returns {Promise<UserPlatformModel.UserGroupResponseSchema>} - Success response
+     * @name getUserGroupById
      * @summary: Get an User Group by Id
      * @description: Use this API to get details of an existing user Group
      */
-    getUserGroupById({ groupId }?: {
-        groupId: string;
-    }): Promise<UserGroupResponseSchema>;
+    getUserGroupById({ groupId }?: UserPlatformApplicationValidator.getUserGroupById): Promise<UserPlatformModel.UserGroupResponseSchema>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {string} [arg.pageNo] - Page number for pagination result
-     * @param {string} [arg.pageSize] - Page size for pagination result
-     * @param {string} [arg.name] - To seartch for User Groups which contains
-     *   given string in their name
-     * @param {string} [arg.status] - To get User Groups with given status
-     * @param {number} [arg.groupUid] - To get User Groups with given uid
-     * @returns {Promise<UserGroupListResponseSchema>} - Success response
+     * @param {UserPlatformApplicationValidator.getUserGroups} arg - Arg object
+     * @returns {Promise<UserPlatformModel.UserGroupListResponseSchema>} -
+     *   Success response
+     * @name getUserGroups
      * @summary: Get User Groups mathcing criteria
      * @description: Use this API to get User Groups mathing criteria passed in query
      */
-    getUserGroups({ pageNo, pageSize, name, status, groupUid }?: {
-        pageNo?: string;
-        pageSize?: string;
-        name?: string;
-        status?: string;
-        groupUid?: number;
-    }): Promise<UserGroupListResponseSchema>;
+    getUserGroups({ pageNo, pageSize, name, status, groupUid }?: UserPlatformApplicationValidator.getUserGroups): Promise<UserPlatformModel.UserGroupListResponseSchema>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {string} [arg.q] - The search query. Mobile number, email ID or
-     *   user ID of a customer.
-     * @returns {Promise<UserSearchResponseSchema>} - Success response
+     * @param {UserPlatformApplicationValidator.searchUsers} arg - Arg object
+     * @returns {Promise<UserPlatformModel.UserSearchResponseSchema>} - Success response
+     * @name searchUsers
      * @summary: Search an existing user.
      * @description: Use this API to retrieve an existing user from a list.
      */
-    searchUsers({ q }?: {
-        q?: string;
-    }): Promise<UserSearchResponseSchema>;
+    searchUsers({ q }?: UserPlatformApplicationValidator.searchUsers): Promise<UserPlatformModel.UserSearchResponseSchema>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {UnDeleteUserRequestSchema} arg.body
-     * @returns {Promise<UnDeleteUserSuccess>} - Success response
+     * @param {UserPlatformApplicationValidator.unDeleteUser} arg - Arg object
+     * @returns {Promise<UserPlatformModel.UnDeleteUserSuccess>} - Success response
+     * @name unDeleteUser
      * @summary: undelete user who deleted from application and have not elapsed the platform configured delete days
      * @description: undelete user who deleted from application and have not elapsed the platform configured delete days
      */
-    unDeleteUser({ body }?: {
-        body: UnDeleteUserRequestSchema;
-    }): Promise<UnDeleteUserSuccess>;
+    unDeleteUser({ body }?: UserPlatformApplicationValidator.unDeleteUser): Promise<UserPlatformModel.UnDeleteUserSuccess>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {PlatformSchema} arg.body
-     * @returns {Promise<PlatformSchema>} - Success response
+     * @param {UserPlatformApplicationValidator.updatePlatformConfig} arg - Arg object
+     * @returns {Promise<UserPlatformModel.PlatformSchema>} - Success response
+     * @name updatePlatformConfig
      * @summary: Update platform configurations
      * @description: Use this API to edit the existing platform configurations such as mobile image, desktop image, social logins, and all other text.
      */
-    updatePlatformConfig({ body }?: {
-        body: PlatformSchema;
-    }): Promise<PlatformSchema>;
+    updatePlatformConfig({ body }?: UserPlatformApplicationValidator.updatePlatformConfig): Promise<UserPlatformModel.PlatformSchema>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.userId - User ID
-     * @param {UpdateUserRequestSchema} arg.body
-     * @returns {Promise<CreateUserResponseSchema>} - Success response
+     * @param {UserPlatformApplicationValidator.updateUser} arg - Arg object
+     * @returns {Promise<UserPlatformModel.CreateUserResponseSchema>} - Success response
+     * @name updateUser
      * @summary: Update user
      * @description: Use this API to update user details, Note: Existing emails and phone numbers of user will be replaced directly if phone_numbers or emails field sent in request data.
      */
-    updateUser({ userId, body }?: {
-        userId: string;
-        body: UpdateUserRequestSchema;
-    }): Promise<CreateUserResponseSchema>;
+    updateUser({ userId, body }?: UserPlatformApplicationValidator.updateUser): Promise<UserPlatformModel.CreateUserResponseSchema>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.groupId - Numeric ID allotted to a User Group
-     * @param {UpdateUserGroupSchema} arg.body
-     * @returns {Promise<UserGroupResponseSchema>} - Success response
+     * @param {UserPlatformApplicationValidator.updateUserGroup} arg - Arg object
+     * @returns {Promise<UserPlatformModel.UserGroupResponseSchema>} - Success response
+     * @name updateUserGroup
      * @summary: Update an User Group
      * @description: Use this API to update an existing user Group
      */
-    updateUserGroup({ groupId, body }?: {
-        groupId: string;
-        body: UpdateUserGroupSchema;
-    }): Promise<UserGroupResponseSchema>;
+    updateUserGroup({ groupId, body }?: UserPlatformApplicationValidator.updateUserGroup): Promise<UserPlatformModel.UserGroupResponseSchema>;
 }
+import UserPlatformApplicationValidator = require("./UserPlatformApplicationValidator");
+import UserPlatformModel = require("./UserPlatformModel");

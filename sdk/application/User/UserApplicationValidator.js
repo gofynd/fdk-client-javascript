@@ -1,21 +1,223 @@
 const Joi = require("joi");
 
-const UserModel = require("./UserApplicationModel");
-class UserValidator {
+const UserApplicationModel = require("./UserApplicationModel");
+
+/**
+ * @typedef addEmail
+ * @property {string} [platform] - ID of the application
+ * @property {UserApplicationModel.EditEmailRequestSchema} body
+ */
+
+/**
+ * @typedef addMobileNumber
+ * @property {string} [platform] - ID of the application
+ * @property {UserApplicationModel.EditMobileRequestSchema} body
+ */
+
+/**
+ * @typedef deleteEmail
+ * @property {string} [platform] - ID of the application
+ * @property {boolean} active - This is a boolean value to check if email ID is
+ *   active 1. True - Email ID is active 2.False - Email ID is inactive
+ * @property {boolean} primary - This is a boolean value to check if email ID is
+ *   primary (main email ID) 1. True - Email ID is primary 2.False - Email ID is
+ *   not primary
+ * @property {boolean} verified - This is a boolean value to check if email ID
+ *   is verified 1. True - Email ID is verified 2.False - Email ID is not verified yet
+ * @property {string} email - The email ID to delete
+ */
+
+/**
+ * @typedef deleteMobileNumber
+ * @property {string} [platform] - ID of the application
+ * @property {boolean} active - This is a boolean value to check if mobile
+ *   number is active 1.True - Number is active 2. False - Number is inactive
+ * @property {boolean} primary - This is a boolean value to check if mobile
+ *   number is primary number (main number) 1. True - Number is primary 2. False
+ *   - Number is not primary
+ * @property {boolean} verified - This is a boolean value to check if mobile
+ *   number is verified 1. True - Number is verified 2.False - Number is not verified yet
+ * @property {string} countryCode - Country code of the phone number, e.g. 91
+ * @property {string} phone - Phone number
+ */
+
+/**
+ * @typedef deleteUser
+ * @property {UserApplicationModel.DeleteApplicationUserRequestSchema} body
+ */
+
+/**
+ * @typedef forgotPassword
+ * @property {UserApplicationModel.ForgotPasswordRequestSchema} body
+ */
+
+/** @typedef getListOfActiveSessions */
+
+/** @typedef getLoggedInUser */
+
+/**
+ * @typedef getPlatformConfig
+ * @property {string} [name] - Name of the application, e.g. Fynd
+ */
+
+/** @typedef hasPassword */
+
+/**
+ * @typedef loginWithAppleIOS
+ * @property {string} [platform] - ID of the application
+ * @property {UserApplicationModel.OAuthRequestAppleSchema} body
+ */
+
+/**
+ * @typedef loginWithEmailAndPassword
+ * @property {UserApplicationModel.PasswordLoginRequestSchema} body
+ */
+
+/**
+ * @typedef loginWithFacebook
+ * @property {string} [platform] - ID of the application
+ * @property {UserApplicationModel.OAuthRequestSchema} body
+ */
+
+/**
+ * @typedef loginWithGoogle
+ * @property {string} [platform] - ID of the application
+ * @property {UserApplicationModel.OAuthRequestSchema} body
+ */
+
+/**
+ * @typedef loginWithGoogleAndroid
+ * @property {string} [platform] - ID of the application
+ * @property {UserApplicationModel.OAuthRequestSchema} body
+ */
+
+/**
+ * @typedef loginWithGoogleIOS
+ * @property {string} [platform] - ID of the application
+ * @property {UserApplicationModel.OAuthRequestSchema} body
+ */
+
+/**
+ * @typedef loginWithOTP
+ * @property {string} [platform] - ID of the application
+ * @property {UserApplicationModel.SendOtpRequestSchema} body
+ */
+
+/**
+ * @typedef loginWithToken
+ * @property {UserApplicationModel.TokenRequestBodySchema} body
+ */
+
+/** @typedef logout */
+
+/**
+ * @typedef registerWithForm
+ * @property {string} [platform] - ID of the application
+ * @property {UserApplicationModel.FormRegisterRequestSchema} body
+ */
+
+/**
+ * @typedef sendOTPOnEmail
+ * @property {string} [platform] - ID of the application
+ * @property {UserApplicationModel.SendEmailOtpRequestSchema} body
+ */
+
+/**
+ * @typedef sendOTPOnMobile
+ * @property {string} [platform] - ID of the application
+ * @property {UserApplicationModel.SendMobileOtpRequestSchema} body
+ */
+
+/**
+ * @typedef sendResetPasswordEmail
+ * @property {string} [platform] - ID of the application
+ * @property {UserApplicationModel.SendResetPasswordEmailRequestSchema} body
+ */
+
+/**
+ * @typedef sendResetPasswordMobile
+ * @property {string} [platform] - ID of the application
+ * @property {UserApplicationModel.SendResetPasswordMobileRequestSchema} body
+ */
+
+/**
+ * @typedef sendResetToken
+ * @property {UserApplicationModel.CodeRequestBodySchema} body
+ */
+
+/**
+ * @typedef sendVerificationLinkToEmail
+ * @property {string} [platform] - ID of the application
+ * @property {UserApplicationModel.EditEmailRequestSchema} body
+ */
+
+/**
+ * @typedef sendVerificationLinkToMobile
+ * @property {string} [platform] - ID of the application
+ * @property {UserApplicationModel.SendVerificationLinkMobileRequestSchema} body
+ */
+
+/**
+ * @typedef setEmailAsPrimary
+ * @property {UserApplicationModel.EditEmailRequestSchema} body
+ */
+
+/**
+ * @typedef setMobileNumberAsPrimary
+ * @property {UserApplicationModel.SendVerificationLinkMobileRequestSchema} body
+ */
+
+/**
+ * @typedef updatePassword
+ * @property {UserApplicationModel.UpdatePasswordRequestSchema} body
+ */
+
+/**
+ * @typedef updateProfile
+ * @property {string} [platform] - ID of the application
+ * @property {UserApplicationModel.EditProfileRequestSchema} body
+ */
+
+/**
+ * @typedef verifyEmail
+ * @property {UserApplicationModel.CodeRequestBodySchema} body
+ */
+
+/**
+ * @typedef verifyEmailOTP
+ * @property {string} [platform] - ID of the application
+ * @property {UserApplicationModel.VerifyEmailOtpRequestSchema} body
+ */
+
+/**
+ * @typedef verifyMobile
+ * @property {UserApplicationModel.CodeRequestBodySchema} body
+ */
+
+/**
+ * @typedef verifyMobileOTP
+ * @property {string} [platform] - ID of the application
+ * @property {UserApplicationModel.VerifyOtpRequestSchema} body
+ */
+
+class UserApplicationValidator {
+  /** @returns {addEmail} */
   static addEmail() {
     return Joi.object({
       platform: Joi.string().allow(""),
-      body: UserModel.EditEmailRequestSchema().required(),
+      body: UserApplicationModel.EditEmailRequestSchema().required(),
     }).required();
   }
 
+  /** @returns {addMobileNumber} */
   static addMobileNumber() {
     return Joi.object({
       platform: Joi.string().allow(""),
-      body: UserModel.EditMobileRequestSchema().required(),
+      body: UserApplicationModel.EditMobileRequestSchema().required(),
     }).required();
   }
 
+  /** @returns {deleteEmail} */
   static deleteEmail() {
     return Joi.object({
       platform: Joi.string().allow(""),
@@ -26,6 +228,7 @@ class UserValidator {
     }).required();
   }
 
+  /** @returns {deleteMobileNumber} */
   static deleteMobileNumber() {
     return Joi.object({
       platform: Joi.string().allow(""),
@@ -37,199 +240,230 @@ class UserValidator {
     }).required();
   }
 
+  /** @returns {deleteUser} */
   static deleteUser() {
     return Joi.object({
-      body: UserModel.DeleteApplicationUserRequestSchema().required(),
+      body: UserApplicationModel.DeleteApplicationUserRequestSchema().required(),
     }).required();
   }
 
+  /** @returns {forgotPassword} */
   static forgotPassword() {
     return Joi.object({
-      body: UserModel.ForgotPasswordRequestSchema().required(),
+      body: UserApplicationModel.ForgotPasswordRequestSchema().required(),
     }).required();
   }
 
+  /** @returns {getListOfActiveSessions} */
   static getListOfActiveSessions() {
     return Joi.object({});
   }
 
+  /** @returns {getLoggedInUser} */
   static getLoggedInUser() {
     return Joi.object({});
   }
 
+  /** @returns {getPlatformConfig} */
   static getPlatformConfig() {
     return Joi.object({
       name: Joi.string().allow(""),
     });
   }
 
+  /** @returns {hasPassword} */
   static hasPassword() {
     return Joi.object({});
   }
 
+  /** @returns {loginWithAppleIOS} */
   static loginWithAppleIOS() {
     return Joi.object({
       platform: Joi.string().allow(""),
-      body: UserModel.OAuthRequestAppleSchema().required(),
+      body: UserApplicationModel.OAuthRequestAppleSchema().required(),
     }).required();
   }
 
+  /** @returns {loginWithEmailAndPassword} */
   static loginWithEmailAndPassword() {
     return Joi.object({
-      body: UserModel.PasswordLoginRequestSchema().required(),
+      body: UserApplicationModel.PasswordLoginRequestSchema().required(),
     }).required();
   }
 
+  /** @returns {loginWithFacebook} */
   static loginWithFacebook() {
     return Joi.object({
       platform: Joi.string().allow(""),
-      body: UserModel.OAuthRequestSchema().required(),
+      body: UserApplicationModel.OAuthRequestSchema().required(),
     }).required();
   }
 
+  /** @returns {loginWithGoogle} */
   static loginWithGoogle() {
     return Joi.object({
       platform: Joi.string().allow(""),
-      body: UserModel.OAuthRequestSchema().required(),
+      body: UserApplicationModel.OAuthRequestSchema().required(),
     }).required();
   }
 
+  /** @returns {loginWithGoogleAndroid} */
   static loginWithGoogleAndroid() {
     return Joi.object({
       platform: Joi.string().allow(""),
-      body: UserModel.OAuthRequestSchema().required(),
+      body: UserApplicationModel.OAuthRequestSchema().required(),
     }).required();
   }
 
+  /** @returns {loginWithGoogleIOS} */
   static loginWithGoogleIOS() {
     return Joi.object({
       platform: Joi.string().allow(""),
-      body: UserModel.OAuthRequestSchema().required(),
+      body: UserApplicationModel.OAuthRequestSchema().required(),
     }).required();
   }
 
+  /** @returns {loginWithOTP} */
   static loginWithOTP() {
     return Joi.object({
       platform: Joi.string().allow(""),
-      body: UserModel.SendOtpRequestSchema().required(),
+      body: UserApplicationModel.SendOtpRequestSchema().required(),
     }).required();
   }
 
+  /** @returns {loginWithToken} */
   static loginWithToken() {
     return Joi.object({
-      body: UserModel.TokenRequestBodySchema().required(),
+      body: UserApplicationModel.TokenRequestBodySchema().required(),
     }).required();
   }
 
+  /** @returns {logout} */
   static logout() {
     return Joi.object({});
   }
 
+  /** @returns {registerWithForm} */
   static registerWithForm() {
     return Joi.object({
       platform: Joi.string().allow(""),
-      body: UserModel.FormRegisterRequestSchema().required(),
+      body: UserApplicationModel.FormRegisterRequestSchema().required(),
     }).required();
   }
 
+  /** @returns {sendOTPOnEmail} */
   static sendOTPOnEmail() {
     return Joi.object({
       platform: Joi.string().allow(""),
-      body: UserModel.SendEmailOtpRequestSchema().required(),
+      body: UserApplicationModel.SendEmailOtpRequestSchema().required(),
     }).required();
   }
 
+  /** @returns {sendOTPOnMobile} */
   static sendOTPOnMobile() {
     return Joi.object({
       platform: Joi.string().allow(""),
-      body: UserModel.SendMobileOtpRequestSchema().required(),
+      body: UserApplicationModel.SendMobileOtpRequestSchema().required(),
     }).required();
   }
 
+  /** @returns {sendResetPasswordEmail} */
   static sendResetPasswordEmail() {
     return Joi.object({
       platform: Joi.string().allow(""),
-      body: UserModel.SendResetPasswordEmailRequestSchema().required(),
+      body: UserApplicationModel.SendResetPasswordEmailRequestSchema().required(),
     }).required();
   }
 
+  /** @returns {sendResetPasswordMobile} */
   static sendResetPasswordMobile() {
     return Joi.object({
       platform: Joi.string().allow(""),
-      body: UserModel.SendResetPasswordMobileRequestSchema().required(),
+      body: UserApplicationModel.SendResetPasswordMobileRequestSchema().required(),
     }).required();
   }
 
+  /** @returns {sendResetToken} */
   static sendResetToken() {
     return Joi.object({
-      body: UserModel.CodeRequestBodySchema().required(),
+      body: UserApplicationModel.CodeRequestBodySchema().required(),
     }).required();
   }
 
+  /** @returns {sendVerificationLinkToEmail} */
   static sendVerificationLinkToEmail() {
     return Joi.object({
       platform: Joi.string().allow(""),
-      body: UserModel.EditEmailRequestSchema().required(),
+      body: UserApplicationModel.EditEmailRequestSchema().required(),
     }).required();
   }
 
+  /** @returns {sendVerificationLinkToMobile} */
   static sendVerificationLinkToMobile() {
     return Joi.object({
       platform: Joi.string().allow(""),
-      body: UserModel.SendVerificationLinkMobileRequestSchema().required(),
+      body: UserApplicationModel.SendVerificationLinkMobileRequestSchema().required(),
     }).required();
   }
 
+  /** @returns {setEmailAsPrimary} */
   static setEmailAsPrimary() {
     return Joi.object({
-      body: UserModel.EditEmailRequestSchema().required(),
+      body: UserApplicationModel.EditEmailRequestSchema().required(),
     }).required();
   }
 
+  /** @returns {setMobileNumberAsPrimary} */
   static setMobileNumberAsPrimary() {
     return Joi.object({
-      body: UserModel.SendVerificationLinkMobileRequestSchema().required(),
+      body: UserApplicationModel.SendVerificationLinkMobileRequestSchema().required(),
     }).required();
   }
 
+  /** @returns {updatePassword} */
   static updatePassword() {
     return Joi.object({
-      body: UserModel.UpdatePasswordRequestSchema().required(),
+      body: UserApplicationModel.UpdatePasswordRequestSchema().required(),
     }).required();
   }
 
+  /** @returns {updateProfile} */
   static updateProfile() {
     return Joi.object({
       platform: Joi.string().allow(""),
-      body: UserModel.EditProfileRequestSchema().required(),
+      body: UserApplicationModel.EditProfileRequestSchema().required(),
     }).required();
   }
 
+  /** @returns {verifyEmail} */
   static verifyEmail() {
     return Joi.object({
-      body: UserModel.CodeRequestBodySchema().required(),
+      body: UserApplicationModel.CodeRequestBodySchema().required(),
     }).required();
   }
 
+  /** @returns {verifyEmailOTP} */
   static verifyEmailOTP() {
     return Joi.object({
       platform: Joi.string().allow(""),
-      body: UserModel.VerifyEmailOtpRequestSchema().required(),
+      body: UserApplicationModel.VerifyEmailOtpRequestSchema().required(),
     }).required();
   }
 
+  /** @returns {verifyMobile} */
   static verifyMobile() {
     return Joi.object({
-      body: UserModel.CodeRequestBodySchema().required(),
+      body: UserApplicationModel.CodeRequestBodySchema().required(),
     }).required();
   }
 
+  /** @returns {verifyMobileOTP} */
   static verifyMobileOTP() {
     return Joi.object({
       platform: Joi.string().allow(""),
-      body: UserModel.VerifyOtpRequestSchema().required(),
+      body: UserApplicationModel.VerifyOtpRequestSchema().required(),
     }).required();
   }
 }
 
-module.exports = UserValidator;
+module.exports = UserApplicationValidator;

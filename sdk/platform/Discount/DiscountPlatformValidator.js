@@ -1,38 +1,113 @@
 const Joi = require("joi");
 
-const DiscountModel = require("./DiscountPlatformModel");
-class DiscountValidator {
+const DiscountPlatformModel = require("./DiscountPlatformModel");
+
+/**
+ * @typedef cancelDownloadJob
+ * @property {string} id - Id
+ */
+
+/**
+ * @typedef cancelValidationJob
+ * @property {string} id - Id
+ */
+
+/**
+ * @typedef createDiscount
+ * @property {DiscountPlatformModel.CreateUpdateDiscount} body
+ */
+
+/**
+ * @typedef downloadDiscountFile
+ * @property {string} type - Type
+ * @property {DiscountPlatformModel.DownloadFileJob} body
+ */
+
+/**
+ * @typedef getDiscount
+ * @property {string} id - Unique id.
+ */
+
+/**
+ * @typedef getDiscounts
+ * @property {string} [view] - Listing or calender. Default is listing.
+ * @property {string} [q] - The search query. This can be a partial or complete
+ *   name of a discount.
+ * @property {number} [pageNo] - Page number. Default is 1.
+ * @property {number} [pageSize] - Page size. Default is 12.
+ * @property {boolean} [archived] - Archived. Default is false.
+ * @property {number} [month] - Month. Default is current month.
+ * @property {number} [year] - Year. Default is current year.
+ * @property {string} [type] - Basic or custom.
+ * @property {string[]} [appIds] - Application ids.
+ */
+
+/**
+ * @typedef getDownloadJob
+ * @property {string} id - Id
+ */
+
+/**
+ * @typedef getValidationJob
+ * @property {string} id - Id
+ */
+
+/**
+ * @typedef updateDiscount
+ * @property {string} id - Id
+ * @property {DiscountPlatformModel.CreateUpdateDiscount} body
+ */
+
+/**
+ * @typedef upsertDiscountItems
+ * @property {string} id - Job ID of the discount.
+ * @property {DiscountPlatformModel.BulkDiscount} body
+ */
+
+/**
+ * @typedef validateDiscountFile
+ * @property {string} [discount] - Discount
+ * @property {DiscountPlatformModel.FileJobRequest} body
+ */
+
+class DiscountPlatformValidator {
+  /** @returns {cancelDownloadJob} */
   static cancelDownloadJob() {
     return Joi.object({
       id: Joi.string().allow("").required(),
     }).required();
   }
 
+  /** @returns {cancelValidationJob} */
   static cancelValidationJob() {
     return Joi.object({
       id: Joi.string().allow("").required(),
     }).required();
   }
 
+  /** @returns {createDiscount} */
   static createDiscount() {
     return Joi.object({
-      body: DiscountModel.CreateUpdateDiscount().required(),
+      body: DiscountPlatformModel.CreateUpdateDiscount().required(),
     }).required();
   }
 
+  /** @returns {downloadDiscountFile} */
   static downloadDiscountFile() {
     return Joi.object({
       type: Joi.string().allow("").required(),
-      body: DiscountModel.DownloadFileJob().required(),
+      body: DiscountPlatformModel.DownloadFileJob().required(),
     }).required();
   }
 
+  /** @returns {getDiscount} */
   static getDiscount() {
     return Joi.object({
       id: Joi.string().allow("").required(),
     }).required();
   }
 
+  /** @returns {getDiscounts} */
   static getDiscounts() {
     return Joi.object({
       view: Joi.string().allow(""),
@@ -47,38 +122,43 @@ class DiscountValidator {
     }).required();
   }
 
+  /** @returns {getDownloadJob} */
   static getDownloadJob() {
     return Joi.object({
       id: Joi.string().allow("").required(),
     }).required();
   }
 
+  /** @returns {getValidationJob} */
   static getValidationJob() {
     return Joi.object({
       id: Joi.string().allow("").required(),
     }).required();
   }
 
+  /** @returns {updateDiscount} */
   static updateDiscount() {
     return Joi.object({
       id: Joi.string().allow("").required(),
-      body: DiscountModel.CreateUpdateDiscount().required(),
+      body: DiscountPlatformModel.CreateUpdateDiscount().required(),
     }).required();
   }
 
+  /** @returns {upsertDiscountItems} */
   static upsertDiscountItems() {
     return Joi.object({
       id: Joi.string().allow("").required(),
-      body: DiscountModel.BulkDiscount().required(),
+      body: DiscountPlatformModel.BulkDiscount().required(),
     }).required();
   }
 
+  /** @returns {validateDiscountFile} */
   static validateDiscountFile() {
     return Joi.object({
       discount: Joi.string().allow(""),
-      body: DiscountModel.FileJobRequest().required(),
+      body: DiscountPlatformModel.FileJobRequest().required(),
     }).required();
   }
 }
 
-module.exports = DiscountValidator;
+module.exports = DiscountPlatformValidator;

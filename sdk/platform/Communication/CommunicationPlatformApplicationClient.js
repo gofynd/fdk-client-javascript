@@ -1,8 +1,8 @@
 const PlatformAPIClient = require("../PlatformAPIClient");
 const { FDKClientValidationError } = require("../../common/FDKError");
 const Paginator = require("../../common/Paginator");
-const CommunicationValidator = require("./CommunicationPlatformApplicationValidator");
-const CommunicationModel = require("./CommunicationPlatformModel");
+const CommunicationPlatformApplicationValidator = require("./CommunicationPlatformApplicationValidator");
+const CommunicationPlatformModel = require("./CommunicationPlatformModel");
 const { Logger } = require("./../../common/Logger");
 const Joi = require("joi");
 
@@ -13,14 +13,16 @@ class Communication {
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {AudienceReq} arg.body
-   * @returns {Promise<Audience>} - Success response
+   * @param {CommunicationPlatformApplicationValidator.createAudience} arg - Arg object
+   * @returns {Promise<CommunicationPlatformModel.Audience>} - Success response
+   * @name createAudience
    * @summary: Create audience
    * @description: Create audience
    */
   async createAudience({ body } = {}) {
-    const { error } = CommunicationValidator.createAudience().validate(
+    const {
+      error,
+    } = CommunicationPlatformApplicationValidator.createAudience().validate(
       {
         body,
       },
@@ -33,7 +35,7 @@ class Communication {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = CommunicationValidator.createAudience().validate(
+    } = CommunicationPlatformApplicationValidator.createAudience().validate(
       {
         body,
       },
@@ -42,9 +44,8 @@ class Communication {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for createAudience",
+        message: `Parameter Validation warrnings for platform > Communication > createAudience \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -59,7 +60,7 @@ class Communication {
 
     const {
       error: res_error,
-    } = CommunicationModel.Audience().validate(response, {
+    } = CommunicationPlatformModel.Audience().validate(response, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -67,23 +68,24 @@ class Communication {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for createAudience",
+        message: `Response Validation Warnnings for platform > Communication > createAudience \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {CampaignReq} arg.body
-   * @returns {Promise<Campaign>} - Success response
+   * @param {CommunicationPlatformApplicationValidator.createCampaign} arg - Arg object
+   * @returns {Promise<CommunicationPlatformModel.Campaign>} - Success response
+   * @name createCampaign
    * @summary: Create campaign
    * @description: Create campaign
    */
   async createCampaign({ body } = {}) {
-    const { error } = CommunicationValidator.createCampaign().validate(
+    const {
+      error,
+    } = CommunicationPlatformApplicationValidator.createCampaign().validate(
       {
         body,
       },
@@ -96,7 +98,7 @@ class Communication {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = CommunicationValidator.createCampaign().validate(
+    } = CommunicationPlatformApplicationValidator.createCampaign().validate(
       {
         body,
       },
@@ -105,9 +107,8 @@ class Communication {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for createCampaign",
+        message: `Parameter Validation warrnings for platform > Communication > createCampaign \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -122,7 +123,7 @@ class Communication {
 
     const {
       error: res_error,
-    } = CommunicationModel.Campaign().validate(response, {
+    } = CommunicationPlatformModel.Campaign().validate(response, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -130,23 +131,26 @@ class Communication {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for createCampaign",
+        message: `Response Validation Warnnings for platform > Communication > createCampaign \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {EmailProviderReq} arg.body
-   * @returns {Promise<EmailProvider>} - Success response
+   * @param {CommunicationPlatformApplicationValidator.createEmailProvider} arg
+   *   - Arg object
+   *
+   * @returns {Promise<CommunicationPlatformModel.EmailProvider>} - Success response
+   * @name createEmailProvider
    * @summary: Create email provider
    * @description: By using this API, a new email provider will be created based on the user's customised definitions.
    */
   async createEmailProvider({ body } = {}) {
-    const { error } = CommunicationValidator.createEmailProvider().validate(
+    const {
+      error,
+    } = CommunicationPlatformApplicationValidator.createEmailProvider().validate(
       {
         body,
       },
@@ -159,7 +163,7 @@ class Communication {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = CommunicationValidator.createEmailProvider().validate(
+    } = CommunicationPlatformApplicationValidator.createEmailProvider().validate(
       {
         body,
       },
@@ -168,9 +172,8 @@ class Communication {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for createEmailProvider",
+        message: `Parameter Validation warrnings for platform > Communication > createEmailProvider \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -185,7 +188,7 @@ class Communication {
 
     const {
       error: res_error,
-    } = CommunicationModel.EmailProvider().validate(response, {
+    } = CommunicationPlatformModel.EmailProvider().validate(response, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -193,23 +196,26 @@ class Communication {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for createEmailProvider",
+        message: `Response Validation Warnnings for platform > Communication > createEmailProvider \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {EmailTemplateReq} arg.body
-   * @returns {Promise<EmailTemplateRes>} - Success response
+   * @param {CommunicationPlatformApplicationValidator.createEmailTemplate} arg
+   *   - Arg object
+   *
+   * @returns {Promise<CommunicationPlatformModel.EmailTemplateRes>} - Success response
+   * @name createEmailTemplate
    * @summary: Create email template
    * @description: Create email template
    */
   async createEmailTemplate({ body } = {}) {
-    const { error } = CommunicationValidator.createEmailTemplate().validate(
+    const {
+      error,
+    } = CommunicationPlatformApplicationValidator.createEmailTemplate().validate(
       {
         body,
       },
@@ -222,7 +228,7 @@ class Communication {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = CommunicationValidator.createEmailTemplate().validate(
+    } = CommunicationPlatformApplicationValidator.createEmailTemplate().validate(
       {
         body,
       },
@@ -231,9 +237,8 @@ class Communication {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for createEmailTemplate",
+        message: `Parameter Validation warrnings for platform > Communication > createEmailTemplate \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -248,7 +253,7 @@ class Communication {
 
     const {
       error: res_error,
-    } = CommunicationModel.EmailTemplateRes().validate(response, {
+    } = CommunicationPlatformModel.EmailTemplateRes().validate(response, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -256,23 +261,26 @@ class Communication {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for createEmailTemplate",
+        message: `Response Validation Warnnings for platform > Communication > createEmailTemplate \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {SmsProviderReq} arg.body
-   * @returns {Promise<SmsProvider>} - Success response
+   * @param {CommunicationPlatformApplicationValidator.createSmsProvider} arg
+   *   - Arg object
+   *
+   * @returns {Promise<CommunicationPlatformModel.SmsProvider>} - Success response
+   * @name createSmsProvider
    * @summary: Create sms provider
    * @description: By using this API, a new SMS provider will be created based on the user's customised definitions.
    */
   async createSmsProvider({ body } = {}) {
-    const { error } = CommunicationValidator.createSmsProvider().validate(
+    const {
+      error,
+    } = CommunicationPlatformApplicationValidator.createSmsProvider().validate(
       {
         body,
       },
@@ -285,7 +293,7 @@ class Communication {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = CommunicationValidator.createSmsProvider().validate(
+    } = CommunicationPlatformApplicationValidator.createSmsProvider().validate(
       {
         body,
       },
@@ -294,9 +302,8 @@ class Communication {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for createSmsProvider",
+        message: `Parameter Validation warrnings for platform > Communication > createSmsProvider \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -311,7 +318,7 @@ class Communication {
 
     const {
       error: res_error,
-    } = CommunicationModel.SmsProvider().validate(response, {
+    } = CommunicationPlatformModel.SmsProvider().validate(response, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -319,23 +326,26 @@ class Communication {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for createSmsProvider",
+        message: `Response Validation Warnnings for platform > Communication > createSmsProvider \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {SmsTemplateReq} arg.body
-   * @returns {Promise<SmsTemplateRes>} - Success response
+   * @param {CommunicationPlatformApplicationValidator.createSmsTemplate} arg
+   *   - Arg object
+   *
+   * @returns {Promise<CommunicationPlatformModel.SmsTemplateRes>} - Success response
+   * @name createSmsTemplate
    * @summary: Create sms template
    * @description: Create sms template
    */
   async createSmsTemplate({ body } = {}) {
-    const { error } = CommunicationValidator.createSmsTemplate().validate(
+    const {
+      error,
+    } = CommunicationPlatformApplicationValidator.createSmsTemplate().validate(
       {
         body,
       },
@@ -348,7 +358,7 @@ class Communication {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = CommunicationValidator.createSmsTemplate().validate(
+    } = CommunicationPlatformApplicationValidator.createSmsTemplate().validate(
       {
         body,
       },
@@ -357,9 +367,8 @@ class Communication {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for createSmsTemplate",
+        message: `Parameter Validation warrnings for platform > Communication > createSmsTemplate \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -374,7 +383,7 @@ class Communication {
 
     const {
       error: res_error,
-    } = CommunicationModel.SmsTemplateRes().validate(response, {
+    } = CommunicationPlatformModel.SmsTemplateRes().validate(response, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -382,23 +391,26 @@ class Communication {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for createSmsTemplate",
+        message: `Response Validation Warnnings for platform > Communication > createSmsTemplate \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {VoiceProviderReq} arg.body
-   * @returns {Promise<VoiceProvider>} - Success response
+   * @param {CommunicationPlatformApplicationValidator.createVoiceProvider} arg
+   *   - Arg object
+   *
+   * @returns {Promise<CommunicationPlatformModel.VoiceProvider>} - Success response
+   * @name createVoiceProvider
    * @summary: Create voice provider
    * @description: Create voice provider
    */
   async createVoiceProvider({ body } = {}) {
-    const { error } = CommunicationValidator.createVoiceProvider().validate(
+    const {
+      error,
+    } = CommunicationPlatformApplicationValidator.createVoiceProvider().validate(
       {
         body,
       },
@@ -411,7 +423,7 @@ class Communication {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = CommunicationValidator.createVoiceProvider().validate(
+    } = CommunicationPlatformApplicationValidator.createVoiceProvider().validate(
       {
         body,
       },
@@ -420,9 +432,8 @@ class Communication {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for createVoiceProvider",
+        message: `Parameter Validation warrnings for platform > Communication > createVoiceProvider \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -437,7 +448,7 @@ class Communication {
 
     const {
       error: res_error,
-    } = CommunicationModel.VoiceProvider().validate(response, {
+    } = CommunicationPlatformModel.VoiceProvider().validate(response, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -445,23 +456,26 @@ class Communication {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for createVoiceProvider",
+        message: `Response Validation Warnnings for platform > Communication > createVoiceProvider \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {VoiceTemplateReq} arg.body
-   * @returns {Promise<VoiceTemplateRes>} - Success response
+   * @param {CommunicationPlatformApplicationValidator.createVoiceTemplate} arg
+   *   - Arg object
+   *
+   * @returns {Promise<CommunicationPlatformModel.VoiceTemplateRes>} - Success response
+   * @name createVoiceTemplate
    * @summary: Create voice template
    * @description: Create voice template
    */
   async createVoiceTemplate({ body } = {}) {
-    const { error } = CommunicationValidator.createVoiceTemplate().validate(
+    const {
+      error,
+    } = CommunicationPlatformApplicationValidator.createVoiceTemplate().validate(
       {
         body,
       },
@@ -474,7 +488,7 @@ class Communication {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = CommunicationValidator.createVoiceTemplate().validate(
+    } = CommunicationPlatformApplicationValidator.createVoiceTemplate().validate(
       {
         body,
       },
@@ -483,9 +497,8 @@ class Communication {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for createVoiceTemplate",
+        message: `Parameter Validation warrnings for platform > Communication > createVoiceTemplate \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -500,7 +513,7 @@ class Communication {
 
     const {
       error: res_error,
-    } = CommunicationModel.VoiceTemplateRes().validate(response, {
+    } = CommunicationPlatformModel.VoiceTemplateRes().validate(response, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -508,23 +521,26 @@ class Communication {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for createVoiceTemplate",
+        message: `Response Validation Warnnings for platform > Communication > createVoiceTemplate \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.id - Email provider id
-   * @returns {Promise<GenericSuccess>} - Success response
+   * @param {CommunicationPlatformApplicationValidator.deleteEmailProviderById} arg
+   *   - Arg object
+   *
+   * @returns {Promise<CommunicationPlatformModel.GenericSuccess>} - Success response
+   * @name deleteEmailProviderById
    * @summary: delete email provider by id
    * @description: By using this api, you can delete a certain email provider based on its ID.
    */
   async deleteEmailProviderById({ id } = {}) {
-    const { error } = CommunicationValidator.deleteEmailProviderById().validate(
+    const {
+      error,
+    } = CommunicationPlatformApplicationValidator.deleteEmailProviderById().validate(
       {
         id,
       },
@@ -537,7 +553,7 @@ class Communication {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = CommunicationValidator.deleteEmailProviderById().validate(
+    } = CommunicationPlatformApplicationValidator.deleteEmailProviderById().validate(
       {
         id,
       },
@@ -546,9 +562,8 @@ class Communication {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for deleteEmailProviderById",
+        message: `Parameter Validation warrnings for platform > Communication > deleteEmailProviderById \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -563,7 +578,7 @@ class Communication {
 
     const {
       error: res_error,
-    } = CommunicationModel.GenericSuccess().validate(response, {
+    } = CommunicationPlatformModel.GenericSuccess().validate(response, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -571,23 +586,28 @@ class Communication {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for deleteEmailProviderById",
+        message: `Response Validation Warnnings for platform > Communication > deleteEmailProviderById \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.id - Email template id
-   * @returns {Promise<EmailTemplateDeleteSuccessRes>} - Success response
+   * @param {CommunicationPlatformApplicationValidator.deleteEmailTemplateById} arg
+   *   - Arg object
+   *
+   * @returns {Promise<CommunicationPlatformModel.EmailTemplateDeleteSuccessRes>}
+   *   - Success response
+   *
+   * @name deleteEmailTemplateById
    * @summary: Delete email template by id
    * @description: Delete email template by id
    */
   async deleteEmailTemplateById({ id } = {}) {
-    const { error } = CommunicationValidator.deleteEmailTemplateById().validate(
+    const {
+      error,
+    } = CommunicationPlatformApplicationValidator.deleteEmailTemplateById().validate(
       {
         id,
       },
@@ -600,7 +620,7 @@ class Communication {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = CommunicationValidator.deleteEmailTemplateById().validate(
+    } = CommunicationPlatformApplicationValidator.deleteEmailTemplateById().validate(
       {
         id,
       },
@@ -609,9 +629,8 @@ class Communication {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for deleteEmailTemplateById",
+        message: `Parameter Validation warrnings for platform > Communication > deleteEmailTemplateById \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -626,31 +645,34 @@ class Communication {
 
     const {
       error: res_error,
-    } = CommunicationModel.EmailTemplateDeleteSuccessRes().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
+    } = CommunicationPlatformModel.EmailTemplateDeleteSuccessRes().validate(
+      response,
+      { abortEarly: false, allowUnknown: false }
+    );
 
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for deleteEmailTemplateById",
+        message: `Response Validation Warnnings for platform > Communication > deleteEmailTemplateById \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.id - Sms provider id
-   * @returns {Promise<GenericSuccess>} - Success response
+   * @param {CommunicationPlatformApplicationValidator.deleteSmsProviderById} arg
+   *   - Arg object
+   *
+   * @returns {Promise<CommunicationPlatformModel.GenericSuccess>} - Success response
+   * @name deleteSmsProviderById
    * @summary: delete sms provider by id
    * @description: By using this api, you can delete a certain SMS provider based on its ID.
    */
   async deleteSmsProviderById({ id } = {}) {
-    const { error } = CommunicationValidator.deleteSmsProviderById().validate(
+    const {
+      error,
+    } = CommunicationPlatformApplicationValidator.deleteSmsProviderById().validate(
       {
         id,
       },
@@ -663,7 +685,7 @@ class Communication {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = CommunicationValidator.deleteSmsProviderById().validate(
+    } = CommunicationPlatformApplicationValidator.deleteSmsProviderById().validate(
       {
         id,
       },
@@ -672,9 +694,8 @@ class Communication {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for deleteSmsProviderById",
+        message: `Parameter Validation warrnings for platform > Communication > deleteSmsProviderById \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -689,7 +710,7 @@ class Communication {
 
     const {
       error: res_error,
-    } = CommunicationModel.GenericSuccess().validate(response, {
+    } = CommunicationPlatformModel.GenericSuccess().validate(response, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -697,23 +718,28 @@ class Communication {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for deleteSmsProviderById",
+        message: `Response Validation Warnnings for platform > Communication > deleteSmsProviderById \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.id - Sms template id
-   * @returns {Promise<SmsTemplateDeleteSuccessRes>} - Success response
+   * @param {CommunicationPlatformApplicationValidator.deleteSmsTemplateById} arg
+   *   - Arg object
+   *
+   * @returns {Promise<CommunicationPlatformModel.SmsTemplateDeleteSuccessRes>}
+   *   - Success response
+   *
+   * @name deleteSmsTemplateById
    * @summary: Delete sms template by id
    * @description: Delete sms template by id
    */
   async deleteSmsTemplateById({ id } = {}) {
-    const { error } = CommunicationValidator.deleteSmsTemplateById().validate(
+    const {
+      error,
+    } = CommunicationPlatformApplicationValidator.deleteSmsTemplateById().validate(
       {
         id,
       },
@@ -726,7 +752,7 @@ class Communication {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = CommunicationValidator.deleteSmsTemplateById().validate(
+    } = CommunicationPlatformApplicationValidator.deleteSmsTemplateById().validate(
       {
         id,
       },
@@ -735,9 +761,8 @@ class Communication {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for deleteSmsTemplateById",
+        message: `Parameter Validation warrnings for platform > Communication > deleteSmsTemplateById \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -752,31 +777,36 @@ class Communication {
 
     const {
       error: res_error,
-    } = CommunicationModel.SmsTemplateDeleteSuccessRes().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
+    } = CommunicationPlatformModel.SmsTemplateDeleteSuccessRes().validate(
+      response,
+      { abortEarly: false, allowUnknown: false }
+    );
 
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for deleteSmsTemplateById",
+        message: `Response Validation Warnnings for platform > Communication > deleteSmsTemplateById \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.id - Voice template id
-   * @returns {Promise<VoiceTemplateDeleteSuccessRes>} - Success response
+   * @param {CommunicationPlatformApplicationValidator.deleteVoiceTemplateById} arg
+   *   - Arg object
+   *
+   * @returns {Promise<CommunicationPlatformModel.VoiceTemplateDeleteSuccessRes>}
+   *   - Success response
+   *
+   * @name deleteVoiceTemplateById
    * @summary: Delete voice template by id
    * @description: Delete voice template by id
    */
   async deleteVoiceTemplateById({ id } = {}) {
-    const { error } = CommunicationValidator.deleteVoiceTemplateById().validate(
+    const {
+      error,
+    } = CommunicationPlatformApplicationValidator.deleteVoiceTemplateById().validate(
       {
         id,
       },
@@ -789,7 +819,7 @@ class Communication {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = CommunicationValidator.deleteVoiceTemplateById().validate(
+    } = CommunicationPlatformApplicationValidator.deleteVoiceTemplateById().validate(
       {
         id,
       },
@@ -798,9 +828,8 @@ class Communication {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for deleteVoiceTemplateById",
+        message: `Parameter Validation warrnings for platform > Communication > deleteVoiceTemplateById \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -815,30 +844,32 @@ class Communication {
 
     const {
       error: res_error,
-    } = CommunicationModel.VoiceTemplateDeleteSuccessRes().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
+    } = CommunicationPlatformModel.VoiceTemplateDeleteSuccessRes().validate(
+      response,
+      { abortEarly: false, allowUnknown: false }
+    );
 
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for deleteVoiceTemplateById",
+        message: `Response Validation Warnnings for platform > Communication > deleteVoiceTemplateById \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @returns {Promise<AppProvider>} - Success response
+   * @param {CommunicationPlatformApplicationValidator.getAppProviders} arg - Arg object
+   * @returns {Promise<CommunicationPlatformModel.AppProvider>} - Success response
+   * @name getAppProviders
    * @summary: Get app providers
    * @description: Using this API will return a list of application providers.
    */
   async getAppProviders({} = {}) {
-    const { error } = CommunicationValidator.getAppProviders().validate(
+    const {
+      error,
+    } = CommunicationPlatformApplicationValidator.getAppProviders().validate(
       {},
       { abortEarly: false, allowUnknown: true }
     );
@@ -849,16 +880,15 @@ class Communication {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = CommunicationValidator.getAppProviders().validate(
+    } = CommunicationPlatformApplicationValidator.getAppProviders().validate(
       {},
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for getAppProviders",
+        message: `Parameter Validation warrnings for platform > Communication > getAppProviders \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -873,7 +903,7 @@ class Communication {
 
     const {
       error: res_error,
-    } = CommunicationModel.AppProvider().validate(response, {
+    } = CommunicationPlatformModel.AppProvider().validate(response, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -881,23 +911,24 @@ class Communication {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for getAppProviders",
+        message: `Response Validation Warnnings for platform > Communication > getAppProviders \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.id - Audience id
-   * @returns {Promise<Audience>} - Success response
+   * @param {CommunicationPlatformApplicationValidator.getAudienceById} arg - Arg object
+   * @returns {Promise<CommunicationPlatformModel.Audience>} - Success response
+   * @name getAudienceById
    * @summary: Get audience by id
    * @description: Get audience by id
    */
   async getAudienceById({ id } = {}) {
-    const { error } = CommunicationValidator.getAudienceById().validate(
+    const {
+      error,
+    } = CommunicationPlatformApplicationValidator.getAudienceById().validate(
       {
         id,
       },
@@ -910,7 +941,7 @@ class Communication {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = CommunicationValidator.getAudienceById().validate(
+    } = CommunicationPlatformApplicationValidator.getAudienceById().validate(
       {
         id,
       },
@@ -919,9 +950,8 @@ class Communication {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for getAudienceById",
+        message: `Parameter Validation warrnings for platform > Communication > getAudienceById \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -936,7 +966,7 @@ class Communication {
 
     const {
       error: res_error,
-    } = CommunicationModel.Audience().validate(response, {
+    } = CommunicationPlatformModel.Audience().validate(response, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -944,25 +974,24 @@ class Communication {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for getAudienceById",
+        message: `Response Validation Warnnings for platform > Communication > getAudienceById \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {number} [arg.pageNo] - Current page no
-   * @param {number} [arg.pageSize] - Current request items count
-   * @param {Object} [arg.sort] - To sort based on created_at
-   * @returns {Promise<Audiences>} - Success response
+   * @param {CommunicationPlatformApplicationValidator.getAudiences} arg - Arg object
+   * @returns {Promise<CommunicationPlatformModel.Audiences>} - Success response
+   * @name getAudiences
    * @summary: Get audiences
    * @description: Get audiences
    */
   async getAudiences({ pageNo, pageSize, sort } = {}) {
-    const { error } = CommunicationValidator.getAudiences().validate(
+    const {
+      error,
+    } = CommunicationPlatformApplicationValidator.getAudiences().validate(
       {
         pageNo,
         pageSize,
@@ -975,7 +1004,9 @@ class Communication {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = CommunicationValidator.getAudiences().validate(
+    const {
+      error: warrning,
+    } = CommunicationPlatformApplicationValidator.getAudiences().validate(
       {
         pageNo,
         pageSize,
@@ -986,9 +1017,8 @@ class Communication {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for getAudiences",
+        message: `Parameter Validation warrnings for platform > Communication > getAudiences \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -1006,7 +1036,7 @@ class Communication {
 
     const {
       error: res_error,
-    } = CommunicationModel.Audiences().validate(response, {
+    } = CommunicationPlatformModel.Audiences().validate(response, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -1014,23 +1044,27 @@ class Communication {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for getAudiences",
+        message: `Response Validation Warnnings for platform > Communication > getAudiences \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {BigqueryHeadersReq} arg.body
-   * @returns {Promise<BigqueryHeadersRes>} - Success response
+   * @param {CommunicationPlatformApplicationValidator.getBigqueryHeaders} arg
+   *   - Arg object
+   *
+   * @returns {Promise<CommunicationPlatformModel.BigqueryHeadersRes>} -
+   *   Success response
+   * @name getBigqueryHeaders
    * @summary: Get bigquery headers
    * @description: Get bigquery headers
    */
   async getBigqueryHeaders({ body } = {}) {
-    const { error } = CommunicationValidator.getBigqueryHeaders().validate(
+    const {
+      error,
+    } = CommunicationPlatformApplicationValidator.getBigqueryHeaders().validate(
       {
         body,
       },
@@ -1043,7 +1077,7 @@ class Communication {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = CommunicationValidator.getBigqueryHeaders().validate(
+    } = CommunicationPlatformApplicationValidator.getBigqueryHeaders().validate(
       {
         body,
       },
@@ -1052,9 +1086,8 @@ class Communication {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for getBigqueryHeaders",
+        message: `Parameter Validation warrnings for platform > Communication > getBigqueryHeaders \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -1069,7 +1102,7 @@ class Communication {
 
     const {
       error: res_error,
-    } = CommunicationModel.BigqueryHeadersRes().validate(response, {
+    } = CommunicationPlatformModel.BigqueryHeadersRes().validate(response, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -1077,23 +1110,24 @@ class Communication {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for getBigqueryHeaders",
+        message: `Response Validation Warnnings for platform > Communication > getBigqueryHeaders \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.id - Campaign id
-   * @returns {Promise<Campaign>} - Success response
+   * @param {CommunicationPlatformApplicationValidator.getCampaignById} arg - Arg object
+   * @returns {Promise<CommunicationPlatformModel.Campaign>} - Success response
+   * @name getCampaignById
    * @summary: Get campaign by id
    * @description: Get campaign by id
    */
   async getCampaignById({ id } = {}) {
-    const { error } = CommunicationValidator.getCampaignById().validate(
+    const {
+      error,
+    } = CommunicationPlatformApplicationValidator.getCampaignById().validate(
       {
         id,
       },
@@ -1106,7 +1140,7 @@ class Communication {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = CommunicationValidator.getCampaignById().validate(
+    } = CommunicationPlatformApplicationValidator.getCampaignById().validate(
       {
         id,
       },
@@ -1115,9 +1149,8 @@ class Communication {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for getCampaignById",
+        message: `Parameter Validation warrnings for platform > Communication > getCampaignById \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -1132,7 +1165,7 @@ class Communication {
 
     const {
       error: res_error,
-    } = CommunicationModel.Campaign().validate(response, {
+    } = CommunicationPlatformModel.Campaign().validate(response, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -1140,25 +1173,24 @@ class Communication {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for getCampaignById",
+        message: `Response Validation Warnnings for platform > Communication > getCampaignById \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {number} [arg.pageNo] - Current page no
-   * @param {number} [arg.pageSize] - Current request items count
-   * @param {Object} [arg.sort] - To sort based on created_at
-   * @returns {Promise<Campaigns>} - Success response
+   * @param {CommunicationPlatformApplicationValidator.getCampaigns} arg - Arg object
+   * @returns {Promise<CommunicationPlatformModel.Campaigns>} - Success response
+   * @name getCampaigns
    * @summary: Get campaigns
    * @description: Get campaigns
    */
   async getCampaigns({ pageNo, pageSize, sort } = {}) {
-    const { error } = CommunicationValidator.getCampaigns().validate(
+    const {
+      error,
+    } = CommunicationPlatformApplicationValidator.getCampaigns().validate(
       {
         pageNo,
         pageSize,
@@ -1171,7 +1203,9 @@ class Communication {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = CommunicationValidator.getCampaigns().validate(
+    const {
+      error: warrning,
+    } = CommunicationPlatformApplicationValidator.getCampaigns().validate(
       {
         pageNo,
         pageSize,
@@ -1182,9 +1216,8 @@ class Communication {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for getCampaigns",
+        message: `Parameter Validation warrnings for platform > Communication > getCampaigns \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -1202,7 +1235,7 @@ class Communication {
 
     const {
       error: res_error,
-    } = CommunicationModel.Campaigns().validate(response, {
+    } = CommunicationPlatformModel.Campaigns().validate(response, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -1210,26 +1243,26 @@ class Communication {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for getCampaigns",
+        message: `Response Validation Warnnings for platform > Communication > getCampaigns \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {string} [arg.pageId] - Current page no
-   * @param {number} [arg.pageSize] - Current request items count
-   * @param {Object} [arg.sort] - To sort based on _id
-   * @param {Object} [arg.query] -
-   * @returns {Promise<Logs>} - Success response
+   * @param {CommunicationPlatformApplicationValidator.getCommunicationLogs} arg
+   *   - Arg object
+   *
+   * @returns {Promise<CommunicationPlatformModel.Logs>} - Success response
+   * @name getCommunicationLogs
    * @summary: Get communication logs
    * @description: Get communication logs
    */
   async getCommunicationLogs({ pageId, pageSize, sort, query } = {}) {
-    const { error } = CommunicationValidator.getCommunicationLogs().validate(
+    const {
+      error,
+    } = CommunicationPlatformApplicationValidator.getCommunicationLogs().validate(
       {
         pageId,
         pageSize,
@@ -1245,7 +1278,7 @@ class Communication {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = CommunicationValidator.getCommunicationLogs().validate(
+    } = CommunicationPlatformApplicationValidator.getCommunicationLogs().validate(
       {
         pageId,
         pageSize,
@@ -1257,9 +1290,8 @@ class Communication {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for getCommunicationLogs",
+        message: `Parameter Validation warrnings for platform > Communication > getCommunicationLogs \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -1276,7 +1308,9 @@ class Communication {
       undefined
     );
 
-    const { error: res_error } = CommunicationModel.Logs().validate(response, {
+    const {
+      error: res_error,
+    } = CommunicationPlatformModel.Logs().validate(response, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -1284,24 +1318,27 @@ class Communication {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for getCommunicationLogs",
+        message: `Response Validation Warnnings for platform > Communication > getCommunicationLogs \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @returns {Promise<DefaultEmailProviders[]>} - Success response
+   * @param {CommunicationPlatformApplicationValidator.getDefaultEmailProviders} arg
+   *   - Arg object
+   *
+   * @returns {Promise<CommunicationPlatformModel.DefaultEmailProviders[]>} -
+   *   Success response
+   * @name getDefaultEmailProviders
    * @summary: Get default email providers
    * @description: Using this api will fetch a list of email providers provided by the system i.e the default providers.
    */
   async getDefaultEmailProviders({} = {}) {
     const {
       error,
-    } = CommunicationValidator.getDefaultEmailProviders().validate(
+    } = CommunicationPlatformApplicationValidator.getDefaultEmailProviders().validate(
       {},
       { abortEarly: false, allowUnknown: true }
     );
@@ -1312,16 +1349,15 @@ class Communication {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = CommunicationValidator.getDefaultEmailProviders().validate(
+    } = CommunicationPlatformApplicationValidator.getDefaultEmailProviders().validate(
       {},
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for getDefaultEmailProviders",
+        message: `Parameter Validation warrnings for platform > Communication > getDefaultEmailProviders \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -1335,28 +1371,33 @@ class Communication {
     );
 
     const { error: res_error } = Joi.array()
-      .items(CommunicationModel.DefaultEmailProviders())
+      .items(CommunicationPlatformModel.DefaultEmailProviders())
       .validate(response, { abortEarly: false, allowUnknown: false });
 
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for getDefaultEmailProviders",
+        message: `Response Validation Warnnings for platform > Communication > getDefaultEmailProviders \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @returns {Promise<DefaultSmsProviders[]>} - Success response
+   * @param {CommunicationPlatformApplicationValidator.getDefaultSmsProviders} arg
+   *   - Arg object
+   *
+   * @returns {Promise<CommunicationPlatformModel.DefaultSmsProviders[]>} -
+   *   Success response
+   * @name getDefaultSmsProviders
    * @summary: Get default sms providers
    * @description: Using this api will fetch a list of SMS providers provided by the system i.e the default providers.
    */
   async getDefaultSmsProviders({} = {}) {
-    const { error } = CommunicationValidator.getDefaultSmsProviders().validate(
+    const {
+      error,
+    } = CommunicationPlatformApplicationValidator.getDefaultSmsProviders().validate(
       {},
       { abortEarly: false, allowUnknown: true }
     );
@@ -1367,16 +1408,15 @@ class Communication {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = CommunicationValidator.getDefaultSmsProviders().validate(
+    } = CommunicationPlatformApplicationValidator.getDefaultSmsProviders().validate(
       {},
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for getDefaultSmsProviders",
+        message: `Parameter Validation warrnings for platform > Communication > getDefaultSmsProviders \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -1390,29 +1430,32 @@ class Communication {
     );
 
     const { error: res_error } = Joi.array()
-      .items(CommunicationModel.DefaultSmsProviders())
+      .items(CommunicationPlatformModel.DefaultSmsProviders())
       .validate(response, { abortEarly: false, allowUnknown: false });
 
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for getDefaultSmsProviders",
+        message: `Response Validation Warnnings for platform > Communication > getDefaultSmsProviders \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.id - Email provider id
-   * @returns {Promise<EmailProvider>} - Success response
+   * @param {CommunicationPlatformApplicationValidator.getEmailProviderById} arg
+   *   - Arg object
+   *
+   * @returns {Promise<CommunicationPlatformModel.EmailProvider>} - Success response
+   * @name getEmailProviderById
    * @summary: Get email provider by id
    * @description: By using this API, a specific email provider will be returned that was retrieved based on the provider's id.
    */
   async getEmailProviderById({ id } = {}) {
-    const { error } = CommunicationValidator.getEmailProviderById().validate(
+    const {
+      error,
+    } = CommunicationPlatformApplicationValidator.getEmailProviderById().validate(
       {
         id,
       },
@@ -1425,7 +1468,7 @@ class Communication {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = CommunicationValidator.getEmailProviderById().validate(
+    } = CommunicationPlatformApplicationValidator.getEmailProviderById().validate(
       {
         id,
       },
@@ -1434,9 +1477,8 @@ class Communication {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for getEmailProviderById",
+        message: `Parameter Validation warrnings for platform > Communication > getEmailProviderById \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -1451,7 +1493,7 @@ class Communication {
 
     const {
       error: res_error,
-    } = CommunicationModel.EmailProvider().validate(response, {
+    } = CommunicationPlatformModel.EmailProvider().validate(response, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -1459,25 +1501,26 @@ class Communication {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for getEmailProviderById",
+        message: `Response Validation Warnnings for platform > Communication > getEmailProviderById \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {number} [arg.pageNo] - Current page no
-   * @param {number} [arg.pageSize] - Current request items count
-   * @param {Object} [arg.sort] - To sort based on created_at
-   * @returns {Promise<EmailProviders>} - Success response
+   * @param {CommunicationPlatformApplicationValidator.getEmailProviders} arg
+   *   - Arg object
+   *
+   * @returns {Promise<CommunicationPlatformModel.EmailProviders>} - Success response
+   * @name getEmailProviders
    * @summary: Get email providers
    * @description: By using this api, you may retrieve all the email providers that the user has setup. The outcome will be in a paginated form, fetching providers according to the current page and page number parameters.
    */
   async getEmailProviders({ pageNo, pageSize, sort } = {}) {
-    const { error } = CommunicationValidator.getEmailProviders().validate(
+    const {
+      error,
+    } = CommunicationPlatformApplicationValidator.getEmailProviders().validate(
       {
         pageNo,
         pageSize,
@@ -1492,7 +1535,7 @@ class Communication {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = CommunicationValidator.getEmailProviders().validate(
+    } = CommunicationPlatformApplicationValidator.getEmailProviders().validate(
       {
         pageNo,
         pageSize,
@@ -1503,9 +1546,8 @@ class Communication {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for getEmailProviders",
+        message: `Parameter Validation warrnings for platform > Communication > getEmailProviders \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -1523,7 +1565,7 @@ class Communication {
 
     const {
       error: res_error,
-    } = CommunicationModel.EmailProviders().validate(response, {
+    } = CommunicationPlatformModel.EmailProviders().validate(response, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -1531,23 +1573,26 @@ class Communication {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for getEmailProviders",
+        message: `Response Validation Warnnings for platform > Communication > getEmailProviders \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.id - Email template id
-   * @returns {Promise<EmailTemplate>} - Success response
+   * @param {CommunicationPlatformApplicationValidator.getEmailTemplateById} arg
+   *   - Arg object
+   *
+   * @returns {Promise<CommunicationPlatformModel.EmailTemplate>} - Success response
+   * @name getEmailTemplateById
    * @summary: Get email template by id
    * @description: Get email template by id
    */
   async getEmailTemplateById({ id } = {}) {
-    const { error } = CommunicationValidator.getEmailTemplateById().validate(
+    const {
+      error,
+    } = CommunicationPlatformApplicationValidator.getEmailTemplateById().validate(
       {
         id,
       },
@@ -1560,7 +1605,7 @@ class Communication {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = CommunicationValidator.getEmailTemplateById().validate(
+    } = CommunicationPlatformApplicationValidator.getEmailTemplateById().validate(
       {
         id,
       },
@@ -1569,9 +1614,8 @@ class Communication {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for getEmailTemplateById",
+        message: `Parameter Validation warrnings for platform > Communication > getEmailTemplateById \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -1586,7 +1630,7 @@ class Communication {
 
     const {
       error: res_error,
-    } = CommunicationModel.EmailTemplate().validate(response, {
+    } = CommunicationPlatformModel.EmailTemplate().validate(response, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -1594,25 +1638,26 @@ class Communication {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for getEmailTemplateById",
+        message: `Response Validation Warnnings for platform > Communication > getEmailTemplateById \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {number} [arg.pageNo] - Current page no
-   * @param {number} [arg.pageSize] - Current request items count
-   * @param {Object} [arg.sort] - To sort based on created_at
-   * @returns {Promise<EmailTemplates>} - Success response
+   * @param {CommunicationPlatformApplicationValidator.getEmailTemplates} arg
+   *   - Arg object
+   *
+   * @returns {Promise<CommunicationPlatformModel.EmailTemplates>} - Success response
+   * @name getEmailTemplates
    * @summary: Get email templates
    * @description: Get email templates
    */
   async getEmailTemplates({ pageNo, pageSize, sort } = {}) {
-    const { error } = CommunicationValidator.getEmailTemplates().validate(
+    const {
+      error,
+    } = CommunicationPlatformApplicationValidator.getEmailTemplates().validate(
       {
         pageNo,
         pageSize,
@@ -1627,7 +1672,7 @@ class Communication {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = CommunicationValidator.getEmailTemplates().validate(
+    } = CommunicationPlatformApplicationValidator.getEmailTemplates().validate(
       {
         pageNo,
         pageSize,
@@ -1638,9 +1683,8 @@ class Communication {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for getEmailTemplates",
+        message: `Parameter Validation warrnings for platform > Communication > getEmailTemplates \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -1658,7 +1702,7 @@ class Communication {
 
     const {
       error: res_error,
-    } = CommunicationModel.EmailTemplates().validate(response, {
+    } = CommunicationPlatformModel.EmailTemplates().validate(response, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -1666,25 +1710,27 @@ class Communication {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for getEmailTemplates",
+        message: `Response Validation Warnnings for platform > Communication > getEmailTemplates \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {number} [arg.pageNo] - Current page no
-   * @param {number} [arg.pageSize] - Current request items count
-   * @param {string} [arg.populate] - Populate fields
-   * @returns {Promise<EventSubscriptions>} - Success response
+   * @param {CommunicationPlatformApplicationValidator.getEventSubscriptions} arg
+   *   - Arg object
+   *
+   * @returns {Promise<CommunicationPlatformModel.EventSubscriptions>} -
+   *   Success response
+   * @name getEventSubscriptions
    * @summary: Get event subscriptions
    * @description: Get event subscriptions
    */
   async getEventSubscriptions({ pageNo, pageSize, populate } = {}) {
-    const { error } = CommunicationValidator.getEventSubscriptions().validate(
+    const {
+      error,
+    } = CommunicationPlatformApplicationValidator.getEventSubscriptions().validate(
       {
         pageNo,
         pageSize,
@@ -1699,7 +1745,7 @@ class Communication {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = CommunicationValidator.getEventSubscriptions().validate(
+    } = CommunicationPlatformApplicationValidator.getEventSubscriptions().validate(
       {
         pageNo,
         pageSize,
@@ -1710,9 +1756,8 @@ class Communication {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for getEventSubscriptions",
+        message: `Parameter Validation warrnings for platform > Communication > getEventSubscriptions \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -1730,7 +1775,7 @@ class Communication {
 
     const {
       error: res_error,
-    } = CommunicationModel.EventSubscriptions().validate(response, {
+    } = CommunicationPlatformModel.EventSubscriptions().validate(response, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -1738,22 +1783,26 @@ class Communication {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for getEventSubscriptions",
+        message: `Response Validation Warnnings for platform > Communication > getEventSubscriptions \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @returns {Promise<GlobalProviders>} - Success response
+   * @param {CommunicationPlatformApplicationValidator.getGlobalProviders} arg
+   *   - Arg object
+   *
+   * @returns {Promise<CommunicationPlatformModel.GlobalProviders>} - Success response
+   * @name getGlobalProviders
    * @summary: Get global providers
    * @description: Using this API, will retrieve a list of global providers.
    */
   async getGlobalProviders({} = {}) {
-    const { error } = CommunicationValidator.getGlobalProviders().validate(
+    const {
+      error,
+    } = CommunicationPlatformApplicationValidator.getGlobalProviders().validate(
       {},
       { abortEarly: false, allowUnknown: true }
     );
@@ -1764,16 +1813,15 @@ class Communication {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = CommunicationValidator.getGlobalProviders().validate(
+    } = CommunicationPlatformApplicationValidator.getGlobalProviders().validate(
       {},
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for getGlobalProviders",
+        message: `Parameter Validation warrnings for platform > Communication > getGlobalProviders \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -1788,7 +1836,7 @@ class Communication {
 
     const {
       error: res_error,
-    } = CommunicationModel.GlobalProviders().validate(response, {
+    } = CommunicationPlatformModel.GlobalProviders().validate(response, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -1796,25 +1844,24 @@ class Communication {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for getGlobalProviders",
+        message: `Response Validation Warnnings for platform > Communication > getGlobalProviders \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {number} [arg.pageNo] - Current page no
-   * @param {number} [arg.pageSize] - Current request items count
-   * @param {Object} [arg.sort] - To sort based on created_at
-   * @returns {Promise<JobLogs>} - Success response
+   * @param {CommunicationPlatformApplicationValidator.getJobLogs} arg - Arg object
+   * @returns {Promise<CommunicationPlatformModel.JobLogs>} - Success response
+   * @name getJobLogs
    * @summary: Get job logs
    * @description: Get job logs
    */
   async getJobLogs({ pageNo, pageSize, sort } = {}) {
-    const { error } = CommunicationValidator.getJobLogs().validate(
+    const {
+      error,
+    } = CommunicationPlatformApplicationValidator.getJobLogs().validate(
       {
         pageNo,
         pageSize,
@@ -1827,7 +1874,9 @@ class Communication {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = CommunicationValidator.getJobLogs().validate(
+    const {
+      error: warrning,
+    } = CommunicationPlatformApplicationValidator.getJobLogs().validate(
       {
         pageNo,
         pageSize,
@@ -1838,9 +1887,8 @@ class Communication {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for getJobLogs",
+        message: `Parameter Validation warrnings for platform > Communication > getJobLogs \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -1856,33 +1904,34 @@ class Communication {
       undefined
     );
 
-    const { error: res_error } = CommunicationModel.JobLogs().validate(
-      response,
-      { abortEarly: false, allowUnknown: false }
-    );
+    const {
+      error: res_error,
+    } = CommunicationPlatformModel.JobLogs().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
 
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for getJobLogs",
+        message: `Response Validation Warnnings for platform > Communication > getJobLogs \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {number} [arg.pageNo] - Current page no
-   * @param {number} [arg.pageSize] - Current request items count
-   * @param {Object} [arg.sort] - To sort based on created_at
-   * @returns {Promise<Jobs>} - Success response
+   * @param {CommunicationPlatformApplicationValidator.getJobs} arg - Arg object
+   * @returns {Promise<CommunicationPlatformModel.Jobs>} - Success response
+   * @name getJobs
    * @summary: Get jobs
    * @description: Get jobs
    */
   async getJobs({ pageNo, pageSize, sort } = {}) {
-    const { error } = CommunicationValidator.getJobs().validate(
+    const {
+      error,
+    } = CommunicationPlatformApplicationValidator.getJobs().validate(
       {
         pageNo,
         pageSize,
@@ -1895,7 +1944,9 @@ class Communication {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = CommunicationValidator.getJobs().validate(
+    const {
+      error: warrning,
+    } = CommunicationPlatformApplicationValidator.getJobs().validate(
       {
         pageNo,
         pageSize,
@@ -1906,9 +1957,8 @@ class Communication {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for getJobs",
+        message: `Parameter Validation warrnings for platform > Communication > getJobs \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -1924,7 +1974,9 @@ class Communication {
       undefined
     );
 
-    const { error: res_error } = CommunicationModel.Jobs().validate(response, {
+    const {
+      error: res_error,
+    } = CommunicationPlatformModel.Jobs().validate(response, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -1932,25 +1984,26 @@ class Communication {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for getJobs",
+        message: `Response Validation Warnnings for platform > Communication > getJobs \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {GetNRecordsCsvReq} arg.body
-   * @returns {Promise<GetNRecordsCsvRes>} - Success response
+   * @param {CommunicationPlatformApplicationValidator.getNSampleRecordsFromCsv} arg
+   *   - Arg object
+   *
+   * @returns {Promise<CommunicationPlatformModel.GetNRecordsCsvRes>} - Success response
+   * @name getNSampleRecordsFromCsv
    * @summary: Get n sample records from csv
    * @description: Get n sample records from csv
    */
   async getNSampleRecordsFromCsv({ body } = {}) {
     const {
       error,
-    } = CommunicationValidator.getNSampleRecordsFromCsv().validate(
+    } = CommunicationPlatformApplicationValidator.getNSampleRecordsFromCsv().validate(
       {
         body,
       },
@@ -1963,7 +2016,7 @@ class Communication {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = CommunicationValidator.getNSampleRecordsFromCsv().validate(
+    } = CommunicationPlatformApplicationValidator.getNSampleRecordsFromCsv().validate(
       {
         body,
       },
@@ -1972,9 +2025,8 @@ class Communication {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for getNSampleRecordsFromCsv",
+        message: `Parameter Validation warrnings for platform > Communication > getNSampleRecordsFromCsv \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -1989,7 +2041,7 @@ class Communication {
 
     const {
       error: res_error,
-    } = CommunicationModel.GetNRecordsCsvRes().validate(response, {
+    } = CommunicationPlatformModel.GetNRecordsCsvRes().validate(response, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -1997,23 +2049,26 @@ class Communication {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for getNSampleRecordsFromCsv",
+        message: `Response Validation Warnnings for platform > Communication > getNSampleRecordsFromCsv \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.id - Sms provider id
-   * @returns {Promise<SmsProvider>} - Success response
+   * @param {CommunicationPlatformApplicationValidator.getSmsProviderById} arg
+   *   - Arg object
+   *
+   * @returns {Promise<CommunicationPlatformModel.SmsProvider>} - Success response
+   * @name getSmsProviderById
    * @summary: Get sms provider by id
    * @description: By using this API, a specific SMS provider will be returned that was retrieved based on the provider's id.
    */
   async getSmsProviderById({ id } = {}) {
-    const { error } = CommunicationValidator.getSmsProviderById().validate(
+    const {
+      error,
+    } = CommunicationPlatformApplicationValidator.getSmsProviderById().validate(
       {
         id,
       },
@@ -2026,7 +2081,7 @@ class Communication {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = CommunicationValidator.getSmsProviderById().validate(
+    } = CommunicationPlatformApplicationValidator.getSmsProviderById().validate(
       {
         id,
       },
@@ -2035,9 +2090,8 @@ class Communication {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for getSmsProviderById",
+        message: `Parameter Validation warrnings for platform > Communication > getSmsProviderById \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -2052,7 +2106,7 @@ class Communication {
 
     const {
       error: res_error,
-    } = CommunicationModel.SmsProvider().validate(response, {
+    } = CommunicationPlatformModel.SmsProvider().validate(response, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -2060,25 +2114,24 @@ class Communication {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for getSmsProviderById",
+        message: `Response Validation Warnnings for platform > Communication > getSmsProviderById \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {number} [arg.pageNo] - Current page no
-   * @param {number} [arg.pageSize] - Current request items count
-   * @param {Object} [arg.sort] - To sort based on created_at
-   * @returns {Promise<SmsProviders>} - Success response
+   * @param {CommunicationPlatformApplicationValidator.getSmsProviders} arg - Arg object
+   * @returns {Promise<CommunicationPlatformModel.SmsProviders>} - Success response
+   * @name getSmsProviders
    * @summary: Get sms providers
    * @description: By using this api, you may retrieve all the SMS providers that the user has setup. The outcome will be in a paginated form, fetching providers according to the current page and page number parameters.
    */
   async getSmsProviders({ pageNo, pageSize, sort } = {}) {
-    const { error } = CommunicationValidator.getSmsProviders().validate(
+    const {
+      error,
+    } = CommunicationPlatformApplicationValidator.getSmsProviders().validate(
       {
         pageNo,
         pageSize,
@@ -2093,7 +2146,7 @@ class Communication {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = CommunicationValidator.getSmsProviders().validate(
+    } = CommunicationPlatformApplicationValidator.getSmsProviders().validate(
       {
         pageNo,
         pageSize,
@@ -2104,9 +2157,8 @@ class Communication {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for getSmsProviders",
+        message: `Parameter Validation warrnings for platform > Communication > getSmsProviders \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -2124,7 +2176,7 @@ class Communication {
 
     const {
       error: res_error,
-    } = CommunicationModel.SmsProviders().validate(response, {
+    } = CommunicationPlatformModel.SmsProviders().validate(response, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -2132,23 +2184,26 @@ class Communication {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for getSmsProviders",
+        message: `Response Validation Warnnings for platform > Communication > getSmsProviders \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.id - Sms template id
-   * @returns {Promise<SmsTemplate>} - Success response
+   * @param {CommunicationPlatformApplicationValidator.getSmsTemplateById} arg
+   *   - Arg object
+   *
+   * @returns {Promise<CommunicationPlatformModel.SmsTemplate>} - Success response
+   * @name getSmsTemplateById
    * @summary: Get sms template by id
    * @description: Get sms template by id
    */
   async getSmsTemplateById({ id } = {}) {
-    const { error } = CommunicationValidator.getSmsTemplateById().validate(
+    const {
+      error,
+    } = CommunicationPlatformApplicationValidator.getSmsTemplateById().validate(
       {
         id,
       },
@@ -2161,7 +2216,7 @@ class Communication {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = CommunicationValidator.getSmsTemplateById().validate(
+    } = CommunicationPlatformApplicationValidator.getSmsTemplateById().validate(
       {
         id,
       },
@@ -2170,9 +2225,8 @@ class Communication {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for getSmsTemplateById",
+        message: `Parameter Validation warrnings for platform > Communication > getSmsTemplateById \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -2187,7 +2241,7 @@ class Communication {
 
     const {
       error: res_error,
-    } = CommunicationModel.SmsTemplate().validate(response, {
+    } = CommunicationPlatformModel.SmsTemplate().validate(response, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -2195,25 +2249,24 @@ class Communication {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for getSmsTemplateById",
+        message: `Response Validation Warnnings for platform > Communication > getSmsTemplateById \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {number} [arg.pageNo] - Current page no
-   * @param {number} [arg.pageSize] - Current request items count
-   * @param {Object} [arg.sort] - To sort based on created_at
-   * @returns {Promise<SmsTemplates>} - Success response
+   * @param {CommunicationPlatformApplicationValidator.getSmsTemplates} arg - Arg object
+   * @returns {Promise<CommunicationPlatformModel.SmsTemplates>} - Success response
+   * @name getSmsTemplates
    * @summary: Get sms templates
    * @description: Get sms templates
    */
   async getSmsTemplates({ pageNo, pageSize, sort } = {}) {
-    const { error } = CommunicationValidator.getSmsTemplates().validate(
+    const {
+      error,
+    } = CommunicationPlatformApplicationValidator.getSmsTemplates().validate(
       {
         pageNo,
         pageSize,
@@ -2228,7 +2281,7 @@ class Communication {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = CommunicationValidator.getSmsTemplates().validate(
+    } = CommunicationPlatformApplicationValidator.getSmsTemplates().validate(
       {
         pageNo,
         pageSize,
@@ -2239,9 +2292,8 @@ class Communication {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for getSmsTemplates",
+        message: `Parameter Validation warrnings for platform > Communication > getSmsTemplates \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -2259,7 +2311,7 @@ class Communication {
 
     const {
       error: res_error,
-    } = CommunicationModel.SmsTemplates().validate(response, {
+    } = CommunicationPlatformModel.SmsTemplates().validate(response, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -2267,23 +2319,26 @@ class Communication {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for getSmsTemplates",
+        message: `Response Validation Warnnings for platform > Communication > getSmsTemplates \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.id - Campaign id
-   * @returns {Promise<GetStats>} - Success response
+   * @param {CommunicationPlatformApplicationValidator.getStatsOfCampaignById} arg
+   *   - Arg object
+   *
+   * @returns {Promise<CommunicationPlatformModel.GetStats>} - Success response
+   * @name getStatsOfCampaignById
    * @summary: Get stats of campaign by id
    * @description: Get stats of campaign by id
    */
   async getStatsOfCampaignById({ id } = {}) {
-    const { error } = CommunicationValidator.getStatsOfCampaignById().validate(
+    const {
+      error,
+    } = CommunicationPlatformApplicationValidator.getStatsOfCampaignById().validate(
       {
         id,
       },
@@ -2296,7 +2351,7 @@ class Communication {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = CommunicationValidator.getStatsOfCampaignById().validate(
+    } = CommunicationPlatformApplicationValidator.getStatsOfCampaignById().validate(
       {
         id,
       },
@@ -2305,9 +2360,8 @@ class Communication {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for getStatsOfCampaignById",
+        message: `Parameter Validation warrnings for platform > Communication > getStatsOfCampaignById \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -2322,7 +2376,7 @@ class Communication {
 
     const {
       error: res_error,
-    } = CommunicationModel.GetStats().validate(response, {
+    } = CommunicationPlatformModel.GetStats().validate(response, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -2330,25 +2384,27 @@ class Communication {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for getStatsOfCampaignById",
+        message: `Response Validation Warnnings for platform > Communication > getStatsOfCampaignById \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {number} [arg.pageNo] - Current page no
-   * @param {number} [arg.pageSize] - Current request items count
-   * @param {Object} [arg.sort] - To sort based on created_at
-   * @returns {Promise<SystemEmailTemplates>} - Success response
+   * @param {CommunicationPlatformApplicationValidator.getSystemEmailTemplates} arg
+   *   - Arg object
+   *
+   * @returns {Promise<CommunicationPlatformModel.SystemEmailTemplates>} -
+   *   Success response
+   * @name getSystemEmailTemplates
    * @summary: Get system email templates
    * @description: Get system email templates
    */
   async getSystemEmailTemplates({ pageNo, pageSize, sort } = {}) {
-    const { error } = CommunicationValidator.getSystemEmailTemplates().validate(
+    const {
+      error,
+    } = CommunicationPlatformApplicationValidator.getSystemEmailTemplates().validate(
       {
         pageNo,
         pageSize,
@@ -2363,7 +2419,7 @@ class Communication {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = CommunicationValidator.getSystemEmailTemplates().validate(
+    } = CommunicationPlatformApplicationValidator.getSystemEmailTemplates().validate(
       {
         pageNo,
         pageSize,
@@ -2374,9 +2430,8 @@ class Communication {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for getSystemEmailTemplates",
+        message: `Parameter Validation warrnings for platform > Communication > getSystemEmailTemplates \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -2394,7 +2449,7 @@ class Communication {
 
     const {
       error: res_error,
-    } = CommunicationModel.SystemEmailTemplates().validate(response, {
+    } = CommunicationPlatformModel.SystemEmailTemplates().validate(response, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -2402,27 +2457,27 @@ class Communication {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for getSystemEmailTemplates",
+        message: `Response Validation Warnnings for platform > Communication > getSystemEmailTemplates \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {number} [arg.pageNo] - Current page no
-   * @param {number} [arg.pageSize] - Current request items count
-   * @param {Object} [arg.sort] - To sort based on created_at
-   * @returns {Promise<SystemSmsTemplates>} - Success response
+   * @param {CommunicationPlatformApplicationValidator.getSystemSystemTemplates} arg
+   *   - Arg object
+   *
+   * @returns {Promise<CommunicationPlatformModel.SystemSmsTemplates>} -
+   *   Success response
+   * @name getSystemSystemTemplates
    * @summary: Get system sms templates
    * @description: Get system sms templates
    */
   async getSystemSystemTemplates({ pageNo, pageSize, sort } = {}) {
     const {
       error,
-    } = CommunicationValidator.getSystemSystemTemplates().validate(
+    } = CommunicationPlatformApplicationValidator.getSystemSystemTemplates().validate(
       {
         pageNo,
         pageSize,
@@ -2437,7 +2492,7 @@ class Communication {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = CommunicationValidator.getSystemSystemTemplates().validate(
+    } = CommunicationPlatformApplicationValidator.getSystemSystemTemplates().validate(
       {
         pageNo,
         pageSize,
@@ -2448,9 +2503,8 @@ class Communication {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for getSystemSystemTemplates",
+        message: `Parameter Validation warrnings for platform > Communication > getSystemSystemTemplates \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -2468,7 +2522,7 @@ class Communication {
 
     const {
       error: res_error,
-    } = CommunicationModel.SystemSmsTemplates().validate(response, {
+    } = CommunicationPlatformModel.SystemSmsTemplates().validate(response, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -2476,25 +2530,27 @@ class Communication {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for getSystemSystemTemplates",
+        message: `Response Validation Warnnings for platform > Communication > getSystemSystemTemplates \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {number} [arg.pageNo] - Current page no
-   * @param {number} [arg.pageSize] - Current request items count
-   * @param {Object} [arg.sort] - To sort based on created_at
-   * @returns {Promise<SystemVoiceTemplates>} - Success response
+   * @param {CommunicationPlatformApplicationValidator.getSystemVoiceTemplates} arg
+   *   - Arg object
+   *
+   * @returns {Promise<CommunicationPlatformModel.SystemVoiceTemplates>} -
+   *   Success response
+   * @name getSystemVoiceTemplates
    * @summary: Get system voice templates
    * @description: Get system voice templates
    */
   async getSystemVoiceTemplates({ pageNo, pageSize, sort } = {}) {
-    const { error } = CommunicationValidator.getSystemVoiceTemplates().validate(
+    const {
+      error,
+    } = CommunicationPlatformApplicationValidator.getSystemVoiceTemplates().validate(
       {
         pageNo,
         pageSize,
@@ -2509,7 +2565,7 @@ class Communication {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = CommunicationValidator.getSystemVoiceTemplates().validate(
+    } = CommunicationPlatformApplicationValidator.getSystemVoiceTemplates().validate(
       {
         pageNo,
         pageSize,
@@ -2520,9 +2576,8 @@ class Communication {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for getSystemVoiceTemplates",
+        message: `Parameter Validation warrnings for platform > Communication > getSystemVoiceTemplates \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -2540,7 +2595,7 @@ class Communication {
 
     const {
       error: res_error,
-    } = CommunicationModel.SystemVoiceTemplates().validate(response, {
+    } = CommunicationPlatformModel.SystemVoiceTemplates().validate(response, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -2548,23 +2603,26 @@ class Communication {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for getSystemVoiceTemplates",
+        message: `Response Validation Warnnings for platform > Communication > getSystemVoiceTemplates \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.id - Voice provider id
-   * @returns {Promise<VoiceProvider>} - Success response
+   * @param {CommunicationPlatformApplicationValidator.getVoiceProviderById} arg
+   *   - Arg object
+   *
+   * @returns {Promise<CommunicationPlatformModel.VoiceProvider>} - Success response
+   * @name getVoiceProviderById
    * @summary: Get voice provider by id
    * @description: Get voice provider by id
    */
   async getVoiceProviderById({ id } = {}) {
-    const { error } = CommunicationValidator.getVoiceProviderById().validate(
+    const {
+      error,
+    } = CommunicationPlatformApplicationValidator.getVoiceProviderById().validate(
       {
         id,
       },
@@ -2577,7 +2635,7 @@ class Communication {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = CommunicationValidator.getVoiceProviderById().validate(
+    } = CommunicationPlatformApplicationValidator.getVoiceProviderById().validate(
       {
         id,
       },
@@ -2586,9 +2644,8 @@ class Communication {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for getVoiceProviderById",
+        message: `Parameter Validation warrnings for platform > Communication > getVoiceProviderById \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -2603,7 +2660,7 @@ class Communication {
 
     const {
       error: res_error,
-    } = CommunicationModel.VoiceProvider().validate(response, {
+    } = CommunicationPlatformModel.VoiceProvider().validate(response, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -2611,25 +2668,26 @@ class Communication {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for getVoiceProviderById",
+        message: `Response Validation Warnnings for platform > Communication > getVoiceProviderById \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {number} [arg.pageNo] - Current page no
-   * @param {number} [arg.pageSize] - Current request items count
-   * @param {Object} [arg.sort] - To sort based on created_at
-   * @returns {Promise<VoiceProviders>} - Success response
+   * @param {CommunicationPlatformApplicationValidator.getVoiceProviders} arg
+   *   - Arg object
+   *
+   * @returns {Promise<CommunicationPlatformModel.VoiceProviders>} - Success response
+   * @name getVoiceProviders
    * @summary: Get voice providers
    * @description: Get voice providers
    */
   async getVoiceProviders({ pageNo, pageSize, sort } = {}) {
-    const { error } = CommunicationValidator.getVoiceProviders().validate(
+    const {
+      error,
+    } = CommunicationPlatformApplicationValidator.getVoiceProviders().validate(
       {
         pageNo,
         pageSize,
@@ -2644,7 +2702,7 @@ class Communication {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = CommunicationValidator.getVoiceProviders().validate(
+    } = CommunicationPlatformApplicationValidator.getVoiceProviders().validate(
       {
         pageNo,
         pageSize,
@@ -2655,9 +2713,8 @@ class Communication {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for getVoiceProviders",
+        message: `Parameter Validation warrnings for platform > Communication > getVoiceProviders \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -2675,7 +2732,7 @@ class Communication {
 
     const {
       error: res_error,
-    } = CommunicationModel.VoiceProviders().validate(response, {
+    } = CommunicationPlatformModel.VoiceProviders().validate(response, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -2683,23 +2740,26 @@ class Communication {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for getVoiceProviders",
+        message: `Response Validation Warnnings for platform > Communication > getVoiceProviders \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.id - Voice template id
-   * @returns {Promise<VoiceTemplate>} - Success response
+   * @param {CommunicationPlatformApplicationValidator.getVoiceTemplateById} arg
+   *   - Arg object
+   *
+   * @returns {Promise<CommunicationPlatformModel.VoiceTemplate>} - Success response
+   * @name getVoiceTemplateById
    * @summary: Get voice template by id
    * @description: Get voice template by id
    */
   async getVoiceTemplateById({ id } = {}) {
-    const { error } = CommunicationValidator.getVoiceTemplateById().validate(
+    const {
+      error,
+    } = CommunicationPlatformApplicationValidator.getVoiceTemplateById().validate(
       {
         id,
       },
@@ -2712,7 +2772,7 @@ class Communication {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = CommunicationValidator.getVoiceTemplateById().validate(
+    } = CommunicationPlatformApplicationValidator.getVoiceTemplateById().validate(
       {
         id,
       },
@@ -2721,9 +2781,8 @@ class Communication {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for getVoiceTemplateById",
+        message: `Parameter Validation warrnings for platform > Communication > getVoiceTemplateById \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -2738,7 +2797,7 @@ class Communication {
 
     const {
       error: res_error,
-    } = CommunicationModel.VoiceTemplate().validate(response, {
+    } = CommunicationPlatformModel.VoiceTemplate().validate(response, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -2746,25 +2805,26 @@ class Communication {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for getVoiceTemplateById",
+        message: `Response Validation Warnnings for platform > Communication > getVoiceTemplateById \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {number} [arg.pageNo] - Current page no
-   * @param {number} [arg.pageSize] - Current request items count
-   * @param {Object} [arg.sort] - To sort based on created_at
-   * @returns {Promise<VoiceTemplates>} - Success response
+   * @param {CommunicationPlatformApplicationValidator.getVoiceTemplates} arg
+   *   - Arg object
+   *
+   * @returns {Promise<CommunicationPlatformModel.VoiceTemplates>} - Success response
+   * @name getVoiceTemplates
    * @summary: Get voice templates
    * @description: Get voice templates
    */
   async getVoiceTemplates({ pageNo, pageSize, sort } = {}) {
-    const { error } = CommunicationValidator.getVoiceTemplates().validate(
+    const {
+      error,
+    } = CommunicationPlatformApplicationValidator.getVoiceTemplates().validate(
       {
         pageNo,
         pageSize,
@@ -2779,7 +2839,7 @@ class Communication {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = CommunicationValidator.getVoiceTemplates().validate(
+    } = CommunicationPlatformApplicationValidator.getVoiceTemplates().validate(
       {
         pageNo,
         pageSize,
@@ -2790,9 +2850,8 @@ class Communication {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for getVoiceTemplates",
+        message: `Parameter Validation warrnings for platform > Communication > getVoiceTemplates \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -2810,7 +2869,7 @@ class Communication {
 
     const {
       error: res_error,
-    } = CommunicationModel.VoiceTemplates().validate(response, {
+    } = CommunicationPlatformModel.VoiceTemplates().validate(response, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -2818,25 +2877,26 @@ class Communication {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for getVoiceTemplates",
+        message: `Response Validation Warnnings for platform > Communication > getVoiceTemplates \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {EngineRequest} arg.body
-   * @returns {Promise<EngineResponse>} - Success response
+   * @param {CommunicationPlatformApplicationValidator.sendCommunicationAsynchronously} arg
+   *   - Arg object
+   *
+   * @returns {Promise<CommunicationPlatformModel.EngineResponse>} - Success response
+   * @name sendCommunicationAsynchronously
    * @summary: Send email or sms asynchronously
    * @description: Send email or sms asynchronously
    */
   async sendCommunicationAsynchronously({ body } = {}) {
     const {
       error,
-    } = CommunicationValidator.sendCommunicationAsynchronously().validate(
+    } = CommunicationPlatformApplicationValidator.sendCommunicationAsynchronously().validate(
       {
         body,
       },
@@ -2849,7 +2909,7 @@ class Communication {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = CommunicationValidator.sendCommunicationAsynchronously().validate(
+    } = CommunicationPlatformApplicationValidator.sendCommunicationAsynchronously().validate(
       {
         body,
       },
@@ -2858,10 +2918,8 @@ class Communication {
     if (warrning) {
       Logger({
         level: "WARN",
-        message:
-          "Parameter Validation warrnings for sendCommunicationAsynchronously",
+        message: `Parameter Validation warrnings for platform > Communication > sendCommunicationAsynchronously \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -2876,7 +2934,7 @@ class Communication {
 
     const {
       error: res_error,
-    } = CommunicationModel.EngineResponse().validate(response, {
+    } = CommunicationPlatformModel.EngineResponse().validate(response, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -2884,26 +2942,26 @@ class Communication {
     if (res_error) {
       Logger({
         level: "WARN",
-        message:
-          "Response Validation Warnnings for sendCommunicationAsynchronously",
+        message: `Response Validation Warnnings for platform > Communication > sendCommunicationAsynchronously \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {EngineRequest} arg.body
-   * @returns {Promise<EngineResponse>} - Success response
+   * @param {CommunicationPlatformApplicationValidator.sendCommunicationSynchronously} arg
+   *   - Arg object
+   *
+   * @returns {Promise<CommunicationPlatformModel.EngineResponse>} - Success response
+   * @name sendCommunicationSynchronously
    * @summary: Send email or sms synchronously
    * @description: Send email or sms synchronously
    */
   async sendCommunicationSynchronously({ body } = {}) {
     const {
       error,
-    } = CommunicationValidator.sendCommunicationSynchronously().validate(
+    } = CommunicationPlatformApplicationValidator.sendCommunicationSynchronously().validate(
       {
         body,
       },
@@ -2916,7 +2974,7 @@ class Communication {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = CommunicationValidator.sendCommunicationSynchronously().validate(
+    } = CommunicationPlatformApplicationValidator.sendCommunicationSynchronously().validate(
       {
         body,
       },
@@ -2925,10 +2983,8 @@ class Communication {
     if (warrning) {
       Logger({
         level: "WARN",
-        message:
-          "Parameter Validation warrnings for sendCommunicationSynchronously",
+        message: `Parameter Validation warrnings for platform > Communication > sendCommunicationSynchronously \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -2943,7 +2999,7 @@ class Communication {
 
     const {
       error: res_error,
-    } = CommunicationModel.EngineResponse().validate(response, {
+    } = CommunicationPlatformModel.EngineResponse().validate(response, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -2951,24 +3007,24 @@ class Communication {
     if (res_error) {
       Logger({
         level: "WARN",
-        message:
-          "Response Validation Warnnings for sendCommunicationSynchronously",
+        message: `Response Validation Warnnings for platform > Communication > sendCommunicationSynchronously \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {SendOtpCommsReq} arg.body
-   * @returns {Promise<SendOtpCommsRes>} - Success response
+   * @param {CommunicationPlatformApplicationValidator.sendOtp} arg - Arg object
+   * @returns {Promise<CommunicationPlatformModel.SendOtpCommsRes>} - Success response
+   * @name sendOtp
    * @summary: Send OTP using email and sms
    * @description: Send OTP Comms via email and sms
    */
   async sendOtp({ body } = {}) {
-    const { error } = CommunicationValidator.sendOtp().validate(
+    const {
+      error,
+    } = CommunicationPlatformApplicationValidator.sendOtp().validate(
       {
         body,
       },
@@ -2979,7 +3035,9 @@ class Communication {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = CommunicationValidator.sendOtp().validate(
+    const {
+      error: warrning,
+    } = CommunicationPlatformApplicationValidator.sendOtp().validate(
       {
         body,
       },
@@ -2988,9 +3046,8 @@ class Communication {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for sendOtp",
+        message: `Parameter Validation warrnings for platform > Communication > sendOtp \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -3005,7 +3062,7 @@ class Communication {
 
     const {
       error: res_error,
-    } = CommunicationModel.SendOtpCommsRes().validate(response, {
+    } = CommunicationPlatformModel.SendOtpCommsRes().validate(response, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -3013,23 +3070,27 @@ class Communication {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for sendOtp",
+        message: `Response Validation Warnnings for platform > Communication > sendOtp \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {TriggerJobRequest} arg.body
-   * @returns {Promise<TriggerJobResponse>} - Success response
+   * @param {CommunicationPlatformApplicationValidator.triggerCampaignJob} arg
+   *   - Arg object
+   *
+   * @returns {Promise<CommunicationPlatformModel.TriggerJobResponse>} -
+   *   Success response
+   * @name triggerCampaignJob
    * @summary: Trigger campaign job
    * @description: Trigger campaign job
    */
   async triggerCampaignJob({ body } = {}) {
-    const { error } = CommunicationValidator.triggerCampaignJob().validate(
+    const {
+      error,
+    } = CommunicationPlatformApplicationValidator.triggerCampaignJob().validate(
       {
         body,
       },
@@ -3042,7 +3103,7 @@ class Communication {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = CommunicationValidator.triggerCampaignJob().validate(
+    } = CommunicationPlatformApplicationValidator.triggerCampaignJob().validate(
       {
         body,
       },
@@ -3051,9 +3112,8 @@ class Communication {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for triggerCampaignJob",
+        message: `Parameter Validation warrnings for platform > Communication > triggerCampaignJob \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -3068,7 +3128,7 @@ class Communication {
 
     const {
       error: res_error,
-    } = CommunicationModel.TriggerJobResponse().validate(response, {
+    } = CommunicationPlatformModel.TriggerJobResponse().validate(response, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -3076,23 +3136,26 @@ class Communication {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for triggerCampaignJob",
+        message: `Response Validation Warnnings for platform > Communication > triggerCampaignJob \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {AppProviderReq} arg.body
-   * @returns {Promise<AppProvider>} - Success response
+   * @param {CommunicationPlatformApplicationValidator.updateAppProviders} arg
+   *   - Arg object
+   *
+   * @returns {Promise<CommunicationPlatformModel.AppProvider>} - Success response
+   * @name updateAppProviders
    * @summary: update app providers
    * @description: Using this API will update the application providers.
    */
   async updateAppProviders({ body } = {}) {
-    const { error } = CommunicationValidator.updateAppProviders().validate(
+    const {
+      error,
+    } = CommunicationPlatformApplicationValidator.updateAppProviders().validate(
       {
         body,
       },
@@ -3105,7 +3168,7 @@ class Communication {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = CommunicationValidator.updateAppProviders().validate(
+    } = CommunicationPlatformApplicationValidator.updateAppProviders().validate(
       {
         body,
       },
@@ -3114,9 +3177,8 @@ class Communication {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for updateAppProviders",
+        message: `Parameter Validation warrnings for platform > Communication > updateAppProviders \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -3131,7 +3193,7 @@ class Communication {
 
     const {
       error: res_error,
-    } = CommunicationModel.AppProvider().validate(response, {
+    } = CommunicationPlatformModel.AppProvider().validate(response, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -3139,24 +3201,26 @@ class Communication {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for updateAppProviders",
+        message: `Response Validation Warnnings for platform > Communication > updateAppProviders \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.id - Audience id
-   * @param {AudienceReq} arg.body
-   * @returns {Promise<Audience>} - Success response
+   * @param {CommunicationPlatformApplicationValidator.updateAudienceById} arg
+   *   - Arg object
+   *
+   * @returns {Promise<CommunicationPlatformModel.Audience>} - Success response
+   * @name updateAudienceById
    * @summary: Update audience by id
    * @description: Update audience by id
    */
   async updateAudienceById({ id, body } = {}) {
-    const { error } = CommunicationValidator.updateAudienceById().validate(
+    const {
+      error,
+    } = CommunicationPlatformApplicationValidator.updateAudienceById().validate(
       {
         id,
         body,
@@ -3170,7 +3234,7 @@ class Communication {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = CommunicationValidator.updateAudienceById().validate(
+    } = CommunicationPlatformApplicationValidator.updateAudienceById().validate(
       {
         id,
         body,
@@ -3180,9 +3244,8 @@ class Communication {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for updateAudienceById",
+        message: `Parameter Validation warrnings for platform > Communication > updateAudienceById \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -3197,7 +3260,7 @@ class Communication {
 
     const {
       error: res_error,
-    } = CommunicationModel.Audience().validate(response, {
+    } = CommunicationPlatformModel.Audience().validate(response, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -3205,24 +3268,26 @@ class Communication {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for updateAudienceById",
+        message: `Response Validation Warnnings for platform > Communication > updateAudienceById \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.id - Campaign id
-   * @param {CampaignReq} arg.body
-   * @returns {Promise<Campaign>} - Success response
+   * @param {CommunicationPlatformApplicationValidator.updateCampaignById} arg
+   *   - Arg object
+   *
+   * @returns {Promise<CommunicationPlatformModel.Campaign>} - Success response
+   * @name updateCampaignById
    * @summary: Update campaign by id
    * @description: Update campaign by id
    */
   async updateCampaignById({ id, body } = {}) {
-    const { error } = CommunicationValidator.updateCampaignById().validate(
+    const {
+      error,
+    } = CommunicationPlatformApplicationValidator.updateCampaignById().validate(
       {
         id,
         body,
@@ -3236,7 +3301,7 @@ class Communication {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = CommunicationValidator.updateCampaignById().validate(
+    } = CommunicationPlatformApplicationValidator.updateCampaignById().validate(
       {
         id,
         body,
@@ -3246,9 +3311,8 @@ class Communication {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for updateCampaignById",
+        message: `Parameter Validation warrnings for platform > Communication > updateCampaignById \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -3263,7 +3327,7 @@ class Communication {
 
     const {
       error: res_error,
-    } = CommunicationModel.Campaign().validate(response, {
+    } = CommunicationPlatformModel.Campaign().validate(response, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -3271,24 +3335,26 @@ class Communication {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for updateCampaignById",
+        message: `Response Validation Warnnings for platform > Communication > updateCampaignById \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.id - Email provider id
-   * @param {EmailProviderReq} arg.body
-   * @returns {Promise<EmailProvider>} - Success response
+   * @param {CommunicationPlatformApplicationValidator.updateEmailProviderById} arg
+   *   - Arg object
+   *
+   * @returns {Promise<CommunicationPlatformModel.EmailProvider>} - Success response
+   * @name updateEmailProviderById
    * @summary: Update email provider by id
    * @description: By using this API, you can modify a certain email provider's definitions based on it's ID.
    */
   async updateEmailProviderById({ id, body } = {}) {
-    const { error } = CommunicationValidator.updateEmailProviderById().validate(
+    const {
+      error,
+    } = CommunicationPlatformApplicationValidator.updateEmailProviderById().validate(
       {
         id,
         body,
@@ -3302,7 +3368,7 @@ class Communication {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = CommunicationValidator.updateEmailProviderById().validate(
+    } = CommunicationPlatformApplicationValidator.updateEmailProviderById().validate(
       {
         id,
         body,
@@ -3312,9 +3378,8 @@ class Communication {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for updateEmailProviderById",
+        message: `Parameter Validation warrnings for platform > Communication > updateEmailProviderById \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -3329,7 +3394,7 @@ class Communication {
 
     const {
       error: res_error,
-    } = CommunicationModel.EmailProvider().validate(response, {
+    } = CommunicationPlatformModel.EmailProvider().validate(response, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -3337,24 +3402,26 @@ class Communication {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for updateEmailProviderById",
+        message: `Response Validation Warnnings for platform > Communication > updateEmailProviderById \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.id - Email template id
-   * @param {EmailTemplateReq} arg.body
-   * @returns {Promise<EmailTemplateRes>} - Success response
+   * @param {CommunicationPlatformApplicationValidator.updateEmailTemplateById} arg
+   *   - Arg object
+   *
+   * @returns {Promise<CommunicationPlatformModel.EmailTemplateRes>} - Success response
+   * @name updateEmailTemplateById
    * @summary: Update email template by id
    * @description: Update email template by id
    */
   async updateEmailTemplateById({ id, body } = {}) {
-    const { error } = CommunicationValidator.updateEmailTemplateById().validate(
+    const {
+      error,
+    } = CommunicationPlatformApplicationValidator.updateEmailTemplateById().validate(
       {
         id,
         body,
@@ -3368,7 +3435,7 @@ class Communication {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = CommunicationValidator.updateEmailTemplateById().validate(
+    } = CommunicationPlatformApplicationValidator.updateEmailTemplateById().validate(
       {
         id,
         body,
@@ -3378,9 +3445,8 @@ class Communication {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for updateEmailTemplateById",
+        message: `Parameter Validation warrnings for platform > Communication > updateEmailTemplateById \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -3395,7 +3461,7 @@ class Communication {
 
     const {
       error: res_error,
-    } = CommunicationModel.EmailTemplateRes().validate(response, {
+    } = CommunicationPlatformModel.EmailTemplateRes().validate(response, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -3403,24 +3469,26 @@ class Communication {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for updateEmailTemplateById",
+        message: `Response Validation Warnnings for platform > Communication > updateEmailTemplateById \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.id - Sms provider id
-   * @param {SmsProviderReq} arg.body
-   * @returns {Promise<SmsProvider>} - Success response
+   * @param {CommunicationPlatformApplicationValidator.updateSmsProviderById} arg
+   *   - Arg object
+   *
+   * @returns {Promise<CommunicationPlatformModel.SmsProvider>} - Success response
+   * @name updateSmsProviderById
    * @summary: Update sms provider by id
    * @description: By using this API, you can modify a certain SMS provider's definitions based on it's ID.
    */
   async updateSmsProviderById({ id, body } = {}) {
-    const { error } = CommunicationValidator.updateSmsProviderById().validate(
+    const {
+      error,
+    } = CommunicationPlatformApplicationValidator.updateSmsProviderById().validate(
       {
         id,
         body,
@@ -3434,7 +3502,7 @@ class Communication {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = CommunicationValidator.updateSmsProviderById().validate(
+    } = CommunicationPlatformApplicationValidator.updateSmsProviderById().validate(
       {
         id,
         body,
@@ -3444,9 +3512,8 @@ class Communication {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for updateSmsProviderById",
+        message: `Parameter Validation warrnings for platform > Communication > updateSmsProviderById \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -3461,7 +3528,7 @@ class Communication {
 
     const {
       error: res_error,
-    } = CommunicationModel.SmsProvider().validate(response, {
+    } = CommunicationPlatformModel.SmsProvider().validate(response, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -3469,24 +3536,26 @@ class Communication {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for updateSmsProviderById",
+        message: `Response Validation Warnnings for platform > Communication > updateSmsProviderById \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.id - Sms template id
-   * @param {SmsTemplateReq} arg.body
-   * @returns {Promise<SmsTemplateRes>} - Success response
+   * @param {CommunicationPlatformApplicationValidator.updateSmsTemplateById} arg
+   *   - Arg object
+   *
+   * @returns {Promise<CommunicationPlatformModel.SmsTemplateRes>} - Success response
+   * @name updateSmsTemplateById
    * @summary: Update sms template by id
    * @description: Update sms template by id
    */
   async updateSmsTemplateById({ id, body } = {}) {
-    const { error } = CommunicationValidator.updateSmsTemplateById().validate(
+    const {
+      error,
+    } = CommunicationPlatformApplicationValidator.updateSmsTemplateById().validate(
       {
         id,
         body,
@@ -3500,7 +3569,7 @@ class Communication {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = CommunicationValidator.updateSmsTemplateById().validate(
+    } = CommunicationPlatformApplicationValidator.updateSmsTemplateById().validate(
       {
         id,
         body,
@@ -3510,9 +3579,8 @@ class Communication {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for updateSmsTemplateById",
+        message: `Parameter Validation warrnings for platform > Communication > updateSmsTemplateById \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -3527,7 +3595,7 @@ class Communication {
 
     const {
       error: res_error,
-    } = CommunicationModel.SmsTemplateRes().validate(response, {
+    } = CommunicationPlatformModel.SmsTemplateRes().validate(response, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -3535,24 +3603,26 @@ class Communication {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for updateSmsTemplateById",
+        message: `Response Validation Warnnings for platform > Communication > updateSmsTemplateById \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.id - Voice template id
-   * @param {VoiceTemplateReq} arg.body
-   * @returns {Promise<VoiceTemplateRes>} - Success response
+   * @param {CommunicationPlatformApplicationValidator.updateVoiceTemplateById} arg
+   *   - Arg object
+   *
+   * @returns {Promise<CommunicationPlatformModel.VoiceTemplateRes>} - Success response
+   * @name updateVoiceTemplateById
    * @summary: Update voice template by id
    * @description: Update voice template by id
    */
   async updateVoiceTemplateById({ id, body } = {}) {
-    const { error } = CommunicationValidator.updateVoiceTemplateById().validate(
+    const {
+      error,
+    } = CommunicationPlatformApplicationValidator.updateVoiceTemplateById().validate(
       {
         id,
         body,
@@ -3566,7 +3636,7 @@ class Communication {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = CommunicationValidator.updateVoiceTemplateById().validate(
+    } = CommunicationPlatformApplicationValidator.updateVoiceTemplateById().validate(
       {
         id,
         body,
@@ -3576,9 +3646,8 @@ class Communication {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for updateVoiceTemplateById",
+        message: `Parameter Validation warrnings for platform > Communication > updateVoiceTemplateById \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -3593,7 +3662,7 @@ class Communication {
 
     const {
       error: res_error,
-    } = CommunicationModel.VoiceTemplateRes().validate(response, {
+    } = CommunicationPlatformModel.VoiceTemplateRes().validate(response, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -3601,23 +3670,26 @@ class Communication {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for updateVoiceTemplateById",
+        message: `Response Validation Warnnings for platform > Communication > updateVoiceTemplateById \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {VerifyOtpCommsReq} arg.body
-   * @returns {Promise<VerifyOtpCommsSuccessRes>} - Success response
+   * @param {CommunicationPlatformApplicationValidator.verfiyOtp} arg - Arg object
+   * @returns {Promise<CommunicationPlatformModel.VerifyOtpCommsSuccessRes>}
+   *   - Success response
+   *
+   * @name verfiyOtp
    * @summary: Verify OTP sent via email and sms
    * @description: Verify OTP sent via email and sms
    */
   async verfiyOtp({ body } = {}) {
-    const { error } = CommunicationValidator.verfiyOtp().validate(
+    const {
+      error,
+    } = CommunicationPlatformApplicationValidator.verfiyOtp().validate(
       {
         body,
       },
@@ -3628,7 +3700,9 @@ class Communication {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = CommunicationValidator.verfiyOtp().validate(
+    const {
+      error: warrning,
+    } = CommunicationPlatformApplicationValidator.verfiyOtp().validate(
       {
         body,
       },
@@ -3637,9 +3711,8 @@ class Communication {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for verfiyOtp",
+        message: `Parameter Validation warrnings for platform > Communication > verfiyOtp \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -3654,17 +3727,16 @@ class Communication {
 
     const {
       error: res_error,
-    } = CommunicationModel.VerifyOtpCommsSuccessRes().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
+    } = CommunicationPlatformModel.VerifyOtpCommsSuccessRes().validate(
+      response,
+      { abortEarly: false, allowUnknown: false }
+    );
 
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for verfiyOtp",
+        message: `Response Validation Warnnings for platform > Communication > verfiyOtp \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;

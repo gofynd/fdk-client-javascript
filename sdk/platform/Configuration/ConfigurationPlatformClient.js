@@ -1,8 +1,8 @@
 const PlatformAPIClient = require("../PlatformAPIClient");
 const { FDKClientValidationError } = require("../../common/FDKError");
 const Paginator = require("../../common/Paginator");
-const ConfigurationValidator = require("./ConfigurationPlatformValidator");
-const ConfigurationModel = require("./ConfigurationPlatformModel");
+const ConfigurationPlatformValidator = require("./ConfigurationPlatformValidator");
+const ConfigurationPlatformModel = require("./ConfigurationPlatformModel");
 const { Logger } = require("./../../common/Logger");
 const Joi = require("joi");
 
@@ -12,14 +12,16 @@ class Configuration {
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {CreateApplicationRequest} arg.body
-   * @returns {Promise<CreateAppResponse>} - Success response
+   * @param {ConfigurationPlatformValidator.createApplication} arg - Arg object
+   * @returns {Promise<ConfigurationPlatformModel.CreateAppResponse>} - Success response
+   * @name createApplication
    * @summary: Create a new sales channel
    * @description: Applications are sales channel websites which can be configured, personalized and customized. Use this API to create a new application in the current company.
    */
   async createApplication({ body } = {}) {
-    const { error } = ConfigurationValidator.createApplication().validate(
+    const {
+      error,
+    } = ConfigurationPlatformValidator.createApplication().validate(
       {
         body,
       },
@@ -32,7 +34,7 @@ class Configuration {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = ConfigurationValidator.createApplication().validate(
+    } = ConfigurationPlatformValidator.createApplication().validate(
       {
         body,
       },
@@ -41,9 +43,8 @@ class Configuration {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for createApplication",
+        message: `Parameter Validation warrnings for platform > Configuration > createApplication \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -61,7 +62,7 @@ class Configuration {
 
     const {
       error: res_error,
-    } = ConfigurationModel.CreateAppResponse().validate(response, {
+    } = ConfigurationPlatformModel.CreateAppResponse().validate(response, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -69,25 +70,23 @@ class Configuration {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for createApplication",
+        message: `Response Validation Warnnings for platform > Configuration > createApplication \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {number} [arg.pageNo] -
-   * @param {number} [arg.pageSize] -
-   * @param {string} [arg.q] - Search param by name or domain
-   * @returns {Promise<ApplicationsResponse>} - Success response
+   * @param {ConfigurationPlatformValidator.getApplications} arg - Arg object
+   * @returns {Promise<ConfigurationPlatformModel.ApplicationsResponse>} -
+   *   Success response
+   * @name getApplications
    * @summary: Get list of registered sales channels under company
    * @description: Applications are sales channel websites which can be configured, personalized and customised. Use this API to fetch a list of applications created within a company.
    */
   async getApplications({ pageNo, pageSize, q } = {}) {
-    const { error } = ConfigurationValidator.getApplications().validate(
+    const { error } = ConfigurationPlatformValidator.getApplications().validate(
       {
         pageNo,
         pageSize,
@@ -102,7 +101,7 @@ class Configuration {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = ConfigurationValidator.getApplications().validate(
+    } = ConfigurationPlatformValidator.getApplications().validate(
       {
         pageNo,
         pageSize,
@@ -113,9 +112,8 @@ class Configuration {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for getApplications",
+        message: `Parameter Validation warrnings for platform > Configuration > getApplications \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -136,7 +134,7 @@ class Configuration {
 
     const {
       error: res_error,
-    } = ConfigurationModel.ApplicationsResponse().validate(response, {
+    } = ConfigurationPlatformModel.ApplicationsResponse().validate(response, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -144,9 +142,8 @@ class Configuration {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for getApplications",
+        message: `Response Validation Warnnings for platform > Configuration > getApplications \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
@@ -156,6 +153,7 @@ class Configuration {
    * @param {Object} arg - Arg object.
    * @param {number} [arg.pageSize] -
    * @param {string} [arg.q] - Search param by name or domain
+   * @returns {Paginator<ConfigurationPlatformModel.ApplicationsResponse>}
    * @summary: Get list of registered sales channels under company
    * @description: Applications are sales channel websites which can be configured, personalized and customised. Use this API to fetch a list of applications created within a company.
    */
@@ -181,17 +179,18 @@ class Configuration {
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {number} [arg.pageNo] - The page number to navigate through the
-   *   given set of results. Default value is 1.
-   * @param {number} [arg.pageSize] - The number of items to retrieve in each
-   *   page. Default value is 10.
-   * @returns {Promise<GetIntegrationsOptInsResponse>} - Success response
+   * @param {ConfigurationPlatformValidator.getAvailableOptIns} arg - Arg object
+   * @returns {Promise<ConfigurationPlatformModel.GetIntegrationsOptInsResponse>}
+   *   - Success response
+   *
+   * @name getAvailableOptIns
    * @summary: Get all available integration opt-ins
    * @description: Use this API to get a list of all available integrations in a company
    */
   async getAvailableOptIns({ pageNo, pageSize } = {}) {
-    const { error } = ConfigurationValidator.getAvailableOptIns().validate(
+    const {
+      error,
+    } = ConfigurationPlatformValidator.getAvailableOptIns().validate(
       {
         pageNo,
         pageSize,
@@ -205,7 +204,7 @@ class Configuration {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = ConfigurationValidator.getAvailableOptIns().validate(
+    } = ConfigurationPlatformValidator.getAvailableOptIns().validate(
       {
         pageNo,
         pageSize,
@@ -215,9 +214,8 @@ class Configuration {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for getAvailableOptIns",
+        message: `Parameter Validation warrnings for platform > Configuration > getAvailableOptIns \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -237,31 +235,33 @@ class Configuration {
 
     const {
       error: res_error,
-    } = ConfigurationModel.GetIntegrationsOptInsResponse().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
+    } = ConfigurationPlatformModel.GetIntegrationsOptInsResponse().validate(
+      response,
+      { abortEarly: false, allowUnknown: false }
+    );
 
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for getAvailableOptIns",
+        message: `Response Validation Warnnings for platform > Configuration > getAvailableOptIns \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {string} [arg.q] - Search text for brand name
-   * @returns {Promise<BrandsByCompanyResponse>} - Success response
+   * @param {ConfigurationPlatformValidator.getBrandsByCompany} arg - Arg object
+   * @returns {Promise<ConfigurationPlatformModel.BrandsByCompanyResponse>} -
+   *   Success response
+   * @name getBrandsByCompany
    * @summary: Get brands by company.
    * @description: Use this API to get all the brands added in a company. Get all the brand names, along with URLs of their logo, banner, and portrait image.
    */
   async getBrandsByCompany({ q } = {}) {
-    const { error } = ConfigurationValidator.getBrandsByCompany().validate(
+    const {
+      error,
+    } = ConfigurationPlatformValidator.getBrandsByCompany().validate(
       {
         q,
       },
@@ -274,7 +274,7 @@ class Configuration {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = ConfigurationValidator.getBrandsByCompany().validate(
+    } = ConfigurationPlatformValidator.getBrandsByCompany().validate(
       {
         q,
       },
@@ -283,9 +283,8 @@ class Configuration {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for getBrandsByCompany",
+        message: `Parameter Validation warrnings for platform > Configuration > getBrandsByCompany \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -304,35 +303,33 @@ class Configuration {
 
     const {
       error: res_error,
-    } = ConfigurationModel.BrandsByCompanyResponse().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
+    } = ConfigurationPlatformModel.BrandsByCompanyResponse().validate(
+      response,
+      { abortEarly: false, allowUnknown: false }
+    );
 
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for getBrandsByCompany",
+        message: `Response Validation Warnnings for platform > Configuration > getBrandsByCompany \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {number} [arg.pageNo] - The page number to navigate through the
-   *   given set of results. Default value is 1.
-   * @param {number} [arg.pageSize] - The number of items to retrieve in each
-   *   page. Default value is 10.
-   * @param {CompanyByBrandsRequest} arg.body
-   * @returns {Promise<CompanyByBrandsResponse>} - Success response
+   * @param {ConfigurationPlatformValidator.getCompanyByBrands} arg - Arg object
+   * @returns {Promise<ConfigurationPlatformModel.CompanyByBrandsResponse>} -
+   *   Success response
+   * @name getCompanyByBrands
    * @summary: Get company by brand uids
    * @description: Use this API to get a list of companies by the brands they deal
    */
   async getCompanyByBrands({ body, pageNo, pageSize } = {}) {
-    const { error } = ConfigurationValidator.getCompanyByBrands().validate(
+    const {
+      error,
+    } = ConfigurationPlatformValidator.getCompanyByBrands().validate(
       {
         body,
         pageNo,
@@ -347,7 +344,7 @@ class Configuration {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = ConfigurationValidator.getCompanyByBrands().validate(
+    } = ConfigurationPlatformValidator.getCompanyByBrands().validate(
       {
         body,
         pageNo,
@@ -358,9 +355,8 @@ class Configuration {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for getCompanyByBrands",
+        message: `Parameter Validation warrnings for platform > Configuration > getCompanyByBrands \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -380,17 +376,16 @@ class Configuration {
 
     const {
       error: res_error,
-    } = ConfigurationModel.CompanyByBrandsResponse().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
+    } = ConfigurationPlatformModel.CompanyByBrandsResponse().validate(
+      response,
+      { abortEarly: false, allowUnknown: false }
+    );
 
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for getCompanyByBrands",
+        message: `Response Validation Warnnings for platform > Configuration > getCompanyByBrands \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
@@ -400,7 +395,8 @@ class Configuration {
    * @param {Object} arg - Arg object.
    * @param {number} [arg.pageSize] - The number of items to retrieve in each
    *   page. Default value is 10.
-   * @param {CompanyByBrandsRequest} arg.body
+   * @param {ConfigurationPlatformModel.CompanyByBrandsRequest} arg.body
+   * @returns {Paginator<ConfigurationPlatformModel.CompanyByBrandsResponse>}
    * @summary: Get company by brand uids
    * @description: Use this API to get a list of companies by the brands they deal
    */
@@ -426,13 +422,15 @@ class Configuration {
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @returns {Promise<CurrenciesResponse>} - Success response
+   * @param {ConfigurationPlatformValidator.getCurrencies} arg - Arg object
+   * @returns {Promise<ConfigurationPlatformModel.CurrenciesResponse>} -
+   *   Success response
+   * @name getCurrencies
    * @summary: Get all currencies
    * @description: Use this API to get a list of currencies allowed in the company. Moreover, get the name, code, symbol, and the decimal digits of the currencies.
    */
   async getCurrencies({} = {}) {
-    const { error } = ConfigurationValidator.getCurrencies().validate(
+    const { error } = ConfigurationPlatformValidator.getCurrencies().validate(
       {},
       { abortEarly: false, allowUnknown: true }
     );
@@ -441,16 +439,17 @@ class Configuration {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = ConfigurationValidator.getCurrencies().validate(
+    const {
+      error: warrning,
+    } = ConfigurationPlatformValidator.getCurrencies().validate(
       {},
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for getCurrencies",
+        message: `Parameter Validation warrnings for platform > Configuration > getCurrencies \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -468,7 +467,7 @@ class Configuration {
 
     const {
       error: res_error,
-    } = ConfigurationModel.CurrenciesResponse().validate(response, {
+    } = ConfigurationPlatformModel.CurrenciesResponse().validate(response, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -476,23 +475,26 @@ class Configuration {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for getCurrencies",
+        message: `Response Validation Warnnings for platform > Configuration > getCurrencies \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {DomainSuggestionsRequest} arg.body
-   * @returns {Promise<DomainSuggestionsResponse>} - Success response
+   * @param {ConfigurationPlatformValidator.getDomainAvailibility} arg - Arg object
+   * @returns {Promise<ConfigurationPlatformModel.DomainSuggestionsResponse>}
+   *   - Success response
+   *
+   * @name getDomainAvailibility
    * @summary: Check domain availability before linking to application
    * @description: Use this API to check the domain availability before linking it to application. Also sends domain suggestions that are similar to the queried domain. Note - Custom domain search is currently powered by GoDaddy provider.
    */
   async getDomainAvailibility({ body } = {}) {
-    const { error } = ConfigurationValidator.getDomainAvailibility().validate(
+    const {
+      error,
+    } = ConfigurationPlatformValidator.getDomainAvailibility().validate(
       {
         body,
       },
@@ -505,7 +507,7 @@ class Configuration {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = ConfigurationValidator.getDomainAvailibility().validate(
+    } = ConfigurationPlatformValidator.getDomainAvailibility().validate(
       {
         body,
       },
@@ -514,9 +516,8 @@ class Configuration {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for getDomainAvailibility",
+        message: `Parameter Validation warrnings for platform > Configuration > getDomainAvailibility \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -534,31 +535,32 @@ class Configuration {
 
     const {
       error: res_error,
-    } = ConfigurationModel.DomainSuggestionsResponse().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
+    } = ConfigurationPlatformModel.DomainSuggestionsResponse().validate(
+      response,
+      { abortEarly: false, allowUnknown: false }
+    );
 
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for getDomainAvailibility",
+        message: `Response Validation Warnnings for platform > Configuration > getDomainAvailibility \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {number} arg.id - Integration id
-   * @returns {Promise<Integration>} - Success response
+   * @param {ConfigurationPlatformValidator.getIntegrationById} arg - Arg object
+   * @returns {Promise<ConfigurationPlatformModel.Integration>} - Success response
+   * @name getIntegrationById
    * @summary: Get integration data by its ID
    * @description: Use this API to fetch the details of an integration (such as Ginesys, SAP, etc.) using its ID
    */
   async getIntegrationById({ id } = {}) {
-    const { error } = ConfigurationValidator.getIntegrationById().validate(
+    const {
+      error,
+    } = ConfigurationPlatformValidator.getIntegrationById().validate(
       {
         id,
       },
@@ -571,7 +573,7 @@ class Configuration {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = ConfigurationValidator.getIntegrationById().validate(
+    } = ConfigurationPlatformValidator.getIntegrationById().validate(
       {
         id,
       },
@@ -580,9 +582,8 @@ class Configuration {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for getIntegrationById",
+        message: `Parameter Validation warrnings for platform > Configuration > getIntegrationById \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -600,7 +601,7 @@ class Configuration {
 
     const {
       error: res_error,
-    } = ConfigurationModel.Integration().validate(response, {
+    } = ConfigurationPlatformModel.Integration().validate(response, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -608,25 +609,24 @@ class Configuration {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for getIntegrationById",
+        message: `Response Validation Warnnings for platform > Configuration > getIntegrationById \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.id - Integration ID (24-digit Mongo Object ID)
-   * @param {string} arg.level - Integration level, `store` or `company`
-   * @param {number} arg.uid - Unique identifier of integration level (store/company)
-   * @returns {Promise<IntegrationLevel>} - Success response
+   * @param {ConfigurationPlatformValidator.getIntegrationByLevelId} arg - Arg object
+   * @returns {Promise<ConfigurationPlatformModel.IntegrationLevel>} - Success response
+   * @name getIntegrationByLevelId
    * @summary: Get integration config at a particular level (store/company)
    * @description: Use this API to get the configuration details of an integration such as token, permissions, level, opted value, uid, meta, location ID, etc. at a particular level (store/company).
    */
   async getIntegrationByLevelId({ id, level, uid } = {}) {
-    const { error } = ConfigurationValidator.getIntegrationByLevelId().validate(
+    const {
+      error,
+    } = ConfigurationPlatformValidator.getIntegrationByLevelId().validate(
       {
         id,
         level,
@@ -641,7 +641,7 @@ class Configuration {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = ConfigurationValidator.getIntegrationByLevelId().validate(
+    } = ConfigurationPlatformValidator.getIntegrationByLevelId().validate(
       {
         id,
         level,
@@ -652,9 +652,8 @@ class Configuration {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for getIntegrationByLevelId",
+        message: `Parameter Validation warrnings for platform > Configuration > getIntegrationByLevelId \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -672,7 +671,7 @@ class Configuration {
 
     const {
       error: res_error,
-    } = ConfigurationModel.IntegrationLevel().validate(response, {
+    } = ConfigurationPlatformModel.IntegrationLevel().validate(response, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -680,30 +679,26 @@ class Configuration {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for getIntegrationByLevelId",
+        message: `Response Validation Warnnings for platform > Configuration > getIntegrationByLevelId \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.id - Integration ID (24-digit Mongo Object ID)
-   * @param {string} arg.level - Store or company
-   * @param {boolean} [arg.opted] - True means get the opted stores. False
-   *   means get the stores that aren't opted.
-   * @param {boolean} [arg.checkPermission] - Filter on if permissions (for
-   *   inventory/order) are present
-   * @returns {Promise<IntegrationConfigResponse>} - Success response
+   * @param {ConfigurationPlatformValidator.getIntegrationLevelConfig} arg - Arg object
+   * @returns {Promise<ConfigurationPlatformModel.IntegrationConfigResponse>}
+   *   - Success response
+   *
+   * @name getIntegrationLevelConfig
    * @summary: Get integration level config
    * @description: Use this API to get the configuration details of an integration such as token, permissions, level, opted value, uid, meta, location ID, etc.
    */
   async getIntegrationLevelConfig({ id, level, opted, checkPermission } = {}) {
     const {
       error,
-    } = ConfigurationValidator.getIntegrationLevelConfig().validate(
+    } = ConfigurationPlatformValidator.getIntegrationLevelConfig().validate(
       {
         id,
         level,
@@ -719,7 +714,7 @@ class Configuration {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = ConfigurationValidator.getIntegrationLevelConfig().validate(
+    } = ConfigurationPlatformValidator.getIntegrationLevelConfig().validate(
       {
         id,
         level,
@@ -731,9 +726,8 @@ class Configuration {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for getIntegrationLevelConfig",
+        message: `Parameter Validation warrnings for platform > Configuration > getIntegrationLevelConfig \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -753,37 +747,33 @@ class Configuration {
 
     const {
       error: res_error,
-    } = ConfigurationModel.IntegrationConfigResponse().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
+    } = ConfigurationPlatformModel.IntegrationConfigResponse().validate(
+      response,
+      { abortEarly: false, allowUnknown: false }
+    );
 
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for getIntegrationLevelConfig",
+        message: `Response Validation Warnnings for platform > Configuration > getIntegrationLevelConfig \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.id - Integration ID (24-digit Mongo Object ID)
-   * @param {string} arg.level - Integration level, `store` or `company`
-   * @param {number} arg.uid - Unique identifier of integration level (store/company)
-   * @param {string} [arg.permission] - Check opt-in for specific integration
-   *   permissions
-   * @returns {Promise<OptedStoreIntegration>} - Success response
+   * @param {ConfigurationPlatformValidator.getLevelActiveIntegrations} arg - Arg object
+   * @returns {Promise<ConfigurationPlatformModel.OptedStoreIntegration>} -
+   *   Success response
+   * @name getLevelActiveIntegrations
    * @summary: Check active integration at store
    * @description: Use this API to check if a store is already opted-in for any integration
    */
   async getLevelActiveIntegrations({ id, level, uid, permission } = {}) {
     const {
       error,
-    } = ConfigurationValidator.getLevelActiveIntegrations().validate(
+    } = ConfigurationPlatformValidator.getLevelActiveIntegrations().validate(
       {
         id,
         level,
@@ -799,7 +789,7 @@ class Configuration {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = ConfigurationValidator.getLevelActiveIntegrations().validate(
+    } = ConfigurationPlatformValidator.getLevelActiveIntegrations().validate(
       {
         id,
         level,
@@ -811,10 +801,8 @@ class Configuration {
     if (warrning) {
       Logger({
         level: "WARN",
-        message:
-          "Parameter Validation warrnings for getLevelActiveIntegrations",
+        message: `Parameter Validation warrnings for platform > Configuration > getLevelActiveIntegrations \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -833,7 +821,7 @@ class Configuration {
 
     const {
       error: res_error,
-    } = ConfigurationModel.OptedStoreIntegration().validate(response, {
+    } = ConfigurationPlatformModel.OptedStoreIntegration().validate(response, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -841,25 +829,28 @@ class Configuration {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for getLevelActiveIntegrations",
+        message: `Response Validation Warnnings for platform > Configuration > getLevelActiveIntegrations \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.id - Application Id
-   * @returns {Promise<OptedApplicationResponse>} - Success response
+   * @param {ConfigurationPlatformValidator.getOtherSellerApplicationById} arg
+   *   - Arg object
+   *
+   * @returns {Promise<ConfigurationPlatformModel.OptedApplicationResponse>}
+   *   - Success response
+   *
+   * @name getOtherSellerApplicationById
    * @summary: Get other seller's sales channel by ID
    * @description: Use application ID to fetch details of a seller application that was not created within the current company. but has opted for the current company's inventory
    */
   async getOtherSellerApplicationById({ id } = {}) {
     const {
       error,
-    } = ConfigurationValidator.getOtherSellerApplicationById().validate(
+    } = ConfigurationPlatformValidator.getOtherSellerApplicationById().validate(
       {
         id,
       },
@@ -872,7 +863,7 @@ class Configuration {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = ConfigurationValidator.getOtherSellerApplicationById().validate(
+    } = ConfigurationPlatformValidator.getOtherSellerApplicationById().validate(
       {
         id,
       },
@@ -881,10 +872,8 @@ class Configuration {
     if (warrning) {
       Logger({
         level: "WARN",
-        message:
-          "Parameter Validation warrnings for getOtherSellerApplicationById",
+        message: `Parameter Validation warrnings for platform > Configuration > getOtherSellerApplicationById \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -902,37 +891,33 @@ class Configuration {
 
     const {
       error: res_error,
-    } = ConfigurationModel.OptedApplicationResponse().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
+    } = ConfigurationPlatformModel.OptedApplicationResponse().validate(
+      response,
+      { abortEarly: false, allowUnknown: false }
+    );
 
     if (res_error) {
       Logger({
         level: "WARN",
-        message:
-          "Response Validation Warnnings for getOtherSellerApplicationById",
+        message: `Response Validation Warnnings for platform > Configuration > getOtherSellerApplicationById \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {number} [arg.pageNo] - The page number to navigate through the
-   *   given set of results. Default value is 1.
-   * @param {number} [arg.pageSize] - The number of items to retrieve in each
-   *   page. Default value is 10.
-   * @returns {Promise<OtherSellerApplications>} - Success response
+   * @param {ConfigurationPlatformValidator.getOtherSellerApplications} arg - Arg object
+   * @returns {Promise<ConfigurationPlatformModel.OtherSellerApplications>} -
+   *   Success response
+   * @name getOtherSellerApplications
    * @summary: Get other seller sales channels
    * @description: Use this API to fetch all other seller applications that were not created within the current company. but have opted for the current company's inventory
    */
   async getOtherSellerApplications({ pageNo, pageSize } = {}) {
     const {
       error,
-    } = ConfigurationValidator.getOtherSellerApplications().validate(
+    } = ConfigurationPlatformValidator.getOtherSellerApplications().validate(
       {
         pageNo,
         pageSize,
@@ -946,7 +931,7 @@ class Configuration {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = ConfigurationValidator.getOtherSellerApplications().validate(
+    } = ConfigurationPlatformValidator.getOtherSellerApplications().validate(
       {
         pageNo,
         pageSize,
@@ -956,10 +941,8 @@ class Configuration {
     if (warrning) {
       Logger({
         level: "WARN",
-        message:
-          "Parameter Validation warrnings for getOtherSellerApplications",
+        message: `Parameter Validation warrnings for platform > Configuration > getOtherSellerApplications \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -979,17 +962,16 @@ class Configuration {
 
     const {
       error: res_error,
-    } = ConfigurationModel.OtherSellerApplications().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
+    } = ConfigurationPlatformModel.OtherSellerApplications().validate(
+      response,
+      { abortEarly: false, allowUnknown: false }
+    );
 
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for getOtherSellerApplications",
+        message: `Response Validation Warnnings for platform > Configuration > getOtherSellerApplications \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
@@ -999,6 +981,7 @@ class Configuration {
    * @param {Object} arg - Arg object.
    * @param {number} [arg.pageSize] - The number of items to retrieve in each
    *   page. Default value is 10.
+   * @returns {Paginator<ConfigurationPlatformModel.OtherSellerApplications>}
    * @summary: Get other seller sales channels
    * @description: Use this API to fetch all other seller applications that were not created within the current company. but have opted for the current company's inventory
    */
@@ -1023,19 +1006,18 @@ class Configuration {
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.level - Store or company
-   * @param {number} arg.uid - Unique identifier of the selected integration level.
-   * @param {number} [arg.pageNo] - The page number to navigate through the
-   *   given set of results. Default value is 1.
-   * @param {number} [arg.pageSize] - The number of items to retrieve in each
-   *   page. Default value is 10.
-   * @returns {Promise<GetIntegrationsOptInsResponse>} - Success response
+   * @param {ConfigurationPlatformValidator.getSelectedOptIns} arg - Arg object
+   * @returns {Promise<ConfigurationPlatformModel.GetIntegrationsOptInsResponse>}
+   *   - Success response
+   *
+   * @name getSelectedOptIns
    * @summary: Get company/store level integration opt-ins
    * @description: Use this API to get the store-level/company-level integrations configured in a company
    */
   async getSelectedOptIns({ level, uid, pageNo, pageSize } = {}) {
-    const { error } = ConfigurationValidator.getSelectedOptIns().validate(
+    const {
+      error,
+    } = ConfigurationPlatformValidator.getSelectedOptIns().validate(
       {
         level,
         uid,
@@ -1051,7 +1033,7 @@ class Configuration {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = ConfigurationValidator.getSelectedOptIns().validate(
+    } = ConfigurationPlatformValidator.getSelectedOptIns().validate(
       {
         level,
         uid,
@@ -1063,9 +1045,8 @@ class Configuration {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for getSelectedOptIns",
+        message: `Parameter Validation warrnings for platform > Configuration > getSelectedOptIns \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -1085,35 +1066,33 @@ class Configuration {
 
     const {
       error: res_error,
-    } = ConfigurationModel.GetIntegrationsOptInsResponse().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
+    } = ConfigurationPlatformModel.GetIntegrationsOptInsResponse().validate(
+      response,
+      { abortEarly: false, allowUnknown: false }
+    );
 
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for getSelectedOptIns",
+        message: `Response Validation Warnnings for platform > Configuration > getSelectedOptIns \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {number} [arg.pageNo] - The page number to navigate through the
-   *   given set of results. Default value is 1.
-   * @param {number} [arg.pageSize] - The number of items to retrieve in each
-   *   page. Default value is 10.
-   * @param {StoreByBrandsRequest} arg.body
-   * @returns {Promise<StoreByBrandsResponse>} - Success response
+   * @param {ConfigurationPlatformValidator.getStoreByBrands} arg - Arg object
+   * @returns {Promise<ConfigurationPlatformModel.StoreByBrandsResponse>} -
+   *   Success response
+   * @name getStoreByBrands
    * @summary: Get stores by brand uids for the current company
    * @description: Use this API to get a list of selling locations (stores) by the brands they deal. Store has information about store name, store type, store code, store address, and company detail.
    */
   async getStoreByBrands({ body, pageNo, pageSize } = {}) {
-    const { error } = ConfigurationValidator.getStoreByBrands().validate(
+    const {
+      error,
+    } = ConfigurationPlatformValidator.getStoreByBrands().validate(
       {
         body,
         pageNo,
@@ -1128,7 +1107,7 @@ class Configuration {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = ConfigurationValidator.getStoreByBrands().validate(
+    } = ConfigurationPlatformValidator.getStoreByBrands().validate(
       {
         body,
         pageNo,
@@ -1139,9 +1118,8 @@ class Configuration {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for getStoreByBrands",
+        message: `Parameter Validation warrnings for platform > Configuration > getStoreByBrands \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -1161,7 +1139,7 @@ class Configuration {
 
     const {
       error: res_error,
-    } = ConfigurationModel.StoreByBrandsResponse().validate(response, {
+    } = ConfigurationPlatformModel.StoreByBrandsResponse().validate(response, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -1169,9 +1147,8 @@ class Configuration {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for getStoreByBrands",
+        message: `Response Validation Warnnings for platform > Configuration > getStoreByBrands \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
@@ -1181,7 +1158,8 @@ class Configuration {
    * @param {Object} arg - Arg object.
    * @param {number} [arg.pageSize] - The number of items to retrieve in each
    *   page. Default value is 10.
-   * @param {StoreByBrandsRequest} arg.body
+   * @param {ConfigurationPlatformModel.StoreByBrandsRequest} arg.body
+   * @returns {Paginator<ConfigurationPlatformModel.StoreByBrandsResponse>}
    * @summary: Get stores by brand uids for the current company
    * @description: Use this API to get a list of selling locations (stores) by the brands they deal. Store has information about store name, store type, store code, store address, and company detail.
    */
@@ -1207,16 +1185,17 @@ class Configuration {
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.id - Alphanumeric ID allotted to an application
-   *   (sales channel website) created within a business account.
-   * @param {OptOutInventory} arg.body
-   * @returns {Promise<SuccessMessageResponse>} - Success response
+   * @param {ConfigurationPlatformValidator.optOutFromApplication} arg - Arg object
+   * @returns {Promise<ConfigurationPlatformModel.SuccessMessageResponse>} -
+   *   Success response
+   * @name optOutFromApplication
    * @summary: Opt-out company or store from other seller application
    * @description: Use this API to opt-out your company or store from other seller application. The specific seller application will no longer fetch inventory from your company or store.
    */
   async optOutFromApplication({ id, body } = {}) {
-    const { error } = ConfigurationValidator.optOutFromApplication().validate(
+    const {
+      error,
+    } = ConfigurationPlatformValidator.optOutFromApplication().validate(
       {
         id,
         body,
@@ -1230,7 +1209,7 @@ class Configuration {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = ConfigurationValidator.optOutFromApplication().validate(
+    } = ConfigurationPlatformValidator.optOutFromApplication().validate(
       {
         id,
         body,
@@ -1240,9 +1219,8 @@ class Configuration {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for optOutFromApplication",
+        message: `Parameter Validation warrnings for platform > Configuration > optOutFromApplication \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -1260,7 +1238,7 @@ class Configuration {
 
     const {
       error: res_error,
-    } = ConfigurationModel.SuccessMessageResponse().validate(response, {
+    } = ConfigurationPlatformModel.SuccessMessageResponse().validate(response, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -1268,25 +1246,24 @@ class Configuration {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for optOutFromApplication",
+        message: `Response Validation Warnnings for platform > Configuration > optOutFromApplication \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.id - Integration ID (24-digit Mongo Object ID)
-   * @param {string} arg.level - Integration level, `store` or `company`
-   * @param {UpdateIntegrationLevelRequest} arg.body
-   * @returns {Promise<IntegrationLevel>} - Success response
+   * @param {ConfigurationPlatformValidator.updateLevelIntegration} arg - Arg object
+   * @returns {Promise<ConfigurationPlatformModel.IntegrationLevel>} - Success response
+   * @name updateLevelIntegration
    * @summary: Update a store level integration you opted
    * @description: Use this API to update the configuration details of an integration such as token, permissions, level, opted value, uid, meta, location ID, etc. at a particular level (store/company).
    */
   async updateLevelIntegration({ id, level, body } = {}) {
-    const { error } = ConfigurationValidator.updateLevelIntegration().validate(
+    const {
+      error,
+    } = ConfigurationPlatformValidator.updateLevelIntegration().validate(
       {
         id,
         level,
@@ -1301,7 +1278,7 @@ class Configuration {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = ConfigurationValidator.updateLevelIntegration().validate(
+    } = ConfigurationPlatformValidator.updateLevelIntegration().validate(
       {
         id,
         level,
@@ -1312,9 +1289,8 @@ class Configuration {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for updateLevelIntegration",
+        message: `Parameter Validation warrnings for platform > Configuration > updateLevelIntegration \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -1332,7 +1308,7 @@ class Configuration {
 
     const {
       error: res_error,
-    } = ConfigurationModel.IntegrationLevel().validate(response, {
+    } = ConfigurationPlatformModel.IntegrationLevel().validate(response, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -1340,28 +1316,24 @@ class Configuration {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for updateLevelIntegration",
+        message: `Response Validation Warnnings for platform > Configuration > updateLevelIntegration \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.id - Integration ID (24-digit Mongo Object ID)
-   * @param {string} arg.level - Integration level, `store` or `company`
-   * @param {number} arg.uid - Unique identifier of integration level (store/company)
-   * @param {IntegrationLevel} arg.body
-   * @returns {Promise<IntegrationLevel>} - Success response
+   * @param {ConfigurationPlatformValidator.updateLevelUidIntegration} arg - Arg object
+   * @returns {Promise<ConfigurationPlatformModel.IntegrationLevel>} - Success response
+   * @name updateLevelUidIntegration
    * @summary: Update integration level by store UID
    * @description: Update the level of integration by store UID
    */
   async updateLevelUidIntegration({ id, level, uid, body } = {}) {
     const {
       error,
-    } = ConfigurationValidator.updateLevelUidIntegration().validate(
+    } = ConfigurationPlatformValidator.updateLevelUidIntegration().validate(
       {
         id,
         level,
@@ -1377,7 +1349,7 @@ class Configuration {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = ConfigurationValidator.updateLevelUidIntegration().validate(
+    } = ConfigurationPlatformValidator.updateLevelUidIntegration().validate(
       {
         id,
         level,
@@ -1389,9 +1361,8 @@ class Configuration {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for updateLevelUidIntegration",
+        message: `Parameter Validation warrnings for platform > Configuration > updateLevelUidIntegration \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -1409,7 +1380,7 @@ class Configuration {
 
     const {
       error: res_error,
-    } = ConfigurationModel.IntegrationLevel().validate(response, {
+    } = ConfigurationPlatformModel.IntegrationLevel().validate(response, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -1417,9 +1388,8 @@ class Configuration {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for updateLevelUidIntegration",
+        message: `Response Validation Warnnings for platform > Configuration > updateLevelUidIntegration \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;

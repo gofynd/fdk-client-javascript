@@ -2,8 +2,8 @@ const ApplicationAPIClient = require("../ApplicationAPIClient");
 const { FDKClientValidationError } = require("../../common/FDKError");
 const constructUrl = require("../constructUrl");
 const Paginator = require("../../common/Paginator");
-const FileStorageValidator = require("./FileStorageApplicationValidator");
-const FileStorageModel = require("./FileStorageApplicationModel");
+const FileStorageApplicationValidator = require("./FileStorageApplicationValidator");
+const FileStorageApplicationModel = require("./FileStorageApplicationModel");
 const { Logger } = require("./../../common/Logger");
 const Joi = require("joi");
 const axios = require("axios");
@@ -35,13 +35,9 @@ class FileStorage {
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.namespace - Segregation of different types of
-   *   files(products, orders, logistics etc), Required for validating the
-   *   data of the file being uploaded, decides where exactly the file will be
-   *   stored inside the storage bucket.
-   * @param {StartResponse} arg.body
-   * @returns {Promise<CompleteResponse>} - Success response
+   * @param {FileStorageApplicationValidator.completeUpload} arg - Arg object.
+   * @returns {Promise<FileStorageApplicationModel.CompleteResponse>} - Success response
+   * @name completeUpload
    * @summary: Completes the upload process. After successfully uploading a file, call this API to finish the upload process.
    * @description: Use this API to perform the third step of uploading (i.e. **Complete**) an arbitrarily sized buffer or blob.
    *
@@ -63,7 +59,7 @@ class FileStorage {
    * This operation will return the URL of the uploaded file.
    */
   async completeUpload({ namespace, body } = {}) {
-    const { error } = FileStorageValidator.completeUpload().validate(
+    const { error } = FileStorageApplicationValidator.completeUpload().validate(
       { namespace, body },
       { abortEarly: false, allowUnknown: true }
     );
@@ -72,16 +68,17 @@ class FileStorage {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = FileStorageValidator.completeUpload().validate(
+    const {
+      error: warrning,
+    } = FileStorageApplicationValidator.completeUpload().validate(
       { namespace, body },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for completeUpload",
+        message: `Parameter Validation warrnings for application > FileStorage > completeUpload \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -102,7 +99,7 @@ class FileStorage {
 
     const {
       error: res_error,
-    } = FileStorageModel.CompleteResponse().validate(response, {
+    } = FileStorageApplicationModel.CompleteResponse().validate(response, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -110,23 +107,22 @@ class FileStorage {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for completeUpload",
+        message: `Response Validation Warnnings for application > FileStorage > completeUpload \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {SignUrlRequest} arg.body
-   * @returns {Promise<SignUrlResponse>} - Success response
+   * @param {FileStorageApplicationValidator.signUrls} arg - Arg object.
+   * @returns {Promise<FileStorageApplicationModel.SignUrlResponse>} - Success response
+   * @name signUrls
    * @summary: Explain here
    * @description: Describe here
    */
   async signUrls({ body } = {}) {
-    const { error } = FileStorageValidator.signUrls().validate(
+    const { error } = FileStorageApplicationValidator.signUrls().validate(
       { body },
       { abortEarly: false, allowUnknown: true }
     );
@@ -135,16 +131,17 @@ class FileStorage {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = FileStorageValidator.signUrls().validate(
+    const {
+      error: warrning,
+    } = FileStorageApplicationValidator.signUrls().validate(
       { body },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for signUrls",
+        message: `Parameter Validation warrnings for application > FileStorage > signUrls \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -165,7 +162,7 @@ class FileStorage {
 
     const {
       error: res_error,
-    } = FileStorageModel.SignUrlResponse().validate(response, {
+    } = FileStorageApplicationModel.SignUrlResponse().validate(response, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -173,22 +170,17 @@ class FileStorage {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for signUrls",
+        message: `Response Validation Warnnings for application > FileStorage > signUrls \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.namespace - Segregation of different types of
-   *   files(products, orders, logistics etc), Required for validating the
-   *   data of the file being uploaded, decides where exactly the file will be
-   *   stored inside the storage bucket.
-   * @param {StartRequest} arg.body
-   * @returns {Promise<StartResponse>} - Success response
+   * @param {FileStorageApplicationValidator.startUpload} arg - Arg object.
+   * @returns {Promise<FileStorageApplicationModel.StartResponse>} - Success response
+   * @name startUpload
    * @summary: Initiates an upload and returns a storage link that is valid for 30 minutes. You can use the storage link to make subsequent upload request with file buffer or blob.
    * @description: Use this API to perform the first step of uploading (i.e. **Start**) an arbitrarily sized buffer or blob.
    *
@@ -210,7 +202,7 @@ class FileStorage {
    * This operation will return the URL of the uploaded file.
    */
   async startUpload({ namespace, body } = {}) {
-    const { error } = FileStorageValidator.startUpload().validate(
+    const { error } = FileStorageApplicationValidator.startUpload().validate(
       { namespace, body },
       { abortEarly: false, allowUnknown: true }
     );
@@ -219,16 +211,17 @@ class FileStorage {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = FileStorageValidator.startUpload().validate(
+    const {
+      error: warrning,
+    } = FileStorageApplicationValidator.startUpload().validate(
       { namespace, body },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for startUpload",
+        message: `Parameter Validation warrnings for application > FileStorage > startUpload \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -249,7 +242,7 @@ class FileStorage {
 
     const {
       error: res_error,
-    } = FileStorageModel.StartResponse().validate(response, {
+    } = FileStorageApplicationModel.StartResponse().validate(response, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -257,9 +250,8 @@ class FileStorage {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for startUpload",
+        message: `Response Validation Warnnings for application > FileStorage > startUpload \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;

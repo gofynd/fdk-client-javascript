@@ -2,8 +2,8 @@ const ApplicationAPIClient = require("../ApplicationAPIClient");
 const { FDKClientValidationError } = require("../../common/FDKError");
 const constructUrl = require("../constructUrl");
 const Paginator = require("../../common/Paginator");
-const CommunicationValidator = require("./CommunicationApplicationValidator");
-const CommunicationModel = require("./CommunicationApplicationModel");
+const CommunicationApplicationValidator = require("./CommunicationApplicationValidator");
+const CommunicationApplicationModel = require("./CommunicationApplicationModel");
 const { Logger } = require("./../../common/Logger");
 const Joi = require("joi");
 
@@ -34,13 +34,18 @@ class Communication {
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @returns {Promise<CommunicationConsent>} - Success response
+   * @param {CommunicationApplicationValidator.getCommunicationConsent} arg -
+   *   Arg object.
+   * @returns {Promise<CommunicationApplicationModel.CommunicationConsent>} -
+   *   Success response
+   * @name getCommunicationConsent
    * @summary: Get communication consent
    * @description: Use this API to retrieve the consent provided by the user for receiving communication messages over Email/SMS/WhatsApp.
    */
   async getCommunicationConsent({} = {}) {
-    const { error } = CommunicationValidator.getCommunicationConsent().validate(
+    const {
+      error,
+    } = CommunicationApplicationValidator.getCommunicationConsent().validate(
       {},
       { abortEarly: false, allowUnknown: true }
     );
@@ -51,16 +56,15 @@ class Communication {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = CommunicationValidator.getCommunicationConsent().validate(
+    } = CommunicationApplicationValidator.getCommunicationConsent().validate(
       {},
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for getCommunicationConsent",
+        message: `Parameter Validation warrnings for application > Communication > getCommunicationConsent \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -81,31 +85,32 @@ class Communication {
 
     const {
       error: res_error,
-    } = CommunicationModel.CommunicationConsent().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
+    } = CommunicationApplicationModel.CommunicationConsent().validate(
+      response,
+      { abortEarly: false, allowUnknown: false }
+    );
 
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for getCommunicationConsent",
+        message: `Response Validation Warnnings for application > Communication > getCommunicationConsent \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {PushtokenReq} arg.body
-   * @returns {Promise<PushtokenRes>} - Success response
+   * @param {CommunicationApplicationValidator.upsertAppPushtoken} arg - Arg object.
+   * @returns {Promise<CommunicationApplicationModel.PushtokenRes>} - Success response
+   * @name upsertAppPushtoken
    * @summary: Upsert push token of a user
    * @description: Use this API to update and insert the push token of the user.
    */
   async upsertAppPushtoken({ body } = {}) {
-    const { error } = CommunicationValidator.upsertAppPushtoken().validate(
+    const {
+      error,
+    } = CommunicationApplicationValidator.upsertAppPushtoken().validate(
       { body },
       { abortEarly: false, allowUnknown: true }
     );
@@ -116,16 +121,15 @@ class Communication {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = CommunicationValidator.upsertAppPushtoken().validate(
+    } = CommunicationApplicationValidator.upsertAppPushtoken().validate(
       { body },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for upsertAppPushtoken",
+        message: `Parameter Validation warrnings for application > Communication > upsertAppPushtoken \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -146,7 +150,7 @@ class Communication {
 
     const {
       error: res_error,
-    } = CommunicationModel.PushtokenRes().validate(response, {
+    } = CommunicationApplicationModel.PushtokenRes().validate(response, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -154,25 +158,28 @@ class Communication {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for upsertAppPushtoken",
+        message: `Response Validation Warnnings for application > Communication > upsertAppPushtoken \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {CommunicationConsentReq} arg.body
-   * @returns {Promise<CommunicationConsentRes>} - Success response
+   * @param {CommunicationApplicationValidator.upsertCommunicationConsent} arg
+   *   - Arg object.
+   *
+   * @returns {Promise<CommunicationApplicationModel.CommunicationConsentRes>}
+   *   - Success response
+   *
+   * @name upsertCommunicationConsent
    * @summary: Upsert communication consent
    * @description: Use this API to update and insert the consent provided by the user for receiving communication messages over Email/SMS/WhatsApp.
    */
   async upsertCommunicationConsent({ body } = {}) {
     const {
       error,
-    } = CommunicationValidator.upsertCommunicationConsent().validate(
+    } = CommunicationApplicationValidator.upsertCommunicationConsent().validate(
       { body },
       { abortEarly: false, allowUnknown: true }
     );
@@ -183,17 +190,15 @@ class Communication {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = CommunicationValidator.upsertCommunicationConsent().validate(
+    } = CommunicationApplicationValidator.upsertCommunicationConsent().validate(
       { body },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message:
-          "Parameter Validation warrnings for upsertCommunicationConsent",
+        message: `Parameter Validation warrnings for application > Communication > upsertCommunicationConsent \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -214,17 +219,16 @@ class Communication {
 
     const {
       error: res_error,
-    } = CommunicationModel.CommunicationConsentRes().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
+    } = CommunicationApplicationModel.CommunicationConsentRes().validate(
+      response,
+      { abortEarly: false, allowUnknown: false }
+    );
 
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for upsertCommunicationConsent",
+        message: `Response Validation Warnnings for application > Communication > upsertCommunicationConsent \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;

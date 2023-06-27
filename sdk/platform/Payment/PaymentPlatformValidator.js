@@ -1,20 +1,74 @@
 const Joi = require("joi");
 
-const PaymentModel = require("./PaymentPlatformModel");
-class PaymentValidator {
+const PaymentPlatformModel = require("./PaymentPlatformModel");
+
+/**
+ * @typedef activateAndDectivatePayout
+ * @property {string} uniqueTransferNo - Unique transfer id
+ * @property {PaymentPlatformModel.UpdatePayoutRequest} body
+ */
+
+/**
+ * @typedef deletePayout
+ * @property {string} uniqueTransferNo - Unique transfer id
+ */
+
+/**
+ * @typedef deleteSubscriptionPaymentMethod
+ * @property {string} uniqueExternalId
+ * @property {string} paymentMethodId
+ */
+
+/**
+ * @typedef getAllPayouts
+ * @property {string} [uniqueExternalId] - Fetch payouts using unique external id
+ */
+
+/** @typedef getSubscriptionConfig */
+
+/**
+ * @typedef getSubscriptionPaymentMethod
+ * @property {string} [uniqueExternalId] - Unique external id
+ */
+
+/**
+ * @typedef savePayout
+ * @property {PaymentPlatformModel.PayoutRequest} body
+ */
+
+/**
+ * @typedef saveSubscriptionSetupIntent
+ * @property {PaymentPlatformModel.SaveSubscriptionSetupIntentRequest} body
+ */
+
+/**
+ * @typedef updatePayout
+ * @property {string} uniqueTransferNo - Unique transfer id
+ * @property {PaymentPlatformModel.PayoutRequest} body
+ */
+
+/**
+ * @typedef verifyIfscCode
+ * @property {string} [ifscCode]
+ */
+
+class PaymentPlatformValidator {
+  /** @returns {activateAndDectivatePayout} */
   static activateAndDectivatePayout() {
     return Joi.object({
       uniqueTransferNo: Joi.string().allow("").required(),
-      body: PaymentModel.UpdatePayoutRequest().required(),
+      body: PaymentPlatformModel.UpdatePayoutRequest().required(),
     }).required();
   }
 
+  /** @returns {deletePayout} */
   static deletePayout() {
     return Joi.object({
       uniqueTransferNo: Joi.string().allow("").required(),
     }).required();
   }
 
+  /** @returns {deleteSubscriptionPaymentMethod} */
   static deleteSubscriptionPaymentMethod() {
     return Joi.object({
       uniqueExternalId: Joi.string().allow("").required(),
@@ -22,41 +76,48 @@ class PaymentValidator {
     }).required();
   }
 
+  /** @returns {getAllPayouts} */
   static getAllPayouts() {
     return Joi.object({
       uniqueExternalId: Joi.string().allow(""),
     }).required();
   }
 
+  /** @returns {getSubscriptionConfig} */
   static getSubscriptionConfig() {
     return Joi.object({}).required();
   }
 
+  /** @returns {getSubscriptionPaymentMethod} */
   static getSubscriptionPaymentMethod() {
     return Joi.object({
       uniqueExternalId: Joi.string().allow(""),
     }).required();
   }
 
+  /** @returns {savePayout} */
   static savePayout() {
     return Joi.object({
-      body: PaymentModel.PayoutRequest().required(),
+      body: PaymentPlatformModel.PayoutRequest().required(),
     }).required();
   }
 
+  /** @returns {saveSubscriptionSetupIntent} */
   static saveSubscriptionSetupIntent() {
     return Joi.object({
-      body: PaymentModel.SaveSubscriptionSetupIntentRequest().required(),
+      body: PaymentPlatformModel.SaveSubscriptionSetupIntentRequest().required(),
     }).required();
   }
 
+  /** @returns {updatePayout} */
   static updatePayout() {
     return Joi.object({
       uniqueTransferNo: Joi.string().allow("").required(),
-      body: PaymentModel.PayoutRequest().required(),
+      body: PaymentPlatformModel.PayoutRequest().required(),
     }).required();
   }
 
+  /** @returns {verifyIfscCode} */
   static verifyIfscCode() {
     return Joi.object({
       ifscCode: Joi.string().allow(""),
@@ -64,4 +125,4 @@ class PaymentValidator {
   }
 }
 
-module.exports = PaymentValidator;
+module.exports = PaymentPlatformValidator;

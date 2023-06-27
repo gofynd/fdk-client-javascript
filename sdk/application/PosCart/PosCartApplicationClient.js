@@ -2,8 +2,8 @@ const ApplicationAPIClient = require("../ApplicationAPIClient");
 const { FDKClientValidationError } = require("../../common/FDKError");
 const constructUrl = require("../constructUrl");
 const Paginator = require("../../common/Paginator");
-const PosCartValidator = require("./PosCartApplicationValidator");
-const PosCartModel = require("./PosCartApplicationModel");
+const PosCartApplicationValidator = require("./PosCartApplicationValidator");
+const PosCartApplicationModel = require("./PosCartApplicationModel");
 const { Logger } = require("./../../common/Logger");
 const Joi = require("joi");
 
@@ -60,14 +60,14 @@ class PosCart {
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {Address} arg.body
-   * @returns {Promise<SaveAddressResponse>} - Success response
+   * @param {PosCartApplicationValidator.addAddress} arg - Arg object.
+   * @returns {Promise<PosCartApplicationModel.SaveAddressResponse>} - Success response
+   * @name addAddress
    * @summary: Add address to an account
    * @description: Use this API to add an address to an account.
    */
   async addAddress({ body } = {}) {
-    const { error } = PosCartValidator.addAddress().validate(
+    const { error } = PosCartApplicationValidator.addAddress().validate(
       { body },
       { abortEarly: false, allowUnknown: true }
     );
@@ -76,16 +76,17 @@ class PosCart {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = PosCartValidator.addAddress().validate(
+    const {
+      error: warrning,
+    } = PosCartApplicationValidator.addAddress().validate(
       { body },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for addAddress",
+        message: `Parameter Validation warrnings for application > PosCart > addAddress \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -106,7 +107,7 @@ class PosCart {
 
     const {
       error: res_error,
-    } = PosCartModel.SaveAddressResponse().validate(response, {
+    } = PosCartApplicationModel.SaveAddressResponse().validate(response, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -114,33 +115,23 @@ class PosCart {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for addAddress",
+        message: `Response Validation Warnnings for application > PosCart > addAddress \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {boolean} [arg.i] - This is a boolean value. Select `true` to
-   *   retrieve all the items added in the cart.
-   * @param {boolean} [arg.b] - This is a boolean value. Select `true` to
-   *   retrieve the price breakup of cart items.
-   * @param {boolean} [arg.p] - This is a boolean value. Select `true` for
-   *   getting a payment option in response.
-   * @param {string} [arg.areaCode] - Customer servicable area_code
-   * @param {boolean} [arg.buyNow] - This is a boolen value. Select `true` to
-   *   set/initialize buy now cart
-   * @param {string} [arg.id] -
-   * @param {AddCartRequest} arg.body
-   * @returns {Promise<AddCartDetailResponse>} - Success response
+   * @param {PosCartApplicationValidator.addItems} arg - Arg object.
+   * @returns {Promise<PosCartApplicationModel.AddCartDetailResponse>} -
+   *   Success response
+   * @name addItems
    * @summary: Add items to cart
    * @description: Use this API to add items to the cart.
    */
   async addItems({ body, i, b, p, areaCode, buyNow, id } = {}) {
-    const { error } = PosCartValidator.addItems().validate(
+    const { error } = PosCartApplicationValidator.addItems().validate(
       { body, i, b, p, areaCode, buyNow, id },
       { abortEarly: false, allowUnknown: true }
     );
@@ -149,16 +140,15 @@ class PosCart {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = PosCartValidator.addItems().validate(
+    const { error: warrning } = PosCartApplicationValidator.addItems().validate(
       { body, i, b, p, areaCode, buyNow, id },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for addItems",
+        message: `Parameter Validation warrnings for application > PosCart > addItems \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -185,7 +175,7 @@ class PosCart {
 
     const {
       error: res_error,
-    } = PosCartModel.AddCartDetailResponse().validate(response, {
+    } = PosCartApplicationModel.AddCartDetailResponse().validate(response, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -193,28 +183,22 @@ class PosCart {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for addItems",
+        message: `Response Validation Warnnings for application > PosCart > addItems \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {boolean} [arg.i] -
-   * @param {boolean} [arg.b] -
-   * @param {boolean} [arg.p] -
-   * @param {string} [arg.id] -
-   * @param {boolean} [arg.buyNow] -
-   * @param {ApplyCouponRequest} arg.body
-   * @returns {Promise<CartDetailResponse>} - Success response
+   * @param {PosCartApplicationValidator.applyCoupon} arg - Arg object.
+   * @returns {Promise<PosCartApplicationModel.CartDetailResponse>} - Success response
+   * @name applyCoupon
    * @summary: Apply Coupon
    * @description: Use this API to apply coupons on items in the cart.
    */
   async applyCoupon({ body, i, b, p, id, buyNow } = {}) {
-    const { error } = PosCartValidator.applyCoupon().validate(
+    const { error } = PosCartApplicationValidator.applyCoupon().validate(
       { body, i, b, p, id, buyNow },
       { abortEarly: false, allowUnknown: true }
     );
@@ -223,16 +207,17 @@ class PosCart {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = PosCartValidator.applyCoupon().validate(
+    const {
+      error: warrning,
+    } = PosCartApplicationValidator.applyCoupon().validate(
       { body, i, b, p, id, buyNow },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for applyCoupon",
+        message: `Parameter Validation warrnings for application > PosCart > applyCoupon \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -258,7 +243,7 @@ class PosCart {
 
     const {
       error: res_error,
-    } = PosCartModel.CartDetailResponse().validate(response, {
+    } = PosCartApplicationModel.CartDetailResponse().validate(response, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -266,27 +251,22 @@ class PosCart {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for applyCoupon",
+        message: `Response Validation Warnnings for application > PosCart > applyCoupon \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {string} [arg.id] -
-   * @param {boolean} [arg.i] -
-   * @param {boolean} [arg.b] -
-   * @param {boolean} [arg.buyNow] -
-   * @param {RewardPointRequest} arg.body
-   * @returns {Promise<CartDetailResponse>} - Success response
+   * @param {PosCartApplicationValidator.applyRewardPoints} arg - Arg object.
+   * @returns {Promise<PosCartApplicationModel.CartDetailResponse>} - Success response
+   * @name applyRewardPoints
    * @summary: Apply reward points at cart
    * @description: Use this API to redeem a fixed no. of reward points by applying it to the cart.
    */
   async applyRewardPoints({ body, id, i, b, buyNow } = {}) {
-    const { error } = PosCartValidator.applyRewardPoints().validate(
+    const { error } = PosCartApplicationValidator.applyRewardPoints().validate(
       { body, id, i, b, buyNow },
       { abortEarly: false, allowUnknown: true }
     );
@@ -295,16 +275,17 @@ class PosCart {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = PosCartValidator.applyRewardPoints().validate(
+    const {
+      error: warrning,
+    } = PosCartApplicationValidator.applyRewardPoints().validate(
       { body, id, i, b, buyNow },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for applyRewardPoints",
+        message: `Parameter Validation warrnings for application > PosCart > applyRewardPoints \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -329,7 +310,7 @@ class PosCart {
 
     const {
       error: res_error,
-    } = PosCartModel.CartDetailResponse().validate(response, {
+    } = PosCartApplicationModel.CartDetailResponse().validate(response, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -337,24 +318,22 @@ class PosCart {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for applyRewardPoints",
+        message: `Response Validation Warnnings for application > PosCart > applyRewardPoints \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {string} [arg.id] -
-   * @param {CartPosCheckoutDetailRequest} arg.body
-   * @returns {Promise<CartCheckoutResponse>} - Success response
+   * @param {PosCartApplicationValidator.checkoutCart} arg - Arg object.
+   * @returns {Promise<PosCartApplicationModel.CartCheckoutResponse>} - Success response
+   * @name checkoutCart
    * @summary: Checkout all items in the cart
    * @description: Use this API to checkout all items in the cart for payment and order generation. For COD, order will be generated directly, whereas for other checkout modes, user will be redirected to a payment gateway.
    */
   async checkoutCart({ body, id } = {}) {
-    const { error } = PosCartValidator.checkoutCart().validate(
+    const { error } = PosCartApplicationValidator.checkoutCart().validate(
       { body, id },
       { abortEarly: false, allowUnknown: true }
     );
@@ -363,16 +342,17 @@ class PosCart {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = PosCartValidator.checkoutCart().validate(
+    const {
+      error: warrning,
+    } = PosCartApplicationValidator.checkoutCart().validate(
       { body, id },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for checkoutCart",
+        message: `Parameter Validation warrnings for application > PosCart > checkoutCart \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -394,7 +374,7 @@ class PosCart {
 
     const {
       error: res_error,
-    } = PosCartModel.CartCheckoutResponse().validate(response, {
+    } = PosCartApplicationModel.CartCheckoutResponse().validate(response, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -402,24 +382,17 @@ class PosCart {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for checkoutCart",
+        message: `Response Validation Warnnings for application > PosCart > checkoutCart \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.id -
-   * @param {string} [arg.cartId] -
-   * @param {boolean} [arg.buyNow] -
-   * @param {string} [arg.mobileNo] -
-   * @param {string} [arg.checkoutMode] -
-   * @param {string} [arg.tags] -
-   * @param {boolean} [arg.isDefault] -
-   * @returns {Promise<Address>} - Success response
+   * @param {PosCartApplicationValidator.getAddressById} arg - Arg object.
+   * @returns {Promise<PosCartApplicationModel.Address>} - Success response
+   * @name getAddressById
    * @summary: Fetch a single address by its ID
    * @description: Use this API to get an addresses using its ID. If successful, returns a Address resource in the response body specified in `Address`. Attibutes listed below are optional <ul> <li> <font color="monochrome">mobile_no</font></li> <li> <font color="monochrome">checkout_mode</font></li> <li> <font color="monochrome">tags</font></li> <li> <font color="monochrome">default</font></li> </ul>
    */
@@ -432,7 +405,7 @@ class PosCart {
     tags,
     isDefault,
   } = {}) {
-    const { error } = PosCartValidator.getAddressById().validate(
+    const { error } = PosCartApplicationValidator.getAddressById().validate(
       { id, cartId, buyNow, mobileNo, checkoutMode, tags, isDefault },
       { abortEarly: false, allowUnknown: true }
     );
@@ -441,16 +414,17 @@ class PosCart {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = PosCartValidator.getAddressById().validate(
+    const {
+      error: warrning,
+    } = PosCartApplicationValidator.getAddressById().validate(
       { id, cartId, buyNow, mobileNo, checkoutMode, tags, isDefault },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for getAddressById",
+        message: `Parameter Validation warrnings for application > PosCart > getAddressById \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -475,7 +449,9 @@ class PosCart {
       xHeaders
     );
 
-    const { error: res_error } = PosCartModel.Address().validate(response, {
+    const {
+      error: res_error,
+    } = PosCartApplicationModel.Address().validate(response, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -483,23 +459,17 @@ class PosCart {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for getAddressById",
+        message: `Response Validation Warnnings for application > PosCart > getAddressById \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {string} [arg.cartId] -
-   * @param {boolean} [arg.buyNow] -
-   * @param {string} [arg.mobileNo] -
-   * @param {string} [arg.checkoutMode] -
-   * @param {string} [arg.tags] -
-   * @param {boolean} [arg.isDefault] -
-   * @returns {Promise<GetAddressesResponse>} - Success response
+   * @param {PosCartApplicationValidator.getAddresses} arg - Arg object.
+   * @returns {Promise<PosCartApplicationModel.GetAddressesResponse>} - Success response
+   * @name getAddresses
    * @summary: Fetch address
    * @description: Use this API to get all the addresses associated with an account. If successful, returns a Address resource in the response body specified in GetAddressesResponse.attibutes listed below are optional <ul> <li> <font color="monochrome">uid</font></li> <li> <font color="monochrome">address_id</font></li> <li> <font color="monochrome">mobile_no</font></li> <li> <font color="monochrome">checkout_mode</font></li> <li> <font color="monochrome">tags</font></li> <li> <font color="monochrome">default</font></li> </ul>
    */
@@ -511,7 +481,7 @@ class PosCart {
     tags,
     isDefault,
   } = {}) {
-    const { error } = PosCartValidator.getAddresses().validate(
+    const { error } = PosCartApplicationValidator.getAddresses().validate(
       { cartId, buyNow, mobileNo, checkoutMode, tags, isDefault },
       { abortEarly: false, allowUnknown: true }
     );
@@ -520,16 +490,17 @@ class PosCart {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = PosCartValidator.getAddresses().validate(
+    const {
+      error: warrning,
+    } = PosCartApplicationValidator.getAddresses().validate(
       { cartId, buyNow, mobileNo, checkoutMode, tags, isDefault },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for getAddresses",
+        message: `Parameter Validation warrnings for application > PosCart > getAddresses \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -556,7 +527,7 @@ class PosCart {
 
     const {
       error: res_error,
-    } = PosCartModel.GetAddressesResponse().validate(response, {
+    } = PosCartApplicationModel.GetAddressesResponse().validate(response, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -564,24 +535,25 @@ class PosCart {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for getAddresses",
+        message: `Response Validation Warnnings for application > PosCart > getAddresses \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.areaCode -
-   * @param {string} [arg.id] -
-   * @returns {Promise<CartDeliveryModesResponse>} - Success response
+   * @param {PosCartApplicationValidator.getAvailableDeliveryModes} arg - Arg object.
+   * @returns {Promise<PosCartApplicationModel.CartDeliveryModesResponse>} -
+   *   Success response
+   * @name getAvailableDeliveryModes
    * @summary: Get available delivery modes for cart
    * @description: Use this API to get the delivery modes (home-delivery/store-pickup) along with a list of pickup stores available for a given cart at a given PIN Code. User can then view the address of a pickup store with the help of store-address API.
    */
   async getAvailableDeliveryModes({ areaCode, id } = {}) {
-    const { error } = PosCartValidator.getAvailableDeliveryModes().validate(
+    const {
+      error,
+    } = PosCartApplicationValidator.getAvailableDeliveryModes().validate(
       { areaCode, id },
       { abortEarly: false, allowUnknown: true }
     );
@@ -592,16 +564,15 @@ class PosCart {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = PosCartValidator.getAvailableDeliveryModes().validate(
+    } = PosCartApplicationValidator.getAvailableDeliveryModes().validate(
       { areaCode, id },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for getAvailableDeliveryModes",
+        message: `Parameter Validation warrnings for application > PosCart > getAvailableDeliveryModes \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -624,7 +595,7 @@ class PosCart {
 
     const {
       error: res_error,
-    } = PosCartModel.CartDeliveryModesResponse().validate(response, {
+    } = PosCartApplicationModel.CartDeliveryModesResponse().validate(response, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -632,28 +603,24 @@ class PosCart {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for getAvailableDeliveryModes",
+        message: `Response Validation Warnnings for application > PosCart > getAvailableDeliveryModes \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {number} [arg.itemId] - The Item ID of the product
-   * @param {string} [arg.articleId] - Article Mongo ID
-   * @param {number} [arg.uid] - UID of the product
-   * @param {string} [arg.slug] - A short, human-readable, URL-friendly
-   *   identifier of a product. You can get slug value from the endpoint
-   *   /service/application/catalog/v1.0/products/
-   * @returns {Promise<BulkPriceResponse>} - Success response
+   * @param {PosCartApplicationValidator.getBulkDiscountOffers} arg - Arg object.
+   * @returns {Promise<PosCartApplicationModel.BulkPriceResponse>} - Success response
+   * @name getBulkDiscountOffers
    * @summary: Get discount offers based on quantity
    * @description: Use this API to get a list of applicable offers along with current, next and best offer for given product. Either one of uid, item_id, slug should be present.
    */
   async getBulkDiscountOffers({ itemId, articleId, uid, slug } = {}) {
-    const { error } = PosCartValidator.getBulkDiscountOffers().validate(
+    const {
+      error,
+    } = PosCartApplicationValidator.getBulkDiscountOffers().validate(
       { itemId, articleId, uid, slug },
       { abortEarly: false, allowUnknown: true }
     );
@@ -664,16 +631,15 @@ class PosCart {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = PosCartValidator.getBulkDiscountOffers().validate(
+    } = PosCartApplicationValidator.getBulkDiscountOffers().validate(
       { itemId, articleId, uid, slug },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for getBulkDiscountOffers",
+        message: `Parameter Validation warrnings for application > PosCart > getBulkDiscountOffers \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -698,7 +664,7 @@ class PosCart {
 
     const {
       error: res_error,
-    } = PosCartModel.BulkPriceResponse().validate(response, {
+    } = PosCartApplicationModel.BulkPriceResponse().validate(response, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -706,33 +672,22 @@ class PosCart {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for getBulkDiscountOffers",
+        message: `Response Validation Warnnings for application > PosCart > getBulkDiscountOffers \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {string} [arg.id] - The unique identifier of the cart
-   * @param {boolean} [arg.i] - This is a boolean value. Select `true` to
-   *   retrieve all the items added in the cart.
-   * @param {boolean} [arg.b] - This is a boolean value. Select `true` to
-   *   retrieve the price breakup of cart items.
-   * @param {boolean} [arg.p] - This is a boolean value. Select `true` for
-   *   getting a payment option in response.
-   * @param {number} [arg.assignCardId] - Token of user's debit or credit card
-   * @param {string} [arg.areaCode] - Customer servicable area_code
-   * @param {boolean} [arg.buyNow] - This is a boolen value. Select `true` to
-   *   set/initialize buy now cart
-   * @returns {Promise<CartDetailResponse>} - Success response
+   * @param {PosCartApplicationValidator.getCart} arg - Arg object.
+   * @returns {Promise<PosCartApplicationModel.CartDetailResponse>} - Success response
+   * @name getCart
    * @summary: Fetch all items added to the cart
    * @description: Use this API to get details of all the items added to a cart.
    */
   async getCart({ id, i, b, p, assignCardId, areaCode, buyNow } = {}) {
-    const { error } = PosCartValidator.getCart().validate(
+    const { error } = PosCartApplicationValidator.getCart().validate(
       { id, i, b, p, assignCardId, areaCode, buyNow },
       { abortEarly: false, allowUnknown: true }
     );
@@ -741,16 +696,15 @@ class PosCart {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = PosCartValidator.getCart().validate(
+    const { error: warrning } = PosCartApplicationValidator.getCart().validate(
       { id, i, b, p, assignCardId, areaCode, buyNow },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for getCart",
+        message: `Parameter Validation warrnings for application > PosCart > getCart \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -778,7 +732,7 @@ class PosCart {
 
     const {
       error: res_error,
-    } = PosCartModel.CartDetailResponse().validate(response, {
+    } = PosCartApplicationModel.CartDetailResponse().validate(response, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -786,23 +740,24 @@ class PosCart {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for getCart",
+        message: `Response Validation Warnnings for application > PosCart > getCart \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {string} [arg.id] - The unique identifier of the cart
+   * @param {PosCartApplicationValidator.getCartLastModified} arg - Arg object.
    * @returns {Promise<any>} - Success response
+   * @name getCartLastModified
    * @summary: Fetch last-modified timestamp
    * @description: Use this API to fetch Last-Modified timestamp in header metadata.
    */
   async getCartLastModified({ id } = {}) {
-    const { error } = PosCartValidator.getCartLastModified().validate(
+    const {
+      error,
+    } = PosCartApplicationValidator.getCartLastModified().validate(
       { id },
       { abortEarly: false, allowUnknown: true }
     );
@@ -811,16 +766,17 @@ class PosCart {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = PosCartValidator.getCartLastModified().validate(
+    const {
+      error: warrning,
+    } = PosCartApplicationValidator.getCartLastModified().validate(
       { id },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for getCartLastModified",
+        message: `Parameter Validation warrnings for application > PosCart > getCartLastModified \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -847,23 +803,23 @@ class PosCart {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for getCartLastModified",
+        message: `Response Validation Warnnings for application > PosCart > getCartLastModified \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {GetShareCartLinkRequest} arg.body
-   * @returns {Promise<GetShareCartLinkResponse>} - Success response
+   * @param {PosCartApplicationValidator.getCartShareLink} arg - Arg object.
+   * @returns {Promise<PosCartApplicationModel.GetShareCartLinkResponse>} -
+   *   Success response
+   * @name getCartShareLink
    * @summary: Generate token for sharing the cart
    * @description: Use this API to generate a shared cart snapshot and return a shortlink token. The link can be shared with other users for getting the same items in their cart.
    */
   async getCartShareLink({ body } = {}) {
-    const { error } = PosCartValidator.getCartShareLink().validate(
+    const { error } = PosCartApplicationValidator.getCartShareLink().validate(
       { body },
       { abortEarly: false, allowUnknown: true }
     );
@@ -872,16 +828,17 @@ class PosCart {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = PosCartValidator.getCartShareLink().validate(
+    const {
+      error: warrning,
+    } = PosCartApplicationValidator.getCartShareLink().validate(
       { body },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for getCartShareLink",
+        message: `Parameter Validation warrnings for application > PosCart > getCartShareLink \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -902,7 +859,7 @@ class PosCart {
 
     const {
       error: res_error,
-    } = PosCartModel.GetShareCartLinkResponse().validate(response, {
+    } = PosCartApplicationModel.GetShareCartLinkResponse().validate(response, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -910,23 +867,22 @@ class PosCart {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for getCartShareLink",
+        message: `Response Validation Warnnings for application > PosCart > getCartShareLink \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.token - Token of the shared short link
-   * @returns {Promise<SharedCartResponse>} - Success response
+   * @param {PosCartApplicationValidator.getCartSharedItems} arg - Arg object.
+   * @returns {Promise<PosCartApplicationModel.SharedCartResponse>} - Success response
+   * @name getCartSharedItems
    * @summary: Get details of a shared cart
    * @description: Use this API to get the shared cart details as per the token generated using the share-cart API.
    */
   async getCartSharedItems({ token } = {}) {
-    const { error } = PosCartValidator.getCartSharedItems().validate(
+    const { error } = PosCartApplicationValidator.getCartSharedItems().validate(
       { token },
       { abortEarly: false, allowUnknown: true }
     );
@@ -935,16 +891,17 @@ class PosCart {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = PosCartValidator.getCartSharedItems().validate(
+    const {
+      error: warrning,
+    } = PosCartApplicationValidator.getCartSharedItems().validate(
       { token },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for getCartSharedItems",
+        message: `Parameter Validation warrnings for application > PosCart > getCartSharedItems \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -965,7 +922,7 @@ class PosCart {
 
     const {
       error: res_error,
-    } = PosCartModel.SharedCartResponse().validate(response, {
+    } = PosCartApplicationModel.SharedCartResponse().validate(response, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -973,24 +930,22 @@ class PosCart {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for getCartSharedItems",
+        message: `Response Validation Warnnings for application > PosCart > getCartSharedItems \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {string} [arg.id] -
-   * @param {boolean} [arg.buyNow] -
-   * @returns {Promise<GetCouponResponse>} - Success response
+   * @param {PosCartApplicationValidator.getCoupons} arg - Arg object.
+   * @returns {Promise<PosCartApplicationModel.GetCouponResponse>} - Success response
+   * @name getCoupons
    * @summary: Fetch Coupon
    * @description: Use this API to get a list of available coupons along with their details.
    */
   async getCoupons({ id, buyNow } = {}) {
-    const { error } = PosCartValidator.getCoupons().validate(
+    const { error } = PosCartApplicationValidator.getCoupons().validate(
       { id, buyNow },
       { abortEarly: false, allowUnknown: true }
     );
@@ -999,16 +954,17 @@ class PosCart {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = PosCartValidator.getCoupons().validate(
+    const {
+      error: warrning,
+    } = PosCartApplicationValidator.getCoupons().validate(
       { id, buyNow },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for getCoupons",
+        message: `Parameter Validation warrnings for application > PosCart > getCoupons \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -1031,7 +987,7 @@ class PosCart {
 
     const {
       error: res_error,
-    } = PosCartModel.GetCouponResponse().validate(response, {
+    } = PosCartApplicationModel.GetCouponResponse().validate(response, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -1039,24 +995,23 @@ class PosCart {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for getCoupons",
+        message: `Response Validation Warnnings for application > PosCart > getCoupons \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {string} [arg.id] - The unique identifier of the cart.
-   * @param {boolean} [arg.buyNow] - Boolean value to get buy_now cart.
-   * @returns {Promise<CartItemCountResponse>} - Success response
+   * @param {PosCartApplicationValidator.getItemCount} arg - Arg object.
+   * @returns {Promise<PosCartApplicationModel.CartItemCountResponse>} -
+   *   Success response
+   * @name getItemCount
    * @summary: Count items in the cart
    * @description: Use this API to get the total number of items present in cart.
    */
   async getItemCount({ id, buyNow } = {}) {
-    const { error } = PosCartValidator.getItemCount().validate(
+    const { error } = PosCartApplicationValidator.getItemCount().validate(
       { id, buyNow },
       { abortEarly: false, allowUnknown: true }
     );
@@ -1065,16 +1020,17 @@ class PosCart {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = PosCartValidator.getItemCount().validate(
+    const {
+      error: warrning,
+    } = PosCartApplicationValidator.getItemCount().validate(
       { id, buyNow },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for getItemCount",
+        message: `Parameter Validation warrnings for application > PosCart > getItemCount \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -1097,7 +1053,7 @@ class PosCart {
 
     const {
       error: res_error,
-    } = PosCartModel.CartItemCountResponse().validate(response, {
+    } = PosCartApplicationModel.CartItemCountResponse().validate(response, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -1105,28 +1061,18 @@ class PosCart {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for getItemCount",
+        message: `Response Validation Warnnings for application > PosCart > getItemCount \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {number} [arg.pickAtStoreUid] -
-   * @param {number} [arg.orderingStoreId] -
-   * @param {boolean} [arg.p] - This is a boolean value. Select `true` for
-   *   getting a payment option in response.
-   * @param {string} [arg.id] - The unique identifier of the cart
-   * @param {string} [arg.addressId] - ID allotted to the selected address
-   * @param {string} [arg.areaCode] - The PIN Code of the destination address,
-   *   e.g. 400059
-   * @param {string} [arg.orderType] - The order type of shipment HomeDelivery
-   *   - If the customer wants the order home-delivered PickAtStore - If the
-   *   customer wants the handover of an order at the store itself.
-   * @returns {Promise<CartShipmentsResponse>} - Success response
+   * @param {PosCartApplicationValidator.getShipments} arg - Arg object.
+   * @returns {Promise<PosCartApplicationModel.CartShipmentsResponse>} -
+   *   Success response
+   * @name getShipments
    * @summary: Get delivery date and options before checkout
    * @description: Use this API to get shipment details, expected delivery date, items and price breakup of the shipment.
    */
@@ -1139,7 +1085,7 @@ class PosCart {
     areaCode,
     orderType,
   } = {}) {
-    const { error } = PosCartValidator.getShipments().validate(
+    const { error } = PosCartApplicationValidator.getShipments().validate(
       {
         pickAtStoreUid,
         orderingStoreId,
@@ -1156,7 +1102,9 @@ class PosCart {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = PosCartValidator.getShipments().validate(
+    const {
+      error: warrning,
+    } = PosCartApplicationValidator.getShipments().validate(
       {
         pickAtStoreUid,
         orderingStoreId,
@@ -1171,9 +1119,8 @@ class PosCart {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for getShipments",
+        message: `Parameter Validation warrnings for application > PosCart > getShipments \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -1201,7 +1148,7 @@ class PosCart {
 
     const {
       error: res_error,
-    } = PosCartModel.CartShipmentsResponse().validate(response, {
+    } = PosCartApplicationModel.CartShipmentsResponse().validate(response, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -1209,23 +1156,24 @@ class PosCart {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for getShipments",
+        message: `Response Validation Warnnings for application > PosCart > getShipments \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {number} arg.storeUid -
-   * @returns {Promise<StoreDetailsResponse>} - Success response
+   * @param {PosCartApplicationValidator.getStoreAddressByUid} arg - Arg object.
+   * @returns {Promise<PosCartApplicationModel.StoreDetailsResponse>} - Success response
+   * @name getStoreAddressByUid
    * @summary: Get list of stores for give uids
    * @description: Use this API to get the store details by entering the unique identifier of the pickup stores shown in the response of available-delivery-mode API.
    */
   async getStoreAddressByUid({ storeUid } = {}) {
-    const { error } = PosCartValidator.getStoreAddressByUid().validate(
+    const {
+      error,
+    } = PosCartApplicationValidator.getStoreAddressByUid().validate(
       { storeUid },
       { abortEarly: false, allowUnknown: true }
     );
@@ -1236,16 +1184,15 @@ class PosCart {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = PosCartValidator.getStoreAddressByUid().validate(
+    } = PosCartApplicationValidator.getStoreAddressByUid().validate(
       { storeUid },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for getStoreAddressByUid",
+        message: `Parameter Validation warrnings for application > PosCart > getStoreAddressByUid \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -1267,7 +1214,7 @@ class PosCart {
 
     const {
       error: res_error,
-    } = PosCartModel.StoreDetailsResponse().validate(response, {
+    } = PosCartApplicationModel.StoreDetailsResponse().validate(response, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -1275,23 +1222,23 @@ class PosCart {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for getStoreAddressByUid",
+        message: `Response Validation Warnnings for application > PosCart > getStoreAddressByUid \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.id - ID allotted to the selected address
-   * @returns {Promise<DeleteAddressResponse>} - Success response
+   * @param {PosCartApplicationValidator.removeAddress} arg - Arg object.
+   * @returns {Promise<PosCartApplicationModel.DeleteAddressResponse>} -
+   *   Success response
+   * @name removeAddress
    * @summary: Remove address associated with an account
    * @description: Use this API to delete an address by its ID. This will returns an object that will indicate whether the address was deleted successfully or not.
    */
   async removeAddress({ id } = {}) {
-    const { error } = PosCartValidator.removeAddress().validate(
+    const { error } = PosCartApplicationValidator.removeAddress().validate(
       { id },
       { abortEarly: false, allowUnknown: true }
     );
@@ -1300,16 +1247,17 @@ class PosCart {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = PosCartValidator.removeAddress().validate(
+    const {
+      error: warrning,
+    } = PosCartApplicationValidator.removeAddress().validate(
       { id },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for removeAddress",
+        message: `Parameter Validation warrnings for application > PosCart > removeAddress \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -1330,7 +1278,7 @@ class PosCart {
 
     const {
       error: res_error,
-    } = PosCartModel.DeleteAddressResponse().validate(response, {
+    } = PosCartApplicationModel.DeleteAddressResponse().validate(response, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -1338,24 +1286,22 @@ class PosCart {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for removeAddress",
+        message: `Response Validation Warnnings for application > PosCart > removeAddress \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {string} [arg.id] -
-   * @param {boolean} [arg.buyNow] -
-   * @returns {Promise<CartDetailResponse>} - Success response
+   * @param {PosCartApplicationValidator.removeCoupon} arg - Arg object.
+   * @returns {Promise<PosCartApplicationModel.CartDetailResponse>} - Success response
+   * @name removeCoupon
    * @summary: Remove Coupon Applied
    * @description: Remove Coupon applied on the cart by passing uid in request body.
    */
   async removeCoupon({ id, buyNow } = {}) {
-    const { error } = PosCartValidator.removeCoupon().validate(
+    const { error } = PosCartApplicationValidator.removeCoupon().validate(
       { id, buyNow },
       { abortEarly: false, allowUnknown: true }
     );
@@ -1364,16 +1310,17 @@ class PosCart {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = PosCartValidator.removeCoupon().validate(
+    const {
+      error: warrning,
+    } = PosCartApplicationValidator.removeCoupon().validate(
       { id, buyNow },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for removeCoupon",
+        message: `Parameter Validation warrnings for application > PosCart > removeCoupon \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -1396,7 +1343,7 @@ class PosCart {
 
     const {
       error: res_error,
-    } = PosCartModel.CartDetailResponse().validate(response, {
+    } = PosCartApplicationModel.CartDetailResponse().validate(response, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -1404,27 +1351,22 @@ class PosCart {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for removeCoupon",
+        message: `Response Validation Warnnings for application > PosCart > removeCoupon \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {string} [arg.cartId] -
-   * @param {boolean} [arg.buyNow] -
-   * @param {boolean} [arg.i] -
-   * @param {boolean} [arg.b] -
-   * @param {SelectCartAddressRequest} arg.body
-   * @returns {Promise<CartDetailResponse>} - Success response
+   * @param {PosCartApplicationValidator.selectAddress} arg - Arg object.
+   * @returns {Promise<PosCartApplicationModel.CartDetailResponse>} - Success response
+   * @name selectAddress
    * @summary: Select an address from available addresses
    * @description: <p>Select Address from all addresses associated with the account in order to ship the cart items to that address, otherwise default address will be selected implicitly. See `SelectCartAddressRequest` in schema of request body for the list of attributes needed to select Address from account. On successful request, this API returns a Cart object. Below address attributes are required. <ul> <li> <font color="monochrome">address_id</font></li> <li> <font color="monochrome">billing_address_id</font></li> <li> <font color="monochrome">uid</font></li> </ul></p>
    */
   async selectAddress({ body, cartId, buyNow, i, b } = {}) {
-    const { error } = PosCartValidator.selectAddress().validate(
+    const { error } = PosCartApplicationValidator.selectAddress().validate(
       { body, cartId, buyNow, i, b },
       { abortEarly: false, allowUnknown: true }
     );
@@ -1433,16 +1375,17 @@ class PosCart {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = PosCartValidator.selectAddress().validate(
+    const {
+      error: warrning,
+    } = PosCartApplicationValidator.selectAddress().validate(
       { body, cartId, buyNow, i, b },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for selectAddress",
+        message: `Parameter Validation warrnings for application > PosCart > selectAddress \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -1467,7 +1410,7 @@ class PosCart {
 
     const {
       error: res_error,
-    } = PosCartModel.CartDetailResponse().validate(response, {
+    } = PosCartApplicationModel.CartDetailResponse().validate(response, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -1475,25 +1418,22 @@ class PosCart {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for selectAddress",
+        message: `Response Validation Warnnings for application > PosCart > selectAddress \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {string} [arg.id] -
-   * @param {boolean} [arg.buyNow] -
-   * @param {UpdateCartPaymentRequest} arg.body
-   * @returns {Promise<CartDetailResponse>} - Success response
+   * @param {PosCartApplicationValidator.selectPaymentMode} arg - Arg object.
+   * @returns {Promise<PosCartApplicationModel.CartDetailResponse>} - Success response
+   * @name selectPaymentMode
    * @summary: Update cart payment
    * @description: Use this API to update cart payment.
    */
   async selectPaymentMode({ body, id, buyNow } = {}) {
-    const { error } = PosCartValidator.selectPaymentMode().validate(
+    const { error } = PosCartApplicationValidator.selectPaymentMode().validate(
       { body, id, buyNow },
       { abortEarly: false, allowUnknown: true }
     );
@@ -1502,16 +1442,17 @@ class PosCart {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = PosCartValidator.selectPaymentMode().validate(
+    const {
+      error: warrning,
+    } = PosCartApplicationValidator.selectPaymentMode().validate(
       { body, id, buyNow },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for selectPaymentMode",
+        message: `Parameter Validation warrnings for application > PosCart > selectPaymentMode \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -1534,7 +1475,7 @@ class PosCart {
 
     const {
       error: res_error,
-    } = PosCartModel.CartDetailResponse().validate(response, {
+    } = PosCartApplicationModel.CartDetailResponse().validate(response, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -1542,24 +1483,23 @@ class PosCart {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for selectPaymentMode",
+        message: `Response Validation Warnnings for application > PosCart > selectPaymentMode \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.id - ID allotted to the selected address
-   * @param {Address} arg.body
-   * @returns {Promise<UpdateAddressResponse>} - Success response
+   * @param {PosCartApplicationValidator.updateAddress} arg - Arg object.
+   * @returns {Promise<PosCartApplicationModel.UpdateAddressResponse>} -
+   *   Success response
+   * @name updateAddress
    * @summary: Update address added to an account
    * @description: <p>Use this API to update an existing address in the account. Request object should contain attributes mentioned in  <font color="blue">Address </font> can be updated. These attributes are:</p> <ul> <li> <font color="monochrome">is_default_address</font></li> <li> <font color="monochrome">landmark</font></li> <li> <font color="monochrome">area</font></li> <li> <font color="monochrome">pincode</font></li> <li> <font color="monochrome">email</font></li> <li> <font color="monochrome">address_type</font></li> <li> <font color="monochrome">name</font></li> <li> <font color="monochrome">address_id</font></li> <li> <font color="monochrome">address</font></li> </ul>
    */
   async updateAddress({ id, body } = {}) {
-    const { error } = PosCartValidator.updateAddress().validate(
+    const { error } = PosCartApplicationValidator.updateAddress().validate(
       { id, body },
       { abortEarly: false, allowUnknown: true }
     );
@@ -1568,16 +1508,17 @@ class PosCart {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = PosCartValidator.updateAddress().validate(
+    const {
+      error: warrning,
+    } = PosCartApplicationValidator.updateAddress().validate(
       { id, body },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for updateAddress",
+        message: `Parameter Validation warrnings for application > PosCart > updateAddress \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -1598,7 +1539,7 @@ class PosCart {
 
     const {
       error: res_error,
-    } = PosCartModel.UpdateAddressResponse().validate(response, {
+    } = PosCartApplicationModel.UpdateAddressResponse().validate(response, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -1606,33 +1547,23 @@ class PosCart {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for updateAddress",
+        message: `Response Validation Warnnings for application > PosCart > updateAddress \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {string} [arg.id] - The unique identifier of the cart
-   * @param {boolean} [arg.i] - This is a boolean value. Select `true` to
-   *   retrieve all the items added in the cart.
-   * @param {boolean} [arg.b] - This is a boolean value. Select `true` to
-   *   retrieve the price breakup of cart items.
-   * @param {boolean} [arg.p] - This is a boolean value. Select `true` for
-   *   getting a payment option in response.
-   * @param {string} [arg.areaCode] - Customer servicable area_code
-   * @param {boolean} [arg.buyNow] - This is a boolen value. Select `true` to
-   *   set/initialize buy now cart
-   * @param {UpdateCartRequest} arg.body
-   * @returns {Promise<UpdateCartDetailResponse>} - Success response
+   * @param {PosCartApplicationValidator.updateCart} arg - Arg object.
+   * @returns {Promise<PosCartApplicationModel.UpdateCartDetailResponse>} -
+   *   Success response
+   * @name updateCart
    * @summary: Update items in the cart
    * @description: <p>Use this API to update items added to the cart with the help of a request object containing attributes like item_quantity and item_size. These attributes will be fetched from the following APIs</p> <ul> <li><font color="monochrome">operation</font> Operation for current api call. <b>update_item</b> for update items. <b>remove_item</b> for removing items.</li> <li> <font color="monochrome">item_id</font>  "/platform/content/v1/products/"</li> <li> <font color="monochrome">item_size</font>   "/platform/content/v1/products/:slug/sizes/"</li> <li> <font color="monochrome">quantity</font>  item quantity (must be greater than or equal to 1)</li> <li> <font color="monochrome">article_id</font>   "/content​/v1​/products​/:identifier​/sizes​/price​/"</li> <li> <font color="monochrome">item_index</font>  item position in the cart (must be greater than or equal to 0)</li> </ul>
    */
   async updateCart({ body, id, i, b, p, areaCode, buyNow } = {}) {
-    const { error } = PosCartValidator.updateCart().validate(
+    const { error } = PosCartApplicationValidator.updateCart().validate(
       { body, id, i, b, p, areaCode, buyNow },
       { abortEarly: false, allowUnknown: true }
     );
@@ -1641,16 +1572,17 @@ class PosCart {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = PosCartValidator.updateCart().validate(
+    const {
+      error: warrning,
+    } = PosCartApplicationValidator.updateCart().validate(
       { body, id, i, b, p, areaCode, buyNow },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for updateCart",
+        message: `Parameter Validation warrnings for application > PosCart > updateCart \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -1677,7 +1609,7 @@ class PosCart {
 
     const {
       error: res_error,
-    } = PosCartModel.UpdateCartDetailResponse().validate(response, {
+    } = PosCartApplicationModel.UpdateCartDetailResponse().validate(response, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -1685,25 +1617,22 @@ class PosCart {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for updateCart",
+        message: `Response Validation Warnnings for application > PosCart > updateCart \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {string} [arg.id] - The unique identifier of the cart
-   * @param {boolean} [arg.buyNow] - This is boolean to get buy_now cart
-   * @param {CartMetaRequest} arg.body
-   * @returns {Promise<CartMetaResponse>} - Success response
+   * @param {PosCartApplicationValidator.updateCartMeta} arg - Arg object.
+   * @returns {Promise<PosCartApplicationModel.CartMetaResponse>} - Success response
+   * @name updateCartMeta
    * @summary: Update the cart meta
    * @description: Use this API to update cart meta like checkout_mode and gstin.
    */
   async updateCartMeta({ body, id, buyNow } = {}) {
-    const { error } = PosCartValidator.updateCartMeta().validate(
+    const { error } = PosCartApplicationValidator.updateCartMeta().validate(
       { body, id, buyNow },
       { abortEarly: false, allowUnknown: true }
     );
@@ -1712,16 +1641,17 @@ class PosCart {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = PosCartValidator.updateCartMeta().validate(
+    const {
+      error: warrning,
+    } = PosCartApplicationValidator.updateCartMeta().validate(
       { body, id, buyNow },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for updateCartMeta",
+        message: `Parameter Validation warrnings for application > PosCart > updateCartMeta \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -1744,7 +1674,7 @@ class PosCart {
 
     const {
       error: res_error,
-    } = PosCartModel.CartMetaResponse().validate(response, {
+    } = PosCartApplicationModel.CartMetaResponse().validate(response, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -1752,25 +1682,24 @@ class PosCart {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for updateCartMeta",
+        message: `Response Validation Warnnings for application > PosCart > updateCartMeta \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.token - Token of the shared short link
-   * @param {string} arg.action - Operation to perform on the existing cart
-   *   merge or replace.
-   * @returns {Promise<SharedCartResponse>} - Success response
+   * @param {PosCartApplicationValidator.updateCartWithSharedItems} arg - Arg object.
+   * @returns {Promise<PosCartApplicationModel.SharedCartResponse>} - Success response
+   * @name updateCartWithSharedItems
    * @summary: Merge or replace existing cart
    * @description: Use this API to merge the shared cart with existing cart, or replace the existing cart with the shared cart. The `action` parameter is used to indicate the operation Merge or Replace.
    */
   async updateCartWithSharedItems({ token, action } = {}) {
-    const { error } = PosCartValidator.updateCartWithSharedItems().validate(
+    const {
+      error,
+    } = PosCartApplicationValidator.updateCartWithSharedItems().validate(
       { token, action },
       { abortEarly: false, allowUnknown: true }
     );
@@ -1781,16 +1710,15 @@ class PosCart {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = PosCartValidator.updateCartWithSharedItems().validate(
+    } = PosCartApplicationValidator.updateCartWithSharedItems().validate(
       { token, action },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for updateCartWithSharedItems",
+        message: `Parameter Validation warrnings for application > PosCart > updateCartWithSharedItems \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -1811,7 +1739,7 @@ class PosCart {
 
     const {
       error: res_error,
-    } = PosCartModel.SharedCartResponse().validate(response, {
+    } = PosCartApplicationModel.SharedCartResponse().validate(response, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -1819,29 +1747,18 @@ class PosCart {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for updateCartWithSharedItems",
+        message: `Response Validation Warnnings for application > PosCart > updateCartWithSharedItems \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {boolean} [arg.i] - This is a boolean value. Select `true` to
-   *   retrieve all the items added in the cart.
-   * @param {boolean} [arg.p] - This is a boolean value. Select `true` for
-   *   getting a payment option in response.
-   * @param {string} [arg.id] - The unique identifier of the cart
-   * @param {string} [arg.addressId] - ID allotted to an address
-   * @param {string} [arg.areaCode] - The PIN Code of the destination address,
-   *   e.g. 400059
-   * @param {string} [arg.orderType] - The order type of shipment HomeDelivery
-   *   - If the customer wants the order home-delivered PickAtStore - If the
-   *   customer wants the handover of an order at the store itself.
-   * @param {UpdateCartShipmentRequest} arg.body
-   * @returns {Promise<CartShipmentsResponse>} - Success response
+   * @param {PosCartApplicationValidator.updateShipments} arg - Arg object.
+   * @returns {Promise<PosCartApplicationModel.CartShipmentsResponse>} -
+   *   Success response
+   * @name updateShipments
    * @summary: Update shipment delivery type and quantity before checkout
    * @description: Use this API to update the delivery type and quantity as per customer's preference for either store pick-up or home-delivery.
    */
@@ -1854,7 +1771,7 @@ class PosCart {
     areaCode,
     orderType,
   } = {}) {
-    const { error } = PosCartValidator.updateShipments().validate(
+    const { error } = PosCartApplicationValidator.updateShipments().validate(
       { body, i, p, id, addressId, areaCode, orderType },
       { abortEarly: false, allowUnknown: true }
     );
@@ -1863,16 +1780,17 @@ class PosCart {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = PosCartValidator.updateShipments().validate(
+    const {
+      error: warrning,
+    } = PosCartApplicationValidator.updateShipments().validate(
       { body, i, p, id, addressId, areaCode, orderType },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for updateShipments",
+        message: `Parameter Validation warrnings for application > PosCart > updateShipments \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -1899,7 +1817,7 @@ class PosCart {
 
     const {
       error: res_error,
-    } = PosCartModel.CartShipmentsResponse().validate(response, {
+    } = PosCartApplicationModel.CartShipmentsResponse().validate(response, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -1907,28 +1825,18 @@ class PosCart {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for updateShipments",
+        message: `Response Validation Warnnings for application > PosCart > updateShipments \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {string} [arg.id] -
-   * @param {boolean} [arg.buyNow] -
-   * @param {string} [arg.addressId] -
-   * @param {string} [arg.paymentMode] -
-   * @param {string} [arg.paymentIdentifier] -
-   * @param {string} [arg.aggregatorName] -
-   * @param {string} [arg.merchantCode] -
-   * @param {string} [arg.iin] -
-   * @param {string} [arg.network] -
-   * @param {string} [arg.type] -
-   * @param {string} [arg.cardId] -
-   * @returns {Promise<PaymentCouponValidate>} - Success response
+   * @param {PosCartApplicationValidator.validateCouponForPayment} arg - Arg object.
+   * @returns {Promise<PosCartApplicationModel.PaymentCouponValidate>} -
+   *   Success response
+   * @name validateCouponForPayment
    * @summary: Verify the coupon eligibility against the payment mode
    * @description: Use this API to validate a coupon against the payment mode such as NetBanking, Wallet, UPI etc.
    */
@@ -1945,7 +1853,9 @@ class PosCart {
     type,
     cardId,
   } = {}) {
-    const { error } = PosCartValidator.validateCouponForPayment().validate(
+    const {
+      error,
+    } = PosCartApplicationValidator.validateCouponForPayment().validate(
       {
         id,
         buyNow,
@@ -1968,7 +1878,7 @@ class PosCart {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = PosCartValidator.validateCouponForPayment().validate(
+    } = PosCartApplicationValidator.validateCouponForPayment().validate(
       {
         id,
         buyNow,
@@ -1987,9 +1897,8 @@ class PosCart {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for validateCouponForPayment",
+        message: `Parameter Validation warrnings for application > PosCart > validateCouponForPayment \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -2021,7 +1930,7 @@ class PosCart {
 
     const {
       error: res_error,
-    } = PosCartModel.PaymentCouponValidate().validate(response, {
+    } = PosCartApplicationModel.PaymentCouponValidate().validate(response, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -2029,9 +1938,8 @@ class PosCart {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for validateCouponForPayment",
+        message: `Response Validation Warnnings for application > PosCart > validateCouponForPayment \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;

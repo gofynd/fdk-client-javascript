@@ -1,13 +1,49 @@
 const Joi = require("joi");
 
-const OrderModel = require("./OrderPlatformModel");
-class OrderValidator {
+const OrderPlatformModel = require("./OrderPlatformModel");
+
+/**
+ * @typedef getAppOrderShipmentDetails
+ * @property {string} orderId
+ */
+
+/**
+ * @typedef getApplicationShipments
+ * @property {string} [lane]
+ * @property {string} [searchType]
+ * @property {string} [searchId]
+ * @property {string} [fromDate]
+ * @property {string} [toDate]
+ * @property {string} [dpIds]
+ * @property {string} [orderingCompanyId]
+ * @property {string} [stores]
+ * @property {string} [salesChannels]
+ * @property {string} [requestByExt]
+ * @property {number} [pageNo]
+ * @property {number} [pageSize]
+ * @property {string} [customerId]
+ * @property {boolean} [isPrioritySort]
+ */
+
+/**
+ * @typedef getPlatformShipmentReasons
+ * @property {string} action
+ */
+
+/**
+ * @typedef trackShipmentPlatform
+ * @property {string} shipmentId - Shipment Id
+ */
+
+class OrderPlatformApplicationValidator {
+  /** @returns {getAppOrderShipmentDetails} */
   static getAppOrderShipmentDetails() {
     return Joi.object({
       orderId: Joi.string().allow("").required(),
     }).required();
   }
 
+  /** @returns {getApplicationShipments} */
   static getApplicationShipments() {
     return Joi.object({
       lane: Joi.string().allow(""),
@@ -27,12 +63,14 @@ class OrderValidator {
     }).required();
   }
 
+  /** @returns {getPlatformShipmentReasons} */
   static getPlatformShipmentReasons() {
     return Joi.object({
       action: Joi.string().allow("").required(),
     }).required();
   }
 
+  /** @returns {trackShipmentPlatform} */
   static trackShipmentPlatform() {
     return Joi.object({
       shipmentId: Joi.string().allow("").required(),
@@ -40,4 +78,4 @@ class OrderValidator {
   }
 }
 
-module.exports = OrderValidator;
+module.exports = OrderPlatformApplicationValidator;

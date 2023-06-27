@@ -1,7 +1,15 @@
 const Joi = require("joi");
 
-const CommunicationModel = require("./CommunicationPlatformModel");
-class CommunicationValidator {
+const CommunicationPlatformModel = require("./CommunicationPlatformModel");
+
+/**
+ * @typedef getSystemNotifications
+ * @property {number} [pageNo]
+ * @property {number} [pageSize]
+ */
+
+class CommunicationPlatformValidator {
+  /** @returns {getSystemNotifications} */
   static getSystemNotifications() {
     return Joi.object({
       pageNo: Joi.number(),
@@ -10,4 +18,4 @@ class CommunicationValidator {
   }
 }
 
-module.exports = CommunicationValidator;
+module.exports = CommunicationPlatformValidator;

@@ -1,8 +1,8 @@
 const PlatformAPIClient = require("../PlatformAPIClient");
 const { FDKClientValidationError } = require("../../common/FDKError");
 const Paginator = require("../../common/Paginator");
-const OrderValidator = require("./OrderPlatformApplicationValidator");
-const OrderModel = require("./OrderPlatformModel");
+const OrderPlatformApplicationValidator = require("./OrderPlatformApplicationValidator");
+const OrderPlatformModel = require("./OrderPlatformModel");
 const { Logger } = require("./../../common/Logger");
 const Joi = require("joi");
 
@@ -13,14 +13,18 @@ class Order {
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.orderId -
-   * @returns {Promise<OrderDetailsResponse>} - Success response
+   * @param {OrderPlatformApplicationValidator.getAppOrderShipmentDetails} arg
+   *   - Arg object
+   *
+   * @returns {Promise<OrderPlatformModel.OrderDetailsResponse>} - Success response
+   * @name getAppOrderShipmentDetails
    * @summary:
    * @description:
    */
   async getAppOrderShipmentDetails({ orderId } = {}) {
-    const { error } = OrderValidator.getAppOrderShipmentDetails().validate(
+    const {
+      error,
+    } = OrderPlatformApplicationValidator.getAppOrderShipmentDetails().validate(
       {
         orderId,
       },
@@ -33,7 +37,7 @@ class Order {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = OrderValidator.getAppOrderShipmentDetails().validate(
+    } = OrderPlatformApplicationValidator.getAppOrderShipmentDetails().validate(
       {
         orderId,
       },
@@ -42,10 +46,8 @@ class Order {
     if (warrning) {
       Logger({
         level: "WARN",
-        message:
-          "Parameter Validation warrnings for getAppOrderShipmentDetails",
+        message: `Parameter Validation warrnings for platform > Order > getAppOrderShipmentDetails \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -61,7 +63,7 @@ class Order {
 
     const {
       error: res_error,
-    } = OrderModel.OrderDetailsResponse().validate(response, {
+    } = OrderPlatformModel.OrderDetailsResponse().validate(response, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -69,31 +71,19 @@ class Order {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for getAppOrderShipmentDetails",
+        message: `Response Validation Warnnings for platform > Order > getAppOrderShipmentDetails \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {string} [arg.lane] -
-   * @param {string} [arg.searchType] -
-   * @param {string} [arg.searchId] -
-   * @param {string} [arg.fromDate] -
-   * @param {string} [arg.toDate] -
-   * @param {string} [arg.dpIds] -
-   * @param {string} [arg.orderingCompanyId] -
-   * @param {string} [arg.stores] -
-   * @param {string} [arg.salesChannels] -
-   * @param {string} [arg.requestByExt] -
-   * @param {number} [arg.pageNo] -
-   * @param {number} [arg.pageSize] -
-   * @param {string} [arg.customerId] -
-   * @param {boolean} [arg.isPrioritySort] -
-   * @returns {Promise<ShipmentInternalPlatformViewResponse>} - Success response
+   * @param {OrderPlatformApplicationValidator.getApplicationShipments} arg - Arg object
+   * @returns {Promise<OrderPlatformModel.ShipmentInternalPlatformViewResponse>}
+   *   - Success response
+   *
+   * @name getApplicationShipments
    * @summary:
    * @description:
    */
@@ -113,7 +103,9 @@ class Order {
     customerId,
     isPrioritySort,
   } = {}) {
-    const { error } = OrderValidator.getApplicationShipments().validate(
+    const {
+      error,
+    } = OrderPlatformApplicationValidator.getApplicationShipments().validate(
       {
         lane,
         searchType,
@@ -139,7 +131,7 @@ class Order {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = OrderValidator.getApplicationShipments().validate(
+    } = OrderPlatformApplicationValidator.getApplicationShipments().validate(
       {
         lane,
         searchType,
@@ -161,9 +153,8 @@ class Order {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for getApplicationShipments",
+        message: `Parameter Validation warrnings for platform > Order > getApplicationShipments \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -192,31 +183,34 @@ class Order {
 
     const {
       error: res_error,
-    } = OrderModel.ShipmentInternalPlatformViewResponse().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
+    } = OrderPlatformModel.ShipmentInternalPlatformViewResponse().validate(
+      response,
+      { abortEarly: false, allowUnknown: false }
+    );
 
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for getApplicationShipments",
+        message: `Response Validation Warnnings for platform > Order > getApplicationShipments \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.action -
-   * @returns {Promise<ShipmentReasonsResponse>} - Success response
+   * @param {OrderPlatformApplicationValidator.getPlatformShipmentReasons} arg
+   *   - Arg object
+   *
+   * @returns {Promise<OrderPlatformModel.ShipmentReasonsResponse>} - Success response
+   * @name getPlatformShipmentReasons
    * @summary: Use this API to retrieve the issues that led to the cancellation of bags within a shipment.
    * @description: Using action, get reasons behind full or partial cancellation of a shipment
    */
   async getPlatformShipmentReasons({ action } = {}) {
-    const { error } = OrderValidator.getPlatformShipmentReasons().validate(
+    const {
+      error,
+    } = OrderPlatformApplicationValidator.getPlatformShipmentReasons().validate(
       {
         action,
       },
@@ -229,7 +223,7 @@ class Order {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = OrderValidator.getPlatformShipmentReasons().validate(
+    } = OrderPlatformApplicationValidator.getPlatformShipmentReasons().validate(
       {
         action,
       },
@@ -238,10 +232,8 @@ class Order {
     if (warrning) {
       Logger({
         level: "WARN",
-        message:
-          "Parameter Validation warrnings for getPlatformShipmentReasons",
+        message: `Parameter Validation warrnings for platform > Order > getPlatformShipmentReasons \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -256,7 +248,7 @@ class Order {
 
     const {
       error: res_error,
-    } = OrderModel.ShipmentReasonsResponse().validate(response, {
+    } = OrderPlatformModel.ShipmentReasonsResponse().validate(response, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -264,23 +256,24 @@ class Order {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for getPlatformShipmentReasons",
+        message: `Response Validation Warnnings for platform > Order > getPlatformShipmentReasons \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.shipmentId - Shipment Id
-   * @returns {Promise<PlatformShipmentTrack>} - Success response
+   * @param {OrderPlatformApplicationValidator.trackShipmentPlatform} arg - Arg object
+   * @returns {Promise<OrderPlatformModel.PlatformShipmentTrack>} - Success response
+   * @name trackShipmentPlatform
    * @summary: Track shipment
    * @description: Track Shipment by shipment id, for application based on application Id
    */
   async trackShipmentPlatform({ shipmentId } = {}) {
-    const { error } = OrderValidator.trackShipmentPlatform().validate(
+    const {
+      error,
+    } = OrderPlatformApplicationValidator.trackShipmentPlatform().validate(
       {
         shipmentId,
       },
@@ -291,7 +284,9 @@ class Order {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = OrderValidator.trackShipmentPlatform().validate(
+    const {
+      error: warrning,
+    } = OrderPlatformApplicationValidator.trackShipmentPlatform().validate(
       {
         shipmentId,
       },
@@ -300,9 +295,8 @@ class Order {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for trackShipmentPlatform",
+        message: `Parameter Validation warrnings for platform > Order > trackShipmentPlatform \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -317,7 +311,7 @@ class Order {
 
     const {
       error: res_error,
-    } = OrderModel.PlatformShipmentTrack().validate(response, {
+    } = OrderPlatformModel.PlatformShipmentTrack().validate(response, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -325,9 +319,8 @@ class Order {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for trackShipmentPlatform",
+        message: `Response Validation Warnnings for platform > Order > trackShipmentPlatform \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
