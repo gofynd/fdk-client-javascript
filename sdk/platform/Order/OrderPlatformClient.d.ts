@@ -27,15 +27,6 @@ declare class Order {
      */
     click2Call({ caller, receiver, bagId, callerId, method, }?: OrderPlatformValidator.click2Call): Promise<OrderPlatformModel.Click2CallResponse>;
     /**
-     * @param {OrderPlatformValidator.createChannelConfig} arg - Arg object
-     * @returns {Promise<OrderPlatformModel.CreateChannelConfigResponse>} -
-     *   Success response
-     * @name createChannelConfig
-     * @summary:
-     * @description: createChannelConfig
-     */
-    createChannelConfig({ body }?: OrderPlatformValidator.createChannelConfig): Promise<OrderPlatformModel.CreateChannelConfigResponse>;
-    /**
      * @param {OrderPlatformValidator.createOrder} arg - Arg object
      * @returns {Promise<OrderPlatformModel.CreateOrderResponse>} - Success response
      * @name createOrder
@@ -145,14 +136,6 @@ declare class Order {
      * @description:
      */
     getBulkShipmentExcelFile({ salesChannels, dpIds, fromDate, toDate, stores, tags, bagStatus, paymentMethods, fileType, timeToDispatch, pageNo, pageSize, }?: OrderPlatformValidator.getBulkShipmentExcelFile): Promise<OrderPlatformModel.FileResponse>;
-    /**
-     * @param {OrderPlatformValidator.getChannelConfig} arg - Arg object
-     * @returns {Promise<OrderPlatformModel.CreateChannelConfigData>} - Success response
-     * @name getChannelConfig
-     * @summary:
-     * @description: getChannelConfig
-     */
-    getChannelConfig({}?: any): Promise<OrderPlatformModel.CreateChannelConfigData>;
     /**
      * @param {OrderPlatformValidator.getLaneConfig} arg - Arg object
      * @returns {Promise<OrderPlatformModel.LaneConfigResponse>} - Success response

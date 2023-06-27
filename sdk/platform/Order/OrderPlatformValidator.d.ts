@@ -16,10 +16,6 @@ export = OrderPlatformValidator;
  * @property {string} [method] - Provider Method to Call
  */
 /**
- * @typedef createChannelConfig
- * @property {OrderPlatformModel.CreateChannelConfigData} body
- */
-/**
  * @typedef createOrder
  * @property {OrderPlatformModel.CreateOrderAPI} body
  */
@@ -95,7 +91,6 @@ export = OrderPlatformValidator;
  * @property {number} [pageNo]
  * @property {number} [pageSize]
  */
-/** @typedef getChannelConfig */
 /**
  * @typedef getLaneConfig
  * @property {string} [superLane] - Name of lane for which data is to be fetched
@@ -315,7 +310,7 @@ export = OrderPlatformValidator;
 declare class OrderPlatformValidator {
 }
 declare namespace OrderPlatformValidator {
-    export { attachOrderUser, checkOrderStatus, click2Call, createChannelConfig, createOrder, createShipmentReport, dispatchManifest, downloadBulkActionTemplate, fetchCreditBalanceDetail, fetchRefundModeConfig, generatePOSReceiptByOrderId, getAnnouncements, getAssetByShipmentIds, getBagById, getBags, getBulkActionTemplate, getBulkShipmentExcelFile, getChannelConfig, getLaneConfig, getManifestDetails, getManifestShipments, getManifestfilters, getManifests, getMetricCount, getOrderById, getOrders, getReportsShipmentListing, getRoleBasedActions, getShipmentById, getShipmentHistory, getShipmentReasons, getShipments, getStateTransitionMap, getfilters, invalidateShipmentCache, orderUpdate, postShipmentHistory, processManifest, reassignLocation, sendSmsNinja, sendUserMobileOTP, updateAddress, updatePackagingDimensions, updateShipmentLock, updateShipmentStatus, uploadConsent, upsertJioCode, verifyMobileOTP };
+    export { attachOrderUser, checkOrderStatus, click2Call, createOrder, createShipmentReport, dispatchManifest, downloadBulkActionTemplate, fetchCreditBalanceDetail, fetchRefundModeConfig, generatePOSReceiptByOrderId, getAnnouncements, getAssetByShipmentIds, getBagById, getBags, getBulkActionTemplate, getBulkShipmentExcelFile, getLaneConfig, getManifestDetails, getManifestShipments, getManifestfilters, getManifests, getMetricCount, getOrderById, getOrders, getReportsShipmentListing, getRoleBasedActions, getShipmentById, getShipmentHistory, getShipmentReasons, getShipments, getStateTransitionMap, getfilters, invalidateShipmentCache, orderUpdate, postShipmentHistory, processManifest, reassignLocation, sendSmsNinja, sendUserMobileOTP, updateAddress, updatePackagingDimensions, updateShipmentLock, updateShipmentStatus, uploadConsent, upsertJioCode, verifyMobileOTP };
 }
 /** @returns {attachOrderUser} */
 declare function attachOrderUser(): attachOrderUser;
@@ -350,11 +345,6 @@ type click2Call = {
      * - Provider Method to Call
      */
     method?: string;
-};
-/** @returns {createChannelConfig} */
-declare function createChannelConfig(): createChannelConfig;
-type createChannelConfig = {
-    body: OrderPlatformModel.CreateChannelConfigData;
 };
 /** @returns {createOrder} */
 declare function createOrder(): createOrder;
@@ -518,9 +508,6 @@ type getBulkShipmentExcelFile = {
     pageNo?: number;
     pageSize?: number;
 };
-/** @returns {getChannelConfig} */
-declare function getChannelConfig(): any;
-type getChannelConfig = any;
 /** @returns {getLaneConfig} */
 declare function getLaneConfig(): getLaneConfig;
 type getLaneConfig = {

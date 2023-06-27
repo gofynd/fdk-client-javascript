@@ -224,71 +224,6 @@ class Order {
   }
 
   /**
-   * @param {OrderPlatformValidator.createChannelConfig} arg - Arg object
-   * @returns {Promise<OrderPlatformModel.CreateChannelConfigResponse>} -
-   *   Success response
-   * @name createChannelConfig
-   * @summary:
-   * @description: createChannelConfig
-   */
-  async createChannelConfig({ body } = {}) {
-    const { error } = OrderPlatformValidator.createChannelConfig().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = OrderPlatformValidator.createChannelConfig().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: `Parameter Validation warrnings for platform > Order > createChannelConfig \n ${warrning}`,
-      });
-    }
-
-    const query_params = {};
-
-    const xHeaders = {};
-
-    const response = await PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/order-manage/v1.0/company/${this.config.companyId}/order-config`,
-      query_params,
-      body,
-      xHeaders
-    );
-
-    const {
-      error: res_error,
-    } = OrderPlatformModel.CreateChannelConfigResponse().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
-
-    if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Order > createChannelConfig \n ${res_error}`,
-      });
-    }
-
-    return response;
-  }
-
-  /**
    * @param {OrderPlatformValidator.createOrder} arg - Arg object
    * @returns {Promise<OrderPlatformModel.CreateOrderResponse>} - Success response
    * @name createOrder
@@ -1228,66 +1163,6 @@ class Order {
       Logger({
         level: "WARN",
         message: `Response Validation Warnnings for platform > Order > getBulkShipmentExcelFile \n ${res_error}`,
-      });
-    }
-
-    return response;
-  }
-
-  /**
-   * @param {OrderPlatformValidator.getChannelConfig} arg - Arg object
-   * @returns {Promise<OrderPlatformModel.CreateChannelConfigData>} - Success response
-   * @name getChannelConfig
-   * @summary:
-   * @description: getChannelConfig
-   */
-  async getChannelConfig({} = {}) {
-    const { error } = OrderPlatformValidator.getChannelConfig().validate(
-      {},
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = OrderPlatformValidator.getChannelConfig().validate(
-      {},
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: `Parameter Validation warrnings for platform > Order > getChannelConfig \n ${warrning}`,
-      });
-    }
-
-    const query_params = {};
-
-    const xHeaders = {};
-
-    const response = await PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/order-manage/v1.0/company/${this.config.companyId}/order-config`,
-      query_params,
-      undefined,
-      xHeaders
-    );
-
-    const {
-      error: res_error,
-    } = OrderPlatformModel.CreateChannelConfigData().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
-
-    if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Order > getChannelConfig \n ${res_error}`,
       });
     }
 

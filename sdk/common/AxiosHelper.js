@@ -7,12 +7,6 @@ const { FDKServerResponseError } = require("./FDKError");
 const { log, Logger, getLoggerLevel } = require("./Logger");
 const createCurl = require("./curlHelper");
 axios.defaults.withCredentials = true;
-let opentelemetryApi = null;
-try {
-  opentelemetryApi = require("@opentelemetry/api");
-} catch (err) {
-  console.log("opentelemetry not available");
-}
 
 function getTransformer(config) {
   const { transformRequest } = config;
@@ -117,18 +111,6 @@ fdkAxios.interceptors.request.use(
 );
 
 fdkAxios.interceptors.request.use(requestInterceptorFn());
-
-//Added interceptor to send opentelemetry trace headers if otel is available.
-if (opentelemetryApi) {
-  fdkAxios.interceptors.request.use((config) => {
-    opentelemetryApi.propagation.inject(
-      opentelemetryApi.context.active(),
-      config.headers
-    );
-    return config;
-  });
-}
-
 fdkAxios.interceptors.response.use(
   function (response) {
     if (response.config.method == "head") {

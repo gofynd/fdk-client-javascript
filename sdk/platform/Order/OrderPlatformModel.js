@@ -528,40 +528,6 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef CreateChannelConfig
- * @property {DpConfiguration} [dp_configuration]
- * @property {boolean} [location_reassignment]
- * @property {string[]} [lock_states]
- * @property {Object} [logo_url]
- * @property {CreateChannelPaymentInfo} [payment_info]
- * @property {string} [shipment_assignment]
- */
-
-/**
- * @typedef CreateChannelConfigData
- * @property {CreateChannelConfig} [config_data]
- */
-
-/**
- * @typedef CreateChannelConfigResponse
- * @property {boolean} [acknowledged]
- * @property {boolean} [is_inserted]
- * @property {boolean} [is_upserted]
- */
-
-/**
- * @typedef CreateChannelConifgErrorResponse
- * @property {string} [error]
- */
-
-/**
- * @typedef CreateChannelPaymentInfo
- * @property {string} [mode_of_payment]
- * @property {PaymentMethods[]} [payment_methods]
- * @property {string} [source]
- */
-
-/**
  * @typedef CreateOrderAPI
  * @property {BillingInfo} billing_info
  * @property {Charge[]} [charges]
@@ -677,11 +643,6 @@ const Joi = require("joi");
  * @property {string} [url]
  * @property {string} value
  * @property {boolean} verified
- */
-
-/**
- * @typedef DpConfiguration
- * @property {string} [shipping_by]
  */
 
 /**
@@ -1424,13 +1385,6 @@ const Joi = require("joi");
  * @property {string} name
  * @property {string} refund_by
  * @property {Object} [transaction_data]
- */
-
-/**
- * @typedef PaymentMethods
- * @property {string} [collect_by]
- * @property {string} [mode]
- * @property {string} [refund_by]
  */
 
 /**
@@ -3136,50 +3090,6 @@ class OrderPlatformModel {
     });
   }
 
-  /** @returns {CreateChannelConfig} */
-  static CreateChannelConfig() {
-    return Joi.object({
-      dp_configuration: OrderPlatformModel.DpConfiguration(),
-      location_reassignment: Joi.boolean(),
-      lock_states: Joi.array().items(Joi.string().allow("")),
-      logo_url: Joi.any(),
-      payment_info: OrderPlatformModel.CreateChannelPaymentInfo(),
-      shipment_assignment: Joi.string().allow(""),
-    });
-  }
-
-  /** @returns {CreateChannelConfigData} */
-  static CreateChannelConfigData() {
-    return Joi.object({
-      config_data: OrderPlatformModel.CreateChannelConfig(),
-    });
-  }
-
-  /** @returns {CreateChannelConfigResponse} */
-  static CreateChannelConfigResponse() {
-    return Joi.object({
-      acknowledged: Joi.boolean(),
-      is_inserted: Joi.boolean(),
-      is_upserted: Joi.boolean(),
-    });
-  }
-
-  /** @returns {CreateChannelConifgErrorResponse} */
-  static CreateChannelConifgErrorResponse() {
-    return Joi.object({
-      error: Joi.string().allow(""),
-    });
-  }
-
-  /** @returns {CreateChannelPaymentInfo} */
-  static CreateChannelPaymentInfo() {
-    return Joi.object({
-      mode_of_payment: Joi.string().allow(""),
-      payment_methods: Joi.array().items(OrderPlatformModel.PaymentMethods()),
-      source: Joi.string().allow(""),
-    });
-  }
-
   /** @returns {CreateOrderAPI} */
   static CreateOrderAPI() {
     return Joi.object({
@@ -3325,13 +3235,6 @@ class OrderPlatformModel {
       url: Joi.string().allow(""),
       value: Joi.string().allow("").required(),
       verified: Joi.boolean().required(),
-    });
-  }
-
-  /** @returns {DpConfiguration} */
-  static DpConfiguration() {
-    return Joi.object({
-      shipping_by: Joi.string().allow(""),
     });
   }
 
@@ -4228,15 +4131,6 @@ class OrderPlatformModel {
       name: Joi.string().allow("").required(),
       refund_by: Joi.string().allow("").required(),
       transaction_data: Joi.any(),
-    });
-  }
-
-  /** @returns {PaymentMethods} */
-  static PaymentMethods() {
-    return Joi.object({
-      collect_by: Joi.string().allow(""),
-      mode: Joi.string().allow(""),
-      refund_by: Joi.string().allow(""),
     });
   }
 

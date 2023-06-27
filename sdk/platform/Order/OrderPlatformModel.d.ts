@@ -482,35 +482,6 @@ export = OrderPlatformModel;
  * @property {PhoneDetails[]} [phone]
  */
 /**
- * @typedef CreateChannelConfig
- * @property {DpConfiguration} [dp_configuration]
- * @property {boolean} [location_reassignment]
- * @property {string[]} [lock_states]
- * @property {Object} [logo_url]
- * @property {CreateChannelPaymentInfo} [payment_info]
- * @property {string} [shipment_assignment]
- */
-/**
- * @typedef CreateChannelConfigData
- * @property {CreateChannelConfig} [config_data]
- */
-/**
- * @typedef CreateChannelConfigResponse
- * @property {boolean} [acknowledged]
- * @property {boolean} [is_inserted]
- * @property {boolean} [is_upserted]
- */
-/**
- * @typedef CreateChannelConifgErrorResponse
- * @property {string} [error]
- */
-/**
- * @typedef CreateChannelPaymentInfo
- * @property {string} [mode_of_payment]
- * @property {PaymentMethods[]} [payment_methods]
- * @property {string} [source]
- */
-/**
  * @typedef CreateOrderAPI
  * @property {BillingInfo} billing_info
  * @property {Charge[]} [charges]
@@ -613,10 +584,6 @@ export = OrderPlatformModel;
  * @property {string} [url]
  * @property {string} value
  * @property {boolean} verified
- */
-/**
- * @typedef DpConfiguration
- * @property {string} [shipping_by]
  */
 /**
  * @typedef DPDetailsData
@@ -1281,12 +1248,6 @@ export = OrderPlatformModel;
  * @property {string} name
  * @property {string} refund_by
  * @property {Object} [transaction_data]
- */
-/**
- * @typedef PaymentMethods
- * @property {string} [collect_by]
- * @property {string} [mode]
- * @property {string} [refund_by]
  */
 /**
  * @typedef PDFLinks
@@ -2265,7 +2226,7 @@ export = OrderPlatformModel;
 declare class OrderPlatformModel {
 }
 declare namespace OrderPlatformModel {
-    export { ActionInfo, AdvanceFilterInfo, AffiliateBagDetails, AffiliateBagsDetails, AffiliateDetails, AffiliateMeta, AnnouncementResponse, AnnouncementsResponse, AppliedPromos, Article, ArticleDetails, AssetByShipment, AttachOrderUser, AttachOrderUserResponse, AttachUserInfo, AttachUserOtpData, Attributes, B2BPODetails, BagConfigs, BagDetailsPlatformResponse, BagGST, BagGSTDetails, BagMeta, BagPaymentMethods, BagReturnableCancelableStatus, BagReturnableCancelableStatus1, Bags, BagsPage, BagStateMapper, BagStateTransitionMap, BagStatusHistory, BagUnit, BaseResponse, BillingInfo, BillingStaffDetails, Brand, BulkActionTemplate, BulkActionTemplateResponse, BuyerDetails, BuyRules, Charge, CheckResponse, Click2CallResponse, CompanyDetails, ContactDetails, CreateChannelConfig, CreateChannelConfigData, CreateChannelConfigResponse, CreateChannelConifgErrorResponse, CreateChannelPaymentInfo, CreateOrderAPI, CreateOrderErrorReponse, CreateOrderResponse, CreditBalanceInfo, CurrentStatus, DataUpdates, DateRange, Dates, DebugInfo, Dimension, Dimensions, DiscountRules, DispatchManifest, Document, DpConfiguration, DPDetailsData, EinvoiceInfo, EInvoicePortalDetails, Entities, EntitiesDataUpdates, EntitiesReasons, EntityReasonData, Error, ErrorDetail, ErrorResponse, ErrorResponse1, FetchCreditBalanceRequestPayload, FetchCreditBalanceResponsePayload, FileResponse, FilterInfoOption, FilterInfoOption1, Filters, FiltersInfo, FiltersInfo1, FiltersRequest, FiltersResponse, FinancialBreakup, Formatted, FulfillingStore, FyndOrderIdList, GeneratePosOrderReceiptResponse, GetActionsResponse, GetBagsPlatformResponse, GiftCard, GSTDetailsData, HistoryDict, Identifier, InvalidateShipmentCacheNestedResponse, InvalidateShipmentCachePayload, InvalidateShipmentCacheResponse, InvoiceInfo, Item, ItemCriterias, JioCodeUpsertDataSet, JioCodeUpsertPayload, JioCodeUpsertResponse, LaneConfigResponse, LineItem, LockData, Manifest, ManifestDetails, ManifestFile, ManifestFiltersResponse, ManifestItemDetails, ManifestList, ManifestMediaUpdate, ManifestMeta, ManifestPageInfo, ManifestShipmentListing, Meta, MetricCountResponse, MetricsCount, NestedErrorSchemaDataSet, OmsReports, Options, OrderBagArticle, OrderBags, OrderBrandName, OrderData, OrderDetails, OrderDetailsData, OrderDetailsResponse, OrderingStoreDetails, OrderItemDataUpdates, OrderListingResponse, OrderMeta, OrderStatus, OrderStatusData, OrderStatusResult, OriginalFilter, Page, PaymentInfo, PaymentMethod, PaymentMethods, PDFLinks, PDFMeta, PhoneDetails, PlatformArticleAttributes, PlatformBreakupValues, PlatformChannel, PlatformDeliveryAddress, PlatformItem, PlatformOrderItems, PlatformOrderUpdate, PlatformShipment, PlatformShipmentReasonsResponse, PlatformShipmentTrack, PlatformTrack, PlatformUserDetails, PointBlankOtpData, PostActivityHistory, PostHistoryData, PostHistoryDict, PostHistoryFilters, PostShipmentHistory, Prices, ProcessingDates, ProcessManifest, ProcessManifestItemResponse, ProcessManifestResponse, Products, ProductsDataUpdates, ProductsDataUpdatesFilters, ProductsReasons, ProductsReasonsData, ProductsReasonsFilters, QuestionSet, Reason, ReasonsData, RefundModeConfigRequestPayload, RefundModeConfigResponsePayload, RefundModeInfo, RefundOption, ReplacementDetails, ResponseDetail, ResponseGetAssetShipment, ReturnConfig, ReturnConfig1, SendSmsPayload, SendUserMobileOTP, SendUserMobileOtpResponse, Shipment, ShipmentDetail, ShipmentDetails, ShipmentHistoryResponse, ShipmentInfoResponse, ShipmentInternalPlatformViewResponse, ShipmentItem, ShipmentItemFulFillingStore, ShipmentItemMeta, ShipmentListingBrand, ShipmentListingChannel, ShipmentMeta, ShipmentPayments, ShipmentReasonsResponse, ShipmentResponseReasons, ShipmentsRequest, ShipmentsResponse, ShipmentStatus, ShipmentStatusData, ShipmentTags, ShipmentTimeStamp, ShippingInfo, SmsDataPayload, StatuesRequest, StatuesResponse, Store, StoreAddress, StoreDocuments, StoreEinvoice, StoreEwaybill, StoreGstCredentials, StoreMeta, StoreReassign, StoreReassignResponse, SubLane, Success, SuccessResponse, SuperLane, Tax, TaxDetails, TaxInfo, TotalShipmentPricesCount, TrackingList, TransactionData, UpdatePackagingDimensionsPayload, UpdatePackagingDimensionsResponse, UpdateShipmentLockPayload, UpdateShipmentLockResponse, UpdateShipmentStatusRequest, UpdateShipmentStatusResponseBody, UploadConsent, URL, UserDataInfo, UserDetailsData, VerifyMobileOTP, VerifyOtpData, VerifyOtpResponse, VerifyOtpResponseData, Weight };
+    export { ActionInfo, AdvanceFilterInfo, AffiliateBagDetails, AffiliateBagsDetails, AffiliateDetails, AffiliateMeta, AnnouncementResponse, AnnouncementsResponse, AppliedPromos, Article, ArticleDetails, AssetByShipment, AttachOrderUser, AttachOrderUserResponse, AttachUserInfo, AttachUserOtpData, Attributes, B2BPODetails, BagConfigs, BagDetailsPlatformResponse, BagGST, BagGSTDetails, BagMeta, BagPaymentMethods, BagReturnableCancelableStatus, BagReturnableCancelableStatus1, Bags, BagsPage, BagStateMapper, BagStateTransitionMap, BagStatusHistory, BagUnit, BaseResponse, BillingInfo, BillingStaffDetails, Brand, BulkActionTemplate, BulkActionTemplateResponse, BuyerDetails, BuyRules, Charge, CheckResponse, Click2CallResponse, CompanyDetails, ContactDetails, CreateOrderAPI, CreateOrderErrorReponse, CreateOrderResponse, CreditBalanceInfo, CurrentStatus, DataUpdates, DateRange, Dates, DebugInfo, Dimension, Dimensions, DiscountRules, DispatchManifest, Document, DPDetailsData, EinvoiceInfo, EInvoicePortalDetails, Entities, EntitiesDataUpdates, EntitiesReasons, EntityReasonData, Error, ErrorDetail, ErrorResponse, ErrorResponse1, FetchCreditBalanceRequestPayload, FetchCreditBalanceResponsePayload, FileResponse, FilterInfoOption, FilterInfoOption1, Filters, FiltersInfo, FiltersInfo1, FiltersRequest, FiltersResponse, FinancialBreakup, Formatted, FulfillingStore, FyndOrderIdList, GeneratePosOrderReceiptResponse, GetActionsResponse, GetBagsPlatformResponse, GiftCard, GSTDetailsData, HistoryDict, Identifier, InvalidateShipmentCacheNestedResponse, InvalidateShipmentCachePayload, InvalidateShipmentCacheResponse, InvoiceInfo, Item, ItemCriterias, JioCodeUpsertDataSet, JioCodeUpsertPayload, JioCodeUpsertResponse, LaneConfigResponse, LineItem, LockData, Manifest, ManifestDetails, ManifestFile, ManifestFiltersResponse, ManifestItemDetails, ManifestList, ManifestMediaUpdate, ManifestMeta, ManifestPageInfo, ManifestShipmentListing, Meta, MetricCountResponse, MetricsCount, NestedErrorSchemaDataSet, OmsReports, Options, OrderBagArticle, OrderBags, OrderBrandName, OrderData, OrderDetails, OrderDetailsData, OrderDetailsResponse, OrderingStoreDetails, OrderItemDataUpdates, OrderListingResponse, OrderMeta, OrderStatus, OrderStatusData, OrderStatusResult, OriginalFilter, Page, PaymentInfo, PaymentMethod, PDFLinks, PDFMeta, PhoneDetails, PlatformArticleAttributes, PlatformBreakupValues, PlatformChannel, PlatformDeliveryAddress, PlatformItem, PlatformOrderItems, PlatformOrderUpdate, PlatformShipment, PlatformShipmentReasonsResponse, PlatformShipmentTrack, PlatformTrack, PlatformUserDetails, PointBlankOtpData, PostActivityHistory, PostHistoryData, PostHistoryDict, PostHistoryFilters, PostShipmentHistory, Prices, ProcessingDates, ProcessManifest, ProcessManifestItemResponse, ProcessManifestResponse, Products, ProductsDataUpdates, ProductsDataUpdatesFilters, ProductsReasons, ProductsReasonsData, ProductsReasonsFilters, QuestionSet, Reason, ReasonsData, RefundModeConfigRequestPayload, RefundModeConfigResponsePayload, RefundModeInfo, RefundOption, ReplacementDetails, ResponseDetail, ResponseGetAssetShipment, ReturnConfig, ReturnConfig1, SendSmsPayload, SendUserMobileOTP, SendUserMobileOtpResponse, Shipment, ShipmentDetail, ShipmentDetails, ShipmentHistoryResponse, ShipmentInfoResponse, ShipmentInternalPlatformViewResponse, ShipmentItem, ShipmentItemFulFillingStore, ShipmentItemMeta, ShipmentListingBrand, ShipmentListingChannel, ShipmentMeta, ShipmentPayments, ShipmentReasonsResponse, ShipmentResponseReasons, ShipmentsRequest, ShipmentsResponse, ShipmentStatus, ShipmentStatusData, ShipmentTags, ShipmentTimeStamp, ShippingInfo, SmsDataPayload, StatuesRequest, StatuesResponse, Store, StoreAddress, StoreDocuments, StoreEinvoice, StoreEwaybill, StoreGstCredentials, StoreMeta, StoreReassign, StoreReassignResponse, SubLane, Success, SuccessResponse, SuperLane, Tax, TaxDetails, TaxInfo, TotalShipmentPricesCount, TrackingList, TransactionData, UpdatePackagingDimensionsPayload, UpdatePackagingDimensionsResponse, UpdateShipmentLockPayload, UpdateShipmentLockResponse, UpdateShipmentStatusRequest, UpdateShipmentStatusResponseBody, UploadConsent, URL, UserDataInfo, UserDetailsData, VerifyMobileOTP, VerifyOtpData, VerifyOtpResponse, VerifyOtpResponseData, Weight };
 }
 /** @returns {ActionInfo} */
 declare function ActionInfo(): ActionInfo;
@@ -2839,40 +2800,6 @@ type ContactDetails = {
     emails?: string[];
     phone?: PhoneDetails[];
 };
-/** @returns {CreateChannelConfig} */
-declare function CreateChannelConfig(): CreateChannelConfig;
-type CreateChannelConfig = {
-    dp_configuration?: DpConfiguration;
-    location_reassignment?: boolean;
-    lock_states?: string[];
-    logo_url?: any;
-    payment_info?: CreateChannelPaymentInfo;
-    shipment_assignment?: string;
-};
-/** @returns {CreateChannelConfigData} */
-declare function CreateChannelConfigData(): CreateChannelConfigData;
-type CreateChannelConfigData = {
-    config_data?: CreateChannelConfig;
-};
-/** @returns {CreateChannelConfigResponse} */
-declare function CreateChannelConfigResponse(): CreateChannelConfigResponse;
-type CreateChannelConfigResponse = {
-    acknowledged?: boolean;
-    is_inserted?: boolean;
-    is_upserted?: boolean;
-};
-/** @returns {CreateChannelConifgErrorResponse} */
-declare function CreateChannelConifgErrorResponse(): CreateChannelConifgErrorResponse;
-type CreateChannelConifgErrorResponse = {
-    error?: string;
-};
-/** @returns {CreateChannelPaymentInfo} */
-declare function CreateChannelPaymentInfo(): CreateChannelPaymentInfo;
-type CreateChannelPaymentInfo = {
-    mode_of_payment?: string;
-    payment_methods?: PaymentMethods[];
-    source?: string;
-};
 /** @returns {CreateOrderAPI} */
 declare function CreateOrderAPI(): CreateOrderAPI;
 type CreateOrderAPI = {
@@ -2990,11 +2917,6 @@ type Document = {
     url?: string;
     value: string;
     verified: boolean;
-};
-/** @returns {DpConfiguration} */
-declare function DpConfiguration(): DpConfiguration;
-type DpConfiguration = {
-    shipping_by?: string;
 };
 /** @returns {DPDetailsData} */
 declare function DPDetailsData(): DPDetailsData;
@@ -3812,13 +3734,6 @@ type PaymentMethod = {
     name: string;
     refund_by: string;
     transaction_data?: any;
-};
-/** @returns {PaymentMethods} */
-declare function PaymentMethods(): PaymentMethods;
-type PaymentMethods = {
-    collect_by?: string;
-    mode?: string;
-    refund_by?: string;
 };
 /** @returns {PDFLinks} */
 declare function PDFLinks(): PDFLinks;

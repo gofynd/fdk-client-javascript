@@ -22,11 +22,6 @@ const OrderPlatformModel = require("./OrderPlatformModel");
  */
 
 /**
- * @typedef createChannelConfig
- * @property {OrderPlatformModel.CreateChannelConfigData} body
- */
-
-/**
  * @typedef createOrder
  * @property {OrderPlatformModel.CreateOrderAPI} body
  */
@@ -114,8 +109,6 @@ const OrderPlatformModel = require("./OrderPlatformModel");
  * @property {number} [pageNo]
  * @property {number} [pageSize]
  */
-
-/** @typedef getChannelConfig */
 
 /**
  * @typedef getLaneConfig
@@ -389,13 +382,6 @@ class OrderPlatformValidator {
     }).required();
   }
 
-  /** @returns {createChannelConfig} */
-  static createChannelConfig() {
-    return Joi.object({
-      body: OrderPlatformModel.CreateChannelConfigData().required(),
-    }).required();
-  }
-
   /** @returns {createOrder} */
   static createOrder() {
     return Joi.object({
@@ -509,11 +495,6 @@ class OrderPlatformValidator {
       pageNo: Joi.number(),
       pageSize: Joi.number(),
     }).required();
-  }
-
-  /** @returns {getChannelConfig} */
-  static getChannelConfig() {
-    return Joi.object({}).required();
   }
 
   /** @returns {getLaneConfig} */

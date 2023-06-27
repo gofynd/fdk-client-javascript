@@ -11,7 +11,6 @@ Handles all platform order and shipment api(s)
 * [attachOrderUser](#attachorderuser)
 * [checkOrderStatus](#checkorderstatus)
 * [click2Call](#click2call)
-* [createChannelConfig](#createchannelconfig)
 * [createOrder](#createorder)
 * [createShipmentReport](#createshipmentreport)
 * [dispatchManifest](#dispatchmanifest)
@@ -27,7 +26,6 @@ Handles all platform order and shipment api(s)
 * [getBags](#getbags)
 * [getBulkActionTemplate](#getbulkactiontemplate)
 * [getBulkShipmentExcelFile](#getbulkshipmentexcelfile)
-* [getChannelConfig](#getchannelconfig)
 * [getLaneConfig](#getlaneconfig)
 * [getManifestDetails](#getmanifestdetails)
 * [getManifestShipments](#getmanifestshipments)
@@ -234,67 +232,6 @@ Process call on request!
 {
   "success": true,
   "call_id": "c2c_646b00bc-984c-4c10-bb8d-0e850a1e0022"
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### createChannelConfig
-
-
-
-
-```javascript
-// Promise
-const promise = platformClient.order.createChannelConfig({  body : value });
-
-// Async/Await
-const data = await platformClient.order.createChannelConfig({  body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |
-| body | [CreateChannelConfigData](#CreateChannelConfigData) | yes | Request body |
-
-
-createChannelConfig
-
-*Returned Response:*
-
-
-
-
-[CreateChannelConfigResponse](#CreateChannelConfigResponse)
-
-Successfully updateShipmentStatus!
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "data": {
-    "acknowledged": true,
-    "is_upserted": false,
-    "is_inserted": false
-  }
 }
 ```
 </details>
@@ -1597,80 +1534,6 @@ We are processing the file!
   "file_name": "placed_352_1668856953.7936668.xlsx",
   "cdn": {
     "url": "https://cdn.pixelbin.io/v2/falling-surf-7c8bb8/fyndnp/wrkr/x0/misc/general/free/original/0Ex0-zTyw-placed_352_1668856953.7936668.xlsx"
-  }
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### getChannelConfig
-
-
-
-
-```javascript
-// Promise
-const promise = platformClient.order.getChannelConfig();
-
-// Async/Await
-const data = await platformClient.order.getChannelConfig();
-```
-
-
-
-
-
-
-getChannelConfig
-
-*Returned Response:*
-
-
-
-
-[CreateChannelConfigData](#CreateChannelConfigData)
-
-Successfully created the config data
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "config_data": {
-    "payment_info": {
-      "payment_methods": [
-        {
-          "mode": "COD",
-          "collect_by": "gringotts",
-          "refund_by": "gringotts"
-        }
-      ],
-      "source": "fynd",
-      "mode_of_payment": "COD"
-    },
-    "dp_configuration": {
-      "shipping_by": "fynd"
-    },
-    "logo_url": {},
-    "location_reassignment": false,
-    "lock_states": [
-      "bag_packed"
-    ],
-    "shipment_assignment": "16703096324891701814"
   }
 }
 ```
@@ -7622,60 +7485,6 @@ Verify OTP
 
 ---
 
-#### [CreateChannelConfig](#CreateChannelConfig)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | dp_configuration | [DpConfiguration](#DpConfiguration)? |  yes  |  |
- | location_reassignment | boolean? |  yes  |  |
- | lock_states | [string]? |  yes  |  |
- | logo_url | string? |  yes  |  |
- | payment_info | [CreateChannelPaymentInfo](#CreateChannelPaymentInfo)? |  yes  |  |
- | shipment_assignment | string? |  yes  |  |
- 
-
----
-
-#### [CreateChannelConfigData](#CreateChannelConfigData)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | config_data | [CreateChannelConfig](#CreateChannelConfig)? |  yes  |  |
- 
-
----
-
-#### [CreateChannelConfigResponse](#CreateChannelConfigResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | acknowledged | boolean? |  yes  |  |
- | is_inserted | boolean? |  yes  |  |
- | is_upserted | boolean? |  yes  |  |
- 
-
----
-
-#### [CreateChannelConifgErrorResponse](#CreateChannelConifgErrorResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | error | string? |  yes  |  |
- 
-
----
-
-#### [CreateChannelPaymentInfo](#CreateChannelPaymentInfo)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | mode_of_payment | string? |  yes  |  |
- | payment_methods | [[PaymentMethods](#PaymentMethods)]? |  yes  |  |
- | source | string? |  yes  |  |
- 
-
----
-
 #### [CreateOrderAPI](#CreateOrderAPI)
 
  | Properties | Type | Nullable | Description |
@@ -7846,15 +7655,6 @@ Verify OTP
  | url | string? |  yes  |  |
  | value | string |  no  |  |
  | verified | boolean |  no  |  |
- 
-
----
-
-#### [DpConfiguration](#DpConfiguration)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | shipping_by | string? |  yes  |  |
  
 
 ---
@@ -8900,17 +8700,6 @@ Verify OTP
  | name | string |  no  |  |
  | refund_by | string |  no  |  |
  | transaction_data | string? |  yes  |  |
- 
-
----
-
-#### [PaymentMethods](#PaymentMethods)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | collect_by | string? |  yes  |  |
- | mode | string? |  yes  |  |
- | refund_by | string? |  yes  |  |
  
 
 ---

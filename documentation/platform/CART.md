@@ -2139,7 +2139,6 @@ Coupon Created successfully
     "injection_id": "skgjdfjge343456jjfd",
     "cart_value": 100,
     "cart_id": "dgdfhdfhdf646454dfhdf",
-    "user_id": "",
     "is_authenticated": true,
     "article_ids": [
       {
@@ -10718,7 +10717,6 @@ Cart Dynamic injection Updated successfully
     "injection_id": "skgjdfjge343456jjfd",
     "cart_value": 100,
     "cart_id": "dgdfhdfhdf646454dfhdf",
-    "user_id": "",
     "is_authenticated": true,
     "article_ids": [
       {
