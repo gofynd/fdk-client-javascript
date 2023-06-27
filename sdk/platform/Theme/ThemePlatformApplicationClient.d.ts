@@ -383,6 +383,16 @@ declare class Theme {
     }): Promise<AllThemesApplicationResponseV2>;
     /**
      * @param {Object} arg - Arg object.
+     * @param {string} arg.themeId - The ID of the upgrade
+     * @returns {Promise<AllThemesApplicationResponseV2>} - Success response
+     * @summary: Upgrade an application
+     * @description: This endpoint allows you to upgrade an application.
+     */
+    upgradeApplicationV2({ themeId }?: {
+        themeId: string;
+    }): Promise<AllThemesApplicationResponseV2>;
+    /**
+     * @param {Object} arg - Arg object.
      * @param {string} arg.themeId - ID allotted to the theme.
      * @returns {Promise<ThemesSchema>} - Success response
      * @summary: Upgrade a theme

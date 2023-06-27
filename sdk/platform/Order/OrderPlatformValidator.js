@@ -2,12 +2,6 @@ const Joi = require("joi");
 
 const OrderModel = require("./OrderPlatformModel");
 class OrderValidator {
-  static attachOrderUser() {
-    return Joi.object({
-      body: OrderModel.AttachOrderUser().required(),
-    }).required();
-  }
-
   static checkOrderStatus() {
     return Joi.object({
       body: OrderModel.OrderStatus().required(),
@@ -36,13 +30,6 @@ class OrderValidator {
     }).required();
   }
 
-  static createShipmentReport() {
-    return Joi.object({
-      fromDate: Joi.string().allow(""),
-      toDate: Joi.string().allow(""),
-    }).required();
-  }
-
   static dispatchManifest() {
     return Joi.object({
       body: OrderModel.DispatchManifest().required(),
@@ -55,29 +42,9 @@ class OrderValidator {
     }).required();
   }
 
-  static fetchCreditBalanceDetail() {
-    return Joi.object({
-      body: OrderModel.FetchCreditBalanceRequestPayload().required(),
-    }).required();
-  }
-
-  static fetchRefundModeConfig() {
-    return Joi.object({
-      body: OrderModel.RefundModeConfigRequestPayload().required(),
-    }).required();
-  }
-
   static getAnnouncements() {
     return Joi.object({
       date: Joi.string().allow(""),
-    }).required();
-  }
-
-  static getAssetByShipmentIds() {
-    return Joi.object({
-      shipmentIds: Joi.string().allow("").required(),
-      invoice: Joi.boolean(),
-      expiresIn: Joi.string().allow(""),
     }).required();
   }
 
@@ -147,60 +114,6 @@ class OrderValidator {
     }).required();
   }
 
-  static getManifestDetails() {
-    return Joi.object({
-      manifestId: Joi.string().allow("").required(),
-      status: Joi.string().allow(""),
-      toDate: Joi.string().allow(""),
-      fromDate: Joi.string().allow(""),
-      searchType: Joi.string().allow(""),
-      searchValue: Joi.string().allow(""),
-      dpIds: Joi.string().allow(""),
-      pageNo: Joi.string().allow(""),
-      pageSize: Joi.string().allow(""),
-    }).required();
-  }
-
-  static getManifestShipments() {
-    return Joi.object({
-      dpIds: Joi.number().required(),
-      stores: Joi.string().allow("").required(),
-      toDate: Joi.string().allow("").required(),
-      fromDate: Joi.string().allow("").required(),
-      dpName: Joi.string().allow(""),
-      salesChannels: Joi.string().allow(""),
-      searchType: Joi.string().allow(""),
-      searchValue: Joi.string().allow(""),
-      pageNo: Joi.string().allow(""),
-      pageSize: Joi.string().allow(""),
-    }).required();
-  }
-
-  static getManifestfilters() {
-    return Joi.object({
-      view: Joi.string().allow("").required(),
-    }).required();
-  }
-
-  static getManifests() {
-    return Joi.object({
-      status: Joi.string().allow(""),
-      toDate: Joi.string().allow(""),
-      fromDate: Joi.string().allow(""),
-      searchValue: Joi.string().allow(""),
-      dpIds: Joi.string().allow(""),
-      pageNo: Joi.string().allow(""),
-      pageSize: Joi.string().allow(""),
-    }).required();
-  }
-
-  static getMetricCount() {
-    return Joi.object({
-      fromDate: Joi.string().allow(""),
-      toDate: Joi.string().allow(""),
-    }).required();
-  }
-
   static getOrderById() {
     return Joi.object({
       orderId: Joi.string().allow("").required(),
@@ -225,14 +138,6 @@ class OrderValidator {
       pageSize: Joi.number(),
       isPrioritySort: Joi.boolean(),
       customMeta: Joi.string().allow(""),
-      myOrders: Joi.boolean(),
-    }).required();
-  }
-
-  static getReportsShipmentListing() {
-    return Joi.object({
-      pageNo: Joi.number(),
-      pageSize: Joi.number(),
     }).required();
   }
 
@@ -285,6 +190,7 @@ class OrderValidator {
       customMeta: Joi.string().allow(""),
       orderingChannel: Joi.string().allow(""),
       companyAffiliateTag: Joi.string().allow(""),
+      platformUserId: Joi.string().allow(""),
     }).required();
   }
 
@@ -319,7 +225,7 @@ class OrderValidator {
 
   static processManifest() {
     return Joi.object({
-      body: OrderModel.ProcessManifest().required(),
+      body: OrderModel.CreateOrderPayload().required(),
     }).required();
   }
 
@@ -332,12 +238,6 @@ class OrderValidator {
   static sendSmsNinja() {
     return Joi.object({
       body: OrderModel.SendSmsPayload().required(),
-    }).required();
-  }
-
-  static sendUserMobileOTP() {
-    return Joi.object({
-      body: OrderModel.SendUserMobileOTP().required(),
     }).required();
   }
 
@@ -379,18 +279,6 @@ class OrderValidator {
   static uploadConsent() {
     return Joi.object({
       body: OrderModel.UploadConsent().required(),
-    }).required();
-  }
-
-  static upsertJioCode() {
-    return Joi.object({
-      body: OrderModel.JioCodeUpsertPayload().required(),
-    }).required();
-  }
-
-  static verifyMobileOTP() {
-    return Joi.object({
-      body: OrderModel.VerifyMobileOTP().required(),
     }).required();
   }
 }

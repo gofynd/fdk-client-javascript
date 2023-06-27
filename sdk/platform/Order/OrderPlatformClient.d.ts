@@ -4,16 +4,6 @@ declare class Order {
     config: any;
     /**
      * @param {Object} arg - Arg object.
-     * @param {AttachOrderUser} arg.body
-     * @returns {Promise<AttachOrderUserResponse>} - Success response
-     * @summary:
-     * @description:
-     */
-    attachOrderUser({ body }?: {
-        body: AttachOrderUser;
-    }): Promise<AttachOrderUserResponse>;
-    /**
-     * @param {Object} arg - Arg object.
      * @param {OrderStatus} arg.body
      * @returns {Promise<OrderStatusResult>} - Success response
      * @summary:
@@ -62,18 +52,6 @@ declare class Order {
     }): Promise<CreateOrderResponse>;
     /**
      * @param {Object} arg - Arg object.
-     * @param {string} [arg.fromDate] -
-     * @param {string} [arg.toDate] -
-     * @returns {Promise<Success>} - Success response
-     * @summary:
-     * @description:
-     */
-    createShipmentReport({ fromDate, toDate }?: {
-        fromDate?: string;
-        toDate?: string;
-    }): Promise<Success>;
-    /**
-     * @param {Object} arg - Arg object.
      * @param {DispatchManifest} arg.body
      * @returns {Promise<SuccessResponse>} - Success response
      * @summary:
@@ -94,26 +72,6 @@ declare class Order {
     }): Promise<FileResponse>;
     /**
      * @param {Object} arg - Arg object.
-     * @param {FetchCreditBalanceRequestPayload} arg.body
-     * @returns {Promise<FetchCreditBalanceResponsePayload>} - Success response
-     * @summary:
-     * @description:
-     */
-    fetchCreditBalanceDetail({ body }?: {
-        body: FetchCreditBalanceRequestPayload;
-    }): Promise<FetchCreditBalanceResponsePayload>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {RefundModeConfigRequestPayload} arg.body
-     * @returns {Promise<RefundModeConfigResponsePayload>} - Success response
-     * @summary:
-     * @description:
-     */
-    fetchRefundModeConfig({ body }?: {
-        body: RefundModeConfigRequestPayload;
-    }): Promise<RefundModeConfigResponsePayload>;
-    /**
-     * @param {Object} arg - Arg object.
      * @param {string} [arg.date] - Date On which the announcement is Active
      *   (Date should in ISO Datetime format IST Time)
      * @returns {Promise<AnnouncementsResponse>} - Success response
@@ -123,20 +81,6 @@ declare class Order {
     getAnnouncements({ date }?: {
         date?: string;
     }): Promise<AnnouncementsResponse>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.shipmentIds -
-     * @param {boolean} [arg.invoice] -
-     * @param {string} [arg.expiresIn] -
-     * @returns {Promise<ResponseGetAssetShipment>} - Success response
-     * @summary: Get Invoice or Label or Pos of a shipment
-     * @description: Use this API to retrieve shipments invoice, label and pos.
-     */
-    getAssetByShipmentIds({ shipmentIds, invoice, expiresIn }?: {
-        shipmentIds: string;
-        invoice?: boolean;
-        expiresIn?: string;
-    }): Promise<ResponseGetAssetShipment>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} [arg.bagId] - Id of bag
@@ -262,105 +206,6 @@ declare class Order {
     }): Promise<LaneConfigResponse>;
     /**
      * @param {Object} arg - Arg object.
-     * @param {string} arg.manifestId -
-     * @param {string} [arg.status] -
-     * @param {string} [arg.toDate] -
-     * @param {string} [arg.fromDate] -
-     * @param {string} [arg.searchType] -
-     * @param {string} [arg.searchValue] -
-     * @param {string} [arg.dpIds] - DP Ids separated by ',' (comma)
-     * @param {string} [arg.pageNo] -
-     * @param {string} [arg.pageSize] -
-     * @returns {Promise<ManifestDetails>} - Success response
-     * @summary:
-     * @description:
-     */
-    getManifestDetails({ manifestId, status, toDate, fromDate, searchType, searchValue, dpIds, pageNo, pageSize, }?: {
-        manifestId: string;
-        status?: string;
-        toDate?: string;
-        fromDate?: string;
-        searchType?: string;
-        searchValue?: string;
-        dpIds?: string;
-        pageNo?: string;
-        pageSize?: string;
-    }): Promise<ManifestDetails>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {number} arg.dpIds -
-     * @param {string} arg.stores -
-     * @param {string} arg.toDate -
-     * @param {string} arg.fromDate -
-     * @param {string} [arg.dpName] -
-     * @param {string} [arg.salesChannels] -
-     * @param {string} [arg.searchType] -
-     * @param {string} [arg.searchValue] -
-     * @param {string} [arg.pageNo] -
-     * @param {string} [arg.pageSize] -
-     * @returns {Promise<ManifestShipmentListing>} - Success response
-     * @summary:
-     * @description:
-     */
-    getManifestShipments({ dpIds, stores, toDate, fromDate, dpName, salesChannels, searchType, searchValue, pageNo, pageSize, }?: {
-        dpIds: number;
-        stores: string;
-        toDate: string;
-        fromDate: string;
-        dpName?: string;
-        salesChannels?: string;
-        searchType?: string;
-        searchValue?: string;
-        pageNo?: string;
-        pageSize?: string;
-    }): Promise<ManifestShipmentListing>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.view - Name of View
-     * @returns {Promise<ManifestFiltersResponse>} - Success response
-     * @summary:
-     * @description:
-     */
-    getManifestfilters({ view }?: {
-        view: string;
-    }): Promise<ManifestFiltersResponse>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {string} [arg.status] - Possible Status [ active, closed ]
-     * @param {string} [arg.toDate] -
-     * @param {string} [arg.fromDate] -
-     * @param {string} [arg.searchValue] - Search values options [
-     *   fynd_order_id, shipment_id, manifest_id, dp_name, awb_no ]
-     * @param {string} [arg.dpIds] - DP Ids separated by ',' (comma)
-     * @param {string} [arg.pageNo] -
-     * @param {string} [arg.pageSize] -
-     * @returns {Promise<ManifestList>} - Success response
-     * @summary:
-     * @description:
-     */
-    getManifests({ status, toDate, fromDate, searchValue, dpIds, pageNo, pageSize, }?: {
-        status?: string;
-        toDate?: string;
-        fromDate?: string;
-        searchValue?: string;
-        dpIds?: string;
-        pageNo?: string;
-        pageSize?: string;
-    }): Promise<ManifestList>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {string} [arg.fromDate] -
-     * @param {string} [arg.toDate] -
-     * @returns {Promise<MetricCountResponse>} - Success response
-     * @summary:
-     * @description:
-     */
-    getMetricCount({ fromDate, toDate }?: {
-        fromDate?: string;
-        toDate?: string;
-    }): Promise<MetricCountResponse>;
-    /**
-     * @param {Object} arg - Arg object.
      * @param {string} arg.orderId -
      * @returns {Promise<OrderDetailsResponse>} - Success response
      * @summary:
@@ -393,12 +238,11 @@ declare class Order {
      * @param {number} [arg.pageSize] -
      * @param {boolean} [arg.isPrioritySort] -
      * @param {string} [arg.customMeta] -
-     * @param {boolean} [arg.myOrders] -
      * @returns {Promise<OrderListingResponse>} - Success response
      * @summary:
      * @description:
      */
-    getOrders({ lane, searchType, bagStatus, timeToDispatch, paymentMethods, tags, searchValue, fromDate, toDate, dpIds, stores, salesChannels, pageNo, pageSize, isPrioritySort, customMeta, myOrders, }?: {
+    getOrders({ lane, searchType, bagStatus, timeToDispatch, paymentMethods, tags, searchValue, fromDate, toDate, dpIds, stores, salesChannels, pageNo, pageSize, isPrioritySort, customMeta, }?: {
         lane?: string;
         searchType?: string;
         bagStatus?: string;
@@ -415,20 +259,7 @@ declare class Order {
         pageSize?: number;
         isPrioritySort?: boolean;
         customMeta?: string;
-        myOrders?: boolean;
     }): Promise<OrderListingResponse>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {number} [arg.pageNo] -
-     * @param {number} [arg.pageSize] -
-     * @returns {Promise<OmsReports>} - Success response
-     * @summary:
-     * @description:
-     */
-    getReportsShipmentListing({ pageNo, pageSize }?: {
-        pageNo?: number;
-        pageSize?: number;
-    }): Promise<OmsReports>;
     /**
      * @param {Object} arg - Arg object.
      * @returns {Promise<GetActionsResponse>} - Success response
@@ -501,11 +332,12 @@ declare class Order {
      * @param {string} [arg.customMeta] -
      * @param {string} [arg.orderingChannel] -
      * @param {string} [arg.companyAffiliateTag] -
+     * @param {string} [arg.platformUserId] -
      * @returns {Promise<ShipmentInternalPlatformViewResponse>} - Success response
      * @summary:
      * @description:
      */
-    getShipments({ lane, bagStatus, statusOverrideLane, timeToDispatch, searchType, searchValue, fromDate, toDate, dpIds, stores, salesChannels, pageNo, pageSize, fetchActiveShipment, excludeLockedShipments, paymentMethods, channelShipmentId, channelOrderId, customMeta, orderingChannel, companyAffiliateTag, }?: {
+    getShipments({ lane, bagStatus, statusOverrideLane, timeToDispatch, searchType, searchValue, fromDate, toDate, dpIds, stores, salesChannels, pageNo, pageSize, fetchActiveShipment, excludeLockedShipments, paymentMethods, channelShipmentId, channelOrderId, customMeta, orderingChannel, companyAffiliateTag, platformUserId, }?: {
         lane?: string;
         bagStatus?: string;
         statusOverrideLane?: boolean;
@@ -527,6 +359,7 @@ declare class Order {
         customMeta?: string;
         orderingChannel?: string;
         companyAffiliateTag?: string;
+        platformUserId?: string;
     }): Promise<ShipmentInternalPlatformViewResponse>;
     /**
      * @param {Object} arg - Arg object.
@@ -579,14 +412,14 @@ declare class Order {
     }): Promise<ShipmentHistoryResponse>;
     /**
      * @param {Object} arg - Arg object.
-     * @param {ProcessManifest} arg.body
-     * @returns {Promise<ProcessManifestItemResponse>} - Success response
+     * @param {CreateOrderPayload} arg.body
+     * @returns {Promise<CreateOrderResponse>} - Success response
      * @summary:
      * @description:
      */
     processManifest({ body }?: {
-        body: ProcessManifest;
-    }): Promise<ProcessManifestItemResponse>;
+        body: CreateOrderPayload;
+    }): Promise<CreateOrderResponse>;
     /**
      * @param {Object} arg - Arg object.
      * @param {StoreReassign} arg.body
@@ -607,16 +440,6 @@ declare class Order {
     sendSmsNinja({ body }?: {
         body: SendSmsPayload;
     }): Promise<OrderStatusResult>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {SendUserMobileOTP} arg.body
-     * @returns {Promise<SendUserMobileOtpResponse>} - Success response
-     * @summary:
-     * @description:
-     */
-    sendUserMobileOTP({ body }?: {
-        body: SendUserMobileOTP;
-    }): Promise<SendUserMobileOtpResponse>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.shipmentId -
@@ -689,24 +512,4 @@ declare class Order {
     uploadConsent({ body }?: {
         body: UploadConsent;
     }): Promise<SuccessResponse>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {JioCodeUpsertPayload} arg.body
-     * @returns {Promise<JioCodeUpsertResponse>} - Success response
-     * @summary:
-     * @description:
-     */
-    upsertJioCode({ body }?: {
-        body: JioCodeUpsertPayload;
-    }): Promise<JioCodeUpsertResponse>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {VerifyMobileOTP} arg.body
-     * @returns {Promise<VerifyOtpResponse>} - Success response
-     * @summary:
-     * @description:
-     */
-    verifyMobileOTP({ body }?: {
-        body: VerifyMobileOTP;
-    }): Promise<VerifyOtpResponse>;
 }

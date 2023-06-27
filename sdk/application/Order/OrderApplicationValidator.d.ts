@@ -5,7 +5,6 @@ declare class OrderValidator {
     static getOrderById(): any;
     static getOrders(): any;
     static getPosOrderById(): any;
-    static getProducts(): any;
     static getShipmentBagReasons(): any;
     static getShipmentById(): any;
     static getShipmentReasons(): any;

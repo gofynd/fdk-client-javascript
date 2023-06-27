@@ -41,4 +41,5 @@ class APIClient {
     return axios.get(url);
   }
 }
+
 module.exports = APIClient;

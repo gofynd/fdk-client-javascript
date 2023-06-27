@@ -620,11 +620,11 @@ class CatalogModel {
   }
   static CollectionDetailResponse() {
     return Joi.object({
-      _schedule: CatalogModel.CollectionSchedule1(),
+      _schedule: CatalogModel.CollectionSchedule(),
       allow_facets: Joi.boolean(),
       allow_sort: Joi.boolean(),
       app_id: Joi.string().allow(""),
-      badge: CatalogModel.CollectionBadge1(),
+      badge: CatalogModel.CollectionBadge(),
       banners: CatalogModel.ImageUrls(),
       description: Joi.string().allow(""),
       is_active: Joi.boolean(),
@@ -692,19 +692,19 @@ class CatalogModel {
   }
   static CollectionSchedule() {
     return Joi.object({
-      cron: Joi.string().allow("").allow(null),
-      duration: Joi.number().allow(null),
-      end: Joi.string().allow("").allow(null),
-      next_schedule: Joi.array().items(CatalogModel.NextSchedule()),
+      end: Joi.string().allow(""),
+      next_schedule: Joi.array().items(
+        CatalogModel.CollectionScheduleStartEnd()
+      ),
       start: Joi.string().allow(""),
     });
   }
   static CollectionSchedule1() {
     return Joi.object({
-      end: Joi.string().allow(""),
-      next_schedule: Joi.array().items(
-        CatalogModel.CollectionScheduleStartEnd()
-      ),
+      cron: Joi.string().allow("").allow(null),
+      duration: Joi.number().allow(null),
+      end: Joi.string().allow("").allow(null),
+      next_schedule: Joi.array().items(CatalogModel.NextSchedule()),
       start: Joi.string().allow(""),
     });
   }
@@ -878,11 +878,11 @@ class CatalogModel {
     return Joi.object({
       _custom_json: Joi.any(),
       _locale_language: Joi.any(),
-      _schedule: CatalogModel.CollectionSchedule(),
+      _schedule: CatalogModel.CollectionSchedule1(),
       allow_facets: Joi.boolean(),
       allow_sort: Joi.boolean(),
       app_id: Joi.string().allow("").required(),
-      badge: CatalogModel.CollectionBadge(),
+      badge: CatalogModel.CollectionBadge1(),
       banners: CatalogModel.CollectionBanner().required(),
       created_by: CatalogModel.UserInfo(),
       description: Joi.string().allow(""),
@@ -1172,12 +1172,12 @@ class CatalogModel {
   }
   static GetCollectionDetailNest() {
     return Joi.object({
-      _schedule: CatalogModel.CollectionSchedule1(),
+      _schedule: CatalogModel.CollectionSchedule(),
       action: CatalogModel.CollectionActionPage(),
       allow_facets: Joi.boolean(),
       allow_sort: Joi.boolean(),
       app_id: Joi.string().allow(""),
-      badge: CatalogModel.CollectionBadge1(),
+      badge: CatalogModel.CollectionBadge(),
       banners: CatalogModel.ImageUrls(),
       description: Joi.string().allow(""),
       is_active: Joi.boolean(),
@@ -1220,15 +1220,15 @@ class CatalogModel {
       addresses: Joi.array().items(CatalogModel.GetAddressSerializer()),
       business_type: Joi.string().allow(""),
       company_type: Joi.string().allow(""),
-      created_by: CatalogModel.UserSerializer2(),
+      created_by: CatalogModel.UserSerializer1(),
       created_on: Joi.string().allow(""),
-      modified_by: CatalogModel.UserSerializer2(),
+      modified_by: CatalogModel.UserSerializer1(),
       modified_on: Joi.string().allow(""),
       name: Joi.string().allow(""),
       reject_reason: Joi.string().allow(""),
       stage: Joi.string().allow(""),
       uid: Joi.number(),
-      verified_by: CatalogModel.UserSerializer2(),
+      verified_by: CatalogModel.UserSerializer1(),
       verified_on: Joi.string().allow(""),
     });
   }
@@ -1311,14 +1311,14 @@ class CatalogModel {
       code: Joi.string().allow("").required(),
       company: CatalogModel.GetCompanySerializer(),
       contact_numbers: Joi.array().items(CatalogModel.SellerPhoneNumber()),
-      created_by: CatalogModel.UserSerializer1(),
+      created_by: CatalogModel.UserSerializer2(),
       created_on: Joi.string().allow(""),
       display_name: Joi.string().allow("").required(),
       documents: Joi.array().items(CatalogModel.Document()),
       gst_credentials: CatalogModel.InvoiceDetailsSerializer(),
       integration_type: CatalogModel.LocationIntegrationType(),
       manager: CatalogModel.LocationManagerSerializer(),
-      modified_by: CatalogModel.UserSerializer1(),
+      modified_by: CatalogModel.UserSerializer2(),
       modified_on: Joi.string().allow(""),
       name: Joi.string().allow("").required(),
       notification_emails: Joi.array().items(Joi.string().allow("")),
@@ -1328,7 +1328,7 @@ class CatalogModel {
       store_type: Joi.string().allow(""),
       timing: Joi.array().items(CatalogModel.LocationDayWiseSerializer()),
       uid: Joi.number(),
-      verified_by: CatalogModel.UserSerializer1(),
+      verified_by: CatalogModel.UserSerializer2(),
       verified_on: Joi.string().allow(""),
       warnings: Joi.any(),
     });
@@ -2220,6 +2220,7 @@ class CatalogModel {
   }
   static ProductBulkAssets() {
     return Joi.object({
+      batch_id: Joi.string().allow(""),
       company_id: Joi.number(),
       url: Joi.string().allow("").required(),
       user: Joi.any().required(),
@@ -2329,7 +2330,7 @@ class CatalogModel {
       net_quantity: CatalogModel.NetQuantity(),
       no_of_boxes: Joi.number(),
       product_group_tag: Joi.array().items(Joi.string().allow("")),
-      product_publish: CatalogModel.ProductPublish(),
+      product_publish: CatalogModel.ProductPublish1(),
       requester: Joi.string().allow(""),
       return_config: CatalogModel.ReturnConfig().required(),
       short_description: Joi.string().allow(""),
@@ -2545,7 +2546,7 @@ class CatalogModel {
       pending: Joi.string().allow(""),
       primary_color: Joi.string().allow(""),
       product_group_tag: Joi.array().items(Joi.string().allow("")),
-      product_publish: CatalogModel.ProductPublish1(),
+      product_publish: CatalogModel.ProductPublish(),
       return_config: CatalogModel.ReturnConfigResponse(),
       short_description: Joi.string().allow(""),
       size_guide: Joi.string().allow(""),
@@ -2986,10 +2987,10 @@ class CatalogModel {
     return Joi.object({
       _custom_json: Joi.any(),
       _locale_language: Joi.any(),
-      _schedule: CatalogModel.CollectionSchedule(),
+      _schedule: CatalogModel.CollectionSchedule1(),
       allow_facets: Joi.boolean(),
       allow_sort: Joi.boolean(),
-      badge: CatalogModel.CollectionBadge(),
+      badge: CatalogModel.CollectionBadge1(),
       banners: CatalogModel.CollectionBanner(),
       description: Joi.string().allow(""),
       is_active: Joi.boolean(),

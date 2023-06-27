@@ -223,6 +223,12 @@ class ThemeValidator {
     }).required();
   }
 
+  static upgradeApplicationV2() {
+    return Joi.object({
+      themeId: Joi.string().allow("").required(),
+    }).required();
+  }
+
   static upgradeTheme() {
     return Joi.object({
       themeId: Joi.string().allow("").required(),

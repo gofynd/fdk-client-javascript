@@ -37,5 +37,6 @@ declare class ThemeValidator {
     static updateTheme(): any;
     static updateThemeNameV2(): any;
     static updateThemeV2(): any;
+    static upgradeApplicationV2(): any;
     static upgradeTheme(): any;
 }

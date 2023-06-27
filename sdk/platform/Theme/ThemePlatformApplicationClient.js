@@ -2257,6 +2257,67 @@ class Theme {
 
   /**
    * @param {Object} arg - Arg object.
+   * @param {string} arg.themeId - The ID of the upgrade
+   * @returns {Promise<AllThemesApplicationResponseV2>} - Success response
+   * @summary: Upgrade an application
+   * @description: This endpoint allows you to upgrade an application.
+   */
+  async upgradeApplicationV2({ themeId } = {}) {
+    const { error } = ThemeValidator.upgradeApplicationV2().validate(
+      {
+        themeId,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = ThemeValidator.upgradeApplicationV2().validate(
+      {
+        themeId,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for upgradeApplicationV2",
+      });
+      Logger({ level: "WARN", message: warrning });
+    }
+
+    const query_params = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "put",
+      `/service/platform/theme/v2.0/company/${this.config.companyId}/application/${this.applicationId}/${themeId}/upgrade`,
+      query_params,
+      undefined
+    );
+
+    const {
+      error: res_error,
+    } = ThemeModel.AllThemesApplicationResponseV2().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for upgradeApplicationV2",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
    * @param {string} arg.themeId - ID allotted to the theme.
    * @returns {Promise<ThemesSchema>} - Success response
    * @summary: Upgrade a theme

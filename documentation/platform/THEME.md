@@ -48,6 +48,7 @@ Responsible for themes
 * [updateTheme](#updatetheme)
 * [updateThemeNameV2](#updatethemenamev2)
 * [updateThemeV2](#updatethemev2)
+* [upgradeApplicationV2](#upgradeapplicationv2)
 * [upgradeTheme](#upgradetheme)
 
 
@@ -33673,6 +33674,62 @@ const data = await platformClient.application("<APPLICATION_ID>").theme.updateTh
 [AllThemesApplicationResponseV2](#AllThemesApplicationResponseV2)
 
 Theme updated successfully
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### upgradeApplicationV2
+Upgrade an application
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").theme.upgradeApplicationV2({  themeId : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").theme.upgradeApplicationV2({  themeId : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| themeId | string | yes | The ID of the upgrade |  
+
+
+
+This endpoint allows you to upgrade an application.
+
+*Returned Response:*
+
+
+
+
+[AllThemesApplicationResponseV2](#AllThemesApplicationResponseV2)
+
+Successful upgrade
 
 
 
