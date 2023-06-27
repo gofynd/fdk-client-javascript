@@ -158,6 +158,14 @@ declare class Theme {
      */
     getAppliedThemeV2({}?: any): Promise<ThemePlatformModel.ApplyThemeResponseV2>;
     /**
+     * @param {ThemePlatformApplicationValidator.getDefaultPageDetails} arg - Arg object
+     * @returns {Promise<ThemePlatformModel.AvailablePageSchema>} - Success response
+     * @name getDefaultPageDetails
+     * @summary: Get default page details of a page from page_value
+     * @description: Use this API to retrieve default page details of a page.
+     */
+    getDefaultPageDetails({ pageValue }?: ThemePlatformApplicationValidator.getDefaultPageDetails): Promise<ThemePlatformModel.AvailablePageSchema>;
+    /**
      * @param {ThemePlatformApplicationValidator.getFonts} arg - Arg object
      * @returns {Promise<ThemePlatformModel.FontsSchema>} - Success response
      * @name getFonts

@@ -1124,6 +1124,69 @@ class Theme {
   }
 
   /**
+   * @param {ThemePlatformApplicationValidator.getDefaultPageDetails} arg - Arg object
+   * @returns {Promise<ThemePlatformModel.AvailablePageSchema>} - Success response
+   * @name getDefaultPageDetails
+   * @summary: Get default page details of a page from page_value
+   * @description: Use this API to retrieve default page details of a page.
+   */
+  async getDefaultPageDetails({ pageValue } = {}) {
+    const {
+      error,
+    } = ThemePlatformApplicationValidator.getDefaultPageDetails().validate(
+      {
+        pageValue,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = ThemePlatformApplicationValidator.getDefaultPageDetails().validate(
+      {
+        pageValue,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for platform > Theme > getDefaultPageDetails \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/theme/v1.0/company/${this.config.companyId}/application/${this.applicationId}/page/${pageValue}/default`,
+      query_params,
+      undefined
+    );
+
+    const {
+      error: res_error,
+    } = ThemePlatformModel.AvailablePageSchema().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: `Response Validation Warnnings for platform > Theme > getDefaultPageDetails \n ${res_error}`,
+      });
+    }
+
+    return response;
+  }
+
+  /**
    * @param {ThemePlatformApplicationValidator.getFonts} arg - Arg object
    * @returns {Promise<ThemePlatformModel.FontsSchema>} - Success response
    * @name getFonts

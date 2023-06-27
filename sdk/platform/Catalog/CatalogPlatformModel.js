@@ -630,11 +630,11 @@ const Joi = require("joi");
 
 /**
  * @typedef CollectionDetailResponse
- * @property {CollectionSchedule} [_schedule]
+ * @property {CollectionSchedule1} [_schedule]
  * @property {boolean} [allow_facets]
  * @property {boolean} [allow_sort]
  * @property {string} [app_id]
- * @property {CollectionBadge} [badge]
+ * @property {CollectionBadge1} [badge]
  * @property {ImageUrls} [banners]
  * @property {string} [description]
  * @property {boolean} [is_active]
@@ -703,17 +703,17 @@ const Joi = require("joi");
 
 /**
  * @typedef CollectionSchedule
+ * @property {string} [cron]
+ * @property {number} [duration]
  * @property {string} [end]
- * @property {CollectionScheduleStartEnd[]} [next_schedule]
+ * @property {NextSchedule[]} [next_schedule]
  * @property {string} [start]
  */
 
 /**
  * @typedef CollectionSchedule1
- * @property {string} [cron]
- * @property {number} [duration]
  * @property {string} [end]
- * @property {NextSchedule[]} [next_schedule]
+ * @property {CollectionScheduleStartEnd[]} [next_schedule]
  * @property {string} [start]
  */
 
@@ -881,11 +881,11 @@ const Joi = require("joi");
  * @typedef CreateCollection
  * @property {Object} [_custom_json]
  * @property {Object} [_locale_language]
- * @property {CollectionSchedule1} [_schedule]
+ * @property {CollectionSchedule} [_schedule]
  * @property {boolean} [allow_facets]
  * @property {boolean} [allow_sort]
  * @property {string} app_id
- * @property {CollectionBadge1} [badge]
+ * @property {CollectionBadge} [badge]
  * @property {CollectionBanner} banners
  * @property {UserInfo} [created_by]
  * @property {string} [description]
@@ -1178,12 +1178,12 @@ const Joi = require("joi");
 
 /**
  * @typedef GetCollectionDetailNest
- * @property {CollectionSchedule} [_schedule]
+ * @property {CollectionSchedule1} [_schedule]
  * @property {CollectionActionPage} [action]
  * @property {boolean} [allow_facets]
  * @property {boolean} [allow_sort]
  * @property {string} [app_id]
- * @property {CollectionBadge} [badge]
+ * @property {CollectionBadge1} [badge]
  * @property {ImageUrls} [banners]
  * @property {string} [description]
  * @property {boolean} [is_active]
@@ -2367,7 +2367,7 @@ const Joi = require("joi");
  * @property {NetQuantity} [net_quantity]
  * @property {number} [no_of_boxes]
  * @property {string[]} [product_group_tag]
- * @property {ProductPublish1} [product_publish]
+ * @property {ProductPublish} [product_publish]
  * @property {string} [requester]
  * @property {ReturnConfig} return_config
  * @property {string} [short_description]
@@ -2579,7 +2579,7 @@ const Joi = require("joi");
  * @property {string} [pending]
  * @property {string} [primary_color]
  * @property {string[]} [product_group_tag]
- * @property {ProductPublish} [product_publish]
+ * @property {ProductPublish1} [product_publish]
  * @property {ReturnConfigResponse} [return_config]
  * @property {string} [short_description]
  * @property {string} [size_guide]
@@ -3025,10 +3025,10 @@ const Joi = require("joi");
  * @typedef UpdateCollection
  * @property {Object} [_custom_json]
  * @property {Object} [_locale_language]
- * @property {CollectionSchedule1} [_schedule]
+ * @property {CollectionSchedule} [_schedule]
  * @property {boolean} [allow_facets]
  * @property {boolean} [allow_sort]
- * @property {CollectionBadge1} [badge]
+ * @property {CollectionBadge} [badge]
  * @property {CollectionBanner} [banners]
  * @property {string} [description]
  * @property {boolean} [is_active]
@@ -3980,11 +3980,11 @@ class CatalogPlatformModel {
   /** @returns {CollectionDetailResponse} */
   static CollectionDetailResponse() {
     return Joi.object({
-      _schedule: CatalogPlatformModel.CollectionSchedule(),
+      _schedule: CatalogPlatformModel.CollectionSchedule1(),
       allow_facets: Joi.boolean(),
       allow_sort: Joi.boolean(),
       app_id: Joi.string().allow(""),
-      badge: CatalogPlatformModel.CollectionBadge(),
+      badge: CatalogPlatformModel.CollectionBadge1(),
       banners: CatalogPlatformModel.ImageUrls(),
       description: Joi.string().allow(""),
       is_active: Joi.boolean(),
@@ -4072,10 +4072,10 @@ class CatalogPlatformModel {
   /** @returns {CollectionSchedule} */
   static CollectionSchedule() {
     return Joi.object({
-      end: Joi.string().allow(""),
-      next_schedule: Joi.array().items(
-        CatalogPlatformModel.CollectionScheduleStartEnd()
-      ),
+      cron: Joi.string().allow("").allow(null),
+      duration: Joi.number().allow(null),
+      end: Joi.string().allow("").allow(null),
+      next_schedule: Joi.array().items(CatalogPlatformModel.NextSchedule()),
       start: Joi.string().allow(""),
     });
   }
@@ -4083,10 +4083,10 @@ class CatalogPlatformModel {
   /** @returns {CollectionSchedule1} */
   static CollectionSchedule1() {
     return Joi.object({
-      cron: Joi.string().allow("").allow(null),
-      duration: Joi.number().allow(null),
-      end: Joi.string().allow("").allow(null),
-      next_schedule: Joi.array().items(CatalogPlatformModel.NextSchedule()),
+      end: Joi.string().allow(""),
+      next_schedule: Joi.array().items(
+        CatalogPlatformModel.CollectionScheduleStartEnd()
+      ),
       start: Joi.string().allow(""),
     });
   }
@@ -4308,11 +4308,11 @@ class CatalogPlatformModel {
     return Joi.object({
       _custom_json: Joi.any(),
       _locale_language: Joi.any(),
-      _schedule: CatalogPlatformModel.CollectionSchedule1(),
+      _schedule: CatalogPlatformModel.CollectionSchedule(),
       allow_facets: Joi.boolean(),
       allow_sort: Joi.boolean(),
       app_id: Joi.string().allow("").required(),
-      badge: CatalogPlatformModel.CollectionBadge1(),
+      badge: CatalogPlatformModel.CollectionBadge(),
       banners: CatalogPlatformModel.CollectionBanner().required(),
       created_by: CatalogPlatformModel.UserInfo(),
       description: Joi.string().allow(""),
@@ -4670,12 +4670,12 @@ class CatalogPlatformModel {
   /** @returns {GetCollectionDetailNest} */
   static GetCollectionDetailNest() {
     return Joi.object({
-      _schedule: CatalogPlatformModel.CollectionSchedule(),
+      _schedule: CatalogPlatformModel.CollectionSchedule1(),
       action: CatalogPlatformModel.CollectionActionPage(),
       allow_facets: Joi.boolean(),
       allow_sort: Joi.boolean(),
       app_id: Joi.string().allow(""),
-      badge: CatalogPlatformModel.CollectionBadge(),
+      badge: CatalogPlatformModel.CollectionBadge1(),
       banners: CatalogPlatformModel.ImageUrls(),
       description: Joi.string().allow(""),
       is_active: Joi.boolean(),
@@ -6070,7 +6070,7 @@ class CatalogPlatformModel {
       net_quantity: CatalogPlatformModel.NetQuantity(),
       no_of_boxes: Joi.number(),
       product_group_tag: Joi.array().items(Joi.string().allow("")),
-      product_publish: CatalogPlatformModel.ProductPublish1(),
+      product_publish: CatalogPlatformModel.ProductPublish(),
       requester: Joi.string().allow(""),
       return_config: CatalogPlatformModel.ReturnConfig().required(),
       short_description: Joi.string().allow(""),
@@ -6322,7 +6322,7 @@ class CatalogPlatformModel {
       pending: Joi.string().allow(""),
       primary_color: Joi.string().allow(""),
       product_group_tag: Joi.array().items(Joi.string().allow("")),
-      product_publish: CatalogPlatformModel.ProductPublish(),
+      product_publish: CatalogPlatformModel.ProductPublish1(),
       return_config: CatalogPlatformModel.ReturnConfigResponse(),
       short_description: Joi.string().allow(""),
       size_guide: Joi.string().allow(""),
@@ -6861,10 +6861,10 @@ class CatalogPlatformModel {
     return Joi.object({
       _custom_json: Joi.any(),
       _locale_language: Joi.any(),
-      _schedule: CatalogPlatformModel.CollectionSchedule1(),
+      _schedule: CatalogPlatformModel.CollectionSchedule(),
       allow_facets: Joi.boolean(),
       allow_sort: Joi.boolean(),
-      badge: CatalogPlatformModel.CollectionBadge1(),
+      badge: CatalogPlatformModel.CollectionBadge(),
       banners: CatalogPlatformModel.CollectionBanner(),
       description: Joi.string().allow(""),
       is_active: Joi.boolean(),

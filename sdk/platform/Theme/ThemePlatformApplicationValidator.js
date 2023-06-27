@@ -82,6 +82,11 @@ const ThemePlatformModel = require("./ThemePlatformModel");
 
 /** @typedef getAppliedThemeV2 */
 
+/**
+ * @typedef getDefaultPageDetails
+ * @property {string} pageValue - Value of the page to be retrieved
+ */
+
 /** @typedef getFonts */
 
 /** @typedef getFontsV2 */
@@ -313,6 +318,13 @@ class ThemePlatformApplicationValidator {
   /** @returns {getAppliedThemeV2} */
   static getAppliedThemeV2() {
     return Joi.object({}).required();
+  }
+
+  /** @returns {getDefaultPageDetails} */
+  static getDefaultPageDetails() {
+    return Joi.object({
+      pageValue: Joi.string().allow("").required(),
+    }).required();
   }
 
   /** @returns {getFonts} */

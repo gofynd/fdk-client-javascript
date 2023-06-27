@@ -61,6 +61,10 @@ export = ThemePlatformApplicationValidator;
 /** @typedef getApplicationThemesV2 */
 /** @typedef getAppliedTheme */
 /** @typedef getAppliedThemeV2 */
+/**
+ * @typedef getDefaultPageDetails
+ * @property {string} pageValue - Value of the page to be retrieved
+ */
 /** @typedef getFonts */
 /** @typedef getFontsV2 */
 /**
@@ -155,7 +159,7 @@ export = ThemePlatformApplicationValidator;
 declare class ThemePlatformApplicationValidator {
 }
 declare namespace ThemePlatformApplicationValidator {
-    export { addThemeToApplicationV2, addToThemeLibrary, applyTheme, applyThemeV2, archiveTheme, checkThemeUpgradableV2, createPage, createTheme, deletePage, deleteTheme, deleteThemeV2, duplicateThemeV2, getAllPages, getApplicationThemeByIdV2, getApplicationThemesCountV2, getApplicationThemesV2, getAppliedTheme, getAppliedThemeV2, getFonts, getFontsV2, getPage, getPublicThemes, getThemeById, getThemeForPreview, getThemeLastModified, getThemeLastModifiedV2, getThemeLibrary, getThemePreviewByIdV2, isUpgradable, publishTheme, unarchiveTheme, unpublishTheme, updateMultiplePages, updatePage, updateTheme, updateThemeNameV2, updateThemeV2, upgradeApplicationV2, upgradeTheme };
+    export { addThemeToApplicationV2, addToThemeLibrary, applyTheme, applyThemeV2, archiveTheme, checkThemeUpgradableV2, createPage, createTheme, deletePage, deleteTheme, deleteThemeV2, duplicateThemeV2, getAllPages, getApplicationThemeByIdV2, getApplicationThemesCountV2, getApplicationThemesV2, getAppliedTheme, getAppliedThemeV2, getDefaultPageDetails, getFonts, getFontsV2, getPage, getPublicThemes, getThemeById, getThemeForPreview, getThemeLastModified, getThemeLastModifiedV2, getThemeLibrary, getThemePreviewByIdV2, isUpgradable, publishTheme, unarchiveTheme, unpublishTheme, updateMultiplePages, updatePage, updateTheme, updateThemeNameV2, updateThemeV2, upgradeApplicationV2, upgradeTheme };
 }
 /** @returns {addThemeToApplicationV2} */
 declare function addThemeToApplicationV2(): addThemeToApplicationV2;
@@ -274,6 +278,14 @@ type getAppliedTheme = any;
 /** @returns {getAppliedThemeV2} */
 declare function getAppliedThemeV2(): any;
 type getAppliedThemeV2 = any;
+/** @returns {getDefaultPageDetails} */
+declare function getDefaultPageDetails(): getDefaultPageDetails;
+type getDefaultPageDetails = {
+    /**
+     * - Value of the page to be retrieved
+     */
+    pageValue: string;
+};
 /** @returns {getFonts} */
 declare function getFonts(): any;
 type getFonts = any;

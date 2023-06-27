@@ -29,6 +29,7 @@ Responsible for themes
 * [getAppliedTheme](#getappliedtheme)
 * [getAppliedThemeV2](#getappliedthemev2)
 * [getCompanyLevelThemes](#getcompanylevelthemes)
+* [getDefaultPageDetails](#getdefaultpagedetails)
 * [getFonts](#getfonts)
 * [getFontsV2](#getfontsv2)
 * [getPage](#getpage)
@@ -14978,6 +14979,430 @@ A list of themes for the company.
 ```json
 
 ```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### getDefaultPageDetails
+Get default page details of a page from page_value
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").theme.getDefaultPageDetails({  pageValue : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").theme.getDefaultPageDetails({  pageValue : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| pageValue | string | yes | Value of the page to be retrieved |  
+
+
+
+Use this API to retrieve default page details of a page.
+
+*Returned Response:*
+
+
+
+
+[AvailablePageSchema](#AvailablePageSchema)
+
+Success. Returns an object of the page.  Refer `AvailablePageSchema` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; Home page</i></summary>
+
+```json
+{
+  "value": {
+    "path": "",
+    "type": "system",
+    "seo": {
+      "title": "",
+      "description": "",
+      "_id": "60210832d7e98115b013f6ac"
+    },
+    "props": [],
+    "_id": "60ab5ca6d572fed64294eafc",
+    "sections": [
+      {
+        "blocks": [],
+        "predicate": {
+          "screen": {
+            "mobile": false,
+            "desktop": false,
+            "tablet": false
+          },
+          "user": {
+            "authenticated": true,
+            "anonymous": true
+          },
+          "route": {
+            "selected": "none",
+            "exactURL": "",
+            "query": {
+              "utm": "facebook"
+            }
+          }
+        },
+        "name": "customHtml",
+        "props": {
+          "code": {
+            "type": "code",
+            "value": "<p style=\"text-align:right;\"><a href=\"tel:+919820204442\"><img src=\"https://dabuttonfactory.com/button.png?t=For+any+queries%2C+call%3A+%2B91+98202+04442&f=Open+Sans-Bold&ts=21&tc=fff&hp=20&vp=15&c=round&bgt=unicolored&bgc=7043f7\"/> </a></p>"
+          }
+        }
+      },
+      {
+        "blocks": [],
+        "predicate": {
+          "screen": {
+            "mobile": true,
+            "desktop": true,
+            "tablet": true
+          },
+          "user": {
+            "authenticated": true,
+            "anonymous": true
+          },
+          "route": {
+            "selected": "none",
+            "exactURL": "",
+            "query": {
+              "udm": "vivek"
+            }
+          }
+        },
+        "name": "brands-listing",
+        "props": {
+          "title": {
+            "type": "text",
+            "value": "Popular rrrrr"
+          },
+          "header": {
+            "type": "header"
+          },
+          "brand_type": {
+            "value": "all",
+            "type": "radio"
+          },
+          "department": {
+            "type": "department"
+          },
+          "item_count": {
+            "value": 5,
+            "type": "range"
+          },
+          "layout": {
+            "value": "horizontal",
+            "type": "select"
+          },
+          "view_all": {
+            "value": false,
+            "type": "checkbox"
+          }
+        }
+      },
+      {
+        "blocks": [
+          {
+            "type": "product",
+            "name": "Product",
+            "props": {
+              "product": {
+                "type": "product"
+              }
+            }
+          },
+          {
+            "type": "product",
+            "name": "Product",
+            "props": {
+              "product": {
+                "type": "product"
+              }
+            }
+          },
+          {
+            "type": "product",
+            "name": "Product",
+            "props": {
+              "product": {
+                "type": "product"
+              }
+            }
+          },
+          {
+            "type": "product",
+            "name": "Product",
+            "props": {
+              "product": {
+                "type": "product"
+              }
+            }
+          }
+        ],
+        "predicate": {
+          "screen": {
+            "mobile": true,
+            "desktop": true,
+            "tablet": true
+          },
+          "user": {
+            "authenticated": false,
+            "anonymous": true
+          },
+          "route": {
+            "selected": "none",
+            "exactURL": ""
+          }
+        },
+        "name": "featuredProducts",
+        "props": {
+          "heading": {
+            "value": "Featured Products",
+            "type": "text"
+          },
+          "item_count": {
+            "type": "range",
+            "value": 4
+          },
+          "full_width": {
+            "value": false,
+            "type": "checkbox"
+          }
+        },
+        "preset": {
+          "blocks": [
+            {
+              "name": "Product"
+            },
+            {
+              "name": "Product"
+            },
+            {
+              "name": "Product"
+            },
+            {
+              "name": "Product"
+            }
+          ]
+        }
+      },
+      {
+        "blocks": [],
+        "predicate": {
+          "screen": {
+            "mobile": true,
+            "desktop": true,
+            "tablet": true
+          },
+          "user": {
+            "authenticated": true,
+            "anonymous": true
+          },
+          "route": {
+            "selected": "none",
+            "exactURL": "",
+            "query": {
+              "": ""
+            }
+          }
+        },
+        "name": "categoryListPage",
+        "props": {
+          "heading": {
+            "type": "text",
+            "value": "Explore Categories"
+          },
+          "layout": {
+            "type": "select",
+            "value": "grid"
+          },
+          "item_count": {
+            "value": 5,
+            "type": "range"
+          },
+          "view_all": {
+            "value": false,
+            "type": "checkbox"
+          }
+        }
+      },
+      {
+        "blocks": [],
+        "predicate": {
+          "screen": {
+            "mobile": true,
+            "desktop": true,
+            "tablet": true
+          },
+          "user": {
+            "authenticated": true,
+            "anonymous": true
+          },
+          "route": {
+            "selected": "none",
+            "exactURL": "",
+            "query": {
+              "": ""
+            }
+          }
+        },
+        "name": "heroBanner",
+        "props": {
+          "ctaLink": {
+            "type": "url",
+            "value": "https://uniket.hostx0.de/about-us"
+          }
+        }
+      },
+      {
+        "blocks": [],
+        "predicate": {
+          "screen": {
+            "mobile": true,
+            "desktop": true,
+            "tablet": true
+          },
+          "user": {
+            "authenticated": true,
+            "anonymous": true
+          },
+          "route": {
+            "selected": "none",
+            "exactURL": "",
+            "query": {
+              "": ""
+            }
+          }
+        },
+        "name": "imageBanner",
+        "props": {
+          "image": {
+            "value": "",
+            "type": "image_picker"
+          },
+          "full_width": {
+            "value": false,
+            "type": "checkbox"
+          },
+          "overlayLayout": {
+            "value": "left",
+            "type": "select"
+          },
+          "overlayImage": {
+            "value": "",
+            "type": "image_picker"
+          },
+          "text": {
+            "value": "",
+            "type": "text"
+          },
+          "text_color": {
+            "value": "#000",
+            "type": "color"
+          },
+          "ctaLink": {
+            "value": "",
+            "type": "url"
+          },
+          "ctaText": {
+            "value": "",
+            "type": "text"
+          },
+          "layout": {
+            "type": "select",
+            "value": "full"
+          },
+          "height": {
+            "type": "select",
+            "value": "h-auto"
+          }
+        }
+      },
+      {
+        "blocks": [],
+        "predicate": {
+          "screen": {
+            "mobile": true,
+            "desktop": true,
+            "tablet": true
+          },
+          "user": {
+            "authenticated": true,
+            "anonymous": true
+          },
+          "route": {
+            "selected": "none",
+            "exactURL": ""
+          }
+        },
+        "name": "brands-listing",
+        "props": {
+          "title": {
+            "type": "text",
+            "value": "asdfasdf"
+          },
+          "header": {
+            "type": "header"
+          },
+          "brand_type": {
+            "value": "all",
+            "type": "radio"
+          },
+          "department": {
+            "type": "department"
+          },
+          "item_count": {
+            "value": 5,
+            "type": "range"
+          },
+          "layout": {
+            "value": "horizontal",
+            "type": "select"
+          },
+          "view_all": {
+            "value": false,
+            "type": "checkbox"
+          }
+        }
+      }
+    ],
+    "value": "home",
+    "text": "Home",
+    "theme": "5fb3ee4194a5181feeeba8e5",
+    "sections_meta": [],
+    "__v": 9
+  }
+}
+```
+</details>
+
 </details>
 
 
