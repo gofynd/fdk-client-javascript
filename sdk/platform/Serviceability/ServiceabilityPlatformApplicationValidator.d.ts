@@ -1,11 +1,5 @@
 export = ServiceabilityPlatformApplicationValidator;
-/**
- * @typedef addAppDp
- * @property {ServiceabilityPlatformModel.ApplicationCompanyDpViewRequest} body
- */
 /** @typedef getApplicationServiceability */
-/** @typedef getApplicationServiceabilitySelfShipment */
-/** @typedef getDpApplicationRulePriority */
 /**
  * @typedef getZoneFromPincodeView
  * @property {ServiceabilityPlatformModel.GetZoneFromPincodeViewRequest} body
@@ -16,10 +10,6 @@ export = ServiceabilityPlatformApplicationValidator;
  * @property {number} [pageSize] - Determines the items to be displayed in a page
  * @property {string[]} [zoneId] - List of zones to query for
  * @property {string} [q] - Search with name as a free text
- */
-/**
- * @typedef patchApplicationServiceabilitySelfShipment
- * @property {ServiceabilityPlatformModel.SelfShipResponse} body
  */
 /**
  * @typedef updatePincodeAuditHistory
@@ -37,29 +27,14 @@ export = ServiceabilityPlatformApplicationValidator;
  * @typedef updatePincodeMopView
  * @property {ServiceabilityPlatformModel.PincodeMopData} body
  */
-/**
- * @typedef upsertDpApplicationRulePriority
- * @property {ServiceabilityPlatformModel.DPApplicationRuleRequest} body
- */
 declare class ServiceabilityPlatformApplicationValidator {
 }
 declare namespace ServiceabilityPlatformApplicationValidator {
-    export { addAppDp, getApplicationServiceability, getApplicationServiceabilitySelfShipment, getDpApplicationRulePriority, getZoneFromPincodeView, getZonesFromApplicationIdView, patchApplicationServiceabilitySelfShipment, updatePincodeAuditHistory, updatePincodeBulkView, updatePincodeCoDListing, updatePincodeMopView, upsertDpApplicationRulePriority };
+    export { getApplicationServiceability, getZoneFromPincodeView, getZonesFromApplicationIdView, updatePincodeAuditHistory, updatePincodeBulkView, updatePincodeCoDListing, updatePincodeMopView };
 }
-/** @returns {addAppDp} */
-declare function addAppDp(): addAppDp;
-type addAppDp = {
-    body: ServiceabilityPlatformModel.ApplicationCompanyDpViewRequest;
-};
 /** @returns {getApplicationServiceability} */
 declare function getApplicationServiceability(): any;
 type getApplicationServiceability = any;
-/** @returns {getApplicationServiceabilitySelfShipment} */
-declare function getApplicationServiceabilitySelfShipment(): any;
-type getApplicationServiceabilitySelfShipment = any;
-/** @returns {getDpApplicationRulePriority} */
-declare function getDpApplicationRulePriority(): any;
-type getDpApplicationRulePriority = any;
 /** @returns {getZoneFromPincodeView} */
 declare function getZoneFromPincodeView(): getZoneFromPincodeView;
 type getZoneFromPincodeView = {
@@ -85,11 +60,6 @@ type getZonesFromApplicationIdView = {
      */
     q?: string;
 };
-/** @returns {patchApplicationServiceabilitySelfShipment} */
-declare function patchApplicationServiceabilitySelfShipment(): patchApplicationServiceabilitySelfShipment;
-type patchApplicationServiceabilitySelfShipment = {
-    body: ServiceabilityPlatformModel.SelfShipResponse;
-};
 /** @returns {updatePincodeAuditHistory} */
 declare function updatePincodeAuditHistory(): updatePincodeAuditHistory;
 type updatePincodeAuditHistory = {
@@ -109,10 +79,5 @@ type updatePincodeCoDListing = {
 declare function updatePincodeMopView(): updatePincodeMopView;
 type updatePincodeMopView = {
     body: ServiceabilityPlatformModel.PincodeMopData;
-};
-/** @returns {upsertDpApplicationRulePriority} */
-declare function upsertDpApplicationRulePriority(): upsertDpApplicationRulePriority;
-type upsertDpApplicationRulePriority = {
-    body: ServiceabilityPlatformModel.DPApplicationRuleRequest;
 };
 import ServiceabilityPlatformModel = require("./ServiceabilityPlatformModel");

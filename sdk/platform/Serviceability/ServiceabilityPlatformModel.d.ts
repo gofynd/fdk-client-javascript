@@ -12,28 +12,6 @@ export = ServiceabilityPlatformModel;
  * @property {string} [state]
  */
 /**
- * @typedef ApplicationCompanyDpViewRequest
- * @property {string} [dp_id]
- */
-/**
- * @typedef ApplicationCompanyDpViewResponse
- * @property {string} application_id
- * @property {number} company_id
- * @property {number} [courier_partner_id]
- * @property {boolean} success
- */
-/**
- * @typedef ApplicationSelfShipConfig
- * @property {SelfShipResponse} [self_ship]
- */
-/**
- * @typedef ApplicationSelfShipConfigResponse
- * @property {ServiceabilityErrorResponse} [error]
- * @property {string} id
- * @property {ApplicationSelfShipConfig} [self_ship]
- * @property {boolean} success
- */
-/**
  * @typedef ApplicationServiceabilityConfig
  * @property {string} channel_id
  * @property {string} channel_type
@@ -46,50 +24,10 @@ export = ServiceabilityPlatformModel;
  * @property {boolean} success
  */
 /**
- * @typedef BulkRecordError
- * @property {string[]} error
- * @property {boolean} is_error
- */
-/**
- * @typedef BulkRegionData
- * @property {string} action
- * @property {string} batch_id
- * @property {string} [created_on]
- * @property {BulkRecordError} [error]
- * @property {number} failed_count
- * @property {CSVFileRecord[]} [failed_rec]
- * @property {string} file_path
- * @property {string} stage
- * @property {number} success_count
- * @property {number} total_rec
- */
-/**
- * @typedef BulkRegionJobSerializer
- * @property {string} action
- * @property {string} batch_id
- * @property {string} [country_iso_code]
- * @property {string} file_url
- * @property {string} job_action
- */
-/**
  * @typedef CommonError
  * @property {Object} [error]
  * @property {string} [status_code]
  * @property {string} [success]
- */
-/**
- * @typedef CompanyDpAccountListResponse
- * @property {Dp1[]} items
- * @property {Page} page
- * @property {boolean} success
- */
-/**
- * @typedef CompanyDpAccountRequest
- * @property {Dp1[]} data
- */
-/**
- * @typedef CompanyDpAccountResponse
- * @property {boolean} success
  */
 /**
  * @typedef CompanyStoreView_PageItems
@@ -128,21 +66,6 @@ export = ServiceabilityPlatformModel;
  * @property {number[]} store_ids
  */
 /**
- * @typedef CSVFileRecord
- * @property {string} [country]
- * @property {number} [dp_id]
- * @property {string[]} [error]
- * @property {string} [from_region]
- * @property {boolean} [is_error]
- * @property {number} [max_tat]
- * @property {number} [min_tat]
- * @property {number} [plan_id]
- * @property {string} [region_type]
- * @property {number} [s_no]
- * @property {string} [tat_type]
- * @property {string} [to_region]
- */
-/**
  * @typedef DocumentsResponse
  * @property {string} [legal_name]
  * @property {string} [type]
@@ -161,113 +84,6 @@ export = ServiceabilityPlatformModel;
  * @property {string} [payment_mode]
  * @property {number} [rvp_priority]
  * @property {string} [transport_mode]
- */
-/**
- * @typedef Dp1
- * @property {string} account_id
- * @property {string} dp_id
- * @property {boolean} is_self_ship
- * @property {string} name
- * @property {string} plan_id
- * @property {Object} plan_rules
- * @property {string} stage
- */
-/**
- * @typedef DpAccountFailureResponse
- * @property {ErrorResponse[]} error
- * @property {number} status_code
- * @property {boolean} success
- */
-/**
- * @typedef DPApplicationRuleRequest
- * @property {string[]} shipping_rules
- */
-/**
- * @typedef DPApplicationRuleResponse
- * @property {DpRuleResponse[]} data
- * @property {boolean} status_code
- * @property {boolean} success
- */
-/**
- * @typedef DPCompanyRuleRequest
- * @property {string[]} rule_ids
- */
-/**
- * @typedef DPCompanyRuleResponse
- * @property {DpRuleResponse[]} data
- * @property {number} status_code
- * @property {boolean} success
- */
-/**
- * @typedef DpIds
- * @property {boolean} enabled
- * @property {Object} [meta]
- * @property {number} priority
- */
-/**
- * @typedef DpMultipleRuleSuccessResponse
- * @property {DpRule[]} items
- * @property {Page} page
- * @property {boolean} success
- */
-/**
- * @typedef DpRule
- * @property {number} [company_id]
- * @property {Object[]} conditions
- * @property {Object} dp_ids
- * @property {boolean} [is_active]
- * @property {string} name
- */
-/**
- * @typedef DpRuleRequest
- * @property {number} [company_id]
- * @property {Object[]} conditions
- * @property {Object} dp_ids
- * @property {boolean} [is_active]
- * @property {string} name
- */
-/**
- * @typedef DpRuleResponse
- * @property {number} company_id
- * @property {string[]} conditions
- * @property {Object} [created_by]
- * @property {string} [created_on]
- * @property {Object} dp_ids
- * @property {boolean} [is_active]
- * @property {Object} [modified_by]
- * @property {string} [modified_on]
- * @property {string} name
- * @property {string} uid
- */
-/**
- * @typedef DpRuleSuccessResponse
- * @property {DpRule} data
- * @property {number} status_code
- * @property {boolean} success
- */
-/**
- * @typedef DpRulesUpdateRequest
- * @property {Object[]} conditions
- * @property {Object} dp_ids
- * @property {boolean} is_active
- * @property {string} name
- */
-/**
- * @typedef DpRuleUpdateSuccessResponse
- * @property {DpRuleResponse} data
- * @property {number} status_code
- * @property {boolean} success
- */
-/**
- * @typedef DpSchemaInRuleListing
- * @property {string} account_id
- * @property {string} dp_id
- * @property {boolean} is_self_ship
- * @property {string} name
- * @property {string} plan_id
- * @property {Object} plan_rules
- * @property {number} priority
- * @property {string} stage
  */
 /**
  * @typedef EinvoiceResponse
@@ -312,26 +128,8 @@ export = ServiceabilityPlatformModel;
  * @property {string} [value]
  */
 /**
- * @typedef ErrorResponse
- * @property {string} message
- * @property {string} type
- * @property {string} value
- */
-/**
  * @typedef EwayBillResponse
  * @property {boolean} [enabled]
- */
-/**
- * @typedef FailureResponse
- * @property {ErrorResponse[]} error
- * @property {number} status_code
- * @property {boolean} success
- */
-/**
- * @typedef GetBulkRegionJobResponse
- * @property {string} [batch_id]
- * @property {number} [current_page_number]
- * @property {BulkRegionData[]} data
  */
 /**
  * @typedef GetSingleZoneDataViewResponse
@@ -340,7 +138,7 @@ export = ServiceabilityPlatformModel;
 /**
  * @typedef GetStoresViewResponse
  * @property {ItemResponse[]} [items]
- * @property {ServiceabilityPageResponse} page
+ * @property {PageResponse} page
  */
 /**
  * @typedef GetZoneDataViewChannels
@@ -480,14 +278,12 @@ export = ServiceabilityPlatformModel;
  * @property {number} [minute]
  */
 /**
- * @typedef Page
+ * @typedef PageResponse
  * @property {number} [current]
  * @property {boolean} [has_next]
- * @property {boolean} [has_previous]
  * @property {number} [item_total]
- * @property {string} [next_id]
  * @property {number} [size]
- * @property {string} type
+ * @property {string} [type]
  */
 /**
  * @typedef PincodeBulkViewResponse
@@ -583,49 +379,14 @@ export = ServiceabilityPlatformModel;
  * @property {number} pincode
  */
 /**
- * @typedef PostBulkRegionJobResponse
- * @property {string} batch_id
- * @property {boolean} event_emitted
- * @property {string} message
- * @property {boolean} response
- */
-/**
  * @typedef ProductReturnConfigResponse
  * @property {boolean} [on_same_store]
- */
-/**
- * @typedef ReAssignStoreRequest
- * @property {Object[]} articles
- * @property {Object} configuration
- * @property {string} identifier
- * @property {string[]} ignored_locations
- * @property {string} to_pincode
- */
-/**
- * @typedef ReAssignStoreResponse
- * @property {Object[]} [articles]
- * @property {Object} error
- * @property {boolean} success
- * @property {string} to_pincode
- */
-/**
- * @typedef SelfShipResponse
- * @property {boolean} active
- * @property {number} tat
  */
 /**
  * @typedef ServiceabilityErrorResponse
  * @property {string} message
  * @property {string} type
  * @property {string} value
- */
-/**
- * @typedef ServiceabilityPageResponse
- * @property {number} [current]
- * @property {boolean} [has_next]
- * @property {number} [item_total]
- * @property {number} [size]
- * @property {string} [type]
  */
 /**
  * @typedef TimmingResponse
@@ -695,7 +456,7 @@ export = ServiceabilityPlatformModel;
 declare class ServiceabilityPlatformModel {
 }
 declare namespace ServiceabilityPlatformModel {
-    export { AddressResponse, ApplicationCompanyDpViewRequest, ApplicationCompanyDpViewResponse, ApplicationSelfShipConfig, ApplicationSelfShipConfigResponse, ApplicationServiceabilityConfig, ApplicationServiceabilityConfigResponse, BulkRecordError, BulkRegionData, BulkRegionJobSerializer, CommonError, CompanyDpAccountListResponse, CompanyDpAccountRequest, CompanyDpAccountResponse, CompanyStoreView_PageItems, CompanyStoreView_Response, ContactNumberResponse, CreatedByResponse, CreateZoneData, CSVFileRecord, DocumentsResponse, Dp, Dp1, DpAccountFailureResponse, DPApplicationRuleRequest, DPApplicationRuleResponse, DPCompanyRuleRequest, DPCompanyRuleResponse, DpIds, DpMultipleRuleSuccessResponse, DpRule, DpRuleRequest, DpRuleResponse, DpRuleSuccessResponse, DpRulesUpdateRequest, DpRuleUpdateSuccessResponse, DpSchemaInRuleListing, EinvoiceResponse, EntityRegionView_Error, EntityRegionView_Items, EntityRegionView_page, EntityRegionView_Request, EntityRegionView_Response, Error, ErrorResponse, EwayBillResponse, FailureResponse, GetBulkRegionJobResponse, GetSingleZoneDataViewResponse, GetStoresViewResponse, GetZoneDataViewChannels, GetZoneDataViewItems, GetZoneFromApplicationIdViewResponse, GetZoneFromPincodeViewRequest, GetZoneFromPincodeViewResponse, GstCredentialsResponse, IntegrationTypeResponse, ItemResponse, ListViewChannels, ListViewItems, ListViewProduct, ListViewResponse, ListViewSummary, LogisticsResponse, ManagerResponse, MobileNo, ModifiedByResponse, OpeningClosing, Page, PincodeBulkViewResponse, PincodeCodStatusListingPage, PincodeCodStatusListingRequest, PincodeCodStatusListingResponse, PincodeCodStatusListingSummary, PincodeMopBulkData, PincodeMopData, PincodeMOPresponse, PincodeMopUpdateAuditHistoryPaging, PincodeMopUpdateAuditHistoryRequest, PincodeMopUpdateAuditHistoryResponse, PincodeMopUpdateAuditHistoryResponseData, PincodeMopUpdateResponse, PostBulkRegionJobResponse, ProductReturnConfigResponse, ReAssignStoreRequest, ReAssignStoreResponse, SelfShipResponse, ServiceabilityErrorResponse, ServiceabilityPageResponse, TimmingResponse, UpdateZoneData, WarningsResponse, ZoneDataItem, ZoneMappingType, ZoneProductTypes, ZoneRequest, ZoneResponse, ZoneSuccessResponse, ZoneUpdateRequest };
+    export { AddressResponse, ApplicationServiceabilityConfig, ApplicationServiceabilityConfigResponse, CommonError, CompanyStoreView_PageItems, CompanyStoreView_Response, ContactNumberResponse, CreatedByResponse, CreateZoneData, DocumentsResponse, Dp, EinvoiceResponse, EntityRegionView_Error, EntityRegionView_Items, EntityRegionView_page, EntityRegionView_Request, EntityRegionView_Response, Error, EwayBillResponse, GetSingleZoneDataViewResponse, GetStoresViewResponse, GetZoneDataViewChannels, GetZoneDataViewItems, GetZoneFromApplicationIdViewResponse, GetZoneFromPincodeViewRequest, GetZoneFromPincodeViewResponse, GstCredentialsResponse, IntegrationTypeResponse, ItemResponse, ListViewChannels, ListViewItems, ListViewProduct, ListViewResponse, ListViewSummary, LogisticsResponse, ManagerResponse, MobileNo, ModifiedByResponse, OpeningClosing, PageResponse, PincodeBulkViewResponse, PincodeCodStatusListingPage, PincodeCodStatusListingRequest, PincodeCodStatusListingResponse, PincodeCodStatusListingSummary, PincodeMopBulkData, PincodeMopData, PincodeMOPresponse, PincodeMopUpdateAuditHistoryPaging, PincodeMopUpdateAuditHistoryRequest, PincodeMopUpdateAuditHistoryResponse, PincodeMopUpdateAuditHistoryResponseData, PincodeMopUpdateResponse, ProductReturnConfigResponse, ServiceabilityErrorResponse, TimmingResponse, UpdateZoneData, WarningsResponse, ZoneDataItem, ZoneMappingType, ZoneProductTypes, ZoneRequest, ZoneResponse, ZoneSuccessResponse, ZoneUpdateRequest };
 }
 /** @returns {AddressResponse} */
 declare function AddressResponse(): AddressResponse;
@@ -709,32 +470,6 @@ type AddressResponse = {
     longitude?: number;
     pincode?: number;
     state?: string;
-};
-/** @returns {ApplicationCompanyDpViewRequest} */
-declare function ApplicationCompanyDpViewRequest(): ApplicationCompanyDpViewRequest;
-type ApplicationCompanyDpViewRequest = {
-    dp_id?: string;
-};
-/** @returns {ApplicationCompanyDpViewResponse} */
-declare function ApplicationCompanyDpViewResponse(): ApplicationCompanyDpViewResponse;
-type ApplicationCompanyDpViewResponse = {
-    application_id: string;
-    company_id: number;
-    courier_partner_id?: number;
-    success: boolean;
-};
-/** @returns {ApplicationSelfShipConfig} */
-declare function ApplicationSelfShipConfig(): ApplicationSelfShipConfig;
-type ApplicationSelfShipConfig = {
-    self_ship?: SelfShipResponse;
-};
-/** @returns {ApplicationSelfShipConfigResponse} */
-declare function ApplicationSelfShipConfigResponse(): ApplicationSelfShipConfigResponse;
-type ApplicationSelfShipConfigResponse = {
-    error?: ServiceabilityErrorResponse;
-    id: string;
-    self_ship?: ApplicationSelfShipConfig;
-    success: boolean;
 };
 /** @returns {ApplicationServiceabilityConfig} */
 declare function ApplicationServiceabilityConfig(): ApplicationServiceabilityConfig;
@@ -750,58 +485,12 @@ type ApplicationServiceabilityConfigResponse = {
     error?: ServiceabilityErrorResponse;
     success: boolean;
 };
-/** @returns {BulkRecordError} */
-declare function BulkRecordError(): BulkRecordError;
-type BulkRecordError = {
-    error: string[];
-    is_error: boolean;
-};
-/** @returns {BulkRegionData} */
-declare function BulkRegionData(): BulkRegionData;
-type BulkRegionData = {
-    action: string;
-    batch_id: string;
-    created_on?: string;
-    error?: BulkRecordError;
-    failed_count: number;
-    failed_rec?: CSVFileRecord[];
-    file_path: string;
-    stage: string;
-    success_count: number;
-    total_rec: number;
-};
-/** @returns {BulkRegionJobSerializer} */
-declare function BulkRegionJobSerializer(): BulkRegionJobSerializer;
-type BulkRegionJobSerializer = {
-    action: string;
-    batch_id: string;
-    country_iso_code?: string;
-    file_url: string;
-    job_action: string;
-};
 /** @returns {CommonError} */
 declare function CommonError(): CommonError;
 type CommonError = {
     error?: any;
     status_code?: string;
     success?: string;
-};
-/** @returns {CompanyDpAccountListResponse} */
-declare function CompanyDpAccountListResponse(): CompanyDpAccountListResponse;
-type CompanyDpAccountListResponse = {
-    items: Dp1[];
-    page: Page;
-    success: boolean;
-};
-/** @returns {CompanyDpAccountRequest} */
-declare function CompanyDpAccountRequest(): CompanyDpAccountRequest;
-type CompanyDpAccountRequest = {
-    data: Dp1[];
-};
-/** @returns {CompanyDpAccountResponse} */
-declare function CompanyDpAccountResponse(): CompanyDpAccountResponse;
-type CompanyDpAccountResponse = {
-    success: boolean;
 };
 /** @returns {CompanyStoreView_PageItems} */
 declare function CompanyStoreView_PageItems(): CompanyStoreView_PageItems;
@@ -844,22 +533,6 @@ type CreateZoneData = {
     slug: string;
     store_ids: number[];
 };
-/** @returns {CSVFileRecord} */
-declare function CSVFileRecord(): CSVFileRecord;
-type CSVFileRecord = {
-    country?: string;
-    dp_id?: number;
-    error?: string[];
-    from_region?: string;
-    is_error?: boolean;
-    max_tat?: number;
-    min_tat?: number;
-    plan_id?: number;
-    region_type?: string;
-    s_no?: number;
-    tat_type?: string;
-    to_region?: string;
-};
 /** @returns {DocumentsResponse} */
 declare function DocumentsResponse(): DocumentsResponse;
 type DocumentsResponse = {
@@ -881,128 +554,6 @@ type Dp = {
     payment_mode?: string;
     rvp_priority?: number;
     transport_mode?: string;
-};
-/** @returns {Dp1} */
-declare function Dp1(): Dp1;
-type Dp1 = {
-    account_id: string;
-    dp_id: string;
-    is_self_ship: boolean;
-    name: string;
-    plan_id: string;
-    plan_rules: any;
-    stage: string;
-};
-/** @returns {DpAccountFailureResponse} */
-declare function DpAccountFailureResponse(): DpAccountFailureResponse;
-type DpAccountFailureResponse = {
-    error: ErrorResponse[];
-    status_code: number;
-    success: boolean;
-};
-/** @returns {DPApplicationRuleRequest} */
-declare function DPApplicationRuleRequest(): DPApplicationRuleRequest;
-type DPApplicationRuleRequest = {
-    shipping_rules: string[];
-};
-/** @returns {DPApplicationRuleResponse} */
-declare function DPApplicationRuleResponse(): DPApplicationRuleResponse;
-type DPApplicationRuleResponse = {
-    data: DpRuleResponse[];
-    status_code: boolean;
-    success: boolean;
-};
-/** @returns {DPCompanyRuleRequest} */
-declare function DPCompanyRuleRequest(): DPCompanyRuleRequest;
-type DPCompanyRuleRequest = {
-    rule_ids: string[];
-};
-/** @returns {DPCompanyRuleResponse} */
-declare function DPCompanyRuleResponse(): DPCompanyRuleResponse;
-type DPCompanyRuleResponse = {
-    data: DpRuleResponse[];
-    status_code: number;
-    success: boolean;
-};
-/** @returns {DpIds} */
-declare function DpIds(): DpIds;
-type DpIds = {
-    enabled: boolean;
-    meta?: any;
-    priority: number;
-};
-/** @returns {DpMultipleRuleSuccessResponse} */
-declare function DpMultipleRuleSuccessResponse(): DpMultipleRuleSuccessResponse;
-type DpMultipleRuleSuccessResponse = {
-    items: DpRule[];
-    page: Page;
-    success: boolean;
-};
-/** @returns {DpRule} */
-declare function DpRule(): DpRule;
-type DpRule = {
-    company_id?: number;
-    conditions: any[];
-    dp_ids: any;
-    is_active?: boolean;
-    name: string;
-};
-/** @returns {DpRuleRequest} */
-declare function DpRuleRequest(): DpRuleRequest;
-type DpRuleRequest = {
-    company_id?: number;
-    conditions: any[];
-    dp_ids: any;
-    is_active?: boolean;
-    name: string;
-};
-/** @returns {DpRuleResponse} */
-declare function DpRuleResponse(): DpRuleResponse;
-type DpRuleResponse = {
-    company_id: number;
-    conditions: string[];
-    created_by?: any;
-    created_on?: string;
-    dp_ids: any;
-    is_active?: boolean;
-    modified_by?: any;
-    modified_on?: string;
-    name: string;
-    uid: string;
-};
-/** @returns {DpRuleSuccessResponse} */
-declare function DpRuleSuccessResponse(): DpRuleSuccessResponse;
-type DpRuleSuccessResponse = {
-    data: DpRule;
-    status_code: number;
-    success: boolean;
-};
-/** @returns {DpRulesUpdateRequest} */
-declare function DpRulesUpdateRequest(): DpRulesUpdateRequest;
-type DpRulesUpdateRequest = {
-    conditions: any[];
-    dp_ids: any;
-    is_active: boolean;
-    name: string;
-};
-/** @returns {DpRuleUpdateSuccessResponse} */
-declare function DpRuleUpdateSuccessResponse(): DpRuleUpdateSuccessResponse;
-type DpRuleUpdateSuccessResponse = {
-    data: DpRuleResponse;
-    status_code: number;
-    success: boolean;
-};
-/** @returns {DpSchemaInRuleListing} */
-declare function DpSchemaInRuleListing(): DpSchemaInRuleListing;
-type DpSchemaInRuleListing = {
-    account_id: string;
-    dp_id: string;
-    is_self_ship: boolean;
-    name: string;
-    plan_id: string;
-    plan_rules: any;
-    priority: number;
-    stage: string;
 };
 /** @returns {EinvoiceResponse} */
 declare function EinvoiceResponse(): EinvoiceResponse;
@@ -1053,31 +604,10 @@ type Error = {
     type?: string;
     value?: string;
 };
-/** @returns {ErrorResponse} */
-declare function ErrorResponse(): ErrorResponse;
-type ErrorResponse = {
-    message: string;
-    type: string;
-    value: string;
-};
 /** @returns {EwayBillResponse} */
 declare function EwayBillResponse(): EwayBillResponse;
 type EwayBillResponse = {
     enabled?: boolean;
-};
-/** @returns {FailureResponse} */
-declare function FailureResponse(): FailureResponse;
-type FailureResponse = {
-    error: ErrorResponse[];
-    status_code: number;
-    success: boolean;
-};
-/** @returns {GetBulkRegionJobResponse} */
-declare function GetBulkRegionJobResponse(): GetBulkRegionJobResponse;
-type GetBulkRegionJobResponse = {
-    batch_id?: string;
-    current_page_number?: number;
-    data: BulkRegionData[];
 };
 /** @returns {GetSingleZoneDataViewResponse} */
 declare function GetSingleZoneDataViewResponse(): GetSingleZoneDataViewResponse;
@@ -1088,7 +618,7 @@ type GetSingleZoneDataViewResponse = {
 declare function GetStoresViewResponse(): GetStoresViewResponse;
 type GetStoresViewResponse = {
     items?: ItemResponse[];
-    page: ServiceabilityPageResponse;
+    page: PageResponse;
 };
 /** @returns {GetZoneDataViewChannels} */
 declare function GetZoneDataViewChannels(): GetZoneDataViewChannels;
@@ -1245,16 +775,14 @@ type OpeningClosing = {
     hour?: number;
     minute?: number;
 };
-/** @returns {Page} */
-declare function Page(): Page;
-type Page = {
+/** @returns {PageResponse} */
+declare function PageResponse(): PageResponse;
+type PageResponse = {
     current?: number;
     has_next?: boolean;
-    has_previous?: boolean;
     item_total?: number;
-    next_id?: string;
     size?: number;
-    type: string;
+    type?: string;
 };
 /** @returns {PincodeBulkViewResponse} */
 declare function PincodeBulkViewResponse(): PincodeBulkViewResponse;
@@ -1362,41 +890,10 @@ type PincodeMopUpdateResponse = {
     is_active: boolean;
     pincode: number;
 };
-/** @returns {PostBulkRegionJobResponse} */
-declare function PostBulkRegionJobResponse(): PostBulkRegionJobResponse;
-type PostBulkRegionJobResponse = {
-    batch_id: string;
-    event_emitted: boolean;
-    message: string;
-    response: boolean;
-};
 /** @returns {ProductReturnConfigResponse} */
 declare function ProductReturnConfigResponse(): ProductReturnConfigResponse;
 type ProductReturnConfigResponse = {
     on_same_store?: boolean;
-};
-/** @returns {ReAssignStoreRequest} */
-declare function ReAssignStoreRequest(): ReAssignStoreRequest;
-type ReAssignStoreRequest = {
-    articles: any[];
-    configuration: any;
-    identifier: string;
-    ignored_locations: string[];
-    to_pincode: string;
-};
-/** @returns {ReAssignStoreResponse} */
-declare function ReAssignStoreResponse(): ReAssignStoreResponse;
-type ReAssignStoreResponse = {
-    articles?: any[];
-    error: any;
-    success: boolean;
-    to_pincode: string;
-};
-/** @returns {SelfShipResponse} */
-declare function SelfShipResponse(): SelfShipResponse;
-type SelfShipResponse = {
-    active: boolean;
-    tat: number;
 };
 /** @returns {ServiceabilityErrorResponse} */
 declare function ServiceabilityErrorResponse(): ServiceabilityErrorResponse;
@@ -1404,15 +901,6 @@ type ServiceabilityErrorResponse = {
     message: string;
     type: string;
     value: string;
-};
-/** @returns {ServiceabilityPageResponse} */
-declare function ServiceabilityPageResponse(): ServiceabilityPageResponse;
-type ServiceabilityPageResponse = {
-    current?: number;
-    has_next?: boolean;
-    item_total?: number;
-    size?: number;
-    type?: string;
 };
 /** @returns {TimmingResponse} */
 declare function TimmingResponse(): TimmingResponse;
