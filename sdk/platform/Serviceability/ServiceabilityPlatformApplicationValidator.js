@@ -2,7 +2,16 @@ const Joi = require("joi");
 
 const ServiceabilityPlatformModel = require("./ServiceabilityPlatformModel");
 
+/**
+ * @typedef addAppDp
+ * @property {ServiceabilityPlatformModel.ApplicationCompanyDpViewRequest} body
+ */
+
 /** @typedef getApplicationServiceability */
+
+/** @typedef getApplicationServiceabilitySelfShipment */
+
+/** @typedef getDpApplicationRulePriority */
 
 /**
  * @typedef getZoneFromPincodeView
@@ -15,6 +24,11 @@ const ServiceabilityPlatformModel = require("./ServiceabilityPlatformModel");
  * @property {number} [pageSize] - Determines the items to be displayed in a page
  * @property {string[]} [zoneId] - List of zones to query for
  * @property {string} [q] - Search with name as a free text
+ */
+
+/**
+ * @typedef patchApplicationServiceabilitySelfShipment
+ * @property {ServiceabilityPlatformModel.SelfShipResponse} body
  */
 
 /**
@@ -37,9 +51,31 @@ const ServiceabilityPlatformModel = require("./ServiceabilityPlatformModel");
  * @property {ServiceabilityPlatformModel.PincodeMopData} body
  */
 
+/**
+ * @typedef upsertDpApplicationRulePriority
+ * @property {ServiceabilityPlatformModel.DPApplicationRuleRequest} body
+ */
+
 class ServiceabilityPlatformApplicationValidator {
+  /** @returns {addAppDp} */
+  static addAppDp() {
+    return Joi.object({
+      body: ServiceabilityPlatformModel.ApplicationCompanyDpViewRequest().required(),
+    }).required();
+  }
+
   /** @returns {getApplicationServiceability} */
   static getApplicationServiceability() {
+    return Joi.object({}).required();
+  }
+
+  /** @returns {getApplicationServiceabilitySelfShipment} */
+  static getApplicationServiceabilitySelfShipment() {
+    return Joi.object({}).required();
+  }
+
+  /** @returns {getDpApplicationRulePriority} */
+  static getDpApplicationRulePriority() {
     return Joi.object({}).required();
   }
 
@@ -57,6 +93,13 @@ class ServiceabilityPlatformApplicationValidator {
       pageSize: Joi.number(),
       zoneId: Joi.array().items(Joi.string().allow("")),
       q: Joi.string().allow(""),
+    }).required();
+  }
+
+  /** @returns {patchApplicationServiceabilitySelfShipment} */
+  static patchApplicationServiceabilitySelfShipment() {
+    return Joi.object({
+      body: ServiceabilityPlatformModel.SelfShipResponse().required(),
     }).required();
   }
 
@@ -85,6 +128,13 @@ class ServiceabilityPlatformApplicationValidator {
   static updatePincodeMopView() {
     return Joi.object({
       body: ServiceabilityPlatformModel.PincodeMopData().required(),
+    }).required();
+  }
+
+  /** @returns {upsertDpApplicationRulePriority} */
+  static upsertDpApplicationRulePriority() {
+    return Joi.object({
+      body: ServiceabilityPlatformModel.DPApplicationRuleRequest().required(),
     }).required();
   }
 }
