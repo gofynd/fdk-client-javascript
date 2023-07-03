@@ -2,62 +2,59 @@
 
 
 
+
 ##### [Back to Application docs](./README.md)
 
 ## Cart Methods
 Cart APIs
+
+* [addAddress](#addaddress)
+* [addItems](#additems)
+* [applyCoupon](#applycoupon)
+* [applyRewardPoints](#applyrewardpoints)
+* [checkoutCart](#checkoutcart)
+* [checkoutCartV2](#checkoutcartv2)
+* [deleteCart](#deletecart)
+* [getAddressById](#getaddressbyid)
+* [getAddresses](#getaddresses)
+* [getBulkDiscountOffers](#getbulkdiscountoffers)
 * [getCart](#getcart)
 * [getCartLastModified](#getcartlastmodified)
-* [addItems](#additems)
-* [updateCart](#updatecart)
-* [deleteCart](#deletecart)
-* [getItemCount](#getitemcount)
-* [getCoupons](#getcoupons)
-* [applyCoupon](#applycoupon)
-* [removeCoupon](#removecoupon)
-* [getBulkDiscountOffers](#getbulkdiscountoffers)
-* [applyRewardPoints](#applyrewardpoints)
-* [getAddresses](#getaddresses)
-* [addAddress](#addaddress)
-* [getAddressById](#getaddressbyid)
-* [updateAddress](#updateaddress)
-* [removeAddress](#removeaddress)
-* [selectAddress](#selectaddress)
-* [selectPaymentMode](#selectpaymentmode)
-* [validateCouponForPayment](#validatecouponforpayment)
-* [getShipments](#getshipments)
-* [checkoutCart](#checkoutcart)
-* [updateCartMeta](#updatecartmeta)
 * [getCartShareLink](#getcartsharelink)
 * [getCartSharedItems](#getcartshareditems)
-* [updateCartWithSharedItems](#updatecartwithshareditems)
-* [getPromotionOffers](#getpromotionoffers)
+* [getCoupons](#getcoupons)
+* [getItemCount](#getitemcount)
 * [getLadderOffers](#getladderoffers)
+* [getPromotionOffers](#getpromotionoffers)
+* [getShipments](#getshipments)
+* [removeAddress](#removeaddress)
+* [removeCoupon](#removecoupon)
+* [selectAddress](#selectaddress)
+* [selectPaymentMode](#selectpaymentmode)
+* [updateAddress](#updateaddress)
+* [updateCart](#updatecart)
+* [updateCartMeta](#updatecartmeta)
+* [updateCartWithSharedItems](#updatecartwithshareditems)
+* [validateCouponForPayment](#validatecouponforpayment)
 
 
 
 ## Methods with example and description
 
 
-### getCart
-Fetch all items added to the cart
+
+
+### addAddress
+Add address to an account
 
 
 
 ```javascript
 // Promise
-const promise = cart.getCart({  id : value,
- i : value,
- b : value,
- assignCardId : value,
- buyNow : value });
+const promise = applicationClient.cart.addAddress({  body : value });
 
 // Async/Await
-const data = await cart.getCart({  id : value,
- i : value,
- b : value,
- assignCardId : value,
- buyNow : value });
+const data = await applicationClient.cart.addAddress({  body : value });
 ```
 
 
@@ -65,25 +62,20 @@ const data = await cart.getCart({  id : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| id | string | no |  |    
-| i | boolean | no |  |    
-| b | boolean | no |  |    
-| assignCardId | number | no |  |    
-| buyNow | boolean | no |  |  
+| --------- | -----  | -------- | ----------- |
+| body | [Address](#Address) | yes | Request body |
 
 
-
-Use this API to get details of all the items added to a cart.
+Use this API to add an address to an account.
 
 *Returned Response:*
 
 
 
 
-[CartDetailResponse](#CartDetailResponse)
+[SaveAddressResponse](#SaveAddressResponse)
 
-Success. Returns a Cart object. Check the example shown below or refer `CartDetailResponse` for more details.
+Success. Returns the address ID, a flag whether the address is set as default, and a success message. Refer `SaveAddressResponse` for more details.
 
 
 
@@ -93,213 +85,13 @@ Success. Returns a Cart object. Check the example shown below or refer `CartDeta
 
 ```json
 {
-  "items": [
-    {
-      "bulk_offer": {},
-      "discount": "67% OFF",
-      "article": {
-        "type": "article",
-        "uid": "604_902_SSTC60401_636BLUE_1",
-        "size": "1",
-        "seller": {
-          "uid": 604,
-          "name": "SHRI SHANTINATH TRADING COMPANY"
-        },
-        "store": {
-          "uid": 4579,
-          "name": "Gandhi Nagar"
-        },
-        "quantity": 108,
-        "price": {
-          "base": {
-            "marked": 2999,
-            "effective": 999,
-            "currency_code": "INR"
-          },
-          "converted": {
-            "marked": 2999,
-            "effective": 999,
-            "currency_code": "INR"
-          }
-        }
-      },
-      "coupon_message": "",
-      "key": "707569_1",
-      "availability": {
-        "sizes": [
-          "1",
-          "8",
-          "7",
-          "2",
-          "9",
-          "5",
-          "3",
-          "6"
-        ],
-        "other_store_quantity": 107,
-        "out_of_stock": false,
-        "deliverable": true,
-        "is_valid": true
-      },
-      "product": {
-        "type": "product",
-        "uid": 707569,
-        "name": "Blue and Gold Printed Ethnic Set",
-        "slug": "aj-dezines-blue-and-gold-printed-ethnic-set-707569-bff01a",
-        "brand": {
-          "uid": 902,
-          "name": ""
-        },
-        "categories": [
-          {
-            "uid": 525,
-            "name": ""
-          }
-        ],
-        "images": [
-          {
-            "aspect_ratio": "16:25",
-            "url": "http://cdn4.gofynd.com/media/pictures/tagged_items/original/902_636BLUE/1_1540301094877.jpg",
-            "secure_url": "https://d2zv4gzhlr4ud6.cloudfront.net/media/pictures/tagged_items/original/902_636BLUE/1_1540301094877.jpg"
-          }
-        ],
-        "action": {
-          "type": "product",
-          "url": "https://api.addsale.com/v1/products/aj-dezines-blue-and-gold-printed-ethnic-set-707569-bff01a/",
-          "query": {
-            "product_slug": [
-              "aj-dezines-blue-and-gold-printed-ethnic-set-707569-bff01a"
-            ]
-          }
-        }
-      },
-      "price": {
-        "base": {
-          "add_on": 999,
-          "marked": 2999,
-          "effective": 999,
-          "selling": 999,
-          "currency_code": "INR"
-        },
-        "converted": {
-          "add_on": 999,
-          "marked": 2999,
-          "effective": 999,
-          "selling": 999,
-          "currency_code": "INR"
-        }
-      },
-      "message": "",
-      "quantity": 1
-    }
-  ],
-  "buy_now": false,
-  "cart_id": 54,
-  "uid": "54",
-  "breakup_values": {
-    "raw": {
-      "cod_charge": 0,
-      "convenience_fee": 0,
-      "coupon": 0,
-      "delivery_charge": 0,
-      "discount": -2000,
-      "fynd_cash": 0,
-      "gst_charges": 47.57,
-      "mrp_total": 2999,
-      "subtotal": 999,
-      "total": 999,
-      "vog": 951.43,
-      "you_saved": 0
-    },
-    "coupon": {
-      "type": "cash",
-      "code": "",
-      "uid": null,
-      "value": 0,
-      "is_applied": false,
-      "message": "Sorry! Invalid Coupon"
-    },
-    "display": [
-      {
-        "display": "MRP Total",
-        "key": "mrp_total",
-        "value": 2999,
-        "currency_code": "INR"
-      },
-      {
-        "display": "Discount",
-        "key": "discount",
-        "value": -2000,
-        "currency_code": "INR"
-      },
-      {
-        "display": "Subtotal",
-        "key": "subtotal",
-        "value": 999,
-        "currency_code": "INR"
-      },
-      {
-        "display": "Total",
-        "key": "total",
-        "value": 999,
-        "currency_code": "INR"
-      }
-    ],
-    "loyalty_points": {
-      "total": 0,
-      "applicable": 0,
-      "is_applied": false,
-      "description": "Your cashback, referrals, and refund amount get credited to Fynd Cash which can be redeemed while placing an order."
-    }
-  },
-  "delivery_charge_info": "",
-  "coupon_text": "View all offers",
-  "gstin": null,
-  "checkout_mode": "self",
-  "restrict_checkout": false,
-  "is_valid": true,
-  "last_modified": "Tue, 03 Sep 2019 05:35:59 GMT"
+  "id": "mongo_object_id",
+  "is_default_address": true,
+  "success": true
 }
 ```
 </details>
 
-
-
-
-
-
-
-
-
----
-
-
-### getCartLastModified
-Fetch last-modified timestamp
-
-
-
-```javascript
-// Promise
-const promise = cart.getCartLastModified({  id : value });
-
-// Async/Await
-const data = await cart.getCartLastModified({  id : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| id | string | no |  |  
-
-
-
-Use this API to fetch Last-Modified timestamp in header metadata.
-
-*Returned Response:*
 
 
 
@@ -318,13 +110,13 @@ Add items to cart
 
 ```javascript
 // Promise
-const promise = cart.addItems({  body : value,
+const promise = applicationClient.cart.addItems({  body : value,
  i : value,
  b : value,
  buyNow : value });
 
 // Async/Await
-const data = await cart.addItems({  body : value,
+const data = await applicationClient.cart.addItems({  body : value,
  i : value,
  b : value,
  buyNow : value });
@@ -1020,662 +812,6 @@ Success. Returns a cart object as shown below. Refer `AddCartDetailResponse` for
 ---
 
 
-### updateCart
-Update items in the cart
-
-
-
-```javascript
-// Promise
-const promise = cart.updateCart({  body : value,
- id : value,
- i : value,
- b : value,
- buyNow : value });
-
-// Async/Await
-const data = await cart.updateCart({  body : value,
- id : value,
- i : value,
- b : value,
- buyNow : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| id | string | no |  |    
-| i | boolean | no |  |    
-| b | boolean | no |  |    
-| buyNow | boolean | no |  |  
-| body | [UpdateCartRequest](#UpdateCartRequest) | yes | Request body |
-
-
-<p>Use this API to update items added to the cart with the help of a request object containing attributes like item_quantity and item_size. These attributes will be fetched from the following APIs</p> <ul> <li><font color="monochrome">operation</font> Operation for current api call. <b>update_item</b> for update items. <b>remove_item</b> for removing items.</li> <li> <font color="monochrome">item_id</font>  "/platform/content/v1/products/"</li> <li> <font color="monochrome">item_size</font>   "/platform/content/v1/products/:slug/sizes/"</li> <li> <font color="monochrome">quantity</font>  item quantity (must be greater than or equal to 1)</li> <li> <font color="monochrome">article_id</font>   "/content​/v1​/products​/:identifier​/sizes​/price​/"</li> <li> <font color="monochrome">item_index</font>  item position in the cart (must be greater than or equal to 0)</li> </ul>
-
-*Returned Response:*
-
-
-
-
-[UpdateCartDetailResponse](#UpdateCartDetailResponse)
-
-Success. Updates and returns a cart object as shown below. Refer `UpdateCartDetailResponse` for more details.
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; Nothing updated</i></summary>
-
-```json
-{
-  "value": {
-    "cart": {
-      "breakup_values": {
-        "raw": {
-          "cod_charge": 0,
-          "convenience_fee": 0,
-          "coupon": 0,
-          "delivery_charge": 0,
-          "discount": -202000,
-          "fynd_cash": 0,
-          "gst_charges": 4804.71,
-          "mrp_total": 302899,
-          "subtotal": 100899,
-          "total": 100899,
-          "vog": 96094.29,
-          "you_saved": 0
-        },
-        "coupon": {
-          "type": "cash",
-          "code": "",
-          "uid": null,
-          "value": 0,
-          "is_applied": false,
-          "message": "Sorry! Invalid Coupon"
-        },
-        "display": [
-          {
-            "display": "MRP Total",
-            "key": "mrp_total",
-            "value": 302899,
-            "currency_code": "INR"
-          },
-          {
-            "display": "Discount",
-            "key": "discount",
-            "value": -202000,
-            "currency_code": "INR"
-          },
-          {
-            "display": "Subtotal",
-            "key": "subtotal",
-            "value": 100899,
-            "currency_code": "INR"
-          },
-          {
-            "display": "Total",
-            "key": "total",
-            "value": 100899,
-            "currency_code": "INR"
-          }
-        ],
-        "loyalty_points": {
-          "total": 0,
-          "applicable": 0,
-          "is_applied": false,
-          "description": "Your cashback, referrals, and refund amount get credited to Fynd Cash which can be redeemed while placing an order."
-        }
-      },
-      "items": [
-        {
-          "bulk_offer": {},
-          "discount": "67% OFF",
-          "parent_item_identifiers": {
-            "identifier": "ZASFF",
-            "parent_item_id": 7501190,
-            "parent_item_size": "OS"
-          },
-          "article": {
-            "type": "article",
-            "uid": "604_902_SSTC60401_636BLUE_1",
-            "size": "1",
-            "seller": {
-              "uid": 604,
-              "name": "SHRI SHANTINATH TRADING COMPANY"
-            },
-            "store": {
-              "uid": 4579,
-              "name": "Gandhi Nagar"
-            },
-            "quantity": 108,
-            "price": {
-              "base": {
-                "marked": 2999,
-                "effective": 999,
-                "currency_code": "INR"
-              },
-              "converted": {
-                "marked": 2999,
-                "effective": 999,
-                "currency_code": "INR"
-              }
-            }
-          },
-          "coupon_message": "",
-          "key": "707569_1",
-          "availability": {
-            "sizes": [
-              "1",
-              "8",
-              "7",
-              "2",
-              "9",
-              "5",
-              "3",
-              "6"
-            ],
-            "other_store_quantity": 7,
-            "out_of_stock": false,
-            "deliverable": true,
-            "is_valid": true
-          },
-          "product": {
-            "type": "product",
-            "uid": 707569,
-            "name": "Blue and Gold Printed Ethnic Set",
-            "slug": "aj-dezines-blue-and-gold-printed-ethnic-set-707569-bff01a",
-            "brand": {
-              "uid": 902,
-              "name": ""
-            },
-            "categories": [
-              {
-                "uid": 525,
-                "name": ""
-              }
-            ],
-            "images": [
-              {
-                "aspect_ratio": "16:25",
-                "url": "http://cdn4.gofynd.com/media/pictures/tagged_items/original/902_636BLUE/1_1540301094877.jpg",
-                "secure_url": "https://d2zv4gzhlr4ud6.cloudfront.net/media/pictures/tagged_items/original/902_636BLUE/1_1540301094877.jpg"
-              }
-            ],
-            "action": {
-              "type": "product",
-              "url": "https://api.addsale.com/v1/products/aj-dezines-blue-and-gold-printed-ethnic-set-707569-bff01a/",
-              "query": {
-                "product_slug": [
-                  "aj-dezines-blue-and-gold-printed-ethnic-set-707569-bff01a"
-                ]
-              }
-            }
-          },
-          "price": {
-            "base": {
-              "add_on": 100899,
-              "marked": 302899,
-              "effective": 100899,
-              "selling": 100899,
-              "currency_code": "INR"
-            },
-            "converted": {
-              "add_on": 100899,
-              "marked": 302899,
-              "effective": 100899,
-              "selling": 100899,
-              "currency_code": "INR"
-            }
-          },
-          "message": "",
-          "quantity": 101
-        }
-      ],
-      "delivery_charge_info": "",
-      "coupon_text": "View all offers",
-      "buy_now": false,
-      "cart_id": 54,
-      "uid": "54",
-      "gstin": null,
-      "checkout_mode": "self",
-      "restrict_checkout": false,
-      "is_valid": true,
-      "last_modified": "Tue, 03 Sep 2019 10:19:20 GMT"
-    },
-    "result": {
-      "707569_90": {
-        "success": true,
-        "message": "Nothing updated"
-      }
-    },
-    "message": "Nothing updated",
-    "success": true
-  }
-}
-```
-</details>
-
-<details>
-<summary><i>&nbsp; Item updated in the cart</i></summary>
-
-```json
-{
-  "value": {
-    "cart": {
-      "breakup_values": {
-        "coupon": {
-          "type": "cash",
-          "code": "",
-          "uid": null,
-          "value": 0,
-          "is_applied": false,
-          "message": "Sorry! Invalid Coupon"
-        },
-        "loyalty_points": {
-          "total": 0,
-          "applicable": 0,
-          "is_applied": false,
-          "description": "Your cashback, referrals, and refund amount get credited to Fynd Cash which can be redeemed while placing an order."
-        },
-        "raw": {
-          "cod_charge": 0,
-          "convenience_fee": 0,
-          "coupon": 0,
-          "delivery_charge": 0,
-          "discount": 0,
-          "fynd_cash": 0,
-          "gst_charges": 838.83,
-          "mrp_total": 5499,
-          "subtotal": 5499,
-          "total": 5499,
-          "vog": 4660.17,
-          "you_saved": 0
-        },
-        "display": [
-          {
-            "display": "MRP Total",
-            "key": "mrp_total",
-            "value": 5499,
-            "currency_code": "INR"
-          },
-          {
-            "display": "Subtotal",
-            "key": "subtotal",
-            "value": 5499,
-            "currency_code": "INR"
-          },
-          {
-            "display": "Total",
-            "key": "total",
-            "value": 5499,
-            "currency_code": "INR"
-          }
-        ]
-      },
-      "items": [
-        {
-          "key": "437414_7",
-          "message": "",
-          "bulk_offer": {},
-          "price": {
-            "base": {
-              "add_on": 5499,
-              "marked": 5499,
-              "effective": 5499,
-              "selling": 5499,
-              "currency_code": "INR"
-            },
-            "converted": {
-              "add_on": 5499,
-              "marked": 5499,
-              "effective": 5499,
-              "selling": 5499,
-              "currency_code": "INR"
-            }
-          },
-          "quantity": 1,
-          "discount": "",
-          "product": {
-            "type": "product",
-            "uid": 437414,
-            "name": "Suede Classic",
-            "slug": "puma-suede-classic-437414-6e6bbf",
-            "brand": {
-              "uid": 9,
-              "name": "Puma"
-            },
-            "categories": [
-              {
-                "uid": 165,
-                "name": "Outdoor Sports Shoes"
-              }
-            ],
-            "images": [
-              {
-                "aspect_ratio": "16:25",
-                "url": "http://cdn4.gofynd.com/media/pictures/tagged_items/original/9_35656851/1_1511171811830.jpg",
-                "secure_url": "https://d2zv4gzhlr4ud6.cloudfront.net/media/pictures/tagged_items/original/9_35656851/1_1511171811830.jpg"
-              }
-            ],
-            "action": {
-              "type": "product",
-              "url": "https://api.addsale.com/platform/content/v1/products/puma-suede-classic-437414-6e6bbf/",
-              "query": {
-                "product_slug": [
-                  "puma-suede-classic-437414-6e6bbf"
-                ]
-              }
-            }
-          },
-          "parent_item_identifiers": {
-            "identifier": "ZASFF",
-            "parent_item_id": 7501190,
-            "parent_item_size": "OS"
-          },
-          "article": {
-            "type": "article",
-            "uid": "507_9_96099_35656851_7",
-            "size": "7",
-            "seller": {
-              "uid": 507,
-              "name": "PUMA SPORTS INDIA PVT LTD"
-            },
-            "store": {
-              "uid": 3632,
-              "name": "Colaba Causway"
-            },
-            "quantity": 5,
-            "price": {
-              "base": {
-                "marked": 5499,
-                "effective": 5499,
-                "currency_code": "INR"
-              },
-              "converted": {
-                "marked": 5499,
-                "effective": 5499,
-                "currency_code": "INR"
-              }
-            }
-          },
-          "coupon_message": "",
-          "availability": {
-            "sizes": [
-              "10",
-              "11",
-              "6",
-              "9",
-              "7",
-              "8"
-            ],
-            "other_store_quantity": 22,
-            "out_of_stock": false,
-            "deliverable": true,
-            "is_valid": true
-          }
-        }
-      ],
-      "delivery_charge_info": "",
-      "coupon_text": "View all offers",
-      "buy_now": false,
-      "cart_id": 12426,
-      "uid": "12426",
-      "gstin": null,
-      "checkout_mode": "self",
-      "last_modified": "Thu, 22 Aug 2019 04:51:42 GMT",
-      "restrict_checkout": false,
-      "is_valid": true
-    },
-    "result": {
-      "437414_7": {
-        "success": true,
-        "message": "Item updated in the bag"
-      }
-    },
-    "message": "Item updated in the bag",
-    "success": true
-  }
-}
-```
-</details>
-
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### deleteCart
-Delete cart once user made successful checkout
-
-
-
-```javascript
-// Promise
-const promise = cart.deleteCart({  id : value });
-
-// Async/Await
-const data = await cart.deleteCart({  id : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| id | number | no | The unique identifier of the cart. |  
-
-
-
-Use this API to delete the cart.
-
-*Returned Response:*
-
-
-
-
-[DeleteCartDetailResponse](#DeleteCartDetailResponse)
-
-Success. Returns whether the cart has been deleted or not.
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "success": true,
-  "message": "cart archived"
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### getItemCount
-Count items in the cart
-
-
-
-```javascript
-// Promise
-const promise = cart.getItemCount({  id : value,
- buyNow : value });
-
-// Async/Await
-const data = await cart.getItemCount({  id : value,
- buyNow : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| id | string | no | The unique identifier of the cart. |    
-| buyNow | boolean | no |  |  
-
-
-
-Use this API to get the total number of items present in cart.
-
-*Returned Response:*
-
-
-
-
-[CartItemCountResponse](#CartItemCountResponse)
-
-Success. Returns the total count of items in a user's cart.
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "user_cart_items_count": 0
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### getCoupons
-Fetch Coupon
-
-
-
-```javascript
-// Promise
-const promise = cart.getCoupons({  id : value,
- buyNow : value });
-
-// Async/Await
-const data = await cart.getCoupons({  id : value,
- buyNow : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| id | string | no |  |    
-| buyNow | boolean | no |  |  
-
-
-
-Use this API to get a list of available coupons along with their details.
-
-*Returned Response:*
-
-
-
-
-[GetCouponResponse](#GetCouponResponse)
-
-Success. Returns a coupon object which has a list of all the eligible coupons. Refer `GetCouponResponse` for more details.
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "available_coupon_list": [
-    {
-      "coupon_value": 500,
-      "minimum_cart_value": 0,
-      "coupon_code": "RAJA500",
-      "title": "RAJA500 | Fynd coupon",
-      "sub_title": "NA",
-      "message": "TEST500",
-      "max_discount_value": 500,
-      "uid": 17921,
-      "is_applicable": true,
-      "is_applied": false,
-      "expires_on": "28 Aug, 19"
-    },
-    {
-      "coupon_value": 2250,
-      "minimum_cart_value": 0,
-      "coupon_code": "PRISMC22250111",
-      "title": "celio 2 time coupn to kalim hsp",
-      "sub_title": "celio 2 time coupn to kalim hsp",
-      "message": "celio 2 time coupn to kalim hsp",
-      "max_discount_value": 2250,
-      "uid": 17743,
-      "is_applicable": true,
-      "is_applied": false,
-      "expires_on": "24 Jan, 20"
-    }
-  ],
-  "page": {
-    "current": 1,
-    "total": 0,
-    "has_previous": false,
-    "has_next": false,
-    "total_item_count": 0
-  }
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
 ### applyCoupon
 Apply Coupon
 
@@ -1683,7 +819,7 @@ Apply Coupon
 
 ```javascript
 // Promise
-const promise = cart.applyCoupon({  body : value,
+const promise = applicationClient.cart.applyCoupon({  body : value,
  i : value,
  b : value,
  p : value,
@@ -1691,7 +827,7 @@ const promise = cart.applyCoupon({  body : value,
  buyNow : value });
 
 // Async/Await
-const data = await cart.applyCoupon({  body : value,
+const data = await applicationClient.cart.applyCoupon({  body : value,
  i : value,
  b : value,
  p : value,
@@ -2283,359 +1419,6 @@ Success. Returns coupons applied to the cart along with item details and price b
 ---
 
 
-### removeCoupon
-Remove Coupon Applied
-
-
-
-```javascript
-// Promise
-const promise = cart.removeCoupon({  id : value,
- buyNow : value });
-
-// Async/Await
-const data = await cart.removeCoupon({  id : value,
- buyNow : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| id | string | no |  |    
-| buyNow | boolean | no |  |  
-
-
-
-Remove Coupon applied on the cart by passing uid in request body.
-
-*Returned Response:*
-
-
-
-
-[CartDetailResponse](#CartDetailResponse)
-
-Success. Returns coupons removed from the cart along with item details and price breakup. Refer `CartDetailResponse` for more details.
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "breakup_values": {
-    "raw": {
-      "cod_charge": 0,
-      "convenience_fee": 0,
-      "coupon": 0,
-      "delivery_charge": 0,
-      "discount": 0,
-      "fynd_cash": 0,
-      "gst_charges": 342.75,
-      "mrp_total": 3199,
-      "subtotal": 3199,
-      "total": 3199,
-      "vog": 2856.25,
-      "you_saved": 0
-    },
-    "coupon": {
-      "type": "cash",
-      "code": "prismc22250111",
-      "uid": 17743,
-      "value": 0,
-      "is_applied": false,
-      "message": "Coupon successfully removed"
-    },
-    "display": [
-      {
-        "display": "MRP Total",
-        "key": "mrp_total",
-        "value": 3199,
-        "currency_code": "INR"
-      },
-      {
-        "display": "Subtotal",
-        "key": "subtotal",
-        "value": 3199,
-        "currency_code": "INR"
-      },
-      {
-        "display": "Total",
-        "key": "total",
-        "value": 3199,
-        "currency_code": "INR"
-      }
-    ],
-    "loyalty_points": {
-      "total": 0,
-      "applicable": 0,
-      "is_applied": false,
-      "description": "Your cashback, referrals, and refund amount get credited to Fynd Cash which can be redeemed while placing an order."
-    }
-  },
-  "items": [
-    {
-      "message": "",
-      "availability": {
-        "sizes": [
-          "M",
-          "S",
-          "L",
-          "XXL",
-          "XL"
-        ],
-        "other_store_quantity": 10,
-        "out_of_stock": false,
-        "deliverable": true,
-        "is_valid": true
-      },
-      "bulk_offer": {},
-      "key": "857596_S",
-      "quantity": 1,
-      "price": {
-        "base": {
-          "add_on": 3199,
-          "marked": 3199,
-          "effective": 3199,
-          "selling": 3199,
-          "currency_code": "INR"
-        },
-        "converted": {
-          "add_on": 3199,
-          "marked": 3199,
-          "effective": 3199,
-          "selling": 3199,
-          "currency_code": "INR"
-        }
-      },
-      "discount": "",
-      "coupon_message": "",
-      "product": {
-        "type": "product",
-        "uid": 857596,
-        "name": "Pink Solid Hoodie",
-        "slug": "883-police-pink-solid-hoodie-857596-111bdc",
-        "brand": {
-          "uid": 610,
-          "name": "883 Police"
-        },
-        "categories": [
-          {
-            "uid": 144,
-            "name": "Hoodies"
-          }
-        ],
-        "images": [
-          {
-            "aspect_ratio": "16:25",
-            "url": "http://cdn4.gofynd.com/media/pictures/tagged_items/original/610_LETTER19APINK/1_1553062658148.jpg",
-            "secure_url": "https://d2zv4gzhlr4ud6.cloudfront.net/media/pictures/tagged_items/original/610_LETTER19APINK/1_1553062658148.jpg"
-          }
-        ],
-        "action": {
-          "type": "product",
-          "url": "https://api.addsale.com/platform/content/v1/products/883-police-pink-solid-hoodie-857596-111bdc/",
-          "query": {
-            "product_slug": [
-              "883-police-pink-solid-hoodie-857596-111bdc"
-            ]
-          }
-        }
-      },
-      "article": {
-        "type": "article",
-        "uid": "381_610_IGPL01_LETTER19APINK_S",
-        "size": "S",
-        "seller": {
-          "uid": 381,
-          "name": "INTERSOURCE GARMENTS PVT LTD"
-        },
-        "store": {
-          "uid": 3009,
-          "name": "Kormangala"
-        },
-        "quantity": 11,
-        "price": {
-          "base": {
-            "marked": 3199,
-            "effective": 3199,
-            "currency_code": "INR"
-          },
-          "converted": {
-            "marked": 3199,
-            "effective": 3199,
-            "currency_code": "INR"
-          }
-        }
-      }
-    }
-  ],
-  "delivery_charge_info": "",
-  "coupon_text": "View all offers",
-  "buy_now": false,
-  "cart_id": 7477,
-  "uid": "7477",
-  "gstin": null,
-  "checkout_mode": "self",
-  "last_modified": "Thu, 22 Aug 2019 10:55:05 GMT",
-  "restrict_checkout": false,
-  "is_valid": true
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### getBulkDiscountOffers
-Get discount offers based on quantity
-
-
-
-```javascript
-// Promise
-const promise = cart.getBulkDiscountOffers({  itemId : value,
- articleId : value,
- uid : value,
- slug : value });
-
-// Async/Await
-const data = await cart.getBulkDiscountOffers({  itemId : value,
- articleId : value,
- uid : value,
- slug : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| itemId | number | no | The Item ID of the product |    
-| articleId | string | no | Article Mongo ID |    
-| uid | number | no | UID of the product |    
-| slug | string | no | A short, human-readable, URL-friendly identifier of a product. You can get slug value from the endpoint /service/application/catalog/v1.0/products/ |  
-
-
-
-Use this API to get a list of applicable offers along with current, next and best offer for given product. Either one of uid, item_id, slug should be present.
-
-*Returned Response:*
-
-
-
-
-[BulkPriceResponse](#BulkPriceResponse)
-
-Success. Returns a data object containing the seller details and available offers (if exists) on bulk products. Refer `BulkPriceResponse` for more details.
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; Offers found</i></summary>
-
-```json
-{
-  "value": {
-    "data": [
-      {
-        "seller": {
-          "uid": 248,
-          "name": "MANYAVAR CREATIONS PRIVATE LIMITED"
-        },
-        "offers": [
-          {
-            "quantity": 1,
-            "auto_applied": true,
-            "margin": 10,
-            "type": "bundle",
-            "price": {
-              "marked": 3999,
-              "effective": 3999,
-              "bulk_effective": 3599.1,
-              "currency_code": "INR"
-            },
-            "total": 3599.1
-          },
-          {
-            "quantity": 3,
-            "auto_applied": true,
-            "margin": 20,
-            "type": "bundle",
-            "price": {
-              "marked": 3999,
-              "effective": 3999,
-              "bulk_effective": 3199.2,
-              "currency_code": "INR"
-            },
-            "total": 9597.6
-          },
-          {
-            "quantity": 9,
-            "auto_applied": true,
-            "margin": 30,
-            "type": "bundle",
-            "price": {
-              "marked": 3999,
-              "effective": 3999,
-              "bulk_effective": 3443.4444444444,
-              "currency_code": "INR"
-            },
-            "total": 30991,
-            "best": true
-          }
-        ]
-      }
-    ]
-  }
-}
-```
-</details>
-
-<details>
-<summary><i>&nbsp; Offers not found</i></summary>
-
-```json
-{
-  "value": {
-    "data": []
-  }
-}
-```
-</details>
-
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
 ### applyRewardPoints
 Apply reward points at cart
 
@@ -2643,14 +1426,14 @@ Apply reward points at cart
 
 ```javascript
 // Promise
-const promise = cart.applyRewardPoints({  body : value,
+const promise = applicationClient.cart.applyRewardPoints({  body : value,
  id : value,
  i : value,
  b : value,
  buyNow : value });
 
 // Async/Await
-const data = await cart.applyRewardPoints({  body : value,
+const data = await applicationClient.cart.applyRewardPoints({  body : value,
  id : value,
  i : value,
  b : value,
@@ -2870,14 +1653,950 @@ Success. Returns a Cart object. Check the example shown below or refer `CartDeta
 ---
 
 
-### getAddresses
-Fetch address
+### checkoutCart
+Checkout all items in the cart
 
 
 
 ```javascript
 // Promise
-const promise = cart.getAddresses({  cartId : value,
+const promise = applicationClient.cart.checkoutCart({  body : value,
+ buyNow : value });
+
+// Async/Await
+const data = await applicationClient.cart.checkoutCart({  body : value,
+ buyNow : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| buyNow | boolean | no | This indicates the type of cart to checkout |  
+| body | [CartCheckoutDetailRequest](#CartCheckoutDetailRequest) | yes | Request body |
+
+
+Use this API to checkout all items in the cart for payment and order generation. For COD, order will be directly generated, whereas for other checkout modes, user will be redirected to a payment gateway.
+
+*Returned Response:*
+
+
+
+
+[CartCheckoutResponse](#CartCheckoutResponse)
+
+Success. Returns the status of cart checkout. Refer `CartCheckoutResponseSchema` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; Address id not found</i></summary>
+
+```json
+{
+  "value": {
+    "success": false,
+    "message": "No address found with address id {address_id}"
+  }
+}
+```
+</details>
+
+<details>
+<summary><i>&nbsp; Missing address_id</i></summary>
+
+```json
+{
+  "value": {
+    "address_id": [
+      "Missing data for required field."
+    ]
+  }
+}
+```
+</details>
+
+<details>
+<summary><i>&nbsp; Successful checkout cod payment</i></summary>
+
+```json
+{
+  "value": {
+    "success": true,
+    "cart": {
+      "success": true,
+      "error_message": "Note: Your order delivery will be delayed by 7-10 Days",
+      "payment_options": {
+        "payment_option": [
+          {
+            "name": "COD",
+            "display_name": "Cash on Delivery",
+            "display_priority": 1,
+            "payment_mode_id": 11,
+            "logo": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/cod.png",
+            "logo_url": {
+              "small": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/cod.png",
+              "large": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/cod.png"
+            },
+            "list": []
+          },
+          {
+            "name": "CARD",
+            "display_priority": 2,
+            "payment_mode_id": 2,
+            "display_name": "Card",
+            "list": []
+          },
+          {
+            "name": "NB",
+            "display_priority": 3,
+            "payment_mode_id": 3,
+            "display_name": "Net Banking",
+            "list": [
+              {
+                "aggregator_name": "Razorpay",
+                "bank_name": "ICICI Bank",
+                "bank_code": "ICIC",
+                "url": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/NB_ICICI.png",
+                "logo_url": {
+                  "small": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/NB_ICICI.png",
+                  "large": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/NB_ICICI.png"
+                },
+                "merchant_code": "NB_ICICI",
+                "display_priority": 1
+              }
+            ]
+          },
+          {
+            "name": "WL",
+            "display_priority": 4,
+            "payment_mode_id": 4,
+            "display_name": "Wallet",
+            "list": [
+              {
+                "wallet_name": "Paytm",
+                "wallet_code": "paytm",
+                "wallet_id": 4,
+                "merchant_code": "PAYTM",
+                "logo_url": {
+                  "small": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/paytm_logo_small.png",
+                  "large": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/paytm_logo_large.png"
+                },
+                "aggregator_name": "Juspay",
+                "display_priority": 1
+              }
+            ]
+          },
+          {
+            "name": "UPI",
+            "display_priority": 9,
+            "payment_mode_id": 6,
+            "display_name": "UPI",
+            "list": [
+              {
+                "aggregator_name": "UPI_Razorpay",
+                "name": "UPI",
+                "display_name": "BHIM UPI",
+                "code": "UPI",
+                "logo_url": {
+                  "small": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/upi_100x78.png",
+                  "large": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/upi_150x100.png"
+                },
+                "merchant_code": "UPI",
+                "timeout": 240,
+                "retry_count": 0,
+                "fynd_vpa": "shopsense.rzp@hdfcbank",
+                "intent_flow": true,
+                "intent_app_error_list": [
+                  "com.csam.icici.bank.imobile",
+                  "in.org.npci.upiapp",
+                  "com.whatsapp"
+                ]
+              }
+            ]
+          },
+          {
+            "name": "PL",
+            "display_priority": 11,
+            "payment_mode_id": 1,
+            "display_name": "Pay Later",
+            "list": [
+              {
+                "aggregator_name": "Simpl",
+                "name": "Simpl",
+                "code": "simpl",
+                "merchant_code": "SIMPL",
+                "logo": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/simpl_logo.png",
+                "logo_url": {
+                  "small": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/simpl_logo.png",
+                  "large": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/simpl_logo.png"
+                }
+              }
+            ]
+          }
+        ],
+        "payment_flows": {
+          "Simpl": {
+            "data": {
+              "gateway": {
+                "route": "simpl",
+                "entity": "sdk",
+                "is_customer_validation_required": true,
+                "cust_validation_url": "https://api.addsale.com/gringotts/api/v1/validate-customer/",
+                "sdk": {
+                  "config": {
+                    "redirect": false,
+                    "callback_url": null,
+                    "action_url": "https://api.addsale.com/avis/api/v1/payments/charge-gringotts-transaction/"
+                  },
+                  "data": {
+                    "user_phone": "8452996729",
+                    "user_email": "paymentsdummy@gofynd.com"
+                  }
+                },
+                "return_url": null
+              }
+            },
+            "api_link": "",
+            "payment_flow": "sdk"
+          },
+          "Juspay": {
+            "data": {},
+            "api_link": "https://sandbox.juspay.in/txns",
+            "payment_flow": "api"
+          },
+          "Razorpay": {
+            "data": {},
+            "api_link": "",
+            "payment_flow": "sdk"
+          },
+          "UPI_Razorpay": {
+            "data": {},
+            "api_link": "https://api.addsale.com/gringotts/api/v1/external/payment-initialisation/",
+            "payment_flow": "api"
+          },
+          "Fynd": {
+            "data": {},
+            "api_link": "",
+            "payment_flow": "api"
+          }
+        },
+        "default": {}
+      },
+      "user_type": "Store User",
+      "cod_charges": 0,
+      "order_id": "FY5D5E215CF287584CE6",
+      "cod_available": true,
+      "cod_message": "No additional COD charges applicable",
+      "delivery_charges": 0,
+      "delivery_charge_order_value": 0,
+      "delivery_slots": [
+        {
+          "date": "Sat, 24 Aug",
+          "delivery_slot": [
+            {
+              "delivery_slot_timing": "By 9:00 PM",
+              "default": true,
+              "delivery_slot_id": 1
+            }
+          ]
+        }
+      ],
+      "store_code": "",
+      "store_emps": [],
+      "breakup_values": {
+        "coupon": {
+          "type": "cash",
+          "code": "",
+          "uid": null,
+          "value": 0,
+          "is_applied": false,
+          "message": "Sorry! Invalid Coupon"
+        },
+        "loyalty_points": {
+          "total": 0,
+          "applicable": 0,
+          "is_applied": false,
+          "description": "Your cashback, referrals, and refund amount get credited to Fynd Cash which can be redeemed while placing an order."
+        },
+        "raw": {
+          "cod_charge": 0,
+          "convenience_fee": 0,
+          "coupon": 0,
+          "delivery_charge": 0,
+          "discount": 0,
+          "fynd_cash": 0,
+          "gst_charges": 214.18,
+          "mrp_total": 1999,
+          "subtotal": 1999,
+          "total": 1999,
+          "vog": 1784.82,
+          "you_saved": 0
+        },
+        "display": [
+          {
+            "display": "MRP Total",
+            "key": "mrp_total",
+            "value": 1999,
+            "currency_code": "INR"
+          },
+          {
+            "display": "Subtotal",
+            "key": "subtotal",
+            "value": 1999,
+            "currency_code": "INR"
+          },
+          {
+            "display": "Total",
+            "key": "total",
+            "value": 1999,
+            "currency_code": "INR"
+          }
+        ]
+      },
+      "items": [
+        {
+          "key": "820312_L",
+          "message": "",
+          "bulk_offer": {},
+          "price": {
+            "base": {
+              "add_on": 1999,
+              "marked": 1999,
+              "effective": 1999,
+              "selling": 1999,
+              "currency_code": "INR"
+            },
+            "converted": {
+              "add_on": 1999,
+              "marked": 1999,
+              "effective": 1999,
+              "selling": 1999,
+              "currency_code": "INR"
+            }
+          },
+          "quantity": 1,
+          "discount": "",
+          "product": {
+            "type": "product",
+            "uid": 820312,
+            "name": "Navy Blue Melange Shorts",
+            "slug": "883-police-navy-blue-melange-shorts-820312-4943a8",
+            "brand": {
+              "uid": 610,
+              "name": "883 Police"
+            },
+            "categories": [
+              {
+                "uid": 193,
+                "name": "Shorts"
+              }
+            ],
+            "images": [
+              {
+                "aspect_ratio": "16:25",
+                "url": "http://cdn4.gofynd.com/media/pictures/tagged_items/original/610_SPIRAL19ANAVY/1_1549105947281.jpg",
+                "secure_url": "https://d2zv4gzhlr4ud6.cloudfront.net/media/pictures/tagged_items/original/610_SPIRAL19ANAVY/1_1549105947281.jpg"
+              }
+            ],
+            "action": {
+              "type": "product",
+              "url": "https://api.addsale.com/platform/content/v1/products/883-police-navy-blue-melange-shorts-820312-4943a8/",
+              "query": {
+                "product_slug": [
+                  "883-police-navy-blue-melange-shorts-820312-4943a8"
+                ]
+              }
+            }
+          },
+          "article": {
+            "type": "article",
+            "uid": "381_610_IGPL01_SPIRAL19ANAVY_L",
+            "size": "L",
+            "seller": {
+              "uid": 381,
+              "name": "INTERSOURCE GARMENTS PVT LTD"
+            },
+            "store": {
+              "uid": 3009,
+              "name": "Kormangala"
+            },
+            "quantity": 2,
+            "price": {
+              "base": {
+                "marked": 1999,
+                "effective": 1999,
+                "currency_code": "INR"
+              },
+              "converted": {
+                "marked": 1999,
+                "effective": 1999,
+                "currency_code": "INR"
+              }
+            }
+          },
+          "coupon_message": "",
+          "availability": {
+            "sizes": [
+              "L",
+              "XL",
+              "XXL"
+            ],
+            "other_store_quantity": 1,
+            "out_of_stock": false,
+            "deliverable": true,
+            "is_valid": true
+          }
+        }
+      ],
+      "delivery_charge_info": "",
+      "coupon_text": "View all offers",
+      "cart_id": 7483,
+      "uid": "7483",
+      "gstin": null,
+      "checkout_mode": "self",
+      "last_modified": "Thu, 22 Aug 2019 04:58:44 GMT",
+      "restrict_checkout": false,
+      "is_valid": true
+    },
+    "callback_url": "https://api.addsale.com/gringotts/api/v1/external/payment-callback/",
+    "app_intercept_url": "http://uniket-testing.addsale.link/cart/order-status",
+    "message": "",
+    "data": {
+      "order_id": "FY5D5E215CF287584CE6"
+    },
+    "order_id": "FY5D5E215CF287584CE6"
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### checkoutCartV2
+Checkout all items in the cart
+
+
+
+```javascript
+// Promise
+const promise = applicationClient.cart.checkoutCartV2({  body : value,
+ buyNow : value });
+
+// Async/Await
+const data = await applicationClient.cart.checkoutCartV2({  body : value,
+ buyNow : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| buyNow | boolean | no | This indicates the type of cart to checkout |  
+| body | [CartCheckoutDetailV2Request](#CartCheckoutDetailV2Request) | yes | Request body |
+
+
+Use this API to checkout all items in the cart for payment and order generation. For COD, order will be directly generated, whereas for other checkout modes, user will be redirected to a payment gateway.
+
+*Returned Response:*
+
+
+
+
+[CartCheckoutResponse](#CartCheckoutResponse)
+
+Success. Returns the status of cart checkout. Refer `CartCheckoutResponseSchema` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; Address id not found</i></summary>
+
+```json
+{
+  "value": {
+    "success": false,
+    "message": "No address found with address id {address_id}"
+  }
+}
+```
+</details>
+
+<details>
+<summary><i>&nbsp; Missing address_id</i></summary>
+
+```json
+{
+  "value": {
+    "address_id": [
+      "Missing data for required field."
+    ]
+  }
+}
+```
+</details>
+
+<details>
+<summary><i>&nbsp; Successful checkout cod payment</i></summary>
+
+```json
+{
+  "value": {
+    "success": true,
+    "cart": {
+      "success": true,
+      "error_message": "Note: Your order delivery will be delayed by 7-10 Days",
+      "payment_options": {
+        "payment_option": [
+          {
+            "name": "COD",
+            "display_name": "Cash on Delivery",
+            "display_priority": 1,
+            "payment_mode_id": 11,
+            "logo": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/cod.png",
+            "logo_url": {
+              "small": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/cod.png",
+              "large": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/cod.png"
+            },
+            "list": []
+          },
+          {
+            "name": "CARD",
+            "display_priority": 2,
+            "payment_mode_id": 2,
+            "display_name": "Card",
+            "list": []
+          },
+          {
+            "name": "NB",
+            "display_priority": 3,
+            "payment_mode_id": 3,
+            "display_name": "Net Banking",
+            "list": [
+              {
+                "aggregator_name": "Razorpay",
+                "bank_name": "ICICI Bank",
+                "bank_code": "ICIC",
+                "url": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/NB_ICICI.png",
+                "logo_url": {
+                  "small": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/NB_ICICI.png",
+                  "large": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/NB_ICICI.png"
+                },
+                "merchant_code": "NB_ICICI",
+                "display_priority": 1
+              }
+            ]
+          },
+          {
+            "name": "WL",
+            "display_priority": 4,
+            "payment_mode_id": 4,
+            "display_name": "Wallet",
+            "list": [
+              {
+                "wallet_name": "Paytm",
+                "wallet_code": "paytm",
+                "wallet_id": 4,
+                "merchant_code": "PAYTM",
+                "logo_url": {
+                  "small": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/paytm_logo_small.png",
+                  "large": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/paytm_logo_large.png"
+                },
+                "aggregator_name": "Juspay",
+                "display_priority": 1
+              }
+            ]
+          },
+          {
+            "name": "UPI",
+            "display_priority": 9,
+            "payment_mode_id": 6,
+            "display_name": "UPI",
+            "list": [
+              {
+                "aggregator_name": "UPI_Razorpay",
+                "name": "UPI",
+                "display_name": "BHIM UPI",
+                "code": "UPI",
+                "logo_url": {
+                  "small": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/upi_100x78.png",
+                  "large": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/upi_150x100.png"
+                },
+                "merchant_code": "UPI",
+                "timeout": 240,
+                "retry_count": 0,
+                "fynd_vpa": "shopsense.rzp@hdfcbank",
+                "intent_flow": true,
+                "intent_app_error_list": [
+                  "com.csam.icici.bank.imobile",
+                  "in.org.npci.upiapp",
+                  "com.whatsapp"
+                ]
+              }
+            ]
+          },
+          {
+            "name": "PL",
+            "display_priority": 11,
+            "payment_mode_id": 1,
+            "display_name": "Pay Later",
+            "list": [
+              {
+                "aggregator_name": "Simpl",
+                "name": "Simpl",
+                "code": "simpl",
+                "merchant_code": "SIMPL",
+                "logo": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/simpl_logo.png",
+                "logo_url": {
+                  "small": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/simpl_logo.png",
+                  "large": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/simpl_logo.png"
+                }
+              }
+            ]
+          }
+        ],
+        "payment_flows": {
+          "Simpl": {
+            "data": {
+              "gateway": {
+                "route": "simpl",
+                "entity": "sdk",
+                "is_customer_validation_required": true,
+                "cust_validation_url": "https://api.addsale.com/gringotts/api/v1/validate-customer/",
+                "sdk": {
+                  "config": {
+                    "redirect": false,
+                    "callback_url": null,
+                    "action_url": "https://api.addsale.com/avis/api/v1/payments/charge-gringotts-transaction/"
+                  },
+                  "data": {
+                    "user_phone": "8452996729",
+                    "user_email": "paymentsdummy@gofynd.com"
+                  }
+                },
+                "return_url": null
+              }
+            },
+            "api_link": "",
+            "payment_flow": "sdk"
+          },
+          "Juspay": {
+            "data": {},
+            "api_link": "https://sandbox.juspay.in/txns",
+            "payment_flow": "api"
+          },
+          "Razorpay": {
+            "data": {},
+            "api_link": "",
+            "payment_flow": "sdk"
+          },
+          "UPI_Razorpay": {
+            "data": {},
+            "api_link": "https://api.addsale.com/gringotts/api/v1/external/payment-initialisation/",
+            "payment_flow": "api"
+          },
+          "Fynd": {
+            "data": {},
+            "api_link": "",
+            "payment_flow": "api"
+          }
+        },
+        "default": {}
+      },
+      "user_type": "Store User",
+      "cod_charges": 0,
+      "order_id": "FY5D5E215CF287584CE6",
+      "cod_available": true,
+      "cod_message": "No additional COD charges applicable",
+      "delivery_charges": 0,
+      "delivery_charge_order_value": 0,
+      "delivery_slots": [
+        {
+          "date": "Sat, 24 Aug",
+          "delivery_slot": [
+            {
+              "delivery_slot_timing": "By 9:00 PM",
+              "default": true,
+              "delivery_slot_id": 1
+            }
+          ]
+        }
+      ],
+      "store_code": "",
+      "store_emps": [],
+      "breakup_values": {
+        "coupon": {
+          "type": "cash",
+          "code": "",
+          "uid": null,
+          "value": 0,
+          "is_applied": false,
+          "message": "Sorry! Invalid Coupon"
+        },
+        "loyalty_points": {
+          "total": 0,
+          "applicable": 0,
+          "is_applied": false,
+          "description": "Your cashback, referrals, and refund amount get credited to Fynd Cash which can be redeemed while placing an order."
+        },
+        "raw": {
+          "cod_charge": 0,
+          "convenience_fee": 0,
+          "coupon": 0,
+          "delivery_charge": 0,
+          "discount": 0,
+          "fynd_cash": 0,
+          "gst_charges": 214.18,
+          "mrp_total": 1999,
+          "subtotal": 1999,
+          "total": 1999,
+          "vog": 1784.82,
+          "you_saved": 0
+        },
+        "display": [
+          {
+            "display": "MRP Total",
+            "key": "mrp_total",
+            "value": 1999,
+            "currency_code": "INR"
+          },
+          {
+            "display": "Subtotal",
+            "key": "subtotal",
+            "value": 1999,
+            "currency_code": "INR"
+          },
+          {
+            "display": "Total",
+            "key": "total",
+            "value": 1999,
+            "currency_code": "INR"
+          }
+        ]
+      },
+      "items": [
+        {
+          "key": "820312_L",
+          "message": "",
+          "bulk_offer": {},
+          "price": {
+            "base": {
+              "add_on": 1999,
+              "marked": 1999,
+              "effective": 1999,
+              "selling": 1999,
+              "currency_code": "INR"
+            },
+            "converted": {
+              "add_on": 1999,
+              "marked": 1999,
+              "effective": 1999,
+              "selling": 1999,
+              "currency_code": "INR"
+            }
+          },
+          "quantity": 1,
+          "discount": "",
+          "product": {
+            "type": "product",
+            "uid": 820312,
+            "name": "Navy Blue Melange Shorts",
+            "slug": "883-police-navy-blue-melange-shorts-820312-4943a8",
+            "brand": {
+              "uid": 610,
+              "name": "883 Police"
+            },
+            "categories": [
+              {
+                "uid": 193,
+                "name": "Shorts"
+              }
+            ],
+            "images": [
+              {
+                "aspect_ratio": "16:25",
+                "url": "http://cdn4.gofynd.com/media/pictures/tagged_items/original/610_SPIRAL19ANAVY/1_1549105947281.jpg",
+                "secure_url": "https://d2zv4gzhlr4ud6.cloudfront.net/media/pictures/tagged_items/original/610_SPIRAL19ANAVY/1_1549105947281.jpg"
+              }
+            ],
+            "action": {
+              "type": "product",
+              "url": "https://api.addsale.com/platform/content/v1/products/883-police-navy-blue-melange-shorts-820312-4943a8/",
+              "query": {
+                "product_slug": [
+                  "883-police-navy-blue-melange-shorts-820312-4943a8"
+                ]
+              }
+            }
+          },
+          "article": {
+            "type": "article",
+            "uid": "381_610_IGPL01_SPIRAL19ANAVY_L",
+            "size": "L",
+            "seller": {
+              "uid": 381,
+              "name": "INTERSOURCE GARMENTS PVT LTD"
+            },
+            "store": {
+              "uid": 3009,
+              "name": "Kormangala"
+            },
+            "quantity": 2,
+            "price": {
+              "base": {
+                "marked": 1999,
+                "effective": 1999,
+                "currency_code": "INR"
+              },
+              "converted": {
+                "marked": 1999,
+                "effective": 1999,
+                "currency_code": "INR"
+              }
+            }
+          },
+          "coupon_message": "",
+          "availability": {
+            "sizes": [
+              "L",
+              "XL",
+              "XXL"
+            ],
+            "other_store_quantity": 1,
+            "out_of_stock": false,
+            "deliverable": true,
+            "is_valid": true
+          }
+        }
+      ],
+      "delivery_charge_info": "",
+      "coupon_text": "View all offers",
+      "cart_id": 7483,
+      "uid": "7483",
+      "gstin": null,
+      "checkout_mode": "self",
+      "last_modified": "Thu, 22 Aug 2019 04:58:44 GMT",
+      "restrict_checkout": false,
+      "is_valid": true
+    },
+    "callback_url": "https://api.addsale.com/gringotts/api/v1/external/payment-callback/",
+    "app_intercept_url": "http://uniket-testing.addsale.link/cart/order-status",
+    "message": "",
+    "data": {
+      "order_id": "FY5D5E215CF287584CE6"
+    },
+    "order_id": "FY5D5E215CF287584CE6"
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### deleteCart
+Delete cart once user made successful checkout
+
+
+
+```javascript
+// Promise
+const promise = applicationClient.cart.deleteCart({  id : value });
+
+// Async/Await
+const data = await applicationClient.cart.deleteCart({  id : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| id | number | no | The unique identifier of the cart. |  
+
+
+
+Use this API to delete the cart.
+
+*Returned Response:*
+
+
+
+
+[DeleteCartDetailResponse](#DeleteCartDetailResponse)
+
+Success. Returns whether the cart has been deleted or not.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "success": true,
+  "message": "cart archived"
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### getAddressById
+Fetch a single address by its ID
+
+
+
+```javascript
+// Promise
+const promise = applicationClient.cart.getAddressById({  id : value,
+ cartId : value,
  buyNow : value,
  mobileNo : value,
  checkoutMode : value,
@@ -2885,7 +2604,107 @@ const promise = cart.getAddresses({  cartId : value,
  isDefault : value });
 
 // Async/Await
-const data = await cart.getAddresses({  cartId : value,
+const data = await applicationClient.cart.getAddressById({  id : value,
+ cartId : value,
+ buyNow : value,
+ mobileNo : value,
+ checkoutMode : value,
+ tags : value,
+ isDefault : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| id | string | yes |  |    
+| cartId | string | no |  |    
+| buyNow | boolean | no |  |    
+| mobileNo | string | no |  |    
+| checkoutMode | string | no |  |    
+| tags | string | no |  |    
+| isDefault | boolean | no |  |  
+
+
+
+Use this API to get an addresses using its ID. If successful, returns a Address resource in the response body specified in `Address`. Attibutes listed below are optional <ul> <li> <font color="monochrome">mobile_no</font></li> <li> <font color="monochrome">checkout_mode</font></li> <li> <font color="monochrome">tags</font></li> <li> <font color="monochrome">default</font></li> </ul>
+
+*Returned Response:*
+
+
+
+
+[Address](#Address)
+
+Success. Returns an Address object containing a list of address saved in the account. Refer `Address` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "landmark": "",
+  "area_code": {
+    "slug": "pincode",
+    "id": 400093
+  },
+  "state": "Maharashtra",
+  "meta": {},
+  "user_id": "8b526f521bb14a2593a8b9e3ce8c76b3",
+  "country_code": "IND",
+  "phone": 9915347757,
+  "geo_location": {},
+  "country": "India",
+  "is_default_address": true,
+  "is_active": true,
+  "city": "Mumbai",
+  "pincode": 400093,
+  "checkout_mode": "self",
+  "address_type": "home",
+  "uid": 1145,
+  "tags": [],
+  "area": "Sector 127",
+  "name": "abc",
+  "address_id": 1145,
+  "email": "ankur@gofynd1.com",
+  "address": "Megatron2",
+  "store_name": "store123"
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### getAddresses
+Fetch address
+
+
+
+```javascript
+// Promise
+const promise = applicationClient.cart.getAddresses({  cartId : value,
+ buyNow : value,
+ mobileNo : value,
+ checkoutMode : value,
+ tags : value,
+ isDefault : value });
+
+// Async/Await
+const data = await applicationClient.cart.getAddresses({  cartId : value,
  buyNow : value,
  mobileNo : value,
  checkoutMode : value,
@@ -2971,307 +2790,23 @@ Success. Returns an Address object containing a list of address saved in the acc
 ---
 
 
-### addAddress
-Add address to an account
+### getBulkDiscountOffers
+Get discount offers based on quantity
 
 
 
 ```javascript
 // Promise
-const promise = cart.addAddress({  body : value });
+const promise = applicationClient.cart.getBulkDiscountOffers({  itemId : value,
+ articleId : value,
+ uid : value,
+ slug : value });
 
 // Async/Await
-const data = await cart.addAddress({  body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |
-| body | [Address](#Address) | yes | Request body |
-
-
-Use this API to add an address to an account.
-
-*Returned Response:*
-
-
-
-
-[SaveAddressResponse](#SaveAddressResponse)
-
-Success. Returns the address ID, a flag whether the address is set as default, and a success message. Refer `SaveAddressResponse` for more details.
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "id": "mongo_object_id",
-  "is_default_address": true,
-  "success": true
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### getAddressById
-Fetch a single address by its ID
-
-
-
-```javascript
-// Promise
-const promise = cart.getAddressById({  id : value,
- cartId : value,
- buyNow : value,
- mobileNo : value,
- checkoutMode : value,
- tags : value,
- isDefault : value });
-
-// Async/Await
-const data = await cart.getAddressById({  id : value,
- cartId : value,
- buyNow : value,
- mobileNo : value,
- checkoutMode : value,
- tags : value,
- isDefault : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| id | string | yes |  |    
-| cartId | string | no |  |    
-| buyNow | boolean | no |  |    
-| mobileNo | string | no |  |    
-| checkoutMode | string | no |  |    
-| tags | string | no |  |    
-| isDefault | boolean | no |  |  
-
-
-
-Use this API to get an addresses using its ID. If successful, returns a Address resource in the response body specified in `Address`. Attibutes listed below are optional <ul> <li> <font color="monochrome">mobile_no</font></li> <li> <font color="monochrome">checkout_mode</font></li> <li> <font color="monochrome">tags</font></li> <li> <font color="monochrome">default</font></li> </ul>
-
-*Returned Response:*
-
-
-
-
-[Address](#Address)
-
-Success. Returns an Address object containing a list of address saved in the account. Refer `Address` for more details.
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "landmark": "",
-  "area_code": {
-    "slug": "pincode",
-    "id": 400093
-  },
-  "state": "Maharashtra",
-  "meta": {},
-  "user_id": "8b526f521bb14a2593a8b9e3ce8c76b3",
-  "country_code": "IND",
-  "phone": 9915347757,
-  "geo_location": {},
-  "country": "India",
-  "is_default_address": true,
-  "is_active": true,
-  "city": "Mumbai",
-  "pincode": 400093,
-  "checkout_mode": "self",
-  "address_type": "home",
-  "uid": 1145,
-  "tags": [],
-  "area": "Sector 127",
-  "name": "abc",
-  "address_id": 1145,
-  "email": "ankur@gofynd1.com",
-  "address": "Megatron2",
-  "store_name": "store123"
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### updateAddress
-Update address added to an account
-
-
-
-```javascript
-// Promise
-const promise = cart.updateAddress({  id : value,
- body : value });
-
-// Async/Await
-const data = await cart.updateAddress({  id : value,
- body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| id | string | yes | ID allotted to the selected address |  
-| body | [Address](#Address) | yes | Request body |
-
-
-<p>Use this API to update an existing address in the account. Request object should contain attributes mentioned in  <font color="blue">Address </font> can be updated. These attributes are:</p> <ul> <li> <font color="monochrome">is_default_address</font></li> <li> <font color="monochrome">landmark</font></li> <li> <font color="monochrome">area</font></li> <li> <font color="monochrome">pincode</font></li> <li> <font color="monochrome">email</font></li> <li> <font color="monochrome">address_type</font></li> <li> <font color="monochrome">name</font></li> <li> <font color="monochrome">address_id</font></li> <li> <font color="monochrome">address</font></li> </ul>
-
-*Returned Response:*
-
-
-
-
-[UpdateAddressResponse](#UpdateAddressResponse)
-
-Success. Returns the address ID and a message indicating a successful address updation.
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "is_updated": true,
-  "id": "<mongo_object_id>",
-  "is_default_address": true,
-  "success": true
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### removeAddress
-Remove address associated with an account
-
-
-
-```javascript
-// Promise
-const promise = cart.removeAddress({  id : value });
-
-// Async/Await
-const data = await cart.removeAddress({  id : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| id | string | yes | ID allotted to the selected address |  
-
-
-
-Use this API to delete an address by its ID. This will returns an object that will indicate whether the address was deleted successfully or not.
-
-*Returned Response:*
-
-
-
-
-[DeleteAddressResponse](#DeleteAddressResponse)
-
-Returns a Status object indicating the success or failure of address deletion.
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "id": "<mongo_object_id>",
-  "is_deleted": true
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### selectAddress
-Select an address from available addresses
-
-
-
-```javascript
-// Promise
-const promise = cart.selectAddress({  body : value,
- cartId : value,
- buyNow : value,
- i : value,
- b : value });
-
-// Async/Await
-const data = await cart.selectAddress({  body : value,
- cartId : value,
- buyNow : value,
- i : value,
- b : value });
+const data = await applicationClient.cart.getBulkDiscountOffers({  itemId : value,
+ articleId : value,
+ uid : value,
+ slug : value });
 ```
 
 
@@ -3280,14 +2815,153 @@ const data = await cart.selectAddress({  body : value,
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
-| cartId | string | no |  |    
-| buyNow | boolean | no |  |    
+| itemId | number | no | The Item ID of the product |    
+| articleId | string | no | Article Mongo ID |    
+| uid | number | no | UID of the product |    
+| slug | string | no | A short, human-readable, URL-friendly identifier of a product. You can get slug value from the endpoint /service/application/catalog/v1.0/products/ |  
+
+
+
+Use this API to get a list of applicable offers along with current, next and best offer for given product. Either one of uid, item_id, slug should be present.
+
+*Returned Response:*
+
+
+
+
+[BulkPriceResponse](#BulkPriceResponse)
+
+Success. Returns a data object containing the seller details and available offers (if exists) on bulk products. Refer `BulkPriceResponse` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; Offers found</i></summary>
+
+```json
+{
+  "value": {
+    "data": [
+      {
+        "seller": {
+          "uid": 248,
+          "name": "MANYAVAR CREATIONS PRIVATE LIMITED"
+        },
+        "offers": [
+          {
+            "quantity": 1,
+            "auto_applied": true,
+            "margin": 10,
+            "type": "bundle",
+            "price": {
+              "marked": 3999,
+              "effective": 3999,
+              "bulk_effective": 3599.1,
+              "currency_code": "INR"
+            },
+            "total": 3599.1
+          },
+          {
+            "quantity": 3,
+            "auto_applied": true,
+            "margin": 20,
+            "type": "bundle",
+            "price": {
+              "marked": 3999,
+              "effective": 3999,
+              "bulk_effective": 3199.2,
+              "currency_code": "INR"
+            },
+            "total": 9597.6
+          },
+          {
+            "quantity": 9,
+            "auto_applied": true,
+            "margin": 30,
+            "type": "bundle",
+            "price": {
+              "marked": 3999,
+              "effective": 3999,
+              "bulk_effective": 3443.4444444444,
+              "currency_code": "INR"
+            },
+            "total": 30991,
+            "best": true
+          }
+        ]
+      }
+    ]
+  }
+}
+```
+</details>
+
+<details>
+<summary><i>&nbsp; Offers not found</i></summary>
+
+```json
+{
+  "value": {
+    "data": []
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### getCart
+Fetch all items added to the cart
+
+
+
+```javascript
+// Promise
+const promise = applicationClient.cart.getCart({  id : value,
+ i : value,
+ b : value,
+ assignCardId : value,
+ buyNow : value });
+
+// Async/Await
+const data = await applicationClient.cart.getCart({  id : value,
+ i : value,
+ b : value,
+ assignCardId : value,
+ buyNow : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| id | string | no |  |    
 | i | boolean | no |  |    
-| b | boolean | no |  |  
-| body | [SelectCartAddressRequest](#SelectCartAddressRequest) | yes | Request body |
+| b | boolean | no |  |    
+| assignCardId | number | no |  |    
+| buyNow | boolean | no |  |  
 
 
-<p>Select Address from all addresses associated with the account in order to ship the cart items to that address, otherwise default address will be selected implicitly. See `SelectCartAddressRequest` in schema of request body for the list of attributes needed to select Address from account. On successful request, this API returns a Cart object. Below address attributes are required. <ul> <li> <font color="monochrome">address_id</font></li> <li> <font color="monochrome">billing_address_id</font></li> <li> <font color="monochrome">uid</font></li> </ul></p>
+
+Use this API to get details of all the items added to a cart.
 
 *Returned Response:*
 
@@ -3296,7 +2970,7 @@ const data = await cart.selectAddress({  body : value,
 
 [CartDetailResponse](#CartDetailResponse)
 
-Success. Returns a Cart object as shown below. Refer `CartDetailResponse` for more details.  .
+Success. Returns a Cart object. Check the example shown below or refer `CartDetailResponse` for more details.
 
 
 
@@ -3306,57 +2980,158 @@ Success. Returns a Cart object as shown below. Refer `CartDetailResponse` for mo
 
 ```json
 {
-  "is_valid": true,
+  "items": [
+    {
+      "bulk_offer": {},
+      "discount": "67% OFF",
+      "article": {
+        "type": "article",
+        "uid": "604_902_SSTC60401_636BLUE_1",
+        "size": "1",
+        "seller": {
+          "uid": 604,
+          "name": "SHRI SHANTINATH TRADING COMPANY"
+        },
+        "store": {
+          "uid": 4579,
+          "name": "Gandhi Nagar"
+        },
+        "quantity": 108,
+        "price": {
+          "base": {
+            "marked": 2999,
+            "effective": 999,
+            "currency_code": "INR"
+          },
+          "converted": {
+            "marked": 2999,
+            "effective": 999,
+            "currency_code": "INR"
+          }
+        }
+      },
+      "coupon_message": "",
+      "key": "707569_1",
+      "availability": {
+        "sizes": [
+          "1",
+          "8",
+          "7",
+          "2",
+          "9",
+          "5",
+          "3",
+          "6"
+        ],
+        "other_store_quantity": 107,
+        "out_of_stock": false,
+        "deliverable": true,
+        "is_valid": true
+      },
+      "product": {
+        "type": "product",
+        "uid": 707569,
+        "name": "Blue and Gold Printed Ethnic Set",
+        "slug": "aj-dezines-blue-and-gold-printed-ethnic-set-707569-bff01a",
+        "brand": {
+          "uid": 902,
+          "name": ""
+        },
+        "categories": [
+          {
+            "uid": 525,
+            "name": ""
+          }
+        ],
+        "images": [
+          {
+            "aspect_ratio": "16:25",
+            "url": "http://cdn4.gofynd.com/media/pictures/tagged_items/original/902_636BLUE/1_1540301094877.jpg",
+            "secure_url": "https://d2zv4gzhlr4ud6.cloudfront.net/media/pictures/tagged_items/original/902_636BLUE/1_1540301094877.jpg"
+          }
+        ],
+        "action": {
+          "type": "product",
+          "url": "https://api.addsale.com/v1/products/aj-dezines-blue-and-gold-printed-ethnic-set-707569-bff01a/",
+          "query": {
+            "product_slug": [
+              "aj-dezines-blue-and-gold-printed-ethnic-set-707569-bff01a"
+            ]
+          }
+        }
+      },
+      "price": {
+        "base": {
+          "add_on": 999,
+          "marked": 2999,
+          "effective": 999,
+          "selling": 999,
+          "currency_code": "INR"
+        },
+        "converted": {
+          "add_on": 999,
+          "marked": 2999,
+          "effective": 999,
+          "selling": 999,
+          "currency_code": "INR"
+        }
+      },
+      "message": "",
+      "quantity": 1
+    }
+  ],
   "buy_now": false,
+  "cart_id": 54,
+  "uid": "54",
   "breakup_values": {
     "raw": {
       "cod_charge": 0,
       "convenience_fee": 0,
-      "coupon": -2250,
+      "coupon": 0,
       "delivery_charge": 0,
-      "discount": 0,
+      "discount": -2000,
       "fynd_cash": 0,
-      "gst_charges": 315.86,
-      "mrp_total": 5198,
-      "subtotal": 5198,
-      "total": 2948,
-      "vog": 2632.15,
+      "gst_charges": 47.57,
+      "mrp_total": 2999,
+      "subtotal": 999,
+      "total": 999,
+      "vog": 951.43,
       "you_saved": 0
+    },
+    "coupon": {
+      "type": "cash",
+      "code": "",
+      "uid": null,
+      "value": 0,
+      "is_applied": false,
+      "message": "Sorry! Invalid Coupon"
     },
     "display": [
       {
         "display": "MRP Total",
         "key": "mrp_total",
-        "value": 5198,
+        "value": 2999,
+        "currency_code": "INR"
+      },
+      {
+        "display": "Discount",
+        "key": "discount",
+        "value": -2000,
         "currency_code": "INR"
       },
       {
         "display": "Subtotal",
         "key": "subtotal",
-        "value": 5198,
-        "currency_code": "INR"
-      },
-      {
-        "display": "Coupon",
-        "key": "coupon",
-        "value": -2250,
+        "value": 999,
         "currency_code": "INR"
       },
       {
         "display": "Total",
         "key": "total",
-        "value": 2948,
+        "value": 999,
         "currency_code": "INR"
       }
     ],
-    "coupon": {
-      "type": "cash",
-      "code": "PRISMC22250111",
-      "uid": 17743,
-      "value": 2250,
-      "is_applied": true,
-      "message": "coupn applied"
-    },
     "loyalty_points": {
       "total": 0,
       "applicable": 0,
@@ -3364,203 +3139,13 @@ Success. Returns a Cart object as shown below. Refer `CartDetailResponse` for mo
       "description": "Your cashback, referrals, and refund amount get credited to Fynd Cash which can be redeemed while placing an order."
     }
   },
-  "items": [
-    {
-      "message": "",
-      "quantity": 1,
-      "availability": {
-        "sizes": [
-          "M",
-          "S",
-          "L",
-          "XXL",
-          "XL"
-        ],
-        "other_store_quantity": 10,
-        "out_of_stock": false,
-        "deliverable": true,
-        "is_valid": true
-      },
-      "coupon_message": "PRISMC22250111 coupon applied",
-      "price": {
-        "base": {
-          "add_on": 3199,
-          "marked": 3199,
-          "effective": 3199,
-          "selling": 3199,
-          "currency_code": "INR"
-        },
-        "converted": {
-          "add_on": 3199,
-          "marked": 3199,
-          "effective": 3199,
-          "selling": 3199,
-          "currency_code": "INR"
-        }
-      },
-      "bulk_offer": {},
-      "article": {
-        "type": "article",
-        "uid": "381_610_IGPL01_LETTER19APINK_S",
-        "size": "S",
-        "seller": {
-          "uid": 381,
-          "name": "INTERSOURCE GARMENTS PVT LTD"
-        },
-        "store": {
-          "uid": 3009,
-          "name": "Kormangala"
-        },
-        "quantity": 11,
-        "price": {
-          "base": {
-            "marked": 3199,
-            "effective": 3199,
-            "currency_code": "INR"
-          },
-          "converted": {
-            "marked": 3199,
-            "effective": 3199,
-            "currency_code": "INR"
-          }
-        }
-      },
-      "product": {
-        "type": "product",
-        "uid": 857596,
-        "name": "Pink Solid Hoodie",
-        "slug": "883-police-pink-solid-hoodie-857596-111bdc",
-        "brand": {
-          "uid": 610,
-          "name": "883 Police"
-        },
-        "categories": [
-          {
-            "uid": 144,
-            "name": "Hoodies"
-          }
-        ],
-        "images": [
-          {
-            "aspect_ratio": "16:25",
-            "url": "http://cdn4.gofynd.com/media/pictures/tagged_items/original/610_LETTER19APINK/1_1553062658148.jpg",
-            "secure_url": "https://d2zv4gzhlr4ud6.cloudfront.net/media/pictures/tagged_items/original/610_LETTER19APINK/1_1553062658148.jpg"
-          }
-        ],
-        "action": {
-          "type": "product",
-          "url": "https://api.addsale.com/platform/content/v1/products/883-police-pink-solid-hoodie-857596-111bdc/",
-          "query": {
-            "product_slug": [
-              "883-police-pink-solid-hoodie-857596-111bdc"
-            ]
-          }
-        }
-      },
-      "key": "857596_S",
-      "discount": ""
-    },
-    {
-      "message": "",
-      "quantity": 1,
-      "availability": {
-        "sizes": [
-          "L",
-          "XL",
-          "XXL"
-        ],
-        "other_store_quantity": 1,
-        "out_of_stock": false,
-        "deliverable": true,
-        "is_valid": true
-      },
-      "coupon_message": "PRISMC22250111 coupon applied",
-      "price": {
-        "base": {
-          "add_on": 1999,
-          "marked": 1999,
-          "effective": 1999,
-          "selling": 1999,
-          "currency_code": "INR"
-        },
-        "converted": {
-          "add_on": 1999,
-          "marked": 1999,
-          "effective": 1999,
-          "selling": 1999,
-          "currency_code": "INR"
-        }
-      },
-      "bulk_offer": {},
-      "article": {
-        "type": "article",
-        "uid": "381_610_IGPL01_SPIRAL19ANAVY_L",
-        "size": "L",
-        "seller": {
-          "uid": 381,
-          "name": "INTERSOURCE GARMENTS PVT LTD"
-        },
-        "store": {
-          "uid": 3009,
-          "name": "Kormangala"
-        },
-        "quantity": 2,
-        "price": {
-          "base": {
-            "marked": 1999,
-            "effective": 1999,
-            "currency_code": "INR"
-          },
-          "converted": {
-            "marked": 1999,
-            "effective": 1999,
-            "currency_code": "INR"
-          }
-        }
-      },
-      "product": {
-        "type": "product",
-        "uid": 820312,
-        "name": "Navy Blue Melange Shorts",
-        "slug": "883-police-navy-blue-melange-shorts-820312-4943a8",
-        "brand": {
-          "uid": 610,
-          "name": "883 Police"
-        },
-        "categories": [
-          {
-            "uid": 193,
-            "name": "Shorts"
-          }
-        ],
-        "images": [
-          {
-            "aspect_ratio": "16:25",
-            "url": "http://cdn4.gofynd.com/media/pictures/tagged_items/original/610_SPIRAL19ANAVY/1_1549105947281.jpg",
-            "secure_url": "https://d2zv4gzhlr4ud6.cloudfront.net/media/pictures/tagged_items/original/610_SPIRAL19ANAVY/1_1549105947281.jpg"
-          }
-        ],
-        "action": {
-          "type": "product",
-          "url": "https://api.addsale.com/platform/content/v1/products/883-police-navy-blue-melange-shorts-820312-4943a8/",
-          "query": {
-            "product_slug": [
-              "883-police-navy-blue-melange-shorts-820312-4943a8"
-            ]
-          }
-        }
-      },
-      "key": "820312_L",
-      "discount": ""
-    }
-  ],
   "delivery_charge_info": "",
   "coupon_text": "View all offers",
-  "uid": "7477",
   "gstin": null,
   "checkout_mode": "self",
-  "last_modified": "Fri, 23 Aug 2019 08:03:12 GMT",
-  "restrict_checkout": false
+  "restrict_checkout": false,
+  "is_valid": true,
+  "last_modified": "Tue, 03 Sep 2019 05:35:59 GMT"
 }
 ```
 </details>
@@ -3576,20 +3161,453 @@ Success. Returns a Cart object as shown below. Refer `CartDetailResponse` for mo
 ---
 
 
-### selectPaymentMode
-Update cart payment
+### getCartLastModified
+Fetch last-modified timestamp
 
 
 
 ```javascript
 // Promise
-const promise = cart.selectPaymentMode({  body : value,
- id : value,
+const promise = applicationClient.cart.getCartLastModified({  id : value });
+
+// Async/Await
+const data = await applicationClient.cart.getCartLastModified({  id : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| id | string | no |  |  
+
+
+
+Use this API to fetch Last-Modified timestamp in header metadata.
+
+*Returned Response:*
+
+
+
+
+
+
+
+
+---
+
+
+### getCartShareLink
+Generate token for sharing the cart
+
+
+
+```javascript
+// Promise
+const promise = applicationClient.cart.getCartShareLink({  body : value });
+
+// Async/Await
+const data = await applicationClient.cart.getCartShareLink({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [GetShareCartLinkRequest](#GetShareCartLinkRequest) | yes | Request body |
+
+
+Use this API to generate a shared cart snapshot and return a shortlink token. The link can be shared with other users for getting the same items in their cart.
+
+*Returned Response:*
+
+
+
+
+[GetShareCartLinkResponse](#GetShareCartLinkResponse)
+
+Returns a URL to share and a token as shown below.
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; Token Generated</i></summary>
+
+```json
+{
+  "value": {
+    "token": "ZweG1XyX",
+    "share_url": "https://uniket-testing.addsale.link/shared-cart/ZweG1XyX"
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### getCartSharedItems
+Get details of a shared cart
+
+
+
+```javascript
+// Promise
+const promise = applicationClient.cart.getCartSharedItems({  token : value });
+
+// Async/Await
+const data = await applicationClient.cart.getCartSharedItems({  token : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| token | string | yes | Token of the shared short link |  
+
+
+
+Use this API to get the shared cart details as per the token generated using the share-cart API.
+
+*Returned Response:*
+
+
+
+
+[SharedCartResponse](#SharedCartResponse)
+
+Success. Returns a Cart object as per the valid token. Refer `SharedCartResponse` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "cart": {
+    "shared_cart_details": {
+      "token": "BQ9jySQ9",
+      "user": {
+        "user_id": "23109086",
+        "is_anonymous": false
+      },
+      "meta": {
+        "selected_staff": "",
+        "ordering_store": null
+      },
+      "selected_staff": "",
+      "ordering_store": null,
+      "source": {},
+      "created_on": "2019-12-18T14:00:07.165000"
+    },
+    "items": [
+      {
+        "key": "791651_6",
+        "discount": "",
+        "bulk_offer": {},
+        "coupon_message": "",
+        "article": {
+          "type": "article",
+          "uid": "304_1054_9036_R1005753_6",
+          "size": "6",
+          "seller": {
+            "uid": 304,
+            "name": "LEAYAN GLOBAL PVT. LTD."
+          },
+          "store": {
+            "uid": 5322,
+            "name": "Vaisali Nagar"
+          },
+          "quantity": 1,
+          "price": {
+            "base": {
+              "marked": 2095,
+              "effective": 2095,
+              "currency_code": "INR"
+            },
+            "converted": {
+              "marked": 2095,
+              "effective": 2095,
+              "currency_code": "INR"
+            }
+          }
+        },
+        "product": {
+          "type": "product",
+          "uid": 791651,
+          "name": "Black Running Shoes",
+          "slug": "furo-black-running-shoes-791651-f8bcc3",
+          "brand": {
+            "uid": 1054,
+            "name": "Furo"
+          },
+          "categories": [
+            {
+              "uid": 160,
+              "name": "Running Shoes"
+            }
+          ],
+          "images": [
+            {
+              "aspect_ratio": "16:25",
+              "url": "http://cdn4.gofynd.com/media/pictures/tagged_items/original/1054_R1005753/1_1546490507364.jpg",
+              "secure_url": "https://d2zv4gzhlr4ud6.cloudfront.net/media/pictures/tagged_items/original/1054_R1005753/1_1546490507364.jpg"
+            }
+          ],
+          "action": {
+            "type": "product",
+            "url": "https://api.addsale.com/platform/content/v1/products/furo-black-running-shoes-791651-f8bcc3/",
+            "query": {
+              "product_slug": [
+                "furo-black-running-shoes-791651-f8bcc3"
+              ]
+            }
+          }
+        },
+        "message": "",
+        "quantity": 1,
+        "availability": {
+          "sizes": [
+            "7",
+            "8",
+            "9",
+            "10",
+            "6"
+          ],
+          "other_store_quantity": 12,
+          "out_of_stock": false,
+          "deliverable": true,
+          "is_valid": true
+        },
+        "price": {
+          "base": {
+            "add_on": 2095,
+            "marked": 2095,
+            "effective": 2095,
+            "selling": 2095,
+            "currency_code": "INR"
+          },
+          "converted": {
+            "add_on": 2095,
+            "marked": 2095,
+            "effective": 2095,
+            "selling": 2095,
+            "currency_code": "INR"
+          }
+        }
+      },
+      {
+        "key": "791651_7",
+        "discount": "",
+        "bulk_offer": {},
+        "coupon_message": "",
+        "article": {
+          "type": "article",
+          "uid": "304_1054_9036_R1005753_7",
+          "size": "7",
+          "seller": {
+            "uid": 304,
+            "name": "LEAYAN GLOBAL PVT. LTD."
+          },
+          "store": {
+            "uid": 5322,
+            "name": "Vaisali Nagar"
+          },
+          "quantity": 2,
+          "price": {
+            "base": {
+              "marked": 2095,
+              "effective": 2095,
+              "currency_code": "INR"
+            },
+            "converted": {
+              "marked": 2095,
+              "effective": 2095,
+              "currency_code": "INR"
+            }
+          }
+        },
+        "product": {
+          "type": "product",
+          "uid": 791651,
+          "name": "Black Running Shoes",
+          "slug": "furo-black-running-shoes-791651-f8bcc3",
+          "brand": {
+            "uid": 1054,
+            "name": "Furo"
+          },
+          "categories": [
+            {
+              "uid": 160,
+              "name": "Running Shoes"
+            }
+          ],
+          "images": [
+            {
+              "aspect_ratio": "16:25",
+              "url": "http://cdn4.gofynd.com/media/pictures/tagged_items/original/1054_R1005753/1_1546490507364.jpg",
+              "secure_url": "https://d2zv4gzhlr4ud6.cloudfront.net/media/pictures/tagged_items/original/1054_R1005753/1_1546490507364.jpg"
+            }
+          ],
+          "action": {
+            "type": "product",
+            "url": "https://api.addsale.com/platform/content/v1/products/furo-black-running-shoes-791651-f8bcc3/",
+            "query": {
+              "product_slug": [
+                "furo-black-running-shoes-791651-f8bcc3"
+              ]
+            }
+          }
+        },
+        "message": "",
+        "quantity": 2,
+        "availability": {
+          "sizes": [
+            "7",
+            "8",
+            "9",
+            "10",
+            "6"
+          ],
+          "other_store_quantity": 7,
+          "out_of_stock": false,
+          "deliverable": true,
+          "is_valid": true
+        },
+        "price": {
+          "base": {
+            "add_on": 4190,
+            "marked": 4190,
+            "effective": 4190,
+            "selling": 4190,
+            "currency_code": "INR"
+          },
+          "converted": {
+            "add_on": 4190,
+            "marked": 4190,
+            "effective": 4190,
+            "selling": 4190,
+            "currency_code": "INR"
+          }
+        }
+      }
+    ],
+    "cart_id": 13055,
+    "uid": "13055",
+    "breakup_values": {
+      "raw": {
+        "cod_charge": 0,
+        "convenience_fee": 0,
+        "coupon": 0,
+        "delivery_charge": 0,
+        "discount": 0,
+        "fynd_cash": 0,
+        "gst_charges": 958.73,
+        "mrp_total": 6285,
+        "subtotal": 6285,
+        "total": 6285,
+        "vog": 5326.27,
+        "you_saved": 0
+      },
+      "loyalty_points": {
+        "total": 0,
+        "applicable": 0,
+        "is_applied": false,
+        "description": "Your cashback, referrals, and refund amount get credited to Fynd Cash which can be redeemed while placing an order."
+      },
+      "coupon": {
+        "type": "cash",
+        "code": "",
+        "uid": null,
+        "value": 0,
+        "is_applied": false,
+        "message": "Sorry! Invalid coupon"
+      },
+      "display": [
+        {
+          "display": "MRP Total",
+          "key": "mrp_total",
+          "value": 6285,
+          "currency_code": "INR"
+        },
+        {
+          "display": "Subtotal",
+          "key": "subtotal",
+          "value": 6285,
+          "currency_code": "INR"
+        },
+        {
+          "display": "Total",
+          "key": "total",
+          "value": 6285,
+          "currency_code": "INR"
+        }
+      ]
+    },
+    "delivery_charge_info": "",
+    "coupon_text": "View all offers",
+    "gstin": null,
+    "comment": "",
+    "checkout_mode": "self",
+    "payment_selection_lock": {
+      "enabled": false,
+      "default_options": "COD",
+      "payment_identifier": null
+    },
+    "restrict_checkout": false,
+    "is_valid": true,
+    "last_modified": "Mon, 16 Dec 2019 07:02:18 GMT"
+  },
+  "error": ""
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### getCoupons
+Fetch Coupon
+
+
+
+```javascript
+// Promise
+const promise = applicationClient.cart.getCoupons({  id : value,
  buyNow : value });
 
 // Async/Await
-const data = await cart.selectPaymentMode({  body : value,
- id : value,
+const data = await applicationClient.cart.getCoupons({  id : value,
  buyNow : value });
 ```
 
@@ -3601,19 +3619,19 @@ const data = await cart.selectPaymentMode({  body : value,
 | --------- | -----  | -------- | ----------- |  
 | id | string | no |  |    
 | buyNow | boolean | no |  |  
-| body | [UpdateCartPaymentRequest](#UpdateCartPaymentRequest) | yes | Request body |
 
 
-Use this API to update cart payment.
+
+Use this API to get a list of available coupons along with their details.
 
 *Returned Response:*
 
 
 
 
-[CartDetailResponse](#CartDetailResponse)
+[GetCouponResponse](#GetCouponResponse)
 
-Success. Returns a Cart object as shown below. Refer `CartDetailResponse` for more details.
+Success. Returns a coupon object which has a list of all the eligible coupons. Refer `GetCouponResponse` for more details.
 
 
 
@@ -3623,273 +3641,41 @@ Success. Returns a Cart object as shown below. Refer `CartDetailResponse` for mo
 
 ```json
 {
-  "success": true,
-  "error_message": "Note: Your order delivery will be delayed by 7-10 Days",
-  "user_type": "Store User",
-  "cod_charges": 0,
-  "order_id": null,
-  "cod_available": true,
-  "cod_message": "No additional COD charges applicable",
-  "delivery_charges": 0,
-  "delivery_charge_order_value": 0,
-  "store_code": "",
-  "store_emps": [],
-  "breakup_values": {
-    "raw": {
-      "cod_charge": 0,
-      "convenience_fee": 0,
-      "coupon": -2250,
-      "delivery_charge": 0,
-      "discount": 0,
-      "fynd_cash": 0,
-      "gst_charges": 315.86,
-      "mrp_total": 5198,
-      "subtotal": 5198,
-      "total": 2948,
-      "vog": 2632.15,
-      "you_saved": 0
-    },
-    "display": [
-      {
-        "display": "MRP Total",
-        "key": "mrp_total",
-        "value": 5198,
-        "currency_code": "INR"
-      },
-      {
-        "display": "Subtotal",
-        "key": "subtotal",
-        "value": 5198,
-        "currency_code": "INR"
-      },
-      {
-        "display": "Coupon",
-        "key": "coupon",
-        "value": -2250,
-        "currency_code": "INR"
-      },
-      {
-        "display": "Total",
-        "key": "total",
-        "value": 2948,
-        "currency_code": "INR"
-      }
-    ],
-    "coupon": {
-      "type": "cash",
-      "code": "PRISMC22250111",
-      "uid": 17743,
-      "value": 2250,
-      "is_applied": true,
-      "message": "coupn applied"
-    },
-    "loyalty_points": {
-      "total": 0,
-      "applicable": 0,
+  "available_coupon_list": [
+    {
+      "coupon_value": 500,
+      "minimum_cart_value": 0,
+      "coupon_code": "RAJA500",
+      "title": "RAJA500 | Fynd coupon",
+      "sub_title": "NA",
+      "message": "TEST500",
+      "max_discount_value": 500,
+      "uid": 17921,
+      "is_applicable": true,
       "is_applied": false,
-      "description": "Your cashback, referrals, and refund amount get credited to Fynd Cash which can be redeemed while placing an order."
-    }
-  },
-  "items": [
-    {
-      "message": "",
-      "quantity": 1,
-      "availability": {
-        "sizes": [
-          "M",
-          "S",
-          "L",
-          "XXL",
-          "XL"
-        ],
-        "other_store_quantity": 10,
-        "out_of_stock": false,
-        "deliverable": true,
-        "is_valid": true
-      },
-      "coupon_message": "PRISMC22250111 coupon applied",
-      "price": {
-        "base": {
-          "add_on": 3199,
-          "marked": 3199,
-          "effective": 3199,
-          "selling": 3199,
-          "currency_code": "INR"
-        },
-        "converted": {
-          "add_on": 3199,
-          "marked": 3199,
-          "effective": 3199,
-          "selling": 3199,
-          "currency_code": "INR"
-        }
-      },
-      "bulk_offer": {},
-      "article": {
-        "type": "article",
-        "uid": "381_610_IGPL01_LETTER19APINK_S",
-        "size": "S",
-        "seller": {
-          "uid": 381,
-          "name": "INTERSOURCE GARMENTS PVT LTD"
-        },
-        "store": {
-          "uid": 3009,
-          "name": "Kormangala"
-        },
-        "quantity": 11,
-        "price": {
-          "base": {
-            "marked": 3199,
-            "effective": 3199,
-            "currency_code": "INR"
-          },
-          "converted": {
-            "marked": 3199,
-            "effective": 3199,
-            "currency_code": "INR"
-          }
-        }
-      },
-      "product": {
-        "type": "product",
-        "uid": 857596,
-        "name": "Pink Solid Hoodie",
-        "slug": "883-police-pink-solid-hoodie-857596-111bdc",
-        "brand": {
-          "uid": 610,
-          "name": "883 Police"
-        },
-        "categories": [
-          {
-            "uid": 144,
-            "name": "Hoodies"
-          }
-        ],
-        "images": [
-          {
-            "aspect_ratio": "16:25",
-            "url": "http://cdn4.gofynd.com/media/pictures/tagged_items/original/610_LETTER19APINK/1_1553062658148.jpg",
-            "secure_url": "https://d2zv4gzhlr4ud6.cloudfront.net/media/pictures/tagged_items/original/610_LETTER19APINK/1_1553062658148.jpg"
-          }
-        ],
-        "action": {
-          "type": "product",
-          "url": "https://api.addsale.com/platform/content/v1/products/883-police-pink-solid-hoodie-857596-111bdc/",
-          "query": {
-            "product_slug": [
-              "883-police-pink-solid-hoodie-857596-111bdc"
-            ]
-          }
-        }
-      },
-      "key": "857596_S",
-      "discount": ""
+      "expires_on": "28 Aug, 19"
     },
     {
-      "message": "",
-      "quantity": 1,
-      "availability": {
-        "sizes": [
-          "L",
-          "XL",
-          "XXL"
-        ],
-        "other_store_quantity": 1,
-        "out_of_stock": false,
-        "deliverable": true,
-        "is_valid": true
-      },
-      "coupon_message": "PRISMC22250111 coupon applied",
-      "price": {
-        "base": {
-          "add_on": 1999,
-          "marked": 1999,
-          "effective": 1999,
-          "selling": 1999,
-          "currency_code": "INR"
-        },
-        "converted": {
-          "add_on": 1999,
-          "marked": 1999,
-          "effective": 1999,
-          "selling": 1999,
-          "currency_code": "INR"
-        }
-      },
-      "bulk_offer": {},
-      "article": {
-        "type": "article",
-        "uid": "381_610_IGPL01_SPIRAL19ANAVY_L",
-        "size": "L",
-        "seller": {
-          "uid": 381,
-          "name": "INTERSOURCE GARMENTS PVT LTD"
-        },
-        "store": {
-          "uid": 3009,
-          "name": "Kormangala"
-        },
-        "quantity": 2,
-        "price": {
-          "base": {
-            "marked": 1999,
-            "effective": 1999,
-            "currency_code": "INR"
-          },
-          "converted": {
-            "marked": 1999,
-            "effective": 1999,
-            "currency_code": "INR"
-          }
-        }
-      },
-      "product": {
-        "type": "product",
-        "uid": 820312,
-        "name": "Navy Blue Melange Shorts",
-        "slug": "883-police-navy-blue-melange-shorts-820312-4943a8",
-        "brand": {
-          "uid": 610,
-          "name": "883 Police"
-        },
-        "categories": [
-          {
-            "uid": 193,
-            "name": "Shorts"
-          }
-        ],
-        "images": [
-          {
-            "aspect_ratio": "16:25",
-            "url": "http://cdn4.gofynd.com/media/pictures/tagged_items/original/610_SPIRAL19ANAVY/1_1549105947281.jpg",
-            "secure_url": "https://d2zv4gzhlr4ud6.cloudfront.net/media/pictures/tagged_items/original/610_SPIRAL19ANAVY/1_1549105947281.jpg"
-          }
-        ],
-        "action": {
-          "type": "product",
-          "url": "https://api.addsale.com/platform/content/v1/products/883-police-navy-blue-melange-shorts-820312-4943a8/",
-          "query": {
-            "product_slug": [
-              "883-police-navy-blue-melange-shorts-820312-4943a8"
-            ]
-          }
-        }
-      },
-      "key": "820312_L",
-      "discount": ""
+      "coupon_value": 2250,
+      "minimum_cart_value": 0,
+      "coupon_code": "PRISMC22250111",
+      "title": "celio 2 time coupn to kalim hsp",
+      "sub_title": "celio 2 time coupn to kalim hsp",
+      "message": "celio 2 time coupn to kalim hsp",
+      "max_discount_value": 2250,
+      "uid": 17743,
+      "is_applicable": true,
+      "is_applied": false,
+      "expires_on": "24 Jan, 20"
     }
   ],
-  "delivery_charge_info": "",
-  "coupon_text": "View all offers",
-  "buy_now": false,
-  "cart_id": 7477,
-  "uid": "7477",
-  "gstin": null,
-  "checkout_mode": "self",
-  "last_modified": "Fri, 23 Aug 2019 08:03:04 GMT",
-  "restrict_checkout": false,
-  "is_valid": true
+  "page": {
+    "current": 1,
+    "total": 0,
+    "has_previous": false,
+    "has_next": false,
+    "total_item_count": 0
+  }
 }
 ```
 </details>
@@ -3905,29 +3691,19 @@ Success. Returns a Cart object as shown below. Refer `CartDetailResponse` for mo
 ---
 
 
-### validateCouponForPayment
-Verify the coupon eligibility against the payment mode
+### getItemCount
+Count items in the cart
 
 
 
 ```javascript
 // Promise
-const promise = cart.validateCouponForPayment({  id : value,
- buyNow : value,
- addressId : value,
- paymentMode : value,
- paymentIdentifier : value,
- aggregatorName : value,
- merchantCode : value });
+const promise = applicationClient.cart.getItemCount({  id : value,
+ buyNow : value });
 
 // Async/Await
-const data = await cart.validateCouponForPayment({  id : value,
- buyNow : value,
- addressId : value,
- paymentMode : value,
- paymentIdentifier : value,
- aggregatorName : value,
- merchantCode : value });
+const data = await applicationClient.cart.getItemCount({  id : value,
+ buyNow : value });
 ```
 
 
@@ -3936,26 +3712,21 @@ const data = await cart.validateCouponForPayment({  id : value,
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
-| id | string | no |  |    
-| buyNow | boolean | no |  |    
-| addressId | string | no |  |    
-| paymentMode | string | no |  |    
-| paymentIdentifier | string | no |  |    
-| aggregatorName | string | no |  |    
-| merchantCode | string | no |  |  
+| id | string | no | The unique identifier of the cart. |    
+| buyNow | boolean | no |  |  
 
 
 
-Use this API to validate a coupon against the payment mode such as NetBanking, Wallet, UPI etc.
+Use this API to get the total number of items present in cart.
 
 *Returned Response:*
 
 
 
 
-[PaymentCouponValidate](#PaymentCouponValidate)
+[CartItemCountResponse](#CartItemCountResponse)
 
-Success. Returns a success message and the coupon validity. Refer `PaymentCouponValidate` for more details.
+Success. Returns the total count of items in a user's cart.
 
 
 
@@ -3965,15 +3736,252 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
 
 ```json
 {
-  "success": true,
-  "message": "",
-  "coupon_validity": {
-    "valid": true,
-    "discount": 499.5,
-    "code": "testpayment",
-    "display_message_en": "",
-    "title": "Coupon value will change."
+  "user_cart_items_count": 0
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### getLadderOffers
+Fetch ladder price promotion
+
+
+
+```javascript
+// Promise
+const promise = applicationClient.cart.getLadderOffers({  slug : value,
+ storeId : value,
+ promotionId : value,
+ pageSize : value });
+
+// Async/Await
+const data = await applicationClient.cart.getLadderOffers({  slug : value,
+ storeId : value,
+ promotionId : value,
+ pageSize : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| slug | string | yes | A short, human-readable, URL-friendly identifier of a product. You can get slug value from the endpoint /service/application/catalog/v1.0/products/ |    
+| storeId | string | no | Store uid of assigned store on PDP page. If not passed default first created ladder will be returned |    
+| promotionId | string | no | Get ladder information of given promotion id explicitely |    
+| pageSize | number | no | Number of offers to be fetched to show |  
+
+
+
+Use this API to get applicable ladder price promotion for current product
+
+*Returned Response:*
+
+
+
+
+[LadderPriceOffers](#LadderPriceOffers)
+
+Success. Returns a object containing the applicable ladder price offers (if exists) on product. Refer `PromotionOffersResponse` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "available_offers": [
+    {
+      "id": "6203cb1393506f8a75ecd56b",
+      "offer_text": "Ladder Price 2",
+      "description": "Ladder Price 2",
+      "offer_prices": [
+        {
+          "min_quantity": 0,
+          "max_quantity": 0,
+          "margin": 5,
+          "type": "percentage",
+          "price": {
+            "marked": 5499,
+            "effective": 5499,
+            "offer_price": 5224.05
+          }
+        },
+        {
+          "min_quantity": 0,
+          "max_quantity": 0,
+          "margin": 10,
+          "type": "percentage",
+          "price": {
+            "marked": 5499,
+            "effective": 5499,
+            "offer_price": 4949.1
+          }
+        },
+        {
+          "min_quantity": 0,
+          "max_quantity": 0,
+          "margin": 20,
+          "type": "percentage",
+          "price": {
+            "marked": 5499,
+            "effective": 5499,
+            "offer_price": 4399.2
+          }
+        }
+      ]
+    },
+    {
+      "id": "6203cb1393506f8a75ecd56a",
+      "offer_text": "Ladder Price 1",
+      "description": "Ladder Price 1",
+      "offer_prices": [
+        {
+          "min_quantity": 0,
+          "max_quantity": 0,
+          "margin": 10,
+          "type": "amount",
+          "price": {
+            "marked": 5499,
+            "effective": 5499,
+            "offer_price": 4949.1
+          }
+        },
+        {
+          "min_quantity": 0,
+          "max_quantity": 0,
+          "margin": 15,
+          "type": "amount",
+          "price": {
+            "marked": 5499,
+            "effective": 5499,
+            "offer_price": 4674.15
+          }
+        },
+        {
+          "min_quantity": 0,
+          "max_quantity": 0,
+          "margin": 20,
+          "type": "amount",
+          "price": {
+            "marked": 5499,
+            "effective": 5499,
+            "offer_price": 4399.2
+          }
+        }
+      ]
+    }
+  ],
+  "currency": {
+    "code": "INR",
+    "symbol": "₹"
   }
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### getPromotionOffers
+Fetch available promotions
+
+
+
+```javascript
+// Promise
+const promise = applicationClient.cart.getPromotionOffers({  slug : value,
+ pageSize : value,
+ promotionGroup : value });
+
+// Async/Await
+const data = await applicationClient.cart.getPromotionOffers({  slug : value,
+ pageSize : value,
+ promotionGroup : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| slug | string | no | A short, human-readable, URL-friendly identifier of a product. You can get slug value from the endpoint /service/application/catalog/v1.0/products/ |    
+| pageSize | number | no | Number of offers to be fetched to show |    
+| promotionGroup | string | no | Type of promotion groups |  
+
+
+
+Use this API to get top 5 offers available for current product
+
+*Returned Response:*
+
+
+
+
+[PromotionOffersResponse](#PromotionOffersResponse)
+
+Success. Returns a array containing the available offers (if exists) on product via promotions. Refer `PromotionOffersResponse` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "available_promotions": [
+    {
+      "offer_text": "Buy 2 apple/gionee product get 500 off",
+      "description": "Test promotion",
+      "id": "61d1db23f5b315cf265126c0",
+      "valid_till": "2022-03-29T09:05:49.063Z",
+      "promotion_group": "cart"
+    },
+    {
+      "offer_text": "Buy 2 apple/gionee product get 500 off",
+      "description": "Test promotion",
+      "id": "6203cb1393506f8a75ecd566",
+      "valid_till": "2022-03-29T09:05:49.063Z",
+      "promotion_group": "product"
+    },
+    {
+      "offer_text": "Buy 2 apple/gionee product get 500 off",
+      "description": "Test promotion",
+      "id": "6203cb1393506f8a75ecd567",
+      "valid_till": "2022-03-29T09:05:49.063Z",
+      "promotion_group": "product"
+    },
+    {
+      "offer_text": "Buy 2 apple/gionee product get 500 off",
+      "description": "Test promotion",
+      "id": "6203cb1393506f8a75ecd569",
+      "valid_till": "2022-03-29T09:05:49.063Z",
+      "promotion_group": "product"
+    }
+  ]
 }
 ```
 </details>
@@ -3996,14 +4004,14 @@ Get delivery date and options before checkout
 
 ```javascript
 // Promise
-const promise = cart.getShipments({  p : value,
+const promise = applicationClient.cart.getShipments({  p : value,
  id : value,
  buyNow : value,
  addressId : value,
  areaCode : value });
 
 // Async/Await
-const data = await cart.getShipments({  p : value,
+const data = await applicationClient.cart.getShipments({  p : value,
  id : value,
  buyNow : value,
  addressId : value,
@@ -4699,18 +4707,77 @@ Success. Returns delivery promise along with shipment details and price breakup.
 ---
 
 
-### checkoutCart
-Checkout all items in the cart
+### removeAddress
+Remove address associated with an account
 
 
 
 ```javascript
 // Promise
-const promise = cart.checkoutCart({  body : value,
+const promise = applicationClient.cart.removeAddress({  id : value });
+
+// Async/Await
+const data = await applicationClient.cart.removeAddress({  id : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| id | string | yes | ID allotted to the selected address |  
+
+
+
+Use this API to delete an address by its ID. This will returns an object that will indicate whether the address was deleted successfully or not.
+
+*Returned Response:*
+
+
+
+
+[DeleteAddressResponse](#DeleteAddressResponse)
+
+Returns a Status object indicating the success or failure of address deletion.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "id": "<mongo_object_id>",
+  "is_deleted": true
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### removeCoupon
+Remove Coupon Applied
+
+
+
+```javascript
+// Promise
+const promise = applicationClient.cart.removeCoupon({  id : value,
  buyNow : value });
 
 // Async/Await
-const data = await cart.checkoutCart({  body : value,
+const data = await applicationClient.cart.removeCoupon({  id : value,
  buyNow : value });
 ```
 
@@ -4720,20 +4787,961 @@ const data = await cart.checkoutCart({  body : value,
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
-| buyNow | boolean | no | This indicates the type of cart to checkout |  
-| body | [CartCheckoutDetailRequest](#CartCheckoutDetailRequest) | yes | Request body |
+| id | string | no |  |    
+| buyNow | boolean | no |  |  
 
 
-Use this API to checkout all items in the cart for payment and order generation. For COD, order will be directly generated, whereas for other checkout modes, user will be redirected to a payment gateway.
+
+Remove Coupon applied on the cart by passing uid in request body.
 
 *Returned Response:*
 
 
 
 
-[CartCheckoutResponse](#CartCheckoutResponse)
+[CartDetailResponse](#CartDetailResponse)
 
-Success. Returns the status of cart checkout. Refer `CartCheckoutResponseSchema` for more details.
+Success. Returns coupons removed from the cart along with item details and price breakup. Refer `CartDetailResponse` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "breakup_values": {
+    "raw": {
+      "cod_charge": 0,
+      "convenience_fee": 0,
+      "coupon": 0,
+      "delivery_charge": 0,
+      "discount": 0,
+      "fynd_cash": 0,
+      "gst_charges": 342.75,
+      "mrp_total": 3199,
+      "subtotal": 3199,
+      "total": 3199,
+      "vog": 2856.25,
+      "you_saved": 0
+    },
+    "coupon": {
+      "type": "cash",
+      "code": "prismc22250111",
+      "uid": 17743,
+      "value": 0,
+      "is_applied": false,
+      "message": "Coupon successfully removed"
+    },
+    "display": [
+      {
+        "display": "MRP Total",
+        "key": "mrp_total",
+        "value": 3199,
+        "currency_code": "INR"
+      },
+      {
+        "display": "Subtotal",
+        "key": "subtotal",
+        "value": 3199,
+        "currency_code": "INR"
+      },
+      {
+        "display": "Total",
+        "key": "total",
+        "value": 3199,
+        "currency_code": "INR"
+      }
+    ],
+    "loyalty_points": {
+      "total": 0,
+      "applicable": 0,
+      "is_applied": false,
+      "description": "Your cashback, referrals, and refund amount get credited to Fynd Cash which can be redeemed while placing an order."
+    }
+  },
+  "items": [
+    {
+      "message": "",
+      "availability": {
+        "sizes": [
+          "M",
+          "S",
+          "L",
+          "XXL",
+          "XL"
+        ],
+        "other_store_quantity": 10,
+        "out_of_stock": false,
+        "deliverable": true,
+        "is_valid": true
+      },
+      "bulk_offer": {},
+      "key": "857596_S",
+      "quantity": 1,
+      "price": {
+        "base": {
+          "add_on": 3199,
+          "marked": 3199,
+          "effective": 3199,
+          "selling": 3199,
+          "currency_code": "INR"
+        },
+        "converted": {
+          "add_on": 3199,
+          "marked": 3199,
+          "effective": 3199,
+          "selling": 3199,
+          "currency_code": "INR"
+        }
+      },
+      "discount": "",
+      "coupon_message": "",
+      "product": {
+        "type": "product",
+        "uid": 857596,
+        "name": "Pink Solid Hoodie",
+        "slug": "883-police-pink-solid-hoodie-857596-111bdc",
+        "brand": {
+          "uid": 610,
+          "name": "883 Police"
+        },
+        "categories": [
+          {
+            "uid": 144,
+            "name": "Hoodies"
+          }
+        ],
+        "images": [
+          {
+            "aspect_ratio": "16:25",
+            "url": "http://cdn4.gofynd.com/media/pictures/tagged_items/original/610_LETTER19APINK/1_1553062658148.jpg",
+            "secure_url": "https://d2zv4gzhlr4ud6.cloudfront.net/media/pictures/tagged_items/original/610_LETTER19APINK/1_1553062658148.jpg"
+          }
+        ],
+        "action": {
+          "type": "product",
+          "url": "https://api.addsale.com/platform/content/v1/products/883-police-pink-solid-hoodie-857596-111bdc/",
+          "query": {
+            "product_slug": [
+              "883-police-pink-solid-hoodie-857596-111bdc"
+            ]
+          }
+        }
+      },
+      "article": {
+        "type": "article",
+        "uid": "381_610_IGPL01_LETTER19APINK_S",
+        "size": "S",
+        "seller": {
+          "uid": 381,
+          "name": "INTERSOURCE GARMENTS PVT LTD"
+        },
+        "store": {
+          "uid": 3009,
+          "name": "Kormangala"
+        },
+        "quantity": 11,
+        "price": {
+          "base": {
+            "marked": 3199,
+            "effective": 3199,
+            "currency_code": "INR"
+          },
+          "converted": {
+            "marked": 3199,
+            "effective": 3199,
+            "currency_code": "INR"
+          }
+        }
+      }
+    }
+  ],
+  "delivery_charge_info": "",
+  "coupon_text": "View all offers",
+  "buy_now": false,
+  "cart_id": 7477,
+  "uid": "7477",
+  "gstin": null,
+  "checkout_mode": "self",
+  "last_modified": "Thu, 22 Aug 2019 10:55:05 GMT",
+  "restrict_checkout": false,
+  "is_valid": true
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### selectAddress
+Select an address from available addresses
+
+
+
+```javascript
+// Promise
+const promise = applicationClient.cart.selectAddress({  body : value,
+ cartId : value,
+ buyNow : value,
+ i : value,
+ b : value });
+
+// Async/Await
+const data = await applicationClient.cart.selectAddress({  body : value,
+ cartId : value,
+ buyNow : value,
+ i : value,
+ b : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| cartId | string | no |  |    
+| buyNow | boolean | no |  |    
+| i | boolean | no |  |    
+| b | boolean | no |  |  
+| body | [SelectCartAddressRequest](#SelectCartAddressRequest) | yes | Request body |
+
+
+<p>Select Address from all addresses associated with the account in order to ship the cart items to that address, otherwise default address will be selected implicitly. See `SelectCartAddressRequest` in schema of request body for the list of attributes needed to select Address from account. On successful request, this API returns a Cart object. Below address attributes are required. <ul> <li> <font color="monochrome">address_id</font></li> <li> <font color="monochrome">billing_address_id</font></li> <li> <font color="monochrome">uid</font></li> </ul></p>
+
+*Returned Response:*
+
+
+
+
+[CartDetailResponse](#CartDetailResponse)
+
+Success. Returns a Cart object as shown below. Refer `CartDetailResponse` for more details.  .
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "is_valid": true,
+  "buy_now": false,
+  "breakup_values": {
+    "raw": {
+      "cod_charge": 0,
+      "convenience_fee": 0,
+      "coupon": -2250,
+      "delivery_charge": 0,
+      "discount": 0,
+      "fynd_cash": 0,
+      "gst_charges": 315.86,
+      "mrp_total": 5198,
+      "subtotal": 5198,
+      "total": 2948,
+      "vog": 2632.15,
+      "you_saved": 0
+    },
+    "display": [
+      {
+        "display": "MRP Total",
+        "key": "mrp_total",
+        "value": 5198,
+        "currency_code": "INR"
+      },
+      {
+        "display": "Subtotal",
+        "key": "subtotal",
+        "value": 5198,
+        "currency_code": "INR"
+      },
+      {
+        "display": "Coupon",
+        "key": "coupon",
+        "value": -2250,
+        "currency_code": "INR"
+      },
+      {
+        "display": "Total",
+        "key": "total",
+        "value": 2948,
+        "currency_code": "INR"
+      }
+    ],
+    "coupon": {
+      "type": "cash",
+      "code": "PRISMC22250111",
+      "uid": 17743,
+      "value": 2250,
+      "is_applied": true,
+      "message": "coupn applied"
+    },
+    "loyalty_points": {
+      "total": 0,
+      "applicable": 0,
+      "is_applied": false,
+      "description": "Your cashback, referrals, and refund amount get credited to Fynd Cash which can be redeemed while placing an order."
+    }
+  },
+  "items": [
+    {
+      "message": "",
+      "quantity": 1,
+      "availability": {
+        "sizes": [
+          "M",
+          "S",
+          "L",
+          "XXL",
+          "XL"
+        ],
+        "other_store_quantity": 10,
+        "out_of_stock": false,
+        "deliverable": true,
+        "is_valid": true
+      },
+      "coupon_message": "PRISMC22250111 coupon applied",
+      "price": {
+        "base": {
+          "add_on": 3199,
+          "marked": 3199,
+          "effective": 3199,
+          "selling": 3199,
+          "currency_code": "INR"
+        },
+        "converted": {
+          "add_on": 3199,
+          "marked": 3199,
+          "effective": 3199,
+          "selling": 3199,
+          "currency_code": "INR"
+        }
+      },
+      "bulk_offer": {},
+      "article": {
+        "type": "article",
+        "uid": "381_610_IGPL01_LETTER19APINK_S",
+        "size": "S",
+        "seller": {
+          "uid": 381,
+          "name": "INTERSOURCE GARMENTS PVT LTD"
+        },
+        "store": {
+          "uid": 3009,
+          "name": "Kormangala"
+        },
+        "quantity": 11,
+        "price": {
+          "base": {
+            "marked": 3199,
+            "effective": 3199,
+            "currency_code": "INR"
+          },
+          "converted": {
+            "marked": 3199,
+            "effective": 3199,
+            "currency_code": "INR"
+          }
+        }
+      },
+      "product": {
+        "type": "product",
+        "uid": 857596,
+        "name": "Pink Solid Hoodie",
+        "slug": "883-police-pink-solid-hoodie-857596-111bdc",
+        "brand": {
+          "uid": 610,
+          "name": "883 Police"
+        },
+        "categories": [
+          {
+            "uid": 144,
+            "name": "Hoodies"
+          }
+        ],
+        "images": [
+          {
+            "aspect_ratio": "16:25",
+            "url": "http://cdn4.gofynd.com/media/pictures/tagged_items/original/610_LETTER19APINK/1_1553062658148.jpg",
+            "secure_url": "https://d2zv4gzhlr4ud6.cloudfront.net/media/pictures/tagged_items/original/610_LETTER19APINK/1_1553062658148.jpg"
+          }
+        ],
+        "action": {
+          "type": "product",
+          "url": "https://api.addsale.com/platform/content/v1/products/883-police-pink-solid-hoodie-857596-111bdc/",
+          "query": {
+            "product_slug": [
+              "883-police-pink-solid-hoodie-857596-111bdc"
+            ]
+          }
+        }
+      },
+      "key": "857596_S",
+      "discount": ""
+    },
+    {
+      "message": "",
+      "quantity": 1,
+      "availability": {
+        "sizes": [
+          "L",
+          "XL",
+          "XXL"
+        ],
+        "other_store_quantity": 1,
+        "out_of_stock": false,
+        "deliverable": true,
+        "is_valid": true
+      },
+      "coupon_message": "PRISMC22250111 coupon applied",
+      "price": {
+        "base": {
+          "add_on": 1999,
+          "marked": 1999,
+          "effective": 1999,
+          "selling": 1999,
+          "currency_code": "INR"
+        },
+        "converted": {
+          "add_on": 1999,
+          "marked": 1999,
+          "effective": 1999,
+          "selling": 1999,
+          "currency_code": "INR"
+        }
+      },
+      "bulk_offer": {},
+      "article": {
+        "type": "article",
+        "uid": "381_610_IGPL01_SPIRAL19ANAVY_L",
+        "size": "L",
+        "seller": {
+          "uid": 381,
+          "name": "INTERSOURCE GARMENTS PVT LTD"
+        },
+        "store": {
+          "uid": 3009,
+          "name": "Kormangala"
+        },
+        "quantity": 2,
+        "price": {
+          "base": {
+            "marked": 1999,
+            "effective": 1999,
+            "currency_code": "INR"
+          },
+          "converted": {
+            "marked": 1999,
+            "effective": 1999,
+            "currency_code": "INR"
+          }
+        }
+      },
+      "product": {
+        "type": "product",
+        "uid": 820312,
+        "name": "Navy Blue Melange Shorts",
+        "slug": "883-police-navy-blue-melange-shorts-820312-4943a8",
+        "brand": {
+          "uid": 610,
+          "name": "883 Police"
+        },
+        "categories": [
+          {
+            "uid": 193,
+            "name": "Shorts"
+          }
+        ],
+        "images": [
+          {
+            "aspect_ratio": "16:25",
+            "url": "http://cdn4.gofynd.com/media/pictures/tagged_items/original/610_SPIRAL19ANAVY/1_1549105947281.jpg",
+            "secure_url": "https://d2zv4gzhlr4ud6.cloudfront.net/media/pictures/tagged_items/original/610_SPIRAL19ANAVY/1_1549105947281.jpg"
+          }
+        ],
+        "action": {
+          "type": "product",
+          "url": "https://api.addsale.com/platform/content/v1/products/883-police-navy-blue-melange-shorts-820312-4943a8/",
+          "query": {
+            "product_slug": [
+              "883-police-navy-blue-melange-shorts-820312-4943a8"
+            ]
+          }
+        }
+      },
+      "key": "820312_L",
+      "discount": ""
+    }
+  ],
+  "delivery_charge_info": "",
+  "coupon_text": "View all offers",
+  "uid": "7477",
+  "gstin": null,
+  "checkout_mode": "self",
+  "last_modified": "Fri, 23 Aug 2019 08:03:12 GMT",
+  "restrict_checkout": false
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### selectPaymentMode
+Update cart payment
+
+
+
+```javascript
+// Promise
+const promise = applicationClient.cart.selectPaymentMode({  body : value,
+ id : value,
+ buyNow : value });
+
+// Async/Await
+const data = await applicationClient.cart.selectPaymentMode({  body : value,
+ id : value,
+ buyNow : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| id | string | no |  |    
+| buyNow | boolean | no |  |  
+| body | [UpdateCartPaymentRequest](#UpdateCartPaymentRequest) | yes | Request body |
+
+
+Use this API to update cart payment.
+
+*Returned Response:*
+
+
+
+
+[CartDetailResponse](#CartDetailResponse)
+
+Success. Returns a Cart object as shown below. Refer `CartDetailResponse` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "success": true,
+  "error_message": "Note: Your order delivery will be delayed by 7-10 Days",
+  "user_type": "Store User",
+  "cod_charges": 0,
+  "order_id": null,
+  "cod_available": true,
+  "cod_message": "No additional COD charges applicable",
+  "delivery_charges": 0,
+  "delivery_charge_order_value": 0,
+  "store_code": "",
+  "store_emps": [],
+  "breakup_values": {
+    "raw": {
+      "cod_charge": 0,
+      "convenience_fee": 0,
+      "coupon": -2250,
+      "delivery_charge": 0,
+      "discount": 0,
+      "fynd_cash": 0,
+      "gst_charges": 315.86,
+      "mrp_total": 5198,
+      "subtotal": 5198,
+      "total": 2948,
+      "vog": 2632.15,
+      "you_saved": 0
+    },
+    "display": [
+      {
+        "display": "MRP Total",
+        "key": "mrp_total",
+        "value": 5198,
+        "currency_code": "INR"
+      },
+      {
+        "display": "Subtotal",
+        "key": "subtotal",
+        "value": 5198,
+        "currency_code": "INR"
+      },
+      {
+        "display": "Coupon",
+        "key": "coupon",
+        "value": -2250,
+        "currency_code": "INR"
+      },
+      {
+        "display": "Total",
+        "key": "total",
+        "value": 2948,
+        "currency_code": "INR"
+      }
+    ],
+    "coupon": {
+      "type": "cash",
+      "code": "PRISMC22250111",
+      "uid": 17743,
+      "value": 2250,
+      "is_applied": true,
+      "message": "coupn applied"
+    },
+    "loyalty_points": {
+      "total": 0,
+      "applicable": 0,
+      "is_applied": false,
+      "description": "Your cashback, referrals, and refund amount get credited to Fynd Cash which can be redeemed while placing an order."
+    }
+  },
+  "items": [
+    {
+      "message": "",
+      "quantity": 1,
+      "availability": {
+        "sizes": [
+          "M",
+          "S",
+          "L",
+          "XXL",
+          "XL"
+        ],
+        "other_store_quantity": 10,
+        "out_of_stock": false,
+        "deliverable": true,
+        "is_valid": true
+      },
+      "coupon_message": "PRISMC22250111 coupon applied",
+      "price": {
+        "base": {
+          "add_on": 3199,
+          "marked": 3199,
+          "effective": 3199,
+          "selling": 3199,
+          "currency_code": "INR"
+        },
+        "converted": {
+          "add_on": 3199,
+          "marked": 3199,
+          "effective": 3199,
+          "selling": 3199,
+          "currency_code": "INR"
+        }
+      },
+      "bulk_offer": {},
+      "article": {
+        "type": "article",
+        "uid": "381_610_IGPL01_LETTER19APINK_S",
+        "size": "S",
+        "seller": {
+          "uid": 381,
+          "name": "INTERSOURCE GARMENTS PVT LTD"
+        },
+        "store": {
+          "uid": 3009,
+          "name": "Kormangala"
+        },
+        "quantity": 11,
+        "price": {
+          "base": {
+            "marked": 3199,
+            "effective": 3199,
+            "currency_code": "INR"
+          },
+          "converted": {
+            "marked": 3199,
+            "effective": 3199,
+            "currency_code": "INR"
+          }
+        }
+      },
+      "product": {
+        "type": "product",
+        "uid": 857596,
+        "name": "Pink Solid Hoodie",
+        "slug": "883-police-pink-solid-hoodie-857596-111bdc",
+        "brand": {
+          "uid": 610,
+          "name": "883 Police"
+        },
+        "categories": [
+          {
+            "uid": 144,
+            "name": "Hoodies"
+          }
+        ],
+        "images": [
+          {
+            "aspect_ratio": "16:25",
+            "url": "http://cdn4.gofynd.com/media/pictures/tagged_items/original/610_LETTER19APINK/1_1553062658148.jpg",
+            "secure_url": "https://d2zv4gzhlr4ud6.cloudfront.net/media/pictures/tagged_items/original/610_LETTER19APINK/1_1553062658148.jpg"
+          }
+        ],
+        "action": {
+          "type": "product",
+          "url": "https://api.addsale.com/platform/content/v1/products/883-police-pink-solid-hoodie-857596-111bdc/",
+          "query": {
+            "product_slug": [
+              "883-police-pink-solid-hoodie-857596-111bdc"
+            ]
+          }
+        }
+      },
+      "key": "857596_S",
+      "discount": ""
+    },
+    {
+      "message": "",
+      "quantity": 1,
+      "availability": {
+        "sizes": [
+          "L",
+          "XL",
+          "XXL"
+        ],
+        "other_store_quantity": 1,
+        "out_of_stock": false,
+        "deliverable": true,
+        "is_valid": true
+      },
+      "coupon_message": "PRISMC22250111 coupon applied",
+      "price": {
+        "base": {
+          "add_on": 1999,
+          "marked": 1999,
+          "effective": 1999,
+          "selling": 1999,
+          "currency_code": "INR"
+        },
+        "converted": {
+          "add_on": 1999,
+          "marked": 1999,
+          "effective": 1999,
+          "selling": 1999,
+          "currency_code": "INR"
+        }
+      },
+      "bulk_offer": {},
+      "article": {
+        "type": "article",
+        "uid": "381_610_IGPL01_SPIRAL19ANAVY_L",
+        "size": "L",
+        "seller": {
+          "uid": 381,
+          "name": "INTERSOURCE GARMENTS PVT LTD"
+        },
+        "store": {
+          "uid": 3009,
+          "name": "Kormangala"
+        },
+        "quantity": 2,
+        "price": {
+          "base": {
+            "marked": 1999,
+            "effective": 1999,
+            "currency_code": "INR"
+          },
+          "converted": {
+            "marked": 1999,
+            "effective": 1999,
+            "currency_code": "INR"
+          }
+        }
+      },
+      "product": {
+        "type": "product",
+        "uid": 820312,
+        "name": "Navy Blue Melange Shorts",
+        "slug": "883-police-navy-blue-melange-shorts-820312-4943a8",
+        "brand": {
+          "uid": 610,
+          "name": "883 Police"
+        },
+        "categories": [
+          {
+            "uid": 193,
+            "name": "Shorts"
+          }
+        ],
+        "images": [
+          {
+            "aspect_ratio": "16:25",
+            "url": "http://cdn4.gofynd.com/media/pictures/tagged_items/original/610_SPIRAL19ANAVY/1_1549105947281.jpg",
+            "secure_url": "https://d2zv4gzhlr4ud6.cloudfront.net/media/pictures/tagged_items/original/610_SPIRAL19ANAVY/1_1549105947281.jpg"
+          }
+        ],
+        "action": {
+          "type": "product",
+          "url": "https://api.addsale.com/platform/content/v1/products/883-police-navy-blue-melange-shorts-820312-4943a8/",
+          "query": {
+            "product_slug": [
+              "883-police-navy-blue-melange-shorts-820312-4943a8"
+            ]
+          }
+        }
+      },
+      "key": "820312_L",
+      "discount": ""
+    }
+  ],
+  "delivery_charge_info": "",
+  "coupon_text": "View all offers",
+  "buy_now": false,
+  "cart_id": 7477,
+  "uid": "7477",
+  "gstin": null,
+  "checkout_mode": "self",
+  "last_modified": "Fri, 23 Aug 2019 08:03:04 GMT",
+  "restrict_checkout": false,
+  "is_valid": true
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### updateAddress
+Update address added to an account
+
+
+
+```javascript
+// Promise
+const promise = applicationClient.cart.updateAddress({  id : value,
+ body : value });
+
+// Async/Await
+const data = await applicationClient.cart.updateAddress({  id : value,
+ body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| id | string | yes | ID allotted to the selected address |  
+| body | [Address](#Address) | yes | Request body |
+
+
+<p>Use this API to update an existing address in the account. Request object should contain attributes mentioned in  <font color="blue">Address </font> can be updated. These attributes are:</p> <ul> <li> <font color="monochrome">is_default_address</font></li> <li> <font color="monochrome">landmark</font></li> <li> <font color="monochrome">area</font></li> <li> <font color="monochrome">pincode</font></li> <li> <font color="monochrome">email</font></li> <li> <font color="monochrome">address_type</font></li> <li> <font color="monochrome">name</font></li> <li> <font color="monochrome">address_id</font></li> <li> <font color="monochrome">address</font></li> </ul>
+
+*Returned Response:*
+
+
+
+
+[UpdateAddressResponse](#UpdateAddressResponse)
+
+Success. Returns the address ID and a message indicating a successful address updation.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "is_updated": true,
+  "id": "<mongo_object_id>",
+  "is_default_address": true,
+  "success": true
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### updateCart
+Update items in the cart
+
+
+
+```javascript
+// Promise
+const promise = applicationClient.cart.updateCart({  body : value,
+ id : value,
+ i : value,
+ b : value,
+ buyNow : value });
+
+// Async/Await
+const data = await applicationClient.cart.updateCart({  body : value,
+ id : value,
+ i : value,
+ b : value,
+ buyNow : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| id | string | no |  |    
+| i | boolean | no |  |    
+| b | boolean | no |  |    
+| buyNow | boolean | no |  |  
+| body | [UpdateCartRequest](#UpdateCartRequest) | yes | Request body |
+
+
+<p>Use this API to update items added to the cart with the help of a request object containing attributes like item_quantity and item_size. These attributes will be fetched from the following APIs</p> <ul> <li><font color="monochrome">operation</font> Operation for current api call. <b>update_item</b> for update items. <b>remove_item</b> for removing items.</li> <li> <font color="monochrome">item_id</font>  "/platform/content/v1/products/"</li> <li> <font color="monochrome">item_size</font>   "/platform/content/v1/products/:slug/sizes/"</li> <li> <font color="monochrome">quantity</font>  item quantity (must be greater than or equal to 1)</li> <li> <font color="monochrome">article_id</font>   "/content​/v1​/products​/:identifier​/sizes​/price​/"</li> <li> <font color="monochrome">item_index</font>  item position in the cart (must be greater than or equal to 0)</li> </ul>
+
+*Returned Response:*
+
+
+
+
+[UpdateCartDetailResponse](#UpdateCartDetailResponse)
+
+Success. Updates and returns a cart object as shown below. Refer `UpdateCartDetailResponse` for more details.
 
 
 
@@ -4743,220 +5751,204 @@ Success. Returns the status of cart checkout. Refer `CartCheckoutResponseSchema`
 
 
 <details>
-<summary><i>&nbsp; Address id not found</i></summary>
+<summary><i>&nbsp; Nothing updated</i></summary>
 
 ```json
 {
   "value": {
-    "success": false,
-    "message": "No address found with address id {address_id}"
-  }
-}
-```
-</details>
-
-<details>
-<summary><i>&nbsp; Missing address_id</i></summary>
-
-```json
-{
-  "value": {
-    "address_id": [
-      "Missing data for required field."
-    ]
-  }
-}
-```
-</details>
-
-<details>
-<summary><i>&nbsp; Successful checkout cod payment</i></summary>
-
-```json
-{
-  "value": {
-    "success": true,
     "cart": {
-      "success": true,
-      "error_message": "Note: Your order delivery will be delayed by 7-10 Days",
-      "payment_options": {
-        "payment_option": [
+      "breakup_values": {
+        "raw": {
+          "cod_charge": 0,
+          "convenience_fee": 0,
+          "coupon": 0,
+          "delivery_charge": 0,
+          "discount": -202000,
+          "fynd_cash": 0,
+          "gst_charges": 4804.71,
+          "mrp_total": 302899,
+          "subtotal": 100899,
+          "total": 100899,
+          "vog": 96094.29,
+          "you_saved": 0
+        },
+        "coupon": {
+          "type": "cash",
+          "code": "",
+          "uid": null,
+          "value": 0,
+          "is_applied": false,
+          "message": "Sorry! Invalid Coupon"
+        },
+        "display": [
           {
-            "name": "COD",
-            "display_name": "Cash on Delivery",
-            "display_priority": 1,
-            "payment_mode_id": 11,
-            "logo": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/cod.png",
-            "logo_url": {
-              "small": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/cod.png",
-              "large": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/cod.png"
-            },
-            "list": []
+            "display": "MRP Total",
+            "key": "mrp_total",
+            "value": 302899,
+            "currency_code": "INR"
           },
           {
-            "name": "CARD",
-            "display_priority": 2,
-            "payment_mode_id": 2,
-            "display_name": "Card",
-            "list": []
+            "display": "Discount",
+            "key": "discount",
+            "value": -202000,
+            "currency_code": "INR"
           },
           {
-            "name": "NB",
-            "display_priority": 3,
-            "payment_mode_id": 3,
-            "display_name": "Net Banking",
-            "list": [
-              {
-                "aggregator_name": "Razorpay",
-                "bank_name": "ICICI Bank",
-                "bank_code": "ICIC",
-                "url": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/NB_ICICI.png",
-                "logo_url": {
-                  "small": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/NB_ICICI.png",
-                  "large": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/NB_ICICI.png"
-                },
-                "merchant_code": "NB_ICICI",
-                "display_priority": 1
-              }
-            ]
+            "display": "Subtotal",
+            "key": "subtotal",
+            "value": 100899,
+            "currency_code": "INR"
           },
           {
-            "name": "WL",
-            "display_priority": 4,
-            "payment_mode_id": 4,
-            "display_name": "Wallet",
-            "list": [
-              {
-                "wallet_name": "Paytm",
-                "wallet_code": "paytm",
-                "wallet_id": 4,
-                "merchant_code": "PAYTM",
-                "logo_url": {
-                  "small": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/paytm_logo_small.png",
-                  "large": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/paytm_logo_large.png"
-                },
-                "aggregator_name": "Juspay",
-                "display_priority": 1
-              }
-            ]
-          },
-          {
-            "name": "UPI",
-            "display_priority": 9,
-            "payment_mode_id": 6,
-            "display_name": "UPI",
-            "list": [
-              {
-                "aggregator_name": "UPI_Razorpay",
-                "name": "UPI",
-                "display_name": "BHIM UPI",
-                "code": "UPI",
-                "logo_url": {
-                  "small": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/upi_100x78.png",
-                  "large": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/upi_150x100.png"
-                },
-                "merchant_code": "UPI",
-                "timeout": 240,
-                "retry_count": 0,
-                "fynd_vpa": "shopsense.rzp@hdfcbank",
-                "intent_flow": true,
-                "intent_app_error_list": [
-                  "com.csam.icici.bank.imobile",
-                  "in.org.npci.upiapp",
-                  "com.whatsapp"
-                ]
-              }
-            ]
-          },
-          {
-            "name": "PL",
-            "display_priority": 11,
-            "payment_mode_id": 1,
-            "display_name": "Pay Later",
-            "list": [
-              {
-                "aggregator_name": "Simpl",
-                "name": "Simpl",
-                "code": "simpl",
-                "merchant_code": "SIMPL",
-                "logo": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/simpl_logo.png",
-                "logo_url": {
-                  "small": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/simpl_logo.png",
-                  "large": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/simpl_logo.png"
-                }
-              }
-            ]
+            "display": "Total",
+            "key": "total",
+            "value": 100899,
+            "currency_code": "INR"
           }
         ],
-        "payment_flows": {
-          "Simpl": {
-            "data": {
-              "gateway": {
-                "route": "simpl",
-                "entity": "sdk",
-                "is_customer_validation_required": true,
-                "cust_validation_url": "https://api.addsale.com/gringotts/api/v1/validate-customer/",
-                "sdk": {
-                  "config": {
-                    "redirect": false,
-                    "callback_url": null,
-                    "action_url": "https://api.addsale.com/avis/api/v1/payments/charge-gringotts-transaction/"
-                  },
-                  "data": {
-                    "user_phone": "8452996729",
-                    "user_email": "paymentsdummy@gofynd.com"
-                  }
-                },
-                "return_url": null
-              }
-            },
-            "api_link": "",
-            "payment_flow": "sdk"
-          },
-          "Juspay": {
-            "data": {},
-            "api_link": "https://sandbox.juspay.in/txns",
-            "payment_flow": "api"
-          },
-          "Razorpay": {
-            "data": {},
-            "api_link": "",
-            "payment_flow": "sdk"
-          },
-          "UPI_Razorpay": {
-            "data": {},
-            "api_link": "https://api.addsale.com/gringotts/api/v1/external/payment-initialisation/",
-            "payment_flow": "api"
-          },
-          "Fynd": {
-            "data": {},
-            "api_link": "",
-            "payment_flow": "api"
-          }
-        },
-        "default": {}
+        "loyalty_points": {
+          "total": 0,
+          "applicable": 0,
+          "is_applied": false,
+          "description": "Your cashback, referrals, and refund amount get credited to Fynd Cash which can be redeemed while placing an order."
+        }
       },
-      "user_type": "Store User",
-      "cod_charges": 0,
-      "order_id": "FY5D5E215CF287584CE6",
-      "cod_available": true,
-      "cod_message": "No additional COD charges applicable",
-      "delivery_charges": 0,
-      "delivery_charge_order_value": 0,
-      "delivery_slots": [
+      "items": [
         {
-          "date": "Sat, 24 Aug",
-          "delivery_slot": [
-            {
-              "delivery_slot_timing": "By 9:00 PM",
-              "default": true,
-              "delivery_slot_id": 1
+          "bulk_offer": {},
+          "discount": "67% OFF",
+          "parent_item_identifiers": {
+            "identifier": "ZASFF",
+            "parent_item_id": 7501190,
+            "parent_item_size": "OS"
+          },
+          "article": {
+            "type": "article",
+            "uid": "604_902_SSTC60401_636BLUE_1",
+            "size": "1",
+            "seller": {
+              "uid": 604,
+              "name": "SHRI SHANTINATH TRADING COMPANY"
+            },
+            "store": {
+              "uid": 4579,
+              "name": "Gandhi Nagar"
+            },
+            "quantity": 108,
+            "price": {
+              "base": {
+                "marked": 2999,
+                "effective": 999,
+                "currency_code": "INR"
+              },
+              "converted": {
+                "marked": 2999,
+                "effective": 999,
+                "currency_code": "INR"
+              }
             }
-          ]
+          },
+          "coupon_message": "",
+          "key": "707569_1",
+          "availability": {
+            "sizes": [
+              "1",
+              "8",
+              "7",
+              "2",
+              "9",
+              "5",
+              "3",
+              "6"
+            ],
+            "other_store_quantity": 7,
+            "out_of_stock": false,
+            "deliverable": true,
+            "is_valid": true
+          },
+          "product": {
+            "type": "product",
+            "uid": 707569,
+            "name": "Blue and Gold Printed Ethnic Set",
+            "slug": "aj-dezines-blue-and-gold-printed-ethnic-set-707569-bff01a",
+            "brand": {
+              "uid": 902,
+              "name": ""
+            },
+            "categories": [
+              {
+                "uid": 525,
+                "name": ""
+              }
+            ],
+            "images": [
+              {
+                "aspect_ratio": "16:25",
+                "url": "http://cdn4.gofynd.com/media/pictures/tagged_items/original/902_636BLUE/1_1540301094877.jpg",
+                "secure_url": "https://d2zv4gzhlr4ud6.cloudfront.net/media/pictures/tagged_items/original/902_636BLUE/1_1540301094877.jpg"
+              }
+            ],
+            "action": {
+              "type": "product",
+              "url": "https://api.addsale.com/v1/products/aj-dezines-blue-and-gold-printed-ethnic-set-707569-bff01a/",
+              "query": {
+                "product_slug": [
+                  "aj-dezines-blue-and-gold-printed-ethnic-set-707569-bff01a"
+                ]
+              }
+            }
+          },
+          "price": {
+            "base": {
+              "add_on": 100899,
+              "marked": 302899,
+              "effective": 100899,
+              "selling": 100899,
+              "currency_code": "INR"
+            },
+            "converted": {
+              "add_on": 100899,
+              "marked": 302899,
+              "effective": 100899,
+              "selling": 100899,
+              "currency_code": "INR"
+            }
+          },
+          "message": "",
+          "quantity": 101
         }
       ],
-      "store_code": "",
-      "store_emps": [],
+      "delivery_charge_info": "",
+      "coupon_text": "View all offers",
+      "buy_now": false,
+      "cart_id": 54,
+      "uid": "54",
+      "gstin": null,
+      "checkout_mode": "self",
+      "restrict_checkout": false,
+      "is_valid": true,
+      "last_modified": "Tue, 03 Sep 2019 10:19:20 GMT"
+    },
+    "result": {
+      "707569_90": {
+        "success": true,
+        "message": "Nothing updated"
+      }
+    },
+    "message": "Nothing updated",
+    "success": true
+  }
+}
+```
+</details>
+
+<details>
+<summary><i>&nbsp; Item updated in the cart</i></summary>
+
+```json
+{
+  "value": {
+    "cart": {
       "breakup_values": {
         "coupon": {
           "type": "cash",
@@ -4979,52 +5971,52 @@ Success. Returns the status of cart checkout. Refer `CartCheckoutResponseSchema`
           "delivery_charge": 0,
           "discount": 0,
           "fynd_cash": 0,
-          "gst_charges": 214.18,
-          "mrp_total": 1999,
-          "subtotal": 1999,
-          "total": 1999,
-          "vog": 1784.82,
+          "gst_charges": 838.83,
+          "mrp_total": 5499,
+          "subtotal": 5499,
+          "total": 5499,
+          "vog": 4660.17,
           "you_saved": 0
         },
         "display": [
           {
             "display": "MRP Total",
             "key": "mrp_total",
-            "value": 1999,
+            "value": 5499,
             "currency_code": "INR"
           },
           {
             "display": "Subtotal",
             "key": "subtotal",
-            "value": 1999,
+            "value": 5499,
             "currency_code": "INR"
           },
           {
             "display": "Total",
             "key": "total",
-            "value": 1999,
+            "value": 5499,
             "currency_code": "INR"
           }
         ]
       },
       "items": [
         {
-          "key": "820312_L",
+          "key": "437414_7",
           "message": "",
           "bulk_offer": {},
           "price": {
             "base": {
-              "add_on": 1999,
-              "marked": 1999,
-              "effective": 1999,
-              "selling": 1999,
+              "add_on": 5499,
+              "marked": 5499,
+              "effective": 5499,
+              "selling": 5499,
               "currency_code": "INR"
             },
             "converted": {
-              "add_on": 1999,
-              "marked": 1999,
-              "effective": 1999,
-              "selling": 1999,
+              "add_on": 5499,
+              "marked": 5499,
+              "effective": 5499,
+              "selling": 5499,
               "currency_code": "INR"
             }
           },
@@ -5032,58 +6024,63 @@ Success. Returns the status of cart checkout. Refer `CartCheckoutResponseSchema`
           "discount": "",
           "product": {
             "type": "product",
-            "uid": 820312,
-            "name": "Navy Blue Melange Shorts",
-            "slug": "883-police-navy-blue-melange-shorts-820312-4943a8",
+            "uid": 437414,
+            "name": "Suede Classic",
+            "slug": "puma-suede-classic-437414-6e6bbf",
             "brand": {
-              "uid": 610,
-              "name": "883 Police"
+              "uid": 9,
+              "name": "Puma"
             },
             "categories": [
               {
-                "uid": 193,
-                "name": "Shorts"
+                "uid": 165,
+                "name": "Outdoor Sports Shoes"
               }
             ],
             "images": [
               {
                 "aspect_ratio": "16:25",
-                "url": "http://cdn4.gofynd.com/media/pictures/tagged_items/original/610_SPIRAL19ANAVY/1_1549105947281.jpg",
-                "secure_url": "https://d2zv4gzhlr4ud6.cloudfront.net/media/pictures/tagged_items/original/610_SPIRAL19ANAVY/1_1549105947281.jpg"
+                "url": "http://cdn4.gofynd.com/media/pictures/tagged_items/original/9_35656851/1_1511171811830.jpg",
+                "secure_url": "https://d2zv4gzhlr4ud6.cloudfront.net/media/pictures/tagged_items/original/9_35656851/1_1511171811830.jpg"
               }
             ],
             "action": {
               "type": "product",
-              "url": "https://api.addsale.com/platform/content/v1/products/883-police-navy-blue-melange-shorts-820312-4943a8/",
+              "url": "https://api.addsale.com/platform/content/v1/products/puma-suede-classic-437414-6e6bbf/",
               "query": {
                 "product_slug": [
-                  "883-police-navy-blue-melange-shorts-820312-4943a8"
+                  "puma-suede-classic-437414-6e6bbf"
                 ]
               }
             }
           },
+          "parent_item_identifiers": {
+            "identifier": "ZASFF",
+            "parent_item_id": 7501190,
+            "parent_item_size": "OS"
+          },
           "article": {
             "type": "article",
-            "uid": "381_610_IGPL01_SPIRAL19ANAVY_L",
-            "size": "L",
+            "uid": "507_9_96099_35656851_7",
+            "size": "7",
             "seller": {
-              "uid": 381,
-              "name": "INTERSOURCE GARMENTS PVT LTD"
+              "uid": 507,
+              "name": "PUMA SPORTS INDIA PVT LTD"
             },
             "store": {
-              "uid": 3009,
-              "name": "Kormangala"
+              "uid": 3632,
+              "name": "Colaba Causway"
             },
-            "quantity": 2,
+            "quantity": 5,
             "price": {
               "base": {
-                "marked": 1999,
-                "effective": 1999,
+                "marked": 5499,
+                "effective": 5499,
                 "currency_code": "INR"
               },
               "converted": {
-                "marked": 1999,
-                "effective": 1999,
+                "marked": 5499,
+                "effective": 5499,
                 "currency_code": "INR"
               }
             }
@@ -5091,11 +6088,14 @@ Success. Returns the status of cart checkout. Refer `CartCheckoutResponseSchema`
           "coupon_message": "",
           "availability": {
             "sizes": [
-              "L",
-              "XL",
-              "XXL"
+              "10",
+              "11",
+              "6",
+              "9",
+              "7",
+              "8"
             ],
-            "other_store_quantity": 1,
+            "other_store_quantity": 22,
             "out_of_stock": false,
             "deliverable": true,
             "is_valid": true
@@ -5104,21 +6104,23 @@ Success. Returns the status of cart checkout. Refer `CartCheckoutResponseSchema`
       ],
       "delivery_charge_info": "",
       "coupon_text": "View all offers",
-      "cart_id": 7483,
-      "uid": "7483",
+      "buy_now": false,
+      "cart_id": 12426,
+      "uid": "12426",
       "gstin": null,
       "checkout_mode": "self",
-      "last_modified": "Thu, 22 Aug 2019 04:58:44 GMT",
+      "last_modified": "Thu, 22 Aug 2019 04:51:42 GMT",
       "restrict_checkout": false,
       "is_valid": true
     },
-    "callback_url": "https://api.addsale.com/gringotts/api/v1/external/payment-callback/",
-    "app_intercept_url": "http://uniket-testing.addsale.link/cart/order-status",
-    "message": "",
-    "data": {
-      "order_id": "FY5D5E215CF287584CE6"
+    "result": {
+      "437414_7": {
+        "success": true,
+        "message": "Item updated in the bag"
+      }
     },
-    "order_id": "FY5D5E215CF287584CE6"
+    "message": "Item updated in the bag",
+    "success": true
   }
 }
 ```
@@ -5144,12 +6146,12 @@ Update the cart meta
 
 ```javascript
 // Promise
-const promise = cart.updateCartMeta({  body : value,
+const promise = applicationClient.cart.updateCartMeta({  body : value,
  id : value,
  buyNow : value });
 
 // Async/Await
-const data = await cart.updateCartMeta({  body : value,
+const data = await applicationClient.cart.updateCartMeta({  body : value,
  id : value,
  buyNow : value });
 ```
@@ -5200,404 +6202,6 @@ Returns a message indicating the success of cart meta updation as shown below.
 ---
 
 
-### getCartShareLink
-Generate token for sharing the cart
-
-
-
-```javascript
-// Promise
-const promise = cart.getCartShareLink({  body : value });
-
-// Async/Await
-const data = await cart.getCartShareLink({  body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |
-| body | [GetShareCartLinkRequest](#GetShareCartLinkRequest) | yes | Request body |
-
-
-Use this API to generate a shared cart snapshot and return a shortlink token. The link can be shared with other users for getting the same items in their cart.
-
-*Returned Response:*
-
-
-
-
-[GetShareCartLinkResponse](#GetShareCartLinkResponse)
-
-Returns a URL to share and a token as shown below.
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; Token Generated</i></summary>
-
-```json
-{
-  "value": {
-    "token": "ZweG1XyX",
-    "share_url": "https://uniket-testing.addsale.link/shared-cart/ZweG1XyX"
-  }
-}
-```
-</details>
-
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### getCartSharedItems
-Get details of a shared cart
-
-
-
-```javascript
-// Promise
-const promise = cart.getCartSharedItems({  token : value });
-
-// Async/Await
-const data = await cart.getCartSharedItems({  token : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| token | string | yes | Token of the shared short link |  
-
-
-
-Use this API to get the shared cart details as per the token generated using the share-cart API.
-
-*Returned Response:*
-
-
-
-
-[SharedCartResponse](#SharedCartResponse)
-
-Success. Returns a Cart object as per the valid token. Refer `SharedCartResponse` for more details.
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "cart": {
-    "shared_cart_details": {
-      "token": "BQ9jySQ9",
-      "user": {
-        "user_id": "23109086",
-        "is_anonymous": false
-      },
-      "meta": {
-        "selected_staff": "",
-        "ordering_store": null
-      },
-      "selected_staff": "",
-      "ordering_store": null,
-      "source": {},
-      "created_on": "2019-12-18T14:00:07.165000"
-    },
-    "items": [
-      {
-        "key": "791651_6",
-        "discount": "",
-        "bulk_offer": {},
-        "coupon_message": "",
-        "article": {
-          "type": "article",
-          "uid": "304_1054_9036_R1005753_6",
-          "size": "6",
-          "seller": {
-            "uid": 304,
-            "name": "LEAYAN GLOBAL PVT. LTD."
-          },
-          "store": {
-            "uid": 5322,
-            "name": "Vaisali Nagar"
-          },
-          "quantity": 1,
-          "price": {
-            "base": {
-              "marked": 2095,
-              "effective": 2095,
-              "currency_code": "INR"
-            },
-            "converted": {
-              "marked": 2095,
-              "effective": 2095,
-              "currency_code": "INR"
-            }
-          }
-        },
-        "product": {
-          "type": "product",
-          "uid": 791651,
-          "name": "Black Running Shoes",
-          "slug": "furo-black-running-shoes-791651-f8bcc3",
-          "brand": {
-            "uid": 1054,
-            "name": "Furo"
-          },
-          "categories": [
-            {
-              "uid": 160,
-              "name": "Running Shoes"
-            }
-          ],
-          "images": [
-            {
-              "aspect_ratio": "16:25",
-              "url": "http://cdn4.gofynd.com/media/pictures/tagged_items/original/1054_R1005753/1_1546490507364.jpg",
-              "secure_url": "https://d2zv4gzhlr4ud6.cloudfront.net/media/pictures/tagged_items/original/1054_R1005753/1_1546490507364.jpg"
-            }
-          ],
-          "action": {
-            "type": "product",
-            "url": "https://api.addsale.com/platform/content/v1/products/furo-black-running-shoes-791651-f8bcc3/",
-            "query": {
-              "product_slug": [
-                "furo-black-running-shoes-791651-f8bcc3"
-              ]
-            }
-          }
-        },
-        "message": "",
-        "quantity": 1,
-        "availability": {
-          "sizes": [
-            "7",
-            "8",
-            "9",
-            "10",
-            "6"
-          ],
-          "other_store_quantity": 12,
-          "out_of_stock": false,
-          "deliverable": true,
-          "is_valid": true
-        },
-        "price": {
-          "base": {
-            "add_on": 2095,
-            "marked": 2095,
-            "effective": 2095,
-            "selling": 2095,
-            "currency_code": "INR"
-          },
-          "converted": {
-            "add_on": 2095,
-            "marked": 2095,
-            "effective": 2095,
-            "selling": 2095,
-            "currency_code": "INR"
-          }
-        }
-      },
-      {
-        "key": "791651_7",
-        "discount": "",
-        "bulk_offer": {},
-        "coupon_message": "",
-        "article": {
-          "type": "article",
-          "uid": "304_1054_9036_R1005753_7",
-          "size": "7",
-          "seller": {
-            "uid": 304,
-            "name": "LEAYAN GLOBAL PVT. LTD."
-          },
-          "store": {
-            "uid": 5322,
-            "name": "Vaisali Nagar"
-          },
-          "quantity": 2,
-          "price": {
-            "base": {
-              "marked": 2095,
-              "effective": 2095,
-              "currency_code": "INR"
-            },
-            "converted": {
-              "marked": 2095,
-              "effective": 2095,
-              "currency_code": "INR"
-            }
-          }
-        },
-        "product": {
-          "type": "product",
-          "uid": 791651,
-          "name": "Black Running Shoes",
-          "slug": "furo-black-running-shoes-791651-f8bcc3",
-          "brand": {
-            "uid": 1054,
-            "name": "Furo"
-          },
-          "categories": [
-            {
-              "uid": 160,
-              "name": "Running Shoes"
-            }
-          ],
-          "images": [
-            {
-              "aspect_ratio": "16:25",
-              "url": "http://cdn4.gofynd.com/media/pictures/tagged_items/original/1054_R1005753/1_1546490507364.jpg",
-              "secure_url": "https://d2zv4gzhlr4ud6.cloudfront.net/media/pictures/tagged_items/original/1054_R1005753/1_1546490507364.jpg"
-            }
-          ],
-          "action": {
-            "type": "product",
-            "url": "https://api.addsale.com/platform/content/v1/products/furo-black-running-shoes-791651-f8bcc3/",
-            "query": {
-              "product_slug": [
-                "furo-black-running-shoes-791651-f8bcc3"
-              ]
-            }
-          }
-        },
-        "message": "",
-        "quantity": 2,
-        "availability": {
-          "sizes": [
-            "7",
-            "8",
-            "9",
-            "10",
-            "6"
-          ],
-          "other_store_quantity": 7,
-          "out_of_stock": false,
-          "deliverable": true,
-          "is_valid": true
-        },
-        "price": {
-          "base": {
-            "add_on": 4190,
-            "marked": 4190,
-            "effective": 4190,
-            "selling": 4190,
-            "currency_code": "INR"
-          },
-          "converted": {
-            "add_on": 4190,
-            "marked": 4190,
-            "effective": 4190,
-            "selling": 4190,
-            "currency_code": "INR"
-          }
-        }
-      }
-    ],
-    "cart_id": 13055,
-    "uid": "13055",
-    "breakup_values": {
-      "raw": {
-        "cod_charge": 0,
-        "convenience_fee": 0,
-        "coupon": 0,
-        "delivery_charge": 0,
-        "discount": 0,
-        "fynd_cash": 0,
-        "gst_charges": 958.73,
-        "mrp_total": 6285,
-        "subtotal": 6285,
-        "total": 6285,
-        "vog": 5326.27,
-        "you_saved": 0
-      },
-      "loyalty_points": {
-        "total": 0,
-        "applicable": 0,
-        "is_applied": false,
-        "description": "Your cashback, referrals, and refund amount get credited to Fynd Cash which can be redeemed while placing an order."
-      },
-      "coupon": {
-        "type": "cash",
-        "code": "",
-        "uid": null,
-        "value": 0,
-        "is_applied": false,
-        "message": "Sorry! Invalid coupon"
-      },
-      "display": [
-        {
-          "display": "MRP Total",
-          "key": "mrp_total",
-          "value": 6285,
-          "currency_code": "INR"
-        },
-        {
-          "display": "Subtotal",
-          "key": "subtotal",
-          "value": 6285,
-          "currency_code": "INR"
-        },
-        {
-          "display": "Total",
-          "key": "total",
-          "value": 6285,
-          "currency_code": "INR"
-        }
-      ]
-    },
-    "delivery_charge_info": "",
-    "coupon_text": "View all offers",
-    "gstin": null,
-    "comment": "",
-    "checkout_mode": "self",
-    "payment_selection_lock": {
-      "enabled": false,
-      "default_options": "COD",
-      "payment_identifier": null
-    },
-    "restrict_checkout": false,
-    "is_valid": true,
-    "last_modified": "Mon, 16 Dec 2019 07:02:18 GMT"
-  },
-  "error": ""
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
 ### updateCartWithSharedItems
 Merge or replace existing cart
 
@@ -5605,11 +6209,11 @@ Merge or replace existing cart
 
 ```javascript
 // Promise
-const promise = cart.updateCartWithSharedItems({  token : value,
+const promise = applicationClient.cart.updateCartWithSharedItems({  token : value,
  action : value });
 
 // Async/Await
-const data = await cart.updateCartWithSharedItems({  token : value,
+const data = await applicationClient.cart.updateCartWithSharedItems({  token : value,
  action : value });
 ```
 
@@ -5940,21 +6544,29 @@ Success. Returns a merged or replaced cart as per the valid token. Refer `Shared
 ---
 
 
-### getPromotionOffers
-Fetch available promotions
+### validateCouponForPayment
+Verify the coupon eligibility against the payment mode
 
 
 
 ```javascript
 // Promise
-const promise = cart.getPromotionOffers({  slug : value,
- pageSize : value,
- promotionGroup : value });
+const promise = applicationClient.cart.validateCouponForPayment({  id : value,
+ buyNow : value,
+ addressId : value,
+ paymentMode : value,
+ paymentIdentifier : value,
+ aggregatorName : value,
+ merchantCode : value });
 
 // Async/Await
-const data = await cart.getPromotionOffers({  slug : value,
- pageSize : value,
- promotionGroup : value });
+const data = await applicationClient.cart.validateCouponForPayment({  id : value,
+ buyNow : value,
+ addressId : value,
+ paymentMode : value,
+ paymentIdentifier : value,
+ aggregatorName : value,
+ merchantCode : value });
 ```
 
 
@@ -5963,22 +6575,26 @@ const data = await cart.getPromotionOffers({  slug : value,
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
-| slug | string | no | A short, human-readable, URL-friendly identifier of a product. You can get slug value from the endpoint /service/application/catalog/v1.0/products/ |    
-| pageSize | number | no | Number of offers to be fetched to show |    
-| promotionGroup | string | no | Type of promotion groups |  
+| id | string | no |  |    
+| buyNow | boolean | no |  |    
+| addressId | string | no |  |    
+| paymentMode | string | no |  |    
+| paymentIdentifier | string | no |  |    
+| aggregatorName | string | no |  |    
+| merchantCode | string | no |  |  
 
 
 
-Use this API to get top 5 offers available for current product
+Use this API to validate a coupon against the payment mode such as NetBanking, Wallet, UPI etc.
 
 *Returned Response:*
 
 
 
 
-[PromotionOffersResponse](#PromotionOffersResponse)
+[PaymentCouponValidate](#PaymentCouponValidate)
 
-Success. Returns a array containing the available offers (if exists) on product via promotions. Refer `PromotionOffersResponse` for more details.
+Success. Returns a success message and the coupon validity. Refer `PaymentCouponValidate` for more details.
 
 
 
@@ -5988,187 +6604,14 @@ Success. Returns a array containing the available offers (if exists) on product 
 
 ```json
 {
-  "available_promotions": [
-    {
-      "offer_text": "Buy 2 apple/gionee product get 500 off",
-      "description": "Test promotion",
-      "id": "61d1db23f5b315cf265126c0",
-      "valid_till": "2022-03-29T09:05:49.063Z",
-      "promotion_group": "cart"
-    },
-    {
-      "offer_text": "Buy 2 apple/gionee product get 500 off",
-      "description": "Test promotion",
-      "id": "6203cb1393506f8a75ecd566",
-      "valid_till": "2022-03-29T09:05:49.063Z",
-      "promotion_group": "product"
-    },
-    {
-      "offer_text": "Buy 2 apple/gionee product get 500 off",
-      "description": "Test promotion",
-      "id": "6203cb1393506f8a75ecd567",
-      "valid_till": "2022-03-29T09:05:49.063Z",
-      "promotion_group": "product"
-    },
-    {
-      "offer_text": "Buy 2 apple/gionee product get 500 off",
-      "description": "Test promotion",
-      "id": "6203cb1393506f8a75ecd569",
-      "valid_till": "2022-03-29T09:05:49.063Z",
-      "promotion_group": "product"
-    }
-  ]
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### getLadderOffers
-Fetch ladder price promotion
-
-
-
-```javascript
-// Promise
-const promise = cart.getLadderOffers({  slug : value,
- storeId : value,
- promotionId : value,
- pageSize : value });
-
-// Async/Await
-const data = await cart.getLadderOffers({  slug : value,
- storeId : value,
- promotionId : value,
- pageSize : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| slug | string | yes | A short, human-readable, URL-friendly identifier of a product. You can get slug value from the endpoint /service/application/catalog/v1.0/products/ |    
-| storeId | string | no | Store uid of assigned store on PDP page. If not passed default first created ladder will be returned |    
-| promotionId | string | no | Get ladder information of given promotion id explicitely |    
-| pageSize | number | no | Number of offers to be fetched to show |  
-
-
-
-Use this API to get applicable ladder price promotion for current product
-
-*Returned Response:*
-
-
-
-
-[LadderPriceOffers](#LadderPriceOffers)
-
-Success. Returns a object containing the applicable ladder price offers (if exists) on product. Refer `PromotionOffersResponse` for more details.
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "available_offers": [
-    {
-      "id": "6203cb1393506f8a75ecd56b",
-      "offer_text": "Ladder Price 2",
-      "description": "Ladder Price 2",
-      "offer_prices": [
-        {
-          "min_quantity": 0,
-          "max_quantity": 0,
-          "margin": 5,
-          "type": "percentage",
-          "price": {
-            "marked": 5499,
-            "effective": 5499,
-            "offer_price": 5224.05
-          }
-        },
-        {
-          "min_quantity": 0,
-          "max_quantity": 0,
-          "margin": 10,
-          "type": "percentage",
-          "price": {
-            "marked": 5499,
-            "effective": 5499,
-            "offer_price": 4949.1
-          }
-        },
-        {
-          "min_quantity": 0,
-          "max_quantity": 0,
-          "margin": 20,
-          "type": "percentage",
-          "price": {
-            "marked": 5499,
-            "effective": 5499,
-            "offer_price": 4399.2
-          }
-        }
-      ]
-    },
-    {
-      "id": "6203cb1393506f8a75ecd56a",
-      "offer_text": "Ladder Price 1",
-      "description": "Ladder Price 1",
-      "offer_prices": [
-        {
-          "min_quantity": 0,
-          "max_quantity": 0,
-          "margin": 10,
-          "type": "amount",
-          "price": {
-            "marked": 5499,
-            "effective": 5499,
-            "offer_price": 4949.1
-          }
-        },
-        {
-          "min_quantity": 0,
-          "max_quantity": 0,
-          "margin": 15,
-          "type": "amount",
-          "price": {
-            "marked": 5499,
-            "effective": 5499,
-            "offer_price": 4674.15
-          }
-        },
-        {
-          "min_quantity": 0,
-          "max_quantity": 0,
-          "margin": 20,
-          "type": "amount",
-          "price": {
-            "marked": 5499,
-            "effective": 5499,
-            "offer_price": 4399.2
-          }
-        }
-      ]
-    }
-  ],
-  "currency": {
-    "code": "INR",
-    "symbol": "₹"
+  "success": true,
+  "message": "",
+  "coupon_validity": {
+    "valid": true,
+    "discount": 499.5,
+    "code": "testpayment",
+    "display_message_en": "",
+    "title": "Coupon value will change."
   }
 }
 ```
@@ -6188,1186 +6631,1087 @@ Success. Returns a object containing the applicable ladder price offers (if exis
 
 ### Schemas
 
- 
- 
- #### [CouponBreakup](#CouponBreakup)
+
+#### [ActionQuery](#ActionQuery)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | type | string |  no  |  |
- | code | string |  no  |  |
- | is_applied | boolean |  no  |  |
- | message | string |  no  |  |
- | uid | string |  no  |  |
- | value | number |  no  |  |
+ | product_slug | [string]? |  yes  | Contains list of product slug |
+ 
 
 ---
 
-
- 
- 
- #### [RawBreakup](#RawBreakup)
+#### [AddCartDetailResponse](#AddCartDetailResponse)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | coupon | number |  no  |  |
- | gst_charges | number |  no  |  |
- | vog | number |  no  |  |
- | delivery_charge | number |  no  |  |
- | discount | number |  no  |  |
- | convenience_fee | number |  no  |  |
- | fynd_cash | number |  no  |  |
- | cod_charge | number |  no  |  |
- | you_saved | number |  no  |  |
- | mrp_total | number |  no  |  |
- | total | number |  no  |  |
- | subtotal | number |  no  |  |
+ | cart | [CartDetailResponse](#CartDetailResponse)? |  yes  |  |
+ | message | string? |  yes  |  |
+ | partial | boolean? |  yes  | When adding multiple items check if all added. True if only few are added. |
+ | success | boolean? |  yes  | True if all items are added successfully. False if partially added or not added. |
+ 
 
 ---
 
-
- 
- 
- #### [DisplayBreakup](#DisplayBreakup)
+#### [AddCartRequest](#AddCartRequest)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | currency_code | string |  no  |  |
- | display | string |  no  |  |
- | currency_symbol | string |  no  |  |
- | key | string |  no  |  |
- | message | [string] |  no  |  |
- | value | number |  no  |  |
+ | items | [[AddProductCart](#AddProductCart)]? |  yes  |  |
+ 
 
 ---
 
-
- 
- 
- #### [LoyaltyPoints](#LoyaltyPoints)
+#### [AddProductCart](#AddProductCart)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | description | string |  no  |  |
- | total | number |  no  |  |
- | is_applied | boolean |  no  |  |
- | applicable | number |  no  |  |
+ | article_assignment | string? |  yes  |  |
+ | article_id | string? |  yes  |  |
+ | display | string? |  yes  |  |
+ | extra_meta | string? |  yes  |  |
+ | item_id | number? |  yes  |  |
+ | item_size | string? |  yes  |  |
+ | meta | string? |  yes  |  |
+ | parent_item_identifiers | string? |  yes  |  |
+ | pos | boolean? |  yes  |  |
+ | product_group_tags | [string]? |  yes  |  |
+ | quantity | number? |  yes  |  |
+ | seller_id | number? |  yes  |  |
+ | store_id | number? |  yes  |  |
+ 
 
 ---
 
-
- 
- 
- #### [CartBreakup](#CartBreakup)
+#### [Address](#Address)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | coupon | [CouponBreakup](#CouponBreakup) |  no  |  |
- | raw | [RawBreakup](#RawBreakup) |  no  |  |
- | display | [[DisplayBreakup](#DisplayBreakup)] |  no  |  |
- | loyalty_points | [LoyaltyPoints](#LoyaltyPoints) |  no  |  |
+ | address | string? |  yes  |  |
+ | address_type | string? |  yes  |  |
+ | area | string? |  yes  |  |
+ | area_code | string? |  yes  |  |
+ | area_code_slug | string? |  yes  |  |
+ | checkout_mode | string? |  yes  |  |
+ | city | string? |  yes  |  |
+ | country | string? |  yes  |  |
+ | country_code | string? |  yes  |  |
+ | email | string? |  yes  |  |
+ | geo_location | [GeoLocation](#GeoLocation)? |  yes  |  |
+ | google_map_point | string? |  yes  |  |
+ | id | string? |  yes  |  |
+ | is_active | boolean? |  yes  |  |
+ | is_default_address | boolean? |  yes  |  |
+ | landmark | string? |  yes  |  |
+ | meta | string? |  yes  |  |
+ | name | string? |  yes  |  |
+ | phone | string? |  yes  |  |
+ | state | string? |  yes  |  |
+ | tags | [string]? |  yes  |  |
+ | user_id | string? |  yes  |  |
+ 
 
 ---
 
-
- 
- 
- #### [PaymentSelectionLock](#PaymentSelectionLock)
+#### [AppliedPromotion](#AppliedPromotion)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | default_options | string |  no  |  |
- | payment_identifier | string |  no  |  |
- | enabled | boolean |  no  |  |
+ | amount | number? |  yes  | Per unit discount amount applied with current promotion |
+ | article_quantity | number? |  yes  | Quantity of article on which promotion is applicable |
+ | mrp_promotion | boolean? |  yes  | If applied promotion is applied on product MRP or ESP |
+ | offer_text | string? |  yes  | Offer text of current promotion |
+ | promo_id | string? |  yes  | Promotion id |
+ | promotion_type | string? |  yes  | Promotion type of current promotion |
+ 
 
 ---
 
-
- 
- 
- #### [PromoMeta](#PromoMeta)
+#### [ApplyCouponRequest](#ApplyCouponRequest)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | message | string |  no  |  |
+ | coupon_code | string |  no  | Coupon code to be applied |
+ 
 
 ---
 
-
- 
- 
- #### [ProductPrice](#ProductPrice)
+#### [ArticlePriceInfo](#ArticlePriceInfo)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | selling | number |  no  |  |
- | currency_code | string |  no  |  |
- | effective | number |  no  |  |
- | currency_symbol | string |  no  |  |
- | add_on | number |  no  |  |
- | marked | number |  no  |  |
+ | base | [BasePrice](#BasePrice)? |  yes  |  |
+ | converted | [BasePrice](#BasePrice)? |  yes  |  |
+ 
 
 ---
 
-
- 
- 
- #### [ProductPriceInfo](#ProductPriceInfo)
+#### [BaseInfo](#BaseInfo)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | converted | [ProductPrice](#ProductPrice) |  no  |  |
- | base | [ProductPrice](#ProductPrice) |  no  |  |
+ | name | string? |  yes  |  |
+ | uid | number? |  yes  |  |
+ 
 
 ---
 
-
- 
- 
- #### [BasePrice](#BasePrice)
+#### [BasePrice](#BasePrice)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | marked | number |  no  |  |
- | currency_code | string |  no  |  |
- | effective | number |  no  |  |
- | currency_symbol | string |  no  |  |
+ | currency_code | string? |  yes  |  |
+ | currency_symbol | string? |  yes  |  |
+ | effective | number? |  yes  |  |
+ | marked | number? |  yes  |  |
+ 
 
 ---
 
-
- 
- 
- #### [ArticlePriceInfo](#ArticlePriceInfo)
+#### [BulkPriceOffer](#BulkPriceOffer)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | converted | [BasePrice](#BasePrice) |  no  |  |
- | base | [BasePrice](#BasePrice) |  no  |  |
+ | offers | [[OfferItem](#OfferItem)]? |  yes  |  |
+ | seller | [OfferSeller](#OfferSeller)? |  yes  |  |
+ 
 
 ---
 
-
- 
- 
- #### [BaseInfo](#BaseInfo)
+#### [BulkPriceResponse](#BulkPriceResponse)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | name | string |  no  |  |
- | uid | number |  no  |  |
+ | data | [[BulkPriceOffer](#BulkPriceOffer)]? |  yes  | Consist of offers from multiple seller |
+ 
 
 ---
 
-
- 
- 
- #### [ProductArticle](#ProductArticle)
+#### [CartBreakup](#CartBreakup)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | price | [ArticlePriceInfo](#ArticlePriceInfo) |  no  |  |
- | size | string |  no  |  |
- | product_group_tags | [string] |  no  |  |
- | quantity | number |  no  |  |
- | parent_item_identifiers | string |  no  |  |
- | type | string |  no  |  |
- | seller | [BaseInfo](#BaseInfo) |  no  |  |
- | extra_meta | string |  no  |  |
- | uid | string |  no  |  |
- | store | [BaseInfo](#BaseInfo) |  no  |  |
+ | coupon | [CouponBreakup](#CouponBreakup)? |  yes  |  |
+ | display | [[DisplayBreakup](#DisplayBreakup)]? |  yes  |  |
+ | loyalty_points | [LoyaltyPoints](#LoyaltyPoints)? |  yes  |  |
+ | raw | [RawBreakup](#RawBreakup)? |  yes  |  |
+ 
 
 ---
 
-
- 
- 
- #### [AppliedPromotion](#AppliedPromotion)
+#### [CartCheckoutDetailRequest](#CartCheckoutDetailRequest)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | mrp_promotion | boolean |  no  | If applied promotion is applied on product MRP or ESP |
- | article_quantity | number |  no  | Quantity of article on which promotion is applicable |
- | promotion_type | string |  no  | Promotion type of current promotion |
- | amount | number |  no  | Per unit discount amount applied with current promotion |
- | promo_id | string |  no  | Promotion id |
- | offer_text | string |  no  | Offer text of current promotion |
-
----
-
-
- 
- 
- #### [ProductImage](#ProductImage)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | aspect_ratio | string |  no  |  |
- | url | string |  no  |  |
- | secure_url | string |  no  |  |
-
----
-
-
- 
- 
- #### [ActionQuery](#ActionQuery)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | product_slug | [string] |  no  | Contains list of product slug |
-
----
-
-
- 
- 
- #### [ProductAction](#ProductAction)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | query | [ActionQuery](#ActionQuery) |  no  |  |
- | url | string |  no  |  |
- | type | string |  no  |  |
-
----
-
-
- 
- 
- #### [CategoryInfo](#CategoryInfo)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | name | string |  no  |  |
- | uid | number |  no  | Product Category Id |
-
----
-
-
- 
- 
- #### [CartProduct](#CartProduct)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | slug | string |  no  | Unique product url name generated via product name and other meta data |
- | name | string |  no  |  |
- | type | string |  no  |  |
- | images | [[ProductImage](#ProductImage)] |  no  |  |
- | action | [ProductAction](#ProductAction) |  no  |  |
- | categories | [[CategoryInfo](#CategoryInfo)] |  no  |  |
- | brand | [BaseInfo](#BaseInfo) |  no  |  |
- | uid | number |  no  |  |
-
----
-
-
- 
- 
- #### [CartProductIdentifer](#CartProductIdentifer)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | identifier | string |  no  | Article idenfier generated by cart |
-
----
-
-
- 
- 
- #### [ProductAvailability](#ProductAvailability)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | is_valid | boolean |  no  |  |
- | deliverable | boolean |  no  |  |
- | out_of_stock | boolean |  no  |  |
- | other_store_quantity | number |  no  |  |
- | sizes | [string] |  no  |  |
-
----
-
-
- 
- 
- #### [CartProductInfo](#CartProductInfo)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | promo_meta | [PromoMeta](#PromoMeta) |  no  |  |
- | price | [ProductPriceInfo](#ProductPriceInfo) |  no  |  |
- | key | string |  no  |  |
- | quantity | number |  no  |  |
- | parent_item_identifiers | string |  no  |  |
- | is_set | boolean |  no  |  |
- | discount | string |  no  |  |
- | price_per_unit | [ProductPriceInfo](#ProductPriceInfo) |  no  |  |
- | bulk_offer | string |  no  |  |
- | article | [ProductArticle](#ProductArticle) |  no  |  |
- | promotions_applied | [[AppliedPromotion](#AppliedPromotion)] |  no  |  |
- | coupon_message | string |  no  |  |
- | message | string |  no  |  |
- | product | [CartProduct](#CartProduct) |  no  |  |
- | identifiers | [CartProductIdentifer](#CartProductIdentifer) |  yes  |  |
- | availability | [ProductAvailability](#ProductAvailability) |  no  |  |
-
----
-
-
- 
- 
- #### [PromiseFormatted](#PromiseFormatted)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | max | string |  no  |  |
- | min | string |  no  |  |
-
----
-
-
- 
- 
- #### [PromiseTimestamp](#PromiseTimestamp)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | max | number |  no  |  |
- | min | number |  no  |  |
-
----
-
-
- 
- 
- #### [ShipmentPromise](#ShipmentPromise)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | formatted | [PromiseFormatted](#PromiseFormatted) |  no  |  |
- | timestamp | [PromiseTimestamp](#PromiseTimestamp) |  no  |  |
-
----
-
-
- 
- 
- #### [CartCurrency](#CartCurrency)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | code | string |  no  | Currency code defined by ISO 4217:2015 |
- | symbol | string |  no  |  |
-
----
-
-
- 
- 
- #### [CartDetailResponse](#CartDetailResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | breakup_values | [CartBreakup](#CartBreakup) |  no  |  |
- | payment_selection_lock | [PaymentSelectionLock](#PaymentSelectionLock) |  no  |  |
- | is_valid | boolean |  no  |  |
- | buy_now | boolean |  no  |  |
- | last_modified | string |  no  |  |
- | id | string |  no  |  |
- | delivery_charge_info | string |  no  |  |
- | coupon_text | string |  no  |  |
- | items | [[CartProductInfo](#CartProductInfo)] |  no  |  |
- | gstin | string |  no  |  |
- | comment | string |  no  |  |
- | delivery_promise | [ShipmentPromise](#ShipmentPromise) |  no  |  |
- | message | string |  no  |  |
- | restrict_checkout | boolean |  no  |  |
- | checkout_mode | string |  no  |  |
- | currency | [CartCurrency](#CartCurrency) |  no  |  |
-
----
-
-
- 
- 
- #### [AddProductCart](#AddProductCart)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | store_id | number |  no  |  |
- | display | string |  no  |  |
- | product_group_tags | [string] |  no  |  |
- | quantity | number |  no  |  |
- | article_id | string |  no  |  |
- | parent_item_identifiers | string |  no  |  |
- | item_size | string |  no  |  |
- | pos | boolean |  no  |  |
- | item_id | number |  no  |  |
- | article_assignment | string |  no  |  |
- | extra_meta | string |  no  |  |
- | seller_id | number |  no  |  |
-
----
-
-
- 
- 
- #### [AddCartRequest](#AddCartRequest)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | items | [[AddProductCart](#AddProductCart)] |  no  |  |
-
----
-
-
- 
- 
- #### [AddCartDetailResponse](#AddCartDetailResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | message | string |  no  |  |
- | cart | [CartDetailResponse](#CartDetailResponse) |  no  |  |
- | partial | boolean |  no  | When adding multiple items check if all added. True if only few are added. |
- | success | boolean |  no  | True if all items are added successfully. False if partially added or not added. |
-
----
-
-
- 
- 
- #### [UpdateProductCart](#UpdateProductCart)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | article_id | string |  no  |  |
- | quantity | number |  no  |  |
- | parent_item_identifiers | string |  no  |  |
- | item_size | string |  no  |  |
- | item_id | number |  no  |  |
- | extra_meta | string |  no  |  |
- | identifiers | [CartProductIdentifer](#CartProductIdentifer) |  yes  |  |
- | item_index | number |  no  |  |
-
----
-
-
- 
- 
- #### [UpdateCartRequest](#UpdateCartRequest)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | operation | string |  yes  |  |
- | items | [[UpdateProductCart](#UpdateProductCart)] |  no  |  |
-
----
-
-
- 
- 
- #### [UpdateCartDetailResponse](#UpdateCartDetailResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | message | string |  no  |  |
- | cart | [CartDetailResponse](#CartDetailResponse) |  no  |  |
- | success | boolean |  no  | True if all items are added successfully. False if partially added or not added. |
-
----
-
-
- 
- 
- #### [DeleteCartDetailResponse](#DeleteCartDetailResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | message | string |  no  |  |
- | success | boolean |  no  | True if cart is archived successfully. False if not archived. |
-
----
-
-
- 
- 
- #### [CartItemCountResponse](#CartItemCountResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | user_cart_items_count | number |  no  | Item count present in cart |
-
----
-
-
- 
- 
- #### [Coupon](#Coupon)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | minimum_cart_value | number |  no  |  |
- | expires_on | string |  no  |  |
- | max_discount_value | number |  no  |  |
- | is_applicable | boolean |  no  |  |
- | coupon_value | number |  no  |  |
- | coupon_code | string |  no  |  |
- | title | string |  no  |  |
- | is_applied | boolean |  no  |  |
- | message | string |  no  |  |
- | sub_title | string |  no  |  |
-
----
-
-
- 
- 
- #### [PageCoupon](#PageCoupon)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | total_item_count | number |  no  |  |
- | has_previous | boolean |  no  |  |
- | has_next | boolean |  no  |  |
- | total | number |  no  |  |
- | current | number |  no  |  |
-
----
-
-
- 
- 
- #### [GetCouponResponse](#GetCouponResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | available_coupon_list | [[Coupon](#Coupon)] |  no  |  |
- | page | [PageCoupon](#PageCoupon) |  no  |  |
-
----
-
-
- 
- 
- #### [ApplyCouponRequest](#ApplyCouponRequest)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | coupon_code | string |  yes  | Coupon code to be applied |
-
----
-
-
- 
- 
- #### [OfferSeller](#OfferSeller)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | name | string |  no  |  |
- | uid | number |  no  | Seller id |
-
----
-
-
- 
- 
- #### [OfferPrice](#OfferPrice)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | currency_code | string |  no  | Currency code for all amounts |
- | effective | number |  no  | Current per unit price of product after existing deductions |
- | currency_symbol | string |  no  | Currency symbol for currency |
- | marked | number |  no  | Original price of product |
- | bulk_effective | number |  no  | Discounted per unit price for current offer object |
-
----
-
-
- 
- 
- #### [OfferItem](#OfferItem)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | price | [OfferPrice](#OfferPrice) |  no  |  |
- | quantity | number |  no  | Quantity on which offer is applicable |
- | type | string |  no  | Offer type |
- | best | boolean |  no  | Is true for best offer from all offers present for all sellers |
- | auto_applied | boolean |  no  | Whether offer discount is auto applied in cart |
- | margin | number |  no  | Percentage value of discount |
- | total | number |  no  | Total price of offer quantity with discount |
-
----
-
-
- 
- 
- #### [BulkPriceOffer](#BulkPriceOffer)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | seller | [OfferSeller](#OfferSeller) |  no  |  |
- | offers | [[OfferItem](#OfferItem)] |  no  |  |
-
----
-
-
- 
- 
- #### [BulkPriceResponse](#BulkPriceResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | data | [[BulkPriceOffer](#BulkPriceOffer)] |  no  | Consist of offers from multiple seller |
-
----
-
-
- 
- 
- #### [RewardPointRequest](#RewardPointRequest)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | points | boolean |  yes  |  |
-
----
-
-
- 
- 
- #### [GeoLocation](#GeoLocation)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | latitude | number |  no  |  |
- | longitude | number |  no  |  |
-
----
-
-
- 
- 
- #### [Address](#Address)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | state | string |  no  |  |
- | meta | string |  no  |  |
- | address | string |  no  |  |
- | country | string |  no  |  |
- | id | string |  no  |  |
- | google_map_point | string |  no  |  |
- | checkout_mode | string |  no  |  |
- | is_active | boolean |  no  |  |
- | area_code_slug | string |  no  |  |
- | landmark | string |  no  |  |
- | is_default_address | boolean |  no  |  |
- | country_code | string |  no  |  |
- | area_code | string |  no  |  |
- | address_type | string |  no  |  |
- | tags | [string] |  no  |  |
- | area | string |  no  |  |
- | email | string |  no  |  |
- | name | string |  no  |  |
- | geo_location | [GeoLocation](#GeoLocation) |  no  |  |
- | city | string |  no  |  |
- | user_id | string |  no  |  |
- | phone | string |  no  |  |
-
----
-
-
- 
- 
- #### [GetAddressesResponse](#GetAddressesResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | address | [[Address](#Address)] |  no  |  |
-
----
-
-
- 
- 
- #### [SaveAddressResponse](#SaveAddressResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | id | string |  no  |  |
- | is_default_address | boolean |  no  |  |
- | success | boolean |  no  |  |
-
----
-
-
- 
- 
- #### [UpdateAddressResponse](#UpdateAddressResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | id | string |  no  |  |
- | is_default_address | boolean |  no  |  |
- | is_updated | boolean |  no  |  |
- | success | boolean |  no  |  |
-
----
-
-
- 
- 
- #### [DeleteAddressResponse](#DeleteAddressResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | id | string |  no  |  |
- | is_deleted | boolean |  no  |  |
-
----
-
-
- 
- 
- #### [SelectCartAddressRequest](#SelectCartAddressRequest)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | id | string |  no  |  |
- | billing_address_id | string |  no  |  |
- | cart_id | string |  no  |  |
-
----
-
-
- 
- 
- #### [UpdateCartPaymentRequest](#UpdateCartPaymentRequest)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | payment_identifier | string |  no  |  |
+ | address_id | string? |  yes  |  |
+ | aggregator | string? |  yes  |  |
+ | billing_address | string? |  yes  |  |
+ | billing_address_id | string? |  yes  |  |
+ | callback_url | string? |  yes  |  |
+ | customer_details | [CustomerDetails](#CustomerDetails)? |  yes  | Customer details |
+ | delivery_address | string? |  yes  |  |
+ | extra_meta | string? |  yes  |  |
+ | merchant_code | string? |  yes  |  |
+ | meta | string? |  yes  |  |
+ | ordering_store | number? |  yes  |  |
+ | payment_auto_confirm | boolean? |  yes  |  |
+ | payment_identifier | string? |  yes  |  |
  | payment_mode | string |  no  |  |
- | merchant_code | string |  no  |  |
- | id | string |  no  |  |
- | aggregator_name | string |  no  |  |
- | address_id | string |  no  |  |
+ | payment_params | string? |  yes  |  |
+ | staff | [StaffCheckout](#StaffCheckout)? |  yes  |  |
+ 
 
 ---
 
-
- 
- 
- #### [CouponValidity](#CouponValidity)
+#### [CartCheckoutDetailV2Request](#CartCheckoutDetailV2Request)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | display_message_en | string |  no  |  |
- | discount | number |  no  |  |
- | code | string |  no  |  |
- | title | string |  no  |  |
- | valid | boolean |  no  |  |
+ | address_id | string? |  yes  |  |
+ | aggregator | string? |  yes  |  |
+ | billing_address | string? |  yes  |  |
+ | billing_address_id | string? |  yes  |  |
+ | callback_url | string? |  yes  |  |
+ | cart_id | string? |  yes  |  |
+ | custom_meta | string? |  yes  |  |
+ | customer_details | [CustomerDetails](#CustomerDetails)? |  yes  | Customer details |
+ | delivery_address | string? |  yes  |  |
+ | extra_meta | string? |  yes  |  |
+ | merchant_code | string? |  yes  |  |
+ | meta | string? |  yes  |  |
+ | ordering_store | number? |  yes  |  |
+ | payment_auto_confirm | boolean? |  yes  |  |
+ | payment_identifier | string? |  yes  |  |
+ | payment_methods | [[PaymentMethod](#PaymentMethod)] |  no  |  |
+ | payment_mode | string |  no  |  |
+ | payment_params | string? |  yes  |  |
+ | staff | [StaffCheckout](#StaffCheckout)? |  yes  |  |
+ 
 
 ---
 
-
- 
- 
- #### [PaymentCouponValidate](#PaymentCouponValidate)
+#### [CartCheckoutResponse](#CartCheckoutResponse)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | coupon_validity | [CouponValidity](#CouponValidity) |  no  |  |
- | message | string |  no  |  |
- | success | boolean |  yes  |  |
+ | app_intercept_url | string? |  yes  |  |
+ | callback_url | string? |  yes  |  |
+ | cart | [CheckCart](#CheckCart)? |  yes  |  |
+ | data | string? |  yes  |  |
+ | message | string? |  yes  |  |
+ | order_id | string? |  yes  |  |
+ | payment_confirm_url | string? |  yes  |  |
+ | success | boolean? |  yes  |  |
+ 
 
 ---
 
-
- 
- 
- #### [ShipmentResponse](#ShipmentResponse)
+#### [CartCurrency](#CartCurrency)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | shipments | number |  no  |  |
- | shipment_type | string |  no  |  |
- | promise | [ShipmentPromise](#ShipmentPromise) |  no  |  |
- | order_type | string |  no  |  |
- | dp_id | string |  no  |  |
- | fulfillment_id | number |  no  |  |
- | fulfillment_type | string |  no  |  |
- | dp_options | string |  no  |  |
- | box_type | string |  no  |  |
- | items | [[CartProductInfo](#CartProductInfo)] |  no  |  |
+ | code | string? |  yes  | Currency code defined by ISO 4217:2015 |
+ | symbol | string? |  yes  |  |
+ 
 
 ---
 
-
- 
- 
- #### [CartShipmentsResponse](#CartShipmentsResponse)
+#### [CartDetailResponse](#CartDetailResponse)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | shipments | [[ShipmentResponse](#ShipmentResponse)] |  no  |  |
- | payment_selection_lock | [PaymentSelectionLock](#PaymentSelectionLock) |  no  |  |
- | is_valid | boolean |  no  |  |
- | error | boolean |  no  |  |
- | last_modified | string |  no  |  |
- | id | string |  no  |  |
- | coupon_text | string |  no  |  |
- | comment | string |  no  |  |
- | gstin | string |  no  |  |
- | cart_id | number |  no  |  |
- | delivery_promise | [ShipmentPromise](#ShipmentPromise) |  no  |  |
- | checkout_mode | string |  no  |  |
- | breakup_values | [CartBreakup](#CartBreakup) |  no  |  |
- | buy_now | boolean |  no  |  |
- | delivery_charge_info | string |  no  |  |
- | message | string |  no  |  |
- | uid | string |  no  |  |
- | restrict_checkout | boolean |  no  |  |
- | currency | [CartCurrency](#CartCurrency) |  no  |  |
+ | breakup_values | [CartBreakup](#CartBreakup)? |  yes  |  |
+ | buy_now | boolean? |  yes  |  |
+ | checkout_mode | string? |  yes  |  |
+ | comment | string? |  yes  |  |
+ | coupon_text | string? |  yes  |  |
+ | currency | [CartCurrency](#CartCurrency)? |  yes  |  |
+ | delivery_charge_info | string? |  yes  |  |
+ | delivery_promise | [ShipmentPromise](#ShipmentPromise)? |  yes  |  |
+ | gstin | string? |  yes  |  |
+ | id | string? |  yes  |  |
+ | is_valid | boolean? |  yes  |  |
+ | items | [[CartProductInfo](#CartProductInfo)]? |  yes  |  |
+ | last_modified | string? |  yes  |  |
+ | message | string? |  yes  |  |
+ | payment_selection_lock | [PaymentSelectionLock](#PaymentSelectionLock)? |  yes  |  |
+ | restrict_checkout | boolean? |  yes  |  |
+ 
 
 ---
 
-
- 
- 
- #### [CustomerDetails](#CustomerDetails)
+#### [CartItemCountResponse](#CartItemCountResponse)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | name | string |  no  |  |
- | email | string |  no  |  |
- | mobile | string |  yes  |  |
+ | user_cart_items_count | number? |  yes  | Item count present in cart |
+ 
 
 ---
 
-
- 
- 
- #### [StaffCheckout](#StaffCheckout)
+#### [CartMetaMissingResponse](#CartMetaMissingResponse)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | first_name | string |  yes  |  |
- | user | string |  yes  |  |
- | last_name | string |  yes  |  |
- | _id | string |  yes  |  |
+ | errors | [string]? |  yes  |  |
+ 
 
 ---
 
-
- 
- 
- #### [CartCheckoutDetailRequest](#CartCheckoutDetailRequest)
+#### [CartMetaRequest](#CartMetaRequest)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | payment_identifier | string |  no  |  |
- | payment_params | string |  no  |  |
- | payment_mode | string |  yes  |  |
- | customer_details | [CustomerDetails](#CustomerDetails) |  no  | Customer details |
- | meta | string |  no  |  |
- | merchant_code | string |  no  |  |
- | payment_auto_confirm | boolean |  no  |  |
- | extra_meta | string |  no  |  |
- | billing_address_id | string |  no  |  |
- | callback_url | string |  no  |  |
- | staff | [StaffCheckout](#StaffCheckout) |  no  |  |
- | aggregator | string |  no  |  |
- | billing_address | string |  no  |  |
- | delivery_address | string |  no  |  |
- | address_id | string |  no  |  |
- | ordering_store | number |  no  |  |
+ | checkout_mode | string? |  yes  |  |
+ | comment | string? |  yes  |  |
+ | gstin | string? |  yes  |  |
+ | pick_up_customer_details | string? |  yes  | Customer contact details for customer pickup at store |
+ 
 
 ---
 
-
- 
- 
- #### [CheckCart](#CheckCart)
+#### [CartMetaResponse](#CartMetaResponse)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | store_code | string |  no  |  |
- | user_type | string |  no  |  |
- | payment_selection_lock | [PaymentSelectionLock](#PaymentSelectionLock) |  no  |  |
- | is_valid | boolean |  no  |  |
- | id | string |  no  |  |
- | store_emps | [string] |  no  |  |
- | gstin | string |  no  |  |
- | delivery_charges | number |  no  |  |
- | checkout_mode | string |  no  |  |
- | cod_available | boolean |  no  |  |
- | error_message | string |  no  |  |
- | breakup_values | [CartBreakup](#CartBreakup) |  no  |  |
- | buy_now | boolean |  no  |  |
- | delivery_charge_info | string |  no  |  |
- | cod_charges | number |  no  |  |
- | items | [[CartProductInfo](#CartProductInfo)] |  no  |  |
- | message | string |  no  |  |
- | uid | string |  no  |  |
- | currency | [CartCurrency](#CartCurrency) |  no  |  |
- | delivery_charge_order_value | number |  no  |  |
- | last_modified | string |  no  |  |
- | coupon_text | string |  no  |  |
- | comment | string |  no  |  |
- | order_id | string |  no  |  |
- | cart_id | number |  no  |  |
- | delivery_promise | [ShipmentPromise](#ShipmentPromise) |  no  |  |
- | cod_message | string |  no  |  |
- | restrict_checkout | boolean |  no  |  |
+ | message | string? |  yes  |  |
+ 
+
+---
+
+#### [CartProduct](#CartProduct)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | action | [ProductAction](#ProductAction)? |  yes  |  |
+ | brand | [BaseInfo](#BaseInfo)? |  yes  |  |
+ | categories | [[CategoryInfo](#CategoryInfo)]? |  yes  |  |
+ | images | [[ProductImage](#ProductImage)]? |  yes  |  |
+ | name | string? |  yes  |  |
+ | slug | string? |  yes  | Unique product url name generated via product name and other meta data |
+ | type | string? |  yes  |  |
+ | uid | number? |  yes  |  |
+ 
+
+---
+
+#### [CartProductIdentifer](#CartProductIdentifer)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | identifier | string? |  yes  | Article idenfier generated by cart |
+ 
+
+---
+
+#### [CartProductInfo](#CartProductInfo)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | article | [ProductArticle](#ProductArticle)? |  yes  |  |
+ | availability | [ProductAvailability](#ProductAvailability)? |  yes  |  |
+ | bulk_offer | string? |  yes  |  |
+ | coupon_message | string? |  yes  |  |
+ | discount | string? |  yes  |  |
+ | identifiers | [CartProductIdentifer](#CartProductIdentifer) |  no  |  |
+ | is_set | boolean? |  yes  |  |
+ | key | string? |  yes  |  |
+ | message | string? |  yes  |  |
+ | parent_item_identifiers | string? |  yes  |  |
+ | price | [ProductPriceInfo](#ProductPriceInfo)? |  yes  |  |
+ | price_per_unit | [ProductPriceInfo](#ProductPriceInfo)? |  yes  |  |
+ | product | [CartProduct](#CartProduct)? |  yes  |  |
+ | promo_meta | [PromoMeta](#PromoMeta)? |  yes  |  |
+ | promotions_applied | [[AppliedPromotion](#AppliedPromotion)]? |  yes  |  |
+ | quantity | number? |  yes  |  |
+ 
+
+---
+
+#### [CartShipmentsResponse](#CartShipmentsResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | breakup_values | [CartBreakup](#CartBreakup)? |  yes  |  |
+ | buy_now | boolean? |  yes  |  |
+ | cart_id | number? |  yes  |  |
+ | checkout_mode | string? |  yes  |  |
+ | comment | string? |  yes  |  |
+ | coupon_text | string? |  yes  |  |
+ | currency | [CartCurrency](#CartCurrency)? |  yes  |  |
+ | delivery_charge_info | string? |  yes  |  |
+ | delivery_promise | [ShipmentPromise](#ShipmentPromise)? |  yes  |  |
+ | error | boolean? |  yes  |  |
+ | gstin | string? |  yes  |  |
+ | id | string? |  yes  |  |
+ | is_valid | boolean? |  yes  |  |
+ | last_modified | string? |  yes  |  |
+ | message | string? |  yes  |  |
+ | payment_selection_lock | [PaymentSelectionLock](#PaymentSelectionLock)? |  yes  |  |
+ | restrict_checkout | boolean? |  yes  |  |
+ | shipments | [[ShipmentResponse](#ShipmentResponse)]? |  yes  |  |
+ | uid | string? |  yes  |  |
+ 
+
+---
+
+#### [CategoryInfo](#CategoryInfo)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | name | string? |  yes  |  |
+ | uid | number? |  yes  | Product Category Id |
+ 
+
+---
+
+#### [CheckCart](#CheckCart)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | breakup_values | [CartBreakup](#CartBreakup)? |  yes  |  |
+ | buy_now | boolean? |  yes  |  |
+ | cart_id | number? |  yes  |  |
+ | checkout_mode | string? |  yes  |  |
+ | cod_available | boolean? |  yes  |  |
+ | cod_charges | number? |  yes  |  |
+ | cod_message | string? |  yes  |  |
+ | comment | string? |  yes  |  |
+ | coupon_text | string? |  yes  |  |
+ | currency | [CartCurrency](#CartCurrency)? |  yes  |  |
+ | delivery_charge_info | string? |  yes  |  |
+ | delivery_charge_order_value | number? |  yes  |  |
+ | delivery_charges | number? |  yes  |  |
+ | delivery_promise | [ShipmentPromise](#ShipmentPromise)? |  yes  |  |
+ | error_message | string? |  yes  |  |
+ | gstin | string? |  yes  |  |
+ | id | string? |  yes  |  |
+ | is_valid | boolean? |  yes  |  |
+ | items | [[CartProductInfo](#CartProductInfo)]? |  yes  |  |
+ | last_modified | string? |  yes  |  |
+ | message | string? |  yes  |  |
+ | order_id | string? |  yes  |  |
+ | payment_selection_lock | [PaymentSelectionLock](#PaymentSelectionLock)? |  yes  |  |
+ | restrict_checkout | boolean? |  yes  |  |
+ | store_code | string? |  yes  |  |
+ | store_emps | [string]? |  yes  |  |
+ | success | boolean? |  yes  |  |
+ | uid | string? |  yes  |  |
+ | user_type | string? |  yes  |  |
+ 
+
+---
+
+#### [Coupon](#Coupon)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | coupon_code | string? |  yes  |  |
+ | coupon_value | number? |  yes  |  |
+ | expires_on | string? |  yes  |  |
+ | is_applicable | boolean? |  yes  |  |
+ | is_applied | boolean? |  yes  |  |
+ | max_discount_value | number? |  yes  |  |
+ | message | string? |  yes  |  |
+ | minimum_cart_value | number? |  yes  |  |
+ | sub_title | string? |  yes  |  |
+ | title | string? |  yes  |  |
+ 
+
+---
+
+#### [CouponBreakup](#CouponBreakup)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | code | string? |  yes  |  |
+ | is_applied | boolean? |  yes  |  |
+ | message | string? |  yes  |  |
+ | type | string? |  yes  |  |
+ | uid | string? |  yes  |  |
+ | value | number? |  yes  |  |
+ 
+
+---
+
+#### [CouponValidity](#CouponValidity)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | code | string? |  yes  |  |
+ | discount | number? |  yes  |  |
+ | display_message_en | string? |  yes  |  |
+ | title | string? |  yes  |  |
+ | valid | boolean? |  yes  |  |
+ 
+
+---
+
+#### [CurrencyInfo](#CurrencyInfo)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | code | string? |  yes  |  |
+ | symbol | string? |  yes  |  |
+ 
+
+---
+
+#### [CustomerDetails](#CustomerDetails)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | email | string? |  yes  |  |
+ | mobile | string |  no  |  |
+ | name | string? |  yes  |  |
+ 
+
+---
+
+#### [DeleteAddressResponse](#DeleteAddressResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | id | string? |  yes  |  |
+ | is_deleted | boolean? |  yes  |  |
+ 
+
+---
+
+#### [DeleteCartDetailResponse](#DeleteCartDetailResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | message | string? |  yes  |  |
+ | success | boolean? |  yes  | True if cart is archived successfully. False if not archived. |
+ 
+
+---
+
+#### [DisplayBreakup](#DisplayBreakup)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | currency_code | string? |  yes  |  |
+ | currency_symbol | string? |  yes  |  |
+ | display | string? |  yes  |  |
+ | key | string? |  yes  |  |
+ | message | [string]? |  yes  |  |
+ | value | number? |  yes  |  |
+ 
+
+---
+
+#### [GeoLocation](#GeoLocation)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | latitude | number? |  yes  |  |
+ | longitude | number? |  yes  |  |
+ 
+
+---
+
+#### [GetAddressesResponse](#GetAddressesResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | address | [[Address](#Address)]? |  yes  |  |
+ 
+
+---
+
+#### [GetCouponResponse](#GetCouponResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | available_coupon_list | [[Coupon](#Coupon)]? |  yes  |  |
+ | page | [PageCoupon](#PageCoupon)? |  yes  |  |
+ 
+
+---
+
+#### [GetShareCartLinkRequest](#GetShareCartLinkRequest)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | id | string? |  yes  | Cart uid for generating sharing |
+ | meta | string? |  yes  | Staff, Ordering store or any other data. This data will be used to generate link as well as sent as shared details. |
+ 
+
+---
+
+#### [GetShareCartLinkResponse](#GetShareCartLinkResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | share_url | string? |  yes  | Short shareable final url |
+ | token | string? |  yes  | Short url unique id |
+ 
+
+---
+
+#### [LadderOfferItem](#LadderOfferItem)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | margin | number? |  yes  | Percentage value of discount |
+ | max_quantity | number? |  yes  | Minimum quantity upto which offer is applicable. If not present that offer is applicable on all quantities |
+ | min_quantity | number? |  yes  | Minimum quantity from which offer is applicable |
+ | price | [LadderPrice](#LadderPrice)? |  yes  |  |
+ | type | string? |  yes  | Offer type |
+ 
+
+---
+
+#### [LadderPrice](#LadderPrice)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | currency_code | string? |  yes  | Currency code for all amounts |
+ | currency_symbol | string? |  yes  | Currency symbol for currency |
+ | effective | number? |  yes  | Current per unit price of product after existing deductions |
+ | marked | number? |  yes  | Original price of product |
+ | offer_price | number? |  yes  | Discounted per unit price for current offer object |
+ 
+
+---
+
+#### [LadderPriceOffer](#LadderPriceOffer)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | description | string? |  yes  | Offer details including T&C |
+ | id | string? |  yes  | Promotion id |
+ | offer_prices | [[LadderOfferItem](#LadderOfferItem)]? |  yes  |  |
+ | offer_text | string? |  yes  | Offer title |
+ | promotion_group | string? |  yes  | Group of promotion belongs to |
+ | valid_till | string? |  yes  | Datetime ISOString for promotion end date |
+ 
+
+---
+
+#### [LadderPriceOffers](#LadderPriceOffers)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | available_offers | [[LadderPriceOffer](#LadderPriceOffer)]? |  yes  |  |
+ | currency | [CurrencyInfo](#CurrencyInfo)? |  yes  |  |
+ 
+
+---
+
+#### [LoyaltyPoints](#LoyaltyPoints)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | applicable | number? |  yes  |  |
+ | description | string? |  yes  |  |
+ | is_applied | boolean? |  yes  |  |
+ | total | number? |  yes  |  |
+ 
+
+---
+
+#### [OfferItem](#OfferItem)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | auto_applied | boolean? |  yes  | Whether offer discount is auto applied in cart |
+ | best | boolean? |  yes  | Is true for best offer from all offers present for all sellers |
+ | margin | number? |  yes  | Percentage value of discount |
+ | price | [OfferPrice](#OfferPrice)? |  yes  |  |
+ | quantity | number? |  yes  | Quantity on which offer is applicable |
+ | total | number? |  yes  | Total price of offer quantity with discount |
+ | type | string? |  yes  | Offer type |
+ 
+
+---
+
+#### [OfferPrice](#OfferPrice)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | bulk_effective | number? |  yes  | Discounted per unit price for current offer object |
+ | currency_code | string? |  yes  | Currency code for all amounts |
+ | currency_symbol | string? |  yes  | Currency symbol for currency |
+ | effective | number? |  yes  | Current per unit price of product after existing deductions |
+ | marked | number? |  yes  | Original price of product |
+ 
+
+---
+
+#### [OfferSeller](#OfferSeller)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | name | string? |  yes  |  |
+ | uid | number? |  yes  | Seller id |
+ 
+
+---
+
+#### [OperationErrorResponse](#OperationErrorResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | message | string? |  yes  |  |
+ | success | boolean? |  yes  |  |
+ 
+
+---
+
+#### [PageCoupon](#PageCoupon)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | current | number? |  yes  |  |
+ | has_next | boolean? |  yes  |  |
+ | has_previous | boolean? |  yes  |  |
+ | total | number? |  yes  |  |
+ | total_item_count | number? |  yes  |  |
+ 
+
+---
+
+#### [PaymentCouponValidate](#PaymentCouponValidate)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | coupon_validity | [CouponValidity](#CouponValidity)? |  yes  |  |
+ | message | string? |  yes  |  |
  | success | boolean |  no  |  |
+ 
 
 ---
 
-
- 
- 
- #### [CartCheckoutResponse](#CartCheckoutResponse)
+#### [PaymentMeta](#PaymentMeta)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | payment_confirm_url | string |  no  |  |
- | data | string |  no  |  |
- | callback_url | string |  no  |  |
- | app_intercept_url | string |  no  |  |
- | order_id | string |  no  |  |
- | message | string |  no  |  |
- | cart | [CheckCart](#CheckCart) |  no  |  |
- | success | boolean |  no  |  |
+ | merchant_code | string? |  yes  |  |
+ | payment_gateway | string? |  yes  |  |
+ | payment_identifier | string? |  yes  |  |
+ | type | string? |  yes  |  |
+ 
 
 ---
 
-
- 
- 
- #### [CartMetaRequest](#CartMetaRequest)
+#### [PaymentMethod](#PaymentMethod)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | comment | string |  no  |  |
- | gstin | string |  no  |  |
- | checkout_mode | string |  no  |  |
- | pick_up_customer_details | string |  no  | Customer contact details for customer pickup at store |
+ | amount | number? |  yes  |  |
+ | mode | string |  no  |  |
+ | name | string? |  yes  |  |
+ | payment | string? |  yes  |  |
+ | payment_meta | [PaymentMeta](#PaymentMeta) |  no  |  |
+ 
 
 ---
 
-
- 
- 
- #### [CartMetaResponse](#CartMetaResponse)
+#### [PaymentSelectionLock](#PaymentSelectionLock)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | message | string |  no  |  |
+ | default_options | string? |  yes  |  |
+ | enabled | boolean? |  yes  |  |
+ | payment_identifier | string? |  yes  |  |
+ 
 
 ---
 
-
- 
- 
- #### [CartMetaMissingResponse](#CartMetaMissingResponse)
+#### [ProductAction](#ProductAction)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | errors | [string] |  no  |  |
+ | query | [ActionQuery](#ActionQuery)? |  yes  |  |
+ | type | string? |  yes  |  |
+ | url | string? |  yes  |  |
+ 
 
 ---
 
-
- 
- 
- #### [GetShareCartLinkRequest](#GetShareCartLinkRequest)
+#### [ProductArticle](#ProductArticle)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | id | string |  no  | Cart uid for generating sharing |
- | meta | string |  no  | Staff, Ordering store or any other data. This data will be used to generate link as well as sent as shared details. |
+ | extra_meta | string? |  yes  |  |
+ | meta | string? |  yes  |  |
+ | parent_item_identifiers | string? |  yes  |  |
+ | price | [ArticlePriceInfo](#ArticlePriceInfo)? |  yes  |  |
+ | product_group_tags | [string]? |  yes  |  |
+ | quantity | number? |  yes  |  |
+ | seller | [BaseInfo](#BaseInfo)? |  yes  |  |
+ | size | string? |  yes  |  |
+ | store | [BaseInfo](#BaseInfo)? |  yes  |  |
+ | type | string? |  yes  |  |
+ | uid | string? |  yes  |  |
+ 
 
 ---
 
-
- 
- 
- #### [GetShareCartLinkResponse](#GetShareCartLinkResponse)
+#### [ProductAvailability](#ProductAvailability)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | share_url | string |  no  | Short shareable final url |
- | token | string |  no  | Short url unique id |
+ | deliverable | boolean? |  yes  |  |
+ | is_valid | boolean? |  yes  |  |
+ | other_store_quantity | number? |  yes  |  |
+ | out_of_stock | boolean? |  yes  |  |
+ | sizes | [string]? |  yes  |  |
+ 
 
 ---
 
-
- 
- 
- #### [SharedCartDetails](#SharedCartDetails)
+#### [ProductImage](#ProductImage)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | token | string |  no  | Short link id |
- | created_on | string |  no  |  |
- | meta | string |  no  | Meta data sent while generating share cart link |
- | user | string |  no  | User details of who generated share link |
- | source | string |  no  | Share link device and other source information |
+ | aspect_ratio | string? |  yes  |  |
+ | secure_url | string? |  yes  |  |
+ | url | string? |  yes  |  |
+ 
 
 ---
 
-
- 
- 
- #### [SharedCart](#SharedCart)
+#### [ProductPrice](#ProductPrice)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | payment_selection_lock | [PaymentSelectionLock](#PaymentSelectionLock) |  no  |  |
- | is_valid | boolean |  no  |  |
- | shared_cart_details | [SharedCartDetails](#SharedCartDetails) |  no  |  |
- | id | string |  no  |  |
- | gstin | string |  no  |  |
- | checkout_mode | string |  no  |  |
- | breakup_values | [CartBreakup](#CartBreakup) |  no  |  |
- | buy_now | boolean |  no  |  |
- | delivery_charge_info | string |  no  |  |
- | items | [[CartProductInfo](#CartProductInfo)] |  no  |  |
- | message | string |  no  |  |
- | uid | string |  no  |  |
- | currency | [CartCurrency](#CartCurrency) |  no  |  |
- | last_modified | string |  no  |  |
- | coupon_text | string |  no  |  |
- | comment | string |  no  |  |
- | cart_id | number |  no  |  |
- | delivery_promise | [ShipmentPromise](#ShipmentPromise) |  no  |  |
- | restrict_checkout | boolean |  no  |  |
+ | add_on | number? |  yes  |  |
+ | currency_code | string? |  yes  |  |
+ | currency_symbol | string? |  yes  |  |
+ | effective | number? |  yes  |  |
+ | marked | number? |  yes  |  |
+ | selling | number? |  yes  |  |
+ 
 
 ---
 
-
- 
- 
- #### [SharedCartResponse](#SharedCartResponse)
+#### [ProductPriceInfo](#ProductPriceInfo)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | error | string |  no  |  |
- | cart | [SharedCart](#SharedCart) |  no  |  |
+ | base | [ProductPrice](#ProductPrice)? |  yes  |  |
+ | converted | [ProductPrice](#ProductPrice)? |  yes  |  |
+ 
 
 ---
 
-
- 
- 
- #### [PromotionOffer](#PromotionOffer)
+#### [PromiseFormatted](#PromiseFormatted)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | id | string |  no  | Promotion id |
- | promotion_group | string |  no  | Group of promotion belongs to |
- | valid_till | string |  no  | Datetime ISOString for promotion end date |
- | offer_text | string |  no  | Offer title |
- | description | string |  no  | Offer details including T&C |
+ | max | string? |  yes  |  |
+ | min | string? |  yes  |  |
+ 
 
 ---
 
-
- 
- 
- #### [PromotionOffersResponse](#PromotionOffersResponse)
+#### [PromiseTimestamp](#PromiseTimestamp)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | available_promotions | [[PromotionOffer](#PromotionOffer)] |  no  |  |
+ | max | number? |  yes  |  |
+ | min | number? |  yes  |  |
+ 
 
 ---
 
-
- 
- 
- #### [OperationErrorResponse](#OperationErrorResponse)
+#### [PromoMeta](#PromoMeta)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | message | string |  no  |  |
- | success | boolean |  no  |  |
+ | message | string? |  yes  |  |
+ 
 
 ---
 
-
- 
- 
- #### [LadderPrice](#LadderPrice)
+#### [PromotionOffer](#PromotionOffer)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | currency_code | string |  no  | Currency code for all amounts |
- | effective | number |  no  | Current per unit price of product after existing deductions |
- | currency_symbol | string |  no  | Currency symbol for currency |
- | offer_price | number |  no  | Discounted per unit price for current offer object |
- | marked | number |  no  | Original price of product |
+ | description | string? |  yes  | Offer details including T&C |
+ | id | string? |  yes  | Promotion id |
+ | offer_text | string? |  yes  | Offer title |
+ | promotion_group | string? |  yes  | Group of promotion belongs to |
+ | valid_till | string? |  yes  | Datetime ISOString for promotion end date |
+ 
 
 ---
 
-
- 
- 
- #### [LadderOfferItem](#LadderOfferItem)
+#### [PromotionOffersResponse](#PromotionOffersResponse)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | price | [LadderPrice](#LadderPrice) |  no  |  |
- | max_quantity | number |  no  | Minimum quantity upto which offer is applicable. If not present that offer is applicable on all quantities |
- | type | string |  no  | Offer type |
- | min_quantity | number |  no  | Minimum quantity from which offer is applicable |
- | margin | number |  no  | Percentage value of discount |
+ | available_promotions | [[PromotionOffer](#PromotionOffer)]? |  yes  |  |
+ 
 
 ---
 
-
- 
- 
- #### [LadderPriceOffer](#LadderPriceOffer)
+#### [RawBreakup](#RawBreakup)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | id | string |  no  | Promotion id |
- | promotion_group | string |  no  | Group of promotion belongs to |
- | valid_till | string |  no  | Datetime ISOString for promotion end date |
- | offer_text | string |  no  | Offer title |
- | description | string |  no  | Offer details including T&C |
- | offer_prices | [[LadderOfferItem](#LadderOfferItem)] |  no  |  |
+ | cod_charge | number? |  yes  |  |
+ | convenience_fee | number? |  yes  |  |
+ | coupon | number? |  yes  |  |
+ | delivery_charge | number? |  yes  |  |
+ | discount | number? |  yes  |  |
+ | fynd_cash | number? |  yes  |  |
+ | gst_charges | number? |  yes  |  |
+ | mrp_total | number? |  yes  |  |
+ | subtotal | number? |  yes  |  |
+ | total | number? |  yes  |  |
+ | vog | number? |  yes  |  |
+ | you_saved | number? |  yes  |  |
+ 
 
 ---
 
-
- 
- 
- #### [CurrencyInfo](#CurrencyInfo)
+#### [RewardPointRequest](#RewardPointRequest)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | code | string |  no  |  |
- | symbol | string |  no  |  |
+ | points | boolean |  no  |  |
+ 
 
 ---
 
-
- 
- 
- #### [LadderPriceOffers](#LadderPriceOffers)
+#### [SaveAddressResponse](#SaveAddressResponse)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | available_offers | [[LadderPriceOffer](#LadderPriceOffer)] |  no  |  |
- | currency | [CurrencyInfo](#CurrencyInfo) |  no  |  |
+ | id | string? |  yes  |  |
+ | is_default_address | boolean? |  yes  |  |
+ | success | boolean? |  yes  |  |
+ 
+
+---
+
+#### [SelectCartAddressRequest](#SelectCartAddressRequest)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | billing_address_id | string? |  yes  |  |
+ | cart_id | string? |  yes  |  |
+ | id | string? |  yes  |  |
+ 
+
+---
+
+#### [SharedCart](#SharedCart)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | breakup_values | [CartBreakup](#CartBreakup)? |  yes  |  |
+ | buy_now | boolean? |  yes  |  |
+ | cart_id | number? |  yes  |  |
+ | checkout_mode | string? |  yes  |  |
+ | comment | string? |  yes  |  |
+ | coupon_text | string? |  yes  |  |
+ | currency | [CartCurrency](#CartCurrency)? |  yes  |  |
+ | delivery_charge_info | string? |  yes  |  |
+ | delivery_promise | [ShipmentPromise](#ShipmentPromise)? |  yes  |  |
+ | gstin | string? |  yes  |  |
+ | id | string? |  yes  |  |
+ | is_valid | boolean? |  yes  |  |
+ | items | [[CartProductInfo](#CartProductInfo)]? |  yes  |  |
+ | last_modified | string? |  yes  |  |
+ | message | string? |  yes  |  |
+ | payment_selection_lock | [PaymentSelectionLock](#PaymentSelectionLock)? |  yes  |  |
+ | restrict_checkout | boolean? |  yes  |  |
+ | shared_cart_details | [SharedCartDetails](#SharedCartDetails)? |  yes  |  |
+ | uid | string? |  yes  |  |
+ 
+
+---
+
+#### [SharedCartDetails](#SharedCartDetails)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | created_on | string? |  yes  |  |
+ | meta | string? |  yes  | Meta data sent while generating share cart link |
+ | source | string? |  yes  | Share link device and other source information |
+ | token | string? |  yes  | Short link id |
+ | user | string? |  yes  | User details of who generated share link |
+ 
+
+---
+
+#### [SharedCartResponse](#SharedCartResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | cart | [SharedCart](#SharedCart)? |  yes  |  |
+ | error | string? |  yes  |  |
+ 
+
+---
+
+#### [ShipmentPromise](#ShipmentPromise)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | formatted | [PromiseFormatted](#PromiseFormatted)? |  yes  |  |
+ | timestamp | [PromiseTimestamp](#PromiseTimestamp)? |  yes  |  |
+ 
+
+---
+
+#### [ShipmentResponse](#ShipmentResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | box_type | string? |  yes  |  |
+ | dp_id | string? |  yes  |  |
+ | dp_options | string? |  yes  |  |
+ | fulfillment_id | number? |  yes  |  |
+ | fulfillment_type | string? |  yes  |  |
+ | items | [[CartProductInfo](#CartProductInfo)]? |  yes  |  |
+ | order_type | string? |  yes  |  |
+ | promise | [ShipmentPromise](#ShipmentPromise)? |  yes  |  |
+ | shipment_type | string? |  yes  |  |
+ | shipments | number? |  yes  |  |
+ 
+
+---
+
+#### [StaffCheckout](#StaffCheckout)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | _id | string |  no  |  |
+ | first_name | string |  no  |  |
+ | last_name | string |  no  |  |
+ | user | string |  no  |  |
+ 
+
+---
+
+#### [UpdateAddressResponse](#UpdateAddressResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | id | string? |  yes  |  |
+ | is_default_address | boolean? |  yes  |  |
+ | is_updated | boolean? |  yes  |  |
+ | success | boolean? |  yes  |  |
+ 
+
+---
+
+#### [UpdateCartDetailResponse](#UpdateCartDetailResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | cart | [CartDetailResponse](#CartDetailResponse)? |  yes  |  |
+ | message | string? |  yes  |  |
+ | success | boolean? |  yes  | True if all items are added successfully. False if partially added or not added. |
+ 
+
+---
+
+#### [UpdateCartPaymentRequest](#UpdateCartPaymentRequest)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | address_id | string? |  yes  |  |
+ | aggregator_name | string? |  yes  |  |
+ | id | string? |  yes  |  |
+ | merchant_code | string? |  yes  |  |
+ | payment_identifier | string? |  yes  |  |
+ | payment_mode | string? |  yes  |  |
+ 
+
+---
+
+#### [UpdateCartRequest](#UpdateCartRequest)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | items | [[UpdateProductCart](#UpdateProductCart)]? |  yes  |  |
+ | operation | string |  no  |  |
+ 
+
+---
+
+#### [UpdateProductCart](#UpdateProductCart)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | article_id | string? |  yes  |  |
+ | extra_meta | string? |  yes  |  |
+ | identifiers | [CartProductIdentifer](#CartProductIdentifer) |  no  |  |
+ | item_id | number? |  yes  |  |
+ | item_index | number? |  yes  |  |
+ | item_size | string? |  yes  |  |
+ | meta | string? |  yes  |  |
+ | parent_item_identifiers | string? |  yes  |  |
+ | quantity | number? |  yes  |  |
+ 
 
 ---
 

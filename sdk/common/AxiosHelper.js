@@ -4,7 +4,8 @@ const axios = require("axios");
 const querystring = require("query-string");
 const { sign } = require("./RequestSigner");
 const { FDKServerResponseError } = require("./FDKError");
-const { Logger } = require("./Logger");
+const { log, Logger, getLoggerLevel } = require("./Logger");
+const createCurl = require("./curlHelper");
 axios.defaults.withCredentials = true;
 
 function getTransformer(config) {
@@ -37,7 +38,7 @@ function requestInterceptorFn() {
     }
     const { host, pathname, search } = new URL(url);
     const { data, headers, method, params } = config;
-    headers["x-fp-sdk-version"] = "0.1.32";
+    headers["x-fp-sdk-version"] = "1.1.2";
     let querySearchObj = querystring.parse(search);
     querySearchObj = { ...querySearchObj, ...params };
     let queryParam = "";
@@ -76,14 +77,6 @@ function requestInterceptorFn() {
     config.headers["x-fp-date"] = signingOptions.headers["x-fp-date"];
     config.headers["x-fp-signature"] = signingOptions.headers["x-fp-signature"];
     // config.headers["fp-sdk-version"] = version;
-    Logger({
-      level: "DEBUG",
-      type: "REQUEST",
-      message: config,
-      url: config.url,
-      headers: config.headers,
-      body: signingOptions.body,
-    });
     return config;
   };
 }
@@ -92,6 +85,30 @@ const fdkAxios = axios.create({
     return querystring.stringify(params);
   },
 });
+
+// Generate Curl in debug mode
+fdkAxios.interceptors.request.use(
+  function (request) {
+    try {
+      const logLevel = getLoggerLevel();
+      if (logLevel <= log.levels.DEBUG) {
+        const curl = createCurl(request);
+        log.debug(curl);
+      }
+    } catch (error) {
+      Logger({ level: "ERROR", message: `Error Generating Curl: ${error}` });
+    } finally {
+      return request;
+    }
+  },
+  function (error) {
+    Logger({
+      level: "ERROR",
+      message: error.data || error.message,
+      stack: error.data.stack || error.stack,
+    });
+  }
+);
 
 fdkAxios.interceptors.request.use(requestInterceptorFn());
 fdkAxios.interceptors.response.use(
@@ -102,16 +119,19 @@ fdkAxios.interceptors.response.use(
     Logger({
       level: "DEBUG",
       type: "RESPONSE",
-      message: response.config,
+      message: response.data,
       url: response.config.url,
-      response: response.data,
     });
     return response.data; // IF 2XX then return response.data only
   },
   function (error) {
     if (error.response) {
       // Request made and server responded
-      Logger({ level: "ERROR", message: error });
+      Logger({
+        level: "ERROR",
+        message: error.response.data || error.message,
+        stack: error.response.data.stack || error.stack,
+      });
       throw new FDKServerResponseError(
         error.response.data.message || error.message,
         error.response.data.stack || error.stack,
@@ -121,7 +141,11 @@ fdkAxios.interceptors.response.use(
       );
     } else if (error.request) {
       // The request was made but no error.response was received
-      Logger({ level: "ERROR", message: error });
+      Logger({
+        level: "ERROR",
+        message: error.data || error.message,
+        stack: error.data.stack || error.stack,
+      });
       throw new FDKServerResponseError(
         error.message,
         error.stack,
@@ -130,7 +154,7 @@ fdkAxios.interceptors.response.use(
       );
     } else {
       // Something happened in setting up the request that triggered an Error
-      Logger({ level: "ERROR", message: error });
+      Logger({ level: "ERROR", message: error.message });
       throw new FDKServerResponseError(error.message, error.stack);
     }
   }

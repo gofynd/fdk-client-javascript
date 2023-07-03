@@ -18,4 +18,3 @@
 * [Order](ORDER.md) - Handles Platform websites OMS 
 * [Rewards](REWARDS.md) - Earn and redeem reward points 
 * [PosCart](POSCART.md) - Cart APIs 
-* [Logistic](LOGISTIC.md) - Handles Platform websites OMS 
