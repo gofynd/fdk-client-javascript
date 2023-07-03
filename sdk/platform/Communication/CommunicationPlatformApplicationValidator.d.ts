@@ -153,17 +153,17 @@ export = CommunicationPlatformApplicationValidator;
  * @property {string} id - Campaign id
  */
 /**
- * @typedef getSystemEmailTemplates
+ * @typedef getSubscribedEmailTemplates
  * @property {number} [pageNo] - Current page no
  * @property {number} [pageSize] - Current request items count
- * @property {Object} [sort] - To sort based on created_at
  */
 /**
- * @typedef getSystemSystemTemplates
+ * @typedef getSubscribedSmsTemplates
  * @property {number} [pageNo] - Current page no
  * @property {number} [pageSize] - Current request items count
- * @property {Object} [sort] - To sort based on created_at
  */
+/** @typedef getSystemEmailTemplates */
+/** @typedef getSystemSmsTemplates */
 /**
  * @typedef getSystemVoiceTemplates
  * @property {number} [pageNo] - Current page no
@@ -252,7 +252,7 @@ export = CommunicationPlatformApplicationValidator;
 declare class CommunicationPlatformApplicationValidator {
 }
 declare namespace CommunicationPlatformApplicationValidator {
-    export { createAudience, createCampaign, createEmailProvider, createEmailTemplate, createSmsProvider, createSmsTemplate, createVoiceProvider, createVoiceTemplate, deleteEmailProviderById, deleteEmailTemplateById, deleteSmsProviderById, deleteSmsTemplateById, deleteVoiceTemplateById, getAppProviders, getAudienceById, getAudiences, getBigqueryHeaders, getCampaignById, getCampaigns, getCommunicationLogs, getDefaultEmailProviders, getDefaultSmsProviders, getEmailProviderById, getEmailProviders, getEmailTemplateById, getEmailTemplates, getEventSubscriptions, getGlobalProviders, getJobLogs, getJobs, getNSampleRecordsFromCsv, getSmsProviderById, getSmsProviders, getSmsTemplateById, getSmsTemplates, getStatsOfCampaignById, getSystemEmailTemplates, getSystemSystemTemplates, getSystemVoiceTemplates, getVoiceProviderById, getVoiceProviders, getVoiceTemplateById, getVoiceTemplates, sendCommunicationAsynchronously, sendCommunicationSynchronously, sendOtp, triggerCampaignJob, updateAppProviders, updateAudienceById, updateCampaignById, updateEmailProviderById, updateEmailTemplateById, updateSmsProviderById, updateSmsTemplateById, updateVoiceTemplateById, verfiyOtp };
+    export { createAudience, createCampaign, createEmailProvider, createEmailTemplate, createSmsProvider, createSmsTemplate, createVoiceProvider, createVoiceTemplate, deleteEmailProviderById, deleteEmailTemplateById, deleteSmsProviderById, deleteSmsTemplateById, deleteVoiceTemplateById, getAppProviders, getAudienceById, getAudiences, getBigqueryHeaders, getCampaignById, getCampaigns, getCommunicationLogs, getDefaultEmailProviders, getDefaultSmsProviders, getEmailProviderById, getEmailProviders, getEmailTemplateById, getEmailTemplates, getEventSubscriptions, getGlobalProviders, getJobLogs, getJobs, getNSampleRecordsFromCsv, getSmsProviderById, getSmsProviders, getSmsTemplateById, getSmsTemplates, getStatsOfCampaignById, getSubscribedEmailTemplates, getSubscribedSmsTemplates, getSystemEmailTemplates, getSystemSmsTemplates, getSystemVoiceTemplates, getVoiceProviderById, getVoiceProviders, getVoiceTemplateById, getVoiceTemplates, sendCommunicationAsynchronously, sendCommunicationSynchronously, sendOtp, triggerCampaignJob, updateAppProviders, updateAudienceById, updateCampaignById, updateEmailProviderById, updateEmailTemplateById, updateSmsProviderById, updateSmsTemplateById, updateVoiceTemplateById, verfiyOtp };
 }
 /** @returns {createAudience} */
 declare function createAudience(): createAudience;
@@ -573,38 +573,36 @@ type getStatsOfCampaignById = {
      */
     id: string;
 };
+/** @returns {getSubscribedEmailTemplates} */
+declare function getSubscribedEmailTemplates(): getSubscribedEmailTemplates;
+type getSubscribedEmailTemplates = {
+    /**
+     * - Current page no
+     */
+    pageNo?: number;
+    /**
+     * - Current request items count
+     */
+    pageSize?: number;
+};
+/** @returns {getSubscribedSmsTemplates} */
+declare function getSubscribedSmsTemplates(): getSubscribedSmsTemplates;
+type getSubscribedSmsTemplates = {
+    /**
+     * - Current page no
+     */
+    pageNo?: number;
+    /**
+     * - Current request items count
+     */
+    pageSize?: number;
+};
 /** @returns {getSystemEmailTemplates} */
-declare function getSystemEmailTemplates(): getSystemEmailTemplates;
-type getSystemEmailTemplates = {
-    /**
-     * - Current page no
-     */
-    pageNo?: number;
-    /**
-     * - Current request items count
-     */
-    pageSize?: number;
-    /**
-     * - To sort based on created_at
-     */
-    sort?: any;
-};
-/** @returns {getSystemSystemTemplates} */
-declare function getSystemSystemTemplates(): getSystemSystemTemplates;
-type getSystemSystemTemplates = {
-    /**
-     * - Current page no
-     */
-    pageNo?: number;
-    /**
-     * - Current request items count
-     */
-    pageSize?: number;
-    /**
-     * - To sort based on created_at
-     */
-    sort?: any;
-};
+declare function getSystemEmailTemplates(): any;
+type getSystemEmailTemplates = any;
+/** @returns {getSystemSmsTemplates} */
+declare function getSystemSmsTemplates(): any;
+type getSystemSmsTemplates = any;
 /** @returns {getSystemVoiceTemplates} */
 declare function getSystemVoiceTemplates(): getSystemVoiceTemplates;
 type getSystemVoiceTemplates = {

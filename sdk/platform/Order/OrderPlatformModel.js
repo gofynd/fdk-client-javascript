@@ -889,7 +889,7 @@ const Joi = require("joi");
 
 /**
  * @typedef GetActionsResponse
- * @property {ActionInfo} permissions
+ * @property {ActionInfo[]} [permissions]
  */
 
 /**
@@ -936,13 +936,50 @@ const Joi = require("joi");
  * @property {string} [l2_detail] - L2 details of bag
  * @property {string} [l3_detail] - L3 details of bag
  * @property {string} message - History Message or comment
- * @property {Object} [meta] - Meta
+ * @property {HistoryMeta} [meta] - Meta
  * @property {string} [ticket_id] - Ticket ID
  * @property {string} [ticket_url] - Ticket URL
  * @property {string} type - Type of history, Expected Values: [
  *   activity_status, activity_escalation, activity_comment,
  *   outbound_notification, outbound_voice ]
  * @property {string} user - User who created the history
+ */
+
+/**
+ * @typedef HistoryMeta
+ * @property {string} [activity_comment]
+ * @property {string} [activity_type]
+ * @property {string} [billsec]
+ * @property {string} [call_id]
+ * @property {string} [caller]
+ * @property {string} [callerid]
+ * @property {string} [channel_type]
+ * @property {string} [duration]
+ * @property {string} [endtime]
+ * @property {string} [message]
+ * @property {HistoryReason} [reason]
+ * @property {string} [receiver]
+ * @property {string} [recipient]
+ * @property {string} [recordpath]
+ * @property {string} [short_link]
+ * @property {string} [slug]
+ * @property {string} [starttime]
+ * @property {string} [status]
+ * @property {string} [status1]
+ * @property {string} [status2]
+ * @property {string} [store_code]
+ * @property {number} [store_id]
+ * @property {string} [store_name]
+ */
+
+/**
+ * @typedef HistoryReason
+ * @property {string} [category]
+ * @property {number} [code]
+ * @property {string} [dislay_name]
+ * @property {number} [quantity]
+ * @property {string} [state]
+ * @property {string} [text]
  */
 
 /**
@@ -1753,7 +1790,7 @@ const Joi = require("joi");
  * @property {string} affiliate_id
  * @property {string} [customer_mobile_number]
  * @property {string} fynd_order_id
- * @property {string} seller_id
+ * @property {number} seller_id
  */
 
 /**
@@ -3530,7 +3567,7 @@ class OrderPlatformModel {
   /** @returns {GetActionsResponse} */
   static GetActionsResponse() {
     return Joi.object({
-      permissions: OrderPlatformModel.ActionInfo().required(),
+      permissions: Joi.array().items(OrderPlatformModel.ActionInfo()),
     });
   }
 
@@ -3587,11 +3624,52 @@ class OrderPlatformModel {
       l2_detail: Joi.string().allow(""),
       l3_detail: Joi.string().allow(""),
       message: Joi.string().allow("").required(),
-      meta: Joi.any(),
+      meta: OrderPlatformModel.HistoryMeta(),
       ticket_id: Joi.string().allow(""),
       ticket_url: Joi.string().allow(""),
       type: Joi.string().allow("").required(),
       user: Joi.string().allow("").required(),
+    });
+  }
+
+  /** @returns {HistoryMeta} */
+  static HistoryMeta() {
+    return Joi.object({
+      activity_comment: Joi.string().allow("").allow(null),
+      activity_type: Joi.string().allow("").allow(null),
+      billsec: Joi.string().allow("").allow(null),
+      call_id: Joi.string().allow("").allow(null),
+      caller: Joi.string().allow("").allow(null),
+      callerid: Joi.string().allow("").allow(null),
+      channel_type: Joi.string().allow("").allow(null),
+      duration: Joi.string().allow("").allow(null),
+      endtime: Joi.string().allow("").allow(null),
+      message: Joi.string().allow("").allow(null),
+      reason: OrderPlatformModel.HistoryReason(),
+      receiver: Joi.string().allow("").allow(null),
+      recipient: Joi.string().allow("").allow(null),
+      recordpath: Joi.string().allow("").allow(null),
+      short_link: Joi.string().allow("").allow(null),
+      slug: Joi.string().allow("").allow(null),
+      starttime: Joi.string().allow("").allow(null),
+      status: Joi.string().allow("").allow(null),
+      status1: Joi.string().allow("").allow(null),
+      status2: Joi.string().allow("").allow(null),
+      store_code: Joi.string().allow("").allow(null),
+      store_id: Joi.number().allow(null),
+      store_name: Joi.string().allow("").allow(null),
+    });
+  }
+
+  /** @returns {HistoryReason} */
+  static HistoryReason() {
+    return Joi.object({
+      category: Joi.string().allow("").allow(null),
+      code: Joi.number().allow(null),
+      dislay_name: Joi.string().allow("").allow(null),
+      quantity: Joi.number().allow(null),
+      state: Joi.string().allow("").allow(null),
+      text: Joi.string().allow("").allow(null),
     });
   }
 
@@ -4578,7 +4656,7 @@ class OrderPlatformModel {
       affiliate_id: Joi.string().allow("").required(),
       customer_mobile_number: Joi.string().allow(""),
       fynd_order_id: Joi.string().allow("").required(),
-      seller_id: Joi.string().allow("").required(),
+      seller_id: Joi.number().required(),
     });
   }
 

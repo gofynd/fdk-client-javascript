@@ -47,6 +47,11 @@ const PaymentPlatformModel = require("./PaymentPlatformModel");
 /** @typedef edcDeviceStats */
 
 /**
+ * @typedef extensionPaymentUpdate
+ * @property {PaymentPlatformModel.ExtensionPaymentUpdateRequestSerializer} body
+ */
+
+/**
  * @typedef getBankAccountDetailsOpenAPI
  * @property {string} orderId
  * @property {string} [requestHash]
@@ -234,6 +239,13 @@ class PaymentPlatformApplicationValidator {
   /** @returns {edcDeviceStats} */
   static edcDeviceStats() {
     return Joi.object({}).required();
+  }
+
+  /** @returns {extensionPaymentUpdate} */
+  static extensionPaymentUpdate() {
+    return Joi.object({
+      body: PaymentPlatformModel.ExtensionPaymentUpdateRequestSerializer().required(),
+    }).required();
   }
 
   /** @returns {getBankAccountDetailsOpenAPI} */

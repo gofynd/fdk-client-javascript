@@ -437,7 +437,7 @@ declare class Cart {
      * @summary: Update cart payment
      * @description: Use this API to update cart payment.
      */
-    selectPaymentMode({ body, id, buyNow }?: CartPlatformApplicationValidator.selectPaymentMode): Promise<CartPlatformModel.CartDetailResponse>;
+    selectPaymentMode({ body, id, buyNow, orderType }?: CartPlatformApplicationValidator.selectPaymentMode): Promise<CartPlatformModel.CartDetailResponse>;
     /**
      * @param {CartPlatformApplicationValidator.selectPaymentModeV2} arg - Arg object
      * @returns {Promise<CartPlatformModel.CartDetailResponse>} - Success response
@@ -445,7 +445,7 @@ declare class Cart {
      * @summary: Update cart payment
      * @description: Use this API to update cart payment.
      */
-    selectPaymentModeV2({ body, id, buyNow }?: CartPlatformApplicationValidator.selectPaymentModeV2): Promise<CartPlatformModel.CartDetailResponse>;
+    selectPaymentModeV2({ body, id, buyNow, orderType }?: CartPlatformApplicationValidator.selectPaymentModeV2): Promise<CartPlatformModel.CartDetailResponse>;
     /**
      * @param {CartPlatformApplicationValidator.updateAddress} arg - Arg object
      * @returns {Promise<CartPlatformModel.UpdateAddressResponse>} - Success response

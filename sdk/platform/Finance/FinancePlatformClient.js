@@ -12,6 +12,267 @@ class Finance {
   }
 
   /**
+   * @param {FinancePlatformValidator.asCnRefund} arg - Arg object
+   * @returns {Promise<FinancePlatformModel.AsCnRefundResponse>} - Success response
+   * @name asCnRefund
+   * @summary:
+   * @description:
+   */
+  async asCnRefund({ body } = {}) {
+    const { error } = FinancePlatformValidator.asCnRefund().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = FinancePlatformValidator.asCnRefund().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for platform > Finance > asCnRefund \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+
+    const xHeaders = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/finance/v1.0/company/${this.config.companyId}/cn-as-refund-method`,
+      query_params,
+      body,
+      xHeaders
+    );
+
+    const {
+      error: res_error,
+    } = FinancePlatformModel.AsCnRefundResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: `Response Validation Warnnings for platform > Finance > asCnRefund \n ${res_error}`,
+      });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {FinancePlatformValidator.channelDisplayName} arg - Arg object
+   * @returns {Promise<FinancePlatformModel.ChannelDisplayNameResponse>} -
+   *   Success response
+   * @name channelDisplayName
+   * @summary:
+   * @description:
+   */
+  async channelDisplayName({ filterKey } = {}) {
+    const { error } = FinancePlatformValidator.channelDisplayName().validate(
+      {
+        filterKey,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = FinancePlatformValidator.channelDisplayName().validate(
+      {
+        filterKey,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for platform > Finance > channelDisplayName \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+    query_params["filter_key"] = filterKey;
+
+    const xHeaders = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/finance/v1.0/company/${this.config.companyId}/channel-display-names`,
+      query_params,
+      undefined,
+      xHeaders
+    );
+
+    const {
+      error: res_error,
+    } = FinancePlatformModel.ChannelDisplayNameResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: `Response Validation Warnnings for platform > Finance > channelDisplayName \n ${res_error}`,
+      });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {FinancePlatformValidator.createSellerCreditNoteConfig} arg - Arg object
+   * @returns {Promise<FinancePlatformModel.CreateSellerCreditNoteConfigResponse>}
+   *   - Success response
+   *
+   * @name createSellerCreditNoteConfig
+   * @summary:
+   * @description:
+   */
+  async createSellerCreditNoteConfig({ body } = {}) {
+    const {
+      error,
+    } = FinancePlatformValidator.createSellerCreditNoteConfig().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = FinancePlatformValidator.createSellerCreditNoteConfig().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for platform > Finance > createSellerCreditNoteConfig \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+
+    const xHeaders = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/finance/v1.0/company/${this.config.companyId}/create-update-credit-note-config`,
+      query_params,
+      body,
+      xHeaders
+    );
+
+    const {
+      error: res_error,
+    } = FinancePlatformModel.CreateSellerCreditNoteConfigResponse().validate(
+      response,
+      { abortEarly: false, allowUnknown: false }
+    );
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: `Response Validation Warnnings for platform > Finance > createSellerCreditNoteConfig \n ${res_error}`,
+      });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {FinancePlatformValidator.creditNoteDetails} arg - Arg object
+   * @returns {Promise<FinancePlatformModel.CreditNoteDetailsResponse>} -
+   *   Success response
+   * @name creditNoteDetails
+   * @summary:
+   * @description:
+   */
+  async creditNoteDetails({ body } = {}) {
+    const { error } = FinancePlatformValidator.creditNoteDetails().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = FinancePlatformValidator.creditNoteDetails().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for platform > Finance > creditNoteDetails \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+
+    const xHeaders = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/finance/v1.0/company/${this.config.companyId}/credit-note-details`,
+      query_params,
+      body,
+      xHeaders
+    );
+
+    const {
+      error: res_error,
+    } = FinancePlatformModel.CreditNoteDetailsResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: `Response Validation Warnnings for platform > Finance > creditNoteDetails \n ${res_error}`,
+      });
+    }
+
+    return response;
+  }
+
+  /**
    * @param {FinancePlatformValidator.creditlineDataplatform} arg - Arg object
    * @returns {Promise<FinancePlatformModel.CreditlineDataPlatformResponse>}
    *   - Success response
@@ -73,6 +334,70 @@ class Finance {
       Logger({
         level: "WARN",
         message: `Response Validation Warnnings for platform > Finance > creditlineDataplatform \n ${res_error}`,
+      });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {FinancePlatformValidator.deleteConfig} arg - Arg object
+   * @returns {Promise<FinancePlatformModel.DeleteConfigResponse>} - Success response
+   * @name deleteConfig
+   * @summary:
+   * @description:
+   */
+  async deleteConfig({ body } = {}) {
+    const { error } = FinancePlatformValidator.deleteConfig().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = FinancePlatformValidator.deleteConfig().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for platform > Finance > deleteConfig \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+
+    const xHeaders = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/finance/v1.0/company/${this.config.companyId}/delete-seller-config`,
+      query_params,
+      body,
+      xHeaders
+    );
+
+    const {
+      error: res_error,
+    } = FinancePlatformModel.DeleteConfigResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: `Response Validation Warnnings for platform > Finance > deleteConfig \n ${res_error}`,
       });
     }
 
@@ -212,6 +537,74 @@ class Finance {
   }
 
   /**
+   * @param {FinancePlatformValidator.downloadReportCustomerCn} arg - Arg object
+   * @returns {Promise<FinancePlatformModel.DownloadReportCustomerCnResponse>}
+   *   - Success response
+   *
+   * @name downloadReportCustomerCn
+   * @summary:
+   * @description:
+   */
+  async downloadReportCustomerCn({ body } = {}) {
+    const {
+      error,
+    } = FinancePlatformValidator.downloadReportCustomerCn().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = FinancePlatformValidator.downloadReportCustomerCn().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for platform > Finance > downloadReportCustomerCn \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+
+    const xHeaders = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/finance/v1.0/company/${this.config.companyId}/download-report-customer-cn`,
+      query_params,
+      body,
+      xHeaders
+    );
+
+    const {
+      error: res_error,
+    } = FinancePlatformModel.DownloadReportCustomerCnResponse().validate(
+      response,
+      { abortEarly: false, allowUnknown: false }
+    );
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: `Response Validation Warnnings for platform > Finance > downloadReportCustomerCn \n ${res_error}`,
+      });
+    }
+
+    return response;
+  }
+
+  /**
    * @param {FinancePlatformValidator.generateReport} arg - Arg object
    * @returns {Promise<FinancePlatformModel.GenerateReportJson>} - Success response
    * @name generateReport
@@ -269,6 +662,74 @@ class Finance {
       Logger({
         level: "WARN",
         message: `Response Validation Warnnings for platform > Finance > generateReport \n ${res_error}`,
+      });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {FinancePlatformValidator.generateReportCustomerCn} arg - Arg object
+   * @returns {Promise<FinancePlatformModel.GenerateReportCustomerCnResponse>}
+   *   - Success response
+   *
+   * @name generateReportCustomerCn
+   * @summary:
+   * @description:
+   */
+  async generateReportCustomerCn({ body } = {}) {
+    const {
+      error,
+    } = FinancePlatformValidator.generateReportCustomerCn().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = FinancePlatformValidator.generateReportCustomerCn().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for platform > Finance > generateReportCustomerCn \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+
+    const xHeaders = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/finance/v1.0/company/${this.config.companyId}/generate-report-customer-cn`,
+      query_params,
+      body,
+      xHeaders
+    );
+
+    const {
+      error: res_error,
+    } = FinancePlatformModel.GenerateReportCustomerCnResponse().validate(
+      response,
+      { abortEarly: false, allowUnknown: false }
+    );
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: `Response Validation Warnnings for platform > Finance > generateReportCustomerCn \n ${res_error}`,
       });
     }
 
@@ -340,6 +801,136 @@ class Finance {
   }
 
   /**
+   * @param {FinancePlatformValidator.getCnConfig} arg - Arg object
+   * @returns {Promise<FinancePlatformModel.GetCnConfigResponse>} - Success response
+   * @name getCnConfig
+   * @summary:
+   * @description:
+   */
+  async getCnConfig({ body } = {}) {
+    const { error } = FinancePlatformValidator.getCnConfig().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = FinancePlatformValidator.getCnConfig().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for platform > Finance > getCnConfig \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+
+    const xHeaders = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/finance/v1.0/company/${this.config.companyId}/get-seller-cn-config`,
+      query_params,
+      body,
+      xHeaders
+    );
+
+    const {
+      error: res_error,
+    } = FinancePlatformModel.GetCnConfigResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: `Response Validation Warnnings for platform > Finance > getCnConfig \n ${res_error}`,
+      });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {FinancePlatformValidator.getCustomerCreditBalance} arg - Arg object
+   * @returns {Promise<FinancePlatformModel.GetCustomerCreditBalanceResponse>}
+   *   - Success response
+   *
+   * @name getCustomerCreditBalance
+   * @summary:
+   * @description:
+   */
+  async getCustomerCreditBalance({ body } = {}) {
+    const {
+      error,
+    } = FinancePlatformValidator.getCustomerCreditBalance().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = FinancePlatformValidator.getCustomerCreditBalance().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for platform > Finance > getCustomerCreditBalance \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+
+    const xHeaders = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/finance/v1.0/company/${this.config.companyId}/customer-credit-balance`,
+      query_params,
+      body,
+      xHeaders
+    );
+
+    const {
+      error: res_error,
+    } = FinancePlatformModel.GetCustomerCreditBalanceResponse().validate(
+      response,
+      { abortEarly: false, allowUnknown: false }
+    );
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: `Response Validation Warnnings for platform > Finance > getCustomerCreditBalance \n ${res_error}`,
+      });
+    }
+
+    return response;
+  }
+
+  /**
    * @param {FinancePlatformValidator.getData} arg - Arg object
    * @returns {Promise<FinancePlatformModel.GetEngineResponse>} - Success response
    * @name getData
@@ -395,6 +986,70 @@ class Finance {
       Logger({
         level: "WARN",
         message: `Response Validation Warnnings for platform > Finance > getData \n ${res_error}`,
+      });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {FinancePlatformValidator.getPdfUrlView} arg - Arg object
+   * @returns {Promise<FinancePlatformModel.GetPdfUrlViewResponse>} - Success response
+   * @name getPdfUrlView
+   * @summary:
+   * @description:
+   */
+  async getPdfUrlView({ body } = {}) {
+    const { error } = FinancePlatformValidator.getPdfUrlView().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = FinancePlatformValidator.getPdfUrlView().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for platform > Finance > getPdfUrlView \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+
+    const xHeaders = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/finance/v1.0/company/${this.config.companyId}/get-cn-pdf-link`,
+      query_params,
+      body,
+      xHeaders
+    );
+
+    const {
+      error: res_error,
+    } = FinancePlatformModel.GetPdfUrlViewResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: `Response Validation Warnnings for platform > Finance > getPdfUrlView \n ${res_error}`,
       });
     }
 
@@ -521,6 +1176,75 @@ class Finance {
       Logger({
         level: "WARN",
         message: `Response Validation Warnnings for platform > Finance > getReportList \n ${res_error}`,
+      });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {FinancePlatformValidator.getReportingFilters} arg - Arg object
+   * @returns {Promise<FinancePlatformModel.GetReportingFiltersResponse>} -
+   *   Success response
+   * @name getReportingFilters
+   * @summary:
+   * @description:
+   */
+  async getReportingFilters({ filterKey, affiliateId } = {}) {
+    const { error } = FinancePlatformValidator.getReportingFilters().validate(
+      {
+        filterKey,
+        affiliateId,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = FinancePlatformValidator.getReportingFilters().validate(
+      {
+        filterKey,
+        affiliateId,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for platform > Finance > getReportingFilters \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+    query_params["filter_key"] = filterKey;
+    query_params["affiliate_id"] = affiliateId;
+
+    const xHeaders = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/finance/v1.0/company/${this.config.companyId}/reporting-filters`,
+      query_params,
+      undefined,
+      xHeaders
+    );
+
+    const {
+      error: res_error,
+    } = FinancePlatformModel.GetReportingFiltersResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: `Response Validation Warnnings for platform > Finance > getReportingFilters \n ${res_error}`,
       });
     }
 

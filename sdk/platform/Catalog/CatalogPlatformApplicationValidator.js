@@ -318,6 +318,21 @@ const CatalogPlatformModel = require("./CatalogPlatformModel");
  *   **v1.0/products/**
  */
 
+/**
+ * @typedef getProductSizeSellers
+ * @property {string} itemId - Item code of the product of which size is to be get.
+ * @property {string} size - A string indicating the size of the product, e.g.
+ *   S, M, XL. You can get slug value from the endpoint
+ *   /service/application/catalog/v1.0/products/sizes
+ * @property {string} [pincode] - The 6-digit PIN Code of the area near which
+ *   the selling locations should be searched, e.g. 400059
+ * @property {string} [strategy] - Sort stores on the basis of strategy. eg,
+ *   fast-delivery, low-price, optimal.
+ * @property {number} [pageNo] - The page number to navigate through the given
+ *   set of results.
+ * @property {number} [pageSize] - The number of items to retrieve in each page.
+ */
+
 /** @typedef getQueryFilters */
 
 /**
@@ -732,6 +747,19 @@ class CatalogPlatformApplicationValidator {
   static getProductDetailBySlug() {
     return Joi.object({
       slug: Joi.string().allow("").required(),
+    }).required();
+  }
+
+  /** @returns {getProductSizeSellers} */
+  static getProductSizeSellers() {
+    return Joi.object({
+      itemId: Joi.string().allow("").required(),
+
+      size: Joi.string().allow("").required(),
+      pincode: Joi.string().allow(""),
+      strategy: Joi.string().allow(""),
+      pageNo: Joi.number(),
+      pageSize: Joi.number(),
     }).required();
   }
 

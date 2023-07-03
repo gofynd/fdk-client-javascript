@@ -249,12 +249,18 @@ export = CartPlatformApplicationValidator;
  * @typedef selectPaymentMode
  * @property {string} [id]
  * @property {boolean} [buyNow]
+ * @property {string} [orderType] - The order type of shipment HomeDelivery - If
+ *   the customer wants the order home-delivered PickAtStore - If the customer
+ *   wants the handover of an order at the store itself.
  * @property {CartPlatformModel.UpdateCartPaymentRequest} body
  */
 /**
  * @typedef selectPaymentModeV2
  * @property {string} [id]
  * @property {boolean} [buyNow]
+ * @property {string} [orderType] - The order type of shipment HomeDelivery - If
+ *   the customer wants the order home-delivered PickAtStore - If the customer
+ *   wants the handover of an order at the store itself.
  * @property {CartPlatformModel.UpdateCartPaymentRequestV2} body
  */
 /**
@@ -682,6 +688,12 @@ declare function selectPaymentMode(): selectPaymentMode;
 type selectPaymentMode = {
     id?: string;
     buyNow?: boolean;
+    /**
+     * - The order type of shipment HomeDelivery - If
+     * the customer wants the order home-delivered PickAtStore - If the customer
+     * wants the handover of an order at the store itself.
+     */
+    orderType?: string;
     body: CartPlatformModel.UpdateCartPaymentRequest;
 };
 /** @returns {selectPaymentModeV2} */
@@ -689,6 +701,12 @@ declare function selectPaymentModeV2(): selectPaymentModeV2;
 type selectPaymentModeV2 = {
     id?: string;
     buyNow?: boolean;
+    /**
+     * - The order type of shipment HomeDelivery - If
+     * the customer wants the order home-delivered PickAtStore - If the customer
+     * wants the handover of an order at the store itself.
+     */
+    orderType?: string;
     body: CartPlatformModel.UpdateCartPaymentRequestV2;
 };
 /** @returns {updateAddress} */

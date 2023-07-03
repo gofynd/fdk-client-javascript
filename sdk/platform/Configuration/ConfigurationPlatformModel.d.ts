@@ -185,14 +185,14 @@ export = ConfigurationPlatformModel;
  * @typedef ApplicationDetail
  * @property {string} [_id] - The unique identifier (24-digit Mongo Object ID)
  *   for the sales channel details
- * @property {SecureUrl} banner
- * @property {string} description - It gives a detailed information about the
+ * @property {SecureUrl} [banner]
+ * @property {string} [description] - It gives a detailed information about the
  *   sales channel. It is required.
  * @property {Domain} [domain]
  * @property {Domain[]} [domains]
- * @property {SecureUrl} favicon
- * @property {SecureUrl} logo
- * @property {SecureUrl} mobile_logo
+ * @property {SecureUrl} [favicon]
+ * @property {SecureUrl} [logo]
+ * @property {SecureUrl} [mobile_logo]
  * @property {string} name - Name of the sales channel. It is required.
  * @property {string} [slug]
  */
@@ -873,7 +873,7 @@ export = ConfigurationPlatformModel;
  */
 /**
  * @typedef InventoryBrandRule
- * @property {number[]} [brands]
+ * @property {number[]} [brands] - Brand uids in case of explicit criteria
  * @property {string} [criteria] - Whether all brands are enabled, or explicitly
  *   few brands in the inventory
  */
@@ -909,11 +909,11 @@ export = ConfigurationPlatformModel;
  */
 /**
  * @typedef InventoryStoreRule
- * @property {string} [criteria] - Whether all stores are enabled, or explicitly
- *   few stores in the inventory, or use brands and company filter.
+ * @property {string} [criteria] - Whether enable all or explicitly few stores
+ *   or use filter of brands and company as inventory stores
  * @property {StoreCriteriaRule[]} [rules] - List of rules with company and
- *   brands uids. Used when critera is `filter`.
- * @property {number[]} [stores] - List of store uids. Used when critera is `explicit`.
+ *   brands uids. Used when critera is `filter`
+ * @property {number[]} [stores] - List of store uids. Used when critera is `explicit`
  */
 /**
  * @typedef InventoryValidator
@@ -1348,8 +1348,8 @@ export = ConfigurationPlatformModel;
  */
 /**
  * @typedef StoreCriteriaRule
- * @property {number[]} [brands] - List of brand UID
- * @property {number[]} [companies] - List of company UID
+ * @property {number[]} [brands] - List of brand uids
+ * @property {number[]} [companies] - List of company uids
  */
 /**
  * @typedef StoreLatLong
@@ -1853,17 +1853,17 @@ type ApplicationDetail = {
      * for the sales channel details
      */
     _id?: string;
-    banner: SecureUrl;
+    banner?: SecureUrl;
     /**
      * - It gives a detailed information about the
      * sales channel. It is required.
      */
-    description: string;
+    description?: string;
     domain?: Domain;
     domains?: Domain[];
-    favicon: SecureUrl;
-    logo: SecureUrl;
-    mobile_logo: SecureUrl;
+    favicon?: SecureUrl;
+    logo?: SecureUrl;
+    mobile_logo?: SecureUrl;
     /**
      * - Name of the sales channel. It is required.
      */
@@ -3288,6 +3288,9 @@ type InventoryBrand = {
 /** @returns {InventoryBrandRule} */
 declare function InventoryBrandRule(): InventoryBrandRule;
 type InventoryBrandRule = {
+    /**
+     * - Brand uids in case of explicit criteria
+     */
     brands?: number[];
     /**
      * - Whether all brands are enabled, or explicitly
@@ -3361,17 +3364,17 @@ type InventoryStore = {
 declare function InventoryStoreRule(): InventoryStoreRule;
 type InventoryStoreRule = {
     /**
-     * - Whether all stores are enabled, or explicitly
-     * few stores in the inventory, or use brands and company filter.
+     * - Whether enable all or explicitly few stores
+     * or use filter of brands and company as inventory stores
      */
     criteria?: string;
     /**
      * - List of rules with company and
-     * brands uids. Used when critera is `filter`.
+     * brands uids. Used when critera is `filter`
      */
     rules?: StoreCriteriaRule[];
     /**
-     * - List of store uids. Used when critera is `explicit`.
+     * - List of store uids. Used when critera is `explicit`
      */
     stores?: number[];
 };
@@ -4247,11 +4250,11 @@ type StoreByBrandsResponse = {
 declare function StoreCriteriaRule(): StoreCriteriaRule;
 type StoreCriteriaRule = {
     /**
-     * - List of brand UID
+     * - List of brand uids
      */
     brands?: number[];
     /**
-     * - List of company UID
+     * - List of company uids
      */
     companies?: number[];
 };

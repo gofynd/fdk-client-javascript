@@ -1587,13 +1587,13 @@ Success
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | _id | string? |  yes  | The unique identifier (24-digit Mongo Object ID) for the sales channel details |
- | banner | [SecureUrl](#SecureUrl) |  no  |  |
- | description | string |  no  | It gives a detailed information about the sales channel. It is required. |
+ | banner | [SecureUrl](#SecureUrl)? |  yes  |  |
+ | description | string? |  yes  | It gives a detailed information about the sales channel. It is required. |
  | domain | [Domain](#Domain)? |  yes  |  |
  | domains | [[Domain](#Domain)]? |  yes  |  |
- | favicon | [SecureUrl](#SecureUrl) |  no  |  |
- | logo | [SecureUrl](#SecureUrl) |  no  |  |
- | mobile_logo | [SecureUrl](#SecureUrl) |  no  |  |
+ | favicon | [SecureUrl](#SecureUrl)? |  yes  |  |
+ | logo | [SecureUrl](#SecureUrl)? |  yes  |  |
+ | mobile_logo | [SecureUrl](#SecureUrl)? |  yes  |  |
  | name | string |  no  | Name of the sales channel. It is required. |
  | slug | string? |  yes  |  |
  
@@ -2166,7 +2166,7 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | brands | [number]? |  yes  |  |
+ | brands | [number]? |  yes  | Brand uids in case of explicit criteria |
  | criteria | string? |  yes  | Whether all brands are enabled, or explicitly few brands in the inventory |
  
 
@@ -2186,9 +2186,9 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | criteria | string? |  yes  | Whether all stores are enabled, or explicitly few stores in the inventory, or use brands and company filter. |
- | rules | [[StoreCriteriaRule](#StoreCriteriaRule)]? |  yes  | List of rules with company and brands uids. Used when critera is `filter`. |
- | stores | [number]? |  yes  | List of store uids. Used when critera is `explicit`. |
+ | criteria | string? |  yes  | Whether enable all or explicitly few stores or use filter of brands and company as inventory stores |
+ | rules | [[StoreCriteriaRule](#StoreCriteriaRule)]? |  yes  | List of rules with company and brands uids. Used when critera is `filter` |
+ | stores | [number]? |  yes  | List of store uids. Used when critera is `explicit` |
  
 
 ---
@@ -2559,8 +2559,8 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | brands | [number]? |  yes  | List of brand UID |
- | companies | [number]? |  yes  | List of company UID |
+ | brands | [number]? |  yes  | list of brand uids |
+ | companies | [number]? |  yes  | list of company uids |
  
 
 ---

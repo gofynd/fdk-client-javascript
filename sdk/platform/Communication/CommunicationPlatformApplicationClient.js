@@ -207,10 +207,10 @@ class Communication {
    * @param {CommunicationPlatformApplicationValidator.createEmailTemplate} arg
    *   - Arg object
    *
-   * @returns {Promise<CommunicationPlatformModel.EmailTemplateRes>} - Success response
+   * @returns {Promise<CommunicationPlatformModel.EmailTemplate>} - Success response
    * @name createEmailTemplate
    * @summary: Create email template
-   * @description: Create email template
+   * @description: Email templates are predefined formats linked to various events for delivering messages to users. Use this API to create an email template.
    */
   async createEmailTemplate({ body } = {}) {
     const {
@@ -253,7 +253,7 @@ class Communication {
 
     const {
       error: res_error,
-    } = CommunicationPlatformModel.EmailTemplateRes().validate(response, {
+    } = CommunicationPlatformModel.EmailTemplate().validate(response, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -337,10 +337,10 @@ class Communication {
    * @param {CommunicationPlatformApplicationValidator.createSmsTemplate} arg
    *   - Arg object
    *
-   * @returns {Promise<CommunicationPlatformModel.SmsTemplateRes>} - Success response
+   * @returns {Promise<CommunicationPlatformModel.SmsTemplate>} - Success response
    * @name createSmsTemplate
    * @summary: Create sms template
-   * @description: Create sms template
+   * @description: SMS templates are predefined message formats linked to various events for delivering messages to users. Use this API to create an sms template.
    */
   async createSmsTemplate({ body } = {}) {
     const {
@@ -383,7 +383,7 @@ class Communication {
 
     const {
       error: res_error,
-    } = CommunicationPlatformModel.SmsTemplateRes().validate(response, {
+    } = CommunicationPlatformModel.SmsTemplate().validate(response, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -597,12 +597,10 @@ class Communication {
    * @param {CommunicationPlatformApplicationValidator.deleteEmailTemplateById} arg
    *   - Arg object
    *
-   * @returns {Promise<CommunicationPlatformModel.EmailTemplateDeleteSuccessRes>}
-   *   - Success response
-   *
+   * @returns {Promise<CommunicationPlatformModel.GenericDelete>} - Success response
    * @name deleteEmailTemplateById
    * @summary: Delete email template by id
-   * @description: Delete email template by id
+   * @description: Email templates are predefined formats linked to various events for delivering messages to users. Use this API to delete an email template by id.
    */
   async deleteEmailTemplateById({ id } = {}) {
     const {
@@ -645,10 +643,10 @@ class Communication {
 
     const {
       error: res_error,
-    } = CommunicationPlatformModel.EmailTemplateDeleteSuccessRes().validate(
-      response,
-      { abortEarly: false, allowUnknown: false }
-    );
+    } = CommunicationPlatformModel.GenericDelete().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
 
     if (res_error) {
       Logger({
@@ -729,12 +727,10 @@ class Communication {
    * @param {CommunicationPlatformApplicationValidator.deleteSmsTemplateById} arg
    *   - Arg object
    *
-   * @returns {Promise<CommunicationPlatformModel.SmsTemplateDeleteSuccessRes>}
-   *   - Success response
-   *
+   * @returns {Promise<CommunicationPlatformModel.GenericDelete>} - Success response
    * @name deleteSmsTemplateById
    * @summary: Delete sms template by id
-   * @description: Delete sms template by id
+   * @description: SMS templates are predefined message formats linked to various events for delivering messages to users. Use this API to delete an sms template by ID.
    */
   async deleteSmsTemplateById({ id } = {}) {
     const {
@@ -777,10 +773,10 @@ class Communication {
 
     const {
       error: res_error,
-    } = CommunicationPlatformModel.SmsTemplateDeleteSuccessRes().validate(
-      response,
-      { abortEarly: false, allowUnknown: false }
-    );
+    } = CommunicationPlatformModel.GenericDelete().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
 
     if (res_error) {
       Logger({
@@ -1587,7 +1583,7 @@ class Communication {
    * @returns {Promise<CommunicationPlatformModel.EmailTemplate>} - Success response
    * @name getEmailTemplateById
    * @summary: Get email template by id
-   * @description: Get email template by id
+   * @description: Email templates are predefined formats linked to various events for delivering messages to users. Use this API to get an email template by id.
    */
   async getEmailTemplateById({ id } = {}) {
     const {
@@ -1652,7 +1648,7 @@ class Communication {
    * @returns {Promise<CommunicationPlatformModel.EmailTemplates>} - Success response
    * @name getEmailTemplates
    * @summary: Get email templates
-   * @description: Get email templates
+   * @description: Email templates are predefined formats linked to various events for delivering messages to users. Use this API to get all email templates.
    */
   async getEmailTemplates({ pageNo, pageSize, sort } = {}) {
     const {
@@ -2198,7 +2194,7 @@ class Communication {
    * @returns {Promise<CommunicationPlatformModel.SmsTemplate>} - Success response
    * @name getSmsTemplateById
    * @summary: Get sms template by id
-   * @description: Get sms template by id
+   * @description: SMS templates are predefined message formats linked to various events for delivering messages to users. Use this API to get an sms template by ID.
    */
   async getSmsTemplateById({ id } = {}) {
     const {
@@ -2261,7 +2257,7 @@ class Communication {
    * @returns {Promise<CommunicationPlatformModel.SmsTemplates>} - Success response
    * @name getSmsTemplates
    * @summary: Get sms templates
-   * @description: Get sms templates
+   * @description: SMS templates are predefined message formats linked to various events for delivering messages to users. Use this API to get all sms templates.
    */
   async getSmsTemplates({ pageNo, pageSize, sort } = {}) {
     const {
@@ -2392,23 +2388,21 @@ class Communication {
   }
 
   /**
-   * @param {CommunicationPlatformApplicationValidator.getSystemEmailTemplates} arg
+   * @param {CommunicationPlatformApplicationValidator.getSubscribedEmailTemplates} arg
    *   - Arg object
    *
-   * @returns {Promise<CommunicationPlatformModel.SystemEmailTemplates>} -
-   *   Success response
-   * @name getSystemEmailTemplates
-   * @summary: Get system email templates
-   * @description: Get system email templates
+   * @returns {Promise<CommunicationPlatformModel.EmailTemplates>} - Success response
+   * @name getSubscribedEmailTemplates
+   * @summary: Get subscribed email templates
+   * @description: Email templates are predefined formats linked to various events for delivering messages to users. Use this API to get all subscribed email templates.
    */
-  async getSystemEmailTemplates({ pageNo, pageSize, sort } = {}) {
+  async getSubscribedEmailTemplates({ pageNo, pageSize } = {}) {
     const {
       error,
-    } = CommunicationPlatformApplicationValidator.getSystemEmailTemplates().validate(
+    } = CommunicationPlatformApplicationValidator.getSubscribedEmailTemplates().validate(
       {
         pageNo,
         pageSize,
-        sort,
       },
       { abortEarly: false, allowUnknown: true }
     );
@@ -2419,12 +2413,144 @@ class Communication {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = CommunicationPlatformApplicationValidator.getSystemEmailTemplates().validate(
+    } = CommunicationPlatformApplicationValidator.getSubscribedEmailTemplates().validate(
       {
         pageNo,
         pageSize,
-        sort,
       },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for platform > Communication > getSubscribedEmailTemplates \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+    query_params["page_no"] = pageNo;
+    query_params["page_size"] = pageSize;
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/email/subscribedTemplates`,
+      query_params,
+      undefined
+    );
+
+    const {
+      error: res_error,
+    } = CommunicationPlatformModel.EmailTemplates().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: `Response Validation Warnnings for platform > Communication > getSubscribedEmailTemplates \n ${res_error}`,
+      });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {CommunicationPlatformApplicationValidator.getSubscribedSmsTemplates} arg
+   *   - Arg object
+   *
+   * @returns {Promise<CommunicationPlatformModel.SmsTemplates>} - Success response
+   * @name getSubscribedSmsTemplates
+   * @summary: Get subscribed sms templates
+   * @description: SMS templates are predefined message formats linked to various events for delivering messages to users. Use this API to get all subscribed sms templates.
+   */
+  async getSubscribedSmsTemplates({ pageNo, pageSize } = {}) {
+    const {
+      error,
+    } = CommunicationPlatformApplicationValidator.getSubscribedSmsTemplates().validate(
+      {
+        pageNo,
+        pageSize,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = CommunicationPlatformApplicationValidator.getSubscribedSmsTemplates().validate(
+      {
+        pageNo,
+        pageSize,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for platform > Communication > getSubscribedSmsTemplates \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+    query_params["page_no"] = pageNo;
+    query_params["page_size"] = pageSize;
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/sms/subscribedTemplates`,
+      query_params,
+      undefined
+    );
+
+    const {
+      error: res_error,
+    } = CommunicationPlatformModel.SmsTemplates().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: `Response Validation Warnnings for platform > Communication > getSubscribedSmsTemplates \n ${res_error}`,
+      });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {CommunicationPlatformApplicationValidator.getSystemEmailTemplates} arg
+   *   - Arg object
+   *
+   * @returns {Promise<CommunicationPlatformModel.SystemEmailTemplates>} -
+   *   Success response
+   * @name getSystemEmailTemplates
+   * @summary: Get system email templates
+   * @description: Email templates are predefined formats linked to various events for delivering messages to users. Use this API to get all system email templates.
+   */
+  async getSystemEmailTemplates({} = {}) {
+    const {
+      error,
+    } = CommunicationPlatformApplicationValidator.getSystemEmailTemplates().validate(
+      {},
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = CommunicationPlatformApplicationValidator.getSystemEmailTemplates().validate(
+      {},
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
@@ -2435,9 +2561,6 @@ class Communication {
     }
 
     const query_params = {};
-    query_params["page_no"] = pageNo;
-    query_params["page_size"] = pageSize;
-    query_params["sort"] = sort;
 
     const response = await PlatformAPIClient.execute(
       this.config,
@@ -2465,24 +2588,20 @@ class Communication {
   }
 
   /**
-   * @param {CommunicationPlatformApplicationValidator.getSystemSystemTemplates} arg
+   * @param {CommunicationPlatformApplicationValidator.getSystemSmsTemplates} arg
    *   - Arg object
    *
-   * @returns {Promise<CommunicationPlatformModel.SystemSmsTemplates>} -
+   * @returns {Promise<CommunicationPlatformModel.SystemSmsTemplates[]>} -
    *   Success response
-   * @name getSystemSystemTemplates
+   * @name getSystemSmsTemplates
    * @summary: Get system sms templates
-   * @description: Get system sms templates
+   * @description: SMS templates are predefined message formats linked to various events for delivering messages to users. Use this API to get all system sms templates.
    */
-  async getSystemSystemTemplates({ pageNo, pageSize, sort } = {}) {
+  async getSystemSmsTemplates({} = {}) {
     const {
       error,
-    } = CommunicationPlatformApplicationValidator.getSystemSystemTemplates().validate(
-      {
-        pageNo,
-        pageSize,
-        sort,
-      },
+    } = CommunicationPlatformApplicationValidator.getSystemSmsTemplates().validate(
+      {},
       { abortEarly: false, allowUnknown: true }
     );
     if (error) {
@@ -2492,25 +2611,18 @@ class Communication {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = CommunicationPlatformApplicationValidator.getSystemSystemTemplates().validate(
-      {
-        pageNo,
-        pageSize,
-        sort,
-      },
+    } = CommunicationPlatformApplicationValidator.getSystemSmsTemplates().validate(
+      {},
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for platform > Communication > getSystemSystemTemplates \n ${warrning}`,
+        message: `Parameter Validation warrnings for platform > Communication > getSystemSmsTemplates \n ${warrning}`,
       });
     }
 
     const query_params = {};
-    query_params["page_no"] = pageNo;
-    query_params["page_size"] = pageSize;
-    query_params["sort"] = sort;
 
     const response = await PlatformAPIClient.execute(
       this.config,
@@ -2520,17 +2632,14 @@ class Communication {
       undefined
     );
 
-    const {
-      error: res_error,
-    } = CommunicationPlatformModel.SystemSmsTemplates().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
+    const { error: res_error } = Joi.array()
+      .items(CommunicationPlatformModel.SystemSmsTemplates())
+      .validate(response, { abortEarly: false, allowUnknown: false });
 
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for platform > Communication > getSystemSystemTemplates \n ${res_error}`,
+        message: `Response Validation Warnnings for platform > Communication > getSystemSmsTemplates \n ${res_error}`,
       });
     }
 
@@ -3413,10 +3522,10 @@ class Communication {
    * @param {CommunicationPlatformApplicationValidator.updateEmailTemplateById} arg
    *   - Arg object
    *
-   * @returns {Promise<CommunicationPlatformModel.EmailTemplateRes>} - Success response
+   * @returns {Promise<CommunicationPlatformModel.EmailTemplate>} - Success response
    * @name updateEmailTemplateById
    * @summary: Update email template by id
-   * @description: Update email template by id
+   * @description: Email templates are predefined formats linked to various events for delivering messages to users. Use this API to update an email template by id.
    */
   async updateEmailTemplateById({ id, body } = {}) {
     const {
@@ -3461,7 +3570,7 @@ class Communication {
 
     const {
       error: res_error,
-    } = CommunicationPlatformModel.EmailTemplateRes().validate(response, {
+    } = CommunicationPlatformModel.EmailTemplate().validate(response, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -3547,10 +3656,10 @@ class Communication {
    * @param {CommunicationPlatformApplicationValidator.updateSmsTemplateById} arg
    *   - Arg object
    *
-   * @returns {Promise<CommunicationPlatformModel.SmsTemplateRes>} - Success response
+   * @returns {Promise<CommunicationPlatformModel.SmsTemplate>} - Success response
    * @name updateSmsTemplateById
    * @summary: Update sms template by id
-   * @description: Update sms template by id
+   * @description: SMS templates are predefined message formats linked to various events for delivering messages to users. Use this API to update an sms template by ID.
    */
   async updateSmsTemplateById({ id, body } = {}) {
     const {
@@ -3595,7 +3704,7 @@ class Communication {
 
     const {
       error: res_error,
-    } = CommunicationPlatformModel.SmsTemplateRes().validate(response, {
+    } = CommunicationPlatformModel.SmsTemplate().validate(response, {
       abortEarly: false,
       allowUnknown: false,
     });

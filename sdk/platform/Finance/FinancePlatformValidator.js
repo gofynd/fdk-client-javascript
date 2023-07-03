@@ -3,8 +3,33 @@ const Joi = require("joi");
 const FinancePlatformModel = require("./FinancePlatformModel");
 
 /**
+ * @typedef asCnRefund
+ * @property {FinancePlatformModel.AsCnRefundRequest} body
+ */
+
+/**
+ * @typedef channelDisplayName
+ * @property {string} filterKey - Gives display name for channel.
+ */
+
+/**
+ * @typedef createSellerCreditNoteConfig
+ * @property {FinancePlatformModel.CreateSellerCreditNoteConfigRequest} body
+ */
+
+/**
+ * @typedef creditNoteDetails
+ * @property {FinancePlatformModel.CreditNoteDetailsRequest} body
+ */
+
+/**
  * @typedef creditlineDataplatform
  * @property {FinancePlatformModel.CreditlineDataPlatformRequest} body
+ */
+
+/**
+ * @typedef deleteConfig
+ * @property {FinancePlatformModel.DeleteConfigRequest} body
  */
 
 /**
@@ -18,8 +43,18 @@ const FinancePlatformModel = require("./FinancePlatformModel");
  */
 
 /**
+ * @typedef downloadReportCustomerCn
+ * @property {FinancePlatformModel.DownloadReportCustomerCnRequest} body
+ */
+
+/**
  * @typedef generateReport
  * @property {FinancePlatformModel.GenerateReportRequest} body
+ */
+
+/**
+ * @typedef generateReportCustomerCn
+ * @property {FinancePlatformModel.GenerateReportCustomerCnRequest} body
  */
 
 /**
@@ -28,8 +63,23 @@ const FinancePlatformModel = require("./FinancePlatformModel");
  */
 
 /**
+ * @typedef getCnConfig
+ * @property {FinancePlatformModel.GetCnConfigRequest} body
+ */
+
+/**
+ * @typedef getCustomerCreditBalance
+ * @property {FinancePlatformModel.GetCustomerCreditBalanceRequest} body
+ */
+
+/**
  * @typedef getData
  * @property {FinancePlatformModel.GetEngineRequest} body
+ */
+
+/**
+ * @typedef getPdfUrlView
+ * @property {FinancePlatformModel.GetPdfUrlViewRequest} body
  */
 
 /**
@@ -40,6 +90,12 @@ const FinancePlatformModel = require("./FinancePlatformModel");
 /**
  * @typedef getReportList
  * @property {FinancePlatformModel.GetReportListRequest} body
+ */
+
+/**
+ * @typedef getReportingFilters
+ * @property {string} filterKey - Filter type.
+ * @property {string} [affiliateId] - Affiliate id.
  */
 
 /**
@@ -68,10 +124,45 @@ const FinancePlatformModel = require("./FinancePlatformModel");
  */
 
 class FinancePlatformValidator {
+  /** @returns {asCnRefund} */
+  static asCnRefund() {
+    return Joi.object({
+      body: FinancePlatformModel.AsCnRefundRequest().required(),
+    }).required();
+  }
+
+  /** @returns {channelDisplayName} */
+  static channelDisplayName() {
+    return Joi.object({
+      filterKey: Joi.string().allow("").required(),
+    }).required();
+  }
+
+  /** @returns {createSellerCreditNoteConfig} */
+  static createSellerCreditNoteConfig() {
+    return Joi.object({
+      body: FinancePlatformModel.CreateSellerCreditNoteConfigRequest().required(),
+    }).required();
+  }
+
+  /** @returns {creditNoteDetails} */
+  static creditNoteDetails() {
+    return Joi.object({
+      body: FinancePlatformModel.CreditNoteDetailsRequest().required(),
+    }).required();
+  }
+
   /** @returns {creditlineDataplatform} */
   static creditlineDataplatform() {
     return Joi.object({
       body: FinancePlatformModel.CreditlineDataPlatformRequest().required(),
+    }).required();
+  }
+
+  /** @returns {deleteConfig} */
+  static deleteConfig() {
+    return Joi.object({
+      body: FinancePlatformModel.DeleteConfigRequest().required(),
     }).required();
   }
 
@@ -89,10 +180,24 @@ class FinancePlatformValidator {
     }).required();
   }
 
+  /** @returns {downloadReportCustomerCn} */
+  static downloadReportCustomerCn() {
+    return Joi.object({
+      body: FinancePlatformModel.DownloadReportCustomerCnRequest().required(),
+    }).required();
+  }
+
   /** @returns {generateReport} */
   static generateReport() {
     return Joi.object({
       body: FinancePlatformModel.GenerateReportRequest().required(),
+    }).required();
+  }
+
+  /** @returns {generateReportCustomerCn} */
+  static generateReportCustomerCn() {
+    return Joi.object({
+      body: FinancePlatformModel.GenerateReportCustomerCnRequest().required(),
     }).required();
   }
 
@@ -103,10 +208,31 @@ class FinancePlatformValidator {
     }).required();
   }
 
+  /** @returns {getCnConfig} */
+  static getCnConfig() {
+    return Joi.object({
+      body: FinancePlatformModel.GetCnConfigRequest().required(),
+    }).required();
+  }
+
+  /** @returns {getCustomerCreditBalance} */
+  static getCustomerCreditBalance() {
+    return Joi.object({
+      body: FinancePlatformModel.GetCustomerCreditBalanceRequest().required(),
+    }).required();
+  }
+
   /** @returns {getData} */
   static getData() {
     return Joi.object({
       body: FinancePlatformModel.GetEngineRequest().required(),
+    }).required();
+  }
+
+  /** @returns {getPdfUrlView} */
+  static getPdfUrlView() {
+    return Joi.object({
+      body: FinancePlatformModel.GetPdfUrlViewRequest().required(),
     }).required();
   }
 
@@ -121,6 +247,14 @@ class FinancePlatformValidator {
   static getReportList() {
     return Joi.object({
       body: FinancePlatformModel.GetReportListRequest().required(),
+    }).required();
+  }
+
+  /** @returns {getReportingFilters} */
+  static getReportingFilters() {
+    return Joi.object({
+      filterKey: Joi.string().allow("").required(),
+      affiliateId: Joi.string().allow(""),
     }).required();
   }
 

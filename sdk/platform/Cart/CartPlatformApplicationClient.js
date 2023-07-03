@@ -3093,7 +3093,7 @@ class Cart {
    * @summary: Update cart payment
    * @description: Use this API to update cart payment.
    */
-  async selectPaymentMode({ body, id, buyNow } = {}) {
+  async selectPaymentMode({ body, id, buyNow, orderType } = {}) {
     const {
       error,
     } = CartPlatformApplicationValidator.selectPaymentMode().validate(
@@ -3101,6 +3101,7 @@ class Cart {
         body,
         id,
         buyNow,
+        orderType,
       },
       { abortEarly: false, allowUnknown: true }
     );
@@ -3116,6 +3117,7 @@ class Cart {
         body,
         id,
         buyNow,
+        orderType,
       },
       { abortEarly: false, allowUnknown: false }
     );
@@ -3129,6 +3131,7 @@ class Cart {
     const query_params = {};
     query_params["id"] = id;
     query_params["buy_now"] = buyNow;
+    query_params["order_type"] = orderType;
 
     const response = await PlatformAPIClient.execute(
       this.config,
@@ -3162,7 +3165,7 @@ class Cart {
    * @summary: Update cart payment
    * @description: Use this API to update cart payment.
    */
-  async selectPaymentModeV2({ body, id, buyNow } = {}) {
+  async selectPaymentModeV2({ body, id, buyNow, orderType } = {}) {
     const {
       error,
     } = CartPlatformApplicationValidator.selectPaymentModeV2().validate(
@@ -3170,6 +3173,7 @@ class Cart {
         body,
         id,
         buyNow,
+        orderType,
       },
       { abortEarly: false, allowUnknown: true }
     );
@@ -3185,6 +3189,7 @@ class Cart {
         body,
         id,
         buyNow,
+        orderType,
       },
       { abortEarly: false, allowUnknown: false }
     );
@@ -3198,6 +3203,7 @@ class Cart {
     const query_params = {};
     query_params["id"] = id;
     query_params["buy_now"] = buyNow;
+    query_params["order_type"] = orderType;
 
     const response = await PlatformAPIClient.execute(
       this.config,

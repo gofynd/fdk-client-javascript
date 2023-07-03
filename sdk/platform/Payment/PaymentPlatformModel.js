@@ -199,6 +199,25 @@ const Joi = require("joi");
  */
 
 /**
+ * @typedef ExtensionPaymentUpdateRequestSerializer
+ * @property {string} currency
+ * @property {string} gid
+ * @property {Object} order_details
+ * @property {Object} payment_details
+ * @property {string} status
+ * @property {number} total_amount
+ */
+
+/**
+ * @typedef ExtensionPaymentUpdateResponseSerializer
+ * @property {string} currency
+ * @property {string} gid
+ * @property {Object} platform_transaction_details
+ * @property {string} status
+ * @property {number} total_amount
+ */
+
+/**
  * @typedef GetOauthUrlResponse
  * @property {boolean} success - Response is successful or not
  * @property {string} url - The url to call for authenticating
@@ -1021,6 +1040,29 @@ class PaymentPlatformModel {
       message: Joi.string().allow("").required(),
       status_code: Joi.number().required(),
       success: Joi.boolean().required(),
+    });
+  }
+
+  /** @returns {ExtensionPaymentUpdateRequestSerializer} */
+  static ExtensionPaymentUpdateRequestSerializer() {
+    return Joi.object({
+      currency: Joi.string().allow("").required(),
+      gid: Joi.string().allow("").required(),
+      order_details: Joi.any().required(),
+      payment_details: Joi.any().required(),
+      status: Joi.string().allow("").required(),
+      total_amount: Joi.number().required(),
+    });
+  }
+
+  /** @returns {ExtensionPaymentUpdateResponseSerializer} */
+  static ExtensionPaymentUpdateResponseSerializer() {
+    return Joi.object({
+      currency: Joi.string().allow("").required(),
+      gid: Joi.string().allow("").required(),
+      platform_transaction_details: Joi.any().required(),
+      status: Joi.string().allow("").required(),
+      total_amount: Joi.number().required(),
     });
   }
 

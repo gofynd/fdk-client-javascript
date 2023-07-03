@@ -9383,12 +9383,14 @@ Update cart payment
 // Promise
 const promise = platformClient.application("<APPLICATION_ID>").cart.selectPaymentMode({  body : value,
  id : value,
- buyNow : value });
+ buyNow : value,
+ orderType : value });
 
 // Async/Await
 const data = await platformClient.application("<APPLICATION_ID>").cart.selectPaymentMode({  body : value,
  id : value,
- buyNow : value });
+ buyNow : value,
+ orderType : value });
 ```
 
 
@@ -9398,7 +9400,8 @@ const data = await platformClient.application("<APPLICATION_ID>").cart.selectPay
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
 | id | string | no |  |    
-| buyNow | boolean | no |  |  
+| buyNow | boolean | no |  |    
+| orderType | string | no | The order type of shipment HomeDelivery - If the customer wants the order home-delivered PickAtStore - If the customer wants the handover of an order at the store itself. |  
 | body | [UpdateCartPaymentRequest](#UpdateCartPaymentRequest) | yes | Request body |
 
 
@@ -9712,12 +9715,14 @@ Update cart payment
 // Promise
 const promise = platformClient.application("<APPLICATION_ID>").cart.selectPaymentModeV2({  body : value,
  id : value,
- buyNow : value });
+ buyNow : value,
+ orderType : value });
 
 // Async/Await
 const data = await platformClient.application("<APPLICATION_ID>").cart.selectPaymentModeV2({  body : value,
  id : value,
- buyNow : value });
+ buyNow : value,
+ orderType : value });
 ```
 
 
@@ -9727,7 +9732,8 @@ const data = await platformClient.application("<APPLICATION_ID>").cart.selectPay
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
 | id | string | no |  |    
-| buyNow | boolean | no |  |  
+| buyNow | boolean | no |  |    
+| orderType | string | no | The order type of shipment HomeDelivery - If the customer wants the order home-delivered PickAtStore - If the customer wants the handover of an order at the store itself. |  
 | body | [UpdateCartPaymentRequestV2](#UpdateCartPaymentRequestV2) | yes | Request body |
 
 

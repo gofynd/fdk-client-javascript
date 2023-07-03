@@ -192,18 +192,20 @@ const CommunicationPlatformModel = require("./CommunicationPlatformModel");
  */
 
 /**
- * @typedef getSystemEmailTemplates
+ * @typedef getSubscribedEmailTemplates
  * @property {number} [pageNo] - Current page no
  * @property {number} [pageSize] - Current request items count
- * @property {Object} [sort] - To sort based on created_at
  */
 
 /**
- * @typedef getSystemSystemTemplates
+ * @typedef getSubscribedSmsTemplates
  * @property {number} [pageNo] - Current page no
  * @property {number} [pageSize] - Current request items count
- * @property {Object} [sort] - To sort based on created_at
  */
+
+/** @typedef getSystemEmailTemplates */
+
+/** @typedef getSystemSmsTemplates */
 
 /**
  * @typedef getSystemVoiceTemplates
@@ -574,22 +576,30 @@ class CommunicationPlatformApplicationValidator {
     }).required();
   }
 
-  /** @returns {getSystemEmailTemplates} */
-  static getSystemEmailTemplates() {
+  /** @returns {getSubscribedEmailTemplates} */
+  static getSubscribedEmailTemplates() {
     return Joi.object({
       pageNo: Joi.number(),
       pageSize: Joi.number(),
-      sort: Joi.any(),
     }).required();
   }
 
-  /** @returns {getSystemSystemTemplates} */
-  static getSystemSystemTemplates() {
+  /** @returns {getSubscribedSmsTemplates} */
+  static getSubscribedSmsTemplates() {
     return Joi.object({
       pageNo: Joi.number(),
       pageSize: Joi.number(),
-      sort: Joi.any(),
     }).required();
+  }
+
+  /** @returns {getSystemEmailTemplates} */
+  static getSystemEmailTemplates() {
+    return Joi.object({}).required();
+  }
+
+  /** @returns {getSystemSmsTemplates} */
+  static getSystemSmsTemplates() {
+    return Joi.object({}).required();
   }
 
   /** @returns {getSystemVoiceTemplates} */

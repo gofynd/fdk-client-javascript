@@ -60,6 +60,10 @@ export = CommunicationApplicationModel;
  * @property {string} [user_id]
  */
 /**
+ * @typedef EnabledObj
+ * @property {boolean} [enabled]
+ */
+/**
  * @typedef FeedidValidatorError
  * @property {FeedidValidatorErrorMessage} [message]
  * @property {string} [sentry]
@@ -67,6 +71,26 @@ export = CommunicationApplicationModel;
 /**
  * @typedef FeedidValidatorErrorMessage
  * @property {ValidatorErrorBody} [feedid]
+ */
+/**
+ * @typedef GenericDelete
+ * @property {boolean} [acknowledged]
+ * @property {number} [affected]
+ * @property {string} [message]
+ * @property {string} [operation]
+ */
+/**
+ * @typedef GenericError
+ * @property {Message} [message]
+ * @property {string} [sentry]
+ */
+/**
+ * @typedef GenericPage
+ * @property {number} [current]
+ * @property {boolean} [has_next]
+ * @property {number} [item_total]
+ * @property {number} [size]
+ * @property {string} [type]
  */
 /**
  * @typedef GenericSuccess
@@ -87,6 +111,13 @@ export = CommunicationApplicationModel;
  * @property {number} [code]
  * @property {string} [message]
  * @property {string} [sentry]
+ */
+/**
+ * @typedef Message
+ * @property {string} [info]
+ * @property {string} [message]
+ * @property {string} [operation]
+ * @property {boolean} [success]
  */
 /**
  * @typedef NameValidatorError
@@ -168,7 +199,7 @@ export = CommunicationApplicationModel;
 declare class CommunicationApplicationModel {
 }
 declare namespace CommunicationApplicationModel {
-    export { ApikeyValidatorError, ApikeyValidatorErrorMessage, BadRequestSchema, CastToStringFail, CommunicationConsent, CommunicationConsentChannels, CommunicationConsentChannelsEmail, CommunicationConsentChannelsSms, CommunicationConsentChannelsWhatsapp, CommunicationConsentReq, CommunicationConsentRes, FeedidValidatorError, FeedidValidatorErrorMessage, GenericSuccess, InvalidID, InvalidInputRequiredByteOrHexError, InvalidRangeErrorReqPositive, NameValidatorError, NameValidatorErrorMessage, NotFound, Page, PasswordValidatorError, PasswordValidatorErrorMessage, PushtokenReq, PushtokenRes, UsernameValidatorError, UsernameValidatorErrorMessage, ValidatorErrorBody, ValidatorErrorMessageProperties };
+    export { ApikeyValidatorError, ApikeyValidatorErrorMessage, BadRequestSchema, CastToStringFail, CommunicationConsent, CommunicationConsentChannels, CommunicationConsentChannelsEmail, CommunicationConsentChannelsSms, CommunicationConsentChannelsWhatsapp, CommunicationConsentReq, CommunicationConsentRes, EnabledObj, FeedidValidatorError, FeedidValidatorErrorMessage, GenericDelete, GenericError, GenericPage, GenericSuccess, InvalidID, InvalidInputRequiredByteOrHexError, InvalidRangeErrorReqPositive, Message, NameValidatorError, NameValidatorErrorMessage, NotFound, Page, PasswordValidatorError, PasswordValidatorErrorMessage, PushtokenReq, PushtokenRes, UsernameValidatorError, UsernameValidatorErrorMessage, ValidatorErrorBody, ValidatorErrorMessageProperties };
 }
 /** @returns {ApikeyValidatorError} */
 declare function ApikeyValidatorError(): ApikeyValidatorError;
@@ -247,6 +278,11 @@ type CommunicationConsentRes = {
     channels?: CommunicationConsentChannels;
     user_id?: string;
 };
+/** @returns {EnabledObj} */
+declare function EnabledObj(): EnabledObj;
+type EnabledObj = {
+    enabled?: boolean;
+};
 /** @returns {FeedidValidatorError} */
 declare function FeedidValidatorError(): FeedidValidatorError;
 type FeedidValidatorError = {
@@ -257,6 +293,29 @@ type FeedidValidatorError = {
 declare function FeedidValidatorErrorMessage(): FeedidValidatorErrorMessage;
 type FeedidValidatorErrorMessage = {
     feedid?: ValidatorErrorBody;
+};
+/** @returns {GenericDelete} */
+declare function GenericDelete(): GenericDelete;
+type GenericDelete = {
+    acknowledged?: boolean;
+    affected?: number;
+    message?: string;
+    operation?: string;
+};
+/** @returns {GenericError} */
+declare function GenericError(): GenericError;
+type GenericError = {
+    message?: Message;
+    sentry?: string;
+};
+/** @returns {GenericPage} */
+declare function GenericPage(): GenericPage;
+type GenericPage = {
+    current?: number;
+    has_next?: boolean;
+    item_total?: number;
+    size?: number;
+    type?: string;
 };
 /** @returns {GenericSuccess} */
 declare function GenericSuccess(): GenericSuccess;
@@ -281,6 +340,14 @@ type InvalidRangeErrorReqPositive = {
     code?: number;
     message?: string;
     sentry?: string;
+};
+/** @returns {Message} */
+declare function Message(): Message;
+type Message = {
+    info?: string;
+    message?: string;
+    operation?: string;
+    success?: boolean;
 };
 /** @returns {NameValidatorError} */
 declare function NameValidatorError(): NameValidatorError;

@@ -533,6 +533,42 @@ declare class Catalog {
      */
     getProductDetailBySlug({ slug }?: CatalogPlatformApplicationValidator.getProductDetailBySlug): Promise<CatalogPlatformModel.ProductDetail>;
     /**
+     * @param {CatalogPlatformApplicationValidator.getProductSizeSellers} arg - Arg object
+     * @returns {Promise<CatalogPlatformModel.ProductSizeSellersResponse>} -
+     *   Success response
+     * @name getProductSizeSellers
+     * @summary: Get the sellers of a product size at a PIN Code
+     * @description: A product of a particular size may be sold by multiple sellers. Use this API to fetch the sellers having the stock of a particular size at a given PIN Code.
+     */
+    getProductSizeSellers({ itemId, size, pincode, strategy, pageNo, pageSize, }?: CatalogPlatformApplicationValidator.getProductSizeSellers): Promise<CatalogPlatformModel.ProductSizeSellersResponse>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {string} arg.itemId - Item code of the product of which size is to be get.
+     * @param {number} arg.companyId - Company id of the product size .
+     * @param {string} arg.applicationId - Application id of company for which
+     *   product size to be fetched.
+     * @param {string} arg.size - A string indicating the size of the product,
+     *   e.g. S, M, XL. You can get slug value from the endpoint
+     *   /service/application/catalog/v1.0/products/sizes
+     * @param {string} [arg.pincode] - The 6-digit PIN Code of the area near
+     *   which the selling locations should be searched, e.g. 400059
+     * @param {string} [arg.strategy] - Sort stores on the basis of strategy.
+     *   eg, fast-delivery, low-price, optimal.
+     * @param {number} [arg.pageSize] - The number of items to retrieve in each page.
+     * @returns {Paginator<CatalogPlatformModel.ProductSizeSellersResponse>}
+     * @summary: Get the sellers of a product size at a PIN Code
+     * @description: A product of a particular size may be sold by multiple sellers. Use this API to fetch the sellers having the stock of a particular size at a given PIN Code.
+     */
+    getProductSizeSellersPaginator({ itemId, companyId, applicationId, size, pincode, strategy, pageSize, }?: {
+        itemId: string;
+        companyId: number;
+        applicationId: string;
+        size: string;
+        pincode?: string;
+        strategy?: string;
+        pageSize?: number;
+    }): Paginator<CatalogPlatformModel.ProductSizeSellersResponse>;
+    /**
      * @param {CatalogPlatformApplicationValidator.getQueryFilters} arg - Arg object
      * @returns {Promise<CatalogPlatformModel.GetCollectionQueryOptionResponse>}
      *   - Success response

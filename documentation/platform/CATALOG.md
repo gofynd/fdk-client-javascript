@@ -97,6 +97,7 @@ Catalog - Platform Front API's' API's allows you to access list of products, pri
 * [getProductDetailBySlug](#getproductdetailbyslug)
 * [getProductExportJobs](#getproductexportjobs)
 * [getProductSize](#getproductsize)
+* [getProductSizeSellers](#getproductsizesellers)
 * [getProductTags](#getproducttags)
 * [getProductValidation](#getproductvalidation)
 * [getProducts](#getproducts)
@@ -12082,6 +12083,172 @@ Product object. See example below for details
 ---
 
 
+### getProductSizeSellers
+Get the sellers of a product size at a PIN Code
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").catalog.getProductSizeSellers({  itemId : value,
+ size : value,
+ pincode : value,
+ strategy : value,
+ pageNo : value,
+ pageSize : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").catalog.getProductSizeSellers({  itemId : value,
+ size : value,
+ pincode : value,
+ strategy : value,
+ pageNo : value,
+ pageSize : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| itemId | string | yes | Item code of the product of which size is to be get. |   
+| size | string | yes | A string indicating the size of the product, e.g. S, M, XL. You can get slug value from the endpoint /service/application/catalog/v1.0/products/sizes |    
+| pincode | string | no | The 6-digit PIN Code of the area near which the selling locations should be searched, e.g. 400059 |    
+| strategy | string | no | Sort stores on the basis of strategy. eg, fast-delivery, low-price, optimal. |    
+| pageNo | number | no | The page number to navigate through the given set of results. |    
+| pageSize | number | no | The number of items to retrieve in each page. |  
+
+
+
+A product of a particular size may be sold by multiple sellers. Use this API to fetch the sellers having the stock of a particular size at a given PIN Code.
+
+*Returned Response:*
+
+
+
+
+[ProductSizeSellersResponse](#ProductSizeSellersResponse)
+
+Success. Returns a ProductSizeSeller object. Check the example shown below or refer `ProductSizeSellersResponseV3` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "items": [
+    {
+      "price_per_piece": {
+        "effective": 66.5,
+        "marked": 66.5,
+        "currency_code": "INR",
+        "currency_symbol": "₹"
+      },
+      "price": {
+        "effective": 399,
+        "marked": 399,
+        "currency_code": "INR",
+        "currency_symbol": "₹"
+      },
+      "quantity": 5,
+      "pincode": 400603,
+      "article_id": "1",
+      "discount": "",
+      "article_assignment": {
+        "level": "single-company",
+        "strategy": "optimal"
+      },
+      "seller": {
+        "uid": 1,
+        "name": "Natalie Norman"
+      },
+      "store": {
+        "uid": 1,
+        "name": "Wayne Lamb"
+      },
+      "is_gift": true,
+      "is_cod": false
+    },
+    {
+      "price_per_piece": {
+        "effective": 66.5,
+        "marked": 66.5,
+        "currency_code": "INR",
+        "currency_symbol": "₹"
+      },
+      "price": {
+        "effective": 399,
+        "marked": 399,
+        "currency_code": "INR",
+        "currency_symbol": "₹"
+      },
+      "quantity": 5,
+      "pincode": 400603,
+      "article_id": "2",
+      "discount": "",
+      "article_assignment": {
+        "level": "single-company",
+        "strategy": "optimal"
+      },
+      "seller": {
+        "uid": 1,
+        "name": "Natalie Norman"
+      },
+      "store": {
+        "uid": 1,
+        "name": "Wayne Lamb"
+      },
+      "is_gift": true,
+      "is_cod": false
+    }
+  ],
+  "page": {
+    "current": 1,
+    "total": 1,
+    "has_previous": false,
+    "has_next": false,
+    "item_total": 2,
+    "type": "number"
+  },
+  "sort_on": [
+    {
+      "default": true,
+      "is_selected": true,
+      "name": "Best price & fast delivery",
+      "value": "optimal"
+    },
+    {
+      "default": false,
+      "is_selected": false,
+      "name": "Best Price",
+      "value": "low-price"
+    },
+    {
+      "default": false,
+      "is_selected": false,
+      "name": "Fastest Delivery",
+      "value": "fast-delivery"
+    }
+  ]
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
 ### getProductTags
 Get a list of all tags associated with company.
 
@@ -18442,6 +18609,16 @@ List of fields and validation values fro each. See example below or refer `Inven
 
 ---
 
+#### [ArticleAssignment2](#ArticleAssignment2)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | level | string? |  yes  |  |
+ | strategy | string? |  yes  |  |
+ 
+
+---
+
 #### [ArticleQuery](#ArticleQuery)
 
  | Properties | Type | Nullable | Description |
@@ -18484,7 +18661,7 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | article_assignment | [ArticleAssignment](#ArticleAssignment)? |  yes  |  |
+ | article_assignment | [ArticleAssignment1](#ArticleAssignment1)? |  yes  |  |
  | group_id | string? |  yes  |  |
  | meta | string? |  yes  |  |
  | quantity | number? |  yes  |  |
@@ -19090,11 +19267,11 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | _schedule | [CollectionSchedule1](#CollectionSchedule1)? |  yes  |  |
+ | _schedule | [CollectionSchedule](#CollectionSchedule)? |  yes  |  |
  | allow_facets | boolean? |  yes  |  |
  | allow_sort | boolean? |  yes  |  |
  | app_id | string? |  yes  |  |
- | badge | [CollectionBadge1](#CollectionBadge1)? |  yes  |  |
+ | badge | [CollectionBadge](#CollectionBadge)? |  yes  |  |
  | banners | [ImageUrls](#ImageUrls)? |  yes  |  |
  | description | string? |  yes  |  |
  | is_active | boolean? |  yes  |  |
@@ -19194,10 +19371,8 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | cron | string? |  yes  |  |
- | duration | number? |  yes  |  |
  | end | string? |  yes  |  |
- | next_schedule | [[NextSchedule](#NextSchedule)]? |  yes  |  |
+ | next_schedule | [[CollectionScheduleStartEnd](#CollectionScheduleStartEnd)]? |  yes  |  |
  | start | string? |  yes  |  |
  
 
@@ -19207,8 +19382,10 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | cron | string? |  yes  |  |
+ | duration | number? |  yes  |  |
  | end | string? |  yes  |  |
- | next_schedule | [[CollectionScheduleStartEnd](#CollectionScheduleStartEnd)]? |  yes  |  |
+ | next_schedule | [[NextSchedule](#NextSchedule)]? |  yes  |  |
  | start | string? |  yes  |  |
  
 
@@ -19464,11 +19641,11 @@ List of fields and validation values fro each. See example below or refer `Inven
  | ---------- | ---- | -------- | ----------- |
  | _custom_json | string? |  yes  |  |
  | _locale_language | string? |  yes  |  |
- | _schedule | [CollectionSchedule](#CollectionSchedule)? |  yes  |  |
+ | _schedule | [CollectionSchedule1](#CollectionSchedule1)? |  yes  |  |
  | allow_facets | boolean? |  yes  |  |
  | allow_sort | boolean? |  yes  |  |
  | app_id | string |  no  |  |
- | badge | [CollectionBadge](#CollectionBadge)? |  yes  |  |
+ | badge | [CollectionBadge1](#CollectionBadge1)? |  yes  |  |
  | banners | [CollectionBanner](#CollectionBanner) |  no  |  |
  | created_by | [UserInfo](#UserInfo)? |  yes  |  |
  | description | string? |  yes  |  |
@@ -19744,19 +19921,6 @@ List of fields and validation values fro each. See example below or refer `Inven
 
 ---
 
-#### [ErrorResponse](#ErrorResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | code | string? |  yes  |  |
- | error | string? |  yes  |  |
- | message | string? |  yes  |  |
- | meta | string? |  yes  |  |
- | status | number? |  yes  |  |
- 
-
----
-
 #### [FilerList](#FilerList)
 
  | Properties | Type | Nullable | Description |
@@ -19894,12 +20058,12 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | _schedule | [CollectionSchedule1](#CollectionSchedule1)? |  yes  |  |
+ | _schedule | [CollectionSchedule](#CollectionSchedule)? |  yes  |  |
  | action | [CollectionActionPage](#CollectionActionPage)? |  yes  |  |
  | allow_facets | boolean? |  yes  |  |
  | allow_sort | boolean? |  yes  |  |
  | app_id | string? |  yes  |  |
- | badge | [CollectionBadge1](#CollectionBadge1)? |  yes  |  |
+ | badge | [CollectionBadge](#CollectionBadge)? |  yes  |  |
  | banners | [ImageUrls](#ImageUrls)? |  yes  |  |
  | description | string? |  yes  |  |
  | is_active | boolean? |  yes  |  |
@@ -19958,15 +20122,15 @@ List of fields and validation values fro each. See example below or refer `Inven
  | addresses | [[GetAddressSerializer](#GetAddressSerializer)]? |  yes  |  |
  | business_type | string? |  yes  |  |
  | company_type | string? |  yes  |  |
- | created_by | [UserSerializer1](#UserSerializer1)? |  yes  |  |
+ | created_by | [UserSerializer2](#UserSerializer2)? |  yes  |  |
  | created_on | string? |  yes  |  |
- | modified_by | [UserSerializer1](#UserSerializer1)? |  yes  |  |
+ | modified_by | [UserSerializer2](#UserSerializer2)? |  yes  |  |
  | modified_on | string? |  yes  |  |
  | name | string? |  yes  |  |
  | reject_reason | string? |  yes  |  |
  | stage | string? |  yes  |  |
  | uid | number? |  yes  |  |
- | verified_by | [UserSerializer1](#UserSerializer1)? |  yes  |  |
+ | verified_by | [UserSerializer2](#UserSerializer2)? |  yes  |  |
  | verified_on | string? |  yes  |  |
  
 
@@ -20073,14 +20237,14 @@ List of fields and validation values fro each. See example below or refer `Inven
  | code | string |  no  |  |
  | company | [GetCompanySerializer](#GetCompanySerializer)? |  yes  |  |
  | contact_numbers | [[SellerPhoneNumber](#SellerPhoneNumber)]? |  yes  |  |
- | created_by | [UserSerializer2](#UserSerializer2)? |  yes  |  |
+ | created_by | [UserSerializer1](#UserSerializer1)? |  yes  |  |
  | created_on | string? |  yes  |  |
  | display_name | string |  no  |  |
  | documents | [[Document](#Document)]? |  yes  |  |
  | gst_credentials | [InvoiceDetailsSerializer](#InvoiceDetailsSerializer)? |  yes  |  |
  | integration_type | [LocationIntegrationType](#LocationIntegrationType)? |  yes  |  |
  | manager | [LocationManagerSerializer](#LocationManagerSerializer)? |  yes  |  |
- | modified_by | [UserSerializer2](#UserSerializer2)? |  yes  |  |
+ | modified_by | [UserSerializer1](#UserSerializer1)? |  yes  |  |
  | modified_on | string? |  yes  |  |
  | name | string |  no  |  |
  | notification_emails | [string]? |  yes  |  |
@@ -20090,7 +20254,7 @@ List of fields and validation values fro each. See example below or refer `Inven
  | store_type | string? |  yes  |  |
  | timing | [[LocationDayWiseSerializer](#LocationDayWiseSerializer)]? |  yes  |  |
  | uid | number? |  yes  |  |
- | verified_by | [UserSerializer2](#UserSerializer2)? |  yes  |  |
+ | verified_by | [UserSerializer1](#UserSerializer1)? |  yes  |  |
  | verified_on | string? |  yes  |  |
  | warnings | string? |  yes  |  |
  
@@ -21498,7 +21662,7 @@ List of fields and validation values fro each. See example below or refer `Inven
  | net_quantity | [NetQuantity](#NetQuantity)? |  yes  |  |
  | no_of_boxes | number? |  yes  |  |
  | product_group_tag | [string]? |  yes  |  |
- | product_publish | [ProductPublish](#ProductPublish)? |  yes  |  |
+ | product_publish | [ProductPublish1](#ProductPublish1)? |  yes  |  |
  | requester | string? |  yes  |  |
  | return_config | [ReturnConfig](#ReturnConfig) |  no  |  |
  | short_description | string? |  yes  |  |
@@ -21774,7 +21938,7 @@ List of fields and validation values fro each. See example below or refer `Inven
  | pending | string? |  yes  |  |
  | primary_color | string? |  yes  |  |
  | product_group_tag | [string]? |  yes  |  |
- | product_publish | [ProductPublish1](#ProductPublish1)? |  yes  |  |
+ | product_publish | [ProductPublish](#ProductPublish)? |  yes  |  |
  | return_config | [ReturnConfigResponse](#ReturnConfigResponse)? |  yes  |  |
  | short_description | string? |  yes  |  |
  | size_guide | string? |  yes  |  |
@@ -21823,6 +21987,42 @@ List of fields and validation values fro each. See example below or refer `Inven
  | ---------- | ---- | -------- | ----------- |
  | data | [ProductSizeDeleteDataResponse](#ProductSizeDeleteDataResponse)? |  yes  |  |
  | success | boolean? |  yes  |  |
+ 
+
+---
+
+#### [ProductSizePriceResponse](#ProductSizePriceResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | article_assignment | [ArticleAssignment](#ArticleAssignment)? |  yes  |  |
+ | article_id | string? |  yes  |  |
+ | pincode | number? |  yes  |  |
+ | quantity | number? |  yes  |  |
+ | seller | [Seller](#Seller)? |  yes  |  |
+ | store | [Store](#Store)? |  yes  |  |
+ 
+
+---
+
+#### [ProductSizeSellerFilter](#ProductSizeSellerFilter)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | is_selected | boolean? |  yes  |  |
+ | name | string? |  yes  |  |
+ | value | string? |  yes  |  |
+ 
+
+---
+
+#### [ProductSizeSellersResponse](#ProductSizeSellersResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | items | [[ProductSizePriceResponse](#ProductSizePriceResponse)]? |  yes  |  |
+ | page | [Page](#Page) |  no  |  |
+ | sort_on | [[ProductSizeSellerFilter](#ProductSizeSellerFilter)]? |  yes  |  |
  
 
 ---
@@ -22099,6 +22299,17 @@ List of fields and validation values fro each. See example below or refer `Inven
 
 ---
 
+#### [Seller](#Seller)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | count | number? |  yes  |  |
+ | name | string? |  yes  |  |
+ | uid | number? |  yes  |  |
+ 
+
+---
+
 #### [SellerPhoneNumber](#SellerPhoneNumber)
 
  | Properties | Type | Nullable | Description |
@@ -22199,12 +22410,23 @@ List of fields and validation values fro each. See example below or refer `Inven
 
 ---
 
+#### [Store](#Store)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | count | number? |  yes  |  |
+ | name | string? |  yes  |  |
+ | uid | number? |  yes  |  |
+ 
+
+---
+
 #### [StoreAssignResponse](#StoreAssignResponse)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | _id | string? |  yes  |  |
- | article_assignment | [ArticleAssignment1](#ArticleAssignment1) |  no  |  |
+ | article_assignment | [ArticleAssignment2](#ArticleAssignment2) |  no  |  |
  | company_id | number? |  yes  |  |
  | group_id | string? |  yes  |  |
  | index | number? |  yes  |  |
@@ -22411,10 +22633,10 @@ List of fields and validation values fro each. See example below or refer `Inven
  | ---------- | ---- | -------- | ----------- |
  | _custom_json | string? |  yes  |  |
  | _locale_language | string? |  yes  |  |
- | _schedule | [CollectionSchedule](#CollectionSchedule)? |  yes  |  |
+ | _schedule | [CollectionSchedule1](#CollectionSchedule1)? |  yes  |  |
  | allow_facets | boolean? |  yes  |  |
  | allow_sort | boolean? |  yes  |  |
- | badge | [CollectionBadge](#CollectionBadge)? |  yes  |  |
+ | badge | [CollectionBadge1](#CollectionBadge1)? |  yes  |  |
  | banners | [CollectionBanner](#CollectionBanner)? |  yes  |  |
  | description | string? |  yes  |  |
  | is_active | boolean? |  yes  |  |

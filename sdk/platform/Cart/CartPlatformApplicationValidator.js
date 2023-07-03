@@ -294,6 +294,9 @@ const CartPlatformModel = require("./CartPlatformModel");
  * @typedef selectPaymentMode
  * @property {string} [id]
  * @property {boolean} [buyNow]
+ * @property {string} [orderType] - The order type of shipment HomeDelivery - If
+ *   the customer wants the order home-delivered PickAtStore - If the customer
+ *   wants the handover of an order at the store itself.
  * @property {CartPlatformModel.UpdateCartPaymentRequest} body
  */
 
@@ -301,6 +304,9 @@ const CartPlatformModel = require("./CartPlatformModel");
  * @typedef selectPaymentModeV2
  * @property {string} [id]
  * @property {boolean} [buyNow]
+ * @property {string} [orderType] - The order type of shipment HomeDelivery - If
+ *   the customer wants the order home-delivered PickAtStore - If the customer
+ *   wants the handover of an order at the store itself.
  * @property {CartPlatformModel.UpdateCartPaymentRequestV2} body
  */
 
@@ -776,6 +782,7 @@ class CartPlatformApplicationValidator {
     return Joi.object({
       id: Joi.string().allow(""),
       buyNow: Joi.boolean(),
+      orderType: Joi.string().allow(""),
       body: CartPlatformModel.UpdateCartPaymentRequest().required(),
     }).required();
   }
@@ -785,6 +792,7 @@ class CartPlatformApplicationValidator {
     return Joi.object({
       id: Joi.string().allow(""),
       buyNow: Joi.boolean(),
+      orderType: Joi.string().allow(""),
       body: CartPlatformModel.UpdateCartPaymentRequestV2().required(),
     }).required();
   }

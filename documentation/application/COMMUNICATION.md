@@ -413,6 +413,15 @@ Success. Updates the channels for which user has consented. Check the example sh
 
 ---
 
+#### [EnabledObj](#EnabledObj)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | enabled | boolean? |  yes  |  |
+ 
+
+---
+
 #### [FeedidValidatorError](#FeedidValidatorError)
 
  | Properties | Type | Nullable | Description |
@@ -428,6 +437,41 @@ Success. Updates the channels for which user has consented. Check the example sh
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | feedid | [ValidatorErrorBody](#ValidatorErrorBody)? |  yes  |  |
+ 
+
+---
+
+#### [GenericDelete](#GenericDelete)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | acknowledged | boolean? |  yes  |  |
+ | affected | number? |  yes  |  |
+ | message | string? |  yes  |  |
+ | operation | string? |  yes  |  |
+ 
+
+---
+
+#### [GenericError](#GenericError)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | message | [Message](#Message)? |  yes  |  |
+ | sentry | string? |  yes  |  |
+ 
+
+---
+
+#### [GenericPage](#GenericPage)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | current | number? |  yes  |  |
+ | has_next | boolean? |  yes  |  |
+ | item_total | number? |  yes  |  |
+ | size | number? |  yes  |  |
+ | type | string? |  yes  |  |
  
 
 ---
@@ -468,6 +512,18 @@ Success. Updates the channels for which user has consented. Check the example sh
  | code | number? |  yes  |  |
  | message | string? |  yes  |  |
  | sentry | string? |  yes  |  |
+ 
+
+---
+
+#### [Message](#Message)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | info | string? |  yes  |  |
+ | message | string? |  yes  |  |
+ | operation | string? |  yes  |  |
+ | success | boolean? |  yes  |  |
  
 
 ---

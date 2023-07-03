@@ -33,12 +33,12 @@ declare class Communication {
      * @param {CommunicationPlatformApplicationValidator.createEmailTemplate} arg
      *   - Arg object
      *
-     * @returns {Promise<CommunicationPlatformModel.EmailTemplateRes>} - Success response
+     * @returns {Promise<CommunicationPlatformModel.EmailTemplate>} - Success response
      * @name createEmailTemplate
      * @summary: Create email template
-     * @description: Create email template
+     * @description: Email templates are predefined formats linked to various events for delivering messages to users. Use this API to create an email template.
      */
-    createEmailTemplate({ body }?: CommunicationPlatformApplicationValidator.createEmailTemplate): Promise<CommunicationPlatformModel.EmailTemplateRes>;
+    createEmailTemplate({ body }?: CommunicationPlatformApplicationValidator.createEmailTemplate): Promise<CommunicationPlatformModel.EmailTemplate>;
     /**
      * @param {CommunicationPlatformApplicationValidator.createSmsProvider} arg
      *   - Arg object
@@ -53,12 +53,12 @@ declare class Communication {
      * @param {CommunicationPlatformApplicationValidator.createSmsTemplate} arg
      *   - Arg object
      *
-     * @returns {Promise<CommunicationPlatformModel.SmsTemplateRes>} - Success response
+     * @returns {Promise<CommunicationPlatformModel.SmsTemplate>} - Success response
      * @name createSmsTemplate
      * @summary: Create sms template
-     * @description: Create sms template
+     * @description: SMS templates are predefined message formats linked to various events for delivering messages to users. Use this API to create an sms template.
      */
-    createSmsTemplate({ body }?: CommunicationPlatformApplicationValidator.createSmsTemplate): Promise<CommunicationPlatformModel.SmsTemplateRes>;
+    createSmsTemplate({ body }?: CommunicationPlatformApplicationValidator.createSmsTemplate): Promise<CommunicationPlatformModel.SmsTemplate>;
     /**
      * @param {CommunicationPlatformApplicationValidator.createVoiceProvider} arg
      *   - Arg object
@@ -93,14 +93,12 @@ declare class Communication {
      * @param {CommunicationPlatformApplicationValidator.deleteEmailTemplateById} arg
      *   - Arg object
      *
-     * @returns {Promise<CommunicationPlatformModel.EmailTemplateDeleteSuccessRes>}
-     *   - Success response
-     *
+     * @returns {Promise<CommunicationPlatformModel.GenericDelete>} - Success response
      * @name deleteEmailTemplateById
      * @summary: Delete email template by id
-     * @description: Delete email template by id
+     * @description: Email templates are predefined formats linked to various events for delivering messages to users. Use this API to delete an email template by id.
      */
-    deleteEmailTemplateById({ id }?: CommunicationPlatformApplicationValidator.deleteEmailTemplateById): Promise<CommunicationPlatformModel.EmailTemplateDeleteSuccessRes>;
+    deleteEmailTemplateById({ id }?: CommunicationPlatformApplicationValidator.deleteEmailTemplateById): Promise<CommunicationPlatformModel.GenericDelete>;
     /**
      * @param {CommunicationPlatformApplicationValidator.deleteSmsProviderById} arg
      *   - Arg object
@@ -115,14 +113,12 @@ declare class Communication {
      * @param {CommunicationPlatformApplicationValidator.deleteSmsTemplateById} arg
      *   - Arg object
      *
-     * @returns {Promise<CommunicationPlatformModel.SmsTemplateDeleteSuccessRes>}
-     *   - Success response
-     *
+     * @returns {Promise<CommunicationPlatformModel.GenericDelete>} - Success response
      * @name deleteSmsTemplateById
      * @summary: Delete sms template by id
-     * @description: Delete sms template by id
+     * @description: SMS templates are predefined message formats linked to various events for delivering messages to users. Use this API to delete an sms template by ID.
      */
-    deleteSmsTemplateById({ id }?: CommunicationPlatformApplicationValidator.deleteSmsTemplateById): Promise<CommunicationPlatformModel.SmsTemplateDeleteSuccessRes>;
+    deleteSmsTemplateById({ id }?: CommunicationPlatformApplicationValidator.deleteSmsTemplateById): Promise<CommunicationPlatformModel.GenericDelete>;
     /**
      * @param {CommunicationPlatformApplicationValidator.deleteVoiceTemplateById} arg
      *   - Arg object
@@ -245,7 +241,7 @@ declare class Communication {
      * @returns {Promise<CommunicationPlatformModel.EmailTemplate>} - Success response
      * @name getEmailTemplateById
      * @summary: Get email template by id
-     * @description: Get email template by id
+     * @description: Email templates are predefined formats linked to various events for delivering messages to users. Use this API to get an email template by id.
      */
     getEmailTemplateById({ id }?: CommunicationPlatformApplicationValidator.getEmailTemplateById): Promise<CommunicationPlatformModel.EmailTemplate>;
     /**
@@ -255,7 +251,7 @@ declare class Communication {
      * @returns {Promise<CommunicationPlatformModel.EmailTemplates>} - Success response
      * @name getEmailTemplates
      * @summary: Get email templates
-     * @description: Get email templates
+     * @description: Email templates are predefined formats linked to various events for delivering messages to users. Use this API to get all email templates.
      */
     getEmailTemplates({ pageNo, pageSize, sort }?: CommunicationPlatformApplicationValidator.getEmailTemplates): Promise<CommunicationPlatformModel.EmailTemplates>;
     /**
@@ -330,7 +326,7 @@ declare class Communication {
      * @returns {Promise<CommunicationPlatformModel.SmsTemplate>} - Success response
      * @name getSmsTemplateById
      * @summary: Get sms template by id
-     * @description: Get sms template by id
+     * @description: SMS templates are predefined message formats linked to various events for delivering messages to users. Use this API to get an sms template by ID.
      */
     getSmsTemplateById({ id }?: CommunicationPlatformApplicationValidator.getSmsTemplateById): Promise<CommunicationPlatformModel.SmsTemplate>;
     /**
@@ -338,7 +334,7 @@ declare class Communication {
      * @returns {Promise<CommunicationPlatformModel.SmsTemplates>} - Success response
      * @name getSmsTemplates
      * @summary: Get sms templates
-     * @description: Get sms templates
+     * @description: SMS templates are predefined message formats linked to various events for delivering messages to users. Use this API to get all sms templates.
      */
     getSmsTemplates({ pageNo, pageSize, sort }?: CommunicationPlatformApplicationValidator.getSmsTemplates): Promise<CommunicationPlatformModel.SmsTemplates>;
     /**
@@ -352,6 +348,26 @@ declare class Communication {
      */
     getStatsOfCampaignById({ id }?: CommunicationPlatformApplicationValidator.getStatsOfCampaignById): Promise<CommunicationPlatformModel.GetStats>;
     /**
+     * @param {CommunicationPlatformApplicationValidator.getSubscribedEmailTemplates} arg
+     *   - Arg object
+     *
+     * @returns {Promise<CommunicationPlatformModel.EmailTemplates>} - Success response
+     * @name getSubscribedEmailTemplates
+     * @summary: Get subscribed email templates
+     * @description: Email templates are predefined formats linked to various events for delivering messages to users. Use this API to get all subscribed email templates.
+     */
+    getSubscribedEmailTemplates({ pageNo, pageSize }?: CommunicationPlatformApplicationValidator.getSubscribedEmailTemplates): Promise<CommunicationPlatformModel.EmailTemplates>;
+    /**
+     * @param {CommunicationPlatformApplicationValidator.getSubscribedSmsTemplates} arg
+     *   - Arg object
+     *
+     * @returns {Promise<CommunicationPlatformModel.SmsTemplates>} - Success response
+     * @name getSubscribedSmsTemplates
+     * @summary: Get subscribed sms templates
+     * @description: SMS templates are predefined message formats linked to various events for delivering messages to users. Use this API to get all subscribed sms templates.
+     */
+    getSubscribedSmsTemplates({ pageNo, pageSize }?: CommunicationPlatformApplicationValidator.getSubscribedSmsTemplates): Promise<CommunicationPlatformModel.SmsTemplates>;
+    /**
      * @param {CommunicationPlatformApplicationValidator.getSystemEmailTemplates} arg
      *   - Arg object
      *
@@ -359,20 +375,20 @@ declare class Communication {
      *   Success response
      * @name getSystemEmailTemplates
      * @summary: Get system email templates
-     * @description: Get system email templates
+     * @description: Email templates are predefined formats linked to various events for delivering messages to users. Use this API to get all system email templates.
      */
-    getSystemEmailTemplates({ pageNo, pageSize, sort }?: CommunicationPlatformApplicationValidator.getSystemEmailTemplates): Promise<CommunicationPlatformModel.SystemEmailTemplates>;
+    getSystemEmailTemplates({}?: any): Promise<CommunicationPlatformModel.SystemEmailTemplates>;
     /**
-     * @param {CommunicationPlatformApplicationValidator.getSystemSystemTemplates} arg
+     * @param {CommunicationPlatformApplicationValidator.getSystemSmsTemplates} arg
      *   - Arg object
      *
-     * @returns {Promise<CommunicationPlatformModel.SystemSmsTemplates>} -
+     * @returns {Promise<CommunicationPlatformModel.SystemSmsTemplates[]>} -
      *   Success response
-     * @name getSystemSystemTemplates
+     * @name getSystemSmsTemplates
      * @summary: Get system sms templates
-     * @description: Get system sms templates
+     * @description: SMS templates are predefined message formats linked to various events for delivering messages to users. Use this API to get all system sms templates.
      */
-    getSystemSystemTemplates({ pageNo, pageSize, sort }?: CommunicationPlatformApplicationValidator.getSystemSystemTemplates): Promise<CommunicationPlatformModel.SystemSmsTemplates>;
+    getSystemSmsTemplates({}?: any): Promise<CommunicationPlatformModel.SystemSmsTemplates[]>;
     /**
      * @param {CommunicationPlatformApplicationValidator.getSystemVoiceTemplates} arg
      *   - Arg object
@@ -507,12 +523,12 @@ declare class Communication {
      * @param {CommunicationPlatformApplicationValidator.updateEmailTemplateById} arg
      *   - Arg object
      *
-     * @returns {Promise<CommunicationPlatformModel.EmailTemplateRes>} - Success response
+     * @returns {Promise<CommunicationPlatformModel.EmailTemplate>} - Success response
      * @name updateEmailTemplateById
      * @summary: Update email template by id
-     * @description: Update email template by id
+     * @description: Email templates are predefined formats linked to various events for delivering messages to users. Use this API to update an email template by id.
      */
-    updateEmailTemplateById({ id, body }?: CommunicationPlatformApplicationValidator.updateEmailTemplateById): Promise<CommunicationPlatformModel.EmailTemplateRes>;
+    updateEmailTemplateById({ id, body }?: CommunicationPlatformApplicationValidator.updateEmailTemplateById): Promise<CommunicationPlatformModel.EmailTemplate>;
     /**
      * @param {CommunicationPlatformApplicationValidator.updateSmsProviderById} arg
      *   - Arg object
@@ -527,12 +543,12 @@ declare class Communication {
      * @param {CommunicationPlatformApplicationValidator.updateSmsTemplateById} arg
      *   - Arg object
      *
-     * @returns {Promise<CommunicationPlatformModel.SmsTemplateRes>} - Success response
+     * @returns {Promise<CommunicationPlatformModel.SmsTemplate>} - Success response
      * @name updateSmsTemplateById
      * @summary: Update sms template by id
-     * @description: Update sms template by id
+     * @description: SMS templates are predefined message formats linked to various events for delivering messages to users. Use this API to update an sms template by ID.
      */
-    updateSmsTemplateById({ id, body }?: CommunicationPlatformApplicationValidator.updateSmsTemplateById): Promise<CommunicationPlatformModel.SmsTemplateRes>;
+    updateSmsTemplateById({ id, body }?: CommunicationPlatformApplicationValidator.updateSmsTemplateById): Promise<CommunicationPlatformModel.SmsTemplate>;
     /**
      * @param {CommunicationPlatformApplicationValidator.updateVoiceTemplateById} arg
      *   - Arg object

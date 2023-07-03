@@ -105,14 +105,14 @@ const Joi = require("joi");
  * @typedef ApplicationDetail
  * @property {string} [_id] - The unique identifier (24-digit Mongo Object ID)
  *   for the sales channel details
- * @property {SecureUrl} banner
- * @property {string} description - It gives a detailed information about the
+ * @property {SecureUrl} [banner]
+ * @property {string} [description] - It gives a detailed information about the
  *   sales channel. It is required.
  * @property {Domain} [domain]
  * @property {Domain[]} [domains]
- * @property {SecureUrl} favicon
- * @property {SecureUrl} logo
- * @property {SecureUrl} mobile_logo
+ * @property {SecureUrl} [favicon]
+ * @property {SecureUrl} [logo]
+ * @property {SecureUrl} [mobile_logo]
  * @property {string} name - Name of the sales channel. It is required.
  * @property {string} [slug]
  */
@@ -544,7 +544,7 @@ const Joi = require("joi");
 
 /**
  * @typedef InventoryBrandRule
- * @property {number[]} [brands]
+ * @property {number[]} [brands] - Brand uids in case of explicit criteria
  * @property {string} [criteria] - Whether all brands are enabled, or explicitly
  *   few brands in the inventory
  */
@@ -559,11 +559,11 @@ const Joi = require("joi");
 
 /**
  * @typedef InventoryStoreRule
- * @property {string} [criteria] - Whether all stores are enabled, or explicitly
- *   few stores in the inventory, or use brands and company filter.
+ * @property {string} [criteria] - Whether enable all or explicitly few stores
+ *   or use filter of brands and company as inventory stores
  * @property {StoreCriteriaRule[]} [rules] - List of rules with company and
- *   brands uids. Used when critera is `filter`.
- * @property {number[]} [stores] - List of store uids. Used when critera is `explicit`.
+ *   brands uids. Used when critera is `filter`
+ * @property {number[]} [stores] - List of store uids. Used when critera is `explicit`
  */
 
 /**
@@ -830,8 +830,8 @@ const Joi = require("joi");
 
 /**
  * @typedef StoreCriteriaRule
- * @property {number[]} [brands] - List of brand UID
- * @property {number[]} [companies] - List of company UID
+ * @property {number[]} [brands] - List of brand uids
+ * @property {number[]} [companies] - List of company uids
  */
 
 /**
@@ -1038,13 +1038,13 @@ class ConfigurationApplicationModel {
   static ApplicationDetail() {
     return Joi.object({
       _id: Joi.string().allow(""),
-      banner: ConfigurationApplicationModel.SecureUrl().required(),
-      description: Joi.string().allow("").required(),
+      banner: ConfigurationApplicationModel.SecureUrl(),
+      description: Joi.string().allow(""),
       domain: ConfigurationApplicationModel.Domain(),
       domains: Joi.array().items(ConfigurationApplicationModel.Domain()),
-      favicon: ConfigurationApplicationModel.SecureUrl().required(),
-      logo: ConfigurationApplicationModel.SecureUrl().required(),
-      mobile_logo: ConfigurationApplicationModel.SecureUrl().required(),
+      favicon: ConfigurationApplicationModel.SecureUrl(),
+      logo: ConfigurationApplicationModel.SecureUrl(),
+      mobile_logo: ConfigurationApplicationModel.SecureUrl(),
       name: Joi.string().allow("").required(),
       slug: Joi.string().allow(""),
     });

@@ -276,6 +276,20 @@ export = CatalogPlatformApplicationValidator;
  *   a product. You can retrieve these from the APIs that list products like
  *   **v1.0/products/**
  */
+/**
+ * @typedef getProductSizeSellers
+ * @property {string} itemId - Item code of the product of which size is to be get.
+ * @property {string} size - A string indicating the size of the product, e.g.
+ *   S, M, XL. You can get slug value from the endpoint
+ *   /service/application/catalog/v1.0/products/sizes
+ * @property {string} [pincode] - The 6-digit PIN Code of the area near which
+ *   the selling locations should be searched, e.g. 400059
+ * @property {string} [strategy] - Sort stores on the basis of strategy. eg,
+ *   fast-delivery, low-price, optimal.
+ * @property {number} [pageNo] - The page number to navigate through the given
+ *   set of results.
+ * @property {number} [pageSize] - The number of items to retrieve in each page.
+ */
 /** @typedef getQueryFilters */
 /**
  * @typedef getSearchKeywords
@@ -352,7 +366,7 @@ export = CatalogPlatformApplicationValidator;
 declare class CatalogPlatformApplicationValidator {
 }
 declare namespace CatalogPlatformApplicationValidator {
-    export { addCollectionItems, createCollection, createConfigurationByType, createConfigurationProductListing, createCustomAutocompleteRule, createCustomKeyword, createGroupConfiguration, createListingConfiguration, deleteAutocompleteKeyword, deleteCollection, deleteGroupConfiguration, deleteListingConfiguration, deleteSearchKeywords, getAllCollections, getAllSearchKeyword, getAppInventory, getAppLocations, getAppProduct, getAppProducts, getAppicationProducts, getApplicationBrandListing, getApplicationBrands, getApplicationCategoryListing, getApplicationDepartmentListing, getAutocompleteConfig, getAutocompleteKeywordDetail, getCatalogConfiguration, getCatalogInsights, getCategories, getCollectionDetail, getCollectionItems, getConfigurationByType, getConfigurationMetadata, getConfigurations, getDepartments, getDiscountedInventoryBySizeIdentifier, getGroupConfigurations, getListingConfigurations, getProductDetailBySlug, getQueryFilters, getSearchKeywords, updateAllowSingle, updateAppBrand, updateAppCategory, updateAppDepartment, updateAppLocation, updateAppProduct, updateAutocompleteKeyword, updateCollection, updateDefaultSort, updateGroupConfiguration, updateListingConfiguration, updateSearchKeywords };
+    export { addCollectionItems, createCollection, createConfigurationByType, createConfigurationProductListing, createCustomAutocompleteRule, createCustomKeyword, createGroupConfiguration, createListingConfiguration, deleteAutocompleteKeyword, deleteCollection, deleteGroupConfiguration, deleteListingConfiguration, deleteSearchKeywords, getAllCollections, getAllSearchKeyword, getAppInventory, getAppLocations, getAppProduct, getAppProducts, getAppicationProducts, getApplicationBrandListing, getApplicationBrands, getApplicationCategoryListing, getApplicationDepartmentListing, getAutocompleteConfig, getAutocompleteKeywordDetail, getCatalogConfiguration, getCatalogInsights, getCategories, getCollectionDetail, getCollectionItems, getConfigurationByType, getConfigurationMetadata, getConfigurations, getDepartments, getDiscountedInventoryBySizeIdentifier, getGroupConfigurations, getListingConfigurations, getProductDetailBySlug, getProductSizeSellers, getQueryFilters, getSearchKeywords, updateAllowSingle, updateAppBrand, updateAppCategory, updateAppDepartment, updateAppLocation, updateAppProduct, updateAutocompleteKeyword, updateCollection, updateDefaultSort, updateGroupConfiguration, updateListingConfiguration, updateSearchKeywords };
 }
 /** @returns {addCollectionItems} */
 declare function addCollectionItems(): addCollectionItems;
@@ -950,6 +964,39 @@ type getProductDetailBySlug = {
      * **v1.0/products/**
      */
     slug: string;
+};
+/** @returns {getProductSizeSellers} */
+declare function getProductSizeSellers(): getProductSizeSellers;
+type getProductSizeSellers = {
+    /**
+     * - Item code of the product of which size is to be get.
+     */
+    itemId: string;
+    /**
+     * - A string indicating the size of the product, e.g.
+     * S, M, XL. You can get slug value from the endpoint
+     * /service/application/catalog/v1.0/products/sizes
+     */
+    size: string;
+    /**
+     * - The 6-digit PIN Code of the area near which
+     * the selling locations should be searched, e.g. 400059
+     */
+    pincode?: string;
+    /**
+     * - Sort stores on the basis of strategy. eg,
+     * fast-delivery, low-price, optimal.
+     */
+    strategy?: string;
+    /**
+     * - The page number to navigate through the given
+     * set of results.
+     */
+    pageNo?: number;
+    /**
+     * - The number of items to retrieve in each page.
+     */
+    pageSize?: number;
 };
 /** @returns {getQueryFilters} */
 declare function getQueryFilters(): any;

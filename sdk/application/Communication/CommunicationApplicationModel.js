@@ -72,6 +72,11 @@ const Joi = require("joi");
  */
 
 /**
+ * @typedef EnabledObj
+ * @property {boolean} [enabled]
+ */
+
+/**
  * @typedef FeedidValidatorError
  * @property {FeedidValidatorErrorMessage} [message]
  * @property {string} [sentry]
@@ -80,6 +85,29 @@ const Joi = require("joi");
 /**
  * @typedef FeedidValidatorErrorMessage
  * @property {ValidatorErrorBody} [feedid]
+ */
+
+/**
+ * @typedef GenericDelete
+ * @property {boolean} [acknowledged]
+ * @property {number} [affected]
+ * @property {string} [message]
+ * @property {string} [operation]
+ */
+
+/**
+ * @typedef GenericError
+ * @property {Message} [message]
+ * @property {string} [sentry]
+ */
+
+/**
+ * @typedef GenericPage
+ * @property {number} [current]
+ * @property {boolean} [has_next]
+ * @property {number} [item_total]
+ * @property {number} [size]
+ * @property {string} [type]
  */
 
 /**
@@ -104,6 +132,14 @@ const Joi = require("joi");
  * @property {number} [code]
  * @property {string} [message]
  * @property {string} [sentry]
+ */
+
+/**
+ * @typedef Message
+ * @property {string} [info]
+ * @property {string} [message]
+ * @property {string} [operation]
+ * @property {boolean} [success]
  */
 
 /**
@@ -289,6 +325,13 @@ class CommunicationApplicationModel {
     });
   }
 
+  /** @returns {EnabledObj} */
+  static EnabledObj() {
+    return Joi.object({
+      enabled: Joi.boolean(),
+    });
+  }
+
   /** @returns {FeedidValidatorError} */
   static FeedidValidatorError() {
     return Joi.object({
@@ -301,6 +344,35 @@ class CommunicationApplicationModel {
   static FeedidValidatorErrorMessage() {
     return Joi.object({
       feedid: CommunicationApplicationModel.ValidatorErrorBody(),
+    });
+  }
+
+  /** @returns {GenericDelete} */
+  static GenericDelete() {
+    return Joi.object({
+      acknowledged: Joi.boolean(),
+      affected: Joi.number(),
+      message: Joi.string().allow(""),
+      operation: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {GenericError} */
+  static GenericError() {
+    return Joi.object({
+      message: CommunicationApplicationModel.Message(),
+      sentry: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {GenericPage} */
+  static GenericPage() {
+    return Joi.object({
+      current: Joi.number(),
+      has_next: Joi.boolean(),
+      item_total: Joi.number(),
+      size: Joi.number(),
+      type: Joi.string().allow(""),
     });
   }
 
@@ -333,6 +405,16 @@ class CommunicationApplicationModel {
       code: Joi.number(),
       message: Joi.string().allow(""),
       sentry: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {Message} */
+  static Message() {
+    return Joi.object({
+      info: Joi.string().allow(""),
+      message: Joi.string().allow(""),
+      operation: Joi.string().allow(""),
+      success: Joi.boolean(),
     });
   }
 
