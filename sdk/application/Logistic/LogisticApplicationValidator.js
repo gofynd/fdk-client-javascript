@@ -14,9 +14,19 @@ class LogisticValidator {
     }).required();
   }
 
+  static getAllCountries() {
+    return Joi.object({});
+  }
+
   static getPincodeZones() {
     return Joi.object({
       body: LogisticModel.GetZoneFromPincodeViewRequest().required(),
+    }).required();
+  }
+
+  static getOptimalLocations() {
+    return Joi.object({
+      body: LogisticModel.ReAssignStoreRequest().required(),
     }).required();
   }
 }

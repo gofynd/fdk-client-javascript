@@ -49,6 +49,15 @@ declare class Configuration {
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
+     * @param {AppFeatureRequest} arg.body
+     * @summary: Update features of application
+     * @description: Update features of application
+     */
+    modifyAppFeatures({ body }?: {
+        body: AppFeatureRequest;
+    }): Promise<any>;
+    /**
+     * @param {Object} arg - Arg object.
      * @summary: Get basic application details
      * @description: Get basic application details like name
      */

@@ -10,7 +10,10 @@ class Logistic {
     this._relativeUrls = {
       getPincodeCity: "/service/application/logistics/v1.0/pincode/{pincode}",
       getTatProduct: "/service/application/logistics/v1.0/",
+      getAllCountries: "/service/application/logistics/v1.0/country-list",
       getPincodeZones: "/service/application/logistics/v1.0/pincode/zones",
+      getOptimalLocations:
+        "/service/application/logistics/v1.0/reassign_stores",
     };
     this._urls = Object.entries(this._relativeUrls).reduce(
       (urls, [method, relativeUrl]) => {
@@ -95,6 +98,37 @@ class Logistic {
 
   /**
    * @param {Object} arg - Arg object.
+   * @returns {Promise<CountryListResponse>} - Success response
+   * @summary: Get Country List
+   * @description: Get all countries
+   */
+  getAllCountries({} = {}) {
+    const { error } = LogisticValidator.getAllCountries().validate(
+      {},
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+    const query_params = {};
+
+    const xHeaders = {};
+
+    return APIClient.execute(
+      this._conf,
+      "get",
+      constructUrl({
+        url: this._urls["getAllCountries"],
+        params: {},
+      }),
+      query_params,
+      undefined,
+      xHeaders
+    );
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
    * @param {GetZoneFromPincodeViewRequest} arg.body
    * @returns {Promise<GetZoneFromPincodeViewResponse>} - Success response
    * @summary: GET zone from the Pincode.
@@ -117,6 +151,38 @@ class Logistic {
       "post",
       constructUrl({
         url: this._urls["getPincodeZones"],
+        params: {},
+      }),
+      query_params,
+      body,
+      xHeaders
+    );
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {ReAssignStoreRequest} arg.body
+   * @returns {Promise<ReAssignStoreResponse>} - Success response
+   * @summary: GET zone from the Pincode.
+   * @description: This API returns zone from the Pincode View.
+   */
+  getOptimalLocations({ body } = {}) {
+    const { error } = LogisticValidator.getOptimalLocations().validate(
+      { body },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+    const query_params = {};
+
+    const xHeaders = {};
+
+    return APIClient.execute(
+      this._conf,
+      "post",
+      constructUrl({
+        url: this._urls["getOptimalLocations"],
         params: {},
       }),
       query_params,

@@ -150,6 +150,34 @@ class Configuration {
 
   /**
    * @param {Object} arg - Arg object.
+   * @param {AppFeatureRequest} arg.body
+   * @summary: Update features of application
+   * @description: Update features of application
+   */
+  modifyAppFeatures({ body } = {}) {
+    const { error } = ConfigurationValidator.modifyAppFeatures().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    const query_params = {};
+
+    return PlatformAPIClient.execute(
+      this.config,
+      "patch",
+      `/service/platform/configuration/v1.0/company/${this.config.companyId}/application/${this.applicationId}/feature`,
+      query_params,
+      body
+    );
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
    * @summary: Get basic application details
    * @description: Get basic application details like name
    */

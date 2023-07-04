@@ -5,7 +5,5 @@ module.exports = {
     ConfigurationPublicModel: require("./Configuration/ConfigurationPublicModel"),
 
     WebhookPublicModel: require("./Webhook/WebhookPublicModel"),
-
-    InventoryPublicModel: require("./Inventory/InventoryPublicModel"),
   },
 };

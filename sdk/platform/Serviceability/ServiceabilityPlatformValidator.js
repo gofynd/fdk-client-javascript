@@ -20,7 +20,10 @@ class ServiceabilityValidator {
   }
 
   static getCompanyStoreView() {
-    return Joi.object({}).required();
+    return Joi.object({
+      pageNumber: Joi.number(),
+      pageSize: Joi.number(),
+    }).required();
   }
 
   static updateZoneControllerView() {
@@ -39,6 +42,19 @@ class ServiceabilityValidator {
   static createZone() {
     return Joi.object({
       body: ServiceabilityModel.ZoneRequest().required(),
+    }).required();
+  }
+
+  static getZoneListView() {
+    return Joi.object({
+      pageNumber: Joi.number(),
+      pageNo: Joi.number(),
+      pageSize: Joi.number(),
+      name: Joi.string().allow(""),
+      isActive: Joi.boolean(),
+      channelIds: Joi.string().allow(""),
+      q: Joi.string().allow(""),
+      zoneId: Joi.array().items(Joi.string().allow("")),
     }).required();
   }
 

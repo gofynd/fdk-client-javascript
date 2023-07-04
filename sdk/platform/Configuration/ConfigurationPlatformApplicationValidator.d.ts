@@ -5,6 +5,7 @@ declare class ConfigurationValidator {
     static getPreviousVersions(): any;
     static getAppFeatures(): any;
     static updateAppFeatures(): any;
+    static modifyAppFeatures(): any;
     static getAppBasicDetails(): any;
     static updateAppBasicDetails(): any;
     static getAppContactInfo(): any;

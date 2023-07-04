@@ -26,15 +26,11 @@ module.exports = {
 
     SharePlatformModel: require("./Share/SharePlatformModel"),
 
-    InventoryPlatformModel: require("./Inventory/InventoryPlatformModel"),
-
     ConfigurationPlatformModel: require("./Configuration/ConfigurationPlatformModel"),
 
     CartPlatformModel: require("./Cart/CartPlatformModel"),
 
     RewardsPlatformModel: require("./Rewards/RewardsPlatformModel"),
-
-    AnalyticsPlatformModel: require("./Analytics/AnalyticsPlatformModel"),
 
     DiscountPlatformModel: require("./Discount/DiscountPlatformModel"),
 

@@ -7,8 +7,8 @@ declare class PaymentModel {
     static PaymentGatewayToBeReviewed(): any;
     static ErrorCodeAndDescription(): any;
     static HttpErrorCodeAndResponse(): any;
-    static PaymentModeLogo(): any;
     static IntentAppErrorList(): any;
+    static PaymentModeLogo(): any;
     static IntentApp(): any;
     static PaymentModeList(): any;
     static RootPaymentMode(): any;
