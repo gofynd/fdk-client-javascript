@@ -9,29 +9,26 @@
 Logistics Configuration API's allows you to configure zone, application logistics and many more useful features. 
 
 * [addAppDp](#addappdp)
-* [createDpRule](#createdprule)
 * [createZone](#createzone)
+* [deleteAppDp](#deleteappdp)
 * [getAllStores](#getallstores)
 * [getApplicationServiceability](#getapplicationserviceability)
 * [getApplicationServiceabilitySelfShipment](#getapplicationserviceabilityselfshipment)
 * [getCompanyStoreView](#getcompanystoreview)
-* [getDpAccountList](#getdpaccountlist)
-* [getDpApplicationRulePriority](#getdpapplicationrulepriority)
-* [getDpCompanyRulePriority](#getdpcompanyrulepriority)
-* [getDpRule](#getdprule)
-* [getDpRuleList](#getdprulelist)
+* [getDpAccount](#getdpaccount)
+* [getDpApplicationRules](#getdpapplicationrules)
+* [getDpCompanyRules](#getdpcompanyrules)
+* [getDpRuleInsert](#getdpruleinsert)
+* [getDpRules](#getdprules)
 * [getEntityRegionView](#getentityregionview)
 * [getListView](#getlistview)
 * [getOptimalLocations](#getoptimallocations)
-* [getRegionJobBulk](#getregionjobbulk)
-* [getRegionJobBulkBatchId](#getregionjobbulkbatchid)
 * [getStore](#getstore)
 * [getZoneDataView](#getzonedataview)
 * [getZoneFromPincodeView](#getzonefrompincodeview)
 * [getZoneListView](#getzonelistview)
 * [getZonesFromApplicationIdView](#getzonesfromapplicationidview)
 * [patchApplicationServiceabilitySelfShipment](#patchapplicationserviceabilityselfshipment)
-* [postRegionJobBulk](#postregionjobbulk)
 * [updateDpRule](#updatedprule)
 * [updatePincodeAuditHistory](#updatepincodeaudithistory)
 * [updatePincodeBulkView](#updatepincodebulkview)
@@ -39,8 +36,9 @@ Logistics Configuration API's allows you to configure zone, application logistic
 * [updatePincodeMopView](#updatepincodemopview)
 * [updateZoneControllerView](#updatezonecontrollerview)
 * [upsertDpAccount](#upsertdpaccount)
-* [upsertDpApplicationRulePriority](#upsertdpapplicationrulepriority)
-* [upsertDpCompanyRulePriority](#upsertdpcompanyrulepriority)
+* [upsertDpApplicationRules](#upsertdpapplicationrules)
+* [upsertDpCompanyRules](#upsertdpcompanyrules)
+* [upsertDpRules](#upsertdprules)
 
 
 
@@ -79,61 +77,6 @@ This API add application dp data.
 
 
 [ApplicationCompanyDpViewResponse](#ApplicationCompanyDpViewResponse)
-
-Response status_code
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### createDpRule
-Upsert of DpRules in database.
-
-
-
-```javascript
-// Promise
-const promise = platformClient.serviceability.createDpRule({  body : value });
-
-// Async/Await
-const data = await platformClient.serviceability.createDpRule({  body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |
-| body | [DpRuleRequest](#DpRuleRequest) | yes | Request body |
-
-
-This API returns response of upsert of DpRules in mongo database.
-
-*Returned Response:*
-
-
-
-
-[DpRuleSuccessResponse](#DpRuleSuccessResponse)
 
 Response status_code
 
@@ -204,6 +147,62 @@ Response status_code
   "status_code": 200,
   "zone_id": "64809f27f2b8f575d5cb9c56"
 }
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### deleteAppDp
+Delete application dp data
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").serviceability.deleteAppDp({  courierPartnerId : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").serviceability.deleteAppDp({  courierPartnerId : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| courierPartnerId | number | yes | A `courier_partner_id` is a unique identifier of a particular delivery partner. |  
+
+
+
+This API remove application dp data.
+
+*Returned Response:*
+
+
+
+
+[ApplicationCompanyDpViewResponse](#ApplicationCompanyDpViewResponse)
+
+Response status_code
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
 ```
 </details>
 
@@ -453,21 +452,21 @@ Get Company Store View Data
 ---
 
 
-### getDpAccountList
+### getDpAccount
 Getting DpAccount of a company from database.
 
 
 
 ```javascript
 // Promise
-const promise = platformClient.serviceability.getDpAccountList({  pageNumber : value,
+const promise = platformClient.serviceability.getDpAccount({  pageNumber : value,
  pageSize : value,
  stage : value,
  paymentMode : value,
  transportType : value });
 
 // Async/Await
-const data = await platformClient.serviceability.getDpAccountList({  pageNumber : value,
+const data = await platformClient.serviceability.getDpAccount({  pageNumber : value,
  pageSize : value,
  stage : value,
  paymentMode : value,
@@ -521,17 +520,17 @@ Response status_code
 ---
 
 
-### getDpApplicationRulePriority
+### getDpApplicationRules
 Get All DpApplicationRules rules added at application level from database.
 
 
 
 ```javascript
 // Promise
-const promise = platformClient.application("<APPLICATION_ID>").serviceability.getDpApplicationRulePriority();
+const promise = platformClient.application("<APPLICATION_ID>").serviceability.getDpApplicationRules();
 
 // Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").serviceability.getDpApplicationRulePriority();
+const data = await platformClient.application("<APPLICATION_ID>").serviceability.getDpApplicationRules();
 ```
 
 
@@ -572,17 +571,17 @@ Response status_code
 ---
 
 
-### getDpCompanyRulePriority
+### getDpCompanyRules
 Get All DpCompanyRules applied to company from database.
 
 
 
 ```javascript
 // Promise
-const promise = platformClient.serviceability.getDpCompanyRulePriority();
+const promise = platformClient.serviceability.getDpCompanyRules();
 
 // Async/Await
-const data = await platformClient.serviceability.getDpCompanyRulePriority();
+const data = await platformClient.serviceability.getDpCompanyRules();
 ```
 
 
@@ -623,17 +622,19 @@ Response status_code
 ---
 
 
-### getDpRule
+### getDpRuleInsert
 Fetching of DpRules from database.
 
 
 
 ```javascript
 // Promise
-const promise = platformClient.serviceability.getDpRule({  ruleUid : value });
+const promise = platformClient.serviceability.getDpRuleInsert({  pageNumber : value,
+ pageSize : value });
 
 // Async/Await
-const data = await platformClient.serviceability.getDpRule({  ruleUid : value });
+const data = await platformClient.serviceability.getDpRuleInsert({  pageNumber : value,
+ pageSize : value });
 ```
 
 
@@ -641,8 +642,9 @@ const data = await platformClient.serviceability.getDpRule({  ruleUid : value })
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| ruleUid | string | yes | A `rule_uid` is a unique identifier for a particular Dp. |  
+| --------- | -----  | -------- | ----------- |  
+| pageNumber | number | no | index of the item to start returning with |    
+| pageSize | number | no | determines the items to be displayed in a page |  
 
 
 
@@ -653,7 +655,7 @@ This API returns response of DpRules from mongo database.
 
 
 
-[DpRuleSuccessResponse](#DpRuleSuccessResponse)
+[DpMultipleRuleSuccessResponse](#DpMultipleRuleSuccessResponse)
 
 Response status_code
 
@@ -679,19 +681,17 @@ Response status_code
 ---
 
 
-### getDpRuleList
+### getDpRules
 Fetching of DpRules from database.
 
 
 
 ```javascript
 // Promise
-const promise = platformClient.serviceability.getDpRuleList({  pageNumber : value,
- pageSize : value });
+const promise = platformClient.serviceability.getDpRules({  ruleUid : value });
 
 // Async/Await
-const data = await platformClient.serviceability.getDpRuleList({  pageNumber : value,
- pageSize : value });
+const data = await platformClient.serviceability.getDpRules({  ruleUid : value });
 ```
 
 
@@ -699,9 +699,8 @@ const data = await platformClient.serviceability.getDpRuleList({  pageNumber : v
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| pageNumber | number | no | index of the item to start returning with |    
-| pageSize | number | no | determines the items to be displayed in a page |  
+| --------- | -----  | -------- | ----------- | 
+| ruleUid | string | yes | A `rule_uid` is a unique identifier for a particular Dp. |  
 
 
 
@@ -712,7 +711,7 @@ This API returns response of DpRules from mongo database.
 
 
 
-[DpMultipleRuleSuccessResponse](#DpMultipleRuleSuccessResponse)
+[DpRuleSuccessResponse](#DpRuleSuccessResponse)
 
 Response status_code
 
@@ -896,121 +895,6 @@ This API returns serviceable store of the item.
 [ReAssignStoreResponse](#ReAssignStoreResponse)
 
 Response status_code
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### getRegionJobBulk
-Get bulk_export_job collection all records
-
-
-
-```javascript
-// Promise
-const promise = platformClient.serviceability.getRegionJobBulk({  currentPageNumber : value,
- pageSize : value });
-
-// Async/Await
-const data = await platformClient.serviceability.getRegionJobBulk({  currentPageNumber : value,
- pageSize : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| currentPageNumber | number | no | The current page number |    
-| pageSize | number | no | The page size |  
-
-
-
-This API takes gives all the records of bulk_export_job collection
-
-*Returned Response:*
-
-
-
-
-[GetBulkRegionJobResponse](#GetBulkRegionJobResponse)
-
-Successful response
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### getRegionJobBulkBatchId
-Get bulk_export_job data for a given batch_id
-
-
-
-```javascript
-// Promise
-const promise = platformClient.serviceability.getRegionJobBulkBatchId({  batchId : value });
-
-// Async/Await
-const data = await platformClient.serviceability.getRegionJobBulkBatchId({  batchId : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| batchId | string | yes | The batch ID |  
-
-
-
-This API takes batch_id and gives the detail of bulk_export_job collection for the batch_id
-
-*Returned Response:*
-
-
-
-
-[GetBulkRegionJobResponse](#GetBulkRegionJobResponse)
-
-Successful response
 
 
 
@@ -1618,61 +1502,6 @@ Response Data
 ---
 
 
-### postRegionJobBulk
-This Api creates a Bulk Job for region tat data upsert
-
-
-
-```javascript
-// Promise
-const promise = platformClient.serviceability.postRegionJobBulk({  body : value });
-
-// Async/Await
-const data = await platformClient.serviceability.postRegionJobBulk({  body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |
-| body | [BulkRegionJobSerializer](#BulkRegionJobSerializer) | yes | Request body |
-
-
-This API takes request body, validates it and sends it to kafka topic
-
-*Returned Response:*
-
-
-
-
-[PostBulkRegionJobResponse](#PostBulkRegionJobResponse)
-
-Successful response
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
 ### updateDpRule
 Updating of DpRules from database.
 
@@ -2067,17 +1896,17 @@ Response status_code
 ---
 
 
-### upsertDpApplicationRulePriority
+### upsertDpApplicationRules
 Upsert of DpApplicationRules in database.
 
 
 
 ```javascript
 // Promise
-const promise = platformClient.application("<APPLICATION_ID>").serviceability.upsertDpApplicationRulePriority({  body : value });
+const promise = platformClient.application("<APPLICATION_ID>").serviceability.upsertDpApplicationRules({  body : value });
 
 // Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").serviceability.upsertDpApplicationRulePriority({  body : value });
+const data = await platformClient.application("<APPLICATION_ID>").serviceability.upsertDpApplicationRules({  body : value });
 ```
 
 
@@ -2122,17 +1951,17 @@ Response status_code
 ---
 
 
-### upsertDpCompanyRulePriority
+### upsertDpCompanyRules
 Upsert of DpCompanyRules in database.
 
 
 
 ```javascript
 // Promise
-const promise = platformClient.serviceability.upsertDpCompanyRulePriority({  body : value });
+const promise = platformClient.serviceability.upsertDpCompanyRules({  body : value });
 
 // Async/Await
-const data = await platformClient.serviceability.upsertDpCompanyRulePriority({  body : value });
+const data = await platformClient.serviceability.upsertDpCompanyRules({  body : value });
 ```
 
 
@@ -2152,6 +1981,61 @@ This API returns response of upsert of DpCompanyRules in mongo database.
 
 
 [DPCompanyRuleResponse](#DPCompanyRuleResponse)
+
+Response status_code
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### upsertDpRules
+Upsert of DpRules in database.
+
+
+
+```javascript
+// Promise
+const promise = platformClient.serviceability.upsertDpRules({  body : value });
+
+// Async/Await
+const data = await platformClient.serviceability.upsertDpRules({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [DpRuleRequest](#DpRuleRequest) | yes | Request body |
+
+
+This API returns response of upsert of DpRules in mongo database.
+
+*Returned Response:*
+
+
+
+
+[DpRuleSuccessResponse](#DpRuleSuccessResponse)
 
 Response status_code
 
@@ -2261,47 +2145,6 @@ Response status_code
 
 ---
 
-#### [BulkRecordError](#BulkRecordError)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | error | [string] |  no  |  |
- | is_error | boolean |  no  |  |
- 
-
----
-
-#### [BulkRegionData](#BulkRegionData)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | action | string |  no  |  |
- | batch_id | string |  no  |  |
- | created_on | string? |  yes  |  |
- | error | [BulkRecordError](#BulkRecordError)? |  yes  |  |
- | failed_count | number |  no  |  |
- | failed_rec | [[CSVFileRecord](#CSVFileRecord)]? |  yes  |  |
- | file_path | string |  no  |  |
- | stage | string |  no  |  |
- | success_count | number |  no  |  |
- | total_rec | number |  no  |  |
- 
-
----
-
-#### [BulkRegionJobSerializer](#BulkRegionJobSerializer)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | action | string |  no  |  |
- | batch_id | string |  no  |  |
- | country_iso_code | string? |  yes  |  |
- | file_url | string |  no  |  |
- | job_action | string |  no  |  |
- 
-
----
-
 #### [CommonError](#CommonError)
 
  | Properties | Type | Nullable | Description |
@@ -2399,26 +2242,6 @@ Response status_code
  | region_type | string |  no  |  |
  | slug | string |  no  |  |
  | store_ids | [number] |  no  |  |
- 
-
----
-
-#### [CSVFileRecord](#CSVFileRecord)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | country | string? |  yes  |  |
- | dp_id | number? |  yes  |  |
- | error | [string]? |  yes  |  |
- | from_region | string? |  yes  |  |
- | is_error | boolean? |  yes  |  |
- | max_tat | number? |  yes  |  |
- | min_tat | number? |  yes  |  |
- | plan_id | number? |  yes  |  |
- | region_type | string? |  yes  |  |
- | s_no | number? |  yes  |  |
- | tat_type | string? |  yes  |  |
- | to_region | string? |  yes  |  |
  
 
 ---
@@ -2739,17 +2562,6 @@ Response status_code
  | error | [[ErrorResponse](#ErrorResponse)] |  no  |  |
  | status_code | number |  no  |  |
  | success | boolean |  no  |  |
- 
-
----
-
-#### [GetBulkRegionJobResponse](#GetBulkRegionJobResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | batch_id | string? |  yes  |  |
- | current_page_number | number? |  yes  |  |
- | data | [[BulkRegionData](#BulkRegionData)] |  no  |  |
  
 
 ---
@@ -3169,18 +2981,6 @@ Response status_code
  | country | string |  no  |  |
  | is_active | boolean |  no  |  |
  | pincode | number |  no  |  |
- 
-
----
-
-#### [PostBulkRegionJobResponse](#PostBulkRegionJobResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | batch_id | string |  no  |  |
- | event_emitted | boolean |  no  |  |
- | message | string |  no  |  |
- | response | boolean |  no  |  |
  
 
 ---

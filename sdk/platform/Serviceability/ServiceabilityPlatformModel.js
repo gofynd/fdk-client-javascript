@@ -53,35 +53,6 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef BulkRecordError
- * @property {string[]} error
- * @property {boolean} is_error
- */
-
-/**
- * @typedef BulkRegionData
- * @property {string} action
- * @property {string} batch_id
- * @property {string} [created_on]
- * @property {BulkRecordError} [error]
- * @property {number} failed_count
- * @property {CSVFileRecord[]} [failed_rec]
- * @property {string} file_path
- * @property {string} stage
- * @property {number} success_count
- * @property {number} total_rec
- */
-
-/**
- * @typedef BulkRegionJobSerializer
- * @property {string} action
- * @property {string} batch_id
- * @property {string} [country_iso_code]
- * @property {string} file_url
- * @property {string} job_action
- */
-
-/**
  * @typedef CommonError
  * @property {Object} [error]
  * @property {string} [status_code]
@@ -144,22 +115,6 @@ const Joi = require("joi");
  * @property {string} region_type
  * @property {string} slug
  * @property {number[]} store_ids
- */
-
-/**
- * @typedef CSVFileRecord
- * @property {string} [country]
- * @property {number} [dp_id]
- * @property {string[]} [error]
- * @property {string} [from_region]
- * @property {boolean} [is_error]
- * @property {number} [max_tat]
- * @property {number} [min_tat]
- * @property {number} [plan_id]
- * @property {string} [region_type]
- * @property {number} [s_no]
- * @property {string} [tat_type]
- * @property {string} [to_region]
  */
 
 /**
@@ -372,13 +327,6 @@ const Joi = require("joi");
  * @property {ErrorResponse[]} error
  * @property {number} status_code
  * @property {boolean} success
- */
-
-/**
- * @typedef GetBulkRegionJobResponse
- * @property {string} [batch_id]
- * @property {number} [current_page_number]
- * @property {BulkRegionData[]} data
  */
 
 /**
@@ -665,14 +613,6 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef PostBulkRegionJobResponse
- * @property {string} batch_id
- * @property {boolean} event_emitted
- * @property {string} message
- * @property {boolean} response
- */
-
-/**
  * @typedef ProductReturnConfigResponse
  * @property {boolean} [on_same_store]
  */
@@ -858,43 +798,6 @@ class ServiceabilityPlatformModel {
     });
   }
 
-  /** @returns {BulkRecordError} */
-  static BulkRecordError() {
-    return Joi.object({
-      error: Joi.array().items(Joi.string().allow("")).required(),
-      is_error: Joi.boolean().required(),
-    });
-  }
-
-  /** @returns {BulkRegionData} */
-  static BulkRegionData() {
-    return Joi.object({
-      action: Joi.string().allow("").required(),
-      batch_id: Joi.string().allow("").required(),
-      created_on: Joi.string().allow(""),
-      error: ServiceabilityPlatformModel.BulkRecordError(),
-      failed_count: Joi.number().required(),
-      failed_rec: Joi.array().items(
-        ServiceabilityPlatformModel.CSVFileRecord()
-      ),
-      file_path: Joi.string().allow("").required(),
-      stage: Joi.string().allow("").required(),
-      success_count: Joi.number().required(),
-      total_rec: Joi.number().required(),
-    });
-  }
-
-  /** @returns {BulkRegionJobSerializer} */
-  static BulkRegionJobSerializer() {
-    return Joi.object({
-      action: Joi.string().allow("").required(),
-      batch_id: Joi.string().allow("").required(),
-      country_iso_code: Joi.string().allow(""),
-      file_url: Joi.string().allow("").required(),
-      job_action: Joi.string().allow("").required(),
-    });
-  }
-
   /** @returns {CommonError} */
   static CommonError() {
     return Joi.object({
@@ -981,24 +884,6 @@ class ServiceabilityPlatformModel {
       region_type: Joi.string().allow("").required(),
       slug: Joi.string().allow("").required(),
       store_ids: Joi.array().items(Joi.number()).required(),
-    });
-  }
-
-  /** @returns {CSVFileRecord} */
-  static CSVFileRecord() {
-    return Joi.object({
-      country: Joi.string().allow(""),
-      dp_id: Joi.number(),
-      error: Joi.array().items(Joi.string().allow("")),
-      from_region: Joi.string().allow(""),
-      is_error: Joi.boolean(),
-      max_tat: Joi.number(),
-      min_tat: Joi.number(),
-      plan_id: Joi.number(),
-      region_type: Joi.string().allow(""),
-      s_no: Joi.number(),
-      tat_type: Joi.string().allow(""),
-      to_region: Joi.string().allow(""),
     });
   }
 
@@ -1279,17 +1164,6 @@ class ServiceabilityPlatformModel {
         .required(),
       status_code: Joi.number().required(),
       success: Joi.boolean().required(),
-    });
-  }
-
-  /** @returns {GetBulkRegionJobResponse} */
-  static GetBulkRegionJobResponse() {
-    return Joi.object({
-      batch_id: Joi.string().allow(""),
-      current_page_number: Joi.number(),
-      data: Joi.array()
-        .items(ServiceabilityPlatformModel.BulkRegionData())
-        .required(),
     });
   }
 
@@ -1667,16 +1541,6 @@ class ServiceabilityPlatformModel {
       country: Joi.string().allow("").required(),
       is_active: Joi.boolean().required(),
       pincode: Joi.number().required(),
-    });
-  }
-
-  /** @returns {PostBulkRegionJobResponse} */
-  static PostBulkRegionJobResponse() {
-    return Joi.object({
-      batch_id: Joi.string().allow("").required(),
-      event_emitted: Joi.boolean().required(),
-      message: Joi.string().allow("").required(),
-      response: Joi.boolean().required(),
     });
   }
 

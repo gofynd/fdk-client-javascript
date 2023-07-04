@@ -1723,7 +1723,7 @@ class Communication {
    * @summary: Get event subscriptions
    * @description: Get event subscriptions
    */
-  async getEventSubscriptions({ pageNo, pageSize, populate } = {}) {
+  async getEventSubscriptions({ pageNo, pageSize, populate, query } = {}) {
     const {
       error,
     } = CommunicationPlatformApplicationValidator.getEventSubscriptions().validate(
@@ -1731,6 +1731,7 @@ class Communication {
         pageNo,
         pageSize,
         populate,
+        query,
       },
       { abortEarly: false, allowUnknown: true }
     );
@@ -1746,6 +1747,7 @@ class Communication {
         pageNo,
         pageSize,
         populate,
+        query,
       },
       { abortEarly: false, allowUnknown: false }
     );
@@ -1760,6 +1762,7 @@ class Communication {
     query_params["page_no"] = pageNo;
     query_params["page_size"] = pageSize;
     query_params["populate"] = populate;
+    query_params["query"] = query;
 
     const response = await PlatformAPIClient.execute(
       this.config,

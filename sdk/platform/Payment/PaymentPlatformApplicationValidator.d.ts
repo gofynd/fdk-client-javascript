@@ -35,10 +35,6 @@ export = PaymentPlatformApplicationValidator;
  */
 /** @typedef edcDeviceStats */
 /**
- * @typedef extensionPaymentUpdate
- * @property {PaymentPlatformModel.ExtensionPaymentUpdateRequestSerializer} body
- */
-/**
  * @typedef getBankAccountDetailsOpenAPI
  * @property {string} orderId
  * @property {string} [requestHash]
@@ -143,7 +139,7 @@ export = PaymentPlatformApplicationValidator;
 declare class PaymentPlatformApplicationValidator {
 }
 declare namespace PaymentPlatformApplicationValidator {
-    export { addEdcDevice, addRefundBankAccountUsingOTP, cancelPaymentLink, checkAndUpdatePaymentStatus, confirmPayment, createPaymentLink, edcAggregatorsAndModelList, edcDeviceList, edcDeviceStats, extensionPaymentUpdate, getBankAccountDetailsOpenAPI, getBrandPaymentGatewayConfig, getEdcDevice, getPaymentCodeOption, getPaymentLink, getPaymentModeRoutes, getPosPaymentModeRoutes, getUserBeneficiaries, getUserCODlimitRoutes, getUserOrderBeneficiaries, initialisePayment, merchantOnBoarding, oauthGetUrl, paymentStatusBulk, pollingPaymentLink, repaymentDetails, resendOrCancelPayment, resendPaymentLink, revokeOauthToken, saveBrandPaymentGatewayConfig, setUserCODlimitRoutes, updateEdcDevice, verifyCustomerForPayment };
+    export { addEdcDevice, addRefundBankAccountUsingOTP, cancelPaymentLink, checkAndUpdatePaymentStatus, confirmPayment, createPaymentLink, edcAggregatorsAndModelList, edcDeviceList, edcDeviceStats, getBankAccountDetailsOpenAPI, getBrandPaymentGatewayConfig, getEdcDevice, getPaymentCodeOption, getPaymentLink, getPaymentModeRoutes, getPosPaymentModeRoutes, getUserBeneficiaries, getUserCODlimitRoutes, getUserOrderBeneficiaries, initialisePayment, merchantOnBoarding, oauthGetUrl, paymentStatusBulk, pollingPaymentLink, repaymentDetails, resendOrCancelPayment, resendPaymentLink, revokeOauthToken, saveBrandPaymentGatewayConfig, setUserCODlimitRoutes, updateEdcDevice, verifyCustomerForPayment };
 }
 /** @returns {addEdcDevice} */
 declare function addEdcDevice(): addEdcDevice;
@@ -194,11 +190,6 @@ type edcDeviceList = {
 /** @returns {edcDeviceStats} */
 declare function edcDeviceStats(): any;
 type edcDeviceStats = any;
-/** @returns {extensionPaymentUpdate} */
-declare function extensionPaymentUpdate(): extensionPaymentUpdate;
-type extensionPaymentUpdate = {
-    body: PaymentPlatformModel.ExtensionPaymentUpdateRequestSerializer;
-};
 /** @returns {getBankAccountDetailsOpenAPI} */
 declare function getBankAccountDetailsOpenAPI(): getBankAccountDetailsOpenAPI;
 type getBankAccountDetailsOpenAPI = {

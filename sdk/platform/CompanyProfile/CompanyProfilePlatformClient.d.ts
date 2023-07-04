@@ -109,6 +109,15 @@ declare class CompanyProfile {
      */
     getLocationDetail({ locationId }?: CompanyProfilePlatformValidator.getLocationDetail): Promise<CompanyProfilePlatformModel.GetLocationSerializer>;
     /**
+     * @param {CompanyProfilePlatformValidator.getLocationTags} arg - Arg object
+     * @returns {Promise<CompanyProfilePlatformModel.StoreTagsResponse>} -
+     *   Success response
+     * @name getLocationTags
+     * @summary: Get tags associated with locations for a company.
+     * @description: This API fetches all the tags associated to a company.
+     */
+    getLocationTags({}?: any): Promise<CompanyProfilePlatformModel.StoreTagsResponse>;
+    /**
      * @param {CompanyProfilePlatformValidator.getLocations} arg - Arg object
      * @returns {Promise<CompanyProfilePlatformModel.LocationListSerializer>} -
      *   Success response

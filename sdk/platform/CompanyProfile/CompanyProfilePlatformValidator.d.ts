@@ -38,6 +38,7 @@ export = CompanyProfilePlatformValidator;
  * @typedef getLocationDetail
  * @property {string} locationId - Id of the location which you want to view.
  */
+/** @typedef getLocationTags */
 /**
  * @typedef getLocations
  * @property {string} [storeType] - Helps to sort the location list on the basis
@@ -63,7 +64,7 @@ export = CompanyProfilePlatformValidator;
 declare class CompanyProfilePlatformValidator {
 }
 declare namespace CompanyProfilePlatformValidator {
-    export { cbsOnboardGet, createBrand, createCompanyBrandMapping, createLocation, createLocationBulk, editBrand, getBrand, getBrands, getCompanyMetrics, getLocationDetail, getLocations, updateCompany, updateLocation };
+    export { cbsOnboardGet, createBrand, createCompanyBrandMapping, createLocation, createLocationBulk, editBrand, getBrand, getBrands, getCompanyMetrics, getLocationDetail, getLocationTags, getLocations, updateCompany, updateLocation };
 }
 /** @returns {cbsOnboardGet} */
 declare function cbsOnboardGet(): any;
@@ -134,6 +135,9 @@ type getLocationDetail = {
      */
     locationId: string;
 };
+/** @returns {getLocationTags} */
+declare function getLocationTags(): any;
+type getLocationTags = any;
 /** @returns {getLocations} */
 declare function getLocations(): getLocations;
 type getLocations = {

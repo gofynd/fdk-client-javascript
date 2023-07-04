@@ -93,13 +93,14 @@ export = LogisticApplicationModel;
  * @property {Object[]} articles
  * @property {Object} configuration
  * @property {string} identifier
- * @property {string[]} ignored_locations
+ * @property {number[]} ignored_locations
  * @property {string} to_pincode
  */
 /**
  * @typedef ReAssignStoreResponse
- * @property {Object[]} [articles]
+ * @property {Object[]} [assigned_stores]
  * @property {Object} error
+ * @property {string} pystormbreaker_uuid
  * @property {boolean} success
  * @property {string} to_pincode
  */
@@ -295,14 +296,15 @@ type ReAssignStoreRequest = {
     articles: any[];
     configuration: any;
     identifier: string;
-    ignored_locations: string[];
+    ignored_locations: number[];
     to_pincode: string;
 };
 /** @returns {ReAssignStoreResponse} */
 declare function ReAssignStoreResponse(): ReAssignStoreResponse;
 type ReAssignStoreResponse = {
-    articles?: any[];
+    assigned_stores?: any[];
     error: any;
+    pystormbreaker_uuid: string;
     success: boolean;
     to_pincode: string;
 };

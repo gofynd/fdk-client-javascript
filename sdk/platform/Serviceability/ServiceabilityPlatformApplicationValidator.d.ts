@@ -3,9 +3,14 @@ export = ServiceabilityPlatformApplicationValidator;
  * @typedef addAppDp
  * @property {ServiceabilityPlatformModel.ApplicationCompanyDpViewRequest} body
  */
+/**
+ * @typedef deleteAppDp
+ * @property {number} courierPartnerId - A `courier_partner_id` is a unique
+ *   identifier of a particular delivery partner.
+ */
 /** @typedef getApplicationServiceability */
 /** @typedef getApplicationServiceabilitySelfShipment */
-/** @typedef getDpApplicationRulePriority */
+/** @typedef getDpApplicationRules */
 /**
  * @typedef getZoneFromPincodeView
  * @property {ServiceabilityPlatformModel.GetZoneFromPincodeViewRequest} body
@@ -38,18 +43,27 @@ export = ServiceabilityPlatformApplicationValidator;
  * @property {ServiceabilityPlatformModel.PincodeMopData} body
  */
 /**
- * @typedef upsertDpApplicationRulePriority
+ * @typedef upsertDpApplicationRules
  * @property {ServiceabilityPlatformModel.DPApplicationRuleRequest} body
  */
 declare class ServiceabilityPlatformApplicationValidator {
 }
 declare namespace ServiceabilityPlatformApplicationValidator {
-    export { addAppDp, getApplicationServiceability, getApplicationServiceabilitySelfShipment, getDpApplicationRulePriority, getZoneFromPincodeView, getZonesFromApplicationIdView, patchApplicationServiceabilitySelfShipment, updatePincodeAuditHistory, updatePincodeBulkView, updatePincodeCoDListing, updatePincodeMopView, upsertDpApplicationRulePriority };
+    export { addAppDp, deleteAppDp, getApplicationServiceability, getApplicationServiceabilitySelfShipment, getDpApplicationRules, getZoneFromPincodeView, getZonesFromApplicationIdView, patchApplicationServiceabilitySelfShipment, updatePincodeAuditHistory, updatePincodeBulkView, updatePincodeCoDListing, updatePincodeMopView, upsertDpApplicationRules };
 }
 /** @returns {addAppDp} */
 declare function addAppDp(): addAppDp;
 type addAppDp = {
     body: ServiceabilityPlatformModel.ApplicationCompanyDpViewRequest;
+};
+/** @returns {deleteAppDp} */
+declare function deleteAppDp(): deleteAppDp;
+type deleteAppDp = {
+    /**
+     * - A `courier_partner_id` is a unique
+     * identifier of a particular delivery partner.
+     */
+    courierPartnerId: number;
 };
 /** @returns {getApplicationServiceability} */
 declare function getApplicationServiceability(): any;
@@ -57,9 +71,9 @@ type getApplicationServiceability = any;
 /** @returns {getApplicationServiceabilitySelfShipment} */
 declare function getApplicationServiceabilitySelfShipment(): any;
 type getApplicationServiceabilitySelfShipment = any;
-/** @returns {getDpApplicationRulePriority} */
-declare function getDpApplicationRulePriority(): any;
-type getDpApplicationRulePriority = any;
+/** @returns {getDpApplicationRules} */
+declare function getDpApplicationRules(): any;
+type getDpApplicationRules = any;
 /** @returns {getZoneFromPincodeView} */
 declare function getZoneFromPincodeView(): getZoneFromPincodeView;
 type getZoneFromPincodeView = {
@@ -110,9 +124,9 @@ declare function updatePincodeMopView(): updatePincodeMopView;
 type updatePincodeMopView = {
     body: ServiceabilityPlatformModel.PincodeMopData;
 };
-/** @returns {upsertDpApplicationRulePriority} */
-declare function upsertDpApplicationRulePriority(): upsertDpApplicationRulePriority;
-type upsertDpApplicationRulePriority = {
+/** @returns {upsertDpApplicationRules} */
+declare function upsertDpApplicationRules(): upsertDpApplicationRules;
+type upsertDpApplicationRules = {
     body: ServiceabilityPlatformModel.DPApplicationRuleRequest;
 };
 import ServiceabilityPlatformModel = require("./ServiceabilityPlatformModel");

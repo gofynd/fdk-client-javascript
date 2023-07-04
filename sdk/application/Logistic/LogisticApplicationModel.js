@@ -107,14 +107,15 @@ const Joi = require("joi");
  * @property {Object[]} articles
  * @property {Object} configuration
  * @property {string} identifier
- * @property {string[]} ignored_locations
+ * @property {number[]} ignored_locations
  * @property {string} to_pincode
  */
 
 /**
  * @typedef ReAssignStoreResponse
- * @property {Object[]} [articles]
+ * @property {Object[]} [assigned_stores]
  * @property {Object} error
+ * @property {string} pystormbreaker_uuid
  * @property {boolean} success
  * @property {string} to_pincode
  */
@@ -348,7 +349,7 @@ class LogisticApplicationModel {
       articles: Joi.array().items(Joi.any()).required(),
       configuration: Joi.any().required(),
       identifier: Joi.string().allow("").required(),
-      ignored_locations: Joi.array().items(Joi.string().allow("")).required(),
+      ignored_locations: Joi.array().items(Joi.number()).required(),
       to_pincode: Joi.string().allow("").required(),
     });
   }
@@ -356,8 +357,9 @@ class LogisticApplicationModel {
   /** @returns {ReAssignStoreResponse} */
   static ReAssignStoreResponse() {
     return Joi.object({
-      articles: Joi.array().items(Joi.any()),
+      assigned_stores: Joi.array().items(Joi.any()),
       error: Joi.any().required(),
+      pystormbreaker_uuid: Joi.string().allow("").required(),
       success: Joi.boolean().required(),
       to_pincode: Joi.string().allow("").required(),
     });

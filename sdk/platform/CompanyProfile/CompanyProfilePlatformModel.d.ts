@@ -14,6 +14,11 @@ export = CompanyProfilePlatformModel;
  * @property {string} [state]
  */
 /**
+ * @typedef AverageOrderProcessingTime
+ * @property {number} duration
+ * @property {string} duration_type
+ */
+/**
  * @typedef BrandBannerSerializer
  * @property {string} [landscape]
  * @property {string} [portrait]
@@ -235,12 +240,14 @@ export = CompanyProfilePlatformModel;
  * @property {Object} [_custom_json]
  * @property {GetAddressSerializer} address
  * @property {boolean} [auto_invoice]
+ * @property {AverageOrderProcessingTime} [avg_order_processing_time]
  * @property {string} code
  * @property {GetCompanySerializer} [company]
  * @property {SellerPhoneNumber[]} [contact_numbers]
  * @property {UserSerializer} [created_by]
  * @property {string} [created_on]
  * @property {boolean} [credit_note]
+ * @property {boolean} [default_order_acceptance_timing]
  * @property {string} display_name
  * @property {Document[]} [documents]
  * @property {InvoiceDetailsSerializer} [gst_credentials]
@@ -250,10 +257,12 @@ export = CompanyProfilePlatformModel;
  * @property {string} [modified_on]
  * @property {string} name
  * @property {string[]} [notification_emails]
+ * @property {LocationDayWiseSerializer[]} [order_acceptance_timing]
  * @property {string} [phone_number]
  * @property {ProductReturnConfigSerializer} [product_return_config]
  * @property {string} [stage]
  * @property {string} [store_type]
+ * @property {string[]} [tags]
  * @property {LocationDayWiseSerializer[]} [timing]
  * @property {number} [uid]
  * @property {UserSerializer} [verified_by]
@@ -305,10 +314,12 @@ export = CompanyProfilePlatformModel;
  * @property {Object} [_custom_json]
  * @property {AddressSerializer} address
  * @property {boolean} [auto_invoice]
+ * @property {AverageOrderProcessingTime} [avg_order_processing_time]
  * @property {string} code
  * @property {number} company
  * @property {SellerPhoneNumber[]} [contact_numbers]
  * @property {boolean} [credit_note]
+ * @property {boolean} [default_order_acceptance_timing]
  * @property {string} display_name
  * @property {Document[]} [documents]
  * @property {InvoiceDetailsSerializer} [gst_credentials]
@@ -316,10 +327,12 @@ export = CompanyProfilePlatformModel;
  * @property {LocationManagerSerializer} [manager]
  * @property {string} name
  * @property {string[]} [notification_emails]
+ * @property {LocationDayWiseSerializer[]} [order_acceptance_timing]
  * @property {ProductReturnConfigSerializer} [product_return_config]
  * @property {string} [slug]
  * @property {string} [stage]
  * @property {string} [store_type]
+ * @property {string[]} [tags]
  * @property {LocationDayWiseSerializer[]} [timing]
  * @property {number} [uid]
  * @property {Object} [warnings]
@@ -366,6 +379,11 @@ export = CompanyProfilePlatformModel;
  * @property {string} number
  */
 /**
+ * @typedef StoreTagsResponse
+ * @property {boolean} [success]
+ * @property {string[]} [tags]
+ */
+/**
  * @typedef UpdateCompany
  * @property {Object} [_custom_json]
  * @property {CreateUpdateAddressSerializer[]} [addresses]
@@ -396,7 +414,7 @@ export = CompanyProfilePlatformModel;
 declare class CompanyProfilePlatformModel {
 }
 declare namespace CompanyProfilePlatformModel {
-    export { AddressSerializer, BrandBannerSerializer, BulkLocationSerializer, BusinessCountryInfo, BusinessDetails, CompanyBrandListSerializer, CompanyBrandPostRequestSerializer, CompanyBrandSerializer, CompanyDetails, CompanySerializer, CompanySocialAccounts, CompanyTaxesSerializer, CompanyTaxesSerializer1, ContactDetails, CreateUpdateAddressSerializer, CreateUpdateBrandRequestSerializer, Document, DocumentsObj, ErrorResponse, GetAddressSerializer, GetBrandResponseSerializer, GetCompanyProfileSerializerResponse, GetCompanySerializer, GetLocationSerializer, HolidayDateSerializer, HolidaySchemaSerializer, InvoiceCredSerializer, InvoiceDetailsSerializer, LocationDayWiseSerializer, LocationListSerializer, LocationManagerSerializer, LocationSerializer, LocationTimingSerializer, MetricsSerializer, Page, ProductReturnConfigSerializer, ProfileSuccessResponse, SellerPhoneNumber, UpdateCompany, UserSerializer, Website };
+    export { AddressSerializer, AverageOrderProcessingTime, BrandBannerSerializer, BulkLocationSerializer, BusinessCountryInfo, BusinessDetails, CompanyBrandListSerializer, CompanyBrandPostRequestSerializer, CompanyBrandSerializer, CompanyDetails, CompanySerializer, CompanySocialAccounts, CompanyTaxesSerializer, CompanyTaxesSerializer1, ContactDetails, CreateUpdateAddressSerializer, CreateUpdateBrandRequestSerializer, Document, DocumentsObj, ErrorResponse, GetAddressSerializer, GetBrandResponseSerializer, GetCompanyProfileSerializerResponse, GetCompanySerializer, GetLocationSerializer, HolidayDateSerializer, HolidaySchemaSerializer, InvoiceCredSerializer, InvoiceDetailsSerializer, LocationDayWiseSerializer, LocationListSerializer, LocationManagerSerializer, LocationSerializer, LocationTimingSerializer, MetricsSerializer, Page, ProductReturnConfigSerializer, ProfileSuccessResponse, SellerPhoneNumber, StoreTagsResponse, UpdateCompany, UserSerializer, Website };
 }
 /** @returns {AddressSerializer} */
 declare function AddressSerializer(): AddressSerializer;
@@ -412,6 +430,12 @@ type AddressSerializer = {
     longitude: number;
     pincode?: number;
     state?: string;
+};
+/** @returns {AverageOrderProcessingTime} */
+declare function AverageOrderProcessingTime(): AverageOrderProcessingTime;
+type AverageOrderProcessingTime = {
+    duration: number;
+    duration_type: string;
 };
 /** @returns {BrandBannerSerializer} */
 declare function BrandBannerSerializer(): BrandBannerSerializer;
@@ -658,12 +682,14 @@ type GetLocationSerializer = {
     _custom_json?: any;
     address: GetAddressSerializer;
     auto_invoice?: boolean;
+    avg_order_processing_time?: AverageOrderProcessingTime;
     code: string;
     company?: GetCompanySerializer;
     contact_numbers?: SellerPhoneNumber[];
     created_by?: UserSerializer;
     created_on?: string;
     credit_note?: boolean;
+    default_order_acceptance_timing?: boolean;
     display_name: string;
     documents?: Document[];
     gst_credentials?: InvoiceDetailsSerializer;
@@ -673,10 +699,12 @@ type GetLocationSerializer = {
     modified_on?: string;
     name: string;
     notification_emails?: string[];
+    order_acceptance_timing?: LocationDayWiseSerializer[];
     phone_number?: string;
     product_return_config?: ProductReturnConfigSerializer;
     stage?: string;
     store_type?: string;
+    tags?: string[];
     timing?: LocationDayWiseSerializer[];
     uid?: number;
     verified_by?: UserSerializer;
@@ -736,10 +764,12 @@ type LocationSerializer = {
     _custom_json?: any;
     address: AddressSerializer;
     auto_invoice?: boolean;
+    avg_order_processing_time?: AverageOrderProcessingTime;
     code: string;
     company: number;
     contact_numbers?: SellerPhoneNumber[];
     credit_note?: boolean;
+    default_order_acceptance_timing?: boolean;
     display_name: string;
     documents?: Document[];
     gst_credentials?: InvoiceDetailsSerializer;
@@ -747,10 +777,12 @@ type LocationSerializer = {
     manager?: LocationManagerSerializer;
     name: string;
     notification_emails?: string[];
+    order_acceptance_timing?: LocationDayWiseSerializer[];
     product_return_config?: ProductReturnConfigSerializer;
     slug?: string;
     stage?: string;
     store_type?: string;
+    tags?: string[];
     timing?: LocationDayWiseSerializer[];
     uid?: number;
     warnings?: any;
@@ -801,6 +833,12 @@ declare function SellerPhoneNumber(): SellerPhoneNumber;
 type SellerPhoneNumber = {
     country_code: number;
     number: string;
+};
+/** @returns {StoreTagsResponse} */
+declare function StoreTagsResponse(): StoreTagsResponse;
+type StoreTagsResponse = {
+    success?: boolean;
+    tags?: string[];
 };
 /** @returns {UpdateCompany} */
 declare function UpdateCompany(): UpdateCompany;

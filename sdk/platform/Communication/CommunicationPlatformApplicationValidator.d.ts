@@ -109,7 +109,8 @@ export = CommunicationPlatformApplicationValidator;
  * @typedef getEventSubscriptions
  * @property {number} [pageNo] - Current page no
  * @property {number} [pageSize] - Current request items count
- * @property {string} [populate] - Populate fields
+ * @property {string[]} [populate] - Populate fields
+ * @property {string} [query] - Current request items count
  */
 /** @typedef getGlobalProviders */
 /**
@@ -475,7 +476,11 @@ type getEventSubscriptions = {
     /**
      * - Populate fields
      */
-    populate?: string;
+    populate?: string[];
+    /**
+     * - Current request items count
+     */
+    query?: string;
 };
 /** @returns {getGlobalProviders} */
 declare function getGlobalProviders(): any;

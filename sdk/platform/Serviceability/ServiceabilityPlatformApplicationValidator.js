@@ -7,11 +7,17 @@ const ServiceabilityPlatformModel = require("./ServiceabilityPlatformModel");
  * @property {ServiceabilityPlatformModel.ApplicationCompanyDpViewRequest} body
  */
 
+/**
+ * @typedef deleteAppDp
+ * @property {number} courierPartnerId - A `courier_partner_id` is a unique
+ *   identifier of a particular delivery partner.
+ */
+
 /** @typedef getApplicationServiceability */
 
 /** @typedef getApplicationServiceabilitySelfShipment */
 
-/** @typedef getDpApplicationRulePriority */
+/** @typedef getDpApplicationRules */
 
 /**
  * @typedef getZoneFromPincodeView
@@ -52,7 +58,7 @@ const ServiceabilityPlatformModel = require("./ServiceabilityPlatformModel");
  */
 
 /**
- * @typedef upsertDpApplicationRulePriority
+ * @typedef upsertDpApplicationRules
  * @property {ServiceabilityPlatformModel.DPApplicationRuleRequest} body
  */
 
@@ -61,6 +67,13 @@ class ServiceabilityPlatformApplicationValidator {
   static addAppDp() {
     return Joi.object({
       body: ServiceabilityPlatformModel.ApplicationCompanyDpViewRequest().required(),
+    }).required();
+  }
+
+  /** @returns {deleteAppDp} */
+  static deleteAppDp() {
+    return Joi.object({
+      courierPartnerId: Joi.number().required(),
     }).required();
   }
 
@@ -74,8 +87,8 @@ class ServiceabilityPlatformApplicationValidator {
     return Joi.object({}).required();
   }
 
-  /** @returns {getDpApplicationRulePriority} */
-  static getDpApplicationRulePriority() {
+  /** @returns {getDpApplicationRules} */
+  static getDpApplicationRules() {
     return Joi.object({}).required();
   }
 
@@ -131,8 +144,8 @@ class ServiceabilityPlatformApplicationValidator {
     }).required();
   }
 
-  /** @returns {upsertDpApplicationRulePriority} */
-  static upsertDpApplicationRulePriority() {
+  /** @returns {upsertDpApplicationRules} */
+  static upsertDpApplicationRules() {
     return Joi.object({
       body: ServiceabilityPlatformModel.DPApplicationRuleRequest().required(),
     }).required();

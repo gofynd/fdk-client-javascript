@@ -138,7 +138,8 @@ const CommunicationPlatformModel = require("./CommunicationPlatformModel");
  * @typedef getEventSubscriptions
  * @property {number} [pageNo] - Current page no
  * @property {number} [pageSize] - Current request items count
- * @property {string} [populate] - Populate fields
+ * @property {string[]} [populate] - Populate fields
+ * @property {string} [query] - Current request items count
  */
 
 /** @typedef getGlobalProviders */
@@ -503,7 +504,8 @@ class CommunicationPlatformApplicationValidator {
     return Joi.object({
       pageNo: Joi.number(),
       pageSize: Joi.number(),
-      populate: Joi.string().allow(""),
+      populate: Joi.array().items(Joi.string().allow("")),
+      query: Joi.string().allow(""),
     }).required();
   }
 

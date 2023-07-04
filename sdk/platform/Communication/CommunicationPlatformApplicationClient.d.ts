@@ -264,7 +264,7 @@ declare class Communication {
      * @summary: Get event subscriptions
      * @description: Get event subscriptions
      */
-    getEventSubscriptions({ pageNo, pageSize, populate }?: CommunicationPlatformApplicationValidator.getEventSubscriptions): Promise<CommunicationPlatformModel.EventSubscriptions>;
+    getEventSubscriptions({ pageNo, pageSize, populate, query }?: CommunicationPlatformApplicationValidator.getEventSubscriptions): Promise<CommunicationPlatformModel.EventSubscriptions>;
     /**
      * @param {CommunicationPlatformApplicationValidator.getGlobalProviders} arg
      *   - Arg object

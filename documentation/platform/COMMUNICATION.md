@@ -2409,12 +2409,14 @@ Get event subscriptions
 // Promise
 const promise = platformClient.application("<APPLICATION_ID>").communication.getEventSubscriptions({  pageNo : value,
  pageSize : value,
- populate : value });
+ populate : value,
+ query : value });
 
 // Async/Await
 const data = await platformClient.application("<APPLICATION_ID>").communication.getEventSubscriptions({  pageNo : value,
  pageSize : value,
- populate : value });
+ populate : value,
+ query : value });
 ```
 
 
@@ -2425,7 +2427,8 @@ const data = await platformClient.application("<APPLICATION_ID>").communication.
 | --------- | -----  | -------- | ----------- |  
 | pageNo | number | no | Current page no |    
 | pageSize | number | no | Current request items count |    
-| populate | string | no | populate fields |  
+| populate | Array<string> | no | populate fields |    
+| query | string | no | Current request items count |  
 
 
 
