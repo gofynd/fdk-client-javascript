@@ -128,13 +128,13 @@ declare class Cart {
     }): Promise<CartCheckoutResponse>;
     /**
      * @param {Object} arg - Arg object.
-     * @param {number} [arg.id] - The unique identifier of the cart.
+     * @param {string} [arg.id] - The unique identifier of the cart.
      * @returns {Promise<DeleteCartDetailResponse>} - Success response
      * @summary: Delete cart once user made successful checkout
      * @description: Use this API to delete the cart.
      */
     deleteCart({ id }?: {
-        id?: number;
+        id?: string;
     }): Promise<DeleteCartDetailResponse>;
     /**
      * @param {Object} arg - Arg object.

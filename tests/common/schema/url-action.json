@@ -466,6 +466,20 @@
       }
     },
     {
+      "name": "Order status",
+      "path": "/cart/order-status",
+      "result": {
+        "action": {
+          "type": "page",
+          "page": {
+            "type": "order-status",
+            "query": {},
+            "params": {}
+          }
+        }
+      }
+    },
+    {
       "name": "product request",
       "path": "/product-request/",
       "result": {

@@ -87,6 +87,7 @@ declare class CartModel {
     static ShipmentPromise(): any;
     static ShipmentResponse(): any;
     static StaffCheckout(): any;
+    static StoreInfo(): any;
     static Tags(): any;
     static UpdateAddressResponse(): any;
     static UpdateCartDetailResponse(): any;

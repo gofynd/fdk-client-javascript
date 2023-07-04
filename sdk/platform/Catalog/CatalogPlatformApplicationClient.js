@@ -1421,6 +1421,8 @@ class Catalog {
    *   **?c=brand:in:voi-jeans|and:::category:nin:t-shirts|shirts**
    * @param {boolean} [arg.filters] - Pass `filters` parameter to fetch the
    *   filter details. This flag is used to fetch all filters
+   * @param {boolean} [arg.isDependent] - This query parameter is used to get
+   *   the dependent products in the listing.
    * @param {string} [arg.sortOn] - The order to sort the list of products on.
    *   The supported sort parameters are popularity, price, redemption and
    *   discount in either ascending or descending order. See the supported
@@ -1443,6 +1445,7 @@ class Catalog {
     f,
     c,
     filters,
+    isDependent,
     sortOn,
     pageId,
     pageSize,
@@ -1456,6 +1459,7 @@ class Catalog {
         f,
         c,
         filters,
+        isDependent,
         sortOn,
         pageId,
         pageSize,
@@ -1478,6 +1482,7 @@ class Catalog {
         f,
         c,
         filters,
+        isDependent,
         sortOn,
         pageId,
         pageSize,
@@ -1500,6 +1505,7 @@ class Catalog {
     query_params["f"] = f;
     query_params["c"] = c;
     query_params["filters"] = filters;
+    query_params["is_dependent"] = isDependent;
     query_params["sort_on"] = sortOn;
     query_params["page_id"] = pageId;
     query_params["page_size"] = pageSize;
@@ -1550,6 +1556,8 @@ class Catalog {
    *   **?c=brand:in:voi-jeans|and:::category:nin:t-shirts|shirts**
    * @param {boolean} [arg.filters] - Pass `filters` parameter to fetch the
    *   filter details. This flag is used to fetch all filters
+   * @param {boolean} [arg.isDependent] - This query parameter is used to get
+   *   the dependent products in the listing.
    * @param {string} [arg.sortOn] - The order to sort the list of products on.
    *   The supported sort parameters are popularity, price, redemption and
    *   discount in either ascending or descending order. See the supported
@@ -1567,6 +1575,7 @@ class Catalog {
     f,
     c,
     filters,
+    isDependent,
     sortOn,
     pageSize,
     itemIds,
@@ -1583,6 +1592,7 @@ class Catalog {
         f: f,
         c: c,
         filters: filters,
+        isDependent: isDependent,
         sortOn: sortOn,
         pageId: pageId,
         pageSize: pageSize,
