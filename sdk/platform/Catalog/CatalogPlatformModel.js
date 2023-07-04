@@ -262,6 +262,7 @@ class CatalogModel {
       description: Joi.string().allow(""),
       details: CatalogModel.AttributeMasterDetails().required(),
       enabled_for_end_consumer: Joi.boolean(),
+      example: Joi.string().allow(""),
       filters: CatalogModel.AttributeMasterFilter().required(),
       is_nested: Joi.boolean(),
       logo: Joi.string().allow(""),
@@ -290,6 +291,13 @@ class CatalogModel {
       type: Joi.string().allow(""),
     });
   }
+  static AutoCompleteMedia() {
+    return Joi.object({
+      aspect_ratio: Joi.string().allow(""),
+      type: Joi.string().allow(""),
+      url: Joi.string().allow(""),
+    });
+  }
   static AutocompletePageAction() {
     return Joi.object({
       params: Joi.any(),
@@ -303,7 +311,7 @@ class CatalogModel {
       _custom_json: Joi.any(),
       action: CatalogModel.AutocompleteAction(),
       display: Joi.string().allow(""),
-      logo: CatalogModel.Media(),
+      logo: CatalogModel.AutoCompleteMedia(),
     });
   }
   static BannerImage() {
@@ -326,7 +334,7 @@ class CatalogModel {
       banners: CatalogModel.ImageUrls(),
       departments: Joi.array().items(Joi.string().allow("")),
       discount: Joi.string().allow(""),
-      logo: CatalogModel.Media(),
+      logo: CatalogModel.Media2(),
       name: Joi.string().allow(""),
       slug: Joi.string().allow(""),
       uid: Joi.number(),
@@ -472,7 +480,7 @@ class CatalogModel {
       is_active: Joi.boolean().required(),
       level: Joi.number().required(),
       marketplaces: CatalogModel.CategoryMapping(),
-      media: CatalogModel.Media2(),
+      media: CatalogModel.Media1(),
       modified_by: Joi.any(),
       modified_on: Joi.string().allow(""),
       name: Joi.string().allow("").required(),
@@ -525,7 +533,7 @@ class CatalogModel {
       is_active: Joi.boolean().required(),
       level: Joi.number().required(),
       marketplaces: CatalogModel.CategoryMapping(),
-      media: CatalogModel.Media2(),
+      media: CatalogModel.Media1(),
       name: Joi.string().allow("").required(),
       priority: Joi.number(),
       slug: Joi.string().allow(""),
@@ -602,7 +610,7 @@ class CatalogModel {
       cron: Joi.any(),
       description: Joi.string().allow(""),
       is_active: Joi.boolean(),
-      logo: CatalogModel.Media1(),
+      logo: CatalogModel.Media(),
       meta: Joi.any(),
       name: Joi.string().allow(""),
       priority: Joi.number(),
@@ -909,7 +917,7 @@ class CatalogModel {
   }
   static Department() {
     return Joi.object({
-      logo: CatalogModel.Media(),
+      logo: CatalogModel.Media2(),
       name: Joi.string().allow(""),
       priority_order: Joi.number(),
       slug: Joi.string().allow(""),
@@ -1140,7 +1148,7 @@ class CatalogModel {
       cron: Joi.any(),
       description: Joi.string().allow(""),
       is_active: Joi.boolean(),
-      logo: CatalogModel.Media1(),
+      logo: CatalogModel.Media(),
       meta: Joi.any(),
       name: Joi.string().allow(""),
       priority: Joi.number(),
@@ -1893,23 +1901,23 @@ class CatalogModel {
   }
   static Media() {
     return Joi.object({
-      aspect_ratio: Joi.string().allow(""),
-      type: Joi.string().allow(""),
-      url: Joi.string().allow(""),
-    });
-  }
-  static Media1() {
-    return Joi.object({
       meta: Joi.any(),
       type: Joi.string().allow(""),
       url: Joi.string().allow("").required(),
     });
   }
-  static Media2() {
+  static Media1() {
     return Joi.object({
       landscape: Joi.string().allow("").required(),
       logo: Joi.string().allow("").required(),
       portrait: Joi.string().allow("").required(),
+    });
+  }
+  static Media2() {
+    return Joi.object({
+      aspect_ratio: Joi.string().allow(""),
+      type: Joi.string().allow(""),
+      url: Joi.string().allow(""),
     });
   }
   static Meta() {
@@ -2131,7 +2139,7 @@ class CatalogModel {
       item_code: Joi.string().allow(""),
       item_type: Joi.string().allow(""),
       l3_mapping: Joi.array().items(Joi.string().allow("")),
-      media: Joi.array().items(CatalogModel.Media1()),
+      media: Joi.array().items(CatalogModel.Media()),
       modified_by: Joi.any(),
       modified_on: Joi.string().allow(""),
       moq: Joi.any(),
@@ -2172,13 +2180,14 @@ class CatalogModel {
   static ProductBrand() {
     return Joi.object({
       action: CatalogModel.Action(),
-      logo: CatalogModel.Media1(),
+      logo: CatalogModel.Media(),
       name: Joi.string().allow(""),
       uid: Joi.number(),
     });
   }
   static ProductBulkAssets() {
     return Joi.object({
+      batch_id: Joi.string().allow(""),
       company_id: Joi.number(),
       url: Joi.string().allow("").required(),
       user: Joi.any().required(),
@@ -2282,7 +2291,7 @@ class CatalogModel {
       is_set: Joi.boolean(),
       item_code: Joi.string().allow("").required(),
       item_type: Joi.string().allow("").required(),
-      media: Joi.array().items(CatalogModel.Media1()),
+      media: Joi.array().items(CatalogModel.Media()),
       multi_size: Joi.boolean(),
       name: Joi.string().allow("").required(),
       net_quantity: CatalogModel.NetQuantity(),
@@ -2320,7 +2329,7 @@ class CatalogModel {
       image_nature: Joi.string().allow(""),
       item_code: Joi.string().allow(""),
       item_type: Joi.string().allow(""),
-      medias: Joi.array().items(CatalogModel.Media1()),
+      medias: Joi.array().items(CatalogModel.Media()),
       name: Joi.string().allow(""),
       product_online_date: Joi.string().allow(""),
       promo_meta: Joi.any(),
@@ -2399,7 +2408,7 @@ class CatalogModel {
       image_nature: Joi.string().allow(""),
       item_code: Joi.string().allow(""),
       item_type: Joi.string().allow(""),
-      medias: Joi.array().items(CatalogModel.Media1()),
+      medias: Joi.array().items(CatalogModel.Media()),
       name: Joi.string().allow(""),
       price: CatalogModel.ProductListingPrice(),
       product_online_date: Joi.string().allow(""),
@@ -2493,7 +2502,7 @@ class CatalogModel {
       item_code: Joi.string().allow(""),
       item_type: Joi.string().allow(""),
       l3_mapping: Joi.array().items(Joi.string().allow("")),
-      media: Joi.array().items(CatalogModel.Media1()),
+      media: Joi.array().items(CatalogModel.Media()),
       modified_by: Joi.any(),
       modified_on: Joi.string().allow(""),
       moq: Joi.any(),
@@ -2610,7 +2619,7 @@ class CatalogModel {
       brand_uid: Joi.number(),
       category_uid: Joi.number(),
       item_code: Joi.string().allow(""),
-      media: Joi.array().items(CatalogModel.Media1()),
+      media: Joi.array().items(CatalogModel.Media()),
       name: Joi.string().allow(""),
       uid: Joi.number(),
     });

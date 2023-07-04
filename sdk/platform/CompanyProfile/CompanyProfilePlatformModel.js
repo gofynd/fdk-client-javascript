@@ -18,8 +18,8 @@ class CompanyProfileModel {
   }
   static BrandBannerSerializer() {
     return Joi.object({
-      landscape: Joi.string().allow(""),
-      portrait: Joi.string().allow(""),
+      landscape: Joi.string().allow("").required(),
+      portrait: Joi.string().allow("").required(),
     });
   }
   static BulkLocationSerializer() {
@@ -140,7 +140,7 @@ class CompanyProfileModel {
     return Joi.object({
       _custom_json: Joi.any(),
       _locale_language: Joi.any(),
-      banner: CompanyProfileModel.BrandBannerSerializer(),
+      banner: CompanyProfileModel.BrandBannerSerializer().required(),
       brand_tier: Joi.string().allow(""),
       company_id: Joi.number(),
       description: Joi.string().allow(""),
@@ -218,7 +218,7 @@ class CompanyProfileModel {
       business_country_info: CompanyProfileModel.BusinessCountryInfo(),
       business_details: CompanyProfileModel.BusinessDetails(),
       business_info: Joi.string().allow(""),
-      business_type: Joi.string().allow("").required(),
+      business_type: Joi.string().allow(""),
       company_type: Joi.string().allow("").required(),
       contact_details: CompanyProfileModel.ContactDetails(),
       created_by: CompanyProfileModel.UserSerializer(),
@@ -401,6 +401,7 @@ class CompanyProfileModel {
   }
   static ProfileSuccessResponse() {
     return Joi.object({
+      message: Joi.string().allow(""),
       success: Joi.boolean(),
       uid: Joi.number(),
     });

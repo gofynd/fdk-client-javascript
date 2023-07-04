@@ -103,9 +103,14 @@ class OrderValidator {
       toDate: Joi.string().allow(""),
       dpIds: Joi.string().allow(""),
       stores: Joi.string().allow(""),
-      salesChannel: Joi.string().allow(""),
+      salesChannels: Joi.string().allow(""),
       paymentMode: Joi.string().allow(""),
       bagStatus: Joi.string().allow(""),
+      searchType: Joi.string().allow(""),
+      searchValue: Joi.string().allow(""),
+      tags: Joi.string().allow(""),
+      timeToDispatch: Joi.string().allow(""),
+      paymentMethods: Joi.string().allow(""),
     }).required();
   }
 
@@ -144,8 +149,6 @@ class OrderValidator {
     return Joi.object({
       channelShipmentId: Joi.string().allow(""),
       shipmentId: Joi.string().allow(""),
-      orderingCompanyId: Joi.string().allow(""),
-      requestByExt: Joi.string().allow(""),
     }).required();
   }
 
@@ -169,19 +172,16 @@ class OrderValidator {
       lane: Joi.string().allow(""),
       bagStatus: Joi.string().allow(""),
       statusOverrideLane: Joi.boolean(),
+      timeToDispatch: Joi.string().allow(""),
       searchType: Joi.string().allow(""),
       searchValue: Joi.string().allow(""),
-      searchId: Joi.string().allow(""),
       fromDate: Joi.string().allow(""),
       toDate: Joi.string().allow(""),
       dpIds: Joi.string().allow(""),
-      orderingCompanyId: Joi.string().allow(""),
       stores: Joi.string().allow(""),
-      salesChannel: Joi.string().allow(""),
-      requestByExt: Joi.string().allow(""),
+      salesChannels: Joi.string().allow(""),
       pageNo: Joi.number(),
       pageSize: Joi.number(),
-      isPrioritySort: Joi.boolean(),
       fetchActiveShipment: Joi.boolean(),
       excludeLockedShipments: Joi.boolean(),
       paymentMethods: Joi.string().allow(""),
@@ -190,6 +190,7 @@ class OrderValidator {
       customMeta: Joi.string().allow(""),
       orderingChannel: Joi.string().allow(""),
       companyAffiliateTag: Joi.string().allow(""),
+      platformUserId: Joi.string().allow(""),
     }).required();
   }
 
@@ -259,7 +260,7 @@ class OrderValidator {
 
   static updatePackagingDimensions() {
     return Joi.object({
-      body: OrderModel.CreateOrderPayload().required(),
+      body: OrderModel.UpdatePackagingDimensionsPayload().required(),
     }).required();
   }
 
