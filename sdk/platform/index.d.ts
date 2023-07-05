@@ -14,7 +14,6 @@ export namespace PlatformModel {
     const CompanyProfilePlatformModel: typeof import("./CompanyProfile/CompanyProfilePlatformModel");
     const FileStoragePlatformModel: typeof import("./FileStorage/FileStoragePlatformModel");
     const SharePlatformModel: typeof import("./Share/SharePlatformModel");
-    const InventoryPlatformModel: typeof import("./Inventory/InventoryPlatformModel");
     const ConfigurationPlatformModel: typeof import("./Configuration/ConfigurationPlatformModel");
     const CartPlatformModel: typeof import("./Cart/CartPlatformModel");
     const RewardsPlatformModel: typeof import("./Rewards/RewardsPlatformModel");
@@ -22,6 +21,4 @@ export namespace PlatformModel {
     const PartnerPlatformModel: typeof import("./Partner/PartnerPlatformModel");
     const WebhookPlatformModel: typeof import("./Webhook/WebhookPlatformModel");
     const AuditTrailPlatformModel: typeof import("./AuditTrail/AuditTrailPlatformModel");
-    const ServiceabilityPlatformModel: typeof import("./Serviceability/ServiceabilityPlatformModel");
-    const FinancePlatformModel: typeof import("./Finance/FinancePlatformModel");
 }

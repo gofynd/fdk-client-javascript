@@ -3189,7 +3189,9 @@ class CatalogModel {
 
       "shipping-policy",
 
-      "return-policy"
+      "return-policy",
+
+      "order-status"
     );
   }
 }

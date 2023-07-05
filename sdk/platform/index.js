@@ -28,8 +28,6 @@ module.exports = {
 
     SharePlatformModel: require("./Share/SharePlatformModel"),
 
-    InventoryPlatformModel: require("./Inventory/InventoryPlatformModel"),
-
     ConfigurationPlatformModel: require("./Configuration/ConfigurationPlatformModel"),
 
     CartPlatformModel: require("./Cart/CartPlatformModel"),
@@ -43,9 +41,5 @@ module.exports = {
     WebhookPlatformModel: require("./Webhook/WebhookPlatformModel"),
 
     AuditTrailPlatformModel: require("./AuditTrail/AuditTrailPlatformModel"),
-
-    ServiceabilityPlatformModel: require("./Serviceability/ServiceabilityPlatformModel"),
-
-    FinancePlatformModel: require("./Finance/FinancePlatformModel"),
   },
 };

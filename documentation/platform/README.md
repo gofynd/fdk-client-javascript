@@ -16,7 +16,6 @@
 * [CompanyProfile](COMPANYPROFILE.md) -  
 * [FileStorage](FILESTORAGE.md) - File Storage 
 * [Share](SHARE.md) - Short link and QR Code 
-* [Inventory](INVENTORY.md) -  
 * [Configuration](CONFIGURATION.md) - Application configuration apis 
 * [Cart](CART.md) - Cart APIs 
 * [Rewards](REWARDS.md) - Earn and redeem reward points 
@@ -24,5 +23,3 @@
 * [Partner](PARTNER.md) - Partner configuration apis 
 * [Webhook](WEBHOOK.md) - Webhook dispatcher with retry and one event to many subscriber vice versa 
 * [AuditTrail](AUDITTRAIL.md) - Audit Logging Service that logs the crucial updates on the Platform 
-* [Serviceability](SERVICEABILITY.md) - Logistics Configuration API's allows you to configure zone, application logistics and many more useful features.  
-* [Finance](FINANCE.md) - Handles all finance related activities 
