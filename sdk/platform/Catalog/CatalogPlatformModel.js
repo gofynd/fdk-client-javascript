@@ -1223,15 +1223,15 @@ const Joi = require("joi");
  * @property {GetAddressSerializer[]} [addresses]
  * @property {string} [business_type]
  * @property {string} [company_type]
- * @property {UserSerializer1} [created_by]
+ * @property {UserSerializer2} [created_by]
  * @property {string} [created_on]
- * @property {UserSerializer1} [modified_by]
+ * @property {UserSerializer2} [modified_by]
  * @property {string} [modified_on]
  * @property {string} [name]
  * @property {string} [reject_reason]
  * @property {string} [stage]
  * @property {number} [uid]
- * @property {UserSerializer1} [verified_by]
+ * @property {UserSerializer2} [verified_by]
  * @property {string} [verified_on]
  */
 
@@ -1314,14 +1314,14 @@ const Joi = require("joi");
  * @property {string} code
  * @property {GetCompanySerializer} [company]
  * @property {SellerPhoneNumber[]} [contact_numbers]
- * @property {UserSerializer2} [created_by]
+ * @property {UserSerializer1} [created_by]
  * @property {string} [created_on]
  * @property {string} display_name
  * @property {Document[]} [documents]
  * @property {InvoiceDetailsSerializer} [gst_credentials]
  * @property {LocationIntegrationType} [integration_type]
  * @property {LocationManagerSerializer} [manager]
- * @property {UserSerializer2} [modified_by]
+ * @property {UserSerializer1} [modified_by]
  * @property {string} [modified_on]
  * @property {string} name
  * @property {string[]} [notification_emails]
@@ -1331,7 +1331,7 @@ const Joi = require("joi");
  * @property {string} [store_type]
  * @property {LocationDayWiseSerializer[]} [timing]
  * @property {number} [uid]
- * @property {UserSerializer2} [verified_by]
+ * @property {UserSerializer1} [verified_by]
  * @property {string} [verified_on]
  * @property {Object} [warnings]
  */
@@ -4758,15 +4758,15 @@ class CatalogPlatformModel {
       addresses: Joi.array().items(CatalogPlatformModel.GetAddressSerializer()),
       business_type: Joi.string().allow(""),
       company_type: Joi.string().allow(""),
-      created_by: CatalogPlatformModel.UserSerializer1(),
+      created_by: CatalogPlatformModel.UserSerializer2(),
       created_on: Joi.string().allow(""),
-      modified_by: CatalogPlatformModel.UserSerializer1(),
+      modified_by: CatalogPlatformModel.UserSerializer2(),
       modified_on: Joi.string().allow(""),
       name: Joi.string().allow(""),
       reject_reason: Joi.string().allow(""),
       stage: Joi.string().allow(""),
       uid: Joi.number(),
-      verified_by: CatalogPlatformModel.UserSerializer1(),
+      verified_by: CatalogPlatformModel.UserSerializer2(),
       verified_on: Joi.string().allow(""),
     });
   }
@@ -4863,14 +4863,14 @@ class CatalogPlatformModel {
       contact_numbers: Joi.array().items(
         CatalogPlatformModel.SellerPhoneNumber()
       ),
-      created_by: CatalogPlatformModel.UserSerializer2(),
+      created_by: CatalogPlatformModel.UserSerializer1(),
       created_on: Joi.string().allow(""),
       display_name: Joi.string().allow("").required(),
       documents: Joi.array().items(CatalogPlatformModel.Document()),
       gst_credentials: CatalogPlatformModel.InvoiceDetailsSerializer(),
       integration_type: CatalogPlatformModel.LocationIntegrationType(),
       manager: CatalogPlatformModel.LocationManagerSerializer(),
-      modified_by: CatalogPlatformModel.UserSerializer2(),
+      modified_by: CatalogPlatformModel.UserSerializer1(),
       modified_on: Joi.string().allow(""),
       name: Joi.string().allow("").required(),
       notification_emails: Joi.array().items(Joi.string().allow("")),
@@ -4882,7 +4882,7 @@ class CatalogPlatformModel {
         CatalogPlatformModel.LocationDayWiseSerializer()
       ),
       uid: Joi.number(),
-      verified_by: CatalogPlatformModel.UserSerializer2(),
+      verified_by: CatalogPlatformModel.UserSerializer1(),
       verified_on: Joi.string().allow(""),
       warnings: Joi.any(),
     });
