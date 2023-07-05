@@ -1912,8 +1912,8 @@ class Cart {
 
   /**
    * @param {Object} arg - Arg object.
-   * @param {string} [arg.entityType] - Entity_type as coupon or promotion
-   * @param {boolean} [arg.isHidden] - Show Promo Coupon Config or not
+   * @param {string} [arg.entityType] - Entity_type as promotion or coupon
+   * @param {boolean} [arg.isHidden] - Promo-coupon config shown or not
    * @returns {Promise<ActivePromosResponse>} - Success response
    * @summary: Fetch all promos that are set as active
    * @description: Use this API to get list of all the active promos/coupons.
@@ -2969,17 +2969,21 @@ class Cart {
    * @param {Object} arg - Arg object.
    * @param {string} [arg.id] -
    * @param {boolean} [arg.buyNow] -
+   * @param {string} [arg.orderType] - The order type of shipment HomeDelivery
+   *   - If the customer wants the order home-delivered PickAtStore - If the
+   *   customer wants the handover of an order at the store itself.
    * @param {UpdateCartPaymentRequest} arg.body
    * @returns {Promise<CartDetailResponse>} - Success response
    * @summary: Update cart payment
    * @description: Use this API to update cart payment.
    */
-  async selectPaymentMode({ body, id, buyNow } = {}) {
+  async selectPaymentMode({ body, id, buyNow, orderType } = {}) {
     const { error } = CartValidator.selectPaymentMode().validate(
       {
         body,
         id,
         buyNow,
+        orderType,
       },
       { abortEarly: false, allowUnknown: true }
     );
@@ -2993,6 +2997,7 @@ class Cart {
         body,
         id,
         buyNow,
+        orderType,
       },
       { abortEarly: false, allowUnknown: false }
     );
@@ -3007,6 +3012,7 @@ class Cart {
     const query_params = {};
     query_params["id"] = id;
     query_params["buy_now"] = buyNow;
+    query_params["order_type"] = orderType;
 
     const response = await PlatformAPIClient.execute(
       this.config,
@@ -3038,17 +3044,21 @@ class Cart {
    * @param {Object} arg - Arg object.
    * @param {string} [arg.id] -
    * @param {boolean} [arg.buyNow] -
+   * @param {string} [arg.orderType] - The order type of shipment HomeDelivery
+   *   - If the customer wants the order home-delivered PickAtStore - If the
+   *   customer wants the handover of an order at the store itself.
    * @param {UpdateCartPaymentRequestV2} arg.body
    * @returns {Promise<CartDetailResponse>} - Success response
    * @summary: Update cart payment
    * @description: Use this API to update cart payment.
    */
-  async selectPaymentModeV2({ body, id, buyNow } = {}) {
+  async selectPaymentModeV2({ body, id, buyNow, orderType } = {}) {
     const { error } = CartValidator.selectPaymentModeV2().validate(
       {
         body,
         id,
         buyNow,
+        orderType,
       },
       { abortEarly: false, allowUnknown: true }
     );
@@ -3062,6 +3072,7 @@ class Cart {
         body,
         id,
         buyNow,
+        orderType,
       },
       { abortEarly: false, allowUnknown: false }
     );
@@ -3076,6 +3087,7 @@ class Cart {
     const query_params = {};
     query_params["id"] = id;
     query_params["buy_now"] = buyNow;
+    query_params["order_type"] = orderType;
 
     const response = await PlatformAPIClient.execute(
       this.config,

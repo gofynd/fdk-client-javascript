@@ -1,17 +1,7 @@
 const Joi = require("joi");
 
 class ConfigurationModel {
-  static ApplicationAuth() {
-    return Joi.object({
-      enabled: Joi.boolean(),
-    });
-  }
-  static ApplicationCors() {
-    return Joi.object({
-      domains: Joi.array().items(Joi.string().allow("")),
-    });
-  }
-  static ApplicationData() {
+  static Application() {
     return Joi.object({
       __v: Joi.number(),
       _id: Joi.string().allow(""),
@@ -37,10 +27,19 @@ class ConfigurationModel {
       redirections: Joi.array().items(
         ConfigurationModel.ApplicationRedirections()
       ),
-      slug: Joi.string().allow(""),
       token: Joi.string().allow(""),
       updated_at: Joi.string().allow(""),
       website: ConfigurationModel.ApplicationWebsite(),
+    });
+  }
+  static ApplicationAuth() {
+    return Joi.object({
+      enabled: Joi.boolean(),
+    });
+  }
+  static ApplicationCors() {
+    return Joi.object({
+      domains: Joi.array().items(Joi.string().allow("")),
     });
   }
   static ApplicationMeta() {
@@ -58,7 +57,7 @@ class ConfigurationModel {
   }
   static ApplicationResponse() {
     return Joi.object({
-      application: ConfigurationModel.ApplicationData(),
+      application: ConfigurationModel.Application(),
     });
   }
   static ApplicationWebsite() {
@@ -94,6 +93,23 @@ class ConfigurationModel {
       verified: Joi.boolean(),
     });
   }
+  static LocationCountry() {
+    return Joi.object({
+      __v: Joi.number(),
+      _id: Joi.string().allow(""),
+      capital: Joi.string().allow(""),
+      currency: Joi.string().allow(""),
+      default_currency: ConfigurationModel.LocationDefaultCurrency(),
+      default_language: ConfigurationModel.LocationDefaultLanguage(),
+      iso2: Joi.string().allow(""),
+      iso3: Joi.string().allow(""),
+      name: Joi.string().allow(""),
+      parent: Joi.string().allow(""),
+      phone_code: Joi.string().allow(""),
+      type: Joi.string().allow(""),
+      uid: Joi.number(),
+    });
+  }
   static LocationDefaultCurrency() {
     return Joi.object({
       code: Joi.string().allow(""),
@@ -107,30 +123,9 @@ class ConfigurationModel {
       name: Joi.string().allow(""),
     });
   }
-  static LocationDetails() {
-    return Joi.object({
-      __v: Joi.number(),
-      _id: Joi.string().allow(""),
-      capital: Joi.string().allow(""),
-      country_code: Joi.string().allow(""),
-      currency: Joi.string().allow(""),
-      default_currency: ConfigurationModel.LocationDefaultCurrency(),
-      default_language: ConfigurationModel.LocationDefaultLanguage(),
-      iso2: Joi.string().allow(""),
-      iso3: Joi.string().allow(""),
-      latitude: Joi.string().allow(""),
-      longitude: Joi.string().allow(""),
-      name: Joi.string().allow(""),
-      parent: Joi.string().allow(""),
-      phone_code: Joi.string().allow(""),
-      state_code: Joi.string().allow(""),
-      type: Joi.string().allow(""),
-      uid: Joi.number(),
-    });
-  }
   static Locations() {
     return Joi.object({
-      items: Joi.array().items(ConfigurationModel.LocationDetails()),
+      items: Joi.array().items(Joi.any()),
     });
   }
   static NotFound() {

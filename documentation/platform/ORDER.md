@@ -8,12 +8,16 @@
 ## Order Methods
 Handles all platform order and shipment api(s)
 
+* [attachOrderUser](#attachorderuser)
 * [checkOrderStatus](#checkorderstatus)
 * [click2Call](#click2call)
 * [createChannelConfig](#createchannelconfig)
 * [createOrder](#createorder)
 * [dispatchManifest](#dispatchmanifest)
 * [downloadBulkActionTemplate](#downloadbulkactiontemplate)
+* [fetchCreditBalanceDetail](#fetchcreditbalancedetail)
+* [fetchRefundModeConfig](#fetchrefundmodeconfig)
+* [generatePOSReceiptByOrderId](#generateposreceiptbyorderid)
 * [getAnnouncements](#getannouncements)
 * [getBagById](#getbagbyid)
 * [getBags](#getbags)
@@ -37,18 +41,75 @@ Handles all platform order and shipment api(s)
 * [processManifest](#processmanifest)
 * [reassignLocation](#reassignlocation)
 * [sendSmsNinja](#sendsmsninja)
+* [sendUserMobileOTP](#sendusermobileotp)
 * [trackShipmentPlatform](#trackshipmentplatform)
 * [updateAddress](#updateaddress)
 * [updatePackagingDimensions](#updatepackagingdimensions)
 * [updateShipmentLock](#updateshipmentlock)
 * [updateShipmentStatus](#updateshipmentstatus)
 * [uploadConsent](#uploadconsent)
+* [verifyMobileOTP](#verifymobileotp)
 
 
 
 ## Methods with example and description
 
 
+
+
+### attachOrderUser
+
+
+
+
+```javascript
+// Promise
+const promise = platformClient.order.attachOrderUser({  body : value });
+
+// Async/Await
+const data = await platformClient.order.attachOrderUser({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [AttachOrderUser](#AttachOrderUser) | yes | Request body |
+
+
+
+
+*Returned Response:*
+
+
+
+
+[AttachOrderUserResponse](#AttachOrderUserResponse)
+
+Attach user to order
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
 
 
 ### checkOrderStatus
@@ -406,6 +467,178 @@ We are processing the file!
     "url": "https://cdn.pixelbin.io/v2/falling-surf-7c8bb8/fyndnp/wrkr/x0/misc/general/free/original/0Ex0-zTyw-placed_352_1668856953.7936668.xlsx"
   }
 }
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### fetchCreditBalanceDetail
+
+
+
+
+```javascript
+// Promise
+const promise = platformClient.order.fetchCreditBalanceDetail({  body : value });
+
+// Async/Await
+const data = await platformClient.order.fetchCreditBalanceDetail({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [FetchCreditBalanceRequestPayload](#FetchCreditBalanceRequestPayload) | yes | Request body |
+
+
+
+
+*Returned Response:*
+
+
+
+
+[FetchCreditBalanceResponsePayload](#FetchCreditBalanceResponsePayload)
+
+Credit Balance will be fetched
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### fetchRefundModeConfig
+
+
+
+
+```javascript
+// Promise
+const promise = platformClient.order.fetchRefundModeConfig({  body : value });
+
+// Async/Await
+const data = await platformClient.order.fetchRefundModeConfig({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [RefundModeConfigRequestPayload](#RefundModeConfigRequestPayload) | yes | Request body |
+
+
+
+
+*Returned Response:*
+
+
+
+
+[RefundModeConfigResponsePayload](#RefundModeConfigResponsePayload)
+
+Refund mode config is returned based on input parameter
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### generatePOSReceiptByOrderId
+
+
+
+
+```javascript
+// Promise
+const promise = platformClient.order.generatePOSReceiptByOrderId({  orderId : value,
+ shipmentId : value,
+ documentType : value });
+
+// Async/Await
+const data = await platformClient.order.generatePOSReceiptByOrderId({  orderId : value,
+ shipmentId : value,
+ documentType : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| orderId | string | yes |  |    
+| shipmentId | string | no |  |    
+| documentType | string | no |  |  
+
+
+
+
+
+*Returned Response:*
+
+
+
+
+[GeneratePosOrderReceiptResponse](#GeneratePosOrderReceiptResponse)
+
+We are processing the request!
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
 ```
 </details>
 
@@ -875,7 +1108,8 @@ const promise = platformClient.order.getLaneConfig({  superLane : value,
  searchValue : value,
  tags : value,
  timeToDispatch : value,
- paymentMethods : value });
+ paymentMethods : value,
+ myOrders : value });
 
 // Async/Await
 const data = await platformClient.order.getLaneConfig({  superLane : value,
@@ -891,7 +1125,8 @@ const data = await platformClient.order.getLaneConfig({  superLane : value,
  searchValue : value,
  tags : value,
  timeToDispatch : value,
- paymentMethods : value });
+ paymentMethods : value,
+ myOrders : value });
 ```
 
 
@@ -913,7 +1148,8 @@ const data = await platformClient.order.getLaneConfig({  superLane : value,
 | searchValue | string | no |  |    
 | tags | string | no |  |    
 | timeToDispatch | string | no |  |    
-| paymentMethods | string | no |  |  
+| paymentMethods | string | no |  |    
+| myOrders | boolean | no |  |  
 
 
 
@@ -1824,7 +2060,8 @@ const promise = platformClient.order.getOrders({  lane : value,
  pageNo : value,
  pageSize : value,
  isPrioritySort : value,
- customMeta : value });
+ customMeta : value,
+ myOrders : value });
 
 // Async/Await
 const data = await platformClient.order.getOrders({  lane : value,
@@ -1842,7 +2079,8 @@ const data = await platformClient.order.getOrders({  lane : value,
  pageNo : value,
  pageSize : value,
  isPrioritySort : value,
- customMeta : value });
+ customMeta : value,
+ myOrders : value });
 ```
 
 
@@ -1866,7 +2104,8 @@ const data = await platformClient.order.getOrders({  lane : value,
 | pageNo | number | no |  |    
 | pageSize | number | no |  |    
 | isPrioritySort | boolean | no |  |    
-| customMeta | string | no |  |  
+| customMeta | string | no |  |    
+| myOrders | boolean | no |  |  
 
 
 
@@ -2638,7 +2877,7 @@ const promise = platformClient.order.getShipments({  lane : value,
  customMeta : value,
  orderingChannel : value,
  companyAffiliateTag : value,
- platformUserId : value });
+ myOrders : value });
 
 // Async/Await
 const data = await platformClient.order.getShipments({  lane : value,
@@ -2662,7 +2901,7 @@ const data = await platformClient.order.getShipments({  lane : value,
  customMeta : value,
  orderingChannel : value,
  companyAffiliateTag : value,
- platformUserId : value });
+ myOrders : value });
 ```
 
 
@@ -2692,7 +2931,7 @@ const data = await platformClient.order.getShipments({  lane : value,
 | customMeta | string | no |  |    
 | orderingChannel | string | no |  |    
 | companyAffiliateTag | string | no |  |    
-| platformUserId | string | no |  |  
+| myOrders | boolean | no |  |  
 
 
 
@@ -3768,6 +4007,70 @@ Sms Sent successfully
 ---
 
 
+### sendUserMobileOTP
+
+
+
+
+```javascript
+// Promise
+const promise = platformClient.order.sendUserMobileOTP({  body : value });
+
+// Async/Await
+const data = await platformClient.order.sendUserMobileOTP({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [SendUserMobileOTP](#SendUserMobileOTP) | yes | Request body |
+
+
+
+
+*Returned Response:*
+
+
+
+
+[SendUserMobileOtpResponse](#SendUserMobileOtpResponse)
+
+Send OTP to user mobile
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "success": true,
+  "data": {
+    "request_id": "112312312",
+    "message": "Text",
+    "resend_timer": "600",
+    "mobile": 99990000
+  },
+  "message": "Text"
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
 ### trackShipmentPlatform
 Track shipment
 
@@ -4202,6 +4505,61 @@ Successful Manifest upload!
 ---
 
 
+### verifyMobileOTP
+
+
+
+
+```javascript
+// Promise
+const promise = platformClient.order.verifyMobileOTP({  body : value });
+
+// Async/Await
+const data = await platformClient.order.verifyMobileOTP({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [VerifyMobileOTP](#VerifyMobileOTP) | yes | Request body |
+
+
+
+
+*Returned Response:*
+
+
+
+
+[VerifyOtpResponse](#VerifyOtpResponse)
+
+Verify OTP
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
 
 ### Schemas
 
@@ -4535,6 +4893,48 @@ Successful Manifest upload!
 
 ---
 
+#### [AttachOrderUser](#AttachOrderUser)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | fynd_order_id | string |  no  |  |
+ | otp_data | [AttachUserOtpData](#AttachUserOtpData) |  no  |  |
+ | user_info | [AttachUserInfo](#AttachUserInfo) |  no  |  |
+ 
+
+---
+
+#### [AttachOrderUserResponse](#AttachOrderUserResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | message | string? |  yes  |  |
+ | success | boolean? |  yes  |  |
+ 
+
+---
+
+#### [AttachUserInfo](#AttachUserInfo)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | country_code | string? |  yes  |  |
+ | first_name | string |  no  |  |
+ | last_name | string |  no  |  |
+ | mobile | string |  no  |  |
+ 
+
+---
+
+#### [AttachUserOtpData](#AttachUserOtpData)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | request_id | string |  no  |  |
+ 
+
+---
+
 #### [Attributes](#Attributes)
 
  | Properties | Type | Nullable | Description |
@@ -4556,7 +4956,7 @@ Successful Manifest upload!
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | docket_number | string? |  yes  |  |
+ | docker_number | string? |  yes  |  |
  | item_base_price | number? |  yes  |  |
  | partial_can_ret | boolean? |  yes  |  |
  | po_line_amount | number? |  yes  |  |
@@ -4620,7 +5020,7 @@ Successful Manifest upload!
  | restore_promos | string? |  yes  |  |
  | seller_identifier | string? |  yes  |  |
  | shipment_id | string? |  yes  |  |
- | status | [BagReturnableCancelableStatus1](#BagReturnableCancelableStatus1)? |  yes  |  |
+ | status | [BagReturnableCancelableStatus](#BagReturnableCancelableStatus)? |  yes  |  |
  | tags | [string]? |  yes  |  |
  | type | string? |  yes  |  |
  
@@ -4691,20 +5091,17 @@ Successful Manifest upload!
 
 ---
 
-#### [BagReturnableCancelableStatus](#BagReturnableCancelableStatus)
+#### [BagPaymentMethods](#BagPaymentMethods)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | can_be_cancelled | boolean |  no  |  |
- | enable_tracking | boolean |  no  |  |
- | is_active | boolean |  no  |  |
- | is_customer_return_allowed | boolean |  no  |  |
- | is_returnable | boolean |  no  |  |
+ | amount | number? |  yes  |  |
+ | mode | string? |  yes  |  |
  
 
 ---
 
-#### [BagReturnableCancelableStatus1](#BagReturnableCancelableStatus1)
+#### [BagReturnableCancelableStatus](#BagReturnableCancelableStatus)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
@@ -5117,6 +5514,17 @@ Successful Manifest upload!
 
 ---
 
+#### [CreditBalanceInfo](#CreditBalanceInfo)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | customer_mobile_number | string? |  yes  |  |
+ | reason | string? |  yes  |  |
+ | total_credited_balance | string? |  yes  |  |
+ 
+
+---
+
 #### [CurrentStatus](#CurrentStatus)
 
  | Properties | Type | Nullable | Description |
@@ -5143,6 +5551,7 @@ Successful Manifest upload!
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | entities | [[EntitiesDataUpdates](#EntitiesDataUpdates)]? |  yes  |  |
+ | order_item_status | [[OrderItemDataUpdates](#OrderItemDataUpdates)]? |  yes  |  |
  | products | [[ProductsDataUpdates](#ProductsDataUpdates)]? |  yes  |  |
  
 
@@ -5357,6 +5766,27 @@ Successful Manifest upload!
 
 ---
 
+#### [FetchCreditBalanceRequestPayload](#FetchCreditBalanceRequestPayload)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | affiliate_id | string |  no  |  |
+ | customer_mobile_number | string |  no  |  |
+ | seller_id | string |  no  |  |
+ 
+
+---
+
+#### [FetchCreditBalanceResponsePayload](#FetchCreditBalanceResponsePayload)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | data | [CreditBalanceInfo](#CreditBalanceInfo) |  no  |  |
+ | success | boolean |  no  |  |
+ 
+
+---
+
 #### [FileResponse](#FileResponse)
 
  | Properties | Type | Nullable | Description |
@@ -5475,6 +5905,20 @@ Successful Manifest upload!
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | fynd_order_id | [string]? |  yes  |  |
+ 
+
+---
+
+#### [GeneratePosOrderReceiptResponse](#GeneratePosOrderReceiptResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | customer_cn_receipt | string? |  yes  |  |
+ | invoice_receipt | string? |  yes  |  |
+ | merchant_cn_receipt | string? |  yes  |  |
+ | order_id | string? |  yes  |  |
+ | payment_receipt | string? |  yes  |  |
+ | success | boolean? |  yes  |  |
  
 
 ---
@@ -5770,7 +6214,7 @@ Successful Manifest upload!
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | identifiers | string? |  yes  |  |
- | return_config | [ReturnConfig1](#ReturnConfig1)? |  yes  |  |
+ | return_config | [ReturnConfig](#ReturnConfig)? |  yes  |  |
  | size | string? |  yes  |  |
  | uid | string? |  yes  |  |
  
@@ -5801,6 +6245,7 @@ Successful Manifest upload!
  | line_number | number? |  yes  |  |
  | meta | [BagMeta](#BagMeta)? |  yes  |  |
  | parent_promo_bags | string? |  yes  |  |
+ | payment_methods | [[BagPaymentMethods](#BagPaymentMethods)]? |  yes  |  |
  | prices | [Prices](#Prices)? |  yes  |  |
  | quantity | number? |  yes  |  |
  | seller_identifier | string? |  yes  |  |
@@ -5926,6 +6371,15 @@ Successful Manifest upload!
  | pincode | string? |  yes  |  |
  | state | string? |  yes  |  |
  | store_name | string? |  yes  |  |
+ 
+
+---
+
+#### [OrderItemDataUpdates](#OrderItemDataUpdates)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | data | string? |  yes  |  |
  
 
 ---
@@ -6276,6 +6730,7 @@ Successful Manifest upload!
  | payment_methods | string? |  yes  |  |
  | payment_mode | string? |  yes  |  |
  | payments | [ShipmentPayments](#ShipmentPayments)? |  yes  |  |
+ | pdf_links | string? |  yes  |  |
  | picked_date | string? |  yes  |  |
  | platform_logo | string? |  yes  |  |
  | prices | [Prices](#Prices)? |  yes  |  |
@@ -6343,6 +6798,18 @@ Successful Manifest upload!
  | platform_user_first_name | string? |  yes  |  |
  | platform_user_id | string? |  yes  |  |
  | platform_user_last_name | string? |  yes  |  |
+ 
+
+---
+
+#### [PointBlankOtpData](#PointBlankOtpData)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | message | string? |  yes  |  |
+ | mobile | number? |  yes  |  |
+ | request_id | string? |  yes  |  |
+ | resend_timer | number? |  yes  |  |
  
 
 ---
@@ -6533,6 +7000,52 @@ Successful Manifest upload!
 
 ---
 
+#### [RefundModeConfigRequestPayload](#RefundModeConfigRequestPayload)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | affiliate_id | string |  no  |  |
+ | customer_mobile_number | string? |  yes  |  |
+ | fynd_order_id | string |  no  |  |
+ | seller_id | number |  no  |  |
+ 
+
+---
+
+#### [RefundModeConfigResponsePayload](#RefundModeConfigResponsePayload)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | data | [[RefundModeInfo](#RefundModeInfo)] |  no  |  |
+ | success | boolean |  no  |  |
+ 
+
+---
+
+#### [RefundModeInfo](#RefundModeInfo)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | display_name | string? |  yes  |  |
+ | is_active | boolean? |  yes  |  |
+ | options | [[RefundOption](#RefundOption)]? |  yes  |  |
+ | slug | string? |  yes  |  |
+ 
+
+---
+
+#### [RefundOption](#RefundOption)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | name | string? |  yes  |  |
+ | slug | string? |  yes  |  |
+ | type | string? |  yes  |  |
+ | value | string? |  yes  |  |
+ 
+
+---
+
 #### [ReplacementDetails](#ReplacementDetails)
 
  | Properties | Type | Nullable | Description |
@@ -6564,17 +7077,6 @@ Successful Manifest upload!
 
 ---
 
-#### [ReturnConfig1](#ReturnConfig1)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | returnable | boolean? |  yes  |  |
- | time | number? |  yes  |  |
- | unit | string? |  yes  |  |
- 
-
----
-
 #### [SendSmsPayload](#SendSmsPayload)
 
  | Properties | Type | Nullable | Description |
@@ -6582,6 +7084,27 @@ Successful Manifest upload!
  | bag_id | number |  no  | bag_id for the activity history track |
  | data | [SmsDataPayload](#SmsDataPayload)? |  yes  | SMS Data |
  | slug | string |  no  | slug name for the template mapped in pointblank |
+ 
+
+---
+
+#### [SendUserMobileOTP](#SendUserMobileOTP)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | country_code | string? |  yes  |  |
+ | mobile | string |  no  |  |
+ 
+
+---
+
+#### [SendUserMobileOtpResponse](#SendUserMobileOtpResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | data | [PointBlankOtpData](#PointBlankOtpData)? |  yes  |  |
+ | message | string? |  yes  |  |
+ | success | boolean? |  yes  |  |
  
 
 ---
@@ -7030,6 +7553,7 @@ Successful Manifest upload!
  | ---------- | ---- | -------- | ----------- |
  | exclude_bags_next_state | string? |  yes  | State to be change for Remaining Bag/Products |
  | shipments | [[ShipmentsRequest](#ShipmentsRequest)]? |  yes  |  |
+ | split_shipment | boolean? |  yes  | Flag to split shipment |
  | status | string? |  yes  |  |
  
 
@@ -7424,6 +7948,51 @@ Successful Manifest upload!
  | phone | string |  no  |  |
  | pincode | string |  no  |  |
  | state | string |  no  |  |
+ 
+
+---
+
+#### [VerifyMobileOTP](#VerifyMobileOTP)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | fynd_order_id | string |  no  |  |
+ | otp_data | [VerifyOtpData](#VerifyOtpData) |  no  |  |
+ 
+
+---
+
+#### [VerifyOtpData](#VerifyOtpData)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | mobile | string |  no  |  |
+ | otp_code | number |  no  |  |
+ | request_id | string |  no  |  |
+ 
+
+---
+
+#### [VerifyOtpResponse](#VerifyOtpResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | data | [VerifyOtpResponseData](#VerifyOtpResponseData)? |  yes  |  |
+ | message | string? |  yes  |  |
+ | status | number? |  yes  |  |
+ | success | boolean? |  yes  |  |
+ 
+
+---
+
+#### [VerifyOtpResponseData](#VerifyOtpResponseData)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | country_code | string? |  yes  |  |
+ | fynd_order_id | string? |  yes  |  |
+ | message | string? |  yes  |  |
+ | mobile | string? |  yes  |  |
  
 
 ---

@@ -14,11 +14,11 @@ class Catalog {
 
   /**
    * @param {Object} arg - Arg object.
-   * @param {string} arg.id - An `id` is a unique identifier of a collection.
+   * @param {string} arg.id - A `id` is a unique identifier of a collection.
    * @param {CollectionItemUpdate} arg.body
    * @returns {Promise<UpdatedResponse>} - Success response
-   * @summary: Add/Remove items for a collection.
-   * @description: Adds items to a collection specified by its `id`. This API allows you to add items to a specific collection identified by its unique `id`. By utilizing this endpoint, you can expand and enhance the product offerings within a collection, providing users with a wider range of options and choices.
+   * @summary: Add items to a collection
+   * @description: Adds items to a collection specified by its `id`. See `CollectionItemRequest` for the list of attributes needed to add items to an collection.
    */
   async addCollectionItems({ id, body } = {}) {
     const { error } = CatalogValidator.addCollectionItems().validate(
@@ -80,8 +80,8 @@ class Catalog {
    * @param {Object} arg - Arg object.
    * @param {CreateCollection} arg.body
    * @returns {Promise<CollectionCreateResponse>} - Success response
-   * @summary: Create a collection.
-   * @description: A Collection allows you to organize your products into hierarchical groups. This API helps you in creating the collection.
+   * @summary: Add a Collection
+   * @description: Create a collection. See `CreateCollectionRequestSchema` for the list of attributes needed to create a collection and collections/query-options for the available options to create a collection. On successful request, returns a paginated list of collections specified in `CollectionCreateResponse`
    */
   async createCollection({ body } = {}) {
     const { error } = CatalogValidator.createCollection().validate(
@@ -273,9 +273,9 @@ class Catalog {
   /**
    * @param {Object} arg - Arg object.
    * @param {CreateAutocompleteKeyword} arg.body
-   * @returns {Promise<GetAutocompleteWordsData>} - Success response
-   * @summary: Add a custom autocomplete keyword configuration.
-   * @description: Autocomplete keywords configuration help you to extend and customize the behaviour of autocomplete search results in Fynd Platform. This API allows to create the auto-complete configuration for the application.
+   * @returns {Promise<CreateAutocompleteWordsResponse>} - Success response
+   * @summary: Add a Custom Autocomplete Keywords
+   * @description: Create a Custom Autocomplete Keywords. See `CreateAutocompleteKeywordSchema` for the list of attributes needed to create a mapping and /collections/query-options for the available options to create a rule. On successful request, returns a paginated list of collections specified in `CreateAutocompleteKeywordSchema`
    */
   async createCustomAutocompleteRule({ body } = {}) {
     const { error } = CatalogValidator.createCustomAutocompleteRule().validate(
@@ -318,7 +318,7 @@ class Catalog {
 
     const {
       error: res_error,
-    } = CatalogModel.GetAutocompleteWordsData().validate(response, {
+    } = CatalogModel.CreateAutocompleteWordsResponse().validate(response, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -339,8 +339,8 @@ class Catalog {
    * @param {Object} arg - Arg object.
    * @param {CreateSearchKeyword} arg.body
    * @returns {Promise<GetSearchWordsData>} - Success response
-   * @summary: Add custom keywords search for an application.
-   * @description: Custom Search Keyword allows you to map conditions with keywords to give you the ultimate results. This API allows you to add a rule for the custom keyword to a search behaviour for an application. See `CreateSearchKeywordSchema` for the list of attributes needed to create a mapping and /collections/query-options for the available options to create a rule. On successful request, returns a paginated list of collections specified in `CreateSearchKeywordSchema`
+   * @summary: Add a Custom Search Keywords
+   * @description: Create a Custom Search Keywords. See `CreateSearchKeywordSchema` for the list of attributes needed to create a mapping and /collections/query-options for the available options to create a rule. On successful request, returns a paginated list of collections specified in `CreateSearchKeywordSchema`
    */
   async createCustomKeyword({ body } = {}) {
     const { error } = CatalogValidator.createCustomKeyword().validate(
@@ -533,77 +533,11 @@ class Catalog {
 
   /**
    * @param {Object} arg - Arg object.
-   * @param {CreateSearchReranking} arg.body
-   * @returns {Promise<SearchRerankingModel>} - Success response
-   * @summary: Add a Custom Search Keywords and boosting score against it
-   * @description: Search Reranking allows you rank and boost the search of the keywords and products in the product listing. Create a Custom Search Reranking rule. This API allows you to create a custom search re rank rule to re-rank the search in the listing of an application.
-   */
-  async createSearchRerankingConfig({ body } = {}) {
-    const { error } = CatalogValidator.createSearchRerankingConfig().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = CatalogValidator.createSearchRerankingConfig().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message:
-          "Parameter Validation warrnings for createSearchRerankingConfig",
-      });
-      Logger({ level: "WARN", message: warrning });
-    }
-
-    const query_params = {};
-
-    const response = await PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/search/rerank/`,
-      query_params,
-      body
-    );
-
-    const {
-      error: res_error,
-    } = CatalogModel.SearchRerankingModel().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
-
-    if (res_error) {
-      Logger({
-        level: "WARN",
-        message:
-          "Response Validation Warnnings for createSearchRerankingConfig",
-      });
-      Logger({ level: "WARN", message: res_error });
-    }
-
-    return response;
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.id - A `id` is a unique identifier for a specific
-   *   autocomplete keyword map. Pass the `id` of the keywords which you want
-   *   to delete.
+   * @param {string} arg.id - A `id` is a unique identifier for a particular
+   *   detail. Pass the `id` of the keywords which you want to delete.
    * @returns {Promise<DeleteResponse>} - Success response
-   * @summary: Delete a autocomplete keyword config by ID.
-   * @description: Autocomplete keywords configuration help you to extend and customize the behaviour of autocomplete search results in Fynd Platform. This API allows you to delete a keywords by it's `id`.
+   * @summary: Delete a Autocomplete Keywords
+   * @description: Delete a keywords by it's id. Returns an object that tells whether the keywords was deleted successfully
    */
   async deleteAutocompleteKeyword({ id } = {}) {
     const { error } = CatalogValidator.deleteAutocompleteKeyword().validate(
@@ -663,10 +597,10 @@ class Catalog {
 
   /**
    * @param {Object} arg - Arg object.
-   * @param {string} arg.id - An `id` is a unique identifier of a collection.
+   * @param {string} arg.id - A `id` is a unique identifier of a collection.
    * @returns {Promise<DeleteResponse>} - Success response
-   * @summary: Delete a collection.
-   * @description: This API allows you to delete the collection of an application.
+   * @summary: Delete a Collection
+   * @description: Delete a collection by it's id. Returns an object that tells whether the collection was deleted successfully
    */
   async deleteCollection({ id } = {}) {
     const { error } = CatalogValidator.deleteCollection().validate(
@@ -861,12 +795,11 @@ class Catalog {
 
   /**
    * @param {Object} arg - Arg object.
-   * @param {string} arg.id - A `id` is a unique identifier for a specific
-   *   keyword search configuration. Pass the `id` of the keywords which you
-   *   want to delete.
+   * @param {string} arg.id - A `id` is a unique identifier for a particular
+   *   detail. Pass the `id` of the keywords which you want to delete.
    * @returns {Promise<DeleteResponse>} - Success response
-   * @summary: Delete a custom keyword mapping by thier ID.
-   * @description: This API allows you to delete a custom keyword mapping by their ID within an application. Returns an object that tells whether the keywords was deleted successfully
+   * @summary: Delete a Search Keywords
+   * @description: Delete a keywords by it's id. Returns an object that tells whether the keywords was deleted successfully
    */
   async deleteSearchKeywords({ id } = {}) {
     const { error } = CatalogValidator.deleteSearchKeywords().validate(
@@ -926,88 +859,26 @@ class Catalog {
 
   /**
    * @param {Object} arg - Arg object.
-   * @param {string} arg.id - A `id` is a unique identifier for a specific
-   *   keyword search configuration. Pass the `id` of the keywords which you
-   *   want to delete.
-   * @returns {Promise<DeleteRerankResponse>} - Success response
-   * @summary: Delete the search re-ranking configured for an application bt its ID.
-   * @description: Search Reranking allows you rank and boost the search of the keywords and products in the product listing. This API allows you to delete a search re-ranking configured for the application.
-   */
-  async deleteSearchRerankConfig({ id } = {}) {
-    const { error } = CatalogValidator.deleteSearchRerankConfig().validate(
-      {
-        id,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = CatalogValidator.deleteSearchRerankConfig().validate(
-      {
-        id,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: "Parameter Validation warrnings for deleteSearchRerankConfig",
-      });
-      Logger({ level: "WARN", message: warrning });
-    }
-
-    const query_params = {};
-
-    const response = await PlatformAPIClient.execute(
-      this.config,
-      "delete",
-      `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/search/rerank/${id}/`,
-      query_params,
-      undefined
-    );
-
-    const {
-      error: res_error,
-    } = CatalogModel.DeleteRerankResponse().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
-
-    if (res_error) {
-      Logger({
-        level: "WARN",
-        message: "Response Validation Warnnings for deleteSearchRerankConfig",
-      });
-      Logger({ level: "WARN", message: res_error });
-    }
-
-    return response;
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} [arg.q] - The query string for searching collections.
-   * @param {string} [arg.scheduleStatus] - Filter collections by their schedule status.
-   * @param {string} [arg.type] - It is the type of collection.
-   * @param {string[]} [arg.tag] - Filter the collections by a tag.
-   * @param {boolean} [arg.isActive] - Filter collections by active status.
+   * @param {string} [arg.q] - Get collection list filtered by q string,
+   * @param {string} [arg.scheduleStatus] - Get collection list filtered by
+   *   scheduled status,
+   * @param {string} [arg.type] - Type of the collections
+   * @param {string[]} [arg.tags] - Each response will contain next_id param,
+   *   which should be sent back to make pagination work.
+   * @param {boolean} [arg.isActive] - Get collections filtered by active status.
    * @param {number} [arg.pageNo] - The page number to navigate through the
    *   given set of results.
-   * @param {number} [arg.pageSize] - Number of items to retrieve in each page.
+   * @param {number} [arg.pageSize] - Number of items to retrieve in each
+   *   page. Default is 12.
    * @returns {Promise<GetCollectionListingResponse>} - Success response
-   * @summary: List collections of an application.
+   * @summary: List all the collections
    * @description: A Collection allows you to organize your products into hierarchical groups. For example, a dress might be in the category _Clothing_, the individual product might also be in the collection _Summer_. On successful request, returns all the collections as specified in `CollectionListingSchema`
    */
   async getAllCollections({
     q,
     scheduleStatus,
     type,
-    tag,
+    tags,
     isActive,
     pageNo,
     pageSize,
@@ -1017,7 +888,7 @@ class Catalog {
         q,
         scheduleStatus,
         type,
-        tag,
+        tags,
         isActive,
         pageNo,
         pageSize,
@@ -1034,7 +905,7 @@ class Catalog {
         q,
         scheduleStatus,
         type,
-        tag,
+        tags,
         isActive,
         pageNo,
         pageSize,
@@ -1053,7 +924,7 @@ class Catalog {
     query_params["q"] = q;
     query_params["schedule_status"] = scheduleStatus;
     query_params["type"] = type;
-    query_params["tag"] = tag;
+    query_params["tags"] = tags;
     query_params["is_active"] = isActive;
     query_params["page_no"] = pageNo;
     query_params["page_size"] = pageSize;
@@ -1086,19 +957,13 @@ class Catalog {
 
   /**
    * @param {Object} arg - Arg object.
-   * @param {boolean} [arg.isActive] - Filter the custom keyword listing by
-   *   their active status.
-   * @param {string} [arg.q] - It is to search by keywords.
    * @returns {Promise<GetSearchWordsResponse>} - Success response
-   * @summary: List all the custom keyword search added in the application.
-   * @description: Custom Search Keyword allows you to map conditions with keywords to give you the ultimate results. This API allows you to list all the custom keyword search configured for the application.
+   * @summary: List all Search Custom Keyword Listing
+   * @description: Custom Search Keyword allows you to map conditions with keywords to give you the ultimate results
    */
-  async getAllSearchKeyword({ isActive, q } = {}) {
+  async getAllSearchKeyword({} = {}) {
     const { error } = CatalogValidator.getAllSearchKeyword().validate(
-      {
-        isActive,
-        q,
-      },
+      {},
       { abortEarly: false, allowUnknown: true }
     );
     if (error) {
@@ -1107,10 +972,7 @@ class Catalog {
 
     // Showing warrnings if extra unknown parameters are found
     const { error: warrning } = CatalogValidator.getAllSearchKeyword().validate(
-      {
-        isActive,
-        q,
-      },
+      {},
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
@@ -1122,8 +984,6 @@ class Catalog {
     }
 
     const query_params = {};
-    query_params["is_active"] = isActive;
-    query_params["q"] = q;
 
     const response = await PlatformAPIClient.execute(
       this.config,
@@ -1561,6 +1421,8 @@ class Catalog {
    *   **?c=brand:in:voi-jeans|and:::category:nin:t-shirts|shirts**
    * @param {boolean} [arg.filters] - Pass `filters` parameter to fetch the
    *   filter details. This flag is used to fetch all filters
+   * @param {boolean} [arg.isDependent] - This query parameter is used to get
+   *   the dependent products in the listing.
    * @param {string} [arg.sortOn] - The order to sort the list of products on.
    *   The supported sort parameters are popularity, price, redemption and
    *   discount in either ascending or descending order. See the supported
@@ -1583,6 +1445,7 @@ class Catalog {
     f,
     c,
     filters,
+    isDependent,
     sortOn,
     pageId,
     pageSize,
@@ -1596,6 +1459,7 @@ class Catalog {
         f,
         c,
         filters,
+        isDependent,
         sortOn,
         pageId,
         pageSize,
@@ -1618,6 +1482,7 @@ class Catalog {
         f,
         c,
         filters,
+        isDependent,
         sortOn,
         pageId,
         pageSize,
@@ -1640,6 +1505,7 @@ class Catalog {
     query_params["f"] = f;
     query_params["c"] = c;
     query_params["filters"] = filters;
+    query_params["is_dependent"] = isDependent;
     query_params["sort_on"] = sortOn;
     query_params["page_id"] = pageId;
     query_params["page_size"] = pageSize;
@@ -1690,6 +1556,8 @@ class Catalog {
    *   **?c=brand:in:voi-jeans|and:::category:nin:t-shirts|shirts**
    * @param {boolean} [arg.filters] - Pass `filters` parameter to fetch the
    *   filter details. This flag is used to fetch all filters
+   * @param {boolean} [arg.isDependent] - This query parameter is used to get
+   *   the dependent products in the listing.
    * @param {string} [arg.sortOn] - The order to sort the list of products on.
    *   The supported sort parameters are popularity, price, redemption and
    *   discount in either ascending or descending order. See the supported
@@ -1707,6 +1575,7 @@ class Catalog {
     f,
     c,
     filters,
+    isDependent,
     sortOn,
     pageSize,
     itemIds,
@@ -1723,6 +1592,7 @@ class Catalog {
         f: f,
         c: c,
         filters: filters,
+        isDependent: isDependent,
         sortOn: sortOn,
         pageId: pageId,
         pageSize: pageSize,
@@ -2256,8 +2126,8 @@ class Catalog {
   /**
    * @param {Object} arg - Arg object.
    * @returns {Promise<GetAutocompleteWordsResponse>} - Success response
-   * @summary: List all autocomplete keyword configuration of an application.
-   * @description: The custom autocomplete keyword allows you to map conditions with keywords to give you the autocomplete results. This API allows you to list all the autocomplete keyword configured for an application.
+   * @summary: List all Autocomplete Keyword Listing
+   * @description: Custom Autocomplete Keyword allows you to map conditions with keywords to give you the ultimate results
    */
   async getAutocompleteConfig({} = {}) {
     const { error } = CatalogValidator.getAutocompleteConfig().validate(
@@ -2313,12 +2183,11 @@ class Catalog {
 
   /**
    * @param {Object} arg - Arg object.
-   * @param {string} arg.id - A `id` is a unique identifier for a specific
-   *   autocomplete keyword map. Pass the `id` of the keywords which you want
-   *   to retrieve.
-   * @returns {Promise<GetAutocompleteWordsData>} - Success response
-   * @summary: Get the detail of the autocomplete config by ID.
-   * @description: Autocomplete keywords configuration help you to extend and customize the behaviour of autocomplete search results in Fynd Platform. This API allows you to get the details of a words by its `id`.
+   * @param {string} arg.id - A `id` is a unique identifier for a particular
+   *   detail. Pass the `id` of the keywords which you want to retrieve.
+   * @returns {Promise<GetAutocompleteWordsResponse>} - Success response
+   * @summary: Get a Autocomplete Keywords Details
+   * @description: Get the details of a words by its `id`. If successful, returns a keywords resource in the response body specified in `GetAutocompleteWordsResponseSchema`
    */
   async getAutocompleteKeywordDetail({ id } = {}) {
     const { error } = CatalogValidator.getAutocompleteKeywordDetail().validate(
@@ -2361,7 +2230,7 @@ class Catalog {
 
     const {
       error: res_error,
-    } = CatalogModel.GetAutocompleteWordsData().validate(response, {
+    } = CatalogModel.GetAutocompleteWordsResponse().validate(response, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -2438,10 +2307,10 @@ class Catalog {
 
   /**
    * @param {Object} arg - Arg object.
-   * @param {string} [arg.brand] - The slug of the brand.
+   * @param {string} [arg.brand] - Brand slug
    * @returns {Promise<CatalogInsightResponse>} - Success response
-   * @summary: Retrieve the analytics data of catalog and inventory.
-   * @description: The Catalog Insights API provides information about the count of catalog-related data, including products, brands, departments, and categories that have been made available based on the configuration of the application. This API allows you to retrieve statistical insights and metrics regarding the catalog, helping you gain valuable information about the live data in your catalog.
+   * @summary: Analytics data of catalog and inventory.
+   * @description: Catalog Insights api returns the count of catalog related data like products, brands, departments and categories that have been made live as per configuration of the app.
    */
   async getCatalogInsights({ brand } = {}) {
     const { error } = CatalogValidator.getCatalogInsights().validate(
@@ -2569,8 +2438,8 @@ class Catalog {
    *   unique identifier of an object. Pass the `slug` of the collection which
    *   you want to retrieve.
    * @returns {Promise<CollectionDetailResponse>} - Success response
-   * @summary: Retrieve the collection details by its slug.
-   * @description: This API retrieves the detail of the collection in an application.
+   * @summary: Get a particular collection
+   * @description: Get the details of a collection by its `slug`. If successful, returns a Collection resource in the response body specified in `CollectionDetailResponse`
    */
   async getCollectionDetail({ slug } = {}) {
     const { error } = CatalogValidator.getCollectionDetail().validate(
@@ -2628,36 +2497,24 @@ class Catalog {
 
   /**
    * @param {Object} arg - Arg object.
-   * @param {string} arg.id - An `id` is a unique identifier of a collection.
-   * @param {string} [arg.f] - Filter the products in the collection using
-   *   key-value pairs.
-   * @param {string} [arg.sortOn] - It is the attribute's value on which the
-   *   products will be sorted for a collection.
-   * @param {number} [arg.pageId] - It is the currency id of the page in the pagniation.
+   * @param {string} arg.id - A `id` is a unique identifier of a collection.
+   * @param {string} [arg.sortOn] - Each response will contain sort_on param,
+   *   which should be sent back to make pagination work.
+   * @param {string} [arg.pageId] - Each response will contain next_id param,
+   *   which should be sent back to make pagination work.
    * @param {number} [arg.pageSize] - Number of items to retrieve in each
    *   page. Default is 12.
-   * @param {string} [arg.xCurrencyCode] - The currency code used for pricing
-   *   and monetary transactions.
    * @returns {Promise<GetCollectionItemsResponse>} - Success response
-   * @summary: Retrieve items of a collection.
-   * @description: A Collection API allows you to organize your products into hierarchical groups. This API provides a list of items and filters that can be applied to the items within a collection. It enables you to retrieve specific items based on various filter criteria.The API allows you to fetch information about items in the collection, including their attributes, categories, media URLs, pricing details, and more. Additionally, you can apply filters such as size and color to narrow down the search results and find the desired items. By utilizing this API, you can efficiently manage and display collections of products, making it easier for users to navigate and explore your e-commerce platform. It offers flexibility in organizing and presenting products, enhancing the overall user experience.
+   * @summary: Get the items for a collection
+   * @description: Get items from a collection specified by its `id`.
    */
-  async getCollectionItems({
-    id,
-    f,
-    sortOn,
-    pageId,
-    pageSize,
-    xCurrencyCode,
-  } = {}) {
+  async getCollectionItems({ id, sortOn, pageId, pageSize } = {}) {
     const { error } = CatalogValidator.getCollectionItems().validate(
       {
         id,
-        f,
         sortOn,
         pageId,
         pageSize,
-        xCurrencyCode,
       },
       { abortEarly: false, allowUnknown: true }
     );
@@ -2669,11 +2526,9 @@ class Catalog {
     const { error: warrning } = CatalogValidator.getCollectionItems().validate(
       {
         id,
-        f,
         sortOn,
         pageId,
         pageSize,
-        xCurrencyCode,
       },
       { abortEarly: false, allowUnknown: false }
     );
@@ -2686,7 +2541,6 @@ class Catalog {
     }
 
     const query_params = {};
-    query_params["f"] = f;
     query_params["sort_on"] = sortOn;
     query_params["page_id"] = pageId;
     query_params["page_size"] = pageSize;
@@ -3294,20 +3148,13 @@ class Catalog {
 
   /**
    * @param {Object} arg - Arg object.
-   * @param {string} [arg.f] - Filter the products in the collection using
-   *   key-value pairs.
-   * @param {string} [arg.sortOn] - Attribute key on which the products should
-   *   be sorted.
    * @returns {Promise<GetCollectionQueryOptionResponse>} - Success response
-   * @summary: Retrieve the filters and sort options for collections.
-   * @description: A Collection allows you to organize your products into hierarchical groups. This API retrieves the query filters that can be used to configure a collection for a specific seller account and sale channel.
+   * @summary: Get query filters to configure a collection
+   * @description: Get query filters to configure a collection
    */
-  async getQueryFilters({ f, sortOn } = {}) {
+  async getQueryFilters({} = {}) {
     const { error } = CatalogValidator.getQueryFilters().validate(
-      {
-        f,
-        sortOn,
-      },
+      {},
       { abortEarly: false, allowUnknown: true }
     );
     if (error) {
@@ -3316,10 +3163,7 @@ class Catalog {
 
     // Showing warrnings if extra unknown parameters are found
     const { error: warrning } = CatalogValidator.getQueryFilters().validate(
-      {
-        f,
-        sortOn,
-      },
+      {},
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
@@ -3331,8 +3175,6 @@ class Catalog {
     }
 
     const query_params = {};
-    query_params["f"] = f;
-    query_params["sort_on"] = sortOn;
 
     const response = await PlatformAPIClient.execute(
       this.config,
@@ -3362,12 +3204,11 @@ class Catalog {
 
   /**
    * @param {Object} arg - Arg object.
-   * @param {string} arg.id - A `id` is a unique identifier for a specific
-   *   keyword search configuration. Pass the `id` of the keywords which you
-   *   want to retrieve.
-   * @returns {Promise<GetSearchWordsData>} - Success response
-   * @summary: Get a custom keyword search detail by their ID.
-   * @description: The API allows you to get the details of a words by its `id`. If successful, returns a Collection resource in the response body specified in `GetSearchWordsDetailResponseSchema`
+   * @param {string} arg.id - A `id` is a unique identifier for a particular
+   *   detail. Pass the `id` of the keywords which you want to retrieve.
+   * @returns {Promise<GetSearchWordsDetailResponse>} - Success response
+   * @summary: Get a Search Keywords Details
+   * @description: Get the details of a words by its `id`. If successful, returns a Collection resource in the response body specified in `GetSearchWordsDetailResponseSchema`
    */
   async getSearchKeywords({ id } = {}) {
     const { error } = CatalogValidator.getSearchKeywords().validate(
@@ -3407,7 +3248,7 @@ class Catalog {
 
     const {
       error: res_error,
-    } = CatalogModel.GetSearchWordsData().validate(response, {
+    } = CatalogModel.GetSearchWordsDetailResponse().validate(response, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -3416,140 +3257,6 @@ class Catalog {
       Logger({
         level: "WARN",
         message: "Response Validation Warnnings for getSearchKeywords",
-      });
-      Logger({ level: "WARN", message: res_error });
-    }
-
-    return response;
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.id - A `id` is a unique identifier for a specific
-   *   keyword search configuration. Pass the `id` of the keywords which you
-   *   want to retrieve.
-   * @returns {Promise<SearchRerankingModel>} - Success response
-   * @summary: Get the search rerank details of an application by its ID.
-   * @description: Search Reranking allows you rank and boost the search of the keywords and products in the product listing. This API allows you to get the data of a search re-ranking configured for the application by their ID.
-   */
-  async getSearchRerankingConfig({ id } = {}) {
-    const { error } = CatalogValidator.getSearchRerankingConfig().validate(
-      {
-        id,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = CatalogValidator.getSearchRerankingConfig().validate(
-      {
-        id,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: "Parameter Validation warrnings for getSearchRerankingConfig",
-      });
-      Logger({ level: "WARN", message: warrning });
-    }
-
-    const query_params = {};
-
-    const response = await PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/search/rerank/${id}/`,
-      query_params,
-      undefined
-    );
-
-    const {
-      error: res_error,
-    } = CatalogModel.SearchRerankingModel().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
-
-    if (res_error) {
-      Logger({
-        level: "WARN",
-        message: "Response Validation Warnnings for getSearchRerankingConfig",
-      });
-      Logger({ level: "WARN", message: res_error });
-    }
-
-    return response;
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {boolean} [arg.isActive] - Filter the custom keyword listing by
-   *   their active status.
-   * @param {string} [arg.q] - It is to search by keywords.
-   * @returns {Promise<SearchRerankListing>} - Success response
-   * @summary: List all the search reranking config in an application.
-   * @description: Search Reranking allows you rank and boost the search of the keywords and products in the product listing. This API allows you to list all the search re-ranking configured for the application.
-   */
-  async listSearchRerankConfig({ isActive, q } = {}) {
-    const { error } = CatalogValidator.listSearchRerankConfig().validate(
-      {
-        isActive,
-        q,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = CatalogValidator.listSearchRerankConfig().validate(
-      {
-        isActive,
-        q,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: "Parameter Validation warrnings for listSearchRerankConfig",
-      });
-      Logger({ level: "WARN", message: warrning });
-    }
-
-    const query_params = {};
-    query_params["is_active"] = isActive;
-    query_params["q"] = q;
-
-    const response = await PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/search/rerank/`,
-      query_params,
-      undefined
-    );
-
-    const {
-      error: res_error,
-    } = CatalogModel.SearchRerankListing().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
-
-    if (res_error) {
-      Logger({
-        level: "WARN",
-        message: "Response Validation Warnnings for listSearchRerankConfig",
       });
       Logger({ level: "WARN", message: res_error });
     }
@@ -3942,13 +3649,12 @@ class Catalog {
 
   /**
    * @param {Object} arg - Arg object.
-   * @param {string} arg.id - A `id` is a unique identifier for a specific
-   *   autocomplete keyword map. Pass the `id` of the keywords which you want
-   *   to delete.
-   * @param {GetAutocompleteWordsData} arg.body
-   * @returns {Promise<UpdateAutocompleteWordData>} - Success response
-   * @summary: Update a autocomplete keyword config by ID.
-   * @description: Autocomplete keywords configuration help you to extend and customize the behaviour of autocomplete search results in Fynd Platform. This API allows you to update a mapping by it's `id`.
+   * @param {string} arg.id - A `id` is a unique identifier for a particular
+   *   detail. Pass the `id` of the keywords which you want to delete.
+   * @param {CreateAutocompleteKeyword} arg.body
+   * @returns {Promise<GetAutocompleteWordsResponse>} - Success response
+   * @summary: Create & Update Autocomplete Keyword
+   * @description: Update a mapping by it's id. On successful request, returns the updated Keyword mapping
    */
   async updateAutocompleteKeyword({ id, body } = {}) {
     const { error } = CatalogValidator.updateAutocompleteKeyword().validate(
@@ -3992,7 +3698,7 @@ class Catalog {
 
     const {
       error: res_error,
-    } = CatalogModel.UpdateAutocompleteWordData().validate(response, {
+    } = CatalogModel.GetAutocompleteWordsResponse().validate(response, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -4010,11 +3716,11 @@ class Catalog {
 
   /**
    * @param {Object} arg - Arg object.
-   * @param {string} arg.id - An `id` is a unique identifier of a collection.
+   * @param {string} arg.id - A `id` is a unique identifier of a collection.
    * @param {UpdateCollection} arg.body
-   * @returns {Promise<CollectionUpdateResponse>} - Success response
-   * @summary: Update a collection by its ID.
-   * @description: This API enables you to update a collection by specifying its unique identifier (`ID`). By utilizing this endpoint, you can easily modify and refine the attributes, settings, and contents of a specific collection, ensuring it remains relevant and aligned with your business goals.
+   * @returns {Promise<UpdateCollection>} - Success response
+   * @summary: Update a collection
+   * @description: Update a collection by it's id. On successful request, returns the updated collection
    */
   async updateCollection({ id, body } = {}) {
     const { error } = CatalogValidator.updateCollection().validate(
@@ -4056,7 +3762,7 @@ class Catalog {
 
     const {
       error: res_error,
-    } = CatalogModel.CollectionUpdateResponse().validate(response, {
+    } = CatalogModel.UpdateCollection().validate(response, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -4278,12 +3984,12 @@ class Catalog {
 
   /**
    * @param {Object} arg - Arg object.
-   * @param {string} arg.id - A `id` is a unique identifier for a specific
-   *   keyword search configuration.
+   * @param {string} arg.id - A `id` is a unique identifier for a particular
+   *   detail. Pass the `id` of the keywords which you want to delete.
    * @param {CreateSearchKeyword} arg.body
    * @returns {Promise<GetSearchWordsData>} - Success response
-   * @summary: Update the search keyword configuraton by their ID.
-   * @description: Thist API allows you to update the search keyword configuration by their ID.
+   * @summary: Update Search Keyword
+   * @description: Update Search Keyword by its id. On successful request, returns the updated collection
    */
   async updateSearchKeywords({ id, body } = {}) {
     const { error } = CatalogValidator.updateSearchKeywords().validate(
@@ -4336,74 +4042,6 @@ class Catalog {
       Logger({
         level: "WARN",
         message: "Response Validation Warnnings for updateSearchKeywords",
-      });
-      Logger({ level: "WARN", message: res_error });
-    }
-
-    return response;
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.id - A `id` is a unique identifier for a specific
-   *   keyword search configuration. Pass the `id` of the keywords which you
-   *   want to retrieve.
-   * @param {CreateSearchReranking} arg.body
-   * @returns {Promise<SearchRerankingModel>} - Success response
-   * @summary: Update the search rerank details of an application by its ID.
-   * @description: Search Reranking allows you rank and boost the search of the keywords and products in the product listing. This API allows you to update the search re-ranking configured for the application.
-   */
-  async updateSearchRerankConfig({ id, body } = {}) {
-    const { error } = CatalogValidator.updateSearchRerankConfig().validate(
-      {
-        id,
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = CatalogValidator.updateSearchRerankConfig().validate(
-      {
-        id,
-        body,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: "Parameter Validation warrnings for updateSearchRerankConfig",
-      });
-      Logger({ level: "WARN", message: warrning });
-    }
-
-    const query_params = {};
-
-    const response = await PlatformAPIClient.execute(
-      this.config,
-      "put",
-      `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/search/rerank/${id}/`,
-      query_params,
-      body
-    );
-
-    const {
-      error: res_error,
-    } = CatalogModel.SearchRerankingModel().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
-
-    if (res_error) {
-      Logger({
-        level: "WARN",
-        message: "Response Validation Warnnings for updateSearchRerankConfig",
       });
       Logger({ level: "WARN", message: res_error });
     }

@@ -1,17 +1,7 @@
 const Joi = require("joi");
 
 class CommonModel {
-  static ApplicationAuth() {
-    return Joi.object({
-      enabled: Joi.boolean(),
-    });
-  }
-  static ApplicationCors() {
-    return Joi.object({
-      domains: Joi.array().items(Joi.string().allow("")),
-    });
-  }
-  static ApplicationData() {
+  static Application() {
     return Joi.object({
       __v: Joi.number(),
       _id: Joi.string().allow(""),
@@ -35,10 +25,19 @@ class CommonModel {
       name: Joi.string().allow(""),
       owner: Joi.string().allow(""),
       redirections: Joi.array().items(CommonModel.ApplicationRedirections()),
-      slug: Joi.string().allow(""),
       token: Joi.string().allow(""),
       updated_at: Joi.string().allow(""),
       website: CommonModel.ApplicationWebsite(),
+    });
+  }
+  static ApplicationAuth() {
+    return Joi.object({
+      enabled: Joi.boolean(),
+    });
+  }
+  static ApplicationCors() {
+    return Joi.object({
+      domains: Joi.array().items(Joi.string().allow("")),
     });
   }
   static ApplicationMeta() {
@@ -56,7 +55,7 @@ class CommonModel {
   }
   static ApplicationResponse() {
     return Joi.object({
-      application: CommonModel.ApplicationData(),
+      application: CommonModel.Application(),
     });
   }
   static ApplicationWebsite() {
@@ -92,6 +91,23 @@ class CommonModel {
       verified: Joi.boolean(),
     });
   }
+  static LocationCountry() {
+    return Joi.object({
+      __v: Joi.number(),
+      _id: Joi.string().allow(""),
+      capital: Joi.string().allow(""),
+      currency: Joi.string().allow(""),
+      default_currency: CommonModel.LocationDefaultCurrency(),
+      default_language: CommonModel.LocationDefaultLanguage(),
+      iso2: Joi.string().allow(""),
+      iso3: Joi.string().allow(""),
+      name: Joi.string().allow(""),
+      parent: Joi.string().allow(""),
+      phone_code: Joi.string().allow(""),
+      type: Joi.string().allow(""),
+      uid: Joi.number(),
+    });
+  }
   static LocationDefaultCurrency() {
     return Joi.object({
       code: Joi.string().allow(""),
@@ -105,30 +121,9 @@ class CommonModel {
       name: Joi.string().allow(""),
     });
   }
-  static LocationDetails() {
-    return Joi.object({
-      __v: Joi.number(),
-      _id: Joi.string().allow(""),
-      capital: Joi.string().allow(""),
-      country_code: Joi.string().allow(""),
-      currency: Joi.string().allow(""),
-      default_currency: CommonModel.LocationDefaultCurrency(),
-      default_language: CommonModel.LocationDefaultLanguage(),
-      iso2: Joi.string().allow(""),
-      iso3: Joi.string().allow(""),
-      latitude: Joi.string().allow(""),
-      longitude: Joi.string().allow(""),
-      name: Joi.string().allow(""),
-      parent: Joi.string().allow(""),
-      phone_code: Joi.string().allow(""),
-      state_code: Joi.string().allow(""),
-      type: Joi.string().allow(""),
-      uid: Joi.number(),
-    });
-  }
   static Locations() {
     return Joi.object({
-      items: Joi.array().items(CommonModel.LocationDetails()),
+      items: Joi.array().items(Joi.any()),
     });
   }
   static NotFound() {

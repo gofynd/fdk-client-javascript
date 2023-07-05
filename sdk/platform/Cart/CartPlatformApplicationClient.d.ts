@@ -399,8 +399,8 @@ declare class Cart {
     }): Promise<CartItemCountResponse>;
     /**
      * @param {Object} arg - Arg object.
-     * @param {string} [arg.entityType] - Entity_type as coupon or promotion
-     * @param {boolean} [arg.isHidden] - Show Promo Coupon Config or not
+     * @param {string} [arg.entityType] - Entity_type as promotion or coupon
+     * @param {boolean} [arg.isHidden] - Promo-coupon config shown or not
      * @returns {Promise<ActivePromosResponse>} - Success response
      * @summary: Fetch all promos that are set as active
      * @description: Use this API to get list of all the active promos/coupons.
@@ -633,28 +633,36 @@ declare class Cart {
      * @param {Object} arg - Arg object.
      * @param {string} [arg.id] -
      * @param {boolean} [arg.buyNow] -
+     * @param {string} [arg.orderType] - The order type of shipment HomeDelivery
+     *   - If the customer wants the order home-delivered PickAtStore - If the
+     *   customer wants the handover of an order at the store itself.
      * @param {UpdateCartPaymentRequest} arg.body
      * @returns {Promise<CartDetailResponse>} - Success response
      * @summary: Update cart payment
      * @description: Use this API to update cart payment.
      */
-    selectPaymentMode({ body, id, buyNow }?: {
+    selectPaymentMode({ body, id, buyNow, orderType }?: {
         id?: string;
         buyNow?: boolean;
+        orderType?: string;
         body: UpdateCartPaymentRequest;
     }): Promise<CartDetailResponse>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} [arg.id] -
      * @param {boolean} [arg.buyNow] -
+     * @param {string} [arg.orderType] - The order type of shipment HomeDelivery
+     *   - If the customer wants the order home-delivered PickAtStore - If the
+     *   customer wants the handover of an order at the store itself.
      * @param {UpdateCartPaymentRequestV2} arg.body
      * @returns {Promise<CartDetailResponse>} - Success response
      * @summary: Update cart payment
      * @description: Use this API to update cart payment.
      */
-    selectPaymentModeV2({ body, id, buyNow }?: {
+    selectPaymentModeV2({ body, id, buyNow, orderType }?: {
         id?: string;
         buyNow?: boolean;
+        orderType?: string;
         body: UpdateCartPaymentRequestV2;
     }): Promise<CartDetailResponse>;
     /**

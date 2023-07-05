@@ -127,14 +127,15 @@ class Cart {
    * @param {boolean} [arg.b] -
    * @param {string} [arg.areaCode] -
    * @param {boolean} [arg.buyNow] -
+   * @param {string} [arg.id] -
    * @param {AddCartRequest} arg.body
    * @returns {Promise<AddCartDetailResponse>} - Success response
    * @summary: Add items to cart
    * @description: Use this API to add items to the cart.
    */
-  async addItems({ body, i, b, areaCode, buyNow } = {}) {
+  async addItems({ body, i, b, areaCode, buyNow, id } = {}) {
     const { error } = CartValidator.addItems().validate(
-      { body, i, b, areaCode, buyNow },
+      { body, i, b, areaCode, buyNow, id },
       { abortEarly: false, allowUnknown: true }
     );
     if (error) {
@@ -143,7 +144,7 @@ class Cart {
 
     // Showing warrnings if extra unknown parameters are found
     const { error: warrning } = CartValidator.addItems().validate(
-      { body, i, b, areaCode, buyNow },
+      { body, i, b, areaCode, buyNow, id },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
@@ -159,6 +160,7 @@ class Cart {
     query_params["b"] = b;
     query_params["area_code"] = areaCode;
     query_params["buy_now"] = buyNow;
+    query_params["id"] = id;
 
     const xHeaders = {};
 
@@ -1238,13 +1240,14 @@ class Cart {
    *   /service/application/catalog/v1.0/products/
    * @param {number} [arg.pageSize] - Number of offers to be fetched to show
    * @param {string} [arg.promotionGroup] - Type of promotion groups
+   * @param {number} [arg.storeId] - Store id
    * @returns {Promise<PromotionOffersResponse>} - Success response
    * @summary: Fetch available promotions
    * @description: Use this API to get top 5 offers available for current product
    */
-  async getPromotionOffers({ slug, pageSize, promotionGroup } = {}) {
+  async getPromotionOffers({ slug, pageSize, promotionGroup, storeId } = {}) {
     const { error } = CartValidator.getPromotionOffers().validate(
-      { slug, pageSize, promotionGroup },
+      { slug, pageSize, promotionGroup, storeId },
       { abortEarly: false, allowUnknown: true }
     );
     if (error) {
@@ -1253,7 +1256,7 @@ class Cart {
 
     // Showing warrnings if extra unknown parameters are found
     const { error: warrning } = CartValidator.getPromotionOffers().validate(
-      { slug, pageSize, promotionGroup },
+      { slug, pageSize, promotionGroup, storeId },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
@@ -1268,6 +1271,7 @@ class Cart {
     query_params["slug"] = slug;
     query_params["page_size"] = pageSize;
     query_params["promotion_group"] = promotionGroup;
+    query_params["store_id"] = storeId;
 
     const xHeaders = {};
 
@@ -1920,6 +1924,10 @@ class Cart {
    * @param {string} [arg.paymentIdentifier] -
    * @param {string} [arg.aggregatorName] -
    * @param {string} [arg.merchantCode] -
+   * @param {string} [arg.iin] -
+   * @param {string} [arg.network] -
+   * @param {string} [arg.type] -
+   * @param {string} [arg.cardId] -
    * @returns {Promise<PaymentCouponValidate>} - Success response
    * @summary: Verify the coupon eligibility against the payment mode
    * @description: Use this API to validate a coupon against the payment mode such as NetBanking, Wallet, UPI etc.
@@ -1932,6 +1940,10 @@ class Cart {
     paymentIdentifier,
     aggregatorName,
     merchantCode,
+    iin,
+    network,
+    type,
+    cardId,
   } = {}) {
     const { error } = CartValidator.validateCouponForPayment().validate(
       {
@@ -1942,6 +1954,10 @@ class Cart {
         paymentIdentifier,
         aggregatorName,
         merchantCode,
+        iin,
+        network,
+        type,
+        cardId,
       },
       { abortEarly: false, allowUnknown: true }
     );
@@ -1961,6 +1977,10 @@ class Cart {
         paymentIdentifier,
         aggregatorName,
         merchantCode,
+        iin,
+        network,
+        type,
+        cardId,
       },
       { abortEarly: false, allowUnknown: false }
     );
@@ -1980,6 +2000,10 @@ class Cart {
     query_params["payment_identifier"] = paymentIdentifier;
     query_params["aggregator_name"] = aggregatorName;
     query_params["merchant_code"] = merchantCode;
+    query_params["iin"] = iin;
+    query_params["network"] = network;
+    query_params["type"] = type;
+    query_params["card_id"] = cardId;
 
     const xHeaders = {};
 

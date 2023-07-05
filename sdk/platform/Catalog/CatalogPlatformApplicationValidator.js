@@ -54,12 +54,6 @@ class CatalogValidator {
     }).required();
   }
 
-  static createSearchRerankingConfig() {
-    return Joi.object({
-      body: CatalogModel.CreateSearchReranking().required(),
-    }).required();
-  }
-
   static deleteAutocompleteKeyword() {
     return Joi.object({
       id: Joi.string().allow("").required(),
@@ -92,18 +86,12 @@ class CatalogValidator {
     }).required();
   }
 
-  static deleteSearchRerankConfig() {
-    return Joi.object({
-      id: Joi.string().allow("").required(),
-    }).required();
-  }
-
   static getAllCollections() {
     return Joi.object({
       q: Joi.string().allow(""),
       scheduleStatus: Joi.string().allow(""),
       type: Joi.string().allow(""),
-      tag: Joi.array().items(Joi.string().allow("")),
+      tags: Joi.array().items(Joi.string().allow("")),
       isActive: Joi.boolean(),
       pageNo: Joi.number(),
       pageSize: Joi.number(),
@@ -111,10 +99,7 @@ class CatalogValidator {
   }
 
   static getAllSearchKeyword() {
-    return Joi.object({
-      isActive: Joi.boolean(),
-      q: Joi.string().allow(""),
-    }).required();
+    return Joi.object({}).required();
   }
 
   static getAppInventory() {
@@ -165,6 +150,7 @@ class CatalogValidator {
       f: Joi.string().allow(""),
       c: Joi.string().allow(""),
       filters: Joi.boolean(),
+      isDependent: Joi.boolean(),
       sortOn: Joi.string().allow(""),
       pageId: Joi.string().allow(""),
       pageSize: Joi.number(),
@@ -244,11 +230,9 @@ class CatalogValidator {
   static getCollectionItems() {
     return Joi.object({
       id: Joi.string().allow("").required(),
-      f: Joi.string().allow(""),
       sortOn: Joi.string().allow(""),
-      pageId: Joi.number(),
+      pageId: Joi.string().allow(""),
       pageSize: Joi.number(),
-      xCurrencyCode: Joi.string().allow(""),
     }).required();
   }
 
@@ -310,28 +294,12 @@ class CatalogValidator {
   }
 
   static getQueryFilters() {
-    return Joi.object({
-      f: Joi.string().allow(""),
-      sortOn: Joi.string().allow(""),
-    }).required();
+    return Joi.object({}).required();
   }
 
   static getSearchKeywords() {
     return Joi.object({
       id: Joi.string().allow("").required(),
-    }).required();
-  }
-
-  static getSearchRerankingConfig() {
-    return Joi.object({
-      id: Joi.string().allow("").required(),
-    }).required();
-  }
-
-  static listSearchRerankConfig() {
-    return Joi.object({
-      isActive: Joi.boolean(),
-      q: Joi.string().allow(""),
     }).required();
   }
 
@@ -379,7 +347,7 @@ class CatalogValidator {
   static updateAutocompleteKeyword() {
     return Joi.object({
       id: Joi.string().allow("").required(),
-      body: CatalogModel.GetAutocompleteWordsData().required(),
+      body: CatalogModel.CreateAutocompleteKeyword().required(),
     }).required();
   }
 
@@ -416,13 +384,6 @@ class CatalogValidator {
     return Joi.object({
       id: Joi.string().allow("").required(),
       body: CatalogModel.CreateSearchKeyword().required(),
-    }).required();
-  }
-
-  static updateSearchRerankConfig() {
-    return Joi.object({
-      id: Joi.string().allow("").required(),
-      body: CatalogModel.CreateSearchReranking().required(),
     }).required();
   }
 }

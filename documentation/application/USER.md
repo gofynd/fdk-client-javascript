@@ -3816,7 +3816,6 @@ Success. Returns a JSON object as shown below. Refer `VerifyOtpSuccess` for more
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | action | string? |  yes  |  |
- | captcha_code | string? |  yes  |  |
  | email | string? |  yes  |  |
  | register_token | string? |  yes  |  |
  | token | string? |  yes  |  |

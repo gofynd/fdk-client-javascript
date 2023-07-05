@@ -20,7 +20,6 @@ class ConfigurationModel {
     return Joi.object({
       bulk_coupons: Joi.boolean(),
       delivery_charges: ConfigurationModel.DeliveryCharges(),
-      empty_cart: Joi.boolean(),
       enabled: Joi.boolean(),
       max_cart_items: Joi.number(),
       min_cart_value: Joi.number(),
@@ -150,7 +149,6 @@ class ConfigurationModel {
       redirections: Joi.array().items(
         ConfigurationModel.ApplicationRedirections()
       ),
-      slug: Joi.string().allow(""),
       token: Joi.string().allow(""),
       updated_at: Joi.string().allow(""),
       website: ConfigurationModel.ApplicationWebsite(),
@@ -177,7 +175,6 @@ class ConfigurationModel {
       logo: ConfigurationModel.SecureUrl().required(),
       mobile_logo: ConfigurationModel.SecureUrl().required(),
       name: Joi.string().allow("").required(),
-      slug: Joi.string().allow(""),
     });
   }
   static ApplicationInformation() {
@@ -722,7 +719,7 @@ class ConfigurationModel {
       city: Joi.string().allow(""),
       country: Joi.string().allow(""),
       loc: Joi.string().allow(""),
-      phone: Joi.array().items(ConfigurationModel.InformationPhone()),
+      phone: ConfigurationModel.InformationPhone(),
       pincode: Joi.number(),
     });
   }

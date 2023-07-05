@@ -1545,7 +1545,6 @@ Success
  | name | string? |  yes  | Name of the sales channel, e.g. Zenz Fashion |
  | owner | string? |  yes  | The unique identifier (24-digit Mongo Object ID) of owner who owns the application |
  | redirections | [[ApplicationRedirections](#ApplicationRedirections)]? |  yes  |  |
- | slug | string? |  yes  |  |
  | token | string? |  yes  | Random generated fix length string for sales channel. It is required and auto-generated. |
  | updated_at | string? |  yes  | ISO 8601 timestamp of sales channel updation |
  | website | [ApplicationWebsite](#ApplicationWebsite)? |  yes  |  |
@@ -1595,7 +1594,6 @@ Success
  | logo | [SecureUrl](#SecureUrl) |  no  |  |
  | mobile_logo | [SecureUrl](#SecureUrl) |  no  |  |
  | name | string |  no  | Name of the sales channel. It is required. |
- | slug | string? |  yes  | The unique identifier for the sales channel details |
  
 
 ---
@@ -2105,7 +2103,7 @@ Success
  | city | string? |  yes  | Name of the city, e.g. Mumbai |
  | country | string? |  yes  | Name of the country, e.g. India |
  | loc | string? |  yes  | Co-ordinates of the location |
- | phone | [[InformationPhone](#InformationPhone)]? |  yes  |  |
+ | phone | [InformationPhone](#InformationPhone)? |  yes  |  |
  | pincode | number? |  yes  | 6-digit PIN Code of the city, e.g. 400001 |
  
 

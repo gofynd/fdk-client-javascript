@@ -427,43 +427,42 @@ Success
 ```json
 {
   "name": "Uniket B2B",
-  "description": "Uniket",
+  "description": "Uniket B2B - India's Fastest Growing Retail Store - Aapki Badhti Dukaan",
   "logo": {
-    "secure_url": "https://cdn.pixelbin.io/v2/falling-surf-7c8bb8/fyndnp/wrkr/x5/company/1/applications/000000000000000000000004/application/pictures/free-logo/original/9TiHPuNrQ-Uniket-B2B.png"
+    "secure_url": "https://hdn-1.addsale.com/x0/company/1/applications/000000000000000000000004/application/pictures/free-logo/original/oEf3SQjda-Uniket-B2B.png"
   },
   "mobile_logo": {
-    "secure_url": "https://cdn.pixelbin.io/v2/falling-surf-7c8bb8/fyndnp/wrkr/x5/company/1/applications/000000000000000000000004/application/pictures/free-logo/original/gWleT4PUn-Uniket-B2B.png"
+    "secure_url": "https://hdn-1.addsale.com/x0/company/1/applications/000000000000000000000004/application/pictures/free-logo/original/oEf3SQjda-Uniket-B2B.png"
   },
   "favicon": {
-    "secure_url": "https://cdn.pixelbin.io/v2/falling-surf-7c8bb8/fyndnp/wrkr/x5/company/1/applications/000000000000000000000004/application/pictures/favicon/original/U-pbhmQ0n-Uniket-B2B.png"
+    "secure_url": "https://hdn-1.addsale.com/x0/company/1/applications/000000000000000000000004/application/pictures/favicon/original/y3h6SSlY5-Uniket-B2B.png"
   },
   "banner": {
-    "secure_url": ""
+    "secure_url": "https://hdn-1.addsale.com/x0/company/1/applications/000000000000000000000004/application/pictures/landscape-banner/original/uSwlNpygq-Uniket-B2B.png"
   },
   "domain": {
     "verified": true,
     "is_primary": true,
-    "is_shortlink": true,
-    "_id": "63a1586c57475b0b82154707",
-    "name": "uniket.hostx5.de"
+    "is_shortlink": false,
+    "_id": "5eb1177748312a3bd55d0f1e",
+    "name": "uniket.hostx0.de"
   },
   "domains": [
     {
       "verified": true,
-      "is_primary": false,
+      "is_primary": true,
       "is_shortlink": false,
-      "_id": "63a06296820425006809fb44",
-      "name": "dbsfpkvtvh.hostx5.de"
+      "_id": "5eb1177748312a3bd55d0f1e",
+      "name": "uniket.hostx0.de"
     },
     {
       "verified": true,
-      "is_primary": true,
+      "is_primary": false,
       "is_shortlink": true,
-      "_id": "63a1586c57475b0b82154707",
-      "name": "uniket.hostx5.de"
+      "_id": "5f0858c5f86e00cd42dccc8d",
+      "name": "jd.hostx0.de"
     }
   ],
-  "slug": "Uniket-jb9-51",
   "company_id": 1,
   "_id": "000000000000000000000004"
 }
@@ -1190,7 +1189,7 @@ const data = await platformClient.configuration.getApplications({  pageNo : valu
 | --------- | -----  | -------- | ----------- |  
 | pageNo | number | no |  |    
 | pageSize | number | no |  |    
-| q | string | no | Search string to search saleschannel by name |  
+| q | string | no | Search param by name or domain |  
 
 
 
@@ -1212,82 +1211,7 @@ Success
 <summary><i>&nbsp; Example:</i></summary>
 
 ```json
-{
-  "items": [
-    {
-      "website": {
-        "enabled": true,
-        "basepath": "/"
-      },
-      "cors": {
-        "domains": []
-      },
-      "auth": {
-        "enabled": true
-      },
-      "_id": "6369fc8124ab1b2008130d8a",
-      "description": "shopsense_description",
-      "channel_type": "website-and-mobile-apps",
-      "cache_ttl": -1,
-      "internal": false,
-      "is_active": true,
-      "mode": "live",
-      "company_id": 1,
-      "name": "SHOPSENSE",
-      "owner": "f8a0be4408d00372226effa0",
-      "logo": {
-        "secure_url": "https://hdn-1.addsale.com/x0/company/164/applications/5efc9913f474c329718e3690/application/pictures/free-logo/original/olqHM8LNr-JioMart-Groceries.png"
-      },
-      "favicon": {
-        "secure_url": "https://hdn-1.addsale.com/x0/company/164/applications/5efc9913f474c329718e3690/application/pictures/free-logo/original/olqHM8LNr-JioMart-Groceries.png"
-      },
-      "banner": {
-        "secure_url": "https://hdn-1.addsale.com/x0/company/164/applications/5efc9913f474c329718e3690/application/pictures/landscape-banner/original/D2fr98CUH-JioMart-Groceries.png"
-      },
-      "domains": [
-        {
-          "verified": true,
-          "is_primary": true,
-          "is_shortlink": true,
-          "_id": "6369fc8124ab1b5b6a130d8b",
-          "name": "shopsenseretailtechnologies.hostx5.de"
-        }
-      ],
-      "token": "2Aj03u6rH",
-      "tokens": [
-        {
-          "token": "2Aj03u6rH",
-          "created_at": "2022-11-08T06:51:45.682Z"
-        }
-      ],
-      "redirections": [],
-      "meta": [],
-      "created_at": "2022-11-08T06:51:45.682Z",
-      "modified_at": "2023-05-26T06:04:32.907Z",
-      "slug": "SHOPSE-hgv-77",
-      "__v": 5,
-      "status": "active",
-      "mobile_logo": {
-        "secure_url": ""
-      },
-      "domain": {
-        "verified": true,
-        "is_primary": true,
-        "is_shortlink": true,
-        "_id": "6369fc8124ab1b5b6a130d8b",
-        "name": "shopsenseretailtechnologies.hostx5.de"
-      },
-      "id": "6369fc8124ab1b2008130d8a"
-    }
-  ],
-  "page": {
-    "type": "number",
-    "current": 1,
-    "size": 100,
-    "item_total": 40,
-    "has_next": false
-  }
-}
+
 ```
 </details>
 
@@ -5128,7 +5052,6 @@ Success
  | ---------- | ---- | -------- | ----------- |
  | bulk_coupons | boolean? |  yes  | Allow creation of bulk coupons |
  | delivery_charges | [DeliveryCharges](#DeliveryCharges)? |  yes  |  |
- | empty_cart | boolean? |  yes  | Enable/disable to allow adding cart items added before login to user's cart once user is logged in |
  | enabled | boolean? |  yes  | Shows whether cart configuration is enabled or not |
  | max_cart_items | number? |  yes  | Maximum number of items that can be added to cart by the customer |
  | min_cart_value | number? |  yes  | Minimum cart value below which customer cannot place an order |
@@ -5300,7 +5223,6 @@ Success
  | name | string? |  yes  | Name of the sales channel, e.g. Zenz Fashion |
  | owner | string? |  yes  | The unique identifier (24-digit Mongo Object ID) of owner who owns the application |
  | redirections | [[ApplicationRedirections](#ApplicationRedirections)]? |  yes  |  |
- | slug | string? |  yes  |  |
  | token | string? |  yes  | Random generated fix length string for sales channel. It is required and auto-generated. |
  | updated_at | string? |  yes  | ISO 8601 timestamp of sales channel updation |
  | website | [ApplicationWebsite](#ApplicationWebsite)? |  yes  |  |
@@ -5339,7 +5261,6 @@ Success
  | logo | [SecureUrl](#SecureUrl) |  no  |  |
  | mobile_logo | [SecureUrl](#SecureUrl) |  no  |  |
  | name | string |  no  | Name of the sales channel. It is required. |
- | slug | string? |  yes  | The unique identifier for the sales channel details |
  
 
 ---
@@ -6184,7 +6105,7 @@ Success
  | city | string? |  yes  | Name of the city, e.g. Mumbai |
  | country | string? |  yes  | Name of the country, e.g. India |
  | loc | string? |  yes  | Co-ordinates of the location |
- | phone | [[InformationPhone](#InformationPhone)]? |  yes  |  |
+ | phone | [InformationPhone](#InformationPhone)? |  yes  |  |
  | pincode | number? |  yes  | 6-digit PIN Code of the city, e.g. 400001 |
  
 

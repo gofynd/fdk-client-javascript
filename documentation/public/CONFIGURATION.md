@@ -201,25 +201,7 @@ Success
 ### Schemas
 
 
-#### [ApplicationAuth](#ApplicationAuth)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | enabled | boolean? |  yes  | Shows sales channel auth is enabled or not enabled. |
- 
-
----
-
-#### [ApplicationCors](#ApplicationCors)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | domains | [string]? |  yes  |  |
- 
-
----
-
-#### [ApplicationData](#ApplicationData)
+#### [Application](#Application)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
@@ -245,10 +227,27 @@ Success
  | name | string? |  yes  | Name of the sales channel, e.g. Zenz Fashion |
  | owner | string? |  yes  | The unique identifier (24-digit Mongo Object ID) of owner who owns the application |
  | redirections | [[ApplicationRedirections](#ApplicationRedirections)]? |  yes  |  |
- | slug | string? |  yes  |  |
  | token | string? |  yes  | Randomly generated fixed-length string for sales channel. It is required and auto-generated. |
  | updated_at | string? |  yes  | ISO 8601 timestamp of sales channel updation |
  | website | [ApplicationWebsite](#ApplicationWebsite)? |  yes  |  |
+ 
+
+---
+
+#### [ApplicationAuth](#ApplicationAuth)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | enabled | boolean? |  yes  | Shows sales channel auth is enabled or not enabled. |
+ 
+
+---
+
+#### [ApplicationCors](#ApplicationCors)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | domains | [string]? |  yes  |  |
  
 
 ---
@@ -278,7 +277,7 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | application | [ApplicationData](#ApplicationData)? |  yes  |  |
+ | application | [Application](#Application)? |  yes  |  |
  
 
 ---
@@ -332,6 +331,27 @@ Success
 
 ---
 
+#### [LocationCountry](#LocationCountry)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | __v | number? |  yes  |  |
+ | _id | string? |  yes  |  |
+ | capital | string? |  yes  |  |
+ | currency | string? |  yes  |  |
+ | default_currency | [LocationDefaultCurrency](#LocationDefaultCurrency)? |  yes  |  |
+ | default_language | [LocationDefaultLanguage](#LocationDefaultLanguage)? |  yes  |  |
+ | iso2 | string? |  yes  |  |
+ | iso3 | string? |  yes  |  |
+ | name | string? |  yes  |  |
+ | parent | string? |  yes  |  |
+ | phone_code | string? |  yes  |  |
+ | type | string? |  yes  |  |
+ | uid | number? |  yes  |  |
+ 
+
+---
+
 #### [LocationDefaultCurrency](#LocationDefaultCurrency)
 
  | Properties | Type | Nullable | Description |
@@ -353,36 +373,11 @@ Success
 
 ---
 
-#### [LocationDetails](#LocationDetails)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | __v | number? |  yes  |  |
- | _id | string? |  yes  |  |
- | capital | string? |  yes  |  |
- | country_code | string? |  yes  |  |
- | currency | string? |  yes  |  |
- | default_currency | [LocationDefaultCurrency](#LocationDefaultCurrency)? |  yes  |  |
- | default_language | [LocationDefaultLanguage](#LocationDefaultLanguage)? |  yes  |  |
- | iso2 | string? |  yes  |  |
- | iso3 | string? |  yes  |  |
- | latitude | string? |  yes  |  |
- | longitude | string? |  yes  |  |
- | name | string? |  yes  |  |
- | parent | string? |  yes  |  |
- | phone_code | string? |  yes  |  |
- | state_code | string? |  yes  |  |
- | type | string? |  yes  |  |
- | uid | number? |  yes  |  |
- 
-
----
-
 #### [Locations](#Locations)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | items | [[LocationDetails](#LocationDetails)]? |  yes  |  |
+ | items | [string]? |  yes  |  |
  
 
 ---

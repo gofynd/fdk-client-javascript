@@ -66,6 +66,7 @@ declare class CommunicationModel {
     static SendOtpCommsRes(): any;
     static SendOtpCommsResEmail(): any;
     static SendOtpCommsResSms(): any;
+    static SendOtpEmailCommsProvider(): any;
     static SendOtpEmailCommsTemplate(): any;
     static SendOtpSmsCommsProvider(): any;
     static SendOtpSmsCommsTemplate(): any;

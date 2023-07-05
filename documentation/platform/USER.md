@@ -2192,7 +2192,6 @@ Success. returns updated User Group. `UserGroupResponseSchema` for more details.
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | action | string? |  yes  |  |
- | captcha_code | string? |  yes  |  |
  | email | string? |  yes  |  |
  | register_token | string? |  yes  |  |
  | token | string? |  yes  |  |

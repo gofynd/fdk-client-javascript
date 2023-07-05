@@ -68,7 +68,6 @@ class ConfigurationModel {
       redirections: Joi.array().items(
         ConfigurationModel.ApplicationRedirections()
       ),
-      slug: Joi.string().allow(""),
       token: Joi.string().allow(""),
       updated_at: Joi.string().allow(""),
       website: ConfigurationModel.ApplicationWebsite(),
@@ -102,7 +101,6 @@ class ConfigurationModel {
       logo: ConfigurationModel.SecureUrl().required(),
       mobile_logo: ConfigurationModel.SecureUrl().required(),
       name: Joi.string().allow("").required(),
-      slug: Joi.string().allow(""),
     });
   }
   static ApplicationInfo() {
@@ -436,7 +434,7 @@ class ConfigurationModel {
       city: Joi.string().allow(""),
       country: Joi.string().allow(""),
       loc: Joi.string().allow(""),
-      phone: Joi.array().items(ConfigurationModel.InformationPhone()),
+      phone: ConfigurationModel.InformationPhone(),
       pincode: Joi.number(),
     });
   }
