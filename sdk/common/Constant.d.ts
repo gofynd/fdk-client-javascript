@@ -44,7 +44,6 @@ export namespace AVAILABLE_PAGE_TYPE {
     const REGISTER: string;
     const SHIPPING_POLICY: string;
     const RETURN_POLICY: string;
-    const ORDER_STATUS: string;
 }
 export const NAVIGATORS: {
     "about-us": {
@@ -280,10 +279,6 @@ export const NAVIGATORS: {
         link: string;
     };
     "return-policy": {
-        name: string;
-        link: string;
-    };
-    "order-status": {
         name: string;
         link: string;
     };

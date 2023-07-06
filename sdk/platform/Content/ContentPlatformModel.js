@@ -958,9 +958,7 @@ class ContentModel {
 
       "shipping-policy",
 
-      "return-policy",
-
-      "order-status"
+      "return-policy"
     );
   }
 }

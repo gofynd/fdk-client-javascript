@@ -143,18 +143,6 @@
       "result": {
         "path": "/return-policy"
       }
-    },
-    {
-      "name": "Order status  ",
-      "action": {
-        "type": "page",
-        "page": {
-          "type": "order-status"
-        }
-      },
-      "result": {
-        "path": "/cart/order-status"
-      }
     }
   ]
 }

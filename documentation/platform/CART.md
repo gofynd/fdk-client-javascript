@@ -9231,12 +9231,14 @@ Update cart payment
 // Promise
 const promise = platformClient.application("<APPLICATION_ID>").cart.selectPaymentMode({  body : value,
  id : value,
- buyNow : value });
+ buyNow : value,
+ orderType : value });
 
 // Async/Await
 const data = await platformClient.application("<APPLICATION_ID>").cart.selectPaymentMode({  body : value,
  id : value,
- buyNow : value });
+ buyNow : value,
+ orderType : value });
 ```
 
 
@@ -9246,7 +9248,8 @@ const data = await platformClient.application("<APPLICATION_ID>").cart.selectPay
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
 | id | string | no |  |    
-| buyNow | boolean | no |  |  
+| buyNow | boolean | no |  |    
+| orderType | string | no | The order type of shipment HomeDelivery - If the customer wants the order home-delivered PickAtStore - If the customer wants the handover of an order at the store itself. |  
 | body | [UpdateCartPaymentRequest](#UpdateCartPaymentRequest) | yes | Request body |
 
 
@@ -9560,12 +9563,14 @@ Update cart payment
 // Promise
 const promise = platformClient.application("<APPLICATION_ID>").cart.selectPaymentModeV2({  body : value,
  id : value,
- buyNow : value });
+ buyNow : value,
+ orderType : value });
 
 // Async/Await
 const data = await platformClient.application("<APPLICATION_ID>").cart.selectPaymentModeV2({  body : value,
  id : value,
- buyNow : value });
+ buyNow : value,
+ orderType : value });
 ```
 
 
@@ -9575,7 +9580,8 @@ const data = await platformClient.application("<APPLICATION_ID>").cart.selectPay
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
 | id | string | no |  |    
-| buyNow | boolean | no |  |  
+| buyNow | boolean | no |  |    
+| orderType | string | no | The order type of shipment HomeDelivery - If the customer wants the order home-delivered PickAtStore - If the customer wants the handover of an order at the store itself. |  
 | body | [UpdateCartPaymentRequestV2](#UpdateCartPaymentRequestV2) | yes | Request body |
 
 
@@ -12744,15 +12750,6 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
 
 ---
 
-#### [ArticleGiftDetail](#ArticleGiftDetail)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | article_id | [GiftDetail](#GiftDetail)? |  yes  |  |
- 
-
----
-
 #### [ArticlePriceInfo](#ArticlePriceInfo)
 
  | Properties | Type | Nullable | Description |
@@ -13473,16 +13470,6 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
 
 ---
 
-#### [GiftDetail](#GiftDetail)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | gift_message | string? |  yes  |  |
- | is_gift_applied | boolean? |  yes  |  |
- 
-
----
-
 #### [Identifier](#Identifier)
 
  | Properties | Type | Nullable | Description |
@@ -14063,7 +14050,7 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
  | ---------- | ---- | -------- | ----------- |
  | checkout_mode | string? |  yes  |  |
  | comment | string? |  yes  |  |
- | gift_details | [ArticleGiftDetail](#ArticleGiftDetail)? |  yes  |  |
+ | gift_details | string? |  yes  |  |
  | gstin | string? |  yes  |  |
  | pan_no | string? |  yes  |  |
  | pick_up_customer_details | string? |  yes  | Customer contact details for customer pickup at store |

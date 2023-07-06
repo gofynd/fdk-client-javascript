@@ -319,6 +319,7 @@ class CartValidator {
     return Joi.object({
       id: Joi.string().allow(""),
       buyNow: Joi.boolean(),
+      orderType: Joi.string().allow(""),
       body: CartModel.UpdateCartPaymentRequest().required(),
     }).required();
   }
@@ -327,6 +328,7 @@ class CartValidator {
     return Joi.object({
       id: Joi.string().allow(""),
       buyNow: Joi.boolean(),
+      orderType: Joi.string().allow(""),
       body: CartModel.UpdateCartPaymentRequestV2().required(),
     }).required();
   }

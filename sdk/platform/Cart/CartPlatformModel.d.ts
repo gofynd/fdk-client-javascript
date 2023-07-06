@@ -10,7 +10,6 @@ declare class CartModel {
     static AppliedFreeArticles(): any;
     static AppliedPromotion(): any;
     static ApplyCouponRequest(): any;
-    static ArticleGiftDetail(): any;
     static ArticlePriceInfo(): any;
     static BaseInfo(): any;
     static BasePrice(): any;
@@ -65,7 +64,6 @@ declare class CartModel {
     static GetCouponResponse(): any;
     static GetShareCartLinkRequest(): any;
     static GetShareCartLinkResponse(): any;
-    static GiftDetail(): any;
     static Identifier(): any;
     static ItemCriteria(): any;
     static LoyaltyPoints(): any;

@@ -44,7 +44,6 @@ const AVAILABLE_PAGE_TYPE = {
   REGISTER: "register",
   SHIPPING_POLICY: "shipping-policy",
   RETURN_POLICY: "return-policy",
-  ORDER_STATUS: "order-status",
 };
 
 Object.freeze(AVAILABLE_PAGE_TYPE);
@@ -313,10 +312,6 @@ const NAVIGATORS = {
   "return-policy": {
     name: "Return policy",
     link: "/return-policy",
-  },
-  "order-status": {
-    name: "Order status",
-    link: "/cart/order-status",
   },
 };
 

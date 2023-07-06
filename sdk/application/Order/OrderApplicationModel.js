@@ -112,6 +112,13 @@ class OrderModel {
       products: Joi.array().items(OrderModel.ProductsDataUpdates()),
     });
   }
+  static DataUpdates1() {
+    return Joi.object({
+      entities: Joi.array().items(OrderModel.EntitiesDataUpdates()),
+      order_item_status: Joi.array().items(OrderModel.OrderItemDataUpdates()),
+      products: Joi.array().items(OrderModel.ProductsDataUpdates1()),
+    });
+  }
   static DeliveryAddress() {
     return Joi.object({
       address: Joi.string().allow(""),
@@ -150,7 +157,19 @@ class OrderModel {
       filters: Joi.array().items(Joi.any()),
     });
   }
+  static EntitiesReasons1() {
+    return Joi.object({
+      data: OrderModel.EntityReasonData1(),
+      filters: Joi.array().items(Joi.any()),
+    });
+  }
   static EntityReasonData() {
+    return Joi.object({
+      reason_id: Joi.number(),
+      reason_text: Joi.string().allow(""),
+    });
+  }
+  static EntityReasonData1() {
     return Joi.object({
       reason_id: Joi.number(),
       reason_text: Joi.string().allow(""),
@@ -263,6 +282,11 @@ class OrderModel {
       statuses: Joi.array().items(OrderModel.OrderStatuses()),
     });
   }
+  static OrderItemDataUpdates() {
+    return Joi.object({
+      data: Joi.any(),
+    });
+  }
   static OrderList() {
     return Joi.object({
       filters: OrderModel.OrderFilters(),
@@ -330,13 +354,32 @@ class OrderModel {
       quantity: Joi.number(),
     });
   }
+  static Products1() {
+    return Joi.object({
+      identifier: Joi.string().allow(""),
+      line_number: Joi.number(),
+      quantity: Joi.number(),
+    });
+  }
   static ProductsDataUpdates() {
     return Joi.object({
       data: Joi.any(),
       filters: Joi.array().items(OrderModel.ProductsDataUpdatesFilters()),
     });
   }
+  static ProductsDataUpdates1() {
+    return Joi.object({
+      data: Joi.any(),
+      filters: Joi.array().items(OrderModel.ProductsDataUpdatesFilters1()),
+    });
+  }
   static ProductsDataUpdatesFilters() {
+    return Joi.object({
+      identifier: Joi.string().allow(""),
+      line_number: Joi.number(),
+    });
+  }
+  static ProductsDataUpdatesFilters1() {
     return Joi.object({
       identifier: Joi.string().allow(""),
       line_number: Joi.number(),
@@ -348,13 +391,32 @@ class OrderModel {
       filters: Joi.array().items(OrderModel.ProductsReasonsFilters()),
     });
   }
+  static ProductsReasons1() {
+    return Joi.object({
+      data: OrderModel.ProductsReasonsData1(),
+      filters: Joi.array().items(OrderModel.ProductsReasonsFilters1()),
+    });
+  }
   static ProductsReasonsData() {
     return Joi.object({
       reason_id: Joi.number(),
       reason_text: Joi.string().allow(""),
     });
   }
+  static ProductsReasonsData1() {
+    return Joi.object({
+      reason_id: Joi.number(),
+      reason_text: Joi.string().allow(""),
+    });
+  }
   static ProductsReasonsFilters() {
+    return Joi.object({
+      identifier: Joi.string().allow(""),
+      line_number: Joi.number(),
+      quantity: Joi.number(),
+    });
+  }
+  static ProductsReasonsFilters1() {
     return Joi.object({
       identifier: Joi.string().allow(""),
       line_number: Joi.number(),
@@ -377,6 +439,12 @@ class OrderModel {
     return Joi.object({
       entities: Joi.array().items(OrderModel.EntitiesReasons()),
       products: Joi.array().items(OrderModel.ProductsReasons()),
+    });
+  }
+  static ReasonsData1() {
+    return Joi.object({
+      entities: Joi.array().items(OrderModel.EntitiesReasons1()),
+      products: Joi.array().items(OrderModel.ProductsReasons1()),
     });
   }
   static ResponseGetInvoiceShipment() {
@@ -484,6 +552,14 @@ class OrderModel {
       reasons: OrderModel.ReasonsData(),
     });
   }
+  static ShipmentsRequest1() {
+    return Joi.object({
+      data_updates: OrderModel.DataUpdates1(),
+      identifier: Joi.string().allow("").required(),
+      products: Joi.array().items(OrderModel.Products1()),
+      reasons: OrderModel.ReasonsData1(),
+    });
+  }
   static ShipmentStatus() {
     return Joi.object({
       hex_code: Joi.string().allow(""),
@@ -517,6 +593,14 @@ class OrderModel {
     return Joi.object({
       exclude_bags_next_state: Joi.string().allow(""),
       shipments: Joi.array().items(OrderModel.ShipmentsRequest()),
+      status: Joi.string().allow(""),
+    });
+  }
+  static StatuesRequest1() {
+    return Joi.object({
+      exclude_bags_next_state: Joi.string().allow(""),
+      shipments: Joi.array().items(OrderModel.ShipmentsRequest1()),
+      split_shipment: Joi.boolean(),
       status: Joi.string().allow(""),
     });
   }
@@ -558,6 +642,15 @@ class OrderModel {
       force_transition: Joi.boolean(),
       lock_after_transition: Joi.boolean(),
       statuses: Joi.array().items(OrderModel.StatuesRequest()),
+      task: Joi.boolean(),
+      unlock_before_transition: Joi.boolean(),
+    });
+  }
+  static UpdateShipmentStatusRequest1() {
+    return Joi.object({
+      force_transition: Joi.boolean(),
+      lock_after_transition: Joi.boolean(),
+      statuses: Joi.array().items(OrderModel.StatuesRequest1()),
       task: Joi.boolean(),
       unlock_before_transition: Joi.boolean(),
     });
