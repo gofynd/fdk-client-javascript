@@ -1,7 +1,17 @@
 export = PlatformClient;
+/**
+ * Represents the client for the platform.
+ *
+ * @class
+ */
 declare class PlatformClient {
-    constructor(config: any);
-    config: any;
+    /**
+     * Creates an instance of PlatformClient.
+     *
+     * @param {import("./PlatformConfig")} config - The application configuration.
+     */
+    constructor(config: import("./PlatformConfig"));
+    config: import("./PlatformConfig");
     common: Common;
     lead: Lead;
     theme: Theme;
@@ -18,8 +28,23 @@ declare class PlatformClient {
     auditTrail: AuditTrail;
     serviceability: Serviceability;
     finance: Finance;
-    application(applicationId: any): PlatformApplicationClient;
-    setExtraHeaders(header: any): void;
+    /**
+     * Creates an instance of PlatformApplicationClient to interact with a
+     * platform's application level api.
+     *
+     * @param {string} applicationId - The ID of the application.
+     * @returns {PlatformApplicationClient} - The PlatformApplicationClient
+     *   instance for the specified application.
+     * @throws {Error} When the provided applicationId is not a string.
+     */
+    application(applicationId: string): PlatformApplicationClient;
+    /**
+     * Sets the extra headers for the platform.
+     *
+     * @param {object} header - The header object to set.
+     * @throws {FDKClientValidationError} When the provided header is not an object.
+     */
+    setExtraHeaders(header: object): void;
 }
 import Common = require("./Common/CommonPlatformClient");
 import Lead = require("./Lead/LeadPlatformClient");

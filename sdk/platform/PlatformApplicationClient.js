@@ -30,7 +30,18 @@ const Serviceability = require("./Serviceability/ServiceabilityPlatformApplicati
 
 const { FDKClientValidationError } = require("../common/FDKError");
 
+/**
+ * Represents the client for a platform's application level APIs.
+ *
+ * @class
+ */
 class PlatformApplicationClient {
+  /**
+   * Creates an instance of PlatformApplicationClient.
+   *
+   * @param {string} applicationId - The ID of the application.
+   * @param {import("./PlatformConfig")} config - The platform configuration.
+   */
   constructor(applicationId, config) {
     this.config = config;
     this.companyId = config.companyId;
@@ -67,6 +78,12 @@ class PlatformApplicationClient {
     this.serviceability = new Serviceability(config, applicationId);
   }
 
+  /**
+   * Sets the extra headers for the platform application.
+   *
+   * @param {object} header - The header object to set.
+   * @throws {FDKClientValidationError} When the provided header is not an object.
+   */
   setExtraHeaders(header) {
     if (typeof header === "object") {
       this.config.extraHeaders.push(header);

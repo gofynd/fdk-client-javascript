@@ -564,11 +564,11 @@ export = CatalogPlatformModel;
  */
 /**
  * @typedef CollectionDetailResponse
- * @property {CollectionSchedule} [_schedule]
+ * @property {CollectionSchedule1} [_schedule]
  * @property {boolean} [allow_facets]
  * @property {boolean} [allow_sort]
  * @property {string} [app_id]
- * @property {CollectionBadge} [badge]
+ * @property {CollectionBadge1} [badge]
  * @property {ImageUrls} [banners]
  * @property {string} [description]
  * @property {boolean} [is_active]
@@ -629,16 +629,16 @@ export = CatalogPlatformModel;
  */
 /**
  * @typedef CollectionSchedule
- * @property {string} [end]
- * @property {CollectionScheduleStartEnd[]} [next_schedule]
- * @property {string} [start]
- */
-/**
- * @typedef CollectionSchedule1
  * @property {string} [cron]
  * @property {number} [duration]
  * @property {string} [end]
  * @property {NextSchedule[]} [next_schedule]
+ * @property {string} [start]
+ */
+/**
+ * @typedef CollectionSchedule1
+ * @property {string} [end]
+ * @property {CollectionScheduleStartEnd[]} [next_schedule]
  * @property {string} [start]
  */
 /**
@@ -784,11 +784,11 @@ export = CatalogPlatformModel;
  * @typedef CreateCollection
  * @property {Object} [_custom_json]
  * @property {Object} [_locale_language]
- * @property {CollectionSchedule1} [_schedule]
+ * @property {CollectionSchedule} [_schedule]
  * @property {boolean} [allow_facets]
  * @property {boolean} [allow_sort]
  * @property {string} app_id
- * @property {CollectionBadge1} [badge]
+ * @property {CollectionBadge} [badge]
  * @property {CollectionBanner} banners
  * @property {UserInfo} [created_by]
  * @property {string} [description]
@@ -1039,12 +1039,12 @@ export = CatalogPlatformModel;
  */
 /**
  * @typedef GetCollectionDetailNest
- * @property {CollectionSchedule} [_schedule]
+ * @property {CollectionSchedule1} [_schedule]
  * @property {CollectionActionPage} [action]
  * @property {boolean} [allow_facets]
  * @property {boolean} [allow_sort]
  * @property {string} [app_id]
- * @property {CollectionBadge} [badge]
+ * @property {CollectionBadge1} [badge]
  * @property {ImageUrls} [banners]
  * @property {string} [description]
  * @property {boolean} [is_active]
@@ -1083,15 +1083,15 @@ export = CatalogPlatformModel;
  * @property {GetAddressSerializer[]} [addresses]
  * @property {string} [business_type]
  * @property {string} [company_type]
- * @property {UserSerializer2} [created_by]
+ * @property {UserSerializer1} [created_by]
  * @property {string} [created_on]
- * @property {UserSerializer2} [modified_by]
+ * @property {UserSerializer1} [modified_by]
  * @property {string} [modified_on]
  * @property {string} [name]
  * @property {string} [reject_reason]
  * @property {string} [stage]
  * @property {number} [uid]
- * @property {UserSerializer2} [verified_by]
+ * @property {UserSerializer1} [verified_by]
  * @property {string} [verified_on]
  */
 /**
@@ -1168,14 +1168,14 @@ export = CatalogPlatformModel;
  * @property {string} code
  * @property {GetCompanySerializer} [company]
  * @property {SellerPhoneNumber[]} [contact_numbers]
- * @property {UserSerializer1} [created_by]
+ * @property {UserSerializer2} [created_by]
  * @property {string} [created_on]
  * @property {string} display_name
  * @property {Document[]} [documents]
  * @property {InvoiceDetailsSerializer} [gst_credentials]
  * @property {LocationIntegrationType} [integration_type]
  * @property {LocationManagerSerializer} [manager]
- * @property {UserSerializer1} [modified_by]
+ * @property {UserSerializer2} [modified_by]
  * @property {string} [modified_on]
  * @property {string} name
  * @property {string[]} [notification_emails]
@@ -1185,7 +1185,7 @@ export = CatalogPlatformModel;
  * @property {string} [store_type]
  * @property {LocationDayWiseSerializer[]} [timing]
  * @property {number} [uid]
- * @property {UserSerializer1} [verified_by]
+ * @property {UserSerializer2} [verified_by]
  * @property {string} [verified_on]
  * @property {Object} [warnings]
  */
@@ -2116,7 +2116,7 @@ export = CatalogPlatformModel;
  * @property {NetQuantity} [net_quantity]
  * @property {number} [no_of_boxes]
  * @property {string[]} [product_group_tag]
- * @property {ProductPublish1} [product_publish]
+ * @property {ProductPublish} [product_publish]
  * @property {string} [requester]
  * @property {ReturnConfig} return_config
  * @property {string} [short_description]
@@ -2312,7 +2312,7 @@ export = CatalogPlatformModel;
  * @property {string} [pending]
  * @property {string} [primary_color]
  * @property {string[]} [product_group_tag]
- * @property {ProductPublish} [product_publish]
+ * @property {ProductPublish1} [product_publish]
  * @property {ReturnConfigResponse} [return_config]
  * @property {string} [short_description]
  * @property {string} [size_guide]
@@ -2742,10 +2742,10 @@ export = CatalogPlatformModel;
  * @typedef UpdateCollection
  * @property {Object} [_custom_json]
  * @property {Object} [_locale_language]
- * @property {CollectionSchedule1} [_schedule]
+ * @property {CollectionSchedule} [_schedule]
  * @property {boolean} [allow_facets]
  * @property {boolean} [allow_sort]
- * @property {CollectionBadge1} [badge]
+ * @property {CollectionBadge} [badge]
  * @property {CollectionBanner} [banners]
  * @property {string} [description]
  * @property {boolean} [is_active]
@@ -3736,11 +3736,11 @@ type CollectionCreateResponse = {
 /** @returns {CollectionDetailResponse} */
 declare function CollectionDetailResponse(): CollectionDetailResponse;
 type CollectionDetailResponse = {
-    _schedule?: CollectionSchedule;
+    _schedule?: CollectionSchedule1;
     allow_facets?: boolean;
     allow_sort?: boolean;
     app_id?: string;
-    badge?: CollectionBadge;
+    badge?: CollectionBadge1;
     banners?: ImageUrls;
     description?: string;
     is_active?: boolean;
@@ -3818,17 +3818,17 @@ type CollectionQuery = {
 /** @returns {CollectionSchedule} */
 declare function CollectionSchedule(): CollectionSchedule;
 type CollectionSchedule = {
+    cron?: string;
+    duration?: number;
     end?: string;
-    next_schedule?: CollectionScheduleStartEnd[];
+    next_schedule?: NextSchedule[];
     start?: string;
 };
 /** @returns {CollectionSchedule1} */
 declare function CollectionSchedule1(): CollectionSchedule1;
 type CollectionSchedule1 = {
-    cron?: string;
-    duration?: number;
     end?: string;
-    next_schedule?: NextSchedule[];
+    next_schedule?: CollectionScheduleStartEnd[];
     start?: string;
 };
 /** @returns {CollectionScheduleStartEnd} */
@@ -3996,11 +3996,11 @@ declare function CreateCollection(): CreateCollection;
 type CreateCollection = {
     _custom_json?: any;
     _locale_language?: any;
-    _schedule?: CollectionSchedule1;
+    _schedule?: CollectionSchedule;
     allow_facets?: boolean;
     allow_sort?: boolean;
     app_id: string;
-    badge?: CollectionBadge1;
+    badge?: CollectionBadge;
     banners: CollectionBanner;
     created_by?: UserInfo;
     description?: string;
@@ -4338,12 +4338,12 @@ type GetCatalogConfigurationMetaData = {
 /** @returns {GetCollectionDetailNest} */
 declare function GetCollectionDetailNest(): GetCollectionDetailNest;
 type GetCollectionDetailNest = {
-    _schedule?: CollectionSchedule;
+    _schedule?: CollectionSchedule1;
     action?: CollectionActionPage;
     allow_facets?: boolean;
     allow_sort?: boolean;
     app_id?: string;
-    badge?: CollectionBadge;
+    badge?: CollectionBadge1;
     banners?: ImageUrls;
     description?: string;
     is_active?: boolean;
@@ -4386,15 +4386,15 @@ type GetCompanySerializer = {
     addresses?: GetAddressSerializer[];
     business_type?: string;
     company_type?: string;
-    created_by?: UserSerializer2;
+    created_by?: UserSerializer1;
     created_on?: string;
-    modified_by?: UserSerializer2;
+    modified_by?: UserSerializer1;
     modified_on?: string;
     name?: string;
     reject_reason?: string;
     stage?: string;
     uid?: number;
-    verified_by?: UserSerializer2;
+    verified_by?: UserSerializer1;
     verified_on?: string;
 };
 /** @returns {GetConfigMetadataResponse} */
@@ -4477,14 +4477,14 @@ type GetLocationSerializer = {
     code: string;
     company?: GetCompanySerializer;
     contact_numbers?: SellerPhoneNumber[];
-    created_by?: UserSerializer1;
+    created_by?: UserSerializer2;
     created_on?: string;
     display_name: string;
     documents?: Document[];
     gst_credentials?: InvoiceDetailsSerializer;
     integration_type?: LocationIntegrationType;
     manager?: LocationManagerSerializer;
-    modified_by?: UserSerializer1;
+    modified_by?: UserSerializer2;
     modified_on?: string;
     name: string;
     notification_emails?: string[];
@@ -4494,7 +4494,7 @@ type GetLocationSerializer = {
     store_type?: string;
     timing?: LocationDayWiseSerializer[];
     uid?: number;
-    verified_by?: UserSerializer1;
+    verified_by?: UserSerializer2;
     verified_on?: string;
     warnings?: any;
 };
@@ -6049,7 +6049,7 @@ type ProductCreateUpdateSchemaV2 = {
     net_quantity?: NetQuantity;
     no_of_boxes?: number;
     product_group_tag?: string[];
-    product_publish?: ProductPublish1;
+    product_publish?: ProductPublish;
     requester?: string;
     return_config: ReturnConfig;
     short_description?: string;
@@ -6264,7 +6264,7 @@ type ProductSchemaV2 = {
     pending?: string;
     primary_color?: string;
     product_group_tag?: string[];
-    product_publish?: ProductPublish;
+    product_publish?: ProductPublish1;
     return_config?: ReturnConfigResponse;
     short_description?: string;
     size_guide?: string;
@@ -6811,10 +6811,10 @@ declare function UpdateCollection(): UpdateCollection;
 type UpdateCollection = {
     _custom_json?: any;
     _locale_language?: any;
-    _schedule?: CollectionSchedule1;
+    _schedule?: CollectionSchedule;
     allow_facets?: boolean;
     allow_sort?: boolean;
-    badge?: CollectionBadge1;
+    badge?: CollectionBadge;
     banners?: CollectionBanner;
     description?: string;
     is_active?: boolean;

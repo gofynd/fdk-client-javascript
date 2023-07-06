@@ -1,9 +1,20 @@
 export = PlatformApplicationClient;
+/**
+ * Represents the client for a platform's application level APIs.
+ *
+ * @class
+ */
 declare class PlatformApplicationClient {
-    constructor(applicationId: any, config: any);
-    config: any;
-    companyId: any;
-    applicationId: any;
+    /**
+     * Creates an instance of PlatformApplicationClient.
+     *
+     * @param {string} applicationId - The ID of the application.
+     * @param {import("./PlatformConfig")} config - The platform configuration.
+     */
+    constructor(applicationId: string, config: import("./PlatformConfig"));
+    config: import("./PlatformConfig");
+    companyId: string;
+    applicationId: string;
     lead: Lead;
     theme: Theme;
     user: User;
@@ -19,7 +30,13 @@ declare class PlatformApplicationClient {
     rewards: Rewards;
     partner: Partner;
     serviceability: Serviceability;
-    setExtraHeaders(header: any): void;
+    /**
+     * Sets the extra headers for the platform application.
+     *
+     * @param {object} header - The header object to set.
+     * @throws {FDKClientValidationError} When the provided header is not an object.
+     */
+    setExtraHeaders(header: object): void;
 }
 import Lead = require("./Lead/LeadPlatformApplicationClient");
 import Theme = require("./Theme/ThemePlatformApplicationClient");

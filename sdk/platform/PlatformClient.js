@@ -33,7 +33,17 @@ const Finance = require("./Finance/FinancePlatformClient");
 const PlatformApplicationClient = require("./PlatformApplicationClient");
 const { FDKClientValidationError } = require("../common/FDKError");
 
+/**
+ * Represents the client for the platform.
+ *
+ * @class
+ */
 class PlatformClient {
+  /**
+   * Creates an instance of PlatformClient.
+   *
+   * @param {import("./PlatformConfig")} config - The application configuration.
+   */
   constructor(config) {
     this.config = config;
 
@@ -69,6 +79,16 @@ class PlatformClient {
 
     this.finance = new Finance(config);
   }
+
+  /**
+   * Creates an instance of PlatformApplicationClient to interact with a
+   * platform's application level api.
+   *
+   * @param {string} applicationId - The ID of the application.
+   * @returns {PlatformApplicationClient} - The PlatformApplicationClient
+   *   instance for the specified application.
+   * @throws {Error} When the provided applicationId is not a string.
+   */
   application(applicationId) {
     if (typeof applicationId == "string") {
       return new PlatformApplicationClient(applicationId, this.config);
@@ -78,6 +98,12 @@ class PlatformClient {
     );
   }
 
+  /**
+   * Sets the extra headers for the platform.
+   *
+   * @param {object} header - The header object to set.
+   * @throws {FDKClientValidationError} When the provided header is not an object.
+   */
   setExtraHeaders(header) {
     if (typeof header === "object") {
       this.config.extraHeaders.push(header);
