@@ -30,7 +30,7 @@ function convertUrlToAction(url) {
     const closestMatchingNavLink = Object.keys(typeLink).find((pageType) => {
       return utils.trimChar(pageType) === bestMatchingLink.value;
     });
-    const closestMatchingNavKey = typeLink[closestMatchingNavLink];
+    let closestMatchingNavKey = typeLink[closestMatchingNavLink];
     if (!closestMatchingNavKey) {
       closestMatchingNavKey = "home";
     }
