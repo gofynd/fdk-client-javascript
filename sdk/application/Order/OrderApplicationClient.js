@@ -12,29 +12,29 @@ class Order {
     this._conf = _conf;
     this._relativeUrls = {
       getCustomerDetailsByShipmentId:
-        "/service/application/orders/v1.0/orders/{order_id}/shipments/{shipment_id}/customer-details",
+        "/service/application/order/v1.0/orders/{order_id}/shipments/{shipment_id}/customer-details",
       getInvoiceByShipmentId:
-        "/service/application/orders/v1.0/orders/shipments/{shipment_id}/invoice",
-      getOrderById: "/service/application/orders/v1.0/orders/{order_id}",
-      getOrders: "/service/application/orders/v1.0/orders",
+        "/service/application/order/v1.0/orders/shipments/{shipment_id}/invoice",
+      getOrderById: "/service/application/order/v1.0/orders/{order_id}",
+      getOrders: "/service/application/order/v1.0/orders",
       getPosOrderById:
-        "/service/application/orders/v1.0/orders/pos-order/{order_id}",
+        "/service/application/order/v1.0/orders/pos-order/{order_id}",
       getShipmentBagReasons:
-        "/service/application/orders/v1.0/orders/shipments/{shipment_id}/bags/{bag_id}/reasons",
+        "/service/application/order/v1.0/orders/shipments/{shipment_id}/bags/{bag_id}/reasons",
       getShipmentById:
-        "/service/application/orders/v1.0/orders/shipments/{shipment_id}",
+        "/service/application/order/v1.0/orders/shipments/{shipment_id}",
       getShipmentReasons:
-        "/service/application/orders/v1.0/orders/shipments/{shipment_id}/reasons",
+        "/service/application/order/v1.0/orders/shipments/{shipment_id}/reasons",
       sendOtpToShipmentCustomer:
-        "/service/application/orders/v1.0/orders/{order_id}/shipments/{shipment_id}/otp/send/",
+        "/service/application/order/v1.0/orders/{order_id}/shipments/{shipment_id}/otp/send/",
       trackShipment:
-        "/service/application/orders/v1.0/orders/shipments/{shipment_id}/track",
+        "/service/application/order/v1.0/orders/shipments/{shipment_id}/track",
       updateShipmentStatus:
-        "/service/application/orders/v1.0/orders/shipments/{shipment_id}/status",
+        "/service/application/order/v1.0/orders/shipments/{shipment_id}/status",
       updateShipmentStatus1:
         "/service/application/order-manage/v1.0/orders/shipments/{shipment_id}/status",
       verifyOtpShipmentCustomer:
-        "/service/application/orders/v1.0/orders/{order_id}/shipments/{shipment_id}/otp/verify/",
+        "/service/application/order/v1.0/orders/{order_id}/shipments/{shipment_id}/otp/verify/",
     };
     this._urls = Object.entries(this._relativeUrls).reduce(
       (urls, [method, relativeUrl]) => {
