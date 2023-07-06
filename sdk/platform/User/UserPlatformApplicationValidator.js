@@ -100,42 +100,42 @@ const UserPlatformModel = require("./UserPlatformModel");
  */
 
 class UserPlatformApplicationValidator {
-  /** @returns {archiveUser} */
+  /** @returns {ArchiveUserParam} */
   static archiveUser() {
     return Joi.object({
       body: UserPlatformModel.ArchiveUserRequestSchema().required(),
     }).required();
   }
 
-  /** @returns {blockOrUnblockUsers} */
+  /** @returns {BlockOrUnblockUsersParam} */
   static blockOrUnblockUsers() {
     return Joi.object({
       body: UserPlatformModel.BlockUserRequestSchema().required(),
     }).required();
   }
 
-  /** @returns {createUser} */
+  /** @returns {CreateUserParam} */
   static createUser() {
     return Joi.object({
       body: UserPlatformModel.CreateUserRequestSchema().required(),
     }).required();
   }
 
-  /** @returns {createUserGroup} */
+  /** @returns {CreateUserGroupParam} */
   static createUserGroup() {
     return Joi.object({
       body: UserPlatformModel.CreateUserGroupSchema().required(),
     }).required();
   }
 
-  /** @returns {createUserSession} */
+  /** @returns {CreateUserSessionParam} */
   static createUserSession() {
     return Joi.object({
       body: UserPlatformModel.CreateUserSessionRequestSchema().required(),
     }).required();
   }
 
-  /** @returns {deleteActiveSessions} */
+  /** @returns {DeleteActiveSessionsParam} */
   static deleteActiveSessions() {
     return Joi.object({
       id: Joi.string().allow("").required(),
@@ -143,7 +143,7 @@ class UserPlatformApplicationValidator {
     }).required();
   }
 
-  /** @returns {deleteSession} */
+  /** @returns {DeleteSessionParam} */
   static deleteSession() {
     return Joi.object({
       id: Joi.string().allow("").required(),
@@ -152,14 +152,14 @@ class UserPlatformApplicationValidator {
     }).required();
   }
 
-  /** @returns {getActiveSessions} */
+  /** @returns {GetActiveSessionsParam} */
   static getActiveSessions() {
     return Joi.object({
       id: Joi.string().allow("").required(),
     }).required();
   }
 
-  /** @returns {getCustomers} */
+  /** @returns {GetCustomersParam} */
   static getCustomers() {
     return Joi.object({
       q: Joi.any(),
@@ -168,19 +168,19 @@ class UserPlatformApplicationValidator {
     }).required();
   }
 
-  /** @returns {getPlatformConfig} */
+  /** @returns {GetPlatformConfigParam} */
   static getPlatformConfig() {
     return Joi.object({}).required();
   }
 
-  /** @returns {getUserGroupById} */
+  /** @returns {GetUserGroupByIdParam} */
   static getUserGroupById() {
     return Joi.object({
       groupId: Joi.string().allow("").required(),
     }).required();
   }
 
-  /** @returns {getUserGroups} */
+  /** @returns {GetUserGroupsParam} */
   static getUserGroups() {
     return Joi.object({
       pageNo: Joi.string().allow(""),
@@ -191,28 +191,28 @@ class UserPlatformApplicationValidator {
     }).required();
   }
 
-  /** @returns {searchUsers} */
+  /** @returns {SearchUsersParam} */
   static searchUsers() {
     return Joi.object({
       q: Joi.string().allow(""),
     }).required();
   }
 
-  /** @returns {unDeleteUser} */
+  /** @returns {UnDeleteUserParam} */
   static unDeleteUser() {
     return Joi.object({
       body: UserPlatformModel.UnDeleteUserRequestSchema().required(),
     }).required();
   }
 
-  /** @returns {updatePlatformConfig} */
+  /** @returns {UpdatePlatformConfigParam} */
   static updatePlatformConfig() {
     return Joi.object({
       body: UserPlatformModel.PlatformSchema().required(),
     }).required();
   }
 
-  /** @returns {updateUser} */
+  /** @returns {UpdateUserParam} */
   static updateUser() {
     return Joi.object({
       userId: Joi.string().allow("").required(),
@@ -220,7 +220,7 @@ class UserPlatformApplicationValidator {
     }).required();
   }
 
-  /** @returns {updateUserGroup} */
+  /** @returns {UpdateUserGroupParam} */
   static updateUserGroup() {
     return Joi.object({
       groupId: Joi.string().allow("").required(),

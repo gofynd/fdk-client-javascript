@@ -27,18 +27,18 @@ export = InventoryPublicValidator;
  * @property {InventoryPublicModel.EmailJobMetrics} body
  */
 declare class InventoryPublicValidator {
-    /** @returns {getApiKey} */
-    static getApiKey(): getApiKey;
-    /** @returns {getConfigByApiKey} */
-    static getConfigByApiKey(): getConfigByApiKey;
-    /** @returns {getJobByCode} */
-    static getJobByCode(): getJobByCode;
-    /** @returns {getJobCodesMetrics} */
-    static getJobCodesMetrics(): getJobCodesMetrics;
-    /** @returns {getJobConfigByIntegrationType} */
-    static getJobConfigByIntegrationType(): getJobConfigByIntegrationType;
-    /** @returns {saveJobCodesMetrics} */
-    static saveJobCodesMetrics(): saveJobCodesMetrics;
+    /** @returns {GetApiKeyParam} */
+    static getApiKey(): GetApiKeyParam;
+    /** @returns {GetConfigByApiKeyParam} */
+    static getConfigByApiKey(): GetConfigByApiKeyParam;
+    /** @returns {GetJobByCodeParam} */
+    static getJobByCode(): GetJobByCodeParam;
+    /** @returns {GetJobCodesMetricsParam} */
+    static getJobCodesMetrics(): GetJobCodesMetricsParam;
+    /** @returns {GetJobConfigByIntegrationTypeParam} */
+    static getJobConfigByIntegrationType(): GetJobConfigByIntegrationTypeParam;
+    /** @returns {SaveJobCodesMetricsParam} */
+    static saveJobCodesMetrics(): SaveJobCodesMetricsParam;
 }
 declare namespace InventoryPublicValidator {
     export { GetApiKeyParam, GetConfigByApiKeyParam, GetJobByCodeParam, GetJobCodesMetricsParam, GetJobConfigByIntegrationTypeParam, SaveJobCodesMetricsParam };

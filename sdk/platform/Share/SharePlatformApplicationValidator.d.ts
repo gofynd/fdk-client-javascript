@@ -26,16 +26,16 @@ export = SharePlatformApplicationValidator;
  * @property {SharePlatformModel.ShortLinkReq} body
  */
 declare class SharePlatformApplicationValidator {
-    /** @returns {createShortLink} */
-    static createShortLink(): createShortLink;
-    /** @returns {getShortLinkByHash} */
-    static getShortLinkByHash(): getShortLinkByHash;
-    /** @returns {getShortLinkClickStats} */
-    static getShortLinkClickStats(): getShortLinkClickStats;
-    /** @returns {getShortLinks} */
-    static getShortLinks(): getShortLinks;
-    /** @returns {updateShortLinkById} */
-    static updateShortLinkById(): updateShortLinkById;
+    /** @returns {CreateShortLinkParam} */
+    static createShortLink(): CreateShortLinkParam;
+    /** @returns {GetShortLinkByHashParam} */
+    static getShortLinkByHash(): GetShortLinkByHashParam;
+    /** @returns {GetShortLinkClickStatsParam} */
+    static getShortLinkClickStats(): GetShortLinkClickStatsParam;
+    /** @returns {GetShortLinksParam} */
+    static getShortLinks(): GetShortLinksParam;
+    /** @returns {UpdateShortLinkByIdParam} */
+    static updateShortLinkById(): UpdateShortLinkByIdParam;
 }
 declare namespace SharePlatformApplicationValidator {
     export { CreateShortLinkParam, GetShortLinkByHashParam, GetShortLinkClickStatsParam, GetShortLinksParam, UpdateShortLinkByIdParam };

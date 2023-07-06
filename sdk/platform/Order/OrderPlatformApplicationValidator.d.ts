@@ -8,10 +8,10 @@ export = OrderPlatformApplicationValidator;
  * @property {string} shipmentId - Shipment Id
  */
 declare class OrderPlatformApplicationValidator {
-    /** @returns {getPlatformShipmentReasons} */
-    static getPlatformShipmentReasons(): getPlatformShipmentReasons;
-    /** @returns {trackShipmentPlatform} */
-    static trackShipmentPlatform(): trackShipmentPlatform;
+    /** @returns {GetPlatformShipmentReasonsParam} */
+    static getPlatformShipmentReasons(): GetPlatformShipmentReasonsParam;
+    /** @returns {TrackShipmentPlatformParam} */
+    static trackShipmentPlatform(): TrackShipmentPlatformParam;
 }
 declare namespace OrderPlatformApplicationValidator {
     export { GetPlatformShipmentReasonsParam, TrackShipmentPlatformParam };

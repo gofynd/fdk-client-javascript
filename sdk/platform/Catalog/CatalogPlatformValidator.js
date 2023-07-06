@@ -505,7 +505,7 @@ const CatalogPlatformModel = require("./CatalogPlatformModel");
  */
 
 class CatalogPlatformValidator {
-  /** @returns {addInventory} */
+  /** @returns {AddInventoryParam} */
   static addInventory() {
     return Joi.object({
       itemId: Joi.number().required(),
@@ -514,21 +514,21 @@ class CatalogPlatformValidator {
     }).required();
   }
 
-  /** @returns {allSizes} */
+  /** @returns {AllSizesParam} */
   static allSizes() {
     return Joi.object({
       itemId: Joi.number().required(),
     }).required();
   }
 
-  /** @returns {bulkHsnCode} */
+  /** @returns {BulkHsnCodeParam} */
   static bulkHsnCode() {
     return Joi.object({
       body: CatalogPlatformModel.BulkHsnUpsert().required(),
     }).required();
   }
 
-  /** @returns {createBulkInventory} */
+  /** @returns {CreateBulkInventoryParam} */
   static createBulkInventory() {
     return Joi.object({
       batchId: Joi.string().allow("").required(),
@@ -536,49 +536,49 @@ class CatalogPlatformValidator {
     }).required();
   }
 
-  /** @returns {createBulkInventoryJob} */
+  /** @returns {CreateBulkInventoryJobParam} */
   static createBulkInventoryJob() {
     return Joi.object({
       body: CatalogPlatformModel.BulkJob().required(),
     }).required();
   }
 
-  /** @returns {createBulkProductUploadJob} */
+  /** @returns {CreateBulkProductUploadJobParam} */
   static createBulkProductUploadJob() {
     return Joi.object({
       body: CatalogPlatformModel.BulkJob().required(),
     }).required();
   }
 
-  /** @returns {createCategories} */
+  /** @returns {CreateCategoriesParam} */
   static createCategories() {
     return Joi.object({
       body: CatalogPlatformModel.CategoryRequestBody().required(),
     }).required();
   }
 
-  /** @returns {createDepartments} */
+  /** @returns {CreateDepartmentsParam} */
   static createDepartments() {
     return Joi.object({
       body: CatalogPlatformModel.DepartmentCreateUpdate().required(),
     }).required();
   }
 
-  /** @returns {createInventoryExport} */
+  /** @returns {CreateInventoryExportParam} */
   static createInventoryExport() {
     return Joi.object({
       body: CatalogPlatformModel.InventoryCreateRequest().required(),
     }).required();
   }
 
-  /** @returns {createInventoryExportJob} */
+  /** @returns {CreateInventoryExportJobParam} */
   static createInventoryExportJob() {
     return Joi.object({
       body: CatalogPlatformModel.InventoryExportRequest().required(),
     }).required();
   }
 
-  /** @returns {createMarketplaceOptin} */
+  /** @returns {CreateMarketplaceOptinParam} */
   static createMarketplaceOptin() {
     return Joi.object({
       marketplace: Joi.string().allow("").required(),
@@ -586,35 +586,35 @@ class CatalogPlatformValidator {
     }).required();
   }
 
-  /** @returns {createProduct} */
+  /** @returns {CreateProductParam} */
   static createProduct() {
     return Joi.object({
       body: CatalogPlatformModel.ProductCreateUpdateSchemaV2().required(),
     }).required();
   }
 
-  /** @returns {createProductAssetsInBulk} */
+  /** @returns {CreateProductAssetsInBulkParam} */
   static createProductAssetsInBulk() {
     return Joi.object({
       body: CatalogPlatformModel.ProductBulkAssets().required(),
     }).required();
   }
 
-  /** @returns {createProductBundle} */
+  /** @returns {CreateProductBundleParam} */
   static createProductBundle() {
     return Joi.object({
       body: CatalogPlatformModel.ProductBundleRequest().required(),
     }).required();
   }
 
-  /** @returns {createProductExportJob} */
+  /** @returns {CreateProductExportJobParam} */
   static createProductExportJob() {
     return Joi.object({
       body: CatalogPlatformModel.ProductTemplateDownloadsExport().required(),
     }).required();
   }
 
-  /** @returns {createProductsInBulk} */
+  /** @returns {CreateProductsInBulkParam} */
   static createProductsInBulk() {
     return Joi.object({
       batchId: Joi.string().allow("").required(),
@@ -622,21 +622,21 @@ class CatalogPlatformValidator {
     }).required();
   }
 
-  /** @returns {createSizeGuide} */
+  /** @returns {CreateSizeGuideParam} */
   static createSizeGuide() {
     return Joi.object({
       body: CatalogPlatformModel.ValidateSizeGuide().required(),
     }).required();
   }
 
-  /** @returns {deleteBulkInventoryJob} */
+  /** @returns {DeleteBulkInventoryJobParam} */
   static deleteBulkInventoryJob() {
     return Joi.object({
       batchId: Joi.string().allow("").required(),
     }).required();
   }
 
-  /** @returns {deleteInventory} */
+  /** @returns {DeleteInventoryParam} */
   static deleteInventory() {
     return Joi.object({
       size: Joi.string().allow("").required(),
@@ -645,21 +645,21 @@ class CatalogPlatformValidator {
     }).required();
   }
 
-  /** @returns {deleteProduct} */
+  /** @returns {DeleteProductParam} */
   static deleteProduct() {
     return Joi.object({
       itemId: Joi.number().required(),
     }).required();
   }
 
-  /** @returns {deleteProductBulkJob} */
+  /** @returns {DeleteProductBulkJobParam} */
   static deleteProductBulkJob() {
     return Joi.object({
       batchId: Joi.number().required(),
     }).required();
   }
 
-  /** @returns {deleteRealtimeInventory} */
+  /** @returns {DeleteRealtimeInventoryParam} */
   static deleteRealtimeInventory() {
     return Joi.object({
       itemId: Joi.number().required(),
@@ -667,7 +667,7 @@ class CatalogPlatformValidator {
     }).required();
   }
 
-  /** @returns {deleteSize} */
+  /** @returns {DeleteSizeParam} */
   static deleteSize() {
     return Joi.object({
       itemId: Joi.number().required(),
@@ -675,21 +675,21 @@ class CatalogPlatformValidator {
     }).required();
   }
 
-  /** @returns {downloadInventoryTemplateView} */
+  /** @returns {DownloadInventoryTemplateViewParam} */
   static downloadInventoryTemplateView() {
     return Joi.object({
       itemType: Joi.string().allow("").required(),
     }).required();
   }
 
-  /** @returns {downloadProductTemplateViews} */
+  /** @returns {DownloadProductTemplateViewsParam} */
   static downloadProductTemplateViews() {
     return Joi.object({
       slug: Joi.string().allow("").required(),
     }).required();
   }
 
-  /** @returns {editProduct} */
+  /** @returns {EditProductParam} */
   static editProduct() {
     return Joi.object({
       itemId: Joi.number().required(),
@@ -697,14 +697,14 @@ class CatalogPlatformValidator {
     }).required();
   }
 
-  /** @returns {exportInventoryConfig} */
+  /** @returns {ExportInventoryConfigParam} */
   static exportInventoryConfig() {
     return Joi.object({
       filterType: Joi.string().allow(""),
     }).required();
   }
 
-  /** @returns {getAllProductHsnCodes} */
+  /** @returns {GetAllProductHsnCodesParam} */
   static getAllProductHsnCodes() {
     return Joi.object({
       pageNo: Joi.number(),
@@ -714,14 +714,14 @@ class CatalogPlatformValidator {
     }).required();
   }
 
-  /** @returns {getCategoryData} */
+  /** @returns {GetCategoryDataParam} */
   static getCategoryData() {
     return Joi.object({
       uid: Joi.string().allow("").required(),
     }).required();
   }
 
-  /** @returns {getCompanyBrandDetail} */
+  /** @returns {GetCompanyBrandDetailParam} */
   static getCompanyBrandDetail() {
     return Joi.object({
       isActive: Joi.boolean(),
@@ -732,38 +732,38 @@ class CatalogPlatformValidator {
     }).required();
   }
 
-  /** @returns {getCompanyDetail} */
+  /** @returns {GetCompanyDetailParam} */
   static getCompanyDetail() {
     return Joi.object({}).required();
   }
 
-  /** @returns {getCompanyMetrics} */
+  /** @returns {GetCompanyMetricsParam} */
   static getCompanyMetrics() {
     return Joi.object({}).required();
   }
 
-  /** @returns {getDepartmentData} */
+  /** @returns {GetDepartmentDataParam} */
   static getDepartmentData() {
     return Joi.object({
       uid: Joi.string().allow("").required(),
     }).required();
   }
 
-  /** @returns {getGenderAttribute} */
+  /** @returns {GetGenderAttributeParam} */
   static getGenderAttribute() {
     return Joi.object({
       attributeSlug: Joi.string().allow("").required(),
     }).required();
   }
 
-  /** @returns {getHsnCode} */
+  /** @returns {GetHsnCodeParam} */
   static getHsnCode() {
     return Joi.object({
       id: Joi.string().allow("").required(),
     }).required();
   }
 
-  /** @returns {getInventories} */
+  /** @returns {GetInventoriesParam} */
   static getInventories() {
     return Joi.object({
       itemId: Joi.string().allow(""),
@@ -777,7 +777,7 @@ class CatalogPlatformValidator {
     }).required();
   }
 
-  /** @returns {getInventoryBulkUploadHistory} */
+  /** @returns {GetInventoryBulkUploadHistoryParam} */
   static getInventoryBulkUploadHistory() {
     return Joi.object({
       pageNo: Joi.number(),
@@ -785,7 +785,7 @@ class CatalogPlatformValidator {
     }).required();
   }
 
-  /** @returns {getInventoryBySize} */
+  /** @returns {GetInventoryBySizeParam} */
   static getInventoryBySize() {
     return Joi.object({
       itemId: Joi.number().required(),
@@ -797,7 +797,7 @@ class CatalogPlatformValidator {
     }).required();
   }
 
-  /** @returns {getInventoryBySizeIdentifier} */
+  /** @returns {GetInventoryBySizeIdentifierParam} */
   static getInventoryBySizeIdentifier() {
     return Joi.object({
       itemId: Joi.number().required(),
@@ -809,24 +809,24 @@ class CatalogPlatformValidator {
     }).required();
   }
 
-  /** @returns {getInventoryExport} */
+  /** @returns {GetInventoryExportParam} */
   static getInventoryExport() {
     return Joi.object({}).required();
   }
 
-  /** @returns {getMarketplaceOptinDetail} */
+  /** @returns {GetMarketplaceOptinDetailParam} */
   static getMarketplaceOptinDetail() {
     return Joi.object({}).required();
   }
 
-  /** @returns {getOptimalLocations} */
+  /** @returns {GetOptimalLocationsParam} */
   static getOptimalLocations() {
     return Joi.object({
       body: CatalogPlatformModel.AssignStore().required(),
     }).required();
   }
 
-  /** @returns {getProduct} */
+  /** @returns {GetProductParam} */
   static getProduct() {
     return Joi.object({
       itemId: Joi.number().required(),
@@ -835,7 +835,7 @@ class CatalogPlatformValidator {
     }).required();
   }
 
-  /** @returns {getProductAssetsInBulk} */
+  /** @returns {GetProductAssetsInBulkParam} */
   static getProductAssetsInBulk() {
     return Joi.object({
       pageNo: Joi.number(),
@@ -843,7 +843,7 @@ class CatalogPlatformValidator {
     }).required();
   }
 
-  /** @returns {getProductAttributes} */
+  /** @returns {GetProductAttributesParam} */
   static getProductAttributes() {
     return Joi.object({
       category: Joi.string().allow("").required(),
@@ -851,7 +851,7 @@ class CatalogPlatformValidator {
     }).required();
   }
 
-  /** @returns {getProductBulkUploadHistory} */
+  /** @returns {GetProductBulkUploadHistoryParam} */
   static getProductBulkUploadHistory() {
     return Joi.object({
       search: Joi.string().allow(""),
@@ -860,7 +860,7 @@ class CatalogPlatformValidator {
     }).required();
   }
 
-  /** @returns {getProductBundle} */
+  /** @returns {GetProductBundleParam} */
   static getProductBundle() {
     return Joi.object({
       q: Joi.string().allow(""),
@@ -868,14 +868,14 @@ class CatalogPlatformValidator {
     }).required();
   }
 
-  /** @returns {getProductBundleDetail} */
+  /** @returns {GetProductBundleDetailParam} */
   static getProductBundleDetail() {
     return Joi.object({
       id: Joi.string().allow("").required(),
     }).required();
   }
 
-  /** @returns {getProductExportJobs} */
+  /** @returns {GetProductExportJobsParam} */
   static getProductExportJobs() {
     return Joi.object({
       status: Joi.string().allow(""),
@@ -885,7 +885,7 @@ class CatalogPlatformValidator {
     }).required();
   }
 
-  /** @returns {getProductSize} */
+  /** @returns {GetProductSizeParam} */
   static getProductSize() {
     return Joi.object({
       itemCode: Joi.string().allow(""),
@@ -895,17 +895,17 @@ class CatalogPlatformValidator {
     }).required();
   }
 
-  /** @returns {getProductTags} */
+  /** @returns {GetProductTagsParam} */
   static getProductTags() {
     return Joi.object({}).required();
   }
 
-  /** @returns {getProductValidation} */
+  /** @returns {GetProductValidationParam} */
   static getProductValidation() {
     return Joi.object({}).required();
   }
 
-  /** @returns {getProducts} */
+  /** @returns {GetProductsParam} */
   static getProducts() {
     return Joi.object({
       brandIds: Joi.array().items(Joi.number()),
@@ -920,28 +920,28 @@ class CatalogPlatformValidator {
     }).required();
   }
 
-  /** @returns {getSellerInsights} */
+  /** @returns {GetSellerInsightsParam} */
   static getSellerInsights() {
     return Joi.object({
       sellerAppId: Joi.string().allow("").required(),
     }).required();
   }
 
-  /** @returns {getSingleProductHSNCode} */
+  /** @returns {GetSingleProductHSNCodeParam} */
   static getSingleProductHSNCode() {
     return Joi.object({
       reportingHsn: Joi.string().allow("").required(),
     }).required();
   }
 
-  /** @returns {getSizeGuide} */
+  /** @returns {GetSizeGuideParam} */
   static getSizeGuide() {
     return Joi.object({
       id: Joi.string().allow("").required(),
     }).required();
   }
 
-  /** @returns {getSizeGuides} */
+  /** @returns {GetSizeGuidesParam} */
   static getSizeGuides() {
     return Joi.object({
       active: Joi.boolean(),
@@ -952,7 +952,7 @@ class CatalogPlatformValidator {
     }).required();
   }
 
-  /** @returns {getStoreDetail} */
+  /** @returns {GetStoreDetailParam} */
   static getStoreDetail() {
     return Joi.object({
       q: Joi.string().allow(""),
@@ -961,7 +961,7 @@ class CatalogPlatformValidator {
     }).required();
   }
 
-  /** @returns {getVariantsOfProducts} */
+  /** @returns {GetVariantsOfProductsParam} */
   static getVariantsOfProducts() {
     return Joi.object({
       itemId: Joi.number().required(),
@@ -971,7 +971,7 @@ class CatalogPlatformValidator {
     }).required();
   }
 
-  /** @returns {listCategories} */
+  /** @returns {ListCategoriesParam} */
   static listCategories() {
     return Joi.object({
       level: Joi.string().allow(""),
@@ -982,7 +982,7 @@ class CatalogPlatformValidator {
     }).required();
   }
 
-  /** @returns {listDepartmentsData} */
+  /** @returns {ListDepartmentsDataParam} */
   static listDepartmentsData() {
     return Joi.object({
       pageNo: Joi.number(),
@@ -994,12 +994,12 @@ class CatalogPlatformValidator {
     }).required();
   }
 
-  /** @returns {listHSNCodes} */
+  /** @returns {ListHSNCodesParam} */
   static listHSNCodes() {
     return Joi.object({}).required();
   }
 
-  /** @returns {listInventoryExport} */
+  /** @returns {ListInventoryExportParam} */
   static listInventoryExport() {
     return Joi.object({
       status: Joi.string().allow(""),
@@ -1009,14 +1009,14 @@ class CatalogPlatformValidator {
     }).required();
   }
 
-  /** @returns {listProductTemplate} */
+  /** @returns {ListProductTemplateParam} */
   static listProductTemplate() {
     return Joi.object({
       department: Joi.string().allow("").required(),
     }).required();
   }
 
-  /** @returns {listProductTemplateCategories} */
+  /** @returns {ListProductTemplateCategoriesParam} */
   static listProductTemplateCategories() {
     return Joi.object({
       departments: Joi.string().allow("").required(),
@@ -1024,12 +1024,12 @@ class CatalogPlatformValidator {
     }).required();
   }
 
-  /** @returns {listProductTemplateExportDetails} */
+  /** @returns {ListProductTemplateExportDetailsParam} */
   static listProductTemplateExportDetails() {
     return Joi.object({}).required();
   }
 
-  /** @returns {listTemplateBrandTypeValues} */
+  /** @returns {ListTemplateBrandTypeValuesParam} */
   static listTemplateBrandTypeValues() {
     return Joi.object({
       filter: Joi.string().allow("").required(),
@@ -1038,7 +1038,7 @@ class CatalogPlatformValidator {
     }).required();
   }
 
-  /** @returns {updateCategory} */
+  /** @returns {UpdateCategoryParam} */
   static updateCategory() {
     return Joi.object({
       uid: Joi.string().allow("").required(),
@@ -1046,7 +1046,7 @@ class CatalogPlatformValidator {
     }).required();
   }
 
-  /** @returns {updateDepartment} */
+  /** @returns {UpdateDepartmentParam} */
   static updateDepartment() {
     return Joi.object({
       uid: Joi.string().allow("").required(),
@@ -1054,7 +1054,7 @@ class CatalogPlatformValidator {
     }).required();
   }
 
-  /** @returns {updateHsnCode} */
+  /** @returns {UpdateHsnCodeParam} */
   static updateHsnCode() {
     return Joi.object({
       id: Joi.string().allow("").required(),
@@ -1062,14 +1062,14 @@ class CatalogPlatformValidator {
     }).required();
   }
 
-  /** @returns {updateInventories} */
+  /** @returns {UpdateInventoriesParam} */
   static updateInventories() {
     return Joi.object({
       body: CatalogPlatformModel.InventoryRequestSchemaV2().required(),
     }).required();
   }
 
-  /** @returns {updateProductBundle} */
+  /** @returns {UpdateProductBundleParam} */
   static updateProductBundle() {
     return Joi.object({
       id: Joi.string().allow("").required(),
@@ -1077,7 +1077,7 @@ class CatalogPlatformValidator {
     }).required();
   }
 
-  /** @returns {updateRealtimeInventory} */
+  /** @returns {UpdateRealtimeInventoryParam} */
   static updateRealtimeInventory() {
     return Joi.object({
       itemId: Joi.number().required(),
@@ -1086,7 +1086,7 @@ class CatalogPlatformValidator {
     }).required();
   }
 
-  /** @returns {updateSizeGuide} */
+  /** @returns {UpdateSizeGuideParam} */
   static updateSizeGuide() {
     return Joi.object({
       id: Joi.string().allow("").required(),
@@ -1094,7 +1094,7 @@ class CatalogPlatformValidator {
     }).required();
   }
 
-  /** @returns {uploadBulkProducts} */
+  /** @returns {UploadBulkProductsParam} */
   static uploadBulkProducts() {
     return Joi.object({
       department: Joi.string().allow("").required(),
@@ -1103,14 +1103,14 @@ class CatalogPlatformValidator {
     }).required();
   }
 
-  /** @returns {validateProductTemplate} */
+  /** @returns {ValidateProductTemplateParam} */
   static validateProductTemplate() {
     return Joi.object({
       slug: Joi.string().allow("").required(),
     }).required();
   }
 
-  /** @returns {validateProductTemplateSchema} */
+  /** @returns {ValidateProductTemplateSchemaParam} */
   static validateProductTemplateSchema() {
     return Joi.object({
       itemType: Joi.string().allow("").required(),

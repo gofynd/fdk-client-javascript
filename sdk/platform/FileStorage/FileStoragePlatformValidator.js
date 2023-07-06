@@ -43,7 +43,7 @@ const FileStoragePlatformModel = require("./FileStoragePlatformModel");
  */
 
 class FileStoragePlatformValidator {
-  /** @returns {browse} */
+  /** @returns {BrowseParam} */
   static browse() {
     return Joi.object({
       namespace: Joi.string().allow("").required(),
@@ -51,7 +51,7 @@ class FileStoragePlatformValidator {
     }).required();
   }
 
-  /** @returns {completeUpload} */
+  /** @returns {CompleteUploadParam} */
   static completeUpload() {
     return Joi.object({
       namespace: Joi.string().allow("").required(),
@@ -59,7 +59,7 @@ class FileStoragePlatformValidator {
     }).required();
   }
 
-  /** @returns {copyFiles} */
+  /** @returns {CopyFilesParam} */
   static copyFiles() {
     return Joi.object({
       sync: Joi.boolean(),
@@ -67,21 +67,21 @@ class FileStoragePlatformValidator {
     }).required();
   }
 
-  /** @returns {getSignUrls} */
+  /** @returns {GetSignUrlsParam} */
   static getSignUrls() {
     return Joi.object({
       body: FileStoragePlatformModel.SignUrlRequest().required(),
     }).required();
   }
 
-  /** @returns {proxy} */
+  /** @returns {ProxyParam} */
   static proxy() {
     return Joi.object({
       url: Joi.string().allow("").required(),
     }).required();
   }
 
-  /** @returns {startUpload} */
+  /** @returns {StartUploadParam} */
   static startUpload() {
     return Joi.object({
       namespace: Joi.string().allow("").required(),

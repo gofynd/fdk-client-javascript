@@ -200,49 +200,49 @@ const ThemePlatformModel = require("./ThemePlatformModel");
  */
 
 class ThemePlatformApplicationValidator {
-  /** @returns {addThemeToApplicationV2} */
+  /** @returns {AddThemeToApplicationV2Param} */
   static addThemeToApplicationV2() {
     return Joi.object({
       body: ThemePlatformModel.ApplyThemeRequestV2().required(),
     }).required();
   }
 
-  /** @returns {addToThemeLibrary} */
+  /** @returns {AddToThemeLibraryParam} */
   static addToThemeLibrary() {
     return Joi.object({
       body: ThemePlatformModel.AddThemeRequestSchema().required(),
     }).required();
   }
 
-  /** @returns {applyTheme} */
+  /** @returns {ApplyThemeParam} */
   static applyTheme() {
     return Joi.object({
       body: ThemePlatformModel.AddThemeRequestSchema().required(),
     }).required();
   }
 
-  /** @returns {applyThemeV2} */
+  /** @returns {ApplyThemeV2Param} */
   static applyThemeV2() {
     return Joi.object({
       themeId: Joi.string().allow("").required(),
     }).required();
   }
 
-  /** @returns {archiveTheme} */
+  /** @returns {ArchiveThemeParam} */
   static archiveTheme() {
     return Joi.object({
       themeId: Joi.string().allow("").required(),
     }).required();
   }
 
-  /** @returns {checkThemeUpgradableV2} */
+  /** @returns {CheckThemeUpgradableV2Param} */
   static checkThemeUpgradableV2() {
     return Joi.object({
       themeId: Joi.string().allow("").required(),
     }).required();
   }
 
-  /** @returns {createPage} */
+  /** @returns {CreatePageParam} */
   static createPage() {
     return Joi.object({
       themeId: Joi.string().allow("").required(),
@@ -250,14 +250,14 @@ class ThemePlatformApplicationValidator {
     }).required();
   }
 
-  /** @returns {createTheme} */
+  /** @returns {CreateThemeParam} */
   static createTheme() {
     return Joi.object({
       body: ThemePlatformModel.ThemesSchema().required(),
     }).required();
   }
 
-  /** @returns {deletePage} */
+  /** @returns {DeletePageParam} */
   static deletePage() {
     return Joi.object({
       themeId: Joi.string().allow("").required(),
@@ -265,79 +265,79 @@ class ThemePlatformApplicationValidator {
     }).required();
   }
 
-  /** @returns {deleteTheme} */
+  /** @returns {DeleteThemeParam} */
   static deleteTheme() {
     return Joi.object({
       themeId: Joi.string().allow("").required(),
     }).required();
   }
 
-  /** @returns {deleteThemeV2} */
+  /** @returns {DeleteThemeV2Param} */
   static deleteThemeV2() {
     return Joi.object({
       themeId: Joi.string().allow("").required(),
     }).required();
   }
 
-  /** @returns {duplicateThemeV2} */
+  /** @returns {DuplicateThemeV2Param} */
   static duplicateThemeV2() {
     return Joi.object({
       themeId: Joi.string().allow("").required(),
     }).required();
   }
 
-  /** @returns {getAllPages} */
+  /** @returns {GetAllPagesParam} */
   static getAllPages() {
     return Joi.object({
       themeId: Joi.string().allow("").required(),
     }).required();
   }
 
-  /** @returns {getApplicationThemeByIdV2} */
+  /** @returns {GetApplicationThemeByIdV2Param} */
   static getApplicationThemeByIdV2() {
     return Joi.object({
       themeId: Joi.string().allow("").required(),
     }).required();
   }
 
-  /** @returns {getApplicationThemesCountV2} */
+  /** @returns {GetApplicationThemesCountV2Param} */
   static getApplicationThemesCountV2() {
     return Joi.object({}).required();
   }
 
-  /** @returns {getApplicationThemesV2} */
+  /** @returns {GetApplicationThemesV2Param} */
   static getApplicationThemesV2() {
     return Joi.object({}).required();
   }
 
-  /** @returns {getAppliedTheme} */
+  /** @returns {GetAppliedThemeParam} */
   static getAppliedTheme() {
     return Joi.object({}).required();
   }
 
-  /** @returns {getAppliedThemeV2} */
+  /** @returns {GetAppliedThemeV2Param} */
   static getAppliedThemeV2() {
     return Joi.object({}).required();
   }
 
-  /** @returns {getDefaultPageDetails} */
+  /** @returns {GetDefaultPageDetailsParam} */
   static getDefaultPageDetails() {
     return Joi.object({
       pageValue: Joi.string().allow("").required(),
     }).required();
   }
 
-  /** @returns {getFonts} */
+  /** @returns {GetFontsParam} */
   static getFonts() {
     return Joi.object({}).required();
   }
 
-  /** @returns {getFontsV2} */
+  /** @returns {GetFontsV2Param} */
   static getFontsV2() {
     return Joi.object({}).required();
   }
 
-  /** @returns {getPage} */
+  /** @returns {GetPageParam} */
   static getPage() {
     return Joi.object({
       themeId: Joi.string().allow("").required(),
@@ -345,7 +345,7 @@ class ThemePlatformApplicationValidator {
     }).required();
   }
 
-  /** @returns {getPublicThemes} */
+  /** @returns {GetPublicThemesParam} */
   static getPublicThemes() {
     return Joi.object({
       pageSize: Joi.number(),
@@ -353,35 +353,35 @@ class ThemePlatformApplicationValidator {
     }).required();
   }
 
-  /** @returns {getThemeById} */
+  /** @returns {GetThemeByIdParam} */
   static getThemeById() {
     return Joi.object({
       themeId: Joi.string().allow("").required(),
     }).required();
   }
 
-  /** @returns {getThemeForPreview} */
+  /** @returns {GetThemeForPreviewParam} */
   static getThemeForPreview() {
     return Joi.object({
       themeId: Joi.string().allow("").required(),
     }).required();
   }
 
-  /** @returns {getThemeLastModified} */
+  /** @returns {GetThemeLastModifiedParam} */
   static getThemeLastModified() {
     return Joi.object({
       themeId: Joi.string().allow("").required(),
     }).required();
   }
 
-  /** @returns {getThemeLastModifiedV2} */
+  /** @returns {GetThemeLastModifiedV2Param} */
   static getThemeLastModifiedV2() {
     return Joi.object({
       themeId: Joi.string().allow("").required(),
     }).required();
   }
 
-  /** @returns {getThemeLibrary} */
+  /** @returns {GetThemeLibraryParam} */
   static getThemeLibrary() {
     return Joi.object({
       pageSize: Joi.number(),
@@ -389,42 +389,42 @@ class ThemePlatformApplicationValidator {
     }).required();
   }
 
-  /** @returns {getThemePreviewByIdV2} */
+  /** @returns {GetThemePreviewByIdV2Param} */
   static getThemePreviewByIdV2() {
     return Joi.object({
       themeId: Joi.string().allow("").required(),
     }).required();
   }
 
-  /** @returns {isUpgradable} */
+  /** @returns {IsUpgradableParam} */
   static isUpgradable() {
     return Joi.object({
       themeId: Joi.string().allow("").required(),
     }).required();
   }
 
-  /** @returns {publishTheme} */
+  /** @returns {PublishThemeParam} */
   static publishTheme() {
     return Joi.object({
       themeId: Joi.string().allow("").required(),
     }).required();
   }
 
-  /** @returns {unarchiveTheme} */
+  /** @returns {UnarchiveThemeParam} */
   static unarchiveTheme() {
     return Joi.object({
       themeId: Joi.string().allow("").required(),
     }).required();
   }
 
-  /** @returns {unpublishTheme} */
+  /** @returns {UnpublishThemeParam} */
   static unpublishTheme() {
     return Joi.object({
       themeId: Joi.string().allow("").required(),
     }).required();
   }
 
-  /** @returns {updateMultiplePages} */
+  /** @returns {UpdateMultiplePagesParam} */
   static updateMultiplePages() {
     return Joi.object({
       themeId: Joi.string().allow("").required(),
@@ -432,7 +432,7 @@ class ThemePlatformApplicationValidator {
     }).required();
   }
 
-  /** @returns {updatePage} */
+  /** @returns {UpdatePageParam} */
   static updatePage() {
     return Joi.object({
       themeId: Joi.string().allow("").required(),
@@ -441,7 +441,7 @@ class ThemePlatformApplicationValidator {
     }).required();
   }
 
-  /** @returns {updateTheme} */
+  /** @returns {UpdateThemeParam} */
   static updateTheme() {
     return Joi.object({
       themeId: Joi.string().allow("").required(),
@@ -449,7 +449,7 @@ class ThemePlatformApplicationValidator {
     }).required();
   }
 
-  /** @returns {updateThemeNameV2} */
+  /** @returns {UpdateThemeNameV2Param} */
   static updateThemeNameV2() {
     return Joi.object({
       themeId: Joi.string().allow("").required(),
@@ -457,7 +457,7 @@ class ThemePlatformApplicationValidator {
     }).required();
   }
 
-  /** @returns {updateThemeV2} */
+  /** @returns {UpdateThemeV2Param} */
   static updateThemeV2() {
     return Joi.object({
       themeId: Joi.string().allow("").required(),
@@ -465,14 +465,14 @@ class ThemePlatformApplicationValidator {
     }).required();
   }
 
-  /** @returns {upgradeApplicationV2} */
+  /** @returns {UpgradeApplicationV2Param} */
   static upgradeApplicationV2() {
     return Joi.object({
       themeId: Joi.string().allow("").required(),
     }).required();
   }
 
-  /** @returns {upgradeTheme} */
+  /** @returns {UpgradeThemeParam} */
   static upgradeTheme() {
     return Joi.object({
       themeId: Joi.string().allow("").required(),

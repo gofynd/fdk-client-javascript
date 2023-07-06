@@ -254,66 +254,66 @@ export = CatalogApplicationValidator;
  * @property {string} collectionId - The ID of the collection type.
  */
 declare class CatalogApplicationValidator {
-    /** @returns {followById} */
-    static followById(): followById;
-    /** @returns {getBrandDetailBySlug} */
-    static getBrandDetailBySlug(): getBrandDetailBySlug;
-    /** @returns {getBrands} */
-    static getBrands(): getBrands;
-    /** @returns {getCategories} */
-    static getCategories(): getCategories;
-    /** @returns {getCategoryDetailBySlug} */
-    static getCategoryDetailBySlug(): getCategoryDetailBySlug;
-    /** @returns {getCollectionDetailBySlug} */
-    static getCollectionDetailBySlug(): getCollectionDetailBySlug;
-    /** @returns {getCollectionItemsBySlug} */
-    static getCollectionItemsBySlug(): getCollectionItemsBySlug;
-    /** @returns {getCollections} */
-    static getCollections(): getCollections;
-    /** @returns {getComparedFrequentlyProductBySlug} */
-    static getComparedFrequentlyProductBySlug(): getComparedFrequentlyProductBySlug;
-    /** @returns {getDepartments} */
-    static getDepartments(): getDepartments;
-    /** @returns {getFollowIds} */
-    static getFollowIds(): getFollowIds;
-    /** @returns {getFollowedListing} */
-    static getFollowedListing(): getFollowedListing;
-    /** @returns {getFollowerCountById} */
-    static getFollowerCountById(): getFollowerCountById;
-    /** @returns {getHomeProducts} */
-    static getHomeProducts(): getHomeProducts;
-    /** @returns {getInStockLocations} */
-    static getInStockLocations(): getInStockLocations;
-    /** @returns {getLocationDetailsById} */
-    static getLocationDetailsById(): getLocationDetailsById;
-    /** @returns {getProductBundlesBySlug} */
-    static getProductBundlesBySlug(): getProductBundlesBySlug;
-    /** @returns {getProductComparisonBySlugs} */
-    static getProductComparisonBySlugs(): getProductComparisonBySlugs;
-    /** @returns {getProductDetailBySlug} */
-    static getProductDetailBySlug(): getProductDetailBySlug;
-    /** @returns {getProductPriceBySlug} */
-    static getProductPriceBySlug(): getProductPriceBySlug;
-    /** @returns {getProductSellersBySlug} */
-    static getProductSellersBySlug(): getProductSellersBySlug;
-    /** @returns {getProductSizesBySlug} */
-    static getProductSizesBySlug(): getProductSizesBySlug;
-    /** @returns {getProductStockByIds} */
-    static getProductStockByIds(): getProductStockByIds;
-    /** @returns {getProductStockForTimeByIds} */
-    static getProductStockForTimeByIds(): getProductStockForTimeByIds;
-    /** @returns {getProductVariantsBySlug} */
-    static getProductVariantsBySlug(): getProductVariantsBySlug;
-    /** @returns {getProducts} */
-    static getProducts(): getProducts;
-    /** @returns {getSearchResults} */
-    static getSearchResults(): getSearchResults;
-    /** @returns {getSimilarComparisonProductBySlug} */
-    static getSimilarComparisonProductBySlug(): getSimilarComparisonProductBySlug;
-    /** @returns {getStores} */
-    static getStores(): getStores;
-    /** @returns {unfollowById} */
-    static unfollowById(): unfollowById;
+    /** @returns {FollowByIdParam} */
+    static followById(): FollowByIdParam;
+    /** @returns {GetBrandDetailBySlugParam} */
+    static getBrandDetailBySlug(): GetBrandDetailBySlugParam;
+    /** @returns {GetBrandsParam} */
+    static getBrands(): GetBrandsParam;
+    /** @returns {GetCategoriesParam} */
+    static getCategories(): GetCategoriesParam;
+    /** @returns {GetCategoryDetailBySlugParam} */
+    static getCategoryDetailBySlug(): GetCategoryDetailBySlugParam;
+    /** @returns {GetCollectionDetailBySlugParam} */
+    static getCollectionDetailBySlug(): GetCollectionDetailBySlugParam;
+    /** @returns {GetCollectionItemsBySlugParam} */
+    static getCollectionItemsBySlug(): GetCollectionItemsBySlugParam;
+    /** @returns {GetCollectionsParam} */
+    static getCollections(): GetCollectionsParam;
+    /** @returns {GetComparedFrequentlyProductBySlugParam} */
+    static getComparedFrequentlyProductBySlug(): GetComparedFrequentlyProductBySlugParam;
+    /** @returns {GetDepartmentsParam} */
+    static getDepartments(): any;
+    /** @returns {GetFollowIdsParam} */
+    static getFollowIds(): GetFollowIdsParam;
+    /** @returns {GetFollowedListingParam} */
+    static getFollowedListing(): GetFollowedListingParam;
+    /** @returns {GetFollowerCountByIdParam} */
+    static getFollowerCountById(): GetFollowerCountByIdParam;
+    /** @returns {GetHomeProductsParam} */
+    static getHomeProducts(): GetHomeProductsParam;
+    /** @returns {GetInStockLocationsParam} */
+    static getInStockLocations(): GetInStockLocationsParam;
+    /** @returns {GetLocationDetailsByIdParam} */
+    static getLocationDetailsById(): GetLocationDetailsByIdParam;
+    /** @returns {GetProductBundlesBySlugParam} */
+    static getProductBundlesBySlug(): GetProductBundlesBySlugParam;
+    /** @returns {GetProductComparisonBySlugsParam} */
+    static getProductComparisonBySlugs(): GetProductComparisonBySlugsParam;
+    /** @returns {GetProductDetailBySlugParam} */
+    static getProductDetailBySlug(): GetProductDetailBySlugParam;
+    /** @returns {GetProductPriceBySlugParam} */
+    static getProductPriceBySlug(): GetProductPriceBySlugParam;
+    /** @returns {GetProductSellersBySlugParam} */
+    static getProductSellersBySlug(): GetProductSellersBySlugParam;
+    /** @returns {GetProductSizesBySlugParam} */
+    static getProductSizesBySlug(): GetProductSizesBySlugParam;
+    /** @returns {GetProductStockByIdsParam} */
+    static getProductStockByIds(): GetProductStockByIdsParam;
+    /** @returns {GetProductStockForTimeByIdsParam} */
+    static getProductStockForTimeByIds(): GetProductStockForTimeByIdsParam;
+    /** @returns {GetProductVariantsBySlugParam} */
+    static getProductVariantsBySlug(): GetProductVariantsBySlugParam;
+    /** @returns {GetProductsParam} */
+    static getProducts(): GetProductsParam;
+    /** @returns {GetSearchResultsParam} */
+    static getSearchResults(): GetSearchResultsParam;
+    /** @returns {GetSimilarComparisonProductBySlugParam} */
+    static getSimilarComparisonProductBySlug(): GetSimilarComparisonProductBySlugParam;
+    /** @returns {GetStoresParam} */
+    static getStores(): GetStoresParam;
+    /** @returns {UnfollowByIdParam} */
+    static unfollowById(): UnfollowByIdParam;
 }
 declare namespace CatalogApplicationValidator {
     export { FollowByIdParam, GetBrandDetailBySlugParam, GetBrandsParam, GetCategoriesParam, GetCategoryDetailBySlugParam, GetCollectionDetailBySlugParam, GetCollectionItemsBySlugParam, GetCollectionsParam, GetComparedFrequentlyProductBySlugParam, GetDepartmentsParam, GetFollowIdsParam, GetFollowedListingParam, GetFollowerCountByIdParam, GetHomeProductsParam, GetInStockLocationsParam, GetLocationDetailsByIdParam, GetProductBundlesBySlugParam, GetProductComparisonBySlugsParam, GetProductDetailBySlugParam, GetProductPriceBySlugParam, GetProductSellersBySlugParam, GetProductSizesBySlugParam, GetProductStockByIdsParam, GetProductStockForTimeByIdsParam, GetProductVariantsBySlugParam, GetProductsParam, GetSearchResultsParam, GetSimilarComparisonProductBySlugParam, GetStoresParam, UnfollowByIdParam };
@@ -455,7 +455,6 @@ type GetComparedFrequentlyProductBySlugParam = {
      */
     slug: string;
 };
-type GetDepartmentsParam = any;
 type GetFollowIdsParam = {
     /**
      * - Type of collection, i.e. products,
@@ -798,3 +797,4 @@ type UnfollowByIdParam = {
      */
     collectionId: string;
 };
+type GetDepartmentsParam = any;

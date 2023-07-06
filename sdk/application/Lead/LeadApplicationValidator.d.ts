@@ -30,20 +30,20 @@ export = LeadApplicationValidator;
  * @property {LeadApplicationModel.CustomFormSubmissionPayload} body
  */
 declare class LeadApplicationValidator {
-    /** @returns {createHistory} */
-    static createHistory(): createHistory;
-    /** @returns {createTicket} */
-    static createTicket(): createTicket;
-    /** @returns {getCustomForm} */
-    static getCustomForm(): getCustomForm;
-    /** @returns {getParticipantsInsideVideoRoom} */
-    static getParticipantsInsideVideoRoom(): getParticipantsInsideVideoRoom;
-    /** @returns {getTicket} */
-    static getTicket(): getTicket;
-    /** @returns {getTokenForVideoRoom} */
-    static getTokenForVideoRoom(): getTokenForVideoRoom;
-    /** @returns {submitCustomForm} */
-    static submitCustomForm(): submitCustomForm;
+    /** @returns {CreateHistoryParam} */
+    static createHistory(): CreateHistoryParam;
+    /** @returns {CreateTicketParam} */
+    static createTicket(): CreateTicketParam;
+    /** @returns {GetCustomFormParam} */
+    static getCustomForm(): GetCustomFormParam;
+    /** @returns {GetParticipantsInsideVideoRoomParam} */
+    static getParticipantsInsideVideoRoom(): GetParticipantsInsideVideoRoomParam;
+    /** @returns {GetTicketParam} */
+    static getTicket(): GetTicketParam;
+    /** @returns {GetTokenForVideoRoomParam} */
+    static getTokenForVideoRoom(): GetTokenForVideoRoomParam;
+    /** @returns {SubmitCustomFormParam} */
+    static submitCustomForm(): SubmitCustomFormParam;
 }
 declare namespace LeadApplicationValidator {
     export { CreateHistoryParam, CreateTicketParam, GetCustomFormParam, GetParticipantsInsideVideoRoomParam, GetTicketParam, GetTokenForVideoRoomParam, SubmitCustomFormParam };

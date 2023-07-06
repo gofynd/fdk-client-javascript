@@ -25,23 +25,22 @@ export = WebhookPlatformValidator;
  * @property {WebhookPlatformModel.SubscriberConfig} body
  */
 declare class WebhookPlatformValidator {
-    /** @returns {fetchAllEventConfigurations} */
-    static fetchAllEventConfigurations(): fetchAllEventConfigurations;
-    /** @returns {getSubscriberById} */
-    static getSubscriberById(): getSubscriberById;
-    /** @returns {getSubscribersByCompany} */
-    static getSubscribersByCompany(): getSubscribersByCompany;
-    /** @returns {getSubscribersByExtensionId} */
-    static getSubscribersByExtensionId(): getSubscribersByExtensionId;
-    /** @returns {registerSubscriberToEvent} */
-    static registerSubscriberToEvent(): registerSubscriberToEvent;
-    /** @returns {updateSubscriberConfig} */
-    static updateSubscriberConfig(): updateSubscriberConfig;
+    /** @returns {FetchAllEventConfigurationsParam} */
+    static fetchAllEventConfigurations(): any;
+    /** @returns {GetSubscriberByIdParam} */
+    static getSubscriberById(): GetSubscriberByIdParam;
+    /** @returns {GetSubscribersByCompanyParam} */
+    static getSubscribersByCompany(): GetSubscribersByCompanyParam;
+    /** @returns {GetSubscribersByExtensionIdParam} */
+    static getSubscribersByExtensionId(): GetSubscribersByExtensionIdParam;
+    /** @returns {RegisterSubscriberToEventParam} */
+    static registerSubscriberToEvent(): RegisterSubscriberToEventParam;
+    /** @returns {UpdateSubscriberConfigParam} */
+    static updateSubscriberConfig(): UpdateSubscriberConfigParam;
 }
 declare namespace WebhookPlatformValidator {
     export { FetchAllEventConfigurationsParam, GetSubscriberByIdParam, GetSubscribersByCompanyParam, GetSubscribersByExtensionIdParam, RegisterSubscriberToEventParam, UpdateSubscriberConfigParam };
 }
-type FetchAllEventConfigurationsParam = any;
 type GetSubscriberByIdParam = {
     /**
      * - Subscriber ID
@@ -82,4 +81,5 @@ type RegisterSubscriberToEventParam = {
 type UpdateSubscriberConfigParam = {
     body: WebhookPlatformModel.SubscriberConfig;
 };
+type FetchAllEventConfigurationsParam = any;
 import WebhookPlatformModel = require("./WebhookPlatformModel");

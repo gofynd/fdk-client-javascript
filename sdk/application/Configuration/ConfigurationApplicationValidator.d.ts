@@ -51,43 +51,42 @@ export = ConfigurationApplicationValidator;
  */
 /** @typedef RemoveOrderingStoreCookieParam */
 declare class ConfigurationApplicationValidator {
-    /** @returns {getAppCurrencies} */
-    static getAppCurrencies(): getAppCurrencies;
-    /** @returns {getAppStaffList} */
-    static getAppStaffList(): getAppStaffList;
-    /** @returns {getAppStaffs} */
-    static getAppStaffs(): getAppStaffs;
-    /** @returns {getApplication} */
-    static getApplication(): getApplication;
-    /** @returns {getBasicDetails} */
-    static getBasicDetails(): getBasicDetails;
-    /** @returns {getContactInfo} */
-    static getContactInfo(): getContactInfo;
-    /** @returns {getCurrencies} */
-    static getCurrencies(): getCurrencies;
-    /** @returns {getCurrencyById} */
-    static getCurrencyById(): getCurrencyById;
-    /** @returns {getFeatures} */
-    static getFeatures(): getFeatures;
-    /** @returns {getIntegrationTokens} */
-    static getIntegrationTokens(): getIntegrationTokens;
-    /** @returns {getLanguages} */
-    static getLanguages(): getLanguages;
-    /** @returns {getOrderingStoreCookie} */
-    static getOrderingStoreCookie(): getOrderingStoreCookie;
-    /** @returns {getOrderingStores} */
-    static getOrderingStores(): getOrderingStores;
-    /** @returns {getOwnerInfo} */
-    static getOwnerInfo(): getOwnerInfo;
-    /** @returns {getStoreDetailById} */
-    static getStoreDetailById(): getStoreDetailById;
-    /** @returns {removeOrderingStoreCookie} */
-    static removeOrderingStoreCookie(): removeOrderingStoreCookie;
+    /** @returns {GetAppCurrenciesParam} */
+    static getAppCurrencies(): any;
+    /** @returns {GetAppStaffListParam} */
+    static getAppStaffList(): GetAppStaffListParam;
+    /** @returns {GetAppStaffsParam} */
+    static getAppStaffs(): GetAppStaffsParam;
+    /** @returns {GetApplicationParam} */
+    static getApplication(): any;
+    /** @returns {GetBasicDetailsParam} */
+    static getBasicDetails(): any;
+    /** @returns {GetContactInfoParam} */
+    static getContactInfo(): any;
+    /** @returns {GetCurrenciesParam} */
+    static getCurrencies(): any;
+    /** @returns {GetCurrencyByIdParam} */
+    static getCurrencyById(): GetCurrencyByIdParam;
+    /** @returns {GetFeaturesParam} */
+    static getFeatures(): any;
+    /** @returns {GetIntegrationTokensParam} */
+    static getIntegrationTokens(): any;
+    /** @returns {GetLanguagesParam} */
+    static getLanguages(): any;
+    /** @returns {GetOrderingStoreCookieParam} */
+    static getOrderingStoreCookie(): GetOrderingStoreCookieParam;
+    /** @returns {GetOrderingStoresParam} */
+    static getOrderingStores(): GetOrderingStoresParam;
+    /** @returns {GetOwnerInfoParam} */
+    static getOwnerInfo(): any;
+    /** @returns {GetStoreDetailByIdParam} */
+    static getStoreDetailById(): GetStoreDetailByIdParam;
+    /** @returns {RemoveOrderingStoreCookieParam} */
+    static removeOrderingStoreCookie(): any;
 }
 declare namespace ConfigurationApplicationValidator {
     export { GetAppCurrenciesParam, GetAppStaffListParam, GetAppStaffsParam, GetApplicationParam, GetBasicDetailsParam, GetContactInfoParam, GetCurrenciesParam, GetCurrencyByIdParam, GetFeaturesParam, GetIntegrationTokensParam, GetLanguagesParam, GetOrderingStoreCookieParam, GetOrderingStoresParam, GetOwnerInfoParam, GetStoreDetailByIdParam, RemoveOrderingStoreCookieParam };
 }
-type GetAppCurrenciesParam = any;
 type GetAppStaffListParam = {
     pageNo?: number;
     pageSize?: number;
@@ -128,19 +127,12 @@ type GetAppStaffsParam = {
      */
     user?: string;
 };
-type GetApplicationParam = any;
-type GetBasicDetailsParam = any;
-type GetContactInfoParam = any;
-type GetCurrenciesParam = any;
 type GetCurrencyByIdParam = {
     /**
      * - Object ID assigned to the currency
      */
     id: string;
 };
-type GetFeaturesParam = any;
-type GetIntegrationTokensParam = any;
-type GetLanguagesParam = any;
 type GetOrderingStoreCookieParam = {
     body: ConfigurationApplicationModel.OrderingStoreSelectRequest;
 };
@@ -160,12 +152,20 @@ type GetOrderingStoresParam = {
      */
     q?: string;
 };
-type GetOwnerInfoParam = any;
 type GetStoreDetailByIdParam = {
     /**
      * - Store uid
      */
     storeId: number;
 };
+type GetAppCurrenciesParam = any;
+type GetApplicationParam = any;
+type GetBasicDetailsParam = any;
+type GetContactInfoParam = any;
+type GetCurrenciesParam = any;
+type GetFeaturesParam = any;
+type GetIntegrationTokensParam = any;
+type GetLanguagesParam = any;
+type GetOwnerInfoParam = any;
 type RemoveOrderingStoreCookieParam = any;
 import ConfigurationApplicationModel = require("./ConfigurationApplicationModel");

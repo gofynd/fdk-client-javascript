@@ -34,19 +34,19 @@ const WebhookPlatformModel = require("./WebhookPlatformModel");
  */
 
 class WebhookPlatformValidator {
-  /** @returns {fetchAllEventConfigurations} */
+  /** @returns {FetchAllEventConfigurationsParam} */
   static fetchAllEventConfigurations() {
     return Joi.object({}).required();
   }
 
-  /** @returns {getSubscriberById} */
+  /** @returns {GetSubscriberByIdParam} */
   static getSubscriberById() {
     return Joi.object({
       subscriberId: Joi.number().required(),
     }).required();
   }
 
-  /** @returns {getSubscribersByCompany} */
+  /** @returns {GetSubscribersByCompanyParam} */
   static getSubscribersByCompany() {
     return Joi.object({
       pageNo: Joi.number(),
@@ -55,7 +55,7 @@ class WebhookPlatformValidator {
     }).required();
   }
 
-  /** @returns {getSubscribersByExtensionId} */
+  /** @returns {GetSubscribersByExtensionIdParam} */
   static getSubscribersByExtensionId() {
     return Joi.object({
       pageNo: Joi.number(),
@@ -64,14 +64,14 @@ class WebhookPlatformValidator {
     }).required();
   }
 
-  /** @returns {registerSubscriberToEvent} */
+  /** @returns {RegisterSubscriberToEventParam} */
   static registerSubscriberToEvent() {
     return Joi.object({
       body: WebhookPlatformModel.SubscriberConfig().required(),
     }).required();
   }
 
-  /** @returns {updateSubscriberConfig} */
+  /** @returns {UpdateSubscriberConfigParam} */
   static updateSubscriberConfig() {
     return Joi.object({
       body: WebhookPlatformModel.SubscriberConfig().required(),

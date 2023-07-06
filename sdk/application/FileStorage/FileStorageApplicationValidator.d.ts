@@ -20,12 +20,12 @@ export = FileStorageApplicationValidator;
  * @property {FileStorageApplicationModel.StartRequest} body
  */
 declare class FileStorageApplicationValidator {
-    /** @returns {completeUpload} */
-    static completeUpload(): completeUpload;
-    /** @returns {signUrls} */
-    static signUrls(): signUrls;
-    /** @returns {startUpload} */
-    static startUpload(): startUpload;
+    /** @returns {CompleteUploadParam} */
+    static completeUpload(): CompleteUploadParam;
+    /** @returns {SignUrlsParam} */
+    static signUrls(): SignUrlsParam;
+    /** @returns {StartUploadParam} */
+    static startUpload(): StartUploadParam;
 }
 declare namespace FileStorageApplicationValidator {
     export { CompleteUploadParam, SignUrlsParam, StartUploadParam };

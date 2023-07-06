@@ -19,18 +19,18 @@ export = ThemeApplicationValidator;
  * @property {string} themeId - ID of the theme to be retrieved
  */
 declare class ThemeApplicationValidator {
-    /** @returns {getAllPages} */
-    static getAllPages(): getAllPages;
-    /** @returns {getAppliedTheme} */
-    static getAppliedTheme(): getAppliedTheme;
-    /** @returns {getAppliedThemeV2} */
-    static getAppliedThemeV2(): getAppliedThemeV2;
-    /** @returns {getPage} */
-    static getPage(): getPage;
-    /** @returns {getThemeForPreview} */
-    static getThemeForPreview(): getThemeForPreview;
-    /** @returns {getThemeForPreviewV2} */
-    static getThemeForPreviewV2(): getThemeForPreviewV2;
+    /** @returns {GetAllPagesParam} */
+    static getAllPages(): GetAllPagesParam;
+    /** @returns {GetAppliedThemeParam} */
+    static getAppliedTheme(): any;
+    /** @returns {GetAppliedThemeV2Param} */
+    static getAppliedThemeV2(): any;
+    /** @returns {GetPageParam} */
+    static getPage(): GetPageParam;
+    /** @returns {GetThemeForPreviewParam} */
+    static getThemeForPreview(): GetThemeForPreviewParam;
+    /** @returns {GetThemeForPreviewV2Param} */
+    static getThemeForPreviewV2(): GetThemeForPreviewV2Param;
 }
 declare namespace ThemeApplicationValidator {
     export { GetAllPagesParam, GetAppliedThemeParam, GetAppliedThemeV2Param, GetPageParam, GetThemeForPreviewParam, GetThemeForPreviewV2Param };
@@ -41,8 +41,6 @@ type GetAllPagesParam = {
      */
     themeId: string;
 };
-type GetAppliedThemeParam = any;
-type GetAppliedThemeV2Param = any;
 type GetPageParam = {
     /**
      * - ID of the theme to be retrieved
@@ -65,3 +63,5 @@ type GetThemeForPreviewV2Param = {
      */
     themeId: string;
 };
+type GetAppliedThemeParam = any;
+type GetAppliedThemeV2Param = any;

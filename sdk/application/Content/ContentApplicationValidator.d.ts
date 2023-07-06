@@ -71,49 +71,48 @@ export = ContentApplicationValidator;
 /** @typedef GetSupportInformationParam */
 /** @typedef GetTagsParam */
 declare class ContentApplicationValidator {
-    /** @returns {getAnnouncements} */
-    static getAnnouncements(): getAnnouncements;
-    /** @returns {getBlog} */
-    static getBlog(): getBlog;
-    /** @returns {getBlogs} */
-    static getBlogs(): getBlogs;
-    /** @returns {getDataLoaders} */
-    static getDataLoaders(): getDataLoaders;
-    /** @returns {getFaqBySlug} */
-    static getFaqBySlug(): getFaqBySlug;
-    /** @returns {getFaqCategories} */
-    static getFaqCategories(): getFaqCategories;
-    /** @returns {getFaqCategoryBySlug} */
-    static getFaqCategoryBySlug(): getFaqCategoryBySlug;
-    /** @returns {getFaqs} */
-    static getFaqs(): getFaqs;
-    /** @returns {getFaqsByCategorySlug} */
-    static getFaqsByCategorySlug(): getFaqsByCategorySlug;
-    /** @returns {getLandingPage} */
-    static getLandingPage(): getLandingPage;
-    /** @returns {getLegalInformation} */
-    static getLegalInformation(): getLegalInformation;
-    /** @returns {getNavigations} */
-    static getNavigations(): getNavigations;
-    /** @returns {getPage} */
-    static getPage(): getPage;
-    /** @returns {getPages} */
-    static getPages(): getPages;
-    /** @returns {getSEOConfiguration} */
-    static getSEOConfiguration(): getSEOConfiguration;
-    /** @returns {getSlideshow} */
-    static getSlideshow(): getSlideshow;
-    /** @returns {getSlideshows} */
-    static getSlideshows(): getSlideshows;
-    /** @returns {getSupportInformation} */
-    static getSupportInformation(): getSupportInformation;
-    /** @returns {getTags} */
-    static getTags(): getTags;
+    /** @returns {GetAnnouncementsParam} */
+    static getAnnouncements(): any;
+    /** @returns {GetBlogParam} */
+    static getBlog(): GetBlogParam;
+    /** @returns {GetBlogsParam} */
+    static getBlogs(): GetBlogsParam;
+    /** @returns {GetDataLoadersParam} */
+    static getDataLoaders(): any;
+    /** @returns {GetFaqBySlugParam} */
+    static getFaqBySlug(): GetFaqBySlugParam;
+    /** @returns {GetFaqCategoriesParam} */
+    static getFaqCategories(): any;
+    /** @returns {GetFaqCategoryBySlugParam} */
+    static getFaqCategoryBySlug(): GetFaqCategoryBySlugParam;
+    /** @returns {GetFaqsParam} */
+    static getFaqs(): any;
+    /** @returns {GetFaqsByCategorySlugParam} */
+    static getFaqsByCategorySlug(): GetFaqsByCategorySlugParam;
+    /** @returns {GetLandingPageParam} */
+    static getLandingPage(): any;
+    /** @returns {GetLegalInformationParam} */
+    static getLegalInformation(): any;
+    /** @returns {GetNavigationsParam} */
+    static getNavigations(): GetNavigationsParam;
+    /** @returns {GetPageParam} */
+    static getPage(): GetPageParam;
+    /** @returns {GetPagesParam} */
+    static getPages(): GetPagesParam;
+    /** @returns {GetSEOConfigurationParam} */
+    static getSEOConfiguration(): any;
+    /** @returns {GetSlideshowParam} */
+    static getSlideshow(): GetSlideshowParam;
+    /** @returns {GetSlideshowsParam} */
+    static getSlideshows(): GetSlideshowsParam;
+    /** @returns {GetSupportInformationParam} */
+    static getSupportInformation(): any;
+    /** @returns {GetTagsParam} */
+    static getTags(): any;
 }
 declare namespace ContentApplicationValidator {
     export { GetAnnouncementsParam, GetBlogParam, GetBlogsParam, GetDataLoadersParam, GetFaqBySlugParam, GetFaqCategoriesParam, GetFaqCategoryBySlugParam, GetFaqsParam, GetFaqsByCategorySlugParam, GetLandingPageParam, GetLegalInformationParam, GetNavigationsParam, GetPageParam, GetPagesParam, GetSEOConfigurationParam, GetSlideshowParam, GetSlideshowsParam, GetSupportInformationParam, GetTagsParam };
 }
-type GetAnnouncementsParam = any;
 type GetBlogParam = {
     /**
      * - A short, human-readable, URL-friendly identifier of
@@ -137,7 +136,6 @@ type GetBlogsParam = {
      */
     pageSize?: number;
 };
-type GetDataLoadersParam = any;
 type GetFaqBySlugParam = {
     /**
      * - A short, human-readable, URL-friendly identifier of
@@ -146,7 +144,6 @@ type GetFaqBySlugParam = {
      */
     slug: string;
 };
-type GetFaqCategoriesParam = any;
 type GetFaqCategoryBySlugParam = {
     /**
      * - A short, human-readable, URL-friendly identifier of
@@ -155,7 +152,6 @@ type GetFaqCategoryBySlugParam = {
      */
     slug: string;
 };
-type GetFaqsParam = any;
 type GetFaqsByCategorySlugParam = {
     /**
      * - A short, human-readable, URL-friendly identifier of
@@ -164,8 +160,6 @@ type GetFaqsByCategorySlugParam = {
      */
     slug: string;
 };
-type GetLandingPageParam = any;
-type GetLegalInformationParam = any;
 type GetNavigationsParam = {
     /**
      * - The page number to navigate through the given
@@ -200,7 +194,6 @@ type GetPagesParam = {
      */
     pageSize?: number;
 };
-type GetSEOConfigurationParam = any;
 type GetSlideshowParam = {
     /**
      * - A short, human-readable, URL-friendly identifier of
@@ -220,5 +213,12 @@ type GetSlideshowsParam = {
      */
     pageSize?: number;
 };
+type GetAnnouncementsParam = any;
+type GetDataLoadersParam = any;
+type GetFaqCategoriesParam = any;
+type GetFaqsParam = any;
+type GetLandingPageParam = any;
+type GetLegalInformationParam = any;
+type GetSEOConfigurationParam = any;
 type GetSupportInformationParam = any;
 type GetTagsParam = any;

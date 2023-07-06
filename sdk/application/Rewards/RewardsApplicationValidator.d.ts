@@ -24,20 +24,20 @@ export = RewardsApplicationValidator;
  * @property {RewardsApplicationModel.RedeemReferralCodeRequest} body
  */
 declare class RewardsApplicationValidator {
-    /** @returns {catalogueOrder} */
-    static catalogueOrder(): catalogueOrder;
-    /** @returns {getOfferByName} */
-    static getOfferByName(): getOfferByName;
-    /** @returns {getOrderDiscount} */
-    static getOrderDiscount(): getOrderDiscount;
-    /** @returns {getUserPoints} */
-    static getUserPoints(): getUserPoints;
-    /** @returns {getUserPointsHistory} */
-    static getUserPointsHistory(): getUserPointsHistory;
-    /** @returns {getUserReferralDetails} */
-    static getUserReferralDetails(): getUserReferralDetails;
-    /** @returns {redeemReferralCode} */
-    static redeemReferralCode(): redeemReferralCode;
+    /** @returns {CatalogueOrderParam} */
+    static catalogueOrder(): CatalogueOrderParam;
+    /** @returns {GetOfferByNameParam} */
+    static getOfferByName(): GetOfferByNameParam;
+    /** @returns {GetOrderDiscountParam} */
+    static getOrderDiscount(): GetOrderDiscountParam;
+    /** @returns {GetUserPointsParam} */
+    static getUserPoints(): any;
+    /** @returns {GetUserPointsHistoryParam} */
+    static getUserPointsHistory(): GetUserPointsHistoryParam;
+    /** @returns {GetUserReferralDetailsParam} */
+    static getUserReferralDetails(): any;
+    /** @returns {RedeemReferralCodeParam} */
+    static redeemReferralCode(): RedeemReferralCodeParam;
 }
 declare namespace RewardsApplicationValidator {
     export { CatalogueOrderParam, GetOfferByNameParam, GetOrderDiscountParam, GetUserPointsParam, GetUserPointsHistoryParam, GetUserReferralDetailsParam, RedeemReferralCodeParam };
@@ -54,7 +54,6 @@ type GetOfferByNameParam = {
 type GetOrderDiscountParam = {
     body: RewardsApplicationModel.OrderDiscountRequest;
 };
-type GetUserPointsParam = any;
 type GetUserPointsHistoryParam = {
     /**
      * - PageID is the ID of the requested page. For
@@ -66,8 +65,9 @@ type GetUserPointsHistoryParam = {
      */
     pageSize?: number;
 };
-type GetUserReferralDetailsParam = any;
 type RedeemReferralCodeParam = {
     body: RewardsApplicationModel.RedeemReferralCodeRequest;
 };
+type GetUserPointsParam = any;
+type GetUserReferralDetailsParam = any;
 import RewardsApplicationModel = require("./RewardsApplicationModel");

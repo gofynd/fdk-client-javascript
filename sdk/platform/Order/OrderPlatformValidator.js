@@ -327,21 +327,21 @@ const OrderPlatformModel = require("./OrderPlatformModel");
  */
 
 class OrderPlatformValidator {
-  /** @returns {attachOrderUser} */
+  /** @returns {AttachOrderUserParam} */
   static attachOrderUser() {
     return Joi.object({
       body: OrderPlatformModel.AttachOrderUser().required(),
     }).required();
   }
 
-  /** @returns {checkOrderStatus} */
+  /** @returns {CheckOrderStatusParam} */
   static checkOrderStatus() {
     return Joi.object({
       body: OrderPlatformModel.OrderStatus().required(),
     }).required();
   }
 
-  /** @returns {click2Call} */
+  /** @returns {Click2CallParam} */
   static click2Call() {
     return Joi.object({
       caller: Joi.string().allow("").required(),
@@ -352,42 +352,42 @@ class OrderPlatformValidator {
     }).required();
   }
 
-  /** @returns {createOrder} */
+  /** @returns {CreateOrderParam} */
   static createOrder() {
     return Joi.object({
       body: OrderPlatformModel.CreateOrderAPI().required(),
     }).required();
   }
 
-  /** @returns {dispatchManifest} */
+  /** @returns {DispatchManifestParam} */
   static dispatchManifest() {
     return Joi.object({
       body: OrderPlatformModel.DispatchManifest().required(),
     }).required();
   }
 
-  /** @returns {downloadBulkActionTemplate} */
+  /** @returns {DownloadBulkActionTemplateParam} */
   static downloadBulkActionTemplate() {
     return Joi.object({
       templateSlug: Joi.string().allow(""),
     }).required();
   }
 
-  /** @returns {fetchCreditBalanceDetail} */
+  /** @returns {FetchCreditBalanceDetailParam} */
   static fetchCreditBalanceDetail() {
     return Joi.object({
       body: OrderPlatformModel.FetchCreditBalanceRequestPayload().required(),
     }).required();
   }
 
-  /** @returns {fetchRefundModeConfig} */
+  /** @returns {FetchRefundModeConfigParam} */
   static fetchRefundModeConfig() {
     return Joi.object({
       body: OrderPlatformModel.RefundModeConfigRequestPayload().required(),
     }).required();
   }
 
-  /** @returns {generatePOSReceiptByOrderId} */
+  /** @returns {GeneratePOSReceiptByOrderIdParam} */
   static generatePOSReceiptByOrderId() {
     return Joi.object({
       orderId: Joi.string().allow("").required(),
@@ -396,14 +396,14 @@ class OrderPlatformValidator {
     }).required();
   }
 
-  /** @returns {getAnnouncements} */
+  /** @returns {GetAnnouncementsParam} */
   static getAnnouncements() {
     return Joi.object({
       date: Joi.string().allow(""),
     }).required();
   }
 
-  /** @returns {getBagById} */
+  /** @returns {GetBagByIdParam} */
   static getBagById() {
     return Joi.object({
       bagId: Joi.string().allow(""),
@@ -412,7 +412,7 @@ class OrderPlatformValidator {
     }).required();
   }
 
-  /** @returns {getBags} */
+  /** @returns {GetBagsParam} */
   static getBags() {
     return Joi.object({
       bagIds: Joi.string().allow(""),
@@ -427,12 +427,12 @@ class OrderPlatformValidator {
     }).required();
   }
 
-  /** @returns {getBulkActionTemplate} */
+  /** @returns {GetBulkActionTemplateParam} */
   static getBulkActionTemplate() {
     return Joi.object({}).required();
   }
 
-  /** @returns {getBulkShipmentExcelFile} */
+  /** @returns {GetBulkShipmentExcelFileParam} */
   static getBulkShipmentExcelFile() {
     return Joi.object({
       salesChannels: Joi.string().allow(""),
@@ -450,7 +450,7 @@ class OrderPlatformValidator {
     }).required();
   }
 
-  /** @returns {getLaneConfig} */
+  /** @returns {GetLaneConfigParam} */
   static getLaneConfig() {
     return Joi.object({
       superLane: Joi.string().allow(""),
@@ -471,7 +471,7 @@ class OrderPlatformValidator {
     }).required();
   }
 
-  /** @returns {getManifestDetails} */
+  /** @returns {GetManifestDetailsParam} */
   static getManifestDetails() {
     return Joi.object({
       manifestId: Joi.string().allow("").required(),
@@ -486,7 +486,7 @@ class OrderPlatformValidator {
     }).required();
   }
 
-  /** @returns {getManifestShipments} */
+  /** @returns {GetManifestShipmentsParam} */
   static getManifestShipments() {
     return Joi.object({
       dpIds: Joi.number().required(),
@@ -502,14 +502,14 @@ class OrderPlatformValidator {
     }).required();
   }
 
-  /** @returns {getManifestfilters} */
+  /** @returns {GetManifestfiltersParam} */
   static getManifestfilters() {
     return Joi.object({
       view: Joi.string().allow("").required(),
     }).required();
   }
 
-  /** @returns {getManifests} */
+  /** @returns {GetManifestsParam} */
   static getManifests() {
     return Joi.object({
       status: Joi.string().allow(""),
@@ -522,14 +522,14 @@ class OrderPlatformValidator {
     }).required();
   }
 
-  /** @returns {getOrderById} */
+  /** @returns {GetOrderByIdParam} */
   static getOrderById() {
     return Joi.object({
       orderId: Joi.string().allow("").required(),
     }).required();
   }
 
-  /** @returns {getOrders} */
+  /** @returns {GetOrdersParam} */
   static getOrders() {
     return Joi.object({
       lane: Joi.string().allow(""),
@@ -552,12 +552,12 @@ class OrderPlatformValidator {
     }).required();
   }
 
-  /** @returns {getRoleBasedActions} */
+  /** @returns {GetRoleBasedActionsParam} */
   static getRoleBasedActions() {
     return Joi.object({}).required();
   }
 
-  /** @returns {getShipmentById} */
+  /** @returns {GetShipmentByIdParam} */
   static getShipmentById() {
     return Joi.object({
       channelShipmentId: Joi.string().allow(""),
@@ -565,7 +565,7 @@ class OrderPlatformValidator {
     }).required();
   }
 
-  /** @returns {getShipmentHistory} */
+  /** @returns {GetShipmentHistoryParam} */
   static getShipmentHistory() {
     return Joi.object({
       shipmentId: Joi.string().allow(""),
@@ -573,7 +573,7 @@ class OrderPlatformValidator {
     }).required();
   }
 
-  /** @returns {getShipmentReasons} */
+  /** @returns {GetShipmentReasonsParam} */
   static getShipmentReasons() {
     return Joi.object({
       shipmentId: Joi.string().allow("").required(),
@@ -582,7 +582,7 @@ class OrderPlatformValidator {
     }).required();
   }
 
-  /** @returns {getShipments} */
+  /** @returns {GetShipmentsParam} */
   static getShipments() {
     return Joi.object({
       lane: Joi.string().allow(""),
@@ -610,12 +610,12 @@ class OrderPlatformValidator {
     }).required();
   }
 
-  /** @returns {getStateTransitionMap} */
+  /** @returns {GetStateTransitionMapParam} */
   static getStateTransitionMap() {
     return Joi.object({}).required();
   }
 
-  /** @returns {getfilters} */
+  /** @returns {GetfiltersParam} */
   static getfilters() {
     return Joi.object({
       view: Joi.string().allow("").required(),
@@ -623,56 +623,56 @@ class OrderPlatformValidator {
     }).required();
   }
 
-  /** @returns {invalidateShipmentCache} */
+  /** @returns {InvalidateShipmentCacheParam} */
   static invalidateShipmentCache() {
     return Joi.object({
       body: OrderPlatformModel.InvalidateShipmentCachePayload().required(),
     }).required();
   }
 
-  /** @returns {orderUpdate} */
+  /** @returns {OrderUpdateParam} */
   static orderUpdate() {
     return Joi.object({
       body: OrderPlatformModel.PlatformOrderUpdate().required(),
     }).required();
   }
 
-  /** @returns {postShipmentHistory} */
+  /** @returns {PostShipmentHistoryParam} */
   static postShipmentHistory() {
     return Joi.object({
       body: OrderPlatformModel.PostShipmentHistory().required(),
     }).required();
   }
 
-  /** @returns {processManifest} */
+  /** @returns {ProcessManifestParam} */
   static processManifest() {
     return Joi.object({
       body: OrderPlatformModel.ProcessManifest().required(),
     }).required();
   }
 
-  /** @returns {reassignLocation} */
+  /** @returns {ReassignLocationParam} */
   static reassignLocation() {
     return Joi.object({
       body: OrderPlatformModel.StoreReassign().required(),
     }).required();
   }
 
-  /** @returns {sendSmsNinja} */
+  /** @returns {SendSmsNinjaParam} */
   static sendSmsNinja() {
     return Joi.object({
       body: OrderPlatformModel.SendSmsPayload().required(),
     }).required();
   }
 
-  /** @returns {sendUserMobileOTP} */
+  /** @returns {SendUserMobileOTPParam} */
   static sendUserMobileOTP() {
     return Joi.object({
       body: OrderPlatformModel.SendUserMobileOTP().required(),
     }).required();
   }
 
-  /** @returns {updateAddress} */
+  /** @returns {UpdateAddressParam} */
   static updateAddress() {
     return Joi.object({
       shipmentId: Joi.string().allow("").required(),
@@ -690,35 +690,35 @@ class OrderPlatformValidator {
     }).required();
   }
 
-  /** @returns {updatePackagingDimensions} */
+  /** @returns {UpdatePackagingDimensionsParam} */
   static updatePackagingDimensions() {
     return Joi.object({
       body: OrderPlatformModel.UpdatePackagingDimensionsPayload().required(),
     }).required();
   }
 
-  /** @returns {updateShipmentLock} */
+  /** @returns {UpdateShipmentLockParam} */
   static updateShipmentLock() {
     return Joi.object({
       body: OrderPlatformModel.UpdateShipmentLockPayload().required(),
     }).required();
   }
 
-  /** @returns {updateShipmentStatus} */
+  /** @returns {UpdateShipmentStatusParam} */
   static updateShipmentStatus() {
     return Joi.object({
       body: OrderPlatformModel.UpdateShipmentStatusRequest().required(),
     }).required();
   }
 
-  /** @returns {uploadConsent} */
+  /** @returns {UploadConsentParam} */
   static uploadConsent() {
     return Joi.object({
       body: OrderPlatformModel.UploadConsent().required(),
     }).required();
   }
 
-  /** @returns {verifyMobileOTP} */
+  /** @returns {VerifyMobileOTPParam} */
   static verifyMobileOTP() {
     return Joi.object({
       body: OrderPlatformModel.VerifyMobileOTP().required(),

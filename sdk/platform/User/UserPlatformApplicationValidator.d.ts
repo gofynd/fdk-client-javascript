@@ -80,40 +80,40 @@ export = UserPlatformApplicationValidator;
  * @property {UserPlatformModel.UpdateUserGroupSchema} body
  */
 declare class UserPlatformApplicationValidator {
-    /** @returns {archiveUser} */
-    static archiveUser(): archiveUser;
-    /** @returns {blockOrUnblockUsers} */
-    static blockOrUnblockUsers(): blockOrUnblockUsers;
-    /** @returns {createUser} */
-    static createUser(): createUser;
-    /** @returns {createUserGroup} */
-    static createUserGroup(): createUserGroup;
-    /** @returns {createUserSession} */
-    static createUserSession(): createUserSession;
-    /** @returns {deleteActiveSessions} */
-    static deleteActiveSessions(): deleteActiveSessions;
-    /** @returns {deleteSession} */
-    static deleteSession(): deleteSession;
-    /** @returns {getActiveSessions} */
-    static getActiveSessions(): getActiveSessions;
-    /** @returns {getCustomers} */
-    static getCustomers(): getCustomers;
-    /** @returns {getPlatformConfig} */
-    static getPlatformConfig(): getPlatformConfig;
-    /** @returns {getUserGroupById} */
-    static getUserGroupById(): getUserGroupById;
-    /** @returns {getUserGroups} */
-    static getUserGroups(): getUserGroups;
-    /** @returns {searchUsers} */
-    static searchUsers(): searchUsers;
-    /** @returns {unDeleteUser} */
-    static unDeleteUser(): unDeleteUser;
-    /** @returns {updatePlatformConfig} */
-    static updatePlatformConfig(): updatePlatformConfig;
-    /** @returns {updateUser} */
-    static updateUser(): updateUser;
-    /** @returns {updateUserGroup} */
-    static updateUserGroup(): updateUserGroup;
+    /** @returns {ArchiveUserParam} */
+    static archiveUser(): ArchiveUserParam;
+    /** @returns {BlockOrUnblockUsersParam} */
+    static blockOrUnblockUsers(): BlockOrUnblockUsersParam;
+    /** @returns {CreateUserParam} */
+    static createUser(): CreateUserParam;
+    /** @returns {CreateUserGroupParam} */
+    static createUserGroup(): CreateUserGroupParam;
+    /** @returns {CreateUserSessionParam} */
+    static createUserSession(): CreateUserSessionParam;
+    /** @returns {DeleteActiveSessionsParam} */
+    static deleteActiveSessions(): DeleteActiveSessionsParam;
+    /** @returns {DeleteSessionParam} */
+    static deleteSession(): DeleteSessionParam;
+    /** @returns {GetActiveSessionsParam} */
+    static getActiveSessions(): GetActiveSessionsParam;
+    /** @returns {GetCustomersParam} */
+    static getCustomers(): GetCustomersParam;
+    /** @returns {GetPlatformConfigParam} */
+    static getPlatformConfig(): any;
+    /** @returns {GetUserGroupByIdParam} */
+    static getUserGroupById(): GetUserGroupByIdParam;
+    /** @returns {GetUserGroupsParam} */
+    static getUserGroups(): GetUserGroupsParam;
+    /** @returns {SearchUsersParam} */
+    static searchUsers(): SearchUsersParam;
+    /** @returns {UnDeleteUserParam} */
+    static unDeleteUser(): UnDeleteUserParam;
+    /** @returns {UpdatePlatformConfigParam} */
+    static updatePlatformConfig(): UpdatePlatformConfigParam;
+    /** @returns {UpdateUserParam} */
+    static updateUser(): UpdateUserParam;
+    /** @returns {UpdateUserGroupParam} */
+    static updateUserGroup(): UpdateUserGroupParam;
 }
 declare namespace UserPlatformApplicationValidator {
     export { ArchiveUserParam, BlockOrUnblockUsersParam, CreateUserParam, CreateUserGroupParam, CreateUserSessionParam, DeleteActiveSessionsParam, DeleteSessionParam, GetActiveSessionsParam, GetCustomersParam, GetPlatformConfigParam, GetUserGroupByIdParam, GetUserGroupsParam, SearchUsersParam, UnDeleteUserParam, UpdatePlatformConfigParam, UpdateUserParam, UpdateUserGroupParam };
@@ -179,7 +179,6 @@ type GetCustomersParam = {
      */
     pageNo?: number;
 };
-type GetPlatformConfigParam = any;
 type GetUserGroupByIdParam = {
     /**
      * - Numeric ID allotted to a User Group
@@ -236,4 +235,5 @@ type UpdateUserGroupParam = {
     groupId: string;
     body: UserPlatformModel.UpdateUserGroupSchema;
 };
+type GetPlatformConfigParam = any;
 import UserPlatformModel = require("./UserPlatformModel");

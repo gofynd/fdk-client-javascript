@@ -79,40 +79,40 @@ const CompanyProfilePlatformModel = require("./CompanyProfilePlatformModel");
  */
 
 class CompanyProfilePlatformValidator {
-  /** @returns {cbsOnboardGet} */
+  /** @returns {CbsOnboardGetParam} */
   static cbsOnboardGet() {
     return Joi.object({}).required();
   }
 
-  /** @returns {createBrand} */
+  /** @returns {CreateBrandParam} */
   static createBrand() {
     return Joi.object({
       body: CompanyProfilePlatformModel.CreateUpdateBrandRequestSerializer().required(),
     }).required();
   }
 
-  /** @returns {createCompanyBrandMapping} */
+  /** @returns {CreateCompanyBrandMappingParam} */
   static createCompanyBrandMapping() {
     return Joi.object({
       body: CompanyProfilePlatformModel.CompanyBrandPostRequestSerializer().required(),
     }).required();
   }
 
-  /** @returns {createLocation} */
+  /** @returns {CreateLocationParam} */
   static createLocation() {
     return Joi.object({
       body: CompanyProfilePlatformModel.LocationSerializer().required(),
     }).required();
   }
 
-  /** @returns {createLocationBulk} */
+  /** @returns {CreateLocationBulkParam} */
   static createLocationBulk() {
     return Joi.object({
       body: CompanyProfilePlatformModel.BulkLocationSerializer().required(),
     }).required();
   }
 
-  /** @returns {editBrand} */
+  /** @returns {EditBrandParam} */
   static editBrand() {
     return Joi.object({
       brandId: Joi.string().allow("").required(),
@@ -120,14 +120,14 @@ class CompanyProfilePlatformValidator {
     }).required();
   }
 
-  /** @returns {getBrand} */
+  /** @returns {GetBrandParam} */
   static getBrand() {
     return Joi.object({
       brandId: Joi.string().allow("").required(),
     }).required();
   }
 
-  /** @returns {getBrands} */
+  /** @returns {GetBrandsParam} */
   static getBrands() {
     return Joi.object({
       pageNo: Joi.number(),
@@ -136,24 +136,24 @@ class CompanyProfilePlatformValidator {
     }).required();
   }
 
-  /** @returns {getCompanyMetrics} */
+  /** @returns {GetCompanyMetricsParam} */
   static getCompanyMetrics() {
     return Joi.object({}).required();
   }
 
-  /** @returns {getLocationDetail} */
+  /** @returns {GetLocationDetailParam} */
   static getLocationDetail() {
     return Joi.object({
       locationId: Joi.string().allow("").required(),
     }).required();
   }
 
-  /** @returns {getLocationTags} */
+  /** @returns {GetLocationTagsParam} */
   static getLocationTags() {
     return Joi.object({}).required();
   }
 
-  /** @returns {getLocations} */
+  /** @returns {GetLocationsParam} */
   static getLocations() {
     return Joi.object({
       storeType: Joi.string().allow(""),
@@ -165,14 +165,14 @@ class CompanyProfilePlatformValidator {
     }).required();
   }
 
-  /** @returns {updateCompany} */
+  /** @returns {UpdateCompanyParam} */
   static updateCompany() {
     return Joi.object({
       body: CompanyProfilePlatformModel.UpdateCompany().required(),
     }).required();
   }
 
-  /** @returns {updateLocation} */
+  /** @returns {UpdateLocationParam} */
   static updateLocation() {
     return Joi.object({
       locationId: Joi.string().allow("").required(),

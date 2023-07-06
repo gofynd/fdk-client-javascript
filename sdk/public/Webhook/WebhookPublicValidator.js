@@ -10,12 +10,12 @@ const WebhookPublicModel = require("./WebhookPublicModel");
  */
 
 class WebhookPublicValidator {
-  /** @returns {fetchAllWebhookEvents} */
+  /** @returns {FetchAllWebhookEventsParam} */
   static fetchAllWebhookEvents() {
     return Joi.object({});
   }
 
-  /** @returns {queryWebhookEventDetails} */
+  /** @returns {QueryWebhookEventDetailsParam} */
   static queryWebhookEventDetails() {
     return Joi.object({
       body: Joi.array().items(WebhookPublicModel.EventConfigBase()).required(),

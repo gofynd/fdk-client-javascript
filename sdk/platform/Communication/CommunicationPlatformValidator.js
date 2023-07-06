@@ -9,7 +9,7 @@ const CommunicationPlatformModel = require("./CommunicationPlatformModel");
  */
 
 class CommunicationPlatformValidator {
-  /** @returns {getSystemNotifications} */
+  /** @returns {GetSystemNotificationsParam} */
   static getSystemNotifications() {
     return Joi.object({
       pageNo: Joi.number(),

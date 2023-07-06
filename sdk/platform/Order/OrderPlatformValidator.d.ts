@@ -283,88 +283,88 @@ export = OrderPlatformValidator;
  * @property {OrderPlatformModel.VerifyMobileOTP} body
  */
 declare class OrderPlatformValidator {
-    /** @returns {attachOrderUser} */
-    static attachOrderUser(): attachOrderUser;
-    /** @returns {checkOrderStatus} */
-    static checkOrderStatus(): checkOrderStatus;
-    /** @returns {click2Call} */
-    static click2Call(): click2Call;
-    /** @returns {createOrder} */
-    static createOrder(): createOrder;
-    /** @returns {dispatchManifest} */
-    static dispatchManifest(): dispatchManifest;
-    /** @returns {downloadBulkActionTemplate} */
-    static downloadBulkActionTemplate(): downloadBulkActionTemplate;
-    /** @returns {fetchCreditBalanceDetail} */
-    static fetchCreditBalanceDetail(): fetchCreditBalanceDetail;
-    /** @returns {fetchRefundModeConfig} */
-    static fetchRefundModeConfig(): fetchRefundModeConfig;
-    /** @returns {generatePOSReceiptByOrderId} */
-    static generatePOSReceiptByOrderId(): generatePOSReceiptByOrderId;
-    /** @returns {getAnnouncements} */
-    static getAnnouncements(): getAnnouncements;
-    /** @returns {getBagById} */
-    static getBagById(): getBagById;
-    /** @returns {getBags} */
-    static getBags(): getBags;
-    /** @returns {getBulkActionTemplate} */
-    static getBulkActionTemplate(): getBulkActionTemplate;
-    /** @returns {getBulkShipmentExcelFile} */
-    static getBulkShipmentExcelFile(): getBulkShipmentExcelFile;
-    /** @returns {getLaneConfig} */
-    static getLaneConfig(): getLaneConfig;
-    /** @returns {getManifestDetails} */
-    static getManifestDetails(): getManifestDetails;
-    /** @returns {getManifestShipments} */
-    static getManifestShipments(): getManifestShipments;
-    /** @returns {getManifestfilters} */
-    static getManifestfilters(): getManifestfilters;
-    /** @returns {getManifests} */
-    static getManifests(): getManifests;
-    /** @returns {getOrderById} */
-    static getOrderById(): getOrderById;
-    /** @returns {getOrders} */
-    static getOrders(): getOrders;
-    /** @returns {getRoleBasedActions} */
-    static getRoleBasedActions(): getRoleBasedActions;
-    /** @returns {getShipmentById} */
-    static getShipmentById(): getShipmentById;
-    /** @returns {getShipmentHistory} */
-    static getShipmentHistory(): getShipmentHistory;
-    /** @returns {getShipmentReasons} */
-    static getShipmentReasons(): getShipmentReasons;
-    /** @returns {getShipments} */
-    static getShipments(): getShipments;
-    /** @returns {getStateTransitionMap} */
-    static getStateTransitionMap(): getStateTransitionMap;
-    /** @returns {getfilters} */
-    static getfilters(): getfilters;
-    /** @returns {invalidateShipmentCache} */
-    static invalidateShipmentCache(): invalidateShipmentCache;
-    /** @returns {orderUpdate} */
-    static orderUpdate(): orderUpdate;
-    /** @returns {postShipmentHistory} */
-    static postShipmentHistory(): postShipmentHistory;
-    /** @returns {processManifest} */
-    static processManifest(): processManifest;
-    /** @returns {reassignLocation} */
-    static reassignLocation(): reassignLocation;
-    /** @returns {sendSmsNinja} */
-    static sendSmsNinja(): sendSmsNinja;
-    /** @returns {sendUserMobileOTP} */
-    static sendUserMobileOTP(): sendUserMobileOTP;
-    /** @returns {updateAddress} */
-    static updateAddress(): updateAddress;
-    /** @returns {updatePackagingDimensions} */
-    static updatePackagingDimensions(): updatePackagingDimensions;
-    /** @returns {updateShipmentLock} */
-    static updateShipmentLock(): updateShipmentLock;
-    /** @returns {updateShipmentStatus} */
-    static updateShipmentStatus(): updateShipmentStatus;
-    /** @returns {uploadConsent} */
-    static uploadConsent(): uploadConsent;
-    /** @returns {verifyMobileOTP} */
-    static verifyMobileOTP(): verifyMobileOTP;
+    /** @returns {AttachOrderUserParam} */
+    static attachOrderUser(): AttachOrderUserParam;
+    /** @returns {CheckOrderStatusParam} */
+    static checkOrderStatus(): CheckOrderStatusParam;
+    /** @returns {Click2CallParam} */
+    static click2Call(): Click2CallParam;
+    /** @returns {CreateOrderParam} */
+    static createOrder(): CreateOrderParam;
+    /** @returns {DispatchManifestParam} */
+    static dispatchManifest(): DispatchManifestParam;
+    /** @returns {DownloadBulkActionTemplateParam} */
+    static downloadBulkActionTemplate(): DownloadBulkActionTemplateParam;
+    /** @returns {FetchCreditBalanceDetailParam} */
+    static fetchCreditBalanceDetail(): FetchCreditBalanceDetailParam;
+    /** @returns {FetchRefundModeConfigParam} */
+    static fetchRefundModeConfig(): FetchRefundModeConfigParam;
+    /** @returns {GeneratePOSReceiptByOrderIdParam} */
+    static generatePOSReceiptByOrderId(): GeneratePOSReceiptByOrderIdParam;
+    /** @returns {GetAnnouncementsParam} */
+    static getAnnouncements(): GetAnnouncementsParam;
+    /** @returns {GetBagByIdParam} */
+    static getBagById(): GetBagByIdParam;
+    /** @returns {GetBagsParam} */
+    static getBags(): GetBagsParam;
+    /** @returns {GetBulkActionTemplateParam} */
+    static getBulkActionTemplate(): any;
+    /** @returns {GetBulkShipmentExcelFileParam} */
+    static getBulkShipmentExcelFile(): GetBulkShipmentExcelFileParam;
+    /** @returns {GetLaneConfigParam} */
+    static getLaneConfig(): GetLaneConfigParam;
+    /** @returns {GetManifestDetailsParam} */
+    static getManifestDetails(): GetManifestDetailsParam;
+    /** @returns {GetManifestShipmentsParam} */
+    static getManifestShipments(): GetManifestShipmentsParam;
+    /** @returns {GetManifestfiltersParam} */
+    static getManifestfilters(): GetManifestfiltersParam;
+    /** @returns {GetManifestsParam} */
+    static getManifests(): GetManifestsParam;
+    /** @returns {GetOrderByIdParam} */
+    static getOrderById(): GetOrderByIdParam;
+    /** @returns {GetOrdersParam} */
+    static getOrders(): GetOrdersParam;
+    /** @returns {GetRoleBasedActionsParam} */
+    static getRoleBasedActions(): any;
+    /** @returns {GetShipmentByIdParam} */
+    static getShipmentById(): GetShipmentByIdParam;
+    /** @returns {GetShipmentHistoryParam} */
+    static getShipmentHistory(): GetShipmentHistoryParam;
+    /** @returns {GetShipmentReasonsParam} */
+    static getShipmentReasons(): GetShipmentReasonsParam;
+    /** @returns {GetShipmentsParam} */
+    static getShipments(): GetShipmentsParam;
+    /** @returns {GetStateTransitionMapParam} */
+    static getStateTransitionMap(): any;
+    /** @returns {GetfiltersParam} */
+    static getfilters(): GetfiltersParam;
+    /** @returns {InvalidateShipmentCacheParam} */
+    static invalidateShipmentCache(): InvalidateShipmentCacheParam;
+    /** @returns {OrderUpdateParam} */
+    static orderUpdate(): OrderUpdateParam;
+    /** @returns {PostShipmentHistoryParam} */
+    static postShipmentHistory(): PostShipmentHistoryParam;
+    /** @returns {ProcessManifestParam} */
+    static processManifest(): ProcessManifestParam;
+    /** @returns {ReassignLocationParam} */
+    static reassignLocation(): ReassignLocationParam;
+    /** @returns {SendSmsNinjaParam} */
+    static sendSmsNinja(): SendSmsNinjaParam;
+    /** @returns {SendUserMobileOTPParam} */
+    static sendUserMobileOTP(): SendUserMobileOTPParam;
+    /** @returns {UpdateAddressParam} */
+    static updateAddress(): UpdateAddressParam;
+    /** @returns {UpdatePackagingDimensionsParam} */
+    static updatePackagingDimensions(): UpdatePackagingDimensionsParam;
+    /** @returns {UpdateShipmentLockParam} */
+    static updateShipmentLock(): UpdateShipmentLockParam;
+    /** @returns {UpdateShipmentStatusParam} */
+    static updateShipmentStatus(): UpdateShipmentStatusParam;
+    /** @returns {UploadConsentParam} */
+    static uploadConsent(): UploadConsentParam;
+    /** @returns {VerifyMobileOTPParam} */
+    static verifyMobileOTP(): VerifyMobileOTPParam;
 }
 declare namespace OrderPlatformValidator {
     export { AttachOrderUserParam, CheckOrderStatusParam, Click2CallParam, CreateOrderParam, DispatchManifestParam, DownloadBulkActionTemplateParam, FetchCreditBalanceDetailParam, FetchRefundModeConfigParam, GeneratePOSReceiptByOrderIdParam, GetAnnouncementsParam, GetBagByIdParam, GetBagsParam, GetBulkActionTemplateParam, GetBulkShipmentExcelFileParam, GetLaneConfigParam, GetManifestDetailsParam, GetManifestShipmentsParam, GetManifestfiltersParam, GetManifestsParam, GetOrderByIdParam, GetOrdersParam, GetRoleBasedActionsParam, GetShipmentByIdParam, GetShipmentHistoryParam, GetShipmentReasonsParam, GetShipmentsParam, GetStateTransitionMapParam, GetfiltersParam, InvalidateShipmentCacheParam, OrderUpdateParam, PostShipmentHistoryParam, ProcessManifestParam, ReassignLocationParam, SendSmsNinjaParam, SendUserMobileOTPParam, UpdateAddressParam, UpdatePackagingDimensionsParam, UpdateShipmentLockParam, UpdateShipmentStatusParam, UploadConsentParam, VerifyMobileOTPParam };
@@ -479,7 +479,6 @@ type GetBagsParam = {
      */
     pageSize?: number;
 };
-type GetBulkActionTemplateParam = any;
 type GetBulkShipmentExcelFileParam = {
     /**
      * - Comma separated values of sales channel ids
@@ -664,7 +663,6 @@ type GetOrdersParam = {
     customMeta?: string;
     myOrders?: boolean;
 };
-type GetRoleBasedActionsParam = any;
 type GetShipmentByIdParam = {
     /**
      * - App Shipment Id
@@ -778,7 +776,6 @@ type GetShipmentsParam = {
     companyAffiliateTag?: string;
     myOrders?: boolean;
 };
-type GetStateTransitionMapParam = any;
 type GetfiltersParam = {
     /**
      * - Name of view
@@ -839,4 +836,7 @@ type UploadConsentParam = {
 type VerifyMobileOTPParam = {
     body: OrderPlatformModel.VerifyMobileOTP;
 };
+type GetBulkActionTemplateParam = any;
+type GetRoleBasedActionsParam = any;
+type GetStateTransitionMapParam = any;
 import OrderPlatformModel = require("./OrderPlatformModel");

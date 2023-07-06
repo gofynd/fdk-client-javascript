@@ -5,16 +5,16 @@ export = WebhookPublicValidator;
  * @property {WebhookPublicModel.EventConfigBase[]} body
  */
 declare class WebhookPublicValidator {
-    /** @returns {fetchAllWebhookEvents} */
-    static fetchAllWebhookEvents(): fetchAllWebhookEvents;
-    /** @returns {queryWebhookEventDetails} */
-    static queryWebhookEventDetails(): queryWebhookEventDetails;
+    /** @returns {FetchAllWebhookEventsParam} */
+    static fetchAllWebhookEvents(): any;
+    /** @returns {QueryWebhookEventDetailsParam} */
+    static queryWebhookEventDetails(): QueryWebhookEventDetailsParam;
 }
 declare namespace WebhookPublicValidator {
     export { FetchAllWebhookEventsParam, QueryWebhookEventDetailsParam };
 }
-type FetchAllWebhookEventsParam = any;
 type QueryWebhookEventDetailsParam = {
     body: WebhookPublicModel.EventConfigBase[];
 };
+type FetchAllWebhookEventsParam = any;
 import WebhookPublicModel = require("./WebhookPublicModel");

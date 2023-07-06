@@ -47,32 +47,32 @@ export = ServiceabilityPlatformApplicationValidator;
  * @property {ServiceabilityPlatformModel.DPApplicationRuleRequest} body
  */
 declare class ServiceabilityPlatformApplicationValidator {
-    /** @returns {addAppDp} */
-    static addAppDp(): addAppDp;
-    /** @returns {deleteAppDp} */
-    static deleteAppDp(): deleteAppDp;
-    /** @returns {getApplicationServiceability} */
-    static getApplicationServiceability(): getApplicationServiceability;
-    /** @returns {getApplicationServiceabilitySelfShipment} */
-    static getApplicationServiceabilitySelfShipment(): getApplicationServiceabilitySelfShipment;
-    /** @returns {getDpApplicationRules} */
-    static getDpApplicationRules(): getDpApplicationRules;
-    /** @returns {getZoneFromPincodeView} */
-    static getZoneFromPincodeView(): getZoneFromPincodeView;
-    /** @returns {getZonesFromApplicationIdView} */
-    static getZonesFromApplicationIdView(): getZonesFromApplicationIdView;
-    /** @returns {patchApplicationServiceabilitySelfShipment} */
-    static patchApplicationServiceabilitySelfShipment(): patchApplicationServiceabilitySelfShipment;
-    /** @returns {updatePincodeAuditHistory} */
-    static updatePincodeAuditHistory(): updatePincodeAuditHistory;
-    /** @returns {updatePincodeBulkView} */
-    static updatePincodeBulkView(): updatePincodeBulkView;
-    /** @returns {updatePincodeCoDListing} */
-    static updatePincodeCoDListing(): updatePincodeCoDListing;
-    /** @returns {updatePincodeMopView} */
-    static updatePincodeMopView(): updatePincodeMopView;
-    /** @returns {upsertDpApplicationRules} */
-    static upsertDpApplicationRules(): upsertDpApplicationRules;
+    /** @returns {AddAppDpParam} */
+    static addAppDp(): AddAppDpParam;
+    /** @returns {DeleteAppDpParam} */
+    static deleteAppDp(): DeleteAppDpParam;
+    /** @returns {GetApplicationServiceabilityParam} */
+    static getApplicationServiceability(): any;
+    /** @returns {GetApplicationServiceabilitySelfShipmentParam} */
+    static getApplicationServiceabilitySelfShipment(): any;
+    /** @returns {GetDpApplicationRulesParam} */
+    static getDpApplicationRules(): any;
+    /** @returns {GetZoneFromPincodeViewParam} */
+    static getZoneFromPincodeView(): GetZoneFromPincodeViewParam;
+    /** @returns {GetZonesFromApplicationIdViewParam} */
+    static getZonesFromApplicationIdView(): GetZonesFromApplicationIdViewParam;
+    /** @returns {PatchApplicationServiceabilitySelfShipmentParam} */
+    static patchApplicationServiceabilitySelfShipment(): PatchApplicationServiceabilitySelfShipmentParam;
+    /** @returns {UpdatePincodeAuditHistoryParam} */
+    static updatePincodeAuditHistory(): UpdatePincodeAuditHistoryParam;
+    /** @returns {UpdatePincodeBulkViewParam} */
+    static updatePincodeBulkView(): UpdatePincodeBulkViewParam;
+    /** @returns {UpdatePincodeCoDListingParam} */
+    static updatePincodeCoDListing(): UpdatePincodeCoDListingParam;
+    /** @returns {UpdatePincodeMopViewParam} */
+    static updatePincodeMopView(): UpdatePincodeMopViewParam;
+    /** @returns {UpsertDpApplicationRulesParam} */
+    static upsertDpApplicationRules(): UpsertDpApplicationRulesParam;
 }
 declare namespace ServiceabilityPlatformApplicationValidator {
     export { AddAppDpParam, DeleteAppDpParam, GetApplicationServiceabilityParam, GetApplicationServiceabilitySelfShipmentParam, GetDpApplicationRulesParam, GetZoneFromPincodeViewParam, GetZonesFromApplicationIdViewParam, PatchApplicationServiceabilitySelfShipmentParam, UpdatePincodeAuditHistoryParam, UpdatePincodeBulkViewParam, UpdatePincodeCoDListingParam, UpdatePincodeMopViewParam, UpsertDpApplicationRulesParam };
@@ -87,9 +87,6 @@ type DeleteAppDpParam = {
      */
     courierPartnerId: number;
 };
-type GetApplicationServiceabilityParam = any;
-type GetApplicationServiceabilitySelfShipmentParam = any;
-type GetDpApplicationRulesParam = any;
 type GetZoneFromPincodeViewParam = {
     body: ServiceabilityPlatformModel.GetZoneFromPincodeViewRequest;
 };
@@ -129,4 +126,7 @@ type UpdatePincodeMopViewParam = {
 type UpsertDpApplicationRulesParam = {
     body: ServiceabilityPlatformModel.DPApplicationRuleRequest;
 };
+type GetApplicationServiceabilityParam = any;
+type GetApplicationServiceabilitySelfShipmentParam = any;
+type GetDpApplicationRulesParam = any;
 import ServiceabilityPlatformModel = require("./ServiceabilityPlatformModel");

@@ -63,43 +63,43 @@ const ServiceabilityPlatformModel = require("./ServiceabilityPlatformModel");
  */
 
 class ServiceabilityPlatformApplicationValidator {
-  /** @returns {addAppDp} */
+  /** @returns {AddAppDpParam} */
   static addAppDp() {
     return Joi.object({
       body: ServiceabilityPlatformModel.ApplicationCompanyDpViewRequest().required(),
     }).required();
   }
 
-  /** @returns {deleteAppDp} */
+  /** @returns {DeleteAppDpParam} */
   static deleteAppDp() {
     return Joi.object({
       courierPartnerId: Joi.number().required(),
     }).required();
   }
 
-  /** @returns {getApplicationServiceability} */
+  /** @returns {GetApplicationServiceabilityParam} */
   static getApplicationServiceability() {
     return Joi.object({}).required();
   }
 
-  /** @returns {getApplicationServiceabilitySelfShipment} */
+  /** @returns {GetApplicationServiceabilitySelfShipmentParam} */
   static getApplicationServiceabilitySelfShipment() {
     return Joi.object({}).required();
   }
 
-  /** @returns {getDpApplicationRules} */
+  /** @returns {GetDpApplicationRulesParam} */
   static getDpApplicationRules() {
     return Joi.object({}).required();
   }
 
-  /** @returns {getZoneFromPincodeView} */
+  /** @returns {GetZoneFromPincodeViewParam} */
   static getZoneFromPincodeView() {
     return Joi.object({
       body: ServiceabilityPlatformModel.GetZoneFromPincodeViewRequest().required(),
     }).required();
   }
 
-  /** @returns {getZonesFromApplicationIdView} */
+  /** @returns {GetZonesFromApplicationIdViewParam} */
   static getZonesFromApplicationIdView() {
     return Joi.object({
       pageNo: Joi.number(),
@@ -109,42 +109,42 @@ class ServiceabilityPlatformApplicationValidator {
     }).required();
   }
 
-  /** @returns {patchApplicationServiceabilitySelfShipment} */
+  /** @returns {PatchApplicationServiceabilitySelfShipmentParam} */
   static patchApplicationServiceabilitySelfShipment() {
     return Joi.object({
       body: ServiceabilityPlatformModel.SelfShipResponse().required(),
     }).required();
   }
 
-  /** @returns {updatePincodeAuditHistory} */
+  /** @returns {UpdatePincodeAuditHistoryParam} */
   static updatePincodeAuditHistory() {
     return Joi.object({
       body: ServiceabilityPlatformModel.PincodeMopUpdateAuditHistoryRequest().required(),
     }).required();
   }
 
-  /** @returns {updatePincodeBulkView} */
+  /** @returns {UpdatePincodeBulkViewParam} */
   static updatePincodeBulkView() {
     return Joi.object({
       body: ServiceabilityPlatformModel.PincodeMopBulkData().required(),
     }).required();
   }
 
-  /** @returns {updatePincodeCoDListing} */
+  /** @returns {UpdatePincodeCoDListingParam} */
   static updatePincodeCoDListing() {
     return Joi.object({
       body: ServiceabilityPlatformModel.PincodeCodStatusListingRequest().required(),
     }).required();
   }
 
-  /** @returns {updatePincodeMopView} */
+  /** @returns {UpdatePincodeMopViewParam} */
   static updatePincodeMopView() {
     return Joi.object({
       body: ServiceabilityPlatformModel.PincodeMopData().required(),
     }).required();
   }
 
-  /** @returns {upsertDpApplicationRules} */
+  /** @returns {UpsertDpApplicationRulesParam} */
   static upsertDpApplicationRules() {
     return Joi.object({
       body: ServiceabilityPlatformModel.DPApplicationRuleRequest().required(),

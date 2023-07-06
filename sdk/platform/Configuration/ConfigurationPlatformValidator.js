@@ -128,14 +128,14 @@ const ConfigurationPlatformModel = require("./ConfigurationPlatformModel");
  */
 
 class ConfigurationPlatformValidator {
-  /** @returns {createApplication} */
+  /** @returns {CreateApplicationParam} */
   static createApplication() {
     return Joi.object({
       body: ConfigurationPlatformModel.CreateApplicationRequest().required(),
     }).required();
   }
 
-  /** @returns {getApplications} */
+  /** @returns {GetApplicationsParam} */
   static getApplications() {
     return Joi.object({
       pageNo: Joi.number(),
@@ -144,7 +144,7 @@ class ConfigurationPlatformValidator {
     }).required();
   }
 
-  /** @returns {getAvailableOptIns} */
+  /** @returns {GetAvailableOptInsParam} */
   static getAvailableOptIns() {
     return Joi.object({
       pageNo: Joi.number(),
@@ -152,14 +152,14 @@ class ConfigurationPlatformValidator {
     }).required();
   }
 
-  /** @returns {getBrandsByCompany} */
+  /** @returns {GetBrandsByCompanyParam} */
   static getBrandsByCompany() {
     return Joi.object({
       q: Joi.string().allow(""),
     }).required();
   }
 
-  /** @returns {getCompanyByBrands} */
+  /** @returns {GetCompanyByBrandsParam} */
   static getCompanyByBrands() {
     return Joi.object({
       pageNo: Joi.number(),
@@ -168,26 +168,26 @@ class ConfigurationPlatformValidator {
     }).required();
   }
 
-  /** @returns {getCurrencies} */
+  /** @returns {GetCurrenciesParam} */
   static getCurrencies() {
     return Joi.object({}).required();
   }
 
-  /** @returns {getDomainAvailibility} */
+  /** @returns {GetDomainAvailibilityParam} */
   static getDomainAvailibility() {
     return Joi.object({
       body: ConfigurationPlatformModel.DomainSuggestionsRequest().required(),
     }).required();
   }
 
-  /** @returns {getIntegrationById} */
+  /** @returns {GetIntegrationByIdParam} */
   static getIntegrationById() {
     return Joi.object({
       id: Joi.number().required(),
     }).required();
   }
 
-  /** @returns {getIntegrationByLevelId} */
+  /** @returns {GetIntegrationByLevelIdParam} */
   static getIntegrationByLevelId() {
     return Joi.object({
       id: Joi.string().allow("").required(),
@@ -196,7 +196,7 @@ class ConfigurationPlatformValidator {
     }).required();
   }
 
-  /** @returns {getIntegrationLevelConfig} */
+  /** @returns {GetIntegrationLevelConfigParam} */
   static getIntegrationLevelConfig() {
     return Joi.object({
       id: Joi.string().allow("").required(),
@@ -206,7 +206,7 @@ class ConfigurationPlatformValidator {
     }).required();
   }
 
-  /** @returns {getLevelActiveIntegrations} */
+  /** @returns {GetLevelActiveIntegrationsParam} */
   static getLevelActiveIntegrations() {
     return Joi.object({
       id: Joi.string().allow("").required(),
@@ -216,14 +216,14 @@ class ConfigurationPlatformValidator {
     }).required();
   }
 
-  /** @returns {getOtherSellerApplicationById} */
+  /** @returns {GetOtherSellerApplicationByIdParam} */
   static getOtherSellerApplicationById() {
     return Joi.object({
       id: Joi.string().allow("").required(),
     }).required();
   }
 
-  /** @returns {getOtherSellerApplications} */
+  /** @returns {GetOtherSellerApplicationsParam} */
   static getOtherSellerApplications() {
     return Joi.object({
       pageNo: Joi.number(),
@@ -231,7 +231,7 @@ class ConfigurationPlatformValidator {
     }).required();
   }
 
-  /** @returns {getSelectedOptIns} */
+  /** @returns {GetSelectedOptInsParam} */
   static getSelectedOptIns() {
     return Joi.object({
       level: Joi.string().allow("").required(),
@@ -241,7 +241,7 @@ class ConfigurationPlatformValidator {
     }).required();
   }
 
-  /** @returns {getStoreByBrands} */
+  /** @returns {GetStoreByBrandsParam} */
   static getStoreByBrands() {
     return Joi.object({
       pageNo: Joi.number(),
@@ -250,7 +250,7 @@ class ConfigurationPlatformValidator {
     }).required();
   }
 
-  /** @returns {optOutFromApplication} */
+  /** @returns {OptOutFromApplicationParam} */
   static optOutFromApplication() {
     return Joi.object({
       id: Joi.string().allow("").required(),
@@ -258,7 +258,7 @@ class ConfigurationPlatformValidator {
     }).required();
   }
 
-  /** @returns {updateLevelIntegration} */
+  /** @returns {UpdateLevelIntegrationParam} */
   static updateLevelIntegration() {
     return Joi.object({
       id: Joi.string().allow("").required(),
@@ -267,7 +267,7 @@ class ConfigurationPlatformValidator {
     }).required();
   }
 
-  /** @returns {updateLevelUidIntegration} */
+  /** @returns {UpdateLevelUidIntegrationParam} */
   static updateLevelUidIntegration() {
     return Joi.object({
       id: Joi.string().allow("").required(),

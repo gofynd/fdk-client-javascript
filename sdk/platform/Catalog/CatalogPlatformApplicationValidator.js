@@ -421,7 +421,7 @@ const CatalogPlatformModel = require("./CatalogPlatformModel");
  */
 
 class CatalogPlatformApplicationValidator {
-  /** @returns {addCollectionItems} */
+  /** @returns {AddCollectionItemsParam} */
   static addCollectionItems() {
     return Joi.object({
       id: Joi.string().allow("").required(),
@@ -429,14 +429,14 @@ class CatalogPlatformApplicationValidator {
     }).required();
   }
 
-  /** @returns {createCollection} */
+  /** @returns {CreateCollectionParam} */
   static createCollection() {
     return Joi.object({
       body: CatalogPlatformModel.CreateCollection().required(),
     }).required();
   }
 
-  /** @returns {createConfigurationByType} */
+  /** @returns {CreateConfigurationByTypeParam} */
   static createConfigurationByType() {
     return Joi.object({
       type: Joi.string().allow("").required(),
@@ -444,28 +444,28 @@ class CatalogPlatformApplicationValidator {
     }).required();
   }
 
-  /** @returns {createConfigurationProductListing} */
+  /** @returns {CreateConfigurationProductListingParam} */
   static createConfigurationProductListing() {
     return Joi.object({
       body: CatalogPlatformModel.AppConfiguration().required(),
     }).required();
   }
 
-  /** @returns {createCustomAutocompleteRule} */
+  /** @returns {CreateCustomAutocompleteRuleParam} */
   static createCustomAutocompleteRule() {
     return Joi.object({
       body: CatalogPlatformModel.CreateAutocompleteKeyword().required(),
     }).required();
   }
 
-  /** @returns {createCustomKeyword} */
+  /** @returns {CreateCustomKeywordParam} */
   static createCustomKeyword() {
     return Joi.object({
       body: CatalogPlatformModel.CreateSearchKeyword().required(),
     }).required();
   }
 
-  /** @returns {createGroupConfiguration} */
+  /** @returns {CreateGroupConfigurationParam} */
   static createGroupConfiguration() {
     return Joi.object({
       configType: Joi.string().allow("").required(),
@@ -473,7 +473,7 @@ class CatalogPlatformApplicationValidator {
     }).required();
   }
 
-  /** @returns {createListingConfiguration} */
+  /** @returns {CreateListingConfigurationParam} */
   static createListingConfiguration() {
     return Joi.object({
       configType: Joi.string().allow("").required(),
@@ -481,21 +481,21 @@ class CatalogPlatformApplicationValidator {
     }).required();
   }
 
-  /** @returns {deleteAutocompleteKeyword} */
+  /** @returns {DeleteAutocompleteKeywordParam} */
   static deleteAutocompleteKeyword() {
     return Joi.object({
       id: Joi.string().allow("").required(),
     }).required();
   }
 
-  /** @returns {deleteCollection} */
+  /** @returns {DeleteCollectionParam} */
   static deleteCollection() {
     return Joi.object({
       id: Joi.string().allow("").required(),
     }).required();
   }
 
-  /** @returns {deleteGroupConfiguration} */
+  /** @returns {DeleteGroupConfigurationParam} */
   static deleteGroupConfiguration() {
     return Joi.object({
       configType: Joi.string().allow("").required(),
@@ -503,7 +503,7 @@ class CatalogPlatformApplicationValidator {
     }).required();
   }
 
-  /** @returns {deleteListingConfiguration} */
+  /** @returns {DeleteListingConfigurationParam} */
   static deleteListingConfiguration() {
     return Joi.object({
       configType: Joi.string().allow("").required(),
@@ -511,14 +511,14 @@ class CatalogPlatformApplicationValidator {
     }).required();
   }
 
-  /** @returns {deleteSearchKeywords} */
+  /** @returns {DeleteSearchKeywordsParam} */
   static deleteSearchKeywords() {
     return Joi.object({
       id: Joi.string().allow("").required(),
     }).required();
   }
 
-  /** @returns {getAllCollections} */
+  /** @returns {GetAllCollectionsParam} */
   static getAllCollections() {
     return Joi.object({
       q: Joi.string().allow(""),
@@ -531,12 +531,12 @@ class CatalogPlatformApplicationValidator {
     }).required();
   }
 
-  /** @returns {getAllSearchKeyword} */
+  /** @returns {GetAllSearchKeywordParam} */
   static getAllSearchKeyword() {
     return Joi.object({}).required();
   }
 
-  /** @returns {getAppInventory} */
+  /** @returns {GetAppInventoryParam} */
   static getAppInventory() {
     return Joi.object({
       itemIds: Joi.array().items(Joi.number()),
@@ -549,7 +549,7 @@ class CatalogPlatformApplicationValidator {
     }).required();
   }
 
-  /** @returns {getAppLocations} */
+  /** @returns {GetAppLocationsParam} */
   static getAppLocations() {
     return Joi.object({
       storeType: Joi.string().allow(""),
@@ -561,14 +561,14 @@ class CatalogPlatformApplicationValidator {
     }).required();
   }
 
-  /** @returns {getAppProduct} */
+  /** @returns {GetAppProductParam} */
   static getAppProduct() {
     return Joi.object({
       itemId: Joi.string().allow("").required(),
     }).required();
   }
 
-  /** @returns {getAppProducts} */
+  /** @returns {GetAppProductsParam} */
   static getAppProducts() {
     return Joi.object({
       brandIds: Joi.array().items(Joi.number()),
@@ -582,7 +582,7 @@ class CatalogPlatformApplicationValidator {
     }).required();
   }
 
-  /** @returns {getAppicationProducts} */
+  /** @returns {GetAppicationProductsParam} */
   static getAppicationProducts() {
     return Joi.object({
       q: Joi.string().allow(""),
@@ -598,7 +598,7 @@ class CatalogPlatformApplicationValidator {
     }).required();
   }
 
-  /** @returns {getApplicationBrandListing} */
+  /** @returns {GetApplicationBrandListingParam} */
   static getApplicationBrandListing() {
     return Joi.object({
       pageNo: Joi.number(),
@@ -607,7 +607,7 @@ class CatalogPlatformApplicationValidator {
     }).required();
   }
 
-  /** @returns {getApplicationBrands} */
+  /** @returns {GetApplicationBrandsParam} */
   static getApplicationBrands() {
     return Joi.object({
       department: Joi.string().allow(""),
@@ -618,7 +618,7 @@ class CatalogPlatformApplicationValidator {
     }).required();
   }
 
-  /** @returns {getApplicationCategoryListing} */
+  /** @returns {GetApplicationCategoryListingParam} */
   static getApplicationCategoryListing() {
     return Joi.object({
       departmentId: Joi.number(),
@@ -628,7 +628,7 @@ class CatalogPlatformApplicationValidator {
     }).required();
   }
 
-  /** @returns {getApplicationDepartmentListing} */
+  /** @returns {GetApplicationDepartmentListingParam} */
   static getApplicationDepartmentListing() {
     return Joi.object({
       pageNo: Joi.number(),
@@ -637,45 +637,45 @@ class CatalogPlatformApplicationValidator {
     }).required();
   }
 
-  /** @returns {getAutocompleteConfig} */
+  /** @returns {GetAutocompleteConfigParam} */
   static getAutocompleteConfig() {
     return Joi.object({}).required();
   }
 
-  /** @returns {getAutocompleteKeywordDetail} */
+  /** @returns {GetAutocompleteKeywordDetailParam} */
   static getAutocompleteKeywordDetail() {
     return Joi.object({
       id: Joi.string().allow("").required(),
     }).required();
   }
 
-  /** @returns {getCatalogConfiguration} */
+  /** @returns {GetCatalogConfigurationParam} */
   static getCatalogConfiguration() {
     return Joi.object({}).required();
   }
 
-  /** @returns {getCatalogInsights} */
+  /** @returns {GetCatalogInsightsParam} */
   static getCatalogInsights() {
     return Joi.object({
       brand: Joi.string().allow(""),
     }).required();
   }
 
-  /** @returns {getCategories} */
+  /** @returns {GetCategoriesParam} */
   static getCategories() {
     return Joi.object({
       department: Joi.string().allow(""),
     }).required();
   }
 
-  /** @returns {getCollectionDetail} */
+  /** @returns {GetCollectionDetailParam} */
   static getCollectionDetail() {
     return Joi.object({
       slug: Joi.string().allow("").required(),
     }).required();
   }
 
-  /** @returns {getCollectionItems} */
+  /** @returns {GetCollectionItemsParam} */
   static getCollectionItems() {
     return Joi.object({
       id: Joi.string().allow("").required(),
@@ -685,14 +685,14 @@ class CatalogPlatformApplicationValidator {
     }).required();
   }
 
-  /** @returns {getConfigurationByType} */
+  /** @returns {GetConfigurationByTypeParam} */
   static getConfigurationByType() {
     return Joi.object({
       type: Joi.string().allow("").required(),
     }).required();
   }
 
-  /** @returns {getConfigurationMetadata} */
+  /** @returns {GetConfigurationMetadataParam} */
   static getConfigurationMetadata() {
     return Joi.object({
       configType: Joi.string().allow("").required(),
@@ -700,17 +700,17 @@ class CatalogPlatformApplicationValidator {
     }).required();
   }
 
-  /** @returns {getConfigurations} */
+  /** @returns {GetConfigurationsParam} */
   static getConfigurations() {
     return Joi.object({}).required();
   }
 
-  /** @returns {getDepartments} */
+  /** @returns {GetDepartmentsParam} */
   static getDepartments() {
     return Joi.object({}).required();
   }
 
-  /** @returns {getDiscountedInventoryBySizeIdentifier} */
+  /** @returns {GetDiscountedInventoryBySizeIdentifierParam} */
   static getDiscountedInventoryBySizeIdentifier() {
     return Joi.object({
       itemId: Joi.number().required(),
@@ -722,7 +722,7 @@ class CatalogPlatformApplicationValidator {
     }).required();
   }
 
-  /** @returns {getGroupConfigurations} */
+  /** @returns {GetGroupConfigurationsParam} */
   static getGroupConfigurations() {
     return Joi.object({
       configType: Joi.string().allow("").required(),
@@ -733,7 +733,7 @@ class CatalogPlatformApplicationValidator {
     }).required();
   }
 
-  /** @returns {getListingConfigurations} */
+  /** @returns {GetListingConfigurationsParam} */
   static getListingConfigurations() {
     return Joi.object({
       configType: Joi.string().allow("").required(),
@@ -743,14 +743,14 @@ class CatalogPlatformApplicationValidator {
     }).required();
   }
 
-  /** @returns {getProductDetailBySlug} */
+  /** @returns {GetProductDetailBySlugParam} */
   static getProductDetailBySlug() {
     return Joi.object({
       slug: Joi.string().allow("").required(),
     }).required();
   }
 
-  /** @returns {getProductSizeSellers} */
+  /** @returns {GetProductSizeSellersParam} */
   static getProductSizeSellers() {
     return Joi.object({
       itemId: Joi.string().allow("").required(),
@@ -763,26 +763,26 @@ class CatalogPlatformApplicationValidator {
     }).required();
   }
 
-  /** @returns {getQueryFilters} */
+  /** @returns {GetQueryFiltersParam} */
   static getQueryFilters() {
     return Joi.object({}).required();
   }
 
-  /** @returns {getSearchKeywords} */
+  /** @returns {GetSearchKeywordsParam} */
   static getSearchKeywords() {
     return Joi.object({
       id: Joi.string().allow("").required(),
     }).required();
   }
 
-  /** @returns {updateAllowSingle} */
+  /** @returns {UpdateAllowSingleParam} */
   static updateAllowSingle() {
     return Joi.object({
       body: CatalogPlatformModel.AllowSingleRequest().required(),
     }).required();
   }
 
-  /** @returns {updateAppBrand} */
+  /** @returns {UpdateAppBrandParam} */
   static updateAppBrand() {
     return Joi.object({
       brandUid: Joi.string().allow("").required(),
@@ -790,7 +790,7 @@ class CatalogPlatformApplicationValidator {
     }).required();
   }
 
-  /** @returns {updateAppCategory} */
+  /** @returns {UpdateAppCategoryParam} */
   static updateAppCategory() {
     return Joi.object({
       categoryUid: Joi.string().allow("").required(),
@@ -798,7 +798,7 @@ class CatalogPlatformApplicationValidator {
     }).required();
   }
 
-  /** @returns {updateAppDepartment} */
+  /** @returns {UpdateAppDepartmentParam} */
   static updateAppDepartment() {
     return Joi.object({
       departmentUid: Joi.string().allow("").required(),
@@ -806,7 +806,7 @@ class CatalogPlatformApplicationValidator {
     }).required();
   }
 
-  /** @returns {updateAppLocation} */
+  /** @returns {UpdateAppLocationParam} */
   static updateAppLocation() {
     return Joi.object({
       storeUid: Joi.string().allow("").required(),
@@ -814,7 +814,7 @@ class CatalogPlatformApplicationValidator {
     }).required();
   }
 
-  /** @returns {updateAppProduct} */
+  /** @returns {UpdateAppProductParam} */
   static updateAppProduct() {
     return Joi.object({
       itemId: Joi.string().allow("").required(),
@@ -822,7 +822,7 @@ class CatalogPlatformApplicationValidator {
     }).required();
   }
 
-  /** @returns {updateAutocompleteKeyword} */
+  /** @returns {UpdateAutocompleteKeywordParam} */
   static updateAutocompleteKeyword() {
     return Joi.object({
       id: Joi.string().allow("").required(),
@@ -830,7 +830,7 @@ class CatalogPlatformApplicationValidator {
     }).required();
   }
 
-  /** @returns {updateCollection} */
+  /** @returns {UpdateCollectionParam} */
   static updateCollection() {
     return Joi.object({
       id: Joi.string().allow("").required(),
@@ -838,14 +838,14 @@ class CatalogPlatformApplicationValidator {
     }).required();
   }
 
-  /** @returns {updateDefaultSort} */
+  /** @returns {UpdateDefaultSortParam} */
   static updateDefaultSort() {
     return Joi.object({
       body: CatalogPlatformModel.DefaultKeyRequest().required(),
     }).required();
   }
 
-  /** @returns {updateGroupConfiguration} */
+  /** @returns {UpdateGroupConfigurationParam} */
   static updateGroupConfiguration() {
     return Joi.object({
       configType: Joi.string().allow("").required(),
@@ -854,7 +854,7 @@ class CatalogPlatformApplicationValidator {
     }).required();
   }
 
-  /** @returns {updateListingConfiguration} */
+  /** @returns {UpdateListingConfigurationParam} */
   static updateListingConfiguration() {
     return Joi.object({
       configType: Joi.string().allow("").required(),
@@ -863,7 +863,7 @@ class CatalogPlatformApplicationValidator {
     }).required();
   }
 
-  /** @returns {updateSearchKeywords} */
+  /** @returns {UpdateSearchKeywordsParam} */
   static updateSearchKeywords() {
     return Joi.object({
       id: Joi.string().allow("").required(),

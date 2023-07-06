@@ -201,7 +201,7 @@ const UserApplicationModel = require("./UserApplicationModel");
  */
 
 class UserApplicationValidator {
-  /** @returns {addEmail} */
+  /** @returns {AddEmailParam} */
   static addEmail() {
     return Joi.object({
       platform: Joi.string().allow(""),
@@ -209,7 +209,7 @@ class UserApplicationValidator {
     }).required();
   }
 
-  /** @returns {addMobileNumber} */
+  /** @returns {AddMobileNumberParam} */
   static addMobileNumber() {
     return Joi.object({
       platform: Joi.string().allow(""),
@@ -217,7 +217,7 @@ class UserApplicationValidator {
     }).required();
   }
 
-  /** @returns {deleteEmail} */
+  /** @returns {DeleteEmailParam} */
   static deleteEmail() {
     return Joi.object({
       platform: Joi.string().allow(""),
@@ -228,7 +228,7 @@ class UserApplicationValidator {
     }).required();
   }
 
-  /** @returns {deleteMobileNumber} */
+  /** @returns {DeleteMobileNumberParam} */
   static deleteMobileNumber() {
     return Joi.object({
       platform: Joi.string().allow(""),
@@ -240,43 +240,43 @@ class UserApplicationValidator {
     }).required();
   }
 
-  /** @returns {deleteUser} */
+  /** @returns {DeleteUserParam} */
   static deleteUser() {
     return Joi.object({
       body: UserApplicationModel.DeleteApplicationUserRequestSchema().required(),
     }).required();
   }
 
-  /** @returns {forgotPassword} */
+  /** @returns {ForgotPasswordParam} */
   static forgotPassword() {
     return Joi.object({
       body: UserApplicationModel.ForgotPasswordRequestSchema().required(),
     }).required();
   }
 
-  /** @returns {getListOfActiveSessions} */
+  /** @returns {GetListOfActiveSessionsParam} */
   static getListOfActiveSessions() {
     return Joi.object({});
   }
 
-  /** @returns {getLoggedInUser} */
+  /** @returns {GetLoggedInUserParam} */
   static getLoggedInUser() {
     return Joi.object({});
   }
 
-  /** @returns {getPlatformConfig} */
+  /** @returns {GetPlatformConfigParam} */
   static getPlatformConfig() {
     return Joi.object({
       name: Joi.string().allow(""),
     });
   }
 
-  /** @returns {hasPassword} */
+  /** @returns {HasPasswordParam} */
   static hasPassword() {
     return Joi.object({});
   }
 
-  /** @returns {loginWithAppleIOS} */
+  /** @returns {LoginWithAppleIOSParam} */
   static loginWithAppleIOS() {
     return Joi.object({
       platform: Joi.string().allow(""),
@@ -284,14 +284,14 @@ class UserApplicationValidator {
     }).required();
   }
 
-  /** @returns {loginWithEmailAndPassword} */
+  /** @returns {LoginWithEmailAndPasswordParam} */
   static loginWithEmailAndPassword() {
     return Joi.object({
       body: UserApplicationModel.PasswordLoginRequestSchema().required(),
     }).required();
   }
 
-  /** @returns {loginWithFacebook} */
+  /** @returns {LoginWithFacebookParam} */
   static loginWithFacebook() {
     return Joi.object({
       platform: Joi.string().allow(""),
@@ -299,7 +299,7 @@ class UserApplicationValidator {
     }).required();
   }
 
-  /** @returns {loginWithGoogle} */
+  /** @returns {LoginWithGoogleParam} */
   static loginWithGoogle() {
     return Joi.object({
       platform: Joi.string().allow(""),
@@ -307,7 +307,7 @@ class UserApplicationValidator {
     }).required();
   }
 
-  /** @returns {loginWithGoogleAndroid} */
+  /** @returns {LoginWithGoogleAndroidParam} */
   static loginWithGoogleAndroid() {
     return Joi.object({
       platform: Joi.string().allow(""),
@@ -315,7 +315,7 @@ class UserApplicationValidator {
     }).required();
   }
 
-  /** @returns {loginWithGoogleIOS} */
+  /** @returns {LoginWithGoogleIOSParam} */
   static loginWithGoogleIOS() {
     return Joi.object({
       platform: Joi.string().allow(""),
@@ -323,7 +323,7 @@ class UserApplicationValidator {
     }).required();
   }
 
-  /** @returns {loginWithOTP} */
+  /** @returns {LoginWithOTPParam} */
   static loginWithOTP() {
     return Joi.object({
       platform: Joi.string().allow(""),
@@ -331,19 +331,19 @@ class UserApplicationValidator {
     }).required();
   }
 
-  /** @returns {loginWithToken} */
+  /** @returns {LoginWithTokenParam} */
   static loginWithToken() {
     return Joi.object({
       body: UserApplicationModel.TokenRequestBodySchema().required(),
     }).required();
   }
 
-  /** @returns {logout} */
+  /** @returns {LogoutParam} */
   static logout() {
     return Joi.object({});
   }
 
-  /** @returns {registerWithForm} */
+  /** @returns {RegisterWithFormParam} */
   static registerWithForm() {
     return Joi.object({
       platform: Joi.string().allow(""),
@@ -351,7 +351,7 @@ class UserApplicationValidator {
     }).required();
   }
 
-  /** @returns {sendOTPOnEmail} */
+  /** @returns {SendOTPOnEmailParam} */
   static sendOTPOnEmail() {
     return Joi.object({
       platform: Joi.string().allow(""),
@@ -359,7 +359,7 @@ class UserApplicationValidator {
     }).required();
   }
 
-  /** @returns {sendOTPOnMobile} */
+  /** @returns {SendOTPOnMobileParam} */
   static sendOTPOnMobile() {
     return Joi.object({
       platform: Joi.string().allow(""),
@@ -367,7 +367,7 @@ class UserApplicationValidator {
     }).required();
   }
 
-  /** @returns {sendResetPasswordEmail} */
+  /** @returns {SendResetPasswordEmailParam} */
   static sendResetPasswordEmail() {
     return Joi.object({
       platform: Joi.string().allow(""),
@@ -375,7 +375,7 @@ class UserApplicationValidator {
     }).required();
   }
 
-  /** @returns {sendResetPasswordMobile} */
+  /** @returns {SendResetPasswordMobileParam} */
   static sendResetPasswordMobile() {
     return Joi.object({
       platform: Joi.string().allow(""),
@@ -383,14 +383,14 @@ class UserApplicationValidator {
     }).required();
   }
 
-  /** @returns {sendResetToken} */
+  /** @returns {SendResetTokenParam} */
   static sendResetToken() {
     return Joi.object({
       body: UserApplicationModel.CodeRequestBodySchema().required(),
     }).required();
   }
 
-  /** @returns {sendVerificationLinkToEmail} */
+  /** @returns {SendVerificationLinkToEmailParam} */
   static sendVerificationLinkToEmail() {
     return Joi.object({
       platform: Joi.string().allow(""),
@@ -398,7 +398,7 @@ class UserApplicationValidator {
     }).required();
   }
 
-  /** @returns {sendVerificationLinkToMobile} */
+  /** @returns {SendVerificationLinkToMobileParam} */
   static sendVerificationLinkToMobile() {
     return Joi.object({
       platform: Joi.string().allow(""),
@@ -406,28 +406,28 @@ class UserApplicationValidator {
     }).required();
   }
 
-  /** @returns {setEmailAsPrimary} */
+  /** @returns {SetEmailAsPrimaryParam} */
   static setEmailAsPrimary() {
     return Joi.object({
       body: UserApplicationModel.EditEmailRequestSchema().required(),
     }).required();
   }
 
-  /** @returns {setMobileNumberAsPrimary} */
+  /** @returns {SetMobileNumberAsPrimaryParam} */
   static setMobileNumberAsPrimary() {
     return Joi.object({
       body: UserApplicationModel.SendVerificationLinkMobileRequestSchema().required(),
     }).required();
   }
 
-  /** @returns {updatePassword} */
+  /** @returns {UpdatePasswordParam} */
   static updatePassword() {
     return Joi.object({
       body: UserApplicationModel.UpdatePasswordRequestSchema().required(),
     }).required();
   }
 
-  /** @returns {updateProfile} */
+  /** @returns {UpdateProfileParam} */
   static updateProfile() {
     return Joi.object({
       platform: Joi.string().allow(""),
@@ -435,14 +435,14 @@ class UserApplicationValidator {
     }).required();
   }
 
-  /** @returns {verifyEmail} */
+  /** @returns {VerifyEmailParam} */
   static verifyEmail() {
     return Joi.object({
       body: UserApplicationModel.CodeRequestBodySchema().required(),
     }).required();
   }
 
-  /** @returns {verifyEmailOTP} */
+  /** @returns {VerifyEmailOTPParam} */
   static verifyEmailOTP() {
     return Joi.object({
       platform: Joi.string().allow(""),
@@ -450,14 +450,14 @@ class UserApplicationValidator {
     }).required();
   }
 
-  /** @returns {verifyMobile} */
+  /** @returns {VerifyMobileParam} */
   static verifyMobile() {
     return Joi.object({
       body: UserApplicationModel.CodeRequestBodySchema().required(),
     }).required();
   }
 
-  /** @returns {verifyMobileOTP} */
+  /** @returns {VerifyMobileOTPParam} */
   static verifyMobileOTP() {
     return Joi.object({
       platform: Joi.string().allow(""),

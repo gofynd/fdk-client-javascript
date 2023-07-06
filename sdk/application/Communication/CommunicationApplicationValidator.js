@@ -15,19 +15,19 @@ const CommunicationApplicationModel = require("./CommunicationApplicationModel")
  */
 
 class CommunicationApplicationValidator {
-  /** @returns {getCommunicationConsent} */
+  /** @returns {GetCommunicationConsentParam} */
   static getCommunicationConsent() {
     return Joi.object({});
   }
 
-  /** @returns {upsertAppPushtoken} */
+  /** @returns {UpsertAppPushtokenParam} */
   static upsertAppPushtoken() {
     return Joi.object({
       body: CommunicationApplicationModel.PushtokenReq().required(),
     }).required();
   }
 
-  /** @returns {upsertCommunicationConsent} */
+  /** @returns {UpsertCommunicationConsentParam} */
   static upsertCommunicationConsent() {
     return Joi.object({
       body: CommunicationApplicationModel.CommunicationConsentReq().required(),

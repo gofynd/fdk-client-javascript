@@ -29,20 +29,20 @@ export = ShareApplicationValidator;
  * @property {string} url - A link or a web address
  */
 declare class ShareApplicationValidator {
-    /** @returns {createShortLink} */
-    static createShortLink(): createShortLink;
-    /** @returns {getApplicationQRCode} */
-    static getApplicationQRCode(): getApplicationQRCode;
-    /** @returns {getCollectionQRCodeBySlug} */
-    static getCollectionQRCodeBySlug(): getCollectionQRCodeBySlug;
-    /** @returns {getOriginalShortLinkByHash} */
-    static getOriginalShortLinkByHash(): getOriginalShortLinkByHash;
-    /** @returns {getProductQRCodeBySlug} */
-    static getProductQRCodeBySlug(): getProductQRCodeBySlug;
-    /** @returns {getShortLinkByHash} */
-    static getShortLinkByHash(): getShortLinkByHash;
-    /** @returns {getUrlQRCode} */
-    static getUrlQRCode(): getUrlQRCode;
+    /** @returns {CreateShortLinkParam} */
+    static createShortLink(): CreateShortLinkParam;
+    /** @returns {GetApplicationQRCodeParam} */
+    static getApplicationQRCode(): any;
+    /** @returns {GetCollectionQRCodeBySlugParam} */
+    static getCollectionQRCodeBySlug(): GetCollectionQRCodeBySlugParam;
+    /** @returns {GetOriginalShortLinkByHashParam} */
+    static getOriginalShortLinkByHash(): GetOriginalShortLinkByHashParam;
+    /** @returns {GetProductQRCodeBySlugParam} */
+    static getProductQRCodeBySlug(): GetProductQRCodeBySlugParam;
+    /** @returns {GetShortLinkByHashParam} */
+    static getShortLinkByHash(): GetShortLinkByHashParam;
+    /** @returns {GetUrlQRCodeParam} */
+    static getUrlQRCode(): GetUrlQRCodeParam;
 }
 declare namespace ShareApplicationValidator {
     export { CreateShortLinkParam, GetApplicationQRCodeParam, GetCollectionQRCodeBySlugParam, GetOriginalShortLinkByHashParam, GetProductQRCodeBySlugParam, GetShortLinkByHashParam, GetUrlQRCodeParam };
@@ -50,7 +50,6 @@ declare namespace ShareApplicationValidator {
 type CreateShortLinkParam = {
     body: ShareApplicationModel.ShortLinkReq;
 };
-type GetApplicationQRCodeParam = any;
 type GetCollectionQRCodeBySlugParam = {
     /**
      * - A short, human-readable, URL-friendly identifier of
@@ -85,4 +84,5 @@ type GetUrlQRCodeParam = {
      */
     url: string;
 };
+type GetApplicationQRCodeParam = any;
 import ShareApplicationModel = require("./ShareApplicationModel");

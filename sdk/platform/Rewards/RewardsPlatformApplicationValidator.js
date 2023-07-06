@@ -64,33 +64,33 @@ const RewardsPlatformModel = require("./RewardsPlatformModel");
  */
 
 class RewardsPlatformApplicationValidator {
-  /** @returns {getGiveawayById} */
+  /** @returns {GetGiveawayByIdParam} */
   static getGiveawayById() {
     return Joi.object({
       id: Joi.string().allow("").required(),
     }).required();
   }
 
-  /** @returns {getOfferByName} */
+  /** @returns {GetOfferByNameParam} */
   static getOfferByName() {
     return Joi.object({
       name: Joi.string().allow("").required(),
     }).required();
   }
 
-  /** @returns {getRewardsConfiguration} */
+  /** @returns {GetRewardsConfigurationParam} */
   static getRewardsConfiguration() {
     return Joi.object({}).required();
   }
 
-  /** @returns {getUserDetails} */
+  /** @returns {GetUserDetailsParam} */
   static getUserDetails() {
     return Joi.object({
       userId: Joi.string().allow("").required(),
     }).required();
   }
 
-  /** @returns {getUserPointsHistory} */
+  /** @returns {GetUserPointsHistoryParam} */
   static getUserPointsHistory() {
     return Joi.object({
       userId: Joi.string().allow("").required(),
@@ -100,21 +100,21 @@ class RewardsPlatformApplicationValidator {
     }).required();
   }
 
-  /** @returns {saveGiveAway} */
+  /** @returns {SaveGiveAwayParam} */
   static saveGiveAway() {
     return Joi.object({
       body: RewardsPlatformModel.Giveaway().required(),
     }).required();
   }
 
-  /** @returns {setRewardsConfiguration} */
+  /** @returns {SetRewardsConfigurationParam} */
   static setRewardsConfiguration() {
     return Joi.object({
       body: RewardsPlatformModel.ConfigurationRequest().required(),
     }).required();
   }
 
-  /** @returns {showGiveaways} */
+  /** @returns {ShowGiveawaysParam} */
   static showGiveaways() {
     return Joi.object({
       pageId: Joi.string().allow("").required(),
@@ -122,12 +122,12 @@ class RewardsPlatformApplicationValidator {
     }).required();
   }
 
-  /** @returns {showOffers} */
+  /** @returns {ShowOffersParam} */
   static showOffers() {
     return Joi.object({}).required();
   }
 
-  /** @returns {updateGiveAway} */
+  /** @returns {UpdateGiveAwayParam} */
   static updateGiveAway() {
     return Joi.object({
       id: Joi.string().allow("").required(),
@@ -135,7 +135,7 @@ class RewardsPlatformApplicationValidator {
     }).required();
   }
 
-  /** @returns {updateOfferByName} */
+  /** @returns {UpdateOfferByNameParam} */
   static updateOfferByName() {
     return Joi.object({
       name: Joi.string().allow("").required(),
@@ -144,7 +144,7 @@ class RewardsPlatformApplicationValidator {
     }).required();
   }
 
-  /** @returns {updateUserStatus} */
+  /** @returns {UpdateUserStatusParam} */
   static updateUserStatus() {
     return Joi.object({
       userId: Joi.string().allow("").required(),

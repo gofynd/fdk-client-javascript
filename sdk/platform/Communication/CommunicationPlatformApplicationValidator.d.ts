@@ -251,122 +251,122 @@ export = CommunicationPlatformApplicationValidator;
  * @property {CommunicationPlatformModel.VerifyOtpCommsReq} body
  */
 declare class CommunicationPlatformApplicationValidator {
-    /** @returns {createAudience} */
-    static createAudience(): createAudience;
-    /** @returns {createCampaign} */
-    static createCampaign(): createCampaign;
-    /** @returns {createEmailProvider} */
-    static createEmailProvider(): createEmailProvider;
-    /** @returns {createEmailTemplate} */
-    static createEmailTemplate(): createEmailTemplate;
-    /** @returns {createSmsProvider} */
-    static createSmsProvider(): createSmsProvider;
-    /** @returns {createSmsTemplate} */
-    static createSmsTemplate(): createSmsTemplate;
-    /** @returns {createVoiceProvider} */
-    static createVoiceProvider(): createVoiceProvider;
-    /** @returns {createVoiceTemplate} */
-    static createVoiceTemplate(): createVoiceTemplate;
-    /** @returns {deleteEmailProviderById} */
-    static deleteEmailProviderById(): deleteEmailProviderById;
-    /** @returns {deleteEmailTemplateById} */
-    static deleteEmailTemplateById(): deleteEmailTemplateById;
-    /** @returns {deleteSmsProviderById} */
-    static deleteSmsProviderById(): deleteSmsProviderById;
-    /** @returns {deleteSmsTemplateById} */
-    static deleteSmsTemplateById(): deleteSmsTemplateById;
-    /** @returns {deleteVoiceTemplateById} */
-    static deleteVoiceTemplateById(): deleteVoiceTemplateById;
-    /** @returns {getAppProviders} */
-    static getAppProviders(): getAppProviders;
-    /** @returns {getAudienceById} */
-    static getAudienceById(): getAudienceById;
-    /** @returns {getAudiences} */
-    static getAudiences(): getAudiences;
-    /** @returns {getBigqueryHeaders} */
-    static getBigqueryHeaders(): getBigqueryHeaders;
-    /** @returns {getCampaignById} */
-    static getCampaignById(): getCampaignById;
-    /** @returns {getCampaigns} */
-    static getCampaigns(): getCampaigns;
-    /** @returns {getCommunicationLogs} */
-    static getCommunicationLogs(): getCommunicationLogs;
-    /** @returns {getDefaultEmailProviders} */
-    static getDefaultEmailProviders(): getDefaultEmailProviders;
-    /** @returns {getDefaultSmsProviders} */
-    static getDefaultSmsProviders(): getDefaultSmsProviders;
-    /** @returns {getEmailProviderById} */
-    static getEmailProviderById(): getEmailProviderById;
-    /** @returns {getEmailProviders} */
-    static getEmailProviders(): getEmailProviders;
-    /** @returns {getEmailTemplateById} */
-    static getEmailTemplateById(): getEmailTemplateById;
-    /** @returns {getEmailTemplates} */
-    static getEmailTemplates(): getEmailTemplates;
-    /** @returns {getEventSubscriptions} */
-    static getEventSubscriptions(): getEventSubscriptions;
-    /** @returns {getGlobalProviders} */
-    static getGlobalProviders(): getGlobalProviders;
-    /** @returns {getJobLogs} */
-    static getJobLogs(): getJobLogs;
-    /** @returns {getJobs} */
-    static getJobs(): getJobs;
-    /** @returns {getNSampleRecordsFromCsv} */
-    static getNSampleRecordsFromCsv(): getNSampleRecordsFromCsv;
-    /** @returns {getSmsProviderById} */
-    static getSmsProviderById(): getSmsProviderById;
-    /** @returns {getSmsProviders} */
-    static getSmsProviders(): getSmsProviders;
-    /** @returns {getSmsTemplateById} */
-    static getSmsTemplateById(): getSmsTemplateById;
-    /** @returns {getSmsTemplates} */
-    static getSmsTemplates(): getSmsTemplates;
-    /** @returns {getStatsOfCampaignById} */
-    static getStatsOfCampaignById(): getStatsOfCampaignById;
-    /** @returns {getSubscribedEmailTemplates} */
-    static getSubscribedEmailTemplates(): getSubscribedEmailTemplates;
-    /** @returns {getSubscribedSmsTemplates} */
-    static getSubscribedSmsTemplates(): getSubscribedSmsTemplates;
-    /** @returns {getSystemEmailTemplates} */
-    static getSystemEmailTemplates(): getSystemEmailTemplates;
-    /** @returns {getSystemSmsTemplates} */
-    static getSystemSmsTemplates(): getSystemSmsTemplates;
-    /** @returns {getSystemVoiceTemplates} */
-    static getSystemVoiceTemplates(): getSystemVoiceTemplates;
-    /** @returns {getVoiceProviderById} */
-    static getVoiceProviderById(): getVoiceProviderById;
-    /** @returns {getVoiceProviders} */
-    static getVoiceProviders(): getVoiceProviders;
-    /** @returns {getVoiceTemplateById} */
-    static getVoiceTemplateById(): getVoiceTemplateById;
-    /** @returns {getVoiceTemplates} */
-    static getVoiceTemplates(): getVoiceTemplates;
-    /** @returns {sendCommunicationAsynchronously} */
-    static sendCommunicationAsynchronously(): sendCommunicationAsynchronously;
-    /** @returns {sendCommunicationSynchronously} */
-    static sendCommunicationSynchronously(): sendCommunicationSynchronously;
-    /** @returns {sendOtp} */
-    static sendOtp(): sendOtp;
-    /** @returns {triggerCampaignJob} */
-    static triggerCampaignJob(): triggerCampaignJob;
-    /** @returns {updateAppProviders} */
-    static updateAppProviders(): updateAppProviders;
-    /** @returns {updateAudienceById} */
-    static updateAudienceById(): updateAudienceById;
-    /** @returns {updateCampaignById} */
-    static updateCampaignById(): updateCampaignById;
-    /** @returns {updateEmailProviderById} */
-    static updateEmailProviderById(): updateEmailProviderById;
-    /** @returns {updateEmailTemplateById} */
-    static updateEmailTemplateById(): updateEmailTemplateById;
-    /** @returns {updateSmsProviderById} */
-    static updateSmsProviderById(): updateSmsProviderById;
-    /** @returns {updateSmsTemplateById} */
-    static updateSmsTemplateById(): updateSmsTemplateById;
-    /** @returns {updateVoiceTemplateById} */
-    static updateVoiceTemplateById(): updateVoiceTemplateById;
-    /** @returns {verfiyOtp} */
-    static verfiyOtp(): verfiyOtp;
+    /** @returns {CreateAudienceParam} */
+    static createAudience(): CreateAudienceParam;
+    /** @returns {CreateCampaignParam} */
+    static createCampaign(): CreateCampaignParam;
+    /** @returns {CreateEmailProviderParam} */
+    static createEmailProvider(): CreateEmailProviderParam;
+    /** @returns {CreateEmailTemplateParam} */
+    static createEmailTemplate(): CreateEmailTemplateParam;
+    /** @returns {CreateSmsProviderParam} */
+    static createSmsProvider(): CreateSmsProviderParam;
+    /** @returns {CreateSmsTemplateParam} */
+    static createSmsTemplate(): CreateSmsTemplateParam;
+    /** @returns {CreateVoiceProviderParam} */
+    static createVoiceProvider(): CreateVoiceProviderParam;
+    /** @returns {CreateVoiceTemplateParam} */
+    static createVoiceTemplate(): CreateVoiceTemplateParam;
+    /** @returns {DeleteEmailProviderByIdParam} */
+    static deleteEmailProviderById(): DeleteEmailProviderByIdParam;
+    /** @returns {DeleteEmailTemplateByIdParam} */
+    static deleteEmailTemplateById(): DeleteEmailTemplateByIdParam;
+    /** @returns {DeleteSmsProviderByIdParam} */
+    static deleteSmsProviderById(): DeleteSmsProviderByIdParam;
+    /** @returns {DeleteSmsTemplateByIdParam} */
+    static deleteSmsTemplateById(): DeleteSmsTemplateByIdParam;
+    /** @returns {DeleteVoiceTemplateByIdParam} */
+    static deleteVoiceTemplateById(): DeleteVoiceTemplateByIdParam;
+    /** @returns {GetAppProvidersParam} */
+    static getAppProviders(): any;
+    /** @returns {GetAudienceByIdParam} */
+    static getAudienceById(): GetAudienceByIdParam;
+    /** @returns {GetAudiencesParam} */
+    static getAudiences(): GetAudiencesParam;
+    /** @returns {GetBigqueryHeadersParam} */
+    static getBigqueryHeaders(): GetBigqueryHeadersParam;
+    /** @returns {GetCampaignByIdParam} */
+    static getCampaignById(): GetCampaignByIdParam;
+    /** @returns {GetCampaignsParam} */
+    static getCampaigns(): GetCampaignsParam;
+    /** @returns {GetCommunicationLogsParam} */
+    static getCommunicationLogs(): GetCommunicationLogsParam;
+    /** @returns {GetDefaultEmailProvidersParam} */
+    static getDefaultEmailProviders(): any;
+    /** @returns {GetDefaultSmsProvidersParam} */
+    static getDefaultSmsProviders(): any;
+    /** @returns {GetEmailProviderByIdParam} */
+    static getEmailProviderById(): GetEmailProviderByIdParam;
+    /** @returns {GetEmailProvidersParam} */
+    static getEmailProviders(): GetEmailProvidersParam;
+    /** @returns {GetEmailTemplateByIdParam} */
+    static getEmailTemplateById(): GetEmailTemplateByIdParam;
+    /** @returns {GetEmailTemplatesParam} */
+    static getEmailTemplates(): GetEmailTemplatesParam;
+    /** @returns {GetEventSubscriptionsParam} */
+    static getEventSubscriptions(): GetEventSubscriptionsParam;
+    /** @returns {GetGlobalProvidersParam} */
+    static getGlobalProviders(): any;
+    /** @returns {GetJobLogsParam} */
+    static getJobLogs(): GetJobLogsParam;
+    /** @returns {GetJobsParam} */
+    static getJobs(): GetJobsParam;
+    /** @returns {GetNSampleRecordsFromCsvParam} */
+    static getNSampleRecordsFromCsv(): GetNSampleRecordsFromCsvParam;
+    /** @returns {GetSmsProviderByIdParam} */
+    static getSmsProviderById(): GetSmsProviderByIdParam;
+    /** @returns {GetSmsProvidersParam} */
+    static getSmsProviders(): GetSmsProvidersParam;
+    /** @returns {GetSmsTemplateByIdParam} */
+    static getSmsTemplateById(): GetSmsTemplateByIdParam;
+    /** @returns {GetSmsTemplatesParam} */
+    static getSmsTemplates(): GetSmsTemplatesParam;
+    /** @returns {GetStatsOfCampaignByIdParam} */
+    static getStatsOfCampaignById(): GetStatsOfCampaignByIdParam;
+    /** @returns {GetSubscribedEmailTemplatesParam} */
+    static getSubscribedEmailTemplates(): GetSubscribedEmailTemplatesParam;
+    /** @returns {GetSubscribedSmsTemplatesParam} */
+    static getSubscribedSmsTemplates(): GetSubscribedSmsTemplatesParam;
+    /** @returns {GetSystemEmailTemplatesParam} */
+    static getSystemEmailTemplates(): any;
+    /** @returns {GetSystemSmsTemplatesParam} */
+    static getSystemSmsTemplates(): any;
+    /** @returns {GetSystemVoiceTemplatesParam} */
+    static getSystemVoiceTemplates(): GetSystemVoiceTemplatesParam;
+    /** @returns {GetVoiceProviderByIdParam} */
+    static getVoiceProviderById(): GetVoiceProviderByIdParam;
+    /** @returns {GetVoiceProvidersParam} */
+    static getVoiceProviders(): GetVoiceProvidersParam;
+    /** @returns {GetVoiceTemplateByIdParam} */
+    static getVoiceTemplateById(): GetVoiceTemplateByIdParam;
+    /** @returns {GetVoiceTemplatesParam} */
+    static getVoiceTemplates(): GetVoiceTemplatesParam;
+    /** @returns {SendCommunicationAsynchronouslyParam} */
+    static sendCommunicationAsynchronously(): SendCommunicationAsynchronouslyParam;
+    /** @returns {SendCommunicationSynchronouslyParam} */
+    static sendCommunicationSynchronously(): SendCommunicationSynchronouslyParam;
+    /** @returns {SendOtpParam} */
+    static sendOtp(): SendOtpParam;
+    /** @returns {TriggerCampaignJobParam} */
+    static triggerCampaignJob(): TriggerCampaignJobParam;
+    /** @returns {UpdateAppProvidersParam} */
+    static updateAppProviders(): UpdateAppProvidersParam;
+    /** @returns {UpdateAudienceByIdParam} */
+    static updateAudienceById(): UpdateAudienceByIdParam;
+    /** @returns {UpdateCampaignByIdParam} */
+    static updateCampaignById(): UpdateCampaignByIdParam;
+    /** @returns {UpdateEmailProviderByIdParam} */
+    static updateEmailProviderById(): UpdateEmailProviderByIdParam;
+    /** @returns {UpdateEmailTemplateByIdParam} */
+    static updateEmailTemplateById(): UpdateEmailTemplateByIdParam;
+    /** @returns {UpdateSmsProviderByIdParam} */
+    static updateSmsProviderById(): UpdateSmsProviderByIdParam;
+    /** @returns {UpdateSmsTemplateByIdParam} */
+    static updateSmsTemplateById(): UpdateSmsTemplateByIdParam;
+    /** @returns {UpdateVoiceTemplateByIdParam} */
+    static updateVoiceTemplateById(): UpdateVoiceTemplateByIdParam;
+    /** @returns {VerfiyOtpParam} */
+    static verfiyOtp(): VerfiyOtpParam;
 }
 declare namespace CommunicationPlatformApplicationValidator {
     export { CreateAudienceParam, CreateCampaignParam, CreateEmailProviderParam, CreateEmailTemplateParam, CreateSmsProviderParam, CreateSmsTemplateParam, CreateVoiceProviderParam, CreateVoiceTemplateParam, DeleteEmailProviderByIdParam, DeleteEmailTemplateByIdParam, DeleteSmsProviderByIdParam, DeleteSmsTemplateByIdParam, DeleteVoiceTemplateByIdParam, GetAppProvidersParam, GetAudienceByIdParam, GetAudiencesParam, GetBigqueryHeadersParam, GetCampaignByIdParam, GetCampaignsParam, GetCommunicationLogsParam, GetDefaultEmailProvidersParam, GetDefaultSmsProvidersParam, GetEmailProviderByIdParam, GetEmailProvidersParam, GetEmailTemplateByIdParam, GetEmailTemplatesParam, GetEventSubscriptionsParam, GetGlobalProvidersParam, GetJobLogsParam, GetJobsParam, GetNSampleRecordsFromCsvParam, GetSmsProviderByIdParam, GetSmsProvidersParam, GetSmsTemplateByIdParam, GetSmsTemplatesParam, GetStatsOfCampaignByIdParam, GetSubscribedEmailTemplatesParam, GetSubscribedSmsTemplatesParam, GetSystemEmailTemplatesParam, GetSystemSmsTemplatesParam, GetSystemVoiceTemplatesParam, GetVoiceProviderByIdParam, GetVoiceProvidersParam, GetVoiceTemplateByIdParam, GetVoiceTemplatesParam, SendCommunicationAsynchronouslyParam, SendCommunicationSynchronouslyParam, SendOtpParam, TriggerCampaignJobParam, UpdateAppProvidersParam, UpdateAudienceByIdParam, UpdateCampaignByIdParam, UpdateEmailProviderByIdParam, UpdateEmailTemplateByIdParam, UpdateSmsProviderByIdParam, UpdateSmsTemplateByIdParam, UpdateVoiceTemplateByIdParam, VerfiyOtpParam };
@@ -425,7 +425,6 @@ type DeleteVoiceTemplateByIdParam = {
      */
     id: string;
 };
-type GetAppProvidersParam = any;
 type GetAudienceByIdParam = {
     /**
      * - Audience id
@@ -484,8 +483,6 @@ type GetCommunicationLogsParam = {
     sort?: any;
     query?: any;
 };
-type GetDefaultEmailProvidersParam = any;
-type GetDefaultSmsProvidersParam = any;
 type GetEmailProviderByIdParam = {
     /**
      * - Email provider id
@@ -544,7 +541,6 @@ type GetEventSubscriptionsParam = {
      */
     query?: string;
 };
-type GetGlobalProvidersParam = any;
 type GetJobLogsParam = {
     /**
      * - Current page no
@@ -642,8 +638,6 @@ type GetSubscribedSmsTemplatesParam = {
      */
     pageSize?: number;
 };
-type GetSystemEmailTemplatesParam = any;
-type GetSystemSmsTemplatesParam = any;
 type GetSystemVoiceTemplatesParam = {
     /**
      * - Current page no
@@ -765,4 +759,10 @@ type UpdateVoiceTemplateByIdParam = {
 type VerfiyOtpParam = {
     body: CommunicationPlatformModel.VerifyOtpCommsReq;
 };
+type GetAppProvidersParam = any;
+type GetDefaultEmailProvidersParam = any;
+type GetDefaultSmsProvidersParam = any;
+type GetGlobalProvidersParam = any;
+type GetSystemEmailTemplatesParam = any;
+type GetSystemSmsTemplatesParam = any;
 import CommunicationPlatformModel = require("./CommunicationPlatformModel");

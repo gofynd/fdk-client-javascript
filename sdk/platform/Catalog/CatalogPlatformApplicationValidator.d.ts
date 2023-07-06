@@ -364,114 +364,114 @@ export = CatalogPlatformApplicationValidator;
  * @property {CatalogPlatformModel.CreateSearchKeyword} body
  */
 declare class CatalogPlatformApplicationValidator {
-    /** @returns {addCollectionItems} */
-    static addCollectionItems(): addCollectionItems;
-    /** @returns {createCollection} */
-    static createCollection(): createCollection;
-    /** @returns {createConfigurationByType} */
-    static createConfigurationByType(): createConfigurationByType;
-    /** @returns {createConfigurationProductListing} */
-    static createConfigurationProductListing(): createConfigurationProductListing;
-    /** @returns {createCustomAutocompleteRule} */
-    static createCustomAutocompleteRule(): createCustomAutocompleteRule;
-    /** @returns {createCustomKeyword} */
-    static createCustomKeyword(): createCustomKeyword;
-    /** @returns {createGroupConfiguration} */
-    static createGroupConfiguration(): createGroupConfiguration;
-    /** @returns {createListingConfiguration} */
-    static createListingConfiguration(): createListingConfiguration;
-    /** @returns {deleteAutocompleteKeyword} */
-    static deleteAutocompleteKeyword(): deleteAutocompleteKeyword;
-    /** @returns {deleteCollection} */
-    static deleteCollection(): deleteCollection;
-    /** @returns {deleteGroupConfiguration} */
-    static deleteGroupConfiguration(): deleteGroupConfiguration;
-    /** @returns {deleteListingConfiguration} */
-    static deleteListingConfiguration(): deleteListingConfiguration;
-    /** @returns {deleteSearchKeywords} */
-    static deleteSearchKeywords(): deleteSearchKeywords;
-    /** @returns {getAllCollections} */
-    static getAllCollections(): getAllCollections;
-    /** @returns {getAllSearchKeyword} */
-    static getAllSearchKeyword(): getAllSearchKeyword;
-    /** @returns {getAppInventory} */
-    static getAppInventory(): getAppInventory;
-    /** @returns {getAppLocations} */
-    static getAppLocations(): getAppLocations;
-    /** @returns {getAppProduct} */
-    static getAppProduct(): getAppProduct;
-    /** @returns {getAppProducts} */
-    static getAppProducts(): getAppProducts;
-    /** @returns {getAppicationProducts} */
-    static getAppicationProducts(): getAppicationProducts;
-    /** @returns {getApplicationBrandListing} */
-    static getApplicationBrandListing(): getApplicationBrandListing;
-    /** @returns {getApplicationBrands} */
-    static getApplicationBrands(): getApplicationBrands;
-    /** @returns {getApplicationCategoryListing} */
-    static getApplicationCategoryListing(): getApplicationCategoryListing;
-    /** @returns {getApplicationDepartmentListing} */
-    static getApplicationDepartmentListing(): getApplicationDepartmentListing;
-    /** @returns {getAutocompleteConfig} */
-    static getAutocompleteConfig(): getAutocompleteConfig;
-    /** @returns {getAutocompleteKeywordDetail} */
-    static getAutocompleteKeywordDetail(): getAutocompleteKeywordDetail;
-    /** @returns {getCatalogConfiguration} */
-    static getCatalogConfiguration(): getCatalogConfiguration;
-    /** @returns {getCatalogInsights} */
-    static getCatalogInsights(): getCatalogInsights;
-    /** @returns {getCategories} */
-    static getCategories(): getCategories;
-    /** @returns {getCollectionDetail} */
-    static getCollectionDetail(): getCollectionDetail;
-    /** @returns {getCollectionItems} */
-    static getCollectionItems(): getCollectionItems;
-    /** @returns {getConfigurationByType} */
-    static getConfigurationByType(): getConfigurationByType;
-    /** @returns {getConfigurationMetadata} */
-    static getConfigurationMetadata(): getConfigurationMetadata;
-    /** @returns {getConfigurations} */
-    static getConfigurations(): getConfigurations;
-    /** @returns {getDepartments} */
-    static getDepartments(): getDepartments;
-    /** @returns {getDiscountedInventoryBySizeIdentifier} */
-    static getDiscountedInventoryBySizeIdentifier(): getDiscountedInventoryBySizeIdentifier;
-    /** @returns {getGroupConfigurations} */
-    static getGroupConfigurations(): getGroupConfigurations;
-    /** @returns {getListingConfigurations} */
-    static getListingConfigurations(): getListingConfigurations;
-    /** @returns {getProductDetailBySlug} */
-    static getProductDetailBySlug(): getProductDetailBySlug;
-    /** @returns {getProductSizeSellers} */
-    static getProductSizeSellers(): getProductSizeSellers;
-    /** @returns {getQueryFilters} */
-    static getQueryFilters(): getQueryFilters;
-    /** @returns {getSearchKeywords} */
-    static getSearchKeywords(): getSearchKeywords;
-    /** @returns {updateAllowSingle} */
-    static updateAllowSingle(): updateAllowSingle;
-    /** @returns {updateAppBrand} */
-    static updateAppBrand(): updateAppBrand;
-    /** @returns {updateAppCategory} */
-    static updateAppCategory(): updateAppCategory;
-    /** @returns {updateAppDepartment} */
-    static updateAppDepartment(): updateAppDepartment;
-    /** @returns {updateAppLocation} */
-    static updateAppLocation(): updateAppLocation;
-    /** @returns {updateAppProduct} */
-    static updateAppProduct(): updateAppProduct;
-    /** @returns {updateAutocompleteKeyword} */
-    static updateAutocompleteKeyword(): updateAutocompleteKeyword;
-    /** @returns {updateCollection} */
-    static updateCollection(): updateCollection;
-    /** @returns {updateDefaultSort} */
-    static updateDefaultSort(): updateDefaultSort;
-    /** @returns {updateGroupConfiguration} */
-    static updateGroupConfiguration(): updateGroupConfiguration;
-    /** @returns {updateListingConfiguration} */
-    static updateListingConfiguration(): updateListingConfiguration;
-    /** @returns {updateSearchKeywords} */
-    static updateSearchKeywords(): updateSearchKeywords;
+    /** @returns {AddCollectionItemsParam} */
+    static addCollectionItems(): AddCollectionItemsParam;
+    /** @returns {CreateCollectionParam} */
+    static createCollection(): CreateCollectionParam;
+    /** @returns {CreateConfigurationByTypeParam} */
+    static createConfigurationByType(): CreateConfigurationByTypeParam;
+    /** @returns {CreateConfigurationProductListingParam} */
+    static createConfigurationProductListing(): CreateConfigurationProductListingParam;
+    /** @returns {CreateCustomAutocompleteRuleParam} */
+    static createCustomAutocompleteRule(): CreateCustomAutocompleteRuleParam;
+    /** @returns {CreateCustomKeywordParam} */
+    static createCustomKeyword(): CreateCustomKeywordParam;
+    /** @returns {CreateGroupConfigurationParam} */
+    static createGroupConfiguration(): CreateGroupConfigurationParam;
+    /** @returns {CreateListingConfigurationParam} */
+    static createListingConfiguration(): CreateListingConfigurationParam;
+    /** @returns {DeleteAutocompleteKeywordParam} */
+    static deleteAutocompleteKeyword(): DeleteAutocompleteKeywordParam;
+    /** @returns {DeleteCollectionParam} */
+    static deleteCollection(): DeleteCollectionParam;
+    /** @returns {DeleteGroupConfigurationParam} */
+    static deleteGroupConfiguration(): DeleteGroupConfigurationParam;
+    /** @returns {DeleteListingConfigurationParam} */
+    static deleteListingConfiguration(): DeleteListingConfigurationParam;
+    /** @returns {DeleteSearchKeywordsParam} */
+    static deleteSearchKeywords(): DeleteSearchKeywordsParam;
+    /** @returns {GetAllCollectionsParam} */
+    static getAllCollections(): GetAllCollectionsParam;
+    /** @returns {GetAllSearchKeywordParam} */
+    static getAllSearchKeyword(): any;
+    /** @returns {GetAppInventoryParam} */
+    static getAppInventory(): GetAppInventoryParam;
+    /** @returns {GetAppLocationsParam} */
+    static getAppLocations(): GetAppLocationsParam;
+    /** @returns {GetAppProductParam} */
+    static getAppProduct(): GetAppProductParam;
+    /** @returns {GetAppProductsParam} */
+    static getAppProducts(): GetAppProductsParam;
+    /** @returns {GetAppicationProductsParam} */
+    static getAppicationProducts(): GetAppicationProductsParam;
+    /** @returns {GetApplicationBrandListingParam} */
+    static getApplicationBrandListing(): GetApplicationBrandListingParam;
+    /** @returns {GetApplicationBrandsParam} */
+    static getApplicationBrands(): GetApplicationBrandsParam;
+    /** @returns {GetApplicationCategoryListingParam} */
+    static getApplicationCategoryListing(): GetApplicationCategoryListingParam;
+    /** @returns {GetApplicationDepartmentListingParam} */
+    static getApplicationDepartmentListing(): GetApplicationDepartmentListingParam;
+    /** @returns {GetAutocompleteConfigParam} */
+    static getAutocompleteConfig(): any;
+    /** @returns {GetAutocompleteKeywordDetailParam} */
+    static getAutocompleteKeywordDetail(): GetAutocompleteKeywordDetailParam;
+    /** @returns {GetCatalogConfigurationParam} */
+    static getCatalogConfiguration(): any;
+    /** @returns {GetCatalogInsightsParam} */
+    static getCatalogInsights(): GetCatalogInsightsParam;
+    /** @returns {GetCategoriesParam} */
+    static getCategories(): GetCategoriesParam;
+    /** @returns {GetCollectionDetailParam} */
+    static getCollectionDetail(): GetCollectionDetailParam;
+    /** @returns {GetCollectionItemsParam} */
+    static getCollectionItems(): GetCollectionItemsParam;
+    /** @returns {GetConfigurationByTypeParam} */
+    static getConfigurationByType(): GetConfigurationByTypeParam;
+    /** @returns {GetConfigurationMetadataParam} */
+    static getConfigurationMetadata(): GetConfigurationMetadataParam;
+    /** @returns {GetConfigurationsParam} */
+    static getConfigurations(): any;
+    /** @returns {GetDepartmentsParam} */
+    static getDepartments(): any;
+    /** @returns {GetDiscountedInventoryBySizeIdentifierParam} */
+    static getDiscountedInventoryBySizeIdentifier(): GetDiscountedInventoryBySizeIdentifierParam;
+    /** @returns {GetGroupConfigurationsParam} */
+    static getGroupConfigurations(): GetGroupConfigurationsParam;
+    /** @returns {GetListingConfigurationsParam} */
+    static getListingConfigurations(): GetListingConfigurationsParam;
+    /** @returns {GetProductDetailBySlugParam} */
+    static getProductDetailBySlug(): GetProductDetailBySlugParam;
+    /** @returns {GetProductSizeSellersParam} */
+    static getProductSizeSellers(): GetProductSizeSellersParam;
+    /** @returns {GetQueryFiltersParam} */
+    static getQueryFilters(): any;
+    /** @returns {GetSearchKeywordsParam} */
+    static getSearchKeywords(): GetSearchKeywordsParam;
+    /** @returns {UpdateAllowSingleParam} */
+    static updateAllowSingle(): UpdateAllowSingleParam;
+    /** @returns {UpdateAppBrandParam} */
+    static updateAppBrand(): UpdateAppBrandParam;
+    /** @returns {UpdateAppCategoryParam} */
+    static updateAppCategory(): UpdateAppCategoryParam;
+    /** @returns {UpdateAppDepartmentParam} */
+    static updateAppDepartment(): UpdateAppDepartmentParam;
+    /** @returns {UpdateAppLocationParam} */
+    static updateAppLocation(): UpdateAppLocationParam;
+    /** @returns {UpdateAppProductParam} */
+    static updateAppProduct(): UpdateAppProductParam;
+    /** @returns {UpdateAutocompleteKeywordParam} */
+    static updateAutocompleteKeyword(): UpdateAutocompleteKeywordParam;
+    /** @returns {UpdateCollectionParam} */
+    static updateCollection(): UpdateCollectionParam;
+    /** @returns {UpdateDefaultSortParam} */
+    static updateDefaultSort(): UpdateDefaultSortParam;
+    /** @returns {UpdateGroupConfigurationParam} */
+    static updateGroupConfiguration(): UpdateGroupConfigurationParam;
+    /** @returns {UpdateListingConfigurationParam} */
+    static updateListingConfiguration(): UpdateListingConfigurationParam;
+    /** @returns {UpdateSearchKeywordsParam} */
+    static updateSearchKeywords(): UpdateSearchKeywordsParam;
 }
 declare namespace CatalogPlatformApplicationValidator {
     export { AddCollectionItemsParam, CreateCollectionParam, CreateConfigurationByTypeParam, CreateConfigurationProductListingParam, CreateCustomAutocompleteRuleParam, CreateCustomKeywordParam, CreateGroupConfigurationParam, CreateListingConfigurationParam, DeleteAutocompleteKeywordParam, DeleteCollectionParam, DeleteGroupConfigurationParam, DeleteListingConfigurationParam, DeleteSearchKeywordsParam, GetAllCollectionsParam, GetAllSearchKeywordParam, GetAppInventoryParam, GetAppLocationsParam, GetAppProductParam, GetAppProductsParam, GetAppicationProductsParam, GetApplicationBrandListingParam, GetApplicationBrandsParam, GetApplicationCategoryListingParam, GetApplicationDepartmentListingParam, GetAutocompleteConfigParam, GetAutocompleteKeywordDetailParam, GetCatalogConfigurationParam, GetCatalogInsightsParam, GetCategoriesParam, GetCollectionDetailParam, GetCollectionItemsParam, GetConfigurationByTypeParam, GetConfigurationMetadataParam, GetConfigurationsParam, GetDepartmentsParam, GetDiscountedInventoryBySizeIdentifierParam, GetGroupConfigurationsParam, GetListingConfigurationsParam, GetProductDetailBySlugParam, GetProductSizeSellersParam, GetQueryFiltersParam, GetSearchKeywordsParam, UpdateAllowSingleParam, UpdateAppBrandParam, UpdateAppCategoryParam, UpdateAppDepartmentParam, UpdateAppLocationParam, UpdateAppProductParam, UpdateAutocompleteKeywordParam, UpdateCollectionParam, UpdateDefaultSortParam, UpdateGroupConfigurationParam, UpdateListingConfigurationParam, UpdateSearchKeywordsParam };
@@ -595,7 +595,6 @@ type GetAllCollectionsParam = {
      */
     pageSize?: number;
 };
-type GetAllSearchKeywordParam = any;
 type GetAppInventoryParam = {
     /**
      * - The Item Id of the product.
@@ -838,7 +837,6 @@ type GetApplicationDepartmentListingParam = {
      */
     q?: string;
 };
-type GetAutocompleteConfigParam = any;
 type GetAutocompleteKeywordDetailParam = {
     /**
      * - A `id` is a unique identifier for a particular
@@ -846,7 +844,6 @@ type GetAutocompleteKeywordDetailParam = {
      */
     id: string;
 };
-type GetCatalogConfigurationParam = any;
 type GetCatalogInsightsParam = {
     /**
      * - Brand slug
@@ -909,8 +906,6 @@ type GetConfigurationMetadataParam = {
      */
     templateSlug?: string;
 };
-type GetConfigurationsParam = any;
-type GetDepartmentsParam = any;
 type GetDiscountedInventoryBySizeIdentifierParam = {
     /**
      * - Item code of the product of which size is to be get.
@@ -1026,7 +1021,6 @@ type GetProductSizeSellersParam = {
      */
     pageSize?: number;
 };
-type GetQueryFiltersParam = any;
 type GetSearchKeywordsParam = {
     /**
      * - A `id` is a unique identifier for a particular
@@ -1125,4 +1119,10 @@ type UpdateSearchKeywordsParam = {
     id: string;
     body: CatalogPlatformModel.CreateSearchKeyword;
 };
+type GetAllSearchKeywordParam = any;
+type GetAutocompleteConfigParam = any;
+type GetCatalogConfigurationParam = any;
+type GetConfigurationsParam = any;
+type GetDepartmentsParam = any;
+type GetQueryFiltersParam = any;
 import CatalogPlatformModel = require("./CatalogPlatformModel");

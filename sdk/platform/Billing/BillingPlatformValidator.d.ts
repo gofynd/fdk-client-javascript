@@ -50,34 +50,34 @@ export = BillingPlatformValidator;
  * @property {BillingPlatformModel.SubscriptionCustomerCreate} body
  */
 declare class BillingPlatformValidator {
-    /** @returns {activateSubscriptionPlan} */
-    static activateSubscriptionPlan(): activateSubscriptionPlan;
-    /** @returns {cancelSubscriptionCharge} */
-    static cancelSubscriptionCharge(): cancelSubscriptionCharge;
-    /** @returns {cancelSubscriptionPlan} */
-    static cancelSubscriptionPlan(): cancelSubscriptionPlan;
-    /** @returns {checkCouponValidity} */
-    static checkCouponValidity(): checkCouponValidity;
-    /** @returns {createOneTimeCharge} */
-    static createOneTimeCharge(): createOneTimeCharge;
-    /** @returns {createSubscriptionCharge} */
-    static createSubscriptionCharge(): createSubscriptionCharge;
-    /** @returns {getChargeDetails} */
-    static getChargeDetails(): getChargeDetails;
-    /** @returns {getCustomerDetail} */
-    static getCustomerDetail(): getCustomerDetail;
-    /** @returns {getFeatureLimitConfig} */
-    static getFeatureLimitConfig(): getFeatureLimitConfig;
-    /** @returns {getInvoiceById} */
-    static getInvoiceById(): getInvoiceById;
-    /** @returns {getInvoices} */
-    static getInvoices(): getInvoices;
-    /** @returns {getSubscription} */
-    static getSubscription(): getSubscription;
-    /** @returns {getSubscriptionCharge} */
-    static getSubscriptionCharge(): getSubscriptionCharge;
-    /** @returns {upsertCustomerDetail} */
-    static upsertCustomerDetail(): upsertCustomerDetail;
+    /** @returns {ActivateSubscriptionPlanParam} */
+    static activateSubscriptionPlan(): ActivateSubscriptionPlanParam;
+    /** @returns {CancelSubscriptionChargeParam} */
+    static cancelSubscriptionCharge(): CancelSubscriptionChargeParam;
+    /** @returns {CancelSubscriptionPlanParam} */
+    static cancelSubscriptionPlan(): CancelSubscriptionPlanParam;
+    /** @returns {CheckCouponValidityParam} */
+    static checkCouponValidity(): CheckCouponValidityParam;
+    /** @returns {CreateOneTimeChargeParam} */
+    static createOneTimeCharge(): CreateOneTimeChargeParam;
+    /** @returns {CreateSubscriptionChargeParam} */
+    static createSubscriptionCharge(): CreateSubscriptionChargeParam;
+    /** @returns {GetChargeDetailsParam} */
+    static getChargeDetails(): GetChargeDetailsParam;
+    /** @returns {GetCustomerDetailParam} */
+    static getCustomerDetail(): any;
+    /** @returns {GetFeatureLimitConfigParam} */
+    static getFeatureLimitConfig(): any;
+    /** @returns {GetInvoiceByIdParam} */
+    static getInvoiceById(): GetInvoiceByIdParam;
+    /** @returns {GetInvoicesParam} */
+    static getInvoices(): any;
+    /** @returns {GetSubscriptionParam} */
+    static getSubscription(): any;
+    /** @returns {GetSubscriptionChargeParam} */
+    static getSubscriptionCharge(): GetSubscriptionChargeParam;
+    /** @returns {UpsertCustomerDetailParam} */
+    static upsertCustomerDetail(): UpsertCustomerDetailParam;
 }
 declare namespace BillingPlatformValidator {
     export { ActivateSubscriptionPlanParam, CancelSubscriptionChargeParam, CancelSubscriptionPlanParam, CheckCouponValidityParam, CreateOneTimeChargeParam, CreateSubscriptionChargeParam, GetChargeDetailsParam, GetCustomerDetailParam, GetFeatureLimitConfigParam, GetInvoiceByIdParam, GetInvoicesParam, GetSubscriptionParam, GetSubscriptionChargeParam, UpsertCustomerDetailParam };
@@ -132,16 +132,12 @@ type GetChargeDetailsParam = {
      */
     chargeId: string;
 };
-type GetCustomerDetailParam = any;
-type GetFeatureLimitConfigParam = any;
 type GetInvoiceByIdParam = {
     /**
      * - Invoice id
      */
     invoiceId: string;
 };
-type GetInvoicesParam = any;
-type GetSubscriptionParam = any;
 type GetSubscriptionChargeParam = {
     /**
      * - Extension _id
@@ -155,4 +151,8 @@ type GetSubscriptionChargeParam = {
 type UpsertCustomerDetailParam = {
     body: BillingPlatformModel.SubscriptionCustomerCreate;
 };
+type GetCustomerDetailParam = any;
+type GetFeatureLimitConfigParam = any;
+type GetInvoicesParam = any;
+type GetSubscriptionParam = any;
 import BillingPlatformModel = require("./BillingPlatformModel");

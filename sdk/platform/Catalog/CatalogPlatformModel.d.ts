@@ -564,11 +564,11 @@ export = CatalogPlatformModel;
  */
 /**
  * @typedef CollectionDetailResponse
- * @property {CollectionSchedule1} [_schedule]
+ * @property {CollectionSchedule} [_schedule]
  * @property {boolean} [allow_facets]
  * @property {boolean} [allow_sort]
  * @property {string} [app_id]
- * @property {CollectionBadge1} [badge]
+ * @property {CollectionBadge} [badge]
  * @property {ImageUrls} [banners]
  * @property {string} [description]
  * @property {boolean} [is_active]
@@ -629,16 +629,16 @@ export = CatalogPlatformModel;
  */
 /**
  * @typedef CollectionSchedule
- * @property {string} [cron]
- * @property {number} [duration]
  * @property {string} [end]
- * @property {NextSchedule[]} [next_schedule]
+ * @property {CollectionScheduleStartEnd[]} [next_schedule]
  * @property {string} [start]
  */
 /**
  * @typedef CollectionSchedule1
+ * @property {string} [cron]
+ * @property {number} [duration]
  * @property {string} [end]
- * @property {CollectionScheduleStartEnd[]} [next_schedule]
+ * @property {NextSchedule[]} [next_schedule]
  * @property {string} [start]
  */
 /**
@@ -784,11 +784,11 @@ export = CatalogPlatformModel;
  * @typedef CreateCollection
  * @property {Object} [_custom_json]
  * @property {Object} [_locale_language]
- * @property {CollectionSchedule} [_schedule]
+ * @property {CollectionSchedule1} [_schedule]
  * @property {boolean} [allow_facets]
  * @property {boolean} [allow_sort]
  * @property {string} app_id
- * @property {CollectionBadge} [badge]
+ * @property {CollectionBadge1} [badge]
  * @property {CollectionBanner} banners
  * @property {UserInfo} [created_by]
  * @property {string} [description]
@@ -1039,12 +1039,12 @@ export = CatalogPlatformModel;
  */
 /**
  * @typedef GetCollectionDetailNest
- * @property {CollectionSchedule1} [_schedule]
+ * @property {CollectionSchedule} [_schedule]
  * @property {CollectionActionPage} [action]
  * @property {boolean} [allow_facets]
  * @property {boolean} [allow_sort]
  * @property {string} [app_id]
- * @property {CollectionBadge1} [badge]
+ * @property {CollectionBadge} [badge]
  * @property {ImageUrls} [banners]
  * @property {string} [description]
  * @property {boolean} [is_active]
@@ -2116,7 +2116,7 @@ export = CatalogPlatformModel;
  * @property {NetQuantity} [net_quantity]
  * @property {number} [no_of_boxes]
  * @property {string[]} [product_group_tag]
- * @property {ProductPublish} [product_publish]
+ * @property {ProductPublish1} [product_publish]
  * @property {string} [requester]
  * @property {ReturnConfig} return_config
  * @property {string} [short_description]
@@ -2312,7 +2312,7 @@ export = CatalogPlatformModel;
  * @property {string} [pending]
  * @property {string} [primary_color]
  * @property {string[]} [product_group_tag]
- * @property {ProductPublish1} [product_publish]
+ * @property {ProductPublish} [product_publish]
  * @property {ReturnConfigResponse} [return_config]
  * @property {string} [short_description]
  * @property {string} [size_guide]
@@ -2742,10 +2742,10 @@ export = CatalogPlatformModel;
  * @typedef UpdateCollection
  * @property {Object} [_custom_json]
  * @property {Object} [_locale_language]
- * @property {CollectionSchedule} [_schedule]
+ * @property {CollectionSchedule1} [_schedule]
  * @property {boolean} [allow_facets]
  * @property {boolean} [allow_sort]
- * @property {CollectionBadge} [badge]
+ * @property {CollectionBadge1} [badge]
  * @property {CollectionBanner} [banners]
  * @property {string} [description]
  * @property {boolean} [is_active]
@@ -3736,11 +3736,11 @@ type CollectionCreateResponse = {
 /** @returns {CollectionDetailResponse} */
 declare function CollectionDetailResponse(): CollectionDetailResponse;
 type CollectionDetailResponse = {
-    _schedule?: CollectionSchedule1;
+    _schedule?: CollectionSchedule;
     allow_facets?: boolean;
     allow_sort?: boolean;
     app_id?: string;
-    badge?: CollectionBadge1;
+    badge?: CollectionBadge;
     banners?: ImageUrls;
     description?: string;
     is_active?: boolean;
@@ -3818,17 +3818,17 @@ type CollectionQuery = {
 /** @returns {CollectionSchedule} */
 declare function CollectionSchedule(): CollectionSchedule;
 type CollectionSchedule = {
-    cron?: string;
-    duration?: number;
     end?: string;
-    next_schedule?: NextSchedule[];
+    next_schedule?: CollectionScheduleStartEnd[];
     start?: string;
 };
 /** @returns {CollectionSchedule1} */
 declare function CollectionSchedule1(): CollectionSchedule1;
 type CollectionSchedule1 = {
+    cron?: string;
+    duration?: number;
     end?: string;
-    next_schedule?: CollectionScheduleStartEnd[];
+    next_schedule?: NextSchedule[];
     start?: string;
 };
 /** @returns {CollectionScheduleStartEnd} */
@@ -3996,11 +3996,11 @@ declare function CreateCollection(): CreateCollection;
 type CreateCollection = {
     _custom_json?: any;
     _locale_language?: any;
-    _schedule?: CollectionSchedule;
+    _schedule?: CollectionSchedule1;
     allow_facets?: boolean;
     allow_sort?: boolean;
     app_id: string;
-    badge?: CollectionBadge;
+    badge?: CollectionBadge1;
     banners: CollectionBanner;
     created_by?: UserInfo;
     description?: string;
@@ -4338,12 +4338,12 @@ type GetCatalogConfigurationMetaData = {
 /** @returns {GetCollectionDetailNest} */
 declare function GetCollectionDetailNest(): GetCollectionDetailNest;
 type GetCollectionDetailNest = {
-    _schedule?: CollectionSchedule1;
+    _schedule?: CollectionSchedule;
     action?: CollectionActionPage;
     allow_facets?: boolean;
     allow_sort?: boolean;
     app_id?: string;
-    badge?: CollectionBadge1;
+    badge?: CollectionBadge;
     banners?: ImageUrls;
     description?: string;
     is_active?: boolean;
@@ -6049,7 +6049,7 @@ type ProductCreateUpdateSchemaV2 = {
     net_quantity?: NetQuantity;
     no_of_boxes?: number;
     product_group_tag?: string[];
-    product_publish?: ProductPublish;
+    product_publish?: ProductPublish1;
     requester?: string;
     return_config: ReturnConfig;
     short_description?: string;
@@ -6264,7 +6264,7 @@ type ProductSchemaV2 = {
     pending?: string;
     primary_color?: string;
     product_group_tag?: string[];
-    product_publish?: ProductPublish1;
+    product_publish?: ProductPublish;
     return_config?: ReturnConfigResponse;
     short_description?: string;
     size_guide?: string;
@@ -6811,10 +6811,10 @@ declare function UpdateCollection(): UpdateCollection;
 type UpdateCollection = {
     _custom_json?: any;
     _locale_language?: any;
-    _schedule?: CollectionSchedule;
+    _schedule?: CollectionSchedule1;
     allow_facets?: boolean;
     allow_sort?: boolean;
-    badge?: CollectionBadge;
+    badge?: CollectionBadge1;
     banners?: CollectionBanner;
     description?: string;
     is_active?: boolean;

@@ -40,7 +40,7 @@ const LeadApplicationModel = require("./LeadApplicationModel");
  */
 
 class LeadApplicationValidator {
-  /** @returns {createHistory} */
+  /** @returns {CreateHistoryParam} */
   static createHistory() {
     return Joi.object({
       id: Joi.string().allow("").required(),
@@ -48,42 +48,42 @@ class LeadApplicationValidator {
     }).required();
   }
 
-  /** @returns {createTicket} */
+  /** @returns {CreateTicketParam} */
   static createTicket() {
     return Joi.object({
       body: LeadApplicationModel.AddTicketPayload().required(),
     }).required();
   }
 
-  /** @returns {getCustomForm} */
+  /** @returns {GetCustomFormParam} */
   static getCustomForm() {
     return Joi.object({
       slug: Joi.string().allow("").required(),
     }).required();
   }
 
-  /** @returns {getParticipantsInsideVideoRoom} */
+  /** @returns {GetParticipantsInsideVideoRoomParam} */
   static getParticipantsInsideVideoRoom() {
     return Joi.object({
       uniqueName: Joi.string().allow("").required(),
     }).required();
   }
 
-  /** @returns {getTicket} */
+  /** @returns {GetTicketParam} */
   static getTicket() {
     return Joi.object({
       id: Joi.string().allow("").required(),
     }).required();
   }
 
-  /** @returns {getTokenForVideoRoom} */
+  /** @returns {GetTokenForVideoRoomParam} */
   static getTokenForVideoRoom() {
     return Joi.object({
       uniqueName: Joi.string().allow("").required(),
     }).required();
   }
 
-  /** @returns {submitCustomForm} */
+  /** @returns {SubmitCustomFormParam} */
   static submitCustomForm() {
     return Joi.object({
       slug: Joi.string().allow("").required(),

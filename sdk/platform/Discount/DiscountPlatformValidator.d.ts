@@ -57,28 +57,28 @@ export = DiscountPlatformValidator;
  * @property {DiscountPlatformModel.FileJobRequest} body
  */
 declare class DiscountPlatformValidator {
-    /** @returns {cancelDownloadJob} */
-    static cancelDownloadJob(): cancelDownloadJob;
-    /** @returns {cancelValidationJob} */
-    static cancelValidationJob(): cancelValidationJob;
-    /** @returns {createDiscount} */
-    static createDiscount(): createDiscount;
-    /** @returns {downloadDiscountFile} */
-    static downloadDiscountFile(): downloadDiscountFile;
-    /** @returns {getDiscount} */
-    static getDiscount(): getDiscount;
-    /** @returns {getDiscounts} */
-    static getDiscounts(): getDiscounts;
-    /** @returns {getDownloadJob} */
-    static getDownloadJob(): getDownloadJob;
-    /** @returns {getValidationJob} */
-    static getValidationJob(): getValidationJob;
-    /** @returns {updateDiscount} */
-    static updateDiscount(): updateDiscount;
-    /** @returns {upsertDiscountItems} */
-    static upsertDiscountItems(): upsertDiscountItems;
-    /** @returns {validateDiscountFile} */
-    static validateDiscountFile(): validateDiscountFile;
+    /** @returns {CancelDownloadJobParam} */
+    static cancelDownloadJob(): CancelDownloadJobParam;
+    /** @returns {CancelValidationJobParam} */
+    static cancelValidationJob(): CancelValidationJobParam;
+    /** @returns {CreateDiscountParam} */
+    static createDiscount(): CreateDiscountParam;
+    /** @returns {DownloadDiscountFileParam} */
+    static downloadDiscountFile(): DownloadDiscountFileParam;
+    /** @returns {GetDiscountParam} */
+    static getDiscount(): GetDiscountParam;
+    /** @returns {GetDiscountsParam} */
+    static getDiscounts(): GetDiscountsParam;
+    /** @returns {GetDownloadJobParam} */
+    static getDownloadJob(): GetDownloadJobParam;
+    /** @returns {GetValidationJobParam} */
+    static getValidationJob(): GetValidationJobParam;
+    /** @returns {UpdateDiscountParam} */
+    static updateDiscount(): UpdateDiscountParam;
+    /** @returns {UpsertDiscountItemsParam} */
+    static upsertDiscountItems(): UpsertDiscountItemsParam;
+    /** @returns {ValidateDiscountFileParam} */
+    static validateDiscountFile(): ValidateDiscountFileParam;
 }
 declare namespace DiscountPlatformValidator {
     export { CancelDownloadJobParam, CancelValidationJobParam, CreateDiscountParam, DownloadDiscountFileParam, GetDiscountParam, GetDiscountsParam, GetDownloadJobParam, GetValidationJobParam, UpdateDiscountParam, UpsertDiscountItemsParam, ValidateDiscountFileParam };

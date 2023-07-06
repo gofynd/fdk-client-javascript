@@ -347,120 +347,120 @@ export = CartPlatformApplicationValidator;
  * @property {string} [merchantCode]
  */
 declare class CartPlatformApplicationValidator {
-    /** @returns {addAddress} */
-    static addAddress(): addAddress;
-    /** @returns {addItems} */
-    static addItems(): addItems;
-    /** @returns {applyCoupon} */
-    static applyCoupon(): applyCoupon;
-    /** @returns {checkCartServiceability} */
-    static checkCartServiceability(): checkCartServiceability;
-    /** @returns {checkoutCart} */
-    static checkoutCart(): checkoutCart;
-    /** @returns {createCartDynamicInjection} */
-    static createCartDynamicInjection(): createCartDynamicInjection;
-    /** @returns {createCartMetaConfig} */
-    static createCartMetaConfig(): createCartMetaConfig;
-    /** @returns {createCoupon} */
-    static createCoupon(): createCoupon;
-    /** @returns {createPromotion} */
-    static createPromotion(): createPromotion;
-    /** @returns {deleteCart} */
-    static deleteCart(): deleteCart;
-    /** @returns {fetchAndvalidateCartItems} */
-    static fetchAndvalidateCartItems(): fetchAndvalidateCartItems;
-    /** @returns {fetchCartMetaConfig} */
-    static fetchCartMetaConfig(): fetchCartMetaConfig;
-    /** @returns {getAbandonedCart} */
-    static getAbandonedCart(): getAbandonedCart;
-    /** @returns {getAbandonedCartDetails} */
-    static getAbandonedCartDetails(): getAbandonedCartDetails;
-    /** @returns {getAddressById} */
-    static getAddressById(): getAddressById;
-    /** @returns {getAddresses} */
-    static getAddresses(): getAddresses;
-    /** @returns {getAppCoupons} */
-    static getAppCoupons(): getAppCoupons;
-    /** @returns {getAvailableDeliveryModes} */
-    static getAvailableDeliveryModes(): getAvailableDeliveryModes;
-    /** @returns {getCart} */
-    static getCart(): getCart;
-    /** @returns {getCartList} */
-    static getCartList(): getCartList;
-    /** @returns {getCartShareLink} */
-    static getCartShareLink(): getCartShareLink;
-    /** @returns {getCartSharedItems} */
-    static getCartSharedItems(): getCartSharedItems;
-    /** @returns {getCouponById} */
-    static getCouponById(): getCouponById;
-    /** @returns {getCouponCodeExists} */
-    static getCouponCodeExists(): getCouponCodeExists;
-    /** @returns {getCouponOptionValues} */
-    static getCouponOptionValues(): getCouponOptionValues;
-    /** @returns {getCoupons} */
-    static getCoupons(): getCoupons;
-    /** @returns {getItemCount} */
-    static getItemCount(): getItemCount;
-    /** @returns {getPromosCouponConfig} */
-    static getPromosCouponConfig(): getPromosCouponConfig;
-    /** @returns {getPromotionById} */
-    static getPromotionById(): getPromotionById;
-    /** @returns {getPromotionCodeExists} */
-    static getPromotionCodeExists(): getPromotionCodeExists;
-    /** @returns {getPromotions} */
-    static getPromotions(): getPromotions;
-    /** @returns {getShipments} */
-    static getShipments(): getShipments;
-    /** @returns {getStoreAddressByUid} */
-    static getStoreAddressByUid(): getStoreAddressByUid;
-    /** @returns {overrideCart} */
-    static overrideCart(): overrideCart;
-    /** @returns {platformAddItems} */
-    static platformAddItems(): platformAddItems;
-    /** @returns {platformCheckoutCart} */
-    static platformCheckoutCart(): platformCheckoutCart;
-    /** @returns {platformCheckoutCartV2} */
-    static platformCheckoutCartV2(): platformCheckoutCartV2;
-    /** @returns {platformUpdateCart} */
-    static platformUpdateCart(): platformUpdateCart;
-    /** @returns {removeAddress} */
-    static removeAddress(): removeAddress;
-    /** @returns {removeCartDynamicInjection} */
-    static removeCartDynamicInjection(): removeCartDynamicInjection;
-    /** @returns {removeCoupon} */
-    static removeCoupon(): removeCoupon;
-    /** @returns {selectAddress} */
-    static selectAddress(): selectAddress;
-    /** @returns {selectPaymentMode} */
-    static selectPaymentMode(): selectPaymentMode;
-    /** @returns {selectPaymentModeV2} */
-    static selectPaymentModeV2(): selectPaymentModeV2;
-    /** @returns {updateAddress} */
-    static updateAddress(): updateAddress;
-    /** @returns {updateCart} */
-    static updateCart(): updateCart;
-    /** @returns {updateCartDynamicInjection} */
-    static updateCartDynamicInjection(): updateCartDynamicInjection;
-    /** @returns {updateCartMeta} */
-    static updateCartMeta(): updateCartMeta;
-    /** @returns {updateCartMetaConfig} */
-    static updateCartMetaConfig(): updateCartMetaConfig;
-    /** @returns {updateCartUser} */
-    static updateCartUser(): updateCartUser;
-    /** @returns {updateCartWithSharedItems} */
-    static updateCartWithSharedItems(): updateCartWithSharedItems;
-    /** @returns {updateCoupon} */
-    static updateCoupon(): updateCoupon;
-    /** @returns {updateCouponPartially} */
-    static updateCouponPartially(): updateCouponPartially;
-    /** @returns {updatePromotion} */
-    static updatePromotion(): updatePromotion;
-    /** @returns {updatePromotionPartially} */
-    static updatePromotionPartially(): updatePromotionPartially;
-    /** @returns {updateShipments} */
-    static updateShipments(): updateShipments;
-    /** @returns {validateCouponForPayment} */
-    static validateCouponForPayment(): validateCouponForPayment;
+    /** @returns {AddAddressParam} */
+    static addAddress(): AddAddressParam;
+    /** @returns {AddItemsParam} */
+    static addItems(): AddItemsParam;
+    /** @returns {ApplyCouponParam} */
+    static applyCoupon(): ApplyCouponParam;
+    /** @returns {CheckCartServiceabilityParam} */
+    static checkCartServiceability(): CheckCartServiceabilityParam;
+    /** @returns {CheckoutCartParam} */
+    static checkoutCart(): CheckoutCartParam;
+    /** @returns {CreateCartDynamicInjectionParam} */
+    static createCartDynamicInjection(): CreateCartDynamicInjectionParam;
+    /** @returns {CreateCartMetaConfigParam} */
+    static createCartMetaConfig(): CreateCartMetaConfigParam;
+    /** @returns {CreateCouponParam} */
+    static createCoupon(): CreateCouponParam;
+    /** @returns {CreatePromotionParam} */
+    static createPromotion(): CreatePromotionParam;
+    /** @returns {DeleteCartParam} */
+    static deleteCart(): DeleteCartParam;
+    /** @returns {FetchAndvalidateCartItemsParam} */
+    static fetchAndvalidateCartItems(): FetchAndvalidateCartItemsParam;
+    /** @returns {FetchCartMetaConfigParam} */
+    static fetchCartMetaConfig(): any;
+    /** @returns {GetAbandonedCartParam} */
+    static getAbandonedCart(): GetAbandonedCartParam;
+    /** @returns {GetAbandonedCartDetailsParam} */
+    static getAbandonedCartDetails(): GetAbandonedCartDetailsParam;
+    /** @returns {GetAddressByIdParam} */
+    static getAddressById(): GetAddressByIdParam;
+    /** @returns {GetAddressesParam} */
+    static getAddresses(): GetAddressesParam;
+    /** @returns {GetAppCouponsParam} */
+    static getAppCoupons(): GetAppCouponsParam;
+    /** @returns {GetAvailableDeliveryModesParam} */
+    static getAvailableDeliveryModes(): GetAvailableDeliveryModesParam;
+    /** @returns {GetCartParam} */
+    static getCart(): GetCartParam;
+    /** @returns {GetCartListParam} */
+    static getCartList(): GetCartListParam;
+    /** @returns {GetCartShareLinkParam} */
+    static getCartShareLink(): GetCartShareLinkParam;
+    /** @returns {GetCartSharedItemsParam} */
+    static getCartSharedItems(): GetCartSharedItemsParam;
+    /** @returns {GetCouponByIdParam} */
+    static getCouponById(): GetCouponByIdParam;
+    /** @returns {GetCouponCodeExistsParam} */
+    static getCouponCodeExists(): GetCouponCodeExistsParam;
+    /** @returns {GetCouponOptionValuesParam} */
+    static getCouponOptionValues(): any;
+    /** @returns {GetCouponsParam} */
+    static getCoupons(): GetCouponsParam;
+    /** @returns {GetItemCountParam} */
+    static getItemCount(): GetItemCountParam;
+    /** @returns {GetPromosCouponConfigParam} */
+    static getPromosCouponConfig(): GetPromosCouponConfigParam;
+    /** @returns {GetPromotionByIdParam} */
+    static getPromotionById(): GetPromotionByIdParam;
+    /** @returns {GetPromotionCodeExistsParam} */
+    static getPromotionCodeExists(): GetPromotionCodeExistsParam;
+    /** @returns {GetPromotionsParam} */
+    static getPromotions(): GetPromotionsParam;
+    /** @returns {GetShipmentsParam} */
+    static getShipments(): GetShipmentsParam;
+    /** @returns {GetStoreAddressByUidParam} */
+    static getStoreAddressByUid(): GetStoreAddressByUidParam;
+    /** @returns {OverrideCartParam} */
+    static overrideCart(): OverrideCartParam;
+    /** @returns {PlatformAddItemsParam} */
+    static platformAddItems(): PlatformAddItemsParam;
+    /** @returns {PlatformCheckoutCartParam} */
+    static platformCheckoutCart(): PlatformCheckoutCartParam;
+    /** @returns {PlatformCheckoutCartV2Param} */
+    static platformCheckoutCartV2(): PlatformCheckoutCartV2Param;
+    /** @returns {PlatformUpdateCartParam} */
+    static platformUpdateCart(): PlatformUpdateCartParam;
+    /** @returns {RemoveAddressParam} */
+    static removeAddress(): RemoveAddressParam;
+    /** @returns {RemoveCartDynamicInjectionParam} */
+    static removeCartDynamicInjection(): RemoveCartDynamicInjectionParam;
+    /** @returns {RemoveCouponParam} */
+    static removeCoupon(): RemoveCouponParam;
+    /** @returns {SelectAddressParam} */
+    static selectAddress(): SelectAddressParam;
+    /** @returns {SelectPaymentModeParam} */
+    static selectPaymentMode(): SelectPaymentModeParam;
+    /** @returns {SelectPaymentModeV2Param} */
+    static selectPaymentModeV2(): SelectPaymentModeV2Param;
+    /** @returns {UpdateAddressParam} */
+    static updateAddress(): UpdateAddressParam;
+    /** @returns {UpdateCartParam} */
+    static updateCart(): UpdateCartParam;
+    /** @returns {UpdateCartDynamicInjectionParam} */
+    static updateCartDynamicInjection(): UpdateCartDynamicInjectionParam;
+    /** @returns {UpdateCartMetaParam} */
+    static updateCartMeta(): UpdateCartMetaParam;
+    /** @returns {UpdateCartMetaConfigParam} */
+    static updateCartMetaConfig(): UpdateCartMetaConfigParam;
+    /** @returns {UpdateCartUserParam} */
+    static updateCartUser(): UpdateCartUserParam;
+    /** @returns {UpdateCartWithSharedItemsParam} */
+    static updateCartWithSharedItems(): UpdateCartWithSharedItemsParam;
+    /** @returns {UpdateCouponParam} */
+    static updateCoupon(): UpdateCouponParam;
+    /** @returns {UpdateCouponPartiallyParam} */
+    static updateCouponPartially(): UpdateCouponPartiallyParam;
+    /** @returns {UpdatePromotionParam} */
+    static updatePromotion(): UpdatePromotionParam;
+    /** @returns {UpdatePromotionPartiallyParam} */
+    static updatePromotionPartially(): UpdatePromotionPartiallyParam;
+    /** @returns {UpdateShipmentsParam} */
+    static updateShipments(): UpdateShipmentsParam;
+    /** @returns {ValidateCouponForPaymentParam} */
+    static validateCouponForPayment(): ValidateCouponForPaymentParam;
 }
 declare namespace CartPlatformApplicationValidator {
     export { AddAddressParam, AddItemsParam, ApplyCouponParam, CheckCartServiceabilityParam, CheckoutCartParam, CreateCartDynamicInjectionParam, CreateCartMetaConfigParam, CreateCouponParam, CreatePromotionParam, DeleteCartParam, FetchAndvalidateCartItemsParam, FetchCartMetaConfigParam, GetAbandonedCartParam, GetAbandonedCartDetailsParam, GetAddressByIdParam, GetAddressesParam, GetAppCouponsParam, GetAvailableDeliveryModesParam, GetCartParam, GetCartListParam, GetCartShareLinkParam, GetCartSharedItemsParam, GetCouponByIdParam, GetCouponCodeExistsParam, GetCouponOptionValuesParam, GetCouponsParam, GetItemCountParam, GetPromosCouponConfigParam, GetPromotionByIdParam, GetPromotionCodeExistsParam, GetPromotionsParam, GetShipmentsParam, GetStoreAddressByUidParam, OverrideCartParam, PlatformAddItemsParam, PlatformCheckoutCartParam, PlatformCheckoutCartV2Param, PlatformUpdateCartParam, RemoveAddressParam, RemoveCartDynamicInjectionParam, RemoveCouponParam, SelectAddressParam, SelectPaymentModeParam, SelectPaymentModeV2Param, UpdateAddressParam, UpdateCartParam, UpdateCartDynamicInjectionParam, UpdateCartMetaParam, UpdateCartMetaConfigParam, UpdateCartUserParam, UpdateCartWithSharedItemsParam, UpdateCouponParam, UpdateCouponPartiallyParam, UpdatePromotionParam, UpdatePromotionPartiallyParam, UpdateShipmentsParam, ValidateCouponForPaymentParam };
@@ -513,7 +513,6 @@ type DeleteCartParam = {
 type FetchAndvalidateCartItemsParam = {
     body: CartPlatformModel.OpenapiCartDetailsRequest;
 };
-type FetchCartMetaConfigParam = any;
 type GetAbandonedCartParam = {
     userId?: string;
     pageNo?: number;
@@ -585,7 +584,6 @@ type GetCouponByIdParam = {
 type GetCouponCodeExistsParam = {
     code?: string;
 };
-type GetCouponOptionValuesParam = any;
 type GetCouponsParam = {
     pageNo?: number;
     pageSize?: number;
@@ -835,4 +833,6 @@ type ValidateCouponForPaymentParam = {
     aggregatorName?: string;
     merchantCode?: string;
 };
+type FetchCartMetaConfigParam = any;
+type GetCouponOptionValuesParam = any;
 import CartPlatformModel = require("./CartPlatformModel");

@@ -97,54 +97,54 @@ export = FinancePlatformValidator;
  * @property {FinancePlatformModel.PaymentProcessRequest} body
  */
 declare class FinancePlatformValidator {
-    /** @returns {asCnRefund} */
-    static asCnRefund(): asCnRefund;
-    /** @returns {channelDisplayName} */
-    static channelDisplayName(): channelDisplayName;
-    /** @returns {createSellerCreditNoteConfig} */
-    static createSellerCreditNoteConfig(): createSellerCreditNoteConfig;
-    /** @returns {creditNoteDetails} */
-    static creditNoteDetails(): creditNoteDetails;
-    /** @returns {creditlineDataplatform} */
-    static creditlineDataplatform(): creditlineDataplatform;
-    /** @returns {deleteConfig} */
-    static deleteConfig(): deleteConfig;
-    /** @returns {downloadCreditDebitNote} */
-    static downloadCreditDebitNote(): downloadCreditDebitNote;
-    /** @returns {downloadReport} */
-    static downloadReport(): downloadReport;
-    /** @returns {downloadReportCustomerCn} */
-    static downloadReportCustomerCn(): downloadReportCustomerCn;
-    /** @returns {generateReport} */
-    static generateReport(): generateReport;
-    /** @returns {generateReportCustomerCn} */
-    static generateReportCustomerCn(): generateReportCustomerCn;
-    /** @returns {getAffiliate} */
-    static getAffiliate(): getAffiliate;
-    /** @returns {getCnConfig} */
-    static getCnConfig(): getCnConfig;
-    /** @returns {getCustomerCreditBalance} */
-    static getCustomerCreditBalance(): getCustomerCreditBalance;
-    /** @returns {getData} */
-    static getData(): getData;
-    /** @returns {getPdfUrlView} */
-    static getPdfUrlView(): getPdfUrlView;
-    /** @returns {getReason} */
-    static getReason(): getReason;
-    /** @returns {getReportList} */
-    static getReportList(): getReportList;
-    /** @returns {getReportingFilters} */
-    static getReportingFilters(): getReportingFilters;
-    /** @returns {invoiceListing} */
-    static invoiceListing(): invoiceListing;
-    /** @returns {invoicePDF} */
-    static invoicePDF(): invoicePDF;
-    /** @returns {invoiceType} */
-    static invoiceType(): invoiceType;
-    /** @returns {isCreditlinePlatform} */
-    static isCreditlinePlatform(): isCreditlinePlatform;
-    /** @returns {paymentProcess} */
-    static paymentProcess(): paymentProcess;
+    /** @returns {AsCnRefundParam} */
+    static asCnRefund(): AsCnRefundParam;
+    /** @returns {ChannelDisplayNameParam} */
+    static channelDisplayName(): ChannelDisplayNameParam;
+    /** @returns {CreateSellerCreditNoteConfigParam} */
+    static createSellerCreditNoteConfig(): CreateSellerCreditNoteConfigParam;
+    /** @returns {CreditNoteDetailsParam} */
+    static creditNoteDetails(): CreditNoteDetailsParam;
+    /** @returns {CreditlineDataplatformParam} */
+    static creditlineDataplatform(): CreditlineDataplatformParam;
+    /** @returns {DeleteConfigParam} */
+    static deleteConfig(): DeleteConfigParam;
+    /** @returns {DownloadCreditDebitNoteParam} */
+    static downloadCreditDebitNote(): DownloadCreditDebitNoteParam;
+    /** @returns {DownloadReportParam} */
+    static downloadReport(): DownloadReportParam;
+    /** @returns {DownloadReportCustomerCnParam} */
+    static downloadReportCustomerCn(): DownloadReportCustomerCnParam;
+    /** @returns {GenerateReportParam} */
+    static generateReport(): GenerateReportParam;
+    /** @returns {GenerateReportCustomerCnParam} */
+    static generateReportCustomerCn(): GenerateReportCustomerCnParam;
+    /** @returns {GetAffiliateParam} */
+    static getAffiliate(): GetAffiliateParam;
+    /** @returns {GetCnConfigParam} */
+    static getCnConfig(): GetCnConfigParam;
+    /** @returns {GetCustomerCreditBalanceParam} */
+    static getCustomerCreditBalance(): GetCustomerCreditBalanceParam;
+    /** @returns {GetDataParam} */
+    static getData(): GetDataParam;
+    /** @returns {GetPdfUrlViewParam} */
+    static getPdfUrlView(): GetPdfUrlViewParam;
+    /** @returns {GetReasonParam} */
+    static getReason(): GetReasonParam;
+    /** @returns {GetReportListParam} */
+    static getReportList(): GetReportListParam;
+    /** @returns {GetReportingFiltersParam} */
+    static getReportingFilters(): GetReportingFiltersParam;
+    /** @returns {InvoiceListingParam} */
+    static invoiceListing(): InvoiceListingParam;
+    /** @returns {InvoicePDFParam} */
+    static invoicePDF(): InvoicePDFParam;
+    /** @returns {InvoiceTypeParam} */
+    static invoiceType(): InvoiceTypeParam;
+    /** @returns {IsCreditlinePlatformParam} */
+    static isCreditlinePlatform(): IsCreditlinePlatformParam;
+    /** @returns {PaymentProcessParam} */
+    static paymentProcess(): PaymentProcessParam;
 }
 declare namespace FinancePlatformValidator {
     export { AsCnRefundParam, ChannelDisplayNameParam, CreateSellerCreditNoteConfigParam, CreditNoteDetailsParam, CreditlineDataplatformParam, DeleteConfigParam, DownloadCreditDebitNoteParam, DownloadReportParam, DownloadReportCustomerCnParam, GenerateReportParam, GenerateReportCustomerCnParam, GetAffiliateParam, GetCnConfigParam, GetCustomerCreditBalanceParam, GetDataParam, GetPdfUrlViewParam, GetReasonParam, GetReportListParam, GetReportingFiltersParam, InvoiceListingParam, InvoicePDFParam, InvoiceTypeParam, IsCreditlinePlatformParam, PaymentProcessParam };

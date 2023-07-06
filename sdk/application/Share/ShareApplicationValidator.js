@@ -39,47 +39,47 @@ const ShareApplicationModel = require("./ShareApplicationModel");
  */
 
 class ShareApplicationValidator {
-  /** @returns {createShortLink} */
+  /** @returns {CreateShortLinkParam} */
   static createShortLink() {
     return Joi.object({
       body: ShareApplicationModel.ShortLinkReq().required(),
     }).required();
   }
 
-  /** @returns {getApplicationQRCode} */
+  /** @returns {GetApplicationQRCodeParam} */
   static getApplicationQRCode() {
     return Joi.object({});
   }
 
-  /** @returns {getCollectionQRCodeBySlug} */
+  /** @returns {GetCollectionQRCodeBySlugParam} */
   static getCollectionQRCodeBySlug() {
     return Joi.object({
       slug: Joi.string().allow("").required(),
     }).required();
   }
 
-  /** @returns {getOriginalShortLinkByHash} */
+  /** @returns {GetOriginalShortLinkByHashParam} */
   static getOriginalShortLinkByHash() {
     return Joi.object({
       hash: Joi.string().allow("").required(),
     }).required();
   }
 
-  /** @returns {getProductQRCodeBySlug} */
+  /** @returns {GetProductQRCodeBySlugParam} */
   static getProductQRCodeBySlug() {
     return Joi.object({
       slug: Joi.string().allow("").required(),
     }).required();
   }
 
-  /** @returns {getShortLinkByHash} */
+  /** @returns {GetShortLinkByHashParam} */
   static getShortLinkByHash() {
     return Joi.object({
       hash: Joi.string().allow("").required(),
     }).required();
   }
 
-  /** @returns {getUrlQRCode} */
+  /** @returns {GetUrlQRCodeParam} */
   static getUrlQRCode() {
     return Joi.object({
       url: Joi.string().allow("").required(),

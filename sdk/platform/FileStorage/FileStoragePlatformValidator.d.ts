@@ -34,18 +34,18 @@ export = FileStoragePlatformValidator;
  * @property {FileStoragePlatformModel.StartRequest} body
  */
 declare class FileStoragePlatformValidator {
-    /** @returns {browse} */
-    static browse(): browse;
-    /** @returns {completeUpload} */
-    static completeUpload(): completeUpload;
-    /** @returns {copyFiles} */
-    static copyFiles(): copyFiles;
-    /** @returns {getSignUrls} */
-    static getSignUrls(): getSignUrls;
-    /** @returns {proxy} */
-    static proxy(): proxy;
-    /** @returns {startUpload} */
-    static startUpload(): startUpload;
+    /** @returns {BrowseParam} */
+    static browse(): BrowseParam;
+    /** @returns {CompleteUploadParam} */
+    static completeUpload(): CompleteUploadParam;
+    /** @returns {CopyFilesParam} */
+    static copyFiles(): CopyFilesParam;
+    /** @returns {GetSignUrlsParam} */
+    static getSignUrls(): GetSignUrlsParam;
+    /** @returns {ProxyParam} */
+    static proxy(): ProxyParam;
+    /** @returns {StartUploadParam} */
+    static startUpload(): StartUploadParam;
 }
 declare namespace FileStoragePlatformValidator {
     export { BrowseParam, CompleteUploadParam, CopyFilesParam, GetSignUrlsParam, ProxyParam, StartUploadParam };

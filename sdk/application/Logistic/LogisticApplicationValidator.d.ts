@@ -17,21 +17,20 @@ export = LogisticApplicationValidator;
  * @property {LogisticApplicationModel.TATViewRequest} body
  */
 declare class LogisticApplicationValidator {
-    /** @returns {getAllCountries} */
-    static getAllCountries(): getAllCountries;
-    /** @returns {getOptimalLocations} */
-    static getOptimalLocations(): getOptimalLocations;
-    /** @returns {getPincodeCity} */
-    static getPincodeCity(): getPincodeCity;
-    /** @returns {getPincodeZones} */
-    static getPincodeZones(): getPincodeZones;
-    /** @returns {getTatProduct} */
-    static getTatProduct(): getTatProduct;
+    /** @returns {GetAllCountriesParam} */
+    static getAllCountries(): any;
+    /** @returns {GetOptimalLocationsParam} */
+    static getOptimalLocations(): GetOptimalLocationsParam;
+    /** @returns {GetPincodeCityParam} */
+    static getPincodeCity(): GetPincodeCityParam;
+    /** @returns {GetPincodeZonesParam} */
+    static getPincodeZones(): GetPincodeZonesParam;
+    /** @returns {GetTatProductParam} */
+    static getTatProduct(): GetTatProductParam;
 }
 declare namespace LogisticApplicationValidator {
     export { GetAllCountriesParam, GetOptimalLocationsParam, GetPincodeCityParam, GetPincodeZonesParam, GetTatProductParam };
 }
-type GetAllCountriesParam = any;
 type GetOptimalLocationsParam = {
     body: LogisticApplicationModel.ReAssignStoreRequest;
 };
@@ -47,4 +46,5 @@ type GetPincodeZonesParam = {
 type GetTatProductParam = {
     body: LogisticApplicationModel.TATViewRequest;
 };
+type GetAllCountriesParam = any;
 import LogisticApplicationModel = require("./LogisticApplicationModel");

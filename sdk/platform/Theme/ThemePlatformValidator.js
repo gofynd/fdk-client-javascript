@@ -15,21 +15,21 @@ const ThemePlatformModel = require("./ThemePlatformModel");
 /** @typedef GetCompanyLevelThemesParam */
 
 class ThemePlatformValidator {
-  /** @returns {addMarketplaceThemeToCompany} */
+  /** @returns {AddMarketplaceThemeToCompanyParam} */
   static addMarketplaceThemeToCompany() {
     return Joi.object({
       body: ThemePlatformModel.ThemeReq().required(),
     }).required();
   }
 
-  /** @returns {deleteCompanyTheme} */
+  /** @returns {DeleteCompanyThemeParam} */
   static deleteCompanyTheme() {
     return Joi.object({
       themeId: Joi.string().allow("").required(),
     }).required();
   }
 
-  /** @returns {getCompanyLevelThemes} */
+  /** @returns {GetCompanyLevelThemesParam} */
   static getCompanyLevelThemes() {
     return Joi.object({}).required();
   }

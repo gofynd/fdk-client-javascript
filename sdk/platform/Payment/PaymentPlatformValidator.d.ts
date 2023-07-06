@@ -40,26 +40,26 @@ export = PaymentPlatformValidator;
  * @property {string} [ifscCode]
  */
 declare class PaymentPlatformValidator {
-    /** @returns {activateAndDectivatePayout} */
-    static activateAndDectivatePayout(): activateAndDectivatePayout;
-    /** @returns {deletePayout} */
-    static deletePayout(): deletePayout;
-    /** @returns {deleteSubscriptionPaymentMethod} */
-    static deleteSubscriptionPaymentMethod(): deleteSubscriptionPaymentMethod;
-    /** @returns {getAllPayouts} */
-    static getAllPayouts(): getAllPayouts;
-    /** @returns {getSubscriptionConfig} */
-    static getSubscriptionConfig(): getSubscriptionConfig;
-    /** @returns {getSubscriptionPaymentMethod} */
-    static getSubscriptionPaymentMethod(): getSubscriptionPaymentMethod;
-    /** @returns {savePayout} */
-    static savePayout(): savePayout;
-    /** @returns {saveSubscriptionSetupIntent} */
-    static saveSubscriptionSetupIntent(): saveSubscriptionSetupIntent;
-    /** @returns {updatePayout} */
-    static updatePayout(): updatePayout;
-    /** @returns {verifyIfscCode} */
-    static verifyIfscCode(): verifyIfscCode;
+    /** @returns {ActivateAndDectivatePayoutParam} */
+    static activateAndDectivatePayout(): ActivateAndDectivatePayoutParam;
+    /** @returns {DeletePayoutParam} */
+    static deletePayout(): DeletePayoutParam;
+    /** @returns {DeleteSubscriptionPaymentMethodParam} */
+    static deleteSubscriptionPaymentMethod(): DeleteSubscriptionPaymentMethodParam;
+    /** @returns {GetAllPayoutsParam} */
+    static getAllPayouts(): GetAllPayoutsParam;
+    /** @returns {GetSubscriptionConfigParam} */
+    static getSubscriptionConfig(): any;
+    /** @returns {GetSubscriptionPaymentMethodParam} */
+    static getSubscriptionPaymentMethod(): GetSubscriptionPaymentMethodParam;
+    /** @returns {SavePayoutParam} */
+    static savePayout(): SavePayoutParam;
+    /** @returns {SaveSubscriptionSetupIntentParam} */
+    static saveSubscriptionSetupIntent(): SaveSubscriptionSetupIntentParam;
+    /** @returns {UpdatePayoutParam} */
+    static updatePayout(): UpdatePayoutParam;
+    /** @returns {VerifyIfscCodeParam} */
+    static verifyIfscCode(): VerifyIfscCodeParam;
 }
 declare namespace PaymentPlatformValidator {
     export { ActivateAndDectivatePayoutParam, DeletePayoutParam, DeleteSubscriptionPaymentMethodParam, GetAllPayoutsParam, GetSubscriptionConfigParam, GetSubscriptionPaymentMethodParam, SavePayoutParam, SaveSubscriptionSetupIntentParam, UpdatePayoutParam, VerifyIfscCodeParam };
@@ -87,7 +87,6 @@ type GetAllPayoutsParam = {
      */
     uniqueExternalId?: string;
 };
-type GetSubscriptionConfigParam = any;
 type GetSubscriptionPaymentMethodParam = {
     /**
      * - Unique external id
@@ -110,4 +109,5 @@ type UpdatePayoutParam = {
 type VerifyIfscCodeParam = {
     ifscCode?: string;
 };
+type GetSubscriptionConfigParam = any;
 import PaymentPlatformModel = require("./PaymentPlatformModel");

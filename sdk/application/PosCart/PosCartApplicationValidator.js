@@ -237,14 +237,14 @@ const PosCartApplicationModel = require("./PosCartApplicationModel");
  */
 
 class PosCartApplicationValidator {
-  /** @returns {addAddress} */
+  /** @returns {AddAddressParam} */
   static addAddress() {
     return Joi.object({
       body: PosCartApplicationModel.Address().required(),
     }).required();
   }
 
-  /** @returns {addItems} */
+  /** @returns {AddItemsParam} */
   static addItems() {
     return Joi.object({
       i: Joi.boolean(),
@@ -257,7 +257,7 @@ class PosCartApplicationValidator {
     }).required();
   }
 
-  /** @returns {applyCoupon} */
+  /** @returns {ApplyCouponParam} */
   static applyCoupon() {
     return Joi.object({
       i: Joi.boolean(),
@@ -269,7 +269,7 @@ class PosCartApplicationValidator {
     }).required();
   }
 
-  /** @returns {applyRewardPoints} */
+  /** @returns {ApplyRewardPointsParam} */
   static applyRewardPoints() {
     return Joi.object({
       id: Joi.string().allow(""),
@@ -280,7 +280,7 @@ class PosCartApplicationValidator {
     }).required();
   }
 
-  /** @returns {checkoutCart} */
+  /** @returns {CheckoutCartParam} */
   static checkoutCart() {
     return Joi.object({
       id: Joi.string().allow(""),
@@ -288,7 +288,7 @@ class PosCartApplicationValidator {
     }).required();
   }
 
-  /** @returns {getAddressById} */
+  /** @returns {GetAddressByIdParam} */
   static getAddressById() {
     return Joi.object({
       id: Joi.string().allow("").required(),
@@ -301,7 +301,7 @@ class PosCartApplicationValidator {
     }).required();
   }
 
-  /** @returns {getAddresses} */
+  /** @returns {GetAddressesParam} */
   static getAddresses() {
     return Joi.object({
       cartId: Joi.string().allow(""),
@@ -313,7 +313,7 @@ class PosCartApplicationValidator {
     });
   }
 
-  /** @returns {getAvailableDeliveryModes} */
+  /** @returns {GetAvailableDeliveryModesParam} */
   static getAvailableDeliveryModes() {
     return Joi.object({
       areaCode: Joi.string().allow("").required(),
@@ -321,7 +321,7 @@ class PosCartApplicationValidator {
     }).required();
   }
 
-  /** @returns {getBulkDiscountOffers} */
+  /** @returns {GetBulkDiscountOffersParam} */
   static getBulkDiscountOffers() {
     return Joi.object({
       itemId: Joi.number(),
@@ -331,7 +331,7 @@ class PosCartApplicationValidator {
     });
   }
 
-  /** @returns {getCart} */
+  /** @returns {GetCartParam} */
   static getCart() {
     return Joi.object({
       id: Joi.string().allow(""),
@@ -344,28 +344,28 @@ class PosCartApplicationValidator {
     });
   }
 
-  /** @returns {getCartLastModified} */
+  /** @returns {GetCartLastModifiedParam} */
   static getCartLastModified() {
     return Joi.object({
       id: Joi.string().allow(""),
     });
   }
 
-  /** @returns {getCartShareLink} */
+  /** @returns {GetCartShareLinkParam} */
   static getCartShareLink() {
     return Joi.object({
       body: PosCartApplicationModel.GetShareCartLinkRequest().required(),
     }).required();
   }
 
-  /** @returns {getCartSharedItems} */
+  /** @returns {GetCartSharedItemsParam} */
   static getCartSharedItems() {
     return Joi.object({
       token: Joi.string().allow("").required(),
     }).required();
   }
 
-  /** @returns {getCoupons} */
+  /** @returns {GetCouponsParam} */
   static getCoupons() {
     return Joi.object({
       id: Joi.string().allow(""),
@@ -373,7 +373,7 @@ class PosCartApplicationValidator {
     });
   }
 
-  /** @returns {getItemCount} */
+  /** @returns {GetItemCountParam} */
   static getItemCount() {
     return Joi.object({
       id: Joi.string().allow(""),
@@ -381,7 +381,7 @@ class PosCartApplicationValidator {
     });
   }
 
-  /** @returns {getShipments} */
+  /** @returns {GetShipmentsParam} */
   static getShipments() {
     return Joi.object({
       pickAtStoreUid: Joi.number(),
@@ -394,21 +394,21 @@ class PosCartApplicationValidator {
     });
   }
 
-  /** @returns {getStoreAddressByUid} */
+  /** @returns {GetStoreAddressByUidParam} */
   static getStoreAddressByUid() {
     return Joi.object({
       storeUid: Joi.number().required(),
     }).required();
   }
 
-  /** @returns {removeAddress} */
+  /** @returns {RemoveAddressParam} */
   static removeAddress() {
     return Joi.object({
       id: Joi.string().allow("").required(),
     }).required();
   }
 
-  /** @returns {removeCoupon} */
+  /** @returns {RemoveCouponParam} */
   static removeCoupon() {
     return Joi.object({
       id: Joi.string().allow(""),
@@ -416,7 +416,7 @@ class PosCartApplicationValidator {
     });
   }
 
-  /** @returns {selectAddress} */
+  /** @returns {SelectAddressParam} */
   static selectAddress() {
     return Joi.object({
       cartId: Joi.string().allow(""),
@@ -427,7 +427,7 @@ class PosCartApplicationValidator {
     }).required();
   }
 
-  /** @returns {selectPaymentMode} */
+  /** @returns {SelectPaymentModeParam} */
   static selectPaymentMode() {
     return Joi.object({
       id: Joi.string().allow(""),
@@ -436,7 +436,7 @@ class PosCartApplicationValidator {
     }).required();
   }
 
-  /** @returns {updateAddress} */
+  /** @returns {UpdateAddressParam} */
   static updateAddress() {
     return Joi.object({
       id: Joi.string().allow("").required(),
@@ -444,7 +444,7 @@ class PosCartApplicationValidator {
     }).required();
   }
 
-  /** @returns {updateCart} */
+  /** @returns {UpdateCartParam} */
   static updateCart() {
     return Joi.object({
       id: Joi.string().allow(""),
@@ -457,7 +457,7 @@ class PosCartApplicationValidator {
     }).required();
   }
 
-  /** @returns {updateCartMeta} */
+  /** @returns {UpdateCartMetaParam} */
   static updateCartMeta() {
     return Joi.object({
       id: Joi.string().allow(""),
@@ -466,7 +466,7 @@ class PosCartApplicationValidator {
     }).required();
   }
 
-  /** @returns {updateCartWithSharedItems} */
+  /** @returns {UpdateCartWithSharedItemsParam} */
   static updateCartWithSharedItems() {
     return Joi.object({
       token: Joi.string().allow("").required(),
@@ -474,7 +474,7 @@ class PosCartApplicationValidator {
     }).required();
   }
 
-  /** @returns {updateShipments} */
+  /** @returns {UpdateShipmentsParam} */
   static updateShipments() {
     return Joi.object({
       i: Joi.boolean(),
@@ -487,7 +487,7 @@ class PosCartApplicationValidator {
     }).required();
   }
 
-  /** @returns {validateCouponForPayment} */
+  /** @returns {ValidateCouponForPaymentParam} */
   static validateCouponForPayment() {
     return Joi.object({
       id: Joi.string().allow(""),

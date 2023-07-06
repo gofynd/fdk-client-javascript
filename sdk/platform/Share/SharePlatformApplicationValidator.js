@@ -34,28 +34,28 @@ const SharePlatformModel = require("./SharePlatformModel");
  */
 
 class SharePlatformApplicationValidator {
-  /** @returns {createShortLink} */
+  /** @returns {CreateShortLinkParam} */
   static createShortLink() {
     return Joi.object({
       body: SharePlatformModel.ShortLinkReq().required(),
     }).required();
   }
 
-  /** @returns {getShortLinkByHash} */
+  /** @returns {GetShortLinkByHashParam} */
   static getShortLinkByHash() {
     return Joi.object({
       hash: Joi.string().allow("").required(),
     }).required();
   }
 
-  /** @returns {getShortLinkClickStats} */
+  /** @returns {GetShortLinkClickStatsParam} */
   static getShortLinkClickStats() {
     return Joi.object({
       surlId: Joi.string().allow("").required(),
     }).required();
   }
 
-  /** @returns {getShortLinks} */
+  /** @returns {GetShortLinksParam} */
   static getShortLinks() {
     return Joi.object({
       pageNo: Joi.number(),
@@ -66,7 +66,7 @@ class SharePlatformApplicationValidator {
     }).required();
   }
 
-  /** @returns {updateShortLinkById} */
+  /** @returns {UpdateShortLinkByIdParam} */
   static updateShortLinkById() {
     return Joi.object({
       id: Joi.string().allow("").required(),

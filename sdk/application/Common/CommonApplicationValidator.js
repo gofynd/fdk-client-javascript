@@ -18,7 +18,7 @@ const CommonApplicationModel = require("./CommonApplicationModel");
  */
 
 class CommonApplicationValidator {
-  /** @returns {getLocations} */
+  /** @returns {GetLocationsParam} */
   static getLocations() {
     return Joi.object({
       locationType: Joi.string().allow(""),
@@ -26,7 +26,7 @@ class CommonApplicationValidator {
     });
   }
 
-  /** @returns {searchApplication} */
+  /** @returns {SearchApplicationParam} */
   static searchApplication() {
     return Joi.object({
       authorization: Joi.string().allow(""),

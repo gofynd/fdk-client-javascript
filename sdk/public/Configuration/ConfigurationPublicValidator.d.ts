@@ -13,10 +13,10 @@ export = ConfigurationPublicValidator;
  * @property {string} [query] - Provide application name
  */
 declare class ConfigurationPublicValidator {
-    /** @returns {getLocations} */
-    static getLocations(): getLocations;
-    /** @returns {searchApplication} */
-    static searchApplication(): searchApplication;
+    /** @returns {GetLocationsParam} */
+    static getLocations(): GetLocationsParam;
+    /** @returns {SearchApplicationParam} */
+    static searchApplication(): SearchApplicationParam;
 }
 declare namespace ConfigurationPublicValidator {
     export { GetLocationsParam, SearchApplicationParam };

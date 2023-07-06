@@ -140,31 +140,31 @@ const ConfigurationPlatformModel = require("./ConfigurationPlatformModel");
  */
 
 class ConfigurationPlatformApplicationValidator {
-  /** @returns {addDomain} */
+  /** @returns {AddDomainParam} */
   static addDomain() {
     return Joi.object({
       body: ConfigurationPlatformModel.DomainAddRequest().required(),
     }).required();
   }
 
-  /** @returns {changeDomainType} */
+  /** @returns {ChangeDomainTypeParam} */
   static changeDomainType() {
     return Joi.object({
       body: ConfigurationPlatformModel.UpdateDomainTypeRequest().required(),
     }).required();
   }
 
-  /** @returns {getAppApiTokens} */
+  /** @returns {GetAppApiTokensParam} */
   static getAppApiTokens() {
     return Joi.object({}).required();
   }
 
-  /** @returns {getAppBasicDetails} */
+  /** @returns {GetAppBasicDetailsParam} */
   static getAppBasicDetails() {
     return Joi.object({}).required();
   }
 
-  /** @returns {getAppCompanies} */
+  /** @returns {GetAppCompaniesParam} */
   static getAppCompanies() {
     return Joi.object({
       uid: Joi.number(),
@@ -173,22 +173,22 @@ class ConfigurationPlatformApplicationValidator {
     }).required();
   }
 
-  /** @returns {getAppContactInfo} */
+  /** @returns {GetAppContactInfoParam} */
   static getAppContactInfo() {
     return Joi.object({}).required();
   }
 
-  /** @returns {getAppCurrencyConfig} */
+  /** @returns {GetAppCurrencyConfigParam} */
   static getAppCurrencyConfig() {
     return Joi.object({}).required();
   }
 
-  /** @returns {getAppFeatures} */
+  /** @returns {GetAppFeaturesParam} */
   static getAppFeatures() {
     return Joi.object({}).required();
   }
 
-  /** @returns {getAppStores} */
+  /** @returns {GetAppStoresParam} */
   static getAppStores() {
     return Joi.object({
       pageNo: Joi.number(),
@@ -196,41 +196,41 @@ class ConfigurationPlatformApplicationValidator {
     }).required();
   }
 
-  /** @returns {getAppSupportedCurrency} */
+  /** @returns {GetAppSupportedCurrencyParam} */
   static getAppSupportedCurrency() {
     return Joi.object({}).required();
   }
 
-  /** @returns {getApplicationById} */
+  /** @returns {GetApplicationByIdParam} */
   static getApplicationById() {
     return Joi.object({}).required();
   }
 
-  /** @returns {getBuildConfig} */
+  /** @returns {GetBuildConfigParam} */
   static getBuildConfig() {
     return Joi.object({
       platformType: Joi.string().allow("").required(),
     }).required();
   }
 
-  /** @returns {getDomainStatus} */
+  /** @returns {GetDomainStatusParam} */
   static getDomainStatus() {
     return Joi.object({
       body: ConfigurationPlatformModel.DomainStatusRequest().required(),
     }).required();
   }
 
-  /** @returns {getDomains} */
+  /** @returns {GetDomainsParam} */
   static getDomains() {
     return Joi.object({}).required();
   }
 
-  /** @returns {getInventoryConfig} */
+  /** @returns {GetInventoryConfigParam} */
   static getInventoryConfig() {
     return Joi.object({}).required();
   }
 
-  /** @returns {getOrderingStoresByFilter} */
+  /** @returns {GetOrderingStoresByFilterParam} */
   static getOrderingStoresByFilter() {
     return Joi.object({
       pageNo: Joi.number(),
@@ -239,14 +239,14 @@ class ConfigurationPlatformApplicationValidator {
     }).required();
   }
 
-  /** @returns {getPreviousVersions} */
+  /** @returns {GetPreviousVersionsParam} */
   static getPreviousVersions() {
     return Joi.object({
       platformType: Joi.string().allow("").required(),
     }).required();
   }
 
-  /** @returns {getStaffOrderingStores} */
+  /** @returns {GetStaffOrderingStoresParam} */
   static getStaffOrderingStores() {
     return Joi.object({
       pageNo: Joi.number(),
@@ -255,63 +255,63 @@ class ConfigurationPlatformApplicationValidator {
     }).required();
   }
 
-  /** @returns {modifyAppFeatures} */
+  /** @returns {ModifyAppFeaturesParam} */
   static modifyAppFeatures() {
     return Joi.object({
       body: ConfigurationPlatformModel.AppFeatureRequest().required(),
     }).required();
   }
 
-  /** @returns {partiallyUpdateInventoryConfig} */
+  /** @returns {PartiallyUpdateInventoryConfigParam} */
   static partiallyUpdateInventoryConfig() {
     return Joi.object({
       body: ConfigurationPlatformModel.AppInventoryPartialUpdate().required(),
     }).required();
   }
 
-  /** @returns {removeDomainById} */
+  /** @returns {RemoveDomainByIdParam} */
   static removeDomainById() {
     return Joi.object({
       id: Joi.string().allow("").required(),
     }).required();
   }
 
-  /** @returns {updateAppApiTokens} */
+  /** @returns {UpdateAppApiTokensParam} */
   static updateAppApiTokens() {
     return Joi.object({
       body: ConfigurationPlatformModel.TokenResponse().required(),
     }).required();
   }
 
-  /** @returns {updateAppBasicDetails} */
+  /** @returns {UpdateAppBasicDetailsParam} */
   static updateAppBasicDetails() {
     return Joi.object({
       body: ConfigurationPlatformModel.ApplicationDetail().required(),
     }).required();
   }
 
-  /** @returns {updateAppContactInfo} */
+  /** @returns {UpdateAppContactInfoParam} */
   static updateAppContactInfo() {
     return Joi.object({
       body: ConfigurationPlatformModel.ApplicationInformation().required(),
     }).required();
   }
 
-  /** @returns {updateAppCurrencyConfig} */
+  /** @returns {UpdateAppCurrencyConfigParam} */
   static updateAppCurrencyConfig() {
     return Joi.object({
       body: ConfigurationPlatformModel.AppSupportedCurrency().required(),
     }).required();
   }
 
-  /** @returns {updateAppFeatures} */
+  /** @returns {UpdateAppFeaturesParam} */
   static updateAppFeatures() {
     return Joi.object({
       body: ConfigurationPlatformModel.AppFeatureRequest().required(),
     }).required();
   }
 
-  /** @returns {updateBuildConfig} */
+  /** @returns {UpdateBuildConfigParam} */
   static updateBuildConfig() {
     return Joi.object({
       platformType: Joi.string().allow("").required(),
@@ -319,14 +319,14 @@ class ConfigurationPlatformApplicationValidator {
     }).required();
   }
 
-  /** @returns {updateInventoryConfig} */
+  /** @returns {UpdateInventoryConfigParam} */
   static updateInventoryConfig() {
     return Joi.object({
       body: ConfigurationPlatformModel.ApplicationInventory().required(),
     }).required();
   }
 
-  /** @returns {updateOrderingStoreConfig} */
+  /** @returns {UpdateOrderingStoreConfigParam} */
   static updateOrderingStoreConfig() {
     return Joi.object({
       body: ConfigurationPlatformModel.OrderingStoreConfig().required(),

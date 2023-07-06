@@ -287,7 +287,7 @@ const CatalogApplicationModel = require("./CatalogApplicationModel");
  */
 
 class CatalogApplicationValidator {
-  /** @returns {followById} */
+  /** @returns {FollowByIdParam} */
   static followById() {
     return Joi.object({
       collectionType: Joi.string().allow("").required(),
@@ -295,14 +295,14 @@ class CatalogApplicationValidator {
     }).required();
   }
 
-  /** @returns {getBrandDetailBySlug} */
+  /** @returns {GetBrandDetailBySlugParam} */
   static getBrandDetailBySlug() {
     return Joi.object({
       slug: Joi.string().allow("").required(),
     }).required();
   }
 
-  /** @returns {getBrands} */
+  /** @returns {GetBrandsParam} */
   static getBrands() {
     return Joi.object({
       department: Joi.string().allow(""),
@@ -311,28 +311,28 @@ class CatalogApplicationValidator {
     });
   }
 
-  /** @returns {getCategories} */
+  /** @returns {GetCategoriesParam} */
   static getCategories() {
     return Joi.object({
       department: Joi.string().allow(""),
     });
   }
 
-  /** @returns {getCategoryDetailBySlug} */
+  /** @returns {GetCategoryDetailBySlugParam} */
   static getCategoryDetailBySlug() {
     return Joi.object({
       slug: Joi.string().allow("").required(),
     }).required();
   }
 
-  /** @returns {getCollectionDetailBySlug} */
+  /** @returns {GetCollectionDetailBySlugParam} */
   static getCollectionDetailBySlug() {
     return Joi.object({
       slug: Joi.string().allow("").required(),
     }).required();
   }
 
-  /** @returns {getCollectionItemsBySlug} */
+  /** @returns {GetCollectionItemsBySlugParam} */
   static getCollectionItemsBySlug() {
     return Joi.object({
       slug: Joi.string().allow("").required(),
@@ -347,7 +347,7 @@ class CatalogApplicationValidator {
     }).required();
   }
 
-  /** @returns {getCollections} */
+  /** @returns {GetCollectionsParam} */
   static getCollections() {
     return Joi.object({
       pageNo: Joi.number(),
@@ -357,26 +357,26 @@ class CatalogApplicationValidator {
     });
   }
 
-  /** @returns {getComparedFrequentlyProductBySlug} */
+  /** @returns {GetComparedFrequentlyProductBySlugParam} */
   static getComparedFrequentlyProductBySlug() {
     return Joi.object({
       slug: Joi.string().allow("").required(),
     }).required();
   }
 
-  /** @returns {getDepartments} */
+  /** @returns {GetDepartmentsParam} */
   static getDepartments() {
     return Joi.object({});
   }
 
-  /** @returns {getFollowIds} */
+  /** @returns {GetFollowIdsParam} */
   static getFollowIds() {
     return Joi.object({
       collectionType: Joi.string().allow(""),
     });
   }
 
-  /** @returns {getFollowedListing} */
+  /** @returns {GetFollowedListingParam} */
   static getFollowedListing() {
     return Joi.object({
       collectionType: Joi.string().allow("").required(),
@@ -385,7 +385,7 @@ class CatalogApplicationValidator {
     }).required();
   }
 
-  /** @returns {getFollowerCountById} */
+  /** @returns {GetFollowerCountByIdParam} */
   static getFollowerCountById() {
     return Joi.object({
       collectionType: Joi.string().allow("").required(),
@@ -393,7 +393,7 @@ class CatalogApplicationValidator {
     }).required();
   }
 
-  /** @returns {getHomeProducts} */
+  /** @returns {GetHomeProductsParam} */
   static getHomeProducts() {
     return Joi.object({
       sortOn: Joi.string().allow(""),
@@ -402,7 +402,7 @@ class CatalogApplicationValidator {
     });
   }
 
-  /** @returns {getInStockLocations} */
+  /** @returns {GetInStockLocationsParam} */
   static getInStockLocations() {
     return Joi.object({
       pageNo: Joi.number(),
@@ -415,14 +415,14 @@ class CatalogApplicationValidator {
     });
   }
 
-  /** @returns {getLocationDetailsById} */
+  /** @returns {GetLocationDetailsByIdParam} */
   static getLocationDetailsById() {
     return Joi.object({
       locationId: Joi.number().required(),
     }).required();
   }
 
-  /** @returns {getProductBundlesBySlug} */
+  /** @returns {GetProductBundlesBySlugParam} */
   static getProductBundlesBySlug() {
     return Joi.object({
       slug: Joi.string().allow(""),
@@ -430,21 +430,21 @@ class CatalogApplicationValidator {
     });
   }
 
-  /** @returns {getProductComparisonBySlugs} */
+  /** @returns {GetProductComparisonBySlugsParam} */
   static getProductComparisonBySlugs() {
     return Joi.object({
       slug: Joi.array().items(Joi.string().allow("")).required(),
     }).required();
   }
 
-  /** @returns {getProductDetailBySlug} */
+  /** @returns {GetProductDetailBySlugParam} */
   static getProductDetailBySlug() {
     return Joi.object({
       slug: Joi.string().allow("").required(),
     }).required();
   }
 
-  /** @returns {getProductPriceBySlug} */
+  /** @returns {GetProductPriceBySlugParam} */
   static getProductPriceBySlug() {
     return Joi.object({
       slug: Joi.string().allow("").required(),
@@ -455,7 +455,7 @@ class CatalogApplicationValidator {
     }).required();
   }
 
-  /** @returns {getProductSellersBySlug} */
+  /** @returns {GetProductSellersBySlugParam} */
   static getProductSellersBySlug() {
     return Joi.object({
       slug: Joi.string().allow("").required(),
@@ -467,7 +467,7 @@ class CatalogApplicationValidator {
     }).required();
   }
 
-  /** @returns {getProductSizesBySlug} */
+  /** @returns {GetProductSizesBySlugParam} */
   static getProductSizesBySlug() {
     return Joi.object({
       slug: Joi.string().allow("").required(),
@@ -475,7 +475,7 @@ class CatalogApplicationValidator {
     }).required();
   }
 
-  /** @returns {getProductStockByIds} */
+  /** @returns {GetProductStockByIdsParam} */
   static getProductStockByIds() {
     return Joi.object({
       itemId: Joi.string().allow(""),
@@ -486,7 +486,7 @@ class CatalogApplicationValidator {
     });
   }
 
-  /** @returns {getProductStockForTimeByIds} */
+  /** @returns {GetProductStockForTimeByIdsParam} */
   static getProductStockForTimeByIds() {
     return Joi.object({
       timestamp: Joi.string().allow("").required(),
@@ -495,14 +495,14 @@ class CatalogApplicationValidator {
     }).required();
   }
 
-  /** @returns {getProductVariantsBySlug} */
+  /** @returns {GetProductVariantsBySlugParam} */
   static getProductVariantsBySlug() {
     return Joi.object({
       slug: Joi.string().allow("").required(),
     }).required();
   }
 
-  /** @returns {getProducts} */
+  /** @returns {GetProductsParam} */
   static getProducts() {
     return Joi.object({
       q: Joi.string().allow(""),
@@ -516,21 +516,21 @@ class CatalogApplicationValidator {
     });
   }
 
-  /** @returns {getSearchResults} */
+  /** @returns {GetSearchResultsParam} */
   static getSearchResults() {
     return Joi.object({
       q: Joi.string().allow("").required(),
     }).required();
   }
 
-  /** @returns {getSimilarComparisonProductBySlug} */
+  /** @returns {GetSimilarComparisonProductBySlugParam} */
   static getSimilarComparisonProductBySlug() {
     return Joi.object({
       slug: Joi.string().allow("").required(),
     }).required();
   }
 
-  /** @returns {getStores} */
+  /** @returns {GetStoresParam} */
   static getStores() {
     return Joi.object({
       pageNo: Joi.number(),
@@ -543,7 +543,7 @@ class CatalogApplicationValidator {
     });
   }
 
-  /** @returns {unfollowById} */
+  /** @returns {UnfollowByIdParam} */
   static unfollowById() {
     return Joi.object({
       collectionType: Joi.string().allow("").required(),

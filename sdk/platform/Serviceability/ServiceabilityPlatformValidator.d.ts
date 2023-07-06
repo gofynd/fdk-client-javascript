@@ -86,42 +86,42 @@ export = ServiceabilityPlatformValidator;
  * @property {ServiceabilityPlatformModel.DpRuleRequest} body
  */
 declare class ServiceabilityPlatformValidator {
-    /** @returns {createZone} */
-    static createZone(): createZone;
-    /** @returns {getAllStores} */
-    static getAllStores(): getAllStores;
-    /** @returns {getCompanyStoreView} */
-    static getCompanyStoreView(): getCompanyStoreView;
-    /** @returns {getDpAccount} */
-    static getDpAccount(): getDpAccount;
-    /** @returns {getDpCompanyRules} */
-    static getDpCompanyRules(): getDpCompanyRules;
-    /** @returns {getDpRuleInsert} */
-    static getDpRuleInsert(): getDpRuleInsert;
-    /** @returns {getDpRules} */
-    static getDpRules(): getDpRules;
-    /** @returns {getEntityRegionView} */
-    static getEntityRegionView(): getEntityRegionView;
-    /** @returns {getListView} */
-    static getListView(): getListView;
-    /** @returns {getOptimalLocations} */
-    static getOptimalLocations(): getOptimalLocations;
-    /** @returns {getStore} */
-    static getStore(): getStore;
-    /** @returns {getZoneDataView} */
-    static getZoneDataView(): getZoneDataView;
-    /** @returns {getZoneListView} */
-    static getZoneListView(): getZoneListView;
-    /** @returns {updateDpRule} */
-    static updateDpRule(): updateDpRule;
-    /** @returns {updateZoneControllerView} */
-    static updateZoneControllerView(): updateZoneControllerView;
-    /** @returns {upsertDpAccount} */
-    static upsertDpAccount(): upsertDpAccount;
-    /** @returns {upsertDpCompanyRules} */
-    static upsertDpCompanyRules(): upsertDpCompanyRules;
-    /** @returns {upsertDpRules} */
-    static upsertDpRules(): upsertDpRules;
+    /** @returns {CreateZoneParam} */
+    static createZone(): CreateZoneParam;
+    /** @returns {GetAllStoresParam} */
+    static getAllStores(): any;
+    /** @returns {GetCompanyStoreViewParam} */
+    static getCompanyStoreView(): GetCompanyStoreViewParam;
+    /** @returns {GetDpAccountParam} */
+    static getDpAccount(): GetDpAccountParam;
+    /** @returns {GetDpCompanyRulesParam} */
+    static getDpCompanyRules(): any;
+    /** @returns {GetDpRuleInsertParam} */
+    static getDpRuleInsert(): GetDpRuleInsertParam;
+    /** @returns {GetDpRulesParam} */
+    static getDpRules(): GetDpRulesParam;
+    /** @returns {GetEntityRegionViewParam} */
+    static getEntityRegionView(): GetEntityRegionViewParam;
+    /** @returns {GetListViewParam} */
+    static getListView(): GetListViewParam;
+    /** @returns {GetOptimalLocationsParam} */
+    static getOptimalLocations(): GetOptimalLocationsParam;
+    /** @returns {GetStoreParam} */
+    static getStore(): GetStoreParam;
+    /** @returns {GetZoneDataViewParam} */
+    static getZoneDataView(): GetZoneDataViewParam;
+    /** @returns {GetZoneListViewParam} */
+    static getZoneListView(): GetZoneListViewParam;
+    /** @returns {UpdateDpRuleParam} */
+    static updateDpRule(): UpdateDpRuleParam;
+    /** @returns {UpdateZoneControllerViewParam} */
+    static updateZoneControllerView(): UpdateZoneControllerViewParam;
+    /** @returns {UpsertDpAccountParam} */
+    static upsertDpAccount(): UpsertDpAccountParam;
+    /** @returns {UpsertDpCompanyRulesParam} */
+    static upsertDpCompanyRules(): UpsertDpCompanyRulesParam;
+    /** @returns {UpsertDpRulesParam} */
+    static upsertDpRules(): UpsertDpRulesParam;
 }
 declare namespace ServiceabilityPlatformValidator {
     export { CreateZoneParam, GetAllStoresParam, GetCompanyStoreViewParam, GetDpAccountParam, GetDpCompanyRulesParam, GetDpRuleInsertParam, GetDpRulesParam, GetEntityRegionViewParam, GetListViewParam, GetOptimalLocationsParam, GetStoreParam, GetZoneDataViewParam, GetZoneListViewParam, UpdateDpRuleParam, UpdateZoneControllerViewParam, UpsertDpAccountParam, UpsertDpCompanyRulesParam, UpsertDpRulesParam };
@@ -129,7 +129,6 @@ declare namespace ServiceabilityPlatformValidator {
 type CreateZoneParam = {
     body: ServiceabilityPlatformModel.ZoneRequest;
 };
-type GetAllStoresParam = any;
 type GetCompanyStoreViewParam = {
     /**
      * - Index of the item to start returning with
@@ -162,7 +161,6 @@ type GetDpAccountParam = {
      */
     transportType?: string;
 };
-type GetDpCompanyRulesParam = any;
 type GetDpRuleInsertParam = {
     /**
      * - Index of the item to start returning with
@@ -280,4 +278,6 @@ type UpsertDpCompanyRulesParam = {
 type UpsertDpRulesParam = {
     body: ServiceabilityPlatformModel.DpRuleRequest;
 };
+type GetAllStoresParam = any;
+type GetDpCompanyRulesParam = any;
 import ServiceabilityPlatformModel = require("./ServiceabilityPlatformModel");

@@ -62,39 +62,38 @@ export = CompanyProfilePlatformValidator;
  * @property {CompanyProfilePlatformModel.LocationSerializer} body
  */
 declare class CompanyProfilePlatformValidator {
-    /** @returns {cbsOnboardGet} */
-    static cbsOnboardGet(): cbsOnboardGet;
-    /** @returns {createBrand} */
-    static createBrand(): createBrand;
-    /** @returns {createCompanyBrandMapping} */
-    static createCompanyBrandMapping(): createCompanyBrandMapping;
-    /** @returns {createLocation} */
-    static createLocation(): createLocation;
-    /** @returns {createLocationBulk} */
-    static createLocationBulk(): createLocationBulk;
-    /** @returns {editBrand} */
-    static editBrand(): editBrand;
-    /** @returns {getBrand} */
-    static getBrand(): getBrand;
-    /** @returns {getBrands} */
-    static getBrands(): getBrands;
-    /** @returns {getCompanyMetrics} */
-    static getCompanyMetrics(): getCompanyMetrics;
-    /** @returns {getLocationDetail} */
-    static getLocationDetail(): getLocationDetail;
-    /** @returns {getLocationTags} */
-    static getLocationTags(): getLocationTags;
-    /** @returns {getLocations} */
-    static getLocations(): getLocations;
-    /** @returns {updateCompany} */
-    static updateCompany(): updateCompany;
-    /** @returns {updateLocation} */
-    static updateLocation(): updateLocation;
+    /** @returns {CbsOnboardGetParam} */
+    static cbsOnboardGet(): any;
+    /** @returns {CreateBrandParam} */
+    static createBrand(): CreateBrandParam;
+    /** @returns {CreateCompanyBrandMappingParam} */
+    static createCompanyBrandMapping(): CreateCompanyBrandMappingParam;
+    /** @returns {CreateLocationParam} */
+    static createLocation(): CreateLocationParam;
+    /** @returns {CreateLocationBulkParam} */
+    static createLocationBulk(): CreateLocationBulkParam;
+    /** @returns {EditBrandParam} */
+    static editBrand(): EditBrandParam;
+    /** @returns {GetBrandParam} */
+    static getBrand(): GetBrandParam;
+    /** @returns {GetBrandsParam} */
+    static getBrands(): GetBrandsParam;
+    /** @returns {GetCompanyMetricsParam} */
+    static getCompanyMetrics(): any;
+    /** @returns {GetLocationDetailParam} */
+    static getLocationDetail(): GetLocationDetailParam;
+    /** @returns {GetLocationTagsParam} */
+    static getLocationTags(): any;
+    /** @returns {GetLocationsParam} */
+    static getLocations(): GetLocationsParam;
+    /** @returns {UpdateCompanyParam} */
+    static updateCompany(): UpdateCompanyParam;
+    /** @returns {UpdateLocationParam} */
+    static updateLocation(): UpdateLocationParam;
 }
 declare namespace CompanyProfilePlatformValidator {
     export { CbsOnboardGetParam, CreateBrandParam, CreateCompanyBrandMappingParam, CreateLocationParam, CreateLocationBulkParam, EditBrandParam, GetBrandParam, GetBrandsParam, GetCompanyMetricsParam, GetLocationDetailParam, GetLocationTagsParam, GetLocationsParam, UpdateCompanyParam, UpdateLocationParam };
 }
-type CbsOnboardGetParam = any;
 type CreateBrandParam = {
     body: CompanyProfilePlatformModel.CreateUpdateBrandRequestSerializer;
 };
@@ -136,14 +135,12 @@ type GetBrandsParam = {
      */
     q?: string;
 };
-type GetCompanyMetricsParam = any;
 type GetLocationDetailParam = {
     /**
      * - Id of the location which you want to view.
      */
     locationId: string;
 };
-type GetLocationTagsParam = any;
 type GetLocationsParam = {
     /**
      * - Helps to sort the location list on the basis
@@ -184,4 +181,7 @@ type UpdateLocationParam = {
     locationId: string;
     body: CompanyProfilePlatformModel.LocationSerializer;
 };
+type CbsOnboardGetParam = any;
+type GetCompanyMetricsParam = any;
+type GetLocationTagsParam = any;
 import CompanyProfilePlatformModel = require("./CompanyProfilePlatformModel");

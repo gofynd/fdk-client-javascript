@@ -157,86 +157,86 @@ export = ThemePlatformApplicationValidator;
  * @property {string} themeId - ID allotted to the theme.
  */
 declare class ThemePlatformApplicationValidator {
-    /** @returns {addThemeToApplicationV2} */
-    static addThemeToApplicationV2(): addThemeToApplicationV2;
-    /** @returns {addToThemeLibrary} */
-    static addToThemeLibrary(): addToThemeLibrary;
-    /** @returns {applyTheme} */
-    static applyTheme(): applyTheme;
-    /** @returns {applyThemeV2} */
-    static applyThemeV2(): applyThemeV2;
-    /** @returns {archiveTheme} */
-    static archiveTheme(): archiveTheme;
-    /** @returns {checkThemeUpgradableV2} */
-    static checkThemeUpgradableV2(): checkThemeUpgradableV2;
-    /** @returns {createPage} */
-    static createPage(): createPage;
-    /** @returns {createTheme} */
-    static createTheme(): createTheme;
-    /** @returns {deletePage} */
-    static deletePage(): deletePage;
-    /** @returns {deleteTheme} */
-    static deleteTheme(): deleteTheme;
-    /** @returns {deleteThemeV2} */
-    static deleteThemeV2(): deleteThemeV2;
-    /** @returns {duplicateThemeV2} */
-    static duplicateThemeV2(): duplicateThemeV2;
-    /** @returns {getAllPages} */
-    static getAllPages(): getAllPages;
-    /** @returns {getApplicationThemeByIdV2} */
-    static getApplicationThemeByIdV2(): getApplicationThemeByIdV2;
-    /** @returns {getApplicationThemesCountV2} */
-    static getApplicationThemesCountV2(): getApplicationThemesCountV2;
-    /** @returns {getApplicationThemesV2} */
-    static getApplicationThemesV2(): getApplicationThemesV2;
-    /** @returns {getAppliedTheme} */
-    static getAppliedTheme(): getAppliedTheme;
-    /** @returns {getAppliedThemeV2} */
-    static getAppliedThemeV2(): getAppliedThemeV2;
-    /** @returns {getDefaultPageDetails} */
-    static getDefaultPageDetails(): getDefaultPageDetails;
-    /** @returns {getFonts} */
-    static getFonts(): getFonts;
-    /** @returns {getFontsV2} */
-    static getFontsV2(): getFontsV2;
-    /** @returns {getPage} */
-    static getPage(): getPage;
-    /** @returns {getPublicThemes} */
-    static getPublicThemes(): getPublicThemes;
-    /** @returns {getThemeById} */
-    static getThemeById(): getThemeById;
-    /** @returns {getThemeForPreview} */
-    static getThemeForPreview(): getThemeForPreview;
-    /** @returns {getThemeLastModified} */
-    static getThemeLastModified(): getThemeLastModified;
-    /** @returns {getThemeLastModifiedV2} */
-    static getThemeLastModifiedV2(): getThemeLastModifiedV2;
-    /** @returns {getThemeLibrary} */
-    static getThemeLibrary(): getThemeLibrary;
-    /** @returns {getThemePreviewByIdV2} */
-    static getThemePreviewByIdV2(): getThemePreviewByIdV2;
-    /** @returns {isUpgradable} */
-    static isUpgradable(): isUpgradable;
-    /** @returns {publishTheme} */
-    static publishTheme(): publishTheme;
-    /** @returns {unarchiveTheme} */
-    static unarchiveTheme(): unarchiveTheme;
-    /** @returns {unpublishTheme} */
-    static unpublishTheme(): unpublishTheme;
-    /** @returns {updateMultiplePages} */
-    static updateMultiplePages(): updateMultiplePages;
-    /** @returns {updatePage} */
-    static updatePage(): updatePage;
-    /** @returns {updateTheme} */
-    static updateTheme(): updateTheme;
-    /** @returns {updateThemeNameV2} */
-    static updateThemeNameV2(): updateThemeNameV2;
-    /** @returns {updateThemeV2} */
-    static updateThemeV2(): updateThemeV2;
-    /** @returns {upgradeApplicationV2} */
-    static upgradeApplicationV2(): upgradeApplicationV2;
-    /** @returns {upgradeTheme} */
-    static upgradeTheme(): upgradeTheme;
+    /** @returns {AddThemeToApplicationV2Param} */
+    static addThemeToApplicationV2(): AddThemeToApplicationV2Param;
+    /** @returns {AddToThemeLibraryParam} */
+    static addToThemeLibrary(): AddToThemeLibraryParam;
+    /** @returns {ApplyThemeParam} */
+    static applyTheme(): ApplyThemeParam;
+    /** @returns {ApplyThemeV2Param} */
+    static applyThemeV2(): ApplyThemeV2Param;
+    /** @returns {ArchiveThemeParam} */
+    static archiveTheme(): ArchiveThemeParam;
+    /** @returns {CheckThemeUpgradableV2Param} */
+    static checkThemeUpgradableV2(): CheckThemeUpgradableV2Param;
+    /** @returns {CreatePageParam} */
+    static createPage(): CreatePageParam;
+    /** @returns {CreateThemeParam} */
+    static createTheme(): CreateThemeParam;
+    /** @returns {DeletePageParam} */
+    static deletePage(): DeletePageParam;
+    /** @returns {DeleteThemeParam} */
+    static deleteTheme(): DeleteThemeParam;
+    /** @returns {DeleteThemeV2Param} */
+    static deleteThemeV2(): DeleteThemeV2Param;
+    /** @returns {DuplicateThemeV2Param} */
+    static duplicateThemeV2(): DuplicateThemeV2Param;
+    /** @returns {GetAllPagesParam} */
+    static getAllPages(): GetAllPagesParam;
+    /** @returns {GetApplicationThemeByIdV2Param} */
+    static getApplicationThemeByIdV2(): GetApplicationThemeByIdV2Param;
+    /** @returns {GetApplicationThemesCountV2Param} */
+    static getApplicationThemesCountV2(): any;
+    /** @returns {GetApplicationThemesV2Param} */
+    static getApplicationThemesV2(): any;
+    /** @returns {GetAppliedThemeParam} */
+    static getAppliedTheme(): any;
+    /** @returns {GetAppliedThemeV2Param} */
+    static getAppliedThemeV2(): any;
+    /** @returns {GetDefaultPageDetailsParam} */
+    static getDefaultPageDetails(): GetDefaultPageDetailsParam;
+    /** @returns {GetFontsParam} */
+    static getFonts(): any;
+    /** @returns {GetFontsV2Param} */
+    static getFontsV2(): any;
+    /** @returns {GetPageParam} */
+    static getPage(): GetPageParam;
+    /** @returns {GetPublicThemesParam} */
+    static getPublicThemes(): GetPublicThemesParam;
+    /** @returns {GetThemeByIdParam} */
+    static getThemeById(): GetThemeByIdParam;
+    /** @returns {GetThemeForPreviewParam} */
+    static getThemeForPreview(): GetThemeForPreviewParam;
+    /** @returns {GetThemeLastModifiedParam} */
+    static getThemeLastModified(): GetThemeLastModifiedParam;
+    /** @returns {GetThemeLastModifiedV2Param} */
+    static getThemeLastModifiedV2(): GetThemeLastModifiedV2Param;
+    /** @returns {GetThemeLibraryParam} */
+    static getThemeLibrary(): GetThemeLibraryParam;
+    /** @returns {GetThemePreviewByIdV2Param} */
+    static getThemePreviewByIdV2(): GetThemePreviewByIdV2Param;
+    /** @returns {IsUpgradableParam} */
+    static isUpgradable(): IsUpgradableParam;
+    /** @returns {PublishThemeParam} */
+    static publishTheme(): PublishThemeParam;
+    /** @returns {UnarchiveThemeParam} */
+    static unarchiveTheme(): UnarchiveThemeParam;
+    /** @returns {UnpublishThemeParam} */
+    static unpublishTheme(): UnpublishThemeParam;
+    /** @returns {UpdateMultiplePagesParam} */
+    static updateMultiplePages(): UpdateMultiplePagesParam;
+    /** @returns {UpdatePageParam} */
+    static updatePage(): UpdatePageParam;
+    /** @returns {UpdateThemeParam} */
+    static updateTheme(): UpdateThemeParam;
+    /** @returns {UpdateThemeNameV2Param} */
+    static updateThemeNameV2(): UpdateThemeNameV2Param;
+    /** @returns {UpdateThemeV2Param} */
+    static updateThemeV2(): UpdateThemeV2Param;
+    /** @returns {UpgradeApplicationV2Param} */
+    static upgradeApplicationV2(): UpgradeApplicationV2Param;
+    /** @returns {UpgradeThemeParam} */
+    static upgradeTheme(): UpgradeThemeParam;
 }
 declare namespace ThemePlatformApplicationValidator {
     export { AddThemeToApplicationV2Param, AddToThemeLibraryParam, ApplyThemeParam, ApplyThemeV2Param, ArchiveThemeParam, CheckThemeUpgradableV2Param, CreatePageParam, CreateThemeParam, DeletePageParam, DeleteThemeParam, DeleteThemeV2Param, DuplicateThemeV2Param, GetAllPagesParam, GetApplicationThemeByIdV2Param, GetApplicationThemesCountV2Param, GetApplicationThemesV2Param, GetAppliedThemeParam, GetAppliedThemeV2Param, GetDefaultPageDetailsParam, GetFontsParam, GetFontsV2Param, GetPageParam, GetPublicThemesParam, GetThemeByIdParam, GetThemeForPreviewParam, GetThemeLastModifiedParam, GetThemeLastModifiedV2Param, GetThemeLibraryParam, GetThemePreviewByIdV2Param, IsUpgradableParam, PublishThemeParam, UnarchiveThemeParam, UnpublishThemeParam, UpdateMultiplePagesParam, UpdatePageParam, UpdateThemeParam, UpdateThemeNameV2Param, UpdateThemeV2Param, UpgradeApplicationV2Param, UpgradeThemeParam };
@@ -318,18 +318,12 @@ type GetApplicationThemeByIdV2Param = {
      */
     themeId: string;
 };
-type GetApplicationThemesCountV2Param = any;
-type GetApplicationThemesV2Param = any;
-type GetAppliedThemeParam = any;
-type GetAppliedThemeV2Param = any;
 type GetDefaultPageDetailsParam = {
     /**
      * - Value of the page to be retrieved
      */
     pageValue: string;
 };
-type GetFontsParam = any;
-type GetFontsV2Param = any;
 type GetPageParam = {
     /**
      * - ID of the theme to be retrieved
@@ -469,4 +463,10 @@ type UpgradeThemeParam = {
      */
     themeId: string;
 };
+type GetApplicationThemesCountV2Param = any;
+type GetApplicationThemesV2Param = any;
+type GetAppliedThemeParam = any;
+type GetAppliedThemeV2Param = any;
+type GetFontsParam = any;
+type GetFontsV2Param = any;
 import ThemePlatformModel = require("./ThemePlatformModel");

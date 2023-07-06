@@ -18,7 +18,7 @@ const CommonPlatformModel = require("./CommonPlatformModel");
  */
 
 class CommonPlatformValidator {
-  /** @returns {getLocations} */
+  /** @returns {GetLocationsParam} */
   static getLocations() {
     return Joi.object({
       locationType: Joi.string().allow(""),
@@ -26,7 +26,7 @@ class CommonPlatformValidator {
     });
   }
 
-  /** @returns {searchApplication} */
+  /** @returns {SearchApplicationParam} */
   static searchApplication() {
     return Joi.object({
       authorization: Joi.string().allow(""),

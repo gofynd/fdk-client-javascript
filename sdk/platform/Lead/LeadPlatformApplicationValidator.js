@@ -74,21 +74,21 @@ const LeadPlatformModel = require("./LeadPlatformModel");
  */
 
 class LeadPlatformApplicationValidator {
-  /** @returns {closeVideoRoom} */
+  /** @returns {CloseVideoRoomParam} */
   static closeVideoRoom() {
     return Joi.object({
       uniqueName: Joi.string().allow("").required(),
     }).required();
   }
 
-  /** @returns {createCustomForm} */
+  /** @returns {CreateCustomFormParam} */
   static createCustomForm() {
     return Joi.object({
       body: LeadPlatformModel.CreateCustomFormPayload().required(),
     }).required();
   }
 
-  /** @returns {createHistory} */
+  /** @returns {CreateHistoryParam} */
   static createHistory() {
     return Joi.object({
       id: Joi.string().allow("").required(),
@@ -96,7 +96,7 @@ class LeadPlatformApplicationValidator {
     }).required();
   }
 
-  /** @returns {editCustomForm} */
+  /** @returns {EditCustomFormParam} */
   static editCustomForm() {
     return Joi.object({
       slug: Joi.string().allow("").required(),
@@ -104,7 +104,7 @@ class LeadPlatformApplicationValidator {
     }).required();
   }
 
-  /** @returns {editTicket} */
+  /** @returns {EditTicketParam} */
   static editTicket() {
     return Joi.object({
       id: Joi.string().allow("").required(),
@@ -112,33 +112,33 @@ class LeadPlatformApplicationValidator {
     }).required();
   }
 
-  /** @returns {getCustomForm} */
+  /** @returns {GetCustomFormParam} */
   static getCustomForm() {
     return Joi.object({
       slug: Joi.string().allow("").required(),
     }).required();
   }
 
-  /** @returns {getCustomForms} */
+  /** @returns {GetCustomFormsParam} */
   static getCustomForms() {
     return Joi.object({}).required();
   }
 
-  /** @returns {getTicket} */
+  /** @returns {GetTicketParam} */
   static getTicket() {
     return Joi.object({
       id: Joi.string().allow("").required(),
     }).required();
   }
 
-  /** @returns {getTicketHistory} */
+  /** @returns {GetTicketHistoryParam} */
   static getTicketHistory() {
     return Joi.object({
       id: Joi.string().allow("").required(),
     }).required();
   }
 
-  /** @returns {getTickets} */
+  /** @returns {GetTicketsParam} */
   static getTickets() {
     return Joi.object({
       items: Joi.boolean(),
@@ -150,21 +150,21 @@ class LeadPlatformApplicationValidator {
     }).required();
   }
 
-  /** @returns {getTokenForVideoRoom} */
+  /** @returns {GetTokenForVideoRoomParam} */
   static getTokenForVideoRoom() {
     return Joi.object({
       uniqueName: Joi.string().allow("").required(),
     }).required();
   }
 
-  /** @returns {getVideoParticipants} */
+  /** @returns {GetVideoParticipantsParam} */
   static getVideoParticipants() {
     return Joi.object({
       uniqueName: Joi.string().allow("").required(),
     }).required();
   }
 
-  /** @returns {openVideoRoom} */
+  /** @returns {OpenVideoRoomParam} */
   static openVideoRoom() {
     return Joi.object({
       body: LeadPlatformModel.CreateVideoRoomPayload().required(),

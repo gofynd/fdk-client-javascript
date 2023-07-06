@@ -13,14 +13,14 @@ const OrderPlatformModel = require("./OrderPlatformModel");
  */
 
 class OrderPlatformApplicationValidator {
-  /** @returns {getPlatformShipmentReasons} */
+  /** @returns {GetPlatformShipmentReasonsParam} */
   static getPlatformShipmentReasons() {
     return Joi.object({
       action: Joi.string().allow("").required(),
     }).required();
   }
 
-  /** @returns {trackShipmentPlatform} */
+  /** @returns {TrackShipmentPlatformParam} */
   static trackShipmentPlatform() {
     return Joi.object({
       shipmentId: Joi.string().allow("").required(),

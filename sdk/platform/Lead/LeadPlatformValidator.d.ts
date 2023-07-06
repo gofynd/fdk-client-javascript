@@ -54,28 +54,28 @@ export = LeadPlatformValidator;
  * @property {LeadPlatformModel.TicketFeedbackPayload} body
  */
 declare class LeadPlatformValidator {
-    /** @returns {createHistory} */
-    static createHistory(): createHistory;
-    /** @returns {createTicket} */
-    static createTicket(): createTicket;
-    /** @returns {editTicket} */
-    static editTicket(): editTicket;
-    /** @returns {getFeedbacks} */
-    static getFeedbacks(): getFeedbacks;
-    /** @returns {getGeneralConfig} */
-    static getGeneralConfig(): getGeneralConfig;
-    /** @returns {getTicket} */
-    static getTicket(): getTicket;
-    /** @returns {getTicketHistory} */
-    static getTicketHistory(): getTicketHistory;
-    /** @returns {getTickets} */
-    static getTickets(): getTickets;
-    /** @returns {getTokenForVideoRoom} */
-    static getTokenForVideoRoom(): getTokenForVideoRoom;
-    /** @returns {getVideoParticipants} */
-    static getVideoParticipants(): getVideoParticipants;
-    /** @returns {submitFeedback} */
-    static submitFeedback(): submitFeedback;
+    /** @returns {CreateHistoryParam} */
+    static createHistory(): CreateHistoryParam;
+    /** @returns {CreateTicketParam} */
+    static createTicket(): CreateTicketParam;
+    /** @returns {EditTicketParam} */
+    static editTicket(): EditTicketParam;
+    /** @returns {GetFeedbacksParam} */
+    static getFeedbacks(): GetFeedbacksParam;
+    /** @returns {GetGeneralConfigParam} */
+    static getGeneralConfig(): any;
+    /** @returns {GetTicketParam} */
+    static getTicket(): GetTicketParam;
+    /** @returns {GetTicketHistoryParam} */
+    static getTicketHistory(): GetTicketHistoryParam;
+    /** @returns {GetTicketsParam} */
+    static getTickets(): GetTicketsParam;
+    /** @returns {GetTokenForVideoRoomParam} */
+    static getTokenForVideoRoom(): GetTokenForVideoRoomParam;
+    /** @returns {GetVideoParticipantsParam} */
+    static getVideoParticipants(): GetVideoParticipantsParam;
+    /** @returns {SubmitFeedbackParam} */
+    static submitFeedback(): SubmitFeedbackParam;
 }
 declare namespace LeadPlatformValidator {
     export { CreateHistoryParam, CreateTicketParam, EditTicketParam, GetFeedbacksParam, GetGeneralConfigParam, GetTicketParam, GetTicketHistoryParam, GetTicketsParam, GetTokenForVideoRoomParam, GetVideoParticipantsParam, SubmitFeedbackParam };
@@ -103,7 +103,6 @@ type GetFeedbacksParam = {
      */
     id: string;
 };
-type GetGeneralConfigParam = any;
 type GetTicketParam = {
     /**
      * - Tiket ID of the ticket to be fetched
@@ -172,4 +171,5 @@ type SubmitFeedbackParam = {
     id: string;
     body: LeadPlatformModel.TicketFeedbackPayload;
 };
+type GetGeneralConfigParam = any;
 import LeadPlatformModel = require("./LeadPlatformModel");

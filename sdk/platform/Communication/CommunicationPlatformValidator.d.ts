@@ -5,8 +5,8 @@ export = CommunicationPlatformValidator;
  * @property {number} [pageSize]
  */
 declare class CommunicationPlatformValidator {
-    /** @returns {getSystemNotifications} */
-    static getSystemNotifications(): getSystemNotifications;
+    /** @returns {GetSystemNotificationsParam} */
+    static getSystemNotifications(): GetSystemNotificationsParam;
 }
 declare namespace CommunicationPlatformValidator {
     export { GetSystemNotificationsParam };

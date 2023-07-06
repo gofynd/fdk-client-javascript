@@ -20,28 +20,28 @@ const AuditTrailPlatformModel = require("./AuditTrailPlatformModel");
 /** @typedef GetEntityTypesParam */
 
 class AuditTrailPlatformValidator {
-  /** @returns {createAuditLog} */
+  /** @returns {CreateAuditLogParam} */
   static createAuditLog() {
     return Joi.object({
       body: AuditTrailPlatformModel.RequestBodyAuditLog().required(),
     }).required();
   }
 
-  /** @returns {getAuditLog} */
+  /** @returns {GetAuditLogParam} */
   static getAuditLog() {
     return Joi.object({
       id: Joi.string().allow("").required(),
     }).required();
   }
 
-  /** @returns {getAuditLogs} */
+  /** @returns {GetAuditLogsParam} */
   static getAuditLogs() {
     return Joi.object({
       qs: Joi.string().allow("").required(),
     }).required();
   }
 
-  /** @returns {getEntityTypes} */
+  /** @returns {GetEntityTypesParam} */
   static getEntityTypes() {
     return Joi.object({}).required();
   }

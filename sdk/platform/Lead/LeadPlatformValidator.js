@@ -68,7 +68,7 @@ const LeadPlatformModel = require("./LeadPlatformModel");
  */
 
 class LeadPlatformValidator {
-  /** @returns {createHistory} */
+  /** @returns {CreateHistoryParam} */
   static createHistory() {
     return Joi.object({
       id: Joi.string().allow("").required(),
@@ -76,14 +76,14 @@ class LeadPlatformValidator {
     }).required();
   }
 
-  /** @returns {createTicket} */
+  /** @returns {CreateTicketParam} */
   static createTicket() {
     return Joi.object({
       body: LeadPlatformModel.AddTicketPayload().required(),
     }).required();
   }
 
-  /** @returns {editTicket} */
+  /** @returns {EditTicketParam} */
   static editTicket() {
     return Joi.object({
       id: Joi.string().allow("").required(),
@@ -91,33 +91,33 @@ class LeadPlatformValidator {
     }).required();
   }
 
-  /** @returns {getFeedbacks} */
+  /** @returns {GetFeedbacksParam} */
   static getFeedbacks() {
     return Joi.object({
       id: Joi.string().allow("").required(),
     }).required();
   }
 
-  /** @returns {getGeneralConfig} */
+  /** @returns {GetGeneralConfigParam} */
   static getGeneralConfig() {
     return Joi.object({}).required();
   }
 
-  /** @returns {getTicket} */
+  /** @returns {GetTicketParam} */
   static getTicket() {
     return Joi.object({
       id: Joi.string().allow("").required(),
     }).required();
   }
 
-  /** @returns {getTicketHistory} */
+  /** @returns {GetTicketHistoryParam} */
   static getTicketHistory() {
     return Joi.object({
       id: Joi.string().allow("").required(),
     }).required();
   }
 
-  /** @returns {getTickets} */
+  /** @returns {GetTicketsParam} */
   static getTickets() {
     return Joi.object({
       items: Joi.boolean(),
@@ -131,21 +131,21 @@ class LeadPlatformValidator {
     }).required();
   }
 
-  /** @returns {getTokenForVideoRoom} */
+  /** @returns {GetTokenForVideoRoomParam} */
   static getTokenForVideoRoom() {
     return Joi.object({
       uniqueName: Joi.string().allow("").required(),
     }).required();
   }
 
-  /** @returns {getVideoParticipants} */
+  /** @returns {GetVideoParticipantsParam} */
   static getVideoParticipants() {
     return Joi.object({
       uniqueName: Joi.string().allow("").required(),
     }).required();
   }
 
-  /** @returns {submitFeedback} */
+  /** @returns {SubmitFeedbackParam} */
   static submitFeedback() {
     return Joi.object({
       id: Joi.string().allow("").required(),

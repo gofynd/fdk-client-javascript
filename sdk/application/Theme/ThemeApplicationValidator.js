@@ -28,24 +28,24 @@ const ThemeApplicationModel = require("./ThemeApplicationModel");
  */
 
 class ThemeApplicationValidator {
-  /** @returns {getAllPages} */
+  /** @returns {GetAllPagesParam} */
   static getAllPages() {
     return Joi.object({
       themeId: Joi.string().allow("").required(),
     }).required();
   }
 
-  /** @returns {getAppliedTheme} */
+  /** @returns {GetAppliedThemeParam} */
   static getAppliedTheme() {
     return Joi.object({});
   }
 
-  /** @returns {getAppliedThemeV2} */
+  /** @returns {GetAppliedThemeV2Param} */
   static getAppliedThemeV2() {
     return Joi.object({});
   }
 
-  /** @returns {getPage} */
+  /** @returns {GetPageParam} */
   static getPage() {
     return Joi.object({
       themeId: Joi.string().allow("").required(),
@@ -53,14 +53,14 @@ class ThemeApplicationValidator {
     }).required();
   }
 
-  /** @returns {getThemeForPreview} */
+  /** @returns {GetThemeForPreviewParam} */
   static getThemeForPreview() {
     return Joi.object({
       themeId: Joi.string().allow("").required(),
     }).required();
   }
 
-  /** @returns {getThemeForPreviewV2} */
+  /** @returns {GetThemeForPreviewV2Param} */
   static getThemeForPreviewV2() {
     return Joi.object({
       themeId: Joi.string().allow("").required(),

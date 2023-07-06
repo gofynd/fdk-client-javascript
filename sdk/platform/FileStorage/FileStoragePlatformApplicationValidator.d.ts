@@ -26,14 +26,14 @@ export = FileStoragePlatformApplicationValidator;
  * @property {number} [pageNo] - Page no
  */
 declare class FileStoragePlatformApplicationValidator {
-    /** @returns {appCompleteUpload} */
-    static appCompleteUpload(): appCompleteUpload;
-    /** @returns {appCopyFiles} */
-    static appCopyFiles(): appCopyFiles;
-    /** @returns {appStartUpload} */
-    static appStartUpload(): appStartUpload;
-    /** @returns {appbrowse} */
-    static appbrowse(): appbrowse;
+    /** @returns {AppCompleteUploadParam} */
+    static appCompleteUpload(): AppCompleteUploadParam;
+    /** @returns {AppCopyFilesParam} */
+    static appCopyFiles(): AppCopyFilesParam;
+    /** @returns {AppStartUploadParam} */
+    static appStartUpload(): AppStartUploadParam;
+    /** @returns {AppbrowseParam} */
+    static appbrowse(): AppbrowseParam;
 }
 declare namespace FileStoragePlatformApplicationValidator {
     export { AppCompleteUploadParam, AppCopyFilesParam, AppStartUploadParam, AppbrowseParam };

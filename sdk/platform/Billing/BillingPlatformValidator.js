@@ -67,14 +67,14 @@ const BillingPlatformModel = require("./BillingPlatformModel");
  */
 
 class BillingPlatformValidator {
-  /** @returns {activateSubscriptionPlan} */
+  /** @returns {ActivateSubscriptionPlanParam} */
   static activateSubscriptionPlan() {
     return Joi.object({
       body: BillingPlatformModel.SubscriptionActivateReq().required(),
     }).required();
   }
 
-  /** @returns {cancelSubscriptionCharge} */
+  /** @returns {CancelSubscriptionChargeParam} */
   static cancelSubscriptionCharge() {
     return Joi.object({
       extensionId: Joi.string().allow("").required(),
@@ -82,14 +82,14 @@ class BillingPlatformValidator {
     }).required();
   }
 
-  /** @returns {cancelSubscriptionPlan} */
+  /** @returns {CancelSubscriptionPlanParam} */
   static cancelSubscriptionPlan() {
     return Joi.object({
       body: BillingPlatformModel.CancelSubscriptionReq().required(),
     }).required();
   }
 
-  /** @returns {checkCouponValidity} */
+  /** @returns {CheckCouponValidityParam} */
   static checkCouponValidity() {
     return Joi.object({
       plan: Joi.string().allow("").required(),
@@ -97,7 +97,7 @@ class BillingPlatformValidator {
     }).required();
   }
 
-  /** @returns {createOneTimeCharge} */
+  /** @returns {CreateOneTimeChargeParam} */
   static createOneTimeCharge() {
     return Joi.object({
       extensionId: Joi.string().allow("").required(),
@@ -105,7 +105,7 @@ class BillingPlatformValidator {
     }).required();
   }
 
-  /** @returns {createSubscriptionCharge} */
+  /** @returns {CreateSubscriptionChargeParam} */
   static createSubscriptionCharge() {
     return Joi.object({
       extensionId: Joi.string().allow("").required(),
@@ -113,7 +113,7 @@ class BillingPlatformValidator {
     }).required();
   }
 
-  /** @returns {getChargeDetails} */
+  /** @returns {GetChargeDetailsParam} */
   static getChargeDetails() {
     return Joi.object({
       extensionId: Joi.string().allow("").required(),
@@ -121,34 +121,34 @@ class BillingPlatformValidator {
     }).required();
   }
 
-  /** @returns {getCustomerDetail} */
+  /** @returns {GetCustomerDetailParam} */
   static getCustomerDetail() {
     return Joi.object({}).required();
   }
 
-  /** @returns {getFeatureLimitConfig} */
+  /** @returns {GetFeatureLimitConfigParam} */
   static getFeatureLimitConfig() {
     return Joi.object({}).required();
   }
 
-  /** @returns {getInvoiceById} */
+  /** @returns {GetInvoiceByIdParam} */
   static getInvoiceById() {
     return Joi.object({
       invoiceId: Joi.string().allow("").required(),
     }).required();
   }
 
-  /** @returns {getInvoices} */
+  /** @returns {GetInvoicesParam} */
   static getInvoices() {
     return Joi.object({}).required();
   }
 
-  /** @returns {getSubscription} */
+  /** @returns {GetSubscriptionParam} */
   static getSubscription() {
     return Joi.object({}).required();
   }
 
-  /** @returns {getSubscriptionCharge} */
+  /** @returns {GetSubscriptionChargeParam} */
   static getSubscriptionCharge() {
     return Joi.object({
       extensionId: Joi.string().allow("").required(),
@@ -156,7 +156,7 @@ class BillingPlatformValidator {
     }).required();
   }
 
-  /** @returns {upsertCustomerDetail} */
+  /** @returns {UpsertCustomerDetailParam} */
   static upsertCustomerDetail() {
     return Joi.object({
       body: BillingPlatformModel.SubscriptionCustomerCreate().required(),

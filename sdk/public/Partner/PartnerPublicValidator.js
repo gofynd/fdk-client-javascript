@@ -10,12 +10,12 @@ const PartnerPublicModel = require("./PartnerPublicModel");
  */
 
 class PartnerPublicValidator {
-  /** @returns {getOrganizationList} */
+  /** @returns {GetOrganizationListParam} */
   static getOrganizationList() {
     return Joi.object({});
   }
 
-  /** @returns {getPanelExtensionDetails} */
+  /** @returns {GetPanelExtensionDetailsParam} */
   static getPanelExtensionDetails() {
     return Joi.object({
       slug: Joi.string().allow("").required(),

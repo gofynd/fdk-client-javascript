@@ -13,14 +13,14 @@ export = AuditTrailPlatformValidator;
  */
 /** @typedef GetEntityTypesParam */
 declare class AuditTrailPlatformValidator {
-    /** @returns {createAuditLog} */
-    static createAuditLog(): createAuditLog;
-    /** @returns {getAuditLog} */
-    static getAuditLog(): getAuditLog;
-    /** @returns {getAuditLogs} */
-    static getAuditLogs(): getAuditLogs;
-    /** @returns {getEntityTypes} */
-    static getEntityTypes(): getEntityTypes;
+    /** @returns {CreateAuditLogParam} */
+    static createAuditLog(): CreateAuditLogParam;
+    /** @returns {GetAuditLogParam} */
+    static getAuditLog(): GetAuditLogParam;
+    /** @returns {GetAuditLogsParam} */
+    static getAuditLogs(): GetAuditLogsParam;
+    /** @returns {GetEntityTypesParam} */
+    static getEntityTypes(): any;
 }
 declare namespace AuditTrailPlatformValidator {
     export { CreateAuditLogParam, GetAuditLogParam, GetAuditLogsParam, GetEntityTypesParam };

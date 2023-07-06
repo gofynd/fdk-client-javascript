@@ -13,10 +13,10 @@ export = CommonPlatformValidator;
  * @property {string} [query] - Provide application name
  */
 declare class CommonPlatformValidator {
-    /** @returns {getLocations} */
-    static getLocations(): getLocations;
-    /** @returns {searchApplication} */
-    static searchApplication(): searchApplication;
+    /** @returns {GetLocationsParam} */
+    static getLocations(): GetLocationsParam;
+    /** @returns {SearchApplicationParam} */
+    static searchApplication(): SearchApplicationParam;
 }
 declare namespace CommonPlatformValidator {
     export { GetLocationsParam, SearchApplicationParam };

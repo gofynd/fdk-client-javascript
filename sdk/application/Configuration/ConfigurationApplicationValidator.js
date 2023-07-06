@@ -70,12 +70,12 @@ const ConfigurationApplicationModel = require("./ConfigurationApplicationModel")
 /** @typedef RemoveOrderingStoreCookieParam */
 
 class ConfigurationApplicationValidator {
-  /** @returns {getAppCurrencies} */
+  /** @returns {GetAppCurrenciesParam} */
   static getAppCurrencies() {
     return Joi.object({});
   }
 
-  /** @returns {getAppStaffList} */
+  /** @returns {GetAppStaffListParam} */
   static getAppStaffList() {
     return Joi.object({
       pageNo: Joi.number(),
@@ -87,7 +87,7 @@ class ConfigurationApplicationValidator {
     });
   }
 
-  /** @returns {getAppStaffs} */
+  /** @returns {GetAppStaffsParam} */
   static getAppStaffs() {
     return Joi.object({
       orderIncent: Joi.boolean(),
@@ -96,56 +96,56 @@ class ConfigurationApplicationValidator {
     });
   }
 
-  /** @returns {getApplication} */
+  /** @returns {GetApplicationParam} */
   static getApplication() {
     return Joi.object({});
   }
 
-  /** @returns {getBasicDetails} */
+  /** @returns {GetBasicDetailsParam} */
   static getBasicDetails() {
     return Joi.object({});
   }
 
-  /** @returns {getContactInfo} */
+  /** @returns {GetContactInfoParam} */
   static getContactInfo() {
     return Joi.object({});
   }
 
-  /** @returns {getCurrencies} */
+  /** @returns {GetCurrenciesParam} */
   static getCurrencies() {
     return Joi.object({});
   }
 
-  /** @returns {getCurrencyById} */
+  /** @returns {GetCurrencyByIdParam} */
   static getCurrencyById() {
     return Joi.object({
       id: Joi.string().allow("").required(),
     }).required();
   }
 
-  /** @returns {getFeatures} */
+  /** @returns {GetFeaturesParam} */
   static getFeatures() {
     return Joi.object({});
   }
 
-  /** @returns {getIntegrationTokens} */
+  /** @returns {GetIntegrationTokensParam} */
   static getIntegrationTokens() {
     return Joi.object({});
   }
 
-  /** @returns {getLanguages} */
+  /** @returns {GetLanguagesParam} */
   static getLanguages() {
     return Joi.object({});
   }
 
-  /** @returns {getOrderingStoreCookie} */
+  /** @returns {GetOrderingStoreCookieParam} */
   static getOrderingStoreCookie() {
     return Joi.object({
       body: ConfigurationApplicationModel.OrderingStoreSelectRequest().required(),
     }).required();
   }
 
-  /** @returns {getOrderingStores} */
+  /** @returns {GetOrderingStoresParam} */
   static getOrderingStores() {
     return Joi.object({
       pageNo: Joi.number(),
@@ -154,19 +154,19 @@ class ConfigurationApplicationValidator {
     });
   }
 
-  /** @returns {getOwnerInfo} */
+  /** @returns {GetOwnerInfoParam} */
   static getOwnerInfo() {
     return Joi.object({});
   }
 
-  /** @returns {getStoreDetailById} */
+  /** @returns {GetStoreDetailByIdParam} */
   static getStoreDetailById() {
     return Joi.object({
       storeId: Joi.number().required(),
     }).required();
   }
 
-  /** @returns {removeOrderingStoreCookie} */
+  /** @returns {RemoveOrderingStoreCookieParam} */
   static removeOrderingStoreCookie() {
     return Joi.object({});
   }

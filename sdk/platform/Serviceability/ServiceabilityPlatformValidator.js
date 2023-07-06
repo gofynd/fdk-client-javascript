@@ -107,19 +107,19 @@ const ServiceabilityPlatformModel = require("./ServiceabilityPlatformModel");
  */
 
 class ServiceabilityPlatformValidator {
-  /** @returns {createZone} */
+  /** @returns {CreateZoneParam} */
   static createZone() {
     return Joi.object({
       body: ServiceabilityPlatformModel.ZoneRequest().required(),
     }).required();
   }
 
-  /** @returns {getAllStores} */
+  /** @returns {GetAllStoresParam} */
   static getAllStores() {
     return Joi.object({}).required();
   }
 
-  /** @returns {getCompanyStoreView} */
+  /** @returns {GetCompanyStoreViewParam} */
   static getCompanyStoreView() {
     return Joi.object({
       pageNumber: Joi.number(),
@@ -127,7 +127,7 @@ class ServiceabilityPlatformValidator {
     }).required();
   }
 
-  /** @returns {getDpAccount} */
+  /** @returns {GetDpAccountParam} */
   static getDpAccount() {
     return Joi.object({
       pageNumber: Joi.number(),
@@ -138,12 +138,12 @@ class ServiceabilityPlatformValidator {
     }).required();
   }
 
-  /** @returns {getDpCompanyRules} */
+  /** @returns {GetDpCompanyRulesParam} */
   static getDpCompanyRules() {
     return Joi.object({}).required();
   }
 
-  /** @returns {getDpRuleInsert} */
+  /** @returns {GetDpRuleInsertParam} */
   static getDpRuleInsert() {
     return Joi.object({
       pageNumber: Joi.number(),
@@ -151,21 +151,21 @@ class ServiceabilityPlatformValidator {
     }).required();
   }
 
-  /** @returns {getDpRules} */
+  /** @returns {GetDpRulesParam} */
   static getDpRules() {
     return Joi.object({
       ruleUid: Joi.string().allow("").required(),
     }).required();
   }
 
-  /** @returns {getEntityRegionView} */
+  /** @returns {GetEntityRegionViewParam} */
   static getEntityRegionView() {
     return Joi.object({
       body: ServiceabilityPlatformModel.EntityRegionView_Request().required(),
     }).required();
   }
 
-  /** @returns {getListView} */
+  /** @returns {GetListViewParam} */
   static getListView() {
     return Joi.object({
       pageNumber: Joi.number(),
@@ -177,28 +177,28 @@ class ServiceabilityPlatformValidator {
     }).required();
   }
 
-  /** @returns {getOptimalLocations} */
+  /** @returns {GetOptimalLocationsParam} */
   static getOptimalLocations() {
     return Joi.object({
       body: ServiceabilityPlatformModel.ReAssignStoreRequest().required(),
     }).required();
   }
 
-  /** @returns {getStore} */
+  /** @returns {GetStoreParam} */
   static getStore() {
     return Joi.object({
       storeUid: Joi.number().required(),
     }).required();
   }
 
-  /** @returns {getZoneDataView} */
+  /** @returns {GetZoneDataViewParam} */
   static getZoneDataView() {
     return Joi.object({
       zoneId: Joi.string().allow("").required(),
     }).required();
   }
 
-  /** @returns {getZoneListView} */
+  /** @returns {GetZoneListViewParam} */
   static getZoneListView() {
     return Joi.object({
       pageNumber: Joi.number(),
@@ -212,7 +212,7 @@ class ServiceabilityPlatformValidator {
     }).required();
   }
 
-  /** @returns {updateDpRule} */
+  /** @returns {UpdateDpRuleParam} */
   static updateDpRule() {
     return Joi.object({
       ruleUid: Joi.string().allow("").required(),
@@ -220,7 +220,7 @@ class ServiceabilityPlatformValidator {
     }).required();
   }
 
-  /** @returns {updateZoneControllerView} */
+  /** @returns {UpdateZoneControllerViewParam} */
   static updateZoneControllerView() {
     return Joi.object({
       zoneId: Joi.string().allow("").required(),
@@ -228,21 +228,21 @@ class ServiceabilityPlatformValidator {
     }).required();
   }
 
-  /** @returns {upsertDpAccount} */
+  /** @returns {UpsertDpAccountParam} */
   static upsertDpAccount() {
     return Joi.object({
       body: ServiceabilityPlatformModel.CompanyDpAccountRequest().required(),
     }).required();
   }
 
-  /** @returns {upsertDpCompanyRules} */
+  /** @returns {UpsertDpCompanyRulesParam} */
   static upsertDpCompanyRules() {
     return Joi.object({
       body: ServiceabilityPlatformModel.DPCompanyRuleRequest().required(),
     }).required();
   }
 
-  /** @returns {upsertDpRules} */
+  /** @returns {UpsertDpRulesParam} */
   static upsertDpRules() {
     return Joi.object({
       body: ServiceabilityPlatformModel.DpRuleRequest().required(),

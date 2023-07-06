@@ -25,33 +25,33 @@ const LogisticApplicationModel = require("./LogisticApplicationModel");
  */
 
 class LogisticApplicationValidator {
-  /** @returns {getAllCountries} */
+  /** @returns {GetAllCountriesParam} */
   static getAllCountries() {
     return Joi.object({});
   }
 
-  /** @returns {getOptimalLocations} */
+  /** @returns {GetOptimalLocationsParam} */
   static getOptimalLocations() {
     return Joi.object({
       body: LogisticApplicationModel.ReAssignStoreRequest().required(),
     }).required();
   }
 
-  /** @returns {getPincodeCity} */
+  /** @returns {GetPincodeCityParam} */
   static getPincodeCity() {
     return Joi.object({
       pincode: Joi.string().allow("").required(),
     }).required();
   }
 
-  /** @returns {getPincodeZones} */
+  /** @returns {GetPincodeZonesParam} */
   static getPincodeZones() {
     return Joi.object({
       body: LogisticApplicationModel.GetZoneFromPincodeViewRequest().required(),
     }).required();
   }
 
-  /** @returns {getTatProduct} */
+  /** @returns {GetTatProductParam} */
   static getTatProduct() {
     return Joi.object({
       body: LogisticApplicationModel.TATViewRequest().required(),

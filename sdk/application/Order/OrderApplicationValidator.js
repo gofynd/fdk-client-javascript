@@ -99,7 +99,7 @@ const OrderApplicationModel = require("./OrderApplicationModel");
  */
 
 class OrderApplicationValidator {
-  /** @returns {getCustomerDetailsByShipmentId} */
+  /** @returns {GetCustomerDetailsByShipmentIdParam} */
   static getCustomerDetailsByShipmentId() {
     return Joi.object({
       orderId: Joi.string().allow("").required(),
@@ -107,21 +107,21 @@ class OrderApplicationValidator {
     }).required();
   }
 
-  /** @returns {getInvoiceByShipmentId} */
+  /** @returns {GetInvoiceByShipmentIdParam} */
   static getInvoiceByShipmentId() {
     return Joi.object({
       shipmentId: Joi.string().allow("").required(),
     }).required();
   }
 
-  /** @returns {getOrderById} */
+  /** @returns {GetOrderByIdParam} */
   static getOrderById() {
     return Joi.object({
       orderId: Joi.string().allow("").required(),
     }).required();
   }
 
-  /** @returns {getOrders} */
+  /** @returns {GetOrdersParam} */
   static getOrders() {
     return Joi.object({
       status: Joi.number(),
@@ -133,14 +133,14 @@ class OrderApplicationValidator {
     });
   }
 
-  /** @returns {getPosOrderById} */
+  /** @returns {GetPosOrderByIdParam} */
   static getPosOrderById() {
     return Joi.object({
       orderId: Joi.string().allow("").required(),
     }).required();
   }
 
-  /** @returns {getShipmentBagReasons} */
+  /** @returns {GetShipmentBagReasonsParam} */
   static getShipmentBagReasons() {
     return Joi.object({
       shipmentId: Joi.string().allow("").required(),
@@ -148,21 +148,21 @@ class OrderApplicationValidator {
     }).required();
   }
 
-  /** @returns {getShipmentById} */
+  /** @returns {GetShipmentByIdParam} */
   static getShipmentById() {
     return Joi.object({
       shipmentId: Joi.string().allow("").required(),
     }).required();
   }
 
-  /** @returns {getShipmentReasons} */
+  /** @returns {GetShipmentReasonsParam} */
   static getShipmentReasons() {
     return Joi.object({
       shipmentId: Joi.string().allow("").required(),
     }).required();
   }
 
-  /** @returns {sendOtpToShipmentCustomer} */
+  /** @returns {SendOtpToShipmentCustomerParam} */
   static sendOtpToShipmentCustomer() {
     return Joi.object({
       orderId: Joi.string().allow("").required(),
@@ -170,14 +170,14 @@ class OrderApplicationValidator {
     }).required();
   }
 
-  /** @returns {trackShipment} */
+  /** @returns {TrackShipmentParam} */
   static trackShipment() {
     return Joi.object({
       shipmentId: Joi.string().allow("").required(),
     }).required();
   }
 
-  /** @returns {updateShipmentStatus} */
+  /** @returns {UpdateShipmentStatusParam} */
   static updateShipmentStatus() {
     return Joi.object({
       shipmentId: Joi.string().allow("").required(),
@@ -185,7 +185,7 @@ class OrderApplicationValidator {
     }).required();
   }
 
-  /** @returns {verifyOtpShipmentCustomer} */
+  /** @returns {VerifyOtpShipmentCustomerParam} */
   static verifyOtpShipmentCustomer() {
     return Joi.object({
       orderId: Joi.string().allow("").required(),

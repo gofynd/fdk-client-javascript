@@ -26,7 +26,7 @@ const FileStorageApplicationModel = require("./FileStorageApplicationModel");
  */
 
 class FileStorageApplicationValidator {
-  /** @returns {completeUpload} */
+  /** @returns {CompleteUploadParam} */
   static completeUpload() {
     return Joi.object({
       namespace: Joi.string().allow("").required(),
@@ -34,14 +34,14 @@ class FileStorageApplicationValidator {
     }).required();
   }
 
-  /** @returns {signUrls} */
+  /** @returns {SignUrlsParam} */
   static signUrls() {
     return Joi.object({
       body: FileStorageApplicationModel.SignUrlRequest().required(),
     }).required();
   }
 
-  /** @returns {startUpload} */
+  /** @returns {StartUploadParam} */
   static startUpload() {
     return Joi.object({
       namespace: Joi.string().allow("").required(),

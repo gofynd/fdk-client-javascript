@@ -124,133 +124,133 @@ const FinancePlatformModel = require("./FinancePlatformModel");
  */
 
 class FinancePlatformValidator {
-  /** @returns {asCnRefund} */
+  /** @returns {AsCnRefundParam} */
   static asCnRefund() {
     return Joi.object({
       body: FinancePlatformModel.AsCnRefundRequest().required(),
     }).required();
   }
 
-  /** @returns {channelDisplayName} */
+  /** @returns {ChannelDisplayNameParam} */
   static channelDisplayName() {
     return Joi.object({
       filterKey: Joi.string().allow("").required(),
     }).required();
   }
 
-  /** @returns {createSellerCreditNoteConfig} */
+  /** @returns {CreateSellerCreditNoteConfigParam} */
   static createSellerCreditNoteConfig() {
     return Joi.object({
       body: FinancePlatformModel.CreateSellerCreditNoteConfigRequest().required(),
     }).required();
   }
 
-  /** @returns {creditNoteDetails} */
+  /** @returns {CreditNoteDetailsParam} */
   static creditNoteDetails() {
     return Joi.object({
       body: FinancePlatformModel.CreditNoteDetailsRequest().required(),
     }).required();
   }
 
-  /** @returns {creditlineDataplatform} */
+  /** @returns {CreditlineDataplatformParam} */
   static creditlineDataplatform() {
     return Joi.object({
       body: FinancePlatformModel.CreditlineDataPlatformRequest().required(),
     }).required();
   }
 
-  /** @returns {deleteConfig} */
+  /** @returns {DeleteConfigParam} */
   static deleteConfig() {
     return Joi.object({
       body: FinancePlatformModel.DeleteConfigRequest().required(),
     }).required();
   }
 
-  /** @returns {downloadCreditDebitNote} */
+  /** @returns {DownloadCreditDebitNoteParam} */
   static downloadCreditDebitNote() {
     return Joi.object({
       body: FinancePlatformModel.DownloadCreditDebitNoteRequest().required(),
     }).required();
   }
 
-  /** @returns {downloadReport} */
+  /** @returns {DownloadReportParam} */
   static downloadReport() {
     return Joi.object({
       body: FinancePlatformModel.DownloadReport().required(),
     }).required();
   }
 
-  /** @returns {downloadReportCustomerCn} */
+  /** @returns {DownloadReportCustomerCnParam} */
   static downloadReportCustomerCn() {
     return Joi.object({
       body: FinancePlatformModel.DownloadReportCustomerCnRequest().required(),
     }).required();
   }
 
-  /** @returns {generateReport} */
+  /** @returns {GenerateReportParam} */
   static generateReport() {
     return Joi.object({
       body: FinancePlatformModel.GenerateReportRequest().required(),
     }).required();
   }
 
-  /** @returns {generateReportCustomerCn} */
+  /** @returns {GenerateReportCustomerCnParam} */
   static generateReportCustomerCn() {
     return Joi.object({
       body: FinancePlatformModel.GenerateReportCustomerCnRequest().required(),
     }).required();
   }
 
-  /** @returns {getAffiliate} */
+  /** @returns {GetAffiliateParam} */
   static getAffiliate() {
     return Joi.object({
       body: FinancePlatformModel.GetAffiliate().required(),
     }).required();
   }
 
-  /** @returns {getCnConfig} */
+  /** @returns {GetCnConfigParam} */
   static getCnConfig() {
     return Joi.object({
       body: FinancePlatformModel.GetCnConfigRequest().required(),
     }).required();
   }
 
-  /** @returns {getCustomerCreditBalance} */
+  /** @returns {GetCustomerCreditBalanceParam} */
   static getCustomerCreditBalance() {
     return Joi.object({
       body: FinancePlatformModel.GetCustomerCreditBalanceRequest().required(),
     }).required();
   }
 
-  /** @returns {getData} */
+  /** @returns {GetDataParam} */
   static getData() {
     return Joi.object({
       body: FinancePlatformModel.GetEngineRequest().required(),
     }).required();
   }
 
-  /** @returns {getPdfUrlView} */
+  /** @returns {GetPdfUrlViewParam} */
   static getPdfUrlView() {
     return Joi.object({
       body: FinancePlatformModel.GetPdfUrlViewRequest().required(),
     }).required();
   }
 
-  /** @returns {getReason} */
+  /** @returns {GetReasonParam} */
   static getReason() {
     return Joi.object({
       body: FinancePlatformModel.GetReasonRequest().required(),
     }).required();
   }
 
-  /** @returns {getReportList} */
+  /** @returns {GetReportListParam} */
   static getReportList() {
     return Joi.object({
       body: FinancePlatformModel.GetReportListRequest().required(),
     }).required();
   }
 
-  /** @returns {getReportingFilters} */
+  /** @returns {GetReportingFiltersParam} */
   static getReportingFilters() {
     return Joi.object({
       filterKey: Joi.string().allow("").required(),
@@ -258,35 +258,35 @@ class FinancePlatformValidator {
     }).required();
   }
 
-  /** @returns {invoiceListing} */
+  /** @returns {InvoiceListingParam} */
   static invoiceListing() {
     return Joi.object({
       body: FinancePlatformModel.InvoiceListingRequest().required(),
     }).required();
   }
 
-  /** @returns {invoicePDF} */
+  /** @returns {InvoicePDFParam} */
   static invoicePDF() {
     return Joi.object({
       body: FinancePlatformModel.InvoicePdfRequest().required(),
     }).required();
   }
 
-  /** @returns {invoiceType} */
+  /** @returns {InvoiceTypeParam} */
   static invoiceType() {
     return Joi.object({
       body: FinancePlatformModel.InvoiceTypeRequest().required(),
     }).required();
   }
 
-  /** @returns {isCreditlinePlatform} */
+  /** @returns {IsCreditlinePlatformParam} */
   static isCreditlinePlatform() {
     return Joi.object({
       body: FinancePlatformModel.IsCreditlinePlatformRequest().required(),
     }).required();
   }
 
-  /** @returns {paymentProcess} */
+  /** @returns {PaymentProcessParam} */
   static paymentProcess() {
     return Joi.object({
       body: FinancePlatformModel.PaymentProcessRequest().required(),

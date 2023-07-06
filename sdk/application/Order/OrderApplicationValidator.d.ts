@@ -84,30 +84,30 @@ export = OrderApplicationValidator;
  * @property {OrderApplicationModel.VerifyOtp} body
  */
 declare class OrderApplicationValidator {
-    /** @returns {getCustomerDetailsByShipmentId} */
-    static getCustomerDetailsByShipmentId(): getCustomerDetailsByShipmentId;
-    /** @returns {getInvoiceByShipmentId} */
-    static getInvoiceByShipmentId(): getInvoiceByShipmentId;
-    /** @returns {getOrderById} */
-    static getOrderById(): getOrderById;
-    /** @returns {getOrders} */
-    static getOrders(): getOrders;
-    /** @returns {getPosOrderById} */
-    static getPosOrderById(): getPosOrderById;
-    /** @returns {getShipmentBagReasons} */
-    static getShipmentBagReasons(): getShipmentBagReasons;
-    /** @returns {getShipmentById} */
-    static getShipmentById(): getShipmentById;
-    /** @returns {getShipmentReasons} */
-    static getShipmentReasons(): getShipmentReasons;
-    /** @returns {sendOtpToShipmentCustomer} */
-    static sendOtpToShipmentCustomer(): sendOtpToShipmentCustomer;
-    /** @returns {trackShipment} */
-    static trackShipment(): trackShipment;
-    /** @returns {updateShipmentStatus} */
-    static updateShipmentStatus(): updateShipmentStatus;
-    /** @returns {verifyOtpShipmentCustomer} */
-    static verifyOtpShipmentCustomer(): verifyOtpShipmentCustomer;
+    /** @returns {GetCustomerDetailsByShipmentIdParam} */
+    static getCustomerDetailsByShipmentId(): GetCustomerDetailsByShipmentIdParam;
+    /** @returns {GetInvoiceByShipmentIdParam} */
+    static getInvoiceByShipmentId(): GetInvoiceByShipmentIdParam;
+    /** @returns {GetOrderByIdParam} */
+    static getOrderById(): GetOrderByIdParam;
+    /** @returns {GetOrdersParam} */
+    static getOrders(): GetOrdersParam;
+    /** @returns {GetPosOrderByIdParam} */
+    static getPosOrderById(): GetPosOrderByIdParam;
+    /** @returns {GetShipmentBagReasonsParam} */
+    static getShipmentBagReasons(): GetShipmentBagReasonsParam;
+    /** @returns {GetShipmentByIdParam} */
+    static getShipmentById(): GetShipmentByIdParam;
+    /** @returns {GetShipmentReasonsParam} */
+    static getShipmentReasons(): GetShipmentReasonsParam;
+    /** @returns {SendOtpToShipmentCustomerParam} */
+    static sendOtpToShipmentCustomer(): SendOtpToShipmentCustomerParam;
+    /** @returns {TrackShipmentParam} */
+    static trackShipment(): TrackShipmentParam;
+    /** @returns {UpdateShipmentStatusParam} */
+    static updateShipmentStatus(): UpdateShipmentStatusParam;
+    /** @returns {VerifyOtpShipmentCustomerParam} */
+    static verifyOtpShipmentCustomer(): VerifyOtpShipmentCustomerParam;
 }
 declare namespace OrderApplicationValidator {
     export { GetCustomerDetailsByShipmentIdParam, GetInvoiceByShipmentIdParam, GetOrderByIdParam, GetOrdersParam, GetPosOrderByIdParam, GetShipmentBagReasonsParam, GetShipmentByIdParam, GetShipmentReasonsParam, SendOtpToShipmentCustomerParam, TrackShipmentParam, UpdateShipmentStatusParam, VerifyOtpShipmentCustomerParam };

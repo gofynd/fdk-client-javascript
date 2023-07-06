@@ -33,7 +33,7 @@ const FileStoragePlatformModel = require("./FileStoragePlatformModel");
  */
 
 class FileStoragePlatformApplicationValidator {
-  /** @returns {appCompleteUpload} */
+  /** @returns {AppCompleteUploadParam} */
   static appCompleteUpload() {
     return Joi.object({
       namespace: Joi.string().allow("").required(),
@@ -42,7 +42,7 @@ class FileStoragePlatformApplicationValidator {
     }).required();
   }
 
-  /** @returns {appCopyFiles} */
+  /** @returns {AppCopyFilesParam} */
   static appCopyFiles() {
     return Joi.object({
       sync: Joi.boolean(),
@@ -51,7 +51,7 @@ class FileStoragePlatformApplicationValidator {
     }).required();
   }
 
-  /** @returns {appStartUpload} */
+  /** @returns {AppStartUploadParam} */
   static appStartUpload() {
     return Joi.object({
       namespace: Joi.string().allow("").required(),
@@ -60,7 +60,7 @@ class FileStoragePlatformApplicationValidator {
     }).required();
   }
 
-  /** @returns {appbrowse} */
+  /** @returns {AppbrowseParam} */
   static appbrowse() {
     return Joi.object({
       namespace: Joi.string().allow("").required(),

@@ -209,62 +209,62 @@ export = CartApplicationValidator;
  * @property {string} [cardId]
  */
 declare class CartApplicationValidator {
-    /** @returns {addAddress} */
-    static addAddress(): addAddress;
-    /** @returns {addItems} */
-    static addItems(): addItems;
-    /** @returns {applyCoupon} */
-    static applyCoupon(): applyCoupon;
-    /** @returns {applyRewardPoints} */
-    static applyRewardPoints(): applyRewardPoints;
-    /** @returns {checkoutCart} */
-    static checkoutCart(): checkoutCart;
-    /** @returns {checkoutCartV2} */
-    static checkoutCartV2(): checkoutCartV2;
-    /** @returns {deleteCart} */
-    static deleteCart(): deleteCart;
-    /** @returns {getAddressById} */
-    static getAddressById(): getAddressById;
-    /** @returns {getAddresses} */
-    static getAddresses(): getAddresses;
-    /** @returns {getBulkDiscountOffers} */
-    static getBulkDiscountOffers(): getBulkDiscountOffers;
-    /** @returns {getCart} */
-    static getCart(): getCart;
-    /** @returns {getCartLastModified} */
-    static getCartLastModified(): getCartLastModified;
-    /** @returns {getCartShareLink} */
-    static getCartShareLink(): getCartShareLink;
-    /** @returns {getCartSharedItems} */
-    static getCartSharedItems(): getCartSharedItems;
-    /** @returns {getCoupons} */
-    static getCoupons(): getCoupons;
-    /** @returns {getItemCount} */
-    static getItemCount(): getItemCount;
-    /** @returns {getLadderOffers} */
-    static getLadderOffers(): getLadderOffers;
-    /** @returns {getPromotionOffers} */
-    static getPromotionOffers(): getPromotionOffers;
-    /** @returns {getShipments} */
-    static getShipments(): getShipments;
-    /** @returns {removeAddress} */
-    static removeAddress(): removeAddress;
-    /** @returns {removeCoupon} */
-    static removeCoupon(): removeCoupon;
-    /** @returns {selectAddress} */
-    static selectAddress(): selectAddress;
-    /** @returns {selectPaymentMode} */
-    static selectPaymentMode(): selectPaymentMode;
-    /** @returns {updateAddress} */
-    static updateAddress(): updateAddress;
-    /** @returns {updateCart} */
-    static updateCart(): updateCart;
-    /** @returns {updateCartMeta} */
-    static updateCartMeta(): updateCartMeta;
-    /** @returns {updateCartWithSharedItems} */
-    static updateCartWithSharedItems(): updateCartWithSharedItems;
-    /** @returns {validateCouponForPayment} */
-    static validateCouponForPayment(): validateCouponForPayment;
+    /** @returns {AddAddressParam} */
+    static addAddress(): AddAddressParam;
+    /** @returns {AddItemsParam} */
+    static addItems(): AddItemsParam;
+    /** @returns {ApplyCouponParam} */
+    static applyCoupon(): ApplyCouponParam;
+    /** @returns {ApplyRewardPointsParam} */
+    static applyRewardPoints(): ApplyRewardPointsParam;
+    /** @returns {CheckoutCartParam} */
+    static checkoutCart(): CheckoutCartParam;
+    /** @returns {CheckoutCartV2Param} */
+    static checkoutCartV2(): CheckoutCartV2Param;
+    /** @returns {DeleteCartParam} */
+    static deleteCart(): DeleteCartParam;
+    /** @returns {GetAddressByIdParam} */
+    static getAddressById(): GetAddressByIdParam;
+    /** @returns {GetAddressesParam} */
+    static getAddresses(): GetAddressesParam;
+    /** @returns {GetBulkDiscountOffersParam} */
+    static getBulkDiscountOffers(): GetBulkDiscountOffersParam;
+    /** @returns {GetCartParam} */
+    static getCart(): GetCartParam;
+    /** @returns {GetCartLastModifiedParam} */
+    static getCartLastModified(): GetCartLastModifiedParam;
+    /** @returns {GetCartShareLinkParam} */
+    static getCartShareLink(): GetCartShareLinkParam;
+    /** @returns {GetCartSharedItemsParam} */
+    static getCartSharedItems(): GetCartSharedItemsParam;
+    /** @returns {GetCouponsParam} */
+    static getCoupons(): GetCouponsParam;
+    /** @returns {GetItemCountParam} */
+    static getItemCount(): GetItemCountParam;
+    /** @returns {GetLadderOffersParam} */
+    static getLadderOffers(): GetLadderOffersParam;
+    /** @returns {GetPromotionOffersParam} */
+    static getPromotionOffers(): GetPromotionOffersParam;
+    /** @returns {GetShipmentsParam} */
+    static getShipments(): GetShipmentsParam;
+    /** @returns {RemoveAddressParam} */
+    static removeAddress(): RemoveAddressParam;
+    /** @returns {RemoveCouponParam} */
+    static removeCoupon(): RemoveCouponParam;
+    /** @returns {SelectAddressParam} */
+    static selectAddress(): SelectAddressParam;
+    /** @returns {SelectPaymentModeParam} */
+    static selectPaymentMode(): SelectPaymentModeParam;
+    /** @returns {UpdateAddressParam} */
+    static updateAddress(): UpdateAddressParam;
+    /** @returns {UpdateCartParam} */
+    static updateCart(): UpdateCartParam;
+    /** @returns {UpdateCartMetaParam} */
+    static updateCartMeta(): UpdateCartMetaParam;
+    /** @returns {UpdateCartWithSharedItemsParam} */
+    static updateCartWithSharedItems(): UpdateCartWithSharedItemsParam;
+    /** @returns {ValidateCouponForPaymentParam} */
+    static validateCouponForPayment(): ValidateCouponForPaymentParam;
 }
 declare namespace CartApplicationValidator {
     export { AddAddressParam, AddItemsParam, ApplyCouponParam, ApplyRewardPointsParam, CheckoutCartParam, CheckoutCartV2Param, DeleteCartParam, GetAddressByIdParam, GetAddressesParam, GetBulkDiscountOffersParam, GetCartParam, GetCartLastModifiedParam, GetCartShareLinkParam, GetCartSharedItemsParam, GetCouponsParam, GetItemCountParam, GetLadderOffersParam, GetPromotionOffersParam, GetShipmentsParam, RemoveAddressParam, RemoveCouponParam, SelectAddressParam, SelectPaymentModeParam, UpdateAddressParam, UpdateCartParam, UpdateCartMetaParam, UpdateCartWithSharedItemsParam, ValidateCouponForPaymentParam };

@@ -15,7 +15,7 @@ const PartnerPlatformModel = require("./PartnerPlatformModel");
  */
 
 class PartnerPlatformApplicationValidator {
-  /** @returns {addProxyPath} */
+  /** @returns {AddProxyPathParam} */
   static addProxyPath() {
     return Joi.object({
       extensionId: Joi.string().allow("").required(),
@@ -23,7 +23,7 @@ class PartnerPlatformApplicationValidator {
     }).required();
   }
 
-  /** @returns {removeProxyPath} */
+  /** @returns {RemoveProxyPathParam} */
   static removeProxyPath() {
     return Joi.object({
       extensionId: Joi.string().allow("").required(),

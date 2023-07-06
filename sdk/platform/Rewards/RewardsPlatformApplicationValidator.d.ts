@@ -49,30 +49,30 @@ export = RewardsPlatformApplicationValidator;
  * @property {RewardsPlatformModel.AppUser} body
  */
 declare class RewardsPlatformApplicationValidator {
-    /** @returns {getGiveawayById} */
-    static getGiveawayById(): getGiveawayById;
-    /** @returns {getOfferByName} */
-    static getOfferByName(): getOfferByName;
-    /** @returns {getRewardsConfiguration} */
-    static getRewardsConfiguration(): getRewardsConfiguration;
-    /** @returns {getUserDetails} */
-    static getUserDetails(): getUserDetails;
-    /** @returns {getUserPointsHistory} */
-    static getUserPointsHistory(): getUserPointsHistory;
-    /** @returns {saveGiveAway} */
-    static saveGiveAway(): saveGiveAway;
-    /** @returns {setRewardsConfiguration} */
-    static setRewardsConfiguration(): setRewardsConfiguration;
-    /** @returns {showGiveaways} */
-    static showGiveaways(): showGiveaways;
-    /** @returns {showOffers} */
-    static showOffers(): showOffers;
-    /** @returns {updateGiveAway} */
-    static updateGiveAway(): updateGiveAway;
-    /** @returns {updateOfferByName} */
-    static updateOfferByName(): updateOfferByName;
-    /** @returns {updateUserStatus} */
-    static updateUserStatus(): updateUserStatus;
+    /** @returns {GetGiveawayByIdParam} */
+    static getGiveawayById(): GetGiveawayByIdParam;
+    /** @returns {GetOfferByNameParam} */
+    static getOfferByName(): GetOfferByNameParam;
+    /** @returns {GetRewardsConfigurationParam} */
+    static getRewardsConfiguration(): any;
+    /** @returns {GetUserDetailsParam} */
+    static getUserDetails(): GetUserDetailsParam;
+    /** @returns {GetUserPointsHistoryParam} */
+    static getUserPointsHistory(): GetUserPointsHistoryParam;
+    /** @returns {SaveGiveAwayParam} */
+    static saveGiveAway(): SaveGiveAwayParam;
+    /** @returns {SetRewardsConfigurationParam} */
+    static setRewardsConfiguration(): SetRewardsConfigurationParam;
+    /** @returns {ShowGiveawaysParam} */
+    static showGiveaways(): ShowGiveawaysParam;
+    /** @returns {ShowOffersParam} */
+    static showOffers(): any;
+    /** @returns {UpdateGiveAwayParam} */
+    static updateGiveAway(): UpdateGiveAwayParam;
+    /** @returns {UpdateOfferByNameParam} */
+    static updateOfferByName(): UpdateOfferByNameParam;
+    /** @returns {UpdateUserStatusParam} */
+    static updateUserStatus(): UpdateUserStatusParam;
 }
 declare namespace RewardsPlatformApplicationValidator {
     export { GetGiveawayByIdParam, GetOfferByNameParam, GetRewardsConfigurationParam, GetUserDetailsParam, GetUserPointsHistoryParam, SaveGiveAwayParam, SetRewardsConfigurationParam, ShowGiveawaysParam, ShowOffersParam, UpdateGiveAwayParam, UpdateOfferByNameParam, UpdateUserStatusParam };
@@ -89,7 +89,6 @@ type GetOfferByNameParam = {
      */
     name: string;
 };
-type GetRewardsConfigurationParam = any;
 type GetUserDetailsParam = {
     /**
      * - User id
@@ -127,7 +126,6 @@ type ShowGiveawaysParam = {
      */
     pageSize: number;
 };
-type ShowOffersParam = any;
 type UpdateGiveAwayParam = {
     /**
      * - Giveaway ID
@@ -149,4 +147,6 @@ type UpdateUserStatusParam = {
     userId: string;
     body: RewardsPlatformModel.AppUser;
 };
+type GetRewardsConfigurationParam = any;
+type ShowOffersParam = any;
 import RewardsPlatformModel = require("./RewardsPlatformModel");

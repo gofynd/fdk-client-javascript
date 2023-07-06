@@ -311,146 +311,146 @@ export = ContentPlatformApplicationValidator;
  * @property {ContentPlatformModel.Support} body
  */
 declare class ContentPlatformApplicationValidator {
-    /** @returns {addDataLoader} */
-    static addDataLoader(): addDataLoader;
-    /** @returns {addFaq} */
-    static addFaq(): addFaq;
-    /** @returns {addInjectableTag} */
-    static addInjectableTag(): addInjectableTag;
-    /** @returns {addPathRedirectionRules} */
-    static addPathRedirectionRules(): addPathRedirectionRules;
-    /** @returns {createAnnouncement} */
-    static createAnnouncement(): createAnnouncement;
-    /** @returns {createBlog} */
-    static createBlog(): createBlog;
-    /** @returns {createFaqCategory} */
-    static createFaqCategory(): createFaqCategory;
-    /** @returns {createLandingPage} */
-    static createLandingPage(): createLandingPage;
-    /** @returns {createNavigation} */
-    static createNavigation(): createNavigation;
-    /** @returns {createPage} */
-    static createPage(): createPage;
-    /** @returns {createPagePreview} */
-    static createPagePreview(): createPagePreview;
-    /** @returns {createSlideshow} */
-    static createSlideshow(): createSlideshow;
-    /** @returns {deleteAllInjectableTags} */
-    static deleteAllInjectableTags(): deleteAllInjectableTags;
-    /** @returns {deleteAnnouncement} */
-    static deleteAnnouncement(): deleteAnnouncement;
-    /** @returns {deleteBlog} */
-    static deleteBlog(): deleteBlog;
-    /** @returns {deleteDataLoader} */
-    static deleteDataLoader(): deleteDataLoader;
-    /** @returns {deleteFaq} */
-    static deleteFaq(): deleteFaq;
-    /** @returns {deleteFaqCategory} */
-    static deleteFaqCategory(): deleteFaqCategory;
-    /** @returns {deleteLandingPage} */
-    static deleteLandingPage(): deleteLandingPage;
-    /** @returns {deleteNavigation} */
-    static deleteNavigation(): deleteNavigation;
-    /** @returns {deletePage} */
-    static deletePage(): deletePage;
-    /** @returns {deletePathRedirectionRules} */
-    static deletePathRedirectionRules(): deletePathRedirectionRules;
-    /** @returns {deleteSlideshow} */
-    static deleteSlideshow(): deleteSlideshow;
-    /** @returns {editDataLoader} */
-    static editDataLoader(): editDataLoader;
-    /** @returns {editInjectableTag} */
-    static editInjectableTag(): editInjectableTag;
-    /** @returns {generateSEOTitle} */
-    static generateSEOTitle(): generateSEOTitle;
-    /** @returns {getAnnouncementById} */
-    static getAnnouncementById(): getAnnouncementById;
-    /** @returns {getAnnouncementsList} */
-    static getAnnouncementsList(): getAnnouncementsList;
-    /** @returns {getBlogBySlug} */
-    static getBlogBySlug(): getBlogBySlug;
-    /** @returns {getBlogs} */
-    static getBlogs(): getBlogs;
-    /** @returns {getComponentById} */
-    static getComponentById(): getComponentById;
-    /** @returns {getDataLoaders} */
-    static getDataLoaders(): getDataLoaders;
-    /** @returns {getDefaultNavigations} */
-    static getDefaultNavigations(): getDefaultNavigations;
-    /** @returns {getFaqByIdOrSlug} */
-    static getFaqByIdOrSlug(): getFaqByIdOrSlug;
-    /** @returns {getFaqCategories} */
-    static getFaqCategories(): getFaqCategories;
-    /** @returns {getFaqCategoryBySlugOrId} */
-    static getFaqCategoryBySlugOrId(): getFaqCategoryBySlugOrId;
-    /** @returns {getFaqsByCategoryIdOrSlug} */
-    static getFaqsByCategoryIdOrSlug(): getFaqsByCategoryIdOrSlug;
-    /** @returns {getInjectableTags} */
-    static getInjectableTags(): getInjectableTags;
-    /** @returns {getLandingPages} */
-    static getLandingPages(): getLandingPages;
-    /** @returns {getLegalInformation} */
-    static getLegalInformation(): getLegalInformation;
-    /** @returns {getNavigationBySlug} */
-    static getNavigationBySlug(): getNavigationBySlug;
-    /** @returns {getNavigations} */
-    static getNavigations(): getNavigations;
-    /** @returns {getPageBySlug} */
-    static getPageBySlug(): getPageBySlug;
-    /** @returns {getPageMeta} */
-    static getPageMeta(): getPageMeta;
-    /** @returns {getPageSpec} */
-    static getPageSpec(): getPageSpec;
-    /** @returns {getPages} */
-    static getPages(): getPages;
-    /** @returns {getPathRedirectionRule} */
-    static getPathRedirectionRule(): getPathRedirectionRule;
-    /** @returns {getPathRedirectionRules} */
-    static getPathRedirectionRules(): getPathRedirectionRules;
-    /** @returns {getSEOConfiguration} */
-    static getSEOConfiguration(): getSEOConfiguration;
-    /** @returns {getSlideshowBySlug} */
-    static getSlideshowBySlug(): getSlideshowBySlug;
-    /** @returns {getSlideshows} */
-    static getSlideshows(): getSlideshows;
-    /** @returns {getSupportInformation} */
-    static getSupportInformation(): getSupportInformation;
-    /** @returns {removeInjectableTag} */
-    static removeInjectableTag(): removeInjectableTag;
-    /** @returns {resetDataLoader} */
-    static resetDataLoader(): resetDataLoader;
-    /** @returns {selectDataLoader} */
-    static selectDataLoader(): selectDataLoader;
-    /** @returns {updateAnnouncement} */
-    static updateAnnouncement(): updateAnnouncement;
-    /** @returns {updateAnnouncementSchedule} */
-    static updateAnnouncementSchedule(): updateAnnouncementSchedule;
-    /** @returns {updateBlog} */
-    static updateBlog(): updateBlog;
-    /** @returns {updateFaq} */
-    static updateFaq(): updateFaq;
-    /** @returns {updateFaqCategory} */
-    static updateFaqCategory(): updateFaqCategory;
-    /** @returns {updateInjectableTag} */
-    static updateInjectableTag(): updateInjectableTag;
-    /** @returns {updateLandingPage} */
-    static updateLandingPage(): updateLandingPage;
-    /** @returns {updateLegalInformation} */
-    static updateLegalInformation(): updateLegalInformation;
-    /** @returns {updateNavigation} */
-    static updateNavigation(): updateNavigation;
-    /** @returns {updatePage} */
-    static updatePage(): updatePage;
-    /** @returns {updatePagePreview} */
-    static updatePagePreview(): updatePagePreview;
-    /** @returns {updatePathRedirectionRules} */
-    static updatePathRedirectionRules(): updatePathRedirectionRules;
-    /** @returns {updateSEOConfiguration} */
-    static updateSEOConfiguration(): updateSEOConfiguration;
-    /** @returns {updateSlideshow} */
-    static updateSlideshow(): updateSlideshow;
-    /** @returns {updateSupportInformation} */
-    static updateSupportInformation(): updateSupportInformation;
+    /** @returns {AddDataLoaderParam} */
+    static addDataLoader(): AddDataLoaderParam;
+    /** @returns {AddFaqParam} */
+    static addFaq(): AddFaqParam;
+    /** @returns {AddInjectableTagParam} */
+    static addInjectableTag(): AddInjectableTagParam;
+    /** @returns {AddPathRedirectionRulesParam} */
+    static addPathRedirectionRules(): AddPathRedirectionRulesParam;
+    /** @returns {CreateAnnouncementParam} */
+    static createAnnouncement(): CreateAnnouncementParam;
+    /** @returns {CreateBlogParam} */
+    static createBlog(): CreateBlogParam;
+    /** @returns {CreateFaqCategoryParam} */
+    static createFaqCategory(): CreateFaqCategoryParam;
+    /** @returns {CreateLandingPageParam} */
+    static createLandingPage(): CreateLandingPageParam;
+    /** @returns {CreateNavigationParam} */
+    static createNavigation(): CreateNavigationParam;
+    /** @returns {CreatePageParam} */
+    static createPage(): CreatePageParam;
+    /** @returns {CreatePagePreviewParam} */
+    static createPagePreview(): CreatePagePreviewParam;
+    /** @returns {CreateSlideshowParam} */
+    static createSlideshow(): CreateSlideshowParam;
+    /** @returns {DeleteAllInjectableTagsParam} */
+    static deleteAllInjectableTags(): any;
+    /** @returns {DeleteAnnouncementParam} */
+    static deleteAnnouncement(): DeleteAnnouncementParam;
+    /** @returns {DeleteBlogParam} */
+    static deleteBlog(): DeleteBlogParam;
+    /** @returns {DeleteDataLoaderParam} */
+    static deleteDataLoader(): DeleteDataLoaderParam;
+    /** @returns {DeleteFaqParam} */
+    static deleteFaq(): DeleteFaqParam;
+    /** @returns {DeleteFaqCategoryParam} */
+    static deleteFaqCategory(): DeleteFaqCategoryParam;
+    /** @returns {DeleteLandingPageParam} */
+    static deleteLandingPage(): DeleteLandingPageParam;
+    /** @returns {DeleteNavigationParam} */
+    static deleteNavigation(): DeleteNavigationParam;
+    /** @returns {DeletePageParam} */
+    static deletePage(): DeletePageParam;
+    /** @returns {DeletePathRedirectionRulesParam} */
+    static deletePathRedirectionRules(): DeletePathRedirectionRulesParam;
+    /** @returns {DeleteSlideshowParam} */
+    static deleteSlideshow(): DeleteSlideshowParam;
+    /** @returns {EditDataLoaderParam} */
+    static editDataLoader(): EditDataLoaderParam;
+    /** @returns {EditInjectableTagParam} */
+    static editInjectableTag(): EditInjectableTagParam;
+    /** @returns {GenerateSEOTitleParam} */
+    static generateSEOTitle(): GenerateSEOTitleParam;
+    /** @returns {GetAnnouncementByIdParam} */
+    static getAnnouncementById(): GetAnnouncementByIdParam;
+    /** @returns {GetAnnouncementsListParam} */
+    static getAnnouncementsList(): GetAnnouncementsListParam;
+    /** @returns {GetBlogBySlugParam} */
+    static getBlogBySlug(): GetBlogBySlugParam;
+    /** @returns {GetBlogsParam} */
+    static getBlogs(): GetBlogsParam;
+    /** @returns {GetComponentByIdParam} */
+    static getComponentById(): GetComponentByIdParam;
+    /** @returns {GetDataLoadersParam} */
+    static getDataLoaders(): any;
+    /** @returns {GetDefaultNavigationsParam} */
+    static getDefaultNavigations(): any;
+    /** @returns {GetFaqByIdOrSlugParam} */
+    static getFaqByIdOrSlug(): GetFaqByIdOrSlugParam;
+    /** @returns {GetFaqCategoriesParam} */
+    static getFaqCategories(): any;
+    /** @returns {GetFaqCategoryBySlugOrIdParam} */
+    static getFaqCategoryBySlugOrId(): GetFaqCategoryBySlugOrIdParam;
+    /** @returns {GetFaqsByCategoryIdOrSlugParam} */
+    static getFaqsByCategoryIdOrSlug(): GetFaqsByCategoryIdOrSlugParam;
+    /** @returns {GetInjectableTagsParam} */
+    static getInjectableTags(): any;
+    /** @returns {GetLandingPagesParam} */
+    static getLandingPages(): GetLandingPagesParam;
+    /** @returns {GetLegalInformationParam} */
+    static getLegalInformation(): any;
+    /** @returns {GetNavigationBySlugParam} */
+    static getNavigationBySlug(): GetNavigationBySlugParam;
+    /** @returns {GetNavigationsParam} */
+    static getNavigations(): GetNavigationsParam;
+    /** @returns {GetPageBySlugParam} */
+    static getPageBySlug(): GetPageBySlugParam;
+    /** @returns {GetPageMetaParam} */
+    static getPageMeta(): any;
+    /** @returns {GetPageSpecParam} */
+    static getPageSpec(): any;
+    /** @returns {GetPagesParam} */
+    static getPages(): GetPagesParam;
+    /** @returns {GetPathRedirectionRuleParam} */
+    static getPathRedirectionRule(): GetPathRedirectionRuleParam;
+    /** @returns {GetPathRedirectionRulesParam} */
+    static getPathRedirectionRules(): GetPathRedirectionRulesParam;
+    /** @returns {GetSEOConfigurationParam} */
+    static getSEOConfiguration(): any;
+    /** @returns {GetSlideshowBySlugParam} */
+    static getSlideshowBySlug(): GetSlideshowBySlugParam;
+    /** @returns {GetSlideshowsParam} */
+    static getSlideshows(): GetSlideshowsParam;
+    /** @returns {GetSupportInformationParam} */
+    static getSupportInformation(): any;
+    /** @returns {RemoveInjectableTagParam} */
+    static removeInjectableTag(): RemoveInjectableTagParam;
+    /** @returns {ResetDataLoaderParam} */
+    static resetDataLoader(): ResetDataLoaderParam;
+    /** @returns {SelectDataLoaderParam} */
+    static selectDataLoader(): SelectDataLoaderParam;
+    /** @returns {UpdateAnnouncementParam} */
+    static updateAnnouncement(): UpdateAnnouncementParam;
+    /** @returns {UpdateAnnouncementScheduleParam} */
+    static updateAnnouncementSchedule(): UpdateAnnouncementScheduleParam;
+    /** @returns {UpdateBlogParam} */
+    static updateBlog(): UpdateBlogParam;
+    /** @returns {UpdateFaqParam} */
+    static updateFaq(): UpdateFaqParam;
+    /** @returns {UpdateFaqCategoryParam} */
+    static updateFaqCategory(): UpdateFaqCategoryParam;
+    /** @returns {UpdateInjectableTagParam} */
+    static updateInjectableTag(): UpdateInjectableTagParam;
+    /** @returns {UpdateLandingPageParam} */
+    static updateLandingPage(): UpdateLandingPageParam;
+    /** @returns {UpdateLegalInformationParam} */
+    static updateLegalInformation(): UpdateLegalInformationParam;
+    /** @returns {UpdateNavigationParam} */
+    static updateNavigation(): UpdateNavigationParam;
+    /** @returns {UpdatePageParam} */
+    static updatePage(): UpdatePageParam;
+    /** @returns {UpdatePagePreviewParam} */
+    static updatePagePreview(): UpdatePagePreviewParam;
+    /** @returns {UpdatePathRedirectionRulesParam} */
+    static updatePathRedirectionRules(): UpdatePathRedirectionRulesParam;
+    /** @returns {UpdateSEOConfigurationParam} */
+    static updateSEOConfiguration(): UpdateSEOConfigurationParam;
+    /** @returns {UpdateSlideshowParam} */
+    static updateSlideshow(): UpdateSlideshowParam;
+    /** @returns {UpdateSupportInformationParam} */
+    static updateSupportInformation(): UpdateSupportInformationParam;
 }
 declare namespace ContentPlatformApplicationValidator {
     export { AddDataLoaderParam, AddFaqParam, AddInjectableTagParam, AddPathRedirectionRulesParam, CreateAnnouncementParam, CreateBlogParam, CreateFaqCategoryParam, CreateLandingPageParam, CreateNavigationParam, CreatePageParam, CreatePagePreviewParam, CreateSlideshowParam, DeleteAllInjectableTagsParam, DeleteAnnouncementParam, DeleteBlogParam, DeleteDataLoaderParam, DeleteFaqParam, DeleteFaqCategoryParam, DeleteLandingPageParam, DeleteNavigationParam, DeletePageParam, DeletePathRedirectionRulesParam, DeleteSlideshowParam, EditDataLoaderParam, EditInjectableTagParam, GenerateSEOTitleParam, GetAnnouncementByIdParam, GetAnnouncementsListParam, GetBlogBySlugParam, GetBlogsParam, GetComponentByIdParam, GetDataLoadersParam, GetDefaultNavigationsParam, GetFaqByIdOrSlugParam, GetFaqCategoriesParam, GetFaqCategoryBySlugOrIdParam, GetFaqsByCategoryIdOrSlugParam, GetInjectableTagsParam, GetLandingPagesParam, GetLegalInformationParam, GetNavigationBySlugParam, GetNavigationsParam, GetPageBySlugParam, GetPageMetaParam, GetPageSpecParam, GetPagesParam, GetPathRedirectionRuleParam, GetPathRedirectionRulesParam, GetSEOConfigurationParam, GetSlideshowBySlugParam, GetSlideshowsParam, GetSupportInformationParam, RemoveInjectableTagParam, ResetDataLoaderParam, SelectDataLoaderParam, UpdateAnnouncementParam, UpdateAnnouncementScheduleParam, UpdateBlogParam, UpdateFaqParam, UpdateFaqCategoryParam, UpdateInjectableTagParam, UpdateLandingPageParam, UpdateLegalInformationParam, UpdateNavigationParam, UpdatePageParam, UpdatePagePreviewParam, UpdatePathRedirectionRulesParam, UpdateSEOConfigurationParam, UpdateSlideshowParam, UpdateSupportInformationParam };
@@ -495,7 +495,6 @@ type CreatePagePreviewParam = {
 type CreateSlideshowParam = {
     body: ContentPlatformModel.SlideshowRequest;
 };
-type DeleteAllInjectableTagsParam = any;
 type DeleteAnnouncementParam = {
     /**
      * - ID allotted to the announcement.
@@ -627,8 +626,6 @@ type GetComponentByIdParam = {
      */
     slug: string;
 };
-type GetDataLoadersParam = any;
-type GetDefaultNavigationsParam = any;
 type GetFaqByIdOrSlugParam = {
     /**
      * - ID or the slug allotted to an FAQ category.
@@ -637,7 +634,6 @@ type GetFaqByIdOrSlugParam = {
      */
     idOrSlug: string;
 };
-type GetFaqCategoriesParam = any;
 type GetFaqCategoryBySlugOrIdParam = {
     /**
      * - ID or the slug allotted to an FAQ category.
@@ -654,7 +650,6 @@ type GetFaqsByCategoryIdOrSlugParam = {
      */
     idOrSlug: string;
 };
-type GetInjectableTagsParam = any;
 type GetLandingPagesParam = {
     /**
      * - The page number to navigate through the given
@@ -667,7 +662,6 @@ type GetLandingPagesParam = {
      */
     pageSize?: number;
 };
-type GetLegalInformationParam = any;
 type GetNavigationBySlugParam = {
     /**
      * - A short, human-readable, URL-friendly identifier of
@@ -704,8 +698,6 @@ type GetPageBySlugParam = {
      */
     slug: string;
 };
-type GetPageMetaParam = any;
-type GetPageSpecParam = any;
 type GetPagesParam = {
     /**
      * - The page number to navigate through the given
@@ -736,7 +728,6 @@ type GetPathRedirectionRulesParam = {
      */
     pageNo?: number;
 };
-type GetSEOConfigurationParam = any;
 type GetSlideshowBySlugParam = {
     /**
      * - A short, human-readable, URL-friendly identifier of
@@ -766,7 +757,6 @@ type GetSlideshowsParam = {
      */
     pageSize?: number;
 };
-type GetSupportInformationParam = any;
 type RemoveInjectableTagParam = {
     body: ContentPlatformModel.RemoveHandpickedSchema;
 };
@@ -880,4 +870,14 @@ type UpdateSlideshowParam = {
 type UpdateSupportInformationParam = {
     body: ContentPlatformModel.Support;
 };
+type DeleteAllInjectableTagsParam = any;
+type GetDataLoadersParam = any;
+type GetDefaultNavigationsParam = any;
+type GetFaqCategoriesParam = any;
+type GetInjectableTagsParam = any;
+type GetLegalInformationParam = any;
+type GetPageMetaParam = any;
+type GetPageSpecParam = any;
+type GetSEOConfigurationParam = any;
+type GetSupportInformationParam = any;
 import ContentPlatformModel = require("./ContentPlatformModel");

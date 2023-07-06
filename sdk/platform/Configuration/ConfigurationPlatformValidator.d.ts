@@ -107,42 +107,42 @@ export = ConfigurationPlatformValidator;
  * @property {ConfigurationPlatformModel.IntegrationLevel} body
  */
 declare class ConfigurationPlatformValidator {
-    /** @returns {createApplication} */
-    static createApplication(): createApplication;
-    /** @returns {getApplications} */
-    static getApplications(): getApplications;
-    /** @returns {getAvailableOptIns} */
-    static getAvailableOptIns(): getAvailableOptIns;
-    /** @returns {getBrandsByCompany} */
-    static getBrandsByCompany(): getBrandsByCompany;
-    /** @returns {getCompanyByBrands} */
-    static getCompanyByBrands(): getCompanyByBrands;
-    /** @returns {getCurrencies} */
-    static getCurrencies(): getCurrencies;
-    /** @returns {getDomainAvailibility} */
-    static getDomainAvailibility(): getDomainAvailibility;
-    /** @returns {getIntegrationById} */
-    static getIntegrationById(): getIntegrationById;
-    /** @returns {getIntegrationByLevelId} */
-    static getIntegrationByLevelId(): getIntegrationByLevelId;
-    /** @returns {getIntegrationLevelConfig} */
-    static getIntegrationLevelConfig(): getIntegrationLevelConfig;
-    /** @returns {getLevelActiveIntegrations} */
-    static getLevelActiveIntegrations(): getLevelActiveIntegrations;
-    /** @returns {getOtherSellerApplicationById} */
-    static getOtherSellerApplicationById(): getOtherSellerApplicationById;
-    /** @returns {getOtherSellerApplications} */
-    static getOtherSellerApplications(): getOtherSellerApplications;
-    /** @returns {getSelectedOptIns} */
-    static getSelectedOptIns(): getSelectedOptIns;
-    /** @returns {getStoreByBrands} */
-    static getStoreByBrands(): getStoreByBrands;
-    /** @returns {optOutFromApplication} */
-    static optOutFromApplication(): optOutFromApplication;
-    /** @returns {updateLevelIntegration} */
-    static updateLevelIntegration(): updateLevelIntegration;
-    /** @returns {updateLevelUidIntegration} */
-    static updateLevelUidIntegration(): updateLevelUidIntegration;
+    /** @returns {CreateApplicationParam} */
+    static createApplication(): CreateApplicationParam;
+    /** @returns {GetApplicationsParam} */
+    static getApplications(): GetApplicationsParam;
+    /** @returns {GetAvailableOptInsParam} */
+    static getAvailableOptIns(): GetAvailableOptInsParam;
+    /** @returns {GetBrandsByCompanyParam} */
+    static getBrandsByCompany(): GetBrandsByCompanyParam;
+    /** @returns {GetCompanyByBrandsParam} */
+    static getCompanyByBrands(): GetCompanyByBrandsParam;
+    /** @returns {GetCurrenciesParam} */
+    static getCurrencies(): any;
+    /** @returns {GetDomainAvailibilityParam} */
+    static getDomainAvailibility(): GetDomainAvailibilityParam;
+    /** @returns {GetIntegrationByIdParam} */
+    static getIntegrationById(): GetIntegrationByIdParam;
+    /** @returns {GetIntegrationByLevelIdParam} */
+    static getIntegrationByLevelId(): GetIntegrationByLevelIdParam;
+    /** @returns {GetIntegrationLevelConfigParam} */
+    static getIntegrationLevelConfig(): GetIntegrationLevelConfigParam;
+    /** @returns {GetLevelActiveIntegrationsParam} */
+    static getLevelActiveIntegrations(): GetLevelActiveIntegrationsParam;
+    /** @returns {GetOtherSellerApplicationByIdParam} */
+    static getOtherSellerApplicationById(): GetOtherSellerApplicationByIdParam;
+    /** @returns {GetOtherSellerApplicationsParam} */
+    static getOtherSellerApplications(): GetOtherSellerApplicationsParam;
+    /** @returns {GetSelectedOptInsParam} */
+    static getSelectedOptIns(): GetSelectedOptInsParam;
+    /** @returns {GetStoreByBrandsParam} */
+    static getStoreByBrands(): GetStoreByBrandsParam;
+    /** @returns {OptOutFromApplicationParam} */
+    static optOutFromApplication(): OptOutFromApplicationParam;
+    /** @returns {UpdateLevelIntegrationParam} */
+    static updateLevelIntegration(): UpdateLevelIntegrationParam;
+    /** @returns {UpdateLevelUidIntegrationParam} */
+    static updateLevelUidIntegration(): UpdateLevelUidIntegrationParam;
 }
 declare namespace ConfigurationPlatformValidator {
     export { CreateApplicationParam, GetApplicationsParam, GetAvailableOptInsParam, GetBrandsByCompanyParam, GetCompanyByBrandsParam, GetCurrenciesParam, GetDomainAvailibilityParam, GetIntegrationByIdParam, GetIntegrationByLevelIdParam, GetIntegrationLevelConfigParam, GetLevelActiveIntegrationsParam, GetOtherSellerApplicationByIdParam, GetOtherSellerApplicationsParam, GetSelectedOptInsParam, GetStoreByBrandsParam, OptOutFromApplicationParam, UpdateLevelIntegrationParam, UpdateLevelUidIntegrationParam };
@@ -189,7 +189,6 @@ type GetCompanyByBrandsParam = {
     pageSize?: number;
     body: ConfigurationPlatformModel.CompanyByBrandsRequest;
 };
-type GetCurrenciesParam = any;
 type GetDomainAvailibilityParam = {
     body: ConfigurationPlatformModel.DomainSuggestionsRequest;
 };
@@ -336,4 +335,5 @@ type UpdateLevelUidIntegrationParam = {
     uid: number;
     body: ConfigurationPlatformModel.IntegrationLevel;
 };
+type GetCurrenciesParam = any;
 import ConfigurationPlatformModel = require("./ConfigurationPlatformModel");

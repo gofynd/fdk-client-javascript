@@ -71,28 +71,28 @@ const DiscountPlatformModel = require("./DiscountPlatformModel");
  */
 
 class DiscountPlatformValidator {
-  /** @returns {cancelDownloadJob} */
+  /** @returns {CancelDownloadJobParam} */
   static cancelDownloadJob() {
     return Joi.object({
       id: Joi.string().allow("").required(),
     }).required();
   }
 
-  /** @returns {cancelValidationJob} */
+  /** @returns {CancelValidationJobParam} */
   static cancelValidationJob() {
     return Joi.object({
       id: Joi.string().allow("").required(),
     }).required();
   }
 
-  /** @returns {createDiscount} */
+  /** @returns {CreateDiscountParam} */
   static createDiscount() {
     return Joi.object({
       body: DiscountPlatformModel.CreateUpdateDiscount().required(),
     }).required();
   }
 
-  /** @returns {downloadDiscountFile} */
+  /** @returns {DownloadDiscountFileParam} */
   static downloadDiscountFile() {
     return Joi.object({
       type: Joi.string().allow("").required(),
@@ -100,14 +100,14 @@ class DiscountPlatformValidator {
     }).required();
   }
 
-  /** @returns {getDiscount} */
+  /** @returns {GetDiscountParam} */
   static getDiscount() {
     return Joi.object({
       id: Joi.string().allow("").required(),
     }).required();
   }
 
-  /** @returns {getDiscounts} */
+  /** @returns {GetDiscountsParam} */
   static getDiscounts() {
     return Joi.object({
       view: Joi.string().allow(""),
@@ -122,21 +122,21 @@ class DiscountPlatformValidator {
     }).required();
   }
 
-  /** @returns {getDownloadJob} */
+  /** @returns {GetDownloadJobParam} */
   static getDownloadJob() {
     return Joi.object({
       id: Joi.string().allow("").required(),
     }).required();
   }
 
-  /** @returns {getValidationJob} */
+  /** @returns {GetValidationJobParam} */
   static getValidationJob() {
     return Joi.object({
       id: Joi.string().allow("").required(),
     }).required();
   }
 
-  /** @returns {updateDiscount} */
+  /** @returns {UpdateDiscountParam} */
   static updateDiscount() {
     return Joi.object({
       id: Joi.string().allow("").required(),
@@ -144,7 +144,7 @@ class DiscountPlatformValidator {
     }).required();
   }
 
-  /** @returns {upsertDiscountItems} */
+  /** @returns {UpsertDiscountItemsParam} */
   static upsertDiscountItems() {
     return Joi.object({
       id: Joi.string().allow("").required(),
@@ -152,7 +152,7 @@ class DiscountPlatformValidator {
     }).required();
   }
 
-  /** @returns {validateDiscountFile} */
+  /** @returns {ValidateDiscountFileParam} */
   static validateDiscountFile() {
     return Joi.object({
       discount: Joi.string().allow(""),

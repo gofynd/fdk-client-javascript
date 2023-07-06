@@ -18,7 +18,7 @@ const ConfigurationPublicModel = require("./ConfigurationPublicModel");
  */
 
 class ConfigurationPublicValidator {
-  /** @returns {getLocations} */
+  /** @returns {GetLocationsParam} */
   static getLocations() {
     return Joi.object({
       locationType: Joi.string().allow(""),
@@ -26,7 +26,7 @@ class ConfigurationPublicValidator {
     });
   }
 
-  /** @returns {searchApplication} */
+  /** @returns {SearchApplicationParam} */
   static searchApplication() {
     return Joi.object({
       authorization: Joi.string().allow(""),

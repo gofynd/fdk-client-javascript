@@ -10,10 +10,10 @@ export = PartnerPlatformApplicationValidator;
  * @property {string} attachedPath - Attachaed path slug
  */
 declare class PartnerPlatformApplicationValidator {
-    /** @returns {addProxyPath} */
-    static addProxyPath(): addProxyPath;
-    /** @returns {removeProxyPath} */
-    static removeProxyPath(): removeProxyPath;
+    /** @returns {AddProxyPathParam} */
+    static addProxyPath(): AddProxyPathParam;
+    /** @returns {RemoveProxyPathParam} */
+    static removeProxyPath(): RemoveProxyPathParam;
 }
 declare namespace PartnerPlatformApplicationValidator {
     export { AddProxyPathParam, RemoveProxyPathParam };

@@ -9,12 +9,12 @@ export = ThemePlatformValidator;
  */
 /** @typedef GetCompanyLevelThemesParam */
 declare class ThemePlatformValidator {
-    /** @returns {addMarketplaceThemeToCompany} */
-    static addMarketplaceThemeToCompany(): addMarketplaceThemeToCompany;
-    /** @returns {deleteCompanyTheme} */
-    static deleteCompanyTheme(): deleteCompanyTheme;
-    /** @returns {getCompanyLevelThemes} */
-    static getCompanyLevelThemes(): getCompanyLevelThemes;
+    /** @returns {AddMarketplaceThemeToCompanyParam} */
+    static addMarketplaceThemeToCompany(): AddMarketplaceThemeToCompanyParam;
+    /** @returns {DeleteCompanyThemeParam} */
+    static deleteCompanyTheme(): DeleteCompanyThemeParam;
+    /** @returns {GetCompanyLevelThemesParam} */
+    static getCompanyLevelThemes(): any;
 }
 declare namespace ThemePlatformValidator {
     export { AddMarketplaceThemeToCompanyParam, DeleteCompanyThemeParam, GetCompanyLevelThemesParam };

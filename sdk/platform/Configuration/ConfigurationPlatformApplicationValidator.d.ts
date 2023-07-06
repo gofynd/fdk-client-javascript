@@ -108,64 +108,64 @@ export = ConfigurationPlatformApplicationValidator;
  * @property {ConfigurationPlatformModel.OrderingStoreConfig} body
  */
 declare class ConfigurationPlatformApplicationValidator {
-    /** @returns {addDomain} */
-    static addDomain(): addDomain;
-    /** @returns {changeDomainType} */
-    static changeDomainType(): changeDomainType;
-    /** @returns {getAppApiTokens} */
-    static getAppApiTokens(): getAppApiTokens;
-    /** @returns {getAppBasicDetails} */
-    static getAppBasicDetails(): getAppBasicDetails;
-    /** @returns {getAppCompanies} */
-    static getAppCompanies(): getAppCompanies;
-    /** @returns {getAppContactInfo} */
-    static getAppContactInfo(): getAppContactInfo;
-    /** @returns {getAppCurrencyConfig} */
-    static getAppCurrencyConfig(): getAppCurrencyConfig;
-    /** @returns {getAppFeatures} */
-    static getAppFeatures(): getAppFeatures;
-    /** @returns {getAppStores} */
-    static getAppStores(): getAppStores;
-    /** @returns {getAppSupportedCurrency} */
-    static getAppSupportedCurrency(): getAppSupportedCurrency;
-    /** @returns {getApplicationById} */
-    static getApplicationById(): getApplicationById;
-    /** @returns {getBuildConfig} */
-    static getBuildConfig(): getBuildConfig;
-    /** @returns {getDomainStatus} */
-    static getDomainStatus(): getDomainStatus;
-    /** @returns {getDomains} */
-    static getDomains(): getDomains;
-    /** @returns {getInventoryConfig} */
-    static getInventoryConfig(): getInventoryConfig;
-    /** @returns {getOrderingStoresByFilter} */
-    static getOrderingStoresByFilter(): getOrderingStoresByFilter;
-    /** @returns {getPreviousVersions} */
-    static getPreviousVersions(): getPreviousVersions;
-    /** @returns {getStaffOrderingStores} */
-    static getStaffOrderingStores(): getStaffOrderingStores;
-    /** @returns {modifyAppFeatures} */
-    static modifyAppFeatures(): modifyAppFeatures;
-    /** @returns {partiallyUpdateInventoryConfig} */
-    static partiallyUpdateInventoryConfig(): partiallyUpdateInventoryConfig;
-    /** @returns {removeDomainById} */
-    static removeDomainById(): removeDomainById;
-    /** @returns {updateAppApiTokens} */
-    static updateAppApiTokens(): updateAppApiTokens;
-    /** @returns {updateAppBasicDetails} */
-    static updateAppBasicDetails(): updateAppBasicDetails;
-    /** @returns {updateAppContactInfo} */
-    static updateAppContactInfo(): updateAppContactInfo;
-    /** @returns {updateAppCurrencyConfig} */
-    static updateAppCurrencyConfig(): updateAppCurrencyConfig;
-    /** @returns {updateAppFeatures} */
-    static updateAppFeatures(): updateAppFeatures;
-    /** @returns {updateBuildConfig} */
-    static updateBuildConfig(): updateBuildConfig;
-    /** @returns {updateInventoryConfig} */
-    static updateInventoryConfig(): updateInventoryConfig;
-    /** @returns {updateOrderingStoreConfig} */
-    static updateOrderingStoreConfig(): updateOrderingStoreConfig;
+    /** @returns {AddDomainParam} */
+    static addDomain(): AddDomainParam;
+    /** @returns {ChangeDomainTypeParam} */
+    static changeDomainType(): ChangeDomainTypeParam;
+    /** @returns {GetAppApiTokensParam} */
+    static getAppApiTokens(): any;
+    /** @returns {GetAppBasicDetailsParam} */
+    static getAppBasicDetails(): any;
+    /** @returns {GetAppCompaniesParam} */
+    static getAppCompanies(): GetAppCompaniesParam;
+    /** @returns {GetAppContactInfoParam} */
+    static getAppContactInfo(): any;
+    /** @returns {GetAppCurrencyConfigParam} */
+    static getAppCurrencyConfig(): any;
+    /** @returns {GetAppFeaturesParam} */
+    static getAppFeatures(): any;
+    /** @returns {GetAppStoresParam} */
+    static getAppStores(): GetAppStoresParam;
+    /** @returns {GetAppSupportedCurrencyParam} */
+    static getAppSupportedCurrency(): any;
+    /** @returns {GetApplicationByIdParam} */
+    static getApplicationById(): any;
+    /** @returns {GetBuildConfigParam} */
+    static getBuildConfig(): GetBuildConfigParam;
+    /** @returns {GetDomainStatusParam} */
+    static getDomainStatus(): GetDomainStatusParam;
+    /** @returns {GetDomainsParam} */
+    static getDomains(): any;
+    /** @returns {GetInventoryConfigParam} */
+    static getInventoryConfig(): any;
+    /** @returns {GetOrderingStoresByFilterParam} */
+    static getOrderingStoresByFilter(): GetOrderingStoresByFilterParam;
+    /** @returns {GetPreviousVersionsParam} */
+    static getPreviousVersions(): GetPreviousVersionsParam;
+    /** @returns {GetStaffOrderingStoresParam} */
+    static getStaffOrderingStores(): GetStaffOrderingStoresParam;
+    /** @returns {ModifyAppFeaturesParam} */
+    static modifyAppFeatures(): ModifyAppFeaturesParam;
+    /** @returns {PartiallyUpdateInventoryConfigParam} */
+    static partiallyUpdateInventoryConfig(): PartiallyUpdateInventoryConfigParam;
+    /** @returns {RemoveDomainByIdParam} */
+    static removeDomainById(): RemoveDomainByIdParam;
+    /** @returns {UpdateAppApiTokensParam} */
+    static updateAppApiTokens(): UpdateAppApiTokensParam;
+    /** @returns {UpdateAppBasicDetailsParam} */
+    static updateAppBasicDetails(): UpdateAppBasicDetailsParam;
+    /** @returns {UpdateAppContactInfoParam} */
+    static updateAppContactInfo(): UpdateAppContactInfoParam;
+    /** @returns {UpdateAppCurrencyConfigParam} */
+    static updateAppCurrencyConfig(): UpdateAppCurrencyConfigParam;
+    /** @returns {UpdateAppFeaturesParam} */
+    static updateAppFeatures(): UpdateAppFeaturesParam;
+    /** @returns {UpdateBuildConfigParam} */
+    static updateBuildConfig(): UpdateBuildConfigParam;
+    /** @returns {UpdateInventoryConfigParam} */
+    static updateInventoryConfig(): UpdateInventoryConfigParam;
+    /** @returns {UpdateOrderingStoreConfigParam} */
+    static updateOrderingStoreConfig(): UpdateOrderingStoreConfigParam;
 }
 declare namespace ConfigurationPlatformApplicationValidator {
     export { AddDomainParam, ChangeDomainTypeParam, GetAppApiTokensParam, GetAppBasicDetailsParam, GetAppCompaniesParam, GetAppContactInfoParam, GetAppCurrencyConfigParam, GetAppFeaturesParam, GetAppStoresParam, GetAppSupportedCurrencyParam, GetApplicationByIdParam, GetBuildConfigParam, GetDomainStatusParam, GetDomainsParam, GetInventoryConfigParam, GetOrderingStoresByFilterParam, GetPreviousVersionsParam, GetStaffOrderingStoresParam, ModifyAppFeaturesParam, PartiallyUpdateInventoryConfigParam, RemoveDomainByIdParam, UpdateAppApiTokensParam, UpdateAppBasicDetailsParam, UpdateAppContactInfoParam, UpdateAppCurrencyConfigParam, UpdateAppFeaturesParam, UpdateBuildConfigParam, UpdateInventoryConfigParam, UpdateOrderingStoreConfigParam };
@@ -176,8 +176,6 @@ type AddDomainParam = {
 type ChangeDomainTypeParam = {
     body: ConfigurationPlatformModel.UpdateDomainTypeRequest;
 };
-type GetAppApiTokensParam = any;
-type GetAppBasicDetailsParam = any;
 type GetAppCompaniesParam = {
     /**
      * - UID of companies to be fetched
@@ -194,9 +192,6 @@ type GetAppCompaniesParam = {
      */
     pageSize?: number;
 };
-type GetAppContactInfoParam = any;
-type GetAppCurrencyConfigParam = any;
-type GetAppFeaturesParam = any;
 type GetAppStoresParam = {
     /**
      * - The current page number to navigate through the
@@ -209,8 +204,6 @@ type GetAppStoresParam = {
      */
     pageSize?: number;
 };
-type GetAppSupportedCurrencyParam = any;
-type GetApplicationByIdParam = any;
 type GetBuildConfigParam = {
     /**
      * - The device platform for which the mobile
@@ -221,8 +214,6 @@ type GetBuildConfigParam = {
 type GetDomainStatusParam = {
     body: ConfigurationPlatformModel.DomainStatusRequest;
 };
-type GetDomainsParam = any;
-type GetInventoryConfigParam = any;
 type GetOrderingStoresByFilterParam = {
     /**
      * - The page number to navigate through the given
@@ -300,4 +291,13 @@ type UpdateInventoryConfigParam = {
 type UpdateOrderingStoreConfigParam = {
     body: ConfigurationPlatformModel.OrderingStoreConfig;
 };
+type GetAppApiTokensParam = any;
+type GetAppBasicDetailsParam = any;
+type GetAppContactInfoParam = any;
+type GetAppCurrencyConfigParam = any;
+type GetAppFeaturesParam = any;
+type GetAppSupportedCurrencyParam = any;
+type GetApplicationByIdParam = any;
+type GetDomainsParam = any;
+type GetInventoryConfigParam = any;
 import ConfigurationPlatformModel = require("./ConfigurationPlatformModel");

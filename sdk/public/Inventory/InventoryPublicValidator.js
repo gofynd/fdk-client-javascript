@@ -36,7 +36,7 @@ const InventoryPublicModel = require("./InventoryPublicModel");
  */
 
 class InventoryPublicValidator {
-  /** @returns {getApiKey} */
+  /** @returns {GetApiKeyParam} */
   static getApiKey() {
     return Joi.object({
       userName: Joi.string().allow("").required(),
@@ -44,21 +44,21 @@ class InventoryPublicValidator {
     }).required();
   }
 
-  /** @returns {getConfigByApiKey} */
+  /** @returns {GetConfigByApiKeyParam} */
   static getConfigByApiKey() {
     return Joi.object({
       apikey: Joi.string().allow("").required(),
     }).required();
   }
 
-  /** @returns {getJobByCode} */
+  /** @returns {GetJobByCodeParam} */
   static getJobByCode() {
     return Joi.object({
       code: Joi.string().allow("").required(),
     }).required();
   }
 
-  /** @returns {getJobCodesMetrics} */
+  /** @returns {GetJobCodesMetricsParam} */
   static getJobCodesMetrics() {
     return Joi.object({
       dailyJob: Joi.boolean(),
@@ -66,7 +66,7 @@ class InventoryPublicValidator {
     });
   }
 
-  /** @returns {getJobConfigByIntegrationType} */
+  /** @returns {GetJobConfigByIntegrationTypeParam} */
   static getJobConfigByIntegrationType() {
     return Joi.object({
       integrationType: Joi.string().allow("").required(),
@@ -74,7 +74,7 @@ class InventoryPublicValidator {
     }).required();
   }
 
-  /** @returns {saveJobCodesMetrics} */
+  /** @returns {SaveJobCodesMetricsParam} */
   static saveJobCodesMetrics() {
     return Joi.object({
       body: InventoryPublicModel.EmailJobMetrics().required(),

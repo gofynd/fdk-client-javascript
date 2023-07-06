@@ -312,110 +312,110 @@ const CommunicationPlatformModel = require("./CommunicationPlatformModel");
  */
 
 class CommunicationPlatformApplicationValidator {
-  /** @returns {createAudience} */
+  /** @returns {CreateAudienceParam} */
   static createAudience() {
     return Joi.object({
       body: CommunicationPlatformModel.AudienceReq().required(),
     }).required();
   }
 
-  /** @returns {createCampaign} */
+  /** @returns {CreateCampaignParam} */
   static createCampaign() {
     return Joi.object({
       body: CommunicationPlatformModel.CampaignReq().required(),
     }).required();
   }
 
-  /** @returns {createEmailProvider} */
+  /** @returns {CreateEmailProviderParam} */
   static createEmailProvider() {
     return Joi.object({
       body: CommunicationPlatformModel.EmailProviderReq().required(),
     }).required();
   }
 
-  /** @returns {createEmailTemplate} */
+  /** @returns {CreateEmailTemplateParam} */
   static createEmailTemplate() {
     return Joi.object({
       body: CommunicationPlatformModel.EmailTemplateReq().required(),
     }).required();
   }
 
-  /** @returns {createSmsProvider} */
+  /** @returns {CreateSmsProviderParam} */
   static createSmsProvider() {
     return Joi.object({
       body: CommunicationPlatformModel.SmsProviderReq().required(),
     }).required();
   }
 
-  /** @returns {createSmsTemplate} */
+  /** @returns {CreateSmsTemplateParam} */
   static createSmsTemplate() {
     return Joi.object({
       body: CommunicationPlatformModel.SmsTemplateReq().required(),
     }).required();
   }
 
-  /** @returns {createVoiceProvider} */
+  /** @returns {CreateVoiceProviderParam} */
   static createVoiceProvider() {
     return Joi.object({
       body: CommunicationPlatformModel.VoiceProviderReq().required(),
     }).required();
   }
 
-  /** @returns {createVoiceTemplate} */
+  /** @returns {CreateVoiceTemplateParam} */
   static createVoiceTemplate() {
     return Joi.object({
       body: CommunicationPlatformModel.VoiceTemplateReq().required(),
     }).required();
   }
 
-  /** @returns {deleteEmailProviderById} */
+  /** @returns {DeleteEmailProviderByIdParam} */
   static deleteEmailProviderById() {
     return Joi.object({
       id: Joi.string().allow("").required(),
     }).required();
   }
 
-  /** @returns {deleteEmailTemplateById} */
+  /** @returns {DeleteEmailTemplateByIdParam} */
   static deleteEmailTemplateById() {
     return Joi.object({
       id: Joi.string().allow("").required(),
     }).required();
   }
 
-  /** @returns {deleteSmsProviderById} */
+  /** @returns {DeleteSmsProviderByIdParam} */
   static deleteSmsProviderById() {
     return Joi.object({
       id: Joi.string().allow("").required(),
     }).required();
   }
 
-  /** @returns {deleteSmsTemplateById} */
+  /** @returns {DeleteSmsTemplateByIdParam} */
   static deleteSmsTemplateById() {
     return Joi.object({
       id: Joi.string().allow("").required(),
     }).required();
   }
 
-  /** @returns {deleteVoiceTemplateById} */
+  /** @returns {DeleteVoiceTemplateByIdParam} */
   static deleteVoiceTemplateById() {
     return Joi.object({
       id: Joi.string().allow("").required(),
     }).required();
   }
 
-  /** @returns {getAppProviders} */
+  /** @returns {GetAppProvidersParam} */
   static getAppProviders() {
     return Joi.object({}).required();
   }
 
-  /** @returns {getAudienceById} */
+  /** @returns {GetAudienceByIdParam} */
   static getAudienceById() {
     return Joi.object({
       id: Joi.string().allow("").required(),
     }).required();
   }
 
-  /** @returns {getAudiences} */
+  /** @returns {GetAudiencesParam} */
   static getAudiences() {
     return Joi.object({
       pageNo: Joi.number(),
@@ -424,21 +424,21 @@ class CommunicationPlatformApplicationValidator {
     }).required();
   }
 
-  /** @returns {getBigqueryHeaders} */
+  /** @returns {GetBigqueryHeadersParam} */
   static getBigqueryHeaders() {
     return Joi.object({
       body: CommunicationPlatformModel.BigqueryHeadersReq().required(),
     }).required();
   }
 
-  /** @returns {getCampaignById} */
+  /** @returns {GetCampaignByIdParam} */
   static getCampaignById() {
     return Joi.object({
       id: Joi.string().allow("").required(),
     }).required();
   }
 
-  /** @returns {getCampaigns} */
+  /** @returns {GetCampaignsParam} */
   static getCampaigns() {
     return Joi.object({
       pageNo: Joi.number(),
@@ -447,7 +447,7 @@ class CommunicationPlatformApplicationValidator {
     }).required();
   }
 
-  /** @returns {getCommunicationLogs} */
+  /** @returns {GetCommunicationLogsParam} */
   static getCommunicationLogs() {
     return Joi.object({
       pageId: Joi.string().allow(""),
@@ -457,24 +457,24 @@ class CommunicationPlatformApplicationValidator {
     }).required();
   }
 
-  /** @returns {getDefaultEmailProviders} */
+  /** @returns {GetDefaultEmailProvidersParam} */
   static getDefaultEmailProviders() {
     return Joi.object({}).required();
   }
 
-  /** @returns {getDefaultSmsProviders} */
+  /** @returns {GetDefaultSmsProvidersParam} */
   static getDefaultSmsProviders() {
     return Joi.object({}).required();
   }
 
-  /** @returns {getEmailProviderById} */
+  /** @returns {GetEmailProviderByIdParam} */
   static getEmailProviderById() {
     return Joi.object({
       id: Joi.string().allow("").required(),
     }).required();
   }
 
-  /** @returns {getEmailProviders} */
+  /** @returns {GetEmailProvidersParam} */
   static getEmailProviders() {
     return Joi.object({
       pageNo: Joi.number(),
@@ -483,14 +483,14 @@ class CommunicationPlatformApplicationValidator {
     }).required();
   }
 
-  /** @returns {getEmailTemplateById} */
+  /** @returns {GetEmailTemplateByIdParam} */
   static getEmailTemplateById() {
     return Joi.object({
       id: Joi.string().allow("").required(),
     }).required();
   }
 
-  /** @returns {getEmailTemplates} */
+  /** @returns {GetEmailTemplatesParam} */
   static getEmailTemplates() {
     return Joi.object({
       pageNo: Joi.number(),
@@ -499,7 +499,7 @@ class CommunicationPlatformApplicationValidator {
     }).required();
   }
 
-  /** @returns {getEventSubscriptions} */
+  /** @returns {GetEventSubscriptionsParam} */
   static getEventSubscriptions() {
     return Joi.object({
       pageNo: Joi.number(),
@@ -509,12 +509,12 @@ class CommunicationPlatformApplicationValidator {
     }).required();
   }
 
-  /** @returns {getGlobalProviders} */
+  /** @returns {GetGlobalProvidersParam} */
   static getGlobalProviders() {
     return Joi.object({}).required();
   }
 
-  /** @returns {getJobLogs} */
+  /** @returns {GetJobLogsParam} */
   static getJobLogs() {
     return Joi.object({
       pageNo: Joi.number(),
@@ -523,7 +523,7 @@ class CommunicationPlatformApplicationValidator {
     }).required();
   }
 
-  /** @returns {getJobs} */
+  /** @returns {GetJobsParam} */
   static getJobs() {
     return Joi.object({
       pageNo: Joi.number(),
@@ -532,21 +532,21 @@ class CommunicationPlatformApplicationValidator {
     }).required();
   }
 
-  /** @returns {getNSampleRecordsFromCsv} */
+  /** @returns {GetNSampleRecordsFromCsvParam} */
   static getNSampleRecordsFromCsv() {
     return Joi.object({
       body: CommunicationPlatformModel.GetNRecordsCsvReq().required(),
     }).required();
   }
 
-  /** @returns {getSmsProviderById} */
+  /** @returns {GetSmsProviderByIdParam} */
   static getSmsProviderById() {
     return Joi.object({
       id: Joi.string().allow("").required(),
     }).required();
   }
 
-  /** @returns {getSmsProviders} */
+  /** @returns {GetSmsProvidersParam} */
   static getSmsProviders() {
     return Joi.object({
       pageNo: Joi.number(),
@@ -555,14 +555,14 @@ class CommunicationPlatformApplicationValidator {
     }).required();
   }
 
-  /** @returns {getSmsTemplateById} */
+  /** @returns {GetSmsTemplateByIdParam} */
   static getSmsTemplateById() {
     return Joi.object({
       id: Joi.string().allow("").required(),
     }).required();
   }
 
-  /** @returns {getSmsTemplates} */
+  /** @returns {GetSmsTemplatesParam} */
   static getSmsTemplates() {
     return Joi.object({
       pageNo: Joi.number(),
@@ -571,14 +571,14 @@ class CommunicationPlatformApplicationValidator {
     }).required();
   }
 
-  /** @returns {getStatsOfCampaignById} */
+  /** @returns {GetStatsOfCampaignByIdParam} */
   static getStatsOfCampaignById() {
     return Joi.object({
       id: Joi.string().allow("").required(),
     }).required();
   }
 
-  /** @returns {getSubscribedEmailTemplates} */
+  /** @returns {GetSubscribedEmailTemplatesParam} */
   static getSubscribedEmailTemplates() {
     return Joi.object({
       pageNo: Joi.number(),
@@ -586,7 +586,7 @@ class CommunicationPlatformApplicationValidator {
     }).required();
   }
 
-  /** @returns {getSubscribedSmsTemplates} */
+  /** @returns {GetSubscribedSmsTemplatesParam} */
   static getSubscribedSmsTemplates() {
     return Joi.object({
       pageNo: Joi.number(),
@@ -594,17 +594,17 @@ class CommunicationPlatformApplicationValidator {
     }).required();
   }
 
-  /** @returns {getSystemEmailTemplates} */
+  /** @returns {GetSystemEmailTemplatesParam} */
   static getSystemEmailTemplates() {
     return Joi.object({}).required();
   }
 
-  /** @returns {getSystemSmsTemplates} */
+  /** @returns {GetSystemSmsTemplatesParam} */
   static getSystemSmsTemplates() {
     return Joi.object({}).required();
   }
 
-  /** @returns {getSystemVoiceTemplates} */
+  /** @returns {GetSystemVoiceTemplatesParam} */
   static getSystemVoiceTemplates() {
     return Joi.object({
       pageNo: Joi.number(),
@@ -613,14 +613,14 @@ class CommunicationPlatformApplicationValidator {
     }).required();
   }
 
-  /** @returns {getVoiceProviderById} */
+  /** @returns {GetVoiceProviderByIdParam} */
   static getVoiceProviderById() {
     return Joi.object({
       id: Joi.string().allow("").required(),
     }).required();
   }
 
-  /** @returns {getVoiceProviders} */
+  /** @returns {GetVoiceProvidersParam} */
   static getVoiceProviders() {
     return Joi.object({
       pageNo: Joi.number(),
@@ -629,14 +629,14 @@ class CommunicationPlatformApplicationValidator {
     }).required();
   }
 
-  /** @returns {getVoiceTemplateById} */
+  /** @returns {GetVoiceTemplateByIdParam} */
   static getVoiceTemplateById() {
     return Joi.object({
       id: Joi.string().allow("").required(),
     }).required();
   }
 
-  /** @returns {getVoiceTemplates} */
+  /** @returns {GetVoiceTemplatesParam} */
   static getVoiceTemplates() {
     return Joi.object({
       pageNo: Joi.number(),
@@ -645,42 +645,42 @@ class CommunicationPlatformApplicationValidator {
     }).required();
   }
 
-  /** @returns {sendCommunicationAsynchronously} */
+  /** @returns {SendCommunicationAsynchronouslyParam} */
   static sendCommunicationAsynchronously() {
     return Joi.object({
       body: CommunicationPlatformModel.EngineRequest().required(),
     }).required();
   }
 
-  /** @returns {sendCommunicationSynchronously} */
+  /** @returns {SendCommunicationSynchronouslyParam} */
   static sendCommunicationSynchronously() {
     return Joi.object({
       body: CommunicationPlatformModel.EngineRequest().required(),
     }).required();
   }
 
-  /** @returns {sendOtp} */
+  /** @returns {SendOtpParam} */
   static sendOtp() {
     return Joi.object({
       body: CommunicationPlatformModel.SendOtpCommsReq().required(),
     }).required();
   }
 
-  /** @returns {triggerCampaignJob} */
+  /** @returns {TriggerCampaignJobParam} */
   static triggerCampaignJob() {
     return Joi.object({
       body: CommunicationPlatformModel.TriggerJobRequest().required(),
     }).required();
   }
 
-  /** @returns {updateAppProviders} */
+  /** @returns {UpdateAppProvidersParam} */
   static updateAppProviders() {
     return Joi.object({
       body: CommunicationPlatformModel.AppProviderReq().required(),
     }).required();
   }
 
-  /** @returns {updateAudienceById} */
+  /** @returns {UpdateAudienceByIdParam} */
   static updateAudienceById() {
     return Joi.object({
       id: Joi.string().allow("").required(),
@@ -688,7 +688,7 @@ class CommunicationPlatformApplicationValidator {
     }).required();
   }
 
-  /** @returns {updateCampaignById} */
+  /** @returns {UpdateCampaignByIdParam} */
   static updateCampaignById() {
     return Joi.object({
       id: Joi.string().allow("").required(),
@@ -696,7 +696,7 @@ class CommunicationPlatformApplicationValidator {
     }).required();
   }
 
-  /** @returns {updateEmailProviderById} */
+  /** @returns {UpdateEmailProviderByIdParam} */
   static updateEmailProviderById() {
     return Joi.object({
       id: Joi.string().allow("").required(),
@@ -704,7 +704,7 @@ class CommunicationPlatformApplicationValidator {
     }).required();
   }
 
-  /** @returns {updateEmailTemplateById} */
+  /** @returns {UpdateEmailTemplateByIdParam} */
   static updateEmailTemplateById() {
     return Joi.object({
       id: Joi.string().allow("").required(),
@@ -712,7 +712,7 @@ class CommunicationPlatformApplicationValidator {
     }).required();
   }
 
-  /** @returns {updateSmsProviderById} */
+  /** @returns {UpdateSmsProviderByIdParam} */
   static updateSmsProviderById() {
     return Joi.object({
       id: Joi.string().allow("").required(),
@@ -720,7 +720,7 @@ class CommunicationPlatformApplicationValidator {
     }).required();
   }
 
-  /** @returns {updateSmsTemplateById} */
+  /** @returns {UpdateSmsTemplateByIdParam} */
   static updateSmsTemplateById() {
     return Joi.object({
       id: Joi.string().allow("").required(),
@@ -728,7 +728,7 @@ class CommunicationPlatformApplicationValidator {
     }).required();
   }
 
-  /** @returns {updateVoiceTemplateById} */
+  /** @returns {UpdateVoiceTemplateByIdParam} */
   static updateVoiceTemplateById() {
     return Joi.object({
       id: Joi.string().allow("").required(),
@@ -736,7 +736,7 @@ class CommunicationPlatformApplicationValidator {
     }).required();
   }
 
-  /** @returns {verfiyOtp} */
+  /** @returns {VerfiyOtpParam} */
   static verfiyOtp() {
     return Joi.object({
       body: CommunicationPlatformModel.VerifyOtpCommsReq().required(),

@@ -425,160 +425,160 @@ export = CatalogPlatformValidator;
  *   default value is standard.
  */
 declare class CatalogPlatformValidator {
-    /** @returns {addInventory} */
-    static addInventory(): addInventory;
-    /** @returns {allSizes} */
-    static allSizes(): allSizes;
-    /** @returns {bulkHsnCode} */
-    static bulkHsnCode(): bulkHsnCode;
-    /** @returns {createBulkInventory} */
-    static createBulkInventory(): createBulkInventory;
-    /** @returns {createBulkInventoryJob} */
-    static createBulkInventoryJob(): createBulkInventoryJob;
-    /** @returns {createBulkProductUploadJob} */
-    static createBulkProductUploadJob(): createBulkProductUploadJob;
-    /** @returns {createCategories} */
-    static createCategories(): createCategories;
-    /** @returns {createDepartments} */
-    static createDepartments(): createDepartments;
-    /** @returns {createInventoryExport} */
-    static createInventoryExport(): createInventoryExport;
-    /** @returns {createInventoryExportJob} */
-    static createInventoryExportJob(): createInventoryExportJob;
-    /** @returns {createMarketplaceOptin} */
-    static createMarketplaceOptin(): createMarketplaceOptin;
-    /** @returns {createProduct} */
-    static createProduct(): createProduct;
-    /** @returns {createProductAssetsInBulk} */
-    static createProductAssetsInBulk(): createProductAssetsInBulk;
-    /** @returns {createProductBundle} */
-    static createProductBundle(): createProductBundle;
-    /** @returns {createProductExportJob} */
-    static createProductExportJob(): createProductExportJob;
-    /** @returns {createProductsInBulk} */
-    static createProductsInBulk(): createProductsInBulk;
-    /** @returns {createSizeGuide} */
-    static createSizeGuide(): createSizeGuide;
-    /** @returns {deleteBulkInventoryJob} */
-    static deleteBulkInventoryJob(): deleteBulkInventoryJob;
-    /** @returns {deleteInventory} */
-    static deleteInventory(): deleteInventory;
-    /** @returns {deleteProduct} */
-    static deleteProduct(): deleteProduct;
-    /** @returns {deleteProductBulkJob} */
-    static deleteProductBulkJob(): deleteProductBulkJob;
-    /** @returns {deleteRealtimeInventory} */
-    static deleteRealtimeInventory(): deleteRealtimeInventory;
-    /** @returns {deleteSize} */
-    static deleteSize(): deleteSize;
-    /** @returns {downloadInventoryTemplateView} */
-    static downloadInventoryTemplateView(): downloadInventoryTemplateView;
-    /** @returns {downloadProductTemplateViews} */
-    static downloadProductTemplateViews(): downloadProductTemplateViews;
-    /** @returns {editProduct} */
-    static editProduct(): editProduct;
-    /** @returns {exportInventoryConfig} */
-    static exportInventoryConfig(): exportInventoryConfig;
-    /** @returns {getAllProductHsnCodes} */
-    static getAllProductHsnCodes(): getAllProductHsnCodes;
-    /** @returns {getCategoryData} */
-    static getCategoryData(): getCategoryData;
-    /** @returns {getCompanyBrandDetail} */
-    static getCompanyBrandDetail(): getCompanyBrandDetail;
-    /** @returns {getCompanyDetail} */
-    static getCompanyDetail(): getCompanyDetail;
-    /** @returns {getCompanyMetrics} */
-    static getCompanyMetrics(): getCompanyMetrics;
-    /** @returns {getDepartmentData} */
-    static getDepartmentData(): getDepartmentData;
-    /** @returns {getGenderAttribute} */
-    static getGenderAttribute(): getGenderAttribute;
-    /** @returns {getHsnCode} */
-    static getHsnCode(): getHsnCode;
-    /** @returns {getInventories} */
-    static getInventories(): getInventories;
-    /** @returns {getInventoryBulkUploadHistory} */
-    static getInventoryBulkUploadHistory(): getInventoryBulkUploadHistory;
-    /** @returns {getInventoryBySize} */
-    static getInventoryBySize(): getInventoryBySize;
-    /** @returns {getInventoryBySizeIdentifier} */
-    static getInventoryBySizeIdentifier(): getInventoryBySizeIdentifier;
-    /** @returns {getInventoryExport} */
-    static getInventoryExport(): getInventoryExport;
-    /** @returns {getMarketplaceOptinDetail} */
-    static getMarketplaceOptinDetail(): getMarketplaceOptinDetail;
-    /** @returns {getOptimalLocations} */
-    static getOptimalLocations(): getOptimalLocations;
-    /** @returns {getProduct} */
-    static getProduct(): getProduct;
-    /** @returns {getProductAssetsInBulk} */
-    static getProductAssetsInBulk(): getProductAssetsInBulk;
-    /** @returns {getProductAttributes} */
-    static getProductAttributes(): getProductAttributes;
-    /** @returns {getProductBulkUploadHistory} */
-    static getProductBulkUploadHistory(): getProductBulkUploadHistory;
-    /** @returns {getProductBundle} */
-    static getProductBundle(): getProductBundle;
-    /** @returns {getProductBundleDetail} */
-    static getProductBundleDetail(): getProductBundleDetail;
-    /** @returns {getProductExportJobs} */
-    static getProductExportJobs(): getProductExportJobs;
-    /** @returns {getProductSize} */
-    static getProductSize(): getProductSize;
-    /** @returns {getProductTags} */
-    static getProductTags(): getProductTags;
-    /** @returns {getProductValidation} */
-    static getProductValidation(): getProductValidation;
-    /** @returns {getProducts} */
-    static getProducts(): getProducts;
-    /** @returns {getSellerInsights} */
-    static getSellerInsights(): getSellerInsights;
-    /** @returns {getSingleProductHSNCode} */
-    static getSingleProductHSNCode(): getSingleProductHSNCode;
-    /** @returns {getSizeGuide} */
-    static getSizeGuide(): getSizeGuide;
-    /** @returns {getSizeGuides} */
-    static getSizeGuides(): getSizeGuides;
-    /** @returns {getStoreDetail} */
-    static getStoreDetail(): getStoreDetail;
-    /** @returns {getVariantsOfProducts} */
-    static getVariantsOfProducts(): getVariantsOfProducts;
-    /** @returns {listCategories} */
-    static listCategories(): listCategories;
-    /** @returns {listDepartmentsData} */
-    static listDepartmentsData(): listDepartmentsData;
-    /** @returns {listHSNCodes} */
-    static listHSNCodes(): listHSNCodes;
-    /** @returns {listInventoryExport} */
-    static listInventoryExport(): listInventoryExport;
-    /** @returns {listProductTemplate} */
-    static listProductTemplate(): listProductTemplate;
-    /** @returns {listProductTemplateCategories} */
-    static listProductTemplateCategories(): listProductTemplateCategories;
-    /** @returns {listProductTemplateExportDetails} */
-    static listProductTemplateExportDetails(): listProductTemplateExportDetails;
-    /** @returns {listTemplateBrandTypeValues} */
-    static listTemplateBrandTypeValues(): listTemplateBrandTypeValues;
-    /** @returns {updateCategory} */
-    static updateCategory(): updateCategory;
-    /** @returns {updateDepartment} */
-    static updateDepartment(): updateDepartment;
-    /** @returns {updateHsnCode} */
-    static updateHsnCode(): updateHsnCode;
-    /** @returns {updateInventories} */
-    static updateInventories(): updateInventories;
-    /** @returns {updateProductBundle} */
-    static updateProductBundle(): updateProductBundle;
-    /** @returns {updateRealtimeInventory} */
-    static updateRealtimeInventory(): updateRealtimeInventory;
-    /** @returns {updateSizeGuide} */
-    static updateSizeGuide(): updateSizeGuide;
-    /** @returns {uploadBulkProducts} */
-    static uploadBulkProducts(): uploadBulkProducts;
-    /** @returns {validateProductTemplate} */
-    static validateProductTemplate(): validateProductTemplate;
-    /** @returns {validateProductTemplateSchema} */
-    static validateProductTemplateSchema(): validateProductTemplateSchema;
+    /** @returns {AddInventoryParam} */
+    static addInventory(): AddInventoryParam;
+    /** @returns {AllSizesParam} */
+    static allSizes(): AllSizesParam;
+    /** @returns {BulkHsnCodeParam} */
+    static bulkHsnCode(): BulkHsnCodeParam;
+    /** @returns {CreateBulkInventoryParam} */
+    static createBulkInventory(): CreateBulkInventoryParam;
+    /** @returns {CreateBulkInventoryJobParam} */
+    static createBulkInventoryJob(): CreateBulkInventoryJobParam;
+    /** @returns {CreateBulkProductUploadJobParam} */
+    static createBulkProductUploadJob(): CreateBulkProductUploadJobParam;
+    /** @returns {CreateCategoriesParam} */
+    static createCategories(): CreateCategoriesParam;
+    /** @returns {CreateDepartmentsParam} */
+    static createDepartments(): CreateDepartmentsParam;
+    /** @returns {CreateInventoryExportParam} */
+    static createInventoryExport(): CreateInventoryExportParam;
+    /** @returns {CreateInventoryExportJobParam} */
+    static createInventoryExportJob(): CreateInventoryExportJobParam;
+    /** @returns {CreateMarketplaceOptinParam} */
+    static createMarketplaceOptin(): CreateMarketplaceOptinParam;
+    /** @returns {CreateProductParam} */
+    static createProduct(): CreateProductParam;
+    /** @returns {CreateProductAssetsInBulkParam} */
+    static createProductAssetsInBulk(): CreateProductAssetsInBulkParam;
+    /** @returns {CreateProductBundleParam} */
+    static createProductBundle(): CreateProductBundleParam;
+    /** @returns {CreateProductExportJobParam} */
+    static createProductExportJob(): CreateProductExportJobParam;
+    /** @returns {CreateProductsInBulkParam} */
+    static createProductsInBulk(): CreateProductsInBulkParam;
+    /** @returns {CreateSizeGuideParam} */
+    static createSizeGuide(): CreateSizeGuideParam;
+    /** @returns {DeleteBulkInventoryJobParam} */
+    static deleteBulkInventoryJob(): DeleteBulkInventoryJobParam;
+    /** @returns {DeleteInventoryParam} */
+    static deleteInventory(): DeleteInventoryParam;
+    /** @returns {DeleteProductParam} */
+    static deleteProduct(): DeleteProductParam;
+    /** @returns {DeleteProductBulkJobParam} */
+    static deleteProductBulkJob(): DeleteProductBulkJobParam;
+    /** @returns {DeleteRealtimeInventoryParam} */
+    static deleteRealtimeInventory(): DeleteRealtimeInventoryParam;
+    /** @returns {DeleteSizeParam} */
+    static deleteSize(): DeleteSizeParam;
+    /** @returns {DownloadInventoryTemplateViewParam} */
+    static downloadInventoryTemplateView(): DownloadInventoryTemplateViewParam;
+    /** @returns {DownloadProductTemplateViewsParam} */
+    static downloadProductTemplateViews(): DownloadProductTemplateViewsParam;
+    /** @returns {EditProductParam} */
+    static editProduct(): EditProductParam;
+    /** @returns {ExportInventoryConfigParam} */
+    static exportInventoryConfig(): ExportInventoryConfigParam;
+    /** @returns {GetAllProductHsnCodesParam} */
+    static getAllProductHsnCodes(): GetAllProductHsnCodesParam;
+    /** @returns {GetCategoryDataParam} */
+    static getCategoryData(): GetCategoryDataParam;
+    /** @returns {GetCompanyBrandDetailParam} */
+    static getCompanyBrandDetail(): GetCompanyBrandDetailParam;
+    /** @returns {GetCompanyDetailParam} */
+    static getCompanyDetail(): any;
+    /** @returns {GetCompanyMetricsParam} */
+    static getCompanyMetrics(): any;
+    /** @returns {GetDepartmentDataParam} */
+    static getDepartmentData(): GetDepartmentDataParam;
+    /** @returns {GetGenderAttributeParam} */
+    static getGenderAttribute(): GetGenderAttributeParam;
+    /** @returns {GetHsnCodeParam} */
+    static getHsnCode(): GetHsnCodeParam;
+    /** @returns {GetInventoriesParam} */
+    static getInventories(): GetInventoriesParam;
+    /** @returns {GetInventoryBulkUploadHistoryParam} */
+    static getInventoryBulkUploadHistory(): GetInventoryBulkUploadHistoryParam;
+    /** @returns {GetInventoryBySizeParam} */
+    static getInventoryBySize(): GetInventoryBySizeParam;
+    /** @returns {GetInventoryBySizeIdentifierParam} */
+    static getInventoryBySizeIdentifier(): GetInventoryBySizeIdentifierParam;
+    /** @returns {GetInventoryExportParam} */
+    static getInventoryExport(): any;
+    /** @returns {GetMarketplaceOptinDetailParam} */
+    static getMarketplaceOptinDetail(): any;
+    /** @returns {GetOptimalLocationsParam} */
+    static getOptimalLocations(): GetOptimalLocationsParam;
+    /** @returns {GetProductParam} */
+    static getProduct(): GetProductParam;
+    /** @returns {GetProductAssetsInBulkParam} */
+    static getProductAssetsInBulk(): GetProductAssetsInBulkParam;
+    /** @returns {GetProductAttributesParam} */
+    static getProductAttributes(): GetProductAttributesParam;
+    /** @returns {GetProductBulkUploadHistoryParam} */
+    static getProductBulkUploadHistory(): GetProductBulkUploadHistoryParam;
+    /** @returns {GetProductBundleParam} */
+    static getProductBundle(): GetProductBundleParam;
+    /** @returns {GetProductBundleDetailParam} */
+    static getProductBundleDetail(): GetProductBundleDetailParam;
+    /** @returns {GetProductExportJobsParam} */
+    static getProductExportJobs(): GetProductExportJobsParam;
+    /** @returns {GetProductSizeParam} */
+    static getProductSize(): GetProductSizeParam;
+    /** @returns {GetProductTagsParam} */
+    static getProductTags(): any;
+    /** @returns {GetProductValidationParam} */
+    static getProductValidation(): any;
+    /** @returns {GetProductsParam} */
+    static getProducts(): GetProductsParam;
+    /** @returns {GetSellerInsightsParam} */
+    static getSellerInsights(): GetSellerInsightsParam;
+    /** @returns {GetSingleProductHSNCodeParam} */
+    static getSingleProductHSNCode(): GetSingleProductHSNCodeParam;
+    /** @returns {GetSizeGuideParam} */
+    static getSizeGuide(): GetSizeGuideParam;
+    /** @returns {GetSizeGuidesParam} */
+    static getSizeGuides(): GetSizeGuidesParam;
+    /** @returns {GetStoreDetailParam} */
+    static getStoreDetail(): GetStoreDetailParam;
+    /** @returns {GetVariantsOfProductsParam} */
+    static getVariantsOfProducts(): GetVariantsOfProductsParam;
+    /** @returns {ListCategoriesParam} */
+    static listCategories(): ListCategoriesParam;
+    /** @returns {ListDepartmentsDataParam} */
+    static listDepartmentsData(): ListDepartmentsDataParam;
+    /** @returns {ListHSNCodesParam} */
+    static listHSNCodes(): any;
+    /** @returns {ListInventoryExportParam} */
+    static listInventoryExport(): ListInventoryExportParam;
+    /** @returns {ListProductTemplateParam} */
+    static listProductTemplate(): ListProductTemplateParam;
+    /** @returns {ListProductTemplateCategoriesParam} */
+    static listProductTemplateCategories(): ListProductTemplateCategoriesParam;
+    /** @returns {ListProductTemplateExportDetailsParam} */
+    static listProductTemplateExportDetails(): any;
+    /** @returns {ListTemplateBrandTypeValuesParam} */
+    static listTemplateBrandTypeValues(): ListTemplateBrandTypeValuesParam;
+    /** @returns {UpdateCategoryParam} */
+    static updateCategory(): UpdateCategoryParam;
+    /** @returns {UpdateDepartmentParam} */
+    static updateDepartment(): UpdateDepartmentParam;
+    /** @returns {UpdateHsnCodeParam} */
+    static updateHsnCode(): UpdateHsnCodeParam;
+    /** @returns {UpdateInventoriesParam} */
+    static updateInventories(): UpdateInventoriesParam;
+    /** @returns {UpdateProductBundleParam} */
+    static updateProductBundle(): UpdateProductBundleParam;
+    /** @returns {UpdateRealtimeInventoryParam} */
+    static updateRealtimeInventory(): UpdateRealtimeInventoryParam;
+    /** @returns {UpdateSizeGuideParam} */
+    static updateSizeGuide(): UpdateSizeGuideParam;
+    /** @returns {UploadBulkProductsParam} */
+    static uploadBulkProducts(): UploadBulkProductsParam;
+    /** @returns {ValidateProductTemplateParam} */
+    static validateProductTemplate(): ValidateProductTemplateParam;
+    /** @returns {ValidateProductTemplateSchemaParam} */
+    static validateProductTemplateSchema(): ValidateProductTemplateSchemaParam;
 }
 declare namespace CatalogPlatformValidator {
     export { AddInventoryParam, AllSizesParam, BulkHsnCodeParam, CreateBulkInventoryParam, CreateBulkInventoryJobParam, CreateBulkProductUploadJobParam, CreateCategoriesParam, CreateDepartmentsParam, CreateInventoryExportParam, CreateInventoryExportJobParam, CreateMarketplaceOptinParam, CreateProductParam, CreateProductAssetsInBulkParam, CreateProductBundleParam, CreateProductExportJobParam, CreateProductsInBulkParam, CreateSizeGuideParam, DeleteBulkInventoryJobParam, DeleteInventoryParam, DeleteProductParam, DeleteProductBulkJobParam, DeleteRealtimeInventoryParam, DeleteSizeParam, DownloadInventoryTemplateViewParam, DownloadProductTemplateViewsParam, EditProductParam, ExportInventoryConfigParam, GetAllProductHsnCodesParam, GetCategoryDataParam, GetCompanyBrandDetailParam, GetCompanyDetailParam, GetCompanyMetricsParam, GetDepartmentDataParam, GetGenderAttributeParam, GetHsnCodeParam, GetInventoriesParam, GetInventoryBulkUploadHistoryParam, GetInventoryBySizeParam, GetInventoryBySizeIdentifierParam, GetInventoryExportParam, GetMarketplaceOptinDetailParam, GetOptimalLocationsParam, GetProductParam, GetProductAssetsInBulkParam, GetProductAttributesParam, GetProductBulkUploadHistoryParam, GetProductBundleParam, GetProductBundleDetailParam, GetProductExportJobsParam, GetProductSizeParam, GetProductTagsParam, GetProductValidationParam, GetProductsParam, GetSellerInsightsParam, GetSingleProductHSNCodeParam, GetSizeGuideParam, GetSizeGuidesParam, GetStoreDetailParam, GetVariantsOfProductsParam, ListCategoriesParam, ListDepartmentsDataParam, ListHSNCodesParam, ListInventoryExportParam, ListProductTemplateParam, ListProductTemplateCategoriesParam, ListProductTemplateExportDetailsParam, ListTemplateBrandTypeValuesParam, UpdateCategoryParam, UpdateDepartmentParam, UpdateHsnCodeParam, UpdateInventoriesParam, UpdateProductBundleParam, UpdateRealtimeInventoryParam, UpdateSizeGuideParam, UploadBulkProductsParam, ValidateProductTemplateParam, ValidateProductTemplateSchemaParam };
@@ -786,8 +786,6 @@ type GetCompanyBrandDetailParam = {
      */
     marketplace?: string;
 };
-type GetCompanyDetailParam = any;
-type GetCompanyMetricsParam = any;
 type GetDepartmentDataParam = {
     /**
      * - A `uid` is a unique identifier of a department.
@@ -913,8 +911,6 @@ type GetInventoryBySizeIdentifierParam = {
      */
     locationIds?: number[];
 };
-type GetInventoryExportParam = any;
-type GetMarketplaceOptinDetailParam = any;
 type GetOptimalLocationsParam = {
     body: CatalogPlatformModel.AssignStore;
 };
@@ -1028,8 +1024,6 @@ type GetProductSizeParam = {
      */
     uid?: number;
 };
-type GetProductTagsParam = any;
-type GetProductValidationParam = any;
 type GetProductsParam = {
     /**
      * - Get multiple products filtered by Brand Ids
@@ -1203,7 +1197,6 @@ type ListDepartmentsDataParam = {
      */
     isActive?: boolean;
 };
-type ListHSNCodesParam = any;
 type ListInventoryExportParam = {
     /**
      * - Status of the export job.
@@ -1241,7 +1234,6 @@ type ListProductTemplateCategoriesParam = {
      */
     itemType: string;
 };
-type ListProductTemplateExportDetailsParam = any;
 type ListTemplateBrandTypeValuesParam = {
     /**
      * - A `filter` is the unique identifier of the type
@@ -1335,4 +1327,12 @@ type ValidateProductTemplateSchemaParam = {
      */
     itemType: string;
 };
+type GetCompanyDetailParam = any;
+type GetCompanyMetricsParam = any;
+type GetInventoryExportParam = any;
+type GetMarketplaceOptinDetailParam = any;
+type GetProductTagsParam = any;
+type GetProductValidationParam = any;
+type ListHSNCodesParam = any;
+type ListProductTemplateExportDetailsParam = any;
 import CatalogPlatformModel = require("./CatalogPlatformModel");

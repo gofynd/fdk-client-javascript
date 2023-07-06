@@ -384,14 +384,14 @@ const ContentPlatformModel = require("./ContentPlatformModel");
  */
 
 class ContentPlatformApplicationValidator {
-  /** @returns {addDataLoader} */
+  /** @returns {AddDataLoaderParam} */
   static addDataLoader() {
     return Joi.object({
       body: ContentPlatformModel.DataLoaderSchema().required(),
     }).required();
   }
 
-  /** @returns {addFaq} */
+  /** @returns {AddFaqParam} */
   static addFaq() {
     return Joi.object({
       categoryId: Joi.string().allow("").required(),
@@ -399,103 +399,103 @@ class ContentPlatformApplicationValidator {
     }).required();
   }
 
-  /** @returns {addInjectableTag} */
+  /** @returns {AddInjectableTagParam} */
   static addInjectableTag() {
     return Joi.object({
       body: ContentPlatformModel.CreateTagRequestSchema().required(),
     }).required();
   }
 
-  /** @returns {addPathRedirectionRules} */
+  /** @returns {AddPathRedirectionRulesParam} */
   static addPathRedirectionRules() {
     return Joi.object({
       body: ContentPlatformModel.PathMappingSchema().required(),
     }).required();
   }
 
-  /** @returns {createAnnouncement} */
+  /** @returns {CreateAnnouncementParam} */
   static createAnnouncement() {
     return Joi.object({
       body: ContentPlatformModel.AdminAnnouncementSchema().required(),
     }).required();
   }
 
-  /** @returns {createBlog} */
+  /** @returns {CreateBlogParam} */
   static createBlog() {
     return Joi.object({
       body: ContentPlatformModel.BlogRequest().required(),
     }).required();
   }
 
-  /** @returns {createFaqCategory} */
+  /** @returns {CreateFaqCategoryParam} */
   static createFaqCategory() {
     return Joi.object({
       body: ContentPlatformModel.CreateFaqCategoryRequestSchema().required(),
     }).required();
   }
 
-  /** @returns {createLandingPage} */
+  /** @returns {CreateLandingPageParam} */
   static createLandingPage() {
     return Joi.object({
       body: ContentPlatformModel.LandingPageSchema().required(),
     }).required();
   }
 
-  /** @returns {createNavigation} */
+  /** @returns {CreateNavigationParam} */
   static createNavigation() {
     return Joi.object({
       body: ContentPlatformModel.NavigationRequest().required(),
     }).required();
   }
 
-  /** @returns {createPage} */
+  /** @returns {CreatePageParam} */
   static createPage() {
     return Joi.object({
       body: ContentPlatformModel.PageRequest().required(),
     }).required();
   }
 
-  /** @returns {createPagePreview} */
+  /** @returns {CreatePagePreviewParam} */
   static createPagePreview() {
     return Joi.object({
       body: ContentPlatformModel.PageRequest().required(),
     }).required();
   }
 
-  /** @returns {createSlideshow} */
+  /** @returns {CreateSlideshowParam} */
   static createSlideshow() {
     return Joi.object({
       body: ContentPlatformModel.SlideshowRequest().required(),
     }).required();
   }
 
-  /** @returns {deleteAllInjectableTags} */
+  /** @returns {DeleteAllInjectableTagsParam} */
   static deleteAllInjectableTags() {
     return Joi.object({}).required();
   }
 
-  /** @returns {deleteAnnouncement} */
+  /** @returns {DeleteAnnouncementParam} */
   static deleteAnnouncement() {
     return Joi.object({
       announcementId: Joi.string().allow("").required(),
     }).required();
   }
 
-  /** @returns {deleteBlog} */
+  /** @returns {DeleteBlogParam} */
   static deleteBlog() {
     return Joi.object({
       id: Joi.string().allow("").required(),
     }).required();
   }
 
-  /** @returns {deleteDataLoader} */
+  /** @returns {DeleteDataLoaderParam} */
   static deleteDataLoader() {
     return Joi.object({
       dataLoaderId: Joi.string().allow("").required(),
     }).required();
   }
 
-  /** @returns {deleteFaq} */
+  /** @returns {DeleteFaqParam} */
   static deleteFaq() {
     return Joi.object({
       categoryId: Joi.string().allow("").required(),
@@ -503,49 +503,49 @@ class ContentPlatformApplicationValidator {
     }).required();
   }
 
-  /** @returns {deleteFaqCategory} */
+  /** @returns {DeleteFaqCategoryParam} */
   static deleteFaqCategory() {
     return Joi.object({
       id: Joi.string().allow("").required(),
     }).required();
   }
 
-  /** @returns {deleteLandingPage} */
+  /** @returns {DeleteLandingPageParam} */
   static deleteLandingPage() {
     return Joi.object({
       id: Joi.string().allow("").required(),
     }).required();
   }
 
-  /** @returns {deleteNavigation} */
+  /** @returns {DeleteNavigationParam} */
   static deleteNavigation() {
     return Joi.object({
       id: Joi.string().allow("").required(),
     }).required();
   }
 
-  /** @returns {deletePage} */
+  /** @returns {DeletePageParam} */
   static deletePage() {
     return Joi.object({
       id: Joi.string().allow("").required(),
     }).required();
   }
 
-  /** @returns {deletePathRedirectionRules} */
+  /** @returns {DeletePathRedirectionRulesParam} */
   static deletePathRedirectionRules() {
     return Joi.object({
       pathId: Joi.string().allow("").required(),
     }).required();
   }
 
-  /** @returns {deleteSlideshow} */
+  /** @returns {DeleteSlideshowParam} */
   static deleteSlideshow() {
     return Joi.object({
       id: Joi.string().allow("").required(),
     }).required();
   }
 
-  /** @returns {editDataLoader} */
+  /** @returns {EditDataLoaderParam} */
   static editDataLoader() {
     return Joi.object({
       dataLoaderId: Joi.string().allow("").required(),
@@ -553,7 +553,7 @@ class ContentPlatformApplicationValidator {
     }).required();
   }
 
-  /** @returns {editInjectableTag} */
+  /** @returns {EditInjectableTagParam} */
   static editInjectableTag() {
     return Joi.object({
       tagId: Joi.string().allow("").required(),
@@ -561,7 +561,7 @@ class ContentPlatformApplicationValidator {
     }).required();
   }
 
-  /** @returns {generateSEOTitle} */
+  /** @returns {GenerateSEOTitleParam} */
   static generateSEOTitle() {
     return Joi.object({
       type: ContentPlatformModel.GenerationEntityType().required(),
@@ -569,14 +569,14 @@ class ContentPlatformApplicationValidator {
     }).required();
   }
 
-  /** @returns {getAnnouncementById} */
+  /** @returns {GetAnnouncementByIdParam} */
   static getAnnouncementById() {
     return Joi.object({
       announcementId: Joi.string().allow("").required(),
     }).required();
   }
 
-  /** @returns {getAnnouncementsList} */
+  /** @returns {GetAnnouncementsListParam} */
   static getAnnouncementsList() {
     return Joi.object({
       pageNo: Joi.number(),
@@ -584,14 +584,14 @@ class ContentPlatformApplicationValidator {
     }).required();
   }
 
-  /** @returns {getBlogBySlug} */
+  /** @returns {GetBlogBySlugParam} */
   static getBlogBySlug() {
     return Joi.object({
       slug: Joi.string().allow("").required(),
     }).required();
   }
 
-  /** @returns {getBlogs} */
+  /** @returns {GetBlogsParam} */
   static getBlogs() {
     return Joi.object({
       pageNo: Joi.number(),
@@ -599,55 +599,55 @@ class ContentPlatformApplicationValidator {
     }).required();
   }
 
-  /** @returns {getComponentById} */
+  /** @returns {GetComponentByIdParam} */
   static getComponentById() {
     return Joi.object({
       slug: Joi.string().allow("").required(),
     }).required();
   }
 
-  /** @returns {getDataLoaders} */
+  /** @returns {GetDataLoadersParam} */
   static getDataLoaders() {
     return Joi.object({}).required();
   }
 
-  /** @returns {getDefaultNavigations} */
+  /** @returns {GetDefaultNavigationsParam} */
   static getDefaultNavigations() {
     return Joi.object({}).required();
   }
 
-  /** @returns {getFaqByIdOrSlug} */
+  /** @returns {GetFaqByIdOrSlugParam} */
   static getFaqByIdOrSlug() {
     return Joi.object({
       idOrSlug: Joi.string().allow("").required(),
     }).required();
   }
 
-  /** @returns {getFaqCategories} */
+  /** @returns {GetFaqCategoriesParam} */
   static getFaqCategories() {
     return Joi.object({}).required();
   }
 
-  /** @returns {getFaqCategoryBySlugOrId} */
+  /** @returns {GetFaqCategoryBySlugOrIdParam} */
   static getFaqCategoryBySlugOrId() {
     return Joi.object({
       idOrSlug: Joi.string().allow("").required(),
     }).required();
   }
 
-  /** @returns {getFaqsByCategoryIdOrSlug} */
+  /** @returns {GetFaqsByCategoryIdOrSlugParam} */
   static getFaqsByCategoryIdOrSlug() {
     return Joi.object({
       idOrSlug: Joi.string().allow("").required(),
     }).required();
   }
 
-  /** @returns {getInjectableTags} */
+  /** @returns {GetInjectableTagsParam} */
   static getInjectableTags() {
     return Joi.object({}).required();
   }
 
-  /** @returns {getLandingPages} */
+  /** @returns {GetLandingPagesParam} */
   static getLandingPages() {
     return Joi.object({
       pageNo: Joi.number(),
@@ -655,12 +655,12 @@ class ContentPlatformApplicationValidator {
     }).required();
   }
 
-  /** @returns {getLegalInformation} */
+  /** @returns {GetLegalInformationParam} */
   static getLegalInformation() {
     return Joi.object({}).required();
   }
 
-  /** @returns {getNavigationBySlug} */
+  /** @returns {GetNavigationBySlugParam} */
   static getNavigationBySlug() {
     return Joi.object({
       slug: Joi.string().allow("").required(),
@@ -668,7 +668,7 @@ class ContentPlatformApplicationValidator {
     }).required();
   }
 
-  /** @returns {getNavigations} */
+  /** @returns {GetNavigationsParam} */
   static getNavigations() {
     return Joi.object({
       devicePlatform: Joi.string().allow("").required(),
@@ -677,24 +677,24 @@ class ContentPlatformApplicationValidator {
     }).required();
   }
 
-  /** @returns {getPageBySlug} */
+  /** @returns {GetPageBySlugParam} */
   static getPageBySlug() {
     return Joi.object({
       slug: Joi.string().allow("").required(),
     }).required();
   }
 
-  /** @returns {getPageMeta} */
+  /** @returns {GetPageMetaParam} */
   static getPageMeta() {
     return Joi.object({}).required();
   }
 
-  /** @returns {getPageSpec} */
+  /** @returns {GetPageSpecParam} */
   static getPageSpec() {
     return Joi.object({}).required();
   }
 
-  /** @returns {getPages} */
+  /** @returns {GetPagesParam} */
   static getPages() {
     return Joi.object({
       pageNo: Joi.number(),
@@ -702,14 +702,14 @@ class ContentPlatformApplicationValidator {
     }).required();
   }
 
-  /** @returns {getPathRedirectionRule} */
+  /** @returns {GetPathRedirectionRuleParam} */
   static getPathRedirectionRule() {
     return Joi.object({
       pathId: Joi.string().allow("").required(),
     }).required();
   }
 
-  /** @returns {getPathRedirectionRules} */
+  /** @returns {GetPathRedirectionRulesParam} */
   static getPathRedirectionRules() {
     return Joi.object({
       pageSize: Joi.number(),
@@ -717,12 +717,12 @@ class ContentPlatformApplicationValidator {
     }).required();
   }
 
-  /** @returns {getSEOConfiguration} */
+  /** @returns {GetSEOConfigurationParam} */
   static getSEOConfiguration() {
     return Joi.object({}).required();
   }
 
-  /** @returns {getSlideshowBySlug} */
+  /** @returns {GetSlideshowBySlugParam} */
   static getSlideshowBySlug() {
     return Joi.object({
       slug: Joi.string().allow("").required(),
@@ -730,7 +730,7 @@ class ContentPlatformApplicationValidator {
     }).required();
   }
 
-  /** @returns {getSlideshows} */
+  /** @returns {GetSlideshowsParam} */
   static getSlideshows() {
     return Joi.object({
       devicePlatform: Joi.string().allow("").required(),
@@ -739,19 +739,19 @@ class ContentPlatformApplicationValidator {
     }).required();
   }
 
-  /** @returns {getSupportInformation} */
+  /** @returns {GetSupportInformationParam} */
   static getSupportInformation() {
     return Joi.object({}).required();
   }
 
-  /** @returns {removeInjectableTag} */
+  /** @returns {RemoveInjectableTagParam} */
   static removeInjectableTag() {
     return Joi.object({
       body: ContentPlatformModel.RemoveHandpickedSchema().required(),
     }).required();
   }
 
-  /** @returns {resetDataLoader} */
+  /** @returns {ResetDataLoaderParam} */
   static resetDataLoader() {
     return Joi.object({
       service: Joi.string().allow("").required(),
@@ -759,14 +759,14 @@ class ContentPlatformApplicationValidator {
     }).required();
   }
 
-  /** @returns {selectDataLoader} */
+  /** @returns {SelectDataLoaderParam} */
   static selectDataLoader() {
     return Joi.object({
       dataLoaderId: Joi.string().allow("").required(),
     }).required();
   }
 
-  /** @returns {updateAnnouncement} */
+  /** @returns {UpdateAnnouncementParam} */
   static updateAnnouncement() {
     return Joi.object({
       announcementId: Joi.string().allow("").required(),
@@ -774,7 +774,7 @@ class ContentPlatformApplicationValidator {
     }).required();
   }
 
-  /** @returns {updateAnnouncementSchedule} */
+  /** @returns {UpdateAnnouncementScheduleParam} */
   static updateAnnouncementSchedule() {
     return Joi.object({
       announcementId: Joi.string().allow("").required(),
@@ -782,7 +782,7 @@ class ContentPlatformApplicationValidator {
     }).required();
   }
 
-  /** @returns {updateBlog} */
+  /** @returns {UpdateBlogParam} */
   static updateBlog() {
     return Joi.object({
       id: Joi.string().allow("").required(),
@@ -790,7 +790,7 @@ class ContentPlatformApplicationValidator {
     }).required();
   }
 
-  /** @returns {updateFaq} */
+  /** @returns {UpdateFaqParam} */
   static updateFaq() {
     return Joi.object({
       categoryId: Joi.string().allow("").required(),
@@ -799,7 +799,7 @@ class ContentPlatformApplicationValidator {
     }).required();
   }
 
-  /** @returns {updateFaqCategory} */
+  /** @returns {UpdateFaqCategoryParam} */
   static updateFaqCategory() {
     return Joi.object({
       id: Joi.string().allow("").required(),
@@ -807,14 +807,14 @@ class ContentPlatformApplicationValidator {
     }).required();
   }
 
-  /** @returns {updateInjectableTag} */
+  /** @returns {UpdateInjectableTagParam} */
   static updateInjectableTag() {
     return Joi.object({
       body: ContentPlatformModel.CreateTagRequestSchema().required(),
     }).required();
   }
 
-  /** @returns {updateLandingPage} */
+  /** @returns {UpdateLandingPageParam} */
   static updateLandingPage() {
     return Joi.object({
       id: Joi.string().allow("").required(),
@@ -822,14 +822,14 @@ class ContentPlatformApplicationValidator {
     }).required();
   }
 
-  /** @returns {updateLegalInformation} */
+  /** @returns {UpdateLegalInformationParam} */
   static updateLegalInformation() {
     return Joi.object({
       body: ContentPlatformModel.ApplicationLegal().required(),
     }).required();
   }
 
-  /** @returns {updateNavigation} */
+  /** @returns {UpdateNavigationParam} */
   static updateNavigation() {
     return Joi.object({
       id: Joi.string().allow("").required(),
@@ -837,7 +837,7 @@ class ContentPlatformApplicationValidator {
     }).required();
   }
 
-  /** @returns {updatePage} */
+  /** @returns {UpdatePageParam} */
   static updatePage() {
     return Joi.object({
       id: Joi.string().allow("").required(),
@@ -845,7 +845,7 @@ class ContentPlatformApplicationValidator {
     }).required();
   }
 
-  /** @returns {updatePagePreview} */
+  /** @returns {UpdatePagePreviewParam} */
   static updatePagePreview() {
     return Joi.object({
       slug: Joi.string().allow("").required(),
@@ -853,7 +853,7 @@ class ContentPlatformApplicationValidator {
     }).required();
   }
 
-  /** @returns {updatePathRedirectionRules} */
+  /** @returns {UpdatePathRedirectionRulesParam} */
   static updatePathRedirectionRules() {
     return Joi.object({
       pathId: Joi.string().allow("").required(),
@@ -861,14 +861,14 @@ class ContentPlatformApplicationValidator {
     }).required();
   }
 
-  /** @returns {updateSEOConfiguration} */
+  /** @returns {UpdateSEOConfigurationParam} */
   static updateSEOConfiguration() {
     return Joi.object({
       body: ContentPlatformModel.SeoComponent().required(),
     }).required();
   }
 
-  /** @returns {updateSlideshow} */
+  /** @returns {UpdateSlideshowParam} */
   static updateSlideshow() {
     return Joi.object({
       id: Joi.string().allow("").required(),
@@ -876,7 +876,7 @@ class ContentPlatformApplicationValidator {
     }).required();
   }
 
-  /** @returns {updateSupportInformation} */
+  /** @returns {UpdateSupportInformationParam} */
   static updateSupportInformation() {
     return Joi.object({
       body: ContentPlatformModel.Support().required(),

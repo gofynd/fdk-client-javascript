@@ -58,32 +58,32 @@ export = LeadPlatformApplicationValidator;
  * @property {LeadPlatformModel.CreateVideoRoomPayload} body
  */
 declare class LeadPlatformApplicationValidator {
-    /** @returns {closeVideoRoom} */
-    static closeVideoRoom(): closeVideoRoom;
-    /** @returns {createCustomForm} */
-    static createCustomForm(): createCustomForm;
-    /** @returns {createHistory} */
-    static createHistory(): createHistory;
-    /** @returns {editCustomForm} */
-    static editCustomForm(): editCustomForm;
-    /** @returns {editTicket} */
-    static editTicket(): editTicket;
-    /** @returns {getCustomForm} */
-    static getCustomForm(): getCustomForm;
-    /** @returns {getCustomForms} */
-    static getCustomForms(): getCustomForms;
-    /** @returns {getTicket} */
-    static getTicket(): getTicket;
-    /** @returns {getTicketHistory} */
-    static getTicketHistory(): getTicketHistory;
-    /** @returns {getTickets} */
-    static getTickets(): getTickets;
-    /** @returns {getTokenForVideoRoom} */
-    static getTokenForVideoRoom(): getTokenForVideoRoom;
-    /** @returns {getVideoParticipants} */
-    static getVideoParticipants(): getVideoParticipants;
-    /** @returns {openVideoRoom} */
-    static openVideoRoom(): openVideoRoom;
+    /** @returns {CloseVideoRoomParam} */
+    static closeVideoRoom(): CloseVideoRoomParam;
+    /** @returns {CreateCustomFormParam} */
+    static createCustomForm(): CreateCustomFormParam;
+    /** @returns {CreateHistoryParam} */
+    static createHistory(): CreateHistoryParam;
+    /** @returns {EditCustomFormParam} */
+    static editCustomForm(): EditCustomFormParam;
+    /** @returns {EditTicketParam} */
+    static editTicket(): EditTicketParam;
+    /** @returns {GetCustomFormParam} */
+    static getCustomForm(): GetCustomFormParam;
+    /** @returns {GetCustomFormsParam} */
+    static getCustomForms(): any;
+    /** @returns {GetTicketParam} */
+    static getTicket(): GetTicketParam;
+    /** @returns {GetTicketHistoryParam} */
+    static getTicketHistory(): GetTicketHistoryParam;
+    /** @returns {GetTicketsParam} */
+    static getTickets(): GetTicketsParam;
+    /** @returns {GetTokenForVideoRoomParam} */
+    static getTokenForVideoRoom(): GetTokenForVideoRoomParam;
+    /** @returns {GetVideoParticipantsParam} */
+    static getVideoParticipants(): GetVideoParticipantsParam;
+    /** @returns {OpenVideoRoomParam} */
+    static openVideoRoom(): OpenVideoRoomParam;
 }
 declare namespace LeadPlatformApplicationValidator {
     export { CloseVideoRoomParam, CreateCustomFormParam, CreateHistoryParam, EditCustomFormParam, EditTicketParam, GetCustomFormParam, GetCustomFormsParam, GetTicketParam, GetTicketHistoryParam, GetTicketsParam, GetTokenForVideoRoomParam, GetVideoParticipantsParam, OpenVideoRoomParam };
@@ -124,7 +124,6 @@ type GetCustomFormParam = {
      */
     slug: string;
 };
-type GetCustomFormsParam = any;
 type GetTicketParam = {
     /**
      * - Tiket ID of the ticket to be fetched
@@ -179,4 +178,5 @@ type GetVideoParticipantsParam = {
 type OpenVideoRoomParam = {
     body: LeadPlatformModel.CreateVideoRoomPayload;
 };
+type GetCustomFormsParam = any;
 import LeadPlatformModel = require("./LeadPlatformModel");

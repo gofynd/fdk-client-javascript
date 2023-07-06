@@ -163,76 +163,76 @@ export = UserApplicationValidator;
  * @property {UserApplicationModel.VerifyOtpRequestSchema} body
  */
 declare class UserApplicationValidator {
-    /** @returns {addEmail} */
-    static addEmail(): addEmail;
-    /** @returns {addMobileNumber} */
-    static addMobileNumber(): addMobileNumber;
-    /** @returns {deleteEmail} */
-    static deleteEmail(): deleteEmail;
-    /** @returns {deleteMobileNumber} */
-    static deleteMobileNumber(): deleteMobileNumber;
-    /** @returns {deleteUser} */
-    static deleteUser(): deleteUser;
-    /** @returns {forgotPassword} */
-    static forgotPassword(): forgotPassword;
-    /** @returns {getListOfActiveSessions} */
-    static getListOfActiveSessions(): getListOfActiveSessions;
-    /** @returns {getLoggedInUser} */
-    static getLoggedInUser(): getLoggedInUser;
-    /** @returns {getPlatformConfig} */
-    static getPlatformConfig(): getPlatformConfig;
-    /** @returns {hasPassword} */
-    static hasPassword(): hasPassword;
-    /** @returns {loginWithAppleIOS} */
-    static loginWithAppleIOS(): loginWithAppleIOS;
-    /** @returns {loginWithEmailAndPassword} */
-    static loginWithEmailAndPassword(): loginWithEmailAndPassword;
-    /** @returns {loginWithFacebook} */
-    static loginWithFacebook(): loginWithFacebook;
-    /** @returns {loginWithGoogle} */
-    static loginWithGoogle(): loginWithGoogle;
-    /** @returns {loginWithGoogleAndroid} */
-    static loginWithGoogleAndroid(): loginWithGoogleAndroid;
-    /** @returns {loginWithGoogleIOS} */
-    static loginWithGoogleIOS(): loginWithGoogleIOS;
-    /** @returns {loginWithOTP} */
-    static loginWithOTP(): loginWithOTP;
-    /** @returns {loginWithToken} */
-    static loginWithToken(): loginWithToken;
-    /** @returns {logout} */
-    static logout(): logout;
-    /** @returns {registerWithForm} */
-    static registerWithForm(): registerWithForm;
-    /** @returns {sendOTPOnEmail} */
-    static sendOTPOnEmail(): sendOTPOnEmail;
-    /** @returns {sendOTPOnMobile} */
-    static sendOTPOnMobile(): sendOTPOnMobile;
-    /** @returns {sendResetPasswordEmail} */
-    static sendResetPasswordEmail(): sendResetPasswordEmail;
-    /** @returns {sendResetPasswordMobile} */
-    static sendResetPasswordMobile(): sendResetPasswordMobile;
-    /** @returns {sendResetToken} */
-    static sendResetToken(): sendResetToken;
-    /** @returns {sendVerificationLinkToEmail} */
-    static sendVerificationLinkToEmail(): sendVerificationLinkToEmail;
-    /** @returns {sendVerificationLinkToMobile} */
-    static sendVerificationLinkToMobile(): sendVerificationLinkToMobile;
-    /** @returns {setEmailAsPrimary} */
-    static setEmailAsPrimary(): setEmailAsPrimary;
-    /** @returns {setMobileNumberAsPrimary} */
-    static setMobileNumberAsPrimary(): setMobileNumberAsPrimary;
-    /** @returns {updatePassword} */
-    static updatePassword(): updatePassword;
-    /** @returns {updateProfile} */
-    static updateProfile(): updateProfile;
-    /** @returns {verifyEmail} */
-    static verifyEmail(): verifyEmail;
-    /** @returns {verifyEmailOTP} */
-    static verifyEmailOTP(): verifyEmailOTP;
-    /** @returns {verifyMobile} */
-    static verifyMobile(): verifyMobile;
-    /** @returns {verifyMobileOTP} */
-    static verifyMobileOTP(): verifyMobileOTP;
+    /** @returns {AddEmailParam} */
+    static addEmail(): AddEmailParam;
+    /** @returns {AddMobileNumberParam} */
+    static addMobileNumber(): AddMobileNumberParam;
+    /** @returns {DeleteEmailParam} */
+    static deleteEmail(): DeleteEmailParam;
+    /** @returns {DeleteMobileNumberParam} */
+    static deleteMobileNumber(): DeleteMobileNumberParam;
+    /** @returns {DeleteUserParam} */
+    static deleteUser(): DeleteUserParam;
+    /** @returns {ForgotPasswordParam} */
+    static forgotPassword(): ForgotPasswordParam;
+    /** @returns {GetListOfActiveSessionsParam} */
+    static getListOfActiveSessions(): any;
+    /** @returns {GetLoggedInUserParam} */
+    static getLoggedInUser(): any;
+    /** @returns {GetPlatformConfigParam} */
+    static getPlatformConfig(): GetPlatformConfigParam;
+    /** @returns {HasPasswordParam} */
+    static hasPassword(): any;
+    /** @returns {LoginWithAppleIOSParam} */
+    static loginWithAppleIOS(): LoginWithAppleIOSParam;
+    /** @returns {LoginWithEmailAndPasswordParam} */
+    static loginWithEmailAndPassword(): LoginWithEmailAndPasswordParam;
+    /** @returns {LoginWithFacebookParam} */
+    static loginWithFacebook(): LoginWithFacebookParam;
+    /** @returns {LoginWithGoogleParam} */
+    static loginWithGoogle(): LoginWithGoogleParam;
+    /** @returns {LoginWithGoogleAndroidParam} */
+    static loginWithGoogleAndroid(): LoginWithGoogleAndroidParam;
+    /** @returns {LoginWithGoogleIOSParam} */
+    static loginWithGoogleIOS(): LoginWithGoogleIOSParam;
+    /** @returns {LoginWithOTPParam} */
+    static loginWithOTP(): LoginWithOTPParam;
+    /** @returns {LoginWithTokenParam} */
+    static loginWithToken(): LoginWithTokenParam;
+    /** @returns {LogoutParam} */
+    static logout(): any;
+    /** @returns {RegisterWithFormParam} */
+    static registerWithForm(): RegisterWithFormParam;
+    /** @returns {SendOTPOnEmailParam} */
+    static sendOTPOnEmail(): SendOTPOnEmailParam;
+    /** @returns {SendOTPOnMobileParam} */
+    static sendOTPOnMobile(): SendOTPOnMobileParam;
+    /** @returns {SendResetPasswordEmailParam} */
+    static sendResetPasswordEmail(): SendResetPasswordEmailParam;
+    /** @returns {SendResetPasswordMobileParam} */
+    static sendResetPasswordMobile(): SendResetPasswordMobileParam;
+    /** @returns {SendResetTokenParam} */
+    static sendResetToken(): SendResetTokenParam;
+    /** @returns {SendVerificationLinkToEmailParam} */
+    static sendVerificationLinkToEmail(): SendVerificationLinkToEmailParam;
+    /** @returns {SendVerificationLinkToMobileParam} */
+    static sendVerificationLinkToMobile(): SendVerificationLinkToMobileParam;
+    /** @returns {SetEmailAsPrimaryParam} */
+    static setEmailAsPrimary(): SetEmailAsPrimaryParam;
+    /** @returns {SetMobileNumberAsPrimaryParam} */
+    static setMobileNumberAsPrimary(): SetMobileNumberAsPrimaryParam;
+    /** @returns {UpdatePasswordParam} */
+    static updatePassword(): UpdatePasswordParam;
+    /** @returns {UpdateProfileParam} */
+    static updateProfile(): UpdateProfileParam;
+    /** @returns {VerifyEmailParam} */
+    static verifyEmail(): VerifyEmailParam;
+    /** @returns {VerifyEmailOTPParam} */
+    static verifyEmailOTP(): VerifyEmailOTPParam;
+    /** @returns {VerifyMobileParam} */
+    static verifyMobile(): VerifyMobileParam;
+    /** @returns {VerifyMobileOTPParam} */
+    static verifyMobileOTP(): VerifyMobileOTPParam;
 }
 declare namespace UserApplicationValidator {
     export { AddEmailParam, AddMobileNumberParam, DeleteEmailParam, DeleteMobileNumberParam, DeleteUserParam, ForgotPasswordParam, GetListOfActiveSessionsParam, GetLoggedInUserParam, GetPlatformConfigParam, HasPasswordParam, LoginWithAppleIOSParam, LoginWithEmailAndPasswordParam, LoginWithFacebookParam, LoginWithGoogleParam, LoginWithGoogleAndroidParam, LoginWithGoogleIOSParam, LoginWithOTPParam, LoginWithTokenParam, LogoutParam, RegisterWithFormParam, SendOTPOnEmailParam, SendOTPOnMobileParam, SendResetPasswordEmailParam, SendResetPasswordMobileParam, SendResetTokenParam, SendVerificationLinkToEmailParam, SendVerificationLinkToMobileParam, SetEmailAsPrimaryParam, SetMobileNumberAsPrimaryParam, UpdatePasswordParam, UpdateProfileParam, VerifyEmailParam, VerifyEmailOTPParam, VerifyMobileParam, VerifyMobileOTPParam };
@@ -313,15 +313,12 @@ type DeleteUserParam = {
 type ForgotPasswordParam = {
     body: UserApplicationModel.ForgotPasswordRequestSchema;
 };
-type GetListOfActiveSessionsParam = any;
-type GetLoggedInUserParam = any;
 type GetPlatformConfigParam = {
     /**
      * - Name of the application, e.g. Fynd
      */
     name?: string;
 };
-type HasPasswordParam = any;
 type LoginWithAppleIOSParam = {
     /**
      * - ID of the application
@@ -370,7 +367,6 @@ type LoginWithOTPParam = {
 type LoginWithTokenParam = {
     body: UserApplicationModel.TokenRequestBodySchema;
 };
-type LogoutParam = any;
 type RegisterWithFormParam = {
     /**
      * - ID of the application
@@ -459,4 +455,8 @@ type VerifyMobileOTPParam = {
     platform?: string;
     body: UserApplicationModel.VerifyOtpRequestSchema;
 };
+type GetListOfActiveSessionsParam = any;
+type GetLoggedInUserParam = any;
+type HasPasswordParam = any;
+type LogoutParam = any;
 import UserApplicationModel = require("./UserApplicationModel");
