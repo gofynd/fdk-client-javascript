@@ -14,6 +14,7 @@ declare class Order {
         sendOtpToShipmentCustomer: string;
         trackShipment: string;
         updateShipmentStatus: string;
+        updateShipmentStatus1: string;
         verifyOtpShipmentCustomer: string;
     };
     _urls: {};
@@ -83,13 +84,13 @@ declare class Order {
      * @param {Object} arg - Arg object.
      * @param {string} arg.orderId - A unique number used for identifying and
      *   tracking your orders.
-     * @returns {Promise<OrderList>} - Success response
+     * @returns {Promise<OrderById>} - Success response
      * @summary: Get POS Order
      * @description: Use this API to retrieve a POS order and all its details such as tracking details, shipment, store information using Fynd Order ID.
      */
     getPosOrderById({ orderId }?: {
         orderId: string;
-    }): Promise<OrderList>;
+    }): Promise<OrderById>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.shipmentId - ID of the bag. An order may contain
@@ -158,15 +159,29 @@ declare class Order {
     }): Promise<ShipmentTrack>;
     /**
      * @param {Object} arg - Arg object.
-     * @param {string} arg.shipmentId -
+     * @param {string} arg.shipmentId - ID of the shipment. An order may contain
+     *   multiple items and may get divided into one or more shipment, each
+     *   having its own ID.
      * @param {UpdateShipmentStatusRequest} arg.body
      * @returns {Promise<ShipmentApplicationStatusResponse>} - Success response
-     * @summary:
-     * @description: updateShipmentStatus
+     * @summary: Update the shipment status
+     * @description: Use this API to update the status of a shipment using its shipment ID.
      */
     updateShipmentStatus({ shipmentId, body }?: {
         shipmentId: string;
         body: UpdateShipmentStatusRequest;
+    }): Promise<ShipmentApplicationStatusResponse>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {string} arg.shipmentId -
+     * @param {UpdateShipmentStatusRequest1} arg.body
+     * @returns {Promise<ShipmentApplicationStatusResponse>} - Success response
+     * @summary:
+     * @description: updateShipmentStatus
+     */
+    updateShipmentStatus1({ shipmentId, body }?: {
+        shipmentId: string;
+        body: UpdateShipmentStatusRequest1;
     }): Promise<ShipmentApplicationStatusResponse>;
     /**
      * @param {Object} arg - Arg object.

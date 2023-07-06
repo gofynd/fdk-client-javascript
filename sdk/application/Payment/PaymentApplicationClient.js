@@ -56,6 +56,10 @@ class Payment {
       initialisePayment: "/service/application/payment/v1.0/payment/request",
       initialisePaymentPaymentLink:
         "/service/application/payment/v1.0/payment/request/link/",
+      outstandingOrderDetails:
+        "/service/application/payment/v1.0/payment/outstanding-orders/",
+      paidOrderDetails:
+        "/service/application/payment/v1.0/payment/paid-orders/",
       pollingPaymentLink:
         "/service/application/payment/v1.0/polling-payment-link/",
       redirectToAggregator:
@@ -357,8 +361,7 @@ class Payment {
   /**
    * @param {Object} arg - Arg object.
    * @param {string} arg.cardInfo - Card first 6 digit IIN(prefix) number.
-   * @param {string} [arg.aggregator] - This is a string value decribing the
-   *   aggregator name.
+   * @param {string} [arg.aggregator] -
    * @returns {Promise<CardDetailsResponse>} - Success response
    * @summary: API to get Card info from PG
    * @description: API to get Card info from PG
@@ -2018,6 +2021,136 @@ class Payment {
         level: "WARN",
         message:
           "Response Validation Warnnings for initialisePaymentPaymentLink",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {string} [arg.aggregator] -
+   * @returns {Promise<OutstandingOrderDetailsResponse>} - Success response
+   * @summary: API to fetch the outstanding order details
+   * @description: Use this API to fetch the outstanding order details.
+   */
+  async outstandingOrderDetails({ aggregator } = {}) {
+    const { error } = PaymentValidator.outstandingOrderDetails().validate(
+      { aggregator },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = PaymentValidator.outstandingOrderDetails().validate(
+      { aggregator },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for outstandingOrderDetails",
+      });
+      Logger({ level: "WARN", message: warrning });
+    }
+
+    const query_params = {};
+    query_params["aggregator"] = aggregator;
+
+    const xHeaders = {};
+
+    const response = await ApplicationAPIClient.execute(
+      this._conf,
+      "get",
+      constructUrl({
+        url: this._urls["outstandingOrderDetails"],
+        params: {},
+      }),
+      query_params,
+      undefined,
+      xHeaders
+    );
+
+    const {
+      error: res_error,
+    } = PaymentModel.OutstandingOrderDetailsResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for outstandingOrderDetails",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {string} [arg.aggregator] -
+   * @returns {Promise<PaidOrderDetailsResponse>} - Success response
+   * @summary: API to fetch the paid order details
+   * @description: Use this API to fetch the paid order details.
+   */
+  async paidOrderDetails({ aggregator } = {}) {
+    const { error } = PaymentValidator.paidOrderDetails().validate(
+      { aggregator },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = PaymentValidator.paidOrderDetails().validate(
+      { aggregator },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for paidOrderDetails",
+      });
+      Logger({ level: "WARN", message: warrning });
+    }
+
+    const query_params = {};
+    query_params["aggregator"] = aggregator;
+
+    const xHeaders = {};
+
+    const response = await ApplicationAPIClient.execute(
+      this._conf,
+      "get",
+      constructUrl({
+        url: this._urls["paidOrderDetails"],
+        params: {},
+      }),
+      query_params,
+      undefined,
+      xHeaders
+    );
+
+    const {
+      error: res_error,
+    } = PaymentModel.PaidOrderDetailsResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for paidOrderDetails",
       });
       Logger({ level: "WARN", message: res_error });
     }

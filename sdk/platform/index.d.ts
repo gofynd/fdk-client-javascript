@@ -14,7 +14,6 @@ export namespace PlatformModel {
     const CompanyProfilePlatformModel: typeof import("./CompanyProfile/CompanyProfilePlatformModel");
     const FileStoragePlatformModel: typeof import("./FileStorage/FileStoragePlatformModel");
     const SharePlatformModel: typeof import("./Share/SharePlatformModel");
-    const InventoryPlatformModel: typeof import("./Inventory/InventoryPlatformModel");
     const ConfigurationPlatformModel: typeof import("./Configuration/ConfigurationPlatformModel");
     const CartPlatformModel: typeof import("./Cart/CartPlatformModel");
     const RewardsPlatformModel: typeof import("./Rewards/RewardsPlatformModel");

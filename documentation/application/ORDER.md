@@ -19,6 +19,7 @@ Handles all Application order and shipment api(s)
 * [sendOtpToShipmentCustomer](#sendotptoshipmentcustomer)
 * [trackShipment](#trackshipment)
 * [updateShipmentStatus](#updateshipmentstatus)
+* [updateShipmentStatus1](#updateshipmentstatus1)
 * [verifyOtpShipmentCustomer](#verifyotpshipmentcustomer)
 
 
@@ -1241,7 +1242,7 @@ Use this API to retrieve a POS order and all its details such as tracking detail
 
 
 
-[OrderList](#OrderList)
+[OrderById](#OrderById)
 
 Success. Check the example shown below or refer `PosOrderById` for more details.
 
@@ -2344,7 +2345,7 @@ Success. Check the example shown below or refer `ShipmentTrack` for more details
 
 
 ### updateShipmentStatus
-
+Update the shipment status
 
 
 
@@ -2364,8 +2365,82 @@ const data = await applicationClient.order.updateShipmentStatus({  shipmentId : 
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
-| shipmentId | string | yes |  |  
+| shipmentId | string | yes | ID of the shipment. An order may contain multiple items and may get divided into one or more shipment, each having its own ID. |  
 | body | [UpdateShipmentStatusRequest](#UpdateShipmentStatusRequest) | yes | Request body |
+
+
+Use this API to update the status of a shipment using its shipment ID.
+
+*Returned Response:*
+
+
+
+
+[ShipmentApplicationStatusResponse](#ShipmentApplicationStatusResponse)
+
+Successfully updateShipmentStatus!
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "statuses": [
+    {
+      "shipments": {
+        "16291129095851065963": {
+          "status": 400,
+          "message": {
+            "16291129095851065963": "Invalid State Transition bag_invoiced detected for given entity"
+          },
+          "code": null,
+          "exception": "ValidationError",
+          "stack_trace": null
+        }
+      }
+    }
+  ]
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### updateShipmentStatus1
+
+
+
+
+```javascript
+// Promise
+const promise = applicationClient.order.updateShipmentStatus1({  shipmentId : value,
+ body : value });
+
+// Async/Await
+const data = await applicationClient.order.updateShipmentStatus1({  shipmentId : value,
+ body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| shipmentId | string | yes |  |  
+| body | [UpdateShipmentStatusRequest1](#UpdateShipmentStatusRequest1) | yes | Request body |
 
 
 updateShipmentStatus
@@ -2639,6 +2714,17 @@ Success, the code is valid and returns a session token
 
 ---
 
+#### [DataUpdates1](#DataUpdates1)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | entities | [[EntitiesDataUpdates](#EntitiesDataUpdates)]? |  yes  |  |
+ | order_item_status | [[OrderItemDataUpdates](#OrderItemDataUpdates)]? |  yes  |  |
+ | products | [[ProductsDataUpdates1](#ProductsDataUpdates1)]? |  yes  |  |
+ 
+
+---
+
 #### [DeliveryAddress](#DeliveryAddress)
 
  | Properties | Type | Nullable | Description |
@@ -2689,12 +2775,45 @@ Success, the code is valid and returns a session token
 
 ---
 
+#### [EntitiesReasons1](#EntitiesReasons1)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | data | [EntityReasonData1](#EntityReasonData1)? |  yes  |  |
+ | filters | [string]? |  yes  |  |
+ 
+
+---
+
 #### [EntityReasonData](#EntityReasonData)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | reason_id | number? |  yes  |  |
  | reason_text | string? |  yes  |  |
+ 
+
+---
+
+#### [EntityReasonData1](#EntityReasonData1)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | reason_id | number? |  yes  |  |
+ | reason_text | string? |  yes  |  |
+ 
+
+---
+
+#### [ErrorResponse](#ErrorResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | code | string? |  yes  |  |
+ | exception | string? |  yes  |  |
+ | message | string? |  yes  |  |
+ | stack_trace | string? |  yes  |  |
+ | status | number? |  yes  |  |
  
 
 ---
@@ -2837,6 +2956,15 @@ Success, the code is valid and returns a session token
 
 ---
 
+#### [OrderItemDataUpdates](#OrderItemDataUpdates)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | data | string? |  yes  |  |
+ 
+
+---
+
 #### [OrderList](#OrderList)
 
  | Properties | Type | Nullable | Description |
@@ -2928,12 +3056,33 @@ Success, the code is valid and returns a session token
 
 ---
 
+#### [Products1](#Products1)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | identifier | string? |  yes  | Product/Bag Article/Item Identifier |
+ | line_number | number? |  yes  | Product/Bag Line number for the Product/Bag Identifier |
+ | quantity | number? |  yes  |  |
+ 
+
+---
+
 #### [ProductsDataUpdates](#ProductsDataUpdates)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | data | string? |  yes  |  |
  | filters | [[ProductsDataUpdatesFilters](#ProductsDataUpdatesFilters)]? |  yes  |  |
+ 
+
+---
+
+#### [ProductsDataUpdates1](#ProductsDataUpdates1)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | data | string? |  yes  |  |
+ | filters | [[ProductsDataUpdatesFilters1](#ProductsDataUpdatesFilters1)]? |  yes  | Filter for the Product/Bag |
  
 
 ---
@@ -2948,6 +3097,16 @@ Success, the code is valid and returns a session token
 
 ---
 
+#### [ProductsDataUpdatesFilters1](#ProductsDataUpdatesFilters1)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | identifier | string? |  yes  | Product/Bag Article/Item Identifier |
+ | line_number | number? |  yes  | Product/Bag Line number for the Product/Bag Identifier |
+ 
+
+---
+
 #### [ProductsReasons](#ProductsReasons)
 
  | Properties | Type | Nullable | Description |
@@ -2958,7 +3117,27 @@ Success, the code is valid and returns a session token
 
 ---
 
+#### [ProductsReasons1](#ProductsReasons1)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | data | [ProductsReasonsData1](#ProductsReasonsData1)? |  yes  |  |
+ | filters | [[ProductsReasonsFilters1](#ProductsReasonsFilters1)]? |  yes  |  |
+ 
+
+---
+
 #### [ProductsReasonsData](#ProductsReasonsData)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | reason_id | number? |  yes  |  |
+ | reason_text | string? |  yes  |  |
+ 
+
+---
+
+#### [ProductsReasonsData1](#ProductsReasonsData1)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
@@ -2974,6 +3153,17 @@ Success, the code is valid and returns a session token
  | ---------- | ---- | -------- | ----------- |
  | identifier | string? |  yes  |  |
  | line_number | number? |  yes  |  |
+ | quantity | number? |  yes  |  |
+ 
+
+---
+
+#### [ProductsReasonsFilters1](#ProductsReasonsFilters1)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | identifier | string? |  yes  | Product/Bag Article/Item Identifier |
+ | line_number | number? |  yes  | Product/Bag Line number for the Product/Bag Identifier |
  | quantity | number? |  yes  |  |
  
 
@@ -3005,6 +3195,16 @@ Success, the code is valid and returns a session token
  | ---------- | ---- | -------- | ----------- |
  | entities | [[EntitiesReasons](#EntitiesReasons)]? |  yes  |  |
  | products | [[ProductsReasons](#ProductsReasons)]? |  yes  |  |
+ 
+
+---
+
+#### [ReasonsData1](#ReasonsData1)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | entities | [[EntitiesReasons1](#EntitiesReasons1)]? |  yes  |  |
+ | products | [[ProductsReasons1](#ProductsReasons1)]? |  yes  |  |
  
 
 ---
@@ -3154,12 +3354,25 @@ Success, the code is valid and returns a session token
 
 ---
 
+#### [ShipmentsRequest1](#ShipmentsRequest1)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | data_updates | [DataUpdates1](#DataUpdates1)? |  yes  |  |
+ | identifier | string |  no  | Shipment ID |
+ | products | [[Products1](#Products1)]? |  yes  | Product/Bag to be updated |
+ | reasons | [ReasonsData1](#ReasonsData1)? |  yes  |  |
+ 
+
+---
+
 #### [ShipmentStatus](#ShipmentStatus)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | hex_code | string? |  yes  |  |
  | title | string? |  yes  |  |
+ | value | string? |  yes  |  |
  
 
 ---
@@ -3188,10 +3401,12 @@ Success, the code is valid and returns a session token
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | email | string? |  yes  |  |
  | first_name | string? |  yes  |  |
  | gender | string? |  yes  |  |
  | last_name | string? |  yes  |  |
  | mobile | string? |  yes  |  |
+ | name | string? |  yes  |  |
  
 
 ---
@@ -3202,6 +3417,18 @@ Success, the code is valid and returns a session token
  | ---------- | ---- | -------- | ----------- |
  | exclude_bags_next_state | string? |  yes  |  |
  | shipments | [[ShipmentsRequest](#ShipmentsRequest)]? |  yes  |  |
+ | status | string? |  yes  |  |
+ 
+
+---
+
+#### [StatuesRequest1](#StatuesRequest1)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | exclude_bags_next_state | string? |  yes  | State to be change for Remaining Bag/Products |
+ | shipments | [[ShipmentsRequest1](#ShipmentsRequest1)]? |  yes  |  |
+ | split_shipment | boolean? |  yes  | Flag to split shipment |
  | status | string? |  yes  |  |
  
 
@@ -3251,6 +3478,7 @@ Success, the code is valid and returns a session token
  | status | string? |  yes  |  |
  | time | string? |  yes  |  |
  | tracking_details | [[NestedTrackingDetails](#NestedTrackingDetails)]? |  yes  |  |
+ | value | string? |  yes  |  |
  
 
 ---
@@ -3268,12 +3496,27 @@ Success, the code is valid and returns a session token
 
 ---
 
+#### [UpdateShipmentStatusRequest1](#UpdateShipmentStatusRequest1)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | force_transition | boolean? |  yes  | Force Transition |
+ | lock_after_transition | boolean? |  yes  | Lock Shipment After Transition |
+ | statuses | [[StatuesRequest1](#StatuesRequest1)]? |  yes  |  |
+ | task | boolean? |  yes  | To Run Status Update as a background Task |
+ | unlock_before_transition | boolean? |  yes  | Unlock Shipment After Transition |
+ 
+
+---
+
 #### [UserInfo](#UserInfo)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | email | string? |  yes  |  |
+ | first_name | string? |  yes  |  |
  | gender | string? |  yes  |  |
+ | last_name | string? |  yes  |  |
  | mobile | string? |  yes  |  |
  | name | string? |  yes  |  |
  

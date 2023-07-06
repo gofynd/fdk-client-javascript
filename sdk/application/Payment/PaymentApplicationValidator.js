@@ -179,6 +179,18 @@ class PaymentValidator {
     }).required();
   }
 
+  static outstandingOrderDetails() {
+    return Joi.object({
+      aggregator: Joi.string().allow(""),
+    });
+  }
+
+  static paidOrderDetails() {
+    return Joi.object({
+      aggregator: Joi.string().allow(""),
+    });
+  }
+
   static pollingPaymentLink() {
     return Joi.object({
       paymentLinkId: Joi.string().allow(""),

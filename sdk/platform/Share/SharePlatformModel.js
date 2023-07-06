@@ -12,6 +12,17 @@ class ShareModel {
       source: Joi.string().allow(""),
     });
   }
+  static ClickStatsItem() {
+    return Joi.object({
+      display: Joi.string().allow(""),
+      total: Joi.number(),
+    });
+  }
+  static ClickStatsResponse() {
+    return Joi.object({
+      click_stats: Joi.array().items(ShareModel.ClickStatsItem()).required(),
+    });
+  }
   static ErrorRes() {
     return Joi.object({
       message: Joi.string().allow(""),

@@ -25,6 +25,17 @@ declare class Share {
     }): Promise<ShortLinkRes>;
     /**
      * @param {Object} arg - Arg object.
+     * @param {string} arg.surlId - Short link ID for which click statistics are
+     *   to be retrieved.
+     * @returns {Promise<ClickStatsResponse>} - Success response
+     * @summary: Get click statistics for a short link
+     * @description: Retrieve click statistics for a given short link ID.
+     */
+    getShortLinkClickStats({ surlId }?: {
+        surlId: string;
+    }): Promise<ClickStatsResponse>;
+    /**
+     * @param {Object} arg - Arg object.
      * @param {number} [arg.pageNo] - Current page number
      * @param {number} [arg.pageSize] - Current page size
      * @param {string} [arg.createdBy] - Short link creator

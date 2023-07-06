@@ -14,6 +14,7 @@ class CartValidator {
       b: Joi.boolean(),
       areaCode: Joi.string().allow(""),
       buyNow: Joi.boolean(),
+      id: Joi.string().allow(""),
       body: CartModel.AddCartRequest().required(),
     }).required();
   }
@@ -44,6 +45,19 @@ class CartValidator {
       buyNow: Joi.boolean(),
       body: CartModel.CartCheckoutDetailRequest().required(),
     }).required();
+  }
+
+  static checkoutCartV2() {
+    return Joi.object({
+      buyNow: Joi.boolean(),
+      body: CartModel.CartCheckoutDetailV2Request().required(),
+    }).required();
+  }
+
+  static deleteCart() {
+    return Joi.object({
+      id: Joi.string().allow(""),
+    });
   }
 
   static getAddressById() {
@@ -135,6 +149,7 @@ class CartValidator {
       slug: Joi.string().allow(""),
       pageSize: Joi.number(),
       promotionGroup: Joi.string().allow(""),
+      storeId: Joi.number(),
     });
   }
 

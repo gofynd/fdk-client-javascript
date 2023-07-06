@@ -49,16 +49,18 @@ declare class PosCart {
      * @param {boolean} [arg.b] -
      * @param {string} [arg.areaCode] -
      * @param {boolean} [arg.buyNow] -
+     * @param {string} [arg.id] -
      * @param {AddCartRequest} arg.body
      * @returns {Promise<AddCartDetailResponse>} - Success response
      * @summary: Add items to cart
      * @description: Use this API to add items to the cart.
      */
-    addItems({ body, i, b, areaCode, buyNow }?: {
+    addItems({ body, i, b, areaCode, buyNow, id }?: {
         i?: boolean;
         b?: boolean;
         areaCode?: string;
         buyNow?: boolean;
+        id?: string;
         body: AddCartRequest;
     }): Promise<AddCartDetailResponse>;
     /**
@@ -414,6 +416,8 @@ declare class PosCart {
      *   getting a payment option in response.
      * @param {string} [arg.id] - The unique identifier of the cart
      * @param {string} [arg.addressId] - ID allotted to an address
+     * @param {string} [arg.areaCode] - The PIN Code of the destination address,
+     *   e.g. 400059
      * @param {string} [arg.orderType] - The order type of shipment HomeDelivery
      *   - If the customer wants the order home-delivered PickAtStore - If the
      *   customer wants the handover of an order at the store itself.
@@ -422,11 +426,12 @@ declare class PosCart {
      * @summary: Update shipment delivery type and quantity before checkout
      * @description: Use this API to update the delivery type and quantity as per customer's preference for either store pick-up or home-delivery.
      */
-    updateShipments({ body, i, p, id, addressId, orderType }?: {
+    updateShipments({ body, i, p, id, addressId, areaCode, orderType, }?: {
         i?: boolean;
         p?: boolean;
         id?: string;
         addressId?: string;
+        areaCode?: string;
         orderType?: string;
         body: UpdateCartShipmentRequest;
     }): Promise<CartShipmentsResponse>;
