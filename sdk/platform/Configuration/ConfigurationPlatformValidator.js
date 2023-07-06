@@ -3,19 +3,19 @@ const Joi = require("joi");
 const ConfigurationPlatformModel = require("./ConfigurationPlatformModel");
 
 /**
- * @typedef createApplication
+ * @typedef CreateApplicationParam
  * @property {ConfigurationPlatformModel.CreateApplicationRequest} body
  */
 
 /**
- * @typedef getApplications
+ * @typedef GetApplicationsParam
  * @property {number} [pageNo]
  * @property {number} [pageSize]
  * @property {string} [q] - Search param by name or domain
  */
 
 /**
- * @typedef getAvailableOptIns
+ * @typedef GetAvailableOptInsParam
  * @property {number} [pageNo] - The page number to navigate through the given
  *   set of results. Default value is 1.
  * @property {number} [pageSize] - The number of items to retrieve in each page.
@@ -23,12 +23,12 @@ const ConfigurationPlatformModel = require("./ConfigurationPlatformModel");
  */
 
 /**
- * @typedef getBrandsByCompany
+ * @typedef GetBrandsByCompanyParam
  * @property {string} [q] - Search text for brand name
  */
 
 /**
- * @typedef getCompanyByBrands
+ * @typedef GetCompanyByBrandsParam
  * @property {number} [pageNo] - The page number to navigate through the given
  *   set of results. Default value is 1.
  * @property {number} [pageSize] - The number of items to retrieve in each page.
@@ -36,27 +36,27 @@ const ConfigurationPlatformModel = require("./ConfigurationPlatformModel");
  * @property {ConfigurationPlatformModel.CompanyByBrandsRequest} body
  */
 
-/** @typedef getCurrencies */
+/** @typedef GetCurrenciesParam */
 
 /**
- * @typedef getDomainAvailibility
+ * @typedef GetDomainAvailibilityParam
  * @property {ConfigurationPlatformModel.DomainSuggestionsRequest} body
  */
 
 /**
- * @typedef getIntegrationById
+ * @typedef GetIntegrationByIdParam
  * @property {number} id - Integration id
  */
 
 /**
- * @typedef getIntegrationByLevelId
+ * @typedef GetIntegrationByLevelIdParam
  * @property {string} id - Integration ID (24-digit Mongo Object ID)
  * @property {string} level - Integration level, `store` or `company`
  * @property {number} uid - Unique identifier of integration level (store/company)
  */
 
 /**
- * @typedef getIntegrationLevelConfig
+ * @typedef GetIntegrationLevelConfigParam
  * @property {string} id - Integration ID (24-digit Mongo Object ID)
  * @property {string} level - Store or company
  * @property {boolean} [opted] - True means get the opted stores. False means
@@ -66,7 +66,7 @@ const ConfigurationPlatformModel = require("./ConfigurationPlatformModel");
  */
 
 /**
- * @typedef getLevelActiveIntegrations
+ * @typedef GetLevelActiveIntegrationsParam
  * @property {string} id - Integration ID (24-digit Mongo Object ID)
  * @property {string} level - Integration level, `store` or `company`
  * @property {number} uid - Unique identifier of integration level (store/company)
@@ -74,12 +74,12 @@ const ConfigurationPlatformModel = require("./ConfigurationPlatformModel");
  */
 
 /**
- * @typedef getOtherSellerApplicationById
+ * @typedef GetOtherSellerApplicationByIdParam
  * @property {string} id - Application Id
  */
 
 /**
- * @typedef getOtherSellerApplications
+ * @typedef GetOtherSellerApplicationsParam
  * @property {number} [pageNo] - The page number to navigate through the given
  *   set of results. Default value is 1.
  * @property {number} [pageSize] - The number of items to retrieve in each page.
@@ -87,7 +87,7 @@ const ConfigurationPlatformModel = require("./ConfigurationPlatformModel");
  */
 
 /**
- * @typedef getSelectedOptIns
+ * @typedef GetSelectedOptInsParam
  * @property {string} level - Store or company
  * @property {number} uid - Unique identifier of the selected integration level.
  * @property {number} [pageNo] - The page number to navigate through the given
@@ -97,7 +97,7 @@ const ConfigurationPlatformModel = require("./ConfigurationPlatformModel");
  */
 
 /**
- * @typedef getStoreByBrands
+ * @typedef GetStoreByBrandsParam
  * @property {number} [pageNo] - The page number to navigate through the given
  *   set of results. Default value is 1.
  * @property {number} [pageSize] - The number of items to retrieve in each page.
@@ -106,21 +106,21 @@ const ConfigurationPlatformModel = require("./ConfigurationPlatformModel");
  */
 
 /**
- * @typedef optOutFromApplication
+ * @typedef OptOutFromApplicationParam
  * @property {string} id - Alphanumeric ID allotted to an application (sales
  *   channel website) created within a business account.
  * @property {ConfigurationPlatformModel.OptOutInventory} body
  */
 
 /**
- * @typedef updateLevelIntegration
+ * @typedef UpdateLevelIntegrationParam
  * @property {string} id - Integration ID (24-digit Mongo Object ID)
  * @property {string} level - Integration level, `store` or `company`
  * @property {ConfigurationPlatformModel.UpdateIntegrationLevelRequest} body
  */
 
 /**
- * @typedef updateLevelUidIntegration
+ * @typedef UpdateLevelUidIntegrationParam
  * @property {string} id - Integration ID (24-digit Mongo Object ID)
  * @property {string} level - Integration level, `store` or `company`
  * @property {number} uid - Unique identifier of integration level (store/company)

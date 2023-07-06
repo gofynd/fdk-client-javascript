@@ -3,7 +3,7 @@ const Joi = require("joi");
 const CommonApplicationModel = require("./CommonApplicationModel");
 
 /**
- * @typedef getLocations
+ * @typedef GetLocationsParam
  * @property {string} [locationType] - Provide location type to query on.
  *   Possible values : country, state, city
  * @property {string} [id] - Field is optional when location_type is country. If
@@ -12,7 +12,7 @@ const CommonApplicationModel = require("./CommonApplicationModel");
  */
 
 /**
- * @typedef searchApplication
+ * @typedef SearchApplicationParam
  * @property {string} [authorization]
  * @property {string} [query] - Provide application name
  */

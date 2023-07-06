@@ -1,54 +1,54 @@
 export = UserPlatformApplicationValidator;
 /**
- * @typedef archiveUser
+ * @typedef ArchiveUserParam
  * @property {UserPlatformModel.ArchiveUserRequestSchema} body
  */
 /**
- * @typedef blockOrUnblockUsers
+ * @typedef BlockOrUnblockUsersParam
  * @property {UserPlatformModel.BlockUserRequestSchema} body
  */
 /**
- * @typedef createUser
+ * @typedef CreateUserParam
  * @property {UserPlatformModel.CreateUserRequestSchema} body
  */
 /**
- * @typedef createUserGroup
+ * @typedef CreateUserGroupParam
  * @property {UserPlatformModel.CreateUserGroupSchema} body
  */
 /**
- * @typedef createUserSession
+ * @typedef CreateUserSessionParam
  * @property {UserPlatformModel.CreateUserSessionRequestSchema} body
  */
 /**
- * @typedef deleteActiveSessions
+ * @typedef DeleteActiveSessionsParam
  * @property {string} id - ID of a customer.
  * @property {string} reason - Reason to delete sessions.
  */
 /**
- * @typedef deleteSession
+ * @typedef DeleteSessionParam
  * @property {string} id - ID of a customer.
  * @property {string} sessionId - Session ID of a customer.
  * @property {string} reason - Reason for deleting session.
  */
 /**
- * @typedef getActiveSessions
+ * @typedef GetActiveSessionsParam
  * @property {string} id - ID of a customer.
  */
 /**
- * @typedef getCustomers
+ * @typedef GetCustomersParam
  * @property {Object} [q] - The search query. Mobile number or email ID of a customer.
  * @property {number} [pageSize] - The number of items to retrieve in each page.
  *   Default value is 10.
  * @property {number} [pageNo] - The page number to navigate through the given
  *   set of results. Default value is 1.
  */
-/** @typedef getPlatformConfig */
+/** @typedef GetPlatformConfigParam */
 /**
- * @typedef getUserGroupById
+ * @typedef GetUserGroupByIdParam
  * @property {string} groupId - Numeric ID allotted to a User Group
  */
 /**
- * @typedef getUserGroups
+ * @typedef GetUserGroupsParam
  * @property {string} [pageNo] - Page number for pagination result
  * @property {string} [pageSize] - Page size for pagination result
  * @property {string} [name] - To seartch for User Groups which contains given
@@ -57,61 +57,83 @@ export = UserPlatformApplicationValidator;
  * @property {number} [groupUid] - To get User Groups with given uid
  */
 /**
- * @typedef searchUsers
+ * @typedef SearchUsersParam
  * @property {string} [q] - The search query. Mobile number, email ID or user ID
  *   of a customer.
  */
 /**
- * @typedef unDeleteUser
+ * @typedef UnDeleteUserParam
  * @property {UserPlatformModel.UnDeleteUserRequestSchema} body
  */
 /**
- * @typedef updatePlatformConfig
+ * @typedef UpdatePlatformConfigParam
  * @property {UserPlatformModel.PlatformSchema} body
  */
 /**
- * @typedef updateUser
+ * @typedef UpdateUserParam
  * @property {string} userId - User ID
  * @property {UserPlatformModel.UpdateUserRequestSchema} body
  */
 /**
- * @typedef updateUserGroup
+ * @typedef UpdateUserGroupParam
  * @property {string} groupId - Numeric ID allotted to a User Group
  * @property {UserPlatformModel.UpdateUserGroupSchema} body
  */
 declare class UserPlatformApplicationValidator {
+    /** @returns {archiveUser} */
+    static archiveUser(): archiveUser;
+    /** @returns {blockOrUnblockUsers} */
+    static blockOrUnblockUsers(): blockOrUnblockUsers;
+    /** @returns {createUser} */
+    static createUser(): createUser;
+    /** @returns {createUserGroup} */
+    static createUserGroup(): createUserGroup;
+    /** @returns {createUserSession} */
+    static createUserSession(): createUserSession;
+    /** @returns {deleteActiveSessions} */
+    static deleteActiveSessions(): deleteActiveSessions;
+    /** @returns {deleteSession} */
+    static deleteSession(): deleteSession;
+    /** @returns {getActiveSessions} */
+    static getActiveSessions(): getActiveSessions;
+    /** @returns {getCustomers} */
+    static getCustomers(): getCustomers;
+    /** @returns {getPlatformConfig} */
+    static getPlatformConfig(): getPlatformConfig;
+    /** @returns {getUserGroupById} */
+    static getUserGroupById(): getUserGroupById;
+    /** @returns {getUserGroups} */
+    static getUserGroups(): getUserGroups;
+    /** @returns {searchUsers} */
+    static searchUsers(): searchUsers;
+    /** @returns {unDeleteUser} */
+    static unDeleteUser(): unDeleteUser;
+    /** @returns {updatePlatformConfig} */
+    static updatePlatformConfig(): updatePlatformConfig;
+    /** @returns {updateUser} */
+    static updateUser(): updateUser;
+    /** @returns {updateUserGroup} */
+    static updateUserGroup(): updateUserGroup;
 }
 declare namespace UserPlatformApplicationValidator {
-    export { archiveUser, blockOrUnblockUsers, createUser, createUserGroup, createUserSession, deleteActiveSessions, deleteSession, getActiveSessions, getCustomers, getPlatformConfig, getUserGroupById, getUserGroups, searchUsers, unDeleteUser, updatePlatformConfig, updateUser, updateUserGroup };
+    export { ArchiveUserParam, BlockOrUnblockUsersParam, CreateUserParam, CreateUserGroupParam, CreateUserSessionParam, DeleteActiveSessionsParam, DeleteSessionParam, GetActiveSessionsParam, GetCustomersParam, GetPlatformConfigParam, GetUserGroupByIdParam, GetUserGroupsParam, SearchUsersParam, UnDeleteUserParam, UpdatePlatformConfigParam, UpdateUserParam, UpdateUserGroupParam };
 }
-/** @returns {archiveUser} */
-declare function archiveUser(): archiveUser;
-type archiveUser = {
+type ArchiveUserParam = {
     body: UserPlatformModel.ArchiveUserRequestSchema;
 };
-/** @returns {blockOrUnblockUsers} */
-declare function blockOrUnblockUsers(): blockOrUnblockUsers;
-type blockOrUnblockUsers = {
+type BlockOrUnblockUsersParam = {
     body: UserPlatformModel.BlockUserRequestSchema;
 };
-/** @returns {createUser} */
-declare function createUser(): createUser;
-type createUser = {
+type CreateUserParam = {
     body: UserPlatformModel.CreateUserRequestSchema;
 };
-/** @returns {createUserGroup} */
-declare function createUserGroup(): createUserGroup;
-type createUserGroup = {
+type CreateUserGroupParam = {
     body: UserPlatformModel.CreateUserGroupSchema;
 };
-/** @returns {createUserSession} */
-declare function createUserSession(): createUserSession;
-type createUserSession = {
+type CreateUserSessionParam = {
     body: UserPlatformModel.CreateUserSessionRequestSchema;
 };
-/** @returns {deleteActiveSessions} */
-declare function deleteActiveSessions(): deleteActiveSessions;
-type deleteActiveSessions = {
+type DeleteActiveSessionsParam = {
     /**
      * - ID of a customer.
      */
@@ -121,9 +143,7 @@ type deleteActiveSessions = {
      */
     reason: string;
 };
-/** @returns {deleteSession} */
-declare function deleteSession(): deleteSession;
-type deleteSession = {
+type DeleteSessionParam = {
     /**
      * - ID of a customer.
      */
@@ -137,17 +157,13 @@ type deleteSession = {
      */
     reason: string;
 };
-/** @returns {getActiveSessions} */
-declare function getActiveSessions(): getActiveSessions;
-type getActiveSessions = {
+type GetActiveSessionsParam = {
     /**
      * - ID of a customer.
      */
     id: string;
 };
-/** @returns {getCustomers} */
-declare function getCustomers(): getCustomers;
-type getCustomers = {
+type GetCustomersParam = {
     /**
      * - The search query. Mobile number or email ID of a customer.
      */
@@ -163,20 +179,14 @@ type getCustomers = {
      */
     pageNo?: number;
 };
-/** @returns {getPlatformConfig} */
-declare function getPlatformConfig(): any;
-type getPlatformConfig = any;
-/** @returns {getUserGroupById} */
-declare function getUserGroupById(): getUserGroupById;
-type getUserGroupById = {
+type GetPlatformConfigParam = any;
+type GetUserGroupByIdParam = {
     /**
      * - Numeric ID allotted to a User Group
      */
     groupId: string;
 };
-/** @returns {getUserGroups} */
-declare function getUserGroups(): getUserGroups;
-type getUserGroups = {
+type GetUserGroupsParam = {
     /**
      * - Page number for pagination result
      */
@@ -199,37 +209,27 @@ type getUserGroups = {
      */
     groupUid?: number;
 };
-/** @returns {searchUsers} */
-declare function searchUsers(): searchUsers;
-type searchUsers = {
+type SearchUsersParam = {
     /**
      * - The search query. Mobile number, email ID or user ID
      * of a customer.
      */
     q?: string;
 };
-/** @returns {unDeleteUser} */
-declare function unDeleteUser(): unDeleteUser;
-type unDeleteUser = {
+type UnDeleteUserParam = {
     body: UserPlatformModel.UnDeleteUserRequestSchema;
 };
-/** @returns {updatePlatformConfig} */
-declare function updatePlatformConfig(): updatePlatformConfig;
-type updatePlatformConfig = {
+type UpdatePlatformConfigParam = {
     body: UserPlatformModel.PlatformSchema;
 };
-/** @returns {updateUser} */
-declare function updateUser(): updateUser;
-type updateUser = {
+type UpdateUserParam = {
     /**
      * - User ID
      */
     userId: string;
     body: UserPlatformModel.UpdateUserRequestSchema;
 };
-/** @returns {updateUserGroup} */
-declare function updateUserGroup(): updateUserGroup;
-type updateUserGroup = {
+type UpdateUserGroupParam = {
     /**
      * - Numeric ID allotted to a User Group
      */

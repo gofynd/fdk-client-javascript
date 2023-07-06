@@ -1,47 +1,47 @@
 export = ConfigurationPlatformApplicationValidator;
 /**
- * @typedef addDomain
+ * @typedef AddDomainParam
  * @property {ConfigurationPlatformModel.DomainAddRequest} body
  */
 /**
- * @typedef changeDomainType
+ * @typedef ChangeDomainTypeParam
  * @property {ConfigurationPlatformModel.UpdateDomainTypeRequest} body
  */
-/** @typedef getAppApiTokens */
-/** @typedef getAppBasicDetails */
+/** @typedef GetAppApiTokensParam */
+/** @typedef GetAppBasicDetailsParam */
 /**
- * @typedef getAppCompanies
+ * @typedef GetAppCompaniesParam
  * @property {number} [uid] - UID of companies to be fetched
  * @property {number} [pageNo] - The current page number to navigate through the
  *   given set of results. Default value is 1.
  * @property {number} [pageSize] - The number of items to retrieve in each page.
  *   Default value is 10.
  */
-/** @typedef getAppContactInfo */
-/** @typedef getAppCurrencyConfig */
-/** @typedef getAppFeatures */
+/** @typedef GetAppContactInfoParam */
+/** @typedef GetAppCurrencyConfigParam */
+/** @typedef GetAppFeaturesParam */
 /**
- * @typedef getAppStores
+ * @typedef GetAppStoresParam
  * @property {number} [pageNo] - The current page number to navigate through the
  *   given set of results. Default value is 1.
  * @property {number} [pageSize] - The number of items to retrieve in each page.
  *   Default value is 10.
  */
-/** @typedef getAppSupportedCurrency */
-/** @typedef getApplicationById */
+/** @typedef GetAppSupportedCurrencyParam */
+/** @typedef GetApplicationByIdParam */
 /**
- * @typedef getBuildConfig
+ * @typedef GetBuildConfigParam
  * @property {string} platformType - The device platform for which the mobile
  *   app is built, e.g. android, ios.
  */
 /**
- * @typedef getDomainStatus
+ * @typedef GetDomainStatusParam
  * @property {ConfigurationPlatformModel.DomainStatusRequest} body
  */
-/** @typedef getDomains */
-/** @typedef getInventoryConfig */
+/** @typedef GetDomainsParam */
+/** @typedef GetInventoryConfigParam */
 /**
- * @typedef getOrderingStoresByFilter
+ * @typedef GetOrderingStoresByFilterParam
  * @property {number} [pageNo] - The page number to navigate through the given
  *   set of results. Default value is 1.
  * @property {number} [pageSize] - The number of items to retrieve in each page.
@@ -49,12 +49,12 @@ export = ConfigurationPlatformApplicationValidator;
  * @property {ConfigurationPlatformModel.FilterOrderingStoreRequest} body
  */
 /**
- * @typedef getPreviousVersions
+ * @typedef GetPreviousVersionsParam
  * @property {string} platformType - The device platform for which the mobile
  *   app is built, e.g. android, ios.
  */
 /**
- * @typedef getStaffOrderingStores
+ * @typedef GetStaffOrderingStoresParam
  * @property {number} [pageNo] - The page number to navigate through the given
  *   set of results. Default value is 1.
  * @property {number} [pageSize] - The number of items to retrieve in each page.
@@ -62,75 +62,123 @@ export = ConfigurationPlatformApplicationValidator;
  * @property {string} [q] - Store code or name of the ordering store.
  */
 /**
- * @typedef modifyAppFeatures
+ * @typedef ModifyAppFeaturesParam
  * @property {ConfigurationPlatformModel.AppFeatureRequest} body
  */
 /**
- * @typedef partiallyUpdateInventoryConfig
+ * @typedef PartiallyUpdateInventoryConfigParam
  * @property {ConfigurationPlatformModel.AppInventoryPartialUpdate} body
  */
 /**
- * @typedef removeDomainById
+ * @typedef RemoveDomainByIdParam
  * @property {string} id - The unique identifier (24-digit Mongo Object ID) of the domain
  */
 /**
- * @typedef updateAppApiTokens
+ * @typedef UpdateAppApiTokensParam
  * @property {ConfigurationPlatformModel.TokenResponse} body
  */
 /**
- * @typedef updateAppBasicDetails
+ * @typedef UpdateAppBasicDetailsParam
  * @property {ConfigurationPlatformModel.ApplicationDetail} body
  */
 /**
- * @typedef updateAppContactInfo
+ * @typedef UpdateAppContactInfoParam
  * @property {ConfigurationPlatformModel.ApplicationInformation} body
  */
 /**
- * @typedef updateAppCurrencyConfig
+ * @typedef UpdateAppCurrencyConfigParam
  * @property {ConfigurationPlatformModel.AppSupportedCurrency} body
  */
 /**
- * @typedef updateAppFeatures
+ * @typedef UpdateAppFeaturesParam
  * @property {ConfigurationPlatformModel.AppFeatureRequest} body
  */
 /**
- * @typedef updateBuildConfig
+ * @typedef UpdateBuildConfigParam
  * @property {string} platformType - The device platform for which the mobile
  *   app is built, e.g. android, ios.
  * @property {ConfigurationPlatformModel.MobileAppConfigRequest} body
  */
 /**
- * @typedef updateInventoryConfig
+ * @typedef UpdateInventoryConfigParam
  * @property {ConfigurationPlatformModel.ApplicationInventory} body
  */
 /**
- * @typedef updateOrderingStoreConfig
+ * @typedef UpdateOrderingStoreConfigParam
  * @property {ConfigurationPlatformModel.OrderingStoreConfig} body
  */
 declare class ConfigurationPlatformApplicationValidator {
+    /** @returns {addDomain} */
+    static addDomain(): addDomain;
+    /** @returns {changeDomainType} */
+    static changeDomainType(): changeDomainType;
+    /** @returns {getAppApiTokens} */
+    static getAppApiTokens(): getAppApiTokens;
+    /** @returns {getAppBasicDetails} */
+    static getAppBasicDetails(): getAppBasicDetails;
+    /** @returns {getAppCompanies} */
+    static getAppCompanies(): getAppCompanies;
+    /** @returns {getAppContactInfo} */
+    static getAppContactInfo(): getAppContactInfo;
+    /** @returns {getAppCurrencyConfig} */
+    static getAppCurrencyConfig(): getAppCurrencyConfig;
+    /** @returns {getAppFeatures} */
+    static getAppFeatures(): getAppFeatures;
+    /** @returns {getAppStores} */
+    static getAppStores(): getAppStores;
+    /** @returns {getAppSupportedCurrency} */
+    static getAppSupportedCurrency(): getAppSupportedCurrency;
+    /** @returns {getApplicationById} */
+    static getApplicationById(): getApplicationById;
+    /** @returns {getBuildConfig} */
+    static getBuildConfig(): getBuildConfig;
+    /** @returns {getDomainStatus} */
+    static getDomainStatus(): getDomainStatus;
+    /** @returns {getDomains} */
+    static getDomains(): getDomains;
+    /** @returns {getInventoryConfig} */
+    static getInventoryConfig(): getInventoryConfig;
+    /** @returns {getOrderingStoresByFilter} */
+    static getOrderingStoresByFilter(): getOrderingStoresByFilter;
+    /** @returns {getPreviousVersions} */
+    static getPreviousVersions(): getPreviousVersions;
+    /** @returns {getStaffOrderingStores} */
+    static getStaffOrderingStores(): getStaffOrderingStores;
+    /** @returns {modifyAppFeatures} */
+    static modifyAppFeatures(): modifyAppFeatures;
+    /** @returns {partiallyUpdateInventoryConfig} */
+    static partiallyUpdateInventoryConfig(): partiallyUpdateInventoryConfig;
+    /** @returns {removeDomainById} */
+    static removeDomainById(): removeDomainById;
+    /** @returns {updateAppApiTokens} */
+    static updateAppApiTokens(): updateAppApiTokens;
+    /** @returns {updateAppBasicDetails} */
+    static updateAppBasicDetails(): updateAppBasicDetails;
+    /** @returns {updateAppContactInfo} */
+    static updateAppContactInfo(): updateAppContactInfo;
+    /** @returns {updateAppCurrencyConfig} */
+    static updateAppCurrencyConfig(): updateAppCurrencyConfig;
+    /** @returns {updateAppFeatures} */
+    static updateAppFeatures(): updateAppFeatures;
+    /** @returns {updateBuildConfig} */
+    static updateBuildConfig(): updateBuildConfig;
+    /** @returns {updateInventoryConfig} */
+    static updateInventoryConfig(): updateInventoryConfig;
+    /** @returns {updateOrderingStoreConfig} */
+    static updateOrderingStoreConfig(): updateOrderingStoreConfig;
 }
 declare namespace ConfigurationPlatformApplicationValidator {
-    export { addDomain, changeDomainType, getAppApiTokens, getAppBasicDetails, getAppCompanies, getAppContactInfo, getAppCurrencyConfig, getAppFeatures, getAppStores, getAppSupportedCurrency, getApplicationById, getBuildConfig, getDomainStatus, getDomains, getInventoryConfig, getOrderingStoresByFilter, getPreviousVersions, getStaffOrderingStores, modifyAppFeatures, partiallyUpdateInventoryConfig, removeDomainById, updateAppApiTokens, updateAppBasicDetails, updateAppContactInfo, updateAppCurrencyConfig, updateAppFeatures, updateBuildConfig, updateInventoryConfig, updateOrderingStoreConfig };
+    export { AddDomainParam, ChangeDomainTypeParam, GetAppApiTokensParam, GetAppBasicDetailsParam, GetAppCompaniesParam, GetAppContactInfoParam, GetAppCurrencyConfigParam, GetAppFeaturesParam, GetAppStoresParam, GetAppSupportedCurrencyParam, GetApplicationByIdParam, GetBuildConfigParam, GetDomainStatusParam, GetDomainsParam, GetInventoryConfigParam, GetOrderingStoresByFilterParam, GetPreviousVersionsParam, GetStaffOrderingStoresParam, ModifyAppFeaturesParam, PartiallyUpdateInventoryConfigParam, RemoveDomainByIdParam, UpdateAppApiTokensParam, UpdateAppBasicDetailsParam, UpdateAppContactInfoParam, UpdateAppCurrencyConfigParam, UpdateAppFeaturesParam, UpdateBuildConfigParam, UpdateInventoryConfigParam, UpdateOrderingStoreConfigParam };
 }
-/** @returns {addDomain} */
-declare function addDomain(): addDomain;
-type addDomain = {
+type AddDomainParam = {
     body: ConfigurationPlatformModel.DomainAddRequest;
 };
-/** @returns {changeDomainType} */
-declare function changeDomainType(): changeDomainType;
-type changeDomainType = {
+type ChangeDomainTypeParam = {
     body: ConfigurationPlatformModel.UpdateDomainTypeRequest;
 };
-/** @returns {getAppApiTokens} */
-declare function getAppApiTokens(): any;
-type getAppApiTokens = any;
-/** @returns {getAppBasicDetails} */
-declare function getAppBasicDetails(): any;
-type getAppBasicDetails = any;
-/** @returns {getAppCompanies} */
-declare function getAppCompanies(): getAppCompanies;
-type getAppCompanies = {
+type GetAppApiTokensParam = any;
+type GetAppBasicDetailsParam = any;
+type GetAppCompaniesParam = {
     /**
      * - UID of companies to be fetched
      */
@@ -146,18 +194,10 @@ type getAppCompanies = {
      */
     pageSize?: number;
 };
-/** @returns {getAppContactInfo} */
-declare function getAppContactInfo(): any;
-type getAppContactInfo = any;
-/** @returns {getAppCurrencyConfig} */
-declare function getAppCurrencyConfig(): any;
-type getAppCurrencyConfig = any;
-/** @returns {getAppFeatures} */
-declare function getAppFeatures(): any;
-type getAppFeatures = any;
-/** @returns {getAppStores} */
-declare function getAppStores(): getAppStores;
-type getAppStores = {
+type GetAppContactInfoParam = any;
+type GetAppCurrencyConfigParam = any;
+type GetAppFeaturesParam = any;
+type GetAppStoresParam = {
     /**
      * - The current page number to navigate through the
      * given set of results. Default value is 1.
@@ -169,35 +209,21 @@ type getAppStores = {
      */
     pageSize?: number;
 };
-/** @returns {getAppSupportedCurrency} */
-declare function getAppSupportedCurrency(): any;
-type getAppSupportedCurrency = any;
-/** @returns {getApplicationById} */
-declare function getApplicationById(): any;
-type getApplicationById = any;
-/** @returns {getBuildConfig} */
-declare function getBuildConfig(): getBuildConfig;
-type getBuildConfig = {
+type GetAppSupportedCurrencyParam = any;
+type GetApplicationByIdParam = any;
+type GetBuildConfigParam = {
     /**
      * - The device platform for which the mobile
      * app is built, e.g. android, ios.
      */
     platformType: string;
 };
-/** @returns {getDomainStatus} */
-declare function getDomainStatus(): getDomainStatus;
-type getDomainStatus = {
+type GetDomainStatusParam = {
     body: ConfigurationPlatformModel.DomainStatusRequest;
 };
-/** @returns {getDomains} */
-declare function getDomains(): any;
-type getDomains = any;
-/** @returns {getInventoryConfig} */
-declare function getInventoryConfig(): any;
-type getInventoryConfig = any;
-/** @returns {getOrderingStoresByFilter} */
-declare function getOrderingStoresByFilter(): getOrderingStoresByFilter;
-type getOrderingStoresByFilter = {
+type GetDomainsParam = any;
+type GetInventoryConfigParam = any;
+type GetOrderingStoresByFilterParam = {
     /**
      * - The page number to navigate through the given
      * set of results. Default value is 1.
@@ -210,18 +236,14 @@ type getOrderingStoresByFilter = {
     pageSize?: number;
     body: ConfigurationPlatformModel.FilterOrderingStoreRequest;
 };
-/** @returns {getPreviousVersions} */
-declare function getPreviousVersions(): getPreviousVersions;
-type getPreviousVersions = {
+type GetPreviousVersionsParam = {
     /**
      * - The device platform for which the mobile
      * app is built, e.g. android, ios.
      */
     platformType: string;
 };
-/** @returns {getStaffOrderingStores} */
-declare function getStaffOrderingStores(): getStaffOrderingStores;
-type getStaffOrderingStores = {
+type GetStaffOrderingStoresParam = {
     /**
      * - The page number to navigate through the given
      * set of results. Default value is 1.
@@ -237,52 +259,34 @@ type getStaffOrderingStores = {
      */
     q?: string;
 };
-/** @returns {modifyAppFeatures} */
-declare function modifyAppFeatures(): modifyAppFeatures;
-type modifyAppFeatures = {
+type ModifyAppFeaturesParam = {
     body: ConfigurationPlatformModel.AppFeatureRequest;
 };
-/** @returns {partiallyUpdateInventoryConfig} */
-declare function partiallyUpdateInventoryConfig(): partiallyUpdateInventoryConfig;
-type partiallyUpdateInventoryConfig = {
+type PartiallyUpdateInventoryConfigParam = {
     body: ConfigurationPlatformModel.AppInventoryPartialUpdate;
 };
-/** @returns {removeDomainById} */
-declare function removeDomainById(): removeDomainById;
-type removeDomainById = {
+type RemoveDomainByIdParam = {
     /**
      * - The unique identifier (24-digit Mongo Object ID) of the domain
      */
     id: string;
 };
-/** @returns {updateAppApiTokens} */
-declare function updateAppApiTokens(): updateAppApiTokens;
-type updateAppApiTokens = {
+type UpdateAppApiTokensParam = {
     body: ConfigurationPlatformModel.TokenResponse;
 };
-/** @returns {updateAppBasicDetails} */
-declare function updateAppBasicDetails(): updateAppBasicDetails;
-type updateAppBasicDetails = {
+type UpdateAppBasicDetailsParam = {
     body: ConfigurationPlatformModel.ApplicationDetail;
 };
-/** @returns {updateAppContactInfo} */
-declare function updateAppContactInfo(): updateAppContactInfo;
-type updateAppContactInfo = {
+type UpdateAppContactInfoParam = {
     body: ConfigurationPlatformModel.ApplicationInformation;
 };
-/** @returns {updateAppCurrencyConfig} */
-declare function updateAppCurrencyConfig(): updateAppCurrencyConfig;
-type updateAppCurrencyConfig = {
+type UpdateAppCurrencyConfigParam = {
     body: ConfigurationPlatformModel.AppSupportedCurrency;
 };
-/** @returns {updateAppFeatures} */
-declare function updateAppFeatures(): updateAppFeatures;
-type updateAppFeatures = {
+type UpdateAppFeaturesParam = {
     body: ConfigurationPlatformModel.AppFeatureRequest;
 };
-/** @returns {updateBuildConfig} */
-declare function updateBuildConfig(): updateBuildConfig;
-type updateBuildConfig = {
+type UpdateBuildConfigParam = {
     /**
      * - The device platform for which the mobile
      * app is built, e.g. android, ios.
@@ -290,14 +294,10 @@ type updateBuildConfig = {
     platformType: string;
     body: ConfigurationPlatformModel.MobileAppConfigRequest;
 };
-/** @returns {updateInventoryConfig} */
-declare function updateInventoryConfig(): updateInventoryConfig;
-type updateInventoryConfig = {
+type UpdateInventoryConfigParam = {
     body: ConfigurationPlatformModel.ApplicationInventory;
 };
-/** @returns {updateOrderingStoreConfig} */
-declare function updateOrderingStoreConfig(): updateOrderingStoreConfig;
-type updateOrderingStoreConfig = {
+type UpdateOrderingStoreConfigParam = {
     body: ConfigurationPlatformModel.OrderingStoreConfig;
 };
 import ConfigurationPlatformModel = require("./ConfigurationPlatformModel");

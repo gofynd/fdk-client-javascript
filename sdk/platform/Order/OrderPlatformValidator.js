@@ -3,17 +3,17 @@ const Joi = require("joi");
 const OrderPlatformModel = require("./OrderPlatformModel");
 
 /**
- * @typedef attachOrderUser
+ * @typedef AttachOrderUserParam
  * @property {OrderPlatformModel.AttachOrderUser} body
  */
 
 /**
- * @typedef checkOrderStatus
+ * @typedef CheckOrderStatusParam
  * @property {OrderPlatformModel.OrderStatus} body
  */
 
 /**
- * @typedef click2Call
+ * @typedef Click2CallParam
  * @property {string} caller - Call Number
  * @property {string} receiver - Receiver Number
  * @property {string} bagId - Bag Id for the query
@@ -22,65 +22,52 @@ const OrderPlatformModel = require("./OrderPlatformModel");
  */
 
 /**
- * @typedef createOrder
+ * @typedef CreateOrderParam
  * @property {OrderPlatformModel.CreateOrderAPI} body
  */
 
 /**
- * @typedef createShipmentReport
- * @property {string} [fromDate]
- * @property {string} [toDate]
- */
-
-/**
- * @typedef dispatchManifest
+ * @typedef DispatchManifestParam
  * @property {OrderPlatformModel.DispatchManifest} body
  */
 
 /**
- * @typedef downloadBulkActionTemplate
+ * @typedef DownloadBulkActionTemplateParam
  * @property {string} [templateSlug] - Slug name of template to be downloaded
  */
 
 /**
- * @typedef fetchCreditBalanceDetail
+ * @typedef FetchCreditBalanceDetailParam
  * @property {OrderPlatformModel.FetchCreditBalanceRequestPayload} body
  */
 
 /**
- * @typedef fetchRefundModeConfig
+ * @typedef FetchRefundModeConfigParam
  * @property {OrderPlatformModel.RefundModeConfigRequestPayload} body
  */
 
 /**
- * @typedef generatePOSReceiptByOrderId
+ * @typedef GeneratePOSReceiptByOrderIdParam
  * @property {string} orderId
  * @property {string} [shipmentId]
  * @property {string} [documentType]
  */
 
 /**
- * @typedef getAnnouncements
+ * @typedef GetAnnouncementsParam
  * @property {string} [date] - Date On which the announcement is Active (Date
  *   should in ISO Datetime format IST Time)
  */
 
 /**
- * @typedef getAssetByShipmentIds
- * @property {string} shipmentIds
- * @property {boolean} [invoice]
- * @property {string} [expiresIn]
- */
-
-/**
- * @typedef getBagById
+ * @typedef GetBagByIdParam
  * @property {string} [bagId] - Id of bag
  * @property {string} [channelBagId] - Id of application bag
  * @property {string} [channelId] - Id of application
  */
 
 /**
- * @typedef getBags
+ * @typedef GetBagsParam
  * @property {string} [bagIds] - Comma separated values of bag ids
  * @property {string} [shipmentIds] - Comma separated values of shipment ids
  * @property {string} [orderIds] - Comma separated values of order ids
@@ -92,10 +79,10 @@ const OrderPlatformModel = require("./OrderPlatformModel");
  * @property {number} [pageSize] - Page size of data received per page
  */
 
-/** @typedef getBulkActionTemplate */
+/** @typedef GetBulkActionTemplateParam */
 
 /**
- * @typedef getBulkShipmentExcelFile
+ * @typedef GetBulkShipmentExcelFileParam
  * @property {string} [salesChannels] - Comma separated values of sales channel ids
  * @property {string} [dpIds] - Comma separated values of delivery partner ids
  * @property {string} [fromDate] - Start Date in DD-MM-YYYY format
@@ -111,7 +98,7 @@ const OrderPlatformModel = require("./OrderPlatformModel");
  */
 
 /**
- * @typedef getLaneConfig
+ * @typedef GetLaneConfigParam
  * @property {string} [superLane] - Name of lane for which data is to be fetched
  * @property {string} [groupEntity] - Name of group entity
  * @property {string} [fromDate] - Start Date in DD-MM-YYYY format
@@ -130,7 +117,7 @@ const OrderPlatformModel = require("./OrderPlatformModel");
  */
 
 /**
- * @typedef getManifestDetails
+ * @typedef GetManifestDetailsParam
  * @property {string} manifestId
  * @property {string} [status]
  * @property {string} [toDate]
@@ -143,7 +130,7 @@ const OrderPlatformModel = require("./OrderPlatformModel");
  */
 
 /**
- * @typedef getManifestShipments
+ * @typedef GetManifestShipmentsParam
  * @property {number} dpIds
  * @property {string} stores
  * @property {string} toDate
@@ -157,12 +144,12 @@ const OrderPlatformModel = require("./OrderPlatformModel");
  */
 
 /**
- * @typedef getManifestfilters
+ * @typedef GetManifestfiltersParam
  * @property {string} view - Name of View
  */
 
 /**
- * @typedef getManifests
+ * @typedef GetManifestsParam
  * @property {string} [status] - Possible Status [ active, closed ]
  * @property {string} [toDate]
  * @property {string} [fromDate]
@@ -174,18 +161,12 @@ const OrderPlatformModel = require("./OrderPlatformModel");
  */
 
 /**
- * @typedef getMetricCount
- * @property {string} [fromDate]
- * @property {string} [toDate]
- */
-
-/**
- * @typedef getOrderById
+ * @typedef GetOrderByIdParam
  * @property {string} orderId
  */
 
 /**
- * @typedef getOrders
+ * @typedef GetOrdersParam
  * @property {string} [lane] - Lane refers to a section where orders are
  *   assigned, indicating its grouping
  * @property {string} [searchType] - Search_type refers to the field that will
@@ -210,28 +191,22 @@ const OrderPlatformModel = require("./OrderPlatformModel");
  * @property {boolean} [myOrders]
  */
 
-/**
- * @typedef getReportsShipmentListing
- * @property {number} [pageNo]
- * @property {number} [pageSize]
- */
-
-/** @typedef getRoleBasedActions */
+/** @typedef GetRoleBasedActionsParam */
 
 /**
- * @typedef getShipmentById
+ * @typedef GetShipmentByIdParam
  * @property {string} [channelShipmentId] - App Shipment Id
  * @property {string} [shipmentId] - Shipment Id
  */
 
 /**
- * @typedef getShipmentHistory
+ * @typedef GetShipmentHistoryParam
  * @property {string} [shipmentId] - Shipment Id
  * @property {number} [bagId] - Bag/Product Id
  */
 
 /**
- * @typedef getShipmentReasons
+ * @typedef GetShipmentReasonsParam
  * @property {string} shipmentId - ID of the shipment. An order may contain
  *   multiple items and may get divided into one or more shipment, each having
  *   its own ID.
@@ -241,7 +216,7 @@ const OrderPlatformModel = require("./OrderPlatformModel");
  */
 
 /**
- * @typedef getShipments
+ * @typedef GetShipmentsParam
  * @property {string} [lane] - Name of lane for which data is to be fetched
  * @property {string} [bagStatus] - Comma separated values of bag statuses
  * @property {boolean} [statusOverrideLane] - Use this flag to fetch by
@@ -267,51 +242,51 @@ const OrderPlatformModel = require("./OrderPlatformModel");
  * @property {boolean} [myOrders]
  */
 
-/** @typedef getStateTransitionMap */
+/** @typedef GetStateTransitionMapParam */
 
 /**
- * @typedef getfilters
+ * @typedef GetfiltersParam
  * @property {string} view - Name of view
  * @property {string} [groupEntity] - Name of group entity
  */
 
 /**
- * @typedef invalidateShipmentCache
+ * @typedef InvalidateShipmentCacheParam
  * @property {OrderPlatformModel.InvalidateShipmentCachePayload} body
  */
 
 /**
- * @typedef orderUpdate
+ * @typedef OrderUpdateParam
  * @property {OrderPlatformModel.PlatformOrderUpdate} body
  */
 
 /**
- * @typedef postShipmentHistory
+ * @typedef PostShipmentHistoryParam
  * @property {OrderPlatformModel.PostShipmentHistory} body
  */
 
 /**
- * @typedef processManifest
+ * @typedef ProcessManifestParam
  * @property {OrderPlatformModel.ProcessManifest} body
  */
 
 /**
- * @typedef reassignLocation
+ * @typedef ReassignLocationParam
  * @property {OrderPlatformModel.StoreReassign} body
  */
 
 /**
- * @typedef sendSmsNinja
+ * @typedef SendSmsNinjaParam
  * @property {OrderPlatformModel.SendSmsPayload} body
  */
 
 /**
- * @typedef sendUserMobileOTP
+ * @typedef SendUserMobileOTPParam
  * @property {OrderPlatformModel.SendUserMobileOTP} body
  */
 
 /**
- * @typedef updateAddress
+ * @typedef UpdateAddressParam
  * @property {string} shipmentId
  * @property {string} [name]
  * @property {string} [address]
@@ -327,32 +302,27 @@ const OrderPlatformModel = require("./OrderPlatformModel");
  */
 
 /**
- * @typedef updatePackagingDimensions
+ * @typedef UpdatePackagingDimensionsParam
  * @property {OrderPlatformModel.UpdatePackagingDimensionsPayload} body
  */
 
 /**
- * @typedef updateShipmentLock
+ * @typedef UpdateShipmentLockParam
  * @property {OrderPlatformModel.UpdateShipmentLockPayload} body
  */
 
 /**
- * @typedef updateShipmentStatus
+ * @typedef UpdateShipmentStatusParam
  * @property {OrderPlatformModel.UpdateShipmentStatusRequest} body
  */
 
 /**
- * @typedef uploadConsent
+ * @typedef UploadConsentParam
  * @property {OrderPlatformModel.UploadConsent} body
  */
 
 /**
- * @typedef upsertJioCode
- * @property {OrderPlatformModel.JioCodeUpsertPayload} body
- */
-
-/**
- * @typedef verifyMobileOTP
+ * @typedef VerifyMobileOTPParam
  * @property {OrderPlatformModel.VerifyMobileOTP} body
  */
 
@@ -386,14 +356,6 @@ class OrderPlatformValidator {
   static createOrder() {
     return Joi.object({
       body: OrderPlatformModel.CreateOrderAPI().required(),
-    }).required();
-  }
-
-  /** @returns {createShipmentReport} */
-  static createShipmentReport() {
-    return Joi.object({
-      fromDate: Joi.string().allow(""),
-      toDate: Joi.string().allow(""),
     }).required();
   }
 
@@ -438,15 +400,6 @@ class OrderPlatformValidator {
   static getAnnouncements() {
     return Joi.object({
       date: Joi.string().allow(""),
-    }).required();
-  }
-
-  /** @returns {getAssetByShipmentIds} */
-  static getAssetByShipmentIds() {
-    return Joi.object({
-      shipmentIds: Joi.string().allow("").required(),
-      invoice: Joi.boolean(),
-      expiresIn: Joi.string().allow(""),
     }).required();
   }
 
@@ -569,14 +522,6 @@ class OrderPlatformValidator {
     }).required();
   }
 
-  /** @returns {getMetricCount} */
-  static getMetricCount() {
-    return Joi.object({
-      fromDate: Joi.string().allow(""),
-      toDate: Joi.string().allow(""),
-    }).required();
-  }
-
   /** @returns {getOrderById} */
   static getOrderById() {
     return Joi.object({
@@ -604,14 +549,6 @@ class OrderPlatformValidator {
       isPrioritySort: Joi.boolean(),
       customMeta: Joi.string().allow(""),
       myOrders: Joi.boolean(),
-    }).required();
-  }
-
-  /** @returns {getReportsShipmentListing} */
-  static getReportsShipmentListing() {
-    return Joi.object({
-      pageNo: Joi.number(),
-      pageSize: Joi.number(),
     }).required();
   }
 
@@ -778,13 +715,6 @@ class OrderPlatformValidator {
   static uploadConsent() {
     return Joi.object({
       body: OrderPlatformModel.UploadConsent().required(),
-    }).required();
-  }
-
-  /** @returns {upsertJioCode} */
-  static upsertJioCode() {
-    return Joi.object({
-      body: OrderPlatformModel.JioCodeUpsertPayload().required(),
     }).required();
   }
 

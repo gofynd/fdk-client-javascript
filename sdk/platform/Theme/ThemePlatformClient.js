@@ -12,7 +12,7 @@ class Theme {
   }
 
   /**
-   * @param {ThemePlatformValidator.addMarketplaceThemeToCompany} arg - Arg object
+   * @param {ThemePlatformValidator.AddMarketplaceThemeToCompanyParam} arg - Arg object
    * @returns {Promise<ThemePlatformModel.ThemeSchema>} - Success response
    * @name addMarketplaceThemeToCompany
    * @summary: Apply a theme to a company
@@ -78,7 +78,7 @@ class Theme {
   }
 
   /**
-   * @param {ThemePlatformValidator.deleteCompanyTheme} arg - Arg object
+   * @param {ThemePlatformValidator.DeleteCompanyThemeParam} arg - Arg object
    * @returns {Promise<ThemePlatformModel.ThemeSchema>} - Success response
    * @name deleteCompanyTheme
    * @summary: Delete a theme
@@ -142,7 +142,7 @@ class Theme {
   }
 
   /**
-   * @param {ThemePlatformValidator.getCompanyLevelThemes} arg - Arg object
+   * @param {ThemePlatformValidator.GetCompanyLevelThemesParam} arg - Arg object
    * @returns {Promise<ThemePlatformModel.ThemeSchema[]>} - Success response
    * @name getCompanyLevelThemes
    * @summary: Get themes for a company

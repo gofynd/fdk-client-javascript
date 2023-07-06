@@ -3,110 +3,110 @@ const Joi = require("joi");
 const PaymentApplicationModel = require("./PaymentApplicationModel");
 
 /**
- * @typedef addBeneficiaryDetails
+ * @typedef AddBeneficiaryDetailsParam
  * @property {PaymentApplicationModel.AddBeneficiaryDetailsRequest} body
  */
 
 /**
- * @typedef addRefundBankAccountUsingOTP
+ * @typedef AddRefundBankAccountUsingOTPParam
  * @property {PaymentApplicationModel.AddBeneficiaryDetailsOTPRequest} body
  */
 
 /**
- * @typedef attachCardToCustomer
+ * @typedef AttachCardToCustomerParam
  * @property {PaymentApplicationModel.AttachCardRequest} body
  */
 
 /**
- * @typedef cancelPaymentLink
+ * @typedef CancelPaymentLinkParam
  * @property {PaymentApplicationModel.CancelOrResendPaymentLinkRequest} body
  */
 
 /**
- * @typedef cardDetails
+ * @typedef CardDetailsParam
  * @property {string} cardInfo - Card first 6 digit IIN(prefix) number.
  * @property {string} [aggregator]
  */
 
 /**
- * @typedef checkAndUpdatePaymentStatus
+ * @typedef CheckAndUpdatePaymentStatusParam
  * @property {PaymentApplicationModel.PaymentStatusUpdateRequest} body
  */
 
 /**
- * @typedef checkAndUpdatePaymentStatusPaymentLink
+ * @typedef CheckAndUpdatePaymentStatusPaymentLinkParam
  * @property {PaymentApplicationModel.PaymentStatusUpdateRequest} body
  */
 
 /**
- * @typedef checkCredit
+ * @typedef CheckCreditParam
  * @property {string} [aggregator]
  */
 
 /**
- * @typedef createOrderHandlerPaymentLink
+ * @typedef CreateOrderHandlerPaymentLinkParam
  * @property {PaymentApplicationModel.CreateOrderUserRequest} body
  */
 
 /**
- * @typedef createPaymentLink
+ * @typedef CreatePaymentLinkParam
  * @property {PaymentApplicationModel.CreatePaymentLinkRequest} body
  */
 
 /**
- * @typedef customerCreditSummary
+ * @typedef CustomerCreditSummaryParam
  * @property {string} [aggregator]
  */
 
 /**
- * @typedef customerOnboard
+ * @typedef CustomerOnboardParam
  * @property {PaymentApplicationModel.CustomerOnboardingRequest} body
  */
 
 /**
- * @typedef deleteUserCard
+ * @typedef DeleteUserCardParam
  * @property {PaymentApplicationModel.DeletehCardRequest} body
  */
 
 /**
- * @typedef enableOrDisableRefundTransferMode
+ * @typedef EnableOrDisableRefundTransferModeParam
  * @property {PaymentApplicationModel.UpdateRefundTransferModeRequest} body
  */
 
 /**
- * @typedef getActiveCardAggregator
+ * @typedef GetActiveCardAggregatorParam
  * @property {boolean} [refresh]
  */
 
-/** @typedef getActiveRefundTransferModes */
+/** @typedef GetActiveRefundTransferModesParam */
 
 /**
- * @typedef getActiveUserCards
+ * @typedef GetActiveUserCardsParam
  * @property {boolean} [forceRefresh]
  */
 
 /**
- * @typedef getAggregatorsConfig
+ * @typedef GetAggregatorsConfigParam
  * @property {string} [xApiToken] - Used for basic authentication.
  * @property {boolean} [refresh] - This is a boolean value. Select `true` to
  *   remove temporary cache files on payment gateway and replace with the latest one.
  */
 
-/** @typedef getEpaylaterBannerDetails */
+/** @typedef GetEpaylaterBannerDetailsParam */
 
 /**
- * @typedef getOrderBeneficiariesDetail
+ * @typedef GetOrderBeneficiariesDetailParam
  * @property {string} orderId - A unique number used for identifying and
  *   tracking your orders.
  */
 
 /**
- * @typedef getPaymentLink
+ * @typedef GetPaymentLinkParam
  * @property {string} [paymentLinkId]
  */
 
 /**
- * @typedef getPaymentModeRoutes
+ * @typedef GetPaymentModeRoutesParam
  * @property {number} amount - Payable amount.
  * @property {string} cartId - Identifier of the cart.
  * @property {string} pincode - The PIN Code of the destination address, e.g. 400059
@@ -119,12 +119,12 @@ const PaymentApplicationModel = require("./PaymentApplicationModel");
  */
 
 /**
- * @typedef getPaymentModeRoutesPaymentLink
+ * @typedef GetPaymentModeRoutesPaymentLinkParam
  * @property {string} paymentLinkId - Payment link id
  */
 
 /**
- * @typedef getPosPaymentModeRoutes
+ * @typedef GetPosPaymentModeRoutesParam
  * @property {number} amount - Payable amount.
  * @property {string} cartId - Identifier of the cart.
  * @property {string} pincode - The PIN Code of the destination address, e.g. 400059
@@ -139,41 +139,41 @@ const PaymentApplicationModel = require("./PaymentApplicationModel");
  *   anonymous user.
  */
 
-/** @typedef getRupifiBannerDetails */
+/** @typedef GetRupifiBannerDetailsParam */
 
 /**
- * @typedef getUserBeneficiariesDetail
+ * @typedef GetUserBeneficiariesDetailParam
  * @property {string} orderId - A unique number used for identifying and
  *   tracking your orders.
  */
 
 /**
- * @typedef initialisePayment
+ * @typedef InitialisePaymentParam
  * @property {PaymentApplicationModel.PaymentInitializationRequest} body
  */
 
 /**
- * @typedef initialisePaymentPaymentLink
+ * @typedef InitialisePaymentPaymentLinkParam
  * @property {PaymentApplicationModel.PaymentInitializationRequest} body
  */
 
 /**
- * @typedef outstandingOrderDetails
+ * @typedef OutstandingOrderDetailsParam
  * @property {string} [aggregator]
  */
 
 /**
- * @typedef paidOrderDetails
+ * @typedef PaidOrderDetailsParam
  * @property {string} [aggregator]
  */
 
 /**
- * @typedef pollingPaymentLink
+ * @typedef PollingPaymentLinkParam
  * @property {string} [paymentLinkId]
  */
 
 /**
- * @typedef redirectToAggregator
+ * @typedef RedirectToAggregatorParam
  * @property {string} [source] - This is a String value that contains callback
  *   URL as value.
  * @property {string} [aggregator] - This is a String value that contains
@@ -181,53 +181,53 @@ const PaymentApplicationModel = require("./PaymentApplicationModel");
  */
 
 /**
- * @typedef renderHTML
+ * @typedef RenderHTMLParam
  * @property {PaymentApplicationModel.renderHTMLRequest} body
  */
 
 /**
- * @typedef resendOrCancelPayment
+ * @typedef ResendOrCancelPaymentParam
  * @property {PaymentApplicationModel.ResendOrCancelPaymentRequest} body
  */
 
 /**
- * @typedef resendPaymentLink
+ * @typedef ResendPaymentLinkParam
  * @property {PaymentApplicationModel.CancelOrResendPaymentLinkRequest} body
  */
 
 /**
- * @typedef updateDefaultBeneficiary
+ * @typedef UpdateDefaultBeneficiaryParam
  * @property {PaymentApplicationModel.SetDefaultBeneficiaryRequest} body
  */
 
 /**
- * @typedef validateVPA
+ * @typedef ValidateVPAParam
  * @property {PaymentApplicationModel.ValidateVPARequest} body
  */
 
 /**
- * @typedef verifyAndChargePayment
+ * @typedef VerifyAndChargePaymentParam
  * @property {PaymentApplicationModel.ChargeCustomerRequest} body
  */
 
 /**
- * @typedef verifyCustomerForPayment
+ * @typedef VerifyCustomerForPaymentParam
  * @property {PaymentApplicationModel.ValidateCustomerRequest} body
  */
 
 /**
- * @typedef verifyIfscCode
+ * @typedef VerifyIfscCodeParam
  * @property {string} [ifscCode] - A 11-digit alphanumeric code that uniquely
  *   identifies a bank branch.
  */
 
 /**
- * @typedef verifyOtpAndAddBeneficiaryForBank
+ * @typedef VerifyOtpAndAddBeneficiaryForBankParam
  * @property {PaymentApplicationModel.AddBeneficiaryViaOtpVerificationRequest} body
  */
 
 /**
- * @typedef verifyOtpAndAddBeneficiaryForWallet
+ * @typedef VerifyOtpAndAddBeneficiaryForWalletParam
  * @property {PaymentApplicationModel.WalletOtpRequest} body
  */
 

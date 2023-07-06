@@ -49,7 +49,7 @@ class Configuration {
   }
 
   /**
-   * @param {ConfigurationApplicationValidator.getAppCurrencies} arg - Arg object.
+   * @param {ConfigurationApplicationValidator.GetAppCurrenciesParam} arg - Arg object.
    * @returns {Promise<ConfigurationApplicationModel.AppCurrencyResponse>} -
    *   Success response
    * @name getAppCurrencies
@@ -115,7 +115,7 @@ class Configuration {
   }
 
   /**
-   * @param {ConfigurationApplicationValidator.getAppStaffList} arg - Arg object.
+   * @param {ConfigurationApplicationValidator.GetAppStaffListParam} arg - Arg object.
    * @returns {Promise<ConfigurationApplicationModel.AppStaffListResponse>} -
    *   Success response
    * @name getAppStaffList
@@ -238,7 +238,7 @@ class Configuration {
   }
 
   /**
-   * @param {ConfigurationApplicationValidator.getAppStaffs} arg - Arg object.
+   * @param {ConfigurationApplicationValidator.GetAppStaffsParam} arg - Arg object.
    * @returns {Promise<ConfigurationApplicationModel.AppStaffResponse>} -
    *   Success response
    * @name getAppStaffs
@@ -305,7 +305,7 @@ class Configuration {
   }
 
   /**
-   * @param {ConfigurationApplicationValidator.getApplication} arg - Arg object.
+   * @param {ConfigurationApplicationValidator.GetApplicationParam} arg - Arg object.
    * @returns {Promise<ConfigurationApplicationModel.Application>} - Success response
    * @name getApplication
    * @summary: Get current sales channel details
@@ -370,7 +370,7 @@ class Configuration {
   }
 
   /**
-   * @param {ConfigurationApplicationValidator.getBasicDetails} arg - Arg object.
+   * @param {ConfigurationApplicationValidator.GetBasicDetailsParam} arg - Arg object.
    * @returns {Promise<ConfigurationApplicationModel.ApplicationDetail>} -
    *   Success response
    * @name getBasicDetails
@@ -436,7 +436,7 @@ class Configuration {
   }
 
   /**
-   * @param {ConfigurationApplicationValidator.getContactInfo} arg - Arg object.
+   * @param {ConfigurationApplicationValidator.GetContactInfoParam} arg - Arg object.
    * @returns {Promise<ConfigurationApplicationModel.ApplicationInformation>}
    *   - Success response
    *
@@ -503,7 +503,7 @@ class Configuration {
   }
 
   /**
-   * @param {ConfigurationApplicationValidator.getCurrencies} arg - Arg object.
+   * @param {ConfigurationApplicationValidator.GetCurrenciesParam} arg - Arg object.
    * @returns {Promise<ConfigurationApplicationModel.CurrenciesResponse>} -
    *   Success response
    * @name getCurrencies
@@ -569,7 +569,7 @@ class Configuration {
   }
 
   /**
-   * @param {ConfigurationApplicationValidator.getCurrencyById} arg - Arg object.
+   * @param {ConfigurationApplicationValidator.GetCurrencyByIdParam} arg - Arg object.
    * @returns {Promise<ConfigurationApplicationModel.Currency>} - Success response
    * @name getCurrencyById
    * @summary: Get currency by its ID
@@ -634,7 +634,7 @@ class Configuration {
   }
 
   /**
-   * @param {ConfigurationApplicationValidator.getFeatures} arg - Arg object.
+   * @param {ConfigurationApplicationValidator.GetFeaturesParam} arg - Arg object.
    * @returns {Promise<ConfigurationApplicationModel.AppFeatureResponse>} -
    *   Success response
    * @name getFeatures
@@ -698,7 +698,9 @@ class Configuration {
   }
 
   /**
-   * @param {ConfigurationApplicationValidator.getIntegrationTokens} arg - Arg object.
+   * @param {ConfigurationApplicationValidator.GetIntegrationTokensParam} arg
+   *   - Arg object.
+   *
    * @returns {Promise<ConfigurationApplicationModel.AppTokenResponse>} -
    *   Success response
    * @name getIntegrationTokens
@@ -764,7 +766,7 @@ class Configuration {
   }
 
   /**
-   * @param {ConfigurationApplicationValidator.getLanguages} arg - Arg object.
+   * @param {ConfigurationApplicationValidator.GetLanguagesParam} arg - Arg object.
    * @returns {Promise<ConfigurationApplicationModel.LanguageResponse>} -
    *   Success response
    * @name getLanguages
@@ -828,7 +830,9 @@ class Configuration {
   }
 
   /**
-   * @param {ConfigurationApplicationValidator.getOrderingStoreCookie} arg - Arg object.
+   * @param {ConfigurationApplicationValidator.GetOrderingStoreCookieParam} arg
+   *   - Arg object.
+   *
    * @returns {Promise<ConfigurationApplicationModel.SuccessMessageResponse>}
    *   - Success response
    *
@@ -895,7 +899,7 @@ class Configuration {
   }
 
   /**
-   * @param {ConfigurationApplicationValidator.getOrderingStores} arg - Arg object.
+   * @param {ConfigurationApplicationValidator.GetOrderingStoresParam} arg - Arg object.
    * @returns {Promise<ConfigurationApplicationModel.OrderingStores>} - Success response
    * @name getOrderingStores
    * @summary: Get all deployment stores
@@ -993,7 +997,7 @@ class Configuration {
   }
 
   /**
-   * @param {ConfigurationApplicationValidator.getOwnerInfo} arg - Arg object.
+   * @param {ConfigurationApplicationValidator.GetOwnerInfoParam} arg - Arg object.
    * @returns {Promise<ConfigurationApplicationModel.ApplicationAboutResponse>}
    *   - Success response
    *
@@ -1058,7 +1062,8 @@ class Configuration {
   }
 
   /**
-   * @param {ConfigurationApplicationValidator.getStoreDetailById} arg - Arg object.
+   * @param {ConfigurationApplicationValidator.GetStoreDetailByIdParam} arg -
+   *   Arg object.
    * @returns {Promise<ConfigurationApplicationModel.OrderingStore>} - Success response
    * @name getStoreDetailById
    * @summary: Get ordering store details
@@ -1123,7 +1128,7 @@ class Configuration {
   }
 
   /**
-   * @param {ConfigurationApplicationValidator.removeOrderingStoreCookie} arg
+   * @param {ConfigurationApplicationValidator.RemoveOrderingStoreCookieParam} arg
    *   - Arg object.
    *
    * @returns {Promise<ConfigurationApplicationModel.SuccessMessageResponse>}

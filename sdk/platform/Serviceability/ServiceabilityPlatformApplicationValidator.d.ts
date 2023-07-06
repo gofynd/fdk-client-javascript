@@ -1,87 +1,99 @@
 export = ServiceabilityPlatformApplicationValidator;
 /**
- * @typedef addAppDp
+ * @typedef AddAppDpParam
  * @property {ServiceabilityPlatformModel.ApplicationCompanyDpViewRequest} body
  */
 /**
- * @typedef deleteAppDp
+ * @typedef DeleteAppDpParam
  * @property {number} courierPartnerId - A `courier_partner_id` is a unique
  *   identifier of a particular delivery partner.
  */
-/** @typedef getApplicationServiceability */
-/** @typedef getApplicationServiceabilitySelfShipment */
-/** @typedef getDpApplicationRules */
+/** @typedef GetApplicationServiceabilityParam */
+/** @typedef GetApplicationServiceabilitySelfShipmentParam */
+/** @typedef GetDpApplicationRulesParam */
 /**
- * @typedef getZoneFromPincodeView
+ * @typedef GetZoneFromPincodeViewParam
  * @property {ServiceabilityPlatformModel.GetZoneFromPincodeViewRequest} body
  */
 /**
- * @typedef getZonesFromApplicationIdView
+ * @typedef GetZonesFromApplicationIdViewParam
  * @property {number} [pageNo] - Index of the item to start returning with
  * @property {number} [pageSize] - Determines the items to be displayed in a page
  * @property {string[]} [zoneId] - List of zones to query for
  * @property {string} [q] - Search with name as a free text
  */
 /**
- * @typedef patchApplicationServiceabilitySelfShipment
+ * @typedef PatchApplicationServiceabilitySelfShipmentParam
  * @property {ServiceabilityPlatformModel.SelfShipResponse} body
  */
 /**
- * @typedef updatePincodeAuditHistory
+ * @typedef UpdatePincodeAuditHistoryParam
  * @property {ServiceabilityPlatformModel.PincodeMopUpdateAuditHistoryRequest} body
  */
 /**
- * @typedef updatePincodeBulkView
+ * @typedef UpdatePincodeBulkViewParam
  * @property {ServiceabilityPlatformModel.PincodeMopBulkData} body
  */
 /**
- * @typedef updatePincodeCoDListing
+ * @typedef UpdatePincodeCoDListingParam
  * @property {ServiceabilityPlatformModel.PincodeCodStatusListingRequest} body
  */
 /**
- * @typedef updatePincodeMopView
+ * @typedef UpdatePincodeMopViewParam
  * @property {ServiceabilityPlatformModel.PincodeMopData} body
  */
 /**
- * @typedef upsertDpApplicationRules
+ * @typedef UpsertDpApplicationRulesParam
  * @property {ServiceabilityPlatformModel.DPApplicationRuleRequest} body
  */
 declare class ServiceabilityPlatformApplicationValidator {
+    /** @returns {addAppDp} */
+    static addAppDp(): addAppDp;
+    /** @returns {deleteAppDp} */
+    static deleteAppDp(): deleteAppDp;
+    /** @returns {getApplicationServiceability} */
+    static getApplicationServiceability(): getApplicationServiceability;
+    /** @returns {getApplicationServiceabilitySelfShipment} */
+    static getApplicationServiceabilitySelfShipment(): getApplicationServiceabilitySelfShipment;
+    /** @returns {getDpApplicationRules} */
+    static getDpApplicationRules(): getDpApplicationRules;
+    /** @returns {getZoneFromPincodeView} */
+    static getZoneFromPincodeView(): getZoneFromPincodeView;
+    /** @returns {getZonesFromApplicationIdView} */
+    static getZonesFromApplicationIdView(): getZonesFromApplicationIdView;
+    /** @returns {patchApplicationServiceabilitySelfShipment} */
+    static patchApplicationServiceabilitySelfShipment(): patchApplicationServiceabilitySelfShipment;
+    /** @returns {updatePincodeAuditHistory} */
+    static updatePincodeAuditHistory(): updatePincodeAuditHistory;
+    /** @returns {updatePincodeBulkView} */
+    static updatePincodeBulkView(): updatePincodeBulkView;
+    /** @returns {updatePincodeCoDListing} */
+    static updatePincodeCoDListing(): updatePincodeCoDListing;
+    /** @returns {updatePincodeMopView} */
+    static updatePincodeMopView(): updatePincodeMopView;
+    /** @returns {upsertDpApplicationRules} */
+    static upsertDpApplicationRules(): upsertDpApplicationRules;
 }
 declare namespace ServiceabilityPlatformApplicationValidator {
-    export { addAppDp, deleteAppDp, getApplicationServiceability, getApplicationServiceabilitySelfShipment, getDpApplicationRules, getZoneFromPincodeView, getZonesFromApplicationIdView, patchApplicationServiceabilitySelfShipment, updatePincodeAuditHistory, updatePincodeBulkView, updatePincodeCoDListing, updatePincodeMopView, upsertDpApplicationRules };
+    export { AddAppDpParam, DeleteAppDpParam, GetApplicationServiceabilityParam, GetApplicationServiceabilitySelfShipmentParam, GetDpApplicationRulesParam, GetZoneFromPincodeViewParam, GetZonesFromApplicationIdViewParam, PatchApplicationServiceabilitySelfShipmentParam, UpdatePincodeAuditHistoryParam, UpdatePincodeBulkViewParam, UpdatePincodeCoDListingParam, UpdatePincodeMopViewParam, UpsertDpApplicationRulesParam };
 }
-/** @returns {addAppDp} */
-declare function addAppDp(): addAppDp;
-type addAppDp = {
+type AddAppDpParam = {
     body: ServiceabilityPlatformModel.ApplicationCompanyDpViewRequest;
 };
-/** @returns {deleteAppDp} */
-declare function deleteAppDp(): deleteAppDp;
-type deleteAppDp = {
+type DeleteAppDpParam = {
     /**
      * - A `courier_partner_id` is a unique
      * identifier of a particular delivery partner.
      */
     courierPartnerId: number;
 };
-/** @returns {getApplicationServiceability} */
-declare function getApplicationServiceability(): any;
-type getApplicationServiceability = any;
-/** @returns {getApplicationServiceabilitySelfShipment} */
-declare function getApplicationServiceabilitySelfShipment(): any;
-type getApplicationServiceabilitySelfShipment = any;
-/** @returns {getDpApplicationRules} */
-declare function getDpApplicationRules(): any;
-type getDpApplicationRules = any;
-/** @returns {getZoneFromPincodeView} */
-declare function getZoneFromPincodeView(): getZoneFromPincodeView;
-type getZoneFromPincodeView = {
+type GetApplicationServiceabilityParam = any;
+type GetApplicationServiceabilitySelfShipmentParam = any;
+type GetDpApplicationRulesParam = any;
+type GetZoneFromPincodeViewParam = {
     body: ServiceabilityPlatformModel.GetZoneFromPincodeViewRequest;
 };
-/** @returns {getZonesFromApplicationIdView} */
-declare function getZonesFromApplicationIdView(): getZonesFromApplicationIdView;
-type getZonesFromApplicationIdView = {
+type GetZonesFromApplicationIdViewParam = {
     /**
      * - Index of the item to start returning with
      */
@@ -99,34 +111,22 @@ type getZonesFromApplicationIdView = {
      */
     q?: string;
 };
-/** @returns {patchApplicationServiceabilitySelfShipment} */
-declare function patchApplicationServiceabilitySelfShipment(): patchApplicationServiceabilitySelfShipment;
-type patchApplicationServiceabilitySelfShipment = {
+type PatchApplicationServiceabilitySelfShipmentParam = {
     body: ServiceabilityPlatformModel.SelfShipResponse;
 };
-/** @returns {updatePincodeAuditHistory} */
-declare function updatePincodeAuditHistory(): updatePincodeAuditHistory;
-type updatePincodeAuditHistory = {
+type UpdatePincodeAuditHistoryParam = {
     body: ServiceabilityPlatformModel.PincodeMopUpdateAuditHistoryRequest;
 };
-/** @returns {updatePincodeBulkView} */
-declare function updatePincodeBulkView(): updatePincodeBulkView;
-type updatePincodeBulkView = {
+type UpdatePincodeBulkViewParam = {
     body: ServiceabilityPlatformModel.PincodeMopBulkData;
 };
-/** @returns {updatePincodeCoDListing} */
-declare function updatePincodeCoDListing(): updatePincodeCoDListing;
-type updatePincodeCoDListing = {
+type UpdatePincodeCoDListingParam = {
     body: ServiceabilityPlatformModel.PincodeCodStatusListingRequest;
 };
-/** @returns {updatePincodeMopView} */
-declare function updatePincodeMopView(): updatePincodeMopView;
-type updatePincodeMopView = {
+type UpdatePincodeMopViewParam = {
     body: ServiceabilityPlatformModel.PincodeMopData;
 };
-/** @returns {upsertDpApplicationRules} */
-declare function upsertDpApplicationRules(): upsertDpApplicationRules;
-type upsertDpApplicationRules = {
+type UpsertDpApplicationRulesParam = {
     body: ServiceabilityPlatformModel.DPApplicationRuleRequest;
 };
 import ServiceabilityPlatformModel = require("./ServiceabilityPlatformModel");

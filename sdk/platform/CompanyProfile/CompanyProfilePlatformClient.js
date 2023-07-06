@@ -12,7 +12,7 @@ class CompanyProfile {
   }
 
   /**
-   * @param {CompanyProfilePlatformValidator.cbsOnboardGet} arg - Arg object
+   * @param {CompanyProfilePlatformValidator.CbsOnboardGetParam} arg - Arg object
    * @returns {Promise<CompanyProfilePlatformModel.GetCompanyProfileSerializerResponse>}
    *   - Success response
    *
@@ -74,7 +74,7 @@ class CompanyProfile {
   }
 
   /**
-   * @param {CompanyProfilePlatformValidator.createBrand} arg - Arg object
+   * @param {CompanyProfilePlatformValidator.CreateBrandParam} arg - Arg object
    * @returns {Promise<CompanyProfilePlatformModel.ProfileSuccessResponse>} -
    *   Success response
    * @name createBrand
@@ -139,7 +139,9 @@ class CompanyProfile {
   }
 
   /**
-   * @param {CompanyProfilePlatformValidator.createCompanyBrandMapping} arg - Arg object
+   * @param {CompanyProfilePlatformValidator.CreateCompanyBrandMappingParam} arg
+   *   - Arg object
+   *
    * @returns {Promise<CompanyProfilePlatformModel.ProfileSuccessResponse>} -
    *   Success response
    * @name createCompanyBrandMapping
@@ -206,7 +208,7 @@ class CompanyProfile {
   }
 
   /**
-   * @param {CompanyProfilePlatformValidator.createLocation} arg - Arg object
+   * @param {CompanyProfilePlatformValidator.CreateLocationParam} arg - Arg object
    * @returns {Promise<CompanyProfilePlatformModel.ProfileSuccessResponse>} -
    *   Success response
    * @name createLocation
@@ -271,7 +273,7 @@ class CompanyProfile {
   }
 
   /**
-   * @param {CompanyProfilePlatformValidator.createLocationBulk} arg - Arg object
+   * @param {CompanyProfilePlatformValidator.CreateLocationBulkParam} arg - Arg object
    * @returns {Promise<CompanyProfilePlatformModel.ProfileSuccessResponse>} -
    *   Success response
    * @name createLocationBulk
@@ -338,7 +340,7 @@ class CompanyProfile {
   }
 
   /**
-   * @param {CompanyProfilePlatformValidator.editBrand} arg - Arg object
+   * @param {CompanyProfilePlatformValidator.EditBrandParam} arg - Arg object
    * @returns {Promise<CompanyProfilePlatformModel.ProfileSuccessResponse>} -
    *   Success response
    * @name editBrand
@@ -405,7 +407,7 @@ class CompanyProfile {
   }
 
   /**
-   * @param {CompanyProfilePlatformValidator.getBrand} arg - Arg object
+   * @param {CompanyProfilePlatformValidator.GetBrandParam} arg - Arg object
    * @returns {Promise<CompanyProfilePlatformModel.GetBrandResponseSerializer>}
    *   - Success response
    *
@@ -471,7 +473,7 @@ class CompanyProfile {
   }
 
   /**
-   * @param {CompanyProfilePlatformValidator.getBrands} arg - Arg object
+   * @param {CompanyProfilePlatformValidator.GetBrandsParam} arg - Arg object
    * @returns {Promise<CompanyProfilePlatformModel.CompanyBrandListSerializer>}
    *   - Success response
    *
@@ -574,7 +576,7 @@ class CompanyProfile {
   }
 
   /**
-   * @param {CompanyProfilePlatformValidator.getCompanyMetrics} arg - Arg object
+   * @param {CompanyProfilePlatformValidator.GetCompanyMetricsParam} arg - Arg object
    * @returns {Promise<CompanyProfilePlatformModel.MetricsSerializer>} -
    *   Success response
    * @name getCompanyMetrics
@@ -637,7 +639,7 @@ class CompanyProfile {
   }
 
   /**
-   * @param {CompanyProfilePlatformValidator.getLocationDetail} arg - Arg object
+   * @param {CompanyProfilePlatformValidator.GetLocationDetailParam} arg - Arg object
    * @returns {Promise<CompanyProfilePlatformModel.GetLocationSerializer>} -
    *   Success response
    * @name getLocationDetail
@@ -704,7 +706,7 @@ class CompanyProfile {
   }
 
   /**
-   * @param {CompanyProfilePlatformValidator.getLocationTags} arg - Arg object
+   * @param {CompanyProfilePlatformValidator.GetLocationTagsParam} arg - Arg object
    * @returns {Promise<CompanyProfilePlatformModel.StoreTagsResponse>} -
    *   Success response
    * @name getLocationTags
@@ -767,7 +769,7 @@ class CompanyProfile {
   }
 
   /**
-   * @param {CompanyProfilePlatformValidator.getLocations} arg - Arg object
+   * @param {CompanyProfilePlatformValidator.GetLocationsParam} arg - Arg object
    * @returns {Promise<CompanyProfilePlatformModel.LocationListSerializer>} -
    *   Success response
    * @name getLocations
@@ -893,7 +895,7 @@ class CompanyProfile {
   }
 
   /**
-   * @param {CompanyProfilePlatformValidator.updateCompany} arg - Arg object
+   * @param {CompanyProfilePlatformValidator.UpdateCompanyParam} arg - Arg object
    * @returns {Promise<CompanyProfilePlatformModel.ProfileSuccessResponse>} -
    *   Success response
    * @name updateCompany
@@ -958,7 +960,7 @@ class CompanyProfile {
   }
 
   /**
-   * @param {CompanyProfilePlatformValidator.updateLocation} arg - Arg object
+   * @param {CompanyProfilePlatformValidator.UpdateLocationParam} arg - Arg object
    * @returns {Promise<CompanyProfilePlatformModel.ProfileSuccessResponse>} -
    *   Success response
    * @name updateLocation

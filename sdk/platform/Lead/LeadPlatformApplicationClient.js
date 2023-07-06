@@ -13,7 +13,7 @@ class Lead {
   }
 
   /**
-   * @param {LeadPlatformApplicationValidator.closeVideoRoom} arg - Arg object
+   * @param {LeadPlatformApplicationValidator.CloseVideoRoomParam} arg - Arg object
    * @returns {Promise<LeadPlatformModel.CloseVideoRoomResponse>} - Success response
    * @name closeVideoRoom
    * @summary: Close the video room and force all participants to leave.
@@ -76,7 +76,7 @@ class Lead {
   }
 
   /**
-   * @param {LeadPlatformApplicationValidator.createCustomForm} arg - Arg object
+   * @param {LeadPlatformApplicationValidator.CreateCustomFormParam} arg - Arg object
    * @returns {Promise<LeadPlatformModel.CustomForm>} - Success response
    * @name createCustomForm
    * @summary: Creates a new custom form
@@ -139,7 +139,7 @@ class Lead {
   }
 
   /**
-   * @param {LeadPlatformApplicationValidator.createHistory} arg - Arg object
+   * @param {LeadPlatformApplicationValidator.CreateHistoryParam} arg - Arg object
    * @returns {Promise<LeadPlatformModel.TicketHistory>} - Success response
    * @name createHistory
    * @summary: Create history for specific application level ticket
@@ -202,7 +202,7 @@ class Lead {
   }
 
   /**
-   * @param {LeadPlatformApplicationValidator.editCustomForm} arg - Arg object
+   * @param {LeadPlatformApplicationValidator.EditCustomFormParam} arg - Arg object
    * @returns {Promise<LeadPlatformModel.CustomForm>} - Success response
    * @name editCustomForm
    * @summary: Edit the given custom form
@@ -267,7 +267,7 @@ class Lead {
   }
 
   /**
-   * @param {LeadPlatformApplicationValidator.editTicket} arg - Arg object
+   * @param {LeadPlatformApplicationValidator.EditTicketParam} arg - Arg object
    * @returns {Promise<LeadPlatformModel.Ticket>} - Success response
    * @name editTicket
    * @summary: Edits ticket details of a application level ticket
@@ -328,7 +328,7 @@ class Lead {
   }
 
   /**
-   * @param {LeadPlatformApplicationValidator.getCustomForm} arg - Arg object
+   * @param {LeadPlatformApplicationValidator.GetCustomFormParam} arg - Arg object
    * @returns {Promise<LeadPlatformModel.CustomForm>} - Success response
    * @name getCustomForm
    * @summary: Get specific custom form using it's slug
@@ -389,7 +389,7 @@ class Lead {
   }
 
   /**
-   * @param {LeadPlatformApplicationValidator.getCustomForms} arg - Arg object
+   * @param {LeadPlatformApplicationValidator.GetCustomFormsParam} arg - Arg object
    * @returns {Promise<LeadPlatformModel.CustomFormList>} - Success response
    * @name getCustomForms
    * @summary: Get list of custom form
@@ -448,7 +448,7 @@ class Lead {
   }
 
   /**
-   * @param {LeadPlatformApplicationValidator.getTicket} arg - Arg object
+   * @param {LeadPlatformApplicationValidator.GetTicketParam} arg - Arg object
    * @returns {Promise<LeadPlatformModel.Ticket>} - Success response
    * @name getTicket
    * @summary: Retreives ticket details of a application level ticket
@@ -507,7 +507,7 @@ class Lead {
   }
 
   /**
-   * @param {LeadPlatformApplicationValidator.getTicketHistory} arg - Arg object
+   * @param {LeadPlatformApplicationValidator.GetTicketHistoryParam} arg - Arg object
    * @returns {Promise<LeadPlatformModel.TicketHistoryList>} - Success response
    * @name getTicketHistory
    * @summary: Gets history list for specific application level ticket
@@ -570,7 +570,7 @@ class Lead {
   }
 
   /**
-   * @param {LeadPlatformApplicationValidator.getTickets} arg - Arg object
+   * @param {LeadPlatformApplicationValidator.GetTicketsParam} arg - Arg object
    * @returns {Promise<LeadPlatformModel.TicketList>} - Success response
    * @name getTickets
    * @summary: Gets the list of Application level Tickets and/or ticket filters depending on query params
@@ -647,7 +647,9 @@ class Lead {
   }
 
   /**
-   * @param {LeadPlatformApplicationValidator.getTokenForVideoRoom} arg - Arg object
+   * @param {LeadPlatformApplicationValidator.GetTokenForVideoRoomParam} arg
+   *   - Arg object
+   *
    * @returns {Promise<LeadPlatformModel.GetTokenForVideoRoomResponse>} -
    *   Success response
    * @name getTokenForVideoRoom
@@ -711,7 +713,9 @@ class Lead {
   }
 
   /**
-   * @param {LeadPlatformApplicationValidator.getVideoParticipants} arg - Arg object
+   * @param {LeadPlatformApplicationValidator.GetVideoParticipantsParam} arg
+   *   - Arg object
+   *
    * @returns {Promise<LeadPlatformModel.GetParticipantsInsideVideoRoomResponse>}
    *   - Success response
    *
@@ -776,7 +780,7 @@ class Lead {
   }
 
   /**
-   * @param {LeadPlatformApplicationValidator.openVideoRoom} arg - Arg object
+   * @param {LeadPlatformApplicationValidator.OpenVideoRoomParam} arg - Arg object
    * @returns {Promise<LeadPlatformModel.CreateVideoRoomResponse>} - Success response
    * @name openVideoRoom
    * @summary: Open a video room.

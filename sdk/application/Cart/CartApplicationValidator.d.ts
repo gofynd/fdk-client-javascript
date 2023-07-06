@@ -1,10 +1,10 @@
 export = CartApplicationValidator;
 /**
- * @typedef addAddress
+ * @typedef AddAddressParam
  * @property {CartApplicationModel.Address} body
  */
 /**
- * @typedef addItems
+ * @typedef AddItemsParam
  * @property {boolean} [i] - This is a boolean value. Select `true` to retrieve
  *   all the items added in the cart.
  * @property {boolean} [b] - This is a boolean value. Select `true` to retrieve
@@ -18,7 +18,7 @@ export = CartApplicationValidator;
  * @property {CartApplicationModel.AddCartRequest} body
  */
 /**
- * @typedef applyCoupon
+ * @typedef ApplyCouponParam
  * @property {boolean} [i]
  * @property {boolean} [b]
  * @property {boolean} [p]
@@ -27,7 +27,7 @@ export = CartApplicationValidator;
  * @property {CartApplicationModel.ApplyCouponRequest} body
  */
 /**
- * @typedef applyRewardPoints
+ * @typedef ApplyRewardPointsParam
  * @property {string} [id]
  * @property {boolean} [i]
  * @property {boolean} [b]
@@ -35,21 +35,21 @@ export = CartApplicationValidator;
  * @property {CartApplicationModel.RewardPointRequest} body
  */
 /**
- * @typedef checkoutCart
+ * @typedef CheckoutCartParam
  * @property {boolean} [buyNow] - This indicates the type of cart to checkout
  * @property {CartApplicationModel.CartCheckoutDetailRequest} body
  */
 /**
- * @typedef checkoutCartV2
+ * @typedef CheckoutCartV2Param
  * @property {boolean} [buyNow] - This indicates the type of cart to checkout
  * @property {CartApplicationModel.CartCheckoutDetailV2Request} body
  */
 /**
- * @typedef deleteCart
+ * @typedef DeleteCartParam
  * @property {string} [id] - The unique identifier of the cart.
  */
 /**
- * @typedef getAddressById
+ * @typedef GetAddressByIdParam
  * @property {string} id
  * @property {string} [cartId]
  * @property {boolean} [buyNow]
@@ -59,7 +59,7 @@ export = CartApplicationValidator;
  * @property {boolean} [isDefault]
  */
 /**
- * @typedef getAddresses
+ * @typedef GetAddressesParam
  * @property {string} [cartId]
  * @property {boolean} [buyNow]
  * @property {string} [mobileNo]
@@ -68,7 +68,7 @@ export = CartApplicationValidator;
  * @property {boolean} [isDefault]
  */
 /**
- * @typedef getBulkDiscountOffers
+ * @typedef GetBulkDiscountOffersParam
  * @property {number} [itemId] - The Item ID of the product
  * @property {string} [articleId] - Article Mongo ID
  * @property {number} [uid] - UID of the product
@@ -77,7 +77,7 @@ export = CartApplicationValidator;
  *   /service/application/catalog/v1.0/products/
  */
 /**
- * @typedef getCart
+ * @typedef GetCartParam
  * @property {string} [id] - The unique identifier of the cart
  * @property {boolean} [i] - This is a boolean value. Select `true` to retrieve
  *   all the items added in the cart.
@@ -91,29 +91,29 @@ export = CartApplicationValidator;
  *   set/initialize buy now cart
  */
 /**
- * @typedef getCartLastModified
+ * @typedef GetCartLastModifiedParam
  * @property {string} [id] - The unique identifier of the cart
  */
 /**
- * @typedef getCartShareLink
+ * @typedef GetCartShareLinkParam
  * @property {CartApplicationModel.GetShareCartLinkRequest} body
  */
 /**
- * @typedef getCartSharedItems
+ * @typedef GetCartSharedItemsParam
  * @property {string} token - Token of the shared short link
  */
 /**
- * @typedef getCoupons
+ * @typedef GetCouponsParam
  * @property {string} [id]
  * @property {boolean} [buyNow]
  */
 /**
- * @typedef getItemCount
+ * @typedef GetItemCountParam
  * @property {string} [id] - The unique identifier of the cart.
  * @property {boolean} [buyNow] - Boolean value to get buy_now cart.
  */
 /**
- * @typedef getLadderOffers
+ * @typedef GetLadderOffersParam
  * @property {string} slug - A short, human-readable, URL-friendly identifier of
  *   a product. You can get slug value from the endpoint
  *   /service/application/catalog/v1.0/products/
@@ -124,7 +124,7 @@ export = CartApplicationValidator;
  * @property {number} [pageSize] - Number of offers to be fetched to show
  */
 /**
- * @typedef getPromotionOffers
+ * @typedef GetPromotionOffersParam
  * @property {string} [slug] - A short, human-readable, URL-friendly identifier
  *   of a product. You can get slug value from the endpoint
  *   /service/application/catalog/v1.0/products/
@@ -133,7 +133,7 @@ export = CartApplicationValidator;
  * @property {number} [storeId] - Store id
  */
 /**
- * @typedef getShipments
+ * @typedef GetShipmentsParam
  * @property {boolean} [p] - This is a boolean value. Select `true` for getting
  *   a payment option in response.
  * @property {string} [id] - The unique identifier of the cart
@@ -142,16 +142,16 @@ export = CartApplicationValidator;
  * @property {string} [areaCode] - The PIN Code of the destination address, e.g. 400059
  */
 /**
- * @typedef removeAddress
+ * @typedef RemoveAddressParam
  * @property {string} id - ID allotted to the selected address
  */
 /**
- * @typedef removeCoupon
+ * @typedef RemoveCouponParam
  * @property {string} [id]
  * @property {boolean} [buyNow]
  */
 /**
- * @typedef selectAddress
+ * @typedef SelectAddressParam
  * @property {string} [cartId]
  * @property {boolean} [buyNow]
  * @property {boolean} [i]
@@ -159,18 +159,18 @@ export = CartApplicationValidator;
  * @property {CartApplicationModel.SelectCartAddressRequest} body
  */
 /**
- * @typedef selectPaymentMode
+ * @typedef SelectPaymentModeParam
  * @property {string} [id]
  * @property {boolean} [buyNow]
  * @property {CartApplicationModel.UpdateCartPaymentRequest} body
  */
 /**
- * @typedef updateAddress
+ * @typedef UpdateAddressParam
  * @property {string} id - ID allotted to the selected address
  * @property {CartApplicationModel.Address} body
  */
 /**
- * @typedef updateCart
+ * @typedef UpdateCartParam
  * @property {string} [id] - The unique identifier of the cart
  * @property {boolean} [i] - This is a boolean value. Select `true` to retrieve
  *   all the items added in the cart.
@@ -184,18 +184,18 @@ export = CartApplicationValidator;
  * @property {CartApplicationModel.UpdateCartRequest} body
  */
 /**
- * @typedef updateCartMeta
+ * @typedef UpdateCartMetaParam
  * @property {string} [id] - The unique identifier of the cart
  * @property {boolean} [buyNow] - This is boolean to get buy_now cart
  * @property {CartApplicationModel.CartMetaRequest} body
  */
 /**
- * @typedef updateCartWithSharedItems
+ * @typedef UpdateCartWithSharedItemsParam
  * @property {string} token - Token of the shared short link
  * @property {string} action - Operation to perform on the existing cart merge or replace.
  */
 /**
- * @typedef validateCouponForPayment
+ * @typedef ValidateCouponForPaymentParam
  * @property {string} [id]
  * @property {boolean} [buyNow]
  * @property {string} [addressId]
@@ -209,18 +209,70 @@ export = CartApplicationValidator;
  * @property {string} [cardId]
  */
 declare class CartApplicationValidator {
+    /** @returns {addAddress} */
+    static addAddress(): addAddress;
+    /** @returns {addItems} */
+    static addItems(): addItems;
+    /** @returns {applyCoupon} */
+    static applyCoupon(): applyCoupon;
+    /** @returns {applyRewardPoints} */
+    static applyRewardPoints(): applyRewardPoints;
+    /** @returns {checkoutCart} */
+    static checkoutCart(): checkoutCart;
+    /** @returns {checkoutCartV2} */
+    static checkoutCartV2(): checkoutCartV2;
+    /** @returns {deleteCart} */
+    static deleteCart(): deleteCart;
+    /** @returns {getAddressById} */
+    static getAddressById(): getAddressById;
+    /** @returns {getAddresses} */
+    static getAddresses(): getAddresses;
+    /** @returns {getBulkDiscountOffers} */
+    static getBulkDiscountOffers(): getBulkDiscountOffers;
+    /** @returns {getCart} */
+    static getCart(): getCart;
+    /** @returns {getCartLastModified} */
+    static getCartLastModified(): getCartLastModified;
+    /** @returns {getCartShareLink} */
+    static getCartShareLink(): getCartShareLink;
+    /** @returns {getCartSharedItems} */
+    static getCartSharedItems(): getCartSharedItems;
+    /** @returns {getCoupons} */
+    static getCoupons(): getCoupons;
+    /** @returns {getItemCount} */
+    static getItemCount(): getItemCount;
+    /** @returns {getLadderOffers} */
+    static getLadderOffers(): getLadderOffers;
+    /** @returns {getPromotionOffers} */
+    static getPromotionOffers(): getPromotionOffers;
+    /** @returns {getShipments} */
+    static getShipments(): getShipments;
+    /** @returns {removeAddress} */
+    static removeAddress(): removeAddress;
+    /** @returns {removeCoupon} */
+    static removeCoupon(): removeCoupon;
+    /** @returns {selectAddress} */
+    static selectAddress(): selectAddress;
+    /** @returns {selectPaymentMode} */
+    static selectPaymentMode(): selectPaymentMode;
+    /** @returns {updateAddress} */
+    static updateAddress(): updateAddress;
+    /** @returns {updateCart} */
+    static updateCart(): updateCart;
+    /** @returns {updateCartMeta} */
+    static updateCartMeta(): updateCartMeta;
+    /** @returns {updateCartWithSharedItems} */
+    static updateCartWithSharedItems(): updateCartWithSharedItems;
+    /** @returns {validateCouponForPayment} */
+    static validateCouponForPayment(): validateCouponForPayment;
 }
 declare namespace CartApplicationValidator {
-    export { addAddress, addItems, applyCoupon, applyRewardPoints, checkoutCart, checkoutCartV2, deleteCart, getAddressById, getAddresses, getBulkDiscountOffers, getCart, getCartLastModified, getCartShareLink, getCartSharedItems, getCoupons, getItemCount, getLadderOffers, getPromotionOffers, getShipments, removeAddress, removeCoupon, selectAddress, selectPaymentMode, updateAddress, updateCart, updateCartMeta, updateCartWithSharedItems, validateCouponForPayment };
+    export { AddAddressParam, AddItemsParam, ApplyCouponParam, ApplyRewardPointsParam, CheckoutCartParam, CheckoutCartV2Param, DeleteCartParam, GetAddressByIdParam, GetAddressesParam, GetBulkDiscountOffersParam, GetCartParam, GetCartLastModifiedParam, GetCartShareLinkParam, GetCartSharedItemsParam, GetCouponsParam, GetItemCountParam, GetLadderOffersParam, GetPromotionOffersParam, GetShipmentsParam, RemoveAddressParam, RemoveCouponParam, SelectAddressParam, SelectPaymentModeParam, UpdateAddressParam, UpdateCartParam, UpdateCartMetaParam, UpdateCartWithSharedItemsParam, ValidateCouponForPaymentParam };
 }
-/** @returns {addAddress} */
-declare function addAddress(): addAddress;
-type addAddress = {
+type AddAddressParam = {
     body: CartApplicationModel.Address;
 };
-/** @returns {addItems} */
-declare function addItems(): addItems;
-type addItems = {
+type AddItemsParam = {
     /**
      * - This is a boolean value. Select `true` to retrieve
      * all the items added in the cart.
@@ -248,9 +300,7 @@ type addItems = {
     id?: string;
     body: CartApplicationModel.AddCartRequest;
 };
-/** @returns {applyCoupon} */
-declare function applyCoupon(): applyCoupon;
-type applyCoupon = {
+type ApplyCouponParam = {
     i?: boolean;
     b?: boolean;
     p?: boolean;
@@ -258,44 +308,34 @@ type applyCoupon = {
     buyNow?: boolean;
     body: CartApplicationModel.ApplyCouponRequest;
 };
-/** @returns {applyRewardPoints} */
-declare function applyRewardPoints(): applyRewardPoints;
-type applyRewardPoints = {
+type ApplyRewardPointsParam = {
     id?: string;
     i?: boolean;
     b?: boolean;
     buyNow?: boolean;
     body: CartApplicationModel.RewardPointRequest;
 };
-/** @returns {checkoutCart} */
-declare function checkoutCart(): checkoutCart;
-type checkoutCart = {
+type CheckoutCartParam = {
     /**
      * - This indicates the type of cart to checkout
      */
     buyNow?: boolean;
     body: CartApplicationModel.CartCheckoutDetailRequest;
 };
-/** @returns {checkoutCartV2} */
-declare function checkoutCartV2(): checkoutCartV2;
-type checkoutCartV2 = {
+type CheckoutCartV2Param = {
     /**
      * - This indicates the type of cart to checkout
      */
     buyNow?: boolean;
     body: CartApplicationModel.CartCheckoutDetailV2Request;
 };
-/** @returns {deleteCart} */
-declare function deleteCart(): deleteCart;
-type deleteCart = {
+type DeleteCartParam = {
     /**
      * - The unique identifier of the cart.
      */
     id?: string;
 };
-/** @returns {getAddressById} */
-declare function getAddressById(): getAddressById;
-type getAddressById = {
+type GetAddressByIdParam = {
     id: string;
     cartId?: string;
     buyNow?: boolean;
@@ -304,9 +344,7 @@ type getAddressById = {
     tags?: string;
     isDefault?: boolean;
 };
-/** @returns {getAddresses} */
-declare function getAddresses(): getAddresses;
-type getAddresses = {
+type GetAddressesParam = {
     cartId?: string;
     buyNow?: boolean;
     mobileNo?: string;
@@ -314,9 +352,7 @@ type getAddresses = {
     tags?: string;
     isDefault?: boolean;
 };
-/** @returns {getBulkDiscountOffers} */
-declare function getBulkDiscountOffers(): getBulkDiscountOffers;
-type getBulkDiscountOffers = {
+type GetBulkDiscountOffersParam = {
     /**
      * - The Item ID of the product
      */
@@ -336,9 +372,7 @@ type getBulkDiscountOffers = {
      */
     slug?: string;
 };
-/** @returns {getCart} */
-declare function getCart(): getCart;
-type getCart = {
+type GetCartParam = {
     /**
      * - The unique identifier of the cart
      */
@@ -372,36 +406,26 @@ type getCart = {
      */
     buyNow?: boolean;
 };
-/** @returns {getCartLastModified} */
-declare function getCartLastModified(): getCartLastModified;
-type getCartLastModified = {
+type GetCartLastModifiedParam = {
     /**
      * - The unique identifier of the cart
      */
     id?: string;
 };
-/** @returns {getCartShareLink} */
-declare function getCartShareLink(): getCartShareLink;
-type getCartShareLink = {
+type GetCartShareLinkParam = {
     body: CartApplicationModel.GetShareCartLinkRequest;
 };
-/** @returns {getCartSharedItems} */
-declare function getCartSharedItems(): getCartSharedItems;
-type getCartSharedItems = {
+type GetCartSharedItemsParam = {
     /**
      * - Token of the shared short link
      */
     token: string;
 };
-/** @returns {getCoupons} */
-declare function getCoupons(): getCoupons;
-type getCoupons = {
+type GetCouponsParam = {
     id?: string;
     buyNow?: boolean;
 };
-/** @returns {getItemCount} */
-declare function getItemCount(): getItemCount;
-type getItemCount = {
+type GetItemCountParam = {
     /**
      * - The unique identifier of the cart.
      */
@@ -411,9 +435,7 @@ type getItemCount = {
      */
     buyNow?: boolean;
 };
-/** @returns {getLadderOffers} */
-declare function getLadderOffers(): getLadderOffers;
-type getLadderOffers = {
+type GetLadderOffersParam = {
     /**
      * - A short, human-readable, URL-friendly identifier of
      * a product. You can get slug value from the endpoint
@@ -435,9 +457,7 @@ type getLadderOffers = {
      */
     pageSize?: number;
 };
-/** @returns {getPromotionOffers} */
-declare function getPromotionOffers(): getPromotionOffers;
-type getPromotionOffers = {
+type GetPromotionOffersParam = {
     /**
      * - A short, human-readable, URL-friendly identifier
      * of a product. You can get slug value from the endpoint
@@ -457,9 +477,7 @@ type getPromotionOffers = {
      */
     storeId?: number;
 };
-/** @returns {getShipments} */
-declare function getShipments(): getShipments;
-type getShipments = {
+type GetShipmentsParam = {
     /**
      * - This is a boolean value. Select `true` for getting
      * a payment option in response.
@@ -479,48 +497,36 @@ type getShipments = {
      */
     areaCode?: string;
 };
-/** @returns {removeAddress} */
-declare function removeAddress(): removeAddress;
-type removeAddress = {
+type RemoveAddressParam = {
     /**
      * - ID allotted to the selected address
      */
     id: string;
 };
-/** @returns {removeCoupon} */
-declare function removeCoupon(): removeCoupon;
-type removeCoupon = {
+type RemoveCouponParam = {
     id?: string;
     buyNow?: boolean;
 };
-/** @returns {selectAddress} */
-declare function selectAddress(): selectAddress;
-type selectAddress = {
+type SelectAddressParam = {
     cartId?: string;
     buyNow?: boolean;
     i?: boolean;
     b?: boolean;
     body: CartApplicationModel.SelectCartAddressRequest;
 };
-/** @returns {selectPaymentMode} */
-declare function selectPaymentMode(): selectPaymentMode;
-type selectPaymentMode = {
+type SelectPaymentModeParam = {
     id?: string;
     buyNow?: boolean;
     body: CartApplicationModel.UpdateCartPaymentRequest;
 };
-/** @returns {updateAddress} */
-declare function updateAddress(): updateAddress;
-type updateAddress = {
+type UpdateAddressParam = {
     /**
      * - ID allotted to the selected address
      */
     id: string;
     body: CartApplicationModel.Address;
 };
-/** @returns {updateCart} */
-declare function updateCart(): updateCart;
-type updateCart = {
+type UpdateCartParam = {
     /**
      * - The unique identifier of the cart
      */
@@ -551,9 +557,7 @@ type updateCart = {
     buyNow?: boolean;
     body: CartApplicationModel.UpdateCartRequest;
 };
-/** @returns {updateCartMeta} */
-declare function updateCartMeta(): updateCartMeta;
-type updateCartMeta = {
+type UpdateCartMetaParam = {
     /**
      * - The unique identifier of the cart
      */
@@ -564,9 +568,7 @@ type updateCartMeta = {
     buyNow?: boolean;
     body: CartApplicationModel.CartMetaRequest;
 };
-/** @returns {updateCartWithSharedItems} */
-declare function updateCartWithSharedItems(): updateCartWithSharedItems;
-type updateCartWithSharedItems = {
+type UpdateCartWithSharedItemsParam = {
     /**
      * - Token of the shared short link
      */
@@ -576,9 +578,7 @@ type updateCartWithSharedItems = {
      */
     action: string;
 };
-/** @returns {validateCouponForPayment} */
-declare function validateCouponForPayment(): validateCouponForPayment;
-type validateCouponForPayment = {
+type ValidateCouponForPaymentParam = {
     id?: string;
     buyNow?: boolean;
     addressId?: string;

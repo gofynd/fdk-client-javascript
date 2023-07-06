@@ -79,7 +79,7 @@ class Catalog {
   }
 
   /**
-   * @param {CatalogApplicationValidator.followById} arg - Arg object.
+   * @param {CatalogApplicationValidator.FollowByIdParam} arg - Arg object.
    * @returns {Promise<CatalogApplicationModel.FollowPostResponse>} - Success response
    * @name followById
    * @summary: Follow an entity (product/brand/collection)
@@ -142,7 +142,7 @@ class Catalog {
   }
 
   /**
-   * @param {CatalogApplicationValidator.getBrandDetailBySlug} arg - Arg object.
+   * @param {CatalogApplicationValidator.GetBrandDetailBySlugParam} arg - Arg object.
    * @returns {Promise<CatalogApplicationModel.BrandDetailResponse>} - Success response
    * @name getBrandDetailBySlug
    * @summary: Get metadata of a brand
@@ -207,7 +207,7 @@ class Catalog {
   }
 
   /**
-   * @param {CatalogApplicationValidator.getBrands} arg - Arg object.
+   * @param {CatalogApplicationValidator.GetBrandsParam} arg - Arg object.
    * @returns {Promise<CatalogApplicationModel.BrandListingResponse>} - Success response
    * @name getBrands
    * @summary: Get all the brands
@@ -305,7 +305,7 @@ class Catalog {
   }
 
   /**
-   * @param {CatalogApplicationValidator.getCategories} arg - Arg object.
+   * @param {CatalogApplicationValidator.GetCategoriesParam} arg - Arg object.
    * @returns {Promise<CatalogApplicationModel.CategoryListingResponse>} -
    *   Success response
    * @name getCategories
@@ -370,7 +370,7 @@ class Catalog {
   }
 
   /**
-   * @param {CatalogApplicationValidator.getCategoryDetailBySlug} arg - Arg object.
+   * @param {CatalogApplicationValidator.GetCategoryDetailBySlugParam} arg - Arg object.
    * @returns {Promise<CatalogApplicationModel.CategoryMetaResponse>} - Success response
    * @name getCategoryDetailBySlug
    * @summary: Get metadata of a category
@@ -435,7 +435,9 @@ class Catalog {
   }
 
   /**
-   * @param {CatalogApplicationValidator.getCollectionDetailBySlug} arg - Arg object.
+   * @param {CatalogApplicationValidator.GetCollectionDetailBySlugParam} arg
+   *   - Arg object.
+   *
    * @returns {Promise<CatalogApplicationModel.CollectionDetailResponse>} -
    *   Success response
    * @name getCollectionDetailBySlug
@@ -501,7 +503,8 @@ class Catalog {
   }
 
   /**
-   * @param {CatalogApplicationValidator.getCollectionItemsBySlug} arg - Arg object.
+   * @param {CatalogApplicationValidator.GetCollectionItemsBySlugParam} arg -
+   *   Arg object.
    * @returns {Promise<CatalogApplicationModel.ProductListingResponse>} -
    *   Success response
    * @name getCollectionItemsBySlug
@@ -640,7 +643,7 @@ class Catalog {
   }
 
   /**
-   * @param {CatalogApplicationValidator.getCollections} arg - Arg object.
+   * @param {CatalogApplicationValidator.GetCollectionsParam} arg - Arg object.
    * @returns {Promise<CatalogApplicationModel.GetCollectionListingResponse>}
    *   - Success response
    *
@@ -740,7 +743,7 @@ class Catalog {
   }
 
   /**
-   * @param {CatalogApplicationValidator.getComparedFrequentlyProductBySlug} arg
+   * @param {CatalogApplicationValidator.GetComparedFrequentlyProductBySlugParam} arg
    *   - Arg object.
    *
    * @returns {Promise<CatalogApplicationModel.ProductFrequentlyComparedSimilarResponse>}
@@ -809,7 +812,7 @@ class Catalog {
   }
 
   /**
-   * @param {CatalogApplicationValidator.getDepartments} arg - Arg object.
+   * @param {CatalogApplicationValidator.GetDepartmentsParam} arg - Arg object.
    * @returns {Promise<CatalogApplicationModel.DepartmentResponse>} - Success response
    * @name getDepartments
    * @summary: List all the departments
@@ -872,7 +875,7 @@ class Catalog {
   }
 
   /**
-   * @param {CatalogApplicationValidator.getFollowIds} arg - Arg object.
+   * @param {CatalogApplicationValidator.GetFollowIdsParam} arg - Arg object.
    * @returns {Promise<CatalogApplicationModel.FollowIdsResponse>} - Success response
    * @name getFollowIds
    * @summary: Get the IDs of followed products, brands and collections.
@@ -936,7 +939,7 @@ class Catalog {
   }
 
   /**
-   * @param {CatalogApplicationValidator.getFollowedListing} arg - Arg object.
+   * @param {CatalogApplicationValidator.GetFollowedListingParam} arg - Arg object.
    * @returns {Promise<CatalogApplicationModel.GetFollowListingResponse>} -
    *   Success response
    * @name getFollowedListing
@@ -1032,7 +1035,7 @@ class Catalog {
   }
 
   /**
-   * @param {CatalogApplicationValidator.getFollowerCountById} arg - Arg object.
+   * @param {CatalogApplicationValidator.GetFollowerCountByIdParam} arg - Arg object.
    * @returns {Promise<CatalogApplicationModel.FollowerCountResponse>} -
    *   Success response
    * @name getFollowerCountById
@@ -1098,7 +1101,7 @@ class Catalog {
   }
 
   /**
-   * @param {CatalogApplicationValidator.getHomeProducts} arg - Arg object.
+   * @param {CatalogApplicationValidator.GetHomeProductsParam} arg - Arg object.
    * @returns {Promise<CatalogApplicationModel.HomeListingResponse>} - Success response
    * @name getHomeProducts
    * @summary: List the products
@@ -1195,7 +1198,7 @@ class Catalog {
   }
 
   /**
-   * @param {CatalogApplicationValidator.getInStockLocations} arg - Arg object.
+   * @param {CatalogApplicationValidator.GetInStockLocationsParam} arg - Arg object.
    * @returns {Promise<CatalogApplicationModel.ApplicationStoreListing>} -
    *   Success response
    * @name getInStockLocations
@@ -1323,7 +1326,7 @@ class Catalog {
   }
 
   /**
-   * @param {CatalogApplicationValidator.getLocationDetailsById} arg - Arg object.
+   * @param {CatalogApplicationValidator.GetLocationDetailsByIdParam} arg - Arg object.
    * @returns {Promise<CatalogApplicationModel.StoreDetails>} - Success response
    * @name getLocationDetailsById
    * @summary: Get store meta information.
@@ -1388,7 +1391,7 @@ class Catalog {
   }
 
   /**
-   * @param {CatalogApplicationValidator.getProductBundlesBySlug} arg - Arg object.
+   * @param {CatalogApplicationValidator.GetProductBundlesBySlugParam} arg - Arg object.
    * @returns {Promise<CatalogApplicationModel.ProductBundle>} - Success response
    * @name getProductBundlesBySlug
    * @summary: Get product bundles
@@ -1455,7 +1458,9 @@ class Catalog {
   }
 
   /**
-   * @param {CatalogApplicationValidator.getProductComparisonBySlugs} arg - Arg object.
+   * @param {CatalogApplicationValidator.GetProductComparisonBySlugsParam} arg
+   *   - Arg object.
+   *
    * @returns {Promise<CatalogApplicationModel.ProductsComparisonResponse>} -
    *   Success response
    * @name getProductComparisonBySlugs
@@ -1522,7 +1527,7 @@ class Catalog {
   }
 
   /**
-   * @param {CatalogApplicationValidator.getProductDetailBySlug} arg - Arg object.
+   * @param {CatalogApplicationValidator.GetProductDetailBySlugParam} arg - Arg object.
    * @returns {Promise<CatalogApplicationModel.ProductDetail>} - Success response
    * @name getProductDetailBySlug
    * @summary: Get a product
@@ -1587,7 +1592,7 @@ class Catalog {
   }
 
   /**
-   * @param {CatalogApplicationValidator.getProductPriceBySlug} arg - Arg object.
+   * @param {CatalogApplicationValidator.GetProductPriceBySlugParam} arg - Arg object.
    * @returns {Promise<CatalogApplicationModel.ProductSizePriceResponseV3>} -
    *   Success response
    * @name getProductPriceBySlug
@@ -1656,7 +1661,7 @@ class Catalog {
   }
 
   /**
-   * @param {CatalogApplicationValidator.getProductSellersBySlug} arg - Arg object.
+   * @param {CatalogApplicationValidator.GetProductSellersBySlugParam} arg - Arg object.
    * @returns {Promise<CatalogApplicationModel.ProductSizeSellersResponseV3>}
    *   - Success response
    *
@@ -1781,7 +1786,7 @@ class Catalog {
   }
 
   /**
-   * @param {CatalogApplicationValidator.getProductSizesBySlug} arg - Arg object.
+   * @param {CatalogApplicationValidator.GetProductSizesBySlugParam} arg - Arg object.
    * @returns {Promise<CatalogApplicationModel.ProductSizes>} - Success response
    * @name getProductSizesBySlug
    * @summary: Get the sizes of a product
@@ -1847,7 +1852,7 @@ class Catalog {
   }
 
   /**
-   * @param {CatalogApplicationValidator.getProductStockByIds} arg - Arg object.
+   * @param {CatalogApplicationValidator.GetProductStockByIdsParam} arg - Arg object.
    * @returns {Promise<CatalogApplicationModel.ProductStockStatusResponse>} -
    *   Success response
    * @name getProductStockByIds
@@ -1918,7 +1923,9 @@ class Catalog {
   }
 
   /**
-   * @param {CatalogApplicationValidator.getProductStockForTimeByIds} arg - Arg object.
+   * @param {CatalogApplicationValidator.GetProductStockForTimeByIdsParam} arg
+   *   - Arg object.
+   *
    * @returns {Promise<CatalogApplicationModel.ProductStockPolling>} - Success response
    * @name getProductStockForTimeByIds
    * @summary: Get the stock of a product
@@ -2015,7 +2022,8 @@ class Catalog {
   }
 
   /**
-   * @param {CatalogApplicationValidator.getProductVariantsBySlug} arg - Arg object.
+   * @param {CatalogApplicationValidator.GetProductVariantsBySlugParam} arg -
+   *   Arg object.
    * @returns {Promise<CatalogApplicationModel.ProductVariantsResponse>} -
    *   Success response
    * @name getProductVariantsBySlug
@@ -2081,7 +2089,7 @@ class Catalog {
   }
 
   /**
-   * @param {CatalogApplicationValidator.getProducts} arg - Arg object.
+   * @param {CatalogApplicationValidator.GetProductsParam} arg - Arg object.
    * @returns {Promise<CatalogApplicationModel.ProductListingResponse>} -
    *   Success response
    * @name getProducts
@@ -2206,7 +2214,7 @@ class Catalog {
   }
 
   /**
-   * @param {CatalogApplicationValidator.getSearchResults} arg - Arg object.
+   * @param {CatalogApplicationValidator.GetSearchResultsParam} arg - Arg object.
    * @returns {Promise<CatalogApplicationModel.AutoCompleteResponse>} - Success response
    * @name getSearchResults
    * @summary: Get relevant suggestions for a search query
@@ -2270,7 +2278,7 @@ class Catalog {
   }
 
   /**
-   * @param {CatalogApplicationValidator.getSimilarComparisonProductBySlug} arg
+   * @param {CatalogApplicationValidator.GetSimilarComparisonProductBySlugParam} arg
    *   - Arg object.
    *
    * @returns {Promise<CatalogApplicationModel.ProductCompareResponse>} -
@@ -2338,7 +2346,7 @@ class Catalog {
   }
 
   /**
-   * @param {CatalogApplicationValidator.getStores} arg - Arg object.
+   * @param {CatalogApplicationValidator.GetStoresParam} arg - Arg object.
    * @returns {Promise<CatalogApplicationModel.StoreListingResponse>} - Success response
    * @name getStores
    * @summary: Get store meta information.
@@ -2456,7 +2464,7 @@ class Catalog {
   }
 
   /**
-   * @param {CatalogApplicationValidator.unfollowById} arg - Arg object.
+   * @param {CatalogApplicationValidator.UnfollowByIdParam} arg - Arg object.
    * @returns {Promise<CatalogApplicationModel.FollowPostResponse>} - Success response
    * @name unfollowById
    * @summary: Unfollow an entity (product/brand/collection)

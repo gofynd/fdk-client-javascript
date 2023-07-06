@@ -1,46 +1,46 @@
 export = CompanyProfilePlatformValidator;
-/** @typedef cbsOnboardGet */
+/** @typedef CbsOnboardGetParam */
 /**
- * @typedef createBrand
+ * @typedef CreateBrandParam
  * @property {CompanyProfilePlatformModel.CreateUpdateBrandRequestSerializer} body
  */
 /**
- * @typedef createCompanyBrandMapping
+ * @typedef CreateCompanyBrandMappingParam
  * @property {CompanyProfilePlatformModel.CompanyBrandPostRequestSerializer} body
  */
 /**
- * @typedef createLocation
+ * @typedef CreateLocationParam
  * @property {CompanyProfilePlatformModel.LocationSerializer} body
  */
 /**
- * @typedef createLocationBulk
+ * @typedef CreateLocationBulkParam
  * @property {CompanyProfilePlatformModel.BulkLocationSerializer} body
  */
 /**
- * @typedef editBrand
+ * @typedef EditBrandParam
  * @property {string} brandId - Id of the brand to be viewed.
  * @property {CompanyProfilePlatformModel.CreateUpdateBrandRequestSerializer} body
  */
 /**
- * @typedef getBrand
+ * @typedef GetBrandParam
  * @property {string} brandId - Id of the brand to be viewed.
  */
 /**
- * @typedef getBrands
+ * @typedef GetBrandsParam
  * @property {number} [pageNo] - The page number to navigate through the given
  *   set of results
  * @property {number} [pageSize] - Number of items to retrieve in each page.
  *   Default is 10.
  * @property {string} [q] - Search term for name.
  */
-/** @typedef getCompanyMetrics */
+/** @typedef GetCompanyMetricsParam */
 /**
- * @typedef getLocationDetail
+ * @typedef GetLocationDetailParam
  * @property {string} locationId - Id of the location which you want to view.
  */
-/** @typedef getLocationTags */
+/** @typedef GetLocationTagsParam */
 /**
- * @typedef getLocations
+ * @typedef GetLocationsParam
  * @property {string} [storeType] - Helps to sort the location list on the basis
  *   of location type.
  * @property {string} [q] - Query that is to be searched.
@@ -53,62 +53,74 @@ export = CompanyProfilePlatformValidator;
  * @property {number[]} [locationIds] - Helps to filter stores on the basis of uids.
  */
 /**
- * @typedef updateCompany
+ * @typedef UpdateCompanyParam
  * @property {CompanyProfilePlatformModel.UpdateCompany} body
  */
 /**
- * @typedef updateLocation
+ * @typedef UpdateLocationParam
  * @property {string} locationId - Id of the location which you want to edit.
  * @property {CompanyProfilePlatformModel.LocationSerializer} body
  */
 declare class CompanyProfilePlatformValidator {
+    /** @returns {cbsOnboardGet} */
+    static cbsOnboardGet(): cbsOnboardGet;
+    /** @returns {createBrand} */
+    static createBrand(): createBrand;
+    /** @returns {createCompanyBrandMapping} */
+    static createCompanyBrandMapping(): createCompanyBrandMapping;
+    /** @returns {createLocation} */
+    static createLocation(): createLocation;
+    /** @returns {createLocationBulk} */
+    static createLocationBulk(): createLocationBulk;
+    /** @returns {editBrand} */
+    static editBrand(): editBrand;
+    /** @returns {getBrand} */
+    static getBrand(): getBrand;
+    /** @returns {getBrands} */
+    static getBrands(): getBrands;
+    /** @returns {getCompanyMetrics} */
+    static getCompanyMetrics(): getCompanyMetrics;
+    /** @returns {getLocationDetail} */
+    static getLocationDetail(): getLocationDetail;
+    /** @returns {getLocationTags} */
+    static getLocationTags(): getLocationTags;
+    /** @returns {getLocations} */
+    static getLocations(): getLocations;
+    /** @returns {updateCompany} */
+    static updateCompany(): updateCompany;
+    /** @returns {updateLocation} */
+    static updateLocation(): updateLocation;
 }
 declare namespace CompanyProfilePlatformValidator {
-    export { cbsOnboardGet, createBrand, createCompanyBrandMapping, createLocation, createLocationBulk, editBrand, getBrand, getBrands, getCompanyMetrics, getLocationDetail, getLocationTags, getLocations, updateCompany, updateLocation };
+    export { CbsOnboardGetParam, CreateBrandParam, CreateCompanyBrandMappingParam, CreateLocationParam, CreateLocationBulkParam, EditBrandParam, GetBrandParam, GetBrandsParam, GetCompanyMetricsParam, GetLocationDetailParam, GetLocationTagsParam, GetLocationsParam, UpdateCompanyParam, UpdateLocationParam };
 }
-/** @returns {cbsOnboardGet} */
-declare function cbsOnboardGet(): any;
-type cbsOnboardGet = any;
-/** @returns {createBrand} */
-declare function createBrand(): createBrand;
-type createBrand = {
+type CbsOnboardGetParam = any;
+type CreateBrandParam = {
     body: CompanyProfilePlatformModel.CreateUpdateBrandRequestSerializer;
 };
-/** @returns {createCompanyBrandMapping} */
-declare function createCompanyBrandMapping(): createCompanyBrandMapping;
-type createCompanyBrandMapping = {
+type CreateCompanyBrandMappingParam = {
     body: CompanyProfilePlatformModel.CompanyBrandPostRequestSerializer;
 };
-/** @returns {createLocation} */
-declare function createLocation(): createLocation;
-type createLocation = {
+type CreateLocationParam = {
     body: CompanyProfilePlatformModel.LocationSerializer;
 };
-/** @returns {createLocationBulk} */
-declare function createLocationBulk(): createLocationBulk;
-type createLocationBulk = {
+type CreateLocationBulkParam = {
     body: CompanyProfilePlatformModel.BulkLocationSerializer;
 };
-/** @returns {editBrand} */
-declare function editBrand(): editBrand;
-type editBrand = {
+type EditBrandParam = {
     /**
      * - Id of the brand to be viewed.
      */
     brandId: string;
     body: CompanyProfilePlatformModel.CreateUpdateBrandRequestSerializer;
 };
-/** @returns {getBrand} */
-declare function getBrand(): getBrand;
-type getBrand = {
+type GetBrandParam = {
     /**
      * - Id of the brand to be viewed.
      */
     brandId: string;
 };
-/** @returns {getBrands} */
-declare function getBrands(): getBrands;
-type getBrands = {
+type GetBrandsParam = {
     /**
      * - The page number to navigate through the given
      * set of results
@@ -124,23 +136,15 @@ type getBrands = {
      */
     q?: string;
 };
-/** @returns {getCompanyMetrics} */
-declare function getCompanyMetrics(): any;
-type getCompanyMetrics = any;
-/** @returns {getLocationDetail} */
-declare function getLocationDetail(): getLocationDetail;
-type getLocationDetail = {
+type GetCompanyMetricsParam = any;
+type GetLocationDetailParam = {
     /**
      * - Id of the location which you want to view.
      */
     locationId: string;
 };
-/** @returns {getLocationTags} */
-declare function getLocationTags(): any;
-type getLocationTags = any;
-/** @returns {getLocations} */
-declare function getLocations(): getLocations;
-type getLocations = {
+type GetLocationTagsParam = any;
+type GetLocationsParam = {
     /**
      * - Helps to sort the location list on the basis
      * of location type.
@@ -170,14 +174,10 @@ type getLocations = {
      */
     locationIds?: number[];
 };
-/** @returns {updateCompany} */
-declare function updateCompany(): updateCompany;
-type updateCompany = {
+type UpdateCompanyParam = {
     body: CompanyProfilePlatformModel.UpdateCompany;
 };
-/** @returns {updateLocation} */
-declare function updateLocation(): updateLocation;
-type updateLocation = {
+type UpdateLocationParam = {
     /**
      * - Id of the location which you want to edit.
      */

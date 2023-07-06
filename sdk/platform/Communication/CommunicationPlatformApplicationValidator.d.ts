@@ -1,354 +1,438 @@
 export = CommunicationPlatformApplicationValidator;
 /**
- * @typedef createAudience
+ * @typedef CreateAudienceParam
  * @property {CommunicationPlatformModel.AudienceReq} body
  */
 /**
- * @typedef createCampaign
+ * @typedef CreateCampaignParam
  * @property {CommunicationPlatformModel.CampaignReq} body
  */
 /**
- * @typedef createEmailProvider
+ * @typedef CreateEmailProviderParam
  * @property {CommunicationPlatformModel.EmailProviderReq} body
  */
 /**
- * @typedef createEmailTemplate
+ * @typedef CreateEmailTemplateParam
  * @property {CommunicationPlatformModel.EmailTemplateReq} body
  */
 /**
- * @typedef createSmsProvider
+ * @typedef CreateSmsProviderParam
  * @property {CommunicationPlatformModel.SmsProviderReq} body
  */
 /**
- * @typedef createSmsTemplate
+ * @typedef CreateSmsTemplateParam
  * @property {CommunicationPlatformModel.SmsTemplateReq} body
  */
 /**
- * @typedef createVoiceProvider
+ * @typedef CreateVoiceProviderParam
  * @property {CommunicationPlatformModel.VoiceProviderReq} body
  */
 /**
- * @typedef createVoiceTemplate
+ * @typedef CreateVoiceTemplateParam
  * @property {CommunicationPlatformModel.VoiceTemplateReq} body
  */
 /**
- * @typedef deleteEmailProviderById
+ * @typedef DeleteEmailProviderByIdParam
  * @property {string} id - Email provider id
  */
 /**
- * @typedef deleteEmailTemplateById
+ * @typedef DeleteEmailTemplateByIdParam
  * @property {string} id - Email template id
  */
 /**
- * @typedef deleteSmsProviderById
+ * @typedef DeleteSmsProviderByIdParam
  * @property {string} id - Sms provider id
  */
 /**
- * @typedef deleteSmsTemplateById
+ * @typedef DeleteSmsTemplateByIdParam
  * @property {string} id - Sms template id
  */
 /**
- * @typedef deleteVoiceTemplateById
+ * @typedef DeleteVoiceTemplateByIdParam
  * @property {string} id - Voice template id
  */
-/** @typedef getAppProviders */
+/** @typedef GetAppProvidersParam */
 /**
- * @typedef getAudienceById
+ * @typedef GetAudienceByIdParam
  * @property {string} id - Audience id
  */
 /**
- * @typedef getAudiences
+ * @typedef GetAudiencesParam
  * @property {number} [pageNo] - Current page no
  * @property {number} [pageSize] - Current request items count
  * @property {Object} [sort] - To sort based on created_at
  */
 /**
- * @typedef getBigqueryHeaders
+ * @typedef GetBigqueryHeadersParam
  * @property {CommunicationPlatformModel.BigqueryHeadersReq} body
  */
 /**
- * @typedef getCampaignById
+ * @typedef GetCampaignByIdParam
  * @property {string} id - Campaign id
  */
 /**
- * @typedef getCampaigns
+ * @typedef GetCampaignsParam
  * @property {number} [pageNo] - Current page no
  * @property {number} [pageSize] - Current request items count
  * @property {Object} [sort] - To sort based on created_at
  */
 /**
- * @typedef getCommunicationLogs
+ * @typedef GetCommunicationLogsParam
  * @property {string} [pageId] - Current page no
  * @property {number} [pageSize] - Current request items count
  * @property {Object} [sort] - To sort based on _id
  * @property {Object} [query]
  */
-/** @typedef getDefaultEmailProviders */
-/** @typedef getDefaultSmsProviders */
+/** @typedef GetDefaultEmailProvidersParam */
+/** @typedef GetDefaultSmsProvidersParam */
 /**
- * @typedef getEmailProviderById
+ * @typedef GetEmailProviderByIdParam
  * @property {string} id - Email provider id
  */
 /**
- * @typedef getEmailProviders
+ * @typedef GetEmailProvidersParam
  * @property {number} [pageNo] - Current page no
  * @property {number} [pageSize] - Current request items count
  * @property {Object} [sort] - To sort based on created_at
  */
 /**
- * @typedef getEmailTemplateById
+ * @typedef GetEmailTemplateByIdParam
  * @property {string} id - Email template id
  */
 /**
- * @typedef getEmailTemplates
+ * @typedef GetEmailTemplatesParam
  * @property {number} [pageNo] - Current page no
  * @property {number} [pageSize] - Current request items count
  * @property {Object} [sort] - To sort based on created_at
  */
 /**
- * @typedef getEventSubscriptions
+ * @typedef GetEventSubscriptionsParam
  * @property {number} [pageNo] - Current page no
  * @property {number} [pageSize] - Current request items count
  * @property {string[]} [populate] - Populate fields
  * @property {string} [query] - Current request items count
  */
-/** @typedef getGlobalProviders */
+/** @typedef GetGlobalProvidersParam */
 /**
- * @typedef getJobLogs
+ * @typedef GetJobLogsParam
  * @property {number} [pageNo] - Current page no
  * @property {number} [pageSize] - Current request items count
  * @property {Object} [sort] - To sort based on created_at
  */
 /**
- * @typedef getJobs
+ * @typedef GetJobsParam
  * @property {number} [pageNo] - Current page no
  * @property {number} [pageSize] - Current request items count
  * @property {Object} [sort] - To sort based on created_at
  */
 /**
- * @typedef getNSampleRecordsFromCsv
+ * @typedef GetNSampleRecordsFromCsvParam
  * @property {CommunicationPlatformModel.GetNRecordsCsvReq} body
  */
 /**
- * @typedef getSmsProviderById
+ * @typedef GetSmsProviderByIdParam
  * @property {string} id - Sms provider id
  */
 /**
- * @typedef getSmsProviders
+ * @typedef GetSmsProvidersParam
  * @property {number} [pageNo] - Current page no
  * @property {number} [pageSize] - Current request items count
  * @property {Object} [sort] - To sort based on created_at
  */
 /**
- * @typedef getSmsTemplateById
+ * @typedef GetSmsTemplateByIdParam
  * @property {string} id - Sms template id
  */
 /**
- * @typedef getSmsTemplates
+ * @typedef GetSmsTemplatesParam
  * @property {number} [pageNo] - Current page no
  * @property {number} [pageSize] - Current request items count
  * @property {Object} [sort] - To sort based on created_at
  */
 /**
- * @typedef getStatsOfCampaignById
+ * @typedef GetStatsOfCampaignByIdParam
  * @property {string} id - Campaign id
  */
 /**
- * @typedef getSubscribedEmailTemplates
+ * @typedef GetSubscribedEmailTemplatesParam
  * @property {number} [pageNo] - Current page no
  * @property {number} [pageSize] - Current request items count
  */
 /**
- * @typedef getSubscribedSmsTemplates
+ * @typedef GetSubscribedSmsTemplatesParam
  * @property {number} [pageNo] - Current page no
  * @property {number} [pageSize] - Current request items count
  */
-/** @typedef getSystemEmailTemplates */
-/** @typedef getSystemSmsTemplates */
+/** @typedef GetSystemEmailTemplatesParam */
+/** @typedef GetSystemSmsTemplatesParam */
 /**
- * @typedef getSystemVoiceTemplates
+ * @typedef GetSystemVoiceTemplatesParam
  * @property {number} [pageNo] - Current page no
  * @property {number} [pageSize] - Current request items count
  * @property {Object} [sort] - To sort based on created_at
  */
 /**
- * @typedef getVoiceProviderById
+ * @typedef GetVoiceProviderByIdParam
  * @property {string} id - Voice provider id
  */
 /**
- * @typedef getVoiceProviders
+ * @typedef GetVoiceProvidersParam
  * @property {number} [pageNo] - Current page no
  * @property {number} [pageSize] - Current request items count
  * @property {Object} [sort] - To sort based on created_at
  */
 /**
- * @typedef getVoiceTemplateById
+ * @typedef GetVoiceTemplateByIdParam
  * @property {string} id - Voice template id
  */
 /**
- * @typedef getVoiceTemplates
+ * @typedef GetVoiceTemplatesParam
  * @property {number} [pageNo] - Current page no
  * @property {number} [pageSize] - Current request items count
  * @property {Object} [sort] - To sort based on created_at
  */
 /**
- * @typedef sendCommunicationAsynchronously
+ * @typedef SendCommunicationAsynchronouslyParam
  * @property {CommunicationPlatformModel.EngineRequest} body
  */
 /**
- * @typedef sendCommunicationSynchronously
+ * @typedef SendCommunicationSynchronouslyParam
  * @property {CommunicationPlatformModel.EngineRequest} body
  */
 /**
- * @typedef sendOtp
+ * @typedef SendOtpParam
  * @property {CommunicationPlatformModel.SendOtpCommsReq} body
  */
 /**
- * @typedef triggerCampaignJob
+ * @typedef TriggerCampaignJobParam
  * @property {CommunicationPlatformModel.TriggerJobRequest} body
  */
 /**
- * @typedef updateAppProviders
+ * @typedef UpdateAppProvidersParam
  * @property {CommunicationPlatformModel.AppProviderReq} body
  */
 /**
- * @typedef updateAudienceById
+ * @typedef UpdateAudienceByIdParam
  * @property {string} id - Audience id
  * @property {CommunicationPlatformModel.AudienceReq} body
  */
 /**
- * @typedef updateCampaignById
+ * @typedef UpdateCampaignByIdParam
  * @property {string} id - Campaign id
  * @property {CommunicationPlatformModel.CampaignReq} body
  */
 /**
- * @typedef updateEmailProviderById
+ * @typedef UpdateEmailProviderByIdParam
  * @property {string} id - Email provider id
  * @property {CommunicationPlatformModel.EmailProviderReq} body
  */
 /**
- * @typedef updateEmailTemplateById
+ * @typedef UpdateEmailTemplateByIdParam
  * @property {string} id - Email template id
  * @property {CommunicationPlatformModel.EmailTemplateReq} body
  */
 /**
- * @typedef updateSmsProviderById
+ * @typedef UpdateSmsProviderByIdParam
  * @property {string} id - Sms provider id
  * @property {CommunicationPlatformModel.SmsProviderReq} body
  */
 /**
- * @typedef updateSmsTemplateById
+ * @typedef UpdateSmsTemplateByIdParam
  * @property {string} id - Sms template id
  * @property {CommunicationPlatformModel.SmsTemplateReq} body
  */
 /**
- * @typedef updateVoiceTemplateById
+ * @typedef UpdateVoiceTemplateByIdParam
  * @property {string} id - Voice template id
  * @property {CommunicationPlatformModel.VoiceTemplateReq} body
  */
 /**
- * @typedef verfiyOtp
+ * @typedef VerfiyOtpParam
  * @property {CommunicationPlatformModel.VerifyOtpCommsReq} body
  */
 declare class CommunicationPlatformApplicationValidator {
+    /** @returns {createAudience} */
+    static createAudience(): createAudience;
+    /** @returns {createCampaign} */
+    static createCampaign(): createCampaign;
+    /** @returns {createEmailProvider} */
+    static createEmailProvider(): createEmailProvider;
+    /** @returns {createEmailTemplate} */
+    static createEmailTemplate(): createEmailTemplate;
+    /** @returns {createSmsProvider} */
+    static createSmsProvider(): createSmsProvider;
+    /** @returns {createSmsTemplate} */
+    static createSmsTemplate(): createSmsTemplate;
+    /** @returns {createVoiceProvider} */
+    static createVoiceProvider(): createVoiceProvider;
+    /** @returns {createVoiceTemplate} */
+    static createVoiceTemplate(): createVoiceTemplate;
+    /** @returns {deleteEmailProviderById} */
+    static deleteEmailProviderById(): deleteEmailProviderById;
+    /** @returns {deleteEmailTemplateById} */
+    static deleteEmailTemplateById(): deleteEmailTemplateById;
+    /** @returns {deleteSmsProviderById} */
+    static deleteSmsProviderById(): deleteSmsProviderById;
+    /** @returns {deleteSmsTemplateById} */
+    static deleteSmsTemplateById(): deleteSmsTemplateById;
+    /** @returns {deleteVoiceTemplateById} */
+    static deleteVoiceTemplateById(): deleteVoiceTemplateById;
+    /** @returns {getAppProviders} */
+    static getAppProviders(): getAppProviders;
+    /** @returns {getAudienceById} */
+    static getAudienceById(): getAudienceById;
+    /** @returns {getAudiences} */
+    static getAudiences(): getAudiences;
+    /** @returns {getBigqueryHeaders} */
+    static getBigqueryHeaders(): getBigqueryHeaders;
+    /** @returns {getCampaignById} */
+    static getCampaignById(): getCampaignById;
+    /** @returns {getCampaigns} */
+    static getCampaigns(): getCampaigns;
+    /** @returns {getCommunicationLogs} */
+    static getCommunicationLogs(): getCommunicationLogs;
+    /** @returns {getDefaultEmailProviders} */
+    static getDefaultEmailProviders(): getDefaultEmailProviders;
+    /** @returns {getDefaultSmsProviders} */
+    static getDefaultSmsProviders(): getDefaultSmsProviders;
+    /** @returns {getEmailProviderById} */
+    static getEmailProviderById(): getEmailProviderById;
+    /** @returns {getEmailProviders} */
+    static getEmailProviders(): getEmailProviders;
+    /** @returns {getEmailTemplateById} */
+    static getEmailTemplateById(): getEmailTemplateById;
+    /** @returns {getEmailTemplates} */
+    static getEmailTemplates(): getEmailTemplates;
+    /** @returns {getEventSubscriptions} */
+    static getEventSubscriptions(): getEventSubscriptions;
+    /** @returns {getGlobalProviders} */
+    static getGlobalProviders(): getGlobalProviders;
+    /** @returns {getJobLogs} */
+    static getJobLogs(): getJobLogs;
+    /** @returns {getJobs} */
+    static getJobs(): getJobs;
+    /** @returns {getNSampleRecordsFromCsv} */
+    static getNSampleRecordsFromCsv(): getNSampleRecordsFromCsv;
+    /** @returns {getSmsProviderById} */
+    static getSmsProviderById(): getSmsProviderById;
+    /** @returns {getSmsProviders} */
+    static getSmsProviders(): getSmsProviders;
+    /** @returns {getSmsTemplateById} */
+    static getSmsTemplateById(): getSmsTemplateById;
+    /** @returns {getSmsTemplates} */
+    static getSmsTemplates(): getSmsTemplates;
+    /** @returns {getStatsOfCampaignById} */
+    static getStatsOfCampaignById(): getStatsOfCampaignById;
+    /** @returns {getSubscribedEmailTemplates} */
+    static getSubscribedEmailTemplates(): getSubscribedEmailTemplates;
+    /** @returns {getSubscribedSmsTemplates} */
+    static getSubscribedSmsTemplates(): getSubscribedSmsTemplates;
+    /** @returns {getSystemEmailTemplates} */
+    static getSystemEmailTemplates(): getSystemEmailTemplates;
+    /** @returns {getSystemSmsTemplates} */
+    static getSystemSmsTemplates(): getSystemSmsTemplates;
+    /** @returns {getSystemVoiceTemplates} */
+    static getSystemVoiceTemplates(): getSystemVoiceTemplates;
+    /** @returns {getVoiceProviderById} */
+    static getVoiceProviderById(): getVoiceProviderById;
+    /** @returns {getVoiceProviders} */
+    static getVoiceProviders(): getVoiceProviders;
+    /** @returns {getVoiceTemplateById} */
+    static getVoiceTemplateById(): getVoiceTemplateById;
+    /** @returns {getVoiceTemplates} */
+    static getVoiceTemplates(): getVoiceTemplates;
+    /** @returns {sendCommunicationAsynchronously} */
+    static sendCommunicationAsynchronously(): sendCommunicationAsynchronously;
+    /** @returns {sendCommunicationSynchronously} */
+    static sendCommunicationSynchronously(): sendCommunicationSynchronously;
+    /** @returns {sendOtp} */
+    static sendOtp(): sendOtp;
+    /** @returns {triggerCampaignJob} */
+    static triggerCampaignJob(): triggerCampaignJob;
+    /** @returns {updateAppProviders} */
+    static updateAppProviders(): updateAppProviders;
+    /** @returns {updateAudienceById} */
+    static updateAudienceById(): updateAudienceById;
+    /** @returns {updateCampaignById} */
+    static updateCampaignById(): updateCampaignById;
+    /** @returns {updateEmailProviderById} */
+    static updateEmailProviderById(): updateEmailProviderById;
+    /** @returns {updateEmailTemplateById} */
+    static updateEmailTemplateById(): updateEmailTemplateById;
+    /** @returns {updateSmsProviderById} */
+    static updateSmsProviderById(): updateSmsProviderById;
+    /** @returns {updateSmsTemplateById} */
+    static updateSmsTemplateById(): updateSmsTemplateById;
+    /** @returns {updateVoiceTemplateById} */
+    static updateVoiceTemplateById(): updateVoiceTemplateById;
+    /** @returns {verfiyOtp} */
+    static verfiyOtp(): verfiyOtp;
 }
 declare namespace CommunicationPlatformApplicationValidator {
-    export { createAudience, createCampaign, createEmailProvider, createEmailTemplate, createSmsProvider, createSmsTemplate, createVoiceProvider, createVoiceTemplate, deleteEmailProviderById, deleteEmailTemplateById, deleteSmsProviderById, deleteSmsTemplateById, deleteVoiceTemplateById, getAppProviders, getAudienceById, getAudiences, getBigqueryHeaders, getCampaignById, getCampaigns, getCommunicationLogs, getDefaultEmailProviders, getDefaultSmsProviders, getEmailProviderById, getEmailProviders, getEmailTemplateById, getEmailTemplates, getEventSubscriptions, getGlobalProviders, getJobLogs, getJobs, getNSampleRecordsFromCsv, getSmsProviderById, getSmsProviders, getSmsTemplateById, getSmsTemplates, getStatsOfCampaignById, getSubscribedEmailTemplates, getSubscribedSmsTemplates, getSystemEmailTemplates, getSystemSmsTemplates, getSystemVoiceTemplates, getVoiceProviderById, getVoiceProviders, getVoiceTemplateById, getVoiceTemplates, sendCommunicationAsynchronously, sendCommunicationSynchronously, sendOtp, triggerCampaignJob, updateAppProviders, updateAudienceById, updateCampaignById, updateEmailProviderById, updateEmailTemplateById, updateSmsProviderById, updateSmsTemplateById, updateVoiceTemplateById, verfiyOtp };
+    export { CreateAudienceParam, CreateCampaignParam, CreateEmailProviderParam, CreateEmailTemplateParam, CreateSmsProviderParam, CreateSmsTemplateParam, CreateVoiceProviderParam, CreateVoiceTemplateParam, DeleteEmailProviderByIdParam, DeleteEmailTemplateByIdParam, DeleteSmsProviderByIdParam, DeleteSmsTemplateByIdParam, DeleteVoiceTemplateByIdParam, GetAppProvidersParam, GetAudienceByIdParam, GetAudiencesParam, GetBigqueryHeadersParam, GetCampaignByIdParam, GetCampaignsParam, GetCommunicationLogsParam, GetDefaultEmailProvidersParam, GetDefaultSmsProvidersParam, GetEmailProviderByIdParam, GetEmailProvidersParam, GetEmailTemplateByIdParam, GetEmailTemplatesParam, GetEventSubscriptionsParam, GetGlobalProvidersParam, GetJobLogsParam, GetJobsParam, GetNSampleRecordsFromCsvParam, GetSmsProviderByIdParam, GetSmsProvidersParam, GetSmsTemplateByIdParam, GetSmsTemplatesParam, GetStatsOfCampaignByIdParam, GetSubscribedEmailTemplatesParam, GetSubscribedSmsTemplatesParam, GetSystemEmailTemplatesParam, GetSystemSmsTemplatesParam, GetSystemVoiceTemplatesParam, GetVoiceProviderByIdParam, GetVoiceProvidersParam, GetVoiceTemplateByIdParam, GetVoiceTemplatesParam, SendCommunicationAsynchronouslyParam, SendCommunicationSynchronouslyParam, SendOtpParam, TriggerCampaignJobParam, UpdateAppProvidersParam, UpdateAudienceByIdParam, UpdateCampaignByIdParam, UpdateEmailProviderByIdParam, UpdateEmailTemplateByIdParam, UpdateSmsProviderByIdParam, UpdateSmsTemplateByIdParam, UpdateVoiceTemplateByIdParam, VerfiyOtpParam };
 }
-/** @returns {createAudience} */
-declare function createAudience(): createAudience;
-type createAudience = {
+type CreateAudienceParam = {
     body: CommunicationPlatformModel.AudienceReq;
 };
-/** @returns {createCampaign} */
-declare function createCampaign(): createCampaign;
-type createCampaign = {
+type CreateCampaignParam = {
     body: CommunicationPlatformModel.CampaignReq;
 };
-/** @returns {createEmailProvider} */
-declare function createEmailProvider(): createEmailProvider;
-type createEmailProvider = {
+type CreateEmailProviderParam = {
     body: CommunicationPlatformModel.EmailProviderReq;
 };
-/** @returns {createEmailTemplate} */
-declare function createEmailTemplate(): createEmailTemplate;
-type createEmailTemplate = {
+type CreateEmailTemplateParam = {
     body: CommunicationPlatformModel.EmailTemplateReq;
 };
-/** @returns {createSmsProvider} */
-declare function createSmsProvider(): createSmsProvider;
-type createSmsProvider = {
+type CreateSmsProviderParam = {
     body: CommunicationPlatformModel.SmsProviderReq;
 };
-/** @returns {createSmsTemplate} */
-declare function createSmsTemplate(): createSmsTemplate;
-type createSmsTemplate = {
+type CreateSmsTemplateParam = {
     body: CommunicationPlatformModel.SmsTemplateReq;
 };
-/** @returns {createVoiceProvider} */
-declare function createVoiceProvider(): createVoiceProvider;
-type createVoiceProvider = {
+type CreateVoiceProviderParam = {
     body: CommunicationPlatformModel.VoiceProviderReq;
 };
-/** @returns {createVoiceTemplate} */
-declare function createVoiceTemplate(): createVoiceTemplate;
-type createVoiceTemplate = {
+type CreateVoiceTemplateParam = {
     body: CommunicationPlatformModel.VoiceTemplateReq;
 };
-/** @returns {deleteEmailProviderById} */
-declare function deleteEmailProviderById(): deleteEmailProviderById;
-type deleteEmailProviderById = {
+type DeleteEmailProviderByIdParam = {
     /**
      * - Email provider id
      */
     id: string;
 };
-/** @returns {deleteEmailTemplateById} */
-declare function deleteEmailTemplateById(): deleteEmailTemplateById;
-type deleteEmailTemplateById = {
+type DeleteEmailTemplateByIdParam = {
     /**
      * - Email template id
      */
     id: string;
 };
-/** @returns {deleteSmsProviderById} */
-declare function deleteSmsProviderById(): deleteSmsProviderById;
-type deleteSmsProviderById = {
+type DeleteSmsProviderByIdParam = {
     /**
      * - Sms provider id
      */
     id: string;
 };
-/** @returns {deleteSmsTemplateById} */
-declare function deleteSmsTemplateById(): deleteSmsTemplateById;
-type deleteSmsTemplateById = {
+type DeleteSmsTemplateByIdParam = {
     /**
      * - Sms template id
      */
     id: string;
 };
-/** @returns {deleteVoiceTemplateById} */
-declare function deleteVoiceTemplateById(): deleteVoiceTemplateById;
-type deleteVoiceTemplateById = {
+type DeleteVoiceTemplateByIdParam = {
     /**
      * - Voice template id
      */
     id: string;
 };
-/** @returns {getAppProviders} */
-declare function getAppProviders(): any;
-type getAppProviders = any;
-/** @returns {getAudienceById} */
-declare function getAudienceById(): getAudienceById;
-type getAudienceById = {
+type GetAppProvidersParam = any;
+type GetAudienceByIdParam = {
     /**
      * - Audience id
      */
     id: string;
 };
-/** @returns {getAudiences} */
-declare function getAudiences(): getAudiences;
-type getAudiences = {
+type GetAudiencesParam = {
     /**
      * - Current page no
      */
@@ -362,22 +446,16 @@ type getAudiences = {
      */
     sort?: any;
 };
-/** @returns {getBigqueryHeaders} */
-declare function getBigqueryHeaders(): getBigqueryHeaders;
-type getBigqueryHeaders = {
+type GetBigqueryHeadersParam = {
     body: CommunicationPlatformModel.BigqueryHeadersReq;
 };
-/** @returns {getCampaignById} */
-declare function getCampaignById(): getCampaignById;
-type getCampaignById = {
+type GetCampaignByIdParam = {
     /**
      * - Campaign id
      */
     id: string;
 };
-/** @returns {getCampaigns} */
-declare function getCampaigns(): getCampaigns;
-type getCampaigns = {
+type GetCampaignsParam = {
     /**
      * - Current page no
      */
@@ -391,9 +469,7 @@ type getCampaigns = {
      */
     sort?: any;
 };
-/** @returns {getCommunicationLogs} */
-declare function getCommunicationLogs(): getCommunicationLogs;
-type getCommunicationLogs = {
+type GetCommunicationLogsParam = {
     /**
      * - Current page no
      */
@@ -408,23 +484,15 @@ type getCommunicationLogs = {
     sort?: any;
     query?: any;
 };
-/** @returns {getDefaultEmailProviders} */
-declare function getDefaultEmailProviders(): any;
-type getDefaultEmailProviders = any;
-/** @returns {getDefaultSmsProviders} */
-declare function getDefaultSmsProviders(): any;
-type getDefaultSmsProviders = any;
-/** @returns {getEmailProviderById} */
-declare function getEmailProviderById(): getEmailProviderById;
-type getEmailProviderById = {
+type GetDefaultEmailProvidersParam = any;
+type GetDefaultSmsProvidersParam = any;
+type GetEmailProviderByIdParam = {
     /**
      * - Email provider id
      */
     id: string;
 };
-/** @returns {getEmailProviders} */
-declare function getEmailProviders(): getEmailProviders;
-type getEmailProviders = {
+type GetEmailProvidersParam = {
     /**
      * - Current page no
      */
@@ -438,17 +506,13 @@ type getEmailProviders = {
      */
     sort?: any;
 };
-/** @returns {getEmailTemplateById} */
-declare function getEmailTemplateById(): getEmailTemplateById;
-type getEmailTemplateById = {
+type GetEmailTemplateByIdParam = {
     /**
      * - Email template id
      */
     id: string;
 };
-/** @returns {getEmailTemplates} */
-declare function getEmailTemplates(): getEmailTemplates;
-type getEmailTemplates = {
+type GetEmailTemplatesParam = {
     /**
      * - Current page no
      */
@@ -462,9 +526,7 @@ type getEmailTemplates = {
      */
     sort?: any;
 };
-/** @returns {getEventSubscriptions} */
-declare function getEventSubscriptions(): getEventSubscriptions;
-type getEventSubscriptions = {
+type GetEventSubscriptionsParam = {
     /**
      * - Current page no
      */
@@ -482,12 +544,8 @@ type getEventSubscriptions = {
      */
     query?: string;
 };
-/** @returns {getGlobalProviders} */
-declare function getGlobalProviders(): any;
-type getGlobalProviders = any;
-/** @returns {getJobLogs} */
-declare function getJobLogs(): getJobLogs;
-type getJobLogs = {
+type GetGlobalProvidersParam = any;
+type GetJobLogsParam = {
     /**
      * - Current page no
      */
@@ -501,9 +559,7 @@ type getJobLogs = {
      */
     sort?: any;
 };
-/** @returns {getJobs} */
-declare function getJobs(): getJobs;
-type getJobs = {
+type GetJobsParam = {
     /**
      * - Current page no
      */
@@ -517,22 +573,16 @@ type getJobs = {
      */
     sort?: any;
 };
-/** @returns {getNSampleRecordsFromCsv} */
-declare function getNSampleRecordsFromCsv(): getNSampleRecordsFromCsv;
-type getNSampleRecordsFromCsv = {
+type GetNSampleRecordsFromCsvParam = {
     body: CommunicationPlatformModel.GetNRecordsCsvReq;
 };
-/** @returns {getSmsProviderById} */
-declare function getSmsProviderById(): getSmsProviderById;
-type getSmsProviderById = {
+type GetSmsProviderByIdParam = {
     /**
      * - Sms provider id
      */
     id: string;
 };
-/** @returns {getSmsProviders} */
-declare function getSmsProviders(): getSmsProviders;
-type getSmsProviders = {
+type GetSmsProvidersParam = {
     /**
      * - Current page no
      */
@@ -546,17 +596,13 @@ type getSmsProviders = {
      */
     sort?: any;
 };
-/** @returns {getSmsTemplateById} */
-declare function getSmsTemplateById(): getSmsTemplateById;
-type getSmsTemplateById = {
+type GetSmsTemplateByIdParam = {
     /**
      * - Sms template id
      */
     id: string;
 };
-/** @returns {getSmsTemplates} */
-declare function getSmsTemplates(): getSmsTemplates;
-type getSmsTemplates = {
+type GetSmsTemplatesParam = {
     /**
      * - Current page no
      */
@@ -570,17 +616,13 @@ type getSmsTemplates = {
      */
     sort?: any;
 };
-/** @returns {getStatsOfCampaignById} */
-declare function getStatsOfCampaignById(): getStatsOfCampaignById;
-type getStatsOfCampaignById = {
+type GetStatsOfCampaignByIdParam = {
     /**
      * - Campaign id
      */
     id: string;
 };
-/** @returns {getSubscribedEmailTemplates} */
-declare function getSubscribedEmailTemplates(): getSubscribedEmailTemplates;
-type getSubscribedEmailTemplates = {
+type GetSubscribedEmailTemplatesParam = {
     /**
      * - Current page no
      */
@@ -590,9 +632,7 @@ type getSubscribedEmailTemplates = {
      */
     pageSize?: number;
 };
-/** @returns {getSubscribedSmsTemplates} */
-declare function getSubscribedSmsTemplates(): getSubscribedSmsTemplates;
-type getSubscribedSmsTemplates = {
+type GetSubscribedSmsTemplatesParam = {
     /**
      * - Current page no
      */
@@ -602,15 +642,9 @@ type getSubscribedSmsTemplates = {
      */
     pageSize?: number;
 };
-/** @returns {getSystemEmailTemplates} */
-declare function getSystemEmailTemplates(): any;
-type getSystemEmailTemplates = any;
-/** @returns {getSystemSmsTemplates} */
-declare function getSystemSmsTemplates(): any;
-type getSystemSmsTemplates = any;
-/** @returns {getSystemVoiceTemplates} */
-declare function getSystemVoiceTemplates(): getSystemVoiceTemplates;
-type getSystemVoiceTemplates = {
+type GetSystemEmailTemplatesParam = any;
+type GetSystemSmsTemplatesParam = any;
+type GetSystemVoiceTemplatesParam = {
     /**
      * - Current page no
      */
@@ -624,17 +658,13 @@ type getSystemVoiceTemplates = {
      */
     sort?: any;
 };
-/** @returns {getVoiceProviderById} */
-declare function getVoiceProviderById(): getVoiceProviderById;
-type getVoiceProviderById = {
+type GetVoiceProviderByIdParam = {
     /**
      * - Voice provider id
      */
     id: string;
 };
-/** @returns {getVoiceProviders} */
-declare function getVoiceProviders(): getVoiceProviders;
-type getVoiceProviders = {
+type GetVoiceProvidersParam = {
     /**
      * - Current page no
      */
@@ -648,17 +678,13 @@ type getVoiceProviders = {
      */
     sort?: any;
 };
-/** @returns {getVoiceTemplateById} */
-declare function getVoiceTemplateById(): getVoiceTemplateById;
-type getVoiceTemplateById = {
+type GetVoiceTemplateByIdParam = {
     /**
      * - Voice template id
      */
     id: string;
 };
-/** @returns {getVoiceTemplates} */
-declare function getVoiceTemplates(): getVoiceTemplates;
-type getVoiceTemplates = {
+type GetVoiceTemplatesParam = {
     /**
      * - Current page no
      */
@@ -672,97 +698,71 @@ type getVoiceTemplates = {
      */
     sort?: any;
 };
-/** @returns {sendCommunicationAsynchronously} */
-declare function sendCommunicationAsynchronously(): sendCommunicationAsynchronously;
-type sendCommunicationAsynchronously = {
+type SendCommunicationAsynchronouslyParam = {
     body: CommunicationPlatformModel.EngineRequest;
 };
-/** @returns {sendCommunicationSynchronously} */
-declare function sendCommunicationSynchronously(): sendCommunicationSynchronously;
-type sendCommunicationSynchronously = {
+type SendCommunicationSynchronouslyParam = {
     body: CommunicationPlatformModel.EngineRequest;
 };
-/** @returns {sendOtp} */
-declare function sendOtp(): sendOtp;
-type sendOtp = {
+type SendOtpParam = {
     body: CommunicationPlatformModel.SendOtpCommsReq;
 };
-/** @returns {triggerCampaignJob} */
-declare function triggerCampaignJob(): triggerCampaignJob;
-type triggerCampaignJob = {
+type TriggerCampaignJobParam = {
     body: CommunicationPlatformModel.TriggerJobRequest;
 };
-/** @returns {updateAppProviders} */
-declare function updateAppProviders(): updateAppProviders;
-type updateAppProviders = {
+type UpdateAppProvidersParam = {
     body: CommunicationPlatformModel.AppProviderReq;
 };
-/** @returns {updateAudienceById} */
-declare function updateAudienceById(): updateAudienceById;
-type updateAudienceById = {
+type UpdateAudienceByIdParam = {
     /**
      * - Audience id
      */
     id: string;
     body: CommunicationPlatformModel.AudienceReq;
 };
-/** @returns {updateCampaignById} */
-declare function updateCampaignById(): updateCampaignById;
-type updateCampaignById = {
+type UpdateCampaignByIdParam = {
     /**
      * - Campaign id
      */
     id: string;
     body: CommunicationPlatformModel.CampaignReq;
 };
-/** @returns {updateEmailProviderById} */
-declare function updateEmailProviderById(): updateEmailProviderById;
-type updateEmailProviderById = {
+type UpdateEmailProviderByIdParam = {
     /**
      * - Email provider id
      */
     id: string;
     body: CommunicationPlatformModel.EmailProviderReq;
 };
-/** @returns {updateEmailTemplateById} */
-declare function updateEmailTemplateById(): updateEmailTemplateById;
-type updateEmailTemplateById = {
+type UpdateEmailTemplateByIdParam = {
     /**
      * - Email template id
      */
     id: string;
     body: CommunicationPlatformModel.EmailTemplateReq;
 };
-/** @returns {updateSmsProviderById} */
-declare function updateSmsProviderById(): updateSmsProviderById;
-type updateSmsProviderById = {
+type UpdateSmsProviderByIdParam = {
     /**
      * - Sms provider id
      */
     id: string;
     body: CommunicationPlatformModel.SmsProviderReq;
 };
-/** @returns {updateSmsTemplateById} */
-declare function updateSmsTemplateById(): updateSmsTemplateById;
-type updateSmsTemplateById = {
+type UpdateSmsTemplateByIdParam = {
     /**
      * - Sms template id
      */
     id: string;
     body: CommunicationPlatformModel.SmsTemplateReq;
 };
-/** @returns {updateVoiceTemplateById} */
-declare function updateVoiceTemplateById(): updateVoiceTemplateById;
-type updateVoiceTemplateById = {
+type UpdateVoiceTemplateByIdParam = {
     /**
      * - Voice template id
      */
     id: string;
     body: CommunicationPlatformModel.VoiceTemplateReq;
 };
-/** @returns {verfiyOtp} */
-declare function verfiyOtp(): verfiyOtp;
-type verfiyOtp = {
+type VerfiyOtpParam = {
     body: CommunicationPlatformModel.VerifyOtpCommsReq;
 };
 import CommunicationPlatformModel = require("./CommunicationPlatformModel");

@@ -3,103 +3,103 @@ const Joi = require("joi");
 const CatalogPlatformModel = require("./CatalogPlatformModel");
 
 /**
- * @typedef addInventory
+ * @typedef AddInventoryParam
  * @property {number} itemId - Item code of the product of which size is to be get.
  * @property {string} size - Size in which inventory is to be added.
  * @property {CatalogPlatformModel.InventoryRequest} body
  */
 
 /**
- * @typedef allSizes
+ * @typedef AllSizesParam
  * @property {number} itemId - Id of the product to be updated.
  */
 
 /**
- * @typedef bulkHsnCode
+ * @typedef BulkHsnCodeParam
  * @property {CatalogPlatformModel.BulkHsnUpsert} body
  */
 
 /**
- * @typedef createBulkInventory
+ * @typedef CreateBulkInventoryParam
  * @property {string} batchId - Batch Id of the bulk create job.
  * @property {CatalogPlatformModel.InventoryBulkRequest} body
  */
 
 /**
- * @typedef createBulkInventoryJob
+ * @typedef CreateBulkInventoryJobParam
  * @property {CatalogPlatformModel.BulkJob} body
  */
 
 /**
- * @typedef createBulkProductUploadJob
+ * @typedef CreateBulkProductUploadJobParam
  * @property {CatalogPlatformModel.BulkJob} body
  */
 
 /**
- * @typedef createCategories
+ * @typedef CreateCategoriesParam
  * @property {CatalogPlatformModel.CategoryRequestBody} body
  */
 
 /**
- * @typedef createDepartments
+ * @typedef CreateDepartmentsParam
  * @property {CatalogPlatformModel.DepartmentCreateUpdate} body
  */
 
 /**
- * @typedef createInventoryExport
+ * @typedef CreateInventoryExportParam
  * @property {CatalogPlatformModel.InventoryCreateRequest} body
  */
 
 /**
- * @typedef createInventoryExportJob
+ * @typedef CreateInventoryExportJobParam
  * @property {CatalogPlatformModel.InventoryExportRequest} body
  */
 
 /**
- * @typedef createMarketplaceOptin
+ * @typedef CreateMarketplaceOptinParam
  * @property {string} marketplace - The marketplace for which the detail needs
  *   to be retrieved.
  * @property {CatalogPlatformModel.OptInPostRequest} body
  */
 
 /**
- * @typedef createProduct
+ * @typedef CreateProductParam
  * @property {CatalogPlatformModel.ProductCreateUpdateSchemaV2} body
  */
 
 /**
- * @typedef createProductAssetsInBulk
+ * @typedef CreateProductAssetsInBulkParam
  * @property {CatalogPlatformModel.ProductBulkAssets} body
  */
 
 /**
- * @typedef createProductBundle
+ * @typedef CreateProductBundleParam
  * @property {CatalogPlatformModel.ProductBundleRequest} body
  */
 
 /**
- * @typedef createProductExportJob
+ * @typedef CreateProductExportJobParam
  * @property {CatalogPlatformModel.ProductTemplateDownloadsExport} body
  */
 
 /**
- * @typedef createProductsInBulk
+ * @typedef CreateProductsInBulkParam
  * @property {string} batchId - Batch Id in which assets to be uploaded.
  * @property {CatalogPlatformModel.BulkProductRequest} body
  */
 
 /**
- * @typedef createSizeGuide
+ * @typedef CreateSizeGuideParam
  * @property {CatalogPlatformModel.ValidateSizeGuide} body
  */
 
 /**
- * @typedef deleteBulkInventoryJob
+ * @typedef DeleteBulkInventoryJobParam
  * @property {string} batchId - Batch Id of the bulk delete job.
  */
 
 /**
- * @typedef deleteInventory
+ * @typedef DeleteInventoryParam
  * @property {string} size - Size that is to be deleted.
  * @property {number} itemId - Id of the product associated with Inventory to be deleted.
  * @property {number} locationId - Location ID of store of which inventory is to
@@ -107,52 +107,52 @@ const CatalogPlatformModel = require("./CatalogPlatformModel");
  */
 
 /**
- * @typedef deleteProduct
+ * @typedef DeleteProductParam
  * @property {number} itemId - Id of the product to be updated.
  */
 
 /**
- * @typedef deleteProductBulkJob
+ * @typedef DeleteProductBulkJobParam
  * @property {number} batchId - Batch Id of the bulk product job to be deleted.
  */
 
 /**
- * @typedef deleteRealtimeInventory
+ * @typedef DeleteRealtimeInventoryParam
  * @property {number} itemId - Item code of the product of which size is to be get.
  * @property {string} sellerIdentifier - Size Identifier (Seller Identifier or
  *   Primary Identifier) of which inventory is to get.
  */
 
 /**
- * @typedef deleteSize
+ * @typedef DeleteSizeParam
  * @property {number} itemId - Item Id of the product associated with size to be deleted.
  * @property {string} size - Size to be deleted.
  */
 
 /**
- * @typedef downloadInventoryTemplateView
+ * @typedef DownloadInventoryTemplateViewParam
  * @property {string} itemType - An `item_type` defines the type of item.
  */
 
 /**
- * @typedef downloadProductTemplateViews
+ * @typedef DownloadProductTemplateViewsParam
  * @property {string} slug - A `slug` is a unique identifier for a particular template.
  */
 
 /**
- * @typedef editProduct
+ * @typedef EditProductParam
  * @property {number} itemId - Id of the product to be updated.
  * @property {CatalogPlatformModel.ProductCreateUpdateSchemaV2} body
  */
 
 /**
- * @typedef exportInventoryConfig
+ * @typedef ExportInventoryConfigParam
  * @property {string} [filterType] - Filter type from any one of ['brand',
  *   'store', 'type']
  */
 
 /**
- * @typedef getAllProductHsnCodes
+ * @typedef GetAllProductHsnCodesParam
  * @property {number} [pageNo] - Page no
  * @property {number} [pageSize] - Page size
  * @property {string} [q] - Search using hsn code, description, reporting_hsn
@@ -160,12 +160,12 @@ const CatalogPlatformModel = require("./CatalogPlatformModel");
  */
 
 /**
- * @typedef getCategoryData
+ * @typedef GetCategoryDataParam
  * @property {string} uid - Category unique id
  */
 
 /**
- * @typedef getCompanyBrandDetail
+ * @typedef GetCompanyBrandDetailParam
  * @property {boolean} [isActive] - The is_active status for the optin id.
  * @property {string} [q] - The search value to filter the list.
  * @property {number} [pageNo] - The number of page for the company id.
@@ -175,28 +175,28 @@ const CatalogPlatformModel = require("./CatalogPlatformModel");
  *   the company id.
  */
 
-/** @typedef getCompanyDetail */
+/** @typedef GetCompanyDetailParam */
 
-/** @typedef getCompanyMetrics */
+/** @typedef GetCompanyMetricsParam */
 
 /**
- * @typedef getDepartmentData
+ * @typedef GetDepartmentDataParam
  * @property {string} uid - A `uid` is a unique identifier of a department.
  */
 
 /**
- * @typedef getGenderAttribute
+ * @typedef GetGenderAttributeParam
  * @property {string} attributeSlug - Slug of the attribute for which you want
  *   to view the genders
  */
 
 /**
- * @typedef getHsnCode
+ * @typedef GetHsnCodeParam
  * @property {string} id - Unique id
  */
 
 /**
- * @typedef getInventories
+ * @typedef GetInventoriesParam
  * @property {string} [itemId] - Item code of the product of which size is to be get.
  * @property {string} [size] - Size of which inventory is to get.
  * @property {number} [pageNo] - The page number to navigate through the given
@@ -211,7 +211,7 @@ const CatalogPlatformModel = require("./CatalogPlatformModel");
  */
 
 /**
- * @typedef getInventoryBulkUploadHistory
+ * @typedef GetInventoryBulkUploadHistoryParam
  * @property {number} [pageNo] - The page number to navigate through the given
  *   set of results
  * @property {number} [pageSize] - Number of items to retrieve in each page.
@@ -219,7 +219,7 @@ const CatalogPlatformModel = require("./CatalogPlatformModel");
  */
 
 /**
- * @typedef getInventoryBySize
+ * @typedef GetInventoryBySizeParam
  * @property {number} itemId - Item code of the product of which size is to be get.
  * @property {string} size - Size of which inventory is to get.
  * @property {number} [pageNo] - The page number to navigate through the given
@@ -231,7 +231,7 @@ const CatalogPlatformModel = require("./CatalogPlatformModel");
  */
 
 /**
- * @typedef getInventoryBySizeIdentifier
+ * @typedef GetInventoryBySizeIdentifierParam
  * @property {number} itemId - Item code of the product of which size is to be get.
  * @property {string} sizeIdentifier - Size Identifier (Seller Identifier or
  *   Primary Identifier) of which inventory is to get.
@@ -243,24 +243,24 @@ const CatalogPlatformModel = require("./CatalogPlatformModel");
  * @property {number[]} [locationIds] - Search by store ids.
  */
 
-/** @typedef getInventoryExport */
+/** @typedef GetInventoryExportParam */
 
-/** @typedef getMarketplaceOptinDetail */
+/** @typedef GetMarketplaceOptinDetailParam */
 
 /**
- * @typedef getOptimalLocations
+ * @typedef GetOptimalLocationsParam
  * @property {CatalogPlatformModel.AssignStore} body
  */
 
 /**
- * @typedef getProduct
+ * @typedef GetProductParam
  * @property {number} itemId - Item Id of the product.
  * @property {number} [brandUid] - Brand Id of the product.
  * @property {string} [itemCode] - Item code of the product.
  */
 
 /**
- * @typedef getProductAssetsInBulk
+ * @typedef GetProductAssetsInBulkParam
  * @property {number} [pageNo] - The page number to navigate through the given
  *   set of results
  * @property {number} [pageSize] - Number of items to retrieve in each page.
@@ -268,14 +268,14 @@ const CatalogPlatformModel = require("./CatalogPlatformModel");
  */
 
 /**
- * @typedef getProductAttributes
+ * @typedef GetProductAttributesParam
  * @property {string} category - It is the name of the l3 cateogry
  * @property {boolean} [filter] - If true, returns filtered values, else returns
  *   all the attributes
  */
 
 /**
- * @typedef getProductBulkUploadHistory
+ * @typedef GetProductBulkUploadHistoryParam
  * @property {string} [search] - Search string to filter the results by batch id
  * @property {number} [pageNo] - The page number to navigate through the given
  *   set of results
@@ -284,19 +284,19 @@ const CatalogPlatformModel = require("./CatalogPlatformModel");
  */
 
 /**
- * @typedef getProductBundle
+ * @typedef GetProductBundleParam
  * @property {string} [q] - A search string that is searched with product bundle name.
  * @property {string[]} [slug] - Slugs of bundles to be retrieved.
  */
 
 /**
- * @typedef getProductBundleDetail
+ * @typedef GetProductBundleDetailParam
  * @property {string} id - A `id` is a unique identifier for a particular
  *   detail. Pass the `id` of the keywords which you want to retrieve.
  */
 
 /**
- * @typedef getProductExportJobs
+ * @typedef GetProductExportJobsParam
  * @property {string} [status] - This is a parameter used to find all the jobs
  *   with the specified status.
  * @property {string} [fromDate] - This is a parameter used to find the job from
@@ -308,19 +308,19 @@ const CatalogPlatformModel = require("./CatalogPlatformModel");
  */
 
 /**
- * @typedef getProductSize
+ * @typedef GetProductSizeParam
  * @property {string} [itemCode] - Item code of the product size.
  * @property {number} itemId - Item Id of the product size.
  * @property {number} [brandUid] - Brand Id of the product size.
  * @property {number} [uid] - Id of the product size.
  */
 
-/** @typedef getProductTags */
+/** @typedef GetProductTagsParam */
 
-/** @typedef getProductValidation */
+/** @typedef GetProductValidationParam */
 
 /**
- * @typedef getProducts
+ * @typedef GetProductsParam
  * @property {number[]} [brandIds] - Get multiple products filtered by Brand Ids
  * @property {number[]} [categoryIds] - Get multiple products filtered by Category Ids
  * @property {number[]} [itemIds] - Get multiple products filtered by Item Ids
@@ -335,23 +335,23 @@ const CatalogPlatformModel = require("./CatalogPlatformModel");
  */
 
 /**
- * @typedef getSellerInsights
+ * @typedef GetSellerInsightsParam
  * @property {string} sellerAppId - Id of the seller application which is
  *   serving the invetory/catalog of the company
  */
 
 /**
- * @typedef getSingleProductHSNCode
+ * @typedef GetSingleProductHSNCodeParam
  * @property {string} reportingHsn - Reporting_hsn
  */
 
 /**
- * @typedef getSizeGuide
+ * @typedef GetSizeGuideParam
  * @property {string} id - Id of the size guide to be viewed.
  */
 
 /**
- * @typedef getSizeGuides
+ * @typedef GetSizeGuidesParam
  * @property {boolean} [active] - Filter size guide on basis of active, in-active
  * @property {string} [q] - Query that is to be searched.
  * @property {string} [tag] - To filter size guide on basis of tag.
@@ -362,7 +362,7 @@ const CatalogPlatformModel = require("./CatalogPlatformModel");
  */
 
 /**
- * @typedef getStoreDetail
+ * @typedef GetStoreDetailParam
  * @property {string} [q] - The search related the store for the company id.
  * @property {number} [pageNo] - The number of page for the company id.
  * @property {number} [pageSize] - Number of records that can be seen on the
@@ -370,7 +370,7 @@ const CatalogPlatformModel = require("./CatalogPlatformModel");
  */
 
 /**
- * @typedef getVariantsOfProducts
+ * @typedef GetVariantsOfProductsParam
  * @property {number} itemId - Get list of variants of item Id
  * @property {string} variantType - Get multiple products filtered by variant type
  * @property {number} [pageNo] - The page number to navigate through the given
@@ -380,7 +380,7 @@ const CatalogPlatformModel = require("./CatalogPlatformModel");
  */
 
 /**
- * @typedef listCategories
+ * @typedef ListCategoriesParam
  * @property {string} [level] - Get category for multiple levels
  * @property {string} [departments] - Get category for multiple departments filtered
  * @property {string} [q] - Get multiple categories filtered by search string
@@ -391,7 +391,7 @@ const CatalogPlatformModel = require("./CatalogPlatformModel");
  */
 
 /**
- * @typedef listDepartmentsData
+ * @typedef ListDepartmentsDataParam
  * @property {number} [pageNo] - The page number to navigate through the given
  *   set of results
  * @property {string} [itemType] - A `item_type` is a type of product eg. set,
@@ -405,10 +405,10 @@ const CatalogPlatformModel = require("./CatalogPlatformModel");
  *   they are active or inactive.
  */
 
-/** @typedef listHSNCodes */
+/** @typedef ListHSNCodesParam */
 
 /**
- * @typedef listInventoryExport
+ * @typedef ListInventoryExportParam
  * @property {string} [status] - Status of the export job.
  * @property {string} [fromDate] - Inventory export history filtered according
  *   to from_date.
@@ -417,22 +417,22 @@ const CatalogPlatformModel = require("./CatalogPlatformModel");
  */
 
 /**
- * @typedef listProductTemplate
+ * @typedef ListProductTemplateParam
  * @property {string} department - A `department` is the name of a particular department.
  */
 
 /**
- * @typedef listProductTemplateCategories
+ * @typedef ListProductTemplateCategoriesParam
  * @property {string} departments - A `department` is name of a departments
  *   whose category needs to be listed. Can specify multiple departments.
  * @property {string} itemType - An `item_type` is the type of item, it can be
  *   `set`, `standard`, `digital`, etc.
  */
 
-/** @typedef listProductTemplateExportDetails */
+/** @typedef ListProductTemplateExportDetailsParam */
 
 /**
- * @typedef listTemplateBrandTypeValues
+ * @typedef ListTemplateBrandTypeValuesParam
  * @property {string} filter - A `filter` is the unique identifier of the type
  *   of value required.
  * @property {string} [templateTag] - A `template_tag` is the identifier of the
@@ -442,37 +442,37 @@ const CatalogPlatformModel = require("./CatalogPlatformModel");
  */
 
 /**
- * @typedef updateCategory
+ * @typedef UpdateCategoryParam
  * @property {string} uid - Category unique id
  * @property {CatalogPlatformModel.CategoryRequestBody} body
  */
 
 /**
- * @typedef updateDepartment
+ * @typedef UpdateDepartmentParam
  * @property {string} uid - A `uid` is a unique identifier of a department.
  * @property {CatalogPlatformModel.DepartmentCreateUpdate} body
  */
 
 /**
- * @typedef updateHsnCode
+ * @typedef UpdateHsnCodeParam
  * @property {string} id - Unique id
  * @property {CatalogPlatformModel.HsnUpsert} body
  */
 
 /**
- * @typedef updateInventories
+ * @typedef UpdateInventoriesParam
  * @property {CatalogPlatformModel.InventoryRequestSchemaV2} body
  */
 
 /**
- * @typedef updateProductBundle
+ * @typedef UpdateProductBundleParam
  * @property {string} id - A `id` is a unique identifier for a particular
  *   detail. Pass the `id` of the keywords which you want to delete.
  * @property {CatalogPlatformModel.ProductBundleUpdateRequest} body
  */
 
 /**
- * @typedef updateRealtimeInventory
+ * @typedef UpdateRealtimeInventoryParam
  * @property {number} itemId - Item code of the product of which size is to be get.
  * @property {string} sellerIdentifier - Size Identifier (Seller Identifier or
  *   Primary Identifier) of which inventory is to get.
@@ -480,13 +480,13 @@ const CatalogPlatformModel = require("./CatalogPlatformModel");
  */
 
 /**
- * @typedef updateSizeGuide
+ * @typedef UpdateSizeGuideParam
  * @property {string} id - Mongo id of the size guide to be edited
  * @property {CatalogPlatformModel.ValidateSizeGuide} body
  */
 
 /**
- * @typedef uploadBulkProducts
+ * @typedef UploadBulkProductsParam
  * @property {string} department - Department of the product to be uploaded.
  * @property {string} productType - Product type of the product to be uploaded
  *   i.e. set, standard , digital.
@@ -494,12 +494,12 @@ const CatalogPlatformModel = require("./CatalogPlatformModel");
  */
 
 /**
- * @typedef validateProductTemplate
+ * @typedef ValidateProductTemplateParam
  * @property {string} slug - A `slug` is a unique identifier for a particular template.
  */
 
 /**
- * @typedef validateProductTemplateSchema
+ * @typedef ValidateProductTemplateSchemaParam
  * @property {string} itemType - An `item_type` defines the type of item. The
  *   default value is standard.
  */

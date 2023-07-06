@@ -42,55 +42,55 @@ declare class User {
     _urls: {};
     updateUrls(urls: any): void;
     /**
-     * @param {UserApplicationValidator.addEmail} arg - Arg object.
+     * @param {UserApplicationValidator.AddEmailParam} arg - Arg object.
      * @returns {Promise<UserApplicationModel.VerifyEmailOTPSuccess>} - Success response
      * @name addEmail
      * @summary: Add email to profile
      * @description: Use this API to add a new email address to a profile
      */
-    addEmail({ body, platform }?: UserApplicationValidator.addEmail): Promise<UserApplicationModel.VerifyEmailOTPSuccess>;
+    addEmail({ body, platform }?: UserApplicationValidator.AddEmailParam): Promise<UserApplicationModel.VerifyEmailOTPSuccess>;
     /**
-     * @param {UserApplicationValidator.addMobileNumber} arg - Arg object.
+     * @param {UserApplicationValidator.AddMobileNumberParam} arg - Arg object.
      * @returns {Promise<UserApplicationModel.VerifyMobileOTPSuccess>} - Success response
      * @name addMobileNumber
      * @summary: Add mobile number to profile
      * @description: Use this API to add a new mobile number to a profile.
      */
-    addMobileNumber({ body, platform }?: UserApplicationValidator.addMobileNumber): Promise<UserApplicationModel.VerifyMobileOTPSuccess>;
+    addMobileNumber({ body, platform }?: UserApplicationValidator.AddMobileNumberParam): Promise<UserApplicationModel.VerifyMobileOTPSuccess>;
     /**
-     * @param {UserApplicationValidator.deleteEmail} arg - Arg object.
+     * @param {UserApplicationValidator.DeleteEmailParam} arg - Arg object.
      * @returns {Promise<UserApplicationModel.LoginSuccess>} - Success response
      * @name deleteEmail
      * @summary: Delete email from profile
      * @description: Use this API to delete an email address from a profile
      */
-    deleteEmail({ active, primary, verified, email, platform }?: UserApplicationValidator.deleteEmail): Promise<UserApplicationModel.LoginSuccess>;
+    deleteEmail({ active, primary, verified, email, platform }?: UserApplicationValidator.DeleteEmailParam): Promise<UserApplicationModel.LoginSuccess>;
     /**
-     * @param {UserApplicationValidator.deleteMobileNumber} arg - Arg object.
+     * @param {UserApplicationValidator.DeleteMobileNumberParam} arg - Arg object.
      * @returns {Promise<UserApplicationModel.LoginSuccess>} - Success response
      * @name deleteMobileNumber
      * @summary: Delete mobile number from profile
      * @description: Use this API to delete a mobile number from a profile.
      */
-    deleteMobileNumber({ active, primary, verified, countryCode, phone, platform, }?: UserApplicationValidator.deleteMobileNumber): Promise<UserApplicationModel.LoginSuccess>;
+    deleteMobileNumber({ active, primary, verified, countryCode, phone, platform, }?: UserApplicationValidator.DeleteMobileNumberParam): Promise<UserApplicationModel.LoginSuccess>;
     /**
-     * @param {UserApplicationValidator.deleteUser} arg - Arg object.
+     * @param {UserApplicationValidator.DeleteUserParam} arg - Arg object.
      * @returns {Promise<UserApplicationModel.DeleteUserSuccess>} - Success response
      * @name deleteUser
      * @summary: verify otp and delete user
      * @description: verify otp and delete user
      */
-    deleteUser({ body }?: UserApplicationValidator.deleteUser): Promise<UserApplicationModel.DeleteUserSuccess>;
+    deleteUser({ body }?: UserApplicationValidator.DeleteUserParam): Promise<UserApplicationModel.DeleteUserSuccess>;
     /**
-     * @param {UserApplicationValidator.forgotPassword} arg - Arg object.
+     * @param {UserApplicationValidator.ForgotPasswordParam} arg - Arg object.
      * @returns {Promise<UserApplicationModel.LoginSuccess>} - Success response
      * @name forgotPassword
      * @summary: Forgot Password
      * @description: Use this API to reset a password using the code sent on email or SMS.
      */
-    forgotPassword({ body }?: UserApplicationValidator.forgotPassword): Promise<UserApplicationModel.LoginSuccess>;
+    forgotPassword({ body }?: UserApplicationValidator.ForgotPasswordParam): Promise<UserApplicationModel.LoginSuccess>;
     /**
-     * @param {UserApplicationValidator.getListOfActiveSessions} arg - Arg object.
+     * @param {UserApplicationValidator.GetListOfActiveSessionsParam} arg - Arg object.
      * @returns {Promise<UserApplicationModel.SessionListSuccess>} - Success response
      * @name getListOfActiveSessions
      * @summary: Get list of sessions
@@ -98,7 +98,7 @@ declare class User {
      */
     getListOfActiveSessions({}?: any): Promise<UserApplicationModel.SessionListSuccess>;
     /**
-     * @param {UserApplicationValidator.getLoggedInUser} arg - Arg object.
+     * @param {UserApplicationValidator.GetLoggedInUserParam} arg - Arg object.
      * @returns {Promise<UserApplicationModel.UserObjectSchema>} - Success response
      * @name getLoggedInUser
      * @summary: Get logged in user
@@ -106,15 +106,15 @@ declare class User {
      */
     getLoggedInUser({}?: any): Promise<UserApplicationModel.UserObjectSchema>;
     /**
-     * @param {UserApplicationValidator.getPlatformConfig} arg - Arg object.
+     * @param {UserApplicationValidator.GetPlatformConfigParam} arg - Arg object.
      * @returns {Promise<UserApplicationModel.PlatformSchema>} - Success response
      * @name getPlatformConfig
      * @summary: Get platform configurations
      * @description: Use this API to get all the platform configurations such as mobile image, desktop image, social logins, and all other text.
      */
-    getPlatformConfig({ name }?: UserApplicationValidator.getPlatformConfig): Promise<UserApplicationModel.PlatformSchema>;
+    getPlatformConfig({ name }?: UserApplicationValidator.GetPlatformConfigParam): Promise<UserApplicationModel.PlatformSchema>;
     /**
-     * @param {UserApplicationValidator.hasPassword} arg - Arg object.
+     * @param {UserApplicationValidator.HasPasswordParam} arg - Arg object.
      * @returns {Promise<UserApplicationModel.HasPasswordSuccess>} - Success response
      * @name hasPassword
      * @summary: Check password
@@ -122,71 +122,71 @@ declare class User {
      */
     hasPassword({}?: any): Promise<UserApplicationModel.HasPasswordSuccess>;
     /**
-     * @param {UserApplicationValidator.loginWithAppleIOS} arg - Arg object.
+     * @param {UserApplicationValidator.LoginWithAppleIOSParam} arg - Arg object.
      * @returns {Promise<UserApplicationModel.AuthSuccess>} - Success response
      * @name loginWithAppleIOS
      * @summary: Login or Register using Apple on iOS
      * @description: Use this API to login or register in iOS app using Apple Account credentials.
      */
-    loginWithAppleIOS({ body, platform }?: UserApplicationValidator.loginWithAppleIOS): Promise<UserApplicationModel.AuthSuccess>;
+    loginWithAppleIOS({ body, platform }?: UserApplicationValidator.LoginWithAppleIOSParam): Promise<UserApplicationModel.AuthSuccess>;
     /**
-     * @param {UserApplicationValidator.loginWithEmailAndPassword} arg - Arg object.
+     * @param {UserApplicationValidator.LoginWithEmailAndPasswordParam} arg - Arg object.
      * @returns {Promise<UserApplicationModel.LoginSuccess>} - Success response
      * @name loginWithEmailAndPassword
      * @summary: Login or Register with password
      * @description: Use this API to login or register using an email address and password.
      */
-    loginWithEmailAndPassword({ body }?: UserApplicationValidator.loginWithEmailAndPassword): Promise<UserApplicationModel.LoginSuccess>;
+    loginWithEmailAndPassword({ body }?: UserApplicationValidator.LoginWithEmailAndPasswordParam): Promise<UserApplicationModel.LoginSuccess>;
     /**
-     * @param {UserApplicationValidator.loginWithFacebook} arg - Arg object.
+     * @param {UserApplicationValidator.LoginWithFacebookParam} arg - Arg object.
      * @returns {Promise<UserApplicationModel.AuthSuccess>} - Success response
      * @name loginWithFacebook
      * @summary: Login or Register using Facebook
      * @description: Use this API to login or register using Facebook credentials.
      */
-    loginWithFacebook({ body, platform }?: UserApplicationValidator.loginWithFacebook): Promise<UserApplicationModel.AuthSuccess>;
+    loginWithFacebook({ body, platform }?: UserApplicationValidator.LoginWithFacebookParam): Promise<UserApplicationModel.AuthSuccess>;
     /**
-     * @param {UserApplicationValidator.loginWithGoogle} arg - Arg object.
+     * @param {UserApplicationValidator.LoginWithGoogleParam} arg - Arg object.
      * @returns {Promise<UserApplicationModel.AuthSuccess>} - Success response
      * @name loginWithGoogle
      * @summary: Login or Register using Google
      * @description: Use this API to login or register using Google Account credentials.
      */
-    loginWithGoogle({ body, platform }?: UserApplicationValidator.loginWithGoogle): Promise<UserApplicationModel.AuthSuccess>;
+    loginWithGoogle({ body, platform }?: UserApplicationValidator.LoginWithGoogleParam): Promise<UserApplicationModel.AuthSuccess>;
     /**
-     * @param {UserApplicationValidator.loginWithGoogleAndroid} arg - Arg object.
+     * @param {UserApplicationValidator.LoginWithGoogleAndroidParam} arg - Arg object.
      * @returns {Promise<UserApplicationModel.AuthSuccess>} - Success response
      * @name loginWithGoogleAndroid
      * @summary: Login or Register using Google on Android
      * @description: Use this API to login or register in Android app using Google Account credentials.
      */
-    loginWithGoogleAndroid({ body, platform }?: UserApplicationValidator.loginWithGoogleAndroid): Promise<UserApplicationModel.AuthSuccess>;
+    loginWithGoogleAndroid({ body, platform }?: UserApplicationValidator.LoginWithGoogleAndroidParam): Promise<UserApplicationModel.AuthSuccess>;
     /**
-     * @param {UserApplicationValidator.loginWithGoogleIOS} arg - Arg object.
+     * @param {UserApplicationValidator.LoginWithGoogleIOSParam} arg - Arg object.
      * @returns {Promise<UserApplicationModel.AuthSuccess>} - Success response
      * @name loginWithGoogleIOS
      * @summary: Login or Register using Google on iOS
      * @description: Use this API to login or register in iOS app using Google Account credentials.
      */
-    loginWithGoogleIOS({ body, platform }?: UserApplicationValidator.loginWithGoogleIOS): Promise<UserApplicationModel.AuthSuccess>;
+    loginWithGoogleIOS({ body, platform }?: UserApplicationValidator.LoginWithGoogleIOSParam): Promise<UserApplicationModel.AuthSuccess>;
     /**
-     * @param {UserApplicationValidator.loginWithOTP} arg - Arg object.
+     * @param {UserApplicationValidator.LoginWithOTPParam} arg - Arg object.
      * @returns {Promise<UserApplicationModel.SendOtpResponse>} - Success response
      * @name loginWithOTP
      * @summary: Login or Register with OTP
      * @description: Use this API to login or register with a One-time Password (OTP) sent via Email or SMS.
      */
-    loginWithOTP({ body, platform }?: UserApplicationValidator.loginWithOTP): Promise<UserApplicationModel.SendOtpResponse>;
+    loginWithOTP({ body, platform }?: UserApplicationValidator.LoginWithOTPParam): Promise<UserApplicationModel.SendOtpResponse>;
     /**
-     * @param {UserApplicationValidator.loginWithToken} arg - Arg object.
+     * @param {UserApplicationValidator.LoginWithTokenParam} arg - Arg object.
      * @returns {Promise<UserApplicationModel.LoginSuccess>} - Success response
      * @name loginWithToken
      * @summary: Login or Register with token
      * @description: Use this API to login or register using a token for authentication.
      */
-    loginWithToken({ body }?: UserApplicationValidator.loginWithToken): Promise<UserApplicationModel.LoginSuccess>;
+    loginWithToken({ body }?: UserApplicationValidator.LoginWithTokenParam): Promise<UserApplicationModel.LoginSuccess>;
     /**
-     * @param {UserApplicationValidator.logout} arg - Arg object.
+     * @param {UserApplicationValidator.LogoutParam} arg - Arg object.
      * @returns {Promise<UserApplicationModel.LogoutSuccess>} - Success response
      * @name logout
      * @summary: Logs out currently logged in user
@@ -194,135 +194,138 @@ declare class User {
      */
     logout({}?: any): Promise<UserApplicationModel.LogoutSuccess>;
     /**
-     * @param {UserApplicationValidator.registerWithForm} arg - Arg object.
+     * @param {UserApplicationValidator.RegisterWithFormParam} arg - Arg object.
      * @returns {Promise<UserApplicationModel.RegisterFormSuccess>} - Success response
      * @name registerWithForm
      * @summary: Registration using a form
      * @description: Use this API to perform user registration by sending form data in the request body.
      */
-    registerWithForm({ body, platform }?: UserApplicationValidator.registerWithForm): Promise<UserApplicationModel.RegisterFormSuccess>;
+    registerWithForm({ body, platform }?: UserApplicationValidator.RegisterWithFormParam): Promise<UserApplicationModel.RegisterFormSuccess>;
     /**
-     * @param {UserApplicationValidator.sendOTPOnEmail} arg - Arg object.
+     * @param {UserApplicationValidator.SendOTPOnEmailParam} arg - Arg object.
      * @returns {Promise<UserApplicationModel.EmailOtpSuccess>} - Success response
      * @name sendOTPOnEmail
      * @summary: Send OTP on email
      * @description: Use this API to send an OTP to an email ID.
      */
-    sendOTPOnEmail({ body, platform }?: UserApplicationValidator.sendOTPOnEmail): Promise<UserApplicationModel.EmailOtpSuccess>;
+    sendOTPOnEmail({ body, platform }?: UserApplicationValidator.SendOTPOnEmailParam): Promise<UserApplicationModel.EmailOtpSuccess>;
     /**
-     * @param {UserApplicationValidator.sendOTPOnMobile} arg - Arg object.
+     * @param {UserApplicationValidator.SendOTPOnMobileParam} arg - Arg object.
      * @returns {Promise<UserApplicationModel.OtpSuccess>} - Success response
      * @name sendOTPOnMobile
      * @summary: Send OTP on mobile
      * @description: Use this API to send an OTP to a mobile number.
      */
-    sendOTPOnMobile({ body, platform }?: UserApplicationValidator.sendOTPOnMobile): Promise<UserApplicationModel.OtpSuccess>;
+    sendOTPOnMobile({ body, platform }?: UserApplicationValidator.SendOTPOnMobileParam): Promise<UserApplicationModel.OtpSuccess>;
     /**
-     * @param {UserApplicationValidator.sendResetPasswordEmail} arg - Arg object.
+     * @param {UserApplicationValidator.SendResetPasswordEmailParam} arg - Arg object.
      * @returns {Promise<UserApplicationModel.ResetPasswordSuccess>} - Success response
      * @name sendResetPasswordEmail
      * @summary: Reset Password
      * @description: Use this API to reset a password using the link sent on email.
      */
-    sendResetPasswordEmail({ body, platform }?: UserApplicationValidator.sendResetPasswordEmail): Promise<UserApplicationModel.ResetPasswordSuccess>;
+    sendResetPasswordEmail({ body, platform }?: UserApplicationValidator.SendResetPasswordEmailParam): Promise<UserApplicationModel.ResetPasswordSuccess>;
     /**
-     * @param {UserApplicationValidator.sendResetPasswordMobile} arg - Arg object.
+     * @param {UserApplicationValidator.SendResetPasswordMobileParam} arg - Arg object.
      * @returns {Promise<UserApplicationModel.ResetPasswordSuccess>} - Success response
      * @name sendResetPasswordMobile
      * @summary: Reset Password
      * @description: Use this API to reset a password using the link sent on mobile.
      */
-    sendResetPasswordMobile({ body, platform }?: UserApplicationValidator.sendResetPasswordMobile): Promise<UserApplicationModel.ResetPasswordSuccess>;
+    sendResetPasswordMobile({ body, platform }?: UserApplicationValidator.SendResetPasswordMobileParam): Promise<UserApplicationModel.ResetPasswordSuccess>;
     /**
-     * @param {UserApplicationValidator.sendResetToken} arg - Arg object.
+     * @param {UserApplicationValidator.SendResetTokenParam} arg - Arg object.
      * @returns {Promise<UserApplicationModel.ResetPasswordSuccess>} - Success response
      * @name sendResetToken
      * @summary: Reset Password using token
      * @description: Use this API to send code to reset password.
      */
-    sendResetToken({ body }?: UserApplicationValidator.sendResetToken): Promise<UserApplicationModel.ResetPasswordSuccess>;
+    sendResetToken({ body }?: UserApplicationValidator.SendResetTokenParam): Promise<UserApplicationModel.ResetPasswordSuccess>;
     /**
-     * @param {UserApplicationValidator.sendVerificationLinkToEmail} arg - Arg object.
+     * @param {UserApplicationValidator.SendVerificationLinkToEmailParam} arg -
+     *   Arg object.
      * @returns {Promise<UserApplicationModel.SendEmailVerifyLinkSuccess>} -
      *   Success response
      * @name sendVerificationLinkToEmail
      * @summary: Send verification link to email
      * @description: Use this API to send verification link to an email address.
      */
-    sendVerificationLinkToEmail({ body, platform }?: UserApplicationValidator.sendVerificationLinkToEmail): Promise<UserApplicationModel.SendEmailVerifyLinkSuccess>;
+    sendVerificationLinkToEmail({ body, platform }?: UserApplicationValidator.SendVerificationLinkToEmailParam): Promise<UserApplicationModel.SendEmailVerifyLinkSuccess>;
     /**
-     * @param {UserApplicationValidator.sendVerificationLinkToMobile} arg - Arg object.
+     * @param {UserApplicationValidator.SendVerificationLinkToMobileParam} arg
+     *   - Arg object.
+     *
      * @returns {Promise<UserApplicationModel.SendMobileVerifyLinkSuccess>} -
      *   Success response
      * @name sendVerificationLinkToMobile
      * @summary: Send verification link to mobile
      * @description: Use this API to send a verification link to a mobile number
      */
-    sendVerificationLinkToMobile({ body, platform }?: UserApplicationValidator.sendVerificationLinkToMobile): Promise<UserApplicationModel.SendMobileVerifyLinkSuccess>;
+    sendVerificationLinkToMobile({ body, platform }?: UserApplicationValidator.SendVerificationLinkToMobileParam): Promise<UserApplicationModel.SendMobileVerifyLinkSuccess>;
     /**
-     * @param {UserApplicationValidator.setEmailAsPrimary} arg - Arg object.
+     * @param {UserApplicationValidator.SetEmailAsPrimaryParam} arg - Arg object.
      * @returns {Promise<UserApplicationModel.LoginSuccess>} - Success response
      * @name setEmailAsPrimary
      * @summary: Set email as primary
      * @description: Use this API to set an email address as primary. Primary email ID is a email address used for all future communications.
      */
-    setEmailAsPrimary({ body }?: UserApplicationValidator.setEmailAsPrimary): Promise<UserApplicationModel.LoginSuccess>;
+    setEmailAsPrimary({ body }?: UserApplicationValidator.SetEmailAsPrimaryParam): Promise<UserApplicationModel.LoginSuccess>;
     /**
-     * @param {UserApplicationValidator.setMobileNumberAsPrimary} arg - Arg object.
+     * @param {UserApplicationValidator.SetMobileNumberAsPrimaryParam} arg - Arg object.
      * @returns {Promise<UserApplicationModel.LoginSuccess>} - Success response
      * @name setMobileNumberAsPrimary
      * @summary: Set mobile as primary
      * @description: Use this API to set a mobile number as primary. Primary number is a verified number used for all future communications.
      */
-    setMobileNumberAsPrimary({ body }?: UserApplicationValidator.setMobileNumberAsPrimary): Promise<UserApplicationModel.LoginSuccess>;
+    setMobileNumberAsPrimary({ body }?: UserApplicationValidator.SetMobileNumberAsPrimaryParam): Promise<UserApplicationModel.LoginSuccess>;
     /**
-     * @param {UserApplicationValidator.updatePassword} arg - Arg object.
+     * @param {UserApplicationValidator.UpdatePasswordParam} arg - Arg object.
      * @returns {Promise<UserApplicationModel.VerifyEmailSuccess>} - Success response
      * @name updatePassword
      * @summary: Update user password
      * @description: Use this API to update the password.
      */
-    updatePassword({ body }?: UserApplicationValidator.updatePassword): Promise<UserApplicationModel.VerifyEmailSuccess>;
+    updatePassword({ body }?: UserApplicationValidator.UpdatePasswordParam): Promise<UserApplicationModel.VerifyEmailSuccess>;
     /**
-     * @param {UserApplicationValidator.updateProfile} arg - Arg object.
+     * @param {UserApplicationValidator.UpdateProfileParam} arg - Arg object.
      * @returns {Promise<UserApplicationModel.ProfileEditSuccess>} - Success response
      * @name updateProfile
      * @summary: Edit Profile Details
      * @description: Use this API to update details in the user profile. Details can be first name, last name, gender, email, phone number, or profile picture.
      */
-    updateProfile({ body, platform }?: UserApplicationValidator.updateProfile): Promise<UserApplicationModel.ProfileEditSuccess>;
+    updateProfile({ body, platform }?: UserApplicationValidator.UpdateProfileParam): Promise<UserApplicationModel.ProfileEditSuccess>;
     /**
-     * @param {UserApplicationValidator.verifyEmail} arg - Arg object.
+     * @param {UserApplicationValidator.VerifyEmailParam} arg - Arg object.
      * @returns {Promise<UserApplicationModel.VerifyEmailSuccess>} - Success response
      * @name verifyEmail
      * @summary: Verify email
      * @description: Use this API to send a verification code to verify an email.
      */
-    verifyEmail({ body }?: UserApplicationValidator.verifyEmail): Promise<UserApplicationModel.VerifyEmailSuccess>;
+    verifyEmail({ body }?: UserApplicationValidator.VerifyEmailParam): Promise<UserApplicationModel.VerifyEmailSuccess>;
     /**
-     * @param {UserApplicationValidator.verifyEmailOTP} arg - Arg object.
+     * @param {UserApplicationValidator.VerifyEmailOTPParam} arg - Arg object.
      * @returns {Promise<UserApplicationModel.VerifyOtpSuccess>} - Success response
      * @name verifyEmailOTP
      * @summary: Verify OTP on email
      * @description: Use this API to verify the OTP received on an email ID.
      */
-    verifyEmailOTP({ body, platform }?: UserApplicationValidator.verifyEmailOTP): Promise<UserApplicationModel.VerifyOtpSuccess>;
+    verifyEmailOTP({ body, platform }?: UserApplicationValidator.VerifyEmailOTPParam): Promise<UserApplicationModel.VerifyOtpSuccess>;
     /**
-     * @param {UserApplicationValidator.verifyMobile} arg - Arg object.
+     * @param {UserApplicationValidator.VerifyMobileParam} arg - Arg object.
      * @returns {Promise<UserApplicationModel.VerifyEmailSuccess>} - Success response
      * @name verifyMobile
      * @summary: Verify mobile
      * @description: Use this API to send a verification code to verify a mobile number.
      */
-    verifyMobile({ body }?: UserApplicationValidator.verifyMobile): Promise<UserApplicationModel.VerifyEmailSuccess>;
+    verifyMobile({ body }?: UserApplicationValidator.VerifyMobileParam): Promise<UserApplicationModel.VerifyEmailSuccess>;
     /**
-     * @param {UserApplicationValidator.verifyMobileOTP} arg - Arg object.
+     * @param {UserApplicationValidator.VerifyMobileOTPParam} arg - Arg object.
      * @returns {Promise<UserApplicationModel.VerifyOtpSuccess>} - Success response
      * @name verifyMobileOTP
      * @summary: Verify OTP on mobile
      * @description: Use this API to verify the OTP received on a mobile number.
      */
-    verifyMobileOTP({ body, platform }?: UserApplicationValidator.verifyMobileOTP): Promise<UserApplicationModel.VerifyOtpSuccess>;
+    verifyMobileOTP({ body, platform }?: UserApplicationValidator.VerifyMobileOTPParam): Promise<UserApplicationModel.VerifyOtpSuccess>;
 }
 import UserApplicationValidator = require("./UserApplicationValidator");
 import UserApplicationModel = require("./UserApplicationModel");

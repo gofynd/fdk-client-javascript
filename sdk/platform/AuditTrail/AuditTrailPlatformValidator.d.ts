@@ -1,44 +1,44 @@
 export = AuditTrailPlatformValidator;
 /**
- * @typedef createAuditLog
+ * @typedef CreateAuditLogParam
  * @property {AuditTrailPlatformModel.RequestBodyAuditLog} body
  */
 /**
- * @typedef getAuditLog
+ * @typedef GetAuditLogParam
  * @property {string} id - Log uuid
  */
 /**
- * @typedef getAuditLogs
+ * @typedef GetAuditLogsParam
  * @property {string} qs - Logs Query
  */
-/** @typedef getEntityTypes */
+/** @typedef GetEntityTypesParam */
 declare class AuditTrailPlatformValidator {
+    /** @returns {createAuditLog} */
+    static createAuditLog(): createAuditLog;
+    /** @returns {getAuditLog} */
+    static getAuditLog(): getAuditLog;
+    /** @returns {getAuditLogs} */
+    static getAuditLogs(): getAuditLogs;
+    /** @returns {getEntityTypes} */
+    static getEntityTypes(): getEntityTypes;
 }
 declare namespace AuditTrailPlatformValidator {
-    export { createAuditLog, getAuditLog, getAuditLogs, getEntityTypes };
+    export { CreateAuditLogParam, GetAuditLogParam, GetAuditLogsParam, GetEntityTypesParam };
 }
-/** @returns {createAuditLog} */
-declare function createAuditLog(): createAuditLog;
-type createAuditLog = {
+type CreateAuditLogParam = {
     body: AuditTrailPlatformModel.RequestBodyAuditLog;
 };
-/** @returns {getAuditLog} */
-declare function getAuditLog(): getAuditLog;
-type getAuditLog = {
+type GetAuditLogParam = {
     /**
      * - Log uuid
      */
     id: string;
 };
-/** @returns {getAuditLogs} */
-declare function getAuditLogs(): getAuditLogs;
-type getAuditLogs = {
+type GetAuditLogsParam = {
     /**
      * - Logs Query
      */
     qs: string;
 };
-/** @returns {getEntityTypes} */
-declare function getEntityTypes(): any;
-type getEntityTypes = any;
+type GetEntityTypesParam = any;
 import AuditTrailPlatformModel = require("./AuditTrailPlatformModel");

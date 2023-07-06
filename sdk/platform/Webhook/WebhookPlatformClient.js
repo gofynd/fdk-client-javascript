@@ -12,7 +12,7 @@ class Webhook {
   }
 
   /**
-   * @param {WebhookPlatformValidator.fetchAllEventConfigurations} arg - Arg object
+   * @param {WebhookPlatformValidator.FetchAllEventConfigurationsParam} arg - Arg object
    * @returns {Promise<WebhookPlatformModel.EventConfigResponse>} - Success response
    * @name fetchAllEventConfigurations
    * @summary:
@@ -74,7 +74,7 @@ class Webhook {
   }
 
   /**
-   * @param {WebhookPlatformValidator.getSubscriberById} arg - Arg object
+   * @param {WebhookPlatformValidator.GetSubscriberByIdParam} arg - Arg object
    * @returns {Promise<WebhookPlatformModel.SubscriberResponse>} - Success response
    * @name getSubscriberById
    * @summary: Get Subscriber By Subscriber ID
@@ -138,7 +138,7 @@ class Webhook {
   }
 
   /**
-   * @param {WebhookPlatformValidator.getSubscribersByCompany} arg - Arg object
+   * @param {WebhookPlatformValidator.GetSubscribersByCompanyParam} arg - Arg object
    * @returns {Promise<WebhookPlatformModel.SubscriberResponse>} - Success response
    * @name getSubscribersByCompany
    * @summary: Get Subscribers By Company ID
@@ -211,7 +211,7 @@ class Webhook {
   }
 
   /**
-   * @param {WebhookPlatformValidator.getSubscribersByExtensionId} arg - Arg object
+   * @param {WebhookPlatformValidator.GetSubscribersByExtensionIdParam} arg - Arg object
    * @returns {Promise<WebhookPlatformModel.SubscriberConfigList>} - Success response
    * @name getSubscribersByExtensionId
    * @summary: Get Subscribers By Extension ID
@@ -283,7 +283,7 @@ class Webhook {
   }
 
   /**
-   * @param {WebhookPlatformValidator.registerSubscriberToEvent} arg - Arg object
+   * @param {WebhookPlatformValidator.RegisterSubscriberToEventParam} arg - Arg object
    * @returns {Promise<WebhookPlatformModel.SubscriberConfig>} - Success response
    * @name registerSubscriberToEvent
    * @summary: Register Subscriber
@@ -349,7 +349,7 @@ class Webhook {
   }
 
   /**
-   * @param {WebhookPlatformValidator.updateSubscriberConfig} arg - Arg object
+   * @param {WebhookPlatformValidator.UpdateSubscriberConfigParam} arg - Arg object
    * @returns {Promise<WebhookPlatformModel.SubscriberConfig>} - Success response
    * @name updateSubscriberConfig
    * @summary: Update Subscriber

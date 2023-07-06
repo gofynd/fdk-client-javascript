@@ -3,13 +3,13 @@ const Joi = require("joi");
 const FileStoragePlatformModel = require("./FileStoragePlatformModel");
 
 /**
- * @typedef browse
+ * @typedef BrowseParam
  * @property {string} namespace - Bucket name
  * @property {number} [pageNo] - Page no
  */
 
 /**
- * @typedef completeUpload
+ * @typedef CompleteUploadParam
  * @property {string} namespace - Segregation of different types of
  *   files(products, orders, logistics etc), Required for validating the data of
  *   the file being uploaded, decides where exactly the file will be stored
@@ -18,23 +18,23 @@ const FileStoragePlatformModel = require("./FileStoragePlatformModel");
  */
 
 /**
- * @typedef copyFiles
+ * @typedef CopyFilesParam
  * @property {boolean} [sync] - Sync
  * @property {FileStoragePlatformModel.BulkRequest} body
  */
 
 /**
- * @typedef getSignUrls
+ * @typedef GetSignUrlsParam
  * @property {FileStoragePlatformModel.SignUrlRequest} body
  */
 
 /**
- * @typedef proxy
+ * @typedef ProxyParam
  * @property {string} url - Url
  */
 
 /**
- * @typedef startUpload
+ * @typedef StartUploadParam
  * @property {string} namespace - Segregation of different types of
  *   files(products, orders, logistics etc), Required for validating the data of
  *   the file being uploaded, decides where exactly the file will be stored

@@ -12,7 +12,7 @@ class Discount {
   }
 
   /**
-   * @param {DiscountPlatformValidator.cancelDownloadJob} arg - Arg object
+   * @param {DiscountPlatformValidator.CancelDownloadJobParam} arg - Arg object
    * @returns {Promise<DiscountPlatformModel.CancelJobResponse>} - Success response
    * @name cancelDownloadJob
    * @summary: Cancel Download Job.
@@ -76,7 +76,7 @@ class Discount {
   }
 
   /**
-   * @param {DiscountPlatformValidator.cancelValidationJob} arg - Arg object
+   * @param {DiscountPlatformValidator.CancelValidationJobParam} arg - Arg object
    * @returns {Promise<DiscountPlatformModel.CancelJobResponse>} - Success response
    * @name cancelValidationJob
    * @summary: Cancel Validation Job.
@@ -140,7 +140,7 @@ class Discount {
   }
 
   /**
-   * @param {DiscountPlatformValidator.createDiscount} arg - Arg object
+   * @param {DiscountPlatformValidator.CreateDiscountParam} arg - Arg object
    * @returns {Promise<DiscountPlatformModel.DiscountJob>} - Success response
    * @name createDiscount
    * @summary: Create Discount.
@@ -204,7 +204,7 @@ class Discount {
   }
 
   /**
-   * @param {DiscountPlatformValidator.downloadDiscountFile} arg - Arg object
+   * @param {DiscountPlatformValidator.DownloadDiscountFileParam} arg - Arg object
    * @returns {Promise<DiscountPlatformModel.FileJobResponse>} - Success response
    * @name downloadDiscountFile
    * @summary: Validate File.
@@ -270,7 +270,7 @@ class Discount {
   }
 
   /**
-   * @param {DiscountPlatformValidator.getDiscount} arg - Arg object
+   * @param {DiscountPlatformValidator.GetDiscountParam} arg - Arg object
    * @returns {Promise<DiscountPlatformModel.DiscountJob>} - Success response
    * @name getDiscount
    * @summary: Fetch discount.
@@ -334,7 +334,7 @@ class Discount {
   }
 
   /**
-   * @param {DiscountPlatformValidator.getDiscounts} arg - Arg object
+   * @param {DiscountPlatformValidator.GetDiscountsParam} arg - Arg object
    * @returns {Promise<DiscountPlatformModel.ListOrCalender>} - Success response
    * @name getDiscounts
    * @summary: Fetch discount list.
@@ -433,7 +433,7 @@ class Discount {
   }
 
   /**
-   * @param {DiscountPlatformValidator.getDownloadJob} arg - Arg object
+   * @param {DiscountPlatformValidator.GetDownloadJobParam} arg - Arg object
    * @returns {Promise<DiscountPlatformModel.FileJobResponse>} - Success response
    * @name getDownloadJob
    * @summary: Download File Job.
@@ -497,7 +497,7 @@ class Discount {
   }
 
   /**
-   * @param {DiscountPlatformValidator.getValidationJob} arg - Arg object
+   * @param {DiscountPlatformValidator.GetValidationJobParam} arg - Arg object
    * @returns {Promise<DiscountPlatformModel.FileJobResponse>} - Success response
    * @name getValidationJob
    * @summary: Validate File Job.
@@ -561,7 +561,7 @@ class Discount {
   }
 
   /**
-   * @param {DiscountPlatformValidator.updateDiscount} arg - Arg object
+   * @param {DiscountPlatformValidator.UpdateDiscountParam} arg - Arg object
    * @returns {Promise<DiscountPlatformModel.DiscountJob>} - Success response
    * @name updateDiscount
    * @summary: Create Discount.
@@ -627,7 +627,7 @@ class Discount {
   }
 
   /**
-   * @param {DiscountPlatformValidator.upsertDiscountItems} arg - Arg object
+   * @param {DiscountPlatformValidator.UpsertDiscountItemsParam} arg - Arg object
    * @returns {Promise<Object>} - Success response
    * @name upsertDiscountItems
    * @summary: Create custom discount from bulk.
@@ -691,7 +691,7 @@ class Discount {
   }
 
   /**
-   * @param {DiscountPlatformValidator.validateDiscountFile} arg - Arg object
+   * @param {DiscountPlatformValidator.ValidateDiscountFileParam} arg - Arg object
    * @returns {Promise<DiscountPlatformModel.FileJobResponse>} - Success response
    * @name validateDiscountFile
    * @summary: Validate File.

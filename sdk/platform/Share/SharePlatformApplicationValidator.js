@@ -3,23 +3,23 @@ const Joi = require("joi");
 const SharePlatformModel = require("./SharePlatformModel");
 
 /**
- * @typedef createShortLink
+ * @typedef CreateShortLinkParam
  * @property {SharePlatformModel.ShortLinkReq} body
  */
 
 /**
- * @typedef getShortLinkByHash
+ * @typedef GetShortLinkByHashParam
  * @property {string} hash - Hash of short url
  */
 
 /**
- * @typedef getShortLinkClickStats
+ * @typedef GetShortLinkClickStatsParam
  * @property {string} surlId - Short link ID for which click statistics are to
  *   be retrieved.
  */
 
 /**
- * @typedef getShortLinks
+ * @typedef GetShortLinksParam
  * @property {number} [pageNo] - Current page number
  * @property {number} [pageSize] - Current page size
  * @property {string} [createdBy] - Short link creator
@@ -28,7 +28,7 @@ const SharePlatformModel = require("./SharePlatformModel");
  */
 
 /**
- * @typedef updateShortLinkById
+ * @typedef UpdateShortLinkByIdParam
  * @property {string} id - Short link document identifier
  * @property {SharePlatformModel.ShortLinkReq} body
  */

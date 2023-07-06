@@ -77,16 +77,7 @@ export = OrderApplicationModel;
  * @property {number} [value]
  */
 /**
- * @typedef Coupon
- * @property {string} [code]
- * @property {string} [coupon_type]
- * @property {number} [id]
- * @property {string} [payable_category]
- * @property {number} [value]
- */
-/**
  * @typedef CurrentStatus
- * @property {string} [created_at]
  * @property {string} [journey_type]
  * @property {string} [name]
  * @property {string} [status]
@@ -297,38 +288,6 @@ export = OrderApplicationModel;
  * @property {number} [value_of_good]
  */
 /**
- * @typedef Product
- * @property {AppliedPromos[]} [applied_promos]
- * @property {ProductStatus} [bag_status]
- * @property {ProductBrand} [brand]
- * @property {boolean} [can_cancel]
- * @property {boolean} [can_return]
- * @property {Coupon} [coupon]
- * @property {string} [delivery_date]
- * @property {string} docket_number
- * @property {Item} [item]
- * @property {number} [line_number]
- * @property {string} order_id
- * @property {Object} [parent_promo_bags]
- * @property {ShipmentPayment} [payment]
- * @property {number} [quantity]
- * @property {string} [returnable_date]
- * @property {string} [seller_identifier]
- */
-/**
- * @typedef ProductBrand
- * @property {string} [brand_name]
- * @property {number} [id]
- */
-/**
- * @typedef ProductListResponse
- * @property {OrderFilters} [filters]
- * @property {Product[]} [items]
- * @property {string} [message]
- * @property {OrderPage} [page]
- * @property {boolean} [success]
- */
-/**
  * @typedef Products
  * @property {string} [identifier]
  * @property {number} [line_number]
@@ -359,13 +318,6 @@ export = OrderApplicationModel;
  * @property {string} [identifier]
  * @property {number} [line_number]
  * @property {number} [quantity]
- */
-/**
- * @typedef ProductStatus
- * @property {string} [created_at]
- * @property {string} [hex_code]
- * @property {string} [title]
- * @property {string} [value]
  */
 /**
  * @typedef Promise
@@ -566,7 +518,7 @@ export = OrderApplicationModel;
 declare class OrderApplicationModel {
 }
 declare namespace OrderApplicationModel {
-    export { ApefaceApiError, AppliedFreeArticles, AppliedPromos, BagReasonMeta, BagReasons, Bags, BagsForReorder, BagsForReorderArticleAssignment, BreakupValues, Coupon, CurrentStatus, CustomerDetailsResponse, DataUpdates, DeliveryAddress, EntitiesDataUpdates, EntitiesReasons, EntityReasonData, ErrorResponse, FinancialBreakup, FulfillingCompany, FulfillingStore, Identifiers, Invoice, Item, ItemBrand, NestedTrackingDetails, OrderById, OrderFilters, OrderList, OrderPage, OrderSchema, OrderStatuses, Prices, Product, ProductBrand, ProductListResponse, Products, ProductsDataUpdates, ProductsDataUpdatesFilters, ProductsReasons, ProductsReasonsData, ProductsReasonsFilters, ProductStatus, Promise, QuestionSet, ReasonsData, ResponseGetInvoiceShipment, SendOtpToCustomerResponse, ShipmentApplicationStatusResponse, ShipmentBagReasons, ShipmentById, ShipmentPayment, ShipmentReason, ShipmentReasons, Shipments, ShipmentsRequest, ShipmentStatus, ShipmentTotalDetails, ShipmentTrack, ShipmentUserInfo, StatuesRequest, StatusesBodyResponse, TimeStampData, Track, TrackingDetails, UpdateShipmentStatusRequest, UserInfo, VerifyOtp, VerifyOtpResponse };
+    export { ApefaceApiError, AppliedFreeArticles, AppliedPromos, BagReasonMeta, BagReasons, Bags, BagsForReorder, BagsForReorderArticleAssignment, BreakupValues, CurrentStatus, CustomerDetailsResponse, DataUpdates, DeliveryAddress, EntitiesDataUpdates, EntitiesReasons, EntityReasonData, ErrorResponse, FinancialBreakup, FulfillingCompany, FulfillingStore, Identifiers, Invoice, Item, ItemBrand, NestedTrackingDetails, OrderById, OrderFilters, OrderList, OrderPage, OrderSchema, OrderStatuses, Prices, Products, ProductsDataUpdates, ProductsDataUpdatesFilters, ProductsReasons, ProductsReasonsData, ProductsReasonsFilters, Promise, QuestionSet, ReasonsData, ResponseGetInvoiceShipment, SendOtpToCustomerResponse, ShipmentApplicationStatusResponse, ShipmentBagReasons, ShipmentById, ShipmentPayment, ShipmentReason, ShipmentReasons, Shipments, ShipmentsRequest, ShipmentStatus, ShipmentTotalDetails, ShipmentTrack, ShipmentUserInfo, StatuesRequest, StatusesBodyResponse, TimeStampData, Track, TrackingDetails, UpdateShipmentStatusRequest, UserInfo, VerifyOtp, VerifyOtpResponse };
 }
 /** @returns {ApefaceApiError} */
 declare function ApefaceApiError(): ApefaceApiError;
@@ -654,19 +606,9 @@ type BreakupValues = {
     name?: string;
     value?: number;
 };
-/** @returns {Coupon} */
-declare function Coupon(): Coupon;
-type Coupon = {
-    code?: string;
-    coupon_type?: string;
-    id?: number;
-    payable_category?: string;
-    value?: number;
-};
 /** @returns {CurrentStatus} */
 declare function CurrentStatus(): CurrentStatus;
 type CurrentStatus = {
-    created_at?: string;
     journey_type?: string;
     name?: string;
     status?: string;
@@ -898,41 +840,6 @@ type Prices = {
     transfer_price?: number;
     value_of_good?: number;
 };
-/** @returns {Product} */
-declare function Product(): Product;
-type Product = {
-    applied_promos?: AppliedPromos[];
-    bag_status?: ProductStatus;
-    brand?: ProductBrand;
-    can_cancel?: boolean;
-    can_return?: boolean;
-    coupon?: Coupon;
-    delivery_date?: string;
-    docket_number: string;
-    item?: Item;
-    line_number?: number;
-    order_id: string;
-    parent_promo_bags?: any;
-    payment?: ShipmentPayment;
-    quantity?: number;
-    returnable_date?: string;
-    seller_identifier?: string;
-};
-/** @returns {ProductBrand} */
-declare function ProductBrand(): ProductBrand;
-type ProductBrand = {
-    brand_name?: string;
-    id?: number;
-};
-/** @returns {ProductListResponse} */
-declare function ProductListResponse(): ProductListResponse;
-type ProductListResponse = {
-    filters?: OrderFilters;
-    items?: Product[];
-    message?: string;
-    page?: OrderPage;
-    success?: boolean;
-};
 /** @returns {Products} */
 declare function Products(): Products;
 type Products = {
@@ -970,14 +877,6 @@ type ProductsReasonsFilters = {
     identifier?: string;
     line_number?: number;
     quantity?: number;
-};
-/** @returns {ProductStatus} */
-declare function ProductStatus(): ProductStatus;
-type ProductStatus = {
-    created_at?: string;
-    hex_code?: string;
-    title?: string;
-    value?: string;
 };
 /** @returns {Promise} */
 declare function Promise(): Promise;

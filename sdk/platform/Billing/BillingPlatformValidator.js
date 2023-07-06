@@ -3,66 +3,66 @@ const Joi = require("joi");
 const BillingPlatformModel = require("./BillingPlatformModel");
 
 /**
- * @typedef activateSubscriptionPlan
+ * @typedef ActivateSubscriptionPlanParam
  * @property {BillingPlatformModel.SubscriptionActivateReq} body
  */
 
 /**
- * @typedef cancelSubscriptionCharge
+ * @typedef CancelSubscriptionChargeParam
  * @property {string} extensionId - Extension _id
  * @property {string} subscriptionId - Subscription charge _id
  */
 
 /**
- * @typedef cancelSubscriptionPlan
+ * @typedef CancelSubscriptionPlanParam
  * @property {BillingPlatformModel.CancelSubscriptionReq} body
  */
 
 /**
- * @typedef checkCouponValidity
+ * @typedef CheckCouponValidityParam
  * @property {string} plan - ID of the plan.
  * @property {string} couponCode - Coupon code.
  */
 
 /**
- * @typedef createOneTimeCharge
+ * @typedef CreateOneTimeChargeParam
  * @property {string} extensionId - Extension _id
  * @property {BillingPlatformModel.CreateOneTimeCharge} body
  */
 
 /**
- * @typedef createSubscriptionCharge
+ * @typedef CreateSubscriptionChargeParam
  * @property {string} extensionId - Extension _id
  * @property {BillingPlatformModel.CreateSubscriptionCharge} body
  */
 
 /**
- * @typedef getChargeDetails
+ * @typedef GetChargeDetailsParam
  * @property {string} extensionId - Extension _id
  * @property {string} chargeId - Standalone charge _id
  */
 
-/** @typedef getCustomerDetail */
+/** @typedef GetCustomerDetailParam */
 
-/** @typedef getFeatureLimitConfig */
+/** @typedef GetFeatureLimitConfigParam */
 
 /**
- * @typedef getInvoiceById
+ * @typedef GetInvoiceByIdParam
  * @property {string} invoiceId - Invoice id
  */
 
-/** @typedef getInvoices */
+/** @typedef GetInvoicesParam */
 
-/** @typedef getSubscription */
+/** @typedef GetSubscriptionParam */
 
 /**
- * @typedef getSubscriptionCharge
+ * @typedef GetSubscriptionChargeParam
  * @property {string} extensionId - Extension _id
  * @property {string} subscriptionId - Subscription charge _id
  */
 
 /**
- * @typedef upsertCustomerDetail
+ * @typedef UpsertCustomerDetailParam
  * @property {BillingPlatformModel.SubscriptionCustomerCreate} body
  */
 

@@ -1,18 +1,18 @@
 export = CatalogApplicationValidator;
 /**
- * @typedef followById
+ * @typedef FollowByIdParam
  * @property {string} collectionType - Type of collection followed, i.e.
  *   products, brands, or collections.
  * @property {string} collectionId - The ID of the collection type.
  */
 /**
- * @typedef getBrandDetailBySlug
+ * @typedef GetBrandDetailBySlugParam
  * @property {string} slug - A short, human-readable, URL-friendly identifier of
  *   a brand. You can get slug value from the endpoint
  *   /service/application/catalog/v1.0/brands/.
  */
 /**
- * @typedef getBrands
+ * @typedef GetBrandsParam
  * @property {string} [department] - The name of the department. Use this
  *   parameter to filter products by a particular department. See the list of
  *   available departments below. Also, you can get available departments from
@@ -22,26 +22,26 @@ export = CatalogApplicationValidator;
  * @property {number} [pageSize] - The number of items to retrieve in each page.
  */
 /**
- * @typedef getCategories
+ * @typedef GetCategoriesParam
  * @property {string} [department] - The name of the department. Use this
  *   parameter to filter products by a particular department. See the list of
  *   available departments below. Also, you can get available departments from
  *   the endpoint /service/application/catalog/v1.0/departments/
  */
 /**
- * @typedef getCategoryDetailBySlug
+ * @typedef GetCategoryDetailBySlugParam
  * @property {string} slug - A short, human-readable, URL-friendly identifier of
  *   a brand. You can get slug value from the endpoint
  *   /service/application/catalog/v1.0/brands/.
  */
 /**
- * @typedef getCollectionDetailBySlug
+ * @typedef GetCollectionDetailBySlugParam
  * @property {string} slug - A short, human-readable, URL-friendly identifier of
  *   a collection. You can get slug value from the endpoint
  *   /service/application/catalog/v1.0/collections/.
  */
 /**
- * @typedef getCollectionItemsBySlug
+ * @typedef GetCollectionItemsBySlugParam
  * @property {string} slug - A short, human-readable, URL-friendly identifier of
  *   a collection. You can get slug value from the endpoint
  *   /service/application/catalog/v1.0/collections/.
@@ -63,7 +63,7 @@ export = CatalogApplicationValidator;
  *   cursor or number.
  */
 /**
- * @typedef getCollections
+ * @typedef GetCollectionsParam
  * @property {number} [pageNo] - The page number to navigate through the given
  *   set of results.
  * @property {number} [pageSize] - The number of items to retrieve in each page.
@@ -71,32 +71,32 @@ export = CatalogApplicationValidator;
  * @property {string} [q] - Name of the collection to filter collection
  */
 /**
- * @typedef getComparedFrequentlyProductBySlug
+ * @typedef GetComparedFrequentlyProductBySlugParam
  * @property {string} slug - A short, human-readable, URL-friendly identifier of
  *   a product. You can get slug value from the endpoint
  *   /service/application/catalog/v1.0/products/
  */
-/** @typedef getDepartments */
+/** @typedef GetDepartmentsParam */
 /**
- * @typedef getFollowIds
+ * @typedef GetFollowIdsParam
  * @property {string} [collectionType] - Type of collection, i.e. products,
  *   brands, collections.
  */
 /**
- * @typedef getFollowedListing
+ * @typedef GetFollowedListingParam
  * @property {string} collectionType - Type of collection followed, i.e.
  *   products, brands, or collections.
  * @property {string} [pageId] - Page ID to retrieve next set of results.
  * @property {number} [pageSize] - Page ID to retrieve next set of results.
  */
 /**
- * @typedef getFollowerCountById
+ * @typedef GetFollowerCountByIdParam
  * @property {string} collectionType - Type of collection, i.e. products,
  *   brands, or collections.
  * @property {string} collectionId - The ID of the collection type.
  */
 /**
- * @typedef getHomeProducts
+ * @typedef GetHomeProductsParam
  * @property {string} [sortOn] - The order in which the list of products should
  *   be sorted, e.g. popularity, price, latest and discount, in either ascending
  *   or descending order.
@@ -104,7 +104,7 @@ export = CatalogApplicationValidator;
  * @property {number} [pageSize] - The number of items to retrieve in each page.
  */
 /**
- * @typedef getInStockLocations
+ * @typedef GetInStockLocationsParam
  * @property {number} [pageNo] - The page number to navigate through the given
  *   set of results.
  * @property {number} [pageSize] - Number of items to retrieve in each page.
@@ -118,28 +118,28 @@ export = CatalogApplicationValidator;
  *   wants to retreive the nearest stores, e.g. 19.1174114
  */
 /**
- * @typedef getLocationDetailsById
+ * @typedef GetLocationDetailsByIdParam
  * @property {number} locationId - Unique Location ID.
  */
 /**
- * @typedef getProductBundlesBySlug
+ * @typedef GetProductBundlesBySlugParam
  * @property {string} [slug] - Product slug for which bundles need to be fetched.
  * @property {string} [id] - Product uid
  */
 /**
- * @typedef getProductComparisonBySlugs
+ * @typedef GetProductComparisonBySlugsParam
  * @property {string[]} slug - A short, human-readable, URL-friendly identifier
  *   of a product. You can get slug value from the endpoint
  *   /service/application/catalog/v1.0/products/.
  */
 /**
- * @typedef getProductDetailBySlug
+ * @typedef GetProductDetailBySlugParam
  * @property {string} slug - A short, human-readable, URL-friendly identifier of
  *   a product. You can get slug value from the endpoint
  *   /service/application/catalog/v1.0/products/
  */
 /**
- * @typedef getProductPriceBySlug
+ * @typedef GetProductPriceBySlugParam
  * @property {string} slug - A short, human-readable, URL-friendly identifier of
  *   a product. You can get slug value from the endpoint
  *   /service/application/catalog/v1.0/products/
@@ -154,7 +154,7 @@ export = CatalogApplicationValidator;
  *   of a product, e.g. 100.
  */
 /**
- * @typedef getProductSellersBySlug
+ * @typedef GetProductSellersBySlugParam
  * @property {string} slug - A short, human-readable, URL-friendly identifier of
  *   a product. You can get slug value from the endpoint
  *   /service/application/catalog/v1.0/products/
@@ -170,7 +170,7 @@ export = CatalogApplicationValidator;
  * @property {number} [pageSize] - The number of items to retrieve in each page.
  */
 /**
- * @typedef getProductSizesBySlug
+ * @typedef GetProductSizesBySlugParam
  * @property {string} slug - A short, human-readable, URL-friendly identifier of
  *   a product. You can get slug value from the endpoint
  *   /service/application/catalog/v1.0/products/
@@ -178,7 +178,7 @@ export = CatalogApplicationValidator;
  *   product, e.g. 1,2,3.
  */
 /**
- * @typedef getProductStockByIds
+ * @typedef GetProductStockByIdsParam
  * @property {string} [itemId] - The Item ID of the product (Max. 50 allowed)
  * @property {string} [alu] - ALU of the product (limited upto 50 ALU identifier
  *   in a single request)
@@ -190,19 +190,19 @@ export = CatalogApplicationValidator;
  *   upto 50 UPC identifier in a single request)
  */
 /**
- * @typedef getProductStockForTimeByIds
+ * @typedef GetProductStockForTimeByIdsParam
  * @property {string} timestamp - Timestamp in UTC format (2020-07-23T10:27:50Z)
  * @property {number} [pageSize] - The number of items to retrieve in each page.
  * @property {string} [pageId] - Page ID to retrieve next set of results.
  */
 /**
- * @typedef getProductVariantsBySlug
+ * @typedef GetProductVariantsBySlugParam
  * @property {string} slug - A short, human-readable, URL-friendly identifier of
  *   a product. You can get slug value from the endpoint
  *   /service/application/catalog/v1.0/products/
  */
 /**
- * @typedef getProducts
+ * @typedef GetProductsParam
  * @property {string} [q] - The search query for entering partial or full name
  *   of product, brand, category, or collection.
  * @property {string} [f] - The search filter parameters. Filter parameters will
@@ -221,20 +221,20 @@ export = CatalogApplicationValidator;
  * @property {string} [pageType] - Available pagination types are cursor or number.
  */
 /**
- * @typedef getSearchResults
+ * @typedef GetSearchResultsParam
  * @property {string} q - The search query for entering partial or full name of
  *   a product, brand or category. For example, if the given search query `q` is
  *   _ski_, the relevant search suggestions could be _skirt_, _ski shoes_,
  *   __skin cream_ etc.
  */
 /**
- * @typedef getSimilarComparisonProductBySlug
+ * @typedef GetSimilarComparisonProductBySlugParam
  * @property {string} slug - A short, human-readable, URL-friendly identifier of
  *   a product. You can get slug value from the endpoint
  *   /service/application/catalog/v1.0/products/
  */
 /**
- * @typedef getStores
+ * @typedef GetStoresParam
  * @property {number} [pageNo] - The page number to navigate through the given
  *   set of results.
  * @property {number} [pageSize] - Number of items to retrieve in each page.
@@ -248,19 +248,77 @@ export = CatalogApplicationValidator;
  *   wants to retreive the nearest stores, e.g. 19.1174114
  */
 /**
- * @typedef unfollowById
+ * @typedef UnfollowByIdParam
  * @property {string} collectionType - Type of collection followed, i.e.
  *   products, brands, or collections.
  * @property {string} collectionId - The ID of the collection type.
  */
 declare class CatalogApplicationValidator {
+    /** @returns {followById} */
+    static followById(): followById;
+    /** @returns {getBrandDetailBySlug} */
+    static getBrandDetailBySlug(): getBrandDetailBySlug;
+    /** @returns {getBrands} */
+    static getBrands(): getBrands;
+    /** @returns {getCategories} */
+    static getCategories(): getCategories;
+    /** @returns {getCategoryDetailBySlug} */
+    static getCategoryDetailBySlug(): getCategoryDetailBySlug;
+    /** @returns {getCollectionDetailBySlug} */
+    static getCollectionDetailBySlug(): getCollectionDetailBySlug;
+    /** @returns {getCollectionItemsBySlug} */
+    static getCollectionItemsBySlug(): getCollectionItemsBySlug;
+    /** @returns {getCollections} */
+    static getCollections(): getCollections;
+    /** @returns {getComparedFrequentlyProductBySlug} */
+    static getComparedFrequentlyProductBySlug(): getComparedFrequentlyProductBySlug;
+    /** @returns {getDepartments} */
+    static getDepartments(): getDepartments;
+    /** @returns {getFollowIds} */
+    static getFollowIds(): getFollowIds;
+    /** @returns {getFollowedListing} */
+    static getFollowedListing(): getFollowedListing;
+    /** @returns {getFollowerCountById} */
+    static getFollowerCountById(): getFollowerCountById;
+    /** @returns {getHomeProducts} */
+    static getHomeProducts(): getHomeProducts;
+    /** @returns {getInStockLocations} */
+    static getInStockLocations(): getInStockLocations;
+    /** @returns {getLocationDetailsById} */
+    static getLocationDetailsById(): getLocationDetailsById;
+    /** @returns {getProductBundlesBySlug} */
+    static getProductBundlesBySlug(): getProductBundlesBySlug;
+    /** @returns {getProductComparisonBySlugs} */
+    static getProductComparisonBySlugs(): getProductComparisonBySlugs;
+    /** @returns {getProductDetailBySlug} */
+    static getProductDetailBySlug(): getProductDetailBySlug;
+    /** @returns {getProductPriceBySlug} */
+    static getProductPriceBySlug(): getProductPriceBySlug;
+    /** @returns {getProductSellersBySlug} */
+    static getProductSellersBySlug(): getProductSellersBySlug;
+    /** @returns {getProductSizesBySlug} */
+    static getProductSizesBySlug(): getProductSizesBySlug;
+    /** @returns {getProductStockByIds} */
+    static getProductStockByIds(): getProductStockByIds;
+    /** @returns {getProductStockForTimeByIds} */
+    static getProductStockForTimeByIds(): getProductStockForTimeByIds;
+    /** @returns {getProductVariantsBySlug} */
+    static getProductVariantsBySlug(): getProductVariantsBySlug;
+    /** @returns {getProducts} */
+    static getProducts(): getProducts;
+    /** @returns {getSearchResults} */
+    static getSearchResults(): getSearchResults;
+    /** @returns {getSimilarComparisonProductBySlug} */
+    static getSimilarComparisonProductBySlug(): getSimilarComparisonProductBySlug;
+    /** @returns {getStores} */
+    static getStores(): getStores;
+    /** @returns {unfollowById} */
+    static unfollowById(): unfollowById;
 }
 declare namespace CatalogApplicationValidator {
-    export { followById, getBrandDetailBySlug, getBrands, getCategories, getCategoryDetailBySlug, getCollectionDetailBySlug, getCollectionItemsBySlug, getCollections, getComparedFrequentlyProductBySlug, getDepartments, getFollowIds, getFollowedListing, getFollowerCountById, getHomeProducts, getInStockLocations, getLocationDetailsById, getProductBundlesBySlug, getProductComparisonBySlugs, getProductDetailBySlug, getProductPriceBySlug, getProductSellersBySlug, getProductSizesBySlug, getProductStockByIds, getProductStockForTimeByIds, getProductVariantsBySlug, getProducts, getSearchResults, getSimilarComparisonProductBySlug, getStores, unfollowById };
+    export { FollowByIdParam, GetBrandDetailBySlugParam, GetBrandsParam, GetCategoriesParam, GetCategoryDetailBySlugParam, GetCollectionDetailBySlugParam, GetCollectionItemsBySlugParam, GetCollectionsParam, GetComparedFrequentlyProductBySlugParam, GetDepartmentsParam, GetFollowIdsParam, GetFollowedListingParam, GetFollowerCountByIdParam, GetHomeProductsParam, GetInStockLocationsParam, GetLocationDetailsByIdParam, GetProductBundlesBySlugParam, GetProductComparisonBySlugsParam, GetProductDetailBySlugParam, GetProductPriceBySlugParam, GetProductSellersBySlugParam, GetProductSizesBySlugParam, GetProductStockByIdsParam, GetProductStockForTimeByIdsParam, GetProductVariantsBySlugParam, GetProductsParam, GetSearchResultsParam, GetSimilarComparisonProductBySlugParam, GetStoresParam, UnfollowByIdParam };
 }
-/** @returns {followById} */
-declare function followById(): followById;
-type followById = {
+type FollowByIdParam = {
     /**
      * - Type of collection followed, i.e.
      * products, brands, or collections.
@@ -271,9 +329,7 @@ type followById = {
      */
     collectionId: string;
 };
-/** @returns {getBrandDetailBySlug} */
-declare function getBrandDetailBySlug(): getBrandDetailBySlug;
-type getBrandDetailBySlug = {
+type GetBrandDetailBySlugParam = {
     /**
      * - A short, human-readable, URL-friendly identifier of
      * a brand. You can get slug value from the endpoint
@@ -281,9 +337,7 @@ type getBrandDetailBySlug = {
      */
     slug: string;
 };
-/** @returns {getBrands} */
-declare function getBrands(): getBrands;
-type getBrands = {
+type GetBrandsParam = {
     /**
      * - The name of the department. Use this
      * parameter to filter products by a particular department. See the list of
@@ -301,9 +355,7 @@ type getBrands = {
      */
     pageSize?: number;
 };
-/** @returns {getCategories} */
-declare function getCategories(): getCategories;
-type getCategories = {
+type GetCategoriesParam = {
     /**
      * - The name of the department. Use this
      * parameter to filter products by a particular department. See the list of
@@ -312,9 +364,7 @@ type getCategories = {
      */
     department?: string;
 };
-/** @returns {getCategoryDetailBySlug} */
-declare function getCategoryDetailBySlug(): getCategoryDetailBySlug;
-type getCategoryDetailBySlug = {
+type GetCategoryDetailBySlugParam = {
     /**
      * - A short, human-readable, URL-friendly identifier of
      * a brand. You can get slug value from the endpoint
@@ -322,9 +372,7 @@ type getCategoryDetailBySlug = {
      */
     slug: string;
 };
-/** @returns {getCollectionDetailBySlug} */
-declare function getCollectionDetailBySlug(): getCollectionDetailBySlug;
-type getCollectionDetailBySlug = {
+type GetCollectionDetailBySlugParam = {
     /**
      * - A short, human-readable, URL-friendly identifier of
      * a collection. You can get slug value from the endpoint
@@ -332,9 +380,7 @@ type getCollectionDetailBySlug = {
      */
     slug: string;
 };
-/** @returns {getCollectionItemsBySlug} */
-declare function getCollectionItemsBySlug(): getCollectionItemsBySlug;
-type getCollectionItemsBySlug = {
+type GetCollectionItemsBySlugParam = {
     /**
      * - A short, human-readable, URL-friendly identifier of
      * a collection. You can get slug value from the endpoint
@@ -382,9 +428,7 @@ type getCollectionItemsBySlug = {
      */
     pageType?: string;
 };
-/** @returns {getCollections} */
-declare function getCollections(): getCollections;
-type getCollections = {
+type GetCollectionsParam = {
     /**
      * - The page number to navigate through the given
      * set of results.
@@ -403,9 +447,7 @@ type getCollections = {
      */
     q?: string;
 };
-/** @returns {getComparedFrequentlyProductBySlug} */
-declare function getComparedFrequentlyProductBySlug(): getComparedFrequentlyProductBySlug;
-type getComparedFrequentlyProductBySlug = {
+type GetComparedFrequentlyProductBySlugParam = {
     /**
      * - A short, human-readable, URL-friendly identifier of
      * a product. You can get slug value from the endpoint
@@ -413,21 +455,15 @@ type getComparedFrequentlyProductBySlug = {
      */
     slug: string;
 };
-/** @returns {getDepartments} */
-declare function getDepartments(): any;
-type getDepartments = any;
-/** @returns {getFollowIds} */
-declare function getFollowIds(): getFollowIds;
-type getFollowIds = {
+type GetDepartmentsParam = any;
+type GetFollowIdsParam = {
     /**
      * - Type of collection, i.e. products,
      * brands, collections.
      */
     collectionType?: string;
 };
-/** @returns {getFollowedListing} */
-declare function getFollowedListing(): getFollowedListing;
-type getFollowedListing = {
+type GetFollowedListingParam = {
     /**
      * - Type of collection followed, i.e.
      * products, brands, or collections.
@@ -442,9 +478,7 @@ type getFollowedListing = {
      */
     pageSize?: number;
 };
-/** @returns {getFollowerCountById} */
-declare function getFollowerCountById(): getFollowerCountById;
-type getFollowerCountById = {
+type GetFollowerCountByIdParam = {
     /**
      * - Type of collection, i.e. products,
      * brands, or collections.
@@ -455,9 +489,7 @@ type getFollowerCountById = {
      */
     collectionId: string;
 };
-/** @returns {getHomeProducts} */
-declare function getHomeProducts(): getHomeProducts;
-type getHomeProducts = {
+type GetHomeProductsParam = {
     /**
      * - The order in which the list of products should
      * be sorted, e.g. popularity, price, latest and discount, in either ascending
@@ -473,9 +505,7 @@ type getHomeProducts = {
      */
     pageSize?: number;
 };
-/** @returns {getInStockLocations} */
-declare function getInStockLocations(): getInStockLocations;
-type getInStockLocations = {
+type GetInStockLocationsParam = {
     /**
      * - The page number to navigate through the given
      * set of results.
@@ -509,17 +539,13 @@ type getInStockLocations = {
      */
     longitude?: number;
 };
-/** @returns {getLocationDetailsById} */
-declare function getLocationDetailsById(): getLocationDetailsById;
-type getLocationDetailsById = {
+type GetLocationDetailsByIdParam = {
     /**
      * - Unique Location ID.
      */
     locationId: number;
 };
-/** @returns {getProductBundlesBySlug} */
-declare function getProductBundlesBySlug(): getProductBundlesBySlug;
-type getProductBundlesBySlug = {
+type GetProductBundlesBySlugParam = {
     /**
      * - Product slug for which bundles need to be fetched.
      */
@@ -529,9 +555,7 @@ type getProductBundlesBySlug = {
      */
     id?: string;
 };
-/** @returns {getProductComparisonBySlugs} */
-declare function getProductComparisonBySlugs(): getProductComparisonBySlugs;
-type getProductComparisonBySlugs = {
+type GetProductComparisonBySlugsParam = {
     /**
      * - A short, human-readable, URL-friendly identifier
      * of a product. You can get slug value from the endpoint
@@ -539,9 +563,7 @@ type getProductComparisonBySlugs = {
      */
     slug: string[];
 };
-/** @returns {getProductDetailBySlug} */
-declare function getProductDetailBySlug(): getProductDetailBySlug;
-type getProductDetailBySlug = {
+type GetProductDetailBySlugParam = {
     /**
      * - A short, human-readable, URL-friendly identifier of
      * a product. You can get slug value from the endpoint
@@ -549,9 +571,7 @@ type getProductDetailBySlug = {
      */
     slug: string;
 };
-/** @returns {getProductPriceBySlug} */
-declare function getProductPriceBySlug(): getProductPriceBySlug;
-type getProductPriceBySlug = {
+type GetProductPriceBySlugParam = {
     /**
      * - A short, human-readable, URL-friendly identifier of
      * a product. You can get slug value from the endpoint
@@ -580,9 +600,7 @@ type getProductPriceBySlug = {
      */
     moq?: number;
 };
-/** @returns {getProductSellersBySlug} */
-declare function getProductSellersBySlug(): getProductSellersBySlug;
-type getProductSellersBySlug = {
+type GetProductSellersBySlugParam = {
     /**
      * - A short, human-readable, URL-friendly identifier of
      * a product. You can get slug value from the endpoint
@@ -615,9 +633,7 @@ type getProductSellersBySlug = {
      */
     pageSize?: number;
 };
-/** @returns {getProductSizesBySlug} */
-declare function getProductSizesBySlug(): getProductSizesBySlug;
-type getProductSizesBySlug = {
+type GetProductSizesBySlugParam = {
     /**
      * - A short, human-readable, URL-friendly identifier of
      * a product. You can get slug value from the endpoint
@@ -630,9 +646,7 @@ type getProductSizesBySlug = {
      */
     storeId?: number;
 };
-/** @returns {getProductStockByIds} */
-declare function getProductStockByIds(): getProductStockByIds;
-type getProductStockByIds = {
+type GetProductStockByIdsParam = {
     /**
      * - The Item ID of the product (Max. 50 allowed)
      */
@@ -658,9 +672,7 @@ type getProductStockByIds = {
      */
     upc?: string;
 };
-/** @returns {getProductStockForTimeByIds} */
-declare function getProductStockForTimeByIds(): getProductStockForTimeByIds;
-type getProductStockForTimeByIds = {
+type GetProductStockForTimeByIdsParam = {
     /**
      * - Timestamp in UTC format (2020-07-23T10:27:50Z)
      */
@@ -674,9 +686,7 @@ type getProductStockForTimeByIds = {
      */
     pageId?: string;
 };
-/** @returns {getProductVariantsBySlug} */
-declare function getProductVariantsBySlug(): getProductVariantsBySlug;
-type getProductVariantsBySlug = {
+type GetProductVariantsBySlugParam = {
     /**
      * - A short, human-readable, URL-friendly identifier of
      * a product. You can get slug value from the endpoint
@@ -684,9 +694,7 @@ type getProductVariantsBySlug = {
      */
     slug: string;
 };
-/** @returns {getProducts} */
-declare function getProducts(): getProducts;
-type getProducts = {
+type GetProductsParam = {
     /**
      * - The search query for entering partial or full name
      * of product, brand, category, or collection.
@@ -728,9 +736,7 @@ type getProducts = {
      */
     pageType?: string;
 };
-/** @returns {getSearchResults} */
-declare function getSearchResults(): getSearchResults;
-type getSearchResults = {
+type GetSearchResultsParam = {
     /**
      * - The search query for entering partial or full name of
      * a product, brand or category. For example, if the given search query `q` is
@@ -739,9 +745,7 @@ type getSearchResults = {
      */
     q: string;
 };
-/** @returns {getSimilarComparisonProductBySlug} */
-declare function getSimilarComparisonProductBySlug(): getSimilarComparisonProductBySlug;
-type getSimilarComparisonProductBySlug = {
+type GetSimilarComparisonProductBySlugParam = {
     /**
      * - A short, human-readable, URL-friendly identifier of
      * a product. You can get slug value from the endpoint
@@ -749,9 +753,7 @@ type getSimilarComparisonProductBySlug = {
      */
     slug: string;
 };
-/** @returns {getStores} */
-declare function getStores(): getStores;
-type getStores = {
+type GetStoresParam = {
     /**
      * - The page number to navigate through the given
      * set of results.
@@ -785,9 +787,7 @@ type getStores = {
      */
     longitude?: number;
 };
-/** @returns {unfollowById} */
-declare function unfollowById(): unfollowById;
-type unfollowById = {
+type UnfollowByIdParam = {
     /**
      * - Type of collection followed, i.e.
      * products, brands, or collections.

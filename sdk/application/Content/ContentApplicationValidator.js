@@ -2,10 +2,10 @@ const Joi = require("joi");
 
 const ContentApplicationModel = require("./ContentApplicationModel");
 
-/** @typedef getAnnouncements */
+/** @typedef GetAnnouncementsParam */
 
 /**
- * @typedef getBlog
+ * @typedef GetBlogParam
  * @property {string} slug - A short, human-readable, URL-friendly identifier of
  *   a blog. You can get slug value from the endpoint
  *   /service/application/content/v1.0/blogs/.
@@ -13,52 +13,52 @@ const ContentApplicationModel = require("./ContentApplicationModel");
  */
 
 /**
- * @typedef getBlogs
+ * @typedef GetBlogsParam
  * @property {number} [pageNo] - The page number to navigate through the given
  *   set of results. Default value is 1.
  * @property {number} [pageSize] - The number of items to retrieve in each page.
  */
 
-/** @typedef getDataLoaders */
+/** @typedef GetDataLoadersParam */
 
 /**
- * @typedef getFaqBySlug
+ * @typedef GetFaqBySlugParam
  * @property {string} slug - A short, human-readable, URL-friendly identifier of
  *   an FAQ. You can get slug value from the endpoint
  *   /service/application/content/v1.0/faq.
  */
 
-/** @typedef getFaqCategories */
+/** @typedef GetFaqCategoriesParam */
 
 /**
- * @typedef getFaqCategoryBySlug
+ * @typedef GetFaqCategoryBySlugParam
  * @property {string} slug - A short, human-readable, URL-friendly identifier of
  *   an FAQ category. You can get slug value from the endpoint
  *   /service/application/content/v1.0/faq/categories.
  */
 
-/** @typedef getFaqs */
+/** @typedef GetFaqsParam */
 
 /**
- * @typedef getFaqsByCategorySlug
+ * @typedef GetFaqsByCategorySlugParam
  * @property {string} slug - A short, human-readable, URL-friendly identifier of
  *   an FAQ category. You can get slug value from the endpoint
  *   /service/application/content/v1.0/faq/categories.
  */
 
-/** @typedef getLandingPage */
+/** @typedef GetLandingPageParam */
 
-/** @typedef getLegalInformation */
+/** @typedef GetLegalInformationParam */
 
 /**
- * @typedef getNavigations
+ * @typedef GetNavigationsParam
  * @property {number} [pageNo] - The page number to navigate through the given
  *   set of results. Default value is 1.
  * @property {number} [pageSize] - The number of items to retrieve in each page.
  */
 
 /**
- * @typedef getPage
+ * @typedef GetPageParam
  * @property {string} slug - A short, human-readable, URL-friendly identifier of
  *   a page. You can get slug value from the endpoint
  *   /service/application/content/v2.0/pages/.
@@ -66,31 +66,31 @@ const ContentApplicationModel = require("./ContentApplicationModel");
  */
 
 /**
- * @typedef getPages
+ * @typedef GetPagesParam
  * @property {number} [pageNo] - The page number to navigate through the given
  *   set of results. Default value is 1.
  * @property {number} [pageSize] - The number of items to retrieve in each page.
  */
 
-/** @typedef getSEOConfiguration */
+/** @typedef GetSEOConfigurationParam */
 
 /**
- * @typedef getSlideshow
+ * @typedef GetSlideshowParam
  * @property {string} slug - A short, human-readable, URL-friendly identifier of
  *   a slideshow. You can get slug value from the endpoint
  *   /service/application/content/v1.0/slideshow/.
  */
 
 /**
- * @typedef getSlideshows
+ * @typedef GetSlideshowsParam
  * @property {number} [pageNo] - The page number to navigate through the given
  *   set of results. Default value is 1.
  * @property {number} [pageSize] - The number of items to retrieve in each page.
  */
 
-/** @typedef getSupportInformation */
+/** @typedef GetSupportInformationParam */
 
-/** @typedef getTags */
+/** @typedef GetTagsParam */
 
 class ContentApplicationValidator {
   /** @returns {getAnnouncements} */

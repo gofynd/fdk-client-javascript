@@ -3,40 +3,40 @@ const Joi = require("joi");
 const PaymentPlatformModel = require("./PaymentPlatformModel");
 
 /**
- * @typedef addEdcDevice
+ * @typedef AddEdcDeviceParam
  * @property {string} terminalUniqueIdentifier - Terminal unique identifier
  * @property {PaymentPlatformModel.EdcUpdateRequest} body
  */
 
 /**
- * @typedef addRefundBankAccountUsingOTP
+ * @typedef AddRefundBankAccountUsingOTPParam
  * @property {PaymentPlatformModel.AddBeneficiaryDetailsOTPRequest} body
  */
 
 /**
- * @typedef cancelPaymentLink
+ * @typedef CancelPaymentLinkParam
  * @property {PaymentPlatformModel.CancelOrResendPaymentLinkRequest} body
  */
 
 /**
- * @typedef checkAndUpdatePaymentStatus
+ * @typedef CheckAndUpdatePaymentStatusParam
  * @property {PaymentPlatformModel.PaymentStatusUpdateRequest} body
  */
 
 /**
- * @typedef confirmPayment
+ * @typedef ConfirmPaymentParam
  * @property {PaymentPlatformModel.PaymentConfirmationRequest} body
  */
 
 /**
- * @typedef createPaymentLink
+ * @typedef CreatePaymentLinkParam
  * @property {PaymentPlatformModel.CreatePaymentLinkRequest} body
  */
 
-/** @typedef edcAggregatorsAndModelList */
+/** @typedef EdcAggregatorsAndModelListParam */
 
 /**
- * @typedef edcDeviceList
+ * @typedef EdcDeviceListParam
  * @property {number} [pageNo]
  * @property {number} [pageSize]
  * @property {boolean} [isActive]
@@ -44,36 +44,41 @@ const PaymentPlatformModel = require("./PaymentPlatformModel");
  * @property {string} [deviceTag]
  */
 
-/** @typedef edcDeviceStats */
+/** @typedef EdcDeviceStatsParam */
 
 /**
- * @typedef getBankAccountDetailsOpenAPI
+ * @typedef ExtensionPaymentUpdateParam
+ * @property {PaymentPlatformModel.ExtensionPaymentUpdateRequestSerializer} body
+ */
+
+/**
+ * @typedef GetBankAccountDetailsOpenAPIParam
  * @property {string} orderId
  * @property {string} [requestHash]
  */
 
-/** @typedef getBrandPaymentGatewayConfig */
+/** @typedef GetBrandPaymentGatewayConfigParam */
 
 /**
- * @typedef getEdcDevice
+ * @typedef GetEdcDeviceParam
  * @property {string} terminalUniqueIdentifier - Terminal unique identifier
  */
 
-/** @typedef getPaymentCodeOption */
+/** @typedef GetPaymentCodeOptionParam */
 
 /**
- * @typedef getPaymentLink
+ * @typedef GetPaymentLinkParam
  * @property {string} [paymentLinkId]
  */
 
 /**
- * @typedef getPaymentModeRoutes
+ * @typedef GetPaymentModeRoutesParam
  * @property {boolean} refresh
  * @property {string} requestType
  */
 
 /**
- * @typedef getPosPaymentModeRoutes
+ * @typedef GetPosPaymentModeRoutesParam
  * @property {number} amount - Payable amount.
  * @property {string} cartId - Identifier of the cart.
  * @property {string} pincode - The PIN Code of the destination address, e.g. 400059
@@ -89,85 +94,85 @@ const PaymentPlatformModel = require("./PaymentPlatformModel");
  */
 
 /**
- * @typedef getUserBeneficiaries
+ * @typedef GetUserBeneficiariesParam
  * @property {string} orderId
  */
 
 /**
- * @typedef getUserCODlimitRoutes
+ * @typedef GetUserCODlimitRoutesParam
  * @property {string} merchantUserId
  * @property {string} mobileNo
  */
 
 /**
- * @typedef getUserOrderBeneficiaries
+ * @typedef GetUserOrderBeneficiariesParam
  * @property {string} orderId
  */
 
 /**
- * @typedef initialisePayment
+ * @typedef InitialisePaymentParam
  * @property {PaymentPlatformModel.PaymentInitializationRequest} body
  */
 
 /**
- * @typedef merchantOnBoarding
+ * @typedef MerchantOnBoardingParam
  * @property {PaymentPlatformModel.MerchantOnBoardingRequest} body
  */
 
 /**
- * @typedef oauthGetUrl
+ * @typedef OauthGetUrlParam
  * @property {string} aggregator - Aggregator
  * @property {string} [successRedirectUrl]
  * @property {string} [failureRedirectUrl]
  */
 
 /**
- * @typedef paymentStatusBulk
+ * @typedef PaymentStatusBulkParam
  * @property {PaymentPlatformModel.PaymentStatusBulkHandlerRequest} body
  */
 
 /**
- * @typedef pollingPaymentLink
+ * @typedef PollingPaymentLinkParam
  * @property {string} [paymentLinkId]
  */
 
 /**
- * @typedef repaymentDetails
+ * @typedef RepaymentDetailsParam
  * @property {PaymentPlatformModel.RepaymentDetailsSerialiserPayAll} body
  */
 
 /**
- * @typedef resendOrCancelPayment
+ * @typedef ResendOrCancelPaymentParam
  * @property {PaymentPlatformModel.ResendOrCancelPaymentRequest} body
  */
 
 /**
- * @typedef resendPaymentLink
+ * @typedef ResendPaymentLinkParam
  * @property {PaymentPlatformModel.CancelOrResendPaymentLinkRequest} body
  */
 
 /**
- * @typedef revokeOauthToken
+ * @typedef RevokeOauthTokenParam
  * @property {string} aggregator - Aggregator_slug
  */
 
 /**
- * @typedef saveBrandPaymentGatewayConfig
+ * @typedef SaveBrandPaymentGatewayConfigParam
  * @property {PaymentPlatformModel.PaymentGatewayConfigRequest} body
  */
 
 /**
- * @typedef setUserCODlimitRoutes
+ * @typedef SetUserCODlimitRoutesParam
  * @property {PaymentPlatformModel.SetCODForUserRequest} body
  */
 
 /**
- * @typedef updateEdcDevice
+ * @typedef UpdateEdcDeviceParam
  * @property {PaymentPlatformModel.EdcAddRequest} body
  */
 
 /**
- * @typedef verifyCustomerForPayment
+ * @typedef VerifyCustomerForPaymentParam
  * @property {PaymentPlatformModel.ValidateCustomerRequest} body
  */
 
@@ -234,6 +239,13 @@ class PaymentPlatformApplicationValidator {
   /** @returns {edcDeviceStats} */
   static edcDeviceStats() {
     return Joi.object({}).required();
+  }
+
+  /** @returns {extensionPaymentUpdate} */
+  static extensionPaymentUpdate() {
+    return Joi.object({
+      body: PaymentPlatformModel.ExtensionPaymentUpdateRequestSerializer().required(),
+    }).required();
   }
 
   /** @returns {getBankAccountDetailsOpenAPI} */

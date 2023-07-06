@@ -9,7 +9,7 @@ declare class Partner {
     _urls: {};
     updateUrls(urls: any): void;
     /**
-     * @param {PartnerPublicValidator.getOrganizationList} arg - Arg object.
+     * @param {PartnerPublicValidator.GetOrganizationListParam} arg - Arg object.
      * @returns {Promise<PartnerPublicModel.OrganizationList>} - Success response
      * @name getOrganizationList
      * @summary: Get organization list
@@ -17,13 +17,13 @@ declare class Partner {
      */
     getOrganizationList({}?: any): Promise<PartnerPublicModel.OrganizationList>;
     /**
-     * @param {PartnerPublicValidator.getPanelExtensionDetails} arg - Arg object.
+     * @param {PartnerPublicValidator.GetPanelExtensionDetailsParam} arg - Arg object.
      * @returns {Promise<PartnerPublicModel.ExtensionUsingSlug>} - Success response
      * @name getPanelExtensionDetails
      * @summary: Get extension details
      * @description: Use this API to get extension details
      */
-    getPanelExtensionDetails({ slug }?: PartnerPublicValidator.getPanelExtensionDetails): Promise<PartnerPublicModel.ExtensionUsingSlug>;
+    getPanelExtensionDetails({ slug }?: PartnerPublicValidator.GetPanelExtensionDetailsParam): Promise<PartnerPublicModel.ExtensionUsingSlug>;
 }
 import PartnerPublicModel = require("./PartnerPublicModel");
 import PartnerPublicValidator = require("./PartnerPublicValidator");

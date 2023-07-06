@@ -49,50 +49,54 @@ declare class Payment {
     _urls: {};
     updateUrls(urls: any): void;
     /**
-     * @param {PaymentApplicationValidator.addBeneficiaryDetails} arg - Arg object.
+     * @param {PaymentApplicationValidator.AddBeneficiaryDetailsParam} arg - Arg object.
      * @returns {Promise<PaymentApplicationModel.RefundAccountResponse>} -
      *   Success response
      * @name addBeneficiaryDetails
      * @summary: Save bank details for cancelled/returned order
      * @description: Use this API to save the bank details for a returned or cancelled order to refund the amount.
      */
-    addBeneficiaryDetails({ body }?: PaymentApplicationValidator.addBeneficiaryDetails): Promise<PaymentApplicationModel.RefundAccountResponse>;
+    addBeneficiaryDetails({ body }?: PaymentApplicationValidator.AddBeneficiaryDetailsParam): Promise<PaymentApplicationModel.RefundAccountResponse>;
     /**
-     * @param {PaymentApplicationValidator.addRefundBankAccountUsingOTP} arg - Arg object.
+     * @param {PaymentApplicationValidator.AddRefundBankAccountUsingOTPParam} arg
+     *   - Arg object.
+     *
      * @returns {Promise<PaymentApplicationModel.RefundAccountResponse>} -
      *   Success response
      * @name addRefundBankAccountUsingOTP
      * @summary: Save bank details for cancelled/returned order
      * @description: Use this API to save bank details for returned/cancelled order to refund amount in his account.
      */
-    addRefundBankAccountUsingOTP({ body }?: PaymentApplicationValidator.addRefundBankAccountUsingOTP): Promise<PaymentApplicationModel.RefundAccountResponse>;
+    addRefundBankAccountUsingOTP({ body }?: PaymentApplicationValidator.AddRefundBankAccountUsingOTPParam): Promise<PaymentApplicationModel.RefundAccountResponse>;
     /**
-     * @param {PaymentApplicationValidator.attachCardToCustomer} arg - Arg object.
+     * @param {PaymentApplicationValidator.AttachCardToCustomerParam} arg - Arg object.
      * @returns {Promise<PaymentApplicationModel.AttachCardsResponse>} - Success response
      * @name attachCardToCustomer
      * @summary: Attach a saved card to customer.
      * @description: Use this API to attach a customer's saved card at the payment gateway, such as Stripe, Juspay.
      */
-    attachCardToCustomer({ body }?: PaymentApplicationValidator.attachCardToCustomer): Promise<PaymentApplicationModel.AttachCardsResponse>;
+    attachCardToCustomer({ body }?: PaymentApplicationValidator.AttachCardToCustomerParam): Promise<PaymentApplicationModel.AttachCardsResponse>;
     /**
-     * @param {PaymentApplicationValidator.cancelPaymentLink} arg - Arg object.
+     * @param {PaymentApplicationValidator.CancelPaymentLinkParam} arg - Arg object.
      * @returns {Promise<PaymentApplicationModel.CancelPaymentLinkResponse>} -
      *   Success response
      * @name cancelPaymentLink
      * @summary: Cancel payment link
      * @description: Use this API to cancel a payment link for the customer
      */
-    cancelPaymentLink({ body }?: PaymentApplicationValidator.cancelPaymentLink): Promise<PaymentApplicationModel.CancelPaymentLinkResponse>;
+    cancelPaymentLink({ body }?: PaymentApplicationValidator.CancelPaymentLinkParam): Promise<PaymentApplicationModel.CancelPaymentLinkResponse>;
     /**
-     * @param {PaymentApplicationValidator.cardDetails} arg - Arg object.
+     * @param {PaymentApplicationValidator.CardDetailsParam} arg - Arg object.
      * @returns {Promise<PaymentApplicationModel.CardDetailsResponse>} - Success response
      * @name cardDetails
      * @summary: API to get Card info from PG
      * @description: API to get Card info from PG
      */
-    cardDetails({ cardInfo, aggregator }?: PaymentApplicationValidator.cardDetails): Promise<PaymentApplicationModel.CardDetailsResponse>;
+    cardDetails({ cardInfo, aggregator }?: PaymentApplicationValidator.CardDetailsParam): Promise<PaymentApplicationModel.CardDetailsResponse>;
     /**
-     * @param {PaymentApplicationValidator.checkAndUpdatePaymentStatus} arg - Arg object.
+     * @param {PaymentApplicationValidator.CheckAndUpdatePaymentStatusParam} arg
+     *   - Arg object.
+     *
      * @returns {Promise<PaymentApplicationModel.PaymentStatusUpdateResponse>}
      *   - Success response
      *
@@ -100,9 +104,9 @@ declare class Payment {
      * @summary: Performs continuous polling to check status of payment on the server
      * @description: Use this API to perform continuous polling at intervals to check the status of payment until timeout.
      */
-    checkAndUpdatePaymentStatus({ body }?: PaymentApplicationValidator.checkAndUpdatePaymentStatus): Promise<PaymentApplicationModel.PaymentStatusUpdateResponse>;
+    checkAndUpdatePaymentStatus({ body }?: PaymentApplicationValidator.CheckAndUpdatePaymentStatusParam): Promise<PaymentApplicationModel.PaymentStatusUpdateResponse>;
     /**
-     * @param {PaymentApplicationValidator.checkAndUpdatePaymentStatusPaymentLink} arg
+     * @param {PaymentApplicationValidator.CheckAndUpdatePaymentStatusPaymentLinkParam} arg
      *   - Arg object.
      *
      * @returns {Promise<PaymentApplicationModel.PaymentStatusUpdateResponse>}
@@ -112,36 +116,37 @@ declare class Payment {
      * @summary: Performs continuous polling to check status of payment on the server
      * @description: Use this API to perform continuous polling at intervals to check the status of payment until timeout.
      */
-    checkAndUpdatePaymentStatusPaymentLink({ body }?: PaymentApplicationValidator.checkAndUpdatePaymentStatusPaymentLink): Promise<PaymentApplicationModel.PaymentStatusUpdateResponse>;
+    checkAndUpdatePaymentStatusPaymentLink({ body }?: PaymentApplicationValidator.CheckAndUpdatePaymentStatusPaymentLinkParam): Promise<PaymentApplicationModel.PaymentStatusUpdateResponse>;
     /**
-     * @param {PaymentApplicationValidator.checkCredit} arg - Arg object.
+     * @param {PaymentApplicationValidator.CheckCreditParam} arg - Arg object.
      * @returns {Promise<PaymentApplicationModel.CheckCreditResponse>} - Success response
      * @name checkCredit
      * @summary: API to fetch the customer credit summary
      * @description: Use this API to fetch the customer credit summary.
      */
-    checkCredit({ aggregator }?: PaymentApplicationValidator.checkCredit): Promise<PaymentApplicationModel.CheckCreditResponse>;
+    checkCredit({ aggregator }?: PaymentApplicationValidator.CheckCreditParam): Promise<PaymentApplicationModel.CheckCreditResponse>;
     /**
-     * @param {PaymentApplicationValidator.createOrderHandlerPaymentLink} arg -
-     *   Arg object.
+     * @param {PaymentApplicationValidator.CreateOrderHandlerPaymentLinkParam} arg
+     *   - Arg object.
+     *
      * @returns {Promise<PaymentApplicationModel.CreateOrderUserResponse>} -
      *   Success response
      * @name createOrderHandlerPaymentLink
      * @summary: Create Order user
      * @description: Use this API to create a order and payment on aggregator side
      */
-    createOrderHandlerPaymentLink({ body }?: PaymentApplicationValidator.createOrderHandlerPaymentLink): Promise<PaymentApplicationModel.CreateOrderUserResponse>;
+    createOrderHandlerPaymentLink({ body }?: PaymentApplicationValidator.CreateOrderHandlerPaymentLinkParam): Promise<PaymentApplicationModel.CreateOrderUserResponse>;
     /**
-     * @param {PaymentApplicationValidator.createPaymentLink} arg - Arg object.
+     * @param {PaymentApplicationValidator.CreatePaymentLinkParam} arg - Arg object.
      * @returns {Promise<PaymentApplicationModel.CreatePaymentLinkResponse>} -
      *   Success response
      * @name createPaymentLink
      * @summary: Create payment link
      * @description: Use this API to create a payment link for the customer
      */
-    createPaymentLink({ body }?: PaymentApplicationValidator.createPaymentLink): Promise<PaymentApplicationModel.CreatePaymentLinkResponse>;
+    createPaymentLink({ body }?: PaymentApplicationValidator.CreatePaymentLinkParam): Promise<PaymentApplicationModel.CreatePaymentLinkResponse>;
     /**
-     * @param {PaymentApplicationValidator.customerCreditSummary} arg - Arg object.
+     * @param {PaymentApplicationValidator.CustomerCreditSummaryParam} arg - Arg object.
      * @returns {Promise<PaymentApplicationModel.CustomerCreditSummaryResponse>}
      *   - Success response
      *
@@ -149,26 +154,26 @@ declare class Payment {
      * @summary: API to fetch the customer credit summary
      * @description: Use this API to fetch the customer credit summary.
      */
-    customerCreditSummary({ aggregator }?: PaymentApplicationValidator.customerCreditSummary): Promise<PaymentApplicationModel.CustomerCreditSummaryResponse>;
+    customerCreditSummary({ aggregator }?: PaymentApplicationValidator.CustomerCreditSummaryParam): Promise<PaymentApplicationModel.CustomerCreditSummaryResponse>;
     /**
-     * @param {PaymentApplicationValidator.customerOnboard} arg - Arg object.
+     * @param {PaymentApplicationValidator.CustomerOnboardParam} arg - Arg object.
      * @returns {Promise<PaymentApplicationModel.CustomerOnboardingResponse>} -
      *   Success response
      * @name customerOnboard
      * @summary: API to fetch the customer credit summary
      * @description: Use this API to fetch the customer credit summary.
      */
-    customerOnboard({ body }?: PaymentApplicationValidator.customerOnboard): Promise<PaymentApplicationModel.CustomerOnboardingResponse>;
+    customerOnboard({ body }?: PaymentApplicationValidator.CustomerOnboardParam): Promise<PaymentApplicationModel.CustomerOnboardingResponse>;
     /**
-     * @param {PaymentApplicationValidator.deleteUserCard} arg - Arg object.
+     * @param {PaymentApplicationValidator.DeleteUserCardParam} arg - Arg object.
      * @returns {Promise<PaymentApplicationModel.DeleteCardsResponse>} - Success response
      * @name deleteUserCard
      * @summary: Delete a card
      * @description: Use this API to delete a card added by a user on the payment gateway and clear the cache.
      */
-    deleteUserCard({ body }?: PaymentApplicationValidator.deleteUserCard): Promise<PaymentApplicationModel.DeleteCardsResponse>;
+    deleteUserCard({ body }?: PaymentApplicationValidator.DeleteUserCardParam): Promise<PaymentApplicationModel.DeleteCardsResponse>;
     /**
-     * @param {PaymentApplicationValidator.enableOrDisableRefundTransferMode} arg
+     * @param {PaymentApplicationValidator.EnableOrDisableRefundTransferModeParam} arg
      *   - Arg object.
      *
      * @returns {Promise<PaymentApplicationModel.UpdateRefundTransferModeResponse>}
@@ -178,9 +183,9 @@ declare class Payment {
      * @summary: Enable/Disable a mode for transferring a refund
      * @description: Activate or Deactivate Transfer Mode to collect Beneficiary Details for Refund
      */
-    enableOrDisableRefundTransferMode({ body }?: PaymentApplicationValidator.enableOrDisableRefundTransferMode): Promise<PaymentApplicationModel.UpdateRefundTransferModeResponse>;
+    enableOrDisableRefundTransferMode({ body }?: PaymentApplicationValidator.EnableOrDisableRefundTransferModeParam): Promise<PaymentApplicationModel.UpdateRefundTransferModeResponse>;
     /**
-     * @param {PaymentApplicationValidator.getActiveCardAggregator} arg - Arg object.
+     * @param {PaymentApplicationValidator.GetActiveCardAggregatorParam} arg - Arg object.
      * @returns {Promise<PaymentApplicationModel.ActiveCardPaymentGatewayResponse>}
      *   - Success response
      *
@@ -188,9 +193,11 @@ declare class Payment {
      * @summary: Fetch active payment gateway for card payments
      * @description: Use this API to retrieve an active payment aggregator along with the Customer ID. This is applicable for cards payments only.
      */
-    getActiveCardAggregator({ refresh }?: PaymentApplicationValidator.getActiveCardAggregator): Promise<PaymentApplicationModel.ActiveCardPaymentGatewayResponse>;
+    getActiveCardAggregator({ refresh }?: PaymentApplicationValidator.GetActiveCardAggregatorParam): Promise<PaymentApplicationModel.ActiveCardPaymentGatewayResponse>;
     /**
-     * @param {PaymentApplicationValidator.getActiveRefundTransferModes} arg - Arg object.
+     * @param {PaymentApplicationValidator.GetActiveRefundTransferModesParam} arg
+     *   - Arg object.
+     *
      * @returns {Promise<PaymentApplicationModel.TransferModeResponse>} - Success response
      * @name getActiveRefundTransferModes
      * @summary: Lists the mode of refund
@@ -198,15 +205,15 @@ declare class Payment {
      */
     getActiveRefundTransferModes({}?: any): Promise<PaymentApplicationModel.TransferModeResponse>;
     /**
-     * @param {PaymentApplicationValidator.getActiveUserCards} arg - Arg object.
+     * @param {PaymentApplicationValidator.GetActiveUserCardsParam} arg - Arg object.
      * @returns {Promise<PaymentApplicationModel.ListCardsResponse>} - Success response
      * @name getActiveUserCards
      * @summary: Fetch the list of cards saved by the user
      * @description: Use this API to retrieve a list of cards stored by user from an active payment gateway.
      */
-    getActiveUserCards({ forceRefresh }?: PaymentApplicationValidator.getActiveUserCards): Promise<PaymentApplicationModel.ListCardsResponse>;
+    getActiveUserCards({ forceRefresh }?: PaymentApplicationValidator.GetActiveUserCardsParam): Promise<PaymentApplicationModel.ListCardsResponse>;
     /**
-     * @param {PaymentApplicationValidator.getAggregatorsConfig} arg - Arg object.
+     * @param {PaymentApplicationValidator.GetAggregatorsConfigParam} arg - Arg object.
      * @returns {Promise<PaymentApplicationModel.AggregatorsConfigDetailResponse>}
      *   - Success response
      *
@@ -214,9 +221,11 @@ declare class Payment {
      * @summary: Get payment gateway keys
      * @description: Use this API to retrieve the payment gateway key, secrets, merchant, SDK/API details to complete a payment at front-end.
      */
-    getAggregatorsConfig({ xApiToken, refresh }?: PaymentApplicationValidator.getAggregatorsConfig): Promise<PaymentApplicationModel.AggregatorsConfigDetailResponse>;
+    getAggregatorsConfig({ xApiToken, refresh }?: PaymentApplicationValidator.GetAggregatorsConfigParam): Promise<PaymentApplicationModel.AggregatorsConfigDetailResponse>;
     /**
-     * @param {PaymentApplicationValidator.getEpaylaterBannerDetails} arg - Arg object.
+     * @param {PaymentApplicationValidator.GetEpaylaterBannerDetailsParam} arg
+     *   - Arg object.
+     *
      * @returns {Promise<PaymentApplicationModel.EpaylaterBannerResponse>} -
      *   Success response
      * @name getEpaylaterBannerDetails
@@ -225,34 +234,36 @@ declare class Payment {
      */
     getEpaylaterBannerDetails({}?: any): Promise<PaymentApplicationModel.EpaylaterBannerResponse>;
     /**
-     * @param {PaymentApplicationValidator.getOrderBeneficiariesDetail} arg - Arg object.
+     * @param {PaymentApplicationValidator.GetOrderBeneficiariesDetailParam} arg
+     *   - Arg object.
+     *
      * @returns {Promise<PaymentApplicationModel.OrderBeneficiaryResponse>} -
      *   Success response
      * @name getOrderBeneficiariesDetail
      * @summary: Lists the beneficiary of a refund
      * @description: Use this API to get the details of all active beneficiary added by a user for refund.
      */
-    getOrderBeneficiariesDetail({ orderId }?: PaymentApplicationValidator.getOrderBeneficiariesDetail): Promise<PaymentApplicationModel.OrderBeneficiaryResponse>;
+    getOrderBeneficiariesDetail({ orderId }?: PaymentApplicationValidator.GetOrderBeneficiariesDetailParam): Promise<PaymentApplicationModel.OrderBeneficiaryResponse>;
     /**
-     * @param {PaymentApplicationValidator.getPaymentLink} arg - Arg object.
+     * @param {PaymentApplicationValidator.GetPaymentLinkParam} arg - Arg object.
      * @returns {Promise<PaymentApplicationModel.GetPaymentLinkResponse>} -
      *   Success response
      * @name getPaymentLink
      * @summary: Get payment link
      * @description: Use this API to get a payment link
      */
-    getPaymentLink({ paymentLinkId }?: PaymentApplicationValidator.getPaymentLink): Promise<PaymentApplicationModel.GetPaymentLinkResponse>;
+    getPaymentLink({ paymentLinkId }?: PaymentApplicationValidator.GetPaymentLinkParam): Promise<PaymentApplicationModel.GetPaymentLinkResponse>;
     /**
-     * @param {PaymentApplicationValidator.getPaymentModeRoutes} arg - Arg object.
+     * @param {PaymentApplicationValidator.GetPaymentModeRoutesParam} arg - Arg object.
      * @returns {Promise<PaymentApplicationModel.PaymentModeRouteResponse>} -
      *   Success response
      * @name getPaymentModeRoutes
      * @summary: Get applicable payment options
      * @description: Use this API to get all valid payment options for doing a payment.
      */
-    getPaymentModeRoutes({ amount, cartId, pincode, checkoutMode, refresh, cardReference, userDetails, }?: PaymentApplicationValidator.getPaymentModeRoutes): Promise<PaymentApplicationModel.PaymentModeRouteResponse>;
+    getPaymentModeRoutes({ amount, cartId, pincode, checkoutMode, refresh, cardReference, userDetails, }?: PaymentApplicationValidator.GetPaymentModeRoutesParam): Promise<PaymentApplicationModel.PaymentModeRouteResponse>;
     /**
-     * @param {PaymentApplicationValidator.getPaymentModeRoutesPaymentLink} arg
+     * @param {PaymentApplicationValidator.GetPaymentModeRoutesPaymentLinkParam} arg
      *   - Arg object.
      *
      * @returns {Promise<PaymentApplicationModel.PaymentModeRouteResponse>} -
@@ -261,18 +272,18 @@ declare class Payment {
      * @summary: Get applicable payment options for payment link
      * @description: Use this API to get all valid payment options for doing a payment through payment link
      */
-    getPaymentModeRoutesPaymentLink({ paymentLinkId }?: PaymentApplicationValidator.getPaymentModeRoutesPaymentLink): Promise<PaymentApplicationModel.PaymentModeRouteResponse>;
+    getPaymentModeRoutesPaymentLink({ paymentLinkId }?: PaymentApplicationValidator.GetPaymentModeRoutesPaymentLinkParam): Promise<PaymentApplicationModel.PaymentModeRouteResponse>;
     /**
-     * @param {PaymentApplicationValidator.getPosPaymentModeRoutes} arg - Arg object.
+     * @param {PaymentApplicationValidator.GetPosPaymentModeRoutesParam} arg - Arg object.
      * @returns {Promise<PaymentApplicationModel.PaymentModeRouteResponse>} -
      *   Success response
      * @name getPosPaymentModeRoutes
      * @summary: Get applicable payment options for Point-of-Sale (POS)
      * @description: Use this API to get all valid payment options for doing a payment in POS.
      */
-    getPosPaymentModeRoutes({ amount, cartId, pincode, checkoutMode, orderType, refresh, cardReference, userDetails, }?: PaymentApplicationValidator.getPosPaymentModeRoutes): Promise<PaymentApplicationModel.PaymentModeRouteResponse>;
+    getPosPaymentModeRoutes({ amount, cartId, pincode, checkoutMode, orderType, refresh, cardReference, userDetails, }?: PaymentApplicationValidator.GetPosPaymentModeRoutesParam): Promise<PaymentApplicationModel.PaymentModeRouteResponse>;
     /**
-     * @param {PaymentApplicationValidator.getRupifiBannerDetails} arg - Arg object.
+     * @param {PaymentApplicationValidator.GetRupifiBannerDetailsParam} arg - Arg object.
      * @returns {Promise<PaymentApplicationModel.RupifiBannerResponse>} - Success response
      * @name getRupifiBannerDetails
      * @summary: Get CreditLine Offer
@@ -280,16 +291,18 @@ declare class Payment {
      */
     getRupifiBannerDetails({}?: any): Promise<PaymentApplicationModel.RupifiBannerResponse>;
     /**
-     * @param {PaymentApplicationValidator.getUserBeneficiariesDetail} arg - Arg object.
+     * @param {PaymentApplicationValidator.GetUserBeneficiariesDetailParam} arg
+     *   - Arg object.
+     *
      * @returns {Promise<PaymentApplicationModel.OrderBeneficiaryResponse>} -
      *   Success response
      * @name getUserBeneficiariesDetail
      * @summary: Lists the beneficiary of a refund
      * @description: Use this API to get the details of all active beneficiary added by a user for refund.
      */
-    getUserBeneficiariesDetail({ orderId }?: PaymentApplicationValidator.getUserBeneficiariesDetail): Promise<PaymentApplicationModel.OrderBeneficiaryResponse>;
+    getUserBeneficiariesDetail({ orderId }?: PaymentApplicationValidator.GetUserBeneficiariesDetailParam): Promise<PaymentApplicationModel.OrderBeneficiaryResponse>;
     /**
-     * @param {PaymentApplicationValidator.initialisePayment} arg - Arg object.
+     * @param {PaymentApplicationValidator.InitialisePaymentParam} arg - Arg object.
      * @returns {Promise<PaymentApplicationModel.PaymentInitializationResponse>}
      *   - Success response
      *
@@ -297,9 +310,11 @@ declare class Payment {
      * @summary: Initialize a payment (server-to-server) for UPI and BharatQR
      * @description: PUse this API to inititate payment using UPI, BharatQR, wherein the UPI requests are send to the app and QR code is displayed on the screen.
      */
-    initialisePayment({ body }?: PaymentApplicationValidator.initialisePayment): Promise<PaymentApplicationModel.PaymentInitializationResponse>;
+    initialisePayment({ body }?: PaymentApplicationValidator.InitialisePaymentParam): Promise<PaymentApplicationModel.PaymentInitializationResponse>;
     /**
-     * @param {PaymentApplicationValidator.initialisePaymentPaymentLink} arg - Arg object.
+     * @param {PaymentApplicationValidator.InitialisePaymentPaymentLinkParam} arg
+     *   - Arg object.
+     *
      * @returns {Promise<PaymentApplicationModel.PaymentInitializationResponse>}
      *   - Success response
      *
@@ -307,9 +322,9 @@ declare class Payment {
      * @summary: Initialize a payment (server-to-server) for UPI and BharatQR
      * @description: Use this API to inititate payment using UPI, BharatQR, wherein the UPI requests are send to the app and QR code is displayed on the screen.
      */
-    initialisePaymentPaymentLink({ body }?: PaymentApplicationValidator.initialisePaymentPaymentLink): Promise<PaymentApplicationModel.PaymentInitializationResponse>;
+    initialisePaymentPaymentLink({ body }?: PaymentApplicationValidator.InitialisePaymentPaymentLinkParam): Promise<PaymentApplicationModel.PaymentInitializationResponse>;
     /**
-     * @param {PaymentApplicationValidator.outstandingOrderDetails} arg - Arg object.
+     * @param {PaymentApplicationValidator.OutstandingOrderDetailsParam} arg - Arg object.
      * @returns {Promise<PaymentApplicationModel.OutstandingOrderDetailsResponse>}
      *   - Success response
      *
@@ -317,27 +332,27 @@ declare class Payment {
      * @summary: API to fetch the outstanding order details
      * @description: Use this API to fetch the outstanding order details.
      */
-    outstandingOrderDetails({ aggregator }?: PaymentApplicationValidator.outstandingOrderDetails): Promise<PaymentApplicationModel.OutstandingOrderDetailsResponse>;
+    outstandingOrderDetails({ aggregator }?: PaymentApplicationValidator.OutstandingOrderDetailsParam): Promise<PaymentApplicationModel.OutstandingOrderDetailsResponse>;
     /**
-     * @param {PaymentApplicationValidator.paidOrderDetails} arg - Arg object.
+     * @param {PaymentApplicationValidator.PaidOrderDetailsParam} arg - Arg object.
      * @returns {Promise<PaymentApplicationModel.PaidOrderDetailsResponse>} -
      *   Success response
      * @name paidOrderDetails
      * @summary: API to fetch the paid order details
      * @description: Use this API to fetch the paid order details.
      */
-    paidOrderDetails({ aggregator }?: PaymentApplicationValidator.paidOrderDetails): Promise<PaymentApplicationModel.PaidOrderDetailsResponse>;
+    paidOrderDetails({ aggregator }?: PaymentApplicationValidator.PaidOrderDetailsParam): Promise<PaymentApplicationModel.PaidOrderDetailsResponse>;
     /**
-     * @param {PaymentApplicationValidator.pollingPaymentLink} arg - Arg object.
+     * @param {PaymentApplicationValidator.PollingPaymentLinkParam} arg - Arg object.
      * @returns {Promise<PaymentApplicationModel.PollingPaymentLinkResponse>} -
      *   Success response
      * @name pollingPaymentLink
      * @summary: Used for polling if payment successful or not
      * @description: Use this API to poll if payment through payment was successful or not
      */
-    pollingPaymentLink({ paymentLinkId }?: PaymentApplicationValidator.pollingPaymentLink): Promise<PaymentApplicationModel.PollingPaymentLinkResponse>;
+    pollingPaymentLink({ paymentLinkId }?: PaymentApplicationValidator.PollingPaymentLinkParam): Promise<PaymentApplicationModel.PollingPaymentLinkResponse>;
     /**
-     * @param {PaymentApplicationValidator.redirectToAggregator} arg - Arg object.
+     * @param {PaymentApplicationValidator.RedirectToAggregatorParam} arg - Arg object.
      * @returns {Promise<PaymentApplicationModel.RedirectToAggregatorResponse>}
      *   - Success response
      *
@@ -345,17 +360,17 @@ declare class Payment {
      * @summary: API to get the redirect url to redirect the user to aggregator's page
      * @description: Use this API to get the redirect url to redirect the user to aggregator's page
      */
-    redirectToAggregator({ source, aggregator }?: PaymentApplicationValidator.redirectToAggregator): Promise<PaymentApplicationModel.RedirectToAggregatorResponse>;
+    redirectToAggregator({ source, aggregator }?: PaymentApplicationValidator.RedirectToAggregatorParam): Promise<PaymentApplicationModel.RedirectToAggregatorResponse>;
     /**
-     * @param {PaymentApplicationValidator.renderHTML} arg - Arg object.
+     * @param {PaymentApplicationValidator.RenderHTMLParam} arg - Arg object.
      * @returns {Promise<PaymentApplicationModel.renderHTMLResponse>} - Success response
      * @name renderHTML
      * @summary: Convert base64 string to HTML form
      * @description: Use this API to decode base64 html form to plain HTML string.
      */
-    renderHTML({ body }?: PaymentApplicationValidator.renderHTML): Promise<PaymentApplicationModel.renderHTMLResponse>;
+    renderHTML({ body }?: PaymentApplicationValidator.RenderHTMLParam): Promise<PaymentApplicationModel.renderHTMLResponse>;
     /**
-     * @param {PaymentApplicationValidator.resendOrCancelPayment} arg - Arg object.
+     * @param {PaymentApplicationValidator.ResendOrCancelPaymentParam} arg - Arg object.
      * @returns {Promise<PaymentApplicationModel.ResendOrCancelPaymentResponse>}
      *   - Success response
      *
@@ -363,18 +378,19 @@ declare class Payment {
      * @summary: API to resend and cancel a payment link which was already generated.
      * @description: Use this API to perform resend or cancel a payment link based on request payload.
      */
-    resendOrCancelPayment({ body }?: PaymentApplicationValidator.resendOrCancelPayment): Promise<PaymentApplicationModel.ResendOrCancelPaymentResponse>;
+    resendOrCancelPayment({ body }?: PaymentApplicationValidator.ResendOrCancelPaymentParam): Promise<PaymentApplicationModel.ResendOrCancelPaymentResponse>;
     /**
-     * @param {PaymentApplicationValidator.resendPaymentLink} arg - Arg object.
+     * @param {PaymentApplicationValidator.ResendPaymentLinkParam} arg - Arg object.
      * @returns {Promise<PaymentApplicationModel.ResendPaymentLinkResponse>} -
      *   Success response
      * @name resendPaymentLink
      * @summary: Resend payment link
      * @description: Use this API to resend a payment link for the customer
      */
-    resendPaymentLink({ body }?: PaymentApplicationValidator.resendPaymentLink): Promise<PaymentApplicationModel.ResendPaymentLinkResponse>;
+    resendPaymentLink({ body }?: PaymentApplicationValidator.ResendPaymentLinkParam): Promise<PaymentApplicationModel.ResendPaymentLinkResponse>;
     /**
-     * @param {PaymentApplicationValidator.updateDefaultBeneficiary} arg - Arg object.
+     * @param {PaymentApplicationValidator.UpdateDefaultBeneficiaryParam} arg -
+     *   Arg object.
      * @returns {Promise<PaymentApplicationModel.SetDefaultBeneficiaryResponse>}
      *   - Success response
      *
@@ -382,43 +398,44 @@ declare class Payment {
      * @summary: Set a default beneficiary for a refund
      * @description: Use this API to set a default beneficiary for getting a refund.
      */
-    updateDefaultBeneficiary({ body }?: PaymentApplicationValidator.updateDefaultBeneficiary): Promise<PaymentApplicationModel.SetDefaultBeneficiaryResponse>;
+    updateDefaultBeneficiary({ body }?: PaymentApplicationValidator.UpdateDefaultBeneficiaryParam): Promise<PaymentApplicationModel.SetDefaultBeneficiaryResponse>;
     /**
-     * @param {PaymentApplicationValidator.validateVPA} arg - Arg object.
+     * @param {PaymentApplicationValidator.ValidateVPAParam} arg - Arg object.
      * @returns {Promise<PaymentApplicationModel.ValidateVPAResponse>} - Success response
      * @name validateVPA
      * @summary: API to Validate UPI ID
      * @description: API to Validate UPI ID
      */
-    validateVPA({ body }?: PaymentApplicationValidator.validateVPA): Promise<PaymentApplicationModel.ValidateVPAResponse>;
+    validateVPA({ body }?: PaymentApplicationValidator.ValidateVPAParam): Promise<PaymentApplicationModel.ValidateVPAResponse>;
     /**
-     * @param {PaymentApplicationValidator.verifyAndChargePayment} arg - Arg object.
+     * @param {PaymentApplicationValidator.VerifyAndChargePaymentParam} arg - Arg object.
      * @returns {Promise<PaymentApplicationModel.ChargeCustomerResponse>} -
      *   Success response
      * @name verifyAndChargePayment
      * @summary: Verify and charge payment
      * @description: Use this API to verify and check the status of a payment transaction (server-to-server) made through aggregators like Simpl and Mswipe.
      */
-    verifyAndChargePayment({ body }?: PaymentApplicationValidator.verifyAndChargePayment): Promise<PaymentApplicationModel.ChargeCustomerResponse>;
+    verifyAndChargePayment({ body }?: PaymentApplicationValidator.VerifyAndChargePaymentParam): Promise<PaymentApplicationModel.ChargeCustomerResponse>;
     /**
-     * @param {PaymentApplicationValidator.verifyCustomerForPayment} arg - Arg object.
+     * @param {PaymentApplicationValidator.VerifyCustomerForPaymentParam} arg -
+     *   Arg object.
      * @returns {Promise<PaymentApplicationModel.ValidateCustomerResponse>} -
      *   Success response
      * @name verifyCustomerForPayment
      * @summary: Validate customer for payment
      * @description: Use this API to check if the customer is eligible to use credit-line facilities such as Simpl Pay Later and Rupifi.
      */
-    verifyCustomerForPayment({ body }?: PaymentApplicationValidator.verifyCustomerForPayment): Promise<PaymentApplicationModel.ValidateCustomerResponse>;
+    verifyCustomerForPayment({ body }?: PaymentApplicationValidator.VerifyCustomerForPaymentParam): Promise<PaymentApplicationModel.ValidateCustomerResponse>;
     /**
-     * @param {PaymentApplicationValidator.verifyIfscCode} arg - Arg object.
+     * @param {PaymentApplicationValidator.VerifyIfscCodeParam} arg - Arg object.
      * @returns {Promise<PaymentApplicationModel.IfscCodeResponse>} - Success response
      * @name verifyIfscCode
      * @summary: Verify IFSC Code
      * @description: Use this API to check whether the 11-digit IFSC code is valid and to fetch the bank details for refund.
      */
-    verifyIfscCode({ ifscCode }?: PaymentApplicationValidator.verifyIfscCode): Promise<PaymentApplicationModel.IfscCodeResponse>;
+    verifyIfscCode({ ifscCode }?: PaymentApplicationValidator.VerifyIfscCodeParam): Promise<PaymentApplicationModel.IfscCodeResponse>;
     /**
-     * @param {PaymentApplicationValidator.verifyOtpAndAddBeneficiaryForBank} arg
+     * @param {PaymentApplicationValidator.VerifyOtpAndAddBeneficiaryForBankParam} arg
      *   - Arg object.
      *
      * @returns {Promise<PaymentApplicationModel.AddBeneficiaryViaOtpVerificationResponse>}
@@ -428,9 +445,9 @@ declare class Payment {
      * @summary: Verify the beneficiary details using OTP
      * @description: Use this API to perform an OTP validation before saving the beneficiary details added for a refund.
      */
-    verifyOtpAndAddBeneficiaryForBank({ body }?: PaymentApplicationValidator.verifyOtpAndAddBeneficiaryForBank): Promise<PaymentApplicationModel.AddBeneficiaryViaOtpVerificationResponse>;
+    verifyOtpAndAddBeneficiaryForBank({ body }?: PaymentApplicationValidator.VerifyOtpAndAddBeneficiaryForBankParam): Promise<PaymentApplicationModel.AddBeneficiaryViaOtpVerificationResponse>;
     /**
-     * @param {PaymentApplicationValidator.verifyOtpAndAddBeneficiaryForWallet} arg
+     * @param {PaymentApplicationValidator.VerifyOtpAndAddBeneficiaryForWalletParam} arg
      *   - Arg object.
      *
      * @returns {Promise<PaymentApplicationModel.WalletOtpResponse>} - Success response
@@ -438,7 +455,7 @@ declare class Payment {
      * @summary: Send OTP on adding a wallet beneficiary
      * @description: Use this API to send an OTP while adding a wallet beneficiary by mobile no. verification.
      */
-    verifyOtpAndAddBeneficiaryForWallet({ body }?: PaymentApplicationValidator.verifyOtpAndAddBeneficiaryForWallet): Promise<PaymentApplicationModel.WalletOtpResponse>;
+    verifyOtpAndAddBeneficiaryForWallet({ body }?: PaymentApplicationValidator.VerifyOtpAndAddBeneficiaryForWalletParam): Promise<PaymentApplicationModel.WalletOtpResponse>;
 }
 import PaymentApplicationValidator = require("./PaymentApplicationValidator");
 import PaymentApplicationModel = require("./PaymentApplicationModel");

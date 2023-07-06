@@ -3,33 +3,33 @@ const Joi = require("joi");
 const DiscountPlatformModel = require("./DiscountPlatformModel");
 
 /**
- * @typedef cancelDownloadJob
+ * @typedef CancelDownloadJobParam
  * @property {string} id - Id
  */
 
 /**
- * @typedef cancelValidationJob
+ * @typedef CancelValidationJobParam
  * @property {string} id - Id
  */
 
 /**
- * @typedef createDiscount
+ * @typedef CreateDiscountParam
  * @property {DiscountPlatformModel.CreateUpdateDiscount} body
  */
 
 /**
- * @typedef downloadDiscountFile
+ * @typedef DownloadDiscountFileParam
  * @property {string} type - Type
  * @property {DiscountPlatformModel.DownloadFileJob} body
  */
 
 /**
- * @typedef getDiscount
+ * @typedef GetDiscountParam
  * @property {string} id - Unique id.
  */
 
 /**
- * @typedef getDiscounts
+ * @typedef GetDiscountsParam
  * @property {string} [view] - Listing or calender. Default is listing.
  * @property {string} [q] - The search query. This can be a partial or complete
  *   name of a discount.
@@ -43,29 +43,29 @@ const DiscountPlatformModel = require("./DiscountPlatformModel");
  */
 
 /**
- * @typedef getDownloadJob
+ * @typedef GetDownloadJobParam
  * @property {string} id - Id
  */
 
 /**
- * @typedef getValidationJob
+ * @typedef GetValidationJobParam
  * @property {string} id - Id
  */
 
 /**
- * @typedef updateDiscount
+ * @typedef UpdateDiscountParam
  * @property {string} id - Id
  * @property {DiscountPlatformModel.CreateUpdateDiscount} body
  */
 
 /**
- * @typedef upsertDiscountItems
+ * @typedef UpsertDiscountItemsParam
  * @property {string} id - Job ID of the discount.
  * @property {DiscountPlatformModel.BulkDiscount} body
  */
 
 /**
- * @typedef validateDiscountFile
+ * @typedef ValidateDiscountFileParam
  * @property {string} [discount] - Discount
  * @property {DiscountPlatformModel.FileJobRequest} body
  */

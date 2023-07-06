@@ -3,41 +3,41 @@ const Joi = require("joi");
 const LeadPlatformModel = require("./LeadPlatformModel");
 
 /**
- * @typedef createHistory
+ * @typedef CreateHistoryParam
  * @property {string} id - Ticket ID for which history is created
  * @property {LeadPlatformModel.TicketHistoryPayload} body
  */
 
 /**
- * @typedef createTicket
+ * @typedef CreateTicketParam
  * @property {LeadPlatformModel.AddTicketPayload} body
  */
 
 /**
- * @typedef editTicket
+ * @typedef EditTicketParam
  * @property {string} id - Ticket ID of ticket to be edited
  * @property {LeadPlatformModel.EditTicketPayload} body
  */
 
 /**
- * @typedef getFeedbacks
+ * @typedef GetFeedbacksParam
  * @property {string} id - Ticket ID for which feedbacks are to be fetched
  */
 
-/** @typedef getGeneralConfig */
+/** @typedef GetGeneralConfigParam */
 
 /**
- * @typedef getTicket
+ * @typedef GetTicketParam
  * @property {string} id - Tiket ID of the ticket to be fetched
  */
 
 /**
- * @typedef getTicketHistory
+ * @typedef GetTicketHistoryParam
  * @property {string} id - Ticket ID for which history is to be fetched
  */
 
 /**
- * @typedef getTickets
+ * @typedef GetTicketsParam
  * @property {boolean} [items] - Decides that the reponse will contain the list of tickets
  * @property {boolean} [filters] - Decides that the reponse will contain the
  *   ticket filters
@@ -52,17 +52,17 @@ const LeadPlatformModel = require("./LeadPlatformModel");
  */
 
 /**
- * @typedef getTokenForVideoRoom
+ * @typedef GetTokenForVideoRoomParam
  * @property {string} uniqueName - Unique name of video room
  */
 
 /**
- * @typedef getVideoParticipants
+ * @typedef GetVideoParticipantsParam
  * @property {string} uniqueName - Unique name of Video Room
  */
 
 /**
- * @typedef submitFeedback
+ * @typedef SubmitFeedbackParam
  * @property {string} id - Ticket ID for which feedback is to be submitted
  * @property {LeadPlatformModel.TicketFeedbackPayload} body
  */

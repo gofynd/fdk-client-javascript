@@ -3,31 +3,31 @@ declare class AuditTrail {
     constructor(config: any);
     config: any;
     /**
-     * @param {AuditTrailPlatformValidator.createAuditLog} arg - Arg object
+     * @param {AuditTrailPlatformValidator.CreateAuditLogParam} arg - Arg object
      * @returns {Promise<AuditTrailPlatformModel.CreateLogResponse>} - Success response
      * @name createAuditLog
      * @summary: Create logs for auditing later on
      * @description: Create a log instance that stores all the relevant info to be logged
      */
-    createAuditLog({ body }?: AuditTrailPlatformValidator.createAuditLog): Promise<AuditTrailPlatformModel.CreateLogResponse>;
+    createAuditLog({ body }?: AuditTrailPlatformValidator.CreateAuditLogParam): Promise<AuditTrailPlatformModel.CreateLogResponse>;
     /**
-     * @param {AuditTrailPlatformValidator.getAuditLog} arg - Arg object
+     * @param {AuditTrailPlatformValidator.GetAuditLogParam} arg - Arg object
      * @returns {Promise<AuditTrailPlatformModel.LogSchemaResponse>} - Success response
      * @name getAuditLog
      * @summary: Get audit log
      * @description: Get detailed log information by their id
      */
-    getAuditLog({ id }?: AuditTrailPlatformValidator.getAuditLog): Promise<AuditTrailPlatformModel.LogSchemaResponse>;
+    getAuditLog({ id }?: AuditTrailPlatformValidator.GetAuditLogParam): Promise<AuditTrailPlatformModel.LogSchemaResponse>;
     /**
-     * @param {AuditTrailPlatformValidator.getAuditLogs} arg - Arg object
+     * @param {AuditTrailPlatformValidator.GetAuditLogsParam} arg - Arg object
      * @returns {Promise<AuditTrailPlatformModel.LogSchemaResponse>} - Success response
      * @name getAuditLogs
      * @summary: Get paginated audit logs
      * @description: Get a paginated set of logs that can be filtered using the available set of parameters and get the relevant group of logs
      */
-    getAuditLogs({ qs }?: AuditTrailPlatformValidator.getAuditLogs): Promise<AuditTrailPlatformModel.LogSchemaResponse>;
+    getAuditLogs({ qs }?: AuditTrailPlatformValidator.GetAuditLogsParam): Promise<AuditTrailPlatformModel.LogSchemaResponse>;
     /**
-     * @param {AuditTrailPlatformValidator.getEntityTypes} arg - Arg object
+     * @param {AuditTrailPlatformValidator.GetEntityTypesParam} arg - Arg object
      * @returns {Promise<AuditTrailPlatformModel.EntityTypesResponse>} - Success response
      * @name getEntityTypes
      * @summary: Get entity types

@@ -1,86 +1,120 @@
 export = ContentApplicationValidator;
-/** @typedef getAnnouncements */
+/** @typedef GetAnnouncementsParam */
 /**
- * @typedef getBlog
+ * @typedef GetBlogParam
  * @property {string} slug - A short, human-readable, URL-friendly identifier of
  *   a blog. You can get slug value from the endpoint
  *   /service/application/content/v1.0/blogs/.
  * @property {string} [rootId] - ID given to the HTML element
  */
 /**
- * @typedef getBlogs
+ * @typedef GetBlogsParam
  * @property {number} [pageNo] - The page number to navigate through the given
  *   set of results. Default value is 1.
  * @property {number} [pageSize] - The number of items to retrieve in each page.
  */
-/** @typedef getDataLoaders */
+/** @typedef GetDataLoadersParam */
 /**
- * @typedef getFaqBySlug
+ * @typedef GetFaqBySlugParam
  * @property {string} slug - A short, human-readable, URL-friendly identifier of
  *   an FAQ. You can get slug value from the endpoint
  *   /service/application/content/v1.0/faq.
  */
-/** @typedef getFaqCategories */
+/** @typedef GetFaqCategoriesParam */
 /**
- * @typedef getFaqCategoryBySlug
+ * @typedef GetFaqCategoryBySlugParam
  * @property {string} slug - A short, human-readable, URL-friendly identifier of
  *   an FAQ category. You can get slug value from the endpoint
  *   /service/application/content/v1.0/faq/categories.
  */
-/** @typedef getFaqs */
+/** @typedef GetFaqsParam */
 /**
- * @typedef getFaqsByCategorySlug
+ * @typedef GetFaqsByCategorySlugParam
  * @property {string} slug - A short, human-readable, URL-friendly identifier of
  *   an FAQ category. You can get slug value from the endpoint
  *   /service/application/content/v1.0/faq/categories.
  */
-/** @typedef getLandingPage */
-/** @typedef getLegalInformation */
+/** @typedef GetLandingPageParam */
+/** @typedef GetLegalInformationParam */
 /**
- * @typedef getNavigations
+ * @typedef GetNavigationsParam
  * @property {number} [pageNo] - The page number to navigate through the given
  *   set of results. Default value is 1.
  * @property {number} [pageSize] - The number of items to retrieve in each page.
  */
 /**
- * @typedef getPage
+ * @typedef GetPageParam
  * @property {string} slug - A short, human-readable, URL-friendly identifier of
  *   a page. You can get slug value from the endpoint
  *   /service/application/content/v2.0/pages/.
  * @property {string} [rootId] - ID given to the HTML element
  */
 /**
- * @typedef getPages
+ * @typedef GetPagesParam
  * @property {number} [pageNo] - The page number to navigate through the given
  *   set of results. Default value is 1.
  * @property {number} [pageSize] - The number of items to retrieve in each page.
  */
-/** @typedef getSEOConfiguration */
+/** @typedef GetSEOConfigurationParam */
 /**
- * @typedef getSlideshow
+ * @typedef GetSlideshowParam
  * @property {string} slug - A short, human-readable, URL-friendly identifier of
  *   a slideshow. You can get slug value from the endpoint
  *   /service/application/content/v1.0/slideshow/.
  */
 /**
- * @typedef getSlideshows
+ * @typedef GetSlideshowsParam
  * @property {number} [pageNo] - The page number to navigate through the given
  *   set of results. Default value is 1.
  * @property {number} [pageSize] - The number of items to retrieve in each page.
  */
-/** @typedef getSupportInformation */
-/** @typedef getTags */
+/** @typedef GetSupportInformationParam */
+/** @typedef GetTagsParam */
 declare class ContentApplicationValidator {
+    /** @returns {getAnnouncements} */
+    static getAnnouncements(): getAnnouncements;
+    /** @returns {getBlog} */
+    static getBlog(): getBlog;
+    /** @returns {getBlogs} */
+    static getBlogs(): getBlogs;
+    /** @returns {getDataLoaders} */
+    static getDataLoaders(): getDataLoaders;
+    /** @returns {getFaqBySlug} */
+    static getFaqBySlug(): getFaqBySlug;
+    /** @returns {getFaqCategories} */
+    static getFaqCategories(): getFaqCategories;
+    /** @returns {getFaqCategoryBySlug} */
+    static getFaqCategoryBySlug(): getFaqCategoryBySlug;
+    /** @returns {getFaqs} */
+    static getFaqs(): getFaqs;
+    /** @returns {getFaqsByCategorySlug} */
+    static getFaqsByCategorySlug(): getFaqsByCategorySlug;
+    /** @returns {getLandingPage} */
+    static getLandingPage(): getLandingPage;
+    /** @returns {getLegalInformation} */
+    static getLegalInformation(): getLegalInformation;
+    /** @returns {getNavigations} */
+    static getNavigations(): getNavigations;
+    /** @returns {getPage} */
+    static getPage(): getPage;
+    /** @returns {getPages} */
+    static getPages(): getPages;
+    /** @returns {getSEOConfiguration} */
+    static getSEOConfiguration(): getSEOConfiguration;
+    /** @returns {getSlideshow} */
+    static getSlideshow(): getSlideshow;
+    /** @returns {getSlideshows} */
+    static getSlideshows(): getSlideshows;
+    /** @returns {getSupportInformation} */
+    static getSupportInformation(): getSupportInformation;
+    /** @returns {getTags} */
+    static getTags(): getTags;
 }
 declare namespace ContentApplicationValidator {
-    export { getAnnouncements, getBlog, getBlogs, getDataLoaders, getFaqBySlug, getFaqCategories, getFaqCategoryBySlug, getFaqs, getFaqsByCategorySlug, getLandingPage, getLegalInformation, getNavigations, getPage, getPages, getSEOConfiguration, getSlideshow, getSlideshows, getSupportInformation, getTags };
+    export { GetAnnouncementsParam, GetBlogParam, GetBlogsParam, GetDataLoadersParam, GetFaqBySlugParam, GetFaqCategoriesParam, GetFaqCategoryBySlugParam, GetFaqsParam, GetFaqsByCategorySlugParam, GetLandingPageParam, GetLegalInformationParam, GetNavigationsParam, GetPageParam, GetPagesParam, GetSEOConfigurationParam, GetSlideshowParam, GetSlideshowsParam, GetSupportInformationParam, GetTagsParam };
 }
-/** @returns {getAnnouncements} */
-declare function getAnnouncements(): any;
-type getAnnouncements = any;
-/** @returns {getBlog} */
-declare function getBlog(): getBlog;
-type getBlog = {
+type GetAnnouncementsParam = any;
+type GetBlogParam = {
     /**
      * - A short, human-readable, URL-friendly identifier of
      * a blog. You can get slug value from the endpoint
@@ -92,9 +126,7 @@ type getBlog = {
      */
     rootId?: string;
 };
-/** @returns {getBlogs} */
-declare function getBlogs(): getBlogs;
-type getBlogs = {
+type GetBlogsParam = {
     /**
      * - The page number to navigate through the given
      * set of results. Default value is 1.
@@ -105,12 +137,8 @@ type getBlogs = {
      */
     pageSize?: number;
 };
-/** @returns {getDataLoaders} */
-declare function getDataLoaders(): any;
-type getDataLoaders = any;
-/** @returns {getFaqBySlug} */
-declare function getFaqBySlug(): getFaqBySlug;
-type getFaqBySlug = {
+type GetDataLoadersParam = any;
+type GetFaqBySlugParam = {
     /**
      * - A short, human-readable, URL-friendly identifier of
      * an FAQ. You can get slug value from the endpoint
@@ -118,12 +146,8 @@ type getFaqBySlug = {
      */
     slug: string;
 };
-/** @returns {getFaqCategories} */
-declare function getFaqCategories(): any;
-type getFaqCategories = any;
-/** @returns {getFaqCategoryBySlug} */
-declare function getFaqCategoryBySlug(): getFaqCategoryBySlug;
-type getFaqCategoryBySlug = {
+type GetFaqCategoriesParam = any;
+type GetFaqCategoryBySlugParam = {
     /**
      * - A short, human-readable, URL-friendly identifier of
      * an FAQ category. You can get slug value from the endpoint
@@ -131,12 +155,8 @@ type getFaqCategoryBySlug = {
      */
     slug: string;
 };
-/** @returns {getFaqs} */
-declare function getFaqs(): any;
-type getFaqs = any;
-/** @returns {getFaqsByCategorySlug} */
-declare function getFaqsByCategorySlug(): getFaqsByCategorySlug;
-type getFaqsByCategorySlug = {
+type GetFaqsParam = any;
+type GetFaqsByCategorySlugParam = {
     /**
      * - A short, human-readable, URL-friendly identifier of
      * an FAQ category. You can get slug value from the endpoint
@@ -144,15 +164,9 @@ type getFaqsByCategorySlug = {
      */
     slug: string;
 };
-/** @returns {getLandingPage} */
-declare function getLandingPage(): any;
-type getLandingPage = any;
-/** @returns {getLegalInformation} */
-declare function getLegalInformation(): any;
-type getLegalInformation = any;
-/** @returns {getNavigations} */
-declare function getNavigations(): getNavigations;
-type getNavigations = {
+type GetLandingPageParam = any;
+type GetLegalInformationParam = any;
+type GetNavigationsParam = {
     /**
      * - The page number to navigate through the given
      * set of results. Default value is 1.
@@ -163,9 +177,7 @@ type getNavigations = {
      */
     pageSize?: number;
 };
-/** @returns {getPage} */
-declare function getPage(): getPage;
-type getPage = {
+type GetPageParam = {
     /**
      * - A short, human-readable, URL-friendly identifier of
      * a page. You can get slug value from the endpoint
@@ -177,9 +189,7 @@ type getPage = {
      */
     rootId?: string;
 };
-/** @returns {getPages} */
-declare function getPages(): getPages;
-type getPages = {
+type GetPagesParam = {
     /**
      * - The page number to navigate through the given
      * set of results. Default value is 1.
@@ -190,12 +200,8 @@ type getPages = {
      */
     pageSize?: number;
 };
-/** @returns {getSEOConfiguration} */
-declare function getSEOConfiguration(): any;
-type getSEOConfiguration = any;
-/** @returns {getSlideshow} */
-declare function getSlideshow(): getSlideshow;
-type getSlideshow = {
+type GetSEOConfigurationParam = any;
+type GetSlideshowParam = {
     /**
      * - A short, human-readable, URL-friendly identifier of
      * a slideshow. You can get slug value from the endpoint
@@ -203,9 +209,7 @@ type getSlideshow = {
      */
     slug: string;
 };
-/** @returns {getSlideshows} */
-declare function getSlideshows(): getSlideshows;
-type getSlideshows = {
+type GetSlideshowsParam = {
     /**
      * - The page number to navigate through the given
      * set of results. Default value is 1.
@@ -216,9 +220,5 @@ type getSlideshows = {
      */
     pageSize?: number;
 };
-/** @returns {getSupportInformation} */
-declare function getSupportInformation(): any;
-type getSupportInformation = any;
-/** @returns {getTags} */
-declare function getTags(): any;
-type getTags = any;
+type GetSupportInformationParam = any;
+type GetTagsParam = any;

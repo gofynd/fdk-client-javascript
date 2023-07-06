@@ -1,50 +1,50 @@
 export = ConfigurationPlatformValidator;
 /**
- * @typedef createApplication
+ * @typedef CreateApplicationParam
  * @property {ConfigurationPlatformModel.CreateApplicationRequest} body
  */
 /**
- * @typedef getApplications
+ * @typedef GetApplicationsParam
  * @property {number} [pageNo]
  * @property {number} [pageSize]
  * @property {string} [q] - Search param by name or domain
  */
 /**
- * @typedef getAvailableOptIns
+ * @typedef GetAvailableOptInsParam
  * @property {number} [pageNo] - The page number to navigate through the given
  *   set of results. Default value is 1.
  * @property {number} [pageSize] - The number of items to retrieve in each page.
  *   Default value is 10.
  */
 /**
- * @typedef getBrandsByCompany
+ * @typedef GetBrandsByCompanyParam
  * @property {string} [q] - Search text for brand name
  */
 /**
- * @typedef getCompanyByBrands
+ * @typedef GetCompanyByBrandsParam
  * @property {number} [pageNo] - The page number to navigate through the given
  *   set of results. Default value is 1.
  * @property {number} [pageSize] - The number of items to retrieve in each page.
  *   Default value is 10.
  * @property {ConfigurationPlatformModel.CompanyByBrandsRequest} body
  */
-/** @typedef getCurrencies */
+/** @typedef GetCurrenciesParam */
 /**
- * @typedef getDomainAvailibility
+ * @typedef GetDomainAvailibilityParam
  * @property {ConfigurationPlatformModel.DomainSuggestionsRequest} body
  */
 /**
- * @typedef getIntegrationById
+ * @typedef GetIntegrationByIdParam
  * @property {number} id - Integration id
  */
 /**
- * @typedef getIntegrationByLevelId
+ * @typedef GetIntegrationByLevelIdParam
  * @property {string} id - Integration ID (24-digit Mongo Object ID)
  * @property {string} level - Integration level, `store` or `company`
  * @property {number} uid - Unique identifier of integration level (store/company)
  */
 /**
- * @typedef getIntegrationLevelConfig
+ * @typedef GetIntegrationLevelConfigParam
  * @property {string} id - Integration ID (24-digit Mongo Object ID)
  * @property {string} level - Store or company
  * @property {boolean} [opted] - True means get the opted stores. False means
@@ -53,25 +53,25 @@ export = ConfigurationPlatformValidator;
  *   inventory/order) are present
  */
 /**
- * @typedef getLevelActiveIntegrations
+ * @typedef GetLevelActiveIntegrationsParam
  * @property {string} id - Integration ID (24-digit Mongo Object ID)
  * @property {string} level - Integration level, `store` or `company`
  * @property {number} uid - Unique identifier of integration level (store/company)
  * @property {string} [permission] - Check opt-in for specific integration permissions
  */
 /**
- * @typedef getOtherSellerApplicationById
+ * @typedef GetOtherSellerApplicationByIdParam
  * @property {string} id - Application Id
  */
 /**
- * @typedef getOtherSellerApplications
+ * @typedef GetOtherSellerApplicationsParam
  * @property {number} [pageNo] - The page number to navigate through the given
  *   set of results. Default value is 1.
  * @property {number} [pageSize] - The number of items to retrieve in each page.
  *   Default value is 10.
  */
 /**
- * @typedef getSelectedOptIns
+ * @typedef GetSelectedOptInsParam
  * @property {string} level - Store or company
  * @property {number} uid - Unique identifier of the selected integration level.
  * @property {number} [pageNo] - The page number to navigate through the given
@@ -80,7 +80,7 @@ export = ConfigurationPlatformValidator;
  *   Default value is 10.
  */
 /**
- * @typedef getStoreByBrands
+ * @typedef GetStoreByBrandsParam
  * @property {number} [pageNo] - The page number to navigate through the given
  *   set of results. Default value is 1.
  * @property {number} [pageSize] - The number of items to retrieve in each page.
@@ -88,37 +88,69 @@ export = ConfigurationPlatformValidator;
  * @property {ConfigurationPlatformModel.StoreByBrandsRequest} body
  */
 /**
- * @typedef optOutFromApplication
+ * @typedef OptOutFromApplicationParam
  * @property {string} id - Alphanumeric ID allotted to an application (sales
  *   channel website) created within a business account.
  * @property {ConfigurationPlatformModel.OptOutInventory} body
  */
 /**
- * @typedef updateLevelIntegration
+ * @typedef UpdateLevelIntegrationParam
  * @property {string} id - Integration ID (24-digit Mongo Object ID)
  * @property {string} level - Integration level, `store` or `company`
  * @property {ConfigurationPlatformModel.UpdateIntegrationLevelRequest} body
  */
 /**
- * @typedef updateLevelUidIntegration
+ * @typedef UpdateLevelUidIntegrationParam
  * @property {string} id - Integration ID (24-digit Mongo Object ID)
  * @property {string} level - Integration level, `store` or `company`
  * @property {number} uid - Unique identifier of integration level (store/company)
  * @property {ConfigurationPlatformModel.IntegrationLevel} body
  */
 declare class ConfigurationPlatformValidator {
+    /** @returns {createApplication} */
+    static createApplication(): createApplication;
+    /** @returns {getApplications} */
+    static getApplications(): getApplications;
+    /** @returns {getAvailableOptIns} */
+    static getAvailableOptIns(): getAvailableOptIns;
+    /** @returns {getBrandsByCompany} */
+    static getBrandsByCompany(): getBrandsByCompany;
+    /** @returns {getCompanyByBrands} */
+    static getCompanyByBrands(): getCompanyByBrands;
+    /** @returns {getCurrencies} */
+    static getCurrencies(): getCurrencies;
+    /** @returns {getDomainAvailibility} */
+    static getDomainAvailibility(): getDomainAvailibility;
+    /** @returns {getIntegrationById} */
+    static getIntegrationById(): getIntegrationById;
+    /** @returns {getIntegrationByLevelId} */
+    static getIntegrationByLevelId(): getIntegrationByLevelId;
+    /** @returns {getIntegrationLevelConfig} */
+    static getIntegrationLevelConfig(): getIntegrationLevelConfig;
+    /** @returns {getLevelActiveIntegrations} */
+    static getLevelActiveIntegrations(): getLevelActiveIntegrations;
+    /** @returns {getOtherSellerApplicationById} */
+    static getOtherSellerApplicationById(): getOtherSellerApplicationById;
+    /** @returns {getOtherSellerApplications} */
+    static getOtherSellerApplications(): getOtherSellerApplications;
+    /** @returns {getSelectedOptIns} */
+    static getSelectedOptIns(): getSelectedOptIns;
+    /** @returns {getStoreByBrands} */
+    static getStoreByBrands(): getStoreByBrands;
+    /** @returns {optOutFromApplication} */
+    static optOutFromApplication(): optOutFromApplication;
+    /** @returns {updateLevelIntegration} */
+    static updateLevelIntegration(): updateLevelIntegration;
+    /** @returns {updateLevelUidIntegration} */
+    static updateLevelUidIntegration(): updateLevelUidIntegration;
 }
 declare namespace ConfigurationPlatformValidator {
-    export { createApplication, getApplications, getAvailableOptIns, getBrandsByCompany, getCompanyByBrands, getCurrencies, getDomainAvailibility, getIntegrationById, getIntegrationByLevelId, getIntegrationLevelConfig, getLevelActiveIntegrations, getOtherSellerApplicationById, getOtherSellerApplications, getSelectedOptIns, getStoreByBrands, optOutFromApplication, updateLevelIntegration, updateLevelUidIntegration };
+    export { CreateApplicationParam, GetApplicationsParam, GetAvailableOptInsParam, GetBrandsByCompanyParam, GetCompanyByBrandsParam, GetCurrenciesParam, GetDomainAvailibilityParam, GetIntegrationByIdParam, GetIntegrationByLevelIdParam, GetIntegrationLevelConfigParam, GetLevelActiveIntegrationsParam, GetOtherSellerApplicationByIdParam, GetOtherSellerApplicationsParam, GetSelectedOptInsParam, GetStoreByBrandsParam, OptOutFromApplicationParam, UpdateLevelIntegrationParam, UpdateLevelUidIntegrationParam };
 }
-/** @returns {createApplication} */
-declare function createApplication(): createApplication;
-type createApplication = {
+type CreateApplicationParam = {
     body: ConfigurationPlatformModel.CreateApplicationRequest;
 };
-/** @returns {getApplications} */
-declare function getApplications(): getApplications;
-type getApplications = {
+type GetApplicationsParam = {
     pageNo?: number;
     pageSize?: number;
     /**
@@ -126,9 +158,7 @@ type getApplications = {
      */
     q?: string;
 };
-/** @returns {getAvailableOptIns} */
-declare function getAvailableOptIns(): getAvailableOptIns;
-type getAvailableOptIns = {
+type GetAvailableOptInsParam = {
     /**
      * - The page number to navigate through the given
      * set of results. Default value is 1.
@@ -140,17 +170,13 @@ type getAvailableOptIns = {
      */
     pageSize?: number;
 };
-/** @returns {getBrandsByCompany} */
-declare function getBrandsByCompany(): getBrandsByCompany;
-type getBrandsByCompany = {
+type GetBrandsByCompanyParam = {
     /**
      * - Search text for brand name
      */
     q?: string;
 };
-/** @returns {getCompanyByBrands} */
-declare function getCompanyByBrands(): getCompanyByBrands;
-type getCompanyByBrands = {
+type GetCompanyByBrandsParam = {
     /**
      * - The page number to navigate through the given
      * set of results. Default value is 1.
@@ -163,25 +189,17 @@ type getCompanyByBrands = {
     pageSize?: number;
     body: ConfigurationPlatformModel.CompanyByBrandsRequest;
 };
-/** @returns {getCurrencies} */
-declare function getCurrencies(): any;
-type getCurrencies = any;
-/** @returns {getDomainAvailibility} */
-declare function getDomainAvailibility(): getDomainAvailibility;
-type getDomainAvailibility = {
+type GetCurrenciesParam = any;
+type GetDomainAvailibilityParam = {
     body: ConfigurationPlatformModel.DomainSuggestionsRequest;
 };
-/** @returns {getIntegrationById} */
-declare function getIntegrationById(): getIntegrationById;
-type getIntegrationById = {
+type GetIntegrationByIdParam = {
     /**
      * - Integration id
      */
     id: number;
 };
-/** @returns {getIntegrationByLevelId} */
-declare function getIntegrationByLevelId(): getIntegrationByLevelId;
-type getIntegrationByLevelId = {
+type GetIntegrationByLevelIdParam = {
     /**
      * - Integration ID (24-digit Mongo Object ID)
      */
@@ -195,9 +213,7 @@ type getIntegrationByLevelId = {
      */
     uid: number;
 };
-/** @returns {getIntegrationLevelConfig} */
-declare function getIntegrationLevelConfig(): getIntegrationLevelConfig;
-type getIntegrationLevelConfig = {
+type GetIntegrationLevelConfigParam = {
     /**
      * - Integration ID (24-digit Mongo Object ID)
      */
@@ -217,9 +233,7 @@ type getIntegrationLevelConfig = {
      */
     checkPermission?: boolean;
 };
-/** @returns {getLevelActiveIntegrations} */
-declare function getLevelActiveIntegrations(): getLevelActiveIntegrations;
-type getLevelActiveIntegrations = {
+type GetLevelActiveIntegrationsParam = {
     /**
      * - Integration ID (24-digit Mongo Object ID)
      */
@@ -237,17 +251,13 @@ type getLevelActiveIntegrations = {
      */
     permission?: string;
 };
-/** @returns {getOtherSellerApplicationById} */
-declare function getOtherSellerApplicationById(): getOtherSellerApplicationById;
-type getOtherSellerApplicationById = {
+type GetOtherSellerApplicationByIdParam = {
     /**
      * - Application Id
      */
     id: string;
 };
-/** @returns {getOtherSellerApplications} */
-declare function getOtherSellerApplications(): getOtherSellerApplications;
-type getOtherSellerApplications = {
+type GetOtherSellerApplicationsParam = {
     /**
      * - The page number to navigate through the given
      * set of results. Default value is 1.
@@ -259,9 +269,7 @@ type getOtherSellerApplications = {
      */
     pageSize?: number;
 };
-/** @returns {getSelectedOptIns} */
-declare function getSelectedOptIns(): getSelectedOptIns;
-type getSelectedOptIns = {
+type GetSelectedOptInsParam = {
     /**
      * - Store or company
      */
@@ -281,9 +289,7 @@ type getSelectedOptIns = {
      */
     pageSize?: number;
 };
-/** @returns {getStoreByBrands} */
-declare function getStoreByBrands(): getStoreByBrands;
-type getStoreByBrands = {
+type GetStoreByBrandsParam = {
     /**
      * - The page number to navigate through the given
      * set of results. Default value is 1.
@@ -296,9 +302,7 @@ type getStoreByBrands = {
     pageSize?: number;
     body: ConfigurationPlatformModel.StoreByBrandsRequest;
 };
-/** @returns {optOutFromApplication} */
-declare function optOutFromApplication(): optOutFromApplication;
-type optOutFromApplication = {
+type OptOutFromApplicationParam = {
     /**
      * - Alphanumeric ID allotted to an application (sales
      * channel website) created within a business account.
@@ -306,9 +310,7 @@ type optOutFromApplication = {
     id: string;
     body: ConfigurationPlatformModel.OptOutInventory;
 };
-/** @returns {updateLevelIntegration} */
-declare function updateLevelIntegration(): updateLevelIntegration;
-type updateLevelIntegration = {
+type UpdateLevelIntegrationParam = {
     /**
      * - Integration ID (24-digit Mongo Object ID)
      */
@@ -319,9 +321,7 @@ type updateLevelIntegration = {
     level: string;
     body: ConfigurationPlatformModel.UpdateIntegrationLevelRequest;
 };
-/** @returns {updateLevelUidIntegration} */
-declare function updateLevelUidIntegration(): updateLevelUidIntegration;
-type updateLevelUidIntegration = {
+type UpdateLevelUidIntegrationParam = {
     /**
      * - Integration ID (24-digit Mongo Object ID)
      */

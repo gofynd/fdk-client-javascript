@@ -3,21 +3,21 @@ const Joi = require("joi");
 const CatalogApplicationModel = require("./CatalogApplicationModel");
 
 /**
- * @typedef followById
+ * @typedef FollowByIdParam
  * @property {string} collectionType - Type of collection followed, i.e.
  *   products, brands, or collections.
  * @property {string} collectionId - The ID of the collection type.
  */
 
 /**
- * @typedef getBrandDetailBySlug
+ * @typedef GetBrandDetailBySlugParam
  * @property {string} slug - A short, human-readable, URL-friendly identifier of
  *   a brand. You can get slug value from the endpoint
  *   /service/application/catalog/v1.0/brands/.
  */
 
 /**
- * @typedef getBrands
+ * @typedef GetBrandsParam
  * @property {string} [department] - The name of the department. Use this
  *   parameter to filter products by a particular department. See the list of
  *   available departments below. Also, you can get available departments from
@@ -28,7 +28,7 @@ const CatalogApplicationModel = require("./CatalogApplicationModel");
  */
 
 /**
- * @typedef getCategories
+ * @typedef GetCategoriesParam
  * @property {string} [department] - The name of the department. Use this
  *   parameter to filter products by a particular department. See the list of
  *   available departments below. Also, you can get available departments from
@@ -36,21 +36,21 @@ const CatalogApplicationModel = require("./CatalogApplicationModel");
  */
 
 /**
- * @typedef getCategoryDetailBySlug
+ * @typedef GetCategoryDetailBySlugParam
  * @property {string} slug - A short, human-readable, URL-friendly identifier of
  *   a brand. You can get slug value from the endpoint
  *   /service/application/catalog/v1.0/brands/.
  */
 
 /**
- * @typedef getCollectionDetailBySlug
+ * @typedef GetCollectionDetailBySlugParam
  * @property {string} slug - A short, human-readable, URL-friendly identifier of
  *   a collection. You can get slug value from the endpoint
  *   /service/application/catalog/v1.0/collections/.
  */
 
 /**
- * @typedef getCollectionItemsBySlug
+ * @typedef GetCollectionItemsBySlugParam
  * @property {string} slug - A short, human-readable, URL-friendly identifier of
  *   a collection. You can get slug value from the endpoint
  *   /service/application/catalog/v1.0/collections/.
@@ -73,7 +73,7 @@ const CatalogApplicationModel = require("./CatalogApplicationModel");
  */
 
 /**
- * @typedef getCollections
+ * @typedef GetCollectionsParam
  * @property {number} [pageNo] - The page number to navigate through the given
  *   set of results.
  * @property {number} [pageSize] - The number of items to retrieve in each page.
@@ -82,22 +82,22 @@ const CatalogApplicationModel = require("./CatalogApplicationModel");
  */
 
 /**
- * @typedef getComparedFrequentlyProductBySlug
+ * @typedef GetComparedFrequentlyProductBySlugParam
  * @property {string} slug - A short, human-readable, URL-friendly identifier of
  *   a product. You can get slug value from the endpoint
  *   /service/application/catalog/v1.0/products/
  */
 
-/** @typedef getDepartments */
+/** @typedef GetDepartmentsParam */
 
 /**
- * @typedef getFollowIds
+ * @typedef GetFollowIdsParam
  * @property {string} [collectionType] - Type of collection, i.e. products,
  *   brands, collections.
  */
 
 /**
- * @typedef getFollowedListing
+ * @typedef GetFollowedListingParam
  * @property {string} collectionType - Type of collection followed, i.e.
  *   products, brands, or collections.
  * @property {string} [pageId] - Page ID to retrieve next set of results.
@@ -105,14 +105,14 @@ const CatalogApplicationModel = require("./CatalogApplicationModel");
  */
 
 /**
- * @typedef getFollowerCountById
+ * @typedef GetFollowerCountByIdParam
  * @property {string} collectionType - Type of collection, i.e. products,
  *   brands, or collections.
  * @property {string} collectionId - The ID of the collection type.
  */
 
 /**
- * @typedef getHomeProducts
+ * @typedef GetHomeProductsParam
  * @property {string} [sortOn] - The order in which the list of products should
  *   be sorted, e.g. popularity, price, latest and discount, in either ascending
  *   or descending order.
@@ -121,7 +121,7 @@ const CatalogApplicationModel = require("./CatalogApplicationModel");
  */
 
 /**
- * @typedef getInStockLocations
+ * @typedef GetInStockLocationsParam
  * @property {number} [pageNo] - The page number to navigate through the given
  *   set of results.
  * @property {number} [pageSize] - Number of items to retrieve in each page.
@@ -136,32 +136,32 @@ const CatalogApplicationModel = require("./CatalogApplicationModel");
  */
 
 /**
- * @typedef getLocationDetailsById
+ * @typedef GetLocationDetailsByIdParam
  * @property {number} locationId - Unique Location ID.
  */
 
 /**
- * @typedef getProductBundlesBySlug
+ * @typedef GetProductBundlesBySlugParam
  * @property {string} [slug] - Product slug for which bundles need to be fetched.
  * @property {string} [id] - Product uid
  */
 
 /**
- * @typedef getProductComparisonBySlugs
+ * @typedef GetProductComparisonBySlugsParam
  * @property {string[]} slug - A short, human-readable, URL-friendly identifier
  *   of a product. You can get slug value from the endpoint
  *   /service/application/catalog/v1.0/products/.
  */
 
 /**
- * @typedef getProductDetailBySlug
+ * @typedef GetProductDetailBySlugParam
  * @property {string} slug - A short, human-readable, URL-friendly identifier of
  *   a product. You can get slug value from the endpoint
  *   /service/application/catalog/v1.0/products/
  */
 
 /**
- * @typedef getProductPriceBySlug
+ * @typedef GetProductPriceBySlugParam
  * @property {string} slug - A short, human-readable, URL-friendly identifier of
  *   a product. You can get slug value from the endpoint
  *   /service/application/catalog/v1.0/products/
@@ -177,7 +177,7 @@ const CatalogApplicationModel = require("./CatalogApplicationModel");
  */
 
 /**
- * @typedef getProductSellersBySlug
+ * @typedef GetProductSellersBySlugParam
  * @property {string} slug - A short, human-readable, URL-friendly identifier of
  *   a product. You can get slug value from the endpoint
  *   /service/application/catalog/v1.0/products/
@@ -194,7 +194,7 @@ const CatalogApplicationModel = require("./CatalogApplicationModel");
  */
 
 /**
- * @typedef getProductSizesBySlug
+ * @typedef GetProductSizesBySlugParam
  * @property {string} slug - A short, human-readable, URL-friendly identifier of
  *   a product. You can get slug value from the endpoint
  *   /service/application/catalog/v1.0/products/
@@ -203,7 +203,7 @@ const CatalogApplicationModel = require("./CatalogApplicationModel");
  */
 
 /**
- * @typedef getProductStockByIds
+ * @typedef GetProductStockByIdsParam
  * @property {string} [itemId] - The Item ID of the product (Max. 50 allowed)
  * @property {string} [alu] - ALU of the product (limited upto 50 ALU identifier
  *   in a single request)
@@ -216,21 +216,21 @@ const CatalogApplicationModel = require("./CatalogApplicationModel");
  */
 
 /**
- * @typedef getProductStockForTimeByIds
+ * @typedef GetProductStockForTimeByIdsParam
  * @property {string} timestamp - Timestamp in UTC format (2020-07-23T10:27:50Z)
  * @property {number} [pageSize] - The number of items to retrieve in each page.
  * @property {string} [pageId] - Page ID to retrieve next set of results.
  */
 
 /**
- * @typedef getProductVariantsBySlug
+ * @typedef GetProductVariantsBySlugParam
  * @property {string} slug - A short, human-readable, URL-friendly identifier of
  *   a product. You can get slug value from the endpoint
  *   /service/application/catalog/v1.0/products/
  */
 
 /**
- * @typedef getProducts
+ * @typedef GetProductsParam
  * @property {string} [q] - The search query for entering partial or full name
  *   of product, brand, category, or collection.
  * @property {string} [f] - The search filter parameters. Filter parameters will
@@ -250,7 +250,7 @@ const CatalogApplicationModel = require("./CatalogApplicationModel");
  */
 
 /**
- * @typedef getSearchResults
+ * @typedef GetSearchResultsParam
  * @property {string} q - The search query for entering partial or full name of
  *   a product, brand or category. For example, if the given search query `q` is
  *   _ski_, the relevant search suggestions could be _skirt_, _ski shoes_,
@@ -258,14 +258,14 @@ const CatalogApplicationModel = require("./CatalogApplicationModel");
  */
 
 /**
- * @typedef getSimilarComparisonProductBySlug
+ * @typedef GetSimilarComparisonProductBySlugParam
  * @property {string} slug - A short, human-readable, URL-friendly identifier of
  *   a product. You can get slug value from the endpoint
  *   /service/application/catalog/v1.0/products/
  */
 
 /**
- * @typedef getStores
+ * @typedef GetStoresParam
  * @property {number} [pageNo] - The page number to navigate through the given
  *   set of results.
  * @property {number} [pageSize] - Number of items to retrieve in each page.
@@ -280,7 +280,7 @@ const CatalogApplicationModel = require("./CatalogApplicationModel");
  */
 
 /**
- * @typedef unfollowById
+ * @typedef UnfollowByIdParam
  * @property {string} collectionType - Type of collection followed, i.e.
  *   products, brands, or collections.
  * @property {string} collectionId - The ID of the collection type.

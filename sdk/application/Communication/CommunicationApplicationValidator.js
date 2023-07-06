@@ -2,15 +2,15 @@ const Joi = require("joi");
 
 const CommunicationApplicationModel = require("./CommunicationApplicationModel");
 
-/** @typedef getCommunicationConsent */
+/** @typedef GetCommunicationConsentParam */
 
 /**
- * @typedef upsertAppPushtoken
+ * @typedef UpsertAppPushtokenParam
  * @property {CommunicationApplicationModel.PushtokenReq} body
  */
 
 /**
- * @typedef upsertCommunicationConsent
+ * @typedef UpsertCommunicationConsentParam
  * @property {CommunicationApplicationModel.CommunicationConsentReq} body
  */
 

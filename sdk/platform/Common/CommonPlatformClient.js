@@ -12,7 +12,7 @@ class Common {
   }
 
   /**
-   * @param {CommonPlatformValidator.getLocations} arg - Arg object
+   * @param {CommonPlatformValidator.GetLocationsParam} arg - Arg object
    * @returns {Promise<CommonPlatformModel.Locations>} - Success response
    * @name getLocations
    * @summary: Get countries, states, cities
@@ -72,7 +72,7 @@ class Common {
   }
 
   /**
-   * @param {CommonPlatformValidator.searchApplication} arg - Arg object
+   * @param {CommonPlatformValidator.SearchApplicationParam} arg - Arg object
    * @returns {Promise<CommonPlatformModel.ApplicationResponse>} - Success response
    * @name searchApplication
    * @summary: Search Application

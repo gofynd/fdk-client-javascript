@@ -18,8 +18,6 @@ const CompanyProfile = require("./CompanyProfile/CompanyProfilePlatformClient");
 
 const FileStorage = require("./FileStorage/FileStoragePlatformClient");
 
-const Inventory = require("./Inventory/InventoryPlatformClient");
-
 const Configuration = require("./Configuration/ConfigurationPlatformClient");
 
 const Discount = require("./Discount/DiscountPlatformClient");
@@ -58,8 +56,6 @@ class PlatformClient {
     this.companyProfile = new CompanyProfile(config);
 
     this.fileStorage = new FileStorage(config);
-
-    this.inventory = new Inventory(config);
 
     this.configuration = new Configuration(config);
 

@@ -4,15 +4,15 @@ declare class Configuration {
     config: any;
     applicationId: any;
     /**
-     * @param {ConfigurationPlatformApplicationValidator.addDomain} arg - Arg object
+     * @param {ConfigurationPlatformApplicationValidator.AddDomainParam} arg - Arg object
      * @returns {Promise<ConfigurationPlatformModel.Domain>} - Success response
      * @name addDomain
      * @summary: Add new domain to current sales channel
      * @description: Add a new domain to current sales channel, including pre-defined domain (free domain) or custom domain (owned by the brand)
      */
-    addDomain({ body }?: ConfigurationPlatformApplicationValidator.addDomain): Promise<ConfigurationPlatformModel.Domain>;
+    addDomain({ body }?: ConfigurationPlatformApplicationValidator.AddDomainParam): Promise<ConfigurationPlatformModel.Domain>;
     /**
-     * @param {ConfigurationPlatformApplicationValidator.changeDomainType} arg
+     * @param {ConfigurationPlatformApplicationValidator.ChangeDomainTypeParam} arg
      *   - Arg object
      *
      * @returns {Promise<ConfigurationPlatformModel.DomainsResponse>} - Success response
@@ -20,9 +20,11 @@ declare class Configuration {
      * @summary: Change the type of domain in the current sales channel
      * @description: Primary domain is used as the URL of your website. Short link domain is comparatively smaller and used while generating short links. Use this API to change a domain to either Primary or a Shortlink domain.
      */
-    changeDomainType({ body }?: ConfigurationPlatformApplicationValidator.changeDomainType): Promise<ConfigurationPlatformModel.DomainsResponse>;
+    changeDomainType({ body }?: ConfigurationPlatformApplicationValidator.ChangeDomainTypeParam): Promise<ConfigurationPlatformModel.DomainsResponse>;
     /**
-     * @param {ConfigurationPlatformApplicationValidator.getAppApiTokens} arg - Arg object
+     * @param {ConfigurationPlatformApplicationValidator.GetAppApiTokensParam} arg
+     *   - Arg object
+     *
      * @returns {Promise<ConfigurationPlatformModel.TokenResponse>} - Success response
      * @name getAppApiTokens
      * @summary: Get social tokens for the sales channel
@@ -30,7 +32,7 @@ declare class Configuration {
      */
     getAppApiTokens({}?: any): Promise<ConfigurationPlatformModel.TokenResponse>;
     /**
-     * @param {ConfigurationPlatformApplicationValidator.getAppBasicDetails} arg
+     * @param {ConfigurationPlatformApplicationValidator.GetAppBasicDetailsParam} arg
      *   - Arg object
      *
      * @returns {Promise<ConfigurationPlatformModel.ApplicationDetail>} - Success response
@@ -40,13 +42,15 @@ declare class Configuration {
      */
     getAppBasicDetails({}?: any): Promise<ConfigurationPlatformModel.ApplicationDetail>;
     /**
-     * @param {ConfigurationPlatformApplicationValidator.getAppCompanies} arg - Arg object
+     * @param {ConfigurationPlatformApplicationValidator.GetAppCompaniesParam} arg
+     *   - Arg object
+     *
      * @returns {Promise<ConfigurationPlatformModel.CompaniesResponse>} - Success response
      * @name getAppCompanies
      * @summary: Get companies enabled in the sales channel inventory
      * @description: Fetch info of all the companies (e.g. name, uid, and company type) whose inventory is fetched into the current sales channel application
      */
-    getAppCompanies({ uid, pageNo, pageSize }?: ConfigurationPlatformApplicationValidator.getAppCompanies): Promise<ConfigurationPlatformModel.CompaniesResponse>;
+    getAppCompanies({ uid, pageNo, pageSize }?: ConfigurationPlatformApplicationValidator.GetAppCompaniesParam): Promise<ConfigurationPlatformModel.CompaniesResponse>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.companyId - Numeric ID allotted to a business account
@@ -67,7 +71,7 @@ declare class Configuration {
         pageSize?: number;
     }): Paginator<ConfigurationPlatformModel.CompaniesResponse>;
     /**
-     * @param {ConfigurationPlatformApplicationValidator.getAppContactInfo} arg
+     * @param {ConfigurationPlatformApplicationValidator.GetAppContactInfoParam} arg
      *   - Arg object
      *
      * @returns {Promise<ConfigurationPlatformModel.ApplicationInformation>} -
@@ -78,7 +82,7 @@ declare class Configuration {
      */
     getAppContactInfo({}?: any): Promise<ConfigurationPlatformModel.ApplicationInformation>;
     /**
-     * @param {ConfigurationPlatformApplicationValidator.getAppCurrencyConfig} arg
+     * @param {ConfigurationPlatformApplicationValidator.GetAppCurrencyConfigParam} arg
      *   - Arg object
      *
      * @returns {Promise<ConfigurationPlatformModel.AppSupportedCurrency>} -
@@ -89,7 +93,9 @@ declare class Configuration {
      */
     getAppCurrencyConfig({}?: any): Promise<ConfigurationPlatformModel.AppSupportedCurrency>;
     /**
-     * @param {ConfigurationPlatformApplicationValidator.getAppFeatures} arg - Arg object
+     * @param {ConfigurationPlatformApplicationValidator.GetAppFeaturesParam} arg
+     *   - Arg object
+     *
      * @returns {Promise<ConfigurationPlatformModel.AppFeatureResponse>} -
      *   Success response
      * @name getAppFeatures
@@ -98,13 +104,15 @@ declare class Configuration {
      */
     getAppFeatures({}?: any): Promise<ConfigurationPlatformModel.AppFeatureResponse>;
     /**
-     * @param {ConfigurationPlatformApplicationValidator.getAppStores} arg - Arg object
+     * @param {ConfigurationPlatformApplicationValidator.GetAppStoresParam} arg
+     *   - Arg object
+     *
      * @returns {Promise<ConfigurationPlatformModel.StoresResponse>} - Success response
      * @name getAppStores
      * @summary: Get stores enabled in the sales channel inventory
      * @description: Fetch info of all the companies (e.g. uid, name, display name, store type, store code and company id) whose inventory is fetched into the current sales channel application
      */
-    getAppStores({ pageNo, pageSize }?: ConfigurationPlatformApplicationValidator.getAppStores): Promise<ConfigurationPlatformModel.StoresResponse>;
+    getAppStores({ pageNo, pageSize }?: ConfigurationPlatformApplicationValidator.GetAppStoresParam): Promise<ConfigurationPlatformModel.StoresResponse>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.companyId - Numeric ID allotted to a business account
@@ -123,7 +131,7 @@ declare class Configuration {
         pageSize?: number;
     }): Paginator<ConfigurationPlatformModel.StoresResponse>;
     /**
-     * @param {ConfigurationPlatformApplicationValidator.getAppSupportedCurrency} arg
+     * @param {ConfigurationPlatformApplicationValidator.GetAppSupportedCurrencyParam} arg
      *   - Arg object
      *
      * @returns {Promise<ConfigurationPlatformModel.AppCurrencyResponse>} -
@@ -134,7 +142,7 @@ declare class Configuration {
      */
     getAppSupportedCurrency({}?: any): Promise<ConfigurationPlatformModel.AppCurrencyResponse>;
     /**
-     * @param {ConfigurationPlatformApplicationValidator.getApplicationById} arg
+     * @param {ConfigurationPlatformApplicationValidator.GetApplicationByIdParam} arg
      *   - Arg object
      *
      * @returns {Promise<ConfigurationPlatformModel.Application>} - Success response
@@ -144,25 +152,29 @@ declare class Configuration {
      */
     getApplicationById({}?: any): Promise<ConfigurationPlatformModel.Application>;
     /**
-     * @param {ConfigurationPlatformApplicationValidator.getBuildConfig} arg - Arg object
+     * @param {ConfigurationPlatformApplicationValidator.GetBuildConfigParam} arg
+     *   - Arg object
+     *
      * @returns {Promise<ConfigurationPlatformModel.MobileAppConfiguration>} -
      *   Success response
      * @name getBuildConfig
      * @summary: Get configuration of latest mobile build
      * @description: Fetch latest build configuration, such as app name, landing page image, splash image used in a mobile build.
      */
-    getBuildConfig({ platformType }?: ConfigurationPlatformApplicationValidator.getBuildConfig): Promise<ConfigurationPlatformModel.MobileAppConfiguration>;
+    getBuildConfig({ platformType }?: ConfigurationPlatformApplicationValidator.GetBuildConfigParam): Promise<ConfigurationPlatformModel.MobileAppConfiguration>;
     /**
-     * @param {ConfigurationPlatformApplicationValidator.getDomainStatus} arg - Arg object
+     * @param {ConfigurationPlatformApplicationValidator.GetDomainStatusParam} arg
+     *   - Arg object
+     *
      * @returns {Promise<ConfigurationPlatformModel.DomainStatusResponse>} -
      *   Success response
      * @name getDomainStatus
      * @summary: Get the status of connected domain
      * @description: Shows if the A records and TXT records of the domain correctly points to appropriate IP on Fynd Servers.
      */
-    getDomainStatus({ body }?: ConfigurationPlatformApplicationValidator.getDomainStatus): Promise<ConfigurationPlatformModel.DomainStatusResponse>;
+    getDomainStatus({ body }?: ConfigurationPlatformApplicationValidator.GetDomainStatusParam): Promise<ConfigurationPlatformModel.DomainStatusResponse>;
     /**
-     * @param {ConfigurationPlatformApplicationValidator.getDomains} arg - Arg object
+     * @param {ConfigurationPlatformApplicationValidator.GetDomainsParam} arg - Arg object
      * @returns {Promise<ConfigurationPlatformModel.DomainsResponse>} - Success response
      * @name getDomains
      * @summary: Fetch all the domains added to an  application (sales channel website), including pre-defined domain (free domain) or custom domain (owned by the brand). Know the verification status of each domain name, and find out which one is the primary domain, short link domain, or both.
@@ -170,7 +182,7 @@ declare class Configuration {
      */
     getDomains({}?: any): Promise<ConfigurationPlatformModel.DomainsResponse>;
     /**
-     * @param {ConfigurationPlatformApplicationValidator.getInventoryConfig} arg
+     * @param {ConfigurationPlatformApplicationValidator.GetInventoryConfigParam} arg
      *   - Arg object
      *
      * @returns {Promise<ConfigurationPlatformModel.ApplicationInventory>} -
@@ -181,7 +193,7 @@ declare class Configuration {
      */
     getInventoryConfig({}?: any): Promise<ConfigurationPlatformModel.ApplicationInventory>;
     /**
-     * @param {ConfigurationPlatformApplicationValidator.getOrderingStoresByFilter} arg
+     * @param {ConfigurationPlatformApplicationValidator.GetOrderingStoresByFilterParam} arg
      *   - Arg object
      *
      * @returns {Promise<ConfigurationPlatformModel.OrderingStores>} - Success response
@@ -189,7 +201,7 @@ declare class Configuration {
      * @summary: Get ordering store by filter
      * @description: Use this API to use filters and retrieve the details of the deployment stores (the selling locations where the application will be utilised for placing orders).
      */
-    getOrderingStoresByFilter({ body, pageNo, pageSize }?: ConfigurationPlatformApplicationValidator.getOrderingStoresByFilter): Promise<ConfigurationPlatformModel.OrderingStores>;
+    getOrderingStoresByFilter({ body, pageNo, pageSize }?: ConfigurationPlatformApplicationValidator.GetOrderingStoresByFilterParam): Promise<ConfigurationPlatformModel.OrderingStores>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.companyId - Numeric ID allotted to a business account
@@ -210,7 +222,7 @@ declare class Configuration {
         body: ConfigurationPlatformModel.FilterOrderingStoreRequest;
     }): Paginator<ConfigurationPlatformModel.OrderingStores>;
     /**
-     * @param {ConfigurationPlatformApplicationValidator.getPreviousVersions} arg
+     * @param {ConfigurationPlatformApplicationValidator.GetPreviousVersionsParam} arg
      *   - Arg object
      *
      * @returns {Promise<ConfigurationPlatformModel.BuildVersionHistory>} -
@@ -219,9 +231,9 @@ declare class Configuration {
      * @summary: Get details of previous mobile builds
      * @description: Fetch version details of the app, this includes the build status, build date, version name, latest version, and a lot more.
      */
-    getPreviousVersions({ platformType }?: ConfigurationPlatformApplicationValidator.getPreviousVersions): Promise<ConfigurationPlatformModel.BuildVersionHistory>;
+    getPreviousVersions({ platformType }?: ConfigurationPlatformApplicationValidator.GetPreviousVersionsParam): Promise<ConfigurationPlatformModel.BuildVersionHistory>;
     /**
-     * @param {ConfigurationPlatformApplicationValidator.getStaffOrderingStores} arg
+     * @param {ConfigurationPlatformApplicationValidator.GetStaffOrderingStoresParam} arg
      *   - Arg object
      *
      * @returns {Promise<ConfigurationPlatformModel.OrderingStoresResponse>} -
@@ -230,7 +242,7 @@ declare class Configuration {
      * @summary: Get deployment stores
      * @description: Use this API to retrieve the details of all stores access given to the staff member (the selling locations where the application will be utilized for placing orders).
      */
-    getStaffOrderingStores({ pageNo, pageSize, q }?: ConfigurationPlatformApplicationValidator.getStaffOrderingStores): Promise<ConfigurationPlatformModel.OrderingStoresResponse>;
+    getStaffOrderingStores({ pageNo, pageSize, q }?: ConfigurationPlatformApplicationValidator.GetStaffOrderingStoresParam): Promise<ConfigurationPlatformModel.OrderingStoresResponse>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.companyId - Numeric ID allotted to a business account
@@ -251,7 +263,7 @@ declare class Configuration {
         q?: string;
     }): Paginator<ConfigurationPlatformModel.OrderingStoresResponse>;
     /**
-     * @param {ConfigurationPlatformApplicationValidator.modifyAppFeatures} arg
+     * @param {ConfigurationPlatformApplicationValidator.ModifyAppFeaturesParam} arg
      *   - Arg object
      *
      * @returns {Promise<ConfigurationPlatformModel.AppFeature>} - Success response
@@ -259,9 +271,9 @@ declare class Configuration {
      * @summary: Update features of application
      * @description: Update features of application
      */
-    modifyAppFeatures({ body }?: ConfigurationPlatformApplicationValidator.modifyAppFeatures): Promise<ConfigurationPlatformModel.AppFeature>;
+    modifyAppFeatures({ body }?: ConfigurationPlatformApplicationValidator.ModifyAppFeaturesParam): Promise<ConfigurationPlatformModel.AppFeature>;
     /**
-     * @param {ConfigurationPlatformApplicationValidator.partiallyUpdateInventoryConfig} arg
+     * @param {ConfigurationPlatformApplicationValidator.PartiallyUpdateInventoryConfigParam} arg
      *   - Arg object
      *
      * @returns {Promise<ConfigurationPlatformModel.ApplicationInventory>} -
@@ -270,9 +282,9 @@ declare class Configuration {
      * @summary: Partially update sales channel configuration
      * @description: Partially update the configuration details of authentication, inventory, article assignment rules, reward points, cart, payment, order, logistics, etc.
      */
-    partiallyUpdateInventoryConfig({ body }?: ConfigurationPlatformApplicationValidator.partiallyUpdateInventoryConfig): Promise<ConfigurationPlatformModel.ApplicationInventory>;
+    partiallyUpdateInventoryConfig({ body }?: ConfigurationPlatformApplicationValidator.PartiallyUpdateInventoryConfigParam): Promise<ConfigurationPlatformModel.ApplicationInventory>;
     /**
-     * @param {ConfigurationPlatformApplicationValidator.removeDomainById} arg
+     * @param {ConfigurationPlatformApplicationValidator.RemoveDomainByIdParam} arg
      *   - Arg object
      *
      * @returns {Promise<ConfigurationPlatformModel.SuccessMessageResponse>} -
@@ -281,9 +293,9 @@ declare class Configuration {
      * @summary: Remove attached domain from current sales channel
      * @description: Delete a domain (secondary or shortlink domain) added to a sales channel. It will disable user's access to website, shared links, and other features associated with this domain.
      */
-    removeDomainById({ id }?: ConfigurationPlatformApplicationValidator.removeDomainById): Promise<ConfigurationPlatformModel.SuccessMessageResponse>;
+    removeDomainById({ id }?: ConfigurationPlatformApplicationValidator.RemoveDomainByIdParam): Promise<ConfigurationPlatformModel.SuccessMessageResponse>;
     /**
-     * @param {ConfigurationPlatformApplicationValidator.updateAppApiTokens} arg
+     * @param {ConfigurationPlatformApplicationValidator.UpdateAppApiTokensParam} arg
      *   - Arg object
      *
      * @returns {Promise<ConfigurationPlatformModel.TokenResponse>} - Success response
@@ -291,9 +303,9 @@ declare class Configuration {
      * @summary: Add or update social tokens for the sales channel
      * @description: Use this API to add or edit the tokens used for integrating Firebase, MoEngage, Segment, GTM, Freshchat, Safetynet, Google Map, Google and Facebook auth.
      */
-    updateAppApiTokens({ body }?: ConfigurationPlatformApplicationValidator.updateAppApiTokens): Promise<ConfigurationPlatformModel.TokenResponse>;
+    updateAppApiTokens({ body }?: ConfigurationPlatformApplicationValidator.UpdateAppApiTokensParam): Promise<ConfigurationPlatformModel.TokenResponse>;
     /**
-     * @param {ConfigurationPlatformApplicationValidator.updateAppBasicDetails} arg
+     * @param {ConfigurationPlatformApplicationValidator.UpdateAppBasicDetailsParam} arg
      *   - Arg object
      *
      * @returns {Promise<ConfigurationPlatformModel.ApplicationDetail>} - Success response
@@ -301,9 +313,9 @@ declare class Configuration {
      * @summary: Update sales channel details
      * @description: Modify sales channel details like name, description, logo, domain, company ID, and other related information.
      */
-    updateAppBasicDetails({ body }?: ConfigurationPlatformApplicationValidator.updateAppBasicDetails): Promise<ConfigurationPlatformModel.ApplicationDetail>;
+    updateAppBasicDetails({ body }?: ConfigurationPlatformApplicationValidator.UpdateAppBasicDetailsParam): Promise<ConfigurationPlatformModel.ApplicationDetail>;
     /**
-     * @param {ConfigurationPlatformApplicationValidator.updateAppContactInfo} arg
+     * @param {ConfigurationPlatformApplicationValidator.UpdateAppContactInfoParam} arg
      *   - Arg object
      *
      * @returns {Promise<ConfigurationPlatformModel.ApplicationInformation>} -
@@ -312,9 +324,9 @@ declare class Configuration {
      * @summary: Save or update current information of the sales channel
      * @description: Modify the social links, copyright text, business highlights, address and contact information of the company/seller/brand operating the application.
      */
-    updateAppContactInfo({ body }?: ConfigurationPlatformApplicationValidator.updateAppContactInfo): Promise<ConfigurationPlatformModel.ApplicationInformation>;
+    updateAppContactInfo({ body }?: ConfigurationPlatformApplicationValidator.UpdateAppContactInfoParam): Promise<ConfigurationPlatformModel.ApplicationInformation>;
     /**
-     * @param {ConfigurationPlatformApplicationValidator.updateAppCurrencyConfig} arg
+     * @param {ConfigurationPlatformApplicationValidator.UpdateAppCurrencyConfigParam} arg
      *   - Arg object
      *
      * @returns {Promise<ConfigurationPlatformModel.AppSupportedCurrency>} -
@@ -323,9 +335,9 @@ declare class Configuration {
      * @summary: Update initial sales channel supported currency
      * @description: Use this API to add and edit the currencies supported in the application. Initially, INR will be enabled by default.
      */
-    updateAppCurrencyConfig({ body }?: ConfigurationPlatformApplicationValidator.updateAppCurrencyConfig): Promise<ConfigurationPlatformModel.AppSupportedCurrency>;
+    updateAppCurrencyConfig({ body }?: ConfigurationPlatformApplicationValidator.UpdateAppCurrencyConfigParam): Promise<ConfigurationPlatformModel.AppSupportedCurrency>;
     /**
-     * @param {ConfigurationPlatformApplicationValidator.updateAppFeatures} arg
+     * @param {ConfigurationPlatformApplicationValidator.UpdateAppFeaturesParam} arg
      *   - Arg object
      *
      * @returns {Promise<ConfigurationPlatformModel.AppFeature>} - Success response
@@ -333,9 +345,9 @@ declare class Configuration {
      * @summary: Update the sales channel configuration and features
      * @description: Modify the feature configuration of sales channel websites, such as product detail, landing page, options in the login/registration screen, home page, listing page, reward points, communication opt-in, cart options and many more.
      */
-    updateAppFeatures({ body }?: ConfigurationPlatformApplicationValidator.updateAppFeatures): Promise<ConfigurationPlatformModel.AppFeature>;
+    updateAppFeatures({ body }?: ConfigurationPlatformApplicationValidator.UpdateAppFeaturesParam): Promise<ConfigurationPlatformModel.AppFeature>;
     /**
-     * @param {ConfigurationPlatformApplicationValidator.updateBuildConfig} arg
+     * @param {ConfigurationPlatformApplicationValidator.UpdateBuildConfigParam} arg
      *   - Arg object
      *
      * @returns {Promise<ConfigurationPlatformModel.MobileAppConfiguration>} -
@@ -344,9 +356,9 @@ declare class Configuration {
      * @summary: Update the configuration for next mobile build
      * @description: Modify the existing build configuration, such as app name, landing page image, splash image used in a mobile build.
      */
-    updateBuildConfig({ platformType, body }?: ConfigurationPlatformApplicationValidator.updateBuildConfig): Promise<ConfigurationPlatformModel.MobileAppConfiguration>;
+    updateBuildConfig({ platformType, body }?: ConfigurationPlatformApplicationValidator.UpdateBuildConfigParam): Promise<ConfigurationPlatformModel.MobileAppConfiguration>;
     /**
-     * @param {ConfigurationPlatformApplicationValidator.updateInventoryConfig} arg
+     * @param {ConfigurationPlatformApplicationValidator.UpdateInventoryConfigParam} arg
      *   - Arg object
      *
      * @returns {Promise<ConfigurationPlatformModel.ApplicationInventory>} -
@@ -355,9 +367,9 @@ declare class Configuration {
      * @summary: Update sales channel configuration
      * @description: Modify the configuration details of authentication, inventory, article assignment rules, reward points, cart, payment, order, logistics, etc.
      */
-    updateInventoryConfig({ body }?: ConfigurationPlatformApplicationValidator.updateInventoryConfig): Promise<ConfigurationPlatformModel.ApplicationInventory>;
+    updateInventoryConfig({ body }?: ConfigurationPlatformApplicationValidator.UpdateInventoryConfigParam): Promise<ConfigurationPlatformModel.ApplicationInventory>;
     /**
-     * @param {ConfigurationPlatformApplicationValidator.updateOrderingStoreConfig} arg
+     * @param {ConfigurationPlatformApplicationValidator.UpdateOrderingStoreConfigParam} arg
      *   - Arg object
      *
      * @returns {Promise<ConfigurationPlatformModel.DeploymentMeta>} - Success response
@@ -365,7 +377,7 @@ declare class Configuration {
      * @summary: Add/Update ordering store config
      * @description: Use this API to edit the details of the deployment stores (the selling locations where the application will be utilised for placing orders)
      */
-    updateOrderingStoreConfig({ body }?: ConfigurationPlatformApplicationValidator.updateOrderingStoreConfig): Promise<ConfigurationPlatformModel.DeploymentMeta>;
+    updateOrderingStoreConfig({ body }?: ConfigurationPlatformApplicationValidator.UpdateOrderingStoreConfigParam): Promise<ConfigurationPlatformModel.DeploymentMeta>;
 }
 import ConfigurationPlatformApplicationValidator = require("./ConfigurationPlatformApplicationValidator");
 import ConfigurationPlatformModel = require("./ConfigurationPlatformModel");

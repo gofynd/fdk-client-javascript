@@ -3,311 +3,311 @@ const Joi = require("joi");
 const CommunicationPlatformModel = require("./CommunicationPlatformModel");
 
 /**
- * @typedef createAudience
+ * @typedef CreateAudienceParam
  * @property {CommunicationPlatformModel.AudienceReq} body
  */
 
 /**
- * @typedef createCampaign
+ * @typedef CreateCampaignParam
  * @property {CommunicationPlatformModel.CampaignReq} body
  */
 
 /**
- * @typedef createEmailProvider
+ * @typedef CreateEmailProviderParam
  * @property {CommunicationPlatformModel.EmailProviderReq} body
  */
 
 /**
- * @typedef createEmailTemplate
+ * @typedef CreateEmailTemplateParam
  * @property {CommunicationPlatformModel.EmailTemplateReq} body
  */
 
 /**
- * @typedef createSmsProvider
+ * @typedef CreateSmsProviderParam
  * @property {CommunicationPlatformModel.SmsProviderReq} body
  */
 
 /**
- * @typedef createSmsTemplate
+ * @typedef CreateSmsTemplateParam
  * @property {CommunicationPlatformModel.SmsTemplateReq} body
  */
 
 /**
- * @typedef createVoiceProvider
+ * @typedef CreateVoiceProviderParam
  * @property {CommunicationPlatformModel.VoiceProviderReq} body
  */
 
 /**
- * @typedef createVoiceTemplate
+ * @typedef CreateVoiceTemplateParam
  * @property {CommunicationPlatformModel.VoiceTemplateReq} body
  */
 
 /**
- * @typedef deleteEmailProviderById
+ * @typedef DeleteEmailProviderByIdParam
  * @property {string} id - Email provider id
  */
 
 /**
- * @typedef deleteEmailTemplateById
+ * @typedef DeleteEmailTemplateByIdParam
  * @property {string} id - Email template id
  */
 
 /**
- * @typedef deleteSmsProviderById
+ * @typedef DeleteSmsProviderByIdParam
  * @property {string} id - Sms provider id
  */
 
 /**
- * @typedef deleteSmsTemplateById
+ * @typedef DeleteSmsTemplateByIdParam
  * @property {string} id - Sms template id
  */
 
 /**
- * @typedef deleteVoiceTemplateById
+ * @typedef DeleteVoiceTemplateByIdParam
  * @property {string} id - Voice template id
  */
 
-/** @typedef getAppProviders */
+/** @typedef GetAppProvidersParam */
 
 /**
- * @typedef getAudienceById
+ * @typedef GetAudienceByIdParam
  * @property {string} id - Audience id
  */
 
 /**
- * @typedef getAudiences
+ * @typedef GetAudiencesParam
  * @property {number} [pageNo] - Current page no
  * @property {number} [pageSize] - Current request items count
  * @property {Object} [sort] - To sort based on created_at
  */
 
 /**
- * @typedef getBigqueryHeaders
+ * @typedef GetBigqueryHeadersParam
  * @property {CommunicationPlatformModel.BigqueryHeadersReq} body
  */
 
 /**
- * @typedef getCampaignById
+ * @typedef GetCampaignByIdParam
  * @property {string} id - Campaign id
  */
 
 /**
- * @typedef getCampaigns
+ * @typedef GetCampaignsParam
  * @property {number} [pageNo] - Current page no
  * @property {number} [pageSize] - Current request items count
  * @property {Object} [sort] - To sort based on created_at
  */
 
 /**
- * @typedef getCommunicationLogs
+ * @typedef GetCommunicationLogsParam
  * @property {string} [pageId] - Current page no
  * @property {number} [pageSize] - Current request items count
  * @property {Object} [sort] - To sort based on _id
  * @property {Object} [query]
  */
 
-/** @typedef getDefaultEmailProviders */
+/** @typedef GetDefaultEmailProvidersParam */
 
-/** @typedef getDefaultSmsProviders */
+/** @typedef GetDefaultSmsProvidersParam */
 
 /**
- * @typedef getEmailProviderById
+ * @typedef GetEmailProviderByIdParam
  * @property {string} id - Email provider id
  */
 
 /**
- * @typedef getEmailProviders
+ * @typedef GetEmailProvidersParam
  * @property {number} [pageNo] - Current page no
  * @property {number} [pageSize] - Current request items count
  * @property {Object} [sort] - To sort based on created_at
  */
 
 /**
- * @typedef getEmailTemplateById
+ * @typedef GetEmailTemplateByIdParam
  * @property {string} id - Email template id
  */
 
 /**
- * @typedef getEmailTemplates
+ * @typedef GetEmailTemplatesParam
  * @property {number} [pageNo] - Current page no
  * @property {number} [pageSize] - Current request items count
  * @property {Object} [sort] - To sort based on created_at
  */
 
 /**
- * @typedef getEventSubscriptions
+ * @typedef GetEventSubscriptionsParam
  * @property {number} [pageNo] - Current page no
  * @property {number} [pageSize] - Current request items count
  * @property {string[]} [populate] - Populate fields
  * @property {string} [query] - Current request items count
  */
 
-/** @typedef getGlobalProviders */
+/** @typedef GetGlobalProvidersParam */
 
 /**
- * @typedef getJobLogs
+ * @typedef GetJobLogsParam
  * @property {number} [pageNo] - Current page no
  * @property {number} [pageSize] - Current request items count
  * @property {Object} [sort] - To sort based on created_at
  */
 
 /**
- * @typedef getJobs
+ * @typedef GetJobsParam
  * @property {number} [pageNo] - Current page no
  * @property {number} [pageSize] - Current request items count
  * @property {Object} [sort] - To sort based on created_at
  */
 
 /**
- * @typedef getNSampleRecordsFromCsv
+ * @typedef GetNSampleRecordsFromCsvParam
  * @property {CommunicationPlatformModel.GetNRecordsCsvReq} body
  */
 
 /**
- * @typedef getSmsProviderById
+ * @typedef GetSmsProviderByIdParam
  * @property {string} id - Sms provider id
  */
 
 /**
- * @typedef getSmsProviders
+ * @typedef GetSmsProvidersParam
  * @property {number} [pageNo] - Current page no
  * @property {number} [pageSize] - Current request items count
  * @property {Object} [sort] - To sort based on created_at
  */
 
 /**
- * @typedef getSmsTemplateById
+ * @typedef GetSmsTemplateByIdParam
  * @property {string} id - Sms template id
  */
 
 /**
- * @typedef getSmsTemplates
+ * @typedef GetSmsTemplatesParam
  * @property {number} [pageNo] - Current page no
  * @property {number} [pageSize] - Current request items count
  * @property {Object} [sort] - To sort based on created_at
  */
 
 /**
- * @typedef getStatsOfCampaignById
+ * @typedef GetStatsOfCampaignByIdParam
  * @property {string} id - Campaign id
  */
 
 /**
- * @typedef getSubscribedEmailTemplates
+ * @typedef GetSubscribedEmailTemplatesParam
  * @property {number} [pageNo] - Current page no
  * @property {number} [pageSize] - Current request items count
  */
 
 /**
- * @typedef getSubscribedSmsTemplates
+ * @typedef GetSubscribedSmsTemplatesParam
  * @property {number} [pageNo] - Current page no
  * @property {number} [pageSize] - Current request items count
  */
 
-/** @typedef getSystemEmailTemplates */
+/** @typedef GetSystemEmailTemplatesParam */
 
-/** @typedef getSystemSmsTemplates */
+/** @typedef GetSystemSmsTemplatesParam */
 
 /**
- * @typedef getSystemVoiceTemplates
+ * @typedef GetSystemVoiceTemplatesParam
  * @property {number} [pageNo] - Current page no
  * @property {number} [pageSize] - Current request items count
  * @property {Object} [sort] - To sort based on created_at
  */
 
 /**
- * @typedef getVoiceProviderById
+ * @typedef GetVoiceProviderByIdParam
  * @property {string} id - Voice provider id
  */
 
 /**
- * @typedef getVoiceProviders
+ * @typedef GetVoiceProvidersParam
  * @property {number} [pageNo] - Current page no
  * @property {number} [pageSize] - Current request items count
  * @property {Object} [sort] - To sort based on created_at
  */
 
 /**
- * @typedef getVoiceTemplateById
+ * @typedef GetVoiceTemplateByIdParam
  * @property {string} id - Voice template id
  */
 
 /**
- * @typedef getVoiceTemplates
+ * @typedef GetVoiceTemplatesParam
  * @property {number} [pageNo] - Current page no
  * @property {number} [pageSize] - Current request items count
  * @property {Object} [sort] - To sort based on created_at
  */
 
 /**
- * @typedef sendCommunicationAsynchronously
+ * @typedef SendCommunicationAsynchronouslyParam
  * @property {CommunicationPlatformModel.EngineRequest} body
  */
 
 /**
- * @typedef sendCommunicationSynchronously
+ * @typedef SendCommunicationSynchronouslyParam
  * @property {CommunicationPlatformModel.EngineRequest} body
  */
 
 /**
- * @typedef sendOtp
+ * @typedef SendOtpParam
  * @property {CommunicationPlatformModel.SendOtpCommsReq} body
  */
 
 /**
- * @typedef triggerCampaignJob
+ * @typedef TriggerCampaignJobParam
  * @property {CommunicationPlatformModel.TriggerJobRequest} body
  */
 
 /**
- * @typedef updateAppProviders
+ * @typedef UpdateAppProvidersParam
  * @property {CommunicationPlatformModel.AppProviderReq} body
  */
 
 /**
- * @typedef updateAudienceById
+ * @typedef UpdateAudienceByIdParam
  * @property {string} id - Audience id
  * @property {CommunicationPlatformModel.AudienceReq} body
  */
 
 /**
- * @typedef updateCampaignById
+ * @typedef UpdateCampaignByIdParam
  * @property {string} id - Campaign id
  * @property {CommunicationPlatformModel.CampaignReq} body
  */
 
 /**
- * @typedef updateEmailProviderById
+ * @typedef UpdateEmailProviderByIdParam
  * @property {string} id - Email provider id
  * @property {CommunicationPlatformModel.EmailProviderReq} body
  */
 
 /**
- * @typedef updateEmailTemplateById
+ * @typedef UpdateEmailTemplateByIdParam
  * @property {string} id - Email template id
  * @property {CommunicationPlatformModel.EmailTemplateReq} body
  */
 
 /**
- * @typedef updateSmsProviderById
+ * @typedef UpdateSmsProviderByIdParam
  * @property {string} id - Sms provider id
  * @property {CommunicationPlatformModel.SmsProviderReq} body
  */
 
 /**
- * @typedef updateSmsTemplateById
+ * @typedef UpdateSmsTemplateByIdParam
  * @property {string} id - Sms template id
  * @property {CommunicationPlatformModel.SmsTemplateReq} body
  */
 
 /**
- * @typedef updateVoiceTemplateById
+ * @typedef UpdateVoiceTemplateByIdParam
  * @property {string} id - Voice template id
  * @property {CommunicationPlatformModel.VoiceTemplateReq} body
  */
 
 /**
- * @typedef verfiyOtp
+ * @typedef VerfiyOtpParam
  * @property {CommunicationPlatformModel.VerifyOtpCommsReq} body
  */
 

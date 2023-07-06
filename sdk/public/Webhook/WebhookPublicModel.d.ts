@@ -30,6 +30,16 @@ export = WebhookPublicModel;
  * @property {string} [version]
  */
 /**
+ * @typedef EventConfigDetails
+ * @property {string} [created_on]
+ * @property {string} [description]
+ * @property {string} [display_name]
+ * @property {string} [event_category]
+ * @property {string} [event_name]
+ * @property {string} [event_type]
+ * @property {string} [version]
+ */
+/**
  * @typedef EventConfigList
  * @property {EventConfig[]} [items]
  * @property {Page} [page]
@@ -82,6 +92,17 @@ export = WebhookPublicModel;
  * @property {string} [webhook_url]
  */
 /**
+ * @typedef SubscriberConfigDetails
+ * @property {Association} [association]
+ * @property {AuthMeta} [auth_meta]
+ * @property {Object} [custom_headers]
+ * @property {string} [email_id]
+ * @property {number[]} [event_id]
+ * @property {string} [name]
+ * @property {SubscriberStatus} [status]
+ * @property {string} [webhook_url]
+ */
+/**
  * @typedef SubscriberConfigList
  * @property {SubscriberResponse[]} [items]
  * @property {Page} [page]
@@ -111,7 +132,7 @@ export = WebhookPublicModel;
 declare class WebhookPublicModel {
 }
 declare namespace WebhookPublicModel {
-    export { Association, AuthMeta, EventConfig, EventConfigBase, EventConfigList, EventConfigResponse, EventPayload, EventProcessedStatus, Page, SubscriberConfig, SubscriberConfigList, SubscriberEvent, SubscriberResponse, SubscriberStatus };
+    export { Association, AuthMeta, EventConfig, EventConfigBase, EventConfigDetails, EventConfigList, EventConfigResponse, EventPayload, EventProcessedStatus, Page, SubscriberConfig, SubscriberConfigDetails, SubscriberConfigList, SubscriberEvent, SubscriberResponse, SubscriberStatus };
 }
 /** @returns {Association} */
 declare function Association(): Association;
@@ -142,6 +163,17 @@ type EventConfig = {
 /** @returns {EventConfigBase} */
 declare function EventConfigBase(): EventConfigBase;
 type EventConfigBase = {
+    event_category?: string;
+    event_name?: string;
+    event_type?: string;
+    version?: string;
+};
+/** @returns {EventConfigDetails} */
+declare function EventConfigDetails(): EventConfigDetails;
+type EventConfigDetails = {
+    created_on?: string;
+    description?: string;
+    display_name?: string;
     event_category?: string;
     event_name?: string;
     event_type?: string;
@@ -201,6 +233,18 @@ type SubscriberConfig = {
     email_id?: string;
     event_id?: number[];
     id?: number;
+    name?: string;
+    status?: SubscriberStatus;
+    webhook_url?: string;
+};
+/** @returns {SubscriberConfigDetails} */
+declare function SubscriberConfigDetails(): SubscriberConfigDetails;
+type SubscriberConfigDetails = {
+    association?: Association;
+    auth_meta?: AuthMeta;
+    custom_headers?: any;
+    email_id?: string;
+    event_id?: number[];
     name?: string;
     status?: SubscriberStatus;
     webhook_url?: string;

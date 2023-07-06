@@ -60,7 +60,7 @@ class PosCart {
   }
 
   /**
-   * @param {PosCartApplicationValidator.addAddress} arg - Arg object.
+   * @param {PosCartApplicationValidator.AddAddressParam} arg - Arg object.
    * @returns {Promise<PosCartApplicationModel.SaveAddressResponse>} - Success response
    * @name addAddress
    * @summary: Add address to an account
@@ -123,7 +123,7 @@ class PosCart {
   }
 
   /**
-   * @param {PosCartApplicationValidator.addItems} arg - Arg object.
+   * @param {PosCartApplicationValidator.AddItemsParam} arg - Arg object.
    * @returns {Promise<PosCartApplicationModel.AddCartDetailResponse>} -
    *   Success response
    * @name addItems
@@ -191,7 +191,7 @@ class PosCart {
   }
 
   /**
-   * @param {PosCartApplicationValidator.applyCoupon} arg - Arg object.
+   * @param {PosCartApplicationValidator.ApplyCouponParam} arg - Arg object.
    * @returns {Promise<PosCartApplicationModel.CartDetailResponse>} - Success response
    * @name applyCoupon
    * @summary: Apply Coupon
@@ -259,7 +259,7 @@ class PosCart {
   }
 
   /**
-   * @param {PosCartApplicationValidator.applyRewardPoints} arg - Arg object.
+   * @param {PosCartApplicationValidator.ApplyRewardPointsParam} arg - Arg object.
    * @returns {Promise<PosCartApplicationModel.CartDetailResponse>} - Success response
    * @name applyRewardPoints
    * @summary: Apply reward points at cart
@@ -326,7 +326,7 @@ class PosCart {
   }
 
   /**
-   * @param {PosCartApplicationValidator.checkoutCart} arg - Arg object.
+   * @param {PosCartApplicationValidator.CheckoutCartParam} arg - Arg object.
    * @returns {Promise<PosCartApplicationModel.CartCheckoutResponse>} - Success response
    * @name checkoutCart
    * @summary: Checkout all items in the cart
@@ -390,7 +390,7 @@ class PosCart {
   }
 
   /**
-   * @param {PosCartApplicationValidator.getAddressById} arg - Arg object.
+   * @param {PosCartApplicationValidator.GetAddressByIdParam} arg - Arg object.
    * @returns {Promise<PosCartApplicationModel.Address>} - Success response
    * @name getAddressById
    * @summary: Fetch a single address by its ID
@@ -467,7 +467,7 @@ class PosCart {
   }
 
   /**
-   * @param {PosCartApplicationValidator.getAddresses} arg - Arg object.
+   * @param {PosCartApplicationValidator.GetAddressesParam} arg - Arg object.
    * @returns {Promise<PosCartApplicationModel.GetAddressesResponse>} - Success response
    * @name getAddresses
    * @summary: Fetch address
@@ -543,7 +543,9 @@ class PosCart {
   }
 
   /**
-   * @param {PosCartApplicationValidator.getAvailableDeliveryModes} arg - Arg object.
+   * @param {PosCartApplicationValidator.GetAvailableDeliveryModesParam} arg
+   *   - Arg object.
+   *
    * @returns {Promise<PosCartApplicationModel.CartDeliveryModesResponse>} -
    *   Success response
    * @name getAvailableDeliveryModes
@@ -611,7 +613,7 @@ class PosCart {
   }
 
   /**
-   * @param {PosCartApplicationValidator.getBulkDiscountOffers} arg - Arg object.
+   * @param {PosCartApplicationValidator.GetBulkDiscountOffersParam} arg - Arg object.
    * @returns {Promise<PosCartApplicationModel.BulkPriceResponse>} - Success response
    * @name getBulkDiscountOffers
    * @summary: Get discount offers based on quantity
@@ -680,7 +682,7 @@ class PosCart {
   }
 
   /**
-   * @param {PosCartApplicationValidator.getCart} arg - Arg object.
+   * @param {PosCartApplicationValidator.GetCartParam} arg - Arg object.
    * @returns {Promise<PosCartApplicationModel.CartDetailResponse>} - Success response
    * @name getCart
    * @summary: Fetch all items added to the cart
@@ -748,7 +750,7 @@ class PosCart {
   }
 
   /**
-   * @param {PosCartApplicationValidator.getCartLastModified} arg - Arg object.
+   * @param {PosCartApplicationValidator.GetCartLastModifiedParam} arg - Arg object.
    * @returns {Promise<any>} - Success response
    * @name getCartLastModified
    * @summary: Fetch last-modified timestamp
@@ -811,7 +813,7 @@ class PosCart {
   }
 
   /**
-   * @param {PosCartApplicationValidator.getCartShareLink} arg - Arg object.
+   * @param {PosCartApplicationValidator.GetCartShareLinkParam} arg - Arg object.
    * @returns {Promise<PosCartApplicationModel.GetShareCartLinkResponse>} -
    *   Success response
    * @name getCartShareLink
@@ -875,7 +877,7 @@ class PosCart {
   }
 
   /**
-   * @param {PosCartApplicationValidator.getCartSharedItems} arg - Arg object.
+   * @param {PosCartApplicationValidator.GetCartSharedItemsParam} arg - Arg object.
    * @returns {Promise<PosCartApplicationModel.SharedCartResponse>} - Success response
    * @name getCartSharedItems
    * @summary: Get details of a shared cart
@@ -938,7 +940,7 @@ class PosCart {
   }
 
   /**
-   * @param {PosCartApplicationValidator.getCoupons} arg - Arg object.
+   * @param {PosCartApplicationValidator.GetCouponsParam} arg - Arg object.
    * @returns {Promise<PosCartApplicationModel.GetCouponResponse>} - Success response
    * @name getCoupons
    * @summary: Fetch Coupon
@@ -1003,7 +1005,7 @@ class PosCart {
   }
 
   /**
-   * @param {PosCartApplicationValidator.getItemCount} arg - Arg object.
+   * @param {PosCartApplicationValidator.GetItemCountParam} arg - Arg object.
    * @returns {Promise<PosCartApplicationModel.CartItemCountResponse>} -
    *   Success response
    * @name getItemCount
@@ -1069,7 +1071,7 @@ class PosCart {
   }
 
   /**
-   * @param {PosCartApplicationValidator.getShipments} arg - Arg object.
+   * @param {PosCartApplicationValidator.GetShipmentsParam} arg - Arg object.
    * @returns {Promise<PosCartApplicationModel.CartShipmentsResponse>} -
    *   Success response
    * @name getShipments
@@ -1164,7 +1166,7 @@ class PosCart {
   }
 
   /**
-   * @param {PosCartApplicationValidator.getStoreAddressByUid} arg - Arg object.
+   * @param {PosCartApplicationValidator.GetStoreAddressByUidParam} arg - Arg object.
    * @returns {Promise<PosCartApplicationModel.StoreDetailsResponse>} - Success response
    * @name getStoreAddressByUid
    * @summary: Get list of stores for give uids
@@ -1230,7 +1232,7 @@ class PosCart {
   }
 
   /**
-   * @param {PosCartApplicationValidator.removeAddress} arg - Arg object.
+   * @param {PosCartApplicationValidator.RemoveAddressParam} arg - Arg object.
    * @returns {Promise<PosCartApplicationModel.DeleteAddressResponse>} -
    *   Success response
    * @name removeAddress
@@ -1294,7 +1296,7 @@ class PosCart {
   }
 
   /**
-   * @param {PosCartApplicationValidator.removeCoupon} arg - Arg object.
+   * @param {PosCartApplicationValidator.RemoveCouponParam} arg - Arg object.
    * @returns {Promise<PosCartApplicationModel.CartDetailResponse>} - Success response
    * @name removeCoupon
    * @summary: Remove Coupon Applied
@@ -1359,7 +1361,7 @@ class PosCart {
   }
 
   /**
-   * @param {PosCartApplicationValidator.selectAddress} arg - Arg object.
+   * @param {PosCartApplicationValidator.SelectAddressParam} arg - Arg object.
    * @returns {Promise<PosCartApplicationModel.CartDetailResponse>} - Success response
    * @name selectAddress
    * @summary: Select an address from available addresses
@@ -1426,7 +1428,7 @@ class PosCart {
   }
 
   /**
-   * @param {PosCartApplicationValidator.selectPaymentMode} arg - Arg object.
+   * @param {PosCartApplicationValidator.SelectPaymentModeParam} arg - Arg object.
    * @returns {Promise<PosCartApplicationModel.CartDetailResponse>} - Success response
    * @name selectPaymentMode
    * @summary: Update cart payment
@@ -1491,7 +1493,7 @@ class PosCart {
   }
 
   /**
-   * @param {PosCartApplicationValidator.updateAddress} arg - Arg object.
+   * @param {PosCartApplicationValidator.UpdateAddressParam} arg - Arg object.
    * @returns {Promise<PosCartApplicationModel.UpdateAddressResponse>} -
    *   Success response
    * @name updateAddress
@@ -1555,7 +1557,7 @@ class PosCart {
   }
 
   /**
-   * @param {PosCartApplicationValidator.updateCart} arg - Arg object.
+   * @param {PosCartApplicationValidator.UpdateCartParam} arg - Arg object.
    * @returns {Promise<PosCartApplicationModel.UpdateCartDetailResponse>} -
    *   Success response
    * @name updateCart
@@ -1625,7 +1627,7 @@ class PosCart {
   }
 
   /**
-   * @param {PosCartApplicationValidator.updateCartMeta} arg - Arg object.
+   * @param {PosCartApplicationValidator.UpdateCartMetaParam} arg - Arg object.
    * @returns {Promise<PosCartApplicationModel.CartMetaResponse>} - Success response
    * @name updateCartMeta
    * @summary: Update the cart meta
@@ -1690,7 +1692,9 @@ class PosCart {
   }
 
   /**
-   * @param {PosCartApplicationValidator.updateCartWithSharedItems} arg - Arg object.
+   * @param {PosCartApplicationValidator.UpdateCartWithSharedItemsParam} arg
+   *   - Arg object.
+   *
    * @returns {Promise<PosCartApplicationModel.SharedCartResponse>} - Success response
    * @name updateCartWithSharedItems
    * @summary: Merge or replace existing cart
@@ -1755,7 +1759,7 @@ class PosCart {
   }
 
   /**
-   * @param {PosCartApplicationValidator.updateShipments} arg - Arg object.
+   * @param {PosCartApplicationValidator.UpdateShipmentsParam} arg - Arg object.
    * @returns {Promise<PosCartApplicationModel.CartShipmentsResponse>} -
    *   Success response
    * @name updateShipments
@@ -1833,7 +1837,8 @@ class PosCart {
   }
 
   /**
-   * @param {PosCartApplicationValidator.validateCouponForPayment} arg - Arg object.
+   * @param {PosCartApplicationValidator.ValidateCouponForPaymentParam} arg -
+   *   Arg object.
    * @returns {Promise<PosCartApplicationModel.PaymentCouponValidate>} -
    *   Success response
    * @name validateCouponForPayment

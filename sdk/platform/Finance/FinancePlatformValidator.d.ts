@@ -1,202 +1,212 @@
 export = FinancePlatformValidator;
 /**
- * @typedef asCnRefund
+ * @typedef AsCnRefundParam
  * @property {FinancePlatformModel.AsCnRefundRequest} body
  */
 /**
- * @typedef channelDisplayName
+ * @typedef ChannelDisplayNameParam
  * @property {string} filterKey - Gives display name for channel.
  */
 /**
- * @typedef createSellerCreditNoteConfig
+ * @typedef CreateSellerCreditNoteConfigParam
  * @property {FinancePlatformModel.CreateSellerCreditNoteConfigRequest} body
  */
 /**
- * @typedef creditNoteDetails
+ * @typedef CreditNoteDetailsParam
  * @property {FinancePlatformModel.CreditNoteDetailsRequest} body
  */
 /**
- * @typedef creditlineDataplatform
+ * @typedef CreditlineDataplatformParam
  * @property {FinancePlatformModel.CreditlineDataPlatformRequest} body
  */
 /**
- * @typedef deleteConfig
+ * @typedef DeleteConfigParam
  * @property {FinancePlatformModel.DeleteConfigRequest} body
  */
 /**
- * @typedef downloadCreditDebitNote
+ * @typedef DownloadCreditDebitNoteParam
  * @property {FinancePlatformModel.DownloadCreditDebitNoteRequest} body
  */
 /**
- * @typedef downloadReport
+ * @typedef DownloadReportParam
  * @property {FinancePlatformModel.DownloadReport} body
  */
 /**
- * @typedef downloadReportCustomerCn
+ * @typedef DownloadReportCustomerCnParam
  * @property {FinancePlatformModel.DownloadReportCustomerCnRequest} body
  */
 /**
- * @typedef generateReport
+ * @typedef GenerateReportParam
  * @property {FinancePlatformModel.GenerateReportRequest} body
  */
 /**
- * @typedef generateReportCustomerCn
+ * @typedef GenerateReportCustomerCnParam
  * @property {FinancePlatformModel.GenerateReportCustomerCnRequest} body
  */
 /**
- * @typedef getAffiliate
+ * @typedef GetAffiliateParam
  * @property {FinancePlatformModel.GetAffiliate} body
  */
 /**
- * @typedef getCnConfig
+ * @typedef GetCnConfigParam
  * @property {FinancePlatformModel.GetCnConfigRequest} body
  */
 /**
- * @typedef getCustomerCreditBalance
+ * @typedef GetCustomerCreditBalanceParam
  * @property {FinancePlatformModel.GetCustomerCreditBalanceRequest} body
  */
 /**
- * @typedef getData
+ * @typedef GetDataParam
  * @property {FinancePlatformModel.GetEngineRequest} body
  */
 /**
- * @typedef getPdfUrlView
+ * @typedef GetPdfUrlViewParam
  * @property {FinancePlatformModel.GetPdfUrlViewRequest} body
  */
 /**
- * @typedef getReason
+ * @typedef GetReasonParam
  * @property {FinancePlatformModel.GetReasonRequest} body
  */
 /**
- * @typedef getReportList
+ * @typedef GetReportListParam
  * @property {FinancePlatformModel.GetReportListRequest} body
  */
 /**
- * @typedef getReportingFilters
+ * @typedef GetReportingFiltersParam
  * @property {string} filterKey - Filter type.
  * @property {string} [affiliateId] - Affiliate id.
  */
 /**
- * @typedef invoiceListing
+ * @typedef InvoiceListingParam
  * @property {FinancePlatformModel.InvoiceListingRequest} body
  */
 /**
- * @typedef invoicePDF
+ * @typedef InvoicePDFParam
  * @property {FinancePlatformModel.InvoicePdfRequest} body
  */
 /**
- * @typedef invoiceType
+ * @typedef InvoiceTypeParam
  * @property {FinancePlatformModel.InvoiceTypeRequest} body
  */
 /**
- * @typedef isCreditlinePlatform
+ * @typedef IsCreditlinePlatformParam
  * @property {FinancePlatformModel.IsCreditlinePlatformRequest} body
  */
 /**
- * @typedef paymentProcess
+ * @typedef PaymentProcessParam
  * @property {FinancePlatformModel.PaymentProcessRequest} body
  */
 declare class FinancePlatformValidator {
+    /** @returns {asCnRefund} */
+    static asCnRefund(): asCnRefund;
+    /** @returns {channelDisplayName} */
+    static channelDisplayName(): channelDisplayName;
+    /** @returns {createSellerCreditNoteConfig} */
+    static createSellerCreditNoteConfig(): createSellerCreditNoteConfig;
+    /** @returns {creditNoteDetails} */
+    static creditNoteDetails(): creditNoteDetails;
+    /** @returns {creditlineDataplatform} */
+    static creditlineDataplatform(): creditlineDataplatform;
+    /** @returns {deleteConfig} */
+    static deleteConfig(): deleteConfig;
+    /** @returns {downloadCreditDebitNote} */
+    static downloadCreditDebitNote(): downloadCreditDebitNote;
+    /** @returns {downloadReport} */
+    static downloadReport(): downloadReport;
+    /** @returns {downloadReportCustomerCn} */
+    static downloadReportCustomerCn(): downloadReportCustomerCn;
+    /** @returns {generateReport} */
+    static generateReport(): generateReport;
+    /** @returns {generateReportCustomerCn} */
+    static generateReportCustomerCn(): generateReportCustomerCn;
+    /** @returns {getAffiliate} */
+    static getAffiliate(): getAffiliate;
+    /** @returns {getCnConfig} */
+    static getCnConfig(): getCnConfig;
+    /** @returns {getCustomerCreditBalance} */
+    static getCustomerCreditBalance(): getCustomerCreditBalance;
+    /** @returns {getData} */
+    static getData(): getData;
+    /** @returns {getPdfUrlView} */
+    static getPdfUrlView(): getPdfUrlView;
+    /** @returns {getReason} */
+    static getReason(): getReason;
+    /** @returns {getReportList} */
+    static getReportList(): getReportList;
+    /** @returns {getReportingFilters} */
+    static getReportingFilters(): getReportingFilters;
+    /** @returns {invoiceListing} */
+    static invoiceListing(): invoiceListing;
+    /** @returns {invoicePDF} */
+    static invoicePDF(): invoicePDF;
+    /** @returns {invoiceType} */
+    static invoiceType(): invoiceType;
+    /** @returns {isCreditlinePlatform} */
+    static isCreditlinePlatform(): isCreditlinePlatform;
+    /** @returns {paymentProcess} */
+    static paymentProcess(): paymentProcess;
 }
 declare namespace FinancePlatformValidator {
-    export { asCnRefund, channelDisplayName, createSellerCreditNoteConfig, creditNoteDetails, creditlineDataplatform, deleteConfig, downloadCreditDebitNote, downloadReport, downloadReportCustomerCn, generateReport, generateReportCustomerCn, getAffiliate, getCnConfig, getCustomerCreditBalance, getData, getPdfUrlView, getReason, getReportList, getReportingFilters, invoiceListing, invoicePDF, invoiceType, isCreditlinePlatform, paymentProcess };
+    export { AsCnRefundParam, ChannelDisplayNameParam, CreateSellerCreditNoteConfigParam, CreditNoteDetailsParam, CreditlineDataplatformParam, DeleteConfigParam, DownloadCreditDebitNoteParam, DownloadReportParam, DownloadReportCustomerCnParam, GenerateReportParam, GenerateReportCustomerCnParam, GetAffiliateParam, GetCnConfigParam, GetCustomerCreditBalanceParam, GetDataParam, GetPdfUrlViewParam, GetReasonParam, GetReportListParam, GetReportingFiltersParam, InvoiceListingParam, InvoicePDFParam, InvoiceTypeParam, IsCreditlinePlatformParam, PaymentProcessParam };
 }
-/** @returns {asCnRefund} */
-declare function asCnRefund(): asCnRefund;
-type asCnRefund = {
+type AsCnRefundParam = {
     body: FinancePlatformModel.AsCnRefundRequest;
 };
-/** @returns {channelDisplayName} */
-declare function channelDisplayName(): channelDisplayName;
-type channelDisplayName = {
+type ChannelDisplayNameParam = {
     /**
      * - Gives display name for channel.
      */
     filterKey: string;
 };
-/** @returns {createSellerCreditNoteConfig} */
-declare function createSellerCreditNoteConfig(): createSellerCreditNoteConfig;
-type createSellerCreditNoteConfig = {
+type CreateSellerCreditNoteConfigParam = {
     body: FinancePlatformModel.CreateSellerCreditNoteConfigRequest;
 };
-/** @returns {creditNoteDetails} */
-declare function creditNoteDetails(): creditNoteDetails;
-type creditNoteDetails = {
+type CreditNoteDetailsParam = {
     body: FinancePlatformModel.CreditNoteDetailsRequest;
 };
-/** @returns {creditlineDataplatform} */
-declare function creditlineDataplatform(): creditlineDataplatform;
-type creditlineDataplatform = {
+type CreditlineDataplatformParam = {
     body: FinancePlatformModel.CreditlineDataPlatformRequest;
 };
-/** @returns {deleteConfig} */
-declare function deleteConfig(): deleteConfig;
-type deleteConfig = {
+type DeleteConfigParam = {
     body: FinancePlatformModel.DeleteConfigRequest;
 };
-/** @returns {downloadCreditDebitNote} */
-declare function downloadCreditDebitNote(): downloadCreditDebitNote;
-type downloadCreditDebitNote = {
+type DownloadCreditDebitNoteParam = {
     body: FinancePlatformModel.DownloadCreditDebitNoteRequest;
 };
-/** @returns {downloadReport} */
-declare function downloadReport(): downloadReport;
-type downloadReport = {
+type DownloadReportParam = {
     body: FinancePlatformModel.DownloadReport;
 };
-/** @returns {downloadReportCustomerCn} */
-declare function downloadReportCustomerCn(): downloadReportCustomerCn;
-type downloadReportCustomerCn = {
+type DownloadReportCustomerCnParam = {
     body: FinancePlatformModel.DownloadReportCustomerCnRequest;
 };
-/** @returns {generateReport} */
-declare function generateReport(): generateReport;
-type generateReport = {
+type GenerateReportParam = {
     body: FinancePlatformModel.GenerateReportRequest;
 };
-/** @returns {generateReportCustomerCn} */
-declare function generateReportCustomerCn(): generateReportCustomerCn;
-type generateReportCustomerCn = {
+type GenerateReportCustomerCnParam = {
     body: FinancePlatformModel.GenerateReportCustomerCnRequest;
 };
-/** @returns {getAffiliate} */
-declare function getAffiliate(): getAffiliate;
-type getAffiliate = {
+type GetAffiliateParam = {
     body: FinancePlatformModel.GetAffiliate;
 };
-/** @returns {getCnConfig} */
-declare function getCnConfig(): getCnConfig;
-type getCnConfig = {
+type GetCnConfigParam = {
     body: FinancePlatformModel.GetCnConfigRequest;
 };
-/** @returns {getCustomerCreditBalance} */
-declare function getCustomerCreditBalance(): getCustomerCreditBalance;
-type getCustomerCreditBalance = {
+type GetCustomerCreditBalanceParam = {
     body: FinancePlatformModel.GetCustomerCreditBalanceRequest;
 };
-/** @returns {getData} */
-declare function getData(): getData;
-type getData = {
+type GetDataParam = {
     body: FinancePlatformModel.GetEngineRequest;
 };
-/** @returns {getPdfUrlView} */
-declare function getPdfUrlView(): getPdfUrlView;
-type getPdfUrlView = {
+type GetPdfUrlViewParam = {
     body: FinancePlatformModel.GetPdfUrlViewRequest;
 };
-/** @returns {getReason} */
-declare function getReason(): getReason;
-type getReason = {
+type GetReasonParam = {
     body: FinancePlatformModel.GetReasonRequest;
 };
-/** @returns {getReportList} */
-declare function getReportList(): getReportList;
-type getReportList = {
+type GetReportListParam = {
     body: FinancePlatformModel.GetReportListRequest;
 };
-/** @returns {getReportingFilters} */
-declare function getReportingFilters(): getReportingFilters;
-type getReportingFilters = {
+type GetReportingFiltersParam = {
     /**
      * - Filter type.
      */
@@ -206,29 +216,19 @@ type getReportingFilters = {
      */
     affiliateId?: string;
 };
-/** @returns {invoiceListing} */
-declare function invoiceListing(): invoiceListing;
-type invoiceListing = {
+type InvoiceListingParam = {
     body: FinancePlatformModel.InvoiceListingRequest;
 };
-/** @returns {invoicePDF} */
-declare function invoicePDF(): invoicePDF;
-type invoicePDF = {
+type InvoicePDFParam = {
     body: FinancePlatformModel.InvoicePdfRequest;
 };
-/** @returns {invoiceType} */
-declare function invoiceType(): invoiceType;
-type invoiceType = {
+type InvoiceTypeParam = {
     body: FinancePlatformModel.InvoiceTypeRequest;
 };
-/** @returns {isCreditlinePlatform} */
-declare function isCreditlinePlatform(): isCreditlinePlatform;
-type isCreditlinePlatform = {
+type IsCreditlinePlatformParam = {
     body: FinancePlatformModel.IsCreditlinePlatformRequest;
 };
-/** @returns {paymentProcess} */
-declare function paymentProcess(): paymentProcess;
-type paymentProcess = {
+type PaymentProcessParam = {
     body: FinancePlatformModel.PaymentProcessRequest;
 };
 import FinancePlatformModel = require("./FinancePlatformModel");

@@ -3,21 +3,21 @@ const Joi = require("joi");
 const ConfigurationPlatformModel = require("./ConfigurationPlatformModel");
 
 /**
- * @typedef addDomain
+ * @typedef AddDomainParam
  * @property {ConfigurationPlatformModel.DomainAddRequest} body
  */
 
 /**
- * @typedef changeDomainType
+ * @typedef ChangeDomainTypeParam
  * @property {ConfigurationPlatformModel.UpdateDomainTypeRequest} body
  */
 
-/** @typedef getAppApiTokens */
+/** @typedef GetAppApiTokensParam */
 
-/** @typedef getAppBasicDetails */
+/** @typedef GetAppBasicDetailsParam */
 
 /**
- * @typedef getAppCompanies
+ * @typedef GetAppCompaniesParam
  * @property {number} [uid] - UID of companies to be fetched
  * @property {number} [pageNo] - The current page number to navigate through the
  *   given set of results. Default value is 1.
@@ -25,41 +25,41 @@ const ConfigurationPlatformModel = require("./ConfigurationPlatformModel");
  *   Default value is 10.
  */
 
-/** @typedef getAppContactInfo */
+/** @typedef GetAppContactInfoParam */
 
-/** @typedef getAppCurrencyConfig */
+/** @typedef GetAppCurrencyConfigParam */
 
-/** @typedef getAppFeatures */
+/** @typedef GetAppFeaturesParam */
 
 /**
- * @typedef getAppStores
+ * @typedef GetAppStoresParam
  * @property {number} [pageNo] - The current page number to navigate through the
  *   given set of results. Default value is 1.
  * @property {number} [pageSize] - The number of items to retrieve in each page.
  *   Default value is 10.
  */
 
-/** @typedef getAppSupportedCurrency */
+/** @typedef GetAppSupportedCurrencyParam */
 
-/** @typedef getApplicationById */
+/** @typedef GetApplicationByIdParam */
 
 /**
- * @typedef getBuildConfig
+ * @typedef GetBuildConfigParam
  * @property {string} platformType - The device platform for which the mobile
  *   app is built, e.g. android, ios.
  */
 
 /**
- * @typedef getDomainStatus
+ * @typedef GetDomainStatusParam
  * @property {ConfigurationPlatformModel.DomainStatusRequest} body
  */
 
-/** @typedef getDomains */
+/** @typedef GetDomainsParam */
 
-/** @typedef getInventoryConfig */
+/** @typedef GetInventoryConfigParam */
 
 /**
- * @typedef getOrderingStoresByFilter
+ * @typedef GetOrderingStoresByFilterParam
  * @property {number} [pageNo] - The page number to navigate through the given
  *   set of results. Default value is 1.
  * @property {number} [pageSize] - The number of items to retrieve in each page.
@@ -68,13 +68,13 @@ const ConfigurationPlatformModel = require("./ConfigurationPlatformModel");
  */
 
 /**
- * @typedef getPreviousVersions
+ * @typedef GetPreviousVersionsParam
  * @property {string} platformType - The device platform for which the mobile
  *   app is built, e.g. android, ios.
  */
 
 /**
- * @typedef getStaffOrderingStores
+ * @typedef GetStaffOrderingStoresParam
  * @property {number} [pageNo] - The page number to navigate through the given
  *   set of results. Default value is 1.
  * @property {number} [pageSize] - The number of items to retrieve in each page.
@@ -83,59 +83,59 @@ const ConfigurationPlatformModel = require("./ConfigurationPlatformModel");
  */
 
 /**
- * @typedef modifyAppFeatures
+ * @typedef ModifyAppFeaturesParam
  * @property {ConfigurationPlatformModel.AppFeatureRequest} body
  */
 
 /**
- * @typedef partiallyUpdateInventoryConfig
+ * @typedef PartiallyUpdateInventoryConfigParam
  * @property {ConfigurationPlatformModel.AppInventoryPartialUpdate} body
  */
 
 /**
- * @typedef removeDomainById
+ * @typedef RemoveDomainByIdParam
  * @property {string} id - The unique identifier (24-digit Mongo Object ID) of the domain
  */
 
 /**
- * @typedef updateAppApiTokens
+ * @typedef UpdateAppApiTokensParam
  * @property {ConfigurationPlatformModel.TokenResponse} body
  */
 
 /**
- * @typedef updateAppBasicDetails
+ * @typedef UpdateAppBasicDetailsParam
  * @property {ConfigurationPlatformModel.ApplicationDetail} body
  */
 
 /**
- * @typedef updateAppContactInfo
+ * @typedef UpdateAppContactInfoParam
  * @property {ConfigurationPlatformModel.ApplicationInformation} body
  */
 
 /**
- * @typedef updateAppCurrencyConfig
+ * @typedef UpdateAppCurrencyConfigParam
  * @property {ConfigurationPlatformModel.AppSupportedCurrency} body
  */
 
 /**
- * @typedef updateAppFeatures
+ * @typedef UpdateAppFeaturesParam
  * @property {ConfigurationPlatformModel.AppFeatureRequest} body
  */
 
 /**
- * @typedef updateBuildConfig
+ * @typedef UpdateBuildConfigParam
  * @property {string} platformType - The device platform for which the mobile
  *   app is built, e.g. android, ios.
  * @property {ConfigurationPlatformModel.MobileAppConfigRequest} body
  */
 
 /**
- * @typedef updateInventoryConfig
+ * @typedef UpdateInventoryConfigParam
  * @property {ConfigurationPlatformModel.ApplicationInventory} body
  */
 
 /**
- * @typedef updateOrderingStoreConfig
+ * @typedef UpdateOrderingStoreConfigParam
  * @property {ConfigurationPlatformModel.OrderingStoreConfig} body
  */
 

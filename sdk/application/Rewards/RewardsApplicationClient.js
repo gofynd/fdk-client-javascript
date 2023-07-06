@@ -41,7 +41,7 @@ class Rewards {
   }
 
   /**
-   * @param {RewardsApplicationValidator.catalogueOrder} arg - Arg object.
+   * @param {RewardsApplicationValidator.CatalogueOrderParam} arg - Arg object.
    * @returns {Promise<RewardsApplicationModel.CatalogueOrderResponse>} -
    *   Success response
    * @name catalogueOrder
@@ -105,7 +105,7 @@ class Rewards {
   }
 
   /**
-   * @param {RewardsApplicationValidator.getOfferByName} arg - Arg object.
+   * @param {RewardsApplicationValidator.GetOfferByNameParam} arg - Arg object.
    * @returns {Promise<RewardsApplicationModel.Offer>} - Success response
    * @name getOfferByName
    * @summary: Get offer by name
@@ -168,7 +168,7 @@ class Rewards {
   }
 
   /**
-   * @param {RewardsApplicationValidator.getOrderDiscount} arg - Arg object.
+   * @param {RewardsApplicationValidator.GetOrderDiscountParam} arg - Arg object.
    * @returns {Promise<RewardsApplicationModel.OrderDiscountResponse>} -
    *   Success response
    * @name getOrderDiscount
@@ -232,7 +232,7 @@ class Rewards {
   }
 
   /**
-   * @param {RewardsApplicationValidator.getUserPoints} arg - Arg object.
+   * @param {RewardsApplicationValidator.GetUserPointsParam} arg - Arg object.
    * @returns {Promise<RewardsApplicationModel.PointsResponse>} - Success response
    * @name getUserPoints
    * @summary: Get total available points of a user
@@ -295,7 +295,7 @@ class Rewards {
   }
 
   /**
-   * @param {RewardsApplicationValidator.getUserPointsHistory} arg - Arg object.
+   * @param {RewardsApplicationValidator.GetUserPointsHistoryParam} arg - Arg object.
    * @returns {Promise<RewardsApplicationModel.PointsHistoryResponse>} -
    *   Success response
    * @name getUserPointsHistory
@@ -390,7 +390,7 @@ class Rewards {
   }
 
   /**
-   * @param {RewardsApplicationValidator.getUserReferralDetails} arg - Arg object.
+   * @param {RewardsApplicationValidator.GetUserReferralDetailsParam} arg - Arg object.
    * @returns {Promise<RewardsApplicationModel.ReferralDetailsResponse>} -
    *   Success response
    * @name getUserReferralDetails
@@ -456,7 +456,7 @@ class Rewards {
   }
 
   /**
-   * @param {RewardsApplicationValidator.redeemReferralCode} arg - Arg object.
+   * @param {RewardsApplicationValidator.RedeemReferralCodeParam} arg - Arg object.
    * @returns {Promise<RewardsApplicationModel.RedeemReferralCodeResponse>} -
    *   Success response
    * @name redeemReferralCode

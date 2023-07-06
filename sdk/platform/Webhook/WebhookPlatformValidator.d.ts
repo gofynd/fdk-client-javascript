@@ -1,48 +1,54 @@
 export = WebhookPlatformValidator;
-/** @typedef fetchAllEventConfigurations */
+/** @typedef FetchAllEventConfigurationsParam */
 /**
- * @typedef getSubscriberById
+ * @typedef GetSubscriberByIdParam
  * @property {number} subscriberId - Subscriber ID
  */
 /**
- * @typedef getSubscribersByCompany
+ * @typedef GetSubscribersByCompanyParam
  * @property {number} [pageNo] - Page Number
  * @property {number} [pageSize] - Page Size
  * @property {string} [extensionId] - Extension ID
  */
 /**
- * @typedef getSubscribersByExtensionId
+ * @typedef GetSubscribersByExtensionIdParam
  * @property {number} [pageNo] - Page Number
  * @property {number} [pageSize] - Page Size
  * @property {string} extensionId - Extension ID
  */
 /**
- * @typedef registerSubscriberToEvent
+ * @typedef RegisterSubscriberToEventParam
  * @property {WebhookPlatformModel.SubscriberConfig} body
  */
 /**
- * @typedef updateSubscriberConfig
+ * @typedef UpdateSubscriberConfigParam
  * @property {WebhookPlatformModel.SubscriberConfig} body
  */
 declare class WebhookPlatformValidator {
+    /** @returns {fetchAllEventConfigurations} */
+    static fetchAllEventConfigurations(): fetchAllEventConfigurations;
+    /** @returns {getSubscriberById} */
+    static getSubscriberById(): getSubscriberById;
+    /** @returns {getSubscribersByCompany} */
+    static getSubscribersByCompany(): getSubscribersByCompany;
+    /** @returns {getSubscribersByExtensionId} */
+    static getSubscribersByExtensionId(): getSubscribersByExtensionId;
+    /** @returns {registerSubscriberToEvent} */
+    static registerSubscriberToEvent(): registerSubscriberToEvent;
+    /** @returns {updateSubscriberConfig} */
+    static updateSubscriberConfig(): updateSubscriberConfig;
 }
 declare namespace WebhookPlatformValidator {
-    export { fetchAllEventConfigurations, getSubscriberById, getSubscribersByCompany, getSubscribersByExtensionId, registerSubscriberToEvent, updateSubscriberConfig };
+    export { FetchAllEventConfigurationsParam, GetSubscriberByIdParam, GetSubscribersByCompanyParam, GetSubscribersByExtensionIdParam, RegisterSubscriberToEventParam, UpdateSubscriberConfigParam };
 }
-/** @returns {fetchAllEventConfigurations} */
-declare function fetchAllEventConfigurations(): any;
-type fetchAllEventConfigurations = any;
-/** @returns {getSubscriberById} */
-declare function getSubscriberById(): getSubscriberById;
-type getSubscriberById = {
+type FetchAllEventConfigurationsParam = any;
+type GetSubscriberByIdParam = {
     /**
      * - Subscriber ID
      */
     subscriberId: number;
 };
-/** @returns {getSubscribersByCompany} */
-declare function getSubscribersByCompany(): getSubscribersByCompany;
-type getSubscribersByCompany = {
+type GetSubscribersByCompanyParam = {
     /**
      * - Page Number
      */
@@ -56,9 +62,7 @@ type getSubscribersByCompany = {
      */
     extensionId?: string;
 };
-/** @returns {getSubscribersByExtensionId} */
-declare function getSubscribersByExtensionId(): getSubscribersByExtensionId;
-type getSubscribersByExtensionId = {
+type GetSubscribersByExtensionIdParam = {
     /**
      * - Page Number
      */
@@ -72,14 +76,10 @@ type getSubscribersByExtensionId = {
      */
     extensionId: string;
 };
-/** @returns {registerSubscriberToEvent} */
-declare function registerSubscriberToEvent(): registerSubscriberToEvent;
-type registerSubscriberToEvent = {
+type RegisterSubscriberToEventParam = {
     body: WebhookPlatformModel.SubscriberConfig;
 };
-/** @returns {updateSubscriberConfig} */
-declare function updateSubscriberConfig(): updateSubscriberConfig;
-type updateSubscriberConfig = {
+type UpdateSubscriberConfigParam = {
     body: WebhookPlatformModel.SubscriberConfig;
 };
 import WebhookPlatformModel = require("./WebhookPlatformModel");

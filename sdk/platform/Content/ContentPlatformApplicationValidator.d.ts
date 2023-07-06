@@ -1,179 +1,179 @@
 export = ContentPlatformApplicationValidator;
 /**
- * @typedef addDataLoader
+ * @typedef AddDataLoaderParam
  * @property {ContentPlatformModel.DataLoaderSchema} body
  */
 /**
- * @typedef addFaq
+ * @typedef AddFaqParam
  * @property {string} categoryId - ID allotted to an FAQ category.
  * @property {ContentPlatformModel.CreateFaqSchema} body
  */
 /**
- * @typedef addInjectableTag
+ * @typedef AddInjectableTagParam
  * @property {ContentPlatformModel.CreateTagRequestSchema} body
  */
 /**
- * @typedef addPathRedirectionRules
+ * @typedef AddPathRedirectionRulesParam
  * @property {ContentPlatformModel.PathMappingSchema} body
  */
 /**
- * @typedef createAnnouncement
+ * @typedef CreateAnnouncementParam
  * @property {ContentPlatformModel.AdminAnnouncementSchema} body
  */
 /**
- * @typedef createBlog
+ * @typedef CreateBlogParam
  * @property {ContentPlatformModel.BlogRequest} body
  */
 /**
- * @typedef createFaqCategory
+ * @typedef CreateFaqCategoryParam
  * @property {ContentPlatformModel.CreateFaqCategoryRequestSchema} body
  */
 /**
- * @typedef createLandingPage
+ * @typedef CreateLandingPageParam
  * @property {ContentPlatformModel.LandingPageSchema} body
  */
 /**
- * @typedef createNavigation
+ * @typedef CreateNavigationParam
  * @property {ContentPlatformModel.NavigationRequest} body
  */
 /**
- * @typedef createPage
+ * @typedef CreatePageParam
  * @property {ContentPlatformModel.PageRequest} body
  */
 /**
- * @typedef createPagePreview
+ * @typedef CreatePagePreviewParam
  * @property {ContentPlatformModel.PageRequest} body
  */
 /**
- * @typedef createSlideshow
+ * @typedef CreateSlideshowParam
  * @property {ContentPlatformModel.SlideshowRequest} body
  */
-/** @typedef deleteAllInjectableTags */
+/** @typedef DeleteAllInjectableTagsParam */
 /**
- * @typedef deleteAnnouncement
+ * @typedef DeleteAnnouncementParam
  * @property {string} announcementId - ID allotted to the announcement.
  */
 /**
- * @typedef deleteBlog
+ * @typedef DeleteBlogParam
  * @property {string} id - ID allotted to the blog.
  */
 /**
- * @typedef deleteDataLoader
+ * @typedef DeleteDataLoaderParam
  * @property {string} dataLoaderId - ID allotted to the data loader.
  */
 /**
- * @typedef deleteFaq
+ * @typedef DeleteFaqParam
  * @property {string} categoryId - ID allotted to an FAQ category.
  * @property {string} faqId - ID allotted to an FAQ.
  */
 /**
- * @typedef deleteFaqCategory
+ * @typedef DeleteFaqCategoryParam
  * @property {string} id - ID allotted to an FAQ category.
  */
 /**
- * @typedef deleteLandingPage
+ * @typedef DeleteLandingPageParam
  * @property {string} id - ID allotted to a landing page.
  */
 /**
- * @typedef deleteNavigation
+ * @typedef DeleteNavigationParam
  * @property {string} id - ID allotted to the navigation.
  */
 /**
- * @typedef deletePage
+ * @typedef DeletePageParam
  * @property {string} id - ID allotted to the page.
  */
 /**
- * @typedef deletePathRedirectionRules
+ * @typedef DeletePathRedirectionRulesParam
  * @property {string} pathId - ID allotted to the path redirection rule.
  */
 /**
- * @typedef deleteSlideshow
+ * @typedef DeleteSlideshowParam
  * @property {string} id - ID allotted to the slideshow.
  */
 /**
- * @typedef editDataLoader
+ * @typedef EditDataLoaderParam
  * @property {string} dataLoaderId - ID allotted to the data loader.
  * @property {ContentPlatformModel.DataLoaderSchema} body
  */
 /**
- * @typedef editInjectableTag
+ * @typedef EditInjectableTagParam
  * @property {string} tagId - ID allotted to the tag.
  * @property {ContentPlatformModel.UpdateHandpickedSchema} body
  */
 /**
- * @typedef generateSEOTitle
+ * @typedef GenerateSEOTitleParam
  * @property {ContentPlatformModel.GenerationEntityType} type - String
  *   representing the type of SEO content to be generated. Possible values are:
  *   title, description
  * @property {ContentPlatformModel.GenerateSEOContent} body
  */
 /**
- * @typedef getAnnouncementById
+ * @typedef GetAnnouncementByIdParam
  * @property {string} announcementId - ID allotted to the announcement.
  */
 /**
- * @typedef getAnnouncementsList
+ * @typedef GetAnnouncementsListParam
  * @property {number} [pageNo] - The page number to navigate through the given
  *   set of results. Default value is 1.
  * @property {number} [pageSize] - The number of items to retrieve in each page.
  *   Default value is 10.
  */
 /**
- * @typedef getBlogBySlug
+ * @typedef GetBlogBySlugParam
  * @property {string} slug - A short, human-readable, URL-friendly identifier of
  *   a blog page. You can get slug value of a blog from `getBlogs` API.
  */
 /**
- * @typedef getBlogs
+ * @typedef GetBlogsParam
  * @property {number} [pageNo] - The page number to navigate through the given
  *   set of results. Default value is 1.
  * @property {number} [pageSize] - The number of items to retrieve in each page.
  *   Default value is 10.
  */
 /**
- * @typedef getComponentById
+ * @typedef GetComponentByIdParam
  * @property {string} slug - A short, human-readable, URL-friendly identifier of
  *   a blog page. You can get slug value of a blog from `getBlogs` API.
  */
-/** @typedef getDataLoaders */
-/** @typedef getDefaultNavigations */
+/** @typedef GetDataLoadersParam */
+/** @typedef GetDefaultNavigationsParam */
 /**
- * @typedef getFaqByIdOrSlug
+ * @typedef GetFaqByIdOrSlugParam
  * @property {string} idOrSlug - ID or the slug allotted to an FAQ category.
  *   Slug is a short, human-readable, URL-friendly identifier of an object. You
  *   can get slug value of an FAQ category from `getFaqCategories` API.
  */
-/** @typedef getFaqCategories */
+/** @typedef GetFaqCategoriesParam */
 /**
- * @typedef getFaqCategoryBySlugOrId
+ * @typedef GetFaqCategoryBySlugOrIdParam
  * @property {string} idOrSlug - ID or the slug allotted to an FAQ category.
  *   Slug is a short, human-readable, URL-friendly identifier of an object. You
  *   can get slug value of an FAQ category from `getFaqCategories` API.
  */
 /**
- * @typedef getFaqsByCategoryIdOrSlug
+ * @typedef GetFaqsByCategoryIdOrSlugParam
  * @property {string} idOrSlug - ID or the slug allotted to an FAQ category.
  *   Slug is a short, human-readable, URL-friendly identifier of an object. You
  *   can get slug value of an FAQ category from `getFaqCategories` API.
  */
-/** @typedef getInjectableTags */
+/** @typedef GetInjectableTagsParam */
 /**
- * @typedef getLandingPages
+ * @typedef GetLandingPagesParam
  * @property {number} [pageNo] - The page number to navigate through the given
  *   set of results. Default value is 1.
  * @property {number} [pageSize] - The number of items to retrieve in each page.
  *   Default value is 10.
  */
-/** @typedef getLegalInformation */
+/** @typedef GetLegalInformationParam */
 /**
- * @typedef getNavigationBySlug
+ * @typedef GetNavigationBySlugParam
  * @property {string} slug - A short, human-readable, URL-friendly identifier of
  *   a navigation. You can get slug value of a navigation from `getNavigations` API.
  * @property {string} devicePlatform - Filter navigations by platform.
  *   Acceptable values are: web, android, ios, all
  */
 /**
- * @typedef getNavigations
+ * @typedef GetNavigationsParam
  * @property {string} devicePlatform - Filter navigations by platform.
  *   Acceptable values are: web, android, ios, all
  * @property {number} [pageNo] - The page number to navigate through the given
@@ -182,40 +182,40 @@ export = ContentPlatformApplicationValidator;
  *   Default value is 10.
  */
 /**
- * @typedef getPageBySlug
+ * @typedef GetPageBySlugParam
  * @property {string} slug - A short, human-readable, URL-friendly identifier of
  *   a page. You can get slug value of a page from `getPages` API.
  */
-/** @typedef getPageMeta */
-/** @typedef getPageSpec */
+/** @typedef GetPageMetaParam */
+/** @typedef GetPageSpecParam */
 /**
- * @typedef getPages
+ * @typedef GetPagesParam
  * @property {number} [pageNo] - The page number to navigate through the given
  *   set of results. Default value is 1.
  * @property {number} [pageSize] - The number of items to retrieve in each page.
  *   Default value is 10.
  */
 /**
- * @typedef getPathRedirectionRule
+ * @typedef GetPathRedirectionRuleParam
  * @property {string} pathId - ID allotted to the path redirection rule.
  */
 /**
- * @typedef getPathRedirectionRules
+ * @typedef GetPathRedirectionRulesParam
  * @property {number} [pageSize] - The number of items to retrieve in each page.
  *   Default value is 5.
  * @property {number} [pageNo] - The page number to navigate through the given
  *   set of results. Default value is 1.
  */
-/** @typedef getSEOConfiguration */
+/** @typedef GetSEOConfigurationParam */
 /**
- * @typedef getSlideshowBySlug
+ * @typedef GetSlideshowBySlugParam
  * @property {string} slug - A short, human-readable, URL-friendly identifier of
  *   a slideshow. You can get slug value of a page from `getSlideshows` API.
  * @property {string} devicePlatform - Filter slideshows by platform. Acceptable
  *   values are: web, android, ios and all
  */
 /**
- * @typedef getSlideshows
+ * @typedef GetSlideshowsParam
  * @property {string} devicePlatform - Filter slideshows by platform. Acceptable
  *   values are: web, android, ios and all
  * @property {number} [pageNo] - The page number to navigate through the given
@@ -223,192 +223,298 @@ export = ContentPlatformApplicationValidator;
  * @property {number} [pageSize] - The number of items to retrieve in each page.
  *   Default value is 10.
  */
-/** @typedef getSupportInformation */
+/** @typedef GetSupportInformationParam */
 /**
- * @typedef removeInjectableTag
+ * @typedef RemoveInjectableTagParam
  * @property {ContentPlatformModel.RemoveHandpickedSchema} body
  */
 /**
- * @typedef resetDataLoader
+ * @typedef ResetDataLoaderParam
  * @property {string} service - Name of service.
  * @property {string} operationId - Name of operation id of the service.
  */
 /**
- * @typedef selectDataLoader
+ * @typedef SelectDataLoaderParam
  * @property {string} dataLoaderId - ID allotted to the data loader.
  */
 /**
- * @typedef updateAnnouncement
+ * @typedef UpdateAnnouncementParam
  * @property {string} announcementId - ID allotted to the announcement.
  * @property {ContentPlatformModel.AdminAnnouncementSchema} body
  */
 /**
- * @typedef updateAnnouncementSchedule
+ * @typedef UpdateAnnouncementScheduleParam
  * @property {string} announcementId - ID allotted to the announcement.
  * @property {ContentPlatformModel.ScheduleSchema} body
  */
 /**
- * @typedef updateBlog
+ * @typedef UpdateBlogParam
  * @property {string} id - ID allotted to the blog.
  * @property {ContentPlatformModel.BlogRequest} body
  */
 /**
- * @typedef updateFaq
+ * @typedef UpdateFaqParam
  * @property {string} categoryId - ID allotted to an FAQ category.
  * @property {string} faqId - ID allotted to an FAQ.
  * @property {ContentPlatformModel.CreateFaqSchema} body
  */
 /**
- * @typedef updateFaqCategory
+ * @typedef UpdateFaqCategoryParam
  * @property {string} id - ID allotted to an FAQ category.
  * @property {ContentPlatformModel.UpdateFaqCategoryRequestSchema} body
  */
 /**
- * @typedef updateInjectableTag
+ * @typedef UpdateInjectableTagParam
  * @property {ContentPlatformModel.CreateTagRequestSchema} body
  */
 /**
- * @typedef updateLandingPage
+ * @typedef UpdateLandingPageParam
  * @property {string} id - ID allotted to a landing page.
  * @property {ContentPlatformModel.LandingPageSchema} body
  */
 /**
- * @typedef updateLegalInformation
+ * @typedef UpdateLegalInformationParam
  * @property {ContentPlatformModel.ApplicationLegal} body
  */
 /**
- * @typedef updateNavigation
+ * @typedef UpdateNavigationParam
  * @property {string} id - ID allotted to the navigation.
  * @property {ContentPlatformModel.NavigationRequest} body
  */
 /**
- * @typedef updatePage
+ * @typedef UpdatePageParam
  * @property {string} id - ID allotted to the page.
  * @property {ContentPlatformModel.PageSchema} body
  */
 /**
- * @typedef updatePagePreview
+ * @typedef UpdatePagePreviewParam
  * @property {string} slug - A short, human-readable, URL-friendly identifier of
  *   a page. You can get slug value of a page from `getPages` API.
  * @property {ContentPlatformModel.PagePublishRequest} body
  */
 /**
- * @typedef updatePathRedirectionRules
+ * @typedef UpdatePathRedirectionRulesParam
  * @property {string} pathId - ID allotted to the path redirection rule.
  * @property {ContentPlatformModel.PathMappingSchema} body
  */
 /**
- * @typedef updateSEOConfiguration
+ * @typedef UpdateSEOConfigurationParam
  * @property {ContentPlatformModel.SeoComponent} body
  */
 /**
- * @typedef updateSlideshow
+ * @typedef UpdateSlideshowParam
  * @property {string} id - ID allotted to the slideshow.
  * @property {ContentPlatformModel.SlideshowRequest} body
  */
 /**
- * @typedef updateSupportInformation
+ * @typedef UpdateSupportInformationParam
  * @property {ContentPlatformModel.Support} body
  */
 declare class ContentPlatformApplicationValidator {
+    /** @returns {addDataLoader} */
+    static addDataLoader(): addDataLoader;
+    /** @returns {addFaq} */
+    static addFaq(): addFaq;
+    /** @returns {addInjectableTag} */
+    static addInjectableTag(): addInjectableTag;
+    /** @returns {addPathRedirectionRules} */
+    static addPathRedirectionRules(): addPathRedirectionRules;
+    /** @returns {createAnnouncement} */
+    static createAnnouncement(): createAnnouncement;
+    /** @returns {createBlog} */
+    static createBlog(): createBlog;
+    /** @returns {createFaqCategory} */
+    static createFaqCategory(): createFaqCategory;
+    /** @returns {createLandingPage} */
+    static createLandingPage(): createLandingPage;
+    /** @returns {createNavigation} */
+    static createNavigation(): createNavigation;
+    /** @returns {createPage} */
+    static createPage(): createPage;
+    /** @returns {createPagePreview} */
+    static createPagePreview(): createPagePreview;
+    /** @returns {createSlideshow} */
+    static createSlideshow(): createSlideshow;
+    /** @returns {deleteAllInjectableTags} */
+    static deleteAllInjectableTags(): deleteAllInjectableTags;
+    /** @returns {deleteAnnouncement} */
+    static deleteAnnouncement(): deleteAnnouncement;
+    /** @returns {deleteBlog} */
+    static deleteBlog(): deleteBlog;
+    /** @returns {deleteDataLoader} */
+    static deleteDataLoader(): deleteDataLoader;
+    /** @returns {deleteFaq} */
+    static deleteFaq(): deleteFaq;
+    /** @returns {deleteFaqCategory} */
+    static deleteFaqCategory(): deleteFaqCategory;
+    /** @returns {deleteLandingPage} */
+    static deleteLandingPage(): deleteLandingPage;
+    /** @returns {deleteNavigation} */
+    static deleteNavigation(): deleteNavigation;
+    /** @returns {deletePage} */
+    static deletePage(): deletePage;
+    /** @returns {deletePathRedirectionRules} */
+    static deletePathRedirectionRules(): deletePathRedirectionRules;
+    /** @returns {deleteSlideshow} */
+    static deleteSlideshow(): deleteSlideshow;
+    /** @returns {editDataLoader} */
+    static editDataLoader(): editDataLoader;
+    /** @returns {editInjectableTag} */
+    static editInjectableTag(): editInjectableTag;
+    /** @returns {generateSEOTitle} */
+    static generateSEOTitle(): generateSEOTitle;
+    /** @returns {getAnnouncementById} */
+    static getAnnouncementById(): getAnnouncementById;
+    /** @returns {getAnnouncementsList} */
+    static getAnnouncementsList(): getAnnouncementsList;
+    /** @returns {getBlogBySlug} */
+    static getBlogBySlug(): getBlogBySlug;
+    /** @returns {getBlogs} */
+    static getBlogs(): getBlogs;
+    /** @returns {getComponentById} */
+    static getComponentById(): getComponentById;
+    /** @returns {getDataLoaders} */
+    static getDataLoaders(): getDataLoaders;
+    /** @returns {getDefaultNavigations} */
+    static getDefaultNavigations(): getDefaultNavigations;
+    /** @returns {getFaqByIdOrSlug} */
+    static getFaqByIdOrSlug(): getFaqByIdOrSlug;
+    /** @returns {getFaqCategories} */
+    static getFaqCategories(): getFaqCategories;
+    /** @returns {getFaqCategoryBySlugOrId} */
+    static getFaqCategoryBySlugOrId(): getFaqCategoryBySlugOrId;
+    /** @returns {getFaqsByCategoryIdOrSlug} */
+    static getFaqsByCategoryIdOrSlug(): getFaqsByCategoryIdOrSlug;
+    /** @returns {getInjectableTags} */
+    static getInjectableTags(): getInjectableTags;
+    /** @returns {getLandingPages} */
+    static getLandingPages(): getLandingPages;
+    /** @returns {getLegalInformation} */
+    static getLegalInformation(): getLegalInformation;
+    /** @returns {getNavigationBySlug} */
+    static getNavigationBySlug(): getNavigationBySlug;
+    /** @returns {getNavigations} */
+    static getNavigations(): getNavigations;
+    /** @returns {getPageBySlug} */
+    static getPageBySlug(): getPageBySlug;
+    /** @returns {getPageMeta} */
+    static getPageMeta(): getPageMeta;
+    /** @returns {getPageSpec} */
+    static getPageSpec(): getPageSpec;
+    /** @returns {getPages} */
+    static getPages(): getPages;
+    /** @returns {getPathRedirectionRule} */
+    static getPathRedirectionRule(): getPathRedirectionRule;
+    /** @returns {getPathRedirectionRules} */
+    static getPathRedirectionRules(): getPathRedirectionRules;
+    /** @returns {getSEOConfiguration} */
+    static getSEOConfiguration(): getSEOConfiguration;
+    /** @returns {getSlideshowBySlug} */
+    static getSlideshowBySlug(): getSlideshowBySlug;
+    /** @returns {getSlideshows} */
+    static getSlideshows(): getSlideshows;
+    /** @returns {getSupportInformation} */
+    static getSupportInformation(): getSupportInformation;
+    /** @returns {removeInjectableTag} */
+    static removeInjectableTag(): removeInjectableTag;
+    /** @returns {resetDataLoader} */
+    static resetDataLoader(): resetDataLoader;
+    /** @returns {selectDataLoader} */
+    static selectDataLoader(): selectDataLoader;
+    /** @returns {updateAnnouncement} */
+    static updateAnnouncement(): updateAnnouncement;
+    /** @returns {updateAnnouncementSchedule} */
+    static updateAnnouncementSchedule(): updateAnnouncementSchedule;
+    /** @returns {updateBlog} */
+    static updateBlog(): updateBlog;
+    /** @returns {updateFaq} */
+    static updateFaq(): updateFaq;
+    /** @returns {updateFaqCategory} */
+    static updateFaqCategory(): updateFaqCategory;
+    /** @returns {updateInjectableTag} */
+    static updateInjectableTag(): updateInjectableTag;
+    /** @returns {updateLandingPage} */
+    static updateLandingPage(): updateLandingPage;
+    /** @returns {updateLegalInformation} */
+    static updateLegalInformation(): updateLegalInformation;
+    /** @returns {updateNavigation} */
+    static updateNavigation(): updateNavigation;
+    /** @returns {updatePage} */
+    static updatePage(): updatePage;
+    /** @returns {updatePagePreview} */
+    static updatePagePreview(): updatePagePreview;
+    /** @returns {updatePathRedirectionRules} */
+    static updatePathRedirectionRules(): updatePathRedirectionRules;
+    /** @returns {updateSEOConfiguration} */
+    static updateSEOConfiguration(): updateSEOConfiguration;
+    /** @returns {updateSlideshow} */
+    static updateSlideshow(): updateSlideshow;
+    /** @returns {updateSupportInformation} */
+    static updateSupportInformation(): updateSupportInformation;
 }
 declare namespace ContentPlatformApplicationValidator {
-    export { addDataLoader, addFaq, addInjectableTag, addPathRedirectionRules, createAnnouncement, createBlog, createFaqCategory, createLandingPage, createNavigation, createPage, createPagePreview, createSlideshow, deleteAllInjectableTags, deleteAnnouncement, deleteBlog, deleteDataLoader, deleteFaq, deleteFaqCategory, deleteLandingPage, deleteNavigation, deletePage, deletePathRedirectionRules, deleteSlideshow, editDataLoader, editInjectableTag, generateSEOTitle, getAnnouncementById, getAnnouncementsList, getBlogBySlug, getBlogs, getComponentById, getDataLoaders, getDefaultNavigations, getFaqByIdOrSlug, getFaqCategories, getFaqCategoryBySlugOrId, getFaqsByCategoryIdOrSlug, getInjectableTags, getLandingPages, getLegalInformation, getNavigationBySlug, getNavigations, getPageBySlug, getPageMeta, getPageSpec, getPages, getPathRedirectionRule, getPathRedirectionRules, getSEOConfiguration, getSlideshowBySlug, getSlideshows, getSupportInformation, removeInjectableTag, resetDataLoader, selectDataLoader, updateAnnouncement, updateAnnouncementSchedule, updateBlog, updateFaq, updateFaqCategory, updateInjectableTag, updateLandingPage, updateLegalInformation, updateNavigation, updatePage, updatePagePreview, updatePathRedirectionRules, updateSEOConfiguration, updateSlideshow, updateSupportInformation };
+    export { AddDataLoaderParam, AddFaqParam, AddInjectableTagParam, AddPathRedirectionRulesParam, CreateAnnouncementParam, CreateBlogParam, CreateFaqCategoryParam, CreateLandingPageParam, CreateNavigationParam, CreatePageParam, CreatePagePreviewParam, CreateSlideshowParam, DeleteAllInjectableTagsParam, DeleteAnnouncementParam, DeleteBlogParam, DeleteDataLoaderParam, DeleteFaqParam, DeleteFaqCategoryParam, DeleteLandingPageParam, DeleteNavigationParam, DeletePageParam, DeletePathRedirectionRulesParam, DeleteSlideshowParam, EditDataLoaderParam, EditInjectableTagParam, GenerateSEOTitleParam, GetAnnouncementByIdParam, GetAnnouncementsListParam, GetBlogBySlugParam, GetBlogsParam, GetComponentByIdParam, GetDataLoadersParam, GetDefaultNavigationsParam, GetFaqByIdOrSlugParam, GetFaqCategoriesParam, GetFaqCategoryBySlugOrIdParam, GetFaqsByCategoryIdOrSlugParam, GetInjectableTagsParam, GetLandingPagesParam, GetLegalInformationParam, GetNavigationBySlugParam, GetNavigationsParam, GetPageBySlugParam, GetPageMetaParam, GetPageSpecParam, GetPagesParam, GetPathRedirectionRuleParam, GetPathRedirectionRulesParam, GetSEOConfigurationParam, GetSlideshowBySlugParam, GetSlideshowsParam, GetSupportInformationParam, RemoveInjectableTagParam, ResetDataLoaderParam, SelectDataLoaderParam, UpdateAnnouncementParam, UpdateAnnouncementScheduleParam, UpdateBlogParam, UpdateFaqParam, UpdateFaqCategoryParam, UpdateInjectableTagParam, UpdateLandingPageParam, UpdateLegalInformationParam, UpdateNavigationParam, UpdatePageParam, UpdatePagePreviewParam, UpdatePathRedirectionRulesParam, UpdateSEOConfigurationParam, UpdateSlideshowParam, UpdateSupportInformationParam };
 }
-/** @returns {addDataLoader} */
-declare function addDataLoader(): addDataLoader;
-type addDataLoader = {
+type AddDataLoaderParam = {
     body: ContentPlatformModel.DataLoaderSchema;
 };
-/** @returns {addFaq} */
-declare function addFaq(): addFaq;
-type addFaq = {
+type AddFaqParam = {
     /**
      * - ID allotted to an FAQ category.
      */
     categoryId: string;
     body: ContentPlatformModel.CreateFaqSchema;
 };
-/** @returns {addInjectableTag} */
-declare function addInjectableTag(): addInjectableTag;
-type addInjectableTag = {
+type AddInjectableTagParam = {
     body: ContentPlatformModel.CreateTagRequestSchema;
 };
-/** @returns {addPathRedirectionRules} */
-declare function addPathRedirectionRules(): addPathRedirectionRules;
-type addPathRedirectionRules = {
+type AddPathRedirectionRulesParam = {
     body: ContentPlatformModel.PathMappingSchema;
 };
-/** @returns {createAnnouncement} */
-declare function createAnnouncement(): createAnnouncement;
-type createAnnouncement = {
+type CreateAnnouncementParam = {
     body: ContentPlatformModel.AdminAnnouncementSchema;
 };
-/** @returns {createBlog} */
-declare function createBlog(): createBlog;
-type createBlog = {
+type CreateBlogParam = {
     body: ContentPlatformModel.BlogRequest;
 };
-/** @returns {createFaqCategory} */
-declare function createFaqCategory(): createFaqCategory;
-type createFaqCategory = {
+type CreateFaqCategoryParam = {
     body: ContentPlatformModel.CreateFaqCategoryRequestSchema;
 };
-/** @returns {createLandingPage} */
-declare function createLandingPage(): createLandingPage;
-type createLandingPage = {
+type CreateLandingPageParam = {
     body: ContentPlatformModel.LandingPageSchema;
 };
-/** @returns {createNavigation} */
-declare function createNavigation(): createNavigation;
-type createNavigation = {
+type CreateNavigationParam = {
     body: ContentPlatformModel.NavigationRequest;
 };
-/** @returns {createPage} */
-declare function createPage(): createPage;
-type createPage = {
+type CreatePageParam = {
     body: ContentPlatformModel.PageRequest;
 };
-/** @returns {createPagePreview} */
-declare function createPagePreview(): createPagePreview;
-type createPagePreview = {
+type CreatePagePreviewParam = {
     body: ContentPlatformModel.PageRequest;
 };
-/** @returns {createSlideshow} */
-declare function createSlideshow(): createSlideshow;
-type createSlideshow = {
+type CreateSlideshowParam = {
     body: ContentPlatformModel.SlideshowRequest;
 };
-/** @returns {deleteAllInjectableTags} */
-declare function deleteAllInjectableTags(): any;
-type deleteAllInjectableTags = any;
-/** @returns {deleteAnnouncement} */
-declare function deleteAnnouncement(): deleteAnnouncement;
-type deleteAnnouncement = {
+type DeleteAllInjectableTagsParam = any;
+type DeleteAnnouncementParam = {
     /**
      * - ID allotted to the announcement.
      */
     announcementId: string;
 };
-/** @returns {deleteBlog} */
-declare function deleteBlog(): deleteBlog;
-type deleteBlog = {
+type DeleteBlogParam = {
     /**
      * - ID allotted to the blog.
      */
     id: string;
 };
-/** @returns {deleteDataLoader} */
-declare function deleteDataLoader(): deleteDataLoader;
-type deleteDataLoader = {
+type DeleteDataLoaderParam = {
     /**
      * - ID allotted to the data loader.
      */
     dataLoaderId: string;
 };
-/** @returns {deleteFaq} */
-declare function deleteFaq(): deleteFaq;
-type deleteFaq = {
+type DeleteFaqParam = {
     /**
      * - ID allotted to an FAQ category.
      */
@@ -418,75 +524,57 @@ type deleteFaq = {
      */
     faqId: string;
 };
-/** @returns {deleteFaqCategory} */
-declare function deleteFaqCategory(): deleteFaqCategory;
-type deleteFaqCategory = {
+type DeleteFaqCategoryParam = {
     /**
      * - ID allotted to an FAQ category.
      */
     id: string;
 };
-/** @returns {deleteLandingPage} */
-declare function deleteLandingPage(): deleteLandingPage;
-type deleteLandingPage = {
+type DeleteLandingPageParam = {
     /**
      * - ID allotted to a landing page.
      */
     id: string;
 };
-/** @returns {deleteNavigation} */
-declare function deleteNavigation(): deleteNavigation;
-type deleteNavigation = {
+type DeleteNavigationParam = {
     /**
      * - ID allotted to the navigation.
      */
     id: string;
 };
-/** @returns {deletePage} */
-declare function deletePage(): deletePage;
-type deletePage = {
+type DeletePageParam = {
     /**
      * - ID allotted to the page.
      */
     id: string;
 };
-/** @returns {deletePathRedirectionRules} */
-declare function deletePathRedirectionRules(): deletePathRedirectionRules;
-type deletePathRedirectionRules = {
+type DeletePathRedirectionRulesParam = {
     /**
      * - ID allotted to the path redirection rule.
      */
     pathId: string;
 };
-/** @returns {deleteSlideshow} */
-declare function deleteSlideshow(): deleteSlideshow;
-type deleteSlideshow = {
+type DeleteSlideshowParam = {
     /**
      * - ID allotted to the slideshow.
      */
     id: string;
 };
-/** @returns {editDataLoader} */
-declare function editDataLoader(): editDataLoader;
-type editDataLoader = {
+type EditDataLoaderParam = {
     /**
      * - ID allotted to the data loader.
      */
     dataLoaderId: string;
     body: ContentPlatformModel.DataLoaderSchema;
 };
-/** @returns {editInjectableTag} */
-declare function editInjectableTag(): editInjectableTag;
-type editInjectableTag = {
+type EditInjectableTagParam = {
     /**
      * - ID allotted to the tag.
      */
     tagId: string;
     body: ContentPlatformModel.UpdateHandpickedSchema;
 };
-/** @returns {generateSEOTitle} */
-declare function generateSEOTitle(): generateSEOTitle;
-type generateSEOTitle = {
+type GenerateSEOTitleParam = {
     /**
      * - String
      * representing the type of SEO content to be generated. Possible values are:
@@ -495,17 +583,13 @@ type generateSEOTitle = {
     type: ContentPlatformModel.GenerationEntityType;
     body: ContentPlatformModel.GenerateSEOContent;
 };
-/** @returns {getAnnouncementById} */
-declare function getAnnouncementById(): getAnnouncementById;
-type getAnnouncementById = {
+type GetAnnouncementByIdParam = {
     /**
      * - ID allotted to the announcement.
      */
     announcementId: string;
 };
-/** @returns {getAnnouncementsList} */
-declare function getAnnouncementsList(): getAnnouncementsList;
-type getAnnouncementsList = {
+type GetAnnouncementsListParam = {
     /**
      * - The page number to navigate through the given
      * set of results. Default value is 1.
@@ -517,18 +601,14 @@ type getAnnouncementsList = {
      */
     pageSize?: number;
 };
-/** @returns {getBlogBySlug} */
-declare function getBlogBySlug(): getBlogBySlug;
-type getBlogBySlug = {
+type GetBlogBySlugParam = {
     /**
      * - A short, human-readable, URL-friendly identifier of
      * a blog page. You can get slug value of a blog from `getBlogs` API.
      */
     slug: string;
 };
-/** @returns {getBlogs} */
-declare function getBlogs(): getBlogs;
-type getBlogs = {
+type GetBlogsParam = {
     /**
      * - The page number to navigate through the given
      * set of results. Default value is 1.
@@ -540,24 +620,16 @@ type getBlogs = {
      */
     pageSize?: number;
 };
-/** @returns {getComponentById} */
-declare function getComponentById(): getComponentById;
-type getComponentById = {
+type GetComponentByIdParam = {
     /**
      * - A short, human-readable, URL-friendly identifier of
      * a blog page. You can get slug value of a blog from `getBlogs` API.
      */
     slug: string;
 };
-/** @returns {getDataLoaders} */
-declare function getDataLoaders(): any;
-type getDataLoaders = any;
-/** @returns {getDefaultNavigations} */
-declare function getDefaultNavigations(): any;
-type getDefaultNavigations = any;
-/** @returns {getFaqByIdOrSlug} */
-declare function getFaqByIdOrSlug(): getFaqByIdOrSlug;
-type getFaqByIdOrSlug = {
+type GetDataLoadersParam = any;
+type GetDefaultNavigationsParam = any;
+type GetFaqByIdOrSlugParam = {
     /**
      * - ID or the slug allotted to an FAQ category.
      * Slug is a short, human-readable, URL-friendly identifier of an object. You
@@ -565,12 +637,8 @@ type getFaqByIdOrSlug = {
      */
     idOrSlug: string;
 };
-/** @returns {getFaqCategories} */
-declare function getFaqCategories(): any;
-type getFaqCategories = any;
-/** @returns {getFaqCategoryBySlugOrId} */
-declare function getFaqCategoryBySlugOrId(): getFaqCategoryBySlugOrId;
-type getFaqCategoryBySlugOrId = {
+type GetFaqCategoriesParam = any;
+type GetFaqCategoryBySlugOrIdParam = {
     /**
      * - ID or the slug allotted to an FAQ category.
      * Slug is a short, human-readable, URL-friendly identifier of an object. You
@@ -578,9 +646,7 @@ type getFaqCategoryBySlugOrId = {
      */
     idOrSlug: string;
 };
-/** @returns {getFaqsByCategoryIdOrSlug} */
-declare function getFaqsByCategoryIdOrSlug(): getFaqsByCategoryIdOrSlug;
-type getFaqsByCategoryIdOrSlug = {
+type GetFaqsByCategoryIdOrSlugParam = {
     /**
      * - ID or the slug allotted to an FAQ category.
      * Slug is a short, human-readable, URL-friendly identifier of an object. You
@@ -588,12 +654,8 @@ type getFaqsByCategoryIdOrSlug = {
      */
     idOrSlug: string;
 };
-/** @returns {getInjectableTags} */
-declare function getInjectableTags(): any;
-type getInjectableTags = any;
-/** @returns {getLandingPages} */
-declare function getLandingPages(): getLandingPages;
-type getLandingPages = {
+type GetInjectableTagsParam = any;
+type GetLandingPagesParam = {
     /**
      * - The page number to navigate through the given
      * set of results. Default value is 1.
@@ -605,12 +667,8 @@ type getLandingPages = {
      */
     pageSize?: number;
 };
-/** @returns {getLegalInformation} */
-declare function getLegalInformation(): any;
-type getLegalInformation = any;
-/** @returns {getNavigationBySlug} */
-declare function getNavigationBySlug(): getNavigationBySlug;
-type getNavigationBySlug = {
+type GetLegalInformationParam = any;
+type GetNavigationBySlugParam = {
     /**
      * - A short, human-readable, URL-friendly identifier of
      * a navigation. You can get slug value of a navigation from `getNavigations` API.
@@ -622,9 +680,7 @@ type getNavigationBySlug = {
      */
     devicePlatform: string;
 };
-/** @returns {getNavigations} */
-declare function getNavigations(): getNavigations;
-type getNavigations = {
+type GetNavigationsParam = {
     /**
      * - Filter navigations by platform.
      * Acceptable values are: web, android, ios, all
@@ -641,24 +697,16 @@ type getNavigations = {
      */
     pageSize?: number;
 };
-/** @returns {getPageBySlug} */
-declare function getPageBySlug(): getPageBySlug;
-type getPageBySlug = {
+type GetPageBySlugParam = {
     /**
      * - A short, human-readable, URL-friendly identifier of
      * a page. You can get slug value of a page from `getPages` API.
      */
     slug: string;
 };
-/** @returns {getPageMeta} */
-declare function getPageMeta(): any;
-type getPageMeta = any;
-/** @returns {getPageSpec} */
-declare function getPageSpec(): any;
-type getPageSpec = any;
-/** @returns {getPages} */
-declare function getPages(): getPages;
-type getPages = {
+type GetPageMetaParam = any;
+type GetPageSpecParam = any;
+type GetPagesParam = {
     /**
      * - The page number to navigate through the given
      * set of results. Default value is 1.
@@ -670,17 +718,13 @@ type getPages = {
      */
     pageSize?: number;
 };
-/** @returns {getPathRedirectionRule} */
-declare function getPathRedirectionRule(): getPathRedirectionRule;
-type getPathRedirectionRule = {
+type GetPathRedirectionRuleParam = {
     /**
      * - ID allotted to the path redirection rule.
      */
     pathId: string;
 };
-/** @returns {getPathRedirectionRules} */
-declare function getPathRedirectionRules(): getPathRedirectionRules;
-type getPathRedirectionRules = {
+type GetPathRedirectionRulesParam = {
     /**
      * - The number of items to retrieve in each page.
      * Default value is 5.
@@ -692,12 +736,8 @@ type getPathRedirectionRules = {
      */
     pageNo?: number;
 };
-/** @returns {getSEOConfiguration} */
-declare function getSEOConfiguration(): any;
-type getSEOConfiguration = any;
-/** @returns {getSlideshowBySlug} */
-declare function getSlideshowBySlug(): getSlideshowBySlug;
-type getSlideshowBySlug = {
+type GetSEOConfigurationParam = any;
+type GetSlideshowBySlugParam = {
     /**
      * - A short, human-readable, URL-friendly identifier of
      * a slideshow. You can get slug value of a page from `getSlideshows` API.
@@ -709,9 +749,7 @@ type getSlideshowBySlug = {
      */
     devicePlatform: string;
 };
-/** @returns {getSlideshows} */
-declare function getSlideshows(): getSlideshows;
-type getSlideshows = {
+type GetSlideshowsParam = {
     /**
      * - Filter slideshows by platform. Acceptable
      * values are: web, android, ios and all
@@ -728,17 +766,11 @@ type getSlideshows = {
      */
     pageSize?: number;
 };
-/** @returns {getSupportInformation} */
-declare function getSupportInformation(): any;
-type getSupportInformation = any;
-/** @returns {removeInjectableTag} */
-declare function removeInjectableTag(): removeInjectableTag;
-type removeInjectableTag = {
+type GetSupportInformationParam = any;
+type RemoveInjectableTagParam = {
     body: ContentPlatformModel.RemoveHandpickedSchema;
 };
-/** @returns {resetDataLoader} */
-declare function resetDataLoader(): resetDataLoader;
-type resetDataLoader = {
+type ResetDataLoaderParam = {
     /**
      * - Name of service.
      */
@@ -748,44 +780,34 @@ type resetDataLoader = {
      */
     operationId: string;
 };
-/** @returns {selectDataLoader} */
-declare function selectDataLoader(): selectDataLoader;
-type selectDataLoader = {
+type SelectDataLoaderParam = {
     /**
      * - ID allotted to the data loader.
      */
     dataLoaderId: string;
 };
-/** @returns {updateAnnouncement} */
-declare function updateAnnouncement(): updateAnnouncement;
-type updateAnnouncement = {
+type UpdateAnnouncementParam = {
     /**
      * - ID allotted to the announcement.
      */
     announcementId: string;
     body: ContentPlatformModel.AdminAnnouncementSchema;
 };
-/** @returns {updateAnnouncementSchedule} */
-declare function updateAnnouncementSchedule(): updateAnnouncementSchedule;
-type updateAnnouncementSchedule = {
+type UpdateAnnouncementScheduleParam = {
     /**
      * - ID allotted to the announcement.
      */
     announcementId: string;
     body: ContentPlatformModel.ScheduleSchema;
 };
-/** @returns {updateBlog} */
-declare function updateBlog(): updateBlog;
-type updateBlog = {
+type UpdateBlogParam = {
     /**
      * - ID allotted to the blog.
      */
     id: string;
     body: ContentPlatformModel.BlogRequest;
 };
-/** @returns {updateFaq} */
-declare function updateFaq(): updateFaq;
-type updateFaq = {
+type UpdateFaqParam = {
     /**
      * - ID allotted to an FAQ category.
      */
@@ -796,55 +818,41 @@ type updateFaq = {
     faqId: string;
     body: ContentPlatformModel.CreateFaqSchema;
 };
-/** @returns {updateFaqCategory} */
-declare function updateFaqCategory(): updateFaqCategory;
-type updateFaqCategory = {
+type UpdateFaqCategoryParam = {
     /**
      * - ID allotted to an FAQ category.
      */
     id: string;
     body: ContentPlatformModel.UpdateFaqCategoryRequestSchema;
 };
-/** @returns {updateInjectableTag} */
-declare function updateInjectableTag(): updateInjectableTag;
-type updateInjectableTag = {
+type UpdateInjectableTagParam = {
     body: ContentPlatformModel.CreateTagRequestSchema;
 };
-/** @returns {updateLandingPage} */
-declare function updateLandingPage(): updateLandingPage;
-type updateLandingPage = {
+type UpdateLandingPageParam = {
     /**
      * - ID allotted to a landing page.
      */
     id: string;
     body: ContentPlatformModel.LandingPageSchema;
 };
-/** @returns {updateLegalInformation} */
-declare function updateLegalInformation(): updateLegalInformation;
-type updateLegalInformation = {
+type UpdateLegalInformationParam = {
     body: ContentPlatformModel.ApplicationLegal;
 };
-/** @returns {updateNavigation} */
-declare function updateNavigation(): updateNavigation;
-type updateNavigation = {
+type UpdateNavigationParam = {
     /**
      * - ID allotted to the navigation.
      */
     id: string;
     body: ContentPlatformModel.NavigationRequest;
 };
-/** @returns {updatePage} */
-declare function updatePage(): updatePage;
-type updatePage = {
+type UpdatePageParam = {
     /**
      * - ID allotted to the page.
      */
     id: string;
     body: ContentPlatformModel.PageSchema;
 };
-/** @returns {updatePagePreview} */
-declare function updatePagePreview(): updatePagePreview;
-type updatePagePreview = {
+type UpdatePagePreviewParam = {
     /**
      * - A short, human-readable, URL-friendly identifier of
      * a page. You can get slug value of a page from `getPages` API.
@@ -852,32 +860,24 @@ type updatePagePreview = {
     slug: string;
     body: ContentPlatformModel.PagePublishRequest;
 };
-/** @returns {updatePathRedirectionRules} */
-declare function updatePathRedirectionRules(): updatePathRedirectionRules;
-type updatePathRedirectionRules = {
+type UpdatePathRedirectionRulesParam = {
     /**
      * - ID allotted to the path redirection rule.
      */
     pathId: string;
     body: ContentPlatformModel.PathMappingSchema;
 };
-/** @returns {updateSEOConfiguration} */
-declare function updateSEOConfiguration(): updateSEOConfiguration;
-type updateSEOConfiguration = {
+type UpdateSEOConfigurationParam = {
     body: ContentPlatformModel.SeoComponent;
 };
-/** @returns {updateSlideshow} */
-declare function updateSlideshow(): updateSlideshow;
-type updateSlideshow = {
+type UpdateSlideshowParam = {
     /**
      * - ID allotted to the slideshow.
      */
     id: string;
     body: ContentPlatformModel.SlideshowRequest;
 };
-/** @returns {updateSupportInformation} */
-declare function updateSupportInformation(): updateSupportInformation;
-type updateSupportInformation = {
+type UpdateSupportInformationParam = {
     body: ContentPlatformModel.Support;
 };
 import ContentPlatformModel = require("./ContentPlatformModel");

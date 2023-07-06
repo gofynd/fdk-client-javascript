@@ -2,10 +2,10 @@ const Joi = require("joi");
 
 const PartnerPublicModel = require("./PartnerPublicModel");
 
-/** @typedef getOrganizationList */
+/** @typedef GetOrganizationListParam */
 
 /**
- * @typedef getPanelExtensionDetails
+ * @typedef GetPanelExtensionDetailsParam
  * @property {string} slug - Pass the slug of the extension
  */
 

@@ -2,34 +2,34 @@ const Joi = require("joi");
 
 const WebhookPlatformModel = require("./WebhookPlatformModel");
 
-/** @typedef fetchAllEventConfigurations */
+/** @typedef FetchAllEventConfigurationsParam */
 
 /**
- * @typedef getSubscriberById
+ * @typedef GetSubscriberByIdParam
  * @property {number} subscriberId - Subscriber ID
  */
 
 /**
- * @typedef getSubscribersByCompany
+ * @typedef GetSubscribersByCompanyParam
  * @property {number} [pageNo] - Page Number
  * @property {number} [pageSize] - Page Size
  * @property {string} [extensionId] - Extension ID
  */
 
 /**
- * @typedef getSubscribersByExtensionId
+ * @typedef GetSubscribersByExtensionIdParam
  * @property {number} [pageNo] - Page Number
  * @property {number} [pageSize] - Page Size
  * @property {string} extensionId - Extension ID
  */
 
 /**
- * @typedef registerSubscriberToEvent
+ * @typedef RegisterSubscriberToEventParam
  * @property {WebhookPlatformModel.SubscriberConfig} body
  */
 
 /**
- * @typedef updateSubscriberConfig
+ * @typedef UpdateSubscriberConfigParam
  * @property {WebhookPlatformModel.SubscriberConfig} body
  */
 

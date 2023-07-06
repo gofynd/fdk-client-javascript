@@ -3,12 +3,12 @@ const Joi = require("joi");
 const CartPlatformModel = require("./CartPlatformModel");
 
 /**
- * @typedef addAddress
+ * @typedef AddAddressParam
  * @property {CartPlatformModel.PlatformAddress} body
  */
 
 /**
- * @typedef addItems
+ * @typedef AddItemsParam
  * @property {string} cartId - Current Cart _id
  * @property {boolean} [b]
  * @property {string} [userId]
@@ -16,7 +16,7 @@ const CartPlatformModel = require("./CartPlatformModel");
  */
 
 /**
- * @typedef applyCoupon
+ * @typedef ApplyCouponParam
  * @property {boolean} [i]
  * @property {boolean} [b]
  * @property {boolean} [p]
@@ -26,50 +26,50 @@ const CartPlatformModel = require("./CartPlatformModel");
  */
 
 /**
- * @typedef checkCartServiceability
+ * @typedef CheckCartServiceabilityParam
  * @property {CartPlatformModel.OpenApiCartServiceabilityRequest} body
  */
 
 /**
- * @typedef checkoutCart
+ * @typedef CheckoutCartParam
  * @property {CartPlatformModel.OpenApiPlatformCheckoutReq} body
  */
 
 /**
- * @typedef createCartDynamicInjection
+ * @typedef CreateCartDynamicInjectionParam
  * @property {CartPlatformModel.CartDynamicInjectionAdd} body
  */
 
 /**
- * @typedef createCartMetaConfig
+ * @typedef CreateCartMetaConfigParam
  * @property {CartPlatformModel.CartMetaConfigAdd} body
  */
 
 /**
- * @typedef createCoupon
+ * @typedef CreateCouponParam
  * @property {CartPlatformModel.CouponAdd} body
  */
 
 /**
- * @typedef createPromotion
+ * @typedef CreatePromotionParam
  * @property {CartPlatformModel.PromotionAdd} body
  */
 
 /**
- * @typedef deleteCart
+ * @typedef DeleteCartParam
  * @property {string} [id] - The unique identifier of the cart.
  * @property {CartPlatformModel.DeleteCartRequest} body
  */
 
 /**
- * @typedef fetchAndvalidateCartItems
+ * @typedef FetchAndvalidateCartItemsParam
  * @property {CartPlatformModel.OpenapiCartDetailsRequest} body
  */
 
-/** @typedef fetchCartMetaConfig */
+/** @typedef FetchCartMetaConfigParam */
 
 /**
- * @typedef getAbandonedCart
+ * @typedef GetAbandonedCartParam
  * @property {string} [userId]
  * @property {number} [pageNo]
  * @property {number} [pageSize]
@@ -81,7 +81,7 @@ const CartPlatformModel = require("./CartPlatformModel");
  */
 
 /**
- * @typedef getAbandonedCartDetails
+ * @typedef GetAbandonedCartDetailsParam
  * @property {string} [userId]
  * @property {string} [id]
  * @property {boolean} [i]
@@ -89,7 +89,7 @@ const CartPlatformModel = require("./CartPlatformModel");
  */
 
 /**
- * @typedef getAddressById
+ * @typedef GetAddressByIdParam
  * @property {string} id
  * @property {string} [cartId]
  * @property {boolean} [buyNow]
@@ -101,7 +101,7 @@ const CartPlatformModel = require("./CartPlatformModel");
  */
 
 /**
- * @typedef getAddresses
+ * @typedef GetAddressesParam
  * @property {string} [cartId]
  * @property {boolean} [buyNow]
  * @property {string} [mobileNo]
@@ -112,19 +112,19 @@ const CartPlatformModel = require("./CartPlatformModel");
  */
 
 /**
- * @typedef getAppCoupons
+ * @typedef GetAppCouponsParam
  * @property {string} [id]
  * @property {boolean} [buyNow]
  */
 
 /**
- * @typedef getAvailableDeliveryModes
+ * @typedef GetAvailableDeliveryModesParam
  * @property {string} areaCode
  * @property {string} [id]
  */
 
 /**
- * @typedef getCart
+ * @typedef GetCartParam
  * @property {string} [id]
  * @property {string} [userId]
  * @property {boolean} [i]
@@ -134,36 +134,36 @@ const CartPlatformModel = require("./CartPlatformModel");
  */
 
 /**
- * @typedef getCartList
+ * @typedef GetCartListParam
  * @property {string} [fromDate]
  * @property {string} [toDate]
  * @property {string} [filterOn]
  */
 
 /**
- * @typedef getCartShareLink
+ * @typedef GetCartShareLinkParam
  * @property {CartPlatformModel.GetShareCartLinkRequest} body
  */
 
 /**
- * @typedef getCartSharedItems
+ * @typedef GetCartSharedItemsParam
  * @property {string} token - Token of the shared short link
  */
 
 /**
- * @typedef getCouponById
+ * @typedef GetCouponByIdParam
  * @property {string} id
  */
 
 /**
- * @typedef getCouponCodeExists
+ * @typedef GetCouponCodeExistsParam
  * @property {string} [code]
  */
 
-/** @typedef getCouponOptionValues */
+/** @typedef GetCouponOptionValuesParam */
 
 /**
- * @typedef getCoupons
+ * @typedef GetCouponsParam
  * @property {number} [pageNo]
  * @property {number} [pageSize]
  * @property {boolean} [isArchived]
@@ -175,29 +175,29 @@ const CartPlatformModel = require("./CartPlatformModel");
  */
 
 /**
- * @typedef getItemCount
+ * @typedef GetItemCountParam
  * @property {string} [id] - The unique identifier of the cart.
  * @property {boolean} [buyNow]
  */
 
 /**
- * @typedef getPromosCouponConfig
+ * @typedef GetPromosCouponConfigParam
  * @property {string} [entityType] - Entity_type as promotion or coupon
  * @property {boolean} [isHidden] - Promo-coupon config shown or not
  */
 
 /**
- * @typedef getPromotionById
+ * @typedef GetPromotionByIdParam
  * @property {string} id
  */
 
 /**
- * @typedef getPromotionCodeExists
+ * @typedef GetPromotionCodeExistsParam
  * @property {string} [code]
  */
 
 /**
- * @typedef getPromotions
+ * @typedef GetPromotionsParam
  * @property {number} [pageNo]
  * @property {number} [pageSize]
  * @property {string} [q]
@@ -209,7 +209,7 @@ const CartPlatformModel = require("./CartPlatformModel");
  */
 
 /**
- * @typedef getShipments
+ * @typedef GetShipmentsParam
  * @property {number} [pickAtStoreUid]
  * @property {number} [orderingStoreId]
  * @property {boolean} [i] - This is a boolean value. Select `true` to retrieve
@@ -225,17 +225,17 @@ const CartPlatformModel = require("./CartPlatformModel");
  */
 
 /**
- * @typedef getStoreAddressByUid
+ * @typedef GetStoreAddressByUidParam
  * @property {number} storeUid
  */
 
 /**
- * @typedef overrideCart
+ * @typedef OverrideCartParam
  * @property {CartPlatformModel.OverrideCheckoutReq} body
  */
 
 /**
- * @typedef platformAddItems
+ * @typedef PlatformAddItemsParam
  * @property {boolean} [i]
  * @property {boolean} [b]
  * @property {boolean} [buyNow]
@@ -244,19 +244,19 @@ const CartPlatformModel = require("./CartPlatformModel");
  */
 
 /**
- * @typedef platformCheckoutCart
+ * @typedef PlatformCheckoutCartParam
  * @property {string} [id]
  * @property {CartPlatformModel.PlatformCartCheckoutDetailRequest} body
  */
 
 /**
- * @typedef platformCheckoutCartV2
+ * @typedef PlatformCheckoutCartV2Param
  * @property {string} [id]
  * @property {CartPlatformModel.PlatformCartCheckoutDetailV2Request} body
  */
 
 /**
- * @typedef platformUpdateCart
+ * @typedef PlatformUpdateCartParam
  * @property {string} [id]
  * @property {boolean} [i]
  * @property {boolean} [b]
@@ -265,24 +265,24 @@ const CartPlatformModel = require("./CartPlatformModel");
  */
 
 /**
- * @typedef removeAddress
+ * @typedef RemoveAddressParam
  * @property {string} id - ID allotted to the selected address
  * @property {string} [userId] - Option to delete address for the provided user_id.
  */
 
 /**
- * @typedef removeCartDynamicInjection
+ * @typedef RemoveCartDynamicInjectionParam
  * @property {string} id
  */
 
 /**
- * @typedef removeCoupon
+ * @typedef RemoveCouponParam
  * @property {string} [uid]
  * @property {boolean} [buyNow]
  */
 
 /**
- * @typedef selectAddress
+ * @typedef SelectAddressParam
  * @property {string} [cartId]
  * @property {boolean} [buyNow]
  * @property {boolean} [i]
@@ -291,7 +291,7 @@ const CartPlatformModel = require("./CartPlatformModel");
  */
 
 /**
- * @typedef selectPaymentMode
+ * @typedef SelectPaymentModeParam
  * @property {string} [id]
  * @property {boolean} [buyNow]
  * @property {string} [orderType] - The order type of shipment HomeDelivery - If
@@ -301,7 +301,7 @@ const CartPlatformModel = require("./CartPlatformModel");
  */
 
 /**
- * @typedef selectPaymentModeV2
+ * @typedef SelectPaymentModeV2Param
  * @property {string} [id]
  * @property {boolean} [buyNow]
  * @property {string} [orderType] - The order type of shipment HomeDelivery - If
@@ -311,13 +311,13 @@ const CartPlatformModel = require("./CartPlatformModel");
  */
 
 /**
- * @typedef updateAddress
+ * @typedef UpdateAddressParam
  * @property {string} id - ID allotted to the selected address
  * @property {CartPlatformModel.PlatformAddress} body
  */
 
 /**
- * @typedef updateCart
+ * @typedef UpdateCartParam
  * @property {string} cartId - Current Cart _id
  * @property {boolean} [b]
  * @property {string} [userId]
@@ -325,63 +325,63 @@ const CartPlatformModel = require("./CartPlatformModel");
  */
 
 /**
- * @typedef updateCartDynamicInjection
+ * @typedef UpdateCartDynamicInjectionParam
  * @property {string} id
  * @property {CartPlatformModel.CartDynamicInjectionUpdate} body
  */
 
 /**
- * @typedef updateCartMeta
+ * @typedef UpdateCartMetaParam
  * @property {string} [id]
  * @property {boolean} [buyNow]
  * @property {CartPlatformModel.PlatformCartMetaRequest} body
  */
 
 /**
- * @typedef updateCartMetaConfig
+ * @typedef UpdateCartMetaConfigParam
  * @property {string} cartMetaId
  * @property {CartPlatformModel.CartMetaConfigUpdate} body
  */
 
 /**
- * @typedef updateCartUser
+ * @typedef UpdateCartUserParam
  * @property {string} [id]
  * @property {CartPlatformModel.UpdateUserCartMapping} body
  */
 
 /**
- * @typedef updateCartWithSharedItems
+ * @typedef UpdateCartWithSharedItemsParam
  * @property {string} token - Token of the shared short link
  * @property {string} action - Operation to perform on the existing cart merge or replace.
  * @property {string} [cartId]
  */
 
 /**
- * @typedef updateCoupon
+ * @typedef UpdateCouponParam
  * @property {string} id
  * @property {CartPlatformModel.CouponUpdate} body
  */
 
 /**
- * @typedef updateCouponPartially
+ * @typedef UpdateCouponPartiallyParam
  * @property {string} id
  * @property {CartPlatformModel.CouponPartialUpdate} body
  */
 
 /**
- * @typedef updatePromotion
+ * @typedef UpdatePromotionParam
  * @property {string} id
  * @property {CartPlatformModel.PromotionUpdate} body
  */
 
 /**
- * @typedef updatePromotionPartially
+ * @typedef UpdatePromotionPartiallyParam
  * @property {string} id
  * @property {CartPlatformModel.PromotionPartialUpdate} body
  */
 
 /**
- * @typedef updateShipments
+ * @typedef UpdateShipmentsParam
  * @property {boolean} [i] - This is a boolean value. Select `true` to retrieve
  *   all the items added in the cart.
  * @property {boolean} [p] - This is a boolean value. Select `true` for getting
@@ -396,7 +396,7 @@ const CartPlatformModel = require("./CartPlatformModel");
  */
 
 /**
- * @typedef validateCouponForPayment
+ * @typedef ValidateCouponForPaymentParam
  * @property {string} [id]
  * @property {boolean} [buyNow]
  * @property {string} [addressId]

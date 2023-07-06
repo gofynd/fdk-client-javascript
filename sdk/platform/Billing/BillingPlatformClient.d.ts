@@ -3,65 +3,65 @@ declare class Billing {
     constructor(config: any);
     config: any;
     /**
-     * @param {BillingPlatformValidator.activateSubscriptionPlan} arg - Arg object
+     * @param {BillingPlatformValidator.ActivateSubscriptionPlanParam} arg - Arg object
      * @returns {Promise<BillingPlatformModel.SubscriptionActivateRes>} - Success response
      * @name activateSubscriptionPlan
      * @summary: Activate subscription
      * @description: It will activate subscription plan for customer
      */
-    activateSubscriptionPlan({ body }?: BillingPlatformValidator.activateSubscriptionPlan): Promise<BillingPlatformModel.SubscriptionActivateRes>;
+    activateSubscriptionPlan({ body }?: BillingPlatformValidator.ActivateSubscriptionPlanParam): Promise<BillingPlatformModel.SubscriptionActivateRes>;
     /**
-     * @param {BillingPlatformValidator.cancelSubscriptionCharge} arg - Arg object
+     * @param {BillingPlatformValidator.CancelSubscriptionChargeParam} arg - Arg object
      * @returns {Promise<BillingPlatformModel.EntitySubscription>} - Success response
      * @name cancelSubscriptionCharge
      * @summary: Cancel subscription charge
      * @description: Cancel subscription and attached charges.
      */
-    cancelSubscriptionCharge({ extensionId, subscriptionId }?: BillingPlatformValidator.cancelSubscriptionCharge): Promise<BillingPlatformModel.EntitySubscription>;
+    cancelSubscriptionCharge({ extensionId, subscriptionId }?: BillingPlatformValidator.CancelSubscriptionChargeParam): Promise<BillingPlatformModel.EntitySubscription>;
     /**
-     * @param {BillingPlatformValidator.cancelSubscriptionPlan} arg - Arg object
+     * @param {BillingPlatformValidator.CancelSubscriptionPlanParam} arg - Arg object
      * @returns {Promise<BillingPlatformModel.CancelSubscriptionRes>} - Success response
      * @name cancelSubscriptionPlan
      * @summary: Cancel subscription
      * @description: It will cancel current active subscription.
      */
-    cancelSubscriptionPlan({ body }?: BillingPlatformValidator.cancelSubscriptionPlan): Promise<BillingPlatformModel.CancelSubscriptionRes>;
+    cancelSubscriptionPlan({ body }?: BillingPlatformValidator.CancelSubscriptionPlanParam): Promise<BillingPlatformModel.CancelSubscriptionRes>;
     /**
-     * @param {BillingPlatformValidator.checkCouponValidity} arg - Arg object
+     * @param {BillingPlatformValidator.CheckCouponValidityParam} arg - Arg object
      * @returns {Promise<BillingPlatformModel.CheckValidityResponse>} - Success response
      * @name checkCouponValidity
      * @summary: Check coupon validity
      * @description: Check coupon validity.
      */
-    checkCouponValidity({ plan, couponCode }?: BillingPlatformValidator.checkCouponValidity): Promise<BillingPlatformModel.CheckValidityResponse>;
+    checkCouponValidity({ plan, couponCode }?: BillingPlatformValidator.CheckCouponValidityParam): Promise<BillingPlatformModel.CheckValidityResponse>;
     /**
-     * @param {BillingPlatformValidator.createOneTimeCharge} arg - Arg object
+     * @param {BillingPlatformValidator.CreateOneTimeChargeParam} arg - Arg object
      * @returns {Promise<BillingPlatformModel.CreateOneTimeChargeResponse>} -
      *   Success response
      * @name createOneTimeCharge
      * @summary: Create one time subscription charge
      * @description: Register one time subscription charge for a seller of your extension.
      */
-    createOneTimeCharge({ extensionId, body }?: BillingPlatformValidator.createOneTimeCharge): Promise<BillingPlatformModel.CreateOneTimeChargeResponse>;
+    createOneTimeCharge({ extensionId, body }?: BillingPlatformValidator.CreateOneTimeChargeParam): Promise<BillingPlatformModel.CreateOneTimeChargeResponse>;
     /**
-     * @param {BillingPlatformValidator.createSubscriptionCharge} arg - Arg object
+     * @param {BillingPlatformValidator.CreateSubscriptionChargeParam} arg - Arg object
      * @returns {Promise<BillingPlatformModel.CreateSubscriptionResponse>} -
      *   Success response
      * @name createSubscriptionCharge
      * @summary: Create subscription charge
      * @description: Register subscription charge for a seller of your extension.
      */
-    createSubscriptionCharge({ extensionId, body }?: BillingPlatformValidator.createSubscriptionCharge): Promise<BillingPlatformModel.CreateSubscriptionResponse>;
+    createSubscriptionCharge({ extensionId, body }?: BillingPlatformValidator.CreateSubscriptionChargeParam): Promise<BillingPlatformModel.CreateSubscriptionResponse>;
     /**
-     * @param {BillingPlatformValidator.getChargeDetails} arg - Arg object
+     * @param {BillingPlatformValidator.GetChargeDetailsParam} arg - Arg object
      * @returns {Promise<BillingPlatformModel.OneTimeChargeEntity>} - Success response
      * @name getChargeDetails
      * @summary: Get subscription charge details
      * @description: Get created subscription charge details
      */
-    getChargeDetails({ extensionId, chargeId }?: BillingPlatformValidator.getChargeDetails): Promise<BillingPlatformModel.OneTimeChargeEntity>;
+    getChargeDetails({ extensionId, chargeId }?: BillingPlatformValidator.GetChargeDetailsParam): Promise<BillingPlatformModel.OneTimeChargeEntity>;
     /**
-     * @param {BillingPlatformValidator.getCustomerDetail} arg - Arg object
+     * @param {BillingPlatformValidator.GetCustomerDetailParam} arg - Arg object
      * @returns {Promise<BillingPlatformModel.SubscriptionCustomer>} - Success response
      * @name getCustomerDetail
      * @summary: Get subscription customer detail
@@ -69,7 +69,7 @@ declare class Billing {
      */
     getCustomerDetail({}?: any): Promise<BillingPlatformModel.SubscriptionCustomer>;
     /**
-     * @param {BillingPlatformValidator.getFeatureLimitConfig} arg - Arg object
+     * @param {BillingPlatformValidator.GetFeatureLimitConfigParam} arg - Arg object
      * @returns {Promise<BillingPlatformModel.SubscriptionLimit>} - Success response
      * @name getFeatureLimitConfig
      * @summary: Get subscription subscription limits
@@ -77,15 +77,15 @@ declare class Billing {
      */
     getFeatureLimitConfig({}?: any): Promise<BillingPlatformModel.SubscriptionLimit>;
     /**
-     * @param {BillingPlatformValidator.getInvoiceById} arg - Arg object
+     * @param {BillingPlatformValidator.GetInvoiceByIdParam} arg - Arg object
      * @returns {Promise<BillingPlatformModel.Invoice>} - Success response
      * @name getInvoiceById
      * @summary: Get invoice by id
      * @description: Get invoice by id.
      */
-    getInvoiceById({ invoiceId }?: BillingPlatformValidator.getInvoiceById): Promise<BillingPlatformModel.Invoice>;
+    getInvoiceById({ invoiceId }?: BillingPlatformValidator.GetInvoiceByIdParam): Promise<BillingPlatformModel.Invoice>;
     /**
-     * @param {BillingPlatformValidator.getInvoices} arg - Arg object
+     * @param {BillingPlatformValidator.GetInvoicesParam} arg - Arg object
      * @returns {Promise<BillingPlatformModel.Invoices>} - Success response
      * @name getInvoices
      * @summary: Get invoices
@@ -93,7 +93,7 @@ declare class Billing {
      */
     getInvoices({}?: any): Promise<BillingPlatformModel.Invoices>;
     /**
-     * @param {BillingPlatformValidator.getSubscription} arg - Arg object
+     * @param {BillingPlatformValidator.GetSubscriptionParam} arg - Arg object
      * @returns {Promise<BillingPlatformModel.SubscriptionStatus>} - Success response
      * @name getSubscription
      * @summary: Get current subscription detail
@@ -101,21 +101,21 @@ declare class Billing {
      */
     getSubscription({}?: any): Promise<BillingPlatformModel.SubscriptionStatus>;
     /**
-     * @param {BillingPlatformValidator.getSubscriptionCharge} arg - Arg object
+     * @param {BillingPlatformValidator.GetSubscriptionChargeParam} arg - Arg object
      * @returns {Promise<BillingPlatformModel.EntitySubscription>} - Success response
      * @name getSubscriptionCharge
      * @summary: Get subscription charge details
      * @description: Get created subscription charge details
      */
-    getSubscriptionCharge({ extensionId, subscriptionId }?: BillingPlatformValidator.getSubscriptionCharge): Promise<BillingPlatformModel.EntitySubscription>;
+    getSubscriptionCharge({ extensionId, subscriptionId }?: BillingPlatformValidator.GetSubscriptionChargeParam): Promise<BillingPlatformModel.EntitySubscription>;
     /**
-     * @param {BillingPlatformValidator.upsertCustomerDetail} arg - Arg object
+     * @param {BillingPlatformValidator.UpsertCustomerDetailParam} arg - Arg object
      * @returns {Promise<BillingPlatformModel.SubscriptionCustomer>} - Success response
      * @name upsertCustomerDetail
      * @summary: Upsert subscription customer detail
      * @description: Upsert subscription customer detail.
      */
-    upsertCustomerDetail({ body }?: BillingPlatformValidator.upsertCustomerDetail): Promise<BillingPlatformModel.SubscriptionCustomer>;
+    upsertCustomerDetail({ body }?: BillingPlatformValidator.UpsertCustomerDetailParam): Promise<BillingPlatformModel.SubscriptionCustomer>;
 }
 import BillingPlatformValidator = require("./BillingPlatformValidator");
 import BillingPlatformModel = require("./BillingPlatformModel");

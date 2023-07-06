@@ -1,50 +1,50 @@
 export = LogisticApplicationValidator;
-/** @typedef getAllCountries */
+/** @typedef GetAllCountriesParam */
 /**
- * @typedef getOptimalLocations
+ * @typedef GetOptimalLocationsParam
  * @property {LogisticApplicationModel.ReAssignStoreRequest} body
  */
 /**
- * @typedef getPincodeCity
+ * @typedef GetPincodeCityParam
  * @property {string} pincode - A `pincode` contains a specific address of a location.
  */
 /**
- * @typedef getPincodeZones
+ * @typedef GetPincodeZonesParam
  * @property {LogisticApplicationModel.GetZoneFromPincodeViewRequest} body
  */
 /**
- * @typedef getTatProduct
+ * @typedef GetTatProductParam
  * @property {LogisticApplicationModel.TATViewRequest} body
  */
 declare class LogisticApplicationValidator {
+    /** @returns {getAllCountries} */
+    static getAllCountries(): getAllCountries;
+    /** @returns {getOptimalLocations} */
+    static getOptimalLocations(): getOptimalLocations;
+    /** @returns {getPincodeCity} */
+    static getPincodeCity(): getPincodeCity;
+    /** @returns {getPincodeZones} */
+    static getPincodeZones(): getPincodeZones;
+    /** @returns {getTatProduct} */
+    static getTatProduct(): getTatProduct;
 }
 declare namespace LogisticApplicationValidator {
-    export { getAllCountries, getOptimalLocations, getPincodeCity, getPincodeZones, getTatProduct };
+    export { GetAllCountriesParam, GetOptimalLocationsParam, GetPincodeCityParam, GetPincodeZonesParam, GetTatProductParam };
 }
-/** @returns {getAllCountries} */
-declare function getAllCountries(): any;
-type getAllCountries = any;
-/** @returns {getOptimalLocations} */
-declare function getOptimalLocations(): getOptimalLocations;
-type getOptimalLocations = {
+type GetAllCountriesParam = any;
+type GetOptimalLocationsParam = {
     body: LogisticApplicationModel.ReAssignStoreRequest;
 };
-/** @returns {getPincodeCity} */
-declare function getPincodeCity(): getPincodeCity;
-type getPincodeCity = {
+type GetPincodeCityParam = {
     /**
      * - A `pincode` contains a specific address of a location.
      */
     pincode: string;
 };
-/** @returns {getPincodeZones} */
-declare function getPincodeZones(): getPincodeZones;
-type getPincodeZones = {
+type GetPincodeZonesParam = {
     body: LogisticApplicationModel.GetZoneFromPincodeViewRequest;
 };
-/** @returns {getTatProduct} */
-declare function getTatProduct(): getTatProduct;
-type getTatProduct = {
+type GetTatProductParam = {
     body: LogisticApplicationModel.TATViewRequest;
 };
 import LogisticApplicationModel = require("./LogisticApplicationModel");

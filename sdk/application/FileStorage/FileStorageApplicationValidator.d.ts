@@ -1,6 +1,6 @@
 export = FileStorageApplicationValidator;
 /**
- * @typedef completeUpload
+ * @typedef CompleteUploadParam
  * @property {string} namespace - Segregation of different types of
  *   files(products, orders, logistics etc), Required for validating the data of
  *   the file being uploaded, decides where exactly the file will be stored
@@ -8,11 +8,11 @@ export = FileStorageApplicationValidator;
  * @property {FileStorageApplicationModel.StartResponse} body
  */
 /**
- * @typedef signUrls
+ * @typedef SignUrlsParam
  * @property {FileStorageApplicationModel.SignUrlRequest} body
  */
 /**
- * @typedef startUpload
+ * @typedef StartUploadParam
  * @property {string} namespace - Segregation of different types of
  *   files(products, orders, logistics etc), Required for validating the data of
  *   the file being uploaded, decides where exactly the file will be stored
@@ -20,13 +20,17 @@ export = FileStorageApplicationValidator;
  * @property {FileStorageApplicationModel.StartRequest} body
  */
 declare class FileStorageApplicationValidator {
+    /** @returns {completeUpload} */
+    static completeUpload(): completeUpload;
+    /** @returns {signUrls} */
+    static signUrls(): signUrls;
+    /** @returns {startUpload} */
+    static startUpload(): startUpload;
 }
 declare namespace FileStorageApplicationValidator {
-    export { completeUpload, signUrls, startUpload };
+    export { CompleteUploadParam, SignUrlsParam, StartUploadParam };
 }
-/** @returns {completeUpload} */
-declare function completeUpload(): completeUpload;
-type completeUpload = {
+type CompleteUploadParam = {
     /**
      * - Segregation of different types of
      * files(products, orders, logistics etc), Required for validating the data of
@@ -36,14 +40,10 @@ type completeUpload = {
     namespace: string;
     body: FileStorageApplicationModel.StartResponse;
 };
-/** @returns {signUrls} */
-declare function signUrls(): signUrls;
-type signUrls = {
+type SignUrlsParam = {
     body: FileStorageApplicationModel.SignUrlRequest;
 };
-/** @returns {startUpload} */
-declare function startUpload(): startUpload;
-type startUpload = {
+type StartUploadParam = {
     /**
      * - Segregation of different types of
      * files(products, orders, logistics etc), Required for validating the data of

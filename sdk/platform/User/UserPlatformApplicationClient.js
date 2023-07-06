@@ -13,7 +13,7 @@ class User {
   }
 
   /**
-   * @param {UserPlatformApplicationValidator.archiveUser} arg - Arg object
+   * @param {UserPlatformApplicationValidator.ArchiveUserParam} arg - Arg object
    * @returns {Promise<UserPlatformModel.ArchiveUserSuccess>} - Success response
    * @name archiveUser
    * @summary: archive user
@@ -74,7 +74,7 @@ class User {
   }
 
   /**
-   * @param {UserPlatformApplicationValidator.blockOrUnblockUsers} arg - Arg object
+   * @param {UserPlatformApplicationValidator.BlockOrUnblockUsersParam} arg - Arg object
    * @returns {Promise<UserPlatformModel.BlockUserSuccess>} - Success response
    * @name blockOrUnblockUsers
    * @summary: Block/Unblock user
@@ -137,7 +137,7 @@ class User {
   }
 
   /**
-   * @param {UserPlatformApplicationValidator.createUser} arg - Arg object
+   * @param {UserPlatformApplicationValidator.CreateUserParam} arg - Arg object
    * @returns {Promise<UserPlatformModel.CreateUserResponseSchema>} - Success response
    * @name createUser
    * @summary: Create user
@@ -198,7 +198,7 @@ class User {
   }
 
   /**
-   * @param {UserPlatformApplicationValidator.createUserGroup} arg - Arg object
+   * @param {UserPlatformApplicationValidator.CreateUserGroupParam} arg - Arg object
    * @returns {Promise<UserPlatformModel.UserGroupResponseSchema>} - Success response
    * @name createUserGroup
    * @summary: Create an User Group
@@ -261,7 +261,7 @@ class User {
   }
 
   /**
-   * @param {UserPlatformApplicationValidator.createUserSession} arg - Arg object
+   * @param {UserPlatformApplicationValidator.CreateUserSessionParam} arg - Arg object
    * @returns {Promise<UserPlatformModel.CreateUserSessionResponseSchema>} -
    *   Success response
    * @name createUserSession
@@ -325,7 +325,9 @@ class User {
   }
 
   /**
-   * @param {UserPlatformApplicationValidator.deleteActiveSessions} arg - Arg object
+   * @param {UserPlatformApplicationValidator.DeleteActiveSessionsParam} arg
+   *   - Arg object
+   *
    * @returns {Promise<UserPlatformModel.SessionDeleteResponseSchema>} -
    *   Success response
    * @name deleteActiveSessions
@@ -393,7 +395,7 @@ class User {
   }
 
   /**
-   * @param {UserPlatformApplicationValidator.deleteSession} arg - Arg object
+   * @param {UserPlatformApplicationValidator.DeleteSessionParam} arg - Arg object
    * @returns {Promise<UserPlatformModel.SessionDeleteResponseSchema>} -
    *   Success response
    * @name deleteSession
@@ -462,7 +464,7 @@ class User {
   }
 
   /**
-   * @param {UserPlatformApplicationValidator.getActiveSessions} arg - Arg object
+   * @param {UserPlatformApplicationValidator.GetActiveSessionsParam} arg - Arg object
    * @returns {Promise<UserPlatformModel.SessionListResponseSchema>} - Success response
    * @name getActiveSessions
    * @summary: Get a list of all session with info for a user
@@ -526,7 +528,7 @@ class User {
   }
 
   /**
-   * @param {UserPlatformApplicationValidator.getCustomers} arg - Arg object
+   * @param {UserPlatformApplicationValidator.GetCustomersParam} arg - Arg object
    * @returns {Promise<UserPlatformModel.CustomerListResponseSchema>} - Success response
    * @name getCustomers
    * @summary: Get a list of customers
@@ -594,7 +596,7 @@ class User {
   }
 
   /**
-   * @param {UserPlatformApplicationValidator.getPlatformConfig} arg - Arg object
+   * @param {UserPlatformApplicationValidator.GetPlatformConfigParam} arg - Arg object
    * @returns {Promise<UserPlatformModel.PlatformSchema>} - Success response
    * @name getPlatformConfig
    * @summary: Get platform configurations
@@ -653,7 +655,7 @@ class User {
   }
 
   /**
-   * @param {UserPlatformApplicationValidator.getUserGroupById} arg - Arg object
+   * @param {UserPlatformApplicationValidator.GetUserGroupByIdParam} arg - Arg object
    * @returns {Promise<UserPlatformModel.UserGroupResponseSchema>} - Success response
    * @name getUserGroupById
    * @summary: Get an User Group by Id
@@ -716,7 +718,7 @@ class User {
   }
 
   /**
-   * @param {UserPlatformApplicationValidator.getUserGroups} arg - Arg object
+   * @param {UserPlatformApplicationValidator.GetUserGroupsParam} arg - Arg object
    * @returns {Promise<UserPlatformModel.UserGroupListResponseSchema>} -
    *   Success response
    * @name getUserGroups
@@ -791,7 +793,7 @@ class User {
   }
 
   /**
-   * @param {UserPlatformApplicationValidator.searchUsers} arg - Arg object
+   * @param {UserPlatformApplicationValidator.SearchUsersParam} arg - Arg object
    * @returns {Promise<UserPlatformModel.UserSearchResponseSchema>} - Success response
    * @name searchUsers
    * @summary: Search an existing user.
@@ -853,7 +855,7 @@ class User {
   }
 
   /**
-   * @param {UserPlatformApplicationValidator.unDeleteUser} arg - Arg object
+   * @param {UserPlatformApplicationValidator.UnDeleteUserParam} arg - Arg object
    * @returns {Promise<UserPlatformModel.UnDeleteUserSuccess>} - Success response
    * @name unDeleteUser
    * @summary: undelete user who deleted from application and have not elapsed the platform configured delete days
@@ -914,7 +916,9 @@ class User {
   }
 
   /**
-   * @param {UserPlatformApplicationValidator.updatePlatformConfig} arg - Arg object
+   * @param {UserPlatformApplicationValidator.UpdatePlatformConfigParam} arg
+   *   - Arg object
+   *
    * @returns {Promise<UserPlatformModel.PlatformSchema>} - Success response
    * @name updatePlatformConfig
    * @summary: Update platform configurations
@@ -977,7 +981,7 @@ class User {
   }
 
   /**
-   * @param {UserPlatformApplicationValidator.updateUser} arg - Arg object
+   * @param {UserPlatformApplicationValidator.UpdateUserParam} arg - Arg object
    * @returns {Promise<UserPlatformModel.CreateUserResponseSchema>} - Success response
    * @name updateUser
    * @summary: Update user
@@ -1040,7 +1044,7 @@ class User {
   }
 
   /**
-   * @param {UserPlatformApplicationValidator.updateUserGroup} arg - Arg object
+   * @param {UserPlatformApplicationValidator.UpdateUserGroupParam} arg - Arg object
    * @returns {Promise<UserPlatformModel.UserGroupResponseSchema>} - Success response
    * @name updateUserGroup
    * @summary: Update an User Group

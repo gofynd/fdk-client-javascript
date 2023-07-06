@@ -13,7 +13,7 @@ class Content {
   }
 
   /**
-   * @param {ContentPlatformApplicationValidator.addDataLoader} arg - Arg object
+   * @param {ContentPlatformApplicationValidator.AddDataLoaderParam} arg - Arg object
    * @returns {Promise<ContentPlatformModel.DataLoaderResponseSchema>} -
    *   Success response
    * @name addDataLoader
@@ -77,7 +77,7 @@ class Content {
   }
 
   /**
-   * @param {ContentPlatformApplicationValidator.addFaq} arg - Arg object
+   * @param {ContentPlatformApplicationValidator.AddFaqParam} arg - Arg object
    * @returns {Promise<ContentPlatformModel.CreateFaqResponseSchema>} - Success response
    * @name addFaq
    * @summary: Create an FAQ
@@ -140,7 +140,7 @@ class Content {
   }
 
   /**
-   * @param {ContentPlatformApplicationValidator.addInjectableTag} arg - Arg object
+   * @param {ContentPlatformApplicationValidator.AddInjectableTagParam} arg - Arg object
    * @returns {Promise<ContentPlatformModel.TagsSchema>} - Success response
    * @name addInjectableTag
    * @summary: Add a tag
@@ -203,7 +203,7 @@ class Content {
   }
 
   /**
-   * @param {ContentPlatformApplicationValidator.addPathRedirectionRules} arg
+   * @param {ContentPlatformApplicationValidator.AddPathRedirectionRulesParam} arg
    *   - Arg object
    *
    * @returns {Promise<ContentPlatformModel.PathMappingSchema>} - Success response
@@ -268,7 +268,9 @@ class Content {
   }
 
   /**
-   * @param {ContentPlatformApplicationValidator.createAnnouncement} arg - Arg object
+   * @param {ContentPlatformApplicationValidator.CreateAnnouncementParam} arg
+   *   - Arg object
+   *
    * @returns {Promise<ContentPlatformModel.CreateAnnouncementSchema>} -
    *   Success response
    * @name createAnnouncement
@@ -332,7 +334,7 @@ class Content {
   }
 
   /**
-   * @param {ContentPlatformApplicationValidator.createBlog} arg - Arg object
+   * @param {ContentPlatformApplicationValidator.CreateBlogParam} arg - Arg object
    * @returns {Promise<ContentPlatformModel.BlogSchema>} - Success response
    * @name createBlog
    * @summary: Create a blog
@@ -393,7 +395,9 @@ class Content {
   }
 
   /**
-   * @param {ContentPlatformApplicationValidator.createFaqCategory} arg - Arg object
+   * @param {ContentPlatformApplicationValidator.CreateFaqCategoryParam} arg
+   *   - Arg object
+   *
    * @returns {Promise<ContentPlatformModel.CreateFaqCategorySchema>} - Success response
    * @name createFaqCategory
    * @summary: Create an FAQ category
@@ -456,7 +460,9 @@ class Content {
   }
 
   /**
-   * @param {ContentPlatformApplicationValidator.createLandingPage} arg - Arg object
+   * @param {ContentPlatformApplicationValidator.CreateLandingPageParam} arg
+   *   - Arg object
+   *
    * @returns {Promise<ContentPlatformModel.LandingPageSchema>} - Success response
    * @name createLandingPage
    * @summary: Create a landing page
@@ -519,7 +525,7 @@ class Content {
   }
 
   /**
-   * @param {ContentPlatformApplicationValidator.createNavigation} arg - Arg object
+   * @param {ContentPlatformApplicationValidator.CreateNavigationParam} arg - Arg object
    * @returns {Promise<ContentPlatformModel.NavigationSchema>} - Success response
    * @name createNavigation
    * @summary: Create a navigation
@@ -582,7 +588,7 @@ class Content {
   }
 
   /**
-   * @param {ContentPlatformApplicationValidator.createPage} arg - Arg object
+   * @param {ContentPlatformApplicationValidator.CreatePageParam} arg - Arg object
    * @returns {Promise<ContentPlatformModel.PageSchema>} - Success response
    * @name createPage
    * @summary: Create a page
@@ -643,7 +649,9 @@ class Content {
   }
 
   /**
-   * @param {ContentPlatformApplicationValidator.createPagePreview} arg - Arg object
+   * @param {ContentPlatformApplicationValidator.CreatePagePreviewParam} arg
+   *   - Arg object
+   *
    * @returns {Promise<ContentPlatformModel.PageSchema>} - Success response
    * @name createPagePreview
    * @summary: Create a page preview
@@ -706,7 +714,7 @@ class Content {
   }
 
   /**
-   * @param {ContentPlatformApplicationValidator.createSlideshow} arg - Arg object
+   * @param {ContentPlatformApplicationValidator.CreateSlideshowParam} arg - Arg object
    * @returns {Promise<ContentPlatformModel.SlideshowSchema>} - Success response
    * @name createSlideshow
    * @summary: Create a slideshow
@@ -769,7 +777,7 @@ class Content {
   }
 
   /**
-   * @param {ContentPlatformApplicationValidator.deleteAllInjectableTags} arg
+   * @param {ContentPlatformApplicationValidator.DeleteAllInjectableTagsParam} arg
    *   - Arg object
    *
    * @returns {Promise<ContentPlatformModel.TagsSchema>} - Success response
@@ -830,7 +838,9 @@ class Content {
   }
 
   /**
-   * @param {ContentPlatformApplicationValidator.deleteAnnouncement} arg - Arg object
+   * @param {ContentPlatformApplicationValidator.DeleteAnnouncementParam} arg
+   *   - Arg object
+   *
    * @returns {Promise<ContentPlatformModel.CreateAnnouncementSchema>} -
    *   Success response
    * @name deleteAnnouncement
@@ -894,7 +904,7 @@ class Content {
   }
 
   /**
-   * @param {ContentPlatformApplicationValidator.deleteBlog} arg - Arg object
+   * @param {ContentPlatformApplicationValidator.DeleteBlogParam} arg - Arg object
    * @returns {Promise<ContentPlatformModel.BlogSchema>} - Success response
    * @name deleteBlog
    * @summary: Delete blogs
@@ -955,7 +965,7 @@ class Content {
   }
 
   /**
-   * @param {ContentPlatformApplicationValidator.deleteDataLoader} arg - Arg object
+   * @param {ContentPlatformApplicationValidator.DeleteDataLoaderParam} arg - Arg object
    * @returns {Promise<ContentPlatformModel.DataLoaderResponseSchema>} -
    *   Success response
    * @name deleteDataLoader
@@ -1019,7 +1029,7 @@ class Content {
   }
 
   /**
-   * @param {ContentPlatformApplicationValidator.deleteFaq} arg - Arg object
+   * @param {ContentPlatformApplicationValidator.DeleteFaqParam} arg - Arg object
    * @returns {Promise<ContentPlatformModel.CreateFaqResponseSchema>} - Success response
    * @name deleteFaq
    * @summary: Delete an FAQ
@@ -1082,7 +1092,9 @@ class Content {
   }
 
   /**
-   * @param {ContentPlatformApplicationValidator.deleteFaqCategory} arg - Arg object
+   * @param {ContentPlatformApplicationValidator.DeleteFaqCategoryParam} arg
+   *   - Arg object
+   *
    * @returns {Promise<ContentPlatformModel.FaqSchema>} - Success response
    * @name deleteFaqCategory
    * @summary: Delete an FAQ category
@@ -1145,7 +1157,9 @@ class Content {
   }
 
   /**
-   * @param {ContentPlatformApplicationValidator.deleteLandingPage} arg - Arg object
+   * @param {ContentPlatformApplicationValidator.DeleteLandingPageParam} arg
+   *   - Arg object
+   *
    * @returns {Promise<ContentPlatformModel.LandingPageSchema>} - Success response
    * @name deleteLandingPage
    * @summary: Delete a landing page
@@ -1208,7 +1222,7 @@ class Content {
   }
 
   /**
-   * @param {ContentPlatformApplicationValidator.deleteNavigation} arg - Arg object
+   * @param {ContentPlatformApplicationValidator.DeleteNavigationParam} arg - Arg object
    * @returns {Promise<ContentPlatformModel.NavigationSchema>} - Success response
    * @name deleteNavigation
    * @summary: Delete a navigation
@@ -1271,7 +1285,7 @@ class Content {
   }
 
   /**
-   * @param {ContentPlatformApplicationValidator.deletePage} arg - Arg object
+   * @param {ContentPlatformApplicationValidator.DeletePageParam} arg - Arg object
    * @returns {Promise<ContentPlatformModel.PageSchema>} - Success response
    * @name deletePage
    * @summary: Delete a page
@@ -1332,7 +1346,7 @@ class Content {
   }
 
   /**
-   * @param {ContentPlatformApplicationValidator.deletePathRedirectionRules} arg
+   * @param {ContentPlatformApplicationValidator.DeletePathRedirectionRulesParam} arg
    *   - Arg object
    *
    * @returns {Promise<Object>} - Success response
@@ -1395,7 +1409,7 @@ class Content {
   }
 
   /**
-   * @param {ContentPlatformApplicationValidator.deleteSlideshow} arg - Arg object
+   * @param {ContentPlatformApplicationValidator.DeleteSlideshowParam} arg - Arg object
    * @returns {Promise<ContentPlatformModel.SlideshowSchema>} - Success response
    * @name deleteSlideshow
    * @summary: Delete a slideshow
@@ -1458,7 +1472,7 @@ class Content {
   }
 
   /**
-   * @param {ContentPlatformApplicationValidator.editDataLoader} arg - Arg object
+   * @param {ContentPlatformApplicationValidator.EditDataLoaderParam} arg - Arg object
    * @returns {Promise<ContentPlatformModel.DataLoaderResponseSchema>} -
    *   Success response
    * @name editDataLoader
@@ -1524,7 +1538,9 @@ class Content {
   }
 
   /**
-   * @param {ContentPlatformApplicationValidator.editInjectableTag} arg - Arg object
+   * @param {ContentPlatformApplicationValidator.EditInjectableTagParam} arg
+   *   - Arg object
+   *
    * @returns {Promise<ContentPlatformModel.TagsSchema>} - Success response
    * @name editInjectableTag
    * @summary: Edit a tag by id
@@ -1589,7 +1605,7 @@ class Content {
   }
 
   /**
-   * @param {ContentPlatformApplicationValidator.generateSEOTitle} arg - Arg object
+   * @param {ContentPlatformApplicationValidator.GenerateSEOTitleParam} arg - Arg object
    * @returns {Promise<ContentPlatformModel.GeneratedSEOContent>} - Success response
    * @name generateSEOTitle
    * @summary: Get SEO meta tag title for content
@@ -1654,7 +1670,9 @@ class Content {
   }
 
   /**
-   * @param {ContentPlatformApplicationValidator.getAnnouncementById} arg - Arg object
+   * @param {ContentPlatformApplicationValidator.GetAnnouncementByIdParam} arg
+   *   - Arg object
+   *
    * @returns {Promise<ContentPlatformModel.AdminAnnouncementSchema>} - Success response
    * @name getAnnouncementById
    * @summary: Get announcement by ID
@@ -1717,7 +1735,9 @@ class Content {
   }
 
   /**
-   * @param {ContentPlatformApplicationValidator.getAnnouncementsList} arg - Arg object
+   * @param {ContentPlatformApplicationValidator.GetAnnouncementsListParam} arg
+   *   - Arg object
+   *
    * @returns {Promise<ContentPlatformModel.GetAnnouncementListSchema>} -
    *   Success response
    * @name getAnnouncementsList
@@ -1819,7 +1839,7 @@ class Content {
   }
 
   /**
-   * @param {ContentPlatformApplicationValidator.getBlogBySlug} arg - Arg object
+   * @param {ContentPlatformApplicationValidator.GetBlogBySlugParam} arg - Arg object
    * @returns {Promise<ContentPlatformModel.BlogSchema>} - Success response
    * @name getBlogBySlug
    * @summary: Get blog by slug
@@ -1882,7 +1902,7 @@ class Content {
   }
 
   /**
-   * @param {ContentPlatformApplicationValidator.getBlogs} arg - Arg object
+   * @param {ContentPlatformApplicationValidator.GetBlogsParam} arg - Arg object
    * @returns {Promise<ContentPlatformModel.BlogGetResponse>} - Success response
    * @name getBlogs
    * @summary: Get blogs
@@ -1981,7 +2001,7 @@ class Content {
   }
 
   /**
-   * @param {ContentPlatformApplicationValidator.getComponentById} arg - Arg object
+   * @param {ContentPlatformApplicationValidator.GetComponentByIdParam} arg - Arg object
    * @returns {Promise<ContentPlatformModel.BlogSchema>} - Success response
    * @name getComponentById
    * @summary: Get components of a blog
@@ -2044,7 +2064,7 @@ class Content {
   }
 
   /**
-   * @param {ContentPlatformApplicationValidator.getDataLoaders} arg - Arg object
+   * @param {ContentPlatformApplicationValidator.GetDataLoadersParam} arg - Arg object
    * @returns {Promise<ContentPlatformModel.DataLoadersSchema>} - Success response
    * @name getDataLoaders
    * @summary: Get all the data loaders in an application
@@ -2103,7 +2123,9 @@ class Content {
   }
 
   /**
-   * @param {ContentPlatformApplicationValidator.getDefaultNavigations} arg - Arg object
+   * @param {ContentPlatformApplicationValidator.GetDefaultNavigationsParam} arg
+   *   - Arg object
+   *
    * @returns {Promise<ContentPlatformModel.DefaultNavigationResponse>} -
    *   Success response
    * @name getDefaultNavigations
@@ -2163,7 +2185,7 @@ class Content {
   }
 
   /**
-   * @param {ContentPlatformApplicationValidator.getFaqByIdOrSlug} arg - Arg object
+   * @param {ContentPlatformApplicationValidator.GetFaqByIdOrSlugParam} arg - Arg object
    * @returns {Promise<ContentPlatformModel.CreateFaqResponseSchema>} - Success response
    * @name getFaqByIdOrSlug
    * @summary: Get an FAQ
@@ -2226,7 +2248,7 @@ class Content {
   }
 
   /**
-   * @param {ContentPlatformApplicationValidator.getFaqCategories} arg - Arg object
+   * @param {ContentPlatformApplicationValidator.GetFaqCategoriesParam} arg - Arg object
    * @returns {Promise<ContentPlatformModel.GetFaqCategoriesSchema>} - Success response
    * @name getFaqCategories
    * @summary: Get a list of FAQ categories
@@ -2285,7 +2307,7 @@ class Content {
   }
 
   /**
-   * @param {ContentPlatformApplicationValidator.getFaqCategoryBySlugOrId} arg
+   * @param {ContentPlatformApplicationValidator.GetFaqCategoryBySlugOrIdParam} arg
    *   - Arg object
    *
    * @returns {Promise<ContentPlatformModel.GetFaqCategoryBySlugSchema>} -
@@ -2351,7 +2373,7 @@ class Content {
   }
 
   /**
-   * @param {ContentPlatformApplicationValidator.getFaqsByCategoryIdOrSlug} arg
+   * @param {ContentPlatformApplicationValidator.GetFaqsByCategoryIdOrSlugParam} arg
    *   - Arg object
    *
    * @returns {Promise<ContentPlatformModel.GetFaqSchema>} - Success response
@@ -2416,7 +2438,9 @@ class Content {
   }
 
   /**
-   * @param {ContentPlatformApplicationValidator.getInjectableTags} arg - Arg object
+   * @param {ContentPlatformApplicationValidator.GetInjectableTagsParam} arg
+   *   - Arg object
+   *
    * @returns {Promise<ContentPlatformModel.TagsSchema>} - Success response
    * @name getInjectableTags
    * @summary: Get all the tags in an application
@@ -2475,7 +2499,7 @@ class Content {
   }
 
   /**
-   * @param {ContentPlatformApplicationValidator.getLandingPages} arg - Arg object
+   * @param {ContentPlatformApplicationValidator.GetLandingPagesParam} arg - Arg object
    * @returns {Promise<ContentPlatformModel.LandingPageGetResponse>} - Success response
    * @name getLandingPages
    * @summary: Get landing pages
@@ -2576,7 +2600,9 @@ class Content {
   }
 
   /**
-   * @param {ContentPlatformApplicationValidator.getLegalInformation} arg - Arg object
+   * @param {ContentPlatformApplicationValidator.GetLegalInformationParam} arg
+   *   - Arg object
+   *
    * @returns {Promise<ContentPlatformModel.ApplicationLegal>} - Success response
    * @name getLegalInformation
    * @summary: Get legal information
@@ -2635,7 +2661,9 @@ class Content {
   }
 
   /**
-   * @param {ContentPlatformApplicationValidator.getNavigationBySlug} arg - Arg object
+   * @param {ContentPlatformApplicationValidator.GetNavigationBySlugParam} arg
+   *   - Arg object
+   *
    * @returns {Promise<ContentPlatformModel.NavigationSchema>} - Success response
    * @name getNavigationBySlug
    * @summary: Get a navigation by slug
@@ -2701,7 +2729,7 @@ class Content {
   }
 
   /**
-   * @param {ContentPlatformApplicationValidator.getNavigations} arg - Arg object
+   * @param {ContentPlatformApplicationValidator.GetNavigationsParam} arg - Arg object
    * @returns {Promise<ContentPlatformModel.NavigationGetResponse>} - Success response
    * @name getNavigations
    * @summary: Get navigations
@@ -2813,7 +2841,7 @@ class Content {
   }
 
   /**
-   * @param {ContentPlatformApplicationValidator.getPageBySlug} arg - Arg object
+   * @param {ContentPlatformApplicationValidator.GetPageBySlugParam} arg - Arg object
    * @returns {Promise<ContentPlatformModel.PageSchema>} - Success response
    * @name getPageBySlug
    * @summary: Get page by slug
@@ -2876,7 +2904,7 @@ class Content {
   }
 
   /**
-   * @param {ContentPlatformApplicationValidator.getPageMeta} arg - Arg object
+   * @param {ContentPlatformApplicationValidator.GetPageMetaParam} arg - Arg object
    * @returns {Promise<ContentPlatformModel.PageMetaSchema>} - Success response
    * @name getPageMeta
    * @summary: Get page meta
@@ -2935,7 +2963,7 @@ class Content {
   }
 
   /**
-   * @param {ContentPlatformApplicationValidator.getPageSpec} arg - Arg object
+   * @param {ContentPlatformApplicationValidator.GetPageSpecParam} arg - Arg object
    * @returns {Promise<ContentPlatformModel.PageSpec>} - Success response
    * @name getPageSpec
    * @summary: Get page spec
@@ -2994,7 +3022,7 @@ class Content {
   }
 
   /**
-   * @param {ContentPlatformApplicationValidator.getPages} arg - Arg object
+   * @param {ContentPlatformApplicationValidator.GetPagesParam} arg - Arg object
    * @returns {Promise<ContentPlatformModel.PageGetResponse>} - Success response
    * @name getPages
    * @summary: Get a list of pages
@@ -3093,7 +3121,7 @@ class Content {
   }
 
   /**
-   * @param {ContentPlatformApplicationValidator.getPathRedirectionRule} arg
+   * @param {ContentPlatformApplicationValidator.GetPathRedirectionRuleParam} arg
    *   - Arg object
    *
    * @returns {Promise<ContentPlatformModel.PathMappingSchema>} - Success response
@@ -3158,7 +3186,7 @@ class Content {
   }
 
   /**
-   * @param {ContentPlatformApplicationValidator.getPathRedirectionRules} arg
+   * @param {ContentPlatformApplicationValidator.GetPathRedirectionRulesParam} arg
    *   - Arg object
    *
    * @returns {Promise<ContentPlatformModel.PathMappingSchema>} - Success response
@@ -3227,7 +3255,9 @@ class Content {
   }
 
   /**
-   * @param {ContentPlatformApplicationValidator.getSEOConfiguration} arg - Arg object
+   * @param {ContentPlatformApplicationValidator.GetSEOConfigurationParam} arg
+   *   - Arg object
+   *
    * @returns {Promise<ContentPlatformModel.SeoComponent>} - Success response
    * @name getSEOConfiguration
    * @summary: Get SEO configuration of an application
@@ -3286,7 +3316,9 @@ class Content {
   }
 
   /**
-   * @param {ContentPlatformApplicationValidator.getSlideshowBySlug} arg - Arg object
+   * @param {ContentPlatformApplicationValidator.GetSlideshowBySlugParam} arg
+   *   - Arg object
+   *
    * @returns {Promise<ContentPlatformModel.SlideshowSchema>} - Success response
    * @name getSlideshowBySlug
    * @summary: Get slideshow by slug
@@ -3352,7 +3384,7 @@ class Content {
   }
 
   /**
-   * @param {ContentPlatformApplicationValidator.getSlideshows} arg - Arg object
+   * @param {ContentPlatformApplicationValidator.GetSlideshowsParam} arg - Arg object
    * @returns {Promise<ContentPlatformModel.SlideshowGetResponse>} - Success response
    * @name getSlideshows
    * @summary: Get slideshows
@@ -3464,7 +3496,9 @@ class Content {
   }
 
   /**
-   * @param {ContentPlatformApplicationValidator.getSupportInformation} arg - Arg object
+   * @param {ContentPlatformApplicationValidator.GetSupportInformationParam} arg
+   *   - Arg object
+   *
    * @returns {Promise<ContentPlatformModel.Support>} - Success response
    * @name getSupportInformation
    * @summary: Get support information
@@ -3523,7 +3557,9 @@ class Content {
   }
 
   /**
-   * @param {ContentPlatformApplicationValidator.removeInjectableTag} arg - Arg object
+   * @param {ContentPlatformApplicationValidator.RemoveInjectableTagParam} arg
+   *   - Arg object
+   *
    * @returns {Promise<ContentPlatformModel.TagDeleteSuccessResponse>} -
    *   Success response
    * @name removeInjectableTag
@@ -3587,7 +3623,7 @@ class Content {
   }
 
   /**
-   * @param {ContentPlatformApplicationValidator.resetDataLoader} arg - Arg object
+   * @param {ContentPlatformApplicationValidator.ResetDataLoaderParam} arg - Arg object
    * @returns {Promise<ContentPlatformModel.DataLoaderResetResponseSchema>} -
    *   Success response
    * @name resetDataLoader
@@ -3653,7 +3689,7 @@ class Content {
   }
 
   /**
-   * @param {ContentPlatformApplicationValidator.selectDataLoader} arg - Arg object
+   * @param {ContentPlatformApplicationValidator.SelectDataLoaderParam} arg - Arg object
    * @returns {Promise<ContentPlatformModel.DataLoaderResponseSchema>} -
    *   Success response
    * @name selectDataLoader
@@ -3717,7 +3753,9 @@ class Content {
   }
 
   /**
-   * @param {ContentPlatformApplicationValidator.updateAnnouncement} arg - Arg object
+   * @param {ContentPlatformApplicationValidator.UpdateAnnouncementParam} arg
+   *   - Arg object
+   *
    * @returns {Promise<ContentPlatformModel.CreateAnnouncementSchema>} -
    *   Success response
    * @name updateAnnouncement
@@ -3783,7 +3821,7 @@ class Content {
   }
 
   /**
-   * @param {ContentPlatformApplicationValidator.updateAnnouncementSchedule} arg
+   * @param {ContentPlatformApplicationValidator.UpdateAnnouncementScheduleParam} arg
    *   - Arg object
    *
    * @returns {Promise<ContentPlatformModel.CreateAnnouncementSchema>} -
@@ -3851,7 +3889,7 @@ class Content {
   }
 
   /**
-   * @param {ContentPlatformApplicationValidator.updateBlog} arg - Arg object
+   * @param {ContentPlatformApplicationValidator.UpdateBlogParam} arg - Arg object
    * @returns {Promise<ContentPlatformModel.BlogSchema>} - Success response
    * @name updateBlog
    * @summary: Update a blog
@@ -3914,7 +3952,7 @@ class Content {
   }
 
   /**
-   * @param {ContentPlatformApplicationValidator.updateFaq} arg - Arg object
+   * @param {ContentPlatformApplicationValidator.UpdateFaqParam} arg - Arg object
    * @returns {Promise<ContentPlatformModel.CreateFaqResponseSchema>} - Success response
    * @name updateFaq
    * @summary: Update an FAQ
@@ -3979,7 +4017,9 @@ class Content {
   }
 
   /**
-   * @param {ContentPlatformApplicationValidator.updateFaqCategory} arg - Arg object
+   * @param {ContentPlatformApplicationValidator.UpdateFaqCategoryParam} arg
+   *   - Arg object
+   *
    * @returns {Promise<ContentPlatformModel.CreateFaqCategorySchema>} - Success response
    * @name updateFaqCategory
    * @summary: Update an FAQ category
@@ -4044,7 +4084,9 @@ class Content {
   }
 
   /**
-   * @param {ContentPlatformApplicationValidator.updateInjectableTag} arg - Arg object
+   * @param {ContentPlatformApplicationValidator.UpdateInjectableTagParam} arg
+   *   - Arg object
+   *
    * @returns {Promise<ContentPlatformModel.TagsSchema>} - Success response
    * @name updateInjectableTag
    * @summary: Update a tag
@@ -4107,7 +4149,9 @@ class Content {
   }
 
   /**
-   * @param {ContentPlatformApplicationValidator.updateLandingPage} arg - Arg object
+   * @param {ContentPlatformApplicationValidator.UpdateLandingPageParam} arg
+   *   - Arg object
+   *
    * @returns {Promise<ContentPlatformModel.LandingPageSchema>} - Success response
    * @name updateLandingPage
    * @summary: Update a landing page
@@ -4172,7 +4216,7 @@ class Content {
   }
 
   /**
-   * @param {ContentPlatformApplicationValidator.updateLegalInformation} arg
+   * @param {ContentPlatformApplicationValidator.UpdateLegalInformationParam} arg
    *   - Arg object
    *
    * @returns {Promise<ContentPlatformModel.ApplicationLegal>} - Success response
@@ -4237,7 +4281,7 @@ class Content {
   }
 
   /**
-   * @param {ContentPlatformApplicationValidator.updateNavigation} arg - Arg object
+   * @param {ContentPlatformApplicationValidator.UpdateNavigationParam} arg - Arg object
    * @returns {Promise<ContentPlatformModel.NavigationSchema>} - Success response
    * @name updateNavigation
    * @summary: Update a navigation
@@ -4302,7 +4346,7 @@ class Content {
   }
 
   /**
-   * @param {ContentPlatformApplicationValidator.updatePage} arg - Arg object
+   * @param {ContentPlatformApplicationValidator.UpdatePageParam} arg - Arg object
    * @returns {Promise<ContentPlatformModel.PageSchema>} - Success response
    * @name updatePage
    * @summary: Update a page
@@ -4365,7 +4409,9 @@ class Content {
   }
 
   /**
-   * @param {ContentPlatformApplicationValidator.updatePagePreview} arg - Arg object
+   * @param {ContentPlatformApplicationValidator.UpdatePagePreviewParam} arg
+   *   - Arg object
+   *
    * @returns {Promise<ContentPlatformModel.PageSchema>} - Success response
    * @name updatePagePreview
    * @summary: Change the publish status of a page
@@ -4430,7 +4476,7 @@ class Content {
   }
 
   /**
-   * @param {ContentPlatformApplicationValidator.updatePathRedirectionRules} arg
+   * @param {ContentPlatformApplicationValidator.UpdatePathRedirectionRulesParam} arg
    *   - Arg object
    *
    * @returns {Promise<ContentPlatformModel.PathMappingSchema>} - Success response
@@ -4497,7 +4543,7 @@ class Content {
   }
 
   /**
-   * @param {ContentPlatformApplicationValidator.updateSEOConfiguration} arg
+   * @param {ContentPlatformApplicationValidator.UpdateSEOConfigurationParam} arg
    *   - Arg object
    *
    * @returns {Promise<ContentPlatformModel.SeoSchema>} - Success response
@@ -4562,7 +4608,7 @@ class Content {
   }
 
   /**
-   * @param {ContentPlatformApplicationValidator.updateSlideshow} arg - Arg object
+   * @param {ContentPlatformApplicationValidator.UpdateSlideshowParam} arg - Arg object
    * @returns {Promise<ContentPlatformModel.SlideshowSchema>} - Success response
    * @name updateSlideshow
    * @summary: Update a slideshow
@@ -4627,7 +4673,7 @@ class Content {
   }
 
   /**
-   * @param {ContentPlatformApplicationValidator.updateSupportInformation} arg
+   * @param {ContentPlatformApplicationValidator.UpdateSupportInformationParam} arg
    *   - Arg object
    *
    * @returns {Promise<ContentPlatformModel.Support>} - Success response

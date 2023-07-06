@@ -3,7 +3,7 @@ declare class CompanyProfile {
     constructor(config: any);
     config: any;
     /**
-     * @param {CompanyProfilePlatformValidator.cbsOnboardGet} arg - Arg object
+     * @param {CompanyProfilePlatformValidator.CbsOnboardGetParam} arg - Arg object
      * @returns {Promise<CompanyProfilePlatformModel.GetCompanyProfileSerializerResponse>}
      *   - Success response
      *
@@ -13,52 +13,54 @@ declare class CompanyProfile {
      */
     cbsOnboardGet({}?: any): Promise<CompanyProfilePlatformModel.GetCompanyProfileSerializerResponse>;
     /**
-     * @param {CompanyProfilePlatformValidator.createBrand} arg - Arg object
+     * @param {CompanyProfilePlatformValidator.CreateBrandParam} arg - Arg object
      * @returns {Promise<CompanyProfilePlatformModel.ProfileSuccessResponse>} -
      *   Success response
      * @name createBrand
      * @summary: Create a Brand.
      * @description: This API allows to create a brand associated to a company.
      */
-    createBrand({ body }?: CompanyProfilePlatformValidator.createBrand): Promise<CompanyProfilePlatformModel.ProfileSuccessResponse>;
+    createBrand({ body }?: CompanyProfilePlatformValidator.CreateBrandParam): Promise<CompanyProfilePlatformModel.ProfileSuccessResponse>;
     /**
-     * @param {CompanyProfilePlatformValidator.createCompanyBrandMapping} arg - Arg object
+     * @param {CompanyProfilePlatformValidator.CreateCompanyBrandMappingParam} arg
+     *   - Arg object
+     *
      * @returns {Promise<CompanyProfilePlatformModel.ProfileSuccessResponse>} -
      *   Success response
      * @name createCompanyBrandMapping
      * @summary: Create a company brand mapping.
      * @description: This API allows to create a company brand mapping, for a already existing brand in the system.
      */
-    createCompanyBrandMapping({ body }?: CompanyProfilePlatformValidator.createCompanyBrandMapping): Promise<CompanyProfilePlatformModel.ProfileSuccessResponse>;
+    createCompanyBrandMapping({ body }?: CompanyProfilePlatformValidator.CreateCompanyBrandMappingParam): Promise<CompanyProfilePlatformModel.ProfileSuccessResponse>;
     /**
-     * @param {CompanyProfilePlatformValidator.createLocation} arg - Arg object
+     * @param {CompanyProfilePlatformValidator.CreateLocationParam} arg - Arg object
      * @returns {Promise<CompanyProfilePlatformModel.ProfileSuccessResponse>} -
      *   Success response
      * @name createLocation
      * @summary: Create a location associated to a company.
      * @description: This API allows to edit a location associated to a company.
      */
-    createLocation({ body }?: CompanyProfilePlatformValidator.createLocation): Promise<CompanyProfilePlatformModel.ProfileSuccessResponse>;
+    createLocation({ body }?: CompanyProfilePlatformValidator.CreateLocationParam): Promise<CompanyProfilePlatformModel.ProfileSuccessResponse>;
     /**
-     * @param {CompanyProfilePlatformValidator.createLocationBulk} arg - Arg object
+     * @param {CompanyProfilePlatformValidator.CreateLocationBulkParam} arg - Arg object
      * @returns {Promise<CompanyProfilePlatformModel.ProfileSuccessResponse>} -
      *   Success response
      * @name createLocationBulk
      * @summary: Create a location asscoiated to a company in bulk.
      * @description: This API allows to create a location associated to a company.
      */
-    createLocationBulk({ body }?: CompanyProfilePlatformValidator.createLocationBulk): Promise<CompanyProfilePlatformModel.ProfileSuccessResponse>;
+    createLocationBulk({ body }?: CompanyProfilePlatformValidator.CreateLocationBulkParam): Promise<CompanyProfilePlatformModel.ProfileSuccessResponse>;
     /**
-     * @param {CompanyProfilePlatformValidator.editBrand} arg - Arg object
+     * @param {CompanyProfilePlatformValidator.EditBrandParam} arg - Arg object
      * @returns {Promise<CompanyProfilePlatformModel.ProfileSuccessResponse>} -
      *   Success response
      * @name editBrand
      * @summary: Edit a brand.
      * @description: This API allows to edit meta of a brand.
      */
-    editBrand({ brandId, body }?: CompanyProfilePlatformValidator.editBrand): Promise<CompanyProfilePlatformModel.ProfileSuccessResponse>;
+    editBrand({ brandId, body }?: CompanyProfilePlatformValidator.EditBrandParam): Promise<CompanyProfilePlatformModel.ProfileSuccessResponse>;
     /**
-     * @param {CompanyProfilePlatformValidator.getBrand} arg - Arg object
+     * @param {CompanyProfilePlatformValidator.GetBrandParam} arg - Arg object
      * @returns {Promise<CompanyProfilePlatformModel.GetBrandResponseSerializer>}
      *   - Success response
      *
@@ -66,9 +68,9 @@ declare class CompanyProfile {
      * @summary: Get a single company brand.
      * @description: This API helps to get data associated to a particular company brand.
      */
-    getBrand({ brandId }?: CompanyProfilePlatformValidator.getBrand): Promise<CompanyProfilePlatformModel.GetBrandResponseSerializer>;
+    getBrand({ brandId }?: CompanyProfilePlatformValidator.GetBrandParam): Promise<CompanyProfilePlatformModel.GetBrandResponseSerializer>;
     /**
-     * @param {CompanyProfilePlatformValidator.getBrands} arg - Arg object
+     * @param {CompanyProfilePlatformValidator.GetBrandsParam} arg - Arg object
      * @returns {Promise<CompanyProfilePlatformModel.CompanyBrandListSerializer>}
      *   - Success response
      *
@@ -76,7 +78,7 @@ declare class CompanyProfile {
      * @summary: Get brands associated to a company
      * @description: This API helps to get view brands associated to a particular company.
      */
-    getBrands({ pageNo, pageSize, q }?: CompanyProfilePlatformValidator.getBrands): Promise<CompanyProfilePlatformModel.CompanyBrandListSerializer>;
+    getBrands({ pageNo, pageSize, q }?: CompanyProfilePlatformValidator.GetBrandsParam): Promise<CompanyProfilePlatformModel.CompanyBrandListSerializer>;
     /**
      * @param {Object} arg - Arg object.
      * @param {number} [arg.pageSize] - Number of items to retrieve in each
@@ -91,7 +93,7 @@ declare class CompanyProfile {
         q?: string;
     }): Paginator<CompanyProfilePlatformModel.CompanyBrandListSerializer>;
     /**
-     * @param {CompanyProfilePlatformValidator.getCompanyMetrics} arg - Arg object
+     * @param {CompanyProfilePlatformValidator.GetCompanyMetricsParam} arg - Arg object
      * @returns {Promise<CompanyProfilePlatformModel.MetricsSerializer>} -
      *   Success response
      * @name getCompanyMetrics
@@ -100,16 +102,16 @@ declare class CompanyProfile {
      */
     getCompanyMetrics({}?: any): Promise<CompanyProfilePlatformModel.MetricsSerializer>;
     /**
-     * @param {CompanyProfilePlatformValidator.getLocationDetail} arg - Arg object
+     * @param {CompanyProfilePlatformValidator.GetLocationDetailParam} arg - Arg object
      * @returns {Promise<CompanyProfilePlatformModel.GetLocationSerializer>} -
      *   Success response
      * @name getLocationDetail
      * @summary: Get details of a specific location.
      * @description: This API helps to get data associated to a specific location.
      */
-    getLocationDetail({ locationId }?: CompanyProfilePlatformValidator.getLocationDetail): Promise<CompanyProfilePlatformModel.GetLocationSerializer>;
+    getLocationDetail({ locationId }?: CompanyProfilePlatformValidator.GetLocationDetailParam): Promise<CompanyProfilePlatformModel.GetLocationSerializer>;
     /**
-     * @param {CompanyProfilePlatformValidator.getLocationTags} arg - Arg object
+     * @param {CompanyProfilePlatformValidator.GetLocationTagsParam} arg - Arg object
      * @returns {Promise<CompanyProfilePlatformModel.StoreTagsResponse>} -
      *   Success response
      * @name getLocationTags
@@ -118,14 +120,14 @@ declare class CompanyProfile {
      */
     getLocationTags({}?: any): Promise<CompanyProfilePlatformModel.StoreTagsResponse>;
     /**
-     * @param {CompanyProfilePlatformValidator.getLocations} arg - Arg object
+     * @param {CompanyProfilePlatformValidator.GetLocationsParam} arg - Arg object
      * @returns {Promise<CompanyProfilePlatformModel.LocationListSerializer>} -
      *   Success response
      * @name getLocations
      * @summary: Get list of locations
      * @description: This API allows to view all the locations associated to a company.
      */
-    getLocations({ storeType, q, stage, pageNo, pageSize, locationIds, }?: CompanyProfilePlatformValidator.getLocations): Promise<CompanyProfilePlatformModel.LocationListSerializer>;
+    getLocations({ storeType, q, stage, pageNo, pageSize, locationIds, }?: CompanyProfilePlatformValidator.GetLocationsParam): Promise<CompanyProfilePlatformModel.LocationListSerializer>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} [arg.storeType] - Helps to sort the location list on the
@@ -148,23 +150,23 @@ declare class CompanyProfile {
         locationIds?: number[];
     }): Paginator<CompanyProfilePlatformModel.LocationListSerializer>;
     /**
-     * @param {CompanyProfilePlatformValidator.updateCompany} arg - Arg object
+     * @param {CompanyProfilePlatformValidator.UpdateCompanyParam} arg - Arg object
      * @returns {Promise<CompanyProfilePlatformModel.ProfileSuccessResponse>} -
      *   Success response
      * @name updateCompany
      * @summary: Edit company profile
      * @description: This API allows to edit the company profile of the seller account.
      */
-    updateCompany({ body }?: CompanyProfilePlatformValidator.updateCompany): Promise<CompanyProfilePlatformModel.ProfileSuccessResponse>;
+    updateCompany({ body }?: CompanyProfilePlatformValidator.UpdateCompanyParam): Promise<CompanyProfilePlatformModel.ProfileSuccessResponse>;
     /**
-     * @param {CompanyProfilePlatformValidator.updateLocation} arg - Arg object
+     * @param {CompanyProfilePlatformValidator.UpdateLocationParam} arg - Arg object
      * @returns {Promise<CompanyProfilePlatformModel.ProfileSuccessResponse>} -
      *   Success response
      * @name updateLocation
      * @summary: Edit a location asscoiated to a company.
      * @description: This API allows to edit a location associated to a company.
      */
-    updateLocation({ locationId, body }?: CompanyProfilePlatformValidator.updateLocation): Promise<CompanyProfilePlatformModel.ProfileSuccessResponse>;
+    updateLocation({ locationId, body }?: CompanyProfilePlatformValidator.UpdateLocationParam): Promise<CompanyProfilePlatformModel.ProfileSuccessResponse>;
 }
 import CompanyProfilePlatformModel = require("./CompanyProfilePlatformModel");
 import CompanyProfilePlatformValidator = require("./CompanyProfilePlatformValidator");

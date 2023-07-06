@@ -3,22 +3,22 @@ declare class Configuration {
     constructor(config: any);
     config: any;
     /**
-     * @param {ConfigurationPlatformValidator.createApplication} arg - Arg object
+     * @param {ConfigurationPlatformValidator.CreateApplicationParam} arg - Arg object
      * @returns {Promise<ConfigurationPlatformModel.CreateAppResponse>} - Success response
      * @name createApplication
      * @summary: Create a new sales channel
      * @description: Applications are sales channel websites which can be configured, personalized and customized. Use this API to create a new application in the current company.
      */
-    createApplication({ body }?: ConfigurationPlatformValidator.createApplication): Promise<ConfigurationPlatformModel.CreateAppResponse>;
+    createApplication({ body }?: ConfigurationPlatformValidator.CreateApplicationParam): Promise<ConfigurationPlatformModel.CreateAppResponse>;
     /**
-     * @param {ConfigurationPlatformValidator.getApplications} arg - Arg object
+     * @param {ConfigurationPlatformValidator.GetApplicationsParam} arg - Arg object
      * @returns {Promise<ConfigurationPlatformModel.ApplicationsResponse>} -
      *   Success response
      * @name getApplications
      * @summary: Get list of registered sales channels under company
      * @description: Applications are sales channel websites which can be configured, personalized and customised. Use this API to fetch a list of applications created within a company.
      */
-    getApplications({ pageNo, pageSize, q }?: ConfigurationPlatformValidator.getApplications): Promise<ConfigurationPlatformModel.ApplicationsResponse>;
+    getApplications({ pageNo, pageSize, q }?: ConfigurationPlatformValidator.GetApplicationsParam): Promise<ConfigurationPlatformModel.ApplicationsResponse>;
     /**
      * @param {Object} arg - Arg object.
      * @param {number} [arg.pageSize] -
@@ -32,7 +32,7 @@ declare class Configuration {
         q?: string;
     }): Paginator<ConfigurationPlatformModel.ApplicationsResponse>;
     /**
-     * @param {ConfigurationPlatformValidator.getAvailableOptIns} arg - Arg object
+     * @param {ConfigurationPlatformValidator.GetAvailableOptInsParam} arg - Arg object
      * @returns {Promise<ConfigurationPlatformModel.GetIntegrationsOptInsResponse>}
      *   - Success response
      *
@@ -40,25 +40,25 @@ declare class Configuration {
      * @summary: Get all available integration opt-ins
      * @description: Use this API to get a list of all available integrations in a company
      */
-    getAvailableOptIns({ pageNo, pageSize }?: ConfigurationPlatformValidator.getAvailableOptIns): Promise<ConfigurationPlatformModel.GetIntegrationsOptInsResponse>;
+    getAvailableOptIns({ pageNo, pageSize }?: ConfigurationPlatformValidator.GetAvailableOptInsParam): Promise<ConfigurationPlatformModel.GetIntegrationsOptInsResponse>;
     /**
-     * @param {ConfigurationPlatformValidator.getBrandsByCompany} arg - Arg object
+     * @param {ConfigurationPlatformValidator.GetBrandsByCompanyParam} arg - Arg object
      * @returns {Promise<ConfigurationPlatformModel.BrandsByCompanyResponse>} -
      *   Success response
      * @name getBrandsByCompany
      * @summary: Get brands by company.
      * @description: Use this API to get all the brands added in a company. Get all the brand names, along with URLs of their logo, banner, and portrait image.
      */
-    getBrandsByCompany({ q }?: ConfigurationPlatformValidator.getBrandsByCompany): Promise<ConfigurationPlatformModel.BrandsByCompanyResponse>;
+    getBrandsByCompany({ q }?: ConfigurationPlatformValidator.GetBrandsByCompanyParam): Promise<ConfigurationPlatformModel.BrandsByCompanyResponse>;
     /**
-     * @param {ConfigurationPlatformValidator.getCompanyByBrands} arg - Arg object
+     * @param {ConfigurationPlatformValidator.GetCompanyByBrandsParam} arg - Arg object
      * @returns {Promise<ConfigurationPlatformModel.CompanyByBrandsResponse>} -
      *   Success response
      * @name getCompanyByBrands
      * @summary: Get company by brand uids
      * @description: Use this API to get a list of companies by the brands they deal
      */
-    getCompanyByBrands({ body, pageNo, pageSize }?: ConfigurationPlatformValidator.getCompanyByBrands): Promise<ConfigurationPlatformModel.CompanyByBrandsResponse>;
+    getCompanyByBrands({ body, pageNo, pageSize }?: ConfigurationPlatformValidator.GetCompanyByBrandsParam): Promise<ConfigurationPlatformModel.CompanyByBrandsResponse>;
     /**
      * @param {Object} arg - Arg object.
      * @param {number} [arg.pageSize] - The number of items to retrieve in each
@@ -73,7 +73,7 @@ declare class Configuration {
         body: ConfigurationPlatformModel.CompanyByBrandsRequest;
     }): Paginator<ConfigurationPlatformModel.CompanyByBrandsResponse>;
     /**
-     * @param {ConfigurationPlatformValidator.getCurrencies} arg - Arg object
+     * @param {ConfigurationPlatformValidator.GetCurrenciesParam} arg - Arg object
      * @returns {Promise<ConfigurationPlatformModel.CurrenciesResponse>} -
      *   Success response
      * @name getCurrencies
@@ -82,7 +82,7 @@ declare class Configuration {
      */
     getCurrencies({}?: any): Promise<ConfigurationPlatformModel.CurrenciesResponse>;
     /**
-     * @param {ConfigurationPlatformValidator.getDomainAvailibility} arg - Arg object
+     * @param {ConfigurationPlatformValidator.GetDomainAvailibilityParam} arg - Arg object
      * @returns {Promise<ConfigurationPlatformModel.DomainSuggestionsResponse>}
      *   - Success response
      *
@@ -90,25 +90,29 @@ declare class Configuration {
      * @summary: Check domain availability before linking to application
      * @description: Use this API to check the domain availability before linking it to application. Also sends domain suggestions that are similar to the queried domain. Note - Custom domain search is currently powered by GoDaddy provider.
      */
-    getDomainAvailibility({ body }?: ConfigurationPlatformValidator.getDomainAvailibility): Promise<ConfigurationPlatformModel.DomainSuggestionsResponse>;
+    getDomainAvailibility({ body }?: ConfigurationPlatformValidator.GetDomainAvailibilityParam): Promise<ConfigurationPlatformModel.DomainSuggestionsResponse>;
     /**
-     * @param {ConfigurationPlatformValidator.getIntegrationById} arg - Arg object
+     * @param {ConfigurationPlatformValidator.GetIntegrationByIdParam} arg - Arg object
      * @returns {Promise<ConfigurationPlatformModel.Integration>} - Success response
      * @name getIntegrationById
      * @summary: Get integration data by its ID
      * @description: Use this API to fetch the details of an integration (such as Ginesys, SAP, etc.) using its ID
      */
-    getIntegrationById({ id }?: ConfigurationPlatformValidator.getIntegrationById): Promise<ConfigurationPlatformModel.Integration>;
+    getIntegrationById({ id }?: ConfigurationPlatformValidator.GetIntegrationByIdParam): Promise<ConfigurationPlatformModel.Integration>;
     /**
-     * @param {ConfigurationPlatformValidator.getIntegrationByLevelId} arg - Arg object
+     * @param {ConfigurationPlatformValidator.GetIntegrationByLevelIdParam} arg
+     *   - Arg object
+     *
      * @returns {Promise<ConfigurationPlatformModel.IntegrationLevel>} - Success response
      * @name getIntegrationByLevelId
      * @summary: Get integration config at a particular level (store/company)
      * @description: Use this API to get the configuration details of an integration such as token, permissions, level, opted value, uid, meta, location ID, etc. at a particular level (store/company).
      */
-    getIntegrationByLevelId({ id, level, uid }?: ConfigurationPlatformValidator.getIntegrationByLevelId): Promise<ConfigurationPlatformModel.IntegrationLevel>;
+    getIntegrationByLevelId({ id, level, uid }?: ConfigurationPlatformValidator.GetIntegrationByLevelIdParam): Promise<ConfigurationPlatformModel.IntegrationLevel>;
     /**
-     * @param {ConfigurationPlatformValidator.getIntegrationLevelConfig} arg - Arg object
+     * @param {ConfigurationPlatformValidator.GetIntegrationLevelConfigParam} arg
+     *   - Arg object
+     *
      * @returns {Promise<ConfigurationPlatformModel.IntegrationConfigResponse>}
      *   - Success response
      *
@@ -116,18 +120,20 @@ declare class Configuration {
      * @summary: Get integration level config
      * @description: Use this API to get the configuration details of an integration such as token, permissions, level, opted value, uid, meta, location ID, etc.
      */
-    getIntegrationLevelConfig({ id, level, opted, checkPermission }?: ConfigurationPlatformValidator.getIntegrationLevelConfig): Promise<ConfigurationPlatformModel.IntegrationConfigResponse>;
+    getIntegrationLevelConfig({ id, level, opted, checkPermission }?: ConfigurationPlatformValidator.GetIntegrationLevelConfigParam): Promise<ConfigurationPlatformModel.IntegrationConfigResponse>;
     /**
-     * @param {ConfigurationPlatformValidator.getLevelActiveIntegrations} arg - Arg object
+     * @param {ConfigurationPlatformValidator.GetLevelActiveIntegrationsParam} arg
+     *   - Arg object
+     *
      * @returns {Promise<ConfigurationPlatformModel.OptedStoreIntegration>} -
      *   Success response
      * @name getLevelActiveIntegrations
      * @summary: Check active integration at store
      * @description: Use this API to check if a store is already opted-in for any integration
      */
-    getLevelActiveIntegrations({ id, level, uid, permission }?: ConfigurationPlatformValidator.getLevelActiveIntegrations): Promise<ConfigurationPlatformModel.OptedStoreIntegration>;
+    getLevelActiveIntegrations({ id, level, uid, permission }?: ConfigurationPlatformValidator.GetLevelActiveIntegrationsParam): Promise<ConfigurationPlatformModel.OptedStoreIntegration>;
     /**
-     * @param {ConfigurationPlatformValidator.getOtherSellerApplicationById} arg
+     * @param {ConfigurationPlatformValidator.GetOtherSellerApplicationByIdParam} arg
      *   - Arg object
      *
      * @returns {Promise<ConfigurationPlatformModel.OptedApplicationResponse>}
@@ -137,16 +143,18 @@ declare class Configuration {
      * @summary: Get other seller's sales channel by ID
      * @description: Use application ID to fetch details of a seller application that was not created within the current company. but has opted for the current company's inventory
      */
-    getOtherSellerApplicationById({ id }?: ConfigurationPlatformValidator.getOtherSellerApplicationById): Promise<ConfigurationPlatformModel.OptedApplicationResponse>;
+    getOtherSellerApplicationById({ id }?: ConfigurationPlatformValidator.GetOtherSellerApplicationByIdParam): Promise<ConfigurationPlatformModel.OptedApplicationResponse>;
     /**
-     * @param {ConfigurationPlatformValidator.getOtherSellerApplications} arg - Arg object
+     * @param {ConfigurationPlatformValidator.GetOtherSellerApplicationsParam} arg
+     *   - Arg object
+     *
      * @returns {Promise<ConfigurationPlatformModel.OtherSellerApplications>} -
      *   Success response
      * @name getOtherSellerApplications
      * @summary: Get other seller sales channels
      * @description: Use this API to fetch all other seller applications that were not created within the current company. but have opted for the current company's inventory
      */
-    getOtherSellerApplications({ pageNo, pageSize }?: ConfigurationPlatformValidator.getOtherSellerApplications): Promise<ConfigurationPlatformModel.OtherSellerApplications>;
+    getOtherSellerApplications({ pageNo, pageSize }?: ConfigurationPlatformValidator.GetOtherSellerApplicationsParam): Promise<ConfigurationPlatformModel.OtherSellerApplications>;
     /**
      * @param {Object} arg - Arg object.
      * @param {number} [arg.pageSize] - The number of items to retrieve in each
@@ -159,7 +167,7 @@ declare class Configuration {
         pageSize?: number;
     }): Paginator<ConfigurationPlatformModel.OtherSellerApplications>;
     /**
-     * @param {ConfigurationPlatformValidator.getSelectedOptIns} arg - Arg object
+     * @param {ConfigurationPlatformValidator.GetSelectedOptInsParam} arg - Arg object
      * @returns {Promise<ConfigurationPlatformModel.GetIntegrationsOptInsResponse>}
      *   - Success response
      *
@@ -167,16 +175,16 @@ declare class Configuration {
      * @summary: Get company/store level integration opt-ins
      * @description: Use this API to get the store-level/company-level integrations configured in a company
      */
-    getSelectedOptIns({ level, uid, pageNo, pageSize }?: ConfigurationPlatformValidator.getSelectedOptIns): Promise<ConfigurationPlatformModel.GetIntegrationsOptInsResponse>;
+    getSelectedOptIns({ level, uid, pageNo, pageSize }?: ConfigurationPlatformValidator.GetSelectedOptInsParam): Promise<ConfigurationPlatformModel.GetIntegrationsOptInsResponse>;
     /**
-     * @param {ConfigurationPlatformValidator.getStoreByBrands} arg - Arg object
+     * @param {ConfigurationPlatformValidator.GetStoreByBrandsParam} arg - Arg object
      * @returns {Promise<ConfigurationPlatformModel.StoreByBrandsResponse>} -
      *   Success response
      * @name getStoreByBrands
      * @summary: Get stores by brand uids for the current company
      * @description: Use this API to get a list of selling locations (stores) by the brands they deal. Store has information about store name, store type, store code, store address, and company detail.
      */
-    getStoreByBrands({ body, pageNo, pageSize }?: ConfigurationPlatformValidator.getStoreByBrands): Promise<ConfigurationPlatformModel.StoreByBrandsResponse>;
+    getStoreByBrands({ body, pageNo, pageSize }?: ConfigurationPlatformValidator.GetStoreByBrandsParam): Promise<ConfigurationPlatformModel.StoreByBrandsResponse>;
     /**
      * @param {Object} arg - Arg object.
      * @param {number} [arg.pageSize] - The number of items to retrieve in each
@@ -191,30 +199,34 @@ declare class Configuration {
         body: ConfigurationPlatformModel.StoreByBrandsRequest;
     }): Paginator<ConfigurationPlatformModel.StoreByBrandsResponse>;
     /**
-     * @param {ConfigurationPlatformValidator.optOutFromApplication} arg - Arg object
+     * @param {ConfigurationPlatformValidator.OptOutFromApplicationParam} arg - Arg object
      * @returns {Promise<ConfigurationPlatformModel.SuccessMessageResponse>} -
      *   Success response
      * @name optOutFromApplication
      * @summary: Opt-out company or store from other seller application
      * @description: Use this API to opt-out your company or store from other seller application. The specific seller application will no longer fetch inventory from your company or store.
      */
-    optOutFromApplication({ id, body }?: ConfigurationPlatformValidator.optOutFromApplication): Promise<ConfigurationPlatformModel.SuccessMessageResponse>;
+    optOutFromApplication({ id, body }?: ConfigurationPlatformValidator.OptOutFromApplicationParam): Promise<ConfigurationPlatformModel.SuccessMessageResponse>;
     /**
-     * @param {ConfigurationPlatformValidator.updateLevelIntegration} arg - Arg object
+     * @param {ConfigurationPlatformValidator.UpdateLevelIntegrationParam} arg
+     *   - Arg object
+     *
      * @returns {Promise<ConfigurationPlatformModel.IntegrationLevel>} - Success response
      * @name updateLevelIntegration
      * @summary: Update a store level integration you opted
      * @description: Use this API to update the configuration details of an integration such as token, permissions, level, opted value, uid, meta, location ID, etc. at a particular level (store/company).
      */
-    updateLevelIntegration({ id, level, body }?: ConfigurationPlatformValidator.updateLevelIntegration): Promise<ConfigurationPlatformModel.IntegrationLevel>;
+    updateLevelIntegration({ id, level, body }?: ConfigurationPlatformValidator.UpdateLevelIntegrationParam): Promise<ConfigurationPlatformModel.IntegrationLevel>;
     /**
-     * @param {ConfigurationPlatformValidator.updateLevelUidIntegration} arg - Arg object
+     * @param {ConfigurationPlatformValidator.UpdateLevelUidIntegrationParam} arg
+     *   - Arg object
+     *
      * @returns {Promise<ConfigurationPlatformModel.IntegrationLevel>} - Success response
      * @name updateLevelUidIntegration
      * @summary: Update integration level by store UID
      * @description: Update the level of integration by store UID
      */
-    updateLevelUidIntegration({ id, level, uid, body }?: ConfigurationPlatformValidator.updateLevelUidIntegration): Promise<ConfigurationPlatformModel.IntegrationLevel>;
+    updateLevelUidIntegration({ id, level, uid, body }?: ConfigurationPlatformValidator.UpdateLevelUidIntegrationParam): Promise<ConfigurationPlatformModel.IntegrationLevel>;
 }
 import ConfigurationPlatformValidator = require("./ConfigurationPlatformValidator");
 import ConfigurationPlatformModel = require("./ConfigurationPlatformModel");

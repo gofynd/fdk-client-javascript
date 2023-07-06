@@ -3,123 +3,123 @@ const Joi = require("joi");
 const FinancePlatformModel = require("./FinancePlatformModel");
 
 /**
- * @typedef asCnRefund
+ * @typedef AsCnRefundParam
  * @property {FinancePlatformModel.AsCnRefundRequest} body
  */
 
 /**
- * @typedef channelDisplayName
+ * @typedef ChannelDisplayNameParam
  * @property {string} filterKey - Gives display name for channel.
  */
 
 /**
- * @typedef createSellerCreditNoteConfig
+ * @typedef CreateSellerCreditNoteConfigParam
  * @property {FinancePlatformModel.CreateSellerCreditNoteConfigRequest} body
  */
 
 /**
- * @typedef creditNoteDetails
+ * @typedef CreditNoteDetailsParam
  * @property {FinancePlatformModel.CreditNoteDetailsRequest} body
  */
 
 /**
- * @typedef creditlineDataplatform
+ * @typedef CreditlineDataplatformParam
  * @property {FinancePlatformModel.CreditlineDataPlatformRequest} body
  */
 
 /**
- * @typedef deleteConfig
+ * @typedef DeleteConfigParam
  * @property {FinancePlatformModel.DeleteConfigRequest} body
  */
 
 /**
- * @typedef downloadCreditDebitNote
+ * @typedef DownloadCreditDebitNoteParam
  * @property {FinancePlatformModel.DownloadCreditDebitNoteRequest} body
  */
 
 /**
- * @typedef downloadReport
+ * @typedef DownloadReportParam
  * @property {FinancePlatformModel.DownloadReport} body
  */
 
 /**
- * @typedef downloadReportCustomerCn
+ * @typedef DownloadReportCustomerCnParam
  * @property {FinancePlatformModel.DownloadReportCustomerCnRequest} body
  */
 
 /**
- * @typedef generateReport
+ * @typedef GenerateReportParam
  * @property {FinancePlatformModel.GenerateReportRequest} body
  */
 
 /**
- * @typedef generateReportCustomerCn
+ * @typedef GenerateReportCustomerCnParam
  * @property {FinancePlatformModel.GenerateReportCustomerCnRequest} body
  */
 
 /**
- * @typedef getAffiliate
+ * @typedef GetAffiliateParam
  * @property {FinancePlatformModel.GetAffiliate} body
  */
 
 /**
- * @typedef getCnConfig
+ * @typedef GetCnConfigParam
  * @property {FinancePlatformModel.GetCnConfigRequest} body
  */
 
 /**
- * @typedef getCustomerCreditBalance
+ * @typedef GetCustomerCreditBalanceParam
  * @property {FinancePlatformModel.GetCustomerCreditBalanceRequest} body
  */
 
 /**
- * @typedef getData
+ * @typedef GetDataParam
  * @property {FinancePlatformModel.GetEngineRequest} body
  */
 
 /**
- * @typedef getPdfUrlView
+ * @typedef GetPdfUrlViewParam
  * @property {FinancePlatformModel.GetPdfUrlViewRequest} body
  */
 
 /**
- * @typedef getReason
+ * @typedef GetReasonParam
  * @property {FinancePlatformModel.GetReasonRequest} body
  */
 
 /**
- * @typedef getReportList
+ * @typedef GetReportListParam
  * @property {FinancePlatformModel.GetReportListRequest} body
  */
 
 /**
- * @typedef getReportingFilters
+ * @typedef GetReportingFiltersParam
  * @property {string} filterKey - Filter type.
  * @property {string} [affiliateId] - Affiliate id.
  */
 
 /**
- * @typedef invoiceListing
+ * @typedef InvoiceListingParam
  * @property {FinancePlatformModel.InvoiceListingRequest} body
  */
 
 /**
- * @typedef invoicePDF
+ * @typedef InvoicePDFParam
  * @property {FinancePlatformModel.InvoicePdfRequest} body
  */
 
 /**
- * @typedef invoiceType
+ * @typedef InvoiceTypeParam
  * @property {FinancePlatformModel.InvoiceTypeRequest} body
  */
 
 /**
- * @typedef isCreditlinePlatform
+ * @typedef IsCreditlinePlatformParam
  * @property {FinancePlatformModel.IsCreditlinePlatformRequest} body
  */
 
 /**
- * @typedef paymentProcess
+ * @typedef PaymentProcessParam
  * @property {FinancePlatformModel.PaymentProcessRequest} body
  */
 

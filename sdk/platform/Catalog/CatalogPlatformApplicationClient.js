@@ -13,7 +13,9 @@ class Catalog {
   }
 
   /**
-   * @param {CatalogPlatformApplicationValidator.addCollectionItems} arg - Arg object
+   * @param {CatalogPlatformApplicationValidator.AddCollectionItemsParam} arg
+   *   - Arg object
+   *
    * @returns {Promise<CatalogPlatformModel.UpdatedResponse>} - Success response
    * @name addCollectionItems
    * @summary: Add items to a collection
@@ -78,7 +80,7 @@ class Catalog {
   }
 
   /**
-   * @param {CatalogPlatformApplicationValidator.createCollection} arg - Arg object
+   * @param {CatalogPlatformApplicationValidator.CreateCollectionParam} arg - Arg object
    * @returns {Promise<CatalogPlatformModel.CollectionCreateResponse>} -
    *   Success response
    * @name createCollection
@@ -142,7 +144,7 @@ class Catalog {
   }
 
   /**
-   * @param {CatalogPlatformApplicationValidator.createConfigurationByType} arg
+   * @param {CatalogPlatformApplicationValidator.CreateConfigurationByTypeParam} arg
    *   - Arg object
    *
    * @returns {Promise<CatalogPlatformModel.GetAppCatalogConfiguration>} -
@@ -210,7 +212,7 @@ class Catalog {
   }
 
   /**
-   * @param {CatalogPlatformApplicationValidator.createConfigurationProductListing} arg
+   * @param {CatalogPlatformApplicationValidator.CreateConfigurationProductListingParam} arg
    *   - Arg object
    *
    * @returns {Promise<CatalogPlatformModel.GetAppCatalogConfiguration>} -
@@ -276,7 +278,7 @@ class Catalog {
   }
 
   /**
-   * @param {CatalogPlatformApplicationValidator.createCustomAutocompleteRule} arg
+   * @param {CatalogPlatformApplicationValidator.CreateCustomAutocompleteRuleParam} arg
    *   - Arg object
    *
    * @returns {Promise<CatalogPlatformModel.CreateAutocompleteWordsResponse>}
@@ -343,7 +345,9 @@ class Catalog {
   }
 
   /**
-   * @param {CatalogPlatformApplicationValidator.createCustomKeyword} arg - Arg object
+   * @param {CatalogPlatformApplicationValidator.CreateCustomKeywordParam} arg
+   *   - Arg object
+   *
    * @returns {Promise<CatalogPlatformModel.GetSearchWordsData>} - Success response
    * @name createCustomKeyword
    * @summary: Add a Custom Search Keywords
@@ -406,7 +410,7 @@ class Catalog {
   }
 
   /**
-   * @param {CatalogPlatformApplicationValidator.createGroupConfiguration} arg
+   * @param {CatalogPlatformApplicationValidator.CreateGroupConfigurationParam} arg
    *   - Arg object
    *
    * @returns {Promise<CatalogPlatformModel.AppConfigurationDetail>} - Success response
@@ -473,7 +477,7 @@ class Catalog {
   }
 
   /**
-   * @param {CatalogPlatformApplicationValidator.createListingConfiguration} arg
+   * @param {CatalogPlatformApplicationValidator.CreateListingConfigurationParam} arg
    *   - Arg object
    *
    * @returns {Promise<CatalogPlatformModel.AppConfigurationsSort>} - Success response
@@ -540,7 +544,7 @@ class Catalog {
   }
 
   /**
-   * @param {CatalogPlatformApplicationValidator.deleteAutocompleteKeyword} arg
+   * @param {CatalogPlatformApplicationValidator.DeleteAutocompleteKeywordParam} arg
    *   - Arg object
    *
    * @returns {Promise<CatalogPlatformModel.DeleteResponse>} - Success response
@@ -605,7 +609,7 @@ class Catalog {
   }
 
   /**
-   * @param {CatalogPlatformApplicationValidator.deleteCollection} arg - Arg object
+   * @param {CatalogPlatformApplicationValidator.DeleteCollectionParam} arg - Arg object
    * @returns {Promise<CatalogPlatformModel.DeleteResponse>} - Success response
    * @name deleteCollection
    * @summary: Delete a Collection
@@ -668,7 +672,7 @@ class Catalog {
   }
 
   /**
-   * @param {CatalogPlatformApplicationValidator.deleteGroupConfiguration} arg
+   * @param {CatalogPlatformApplicationValidator.DeleteGroupConfigurationParam} arg
    *   - Arg object
    *
    * @returns {Promise<CatalogPlatformModel.ConfigSuccessResponse>} - Success response
@@ -735,7 +739,7 @@ class Catalog {
   }
 
   /**
-   * @param {CatalogPlatformApplicationValidator.deleteListingConfiguration} arg
+   * @param {CatalogPlatformApplicationValidator.DeleteListingConfigurationParam} arg
    *   - Arg object
    *
    * @returns {Promise<CatalogPlatformModel.ConfigSuccessResponse>} - Success response
@@ -802,7 +806,9 @@ class Catalog {
   }
 
   /**
-   * @param {CatalogPlatformApplicationValidator.deleteSearchKeywords} arg - Arg object
+   * @param {CatalogPlatformApplicationValidator.DeleteSearchKeywordsParam} arg
+   *   - Arg object
+   *
    * @returns {Promise<CatalogPlatformModel.DeleteResponse>} - Success response
    * @name deleteSearchKeywords
    * @summary: Delete a Search Keywords
@@ -865,7 +871,9 @@ class Catalog {
   }
 
   /**
-   * @param {CatalogPlatformApplicationValidator.getAllCollections} arg - Arg object
+   * @param {CatalogPlatformApplicationValidator.GetAllCollectionsParam} arg
+   *   - Arg object
+   *
    * @returns {Promise<CatalogPlatformModel.GetCollectionListingResponse>} -
    *   Success response
    * @name getAllCollections
@@ -956,7 +964,9 @@ class Catalog {
   }
 
   /**
-   * @param {CatalogPlatformApplicationValidator.getAllSearchKeyword} arg - Arg object
+   * @param {CatalogPlatformApplicationValidator.GetAllSearchKeywordParam} arg
+   *   - Arg object
+   *
    * @returns {Promise<CatalogPlatformModel.GetSearchWordsResponse>} - Success response
    * @name getAllSearchKeyword
    * @summary: List all Search Custom Keyword Listing
@@ -1015,7 +1025,7 @@ class Catalog {
   }
 
   /**
-   * @param {CatalogPlatformApplicationValidator.getAppInventory} arg - Arg object
+   * @param {CatalogPlatformApplicationValidator.GetAppInventoryParam} arg - Arg object
    * @returns {Promise<CatalogPlatformModel.InventoryStockResponse>} - Success response
    * @name getAppInventory
    * @summary: Get the stock of a product
@@ -1105,7 +1115,7 @@ class Catalog {
   }
 
   /**
-   * @param {CatalogPlatformApplicationValidator.getAppLocations} arg - Arg object
+   * @param {CatalogPlatformApplicationValidator.GetAppLocationsParam} arg - Arg object
    * @returns {Promise<CatalogPlatformModel.LocationListSerializer>} - Success response
    * @name getAppLocations
    * @summary: Get list of locations
@@ -1236,7 +1246,7 @@ class Catalog {
   }
 
   /**
-   * @param {CatalogPlatformApplicationValidator.getAppProduct} arg - Arg object
+   * @param {CatalogPlatformApplicationValidator.GetAppProductParam} arg - Arg object
    * @returns {Promise<CatalogPlatformModel.OwnerAppItemResponse>} - Success response
    * @name getAppProduct
    * @summary: Get company application product data.
@@ -1299,7 +1309,7 @@ class Catalog {
   }
 
   /**
-   * @param {CatalogPlatformApplicationValidator.getAppProducts} arg - Arg object
+   * @param {CatalogPlatformApplicationValidator.GetAppProductsParam} arg - Arg object
    * @returns {Promise<CatalogPlatformModel.ProductListingResponse>} - Success response
    * @name getAppProducts
    * @summary: Get applicationwise products
@@ -1393,7 +1403,9 @@ class Catalog {
   }
 
   /**
-   * @param {CatalogPlatformApplicationValidator.getAppicationProducts} arg - Arg object
+   * @param {CatalogPlatformApplicationValidator.GetAppicationProductsParam} arg
+   *   - Arg object
+   *
    * @returns {Promise<CatalogPlatformModel.ApplicationProductListingResponse>}
    *   - Success response
    *
@@ -1565,7 +1577,7 @@ class Catalog {
   }
 
   /**
-   * @param {CatalogPlatformApplicationValidator.getApplicationBrandListing} arg
+   * @param {CatalogPlatformApplicationValidator.GetApplicationBrandListingParam} arg
    *   - Arg object
    *
    * @returns {Promise<CatalogPlatformModel.BrandListingResponse>} - Success response
@@ -1679,7 +1691,9 @@ class Catalog {
   }
 
   /**
-   * @param {CatalogPlatformApplicationValidator.getApplicationBrands} arg - Arg object
+   * @param {CatalogPlatformApplicationValidator.GetApplicationBrandsParam} arg
+   *   - Arg object
+   *
    * @returns {Promise<CatalogPlatformModel.BrandListingResponse>} - Success response
    * @name getApplicationBrands
    * @summary: List all the brands
@@ -1813,7 +1827,7 @@ class Catalog {
   }
 
   /**
-   * @param {CatalogPlatformApplicationValidator.getApplicationCategoryListing} arg
+   * @param {CatalogPlatformApplicationValidator.GetApplicationCategoryListingParam} arg
    *   - Arg object
    *
    * @returns {Promise<CatalogPlatformModel.BrandListingResponse>} - Success response
@@ -1939,7 +1953,7 @@ class Catalog {
   }
 
   /**
-   * @param {CatalogPlatformApplicationValidator.getApplicationDepartmentListing} arg
+   * @param {CatalogPlatformApplicationValidator.GetApplicationDepartmentListingParam} arg
    *   - Arg object
    *
    * @returns {Promise<CatalogPlatformModel.ApplicationDepartmentListingResponse>}
@@ -2055,7 +2069,9 @@ class Catalog {
   }
 
   /**
-   * @param {CatalogPlatformApplicationValidator.getAutocompleteConfig} arg - Arg object
+   * @param {CatalogPlatformApplicationValidator.GetAutocompleteConfigParam} arg
+   *   - Arg object
+   *
    * @returns {Promise<CatalogPlatformModel.GetAutocompleteWordsResponse>} -
    *   Success response
    * @name getAutocompleteConfig
@@ -2115,7 +2131,7 @@ class Catalog {
   }
 
   /**
-   * @param {CatalogPlatformApplicationValidator.getAutocompleteKeywordDetail} arg
+   * @param {CatalogPlatformApplicationValidator.GetAutocompleteKeywordDetailParam} arg
    *   - Arg object
    *
    * @returns {Promise<CatalogPlatformModel.GetAutocompleteWordsResponse>} -
@@ -2181,7 +2197,7 @@ class Catalog {
   }
 
   /**
-   * @param {CatalogPlatformApplicationValidator.getCatalogConfiguration} arg
+   * @param {CatalogPlatformApplicationValidator.GetCatalogConfigurationParam} arg
    *   - Arg object
    *
    * @returns {Promise<CatalogPlatformModel.GetCatalogConfigurationMetaData>}
@@ -2244,7 +2260,9 @@ class Catalog {
   }
 
   /**
-   * @param {CatalogPlatformApplicationValidator.getCatalogInsights} arg - Arg object
+   * @param {CatalogPlatformApplicationValidator.GetCatalogInsightsParam} arg
+   *   - Arg object
+   *
    * @returns {Promise<CatalogPlatformModel.CatalogInsightResponse>} - Success response
    * @name getCatalogInsights
    * @summary: Analytics data of catalog and inventory.
@@ -2308,7 +2326,7 @@ class Catalog {
   }
 
   /**
-   * @param {CatalogPlatformApplicationValidator.getCategories} arg - Arg object
+   * @param {CatalogPlatformApplicationValidator.GetCategoriesParam} arg - Arg object
    * @returns {Promise<CatalogPlatformModel.CategoryListingResponse>} - Success response
    * @name getCategories
    * @summary: List all the categories
@@ -2372,7 +2390,9 @@ class Catalog {
   }
 
   /**
-   * @param {CatalogPlatformApplicationValidator.getCollectionDetail} arg - Arg object
+   * @param {CatalogPlatformApplicationValidator.GetCollectionDetailParam} arg
+   *   - Arg object
+   *
    * @returns {Promise<CatalogPlatformModel.CollectionDetailResponse>} -
    *   Success response
    * @name getCollectionDetail
@@ -2436,7 +2456,9 @@ class Catalog {
   }
 
   /**
-   * @param {CatalogPlatformApplicationValidator.getCollectionItems} arg - Arg object
+   * @param {CatalogPlatformApplicationValidator.GetCollectionItemsParam} arg
+   *   - Arg object
+   *
    * @returns {Promise<CatalogPlatformModel.GetCollectionItemsResponse>} -
    *   Success response
    * @name getCollectionItems
@@ -2509,7 +2531,7 @@ class Catalog {
   }
 
   /**
-   * @param {CatalogPlatformApplicationValidator.getConfigurationByType} arg
+   * @param {CatalogPlatformApplicationValidator.GetConfigurationByTypeParam} arg
    *   - Arg object
    *
    * @returns {Promise<CatalogPlatformModel.GetAppCatalogEntityConfiguration>}
@@ -2576,7 +2598,7 @@ class Catalog {
   }
 
   /**
-   * @param {CatalogPlatformApplicationValidator.getConfigurationMetadata} arg
+   * @param {CatalogPlatformApplicationValidator.GetConfigurationMetadataParam} arg
    *   - Arg object
    *
    * @returns {Promise<CatalogPlatformModel.GetConfigMetadataResponse>} -
@@ -2645,7 +2667,9 @@ class Catalog {
   }
 
   /**
-   * @param {CatalogPlatformApplicationValidator.getConfigurations} arg - Arg object
+   * @param {CatalogPlatformApplicationValidator.GetConfigurationsParam} arg
+   *   - Arg object
+   *
    * @returns {Promise<CatalogPlatformModel.GetAppCatalogConfiguration>} -
    *   Success response
    * @name getConfigurations
@@ -2705,7 +2729,7 @@ class Catalog {
   }
 
   /**
-   * @param {CatalogPlatformApplicationValidator.getDepartments} arg - Arg object
+   * @param {CatalogPlatformApplicationValidator.GetDepartmentsParam} arg - Arg object
    * @returns {Promise<CatalogPlatformModel.DepartmentResponse>} - Success response
    * @name getDepartments
    * @summary: List all the departments
@@ -2764,7 +2788,7 @@ class Catalog {
   }
 
   /**
-   * @param {CatalogPlatformApplicationValidator.getDiscountedInventoryBySizeIdentifier} arg
+   * @param {CatalogPlatformApplicationValidator.GetDiscountedInventoryBySizeIdentifierParam} arg
    *   - Arg object
    *
    * @returns {Promise<CatalogPlatformModel.InventorySellerIdentifierResponsePaginated>}
@@ -2852,7 +2876,7 @@ class Catalog {
   }
 
   /**
-   * @param {CatalogPlatformApplicationValidator.getGroupConfigurations} arg
+   * @param {CatalogPlatformApplicationValidator.GetGroupConfigurationsParam} arg
    *   - Arg object
    *
    * @returns {Promise<CatalogPlatformModel.GetConfigResponse>} - Success response
@@ -2935,7 +2959,7 @@ class Catalog {
   }
 
   /**
-   * @param {CatalogPlatformApplicationValidator.getListingConfigurations} arg
+   * @param {CatalogPlatformApplicationValidator.GetListingConfigurationsParam} arg
    *   - Arg object
    *
    * @returns {Promise<CatalogPlatformModel.GetConfigResponse>} - Success response
@@ -3014,7 +3038,7 @@ class Catalog {
   }
 
   /**
-   * @param {CatalogPlatformApplicationValidator.getProductDetailBySlug} arg
+   * @param {CatalogPlatformApplicationValidator.GetProductDetailBySlugParam} arg
    *   - Arg object
    *
    * @returns {Promise<CatalogPlatformModel.ProductDetail>} - Success response
@@ -3079,7 +3103,9 @@ class Catalog {
   }
 
   /**
-   * @param {CatalogPlatformApplicationValidator.getProductSizeSellers} arg - Arg object
+   * @param {CatalogPlatformApplicationValidator.GetProductSizeSellersParam} arg
+   *   - Arg object
+   *
    * @returns {Promise<CatalogPlatformModel.ProductSizeSellersResponse>} -
    *   Success response
    * @name getProductSizeSellers
@@ -3219,7 +3245,7 @@ class Catalog {
   }
 
   /**
-   * @param {CatalogPlatformApplicationValidator.getQueryFilters} arg - Arg object
+   * @param {CatalogPlatformApplicationValidator.GetQueryFiltersParam} arg - Arg object
    * @returns {Promise<CatalogPlatformModel.GetCollectionQueryOptionResponse>}
    *   - Success response
    *
@@ -3280,7 +3306,9 @@ class Catalog {
   }
 
   /**
-   * @param {CatalogPlatformApplicationValidator.getSearchKeywords} arg - Arg object
+   * @param {CatalogPlatformApplicationValidator.GetSearchKeywordsParam} arg
+   *   - Arg object
+   *
    * @returns {Promise<CatalogPlatformModel.GetSearchWordsDetailResponse>} -
    *   Success response
    * @name getSearchKeywords
@@ -3344,7 +3372,9 @@ class Catalog {
   }
 
   /**
-   * @param {CatalogPlatformApplicationValidator.updateAllowSingle} arg - Arg object
+   * @param {CatalogPlatformApplicationValidator.UpdateAllowSingleParam} arg
+   *   - Arg object
+   *
    * @returns {Promise<CatalogPlatformModel.ConfigSuccessResponse>} - Success response
    * @name updateAllowSingle
    * @summary: Update allow single flag for filters of the application.
@@ -3407,7 +3437,7 @@ class Catalog {
   }
 
   /**
-   * @param {CatalogPlatformApplicationValidator.updateAppBrand} arg - Arg object
+   * @param {CatalogPlatformApplicationValidator.UpdateAppBrandParam} arg - Arg object
    * @returns {Promise<CatalogPlatformModel.SuccessResponse1>} - Success response
    * @name updateAppBrand
    * @summary: Update a single custom json.
@@ -3472,7 +3502,9 @@ class Catalog {
   }
 
   /**
-   * @param {CatalogPlatformApplicationValidator.updateAppCategory} arg - Arg object
+   * @param {CatalogPlatformApplicationValidator.UpdateAppCategoryParam} arg
+   *   - Arg object
+   *
    * @returns {Promise<CatalogPlatformModel.SuccessResponse1>} - Success response
    * @name updateAppCategory
    * @summary: Update a single custom json.
@@ -3537,7 +3569,9 @@ class Catalog {
   }
 
   /**
-   * @param {CatalogPlatformApplicationValidator.updateAppDepartment} arg - Arg object
+   * @param {CatalogPlatformApplicationValidator.UpdateAppDepartmentParam} arg
+   *   - Arg object
+   *
    * @returns {Promise<CatalogPlatformModel.SuccessResponse1>} - Success response
    * @name updateAppDepartment
    * @summary: Update a single custom json.
@@ -3602,7 +3636,9 @@ class Catalog {
   }
 
   /**
-   * @param {CatalogPlatformApplicationValidator.updateAppLocation} arg - Arg object
+   * @param {CatalogPlatformApplicationValidator.UpdateAppLocationParam} arg
+   *   - Arg object
+   *
    * @returns {Promise<CatalogPlatformModel.SuccessResponse1>} - Success response
    * @name updateAppLocation
    * @summary: Update a single custom json.
@@ -3667,7 +3703,7 @@ class Catalog {
   }
 
   /**
-   * @param {CatalogPlatformApplicationValidator.updateAppProduct} arg - Arg object
+   * @param {CatalogPlatformApplicationValidator.UpdateAppProductParam} arg - Arg object
    * @returns {Promise<CatalogPlatformModel.SuccessResponse1>} - Success response
    * @name updateAppProduct
    * @summary: Update a single custom meta.
@@ -3732,7 +3768,7 @@ class Catalog {
   }
 
   /**
-   * @param {CatalogPlatformApplicationValidator.updateAutocompleteKeyword} arg
+   * @param {CatalogPlatformApplicationValidator.UpdateAutocompleteKeywordParam} arg
    *   - Arg object
    *
    * @returns {Promise<CatalogPlatformModel.GetAutocompleteWordsResponse>} -
@@ -3800,7 +3836,7 @@ class Catalog {
   }
 
   /**
-   * @param {CatalogPlatformApplicationValidator.updateCollection} arg - Arg object
+   * @param {CatalogPlatformApplicationValidator.UpdateCollectionParam} arg - Arg object
    * @returns {Promise<CatalogPlatformModel.UpdateCollection>} - Success response
    * @name updateCollection
    * @summary: Update a collection
@@ -3865,7 +3901,9 @@ class Catalog {
   }
 
   /**
-   * @param {CatalogPlatformApplicationValidator.updateDefaultSort} arg - Arg object
+   * @param {CatalogPlatformApplicationValidator.UpdateDefaultSortParam} arg
+   *   - Arg object
+   *
    * @returns {Promise<CatalogPlatformModel.ConfigSuccessResponse>} - Success response
    * @name updateDefaultSort
    * @summary: Update the default sort key configuration for the application.
@@ -3928,7 +3966,7 @@ class Catalog {
   }
 
   /**
-   * @param {CatalogPlatformApplicationValidator.updateGroupConfiguration} arg
+   * @param {CatalogPlatformApplicationValidator.UpdateGroupConfigurationParam} arg
    *   - Arg object
    *
    * @returns {Promise<CatalogPlatformModel.AppConfigurationDetail>} - Success response
@@ -3997,7 +4035,7 @@ class Catalog {
   }
 
   /**
-   * @param {CatalogPlatformApplicationValidator.updateListingConfiguration} arg
+   * @param {CatalogPlatformApplicationValidator.UpdateListingConfigurationParam} arg
    *   - Arg object
    *
    * @returns {Promise<CatalogPlatformModel.AppConfigurationsSort>} - Success response
@@ -4066,7 +4104,9 @@ class Catalog {
   }
 
   /**
-   * @param {CatalogPlatformApplicationValidator.updateSearchKeywords} arg - Arg object
+   * @param {CatalogPlatformApplicationValidator.UpdateSearchKeywordsParam} arg
+   *   - Arg object
+   *
    * @returns {Promise<CatalogPlatformModel.GetSearchWordsData>} - Success response
    * @name updateSearchKeywords
    * @summary: Update Search Keyword

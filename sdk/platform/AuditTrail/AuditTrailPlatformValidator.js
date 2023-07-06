@@ -3,21 +3,21 @@ const Joi = require("joi");
 const AuditTrailPlatformModel = require("./AuditTrailPlatformModel");
 
 /**
- * @typedef createAuditLog
+ * @typedef CreateAuditLogParam
  * @property {AuditTrailPlatformModel.RequestBodyAuditLog} body
  */
 
 /**
- * @typedef getAuditLog
+ * @typedef GetAuditLogParam
  * @property {string} id - Log uuid
  */
 
 /**
- * @typedef getAuditLogs
+ * @typedef GetAuditLogsParam
  * @property {string} qs - Logs Query
  */
 
-/** @typedef getEntityTypes */
+/** @typedef GetEntityTypesParam */
 
 class AuditTrailPlatformValidator {
   /** @returns {createAuditLog} */

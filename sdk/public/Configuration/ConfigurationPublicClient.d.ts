@@ -9,21 +9,21 @@ declare class Configuration {
     _urls: {};
     updateUrls(urls: any): void;
     /**
-     * @param {ConfigurationPublicValidator.getLocations} arg - Arg object.
+     * @param {ConfigurationPublicValidator.GetLocationsParam} arg - Arg object.
      * @returns {Promise<ConfigurationPublicModel.Locations>} - Success response
      * @name getLocations
      * @summary: Get countries, states, cities
      * @description:
      */
-    getLocations({ locationType, id }?: ConfigurationPublicValidator.getLocations): Promise<ConfigurationPublicModel.Locations>;
+    getLocations({ locationType, id }?: ConfigurationPublicValidator.GetLocationsParam): Promise<ConfigurationPublicModel.Locations>;
     /**
-     * @param {ConfigurationPublicValidator.searchApplication} arg - Arg object.
+     * @param {ConfigurationPublicValidator.SearchApplicationParam} arg - Arg object.
      * @returns {Promise<ConfigurationPublicModel.ApplicationResponse>} - Success response
      * @name searchApplication
      * @summary: Search Application
      * @description: Provide application name or domain url
      */
-    searchApplication({ authorization, query }?: ConfigurationPublicValidator.searchApplication): Promise<ConfigurationPublicModel.ApplicationResponse>;
+    searchApplication({ authorization, query }?: ConfigurationPublicValidator.SearchApplicationParam): Promise<ConfigurationPublicModel.ApplicationResponse>;
 }
 import ConfigurationPublicValidator = require("./ConfigurationPublicValidator");
 import ConfigurationPublicModel = require("./ConfigurationPublicModel");

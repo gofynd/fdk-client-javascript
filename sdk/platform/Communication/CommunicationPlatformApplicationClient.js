@@ -13,7 +13,9 @@ class Communication {
   }
 
   /**
-   * @param {CommunicationPlatformApplicationValidator.createAudience} arg - Arg object
+   * @param {CommunicationPlatformApplicationValidator.CreateAudienceParam} arg
+   *   - Arg object
+   *
    * @returns {Promise<CommunicationPlatformModel.Audience>} - Success response
    * @name createAudience
    * @summary: Create audience
@@ -76,7 +78,9 @@ class Communication {
   }
 
   /**
-   * @param {CommunicationPlatformApplicationValidator.createCampaign} arg - Arg object
+   * @param {CommunicationPlatformApplicationValidator.CreateCampaignParam} arg
+   *   - Arg object
+   *
    * @returns {Promise<CommunicationPlatformModel.Campaign>} - Success response
    * @name createCampaign
    * @summary: Create campaign
@@ -139,7 +143,7 @@ class Communication {
   }
 
   /**
-   * @param {CommunicationPlatformApplicationValidator.createEmailProvider} arg
+   * @param {CommunicationPlatformApplicationValidator.CreateEmailProviderParam} arg
    *   - Arg object
    *
    * @returns {Promise<CommunicationPlatformModel.EmailProvider>} - Success response
@@ -204,7 +208,7 @@ class Communication {
   }
 
   /**
-   * @param {CommunicationPlatformApplicationValidator.createEmailTemplate} arg
+   * @param {CommunicationPlatformApplicationValidator.CreateEmailTemplateParam} arg
    *   - Arg object
    *
    * @returns {Promise<CommunicationPlatformModel.EmailTemplate>} - Success response
@@ -269,7 +273,7 @@ class Communication {
   }
 
   /**
-   * @param {CommunicationPlatformApplicationValidator.createSmsProvider} arg
+   * @param {CommunicationPlatformApplicationValidator.CreateSmsProviderParam} arg
    *   - Arg object
    *
    * @returns {Promise<CommunicationPlatformModel.SmsProvider>} - Success response
@@ -334,7 +338,7 @@ class Communication {
   }
 
   /**
-   * @param {CommunicationPlatformApplicationValidator.createSmsTemplate} arg
+   * @param {CommunicationPlatformApplicationValidator.CreateSmsTemplateParam} arg
    *   - Arg object
    *
    * @returns {Promise<CommunicationPlatformModel.SmsTemplate>} - Success response
@@ -399,7 +403,7 @@ class Communication {
   }
 
   /**
-   * @param {CommunicationPlatformApplicationValidator.createVoiceProvider} arg
+   * @param {CommunicationPlatformApplicationValidator.CreateVoiceProviderParam} arg
    *   - Arg object
    *
    * @returns {Promise<CommunicationPlatformModel.VoiceProvider>} - Success response
@@ -464,7 +468,7 @@ class Communication {
   }
 
   /**
-   * @param {CommunicationPlatformApplicationValidator.createVoiceTemplate} arg
+   * @param {CommunicationPlatformApplicationValidator.CreateVoiceTemplateParam} arg
    *   - Arg object
    *
    * @returns {Promise<CommunicationPlatformModel.VoiceTemplateRes>} - Success response
@@ -529,7 +533,7 @@ class Communication {
   }
 
   /**
-   * @param {CommunicationPlatformApplicationValidator.deleteEmailProviderById} arg
+   * @param {CommunicationPlatformApplicationValidator.DeleteEmailProviderByIdParam} arg
    *   - Arg object
    *
    * @returns {Promise<CommunicationPlatformModel.GenericSuccess>} - Success response
@@ -594,7 +598,7 @@ class Communication {
   }
 
   /**
-   * @param {CommunicationPlatformApplicationValidator.deleteEmailTemplateById} arg
+   * @param {CommunicationPlatformApplicationValidator.DeleteEmailTemplateByIdParam} arg
    *   - Arg object
    *
    * @returns {Promise<CommunicationPlatformModel.GenericDelete>} - Success response
@@ -659,7 +663,7 @@ class Communication {
   }
 
   /**
-   * @param {CommunicationPlatformApplicationValidator.deleteSmsProviderById} arg
+   * @param {CommunicationPlatformApplicationValidator.DeleteSmsProviderByIdParam} arg
    *   - Arg object
    *
    * @returns {Promise<CommunicationPlatformModel.GenericSuccess>} - Success response
@@ -724,7 +728,7 @@ class Communication {
   }
 
   /**
-   * @param {CommunicationPlatformApplicationValidator.deleteSmsTemplateById} arg
+   * @param {CommunicationPlatformApplicationValidator.DeleteSmsTemplateByIdParam} arg
    *   - Arg object
    *
    * @returns {Promise<CommunicationPlatformModel.GenericDelete>} - Success response
@@ -789,7 +793,7 @@ class Communication {
   }
 
   /**
-   * @param {CommunicationPlatformApplicationValidator.deleteVoiceTemplateById} arg
+   * @param {CommunicationPlatformApplicationValidator.DeleteVoiceTemplateByIdParam} arg
    *   - Arg object
    *
    * @returns {Promise<CommunicationPlatformModel.VoiceTemplateDeleteSuccessRes>}
@@ -856,7 +860,9 @@ class Communication {
   }
 
   /**
-   * @param {CommunicationPlatformApplicationValidator.getAppProviders} arg - Arg object
+   * @param {CommunicationPlatformApplicationValidator.GetAppProvidersParam} arg
+   *   - Arg object
+   *
    * @returns {Promise<CommunicationPlatformModel.AppProvider>} - Success response
    * @name getAppProviders
    * @summary: Get app providers
@@ -915,7 +921,9 @@ class Communication {
   }
 
   /**
-   * @param {CommunicationPlatformApplicationValidator.getAudienceById} arg - Arg object
+   * @param {CommunicationPlatformApplicationValidator.GetAudienceByIdParam} arg
+   *   - Arg object
+   *
    * @returns {Promise<CommunicationPlatformModel.Audience>} - Success response
    * @name getAudienceById
    * @summary: Get audience by id
@@ -978,7 +986,9 @@ class Communication {
   }
 
   /**
-   * @param {CommunicationPlatformApplicationValidator.getAudiences} arg - Arg object
+   * @param {CommunicationPlatformApplicationValidator.GetAudiencesParam} arg
+   *   - Arg object
+   *
    * @returns {Promise<CommunicationPlatformModel.Audiences>} - Success response
    * @name getAudiences
    * @summary: Get audiences
@@ -1048,7 +1058,7 @@ class Communication {
   }
 
   /**
-   * @param {CommunicationPlatformApplicationValidator.getBigqueryHeaders} arg
+   * @param {CommunicationPlatformApplicationValidator.GetBigqueryHeadersParam} arg
    *   - Arg object
    *
    * @returns {Promise<CommunicationPlatformModel.BigqueryHeadersRes>} -
@@ -1114,7 +1124,9 @@ class Communication {
   }
 
   /**
-   * @param {CommunicationPlatformApplicationValidator.getCampaignById} arg - Arg object
+   * @param {CommunicationPlatformApplicationValidator.GetCampaignByIdParam} arg
+   *   - Arg object
+   *
    * @returns {Promise<CommunicationPlatformModel.Campaign>} - Success response
    * @name getCampaignById
    * @summary: Get campaign by id
@@ -1177,7 +1189,9 @@ class Communication {
   }
 
   /**
-   * @param {CommunicationPlatformApplicationValidator.getCampaigns} arg - Arg object
+   * @param {CommunicationPlatformApplicationValidator.GetCampaignsParam} arg
+   *   - Arg object
+   *
    * @returns {Promise<CommunicationPlatformModel.Campaigns>} - Success response
    * @name getCampaigns
    * @summary: Get campaigns
@@ -1247,7 +1261,7 @@ class Communication {
   }
 
   /**
-   * @param {CommunicationPlatformApplicationValidator.getCommunicationLogs} arg
+   * @param {CommunicationPlatformApplicationValidator.GetCommunicationLogsParam} arg
    *   - Arg object
    *
    * @returns {Promise<CommunicationPlatformModel.Logs>} - Success response
@@ -1322,7 +1336,7 @@ class Communication {
   }
 
   /**
-   * @param {CommunicationPlatformApplicationValidator.getDefaultEmailProviders} arg
+   * @param {CommunicationPlatformApplicationValidator.GetDefaultEmailProvidersParam} arg
    *   - Arg object
    *
    * @returns {Promise<CommunicationPlatformModel.DefaultEmailProviders[]>} -
@@ -1381,7 +1395,7 @@ class Communication {
   }
 
   /**
-   * @param {CommunicationPlatformApplicationValidator.getDefaultSmsProviders} arg
+   * @param {CommunicationPlatformApplicationValidator.GetDefaultSmsProvidersParam} arg
    *   - Arg object
    *
    * @returns {Promise<CommunicationPlatformModel.DefaultSmsProviders[]>} -
@@ -1440,7 +1454,7 @@ class Communication {
   }
 
   /**
-   * @param {CommunicationPlatformApplicationValidator.getEmailProviderById} arg
+   * @param {CommunicationPlatformApplicationValidator.GetEmailProviderByIdParam} arg
    *   - Arg object
    *
    * @returns {Promise<CommunicationPlatformModel.EmailProvider>} - Success response
@@ -1505,7 +1519,7 @@ class Communication {
   }
 
   /**
-   * @param {CommunicationPlatformApplicationValidator.getEmailProviders} arg
+   * @param {CommunicationPlatformApplicationValidator.GetEmailProvidersParam} arg
    *   - Arg object
    *
    * @returns {Promise<CommunicationPlatformModel.EmailProviders>} - Success response
@@ -1577,7 +1591,7 @@ class Communication {
   }
 
   /**
-   * @param {CommunicationPlatformApplicationValidator.getEmailTemplateById} arg
+   * @param {CommunicationPlatformApplicationValidator.GetEmailTemplateByIdParam} arg
    *   - Arg object
    *
    * @returns {Promise<CommunicationPlatformModel.EmailTemplate>} - Success response
@@ -1642,7 +1656,7 @@ class Communication {
   }
 
   /**
-   * @param {CommunicationPlatformApplicationValidator.getEmailTemplates} arg
+   * @param {CommunicationPlatformApplicationValidator.GetEmailTemplatesParam} arg
    *   - Arg object
    *
    * @returns {Promise<CommunicationPlatformModel.EmailTemplates>} - Success response
@@ -1714,7 +1728,7 @@ class Communication {
   }
 
   /**
-   * @param {CommunicationPlatformApplicationValidator.getEventSubscriptions} arg
+   * @param {CommunicationPlatformApplicationValidator.GetEventSubscriptionsParam} arg
    *   - Arg object
    *
    * @returns {Promise<CommunicationPlatformModel.EventSubscriptions>} -
@@ -1790,7 +1804,7 @@ class Communication {
   }
 
   /**
-   * @param {CommunicationPlatformApplicationValidator.getGlobalProviders} arg
+   * @param {CommunicationPlatformApplicationValidator.GetGlobalProvidersParam} arg
    *   - Arg object
    *
    * @returns {Promise<CommunicationPlatformModel.GlobalProviders>} - Success response
@@ -1851,7 +1865,7 @@ class Communication {
   }
 
   /**
-   * @param {CommunicationPlatformApplicationValidator.getJobLogs} arg - Arg object
+   * @param {CommunicationPlatformApplicationValidator.GetJobLogsParam} arg - Arg object
    * @returns {Promise<CommunicationPlatformModel.JobLogs>} - Success response
    * @name getJobLogs
    * @summary: Get job logs
@@ -1921,7 +1935,7 @@ class Communication {
   }
 
   /**
-   * @param {CommunicationPlatformApplicationValidator.getJobs} arg - Arg object
+   * @param {CommunicationPlatformApplicationValidator.GetJobsParam} arg - Arg object
    * @returns {Promise<CommunicationPlatformModel.Jobs>} - Success response
    * @name getJobs
    * @summary: Get jobs
@@ -1991,7 +2005,7 @@ class Communication {
   }
 
   /**
-   * @param {CommunicationPlatformApplicationValidator.getNSampleRecordsFromCsv} arg
+   * @param {CommunicationPlatformApplicationValidator.GetNSampleRecordsFromCsvParam} arg
    *   - Arg object
    *
    * @returns {Promise<CommunicationPlatformModel.GetNRecordsCsvRes>} - Success response
@@ -2056,7 +2070,7 @@ class Communication {
   }
 
   /**
-   * @param {CommunicationPlatformApplicationValidator.getSmsProviderById} arg
+   * @param {CommunicationPlatformApplicationValidator.GetSmsProviderByIdParam} arg
    *   - Arg object
    *
    * @returns {Promise<CommunicationPlatformModel.SmsProvider>} - Success response
@@ -2121,7 +2135,9 @@ class Communication {
   }
 
   /**
-   * @param {CommunicationPlatformApplicationValidator.getSmsProviders} arg - Arg object
+   * @param {CommunicationPlatformApplicationValidator.GetSmsProvidersParam} arg
+   *   - Arg object
+   *
    * @returns {Promise<CommunicationPlatformModel.SmsProviders>} - Success response
    * @name getSmsProviders
    * @summary: Get sms providers
@@ -2191,7 +2207,7 @@ class Communication {
   }
 
   /**
-   * @param {CommunicationPlatformApplicationValidator.getSmsTemplateById} arg
+   * @param {CommunicationPlatformApplicationValidator.GetSmsTemplateByIdParam} arg
    *   - Arg object
    *
    * @returns {Promise<CommunicationPlatformModel.SmsTemplate>} - Success response
@@ -2256,7 +2272,9 @@ class Communication {
   }
 
   /**
-   * @param {CommunicationPlatformApplicationValidator.getSmsTemplates} arg - Arg object
+   * @param {CommunicationPlatformApplicationValidator.GetSmsTemplatesParam} arg
+   *   - Arg object
+   *
    * @returns {Promise<CommunicationPlatformModel.SmsTemplates>} - Success response
    * @name getSmsTemplates
    * @summary: Get sms templates
@@ -2326,7 +2344,7 @@ class Communication {
   }
 
   /**
-   * @param {CommunicationPlatformApplicationValidator.getStatsOfCampaignById} arg
+   * @param {CommunicationPlatformApplicationValidator.GetStatsOfCampaignByIdParam} arg
    *   - Arg object
    *
    * @returns {Promise<CommunicationPlatformModel.GetStats>} - Success response
@@ -2391,7 +2409,7 @@ class Communication {
   }
 
   /**
-   * @param {CommunicationPlatformApplicationValidator.getSubscribedEmailTemplates} arg
+   * @param {CommunicationPlatformApplicationValidator.GetSubscribedEmailTemplatesParam} arg
    *   - Arg object
    *
    * @returns {Promise<CommunicationPlatformModel.EmailTemplates>} - Success response
@@ -2460,7 +2478,7 @@ class Communication {
   }
 
   /**
-   * @param {CommunicationPlatformApplicationValidator.getSubscribedSmsTemplates} arg
+   * @param {CommunicationPlatformApplicationValidator.GetSubscribedSmsTemplatesParam} arg
    *   - Arg object
    *
    * @returns {Promise<CommunicationPlatformModel.SmsTemplates>} - Success response
@@ -2529,7 +2547,7 @@ class Communication {
   }
 
   /**
-   * @param {CommunicationPlatformApplicationValidator.getSystemEmailTemplates} arg
+   * @param {CommunicationPlatformApplicationValidator.GetSystemEmailTemplatesParam} arg
    *   - Arg object
    *
    * @returns {Promise<CommunicationPlatformModel.SystemEmailTemplates>} -
@@ -2591,7 +2609,7 @@ class Communication {
   }
 
   /**
-   * @param {CommunicationPlatformApplicationValidator.getSystemSmsTemplates} arg
+   * @param {CommunicationPlatformApplicationValidator.GetSystemSmsTemplatesParam} arg
    *   - Arg object
    *
    * @returns {Promise<CommunicationPlatformModel.SystemSmsTemplates[]>} -
@@ -2650,7 +2668,7 @@ class Communication {
   }
 
   /**
-   * @param {CommunicationPlatformApplicationValidator.getSystemVoiceTemplates} arg
+   * @param {CommunicationPlatformApplicationValidator.GetSystemVoiceTemplatesParam} arg
    *   - Arg object
    *
    * @returns {Promise<CommunicationPlatformModel.SystemVoiceTemplates>} -
@@ -2723,7 +2741,7 @@ class Communication {
   }
 
   /**
-   * @param {CommunicationPlatformApplicationValidator.getVoiceProviderById} arg
+   * @param {CommunicationPlatformApplicationValidator.GetVoiceProviderByIdParam} arg
    *   - Arg object
    *
    * @returns {Promise<CommunicationPlatformModel.VoiceProvider>} - Success response
@@ -2788,7 +2806,7 @@ class Communication {
   }
 
   /**
-   * @param {CommunicationPlatformApplicationValidator.getVoiceProviders} arg
+   * @param {CommunicationPlatformApplicationValidator.GetVoiceProvidersParam} arg
    *   - Arg object
    *
    * @returns {Promise<CommunicationPlatformModel.VoiceProviders>} - Success response
@@ -2860,7 +2878,7 @@ class Communication {
   }
 
   /**
-   * @param {CommunicationPlatformApplicationValidator.getVoiceTemplateById} arg
+   * @param {CommunicationPlatformApplicationValidator.GetVoiceTemplateByIdParam} arg
    *   - Arg object
    *
    * @returns {Promise<CommunicationPlatformModel.VoiceTemplate>} - Success response
@@ -2925,7 +2943,7 @@ class Communication {
   }
 
   /**
-   * @param {CommunicationPlatformApplicationValidator.getVoiceTemplates} arg
+   * @param {CommunicationPlatformApplicationValidator.GetVoiceTemplatesParam} arg
    *   - Arg object
    *
    * @returns {Promise<CommunicationPlatformModel.VoiceTemplates>} - Success response
@@ -2997,7 +3015,7 @@ class Communication {
   }
 
   /**
-   * @param {CommunicationPlatformApplicationValidator.sendCommunicationAsynchronously} arg
+   * @param {CommunicationPlatformApplicationValidator.SendCommunicationAsynchronouslyParam} arg
    *   - Arg object
    *
    * @returns {Promise<CommunicationPlatformModel.EngineResponse>} - Success response
@@ -3062,7 +3080,7 @@ class Communication {
   }
 
   /**
-   * @param {CommunicationPlatformApplicationValidator.sendCommunicationSynchronously} arg
+   * @param {CommunicationPlatformApplicationValidator.SendCommunicationSynchronouslyParam} arg
    *   - Arg object
    *
    * @returns {Promise<CommunicationPlatformModel.EngineResponse>} - Success response
@@ -3127,7 +3145,7 @@ class Communication {
   }
 
   /**
-   * @param {CommunicationPlatformApplicationValidator.sendOtp} arg - Arg object
+   * @param {CommunicationPlatformApplicationValidator.SendOtpParam} arg - Arg object
    * @returns {Promise<CommunicationPlatformModel.SendOtpCommsRes>} - Success response
    * @name sendOtp
    * @summary: Send OTP using email and sms
@@ -3190,7 +3208,7 @@ class Communication {
   }
 
   /**
-   * @param {CommunicationPlatformApplicationValidator.triggerCampaignJob} arg
+   * @param {CommunicationPlatformApplicationValidator.TriggerCampaignJobParam} arg
    *   - Arg object
    *
    * @returns {Promise<CommunicationPlatformModel.TriggerJobResponse>} -
@@ -3256,7 +3274,7 @@ class Communication {
   }
 
   /**
-   * @param {CommunicationPlatformApplicationValidator.updateAppProviders} arg
+   * @param {CommunicationPlatformApplicationValidator.UpdateAppProvidersParam} arg
    *   - Arg object
    *
    * @returns {Promise<CommunicationPlatformModel.AppProvider>} - Success response
@@ -3321,7 +3339,7 @@ class Communication {
   }
 
   /**
-   * @param {CommunicationPlatformApplicationValidator.updateAudienceById} arg
+   * @param {CommunicationPlatformApplicationValidator.UpdateAudienceByIdParam} arg
    *   - Arg object
    *
    * @returns {Promise<CommunicationPlatformModel.Audience>} - Success response
@@ -3388,7 +3406,7 @@ class Communication {
   }
 
   /**
-   * @param {CommunicationPlatformApplicationValidator.updateCampaignById} arg
+   * @param {CommunicationPlatformApplicationValidator.UpdateCampaignByIdParam} arg
    *   - Arg object
    *
    * @returns {Promise<CommunicationPlatformModel.Campaign>} - Success response
@@ -3455,7 +3473,7 @@ class Communication {
   }
 
   /**
-   * @param {CommunicationPlatformApplicationValidator.updateEmailProviderById} arg
+   * @param {CommunicationPlatformApplicationValidator.UpdateEmailProviderByIdParam} arg
    *   - Arg object
    *
    * @returns {Promise<CommunicationPlatformModel.EmailProvider>} - Success response
@@ -3522,7 +3540,7 @@ class Communication {
   }
 
   /**
-   * @param {CommunicationPlatformApplicationValidator.updateEmailTemplateById} arg
+   * @param {CommunicationPlatformApplicationValidator.UpdateEmailTemplateByIdParam} arg
    *   - Arg object
    *
    * @returns {Promise<CommunicationPlatformModel.EmailTemplate>} - Success response
@@ -3589,7 +3607,7 @@ class Communication {
   }
 
   /**
-   * @param {CommunicationPlatformApplicationValidator.updateSmsProviderById} arg
+   * @param {CommunicationPlatformApplicationValidator.UpdateSmsProviderByIdParam} arg
    *   - Arg object
    *
    * @returns {Promise<CommunicationPlatformModel.SmsProvider>} - Success response
@@ -3656,7 +3674,7 @@ class Communication {
   }
 
   /**
-   * @param {CommunicationPlatformApplicationValidator.updateSmsTemplateById} arg
+   * @param {CommunicationPlatformApplicationValidator.UpdateSmsTemplateByIdParam} arg
    *   - Arg object
    *
    * @returns {Promise<CommunicationPlatformModel.SmsTemplate>} - Success response
@@ -3723,7 +3741,7 @@ class Communication {
   }
 
   /**
-   * @param {CommunicationPlatformApplicationValidator.updateVoiceTemplateById} arg
+   * @param {CommunicationPlatformApplicationValidator.UpdateVoiceTemplateByIdParam} arg
    *   - Arg object
    *
    * @returns {Promise<CommunicationPlatformModel.VoiceTemplateRes>} - Success response
@@ -3790,7 +3808,7 @@ class Communication {
   }
 
   /**
-   * @param {CommunicationPlatformApplicationValidator.verfiyOtp} arg - Arg object
+   * @param {CommunicationPlatformApplicationValidator.VerfiyOtpParam} arg - Arg object
    * @returns {Promise<CommunicationPlatformModel.VerifyOtpCommsSuccessRes>}
    *   - Success response
    *

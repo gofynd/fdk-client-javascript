@@ -1,85 +1,85 @@
 export = ShareApplicationValidator;
 /**
- * @typedef createShortLink
+ * @typedef CreateShortLinkParam
  * @property {ShareApplicationModel.ShortLinkReq} body
  */
-/** @typedef getApplicationQRCode */
+/** @typedef GetApplicationQRCodeParam */
 /**
- * @typedef getCollectionQRCodeBySlug
+ * @typedef GetCollectionQRCodeBySlugParam
  * @property {string} slug - A short, human-readable, URL-friendly identifier of
  *   a collection. You can get slug value from the endpoint.
  */
 /**
- * @typedef getOriginalShortLinkByHash
+ * @typedef GetOriginalShortLinkByHashParam
  * @property {string} hash - A string value used for converting long URL to
  *   short URL and vice-versa.
  */
 /**
- * @typedef getProductQRCodeBySlug
+ * @typedef GetProductQRCodeBySlugParam
  * @property {string} slug - A short, human-readable, URL-friendly identifier of
  *   a product. You can get slug value from the endpoint.
  */
 /**
- * @typedef getShortLinkByHash
+ * @typedef GetShortLinkByHashParam
  * @property {string} hash - A string value used for converting long URL to
  *   short URL and vice-versa.
  */
 /**
- * @typedef getUrlQRCode
+ * @typedef GetUrlQRCodeParam
  * @property {string} url - A link or a web address
  */
 declare class ShareApplicationValidator {
+    /** @returns {createShortLink} */
+    static createShortLink(): createShortLink;
+    /** @returns {getApplicationQRCode} */
+    static getApplicationQRCode(): getApplicationQRCode;
+    /** @returns {getCollectionQRCodeBySlug} */
+    static getCollectionQRCodeBySlug(): getCollectionQRCodeBySlug;
+    /** @returns {getOriginalShortLinkByHash} */
+    static getOriginalShortLinkByHash(): getOriginalShortLinkByHash;
+    /** @returns {getProductQRCodeBySlug} */
+    static getProductQRCodeBySlug(): getProductQRCodeBySlug;
+    /** @returns {getShortLinkByHash} */
+    static getShortLinkByHash(): getShortLinkByHash;
+    /** @returns {getUrlQRCode} */
+    static getUrlQRCode(): getUrlQRCode;
 }
 declare namespace ShareApplicationValidator {
-    export { createShortLink, getApplicationQRCode, getCollectionQRCodeBySlug, getOriginalShortLinkByHash, getProductQRCodeBySlug, getShortLinkByHash, getUrlQRCode };
+    export { CreateShortLinkParam, GetApplicationQRCodeParam, GetCollectionQRCodeBySlugParam, GetOriginalShortLinkByHashParam, GetProductQRCodeBySlugParam, GetShortLinkByHashParam, GetUrlQRCodeParam };
 }
-/** @returns {createShortLink} */
-declare function createShortLink(): createShortLink;
-type createShortLink = {
+type CreateShortLinkParam = {
     body: ShareApplicationModel.ShortLinkReq;
 };
-/** @returns {getApplicationQRCode} */
-declare function getApplicationQRCode(): any;
-type getApplicationQRCode = any;
-/** @returns {getCollectionQRCodeBySlug} */
-declare function getCollectionQRCodeBySlug(): getCollectionQRCodeBySlug;
-type getCollectionQRCodeBySlug = {
+type GetApplicationQRCodeParam = any;
+type GetCollectionQRCodeBySlugParam = {
     /**
      * - A short, human-readable, URL-friendly identifier of
      * a collection. You can get slug value from the endpoint.
      */
     slug: string;
 };
-/** @returns {getOriginalShortLinkByHash} */
-declare function getOriginalShortLinkByHash(): getOriginalShortLinkByHash;
-type getOriginalShortLinkByHash = {
+type GetOriginalShortLinkByHashParam = {
     /**
      * - A string value used for converting long URL to
      * short URL and vice-versa.
      */
     hash: string;
 };
-/** @returns {getProductQRCodeBySlug} */
-declare function getProductQRCodeBySlug(): getProductQRCodeBySlug;
-type getProductQRCodeBySlug = {
+type GetProductQRCodeBySlugParam = {
     /**
      * - A short, human-readable, URL-friendly identifier of
      * a product. You can get slug value from the endpoint.
      */
     slug: string;
 };
-/** @returns {getShortLinkByHash} */
-declare function getShortLinkByHash(): getShortLinkByHash;
-type getShortLinkByHash = {
+type GetShortLinkByHashParam = {
     /**
      * - A string value used for converting long URL to
      * short URL and vice-versa.
      */
     hash: string;
 };
-/** @returns {getUrlQRCode} */
-declare function getUrlQRCode(): getUrlQRCode;
-type getUrlQRCode = {
+type GetUrlQRCodeParam = {
     /**
      * - A link or a web address
      */

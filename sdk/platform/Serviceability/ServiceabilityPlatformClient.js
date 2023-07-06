@@ -12,7 +12,7 @@ class Serviceability {
   }
 
   /**
-   * @param {ServiceabilityPlatformValidator.createZone} arg - Arg object
+   * @param {ServiceabilityPlatformValidator.CreateZoneParam} arg - Arg object
    * @returns {Promise<ServiceabilityPlatformModel.ZoneResponse>} - Success response
    * @name createZone
    * @summary: Creation of a new zone
@@ -76,7 +76,7 @@ class Serviceability {
   }
 
   /**
-   * @param {ServiceabilityPlatformValidator.getAllStores} arg - Arg object
+   * @param {ServiceabilityPlatformValidator.GetAllStoresParam} arg - Arg object
    * @returns {Promise<ServiceabilityPlatformModel.GetStoresViewResponse>} -
    *   Success response
    * @name getAllStores
@@ -137,7 +137,7 @@ class Serviceability {
   }
 
   /**
-   * @param {ServiceabilityPlatformValidator.getCompanyStoreView} arg - Arg object
+   * @param {ServiceabilityPlatformValidator.GetCompanyStoreViewParam} arg - Arg object
    * @returns {Promise<ServiceabilityPlatformModel.CompanyStoreView_Response>}
    *   - Success response
    *
@@ -209,7 +209,7 @@ class Serviceability {
   }
 
   /**
-   * @param {ServiceabilityPlatformValidator.getDpAccount} arg - Arg object
+   * @param {ServiceabilityPlatformValidator.GetDpAccountParam} arg - Arg object
    * @returns {Promise<ServiceabilityPlatformModel.CompanyDpAccountListResponse>}
    *   - Success response
    *
@@ -294,7 +294,7 @@ class Serviceability {
   }
 
   /**
-   * @param {ServiceabilityPlatformValidator.getDpCompanyRules} arg - Arg object
+   * @param {ServiceabilityPlatformValidator.GetDpCompanyRulesParam} arg - Arg object
    * @returns {Promise<ServiceabilityPlatformModel.DPCompanyRuleResponse>} -
    *   Success response
    * @name getDpCompanyRules
@@ -357,7 +357,7 @@ class Serviceability {
   }
 
   /**
-   * @param {ServiceabilityPlatformValidator.getDpRuleInsert} arg - Arg object
+   * @param {ServiceabilityPlatformValidator.GetDpRuleInsertParam} arg - Arg object
    * @returns {Promise<ServiceabilityPlatformModel.DpMultipleRuleSuccessResponse>}
    *   - Success response
    *
@@ -429,7 +429,7 @@ class Serviceability {
   }
 
   /**
-   * @param {ServiceabilityPlatformValidator.getDpRules} arg - Arg object
+   * @param {ServiceabilityPlatformValidator.GetDpRulesParam} arg - Arg object
    * @returns {Promise<ServiceabilityPlatformModel.DpRuleSuccessResponse>} -
    *   Success response
    * @name getDpRules
@@ -494,7 +494,7 @@ class Serviceability {
   }
 
   /**
-   * @param {ServiceabilityPlatformValidator.getEntityRegionView} arg - Arg object
+   * @param {ServiceabilityPlatformValidator.GetEntityRegionViewParam} arg - Arg object
    * @returns {Promise<ServiceabilityPlatformModel.EntityRegionView_Response>}
    *   - Success response
    *
@@ -562,7 +562,7 @@ class Serviceability {
   }
 
   /**
-   * @param {ServiceabilityPlatformValidator.getListView} arg - Arg object
+   * @param {ServiceabilityPlatformValidator.GetListViewParam} arg - Arg object
    * @returns {Promise<ServiceabilityPlatformModel.ListViewResponse>} - Success response
    * @name getListView
    * @summary: Zone List of application.
@@ -649,7 +649,7 @@ class Serviceability {
   }
 
   /**
-   * @param {ServiceabilityPlatformValidator.getOptimalLocations} arg - Arg object
+   * @param {ServiceabilityPlatformValidator.GetOptimalLocationsParam} arg - Arg object
    * @returns {Promise<ServiceabilityPlatformModel.ReAssignStoreResponse>} -
    *   Success response
    * @name getOptimalLocations
@@ -716,7 +716,7 @@ class Serviceability {
   }
 
   /**
-   * @param {ServiceabilityPlatformValidator.getStore} arg - Arg object
+   * @param {ServiceabilityPlatformValidator.GetStoreParam} arg - Arg object
    * @returns {Promise<ServiceabilityPlatformModel.GetStoresViewResponse>} -
    *   Success response
    * @name getStore
@@ -781,7 +781,7 @@ class Serviceability {
   }
 
   /**
-   * @param {ServiceabilityPlatformValidator.getZoneDataView} arg - Arg object
+   * @param {ServiceabilityPlatformValidator.GetZoneDataViewParam} arg - Arg object
    * @returns {Promise<ServiceabilityPlatformModel.GetSingleZoneDataViewResponse>}
    *   - Success response
    *
@@ -849,7 +849,7 @@ class Serviceability {
   }
 
   /**
-   * @param {ServiceabilityPlatformValidator.getZoneListView} arg - Arg object
+   * @param {ServiceabilityPlatformValidator.GetZoneListViewParam} arg - Arg object
    * @returns {Promise<ServiceabilityPlatformModel.ListViewResponse>} - Success response
    * @name getZoneListView
    * @summary: Zone List of application.
@@ -946,7 +946,7 @@ class Serviceability {
   }
 
   /**
-   * @param {ServiceabilityPlatformValidator.updateDpRule} arg - Arg object
+   * @param {ServiceabilityPlatformValidator.UpdateDpRuleParam} arg - Arg object
    * @returns {Promise<ServiceabilityPlatformModel.DpRuleUpdateSuccessResponse>}
    *   - Success response
    *
@@ -1014,7 +1014,9 @@ class Serviceability {
   }
 
   /**
-   * @param {ServiceabilityPlatformValidator.updateZoneControllerView} arg - Arg object
+   * @param {ServiceabilityPlatformValidator.UpdateZoneControllerViewParam} arg
+   *   - Arg object
+   *
    * @returns {Promise<ServiceabilityPlatformModel.ZoneSuccessResponse>} -
    *   Success response
    * @name updateZoneControllerView
@@ -1089,7 +1091,7 @@ class Serviceability {
   }
 
   /**
-   * @param {ServiceabilityPlatformValidator.upsertDpAccount} arg - Arg object
+   * @param {ServiceabilityPlatformValidator.UpsertDpAccountParam} arg - Arg object
    * @returns {Promise<ServiceabilityPlatformModel.CompanyDpAccountResponse>}
    *   - Success response
    *
@@ -1157,7 +1159,7 @@ class Serviceability {
   }
 
   /**
-   * @param {ServiceabilityPlatformValidator.upsertDpCompanyRules} arg - Arg object
+   * @param {ServiceabilityPlatformValidator.UpsertDpCompanyRulesParam} arg - Arg object
    * @returns {Promise<ServiceabilityPlatformModel.DPCompanyRuleResponse>} -
    *   Success response
    * @name upsertDpCompanyRules
@@ -1224,7 +1226,7 @@ class Serviceability {
   }
 
   /**
-   * @param {ServiceabilityPlatformValidator.upsertDpRules} arg - Arg object
+   * @param {ServiceabilityPlatformValidator.UpsertDpRulesParam} arg - Arg object
    * @returns {Promise<ServiceabilityPlatformModel.DpRuleSuccessResponse>} -
    *   Success response
    * @name upsertDpRules

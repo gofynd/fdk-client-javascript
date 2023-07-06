@@ -35,7 +35,7 @@ class FileStorage {
   }
 
   /**
-   * @param {FileStorageApplicationValidator.completeUpload} arg - Arg object.
+   * @param {FileStorageApplicationValidator.CompleteUploadParam} arg - Arg object.
    * @returns {Promise<FileStorageApplicationModel.CompleteResponse>} - Success response
    * @name completeUpload
    * @summary: Completes the upload process. After successfully uploading a file, call this API to finish the upload process.
@@ -115,7 +115,7 @@ class FileStorage {
   }
 
   /**
-   * @param {FileStorageApplicationValidator.signUrls} arg - Arg object.
+   * @param {FileStorageApplicationValidator.SignUrlsParam} arg - Arg object.
    * @returns {Promise<FileStorageApplicationModel.SignUrlResponse>} - Success response
    * @name signUrls
    * @summary: Explain here
@@ -178,7 +178,7 @@ class FileStorage {
   }
 
   /**
-   * @param {FileStorageApplicationValidator.startUpload} arg - Arg object.
+   * @param {FileStorageApplicationValidator.StartUploadParam} arg - Arg object.
    * @returns {Promise<FileStorageApplicationModel.StartResponse>} - Success response
    * @name startUpload
    * @summary: Initiates an upload and returns a storage link that is valid for 30 minutes. You can use the storage link to make subsequent upload request with file buffer or blob.

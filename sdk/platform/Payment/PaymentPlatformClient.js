@@ -12,7 +12,7 @@ class Payment {
   }
 
   /**
-   * @param {PaymentPlatformValidator.activateAndDectivatePayout} arg - Arg object
+   * @param {PaymentPlatformValidator.ActivateAndDectivatePayoutParam} arg - Arg object
    * @returns {Promise<PaymentPlatformModel.UpdatePayoutResponse>} - Success response
    * @name activateAndDectivatePayout
    * @summary: Partial Update Payout
@@ -80,7 +80,7 @@ class Payment {
   }
 
   /**
-   * @param {PaymentPlatformValidator.deletePayout} arg - Arg object
+   * @param {PaymentPlatformValidator.DeletePayoutParam} arg - Arg object
    * @returns {Promise<PaymentPlatformModel.DeletePayoutResponse>} - Success response
    * @name deletePayout
    * @summary: Delete Payout
@@ -144,7 +144,9 @@ class Payment {
   }
 
   /**
-   * @param {PaymentPlatformValidator.deleteSubscriptionPaymentMethod} arg - Arg object
+   * @param {PaymentPlatformValidator.DeleteSubscriptionPaymentMethodParam} arg
+   *   - Arg object
+   *
    * @returns {Promise<PaymentPlatformModel.DeleteSubscriptionPaymentMethodResponse>}
    *   - Success response
    *
@@ -219,7 +221,7 @@ class Payment {
   }
 
   /**
-   * @param {PaymentPlatformValidator.getAllPayouts} arg - Arg object
+   * @param {PaymentPlatformValidator.GetAllPayoutsParam} arg - Arg object
    * @returns {Promise<PaymentPlatformModel.PayoutsResponse>} - Success response
    * @name getAllPayouts
    * @summary: Get All Payouts
@@ -284,7 +286,7 @@ class Payment {
   }
 
   /**
-   * @param {PaymentPlatformValidator.getSubscriptionConfig} arg - Arg object
+   * @param {PaymentPlatformValidator.GetSubscriptionConfigParam} arg - Arg object
    * @returns {Promise<PaymentPlatformModel.SubscriptionConfigResponse>} -
    *   Success response
    * @name getSubscriptionConfig
@@ -345,7 +347,9 @@ class Payment {
   }
 
   /**
-   * @param {PaymentPlatformValidator.getSubscriptionPaymentMethod} arg - Arg object
+   * @param {PaymentPlatformValidator.GetSubscriptionPaymentMethodParam} arg
+   *   - Arg object
+   *
    * @returns {Promise<PaymentPlatformModel.SubscriptionPaymentMethodResponse>}
    *   - Success response
    *
@@ -414,7 +418,7 @@ class Payment {
   }
 
   /**
-   * @param {PaymentPlatformValidator.savePayout} arg - Arg object
+   * @param {PaymentPlatformValidator.SavePayoutParam} arg - Arg object
    * @returns {Promise<PaymentPlatformModel.PayoutResponse>} - Success response
    * @name savePayout
    * @summary: Save Payout
@@ -476,7 +480,7 @@ class Payment {
   }
 
   /**
-   * @param {PaymentPlatformValidator.saveSubscriptionSetupIntent} arg - Arg object
+   * @param {PaymentPlatformValidator.SaveSubscriptionSetupIntentParam} arg - Arg object
    * @returns {Promise<PaymentPlatformModel.SaveSubscriptionSetupIntentResponse>}
    *   - Success response
    *
@@ -544,7 +548,7 @@ class Payment {
   }
 
   /**
-   * @param {PaymentPlatformValidator.updatePayout} arg - Arg object
+   * @param {PaymentPlatformValidator.UpdatePayoutParam} arg - Arg object
    * @returns {Promise<PaymentPlatformModel.UpdatePayoutResponse>} - Success response
    * @name updatePayout
    * @summary: Update Payout
@@ -610,7 +614,7 @@ class Payment {
   }
 
   /**
-   * @param {PaymentPlatformValidator.verifyIfscCode} arg - Arg object
+   * @param {PaymentPlatformValidator.VerifyIfscCodeParam} arg - Arg object
    * @returns {Promise<PaymentPlatformModel.IfscCodeResponse>} - Success response
    * @name verifyIfscCode
    * @summary: Ifsc Code Verification

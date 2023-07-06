@@ -1,88 +1,88 @@
 export = PaymentApplicationValidator;
 /**
- * @typedef addBeneficiaryDetails
+ * @typedef AddBeneficiaryDetailsParam
  * @property {PaymentApplicationModel.AddBeneficiaryDetailsRequest} body
  */
 /**
- * @typedef addRefundBankAccountUsingOTP
+ * @typedef AddRefundBankAccountUsingOTPParam
  * @property {PaymentApplicationModel.AddBeneficiaryDetailsOTPRequest} body
  */
 /**
- * @typedef attachCardToCustomer
+ * @typedef AttachCardToCustomerParam
  * @property {PaymentApplicationModel.AttachCardRequest} body
  */
 /**
- * @typedef cancelPaymentLink
+ * @typedef CancelPaymentLinkParam
  * @property {PaymentApplicationModel.CancelOrResendPaymentLinkRequest} body
  */
 /**
- * @typedef cardDetails
+ * @typedef CardDetailsParam
  * @property {string} cardInfo - Card first 6 digit IIN(prefix) number.
  * @property {string} [aggregator]
  */
 /**
- * @typedef checkAndUpdatePaymentStatus
+ * @typedef CheckAndUpdatePaymentStatusParam
  * @property {PaymentApplicationModel.PaymentStatusUpdateRequest} body
  */
 /**
- * @typedef checkAndUpdatePaymentStatusPaymentLink
+ * @typedef CheckAndUpdatePaymentStatusPaymentLinkParam
  * @property {PaymentApplicationModel.PaymentStatusUpdateRequest} body
  */
 /**
- * @typedef checkCredit
+ * @typedef CheckCreditParam
  * @property {string} [aggregator]
  */
 /**
- * @typedef createOrderHandlerPaymentLink
+ * @typedef CreateOrderHandlerPaymentLinkParam
  * @property {PaymentApplicationModel.CreateOrderUserRequest} body
  */
 /**
- * @typedef createPaymentLink
+ * @typedef CreatePaymentLinkParam
  * @property {PaymentApplicationModel.CreatePaymentLinkRequest} body
  */
 /**
- * @typedef customerCreditSummary
+ * @typedef CustomerCreditSummaryParam
  * @property {string} [aggregator]
  */
 /**
- * @typedef customerOnboard
+ * @typedef CustomerOnboardParam
  * @property {PaymentApplicationModel.CustomerOnboardingRequest} body
  */
 /**
- * @typedef deleteUserCard
+ * @typedef DeleteUserCardParam
  * @property {PaymentApplicationModel.DeletehCardRequest} body
  */
 /**
- * @typedef enableOrDisableRefundTransferMode
+ * @typedef EnableOrDisableRefundTransferModeParam
  * @property {PaymentApplicationModel.UpdateRefundTransferModeRequest} body
  */
 /**
- * @typedef getActiveCardAggregator
+ * @typedef GetActiveCardAggregatorParam
  * @property {boolean} [refresh]
  */
-/** @typedef getActiveRefundTransferModes */
+/** @typedef GetActiveRefundTransferModesParam */
 /**
- * @typedef getActiveUserCards
+ * @typedef GetActiveUserCardsParam
  * @property {boolean} [forceRefresh]
  */
 /**
- * @typedef getAggregatorsConfig
+ * @typedef GetAggregatorsConfigParam
  * @property {string} [xApiToken] - Used for basic authentication.
  * @property {boolean} [refresh] - This is a boolean value. Select `true` to
  *   remove temporary cache files on payment gateway and replace with the latest one.
  */
-/** @typedef getEpaylaterBannerDetails */
+/** @typedef GetEpaylaterBannerDetailsParam */
 /**
- * @typedef getOrderBeneficiariesDetail
+ * @typedef GetOrderBeneficiariesDetailParam
  * @property {string} orderId - A unique number used for identifying and
  *   tracking your orders.
  */
 /**
- * @typedef getPaymentLink
+ * @typedef GetPaymentLinkParam
  * @property {string} [paymentLinkId]
  */
 /**
- * @typedef getPaymentModeRoutes
+ * @typedef GetPaymentModeRoutesParam
  * @property {number} amount - Payable amount.
  * @property {string} cartId - Identifier of the cart.
  * @property {string} pincode - The PIN Code of the destination address, e.g. 400059
@@ -94,11 +94,11 @@ export = PaymentApplicationValidator;
  *   anonymous user.
  */
 /**
- * @typedef getPaymentModeRoutesPaymentLink
+ * @typedef GetPaymentModeRoutesPaymentLinkParam
  * @property {string} paymentLinkId - Payment link id
  */
 /**
- * @typedef getPosPaymentModeRoutes
+ * @typedef GetPosPaymentModeRoutesParam
  * @property {number} amount - Payable amount.
  * @property {string} cartId - Identifier of the cart.
  * @property {string} pincode - The PIN Code of the destination address, e.g. 400059
@@ -112,175 +112,223 @@ export = PaymentApplicationValidator;
  * @property {string} [userDetails] - URIencoded JSON containing details of an
  *   anonymous user.
  */
-/** @typedef getRupifiBannerDetails */
+/** @typedef GetRupifiBannerDetailsParam */
 /**
- * @typedef getUserBeneficiariesDetail
+ * @typedef GetUserBeneficiariesDetailParam
  * @property {string} orderId - A unique number used for identifying and
  *   tracking your orders.
  */
 /**
- * @typedef initialisePayment
+ * @typedef InitialisePaymentParam
  * @property {PaymentApplicationModel.PaymentInitializationRequest} body
  */
 /**
- * @typedef initialisePaymentPaymentLink
+ * @typedef InitialisePaymentPaymentLinkParam
  * @property {PaymentApplicationModel.PaymentInitializationRequest} body
  */
 /**
- * @typedef outstandingOrderDetails
+ * @typedef OutstandingOrderDetailsParam
  * @property {string} [aggregator]
  */
 /**
- * @typedef paidOrderDetails
+ * @typedef PaidOrderDetailsParam
  * @property {string} [aggregator]
  */
 /**
- * @typedef pollingPaymentLink
+ * @typedef PollingPaymentLinkParam
  * @property {string} [paymentLinkId]
  */
 /**
- * @typedef redirectToAggregator
+ * @typedef RedirectToAggregatorParam
  * @property {string} [source] - This is a String value that contains callback
  *   URL as value.
  * @property {string} [aggregator] - This is a String value that contains
  *   aggregator name as value.
  */
 /**
- * @typedef renderHTML
+ * @typedef RenderHTMLParam
  * @property {PaymentApplicationModel.renderHTMLRequest} body
  */
 /**
- * @typedef resendOrCancelPayment
+ * @typedef ResendOrCancelPaymentParam
  * @property {PaymentApplicationModel.ResendOrCancelPaymentRequest} body
  */
 /**
- * @typedef resendPaymentLink
+ * @typedef ResendPaymentLinkParam
  * @property {PaymentApplicationModel.CancelOrResendPaymentLinkRequest} body
  */
 /**
- * @typedef updateDefaultBeneficiary
+ * @typedef UpdateDefaultBeneficiaryParam
  * @property {PaymentApplicationModel.SetDefaultBeneficiaryRequest} body
  */
 /**
- * @typedef validateVPA
+ * @typedef ValidateVPAParam
  * @property {PaymentApplicationModel.ValidateVPARequest} body
  */
 /**
- * @typedef verifyAndChargePayment
+ * @typedef VerifyAndChargePaymentParam
  * @property {PaymentApplicationModel.ChargeCustomerRequest} body
  */
 /**
- * @typedef verifyCustomerForPayment
+ * @typedef VerifyCustomerForPaymentParam
  * @property {PaymentApplicationModel.ValidateCustomerRequest} body
  */
 /**
- * @typedef verifyIfscCode
+ * @typedef VerifyIfscCodeParam
  * @property {string} [ifscCode] - A 11-digit alphanumeric code that uniquely
  *   identifies a bank branch.
  */
 /**
- * @typedef verifyOtpAndAddBeneficiaryForBank
+ * @typedef VerifyOtpAndAddBeneficiaryForBankParam
  * @property {PaymentApplicationModel.AddBeneficiaryViaOtpVerificationRequest} body
  */
 /**
- * @typedef verifyOtpAndAddBeneficiaryForWallet
+ * @typedef VerifyOtpAndAddBeneficiaryForWalletParam
  * @property {PaymentApplicationModel.WalletOtpRequest} body
  */
 declare class PaymentApplicationValidator {
+    /** @returns {addBeneficiaryDetails} */
+    static addBeneficiaryDetails(): addBeneficiaryDetails;
+    /** @returns {addRefundBankAccountUsingOTP} */
+    static addRefundBankAccountUsingOTP(): addRefundBankAccountUsingOTP;
+    /** @returns {attachCardToCustomer} */
+    static attachCardToCustomer(): attachCardToCustomer;
+    /** @returns {cancelPaymentLink} */
+    static cancelPaymentLink(): cancelPaymentLink;
+    /** @returns {cardDetails} */
+    static cardDetails(): cardDetails;
+    /** @returns {checkAndUpdatePaymentStatus} */
+    static checkAndUpdatePaymentStatus(): checkAndUpdatePaymentStatus;
+    /** @returns {checkAndUpdatePaymentStatusPaymentLink} */
+    static checkAndUpdatePaymentStatusPaymentLink(): checkAndUpdatePaymentStatusPaymentLink;
+    /** @returns {checkCredit} */
+    static checkCredit(): checkCredit;
+    /** @returns {createOrderHandlerPaymentLink} */
+    static createOrderHandlerPaymentLink(): createOrderHandlerPaymentLink;
+    /** @returns {createPaymentLink} */
+    static createPaymentLink(): createPaymentLink;
+    /** @returns {customerCreditSummary} */
+    static customerCreditSummary(): customerCreditSummary;
+    /** @returns {customerOnboard} */
+    static customerOnboard(): customerOnboard;
+    /** @returns {deleteUserCard} */
+    static deleteUserCard(): deleteUserCard;
+    /** @returns {enableOrDisableRefundTransferMode} */
+    static enableOrDisableRefundTransferMode(): enableOrDisableRefundTransferMode;
+    /** @returns {getActiveCardAggregator} */
+    static getActiveCardAggregator(): getActiveCardAggregator;
+    /** @returns {getActiveRefundTransferModes} */
+    static getActiveRefundTransferModes(): getActiveRefundTransferModes;
+    /** @returns {getActiveUserCards} */
+    static getActiveUserCards(): getActiveUserCards;
+    /** @returns {getAggregatorsConfig} */
+    static getAggregatorsConfig(): getAggregatorsConfig;
+    /** @returns {getEpaylaterBannerDetails} */
+    static getEpaylaterBannerDetails(): getEpaylaterBannerDetails;
+    /** @returns {getOrderBeneficiariesDetail} */
+    static getOrderBeneficiariesDetail(): getOrderBeneficiariesDetail;
+    /** @returns {getPaymentLink} */
+    static getPaymentLink(): getPaymentLink;
+    /** @returns {getPaymentModeRoutes} */
+    static getPaymentModeRoutes(): getPaymentModeRoutes;
+    /** @returns {getPaymentModeRoutesPaymentLink} */
+    static getPaymentModeRoutesPaymentLink(): getPaymentModeRoutesPaymentLink;
+    /** @returns {getPosPaymentModeRoutes} */
+    static getPosPaymentModeRoutes(): getPosPaymentModeRoutes;
+    /** @returns {getRupifiBannerDetails} */
+    static getRupifiBannerDetails(): getRupifiBannerDetails;
+    /** @returns {getUserBeneficiariesDetail} */
+    static getUserBeneficiariesDetail(): getUserBeneficiariesDetail;
+    /** @returns {initialisePayment} */
+    static initialisePayment(): initialisePayment;
+    /** @returns {initialisePaymentPaymentLink} */
+    static initialisePaymentPaymentLink(): initialisePaymentPaymentLink;
+    /** @returns {outstandingOrderDetails} */
+    static outstandingOrderDetails(): outstandingOrderDetails;
+    /** @returns {paidOrderDetails} */
+    static paidOrderDetails(): paidOrderDetails;
+    /** @returns {pollingPaymentLink} */
+    static pollingPaymentLink(): pollingPaymentLink;
+    /** @returns {redirectToAggregator} */
+    static redirectToAggregator(): redirectToAggregator;
+    /** @returns {renderHTML} */
+    static renderHTML(): renderHTML;
+    /** @returns {resendOrCancelPayment} */
+    static resendOrCancelPayment(): resendOrCancelPayment;
+    /** @returns {resendPaymentLink} */
+    static resendPaymentLink(): resendPaymentLink;
+    /** @returns {updateDefaultBeneficiary} */
+    static updateDefaultBeneficiary(): updateDefaultBeneficiary;
+    /** @returns {validateVPA} */
+    static validateVPA(): validateVPA;
+    /** @returns {verifyAndChargePayment} */
+    static verifyAndChargePayment(): verifyAndChargePayment;
+    /** @returns {verifyCustomerForPayment} */
+    static verifyCustomerForPayment(): verifyCustomerForPayment;
+    /** @returns {verifyIfscCode} */
+    static verifyIfscCode(): verifyIfscCode;
+    /** @returns {verifyOtpAndAddBeneficiaryForBank} */
+    static verifyOtpAndAddBeneficiaryForBank(): verifyOtpAndAddBeneficiaryForBank;
+    /** @returns {verifyOtpAndAddBeneficiaryForWallet} */
+    static verifyOtpAndAddBeneficiaryForWallet(): verifyOtpAndAddBeneficiaryForWallet;
 }
 declare namespace PaymentApplicationValidator {
-    export { addBeneficiaryDetails, addRefundBankAccountUsingOTP, attachCardToCustomer, cancelPaymentLink, cardDetails, checkAndUpdatePaymentStatus, checkAndUpdatePaymentStatusPaymentLink, checkCredit, createOrderHandlerPaymentLink, createPaymentLink, customerCreditSummary, customerOnboard, deleteUserCard, enableOrDisableRefundTransferMode, getActiveCardAggregator, getActiveRefundTransferModes, getActiveUserCards, getAggregatorsConfig, getEpaylaterBannerDetails, getOrderBeneficiariesDetail, getPaymentLink, getPaymentModeRoutes, getPaymentModeRoutesPaymentLink, getPosPaymentModeRoutes, getRupifiBannerDetails, getUserBeneficiariesDetail, initialisePayment, initialisePaymentPaymentLink, outstandingOrderDetails, paidOrderDetails, pollingPaymentLink, redirectToAggregator, renderHTML, resendOrCancelPayment, resendPaymentLink, updateDefaultBeneficiary, validateVPA, verifyAndChargePayment, verifyCustomerForPayment, verifyIfscCode, verifyOtpAndAddBeneficiaryForBank, verifyOtpAndAddBeneficiaryForWallet };
+    export { AddBeneficiaryDetailsParam, AddRefundBankAccountUsingOTPParam, AttachCardToCustomerParam, CancelPaymentLinkParam, CardDetailsParam, CheckAndUpdatePaymentStatusParam, CheckAndUpdatePaymentStatusPaymentLinkParam, CheckCreditParam, CreateOrderHandlerPaymentLinkParam, CreatePaymentLinkParam, CustomerCreditSummaryParam, CustomerOnboardParam, DeleteUserCardParam, EnableOrDisableRefundTransferModeParam, GetActiveCardAggregatorParam, GetActiveRefundTransferModesParam, GetActiveUserCardsParam, GetAggregatorsConfigParam, GetEpaylaterBannerDetailsParam, GetOrderBeneficiariesDetailParam, GetPaymentLinkParam, GetPaymentModeRoutesParam, GetPaymentModeRoutesPaymentLinkParam, GetPosPaymentModeRoutesParam, GetRupifiBannerDetailsParam, GetUserBeneficiariesDetailParam, InitialisePaymentParam, InitialisePaymentPaymentLinkParam, OutstandingOrderDetailsParam, PaidOrderDetailsParam, PollingPaymentLinkParam, RedirectToAggregatorParam, RenderHTMLParam, ResendOrCancelPaymentParam, ResendPaymentLinkParam, UpdateDefaultBeneficiaryParam, ValidateVPAParam, VerifyAndChargePaymentParam, VerifyCustomerForPaymentParam, VerifyIfscCodeParam, VerifyOtpAndAddBeneficiaryForBankParam, VerifyOtpAndAddBeneficiaryForWalletParam };
 }
-/** @returns {addBeneficiaryDetails} */
-declare function addBeneficiaryDetails(): addBeneficiaryDetails;
-type addBeneficiaryDetails = {
+type AddBeneficiaryDetailsParam = {
     body: PaymentApplicationModel.AddBeneficiaryDetailsRequest;
 };
-/** @returns {addRefundBankAccountUsingOTP} */
-declare function addRefundBankAccountUsingOTP(): addRefundBankAccountUsingOTP;
-type addRefundBankAccountUsingOTP = {
+type AddRefundBankAccountUsingOTPParam = {
     body: PaymentApplicationModel.AddBeneficiaryDetailsOTPRequest;
 };
-/** @returns {attachCardToCustomer} */
-declare function attachCardToCustomer(): attachCardToCustomer;
-type attachCardToCustomer = {
+type AttachCardToCustomerParam = {
     body: PaymentApplicationModel.AttachCardRequest;
 };
-/** @returns {cancelPaymentLink} */
-declare function cancelPaymentLink(): cancelPaymentLink;
-type cancelPaymentLink = {
+type CancelPaymentLinkParam = {
     body: PaymentApplicationModel.CancelOrResendPaymentLinkRequest;
 };
-/** @returns {cardDetails} */
-declare function cardDetails(): cardDetails;
-type cardDetails = {
+type CardDetailsParam = {
     /**
      * - Card first 6 digit IIN(prefix) number.
      */
     cardInfo: string;
     aggregator?: string;
 };
-/** @returns {checkAndUpdatePaymentStatus} */
-declare function checkAndUpdatePaymentStatus(): checkAndUpdatePaymentStatus;
-type checkAndUpdatePaymentStatus = {
+type CheckAndUpdatePaymentStatusParam = {
     body: PaymentApplicationModel.PaymentStatusUpdateRequest;
 };
-/** @returns {checkAndUpdatePaymentStatusPaymentLink} */
-declare function checkAndUpdatePaymentStatusPaymentLink(): checkAndUpdatePaymentStatusPaymentLink;
-type checkAndUpdatePaymentStatusPaymentLink = {
+type CheckAndUpdatePaymentStatusPaymentLinkParam = {
     body: PaymentApplicationModel.PaymentStatusUpdateRequest;
 };
-/** @returns {checkCredit} */
-declare function checkCredit(): checkCredit;
-type checkCredit = {
+type CheckCreditParam = {
     aggregator?: string;
 };
-/** @returns {createOrderHandlerPaymentLink} */
-declare function createOrderHandlerPaymentLink(): createOrderHandlerPaymentLink;
-type createOrderHandlerPaymentLink = {
+type CreateOrderHandlerPaymentLinkParam = {
     body: PaymentApplicationModel.CreateOrderUserRequest;
 };
-/** @returns {createPaymentLink} */
-declare function createPaymentLink(): createPaymentLink;
-type createPaymentLink = {
+type CreatePaymentLinkParam = {
     body: PaymentApplicationModel.CreatePaymentLinkRequest;
 };
-/** @returns {customerCreditSummary} */
-declare function customerCreditSummary(): customerCreditSummary;
-type customerCreditSummary = {
+type CustomerCreditSummaryParam = {
     aggregator?: string;
 };
-/** @returns {customerOnboard} */
-declare function customerOnboard(): customerOnboard;
-type customerOnboard = {
+type CustomerOnboardParam = {
     body: PaymentApplicationModel.CustomerOnboardingRequest;
 };
-/** @returns {deleteUserCard} */
-declare function deleteUserCard(): deleteUserCard;
-type deleteUserCard = {
+type DeleteUserCardParam = {
     body: PaymentApplicationModel.DeletehCardRequest;
 };
-/** @returns {enableOrDisableRefundTransferMode} */
-declare function enableOrDisableRefundTransferMode(): enableOrDisableRefundTransferMode;
-type enableOrDisableRefundTransferMode = {
+type EnableOrDisableRefundTransferModeParam = {
     body: PaymentApplicationModel.UpdateRefundTransferModeRequest;
 };
-/** @returns {getActiveCardAggregator} */
-declare function getActiveCardAggregator(): getActiveCardAggregator;
-type getActiveCardAggregator = {
+type GetActiveCardAggregatorParam = {
     refresh?: boolean;
 };
-/** @returns {getActiveRefundTransferModes} */
-declare function getActiveRefundTransferModes(): any;
-type getActiveRefundTransferModes = any;
-/** @returns {getActiveUserCards} */
-declare function getActiveUserCards(): getActiveUserCards;
-type getActiveUserCards = {
+type GetActiveRefundTransferModesParam = any;
+type GetActiveUserCardsParam = {
     forceRefresh?: boolean;
 };
-/** @returns {getAggregatorsConfig} */
-declare function getAggregatorsConfig(): getAggregatorsConfig;
-type getAggregatorsConfig = {
+type GetAggregatorsConfigParam = {
     /**
      * - Used for basic authentication.
      */
@@ -291,26 +339,18 @@ type getAggregatorsConfig = {
      */
     refresh?: boolean;
 };
-/** @returns {getEpaylaterBannerDetails} */
-declare function getEpaylaterBannerDetails(): any;
-type getEpaylaterBannerDetails = any;
-/** @returns {getOrderBeneficiariesDetail} */
-declare function getOrderBeneficiariesDetail(): getOrderBeneficiariesDetail;
-type getOrderBeneficiariesDetail = {
+type GetEpaylaterBannerDetailsParam = any;
+type GetOrderBeneficiariesDetailParam = {
     /**
      * - A unique number used for identifying and
      * tracking your orders.
      */
     orderId: string;
 };
-/** @returns {getPaymentLink} */
-declare function getPaymentLink(): getPaymentLink;
-type getPaymentLink = {
+type GetPaymentLinkParam = {
     paymentLinkId?: string;
 };
-/** @returns {getPaymentModeRoutes} */
-declare function getPaymentModeRoutes(): getPaymentModeRoutes;
-type getPaymentModeRoutes = {
+type GetPaymentModeRoutesParam = {
     /**
      * - Payable amount.
      */
@@ -342,17 +382,13 @@ type getPaymentModeRoutes = {
      */
     userDetails?: string;
 };
-/** @returns {getPaymentModeRoutesPaymentLink} */
-declare function getPaymentModeRoutesPaymentLink(): getPaymentModeRoutesPaymentLink;
-type getPaymentModeRoutesPaymentLink = {
+type GetPaymentModeRoutesPaymentLinkParam = {
     /**
      * - Payment link id
      */
     paymentLinkId: string;
 };
-/** @returns {getPosPaymentModeRoutes} */
-declare function getPosPaymentModeRoutes(): getPosPaymentModeRoutes;
-type getPosPaymentModeRoutes = {
+type GetPosPaymentModeRoutesParam = {
     /**
      * - Payable amount.
      */
@@ -390,46 +426,30 @@ type getPosPaymentModeRoutes = {
      */
     userDetails?: string;
 };
-/** @returns {getRupifiBannerDetails} */
-declare function getRupifiBannerDetails(): any;
-type getRupifiBannerDetails = any;
-/** @returns {getUserBeneficiariesDetail} */
-declare function getUserBeneficiariesDetail(): getUserBeneficiariesDetail;
-type getUserBeneficiariesDetail = {
+type GetRupifiBannerDetailsParam = any;
+type GetUserBeneficiariesDetailParam = {
     /**
      * - A unique number used for identifying and
      * tracking your orders.
      */
     orderId: string;
 };
-/** @returns {initialisePayment} */
-declare function initialisePayment(): initialisePayment;
-type initialisePayment = {
+type InitialisePaymentParam = {
     body: PaymentApplicationModel.PaymentInitializationRequest;
 };
-/** @returns {initialisePaymentPaymentLink} */
-declare function initialisePaymentPaymentLink(): initialisePaymentPaymentLink;
-type initialisePaymentPaymentLink = {
+type InitialisePaymentPaymentLinkParam = {
     body: PaymentApplicationModel.PaymentInitializationRequest;
 };
-/** @returns {outstandingOrderDetails} */
-declare function outstandingOrderDetails(): outstandingOrderDetails;
-type outstandingOrderDetails = {
+type OutstandingOrderDetailsParam = {
     aggregator?: string;
 };
-/** @returns {paidOrderDetails} */
-declare function paidOrderDetails(): paidOrderDetails;
-type paidOrderDetails = {
+type PaidOrderDetailsParam = {
     aggregator?: string;
 };
-/** @returns {pollingPaymentLink} */
-declare function pollingPaymentLink(): pollingPaymentLink;
-type pollingPaymentLink = {
+type PollingPaymentLinkParam = {
     paymentLinkId?: string;
 };
-/** @returns {redirectToAggregator} */
-declare function redirectToAggregator(): redirectToAggregator;
-type redirectToAggregator = {
+type RedirectToAggregatorParam = {
     /**
      * - This is a String value that contains callback
      * URL as value.
@@ -441,58 +461,38 @@ type redirectToAggregator = {
      */
     aggregator?: string;
 };
-/** @returns {renderHTML} */
-declare function renderHTML(): renderHTML;
-type renderHTML = {
+type RenderHTMLParam = {
     body: PaymentApplicationModel.renderHTMLRequest;
 };
-/** @returns {resendOrCancelPayment} */
-declare function resendOrCancelPayment(): resendOrCancelPayment;
-type resendOrCancelPayment = {
+type ResendOrCancelPaymentParam = {
     body: PaymentApplicationModel.ResendOrCancelPaymentRequest;
 };
-/** @returns {resendPaymentLink} */
-declare function resendPaymentLink(): resendPaymentLink;
-type resendPaymentLink = {
+type ResendPaymentLinkParam = {
     body: PaymentApplicationModel.CancelOrResendPaymentLinkRequest;
 };
-/** @returns {updateDefaultBeneficiary} */
-declare function updateDefaultBeneficiary(): updateDefaultBeneficiary;
-type updateDefaultBeneficiary = {
+type UpdateDefaultBeneficiaryParam = {
     body: PaymentApplicationModel.SetDefaultBeneficiaryRequest;
 };
-/** @returns {validateVPA} */
-declare function validateVPA(): validateVPA;
-type validateVPA = {
+type ValidateVPAParam = {
     body: PaymentApplicationModel.ValidateVPARequest;
 };
-/** @returns {verifyAndChargePayment} */
-declare function verifyAndChargePayment(): verifyAndChargePayment;
-type verifyAndChargePayment = {
+type VerifyAndChargePaymentParam = {
     body: PaymentApplicationModel.ChargeCustomerRequest;
 };
-/** @returns {verifyCustomerForPayment} */
-declare function verifyCustomerForPayment(): verifyCustomerForPayment;
-type verifyCustomerForPayment = {
+type VerifyCustomerForPaymentParam = {
     body: PaymentApplicationModel.ValidateCustomerRequest;
 };
-/** @returns {verifyIfscCode} */
-declare function verifyIfscCode(): verifyIfscCode;
-type verifyIfscCode = {
+type VerifyIfscCodeParam = {
     /**
      * - A 11-digit alphanumeric code that uniquely
      * identifies a bank branch.
      */
     ifscCode?: string;
 };
-/** @returns {verifyOtpAndAddBeneficiaryForBank} */
-declare function verifyOtpAndAddBeneficiaryForBank(): verifyOtpAndAddBeneficiaryForBank;
-type verifyOtpAndAddBeneficiaryForBank = {
+type VerifyOtpAndAddBeneficiaryForBankParam = {
     body: PaymentApplicationModel.AddBeneficiaryViaOtpVerificationRequest;
 };
-/** @returns {verifyOtpAndAddBeneficiaryForWallet} */
-declare function verifyOtpAndAddBeneficiaryForWallet(): verifyOtpAndAddBeneficiaryForWallet;
-type verifyOtpAndAddBeneficiaryForWallet = {
+type VerifyOtpAndAddBeneficiaryForWalletParam = {
     body: PaymentApplicationModel.WalletOtpRequest;
 };
 import PaymentApplicationModel = require("./PaymentApplicationModel");

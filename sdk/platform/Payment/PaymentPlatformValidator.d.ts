@@ -1,113 +1,113 @@
 export = PaymentPlatformValidator;
 /**
- * @typedef activateAndDectivatePayout
+ * @typedef ActivateAndDectivatePayoutParam
  * @property {string} uniqueTransferNo - Unique transfer id
  * @property {PaymentPlatformModel.UpdatePayoutRequest} body
  */
 /**
- * @typedef deletePayout
+ * @typedef DeletePayoutParam
  * @property {string} uniqueTransferNo - Unique transfer id
  */
 /**
- * @typedef deleteSubscriptionPaymentMethod
+ * @typedef DeleteSubscriptionPaymentMethodParam
  * @property {string} uniqueExternalId
  * @property {string} paymentMethodId
  */
 /**
- * @typedef getAllPayouts
+ * @typedef GetAllPayoutsParam
  * @property {string} [uniqueExternalId] - Fetch payouts using unique external id
  */
-/** @typedef getSubscriptionConfig */
+/** @typedef GetSubscriptionConfigParam */
 /**
- * @typedef getSubscriptionPaymentMethod
+ * @typedef GetSubscriptionPaymentMethodParam
  * @property {string} [uniqueExternalId] - Unique external id
  */
 /**
- * @typedef savePayout
+ * @typedef SavePayoutParam
  * @property {PaymentPlatformModel.PayoutRequest} body
  */
 /**
- * @typedef saveSubscriptionSetupIntent
+ * @typedef SaveSubscriptionSetupIntentParam
  * @property {PaymentPlatformModel.SaveSubscriptionSetupIntentRequest} body
  */
 /**
- * @typedef updatePayout
+ * @typedef UpdatePayoutParam
  * @property {string} uniqueTransferNo - Unique transfer id
  * @property {PaymentPlatformModel.PayoutRequest} body
  */
 /**
- * @typedef verifyIfscCode
+ * @typedef VerifyIfscCodeParam
  * @property {string} [ifscCode]
  */
 declare class PaymentPlatformValidator {
+    /** @returns {activateAndDectivatePayout} */
+    static activateAndDectivatePayout(): activateAndDectivatePayout;
+    /** @returns {deletePayout} */
+    static deletePayout(): deletePayout;
+    /** @returns {deleteSubscriptionPaymentMethod} */
+    static deleteSubscriptionPaymentMethod(): deleteSubscriptionPaymentMethod;
+    /** @returns {getAllPayouts} */
+    static getAllPayouts(): getAllPayouts;
+    /** @returns {getSubscriptionConfig} */
+    static getSubscriptionConfig(): getSubscriptionConfig;
+    /** @returns {getSubscriptionPaymentMethod} */
+    static getSubscriptionPaymentMethod(): getSubscriptionPaymentMethod;
+    /** @returns {savePayout} */
+    static savePayout(): savePayout;
+    /** @returns {saveSubscriptionSetupIntent} */
+    static saveSubscriptionSetupIntent(): saveSubscriptionSetupIntent;
+    /** @returns {updatePayout} */
+    static updatePayout(): updatePayout;
+    /** @returns {verifyIfscCode} */
+    static verifyIfscCode(): verifyIfscCode;
 }
 declare namespace PaymentPlatformValidator {
-    export { activateAndDectivatePayout, deletePayout, deleteSubscriptionPaymentMethod, getAllPayouts, getSubscriptionConfig, getSubscriptionPaymentMethod, savePayout, saveSubscriptionSetupIntent, updatePayout, verifyIfscCode };
+    export { ActivateAndDectivatePayoutParam, DeletePayoutParam, DeleteSubscriptionPaymentMethodParam, GetAllPayoutsParam, GetSubscriptionConfigParam, GetSubscriptionPaymentMethodParam, SavePayoutParam, SaveSubscriptionSetupIntentParam, UpdatePayoutParam, VerifyIfscCodeParam };
 }
-/** @returns {activateAndDectivatePayout} */
-declare function activateAndDectivatePayout(): activateAndDectivatePayout;
-type activateAndDectivatePayout = {
+type ActivateAndDectivatePayoutParam = {
     /**
      * - Unique transfer id
      */
     uniqueTransferNo: string;
     body: PaymentPlatformModel.UpdatePayoutRequest;
 };
-/** @returns {deletePayout} */
-declare function deletePayout(): deletePayout;
-type deletePayout = {
+type DeletePayoutParam = {
     /**
      * - Unique transfer id
      */
     uniqueTransferNo: string;
 };
-/** @returns {deleteSubscriptionPaymentMethod} */
-declare function deleteSubscriptionPaymentMethod(): deleteSubscriptionPaymentMethod;
-type deleteSubscriptionPaymentMethod = {
+type DeleteSubscriptionPaymentMethodParam = {
     uniqueExternalId: string;
     paymentMethodId: string;
 };
-/** @returns {getAllPayouts} */
-declare function getAllPayouts(): getAllPayouts;
-type getAllPayouts = {
+type GetAllPayoutsParam = {
     /**
      * - Fetch payouts using unique external id
      */
     uniqueExternalId?: string;
 };
-/** @returns {getSubscriptionConfig} */
-declare function getSubscriptionConfig(): any;
-type getSubscriptionConfig = any;
-/** @returns {getSubscriptionPaymentMethod} */
-declare function getSubscriptionPaymentMethod(): getSubscriptionPaymentMethod;
-type getSubscriptionPaymentMethod = {
+type GetSubscriptionConfigParam = any;
+type GetSubscriptionPaymentMethodParam = {
     /**
      * - Unique external id
      */
     uniqueExternalId?: string;
 };
-/** @returns {savePayout} */
-declare function savePayout(): savePayout;
-type savePayout = {
+type SavePayoutParam = {
     body: PaymentPlatformModel.PayoutRequest;
 };
-/** @returns {saveSubscriptionSetupIntent} */
-declare function saveSubscriptionSetupIntent(): saveSubscriptionSetupIntent;
-type saveSubscriptionSetupIntent = {
+type SaveSubscriptionSetupIntentParam = {
     body: PaymentPlatformModel.SaveSubscriptionSetupIntentRequest;
 };
-/** @returns {updatePayout} */
-declare function updatePayout(): updatePayout;
-type updatePayout = {
+type UpdatePayoutParam = {
     /**
      * - Unique transfer id
      */
     uniqueTransferNo: string;
     body: PaymentPlatformModel.PayoutRequest;
 };
-/** @returns {verifyIfscCode} */
-declare function verifyIfscCode(): verifyIfscCode;
-type verifyIfscCode = {
+type VerifyIfscCodeParam = {
     ifscCode?: string;
 };
 import PaymentPlatformModel = require("./PaymentPlatformModel");

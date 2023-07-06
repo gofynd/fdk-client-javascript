@@ -40,7 +40,7 @@ class Share {
   }
 
   /**
-   * @param {ShareApplicationValidator.createShortLink} arg - Arg object.
+   * @param {ShareApplicationValidator.CreateShortLinkParam} arg - Arg object.
    * @returns {Promise<ShareApplicationModel.ShortLinkRes>} - Success response
    * @name createShortLink
    * @summary: Create a short link
@@ -103,7 +103,7 @@ class Share {
   }
 
   /**
-   * @param {ShareApplicationValidator.getApplicationQRCode} arg - Arg object.
+   * @param {ShareApplicationValidator.GetApplicationQRCodeParam} arg - Arg object.
    * @returns {Promise<ShareApplicationModel.QRCodeResp>} - Success response
    * @name getApplicationQRCode
    * @summary: Create QR Code of an app
@@ -166,7 +166,7 @@ class Share {
   }
 
   /**
-   * @param {ShareApplicationValidator.getCollectionQRCodeBySlug} arg - Arg object.
+   * @param {ShareApplicationValidator.GetCollectionQRCodeBySlugParam} arg - Arg object.
    * @returns {Promise<ShareApplicationModel.QRCodeResp>} - Success response
    * @name getCollectionQRCodeBySlug
    * @summary: Create QR Code of a collection
@@ -231,7 +231,8 @@ class Share {
   }
 
   /**
-   * @param {ShareApplicationValidator.getOriginalShortLinkByHash} arg - Arg object.
+   * @param {ShareApplicationValidator.GetOriginalShortLinkByHashParam} arg -
+   *   Arg object.
    * @returns {Promise<ShareApplicationModel.ShortLinkRes>} - Success response
    * @name getOriginalShortLinkByHash
    * @summary: Get original link by hash
@@ -296,7 +297,7 @@ class Share {
   }
 
   /**
-   * @param {ShareApplicationValidator.getProductQRCodeBySlug} arg - Arg object.
+   * @param {ShareApplicationValidator.GetProductQRCodeBySlugParam} arg - Arg object.
    * @returns {Promise<ShareApplicationModel.QRCodeResp>} - Success response
    * @name getProductQRCodeBySlug
    * @summary: Create QR Code of a product
@@ -361,7 +362,7 @@ class Share {
   }
 
   /**
-   * @param {ShareApplicationValidator.getShortLinkByHash} arg - Arg object.
+   * @param {ShareApplicationValidator.GetShortLinkByHashParam} arg - Arg object.
    * @returns {Promise<ShareApplicationModel.ShortLinkRes>} - Success response
    * @name getShortLinkByHash
    * @summary: Get short link by hash
@@ -424,7 +425,7 @@ class Share {
   }
 
   /**
-   * @param {ShareApplicationValidator.getUrlQRCode} arg - Arg object.
+   * @param {ShareApplicationValidator.GetUrlQRCodeParam} arg - Arg object.
    * @returns {Promise<ShareApplicationModel.QRCodeResp>} - Success response
    * @name getUrlQRCode
    * @summary: Create QR Code of a URL

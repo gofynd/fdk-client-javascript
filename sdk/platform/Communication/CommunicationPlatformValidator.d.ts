@@ -1,17 +1,17 @@
 export = CommunicationPlatformValidator;
 /**
- * @typedef getSystemNotifications
+ * @typedef GetSystemNotificationsParam
  * @property {number} [pageNo]
  * @property {number} [pageSize]
  */
 declare class CommunicationPlatformValidator {
+    /** @returns {getSystemNotifications} */
+    static getSystemNotifications(): getSystemNotifications;
 }
 declare namespace CommunicationPlatformValidator {
-    export { getSystemNotifications };
+    export { GetSystemNotificationsParam };
 }
-/** @returns {getSystemNotifications} */
-declare function getSystemNotifications(): getSystemNotifications;
-type getSystemNotifications = {
+type GetSystemNotificationsParam = {
     pageNo?: number;
     pageSize?: number;
 };

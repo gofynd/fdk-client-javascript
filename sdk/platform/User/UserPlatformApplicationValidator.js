@@ -3,50 +3,50 @@ const Joi = require("joi");
 const UserPlatformModel = require("./UserPlatformModel");
 
 /**
- * @typedef archiveUser
+ * @typedef ArchiveUserParam
  * @property {UserPlatformModel.ArchiveUserRequestSchema} body
  */
 
 /**
- * @typedef blockOrUnblockUsers
+ * @typedef BlockOrUnblockUsersParam
  * @property {UserPlatformModel.BlockUserRequestSchema} body
  */
 
 /**
- * @typedef createUser
+ * @typedef CreateUserParam
  * @property {UserPlatformModel.CreateUserRequestSchema} body
  */
 
 /**
- * @typedef createUserGroup
+ * @typedef CreateUserGroupParam
  * @property {UserPlatformModel.CreateUserGroupSchema} body
  */
 
 /**
- * @typedef createUserSession
+ * @typedef CreateUserSessionParam
  * @property {UserPlatformModel.CreateUserSessionRequestSchema} body
  */
 
 /**
- * @typedef deleteActiveSessions
+ * @typedef DeleteActiveSessionsParam
  * @property {string} id - ID of a customer.
  * @property {string} reason - Reason to delete sessions.
  */
 
 /**
- * @typedef deleteSession
+ * @typedef DeleteSessionParam
  * @property {string} id - ID of a customer.
  * @property {string} sessionId - Session ID of a customer.
  * @property {string} reason - Reason for deleting session.
  */
 
 /**
- * @typedef getActiveSessions
+ * @typedef GetActiveSessionsParam
  * @property {string} id - ID of a customer.
  */
 
 /**
- * @typedef getCustomers
+ * @typedef GetCustomersParam
  * @property {Object} [q] - The search query. Mobile number or email ID of a customer.
  * @property {number} [pageSize] - The number of items to retrieve in each page.
  *   Default value is 10.
@@ -54,15 +54,15 @@ const UserPlatformModel = require("./UserPlatformModel");
  *   set of results. Default value is 1.
  */
 
-/** @typedef getPlatformConfig */
+/** @typedef GetPlatformConfigParam */
 
 /**
- * @typedef getUserGroupById
+ * @typedef GetUserGroupByIdParam
  * @property {string} groupId - Numeric ID allotted to a User Group
  */
 
 /**
- * @typedef getUserGroups
+ * @typedef GetUserGroupsParam
  * @property {string} [pageNo] - Page number for pagination result
  * @property {string} [pageSize] - Page size for pagination result
  * @property {string} [name] - To seartch for User Groups which contains given
@@ -72,29 +72,29 @@ const UserPlatformModel = require("./UserPlatformModel");
  */
 
 /**
- * @typedef searchUsers
+ * @typedef SearchUsersParam
  * @property {string} [q] - The search query. Mobile number, email ID or user ID
  *   of a customer.
  */
 
 /**
- * @typedef unDeleteUser
+ * @typedef UnDeleteUserParam
  * @property {UserPlatformModel.UnDeleteUserRequestSchema} body
  */
 
 /**
- * @typedef updatePlatformConfig
+ * @typedef UpdatePlatformConfigParam
  * @property {UserPlatformModel.PlatformSchema} body
  */
 
 /**
- * @typedef updateUser
+ * @typedef UpdateUserParam
  * @property {string} userId - User ID
  * @property {UserPlatformModel.UpdateUserRequestSchema} body
  */
 
 /**
- * @typedef updateUserGroup
+ * @typedef UpdateUserGroupParam
  * @property {string} groupId - Numeric ID allotted to a User Group
  * @property {UserPlatformModel.UpdateUserGroupSchema} body
  */

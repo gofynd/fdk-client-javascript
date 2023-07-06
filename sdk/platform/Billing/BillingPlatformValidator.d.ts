@@ -1,67 +1,91 @@
 export = BillingPlatformValidator;
 /**
- * @typedef activateSubscriptionPlan
+ * @typedef ActivateSubscriptionPlanParam
  * @property {BillingPlatformModel.SubscriptionActivateReq} body
  */
 /**
- * @typedef cancelSubscriptionCharge
+ * @typedef CancelSubscriptionChargeParam
  * @property {string} extensionId - Extension _id
  * @property {string} subscriptionId - Subscription charge _id
  */
 /**
- * @typedef cancelSubscriptionPlan
+ * @typedef CancelSubscriptionPlanParam
  * @property {BillingPlatformModel.CancelSubscriptionReq} body
  */
 /**
- * @typedef checkCouponValidity
+ * @typedef CheckCouponValidityParam
  * @property {string} plan - ID of the plan.
  * @property {string} couponCode - Coupon code.
  */
 /**
- * @typedef createOneTimeCharge
+ * @typedef CreateOneTimeChargeParam
  * @property {string} extensionId - Extension _id
  * @property {BillingPlatformModel.CreateOneTimeCharge} body
  */
 /**
- * @typedef createSubscriptionCharge
+ * @typedef CreateSubscriptionChargeParam
  * @property {string} extensionId - Extension _id
  * @property {BillingPlatformModel.CreateSubscriptionCharge} body
  */
 /**
- * @typedef getChargeDetails
+ * @typedef GetChargeDetailsParam
  * @property {string} extensionId - Extension _id
  * @property {string} chargeId - Standalone charge _id
  */
-/** @typedef getCustomerDetail */
-/** @typedef getFeatureLimitConfig */
+/** @typedef GetCustomerDetailParam */
+/** @typedef GetFeatureLimitConfigParam */
 /**
- * @typedef getInvoiceById
+ * @typedef GetInvoiceByIdParam
  * @property {string} invoiceId - Invoice id
  */
-/** @typedef getInvoices */
-/** @typedef getSubscription */
+/** @typedef GetInvoicesParam */
+/** @typedef GetSubscriptionParam */
 /**
- * @typedef getSubscriptionCharge
+ * @typedef GetSubscriptionChargeParam
  * @property {string} extensionId - Extension _id
  * @property {string} subscriptionId - Subscription charge _id
  */
 /**
- * @typedef upsertCustomerDetail
+ * @typedef UpsertCustomerDetailParam
  * @property {BillingPlatformModel.SubscriptionCustomerCreate} body
  */
 declare class BillingPlatformValidator {
+    /** @returns {activateSubscriptionPlan} */
+    static activateSubscriptionPlan(): activateSubscriptionPlan;
+    /** @returns {cancelSubscriptionCharge} */
+    static cancelSubscriptionCharge(): cancelSubscriptionCharge;
+    /** @returns {cancelSubscriptionPlan} */
+    static cancelSubscriptionPlan(): cancelSubscriptionPlan;
+    /** @returns {checkCouponValidity} */
+    static checkCouponValidity(): checkCouponValidity;
+    /** @returns {createOneTimeCharge} */
+    static createOneTimeCharge(): createOneTimeCharge;
+    /** @returns {createSubscriptionCharge} */
+    static createSubscriptionCharge(): createSubscriptionCharge;
+    /** @returns {getChargeDetails} */
+    static getChargeDetails(): getChargeDetails;
+    /** @returns {getCustomerDetail} */
+    static getCustomerDetail(): getCustomerDetail;
+    /** @returns {getFeatureLimitConfig} */
+    static getFeatureLimitConfig(): getFeatureLimitConfig;
+    /** @returns {getInvoiceById} */
+    static getInvoiceById(): getInvoiceById;
+    /** @returns {getInvoices} */
+    static getInvoices(): getInvoices;
+    /** @returns {getSubscription} */
+    static getSubscription(): getSubscription;
+    /** @returns {getSubscriptionCharge} */
+    static getSubscriptionCharge(): getSubscriptionCharge;
+    /** @returns {upsertCustomerDetail} */
+    static upsertCustomerDetail(): upsertCustomerDetail;
 }
 declare namespace BillingPlatformValidator {
-    export { activateSubscriptionPlan, cancelSubscriptionCharge, cancelSubscriptionPlan, checkCouponValidity, createOneTimeCharge, createSubscriptionCharge, getChargeDetails, getCustomerDetail, getFeatureLimitConfig, getInvoiceById, getInvoices, getSubscription, getSubscriptionCharge, upsertCustomerDetail };
+    export { ActivateSubscriptionPlanParam, CancelSubscriptionChargeParam, CancelSubscriptionPlanParam, CheckCouponValidityParam, CreateOneTimeChargeParam, CreateSubscriptionChargeParam, GetChargeDetailsParam, GetCustomerDetailParam, GetFeatureLimitConfigParam, GetInvoiceByIdParam, GetInvoicesParam, GetSubscriptionParam, GetSubscriptionChargeParam, UpsertCustomerDetailParam };
 }
-/** @returns {activateSubscriptionPlan} */
-declare function activateSubscriptionPlan(): activateSubscriptionPlan;
-type activateSubscriptionPlan = {
+type ActivateSubscriptionPlanParam = {
     body: BillingPlatformModel.SubscriptionActivateReq;
 };
-/** @returns {cancelSubscriptionCharge} */
-declare function cancelSubscriptionCharge(): cancelSubscriptionCharge;
-type cancelSubscriptionCharge = {
+type CancelSubscriptionChargeParam = {
     /**
      * - Extension _id
      */
@@ -71,14 +95,10 @@ type cancelSubscriptionCharge = {
      */
     subscriptionId: string;
 };
-/** @returns {cancelSubscriptionPlan} */
-declare function cancelSubscriptionPlan(): cancelSubscriptionPlan;
-type cancelSubscriptionPlan = {
+type CancelSubscriptionPlanParam = {
     body: BillingPlatformModel.CancelSubscriptionReq;
 };
-/** @returns {checkCouponValidity} */
-declare function checkCouponValidity(): checkCouponValidity;
-type checkCouponValidity = {
+type CheckCouponValidityParam = {
     /**
      * - ID of the plan.
      */
@@ -88,27 +108,21 @@ type checkCouponValidity = {
      */
     couponCode: string;
 };
-/** @returns {createOneTimeCharge} */
-declare function createOneTimeCharge(): createOneTimeCharge;
-type createOneTimeCharge = {
+type CreateOneTimeChargeParam = {
     /**
      * - Extension _id
      */
     extensionId: string;
     body: BillingPlatformModel.CreateOneTimeCharge;
 };
-/** @returns {createSubscriptionCharge} */
-declare function createSubscriptionCharge(): createSubscriptionCharge;
-type createSubscriptionCharge = {
+type CreateSubscriptionChargeParam = {
     /**
      * - Extension _id
      */
     extensionId: string;
     body: BillingPlatformModel.CreateSubscriptionCharge;
 };
-/** @returns {getChargeDetails} */
-declare function getChargeDetails(): getChargeDetails;
-type getChargeDetails = {
+type GetChargeDetailsParam = {
     /**
      * - Extension _id
      */
@@ -118,29 +132,17 @@ type getChargeDetails = {
      */
     chargeId: string;
 };
-/** @returns {getCustomerDetail} */
-declare function getCustomerDetail(): any;
-type getCustomerDetail = any;
-/** @returns {getFeatureLimitConfig} */
-declare function getFeatureLimitConfig(): any;
-type getFeatureLimitConfig = any;
-/** @returns {getInvoiceById} */
-declare function getInvoiceById(): getInvoiceById;
-type getInvoiceById = {
+type GetCustomerDetailParam = any;
+type GetFeatureLimitConfigParam = any;
+type GetInvoiceByIdParam = {
     /**
      * - Invoice id
      */
     invoiceId: string;
 };
-/** @returns {getInvoices} */
-declare function getInvoices(): any;
-type getInvoices = any;
-/** @returns {getSubscription} */
-declare function getSubscription(): any;
-type getSubscription = any;
-/** @returns {getSubscriptionCharge} */
-declare function getSubscriptionCharge(): getSubscriptionCharge;
-type getSubscriptionCharge = {
+type GetInvoicesParam = any;
+type GetSubscriptionParam = any;
+type GetSubscriptionChargeParam = {
     /**
      * - Extension _id
      */
@@ -150,9 +152,7 @@ type getSubscriptionCharge = {
      */
     subscriptionId: string;
 };
-/** @returns {upsertCustomerDetail} */
-declare function upsertCustomerDetail(): upsertCustomerDetail;
-type upsertCustomerDetail = {
+type UpsertCustomerDetailParam = {
     body: BillingPlatformModel.SubscriptionCustomerCreate;
 };
 import BillingPlatformModel = require("./BillingPlatformModel");

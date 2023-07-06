@@ -2,41 +2,41 @@ const Joi = require("joi");
 
 const CompanyProfilePlatformModel = require("./CompanyProfilePlatformModel");
 
-/** @typedef cbsOnboardGet */
+/** @typedef CbsOnboardGetParam */
 
 /**
- * @typedef createBrand
+ * @typedef CreateBrandParam
  * @property {CompanyProfilePlatformModel.CreateUpdateBrandRequestSerializer} body
  */
 
 /**
- * @typedef createCompanyBrandMapping
+ * @typedef CreateCompanyBrandMappingParam
  * @property {CompanyProfilePlatformModel.CompanyBrandPostRequestSerializer} body
  */
 
 /**
- * @typedef createLocation
+ * @typedef CreateLocationParam
  * @property {CompanyProfilePlatformModel.LocationSerializer} body
  */
 
 /**
- * @typedef createLocationBulk
+ * @typedef CreateLocationBulkParam
  * @property {CompanyProfilePlatformModel.BulkLocationSerializer} body
  */
 
 /**
- * @typedef editBrand
+ * @typedef EditBrandParam
  * @property {string} brandId - Id of the brand to be viewed.
  * @property {CompanyProfilePlatformModel.CreateUpdateBrandRequestSerializer} body
  */
 
 /**
- * @typedef getBrand
+ * @typedef GetBrandParam
  * @property {string} brandId - Id of the brand to be viewed.
  */
 
 /**
- * @typedef getBrands
+ * @typedef GetBrandsParam
  * @property {number} [pageNo] - The page number to navigate through the given
  *   set of results
  * @property {number} [pageSize] - Number of items to retrieve in each page.
@@ -44,17 +44,17 @@ const CompanyProfilePlatformModel = require("./CompanyProfilePlatformModel");
  * @property {string} [q] - Search term for name.
  */
 
-/** @typedef getCompanyMetrics */
+/** @typedef GetCompanyMetricsParam */
 
 /**
- * @typedef getLocationDetail
+ * @typedef GetLocationDetailParam
  * @property {string} locationId - Id of the location which you want to view.
  */
 
-/** @typedef getLocationTags */
+/** @typedef GetLocationTagsParam */
 
 /**
- * @typedef getLocations
+ * @typedef GetLocationsParam
  * @property {string} [storeType] - Helps to sort the location list on the basis
  *   of location type.
  * @property {string} [q] - Query that is to be searched.
@@ -68,12 +68,12 @@ const CompanyProfilePlatformModel = require("./CompanyProfilePlatformModel");
  */
 
 /**
- * @typedef updateCompany
+ * @typedef UpdateCompanyParam
  * @property {CompanyProfilePlatformModel.UpdateCompany} body
  */
 
 /**
- * @typedef updateLocation
+ * @typedef UpdateLocationParam
  * @property {string} locationId - Id of the location which you want to edit.
  * @property {CompanyProfilePlatformModel.LocationSerializer} body
  */

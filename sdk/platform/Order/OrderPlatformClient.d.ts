@@ -3,63 +3,55 @@ declare class Order {
     constructor(config: any);
     config: any;
     /**
-     * @param {OrderPlatformValidator.attachOrderUser} arg - Arg object
+     * @param {OrderPlatformValidator.AttachOrderUserParam} arg - Arg object
      * @returns {Promise<OrderPlatformModel.AttachOrderUserResponse>} - Success response
      * @name attachOrderUser
      * @summary:
      * @description:
      */
-    attachOrderUser({ body }?: OrderPlatformValidator.attachOrderUser): Promise<OrderPlatformModel.AttachOrderUserResponse>;
+    attachOrderUser({ body }?: OrderPlatformValidator.AttachOrderUserParam): Promise<OrderPlatformModel.AttachOrderUserResponse>;
     /**
-     * @param {OrderPlatformValidator.checkOrderStatus} arg - Arg object
+     * @param {OrderPlatformValidator.CheckOrderStatusParam} arg - Arg object
      * @returns {Promise<OrderPlatformModel.OrderStatusResult>} - Success response
      * @name checkOrderStatus
      * @summary:
      * @description:
      */
-    checkOrderStatus({ body }?: OrderPlatformValidator.checkOrderStatus): Promise<OrderPlatformModel.OrderStatusResult>;
+    checkOrderStatus({ body }?: OrderPlatformValidator.CheckOrderStatusParam): Promise<OrderPlatformModel.OrderStatusResult>;
     /**
-     * @param {OrderPlatformValidator.click2Call} arg - Arg object
+     * @param {OrderPlatformValidator.Click2CallParam} arg - Arg object
      * @returns {Promise<OrderPlatformModel.Click2CallResponse>} - Success response
      * @name click2Call
      * @summary:
      * @description:
      */
-    click2Call({ caller, receiver, bagId, callerId, method, }?: OrderPlatformValidator.click2Call): Promise<OrderPlatformModel.Click2CallResponse>;
+    click2Call({ caller, receiver, bagId, callerId, method, }?: OrderPlatformValidator.Click2CallParam): Promise<OrderPlatformModel.Click2CallResponse>;
     /**
-     * @param {OrderPlatformValidator.createOrder} arg - Arg object
+     * @param {OrderPlatformValidator.CreateOrderParam} arg - Arg object
      * @returns {Promise<OrderPlatformModel.CreateOrderResponse>} - Success response
      * @name createOrder
      * @summary:
      * @description:
      */
-    createOrder({ body }?: OrderPlatformValidator.createOrder): Promise<OrderPlatformModel.CreateOrderResponse>;
+    createOrder({ body }?: OrderPlatformValidator.CreateOrderParam): Promise<OrderPlatformModel.CreateOrderResponse>;
     /**
-     * @param {OrderPlatformValidator.createShipmentReport} arg - Arg object
-     * @returns {Promise<OrderPlatformModel.Success>} - Success response
-     * @name createShipmentReport
-     * @summary:
-     * @description:
-     */
-    createShipmentReport({ fromDate, toDate }?: OrderPlatformValidator.createShipmentReport): Promise<OrderPlatformModel.Success>;
-    /**
-     * @param {OrderPlatformValidator.dispatchManifest} arg - Arg object
+     * @param {OrderPlatformValidator.DispatchManifestParam} arg - Arg object
      * @returns {Promise<OrderPlatformModel.SuccessResponse>} - Success response
      * @name dispatchManifest
      * @summary:
      * @description:
      */
-    dispatchManifest({ body }?: OrderPlatformValidator.dispatchManifest): Promise<OrderPlatformModel.SuccessResponse>;
+    dispatchManifest({ body }?: OrderPlatformValidator.DispatchManifestParam): Promise<OrderPlatformModel.SuccessResponse>;
     /**
-     * @param {OrderPlatformValidator.downloadBulkActionTemplate} arg - Arg object
+     * @param {OrderPlatformValidator.DownloadBulkActionTemplateParam} arg - Arg object
      * @returns {Promise<OrderPlatformModel.FileResponse>} - Success response
      * @name downloadBulkActionTemplate
      * @summary:
      * @description:
      */
-    downloadBulkActionTemplate({ templateSlug }?: OrderPlatformValidator.downloadBulkActionTemplate): Promise<OrderPlatformModel.FileResponse>;
+    downloadBulkActionTemplate({ templateSlug }?: OrderPlatformValidator.DownloadBulkActionTemplateParam): Promise<OrderPlatformModel.FileResponse>;
     /**
-     * @param {OrderPlatformValidator.fetchCreditBalanceDetail} arg - Arg object
+     * @param {OrderPlatformValidator.FetchCreditBalanceDetailParam} arg - Arg object
      * @returns {Promise<OrderPlatformModel.FetchCreditBalanceResponsePayload>}
      *   - Success response
      *
@@ -67,60 +59,52 @@ declare class Order {
      * @summary:
      * @description:
      */
-    fetchCreditBalanceDetail({ body }?: OrderPlatformValidator.fetchCreditBalanceDetail): Promise<OrderPlatformModel.FetchCreditBalanceResponsePayload>;
+    fetchCreditBalanceDetail({ body }?: OrderPlatformValidator.FetchCreditBalanceDetailParam): Promise<OrderPlatformModel.FetchCreditBalanceResponsePayload>;
     /**
-     * @param {OrderPlatformValidator.fetchRefundModeConfig} arg - Arg object
+     * @param {OrderPlatformValidator.FetchRefundModeConfigParam} arg - Arg object
      * @returns {Promise<OrderPlatformModel.RefundModeConfigResponsePayload>} -
      *   Success response
      * @name fetchRefundModeConfig
      * @summary:
      * @description:
      */
-    fetchRefundModeConfig({ body }?: OrderPlatformValidator.fetchRefundModeConfig): Promise<OrderPlatformModel.RefundModeConfigResponsePayload>;
+    fetchRefundModeConfig({ body }?: OrderPlatformValidator.FetchRefundModeConfigParam): Promise<OrderPlatformModel.RefundModeConfigResponsePayload>;
     /**
-     * @param {OrderPlatformValidator.generatePOSReceiptByOrderId} arg - Arg object
+     * @param {OrderPlatformValidator.GeneratePOSReceiptByOrderIdParam} arg - Arg object
      * @returns {Promise<OrderPlatformModel.GeneratePosOrderReceiptResponse>} -
      *   Success response
      * @name generatePOSReceiptByOrderId
      * @summary:
      * @description:
      */
-    generatePOSReceiptByOrderId({ orderId, shipmentId, documentType, }?: OrderPlatformValidator.generatePOSReceiptByOrderId): Promise<OrderPlatformModel.GeneratePosOrderReceiptResponse>;
+    generatePOSReceiptByOrderId({ orderId, shipmentId, documentType, }?: OrderPlatformValidator.GeneratePOSReceiptByOrderIdParam): Promise<OrderPlatformModel.GeneratePosOrderReceiptResponse>;
     /**
-     * @param {OrderPlatformValidator.getAnnouncements} arg - Arg object
+     * @param {OrderPlatformValidator.GetAnnouncementsParam} arg - Arg object
      * @returns {Promise<OrderPlatformModel.AnnouncementsResponse>} - Success response
      * @name getAnnouncements
      * @summary:
      * @description:
      */
-    getAnnouncements({ date }?: OrderPlatformValidator.getAnnouncements): Promise<OrderPlatformModel.AnnouncementsResponse>;
+    getAnnouncements({ date }?: OrderPlatformValidator.GetAnnouncementsParam): Promise<OrderPlatformModel.AnnouncementsResponse>;
     /**
-     * @param {OrderPlatformValidator.getAssetByShipmentIds} arg - Arg object
-     * @returns {Promise<OrderPlatformModel.ResponseGetAssetShipment>} - Success response
-     * @name getAssetByShipmentIds
-     * @summary: Get Invoice or Label or Pos of a shipment
-     * @description: Use this API to retrieve shipments invoice, label and pos.
-     */
-    getAssetByShipmentIds({ shipmentIds, invoice, expiresIn }?: OrderPlatformValidator.getAssetByShipmentIds): Promise<OrderPlatformModel.ResponseGetAssetShipment>;
-    /**
-     * @param {OrderPlatformValidator.getBagById} arg - Arg object
+     * @param {OrderPlatformValidator.GetBagByIdParam} arg - Arg object
      * @returns {Promise<OrderPlatformModel.BagDetailsPlatformResponse>} -
      *   Success response
      * @name getBagById
      * @summary:
      * @description:
      */
-    getBagById({ bagId, channelBagId, channelId }?: OrderPlatformValidator.getBagById): Promise<OrderPlatformModel.BagDetailsPlatformResponse>;
+    getBagById({ bagId, channelBagId, channelId }?: OrderPlatformValidator.GetBagByIdParam): Promise<OrderPlatformModel.BagDetailsPlatformResponse>;
     /**
-     * @param {OrderPlatformValidator.getBags} arg - Arg object
+     * @param {OrderPlatformValidator.GetBagsParam} arg - Arg object
      * @returns {Promise<OrderPlatformModel.GetBagsPlatformResponse>} - Success response
      * @name getBags
      * @summary:
      * @description:
      */
-    getBags({ bagIds, shipmentIds, orderIds, channelBagIds, channelShipmentIds, channelOrderIds, channelId, pageNo, pageSize, }?: OrderPlatformValidator.getBags): Promise<OrderPlatformModel.GetBagsPlatformResponse>;
+    getBags({ bagIds, shipmentIds, orderIds, channelBagIds, channelShipmentIds, channelOrderIds, channelId, pageNo, pageSize, }?: OrderPlatformValidator.GetBagsParam): Promise<OrderPlatformModel.GetBagsPlatformResponse>;
     /**
-     * @param {OrderPlatformValidator.getBulkActionTemplate} arg - Arg object
+     * @param {OrderPlatformValidator.GetBulkActionTemplateParam} arg - Arg object
      * @returns {Promise<OrderPlatformModel.BulkActionTemplateResponse>} -
      *   Success response
      * @name getBulkActionTemplate
@@ -129,87 +113,71 @@ declare class Order {
      */
     getBulkActionTemplate({}?: any): Promise<OrderPlatformModel.BulkActionTemplateResponse>;
     /**
-     * @param {OrderPlatformValidator.getBulkShipmentExcelFile} arg - Arg object
+     * @param {OrderPlatformValidator.GetBulkShipmentExcelFileParam} arg - Arg object
      * @returns {Promise<OrderPlatformModel.FileResponse>} - Success response
      * @name getBulkShipmentExcelFile
      * @summary:
      * @description:
      */
-    getBulkShipmentExcelFile({ salesChannels, dpIds, fromDate, toDate, stores, tags, bagStatus, paymentMethods, fileType, timeToDispatch, pageNo, pageSize, }?: OrderPlatformValidator.getBulkShipmentExcelFile): Promise<OrderPlatformModel.FileResponse>;
+    getBulkShipmentExcelFile({ salesChannels, dpIds, fromDate, toDate, stores, tags, bagStatus, paymentMethods, fileType, timeToDispatch, pageNo, pageSize, }?: OrderPlatformValidator.GetBulkShipmentExcelFileParam): Promise<OrderPlatformModel.FileResponse>;
     /**
-     * @param {OrderPlatformValidator.getLaneConfig} arg - Arg object
+     * @param {OrderPlatformValidator.GetLaneConfigParam} arg - Arg object
      * @returns {Promise<OrderPlatformModel.LaneConfigResponse>} - Success response
      * @name getLaneConfig
      * @summary:
      * @description:
      */
-    getLaneConfig({ superLane, groupEntity, fromDate, toDate, dpIds, stores, salesChannels, paymentMode, bagStatus, searchType, searchValue, tags, timeToDispatch, paymentMethods, myOrders, }?: OrderPlatformValidator.getLaneConfig): Promise<OrderPlatformModel.LaneConfigResponse>;
+    getLaneConfig({ superLane, groupEntity, fromDate, toDate, dpIds, stores, salesChannels, paymentMode, bagStatus, searchType, searchValue, tags, timeToDispatch, paymentMethods, myOrders, }?: OrderPlatformValidator.GetLaneConfigParam): Promise<OrderPlatformModel.LaneConfigResponse>;
     /**
-     * @param {OrderPlatformValidator.getManifestDetails} arg - Arg object
+     * @param {OrderPlatformValidator.GetManifestDetailsParam} arg - Arg object
      * @returns {Promise<OrderPlatformModel.ManifestDetails>} - Success response
      * @name getManifestDetails
      * @summary:
      * @description:
      */
-    getManifestDetails({ manifestId, status, toDate, fromDate, searchType, searchValue, dpIds, pageNo, pageSize, }?: OrderPlatformValidator.getManifestDetails): Promise<OrderPlatformModel.ManifestDetails>;
+    getManifestDetails({ manifestId, status, toDate, fromDate, searchType, searchValue, dpIds, pageNo, pageSize, }?: OrderPlatformValidator.GetManifestDetailsParam): Promise<OrderPlatformModel.ManifestDetails>;
     /**
-     * @param {OrderPlatformValidator.getManifestShipments} arg - Arg object
+     * @param {OrderPlatformValidator.GetManifestShipmentsParam} arg - Arg object
      * @returns {Promise<OrderPlatformModel.ManifestShipmentListing>} - Success response
      * @name getManifestShipments
      * @summary:
      * @description:
      */
-    getManifestShipments({ dpIds, stores, toDate, fromDate, dpName, salesChannels, searchType, searchValue, pageNo, pageSize, }?: OrderPlatformValidator.getManifestShipments): Promise<OrderPlatformModel.ManifestShipmentListing>;
+    getManifestShipments({ dpIds, stores, toDate, fromDate, dpName, salesChannels, searchType, searchValue, pageNo, pageSize, }?: OrderPlatformValidator.GetManifestShipmentsParam): Promise<OrderPlatformModel.ManifestShipmentListing>;
     /**
-     * @param {OrderPlatformValidator.getManifestfilters} arg - Arg object
+     * @param {OrderPlatformValidator.GetManifestfiltersParam} arg - Arg object
      * @returns {Promise<OrderPlatformModel.ManifestFiltersResponse>} - Success response
      * @name getManifestfilters
      * @summary:
      * @description:
      */
-    getManifestfilters({ view }?: OrderPlatformValidator.getManifestfilters): Promise<OrderPlatformModel.ManifestFiltersResponse>;
+    getManifestfilters({ view }?: OrderPlatformValidator.GetManifestfiltersParam): Promise<OrderPlatformModel.ManifestFiltersResponse>;
     /**
-     * @param {OrderPlatformValidator.getManifests} arg - Arg object
+     * @param {OrderPlatformValidator.GetManifestsParam} arg - Arg object
      * @returns {Promise<OrderPlatformModel.ManifestList>} - Success response
      * @name getManifests
      * @summary:
      * @description:
      */
-    getManifests({ status, toDate, fromDate, searchValue, dpIds, pageNo, pageSize, }?: OrderPlatformValidator.getManifests): Promise<OrderPlatformModel.ManifestList>;
+    getManifests({ status, toDate, fromDate, searchValue, dpIds, pageNo, pageSize, }?: OrderPlatformValidator.GetManifestsParam): Promise<OrderPlatformModel.ManifestList>;
     /**
-     * @param {OrderPlatformValidator.getMetricCount} arg - Arg object
-     * @returns {Promise<OrderPlatformModel.MetricCountResponse>} - Success response
-     * @name getMetricCount
-     * @summary:
-     * @description:
-     */
-    getMetricCount({ fromDate, toDate }?: OrderPlatformValidator.getMetricCount): Promise<OrderPlatformModel.MetricCountResponse>;
-    /**
-     * @param {OrderPlatformValidator.getOrderById} arg - Arg object
+     * @param {OrderPlatformValidator.GetOrderByIdParam} arg - Arg object
      * @returns {Promise<OrderPlatformModel.OrderDetailsResponse>} - Success response
      * @name getOrderById
      * @summary:
      * @description:
      */
-    getOrderById({ orderId }?: OrderPlatformValidator.getOrderById): Promise<OrderPlatformModel.OrderDetailsResponse>;
+    getOrderById({ orderId }?: OrderPlatformValidator.GetOrderByIdParam): Promise<OrderPlatformModel.OrderDetailsResponse>;
     /**
-     * @param {OrderPlatformValidator.getOrders} arg - Arg object
+     * @param {OrderPlatformValidator.GetOrdersParam} arg - Arg object
      * @returns {Promise<OrderPlatformModel.OrderListingResponse>} - Success response
      * @name getOrders
      * @summary:
      * @description:
      */
-    getOrders({ lane, searchType, bagStatus, timeToDispatch, paymentMethods, tags, searchValue, fromDate, toDate, dpIds, stores, salesChannels, pageNo, pageSize, isPrioritySort, customMeta, myOrders, }?: OrderPlatformValidator.getOrders): Promise<OrderPlatformModel.OrderListingResponse>;
+    getOrders({ lane, searchType, bagStatus, timeToDispatch, paymentMethods, tags, searchValue, fromDate, toDate, dpIds, stores, salesChannels, pageNo, pageSize, isPrioritySort, customMeta, myOrders, }?: OrderPlatformValidator.GetOrdersParam): Promise<OrderPlatformModel.OrderListingResponse>;
     /**
-     * @param {OrderPlatformValidator.getReportsShipmentListing} arg - Arg object
-     * @returns {Promise<OrderPlatformModel.OmsReports>} - Success response
-     * @name getReportsShipmentListing
-     * @summary:
-     * @description:
-     */
-    getReportsShipmentListing({ pageNo, pageSize }?: OrderPlatformValidator.getReportsShipmentListing): Promise<OrderPlatformModel.OmsReports>;
-    /**
-     * @param {OrderPlatformValidator.getRoleBasedActions} arg - Arg object
+     * @param {OrderPlatformValidator.GetRoleBasedActionsParam} arg - Arg object
      * @returns {Promise<OrderPlatformModel.GetActionsResponse>} - Success response
      * @name getRoleBasedActions
      * @summary:
@@ -217,32 +185,32 @@ declare class Order {
      */
     getRoleBasedActions({}?: any): Promise<OrderPlatformModel.GetActionsResponse>;
     /**
-     * @param {OrderPlatformValidator.getShipmentById} arg - Arg object
+     * @param {OrderPlatformValidator.GetShipmentByIdParam} arg - Arg object
      * @returns {Promise<OrderPlatformModel.ShipmentInfoResponse>} - Success response
      * @name getShipmentById
      * @summary:
      * @description:
      */
-    getShipmentById({ channelShipmentId, shipmentId }?: OrderPlatformValidator.getShipmentById): Promise<OrderPlatformModel.ShipmentInfoResponse>;
+    getShipmentById({ channelShipmentId, shipmentId }?: OrderPlatformValidator.GetShipmentByIdParam): Promise<OrderPlatformModel.ShipmentInfoResponse>;
     /**
-     * @param {OrderPlatformValidator.getShipmentHistory} arg - Arg object
+     * @param {OrderPlatformValidator.GetShipmentHistoryParam} arg - Arg object
      * @returns {Promise<OrderPlatformModel.ShipmentHistoryResponse>} - Success response
      * @name getShipmentHistory
      * @summary:
      * @description:
      */
-    getShipmentHistory({ shipmentId, bagId }?: OrderPlatformValidator.getShipmentHistory): Promise<OrderPlatformModel.ShipmentHistoryResponse>;
+    getShipmentHistory({ shipmentId, bagId }?: OrderPlatformValidator.GetShipmentHistoryParam): Promise<OrderPlatformModel.ShipmentHistoryResponse>;
     /**
-     * @param {OrderPlatformValidator.getShipmentReasons} arg - Arg object
+     * @param {OrderPlatformValidator.GetShipmentReasonsParam} arg - Arg object
      * @returns {Promise<OrderPlatformModel.PlatformShipmentReasonsResponse>} -
      *   Success response
      * @name getShipmentReasons
      * @summary: Get reasons behind full or partial cancellation of a shipment
      * @description: Use this API to retrieve the issues that led to the cancellation of bags within a shipment.
      */
-    getShipmentReasons({ shipmentId, bagId, state }?: OrderPlatformValidator.getShipmentReasons): Promise<OrderPlatformModel.PlatformShipmentReasonsResponse>;
+    getShipmentReasons({ shipmentId, bagId, state }?: OrderPlatformValidator.GetShipmentReasonsParam): Promise<OrderPlatformModel.PlatformShipmentReasonsResponse>;
     /**
-     * @param {OrderPlatformValidator.getShipments} arg - Arg object
+     * @param {OrderPlatformValidator.GetShipmentsParam} arg - Arg object
      * @returns {Promise<OrderPlatformModel.ShipmentInternalPlatformViewResponse>}
      *   - Success response
      *
@@ -250,9 +218,9 @@ declare class Order {
      * @summary:
      * @description:
      */
-    getShipments({ lane, bagStatus, statusOverrideLane, timeToDispatch, searchType, searchValue, fromDate, toDate, dpIds, stores, salesChannels, pageNo, pageSize, fetchActiveShipment, excludeLockedShipments, paymentMethods, channelShipmentId, channelOrderId, customMeta, orderingChannel, companyAffiliateTag, myOrders, }?: OrderPlatformValidator.getShipments): Promise<OrderPlatformModel.ShipmentInternalPlatformViewResponse>;
+    getShipments({ lane, bagStatus, statusOverrideLane, timeToDispatch, searchType, searchValue, fromDate, toDate, dpIds, stores, salesChannels, pageNo, pageSize, fetchActiveShipment, excludeLockedShipments, paymentMethods, channelShipmentId, channelOrderId, customMeta, orderingChannel, companyAffiliateTag, myOrders, }?: OrderPlatformValidator.GetShipmentsParam): Promise<OrderPlatformModel.ShipmentInternalPlatformViewResponse>;
     /**
-     * @param {OrderPlatformValidator.getStateTransitionMap} arg - Arg object
+     * @param {OrderPlatformValidator.GetStateTransitionMapParam} arg - Arg object
      * @returns {Promise<OrderPlatformModel.BagStateTransitionMap>} - Success response
      * @name getStateTransitionMap
      * @summary:
@@ -260,81 +228,81 @@ declare class Order {
      */
     getStateTransitionMap({}?: any): Promise<OrderPlatformModel.BagStateTransitionMap>;
     /**
-     * @param {OrderPlatformValidator.getfilters} arg - Arg object
+     * @param {OrderPlatformValidator.GetfiltersParam} arg - Arg object
      * @returns {Promise<OrderPlatformModel.FiltersResponse>} - Success response
      * @name getfilters
      * @summary:
      * @description:
      */
-    getfilters({ view, groupEntity }?: OrderPlatformValidator.getfilters): Promise<OrderPlatformModel.FiltersResponse>;
+    getfilters({ view, groupEntity }?: OrderPlatformValidator.GetfiltersParam): Promise<OrderPlatformModel.FiltersResponse>;
     /**
-     * @param {OrderPlatformValidator.invalidateShipmentCache} arg - Arg object
+     * @param {OrderPlatformValidator.InvalidateShipmentCacheParam} arg - Arg object
      * @returns {Promise<OrderPlatformModel.InvalidateShipmentCacheResponse>} -
      *   Success response
      * @name invalidateShipmentCache
      * @summary:
      * @description: Invalidate shipment Cache
      */
-    invalidateShipmentCache({ body }?: OrderPlatformValidator.invalidateShipmentCache): Promise<OrderPlatformModel.InvalidateShipmentCacheResponse>;
+    invalidateShipmentCache({ body }?: OrderPlatformValidator.InvalidateShipmentCacheParam): Promise<OrderPlatformModel.InvalidateShipmentCacheResponse>;
     /**
-     * @param {OrderPlatformValidator.orderUpdate} arg - Arg object
+     * @param {OrderPlatformValidator.OrderUpdateParam} arg - Arg object
      * @returns {Promise<OrderPlatformModel.ResponseDetail>} - Success response
      * @name orderUpdate
      * @summary:
      * @description:
      */
-    orderUpdate({ body }?: OrderPlatformValidator.orderUpdate): Promise<OrderPlatformModel.ResponseDetail>;
+    orderUpdate({ body }?: OrderPlatformValidator.OrderUpdateParam): Promise<OrderPlatformModel.ResponseDetail>;
     /**
-     * @param {OrderPlatformValidator.postShipmentHistory} arg - Arg object
+     * @param {OrderPlatformValidator.PostShipmentHistoryParam} arg - Arg object
      * @returns {Promise<OrderPlatformModel.ShipmentHistoryResponse>} - Success response
      * @name postShipmentHistory
      * @summary:
      * @description:
      */
-    postShipmentHistory({ body }?: OrderPlatformValidator.postShipmentHistory): Promise<OrderPlatformModel.ShipmentHistoryResponse>;
+    postShipmentHistory({ body }?: OrderPlatformValidator.PostShipmentHistoryParam): Promise<OrderPlatformModel.ShipmentHistoryResponse>;
     /**
-     * @param {OrderPlatformValidator.processManifest} arg - Arg object
+     * @param {OrderPlatformValidator.ProcessManifestParam} arg - Arg object
      * @returns {Promise<OrderPlatformModel.ProcessManifestItemResponse>} -
      *   Success response
      * @name processManifest
      * @summary:
      * @description:
      */
-    processManifest({ body }?: OrderPlatformValidator.processManifest): Promise<OrderPlatformModel.ProcessManifestItemResponse>;
+    processManifest({ body }?: OrderPlatformValidator.ProcessManifestParam): Promise<OrderPlatformModel.ProcessManifestItemResponse>;
     /**
-     * @param {OrderPlatformValidator.reassignLocation} arg - Arg object
+     * @param {OrderPlatformValidator.ReassignLocationParam} arg - Arg object
      * @returns {Promise<OrderPlatformModel.StoreReassignResponse>} - Success response
      * @name reassignLocation
      * @summary:
      * @description: Reassign Location
      */
-    reassignLocation({ body }?: OrderPlatformValidator.reassignLocation): Promise<OrderPlatformModel.StoreReassignResponse>;
+    reassignLocation({ body }?: OrderPlatformValidator.ReassignLocationParam): Promise<OrderPlatformModel.StoreReassignResponse>;
     /**
-     * @param {OrderPlatformValidator.sendSmsNinja} arg - Arg object
+     * @param {OrderPlatformValidator.SendSmsNinjaParam} arg - Arg object
      * @returns {Promise<OrderPlatformModel.OrderStatusResult>} - Success response
      * @name sendSmsNinja
      * @summary:
      * @description:
      */
-    sendSmsNinja({ body }?: OrderPlatformValidator.sendSmsNinja): Promise<OrderPlatformModel.OrderStatusResult>;
+    sendSmsNinja({ body }?: OrderPlatformValidator.SendSmsNinjaParam): Promise<OrderPlatformModel.OrderStatusResult>;
     /**
-     * @param {OrderPlatformValidator.sendUserMobileOTP} arg - Arg object
+     * @param {OrderPlatformValidator.SendUserMobileOTPParam} arg - Arg object
      * @returns {Promise<OrderPlatformModel.SendUserMobileOtpResponse>} - Success response
      * @name sendUserMobileOTP
      * @summary:
      * @description:
      */
-    sendUserMobileOTP({ body }?: OrderPlatformValidator.sendUserMobileOTP): Promise<OrderPlatformModel.SendUserMobileOtpResponse>;
+    sendUserMobileOTP({ body }?: OrderPlatformValidator.SendUserMobileOTPParam): Promise<OrderPlatformModel.SendUserMobileOtpResponse>;
     /**
-     * @param {OrderPlatformValidator.updateAddress} arg - Arg object
+     * @param {OrderPlatformValidator.UpdateAddressParam} arg - Arg object
      * @returns {Promise<OrderPlatformModel.BaseResponse>} - Success response
      * @name updateAddress
      * @summary:
      * @description:
      */
-    updateAddress({ shipmentId, addressCategory, name, address, addressType, pincode, phone, email, landmark, city, state, country, }?: OrderPlatformValidator.updateAddress): Promise<OrderPlatformModel.BaseResponse>;
+    updateAddress({ shipmentId, addressCategory, name, address, addressType, pincode, phone, email, landmark, city, state, country, }?: OrderPlatformValidator.UpdateAddressParam): Promise<OrderPlatformModel.BaseResponse>;
     /**
-     * @param {OrderPlatformValidator.updatePackagingDimensions} arg - Arg object
+     * @param {OrderPlatformValidator.UpdatePackagingDimensionsParam} arg - Arg object
      * @returns {Promise<OrderPlatformModel.UpdatePackagingDimensionsResponse>}
      *   - Success response
      *
@@ -342,18 +310,18 @@ declare class Order {
      * @summary:
      * @description:
      */
-    updatePackagingDimensions({ body }?: OrderPlatformValidator.updatePackagingDimensions): Promise<OrderPlatformModel.UpdatePackagingDimensionsResponse>;
+    updatePackagingDimensions({ body }?: OrderPlatformValidator.UpdatePackagingDimensionsParam): Promise<OrderPlatformModel.UpdatePackagingDimensionsResponse>;
     /**
-     * @param {OrderPlatformValidator.updateShipmentLock} arg - Arg object
+     * @param {OrderPlatformValidator.UpdateShipmentLockParam} arg - Arg object
      * @returns {Promise<OrderPlatformModel.UpdateShipmentLockResponse>} -
      *   Success response
      * @name updateShipmentLock
      * @summary:
      * @description: update shipment/bag lock and check status
      */
-    updateShipmentLock({ body }?: OrderPlatformValidator.updateShipmentLock): Promise<OrderPlatformModel.UpdateShipmentLockResponse>;
+    updateShipmentLock({ body }?: OrderPlatformValidator.UpdateShipmentLockParam): Promise<OrderPlatformModel.UpdateShipmentLockResponse>;
     /**
-     * @param {OrderPlatformValidator.updateShipmentStatus} arg - Arg object
+     * @param {OrderPlatformValidator.UpdateShipmentStatusParam} arg - Arg object
      * @returns {Promise<OrderPlatformModel.UpdateShipmentStatusResponseBody>}
      *   - Success response
      *
@@ -361,31 +329,23 @@ declare class Order {
      * @summary:
      * @description: This API is for Shipment State transition or Shipment data update or both below example is for partial state transition with data update
      */
-    updateShipmentStatus({ body }?: OrderPlatformValidator.updateShipmentStatus): Promise<OrderPlatformModel.UpdateShipmentStatusResponseBody>;
+    updateShipmentStatus({ body }?: OrderPlatformValidator.UpdateShipmentStatusParam): Promise<OrderPlatformModel.UpdateShipmentStatusResponseBody>;
     /**
-     * @param {OrderPlatformValidator.uploadConsent} arg - Arg object
+     * @param {OrderPlatformValidator.UploadConsentParam} arg - Arg object
      * @returns {Promise<OrderPlatformModel.SuccessResponse>} - Success response
      * @name uploadConsent
      * @summary:
      * @description:
      */
-    uploadConsent({ body }?: OrderPlatformValidator.uploadConsent): Promise<OrderPlatformModel.SuccessResponse>;
+    uploadConsent({ body }?: OrderPlatformValidator.UploadConsentParam): Promise<OrderPlatformModel.SuccessResponse>;
     /**
-     * @param {OrderPlatformValidator.upsertJioCode} arg - Arg object
-     * @returns {Promise<OrderPlatformModel.JioCodeUpsertResponse>} - Success response
-     * @name upsertJioCode
-     * @summary:
-     * @description:
-     */
-    upsertJioCode({ body }?: OrderPlatformValidator.upsertJioCode): Promise<OrderPlatformModel.JioCodeUpsertResponse>;
-    /**
-     * @param {OrderPlatformValidator.verifyMobileOTP} arg - Arg object
+     * @param {OrderPlatformValidator.VerifyMobileOTPParam} arg - Arg object
      * @returns {Promise<OrderPlatformModel.VerifyOtpResponse>} - Success response
      * @name verifyMobileOTP
      * @summary:
      * @description:
      */
-    verifyMobileOTP({ body }?: OrderPlatformValidator.verifyMobileOTP): Promise<OrderPlatformModel.VerifyOtpResponse>;
+    verifyMobileOTP({ body }?: OrderPlatformValidator.VerifyMobileOTPParam): Promise<OrderPlatformModel.VerifyOtpResponse>;
 }
 import OrderPlatformValidator = require("./OrderPlatformValidator");
 import OrderPlatformModel = require("./OrderPlatformModel");

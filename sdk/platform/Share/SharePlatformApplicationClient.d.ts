@@ -4,37 +4,39 @@ declare class Share {
     config: any;
     applicationId: any;
     /**
-     * @param {SharePlatformApplicationValidator.createShortLink} arg - Arg object
+     * @param {SharePlatformApplicationValidator.CreateShortLinkParam} arg - Arg object
      * @returns {Promise<SharePlatformModel.ShortLinkRes>} - Success response
      * @name createShortLink
      * @summary: Create short link
      * @description: Create short link
      */
-    createShortLink({ body }?: SharePlatformApplicationValidator.createShortLink): Promise<SharePlatformModel.ShortLinkRes>;
+    createShortLink({ body }?: SharePlatformApplicationValidator.CreateShortLinkParam): Promise<SharePlatformModel.ShortLinkRes>;
     /**
-     * @param {SharePlatformApplicationValidator.getShortLinkByHash} arg - Arg object
+     * @param {SharePlatformApplicationValidator.GetShortLinkByHashParam} arg - Arg object
      * @returns {Promise<SharePlatformModel.ShortLinkRes>} - Success response
      * @name getShortLinkByHash
      * @summary: Get short link by hash
      * @description: Get short link by hash
      */
-    getShortLinkByHash({ hash }?: SharePlatformApplicationValidator.getShortLinkByHash): Promise<SharePlatformModel.ShortLinkRes>;
+    getShortLinkByHash({ hash }?: SharePlatformApplicationValidator.GetShortLinkByHashParam): Promise<SharePlatformModel.ShortLinkRes>;
     /**
-     * @param {SharePlatformApplicationValidator.getShortLinkClickStats} arg - Arg object
+     * @param {SharePlatformApplicationValidator.GetShortLinkClickStatsParam} arg
+     *   - Arg object
+     *
      * @returns {Promise<SharePlatformModel.ClickStatsResponse>} - Success response
      * @name getShortLinkClickStats
      * @summary: Get click statistics for a short link
      * @description: Retrieve click statistics for a given short link ID.
      */
-    getShortLinkClickStats({ surlId }?: SharePlatformApplicationValidator.getShortLinkClickStats): Promise<SharePlatformModel.ClickStatsResponse>;
+    getShortLinkClickStats({ surlId }?: SharePlatformApplicationValidator.GetShortLinkClickStatsParam): Promise<SharePlatformModel.ClickStatsResponse>;
     /**
-     * @param {SharePlatformApplicationValidator.getShortLinks} arg - Arg object
+     * @param {SharePlatformApplicationValidator.GetShortLinksParam} arg - Arg object
      * @returns {Promise<SharePlatformModel.ShortLinkList>} - Success response
      * @name getShortLinks
      * @summary: Get short links
      * @description: Get short links
      */
-    getShortLinks({ pageNo, pageSize, createdBy, active, q }?: SharePlatformApplicationValidator.getShortLinks): Promise<SharePlatformModel.ShortLinkList>;
+    getShortLinks({ pageNo, pageSize, createdBy, active, q }?: SharePlatformApplicationValidator.GetShortLinksParam): Promise<SharePlatformModel.ShortLinkList>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.companyId - Company Id
@@ -56,13 +58,15 @@ declare class Share {
         q?: string;
     }): Paginator<SharePlatformModel.ShortLinkList>;
     /**
-     * @param {SharePlatformApplicationValidator.updateShortLinkById} arg - Arg object
+     * @param {SharePlatformApplicationValidator.UpdateShortLinkByIdParam} arg
+     *   - Arg object
+     *
      * @returns {Promise<SharePlatformModel.ShortLinkRes>} - Success response
      * @name updateShortLinkById
      * @summary: Update short link by id
      * @description: Update short link by id
      */
-    updateShortLinkById({ id, body }?: SharePlatformApplicationValidator.updateShortLinkById): Promise<SharePlatformModel.ShortLinkRes>;
+    updateShortLinkById({ id, body }?: SharePlatformApplicationValidator.UpdateShortLinkByIdParam): Promise<SharePlatformModel.ShortLinkRes>;
 }
 import SharePlatformApplicationValidator = require("./SharePlatformApplicationValidator");
 import SharePlatformModel = require("./SharePlatformModel");

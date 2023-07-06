@@ -2,10 +2,10 @@ const Joi = require("joi");
 
 const WebhookPublicModel = require("./WebhookPublicModel");
 
-/** @typedef fetchAllWebhookEvents */
+/** @typedef FetchAllWebhookEventsParam */
 
 /**
- * @typedef queryWebhookEventDetails
+ * @typedef QueryWebhookEventDetailsParam
  * @property {WebhookPublicModel.EventConfigBase[]} body
  */
 

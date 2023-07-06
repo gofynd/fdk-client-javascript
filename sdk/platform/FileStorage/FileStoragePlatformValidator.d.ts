@@ -1,11 +1,11 @@
 export = FileStoragePlatformValidator;
 /**
- * @typedef browse
+ * @typedef BrowseParam
  * @property {string} namespace - Bucket name
  * @property {number} [pageNo] - Page no
  */
 /**
- * @typedef completeUpload
+ * @typedef CompleteUploadParam
  * @property {string} namespace - Segregation of different types of
  *   files(products, orders, logistics etc), Required for validating the data of
  *   the file being uploaded, decides where exactly the file will be stored
@@ -13,20 +13,20 @@ export = FileStoragePlatformValidator;
  * @property {FileStoragePlatformModel.StartResponse} body
  */
 /**
- * @typedef copyFiles
+ * @typedef CopyFilesParam
  * @property {boolean} [sync] - Sync
  * @property {FileStoragePlatformModel.BulkRequest} body
  */
 /**
- * @typedef getSignUrls
+ * @typedef GetSignUrlsParam
  * @property {FileStoragePlatformModel.SignUrlRequest} body
  */
 /**
- * @typedef proxy
+ * @typedef ProxyParam
  * @property {string} url - Url
  */
 /**
- * @typedef startUpload
+ * @typedef StartUploadParam
  * @property {string} namespace - Segregation of different types of
  *   files(products, orders, logistics etc), Required for validating the data of
  *   the file being uploaded, decides where exactly the file will be stored
@@ -34,13 +34,23 @@ export = FileStoragePlatformValidator;
  * @property {FileStoragePlatformModel.StartRequest} body
  */
 declare class FileStoragePlatformValidator {
+    /** @returns {browse} */
+    static browse(): browse;
+    /** @returns {completeUpload} */
+    static completeUpload(): completeUpload;
+    /** @returns {copyFiles} */
+    static copyFiles(): copyFiles;
+    /** @returns {getSignUrls} */
+    static getSignUrls(): getSignUrls;
+    /** @returns {proxy} */
+    static proxy(): proxy;
+    /** @returns {startUpload} */
+    static startUpload(): startUpload;
 }
 declare namespace FileStoragePlatformValidator {
-    export { browse, completeUpload, copyFiles, getSignUrls, proxy, startUpload };
+    export { BrowseParam, CompleteUploadParam, CopyFilesParam, GetSignUrlsParam, ProxyParam, StartUploadParam };
 }
-/** @returns {browse} */
-declare function browse(): browse;
-type browse = {
+type BrowseParam = {
     /**
      * - Bucket name
      */
@@ -50,9 +60,7 @@ type browse = {
      */
     pageNo?: number;
 };
-/** @returns {completeUpload} */
-declare function completeUpload(): completeUpload;
-type completeUpload = {
+type CompleteUploadParam = {
     /**
      * - Segregation of different types of
      * files(products, orders, logistics etc), Required for validating the data of
@@ -62,31 +70,23 @@ type completeUpload = {
     namespace: string;
     body: FileStoragePlatformModel.StartResponse;
 };
-/** @returns {copyFiles} */
-declare function copyFiles(): copyFiles;
-type copyFiles = {
+type CopyFilesParam = {
     /**
      * - Sync
      */
     sync?: boolean;
     body: FileStoragePlatformModel.BulkRequest;
 };
-/** @returns {getSignUrls} */
-declare function getSignUrls(): getSignUrls;
-type getSignUrls = {
+type GetSignUrlsParam = {
     body: FileStoragePlatformModel.SignUrlRequest;
 };
-/** @returns {proxy} */
-declare function proxy(): proxy;
-type proxy = {
+type ProxyParam = {
     /**
      * - Url
      */
     url: string;
 };
-/** @returns {startUpload} */
-declare function startUpload(): startUpload;
-type startUpload = {
+type StartUploadParam = {
     /**
      * - Segregation of different types of
      * files(products, orders, logistics etc), Required for validating the data of

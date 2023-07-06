@@ -3,33 +3,33 @@ const Joi = require("joi");
 const RewardsApplicationModel = require("./RewardsApplicationModel");
 
 /**
- * @typedef catalogueOrder
+ * @typedef CatalogueOrderParam
  * @property {RewardsApplicationModel.CatalogueOrderRequest} body
  */
 
 /**
- * @typedef getOfferByName
+ * @typedef GetOfferByNameParam
  * @property {string} name - The name given to the offer.
  */
 
 /**
- * @typedef getOrderDiscount
+ * @typedef GetOrderDiscountParam
  * @property {RewardsApplicationModel.OrderDiscountRequest} body
  */
 
-/** @typedef getUserPoints */
+/** @typedef GetUserPointsParam */
 
 /**
- * @typedef getUserPointsHistory
+ * @typedef GetUserPointsHistoryParam
  * @property {string} [pageId] - PageID is the ID of the requested page. For
  *   first request it should be kept empty.
  * @property {number} [pageSize] - The number of items to retrieve in each page.
  */
 
-/** @typedef getUserReferralDetails */
+/** @typedef GetUserReferralDetailsParam */
 
 /**
- * @typedef redeemReferralCode
+ * @typedef RedeemReferralCodeParam
  * @property {RewardsApplicationModel.RedeemReferralCodeRequest} body
  */
 

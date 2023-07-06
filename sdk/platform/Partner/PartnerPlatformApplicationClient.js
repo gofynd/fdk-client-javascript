@@ -13,7 +13,7 @@ class Partner {
   }
 
   /**
-   * @param {PartnerPlatformApplicationValidator.addProxyPath} arg - Arg object
+   * @param {PartnerPlatformApplicationValidator.AddProxyPathParam} arg - Arg object
    * @returns {Promise<PartnerPlatformModel.AddProxyResponse>} - Success response
    * @name addProxyPath
    * @summary: Create proxy URL for the external URL
@@ -78,7 +78,7 @@ class Partner {
   }
 
   /**
-   * @param {PartnerPlatformApplicationValidator.removeProxyPath} arg - Arg object
+   * @param {PartnerPlatformApplicationValidator.RemoveProxyPathParam} arg - Arg object
    * @returns {Promise<PartnerPlatformModel.RemoveProxyResponse>} - Success response
    * @name removeProxyPath
    * @summary: Remove proxy URL for the external URL

@@ -1,61 +1,65 @@
 export = PaymentPlatformApplicationValidator;
 /**
- * @typedef addEdcDevice
+ * @typedef AddEdcDeviceParam
  * @property {string} terminalUniqueIdentifier - Terminal unique identifier
  * @property {PaymentPlatformModel.EdcUpdateRequest} body
  */
 /**
- * @typedef addRefundBankAccountUsingOTP
+ * @typedef AddRefundBankAccountUsingOTPParam
  * @property {PaymentPlatformModel.AddBeneficiaryDetailsOTPRequest} body
  */
 /**
- * @typedef cancelPaymentLink
+ * @typedef CancelPaymentLinkParam
  * @property {PaymentPlatformModel.CancelOrResendPaymentLinkRequest} body
  */
 /**
- * @typedef checkAndUpdatePaymentStatus
+ * @typedef CheckAndUpdatePaymentStatusParam
  * @property {PaymentPlatformModel.PaymentStatusUpdateRequest} body
  */
 /**
- * @typedef confirmPayment
+ * @typedef ConfirmPaymentParam
  * @property {PaymentPlatformModel.PaymentConfirmationRequest} body
  */
 /**
- * @typedef createPaymentLink
+ * @typedef CreatePaymentLinkParam
  * @property {PaymentPlatformModel.CreatePaymentLinkRequest} body
  */
-/** @typedef edcAggregatorsAndModelList */
+/** @typedef EdcAggregatorsAndModelListParam */
 /**
- * @typedef edcDeviceList
+ * @typedef EdcDeviceListParam
  * @property {number} [pageNo]
  * @property {number} [pageSize]
  * @property {boolean} [isActive]
  * @property {number} [storeId]
  * @property {string} [deviceTag]
  */
-/** @typedef edcDeviceStats */
+/** @typedef EdcDeviceStatsParam */
 /**
- * @typedef getBankAccountDetailsOpenAPI
+ * @typedef ExtensionPaymentUpdateParam
+ * @property {PaymentPlatformModel.ExtensionPaymentUpdateRequestSerializer} body
+ */
+/**
+ * @typedef GetBankAccountDetailsOpenAPIParam
  * @property {string} orderId
  * @property {string} [requestHash]
  */
-/** @typedef getBrandPaymentGatewayConfig */
+/** @typedef GetBrandPaymentGatewayConfigParam */
 /**
- * @typedef getEdcDevice
+ * @typedef GetEdcDeviceParam
  * @property {string} terminalUniqueIdentifier - Terminal unique identifier
  */
-/** @typedef getPaymentCodeOption */
+/** @typedef GetPaymentCodeOptionParam */
 /**
- * @typedef getPaymentLink
+ * @typedef GetPaymentLinkParam
  * @property {string} [paymentLinkId]
  */
 /**
- * @typedef getPaymentModeRoutes
+ * @typedef GetPaymentModeRoutesParam
  * @property {boolean} refresh
  * @property {string} requestType
  */
 /**
- * @typedef getPosPaymentModeRoutes
+ * @typedef GetPosPaymentModeRoutesParam
  * @property {number} amount - Payable amount.
  * @property {string} cartId - Identifier of the cart.
  * @property {string} pincode - The PIN Code of the destination address, e.g. 400059
@@ -70,160 +74,197 @@ export = PaymentPlatformApplicationValidator;
  *   anonymous user.
  */
 /**
- * @typedef getUserBeneficiaries
+ * @typedef GetUserBeneficiariesParam
  * @property {string} orderId
  */
 /**
- * @typedef getUserCODlimitRoutes
+ * @typedef GetUserCODlimitRoutesParam
  * @property {string} merchantUserId
  * @property {string} mobileNo
  */
 /**
- * @typedef getUserOrderBeneficiaries
+ * @typedef GetUserOrderBeneficiariesParam
  * @property {string} orderId
  */
 /**
- * @typedef initialisePayment
+ * @typedef InitialisePaymentParam
  * @property {PaymentPlatformModel.PaymentInitializationRequest} body
  */
 /**
- * @typedef merchantOnBoarding
+ * @typedef MerchantOnBoardingParam
  * @property {PaymentPlatformModel.MerchantOnBoardingRequest} body
  */
 /**
- * @typedef oauthGetUrl
+ * @typedef OauthGetUrlParam
  * @property {string} aggregator - Aggregator
  * @property {string} [successRedirectUrl]
  * @property {string} [failureRedirectUrl]
  */
 /**
- * @typedef paymentStatusBulk
+ * @typedef PaymentStatusBulkParam
  * @property {PaymentPlatformModel.PaymentStatusBulkHandlerRequest} body
  */
 /**
- * @typedef pollingPaymentLink
+ * @typedef PollingPaymentLinkParam
  * @property {string} [paymentLinkId]
  */
 /**
- * @typedef repaymentDetails
+ * @typedef RepaymentDetailsParam
  * @property {PaymentPlatformModel.RepaymentDetailsSerialiserPayAll} body
  */
 /**
- * @typedef resendOrCancelPayment
+ * @typedef ResendOrCancelPaymentParam
  * @property {PaymentPlatformModel.ResendOrCancelPaymentRequest} body
  */
 /**
- * @typedef resendPaymentLink
+ * @typedef ResendPaymentLinkParam
  * @property {PaymentPlatformModel.CancelOrResendPaymentLinkRequest} body
  */
 /**
- * @typedef revokeOauthToken
+ * @typedef RevokeOauthTokenParam
  * @property {string} aggregator - Aggregator_slug
  */
 /**
- * @typedef saveBrandPaymentGatewayConfig
+ * @typedef SaveBrandPaymentGatewayConfigParam
  * @property {PaymentPlatformModel.PaymentGatewayConfigRequest} body
  */
 /**
- * @typedef setUserCODlimitRoutes
+ * @typedef SetUserCODlimitRoutesParam
  * @property {PaymentPlatformModel.SetCODForUserRequest} body
  */
 /**
- * @typedef updateEdcDevice
+ * @typedef UpdateEdcDeviceParam
  * @property {PaymentPlatformModel.EdcAddRequest} body
  */
 /**
- * @typedef verifyCustomerForPayment
+ * @typedef VerifyCustomerForPaymentParam
  * @property {PaymentPlatformModel.ValidateCustomerRequest} body
  */
 declare class PaymentPlatformApplicationValidator {
+    /** @returns {addEdcDevice} */
+    static addEdcDevice(): addEdcDevice;
+    /** @returns {addRefundBankAccountUsingOTP} */
+    static addRefundBankAccountUsingOTP(): addRefundBankAccountUsingOTP;
+    /** @returns {cancelPaymentLink} */
+    static cancelPaymentLink(): cancelPaymentLink;
+    /** @returns {checkAndUpdatePaymentStatus} */
+    static checkAndUpdatePaymentStatus(): checkAndUpdatePaymentStatus;
+    /** @returns {confirmPayment} */
+    static confirmPayment(): confirmPayment;
+    /** @returns {createPaymentLink} */
+    static createPaymentLink(): createPaymentLink;
+    /** @returns {edcAggregatorsAndModelList} */
+    static edcAggregatorsAndModelList(): edcAggregatorsAndModelList;
+    /** @returns {edcDeviceList} */
+    static edcDeviceList(): edcDeviceList;
+    /** @returns {edcDeviceStats} */
+    static edcDeviceStats(): edcDeviceStats;
+    /** @returns {extensionPaymentUpdate} */
+    static extensionPaymentUpdate(): extensionPaymentUpdate;
+    /** @returns {getBankAccountDetailsOpenAPI} */
+    static getBankAccountDetailsOpenAPI(): getBankAccountDetailsOpenAPI;
+    /** @returns {getBrandPaymentGatewayConfig} */
+    static getBrandPaymentGatewayConfig(): getBrandPaymentGatewayConfig;
+    /** @returns {getEdcDevice} */
+    static getEdcDevice(): getEdcDevice;
+    /** @returns {getPaymentCodeOption} */
+    static getPaymentCodeOption(): getPaymentCodeOption;
+    /** @returns {getPaymentLink} */
+    static getPaymentLink(): getPaymentLink;
+    /** @returns {getPaymentModeRoutes} */
+    static getPaymentModeRoutes(): getPaymentModeRoutes;
+    /** @returns {getPosPaymentModeRoutes} */
+    static getPosPaymentModeRoutes(): getPosPaymentModeRoutes;
+    /** @returns {getUserBeneficiaries} */
+    static getUserBeneficiaries(): getUserBeneficiaries;
+    /** @returns {getUserCODlimitRoutes} */
+    static getUserCODlimitRoutes(): getUserCODlimitRoutes;
+    /** @returns {getUserOrderBeneficiaries} */
+    static getUserOrderBeneficiaries(): getUserOrderBeneficiaries;
+    /** @returns {initialisePayment} */
+    static initialisePayment(): initialisePayment;
+    /** @returns {merchantOnBoarding} */
+    static merchantOnBoarding(): merchantOnBoarding;
+    /** @returns {oauthGetUrl} */
+    static oauthGetUrl(): oauthGetUrl;
+    /** @returns {paymentStatusBulk} */
+    static paymentStatusBulk(): paymentStatusBulk;
+    /** @returns {pollingPaymentLink} */
+    static pollingPaymentLink(): pollingPaymentLink;
+    /** @returns {repaymentDetails} */
+    static repaymentDetails(): repaymentDetails;
+    /** @returns {resendOrCancelPayment} */
+    static resendOrCancelPayment(): resendOrCancelPayment;
+    /** @returns {resendPaymentLink} */
+    static resendPaymentLink(): resendPaymentLink;
+    /** @returns {revokeOauthToken} */
+    static revokeOauthToken(): revokeOauthToken;
+    /** @returns {saveBrandPaymentGatewayConfig} */
+    static saveBrandPaymentGatewayConfig(): saveBrandPaymentGatewayConfig;
+    /** @returns {setUserCODlimitRoutes} */
+    static setUserCODlimitRoutes(): setUserCODlimitRoutes;
+    /** @returns {updateEdcDevice} */
+    static updateEdcDevice(): updateEdcDevice;
+    /** @returns {verifyCustomerForPayment} */
+    static verifyCustomerForPayment(): verifyCustomerForPayment;
 }
 declare namespace PaymentPlatformApplicationValidator {
-    export { addEdcDevice, addRefundBankAccountUsingOTP, cancelPaymentLink, checkAndUpdatePaymentStatus, confirmPayment, createPaymentLink, edcAggregatorsAndModelList, edcDeviceList, edcDeviceStats, getBankAccountDetailsOpenAPI, getBrandPaymentGatewayConfig, getEdcDevice, getPaymentCodeOption, getPaymentLink, getPaymentModeRoutes, getPosPaymentModeRoutes, getUserBeneficiaries, getUserCODlimitRoutes, getUserOrderBeneficiaries, initialisePayment, merchantOnBoarding, oauthGetUrl, paymentStatusBulk, pollingPaymentLink, repaymentDetails, resendOrCancelPayment, resendPaymentLink, revokeOauthToken, saveBrandPaymentGatewayConfig, setUserCODlimitRoutes, updateEdcDevice, verifyCustomerForPayment };
+    export { AddEdcDeviceParam, AddRefundBankAccountUsingOTPParam, CancelPaymentLinkParam, CheckAndUpdatePaymentStatusParam, ConfirmPaymentParam, CreatePaymentLinkParam, EdcAggregatorsAndModelListParam, EdcDeviceListParam, EdcDeviceStatsParam, ExtensionPaymentUpdateParam, GetBankAccountDetailsOpenAPIParam, GetBrandPaymentGatewayConfigParam, GetEdcDeviceParam, GetPaymentCodeOptionParam, GetPaymentLinkParam, GetPaymentModeRoutesParam, GetPosPaymentModeRoutesParam, GetUserBeneficiariesParam, GetUserCODlimitRoutesParam, GetUserOrderBeneficiariesParam, InitialisePaymentParam, MerchantOnBoardingParam, OauthGetUrlParam, PaymentStatusBulkParam, PollingPaymentLinkParam, RepaymentDetailsParam, ResendOrCancelPaymentParam, ResendPaymentLinkParam, RevokeOauthTokenParam, SaveBrandPaymentGatewayConfigParam, SetUserCODlimitRoutesParam, UpdateEdcDeviceParam, VerifyCustomerForPaymentParam };
 }
-/** @returns {addEdcDevice} */
-declare function addEdcDevice(): addEdcDevice;
-type addEdcDevice = {
+type AddEdcDeviceParam = {
     /**
      * - Terminal unique identifier
      */
     terminalUniqueIdentifier: string;
     body: PaymentPlatformModel.EdcUpdateRequest;
 };
-/** @returns {addRefundBankAccountUsingOTP} */
-declare function addRefundBankAccountUsingOTP(): addRefundBankAccountUsingOTP;
-type addRefundBankAccountUsingOTP = {
+type AddRefundBankAccountUsingOTPParam = {
     body: PaymentPlatformModel.AddBeneficiaryDetailsOTPRequest;
 };
-/** @returns {cancelPaymentLink} */
-declare function cancelPaymentLink(): cancelPaymentLink;
-type cancelPaymentLink = {
+type CancelPaymentLinkParam = {
     body: PaymentPlatformModel.CancelOrResendPaymentLinkRequest;
 };
-/** @returns {checkAndUpdatePaymentStatus} */
-declare function checkAndUpdatePaymentStatus(): checkAndUpdatePaymentStatus;
-type checkAndUpdatePaymentStatus = {
+type CheckAndUpdatePaymentStatusParam = {
     body: PaymentPlatformModel.PaymentStatusUpdateRequest;
 };
-/** @returns {confirmPayment} */
-declare function confirmPayment(): confirmPayment;
-type confirmPayment = {
+type ConfirmPaymentParam = {
     body: PaymentPlatformModel.PaymentConfirmationRequest;
 };
-/** @returns {createPaymentLink} */
-declare function createPaymentLink(): createPaymentLink;
-type createPaymentLink = {
+type CreatePaymentLinkParam = {
     body: PaymentPlatformModel.CreatePaymentLinkRequest;
 };
-/** @returns {edcAggregatorsAndModelList} */
-declare function edcAggregatorsAndModelList(): any;
-type edcAggregatorsAndModelList = any;
-/** @returns {edcDeviceList} */
-declare function edcDeviceList(): edcDeviceList;
-type edcDeviceList = {
+type EdcAggregatorsAndModelListParam = any;
+type EdcDeviceListParam = {
     pageNo?: number;
     pageSize?: number;
     isActive?: boolean;
     storeId?: number;
     deviceTag?: string;
 };
-/** @returns {edcDeviceStats} */
-declare function edcDeviceStats(): any;
-type edcDeviceStats = any;
-/** @returns {getBankAccountDetailsOpenAPI} */
-declare function getBankAccountDetailsOpenAPI(): getBankAccountDetailsOpenAPI;
-type getBankAccountDetailsOpenAPI = {
+type EdcDeviceStatsParam = any;
+type ExtensionPaymentUpdateParam = {
+    body: PaymentPlatformModel.ExtensionPaymentUpdateRequestSerializer;
+};
+type GetBankAccountDetailsOpenAPIParam = {
     orderId: string;
     requestHash?: string;
 };
-/** @returns {getBrandPaymentGatewayConfig} */
-declare function getBrandPaymentGatewayConfig(): any;
-type getBrandPaymentGatewayConfig = any;
-/** @returns {getEdcDevice} */
-declare function getEdcDevice(): getEdcDevice;
-type getEdcDevice = {
+type GetBrandPaymentGatewayConfigParam = any;
+type GetEdcDeviceParam = {
     /**
      * - Terminal unique identifier
      */
     terminalUniqueIdentifier: string;
 };
-/** @returns {getPaymentCodeOption} */
-declare function getPaymentCodeOption(): any;
-type getPaymentCodeOption = any;
-/** @returns {getPaymentLink} */
-declare function getPaymentLink(): getPaymentLink;
-type getPaymentLink = {
+type GetPaymentCodeOptionParam = any;
+type GetPaymentLinkParam = {
     paymentLinkId?: string;
 };
-/** @returns {getPaymentModeRoutes} */
-declare function getPaymentModeRoutes(): getPaymentModeRoutes;
-type getPaymentModeRoutes = {
+type GetPaymentModeRoutesParam = {
     refresh: boolean;
     requestType: string;
 };
-/** @returns {getPosPaymentModeRoutes} */
-declare function getPosPaymentModeRoutes(): getPosPaymentModeRoutes;
-type getPosPaymentModeRoutes = {
+type GetPosPaymentModeRoutesParam = {
     /**
      * - Payable amount.
      */
@@ -261,35 +302,23 @@ type getPosPaymentModeRoutes = {
      */
     userDetails?: string;
 };
-/** @returns {getUserBeneficiaries} */
-declare function getUserBeneficiaries(): getUserBeneficiaries;
-type getUserBeneficiaries = {
+type GetUserBeneficiariesParam = {
     orderId: string;
 };
-/** @returns {getUserCODlimitRoutes} */
-declare function getUserCODlimitRoutes(): getUserCODlimitRoutes;
-type getUserCODlimitRoutes = {
+type GetUserCODlimitRoutesParam = {
     merchantUserId: string;
     mobileNo: string;
 };
-/** @returns {getUserOrderBeneficiaries} */
-declare function getUserOrderBeneficiaries(): getUserOrderBeneficiaries;
-type getUserOrderBeneficiaries = {
+type GetUserOrderBeneficiariesParam = {
     orderId: string;
 };
-/** @returns {initialisePayment} */
-declare function initialisePayment(): initialisePayment;
-type initialisePayment = {
+type InitialisePaymentParam = {
     body: PaymentPlatformModel.PaymentInitializationRequest;
 };
-/** @returns {merchantOnBoarding} */
-declare function merchantOnBoarding(): merchantOnBoarding;
-type merchantOnBoarding = {
+type MerchantOnBoardingParam = {
     body: PaymentPlatformModel.MerchantOnBoardingRequest;
 };
-/** @returns {oauthGetUrl} */
-declare function oauthGetUrl(): oauthGetUrl;
-type oauthGetUrl = {
+type OauthGetUrlParam = {
     /**
      * - Aggregator
      */
@@ -297,57 +326,37 @@ type oauthGetUrl = {
     successRedirectUrl?: string;
     failureRedirectUrl?: string;
 };
-/** @returns {paymentStatusBulk} */
-declare function paymentStatusBulk(): paymentStatusBulk;
-type paymentStatusBulk = {
+type PaymentStatusBulkParam = {
     body: PaymentPlatformModel.PaymentStatusBulkHandlerRequest;
 };
-/** @returns {pollingPaymentLink} */
-declare function pollingPaymentLink(): pollingPaymentLink;
-type pollingPaymentLink = {
+type PollingPaymentLinkParam = {
     paymentLinkId?: string;
 };
-/** @returns {repaymentDetails} */
-declare function repaymentDetails(): repaymentDetails;
-type repaymentDetails = {
+type RepaymentDetailsParam = {
     body: PaymentPlatformModel.RepaymentDetailsSerialiserPayAll;
 };
-/** @returns {resendOrCancelPayment} */
-declare function resendOrCancelPayment(): resendOrCancelPayment;
-type resendOrCancelPayment = {
+type ResendOrCancelPaymentParam = {
     body: PaymentPlatformModel.ResendOrCancelPaymentRequest;
 };
-/** @returns {resendPaymentLink} */
-declare function resendPaymentLink(): resendPaymentLink;
-type resendPaymentLink = {
+type ResendPaymentLinkParam = {
     body: PaymentPlatformModel.CancelOrResendPaymentLinkRequest;
 };
-/** @returns {revokeOauthToken} */
-declare function revokeOauthToken(): revokeOauthToken;
-type revokeOauthToken = {
+type RevokeOauthTokenParam = {
     /**
      * - Aggregator_slug
      */
     aggregator: string;
 };
-/** @returns {saveBrandPaymentGatewayConfig} */
-declare function saveBrandPaymentGatewayConfig(): saveBrandPaymentGatewayConfig;
-type saveBrandPaymentGatewayConfig = {
+type SaveBrandPaymentGatewayConfigParam = {
     body: PaymentPlatformModel.PaymentGatewayConfigRequest;
 };
-/** @returns {setUserCODlimitRoutes} */
-declare function setUserCODlimitRoutes(): setUserCODlimitRoutes;
-type setUserCODlimitRoutes = {
+type SetUserCODlimitRoutesParam = {
     body: PaymentPlatformModel.SetCODForUserRequest;
 };
-/** @returns {updateEdcDevice} */
-declare function updateEdcDevice(): updateEdcDevice;
-type updateEdcDevice = {
+type UpdateEdcDeviceParam = {
     body: PaymentPlatformModel.EdcAddRequest;
 };
-/** @returns {verifyCustomerForPayment} */
-declare function verifyCustomerForPayment(): verifyCustomerForPayment;
-type verifyCustomerForPayment = {
+type VerifyCustomerForPaymentParam = {
     body: PaymentPlatformModel.ValidateCustomerRequest;
 };
 import PaymentPlatformModel = require("./PaymentPlatformModel");

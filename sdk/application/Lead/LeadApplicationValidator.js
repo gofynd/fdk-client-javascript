@@ -3,38 +3,38 @@ const Joi = require("joi");
 const LeadApplicationModel = require("./LeadApplicationModel");
 
 /**
- * @typedef createHistory
+ * @typedef CreateHistoryParam
  * @property {string} id - Ticket ID for which history is created
  * @property {LeadApplicationModel.TicketHistoryPayload} body
  */
 
 /**
- * @typedef createTicket
+ * @typedef CreateTicketParam
  * @property {LeadApplicationModel.AddTicketPayload} body
  */
 
 /**
- * @typedef getCustomForm
+ * @typedef GetCustomFormParam
  * @property {string} slug - Slug of form whose response is getting submitted
  */
 
 /**
- * @typedef getParticipantsInsideVideoRoom
+ * @typedef GetParticipantsInsideVideoRoomParam
  * @property {string} uniqueName - Unique name of Video Room
  */
 
 /**
- * @typedef getTicket
+ * @typedef GetTicketParam
  * @property {string} id - ID of ticket to be retrieved
  */
 
 /**
- * @typedef getTokenForVideoRoom
+ * @typedef GetTokenForVideoRoomParam
  * @property {string} uniqueName - Unique name of Video Room
  */
 
 /**
- * @typedef submitCustomForm
+ * @typedef SubmitCustomFormParam
  * @property {string} slug - Slug of form whose response is getting submitted
  * @property {LeadApplicationModel.CustomFormSubmissionPayload} body
  */

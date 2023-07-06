@@ -12,7 +12,6 @@ declare class PlatformClient {
     catalog: Catalog;
     companyProfile: CompanyProfile;
     fileStorage: FileStorage;
-    inventory: Inventory;
     configuration: Configuration;
     discount: Discount;
     webhook: Webhook;
@@ -32,7 +31,6 @@ import Order = require("./Order/OrderPlatformClient");
 import Catalog = require("./Catalog/CatalogPlatformClient");
 import CompanyProfile = require("./CompanyProfile/CompanyProfilePlatformClient");
 import FileStorage = require("./FileStorage/FileStoragePlatformClient");
-import Inventory = require("./Inventory/InventoryPlatformClient");
 import Configuration = require("./Configuration/ConfigurationPlatformClient");
 import Discount = require("./Discount/DiscountPlatformClient");
 import Webhook = require("./Webhook/WebhookPlatformClient");

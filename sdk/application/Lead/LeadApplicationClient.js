@@ -38,7 +38,7 @@ class Lead {
   }
 
   /**
-   * @param {LeadApplicationValidator.createHistory} arg - Arg object.
+   * @param {LeadApplicationValidator.CreateHistoryParam} arg - Arg object.
    * @returns {Promise<LeadApplicationModel.TicketHistory>} - Success response
    * @name createHistory
    * @summary: Create history for specific Ticket
@@ -101,7 +101,7 @@ class Lead {
   }
 
   /**
-   * @param {LeadApplicationValidator.createTicket} arg - Arg object.
+   * @param {LeadApplicationValidator.CreateTicketParam} arg - Arg object.
    * @returns {Promise<LeadApplicationModel.Ticket>} - Success response
    * @name createTicket
    * @summary: Create Ticket
@@ -164,7 +164,7 @@ class Lead {
   }
 
   /**
-   * @param {LeadApplicationValidator.getCustomForm} arg - Arg object.
+   * @param {LeadApplicationValidator.GetCustomFormParam} arg - Arg object.
    * @returns {Promise<LeadApplicationModel.CustomForm>} - Success response
    * @name getCustomForm
    * @summary: Get specific Custom Form using it's slug
@@ -227,7 +227,9 @@ class Lead {
   }
 
   /**
-   * @param {LeadApplicationValidator.getParticipantsInsideVideoRoom} arg - Arg object.
+   * @param {LeadApplicationValidator.GetParticipantsInsideVideoRoomParam} arg
+   *   - Arg object.
+   *
    * @returns {Promise<LeadApplicationModel.GetParticipantsInsideVideoRoomResponse>}
    *   - Success response
    *
@@ -294,7 +296,7 @@ class Lead {
   }
 
   /**
-   * @param {LeadApplicationValidator.getTicket} arg - Arg object.
+   * @param {LeadApplicationValidator.GetTicketParam} arg - Arg object.
    * @returns {Promise<LeadApplicationModel.Ticket>} - Success response
    * @name getTicket
    * @summary: Get Ticket with the specific id
@@ -355,7 +357,7 @@ class Lead {
   }
 
   /**
-   * @param {LeadApplicationValidator.getTokenForVideoRoom} arg - Arg object.
+   * @param {LeadApplicationValidator.GetTokenForVideoRoomParam} arg - Arg object.
    * @returns {Promise<LeadApplicationModel.GetTokenForVideoRoomResponse>} -
    *   Success response
    * @name getTokenForVideoRoom
@@ -419,7 +421,7 @@ class Lead {
   }
 
   /**
-   * @param {LeadApplicationValidator.submitCustomForm} arg - Arg object.
+   * @param {LeadApplicationValidator.SubmitCustomFormParam} arg - Arg object.
    * @returns {Promise<LeadApplicationModel.SubmitCustomFormResponse>} -
    *   Success response
    * @name submitCustomForm

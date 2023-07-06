@@ -38,7 +38,7 @@ class Inventory {
   }
 
   /**
-   * @param {InventoryPublicValidator.getApiKey} arg - Arg object.
+   * @param {InventoryPublicValidator.GetApiKeyParam} arg - Arg object.
    * @returns {Promise<InventoryPublicModel.ResponseEnvelopeApikeyModel>} -
    *   Success response
    * @name getApiKey
@@ -102,7 +102,7 @@ class Inventory {
   }
 
   /**
-   * @param {InventoryPublicValidator.getConfigByApiKey} arg - Arg object.
+   * @param {InventoryPublicValidator.GetConfigByApiKeyParam} arg - Arg object.
    * @returns {Promise<InventoryPublicModel.ResponseEnvelopeSlingshotConfigurationDetail>}
    *   - Success response
    *
@@ -168,7 +168,7 @@ class Inventory {
   }
 
   /**
-   * @param {InventoryPublicValidator.getJobByCode} arg - Arg object.
+   * @param {InventoryPublicValidator.GetJobByCodeParam} arg - Arg object.
    * @returns {Promise<InventoryPublicModel.ResponseEnvelopeJobConfigDTO>} -
    *   Success response
    * @name getJobByCode
@@ -232,7 +232,7 @@ class Inventory {
   }
 
   /**
-   * @param {InventoryPublicValidator.getJobCodesMetrics} arg - Arg object.
+   * @param {InventoryPublicValidator.GetJobCodesMetricsParam} arg - Arg object.
    * @returns {Promise<InventoryPublicModel.ResponseEnvelopeObject>} - Success response
    * @name getJobCodesMetrics
    * @summary: Find all the JobCodes from Metrics Collection based on the field Values
@@ -297,7 +297,9 @@ class Inventory {
   }
 
   /**
-   * @param {InventoryPublicValidator.getJobConfigByIntegrationType} arg - Arg object.
+   * @param {InventoryPublicValidator.GetJobConfigByIntegrationTypeParam} arg
+   *   - Arg object.
+   *
    * @returns {Promise<InventoryPublicModel.ResponseEnvelopeListJobConfigDTO>}
    *   - Success response
    *
@@ -366,7 +368,7 @@ class Inventory {
   }
 
   /**
-   * @param {InventoryPublicValidator.saveJobCodesMetrics} arg - Arg object.
+   * @param {InventoryPublicValidator.SaveJobCodesMetricsParam} arg - Arg object.
    * @returns {Promise<InventoryPublicModel.ResponseEnvelopeEmailJobMetrics>}
    *   - Success response
    *

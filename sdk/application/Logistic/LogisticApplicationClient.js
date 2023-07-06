@@ -35,7 +35,7 @@ class Logistic {
   }
 
   /**
-   * @param {LogisticApplicationValidator.getAllCountries} arg - Arg object.
+   * @param {LogisticApplicationValidator.GetAllCountriesParam} arg - Arg object.
    * @returns {Promise<LogisticApplicationModel.CountryListResponse>} - Success response
    * @name getAllCountries
    * @summary: Get Country List
@@ -98,7 +98,7 @@ class Logistic {
   }
 
   /**
-   * @param {LogisticApplicationValidator.getOptimalLocations} arg - Arg object.
+   * @param {LogisticApplicationValidator.GetOptimalLocationsParam} arg - Arg object.
    * @returns {Promise<LogisticApplicationModel.ReAssignStoreResponse>} -
    *   Success response
    * @name getOptimalLocations
@@ -164,7 +164,7 @@ class Logistic {
   }
 
   /**
-   * @param {LogisticApplicationValidator.getPincodeCity} arg - Arg object.
+   * @param {LogisticApplicationValidator.GetPincodeCityParam} arg - Arg object.
    * @returns {Promise<LogisticApplicationModel.PincodeApiResponse>} - Success response
    * @name getPincodeCity
    * @summary: Get Pincode API
@@ -227,7 +227,7 @@ class Logistic {
   }
 
   /**
-   * @param {LogisticApplicationValidator.getPincodeZones} arg - Arg object.
+   * @param {LogisticApplicationValidator.GetPincodeZonesParam} arg - Arg object.
    * @returns {Promise<LogisticApplicationModel.GetZoneFromPincodeViewResponse>}
    *   - Success response
    *
@@ -292,7 +292,7 @@ class Logistic {
   }
 
   /**
-   * @param {LogisticApplicationValidator.getTatProduct} arg - Arg object.
+   * @param {LogisticApplicationValidator.GetTatProductParam} arg - Arg object.
    * @returns {Promise<LogisticApplicationModel.TATViewResponse>} - Success response
    * @name getTatProduct
    * @summary: Get TAT API

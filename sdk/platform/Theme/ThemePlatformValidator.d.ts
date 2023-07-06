@@ -1,32 +1,32 @@
 export = ThemePlatformValidator;
 /**
- * @typedef addMarketplaceThemeToCompany
+ * @typedef AddMarketplaceThemeToCompanyParam
  * @property {ThemePlatformModel.ThemeReq} body
  */
 /**
- * @typedef deleteCompanyTheme
+ * @typedef DeleteCompanyThemeParam
  * @property {string} themeId - The ID of the theme.
  */
-/** @typedef getCompanyLevelThemes */
+/** @typedef GetCompanyLevelThemesParam */
 declare class ThemePlatformValidator {
+    /** @returns {addMarketplaceThemeToCompany} */
+    static addMarketplaceThemeToCompany(): addMarketplaceThemeToCompany;
+    /** @returns {deleteCompanyTheme} */
+    static deleteCompanyTheme(): deleteCompanyTheme;
+    /** @returns {getCompanyLevelThemes} */
+    static getCompanyLevelThemes(): getCompanyLevelThemes;
 }
 declare namespace ThemePlatformValidator {
-    export { addMarketplaceThemeToCompany, deleteCompanyTheme, getCompanyLevelThemes };
+    export { AddMarketplaceThemeToCompanyParam, DeleteCompanyThemeParam, GetCompanyLevelThemesParam };
 }
-/** @returns {addMarketplaceThemeToCompany} */
-declare function addMarketplaceThemeToCompany(): addMarketplaceThemeToCompany;
-type addMarketplaceThemeToCompany = {
+type AddMarketplaceThemeToCompanyParam = {
     body: ThemePlatformModel.ThemeReq;
 };
-/** @returns {deleteCompanyTheme} */
-declare function deleteCompanyTheme(): deleteCompanyTheme;
-type deleteCompanyTheme = {
+type DeleteCompanyThemeParam = {
     /**
      * - The ID of the theme.
      */
     themeId: string;
 };
-/** @returns {getCompanyLevelThemes} */
-declare function getCompanyLevelThemes(): any;
-type getCompanyLevelThemes = any;
+type GetCompanyLevelThemesParam = any;
 import ThemePlatformModel = require("./ThemePlatformModel");

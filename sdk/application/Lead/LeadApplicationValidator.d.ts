@@ -1,88 +1,88 @@
 export = LeadApplicationValidator;
 /**
- * @typedef createHistory
+ * @typedef CreateHistoryParam
  * @property {string} id - Ticket ID for which history is created
  * @property {LeadApplicationModel.TicketHistoryPayload} body
  */
 /**
- * @typedef createTicket
+ * @typedef CreateTicketParam
  * @property {LeadApplicationModel.AddTicketPayload} body
  */
 /**
- * @typedef getCustomForm
+ * @typedef GetCustomFormParam
  * @property {string} slug - Slug of form whose response is getting submitted
  */
 /**
- * @typedef getParticipantsInsideVideoRoom
+ * @typedef GetParticipantsInsideVideoRoomParam
  * @property {string} uniqueName - Unique name of Video Room
  */
 /**
- * @typedef getTicket
+ * @typedef GetTicketParam
  * @property {string} id - ID of ticket to be retrieved
  */
 /**
- * @typedef getTokenForVideoRoom
+ * @typedef GetTokenForVideoRoomParam
  * @property {string} uniqueName - Unique name of Video Room
  */
 /**
- * @typedef submitCustomForm
+ * @typedef SubmitCustomFormParam
  * @property {string} slug - Slug of form whose response is getting submitted
  * @property {LeadApplicationModel.CustomFormSubmissionPayload} body
  */
 declare class LeadApplicationValidator {
+    /** @returns {createHistory} */
+    static createHistory(): createHistory;
+    /** @returns {createTicket} */
+    static createTicket(): createTicket;
+    /** @returns {getCustomForm} */
+    static getCustomForm(): getCustomForm;
+    /** @returns {getParticipantsInsideVideoRoom} */
+    static getParticipantsInsideVideoRoom(): getParticipantsInsideVideoRoom;
+    /** @returns {getTicket} */
+    static getTicket(): getTicket;
+    /** @returns {getTokenForVideoRoom} */
+    static getTokenForVideoRoom(): getTokenForVideoRoom;
+    /** @returns {submitCustomForm} */
+    static submitCustomForm(): submitCustomForm;
 }
 declare namespace LeadApplicationValidator {
-    export { createHistory, createTicket, getCustomForm, getParticipantsInsideVideoRoom, getTicket, getTokenForVideoRoom, submitCustomForm };
+    export { CreateHistoryParam, CreateTicketParam, GetCustomFormParam, GetParticipantsInsideVideoRoomParam, GetTicketParam, GetTokenForVideoRoomParam, SubmitCustomFormParam };
 }
-/** @returns {createHistory} */
-declare function createHistory(): createHistory;
-type createHistory = {
+type CreateHistoryParam = {
     /**
      * - Ticket ID for which history is created
      */
     id: string;
     body: LeadApplicationModel.TicketHistoryPayload;
 };
-/** @returns {createTicket} */
-declare function createTicket(): createTicket;
-type createTicket = {
+type CreateTicketParam = {
     body: LeadApplicationModel.AddTicketPayload;
 };
-/** @returns {getCustomForm} */
-declare function getCustomForm(): getCustomForm;
-type getCustomForm = {
+type GetCustomFormParam = {
     /**
      * - Slug of form whose response is getting submitted
      */
     slug: string;
 };
-/** @returns {getParticipantsInsideVideoRoom} */
-declare function getParticipantsInsideVideoRoom(): getParticipantsInsideVideoRoom;
-type getParticipantsInsideVideoRoom = {
+type GetParticipantsInsideVideoRoomParam = {
     /**
      * - Unique name of Video Room
      */
     uniqueName: string;
 };
-/** @returns {getTicket} */
-declare function getTicket(): getTicket;
-type getTicket = {
+type GetTicketParam = {
     /**
      * - ID of ticket to be retrieved
      */
     id: string;
 };
-/** @returns {getTokenForVideoRoom} */
-declare function getTokenForVideoRoom(): getTokenForVideoRoom;
-type getTokenForVideoRoom = {
+type GetTokenForVideoRoomParam = {
     /**
      * - Unique name of Video Room
      */
     uniqueName: string;
 };
-/** @returns {submitCustomForm} */
-declare function submitCustomForm(): submitCustomForm;
-type submitCustomForm = {
+type SubmitCustomFormParam = {
     /**
      * - Slug of form whose response is getting submitted
      */

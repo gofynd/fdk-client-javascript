@@ -3,7 +3,7 @@ const Joi = require("joi");
 const OrderApplicationModel = require("./OrderApplicationModel");
 
 /**
- * @typedef getCustomerDetailsByShipmentId
+ * @typedef GetCustomerDetailsByShipmentIdParam
  * @property {string} orderId - ID of the shipment. An order may contain
  *   multiple items and may get divided into one or more shipment, each having
  *   its own ID.
@@ -12,19 +12,18 @@ const OrderApplicationModel = require("./OrderApplicationModel");
  */
 
 /**
- * @typedef getInvoiceByShipmentId
+ * @typedef GetInvoiceByShipmentIdParam
  * @property {string} shipmentId - ID of the shipment.
- * @property {string} [documentType]
  */
 
 /**
- * @typedef getOrderById
+ * @typedef GetOrderByIdParam
  * @property {string} orderId - A unique number used for identifying and
  *   tracking your orders.
  */
 
 /**
- * @typedef getOrders
+ * @typedef GetOrdersParam
  * @property {number} [status] - A filter to retrieve orders by their current
  *   status such as _placed_, _delivered_, etc.
  * @property {number} [pageNo] - The page number to navigate through the given
@@ -38,26 +37,13 @@ const OrderApplicationModel = require("./OrderApplicationModel");
  */
 
 /**
- * @typedef getPosOrderById
+ * @typedef GetPosOrderByIdParam
  * @property {string} orderId - A unique number used for identifying and
  *   tracking your orders.
  */
 
 /**
- * @typedef getProducts
- * @property {number} [status] - A filter to retrieve orders by their current
- *   status such as _placed_, _delivered_, etc.
- * @property {number} [pageNo] - The page number to navigate through the given
- *   set of results. Default value is 1.
- * @property {number} [pageSize] - The number of items to retrieve in each page.
- *   Default value is 10.
- * @property {string} [fromDate] - The date from which the orders should be retrieved.
- * @property {string} [toDate] - The date till which the orders should be retrieved.
- * @property {string} [searchValue]
- */
-
-/**
- * @typedef getShipmentBagReasons
+ * @typedef GetShipmentBagReasonsParam
  * @property {string} shipmentId - ID of the bag. An order may contain multiple
  *   items and may get divided into one or more shipment, each having its own ID.
  * @property {string} bagId - ID of the bag. An order may contain multiple items
@@ -65,21 +51,21 @@ const OrderApplicationModel = require("./OrderApplicationModel");
  */
 
 /**
- * @typedef getShipmentById
+ * @typedef GetShipmentByIdParam
  * @property {string} shipmentId - ID of the shipment. An order may contain
  *   multiple items and may get divided into one or more shipment, each having
  *   its own ID.
  */
 
 /**
- * @typedef getShipmentReasons
+ * @typedef GetShipmentReasonsParam
  * @property {string} shipmentId - ID of the shipment. An order may contain
  *   multiple items and may get divided into one or more shipment, each having
  *   its own ID.
  */
 
 /**
- * @typedef sendOtpToShipmentCustomer
+ * @typedef SendOtpToShipmentCustomerParam
  * @property {string} orderId - A unique number used for identifying and
  *   tracking your orders.
  * @property {string} shipmentId - ID of the shipment. An order may contain
@@ -88,14 +74,14 @@ const OrderApplicationModel = require("./OrderApplicationModel");
  */
 
 /**
- * @typedef trackShipment
+ * @typedef TrackShipmentParam
  * @property {string} shipmentId - ID of the shipment. An order may contain
  *   multiple items and may get divided into one or more shipment, each having
  *   its own ID.
  */
 
 /**
- * @typedef updateShipmentStatus
+ * @typedef UpdateShipmentStatusParam
  * @property {string} shipmentId - ID of the shipment. An order may contain
  *   multiple items and may get divided into one or more shipment, each having
  *   its own ID.
@@ -103,7 +89,7 @@ const OrderApplicationModel = require("./OrderApplicationModel");
  */
 
 /**
- * @typedef verifyOtpShipmentCustomer
+ * @typedef VerifyOtpShipmentCustomerParam
  * @property {string} orderId - A unique number used for identifying and
  *   tracking your orders.
  * @property {string} shipmentId - ID of the shipment. An order may contain
@@ -125,7 +111,6 @@ class OrderApplicationValidator {
   static getInvoiceByShipmentId() {
     return Joi.object({
       shipmentId: Joi.string().allow("").required(),
-      documentType: Joi.string().allow(""),
     }).required();
   }
 
@@ -153,18 +138,6 @@ class OrderApplicationValidator {
     return Joi.object({
       orderId: Joi.string().allow("").required(),
     }).required();
-  }
-
-  /** @returns {getProducts} */
-  static getProducts() {
-    return Joi.object({
-      status: Joi.number(),
-      pageNo: Joi.number(),
-      pageSize: Joi.number(),
-      fromDate: Joi.string().allow(""),
-      toDate: Joi.string().allow(""),
-      searchValue: Joi.string().allow(""),
-    });
   }
 
   /** @returns {getShipmentBagReasons} */

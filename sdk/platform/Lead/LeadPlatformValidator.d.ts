@@ -1,33 +1,33 @@
 export = LeadPlatformValidator;
 /**
- * @typedef createHistory
+ * @typedef CreateHistoryParam
  * @property {string} id - Ticket ID for which history is created
  * @property {LeadPlatformModel.TicketHistoryPayload} body
  */
 /**
- * @typedef createTicket
+ * @typedef CreateTicketParam
  * @property {LeadPlatformModel.AddTicketPayload} body
  */
 /**
- * @typedef editTicket
+ * @typedef EditTicketParam
  * @property {string} id - Ticket ID of ticket to be edited
  * @property {LeadPlatformModel.EditTicketPayload} body
  */
 /**
- * @typedef getFeedbacks
+ * @typedef GetFeedbacksParam
  * @property {string} id - Ticket ID for which feedbacks are to be fetched
  */
-/** @typedef getGeneralConfig */
+/** @typedef GetGeneralConfigParam */
 /**
- * @typedef getTicket
+ * @typedef GetTicketParam
  * @property {string} id - Tiket ID of the ticket to be fetched
  */
 /**
- * @typedef getTicketHistory
+ * @typedef GetTicketHistoryParam
  * @property {string} id - Ticket ID for which history is to be fetched
  */
 /**
- * @typedef getTickets
+ * @typedef GetTicketsParam
  * @property {boolean} [items] - Decides that the reponse will contain the list of tickets
  * @property {boolean} [filters] - Decides that the reponse will contain the
  *   ticket filters
@@ -41,76 +41,82 @@ export = LeadPlatformValidator;
  *   Default is 12.
  */
 /**
- * @typedef getTokenForVideoRoom
+ * @typedef GetTokenForVideoRoomParam
  * @property {string} uniqueName - Unique name of video room
  */
 /**
- * @typedef getVideoParticipants
+ * @typedef GetVideoParticipantsParam
  * @property {string} uniqueName - Unique name of Video Room
  */
 /**
- * @typedef submitFeedback
+ * @typedef SubmitFeedbackParam
  * @property {string} id - Ticket ID for which feedback is to be submitted
  * @property {LeadPlatformModel.TicketFeedbackPayload} body
  */
 declare class LeadPlatformValidator {
+    /** @returns {createHistory} */
+    static createHistory(): createHistory;
+    /** @returns {createTicket} */
+    static createTicket(): createTicket;
+    /** @returns {editTicket} */
+    static editTicket(): editTicket;
+    /** @returns {getFeedbacks} */
+    static getFeedbacks(): getFeedbacks;
+    /** @returns {getGeneralConfig} */
+    static getGeneralConfig(): getGeneralConfig;
+    /** @returns {getTicket} */
+    static getTicket(): getTicket;
+    /** @returns {getTicketHistory} */
+    static getTicketHistory(): getTicketHistory;
+    /** @returns {getTickets} */
+    static getTickets(): getTickets;
+    /** @returns {getTokenForVideoRoom} */
+    static getTokenForVideoRoom(): getTokenForVideoRoom;
+    /** @returns {getVideoParticipants} */
+    static getVideoParticipants(): getVideoParticipants;
+    /** @returns {submitFeedback} */
+    static submitFeedback(): submitFeedback;
 }
 declare namespace LeadPlatformValidator {
-    export { createHistory, createTicket, editTicket, getFeedbacks, getGeneralConfig, getTicket, getTicketHistory, getTickets, getTokenForVideoRoom, getVideoParticipants, submitFeedback };
+    export { CreateHistoryParam, CreateTicketParam, EditTicketParam, GetFeedbacksParam, GetGeneralConfigParam, GetTicketParam, GetTicketHistoryParam, GetTicketsParam, GetTokenForVideoRoomParam, GetVideoParticipantsParam, SubmitFeedbackParam };
 }
-/** @returns {createHistory} */
-declare function createHistory(): createHistory;
-type createHistory = {
+type CreateHistoryParam = {
     /**
      * - Ticket ID for which history is created
      */
     id: string;
     body: LeadPlatformModel.TicketHistoryPayload;
 };
-/** @returns {createTicket} */
-declare function createTicket(): createTicket;
-type createTicket = {
+type CreateTicketParam = {
     body: LeadPlatformModel.AddTicketPayload;
 };
-/** @returns {editTicket} */
-declare function editTicket(): editTicket;
-type editTicket = {
+type EditTicketParam = {
     /**
      * - Ticket ID of ticket to be edited
      */
     id: string;
     body: LeadPlatformModel.EditTicketPayload;
 };
-/** @returns {getFeedbacks} */
-declare function getFeedbacks(): getFeedbacks;
-type getFeedbacks = {
+type GetFeedbacksParam = {
     /**
      * - Ticket ID for which feedbacks are to be fetched
      */
     id: string;
 };
-/** @returns {getGeneralConfig} */
-declare function getGeneralConfig(): any;
-type getGeneralConfig = any;
-/** @returns {getTicket} */
-declare function getTicket(): getTicket;
-type getTicket = {
+type GetGeneralConfigParam = any;
+type GetTicketParam = {
     /**
      * - Tiket ID of the ticket to be fetched
      */
     id: string;
 };
-/** @returns {getTicketHistory} */
-declare function getTicketHistory(): getTicketHistory;
-type getTicketHistory = {
+type GetTicketHistoryParam = {
     /**
      * - Ticket ID for which history is to be fetched
      */
     id: string;
 };
-/** @returns {getTickets} */
-declare function getTickets(): getTickets;
-type getTickets = {
+type GetTicketsParam = {
     /**
      * - Decides that the reponse will contain the list of tickets
      */
@@ -147,25 +153,19 @@ type getTickets = {
      */
     pageSize?: number;
 };
-/** @returns {getTokenForVideoRoom} */
-declare function getTokenForVideoRoom(): getTokenForVideoRoom;
-type getTokenForVideoRoom = {
+type GetTokenForVideoRoomParam = {
     /**
      * - Unique name of video room
      */
     uniqueName: string;
 };
-/** @returns {getVideoParticipants} */
-declare function getVideoParticipants(): getVideoParticipants;
-type getVideoParticipants = {
+type GetVideoParticipantsParam = {
     /**
      * - Unique name of Video Room
      */
     uniqueName: string;
 };
-/** @returns {submitFeedback} */
-declare function submitFeedback(): submitFeedback;
-type submitFeedback = {
+type SubmitFeedbackParam = {
     /**
      * - Ticket ID for which feedback is to be submitted
      */

@@ -1,6 +1,6 @@
 export = CommonApplicationValidator;
 /**
- * @typedef getLocations
+ * @typedef GetLocationsParam
  * @property {string} [locationType] - Provide location type to query on.
  *   Possible values : country, state, city
  * @property {string} [id] - Field is optional when location_type is country. If
@@ -8,18 +8,20 @@ export = CommonApplicationValidator;
  *   of state.
  */
 /**
- * @typedef searchApplication
+ * @typedef SearchApplicationParam
  * @property {string} [authorization]
  * @property {string} [query] - Provide application name
  */
 declare class CommonApplicationValidator {
+    /** @returns {getLocations} */
+    static getLocations(): getLocations;
+    /** @returns {searchApplication} */
+    static searchApplication(): searchApplication;
 }
 declare namespace CommonApplicationValidator {
-    export { getLocations, searchApplication };
+    export { GetLocationsParam, SearchApplicationParam };
 }
-/** @returns {getLocations} */
-declare function getLocations(): getLocations;
-type getLocations = {
+type GetLocationsParam = {
     /**
      * - Provide location type to query on.
      * Possible values : country, state, city
@@ -32,9 +34,7 @@ type getLocations = {
      */
     id?: string;
 };
-/** @returns {searchApplication} */
-declare function searchApplication(): searchApplication;
-type searchApplication = {
+type SearchApplicationParam = {
     authorization?: string;
     /**
      * - Provide application name

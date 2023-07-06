@@ -34,8 +34,9 @@ class Communication {
   }
 
   /**
-   * @param {CommunicationApplicationValidator.getCommunicationConsent} arg -
-   *   Arg object.
+   * @param {CommunicationApplicationValidator.GetCommunicationConsentParam} arg
+   *   - Arg object.
+   *
    * @returns {Promise<CommunicationApplicationModel.CommunicationConsent>} -
    *   Success response
    * @name getCommunicationConsent
@@ -101,7 +102,8 @@ class Communication {
   }
 
   /**
-   * @param {CommunicationApplicationValidator.upsertAppPushtoken} arg - Arg object.
+   * @param {CommunicationApplicationValidator.UpsertAppPushtokenParam} arg -
+   *   Arg object.
    * @returns {Promise<CommunicationApplicationModel.PushtokenRes>} - Success response
    * @name upsertAppPushtoken
    * @summary: Upsert push token of a user
@@ -166,7 +168,7 @@ class Communication {
   }
 
   /**
-   * @param {CommunicationApplicationValidator.upsertCommunicationConsent} arg
+   * @param {CommunicationApplicationValidator.UpsertCommunicationConsentParam} arg
    *   - Arg object.
    *
    * @returns {Promise<CommunicationApplicationModel.CommunicationConsentRes>}

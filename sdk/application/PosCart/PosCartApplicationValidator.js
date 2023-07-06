@@ -3,12 +3,12 @@ const Joi = require("joi");
 const PosCartApplicationModel = require("./PosCartApplicationModel");
 
 /**
- * @typedef addAddress
+ * @typedef AddAddressParam
  * @property {PosCartApplicationModel.Address} body
  */
 
 /**
- * @typedef addItems
+ * @typedef AddItemsParam
  * @property {boolean} [i] - This is a boolean value. Select `true` to retrieve
  *   all the items added in the cart.
  * @property {boolean} [b] - This is a boolean value. Select `true` to retrieve
@@ -23,7 +23,7 @@ const PosCartApplicationModel = require("./PosCartApplicationModel");
  */
 
 /**
- * @typedef applyCoupon
+ * @typedef ApplyCouponParam
  * @property {boolean} [i]
  * @property {boolean} [b]
  * @property {boolean} [p]
@@ -33,7 +33,7 @@ const PosCartApplicationModel = require("./PosCartApplicationModel");
  */
 
 /**
- * @typedef applyRewardPoints
+ * @typedef ApplyRewardPointsParam
  * @property {string} [id]
  * @property {boolean} [i]
  * @property {boolean} [b]
@@ -42,13 +42,13 @@ const PosCartApplicationModel = require("./PosCartApplicationModel");
  */
 
 /**
- * @typedef checkoutCart
+ * @typedef CheckoutCartParam
  * @property {string} [id]
  * @property {PosCartApplicationModel.CartPosCheckoutDetailRequest} body
  */
 
 /**
- * @typedef getAddressById
+ * @typedef GetAddressByIdParam
  * @property {string} id
  * @property {string} [cartId]
  * @property {boolean} [buyNow]
@@ -59,7 +59,7 @@ const PosCartApplicationModel = require("./PosCartApplicationModel");
  */
 
 /**
- * @typedef getAddresses
+ * @typedef GetAddressesParam
  * @property {string} [cartId]
  * @property {boolean} [buyNow]
  * @property {string} [mobileNo]
@@ -69,13 +69,13 @@ const PosCartApplicationModel = require("./PosCartApplicationModel");
  */
 
 /**
- * @typedef getAvailableDeliveryModes
+ * @typedef GetAvailableDeliveryModesParam
  * @property {string} areaCode
  * @property {string} [id]
  */
 
 /**
- * @typedef getBulkDiscountOffers
+ * @typedef GetBulkDiscountOffersParam
  * @property {number} [itemId] - The Item ID of the product
  * @property {string} [articleId] - Article Mongo ID
  * @property {number} [uid] - UID of the product
@@ -85,7 +85,7 @@ const PosCartApplicationModel = require("./PosCartApplicationModel");
  */
 
 /**
- * @typedef getCart
+ * @typedef GetCartParam
  * @property {string} [id] - The unique identifier of the cart
  * @property {boolean} [i] - This is a boolean value. Select `true` to retrieve
  *   all the items added in the cart.
@@ -100,34 +100,34 @@ const PosCartApplicationModel = require("./PosCartApplicationModel");
  */
 
 /**
- * @typedef getCartLastModified
+ * @typedef GetCartLastModifiedParam
  * @property {string} [id] - The unique identifier of the cart
  */
 
 /**
- * @typedef getCartShareLink
+ * @typedef GetCartShareLinkParam
  * @property {PosCartApplicationModel.GetShareCartLinkRequest} body
  */
 
 /**
- * @typedef getCartSharedItems
+ * @typedef GetCartSharedItemsParam
  * @property {string} token - Token of the shared short link
  */
 
 /**
- * @typedef getCoupons
+ * @typedef GetCouponsParam
  * @property {string} [id]
  * @property {boolean} [buyNow]
  */
 
 /**
- * @typedef getItemCount
+ * @typedef GetItemCountParam
  * @property {string} [id] - The unique identifier of the cart.
  * @property {boolean} [buyNow] - Boolean value to get buy_now cart.
  */
 
 /**
- * @typedef getShipments
+ * @typedef GetShipmentsParam
  * @property {number} [pickAtStoreUid]
  * @property {number} [orderingStoreId]
  * @property {boolean} [p] - This is a boolean value. Select `true` for getting
@@ -141,23 +141,23 @@ const PosCartApplicationModel = require("./PosCartApplicationModel");
  */
 
 /**
- * @typedef getStoreAddressByUid
+ * @typedef GetStoreAddressByUidParam
  * @property {number} storeUid
  */
 
 /**
- * @typedef removeAddress
+ * @typedef RemoveAddressParam
  * @property {string} id - ID allotted to the selected address
  */
 
 /**
- * @typedef removeCoupon
+ * @typedef RemoveCouponParam
  * @property {string} [id]
  * @property {boolean} [buyNow]
  */
 
 /**
- * @typedef selectAddress
+ * @typedef SelectAddressParam
  * @property {string} [cartId]
  * @property {boolean} [buyNow]
  * @property {boolean} [i]
@@ -166,20 +166,20 @@ const PosCartApplicationModel = require("./PosCartApplicationModel");
  */
 
 /**
- * @typedef selectPaymentMode
+ * @typedef SelectPaymentModeParam
  * @property {string} [id]
  * @property {boolean} [buyNow]
  * @property {PosCartApplicationModel.UpdateCartPaymentRequest} body
  */
 
 /**
- * @typedef updateAddress
+ * @typedef UpdateAddressParam
  * @property {string} id - ID allotted to the selected address
  * @property {PosCartApplicationModel.Address} body
  */
 
 /**
- * @typedef updateCart
+ * @typedef UpdateCartParam
  * @property {string} [id] - The unique identifier of the cart
  * @property {boolean} [i] - This is a boolean value. Select `true` to retrieve
  *   all the items added in the cart.
@@ -194,20 +194,20 @@ const PosCartApplicationModel = require("./PosCartApplicationModel");
  */
 
 /**
- * @typedef updateCartMeta
+ * @typedef UpdateCartMetaParam
  * @property {string} [id] - The unique identifier of the cart
  * @property {boolean} [buyNow] - This is boolean to get buy_now cart
  * @property {PosCartApplicationModel.CartMetaRequest} body
  */
 
 /**
- * @typedef updateCartWithSharedItems
+ * @typedef UpdateCartWithSharedItemsParam
  * @property {string} token - Token of the shared short link
  * @property {string} action - Operation to perform on the existing cart merge or replace.
  */
 
 /**
- * @typedef updateShipments
+ * @typedef UpdateShipmentsParam
  * @property {boolean} [i] - This is a boolean value. Select `true` to retrieve
  *   all the items added in the cart.
  * @property {boolean} [p] - This is a boolean value. Select `true` for getting
@@ -222,7 +222,7 @@ const PosCartApplicationModel = require("./PosCartApplicationModel");
  */
 
 /**
- * @typedef validateCouponForPayment
+ * @typedef ValidateCouponForPaymentParam
  * @property {string} [id]
  * @property {boolean} [buyNow]
  * @property {string} [addressId]

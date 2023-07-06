@@ -10,8 +10,9 @@ declare class Communication {
     _urls: {};
     updateUrls(urls: any): void;
     /**
-     * @param {CommunicationApplicationValidator.getCommunicationConsent} arg -
-     *   Arg object.
+     * @param {CommunicationApplicationValidator.GetCommunicationConsentParam} arg
+     *   - Arg object.
+     *
      * @returns {Promise<CommunicationApplicationModel.CommunicationConsent>} -
      *   Success response
      * @name getCommunicationConsent
@@ -20,15 +21,16 @@ declare class Communication {
      */
     getCommunicationConsent({}?: any): Promise<CommunicationApplicationModel.CommunicationConsent>;
     /**
-     * @param {CommunicationApplicationValidator.upsertAppPushtoken} arg - Arg object.
+     * @param {CommunicationApplicationValidator.UpsertAppPushtokenParam} arg -
+     *   Arg object.
      * @returns {Promise<CommunicationApplicationModel.PushtokenRes>} - Success response
      * @name upsertAppPushtoken
      * @summary: Upsert push token of a user
      * @description: Use this API to update and insert the push token of the user.
      */
-    upsertAppPushtoken({ body }?: CommunicationApplicationValidator.upsertAppPushtoken): Promise<CommunicationApplicationModel.PushtokenRes>;
+    upsertAppPushtoken({ body }?: CommunicationApplicationValidator.UpsertAppPushtokenParam): Promise<CommunicationApplicationModel.PushtokenRes>;
     /**
-     * @param {CommunicationApplicationValidator.upsertCommunicationConsent} arg
+     * @param {CommunicationApplicationValidator.UpsertCommunicationConsentParam} arg
      *   - Arg object.
      *
      * @returns {Promise<CommunicationApplicationModel.CommunicationConsentRes>}
@@ -38,7 +40,7 @@ declare class Communication {
      * @summary: Upsert communication consent
      * @description: Use this API to update and insert the consent provided by the user for receiving communication messages over Email/SMS/WhatsApp.
      */
-    upsertCommunicationConsent({ body }?: CommunicationApplicationValidator.upsertCommunicationConsent): Promise<CommunicationApplicationModel.CommunicationConsentRes>;
+    upsertCommunicationConsent({ body }?: CommunicationApplicationValidator.UpsertCommunicationConsentParam): Promise<CommunicationApplicationModel.CommunicationConsentRes>;
 }
 import CommunicationApplicationModel = require("./CommunicationApplicationModel");
 import CommunicationApplicationValidator = require("./CommunicationApplicationValidator");

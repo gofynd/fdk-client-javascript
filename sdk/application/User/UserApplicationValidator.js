@@ -3,19 +3,19 @@ const Joi = require("joi");
 const UserApplicationModel = require("./UserApplicationModel");
 
 /**
- * @typedef addEmail
+ * @typedef AddEmailParam
  * @property {string} [platform] - ID of the application
  * @property {UserApplicationModel.EditEmailRequestSchema} body
  */
 
 /**
- * @typedef addMobileNumber
+ * @typedef AddMobileNumberParam
  * @property {string} [platform] - ID of the application
  * @property {UserApplicationModel.EditMobileRequestSchema} body
  */
 
 /**
- * @typedef deleteEmail
+ * @typedef DeleteEmailParam
  * @property {string} [platform] - ID of the application
  * @property {boolean} active - This is a boolean value to check if email ID is
  *   active 1. True - Email ID is active 2.False - Email ID is inactive
@@ -28,7 +28,7 @@ const UserApplicationModel = require("./UserApplicationModel");
  */
 
 /**
- * @typedef deleteMobileNumber
+ * @typedef DeleteMobileNumberParam
  * @property {string} [platform] - ID of the application
  * @property {boolean} active - This is a boolean value to check if mobile
  *   number is active 1.True - Number is active 2. False - Number is inactive
@@ -42,160 +42,160 @@ const UserApplicationModel = require("./UserApplicationModel");
  */
 
 /**
- * @typedef deleteUser
+ * @typedef DeleteUserParam
  * @property {UserApplicationModel.DeleteApplicationUserRequestSchema} body
  */
 
 /**
- * @typedef forgotPassword
+ * @typedef ForgotPasswordParam
  * @property {UserApplicationModel.ForgotPasswordRequestSchema} body
  */
 
-/** @typedef getListOfActiveSessions */
+/** @typedef GetListOfActiveSessionsParam */
 
-/** @typedef getLoggedInUser */
+/** @typedef GetLoggedInUserParam */
 
 /**
- * @typedef getPlatformConfig
+ * @typedef GetPlatformConfigParam
  * @property {string} [name] - Name of the application, e.g. Fynd
  */
 
-/** @typedef hasPassword */
+/** @typedef HasPasswordParam */
 
 /**
- * @typedef loginWithAppleIOS
+ * @typedef LoginWithAppleIOSParam
  * @property {string} [platform] - ID of the application
  * @property {UserApplicationModel.OAuthRequestAppleSchema} body
  */
 
 /**
- * @typedef loginWithEmailAndPassword
+ * @typedef LoginWithEmailAndPasswordParam
  * @property {UserApplicationModel.PasswordLoginRequestSchema} body
  */
 
 /**
- * @typedef loginWithFacebook
+ * @typedef LoginWithFacebookParam
  * @property {string} [platform] - ID of the application
  * @property {UserApplicationModel.OAuthRequestSchema} body
  */
 
 /**
- * @typedef loginWithGoogle
+ * @typedef LoginWithGoogleParam
  * @property {string} [platform] - ID of the application
  * @property {UserApplicationModel.OAuthRequestSchema} body
  */
 
 /**
- * @typedef loginWithGoogleAndroid
+ * @typedef LoginWithGoogleAndroidParam
  * @property {string} [platform] - ID of the application
  * @property {UserApplicationModel.OAuthRequestSchema} body
  */
 
 /**
- * @typedef loginWithGoogleIOS
+ * @typedef LoginWithGoogleIOSParam
  * @property {string} [platform] - ID of the application
  * @property {UserApplicationModel.OAuthRequestSchema} body
  */
 
 /**
- * @typedef loginWithOTP
+ * @typedef LoginWithOTPParam
  * @property {string} [platform] - ID of the application
  * @property {UserApplicationModel.SendOtpRequestSchema} body
  */
 
 /**
- * @typedef loginWithToken
+ * @typedef LoginWithTokenParam
  * @property {UserApplicationModel.TokenRequestBodySchema} body
  */
 
-/** @typedef logout */
+/** @typedef LogoutParam */
 
 /**
- * @typedef registerWithForm
+ * @typedef RegisterWithFormParam
  * @property {string} [platform] - ID of the application
  * @property {UserApplicationModel.FormRegisterRequestSchema} body
  */
 
 /**
- * @typedef sendOTPOnEmail
+ * @typedef SendOTPOnEmailParam
  * @property {string} [platform] - ID of the application
  * @property {UserApplicationModel.SendEmailOtpRequestSchema} body
  */
 
 /**
- * @typedef sendOTPOnMobile
+ * @typedef SendOTPOnMobileParam
  * @property {string} [platform] - ID of the application
  * @property {UserApplicationModel.SendMobileOtpRequestSchema} body
  */
 
 /**
- * @typedef sendResetPasswordEmail
+ * @typedef SendResetPasswordEmailParam
  * @property {string} [platform] - ID of the application
  * @property {UserApplicationModel.SendResetPasswordEmailRequestSchema} body
  */
 
 /**
- * @typedef sendResetPasswordMobile
+ * @typedef SendResetPasswordMobileParam
  * @property {string} [platform] - ID of the application
  * @property {UserApplicationModel.SendResetPasswordMobileRequestSchema} body
  */
 
 /**
- * @typedef sendResetToken
+ * @typedef SendResetTokenParam
  * @property {UserApplicationModel.CodeRequestBodySchema} body
  */
 
 /**
- * @typedef sendVerificationLinkToEmail
+ * @typedef SendVerificationLinkToEmailParam
  * @property {string} [platform] - ID of the application
  * @property {UserApplicationModel.EditEmailRequestSchema} body
  */
 
 /**
- * @typedef sendVerificationLinkToMobile
+ * @typedef SendVerificationLinkToMobileParam
  * @property {string} [platform] - ID of the application
  * @property {UserApplicationModel.SendVerificationLinkMobileRequestSchema} body
  */
 
 /**
- * @typedef setEmailAsPrimary
+ * @typedef SetEmailAsPrimaryParam
  * @property {UserApplicationModel.EditEmailRequestSchema} body
  */
 
 /**
- * @typedef setMobileNumberAsPrimary
+ * @typedef SetMobileNumberAsPrimaryParam
  * @property {UserApplicationModel.SendVerificationLinkMobileRequestSchema} body
  */
 
 /**
- * @typedef updatePassword
+ * @typedef UpdatePasswordParam
  * @property {UserApplicationModel.UpdatePasswordRequestSchema} body
  */
 
 /**
- * @typedef updateProfile
+ * @typedef UpdateProfileParam
  * @property {string} [platform] - ID of the application
  * @property {UserApplicationModel.EditProfileRequestSchema} body
  */
 
 /**
- * @typedef verifyEmail
+ * @typedef VerifyEmailParam
  * @property {UserApplicationModel.CodeRequestBodySchema} body
  */
 
 /**
- * @typedef verifyEmailOTP
+ * @typedef VerifyEmailOTPParam
  * @property {string} [platform] - ID of the application
  * @property {UserApplicationModel.VerifyEmailOtpRequestSchema} body
  */
 
 /**
- * @typedef verifyMobile
+ * @typedef VerifyMobileParam
  * @property {UserApplicationModel.CodeRequestBodySchema} body
  */
 
 /**
- * @typedef verifyMobileOTP
+ * @typedef VerifyMobileOTPParam
  * @property {string} [platform] - ID of the application
  * @property {UserApplicationModel.VerifyOtpRequestSchema} body
  */

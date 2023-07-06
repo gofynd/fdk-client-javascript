@@ -19267,11 +19267,11 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | _schedule | [CollectionSchedule](#CollectionSchedule)? |  yes  |  |
+ | _schedule | [CollectionSchedule1](#CollectionSchedule1)? |  yes  |  |
  | allow_facets | boolean? |  yes  |  |
  | allow_sort | boolean? |  yes  |  |
  | app_id | string? |  yes  |  |
- | badge | [CollectionBadge](#CollectionBadge)? |  yes  |  |
+ | badge | [CollectionBadge1](#CollectionBadge1)? |  yes  |  |
  | banners | [ImageUrls](#ImageUrls)? |  yes  |  |
  | description | string? |  yes  |  |
  | is_active | boolean? |  yes  |  |
@@ -19371,8 +19371,10 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | cron | string? |  yes  |  |
+ | duration | number? |  yes  |  |
  | end | string? |  yes  |  |
- | next_schedule | [[CollectionScheduleStartEnd](#CollectionScheduleStartEnd)]? |  yes  |  |
+ | next_schedule | [[NextSchedule](#NextSchedule)]? |  yes  |  |
  | start | string? |  yes  |  |
  
 
@@ -19382,10 +19384,8 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | cron | string? |  yes  |  |
- | duration | number? |  yes  |  |
  | end | string? |  yes  |  |
- | next_schedule | [[NextSchedule](#NextSchedule)]? |  yes  |  |
+ | next_schedule | [[CollectionScheduleStartEnd](#CollectionScheduleStartEnd)]? |  yes  |  |
  | start | string? |  yes  |  |
  
 
@@ -19641,11 +19641,11 @@ List of fields and validation values fro each. See example below or refer `Inven
  | ---------- | ---- | -------- | ----------- |
  | _custom_json | string? |  yes  |  |
  | _locale_language | string? |  yes  |  |
- | _schedule | [CollectionSchedule1](#CollectionSchedule1)? |  yes  |  |
+ | _schedule | [CollectionSchedule](#CollectionSchedule)? |  yes  |  |
  | allow_facets | boolean? |  yes  |  |
  | allow_sort | boolean? |  yes  |  |
  | app_id | string |  no  |  |
- | badge | [CollectionBadge1](#CollectionBadge1)? |  yes  |  |
+ | badge | [CollectionBadge](#CollectionBadge)? |  yes  |  |
  | banners | [CollectionBanner](#CollectionBanner) |  no  |  |
  | created_by | [UserInfo](#UserInfo)? |  yes  |  |
  | description | string? |  yes  |  |
@@ -20058,12 +20058,12 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | _schedule | [CollectionSchedule](#CollectionSchedule)? |  yes  |  |
+ | _schedule | [CollectionSchedule1](#CollectionSchedule1)? |  yes  |  |
  | action | [CollectionActionPage](#CollectionActionPage)? |  yes  |  |
  | allow_facets | boolean? |  yes  |  |
  | allow_sort | boolean? |  yes  |  |
  | app_id | string? |  yes  |  |
- | badge | [CollectionBadge](#CollectionBadge)? |  yes  |  |
+ | badge | [CollectionBadge1](#CollectionBadge1)? |  yes  |  |
  | banners | [ImageUrls](#ImageUrls)? |  yes  |  |
  | description | string? |  yes  |  |
  | is_active | boolean? |  yes  |  |
@@ -21662,7 +21662,7 @@ List of fields and validation values fro each. See example below or refer `Inven
  | net_quantity | [NetQuantity](#NetQuantity)? |  yes  |  |
  | no_of_boxes | number? |  yes  |  |
  | product_group_tag | [string]? |  yes  |  |
- | product_publish | [ProductPublish1](#ProductPublish1)? |  yes  |  |
+ | product_publish | [ProductPublish](#ProductPublish)? |  yes  |  |
  | requester | string? |  yes  |  |
  | return_config | [ReturnConfig](#ReturnConfig) |  no  |  |
  | short_description | string? |  yes  |  |
@@ -21938,7 +21938,7 @@ List of fields and validation values fro each. See example below or refer `Inven
  | pending | string? |  yes  |  |
  | primary_color | string? |  yes  |  |
  | product_group_tag | [string]? |  yes  |  |
- | product_publish | [ProductPublish](#ProductPublish)? |  yes  |  |
+ | product_publish | [ProductPublish1](#ProductPublish1)? |  yes  |  |
  | return_config | [ReturnConfigResponse](#ReturnConfigResponse)? |  yes  |  |
  | short_description | string? |  yes  |  |
  | size_guide | string? |  yes  |  |
@@ -22633,10 +22633,10 @@ List of fields and validation values fro each. See example below or refer `Inven
  | ---------- | ---- | -------- | ----------- |
  | _custom_json | string? |  yes  |  |
  | _locale_language | string? |  yes  |  |
- | _schedule | [CollectionSchedule1](#CollectionSchedule1)? |  yes  |  |
+ | _schedule | [CollectionSchedule](#CollectionSchedule)? |  yes  |  |
  | allow_facets | boolean? |  yes  |  |
  | allow_sort | boolean? |  yes  |  |
- | badge | [CollectionBadge1](#CollectionBadge1)? |  yes  |  |
+ | badge | [CollectionBadge](#CollectionBadge)? |  yes  |  |
  | banners | [CollectionBanner](#CollectionBanner)? |  yes  |  |
  | description | string? |  yes  |  |
  | is_active | boolean? |  yes  |  |
@@ -22894,6 +22894,7 @@ List of fields and validation values fro each. See example below or refer `Inven
  | register | register | Symbolic link for Register: /auth/register |
  | shippingPolicy | shipping-policy | Symbolic link for Shipping policy: /shipping-policy |
  | returnPolicy | return-policy | Symbolic link for Return policy: /return-policy |
+ | orderStatus | order-status | Symbolic link for Order status: /cart/order-status |
 
 ---
 

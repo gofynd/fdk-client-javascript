@@ -1,6 +1,6 @@
 export = OrderApplicationValidator;
 /**
- * @typedef getCustomerDetailsByShipmentId
+ * @typedef GetCustomerDetailsByShipmentIdParam
  * @property {string} orderId - ID of the shipment. An order may contain
  *   multiple items and may get divided into one or more shipment, each having
  *   its own ID.
@@ -8,17 +8,16 @@ export = OrderApplicationValidator;
  *   tracking your orders.
  */
 /**
- * @typedef getInvoiceByShipmentId
+ * @typedef GetInvoiceByShipmentIdParam
  * @property {string} shipmentId - ID of the shipment.
- * @property {string} [documentType]
  */
 /**
- * @typedef getOrderById
+ * @typedef GetOrderByIdParam
  * @property {string} orderId - A unique number used for identifying and
  *   tracking your orders.
  */
 /**
- * @typedef getOrders
+ * @typedef GetOrdersParam
  * @property {number} [status] - A filter to retrieve orders by their current
  *   status such as _placed_, _delivered_, etc.
  * @property {number} [pageNo] - The page number to navigate through the given
@@ -31,43 +30,31 @@ export = OrderApplicationValidator;
  *   fields included for special use-cases
  */
 /**
- * @typedef getPosOrderById
+ * @typedef GetPosOrderByIdParam
  * @property {string} orderId - A unique number used for identifying and
  *   tracking your orders.
  */
 /**
- * @typedef getProducts
- * @property {number} [status] - A filter to retrieve orders by their current
- *   status such as _placed_, _delivered_, etc.
- * @property {number} [pageNo] - The page number to navigate through the given
- *   set of results. Default value is 1.
- * @property {number} [pageSize] - The number of items to retrieve in each page.
- *   Default value is 10.
- * @property {string} [fromDate] - The date from which the orders should be retrieved.
- * @property {string} [toDate] - The date till which the orders should be retrieved.
- * @property {string} [searchValue]
- */
-/**
- * @typedef getShipmentBagReasons
+ * @typedef GetShipmentBagReasonsParam
  * @property {string} shipmentId - ID of the bag. An order may contain multiple
  *   items and may get divided into one or more shipment, each having its own ID.
  * @property {string} bagId - ID of the bag. An order may contain multiple items
  *   and may get divided into one or more shipment, each having its own ID.
  */
 /**
- * @typedef getShipmentById
+ * @typedef GetShipmentByIdParam
  * @property {string} shipmentId - ID of the shipment. An order may contain
  *   multiple items and may get divided into one or more shipment, each having
  *   its own ID.
  */
 /**
- * @typedef getShipmentReasons
+ * @typedef GetShipmentReasonsParam
  * @property {string} shipmentId - ID of the shipment. An order may contain
  *   multiple items and may get divided into one or more shipment, each having
  *   its own ID.
  */
 /**
- * @typedef sendOtpToShipmentCustomer
+ * @typedef SendOtpToShipmentCustomerParam
  * @property {string} orderId - A unique number used for identifying and
  *   tracking your orders.
  * @property {string} shipmentId - ID of the shipment. An order may contain
@@ -75,20 +62,20 @@ export = OrderApplicationValidator;
  *   its own ID.
  */
 /**
- * @typedef trackShipment
+ * @typedef TrackShipmentParam
  * @property {string} shipmentId - ID of the shipment. An order may contain
  *   multiple items and may get divided into one or more shipment, each having
  *   its own ID.
  */
 /**
- * @typedef updateShipmentStatus
+ * @typedef UpdateShipmentStatusParam
  * @property {string} shipmentId - ID of the shipment. An order may contain
  *   multiple items and may get divided into one or more shipment, each having
  *   its own ID.
  * @property {OrderApplicationModel.UpdateShipmentStatusRequest} body
  */
 /**
- * @typedef verifyOtpShipmentCustomer
+ * @typedef VerifyOtpShipmentCustomerParam
  * @property {string} orderId - A unique number used for identifying and
  *   tracking your orders.
  * @property {string} shipmentId - ID of the shipment. An order may contain
@@ -97,13 +84,35 @@ export = OrderApplicationValidator;
  * @property {OrderApplicationModel.VerifyOtp} body
  */
 declare class OrderApplicationValidator {
+    /** @returns {getCustomerDetailsByShipmentId} */
+    static getCustomerDetailsByShipmentId(): getCustomerDetailsByShipmentId;
+    /** @returns {getInvoiceByShipmentId} */
+    static getInvoiceByShipmentId(): getInvoiceByShipmentId;
+    /** @returns {getOrderById} */
+    static getOrderById(): getOrderById;
+    /** @returns {getOrders} */
+    static getOrders(): getOrders;
+    /** @returns {getPosOrderById} */
+    static getPosOrderById(): getPosOrderById;
+    /** @returns {getShipmentBagReasons} */
+    static getShipmentBagReasons(): getShipmentBagReasons;
+    /** @returns {getShipmentById} */
+    static getShipmentById(): getShipmentById;
+    /** @returns {getShipmentReasons} */
+    static getShipmentReasons(): getShipmentReasons;
+    /** @returns {sendOtpToShipmentCustomer} */
+    static sendOtpToShipmentCustomer(): sendOtpToShipmentCustomer;
+    /** @returns {trackShipment} */
+    static trackShipment(): trackShipment;
+    /** @returns {updateShipmentStatus} */
+    static updateShipmentStatus(): updateShipmentStatus;
+    /** @returns {verifyOtpShipmentCustomer} */
+    static verifyOtpShipmentCustomer(): verifyOtpShipmentCustomer;
 }
 declare namespace OrderApplicationValidator {
-    export { getCustomerDetailsByShipmentId, getInvoiceByShipmentId, getOrderById, getOrders, getPosOrderById, getProducts, getShipmentBagReasons, getShipmentById, getShipmentReasons, sendOtpToShipmentCustomer, trackShipment, updateShipmentStatus, verifyOtpShipmentCustomer };
+    export { GetCustomerDetailsByShipmentIdParam, GetInvoiceByShipmentIdParam, GetOrderByIdParam, GetOrdersParam, GetPosOrderByIdParam, GetShipmentBagReasonsParam, GetShipmentByIdParam, GetShipmentReasonsParam, SendOtpToShipmentCustomerParam, TrackShipmentParam, UpdateShipmentStatusParam, VerifyOtpShipmentCustomerParam };
 }
-/** @returns {getCustomerDetailsByShipmentId} */
-declare function getCustomerDetailsByShipmentId(): getCustomerDetailsByShipmentId;
-type getCustomerDetailsByShipmentId = {
+type GetCustomerDetailsByShipmentIdParam = {
     /**
      * - ID of the shipment. An order may contain
      * multiple items and may get divided into one or more shipment, each having
@@ -116,27 +125,20 @@ type getCustomerDetailsByShipmentId = {
      */
     shipmentId: string;
 };
-/** @returns {getInvoiceByShipmentId} */
-declare function getInvoiceByShipmentId(): getInvoiceByShipmentId;
-type getInvoiceByShipmentId = {
+type GetInvoiceByShipmentIdParam = {
     /**
      * - ID of the shipment.
      */
     shipmentId: string;
-    documentType?: string;
 };
-/** @returns {getOrderById} */
-declare function getOrderById(): getOrderById;
-type getOrderById = {
+type GetOrderByIdParam = {
     /**
      * - A unique number used for identifying and
      * tracking your orders.
      */
     orderId: string;
 };
-/** @returns {getOrders} */
-declare function getOrders(): getOrders;
-type getOrders = {
+type GetOrdersParam = {
     /**
      * - A filter to retrieve orders by their current
      * status such as _placed_, _delivered_, etc.
@@ -166,46 +168,14 @@ type getOrders = {
      */
     customMeta?: string;
 };
-/** @returns {getPosOrderById} */
-declare function getPosOrderById(): getPosOrderById;
-type getPosOrderById = {
+type GetPosOrderByIdParam = {
     /**
      * - A unique number used for identifying and
      * tracking your orders.
      */
     orderId: string;
 };
-/** @returns {getProducts} */
-declare function getProducts(): getProducts;
-type getProducts = {
-    /**
-     * - A filter to retrieve orders by their current
-     * status such as _placed_, _delivered_, etc.
-     */
-    status?: number;
-    /**
-     * - The page number to navigate through the given
-     * set of results. Default value is 1.
-     */
-    pageNo?: number;
-    /**
-     * - The number of items to retrieve in each page.
-     * Default value is 10.
-     */
-    pageSize?: number;
-    /**
-     * - The date from which the orders should be retrieved.
-     */
-    fromDate?: string;
-    /**
-     * - The date till which the orders should be retrieved.
-     */
-    toDate?: string;
-    searchValue?: string;
-};
-/** @returns {getShipmentBagReasons} */
-declare function getShipmentBagReasons(): getShipmentBagReasons;
-type getShipmentBagReasons = {
+type GetShipmentBagReasonsParam = {
     /**
      * - ID of the bag. An order may contain multiple
      * items and may get divided into one or more shipment, each having its own ID.
@@ -217,9 +187,7 @@ type getShipmentBagReasons = {
      */
     bagId: string;
 };
-/** @returns {getShipmentById} */
-declare function getShipmentById(): getShipmentById;
-type getShipmentById = {
+type GetShipmentByIdParam = {
     /**
      * - ID of the shipment. An order may contain
      * multiple items and may get divided into one or more shipment, each having
@@ -227,9 +195,7 @@ type getShipmentById = {
      */
     shipmentId: string;
 };
-/** @returns {getShipmentReasons} */
-declare function getShipmentReasons(): getShipmentReasons;
-type getShipmentReasons = {
+type GetShipmentReasonsParam = {
     /**
      * - ID of the shipment. An order may contain
      * multiple items and may get divided into one or more shipment, each having
@@ -237,9 +203,7 @@ type getShipmentReasons = {
      */
     shipmentId: string;
 };
-/** @returns {sendOtpToShipmentCustomer} */
-declare function sendOtpToShipmentCustomer(): sendOtpToShipmentCustomer;
-type sendOtpToShipmentCustomer = {
+type SendOtpToShipmentCustomerParam = {
     /**
      * - A unique number used for identifying and
      * tracking your orders.
@@ -252,9 +216,7 @@ type sendOtpToShipmentCustomer = {
      */
     shipmentId: string;
 };
-/** @returns {trackShipment} */
-declare function trackShipment(): trackShipment;
-type trackShipment = {
+type TrackShipmentParam = {
     /**
      * - ID of the shipment. An order may contain
      * multiple items and may get divided into one or more shipment, each having
@@ -262,9 +224,7 @@ type trackShipment = {
      */
     shipmentId: string;
 };
-/** @returns {updateShipmentStatus} */
-declare function updateShipmentStatus(): updateShipmentStatus;
-type updateShipmentStatus = {
+type UpdateShipmentStatusParam = {
     /**
      * - ID of the shipment. An order may contain
      * multiple items and may get divided into one or more shipment, each having
@@ -273,9 +233,7 @@ type updateShipmentStatus = {
     shipmentId: string;
     body: OrderApplicationModel.UpdateShipmentStatusRequest;
 };
-/** @returns {verifyOtpShipmentCustomer} */
-declare function verifyOtpShipmentCustomer(): verifyOtpShipmentCustomer;
-type verifyOtpShipmentCustomer = {
+type VerifyOtpShipmentCustomerParam = {
     /**
      * - A unique number used for identifying and
      * tracking your orders.

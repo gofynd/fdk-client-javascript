@@ -1,14 +1,14 @@
 export = OrderPlatformValidator;
 /**
- * @typedef attachOrderUser
+ * @typedef AttachOrderUserParam
  * @property {OrderPlatformModel.AttachOrderUser} body
  */
 /**
- * @typedef checkOrderStatus
+ * @typedef CheckOrderStatusParam
  * @property {OrderPlatformModel.OrderStatus} body
  */
 /**
- * @typedef click2Call
+ * @typedef Click2CallParam
  * @property {string} caller - Call Number
  * @property {string} receiver - Receiver Number
  * @property {string} bagId - Bag Id for the query
@@ -16,55 +16,44 @@ export = OrderPlatformValidator;
  * @property {string} [method] - Provider Method to Call
  */
 /**
- * @typedef createOrder
+ * @typedef CreateOrderParam
  * @property {OrderPlatformModel.CreateOrderAPI} body
  */
 /**
- * @typedef createShipmentReport
- * @property {string} [fromDate]
- * @property {string} [toDate]
- */
-/**
- * @typedef dispatchManifest
+ * @typedef DispatchManifestParam
  * @property {OrderPlatformModel.DispatchManifest} body
  */
 /**
- * @typedef downloadBulkActionTemplate
+ * @typedef DownloadBulkActionTemplateParam
  * @property {string} [templateSlug] - Slug name of template to be downloaded
  */
 /**
- * @typedef fetchCreditBalanceDetail
+ * @typedef FetchCreditBalanceDetailParam
  * @property {OrderPlatformModel.FetchCreditBalanceRequestPayload} body
  */
 /**
- * @typedef fetchRefundModeConfig
+ * @typedef FetchRefundModeConfigParam
  * @property {OrderPlatformModel.RefundModeConfigRequestPayload} body
  */
 /**
- * @typedef generatePOSReceiptByOrderId
+ * @typedef GeneratePOSReceiptByOrderIdParam
  * @property {string} orderId
  * @property {string} [shipmentId]
  * @property {string} [documentType]
  */
 /**
- * @typedef getAnnouncements
+ * @typedef GetAnnouncementsParam
  * @property {string} [date] - Date On which the announcement is Active (Date
  *   should in ISO Datetime format IST Time)
  */
 /**
- * @typedef getAssetByShipmentIds
- * @property {string} shipmentIds
- * @property {boolean} [invoice]
- * @property {string} [expiresIn]
- */
-/**
- * @typedef getBagById
+ * @typedef GetBagByIdParam
  * @property {string} [bagId] - Id of bag
  * @property {string} [channelBagId] - Id of application bag
  * @property {string} [channelId] - Id of application
  */
 /**
- * @typedef getBags
+ * @typedef GetBagsParam
  * @property {string} [bagIds] - Comma separated values of bag ids
  * @property {string} [shipmentIds] - Comma separated values of shipment ids
  * @property {string} [orderIds] - Comma separated values of order ids
@@ -75,9 +64,9 @@ export = OrderPlatformValidator;
  * @property {number} [pageNo] - Page number for paginated data
  * @property {number} [pageSize] - Page size of data received per page
  */
-/** @typedef getBulkActionTemplate */
+/** @typedef GetBulkActionTemplateParam */
 /**
- * @typedef getBulkShipmentExcelFile
+ * @typedef GetBulkShipmentExcelFileParam
  * @property {string} [salesChannels] - Comma separated values of sales channel ids
  * @property {string} [dpIds] - Comma separated values of delivery partner ids
  * @property {string} [fromDate] - Start Date in DD-MM-YYYY format
@@ -92,7 +81,7 @@ export = OrderPlatformValidator;
  * @property {number} [pageSize]
  */
 /**
- * @typedef getLaneConfig
+ * @typedef GetLaneConfigParam
  * @property {string} [superLane] - Name of lane for which data is to be fetched
  * @property {string} [groupEntity] - Name of group entity
  * @property {string} [fromDate] - Start Date in DD-MM-YYYY format
@@ -110,7 +99,7 @@ export = OrderPlatformValidator;
  * @property {boolean} [myOrders]
  */
 /**
- * @typedef getManifestDetails
+ * @typedef GetManifestDetailsParam
  * @property {string} manifestId
  * @property {string} [status]
  * @property {string} [toDate]
@@ -122,7 +111,7 @@ export = OrderPlatformValidator;
  * @property {string} [pageSize]
  */
 /**
- * @typedef getManifestShipments
+ * @typedef GetManifestShipmentsParam
  * @property {number} dpIds
  * @property {string} stores
  * @property {string} toDate
@@ -135,11 +124,11 @@ export = OrderPlatformValidator;
  * @property {string} [pageSize]
  */
 /**
- * @typedef getManifestfilters
+ * @typedef GetManifestfiltersParam
  * @property {string} view - Name of View
  */
 /**
- * @typedef getManifests
+ * @typedef GetManifestsParam
  * @property {string} [status] - Possible Status [ active, closed ]
  * @property {string} [toDate]
  * @property {string} [fromDate]
@@ -150,16 +139,11 @@ export = OrderPlatformValidator;
  * @property {string} [pageSize]
  */
 /**
- * @typedef getMetricCount
- * @property {string} [fromDate]
- * @property {string} [toDate]
- */
-/**
- * @typedef getOrderById
+ * @typedef GetOrderByIdParam
  * @property {string} orderId
  */
 /**
- * @typedef getOrders
+ * @typedef GetOrdersParam
  * @property {string} [lane] - Lane refers to a section where orders are
  *   assigned, indicating its grouping
  * @property {string} [searchType] - Search_type refers to the field that will
@@ -183,24 +167,19 @@ export = OrderPlatformValidator;
  * @property {string} [customMeta]
  * @property {boolean} [myOrders]
  */
+/** @typedef GetRoleBasedActionsParam */
 /**
- * @typedef getReportsShipmentListing
- * @property {number} [pageNo]
- * @property {number} [pageSize]
- */
-/** @typedef getRoleBasedActions */
-/**
- * @typedef getShipmentById
+ * @typedef GetShipmentByIdParam
  * @property {string} [channelShipmentId] - App Shipment Id
  * @property {string} [shipmentId] - Shipment Id
  */
 /**
- * @typedef getShipmentHistory
+ * @typedef GetShipmentHistoryParam
  * @property {string} [shipmentId] - Shipment Id
  * @property {number} [bagId] - Bag/Product Id
  */
 /**
- * @typedef getShipmentReasons
+ * @typedef GetShipmentReasonsParam
  * @property {string} shipmentId - ID of the shipment. An order may contain
  *   multiple items and may get divided into one or more shipment, each having
  *   its own ID.
@@ -209,7 +188,7 @@ export = OrderPlatformValidator;
  * @property {string} state - State for which reasons are required.
  */
 /**
- * @typedef getShipments
+ * @typedef GetShipmentsParam
  * @property {string} [lane] - Name of lane for which data is to be fetched
  * @property {string} [bagStatus] - Comma separated values of bag statuses
  * @property {boolean} [statusOverrideLane] - Use this flag to fetch by
@@ -234,42 +213,42 @@ export = OrderPlatformValidator;
  * @property {string} [companyAffiliateTag]
  * @property {boolean} [myOrders]
  */
-/** @typedef getStateTransitionMap */
+/** @typedef GetStateTransitionMapParam */
 /**
- * @typedef getfilters
+ * @typedef GetfiltersParam
  * @property {string} view - Name of view
  * @property {string} [groupEntity] - Name of group entity
  */
 /**
- * @typedef invalidateShipmentCache
+ * @typedef InvalidateShipmentCacheParam
  * @property {OrderPlatformModel.InvalidateShipmentCachePayload} body
  */
 /**
- * @typedef orderUpdate
+ * @typedef OrderUpdateParam
  * @property {OrderPlatformModel.PlatformOrderUpdate} body
  */
 /**
- * @typedef postShipmentHistory
+ * @typedef PostShipmentHistoryParam
  * @property {OrderPlatformModel.PostShipmentHistory} body
  */
 /**
- * @typedef processManifest
+ * @typedef ProcessManifestParam
  * @property {OrderPlatformModel.ProcessManifest} body
  */
 /**
- * @typedef reassignLocation
+ * @typedef ReassignLocationParam
  * @property {OrderPlatformModel.StoreReassign} body
  */
 /**
- * @typedef sendSmsNinja
+ * @typedef SendSmsNinjaParam
  * @property {OrderPlatformModel.SendSmsPayload} body
  */
 /**
- * @typedef sendUserMobileOTP
+ * @typedef SendUserMobileOTPParam
  * @property {OrderPlatformModel.SendUserMobileOTP} body
  */
 /**
- * @typedef updateAddress
+ * @typedef UpdateAddressParam
  * @property {string} shipmentId
  * @property {string} [name]
  * @property {string} [address]
@@ -284,47 +263,119 @@ export = OrderPlatformValidator;
  * @property {string} [country]
  */
 /**
- * @typedef updatePackagingDimensions
+ * @typedef UpdatePackagingDimensionsParam
  * @property {OrderPlatformModel.UpdatePackagingDimensionsPayload} body
  */
 /**
- * @typedef updateShipmentLock
+ * @typedef UpdateShipmentLockParam
  * @property {OrderPlatformModel.UpdateShipmentLockPayload} body
  */
 /**
- * @typedef updateShipmentStatus
+ * @typedef UpdateShipmentStatusParam
  * @property {OrderPlatformModel.UpdateShipmentStatusRequest} body
  */
 /**
- * @typedef uploadConsent
+ * @typedef UploadConsentParam
  * @property {OrderPlatformModel.UploadConsent} body
  */
 /**
- * @typedef upsertJioCode
- * @property {OrderPlatformModel.JioCodeUpsertPayload} body
- */
-/**
- * @typedef verifyMobileOTP
+ * @typedef VerifyMobileOTPParam
  * @property {OrderPlatformModel.VerifyMobileOTP} body
  */
 declare class OrderPlatformValidator {
+    /** @returns {attachOrderUser} */
+    static attachOrderUser(): attachOrderUser;
+    /** @returns {checkOrderStatus} */
+    static checkOrderStatus(): checkOrderStatus;
+    /** @returns {click2Call} */
+    static click2Call(): click2Call;
+    /** @returns {createOrder} */
+    static createOrder(): createOrder;
+    /** @returns {dispatchManifest} */
+    static dispatchManifest(): dispatchManifest;
+    /** @returns {downloadBulkActionTemplate} */
+    static downloadBulkActionTemplate(): downloadBulkActionTemplate;
+    /** @returns {fetchCreditBalanceDetail} */
+    static fetchCreditBalanceDetail(): fetchCreditBalanceDetail;
+    /** @returns {fetchRefundModeConfig} */
+    static fetchRefundModeConfig(): fetchRefundModeConfig;
+    /** @returns {generatePOSReceiptByOrderId} */
+    static generatePOSReceiptByOrderId(): generatePOSReceiptByOrderId;
+    /** @returns {getAnnouncements} */
+    static getAnnouncements(): getAnnouncements;
+    /** @returns {getBagById} */
+    static getBagById(): getBagById;
+    /** @returns {getBags} */
+    static getBags(): getBags;
+    /** @returns {getBulkActionTemplate} */
+    static getBulkActionTemplate(): getBulkActionTemplate;
+    /** @returns {getBulkShipmentExcelFile} */
+    static getBulkShipmentExcelFile(): getBulkShipmentExcelFile;
+    /** @returns {getLaneConfig} */
+    static getLaneConfig(): getLaneConfig;
+    /** @returns {getManifestDetails} */
+    static getManifestDetails(): getManifestDetails;
+    /** @returns {getManifestShipments} */
+    static getManifestShipments(): getManifestShipments;
+    /** @returns {getManifestfilters} */
+    static getManifestfilters(): getManifestfilters;
+    /** @returns {getManifests} */
+    static getManifests(): getManifests;
+    /** @returns {getOrderById} */
+    static getOrderById(): getOrderById;
+    /** @returns {getOrders} */
+    static getOrders(): getOrders;
+    /** @returns {getRoleBasedActions} */
+    static getRoleBasedActions(): getRoleBasedActions;
+    /** @returns {getShipmentById} */
+    static getShipmentById(): getShipmentById;
+    /** @returns {getShipmentHistory} */
+    static getShipmentHistory(): getShipmentHistory;
+    /** @returns {getShipmentReasons} */
+    static getShipmentReasons(): getShipmentReasons;
+    /** @returns {getShipments} */
+    static getShipments(): getShipments;
+    /** @returns {getStateTransitionMap} */
+    static getStateTransitionMap(): getStateTransitionMap;
+    /** @returns {getfilters} */
+    static getfilters(): getfilters;
+    /** @returns {invalidateShipmentCache} */
+    static invalidateShipmentCache(): invalidateShipmentCache;
+    /** @returns {orderUpdate} */
+    static orderUpdate(): orderUpdate;
+    /** @returns {postShipmentHistory} */
+    static postShipmentHistory(): postShipmentHistory;
+    /** @returns {processManifest} */
+    static processManifest(): processManifest;
+    /** @returns {reassignLocation} */
+    static reassignLocation(): reassignLocation;
+    /** @returns {sendSmsNinja} */
+    static sendSmsNinja(): sendSmsNinja;
+    /** @returns {sendUserMobileOTP} */
+    static sendUserMobileOTP(): sendUserMobileOTP;
+    /** @returns {updateAddress} */
+    static updateAddress(): updateAddress;
+    /** @returns {updatePackagingDimensions} */
+    static updatePackagingDimensions(): updatePackagingDimensions;
+    /** @returns {updateShipmentLock} */
+    static updateShipmentLock(): updateShipmentLock;
+    /** @returns {updateShipmentStatus} */
+    static updateShipmentStatus(): updateShipmentStatus;
+    /** @returns {uploadConsent} */
+    static uploadConsent(): uploadConsent;
+    /** @returns {verifyMobileOTP} */
+    static verifyMobileOTP(): verifyMobileOTP;
 }
 declare namespace OrderPlatformValidator {
-    export { attachOrderUser, checkOrderStatus, click2Call, createOrder, createShipmentReport, dispatchManifest, downloadBulkActionTemplate, fetchCreditBalanceDetail, fetchRefundModeConfig, generatePOSReceiptByOrderId, getAnnouncements, getAssetByShipmentIds, getBagById, getBags, getBulkActionTemplate, getBulkShipmentExcelFile, getLaneConfig, getManifestDetails, getManifestShipments, getManifestfilters, getManifests, getMetricCount, getOrderById, getOrders, getReportsShipmentListing, getRoleBasedActions, getShipmentById, getShipmentHistory, getShipmentReasons, getShipments, getStateTransitionMap, getfilters, invalidateShipmentCache, orderUpdate, postShipmentHistory, processManifest, reassignLocation, sendSmsNinja, sendUserMobileOTP, updateAddress, updatePackagingDimensions, updateShipmentLock, updateShipmentStatus, uploadConsent, upsertJioCode, verifyMobileOTP };
+    export { AttachOrderUserParam, CheckOrderStatusParam, Click2CallParam, CreateOrderParam, DispatchManifestParam, DownloadBulkActionTemplateParam, FetchCreditBalanceDetailParam, FetchRefundModeConfigParam, GeneratePOSReceiptByOrderIdParam, GetAnnouncementsParam, GetBagByIdParam, GetBagsParam, GetBulkActionTemplateParam, GetBulkShipmentExcelFileParam, GetLaneConfigParam, GetManifestDetailsParam, GetManifestShipmentsParam, GetManifestfiltersParam, GetManifestsParam, GetOrderByIdParam, GetOrdersParam, GetRoleBasedActionsParam, GetShipmentByIdParam, GetShipmentHistoryParam, GetShipmentReasonsParam, GetShipmentsParam, GetStateTransitionMapParam, GetfiltersParam, InvalidateShipmentCacheParam, OrderUpdateParam, PostShipmentHistoryParam, ProcessManifestParam, ReassignLocationParam, SendSmsNinjaParam, SendUserMobileOTPParam, UpdateAddressParam, UpdatePackagingDimensionsParam, UpdateShipmentLockParam, UpdateShipmentStatusParam, UploadConsentParam, VerifyMobileOTPParam };
 }
-/** @returns {attachOrderUser} */
-declare function attachOrderUser(): attachOrderUser;
-type attachOrderUser = {
+type AttachOrderUserParam = {
     body: OrderPlatformModel.AttachOrderUser;
 };
-/** @returns {checkOrderStatus} */
-declare function checkOrderStatus(): checkOrderStatus;
-type checkOrderStatus = {
+type CheckOrderStatusParam = {
     body: OrderPlatformModel.OrderStatus;
 };
-/** @returns {click2Call} */
-declare function click2Call(): click2Call;
-type click2Call = {
+type Click2CallParam = {
     /**
      * - Call Number
      */
@@ -346,66 +397,37 @@ type click2Call = {
      */
     method?: string;
 };
-/** @returns {createOrder} */
-declare function createOrder(): createOrder;
-type createOrder = {
+type CreateOrderParam = {
     body: OrderPlatformModel.CreateOrderAPI;
 };
-/** @returns {createShipmentReport} */
-declare function createShipmentReport(): createShipmentReport;
-type createShipmentReport = {
-    fromDate?: string;
-    toDate?: string;
-};
-/** @returns {dispatchManifest} */
-declare function dispatchManifest(): dispatchManifest;
-type dispatchManifest = {
+type DispatchManifestParam = {
     body: OrderPlatformModel.DispatchManifest;
 };
-/** @returns {downloadBulkActionTemplate} */
-declare function downloadBulkActionTemplate(): downloadBulkActionTemplate;
-type downloadBulkActionTemplate = {
+type DownloadBulkActionTemplateParam = {
     /**
      * - Slug name of template to be downloaded
      */
     templateSlug?: string;
 };
-/** @returns {fetchCreditBalanceDetail} */
-declare function fetchCreditBalanceDetail(): fetchCreditBalanceDetail;
-type fetchCreditBalanceDetail = {
+type FetchCreditBalanceDetailParam = {
     body: OrderPlatformModel.FetchCreditBalanceRequestPayload;
 };
-/** @returns {fetchRefundModeConfig} */
-declare function fetchRefundModeConfig(): fetchRefundModeConfig;
-type fetchRefundModeConfig = {
+type FetchRefundModeConfigParam = {
     body: OrderPlatformModel.RefundModeConfigRequestPayload;
 };
-/** @returns {generatePOSReceiptByOrderId} */
-declare function generatePOSReceiptByOrderId(): generatePOSReceiptByOrderId;
-type generatePOSReceiptByOrderId = {
+type GeneratePOSReceiptByOrderIdParam = {
     orderId: string;
     shipmentId?: string;
     documentType?: string;
 };
-/** @returns {getAnnouncements} */
-declare function getAnnouncements(): getAnnouncements;
-type getAnnouncements = {
+type GetAnnouncementsParam = {
     /**
      * - Date On which the announcement is Active (Date
      * should in ISO Datetime format IST Time)
      */
     date?: string;
 };
-/** @returns {getAssetByShipmentIds} */
-declare function getAssetByShipmentIds(): getAssetByShipmentIds;
-type getAssetByShipmentIds = {
-    shipmentIds: string;
-    invoice?: boolean;
-    expiresIn?: string;
-};
-/** @returns {getBagById} */
-declare function getBagById(): getBagById;
-type getBagById = {
+type GetBagByIdParam = {
     /**
      * - Id of bag
      */
@@ -419,9 +441,7 @@ type getBagById = {
      */
     channelId?: string;
 };
-/** @returns {getBags} */
-declare function getBags(): getBags;
-type getBags = {
+type GetBagsParam = {
     /**
      * - Comma separated values of bag ids
      */
@@ -459,12 +479,8 @@ type getBags = {
      */
     pageSize?: number;
 };
-/** @returns {getBulkActionTemplate} */
-declare function getBulkActionTemplate(): any;
-type getBulkActionTemplate = any;
-/** @returns {getBulkShipmentExcelFile} */
-declare function getBulkShipmentExcelFile(): getBulkShipmentExcelFile;
-type getBulkShipmentExcelFile = {
+type GetBulkActionTemplateParam = any;
+type GetBulkShipmentExcelFileParam = {
     /**
      * - Comma separated values of sales channel ids
      */
@@ -508,9 +524,7 @@ type getBulkShipmentExcelFile = {
     pageNo?: number;
     pageSize?: number;
 };
-/** @returns {getLaneConfig} */
-declare function getLaneConfig(): getLaneConfig;
-type getLaneConfig = {
+type GetLaneConfigParam = {
     /**
      * - Name of lane for which data is to be fetched
      */
@@ -551,9 +565,7 @@ type getLaneConfig = {
     paymentMethods?: string;
     myOrders?: boolean;
 };
-/** @returns {getManifestDetails} */
-declare function getManifestDetails(): getManifestDetails;
-type getManifestDetails = {
+type GetManifestDetailsParam = {
     manifestId: string;
     status?: string;
     toDate?: string;
@@ -567,9 +579,7 @@ type getManifestDetails = {
     pageNo?: string;
     pageSize?: string;
 };
-/** @returns {getManifestShipments} */
-declare function getManifestShipments(): getManifestShipments;
-type getManifestShipments = {
+type GetManifestShipmentsParam = {
     dpIds: number;
     stores: string;
     toDate: string;
@@ -581,17 +591,13 @@ type getManifestShipments = {
     pageNo?: string;
     pageSize?: string;
 };
-/** @returns {getManifestfilters} */
-declare function getManifestfilters(): getManifestfilters;
-type getManifestfilters = {
+type GetManifestfiltersParam = {
     /**
      * - Name of View
      */
     view: string;
 };
-/** @returns {getManifests} */
-declare function getManifests(): getManifests;
-type getManifests = {
+type GetManifestsParam = {
     /**
      * - Possible Status [ active, closed ]
      */
@@ -610,20 +616,10 @@ type getManifests = {
     pageNo?: string;
     pageSize?: string;
 };
-/** @returns {getMetricCount} */
-declare function getMetricCount(): getMetricCount;
-type getMetricCount = {
-    fromDate?: string;
-    toDate?: string;
-};
-/** @returns {getOrderById} */
-declare function getOrderById(): getOrderById;
-type getOrderById = {
+type GetOrderByIdParam = {
     orderId: string;
 };
-/** @returns {getOrders} */
-declare function getOrders(): getOrders;
-type getOrders = {
+type GetOrdersParam = {
     /**
      * - Lane refers to a section where orders are
      * assigned, indicating its grouping
@@ -668,18 +664,8 @@ type getOrders = {
     customMeta?: string;
     myOrders?: boolean;
 };
-/** @returns {getReportsShipmentListing} */
-declare function getReportsShipmentListing(): getReportsShipmentListing;
-type getReportsShipmentListing = {
-    pageNo?: number;
-    pageSize?: number;
-};
-/** @returns {getRoleBasedActions} */
-declare function getRoleBasedActions(): any;
-type getRoleBasedActions = any;
-/** @returns {getShipmentById} */
-declare function getShipmentById(): getShipmentById;
-type getShipmentById = {
+type GetRoleBasedActionsParam = any;
+type GetShipmentByIdParam = {
     /**
      * - App Shipment Id
      */
@@ -689,9 +675,7 @@ type getShipmentById = {
      */
     shipmentId?: string;
 };
-/** @returns {getShipmentHistory} */
-declare function getShipmentHistory(): getShipmentHistory;
-type getShipmentHistory = {
+type GetShipmentHistoryParam = {
     /**
      * - Shipment Id
      */
@@ -701,9 +685,7 @@ type getShipmentHistory = {
      */
     bagId?: number;
 };
-/** @returns {getShipmentReasons} */
-declare function getShipmentReasons(): getShipmentReasons;
-type getShipmentReasons = {
+type GetShipmentReasonsParam = {
     /**
      * - ID of the shipment. An order may contain
      * multiple items and may get divided into one or more shipment, each having
@@ -720,9 +702,7 @@ type getShipmentReasons = {
      */
     state: string;
 };
-/** @returns {getShipments} */
-declare function getShipments(): getShipments;
-type getShipments = {
+type GetShipmentsParam = {
     /**
      * - Name of lane for which data is to be fetched
      */
@@ -798,12 +778,8 @@ type getShipments = {
     companyAffiliateTag?: string;
     myOrders?: boolean;
 };
-/** @returns {getStateTransitionMap} */
-declare function getStateTransitionMap(): any;
-type getStateTransitionMap = any;
-/** @returns {getfilters} */
-declare function getfilters(): getfilters;
-type getfilters = {
+type GetStateTransitionMapParam = any;
+type GetfiltersParam = {
     /**
      * - Name of view
      */
@@ -813,44 +789,28 @@ type getfilters = {
      */
     groupEntity?: string;
 };
-/** @returns {invalidateShipmentCache} */
-declare function invalidateShipmentCache(): invalidateShipmentCache;
-type invalidateShipmentCache = {
+type InvalidateShipmentCacheParam = {
     body: OrderPlatformModel.InvalidateShipmentCachePayload;
 };
-/** @returns {orderUpdate} */
-declare function orderUpdate(): orderUpdate;
-type orderUpdate = {
+type OrderUpdateParam = {
     body: OrderPlatformModel.PlatformOrderUpdate;
 };
-/** @returns {postShipmentHistory} */
-declare function postShipmentHistory(): postShipmentHistory;
-type postShipmentHistory = {
+type PostShipmentHistoryParam = {
     body: OrderPlatformModel.PostShipmentHistory;
 };
-/** @returns {processManifest} */
-declare function processManifest(): processManifest;
-type processManifest = {
+type ProcessManifestParam = {
     body: OrderPlatformModel.ProcessManifest;
 };
-/** @returns {reassignLocation} */
-declare function reassignLocation(): reassignLocation;
-type reassignLocation = {
+type ReassignLocationParam = {
     body: OrderPlatformModel.StoreReassign;
 };
-/** @returns {sendSmsNinja} */
-declare function sendSmsNinja(): sendSmsNinja;
-type sendSmsNinja = {
+type SendSmsNinjaParam = {
     body: OrderPlatformModel.SendSmsPayload;
 };
-/** @returns {sendUserMobileOTP} */
-declare function sendUserMobileOTP(): sendUserMobileOTP;
-type sendUserMobileOTP = {
+type SendUserMobileOTPParam = {
     body: OrderPlatformModel.SendUserMobileOTP;
 };
-/** @returns {updateAddress} */
-declare function updateAddress(): updateAddress;
-type updateAddress = {
+type UpdateAddressParam = {
     shipmentId: string;
     name?: string;
     address?: string;
@@ -864,34 +824,19 @@ type updateAddress = {
     state?: string;
     country?: string;
 };
-/** @returns {updatePackagingDimensions} */
-declare function updatePackagingDimensions(): updatePackagingDimensions;
-type updatePackagingDimensions = {
+type UpdatePackagingDimensionsParam = {
     body: OrderPlatformModel.UpdatePackagingDimensionsPayload;
 };
-/** @returns {updateShipmentLock} */
-declare function updateShipmentLock(): updateShipmentLock;
-type updateShipmentLock = {
+type UpdateShipmentLockParam = {
     body: OrderPlatformModel.UpdateShipmentLockPayload;
 };
-/** @returns {updateShipmentStatus} */
-declare function updateShipmentStatus(): updateShipmentStatus;
-type updateShipmentStatus = {
+type UpdateShipmentStatusParam = {
     body: OrderPlatformModel.UpdateShipmentStatusRequest;
 };
-/** @returns {uploadConsent} */
-declare function uploadConsent(): uploadConsent;
-type uploadConsent = {
+type UploadConsentParam = {
     body: OrderPlatformModel.UploadConsent;
 };
-/** @returns {upsertJioCode} */
-declare function upsertJioCode(): upsertJioCode;
-type upsertJioCode = {
-    body: OrderPlatformModel.JioCodeUpsertPayload;
-};
-/** @returns {verifyMobileOTP} */
-declare function verifyMobileOTP(): verifyMobileOTP;
-type verifyMobileOTP = {
+type VerifyMobileOTPParam = {
     body: OrderPlatformModel.VerifyMobileOTP;
 };
 import OrderPlatformModel = require("./OrderPlatformModel");

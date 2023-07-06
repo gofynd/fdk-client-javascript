@@ -50,7 +50,7 @@ class Content {
   }
 
   /**
-   * @param {ContentApplicationValidator.getAnnouncements} arg - Arg object.
+   * @param {ContentApplicationValidator.GetAnnouncementsParam} arg - Arg object.
    * @returns {Promise<ContentApplicationModel.AnnouncementsResponseSchema>}
    *   - Success response
    *
@@ -115,7 +115,7 @@ class Content {
   }
 
   /**
-   * @param {ContentApplicationValidator.getBlog} arg - Arg object.
+   * @param {ContentApplicationValidator.GetBlogParam} arg - Arg object.
    * @returns {Promise<ContentApplicationModel.BlogSchema>} - Success response
    * @name getBlog
    * @summary: Get a blog
@@ -177,7 +177,7 @@ class Content {
   }
 
   /**
-   * @param {ContentApplicationValidator.getBlogs} arg - Arg object.
+   * @param {ContentApplicationValidator.GetBlogsParam} arg - Arg object.
    * @returns {Promise<ContentApplicationModel.BlogGetResponse>} - Success response
    * @name getBlogs
    * @summary: Get a list of blogs
@@ -267,7 +267,7 @@ class Content {
   }
 
   /**
-   * @param {ContentApplicationValidator.getDataLoaders} arg - Arg object.
+   * @param {ContentApplicationValidator.GetDataLoadersParam} arg - Arg object.
    * @returns {Promise<ContentApplicationModel.DataLoadersSchema>} - Success response
    * @name getDataLoaders
    * @summary: Get the data loaders associated with an application
@@ -330,7 +330,7 @@ class Content {
   }
 
   /**
-   * @param {ContentApplicationValidator.getFaqBySlug} arg - Arg object.
+   * @param {ContentApplicationValidator.GetFaqBySlugParam} arg - Arg object.
    * @returns {Promise<ContentApplicationModel.FaqSchema>} - Success response
    * @name getFaqBySlug
    * @summary: Get an FAQ
@@ -393,7 +393,7 @@ class Content {
   }
 
   /**
-   * @param {ContentApplicationValidator.getFaqCategories} arg - Arg object.
+   * @param {ContentApplicationValidator.GetFaqCategoriesParam} arg - Arg object.
    * @returns {Promise<ContentApplicationModel.GetFaqCategoriesSchema>} -
    *   Success response
    * @name getFaqCategories
@@ -457,7 +457,7 @@ class Content {
   }
 
   /**
-   * @param {ContentApplicationValidator.getFaqCategoryBySlug} arg - Arg object.
+   * @param {ContentApplicationValidator.GetFaqCategoryBySlugParam} arg - Arg object.
    * @returns {Promise<ContentApplicationModel.GetFaqCategoryBySlugSchema>} -
    *   Success response
    * @name getFaqCategoryBySlug
@@ -523,7 +523,7 @@ class Content {
   }
 
   /**
-   * @param {ContentApplicationValidator.getFaqs} arg - Arg object.
+   * @param {ContentApplicationValidator.GetFaqsParam} arg - Arg object.
    * @returns {Promise<ContentApplicationModel.FaqResponseSchema>} - Success response
    * @name getFaqs
    * @summary: Get a list of FAQs
@@ -584,7 +584,7 @@ class Content {
   }
 
   /**
-   * @param {ContentApplicationValidator.getFaqsByCategorySlug} arg - Arg object.
+   * @param {ContentApplicationValidator.GetFaqsByCategorySlugParam} arg - Arg object.
    * @returns {Promise<ContentApplicationModel.GetFaqSchema>} - Success response
    * @name getFaqsByCategorySlug
    * @summary: Get FAQs using the slug of FAQ category
@@ -649,7 +649,7 @@ class Content {
   }
 
   /**
-   * @param {ContentApplicationValidator.getLandingPage} arg - Arg object.
+   * @param {ContentApplicationValidator.GetLandingPageParam} arg - Arg object.
    * @returns {Promise<ContentApplicationModel.LandingPageSchema>} - Success response
    * @name getLandingPage
    * @summary: Get the landing page
@@ -712,7 +712,7 @@ class Content {
   }
 
   /**
-   * @param {ContentApplicationValidator.getLegalInformation} arg - Arg object.
+   * @param {ContentApplicationValidator.GetLegalInformationParam} arg - Arg object.
    * @returns {Promise<ContentApplicationModel.ApplicationLegal>} - Success response
    * @name getLegalInformation
    * @summary: Get legal information
@@ -777,7 +777,7 @@ class Content {
   }
 
   /**
-   * @param {ContentApplicationValidator.getNavigations} arg - Arg object.
+   * @param {ContentApplicationValidator.GetNavigationsParam} arg - Arg object.
    * @returns {Promise<ContentApplicationModel.NavigationGetResponse>} -
    *   Success response
    * @name getNavigations
@@ -870,7 +870,7 @@ class Content {
   }
 
   /**
-   * @param {ContentApplicationValidator.getPage} arg - Arg object.
+   * @param {ContentApplicationValidator.GetPageParam} arg - Arg object.
    * @returns {Promise<ContentApplicationModel.PageSchema>} - Success response
    * @name getPage
    * @summary: Get a page
@@ -932,7 +932,7 @@ class Content {
   }
 
   /**
-   * @param {ContentApplicationValidator.getPages} arg - Arg object.
+   * @param {ContentApplicationValidator.GetPagesParam} arg - Arg object.
    * @returns {Promise<ContentApplicationModel.PageGetResponse>} - Success response
    * @name getPages
    * @summary: Get all pages
@@ -1022,7 +1022,7 @@ class Content {
   }
 
   /**
-   * @param {ContentApplicationValidator.getSEOConfiguration} arg - Arg object.
+   * @param {ContentApplicationValidator.GetSEOConfigurationParam} arg - Arg object.
    * @returns {Promise<ContentApplicationModel.SeoComponent>} - Success response
    * @name getSEOConfiguration
    * @summary: Get the SEO of an application
@@ -1087,7 +1087,7 @@ class Content {
   }
 
   /**
-   * @param {ContentApplicationValidator.getSlideshow} arg - Arg object.
+   * @param {ContentApplicationValidator.GetSlideshowParam} arg - Arg object.
    * @returns {Promise<ContentApplicationModel.SlideshowSchema>} - Success response
    * @name getSlideshow
    * @summary: Get a slideshow
@@ -1150,7 +1150,7 @@ class Content {
   }
 
   /**
-   * @param {ContentApplicationValidator.getSlideshows} arg - Arg object.
+   * @param {ContentApplicationValidator.GetSlideshowsParam} arg - Arg object.
    * @returns {Promise<ContentApplicationModel.SlideshowGetResponse>} - Success response
    * @name getSlideshows
    * @summary: Get the slideshows
@@ -1242,7 +1242,7 @@ class Content {
   }
 
   /**
-   * @param {ContentApplicationValidator.getSupportInformation} arg - Arg object.
+   * @param {ContentApplicationValidator.GetSupportInformationParam} arg - Arg object.
    * @returns {Promise<ContentApplicationModel.Support>} - Success response
    * @name getSupportInformation
    * @summary: Get the support information
@@ -1307,7 +1307,7 @@ class Content {
   }
 
   /**
-   * @param {ContentApplicationValidator.getTags} arg - Arg object.
+   * @param {ContentApplicationValidator.GetTagsParam} arg - Arg object.
    * @returns {Promise<ContentApplicationModel.TagsSchema>} - Success response
    * @name getTags
    * @summary: Get the tags associated with an application

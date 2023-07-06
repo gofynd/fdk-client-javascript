@@ -32,7 +32,7 @@ class Webhook {
   }
 
   /**
-   * @param {WebhookPublicValidator.fetchAllWebhookEvents} arg - Arg object.
+   * @param {WebhookPublicValidator.FetchAllWebhookEventsParam} arg - Arg object.
    * @returns {Promise<WebhookPublicModel.EventConfigResponse>} - Success response
    * @name fetchAllWebhookEvents
    * @summary: Get All Webhook Events
@@ -95,7 +95,7 @@ class Webhook {
   }
 
   /**
-   * @param {WebhookPublicValidator.queryWebhookEventDetails} arg - Arg object.
+   * @param {WebhookPublicValidator.QueryWebhookEventDetailsParam} arg - Arg object.
    * @returns {Promise<WebhookPublicModel.EventConfigResponse>} - Success response
    * @name queryWebhookEventDetails
    * @summary: Send webhook event name, type, version, category in request body to get complete details of event from server

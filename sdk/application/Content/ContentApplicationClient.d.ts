@@ -26,7 +26,7 @@ declare class Content {
     _urls: {};
     updateUrls(urls: any): void;
     /**
-     * @param {ContentApplicationValidator.getAnnouncements} arg - Arg object.
+     * @param {ContentApplicationValidator.GetAnnouncementsParam} arg - Arg object.
      * @returns {Promise<ContentApplicationModel.AnnouncementsResponseSchema>}
      *   - Success response
      *
@@ -36,21 +36,21 @@ declare class Content {
      */
     getAnnouncements({}?: any): Promise<ContentApplicationModel.AnnouncementsResponseSchema>;
     /**
-     * @param {ContentApplicationValidator.getBlog} arg - Arg object.
+     * @param {ContentApplicationValidator.GetBlogParam} arg - Arg object.
      * @returns {Promise<ContentApplicationModel.BlogSchema>} - Success response
      * @name getBlog
      * @summary: Get a blog
      * @description: Use this API to get the details of a blog using its slug. Details include the title, reading time, publish status, feature image, tags, author, etc.
      */
-    getBlog({ slug, rootId }?: ContentApplicationValidator.getBlog): Promise<ContentApplicationModel.BlogSchema>;
+    getBlog({ slug, rootId }?: ContentApplicationValidator.GetBlogParam): Promise<ContentApplicationModel.BlogSchema>;
     /**
-     * @param {ContentApplicationValidator.getBlogs} arg - Arg object.
+     * @param {ContentApplicationValidator.GetBlogsParam} arg - Arg object.
      * @returns {Promise<ContentApplicationModel.BlogGetResponse>} - Success response
      * @name getBlogs
      * @summary: Get a list of blogs
      * @description: Use this API to get all the blogs.
      */
-    getBlogs({ pageNo, pageSize }?: ContentApplicationValidator.getBlogs): Promise<ContentApplicationModel.BlogGetResponse>;
+    getBlogs({ pageNo, pageSize }?: ContentApplicationValidator.GetBlogsParam): Promise<ContentApplicationModel.BlogGetResponse>;
     /**
      * @param {Object} arg - Arg object.
      * @param {number} [arg.pageSize] - The number of items to retrieve in each page.
@@ -62,7 +62,7 @@ declare class Content {
         pageSize?: number;
     }): Paginator<ContentApplicationModel.BlogGetResponse>;
     /**
-     * @param {ContentApplicationValidator.getDataLoaders} arg - Arg object.
+     * @param {ContentApplicationValidator.GetDataLoadersParam} arg - Arg object.
      * @returns {Promise<ContentApplicationModel.DataLoadersSchema>} - Success response
      * @name getDataLoaders
      * @summary: Get the data loaders associated with an application
@@ -70,15 +70,15 @@ declare class Content {
      */
     getDataLoaders({}?: any): Promise<ContentApplicationModel.DataLoadersSchema>;
     /**
-     * @param {ContentApplicationValidator.getFaqBySlug} arg - Arg object.
+     * @param {ContentApplicationValidator.GetFaqBySlugParam} arg - Arg object.
      * @returns {Promise<ContentApplicationModel.FaqSchema>} - Success response
      * @name getFaqBySlug
      * @summary: Get an FAQ
      * @description: Use this API to get a particular FAQ by its slug.
      */
-    getFaqBySlug({ slug }?: ContentApplicationValidator.getFaqBySlug): Promise<ContentApplicationModel.FaqSchema>;
+    getFaqBySlug({ slug }?: ContentApplicationValidator.GetFaqBySlugParam): Promise<ContentApplicationModel.FaqSchema>;
     /**
-     * @param {ContentApplicationValidator.getFaqCategories} arg - Arg object.
+     * @param {ContentApplicationValidator.GetFaqCategoriesParam} arg - Arg object.
      * @returns {Promise<ContentApplicationModel.GetFaqCategoriesSchema>} -
      *   Success response
      * @name getFaqCategories
@@ -87,16 +87,16 @@ declare class Content {
      */
     getFaqCategories({}?: any): Promise<ContentApplicationModel.GetFaqCategoriesSchema>;
     /**
-     * @param {ContentApplicationValidator.getFaqCategoryBySlug} arg - Arg object.
+     * @param {ContentApplicationValidator.GetFaqCategoryBySlugParam} arg - Arg object.
      * @returns {Promise<ContentApplicationModel.GetFaqCategoryBySlugSchema>} -
      *   Success response
      * @name getFaqCategoryBySlug
      * @summary: Get the FAQ category
      * @description: FAQs can be divided into categories. Use this API to get the category to which an FAQ belongs.
      */
-    getFaqCategoryBySlug({ slug }?: ContentApplicationValidator.getFaqCategoryBySlug): Promise<ContentApplicationModel.GetFaqCategoryBySlugSchema>;
+    getFaqCategoryBySlug({ slug }?: ContentApplicationValidator.GetFaqCategoryBySlugParam): Promise<ContentApplicationModel.GetFaqCategoryBySlugSchema>;
     /**
-     * @param {ContentApplicationValidator.getFaqs} arg - Arg object.
+     * @param {ContentApplicationValidator.GetFaqsParam} arg - Arg object.
      * @returns {Promise<ContentApplicationModel.FaqResponseSchema>} - Success response
      * @name getFaqs
      * @summary: Get a list of FAQs
@@ -104,15 +104,15 @@ declare class Content {
      */
     getFaqs({}?: any): Promise<ContentApplicationModel.FaqResponseSchema>;
     /**
-     * @param {ContentApplicationValidator.getFaqsByCategorySlug} arg - Arg object.
+     * @param {ContentApplicationValidator.GetFaqsByCategorySlugParam} arg - Arg object.
      * @returns {Promise<ContentApplicationModel.GetFaqSchema>} - Success response
      * @name getFaqsByCategorySlug
      * @summary: Get FAQs using the slug of FAQ category
      * @description: FAQs can be divided into categories. Use this API to get all the FAQs belonging to a category by using the category slug.
      */
-    getFaqsByCategorySlug({ slug }?: ContentApplicationValidator.getFaqsByCategorySlug): Promise<ContentApplicationModel.GetFaqSchema>;
+    getFaqsByCategorySlug({ slug }?: ContentApplicationValidator.GetFaqsByCategorySlugParam): Promise<ContentApplicationModel.GetFaqSchema>;
     /**
-     * @param {ContentApplicationValidator.getLandingPage} arg - Arg object.
+     * @param {ContentApplicationValidator.GetLandingPageParam} arg - Arg object.
      * @returns {Promise<ContentApplicationModel.LandingPageSchema>} - Success response
      * @name getLandingPage
      * @summary: Get the landing page
@@ -120,7 +120,7 @@ declare class Content {
      */
     getLandingPage({}?: any): Promise<ContentApplicationModel.LandingPageSchema>;
     /**
-     * @param {ContentApplicationValidator.getLegalInformation} arg - Arg object.
+     * @param {ContentApplicationValidator.GetLegalInformationParam} arg - Arg object.
      * @returns {Promise<ContentApplicationModel.ApplicationLegal>} - Success response
      * @name getLegalInformation
      * @summary: Get legal information
@@ -128,14 +128,14 @@ declare class Content {
      */
     getLegalInformation({}?: any): Promise<ContentApplicationModel.ApplicationLegal>;
     /**
-     * @param {ContentApplicationValidator.getNavigations} arg - Arg object.
+     * @param {ContentApplicationValidator.GetNavigationsParam} arg - Arg object.
      * @returns {Promise<ContentApplicationModel.NavigationGetResponse>} -
      *   Success response
      * @name getNavigations
      * @summary: Get the navigation
      * @description: Use this API to fetch the navigations details which includes the items of the navigation pane. It also shows the links and sub-navigations.
      */
-    getNavigations({ pageNo, pageSize }?: ContentApplicationValidator.getNavigations): Promise<ContentApplicationModel.NavigationGetResponse>;
+    getNavigations({ pageNo, pageSize }?: ContentApplicationValidator.GetNavigationsParam): Promise<ContentApplicationModel.NavigationGetResponse>;
     /**
      * @param {Object} arg - Arg object.
      * @param {number} [arg.pageSize] - The number of items to retrieve in each page.
@@ -147,21 +147,21 @@ declare class Content {
         pageSize?: number;
     }): Paginator<ContentApplicationModel.NavigationGetResponse>;
     /**
-     * @param {ContentApplicationValidator.getPage} arg - Arg object.
+     * @param {ContentApplicationValidator.GetPageParam} arg - Arg object.
      * @returns {Promise<ContentApplicationModel.PageSchema>} - Success response
      * @name getPage
      * @summary: Get a page
      * @description: Use this API to get the details of a page using its slug. Details include the title, seo, publish status, feature image, tags, meta, etc.
      */
-    getPage({ slug, rootId }?: ContentApplicationValidator.getPage): Promise<ContentApplicationModel.PageSchema>;
+    getPage({ slug, rootId }?: ContentApplicationValidator.GetPageParam): Promise<ContentApplicationModel.PageSchema>;
     /**
-     * @param {ContentApplicationValidator.getPages} arg - Arg object.
+     * @param {ContentApplicationValidator.GetPagesParam} arg - Arg object.
      * @returns {Promise<ContentApplicationModel.PageGetResponse>} - Success response
      * @name getPages
      * @summary: Get all pages
      * @description: Use this API to get a list of pages.
      */
-    getPages({ pageNo, pageSize }?: ContentApplicationValidator.getPages): Promise<ContentApplicationModel.PageGetResponse>;
+    getPages({ pageNo, pageSize }?: ContentApplicationValidator.GetPagesParam): Promise<ContentApplicationModel.PageGetResponse>;
     /**
      * @param {Object} arg - Arg object.
      * @param {number} [arg.pageSize] - The number of items to retrieve in each page.
@@ -173,7 +173,7 @@ declare class Content {
         pageSize?: number;
     }): Paginator<ContentApplicationModel.PageGetResponse>;
     /**
-     * @param {ContentApplicationValidator.getSEOConfiguration} arg - Arg object.
+     * @param {ContentApplicationValidator.GetSEOConfigurationParam} arg - Arg object.
      * @returns {Promise<ContentApplicationModel.SeoComponent>} - Success response
      * @name getSEOConfiguration
      * @summary: Get the SEO of an application
@@ -181,21 +181,21 @@ declare class Content {
      */
     getSEOConfiguration({}?: any): Promise<ContentApplicationModel.SeoComponent>;
     /**
-     * @param {ContentApplicationValidator.getSlideshow} arg - Arg object.
+     * @param {ContentApplicationValidator.GetSlideshowParam} arg - Arg object.
      * @returns {Promise<ContentApplicationModel.SlideshowSchema>} - Success response
      * @name getSlideshow
      * @summary: Get a slideshow
      * @description: A slideshow is a group of images, videos or a combination of both that are shown on the website in the form of slides. Use this API to fetch a slideshow using its `slug`.
      */
-    getSlideshow({ slug }?: ContentApplicationValidator.getSlideshow): Promise<ContentApplicationModel.SlideshowSchema>;
+    getSlideshow({ slug }?: ContentApplicationValidator.GetSlideshowParam): Promise<ContentApplicationModel.SlideshowSchema>;
     /**
-     * @param {ContentApplicationValidator.getSlideshows} arg - Arg object.
+     * @param {ContentApplicationValidator.GetSlideshowsParam} arg - Arg object.
      * @returns {Promise<ContentApplicationModel.SlideshowGetResponse>} - Success response
      * @name getSlideshows
      * @summary: Get the slideshows
      * @description: Use this API to get a list of slideshows along with their details.
      */
-    getSlideshows({ pageNo, pageSize }?: ContentApplicationValidator.getSlideshows): Promise<ContentApplicationModel.SlideshowGetResponse>;
+    getSlideshows({ pageNo, pageSize }?: ContentApplicationValidator.GetSlideshowsParam): Promise<ContentApplicationModel.SlideshowGetResponse>;
     /**
      * @param {Object} arg - Arg object.
      * @param {number} [arg.pageSize] - The number of items to retrieve in each page.
@@ -207,7 +207,7 @@ declare class Content {
         pageSize?: number;
     }): Paginator<ContentApplicationModel.SlideshowGetResponse>;
     /**
-     * @param {ContentApplicationValidator.getSupportInformation} arg - Arg object.
+     * @param {ContentApplicationValidator.GetSupportInformationParam} arg - Arg object.
      * @returns {Promise<ContentApplicationModel.Support>} - Success response
      * @name getSupportInformation
      * @summary: Get the support information
@@ -215,7 +215,7 @@ declare class Content {
      */
     getSupportInformation({}?: any): Promise<ContentApplicationModel.Support>;
     /**
-     * @param {ContentApplicationValidator.getTags} arg - Arg object.
+     * @param {ContentApplicationValidator.GetTagsParam} arg - Arg object.
      * @returns {Promise<ContentApplicationModel.TagsSchema>} - Success response
      * @name getTags
      * @summary: Get the tags associated with an application

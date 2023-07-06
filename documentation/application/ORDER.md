@@ -13,7 +13,6 @@ Handles all Application order and shipment api(s)
 * [getOrderById](#getorderbyid)
 * [getOrders](#getorders)
 * [getPosOrderById](#getposorderbyid)
-* [getProducts](#getproducts)
 * [getShipmentBagReasons](#getshipmentbagreasons)
 * [getShipmentById](#getshipmentbyid)
 * [getShipmentReasons](#getshipmentreasons)
@@ -101,12 +100,10 @@ Get Invoice of a shipment
 
 ```javascript
 // Promise
-const promise = applicationClient.order.getInvoiceByShipmentId({  shipmentId : value,
- documentType : value });
+const promise = applicationClient.order.getInvoiceByShipmentId({  shipmentId : value });
 
 // Async/Await
-const data = await applicationClient.order.getInvoiceByShipmentId({  shipmentId : value,
- documentType : value });
+const data = await applicationClient.order.getInvoiceByShipmentId({  shipmentId : value });
 ```
 
 
@@ -115,8 +112,7 @@ const data = await applicationClient.order.getInvoiceByShipmentId({  shipmentId 
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
-| shipmentId | string | yes | ID of the shipment. |    
-| documentType | string | no |  |  
+| shipmentId | string | yes | ID of the shipment. |  
 
 
 
@@ -1558,77 +1554,6 @@ Success. Check the example shown below or refer `PosOrderById` for more details.
 ---
 
 
-### getProducts
-
-
-
-
-```javascript
-// Promise
-const promise = applicationClient.order.getProducts({  status : value,
- pageNo : value,
- pageSize : value,
- fromDate : value,
- toDate : value,
- searchValue : value });
-
-// Async/Await
-const data = await applicationClient.order.getProducts({  status : value,
- pageNo : value,
- pageSize : value,
- fromDate : value,
- toDate : value,
- searchValue : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| status | number | no | A filter to retrieve orders by their current status such as _placed_, _delivered_, etc. |    
-| pageNo | number | no | The page number to navigate through the given set of results. Default value is 1. |    
-| pageSize | number | no | The number of items to retrieve in each page. Default value is 10. |    
-| fromDate | string | no | The date from which the orders should be retrieved. |    
-| toDate | string | no | The date till which the orders should be retrieved. |    
-| searchValue | string | no |  |  
-
-
-
-
-
-*Returned Response:*
-
-
-
-
-[ProductListResponse](#ProductListResponse)
-
-Successfully retrived all the given shipments details!
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
 ### getShipmentBagReasons
 Get reasons behind full or partial cancellation of a shipment
 
@@ -2681,24 +2606,10 @@ Success, the code is valid and returns a session token
 
 ---
 
-#### [Coupon](#Coupon)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | code | string? |  yes  |  |
- | coupon_type | string? |  yes  |  |
- | id | number? |  yes  |  |
- | payable_category | string? |  yes  |  |
- | value | number? |  yes  |  |
- 
-
----
-
 #### [CurrentStatus](#CurrentStatus)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | created_at | string? |  yes  |  |
  | journey_type | string? |  yes  |  |
  | name | string? |  yes  |  |
  | status | string? |  yes  |  |
@@ -3021,53 +2932,6 @@ Success, the code is valid and returns a session token
 
 ---
 
-#### [Product](#Product)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | applied_promos | [[AppliedPromos](#AppliedPromos)]? |  yes  |  |
- | bag_status | [ProductStatus](#ProductStatus)? |  yes  |  |
- | brand | [ProductBrand](#ProductBrand)? |  yes  |  |
- | can_cancel | boolean? |  yes  |  |
- | can_return | boolean? |  yes  |  |
- | coupon | [Coupon](#Coupon)? |  yes  |  |
- | delivery_date | string? |  yes  |  |
- | docket_number | string |  no  |  |
- | item | [Item](#Item)? |  yes  |  |
- | line_number | number? |  yes  |  |
- | order_id | string |  no  |  |
- | parent_promo_bags | string? |  yes  |  |
- | payment | [ShipmentPayment](#ShipmentPayment)? |  yes  |  |
- | quantity | number? |  yes  |  |
- | returnable_date | string? |  yes  |  |
- | seller_identifier | string? |  yes  |  |
- 
-
----
-
-#### [ProductBrand](#ProductBrand)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | brand_name | string? |  yes  |  |
- | id | number? |  yes  |  |
- 
-
----
-
-#### [ProductListResponse](#ProductListResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | filters | [OrderFilters](#OrderFilters)? |  yes  |  |
- | items | [[Product](#Product)]? |  yes  |  |
- | message | string? |  yes  |  |
- | page | [OrderPage](#OrderPage)? |  yes  |  |
- | success | boolean? |  yes  |  |
- 
-
----
-
 #### [Products](#Products)
 
  | Properties | Type | Nullable | Description |
@@ -3126,18 +2990,6 @@ Success, the code is valid and returns a session token
  | identifier | string? |  yes  |  |
  | line_number | number? |  yes  |  |
  | quantity | number? |  yes  |  |
- 
-
----
-
-#### [ProductStatus](#ProductStatus)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | created_at | string? |  yes  |  |
- | hex_code | string? |  yes  |  |
- | title | string? |  yes  |  |
- | value | string? |  yes  |  |
  
 
 ---

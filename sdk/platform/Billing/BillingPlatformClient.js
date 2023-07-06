@@ -12,7 +12,7 @@ class Billing {
   }
 
   /**
-   * @param {BillingPlatformValidator.activateSubscriptionPlan} arg - Arg object
+   * @param {BillingPlatformValidator.ActivateSubscriptionPlanParam} arg - Arg object
    * @returns {Promise<BillingPlatformModel.SubscriptionActivateRes>} - Success response
    * @name activateSubscriptionPlan
    * @summary: Activate subscription
@@ -78,7 +78,7 @@ class Billing {
   }
 
   /**
-   * @param {BillingPlatformValidator.cancelSubscriptionCharge} arg - Arg object
+   * @param {BillingPlatformValidator.CancelSubscriptionChargeParam} arg - Arg object
    * @returns {Promise<BillingPlatformModel.EntitySubscription>} - Success response
    * @name cancelSubscriptionCharge
    * @summary: Cancel subscription charge
@@ -146,7 +146,7 @@ class Billing {
   }
 
   /**
-   * @param {BillingPlatformValidator.cancelSubscriptionPlan} arg - Arg object
+   * @param {BillingPlatformValidator.CancelSubscriptionPlanParam} arg - Arg object
    * @returns {Promise<BillingPlatformModel.CancelSubscriptionRes>} - Success response
    * @name cancelSubscriptionPlan
    * @summary: Cancel subscription
@@ -212,7 +212,7 @@ class Billing {
   }
 
   /**
-   * @param {BillingPlatformValidator.checkCouponValidity} arg - Arg object
+   * @param {BillingPlatformValidator.CheckCouponValidityParam} arg - Arg object
    * @returns {Promise<BillingPlatformModel.CheckValidityResponse>} - Success response
    * @name checkCouponValidity
    * @summary: Check coupon validity
@@ -280,7 +280,7 @@ class Billing {
   }
 
   /**
-   * @param {BillingPlatformValidator.createOneTimeCharge} arg - Arg object
+   * @param {BillingPlatformValidator.CreateOneTimeChargeParam} arg - Arg object
    * @returns {Promise<BillingPlatformModel.CreateOneTimeChargeResponse>} -
    *   Success response
    * @name createOneTimeCharge
@@ -347,7 +347,7 @@ class Billing {
   }
 
   /**
-   * @param {BillingPlatformValidator.createSubscriptionCharge} arg - Arg object
+   * @param {BillingPlatformValidator.CreateSubscriptionChargeParam} arg - Arg object
    * @returns {Promise<BillingPlatformModel.CreateSubscriptionResponse>} -
    *   Success response
    * @name createSubscriptionCharge
@@ -416,7 +416,7 @@ class Billing {
   }
 
   /**
-   * @param {BillingPlatformValidator.getChargeDetails} arg - Arg object
+   * @param {BillingPlatformValidator.GetChargeDetailsParam} arg - Arg object
    * @returns {Promise<BillingPlatformModel.OneTimeChargeEntity>} - Success response
    * @name getChargeDetails
    * @summary: Get subscription charge details
@@ -482,7 +482,7 @@ class Billing {
   }
 
   /**
-   * @param {BillingPlatformValidator.getCustomerDetail} arg - Arg object
+   * @param {BillingPlatformValidator.GetCustomerDetailParam} arg - Arg object
    * @returns {Promise<BillingPlatformModel.SubscriptionCustomer>} - Success response
    * @name getCustomerDetail
    * @summary: Get subscription customer detail
@@ -542,7 +542,7 @@ class Billing {
   }
 
   /**
-   * @param {BillingPlatformValidator.getFeatureLimitConfig} arg - Arg object
+   * @param {BillingPlatformValidator.GetFeatureLimitConfigParam} arg - Arg object
    * @returns {Promise<BillingPlatformModel.SubscriptionLimit>} - Success response
    * @name getFeatureLimitConfig
    * @summary: Get subscription subscription limits
@@ -602,7 +602,7 @@ class Billing {
   }
 
   /**
-   * @param {BillingPlatformValidator.getInvoiceById} arg - Arg object
+   * @param {BillingPlatformValidator.GetInvoiceByIdParam} arg - Arg object
    * @returns {Promise<BillingPlatformModel.Invoice>} - Success response
    * @name getInvoiceById
    * @summary: Get invoice by id
@@ -666,7 +666,7 @@ class Billing {
   }
 
   /**
-   * @param {BillingPlatformValidator.getInvoices} arg - Arg object
+   * @param {BillingPlatformValidator.GetInvoicesParam} arg - Arg object
    * @returns {Promise<BillingPlatformModel.Invoices>} - Success response
    * @name getInvoices
    * @summary: Get invoices
@@ -724,7 +724,7 @@ class Billing {
   }
 
   /**
-   * @param {BillingPlatformValidator.getSubscription} arg - Arg object
+   * @param {BillingPlatformValidator.GetSubscriptionParam} arg - Arg object
    * @returns {Promise<BillingPlatformModel.SubscriptionStatus>} - Success response
    * @name getSubscription
    * @summary: Get current subscription detail
@@ -784,7 +784,7 @@ class Billing {
   }
 
   /**
-   * @param {BillingPlatformValidator.getSubscriptionCharge} arg - Arg object
+   * @param {BillingPlatformValidator.GetSubscriptionChargeParam} arg - Arg object
    * @returns {Promise<BillingPlatformModel.EntitySubscription>} - Success response
    * @name getSubscriptionCharge
    * @summary: Get subscription charge details
@@ -850,7 +850,7 @@ class Billing {
   }
 
   /**
-   * @param {BillingPlatformValidator.upsertCustomerDetail} arg - Arg object
+   * @param {BillingPlatformValidator.UpsertCustomerDetailParam} arg - Arg object
    * @returns {Promise<BillingPlatformModel.SubscriptionCustomer>} - Success response
    * @name upsertCustomerDetail
    * @summary: Upsert subscription customer detail

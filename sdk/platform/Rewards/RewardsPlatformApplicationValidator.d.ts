@@ -1,88 +1,102 @@
 export = RewardsPlatformApplicationValidator;
 /**
- * @typedef getGiveawayById
+ * @typedef GetGiveawayByIdParam
  * @property {string} id - Giveaway ID
  */
 /**
- * @typedef getOfferByName
+ * @typedef GetOfferByNameParam
  * @property {string} name - The name given to the offer.
  */
-/** @typedef getRewardsConfiguration */
+/** @typedef GetRewardsConfigurationParam */
 /**
- * @typedef getUserDetails
+ * @typedef GetUserDetailsParam
  * @property {string} userId - User id
  */
 /**
- * @typedef getUserPointsHistory
+ * @typedef GetUserPointsHistoryParam
  * @property {string} userId - User id
  * @property {string} [pageId] - PageID is the ID of the requested page. For
  *   first request it should be kept empty.
  * @property {number} [pageSize] - The number of items to retrieve in each page.
  */
 /**
- * @typedef saveGiveAway
+ * @typedef SaveGiveAwayParam
  * @property {RewardsPlatformModel.Giveaway} body
  */
 /**
- * @typedef setRewardsConfiguration
+ * @typedef SetRewardsConfigurationParam
  * @property {RewardsPlatformModel.ConfigurationRequest} body
  */
 /**
- * @typedef showGiveaways
+ * @typedef ShowGiveawaysParam
  * @property {string} pageId - Pagination page id
  * @property {number} pageSize - Pagination page size
  */
-/** @typedef showOffers */
+/** @typedef ShowOffersParam */
 /**
- * @typedef updateGiveAway
+ * @typedef UpdateGiveAwayParam
  * @property {string} id - Giveaway ID
  * @property {RewardsPlatformModel.Giveaway} body
  */
 /**
- * @typedef updateOfferByName
+ * @typedef UpdateOfferByNameParam
  * @property {string} name - The name given to the offer.
  * @property {RewardsPlatformModel.Offer} body
  */
 /**
- * @typedef updateUserStatus
+ * @typedef UpdateUserStatusParam
  * @property {string} userId - User id
  * @property {RewardsPlatformModel.AppUser} body
  */
 declare class RewardsPlatformApplicationValidator {
+    /** @returns {getGiveawayById} */
+    static getGiveawayById(): getGiveawayById;
+    /** @returns {getOfferByName} */
+    static getOfferByName(): getOfferByName;
+    /** @returns {getRewardsConfiguration} */
+    static getRewardsConfiguration(): getRewardsConfiguration;
+    /** @returns {getUserDetails} */
+    static getUserDetails(): getUserDetails;
+    /** @returns {getUserPointsHistory} */
+    static getUserPointsHistory(): getUserPointsHistory;
+    /** @returns {saveGiveAway} */
+    static saveGiveAway(): saveGiveAway;
+    /** @returns {setRewardsConfiguration} */
+    static setRewardsConfiguration(): setRewardsConfiguration;
+    /** @returns {showGiveaways} */
+    static showGiveaways(): showGiveaways;
+    /** @returns {showOffers} */
+    static showOffers(): showOffers;
+    /** @returns {updateGiveAway} */
+    static updateGiveAway(): updateGiveAway;
+    /** @returns {updateOfferByName} */
+    static updateOfferByName(): updateOfferByName;
+    /** @returns {updateUserStatus} */
+    static updateUserStatus(): updateUserStatus;
 }
 declare namespace RewardsPlatformApplicationValidator {
-    export { getGiveawayById, getOfferByName, getRewardsConfiguration, getUserDetails, getUserPointsHistory, saveGiveAway, setRewardsConfiguration, showGiveaways, showOffers, updateGiveAway, updateOfferByName, updateUserStatus };
+    export { GetGiveawayByIdParam, GetOfferByNameParam, GetRewardsConfigurationParam, GetUserDetailsParam, GetUserPointsHistoryParam, SaveGiveAwayParam, SetRewardsConfigurationParam, ShowGiveawaysParam, ShowOffersParam, UpdateGiveAwayParam, UpdateOfferByNameParam, UpdateUserStatusParam };
 }
-/** @returns {getGiveawayById} */
-declare function getGiveawayById(): getGiveawayById;
-type getGiveawayById = {
+type GetGiveawayByIdParam = {
     /**
      * - Giveaway ID
      */
     id: string;
 };
-/** @returns {getOfferByName} */
-declare function getOfferByName(): getOfferByName;
-type getOfferByName = {
+type GetOfferByNameParam = {
     /**
      * - The name given to the offer.
      */
     name: string;
 };
-/** @returns {getRewardsConfiguration} */
-declare function getRewardsConfiguration(): any;
-type getRewardsConfiguration = any;
-/** @returns {getUserDetails} */
-declare function getUserDetails(): getUserDetails;
-type getUserDetails = {
+type GetRewardsConfigurationParam = any;
+type GetUserDetailsParam = {
     /**
      * - User id
      */
     userId: string;
 };
-/** @returns {getUserPointsHistory} */
-declare function getUserPointsHistory(): getUserPointsHistory;
-type getUserPointsHistory = {
+type GetUserPointsHistoryParam = {
     /**
      * - User id
      */
@@ -97,19 +111,13 @@ type getUserPointsHistory = {
      */
     pageSize?: number;
 };
-/** @returns {saveGiveAway} */
-declare function saveGiveAway(): saveGiveAway;
-type saveGiveAway = {
+type SaveGiveAwayParam = {
     body: RewardsPlatformModel.Giveaway;
 };
-/** @returns {setRewardsConfiguration} */
-declare function setRewardsConfiguration(): setRewardsConfiguration;
-type setRewardsConfiguration = {
+type SetRewardsConfigurationParam = {
     body: RewardsPlatformModel.ConfigurationRequest;
 };
-/** @returns {showGiveaways} */
-declare function showGiveaways(): showGiveaways;
-type showGiveaways = {
+type ShowGiveawaysParam = {
     /**
      * - Pagination page id
      */
@@ -119,30 +127,22 @@ type showGiveaways = {
      */
     pageSize: number;
 };
-/** @returns {showOffers} */
-declare function showOffers(): any;
-type showOffers = any;
-/** @returns {updateGiveAway} */
-declare function updateGiveAway(): updateGiveAway;
-type updateGiveAway = {
+type ShowOffersParam = any;
+type UpdateGiveAwayParam = {
     /**
      * - Giveaway ID
      */
     id: string;
     body: RewardsPlatformModel.Giveaway;
 };
-/** @returns {updateOfferByName} */
-declare function updateOfferByName(): updateOfferByName;
-type updateOfferByName = {
+type UpdateOfferByNameParam = {
     /**
      * - The name given to the offer.
      */
     name: string;
     body: RewardsPlatformModel.Offer;
 };
-/** @returns {updateUserStatus} */
-declare function updateUserStatus(): updateUserStatus;
-type updateUserStatus = {
+type UpdateUserStatusParam = {
     /**
      * - User id
      */

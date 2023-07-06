@@ -13,7 +13,7 @@ class Serviceability {
   }
 
   /**
-   * @param {ServiceabilityPlatformApplicationValidator.addAppDp} arg - Arg object
+   * @param {ServiceabilityPlatformApplicationValidator.AddAppDpParam} arg - Arg object
    * @returns {Promise<ServiceabilityPlatformModel.ApplicationCompanyDpViewResponse>}
    *   - Success response
    *
@@ -78,7 +78,9 @@ class Serviceability {
   }
 
   /**
-   * @param {ServiceabilityPlatformApplicationValidator.deleteAppDp} arg - Arg object
+   * @param {ServiceabilityPlatformApplicationValidator.DeleteAppDpParam} arg
+   *   - Arg object
+   *
    * @returns {Promise<ServiceabilityPlatformModel.ApplicationCompanyDpViewResponse>}
    *   - Success response
    *
@@ -143,7 +145,7 @@ class Serviceability {
   }
 
   /**
-   * @param {ServiceabilityPlatformApplicationValidator.getApplicationServiceability} arg
+   * @param {ServiceabilityPlatformApplicationValidator.GetApplicationServiceabilityParam} arg
    *   - Arg object
    *
    * @returns {Promise<ServiceabilityPlatformModel.ApplicationServiceabilityConfigResponse>}
@@ -206,7 +208,7 @@ class Serviceability {
   }
 
   /**
-   * @param {ServiceabilityPlatformApplicationValidator.getApplicationServiceabilitySelfShipment} arg
+   * @param {ServiceabilityPlatformApplicationValidator.GetApplicationServiceabilitySelfShipmentParam} arg
    *   - Arg object
    *
    * @returns {Promise<ServiceabilityPlatformModel.ApplicationSelfShipConfigResponse>}
@@ -269,7 +271,7 @@ class Serviceability {
   }
 
   /**
-   * @param {ServiceabilityPlatformApplicationValidator.getDpApplicationRules} arg
+   * @param {ServiceabilityPlatformApplicationValidator.GetDpApplicationRulesParam} arg
    *   - Arg object
    *
    * @returns {Promise<ServiceabilityPlatformModel.DPApplicationRuleResponse>}
@@ -332,7 +334,7 @@ class Serviceability {
   }
 
   /**
-   * @param {ServiceabilityPlatformApplicationValidator.getZoneFromPincodeView} arg
+   * @param {ServiceabilityPlatformApplicationValidator.GetZoneFromPincodeViewParam} arg
    *   - Arg object
    *
    * @returns {Promise<ServiceabilityPlatformModel.GetZoneFromPincodeViewResponse>}
@@ -399,7 +401,7 @@ class Serviceability {
   }
 
   /**
-   * @param {ServiceabilityPlatformApplicationValidator.getZonesFromApplicationIdView} arg
+   * @param {ServiceabilityPlatformApplicationValidator.GetZonesFromApplicationIdViewParam} arg
    *   - Arg object
    *
    * @returns {Promise<ServiceabilityPlatformModel.GetZoneFromApplicationIdViewResponse>}
@@ -476,7 +478,7 @@ class Serviceability {
   }
 
   /**
-   * @param {ServiceabilityPlatformApplicationValidator.patchApplicationServiceabilitySelfShipment} arg
+   * @param {ServiceabilityPlatformApplicationValidator.PatchApplicationServiceabilitySelfShipmentParam} arg
    *   - Arg object
    *
    * @returns {Promise<ServiceabilityPlatformModel.ApplicationSelfShipConfigResponse>}
@@ -543,7 +545,7 @@ class Serviceability {
   }
 
   /**
-   * @param {ServiceabilityPlatformApplicationValidator.updatePincodeAuditHistory} arg
+   * @param {ServiceabilityPlatformApplicationValidator.UpdatePincodeAuditHistoryParam} arg
    *   - Arg object
    *
    * @returns {Promise<ServiceabilityPlatformModel.PincodeMopUpdateAuditHistoryResponseData>}
@@ -610,7 +612,7 @@ class Serviceability {
   }
 
   /**
-   * @param {ServiceabilityPlatformApplicationValidator.updatePincodeBulkView} arg
+   * @param {ServiceabilityPlatformApplicationValidator.UpdatePincodeBulkViewParam} arg
    *   - Arg object
    *
    * @returns {Promise<ServiceabilityPlatformModel.PincodeBulkViewResponse>}
@@ -677,7 +679,7 @@ class Serviceability {
   }
 
   /**
-   * @param {ServiceabilityPlatformApplicationValidator.updatePincodeCoDListing} arg
+   * @param {ServiceabilityPlatformApplicationValidator.UpdatePincodeCoDListingParam} arg
    *   - Arg object
    *
    * @returns {Promise<ServiceabilityPlatformModel.PincodeCodStatusListingResponse>}
@@ -744,7 +746,7 @@ class Serviceability {
   }
 
   /**
-   * @param {ServiceabilityPlatformApplicationValidator.updatePincodeMopView} arg
+   * @param {ServiceabilityPlatformApplicationValidator.UpdatePincodeMopViewParam} arg
    *   - Arg object
    *
    * @returns {Promise<ServiceabilityPlatformModel.PincodeMOPresponse>} -
@@ -810,7 +812,7 @@ class Serviceability {
   }
 
   /**
-   * @param {ServiceabilityPlatformApplicationValidator.upsertDpApplicationRules} arg
+   * @param {ServiceabilityPlatformApplicationValidator.UpsertDpApplicationRulesParam} arg
    *   - Arg object
    *
    * @returns {Promise<ServiceabilityPlatformModel.DPApplicationRuleResponse>}

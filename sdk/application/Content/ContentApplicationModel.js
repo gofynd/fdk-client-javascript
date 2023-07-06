@@ -875,7 +875,8 @@ const Joi = require("joi");
  *   | "login"
  *   | "register"
  *   | "shipping-policy"
- *   | "return-policy"} PageType
+ *   | "return-policy"
+ *   | "order-status"} PageType
  */
 
 class ContentApplicationModel {
@@ -2024,7 +2025,9 @@ class ContentApplicationModel {
 
       "shipping-policy",
 
-      "return-policy"
+      "return-policy",
+
+      "order-status"
     );
   }
 }

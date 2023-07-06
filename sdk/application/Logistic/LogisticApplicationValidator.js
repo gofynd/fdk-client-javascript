@@ -2,25 +2,25 @@ const Joi = require("joi");
 
 const LogisticApplicationModel = require("./LogisticApplicationModel");
 
-/** @typedef getAllCountries */
+/** @typedef GetAllCountriesParam */
 
 /**
- * @typedef getOptimalLocations
+ * @typedef GetOptimalLocationsParam
  * @property {LogisticApplicationModel.ReAssignStoreRequest} body
  */
 
 /**
- * @typedef getPincodeCity
+ * @typedef GetPincodeCityParam
  * @property {string} pincode - A `pincode` contains a specific address of a location.
  */
 
 /**
- * @typedef getPincodeZones
+ * @typedef GetPincodeZonesParam
  * @property {LogisticApplicationModel.GetZoneFromPincodeViewRequest} body
  */
 
 /**
- * @typedef getTatProduct
+ * @typedef GetTatProductParam
  * @property {LogisticApplicationModel.TATViewRequest} body
  */
 

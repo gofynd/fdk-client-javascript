@@ -36,7 +36,7 @@ class Theme {
   }
 
   /**
-   * @param {ThemeApplicationValidator.getAllPages} arg - Arg object.
+   * @param {ThemeApplicationValidator.GetAllPagesParam} arg - Arg object.
    * @returns {Promise<ThemeApplicationModel.AllAvailablePageSchema>} - Success response
    * @name getAllPages
    * @summary: Get all pages of a theme
@@ -99,7 +99,7 @@ class Theme {
   }
 
   /**
-   * @param {ThemeApplicationValidator.getAppliedTheme} arg - Arg object.
+   * @param {ThemeApplicationValidator.GetAppliedThemeParam} arg - Arg object.
    * @returns {Promise<ThemeApplicationModel.ThemesSchema>} - Success response
    * @name getAppliedTheme
    * @summary: Get the theme currently applied to an application
@@ -162,7 +162,7 @@ class Theme {
   }
 
   /**
-   * @param {ThemeApplicationValidator.getAppliedThemeV2} arg - Arg object.
+   * @param {ThemeApplicationValidator.GetAppliedThemeV2Param} arg - Arg object.
    * @returns {Promise<ThemeApplicationModel.ThemesSchema>} - Success response
    * @name getAppliedThemeV2
    * @summary: Get the theme currently applied to an application
@@ -225,7 +225,7 @@ class Theme {
   }
 
   /**
-   * @param {ThemeApplicationValidator.getPage} arg - Arg object.
+   * @param {ThemeApplicationValidator.GetPageParam} arg - Arg object.
    * @returns {Promise<ThemeApplicationModel.AvailablePageSchema>} - Success response
    * @name getPage
    * @summary: Get page of a theme
@@ -286,7 +286,7 @@ class Theme {
   }
 
   /**
-   * @param {ThemeApplicationValidator.getThemeForPreview} arg - Arg object.
+   * @param {ThemeApplicationValidator.GetThemeForPreviewParam} arg - Arg object.
    * @returns {Promise<ThemeApplicationModel.ThemesSchema>} - Success response
    * @name getThemeForPreview
    * @summary: Get a theme for a preview
@@ -349,7 +349,7 @@ class Theme {
   }
 
   /**
-   * @param {ThemeApplicationValidator.getThemeForPreviewV2} arg - Arg object.
+   * @param {ThemeApplicationValidator.GetThemeForPreviewV2Param} arg - Arg object.
    * @returns {Promise<ThemeApplicationModel.ThemesSchema>} - Success response
    * @name getThemeForPreviewV2
    * @summary: Get a theme for a preview

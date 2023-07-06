@@ -3,7 +3,7 @@ const Joi = require("joi");
 const FileStorageApplicationModel = require("./FileStorageApplicationModel");
 
 /**
- * @typedef completeUpload
+ * @typedef CompleteUploadParam
  * @property {string} namespace - Segregation of different types of
  *   files(products, orders, logistics etc), Required for validating the data of
  *   the file being uploaded, decides where exactly the file will be stored
@@ -12,12 +12,12 @@ const FileStorageApplicationModel = require("./FileStorageApplicationModel");
  */
 
 /**
- * @typedef signUrls
+ * @typedef SignUrlsParam
  * @property {FileStorageApplicationModel.SignUrlRequest} body
  */
 
 /**
- * @typedef startUpload
+ * @typedef StartUploadParam
  * @property {string} namespace - Segregation of different types of
  *   files(products, orders, logistics etc), Required for validating the data of
  *   the file being uploaded, decides where exactly the file will be stored

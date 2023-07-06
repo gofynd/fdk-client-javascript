@@ -3,20 +3,20 @@ const Joi = require("joi");
 const ServiceabilityPlatformModel = require("./ServiceabilityPlatformModel");
 
 /**
- * @typedef createZone
+ * @typedef CreateZoneParam
  * @property {ServiceabilityPlatformModel.ZoneRequest} body
  */
 
-/** @typedef getAllStores */
+/** @typedef GetAllStoresParam */
 
 /**
- * @typedef getCompanyStoreView
+ * @typedef GetCompanyStoreViewParam
  * @property {number} [pageNumber] - Index of the item to start returning with
  * @property {number} [pageSize] - Determines the items to be displayed in a page
  */
 
 /**
- * @typedef getDpAccount
+ * @typedef GetDpAccountParam
  * @property {number} [pageNumber] - Index of the item to start returning with
  * @property {number} [pageSize] - Determines the items to be displayed in a page
  * @property {string} [stage] - Stage of the account. enabled/disabled
@@ -24,26 +24,26 @@ const ServiceabilityPlatformModel = require("./ServiceabilityPlatformModel");
  * @property {string} [transportType] - Filters dp accounts based on transport_type
  */
 
-/** @typedef getDpCompanyRules */
+/** @typedef GetDpCompanyRulesParam */
 
 /**
- * @typedef getDpRuleInsert
+ * @typedef GetDpRuleInsertParam
  * @property {number} [pageNumber] - Index of the item to start returning with
  * @property {number} [pageSize] - Determines the items to be displayed in a page
  */
 
 /**
- * @typedef getDpRules
+ * @typedef GetDpRulesParam
  * @property {string} ruleUid - A `rule_uid` is a unique identifier for a particular Dp.
  */
 
 /**
- * @typedef getEntityRegionView
+ * @typedef GetEntityRegionViewParam
  * @property {ServiceabilityPlatformModel.EntityRegionView_Request} body
  */
 
 /**
- * @typedef getListView
+ * @typedef GetListViewParam
  * @property {number} [pageNumber] - Index of the item to start returning with
  * @property {number} [pageSize] - Determines the items to be displayed in a page
  * @property {string} [name] - Name of particular zone in the seller account
@@ -53,22 +53,22 @@ const ServiceabilityPlatformModel = require("./ServiceabilityPlatformModel");
  */
 
 /**
- * @typedef getOptimalLocations
+ * @typedef GetOptimalLocationsParam
  * @property {ServiceabilityPlatformModel.ReAssignStoreRequest} body
  */
 
 /**
- * @typedef getStore
+ * @typedef GetStoreParam
  * @property {number} storeUid - A `store_uid` contains a specific ID of a store.
  */
 
 /**
- * @typedef getZoneDataView
+ * @typedef GetZoneDataViewParam
  * @property {string} zoneId - A `zone_id` is a unique identifier for a particular zone.
  */
 
 /**
- * @typedef getZoneListView
+ * @typedef GetZoneListViewParam
  * @property {number} [pageNumber] - Index of the item to start returning with
  * @property {number} [pageNo] - Index of the item to start returning with
  * @property {number} [pageSize] - Determines the items to be displayed in a page
@@ -80,29 +80,29 @@ const ServiceabilityPlatformModel = require("./ServiceabilityPlatformModel");
  */
 
 /**
- * @typedef updateDpRule
+ * @typedef UpdateDpRuleParam
  * @property {string} ruleUid - A `rule_uid` is a unique identifier for a particular Dp.
  * @property {ServiceabilityPlatformModel.DpRulesUpdateRequest} body
  */
 
 /**
- * @typedef updateZoneControllerView
+ * @typedef UpdateZoneControllerViewParam
  * @property {string} zoneId - A `zone_id` is a unique identifier for a particular zone.
  * @property {ServiceabilityPlatformModel.ZoneUpdateRequest} body
  */
 
 /**
- * @typedef upsertDpAccount
+ * @typedef UpsertDpAccountParam
  * @property {ServiceabilityPlatformModel.CompanyDpAccountRequest} body
  */
 
 /**
- * @typedef upsertDpCompanyRules
+ * @typedef UpsertDpCompanyRulesParam
  * @property {ServiceabilityPlatformModel.DPCompanyRuleRequest} body
  */
 
 /**
- * @typedef upsertDpRules
+ * @typedef UpsertDpRulesParam
  * @property {ServiceabilityPlatformModel.DpRuleRequest} body
  */
 

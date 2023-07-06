@@ -3,38 +3,38 @@ const Joi = require("joi");
 const ShareApplicationModel = require("./ShareApplicationModel");
 
 /**
- * @typedef createShortLink
+ * @typedef CreateShortLinkParam
  * @property {ShareApplicationModel.ShortLinkReq} body
  */
 
-/** @typedef getApplicationQRCode */
+/** @typedef GetApplicationQRCodeParam */
 
 /**
- * @typedef getCollectionQRCodeBySlug
+ * @typedef GetCollectionQRCodeBySlugParam
  * @property {string} slug - A short, human-readable, URL-friendly identifier of
  *   a collection. You can get slug value from the endpoint.
  */
 
 /**
- * @typedef getOriginalShortLinkByHash
+ * @typedef GetOriginalShortLinkByHashParam
  * @property {string} hash - A string value used for converting long URL to
  *   short URL and vice-versa.
  */
 
 /**
- * @typedef getProductQRCodeBySlug
+ * @typedef GetProductQRCodeBySlugParam
  * @property {string} slug - A short, human-readable, URL-friendly identifier of
  *   a product. You can get slug value from the endpoint.
  */
 
 /**
- * @typedef getShortLinkByHash
+ * @typedef GetShortLinkByHashParam
  * @property {string} hash - A string value used for converting long URL to
  *   short URL and vice-versa.
  */
 
 /**
- * @typedef getUrlQRCode
+ * @typedef GetUrlQRCodeParam
  * @property {string} url - A link or a web address
  */
 

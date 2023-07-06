@@ -12,7 +12,7 @@ class Catalog {
   }
 
   /**
-   * @param {CatalogPlatformValidator.addInventory} arg - Arg object
+   * @param {CatalogPlatformValidator.AddInventoryParam} arg - Arg object
    * @returns {Promise<CatalogPlatformModel.SuccessResponse>} - Success response
    * @name addInventory
    * @summary: Add Inventory for particular size and store.
@@ -80,7 +80,7 @@ class Catalog {
   }
 
   /**
-   * @param {CatalogPlatformValidator.allSizes} arg - Arg object
+   * @param {CatalogPlatformValidator.AllSizesParam} arg - Arg object
    * @returns {Promise<CatalogPlatformModel.GetAllSizes>} - Success response
    * @name allSizes
    * @summary: All Sizes for a given Product
@@ -142,7 +142,7 @@ class Catalog {
   }
 
   /**
-   * @param {CatalogPlatformValidator.bulkHsnCode} arg - Arg object
+   * @param {CatalogPlatformValidator.BulkHsnCodeParam} arg - Arg object
    * @returns {Promise<CatalogPlatformModel.BulkHsnResponse>} - Success response
    * @name bulkHsnCode
    * @summary: Bulk Create or Update Hsn Code.
@@ -204,7 +204,7 @@ class Catalog {
   }
 
   /**
-   * @param {CatalogPlatformValidator.createBulkInventory} arg - Arg object
+   * @param {CatalogPlatformValidator.CreateBulkInventoryParam} arg - Arg object
    * @returns {Promise<CatalogPlatformModel.SuccessResponse>} - Success response
    * @name createBulkInventory
    * @summary: Create products in bulk associated with given batch Id.
@@ -270,7 +270,7 @@ class Catalog {
   }
 
   /**
-   * @param {CatalogPlatformValidator.createBulkInventoryJob} arg - Arg object
+   * @param {CatalogPlatformValidator.CreateBulkInventoryJobParam} arg - Arg object
    * @returns {Promise<CatalogPlatformModel.BulkResponse>} - Success response
    * @name createBulkInventoryJob
    * @summary: Create a Bulk Inventory upload Job.
@@ -336,7 +336,7 @@ class Catalog {
   }
 
   /**
-   * @param {CatalogPlatformValidator.createBulkProductUploadJob} arg - Arg object
+   * @param {CatalogPlatformValidator.CreateBulkProductUploadJobParam} arg - Arg object
    * @returns {Promise<CatalogPlatformModel.BulkResponse>} - Success response
    * @name createBulkProductUploadJob
    * @summary: Create a Bulk product to upload job.
@@ -402,7 +402,7 @@ class Catalog {
   }
 
   /**
-   * @param {CatalogPlatformValidator.createCategories} arg - Arg object
+   * @param {CatalogPlatformValidator.CreateCategoriesParam} arg - Arg object
    * @returns {Promise<CatalogPlatformModel.CategoryCreateResponse>} - Success response
    * @name createCategories
    * @summary: Create product categories
@@ -466,7 +466,7 @@ class Catalog {
   }
 
   /**
-   * @param {CatalogPlatformValidator.createDepartments} arg - Arg object
+   * @param {CatalogPlatformValidator.CreateDepartmentsParam} arg - Arg object
    * @returns {Promise<CatalogPlatformModel.DepartmentCreateResponse>} -
    *   Success response
    * @name createDepartments
@@ -531,7 +531,7 @@ class Catalog {
   }
 
   /**
-   * @param {CatalogPlatformValidator.createInventoryExport} arg - Arg object
+   * @param {CatalogPlatformValidator.CreateInventoryExportParam} arg - Arg object
    * @returns {Promise<CatalogPlatformModel.InventoryExportResponse>} - Success response
    * @name createInventoryExport
    * @summary: Create an inventory export job.
@@ -595,7 +595,7 @@ class Catalog {
   }
 
   /**
-   * @param {CatalogPlatformValidator.createInventoryExportJob} arg - Arg object
+   * @param {CatalogPlatformValidator.CreateInventoryExportJobParam} arg - Arg object
    * @returns {Promise<CatalogPlatformModel.InventoryExportResponse>} - Success response
    * @name createInventoryExportJob
    * @summary: Create a Inventory export Job.
@@ -661,7 +661,7 @@ class Catalog {
   }
 
   /**
-   * @param {CatalogPlatformValidator.createMarketplaceOptin} arg - Arg object
+   * @param {CatalogPlatformValidator.CreateMarketplaceOptinParam} arg - Arg object
    * @returns {Promise<CatalogPlatformModel.UpdatedResponse>} - Success response
    * @name createMarketplaceOptin
    * @summary: Create/Update opt-in infomation.
@@ -729,7 +729,7 @@ class Catalog {
   }
 
   /**
-   * @param {CatalogPlatformValidator.createProduct} arg - Arg object
+   * @param {CatalogPlatformValidator.CreateProductParam} arg - Arg object
    * @returns {Promise<CatalogPlatformModel.SuccessResponse>} - Success response
    * @name createProduct
    * @summary: Create a product.
@@ -793,7 +793,7 @@ class Catalog {
   }
 
   /**
-   * @param {CatalogPlatformValidator.createProductAssetsInBulk} arg - Arg object
+   * @param {CatalogPlatformValidator.CreateProductAssetsInBulkParam} arg - Arg object
    * @returns {Promise<CatalogPlatformModel.SuccessResponse>} - Success response
    * @name createProductAssetsInBulk
    * @summary: Create a Bulk asset upload Job.
@@ -859,7 +859,7 @@ class Catalog {
   }
 
   /**
-   * @param {CatalogPlatformValidator.createProductBundle} arg - Arg object
+   * @param {CatalogPlatformValidator.CreateProductBundleParam} arg - Arg object
    * @returns {Promise<CatalogPlatformModel.GetProductBundleCreateResponse>}
    *   - Success response
    *
@@ -925,7 +925,7 @@ class Catalog {
   }
 
   /**
-   * @param {CatalogPlatformValidator.createProductExportJob} arg - Arg object
+   * @param {CatalogPlatformValidator.CreateProductExportJobParam} arg - Arg object
    * @returns {Promise<CatalogPlatformModel.ProductDownloadsResponse>} -
    *   Success response
    * @name createProductExportJob
@@ -992,7 +992,7 @@ class Catalog {
   }
 
   /**
-   * @param {CatalogPlatformValidator.createProductsInBulk} arg - Arg object
+   * @param {CatalogPlatformValidator.CreateProductsInBulkParam} arg - Arg object
    * @returns {Promise<CatalogPlatformModel.SuccessResponse>} - Success response
    * @name createProductsInBulk
    * @summary: Create products in bulk associated with given batch Id.
@@ -1058,7 +1058,7 @@ class Catalog {
   }
 
   /**
-   * @param {CatalogPlatformValidator.createSizeGuide} arg - Arg object
+   * @param {CatalogPlatformValidator.CreateSizeGuideParam} arg - Arg object
    * @returns {Promise<CatalogPlatformModel.SuccessResponse>} - Success response
    * @name createSizeGuide
    * @summary: Create a size guide.
@@ -1122,7 +1122,7 @@ class Catalog {
   }
 
   /**
-   * @param {CatalogPlatformValidator.deleteBulkInventoryJob} arg - Arg object
+   * @param {CatalogPlatformValidator.DeleteBulkInventoryJobParam} arg - Arg object
    * @returns {Promise<CatalogPlatformModel.SuccessResponse>} - Success response
    * @name deleteBulkInventoryJob
    * @summary: Delete Bulk Inventory job.
@@ -1188,7 +1188,7 @@ class Catalog {
   }
 
   /**
-   * @param {CatalogPlatformValidator.deleteInventory} arg - Arg object
+   * @param {CatalogPlatformValidator.DeleteInventoryParam} arg - Arg object
    * @returns {Promise<CatalogPlatformModel.SuccessResponse>} - Success response
    * @name deleteInventory
    * @summary: Delete a Inventory.
@@ -1256,7 +1256,7 @@ class Catalog {
   }
 
   /**
-   * @param {CatalogPlatformValidator.deleteProduct} arg - Arg object
+   * @param {CatalogPlatformValidator.DeleteProductParam} arg - Arg object
    * @returns {Promise<CatalogPlatformModel.SuccessResponse>} - Success response
    * @name deleteProduct
    * @summary: Delete a product.
@@ -1320,7 +1320,7 @@ class Catalog {
   }
 
   /**
-   * @param {CatalogPlatformValidator.deleteProductBulkJob} arg - Arg object
+   * @param {CatalogPlatformValidator.DeleteProductBulkJobParam} arg - Arg object
    * @returns {Promise<CatalogPlatformModel.SuccessResponse>} - Success response
    * @name deleteProductBulkJob
    * @summary: Delete Bulk product job.
@@ -1384,7 +1384,7 @@ class Catalog {
   }
 
   /**
-   * @param {CatalogPlatformValidator.deleteRealtimeInventory} arg - Arg object
+   * @param {CatalogPlatformValidator.DeleteRealtimeInventoryParam} arg - Arg object
    * @returns {Promise<CatalogPlatformModel.InventoryUpdateResponse>} - Success response
    * @name deleteRealtimeInventory
    * @summary: Add Inventory for particular size and store.
@@ -1452,7 +1452,7 @@ class Catalog {
   }
 
   /**
-   * @param {CatalogPlatformValidator.deleteSize} arg - Arg object
+   * @param {CatalogPlatformValidator.DeleteSizeParam} arg - Arg object
    * @returns {Promise<CatalogPlatformModel.ProductSizeDeleteResponse>} -
    *   Success response
    * @name deleteSize
@@ -1517,7 +1517,9 @@ class Catalog {
   }
 
   /**
-   * @param {CatalogPlatformValidator.downloadInventoryTemplateView} arg - Arg object
+   * @param {CatalogPlatformValidator.DownloadInventoryTemplateViewParam} arg
+   *   - Arg object
+   *
    * @returns {Promise<string>} - Success response
    * @name downloadInventoryTemplateView
    * @summary: Download Product Template View
@@ -1581,7 +1583,9 @@ class Catalog {
   }
 
   /**
-   * @param {CatalogPlatformValidator.downloadProductTemplateViews} arg - Arg object
+   * @param {CatalogPlatformValidator.DownloadProductTemplateViewsParam} arg
+   *   - Arg object
+   *
    * @returns {Promise<string>} - Success response
    * @name downloadProductTemplateViews
    * @summary: Download Product Template View
@@ -1644,7 +1648,7 @@ class Catalog {
   }
 
   /**
-   * @param {CatalogPlatformValidator.editProduct} arg - Arg object
+   * @param {CatalogPlatformValidator.EditProductParam} arg - Arg object
    * @returns {Promise<CatalogPlatformModel.SuccessResponse>} - Success response
    * @name editProduct
    * @summary: Edit a product.
@@ -1708,7 +1712,7 @@ class Catalog {
   }
 
   /**
-   * @param {CatalogPlatformValidator.exportInventoryConfig} arg - Arg object
+   * @param {CatalogPlatformValidator.ExportInventoryConfigParam} arg - Arg object
    * @returns {Promise<CatalogPlatformModel.InventoryConfig>} - Success response
    * @name exportInventoryConfig
    * @summary: Get List of different filters for inventory export
@@ -1773,7 +1777,7 @@ class Catalog {
   }
 
   /**
-   * @param {CatalogPlatformValidator.getAllProductHsnCodes} arg - Arg object
+   * @param {CatalogPlatformValidator.GetAllProductHsnCodesParam} arg - Arg object
    * @returns {Promise<CatalogPlatformModel.HsnCodesListingResponseSchemaV2>}
    *   - Success response
    *
@@ -1849,7 +1853,7 @@ class Catalog {
   }
 
   /**
-   * @param {CatalogPlatformValidator.getCategoryData} arg - Arg object
+   * @param {CatalogPlatformValidator.GetCategoryDataParam} arg - Arg object
    * @returns {Promise<CatalogPlatformModel.SingleCategoryResponse>} - Success response
    * @name getCategoryData
    * @summary: Get product category by uid
@@ -1913,7 +1917,7 @@ class Catalog {
   }
 
   /**
-   * @param {CatalogPlatformValidator.getCompanyBrandDetail} arg - Arg object
+   * @param {CatalogPlatformValidator.GetCompanyBrandDetailParam} arg - Arg object
    * @returns {Promise<CatalogPlatformModel.OptinCompanyBrandDetailsView>} -
    *   Success response
    * @name getCompanyBrandDetail
@@ -1997,7 +2001,7 @@ class Catalog {
   }
 
   /**
-   * @param {CatalogPlatformValidator.getCompanyDetail} arg - Arg object
+   * @param {CatalogPlatformValidator.GetCompanyDetailParam} arg - Arg object
    * @returns {Promise<CatalogPlatformModel.OptinCompanyDetail>} - Success response
    * @name getCompanyDetail
    * @summary: Get the Company details.
@@ -2057,7 +2061,7 @@ class Catalog {
   }
 
   /**
-   * @param {CatalogPlatformValidator.getCompanyMetrics} arg - Arg object
+   * @param {CatalogPlatformValidator.GetCompanyMetricsParam} arg - Arg object
    * @returns {Promise<CatalogPlatformModel.OptinCompanyMetrics>} - Success response
    * @name getCompanyMetrics
    * @summary: Get the Company metrics
@@ -2117,7 +2121,7 @@ class Catalog {
   }
 
   /**
-   * @param {CatalogPlatformValidator.getDepartmentData} arg - Arg object
+   * @param {CatalogPlatformValidator.GetDepartmentDataParam} arg - Arg object
    * @returns {Promise<CatalogPlatformModel.DepartmentsResponse>} - Success response
    * @name getDepartmentData
    * @summary: Get specific departments details by passing in unique id of the department.
@@ -2181,7 +2185,7 @@ class Catalog {
   }
 
   /**
-   * @param {CatalogPlatformValidator.getGenderAttribute} arg - Arg object
+   * @param {CatalogPlatformValidator.GetGenderAttributeParam} arg - Arg object
    * @returns {Promise<CatalogPlatformModel.GenderDetail>} - Success response
    * @name getGenderAttribute
    * @summary: Get gender attribute details
@@ -2245,7 +2249,7 @@ class Catalog {
   }
 
   /**
-   * @param {CatalogPlatformValidator.getHsnCode} arg - Arg object
+   * @param {CatalogPlatformValidator.GetHsnCodeParam} arg - Arg object
    * @returns {Promise<CatalogPlatformModel.HsnCode>} - Success response
    * @name getHsnCode
    * @summary: Fetch Hsn Code.
@@ -2307,7 +2311,7 @@ class Catalog {
   }
 
   /**
-   * @param {CatalogPlatformValidator.getInventories} arg - Arg object
+   * @param {CatalogPlatformValidator.GetInventoriesParam} arg - Arg object
    * @returns {Promise<CatalogPlatformModel.GetInventoriesResponse>} - Success response
    * @name getInventories
    * @summary: Get Inventory for company
@@ -2402,7 +2406,9 @@ class Catalog {
   }
 
   /**
-   * @param {CatalogPlatformValidator.getInventoryBulkUploadHistory} arg - Arg object
+   * @param {CatalogPlatformValidator.GetInventoryBulkUploadHistoryParam} arg
+   *   - Arg object
+   *
    * @returns {Promise<CatalogPlatformModel.BulkInventoryGet>} - Success response
    * @name getInventoryBulkUploadHistory
    * @summary: Get a list of all bulk Inventory upload jobs.
@@ -2472,7 +2478,7 @@ class Catalog {
   }
 
   /**
-   * @param {CatalogPlatformValidator.getInventoryBySize} arg - Arg object
+   * @param {CatalogPlatformValidator.GetInventoryBySizeParam} arg - Arg object
    * @returns {Promise<CatalogPlatformModel.InventoryResponsePaginated>} -
    *   Success response
    * @name getInventoryBySize
@@ -2558,7 +2564,9 @@ class Catalog {
   }
 
   /**
-   * @param {CatalogPlatformValidator.getInventoryBySizeIdentifier} arg - Arg object
+   * @param {CatalogPlatformValidator.GetInventoryBySizeIdentifierParam} arg
+   *   - Arg object
+   *
    * @returns {Promise<CatalogPlatformModel.InventorySellerIdentifierResponsePaginated>}
    *   - Success response
    *
@@ -2647,7 +2655,7 @@ class Catalog {
   }
 
   /**
-   * @param {CatalogPlatformValidator.getInventoryExport} arg - Arg object
+   * @param {CatalogPlatformValidator.GetInventoryExportParam} arg - Arg object
    * @returns {Promise<CatalogPlatformModel.InventoryExportJob>} - Success response
    * @name getInventoryExport
    * @summary: Get Inventory export history.
@@ -2707,7 +2715,7 @@ class Catalog {
   }
 
   /**
-   * @param {CatalogPlatformValidator.getMarketplaceOptinDetail} arg - Arg object
+   * @param {CatalogPlatformValidator.GetMarketplaceOptinDetailParam} arg - Arg object
    * @returns {Promise<CatalogPlatformModel.GetOptInPlatform>} - Success response
    * @name getMarketplaceOptinDetail
    * @summary: Get opt-in infomation.
@@ -2769,7 +2777,7 @@ class Catalog {
   }
 
   /**
-   * @param {CatalogPlatformValidator.getOptimalLocations} arg - Arg object
+   * @param {CatalogPlatformValidator.GetOptimalLocationsParam} arg - Arg object
    * @returns {Promise<CatalogPlatformModel.StoreAssignResponse>} - Success response
    * @name getOptimalLocations
    * @summary: Location Reassignment
@@ -2833,7 +2841,7 @@ class Catalog {
   }
 
   /**
-   * @param {CatalogPlatformValidator.getProduct} arg - Arg object
+   * @param {CatalogPlatformValidator.GetProductParam} arg - Arg object
    * @returns {Promise<CatalogPlatformModel.SingleProductResponse>} - Success response
    * @name getProduct
    * @summary: Get a single product.
@@ -2901,7 +2909,7 @@ class Catalog {
   }
 
   /**
-   * @param {CatalogPlatformValidator.getProductAssetsInBulk} arg - Arg object
+   * @param {CatalogPlatformValidator.GetProductAssetsInBulkParam} arg - Arg object
    * @returns {Promise<CatalogPlatformModel.BulkAssetResponse>} - Success response
    * @name getProductAssetsInBulk
    * @summary: Get a list of all bulk asset jobs.
@@ -2971,7 +2979,7 @@ class Catalog {
   }
 
   /**
-   * @param {CatalogPlatformValidator.getProductAttributes} arg - Arg object
+   * @param {CatalogPlatformValidator.GetProductAttributesParam} arg - Arg object
    * @returns {Promise<CatalogPlatformModel.ProductAttributesResponse>} -
    *   Success response
    * @name getProductAttributes
@@ -3040,7 +3048,7 @@ class Catalog {
   }
 
   /**
-   * @param {CatalogPlatformValidator.getProductBulkUploadHistory} arg - Arg object
+   * @param {CatalogPlatformValidator.GetProductBulkUploadHistoryParam} arg - Arg object
    * @returns {Promise<CatalogPlatformModel.ProductBulkRequestList>} - Success response
    * @name getProductBulkUploadHistory
    * @summary: Get a list of all bulk product upload jobs.
@@ -3113,7 +3121,7 @@ class Catalog {
   }
 
   /**
-   * @param {CatalogPlatformValidator.getProductBundle} arg - Arg object
+   * @param {CatalogPlatformValidator.GetProductBundleParam} arg - Arg object
    * @returns {Promise<CatalogPlatformModel.GetProductBundleListingResponse>}
    *   - Success response
    *
@@ -3183,7 +3191,7 @@ class Catalog {
   }
 
   /**
-   * @param {CatalogPlatformValidator.getProductBundleDetail} arg - Arg object
+   * @param {CatalogPlatformValidator.GetProductBundleDetailParam} arg - Arg object
    * @returns {Promise<CatalogPlatformModel.GetProductBundleResponse>} -
    *   Success response
    * @name getProductBundleDetail
@@ -3250,7 +3258,7 @@ class Catalog {
   }
 
   /**
-   * @param {CatalogPlatformValidator.getProductExportJobs} arg - Arg object
+   * @param {CatalogPlatformValidator.GetProductExportJobsParam} arg - Arg object
    * @returns {Promise<CatalogPlatformModel.ProductDownloadsResponse>} -
    *   Success response
    * @name getProductExportJobs
@@ -3325,7 +3333,7 @@ class Catalog {
   }
 
   /**
-   * @param {CatalogPlatformValidator.getProductSize} arg - Arg object
+   * @param {CatalogPlatformValidator.GetProductSizeParam} arg - Arg object
    * @returns {Promise<CatalogPlatformModel.ProductListingResponse>} - Success response
    * @name getProductSize
    * @summary: Get a single product size.
@@ -3398,7 +3406,7 @@ class Catalog {
   }
 
   /**
-   * @param {CatalogPlatformValidator.getProductTags} arg - Arg object
+   * @param {CatalogPlatformValidator.GetProductTagsParam} arg - Arg object
    * @returns {Promise<CatalogPlatformModel.ProductTagsViewResponse>} - Success response
    * @name getProductTags
    * @summary: Get a list of all tags associated with company.
@@ -3458,7 +3466,7 @@ class Catalog {
   }
 
   /**
-   * @param {CatalogPlatformValidator.getProductValidation} arg - Arg object
+   * @param {CatalogPlatformValidator.GetProductValidationParam} arg - Arg object
    * @returns {Promise<CatalogPlatformModel.ValidateProduct>} - Success response
    * @name getProductValidation
    * @summary: Validate product/size data
@@ -3518,7 +3526,7 @@ class Catalog {
   }
 
   /**
-   * @param {CatalogPlatformValidator.getProducts} arg - Arg object
+   * @param {CatalogPlatformValidator.GetProductsParam} arg - Arg object
    * @returns {Promise<CatalogPlatformModel.ProductListingResponseV2>} -
    *   Success response
    * @name getProducts
@@ -3616,7 +3624,7 @@ class Catalog {
   }
 
   /**
-   * @param {CatalogPlatformValidator.getSellerInsights} arg - Arg object
+   * @param {CatalogPlatformValidator.GetSellerInsightsParam} arg - Arg object
    * @returns {Promise<CatalogPlatformModel.CrossSellingResponse>} - Success response
    * @name getSellerInsights
    * @summary: Analytics data of catalog and inventory that are being cross-selled.
@@ -3680,7 +3688,7 @@ class Catalog {
   }
 
   /**
-   * @param {CatalogPlatformValidator.getSingleProductHSNCode} arg - Arg object
+   * @param {CatalogPlatformValidator.GetSingleProductHSNCodeParam} arg - Arg object
    * @returns {Promise<CatalogPlatformModel.HSNDataInsertV2>} - Success response
    * @name getSingleProductHSNCode
    * @summary: Hsn Code List.
@@ -3742,7 +3750,7 @@ class Catalog {
   }
 
   /**
-   * @param {CatalogPlatformValidator.getSizeGuide} arg - Arg object
+   * @param {CatalogPlatformValidator.GetSizeGuideParam} arg - Arg object
    * @returns {Promise<CatalogPlatformModel.SizeGuideResponse>} - Success response
    * @name getSizeGuide
    * @summary: Get a single size guide.
@@ -3806,7 +3814,7 @@ class Catalog {
   }
 
   /**
-   * @param {CatalogPlatformValidator.getSizeGuides} arg - Arg object
+   * @param {CatalogPlatformValidator.GetSizeGuidesParam} arg - Arg object
    * @returns {Promise<CatalogPlatformModel.ListSizeGuide>} - Success response
    * @name getSizeGuides
    * @summary: Get list of size guides
@@ -3883,7 +3891,7 @@ class Catalog {
   }
 
   /**
-   * @param {CatalogPlatformValidator.getStoreDetail} arg - Arg object
+   * @param {CatalogPlatformValidator.GetStoreDetailParam} arg - Arg object
    * @returns {Promise<CatalogPlatformModel.OptinStoreDetails>} - Success response
    * @name getStoreDetail
    * @summary: Get the Store details.
@@ -3954,7 +3962,7 @@ class Catalog {
   }
 
   /**
-   * @param {CatalogPlatformValidator.getVariantsOfProducts} arg - Arg object
+   * @param {CatalogPlatformValidator.GetVariantsOfProductsParam} arg - Arg object
    * @returns {Promise<CatalogPlatformModel.ProductVariantsResponse>} - Success response
    * @name getVariantsOfProducts
    * @summary: Get product list
@@ -4026,7 +4034,7 @@ class Catalog {
   }
 
   /**
-   * @param {CatalogPlatformValidator.listCategories} arg - Arg object
+   * @param {CatalogPlatformValidator.ListCategoriesParam} arg - Arg object
    * @returns {Promise<CatalogPlatformModel.CategoryResponse>} - Success response
    * @name listCategories
    * @summary: Get product categories list
@@ -4103,7 +4111,7 @@ class Catalog {
   }
 
   /**
-   * @param {CatalogPlatformValidator.listDepartmentsData} arg - Arg object
+   * @param {CatalogPlatformValidator.ListDepartmentsDataParam} arg - Arg object
    * @returns {Promise<CatalogPlatformModel.DepartmentsResponse>} - Success response
    * @name listDepartmentsData
    * @summary: List all Departments.
@@ -4190,7 +4198,7 @@ class Catalog {
   }
 
   /**
-   * @param {CatalogPlatformValidator.listHSNCodes} arg - Arg object
+   * @param {CatalogPlatformValidator.ListHSNCodesParam} arg - Arg object
    * @returns {Promise<CatalogPlatformModel.HSNCodesResponse>} - Success response
    * @name listHSNCodes
    * @summary: List HSN Codes
@@ -4250,7 +4258,7 @@ class Catalog {
   }
 
   /**
-   * @param {CatalogPlatformValidator.listInventoryExport} arg - Arg object
+   * @param {CatalogPlatformValidator.ListInventoryExportParam} arg - Arg object
    * @returns {Promise<CatalogPlatformModel.InventoryExportJobListResponse>}
    *   - Success response
    *
@@ -4326,7 +4334,7 @@ class Catalog {
   }
 
   /**
-   * @param {CatalogPlatformValidator.listProductTemplate} arg - Arg object
+   * @param {CatalogPlatformValidator.ListProductTemplateParam} arg - Arg object
    * @returns {Promise<CatalogPlatformModel.TemplatesResponse>} - Success response
    * @name listProductTemplate
    * @summary: List all Templates
@@ -4391,7 +4399,9 @@ class Catalog {
   }
 
   /**
-   * @param {CatalogPlatformValidator.listProductTemplateCategories} arg - Arg object
+   * @param {CatalogPlatformValidator.ListProductTemplateCategoriesParam} arg
+   *   - Arg object
+   *
    * @returns {Promise<CatalogPlatformModel.ProdcutTemplateCategoriesResponse>}
    *   - Success response
    *
@@ -4463,7 +4473,9 @@ class Catalog {
   }
 
   /**
-   * @param {CatalogPlatformValidator.listProductTemplateExportDetails} arg - Arg object
+   * @param {CatalogPlatformValidator.ListProductTemplateExportDetailsParam} arg
+   *   - Arg object
+   *
    * @returns {Promise<CatalogPlatformModel.ProductDownloadsResponse>} -
    *   Success response
    * @name listProductTemplateExportDetails
@@ -4526,7 +4538,7 @@ class Catalog {
   }
 
   /**
-   * @param {CatalogPlatformValidator.listTemplateBrandTypeValues} arg - Arg object
+   * @param {CatalogPlatformValidator.ListTemplateBrandTypeValuesParam} arg - Arg object
    * @returns {Promise<CatalogPlatformModel.ProductConfigurationDownloads>} -
    *   Success response
    * @name listTemplateBrandTypeValues
@@ -4600,7 +4612,7 @@ class Catalog {
   }
 
   /**
-   * @param {CatalogPlatformValidator.updateCategory} arg - Arg object
+   * @param {CatalogPlatformValidator.UpdateCategoryParam} arg - Arg object
    * @returns {Promise<CatalogPlatformModel.CategoryUpdateResponse>} - Success response
    * @name updateCategory
    * @summary: Update product categories
@@ -4666,7 +4678,7 @@ class Catalog {
   }
 
   /**
-   * @param {CatalogPlatformValidator.updateDepartment} arg - Arg object
+   * @param {CatalogPlatformValidator.UpdateDepartmentParam} arg - Arg object
    * @returns {Promise<CatalogPlatformModel.DepartmentModel>} - Success response
    * @name updateDepartment
    * @summary: Update the department by their uid.
@@ -4732,7 +4744,7 @@ class Catalog {
   }
 
   /**
-   * @param {CatalogPlatformValidator.updateHsnCode} arg - Arg object
+   * @param {CatalogPlatformValidator.UpdateHsnCodeParam} arg - Arg object
    * @returns {Promise<CatalogPlatformModel.HsnCode>} - Success response
    * @name updateHsnCode
    * @summary: Update Hsn Code.
@@ -4798,7 +4810,7 @@ class Catalog {
   }
 
   /**
-   * @param {CatalogPlatformValidator.updateInventories} arg - Arg object
+   * @param {CatalogPlatformValidator.UpdateInventoriesParam} arg - Arg object
    * @returns {Promise<CatalogPlatformModel.InventoryUpdateResponse>} - Success response
    * @name updateInventories
    * @summary: Add Inventory for particular size and store.
@@ -4862,7 +4874,7 @@ class Catalog {
   }
 
   /**
-   * @param {CatalogPlatformValidator.updateProductBundle} arg - Arg object
+   * @param {CatalogPlatformValidator.UpdateProductBundleParam} arg - Arg object
    * @returns {Promise<CatalogPlatformModel.GetProductBundleCreateResponse>}
    *   - Success response
    *
@@ -4930,7 +4942,7 @@ class Catalog {
   }
 
   /**
-   * @param {CatalogPlatformValidator.updateRealtimeInventory} arg - Arg object
+   * @param {CatalogPlatformValidator.UpdateRealtimeInventoryParam} arg - Arg object
    * @returns {Promise<CatalogPlatformModel.InventoryUpdateResponse>} - Success response
    * @name updateRealtimeInventory
    * @summary: Add Inventory for particular size and store.
@@ -5000,7 +5012,7 @@ class Catalog {
   }
 
   /**
-   * @param {CatalogPlatformValidator.updateSizeGuide} arg - Arg object
+   * @param {CatalogPlatformValidator.UpdateSizeGuideParam} arg - Arg object
    * @returns {Promise<CatalogPlatformModel.SuccessResponse>} - Success response
    * @name updateSizeGuide
    * @summary: Edit a size guide.
@@ -5066,7 +5078,7 @@ class Catalog {
   }
 
   /**
-   * @param {CatalogPlatformValidator.uploadBulkProducts} arg - Arg object
+   * @param {CatalogPlatformValidator.UploadBulkProductsParam} arg - Arg object
    * @returns {Promise<CatalogPlatformModel.BulkResponse>} - Success response
    * @name uploadBulkProducts
    * @summary: Create a Bulk product to upload job.
@@ -5136,7 +5148,7 @@ class Catalog {
   }
 
   /**
-   * @param {CatalogPlatformValidator.validateProductTemplate} arg - Arg object
+   * @param {CatalogPlatformValidator.ValidateProductTemplateParam} arg - Arg object
    * @returns {Promise<CatalogPlatformModel.TemplatesValidationResponse>} -
    *   Success response
    * @name validateProductTemplate
@@ -5203,7 +5215,9 @@ class Catalog {
   }
 
   /**
-   * @param {CatalogPlatformValidator.validateProductTemplateSchema} arg - Arg object
+   * @param {CatalogPlatformValidator.ValidateProductTemplateSchemaParam} arg
+   *   - Arg object
+   *
    * @returns {Promise<CatalogPlatformModel.InventoryValidationResponse>} -
    *   Success response
    * @name validateProductTemplateSchema

@@ -1,57 +1,61 @@
 export = RewardsApplicationValidator;
 /**
- * @typedef catalogueOrder
+ * @typedef CatalogueOrderParam
  * @property {RewardsApplicationModel.CatalogueOrderRequest} body
  */
 /**
- * @typedef getOfferByName
+ * @typedef GetOfferByNameParam
  * @property {string} name - The name given to the offer.
  */
 /**
- * @typedef getOrderDiscount
+ * @typedef GetOrderDiscountParam
  * @property {RewardsApplicationModel.OrderDiscountRequest} body
  */
-/** @typedef getUserPoints */
+/** @typedef GetUserPointsParam */
 /**
- * @typedef getUserPointsHistory
+ * @typedef GetUserPointsHistoryParam
  * @property {string} [pageId] - PageID is the ID of the requested page. For
  *   first request it should be kept empty.
  * @property {number} [pageSize] - The number of items to retrieve in each page.
  */
-/** @typedef getUserReferralDetails */
+/** @typedef GetUserReferralDetailsParam */
 /**
- * @typedef redeemReferralCode
+ * @typedef RedeemReferralCodeParam
  * @property {RewardsApplicationModel.RedeemReferralCodeRequest} body
  */
 declare class RewardsApplicationValidator {
+    /** @returns {catalogueOrder} */
+    static catalogueOrder(): catalogueOrder;
+    /** @returns {getOfferByName} */
+    static getOfferByName(): getOfferByName;
+    /** @returns {getOrderDiscount} */
+    static getOrderDiscount(): getOrderDiscount;
+    /** @returns {getUserPoints} */
+    static getUserPoints(): getUserPoints;
+    /** @returns {getUserPointsHistory} */
+    static getUserPointsHistory(): getUserPointsHistory;
+    /** @returns {getUserReferralDetails} */
+    static getUserReferralDetails(): getUserReferralDetails;
+    /** @returns {redeemReferralCode} */
+    static redeemReferralCode(): redeemReferralCode;
 }
 declare namespace RewardsApplicationValidator {
-    export { catalogueOrder, getOfferByName, getOrderDiscount, getUserPoints, getUserPointsHistory, getUserReferralDetails, redeemReferralCode };
+    export { CatalogueOrderParam, GetOfferByNameParam, GetOrderDiscountParam, GetUserPointsParam, GetUserPointsHistoryParam, GetUserReferralDetailsParam, RedeemReferralCodeParam };
 }
-/** @returns {catalogueOrder} */
-declare function catalogueOrder(): catalogueOrder;
-type catalogueOrder = {
+type CatalogueOrderParam = {
     body: RewardsApplicationModel.CatalogueOrderRequest;
 };
-/** @returns {getOfferByName} */
-declare function getOfferByName(): getOfferByName;
-type getOfferByName = {
+type GetOfferByNameParam = {
     /**
      * - The name given to the offer.
      */
     name: string;
 };
-/** @returns {getOrderDiscount} */
-declare function getOrderDiscount(): getOrderDiscount;
-type getOrderDiscount = {
+type GetOrderDiscountParam = {
     body: RewardsApplicationModel.OrderDiscountRequest;
 };
-/** @returns {getUserPoints} */
-declare function getUserPoints(): any;
-type getUserPoints = any;
-/** @returns {getUserPointsHistory} */
-declare function getUserPointsHistory(): getUserPointsHistory;
-type getUserPointsHistory = {
+type GetUserPointsParam = any;
+type GetUserPointsHistoryParam = {
     /**
      * - PageID is the ID of the requested page. For
      * first request it should be kept empty.
@@ -62,12 +66,8 @@ type getUserPointsHistory = {
      */
     pageSize?: number;
 };
-/** @returns {getUserReferralDetails} */
-declare function getUserReferralDetails(): any;
-type getUserReferralDetails = any;
-/** @returns {redeemReferralCode} */
-declare function redeemReferralCode(): redeemReferralCode;
-type redeemReferralCode = {
+type GetUserReferralDetailsParam = any;
+type RedeemReferralCodeParam = {
     body: RewardsApplicationModel.RedeemReferralCodeRequest;
 };
 import RewardsApplicationModel = require("./RewardsApplicationModel");

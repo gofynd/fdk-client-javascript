@@ -32,7 +32,7 @@ class Configuration {
   }
 
   /**
-   * @param {ConfigurationPublicValidator.getLocations} arg - Arg object.
+   * @param {ConfigurationPublicValidator.GetLocationsParam} arg - Arg object.
    * @returns {Promise<ConfigurationPublicModel.Locations>} - Success response
    * @name getLocations
    * @summary: Get countries, states, cities
@@ -97,7 +97,7 @@ class Configuration {
   }
 
   /**
-   * @param {ConfigurationPublicValidator.searchApplication} arg - Arg object.
+   * @param {ConfigurationPublicValidator.SearchApplicationParam} arg - Arg object.
    * @returns {Promise<ConfigurationPublicModel.ApplicationResponse>} - Success response
    * @name searchApplication
    * @summary: Search Application

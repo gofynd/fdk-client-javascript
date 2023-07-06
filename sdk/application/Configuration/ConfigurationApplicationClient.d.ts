@@ -23,7 +23,7 @@ declare class Configuration {
     _urls: {};
     updateUrls(urls: any): void;
     /**
-     * @param {ConfigurationApplicationValidator.getAppCurrencies} arg - Arg object.
+     * @param {ConfigurationApplicationValidator.GetAppCurrenciesParam} arg - Arg object.
      * @returns {Promise<ConfigurationApplicationModel.AppCurrencyResponse>} -
      *   Success response
      * @name getAppCurrencies
@@ -32,14 +32,14 @@ declare class Configuration {
      */
     getAppCurrencies({}?: any): Promise<ConfigurationApplicationModel.AppCurrencyResponse>;
     /**
-     * @param {ConfigurationApplicationValidator.getAppStaffList} arg - Arg object.
+     * @param {ConfigurationApplicationValidator.GetAppStaffListParam} arg - Arg object.
      * @returns {Promise<ConfigurationApplicationModel.AppStaffListResponse>} -
      *   Success response
      * @name getAppStaffList
      * @summary: Get a list of staff.
      * @description: Use this API to get a list of staff including the names, employee code, incentive status, assigned ordering stores, and title of each staff added to the application.
      */
-    getAppStaffList({ pageNo, pageSize, orderIncent, orderingStore, user, userName, }?: ConfigurationApplicationValidator.getAppStaffList): Promise<ConfigurationApplicationModel.AppStaffListResponse>;
+    getAppStaffList({ pageNo, pageSize, orderIncent, orderingStore, user, userName, }?: ConfigurationApplicationValidator.GetAppStaffListParam): Promise<ConfigurationApplicationModel.AppStaffListResponse>;
     /**
      * @param {Object} arg - Arg object.
      * @param {number} [arg.pageSize] -
@@ -62,16 +62,16 @@ declare class Configuration {
         userName?: string;
     }): Paginator<ConfigurationApplicationModel.AppStaffListResponse>;
     /**
-     * @param {ConfigurationApplicationValidator.getAppStaffs} arg - Arg object.
+     * @param {ConfigurationApplicationValidator.GetAppStaffsParam} arg - Arg object.
      * @returns {Promise<ConfigurationApplicationModel.AppStaffResponse>} -
      *   Success response
      * @name getAppStaffs
      * @summary: Get a list of staff.
      * @description: Use this API to get a list of staff including the names, employee code, incentive status, assigned ordering stores, and title of each staff added to the application.
      */
-    getAppStaffs({ orderIncent, orderingStore, user }?: ConfigurationApplicationValidator.getAppStaffs): Promise<ConfigurationApplicationModel.AppStaffResponse>;
+    getAppStaffs({ orderIncent, orderingStore, user }?: ConfigurationApplicationValidator.GetAppStaffsParam): Promise<ConfigurationApplicationModel.AppStaffResponse>;
     /**
-     * @param {ConfigurationApplicationValidator.getApplication} arg - Arg object.
+     * @param {ConfigurationApplicationValidator.GetApplicationParam} arg - Arg object.
      * @returns {Promise<ConfigurationApplicationModel.Application>} - Success response
      * @name getApplication
      * @summary: Get current sales channel details
@@ -79,7 +79,7 @@ declare class Configuration {
      */
     getApplication({}?: any): Promise<ConfigurationApplicationModel.Application>;
     /**
-     * @param {ConfigurationApplicationValidator.getBasicDetails} arg - Arg object.
+     * @param {ConfigurationApplicationValidator.GetBasicDetailsParam} arg - Arg object.
      * @returns {Promise<ConfigurationApplicationModel.ApplicationDetail>} -
      *   Success response
      * @name getBasicDetails
@@ -88,7 +88,7 @@ declare class Configuration {
      */
     getBasicDetails({}?: any): Promise<ConfigurationApplicationModel.ApplicationDetail>;
     /**
-     * @param {ConfigurationApplicationValidator.getContactInfo} arg - Arg object.
+     * @param {ConfigurationApplicationValidator.GetContactInfoParam} arg - Arg object.
      * @returns {Promise<ConfigurationApplicationModel.ApplicationInformation>}
      *   - Success response
      *
@@ -98,7 +98,7 @@ declare class Configuration {
      */
     getContactInfo({}?: any): Promise<ConfigurationApplicationModel.ApplicationInformation>;
     /**
-     * @param {ConfigurationApplicationValidator.getCurrencies} arg - Arg object.
+     * @param {ConfigurationApplicationValidator.GetCurrenciesParam} arg - Arg object.
      * @returns {Promise<ConfigurationApplicationModel.CurrenciesResponse>} -
      *   Success response
      * @name getCurrencies
@@ -107,15 +107,15 @@ declare class Configuration {
      */
     getCurrencies({}?: any): Promise<ConfigurationApplicationModel.CurrenciesResponse>;
     /**
-     * @param {ConfigurationApplicationValidator.getCurrencyById} arg - Arg object.
+     * @param {ConfigurationApplicationValidator.GetCurrencyByIdParam} arg - Arg object.
      * @returns {Promise<ConfigurationApplicationModel.Currency>} - Success response
      * @name getCurrencyById
      * @summary: Get currency by its ID
      * @description: Use this API to retrieve a currency using its ID.
      */
-    getCurrencyById({ id }?: ConfigurationApplicationValidator.getCurrencyById): Promise<ConfigurationApplicationModel.Currency>;
+    getCurrencyById({ id }?: ConfigurationApplicationValidator.GetCurrencyByIdParam): Promise<ConfigurationApplicationModel.Currency>;
     /**
-     * @param {ConfigurationApplicationValidator.getFeatures} arg - Arg object.
+     * @param {ConfigurationApplicationValidator.GetFeaturesParam} arg - Arg object.
      * @returns {Promise<ConfigurationApplicationModel.AppFeatureResponse>} -
      *   Success response
      * @name getFeatures
@@ -124,7 +124,9 @@ declare class Configuration {
      */
     getFeatures({}?: any): Promise<ConfigurationApplicationModel.AppFeatureResponse>;
     /**
-     * @param {ConfigurationApplicationValidator.getIntegrationTokens} arg - Arg object.
+     * @param {ConfigurationApplicationValidator.GetIntegrationTokensParam} arg
+     *   - Arg object.
+     *
      * @returns {Promise<ConfigurationApplicationModel.AppTokenResponse>} -
      *   Success response
      * @name getIntegrationTokens
@@ -133,7 +135,7 @@ declare class Configuration {
      */
     getIntegrationTokens({}?: any): Promise<ConfigurationApplicationModel.AppTokenResponse>;
     /**
-     * @param {ConfigurationApplicationValidator.getLanguages} arg - Arg object.
+     * @param {ConfigurationApplicationValidator.GetLanguagesParam} arg - Arg object.
      * @returns {Promise<ConfigurationApplicationModel.LanguageResponse>} -
      *   Success response
      * @name getLanguages
@@ -142,7 +144,9 @@ declare class Configuration {
      */
     getLanguages({}?: any): Promise<ConfigurationApplicationModel.LanguageResponse>;
     /**
-     * @param {ConfigurationApplicationValidator.getOrderingStoreCookie} arg - Arg object.
+     * @param {ConfigurationApplicationValidator.GetOrderingStoreCookieParam} arg
+     *   - Arg object.
+     *
      * @returns {Promise<ConfigurationApplicationModel.SuccessMessageResponse>}
      *   - Success response
      *
@@ -150,15 +154,15 @@ declare class Configuration {
      * @summary: Get an Ordering Store signed cookie on selection of ordering store.
      * @description: Use this API to get an Ordering Store signed cookie upon selecting an ordering store. This will be used by the cart service to verify a coupon against the selected ordering store in cart.
      */
-    getOrderingStoreCookie({ body }?: ConfigurationApplicationValidator.getOrderingStoreCookie): Promise<ConfigurationApplicationModel.SuccessMessageResponse>;
+    getOrderingStoreCookie({ body }?: ConfigurationApplicationValidator.GetOrderingStoreCookieParam): Promise<ConfigurationApplicationModel.SuccessMessageResponse>;
     /**
-     * @param {ConfigurationApplicationValidator.getOrderingStores} arg - Arg object.
+     * @param {ConfigurationApplicationValidator.GetOrderingStoresParam} arg - Arg object.
      * @returns {Promise<ConfigurationApplicationModel.OrderingStores>} - Success response
      * @name getOrderingStores
      * @summary: Get all deployment stores
      * @description: Use this API to retrieve the details of all the deployment stores (the selling locations where the application will be utilized for placing orders).
      */
-    getOrderingStores({ pageNo, pageSize, q }?: ConfigurationApplicationValidator.getOrderingStores): Promise<ConfigurationApplicationModel.OrderingStores>;
+    getOrderingStores({ pageNo, pageSize, q }?: ConfigurationApplicationValidator.GetOrderingStoresParam): Promise<ConfigurationApplicationModel.OrderingStores>;
     /**
      * @param {Object} arg - Arg object.
      * @param {number} [arg.pageSize] - The number of items to retrieve in each
@@ -173,7 +177,7 @@ declare class Configuration {
         q?: string;
     }): Paginator<ConfigurationApplicationModel.OrderingStores>;
     /**
-     * @param {ConfigurationApplicationValidator.getOwnerInfo} arg - Arg object.
+     * @param {ConfigurationApplicationValidator.GetOwnerInfoParam} arg - Arg object.
      * @returns {Promise<ConfigurationApplicationModel.ApplicationAboutResponse>}
      *   - Success response
      *
@@ -183,15 +187,16 @@ declare class Configuration {
      */
     getOwnerInfo({}?: any): Promise<ConfigurationApplicationModel.ApplicationAboutResponse>;
     /**
-     * @param {ConfigurationApplicationValidator.getStoreDetailById} arg - Arg object.
+     * @param {ConfigurationApplicationValidator.GetStoreDetailByIdParam} arg -
+     *   Arg object.
      * @returns {Promise<ConfigurationApplicationModel.OrderingStore>} - Success response
      * @name getStoreDetailById
      * @summary: Get ordering store details
      * @description: Use this API to retrieve the details of given stores uid (the selling locations where the application will be utilized for placing orders).
      */
-    getStoreDetailById({ storeId }?: ConfigurationApplicationValidator.getStoreDetailById): Promise<ConfigurationApplicationModel.OrderingStore>;
+    getStoreDetailById({ storeId }?: ConfigurationApplicationValidator.GetStoreDetailByIdParam): Promise<ConfigurationApplicationModel.OrderingStore>;
     /**
-     * @param {ConfigurationApplicationValidator.removeOrderingStoreCookie} arg
+     * @param {ConfigurationApplicationValidator.RemoveOrderingStoreCookieParam} arg
      *   - Arg object.
      *
      * @returns {Promise<ConfigurationApplicationModel.SuccessMessageResponse>}

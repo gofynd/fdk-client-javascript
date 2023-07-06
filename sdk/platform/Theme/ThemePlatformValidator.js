@@ -3,16 +3,16 @@ const Joi = require("joi");
 const ThemePlatformModel = require("./ThemePlatformModel");
 
 /**
- * @typedef addMarketplaceThemeToCompany
+ * @typedef AddMarketplaceThemeToCompanyParam
  * @property {ThemePlatformModel.ThemeReq} body
  */
 
 /**
- * @typedef deleteCompanyTheme
+ * @typedef DeleteCompanyThemeParam
  * @property {string} themeId - The ID of the theme.
  */
 
-/** @typedef getCompanyLevelThemes */
+/** @typedef GetCompanyLevelThemesParam */
 
 class ThemePlatformValidator {
   /** @returns {addMarketplaceThemeToCompany} */

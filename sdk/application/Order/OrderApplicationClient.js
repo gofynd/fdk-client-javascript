@@ -19,7 +19,6 @@ class Order {
       getOrders: "/service/application/order/v1.0/orders",
       getPosOrderById:
         "/service/application/order/v1.0/orders/pos-order/{order_id}",
-      getProducts: "/service/application/order/v1.0/products",
       getShipmentBagReasons:
         "/service/application/order/v1.0/orders/shipments/{shipment_id}/bags/{bag_id}/reasons",
       getShipmentById:
@@ -52,7 +51,9 @@ class Order {
   }
 
   /**
-   * @param {OrderApplicationValidator.getCustomerDetailsByShipmentId} arg - Arg object.
+   * @param {OrderApplicationValidator.GetCustomerDetailsByShipmentIdParam} arg
+   *   - Arg object.
+   *
    * @returns {Promise<OrderApplicationModel.CustomerDetailsResponse>} -
    *   Success response
    * @name getCustomerDetailsByShipmentId
@@ -118,18 +119,18 @@ class Order {
   }
 
   /**
-   * @param {OrderApplicationValidator.getInvoiceByShipmentId} arg - Arg object.
+   * @param {OrderApplicationValidator.GetInvoiceByShipmentIdParam} arg - Arg object.
    * @returns {Promise<OrderApplicationModel.ResponseGetInvoiceShipment>} -
    *   Success response
    * @name getInvoiceByShipmentId
    * @summary: Get Invoice of a shipment
    * @description: Use this API to retrieve shipment invoice.
    */
-  async getInvoiceByShipmentId({ shipmentId, documentType } = {}) {
+  async getInvoiceByShipmentId({ shipmentId } = {}) {
     const {
       error,
     } = OrderApplicationValidator.getInvoiceByShipmentId().validate(
-      { shipmentId, documentType },
+      { shipmentId },
       { abortEarly: false, allowUnknown: true }
     );
     if (error) {
@@ -140,7 +141,7 @@ class Order {
     const {
       error: warrning,
     } = OrderApplicationValidator.getInvoiceByShipmentId().validate(
-      { shipmentId, documentType },
+      { shipmentId },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
@@ -151,7 +152,6 @@ class Order {
     }
 
     const query_params = {};
-    query_params["document_type"] = documentType;
 
     const xHeaders = {};
 
@@ -185,7 +185,7 @@ class Order {
   }
 
   /**
-   * @param {OrderApplicationValidator.getOrderById} arg - Arg object.
+   * @param {OrderApplicationValidator.GetOrderByIdParam} arg - Arg object.
    * @returns {Promise<OrderApplicationModel.OrderById>} - Success response
    * @name getOrderById
    * @summary: Get details of an order
@@ -248,7 +248,7 @@ class Order {
   }
 
   /**
-   * @param {OrderApplicationValidator.getOrders} arg - Arg object.
+   * @param {OrderApplicationValidator.GetOrdersParam} arg - Arg object.
    * @returns {Promise<OrderApplicationModel.OrderList>} - Success response
    * @name getOrders
    * @summary: Get all orders
@@ -322,7 +322,7 @@ class Order {
   }
 
   /**
-   * @param {OrderApplicationValidator.getPosOrderById} arg - Arg object.
+   * @param {OrderApplicationValidator.GetPosOrderByIdParam} arg - Arg object.
    * @returns {Promise<OrderApplicationModel.OrderById>} - Success response
    * @name getPosOrderById
    * @summary: Get POS Order
@@ -385,83 +385,7 @@ class Order {
   }
 
   /**
-   * @param {OrderApplicationValidator.getProducts} arg - Arg object.
-   * @returns {Promise<OrderApplicationModel.ProductListResponse>} - Success response
-   * @name getProducts
-   * @summary:
-   * @description:
-   */
-  async getProducts({
-    status,
-    pageNo,
-    pageSize,
-    fromDate,
-    toDate,
-    searchValue,
-  } = {}) {
-    const { error } = OrderApplicationValidator.getProducts().validate(
-      { status, pageNo, pageSize, fromDate, toDate, searchValue },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = OrderApplicationValidator.getProducts().validate(
-      { status, pageNo, pageSize, fromDate, toDate, searchValue },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: `Parameter Validation warrnings for application > Order > getProducts \n ${warrning}`,
-      });
-    }
-
-    const query_params = {};
-    query_params["status"] = status;
-    query_params["page_no"] = pageNo;
-    query_params["page_size"] = pageSize;
-    query_params["from_date"] = fromDate;
-    query_params["to_date"] = toDate;
-    query_params["search_value"] = searchValue;
-
-    const xHeaders = {};
-
-    const response = await ApplicationAPIClient.execute(
-      this._conf,
-      "get",
-      constructUrl({
-        url: this._urls["getProducts"],
-        params: {},
-      }),
-      query_params,
-      undefined,
-      xHeaders
-    );
-
-    const {
-      error: res_error,
-    } = OrderApplicationModel.ProductListResponse().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
-
-    if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for application > Order > getProducts \n ${res_error}`,
-      });
-    }
-
-    return response;
-  }
-
-  /**
-   * @param {OrderApplicationValidator.getShipmentBagReasons} arg - Arg object.
+   * @param {OrderApplicationValidator.GetShipmentBagReasonsParam} arg - Arg object.
    * @returns {Promise<OrderApplicationModel.ShipmentBagReasons>} - Success response
    * @name getShipmentBagReasons
    * @summary: Get reasons behind full or partial cancellation of a shipment
@@ -526,7 +450,7 @@ class Order {
   }
 
   /**
-   * @param {OrderApplicationValidator.getShipmentById} arg - Arg object.
+   * @param {OrderApplicationValidator.GetShipmentByIdParam} arg - Arg object.
    * @returns {Promise<OrderApplicationModel.ShipmentById>} - Success response
    * @name getShipmentById
    * @summary: Get details of a shipment
@@ -589,7 +513,7 @@ class Order {
   }
 
   /**
-   * @param {OrderApplicationValidator.getShipmentReasons} arg - Arg object.
+   * @param {OrderApplicationValidator.GetShipmentReasonsParam} arg - Arg object.
    * @returns {Promise<OrderApplicationModel.ShipmentReasons>} - Success response
    * @name getShipmentReasons
    * @summary: Get reasons behind full or partial cancellation of a shipment
@@ -652,7 +576,7 @@ class Order {
   }
 
   /**
-   * @param {OrderApplicationValidator.sendOtpToShipmentCustomer} arg - Arg object.
+   * @param {OrderApplicationValidator.SendOtpToShipmentCustomerParam} arg - Arg object.
    * @returns {Promise<OrderApplicationModel.SendOtpToCustomerResponse>} -
    *   Success response
    * @name sendOtpToShipmentCustomer
@@ -718,7 +642,7 @@ class Order {
   }
 
   /**
-   * @param {OrderApplicationValidator.trackShipment} arg - Arg object.
+   * @param {OrderApplicationValidator.TrackShipmentParam} arg - Arg object.
    * @returns {Promise<OrderApplicationModel.ShipmentTrack>} - Success response
    * @name trackShipment
    * @summary: Track shipment
@@ -781,7 +705,7 @@ class Order {
   }
 
   /**
-   * @param {OrderApplicationValidator.updateShipmentStatus} arg - Arg object.
+   * @param {OrderApplicationValidator.UpdateShipmentStatusParam} arg - Arg object.
    * @returns {Promise<OrderApplicationModel.ShipmentApplicationStatusResponse>}
    *   - Success response
    *
@@ -846,7 +770,7 @@ class Order {
   }
 
   /**
-   * @param {OrderApplicationValidator.verifyOtpShipmentCustomer} arg - Arg object.
+   * @param {OrderApplicationValidator.VerifyOtpShipmentCustomerParam} arg - Arg object.
    * @returns {Promise<OrderApplicationModel.VerifyOtpResponse>} - Success response
    * @name verifyOtpShipmentCustomer
    * @summary: Verify Otp code

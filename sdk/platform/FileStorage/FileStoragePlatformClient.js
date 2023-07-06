@@ -14,7 +14,7 @@ class FileStorage {
   }
 
   /**
-   * @param {FileStoragePlatformValidator.browse} arg - Arg object
+   * @param {FileStoragePlatformValidator.BrowseParam} arg - Arg object
    * @returns {Promise<FileStoragePlatformModel.BrowseResponse>} - Success response
    * @name browse
    * @summary: Browse Files
@@ -113,7 +113,7 @@ class FileStorage {
   }
 
   /**
-   * @param {FileStoragePlatformValidator.completeUpload} arg - Arg object
+   * @param {FileStoragePlatformValidator.CompleteUploadParam} arg - Arg object
    * @returns {Promise<FileStoragePlatformModel.CompleteResponse>} - Success response
    * @name completeUpload
    * @summary: This will complete the upload process. After successfully uploading file, you can call this operation to complete the upload process.
@@ -202,7 +202,7 @@ class FileStorage {
   }
 
   /**
-   * @param {FileStoragePlatformValidator.copyFiles} arg - Arg object
+   * @param {FileStoragePlatformValidator.CopyFilesParam} arg - Arg object
    * @returns {Promise<FileStoragePlatformModel.BulkUploadResponse>} - Success response
    * @name copyFiles
    * @summary: Copy Files
@@ -269,7 +269,7 @@ class FileStorage {
   }
 
   /**
-   * @param {FileStoragePlatformValidator.getSignUrls} arg - Arg object
+   * @param {FileStoragePlatformValidator.GetSignUrlsParam} arg - Arg object
    * @returns {Promise<FileStoragePlatformModel.SignUrlResponse>} - Success response
    * @name getSignUrls
    * @summary: Gives signed urls to access private files
@@ -333,7 +333,7 @@ class FileStorage {
   }
 
   /**
-   * @param {FileStoragePlatformValidator.proxy} arg - Arg object
+   * @param {FileStoragePlatformValidator.ProxyParam} arg - Arg object
    * @returns {Promise<string>} - Success response
    * @name proxy
    * @summary: Proxy
@@ -393,7 +393,7 @@ class FileStorage {
   }
 
   /**
-   * @param {FileStoragePlatformValidator.startUpload} arg - Arg object
+   * @param {FileStoragePlatformValidator.StartUploadParam} arg - Arg object
    * @returns {Promise<FileStoragePlatformModel.StartResponse>} - Success response
    * @name startUpload
    * @summary: This operation initiates upload and returns storage link which is valid for 30 Minutes. You can use that storage link to make subsequent upload request with file buffer or blob.

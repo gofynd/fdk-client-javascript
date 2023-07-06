@@ -99,7 +99,7 @@ class Payment {
   }
 
   /**
-   * @param {PaymentApplicationValidator.addBeneficiaryDetails} arg - Arg object.
+   * @param {PaymentApplicationValidator.AddBeneficiaryDetailsParam} arg - Arg object.
    * @returns {Promise<PaymentApplicationModel.RefundAccountResponse>} -
    *   Success response
    * @name addBeneficiaryDetails
@@ -165,7 +165,9 @@ class Payment {
   }
 
   /**
-   * @param {PaymentApplicationValidator.addRefundBankAccountUsingOTP} arg - Arg object.
+   * @param {PaymentApplicationValidator.AddRefundBankAccountUsingOTPParam} arg
+   *   - Arg object.
+   *
    * @returns {Promise<PaymentApplicationModel.RefundAccountResponse>} -
    *   Success response
    * @name addRefundBankAccountUsingOTP
@@ -231,7 +233,7 @@ class Payment {
   }
 
   /**
-   * @param {PaymentApplicationValidator.attachCardToCustomer} arg - Arg object.
+   * @param {PaymentApplicationValidator.AttachCardToCustomerParam} arg - Arg object.
    * @returns {Promise<PaymentApplicationModel.AttachCardsResponse>} - Success response
    * @name attachCardToCustomer
    * @summary: Attach a saved card to customer.
@@ -296,7 +298,7 @@ class Payment {
   }
 
   /**
-   * @param {PaymentApplicationValidator.cancelPaymentLink} arg - Arg object.
+   * @param {PaymentApplicationValidator.CancelPaymentLinkParam} arg - Arg object.
    * @returns {Promise<PaymentApplicationModel.CancelPaymentLinkResponse>} -
    *   Success response
    * @name cancelPaymentLink
@@ -360,7 +362,7 @@ class Payment {
   }
 
   /**
-   * @param {PaymentApplicationValidator.cardDetails} arg - Arg object.
+   * @param {PaymentApplicationValidator.CardDetailsParam} arg - Arg object.
    * @returns {Promise<PaymentApplicationModel.CardDetailsResponse>} - Success response
    * @name cardDetails
    * @summary: API to get Card info from PG
@@ -424,7 +426,9 @@ class Payment {
   }
 
   /**
-   * @param {PaymentApplicationValidator.checkAndUpdatePaymentStatus} arg - Arg object.
+   * @param {PaymentApplicationValidator.CheckAndUpdatePaymentStatusParam} arg
+   *   - Arg object.
+   *
    * @returns {Promise<PaymentApplicationModel.PaymentStatusUpdateResponse>}
    *   - Success response
    *
@@ -491,7 +495,7 @@ class Payment {
   }
 
   /**
-   * @param {PaymentApplicationValidator.checkAndUpdatePaymentStatusPaymentLink} arg
+   * @param {PaymentApplicationValidator.CheckAndUpdatePaymentStatusPaymentLinkParam} arg
    *   - Arg object.
    *
    * @returns {Promise<PaymentApplicationModel.PaymentStatusUpdateResponse>}
@@ -560,7 +564,7 @@ class Payment {
   }
 
   /**
-   * @param {PaymentApplicationValidator.checkCredit} arg - Arg object.
+   * @param {PaymentApplicationValidator.CheckCreditParam} arg - Arg object.
    * @returns {Promise<PaymentApplicationModel.CheckCreditResponse>} - Success response
    * @name checkCredit
    * @summary: API to fetch the customer credit summary
@@ -624,8 +628,9 @@ class Payment {
   }
 
   /**
-   * @param {PaymentApplicationValidator.createOrderHandlerPaymentLink} arg -
-   *   Arg object.
+   * @param {PaymentApplicationValidator.CreateOrderHandlerPaymentLinkParam} arg
+   *   - Arg object.
+   *
    * @returns {Promise<PaymentApplicationModel.CreateOrderUserResponse>} -
    *   Success response
    * @name createOrderHandlerPaymentLink
@@ -691,7 +696,7 @@ class Payment {
   }
 
   /**
-   * @param {PaymentApplicationValidator.createPaymentLink} arg - Arg object.
+   * @param {PaymentApplicationValidator.CreatePaymentLinkParam} arg - Arg object.
    * @returns {Promise<PaymentApplicationModel.CreatePaymentLinkResponse>} -
    *   Success response
    * @name createPaymentLink
@@ -755,7 +760,7 @@ class Payment {
   }
 
   /**
-   * @param {PaymentApplicationValidator.customerCreditSummary} arg - Arg object.
+   * @param {PaymentApplicationValidator.CustomerCreditSummaryParam} arg - Arg object.
    * @returns {Promise<PaymentApplicationModel.CustomerCreditSummaryResponse>}
    *   - Success response
    *
@@ -823,7 +828,7 @@ class Payment {
   }
 
   /**
-   * @param {PaymentApplicationValidator.customerOnboard} arg - Arg object.
+   * @param {PaymentApplicationValidator.CustomerOnboardParam} arg - Arg object.
    * @returns {Promise<PaymentApplicationModel.CustomerOnboardingResponse>} -
    *   Success response
    * @name customerOnboard
@@ -887,7 +892,7 @@ class Payment {
   }
 
   /**
-   * @param {PaymentApplicationValidator.deleteUserCard} arg - Arg object.
+   * @param {PaymentApplicationValidator.DeleteUserCardParam} arg - Arg object.
    * @returns {Promise<PaymentApplicationModel.DeleteCardsResponse>} - Success response
    * @name deleteUserCard
    * @summary: Delete a card
@@ -950,7 +955,7 @@ class Payment {
   }
 
   /**
-   * @param {PaymentApplicationValidator.enableOrDisableRefundTransferMode} arg
+   * @param {PaymentApplicationValidator.EnableOrDisableRefundTransferModeParam} arg
    *   - Arg object.
    *
    * @returns {Promise<PaymentApplicationModel.UpdateRefundTransferModeResponse>}
@@ -1019,7 +1024,7 @@ class Payment {
   }
 
   /**
-   * @param {PaymentApplicationValidator.getActiveCardAggregator} arg - Arg object.
+   * @param {PaymentApplicationValidator.GetActiveCardAggregatorParam} arg - Arg object.
    * @returns {Promise<PaymentApplicationModel.ActiveCardPaymentGatewayResponse>}
    *   - Success response
    *
@@ -1087,7 +1092,9 @@ class Payment {
   }
 
   /**
-   * @param {PaymentApplicationValidator.getActiveRefundTransferModes} arg - Arg object.
+   * @param {PaymentApplicationValidator.GetActiveRefundTransferModesParam} arg
+   *   - Arg object.
+   *
    * @returns {Promise<PaymentApplicationModel.TransferModeResponse>} - Success response
    * @name getActiveRefundTransferModes
    * @summary: Lists the mode of refund
@@ -1152,7 +1159,7 @@ class Payment {
   }
 
   /**
-   * @param {PaymentApplicationValidator.getActiveUserCards} arg - Arg object.
+   * @param {PaymentApplicationValidator.GetActiveUserCardsParam} arg - Arg object.
    * @returns {Promise<PaymentApplicationModel.ListCardsResponse>} - Success response
    * @name getActiveUserCards
    * @summary: Fetch the list of cards saved by the user
@@ -1216,7 +1223,7 @@ class Payment {
   }
 
   /**
-   * @param {PaymentApplicationValidator.getAggregatorsConfig} arg - Arg object.
+   * @param {PaymentApplicationValidator.GetAggregatorsConfigParam} arg - Arg object.
    * @returns {Promise<PaymentApplicationModel.AggregatorsConfigDetailResponse>}
    *   - Success response
    *
@@ -1285,7 +1292,9 @@ class Payment {
   }
 
   /**
-   * @param {PaymentApplicationValidator.getEpaylaterBannerDetails} arg - Arg object.
+   * @param {PaymentApplicationValidator.GetEpaylaterBannerDetailsParam} arg
+   *   - Arg object.
+   *
    * @returns {Promise<PaymentApplicationModel.EpaylaterBannerResponse>} -
    *   Success response
    * @name getEpaylaterBannerDetails
@@ -1351,7 +1360,9 @@ class Payment {
   }
 
   /**
-   * @param {PaymentApplicationValidator.getOrderBeneficiariesDetail} arg - Arg object.
+   * @param {PaymentApplicationValidator.GetOrderBeneficiariesDetailParam} arg
+   *   - Arg object.
+   *
    * @returns {Promise<PaymentApplicationModel.OrderBeneficiaryResponse>} -
    *   Success response
    * @name getOrderBeneficiariesDetail
@@ -1418,7 +1429,7 @@ class Payment {
   }
 
   /**
-   * @param {PaymentApplicationValidator.getPaymentLink} arg - Arg object.
+   * @param {PaymentApplicationValidator.GetPaymentLinkParam} arg - Arg object.
    * @returns {Promise<PaymentApplicationModel.GetPaymentLinkResponse>} -
    *   Success response
    * @name getPaymentLink
@@ -1483,7 +1494,7 @@ class Payment {
   }
 
   /**
-   * @param {PaymentApplicationValidator.getPaymentModeRoutes} arg - Arg object.
+   * @param {PaymentApplicationValidator.GetPaymentModeRoutesParam} arg - Arg object.
    * @returns {Promise<PaymentApplicationModel.PaymentModeRouteResponse>} -
    *   Success response
    * @name getPaymentModeRoutes
@@ -1580,7 +1591,7 @@ class Payment {
   }
 
   /**
-   * @param {PaymentApplicationValidator.getPaymentModeRoutesPaymentLink} arg
+   * @param {PaymentApplicationValidator.GetPaymentModeRoutesPaymentLinkParam} arg
    *   - Arg object.
    *
    * @returns {Promise<PaymentApplicationModel.PaymentModeRouteResponse>} -
@@ -1649,7 +1660,7 @@ class Payment {
   }
 
   /**
-   * @param {PaymentApplicationValidator.getPosPaymentModeRoutes} arg - Arg object.
+   * @param {PaymentApplicationValidator.GetPosPaymentModeRoutesParam} arg - Arg object.
    * @returns {Promise<PaymentApplicationModel.PaymentModeRouteResponse>} -
    *   Success response
    * @name getPosPaymentModeRoutes
@@ -1750,7 +1761,7 @@ class Payment {
   }
 
   /**
-   * @param {PaymentApplicationValidator.getRupifiBannerDetails} arg - Arg object.
+   * @param {PaymentApplicationValidator.GetRupifiBannerDetailsParam} arg - Arg object.
    * @returns {Promise<PaymentApplicationModel.RupifiBannerResponse>} - Success response
    * @name getRupifiBannerDetails
    * @summary: Get CreditLine Offer
@@ -1815,7 +1826,9 @@ class Payment {
   }
 
   /**
-   * @param {PaymentApplicationValidator.getUserBeneficiariesDetail} arg - Arg object.
+   * @param {PaymentApplicationValidator.GetUserBeneficiariesDetailParam} arg
+   *   - Arg object.
+   *
    * @returns {Promise<PaymentApplicationModel.OrderBeneficiaryResponse>} -
    *   Success response
    * @name getUserBeneficiariesDetail
@@ -1882,7 +1895,7 @@ class Payment {
   }
 
   /**
-   * @param {PaymentApplicationValidator.initialisePayment} arg - Arg object.
+   * @param {PaymentApplicationValidator.InitialisePaymentParam} arg - Arg object.
    * @returns {Promise<PaymentApplicationModel.PaymentInitializationResponse>}
    *   - Success response
    *
@@ -1947,7 +1960,9 @@ class Payment {
   }
 
   /**
-   * @param {PaymentApplicationValidator.initialisePaymentPaymentLink} arg - Arg object.
+   * @param {PaymentApplicationValidator.InitialisePaymentPaymentLinkParam} arg
+   *   - Arg object.
+   *
    * @returns {Promise<PaymentApplicationModel.PaymentInitializationResponse>}
    *   - Success response
    *
@@ -2014,7 +2029,7 @@ class Payment {
   }
 
   /**
-   * @param {PaymentApplicationValidator.outstandingOrderDetails} arg - Arg object.
+   * @param {PaymentApplicationValidator.OutstandingOrderDetailsParam} arg - Arg object.
    * @returns {Promise<PaymentApplicationModel.OutstandingOrderDetailsResponse>}
    *   - Success response
    *
@@ -2082,7 +2097,7 @@ class Payment {
   }
 
   /**
-   * @param {PaymentApplicationValidator.paidOrderDetails} arg - Arg object.
+   * @param {PaymentApplicationValidator.PaidOrderDetailsParam} arg - Arg object.
    * @returns {Promise<PaymentApplicationModel.PaidOrderDetailsResponse>} -
    *   Success response
    * @name paidOrderDetails
@@ -2147,7 +2162,7 @@ class Payment {
   }
 
   /**
-   * @param {PaymentApplicationValidator.pollingPaymentLink} arg - Arg object.
+   * @param {PaymentApplicationValidator.PollingPaymentLinkParam} arg - Arg object.
    * @returns {Promise<PaymentApplicationModel.PollingPaymentLinkResponse>} -
    *   Success response
    * @name pollingPaymentLink
@@ -2212,7 +2227,7 @@ class Payment {
   }
 
   /**
-   * @param {PaymentApplicationValidator.redirectToAggregator} arg - Arg object.
+   * @param {PaymentApplicationValidator.RedirectToAggregatorParam} arg - Arg object.
    * @returns {Promise<PaymentApplicationModel.RedirectToAggregatorResponse>}
    *   - Success response
    *
@@ -2281,7 +2296,7 @@ class Payment {
   }
 
   /**
-   * @param {PaymentApplicationValidator.renderHTML} arg - Arg object.
+   * @param {PaymentApplicationValidator.RenderHTMLParam} arg - Arg object.
    * @returns {Promise<PaymentApplicationModel.renderHTMLResponse>} - Success response
    * @name renderHTML
    * @summary: Convert base64 string to HTML form
@@ -2344,7 +2359,7 @@ class Payment {
   }
 
   /**
-   * @param {PaymentApplicationValidator.resendOrCancelPayment} arg - Arg object.
+   * @param {PaymentApplicationValidator.ResendOrCancelPaymentParam} arg - Arg object.
    * @returns {Promise<PaymentApplicationModel.ResendOrCancelPaymentResponse>}
    *   - Success response
    *
@@ -2411,7 +2426,7 @@ class Payment {
   }
 
   /**
-   * @param {PaymentApplicationValidator.resendPaymentLink} arg - Arg object.
+   * @param {PaymentApplicationValidator.ResendPaymentLinkParam} arg - Arg object.
    * @returns {Promise<PaymentApplicationModel.ResendPaymentLinkResponse>} -
    *   Success response
    * @name resendPaymentLink
@@ -2475,7 +2490,8 @@ class Payment {
   }
 
   /**
-   * @param {PaymentApplicationValidator.updateDefaultBeneficiary} arg - Arg object.
+   * @param {PaymentApplicationValidator.UpdateDefaultBeneficiaryParam} arg -
+   *   Arg object.
    * @returns {Promise<PaymentApplicationModel.SetDefaultBeneficiaryResponse>}
    *   - Success response
    *
@@ -2542,7 +2558,7 @@ class Payment {
   }
 
   /**
-   * @param {PaymentApplicationValidator.validateVPA} arg - Arg object.
+   * @param {PaymentApplicationValidator.ValidateVPAParam} arg - Arg object.
    * @returns {Promise<PaymentApplicationModel.ValidateVPAResponse>} - Success response
    * @name validateVPA
    * @summary: API to Validate UPI ID
@@ -2605,7 +2621,7 @@ class Payment {
   }
 
   /**
-   * @param {PaymentApplicationValidator.verifyAndChargePayment} arg - Arg object.
+   * @param {PaymentApplicationValidator.VerifyAndChargePaymentParam} arg - Arg object.
    * @returns {Promise<PaymentApplicationModel.ChargeCustomerResponse>} -
    *   Success response
    * @name verifyAndChargePayment
@@ -2671,7 +2687,8 @@ class Payment {
   }
 
   /**
-   * @param {PaymentApplicationValidator.verifyCustomerForPayment} arg - Arg object.
+   * @param {PaymentApplicationValidator.VerifyCustomerForPaymentParam} arg -
+   *   Arg object.
    * @returns {Promise<PaymentApplicationModel.ValidateCustomerResponse>} -
    *   Success response
    * @name verifyCustomerForPayment
@@ -2737,7 +2754,7 @@ class Payment {
   }
 
   /**
-   * @param {PaymentApplicationValidator.verifyIfscCode} arg - Arg object.
+   * @param {PaymentApplicationValidator.VerifyIfscCodeParam} arg - Arg object.
    * @returns {Promise<PaymentApplicationModel.IfscCodeResponse>} - Success response
    * @name verifyIfscCode
    * @summary: Verify IFSC Code
@@ -2801,7 +2818,7 @@ class Payment {
   }
 
   /**
-   * @param {PaymentApplicationValidator.verifyOtpAndAddBeneficiaryForBank} arg
+   * @param {PaymentApplicationValidator.VerifyOtpAndAddBeneficiaryForBankParam} arg
    *   - Arg object.
    *
    * @returns {Promise<PaymentApplicationModel.AddBeneficiaryViaOtpVerificationResponse>}
@@ -2870,7 +2887,7 @@ class Payment {
   }
 
   /**
-   * @param {PaymentApplicationValidator.verifyOtpAndAddBeneficiaryForWallet} arg
+   * @param {PaymentApplicationValidator.VerifyOtpAndAddBeneficiaryForWalletParam} arg
    *   - Arg object.
    *
    * @returns {Promise<PaymentApplicationModel.WalletOtpResponse>} - Success response

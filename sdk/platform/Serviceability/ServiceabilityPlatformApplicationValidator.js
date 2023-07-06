@@ -3,29 +3,29 @@ const Joi = require("joi");
 const ServiceabilityPlatformModel = require("./ServiceabilityPlatformModel");
 
 /**
- * @typedef addAppDp
+ * @typedef AddAppDpParam
  * @property {ServiceabilityPlatformModel.ApplicationCompanyDpViewRequest} body
  */
 
 /**
- * @typedef deleteAppDp
+ * @typedef DeleteAppDpParam
  * @property {number} courierPartnerId - A `courier_partner_id` is a unique
  *   identifier of a particular delivery partner.
  */
 
-/** @typedef getApplicationServiceability */
+/** @typedef GetApplicationServiceabilityParam */
 
-/** @typedef getApplicationServiceabilitySelfShipment */
+/** @typedef GetApplicationServiceabilitySelfShipmentParam */
 
-/** @typedef getDpApplicationRules */
+/** @typedef GetDpApplicationRulesParam */
 
 /**
- * @typedef getZoneFromPincodeView
+ * @typedef GetZoneFromPincodeViewParam
  * @property {ServiceabilityPlatformModel.GetZoneFromPincodeViewRequest} body
  */
 
 /**
- * @typedef getZonesFromApplicationIdView
+ * @typedef GetZonesFromApplicationIdViewParam
  * @property {number} [pageNo] - Index of the item to start returning with
  * @property {number} [pageSize] - Determines the items to be displayed in a page
  * @property {string[]} [zoneId] - List of zones to query for
@@ -33,32 +33,32 @@ const ServiceabilityPlatformModel = require("./ServiceabilityPlatformModel");
  */
 
 /**
- * @typedef patchApplicationServiceabilitySelfShipment
+ * @typedef PatchApplicationServiceabilitySelfShipmentParam
  * @property {ServiceabilityPlatformModel.SelfShipResponse} body
  */
 
 /**
- * @typedef updatePincodeAuditHistory
+ * @typedef UpdatePincodeAuditHistoryParam
  * @property {ServiceabilityPlatformModel.PincodeMopUpdateAuditHistoryRequest} body
  */
 
 /**
- * @typedef updatePincodeBulkView
+ * @typedef UpdatePincodeBulkViewParam
  * @property {ServiceabilityPlatformModel.PincodeMopBulkData} body
  */
 
 /**
- * @typedef updatePincodeCoDListing
+ * @typedef UpdatePincodeCoDListingParam
  * @property {ServiceabilityPlatformModel.PincodeCodStatusListingRequest} body
  */
 
 /**
- * @typedef updatePincodeMopView
+ * @typedef UpdatePincodeMopViewParam
  * @property {ServiceabilityPlatformModel.PincodeMopData} body
  */
 
 /**
- * @typedef upsertDpApplicationRules
+ * @typedef UpsertDpApplicationRulesParam
  * @property {ServiceabilityPlatformModel.DPApplicationRuleRequest} body
  */
 

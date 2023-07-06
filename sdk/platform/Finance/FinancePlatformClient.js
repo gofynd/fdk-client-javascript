@@ -12,7 +12,7 @@ class Finance {
   }
 
   /**
-   * @param {FinancePlatformValidator.asCnRefund} arg - Arg object
+   * @param {FinancePlatformValidator.AsCnRefundParam} arg - Arg object
    * @returns {Promise<FinancePlatformModel.AsCnRefundResponse>} - Success response
    * @name asCnRefund
    * @summary:
@@ -74,7 +74,7 @@ class Finance {
   }
 
   /**
-   * @param {FinancePlatformValidator.channelDisplayName} arg - Arg object
+   * @param {FinancePlatformValidator.ChannelDisplayNameParam} arg - Arg object
    * @returns {Promise<FinancePlatformModel.ChannelDisplayNameResponse>} -
    *   Success response
    * @name channelDisplayName
@@ -140,7 +140,9 @@ class Finance {
   }
 
   /**
-   * @param {FinancePlatformValidator.createSellerCreditNoteConfig} arg - Arg object
+   * @param {FinancePlatformValidator.CreateSellerCreditNoteConfigParam} arg
+   *   - Arg object
+   *
    * @returns {Promise<FinancePlatformModel.CreateSellerCreditNoteConfigResponse>}
    *   - Success response
    *
@@ -208,7 +210,7 @@ class Finance {
   }
 
   /**
-   * @param {FinancePlatformValidator.creditNoteDetails} arg - Arg object
+   * @param {FinancePlatformValidator.CreditNoteDetailsParam} arg - Arg object
    * @returns {Promise<FinancePlatformModel.CreditNoteDetailsResponse>} -
    *   Success response
    * @name creditNoteDetails
@@ -273,7 +275,7 @@ class Finance {
   }
 
   /**
-   * @param {FinancePlatformValidator.creditlineDataplatform} arg - Arg object
+   * @param {FinancePlatformValidator.CreditlineDataplatformParam} arg - Arg object
    * @returns {Promise<FinancePlatformModel.CreditlineDataPlatformResponse>}
    *   - Success response
    *
@@ -341,7 +343,7 @@ class Finance {
   }
 
   /**
-   * @param {FinancePlatformValidator.deleteConfig} arg - Arg object
+   * @param {FinancePlatformValidator.DeleteConfigParam} arg - Arg object
    * @returns {Promise<FinancePlatformModel.DeleteConfigResponse>} - Success response
    * @name deleteConfig
    * @summary:
@@ -405,7 +407,7 @@ class Finance {
   }
 
   /**
-   * @param {FinancePlatformValidator.downloadCreditDebitNote} arg - Arg object
+   * @param {FinancePlatformValidator.DownloadCreditDebitNoteParam} arg - Arg object
    * @returns {Promise<FinancePlatformModel.DownloadCreditDebitNoteResponse>}
    *   - Success response
    *
@@ -473,7 +475,7 @@ class Finance {
   }
 
   /**
-   * @param {FinancePlatformValidator.downloadReport} arg - Arg object
+   * @param {FinancePlatformValidator.DownloadReportParam} arg - Arg object
    * @returns {Promise<FinancePlatformModel.DownloadReportList>} - Success response
    * @name downloadReport
    * @summary:
@@ -537,7 +539,7 @@ class Finance {
   }
 
   /**
-   * @param {FinancePlatformValidator.downloadReportCustomerCn} arg - Arg object
+   * @param {FinancePlatformValidator.DownloadReportCustomerCnParam} arg - Arg object
    * @returns {Promise<FinancePlatformModel.DownloadReportCustomerCnResponse>}
    *   - Success response
    *
@@ -605,7 +607,7 @@ class Finance {
   }
 
   /**
-   * @param {FinancePlatformValidator.generateReport} arg - Arg object
+   * @param {FinancePlatformValidator.GenerateReportParam} arg - Arg object
    * @returns {Promise<FinancePlatformModel.GenerateReportJson>} - Success response
    * @name generateReport
    * @summary:
@@ -669,7 +671,7 @@ class Finance {
   }
 
   /**
-   * @param {FinancePlatformValidator.generateReportCustomerCn} arg - Arg object
+   * @param {FinancePlatformValidator.GenerateReportCustomerCnParam} arg - Arg object
    * @returns {Promise<FinancePlatformModel.GenerateReportCustomerCnResponse>}
    *   - Success response
    *
@@ -737,7 +739,7 @@ class Finance {
   }
 
   /**
-   * @param {FinancePlatformValidator.getAffiliate} arg - Arg object
+   * @param {FinancePlatformValidator.GetAffiliateParam} arg - Arg object
    * @returns {Promise<FinancePlatformModel.GetAffiliateResponse>} - Success response
    * @name getAffiliate
    * @summary:
@@ -801,7 +803,7 @@ class Finance {
   }
 
   /**
-   * @param {FinancePlatformValidator.getCnConfig} arg - Arg object
+   * @param {FinancePlatformValidator.GetCnConfigParam} arg - Arg object
    * @returns {Promise<FinancePlatformModel.GetCnConfigResponse>} - Success response
    * @name getCnConfig
    * @summary:
@@ -863,7 +865,7 @@ class Finance {
   }
 
   /**
-   * @param {FinancePlatformValidator.getCustomerCreditBalance} arg - Arg object
+   * @param {FinancePlatformValidator.GetCustomerCreditBalanceParam} arg - Arg object
    * @returns {Promise<FinancePlatformModel.GetCustomerCreditBalanceResponse>}
    *   - Success response
    *
@@ -931,7 +933,7 @@ class Finance {
   }
 
   /**
-   * @param {FinancePlatformValidator.getData} arg - Arg object
+   * @param {FinancePlatformValidator.GetDataParam} arg - Arg object
    * @returns {Promise<FinancePlatformModel.GetEngineResponse>} - Success response
    * @name getData
    * @summary:
@@ -993,7 +995,7 @@ class Finance {
   }
 
   /**
-   * @param {FinancePlatformValidator.getPdfUrlView} arg - Arg object
+   * @param {FinancePlatformValidator.GetPdfUrlViewParam} arg - Arg object
    * @returns {Promise<FinancePlatformModel.GetPdfUrlViewResponse>} - Success response
    * @name getPdfUrlView
    * @summary:
@@ -1057,7 +1059,7 @@ class Finance {
   }
 
   /**
-   * @param {FinancePlatformValidator.getReason} arg - Arg object
+   * @param {FinancePlatformValidator.GetReasonParam} arg - Arg object
    * @returns {Promise<FinancePlatformModel.GetReasonResponse>} - Success response
    * @name getReason
    * @summary:
@@ -1119,7 +1121,7 @@ class Finance {
   }
 
   /**
-   * @param {FinancePlatformValidator.getReportList} arg - Arg object
+   * @param {FinancePlatformValidator.GetReportListParam} arg - Arg object
    * @returns {Promise<FinancePlatformModel.GetEngineResponse>} - Success response
    * @name getReportList
    * @summary:
@@ -1183,7 +1185,7 @@ class Finance {
   }
 
   /**
-   * @param {FinancePlatformValidator.getReportingFilters} arg - Arg object
+   * @param {FinancePlatformValidator.GetReportingFiltersParam} arg - Arg object
    * @returns {Promise<FinancePlatformModel.GetReportingFiltersResponse>} -
    *   Success response
    * @name getReportingFilters
@@ -1252,7 +1254,7 @@ class Finance {
   }
 
   /**
-   * @param {FinancePlatformValidator.invoiceListing} arg - Arg object
+   * @param {FinancePlatformValidator.InvoiceListingParam} arg - Arg object
    * @returns {Promise<FinancePlatformModel.InvoiceListingResponse>} - Success response
    * @name invoiceListing
    * @summary:
@@ -1316,7 +1318,7 @@ class Finance {
   }
 
   /**
-   * @param {FinancePlatformValidator.invoicePDF} arg - Arg object
+   * @param {FinancePlatformValidator.InvoicePDFParam} arg - Arg object
    * @returns {Promise<FinancePlatformModel.InvoicePdfResponse>} - Success response
    * @name invoicePDF
    * @summary:
@@ -1378,7 +1380,7 @@ class Finance {
   }
 
   /**
-   * @param {FinancePlatformValidator.invoiceType} arg - Arg object
+   * @param {FinancePlatformValidator.InvoiceTypeParam} arg - Arg object
    * @returns {Promise<FinancePlatformModel.InvoiceTypeResponse>} - Success response
    * @name invoiceType
    * @summary:
@@ -1440,7 +1442,7 @@ class Finance {
   }
 
   /**
-   * @param {FinancePlatformValidator.isCreditlinePlatform} arg - Arg object
+   * @param {FinancePlatformValidator.IsCreditlinePlatformParam} arg - Arg object
    * @returns {Promise<FinancePlatformModel.IsCreditlinePlatformResponse>} -
    *   Success response
    * @name isCreditlinePlatform
@@ -1505,7 +1507,7 @@ class Finance {
   }
 
   /**
-   * @param {FinancePlatformValidator.paymentProcess} arg - Arg object
+   * @param {FinancePlatformValidator.PaymentProcessParam} arg - Arg object
    * @returns {Promise<FinancePlatformModel.PaymentProcessResponse>} - Success response
    * @name paymentProcess
    * @summary:

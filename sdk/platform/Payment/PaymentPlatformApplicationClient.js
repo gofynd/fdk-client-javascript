@@ -13,7 +13,7 @@ class Payment {
   }
 
   /**
-   * @param {PaymentPlatformApplicationValidator.addEdcDevice} arg - Arg object
+   * @param {PaymentPlatformApplicationValidator.AddEdcDeviceParam} arg - Arg object
    * @returns {Promise<PaymentPlatformModel.EdcDeviceUpdateResponse>} - Success response
    * @name addEdcDevice
    * @summary: Update store id and device tag of edc device
@@ -78,7 +78,7 @@ class Payment {
   }
 
   /**
-   * @param {PaymentPlatformApplicationValidator.addRefundBankAccountUsingOTP} arg
+   * @param {PaymentPlatformApplicationValidator.AddRefundBankAccountUsingOTPParam} arg
    *   - Arg object
    *
    * @returns {Promise<PaymentPlatformModel.RefundAccountResponse>} - Success response
@@ -143,7 +143,9 @@ class Payment {
   }
 
   /**
-   * @param {PaymentPlatformApplicationValidator.cancelPaymentLink} arg - Arg object
+   * @param {PaymentPlatformApplicationValidator.CancelPaymentLinkParam} arg
+   *   - Arg object
+   *
    * @returns {Promise<PaymentPlatformModel.CancelPaymentLinkResponse>} -
    *   Success response
    * @name cancelPaymentLink
@@ -207,7 +209,7 @@ class Payment {
   }
 
   /**
-   * @param {PaymentPlatformApplicationValidator.checkAndUpdatePaymentStatus} arg
+   * @param {PaymentPlatformApplicationValidator.CheckAndUpdatePaymentStatusParam} arg
    *   - Arg object
    *
    * @returns {Promise<PaymentPlatformModel.PaymentStatusUpdateResponse>} -
@@ -273,7 +275,7 @@ class Payment {
   }
 
   /**
-   * @param {PaymentPlatformApplicationValidator.confirmPayment} arg - Arg object
+   * @param {PaymentPlatformApplicationValidator.ConfirmPaymentParam} arg - Arg object
    * @returns {Promise<PaymentPlatformModel.PaymentConfirmationResponse>} -
    *   Success response
    * @name confirmPayment
@@ -337,7 +339,9 @@ class Payment {
   }
 
   /**
-   * @param {PaymentPlatformApplicationValidator.createPaymentLink} arg - Arg object
+   * @param {PaymentPlatformApplicationValidator.CreatePaymentLinkParam} arg
+   *   - Arg object
+   *
    * @returns {Promise<PaymentPlatformModel.CreatePaymentLinkResponse>} -
    *   Success response
    * @name createPaymentLink
@@ -401,7 +405,7 @@ class Payment {
   }
 
   /**
-   * @param {PaymentPlatformApplicationValidator.edcAggregatorsAndModelList} arg
+   * @param {PaymentPlatformApplicationValidator.EdcAggregatorsAndModelListParam} arg
    *   - Arg object
    *
    * @returns {Promise<PaymentPlatformModel.EdcAggregatorAndModelListResponse>}
@@ -464,7 +468,7 @@ class Payment {
   }
 
   /**
-   * @param {PaymentPlatformApplicationValidator.edcDeviceList} arg - Arg object
+   * @param {PaymentPlatformApplicationValidator.EdcDeviceListParam} arg - Arg object
    * @returns {Promise<PaymentPlatformModel.EdcDeviceListResponse>} - Success response
    * @name edcDeviceList
    * @summary: get all the device list of an app
@@ -540,7 +544,7 @@ class Payment {
   }
 
   /**
-   * @param {PaymentPlatformApplicationValidator.edcDeviceStats} arg - Arg object
+   * @param {PaymentPlatformApplicationValidator.EdcDeviceStatsParam} arg - Arg object
    * @returns {Promise<PaymentPlatformModel.EdcDeviceStatsResponse>} - Success response
    * @name edcDeviceStats
    * @summary: get some information about the store and edc device
@@ -599,7 +603,74 @@ class Payment {
   }
 
   /**
-   * @param {PaymentPlatformApplicationValidator.getBankAccountDetailsOpenAPI} arg
+   * @param {PaymentPlatformApplicationValidator.ExtensionPaymentUpdateParam} arg
+   *   - Arg object
+   *
+   * @returns {Promise<PaymentPlatformModel.ExtensionPaymentUpdateResponseSerializer>}
+   *   - Success response
+   *
+   * @name extensionPaymentUpdate
+   * @summary: Extension will call this api to set the payment status of an order
+   * @description: Use this API to Extension will call this api to set the payment status of an order
+   */
+  async extensionPaymentUpdate({ body } = {}) {
+    const {
+      error,
+    } = PaymentPlatformApplicationValidator.extensionPaymentUpdate().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = PaymentPlatformApplicationValidator.extensionPaymentUpdate().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for platform > Payment > extensionPaymentUpdate \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/payment/v1.0/company/${this.config.companyId}/application/${this.applicationId}/payment/update/`,
+      query_params,
+      body
+    );
+
+    const {
+      error: res_error,
+    } = PaymentPlatformModel.ExtensionPaymentUpdateResponseSerializer().validate(
+      response,
+      { abortEarly: false, allowUnknown: false }
+    );
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: `Response Validation Warnnings for platform > Payment > extensionPaymentUpdate \n ${res_error}`,
+      });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {PaymentPlatformApplicationValidator.GetBankAccountDetailsOpenAPIParam} arg
    *   - Arg object
    *
    * @returns {Promise<PaymentPlatformModel.RefundAccountResponse>} - Success response
@@ -674,7 +745,7 @@ class Payment {
   }
 
   /**
-   * @param {PaymentPlatformApplicationValidator.getBrandPaymentGatewayConfig} arg
+   * @param {PaymentPlatformApplicationValidator.GetBrandPaymentGatewayConfigParam} arg
    *   - Arg object
    *
    * @returns {Promise<PaymentPlatformModel.PaymentGatewayConfigResponse>} -
@@ -736,7 +807,7 @@ class Payment {
   }
 
   /**
-   * @param {PaymentPlatformApplicationValidator.getEdcDevice} arg - Arg object
+   * @param {PaymentPlatformApplicationValidator.GetEdcDeviceParam} arg - Arg object
    * @returns {Promise<PaymentPlatformModel.EdcDeviceDetailsResponse>} -
    *   Success response
    * @name getEdcDevice
@@ -800,7 +871,9 @@ class Payment {
   }
 
   /**
-   * @param {PaymentPlatformApplicationValidator.getPaymentCodeOption} arg - Arg object
+   * @param {PaymentPlatformApplicationValidator.GetPaymentCodeOptionParam} arg
+   *   - Arg object
+   *
    * @returns {Promise<PaymentPlatformModel.GetPaymentCodeResponse>} - Success response
    * @name getPaymentCodeOption
    * @summary: List Payment Options Method Codes
@@ -859,7 +932,7 @@ class Payment {
   }
 
   /**
-   * @param {PaymentPlatformApplicationValidator.getPaymentLink} arg - Arg object
+   * @param {PaymentPlatformApplicationValidator.GetPaymentLinkParam} arg - Arg object
    * @returns {Promise<PaymentPlatformModel.GetPaymentLinkResponse>} - Success response
    * @name getPaymentLink
    * @summary: Get payment link
@@ -923,7 +996,9 @@ class Payment {
   }
 
   /**
-   * @param {PaymentPlatformApplicationValidator.getPaymentModeRoutes} arg - Arg object
+   * @param {PaymentPlatformApplicationValidator.GetPaymentModeRoutesParam} arg
+   *   - Arg object
+   *
    * @returns {Promise<PaymentPlatformModel.PaymentOptionsResponse>} - Success response
    * @name getPaymentModeRoutes
    * @summary: Get All Valid Payment Options
@@ -990,7 +1065,7 @@ class Payment {
   }
 
   /**
-   * @param {PaymentPlatformApplicationValidator.getPosPaymentModeRoutes} arg
+   * @param {PaymentPlatformApplicationValidator.GetPosPaymentModeRoutesParam} arg
    *   - Arg object
    *
    * @returns {Promise<PaymentPlatformModel.PaymentOptionsResponse>} - Success response
@@ -1086,7 +1161,9 @@ class Payment {
   }
 
   /**
-   * @param {PaymentPlatformApplicationValidator.getUserBeneficiaries} arg - Arg object
+   * @param {PaymentPlatformApplicationValidator.GetUserBeneficiariesParam} arg
+   *   - Arg object
+   *
    * @returns {Promise<PaymentPlatformModel.OrderBeneficiaryResponse>} -
    *   Success response
    * @name getUserBeneficiaries
@@ -1147,7 +1224,9 @@ class Payment {
   }
 
   /**
-   * @param {PaymentPlatformApplicationValidator.getUserCODlimitRoutes} arg - Arg object
+   * @param {PaymentPlatformApplicationValidator.GetUserCODlimitRoutesParam} arg
+   *   - Arg object
+   *
    * @returns {Promise<PaymentPlatformModel.GetUserCODLimitResponse>} - Success response
    * @name getUserCODlimitRoutes
    * @summary: Get COD limit for user
@@ -1214,7 +1293,7 @@ class Payment {
   }
 
   /**
-   * @param {PaymentPlatformApplicationValidator.getUserOrderBeneficiaries} arg
+   * @param {PaymentPlatformApplicationValidator.GetUserOrderBeneficiariesParam} arg
    *   - Arg object
    *
    * @returns {Promise<PaymentPlatformModel.OrderBeneficiaryResponse>} -
@@ -1277,7 +1356,9 @@ class Payment {
   }
 
   /**
-   * @param {PaymentPlatformApplicationValidator.initialisePayment} arg - Arg object
+   * @param {PaymentPlatformApplicationValidator.InitialisePaymentParam} arg
+   *   - Arg object
+   *
    * @returns {Promise<PaymentPlatformModel.PaymentInitializationResponse>} -
    *   Success response
    * @name initialisePayment
@@ -1341,7 +1422,9 @@ class Payment {
   }
 
   /**
-   * @param {PaymentPlatformApplicationValidator.merchantOnBoarding} arg - Arg object
+   * @param {PaymentPlatformApplicationValidator.MerchantOnBoardingParam} arg
+   *   - Arg object
+   *
    * @returns {Promise<PaymentPlatformModel.MerchantOnBoardingResponse>} -
    *   Success response
    * @name merchantOnBoarding
@@ -1405,7 +1488,7 @@ class Payment {
   }
 
   /**
-   * @param {PaymentPlatformApplicationValidator.oauthGetUrl} arg - Arg object
+   * @param {PaymentPlatformApplicationValidator.OauthGetUrlParam} arg - Arg object
    * @returns {Promise<PaymentPlatformModel.GetOauthUrlResponse>} - Success response
    * @name oauthGetUrl
    * @summary: API to Get the url to call for oauth
@@ -1478,7 +1561,9 @@ class Payment {
   }
 
   /**
-   * @param {PaymentPlatformApplicationValidator.paymentStatusBulk} arg - Arg object
+   * @param {PaymentPlatformApplicationValidator.PaymentStatusBulkParam} arg
+   *   - Arg object
+   *
    * @returns {Promise<PaymentPlatformModel.PaymentStatusBulkHandlerResponse>}
    *   - Success response
    *
@@ -1543,7 +1628,9 @@ class Payment {
   }
 
   /**
-   * @param {PaymentPlatformApplicationValidator.pollingPaymentLink} arg - Arg object
+   * @param {PaymentPlatformApplicationValidator.PollingPaymentLinkParam} arg
+   *   - Arg object
+   *
    * @returns {Promise<PaymentPlatformModel.PollingPaymentLinkResponse>} -
    *   Success response
    * @name pollingPaymentLink
@@ -1608,7 +1695,7 @@ class Payment {
   }
 
   /**
-   * @param {PaymentPlatformApplicationValidator.repaymentDetails} arg - Arg object
+   * @param {PaymentPlatformApplicationValidator.RepaymentDetailsParam} arg - Arg object
    * @returns {Promise<PaymentPlatformModel.RepaymentResponse>} - Success response
    * @name repaymentDetails
    * @summary: API to register repayment details
@@ -1671,7 +1758,9 @@ class Payment {
   }
 
   /**
-   * @param {PaymentPlatformApplicationValidator.resendOrCancelPayment} arg - Arg object
+   * @param {PaymentPlatformApplicationValidator.ResendOrCancelPaymentParam} arg
+   *   - Arg object
+   *
    * @returns {Promise<PaymentPlatformModel.ResendOrCancelPaymentResponse>} -
    *   Success response
    * @name resendOrCancelPayment
@@ -1735,7 +1824,9 @@ class Payment {
   }
 
   /**
-   * @param {PaymentPlatformApplicationValidator.resendPaymentLink} arg - Arg object
+   * @param {PaymentPlatformApplicationValidator.ResendPaymentLinkParam} arg
+   *   - Arg object
+   *
    * @returns {Promise<PaymentPlatformModel.ResendPaymentLinkResponse>} -
    *   Success response
    * @name resendPaymentLink
@@ -1799,7 +1890,7 @@ class Payment {
   }
 
   /**
-   * @param {PaymentPlatformApplicationValidator.revokeOauthToken} arg - Arg object
+   * @param {PaymentPlatformApplicationValidator.RevokeOauthTokenParam} arg - Arg object
    * @returns {Promise<PaymentPlatformModel.RevokeOAuthToken>} - Success response
    * @name revokeOauthToken
    * @summary: API to Revoke oauth for razorpay partnership
@@ -1862,7 +1953,7 @@ class Payment {
   }
 
   /**
-   * @param {PaymentPlatformApplicationValidator.saveBrandPaymentGatewayConfig} arg
+   * @param {PaymentPlatformApplicationValidator.SaveBrandPaymentGatewayConfigParam} arg
    *   - Arg object
    *
    * @returns {Promise<PaymentPlatformModel.PaymentGatewayToBeReviewed>} -
@@ -1928,7 +2019,9 @@ class Payment {
   }
 
   /**
-   * @param {PaymentPlatformApplicationValidator.setUserCODlimitRoutes} arg - Arg object
+   * @param {PaymentPlatformApplicationValidator.SetUserCODlimitRoutesParam} arg
+   *   - Arg object
+   *
    * @returns {Promise<PaymentPlatformModel.SetCODOptionResponse>} - Success response
    * @name setUserCODlimitRoutes
    * @summary: Set COD option for user for payment
@@ -1991,7 +2084,7 @@ class Payment {
   }
 
   /**
-   * @param {PaymentPlatformApplicationValidator.updateEdcDevice} arg - Arg object
+   * @param {PaymentPlatformApplicationValidator.UpdateEdcDeviceParam} arg - Arg object
    * @returns {Promise<PaymentPlatformModel.EdcDeviceAddResponse>} - Success response
    * @name updateEdcDevice
    * @summary: map new edc device to the terminal
@@ -2054,7 +2147,7 @@ class Payment {
   }
 
   /**
-   * @param {PaymentPlatformApplicationValidator.verifyCustomerForPayment} arg
+   * @param {PaymentPlatformApplicationValidator.VerifyCustomerForPaymentParam} arg
    *   - Arg object
    *
    * @returns {Promise<PaymentPlatformModel.ValidateCustomerResponse>} -

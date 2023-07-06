@@ -4,7 +4,7 @@ declare class Serviceability {
     config: any;
     applicationId: any;
     /**
-     * @param {ServiceabilityPlatformApplicationValidator.addAppDp} arg - Arg object
+     * @param {ServiceabilityPlatformApplicationValidator.AddAppDpParam} arg - Arg object
      * @returns {Promise<ServiceabilityPlatformModel.ApplicationCompanyDpViewResponse>}
      *   - Success response
      *
@@ -12,9 +12,11 @@ declare class Serviceability {
      * @summary: Add application dp data
      * @description: This API add application dp data.
      */
-    addAppDp({ body }?: ServiceabilityPlatformApplicationValidator.addAppDp): Promise<ServiceabilityPlatformModel.ApplicationCompanyDpViewResponse>;
+    addAppDp({ body }?: ServiceabilityPlatformApplicationValidator.AddAppDpParam): Promise<ServiceabilityPlatformModel.ApplicationCompanyDpViewResponse>;
     /**
-     * @param {ServiceabilityPlatformApplicationValidator.deleteAppDp} arg - Arg object
+     * @param {ServiceabilityPlatformApplicationValidator.DeleteAppDpParam} arg
+     *   - Arg object
+     *
      * @returns {Promise<ServiceabilityPlatformModel.ApplicationCompanyDpViewResponse>}
      *   - Success response
      *
@@ -22,9 +24,9 @@ declare class Serviceability {
      * @summary: Delete application dp data
      * @description: This API remove application dp data.
      */
-    deleteAppDp({ courierPartnerId }?: ServiceabilityPlatformApplicationValidator.deleteAppDp): Promise<ServiceabilityPlatformModel.ApplicationCompanyDpViewResponse>;
+    deleteAppDp({ courierPartnerId }?: ServiceabilityPlatformApplicationValidator.DeleteAppDpParam): Promise<ServiceabilityPlatformModel.ApplicationCompanyDpViewResponse>;
     /**
-     * @param {ServiceabilityPlatformApplicationValidator.getApplicationServiceability} arg
+     * @param {ServiceabilityPlatformApplicationValidator.GetApplicationServiceabilityParam} arg
      *   - Arg object
      *
      * @returns {Promise<ServiceabilityPlatformModel.ApplicationServiceabilityConfigResponse>}
@@ -36,7 +38,7 @@ declare class Serviceability {
      */
     getApplicationServiceability({}?: any): Promise<ServiceabilityPlatformModel.ApplicationServiceabilityConfigResponse>;
     /**
-     * @param {ServiceabilityPlatformApplicationValidator.getApplicationServiceabilitySelfShipment} arg
+     * @param {ServiceabilityPlatformApplicationValidator.GetApplicationServiceabilitySelfShipmentParam} arg
      *   - Arg object
      *
      * @returns {Promise<ServiceabilityPlatformModel.ApplicationSelfShipConfigResponse>}
@@ -48,7 +50,7 @@ declare class Serviceability {
      */
     getApplicationServiceabilitySelfShipment({}?: any): Promise<ServiceabilityPlatformModel.ApplicationSelfShipConfigResponse>;
     /**
-     * @param {ServiceabilityPlatformApplicationValidator.getDpApplicationRules} arg
+     * @param {ServiceabilityPlatformApplicationValidator.GetDpApplicationRulesParam} arg
      *   - Arg object
      *
      * @returns {Promise<ServiceabilityPlatformModel.DPApplicationRuleResponse>}
@@ -60,7 +62,7 @@ declare class Serviceability {
      */
     getDpApplicationRules({}?: any): Promise<ServiceabilityPlatformModel.DPApplicationRuleResponse>;
     /**
-     * @param {ServiceabilityPlatformApplicationValidator.getZoneFromPincodeView} arg
+     * @param {ServiceabilityPlatformApplicationValidator.GetZoneFromPincodeViewParam} arg
      *   - Arg object
      *
      * @returns {Promise<ServiceabilityPlatformModel.GetZoneFromPincodeViewResponse>}
@@ -70,9 +72,9 @@ declare class Serviceability {
      * @summary: GET zone from the Pincode.
      * @description: This API returns zone from the Pincode View.
      */
-    getZoneFromPincodeView({ body }?: ServiceabilityPlatformApplicationValidator.getZoneFromPincodeView): Promise<ServiceabilityPlatformModel.GetZoneFromPincodeViewResponse>;
+    getZoneFromPincodeView({ body }?: ServiceabilityPlatformApplicationValidator.GetZoneFromPincodeViewParam): Promise<ServiceabilityPlatformModel.GetZoneFromPincodeViewResponse>;
     /**
-     * @param {ServiceabilityPlatformApplicationValidator.getZonesFromApplicationIdView} arg
+     * @param {ServiceabilityPlatformApplicationValidator.GetZonesFromApplicationIdViewParam} arg
      *   - Arg object
      *
      * @returns {Promise<ServiceabilityPlatformModel.GetZoneFromApplicationIdViewResponse>}
@@ -82,9 +84,9 @@ declare class Serviceability {
      * @summary: GET zones from the application_id.
      * @description: This API returns zones from the application_id View.
      */
-    getZonesFromApplicationIdView({ pageNo, pageSize, zoneId, q }?: ServiceabilityPlatformApplicationValidator.getZonesFromApplicationIdView): Promise<ServiceabilityPlatformModel.GetZoneFromApplicationIdViewResponse>;
+    getZonesFromApplicationIdView({ pageNo, pageSize, zoneId, q }?: ServiceabilityPlatformApplicationValidator.GetZonesFromApplicationIdViewParam): Promise<ServiceabilityPlatformModel.GetZoneFromApplicationIdViewResponse>;
     /**
-     * @param {ServiceabilityPlatformApplicationValidator.patchApplicationServiceabilitySelfShipment} arg
+     * @param {ServiceabilityPlatformApplicationValidator.PatchApplicationServiceabilitySelfShipmentParam} arg
      *   - Arg object
      *
      * @returns {Promise<ServiceabilityPlatformModel.ApplicationSelfShipConfigResponse>}
@@ -94,9 +96,9 @@ declare class Serviceability {
      * @summary: Self-ship configuration of application.
      * @description: This API updates Self-ship configuration of the application.
      */
-    patchApplicationServiceabilitySelfShipment({ body }?: ServiceabilityPlatformApplicationValidator.patchApplicationServiceabilitySelfShipment): Promise<ServiceabilityPlatformModel.ApplicationSelfShipConfigResponse>;
+    patchApplicationServiceabilitySelfShipment({ body }?: ServiceabilityPlatformApplicationValidator.PatchApplicationServiceabilitySelfShipmentParam): Promise<ServiceabilityPlatformModel.ApplicationSelfShipConfigResponse>;
     /**
-     * @param {ServiceabilityPlatformApplicationValidator.updatePincodeAuditHistory} arg
+     * @param {ServiceabilityPlatformApplicationValidator.UpdatePincodeAuditHistoryParam} arg
      *   - Arg object
      *
      * @returns {Promise<ServiceabilityPlatformModel.PincodeMopUpdateAuditHistoryResponseData>}
@@ -106,9 +108,9 @@ declare class Serviceability {
      * @summary: Auditlog configuration of application.
      * @description: This API returns Audit logs of Pincode.
      */
-    updatePincodeAuditHistory({ body }?: ServiceabilityPlatformApplicationValidator.updatePincodeAuditHistory): Promise<ServiceabilityPlatformModel.PincodeMopUpdateAuditHistoryResponseData>;
+    updatePincodeAuditHistory({ body }?: ServiceabilityPlatformApplicationValidator.UpdatePincodeAuditHistoryParam): Promise<ServiceabilityPlatformModel.PincodeMopUpdateAuditHistoryResponseData>;
     /**
-     * @param {ServiceabilityPlatformApplicationValidator.updatePincodeBulkView} arg
+     * @param {ServiceabilityPlatformApplicationValidator.UpdatePincodeBulkViewParam} arg
      *   - Arg object
      *
      * @returns {Promise<ServiceabilityPlatformModel.PincodeBulkViewResponse>}
@@ -118,9 +120,9 @@ declare class Serviceability {
      * @summary: Bulk Update of pincode in the application.
      * @description: This API constructs bulk write operations to update the MOP data for each pincode in the payload.
      */
-    updatePincodeBulkView({ body }?: ServiceabilityPlatformApplicationValidator.updatePincodeBulkView): Promise<ServiceabilityPlatformModel.PincodeBulkViewResponse>;
+    updatePincodeBulkView({ body }?: ServiceabilityPlatformApplicationValidator.UpdatePincodeBulkViewParam): Promise<ServiceabilityPlatformModel.PincodeBulkViewResponse>;
     /**
-     * @param {ServiceabilityPlatformApplicationValidator.updatePincodeCoDListing} arg
+     * @param {ServiceabilityPlatformApplicationValidator.UpdatePincodeCoDListingParam} arg
      *   - Arg object
      *
      * @returns {Promise<ServiceabilityPlatformModel.PincodeCodStatusListingResponse>}
@@ -130,9 +132,9 @@ declare class Serviceability {
      * @summary: Pincode count view of application.
      * @description: This API returns count of active pincode.
      */
-    updatePincodeCoDListing({ body }?: ServiceabilityPlatformApplicationValidator.updatePincodeCoDListing): Promise<ServiceabilityPlatformModel.PincodeCodStatusListingResponse>;
+    updatePincodeCoDListing({ body }?: ServiceabilityPlatformApplicationValidator.UpdatePincodeCoDListingParam): Promise<ServiceabilityPlatformModel.PincodeCodStatusListingResponse>;
     /**
-     * @param {ServiceabilityPlatformApplicationValidator.updatePincodeMopView} arg
+     * @param {ServiceabilityPlatformApplicationValidator.UpdatePincodeMopViewParam} arg
      *   - Arg object
      *
      * @returns {Promise<ServiceabilityPlatformModel.PincodeMOPresponse>} -
@@ -141,9 +143,9 @@ declare class Serviceability {
      * @summary: PincodeView update of MOP.
      * @description: This API updates Pincode method of payment.
      */
-    updatePincodeMopView({ body }?: ServiceabilityPlatformApplicationValidator.updatePincodeMopView): Promise<ServiceabilityPlatformModel.PincodeMOPresponse>;
+    updatePincodeMopView({ body }?: ServiceabilityPlatformApplicationValidator.UpdatePincodeMopViewParam): Promise<ServiceabilityPlatformModel.PincodeMOPresponse>;
     /**
-     * @param {ServiceabilityPlatformApplicationValidator.upsertDpApplicationRules} arg
+     * @param {ServiceabilityPlatformApplicationValidator.UpsertDpApplicationRulesParam} arg
      *   - Arg object
      *
      * @returns {Promise<ServiceabilityPlatformModel.DPApplicationRuleResponse>}
@@ -153,7 +155,7 @@ declare class Serviceability {
      * @summary: Upsert of DpApplicationRules in database.
      * @description: This API returns response of upsert of DpApplicationRules in mongo database.
      */
-    upsertDpApplicationRules({ body }?: ServiceabilityPlatformApplicationValidator.upsertDpApplicationRules): Promise<ServiceabilityPlatformModel.DPApplicationRuleResponse>;
+    upsertDpApplicationRules({ body }?: ServiceabilityPlatformApplicationValidator.UpsertDpApplicationRulesParam): Promise<ServiceabilityPlatformModel.DPApplicationRuleResponse>;
 }
 import ServiceabilityPlatformApplicationValidator = require("./ServiceabilityPlatformApplicationValidator");
 import ServiceabilityPlatformModel = require("./ServiceabilityPlatformModel");

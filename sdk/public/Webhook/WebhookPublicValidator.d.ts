@@ -1,20 +1,20 @@
 export = WebhookPublicValidator;
-/** @typedef fetchAllWebhookEvents */
+/** @typedef FetchAllWebhookEventsParam */
 /**
- * @typedef queryWebhookEventDetails
+ * @typedef QueryWebhookEventDetailsParam
  * @property {WebhookPublicModel.EventConfigBase[]} body
  */
 declare class WebhookPublicValidator {
+    /** @returns {fetchAllWebhookEvents} */
+    static fetchAllWebhookEvents(): fetchAllWebhookEvents;
+    /** @returns {queryWebhookEventDetails} */
+    static queryWebhookEventDetails(): queryWebhookEventDetails;
 }
 declare namespace WebhookPublicValidator {
-    export { fetchAllWebhookEvents, queryWebhookEventDetails };
+    export { FetchAllWebhookEventsParam, QueryWebhookEventDetailsParam };
 }
-/** @returns {fetchAllWebhookEvents} */
-declare function fetchAllWebhookEvents(): any;
-type fetchAllWebhookEvents = any;
-/** @returns {queryWebhookEventDetails} */
-declare function queryWebhookEventDetails(): queryWebhookEventDetails;
-type queryWebhookEventDetails = {
+type FetchAllWebhookEventsParam = any;
+type QueryWebhookEventDetailsParam = {
     body: WebhookPublicModel.EventConfigBase[];
 };
 import WebhookPublicModel = require("./WebhookPublicModel");

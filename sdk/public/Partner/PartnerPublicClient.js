@@ -32,7 +32,7 @@ class Partner {
   }
 
   /**
-   * @param {PartnerPublicValidator.getOrganizationList} arg - Arg object.
+   * @param {PartnerPublicValidator.GetOrganizationListParam} arg - Arg object.
    * @returns {Promise<PartnerPublicModel.OrganizationList>} - Success response
    * @name getOrganizationList
    * @summary: Get organization list
@@ -95,7 +95,7 @@ class Partner {
   }
 
   /**
-   * @param {PartnerPublicValidator.getPanelExtensionDetails} arg - Arg object.
+   * @param {PartnerPublicValidator.GetPanelExtensionDetailsParam} arg - Arg object.
    * @returns {Promise<PartnerPublicModel.ExtensionUsingSlug>} - Success response
    * @name getPanelExtensionDetails
    * @summary: Get extension details

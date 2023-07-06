@@ -35,6 +35,17 @@ const Joi = require("joi");
  */
 
 /**
+ * @typedef EventConfigDetails
+ * @property {string} [created_on]
+ * @property {string} [description]
+ * @property {string} [display_name]
+ * @property {string} [event_category]
+ * @property {string} [event_name]
+ * @property {string} [event_type]
+ * @property {string} [version]
+ */
+
+/**
  * @typedef EventConfigList
  * @property {EventConfig[]} [items]
  * @property {Page} [page]
@@ -87,6 +98,18 @@ const Joi = require("joi");
  * @property {string} [email_id]
  * @property {number[]} [event_id]
  * @property {number} [id]
+ * @property {string} [name]
+ * @property {SubscriberStatus} [status]
+ * @property {string} [webhook_url]
+ */
+
+/**
+ * @typedef SubscriberConfigDetails
+ * @property {Association} [association]
+ * @property {AuthMeta} [auth_meta]
+ * @property {Object} [custom_headers]
+ * @property {string} [email_id]
+ * @property {number[]} [event_id]
  * @property {string} [name]
  * @property {SubscriberStatus} [status]
  * @property {string} [webhook_url]
@@ -166,6 +189,19 @@ class WebhookPublicModel {
     });
   }
 
+  /** @returns {EventConfigDetails} */
+  static EventConfigDetails() {
+    return Joi.object({
+      created_on: Joi.string().allow(""),
+      description: Joi.string().allow(""),
+      display_name: Joi.string().allow(""),
+      event_category: Joi.string().allow(""),
+      event_name: Joi.string().allow(""),
+      event_type: Joi.string().allow(""),
+      version: Joi.string().allow(""),
+    });
+  }
+
   /** @returns {EventConfigList} */
   static EventConfigList() {
     return Joi.object({
@@ -230,6 +266,20 @@ class WebhookPublicModel {
       email_id: Joi.string().allow(""),
       event_id: Joi.array().items(Joi.number()),
       id: Joi.number(),
+      name: Joi.string().allow(""),
+      status: WebhookPublicModel.SubscriberStatus(),
+      webhook_url: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {SubscriberConfigDetails} */
+  static SubscriberConfigDetails() {
+    return Joi.object({
+      association: WebhookPublicModel.Association(),
+      auth_meta: WebhookPublicModel.AuthMeta(),
+      custom_headers: Joi.any(),
+      email_id: Joi.string().allow(""),
+      event_id: Joi.array().items(Joi.number()),
       name: Joi.string().allow(""),
       status: WebhookPublicModel.SubscriberStatus(),
       webhook_url: Joi.string().allow(""),

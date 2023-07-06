@@ -2,10 +2,10 @@ const Joi = require("joi");
 
 const ConfigurationApplicationModel = require("./ConfigurationApplicationModel");
 
-/** @typedef getAppCurrencies */
+/** @typedef GetAppCurrenciesParam */
 
 /**
- * @typedef getAppStaffList
+ * @typedef GetAppStaffListParam
  * @property {number} [pageNo]
  * @property {number} [pageSize]
  * @property {boolean} [orderIncent] - This is a boolean value. Select `true` to
@@ -18,7 +18,7 @@ const ConfigurationApplicationModel = require("./ConfigurationApplicationModel")
  */
 
 /**
- * @typedef getAppStaffs
+ * @typedef GetAppStaffsParam
  * @property {boolean} [orderIncent] - This is a boolean value. Select `true` to
  *   retrieve the staff members eligible for getting incentives on orders.
  * @property {number} [orderingStore] - ID of the ordering store. Helps in
@@ -27,32 +27,32 @@ const ConfigurationApplicationModel = require("./ConfigurationApplicationModel")
  *   details of a particular staff member.
  */
 
-/** @typedef getApplication */
+/** @typedef GetApplicationParam */
 
-/** @typedef getBasicDetails */
+/** @typedef GetBasicDetailsParam */
 
-/** @typedef getContactInfo */
+/** @typedef GetContactInfoParam */
 
-/** @typedef getCurrencies */
+/** @typedef GetCurrenciesParam */
 
 /**
- * @typedef getCurrencyById
+ * @typedef GetCurrencyByIdParam
  * @property {string} id - Object ID assigned to the currency
  */
 
-/** @typedef getFeatures */
+/** @typedef GetFeaturesParam */
 
-/** @typedef getIntegrationTokens */
+/** @typedef GetIntegrationTokensParam */
 
-/** @typedef getLanguages */
+/** @typedef GetLanguagesParam */
 
 /**
- * @typedef getOrderingStoreCookie
+ * @typedef GetOrderingStoreCookieParam
  * @property {ConfigurationApplicationModel.OrderingStoreSelectRequest} body
  */
 
 /**
- * @typedef getOrderingStores
+ * @typedef GetOrderingStoresParam
  * @property {number} [pageNo] - The page number to navigate through the given
  *   set of results. Default value is 1.
  * @property {number} [pageSize] - The number of items to retrieve in each page.
@@ -60,14 +60,14 @@ const ConfigurationApplicationModel = require("./ConfigurationApplicationModel")
  * @property {string} [q] - Store code or name of the ordering store.
  */
 
-/** @typedef getOwnerInfo */
+/** @typedef GetOwnerInfoParam */
 
 /**
- * @typedef getStoreDetailById
+ * @typedef GetStoreDetailByIdParam
  * @property {number} storeId - Store uid
  */
 
-/** @typedef removeOrderingStoreCookie */
+/** @typedef RemoveOrderingStoreCookieParam */
 
 class ConfigurationApplicationValidator {
   /** @returns {getAppCurrencies} */

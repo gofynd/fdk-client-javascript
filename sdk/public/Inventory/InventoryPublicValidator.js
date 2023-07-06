@@ -3,35 +3,35 @@ const Joi = require("joi");
 const InventoryPublicModel = require("./InventoryPublicModel");
 
 /**
- * @typedef getApiKey
+ * @typedef GetApiKeyParam
  * @property {string} userName - Integration id
  * @property {string} password - Company/store token
  */
 
 /**
- * @typedef getConfigByApiKey
+ * @typedef GetConfigByApiKeyParam
  * @property {string} apikey - Api key
  */
 
 /**
- * @typedef getJobByCode
+ * @typedef GetJobByCodeParam
  * @property {string} code - Job Code
  */
 
 /**
- * @typedef getJobCodesMetrics
+ * @typedef GetJobCodesMetricsParam
  * @property {boolean} [dailyJob] - Daily Job Flag
  * @property {string} [jobCode] - Email Job Code
  */
 
 /**
- * @typedef getJobConfigByIntegrationType
+ * @typedef GetJobConfigByIntegrationTypeParam
  * @property {string} integrationType - Integration Type
  * @property {boolean} [disable] - JobConfig current state
  */
 
 /**
- * @typedef saveJobCodesMetrics
+ * @typedef SaveJobCodesMetricsParam
  * @property {InventoryPublicModel.EmailJobMetrics} body
  */
 

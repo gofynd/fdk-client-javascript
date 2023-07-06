@@ -12,7 +12,7 @@ declare class Logistic {
     _urls: {};
     updateUrls(urls: any): void;
     /**
-     * @param {LogisticApplicationValidator.getAllCountries} arg - Arg object.
+     * @param {LogisticApplicationValidator.GetAllCountriesParam} arg - Arg object.
      * @returns {Promise<LogisticApplicationModel.CountryListResponse>} - Success response
      * @name getAllCountries
      * @summary: Get Country List
@@ -20,24 +20,24 @@ declare class Logistic {
      */
     getAllCountries({}?: any): Promise<LogisticApplicationModel.CountryListResponse>;
     /**
-     * @param {LogisticApplicationValidator.getOptimalLocations} arg - Arg object.
+     * @param {LogisticApplicationValidator.GetOptimalLocationsParam} arg - Arg object.
      * @returns {Promise<LogisticApplicationModel.ReAssignStoreResponse>} -
      *   Success response
      * @name getOptimalLocations
      * @summary: GET zone from the Pincode.
      * @description: This API returns zone from the Pincode View.
      */
-    getOptimalLocations({ body }?: LogisticApplicationValidator.getOptimalLocations): Promise<LogisticApplicationModel.ReAssignStoreResponse>;
+    getOptimalLocations({ body }?: LogisticApplicationValidator.GetOptimalLocationsParam): Promise<LogisticApplicationModel.ReAssignStoreResponse>;
     /**
-     * @param {LogisticApplicationValidator.getPincodeCity} arg - Arg object.
+     * @param {LogisticApplicationValidator.GetPincodeCityParam} arg - Arg object.
      * @returns {Promise<LogisticApplicationModel.PincodeApiResponse>} - Success response
      * @name getPincodeCity
      * @summary: Get Pincode API
      * @description: Get pincode data
      */
-    getPincodeCity({ pincode }?: LogisticApplicationValidator.getPincodeCity): Promise<LogisticApplicationModel.PincodeApiResponse>;
+    getPincodeCity({ pincode }?: LogisticApplicationValidator.GetPincodeCityParam): Promise<LogisticApplicationModel.PincodeApiResponse>;
     /**
-     * @param {LogisticApplicationValidator.getPincodeZones} arg - Arg object.
+     * @param {LogisticApplicationValidator.GetPincodeZonesParam} arg - Arg object.
      * @returns {Promise<LogisticApplicationModel.GetZoneFromPincodeViewResponse>}
      *   - Success response
      *
@@ -45,15 +45,15 @@ declare class Logistic {
      * @summary: GET zone from the Pincode.
      * @description: This API returns zone from the Pincode View.
      */
-    getPincodeZones({ body }?: LogisticApplicationValidator.getPincodeZones): Promise<LogisticApplicationModel.GetZoneFromPincodeViewResponse>;
+    getPincodeZones({ body }?: LogisticApplicationValidator.GetPincodeZonesParam): Promise<LogisticApplicationModel.GetZoneFromPincodeViewResponse>;
     /**
-     * @param {LogisticApplicationValidator.getTatProduct} arg - Arg object.
+     * @param {LogisticApplicationValidator.GetTatProductParam} arg - Arg object.
      * @returns {Promise<LogisticApplicationModel.TATViewResponse>} - Success response
      * @name getTatProduct
      * @summary: Get TAT API
      * @description: Get TAT data
      */
-    getTatProduct({ body }?: LogisticApplicationValidator.getTatProduct): Promise<LogisticApplicationModel.TATViewResponse>;
+    getTatProduct({ body }?: LogisticApplicationValidator.GetTatProductParam): Promise<LogisticApplicationModel.TATViewResponse>;
 }
 import LogisticApplicationModel = require("./LogisticApplicationModel");
 import LogisticApplicationValidator = require("./LogisticApplicationValidator");

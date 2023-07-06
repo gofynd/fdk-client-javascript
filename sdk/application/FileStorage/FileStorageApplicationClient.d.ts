@@ -10,7 +10,7 @@ declare class FileStorage {
     _urls: {};
     updateUrls(urls: any): void;
     /**
-     * @param {FileStorageApplicationValidator.completeUpload} arg - Arg object.
+     * @param {FileStorageApplicationValidator.CompleteUploadParam} arg - Arg object.
      * @returns {Promise<FileStorageApplicationModel.CompleteResponse>} - Success response
      * @name completeUpload
      * @summary: Completes the upload process. After successfully uploading a file, call this API to finish the upload process.
@@ -33,17 +33,17 @@ declare class FileStorage {
      * After successfully upload, call the `completeUpload` API to finish the upload process.
      * This operation will return the URL of the uploaded file.
      */
-    completeUpload({ namespace, body }?: FileStorageApplicationValidator.completeUpload): Promise<FileStorageApplicationModel.CompleteResponse>;
+    completeUpload({ namespace, body }?: FileStorageApplicationValidator.CompleteUploadParam): Promise<FileStorageApplicationModel.CompleteResponse>;
     /**
-     * @param {FileStorageApplicationValidator.signUrls} arg - Arg object.
+     * @param {FileStorageApplicationValidator.SignUrlsParam} arg - Arg object.
      * @returns {Promise<FileStorageApplicationModel.SignUrlResponse>} - Success response
      * @name signUrls
      * @summary: Explain here
      * @description: Describe here
      */
-    signUrls({ body }?: FileStorageApplicationValidator.signUrls): Promise<FileStorageApplicationModel.SignUrlResponse>;
+    signUrls({ body }?: FileStorageApplicationValidator.SignUrlsParam): Promise<FileStorageApplicationModel.SignUrlResponse>;
     /**
-     * @param {FileStorageApplicationValidator.startUpload} arg - Arg object.
+     * @param {FileStorageApplicationValidator.StartUploadParam} arg - Arg object.
      * @returns {Promise<FileStorageApplicationModel.StartResponse>} - Success response
      * @name startUpload
      * @summary: Initiates an upload and returns a storage link that is valid for 30 minutes. You can use the storage link to make subsequent upload request with file buffer or blob.
@@ -66,7 +66,7 @@ declare class FileStorage {
      * After successfully upload, call the `completeUpload` API to finish the upload process.
      * This operation will return the URL of the uploaded file.
      */
-    startUpload({ namespace, body }?: FileStorageApplicationValidator.startUpload): Promise<FileStorageApplicationModel.StartResponse>;
+    startUpload({ namespace, body }?: FileStorageApplicationValidator.StartUploadParam): Promise<FileStorageApplicationModel.StartResponse>;
     /**
      * @param data
      * @param {string} file_name

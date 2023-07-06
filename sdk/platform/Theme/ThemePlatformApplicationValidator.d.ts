@@ -1,222 +1,284 @@
 export = ThemePlatformApplicationValidator;
 /**
- * @typedef addThemeToApplicationV2
+ * @typedef AddThemeToApplicationV2Param
  * @property {ThemePlatformModel.ApplyThemeRequestV2} body
  */
 /**
- * @typedef addToThemeLibrary
+ * @typedef AddToThemeLibraryParam
  * @property {ThemePlatformModel.AddThemeRequestSchema} body
  */
 /**
- * @typedef applyTheme
+ * @typedef ApplyThemeParam
  * @property {ThemePlatformModel.AddThemeRequestSchema} body
  */
 /**
- * @typedef applyThemeV2
+ * @typedef ApplyThemeV2Param
  * @property {string} themeId - The ID of the apply
  */
 /**
- * @typedef archiveTheme
+ * @typedef ArchiveThemeParam
  * @property {string} themeId - ID allotted to the theme.
  */
 /**
- * @typedef checkThemeUpgradableV2
+ * @typedef CheckThemeUpgradableV2Param
  * @property {string} themeId - The ID of the theme
  */
 /**
- * @typedef createPage
+ * @typedef CreatePageParam
  * @property {string} themeId - ID of the theme
  * @property {ThemePlatformModel.AvailablePageSchema} body
  */
 /**
- * @typedef createTheme
+ * @typedef CreateThemeParam
  * @property {ThemePlatformModel.ThemesSchema} body
  */
 /**
- * @typedef deletePage
+ * @typedef DeletePageParam
  * @property {string} themeId - ID of the theme
  * @property {string} pageValue - Value of the page to be updated
  */
 /**
- * @typedef deleteTheme
+ * @typedef DeleteThemeParam
  * @property {string} themeId - ID allotted to the theme.
  */
 /**
- * @typedef deleteThemeV2
+ * @typedef DeleteThemeV2Param
  * @property {string} themeId - The ID of the theme to be deleted.
  */
 /**
- * @typedef duplicateThemeV2
+ * @typedef DuplicateThemeV2Param
  * @property {string} themeId - The ID of the theme to be duplicated
  */
 /**
- * @typedef getAllPages
+ * @typedef GetAllPagesParam
  * @property {string} themeId - ID of the theme to be retrieved
  */
 /**
- * @typedef getApplicationThemeByIdV2
+ * @typedef GetApplicationThemeByIdV2Param
  * @property {string} themeId - The ID of the theme
  */
-/** @typedef getApplicationThemesCountV2 */
-/** @typedef getApplicationThemesV2 */
-/** @typedef getAppliedTheme */
-/** @typedef getAppliedThemeV2 */
+/** @typedef GetApplicationThemesCountV2Param */
+/** @typedef GetApplicationThemesV2Param */
+/** @typedef GetAppliedThemeParam */
+/** @typedef GetAppliedThemeV2Param */
 /**
- * @typedef getDefaultPageDetails
+ * @typedef GetDefaultPageDetailsParam
  * @property {string} pageValue - Value of the page to be retrieved
  */
-/** @typedef getFonts */
-/** @typedef getFontsV2 */
+/** @typedef GetFontsParam */
+/** @typedef GetFontsV2Param */
 /**
- * @typedef getPage
+ * @typedef GetPageParam
  * @property {string} themeId - ID of the theme to be retrieved
  * @property {string} pageValue - Value of the page to be retrieved
  */
 /**
- * @typedef getPublicThemes
+ * @typedef GetPublicThemesParam
  * @property {number} [pageSize] - The number of items to retrieve in each page.
  *   Default value is 10.
  * @property {number} [pageNo] - The page number to navigate through the given
  *   set of results. Default value is 1.
  */
 /**
- * @typedef getThemeById
+ * @typedef GetThemeByIdParam
  * @property {string} themeId - ID allotted to the theme.
  */
 /**
- * @typedef getThemeForPreview
+ * @typedef GetThemeForPreviewParam
  * @property {string} themeId - ID allotted to the theme.
  */
 /**
- * @typedef getThemeLastModified
+ * @typedef GetThemeLastModifiedParam
  * @property {string} themeId - ID allotted to the theme.
  */
 /**
- * @typedef getThemeLastModifiedV2
+ * @typedef GetThemeLastModifiedV2Param
  * @property {string} themeId - ID allotted to the theme.
  */
 /**
- * @typedef getThemeLibrary
+ * @typedef GetThemeLibraryParam
  * @property {number} [pageSize] - The number of items to retrieve in each page.
  *   Default value is 10.
  * @property {number} [pageNo] - The page number to navigate through the given
  *   set of results. Default value is 1.
  */
 /**
- * @typedef getThemePreviewByIdV2
+ * @typedef GetThemePreviewByIdV2Param
  * @property {string} themeId - The ID of the theme
  */
 /**
- * @typedef isUpgradable
+ * @typedef IsUpgradableParam
  * @property {string} themeId - Theme ID
  */
 /**
- * @typedef publishTheme
+ * @typedef PublishThemeParam
  * @property {string} themeId - ID allotted to the theme.
  */
 /**
- * @typedef unarchiveTheme
+ * @typedef UnarchiveThemeParam
  * @property {string} themeId - ID allotted to the theme.
  */
 /**
- * @typedef unpublishTheme
+ * @typedef UnpublishThemeParam
  * @property {string} themeId - ID allotted to the theme.
  */
 /**
- * @typedef updateMultiplePages
+ * @typedef UpdateMultiplePagesParam
  * @property {string} themeId - ID of the theme to be retrieved
  * @property {ThemePlatformModel.AllAvailablePageSchema} body
  */
 /**
- * @typedef updatePage
+ * @typedef UpdatePageParam
  * @property {string} themeId - ID of the theme
  * @property {string} pageValue - Value of the page to be updated
  * @property {ThemePlatformModel.AvailablePageSchema} body
  */
 /**
- * @typedef updateTheme
+ * @typedef UpdateThemeParam
  * @property {string} themeId - ID allotted to the theme.
  * @property {ThemePlatformModel.ThemesSchema} body
  */
 /**
- * @typedef updateThemeNameV2
+ * @typedef UpdateThemeNameV2Param
  * @property {string} themeId - The ID of the theme to be updated.
  * @property {ThemePlatformModel.UpdateThemeNameRequestBodyV2} body
  */
 /**
- * @typedef updateThemeV2
+ * @typedef UpdateThemeV2Param
  * @property {string} themeId - The ID of the theme.
  * @property {ThemePlatformModel.UpdateThemeRequestBodyV2} body
  */
 /**
- * @typedef upgradeApplicationV2
+ * @typedef UpgradeApplicationV2Param
  * @property {string} themeId - The ID of the upgrade
  */
 /**
- * @typedef upgradeTheme
+ * @typedef UpgradeThemeParam
  * @property {string} themeId - ID allotted to the theme.
  */
 declare class ThemePlatformApplicationValidator {
+    /** @returns {addThemeToApplicationV2} */
+    static addThemeToApplicationV2(): addThemeToApplicationV2;
+    /** @returns {addToThemeLibrary} */
+    static addToThemeLibrary(): addToThemeLibrary;
+    /** @returns {applyTheme} */
+    static applyTheme(): applyTheme;
+    /** @returns {applyThemeV2} */
+    static applyThemeV2(): applyThemeV2;
+    /** @returns {archiveTheme} */
+    static archiveTheme(): archiveTheme;
+    /** @returns {checkThemeUpgradableV2} */
+    static checkThemeUpgradableV2(): checkThemeUpgradableV2;
+    /** @returns {createPage} */
+    static createPage(): createPage;
+    /** @returns {createTheme} */
+    static createTheme(): createTheme;
+    /** @returns {deletePage} */
+    static deletePage(): deletePage;
+    /** @returns {deleteTheme} */
+    static deleteTheme(): deleteTheme;
+    /** @returns {deleteThemeV2} */
+    static deleteThemeV2(): deleteThemeV2;
+    /** @returns {duplicateThemeV2} */
+    static duplicateThemeV2(): duplicateThemeV2;
+    /** @returns {getAllPages} */
+    static getAllPages(): getAllPages;
+    /** @returns {getApplicationThemeByIdV2} */
+    static getApplicationThemeByIdV2(): getApplicationThemeByIdV2;
+    /** @returns {getApplicationThemesCountV2} */
+    static getApplicationThemesCountV2(): getApplicationThemesCountV2;
+    /** @returns {getApplicationThemesV2} */
+    static getApplicationThemesV2(): getApplicationThemesV2;
+    /** @returns {getAppliedTheme} */
+    static getAppliedTheme(): getAppliedTheme;
+    /** @returns {getAppliedThemeV2} */
+    static getAppliedThemeV2(): getAppliedThemeV2;
+    /** @returns {getDefaultPageDetails} */
+    static getDefaultPageDetails(): getDefaultPageDetails;
+    /** @returns {getFonts} */
+    static getFonts(): getFonts;
+    /** @returns {getFontsV2} */
+    static getFontsV2(): getFontsV2;
+    /** @returns {getPage} */
+    static getPage(): getPage;
+    /** @returns {getPublicThemes} */
+    static getPublicThemes(): getPublicThemes;
+    /** @returns {getThemeById} */
+    static getThemeById(): getThemeById;
+    /** @returns {getThemeForPreview} */
+    static getThemeForPreview(): getThemeForPreview;
+    /** @returns {getThemeLastModified} */
+    static getThemeLastModified(): getThemeLastModified;
+    /** @returns {getThemeLastModifiedV2} */
+    static getThemeLastModifiedV2(): getThemeLastModifiedV2;
+    /** @returns {getThemeLibrary} */
+    static getThemeLibrary(): getThemeLibrary;
+    /** @returns {getThemePreviewByIdV2} */
+    static getThemePreviewByIdV2(): getThemePreviewByIdV2;
+    /** @returns {isUpgradable} */
+    static isUpgradable(): isUpgradable;
+    /** @returns {publishTheme} */
+    static publishTheme(): publishTheme;
+    /** @returns {unarchiveTheme} */
+    static unarchiveTheme(): unarchiveTheme;
+    /** @returns {unpublishTheme} */
+    static unpublishTheme(): unpublishTheme;
+    /** @returns {updateMultiplePages} */
+    static updateMultiplePages(): updateMultiplePages;
+    /** @returns {updatePage} */
+    static updatePage(): updatePage;
+    /** @returns {updateTheme} */
+    static updateTheme(): updateTheme;
+    /** @returns {updateThemeNameV2} */
+    static updateThemeNameV2(): updateThemeNameV2;
+    /** @returns {updateThemeV2} */
+    static updateThemeV2(): updateThemeV2;
+    /** @returns {upgradeApplicationV2} */
+    static upgradeApplicationV2(): upgradeApplicationV2;
+    /** @returns {upgradeTheme} */
+    static upgradeTheme(): upgradeTheme;
 }
 declare namespace ThemePlatformApplicationValidator {
-    export { addThemeToApplicationV2, addToThemeLibrary, applyTheme, applyThemeV2, archiveTheme, checkThemeUpgradableV2, createPage, createTheme, deletePage, deleteTheme, deleteThemeV2, duplicateThemeV2, getAllPages, getApplicationThemeByIdV2, getApplicationThemesCountV2, getApplicationThemesV2, getAppliedTheme, getAppliedThemeV2, getDefaultPageDetails, getFonts, getFontsV2, getPage, getPublicThemes, getThemeById, getThemeForPreview, getThemeLastModified, getThemeLastModifiedV2, getThemeLibrary, getThemePreviewByIdV2, isUpgradable, publishTheme, unarchiveTheme, unpublishTheme, updateMultiplePages, updatePage, updateTheme, updateThemeNameV2, updateThemeV2, upgradeApplicationV2, upgradeTheme };
+    export { AddThemeToApplicationV2Param, AddToThemeLibraryParam, ApplyThemeParam, ApplyThemeV2Param, ArchiveThemeParam, CheckThemeUpgradableV2Param, CreatePageParam, CreateThemeParam, DeletePageParam, DeleteThemeParam, DeleteThemeV2Param, DuplicateThemeV2Param, GetAllPagesParam, GetApplicationThemeByIdV2Param, GetApplicationThemesCountV2Param, GetApplicationThemesV2Param, GetAppliedThemeParam, GetAppliedThemeV2Param, GetDefaultPageDetailsParam, GetFontsParam, GetFontsV2Param, GetPageParam, GetPublicThemesParam, GetThemeByIdParam, GetThemeForPreviewParam, GetThemeLastModifiedParam, GetThemeLastModifiedV2Param, GetThemeLibraryParam, GetThemePreviewByIdV2Param, IsUpgradableParam, PublishThemeParam, UnarchiveThemeParam, UnpublishThemeParam, UpdateMultiplePagesParam, UpdatePageParam, UpdateThemeParam, UpdateThemeNameV2Param, UpdateThemeV2Param, UpgradeApplicationV2Param, UpgradeThemeParam };
 }
-/** @returns {addThemeToApplicationV2} */
-declare function addThemeToApplicationV2(): addThemeToApplicationV2;
-type addThemeToApplicationV2 = {
+type AddThemeToApplicationV2Param = {
     body: ThemePlatformModel.ApplyThemeRequestV2;
 };
-/** @returns {addToThemeLibrary} */
-declare function addToThemeLibrary(): addToThemeLibrary;
-type addToThemeLibrary = {
+type AddToThemeLibraryParam = {
     body: ThemePlatformModel.AddThemeRequestSchema;
 };
-/** @returns {applyTheme} */
-declare function applyTheme(): applyTheme;
-type applyTheme = {
+type ApplyThemeParam = {
     body: ThemePlatformModel.AddThemeRequestSchema;
 };
-/** @returns {applyThemeV2} */
-declare function applyThemeV2(): applyThemeV2;
-type applyThemeV2 = {
+type ApplyThemeV2Param = {
     /**
      * - The ID of the apply
      */
     themeId: string;
 };
-/** @returns {archiveTheme} */
-declare function archiveTheme(): archiveTheme;
-type archiveTheme = {
+type ArchiveThemeParam = {
     /**
      * - ID allotted to the theme.
      */
     themeId: string;
 };
-/** @returns {checkThemeUpgradableV2} */
-declare function checkThemeUpgradableV2(): checkThemeUpgradableV2;
-type checkThemeUpgradableV2 = {
+type CheckThemeUpgradableV2Param = {
     /**
      * - The ID of the theme
      */
     themeId: string;
 };
-/** @returns {createPage} */
-declare function createPage(): createPage;
-type createPage = {
+type CreatePageParam = {
     /**
      * - ID of the theme
      */
     themeId: string;
     body: ThemePlatformModel.AvailablePageSchema;
 };
-/** @returns {createTheme} */
-declare function createTheme(): createTheme;
-type createTheme = {
+type CreateThemeParam = {
     body: ThemePlatformModel.ThemesSchema;
 };
-/** @returns {deletePage} */
-declare function deletePage(): deletePage;
-type deletePage = {
+type DeletePageParam = {
     /**
      * - ID of the theme
      */
@@ -226,75 +288,49 @@ type deletePage = {
      */
     pageValue: string;
 };
-/** @returns {deleteTheme} */
-declare function deleteTheme(): deleteTheme;
-type deleteTheme = {
+type DeleteThemeParam = {
     /**
      * - ID allotted to the theme.
      */
     themeId: string;
 };
-/** @returns {deleteThemeV2} */
-declare function deleteThemeV2(): deleteThemeV2;
-type deleteThemeV2 = {
+type DeleteThemeV2Param = {
     /**
      * - The ID of the theme to be deleted.
      */
     themeId: string;
 };
-/** @returns {duplicateThemeV2} */
-declare function duplicateThemeV2(): duplicateThemeV2;
-type duplicateThemeV2 = {
+type DuplicateThemeV2Param = {
     /**
      * - The ID of the theme to be duplicated
      */
     themeId: string;
 };
-/** @returns {getAllPages} */
-declare function getAllPages(): getAllPages;
-type getAllPages = {
+type GetAllPagesParam = {
     /**
      * - ID of the theme to be retrieved
      */
     themeId: string;
 };
-/** @returns {getApplicationThemeByIdV2} */
-declare function getApplicationThemeByIdV2(): getApplicationThemeByIdV2;
-type getApplicationThemeByIdV2 = {
+type GetApplicationThemeByIdV2Param = {
     /**
      * - The ID of the theme
      */
     themeId: string;
 };
-/** @returns {getApplicationThemesCountV2} */
-declare function getApplicationThemesCountV2(): any;
-type getApplicationThemesCountV2 = any;
-/** @returns {getApplicationThemesV2} */
-declare function getApplicationThemesV2(): any;
-type getApplicationThemesV2 = any;
-/** @returns {getAppliedTheme} */
-declare function getAppliedTheme(): any;
-type getAppliedTheme = any;
-/** @returns {getAppliedThemeV2} */
-declare function getAppliedThemeV2(): any;
-type getAppliedThemeV2 = any;
-/** @returns {getDefaultPageDetails} */
-declare function getDefaultPageDetails(): getDefaultPageDetails;
-type getDefaultPageDetails = {
+type GetApplicationThemesCountV2Param = any;
+type GetApplicationThemesV2Param = any;
+type GetAppliedThemeParam = any;
+type GetAppliedThemeV2Param = any;
+type GetDefaultPageDetailsParam = {
     /**
      * - Value of the page to be retrieved
      */
     pageValue: string;
 };
-/** @returns {getFonts} */
-declare function getFonts(): any;
-type getFonts = any;
-/** @returns {getFontsV2} */
-declare function getFontsV2(): any;
-type getFontsV2 = any;
-/** @returns {getPage} */
-declare function getPage(): getPage;
-type getPage = {
+type GetFontsParam = any;
+type GetFontsV2Param = any;
+type GetPageParam = {
     /**
      * - ID of the theme to be retrieved
      */
@@ -304,9 +340,7 @@ type getPage = {
      */
     pageValue: string;
 };
-/** @returns {getPublicThemes} */
-declare function getPublicThemes(): getPublicThemes;
-type getPublicThemes = {
+type GetPublicThemesParam = {
     /**
      * - The number of items to retrieve in each page.
      * Default value is 10.
@@ -318,41 +352,31 @@ type getPublicThemes = {
      */
     pageNo?: number;
 };
-/** @returns {getThemeById} */
-declare function getThemeById(): getThemeById;
-type getThemeById = {
+type GetThemeByIdParam = {
     /**
      * - ID allotted to the theme.
      */
     themeId: string;
 };
-/** @returns {getThemeForPreview} */
-declare function getThemeForPreview(): getThemeForPreview;
-type getThemeForPreview = {
+type GetThemeForPreviewParam = {
     /**
      * - ID allotted to the theme.
      */
     themeId: string;
 };
-/** @returns {getThemeLastModified} */
-declare function getThemeLastModified(): getThemeLastModified;
-type getThemeLastModified = {
+type GetThemeLastModifiedParam = {
     /**
      * - ID allotted to the theme.
      */
     themeId: string;
 };
-/** @returns {getThemeLastModifiedV2} */
-declare function getThemeLastModifiedV2(): getThemeLastModifiedV2;
-type getThemeLastModifiedV2 = {
+type GetThemeLastModifiedV2Param = {
     /**
      * - ID allotted to the theme.
      */
     themeId: string;
 };
-/** @returns {getThemeLibrary} */
-declare function getThemeLibrary(): getThemeLibrary;
-type getThemeLibrary = {
+type GetThemeLibraryParam = {
     /**
      * - The number of items to retrieve in each page.
      * Default value is 10.
@@ -364,58 +388,44 @@ type getThemeLibrary = {
      */
     pageNo?: number;
 };
-/** @returns {getThemePreviewByIdV2} */
-declare function getThemePreviewByIdV2(): getThemePreviewByIdV2;
-type getThemePreviewByIdV2 = {
+type GetThemePreviewByIdV2Param = {
     /**
      * - The ID of the theme
      */
     themeId: string;
 };
-/** @returns {isUpgradable} */
-declare function isUpgradable(): isUpgradable;
-type isUpgradable = {
+type IsUpgradableParam = {
     /**
      * - Theme ID
      */
     themeId: string;
 };
-/** @returns {publishTheme} */
-declare function publishTheme(): publishTheme;
-type publishTheme = {
+type PublishThemeParam = {
     /**
      * - ID allotted to the theme.
      */
     themeId: string;
 };
-/** @returns {unarchiveTheme} */
-declare function unarchiveTheme(): unarchiveTheme;
-type unarchiveTheme = {
+type UnarchiveThemeParam = {
     /**
      * - ID allotted to the theme.
      */
     themeId: string;
 };
-/** @returns {unpublishTheme} */
-declare function unpublishTheme(): unpublishTheme;
-type unpublishTheme = {
+type UnpublishThemeParam = {
     /**
      * - ID allotted to the theme.
      */
     themeId: string;
 };
-/** @returns {updateMultiplePages} */
-declare function updateMultiplePages(): updateMultiplePages;
-type updateMultiplePages = {
+type UpdateMultiplePagesParam = {
     /**
      * - ID of the theme to be retrieved
      */
     themeId: string;
     body: ThemePlatformModel.AllAvailablePageSchema;
 };
-/** @returns {updatePage} */
-declare function updatePage(): updatePage;
-type updatePage = {
+type UpdatePageParam = {
     /**
      * - ID of the theme
      */
@@ -426,44 +436,34 @@ type updatePage = {
     pageValue: string;
     body: ThemePlatformModel.AvailablePageSchema;
 };
-/** @returns {updateTheme} */
-declare function updateTheme(): updateTheme;
-type updateTheme = {
+type UpdateThemeParam = {
     /**
      * - ID allotted to the theme.
      */
     themeId: string;
     body: ThemePlatformModel.ThemesSchema;
 };
-/** @returns {updateThemeNameV2} */
-declare function updateThemeNameV2(): updateThemeNameV2;
-type updateThemeNameV2 = {
+type UpdateThemeNameV2Param = {
     /**
      * - The ID of the theme to be updated.
      */
     themeId: string;
     body: ThemePlatformModel.UpdateThemeNameRequestBodyV2;
 };
-/** @returns {updateThemeV2} */
-declare function updateThemeV2(): updateThemeV2;
-type updateThemeV2 = {
+type UpdateThemeV2Param = {
     /**
      * - The ID of the theme.
      */
     themeId: string;
     body: ThemePlatformModel.UpdateThemeRequestBodyV2;
 };
-/** @returns {upgradeApplicationV2} */
-declare function upgradeApplicationV2(): upgradeApplicationV2;
-type upgradeApplicationV2 = {
+type UpgradeApplicationV2Param = {
     /**
      * - The ID of the upgrade
      */
     themeId: string;
 };
-/** @returns {upgradeTheme} */
-declare function upgradeTheme(): upgradeTheme;
-type upgradeTheme = {
+type UpgradeThemeParam = {
     /**
      * - ID allotted to the theme.
      */

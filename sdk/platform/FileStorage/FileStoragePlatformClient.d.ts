@@ -3,13 +3,13 @@ declare class FileStorage {
     constructor(config: any);
     config: any;
     /**
-     * @param {FileStoragePlatformValidator.browse} arg - Arg object
+     * @param {FileStoragePlatformValidator.BrowseParam} arg - Arg object
      * @returns {Promise<FileStoragePlatformModel.BrowseResponse>} - Success response
      * @name browse
      * @summary: Browse Files
      * @description: Browse Files
      */
-    browse({ namespace, pageNo, }?: FileStoragePlatformValidator.browse): Promise<FileStoragePlatformModel.BrowseResponse>;
+    browse({ namespace, pageNo, }?: FileStoragePlatformValidator.BrowseParam): Promise<FileStoragePlatformModel.BrowseResponse>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.namespace - Bucket name
@@ -21,7 +21,7 @@ declare class FileStorage {
         namespace: string;
     }): Paginator<FileStoragePlatformModel.BrowseResponse>;
     /**
-     * @param {FileStoragePlatformValidator.completeUpload} arg - Arg object
+     * @param {FileStoragePlatformValidator.CompleteUploadParam} arg - Arg object
      * @returns {Promise<FileStoragePlatformModel.CompleteResponse>} - Success response
      * @name completeUpload
      * @summary: This will complete the upload process. After successfully uploading file, you can call this operation to complete the upload process.
@@ -44,33 +44,33 @@ declare class FileStorage {
      * After successfully upload, call `completeUpload` api to complete the upload process.
      * This operation will return the url for the uploaded file.
      */
-    completeUpload({ namespace, body, }?: FileStoragePlatformValidator.completeUpload): Promise<FileStoragePlatformModel.CompleteResponse>;
+    completeUpload({ namespace, body, }?: FileStoragePlatformValidator.CompleteUploadParam): Promise<FileStoragePlatformModel.CompleteResponse>;
     /**
-     * @param {FileStoragePlatformValidator.copyFiles} arg - Arg object
+     * @param {FileStoragePlatformValidator.CopyFilesParam} arg - Arg object
      * @returns {Promise<FileStoragePlatformModel.BulkUploadResponse>} - Success response
      * @name copyFiles
      * @summary: Copy Files
      * @description: Copy Files
      */
-    copyFiles({ body, sync }?: FileStoragePlatformValidator.copyFiles): Promise<FileStoragePlatformModel.BulkUploadResponse>;
+    copyFiles({ body, sync }?: FileStoragePlatformValidator.CopyFilesParam): Promise<FileStoragePlatformModel.BulkUploadResponse>;
     /**
-     * @param {FileStoragePlatformValidator.getSignUrls} arg - Arg object
+     * @param {FileStoragePlatformValidator.GetSignUrlsParam} arg - Arg object
      * @returns {Promise<FileStoragePlatformModel.SignUrlResponse>} - Success response
      * @name getSignUrls
      * @summary: Gives signed urls to access private files
      * @description: Describe here
      */
-    getSignUrls({ body }?: FileStoragePlatformValidator.getSignUrls): Promise<FileStoragePlatformModel.SignUrlResponse>;
+    getSignUrls({ body }?: FileStoragePlatformValidator.GetSignUrlsParam): Promise<FileStoragePlatformModel.SignUrlResponse>;
     /**
-     * @param {FileStoragePlatformValidator.proxy} arg - Arg object
+     * @param {FileStoragePlatformValidator.ProxyParam} arg - Arg object
      * @returns {Promise<string>} - Success response
      * @name proxy
      * @summary: Proxy
      * @description: Proxy
      */
-    proxy({ url }?: FileStoragePlatformValidator.proxy): Promise<string>;
+    proxy({ url }?: FileStoragePlatformValidator.ProxyParam): Promise<string>;
     /**
-     * @param {FileStoragePlatformValidator.startUpload} arg - Arg object
+     * @param {FileStoragePlatformValidator.StartUploadParam} arg - Arg object
      * @returns {Promise<FileStoragePlatformModel.StartResponse>} - Success response
      * @name startUpload
      * @summary: This operation initiates upload and returns storage link which is valid for 30 Minutes. You can use that storage link to make subsequent upload request with file buffer or blob.
@@ -93,7 +93,7 @@ declare class FileStorage {
      * After successfully upload, call `completeUpload` api to complete the upload process.
      * This operation will return the url for the uploaded file.
      */
-    startUpload({ namespace, body, }?: FileStoragePlatformValidator.startUpload): Promise<FileStoragePlatformModel.StartResponse>;
+    startUpload({ namespace, body, }?: FileStoragePlatformValidator.StartUploadParam): Promise<FileStoragePlatformModel.StartResponse>;
     /**
      * @param data
      * @param {string} file_name

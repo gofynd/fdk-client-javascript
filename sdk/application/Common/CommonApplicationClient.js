@@ -32,7 +32,7 @@ class Common {
   }
 
   /**
-   * @param {CommonApplicationValidator.getLocations} arg - Arg object.
+   * @param {CommonApplicationValidator.GetLocationsParam} arg - Arg object.
    * @returns {Promise<CommonApplicationModel.Locations>} - Success response
    * @name getLocations
    * @summary: Get countries, states, cities
@@ -97,7 +97,7 @@ class Common {
   }
 
   /**
-   * @param {CommonApplicationValidator.searchApplication} arg - Arg object.
+   * @param {CommonApplicationValidator.SearchApplicationParam} arg - Arg object.
    * @returns {Promise<CommonApplicationModel.ApplicationResponse>} - Success response
    * @name searchApplication
    * @summary: Search Application

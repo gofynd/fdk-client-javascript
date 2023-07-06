@@ -1,20 +1,20 @@
 export = PartnerPublicValidator;
-/** @typedef getOrganizationList */
+/** @typedef GetOrganizationListParam */
 /**
- * @typedef getPanelExtensionDetails
+ * @typedef GetPanelExtensionDetailsParam
  * @property {string} slug - Pass the slug of the extension
  */
 declare class PartnerPublicValidator {
+    /** @returns {getOrganizationList} */
+    static getOrganizationList(): getOrganizationList;
+    /** @returns {getPanelExtensionDetails} */
+    static getPanelExtensionDetails(): getPanelExtensionDetails;
 }
 declare namespace PartnerPublicValidator {
-    export { getOrganizationList, getPanelExtensionDetails };
+    export { GetOrganizationListParam, GetPanelExtensionDetailsParam };
 }
-/** @returns {getOrganizationList} */
-declare function getOrganizationList(): any;
-type getOrganizationList = any;
-/** @returns {getPanelExtensionDetails} */
-declare function getPanelExtensionDetails(): getPanelExtensionDetails;
-type getPanelExtensionDetails = {
+type GetOrganizationListParam = any;
+type GetPanelExtensionDetailsParam = {
     /**
      * - Pass the slug of the extension
      */

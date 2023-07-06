@@ -3,52 +3,52 @@ const Joi = require("joi");
 const LeadPlatformModel = require("./LeadPlatformModel");
 
 /**
- * @typedef closeVideoRoom
+ * @typedef CloseVideoRoomParam
  * @property {string} uniqueName - Unique name of Video Room
  */
 
 /**
- * @typedef createCustomForm
+ * @typedef CreateCustomFormParam
  * @property {LeadPlatformModel.CreateCustomFormPayload} body
  */
 
 /**
- * @typedef createHistory
+ * @typedef CreateHistoryParam
  * @property {string} id - Ticket ID for which history is created
  * @property {LeadPlatformModel.TicketHistoryPayload} body
  */
 
 /**
- * @typedef editCustomForm
+ * @typedef EditCustomFormParam
  * @property {string} slug - Slug of form whose response is getting submitted
  * @property {LeadPlatformModel.EditCustomFormPayload} body
  */
 
 /**
- * @typedef editTicket
+ * @typedef EditTicketParam
  * @property {string} id - Ticket ID of ticket to be edited
  * @property {LeadPlatformModel.EditTicketPayload} body
  */
 
 /**
- * @typedef getCustomForm
+ * @typedef GetCustomFormParam
  * @property {string} slug - Slug of form whose response is getting submitted
  */
 
-/** @typedef getCustomForms */
+/** @typedef GetCustomFormsParam */
 
 /**
- * @typedef getTicket
+ * @typedef GetTicketParam
  * @property {string} id - Tiket ID of the ticket to be fetched
  */
 
 /**
- * @typedef getTicketHistory
+ * @typedef GetTicketHistoryParam
  * @property {string} id - Ticket ID for which history is to be fetched
  */
 
 /**
- * @typedef getTickets
+ * @typedef GetTicketsParam
  * @property {boolean} [items] - Decides that the reponse will contain the list of tickets
  * @property {boolean} [filters] - Decides that the reponse will contain the
  *   ticket filters
@@ -59,17 +59,17 @@ const LeadPlatformModel = require("./LeadPlatformModel");
  */
 
 /**
- * @typedef getTokenForVideoRoom
+ * @typedef GetTokenForVideoRoomParam
  * @property {string} uniqueName - Unique name of video room
  */
 
 /**
- * @typedef getVideoParticipants
+ * @typedef GetVideoParticipantsParam
  * @property {string} uniqueName - Unique name of Video Room
  */
 
 /**
- * @typedef openVideoRoom
+ * @typedef OpenVideoRoomParam
  * @property {LeadPlatformModel.CreateVideoRoomPayload} body
  */
 

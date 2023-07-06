@@ -1,38 +1,38 @@
 export = ServiceabilityPlatformValidator;
 /**
- * @typedef createZone
+ * @typedef CreateZoneParam
  * @property {ServiceabilityPlatformModel.ZoneRequest} body
  */
-/** @typedef getAllStores */
+/** @typedef GetAllStoresParam */
 /**
- * @typedef getCompanyStoreView
+ * @typedef GetCompanyStoreViewParam
  * @property {number} [pageNumber] - Index of the item to start returning with
  * @property {number} [pageSize] - Determines the items to be displayed in a page
  */
 /**
- * @typedef getDpAccount
+ * @typedef GetDpAccountParam
  * @property {number} [pageNumber] - Index of the item to start returning with
  * @property {number} [pageSize] - Determines the items to be displayed in a page
  * @property {string} [stage] - Stage of the account. enabled/disabled
  * @property {string} [paymentMode] - Filters dp accounts based on payment mode
  * @property {string} [transportType] - Filters dp accounts based on transport_type
  */
-/** @typedef getDpCompanyRules */
+/** @typedef GetDpCompanyRulesParam */
 /**
- * @typedef getDpRuleInsert
+ * @typedef GetDpRuleInsertParam
  * @property {number} [pageNumber] - Index of the item to start returning with
  * @property {number} [pageSize] - Determines the items to be displayed in a page
  */
 /**
- * @typedef getDpRules
+ * @typedef GetDpRulesParam
  * @property {string} ruleUid - A `rule_uid` is a unique identifier for a particular Dp.
  */
 /**
- * @typedef getEntityRegionView
+ * @typedef GetEntityRegionViewParam
  * @property {ServiceabilityPlatformModel.EntityRegionView_Request} body
  */
 /**
- * @typedef getListView
+ * @typedef GetListViewParam
  * @property {number} [pageNumber] - Index of the item to start returning with
  * @property {number} [pageSize] - Determines the items to be displayed in a page
  * @property {string} [name] - Name of particular zone in the seller account
@@ -41,19 +41,19 @@ export = ServiceabilityPlatformValidator;
  * @property {string} [q] - Search with name as a free text
  */
 /**
- * @typedef getOptimalLocations
+ * @typedef GetOptimalLocationsParam
  * @property {ServiceabilityPlatformModel.ReAssignStoreRequest} body
  */
 /**
- * @typedef getStore
+ * @typedef GetStoreParam
  * @property {number} storeUid - A `store_uid` contains a specific ID of a store.
  */
 /**
- * @typedef getZoneDataView
+ * @typedef GetZoneDataViewParam
  * @property {string} zoneId - A `zone_id` is a unique identifier for a particular zone.
  */
 /**
- * @typedef getZoneListView
+ * @typedef GetZoneListViewParam
  * @property {number} [pageNumber] - Index of the item to start returning with
  * @property {number} [pageNo] - Index of the item to start returning with
  * @property {number} [pageSize] - Determines the items to be displayed in a page
@@ -64,43 +64,73 @@ export = ServiceabilityPlatformValidator;
  * @property {string[]} [zoneId] - List of zones to query for
  */
 /**
- * @typedef updateDpRule
+ * @typedef UpdateDpRuleParam
  * @property {string} ruleUid - A `rule_uid` is a unique identifier for a particular Dp.
  * @property {ServiceabilityPlatformModel.DpRulesUpdateRequest} body
  */
 /**
- * @typedef updateZoneControllerView
+ * @typedef UpdateZoneControllerViewParam
  * @property {string} zoneId - A `zone_id` is a unique identifier for a particular zone.
  * @property {ServiceabilityPlatformModel.ZoneUpdateRequest} body
  */
 /**
- * @typedef upsertDpAccount
+ * @typedef UpsertDpAccountParam
  * @property {ServiceabilityPlatformModel.CompanyDpAccountRequest} body
  */
 /**
- * @typedef upsertDpCompanyRules
+ * @typedef UpsertDpCompanyRulesParam
  * @property {ServiceabilityPlatformModel.DPCompanyRuleRequest} body
  */
 /**
- * @typedef upsertDpRules
+ * @typedef UpsertDpRulesParam
  * @property {ServiceabilityPlatformModel.DpRuleRequest} body
  */
 declare class ServiceabilityPlatformValidator {
+    /** @returns {createZone} */
+    static createZone(): createZone;
+    /** @returns {getAllStores} */
+    static getAllStores(): getAllStores;
+    /** @returns {getCompanyStoreView} */
+    static getCompanyStoreView(): getCompanyStoreView;
+    /** @returns {getDpAccount} */
+    static getDpAccount(): getDpAccount;
+    /** @returns {getDpCompanyRules} */
+    static getDpCompanyRules(): getDpCompanyRules;
+    /** @returns {getDpRuleInsert} */
+    static getDpRuleInsert(): getDpRuleInsert;
+    /** @returns {getDpRules} */
+    static getDpRules(): getDpRules;
+    /** @returns {getEntityRegionView} */
+    static getEntityRegionView(): getEntityRegionView;
+    /** @returns {getListView} */
+    static getListView(): getListView;
+    /** @returns {getOptimalLocations} */
+    static getOptimalLocations(): getOptimalLocations;
+    /** @returns {getStore} */
+    static getStore(): getStore;
+    /** @returns {getZoneDataView} */
+    static getZoneDataView(): getZoneDataView;
+    /** @returns {getZoneListView} */
+    static getZoneListView(): getZoneListView;
+    /** @returns {updateDpRule} */
+    static updateDpRule(): updateDpRule;
+    /** @returns {updateZoneControllerView} */
+    static updateZoneControllerView(): updateZoneControllerView;
+    /** @returns {upsertDpAccount} */
+    static upsertDpAccount(): upsertDpAccount;
+    /** @returns {upsertDpCompanyRules} */
+    static upsertDpCompanyRules(): upsertDpCompanyRules;
+    /** @returns {upsertDpRules} */
+    static upsertDpRules(): upsertDpRules;
 }
 declare namespace ServiceabilityPlatformValidator {
-    export { createZone, getAllStores, getCompanyStoreView, getDpAccount, getDpCompanyRules, getDpRuleInsert, getDpRules, getEntityRegionView, getListView, getOptimalLocations, getStore, getZoneDataView, getZoneListView, updateDpRule, updateZoneControllerView, upsertDpAccount, upsertDpCompanyRules, upsertDpRules };
+    export { CreateZoneParam, GetAllStoresParam, GetCompanyStoreViewParam, GetDpAccountParam, GetDpCompanyRulesParam, GetDpRuleInsertParam, GetDpRulesParam, GetEntityRegionViewParam, GetListViewParam, GetOptimalLocationsParam, GetStoreParam, GetZoneDataViewParam, GetZoneListViewParam, UpdateDpRuleParam, UpdateZoneControllerViewParam, UpsertDpAccountParam, UpsertDpCompanyRulesParam, UpsertDpRulesParam };
 }
-/** @returns {createZone} */
-declare function createZone(): createZone;
-type createZone = {
+type CreateZoneParam = {
     body: ServiceabilityPlatformModel.ZoneRequest;
 };
-/** @returns {getAllStores} */
-declare function getAllStores(): any;
-type getAllStores = any;
-/** @returns {getCompanyStoreView} */
-declare function getCompanyStoreView(): getCompanyStoreView;
-type getCompanyStoreView = {
+type GetAllStoresParam = any;
+type GetCompanyStoreViewParam = {
     /**
      * - Index of the item to start returning with
      */
@@ -110,9 +140,7 @@ type getCompanyStoreView = {
      */
     pageSize?: number;
 };
-/** @returns {getDpAccount} */
-declare function getDpAccount(): getDpAccount;
-type getDpAccount = {
+type GetDpAccountParam = {
     /**
      * - Index of the item to start returning with
      */
@@ -134,12 +162,8 @@ type getDpAccount = {
      */
     transportType?: string;
 };
-/** @returns {getDpCompanyRules} */
-declare function getDpCompanyRules(): any;
-type getDpCompanyRules = any;
-/** @returns {getDpRuleInsert} */
-declare function getDpRuleInsert(): getDpRuleInsert;
-type getDpRuleInsert = {
+type GetDpCompanyRulesParam = any;
+type GetDpRuleInsertParam = {
     /**
      * - Index of the item to start returning with
      */
@@ -149,22 +173,16 @@ type getDpRuleInsert = {
      */
     pageSize?: number;
 };
-/** @returns {getDpRules} */
-declare function getDpRules(): getDpRules;
-type getDpRules = {
+type GetDpRulesParam = {
     /**
      * - A `rule_uid` is a unique identifier for a particular Dp.
      */
     ruleUid: string;
 };
-/** @returns {getEntityRegionView} */
-declare function getEntityRegionView(): getEntityRegionView;
-type getEntityRegionView = {
+type GetEntityRegionViewParam = {
     body: ServiceabilityPlatformModel.EntityRegionView_Request;
 };
-/** @returns {getListView} */
-declare function getListView(): getListView;
-type getListView = {
+type GetListViewParam = {
     /**
      * - Index of the item to start returning with
      */
@@ -190,30 +208,22 @@ type getListView = {
      */
     q?: string;
 };
-/** @returns {getOptimalLocations} */
-declare function getOptimalLocations(): getOptimalLocations;
-type getOptimalLocations = {
+type GetOptimalLocationsParam = {
     body: ServiceabilityPlatformModel.ReAssignStoreRequest;
 };
-/** @returns {getStore} */
-declare function getStore(): getStore;
-type getStore = {
+type GetStoreParam = {
     /**
      * - A `store_uid` contains a specific ID of a store.
      */
     storeUid: number;
 };
-/** @returns {getZoneDataView} */
-declare function getZoneDataView(): getZoneDataView;
-type getZoneDataView = {
+type GetZoneDataViewParam = {
     /**
      * - A `zone_id` is a unique identifier for a particular zone.
      */
     zoneId: string;
 };
-/** @returns {getZoneListView} */
-declare function getZoneListView(): getZoneListView;
-type getZoneListView = {
+type GetZoneListViewParam = {
     /**
      * - Index of the item to start returning with
      */
@@ -247,37 +257,27 @@ type getZoneListView = {
      */
     zoneId?: string[];
 };
-/** @returns {updateDpRule} */
-declare function updateDpRule(): updateDpRule;
-type updateDpRule = {
+type UpdateDpRuleParam = {
     /**
      * - A `rule_uid` is a unique identifier for a particular Dp.
      */
     ruleUid: string;
     body: ServiceabilityPlatformModel.DpRulesUpdateRequest;
 };
-/** @returns {updateZoneControllerView} */
-declare function updateZoneControllerView(): updateZoneControllerView;
-type updateZoneControllerView = {
+type UpdateZoneControllerViewParam = {
     /**
      * - A `zone_id` is a unique identifier for a particular zone.
      */
     zoneId: string;
     body: ServiceabilityPlatformModel.ZoneUpdateRequest;
 };
-/** @returns {upsertDpAccount} */
-declare function upsertDpAccount(): upsertDpAccount;
-type upsertDpAccount = {
+type UpsertDpAccountParam = {
     body: ServiceabilityPlatformModel.CompanyDpAccountRequest;
 };
-/** @returns {upsertDpCompanyRules} */
-declare function upsertDpCompanyRules(): upsertDpCompanyRules;
-type upsertDpCompanyRules = {
+type UpsertDpCompanyRulesParam = {
     body: ServiceabilityPlatformModel.DPCompanyRuleRequest;
 };
-/** @returns {upsertDpRules} */
-declare function upsertDpRules(): upsertDpRules;
-type upsertDpRules = {
+type UpsertDpRulesParam = {
     body: ServiceabilityPlatformModel.DpRuleRequest;
 };
 import ServiceabilityPlatformModel = require("./ServiceabilityPlatformModel");

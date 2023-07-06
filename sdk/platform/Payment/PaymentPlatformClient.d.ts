@@ -3,23 +3,25 @@ declare class Payment {
     constructor(config: any);
     config: any;
     /**
-     * @param {PaymentPlatformValidator.activateAndDectivatePayout} arg - Arg object
+     * @param {PaymentPlatformValidator.ActivateAndDectivatePayoutParam} arg - Arg object
      * @returns {Promise<PaymentPlatformModel.UpdatePayoutResponse>} - Success response
      * @name activateAndDectivatePayout
      * @summary: Partial Update Payout
      * @description: Partial Update Payout
      */
-    activateAndDectivatePayout({ uniqueTransferNo, body }?: PaymentPlatformValidator.activateAndDectivatePayout): Promise<PaymentPlatformModel.UpdatePayoutResponse>;
+    activateAndDectivatePayout({ uniqueTransferNo, body }?: PaymentPlatformValidator.ActivateAndDectivatePayoutParam): Promise<PaymentPlatformModel.UpdatePayoutResponse>;
     /**
-     * @param {PaymentPlatformValidator.deletePayout} arg - Arg object
+     * @param {PaymentPlatformValidator.DeletePayoutParam} arg - Arg object
      * @returns {Promise<PaymentPlatformModel.DeletePayoutResponse>} - Success response
      * @name deletePayout
      * @summary: Delete Payout
      * @description: Delete Payout
      */
-    deletePayout({ uniqueTransferNo }?: PaymentPlatformValidator.deletePayout): Promise<PaymentPlatformModel.DeletePayoutResponse>;
+    deletePayout({ uniqueTransferNo }?: PaymentPlatformValidator.DeletePayoutParam): Promise<PaymentPlatformModel.DeletePayoutResponse>;
     /**
-     * @param {PaymentPlatformValidator.deleteSubscriptionPaymentMethod} arg - Arg object
+     * @param {PaymentPlatformValidator.DeleteSubscriptionPaymentMethodParam} arg
+     *   - Arg object
+     *
      * @returns {Promise<PaymentPlatformModel.DeleteSubscriptionPaymentMethodResponse>}
      *   - Success response
      *
@@ -27,17 +29,17 @@ declare class Payment {
      * @summary: Delete Subscription Payment Method
      * @description: Uses this api to Delete Subscription Payment Method
      */
-    deleteSubscriptionPaymentMethod({ uniqueExternalId, paymentMethodId, }?: PaymentPlatformValidator.deleteSubscriptionPaymentMethod): Promise<PaymentPlatformModel.DeleteSubscriptionPaymentMethodResponse>;
+    deleteSubscriptionPaymentMethod({ uniqueExternalId, paymentMethodId, }?: PaymentPlatformValidator.DeleteSubscriptionPaymentMethodParam): Promise<PaymentPlatformModel.DeleteSubscriptionPaymentMethodResponse>;
     /**
-     * @param {PaymentPlatformValidator.getAllPayouts} arg - Arg object
+     * @param {PaymentPlatformValidator.GetAllPayoutsParam} arg - Arg object
      * @returns {Promise<PaymentPlatformModel.PayoutsResponse>} - Success response
      * @name getAllPayouts
      * @summary: Get All Payouts
      * @description: Get All Payouts
      */
-    getAllPayouts({ uniqueExternalId }?: PaymentPlatformValidator.getAllPayouts): Promise<PaymentPlatformModel.PayoutsResponse>;
+    getAllPayouts({ uniqueExternalId }?: PaymentPlatformValidator.GetAllPayoutsParam): Promise<PaymentPlatformModel.PayoutsResponse>;
     /**
-     * @param {PaymentPlatformValidator.getSubscriptionConfig} arg - Arg object
+     * @param {PaymentPlatformValidator.GetSubscriptionConfigParam} arg - Arg object
      * @returns {Promise<PaymentPlatformModel.SubscriptionConfigResponse>} -
      *   Success response
      * @name getSubscriptionConfig
@@ -46,7 +48,9 @@ declare class Payment {
      */
     getSubscriptionConfig({}?: any): Promise<PaymentPlatformModel.SubscriptionConfigResponse>;
     /**
-     * @param {PaymentPlatformValidator.getSubscriptionPaymentMethod} arg - Arg object
+     * @param {PaymentPlatformValidator.GetSubscriptionPaymentMethodParam} arg
+     *   - Arg object
+     *
      * @returns {Promise<PaymentPlatformModel.SubscriptionPaymentMethodResponse>}
      *   - Success response
      *
@@ -54,17 +58,17 @@ declare class Payment {
      * @summary: List Subscription Payment Method
      * @description: Get all  Subscription  Payment Method
      */
-    getSubscriptionPaymentMethod({ uniqueExternalId }?: PaymentPlatformValidator.getSubscriptionPaymentMethod): Promise<PaymentPlatformModel.SubscriptionPaymentMethodResponse>;
+    getSubscriptionPaymentMethod({ uniqueExternalId }?: PaymentPlatformValidator.GetSubscriptionPaymentMethodParam): Promise<PaymentPlatformModel.SubscriptionPaymentMethodResponse>;
     /**
-     * @param {PaymentPlatformValidator.savePayout} arg - Arg object
+     * @param {PaymentPlatformValidator.SavePayoutParam} arg - Arg object
      * @returns {Promise<PaymentPlatformModel.PayoutResponse>} - Success response
      * @name savePayout
      * @summary: Save Payout
      * @description: Save Payout
      */
-    savePayout({ body }?: PaymentPlatformValidator.savePayout): Promise<PaymentPlatformModel.PayoutResponse>;
+    savePayout({ body }?: PaymentPlatformValidator.SavePayoutParam): Promise<PaymentPlatformModel.PayoutResponse>;
     /**
-     * @param {PaymentPlatformValidator.saveSubscriptionSetupIntent} arg - Arg object
+     * @param {PaymentPlatformValidator.SaveSubscriptionSetupIntentParam} arg - Arg object
      * @returns {Promise<PaymentPlatformModel.SaveSubscriptionSetupIntentResponse>}
      *   - Success response
      *
@@ -72,23 +76,23 @@ declare class Payment {
      * @summary: Save Subscription Setup Intent
      * @description: Uses this api to Save Subscription Setup Intent
      */
-    saveSubscriptionSetupIntent({ body }?: PaymentPlatformValidator.saveSubscriptionSetupIntent): Promise<PaymentPlatformModel.SaveSubscriptionSetupIntentResponse>;
+    saveSubscriptionSetupIntent({ body }?: PaymentPlatformValidator.SaveSubscriptionSetupIntentParam): Promise<PaymentPlatformModel.SaveSubscriptionSetupIntentResponse>;
     /**
-     * @param {PaymentPlatformValidator.updatePayout} arg - Arg object
+     * @param {PaymentPlatformValidator.UpdatePayoutParam} arg - Arg object
      * @returns {Promise<PaymentPlatformModel.UpdatePayoutResponse>} - Success response
      * @name updatePayout
      * @summary: Update Payout
      * @description: Update Payout
      */
-    updatePayout({ uniqueTransferNo, body }?: PaymentPlatformValidator.updatePayout): Promise<PaymentPlatformModel.UpdatePayoutResponse>;
+    updatePayout({ uniqueTransferNo, body }?: PaymentPlatformValidator.UpdatePayoutParam): Promise<PaymentPlatformModel.UpdatePayoutResponse>;
     /**
-     * @param {PaymentPlatformValidator.verifyIfscCode} arg - Arg object
+     * @param {PaymentPlatformValidator.VerifyIfscCodeParam} arg - Arg object
      * @returns {Promise<PaymentPlatformModel.IfscCodeResponse>} - Success response
      * @name verifyIfscCode
      * @summary: Ifsc Code Verification
      * @description: Get True/False for correct IFSC Code for adding bank details for refund
      */
-    verifyIfscCode({ ifscCode }?: PaymentPlatformValidator.verifyIfscCode): Promise<PaymentPlatformModel.IfscCodeResponse>;
+    verifyIfscCode({ ifscCode }?: PaymentPlatformValidator.VerifyIfscCodeParam): Promise<PaymentPlatformModel.IfscCodeResponse>;
 }
 import PaymentPlatformValidator = require("./PaymentPlatformValidator");
 import PaymentPlatformModel = require("./PaymentPlatformModel");

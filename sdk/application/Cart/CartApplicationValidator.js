@@ -3,12 +3,12 @@ const Joi = require("joi");
 const CartApplicationModel = require("./CartApplicationModel");
 
 /**
- * @typedef addAddress
+ * @typedef AddAddressParam
  * @property {CartApplicationModel.Address} body
  */
 
 /**
- * @typedef addItems
+ * @typedef AddItemsParam
  * @property {boolean} [i] - This is a boolean value. Select `true` to retrieve
  *   all the items added in the cart.
  * @property {boolean} [b] - This is a boolean value. Select `true` to retrieve
@@ -23,7 +23,7 @@ const CartApplicationModel = require("./CartApplicationModel");
  */
 
 /**
- * @typedef applyCoupon
+ * @typedef ApplyCouponParam
  * @property {boolean} [i]
  * @property {boolean} [b]
  * @property {boolean} [p]
@@ -33,7 +33,7 @@ const CartApplicationModel = require("./CartApplicationModel");
  */
 
 /**
- * @typedef applyRewardPoints
+ * @typedef ApplyRewardPointsParam
  * @property {string} [id]
  * @property {boolean} [i]
  * @property {boolean} [b]
@@ -42,24 +42,24 @@ const CartApplicationModel = require("./CartApplicationModel");
  */
 
 /**
- * @typedef checkoutCart
+ * @typedef CheckoutCartParam
  * @property {boolean} [buyNow] - This indicates the type of cart to checkout
  * @property {CartApplicationModel.CartCheckoutDetailRequest} body
  */
 
 /**
- * @typedef checkoutCartV2
+ * @typedef CheckoutCartV2Param
  * @property {boolean} [buyNow] - This indicates the type of cart to checkout
  * @property {CartApplicationModel.CartCheckoutDetailV2Request} body
  */
 
 /**
- * @typedef deleteCart
+ * @typedef DeleteCartParam
  * @property {string} [id] - The unique identifier of the cart.
  */
 
 /**
- * @typedef getAddressById
+ * @typedef GetAddressByIdParam
  * @property {string} id
  * @property {string} [cartId]
  * @property {boolean} [buyNow]
@@ -70,7 +70,7 @@ const CartApplicationModel = require("./CartApplicationModel");
  */
 
 /**
- * @typedef getAddresses
+ * @typedef GetAddressesParam
  * @property {string} [cartId]
  * @property {boolean} [buyNow]
  * @property {string} [mobileNo]
@@ -80,7 +80,7 @@ const CartApplicationModel = require("./CartApplicationModel");
  */
 
 /**
- * @typedef getBulkDiscountOffers
+ * @typedef GetBulkDiscountOffersParam
  * @property {number} [itemId] - The Item ID of the product
  * @property {string} [articleId] - Article Mongo ID
  * @property {number} [uid] - UID of the product
@@ -90,7 +90,7 @@ const CartApplicationModel = require("./CartApplicationModel");
  */
 
 /**
- * @typedef getCart
+ * @typedef GetCartParam
  * @property {string} [id] - The unique identifier of the cart
  * @property {boolean} [i] - This is a boolean value. Select `true` to retrieve
  *   all the items added in the cart.
@@ -105,34 +105,34 @@ const CartApplicationModel = require("./CartApplicationModel");
  */
 
 /**
- * @typedef getCartLastModified
+ * @typedef GetCartLastModifiedParam
  * @property {string} [id] - The unique identifier of the cart
  */
 
 /**
- * @typedef getCartShareLink
+ * @typedef GetCartShareLinkParam
  * @property {CartApplicationModel.GetShareCartLinkRequest} body
  */
 
 /**
- * @typedef getCartSharedItems
+ * @typedef GetCartSharedItemsParam
  * @property {string} token - Token of the shared short link
  */
 
 /**
- * @typedef getCoupons
+ * @typedef GetCouponsParam
  * @property {string} [id]
  * @property {boolean} [buyNow]
  */
 
 /**
- * @typedef getItemCount
+ * @typedef GetItemCountParam
  * @property {string} [id] - The unique identifier of the cart.
  * @property {boolean} [buyNow] - Boolean value to get buy_now cart.
  */
 
 /**
- * @typedef getLadderOffers
+ * @typedef GetLadderOffersParam
  * @property {string} slug - A short, human-readable, URL-friendly identifier of
  *   a product. You can get slug value from the endpoint
  *   /service/application/catalog/v1.0/products/
@@ -144,7 +144,7 @@ const CartApplicationModel = require("./CartApplicationModel");
  */
 
 /**
- * @typedef getPromotionOffers
+ * @typedef GetPromotionOffersParam
  * @property {string} [slug] - A short, human-readable, URL-friendly identifier
  *   of a product. You can get slug value from the endpoint
  *   /service/application/catalog/v1.0/products/
@@ -154,7 +154,7 @@ const CartApplicationModel = require("./CartApplicationModel");
  */
 
 /**
- * @typedef getShipments
+ * @typedef GetShipmentsParam
  * @property {boolean} [p] - This is a boolean value. Select `true` for getting
  *   a payment option in response.
  * @property {string} [id] - The unique identifier of the cart
@@ -164,18 +164,18 @@ const CartApplicationModel = require("./CartApplicationModel");
  */
 
 /**
- * @typedef removeAddress
+ * @typedef RemoveAddressParam
  * @property {string} id - ID allotted to the selected address
  */
 
 /**
- * @typedef removeCoupon
+ * @typedef RemoveCouponParam
  * @property {string} [id]
  * @property {boolean} [buyNow]
  */
 
 /**
- * @typedef selectAddress
+ * @typedef SelectAddressParam
  * @property {string} [cartId]
  * @property {boolean} [buyNow]
  * @property {boolean} [i]
@@ -184,20 +184,20 @@ const CartApplicationModel = require("./CartApplicationModel");
  */
 
 /**
- * @typedef selectPaymentMode
+ * @typedef SelectPaymentModeParam
  * @property {string} [id]
  * @property {boolean} [buyNow]
  * @property {CartApplicationModel.UpdateCartPaymentRequest} body
  */
 
 /**
- * @typedef updateAddress
+ * @typedef UpdateAddressParam
  * @property {string} id - ID allotted to the selected address
  * @property {CartApplicationModel.Address} body
  */
 
 /**
- * @typedef updateCart
+ * @typedef UpdateCartParam
  * @property {string} [id] - The unique identifier of the cart
  * @property {boolean} [i] - This is a boolean value. Select `true` to retrieve
  *   all the items added in the cart.
@@ -212,20 +212,20 @@ const CartApplicationModel = require("./CartApplicationModel");
  */
 
 /**
- * @typedef updateCartMeta
+ * @typedef UpdateCartMetaParam
  * @property {string} [id] - The unique identifier of the cart
  * @property {boolean} [buyNow] - This is boolean to get buy_now cart
  * @property {CartApplicationModel.CartMetaRequest} body
  */
 
 /**
- * @typedef updateCartWithSharedItems
+ * @typedef UpdateCartWithSharedItemsParam
  * @property {string} token - Token of the shared short link
  * @property {string} action - Operation to perform on the existing cart merge or replace.
  */
 
 /**
- * @typedef validateCouponForPayment
+ * @typedef ValidateCouponForPaymentParam
  * @property {string} [id]
  * @property {boolean} [buyNow]
  * @property {string} [addressId]

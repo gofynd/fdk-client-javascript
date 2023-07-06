@@ -3,52 +3,52 @@ const Joi = require("joi");
 const PaymentPlatformModel = require("./PaymentPlatformModel");
 
 /**
- * @typedef activateAndDectivatePayout
+ * @typedef ActivateAndDectivatePayoutParam
  * @property {string} uniqueTransferNo - Unique transfer id
  * @property {PaymentPlatformModel.UpdatePayoutRequest} body
  */
 
 /**
- * @typedef deletePayout
+ * @typedef DeletePayoutParam
  * @property {string} uniqueTransferNo - Unique transfer id
  */
 
 /**
- * @typedef deleteSubscriptionPaymentMethod
+ * @typedef DeleteSubscriptionPaymentMethodParam
  * @property {string} uniqueExternalId
  * @property {string} paymentMethodId
  */
 
 /**
- * @typedef getAllPayouts
+ * @typedef GetAllPayoutsParam
  * @property {string} [uniqueExternalId] - Fetch payouts using unique external id
  */
 
-/** @typedef getSubscriptionConfig */
+/** @typedef GetSubscriptionConfigParam */
 
 /**
- * @typedef getSubscriptionPaymentMethod
+ * @typedef GetSubscriptionPaymentMethodParam
  * @property {string} [uniqueExternalId] - Unique external id
  */
 
 /**
- * @typedef savePayout
+ * @typedef SavePayoutParam
  * @property {PaymentPlatformModel.PayoutRequest} body
  */
 
 /**
- * @typedef saveSubscriptionSetupIntent
+ * @typedef SaveSubscriptionSetupIntentParam
  * @property {PaymentPlatformModel.SaveSubscriptionSetupIntentRequest} body
  */
 
 /**
- * @typedef updatePayout
+ * @typedef UpdatePayoutParam
  * @property {string} uniqueTransferNo - Unique transfer id
  * @property {PaymentPlatformModel.PayoutRequest} body
  */
 
 /**
- * @typedef verifyIfscCode
+ * @typedef VerifyIfscCodeParam
  * @property {string} [ifscCode]
  */
 

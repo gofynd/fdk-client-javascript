@@ -3,7 +3,7 @@ const Joi = require("joi");
 const CommunicationPlatformModel = require("./CommunicationPlatformModel");
 
 /**
- * @typedef getSystemNotifications
+ * @typedef GetSystemNotificationsParam
  * @property {number} [pageNo]
  * @property {number} [pageSize]
  */

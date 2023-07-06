@@ -15,7 +15,9 @@ class FileStorage {
   }
 
   /**
-   * @param {FileStoragePlatformApplicationValidator.appCompleteUpload} arg - Arg object
+   * @param {FileStoragePlatformApplicationValidator.AppCompleteUploadParam} arg
+   *   - Arg object
+   *
    * @returns {Promise<FileStoragePlatformModel.CompleteResponse>} - Success response
    * @name appCompleteUpload
    * @summary: This will complete the upload process. After successfully uploading file, you can call this operation to complete the upload process.
@@ -103,7 +105,7 @@ class FileStorage {
   }
 
   /**
-   * @param {FileStoragePlatformApplicationValidator.appCopyFiles} arg - Arg object
+   * @param {FileStoragePlatformApplicationValidator.AppCopyFilesParam} arg - Arg object
    * @returns {Promise<FileStoragePlatformModel.BulkUploadResponse>} - Success response
    * @name appCopyFiles
    * @summary: Copy Files
@@ -169,7 +171,9 @@ class FileStorage {
   }
 
   /**
-   * @param {FileStoragePlatformApplicationValidator.appStartUpload} arg - Arg object
+   * @param {FileStoragePlatformApplicationValidator.AppStartUploadParam} arg
+   *   - Arg object
+   *
    * @returns {Promise<FileStoragePlatformModel.StartResponse>} - Success response
    * @name appStartUpload
    * @summary: This operation initiates upload and returns storage link which is valid for 30 Minutes. You can use that storage link to make subsequent upload request with file buffer or blob.
@@ -257,7 +261,7 @@ class FileStorage {
   }
 
   /**
-   * @param {FileStoragePlatformApplicationValidator.appbrowse} arg - Arg object
+   * @param {FileStoragePlatformApplicationValidator.AppbrowseParam} arg - Arg object
    * @returns {Promise<FileStoragePlatformModel.BrowseResponse>} - Success response
    * @name appbrowse
    * @summary: Browse Files

@@ -3,133 +3,133 @@ const Joi = require("joi");
 const ContentPlatformModel = require("./ContentPlatformModel");
 
 /**
- * @typedef addDataLoader
+ * @typedef AddDataLoaderParam
  * @property {ContentPlatformModel.DataLoaderSchema} body
  */
 
 /**
- * @typedef addFaq
+ * @typedef AddFaqParam
  * @property {string} categoryId - ID allotted to an FAQ category.
  * @property {ContentPlatformModel.CreateFaqSchema} body
  */
 
 /**
- * @typedef addInjectableTag
+ * @typedef AddInjectableTagParam
  * @property {ContentPlatformModel.CreateTagRequestSchema} body
  */
 
 /**
- * @typedef addPathRedirectionRules
+ * @typedef AddPathRedirectionRulesParam
  * @property {ContentPlatformModel.PathMappingSchema} body
  */
 
 /**
- * @typedef createAnnouncement
+ * @typedef CreateAnnouncementParam
  * @property {ContentPlatformModel.AdminAnnouncementSchema} body
  */
 
 /**
- * @typedef createBlog
+ * @typedef CreateBlogParam
  * @property {ContentPlatformModel.BlogRequest} body
  */
 
 /**
- * @typedef createFaqCategory
+ * @typedef CreateFaqCategoryParam
  * @property {ContentPlatformModel.CreateFaqCategoryRequestSchema} body
  */
 
 /**
- * @typedef createLandingPage
+ * @typedef CreateLandingPageParam
  * @property {ContentPlatformModel.LandingPageSchema} body
  */
 
 /**
- * @typedef createNavigation
+ * @typedef CreateNavigationParam
  * @property {ContentPlatformModel.NavigationRequest} body
  */
 
 /**
- * @typedef createPage
+ * @typedef CreatePageParam
  * @property {ContentPlatformModel.PageRequest} body
  */
 
 /**
- * @typedef createPagePreview
+ * @typedef CreatePagePreviewParam
  * @property {ContentPlatformModel.PageRequest} body
  */
 
 /**
- * @typedef createSlideshow
+ * @typedef CreateSlideshowParam
  * @property {ContentPlatformModel.SlideshowRequest} body
  */
 
-/** @typedef deleteAllInjectableTags */
+/** @typedef DeleteAllInjectableTagsParam */
 
 /**
- * @typedef deleteAnnouncement
+ * @typedef DeleteAnnouncementParam
  * @property {string} announcementId - ID allotted to the announcement.
  */
 
 /**
- * @typedef deleteBlog
+ * @typedef DeleteBlogParam
  * @property {string} id - ID allotted to the blog.
  */
 
 /**
- * @typedef deleteDataLoader
+ * @typedef DeleteDataLoaderParam
  * @property {string} dataLoaderId - ID allotted to the data loader.
  */
 
 /**
- * @typedef deleteFaq
+ * @typedef DeleteFaqParam
  * @property {string} categoryId - ID allotted to an FAQ category.
  * @property {string} faqId - ID allotted to an FAQ.
  */
 
 /**
- * @typedef deleteFaqCategory
+ * @typedef DeleteFaqCategoryParam
  * @property {string} id - ID allotted to an FAQ category.
  */
 
 /**
- * @typedef deleteLandingPage
+ * @typedef DeleteLandingPageParam
  * @property {string} id - ID allotted to a landing page.
  */
 
 /**
- * @typedef deleteNavigation
+ * @typedef DeleteNavigationParam
  * @property {string} id - ID allotted to the navigation.
  */
 
 /**
- * @typedef deletePage
+ * @typedef DeletePageParam
  * @property {string} id - ID allotted to the page.
  */
 
 /**
- * @typedef deletePathRedirectionRules
+ * @typedef DeletePathRedirectionRulesParam
  * @property {string} pathId - ID allotted to the path redirection rule.
  */
 
 /**
- * @typedef deleteSlideshow
+ * @typedef DeleteSlideshowParam
  * @property {string} id - ID allotted to the slideshow.
  */
 
 /**
- * @typedef editDataLoader
+ * @typedef EditDataLoaderParam
  * @property {string} dataLoaderId - ID allotted to the data loader.
  * @property {ContentPlatformModel.DataLoaderSchema} body
  */
 
 /**
- * @typedef editInjectableTag
+ * @typedef EditInjectableTagParam
  * @property {string} tagId - ID allotted to the tag.
  * @property {ContentPlatformModel.UpdateHandpickedSchema} body
  */
 
 /**
- * @typedef generateSEOTitle
+ * @typedef GenerateSEOTitleParam
  * @property {ContentPlatformModel.GenerationEntityType} type - String
  *   representing the type of SEO content to be generated. Possible values are:
  *   title, description
@@ -137,12 +137,12 @@ const ContentPlatformModel = require("./ContentPlatformModel");
  */
 
 /**
- * @typedef getAnnouncementById
+ * @typedef GetAnnouncementByIdParam
  * @property {string} announcementId - ID allotted to the announcement.
  */
 
 /**
- * @typedef getAnnouncementsList
+ * @typedef GetAnnouncementsListParam
  * @property {number} [pageNo] - The page number to navigate through the given
  *   set of results. Default value is 1.
  * @property {number} [pageSize] - The number of items to retrieve in each page.
@@ -150,13 +150,13 @@ const ContentPlatformModel = require("./ContentPlatformModel");
  */
 
 /**
- * @typedef getBlogBySlug
+ * @typedef GetBlogBySlugParam
  * @property {string} slug - A short, human-readable, URL-friendly identifier of
  *   a blog page. You can get slug value of a blog from `getBlogs` API.
  */
 
 /**
- * @typedef getBlogs
+ * @typedef GetBlogsParam
  * @property {number} [pageNo] - The page number to navigate through the given
  *   set of results. Default value is 1.
  * @property {number} [pageSize] - The number of items to retrieve in each page.
@@ -164,52 +164,52 @@ const ContentPlatformModel = require("./ContentPlatformModel");
  */
 
 /**
- * @typedef getComponentById
+ * @typedef GetComponentByIdParam
  * @property {string} slug - A short, human-readable, URL-friendly identifier of
  *   a blog page. You can get slug value of a blog from `getBlogs` API.
  */
 
-/** @typedef getDataLoaders */
+/** @typedef GetDataLoadersParam */
 
-/** @typedef getDefaultNavigations */
+/** @typedef GetDefaultNavigationsParam */
 
 /**
- * @typedef getFaqByIdOrSlug
+ * @typedef GetFaqByIdOrSlugParam
  * @property {string} idOrSlug - ID or the slug allotted to an FAQ category.
  *   Slug is a short, human-readable, URL-friendly identifier of an object. You
  *   can get slug value of an FAQ category from `getFaqCategories` API.
  */
 
-/** @typedef getFaqCategories */
+/** @typedef GetFaqCategoriesParam */
 
 /**
- * @typedef getFaqCategoryBySlugOrId
+ * @typedef GetFaqCategoryBySlugOrIdParam
  * @property {string} idOrSlug - ID or the slug allotted to an FAQ category.
  *   Slug is a short, human-readable, URL-friendly identifier of an object. You
  *   can get slug value of an FAQ category from `getFaqCategories` API.
  */
 
 /**
- * @typedef getFaqsByCategoryIdOrSlug
+ * @typedef GetFaqsByCategoryIdOrSlugParam
  * @property {string} idOrSlug - ID or the slug allotted to an FAQ category.
  *   Slug is a short, human-readable, URL-friendly identifier of an object. You
  *   can get slug value of an FAQ category from `getFaqCategories` API.
  */
 
-/** @typedef getInjectableTags */
+/** @typedef GetInjectableTagsParam */
 
 /**
- * @typedef getLandingPages
+ * @typedef GetLandingPagesParam
  * @property {number} [pageNo] - The page number to navigate through the given
  *   set of results. Default value is 1.
  * @property {number} [pageSize] - The number of items to retrieve in each page.
  *   Default value is 10.
  */
 
-/** @typedef getLegalInformation */
+/** @typedef GetLegalInformationParam */
 
 /**
- * @typedef getNavigationBySlug
+ * @typedef GetNavigationBySlugParam
  * @property {string} slug - A short, human-readable, URL-friendly identifier of
  *   a navigation. You can get slug value of a navigation from `getNavigations` API.
  * @property {string} devicePlatform - Filter navigations by platform.
@@ -217,7 +217,7 @@ const ContentPlatformModel = require("./ContentPlatformModel");
  */
 
 /**
- * @typedef getNavigations
+ * @typedef GetNavigationsParam
  * @property {string} devicePlatform - Filter navigations by platform.
  *   Acceptable values are: web, android, ios, all
  * @property {number} [pageNo] - The page number to navigate through the given
@@ -227,17 +227,17 @@ const ContentPlatformModel = require("./ContentPlatformModel");
  */
 
 /**
- * @typedef getPageBySlug
+ * @typedef GetPageBySlugParam
  * @property {string} slug - A short, human-readable, URL-friendly identifier of
  *   a page. You can get slug value of a page from `getPages` API.
  */
 
-/** @typedef getPageMeta */
+/** @typedef GetPageMetaParam */
 
-/** @typedef getPageSpec */
+/** @typedef GetPageSpecParam */
 
 /**
- * @typedef getPages
+ * @typedef GetPagesParam
  * @property {number} [pageNo] - The page number to navigate through the given
  *   set of results. Default value is 1.
  * @property {number} [pageSize] - The number of items to retrieve in each page.
@@ -245,22 +245,22 @@ const ContentPlatformModel = require("./ContentPlatformModel");
  */
 
 /**
- * @typedef getPathRedirectionRule
+ * @typedef GetPathRedirectionRuleParam
  * @property {string} pathId - ID allotted to the path redirection rule.
  */
 
 /**
- * @typedef getPathRedirectionRules
+ * @typedef GetPathRedirectionRulesParam
  * @property {number} [pageSize] - The number of items to retrieve in each page.
  *   Default value is 5.
  * @property {number} [pageNo] - The page number to navigate through the given
  *   set of results. Default value is 1.
  */
 
-/** @typedef getSEOConfiguration */
+/** @typedef GetSEOConfigurationParam */
 
 /**
- * @typedef getSlideshowBySlug
+ * @typedef GetSlideshowBySlugParam
  * @property {string} slug - A short, human-readable, URL-friendly identifier of
  *   a slideshow. You can get slug value of a page from `getSlideshows` API.
  * @property {string} devicePlatform - Filter slideshows by platform. Acceptable
@@ -268,7 +268,7 @@ const ContentPlatformModel = require("./ContentPlatformModel");
  */
 
 /**
- * @typedef getSlideshows
+ * @typedef GetSlideshowsParam
  * @property {string} devicePlatform - Filter slideshows by platform. Acceptable
  *   values are: web, android, ios and all
  * @property {number} [pageNo] - The page number to navigate through the given
@@ -277,109 +277,109 @@ const ContentPlatformModel = require("./ContentPlatformModel");
  *   Default value is 10.
  */
 
-/** @typedef getSupportInformation */
+/** @typedef GetSupportInformationParam */
 
 /**
- * @typedef removeInjectableTag
+ * @typedef RemoveInjectableTagParam
  * @property {ContentPlatformModel.RemoveHandpickedSchema} body
  */
 
 /**
- * @typedef resetDataLoader
+ * @typedef ResetDataLoaderParam
  * @property {string} service - Name of service.
  * @property {string} operationId - Name of operation id of the service.
  */
 
 /**
- * @typedef selectDataLoader
+ * @typedef SelectDataLoaderParam
  * @property {string} dataLoaderId - ID allotted to the data loader.
  */
 
 /**
- * @typedef updateAnnouncement
+ * @typedef UpdateAnnouncementParam
  * @property {string} announcementId - ID allotted to the announcement.
  * @property {ContentPlatformModel.AdminAnnouncementSchema} body
  */
 
 /**
- * @typedef updateAnnouncementSchedule
+ * @typedef UpdateAnnouncementScheduleParam
  * @property {string} announcementId - ID allotted to the announcement.
  * @property {ContentPlatformModel.ScheduleSchema} body
  */
 
 /**
- * @typedef updateBlog
+ * @typedef UpdateBlogParam
  * @property {string} id - ID allotted to the blog.
  * @property {ContentPlatformModel.BlogRequest} body
  */
 
 /**
- * @typedef updateFaq
+ * @typedef UpdateFaqParam
  * @property {string} categoryId - ID allotted to an FAQ category.
  * @property {string} faqId - ID allotted to an FAQ.
  * @property {ContentPlatformModel.CreateFaqSchema} body
  */
 
 /**
- * @typedef updateFaqCategory
+ * @typedef UpdateFaqCategoryParam
  * @property {string} id - ID allotted to an FAQ category.
  * @property {ContentPlatformModel.UpdateFaqCategoryRequestSchema} body
  */
 
 /**
- * @typedef updateInjectableTag
+ * @typedef UpdateInjectableTagParam
  * @property {ContentPlatformModel.CreateTagRequestSchema} body
  */
 
 /**
- * @typedef updateLandingPage
+ * @typedef UpdateLandingPageParam
  * @property {string} id - ID allotted to a landing page.
  * @property {ContentPlatformModel.LandingPageSchema} body
  */
 
 /**
- * @typedef updateLegalInformation
+ * @typedef UpdateLegalInformationParam
  * @property {ContentPlatformModel.ApplicationLegal} body
  */
 
 /**
- * @typedef updateNavigation
+ * @typedef UpdateNavigationParam
  * @property {string} id - ID allotted to the navigation.
  * @property {ContentPlatformModel.NavigationRequest} body
  */
 
 /**
- * @typedef updatePage
+ * @typedef UpdatePageParam
  * @property {string} id - ID allotted to the page.
  * @property {ContentPlatformModel.PageSchema} body
  */
 
 /**
- * @typedef updatePagePreview
+ * @typedef UpdatePagePreviewParam
  * @property {string} slug - A short, human-readable, URL-friendly identifier of
  *   a page. You can get slug value of a page from `getPages` API.
  * @property {ContentPlatformModel.PagePublishRequest} body
  */
 
 /**
- * @typedef updatePathRedirectionRules
+ * @typedef UpdatePathRedirectionRulesParam
  * @property {string} pathId - ID allotted to the path redirection rule.
  * @property {ContentPlatformModel.PathMappingSchema} body
  */
 
 /**
- * @typedef updateSEOConfiguration
+ * @typedef UpdateSEOConfigurationParam
  * @property {ContentPlatformModel.SeoComponent} body
  */
 
 /**
- * @typedef updateSlideshow
+ * @typedef UpdateSlideshowParam
  * @property {string} id - ID allotted to the slideshow.
  * @property {ContentPlatformModel.SlideshowRequest} body
  */
 
 /**
- * @typedef updateSupportInformation
+ * @typedef UpdateSupportInformationParam
  * @property {ContentPlatformModel.Support} body
  */
 

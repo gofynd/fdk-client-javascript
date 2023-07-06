@@ -59,7 +59,7 @@ class Cart {
   }
 
   /**
-   * @param {CartApplicationValidator.addAddress} arg - Arg object.
+   * @param {CartApplicationValidator.AddAddressParam} arg - Arg object.
    * @returns {Promise<CartApplicationModel.SaveAddressResponse>} - Success response
    * @name addAddress
    * @summary: Add address to an account
@@ -120,7 +120,7 @@ class Cart {
   }
 
   /**
-   * @param {CartApplicationValidator.addItems} arg - Arg object.
+   * @param {CartApplicationValidator.AddItemsParam} arg - Arg object.
    * @returns {Promise<CartApplicationModel.AddCartDetailResponse>} - Success response
    * @name addItems
    * @summary: Add items to cart
@@ -187,7 +187,7 @@ class Cart {
   }
 
   /**
-   * @param {CartApplicationValidator.applyCoupon} arg - Arg object.
+   * @param {CartApplicationValidator.ApplyCouponParam} arg - Arg object.
    * @returns {Promise<CartApplicationModel.CartDetailResponse>} - Success response
    * @name applyCoupon
    * @summary: Apply Coupon
@@ -253,7 +253,7 @@ class Cart {
   }
 
   /**
-   * @param {CartApplicationValidator.applyRewardPoints} arg - Arg object.
+   * @param {CartApplicationValidator.ApplyRewardPointsParam} arg - Arg object.
    * @returns {Promise<CartApplicationModel.CartDetailResponse>} - Success response
    * @name applyRewardPoints
    * @summary: Apply reward points at cart
@@ -320,7 +320,7 @@ class Cart {
   }
 
   /**
-   * @param {CartApplicationValidator.checkoutCart} arg - Arg object.
+   * @param {CartApplicationValidator.CheckoutCartParam} arg - Arg object.
    * @returns {Promise<CartApplicationModel.CartCheckoutResponse>} - Success response
    * @name checkoutCart
    * @summary: Checkout all items in the cart
@@ -384,7 +384,7 @@ class Cart {
   }
 
   /**
-   * @param {CartApplicationValidator.checkoutCartV2} arg - Arg object.
+   * @param {CartApplicationValidator.CheckoutCartV2Param} arg - Arg object.
    * @returns {Promise<CartApplicationModel.CartCheckoutResponse>} - Success response
    * @name checkoutCartV2
    * @summary: Checkout all items in the cart
@@ -448,7 +448,7 @@ class Cart {
   }
 
   /**
-   * @param {CartApplicationValidator.deleteCart} arg - Arg object.
+   * @param {CartApplicationValidator.DeleteCartParam} arg - Arg object.
    * @returns {Promise<CartApplicationModel.DeleteCartDetailResponse>} -
    *   Success response
    * @name deleteCart
@@ -511,7 +511,7 @@ class Cart {
   }
 
   /**
-   * @param {CartApplicationValidator.getAddressById} arg - Arg object.
+   * @param {CartApplicationValidator.GetAddressByIdParam} arg - Arg object.
    * @returns {Promise<CartApplicationModel.Address>} - Success response
    * @name getAddressById
    * @summary: Fetch a single address by its ID
@@ -588,7 +588,7 @@ class Cart {
   }
 
   /**
-   * @param {CartApplicationValidator.getAddresses} arg - Arg object.
+   * @param {CartApplicationValidator.GetAddressesParam} arg - Arg object.
    * @returns {Promise<CartApplicationModel.GetAddressesResponse>} - Success response
    * @name getAddresses
    * @summary: Fetch address
@@ -664,7 +664,7 @@ class Cart {
   }
 
   /**
-   * @param {CartApplicationValidator.getBulkDiscountOffers} arg - Arg object.
+   * @param {CartApplicationValidator.GetBulkDiscountOffersParam} arg - Arg object.
    * @returns {Promise<CartApplicationModel.BulkPriceResponse>} - Success response
    * @name getBulkDiscountOffers
    * @summary: Get discount offers based on quantity
@@ -731,7 +731,7 @@ class Cart {
   }
 
   /**
-   * @param {CartApplicationValidator.getCart} arg - Arg object.
+   * @param {CartApplicationValidator.GetCartParam} arg - Arg object.
    * @returns {Promise<CartApplicationModel.CartDetailResponse>} - Success response
    * @name getCart
    * @summary: Fetch all items added to the cart
@@ -799,7 +799,7 @@ class Cart {
   }
 
   /**
-   * @param {CartApplicationValidator.getCartLastModified} arg - Arg object.
+   * @param {CartApplicationValidator.GetCartLastModifiedParam} arg - Arg object.
    * @returns {Promise<any>} - Success response
    * @name getCartLastModified
    * @summary: Fetch last-modified timestamp
@@ -860,7 +860,7 @@ class Cart {
   }
 
   /**
-   * @param {CartApplicationValidator.getCartShareLink} arg - Arg object.
+   * @param {CartApplicationValidator.GetCartShareLinkParam} arg - Arg object.
    * @returns {Promise<CartApplicationModel.GetShareCartLinkResponse>} -
    *   Success response
    * @name getCartShareLink
@@ -924,7 +924,7 @@ class Cart {
   }
 
   /**
-   * @param {CartApplicationValidator.getCartSharedItems} arg - Arg object.
+   * @param {CartApplicationValidator.GetCartSharedItemsParam} arg - Arg object.
    * @returns {Promise<CartApplicationModel.SharedCartResponse>} - Success response
    * @name getCartSharedItems
    * @summary: Get details of a shared cart
@@ -987,7 +987,7 @@ class Cart {
   }
 
   /**
-   * @param {CartApplicationValidator.getCoupons} arg - Arg object.
+   * @param {CartApplicationValidator.GetCouponsParam} arg - Arg object.
    * @returns {Promise<CartApplicationModel.GetCouponResponse>} - Success response
    * @name getCoupons
    * @summary: Fetch Coupon
@@ -1050,7 +1050,7 @@ class Cart {
   }
 
   /**
-   * @param {CartApplicationValidator.getItemCount} arg - Arg object.
+   * @param {CartApplicationValidator.GetItemCountParam} arg - Arg object.
    * @returns {Promise<CartApplicationModel.CartItemCountResponse>} - Success response
    * @name getItemCount
    * @summary: Count items in the cart
@@ -1115,7 +1115,7 @@ class Cart {
   }
 
   /**
-   * @param {CartApplicationValidator.getLadderOffers} arg - Arg object.
+   * @param {CartApplicationValidator.GetLadderOffersParam} arg - Arg object.
    * @returns {Promise<CartApplicationModel.LadderPriceOffers>} - Success response
    * @name getLadderOffers
    * @summary: Fetch ladder price promotion
@@ -1182,7 +1182,7 @@ class Cart {
   }
 
   /**
-   * @param {CartApplicationValidator.getPromotionOffers} arg - Arg object.
+   * @param {CartApplicationValidator.GetPromotionOffersParam} arg - Arg object.
    * @returns {Promise<CartApplicationModel.PromotionOffersResponse>} - Success response
    * @name getPromotionOffers
    * @summary: Fetch available promotions
@@ -1249,7 +1249,7 @@ class Cart {
   }
 
   /**
-   * @param {CartApplicationValidator.getShipments} arg - Arg object.
+   * @param {CartApplicationValidator.GetShipmentsParam} arg - Arg object.
    * @returns {Promise<CartApplicationModel.CartShipmentsResponse>} - Success response
    * @name getShipments
    * @summary: Get delivery date and options before checkout
@@ -1317,7 +1317,7 @@ class Cart {
   }
 
   /**
-   * @param {CartApplicationValidator.removeAddress} arg - Arg object.
+   * @param {CartApplicationValidator.RemoveAddressParam} arg - Arg object.
    * @returns {Promise<CartApplicationModel.DeleteAddressResponse>} - Success response
    * @name removeAddress
    * @summary: Remove address associated with an account
@@ -1380,7 +1380,7 @@ class Cart {
   }
 
   /**
-   * @param {CartApplicationValidator.removeCoupon} arg - Arg object.
+   * @param {CartApplicationValidator.RemoveCouponParam} arg - Arg object.
    * @returns {Promise<CartApplicationModel.CartDetailResponse>} - Success response
    * @name removeCoupon
    * @summary: Remove Coupon Applied
@@ -1445,7 +1445,7 @@ class Cart {
   }
 
   /**
-   * @param {CartApplicationValidator.selectAddress} arg - Arg object.
+   * @param {CartApplicationValidator.SelectAddressParam} arg - Arg object.
    * @returns {Promise<CartApplicationModel.CartDetailResponse>} - Success response
    * @name selectAddress
    * @summary: Select an address from available addresses
@@ -1512,7 +1512,7 @@ class Cart {
   }
 
   /**
-   * @param {CartApplicationValidator.selectPaymentMode} arg - Arg object.
+   * @param {CartApplicationValidator.SelectPaymentModeParam} arg - Arg object.
    * @returns {Promise<CartApplicationModel.CartDetailResponse>} - Success response
    * @name selectPaymentMode
    * @summary: Update cart payment
@@ -1577,7 +1577,7 @@ class Cart {
   }
 
   /**
-   * @param {CartApplicationValidator.updateAddress} arg - Arg object.
+   * @param {CartApplicationValidator.UpdateAddressParam} arg - Arg object.
    * @returns {Promise<CartApplicationModel.UpdateAddressResponse>} - Success response
    * @name updateAddress
    * @summary: Update address added to an account
@@ -1640,7 +1640,7 @@ class Cart {
   }
 
   /**
-   * @param {CartApplicationValidator.updateCart} arg - Arg object.
+   * @param {CartApplicationValidator.UpdateCartParam} arg - Arg object.
    * @returns {Promise<CartApplicationModel.UpdateCartDetailResponse>} -
    *   Success response
    * @name updateCart
@@ -1708,7 +1708,7 @@ class Cart {
   }
 
   /**
-   * @param {CartApplicationValidator.updateCartMeta} arg - Arg object.
+   * @param {CartApplicationValidator.UpdateCartMetaParam} arg - Arg object.
    * @returns {Promise<CartApplicationModel.CartMetaResponse>} - Success response
    * @name updateCartMeta
    * @summary: Update the cart meta
@@ -1773,7 +1773,7 @@ class Cart {
   }
 
   /**
-   * @param {CartApplicationValidator.updateCartWithSharedItems} arg - Arg object.
+   * @param {CartApplicationValidator.UpdateCartWithSharedItemsParam} arg - Arg object.
    * @returns {Promise<CartApplicationModel.SharedCartResponse>} - Success response
    * @name updateCartWithSharedItems
    * @summary: Merge or replace existing cart
@@ -1838,7 +1838,7 @@ class Cart {
   }
 
   /**
-   * @param {CartApplicationValidator.validateCouponForPayment} arg - Arg object.
+   * @param {CartApplicationValidator.ValidateCouponForPaymentParam} arg - Arg object.
    * @returns {Promise<CartApplicationModel.PaymentCouponValidate>} - Success response
    * @name validateCouponForPayment
    * @summary: Verify the coupon eligibility against the payment mode

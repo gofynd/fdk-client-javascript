@@ -3,102 +3,102 @@ const Joi = require("joi");
 const ThemePlatformModel = require("./ThemePlatformModel");
 
 /**
- * @typedef addThemeToApplicationV2
+ * @typedef AddThemeToApplicationV2Param
  * @property {ThemePlatformModel.ApplyThemeRequestV2} body
  */
 
 /**
- * @typedef addToThemeLibrary
+ * @typedef AddToThemeLibraryParam
  * @property {ThemePlatformModel.AddThemeRequestSchema} body
  */
 
 /**
- * @typedef applyTheme
+ * @typedef ApplyThemeParam
  * @property {ThemePlatformModel.AddThemeRequestSchema} body
  */
 
 /**
- * @typedef applyThemeV2
+ * @typedef ApplyThemeV2Param
  * @property {string} themeId - The ID of the apply
  */
 
 /**
- * @typedef archiveTheme
+ * @typedef ArchiveThemeParam
  * @property {string} themeId - ID allotted to the theme.
  */
 
 /**
- * @typedef checkThemeUpgradableV2
+ * @typedef CheckThemeUpgradableV2Param
  * @property {string} themeId - The ID of the theme
  */
 
 /**
- * @typedef createPage
+ * @typedef CreatePageParam
  * @property {string} themeId - ID of the theme
  * @property {ThemePlatformModel.AvailablePageSchema} body
  */
 
 /**
- * @typedef createTheme
+ * @typedef CreateThemeParam
  * @property {ThemePlatformModel.ThemesSchema} body
  */
 
 /**
- * @typedef deletePage
+ * @typedef DeletePageParam
  * @property {string} themeId - ID of the theme
  * @property {string} pageValue - Value of the page to be updated
  */
 
 /**
- * @typedef deleteTheme
+ * @typedef DeleteThemeParam
  * @property {string} themeId - ID allotted to the theme.
  */
 
 /**
- * @typedef deleteThemeV2
+ * @typedef DeleteThemeV2Param
  * @property {string} themeId - The ID of the theme to be deleted.
  */
 
 /**
- * @typedef duplicateThemeV2
+ * @typedef DuplicateThemeV2Param
  * @property {string} themeId - The ID of the theme to be duplicated
  */
 
 /**
- * @typedef getAllPages
+ * @typedef GetAllPagesParam
  * @property {string} themeId - ID of the theme to be retrieved
  */
 
 /**
- * @typedef getApplicationThemeByIdV2
+ * @typedef GetApplicationThemeByIdV2Param
  * @property {string} themeId - The ID of the theme
  */
 
-/** @typedef getApplicationThemesCountV2 */
+/** @typedef GetApplicationThemesCountV2Param */
 
-/** @typedef getApplicationThemesV2 */
+/** @typedef GetApplicationThemesV2Param */
 
-/** @typedef getAppliedTheme */
+/** @typedef GetAppliedThemeParam */
 
-/** @typedef getAppliedThemeV2 */
+/** @typedef GetAppliedThemeV2Param */
 
 /**
- * @typedef getDefaultPageDetails
+ * @typedef GetDefaultPageDetailsParam
  * @property {string} pageValue - Value of the page to be retrieved
  */
 
-/** @typedef getFonts */
+/** @typedef GetFontsParam */
 
-/** @typedef getFontsV2 */
+/** @typedef GetFontsV2Param */
 
 /**
- * @typedef getPage
+ * @typedef GetPageParam
  * @property {string} themeId - ID of the theme to be retrieved
  * @property {string} pageValue - Value of the page to be retrieved
  */
 
 /**
- * @typedef getPublicThemes
+ * @typedef GetPublicThemesParam
  * @property {number} [pageSize] - The number of items to retrieve in each page.
  *   Default value is 10.
  * @property {number} [pageNo] - The page number to navigate through the given
@@ -106,27 +106,27 @@ const ThemePlatformModel = require("./ThemePlatformModel");
  */
 
 /**
- * @typedef getThemeById
+ * @typedef GetThemeByIdParam
  * @property {string} themeId - ID allotted to the theme.
  */
 
 /**
- * @typedef getThemeForPreview
+ * @typedef GetThemeForPreviewParam
  * @property {string} themeId - ID allotted to the theme.
  */
 
 /**
- * @typedef getThemeLastModified
+ * @typedef GetThemeLastModifiedParam
  * @property {string} themeId - ID allotted to the theme.
  */
 
 /**
- * @typedef getThemeLastModifiedV2
+ * @typedef GetThemeLastModifiedV2Param
  * @property {string} themeId - ID allotted to the theme.
  */
 
 /**
- * @typedef getThemeLibrary
+ * @typedef GetThemeLibraryParam
  * @property {number} [pageSize] - The number of items to retrieve in each page.
  *   Default value is 10.
  * @property {number} [pageNo] - The page number to navigate through the given
@@ -134,68 +134,68 @@ const ThemePlatformModel = require("./ThemePlatformModel");
  */
 
 /**
- * @typedef getThemePreviewByIdV2
+ * @typedef GetThemePreviewByIdV2Param
  * @property {string} themeId - The ID of the theme
  */
 
 /**
- * @typedef isUpgradable
+ * @typedef IsUpgradableParam
  * @property {string} themeId - Theme ID
  */
 
 /**
- * @typedef publishTheme
+ * @typedef PublishThemeParam
  * @property {string} themeId - ID allotted to the theme.
  */
 
 /**
- * @typedef unarchiveTheme
+ * @typedef UnarchiveThemeParam
  * @property {string} themeId - ID allotted to the theme.
  */
 
 /**
- * @typedef unpublishTheme
+ * @typedef UnpublishThemeParam
  * @property {string} themeId - ID allotted to the theme.
  */
 
 /**
- * @typedef updateMultiplePages
+ * @typedef UpdateMultiplePagesParam
  * @property {string} themeId - ID of the theme to be retrieved
  * @property {ThemePlatformModel.AllAvailablePageSchema} body
  */
 
 /**
- * @typedef updatePage
+ * @typedef UpdatePageParam
  * @property {string} themeId - ID of the theme
  * @property {string} pageValue - Value of the page to be updated
  * @property {ThemePlatformModel.AvailablePageSchema} body
  */
 
 /**
- * @typedef updateTheme
+ * @typedef UpdateThemeParam
  * @property {string} themeId - ID allotted to the theme.
  * @property {ThemePlatformModel.ThemesSchema} body
  */
 
 /**
- * @typedef updateThemeNameV2
+ * @typedef UpdateThemeNameV2Param
  * @property {string} themeId - The ID of the theme to be updated.
  * @property {ThemePlatformModel.UpdateThemeNameRequestBodyV2} body
  */
 
 /**
- * @typedef updateThemeV2
+ * @typedef UpdateThemeV2Param
  * @property {string} themeId - The ID of the theme.
  * @property {ThemePlatformModel.UpdateThemeRequestBodyV2} body
  */
 
 /**
- * @typedef upgradeApplicationV2
+ * @typedef UpgradeApplicationV2Param
  * @property {string} themeId - The ID of the upgrade
  */
 
 /**
- * @typedef upgradeTheme
+ * @typedef UpgradeThemeParam
  * @property {string} themeId - ID allotted to the theme.
  */
 

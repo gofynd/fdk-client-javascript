@@ -1,6 +1,6 @@
 export = FileStoragePlatformApplicationValidator;
 /**
- * @typedef appCompleteUpload
+ * @typedef AppCompleteUploadParam
  * @property {string} namespace - Segregation of different types of
  *   files(products, orders, logistics etc), Required for validating the data of
  *   the file being uploaded, decides where exactly the file will be stored
@@ -8,12 +8,12 @@ export = FileStoragePlatformApplicationValidator;
  * @property {FileStoragePlatformModel.StartResponse} body
  */
 /**
- * @typedef appCopyFiles
+ * @typedef AppCopyFilesParam
  * @property {boolean} [sync] - Sync
  * @property {FileStoragePlatformModel.BulkRequest} body
  */
 /**
- * @typedef appStartUpload
+ * @typedef AppStartUploadParam
  * @property {string} namespace - Segregation of different types of
  *   files(products, orders, logistics etc), Required for validating the data of
  *   the file being uploaded, decides where exactly the file will be stored
@@ -21,18 +21,24 @@ export = FileStoragePlatformApplicationValidator;
  * @property {FileStoragePlatformModel.StartRequest} body
  */
 /**
- * @typedef appbrowse
+ * @typedef AppbrowseParam
  * @property {string} namespace - Bucket name
  * @property {number} [pageNo] - Page no
  */
 declare class FileStoragePlatformApplicationValidator {
+    /** @returns {appCompleteUpload} */
+    static appCompleteUpload(): appCompleteUpload;
+    /** @returns {appCopyFiles} */
+    static appCopyFiles(): appCopyFiles;
+    /** @returns {appStartUpload} */
+    static appStartUpload(): appStartUpload;
+    /** @returns {appbrowse} */
+    static appbrowse(): appbrowse;
 }
 declare namespace FileStoragePlatformApplicationValidator {
-    export { appCompleteUpload, appCopyFiles, appStartUpload, appbrowse };
+    export { AppCompleteUploadParam, AppCopyFilesParam, AppStartUploadParam, AppbrowseParam };
 }
-/** @returns {appCompleteUpload} */
-declare function appCompleteUpload(): appCompleteUpload;
-type appCompleteUpload = {
+type AppCompleteUploadParam = {
     /**
      * - Segregation of different types of
      * files(products, orders, logistics etc), Required for validating the data of
@@ -42,18 +48,14 @@ type appCompleteUpload = {
     namespace: string;
     body: FileStoragePlatformModel.StartResponse;
 };
-/** @returns {appCopyFiles} */
-declare function appCopyFiles(): appCopyFiles;
-type appCopyFiles = {
+type AppCopyFilesParam = {
     /**
      * - Sync
      */
     sync?: boolean;
     body: FileStoragePlatformModel.BulkRequest;
 };
-/** @returns {appStartUpload} */
-declare function appStartUpload(): appStartUpload;
-type appStartUpload = {
+type AppStartUploadParam = {
     /**
      * - Segregation of different types of
      * files(products, orders, logistics etc), Required for validating the data of
@@ -63,9 +65,7 @@ type appStartUpload = {
     namespace: string;
     body: FileStoragePlatformModel.StartRequest;
 };
-/** @returns {appbrowse} */
-declare function appbrowse(): appbrowse;
-type appbrowse = {
+type AppbrowseParam = {
     /**
      * - Bucket name
      */

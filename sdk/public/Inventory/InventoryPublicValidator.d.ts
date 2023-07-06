@@ -1,39 +1,49 @@
 export = InventoryPublicValidator;
 /**
- * @typedef getApiKey
+ * @typedef GetApiKeyParam
  * @property {string} userName - Integration id
  * @property {string} password - Company/store token
  */
 /**
- * @typedef getConfigByApiKey
+ * @typedef GetConfigByApiKeyParam
  * @property {string} apikey - Api key
  */
 /**
- * @typedef getJobByCode
+ * @typedef GetJobByCodeParam
  * @property {string} code - Job Code
  */
 /**
- * @typedef getJobCodesMetrics
+ * @typedef GetJobCodesMetricsParam
  * @property {boolean} [dailyJob] - Daily Job Flag
  * @property {string} [jobCode] - Email Job Code
  */
 /**
- * @typedef getJobConfigByIntegrationType
+ * @typedef GetJobConfigByIntegrationTypeParam
  * @property {string} integrationType - Integration Type
  * @property {boolean} [disable] - JobConfig current state
  */
 /**
- * @typedef saveJobCodesMetrics
+ * @typedef SaveJobCodesMetricsParam
  * @property {InventoryPublicModel.EmailJobMetrics} body
  */
 declare class InventoryPublicValidator {
+    /** @returns {getApiKey} */
+    static getApiKey(): getApiKey;
+    /** @returns {getConfigByApiKey} */
+    static getConfigByApiKey(): getConfigByApiKey;
+    /** @returns {getJobByCode} */
+    static getJobByCode(): getJobByCode;
+    /** @returns {getJobCodesMetrics} */
+    static getJobCodesMetrics(): getJobCodesMetrics;
+    /** @returns {getJobConfigByIntegrationType} */
+    static getJobConfigByIntegrationType(): getJobConfigByIntegrationType;
+    /** @returns {saveJobCodesMetrics} */
+    static saveJobCodesMetrics(): saveJobCodesMetrics;
 }
 declare namespace InventoryPublicValidator {
-    export { getApiKey, getConfigByApiKey, getJobByCode, getJobCodesMetrics, getJobConfigByIntegrationType, saveJobCodesMetrics };
+    export { GetApiKeyParam, GetConfigByApiKeyParam, GetJobByCodeParam, GetJobCodesMetricsParam, GetJobConfigByIntegrationTypeParam, SaveJobCodesMetricsParam };
 }
-/** @returns {getApiKey} */
-declare function getApiKey(): getApiKey;
-type getApiKey = {
+type GetApiKeyParam = {
     /**
      * - Integration id
      */
@@ -43,25 +53,19 @@ type getApiKey = {
      */
     password: string;
 };
-/** @returns {getConfigByApiKey} */
-declare function getConfigByApiKey(): getConfigByApiKey;
-type getConfigByApiKey = {
+type GetConfigByApiKeyParam = {
     /**
      * - Api key
      */
     apikey: string;
 };
-/** @returns {getJobByCode} */
-declare function getJobByCode(): getJobByCode;
-type getJobByCode = {
+type GetJobByCodeParam = {
     /**
      * - Job Code
      */
     code: string;
 };
-/** @returns {getJobCodesMetrics} */
-declare function getJobCodesMetrics(): getJobCodesMetrics;
-type getJobCodesMetrics = {
+type GetJobCodesMetricsParam = {
     /**
      * - Daily Job Flag
      */
@@ -71,9 +75,7 @@ type getJobCodesMetrics = {
      */
     jobCode?: string;
 };
-/** @returns {getJobConfigByIntegrationType} */
-declare function getJobConfigByIntegrationType(): getJobConfigByIntegrationType;
-type getJobConfigByIntegrationType = {
+type GetJobConfigByIntegrationTypeParam = {
     /**
      * - Integration Type
      */
@@ -83,9 +85,7 @@ type getJobConfigByIntegrationType = {
      */
     disable?: boolean;
 };
-/** @returns {saveJobCodesMetrics} */
-declare function saveJobCodesMetrics(): saveJobCodesMetrics;
-type saveJobCodesMetrics = {
+type SaveJobCodesMetricsParam = {
     body: InventoryPublicModel.EmailJobMetrics;
 };
 import InventoryPublicModel = require("./InventoryPublicModel");

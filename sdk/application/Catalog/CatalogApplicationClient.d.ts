@@ -37,29 +37,29 @@ declare class Catalog {
     _urls: {};
     updateUrls(urls: any): void;
     /**
-     * @param {CatalogApplicationValidator.followById} arg - Arg object.
+     * @param {CatalogApplicationValidator.FollowByIdParam} arg - Arg object.
      * @returns {Promise<CatalogApplicationModel.FollowPostResponse>} - Success response
      * @name followById
      * @summary: Follow an entity (product/brand/collection)
      * @description: Follow a particular entity such as product, brand, collection specified by its ID.
      */
-    followById({ collectionType, collectionId }?: CatalogApplicationValidator.followById): Promise<CatalogApplicationModel.FollowPostResponse>;
+    followById({ collectionType, collectionId }?: CatalogApplicationValidator.FollowByIdParam): Promise<CatalogApplicationModel.FollowPostResponse>;
     /**
-     * @param {CatalogApplicationValidator.getBrandDetailBySlug} arg - Arg object.
+     * @param {CatalogApplicationValidator.GetBrandDetailBySlugParam} arg - Arg object.
      * @returns {Promise<CatalogApplicationModel.BrandDetailResponse>} - Success response
      * @name getBrandDetailBySlug
      * @summary: Get metadata of a brand
      * @description: Fetch metadata of a brand such as name, information, logo, banner, etc.
      */
-    getBrandDetailBySlug({ slug }?: CatalogApplicationValidator.getBrandDetailBySlug): Promise<CatalogApplicationModel.BrandDetailResponse>;
+    getBrandDetailBySlug({ slug }?: CatalogApplicationValidator.GetBrandDetailBySlugParam): Promise<CatalogApplicationModel.BrandDetailResponse>;
     /**
-     * @param {CatalogApplicationValidator.getBrands} arg - Arg object.
+     * @param {CatalogApplicationValidator.GetBrandsParam} arg - Arg object.
      * @returns {Promise<CatalogApplicationModel.BrandListingResponse>} - Success response
      * @name getBrands
      * @summary: Get all the brands
      * @description: A brand is the name under which a product is sold. Use this API to list all the brands. You can also filter the brands by department.
      */
-    getBrands({ department, pageNo, pageSize }?: CatalogApplicationValidator.getBrands): Promise<CatalogApplicationModel.BrandListingResponse>;
+    getBrands({ department, pageNo, pageSize }?: CatalogApplicationValidator.GetBrandsParam): Promise<CatalogApplicationModel.BrandListingResponse>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} [arg.department] - The name of the department. Use this
@@ -76,40 +76,43 @@ declare class Catalog {
         pageSize?: number;
     }): Paginator<CatalogApplicationModel.BrandListingResponse>;
     /**
-     * @param {CatalogApplicationValidator.getCategories} arg - Arg object.
+     * @param {CatalogApplicationValidator.GetCategoriesParam} arg - Arg object.
      * @returns {Promise<CatalogApplicationModel.CategoryListingResponse>} -
      *   Success response
      * @name getCategories
      * @summary: List all the categories
      * @description: Use this API to list all the categories. You can also filter the categories by department.
      */
-    getCategories({ department }?: CatalogApplicationValidator.getCategories): Promise<CatalogApplicationModel.CategoryListingResponse>;
+    getCategories({ department }?: CatalogApplicationValidator.GetCategoriesParam): Promise<CatalogApplicationModel.CategoryListingResponse>;
     /**
-     * @param {CatalogApplicationValidator.getCategoryDetailBySlug} arg - Arg object.
+     * @param {CatalogApplicationValidator.GetCategoryDetailBySlugParam} arg - Arg object.
      * @returns {Promise<CatalogApplicationModel.CategoryMetaResponse>} - Success response
      * @name getCategoryDetailBySlug
      * @summary: Get metadata of a category
      * @description: Fetch metadata of a category such as name, information, logo, banner, etc.
      */
-    getCategoryDetailBySlug({ slug }?: CatalogApplicationValidator.getCategoryDetailBySlug): Promise<CatalogApplicationModel.CategoryMetaResponse>;
+    getCategoryDetailBySlug({ slug }?: CatalogApplicationValidator.GetCategoryDetailBySlugParam): Promise<CatalogApplicationModel.CategoryMetaResponse>;
     /**
-     * @param {CatalogApplicationValidator.getCollectionDetailBySlug} arg - Arg object.
+     * @param {CatalogApplicationValidator.GetCollectionDetailBySlugParam} arg
+     *   - Arg object.
+     *
      * @returns {Promise<CatalogApplicationModel.CollectionDetailResponse>} -
      *   Success response
      * @name getCollectionDetailBySlug
      * @summary: Get a particular collection
      * @description: Get the details of a collection by its `slug`.
      */
-    getCollectionDetailBySlug({ slug }?: CatalogApplicationValidator.getCollectionDetailBySlug): Promise<CatalogApplicationModel.CollectionDetailResponse>;
+    getCollectionDetailBySlug({ slug }?: CatalogApplicationValidator.GetCollectionDetailBySlugParam): Promise<CatalogApplicationModel.CollectionDetailResponse>;
     /**
-     * @param {CatalogApplicationValidator.getCollectionItemsBySlug} arg - Arg object.
+     * @param {CatalogApplicationValidator.GetCollectionItemsBySlugParam} arg -
+     *   Arg object.
      * @returns {Promise<CatalogApplicationModel.ProductListingResponse>} -
      *   Success response
      * @name getCollectionItemsBySlug
      * @summary: Get the items in a collection
      * @description: Get items in a collection specified by its `slug`.
      */
-    getCollectionItemsBySlug({ slug, f, q, filters, sortOn, pageId, pageSize, pageNo, pageType, }?: CatalogApplicationValidator.getCollectionItemsBySlug): Promise<CatalogApplicationModel.ProductListingResponse>;
+    getCollectionItemsBySlug({ slug, f, q, filters, sortOn, pageId, pageSize, pageNo, pageType, }?: CatalogApplicationValidator.GetCollectionItemsBySlugParam): Promise<CatalogApplicationModel.ProductListingResponse>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.slug - A short, human-readable, URL-friendly
@@ -140,7 +143,7 @@ declare class Catalog {
         pageSize?: number;
     }): Paginator<CatalogApplicationModel.ProductListingResponse>;
     /**
-     * @param {CatalogApplicationValidator.getCollections} arg - Arg object.
+     * @param {CatalogApplicationValidator.GetCollectionsParam} arg - Arg object.
      * @returns {Promise<CatalogApplicationModel.GetCollectionListingResponse>}
      *   - Success response
      *
@@ -148,7 +151,7 @@ declare class Catalog {
      * @summary: List all the collections
      * @description: Collections are a great way to organize your products and can improve the ability for customers to find items quickly and efficiently.
      */
-    getCollections({ pageNo, pageSize, tag, q }?: CatalogApplicationValidator.getCollections): Promise<CatalogApplicationModel.GetCollectionListingResponse>;
+    getCollections({ pageNo, pageSize, tag, q }?: CatalogApplicationValidator.GetCollectionsParam): Promise<CatalogApplicationModel.GetCollectionListingResponse>;
     /**
      * @param {Object} arg - Arg object.
      * @param {number} [arg.pageSize] - The number of items to retrieve in each page.
@@ -164,7 +167,7 @@ declare class Catalog {
         q?: string;
     }): Paginator<CatalogApplicationModel.GetCollectionListingResponse>;
     /**
-     * @param {CatalogApplicationValidator.getComparedFrequentlyProductBySlug} arg
+     * @param {CatalogApplicationValidator.GetComparedFrequentlyProductBySlugParam} arg
      *   - Arg object.
      *
      * @returns {Promise<CatalogApplicationModel.ProductFrequentlyComparedSimilarResponse>}
@@ -174,9 +177,9 @@ declare class Catalog {
      * @summary: Get comparison between frequently compared products with the given product
      * @description: Use this API to compare a given product automatically with products that are frequently compared with it. Only one slug is needed.
      */
-    getComparedFrequentlyProductBySlug({ slug }?: CatalogApplicationValidator.getComparedFrequentlyProductBySlug): Promise<CatalogApplicationModel.ProductFrequentlyComparedSimilarResponse>;
+    getComparedFrequentlyProductBySlug({ slug }?: CatalogApplicationValidator.GetComparedFrequentlyProductBySlugParam): Promise<CatalogApplicationModel.ProductFrequentlyComparedSimilarResponse>;
     /**
-     * @param {CatalogApplicationValidator.getDepartments} arg - Arg object.
+     * @param {CatalogApplicationValidator.GetDepartmentsParam} arg - Arg object.
      * @returns {Promise<CatalogApplicationModel.DepartmentResponse>} - Success response
      * @name getDepartments
      * @summary: List all the departments
@@ -184,22 +187,22 @@ declare class Catalog {
      */
     getDepartments({}?: any): Promise<CatalogApplicationModel.DepartmentResponse>;
     /**
-     * @param {CatalogApplicationValidator.getFollowIds} arg - Arg object.
+     * @param {CatalogApplicationValidator.GetFollowIdsParam} arg - Arg object.
      * @returns {Promise<CatalogApplicationModel.FollowIdsResponse>} - Success response
      * @name getFollowIds
      * @summary: Get the IDs of followed products, brands and collections.
      * @description: You can get the IDs of all the followed Products, Brands and Collections. Pass collection_type as query parameter to fetch specific Ids
      */
-    getFollowIds({ collectionType }?: CatalogApplicationValidator.getFollowIds): Promise<CatalogApplicationModel.FollowIdsResponse>;
+    getFollowIds({ collectionType }?: CatalogApplicationValidator.GetFollowIdsParam): Promise<CatalogApplicationModel.FollowIdsResponse>;
     /**
-     * @param {CatalogApplicationValidator.getFollowedListing} arg - Arg object.
+     * @param {CatalogApplicationValidator.GetFollowedListingParam} arg - Arg object.
      * @returns {Promise<CatalogApplicationModel.GetFollowListingResponse>} -
      *   Success response
      * @name getFollowedListing
      * @summary: Get a list of followed Products, Brands, Collections
      * @description: Users can follow a product they like. This API retrieves the products the user have followed.
      */
-    getFollowedListing({ collectionType, pageId, pageSize }?: CatalogApplicationValidator.getFollowedListing): Promise<CatalogApplicationModel.GetFollowListingResponse>;
+    getFollowedListing({ collectionType, pageId, pageSize }?: CatalogApplicationValidator.GetFollowedListingParam): Promise<CatalogApplicationModel.GetFollowListingResponse>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.collectionType - Type of collection followed, i.e.
@@ -214,22 +217,22 @@ declare class Catalog {
         pageSize?: number;
     }): Paginator<CatalogApplicationModel.GetFollowListingResponse>;
     /**
-     * @param {CatalogApplicationValidator.getFollowerCountById} arg - Arg object.
+     * @param {CatalogApplicationValidator.GetFollowerCountByIdParam} arg - Arg object.
      * @returns {Promise<CatalogApplicationModel.FollowerCountResponse>} -
      *   Success response
      * @name getFollowerCountById
      * @summary: Get Follow Count
      * @description: Get the total count of followers for a given collection type and collection ID.
      */
-    getFollowerCountById({ collectionType, collectionId }?: CatalogApplicationValidator.getFollowerCountById): Promise<CatalogApplicationModel.FollowerCountResponse>;
+    getFollowerCountById({ collectionType, collectionId }?: CatalogApplicationValidator.GetFollowerCountByIdParam): Promise<CatalogApplicationModel.FollowerCountResponse>;
     /**
-     * @param {CatalogApplicationValidator.getHomeProducts} arg - Arg object.
+     * @param {CatalogApplicationValidator.GetHomeProductsParam} arg - Arg object.
      * @returns {Promise<CatalogApplicationModel.HomeListingResponse>} - Success response
      * @name getHomeProducts
      * @summary: List the products
      * @description: List all the products associated with a brand, collection or category in a random order.
      */
-    getHomeProducts({ sortOn, pageId, pageSize }?: CatalogApplicationValidator.getHomeProducts): Promise<CatalogApplicationModel.HomeListingResponse>;
+    getHomeProducts({ sortOn, pageId, pageSize }?: CatalogApplicationValidator.GetHomeProductsParam): Promise<CatalogApplicationModel.HomeListingResponse>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} [arg.sortOn] - The order in which the list of products
@@ -245,14 +248,14 @@ declare class Catalog {
         pageSize?: number;
     }): Paginator<CatalogApplicationModel.HomeListingResponse>;
     /**
-     * @param {CatalogApplicationValidator.getInStockLocations} arg - Arg object.
+     * @param {CatalogApplicationValidator.GetInStockLocationsParam} arg - Arg object.
      * @returns {Promise<CatalogApplicationModel.ApplicationStoreListing>} -
      *   Success response
      * @name getInStockLocations
      * @summary: Get store meta information.
      * @description: Use this API to get a list of stores in a specific application.
      */
-    getInStockLocations({ pageNo, pageSize, q, city, range, latitude, longitude, }?: CatalogApplicationValidator.getInStockLocations): Promise<CatalogApplicationModel.ApplicationStoreListing>;
+    getInStockLocations({ pageNo, pageSize, q, city, range, latitude, longitude, }?: CatalogApplicationValidator.GetInStockLocationsParam): Promise<CatalogApplicationModel.ApplicationStoreListing>;
     /**
      * @param {Object} arg - Arg object.
      * @param {number} [arg.pageSize] - Number of items to retrieve in each page.
@@ -277,49 +280,51 @@ declare class Catalog {
         longitude?: number;
     }): Paginator<CatalogApplicationModel.ApplicationStoreListing>;
     /**
-     * @param {CatalogApplicationValidator.getLocationDetailsById} arg - Arg object.
+     * @param {CatalogApplicationValidator.GetLocationDetailsByIdParam} arg - Arg object.
      * @returns {Promise<CatalogApplicationModel.StoreDetails>} - Success response
      * @name getLocationDetailsById
      * @summary: Get store meta information.
      * @description: Use this API to get meta details for a store.
      */
-    getLocationDetailsById({ locationId }?: CatalogApplicationValidator.getLocationDetailsById): Promise<CatalogApplicationModel.StoreDetails>;
+    getLocationDetailsById({ locationId }?: CatalogApplicationValidator.GetLocationDetailsByIdParam): Promise<CatalogApplicationModel.StoreDetails>;
     /**
-     * @param {CatalogApplicationValidator.getProductBundlesBySlug} arg - Arg object.
+     * @param {CatalogApplicationValidator.GetProductBundlesBySlugParam} arg - Arg object.
      * @returns {Promise<CatalogApplicationModel.ProductBundle>} - Success response
      * @name getProductBundlesBySlug
      * @summary: Get product bundles
      * @description: Use this API to retrieve products bundles to the one specified by its slug.
      */
-    getProductBundlesBySlug({ slug, id }?: CatalogApplicationValidator.getProductBundlesBySlug): Promise<CatalogApplicationModel.ProductBundle>;
+    getProductBundlesBySlug({ slug, id }?: CatalogApplicationValidator.GetProductBundlesBySlugParam): Promise<CatalogApplicationModel.ProductBundle>;
     /**
-     * @param {CatalogApplicationValidator.getProductComparisonBySlugs} arg - Arg object.
+     * @param {CatalogApplicationValidator.GetProductComparisonBySlugsParam} arg
+     *   - Arg object.
+     *
      * @returns {Promise<CatalogApplicationModel.ProductsComparisonResponse>} -
      *   Success response
      * @name getProductComparisonBySlugs
      * @summary: Compare products
      * @description: Use this API to compare the features of products belonging to the same category. Note that at least one slug is mandatory in the request query.
      */
-    getProductComparisonBySlugs({ slug }?: CatalogApplicationValidator.getProductComparisonBySlugs): Promise<CatalogApplicationModel.ProductsComparisonResponse>;
+    getProductComparisonBySlugs({ slug }?: CatalogApplicationValidator.GetProductComparisonBySlugsParam): Promise<CatalogApplicationModel.ProductsComparisonResponse>;
     /**
-     * @param {CatalogApplicationValidator.getProductDetailBySlug} arg - Arg object.
+     * @param {CatalogApplicationValidator.GetProductDetailBySlugParam} arg - Arg object.
      * @returns {Promise<CatalogApplicationModel.ProductDetail>} - Success response
      * @name getProductDetailBySlug
      * @summary: Get a product
      * @description: Use this API to retrieve a product by its slug value.
      */
-    getProductDetailBySlug({ slug }?: CatalogApplicationValidator.getProductDetailBySlug): Promise<CatalogApplicationModel.ProductDetail>;
+    getProductDetailBySlug({ slug }?: CatalogApplicationValidator.GetProductDetailBySlugParam): Promise<CatalogApplicationModel.ProductDetail>;
     /**
-     * @param {CatalogApplicationValidator.getProductPriceBySlug} arg - Arg object.
+     * @param {CatalogApplicationValidator.GetProductPriceBySlugParam} arg - Arg object.
      * @returns {Promise<CatalogApplicationModel.ProductSizePriceResponseV3>} -
      *   Success response
      * @name getProductPriceBySlug
      * @summary: Get the price of a product size at a PIN Code
      * @description: Prices may vary for different sizes of a product. Use this API to retrieve the price of a product size at all the selling locations near to a PIN Code.
      */
-    getProductPriceBySlug({ slug, size, storeId, pincode, moq }?: CatalogApplicationValidator.getProductPriceBySlug): Promise<CatalogApplicationModel.ProductSizePriceResponseV3>;
+    getProductPriceBySlug({ slug, size, storeId, pincode, moq }?: CatalogApplicationValidator.GetProductPriceBySlugParam): Promise<CatalogApplicationModel.ProductSizePriceResponseV3>;
     /**
-     * @param {CatalogApplicationValidator.getProductSellersBySlug} arg - Arg object.
+     * @param {CatalogApplicationValidator.GetProductSellersBySlugParam} arg - Arg object.
      * @returns {Promise<CatalogApplicationModel.ProductSizeSellersResponseV3>}
      *   - Success response
      *
@@ -327,7 +332,7 @@ declare class Catalog {
      * @summary: Get the sellers of a product size at a PIN Code
      * @description: A product of a particular size may be sold by multiple sellers. Use this API to fetch the sellers having the stock of a particular size at a given PIN Code.
      */
-    getProductSellersBySlug({ slug, size, pincode, strategy, pageNo, pageSize, }?: CatalogApplicationValidator.getProductSellersBySlug): Promise<CatalogApplicationModel.ProductSizeSellersResponseV3>;
+    getProductSellersBySlug({ slug, size, pincode, strategy, pageNo, pageSize, }?: CatalogApplicationValidator.GetProductSellersBySlugParam): Promise<CatalogApplicationModel.ProductSizeSellersResponseV3>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.slug - A short, human-readable, URL-friendly
@@ -353,30 +358,32 @@ declare class Catalog {
         pageSize?: number;
     }): Paginator<CatalogApplicationModel.ProductSizeSellersResponseV3>;
     /**
-     * @param {CatalogApplicationValidator.getProductSizesBySlug} arg - Arg object.
+     * @param {CatalogApplicationValidator.GetProductSizesBySlugParam} arg - Arg object.
      * @returns {Promise<CatalogApplicationModel.ProductSizes>} - Success response
      * @name getProductSizesBySlug
      * @summary: Get the sizes of a product
      * @description: A product can have multiple sizes. Use this API to fetch all the available sizes of a product.
      */
-    getProductSizesBySlug({ slug, storeId }?: CatalogApplicationValidator.getProductSizesBySlug): Promise<CatalogApplicationModel.ProductSizes>;
+    getProductSizesBySlug({ slug, storeId }?: CatalogApplicationValidator.GetProductSizesBySlugParam): Promise<CatalogApplicationModel.ProductSizes>;
     /**
-     * @param {CatalogApplicationValidator.getProductStockByIds} arg - Arg object.
+     * @param {CatalogApplicationValidator.GetProductStockByIdsParam} arg - Arg object.
      * @returns {Promise<CatalogApplicationModel.ProductStockStatusResponse>} -
      *   Success response
      * @name getProductStockByIds
      * @summary: Get the stock of a product
      * @description: Retrieve the available stock of the products. Use this API to retrieve stock of multiple products (up to 50) at a time.
      */
-    getProductStockByIds({ itemId, alu, skuCode, ean, upc }?: CatalogApplicationValidator.getProductStockByIds): Promise<CatalogApplicationModel.ProductStockStatusResponse>;
+    getProductStockByIds({ itemId, alu, skuCode, ean, upc }?: CatalogApplicationValidator.GetProductStockByIdsParam): Promise<CatalogApplicationModel.ProductStockStatusResponse>;
     /**
-     * @param {CatalogApplicationValidator.getProductStockForTimeByIds} arg - Arg object.
+     * @param {CatalogApplicationValidator.GetProductStockForTimeByIdsParam} arg
+     *   - Arg object.
+     *
      * @returns {Promise<CatalogApplicationModel.ProductStockPolling>} - Success response
      * @name getProductStockForTimeByIds
      * @summary: Get the stock of a product
      * @description: Retrieve the available stock of the products. Use this API to get the stock status of products whose inventory is updated at the specified time
      */
-    getProductStockForTimeByIds({ timestamp, pageSize, pageId }?: CatalogApplicationValidator.getProductStockForTimeByIds): Promise<CatalogApplicationModel.ProductStockPolling>;
+    getProductStockForTimeByIds({ timestamp, pageSize, pageId }?: CatalogApplicationValidator.GetProductStockForTimeByIdsParam): Promise<CatalogApplicationModel.ProductStockPolling>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.timestamp - Timestamp in UTC format (2020-07-23T10:27:50Z)
@@ -390,23 +397,24 @@ declare class Catalog {
         pageSize?: number;
     }): Paginator<CatalogApplicationModel.ProductStockPolling>;
     /**
-     * @param {CatalogApplicationValidator.getProductVariantsBySlug} arg - Arg object.
+     * @param {CatalogApplicationValidator.GetProductVariantsBySlugParam} arg -
+     *   Arg object.
      * @returns {Promise<CatalogApplicationModel.ProductVariantsResponse>} -
      *   Success response
      * @name getProductVariantsBySlug
      * @summary: Get variant of a particular product
      * @description: A product can have a different type of variants such as colour, shade, memory. Use this API to fetch all the available variants of a product using its slug.
      */
-    getProductVariantsBySlug({ slug }?: CatalogApplicationValidator.getProductVariantsBySlug): Promise<CatalogApplicationModel.ProductVariantsResponse>;
+    getProductVariantsBySlug({ slug }?: CatalogApplicationValidator.GetProductVariantsBySlugParam): Promise<CatalogApplicationModel.ProductVariantsResponse>;
     /**
-     * @param {CatalogApplicationValidator.getProducts} arg - Arg object.
+     * @param {CatalogApplicationValidator.GetProductsParam} arg - Arg object.
      * @returns {Promise<CatalogApplicationModel.ProductListingResponse>} -
      *   Success response
      * @name getProducts
      * @summary: Get all the products
      * @description: Use this API to list all the products. You may choose a sort order or make arbitrary search queries by entering the product name, brand, category or collection.
      */
-    getProducts({ q, f, filters, sortOn, pageId, pageSize, pageNo, pageType, }?: CatalogApplicationValidator.getProducts): Promise<CatalogApplicationModel.ProductListingResponse>;
+    getProducts({ q, f, filters, sortOn, pageId, pageSize, pageNo, pageType, }?: CatalogApplicationValidator.GetProductsParam): Promise<CatalogApplicationModel.ProductListingResponse>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} [arg.q] - The search query for entering partial or full
@@ -433,15 +441,15 @@ declare class Catalog {
         pageSize?: number;
     }): Paginator<CatalogApplicationModel.ProductListingResponse>;
     /**
-     * @param {CatalogApplicationValidator.getSearchResults} arg - Arg object.
+     * @param {CatalogApplicationValidator.GetSearchResultsParam} arg - Arg object.
      * @returns {Promise<CatalogApplicationModel.AutoCompleteResponse>} - Success response
      * @name getSearchResults
      * @summary: Get relevant suggestions for a search query
      * @description: Retrieves a list of suggestions for a given search query. Each suggestion is a valid search term that's generated on the basis of query. This is particularly useful to enhance the user experience while using the search tool.
      */
-    getSearchResults({ q }?: CatalogApplicationValidator.getSearchResults): Promise<CatalogApplicationModel.AutoCompleteResponse>;
+    getSearchResults({ q }?: CatalogApplicationValidator.GetSearchResultsParam): Promise<CatalogApplicationModel.AutoCompleteResponse>;
     /**
-     * @param {CatalogApplicationValidator.getSimilarComparisonProductBySlug} arg
+     * @param {CatalogApplicationValidator.GetSimilarComparisonProductBySlugParam} arg
      *   - Arg object.
      *
      * @returns {Promise<CatalogApplicationModel.ProductCompareResponse>} -
@@ -450,15 +458,15 @@ declare class Catalog {
      * @summary: Get comparison between similar products
      * @description: Use this API to compare a given product automatically with similar products. Only one slug is needed.
      */
-    getSimilarComparisonProductBySlug({ slug }?: CatalogApplicationValidator.getSimilarComparisonProductBySlug): Promise<CatalogApplicationModel.ProductCompareResponse>;
+    getSimilarComparisonProductBySlug({ slug }?: CatalogApplicationValidator.GetSimilarComparisonProductBySlugParam): Promise<CatalogApplicationModel.ProductCompareResponse>;
     /**
-     * @param {CatalogApplicationValidator.getStores} arg - Arg object.
+     * @param {CatalogApplicationValidator.GetStoresParam} arg - Arg object.
      * @returns {Promise<CatalogApplicationModel.StoreListingResponse>} - Success response
      * @name getStores
      * @summary: Get store meta information.
      * @description: Use this API to get a list of stores in a specific application.
      */
-    getStores({ pageNo, pageSize, q, city, range, latitude, longitude, }?: CatalogApplicationValidator.getStores): Promise<CatalogApplicationModel.StoreListingResponse>;
+    getStores({ pageNo, pageSize, q, city, range, latitude, longitude, }?: CatalogApplicationValidator.GetStoresParam): Promise<CatalogApplicationModel.StoreListingResponse>;
     /**
      * @param {Object} arg - Arg object.
      * @param {number} [arg.pageSize] - Number of items to retrieve in each page.
@@ -483,13 +491,13 @@ declare class Catalog {
         longitude?: number;
     }): Paginator<CatalogApplicationModel.StoreListingResponse>;
     /**
-     * @param {CatalogApplicationValidator.unfollowById} arg - Arg object.
+     * @param {CatalogApplicationValidator.UnfollowByIdParam} arg - Arg object.
      * @returns {Promise<CatalogApplicationModel.FollowPostResponse>} - Success response
      * @name unfollowById
      * @summary: Unfollow an entity (product/brand/collection)
      * @description: You can undo a followed product, brand or collection by its ID. This action is referred as _unfollow_.
      */
-    unfollowById({ collectionType, collectionId }?: CatalogApplicationValidator.unfollowById): Promise<CatalogApplicationModel.FollowPostResponse>;
+    unfollowById({ collectionType, collectionId }?: CatalogApplicationValidator.UnfollowByIdParam): Promise<CatalogApplicationModel.FollowPostResponse>;
 }
 import CatalogApplicationValidator = require("./CatalogApplicationValidator");
 import CatalogApplicationModel = require("./CatalogApplicationModel");

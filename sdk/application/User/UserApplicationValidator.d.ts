@@ -1,16 +1,16 @@
 export = UserApplicationValidator;
 /**
- * @typedef addEmail
+ * @typedef AddEmailParam
  * @property {string} [platform] - ID of the application
  * @property {UserApplicationModel.EditEmailRequestSchema} body
  */
 /**
- * @typedef addMobileNumber
+ * @typedef AddMobileNumberParam
  * @property {string} [platform] - ID of the application
  * @property {UserApplicationModel.EditMobileRequestSchema} body
  */
 /**
- * @typedef deleteEmail
+ * @typedef DeleteEmailParam
  * @property {string} [platform] - ID of the application
  * @property {boolean} active - This is a boolean value to check if email ID is
  *   active 1. True - Email ID is active 2.False - Email ID is inactive
@@ -22,7 +22,7 @@ export = UserApplicationValidator;
  * @property {string} email - The email ID to delete
  */
 /**
- * @typedef deleteMobileNumber
+ * @typedef DeleteMobileNumberParam
  * @property {string} [platform] - ID of the application
  * @property {boolean} active - This is a boolean value to check if mobile
  *   number is active 1.True - Number is active 2. False - Number is inactive
@@ -35,159 +35,223 @@ export = UserApplicationValidator;
  * @property {string} phone - Phone number
  */
 /**
- * @typedef deleteUser
+ * @typedef DeleteUserParam
  * @property {UserApplicationModel.DeleteApplicationUserRequestSchema} body
  */
 /**
- * @typedef forgotPassword
+ * @typedef ForgotPasswordParam
  * @property {UserApplicationModel.ForgotPasswordRequestSchema} body
  */
-/** @typedef getListOfActiveSessions */
-/** @typedef getLoggedInUser */
+/** @typedef GetListOfActiveSessionsParam */
+/** @typedef GetLoggedInUserParam */
 /**
- * @typedef getPlatformConfig
+ * @typedef GetPlatformConfigParam
  * @property {string} [name] - Name of the application, e.g. Fynd
  */
-/** @typedef hasPassword */
+/** @typedef HasPasswordParam */
 /**
- * @typedef loginWithAppleIOS
+ * @typedef LoginWithAppleIOSParam
  * @property {string} [platform] - ID of the application
  * @property {UserApplicationModel.OAuthRequestAppleSchema} body
  */
 /**
- * @typedef loginWithEmailAndPassword
+ * @typedef LoginWithEmailAndPasswordParam
  * @property {UserApplicationModel.PasswordLoginRequestSchema} body
  */
 /**
- * @typedef loginWithFacebook
+ * @typedef LoginWithFacebookParam
  * @property {string} [platform] - ID of the application
  * @property {UserApplicationModel.OAuthRequestSchema} body
  */
 /**
- * @typedef loginWithGoogle
+ * @typedef LoginWithGoogleParam
  * @property {string} [platform] - ID of the application
  * @property {UserApplicationModel.OAuthRequestSchema} body
  */
 /**
- * @typedef loginWithGoogleAndroid
+ * @typedef LoginWithGoogleAndroidParam
  * @property {string} [platform] - ID of the application
  * @property {UserApplicationModel.OAuthRequestSchema} body
  */
 /**
- * @typedef loginWithGoogleIOS
+ * @typedef LoginWithGoogleIOSParam
  * @property {string} [platform] - ID of the application
  * @property {UserApplicationModel.OAuthRequestSchema} body
  */
 /**
- * @typedef loginWithOTP
+ * @typedef LoginWithOTPParam
  * @property {string} [platform] - ID of the application
  * @property {UserApplicationModel.SendOtpRequestSchema} body
  */
 /**
- * @typedef loginWithToken
+ * @typedef LoginWithTokenParam
  * @property {UserApplicationModel.TokenRequestBodySchema} body
  */
-/** @typedef logout */
+/** @typedef LogoutParam */
 /**
- * @typedef registerWithForm
+ * @typedef RegisterWithFormParam
  * @property {string} [platform] - ID of the application
  * @property {UserApplicationModel.FormRegisterRequestSchema} body
  */
 /**
- * @typedef sendOTPOnEmail
+ * @typedef SendOTPOnEmailParam
  * @property {string} [platform] - ID of the application
  * @property {UserApplicationModel.SendEmailOtpRequestSchema} body
  */
 /**
- * @typedef sendOTPOnMobile
+ * @typedef SendOTPOnMobileParam
  * @property {string} [platform] - ID of the application
  * @property {UserApplicationModel.SendMobileOtpRequestSchema} body
  */
 /**
- * @typedef sendResetPasswordEmail
+ * @typedef SendResetPasswordEmailParam
  * @property {string} [platform] - ID of the application
  * @property {UserApplicationModel.SendResetPasswordEmailRequestSchema} body
  */
 /**
- * @typedef sendResetPasswordMobile
+ * @typedef SendResetPasswordMobileParam
  * @property {string} [platform] - ID of the application
  * @property {UserApplicationModel.SendResetPasswordMobileRequestSchema} body
  */
 /**
- * @typedef sendResetToken
+ * @typedef SendResetTokenParam
  * @property {UserApplicationModel.CodeRequestBodySchema} body
  */
 /**
- * @typedef sendVerificationLinkToEmail
+ * @typedef SendVerificationLinkToEmailParam
  * @property {string} [platform] - ID of the application
  * @property {UserApplicationModel.EditEmailRequestSchema} body
  */
 /**
- * @typedef sendVerificationLinkToMobile
+ * @typedef SendVerificationLinkToMobileParam
  * @property {string} [platform] - ID of the application
  * @property {UserApplicationModel.SendVerificationLinkMobileRequestSchema} body
  */
 /**
- * @typedef setEmailAsPrimary
+ * @typedef SetEmailAsPrimaryParam
  * @property {UserApplicationModel.EditEmailRequestSchema} body
  */
 /**
- * @typedef setMobileNumberAsPrimary
+ * @typedef SetMobileNumberAsPrimaryParam
  * @property {UserApplicationModel.SendVerificationLinkMobileRequestSchema} body
  */
 /**
- * @typedef updatePassword
+ * @typedef UpdatePasswordParam
  * @property {UserApplicationModel.UpdatePasswordRequestSchema} body
  */
 /**
- * @typedef updateProfile
+ * @typedef UpdateProfileParam
  * @property {string} [platform] - ID of the application
  * @property {UserApplicationModel.EditProfileRequestSchema} body
  */
 /**
- * @typedef verifyEmail
+ * @typedef VerifyEmailParam
  * @property {UserApplicationModel.CodeRequestBodySchema} body
  */
 /**
- * @typedef verifyEmailOTP
+ * @typedef VerifyEmailOTPParam
  * @property {string} [platform] - ID of the application
  * @property {UserApplicationModel.VerifyEmailOtpRequestSchema} body
  */
 /**
- * @typedef verifyMobile
+ * @typedef VerifyMobileParam
  * @property {UserApplicationModel.CodeRequestBodySchema} body
  */
 /**
- * @typedef verifyMobileOTP
+ * @typedef VerifyMobileOTPParam
  * @property {string} [platform] - ID of the application
  * @property {UserApplicationModel.VerifyOtpRequestSchema} body
  */
 declare class UserApplicationValidator {
+    /** @returns {addEmail} */
+    static addEmail(): addEmail;
+    /** @returns {addMobileNumber} */
+    static addMobileNumber(): addMobileNumber;
+    /** @returns {deleteEmail} */
+    static deleteEmail(): deleteEmail;
+    /** @returns {deleteMobileNumber} */
+    static deleteMobileNumber(): deleteMobileNumber;
+    /** @returns {deleteUser} */
+    static deleteUser(): deleteUser;
+    /** @returns {forgotPassword} */
+    static forgotPassword(): forgotPassword;
+    /** @returns {getListOfActiveSessions} */
+    static getListOfActiveSessions(): getListOfActiveSessions;
+    /** @returns {getLoggedInUser} */
+    static getLoggedInUser(): getLoggedInUser;
+    /** @returns {getPlatformConfig} */
+    static getPlatformConfig(): getPlatformConfig;
+    /** @returns {hasPassword} */
+    static hasPassword(): hasPassword;
+    /** @returns {loginWithAppleIOS} */
+    static loginWithAppleIOS(): loginWithAppleIOS;
+    /** @returns {loginWithEmailAndPassword} */
+    static loginWithEmailAndPassword(): loginWithEmailAndPassword;
+    /** @returns {loginWithFacebook} */
+    static loginWithFacebook(): loginWithFacebook;
+    /** @returns {loginWithGoogle} */
+    static loginWithGoogle(): loginWithGoogle;
+    /** @returns {loginWithGoogleAndroid} */
+    static loginWithGoogleAndroid(): loginWithGoogleAndroid;
+    /** @returns {loginWithGoogleIOS} */
+    static loginWithGoogleIOS(): loginWithGoogleIOS;
+    /** @returns {loginWithOTP} */
+    static loginWithOTP(): loginWithOTP;
+    /** @returns {loginWithToken} */
+    static loginWithToken(): loginWithToken;
+    /** @returns {logout} */
+    static logout(): logout;
+    /** @returns {registerWithForm} */
+    static registerWithForm(): registerWithForm;
+    /** @returns {sendOTPOnEmail} */
+    static sendOTPOnEmail(): sendOTPOnEmail;
+    /** @returns {sendOTPOnMobile} */
+    static sendOTPOnMobile(): sendOTPOnMobile;
+    /** @returns {sendResetPasswordEmail} */
+    static sendResetPasswordEmail(): sendResetPasswordEmail;
+    /** @returns {sendResetPasswordMobile} */
+    static sendResetPasswordMobile(): sendResetPasswordMobile;
+    /** @returns {sendResetToken} */
+    static sendResetToken(): sendResetToken;
+    /** @returns {sendVerificationLinkToEmail} */
+    static sendVerificationLinkToEmail(): sendVerificationLinkToEmail;
+    /** @returns {sendVerificationLinkToMobile} */
+    static sendVerificationLinkToMobile(): sendVerificationLinkToMobile;
+    /** @returns {setEmailAsPrimary} */
+    static setEmailAsPrimary(): setEmailAsPrimary;
+    /** @returns {setMobileNumberAsPrimary} */
+    static setMobileNumberAsPrimary(): setMobileNumberAsPrimary;
+    /** @returns {updatePassword} */
+    static updatePassword(): updatePassword;
+    /** @returns {updateProfile} */
+    static updateProfile(): updateProfile;
+    /** @returns {verifyEmail} */
+    static verifyEmail(): verifyEmail;
+    /** @returns {verifyEmailOTP} */
+    static verifyEmailOTP(): verifyEmailOTP;
+    /** @returns {verifyMobile} */
+    static verifyMobile(): verifyMobile;
+    /** @returns {verifyMobileOTP} */
+    static verifyMobileOTP(): verifyMobileOTP;
 }
 declare namespace UserApplicationValidator {
-    export { addEmail, addMobileNumber, deleteEmail, deleteMobileNumber, deleteUser, forgotPassword, getListOfActiveSessions, getLoggedInUser, getPlatformConfig, hasPassword, loginWithAppleIOS, loginWithEmailAndPassword, loginWithFacebook, loginWithGoogle, loginWithGoogleAndroid, loginWithGoogleIOS, loginWithOTP, loginWithToken, logout, registerWithForm, sendOTPOnEmail, sendOTPOnMobile, sendResetPasswordEmail, sendResetPasswordMobile, sendResetToken, sendVerificationLinkToEmail, sendVerificationLinkToMobile, setEmailAsPrimary, setMobileNumberAsPrimary, updatePassword, updateProfile, verifyEmail, verifyEmailOTP, verifyMobile, verifyMobileOTP };
+    export { AddEmailParam, AddMobileNumberParam, DeleteEmailParam, DeleteMobileNumberParam, DeleteUserParam, ForgotPasswordParam, GetListOfActiveSessionsParam, GetLoggedInUserParam, GetPlatformConfigParam, HasPasswordParam, LoginWithAppleIOSParam, LoginWithEmailAndPasswordParam, LoginWithFacebookParam, LoginWithGoogleParam, LoginWithGoogleAndroidParam, LoginWithGoogleIOSParam, LoginWithOTPParam, LoginWithTokenParam, LogoutParam, RegisterWithFormParam, SendOTPOnEmailParam, SendOTPOnMobileParam, SendResetPasswordEmailParam, SendResetPasswordMobileParam, SendResetTokenParam, SendVerificationLinkToEmailParam, SendVerificationLinkToMobileParam, SetEmailAsPrimaryParam, SetMobileNumberAsPrimaryParam, UpdatePasswordParam, UpdateProfileParam, VerifyEmailParam, VerifyEmailOTPParam, VerifyMobileParam, VerifyMobileOTPParam };
 }
-/** @returns {addEmail} */
-declare function addEmail(): addEmail;
-type addEmail = {
+type AddEmailParam = {
     /**
      * - ID of the application
      */
     platform?: string;
     body: UserApplicationModel.EditEmailRequestSchema;
 };
-/** @returns {addMobileNumber} */
-declare function addMobileNumber(): addMobileNumber;
-type addMobileNumber = {
+type AddMobileNumberParam = {
     /**
      * - ID of the application
      */
     platform?: string;
     body: UserApplicationModel.EditMobileRequestSchema;
 };
-/** @returns {deleteEmail} */
-declare function deleteEmail(): deleteEmail;
-type deleteEmail = {
+type DeleteEmailParam = {
     /**
      * - ID of the application
      */
@@ -213,9 +277,7 @@ type deleteEmail = {
      */
     email: string;
 };
-/** @returns {deleteMobileNumber} */
-declare function deleteMobileNumber(): deleteMobileNumber;
-type deleteMobileNumber = {
+type DeleteMobileNumberParam = {
     /**
      * - ID of the application
      */
@@ -245,214 +307,152 @@ type deleteMobileNumber = {
      */
     phone: string;
 };
-/** @returns {deleteUser} */
-declare function deleteUser(): deleteUser;
-type deleteUser = {
+type DeleteUserParam = {
     body: UserApplicationModel.DeleteApplicationUserRequestSchema;
 };
-/** @returns {forgotPassword} */
-declare function forgotPassword(): forgotPassword;
-type forgotPassword = {
+type ForgotPasswordParam = {
     body: UserApplicationModel.ForgotPasswordRequestSchema;
 };
-/** @returns {getListOfActiveSessions} */
-declare function getListOfActiveSessions(): any;
-type getListOfActiveSessions = any;
-/** @returns {getLoggedInUser} */
-declare function getLoggedInUser(): any;
-type getLoggedInUser = any;
-/** @returns {getPlatformConfig} */
-declare function getPlatformConfig(): getPlatformConfig;
-type getPlatformConfig = {
+type GetListOfActiveSessionsParam = any;
+type GetLoggedInUserParam = any;
+type GetPlatformConfigParam = {
     /**
      * - Name of the application, e.g. Fynd
      */
     name?: string;
 };
-/** @returns {hasPassword} */
-declare function hasPassword(): any;
-type hasPassword = any;
-/** @returns {loginWithAppleIOS} */
-declare function loginWithAppleIOS(): loginWithAppleIOS;
-type loginWithAppleIOS = {
+type HasPasswordParam = any;
+type LoginWithAppleIOSParam = {
     /**
      * - ID of the application
      */
     platform?: string;
     body: UserApplicationModel.OAuthRequestAppleSchema;
 };
-/** @returns {loginWithEmailAndPassword} */
-declare function loginWithEmailAndPassword(): loginWithEmailAndPassword;
-type loginWithEmailAndPassword = {
+type LoginWithEmailAndPasswordParam = {
     body: UserApplicationModel.PasswordLoginRequestSchema;
 };
-/** @returns {loginWithFacebook} */
-declare function loginWithFacebook(): loginWithFacebook;
-type loginWithFacebook = {
+type LoginWithFacebookParam = {
     /**
      * - ID of the application
      */
     platform?: string;
     body: UserApplicationModel.OAuthRequestSchema;
 };
-/** @returns {loginWithGoogle} */
-declare function loginWithGoogle(): loginWithGoogle;
-type loginWithGoogle = {
+type LoginWithGoogleParam = {
     /**
      * - ID of the application
      */
     platform?: string;
     body: UserApplicationModel.OAuthRequestSchema;
 };
-/** @returns {loginWithGoogleAndroid} */
-declare function loginWithGoogleAndroid(): loginWithGoogleAndroid;
-type loginWithGoogleAndroid = {
+type LoginWithGoogleAndroidParam = {
     /**
      * - ID of the application
      */
     platform?: string;
     body: UserApplicationModel.OAuthRequestSchema;
 };
-/** @returns {loginWithGoogleIOS} */
-declare function loginWithGoogleIOS(): loginWithGoogleIOS;
-type loginWithGoogleIOS = {
+type LoginWithGoogleIOSParam = {
     /**
      * - ID of the application
      */
     platform?: string;
     body: UserApplicationModel.OAuthRequestSchema;
 };
-/** @returns {loginWithOTP} */
-declare function loginWithOTP(): loginWithOTP;
-type loginWithOTP = {
+type LoginWithOTPParam = {
     /**
      * - ID of the application
      */
     platform?: string;
     body: UserApplicationModel.SendOtpRequestSchema;
 };
-/** @returns {loginWithToken} */
-declare function loginWithToken(): loginWithToken;
-type loginWithToken = {
+type LoginWithTokenParam = {
     body: UserApplicationModel.TokenRequestBodySchema;
 };
-/** @returns {logout} */
-declare function logout(): any;
-type logout = any;
-/** @returns {registerWithForm} */
-declare function registerWithForm(): registerWithForm;
-type registerWithForm = {
+type LogoutParam = any;
+type RegisterWithFormParam = {
     /**
      * - ID of the application
      */
     platform?: string;
     body: UserApplicationModel.FormRegisterRequestSchema;
 };
-/** @returns {sendOTPOnEmail} */
-declare function sendOTPOnEmail(): sendOTPOnEmail;
-type sendOTPOnEmail = {
+type SendOTPOnEmailParam = {
     /**
      * - ID of the application
      */
     platform?: string;
     body: UserApplicationModel.SendEmailOtpRequestSchema;
 };
-/** @returns {sendOTPOnMobile} */
-declare function sendOTPOnMobile(): sendOTPOnMobile;
-type sendOTPOnMobile = {
+type SendOTPOnMobileParam = {
     /**
      * - ID of the application
      */
     platform?: string;
     body: UserApplicationModel.SendMobileOtpRequestSchema;
 };
-/** @returns {sendResetPasswordEmail} */
-declare function sendResetPasswordEmail(): sendResetPasswordEmail;
-type sendResetPasswordEmail = {
+type SendResetPasswordEmailParam = {
     /**
      * - ID of the application
      */
     platform?: string;
     body: UserApplicationModel.SendResetPasswordEmailRequestSchema;
 };
-/** @returns {sendResetPasswordMobile} */
-declare function sendResetPasswordMobile(): sendResetPasswordMobile;
-type sendResetPasswordMobile = {
+type SendResetPasswordMobileParam = {
     /**
      * - ID of the application
      */
     platform?: string;
     body: UserApplicationModel.SendResetPasswordMobileRequestSchema;
 };
-/** @returns {sendResetToken} */
-declare function sendResetToken(): sendResetToken;
-type sendResetToken = {
+type SendResetTokenParam = {
     body: UserApplicationModel.CodeRequestBodySchema;
 };
-/** @returns {sendVerificationLinkToEmail} */
-declare function sendVerificationLinkToEmail(): sendVerificationLinkToEmail;
-type sendVerificationLinkToEmail = {
+type SendVerificationLinkToEmailParam = {
     /**
      * - ID of the application
      */
     platform?: string;
     body: UserApplicationModel.EditEmailRequestSchema;
 };
-/** @returns {sendVerificationLinkToMobile} */
-declare function sendVerificationLinkToMobile(): sendVerificationLinkToMobile;
-type sendVerificationLinkToMobile = {
+type SendVerificationLinkToMobileParam = {
     /**
      * - ID of the application
      */
     platform?: string;
     body: UserApplicationModel.SendVerificationLinkMobileRequestSchema;
 };
-/** @returns {setEmailAsPrimary} */
-declare function setEmailAsPrimary(): setEmailAsPrimary;
-type setEmailAsPrimary = {
+type SetEmailAsPrimaryParam = {
     body: UserApplicationModel.EditEmailRequestSchema;
 };
-/** @returns {setMobileNumberAsPrimary} */
-declare function setMobileNumberAsPrimary(): setMobileNumberAsPrimary;
-type setMobileNumberAsPrimary = {
+type SetMobileNumberAsPrimaryParam = {
     body: UserApplicationModel.SendVerificationLinkMobileRequestSchema;
 };
-/** @returns {updatePassword} */
-declare function updatePassword(): updatePassword;
-type updatePassword = {
+type UpdatePasswordParam = {
     body: UserApplicationModel.UpdatePasswordRequestSchema;
 };
-/** @returns {updateProfile} */
-declare function updateProfile(): updateProfile;
-type updateProfile = {
+type UpdateProfileParam = {
     /**
      * - ID of the application
      */
     platform?: string;
     body: UserApplicationModel.EditProfileRequestSchema;
 };
-/** @returns {verifyEmail} */
-declare function verifyEmail(): verifyEmail;
-type verifyEmail = {
+type VerifyEmailParam = {
     body: UserApplicationModel.CodeRequestBodySchema;
 };
-/** @returns {verifyEmailOTP} */
-declare function verifyEmailOTP(): verifyEmailOTP;
-type verifyEmailOTP = {
+type VerifyEmailOTPParam = {
     /**
      * - ID of the application
      */
     platform?: string;
     body: UserApplicationModel.VerifyEmailOtpRequestSchema;
 };
-/** @returns {verifyMobile} */
-declare function verifyMobile(): verifyMobile;
-type verifyMobile = {
+type VerifyMobileParam = {
     body: UserApplicationModel.CodeRequestBodySchema;
 };
-/** @returns {verifyMobileOTP} */
-declare function verifyMobileOTP(): verifyMobileOTP;
-type verifyMobileOTP = {
+type VerifyMobileOTPParam = {
     /**
      * - ID of the application
      */

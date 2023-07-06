@@ -1,27 +1,27 @@
 export = DiscountPlatformValidator;
 /**
- * @typedef cancelDownloadJob
+ * @typedef CancelDownloadJobParam
  * @property {string} id - Id
  */
 /**
- * @typedef cancelValidationJob
+ * @typedef CancelValidationJobParam
  * @property {string} id - Id
  */
 /**
- * @typedef createDiscount
+ * @typedef CreateDiscountParam
  * @property {DiscountPlatformModel.CreateUpdateDiscount} body
  */
 /**
- * @typedef downloadDiscountFile
+ * @typedef DownloadDiscountFileParam
  * @property {string} type - Type
  * @property {DiscountPlatformModel.DownloadFileJob} body
  */
 /**
- * @typedef getDiscount
+ * @typedef GetDiscountParam
  * @property {string} id - Unique id.
  */
 /**
- * @typedef getDiscounts
+ * @typedef GetDiscountsParam
  * @property {string} [view] - Listing or calender. Default is listing.
  * @property {string} [q] - The search query. This can be a partial or complete
  *   name of a discount.
@@ -34,74 +34,84 @@ export = DiscountPlatformValidator;
  * @property {string[]} [appIds] - Application ids.
  */
 /**
- * @typedef getDownloadJob
+ * @typedef GetDownloadJobParam
  * @property {string} id - Id
  */
 /**
- * @typedef getValidationJob
+ * @typedef GetValidationJobParam
  * @property {string} id - Id
  */
 /**
- * @typedef updateDiscount
+ * @typedef UpdateDiscountParam
  * @property {string} id - Id
  * @property {DiscountPlatformModel.CreateUpdateDiscount} body
  */
 /**
- * @typedef upsertDiscountItems
+ * @typedef UpsertDiscountItemsParam
  * @property {string} id - Job ID of the discount.
  * @property {DiscountPlatformModel.BulkDiscount} body
  */
 /**
- * @typedef validateDiscountFile
+ * @typedef ValidateDiscountFileParam
  * @property {string} [discount] - Discount
  * @property {DiscountPlatformModel.FileJobRequest} body
  */
 declare class DiscountPlatformValidator {
+    /** @returns {cancelDownloadJob} */
+    static cancelDownloadJob(): cancelDownloadJob;
+    /** @returns {cancelValidationJob} */
+    static cancelValidationJob(): cancelValidationJob;
+    /** @returns {createDiscount} */
+    static createDiscount(): createDiscount;
+    /** @returns {downloadDiscountFile} */
+    static downloadDiscountFile(): downloadDiscountFile;
+    /** @returns {getDiscount} */
+    static getDiscount(): getDiscount;
+    /** @returns {getDiscounts} */
+    static getDiscounts(): getDiscounts;
+    /** @returns {getDownloadJob} */
+    static getDownloadJob(): getDownloadJob;
+    /** @returns {getValidationJob} */
+    static getValidationJob(): getValidationJob;
+    /** @returns {updateDiscount} */
+    static updateDiscount(): updateDiscount;
+    /** @returns {upsertDiscountItems} */
+    static upsertDiscountItems(): upsertDiscountItems;
+    /** @returns {validateDiscountFile} */
+    static validateDiscountFile(): validateDiscountFile;
 }
 declare namespace DiscountPlatformValidator {
-    export { cancelDownloadJob, cancelValidationJob, createDiscount, downloadDiscountFile, getDiscount, getDiscounts, getDownloadJob, getValidationJob, updateDiscount, upsertDiscountItems, validateDiscountFile };
+    export { CancelDownloadJobParam, CancelValidationJobParam, CreateDiscountParam, DownloadDiscountFileParam, GetDiscountParam, GetDiscountsParam, GetDownloadJobParam, GetValidationJobParam, UpdateDiscountParam, UpsertDiscountItemsParam, ValidateDiscountFileParam };
 }
-/** @returns {cancelDownloadJob} */
-declare function cancelDownloadJob(): cancelDownloadJob;
-type cancelDownloadJob = {
+type CancelDownloadJobParam = {
     /**
      * - Id
      */
     id: string;
 };
-/** @returns {cancelValidationJob} */
-declare function cancelValidationJob(): cancelValidationJob;
-type cancelValidationJob = {
+type CancelValidationJobParam = {
     /**
      * - Id
      */
     id: string;
 };
-/** @returns {createDiscount} */
-declare function createDiscount(): createDiscount;
-type createDiscount = {
+type CreateDiscountParam = {
     body: DiscountPlatformModel.CreateUpdateDiscount;
 };
-/** @returns {downloadDiscountFile} */
-declare function downloadDiscountFile(): downloadDiscountFile;
-type downloadDiscountFile = {
+type DownloadDiscountFileParam = {
     /**
      * - Type
      */
     type: string;
     body: DiscountPlatformModel.DownloadFileJob;
 };
-/** @returns {getDiscount} */
-declare function getDiscount(): getDiscount;
-type getDiscount = {
+type GetDiscountParam = {
     /**
      * - Unique id.
      */
     id: string;
 };
-/** @returns {getDiscounts} */
-declare function getDiscounts(): getDiscounts;
-type getDiscounts = {
+type GetDiscountsParam = {
     /**
      * - Listing or calender. Default is listing.
      */
@@ -140,43 +150,33 @@ type getDiscounts = {
      */
     appIds?: string[];
 };
-/** @returns {getDownloadJob} */
-declare function getDownloadJob(): getDownloadJob;
-type getDownloadJob = {
+type GetDownloadJobParam = {
     /**
      * - Id
      */
     id: string;
 };
-/** @returns {getValidationJob} */
-declare function getValidationJob(): getValidationJob;
-type getValidationJob = {
+type GetValidationJobParam = {
     /**
      * - Id
      */
     id: string;
 };
-/** @returns {updateDiscount} */
-declare function updateDiscount(): updateDiscount;
-type updateDiscount = {
+type UpdateDiscountParam = {
     /**
      * - Id
      */
     id: string;
     body: DiscountPlatformModel.CreateUpdateDiscount;
 };
-/** @returns {upsertDiscountItems} */
-declare function upsertDiscountItems(): upsertDiscountItems;
-type upsertDiscountItems = {
+type UpsertDiscountItemsParam = {
     /**
      * - Job ID of the discount.
      */
     id: string;
     body: DiscountPlatformModel.BulkDiscount;
 };
-/** @returns {validateDiscountFile} */
-declare function validateDiscountFile(): validateDiscountFile;
-type validateDiscountFile = {
+type ValidateDiscountFileParam = {
     /**
      * - Discount
      */

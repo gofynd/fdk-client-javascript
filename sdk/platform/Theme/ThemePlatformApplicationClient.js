@@ -13,7 +13,9 @@ class Theme {
   }
 
   /**
-   * @param {ThemePlatformApplicationValidator.addThemeToApplicationV2} arg - Arg object
+   * @param {ThemePlatformApplicationValidator.AddThemeToApplicationV2Param} arg
+   *   - Arg object
+   *
    * @returns {Promise<ThemePlatformModel.ApplyThemeResponseV2>} - Success response
    * @name addThemeToApplicationV2
    * @summary: Apply a theme to an application
@@ -76,7 +78,7 @@ class Theme {
   }
 
   /**
-   * @param {ThemePlatformApplicationValidator.addToThemeLibrary} arg - Arg object
+   * @param {ThemePlatformApplicationValidator.AddToThemeLibraryParam} arg - Arg object
    * @returns {Promise<ThemePlatformModel.ThemesSchema>} - Success response
    * @name addToThemeLibrary
    * @summary: Add a theme to the theme library
@@ -139,7 +141,7 @@ class Theme {
   }
 
   /**
-   * @param {ThemePlatformApplicationValidator.applyTheme} arg - Arg object
+   * @param {ThemePlatformApplicationValidator.ApplyThemeParam} arg - Arg object
    * @returns {Promise<ThemePlatformModel.ThemesSchema>} - Success response
    * @name applyTheme
    * @summary: Apply a theme
@@ -200,7 +202,7 @@ class Theme {
   }
 
   /**
-   * @param {ThemePlatformApplicationValidator.applyThemeV2} arg - Arg object
+   * @param {ThemePlatformApplicationValidator.ApplyThemeV2Param} arg - Arg object
    * @returns {Promise<ThemePlatformModel.AllThemesApplicationResponseV2>} -
    *   Success response
    * @name applyThemeV2
@@ -262,7 +264,7 @@ class Theme {
   }
 
   /**
-   * @param {ThemePlatformApplicationValidator.archiveTheme} arg - Arg object
+   * @param {ThemePlatformApplicationValidator.ArchiveThemeParam} arg - Arg object
    * @returns {Promise<ThemePlatformModel.ThemesSchema>} - Success response
    * @name archiveTheme
    * @summary: Archive a theme
@@ -323,7 +325,9 @@ class Theme {
   }
 
   /**
-   * @param {ThemePlatformApplicationValidator.checkThemeUpgradableV2} arg - Arg object
+   * @param {ThemePlatformApplicationValidator.CheckThemeUpgradableV2Param} arg
+   *   - Arg object
+   *
    * @returns {Promise<ThemePlatformModel.ThemeUpgradableResponseV2>} - Success response
    * @name checkThemeUpgradableV2
    * @summary: Check if the theme is upgradable
@@ -386,7 +390,7 @@ class Theme {
   }
 
   /**
-   * @param {ThemePlatformApplicationValidator.createPage} arg - Arg object
+   * @param {ThemePlatformApplicationValidator.CreatePageParam} arg - Arg object
    * @returns {Promise<ThemePlatformModel.AvailablePageSchema>} - Success response
    * @name createPage
    * @summary: Create a page
@@ -449,7 +453,7 @@ class Theme {
   }
 
   /**
-   * @param {ThemePlatformApplicationValidator.createTheme} arg - Arg object
+   * @param {ThemePlatformApplicationValidator.CreateThemeParam} arg - Arg object
    * @returns {Promise<ThemePlatformModel.ThemesSchema>} - Success response
    * @name createTheme
    * @summary: Create a new theme
@@ -510,7 +514,7 @@ class Theme {
   }
 
   /**
-   * @param {ThemePlatformApplicationValidator.deletePage} arg - Arg object
+   * @param {ThemePlatformApplicationValidator.DeletePageParam} arg - Arg object
    * @returns {Promise<ThemePlatformModel.AvailablePageSchema>} - Success response
    * @name deletePage
    * @summary: Deletes a page
@@ -573,7 +577,7 @@ class Theme {
   }
 
   /**
-   * @param {ThemePlatformApplicationValidator.deleteTheme} arg - Arg object
+   * @param {ThemePlatformApplicationValidator.DeleteThemeParam} arg - Arg object
    * @returns {Promise<ThemePlatformModel.ThemesSchema>} - Success response
    * @name deleteTheme
    * @summary: Delete a theme
@@ -634,7 +638,7 @@ class Theme {
   }
 
   /**
-   * @param {ThemePlatformApplicationValidator.deleteThemeV2} arg - Arg object
+   * @param {ThemePlatformApplicationValidator.DeleteThemeV2Param} arg - Arg object
    * @returns {Promise<ThemePlatformModel.AllThemesApplicationResponseV2>} -
    *   Success response
    * @name deleteThemeV2
@@ -698,7 +702,7 @@ class Theme {
   }
 
   /**
-   * @param {ThemePlatformApplicationValidator.duplicateThemeV2} arg - Arg object
+   * @param {ThemePlatformApplicationValidator.DuplicateThemeV2Param} arg - Arg object
    * @returns {Promise<ThemePlatformModel.AllThemesApplicationResponseV2>} -
    *   Success response
    * @name duplicateThemeV2
@@ -762,7 +766,7 @@ class Theme {
   }
 
   /**
-   * @param {ThemePlatformApplicationValidator.getAllPages} arg - Arg object
+   * @param {ThemePlatformApplicationValidator.GetAllPagesParam} arg - Arg object
    * @returns {Promise<ThemePlatformModel.AllAvailablePageSchema>} - Success response
    * @name getAllPages
    * @summary: Get all pages of a theme
@@ -823,7 +827,7 @@ class Theme {
   }
 
   /**
-   * @param {ThemePlatformApplicationValidator.getApplicationThemeByIdV2} arg
+   * @param {ThemePlatformApplicationValidator.GetApplicationThemeByIdV2Param} arg
    *   - Arg object
    *
    * @returns {Promise<ThemePlatformModel.AllThemesApplicationResponseV2>} -
@@ -889,7 +893,7 @@ class Theme {
   }
 
   /**
-   * @param {ThemePlatformApplicationValidator.getApplicationThemesCountV2} arg
+   * @param {ThemePlatformApplicationValidator.GetApplicationThemesCountV2Param} arg
    *   - Arg object
    *
    * @returns {Promise<Object>} - Success response
@@ -948,7 +952,9 @@ class Theme {
   }
 
   /**
-   * @param {ThemePlatformApplicationValidator.getApplicationThemesV2} arg - Arg object
+   * @param {ThemePlatformApplicationValidator.GetApplicationThemesV2Param} arg
+   *   - Arg object
+   *
    * @returns {Promise<ThemePlatformModel.AllThemesApplicationResponseV2[]>}
    *   - Success response
    *
@@ -1006,7 +1012,7 @@ class Theme {
   }
 
   /**
-   * @param {ThemePlatformApplicationValidator.getAppliedTheme} arg - Arg object
+   * @param {ThemePlatformApplicationValidator.GetAppliedThemeParam} arg - Arg object
    * @returns {Promise<ThemePlatformModel.ThemesSchema>} - Success response
    * @name getAppliedTheme
    * @summary: Get the applied theme
@@ -1065,7 +1071,7 @@ class Theme {
   }
 
   /**
-   * @param {ThemePlatformApplicationValidator.getAppliedThemeV2} arg - Arg object
+   * @param {ThemePlatformApplicationValidator.GetAppliedThemeV2Param} arg - Arg object
    * @returns {Promise<ThemePlatformModel.ApplyThemeResponseV2>} - Success response
    * @name getAppliedThemeV2
    * @summary: Get the Applied theme of an Application
@@ -1124,7 +1130,9 @@ class Theme {
   }
 
   /**
-   * @param {ThemePlatformApplicationValidator.getDefaultPageDetails} arg - Arg object
+   * @param {ThemePlatformApplicationValidator.GetDefaultPageDetailsParam} arg
+   *   - Arg object
+   *
    * @returns {Promise<ThemePlatformModel.AvailablePageSchema>} - Success response
    * @name getDefaultPageDetails
    * @summary: Get default page details of a page from page_value
@@ -1187,7 +1195,7 @@ class Theme {
   }
 
   /**
-   * @param {ThemePlatformApplicationValidator.getFonts} arg - Arg object
+   * @param {ThemePlatformApplicationValidator.GetFontsParam} arg - Arg object
    * @returns {Promise<ThemePlatformModel.FontsSchema>} - Success response
    * @name getFonts
    * @summary: Get all the supported fonts in a theme
@@ -1244,7 +1252,7 @@ class Theme {
   }
 
   /**
-   * @param {ThemePlatformApplicationValidator.getFontsV2} arg - Arg object
+   * @param {ThemePlatformApplicationValidator.GetFontsV2Param} arg - Arg object
    * @returns {Promise<ThemePlatformModel.FontsSchema>} - Success response
    * @name getFontsV2
    * @summary: Get all the supported fonts in a theme
@@ -1301,7 +1309,7 @@ class Theme {
   }
 
   /**
-   * @param {ThemePlatformApplicationValidator.getPage} arg - Arg object
+   * @param {ThemePlatformApplicationValidator.GetPageParam} arg - Arg object
    * @returns {Promise<ThemePlatformModel.AvailablePageSchema>} - Success response
    * @name getPage
    * @summary: Get page of a theme
@@ -1364,7 +1372,7 @@ class Theme {
   }
 
   /**
-   * @param {ThemePlatformApplicationValidator.getPublicThemes} arg - Arg object
+   * @param {ThemePlatformApplicationValidator.GetPublicThemesParam} arg - Arg object
    * @returns {Promise<ThemePlatformModel.ThemesListingResponseSchema>} -
    *   Success response
    * @name getPublicThemes
@@ -1432,7 +1440,7 @@ class Theme {
   }
 
   /**
-   * @param {ThemePlatformApplicationValidator.getThemeById} arg - Arg object
+   * @param {ThemePlatformApplicationValidator.GetThemeByIdParam} arg - Arg object
    * @returns {Promise<ThemePlatformModel.ThemesSchema>} - Success response
    * @name getThemeById
    * @summary: Gets theme by id
@@ -1493,7 +1501,7 @@ class Theme {
   }
 
   /**
-   * @param {ThemePlatformApplicationValidator.getThemeForPreview} arg - Arg object
+   * @param {ThemePlatformApplicationValidator.GetThemeForPreviewParam} arg - Arg object
    * @returns {Promise<ThemePlatformModel.ThemesSchema>} - Success response
    * @name getThemeForPreview
    * @summary: Get a theme preview
@@ -1556,7 +1564,9 @@ class Theme {
   }
 
   /**
-   * @param {ThemePlatformApplicationValidator.getThemeLastModified} arg - Arg object
+   * @param {ThemePlatformApplicationValidator.GetThemeLastModifiedParam} arg
+   *   - Arg object
+   *
    * @returns {Promise<any>} - Success response
    * @name getThemeLastModified
    * @summary: Fetch last modified timestamp
@@ -1616,7 +1626,9 @@ class Theme {
   }
 
   /**
-   * @param {ThemePlatformApplicationValidator.getThemeLastModifiedV2} arg - Arg object
+   * @param {ThemePlatformApplicationValidator.GetThemeLastModifiedV2Param} arg
+   *   - Arg object
+   *
    * @returns {Promise<any>} - Success response
    * @name getThemeLastModifiedV2
    * @summary: Fetch last modified timestamp
@@ -1676,7 +1688,7 @@ class Theme {
   }
 
   /**
-   * @param {ThemePlatformApplicationValidator.getThemeLibrary} arg - Arg object
+   * @param {ThemePlatformApplicationValidator.GetThemeLibraryParam} arg - Arg object
    * @returns {Promise<ThemePlatformModel.ThemesListingResponseSchema>} -
    *   Success response
    * @name getThemeLibrary
@@ -1744,7 +1756,9 @@ class Theme {
   }
 
   /**
-   * @param {ThemePlatformApplicationValidator.getThemePreviewByIdV2} arg - Arg object
+   * @param {ThemePlatformApplicationValidator.GetThemePreviewByIdV2Param} arg
+   *   - Arg object
+   *
    * @returns {Promise<ThemePlatformModel.AllThemesApplicationResponseV2>} -
    *   Success response
    * @name getThemePreviewByIdV2
@@ -1808,7 +1822,7 @@ class Theme {
   }
 
   /**
-   * @param {ThemePlatformApplicationValidator.isUpgradable} arg - Arg object
+   * @param {ThemePlatformApplicationValidator.IsUpgradableParam} arg - Arg object
    * @returns {Promise<ThemePlatformModel.UpgradableThemeSchema>} - Success response
    * @name isUpgradable
    * @summary: Checks if theme is upgradable
@@ -1869,7 +1883,7 @@ class Theme {
   }
 
   /**
-   * @param {ThemePlatformApplicationValidator.publishTheme} arg - Arg object
+   * @param {ThemePlatformApplicationValidator.PublishThemeParam} arg - Arg object
    * @returns {Promise<ThemePlatformModel.ThemesSchema>} - Success response
    * @name publishTheme
    * @summary: Publish a theme
@@ -1930,7 +1944,7 @@ class Theme {
   }
 
   /**
-   * @param {ThemePlatformApplicationValidator.unarchiveTheme} arg - Arg object
+   * @param {ThemePlatformApplicationValidator.UnarchiveThemeParam} arg - Arg object
    * @returns {Promise<ThemePlatformModel.ThemesSchema>} - Success response
    * @name unarchiveTheme
    * @summary: Unarchive a theme
@@ -1993,7 +2007,7 @@ class Theme {
   }
 
   /**
-   * @param {ThemePlatformApplicationValidator.unpublishTheme} arg - Arg object
+   * @param {ThemePlatformApplicationValidator.UnpublishThemeParam} arg - Arg object
    * @returns {Promise<ThemePlatformModel.ThemesSchema>} - Success response
    * @name unpublishTheme
    * @summary: Unpublish a theme
@@ -2056,7 +2070,9 @@ class Theme {
   }
 
   /**
-   * @param {ThemePlatformApplicationValidator.updateMultiplePages} arg - Arg object
+   * @param {ThemePlatformApplicationValidator.UpdateMultiplePagesParam} arg
+   *   - Arg object
+   *
    * @returns {Promise<ThemePlatformModel.AllAvailablePageSchema>} - Success response
    * @name updateMultiplePages
    * @summary: Update multiple pages of a theme
@@ -2121,7 +2137,7 @@ class Theme {
   }
 
   /**
-   * @param {ThemePlatformApplicationValidator.updatePage} arg - Arg object
+   * @param {ThemePlatformApplicationValidator.UpdatePageParam} arg - Arg object
    * @returns {Promise<ThemePlatformModel.AvailablePageSchema>} - Success response
    * @name updatePage
    * @summary: Updates a page
@@ -2186,7 +2202,7 @@ class Theme {
   }
 
   /**
-   * @param {ThemePlatformApplicationValidator.updateTheme} arg - Arg object
+   * @param {ThemePlatformApplicationValidator.UpdateThemeParam} arg - Arg object
    * @returns {Promise<ThemePlatformModel.ThemesSchema>} - Success response
    * @name updateTheme
    * @summary: Update a theme
@@ -2249,7 +2265,7 @@ class Theme {
   }
 
   /**
-   * @param {ThemePlatformApplicationValidator.updateThemeNameV2} arg - Arg object
+   * @param {ThemePlatformApplicationValidator.UpdateThemeNameV2Param} arg - Arg object
    * @returns {Promise<ThemePlatformModel.AllThemesApplicationResponseV2>} -
    *   Success response
    * @name updateThemeNameV2
@@ -2315,7 +2331,7 @@ class Theme {
   }
 
   /**
-   * @param {ThemePlatformApplicationValidator.updateThemeV2} arg - Arg object
+   * @param {ThemePlatformApplicationValidator.UpdateThemeV2Param} arg - Arg object
    * @returns {Promise<ThemePlatformModel.AllThemesApplicationResponseV2>} -
    *   Success response
    * @name updateThemeV2
@@ -2381,7 +2397,9 @@ class Theme {
   }
 
   /**
-   * @param {ThemePlatformApplicationValidator.upgradeApplicationV2} arg - Arg object
+   * @param {ThemePlatformApplicationValidator.UpgradeApplicationV2Param} arg
+   *   - Arg object
+   *
    * @returns {Promise<ThemePlatformModel.AllThemesApplicationResponseV2>} -
    *   Success response
    * @name upgradeApplicationV2
@@ -2445,7 +2463,7 @@ class Theme {
   }
 
   /**
-   * @param {ThemePlatformApplicationValidator.upgradeTheme} arg - Arg object
+   * @param {ThemePlatformApplicationValidator.UpgradeThemeParam} arg - Arg object
    * @returns {Promise<ThemePlatformModel.ThemesSchema>} - Success response
    * @name upgradeTheme
    * @summary: Upgrade a theme

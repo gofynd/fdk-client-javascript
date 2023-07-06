@@ -12,7 +12,7 @@ class Order {
   }
 
   /**
-   * @param {OrderPlatformValidator.attachOrderUser} arg - Arg object
+   * @param {OrderPlatformValidator.AttachOrderUserParam} arg - Arg object
    * @returns {Promise<OrderPlatformModel.AttachOrderUserResponse>} - Success response
    * @name attachOrderUser
    * @summary:
@@ -76,7 +76,7 @@ class Order {
   }
 
   /**
-   * @param {OrderPlatformValidator.checkOrderStatus} arg - Arg object
+   * @param {OrderPlatformValidator.CheckOrderStatusParam} arg - Arg object
    * @returns {Promise<OrderPlatformModel.OrderStatusResult>} - Success response
    * @name checkOrderStatus
    * @summary:
@@ -140,7 +140,7 @@ class Order {
   }
 
   /**
-   * @param {OrderPlatformValidator.click2Call} arg - Arg object
+   * @param {OrderPlatformValidator.Click2CallParam} arg - Arg object
    * @returns {Promise<OrderPlatformModel.Click2CallResponse>} - Success response
    * @name click2Call
    * @summary:
@@ -224,7 +224,7 @@ class Order {
   }
 
   /**
-   * @param {OrderPlatformValidator.createOrder} arg - Arg object
+   * @param {OrderPlatformValidator.CreateOrderParam} arg - Arg object
    * @returns {Promise<OrderPlatformModel.CreateOrderResponse>} - Success response
    * @name createOrder
    * @summary:
@@ -286,73 +286,7 @@ class Order {
   }
 
   /**
-   * @param {OrderPlatformValidator.createShipmentReport} arg - Arg object
-   * @returns {Promise<OrderPlatformModel.Success>} - Success response
-   * @name createShipmentReport
-   * @summary:
-   * @description:
-   */
-  async createShipmentReport({ fromDate, toDate } = {}) {
-    const { error } = OrderPlatformValidator.createShipmentReport().validate(
-      {
-        fromDate,
-        toDate,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = OrderPlatformValidator.createShipmentReport().validate(
-      {
-        fromDate,
-        toDate,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: `Parameter Validation warrnings for platform > Order > createShipmentReport \n ${warrning}`,
-      });
-    }
-
-    const query_params = {};
-    query_params["from_date"] = fromDate;
-    query_params["to_date"] = toDate;
-
-    const xHeaders = {};
-
-    const response = await PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/orders/v1.0/company/${this.config.companyId}/reports/shipment`,
-      query_params,
-      undefined,
-      xHeaders
-    );
-
-    const { error: res_error } = OrderPlatformModel.Success().validate(
-      response,
-      { abortEarly: false, allowUnknown: false }
-    );
-
-    if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Order > createShipmentReport \n ${res_error}`,
-      });
-    }
-
-    return response;
-  }
-
-  /**
-   * @param {OrderPlatformValidator.dispatchManifest} arg - Arg object
+   * @param {OrderPlatformValidator.DispatchManifestParam} arg - Arg object
    * @returns {Promise<OrderPlatformModel.SuccessResponse>} - Success response
    * @name dispatchManifest
    * @summary:
@@ -416,7 +350,7 @@ class Order {
   }
 
   /**
-   * @param {OrderPlatformValidator.downloadBulkActionTemplate} arg - Arg object
+   * @param {OrderPlatformValidator.DownloadBulkActionTemplateParam} arg - Arg object
    * @returns {Promise<OrderPlatformModel.FileResponse>} - Success response
    * @name downloadBulkActionTemplate
    * @summary:
@@ -459,7 +393,7 @@ class Order {
     const response = await PlatformAPIClient.execute(
       this.config,
       "get",
-      `/service/platform/orders/v1.0/company/${this.config.companyId}/bulk-action/download-seller-templates`,
+      `/service/platform/order/v1.0/company/${this.config.companyId}/bulk-action/download-seller-templates`,
       query_params,
       undefined,
       xHeaders
@@ -483,7 +417,7 @@ class Order {
   }
 
   /**
-   * @param {OrderPlatformValidator.fetchCreditBalanceDetail} arg - Arg object
+   * @param {OrderPlatformValidator.FetchCreditBalanceDetailParam} arg - Arg object
    * @returns {Promise<OrderPlatformModel.FetchCreditBalanceResponsePayload>}
    *   - Success response
    *
@@ -551,7 +485,7 @@ class Order {
   }
 
   /**
-   * @param {OrderPlatformValidator.fetchRefundModeConfig} arg - Arg object
+   * @param {OrderPlatformValidator.FetchRefundModeConfigParam} arg - Arg object
    * @returns {Promise<OrderPlatformModel.RefundModeConfigResponsePayload>} -
    *   Success response
    * @name fetchRefundModeConfig
@@ -616,7 +550,7 @@ class Order {
   }
 
   /**
-   * @param {OrderPlatformValidator.generatePOSReceiptByOrderId} arg - Arg object
+   * @param {OrderPlatformValidator.GeneratePOSReceiptByOrderIdParam} arg - Arg object
    * @returns {Promise<OrderPlatformModel.GeneratePosOrderReceiptResponse>} -
    *   Success response
    * @name generatePOSReceiptByOrderId
@@ -669,7 +603,7 @@ class Order {
     const response = await PlatformAPIClient.execute(
       this.config,
       "get",
-      `/service/platform/orders/v1.0/company/${this.config.companyId}/orders/${orderId}/generate/pos-receipt`,
+      `/service/platform/order/v1.0/company/${this.config.companyId}/orders/${orderId}/generate/pos-receipt`,
       query_params,
       undefined,
       xHeaders
@@ -693,7 +627,7 @@ class Order {
   }
 
   /**
-   * @param {OrderPlatformValidator.getAnnouncements} arg - Arg object
+   * @param {OrderPlatformValidator.GetAnnouncementsParam} arg - Arg object
    * @returns {Promise<OrderPlatformModel.AnnouncementsResponse>} - Success response
    * @name getAnnouncements
    * @summary:
@@ -758,78 +692,7 @@ class Order {
   }
 
   /**
-   * @param {OrderPlatformValidator.getAssetByShipmentIds} arg - Arg object
-   * @returns {Promise<OrderPlatformModel.ResponseGetAssetShipment>} - Success response
-   * @name getAssetByShipmentIds
-   * @summary: Get Invoice or Label or Pos of a shipment
-   * @description: Use this API to retrieve shipments invoice, label and pos.
-   */
-  async getAssetByShipmentIds({ shipmentIds, invoice, expiresIn } = {}) {
-    const { error } = OrderPlatformValidator.getAssetByShipmentIds().validate(
-      {
-        shipmentIds,
-        invoice,
-        expiresIn,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = OrderPlatformValidator.getAssetByShipmentIds().validate(
-      {
-        shipmentIds,
-        invoice,
-        expiresIn,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: `Parameter Validation warrnings for platform > Order > getAssetByShipmentIds \n ${warrning}`,
-      });
-    }
-
-    const query_params = {};
-    query_params["shipment_ids"] = shipmentIds;
-    query_params["invoice"] = invoice;
-    query_params["expires_in"] = expiresIn;
-
-    const xHeaders = {};
-
-    const response = await PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/orders/v1.0/company/${this.config.companyId}/shipments-invoice`,
-      query_params,
-      undefined,
-      xHeaders
-    );
-
-    const {
-      error: res_error,
-    } = OrderPlatformModel.ResponseGetAssetShipment().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
-
-    if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Order > getAssetByShipmentIds \n ${res_error}`,
-      });
-    }
-
-    return response;
-  }
-
-  /**
-   * @param {OrderPlatformValidator.getBagById} arg - Arg object
+   * @param {OrderPlatformValidator.GetBagByIdParam} arg - Arg object
    * @returns {Promise<OrderPlatformModel.BagDetailsPlatformResponse>} -
    *   Success response
    * @name getBagById
@@ -875,7 +738,7 @@ class Order {
     const response = await PlatformAPIClient.execute(
       this.config,
       "get",
-      `/service/platform/orders/v1.0/company/${this.config.companyId}/bag-details/`,
+      `/service/platform/order/v1.0/company/${this.config.companyId}/bag-details/`,
       query_params,
       undefined,
       xHeaders
@@ -899,7 +762,7 @@ class Order {
   }
 
   /**
-   * @param {OrderPlatformValidator.getBags} arg - Arg object
+   * @param {OrderPlatformValidator.GetBagsParam} arg - Arg object
    * @returns {Promise<OrderPlatformModel.GetBagsPlatformResponse>} - Success response
    * @name getBags
    * @summary:
@@ -972,7 +835,7 @@ class Order {
     const response = await PlatformAPIClient.execute(
       this.config,
       "get",
-      `/service/platform/orders/v1.0/company/${this.config.companyId}/bags`,
+      `/service/platform/order/v1.0/company/${this.config.companyId}/bags`,
       query_params,
       undefined,
       xHeaders
@@ -996,7 +859,7 @@ class Order {
   }
 
   /**
-   * @param {OrderPlatformValidator.getBulkActionTemplate} arg - Arg object
+   * @param {OrderPlatformValidator.GetBulkActionTemplateParam} arg - Arg object
    * @returns {Promise<OrderPlatformModel.BulkActionTemplateResponse>} -
    *   Success response
    * @name getBulkActionTemplate
@@ -1033,7 +896,7 @@ class Order {
     const response = await PlatformAPIClient.execute(
       this.config,
       "get",
-      `/service/platform/orders/v1.0/company/${this.config.companyId}/bulk-action/get-seller-templates`,
+      `/service/platform/order/v1.0/company/${this.config.companyId}/bulk-action/get-seller-templates`,
       query_params,
       undefined,
       xHeaders
@@ -1057,7 +920,7 @@ class Order {
   }
 
   /**
-   * @param {OrderPlatformValidator.getBulkShipmentExcelFile} arg - Arg object
+   * @param {OrderPlatformValidator.GetBulkShipmentExcelFileParam} arg - Arg object
    * @returns {Promise<OrderPlatformModel.FileResponse>} - Success response
    * @name getBulkShipmentExcelFile
    * @summary:
@@ -1146,7 +1009,7 @@ class Order {
     const response = await PlatformAPIClient.execute(
       this.config,
       "get",
-      `/service/platform/orders/v1.0/company/${this.config.companyId}/generate/file`,
+      `/service/platform/order/v1.0/company/${this.config.companyId}/generate/file`,
       query_params,
       undefined,
       xHeaders
@@ -1170,7 +1033,7 @@ class Order {
   }
 
   /**
-   * @param {OrderPlatformValidator.getLaneConfig} arg - Arg object
+   * @param {OrderPlatformValidator.GetLaneConfigParam} arg - Arg object
    * @returns {Promise<OrderPlatformModel.LaneConfigResponse>} - Success response
    * @name getLaneConfig
    * @summary:
@@ -1267,7 +1130,7 @@ class Order {
     const response = await PlatformAPIClient.execute(
       this.config,
       "get",
-      `/service/platform/orders/v1.0/company/${this.config.companyId}/lane-config/`,
+      `/service/platform/order/v1.0/company/${this.config.companyId}/lane-config/`,
       query_params,
       undefined,
       xHeaders
@@ -1291,7 +1154,7 @@ class Order {
   }
 
   /**
-   * @param {OrderPlatformValidator.getManifestDetails} arg - Arg object
+   * @param {OrderPlatformValidator.GetManifestDetailsParam} arg - Arg object
    * @returns {Promise<OrderPlatformModel.ManifestDetails>} - Success response
    * @name getManifestDetails
    * @summary:
@@ -1390,7 +1253,7 @@ class Order {
   }
 
   /**
-   * @param {OrderPlatformValidator.getManifestShipments} arg - Arg object
+   * @param {OrderPlatformValidator.GetManifestShipmentsParam} arg - Arg object
    * @returns {Promise<OrderPlatformModel.ManifestShipmentListing>} - Success response
    * @name getManifestShipments
    * @summary:
@@ -1493,7 +1356,7 @@ class Order {
   }
 
   /**
-   * @param {OrderPlatformValidator.getManifestfilters} arg - Arg object
+   * @param {OrderPlatformValidator.GetManifestfiltersParam} arg - Arg object
    * @returns {Promise<OrderPlatformModel.ManifestFiltersResponse>} - Success response
    * @name getManifestfilters
    * @summary:
@@ -1558,7 +1421,7 @@ class Order {
   }
 
   /**
-   * @param {OrderPlatformValidator.getManifests} arg - Arg object
+   * @param {OrderPlatformValidator.GetManifestsParam} arg - Arg object
    * @returns {Promise<OrderPlatformModel.ManifestList>} - Success response
    * @name getManifests
    * @summary:
@@ -1647,75 +1510,7 @@ class Order {
   }
 
   /**
-   * @param {OrderPlatformValidator.getMetricCount} arg - Arg object
-   * @returns {Promise<OrderPlatformModel.MetricCountResponse>} - Success response
-   * @name getMetricCount
-   * @summary:
-   * @description:
-   */
-  async getMetricCount({ fromDate, toDate } = {}) {
-    const { error } = OrderPlatformValidator.getMetricCount().validate(
-      {
-        fromDate,
-        toDate,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = OrderPlatformValidator.getMetricCount().validate(
-      {
-        fromDate,
-        toDate,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: `Parameter Validation warrnings for platform > Order > getMetricCount \n ${warrning}`,
-      });
-    }
-
-    const query_params = {};
-    query_params["from_date"] = fromDate;
-    query_params["to_date"] = toDate;
-
-    const xHeaders = {};
-
-    const response = await PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/orders/v1.0/company/${this.config.companyId}/shipment/metrics-count/`,
-      query_params,
-      undefined,
-      xHeaders
-    );
-
-    const {
-      error: res_error,
-    } = OrderPlatformModel.MetricCountResponse().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
-
-    if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Order > getMetricCount \n ${res_error}`,
-      });
-    }
-
-    return response;
-  }
-
-  /**
-   * @param {OrderPlatformValidator.getOrderById} arg - Arg object
+   * @param {OrderPlatformValidator.GetOrderByIdParam} arg - Arg object
    * @returns {Promise<OrderPlatformModel.OrderDetailsResponse>} - Success response
    * @name getOrderById
    * @summary:
@@ -1754,7 +1549,7 @@ class Order {
     const response = await PlatformAPIClient.execute(
       this.config,
       "get",
-      `/service/platform/orders/v1.0/company/${this.config.companyId}/order-details`,
+      `/service/platform/order/v1.0/company/${this.config.companyId}/order-details`,
       query_params,
       undefined,
       xHeaders
@@ -1778,7 +1573,7 @@ class Order {
   }
 
   /**
-   * @param {OrderPlatformValidator.getOrders} arg - Arg object
+   * @param {OrderPlatformValidator.GetOrdersParam} arg - Arg object
    * @returns {Promise<OrderPlatformModel.OrderListingResponse>} - Success response
    * @name getOrders
    * @summary:
@@ -1883,7 +1678,7 @@ class Order {
     const response = await PlatformAPIClient.execute(
       this.config,
       "get",
-      `/service/platform/orders/v1.0/company/${this.config.companyId}/orders-listing`,
+      `/service/platform/order/v1.0/company/${this.config.companyId}/orders-listing`,
       query_params,
       undefined,
       xHeaders
@@ -1907,77 +1702,7 @@ class Order {
   }
 
   /**
-   * @param {OrderPlatformValidator.getReportsShipmentListing} arg - Arg object
-   * @returns {Promise<OrderPlatformModel.OmsReports>} - Success response
-   * @name getReportsShipmentListing
-   * @summary:
-   * @description:
-   */
-  async getReportsShipmentListing({ pageNo, pageSize } = {}) {
-    const {
-      error,
-    } = OrderPlatformValidator.getReportsShipmentListing().validate(
-      {
-        pageNo,
-        pageSize,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = OrderPlatformValidator.getReportsShipmentListing().validate(
-      {
-        pageNo,
-        pageSize,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: `Parameter Validation warrnings for platform > Order > getReportsShipmentListing \n ${warrning}`,
-      });
-    }
-
-    const query_params = {};
-    query_params["page_no"] = pageNo;
-    query_params["page_size"] = pageSize;
-
-    const xHeaders = {};
-
-    const response = await PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/orders/v1.0/company/${this.config.companyId}/reports/shipment-listing`,
-      query_params,
-      undefined,
-      xHeaders
-    );
-
-    const {
-      error: res_error,
-    } = OrderPlatformModel.OmsReports().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
-
-    if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Order > getReportsShipmentListing \n ${res_error}`,
-      });
-    }
-
-    return response;
-  }
-
-  /**
-   * @param {OrderPlatformValidator.getRoleBasedActions} arg - Arg object
+   * @param {OrderPlatformValidator.GetRoleBasedActionsParam} arg - Arg object
    * @returns {Promise<OrderPlatformModel.GetActionsResponse>} - Success response
    * @name getRoleBasedActions
    * @summary:
@@ -2037,7 +1762,7 @@ class Order {
   }
 
   /**
-   * @param {OrderPlatformValidator.getShipmentById} arg - Arg object
+   * @param {OrderPlatformValidator.GetShipmentByIdParam} arg - Arg object
    * @returns {Promise<OrderPlatformModel.ShipmentInfoResponse>} - Success response
    * @name getShipmentById
    * @summary:
@@ -2081,7 +1806,7 @@ class Order {
     const response = await PlatformAPIClient.execute(
       this.config,
       "get",
-      `/service/platform/orders/v1.0/company/${this.config.companyId}/shipment-details`,
+      `/service/platform/order/v1.0/company/${this.config.companyId}/shipment-details`,
       query_params,
       undefined,
       xHeaders
@@ -2105,7 +1830,7 @@ class Order {
   }
 
   /**
-   * @param {OrderPlatformValidator.getShipmentHistory} arg - Arg object
+   * @param {OrderPlatformValidator.GetShipmentHistoryParam} arg - Arg object
    * @returns {Promise<OrderPlatformModel.ShipmentHistoryResponse>} - Success response
    * @name getShipmentHistory
    * @summary:
@@ -2173,7 +1898,7 @@ class Order {
   }
 
   /**
-   * @param {OrderPlatformValidator.getShipmentReasons} arg - Arg object
+   * @param {OrderPlatformValidator.GetShipmentReasonsParam} arg - Arg object
    * @returns {Promise<OrderPlatformModel.PlatformShipmentReasonsResponse>} -
    *   Success response
    * @name getShipmentReasons
@@ -2218,7 +1943,7 @@ class Order {
     const response = await PlatformAPIClient.execute(
       this.config,
       "get",
-      `/service/platform/orders/v1.0/company/${this.config.companyId}/shipments/${shipmentId}/bags/${bagId}/state/${state}/reasons`,
+      `/service/platform/order/v1.0/company/${this.config.companyId}/shipments/${shipmentId}/bags/${bagId}/state/${state}/reasons`,
       query_params,
       undefined,
       xHeaders
@@ -2242,7 +1967,7 @@ class Order {
   }
 
   /**
-   * @param {OrderPlatformValidator.getShipments} arg - Arg object
+   * @param {OrderPlatformValidator.GetShipmentsParam} arg - Arg object
    * @returns {Promise<OrderPlatformModel.ShipmentInternalPlatformViewResponse>}
    *   - Success response
    *
@@ -2369,7 +2094,7 @@ class Order {
     const response = await PlatformAPIClient.execute(
       this.config,
       "get",
-      `/service/platform/orders/v1.0/company/${this.config.companyId}/shipments-listing`,
+      `/service/platform/order/v1.0/company/${this.config.companyId}/shipments-listing`,
       query_params,
       undefined,
       xHeaders
@@ -2393,7 +2118,7 @@ class Order {
   }
 
   /**
-   * @param {OrderPlatformValidator.getStateTransitionMap} arg - Arg object
+   * @param {OrderPlatformValidator.GetStateTransitionMapParam} arg - Arg object
    * @returns {Promise<OrderPlatformModel.BagStateTransitionMap>} - Success response
    * @name getStateTransitionMap
    * @summary:
@@ -2453,7 +2178,7 @@ class Order {
   }
 
   /**
-   * @param {OrderPlatformValidator.getfilters} arg - Arg object
+   * @param {OrderPlatformValidator.GetfiltersParam} arg - Arg object
    * @returns {Promise<OrderPlatformModel.FiltersResponse>} - Success response
    * @name getfilters
    * @summary:
@@ -2495,7 +2220,7 @@ class Order {
     const response = await PlatformAPIClient.execute(
       this.config,
       "get",
-      `/service/platform/orders/v1.0/company/${this.config.companyId}/filter-listing`,
+      `/service/platform/order/v1.0/company/${this.config.companyId}/filter-listing`,
       query_params,
       undefined,
       xHeaders
@@ -2519,7 +2244,7 @@ class Order {
   }
 
   /**
-   * @param {OrderPlatformValidator.invalidateShipmentCache} arg - Arg object
+   * @param {OrderPlatformValidator.InvalidateShipmentCacheParam} arg - Arg object
    * @returns {Promise<OrderPlatformModel.InvalidateShipmentCacheResponse>} -
    *   Success response
    * @name invalidateShipmentCache
@@ -2584,7 +2309,7 @@ class Order {
   }
 
   /**
-   * @param {OrderPlatformValidator.orderUpdate} arg - Arg object
+   * @param {OrderPlatformValidator.OrderUpdateParam} arg - Arg object
    * @returns {Promise<OrderPlatformModel.ResponseDetail>} - Success response
    * @name orderUpdate
    * @summary:
@@ -2646,7 +2371,7 @@ class Order {
   }
 
   /**
-   * @param {OrderPlatformValidator.postShipmentHistory} arg - Arg object
+   * @param {OrderPlatformValidator.PostShipmentHistoryParam} arg - Arg object
    * @returns {Promise<OrderPlatformModel.ShipmentHistoryResponse>} - Success response
    * @name postShipmentHistory
    * @summary:
@@ -2710,7 +2435,7 @@ class Order {
   }
 
   /**
-   * @param {OrderPlatformValidator.processManifest} arg - Arg object
+   * @param {OrderPlatformValidator.ProcessManifestParam} arg - Arg object
    * @returns {Promise<OrderPlatformModel.ProcessManifestItemResponse>} -
    *   Success response
    * @name processManifest
@@ -2775,7 +2500,7 @@ class Order {
   }
 
   /**
-   * @param {OrderPlatformValidator.reassignLocation} arg - Arg object
+   * @param {OrderPlatformValidator.ReassignLocationParam} arg - Arg object
    * @returns {Promise<OrderPlatformModel.StoreReassignResponse>} - Success response
    * @name reassignLocation
    * @summary:
@@ -2839,7 +2564,7 @@ class Order {
   }
 
   /**
-   * @param {OrderPlatformValidator.sendSmsNinja} arg - Arg object
+   * @param {OrderPlatformValidator.SendSmsNinjaParam} arg - Arg object
    * @returns {Promise<OrderPlatformModel.OrderStatusResult>} - Success response
    * @name sendSmsNinja
    * @summary:
@@ -2901,7 +2626,7 @@ class Order {
   }
 
   /**
-   * @param {OrderPlatformValidator.sendUserMobileOTP} arg - Arg object
+   * @param {OrderPlatformValidator.SendUserMobileOTPParam} arg - Arg object
    * @returns {Promise<OrderPlatformModel.SendUserMobileOtpResponse>} - Success response
    * @name sendUserMobileOTP
    * @summary:
@@ -2965,7 +2690,7 @@ class Order {
   }
 
   /**
-   * @param {OrderPlatformValidator.updateAddress} arg - Arg object
+   * @param {OrderPlatformValidator.UpdateAddressParam} arg - Arg object
    * @returns {Promise<OrderPlatformModel.BaseResponse>} - Success response
    * @name updateAddress
    * @summary:
@@ -3077,7 +2802,7 @@ class Order {
   }
 
   /**
-   * @param {OrderPlatformValidator.updatePackagingDimensions} arg - Arg object
+   * @param {OrderPlatformValidator.UpdatePackagingDimensionsParam} arg - Arg object
    * @returns {Promise<OrderPlatformModel.UpdatePackagingDimensionsResponse>}
    *   - Success response
    *
@@ -3145,7 +2870,7 @@ class Order {
   }
 
   /**
-   * @param {OrderPlatformValidator.updateShipmentLock} arg - Arg object
+   * @param {OrderPlatformValidator.UpdateShipmentLockParam} arg - Arg object
    * @returns {Promise<OrderPlatformModel.UpdateShipmentLockResponse>} -
    *   Success response
    * @name updateShipmentLock
@@ -3210,7 +2935,7 @@ class Order {
   }
 
   /**
-   * @param {OrderPlatformValidator.updateShipmentStatus} arg - Arg object
+   * @param {OrderPlatformValidator.UpdateShipmentStatusParam} arg - Arg object
    * @returns {Promise<OrderPlatformModel.UpdateShipmentStatusResponseBody>}
    *   - Success response
    *
@@ -3276,7 +3001,7 @@ class Order {
   }
 
   /**
-   * @param {OrderPlatformValidator.uploadConsent} arg - Arg object
+   * @param {OrderPlatformValidator.UploadConsentParam} arg - Arg object
    * @returns {Promise<OrderPlatformModel.SuccessResponse>} - Success response
    * @name uploadConsent
    * @summary:
@@ -3338,69 +3063,7 @@ class Order {
   }
 
   /**
-   * @param {OrderPlatformValidator.upsertJioCode} arg - Arg object
-   * @returns {Promise<OrderPlatformModel.JioCodeUpsertResponse>} - Success response
-   * @name upsertJioCode
-   * @summary:
-   * @description:
-   */
-  async upsertJioCode({ body } = {}) {
-    const { error } = OrderPlatformValidator.upsertJioCode().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = OrderPlatformValidator.upsertJioCode().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: `Parameter Validation warrnings for platform > Order > upsertJioCode \n ${warrning}`,
-      });
-    }
-
-    const query_params = {};
-
-    const xHeaders = {};
-
-    const response = await PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/orders/v1.0/company/${this.config.companyId}/upsert/jiocode/article`,
-      query_params,
-      body,
-      xHeaders
-    );
-
-    const {
-      error: res_error,
-    } = OrderPlatformModel.JioCodeUpsertResponse().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
-
-    if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Order > upsertJioCode \n ${res_error}`,
-      });
-    }
-
-    return response;
-  }
-
-  /**
-   * @param {OrderPlatformValidator.verifyMobileOTP} arg - Arg object
+   * @param {OrderPlatformValidator.VerifyMobileOTPParam} arg - Arg object
    * @returns {Promise<OrderPlatformModel.VerifyOtpResponse>} - Success response
    * @name verifyMobileOTP
    * @summary:

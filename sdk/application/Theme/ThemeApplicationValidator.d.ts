@@ -1,45 +1,49 @@
 export = ThemeApplicationValidator;
 /**
- * @typedef getAllPages
+ * @typedef GetAllPagesParam
  * @property {string} themeId - ID of the theme to be retrieved
  */
-/** @typedef getAppliedTheme */
-/** @typedef getAppliedThemeV2 */
+/** @typedef GetAppliedThemeParam */
+/** @typedef GetAppliedThemeV2Param */
 /**
- * @typedef getPage
+ * @typedef GetPageParam
  * @property {string} themeId - ID of the theme to be retrieved
  * @property {string} pageValue - Value of the page to be retrieved
  */
 /**
- * @typedef getThemeForPreview
+ * @typedef GetThemeForPreviewParam
  * @property {string} themeId - ID of the theme to be retrieved
  */
 /**
- * @typedef getThemeForPreviewV2
+ * @typedef GetThemeForPreviewV2Param
  * @property {string} themeId - ID of the theme to be retrieved
  */
 declare class ThemeApplicationValidator {
+    /** @returns {getAllPages} */
+    static getAllPages(): getAllPages;
+    /** @returns {getAppliedTheme} */
+    static getAppliedTheme(): getAppliedTheme;
+    /** @returns {getAppliedThemeV2} */
+    static getAppliedThemeV2(): getAppliedThemeV2;
+    /** @returns {getPage} */
+    static getPage(): getPage;
+    /** @returns {getThemeForPreview} */
+    static getThemeForPreview(): getThemeForPreview;
+    /** @returns {getThemeForPreviewV2} */
+    static getThemeForPreviewV2(): getThemeForPreviewV2;
 }
 declare namespace ThemeApplicationValidator {
-    export { getAllPages, getAppliedTheme, getAppliedThemeV2, getPage, getThemeForPreview, getThemeForPreviewV2 };
+    export { GetAllPagesParam, GetAppliedThemeParam, GetAppliedThemeV2Param, GetPageParam, GetThemeForPreviewParam, GetThemeForPreviewV2Param };
 }
-/** @returns {getAllPages} */
-declare function getAllPages(): getAllPages;
-type getAllPages = {
+type GetAllPagesParam = {
     /**
      * - ID of the theme to be retrieved
      */
     themeId: string;
 };
-/** @returns {getAppliedTheme} */
-declare function getAppliedTheme(): any;
-type getAppliedTheme = any;
-/** @returns {getAppliedThemeV2} */
-declare function getAppliedThemeV2(): any;
-type getAppliedThemeV2 = any;
-/** @returns {getPage} */
-declare function getPage(): getPage;
-type getPage = {
+type GetAppliedThemeParam = any;
+type GetAppliedThemeV2Param = any;
+type GetPageParam = {
     /**
      * - ID of the theme to be retrieved
      */
@@ -49,17 +53,13 @@ type getPage = {
      */
     pageValue: string;
 };
-/** @returns {getThemeForPreview} */
-declare function getThemeForPreview(): getThemeForPreview;
-type getThemeForPreview = {
+type GetThemeForPreviewParam = {
     /**
      * - ID of the theme to be retrieved
      */
     themeId: string;
 };
-/** @returns {getThemeForPreviewV2} */
-declare function getThemeForPreviewV2(): getThemeForPreviewV2;
-type getThemeForPreviewV2 = {
+type GetThemeForPreviewV2Param = {
     /**
      * - ID of the theme to be retrieved
      */

@@ -4,23 +4,23 @@ declare class Rewards {
     config: any;
     applicationId: any;
     /**
-     * @param {RewardsPlatformApplicationValidator.getGiveawayById} arg - Arg object
+     * @param {RewardsPlatformApplicationValidator.GetGiveawayByIdParam} arg - Arg object
      * @returns {Promise<RewardsPlatformModel.Giveaway>} - Success response
      * @name getGiveawayById
      * @summary: Get giveaway by ID.
      * @description: Retrieve the specific giveaway by giveaway ID. It will show all the details of the requested giveaway.
      */
-    getGiveawayById({ id }?: RewardsPlatformApplicationValidator.getGiveawayById): Promise<RewardsPlatformModel.Giveaway>;
+    getGiveawayById({ id }?: RewardsPlatformApplicationValidator.GetGiveawayByIdParam): Promise<RewardsPlatformModel.Giveaway>;
     /**
-     * @param {RewardsPlatformApplicationValidator.getOfferByName} arg - Arg object
+     * @param {RewardsPlatformApplicationValidator.GetOfferByNameParam} arg - Arg object
      * @returns {Promise<RewardsPlatformModel.Offer>} - Success response
      * @name getOfferByName
      * @summary: Fetch a offer by its name
      * @description: Fetch the specific offer details and configuration by the name of the offer.
      */
-    getOfferByName({ name }?: RewardsPlatformApplicationValidator.getOfferByName): Promise<RewardsPlatformModel.Offer>;
+    getOfferByName({ name }?: RewardsPlatformApplicationValidator.GetOfferByNameParam): Promise<RewardsPlatformModel.Offer>;
     /**
-     * @param {RewardsPlatformApplicationValidator.getRewardsConfiguration} arg
+     * @param {RewardsPlatformApplicationValidator.GetRewardsConfigurationParam} arg
      *   - Arg object
      *
      * @returns {Promise<RewardsPlatformModel.ConfigurationRes>} - Success response
@@ -30,21 +30,23 @@ declare class Rewards {
      */
     getRewardsConfiguration({}?: any): Promise<RewardsPlatformModel.ConfigurationRes>;
     /**
-     * @param {RewardsPlatformApplicationValidator.getUserDetails} arg - Arg object
+     * @param {RewardsPlatformApplicationValidator.GetUserDetailsParam} arg - Arg object
      * @returns {Promise<RewardsPlatformModel.UserRes>} - Success response
      * @name getUserDetails
      * @summary: Get user reward details
      * @description: Fetches the user details and the user reward details with their current reward points for the specific user.
      */
-    getUserDetails({ userId }?: RewardsPlatformApplicationValidator.getUserDetails): Promise<RewardsPlatformModel.UserRes>;
+    getUserDetails({ userId }?: RewardsPlatformApplicationValidator.GetUserDetailsParam): Promise<RewardsPlatformModel.UserRes>;
     /**
-     * @param {RewardsPlatformApplicationValidator.getUserPointsHistory} arg - Arg object
+     * @param {RewardsPlatformApplicationValidator.GetUserPointsHistoryParam} arg
+     *   - Arg object
+     *
      * @returns {Promise<RewardsPlatformModel.HistoryRes>} - Success response
      * @name getUserPointsHistory
      * @summary: Get all transactions of reward points
      * @description: Fetches a list of points transactions like giveaway points, signup points, referral points, order earn points, redeem points and expired points.
      */
-    getUserPointsHistory({ userId, pageId, pageSize, }?: RewardsPlatformApplicationValidator.getUserPointsHistory): Promise<RewardsPlatformModel.HistoryRes>;
+    getUserPointsHistory({ userId, pageId, pageSize, }?: RewardsPlatformApplicationValidator.GetUserPointsHistoryParam): Promise<RewardsPlatformModel.HistoryRes>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.userId - User id
@@ -62,15 +64,15 @@ declare class Rewards {
         pageSize?: number;
     }): Paginator<RewardsPlatformModel.HistoryRes>;
     /**
-     * @param {RewardsPlatformApplicationValidator.saveGiveAway} arg - Arg object
+     * @param {RewardsPlatformApplicationValidator.SaveGiveAwayParam} arg - Arg object
      * @returns {Promise<RewardsPlatformModel.Giveaway>} - Success response
      * @name saveGiveAway
      * @summary: List of giveaways of the current application.
      * @description: Creates a new giveaway in the current application, specifying the target audience, points allocation, as well as the name and display name of the giveaway.
      */
-    saveGiveAway({ body }?: RewardsPlatformApplicationValidator.saveGiveAway): Promise<RewardsPlatformModel.Giveaway>;
+    saveGiveAway({ body }?: RewardsPlatformApplicationValidator.SaveGiveAwayParam): Promise<RewardsPlatformModel.Giveaway>;
     /**
-     * @param {RewardsPlatformApplicationValidator.setRewardsConfiguration} arg
+     * @param {RewardsPlatformApplicationValidator.SetRewardsConfigurationParam} arg
      *   - Arg object
      *
      * @returns {Promise<RewardsPlatformModel.SetConfigurationRes>} - Success response
@@ -78,17 +80,17 @@ declare class Rewards {
      * @summary: Updates the collection with given android paths.
      * @description: Updates the configuration or inserts new records with the given android paths.
      */
-    setRewardsConfiguration({ body }?: RewardsPlatformApplicationValidator.setRewardsConfiguration): Promise<RewardsPlatformModel.SetConfigurationRes>;
+    setRewardsConfiguration({ body }?: RewardsPlatformApplicationValidator.SetRewardsConfigurationParam): Promise<RewardsPlatformModel.SetConfigurationRes>;
     /**
-     * @param {RewardsPlatformApplicationValidator.showGiveaways} arg - Arg object
+     * @param {RewardsPlatformApplicationValidator.ShowGiveawaysParam} arg - Arg object
      * @returns {Promise<RewardsPlatformModel.GiveawayResponse>} - Success response
      * @name showGiveaways
      * @summary: List of giveaways of the current application.
      * @description: Fetch the detailed compilation of live, completed, and scheduled point-based giveaways created.
      */
-    showGiveaways({ pageId, pageSize }?: RewardsPlatformApplicationValidator.showGiveaways): Promise<RewardsPlatformModel.GiveawayResponse>;
+    showGiveaways({ pageId, pageSize }?: RewardsPlatformApplicationValidator.ShowGiveawaysParam): Promise<RewardsPlatformModel.GiveawayResponse>;
     /**
-     * @param {RewardsPlatformApplicationValidator.showOffers} arg - Arg object
+     * @param {RewardsPlatformApplicationValidator.ShowOffersParam} arg - Arg object
      * @returns {Promise<RewardsPlatformModel.Offer[]>} - Success response
      * @name showOffers
      * @summary: List of offers of the current application.
@@ -96,29 +98,31 @@ declare class Rewards {
      */
     showOffers({}?: any): Promise<RewardsPlatformModel.Offer[]>;
     /**
-     * @param {RewardsPlatformApplicationValidator.updateGiveAway} arg - Arg object
+     * @param {RewardsPlatformApplicationValidator.UpdateGiveAwayParam} arg - Arg object
      * @returns {Promise<RewardsPlatformModel.Giveaway>} - Success response
      * @name updateGiveAway
      * @summary: Updates the giveaway by it's ID.
      * @description: Make the necessary updates to the giveaway based on its giveaway ID.
      */
-    updateGiveAway({ id, body }?: RewardsPlatformApplicationValidator.updateGiveAway): Promise<RewardsPlatformModel.Giveaway>;
+    updateGiveAway({ id, body }?: RewardsPlatformApplicationValidator.UpdateGiveAwayParam): Promise<RewardsPlatformModel.Giveaway>;
     /**
-     * @param {RewardsPlatformApplicationValidator.updateOfferByName} arg - Arg object
+     * @param {RewardsPlatformApplicationValidator.UpdateOfferByNameParam} arg
+     *   - Arg object
+     *
      * @returns {Promise<RewardsPlatformModel.Offer>} - Success response
      * @name updateOfferByName
      * @summary: Update offer by name
      * @description: Update the specific offer details and its configuration by offer name.
      */
-    updateOfferByName({ name, body, }?: RewardsPlatformApplicationValidator.updateOfferByName): Promise<RewardsPlatformModel.Offer>;
+    updateOfferByName({ name, body, }?: RewardsPlatformApplicationValidator.UpdateOfferByNameParam): Promise<RewardsPlatformModel.Offer>;
     /**
-     * @param {RewardsPlatformApplicationValidator.updateUserStatus} arg - Arg object
+     * @param {RewardsPlatformApplicationValidator.UpdateUserStatusParam} arg - Arg object
      * @returns {Promise<RewardsPlatformModel.AppUser>} - Success response
      * @name updateUserStatus
      * @summary: Update user status
      * @description: Update the user status by marking them as a block or unblock. It can be done by changing the active flag in request body.
      */
-    updateUserStatus({ userId, body, }?: RewardsPlatformApplicationValidator.updateUserStatus): Promise<RewardsPlatformModel.AppUser>;
+    updateUserStatus({ userId, body, }?: RewardsPlatformApplicationValidator.UpdateUserStatusParam): Promise<RewardsPlatformModel.AppUser>;
 }
 import RewardsPlatformApplicationValidator = require("./RewardsPlatformApplicationValidator");
 import RewardsPlatformModel = require("./RewardsPlatformModel");

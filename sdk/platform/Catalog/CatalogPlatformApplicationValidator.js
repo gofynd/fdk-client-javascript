@@ -3,64 +3,64 @@ const Joi = require("joi");
 const CatalogPlatformModel = require("./CatalogPlatformModel");
 
 /**
- * @typedef addCollectionItems
+ * @typedef AddCollectionItemsParam
  * @property {string} id - A `id` is a unique identifier of a collection.
  * @property {CatalogPlatformModel.CollectionItemUpdate} body
  */
 
 /**
- * @typedef createCollection
+ * @typedef CreateCollectionParam
  * @property {CatalogPlatformModel.CreateCollection} body
  */
 
 /**
- * @typedef createConfigurationByType
+ * @typedef CreateConfigurationByTypeParam
  * @property {string} type - Type can be brands, categories etc.
  * @property {CatalogPlatformModel.AppConfiguration} body
  */
 
 /**
- * @typedef createConfigurationProductListing
+ * @typedef CreateConfigurationProductListingParam
  * @property {CatalogPlatformModel.AppConfiguration} body
  */
 
 /**
- * @typedef createCustomAutocompleteRule
+ * @typedef CreateCustomAutocompleteRuleParam
  * @property {CatalogPlatformModel.CreateAutocompleteKeyword} body
  */
 
 /**
- * @typedef createCustomKeyword
+ * @typedef CreateCustomKeywordParam
  * @property {CatalogPlatformModel.CreateSearchKeyword} body
  */
 
 /**
- * @typedef createGroupConfiguration
+ * @typedef CreateGroupConfigurationParam
  * @property {string} configType - A `config_type` is a unique identifier for a
  *   particular group configuration type.
  * @property {CatalogPlatformModel.AppConfigurationDetail} body
  */
 
 /**
- * @typedef createListingConfiguration
+ * @typedef CreateListingConfigurationParam
  * @property {string} configType - A `config_type` is a unique identifier for a
  *   particular listing configuration type.
  * @property {CatalogPlatformModel.AppConfigurationsSort} body
  */
 
 /**
- * @typedef deleteAutocompleteKeyword
+ * @typedef DeleteAutocompleteKeywordParam
  * @property {string} id - A `id` is a unique identifier for a particular
  *   detail. Pass the `id` of the keywords which you want to delete.
  */
 
 /**
- * @typedef deleteCollection
+ * @typedef DeleteCollectionParam
  * @property {string} id - A `id` is a unique identifier of a collection.
  */
 
 /**
- * @typedef deleteGroupConfiguration
+ * @typedef DeleteGroupConfigurationParam
  * @property {string} configType - A `config_type` is a unique identifier for a
  *   particular group configuration type.
  * @property {string} groupSlug - A `group_slug` is a unique identifier of a
@@ -68,7 +68,7 @@ const CatalogPlatformModel = require("./CatalogPlatformModel");
  */
 
 /**
- * @typedef deleteListingConfiguration
+ * @typedef DeleteListingConfigurationParam
  * @property {string} configType - A `config_type` is a unique identifier for a
  *   particular listing configuration type.
  * @property {string} configId - A `config_id` is a unique identifier of a
@@ -76,13 +76,13 @@ const CatalogPlatformModel = require("./CatalogPlatformModel");
  */
 
 /**
- * @typedef deleteSearchKeywords
+ * @typedef DeleteSearchKeywordsParam
  * @property {string} id - A `id` is a unique identifier for a particular
  *   detail. Pass the `id` of the keywords which you want to delete.
  */
 
 /**
- * @typedef getAllCollections
+ * @typedef GetAllCollectionsParam
  * @property {string} [q] - Get collection list filtered by q string,
  * @property {string} [scheduleStatus] - Get collection list filtered by scheduled status,
  * @property {string} [type] - Type of the collections
@@ -95,10 +95,10 @@ const CatalogPlatformModel = require("./CatalogPlatformModel");
  *   Default is 12.
  */
 
-/** @typedef getAllSearchKeyword */
+/** @typedef GetAllSearchKeywordParam */
 
 /**
- * @typedef getAppInventory
+ * @typedef GetAppInventoryParam
  * @property {number[]} [itemIds] - The Item Id of the product.
  * @property {number[]} [storeIds] - The Store Id of products to fetch inventory.
  * @property {number[]} [brandIds] - The Brand Id of products to fetch inventory.
@@ -109,7 +109,7 @@ const CatalogPlatformModel = require("./CatalogPlatformModel");
  */
 
 /**
- * @typedef getAppLocations
+ * @typedef GetAppLocationsParam
  * @property {string} [storeType] - Helps to sort the location list on the basis
  *   of location type.
  * @property {number[]} [uid] - Helps to sort the location list on the basis of uid list.
@@ -123,12 +123,12 @@ const CatalogPlatformModel = require("./CatalogPlatformModel");
  */
 
 /**
- * @typedef getAppProduct
+ * @typedef GetAppProductParam
  * @property {string} itemId - Product id for a particular product.
  */
 
 /**
- * @typedef getAppProducts
+ * @typedef GetAppProductsParam
  * @property {number[]} [brandIds] - Get multiple products filtered by Brand Ids
  * @property {number[]} [categoryIds] - Get multiple products filtered by Category Ids
  * @property {number[]} [departmentIds] - Get multiple products filtered by Department Ids
@@ -142,7 +142,7 @@ const CatalogPlatformModel = require("./CatalogPlatformModel");
  */
 
 /**
- * @typedef getAppicationProducts
+ * @typedef GetAppicationProductsParam
  * @property {string} [q] - The search query. This can be a partial or complete
  *   name of a either a product, brand or category
  * @property {string} [f] - The search filter parameters. All the parameter
@@ -169,7 +169,7 @@ const CatalogPlatformModel = require("./CatalogPlatformModel");
  */
 
 /**
- * @typedef getApplicationBrandListing
+ * @typedef GetApplicationBrandListingParam
  * @property {number} [pageNo] - The page number to navigate through the given
  *   set of results
  * @property {number} [pageSize] - Number of items to retrieve in each page.
@@ -179,7 +179,7 @@ const CatalogPlatformModel = require("./CatalogPlatformModel");
  */
 
 /**
- * @typedef getApplicationBrands
+ * @typedef GetApplicationBrandsParam
  * @property {string} [department] - The name of the department. Use this
  *   parameter to filter products by a particular department. See below the list
  *   of available departments. You can retrieve available departments from the
@@ -195,7 +195,7 @@ const CatalogPlatformModel = require("./CatalogPlatformModel");
  */
 
 /**
- * @typedef getApplicationCategoryListing
+ * @typedef GetApplicationCategoryListingParam
  * @property {number} [departmentId] - A `department_id` is a unique identifier
  *   for a particular department.
  * @property {number} [pageNo] - The page number to navigate through the given
@@ -207,7 +207,7 @@ const CatalogPlatformModel = require("./CatalogPlatformModel");
  */
 
 /**
- * @typedef getApplicationDepartmentListing
+ * @typedef GetApplicationDepartmentListingParam
  * @property {number} [pageNo] - The page number to navigate through the given
  *   set of results
  * @property {number} [pageSize] - Number of items to retrieve in each page.
@@ -216,23 +216,23 @@ const CatalogPlatformModel = require("./CatalogPlatformModel");
  *   search department by name.
  */
 
-/** @typedef getAutocompleteConfig */
+/** @typedef GetAutocompleteConfigParam */
 
 /**
- * @typedef getAutocompleteKeywordDetail
+ * @typedef GetAutocompleteKeywordDetailParam
  * @property {string} id - A `id` is a unique identifier for a particular
  *   detail. Pass the `id` of the keywords which you want to retrieve.
  */
 
-/** @typedef getCatalogConfiguration */
+/** @typedef GetCatalogConfigurationParam */
 
 /**
- * @typedef getCatalogInsights
+ * @typedef GetCatalogInsightsParam
  * @property {string} [brand] - Brand slug
  */
 
 /**
- * @typedef getCategories
+ * @typedef GetCategoriesParam
  * @property {string} [department] - The name of the department. Use this
  *   parameter to filter products by a particular department. See below the list
  *   of available departments. You can retrieve available departments from the
@@ -240,14 +240,14 @@ const CatalogPlatformModel = require("./CatalogPlatformModel");
  */
 
 /**
- * @typedef getCollectionDetail
+ * @typedef GetCollectionDetailParam
  * @property {string} slug - A `slug` is a human readable, URL friendly unique
  *   identifier of an object. Pass the `slug` of the collection which you want
  *   to retrieve.
  */
 
 /**
- * @typedef getCollectionItems
+ * @typedef GetCollectionItemsParam
  * @property {string} id - A `id` is a unique identifier of a collection.
  * @property {string} [sortOn] - Each response will contain sort_on param, which
  *   should be sent back to make pagination work.
@@ -258,24 +258,24 @@ const CatalogPlatformModel = require("./CatalogPlatformModel");
  */
 
 /**
- * @typedef getConfigurationByType
+ * @typedef GetConfigurationByTypeParam
  * @property {string} type - Type can be brands, categories etc.
  */
 
 /**
- * @typedef getConfigurationMetadata
+ * @typedef GetConfigurationMetadataParam
  * @property {string} configType - A `config_type` is an identifier that defines
  *   a specific type of configuration.
  * @property {string} [templateSlug] - Get configuration list filtered by
  *   `template_slug` string. This is for the details and comparision groups.
  */
 
-/** @typedef getConfigurations */
+/** @typedef GetConfigurationsParam */
 
-/** @typedef getDepartments */
+/** @typedef GetDepartmentsParam */
 
 /**
- * @typedef getDiscountedInventoryBySizeIdentifier
+ * @typedef GetDiscountedInventoryBySizeIdentifierParam
  * @property {number} itemId - Item code of the product of which size is to be get.
  * @property {string} sizeIdentifier - Size Identifier (Seller Identifier or
  *   Primary Identifier) of which inventory is to get.
@@ -288,7 +288,7 @@ const CatalogPlatformModel = require("./CatalogPlatformModel");
  */
 
 /**
- * @typedef getGroupConfigurations
+ * @typedef GetGroupConfigurationsParam
  * @property {string} configType - A `config_type` is an identifier that defines
  *   a specific type of configuration.
  * @property {number} [pageNo] - The page number to navigate through the given
@@ -301,7 +301,7 @@ const CatalogPlatformModel = require("./CatalogPlatformModel");
  */
 
 /**
- * @typedef getListingConfigurations
+ * @typedef GetListingConfigurationsParam
  * @property {string} configType - A `config_type` is an identifier that defines
  *   a specific type of configuration.
  * @property {number} [pageNo] - The page number to navigate through the given
@@ -312,14 +312,14 @@ const CatalogPlatformModel = require("./CatalogPlatformModel");
  */
 
 /**
- * @typedef getProductDetailBySlug
+ * @typedef GetProductDetailBySlugParam
  * @property {string} slug - The unique identifier of a product. i.e; `slug` of
  *   a product. You can retrieve these from the APIs that list products like
  *   **v1.0/products/**
  */
 
 /**
- * @typedef getProductSizeSellers
+ * @typedef GetProductSizeSellersParam
  * @property {string} itemId - Item code of the product of which size is to be get.
  * @property {string} size - A string indicating the size of the product, e.g.
  *   S, M, XL. You can get slug value from the endpoint
@@ -333,70 +333,70 @@ const CatalogPlatformModel = require("./CatalogPlatformModel");
  * @property {number} [pageSize] - The number of items to retrieve in each page.
  */
 
-/** @typedef getQueryFilters */
+/** @typedef GetQueryFiltersParam */
 
 /**
- * @typedef getSearchKeywords
+ * @typedef GetSearchKeywordsParam
  * @property {string} id - A `id` is a unique identifier for a particular
  *   detail. Pass the `id` of the keywords which you want to retrieve.
  */
 
 /**
- * @typedef updateAllowSingle
+ * @typedef UpdateAllowSingleParam
  * @property {CatalogPlatformModel.AllowSingleRequest} body
  */
 
 /**
- * @typedef updateAppBrand
+ * @typedef UpdateAppBrandParam
  * @property {string} brandUid - Brand id for which the custom_json is associated.
  * @property {CatalogPlatformModel.ApplicationBrandJson} body
  */
 
 /**
- * @typedef updateAppCategory
+ * @typedef UpdateAppCategoryParam
  * @property {string} categoryUid - Category id for which the custom_json is associated.
  * @property {CatalogPlatformModel.ApplicationCategoryJson} body
  */
 
 /**
- * @typedef updateAppDepartment
+ * @typedef UpdateAppDepartmentParam
  * @property {string} departmentUid - Department id for which the custom_json is
  *   associated.
  * @property {CatalogPlatformModel.ApplicationDepartmentJson} body
  */
 
 /**
- * @typedef updateAppLocation
+ * @typedef UpdateAppLocationParam
  * @property {string} storeUid - Store id for which the custom_json is associated.
  * @property {CatalogPlatformModel.ApplicationStoreJson} body
  */
 
 /**
- * @typedef updateAppProduct
+ * @typedef UpdateAppProductParam
  * @property {string} itemId - Product id for which the custom_meta is associated.
  * @property {CatalogPlatformModel.ApplicationItemMeta} body
  */
 
 /**
- * @typedef updateAutocompleteKeyword
+ * @typedef UpdateAutocompleteKeywordParam
  * @property {string} id - A `id` is a unique identifier for a particular
  *   detail. Pass the `id` of the keywords which you want to delete.
  * @property {CatalogPlatformModel.CreateAutocompleteKeyword} body
  */
 
 /**
- * @typedef updateCollection
+ * @typedef UpdateCollectionParam
  * @property {string} id - A `id` is a unique identifier of a collection.
  * @property {CatalogPlatformModel.UpdateCollection} body
  */
 
 /**
- * @typedef updateDefaultSort
+ * @typedef UpdateDefaultSortParam
  * @property {CatalogPlatformModel.DefaultKeyRequest} body
  */
 
 /**
- * @typedef updateGroupConfiguration
+ * @typedef UpdateGroupConfigurationParam
  * @property {string} configType - A `config_type` is a unique identifier for a
  *   particular group configuration type.
  * @property {string} groupSlug - A `group_slug` is a unique identifier of a
@@ -405,7 +405,7 @@ const CatalogPlatformModel = require("./CatalogPlatformModel");
  */
 
 /**
- * @typedef updateListingConfiguration
+ * @typedef UpdateListingConfigurationParam
  * @property {string} configType - A `config_type` is a unique identifier for a
  *   particular listing configuration type.
  * @property {string} configId - A `config_id` is a unique identifier of a
@@ -414,7 +414,7 @@ const CatalogPlatformModel = require("./CatalogPlatformModel");
  */
 
 /**
- * @typedef updateSearchKeywords
+ * @typedef UpdateSearchKeywordsParam
  * @property {string} id - A `id` is a unique identifier for a particular
  *   detail. Pass the `id` of the keywords which you want to delete.
  * @property {CatalogPlatformModel.CreateSearchKeyword} body

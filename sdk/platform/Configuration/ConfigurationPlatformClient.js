@@ -12,7 +12,7 @@ class Configuration {
   }
 
   /**
-   * @param {ConfigurationPlatformValidator.createApplication} arg - Arg object
+   * @param {ConfigurationPlatformValidator.CreateApplicationParam} arg - Arg object
    * @returns {Promise<ConfigurationPlatformModel.CreateAppResponse>} - Success response
    * @name createApplication
    * @summary: Create a new sales channel
@@ -78,7 +78,7 @@ class Configuration {
   }
 
   /**
-   * @param {ConfigurationPlatformValidator.getApplications} arg - Arg object
+   * @param {ConfigurationPlatformValidator.GetApplicationsParam} arg - Arg object
    * @returns {Promise<ConfigurationPlatformModel.ApplicationsResponse>} -
    *   Success response
    * @name getApplications
@@ -179,7 +179,7 @@ class Configuration {
   }
 
   /**
-   * @param {ConfigurationPlatformValidator.getAvailableOptIns} arg - Arg object
+   * @param {ConfigurationPlatformValidator.GetAvailableOptInsParam} arg - Arg object
    * @returns {Promise<ConfigurationPlatformModel.GetIntegrationsOptInsResponse>}
    *   - Success response
    *
@@ -251,7 +251,7 @@ class Configuration {
   }
 
   /**
-   * @param {ConfigurationPlatformValidator.getBrandsByCompany} arg - Arg object
+   * @param {ConfigurationPlatformValidator.GetBrandsByCompanyParam} arg - Arg object
    * @returns {Promise<ConfigurationPlatformModel.BrandsByCompanyResponse>} -
    *   Success response
    * @name getBrandsByCompany
@@ -319,7 +319,7 @@ class Configuration {
   }
 
   /**
-   * @param {ConfigurationPlatformValidator.getCompanyByBrands} arg - Arg object
+   * @param {ConfigurationPlatformValidator.GetCompanyByBrandsParam} arg - Arg object
    * @returns {Promise<ConfigurationPlatformModel.CompanyByBrandsResponse>} -
    *   Success response
    * @name getCompanyByBrands
@@ -422,7 +422,7 @@ class Configuration {
   }
 
   /**
-   * @param {ConfigurationPlatformValidator.getCurrencies} arg - Arg object
+   * @param {ConfigurationPlatformValidator.GetCurrenciesParam} arg - Arg object
    * @returns {Promise<ConfigurationPlatformModel.CurrenciesResponse>} -
    *   Success response
    * @name getCurrencies
@@ -483,7 +483,7 @@ class Configuration {
   }
 
   /**
-   * @param {ConfigurationPlatformValidator.getDomainAvailibility} arg - Arg object
+   * @param {ConfigurationPlatformValidator.GetDomainAvailibilityParam} arg - Arg object
    * @returns {Promise<ConfigurationPlatformModel.DomainSuggestionsResponse>}
    *   - Success response
    *
@@ -551,7 +551,7 @@ class Configuration {
   }
 
   /**
-   * @param {ConfigurationPlatformValidator.getIntegrationById} arg - Arg object
+   * @param {ConfigurationPlatformValidator.GetIntegrationByIdParam} arg - Arg object
    * @returns {Promise<ConfigurationPlatformModel.Integration>} - Success response
    * @name getIntegrationById
    * @summary: Get integration data by its ID
@@ -617,7 +617,9 @@ class Configuration {
   }
 
   /**
-   * @param {ConfigurationPlatformValidator.getIntegrationByLevelId} arg - Arg object
+   * @param {ConfigurationPlatformValidator.GetIntegrationByLevelIdParam} arg
+   *   - Arg object
+   *
    * @returns {Promise<ConfigurationPlatformModel.IntegrationLevel>} - Success response
    * @name getIntegrationByLevelId
    * @summary: Get integration config at a particular level (store/company)
@@ -687,7 +689,9 @@ class Configuration {
   }
 
   /**
-   * @param {ConfigurationPlatformValidator.getIntegrationLevelConfig} arg - Arg object
+   * @param {ConfigurationPlatformValidator.GetIntegrationLevelConfigParam} arg
+   *   - Arg object
+   *
    * @returns {Promise<ConfigurationPlatformModel.IntegrationConfigResponse>}
    *   - Success response
    *
@@ -763,7 +767,9 @@ class Configuration {
   }
 
   /**
-   * @param {ConfigurationPlatformValidator.getLevelActiveIntegrations} arg - Arg object
+   * @param {ConfigurationPlatformValidator.GetLevelActiveIntegrationsParam} arg
+   *   - Arg object
+   *
    * @returns {Promise<ConfigurationPlatformModel.OptedStoreIntegration>} -
    *   Success response
    * @name getLevelActiveIntegrations
@@ -837,7 +843,7 @@ class Configuration {
   }
 
   /**
-   * @param {ConfigurationPlatformValidator.getOtherSellerApplicationById} arg
+   * @param {ConfigurationPlatformValidator.GetOtherSellerApplicationByIdParam} arg
    *   - Arg object
    *
    * @returns {Promise<ConfigurationPlatformModel.OptedApplicationResponse>}
@@ -907,7 +913,9 @@ class Configuration {
   }
 
   /**
-   * @param {ConfigurationPlatformValidator.getOtherSellerApplications} arg - Arg object
+   * @param {ConfigurationPlatformValidator.GetOtherSellerApplicationsParam} arg
+   *   - Arg object
+   *
    * @returns {Promise<ConfigurationPlatformModel.OtherSellerApplications>} -
    *   Success response
    * @name getOtherSellerApplications
@@ -1006,7 +1014,7 @@ class Configuration {
   }
 
   /**
-   * @param {ConfigurationPlatformValidator.getSelectedOptIns} arg - Arg object
+   * @param {ConfigurationPlatformValidator.GetSelectedOptInsParam} arg - Arg object
    * @returns {Promise<ConfigurationPlatformModel.GetIntegrationsOptInsResponse>}
    *   - Success response
    *
@@ -1082,7 +1090,7 @@ class Configuration {
   }
 
   /**
-   * @param {ConfigurationPlatformValidator.getStoreByBrands} arg - Arg object
+   * @param {ConfigurationPlatformValidator.GetStoreByBrandsParam} arg - Arg object
    * @returns {Promise<ConfigurationPlatformModel.StoreByBrandsResponse>} -
    *   Success response
    * @name getStoreByBrands
@@ -1185,7 +1193,7 @@ class Configuration {
   }
 
   /**
-   * @param {ConfigurationPlatformValidator.optOutFromApplication} arg - Arg object
+   * @param {ConfigurationPlatformValidator.OptOutFromApplicationParam} arg - Arg object
    * @returns {Promise<ConfigurationPlatformModel.SuccessMessageResponse>} -
    *   Success response
    * @name optOutFromApplication
@@ -1254,7 +1262,9 @@ class Configuration {
   }
 
   /**
-   * @param {ConfigurationPlatformValidator.updateLevelIntegration} arg - Arg object
+   * @param {ConfigurationPlatformValidator.UpdateLevelIntegrationParam} arg
+   *   - Arg object
+   *
    * @returns {Promise<ConfigurationPlatformModel.IntegrationLevel>} - Success response
    * @name updateLevelIntegration
    * @summary: Update a store level integration you opted
@@ -1324,7 +1334,9 @@ class Configuration {
   }
 
   /**
-   * @param {ConfigurationPlatformValidator.updateLevelUidIntegration} arg - Arg object
+   * @param {ConfigurationPlatformValidator.UpdateLevelUidIntegrationParam} arg
+   *   - Arg object
+   *
    * @returns {Promise<ConfigurationPlatformModel.IntegrationLevel>} - Success response
    * @name updateLevelUidIntegration
    * @summary: Update integration level by store UID

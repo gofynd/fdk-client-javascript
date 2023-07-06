@@ -13,7 +13,7 @@ class Configuration {
   }
 
   /**
-   * @param {ConfigurationPlatformApplicationValidator.addDomain} arg - Arg object
+   * @param {ConfigurationPlatformApplicationValidator.AddDomainParam} arg - Arg object
    * @returns {Promise<ConfigurationPlatformModel.Domain>} - Success response
    * @name addDomain
    * @summary: Add new domain to current sales channel
@@ -76,7 +76,7 @@ class Configuration {
   }
 
   /**
-   * @param {ConfigurationPlatformApplicationValidator.changeDomainType} arg
+   * @param {ConfigurationPlatformApplicationValidator.ChangeDomainTypeParam} arg
    *   - Arg object
    *
    * @returns {Promise<ConfigurationPlatformModel.DomainsResponse>} - Success response
@@ -141,7 +141,9 @@ class Configuration {
   }
 
   /**
-   * @param {ConfigurationPlatformApplicationValidator.getAppApiTokens} arg - Arg object
+   * @param {ConfigurationPlatformApplicationValidator.GetAppApiTokensParam} arg
+   *   - Arg object
+   *
    * @returns {Promise<ConfigurationPlatformModel.TokenResponse>} - Success response
    * @name getAppApiTokens
    * @summary: Get social tokens for the sales channel
@@ -200,7 +202,7 @@ class Configuration {
   }
 
   /**
-   * @param {ConfigurationPlatformApplicationValidator.getAppBasicDetails} arg
+   * @param {ConfigurationPlatformApplicationValidator.GetAppBasicDetailsParam} arg
    *   - Arg object
    *
    * @returns {Promise<ConfigurationPlatformModel.ApplicationDetail>} - Success response
@@ -261,7 +263,9 @@ class Configuration {
   }
 
   /**
-   * @param {ConfigurationPlatformApplicationValidator.getAppCompanies} arg - Arg object
+   * @param {ConfigurationPlatformApplicationValidator.GetAppCompaniesParam} arg
+   *   - Arg object
+   *
    * @returns {Promise<ConfigurationPlatformModel.CompaniesResponse>} - Success response
    * @name getAppCompanies
    * @summary: Get companies enabled in the sales channel inventory
@@ -367,7 +371,7 @@ class Configuration {
   }
 
   /**
-   * @param {ConfigurationPlatformApplicationValidator.getAppContactInfo} arg
+   * @param {ConfigurationPlatformApplicationValidator.GetAppContactInfoParam} arg
    *   - Arg object
    *
    * @returns {Promise<ConfigurationPlatformModel.ApplicationInformation>} -
@@ -429,7 +433,7 @@ class Configuration {
   }
 
   /**
-   * @param {ConfigurationPlatformApplicationValidator.getAppCurrencyConfig} arg
+   * @param {ConfigurationPlatformApplicationValidator.GetAppCurrencyConfigParam} arg
    *   - Arg object
    *
    * @returns {Promise<ConfigurationPlatformModel.AppSupportedCurrency>} -
@@ -491,7 +495,9 @@ class Configuration {
   }
 
   /**
-   * @param {ConfigurationPlatformApplicationValidator.getAppFeatures} arg - Arg object
+   * @param {ConfigurationPlatformApplicationValidator.GetAppFeaturesParam} arg
+   *   - Arg object
+   *
    * @returns {Promise<ConfigurationPlatformModel.AppFeatureResponse>} -
    *   Success response
    * @name getAppFeatures
@@ -551,7 +557,9 @@ class Configuration {
   }
 
   /**
-   * @param {ConfigurationPlatformApplicationValidator.getAppStores} arg - Arg object
+   * @param {ConfigurationPlatformApplicationValidator.GetAppStoresParam} arg
+   *   - Arg object
+   *
    * @returns {Promise<ConfigurationPlatformModel.StoresResponse>} - Success response
    * @name getAppStores
    * @summary: Get stores enabled in the sales channel inventory
@@ -652,7 +660,7 @@ class Configuration {
   }
 
   /**
-   * @param {ConfigurationPlatformApplicationValidator.getAppSupportedCurrency} arg
+   * @param {ConfigurationPlatformApplicationValidator.GetAppSupportedCurrencyParam} arg
    *   - Arg object
    *
    * @returns {Promise<ConfigurationPlatformModel.AppCurrencyResponse>} -
@@ -714,7 +722,7 @@ class Configuration {
   }
 
   /**
-   * @param {ConfigurationPlatformApplicationValidator.getApplicationById} arg
+   * @param {ConfigurationPlatformApplicationValidator.GetApplicationByIdParam} arg
    *   - Arg object
    *
    * @returns {Promise<ConfigurationPlatformModel.Application>} - Success response
@@ -775,7 +783,9 @@ class Configuration {
   }
 
   /**
-   * @param {ConfigurationPlatformApplicationValidator.getBuildConfig} arg - Arg object
+   * @param {ConfigurationPlatformApplicationValidator.GetBuildConfigParam} arg
+   *   - Arg object
+   *
    * @returns {Promise<ConfigurationPlatformModel.MobileAppConfiguration>} -
    *   Success response
    * @name getBuildConfig
@@ -839,7 +849,9 @@ class Configuration {
   }
 
   /**
-   * @param {ConfigurationPlatformApplicationValidator.getDomainStatus} arg - Arg object
+   * @param {ConfigurationPlatformApplicationValidator.GetDomainStatusParam} arg
+   *   - Arg object
+   *
    * @returns {Promise<ConfigurationPlatformModel.DomainStatusResponse>} -
    *   Success response
    * @name getDomainStatus
@@ -903,7 +915,7 @@ class Configuration {
   }
 
   /**
-   * @param {ConfigurationPlatformApplicationValidator.getDomains} arg - Arg object
+   * @param {ConfigurationPlatformApplicationValidator.GetDomainsParam} arg - Arg object
    * @returns {Promise<ConfigurationPlatformModel.DomainsResponse>} - Success response
    * @name getDomains
    * @summary: Fetch all the domains added to an  application (sales channel website), including pre-defined domain (free domain) or custom domain (owned by the brand). Know the verification status of each domain name, and find out which one is the primary domain, short link domain, or both.
@@ -962,7 +974,7 @@ class Configuration {
   }
 
   /**
-   * @param {ConfigurationPlatformApplicationValidator.getInventoryConfig} arg
+   * @param {ConfigurationPlatformApplicationValidator.GetInventoryConfigParam} arg
    *   - Arg object
    *
    * @returns {Promise<ConfigurationPlatformModel.ApplicationInventory>} -
@@ -1024,7 +1036,7 @@ class Configuration {
   }
 
   /**
-   * @param {ConfigurationPlatformApplicationValidator.getOrderingStoresByFilter} arg
+   * @param {ConfigurationPlatformApplicationValidator.GetOrderingStoresByFilterParam} arg
    *   - Arg object
    *
    * @returns {Promise<ConfigurationPlatformModel.OrderingStores>} - Success response
@@ -1136,7 +1148,7 @@ class Configuration {
   }
 
   /**
-   * @param {ConfigurationPlatformApplicationValidator.getPreviousVersions} arg
+   * @param {ConfigurationPlatformApplicationValidator.GetPreviousVersionsParam} arg
    *   - Arg object
    *
    * @returns {Promise<ConfigurationPlatformModel.BuildVersionHistory>} -
@@ -1202,7 +1214,7 @@ class Configuration {
   }
 
   /**
-   * @param {ConfigurationPlatformApplicationValidator.getStaffOrderingStores} arg
+   * @param {ConfigurationPlatformApplicationValidator.GetStaffOrderingStoresParam} arg
    *   - Arg object
    *
    * @returns {Promise<ConfigurationPlatformModel.OrderingStoresResponse>} -
@@ -1316,7 +1328,7 @@ class Configuration {
   }
 
   /**
-   * @param {ConfigurationPlatformApplicationValidator.modifyAppFeatures} arg
+   * @param {ConfigurationPlatformApplicationValidator.ModifyAppFeaturesParam} arg
    *   - Arg object
    *
    * @returns {Promise<ConfigurationPlatformModel.AppFeature>} - Success response
@@ -1381,7 +1393,7 @@ class Configuration {
   }
 
   /**
-   * @param {ConfigurationPlatformApplicationValidator.partiallyUpdateInventoryConfig} arg
+   * @param {ConfigurationPlatformApplicationValidator.PartiallyUpdateInventoryConfigParam} arg
    *   - Arg object
    *
    * @returns {Promise<ConfigurationPlatformModel.ApplicationInventory>} -
@@ -1447,7 +1459,7 @@ class Configuration {
   }
 
   /**
-   * @param {ConfigurationPlatformApplicationValidator.removeDomainById} arg
+   * @param {ConfigurationPlatformApplicationValidator.RemoveDomainByIdParam} arg
    *   - Arg object
    *
    * @returns {Promise<ConfigurationPlatformModel.SuccessMessageResponse>} -
@@ -1513,7 +1525,7 @@ class Configuration {
   }
 
   /**
-   * @param {ConfigurationPlatformApplicationValidator.updateAppApiTokens} arg
+   * @param {ConfigurationPlatformApplicationValidator.UpdateAppApiTokensParam} arg
    *   - Arg object
    *
    * @returns {Promise<ConfigurationPlatformModel.TokenResponse>} - Success response
@@ -1578,7 +1590,7 @@ class Configuration {
   }
 
   /**
-   * @param {ConfigurationPlatformApplicationValidator.updateAppBasicDetails} arg
+   * @param {ConfigurationPlatformApplicationValidator.UpdateAppBasicDetailsParam} arg
    *   - Arg object
    *
    * @returns {Promise<ConfigurationPlatformModel.ApplicationDetail>} - Success response
@@ -1643,7 +1655,7 @@ class Configuration {
   }
 
   /**
-   * @param {ConfigurationPlatformApplicationValidator.updateAppContactInfo} arg
+   * @param {ConfigurationPlatformApplicationValidator.UpdateAppContactInfoParam} arg
    *   - Arg object
    *
    * @returns {Promise<ConfigurationPlatformModel.ApplicationInformation>} -
@@ -1709,7 +1721,7 @@ class Configuration {
   }
 
   /**
-   * @param {ConfigurationPlatformApplicationValidator.updateAppCurrencyConfig} arg
+   * @param {ConfigurationPlatformApplicationValidator.UpdateAppCurrencyConfigParam} arg
    *   - Arg object
    *
    * @returns {Promise<ConfigurationPlatformModel.AppSupportedCurrency>} -
@@ -1775,7 +1787,7 @@ class Configuration {
   }
 
   /**
-   * @param {ConfigurationPlatformApplicationValidator.updateAppFeatures} arg
+   * @param {ConfigurationPlatformApplicationValidator.UpdateAppFeaturesParam} arg
    *   - Arg object
    *
    * @returns {Promise<ConfigurationPlatformModel.AppFeature>} - Success response
@@ -1840,7 +1852,7 @@ class Configuration {
   }
 
   /**
-   * @param {ConfigurationPlatformApplicationValidator.updateBuildConfig} arg
+   * @param {ConfigurationPlatformApplicationValidator.UpdateBuildConfigParam} arg
    *   - Arg object
    *
    * @returns {Promise<ConfigurationPlatformModel.MobileAppConfiguration>} -
@@ -1908,7 +1920,7 @@ class Configuration {
   }
 
   /**
-   * @param {ConfigurationPlatformApplicationValidator.updateInventoryConfig} arg
+   * @param {ConfigurationPlatformApplicationValidator.UpdateInventoryConfigParam} arg
    *   - Arg object
    *
    * @returns {Promise<ConfigurationPlatformModel.ApplicationInventory>} -
@@ -1974,7 +1986,7 @@ class Configuration {
   }
 
   /**
-   * @param {ConfigurationPlatformApplicationValidator.updateOrderingStoreConfig} arg
+   * @param {ConfigurationPlatformApplicationValidator.UpdateOrderingStoreConfigParam} arg
    *   - Arg object
    *
    * @returns {Promise<ConfigurationPlatformModel.DeploymentMeta>} - Success response

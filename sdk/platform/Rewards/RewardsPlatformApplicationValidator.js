@@ -3,24 +3,24 @@ const Joi = require("joi");
 const RewardsPlatformModel = require("./RewardsPlatformModel");
 
 /**
- * @typedef getGiveawayById
+ * @typedef GetGiveawayByIdParam
  * @property {string} id - Giveaway ID
  */
 
 /**
- * @typedef getOfferByName
+ * @typedef GetOfferByNameParam
  * @property {string} name - The name given to the offer.
  */
 
-/** @typedef getRewardsConfiguration */
+/** @typedef GetRewardsConfigurationParam */
 
 /**
- * @typedef getUserDetails
+ * @typedef GetUserDetailsParam
  * @property {string} userId - User id
  */
 
 /**
- * @typedef getUserPointsHistory
+ * @typedef GetUserPointsHistoryParam
  * @property {string} userId - User id
  * @property {string} [pageId] - PageID is the ID of the requested page. For
  *   first request it should be kept empty.
@@ -28,37 +28,37 @@ const RewardsPlatformModel = require("./RewardsPlatformModel");
  */
 
 /**
- * @typedef saveGiveAway
+ * @typedef SaveGiveAwayParam
  * @property {RewardsPlatformModel.Giveaway} body
  */
 
 /**
- * @typedef setRewardsConfiguration
+ * @typedef SetRewardsConfigurationParam
  * @property {RewardsPlatformModel.ConfigurationRequest} body
  */
 
 /**
- * @typedef showGiveaways
+ * @typedef ShowGiveawaysParam
  * @property {string} pageId - Pagination page id
  * @property {number} pageSize - Pagination page size
  */
 
-/** @typedef showOffers */
+/** @typedef ShowOffersParam */
 
 /**
- * @typedef updateGiveAway
+ * @typedef UpdateGiveAwayParam
  * @property {string} id - Giveaway ID
  * @property {RewardsPlatformModel.Giveaway} body
  */
 
 /**
- * @typedef updateOfferByName
+ * @typedef UpdateOfferByNameParam
  * @property {string} name - The name given to the offer.
  * @property {RewardsPlatformModel.Offer} body
  */
 
 /**
- * @typedef updateUserStatus
+ * @typedef UpdateUserStatusParam
  * @property {string} userId - User id
  * @property {RewardsPlatformModel.AppUser} body
  */

@@ -12,7 +12,7 @@ class Lead {
   }
 
   /**
-   * @param {LeadPlatformValidator.createHistory} arg - Arg object
+   * @param {LeadPlatformValidator.CreateHistoryParam} arg - Arg object
    * @returns {Promise<LeadPlatformModel.TicketHistory>} - Success response
    * @name createHistory
    * @summary: Create history for specific company level ticket
@@ -76,7 +76,7 @@ class Lead {
   }
 
   /**
-   * @param {LeadPlatformValidator.createTicket} arg - Arg object
+   * @param {LeadPlatformValidator.CreateTicketParam} arg - Arg object
    * @returns {Promise<LeadPlatformModel.Ticket>} - Success response
    * @name createTicket
    * @summary: Creates a company level ticket
@@ -136,7 +136,7 @@ class Lead {
   }
 
   /**
-   * @param {LeadPlatformValidator.editTicket} arg - Arg object
+   * @param {LeadPlatformValidator.EditTicketParam} arg - Arg object
    * @returns {Promise<LeadPlatformModel.Ticket>} - Success response
    * @name editTicket
    * @summary: Edits ticket details of a company level ticket
@@ -198,7 +198,7 @@ class Lead {
   }
 
   /**
-   * @param {LeadPlatformValidator.getFeedbacks} arg - Arg object
+   * @param {LeadPlatformValidator.GetFeedbacksParam} arg - Arg object
    * @returns {Promise<LeadPlatformModel.TicketFeedbackList>} - Success response
    * @name getFeedbacks
    * @summary: Gets a list of feedback submitted against that ticket
@@ -260,7 +260,7 @@ class Lead {
   }
 
   /**
-   * @param {LeadPlatformValidator.getGeneralConfig} arg - Arg object
+   * @param {LeadPlatformValidator.GetGeneralConfigParam} arg - Arg object
    * @returns {Promise<LeadPlatformModel.CloseVideoRoomResponse>} - Success response
    * @name getGeneralConfig
    * @summary: Get general support configuration.
@@ -320,7 +320,7 @@ class Lead {
   }
 
   /**
-   * @param {LeadPlatformValidator.getTicket} arg - Arg object
+   * @param {LeadPlatformValidator.GetTicketParam} arg - Arg object
    * @returns {Promise<LeadPlatformModel.Ticket>} - Success response
    * @name getTicket
    * @summary: Retreives ticket details of a company level ticket with ticket ID
@@ -380,7 +380,7 @@ class Lead {
   }
 
   /**
-   * @param {LeadPlatformValidator.getTicketHistory} arg - Arg object
+   * @param {LeadPlatformValidator.GetTicketHistoryParam} arg - Arg object
    * @returns {Promise<LeadPlatformModel.TicketHistoryList>} - Success response
    * @name getTicketHistory
    * @summary: Gets history list for specific company level ticket
@@ -444,7 +444,7 @@ class Lead {
   }
 
   /**
-   * @param {LeadPlatformValidator.getTickets} arg - Arg object
+   * @param {LeadPlatformValidator.GetTicketsParam} arg - Arg object
    * @returns {Promise<LeadPlatformModel.TicketList>} - Success response
    * @name getTickets
    * @summary: Gets the list of company level tickets and/or ticket filters depending on query params
@@ -587,7 +587,7 @@ class Lead {
   }
 
   /**
-   * @param {LeadPlatformValidator.getTokenForVideoRoom} arg - Arg object
+   * @param {LeadPlatformValidator.GetTokenForVideoRoomParam} arg - Arg object
    * @returns {Promise<LeadPlatformModel.GetTokenForVideoRoomResponse>} -
    *   Success response
    * @name getTokenForVideoRoom
@@ -652,7 +652,7 @@ class Lead {
   }
 
   /**
-   * @param {LeadPlatformValidator.getVideoParticipants} arg - Arg object
+   * @param {LeadPlatformValidator.GetVideoParticipantsParam} arg - Arg object
    * @returns {Promise<LeadPlatformModel.GetParticipantsInsideVideoRoomResponse>}
    *   - Success response
    *
@@ -718,7 +718,7 @@ class Lead {
   }
 
   /**
-   * @param {LeadPlatformValidator.submitFeedback} arg - Arg object
+   * @param {LeadPlatformValidator.SubmitFeedbackParam} arg - Arg object
    * @returns {Promise<LeadPlatformModel.TicketFeedback>} - Success response
    * @name submitFeedback
    * @summary: Submit a response for feeback form against that ticket

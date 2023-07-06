@@ -85,7 +85,7 @@ class User {
   }
 
   /**
-   * @param {UserApplicationValidator.addEmail} arg - Arg object.
+   * @param {UserApplicationValidator.AddEmailParam} arg - Arg object.
    * @returns {Promise<UserApplicationModel.VerifyEmailOTPSuccess>} - Success response
    * @name addEmail
    * @summary: Add email to profile
@@ -147,7 +147,7 @@ class User {
   }
 
   /**
-   * @param {UserApplicationValidator.addMobileNumber} arg - Arg object.
+   * @param {UserApplicationValidator.AddMobileNumberParam} arg - Arg object.
    * @returns {Promise<UserApplicationModel.VerifyMobileOTPSuccess>} - Success response
    * @name addMobileNumber
    * @summary: Add mobile number to profile
@@ -211,7 +211,7 @@ class User {
   }
 
   /**
-   * @param {UserApplicationValidator.deleteEmail} arg - Arg object.
+   * @param {UserApplicationValidator.DeleteEmailParam} arg - Arg object.
    * @returns {Promise<UserApplicationModel.LoginSuccess>} - Success response
    * @name deleteEmail
    * @summary: Delete email from profile
@@ -277,7 +277,7 @@ class User {
   }
 
   /**
-   * @param {UserApplicationValidator.deleteMobileNumber} arg - Arg object.
+   * @param {UserApplicationValidator.DeleteMobileNumberParam} arg - Arg object.
    * @returns {Promise<UserApplicationModel.LoginSuccess>} - Success response
    * @name deleteMobileNumber
    * @summary: Delete mobile number from profile
@@ -353,7 +353,7 @@ class User {
   }
 
   /**
-   * @param {UserApplicationValidator.deleteUser} arg - Arg object.
+   * @param {UserApplicationValidator.DeleteUserParam} arg - Arg object.
    * @returns {Promise<UserApplicationModel.DeleteUserSuccess>} - Success response
    * @name deleteUser
    * @summary: verify otp and delete user
@@ -414,7 +414,7 @@ class User {
   }
 
   /**
-   * @param {UserApplicationValidator.forgotPassword} arg - Arg object.
+   * @param {UserApplicationValidator.ForgotPasswordParam} arg - Arg object.
    * @returns {Promise<UserApplicationModel.LoginSuccess>} - Success response
    * @name forgotPassword
    * @summary: Forgot Password
@@ -477,7 +477,7 @@ class User {
   }
 
   /**
-   * @param {UserApplicationValidator.getListOfActiveSessions} arg - Arg object.
+   * @param {UserApplicationValidator.GetListOfActiveSessionsParam} arg - Arg object.
    * @returns {Promise<UserApplicationModel.SessionListSuccess>} - Success response
    * @name getListOfActiveSessions
    * @summary: Get list of sessions
@@ -542,7 +542,7 @@ class User {
   }
 
   /**
-   * @param {UserApplicationValidator.getLoggedInUser} arg - Arg object.
+   * @param {UserApplicationValidator.GetLoggedInUserParam} arg - Arg object.
    * @returns {Promise<UserApplicationModel.UserObjectSchema>} - Success response
    * @name getLoggedInUser
    * @summary: Get logged in user
@@ -605,7 +605,7 @@ class User {
   }
 
   /**
-   * @param {UserApplicationValidator.getPlatformConfig} arg - Arg object.
+   * @param {UserApplicationValidator.GetPlatformConfigParam} arg - Arg object.
    * @returns {Promise<UserApplicationModel.PlatformSchema>} - Success response
    * @name getPlatformConfig
    * @summary: Get platform configurations
@@ -669,7 +669,7 @@ class User {
   }
 
   /**
-   * @param {UserApplicationValidator.hasPassword} arg - Arg object.
+   * @param {UserApplicationValidator.HasPasswordParam} arg - Arg object.
    * @returns {Promise<UserApplicationModel.HasPasswordSuccess>} - Success response
    * @name hasPassword
    * @summary: Check password
@@ -730,7 +730,7 @@ class User {
   }
 
   /**
-   * @param {UserApplicationValidator.loginWithAppleIOS} arg - Arg object.
+   * @param {UserApplicationValidator.LoginWithAppleIOSParam} arg - Arg object.
    * @returns {Promise<UserApplicationModel.AuthSuccess>} - Success response
    * @name loginWithAppleIOS
    * @summary: Login or Register using Apple on iOS
@@ -794,7 +794,7 @@ class User {
   }
 
   /**
-   * @param {UserApplicationValidator.loginWithEmailAndPassword} arg - Arg object.
+   * @param {UserApplicationValidator.LoginWithEmailAndPasswordParam} arg - Arg object.
    * @returns {Promise<UserApplicationModel.LoginSuccess>} - Success response
    * @name loginWithEmailAndPassword
    * @summary: Login or Register with password
@@ -859,7 +859,7 @@ class User {
   }
 
   /**
-   * @param {UserApplicationValidator.loginWithFacebook} arg - Arg object.
+   * @param {UserApplicationValidator.LoginWithFacebookParam} arg - Arg object.
    * @returns {Promise<UserApplicationModel.AuthSuccess>} - Success response
    * @name loginWithFacebook
    * @summary: Login or Register using Facebook
@@ -923,7 +923,7 @@ class User {
   }
 
   /**
-   * @param {UserApplicationValidator.loginWithGoogle} arg - Arg object.
+   * @param {UserApplicationValidator.LoginWithGoogleParam} arg - Arg object.
    * @returns {Promise<UserApplicationModel.AuthSuccess>} - Success response
    * @name loginWithGoogle
    * @summary: Login or Register using Google
@@ -987,7 +987,7 @@ class User {
   }
 
   /**
-   * @param {UserApplicationValidator.loginWithGoogleAndroid} arg - Arg object.
+   * @param {UserApplicationValidator.LoginWithGoogleAndroidParam} arg - Arg object.
    * @returns {Promise<UserApplicationModel.AuthSuccess>} - Success response
    * @name loginWithGoogleAndroid
    * @summary: Login or Register using Google on Android
@@ -1053,7 +1053,7 @@ class User {
   }
 
   /**
-   * @param {UserApplicationValidator.loginWithGoogleIOS} arg - Arg object.
+   * @param {UserApplicationValidator.LoginWithGoogleIOSParam} arg - Arg object.
    * @returns {Promise<UserApplicationModel.AuthSuccess>} - Success response
    * @name loginWithGoogleIOS
    * @summary: Login or Register using Google on iOS
@@ -1117,7 +1117,7 @@ class User {
   }
 
   /**
-   * @param {UserApplicationValidator.loginWithOTP} arg - Arg object.
+   * @param {UserApplicationValidator.LoginWithOTPParam} arg - Arg object.
    * @returns {Promise<UserApplicationModel.SendOtpResponse>} - Success response
    * @name loginWithOTP
    * @summary: Login or Register with OTP
@@ -1181,7 +1181,7 @@ class User {
   }
 
   /**
-   * @param {UserApplicationValidator.loginWithToken} arg - Arg object.
+   * @param {UserApplicationValidator.LoginWithTokenParam} arg - Arg object.
    * @returns {Promise<UserApplicationModel.LoginSuccess>} - Success response
    * @name loginWithToken
    * @summary: Login or Register with token
@@ -1244,7 +1244,7 @@ class User {
   }
 
   /**
-   * @param {UserApplicationValidator.logout} arg - Arg object.
+   * @param {UserApplicationValidator.LogoutParam} arg - Arg object.
    * @returns {Promise<UserApplicationModel.LogoutSuccess>} - Success response
    * @name logout
    * @summary: Logs out currently logged in user
@@ -1305,7 +1305,7 @@ class User {
   }
 
   /**
-   * @param {UserApplicationValidator.registerWithForm} arg - Arg object.
+   * @param {UserApplicationValidator.RegisterWithFormParam} arg - Arg object.
    * @returns {Promise<UserApplicationModel.RegisterFormSuccess>} - Success response
    * @name registerWithForm
    * @summary: Registration using a form
@@ -1369,7 +1369,7 @@ class User {
   }
 
   /**
-   * @param {UserApplicationValidator.sendOTPOnEmail} arg - Arg object.
+   * @param {UserApplicationValidator.SendOTPOnEmailParam} arg - Arg object.
    * @returns {Promise<UserApplicationModel.EmailOtpSuccess>} - Success response
    * @name sendOTPOnEmail
    * @summary: Send OTP on email
@@ -1433,7 +1433,7 @@ class User {
   }
 
   /**
-   * @param {UserApplicationValidator.sendOTPOnMobile} arg - Arg object.
+   * @param {UserApplicationValidator.SendOTPOnMobileParam} arg - Arg object.
    * @returns {Promise<UserApplicationModel.OtpSuccess>} - Success response
    * @name sendOTPOnMobile
    * @summary: Send OTP on mobile
@@ -1497,7 +1497,7 @@ class User {
   }
 
   /**
-   * @param {UserApplicationValidator.sendResetPasswordEmail} arg - Arg object.
+   * @param {UserApplicationValidator.SendResetPasswordEmailParam} arg - Arg object.
    * @returns {Promise<UserApplicationModel.ResetPasswordSuccess>} - Success response
    * @name sendResetPasswordEmail
    * @summary: Reset Password
@@ -1563,7 +1563,7 @@ class User {
   }
 
   /**
-   * @param {UserApplicationValidator.sendResetPasswordMobile} arg - Arg object.
+   * @param {UserApplicationValidator.SendResetPasswordMobileParam} arg - Arg object.
    * @returns {Promise<UserApplicationModel.ResetPasswordSuccess>} - Success response
    * @name sendResetPasswordMobile
    * @summary: Reset Password
@@ -1629,7 +1629,7 @@ class User {
   }
 
   /**
-   * @param {UserApplicationValidator.sendResetToken} arg - Arg object.
+   * @param {UserApplicationValidator.SendResetTokenParam} arg - Arg object.
    * @returns {Promise<UserApplicationModel.ResetPasswordSuccess>} - Success response
    * @name sendResetToken
    * @summary: Reset Password using token
@@ -1692,7 +1692,8 @@ class User {
   }
 
   /**
-   * @param {UserApplicationValidator.sendVerificationLinkToEmail} arg - Arg object.
+   * @param {UserApplicationValidator.SendVerificationLinkToEmailParam} arg -
+   *   Arg object.
    * @returns {Promise<UserApplicationModel.SendEmailVerifyLinkSuccess>} -
    *   Success response
    * @name sendVerificationLinkToEmail
@@ -1759,7 +1760,9 @@ class User {
   }
 
   /**
-   * @param {UserApplicationValidator.sendVerificationLinkToMobile} arg - Arg object.
+   * @param {UserApplicationValidator.SendVerificationLinkToMobileParam} arg
+   *   - Arg object.
+   *
    * @returns {Promise<UserApplicationModel.SendMobileVerifyLinkSuccess>} -
    *   Success response
    * @name sendVerificationLinkToMobile
@@ -1826,7 +1829,7 @@ class User {
   }
 
   /**
-   * @param {UserApplicationValidator.setEmailAsPrimary} arg - Arg object.
+   * @param {UserApplicationValidator.SetEmailAsPrimaryParam} arg - Arg object.
    * @returns {Promise<UserApplicationModel.LoginSuccess>} - Success response
    * @name setEmailAsPrimary
    * @summary: Set email as primary
@@ -1889,7 +1892,7 @@ class User {
   }
 
   /**
-   * @param {UserApplicationValidator.setMobileNumberAsPrimary} arg - Arg object.
+   * @param {UserApplicationValidator.SetMobileNumberAsPrimaryParam} arg - Arg object.
    * @returns {Promise<UserApplicationModel.LoginSuccess>} - Success response
    * @name setMobileNumberAsPrimary
    * @summary: Set mobile as primary
@@ -1954,7 +1957,7 @@ class User {
   }
 
   /**
-   * @param {UserApplicationValidator.updatePassword} arg - Arg object.
+   * @param {UserApplicationValidator.UpdatePasswordParam} arg - Arg object.
    * @returns {Promise<UserApplicationModel.VerifyEmailSuccess>} - Success response
    * @name updatePassword
    * @summary: Update user password
@@ -2017,7 +2020,7 @@ class User {
   }
 
   /**
-   * @param {UserApplicationValidator.updateProfile} arg - Arg object.
+   * @param {UserApplicationValidator.UpdateProfileParam} arg - Arg object.
    * @returns {Promise<UserApplicationModel.ProfileEditSuccess>} - Success response
    * @name updateProfile
    * @summary: Edit Profile Details
@@ -2081,7 +2084,7 @@ class User {
   }
 
   /**
-   * @param {UserApplicationValidator.verifyEmail} arg - Arg object.
+   * @param {UserApplicationValidator.VerifyEmailParam} arg - Arg object.
    * @returns {Promise<UserApplicationModel.VerifyEmailSuccess>} - Success response
    * @name verifyEmail
    * @summary: Verify email
@@ -2142,7 +2145,7 @@ class User {
   }
 
   /**
-   * @param {UserApplicationValidator.verifyEmailOTP} arg - Arg object.
+   * @param {UserApplicationValidator.VerifyEmailOTPParam} arg - Arg object.
    * @returns {Promise<UserApplicationModel.VerifyOtpSuccess>} - Success response
    * @name verifyEmailOTP
    * @summary: Verify OTP on email
@@ -2206,7 +2209,7 @@ class User {
   }
 
   /**
-   * @param {UserApplicationValidator.verifyMobile} arg - Arg object.
+   * @param {UserApplicationValidator.VerifyMobileParam} arg - Arg object.
    * @returns {Promise<UserApplicationModel.VerifyEmailSuccess>} - Success response
    * @name verifyMobile
    * @summary: Verify mobile
@@ -2269,7 +2272,7 @@ class User {
   }
 
   /**
-   * @param {UserApplicationValidator.verifyMobileOTP} arg - Arg object.
+   * @param {UserApplicationValidator.VerifyMobileOTPParam} arg - Arg object.
    * @returns {Promise<UserApplicationModel.VerifyOtpSuccess>} - Success response
    * @name verifyMobileOTP
    * @summary: Verify OTP on mobile

@@ -1,72 +1,72 @@
 export = CatalogPlatformApplicationValidator;
 /**
- * @typedef addCollectionItems
+ * @typedef AddCollectionItemsParam
  * @property {string} id - A `id` is a unique identifier of a collection.
  * @property {CatalogPlatformModel.CollectionItemUpdate} body
  */
 /**
- * @typedef createCollection
+ * @typedef CreateCollectionParam
  * @property {CatalogPlatformModel.CreateCollection} body
  */
 /**
- * @typedef createConfigurationByType
+ * @typedef CreateConfigurationByTypeParam
  * @property {string} type - Type can be brands, categories etc.
  * @property {CatalogPlatformModel.AppConfiguration} body
  */
 /**
- * @typedef createConfigurationProductListing
+ * @typedef CreateConfigurationProductListingParam
  * @property {CatalogPlatformModel.AppConfiguration} body
  */
 /**
- * @typedef createCustomAutocompleteRule
+ * @typedef CreateCustomAutocompleteRuleParam
  * @property {CatalogPlatformModel.CreateAutocompleteKeyword} body
  */
 /**
- * @typedef createCustomKeyword
+ * @typedef CreateCustomKeywordParam
  * @property {CatalogPlatformModel.CreateSearchKeyword} body
  */
 /**
- * @typedef createGroupConfiguration
+ * @typedef CreateGroupConfigurationParam
  * @property {string} configType - A `config_type` is a unique identifier for a
  *   particular group configuration type.
  * @property {CatalogPlatformModel.AppConfigurationDetail} body
  */
 /**
- * @typedef createListingConfiguration
+ * @typedef CreateListingConfigurationParam
  * @property {string} configType - A `config_type` is a unique identifier for a
  *   particular listing configuration type.
  * @property {CatalogPlatformModel.AppConfigurationsSort} body
  */
 /**
- * @typedef deleteAutocompleteKeyword
+ * @typedef DeleteAutocompleteKeywordParam
  * @property {string} id - A `id` is a unique identifier for a particular
  *   detail. Pass the `id` of the keywords which you want to delete.
  */
 /**
- * @typedef deleteCollection
+ * @typedef DeleteCollectionParam
  * @property {string} id - A `id` is a unique identifier of a collection.
  */
 /**
- * @typedef deleteGroupConfiguration
+ * @typedef DeleteGroupConfigurationParam
  * @property {string} configType - A `config_type` is a unique identifier for a
  *   particular group configuration type.
  * @property {string} groupSlug - A `group_slug` is a unique identifier of a
  *   particular configuration.
  */
 /**
- * @typedef deleteListingConfiguration
+ * @typedef DeleteListingConfigurationParam
  * @property {string} configType - A `config_type` is a unique identifier for a
  *   particular listing configuration type.
  * @property {string} configId - A `config_id` is a unique identifier of a
  *   particular configuration.
  */
 /**
- * @typedef deleteSearchKeywords
+ * @typedef DeleteSearchKeywordsParam
  * @property {string} id - A `id` is a unique identifier for a particular
  *   detail. Pass the `id` of the keywords which you want to delete.
  */
 /**
- * @typedef getAllCollections
+ * @typedef GetAllCollectionsParam
  * @property {string} [q] - Get collection list filtered by q string,
  * @property {string} [scheduleStatus] - Get collection list filtered by scheduled status,
  * @property {string} [type] - Type of the collections
@@ -78,9 +78,9 @@ export = CatalogPlatformApplicationValidator;
  * @property {number} [pageSize] - Number of items to retrieve in each page.
  *   Default is 12.
  */
-/** @typedef getAllSearchKeyword */
+/** @typedef GetAllSearchKeywordParam */
 /**
- * @typedef getAppInventory
+ * @typedef GetAppInventoryParam
  * @property {number[]} [itemIds] - The Item Id of the product.
  * @property {number[]} [storeIds] - The Store Id of products to fetch inventory.
  * @property {number[]} [brandIds] - The Brand Id of products to fetch inventory.
@@ -90,7 +90,7 @@ export = CatalogPlatformApplicationValidator;
  * @property {string} [pageId] - Page ID to retrieve next set of results.
  */
 /**
- * @typedef getAppLocations
+ * @typedef GetAppLocationsParam
  * @property {string} [storeType] - Helps to sort the location list on the basis
  *   of location type.
  * @property {number[]} [uid] - Helps to sort the location list on the basis of uid list.
@@ -103,11 +103,11 @@ export = CatalogPlatformApplicationValidator;
  *   Default is 20.
  */
 /**
- * @typedef getAppProduct
+ * @typedef GetAppProductParam
  * @property {string} itemId - Product id for a particular product.
  */
 /**
- * @typedef getAppProducts
+ * @typedef GetAppProductsParam
  * @property {number[]} [brandIds] - Get multiple products filtered by Brand Ids
  * @property {number[]} [categoryIds] - Get multiple products filtered by Category Ids
  * @property {number[]} [departmentIds] - Get multiple products filtered by Department Ids
@@ -120,7 +120,7 @@ export = CatalogPlatformApplicationValidator;
  * @property {string} [q] - Search with Item Code, Name, Slug or Identifier.
  */
 /**
- * @typedef getAppicationProducts
+ * @typedef GetAppicationProductsParam
  * @property {string} [q] - The search query. This can be a partial or complete
  *   name of a either a product, brand or category
  * @property {string} [f] - The search filter parameters. All the parameter
@@ -146,7 +146,7 @@ export = CatalogPlatformApplicationValidator;
  * @property {number[]} [itemIds] - Item Ids of product
  */
 /**
- * @typedef getApplicationBrandListing
+ * @typedef GetApplicationBrandListingParam
  * @property {number} [pageNo] - The page number to navigate through the given
  *   set of results
  * @property {number} [pageSize] - Number of items to retrieve in each page.
@@ -155,7 +155,7 @@ export = CatalogPlatformApplicationValidator;
  *   search brands by brand name.
  */
 /**
- * @typedef getApplicationBrands
+ * @typedef GetApplicationBrandsParam
  * @property {string} [department] - The name of the department. Use this
  *   parameter to filter products by a particular department. See below the list
  *   of available departments. You can retrieve available departments from the
@@ -170,7 +170,7 @@ export = CatalogPlatformApplicationValidator;
  *   of uid list.
  */
 /**
- * @typedef getApplicationCategoryListing
+ * @typedef GetApplicationCategoryListingParam
  * @property {number} [departmentId] - A `department_id` is a unique identifier
  *   for a particular department.
  * @property {number} [pageNo] - The page number to navigate through the given
@@ -181,7 +181,7 @@ export = CatalogPlatformApplicationValidator;
  *   search brands by brand name.
  */
 /**
- * @typedef getApplicationDepartmentListing
+ * @typedef GetApplicationDepartmentListingParam
  * @property {number} [pageNo] - The page number to navigate through the given
  *   set of results
  * @property {number} [pageSize] - Number of items to retrieve in each page.
@@ -189,32 +189,32 @@ export = CatalogPlatformApplicationValidator;
  * @property {string} [q] - Search query with brand name.Use this parameter to
  *   search department by name.
  */
-/** @typedef getAutocompleteConfig */
+/** @typedef GetAutocompleteConfigParam */
 /**
- * @typedef getAutocompleteKeywordDetail
+ * @typedef GetAutocompleteKeywordDetailParam
  * @property {string} id - A `id` is a unique identifier for a particular
  *   detail. Pass the `id` of the keywords which you want to retrieve.
  */
-/** @typedef getCatalogConfiguration */
+/** @typedef GetCatalogConfigurationParam */
 /**
- * @typedef getCatalogInsights
+ * @typedef GetCatalogInsightsParam
  * @property {string} [brand] - Brand slug
  */
 /**
- * @typedef getCategories
+ * @typedef GetCategoriesParam
  * @property {string} [department] - The name of the department. Use this
  *   parameter to filter products by a particular department. See below the list
  *   of available departments. You can retrieve available departments from the
  *   **v1.0/departments/** API
  */
 /**
- * @typedef getCollectionDetail
+ * @typedef GetCollectionDetailParam
  * @property {string} slug - A `slug` is a human readable, URL friendly unique
  *   identifier of an object. Pass the `slug` of the collection which you want
  *   to retrieve.
  */
 /**
- * @typedef getCollectionItems
+ * @typedef GetCollectionItemsParam
  * @property {string} id - A `id` is a unique identifier of a collection.
  * @property {string} [sortOn] - Each response will contain sort_on param, which
  *   should be sent back to make pagination work.
@@ -224,20 +224,20 @@ export = CatalogPlatformApplicationValidator;
  *   Default is 12.
  */
 /**
- * @typedef getConfigurationByType
+ * @typedef GetConfigurationByTypeParam
  * @property {string} type - Type can be brands, categories etc.
  */
 /**
- * @typedef getConfigurationMetadata
+ * @typedef GetConfigurationMetadataParam
  * @property {string} configType - A `config_type` is an identifier that defines
  *   a specific type of configuration.
  * @property {string} [templateSlug] - Get configuration list filtered by
  *   `template_slug` string. This is for the details and comparision groups.
  */
-/** @typedef getConfigurations */
-/** @typedef getDepartments */
+/** @typedef GetConfigurationsParam */
+/** @typedef GetDepartmentsParam */
 /**
- * @typedef getDiscountedInventoryBySizeIdentifier
+ * @typedef GetDiscountedInventoryBySizeIdentifierParam
  * @property {number} itemId - Item code of the product of which size is to be get.
  * @property {string} sizeIdentifier - Size Identifier (Seller Identifier or
  *   Primary Identifier) of which inventory is to get.
@@ -249,7 +249,7 @@ export = CatalogPlatformApplicationValidator;
  * @property {number[]} [locationIds] - Search by store ids.
  */
 /**
- * @typedef getGroupConfigurations
+ * @typedef GetGroupConfigurationsParam
  * @property {string} configType - A `config_type` is an identifier that defines
  *   a specific type of configuration.
  * @property {number} [pageNo] - The page number to navigate through the given
@@ -261,7 +261,7 @@ export = CatalogPlatformApplicationValidator;
  *   `template_slug` string. This is for the details and comparision groups.
  */
 /**
- * @typedef getListingConfigurations
+ * @typedef GetListingConfigurationsParam
  * @property {string} configType - A `config_type` is an identifier that defines
  *   a specific type of configuration.
  * @property {number} [pageNo] - The page number to navigate through the given
@@ -271,13 +271,13 @@ export = CatalogPlatformApplicationValidator;
  * @property {string} [search] - Get configuration list filtered by `search` string.
  */
 /**
- * @typedef getProductDetailBySlug
+ * @typedef GetProductDetailBySlugParam
  * @property {string} slug - The unique identifier of a product. i.e; `slug` of
  *   a product. You can retrieve these from the APIs that list products like
  *   **v1.0/products/**
  */
 /**
- * @typedef getProductSizeSellers
+ * @typedef GetProductSizeSellersParam
  * @property {string} itemId - Item code of the product of which size is to be get.
  * @property {string} size - A string indicating the size of the product, e.g.
  *   S, M, XL. You can get slug value from the endpoint
@@ -290,59 +290,59 @@ export = CatalogPlatformApplicationValidator;
  *   set of results.
  * @property {number} [pageSize] - The number of items to retrieve in each page.
  */
-/** @typedef getQueryFilters */
+/** @typedef GetQueryFiltersParam */
 /**
- * @typedef getSearchKeywords
+ * @typedef GetSearchKeywordsParam
  * @property {string} id - A `id` is a unique identifier for a particular
  *   detail. Pass the `id` of the keywords which you want to retrieve.
  */
 /**
- * @typedef updateAllowSingle
+ * @typedef UpdateAllowSingleParam
  * @property {CatalogPlatformModel.AllowSingleRequest} body
  */
 /**
- * @typedef updateAppBrand
+ * @typedef UpdateAppBrandParam
  * @property {string} brandUid - Brand id for which the custom_json is associated.
  * @property {CatalogPlatformModel.ApplicationBrandJson} body
  */
 /**
- * @typedef updateAppCategory
+ * @typedef UpdateAppCategoryParam
  * @property {string} categoryUid - Category id for which the custom_json is associated.
  * @property {CatalogPlatformModel.ApplicationCategoryJson} body
  */
 /**
- * @typedef updateAppDepartment
+ * @typedef UpdateAppDepartmentParam
  * @property {string} departmentUid - Department id for which the custom_json is
  *   associated.
  * @property {CatalogPlatformModel.ApplicationDepartmentJson} body
  */
 /**
- * @typedef updateAppLocation
+ * @typedef UpdateAppLocationParam
  * @property {string} storeUid - Store id for which the custom_json is associated.
  * @property {CatalogPlatformModel.ApplicationStoreJson} body
  */
 /**
- * @typedef updateAppProduct
+ * @typedef UpdateAppProductParam
  * @property {string} itemId - Product id for which the custom_meta is associated.
  * @property {CatalogPlatformModel.ApplicationItemMeta} body
  */
 /**
- * @typedef updateAutocompleteKeyword
+ * @typedef UpdateAutocompleteKeywordParam
  * @property {string} id - A `id` is a unique identifier for a particular
  *   detail. Pass the `id` of the keywords which you want to delete.
  * @property {CatalogPlatformModel.CreateAutocompleteKeyword} body
  */
 /**
- * @typedef updateCollection
+ * @typedef UpdateCollectionParam
  * @property {string} id - A `id` is a unique identifier of a collection.
  * @property {CatalogPlatformModel.UpdateCollection} body
  */
 /**
- * @typedef updateDefaultSort
+ * @typedef UpdateDefaultSortParam
  * @property {CatalogPlatformModel.DefaultKeyRequest} body
  */
 /**
- * @typedef updateGroupConfiguration
+ * @typedef UpdateGroupConfigurationParam
  * @property {string} configType - A `config_type` is a unique identifier for a
  *   particular group configuration type.
  * @property {string} groupSlug - A `group_slug` is a unique identifier of a
@@ -350,7 +350,7 @@ export = CatalogPlatformApplicationValidator;
  * @property {CatalogPlatformModel.AppConfigurationDetail} body
  */
 /**
- * @typedef updateListingConfiguration
+ * @typedef UpdateListingConfigurationParam
  * @property {string} configType - A `config_type` is a unique identifier for a
  *   particular listing configuration type.
  * @property {string} configId - A `config_id` is a unique identifier of a
@@ -358,57 +358,151 @@ export = CatalogPlatformApplicationValidator;
  * @property {CatalogPlatformModel.AppConfigurationsSort} body
  */
 /**
- * @typedef updateSearchKeywords
+ * @typedef UpdateSearchKeywordsParam
  * @property {string} id - A `id` is a unique identifier for a particular
  *   detail. Pass the `id` of the keywords which you want to delete.
  * @property {CatalogPlatformModel.CreateSearchKeyword} body
  */
 declare class CatalogPlatformApplicationValidator {
+    /** @returns {addCollectionItems} */
+    static addCollectionItems(): addCollectionItems;
+    /** @returns {createCollection} */
+    static createCollection(): createCollection;
+    /** @returns {createConfigurationByType} */
+    static createConfigurationByType(): createConfigurationByType;
+    /** @returns {createConfigurationProductListing} */
+    static createConfigurationProductListing(): createConfigurationProductListing;
+    /** @returns {createCustomAutocompleteRule} */
+    static createCustomAutocompleteRule(): createCustomAutocompleteRule;
+    /** @returns {createCustomKeyword} */
+    static createCustomKeyword(): createCustomKeyword;
+    /** @returns {createGroupConfiguration} */
+    static createGroupConfiguration(): createGroupConfiguration;
+    /** @returns {createListingConfiguration} */
+    static createListingConfiguration(): createListingConfiguration;
+    /** @returns {deleteAutocompleteKeyword} */
+    static deleteAutocompleteKeyword(): deleteAutocompleteKeyword;
+    /** @returns {deleteCollection} */
+    static deleteCollection(): deleteCollection;
+    /** @returns {deleteGroupConfiguration} */
+    static deleteGroupConfiguration(): deleteGroupConfiguration;
+    /** @returns {deleteListingConfiguration} */
+    static deleteListingConfiguration(): deleteListingConfiguration;
+    /** @returns {deleteSearchKeywords} */
+    static deleteSearchKeywords(): deleteSearchKeywords;
+    /** @returns {getAllCollections} */
+    static getAllCollections(): getAllCollections;
+    /** @returns {getAllSearchKeyword} */
+    static getAllSearchKeyword(): getAllSearchKeyword;
+    /** @returns {getAppInventory} */
+    static getAppInventory(): getAppInventory;
+    /** @returns {getAppLocations} */
+    static getAppLocations(): getAppLocations;
+    /** @returns {getAppProduct} */
+    static getAppProduct(): getAppProduct;
+    /** @returns {getAppProducts} */
+    static getAppProducts(): getAppProducts;
+    /** @returns {getAppicationProducts} */
+    static getAppicationProducts(): getAppicationProducts;
+    /** @returns {getApplicationBrandListing} */
+    static getApplicationBrandListing(): getApplicationBrandListing;
+    /** @returns {getApplicationBrands} */
+    static getApplicationBrands(): getApplicationBrands;
+    /** @returns {getApplicationCategoryListing} */
+    static getApplicationCategoryListing(): getApplicationCategoryListing;
+    /** @returns {getApplicationDepartmentListing} */
+    static getApplicationDepartmentListing(): getApplicationDepartmentListing;
+    /** @returns {getAutocompleteConfig} */
+    static getAutocompleteConfig(): getAutocompleteConfig;
+    /** @returns {getAutocompleteKeywordDetail} */
+    static getAutocompleteKeywordDetail(): getAutocompleteKeywordDetail;
+    /** @returns {getCatalogConfiguration} */
+    static getCatalogConfiguration(): getCatalogConfiguration;
+    /** @returns {getCatalogInsights} */
+    static getCatalogInsights(): getCatalogInsights;
+    /** @returns {getCategories} */
+    static getCategories(): getCategories;
+    /** @returns {getCollectionDetail} */
+    static getCollectionDetail(): getCollectionDetail;
+    /** @returns {getCollectionItems} */
+    static getCollectionItems(): getCollectionItems;
+    /** @returns {getConfigurationByType} */
+    static getConfigurationByType(): getConfigurationByType;
+    /** @returns {getConfigurationMetadata} */
+    static getConfigurationMetadata(): getConfigurationMetadata;
+    /** @returns {getConfigurations} */
+    static getConfigurations(): getConfigurations;
+    /** @returns {getDepartments} */
+    static getDepartments(): getDepartments;
+    /** @returns {getDiscountedInventoryBySizeIdentifier} */
+    static getDiscountedInventoryBySizeIdentifier(): getDiscountedInventoryBySizeIdentifier;
+    /** @returns {getGroupConfigurations} */
+    static getGroupConfigurations(): getGroupConfigurations;
+    /** @returns {getListingConfigurations} */
+    static getListingConfigurations(): getListingConfigurations;
+    /** @returns {getProductDetailBySlug} */
+    static getProductDetailBySlug(): getProductDetailBySlug;
+    /** @returns {getProductSizeSellers} */
+    static getProductSizeSellers(): getProductSizeSellers;
+    /** @returns {getQueryFilters} */
+    static getQueryFilters(): getQueryFilters;
+    /** @returns {getSearchKeywords} */
+    static getSearchKeywords(): getSearchKeywords;
+    /** @returns {updateAllowSingle} */
+    static updateAllowSingle(): updateAllowSingle;
+    /** @returns {updateAppBrand} */
+    static updateAppBrand(): updateAppBrand;
+    /** @returns {updateAppCategory} */
+    static updateAppCategory(): updateAppCategory;
+    /** @returns {updateAppDepartment} */
+    static updateAppDepartment(): updateAppDepartment;
+    /** @returns {updateAppLocation} */
+    static updateAppLocation(): updateAppLocation;
+    /** @returns {updateAppProduct} */
+    static updateAppProduct(): updateAppProduct;
+    /** @returns {updateAutocompleteKeyword} */
+    static updateAutocompleteKeyword(): updateAutocompleteKeyword;
+    /** @returns {updateCollection} */
+    static updateCollection(): updateCollection;
+    /** @returns {updateDefaultSort} */
+    static updateDefaultSort(): updateDefaultSort;
+    /** @returns {updateGroupConfiguration} */
+    static updateGroupConfiguration(): updateGroupConfiguration;
+    /** @returns {updateListingConfiguration} */
+    static updateListingConfiguration(): updateListingConfiguration;
+    /** @returns {updateSearchKeywords} */
+    static updateSearchKeywords(): updateSearchKeywords;
 }
 declare namespace CatalogPlatformApplicationValidator {
-    export { addCollectionItems, createCollection, createConfigurationByType, createConfigurationProductListing, createCustomAutocompleteRule, createCustomKeyword, createGroupConfiguration, createListingConfiguration, deleteAutocompleteKeyword, deleteCollection, deleteGroupConfiguration, deleteListingConfiguration, deleteSearchKeywords, getAllCollections, getAllSearchKeyword, getAppInventory, getAppLocations, getAppProduct, getAppProducts, getAppicationProducts, getApplicationBrandListing, getApplicationBrands, getApplicationCategoryListing, getApplicationDepartmentListing, getAutocompleteConfig, getAutocompleteKeywordDetail, getCatalogConfiguration, getCatalogInsights, getCategories, getCollectionDetail, getCollectionItems, getConfigurationByType, getConfigurationMetadata, getConfigurations, getDepartments, getDiscountedInventoryBySizeIdentifier, getGroupConfigurations, getListingConfigurations, getProductDetailBySlug, getProductSizeSellers, getQueryFilters, getSearchKeywords, updateAllowSingle, updateAppBrand, updateAppCategory, updateAppDepartment, updateAppLocation, updateAppProduct, updateAutocompleteKeyword, updateCollection, updateDefaultSort, updateGroupConfiguration, updateListingConfiguration, updateSearchKeywords };
+    export { AddCollectionItemsParam, CreateCollectionParam, CreateConfigurationByTypeParam, CreateConfigurationProductListingParam, CreateCustomAutocompleteRuleParam, CreateCustomKeywordParam, CreateGroupConfigurationParam, CreateListingConfigurationParam, DeleteAutocompleteKeywordParam, DeleteCollectionParam, DeleteGroupConfigurationParam, DeleteListingConfigurationParam, DeleteSearchKeywordsParam, GetAllCollectionsParam, GetAllSearchKeywordParam, GetAppInventoryParam, GetAppLocationsParam, GetAppProductParam, GetAppProductsParam, GetAppicationProductsParam, GetApplicationBrandListingParam, GetApplicationBrandsParam, GetApplicationCategoryListingParam, GetApplicationDepartmentListingParam, GetAutocompleteConfigParam, GetAutocompleteKeywordDetailParam, GetCatalogConfigurationParam, GetCatalogInsightsParam, GetCategoriesParam, GetCollectionDetailParam, GetCollectionItemsParam, GetConfigurationByTypeParam, GetConfigurationMetadataParam, GetConfigurationsParam, GetDepartmentsParam, GetDiscountedInventoryBySizeIdentifierParam, GetGroupConfigurationsParam, GetListingConfigurationsParam, GetProductDetailBySlugParam, GetProductSizeSellersParam, GetQueryFiltersParam, GetSearchKeywordsParam, UpdateAllowSingleParam, UpdateAppBrandParam, UpdateAppCategoryParam, UpdateAppDepartmentParam, UpdateAppLocationParam, UpdateAppProductParam, UpdateAutocompleteKeywordParam, UpdateCollectionParam, UpdateDefaultSortParam, UpdateGroupConfigurationParam, UpdateListingConfigurationParam, UpdateSearchKeywordsParam };
 }
-/** @returns {addCollectionItems} */
-declare function addCollectionItems(): addCollectionItems;
-type addCollectionItems = {
+type AddCollectionItemsParam = {
     /**
      * - A `id` is a unique identifier of a collection.
      */
     id: string;
     body: CatalogPlatformModel.CollectionItemUpdate;
 };
-/** @returns {createCollection} */
-declare function createCollection(): createCollection;
-type createCollection = {
+type CreateCollectionParam = {
     body: CatalogPlatformModel.CreateCollection;
 };
-/** @returns {createConfigurationByType} */
-declare function createConfigurationByType(): createConfigurationByType;
-type createConfigurationByType = {
+type CreateConfigurationByTypeParam = {
     /**
      * - Type can be brands, categories etc.
      */
     type: string;
     body: CatalogPlatformModel.AppConfiguration;
 };
-/** @returns {createConfigurationProductListing} */
-declare function createConfigurationProductListing(): createConfigurationProductListing;
-type createConfigurationProductListing = {
+type CreateConfigurationProductListingParam = {
     body: CatalogPlatformModel.AppConfiguration;
 };
-/** @returns {createCustomAutocompleteRule} */
-declare function createCustomAutocompleteRule(): createCustomAutocompleteRule;
-type createCustomAutocompleteRule = {
+type CreateCustomAutocompleteRuleParam = {
     body: CatalogPlatformModel.CreateAutocompleteKeyword;
 };
-/** @returns {createCustomKeyword} */
-declare function createCustomKeyword(): createCustomKeyword;
-type createCustomKeyword = {
+type CreateCustomKeywordParam = {
     body: CatalogPlatformModel.CreateSearchKeyword;
 };
-/** @returns {createGroupConfiguration} */
-declare function createGroupConfiguration(): createGroupConfiguration;
-type createGroupConfiguration = {
+type CreateGroupConfigurationParam = {
     /**
      * - A `config_type` is a unique identifier for a
      * particular group configuration type.
@@ -416,9 +510,7 @@ type createGroupConfiguration = {
     configType: string;
     body: CatalogPlatformModel.AppConfigurationDetail;
 };
-/** @returns {createListingConfiguration} */
-declare function createListingConfiguration(): createListingConfiguration;
-type createListingConfiguration = {
+type CreateListingConfigurationParam = {
     /**
      * - A `config_type` is a unique identifier for a
      * particular listing configuration type.
@@ -426,26 +518,20 @@ type createListingConfiguration = {
     configType: string;
     body: CatalogPlatformModel.AppConfigurationsSort;
 };
-/** @returns {deleteAutocompleteKeyword} */
-declare function deleteAutocompleteKeyword(): deleteAutocompleteKeyword;
-type deleteAutocompleteKeyword = {
+type DeleteAutocompleteKeywordParam = {
     /**
      * - A `id` is a unique identifier for a particular
      * detail. Pass the `id` of the keywords which you want to delete.
      */
     id: string;
 };
-/** @returns {deleteCollection} */
-declare function deleteCollection(): deleteCollection;
-type deleteCollection = {
+type DeleteCollectionParam = {
     /**
      * - A `id` is a unique identifier of a collection.
      */
     id: string;
 };
-/** @returns {deleteGroupConfiguration} */
-declare function deleteGroupConfiguration(): deleteGroupConfiguration;
-type deleteGroupConfiguration = {
+type DeleteGroupConfigurationParam = {
     /**
      * - A `config_type` is a unique identifier for a
      * particular group configuration type.
@@ -457,9 +543,7 @@ type deleteGroupConfiguration = {
      */
     groupSlug: string;
 };
-/** @returns {deleteListingConfiguration} */
-declare function deleteListingConfiguration(): deleteListingConfiguration;
-type deleteListingConfiguration = {
+type DeleteListingConfigurationParam = {
     /**
      * - A `config_type` is a unique identifier for a
      * particular listing configuration type.
@@ -471,18 +555,14 @@ type deleteListingConfiguration = {
      */
     configId: string;
 };
-/** @returns {deleteSearchKeywords} */
-declare function deleteSearchKeywords(): deleteSearchKeywords;
-type deleteSearchKeywords = {
+type DeleteSearchKeywordsParam = {
     /**
      * - A `id` is a unique identifier for a particular
      * detail. Pass the `id` of the keywords which you want to delete.
      */
     id: string;
 };
-/** @returns {getAllCollections} */
-declare function getAllCollections(): getAllCollections;
-type getAllCollections = {
+type GetAllCollectionsParam = {
     /**
      * - Get collection list filtered by q string,
      */
@@ -515,12 +595,8 @@ type getAllCollections = {
      */
     pageSize?: number;
 };
-/** @returns {getAllSearchKeyword} */
-declare function getAllSearchKeyword(): any;
-type getAllSearchKeyword = any;
-/** @returns {getAppInventory} */
-declare function getAppInventory(): getAppInventory;
-type getAppInventory = {
+type GetAllSearchKeywordParam = any;
+type GetAppInventoryParam = {
     /**
      * - The Item Id of the product.
      */
@@ -550,9 +626,7 @@ type getAppInventory = {
      */
     pageId?: string;
 };
-/** @returns {getAppLocations} */
-declare function getAppLocations(): getAppLocations;
-type getAppLocations = {
+type GetAppLocationsParam = {
     /**
      * - Helps to sort the location list on the basis
      * of location type.
@@ -582,17 +656,13 @@ type getAppLocations = {
      */
     pageSize?: number;
 };
-/** @returns {getAppProduct} */
-declare function getAppProduct(): getAppProduct;
-type getAppProduct = {
+type GetAppProductParam = {
     /**
      * - Product id for a particular product.
      */
     itemId: string;
 };
-/** @returns {getAppProducts} */
-declare function getAppProducts(): getAppProducts;
-type getAppProducts = {
+type GetAppProductsParam = {
     /**
      * - Get multiple products filtered by Brand Ids
      */
@@ -628,9 +698,7 @@ type getAppProducts = {
      */
     q?: string;
 };
-/** @returns {getAppicationProducts} */
-declare function getAppicationProducts(): getAppicationProducts;
-type getAppicationProducts = {
+type GetAppicationProductsParam = {
     /**
      * - The search query. This can be a partial or complete
      * name of a either a product, brand or category
@@ -685,9 +753,7 @@ type getAppicationProducts = {
      */
     itemIds?: number[];
 };
-/** @returns {getApplicationBrandListing} */
-declare function getApplicationBrandListing(): getApplicationBrandListing;
-type getApplicationBrandListing = {
+type GetApplicationBrandListingParam = {
     /**
      * - The page number to navigate through the given
      * set of results
@@ -704,9 +770,7 @@ type getApplicationBrandListing = {
      */
     q?: string;
 };
-/** @returns {getApplicationBrands} */
-declare function getApplicationBrands(): getApplicationBrands;
-type getApplicationBrands = {
+type GetApplicationBrandsParam = {
     /**
      * - The name of the department. Use this
      * parameter to filter products by a particular department. See below the list
@@ -735,9 +799,7 @@ type getApplicationBrands = {
      */
     brandId?: number[];
 };
-/** @returns {getApplicationCategoryListing} */
-declare function getApplicationCategoryListing(): getApplicationCategoryListing;
-type getApplicationCategoryListing = {
+type GetApplicationCategoryListingParam = {
     /**
      * - A `department_id` is a unique identifier
      * for a particular department.
@@ -759,9 +821,7 @@ type getApplicationCategoryListing = {
      */
     q?: string;
 };
-/** @returns {getApplicationDepartmentListing} */
-declare function getApplicationDepartmentListing(): getApplicationDepartmentListing;
-type getApplicationDepartmentListing = {
+type GetApplicationDepartmentListingParam = {
     /**
      * - The page number to navigate through the given
      * set of results
@@ -778,32 +838,22 @@ type getApplicationDepartmentListing = {
      */
     q?: string;
 };
-/** @returns {getAutocompleteConfig} */
-declare function getAutocompleteConfig(): any;
-type getAutocompleteConfig = any;
-/** @returns {getAutocompleteKeywordDetail} */
-declare function getAutocompleteKeywordDetail(): getAutocompleteKeywordDetail;
-type getAutocompleteKeywordDetail = {
+type GetAutocompleteConfigParam = any;
+type GetAutocompleteKeywordDetailParam = {
     /**
      * - A `id` is a unique identifier for a particular
      * detail. Pass the `id` of the keywords which you want to retrieve.
      */
     id: string;
 };
-/** @returns {getCatalogConfiguration} */
-declare function getCatalogConfiguration(): any;
-type getCatalogConfiguration = any;
-/** @returns {getCatalogInsights} */
-declare function getCatalogInsights(): getCatalogInsights;
-type getCatalogInsights = {
+type GetCatalogConfigurationParam = any;
+type GetCatalogInsightsParam = {
     /**
      * - Brand slug
      */
     brand?: string;
 };
-/** @returns {getCategories} */
-declare function getCategories(): getCategories;
-type getCategories = {
+type GetCategoriesParam = {
     /**
      * - The name of the department. Use this
      * parameter to filter products by a particular department. See below the list
@@ -812,9 +862,7 @@ type getCategories = {
      */
     department?: string;
 };
-/** @returns {getCollectionDetail} */
-declare function getCollectionDetail(): getCollectionDetail;
-type getCollectionDetail = {
+type GetCollectionDetailParam = {
     /**
      * - A `slug` is a human readable, URL friendly unique
      * identifier of an object. Pass the `slug` of the collection which you want
@@ -822,9 +870,7 @@ type getCollectionDetail = {
      */
     slug: string;
 };
-/** @returns {getCollectionItems} */
-declare function getCollectionItems(): getCollectionItems;
-type getCollectionItems = {
+type GetCollectionItemsParam = {
     /**
      * - A `id` is a unique identifier of a collection.
      */
@@ -845,17 +891,13 @@ type getCollectionItems = {
      */
     pageSize?: number;
 };
-/** @returns {getConfigurationByType} */
-declare function getConfigurationByType(): getConfigurationByType;
-type getConfigurationByType = {
+type GetConfigurationByTypeParam = {
     /**
      * - Type can be brands, categories etc.
      */
     type: string;
 };
-/** @returns {getConfigurationMetadata} */
-declare function getConfigurationMetadata(): getConfigurationMetadata;
-type getConfigurationMetadata = {
+type GetConfigurationMetadataParam = {
     /**
      * - A `config_type` is an identifier that defines
      * a specific type of configuration.
@@ -867,15 +909,9 @@ type getConfigurationMetadata = {
      */
     templateSlug?: string;
 };
-/** @returns {getConfigurations} */
-declare function getConfigurations(): any;
-type getConfigurations = any;
-/** @returns {getDepartments} */
-declare function getDepartments(): any;
-type getDepartments = any;
-/** @returns {getDiscountedInventoryBySizeIdentifier} */
-declare function getDiscountedInventoryBySizeIdentifier(): getDiscountedInventoryBySizeIdentifier;
-type getDiscountedInventoryBySizeIdentifier = {
+type GetConfigurationsParam = any;
+type GetDepartmentsParam = any;
+type GetDiscountedInventoryBySizeIdentifierParam = {
     /**
      * - Item code of the product of which size is to be get.
      */
@@ -904,9 +940,7 @@ type getDiscountedInventoryBySizeIdentifier = {
      */
     locationIds?: number[];
 };
-/** @returns {getGroupConfigurations} */
-declare function getGroupConfigurations(): getGroupConfigurations;
-type getGroupConfigurations = {
+type GetGroupConfigurationsParam = {
     /**
      * - A `config_type` is an identifier that defines
      * a specific type of configuration.
@@ -932,9 +966,7 @@ type getGroupConfigurations = {
      */
     templateSlug?: string;
 };
-/** @returns {getListingConfigurations} */
-declare function getListingConfigurations(): getListingConfigurations;
-type getListingConfigurations = {
+type GetListingConfigurationsParam = {
     /**
      * - A `config_type` is an identifier that defines
      * a specific type of configuration.
@@ -955,9 +987,7 @@ type getListingConfigurations = {
      */
     search?: string;
 };
-/** @returns {getProductDetailBySlug} */
-declare function getProductDetailBySlug(): getProductDetailBySlug;
-type getProductDetailBySlug = {
+type GetProductDetailBySlugParam = {
     /**
      * - The unique identifier of a product. i.e; `slug` of
      * a product. You can retrieve these from the APIs that list products like
@@ -965,9 +995,7 @@ type getProductDetailBySlug = {
      */
     slug: string;
 };
-/** @returns {getProductSizeSellers} */
-declare function getProductSizeSellers(): getProductSizeSellers;
-type getProductSizeSellers = {
+type GetProductSizeSellersParam = {
     /**
      * - Item code of the product of which size is to be get.
      */
@@ -998,44 +1026,32 @@ type getProductSizeSellers = {
      */
     pageSize?: number;
 };
-/** @returns {getQueryFilters} */
-declare function getQueryFilters(): any;
-type getQueryFilters = any;
-/** @returns {getSearchKeywords} */
-declare function getSearchKeywords(): getSearchKeywords;
-type getSearchKeywords = {
+type GetQueryFiltersParam = any;
+type GetSearchKeywordsParam = {
     /**
      * - A `id` is a unique identifier for a particular
      * detail. Pass the `id` of the keywords which you want to retrieve.
      */
     id: string;
 };
-/** @returns {updateAllowSingle} */
-declare function updateAllowSingle(): updateAllowSingle;
-type updateAllowSingle = {
+type UpdateAllowSingleParam = {
     body: CatalogPlatformModel.AllowSingleRequest;
 };
-/** @returns {updateAppBrand} */
-declare function updateAppBrand(): updateAppBrand;
-type updateAppBrand = {
+type UpdateAppBrandParam = {
     /**
      * - Brand id for which the custom_json is associated.
      */
     brandUid: string;
     body: CatalogPlatformModel.ApplicationBrandJson;
 };
-/** @returns {updateAppCategory} */
-declare function updateAppCategory(): updateAppCategory;
-type updateAppCategory = {
+type UpdateAppCategoryParam = {
     /**
      * - Category id for which the custom_json is associated.
      */
     categoryUid: string;
     body: CatalogPlatformModel.ApplicationCategoryJson;
 };
-/** @returns {updateAppDepartment} */
-declare function updateAppDepartment(): updateAppDepartment;
-type updateAppDepartment = {
+type UpdateAppDepartmentParam = {
     /**
      * - Department id for which the custom_json is
      * associated.
@@ -1043,27 +1059,21 @@ type updateAppDepartment = {
     departmentUid: string;
     body: CatalogPlatformModel.ApplicationDepartmentJson;
 };
-/** @returns {updateAppLocation} */
-declare function updateAppLocation(): updateAppLocation;
-type updateAppLocation = {
+type UpdateAppLocationParam = {
     /**
      * - Store id for which the custom_json is associated.
      */
     storeUid: string;
     body: CatalogPlatformModel.ApplicationStoreJson;
 };
-/** @returns {updateAppProduct} */
-declare function updateAppProduct(): updateAppProduct;
-type updateAppProduct = {
+type UpdateAppProductParam = {
     /**
      * - Product id for which the custom_meta is associated.
      */
     itemId: string;
     body: CatalogPlatformModel.ApplicationItemMeta;
 };
-/** @returns {updateAutocompleteKeyword} */
-declare function updateAutocompleteKeyword(): updateAutocompleteKeyword;
-type updateAutocompleteKeyword = {
+type UpdateAutocompleteKeywordParam = {
     /**
      * - A `id` is a unique identifier for a particular
      * detail. Pass the `id` of the keywords which you want to delete.
@@ -1071,23 +1081,17 @@ type updateAutocompleteKeyword = {
     id: string;
     body: CatalogPlatformModel.CreateAutocompleteKeyword;
 };
-/** @returns {updateCollection} */
-declare function updateCollection(): updateCollection;
-type updateCollection = {
+type UpdateCollectionParam = {
     /**
      * - A `id` is a unique identifier of a collection.
      */
     id: string;
     body: CatalogPlatformModel.UpdateCollection;
 };
-/** @returns {updateDefaultSort} */
-declare function updateDefaultSort(): updateDefaultSort;
-type updateDefaultSort = {
+type UpdateDefaultSortParam = {
     body: CatalogPlatformModel.DefaultKeyRequest;
 };
-/** @returns {updateGroupConfiguration} */
-declare function updateGroupConfiguration(): updateGroupConfiguration;
-type updateGroupConfiguration = {
+type UpdateGroupConfigurationParam = {
     /**
      * - A `config_type` is a unique identifier for a
      * particular group configuration type.
@@ -1100,9 +1104,7 @@ type updateGroupConfiguration = {
     groupSlug: string;
     body: CatalogPlatformModel.AppConfigurationDetail;
 };
-/** @returns {updateListingConfiguration} */
-declare function updateListingConfiguration(): updateListingConfiguration;
-type updateListingConfiguration = {
+type UpdateListingConfigurationParam = {
     /**
      * - A `config_type` is a unique identifier for a
      * particular listing configuration type.
@@ -1115,9 +1117,7 @@ type updateListingConfiguration = {
     configId: string;
     body: CatalogPlatformModel.AppConfigurationsSort;
 };
-/** @returns {updateSearchKeywords} */
-declare function updateSearchKeywords(): updateSearchKeywords;
-type updateSearchKeywords = {
+type UpdateSearchKeywordsParam = {
     /**
      * - A `id` is a unique identifier for a particular
      * detail. Pass the `id` of the keywords which you want to delete.

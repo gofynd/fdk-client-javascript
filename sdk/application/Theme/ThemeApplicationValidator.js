@@ -3,27 +3,27 @@ const Joi = require("joi");
 const ThemeApplicationModel = require("./ThemeApplicationModel");
 
 /**
- * @typedef getAllPages
+ * @typedef GetAllPagesParam
  * @property {string} themeId - ID of the theme to be retrieved
  */
 
-/** @typedef getAppliedTheme */
+/** @typedef GetAppliedThemeParam */
 
-/** @typedef getAppliedThemeV2 */
+/** @typedef GetAppliedThemeV2Param */
 
 /**
- * @typedef getPage
+ * @typedef GetPageParam
  * @property {string} themeId - ID of the theme to be retrieved
  * @property {string} pageValue - Value of the page to be retrieved
  */
 
 /**
- * @typedef getThemeForPreview
+ * @typedef GetThemeForPreviewParam
  * @property {string} themeId - ID of the theme to be retrieved
  */
 
 /**
- * @typedef getThemeForPreviewV2
+ * @typedef GetThemeForPreviewV2Param
  * @property {string} themeId - ID of the theme to be retrieved
  */
 

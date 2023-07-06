@@ -4,21 +4,21 @@ declare class Partner {
     config: any;
     applicationId: any;
     /**
-     * @param {PartnerPlatformApplicationValidator.addProxyPath} arg - Arg object
+     * @param {PartnerPlatformApplicationValidator.AddProxyPathParam} arg - Arg object
      * @returns {Promise<PartnerPlatformModel.AddProxyResponse>} - Success response
      * @name addProxyPath
      * @summary: Create proxy URL for the external URL
      * @description: Use this API to generate proxy URL for the external URL
      */
-    addProxyPath({ extensionId, body }?: PartnerPlatformApplicationValidator.addProxyPath): Promise<PartnerPlatformModel.AddProxyResponse>;
+    addProxyPath({ extensionId, body }?: PartnerPlatformApplicationValidator.AddProxyPathParam): Promise<PartnerPlatformModel.AddProxyResponse>;
     /**
-     * @param {PartnerPlatformApplicationValidator.removeProxyPath} arg - Arg object
+     * @param {PartnerPlatformApplicationValidator.RemoveProxyPathParam} arg - Arg object
      * @returns {Promise<PartnerPlatformModel.RemoveProxyResponse>} - Success response
      * @name removeProxyPath
      * @summary: Remove proxy URL for the external URL
      * @description: Use this API to remove the proxy URL which is already generated for the external URL
      */
-    removeProxyPath({ extensionId, attachedPath }?: PartnerPlatformApplicationValidator.removeProxyPath): Promise<PartnerPlatformModel.RemoveProxyResponse>;
+    removeProxyPath({ extensionId, attachedPath }?: PartnerPlatformApplicationValidator.RemoveProxyPathParam): Promise<PartnerPlatformModel.RemoveProxyResponse>;
 }
 import PartnerPlatformApplicationValidator = require("./PartnerPlatformApplicationValidator");
 import PartnerPlatformModel = require("./PartnerPlatformModel");

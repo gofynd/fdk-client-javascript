@@ -12,7 +12,7 @@ class AuditTrail {
   }
 
   /**
-   * @param {AuditTrailPlatformValidator.createAuditLog} arg - Arg object
+   * @param {AuditTrailPlatformValidator.CreateAuditLogParam} arg - Arg object
    * @returns {Promise<AuditTrailPlatformModel.CreateLogResponse>} - Success response
    * @name createAuditLog
    * @summary: Create logs for auditing later on
@@ -76,7 +76,7 @@ class AuditTrail {
   }
 
   /**
-   * @param {AuditTrailPlatformValidator.getAuditLog} arg - Arg object
+   * @param {AuditTrailPlatformValidator.GetAuditLogParam} arg - Arg object
    * @returns {Promise<AuditTrailPlatformModel.LogSchemaResponse>} - Success response
    * @name getAuditLog
    * @summary: Get audit log
@@ -140,7 +140,7 @@ class AuditTrail {
   }
 
   /**
-   * @param {AuditTrailPlatformValidator.getAuditLogs} arg - Arg object
+   * @param {AuditTrailPlatformValidator.GetAuditLogsParam} arg - Arg object
    * @returns {Promise<AuditTrailPlatformModel.LogSchemaResponse>} - Success response
    * @name getAuditLogs
    * @summary: Get paginated audit logs
@@ -205,7 +205,7 @@ class AuditTrail {
   }
 
   /**
-   * @param {AuditTrailPlatformValidator.getEntityTypes} arg - Arg object
+   * @param {AuditTrailPlatformValidator.GetEntityTypesParam} arg - Arg object
    * @returns {Promise<AuditTrailPlatformModel.EntityTypesResponse>} - Success response
    * @name getEntityTypes
    * @summary: Get entity types

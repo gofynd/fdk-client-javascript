@@ -12,7 +12,9 @@ class Communication {
   }
 
   /**
-   * @param {CommunicationPlatformValidator.getSystemNotifications} arg - Arg object
+   * @param {CommunicationPlatformValidator.GetSystemNotificationsParam} arg
+   *   - Arg object
+   *
    * @returns {Promise<CommunicationPlatformModel.SystemNotifications>} -
    *   Success response
    * @name getSystemNotifications
