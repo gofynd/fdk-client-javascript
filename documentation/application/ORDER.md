@@ -18,6 +18,7 @@ Handles all Application order and shipment api(s)
 * [getShipmentReasons](#getshipmentreasons)
 * [sendOtpToShipmentCustomer](#sendotptoshipmentcustomer)
 * [trackShipment](#trackshipment)
+* [updateShipmentStatus](#updateshipmentstatus)
 * [verifyOtpShipmentCustomer](#verifyotpshipmentcustomer)
 
 
@@ -1240,7 +1241,7 @@ Use this API to retrieve a POS order and all its details such as tracking detail
 
 
 
-[OrderList](#OrderList)
+[OrderById](#OrderById)
 
 Success. Check the example shown below or refer `PosOrderById` for more details.
 
@@ -2342,6 +2343,80 @@ Success. Check the example shown below or refer `ShipmentTrack` for more details
 ---
 
 
+### updateShipmentStatus
+Update the shipment status
+
+
+
+```javascript
+// Promise
+const promise = applicationClient.order.updateShipmentStatus({  shipmentId : value,
+ body : value });
+
+// Async/Await
+const data = await applicationClient.order.updateShipmentStatus({  shipmentId : value,
+ body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| shipmentId | string | yes | ID of the shipment. An order may contain multiple items and may get divided into one or more shipment, each having its own ID. |  
+| body | [UpdateShipmentStatusRequest](#UpdateShipmentStatusRequest) | yes | Request body |
+
+
+Use this API to update the status of a shipment using its shipment ID.
+
+*Returned Response:*
+
+
+
+
+[ShipmentApplicationStatusResponse](#ShipmentApplicationStatusResponse)
+
+Successfully updateShipmentStatus!
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "statuses": [
+    {
+      "shipments": {
+        "16291129095851065963": {
+          "status": 400,
+          "message": {
+            "16291129095851065963": "Invalid State Transition bag_invoiced detected for given entity"
+          },
+          "code": null,
+          "exception": "ValidationError",
+          "stack_trace": null
+        }
+      }
+    }
+  ]
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
 ### verifyOtpShipmentCustomer
 Verify Otp code
 
@@ -2556,6 +2631,16 @@ Success, the code is valid and returns a session token
 
 ---
 
+#### [DataUpdates](#DataUpdates)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | entities | [[EntitiesDataUpdates](#EntitiesDataUpdates)]? |  yes  |  |
+ | products | [[ProductsDataUpdates](#ProductsDataUpdates)]? |  yes  |  |
+ 
+
+---
+
 #### [DeliveryAddress](#DeliveryAddress)
 
  | Properties | Type | Nullable | Description |
@@ -2582,6 +2667,49 @@ Success, the code is valid and returns a session token
  | state | string? |  yes  |  |
  | updated_at | string? |  yes  |  |
  | version | string? |  yes  |  |
+ 
+
+---
+
+#### [EntitiesDataUpdates](#EntitiesDataUpdates)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | data | string? |  yes  |  |
+ | filters | [string]? |  yes  |  |
+ 
+
+---
+
+#### [EntitiesReasons](#EntitiesReasons)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | data | [EntityReasonData](#EntityReasonData)? |  yes  |  |
+ | filters | [string]? |  yes  |  |
+ 
+
+---
+
+#### [EntityReasonData](#EntityReasonData)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | reason_id | number? |  yes  |  |
+ | reason_text | string? |  yes  |  |
+ 
+
+---
+
+#### [ErrorResponse](#ErrorResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | code | string? |  yes  |  |
+ | exception | string? |  yes  |  |
+ | message | string? |  yes  |  |
+ | stack_trace | string? |  yes  |  |
+ | status | number? |  yes  |  |
  
 
 ---
@@ -2673,6 +2801,9 @@ Success, the code is valid and returns a session token
  | code | string? |  yes  |  |
  | id | number? |  yes  |  |
  | image | [string]? |  yes  |  |
+ | l1_categories | [string]? |  yes  |  |
+ | l2_categories | [string]? |  yes  |  |
+ | l3_category_name | string? |  yes  |  |
  | name | string? |  yes  |  |
  | seller_identifier | string? |  yes  |  |
  | size | string? |  yes  |  |
@@ -2801,6 +2932,68 @@ Success, the code is valid and returns a session token
 
 ---
 
+#### [Products](#Products)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | identifier | string? |  yes  |  |
+ | line_number | number? |  yes  |  |
+ | quantity | number? |  yes  |  |
+ 
+
+---
+
+#### [ProductsDataUpdates](#ProductsDataUpdates)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | data | string? |  yes  |  |
+ | filters | [[ProductsDataUpdatesFilters](#ProductsDataUpdatesFilters)]? |  yes  |  |
+ 
+
+---
+
+#### [ProductsDataUpdatesFilters](#ProductsDataUpdatesFilters)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | identifier | string? |  yes  |  |
+ | line_number | number? |  yes  |  |
+ 
+
+---
+
+#### [ProductsReasons](#ProductsReasons)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | data | [ProductsReasonsData](#ProductsReasonsData)? |  yes  |  |
+ | filters | [[ProductsReasonsFilters](#ProductsReasonsFilters)]? |  yes  |  |
+ 
+
+---
+
+#### [ProductsReasonsData](#ProductsReasonsData)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | reason_id | number? |  yes  |  |
+ | reason_text | string? |  yes  |  |
+ 
+
+---
+
+#### [ProductsReasonsFilters](#ProductsReasonsFilters)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | identifier | string? |  yes  |  |
+ | line_number | number? |  yes  |  |
+ | quantity | number? |  yes  |  |
+ 
+
+---
+
 #### [Promise](#Promise)
 
  | Properties | Type | Nullable | Description |
@@ -2817,6 +3010,16 @@ Success, the code is valid and returns a session token
  | ---------- | ---- | -------- | ----------- |
  | display_name | string? |  yes  |  |
  | id | number? |  yes  |  |
+ 
+
+---
+
+#### [ReasonsData](#ReasonsData)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | entities | [[EntitiesReasons](#EntitiesReasons)]? |  yes  |  |
+ | products | [[ProductsReasons](#ProductsReasons)]? |  yes  |  |
  
 
 ---
@@ -2841,6 +3044,15 @@ Success, the code is valid and returns a session token
  | request_id | string? |  yes  |  |
  | resend_timer | number? |  yes  |  |
  | success | boolean? |  yes  |  |
+ 
+
+---
+
+#### [ShipmentApplicationStatusResponse](#ShipmentApplicationStatusResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | statuses | [[StatusesBodyResponse](#StatusesBodyResponse)]? |  yes  |  |
  
 
 ---
@@ -2945,12 +3157,25 @@ Success, the code is valid and returns a session token
 
 ---
 
+#### [ShipmentsRequest](#ShipmentsRequest)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | data_updates | [DataUpdates](#DataUpdates)? |  yes  |  |
+ | identifier | string |  no  |  |
+ | products | [[Products](#Products)]? |  yes  |  |
+ | reasons | [ReasonsData](#ReasonsData)? |  yes  |  |
+ 
+
+---
+
 #### [ShipmentStatus](#ShipmentStatus)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | hex_code | string? |  yes  |  |
  | title | string? |  yes  |  |
+ | value | string? |  yes  |  |
  
 
 ---
@@ -2979,10 +3204,32 @@ Success, the code is valid and returns a session token
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | email | string? |  yes  |  |
  | first_name | string? |  yes  |  |
  | gender | string? |  yes  |  |
  | last_name | string? |  yes  |  |
  | mobile | string? |  yes  |  |
+ | name | string? |  yes  |  |
+ 
+
+---
+
+#### [StatuesRequest](#StatuesRequest)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | exclude_bags_next_state | string? |  yes  |  |
+ | shipments | [[ShipmentsRequest](#ShipmentsRequest)]? |  yes  |  |
+ | status | string? |  yes  |  |
+ 
+
+---
+
+#### [StatusesBodyResponse](#StatusesBodyResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | shipments | [string]? |  yes  |  |
  
 
 ---
@@ -3022,6 +3269,20 @@ Success, the code is valid and returns a session token
  | status | string? |  yes  |  |
  | time | string? |  yes  |  |
  | tracking_details | [[NestedTrackingDetails](#NestedTrackingDetails)]? |  yes  |  |
+ | value | string? |  yes  |  |
+ 
+
+---
+
+#### [UpdateShipmentStatusRequest](#UpdateShipmentStatusRequest)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | force_transition | boolean? |  yes  |  |
+ | lock_after_transition | boolean? |  yes  |  |
+ | statuses | [[StatuesRequest](#StatuesRequest)]? |  yes  |  |
+ | task | boolean? |  yes  |  |
+ | unlock_before_transition | boolean? |  yes  |  |
  
 
 ---
@@ -3031,7 +3292,9 @@ Success, the code is valid and returns a session token
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | email | string? |  yes  |  |
+ | first_name | string? |  yes  |  |
  | gender | string? |  yes  |  |
+ | last_name | string? |  yes  |  |
  | mobile | string? |  yes  |  |
  | name | string? |  yes  |  |
  

@@ -14,21 +14,21 @@ declare class Order {
     }): Promise<OrderStatusResult>;
     /**
      * @param {Object} arg - Arg object.
-     * @param {string} arg.caller -
-     * @param {string} arg.receiver -
-     * @param {string} arg.bagId -
-     * @param {string} [arg.callingTo] -
-     * @param {string} [arg.callerId] -
+     * @param {string} arg.caller - Call Number
+     * @param {string} arg.receiver - Receiver Number
+     * @param {string} arg.bagId - Bag Id for the query
+     * @param {string} [arg.callerId] - Caller Id
+     * @param {string} [arg.method] - Provider Method to Call
      * @returns {Promise<Click2CallResponse>} - Success response
      * @summary:
      * @description:
      */
-    click2Call({ caller, receiver, bagId, callingTo, callerId, }?: {
+    click2Call({ caller, receiver, bagId, callerId, method, }?: {
         caller: string;
         receiver: string;
         bagId: string;
-        callingTo?: string;
         callerId?: string;
+        method?: string;
     }): Promise<Click2CallResponse>;
     /**
      * @param {Object} arg - Arg object.
@@ -72,7 +72,8 @@ declare class Order {
     }): Promise<FileResponse>;
     /**
      * @param {Object} arg - Arg object.
-     * @param {string} [arg.date] -
+     * @param {string} [arg.date] - Date On which the announcement is Active
+     *   (Date should in ISO Datetime format IST Time)
      * @returns {Promise<AnnouncementsResponse>} - Success response
      * @summary:
      * @description:
@@ -82,9 +83,9 @@ declare class Order {
     }): Promise<AnnouncementsResponse>;
     /**
      * @param {Object} arg - Arg object.
-     * @param {string} [arg.bagId] -
-     * @param {string} [arg.channelBagId] -
-     * @param {string} [arg.channelId] -
+     * @param {string} [arg.bagId] - Id of bag
+     * @param {string} [arg.channelBagId] - Id of application bag
+     * @param {string} [arg.channelId] - Id of application
      * @returns {Promise<BagDetailsPlatformResponse>} - Success response
      * @summary:
      * @description:
@@ -96,15 +97,16 @@ declare class Order {
     }): Promise<BagDetailsPlatformResponse>;
     /**
      * @param {Object} arg - Arg object.
-     * @param {string} [arg.bagIds] -
-     * @param {string} [arg.shipmentIds] -
-     * @param {string} [arg.orderIds] -
-     * @param {string} [arg.channelBagIds] -
-     * @param {string} [arg.channelShipmentIds] -
-     * @param {string} [arg.channelOrderIds] -
-     * @param {string} [arg.channelId] -
-     * @param {number} [arg.pageNo] -
-     * @param {number} [arg.pageSize] -
+     * @param {string} [arg.bagIds] - Comma separated values of bag ids
+     * @param {string} [arg.shipmentIds] - Comma separated values of shipment ids
+     * @param {string} [arg.orderIds] - Comma separated values of order ids
+     * @param {string} [arg.channelBagIds] - Comma separated values of app bag ids
+     * @param {string} [arg.channelShipmentIds] - Comma separated values of app
+     *   shipment ids
+     * @param {string} [arg.channelOrderIds] - Comma separated values of app order ids
+     * @param {string} [arg.channelId] - Comma separated values of app ids
+     * @param {number} [arg.pageNo] - Page number for paginated data
+     * @param {number} [arg.pageSize] - Page size of data received per page
      * @returns {Promise<GetBagsPlatformResponse>} - Success response
      * @summary:
      * @description:
@@ -129,14 +131,14 @@ declare class Order {
     getBulkActionTemplate({}?: any): Promise<BulkActionTemplateResponse>;
     /**
      * @param {Object} arg - Arg object.
-     * @param {string} [arg.salesChannels] - Comma seperated values of sales channel ids
-     * @param {string} [arg.dpIds] - Comma seperated values of delivery partner ids
+     * @param {string} [arg.salesChannels] - Comma separated values of sales channel ids
+     * @param {string} [arg.dpIds] - Comma separated values of delivery partner ids
      * @param {string} [arg.fromDate] - Start Date in DD-MM-YYYY format
      * @param {string} [arg.toDate] - End Date in DD-MM-YYYY format
-     * @param {string} [arg.stores] - Comma seperated values of store ids
-     * @param {string} [arg.tags] - Comma seperated values of tags
-     * @param {string} [arg.bagStatus] - Comma seperated values of bag statuses
-     * @param {string} [arg.paymentMethods] - Comma seperated values of payment methods
+     * @param {string} [arg.stores] - Comma separated values of store ids
+     * @param {string} [arg.tags] - Comma separated values of tags
+     * @param {string} [arg.bagStatus] - Comma separated values of bag statuses
+     * @param {string} [arg.paymentMethods] - Comma separated values of payment methods
      * @param {string} [arg.fileType] - File type to be downloaded
      * @param {number} [arg.timeToDispatch] - Sla breached or not breached
      * @param {number} [arg.pageNo] -
@@ -168,54 +170,70 @@ declare class Order {
     getChannelConfig({}?: any): Promise<CreateChannelConfigData>;
     /**
      * @param {Object} arg - Arg object.
-     * @param {string} [arg.superLane] -
-     * @param {string} [arg.groupEntity] -
-     * @param {string} [arg.fromDate] -
-     * @param {string} [arg.toDate] -
-     * @param {string} [arg.dpIds] -
-     * @param {string} [arg.stores] -
-     * @param {string} [arg.salesChannel] -
-     * @param {string} [arg.paymentMode] -
-     * @param {string} [arg.bagStatus] -
+     * @param {string} [arg.superLane] - Name of lane for which data is to be fetched
+     * @param {string} [arg.groupEntity] - Name of group entity
+     * @param {string} [arg.fromDate] - Start Date in DD-MM-YYYY format
+     * @param {string} [arg.toDate] - End Date in DD-MM-YYYY format
+     * @param {string} [arg.dpIds] - Comma separated values of delivery partner ids
+     * @param {string} [arg.stores] - Comma separated values of store ids
+     * @param {string} [arg.salesChannels] -
+     * @param {string} [arg.paymentMode] - Comma separated values of payment modes
+     * @param {string} [arg.bagStatus] - Comma separated values of bag statuses
+     * @param {string} [arg.searchType] -
+     * @param {string} [arg.searchValue] -
+     * @param {string} [arg.tags] -
+     * @param {string} [arg.timeToDispatch] -
+     * @param {string} [arg.paymentMethods] -
      * @returns {Promise<LaneConfigResponse>} - Success response
      * @summary:
      * @description:
      */
-    getLaneConfig({ superLane, groupEntity, fromDate, toDate, dpIds, stores, salesChannel, paymentMode, bagStatus, }?: {
+    getLaneConfig({ superLane, groupEntity, fromDate, toDate, dpIds, stores, salesChannels, paymentMode, bagStatus, searchType, searchValue, tags, timeToDispatch, paymentMethods, }?: {
         superLane?: string;
         groupEntity?: string;
         fromDate?: string;
         toDate?: string;
         dpIds?: string;
         stores?: string;
-        salesChannel?: string;
+        salesChannels?: string;
         paymentMode?: string;
         bagStatus?: string;
+        searchType?: string;
+        searchValue?: string;
+        tags?: string;
+        timeToDispatch?: string;
+        paymentMethods?: string;
     }): Promise<LaneConfigResponse>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.orderId -
-     * @returns {Promise<ShipmentDetailsResponse>} - Success response
+     * @returns {Promise<OrderDetailsResponse>} - Success response
      * @summary:
      * @description:
      */
     getOrderById({ orderId }?: {
         orderId: string;
-    }): Promise<ShipmentDetailsResponse>;
+    }): Promise<OrderDetailsResponse>;
     /**
      * @param {Object} arg - Arg object.
-     * @param {string} [arg.lane] -
-     * @param {string} [arg.searchType] -
-     * @param {string} [arg.bagStatus] -
-     * @param {string} [arg.timeToDispatch] -
+     * @param {string} [arg.lane] - Lane refers to a section where orders are
+     *   assigned, indicating its grouping
+     * @param {string} [arg.searchType] - Search_type refers to the field that
+     *   will be used as the target for the search operation
+     * @param {string} [arg.bagStatus] - Bag_status refers to status of the
+     *   entity. Filters orders based on the status.
+     * @param {string} [arg.timeToDispatch] - Time_to_dispatch refers to
+     *   estimated SLA time.
      * @param {string} [arg.paymentMethods] -
-     * @param {string} [arg.tags] -
-     * @param {string} [arg.searchValue] -
+     * @param {string} [arg.tags] - Tags refers to additional descriptive labels
+     *   associated with the order
+     * @param {string} [arg.searchValue] - Search_value is matched against the
+     *   field specified by the search_type
      * @param {string} [arg.fromDate] -
      * @param {string} [arg.toDate] -
-     * @param {string} [arg.dpIds] -
+     * @param {string} [arg.dpIds] - Delivery Partner IDs to which shipments are assigned.
      * @param {string} [arg.stores] -
-     * @param {string} [arg.salesChannel] -
+     * @param {string} [arg.salesChannels] -
      * @param {number} [arg.pageNo] -
      * @param {number} [arg.pageSize] -
      * @param {boolean} [arg.isPrioritySort] -
@@ -224,7 +242,7 @@ declare class Order {
      * @summary:
      * @description:
      */
-    getOrders({ lane, searchType, bagStatus, timeToDispatch, paymentMethods, tags, searchValue, fromDate, toDate, dpIds, stores, salesChannel, pageNo, pageSize, isPrioritySort, customMeta, }?: {
+    getOrders({ lane, searchType, bagStatus, timeToDispatch, paymentMethods, tags, searchValue, fromDate, toDate, dpIds, stores, salesChannels, pageNo, pageSize, isPrioritySort, customMeta, }?: {
         lane?: string;
         searchType?: string;
         bagStatus?: string;
@@ -236,7 +254,7 @@ declare class Order {
         toDate?: string;
         dpIds?: string;
         stores?: string;
-        salesChannel?: string;
+        salesChannels?: string;
         pageNo?: number;
         pageSize?: number;
         isPrioritySort?: boolean;
@@ -251,30 +269,26 @@ declare class Order {
     getRoleBasedActions({}?: any): Promise<GetActionsResponse>;
     /**
      * @param {Object} arg - Arg object.
-     * @param {string} [arg.channelShipmentId] -
-     * @param {string} [arg.shipmentId] -
-     * @param {string} [arg.orderingCompanyId] -
-     * @param {string} [arg.requestByExt] -
+     * @param {string} [arg.channelShipmentId] - App Shipment Id
+     * @param {string} [arg.shipmentId] - Shipment Id
      * @returns {Promise<ShipmentInfoResponse>} - Success response
      * @summary:
      * @description:
      */
-    getShipmentById({ channelShipmentId, shipmentId, orderingCompanyId, requestByExt, }?: {
+    getShipmentById({ channelShipmentId, shipmentId }?: {
         channelShipmentId?: string;
         shipmentId?: string;
-        orderingCompanyId?: string;
-        requestByExt?: string;
     }): Promise<ShipmentInfoResponse>;
     /**
      * @param {Object} arg - Arg object.
-     * @param {number} [arg.shipmentId] -
-     * @param {number} [arg.bagId] -
+     * @param {string} [arg.shipmentId] - Shipment Id
+     * @param {number} [arg.bagId] - Bag/Product Id
      * @returns {Promise<ShipmentHistoryResponse>} - Success response
      * @summary:
      * @description:
      */
     getShipmentHistory({ shipmentId, bagId }?: {
-        shipmentId?: number;
+        shipmentId?: string;
         bagId?: number;
     }): Promise<ShipmentHistoryResponse>;
     /**
@@ -296,51 +310,47 @@ declare class Order {
     }): Promise<PlatformShipmentReasonsResponse>;
     /**
      * @param {Object} arg - Arg object.
-     * @param {string} [arg.lane] -
-     * @param {string} [arg.bagStatus] -
-     * @param {boolean} [arg.statusOverrideLane] -
-     * @param {string} [arg.searchType] -
-     * @param {string} [arg.searchValue] -
-     * @param {string} [arg.searchId] -
-     * @param {string} [arg.fromDate] -
-     * @param {string} [arg.toDate] -
-     * @param {string} [arg.dpIds] -
-     * @param {string} [arg.orderingCompanyId] -
-     * @param {string} [arg.stores] -
-     * @param {string} [arg.salesChannel] -
-     * @param {string} [arg.requestByExt] -
-     * @param {number} [arg.pageNo] -
-     * @param {number} [arg.pageSize] -
-     * @param {boolean} [arg.isPrioritySort] -
-     * @param {boolean} [arg.fetchActiveShipment] -
-     * @param {boolean} [arg.excludeLockedShipments] -
-     * @param {string} [arg.paymentMethods] -
-     * @param {string} [arg.channelShipmentId] -
-     * @param {string} [arg.channelOrderId] -
+     * @param {string} [arg.lane] - Name of lane for which data is to be fetched
+     * @param {string} [arg.bagStatus] - Comma separated values of bag statuses
+     * @param {boolean} [arg.statusOverrideLane] - Use this flag to fetch by
+     *   bag_status and override lane
+     * @param {string} [arg.timeToDispatch] -
+     * @param {string} [arg.searchType] - Search type key
+     * @param {string} [arg.searchValue] - Search type value
+     * @param {string} [arg.fromDate] - Start Date in DD-MM-YYYY format
+     * @param {string} [arg.toDate] - End Date in DD-MM-YYYY format
+     * @param {string} [arg.dpIds] - Comma separated values of delivery partner ids
+     * @param {string} [arg.stores] - Comma separated values of store ids
+     * @param {string} [arg.salesChannels] - Comma separated values of sales channel ids
+     * @param {number} [arg.pageNo] - Page number for paginated data
+     * @param {number} [arg.pageSize] - Page size of data received per page
+     * @param {boolean} [arg.fetchActiveShipment] - Flag to fetch active shipments
+     * @param {boolean} [arg.excludeLockedShipments] - Flag to fetch locked shipments
+     * @param {string} [arg.paymentMethods] - Comma separated values of payment methods
+     * @param {string} [arg.channelShipmentId] - App Shipment Id
+     * @param {string} [arg.channelOrderId] - App Order Id
      * @param {string} [arg.customMeta] -
      * @param {string} [arg.orderingChannel] -
      * @param {string} [arg.companyAffiliateTag] -
+     * @param {string} [arg.platformUserId] -
      * @returns {Promise<ShipmentInternalPlatformViewResponse>} - Success response
      * @summary:
      * @description:
      */
-    getShipments({ lane, bagStatus, statusOverrideLane, searchType, searchValue, searchId, fromDate, toDate, dpIds, orderingCompanyId, stores, salesChannel, requestByExt, pageNo, pageSize, isPrioritySort, fetchActiveShipment, excludeLockedShipments, paymentMethods, channelShipmentId, channelOrderId, customMeta, orderingChannel, companyAffiliateTag, }?: {
+    getShipments({ lane, bagStatus, statusOverrideLane, timeToDispatch, searchType, searchValue, fromDate, toDate, dpIds, stores, salesChannels, pageNo, pageSize, fetchActiveShipment, excludeLockedShipments, paymentMethods, channelShipmentId, channelOrderId, customMeta, orderingChannel, companyAffiliateTag, platformUserId, }?: {
         lane?: string;
         bagStatus?: string;
         statusOverrideLane?: boolean;
+        timeToDispatch?: string;
         searchType?: string;
         searchValue?: string;
-        searchId?: string;
         fromDate?: string;
         toDate?: string;
         dpIds?: string;
-        orderingCompanyId?: string;
         stores?: string;
-        salesChannel?: string;
-        requestByExt?: string;
+        salesChannels?: string;
         pageNo?: number;
         pageSize?: number;
-        isPrioritySort?: boolean;
         fetchActiveShipment?: boolean;
         excludeLockedShipments?: boolean;
         paymentMethods?: string;
@@ -349,11 +359,19 @@ declare class Order {
         customMeta?: string;
         orderingChannel?: string;
         companyAffiliateTag?: string;
+        platformUserId?: string;
     }): Promise<ShipmentInternalPlatformViewResponse>;
     /**
      * @param {Object} arg - Arg object.
-     * @param {string} arg.view -
-     * @param {string} [arg.groupEntity] -
+     * @returns {Promise<BagStateTransitionMap>} - Success response
+     * @summary:
+     * @description:
+     */
+    getStateTransitionMap({}?: any): Promise<BagStateTransitionMap>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {string} arg.view - Name of view
+     * @param {string} [arg.groupEntity] - Name of group entity
      * @returns {Promise<FiltersResponse>} - Success response
      * @summary:
      * @description:
@@ -382,16 +400,6 @@ declare class Order {
     orderUpdate({ body }?: {
         body: PlatformOrderUpdate;
     }): Promise<ResponseDetail>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {ManualAssignDPToShipment} arg.body
-     * @returns {Promise<ManualAssignDPToShipmentResponse>} - Success response
-     * @summary:
-     * @description:
-     */
-    platformManualAssignDPToShipment({ body }?: {
-        body: ManualAssignDPToShipment;
-    }): Promise<ManualAssignDPToShipmentResponse>;
     /**
      * @param {Object} arg - Arg object.
      * @param {PostShipmentHistory} arg.body
@@ -434,13 +442,6 @@ declare class Order {
     }): Promise<OrderStatusResult>;
     /**
      * @param {Object} arg - Arg object.
-     * @returns {Promise<OrderStatusResult>} - Success response
-     * @summary:
-     * @description:
-     */
-    sendSmsNinjaPlatform({}?: any): Promise<OrderStatusResult>;
-    /**
-     * @param {Object} arg - Arg object.
      * @param {string} arg.shipmentId -
      * @param {string} [arg.name] -
      * @param {string} [arg.address] -
@@ -473,20 +474,20 @@ declare class Order {
     }): Promise<BaseResponse>;
     /**
      * @param {Object} arg - Arg object.
-     * @param {CreateOrderPayload} arg.body
-     * @returns {Promise<CreateOrderResponse>} - Success response
+     * @param {UpdatePackagingDimensionsPayload} arg.body
+     * @returns {Promise<UpdatePackagingDimensionsResponse>} - Success response
      * @summary:
      * @description:
      */
     updatePackagingDimensions({ body }?: {
-        body: CreateOrderPayload;
-    }): Promise<CreateOrderResponse>;
+        body: UpdatePackagingDimensionsPayload;
+    }): Promise<UpdatePackagingDimensionsResponse>;
     /**
      * @param {Object} arg - Arg object.
      * @param {UpdateShipmentLockPayload} arg.body
      * @returns {Promise<UpdateShipmentLockResponse>} - Success response
      * @summary:
-     * @description: update shipment lock
+     * @description: update shipment/bag lock and check status
      */
     updateShipmentLock({ body }?: {
         body: UpdateShipmentLockPayload;
@@ -496,7 +497,7 @@ declare class Order {
      * @param {UpdateShipmentStatusRequest} arg.body
      * @returns {Promise<UpdateShipmentStatusResponseBody>} - Success response
      * @summary:
-     * @description: Update shipment status
+     * @description: This API is for Shipment State transition or Shipment data update or both below example is for partial state transition with data update
      */
     updateShipmentStatus({ body }?: {
         body: UpdateShipmentStatusRequest;

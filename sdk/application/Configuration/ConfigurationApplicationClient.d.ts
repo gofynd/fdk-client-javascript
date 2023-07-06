@@ -88,14 +88,14 @@ declare class Configuration {
     /**
      * @param {Object} arg - Arg object.
      * @returns {Promise<Application>} - Success response
-     * @summary: Get current application details
-     * @description: Use this API to get the current application details which includes configurations that indicate the status of the website, domain, ID, tokens, images, etc.
+     * @summary: Get current sales channel details
+     * @description: Use this API to get the current sales channel details which includes configurations that indicate the status of the website, domain, ID, tokens, images, etc.
      */
     getApplication({}?: any): Promise<Application>;
     /**
      * @param {Object} arg - Arg object.
      * @returns {Promise<ApplicationDetail>} - Success response
-     * @summary: Get basic application details
+     * @summary: Get basic details of the application
      * @description: Use this API to retrieve only the basic details of the application which includes channel name, description, banner, logo, favicon, domain details, etc.
      */
     getBasicDetails({}?: any): Promise<ApplicationDetail>;
@@ -141,7 +141,7 @@ declare class Configuration {
      * @param {Object} arg - Arg object.
      * @returns {Promise<LanguageResponse>} - Success response
      * @summary: Get list of languages
-     * @description: Use this API to get a list of languages supported in the application.
+     * @description: Use this API to get a list of languages supported in the application
      */
     getLanguages({}?: any): Promise<LanguageResponse>;
     /**
@@ -162,7 +162,7 @@ declare class Configuration {
      *   page. Default value is 10.
      * @param {string} [arg.q] - Store code or name of the ordering store.
      * @returns {Promise<OrderingStores>} - Success response
-     * @summary: Get deployment stores
+     * @summary: Get all deployment stores
      * @description: Use this API to retrieve the details of all the deployment stores (the selling locations where the application will be utilized for placing orders).
      */
     getOrderingStores({ pageNo, pageSize, q }?: {
@@ -175,7 +175,7 @@ declare class Configuration {
      * @param {number} [arg.pageSize] - The number of items to retrieve in each
      *   page. Default value is 10.
      * @param {string} [arg.q] - Store code or name of the ordering store.
-     * @summary: Get deployment stores
+     * @summary: Get all deployment stores
      * @description: Use this API to retrieve the details of all the deployment stores (the selling locations where the application will be utilized for placing orders).
      */
     getOrderingStoresPaginator({ pageSize, q }?: {
@@ -185,8 +185,8 @@ declare class Configuration {
     /**
      * @param {Object} arg - Arg object.
      * @returns {Promise<ApplicationAboutResponse>} - Success response
-     * @summary: Get application, owner and seller information
-     * @description: Use this API to get the current application details which includes channel name, description, banner, logo, favicon, domain details, etc. This API also retrieves the seller and owner information such as address, email address, and phone number.
+     * @summary: Get sales channel, owner and seller information
+     * @description: Use this API to get the current sales channel details which includes channel name, description, banner, logo, favicon, domain details, etc. This API also retrieves the seller and owner information such as address, email address, and phone number.
      */
     getOwnerInfo({}?: any): Promise<ApplicationAboutResponse>;
     /**

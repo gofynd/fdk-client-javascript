@@ -150,6 +150,7 @@ class CatalogValidator {
       f: Joi.string().allow(""),
       c: Joi.string().allow(""),
       filters: Joi.boolean(),
+      isDependent: Joi.boolean(),
       sortOn: Joi.string().allow(""),
       pageId: Joi.string().allow(""),
       pageSize: Joi.number(),

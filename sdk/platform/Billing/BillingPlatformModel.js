@@ -100,6 +100,7 @@ class BillingModel {
   }
   static DetailedPlanComponents() {
     return Joi.object({
+      config: Joi.any(),
       description: Joi.string().allow(""),
       display_text: Joi.string().allow(""),
       enabled: Joi.boolean(),
@@ -438,6 +439,7 @@ class BillingModel {
     return Joi.object({
       _id: Joi.string().allow(""),
       cancel_at_period_end: Joi.boolean(),
+      channel_type: Joi.string().allow(""),
       collection_method: Joi.string().allow(""),
       created_at: Joi.string().allow(""),
       current_period: BillingModel.SubscriptionCurrentPeriod(),
@@ -593,8 +595,11 @@ class BillingModel {
   }
   static SubscriptionStatus() {
     return Joi.object({
+      current_subscriptions: Joi.array().items(BillingModel.Subscription()),
       is_enabled: Joi.boolean(),
-      mandate_amount: Joi.number(),
+      latest_invoice: BillingModel.InvoicesData(),
+      mandate_amount: Joi.string().allow(""),
+      next_plan: BillingModel.Plan(),
       subscription: BillingModel.Subscription(),
     });
   }

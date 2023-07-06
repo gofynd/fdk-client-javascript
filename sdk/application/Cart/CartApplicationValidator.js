@@ -14,6 +14,7 @@ class CartValidator {
       b: Joi.boolean(),
       areaCode: Joi.string().allow(""),
       buyNow: Joi.boolean(),
+      id: Joi.string().allow(""),
       body: CartModel.AddCartRequest().required(),
     }).required();
   }
@@ -46,9 +47,16 @@ class CartValidator {
     }).required();
   }
 
+  static checkoutCartV2() {
+    return Joi.object({
+      buyNow: Joi.boolean(),
+      body: CartModel.CartCheckoutDetailV2Request().required(),
+    }).required();
+  }
+
   static deleteCart() {
     return Joi.object({
-      id: Joi.number(),
+      id: Joi.string().allow(""),
     });
   }
 
@@ -141,6 +149,7 @@ class CartValidator {
       slug: Joi.string().allow(""),
       pageSize: Joi.number(),
       promotionGroup: Joi.string().allow(""),
+      storeId: Joi.number(),
     });
   }
 
@@ -227,6 +236,10 @@ class CartValidator {
       paymentIdentifier: Joi.string().allow(""),
       aggregatorName: Joi.string().allow(""),
       merchantCode: Joi.string().allow(""),
+      iin: Joi.string().allow(""),
+      network: Joi.string().allow(""),
+      type: Joi.string().allow(""),
+      cardId: Joi.string().allow(""),
     });
   }
 }

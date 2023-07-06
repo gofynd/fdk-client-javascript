@@ -17,6 +17,8 @@ declare class PaymentModel {
     static CancelOrResendPaymentLinkRequest(): any;
     static CancelPaymentLinkResponse(): any;
     static Card(): any;
+    static CardDetails(): any;
+    static CardDetailsResponse(): any;
     static CardPaymentGateway(): any;
     static ChargeCustomerRequest(): any;
     static ChargeCustomerResponse(): any;
@@ -55,6 +57,8 @@ declare class PaymentModel {
     static OnboardSummary(): any;
     static OrderBeneficiaryDetails(): any;
     static OrderBeneficiaryResponse(): any;
+    static OutstandingOrderDetailsResponse(): any;
+    static PaidOrderDetailsResponse(): any;
     static PaymentFlow(): any;
     static PaymentInitializationRequest(): any;
     static PaymentInitializationResponse(): any;

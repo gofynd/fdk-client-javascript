@@ -34,8 +34,6 @@ module.exports = {
 
     RewardsPlatformModel: require("./Rewards/RewardsPlatformModel"),
 
-    AnalyticsPlatformModel: require("./Analytics/AnalyticsPlatformModel"),
-
     DiscountPlatformModel: require("./Discount/DiscountPlatformModel"),
 
     PartnerPlatformModel: require("./Partner/PartnerPlatformModel"),

@@ -17,7 +17,6 @@ export namespace PlatformModel {
     const ConfigurationPlatformModel: typeof import("./Configuration/ConfigurationPlatformModel");
     const CartPlatformModel: typeof import("./Cart/CartPlatformModel");
     const RewardsPlatformModel: typeof import("./Rewards/RewardsPlatformModel");
-    const AnalyticsPlatformModel: typeof import("./Analytics/AnalyticsPlatformModel");
     const DiscountPlatformModel: typeof import("./Discount/DiscountPlatformModel");
     const PartnerPlatformModel: typeof import("./Partner/PartnerPlatformModel");
     const WebhookPlatformModel: typeof import("./Webhook/WebhookPlatformModel");

@@ -29,6 +29,8 @@ class Order {
         "/service/application/order/v1.0/orders/{order_id}/shipments/{shipment_id}/otp/send/",
       trackShipment:
         "/service/application/order/v1.0/orders/shipments/{shipment_id}/track",
+      updateShipmentStatus:
+        "/service/application/order/v1.0/orders/shipments/{shipment_id}/status",
       verifyOtpShipmentCustomer:
         "/service/application/order/v1.0/orders/{order_id}/shipments/{shipment_id}/otp/verify/",
     };
@@ -334,7 +336,7 @@ class Order {
    * @param {Object} arg - Arg object.
    * @param {string} arg.orderId - A unique number used for identifying and
    *   tracking your orders.
-   * @returns {Promise<OrderList>} - Success response
+   * @returns {Promise<OrderById>} - Success response
    * @summary: Get POS Order
    * @description: Use this API to retrieve a POS order and all its details such as tracking details, shipment, store information using Fynd Order ID.
    */
@@ -376,7 +378,7 @@ class Order {
       xHeaders
     );
 
-    const { error: res_error } = OrderModel.OrderList().validate(response, {
+    const { error: res_error } = OrderModel.OrderById().validate(response, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -710,6 +712,72 @@ class Order {
       Logger({
         level: "WARN",
         message: "Response Validation Warnnings for trackShipment",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.shipmentId - ID of the shipment. An order may contain
+   *   multiple items and may get divided into one or more shipment, each
+   *   having its own ID.
+   * @param {UpdateShipmentStatusRequest} arg.body
+   * @returns {Promise<ShipmentApplicationStatusResponse>} - Success response
+   * @summary: Update the shipment status
+   * @description: Use this API to update the status of a shipment using its shipment ID.
+   */
+  async updateShipmentStatus({ shipmentId, body } = {}) {
+    const { error } = OrderValidator.updateShipmentStatus().validate(
+      { shipmentId, body },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = OrderValidator.updateShipmentStatus().validate(
+      { shipmentId, body },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for updateShipmentStatus",
+      });
+      Logger({ level: "WARN", message: warrning });
+    }
+
+    const query_params = {};
+
+    const xHeaders = {};
+
+    const response = await ApplicationAPIClient.execute(
+      this._conf,
+      "put",
+      constructUrl({
+        url: this._urls["updateShipmentStatus"],
+        params: { shipmentId },
+      }),
+      query_params,
+      body,
+      xHeaders
+    );
+
+    const {
+      error: res_error,
+    } = OrderModel.ShipmentApplicationStatusResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for updateShipmentStatus",
       });
       Logger({ level: "WARN", message: res_error });
     }

@@ -407,8 +407,8 @@ class CompanyProfile {
    * @param {Object} arg - Arg object.
    * @param {string} arg.brandId - Id of the brand to be viewed.
    * @returns {Promise<GetBrandResponseSerializer>} - Success response
-   * @summary: Get a single brand.
-   * @description: This API helps to get data associated to a particular brand.
+   * @summary: Get a single company brand.
+   * @description: This API helps to get data associated to a particular company brand.
    */
   async getBrand({ brandId } = {}) {
     const { error } = CompanyProfileValidator.getBrand().validate(

@@ -4,6 +4,7 @@ declare class PaymentValidator {
     static addRefundBankAccountUsingOTP(): any;
     static attachCardToCustomer(): any;
     static cancelPaymentLink(): any;
+    static cardDetails(): any;
     static checkAndUpdatePaymentStatus(): any;
     static checkAndUpdatePaymentStatusPaymentLink(): any;
     static checkCredit(): any;
@@ -27,6 +28,8 @@ declare class PaymentValidator {
     static getUserBeneficiariesDetail(): any;
     static initialisePayment(): any;
     static initialisePaymentPaymentLink(): any;
+    static outstandingOrderDetails(): any;
+    static paidOrderDetails(): any;
     static pollingPaymentLink(): any;
     static redirectToAggregator(): any;
     static renderHTML(): any;

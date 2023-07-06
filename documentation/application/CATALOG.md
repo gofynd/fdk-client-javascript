@@ -611,18 +611,24 @@ Get the items in a collection
 // Promise
 const promise = applicationClient.catalog.getCollectionItemsBySlug({  slug : value,
  f : value,
+ q : value,
  filters : value,
  sortOn : value,
  pageId : value,
- pageSize : value });
+ pageSize : value,
+ pageNo : value,
+ pageType : value });
 
 // Async/Await
 const data = await applicationClient.catalog.getCollectionItemsBySlug({  slug : value,
  f : value,
+ q : value,
  filters : value,
  sortOn : value,
  pageId : value,
- pageSize : value });
+ pageSize : value,
+ pageNo : value,
+ pageType : value });
 ```
 
 
@@ -633,10 +639,13 @@ const data = await applicationClient.catalog.getCollectionItemsBySlug({  slug : 
 | --------- | -----  | -------- | ----------- | 
 | slug | string | yes | A short, human-readable, URL-friendly identifier of a collection. You can get slug value from the endpoint /service/application/catalog/v1.0/collections/. |    
 | f | string | no | The search filter parameters. Filter parameters will be passed in f parameter as shown in the example below. Double Pipe (\|\|) denotes the OR condition, whereas Triple-colon (:::) indicates a new filter paramater applied as an AND condition. |    
+| q | string | no | The search query for entering partial or full name of product, brand, category, or collection. |    
 | filters | boolean | no | This is a boolean value, True for fetching all filter parameters and False for disabling the filter parameters. |    
 | sortOn | string | no | The order in which the list of products should be sorted, e.g. popularity, price, latest and discount, in either ascending or descending order. See the supported values below. |    
 | pageId | string | no | Page ID to retrieve next set of results. |    
-| pageSize | number | no | The number of items to retrieve in each page. |  
+| pageSize | number | no | The number of items to retrieve in each page. |    
+| pageNo | number | no | Page Number to retrieve next set of results. |    
+| pageType | string | no | Page Type to retrieve set of results can be cursor or number. |  
 
 
 
@@ -1011,12 +1020,14 @@ List all the collections
 // Promise
 const promise = applicationClient.catalog.getCollections({  pageNo : value,
  pageSize : value,
- tag : value });
+ tag : value,
+ q : value });
 
 // Async/Await
 const data = await applicationClient.catalog.getCollections({  pageNo : value,
  pageSize : value,
- tag : value });
+ tag : value,
+ q : value });
 ```
 
 
@@ -1027,7 +1038,8 @@ const data = await applicationClient.catalog.getCollections({  pageNo : value,
 | --------- | -----  | -------- | ----------- |  
 | pageNo | number | no | The page number to navigate through the given set of results. |    
 | pageSize | number | no | The number of items to retrieve in each page. |    
-| tag | Array<string> | no | List of tags  to filter collections |  
+| tag | Array<string> | no | List of tags  to filter collections |    
+| q | string | no | Name of the collection to filter collection |  
 
 
 
@@ -7891,9 +7903,9 @@ Success. Returns a response object. Check the example shown below or refer `Foll
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | increment_unit | number? |  yes  |  |
- | maximum | number? |  yes  |  |
- | minimum | number? |  yes  |  |
+ | increment_unit | number? |  yes  | The minimum quantity increment in which the item can be purchased. |
+ | maximum | number? |  yes  | The maximum quantity allowed for purchase. |
+ | minimum | number? |  yes  | The minimum quantity required for purchase. |
  
 
 ---
@@ -7902,8 +7914,8 @@ Success. Returns a response object. Check the example shown below or refer `Foll
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | description | any? |  yes  |  |
- | title | any? |  yes  |  |
+ | description | any? |  yes  | The SEO description of the item |
+ | title | any? |  yes  | The SEO title of the item |
  
 
 ---
@@ -8213,8 +8225,8 @@ Success. Returns a response object. Check the example shown below or refer `Foll
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | key | string |  no  |  |
- | value | string |  no  |  |
+ | key | string |  no  | A key to store a custom field. |
+ | value | string |  no  | A value to store in the custom field. |
  
 
 ---
@@ -8276,11 +8288,11 @@ Success. Returns a response object. Check the example shown below or refer `Foll
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | height | number |  no  |  |
- | is_default | boolean |  no  |  |
- | length | number |  no  |  |
- | unit | string |  no  |  |
- | width | number |  no  |  |
+ | height | number |  no  | The height of the product |
+ | is_default | boolean |  no  | Whether the dimension is the default one or not |
+ | length | number |  no  | The length of the product |
+ | unit | string |  no  | The unit of dimension |
+ | width | number |  no  | The width of the product |
  
 
 ---
@@ -8450,8 +8462,8 @@ Success. Returns a response object. Check the example shown below or refer `Foll
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | unit | any? |  yes  |  |
- | value | number? |  yes  |  |
+ | unit | any? |  yes  | The unit of measurement used for the net quantity of the product. |
+ | value | number? |  yes  | The value of the net quantity of the product. |
  
 
 ---
@@ -8540,6 +8552,7 @@ Success. Returns a response object. Check the example shown below or refer `Foll
  | categories | [[ProductBrand](#ProductBrand)]? |  yes  |  |
  | category_map | [ProductCategoryMap](#ProductCategoryMap)? |  yes  |  |
  | color | string? |  yes  |  |
+ | custom_order | [ProductDetailCustomOrder](#ProductDetailCustomOrder)? |  yes  |  |
  | description | string? |  yes  |  |
  | discount | string? |  yes  |  |
  | grouped_attributes | [[ProductDetailGroupedAttribute](#ProductDetailGroupedAttribute)]? |  yes  |  |
@@ -8554,6 +8567,7 @@ Success. Returns a response object. Check the example shown below or refer `Foll
  | name | string? |  yes  |  |
  | net_quantity | [NetQuantity](#NetQuantity)? |  yes  |  |
  | price | [ProductListingPrice](#ProductListingPrice)? |  yes  |  |
+ | product_group_tag | [string]? |  yes  |  |
  | product_online_date | string? |  yes  |  |
  | rating | number? |  yes  |  |
  | rating_count | number? |  yes  |  |
@@ -8581,6 +8595,17 @@ Success. Returns a response object. Check the example shown below or refer `Foll
 
 ---
 
+#### [ProductDetailCustomOrder](#ProductDetailCustomOrder)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | is_custom_order | boolean? |  yes  |  |
+ | manufacturing_time | number? |  yes  |  |
+ | manufacturing_time_unit | string? |  yes  |  |
+ 
+
+---
+
 #### [ProductDetailGroupedAttribute](#ProductDetailGroupedAttribute)
 
  | Properties | Type | Nullable | Description |
@@ -8595,27 +8620,27 @@ Success. Returns a response object. Check the example shown below or refer `Foll
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | attributes | string? |  yes  |  |
- | brand_uid | number? |  yes  |  |
- | country_of_origin | any? |  yes  |  |
- | description | any? |  yes  |  |
- | grouped_attributes | string? |  yes  |  |
- | has_variant | boolean? |  yes  |  |
- | highlights | [any]? |  yes  |  |
- | hsn_code | number? |  yes  |  |
- | identifier | string? |  yes  |  |
- | image_nature | any? |  yes  |  |
- | images | [any]? |  yes  |  |
- | is_set | boolean? |  yes  |  |
- | item_code | any? |  yes  |  |
- | media | [string]? |  yes  |  |
- | name | any? |  yes  |  |
- | out_of_stock | boolean? |  yes  |  |
- | rating | number? |  yes  |  |
- | rating_count | number? |  yes  |  |
- | short_description | any? |  yes  |  |
- | slug | any? |  yes  |  |
- | template_tag | any? |  yes  |  |
+ | attributes | string? |  yes  | A dictionary of product attributes |
+ | brand_uid | number? |  yes  | The unique ID of the product's brand |
+ | country_of_origin | any? |  yes  | The country of origin for the product |
+ | description | any? |  yes  | The long description of the product |
+ | grouped_attributes | string? |  yes  | A dictionary of grouped product attributes |
+ | has_variant | boolean? |  yes  | Whether or not the product has a variant |
+ | highlights | [any]? |  yes  | A list of highlights for the product |
+ | hsn_code | number? |  yes  | The HSN code of the product |
+ | identifier | string? |  yes  | A dictionary of product identifiers |
+ | image_nature | any? |  yes  | The nature of the product's images |
+ | images | [any]? |  yes  | A list of image URLs for the product |
+ | is_set | boolean? |  yes  | Whether or not the product is a set of items |
+ | item_code | any? |  yes  | The item code of the product |
+ | media | [string]? |  yes  | A list of media objects for the product |
+ | name | any? |  yes  | The name of the product |
+ | out_of_stock | boolean? |  yes  | Whether or not the product is out of stock |
+ | rating | number? |  yes  | The rating of the product |
+ | rating_count | number? |  yes  | The number of ratings the product has received |
+ | short_description | any? |  yes  | The short description of the product |
+ | slug | any? |  yes  | The slug of the product |
+ | template_tag | any? |  yes  | The template tag of the product |
  
 
 ---
@@ -8676,22 +8701,22 @@ Success. Returns a response object. Check the example shown below or refer `Foll
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | _id | any? |  yes  |  |
- | choice | any? |  yes  |  |
- | company_id | number? |  yes  |  |
- | created_by | [UserDetail](#UserDetail)? |  yes  |  |
- | created_on | string |  no  |  |
- | is_active | boolean? |  yes  |  |
- | logo | any? |  yes  |  |
- | meta | string? |  yes  |  |
- | modified_by | [UserDetail](#UserDetail)? |  yes  |  |
- | modified_on | string |  no  |  |
- | name | any |  no  |  |
- | page_visibility | [any]? |  yes  |  |
- | products | [[ProductInGroup](#ProductInGroup)] |  no  |  |
- | same_store_assignment | boolean? |  yes  |  |
- | slug | any? |  yes  |  |
- | verified_by | [UserDetail](#UserDetail)? |  yes  |  |
- | verified_on | string? |  yes  |  |
+ | choice | any? |  yes  | The choice of the product grouping. |
+ | company_id | number? |  yes  | The ID of the company that owns the product grouping. |
+ | created_by | [UserDetail](#UserDetail)? |  yes  | User details of the creator of the document |
+ | created_on | string |  no  | Timestamp of the creation of the document |
+ | is_active | boolean? |  yes  | Whether the product grouping is active. |
+ | logo | any? |  yes  | The URL for the logo of the product grouping. |
+ | meta | string? |  yes  | A dictionary containing metadata information. |
+ | modified_by | [UserDetail](#UserDetail)? |  yes  | User details of the last modifier of the document |
+ | modified_on | string |  no  | Timestamp of the last modification of the document |
+ | name | any |  no  | The name of the product grouping. |
+ | page_visibility | [any]? |  yes  | A list of page visibilities of the product grouping. |
+ | products | [[ProductInGroup](#ProductInGroup)] |  no  | A list of products in the grouping. |
+ | same_store_assignment | boolean? |  yes  | Whether the products are assigned to the same store. |
+ | slug | any? |  yes  | The unique identifier for the product grouping. |
+ | verified_by | [UserDetail](#UserDetail)? |  yes  | User details of the verifier of the document, if applicable |
+ | verified_on | string? |  yes  | Timestamp of when the document was verified, if applicable |
  
 
 ---
@@ -8700,11 +8725,11 @@ Success. Returns a response object. Check the example shown below or refer `Foll
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | currency | any? |  yes  |  |
- | max_effective | number? |  yes  |  |
- | max_marked | number? |  yes  |  |
- | min_effective | number? |  yes  |  |
- | min_marked | number? |  yes  |  |
+ | currency | any? |  yes  | The currency code for the prices. |
+ | max_effective | number? |  yes  | The maximum effective price of the product group. |
+ | max_marked | number? |  yes  | The maximum marked price of the product group. |
+ | min_effective | number? |  yes  | The minimum effective price of the product group. |
+ | min_marked | number? |  yes  | The minimum marked price of the product group. |
  
 
 ---
@@ -8713,15 +8738,15 @@ Success. Returns a response object. Check the example shown below or refer `Foll
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | allow_remove | boolean? |  yes  |  |
- | auto_add_to_cart | boolean? |  yes  |  |
- | auto_select | boolean? |  yes  |  |
- | max_quantity | number |  no  |  |
- | min_quantity | number? |  yes  |  |
- | price | [ProductGroupPrice](#ProductGroupPrice)? |  yes  |  |
- | product_details | [ProductDetails](#ProductDetails)? |  yes  |  |
- | product_uid | number |  no  |  |
- | sizes | [[Size](#Size)]? |  yes  |  |
+ | allow_remove | boolean? |  yes  | A flag indicating whether the product can be removed from the cart. |
+ | auto_add_to_cart | boolean? |  yes  | A flag indicating whether the product should be automatically added to the cart. |
+ | auto_select | boolean? |  yes  | A flag indicating whether the product should be automatically selected. |
+ | max_quantity | number |  no  | The maximum quantity of the product that can be added to the cart. |
+ | min_quantity | number? |  yes  | The minimum quantity of the product that can be added to the cart. |
+ | price | [ProductGroupPrice](#ProductGroupPrice)? |  yes  | The price details for the product group. |
+ | product_details | [ProductDetails](#ProductDetails)? |  yes  | The details of the product. |
+ | product_uid | number |  no  | The unique ID of the product in the group. |
+ | sizes | [[Size](#Size)]? |  yes  | The available sizes for the product. |
  
 
 ---
@@ -8759,6 +8784,7 @@ Success. Returns a response object. Check the example shown below or refer `Foll
  | categories | [[ProductBrand](#ProductBrand)]? |  yes  |  |
  | category_map | [ProductCategoryMap](#ProductCategoryMap)? |  yes  |  |
  | color | string? |  yes  |  |
+ | custom_order | [ProductDetailCustomOrder](#ProductDetailCustomOrder)? |  yes  |  |
  | description | string? |  yes  |  |
  | discount | string? |  yes  |  |
  | grouped_attributes | [[ProductDetailGroupedAttribute](#ProductDetailGroupedAttribute)]? |  yes  |  |
@@ -8774,6 +8800,7 @@ Success. Returns a response object. Check the example shown below or refer `Foll
  | name | string? |  yes  |  |
  | net_quantity | [NetQuantity](#NetQuantity)? |  yes  |  |
  | price | [ProductListingPrice](#ProductListingPrice)? |  yes  |  |
+ | product_group_tag | [string]? |  yes  |  |
  | product_online_date | string? |  yes  |  |
  | rating | number? |  yes  |  |
  | rating_count | number? |  yes  |  |
@@ -9149,10 +9176,10 @@ Success. Returns a response object. Check the example shown below or refer `Foll
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | display | any? |  yes  |  |
- | is_available | boolean? |  yes  |  |
- | quantity | number? |  yes  |  |
- | value | any? |  yes  |  |
+ | display | any? |  yes  | The display string for the size |
+ | is_available | boolean? |  yes  | Whether or not this size is available |
+ | quantity | number? |  yes  | The quantity of this size available |
+ | value | any? |  yes  | The value of the size |
  
 
 ---
@@ -9349,10 +9376,10 @@ Success. Returns a response object. Check the example shown below or refer `Foll
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | contact | string? |  yes  |  |
- | super_user | boolean? |  yes  |  |
- | user_id | string |  no  |  |
- | username | string |  no  |  |
+ | contact | string? |  yes  | The contact details of the user. |
+ | super_user | boolean? |  yes  | A flag indicating whether the user is a super user. |
+ | user_id | string |  no  | The user ID of the user. |
+ | username | string |  no  | The username of the user. |
  
 
 ---
@@ -9361,9 +9388,9 @@ Success. Returns a response object. Check the example shown below or refer `Foll
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | is_default | boolean |  no  |  |
- | shipping | number |  no  |  |
- | unit | string |  no  |  |
+ | is_default | boolean |  no  | Whether the weight is the default one or not |
+ | shipping | number |  no  | The shipping weight of the product |
+ | unit | string |  no  | The unit of weight |
  
 
 ---

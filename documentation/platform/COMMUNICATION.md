@@ -4802,6 +4802,7 @@ Success
  | ---------- | ---- | -------- | ----------- |
  | _id | string? |  yes  |  |
  | application | string? |  yes  |  |
+ | channel_type | string? |  yes  |  |
  | created_at | string? |  yes  |  |
  | data | any? |  yes  |  |
  | email | [LogEmail](#LogEmail)? |  yes  |  |
@@ -4809,6 +4810,7 @@ Success
  | meta | [LogMeta](#LogMeta)? |  yes  |  |
  | pushnotification | [LogPushnotification](#LogPushnotification)? |  yes  |  |
  | service | string? |  yes  |  |
+ | source | string? |  yes  |  |
  | status | string? |  yes  |  |
  | step | string? |  yes  |  |
  
@@ -5046,6 +5048,7 @@ Success
  | ---------- | ---- | -------- | ----------- |
  | expiry | number? |  yes  |  |
  | otp_length | number? |  yes  |  |
+ | provider | [SendOtpEmailCommsProvider](#SendOtpEmailCommsProvider)? |  yes  |  |
  | template | [SendOtpEmailCommsTemplate](#SendOtpEmailCommsTemplate)? |  yes  |  |
  
 
@@ -5096,6 +5099,16 @@ Success
  | request_id | string? |  yes  |  |
  | resend_timer | number? |  yes  |  |
  | success | boolean? |  yes  |  |
+ 
+
+---
+
+#### [SendOtpEmailCommsProvider](#SendOtpEmailCommsProvider)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | _id | string? |  yes  |  |
+ | slug | string? |  yes  |  |
  
 
 ---
