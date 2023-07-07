@@ -4661,7 +4661,10 @@ Success. Returns a coupon object which has a list of all the eligible coupons. R
       "uid": 17921,
       "is_applicable": true,
       "is_applied": false,
-      "expires_on": "28 Aug, 19"
+      "expires_on": "28 Aug, 19",
+      "is_bank_offer": false,
+      "offer_text": "3000.0 RS OFF",
+      "savings": 3000
     },
     {
       "coupon_value": 2250,
@@ -4674,7 +4677,10 @@ Success. Returns a coupon object which has a list of all the eligible coupons. R
       "uid": 17743,
       "is_applicable": true,
       "is_applied": false,
-      "expires_on": "24 Jan, 20"
+      "expires_on": "24 Jan, 20",
+      "is_bank_offer": true,
+      "offer_text": "30.0 % OFF",
+      "savings": 1510
     }
   ],
   "page": {
@@ -9395,9 +9401,12 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
  | expires_on | string? |  yes  |  |
  | is_applicable | boolean? |  yes  |  |
  | is_applied | boolean? |  yes  |  |
+ | is_bank_offer | boolean? |  yes  |  |
  | max_discount_value | number? |  yes  |  |
  | message | string? |  yes  |  |
  | minimum_cart_value | number? |  yes  |  |
+ | offer_text | string? |  yes  |  |
+ | savings | number? |  yes  |  |
  | sub_title | string? |  yes  |  |
  | title | string? |  yes  |  |
  

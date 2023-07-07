@@ -42,10 +42,18 @@ class FDKOAuthCodeError extends Error {
   }
 }
 
+class FDKException extends Error {
+  constructor(message) {
+    super(message);
+    this.name = "FDKException";
+  }
+}
+
 module.exports = {
   FDKServerResponseError,
   FDKClientValidationError,
   FDKInvalidCredentialError,
   FDKTokenIssueError,
   FDKOAuthCodeError,
+  FDKException,
 };

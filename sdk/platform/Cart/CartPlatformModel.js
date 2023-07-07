@@ -470,9 +470,12 @@ const Joi = require("joi");
  * @property {string} [expires_on]
  * @property {boolean} [is_applicable]
  * @property {boolean} [is_applied]
+ * @property {boolean} [is_bank_offer]
  * @property {number} [max_discount_value]
  * @property {string} [message]
  * @property {number} [minimum_cart_value]
+ * @property {string} [offer_text]
+ * @property {number} [savings]
  * @property {string} [sub_title]
  * @property {string} [title]
  */
@@ -2369,9 +2372,12 @@ class CartPlatformModel {
       expires_on: Joi.string().allow(""),
       is_applicable: Joi.boolean(),
       is_applied: Joi.boolean(),
+      is_bank_offer: Joi.boolean(),
       max_discount_value: Joi.number(),
       message: Joi.string().allow(""),
       minimum_cart_value: Joi.number(),
+      offer_text: Joi.string().allow(""),
+      savings: Joi.number(),
       sub_title: Joi.string().allow(""),
       title: Joi.string().allow(""),
     });

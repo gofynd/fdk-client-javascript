@@ -12,6 +12,11 @@ class Logistic {
     this._conf = _conf;
     this._relativeUrls = {
       getAllCountries: "/service/application/logistics/v1.0/country-list",
+      getCountries: "/service/application/logistics/v1.0/country",
+      getCountry: "/service/application/logistics/v1.0/country/{uid}",
+      getLocalities: "/service/application/logistics/v1.0/locality/{region}",
+      getLocality:
+        "/service/application/logistics/v1.0/locality/{region}/{value}",
       getOptimalLocations:
         "/service/application/logistics/v1.0/reassign_stores",
       getPincodeCity: "/service/application/logistics/v1.0/pincode/{pincode}",
@@ -91,6 +96,258 @@ class Logistic {
       Logger({
         level: "WARN",
         message: `Response Validation Warnnings for application > Logistic > getAllCountries \n ${res_error}`,
+      });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {LogisticApplicationValidator.GetCountriesParam} arg - Arg object.
+   * @returns {Promise<LogisticApplicationModel.GetCountries>} - Success response
+   * @name getCountries
+   * @summary: Get list of all countries API
+   * @description: Get countries data
+   */
+  async getCountries({} = {}) {
+    const { error } = LogisticApplicationValidator.getCountries().validate(
+      {},
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = LogisticApplicationValidator.getCountries().validate(
+      {},
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for application > Logistic > getCountries \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+
+    const xHeaders = {};
+
+    const response = await ApplicationAPIClient.execute(
+      this._conf,
+      "get",
+      constructUrl({
+        url: this._urls["getCountries"],
+        params: {},
+      }),
+      query_params,
+      undefined,
+      xHeaders
+    );
+
+    const {
+      error: res_error,
+    } = LogisticApplicationModel.GetCountries().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: `Response Validation Warnnings for application > Logistic > getCountries \n ${res_error}`,
+      });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {LogisticApplicationValidator.GetCountryParam} arg - Arg object.
+   * @returns {Promise<LogisticApplicationModel.GetCountry>} - Success response
+   * @name getCountry
+   * @summary: Get single Country API
+   * @description: Get country data
+   */
+  async getCountry({ uid } = {}) {
+    const { error } = LogisticApplicationValidator.getCountry().validate(
+      { uid },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = LogisticApplicationValidator.getCountry().validate(
+      { uid },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for application > Logistic > getCountry \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+
+    const xHeaders = {};
+
+    const response = await ApplicationAPIClient.execute(
+      this._conf,
+      "get",
+      constructUrl({
+        url: this._urls["getCountry"],
+        params: { uid },
+      }),
+      query_params,
+      undefined,
+      xHeaders
+    );
+
+    const {
+      error: res_error,
+    } = LogisticApplicationModel.GetCountry().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: `Response Validation Warnnings for application > Logistic > getCountry \n ${res_error}`,
+      });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {LogisticApplicationValidator.GetLocalitiesParam} arg - Arg object.
+   * @returns {Promise<LogisticApplicationModel.GetLocalities>} - Success response
+   * @name getLocalities
+   * @summary: Get Localities API
+   * @description: Get Localities data
+   */
+  async getLocalities({ region } = {}) {
+    const { error } = LogisticApplicationValidator.getLocalities().validate(
+      { region },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = LogisticApplicationValidator.getLocalities().validate(
+      { region },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for application > Logistic > getLocalities \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+
+    const xHeaders = {};
+
+    const response = await ApplicationAPIClient.execute(
+      this._conf,
+      "get",
+      constructUrl({
+        url: this._urls["getLocalities"],
+        params: { region },
+      }),
+      query_params,
+      undefined,
+      xHeaders
+    );
+
+    const {
+      error: res_error,
+    } = LogisticApplicationModel.GetLocalities().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: `Response Validation Warnnings for application > Logistic > getLocalities \n ${res_error}`,
+      });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {LogisticApplicationValidator.GetLocalityParam} arg - Arg object.
+   * @returns {Promise<LogisticApplicationModel.GetLocality>} - Success response
+   * @name getLocality
+   * @summary: Get Locality API
+   * @description: Get Locality data
+   */
+  async getLocality({ region, value } = {}) {
+    const { error } = LogisticApplicationValidator.getLocality().validate(
+      { region, value },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = LogisticApplicationValidator.getLocality().validate(
+      { region, value },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for application > Logistic > getLocality \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+
+    const xHeaders = {};
+
+    const response = await ApplicationAPIClient.execute(
+      this._conf,
+      "get",
+      constructUrl({
+        url: this._urls["getLocality"],
+        params: { region, value },
+      }),
+      query_params,
+      undefined,
+      xHeaders
+    );
+
+    const {
+      error: res_error,
+    } = LogisticApplicationModel.GetLocality().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: `Response Validation Warnnings for application > Logistic > getLocality \n ${res_error}`,
       });
     }
 

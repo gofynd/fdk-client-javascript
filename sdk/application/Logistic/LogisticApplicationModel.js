@@ -39,6 +39,37 @@ const Joi = require("joi");
  */
 
 /**
+ * @typedef GetCountries
+ * @property {Object[]} [items]
+ * @property {Object} [page]
+ */
+
+/**
+ * @typedef GetCountry
+ * @property {Object} [actions]
+ * @property {string} [currency]
+ * @property {Object} [hierarchy]
+ * @property {string} [ios2]
+ * @property {string} [ios3]
+ * @property {string} [name]
+ * @property {string} [phone_code]
+ * @property {string} [sub_type]
+ * @property {string[]} [timezones]
+ * @property {string} [uid]
+ */
+
+/**
+ * @typedef GetLocalities
+ * @property {Page} [page]
+ * @property {Region[]} [regions]
+ */
+
+/**
+ * @typedef GetLocality
+ * @property {Region} [regions]
+ */
+
+/**
  * @typedef GetZoneFromPincodeViewRequest
  * @property {string} country
  * @property {string} pincode
@@ -51,8 +82,24 @@ const Joi = require("joi");
  */
 
 /**
+ * @typedef Logistics
+ * @property {Object} [dp]
+ */
+
+/**
  * @typedef LogisticsResponse
  * @property {Object} [dp]
+ */
+
+/**
+ * @typedef Page
+ * @property {number} [current]
+ * @property {boolean} [has_next]
+ * @property {boolean} [has_previous]
+ * @property {number} [item_total]
+ * @property {string} [next_id]
+ * @property {number} [size]
+ * @property {string} type
  */
 
 /**
@@ -118,6 +165,19 @@ const Joi = require("joi");
  * @property {string} pystormbreaker_uuid
  * @property {boolean} success
  * @property {string} to_pincode
+ */
+
+/**
+ * @typedef Region
+ * @property {string} [display_name]
+ * @property {boolean} [is_active]
+ * @property {Logistics} [logistics]
+ * @property {Object} [meta]
+ * @property {string} [name]
+ * @property {string[]} [parent_id]
+ * @property {string} [sub_type]
+ * @property {string} [type]
+ * @property {string} [uid]
  */
 
 /**
@@ -259,6 +319,45 @@ class LogisticApplicationModel {
     });
   }
 
+  /** @returns {GetCountries} */
+  static GetCountries() {
+    return Joi.object({
+      items: Joi.array().items(Joi.any()),
+      page: Joi.any(),
+    });
+  }
+
+  /** @returns {GetCountry} */
+  static GetCountry() {
+    return Joi.object({
+      actions: Joi.any(),
+      currency: Joi.string().allow(""),
+      hierarchy: Joi.any(),
+      ios2: Joi.string().allow(""),
+      ios3: Joi.string().allow(""),
+      name: Joi.string().allow(""),
+      phone_code: Joi.string().allow(""),
+      sub_type: Joi.string().allow(""),
+      timezones: Joi.array().items(Joi.string().allow("")),
+      uid: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {GetLocalities} */
+  static GetLocalities() {
+    return Joi.object({
+      page: LogisticApplicationModel.Page(),
+      regions: Joi.array().items(LogisticApplicationModel.Region()),
+    });
+  }
+
+  /** @returns {GetLocality} */
+  static GetLocality() {
+    return Joi.object({
+      regions: LogisticApplicationModel.Region(),
+    });
+  }
+
   /** @returns {GetZoneFromPincodeViewRequest} */
   static GetZoneFromPincodeViewRequest() {
     return Joi.object({
@@ -275,10 +374,30 @@ class LogisticApplicationModel {
     });
   }
 
+  /** @returns {Logistics} */
+  static Logistics() {
+    return Joi.object({
+      dp: Joi.any(),
+    });
+  }
+
   /** @returns {LogisticsResponse} */
   static LogisticsResponse() {
     return Joi.object({
       dp: Joi.object().pattern(/\S/, LogisticApplicationModel.DP()),
+    });
+  }
+
+  /** @returns {Page} */
+  static Page() {
+    return Joi.object({
+      current: Joi.number(),
+      has_next: Joi.boolean(),
+      has_previous: Joi.boolean(),
+      item_total: Joi.number(),
+      next_id: Joi.string().allow(""),
+      size: Joi.number(),
+      type: Joi.string().allow("").required(),
     });
   }
 
@@ -362,6 +481,21 @@ class LogisticApplicationModel {
       pystormbreaker_uuid: Joi.string().allow("").required(),
       success: Joi.boolean().required(),
       to_pincode: Joi.string().allow("").required(),
+    });
+  }
+
+  /** @returns {Region} */
+  static Region() {
+    return Joi.object({
+      display_name: Joi.string().allow(""),
+      is_active: Joi.boolean(),
+      logistics: LogisticApplicationModel.Logistics(),
+      meta: Joi.any(),
+      name: Joi.string().allow(""),
+      parent_id: Joi.array().items(Joi.string().allow("")),
+      sub_type: Joi.string().allow(""),
+      type: Joi.string().allow(""),
+      uid: Joi.string().allow(""),
     });
   }
 

@@ -34,6 +34,33 @@ export = LogisticApplicationModel;
  * @property {string} [transport_mode]
  */
 /**
+ * @typedef GetCountries
+ * @property {Object[]} [items]
+ * @property {Object} [page]
+ */
+/**
+ * @typedef GetCountry
+ * @property {Object} [actions]
+ * @property {string} [currency]
+ * @property {Object} [hierarchy]
+ * @property {string} [ios2]
+ * @property {string} [ios3]
+ * @property {string} [name]
+ * @property {string} [phone_code]
+ * @property {string} [sub_type]
+ * @property {string[]} [timezones]
+ * @property {string} [uid]
+ */
+/**
+ * @typedef GetLocalities
+ * @property {Page} [page]
+ * @property {Region[]} [regions]
+ */
+/**
+ * @typedef GetLocality
+ * @property {Region} [regions]
+ */
+/**
  * @typedef GetZoneFromPincodeViewRequest
  * @property {string} country
  * @property {string} pincode
@@ -44,8 +71,22 @@ export = LogisticApplicationModel;
  * @property {string[]} zones
  */
 /**
+ * @typedef Logistics
+ * @property {Object} [dp]
+ */
+/**
  * @typedef LogisticsResponse
  * @property {Object} [dp]
+ */
+/**
+ * @typedef Page
+ * @property {number} [current]
+ * @property {boolean} [has_next]
+ * @property {boolean} [has_previous]
+ * @property {number} [item_total]
+ * @property {string} [next_id]
+ * @property {number} [size]
+ * @property {string} type
  */
 /**
  * @typedef PincodeApiResponse
@@ -103,6 +144,18 @@ export = LogisticApplicationModel;
  * @property {string} pystormbreaker_uuid
  * @property {boolean} success
  * @property {string} to_pincode
+ */
+/**
+ * @typedef Region
+ * @property {string} [display_name]
+ * @property {boolean} [is_active]
+ * @property {Logistics} [logistics]
+ * @property {Object} [meta]
+ * @property {string} [name]
+ * @property {string[]} [parent_id]
+ * @property {string} [sub_type]
+ * @property {string} [type]
+ * @property {string} [uid]
  */
 /**
  * @typedef TATArticlesRequest
@@ -186,7 +239,7 @@ export = LogisticApplicationModel;
 declare class LogisticApplicationModel {
 }
 declare namespace LogisticApplicationModel {
-    export { CountryEntityResponse, CountryListResponse, CountryMetaResponse, DP, GetZoneFromPincodeViewRequest, GetZoneFromPincodeViewResponse, LogisticsResponse, PincodeApiResponse, PincodeDataResponse, PincodeErrorSchemaResponse, PincodeLatLongData, PincodeMetaResponse, PincodeParentsResponse, ReAssignStoreRequest, ReAssignStoreResponse, TATArticlesRequest, TATArticlesResponse, TATCategoryRequest, TATErrorSchemaResponse, TATFormattedResponse, TATLocationDetailsRequest, TATLocationDetailsResponse, TATPromiseResponse, TATTimestampResponse, TATViewRequest, TATViewResponse };
+    export { CountryEntityResponse, CountryListResponse, CountryMetaResponse, DP, GetCountries, GetCountry, GetLocalities, GetLocality, GetZoneFromPincodeViewRequest, GetZoneFromPincodeViewResponse, Logistics, LogisticsResponse, Page, PincodeApiResponse, PincodeDataResponse, PincodeErrorSchemaResponse, PincodeLatLongData, PincodeMetaResponse, PincodeParentsResponse, ReAssignStoreRequest, ReAssignStoreResponse, Region, TATArticlesRequest, TATArticlesResponse, TATCategoryRequest, TATErrorSchemaResponse, TATFormattedResponse, TATLocationDetailsRequest, TATLocationDetailsResponse, TATPromiseResponse, TATTimestampResponse, TATViewRequest, TATViewResponse };
 }
 /** @returns {CountryEntityResponse} */
 declare function CountryEntityResponse(): CountryEntityResponse;
@@ -226,6 +279,37 @@ type DP = {
     rvp_priority: number;
     transport_mode?: string;
 };
+/** @returns {GetCountries} */
+declare function GetCountries(): GetCountries;
+type GetCountries = {
+    items?: any[];
+    page?: any;
+};
+/** @returns {GetCountry} */
+declare function GetCountry(): GetCountry;
+type GetCountry = {
+    actions?: any;
+    currency?: string;
+    hierarchy?: any;
+    ios2?: string;
+    ios3?: string;
+    name?: string;
+    phone_code?: string;
+    sub_type?: string;
+    timezones?: string[];
+    uid?: string;
+};
+/** @returns {GetLocalities} */
+declare function GetLocalities(): GetLocalities;
+type GetLocalities = {
+    page?: Page;
+    regions?: Region[];
+};
+/** @returns {GetLocality} */
+declare function GetLocality(): GetLocality;
+type GetLocality = {
+    regions?: Region;
+};
 /** @returns {GetZoneFromPincodeViewRequest} */
 declare function GetZoneFromPincodeViewRequest(): GetZoneFromPincodeViewRequest;
 type GetZoneFromPincodeViewRequest = {
@@ -238,10 +322,26 @@ type GetZoneFromPincodeViewResponse = {
     serviceability_type: string;
     zones: string[];
 };
+/** @returns {Logistics} */
+declare function Logistics(): Logistics;
+type Logistics = {
+    dp?: any;
+};
 /** @returns {LogisticsResponse} */
 declare function LogisticsResponse(): LogisticsResponse;
 type LogisticsResponse = {
     dp?: any;
+};
+/** @returns {Page} */
+declare function Page(): Page;
+type Page = {
+    current?: number;
+    has_next?: boolean;
+    has_previous?: boolean;
+    item_total?: number;
+    next_id?: string;
+    size?: number;
+    type: string;
 };
 /** @returns {PincodeApiResponse} */
 declare function PincodeApiResponse(): PincodeApiResponse;
@@ -307,6 +407,19 @@ type ReAssignStoreResponse = {
     pystormbreaker_uuid: string;
     success: boolean;
     to_pincode: string;
+};
+/** @returns {Region} */
+declare function Region(): Region;
+type Region = {
+    display_name?: string;
+    is_active?: boolean;
+    logistics?: Logistics;
+    meta?: any;
+    name?: string;
+    parent_id?: string[];
+    sub_type?: string;
+    type?: string;
+    uid?: string;
 };
 /** @returns {TATArticlesRequest} */
 declare function TATArticlesRequest(): TATArticlesRequest;

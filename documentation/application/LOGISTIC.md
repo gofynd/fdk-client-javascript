@@ -9,6 +9,10 @@
 Logistics Promise Engine APIs allows you to configure zone, pincode, TAT, logistics and many more useful features. 
 
 * [getAllCountries](#getallcountries)
+* [getCountries](#getcountries)
+* [getCountry](#getcountry)
+* [getLocalities](#getlocalities)
+* [getLocality](#getlocality)
 * [getOptimalLocations](#getoptimallocations)
 * [getPincodeCity](#getpincodecity)
 * [getPincodeZones](#getpincodezones)
@@ -49,6 +53,228 @@ Get all countries
 [CountryListResponse](#CountryListResponse)
 
 Get Country List
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### getCountries
+Get list of all countries API
+
+
+
+```javascript
+// Promise
+const promise = applicationClient.logistic.getCountries();
+
+// Async/Await
+const data = await applicationClient.logistic.getCountries();
+```
+
+
+
+
+
+
+Get countries data
+
+*Returned Response:*
+
+
+
+
+[GetCountries](#GetCountries)
+
+Get countries data
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### getCountry
+Get single Country API
+
+
+
+```javascript
+// Promise
+const promise = applicationClient.logistic.getCountry({  uid : value });
+
+// Async/Await
+const data = await applicationClient.logistic.getCountry({  uid : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| uid | string | yes | A `uid` contains a specific unique name of a region. |  
+
+
+
+Get country data
+
+*Returned Response:*
+
+
+
+
+[GetCountry](#GetCountry)
+
+Get country data
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### getLocalities
+Get Localities API
+
+
+
+```javascript
+// Promise
+const promise = applicationClient.logistic.getLocalities({  region : value });
+
+// Async/Await
+const data = await applicationClient.logistic.getLocalities({  region : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| region | string | yes | A `region` contains a specific unique name. |  
+
+
+
+Get Localities data
+
+*Returned Response:*
+
+
+
+
+[GetLocalities](#GetLocalities)
+
+Get Localities data
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### getLocality
+Get Locality API
+
+
+
+```javascript
+// Promise
+const promise = applicationClient.logistic.getLocality({  region : value,
+ value : value });
+
+// Async/Await
+const data = await applicationClient.logistic.getLocality({  region : value,
+ value : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| region | string | yes | A `region` contains a specific unique name. |   
+| value | string | yes | A `value` contains a specific value of the region. |  
+
+
+
+Get Locality data
+
+*Returned Response:*
+
+
+
+
+[GetLocality](#GetLocality)
+
+Get Locality data
 
 
 
@@ -553,6 +779,53 @@ Get TAT  data
 
 ---
 
+#### [GetCountries](#GetCountries)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | items | [string]? |  yes  |  |
+ | page | string? |  yes  |  |
+ 
+
+---
+
+#### [GetCountry](#GetCountry)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | actions | string? |  yes  |  |
+ | currency | string? |  yes  |  |
+ | hierarchy | string? |  yes  |  |
+ | ios2 | string? |  yes  |  |
+ | ios3 | string? |  yes  |  |
+ | name | string? |  yes  |  |
+ | phone_code | string? |  yes  |  |
+ | sub_type | string? |  yes  |  |
+ | timezones | [string]? |  yes  |  |
+ | uid | string? |  yes  |  |
+ 
+
+---
+
+#### [GetLocalities](#GetLocalities)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | page | [Page](#Page)? |  yes  |  |
+ | regions | [[Region](#Region)]? |  yes  |  |
+ 
+
+---
+
+#### [GetLocality](#GetLocality)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | regions | [Region](#Region)? |  yes  |  |
+ 
+
+---
+
 #### [GetZoneFromPincodeViewRequest](#GetZoneFromPincodeViewRequest)
 
  | Properties | Type | Nullable | Description |
@@ -573,11 +846,34 @@ Get TAT  data
 
 ---
 
+#### [Logistics](#Logistics)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | dp | string? |  yes  |  |
+ 
+
+---
+
 #### [LogisticsResponse](#LogisticsResponse)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | dp | [String: [DP](#DP)]? |  yes  |  |
+ 
+
+---
+
+#### [Page](#Page)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | current | number? |  yes  |  |
+ | has_next | boolean? |  yes  |  |
+ | has_previous | boolean? |  yes  |  |
+ | item_total | number? |  yes  |  |
+ | size | number? |  yes  |  |
+ | type | string? |  yes  |  |
  
 
 ---
@@ -675,6 +971,23 @@ Get TAT  data
  | pystormbreaker_uuid | string |  no  |  |
  | success | boolean |  no  |  |
  | to_pincode | string |  no  |  |
+ 
+
+---
+
+#### [Region](#Region)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | display_name | string? |  yes  |  |
+ | is_active | boolean? |  yes  |  |
+ | logistics | [Logistics](#Logistics)? |  yes  |  |
+ | meta | string? |  yes  |  |
+ | name | string? |  yes  |  |
+ | parent_id | [string]? |  yes  |  |
+ | sub_type | string? |  yes  |  |
+ | type | string? |  yes  |  |
+ | uid | string? |  yes  |  |
  
 
 ---

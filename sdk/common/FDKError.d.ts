@@ -24,3 +24,6 @@ export class FDKTokenIssueError extends Error {
 export class FDKOAuthCodeError extends Error {
     constructor(message: any);
 }
+export class FDKException extends Error {
+    constructor(message: any);
+}

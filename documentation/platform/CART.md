@@ -13445,9 +13445,12 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
  | expires_on | string? |  yes  |  |
  | is_applicable | boolean? |  yes  |  |
  | is_applied | boolean? |  yes  |  |
+ | is_bank_offer | boolean? |  yes  |  |
  | max_discount_value | number? |  yes  |  |
  | message | string? |  yes  |  |
  | minimum_cart_value | number? |  yes  |  |
+ | offer_text | string? |  yes  |  |
+ | savings | number? |  yes  |  |
  | sub_title | string? |  yes  |  |
  | title | string? |  yes  |  |
  

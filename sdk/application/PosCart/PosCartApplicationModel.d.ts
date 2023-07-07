@@ -349,9 +349,12 @@ export = PosCartApplicationModel;
  * @property {string} [expires_on]
  * @property {boolean} [is_applicable]
  * @property {boolean} [is_applied]
+ * @property {boolean} [is_bank_offer]
  * @property {number} [max_discount_value]
  * @property {string} [message]
  * @property {number} [minimum_cart_value]
+ * @property {string} [offer_text]
+ * @property {number} [savings]
  * @property {string} [sub_title]
  * @property {string} [title]
  */
@@ -1398,9 +1401,12 @@ type Coupon = {
     expires_on?: string;
     is_applicable?: boolean;
     is_applied?: boolean;
+    is_bank_offer?: boolean;
     max_discount_value?: number;
     message?: string;
     minimum_cart_value?: number;
+    offer_text?: string;
+    savings?: number;
     sub_title?: string;
     title?: string;
 };
