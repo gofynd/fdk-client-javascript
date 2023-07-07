@@ -35,6 +35,14 @@ declare class Order {
      */
     createOrder({ body }?: OrderPlatformValidator.CreateOrderParam): Promise<OrderPlatformModel.CreateOrderResponse>;
     /**
+     * @param {OrderPlatformValidator.CreateShipmentReportParam} arg - Arg object
+     * @returns {Promise<OrderPlatformModel.Success>} - Success response
+     * @name createShipmentReport
+     * @summary:
+     * @description:
+     */
+    createShipmentReport({ fromDate, toDate }?: OrderPlatformValidator.CreateShipmentReportParam): Promise<OrderPlatformModel.Success>;
+    /**
      * @param {OrderPlatformValidator.DispatchManifestParam} arg - Arg object
      * @returns {Promise<OrderPlatformModel.SuccessResponse>} - Success response
      * @name dispatchManifest
@@ -86,6 +94,14 @@ declare class Order {
      * @description:
      */
     getAnnouncements({ date }?: OrderPlatformValidator.GetAnnouncementsParam): Promise<OrderPlatformModel.AnnouncementsResponse>;
+    /**
+     * @param {OrderPlatformValidator.GetAssetByShipmentIdsParam} arg - Arg object
+     * @returns {Promise<OrderPlatformModel.ResponseGetAssetShipment>} - Success response
+     * @name getAssetByShipmentIds
+     * @summary: Get Invoice or Label or Pos of a shipment
+     * @description: Use this API to retrieve shipments invoice, label and pos.
+     */
+    getAssetByShipmentIds({ shipmentIds, invoice, expiresIn }?: OrderPlatformValidator.GetAssetByShipmentIdsParam): Promise<OrderPlatformModel.ResponseGetAssetShipment>;
     /**
      * @param {OrderPlatformValidator.GetBagByIdParam} arg - Arg object
      * @returns {Promise<OrderPlatformModel.BagDetailsPlatformResponse>} -
@@ -161,6 +177,14 @@ declare class Order {
      */
     getManifests({ status, toDate, fromDate, searchValue, dpIds, pageNo, pageSize, }?: OrderPlatformValidator.GetManifestsParam): Promise<OrderPlatformModel.ManifestList>;
     /**
+     * @param {OrderPlatformValidator.GetMetricCountParam} arg - Arg object
+     * @returns {Promise<OrderPlatformModel.MetricCountResponse>} - Success response
+     * @name getMetricCount
+     * @summary:
+     * @description:
+     */
+    getMetricCount({ fromDate, toDate }?: OrderPlatformValidator.GetMetricCountParam): Promise<OrderPlatformModel.MetricCountResponse>;
+    /**
      * @param {OrderPlatformValidator.GetOrderByIdParam} arg - Arg object
      * @returns {Promise<OrderPlatformModel.OrderDetailsResponse>} - Success response
      * @name getOrderById
@@ -176,6 +200,14 @@ declare class Order {
      * @description:
      */
     getOrders({ lane, searchType, bagStatus, timeToDispatch, paymentMethods, tags, searchValue, fromDate, toDate, dpIds, stores, salesChannels, pageNo, pageSize, isPrioritySort, customMeta, myOrders, }?: OrderPlatformValidator.GetOrdersParam): Promise<OrderPlatformModel.OrderListingResponse>;
+    /**
+     * @param {OrderPlatformValidator.GetReportsShipmentListingParam} arg - Arg object
+     * @returns {Promise<OrderPlatformModel.OmsReports>} - Success response
+     * @name getReportsShipmentListing
+     * @summary:
+     * @description:
+     */
+    getReportsShipmentListing({ pageNo, pageSize }?: OrderPlatformValidator.GetReportsShipmentListingParam): Promise<OrderPlatformModel.OmsReports>;
     /**
      * @param {OrderPlatformValidator.GetRoleBasedActionsParam} arg - Arg object
      * @returns {Promise<OrderPlatformModel.GetActionsResponse>} - Success response
@@ -338,6 +370,14 @@ declare class Order {
      * @description:
      */
     uploadConsent({ body }?: OrderPlatformValidator.UploadConsentParam): Promise<OrderPlatformModel.SuccessResponse>;
+    /**
+     * @param {OrderPlatformValidator.UpsertJioCodeParam} arg - Arg object
+     * @returns {Promise<OrderPlatformModel.JioCodeUpsertResponse>} - Success response
+     * @name upsertJioCode
+     * @summary:
+     * @description:
+     */
+    upsertJioCode({ body }?: OrderPlatformValidator.UpsertJioCodeParam): Promise<OrderPlatformModel.JioCodeUpsertResponse>;
     /**
      * @param {OrderPlatformValidator.VerifyMobileOTPParam} arg - Arg object
      * @returns {Promise<OrderPlatformModel.VerifyOtpResponse>} - Success response

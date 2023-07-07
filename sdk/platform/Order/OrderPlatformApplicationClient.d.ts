@@ -4,6 +4,28 @@ declare class Order {
     config: any;
     applicationId: any;
     /**
+     * @param {OrderPlatformApplicationValidator.GetAppOrderShipmentDetailsParam} arg
+     *   - Arg object
+     *
+     * @returns {Promise<OrderPlatformModel.OrderDetailsResponse>} - Success response
+     * @name getAppOrderShipmentDetails
+     * @summary:
+     * @description:
+     */
+    getAppOrderShipmentDetails({ orderId }?: OrderPlatformApplicationValidator.GetAppOrderShipmentDetailsParam): Promise<OrderPlatformModel.OrderDetailsResponse>;
+    /**
+     * @param {OrderPlatformApplicationValidator.GetApplicationShipmentsParam} arg
+     *   - Arg object
+     *
+     * @returns {Promise<OrderPlatformModel.ShipmentInternalPlatformViewResponse>}
+     *   - Success response
+     *
+     * @name getApplicationShipments
+     * @summary:
+     * @description:
+     */
+    getApplicationShipments({ lane, searchType, searchId, fromDate, toDate, dpIds, orderingCompanyId, stores, salesChannels, requestByExt, pageNo, pageSize, customerId, isPrioritySort, }?: OrderPlatformApplicationValidator.GetApplicationShipmentsParam): Promise<OrderPlatformModel.ShipmentInternalPlatformViewResponse>;
+    /**
      * @param {OrderPlatformApplicationValidator.GetPlatformShipmentReasonsParam} arg
      *   - Arg object
      *

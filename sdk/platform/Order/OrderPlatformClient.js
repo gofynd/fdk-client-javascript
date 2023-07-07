@@ -286,6 +286,72 @@ class Order {
   }
 
   /**
+   * @param {OrderPlatformValidator.CreateShipmentReportParam} arg - Arg object
+   * @returns {Promise<OrderPlatformModel.Success>} - Success response
+   * @name createShipmentReport
+   * @summary:
+   * @description:
+   */
+  async createShipmentReport({ fromDate, toDate } = {}) {
+    const { error } = OrderPlatformValidator.createShipmentReport().validate(
+      {
+        fromDate,
+        toDate,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = OrderPlatformValidator.createShipmentReport().validate(
+      {
+        fromDate,
+        toDate,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for platform > Order > createShipmentReport \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+    query_params["from_date"] = fromDate;
+    query_params["to_date"] = toDate;
+
+    const xHeaders = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/order/v1.0/company/${this.config.companyId}/reports/shipment`,
+      query_params,
+      undefined,
+      xHeaders
+    );
+
+    const { error: res_error } = OrderPlatformModel.Success().validate(
+      response,
+      { abortEarly: false, allowUnknown: false }
+    );
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: `Response Validation Warnnings for platform > Order > createShipmentReport \n ${res_error}`,
+      });
+    }
+
+    return response;
+  }
+
+  /**
    * @param {OrderPlatformValidator.DispatchManifestParam} arg - Arg object
    * @returns {Promise<OrderPlatformModel.SuccessResponse>} - Success response
    * @name dispatchManifest
@@ -685,6 +751,77 @@ class Order {
       Logger({
         level: "WARN",
         message: `Response Validation Warnnings for platform > Order > getAnnouncements \n ${res_error}`,
+      });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {OrderPlatformValidator.GetAssetByShipmentIdsParam} arg - Arg object
+   * @returns {Promise<OrderPlatformModel.ResponseGetAssetShipment>} - Success response
+   * @name getAssetByShipmentIds
+   * @summary: Get Invoice or Label or Pos of a shipment
+   * @description: Use this API to retrieve shipments invoice, label and pos.
+   */
+  async getAssetByShipmentIds({ shipmentIds, invoice, expiresIn } = {}) {
+    const { error } = OrderPlatformValidator.getAssetByShipmentIds().validate(
+      {
+        shipmentIds,
+        invoice,
+        expiresIn,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = OrderPlatformValidator.getAssetByShipmentIds().validate(
+      {
+        shipmentIds,
+        invoice,
+        expiresIn,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for platform > Order > getAssetByShipmentIds \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+    query_params["shipment_ids"] = shipmentIds;
+    query_params["invoice"] = invoice;
+    query_params["expires_in"] = expiresIn;
+
+    const xHeaders = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/order/v1.0/company/${this.config.companyId}/shipments-invoice`,
+      query_params,
+      undefined,
+      xHeaders
+    );
+
+    const {
+      error: res_error,
+    } = OrderPlatformModel.ResponseGetAssetShipment().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: `Response Validation Warnnings for platform > Order > getAssetByShipmentIds \n ${res_error}`,
       });
     }
 
@@ -1510,6 +1647,74 @@ class Order {
   }
 
   /**
+   * @param {OrderPlatformValidator.GetMetricCountParam} arg - Arg object
+   * @returns {Promise<OrderPlatformModel.MetricCountResponse>} - Success response
+   * @name getMetricCount
+   * @summary:
+   * @description:
+   */
+  async getMetricCount({ fromDate, toDate } = {}) {
+    const { error } = OrderPlatformValidator.getMetricCount().validate(
+      {
+        fromDate,
+        toDate,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = OrderPlatformValidator.getMetricCount().validate(
+      {
+        fromDate,
+        toDate,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for platform > Order > getMetricCount \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+    query_params["from_date"] = fromDate;
+    query_params["to_date"] = toDate;
+
+    const xHeaders = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/order/v1.0/company/${this.config.companyId}/shipment/metrics-count/`,
+      query_params,
+      undefined,
+      xHeaders
+    );
+
+    const {
+      error: res_error,
+    } = OrderPlatformModel.MetricCountResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: `Response Validation Warnnings for platform > Order > getMetricCount \n ${res_error}`,
+      });
+    }
+
+    return response;
+  }
+
+  /**
    * @param {OrderPlatformValidator.GetOrderByIdParam} arg - Arg object
    * @returns {Promise<OrderPlatformModel.OrderDetailsResponse>} - Success response
    * @name getOrderById
@@ -1695,6 +1900,76 @@ class Order {
       Logger({
         level: "WARN",
         message: `Response Validation Warnnings for platform > Order > getOrders \n ${res_error}`,
+      });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {OrderPlatformValidator.GetReportsShipmentListingParam} arg - Arg object
+   * @returns {Promise<OrderPlatformModel.OmsReports>} - Success response
+   * @name getReportsShipmentListing
+   * @summary:
+   * @description:
+   */
+  async getReportsShipmentListing({ pageNo, pageSize } = {}) {
+    const {
+      error,
+    } = OrderPlatformValidator.getReportsShipmentListing().validate(
+      {
+        pageNo,
+        pageSize,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = OrderPlatformValidator.getReportsShipmentListing().validate(
+      {
+        pageNo,
+        pageSize,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for platform > Order > getReportsShipmentListing \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+    query_params["page_no"] = pageNo;
+    query_params["page_size"] = pageSize;
+
+    const xHeaders = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/order/v1.0/company/${this.config.companyId}/reports/shipment-listing`,
+      query_params,
+      undefined,
+      xHeaders
+    );
+
+    const {
+      error: res_error,
+    } = OrderPlatformModel.OmsReports().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: `Response Validation Warnnings for platform > Order > getReportsShipmentListing \n ${res_error}`,
       });
     }
 
@@ -3056,6 +3331,68 @@ class Order {
       Logger({
         level: "WARN",
         message: `Response Validation Warnnings for platform > Order > uploadConsent \n ${res_error}`,
+      });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {OrderPlatformValidator.UpsertJioCodeParam} arg - Arg object
+   * @returns {Promise<OrderPlatformModel.JioCodeUpsertResponse>} - Success response
+   * @name upsertJioCode
+   * @summary:
+   * @description:
+   */
+  async upsertJioCode({ body } = {}) {
+    const { error } = OrderPlatformValidator.upsertJioCode().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = OrderPlatformValidator.upsertJioCode().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for platform > Order > upsertJioCode \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+
+    const xHeaders = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/order/v1.0/company/${this.config.companyId}/upsert/jiocode/article`,
+      query_params,
+      body,
+      xHeaders
+    );
+
+    const {
+      error: res_error,
+    } = OrderPlatformModel.JioCodeUpsertResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: `Response Validation Warnnings for platform > Order > upsertJioCode \n ${res_error}`,
       });
     }
 

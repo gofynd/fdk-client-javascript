@@ -27,6 +27,12 @@ const OrderPlatformModel = require("./OrderPlatformModel");
  */
 
 /**
+ * @typedef CreateShipmentReportParam
+ * @property {string} [fromDate]
+ * @property {string} [toDate]
+ */
+
+/**
  * @typedef DispatchManifestParam
  * @property {OrderPlatformModel.DispatchManifest} body
  */
@@ -57,6 +63,13 @@ const OrderPlatformModel = require("./OrderPlatformModel");
  * @typedef GetAnnouncementsParam
  * @property {string} [date] - Date On which the announcement is Active (Date
  *   should in ISO Datetime format IST Time)
+ */
+
+/**
+ * @typedef GetAssetByShipmentIdsParam
+ * @property {string} shipmentIds
+ * @property {boolean} [invoice]
+ * @property {string} [expiresIn]
  */
 
 /**
@@ -161,6 +174,12 @@ const OrderPlatformModel = require("./OrderPlatformModel");
  */
 
 /**
+ * @typedef GetMetricCountParam
+ * @property {string} [fromDate]
+ * @property {string} [toDate]
+ */
+
+/**
  * @typedef GetOrderByIdParam
  * @property {string} orderId
  */
@@ -189,6 +208,12 @@ const OrderPlatformModel = require("./OrderPlatformModel");
  * @property {boolean} [isPrioritySort]
  * @property {string} [customMeta]
  * @property {boolean} [myOrders]
+ */
+
+/**
+ * @typedef GetReportsShipmentListingParam
+ * @property {number} [pageNo]
+ * @property {number} [pageSize]
  */
 
 /** @typedef GetRoleBasedActionsParam */
@@ -322,6 +347,11 @@ const OrderPlatformModel = require("./OrderPlatformModel");
  */
 
 /**
+ * @typedef UpsertJioCodeParam
+ * @property {OrderPlatformModel.JioCodeUpsertPayload} body
+ */
+
+/**
  * @typedef VerifyMobileOTPParam
  * @property {OrderPlatformModel.VerifyMobileOTP} body
  */
@@ -356,6 +386,14 @@ class OrderPlatformValidator {
   static createOrder() {
     return Joi.object({
       body: OrderPlatformModel.CreateOrderAPI().required(),
+    }).required();
+  }
+
+  /** @returns {CreateShipmentReportParam} */
+  static createShipmentReport() {
+    return Joi.object({
+      fromDate: Joi.string().allow(""),
+      toDate: Joi.string().allow(""),
     }).required();
   }
 
@@ -400,6 +438,15 @@ class OrderPlatformValidator {
   static getAnnouncements() {
     return Joi.object({
       date: Joi.string().allow(""),
+    }).required();
+  }
+
+  /** @returns {GetAssetByShipmentIdsParam} */
+  static getAssetByShipmentIds() {
+    return Joi.object({
+      shipmentIds: Joi.string().allow("").required(),
+      invoice: Joi.boolean(),
+      expiresIn: Joi.string().allow(""),
     }).required();
   }
 
@@ -522,6 +569,14 @@ class OrderPlatformValidator {
     }).required();
   }
 
+  /** @returns {GetMetricCountParam} */
+  static getMetricCount() {
+    return Joi.object({
+      fromDate: Joi.string().allow(""),
+      toDate: Joi.string().allow(""),
+    }).required();
+  }
+
   /** @returns {GetOrderByIdParam} */
   static getOrderById() {
     return Joi.object({
@@ -549,6 +604,14 @@ class OrderPlatformValidator {
       isPrioritySort: Joi.boolean(),
       customMeta: Joi.string().allow(""),
       myOrders: Joi.boolean(),
+    }).required();
+  }
+
+  /** @returns {GetReportsShipmentListingParam} */
+  static getReportsShipmentListing() {
+    return Joi.object({
+      pageNo: Joi.number(),
+      pageSize: Joi.number(),
     }).required();
   }
 
@@ -715,6 +778,13 @@ class OrderPlatformValidator {
   static uploadConsent() {
     return Joi.object({
       body: OrderPlatformModel.UploadConsent().required(),
+    }).required();
+  }
+
+  /** @returns {UpsertJioCodeParam} */
+  static upsertJioCode() {
+    return Joi.object({
+      body: OrderPlatformModel.JioCodeUpsertPayload().required(),
     }).required();
   }
 

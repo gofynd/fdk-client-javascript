@@ -8,6 +8,7 @@ declare class Order {
         getOrderById: string;
         getOrders: string;
         getPosOrderById: string;
+        getProducts: string;
         getShipmentBagReasons: string;
         getShipmentById: string;
         getShipmentReasons: string;
@@ -37,7 +38,7 @@ declare class Order {
      * @summary: Get Invoice of a shipment
      * @description: Use this API to retrieve shipment invoice.
      */
-    getInvoiceByShipmentId({ shipmentId }?: OrderApplicationValidator.GetInvoiceByShipmentIdParam): Promise<OrderApplicationModel.ResponseGetInvoiceShipment>;
+    getInvoiceByShipmentId({ shipmentId, documentType }?: OrderApplicationValidator.GetInvoiceByShipmentIdParam): Promise<OrderApplicationModel.ResponseGetInvoiceShipment>;
     /**
      * @param {OrderApplicationValidator.GetOrderByIdParam} arg - Arg object.
      * @returns {Promise<OrderApplicationModel.OrderById>} - Success response
@@ -62,6 +63,14 @@ declare class Order {
      * @description: Use this API to retrieve a POS order and all its details such as tracking details, shipment, store information using Fynd Order ID.
      */
     getPosOrderById({ orderId }?: OrderApplicationValidator.GetPosOrderByIdParam): Promise<OrderApplicationModel.OrderById>;
+    /**
+     * @param {OrderApplicationValidator.GetProductsParam} arg - Arg object.
+     * @returns {Promise<OrderApplicationModel.ProductListResponse>} - Success response
+     * @name getProducts
+     * @summary:
+     * @description:
+     */
+    getProducts({ status, pageNo, pageSize, fromDate, toDate, searchValue, }?: OrderApplicationValidator.GetProductsParam): Promise<OrderApplicationModel.ProductListResponse>;
     /**
      * @param {OrderApplicationValidator.GetShipmentBagReasonsParam} arg - Arg object.
      * @returns {Promise<OrderApplicationModel.ShipmentBagReasons>} - Success response

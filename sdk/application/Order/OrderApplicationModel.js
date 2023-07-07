@@ -87,7 +87,17 @@ const Joi = require("joi");
  */
 
 /**
+ * @typedef Coupon
+ * @property {string} [code]
+ * @property {string} [coupon_type]
+ * @property {number} [id]
+ * @property {string} [payable_category]
+ * @property {number} [value]
+ */
+
+/**
  * @typedef CurrentStatus
+ * @property {string} [created_at]
  * @property {string} [journey_type]
  * @property {string} [name]
  * @property {string} [status]
@@ -321,6 +331,41 @@ const Joi = require("joi");
  */
 
 /**
+ * @typedef Product
+ * @property {AppliedPromos[]} [applied_promos]
+ * @property {ProductStatus} [bag_status]
+ * @property {ProductBrand} [brand]
+ * @property {boolean} [can_cancel]
+ * @property {boolean} [can_return]
+ * @property {Coupon} [coupon]
+ * @property {string} [delivery_date]
+ * @property {string} docket_number
+ * @property {Item} [item]
+ * @property {number} [line_number]
+ * @property {string} order_id
+ * @property {Object} [parent_promo_bags]
+ * @property {ShipmentPayment} [payment]
+ * @property {number} [quantity]
+ * @property {string} [returnable_date]
+ * @property {string} [seller_identifier]
+ */
+
+/**
+ * @typedef ProductBrand
+ * @property {string} [brand_name]
+ * @property {number} [id]
+ */
+
+/**
+ * @typedef ProductListResponse
+ * @property {OrderFilters} [filters]
+ * @property {Product[]} [items]
+ * @property {string} [message]
+ * @property {OrderPage} [page]
+ * @property {boolean} [success]
+ */
+
+/**
  * @typedef Products
  * @property {string} [identifier]
  * @property {number} [line_number]
@@ -356,6 +401,14 @@ const Joi = require("joi");
  * @property {string} [identifier]
  * @property {number} [line_number]
  * @property {number} [quantity]
+ */
+
+/**
+ * @typedef ProductStatus
+ * @property {string} [created_at]
+ * @property {string} [hex_code]
+ * @property {string} [title]
+ * @property {string} [value]
  */
 
 /**
@@ -689,9 +742,21 @@ class OrderApplicationModel {
     });
   }
 
+  /** @returns {Coupon} */
+  static Coupon() {
+    return Joi.object({
+      code: Joi.string().allow(""),
+      coupon_type: Joi.string().allow(""),
+      id: Joi.number(),
+      payable_category: Joi.string().allow(""),
+      value: Joi.number(),
+    });
+  }
+
   /** @returns {CurrentStatus} */
   static CurrentStatus() {
     return Joi.object({
+      created_at: Joi.string().allow(""),
       journey_type: Joi.string().allow("").allow(null),
       name: Joi.string().allow(""),
       status: Joi.string().allow(""),
@@ -971,6 +1036,47 @@ class OrderApplicationModel {
     });
   }
 
+  /** @returns {Product} */
+  static Product() {
+    return Joi.object({
+      applied_promos: Joi.array().items(OrderApplicationModel.AppliedPromos()),
+      bag_status: OrderApplicationModel.ProductStatus(),
+      brand: OrderApplicationModel.ProductBrand(),
+      can_cancel: Joi.boolean(),
+      can_return: Joi.boolean(),
+      coupon: OrderApplicationModel.Coupon(),
+      delivery_date: Joi.string().allow(""),
+      docket_number: Joi.string().allow("").required(),
+      item: OrderApplicationModel.Item(),
+      line_number: Joi.number(),
+      order_id: Joi.string().allow("").required(),
+      parent_promo_bags: Joi.any(),
+      payment: OrderApplicationModel.ShipmentPayment(),
+      quantity: Joi.number(),
+      returnable_date: Joi.string().allow(""),
+      seller_identifier: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {ProductBrand} */
+  static ProductBrand() {
+    return Joi.object({
+      brand_name: Joi.string().allow(""),
+      id: Joi.number(),
+    });
+  }
+
+  /** @returns {ProductListResponse} */
+  static ProductListResponse() {
+    return Joi.object({
+      filters: OrderApplicationModel.OrderFilters(),
+      items: Joi.array().items(OrderApplicationModel.Product()),
+      message: Joi.string().allow(""),
+      page: OrderApplicationModel.OrderPage(),
+      success: Joi.boolean(),
+    });
+  }
+
   /** @returns {Products} */
   static Products() {
     return Joi.object({
@@ -1022,6 +1128,16 @@ class OrderApplicationModel {
       identifier: Joi.string().allow(""),
       line_number: Joi.number(),
       quantity: Joi.number(),
+    });
+  }
+
+  /** @returns {ProductStatus} */
+  static ProductStatus() {
+    return Joi.object({
+      created_at: Joi.string().allow(""),
+      hex_code: Joi.string().allow(""),
+      title: Joi.string().allow(""),
+      value: Joi.string().allow(""),
     });
   }
 

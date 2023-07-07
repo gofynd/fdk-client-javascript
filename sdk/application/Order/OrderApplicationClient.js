@@ -19,6 +19,7 @@ class Order {
       getOrders: "/service/application/order/v1.0/orders",
       getPosOrderById:
         "/service/application/order/v1.0/orders/pos-order/{order_id}",
+      getProducts: "/service/application/order/v1.0/products",
       getShipmentBagReasons:
         "/service/application/order/v1.0/orders/shipments/{shipment_id}/bags/{bag_id}/reasons",
       getShipmentById:
@@ -126,11 +127,11 @@ class Order {
    * @summary: Get Invoice of a shipment
    * @description: Use this API to retrieve shipment invoice.
    */
-  async getInvoiceByShipmentId({ shipmentId } = {}) {
+  async getInvoiceByShipmentId({ shipmentId, documentType } = {}) {
     const {
       error,
     } = OrderApplicationValidator.getInvoiceByShipmentId().validate(
-      { shipmentId },
+      { shipmentId, documentType },
       { abortEarly: false, allowUnknown: true }
     );
     if (error) {
@@ -141,7 +142,7 @@ class Order {
     const {
       error: warrning,
     } = OrderApplicationValidator.getInvoiceByShipmentId().validate(
-      { shipmentId },
+      { shipmentId, documentType },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
@@ -152,6 +153,7 @@ class Order {
     }
 
     const query_params = {};
+    query_params["document_type"] = documentType;
 
     const xHeaders = {};
 
@@ -378,6 +380,82 @@ class Order {
       Logger({
         level: "WARN",
         message: `Response Validation Warnnings for application > Order > getPosOrderById \n ${res_error}`,
+      });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {OrderApplicationValidator.GetProductsParam} arg - Arg object.
+   * @returns {Promise<OrderApplicationModel.ProductListResponse>} - Success response
+   * @name getProducts
+   * @summary:
+   * @description:
+   */
+  async getProducts({
+    status,
+    pageNo,
+    pageSize,
+    fromDate,
+    toDate,
+    searchValue,
+  } = {}) {
+    const { error } = OrderApplicationValidator.getProducts().validate(
+      { status, pageNo, pageSize, fromDate, toDate, searchValue },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = OrderApplicationValidator.getProducts().validate(
+      { status, pageNo, pageSize, fromDate, toDate, searchValue },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for application > Order > getProducts \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+    query_params["status"] = status;
+    query_params["page_no"] = pageNo;
+    query_params["page_size"] = pageSize;
+    query_params["from_date"] = fromDate;
+    query_params["to_date"] = toDate;
+    query_params["search_value"] = searchValue;
+
+    const xHeaders = {};
+
+    const response = await ApplicationAPIClient.execute(
+      this._conf,
+      "get",
+      constructUrl({
+        url: this._urls["getProducts"],
+        params: {},
+      }),
+      query_params,
+      undefined,
+      xHeaders
+    );
+
+    const {
+      error: res_error,
+    } = OrderApplicationModel.ProductListResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: `Response Validation Warnnings for application > Order > getProducts \n ${res_error}`,
       });
     }
 

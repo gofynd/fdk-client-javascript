@@ -20,6 +20,11 @@ export = OrderPlatformValidator;
  * @property {OrderPlatformModel.CreateOrderAPI} body
  */
 /**
+ * @typedef CreateShipmentReportParam
+ * @property {string} [fromDate]
+ * @property {string} [toDate]
+ */
+/**
  * @typedef DispatchManifestParam
  * @property {OrderPlatformModel.DispatchManifest} body
  */
@@ -45,6 +50,12 @@ export = OrderPlatformValidator;
  * @typedef GetAnnouncementsParam
  * @property {string} [date] - Date On which the announcement is Active (Date
  *   should in ISO Datetime format IST Time)
+ */
+/**
+ * @typedef GetAssetByShipmentIdsParam
+ * @property {string} shipmentIds
+ * @property {boolean} [invoice]
+ * @property {string} [expiresIn]
  */
 /**
  * @typedef GetBagByIdParam
@@ -139,6 +150,11 @@ export = OrderPlatformValidator;
  * @property {string} [pageSize]
  */
 /**
+ * @typedef GetMetricCountParam
+ * @property {string} [fromDate]
+ * @property {string} [toDate]
+ */
+/**
  * @typedef GetOrderByIdParam
  * @property {string} orderId
  */
@@ -166,6 +182,11 @@ export = OrderPlatformValidator;
  * @property {boolean} [isPrioritySort]
  * @property {string} [customMeta]
  * @property {boolean} [myOrders]
+ */
+/**
+ * @typedef GetReportsShipmentListingParam
+ * @property {number} [pageNo]
+ * @property {number} [pageSize]
  */
 /** @typedef GetRoleBasedActionsParam */
 /**
@@ -279,6 +300,10 @@ export = OrderPlatformValidator;
  * @property {OrderPlatformModel.UploadConsent} body
  */
 /**
+ * @typedef UpsertJioCodeParam
+ * @property {OrderPlatformModel.JioCodeUpsertPayload} body
+ */
+/**
  * @typedef VerifyMobileOTPParam
  * @property {OrderPlatformModel.VerifyMobileOTP} body
  */
@@ -291,6 +316,8 @@ declare class OrderPlatformValidator {
     static click2Call(): Click2CallParam;
     /** @returns {CreateOrderParam} */
     static createOrder(): CreateOrderParam;
+    /** @returns {CreateShipmentReportParam} */
+    static createShipmentReport(): CreateShipmentReportParam;
     /** @returns {DispatchManifestParam} */
     static dispatchManifest(): DispatchManifestParam;
     /** @returns {DownloadBulkActionTemplateParam} */
@@ -303,6 +330,8 @@ declare class OrderPlatformValidator {
     static generatePOSReceiptByOrderId(): GeneratePOSReceiptByOrderIdParam;
     /** @returns {GetAnnouncementsParam} */
     static getAnnouncements(): GetAnnouncementsParam;
+    /** @returns {GetAssetByShipmentIdsParam} */
+    static getAssetByShipmentIds(): GetAssetByShipmentIdsParam;
     /** @returns {GetBagByIdParam} */
     static getBagById(): GetBagByIdParam;
     /** @returns {GetBagsParam} */
@@ -321,10 +350,14 @@ declare class OrderPlatformValidator {
     static getManifestfilters(): GetManifestfiltersParam;
     /** @returns {GetManifestsParam} */
     static getManifests(): GetManifestsParam;
+    /** @returns {GetMetricCountParam} */
+    static getMetricCount(): GetMetricCountParam;
     /** @returns {GetOrderByIdParam} */
     static getOrderById(): GetOrderByIdParam;
     /** @returns {GetOrdersParam} */
     static getOrders(): GetOrdersParam;
+    /** @returns {GetReportsShipmentListingParam} */
+    static getReportsShipmentListing(): GetReportsShipmentListingParam;
     /** @returns {GetRoleBasedActionsParam} */
     static getRoleBasedActions(): any;
     /** @returns {GetShipmentByIdParam} */
@@ -363,11 +396,13 @@ declare class OrderPlatformValidator {
     static updateShipmentStatus(): UpdateShipmentStatusParam;
     /** @returns {UploadConsentParam} */
     static uploadConsent(): UploadConsentParam;
+    /** @returns {UpsertJioCodeParam} */
+    static upsertJioCode(): UpsertJioCodeParam;
     /** @returns {VerifyMobileOTPParam} */
     static verifyMobileOTP(): VerifyMobileOTPParam;
 }
 declare namespace OrderPlatformValidator {
-    export { AttachOrderUserParam, CheckOrderStatusParam, Click2CallParam, CreateOrderParam, DispatchManifestParam, DownloadBulkActionTemplateParam, FetchCreditBalanceDetailParam, FetchRefundModeConfigParam, GeneratePOSReceiptByOrderIdParam, GetAnnouncementsParam, GetBagByIdParam, GetBagsParam, GetBulkActionTemplateParam, GetBulkShipmentExcelFileParam, GetLaneConfigParam, GetManifestDetailsParam, GetManifestShipmentsParam, GetManifestfiltersParam, GetManifestsParam, GetOrderByIdParam, GetOrdersParam, GetRoleBasedActionsParam, GetShipmentByIdParam, GetShipmentHistoryParam, GetShipmentReasonsParam, GetShipmentsParam, GetStateTransitionMapParam, GetfiltersParam, InvalidateShipmentCacheParam, OrderUpdateParam, PostShipmentHistoryParam, ProcessManifestParam, ReassignLocationParam, SendSmsNinjaParam, SendUserMobileOTPParam, UpdateAddressParam, UpdatePackagingDimensionsParam, UpdateShipmentLockParam, UpdateShipmentStatusParam, UploadConsentParam, VerifyMobileOTPParam };
+    export { AttachOrderUserParam, CheckOrderStatusParam, Click2CallParam, CreateOrderParam, CreateShipmentReportParam, DispatchManifestParam, DownloadBulkActionTemplateParam, FetchCreditBalanceDetailParam, FetchRefundModeConfigParam, GeneratePOSReceiptByOrderIdParam, GetAnnouncementsParam, GetAssetByShipmentIdsParam, GetBagByIdParam, GetBagsParam, GetBulkActionTemplateParam, GetBulkShipmentExcelFileParam, GetLaneConfigParam, GetManifestDetailsParam, GetManifestShipmentsParam, GetManifestfiltersParam, GetManifestsParam, GetMetricCountParam, GetOrderByIdParam, GetOrdersParam, GetReportsShipmentListingParam, GetRoleBasedActionsParam, GetShipmentByIdParam, GetShipmentHistoryParam, GetShipmentReasonsParam, GetShipmentsParam, GetStateTransitionMapParam, GetfiltersParam, InvalidateShipmentCacheParam, OrderUpdateParam, PostShipmentHistoryParam, ProcessManifestParam, ReassignLocationParam, SendSmsNinjaParam, SendUserMobileOTPParam, UpdateAddressParam, UpdatePackagingDimensionsParam, UpdateShipmentLockParam, UpdateShipmentStatusParam, UploadConsentParam, UpsertJioCodeParam, VerifyMobileOTPParam };
 }
 type AttachOrderUserParam = {
     body: OrderPlatformModel.AttachOrderUser;
@@ -400,6 +435,10 @@ type Click2CallParam = {
 type CreateOrderParam = {
     body: OrderPlatformModel.CreateOrderAPI;
 };
+type CreateShipmentReportParam = {
+    fromDate?: string;
+    toDate?: string;
+};
 type DispatchManifestParam = {
     body: OrderPlatformModel.DispatchManifest;
 };
@@ -426,6 +465,11 @@ type GetAnnouncementsParam = {
      * should in ISO Datetime format IST Time)
      */
     date?: string;
+};
+type GetAssetByShipmentIdsParam = {
+    shipmentIds: string;
+    invoice?: boolean;
+    expiresIn?: string;
 };
 type GetBagByIdParam = {
     /**
@@ -615,6 +659,10 @@ type GetManifestsParam = {
     pageNo?: string;
     pageSize?: string;
 };
+type GetMetricCountParam = {
+    fromDate?: string;
+    toDate?: string;
+};
 type GetOrderByIdParam = {
     orderId: string;
 };
@@ -662,6 +710,10 @@ type GetOrdersParam = {
     isPrioritySort?: boolean;
     customMeta?: string;
     myOrders?: boolean;
+};
+type GetReportsShipmentListingParam = {
+    pageNo?: number;
+    pageSize?: number;
 };
 type GetShipmentByIdParam = {
     /**
@@ -832,6 +884,9 @@ type UpdateShipmentStatusParam = {
 };
 type UploadConsentParam = {
     body: OrderPlatformModel.UploadConsent;
+};
+type UpsertJioCodeParam = {
+    body: OrderPlatformModel.JioCodeUpsertPayload;
 };
 type VerifyMobileOTPParam = {
     body: OrderPlatformModel.VerifyMobileOTP;

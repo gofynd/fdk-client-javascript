@@ -10,6 +10,7 @@ export = OrderApplicationValidator;
 /**
  * @typedef GetInvoiceByShipmentIdParam
  * @property {string} shipmentId - ID of the shipment.
+ * @property {string} [documentType]
  */
 /**
  * @typedef GetOrderByIdParam
@@ -33,6 +34,18 @@ export = OrderApplicationValidator;
  * @typedef GetPosOrderByIdParam
  * @property {string} orderId - A unique number used for identifying and
  *   tracking your orders.
+ */
+/**
+ * @typedef GetProductsParam
+ * @property {number} [status] - A filter to retrieve orders by their current
+ *   status such as _placed_, _delivered_, etc.
+ * @property {number} [pageNo] - The page number to navigate through the given
+ *   set of results. Default value is 1.
+ * @property {number} [pageSize] - The number of items to retrieve in each page.
+ *   Default value is 10.
+ * @property {string} [fromDate] - The date from which the orders should be retrieved.
+ * @property {string} [toDate] - The date till which the orders should be retrieved.
+ * @property {string} [searchValue]
  */
 /**
  * @typedef GetShipmentBagReasonsParam
@@ -94,6 +107,8 @@ declare class OrderApplicationValidator {
     static getOrders(): GetOrdersParam;
     /** @returns {GetPosOrderByIdParam} */
     static getPosOrderById(): GetPosOrderByIdParam;
+    /** @returns {GetProductsParam} */
+    static getProducts(): GetProductsParam;
     /** @returns {GetShipmentBagReasonsParam} */
     static getShipmentBagReasons(): GetShipmentBagReasonsParam;
     /** @returns {GetShipmentByIdParam} */
@@ -110,7 +125,7 @@ declare class OrderApplicationValidator {
     static verifyOtpShipmentCustomer(): VerifyOtpShipmentCustomerParam;
 }
 declare namespace OrderApplicationValidator {
-    export { GetCustomerDetailsByShipmentIdParam, GetInvoiceByShipmentIdParam, GetOrderByIdParam, GetOrdersParam, GetPosOrderByIdParam, GetShipmentBagReasonsParam, GetShipmentByIdParam, GetShipmentReasonsParam, SendOtpToShipmentCustomerParam, TrackShipmentParam, UpdateShipmentStatusParam, VerifyOtpShipmentCustomerParam };
+    export { GetCustomerDetailsByShipmentIdParam, GetInvoiceByShipmentIdParam, GetOrderByIdParam, GetOrdersParam, GetPosOrderByIdParam, GetProductsParam, GetShipmentBagReasonsParam, GetShipmentByIdParam, GetShipmentReasonsParam, SendOtpToShipmentCustomerParam, TrackShipmentParam, UpdateShipmentStatusParam, VerifyOtpShipmentCustomerParam };
 }
 type GetCustomerDetailsByShipmentIdParam = {
     /**
@@ -130,6 +145,7 @@ type GetInvoiceByShipmentIdParam = {
      * - ID of the shipment.
      */
     shipmentId: string;
+    documentType?: string;
 };
 type GetOrderByIdParam = {
     /**
@@ -174,6 +190,32 @@ type GetPosOrderByIdParam = {
      * tracking your orders.
      */
     orderId: string;
+};
+type GetProductsParam = {
+    /**
+     * - A filter to retrieve orders by their current
+     * status such as _placed_, _delivered_, etc.
+     */
+    status?: number;
+    /**
+     * - The page number to navigate through the given
+     * set of results. Default value is 1.
+     */
+    pageNo?: number;
+    /**
+     * - The number of items to retrieve in each page.
+     * Default value is 10.
+     */
+    pageSize?: number;
+    /**
+     * - The date from which the orders should be retrieved.
+     */
+    fromDate?: string;
+    /**
+     * - The date till which the orders should be retrieved.
+     */
+    toDate?: string;
+    searchValue?: string;
 };
 type GetShipmentBagReasonsParam = {
     /**

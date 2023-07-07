@@ -14,6 +14,7 @@ const OrderApplicationModel = require("./OrderApplicationModel");
 /**
  * @typedef GetInvoiceByShipmentIdParam
  * @property {string} shipmentId - ID of the shipment.
+ * @property {string} [documentType]
  */
 
 /**
@@ -40,6 +41,19 @@ const OrderApplicationModel = require("./OrderApplicationModel");
  * @typedef GetPosOrderByIdParam
  * @property {string} orderId - A unique number used for identifying and
  *   tracking your orders.
+ */
+
+/**
+ * @typedef GetProductsParam
+ * @property {number} [status] - A filter to retrieve orders by their current
+ *   status such as _placed_, _delivered_, etc.
+ * @property {number} [pageNo] - The page number to navigate through the given
+ *   set of results. Default value is 1.
+ * @property {number} [pageSize] - The number of items to retrieve in each page.
+ *   Default value is 10.
+ * @property {string} [fromDate] - The date from which the orders should be retrieved.
+ * @property {string} [toDate] - The date till which the orders should be retrieved.
+ * @property {string} [searchValue]
  */
 
 /**
@@ -111,6 +125,7 @@ class OrderApplicationValidator {
   static getInvoiceByShipmentId() {
     return Joi.object({
       shipmentId: Joi.string().allow("").required(),
+      documentType: Joi.string().allow(""),
     }).required();
   }
 
@@ -138,6 +153,18 @@ class OrderApplicationValidator {
     return Joi.object({
       orderId: Joi.string().allow("").required(),
     }).required();
+  }
+
+  /** @returns {GetProductsParam} */
+  static getProducts() {
+    return Joi.object({
+      status: Joi.number(),
+      pageNo: Joi.number(),
+      pageSize: Joi.number(),
+      fromDate: Joi.string().allow(""),
+      toDate: Joi.string().allow(""),
+      searchValue: Joi.string().allow(""),
+    });
   }
 
   /** @returns {GetShipmentBagReasonsParam} */
