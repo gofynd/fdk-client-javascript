@@ -107,11 +107,11 @@ Completes the upload process. After successfully uploading a file, call this API
 
 ```javascript
 // Promise
-const promise = applicationClient.fileStorage.completeUpload({  namespace : value,
+const promise = fileStorage.completeUpload({  namespace : value,
  body : value });
 
 // Async/Await
-const data = await applicationClient.fileStorage.completeUpload({  namespace : value,
+const data = await fileStorage.completeUpload({  namespace : value,
  body : value });
 ```
 
@@ -183,10 +183,10 @@ Explain here
 
 ```javascript
 // Promise
-const promise = applicationClient.fileStorage.signUrls({  body : value });
+const promise = fileStorage.signUrls({  body : value });
 
 // Async/Await
-const data = await applicationClient.fileStorage.signUrls({  body : value });
+const data = await fileStorage.signUrls({  body : value });
 ```
 
 
@@ -238,11 +238,11 @@ Initiates an upload and returns a storage link that is valid for 30 minutes. You
 
 ```javascript
 // Promise
-const promise = applicationClient.fileStorage.startUpload({  namespace : value,
+const promise = fileStorage.startUpload({  namespace : value,
  body : value });
 
 // Async/Await
-const data = await applicationClient.fileStorage.startUpload({  namespace : value,
+const data = await fileStorage.startUpload({  namespace : value,
  body : value });
 ```
 
@@ -314,226 +314,126 @@ Success. Next, call the `completeUpload` API and pass the response payload of th
 #### [BrowseResponse](#BrowseResponse)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | items | [[DbRecord](#DbRecord)] |  no  |  |
- | page | [Page](#Page) |  no  |  |
- 
+ | ---------- | ---- | -------- | ----------- || items | [[DbRecord](#DbRecord)] |  yes  |  || page | [Page](#Page) |  yes  |  |
 
 ---
 
 #### [BulkRequest](#BulkRequest)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | configuration | [ReqConfiguration](#ReqConfiguration)? |  yes  |  |
- | destination | [Destination](#Destination) |  no  |  |
- | urls | [string] |  no  |  |
- 
+ | ---------- | ---- | -------- | ----------- || configuration | [ReqConfiguration](#ReqConfiguration) |  no  |  || destination | [Destination](#Destination) |  yes  |  || urls | [string] |  yes  |  |
 
 ---
 
 #### [BulkUploadResponse](#BulkUploadResponse)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | task | [CopyFileTask](#CopyFileTask) |  no  |  |
- | tracking_url | string |  no  |  |
- 
+ | ---------- | ---- | -------- | ----------- || task | [CopyFileTask](#CopyFileTask) |  yes  |  || tracking_url | string |  yes  |  |
 
 ---
 
 #### [CDN](#CDN)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | url | string |  no  |  |
- 
+ | ---------- | ---- | -------- | ----------- || url | string |  yes  |  |
 
 ---
 
 #### [CompleteResponse](#CompleteResponse)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | _id | string |  no  |  |
- | cdn | [CDN](#CDN) |  no  |  |
- | content_type | string |  no  |  |
- | created_on | string |  no  |  |
- | file_name | string |  no  |  |
- | file_path | string |  no  |  |
- | modified_on | string |  no  |  |
- | namespace | string |  no  |  |
- | operation | string |  no  |  |
- | size | number |  no  |  |
- | success | boolean |  no  |  |
- | tags | [string]? |  yes  |  |
- | upload | [Upload](#Upload) |  no  |  |
- 
+ | ---------- | ---- | -------- | ----------- || _id | string |  yes  |  || cdn | [CDN](#CDN) |  yes  |  || content_type | string |  yes  |  || created_on | string |  yes  |  || file_name | string |  yes  |  || file_path | string |  yes  |  || modified_on | string |  yes  |  || namespace | string |  yes  |  || operation | string |  yes  |  || size | number |  yes  |  || success | boolean |  yes  |  || tags | [string] |  no  |  || upload | [Upload](#Upload) |  yes  |  |
 
 ---
 
 #### [CopyFileTask](#CopyFileTask)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | attempts_made | number |  no  |  |
- | data | [BulkRequest](#BulkRequest) |  no  |  |
- | delay | number |  no  |  |
- | finished_on | number |  no  |  |
- | id | string |  no  |  |
- | name | string |  no  |  |
- | opts | [Opts](#Opts) |  no  |  |
- | processed_on | number |  no  |  |
- | progress | number |  no  |  |
- | stacktrace | [string]? |  yes  |  |
- | timestamp | number |  no  |  |
- 
+ | ---------- | ---- | -------- | ----------- || attempts_made | number |  yes  |  || data | [BulkRequest](#BulkRequest) |  yes  |  || delay | number |  yes  |  || finished_on | number |  yes  |  || id | string |  yes  |  || name | string |  yes  |  || opts | [Opts](#Opts) |  yes  |  || processed_on | number |  yes  |  || progress | number |  yes  |  || stacktrace | [string] |  no  |  || timestamp | number |  yes  |  |
 
 ---
 
 #### [DbRecord](#DbRecord)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | _id | string |  no  |  |
- | cdn | [CDN](#CDN) |  no  |  |
- | content_type | string |  no  |  |
- | created_on | string |  no  |  |
- | file_name | string |  no  |  |
- | file_path | string |  no  |  |
- | modified_on | string |  no  |  |
- | namespace | string |  no  |  |
- | operation | string? |  yes  |  |
- | success | boolean |  no  |  |
- | tags | [string] |  no  |  |
- | upload | [Upload](#Upload) |  no  |  |
- 
+ | ---------- | ---- | -------- | ----------- || _id | string |  yes  |  || cdn | [CDN](#CDN) |  yes  |  || content_type | string |  yes  |  || created_on | string |  yes  |  || file_name | string |  yes  |  || file_path | string |  yes  |  || modified_on | string |  yes  |  || namespace | string |  yes  |  || operation | string |  no  |  || success | boolean |  yes  |  || tags | [string] |  yes  |  || upload | [Upload](#Upload) |  yes  |  |
 
 ---
 
 #### [Destination](#Destination)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | basepath | string? |  yes  |  |
- | namespace | string |  no  |  |
- | rewrite | string |  no  |  |
- 
+ | ---------- | ---- | -------- | ----------- || basepath | string |  no  |  || namespace | string |  yes  |  || rewrite | string |  yes  |  |
 
 ---
 
 #### [FailedResponse](#FailedResponse)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | message | string |  no  |  |
- 
+ | ---------- | ---- | -------- | ----------- || message | string |  yes  |  |
 
 ---
 
 #### [Opts](#Opts)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | attempts | number? |  yes  |  |
- | delay | number? |  yes  |  |
- | timestamp | number? |  yes  |  |
- 
+ | ---------- | ---- | -------- | ----------- || attempts | number |  no  |  || delay | number |  no  |  || timestamp | number |  no  |  |
 
 ---
 
 #### [Page](#Page)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | current | number? |  yes  |  |
- | has_next | boolean? |  yes  |  |
- | has_previous | boolean? |  yes  |  |
- | item_total | number? |  yes  |  |
- | next_id | string? |  yes  |  |
- | size | number? |  yes  |  |
- | type | number |  no  |  |
- 
+ | ---------- | ---- | -------- | ----------- || current | number |  no  |  || has_next | boolean |  no  |  || has_previous | boolean |  no  |  || item_total | number |  no  |  || next_id | string |  no  |  || size | number |  no  |  || type | number |  yes  |  |
 
 ---
 
 #### [ReqConfiguration](#ReqConfiguration)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | concurrency | number? |  yes  |  |
- 
+ | ---------- | ---- | -------- | ----------- || concurrency | number |  no  |  |
 
 ---
 
 #### [SignUrlRequest](#SignUrlRequest)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | expiry | number |  no  |  |
- | urls | [string] |  no  |  |
- 
+ | ---------- | ---- | -------- | ----------- || expiry | number |  yes  |  || urls | [string] |  yes  |  |
 
 ---
 
 #### [SignUrlResponse](#SignUrlResponse)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | urls | [[Urls](#Urls)] |  no  |  |
- 
+ | ---------- | ---- | -------- | ----------- || urls | [[Urls](#Urls)] |  yes  |  |
 
 ---
 
 #### [StartRequest](#StartRequest)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | content_type | string |  no  |  |
- | file_name | string |  no  |  |
- | params | string? |  yes  |  |
- | size | number |  no  |  |
- | tags | [string]? |  yes  |  |
- 
+ | ---------- | ---- | -------- | ----------- || content_type | string |  yes  |  || file_name | string |  yes  |  || params | string |  no  |  || size | number |  yes  |  || tags | [string] |  no  |  |
 
 ---
 
 #### [StartResponse](#StartResponse)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | cdn | [CDN](#CDN) |  no  |  |
- | content_type | string |  no  |  |
- | file_name | string |  no  |  |
- | file_path | string |  no  |  |
- | method | string? |  yes  |  |
- | namespace | string |  no  |  |
- | operation | string |  no  |  |
- | size | number |  no  |  |
- | tags | [string]? |  yes  |  |
- | upload | [Upload](#Upload) |  no  |  |
- 
+ | ---------- | ---- | -------- | ----------- || cdn | [CDN](#CDN) |  yes  |  || content_type | string |  yes  |  || file_name | string |  yes  |  || file_path | string |  yes  |  || method | string |  no  |  || namespace | string |  yes  |  || operation | string |  yes  |  || size | number |  yes  |  || tags | [string] |  no  |  || upload | [Upload](#Upload) |  yes  |  |
 
 ---
 
 #### [Upload](#Upload)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | expiry | number |  no  |  |
- | url | string |  no  |  |
- 
+ | ---------- | ---- | -------- | ----------- || expiry | number |  yes  |  || url | string |  yes  |  |
 
 ---
 
 #### [Urls](#Urls)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | expiry | number |  no  |  |
- | signed_url | string |  no  |  |
- | url | string |  no  |  |
- 
+ | ---------- | ---- | -------- | ----------- || expiry | number |  yes  |  || signed_url | string |  yes  |  || url | string |  yes  |  |
 
 ---
 

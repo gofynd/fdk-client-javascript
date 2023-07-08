@@ -295,8 +295,8 @@ class LeadModel {
       feedback_form: LeadModel.FeedbackForm(),
       group_id: Joi.number(),
       key: Joi.string().allow("").required(),
-      sub_categories: Joi.link("#TicketCategory"),
-    }).id("TicketCategory");
+      sub_categories: LeadModel.TicketCategory(),
+    });
   }
   static TicketContent() {
     return Joi.object({
@@ -374,8 +374,8 @@ class LeadModel {
     return Joi.object({
       display: Joi.string().allow("").required(),
       key: Joi.string().allow("").required(),
-      sub_categories: Joi.link("#TicketSubCategory"),
-    }).id("TicketSubCategory");
+      sub_categories: LeadModel.TicketSubCategory(),
+    });
   }
   static UserSchema() {
     return Joi.object({

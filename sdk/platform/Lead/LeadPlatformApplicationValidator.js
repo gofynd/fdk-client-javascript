@@ -1,6 +1,6 @@
 const Joi = require("joi");
-
 const LeadModel = require("./LeadPlatformModel");
+
 class LeadValidator {
   static closeVideoRoom() {
     return Joi.object({

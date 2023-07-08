@@ -30,10 +30,10 @@ Get offer by name
 
 ```javascript
 // Promise
-const promise = applicationClient.rewards.getOfferByName({  name : value });
+const promise = rewards.getOfferByName({  name : value });
 
 // Async/Await
-const data = await applicationClient.rewards.getOfferByName({  name : value });
+const data = await rewards.getOfferByName({  name : value });
 ```
 
 
@@ -86,10 +86,10 @@ Calculates the discount on order-amount
 
 ```javascript
 // Promise
-const promise = applicationClient.rewards.getOrderDiscount({  body : value });
+const promise = rewards.getOrderDiscount({  body : value });
 
 // Async/Await
-const data = await applicationClient.rewards.getOrderDiscount({  body : value });
+const data = await rewards.getOrderDiscount({  body : value });
 ```
 
 
@@ -141,10 +141,10 @@ Get the eligibility of reward points on a product
 
 ```javascript
 // Promise
-const promise = applicationClient.rewards.getPointsOnProduct({  body : value });
+const promise = rewards.getPointsOnProduct({  body : value });
 
 // Async/Await
-const data = await applicationClient.rewards.getPointsOnProduct({  body : value });
+const data = await rewards.getPointsOnProduct({  body : value });
 ```
 
 
@@ -196,10 +196,10 @@ Get reward points available with a user
 
 ```javascript
 // Promise
-const promise = applicationClient.rewards.getUserPoints();
+const promise = rewards.getUserPoints();
 
 // Async/Await
-const data = await applicationClient.rewards.getUserPoints();
+const data = await rewards.getUserPoints();
 ```
 
 
@@ -247,11 +247,11 @@ Get all transactions of reward points
 
 ```javascript
 // Promise
-const promise = applicationClient.rewards.getUserPointsHistory({  pageId : value,
+const promise = rewards.getUserPointsHistory({  pageId : value,
  pageSize : value });
 
 // Async/Await
-const data = await applicationClient.rewards.getUserPointsHistory({  pageId : value,
+const data = await rewards.getUserPointsHistory({  pageId : value,
  pageSize : value });
 ```
 
@@ -306,10 +306,10 @@ Get referral details of a user
 
 ```javascript
 // Promise
-const promise = applicationClient.rewards.getUserReferralDetails();
+const promise = rewards.getUserReferralDetails();
 
 // Async/Await
-const data = await applicationClient.rewards.getUserReferralDetails();
+const data = await rewards.getUserReferralDetails();
 ```
 
 
@@ -357,10 +357,10 @@ Redeems a referral code and credits reward points to users
 
 ```javascript
 // Promise
-const promise = applicationClient.rewards.redeemReferralCode({  body : value });
+const promise = rewards.redeemReferralCode({  body : value });
 
 // Async/Await
-const data = await applicationClient.rewards.redeemReferralCode({  body : value });
+const data = await rewards.redeemReferralCode({  body : value });
 ```
 
 
@@ -412,264 +412,147 @@ Success. Check example below or refer `RedeemReferralCodeResponse` for more deta
 #### [ActionPageParams](#ActionPageParams)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | slug | [string]? |  yes  |  |
- 
+ | ---------- | ---- | -------- | ----------- || slug | [string] |  no  |  |
 
 ---
 
 #### [Asset](#Asset)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | aspect_ratio | string? |  yes  |  |
- | id | string? |  yes  |  |
- | secure_url | string? |  yes  |  |
- 
+ | ---------- | ---- | -------- | ----------- || aspect_ratio | string |  no  |  || id | string |  no  |  || secure_url | string |  no  |  |
 
 ---
 
 #### [CatalogueOrderRequest](#CatalogueOrderRequest)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | articles | [[RewardsArticle](#RewardsArticle)]? |  yes  |  |
- 
+ | ---------- | ---- | -------- | ----------- || articles | [[RewardsArticle](#RewardsArticle)] |  no  |  |
 
 ---
 
 #### [CatalogueOrderResponse](#CatalogueOrderResponse)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | articles | [[RewardsArticle](#RewardsArticle)]? |  yes  |  |
- 
+ | ---------- | ---- | -------- | ----------- || articles | [[RewardsArticle](#RewardsArticle)] |  no  |  |
 
 ---
 
 #### [DiscountProperties](#DiscountProperties)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | absolute | number? |  yes  |  |
- | currency | string? |  yes  |  |
- | display_absolute | string? |  yes  |  |
- | display_percent | string? |  yes  |  |
- | percent | number? |  yes  |  |
- 
+ | ---------- | ---- | -------- | ----------- || absolute | number |  no  |  || currency | string |  no  |  || display_absolute | string |  no  |  || display_percent | string |  no  |  || percent | number |  no  |  |
 
 ---
 
 #### [Error](#Error)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | code | number? |  yes  |  |
- | exception | string? |  yes  |  |
- | info | string? |  yes  |  |
- | message | string? |  yes  |  |
- 
+ | ---------- | ---- | -------- | ----------- || code | number |  no  |  || exception | string |  no  |  || info | string |  no  |  || message | string |  no  |  |
 
 ---
 
 #### [Offer](#Offer)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | _schedule | [Schedule](#Schedule)? |  yes  |  |
- | active | boolean? |  yes  |  |
- | application_id | string? |  yes  |  |
- | banner_image | [Asset](#Asset)? |  yes  |  |
- | created_at | string? |  yes  |  |
- | name | string? |  yes  |  |
- | rule | string? |  yes  |  |
- | share | [ShareMessages](#ShareMessages)? |  yes  |  |
- | sub_text | string? |  yes  |  |
- | text | string? |  yes  |  |
- | type | string? |  yes  |  |
- | updated_at | string? |  yes  |  |
- | updated_by | string? |  yes  |  |
- | url | string? |  yes  |  |
- 
+ | ---------- | ---- | -------- | ----------- || _schedule | [Schedule](#Schedule) |  no  |  || active | boolean |  no  |  || application_id | string |  no  |  || banner_image | [Asset](#Asset) |  no  |  || created_at | string |  no  |  || name | string |  no  |  || rule | string |  no  |  || share | [ShareMessages](#ShareMessages) |  no  |  || sub_text | string |  no  |  || text | string |  no  |  || type | string |  no  |  || updated_at | string |  no  |  || updated_by | string |  no  |  || url | string |  no  |  |
 
 ---
 
 #### [OrderDiscountRequest](#OrderDiscountRequest)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | currency | string? |  yes  |  |
- | order_amount | number |  no  |  |
- 
+ | ---------- | ---- | -------- | ----------- || currency | string |  no  |  || order_amount | number |  yes  |  |
 
 ---
 
 #### [OrderDiscountResponse](#OrderDiscountResponse)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | applied_rule_bucket | [OrderDiscountRuleBucket](#OrderDiscountRuleBucket)? |  yes  |  |
- | base_discount | [DiscountProperties](#DiscountProperties)? |  yes  |  |
- | discount | [DiscountProperties](#DiscountProperties)? |  yes  |  |
- | order_amount | number? |  yes  |  |
- | points | number? |  yes  |  |
- 
+ | ---------- | ---- | -------- | ----------- || applied_rule_bucket | [OrderDiscountRuleBucket](#OrderDiscountRuleBucket) |  no  |  || base_discount | [DiscountProperties](#DiscountProperties) |  no  |  || discount | [DiscountProperties](#DiscountProperties) |  no  |  || order_amount | number |  no  |  || points | number |  no  |  |
 
 ---
 
 #### [OrderDiscountRuleBucket](#OrderDiscountRuleBucket)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | high | number? |  yes  |  |
- | low | number? |  yes  |  |
- | max | number? |  yes  |  |
- | value | number? |  yes  |  |
- | value_type | string? |  yes  |  |
- 
+ | ---------- | ---- | -------- | ----------- || high | number |  no  |  || low | number |  no  |  || max | number |  no  |  || value | number |  no  |  || value_type | string |  no  |  |
 
 ---
 
 #### [Page](#Page)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | current | number? |  yes  |  |
- | has_next | boolean? |  yes  |  |
- | has_previous | boolean? |  yes  |  |
- | item_total | number? |  yes  |  |
- | next_id | string? |  yes  |  |
- | size | number? |  yes  |  |
- | type | string |  no  |  |
- 
+ | ---------- | ---- | -------- | ----------- || current | number |  no  |  || has_next | boolean |  no  |  || has_previous | boolean |  no  |  || item_total | number |  no  |  || next_id | string |  no  |  || size | number |  no  |  || type | string |  yes  |  |
 
 ---
 
 #### [PointsHistory](#PointsHistory)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | _id | string? |  yes  |  |
- | application_id | string? |  yes  |  |
- | claimed | boolean? |  yes  |  |
- | created_at | string? |  yes  |  |
- | expires_on | string? |  yes  |  |
- | meta | string? |  yes  |  |
- | points | number? |  yes  |  |
- | remaining_points | number? |  yes  |  |
- | text_1 | string? |  yes  |  |
- | text_2 | string? |  yes  |  |
- | text_3 | string? |  yes  |  |
- | txn_name | string? |  yes  |  |
- | updated_at | string? |  yes  |  |
- | user_id | string? |  yes  |  |
- 
+ | ---------- | ---- | -------- | ----------- || _id | string |  no  |  || application_id | string |  no  |  || claimed | boolean |  no  |  || created_at | string |  no  |  || expires_on | string |  no  |  || meta | string |  no  |  || points | number |  no  |  || remaining_points | number |  no  |  || text_1 | string |  no  |  || text_2 | string |  no  |  || text_3 | string |  no  |  || txn_name | string |  no  |  || updated_at | string |  no  |  || user_id | string |  no  |  |
 
 ---
 
 #### [PointsHistoryResponse](#PointsHistoryResponse)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | items | [[PointsHistory](#PointsHistory)]? |  yes  | History is the list of points transaction. |
- | page | [Page](#Page)? |  yes  |  |
- 
+ | ---------- | ---- | -------- | ----------- || items | [[PointsHistory](#PointsHistory)] |  no  |  || page | [Page](#Page) |  no  |  |
 
 ---
 
 #### [PointsResponse](#PointsResponse)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | points | number? |  yes  | Points is the total available |
- 
+ | ---------- | ---- | -------- | ----------- || points | number |  no  |  |
 
 ---
 
 #### [RedeemReferralCodeRequest](#RedeemReferralCodeRequest)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | device_id | string |  no  |  |
- | referral_code | string |  no  |  |
- 
+ | ---------- | ---- | -------- | ----------- || device_id | string |  yes  |  || referral_code | string |  yes  |  |
 
 ---
 
 #### [RedeemReferralCodeResponse](#RedeemReferralCodeResponse)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | message | string? |  yes  |  |
- | points | number? |  yes  |  |
- | redeemed | boolean? |  yes  |  |
- | referrer_id | string? |  yes  |  |
- | referrer_info | string? |  yes  |  |
- 
+ | ---------- | ---- | -------- | ----------- || message | string |  no  |  || points | number |  no  |  || redeemed | boolean |  no  |  || referrer_id | string |  no  |  || referrer_info | string |  no  |  |
 
 ---
 
 #### [ReferralDetailsResponse](#ReferralDetailsResponse)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | referral | [Offer](#Offer)? |  yes  |  |
- | referrer_info | string? |  yes  |  |
- | share | [ShareMessages](#ShareMessages)? |  yes  |  |
- | user | [ReferralDetailsUser](#ReferralDetailsUser)? |  yes  |  |
- 
+ | ---------- | ---- | -------- | ----------- || referral | [Offer](#Offer) |  no  |  || referrer_info | string |  no  |  || share | [ShareMessages](#ShareMessages) |  no  |  || user | [ReferralDetailsUser](#ReferralDetailsUser) |  no  |  |
 
 ---
 
 #### [ReferralDetailsUser](#ReferralDetailsUser)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | blocked | boolean? |  yes  |  |
- | points | number? |  yes  |  |
- | redeemed | boolean? |  yes  |  |
- | referral_code | string? |  yes  |  |
- 
+ | ---------- | ---- | -------- | ----------- || blocked | boolean |  no  |  || points | number |  no  |  || redeemed | boolean |  no  |  || referral_code | string |  no  |  |
 
 ---
 
 #### [RewardsArticle](#RewardsArticle)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | id | string? |  yes  |  |
- | points | number? |  yes  |  |
- | price | number? |  yes  |  |
- 
+ | ---------- | ---- | -------- | ----------- || id | string |  no  |  || points | number |  no  |  || price | number |  no  |  |
 
 ---
 
 #### [Schedule](#Schedule)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | cron | string? |  yes  |  |
- | duration | number? |  yes  |  |
- | end | string? |  yes  |  |
- | start | string? |  yes  |  |
- 
+ | ---------- | ---- | -------- | ----------- || cron | string |  no  |  || duration | number |  no  |  || end | string |  no  |  || start | string |  no  |  |
 
 ---
 
 #### [ShareMessages](#ShareMessages)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | email | string? |  yes  |  |
- | facebook | string? |  yes  |  |
- | fallback | string? |  yes  |  |
- | message | string? |  yes  |  |
- | messenger | string? |  yes  |  |
- | sms | string? |  yes  |  |
- | text | string? |  yes  |  |
- | twitter | string? |  yes  |  |
- | whatsapp | string? |  yes  |  |
- 
+ | ---------- | ---- | -------- | ----------- || email | string |  no  |  || facebook | string |  no  |  || fallback | string |  no  |  || message | string |  no  |  || messenger | string |  no  |  || sms | string |  no  |  || text | string |  no  |  || twitter | string |  no  |  || whatsapp | string |  no  |  |
 
 ---
 

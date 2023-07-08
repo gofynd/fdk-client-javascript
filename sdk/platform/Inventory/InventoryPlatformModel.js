@@ -436,7 +436,7 @@ class InventoryModel {
       ignore_if_not_exists: Joi.boolean(),
       include: Joi.boolean(),
       index_field: Joi.string().allow(""),
-      mapping: Joi.object().pattern(/\S/, Joi.link("#PropBeanConfig")),
+      mapping: Joi.object().pattern(/\S/, this.PropBeanConfig()),
       optional: Joi.boolean(),
       projection_query: Joi.object().pattern(/\S/, Joi.any()),
       required: Joi.boolean(),

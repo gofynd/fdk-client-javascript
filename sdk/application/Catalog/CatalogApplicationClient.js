@@ -1,11 +1,10 @@
-const ApplicationAPIClient = require("../ApplicationAPIClient");
-const { FDKClientValidationError } = require("../../common/FDKError");
+const APIClient = require("../ApplicationAPIClient");
 const constructUrl = require("../constructUrl");
 const Paginator = require("../../common/Paginator");
+const { FDKClientValidationError } = require("../../common/FDKError");
 const CatalogValidator = require("./CatalogApplicationValidator");
 const CatalogModel = require("./CatalogApplicationModel");
 const { Logger } = require("./../../common/Logger");
-const Joi = require("joi");
 
 class Catalog {
   constructor(_conf) {
@@ -113,7 +112,7 @@ class Catalog {
 
     const xHeaders = {};
 
-    const response = await ApplicationAPIClient.execute(
+    const response = await APIClient.execute(
       this._conf,
       "post",
       constructUrl({
@@ -180,7 +179,7 @@ class Catalog {
 
     const xHeaders = {};
 
-    const response = await ApplicationAPIClient.execute(
+    const response = await APIClient.execute(
       this._conf,
       "get",
       constructUrl({
@@ -252,7 +251,7 @@ class Catalog {
 
     const xHeaders = {};
 
-    const response = await ApplicationAPIClient.execute(
+    const response = await APIClient.execute(
       this._conf,
       "get",
       constructUrl({
@@ -309,7 +308,7 @@ class Catalog {
       });
       return data;
     };
-    paginator.setCallback(callback.bind(this));
+    paginator.setCallback(callback);
     return paginator;
   }
 
@@ -350,7 +349,7 @@ class Catalog {
 
     const xHeaders = {};
 
-    const response = await ApplicationAPIClient.execute(
+    const response = await APIClient.execute(
       this._conf,
       "get",
       constructUrl({
@@ -417,7 +416,7 @@ class Catalog {
 
     const xHeaders = {};
 
-    const response = await ApplicationAPIClient.execute(
+    const response = await APIClient.execute(
       this._conf,
       "get",
       constructUrl({
@@ -484,7 +483,7 @@ class Catalog {
 
     const xHeaders = {};
 
-    const response = await ApplicationAPIClient.execute(
+    const response = await APIClient.execute(
       this._conf,
       "get",
       constructUrl({
@@ -574,7 +573,7 @@ class Catalog {
 
     const xHeaders = {};
 
-    const response = await ApplicationAPIClient.execute(
+    const response = await APIClient.execute(
       this._conf,
       "get",
       constructUrl({
@@ -648,7 +647,7 @@ class Catalog {
       });
       return data;
     };
-    paginator.setCallback(callback.bind(this));
+    paginator.setCallback(callback);
     return paginator;
   }
 
@@ -691,7 +690,7 @@ class Catalog {
 
     const xHeaders = {};
 
-    const response = await ApplicationAPIClient.execute(
+    const response = await APIClient.execute(
       this._conf,
       "get",
       constructUrl({
@@ -745,7 +744,7 @@ class Catalog {
       });
       return data;
     };
-    paginator.setCallback(callback.bind(this));
+    paginator.setCallback(callback);
     return paginator;
   }
 
@@ -789,7 +788,7 @@ class Catalog {
 
     const xHeaders = {};
 
-    const response = await ApplicationAPIClient.execute(
+    const response = await APIClient.execute(
       this._conf,
       "get",
       constructUrl({
@@ -852,7 +851,7 @@ class Catalog {
 
     const xHeaders = {};
 
-    const response = await ApplicationAPIClient.execute(
+    const response = await APIClient.execute(
       this._conf,
       "get",
       constructUrl({
@@ -917,7 +916,7 @@ class Catalog {
 
     const xHeaders = {};
 
-    const response = await ApplicationAPIClient.execute(
+    const response = await APIClient.execute(
       this._conf,
       "get",
       constructUrl({
@@ -985,7 +984,7 @@ class Catalog {
 
     const xHeaders = {};
 
-    const response = await ApplicationAPIClient.execute(
+    const response = await APIClient.execute(
       this._conf,
       "get",
       constructUrl({
@@ -1040,7 +1039,7 @@ class Catalog {
       });
       return data;
     };
-    paginator.setCallback(callback.bind(this));
+    paginator.setCallback(callback);
     return paginator;
   }
 
@@ -1081,7 +1080,7 @@ class Catalog {
 
     const xHeaders = {};
 
-    const response = await ApplicationAPIClient.execute(
+    const response = await APIClient.execute(
       this._conf,
       "get",
       constructUrl({
@@ -1151,7 +1150,7 @@ class Catalog {
 
     const xHeaders = {};
 
-    const response = await ApplicationAPIClient.execute(
+    const response = await APIClient.execute(
       this._conf,
       "get",
       constructUrl({
@@ -1207,7 +1206,7 @@ class Catalog {
       });
       return data;
     };
-    paginator.setCallback(callback.bind(this));
+    paginator.setCallback(callback);
     return paginator;
   }
 
@@ -1269,7 +1268,7 @@ class Catalog {
 
     const xHeaders = {};
 
-    const response = await ApplicationAPIClient.execute(
+    const response = await APIClient.execute(
       this._conf,
       "get",
       constructUrl({
@@ -1341,7 +1340,7 @@ class Catalog {
       });
       return data;
     };
-    paginator.setCallback(callback.bind(this));
+    paginator.setCallback(callback);
     return paginator;
   }
 
@@ -1380,7 +1379,7 @@ class Catalog {
 
     const xHeaders = {};
 
-    const response = await ApplicationAPIClient.execute(
+    const response = await APIClient.execute(
       this._conf,
       "get",
       constructUrl({
@@ -1446,7 +1445,7 @@ class Catalog {
 
     const xHeaders = {};
 
-    const response = await ApplicationAPIClient.execute(
+    const response = await APIClient.execute(
       this._conf,
       "get",
       constructUrl({
@@ -1513,7 +1512,7 @@ class Catalog {
 
     const xHeaders = {};
 
-    const response = await ApplicationAPIClient.execute(
+    const response = await APIClient.execute(
       this._conf,
       "get",
       constructUrl({
@@ -1581,7 +1580,7 @@ class Catalog {
 
     const xHeaders = {};
 
-    const response = await ApplicationAPIClient.execute(
+    const response = await APIClient.execute(
       this._conf,
       "get",
       constructUrl({
@@ -1655,7 +1654,7 @@ class Catalog {
 
     const xHeaders = {};
 
-    const response = await ApplicationAPIClient.execute(
+    const response = await APIClient.execute(
       this._conf,
       "get",
       constructUrl({
@@ -1743,7 +1742,7 @@ class Catalog {
 
     const xHeaders = {};
 
-    const response = await ApplicationAPIClient.execute(
+    const response = await APIClient.execute(
       this._conf,
       "get",
       constructUrl({
@@ -1815,7 +1814,7 @@ class Catalog {
       });
       return data;
     };
-    paginator.setCallback(callback.bind(this));
+    paginator.setCallback(callback);
     return paginator;
   }
 
@@ -1859,7 +1858,7 @@ class Catalog {
 
     const xHeaders = {};
 
-    const response = await ApplicationAPIClient.execute(
+    const response = await APIClient.execute(
       this._conf,
       "get",
       constructUrl({
@@ -1935,7 +1934,7 @@ class Catalog {
 
     const xHeaders = {};
 
-    const response = await ApplicationAPIClient.execute(
+    const response = await APIClient.execute(
       this._conf,
       "get",
       constructUrl({
@@ -2006,7 +2005,7 @@ class Catalog {
 
     const xHeaders = {};
 
-    const response = await ApplicationAPIClient.execute(
+    const response = await APIClient.execute(
       this._conf,
       "get",
       constructUrl({
@@ -2061,7 +2060,7 @@ class Catalog {
       });
       return data;
     };
-    paginator.setCallback(callback.bind(this));
+    paginator.setCallback(callback);
     return paginator;
   }
 
@@ -2102,7 +2101,7 @@ class Catalog {
 
     const xHeaders = {};
 
-    const response = await ApplicationAPIClient.execute(
+    const response = await APIClient.execute(
       this._conf,
       "get",
       constructUrl({
@@ -2197,7 +2196,7 @@ class Catalog {
 
     const xHeaders = {};
 
-    const response = await ApplicationAPIClient.execute(
+    const response = await APIClient.execute(
       this._conf,
       "get",
       constructUrl({
@@ -2266,7 +2265,7 @@ class Catalog {
       });
       return data;
     };
-    paginator.setCallback(callback.bind(this));
+    paginator.setCallback(callback);
     return paginator;
   }
 
@@ -2307,7 +2306,7 @@ class Catalog {
 
     const xHeaders = {};
 
-    const response = await ApplicationAPIClient.execute(
+    const response = await APIClient.execute(
       this._conf,
       "get",
       constructUrl({
@@ -2377,7 +2376,7 @@ class Catalog {
 
     const xHeaders = {};
 
-    const response = await ApplicationAPIClient.execute(
+    const response = await APIClient.execute(
       this._conf,
       "get",
       constructUrl({
@@ -2466,7 +2465,7 @@ class Catalog {
 
     const xHeaders = {};
 
-    const response = await ApplicationAPIClient.execute(
+    const response = await APIClient.execute(
       this._conf,
       "get",
       constructUrl({
@@ -2531,7 +2530,7 @@ class Catalog {
       });
       return data;
     };
-    paginator.setCallback(callback.bind(this));
+    paginator.setCallback(callback);
     return paginator;
   }
 
@@ -2570,7 +2569,7 @@ class Catalog {
 
     const xHeaders = {};
 
-    const response = await ApplicationAPIClient.execute(
+    const response = await APIClient.execute(
       this._conf,
       "delete",
       constructUrl({

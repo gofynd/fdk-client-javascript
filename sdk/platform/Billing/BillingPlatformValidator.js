@@ -70,5 +70,4 @@ class BillingValidator {
     }).required();
   }
 }
-
 module.exports = BillingValidator;

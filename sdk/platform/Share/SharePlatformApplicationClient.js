@@ -1,10 +1,9 @@
+const Paginator = require("../../common/Paginator");
 const PlatformAPIClient = require("../PlatformAPIClient");
 const { FDKClientValidationError } = require("../../common/FDKError");
-const Paginator = require("../../common/Paginator");
 const ShareValidator = require("./SharePlatformApplicationValidator");
 const ShareModel = require("./SharePlatformModel");
 const { Logger } = require("./../../common/Logger");
-const Joi = require("joi");
 
 class Share {
   constructor(config, applicationId) {
@@ -311,5 +310,4 @@ class Share {
     return response;
   }
 }
-
 module.exports = Share;

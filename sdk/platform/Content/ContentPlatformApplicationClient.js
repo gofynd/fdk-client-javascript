@@ -1,10 +1,9 @@
+const Paginator = require("../../common/Paginator");
 const PlatformAPIClient = require("../PlatformAPIClient");
 const { FDKClientValidationError } = require("../../common/FDKError");
-const Paginator = require("../../common/Paginator");
 const ContentValidator = require("./ContentPlatformApplicationValidator");
 const ContentModel = require("./ContentPlatformModel");
 const { Logger } = require("./../../common/Logger");
-const Joi = require("joi");
 
 class Content {
   constructor(config, applicationId) {
@@ -4512,5 +4511,4 @@ class Content {
     return response;
   }
 }
-
 module.exports = Content;

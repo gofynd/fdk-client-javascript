@@ -63,5 +63,4 @@ class PaymentValidator {
     }).required();
   }
 }
-
 module.exports = PaymentValidator;

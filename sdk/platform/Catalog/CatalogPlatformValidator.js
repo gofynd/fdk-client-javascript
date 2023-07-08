@@ -482,5 +482,4 @@ class CatalogValidator {
     }).required();
   }
 }
-
 module.exports = CatalogValidator;

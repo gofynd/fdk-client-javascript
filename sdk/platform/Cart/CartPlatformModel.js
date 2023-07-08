@@ -671,9 +671,7 @@ class CartModel {
       apply_exclusive: Joi.string().allow("").allow(null),
       apply_priority: Joi.number(),
       author: CartModel.PromotionAuthor(),
-      buy_rules: Joi.object()
-        .pattern(/\S/, CartModel.ItemCriteria())
-        .required(),
+      buy_rules: Joi.object().pattern(/\S/, this.ItemCriteria()).required(),
       code: Joi.string().allow(""),
       currency: Joi.string().allow(""),
       date_meta: CartModel.PromotionDateMeta(),
@@ -710,9 +708,7 @@ class CartModel {
       apply_exclusive: Joi.string().allow("").allow(null),
       apply_priority: Joi.number(),
       author: CartModel.PromotionAuthor(),
-      buy_rules: Joi.object()
-        .pattern(/\S/, CartModel.ItemCriteria())
-        .required(),
+      buy_rules: Joi.object().pattern(/\S/, this.ItemCriteria()).required(),
       code: Joi.string().allow(""),
       currency: Joi.string().allow(""),
       date_meta: CartModel.PromotionDateMeta(),
@@ -766,9 +762,7 @@ class CartModel {
       apply_exclusive: Joi.string().allow("").allow(null),
       apply_priority: Joi.number(),
       author: CartModel.PromotionAuthor(),
-      buy_rules: Joi.object()
-        .pattern(/\S/, CartModel.ItemCriteria())
-        .required(),
+      buy_rules: Joi.object().pattern(/\S/, this.ItemCriteria()).required(),
       code: Joi.string().allow(""),
       currency: Joi.string().allow(""),
       date_meta: CartModel.PromotionDateMeta(),
@@ -805,7 +799,7 @@ class CartModel {
       bulk_bundle: CartModel.BulkBundleRestriction(),
       coupon_allowed: Joi.boolean(),
       ordering_stores: Joi.array().items(Joi.number()),
-      payments: Joi.object().pattern(/\S/, CartModel.PaymentModes()),
+      payments: Joi.object().pattern(/\S/, this.PaymentModes()),
       platforms: Joi.array().items(Joi.string().allow("")),
       post_order: CartModel.PostOrder(),
       price_range: CartModel.PriceRange(),

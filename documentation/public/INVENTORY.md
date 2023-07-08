@@ -29,11 +29,11 @@ Get apikey  for  Company  to call other Slingshot Configuration APIs
 
 ```javascript
 // Promise
-const promise = publicClient.inventory.getApiKey({  userName : value,
+const promise = inventory.getApiKey({  userName : value,
  password : value });
 
 // Async/Await
-const data = await publicClient.inventory.getApiKey({  userName : value,
+const data = await inventory.getApiKey({  userName : value,
  password : value });
 ```
 
@@ -88,10 +88,10 @@ Get Slingshot Configuration Of  A Company using API key
 
 ```javascript
 // Promise
-const promise = publicClient.inventory.getConfigByApiKey({  apikey : value });
+const promise = inventory.getConfigByApiKey({  apikey : value });
 
 // Async/Await
-const data = await publicClient.inventory.getConfigByApiKey({  apikey : value });
+const data = await inventory.getConfigByApiKey({  apikey : value });
 ```
 
 
@@ -144,10 +144,10 @@ Get Job Config By Code
 
 ```javascript
 // Promise
-const promise = publicClient.inventory.getJobByCode({  code : value });
+const promise = inventory.getJobByCode({  code : value });
 
 // Async/Await
-const data = await publicClient.inventory.getJobByCode({  code : value });
+const data = await inventory.getJobByCode({  code : value });
 ```
 
 
@@ -200,11 +200,11 @@ Find all the JobCodes from Metrics Collection based on the field Values
 
 ```javascript
 // Promise
-const promise = publicClient.inventory.getJobCodesMetrics({  dailyJob : value,
+const promise = inventory.getJobCodesMetrics({  dailyJob : value,
  jobCode : value });
 
 // Async/Await
-const data = await publicClient.inventory.getJobCodesMetrics({  dailyJob : value,
+const data = await inventory.getJobCodesMetrics({  dailyJob : value,
  jobCode : value });
 ```
 
@@ -259,11 +259,11 @@ Get Job Configs By Integration Type
 
 ```javascript
 // Promise
-const promise = publicClient.inventory.getJobConfigByIntegrationType({  integrationType : value,
+const promise = inventory.getJobConfigByIntegrationType({  integrationType : value,
  disable : value });
 
 // Async/Await
-const data = await publicClient.inventory.getJobConfigByIntegrationType({  integrationType : value,
+const data = await inventory.getJobConfigByIntegrationType({  integrationType : value,
  disable : value });
 ```
 
@@ -318,10 +318,10 @@ Save JobCode Metrics
 
 ```javascript
 // Promise
-const promise = publicClient.inventory.saveJobCodesMetrics({  body : value });
+const promise = inventory.saveJobCodesMetrics({  body : value });
 
 // Async/Await
-const data = await publicClient.inventory.saveJobCodesMetrics({  body : value });
+const data = await inventory.saveJobCodesMetrics({  body : value });
 ```
 
 
@@ -373,280 +373,133 @@ JobCode Metrics entry Created Successfully
 #### [ApikeyModel](#ApikeyModel)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | error_message | string? |  yes  |  |
- | session_id | string? |  yes  |  |
- 
+ | ---------- | ---- | -------- | ----------- || error_message | string |  no  |  || session_id | string |  no  |  |
 
 ---
 
 #### [DataTresholdDTO](#DataTresholdDTO)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | min_price | number? |  yes  |  |
- | period_threshold | number? |  yes  |  |
- | period_threshold_type | string? |  yes  |  |
- | period_type_list | [[GenericDTO](#GenericDTO)]? |  yes  |  |
- | safe_stock | number? |  yes  |  |
- 
+ | ---------- | ---- | -------- | ----------- || min_price | number |  no  |  || period_threshold | number |  no  |  || period_threshold_type | string |  no  |  || period_type_list | [[GenericDTO](#GenericDTO)] |  no  |  || safe_stock | number |  no  |  |
 
 ---
 
 #### [EmailJobMetrics](#EmailJobMetrics)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | daily_job | boolean? |  yes  |  |
- | executed | boolean? |  yes  |  |
- | id | string? |  yes  |  |
- | job_code | string? |  yes  |  |
- | last_executed_on | string? |  yes  |  |
- 
+ | ---------- | ---- | -------- | ----------- || daily_job | boolean |  no  |  || executed | boolean |  no  |  || id | string |  no  |  || job_code | string |  no  |  || last_executed_on | string |  no  |  |
 
 ---
 
 #### [GCompany](#GCompany)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | _id | string? |  yes  |  |
- | gstores | [[GStore](#GStore)]? |  yes  |  |
- | integration | string? |  yes  |  |
- | level | string? |  yes  |  |
- | name | string? |  yes  |  |
- | opted | boolean? |  yes  |  |
- | permissions | [string]? |  yes  |  |
- | stores | [[GStore](#GStore)]? |  yes  |  |
- | token | string? |  yes  |  |
- | uid | number? |  yes  |  |
- 
+ | ---------- | ---- | -------- | ----------- || _id | string |  no  |  || gstores | [[GStore](#GStore)] |  no  |  || integration | string |  no  |  || level | string |  no  |  || name | string |  no  |  || opted | boolean |  no  |  || permissions | [string] |  no  |  || stores | [[GStore](#GStore)] |  no  |  || token | string |  no  |  || uid | number |  no  |  |
 
 ---
 
 #### [GenericDTO](#GenericDTO)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | text | string? |  yes  |  |
- | value | string? |  yes  |  |
- 
+ | ---------- | ---- | -------- | ----------- || text | string |  no  |  || value | string |  no  |  |
 
 ---
 
 #### [GStore](#GStore)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | _id | string? |  yes  |  |
- | code | string? |  yes  |  |
- | data | [StoreData](#StoreData)? |  yes  |  |
- | integration | string? |  yes  |  |
- | level | string? |  yes  |  |
- | name | string? |  yes  |  |
- | opted | boolean? |  yes  |  |
- | permissions | [string]? |  yes  |  |
- | token | string? |  yes  |  |
- | uid | number? |  yes  |  |
- 
+ | ---------- | ---- | -------- | ----------- || _id | string |  no  |  || code | string |  no  |  || data | [StoreData](#StoreData) |  no  |  || integration | string |  no  |  || level | string |  no  |  || name | string |  no  |  || opted | boolean |  no  |  || permissions | [string] |  no  |  || token | string |  no  |  || uid | number |  no  |  |
 
 ---
 
 #### [JobConfigDTO](#JobConfigDTO)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | alias | string? |  yes  |  |
- | company_id | number |  no  |  |
- | company_name | string? |  yes  |  |
- | integration | string |  no  |  |
- | integration_data | string? |  yes  |  |
- | job_code | string? |  yes  |  |
- | task_details | [TaskDTO](#TaskDTO)? |  yes  |  |
- | threshold_details | [DataTresholdDTO](#DataTresholdDTO)? |  yes  |  |
- 
+ | ---------- | ---- | -------- | ----------- || alias | string |  no  |  || company_id | number |  yes  |  || company_name | string |  no  |  || integration | string |  yes  |  || integration_data | string |  no  |  || job_code | string |  no  |  || task_details | [TaskDTO](#TaskDTO) |  no  |  || threshold_details | [DataTresholdDTO](#DataTresholdDTO) |  no  |  |
 
 ---
 
 #### [Metum](#Metum)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | _id | string? |  yes  |  |
- | name | string? |  yes  |  |
- | value | string? |  yes  |  |
- 
+ | ---------- | ---- | -------- | ----------- || _id | string |  no  |  || name | string |  no  |  || value | string |  no  |  |
 
 ---
 
 #### [Page](#Page)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | current | number? |  yes  |  |
- | has_next | boolean? |  yes  |  |
- | has_previous | boolean? |  yes  |  |
- | item_total | number? |  yes  |  |
- | next_id | string? |  yes  |  |
- | size | number? |  yes  |  |
- | type | string |  no  |  |
- 
+ | ---------- | ---- | -------- | ----------- || current | number |  no  |  || has_next | boolean |  no  |  || has_previous | boolean |  no  |  || item_total | number |  no  |  || next_id | string |  no  |  || size | number |  no  |  || type | string |  yes  |  |
 
 ---
 
 #### [ResponseEnvelopeApikeyModel](#ResponseEnvelopeApikeyModel)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | error | string? |  yes  |  |
- | exception | string? |  yes  |  |
- | http_status | string? |  yes  |  |
- | items | [ApikeyModel](#ApikeyModel)? |  yes  |  |
- | message | string? |  yes  |  |
- | page | [Page](#Page)? |  yes  |  |
- | payload | [ApikeyModel](#ApikeyModel)? |  yes  |  |
- | status | number? |  yes  |  |
- | timestamp | string? |  yes  |  |
- | total_time_taken_in_millis | number? |  yes  |  |
- | trace_id | string? |  yes  |  |
- 
+ | ---------- | ---- | -------- | ----------- || error | string |  no  |  || exception | string |  no  |  || http_status | string |  no  |  || items | [ApikeyModel](#ApikeyModel) |  no  |  || message | string |  no  |  || page | [Page](#Page) |  no  |  || payload | [ApikeyModel](#ApikeyModel) |  no  |  || status | number |  no  |  || timestamp | string |  no  |  || total_time_taken_in_millis | number |  no  |  || trace_id | string |  no  |  |
 
 ---
 
 #### [ResponseEnvelopeEmailJobMetrics](#ResponseEnvelopeEmailJobMetrics)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | error | string? |  yes  |  |
- | exception | string? |  yes  |  |
- | http_status | string? |  yes  |  |
- | items | [EmailJobMetrics](#EmailJobMetrics)? |  yes  |  |
- | message | string? |  yes  |  |
- | page | [Page](#Page)? |  yes  |  |
- | payload | [EmailJobMetrics](#EmailJobMetrics)? |  yes  |  |
- | status | number? |  yes  |  |
- | timestamp | string? |  yes  |  |
- | total_time_taken_in_millis | number? |  yes  |  |
- | trace_id | string? |  yes  |  |
- 
+ | ---------- | ---- | -------- | ----------- || error | string |  no  |  || exception | string |  no  |  || http_status | string |  no  |  || items | [EmailJobMetrics](#EmailJobMetrics) |  no  |  || message | string |  no  |  || page | [Page](#Page) |  no  |  || payload | [EmailJobMetrics](#EmailJobMetrics) |  no  |  || status | number |  no  |  || timestamp | string |  no  |  || total_time_taken_in_millis | number |  no  |  || trace_id | string |  no  |  |
 
 ---
 
 #### [ResponseEnvelopeJobConfigDTO](#ResponseEnvelopeJobConfigDTO)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | error | string? |  yes  |  |
- | exception | string? |  yes  |  |
- | http_status | string? |  yes  |  |
- | items | [JobConfigDTO](#JobConfigDTO)? |  yes  |  |
- | message | string? |  yes  |  |
- | page | [Page](#Page)? |  yes  |  |
- | payload | [JobConfigDTO](#JobConfigDTO)? |  yes  |  |
- | status | number? |  yes  |  |
- | timestamp | string? |  yes  |  |
- | total_time_taken_in_millis | number? |  yes  |  |
- | trace_id | string? |  yes  |  |
- 
+ | ---------- | ---- | -------- | ----------- || error | string |  no  |  || exception | string |  no  |  || http_status | string |  no  |  || items | [JobConfigDTO](#JobConfigDTO) |  no  |  || message | string |  no  |  || page | [Page](#Page) |  no  |  || payload | [JobConfigDTO](#JobConfigDTO) |  no  |  || status | number |  no  |  || timestamp | string |  no  |  || total_time_taken_in_millis | number |  no  |  || trace_id | string |  no  |  |
 
 ---
 
 #### [ResponseEnvelopeListJobConfigDTO](#ResponseEnvelopeListJobConfigDTO)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | error | string? |  yes  |  |
- | exception | string? |  yes  |  |
- | http_status | string? |  yes  |  |
- | items | [[JobConfigDTO](#JobConfigDTO)]? |  yes  |  |
- | message | string? |  yes  |  |
- | page | [Page](#Page)? |  yes  |  |
- | payload | [[JobConfigDTO](#JobConfigDTO)]? |  yes  |  |
- | status | number? |  yes  |  |
- | timestamp | string? |  yes  |  |
- | total_time_taken_in_millis | number? |  yes  |  |
- | trace_id | string? |  yes  |  |
- 
+ | ---------- | ---- | -------- | ----------- || error | string |  no  |  || exception | string |  no  |  || http_status | string |  no  |  || items | [[JobConfigDTO](#JobConfigDTO)] |  no  |  || message | string |  no  |  || page | [Page](#Page) |  no  |  || payload | [[JobConfigDTO](#JobConfigDTO)] |  no  |  || status | number |  no  |  || timestamp | string |  no  |  || total_time_taken_in_millis | number |  no  |  || trace_id | string |  no  |  |
 
 ---
 
 #### [ResponseEnvelopeObject](#ResponseEnvelopeObject)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | error | string? |  yes  |  |
- | exception | string? |  yes  |  |
- | http_status | string? |  yes  |  |
- | items | string? |  yes  |  |
- | message | string? |  yes  |  |
- | page | [Page](#Page)? |  yes  |  |
- | payload | string? |  yes  |  |
- | status | number? |  yes  |  |
- | timestamp | string? |  yes  |  |
- | total_time_taken_in_millis | number? |  yes  |  |
- | trace_id | string? |  yes  |  |
- 
+ | ---------- | ---- | -------- | ----------- || error | string |  no  |  || exception | string |  no  |  || http_status | string |  no  |  || items | string |  no  |  || message | string |  no  |  || page | [Page](#Page) |  no  |  || payload | string |  no  |  || status | number |  no  |  || timestamp | string |  no  |  || total_time_taken_in_millis | number |  no  |  || trace_id | string |  no  |  |
 
 ---
 
 #### [ResponseEnvelopeSlingshotConfigurationDetail](#ResponseEnvelopeSlingshotConfigurationDetail)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | error | string? |  yes  |  |
- | exception | string? |  yes  |  |
- | http_status | string? |  yes  |  |
- | items | [SlingshotConfigurationDetail](#SlingshotConfigurationDetail)? |  yes  |  |
- | message | string? |  yes  |  |
- | page | [Page](#Page)? |  yes  |  |
- | payload | [SlingshotConfigurationDetail](#SlingshotConfigurationDetail)? |  yes  |  |
- | status | number? |  yes  |  |
- | timestamp | string? |  yes  |  |
- | total_time_taken_in_millis | number? |  yes  |  |
- | trace_id | string? |  yes  |  |
- 
+ | ---------- | ---- | -------- | ----------- || error | string |  no  |  || exception | string |  no  |  || http_status | string |  no  |  || items | [SlingshotConfigurationDetail](#SlingshotConfigurationDetail) |  no  |  || message | string |  no  |  || page | [Page](#Page) |  no  |  || payload | [SlingshotConfigurationDetail](#SlingshotConfigurationDetail) |  no  |  || status | number |  no  |  || timestamp | string |  no  |  || total_time_taken_in_millis | number |  no  |  || trace_id | string |  no  |  |
 
 ---
 
 #### [SlingshotConfigurationDetail](#SlingshotConfigurationDetail)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | companies | [[GCompany](#GCompany)]? |  yes  |  |
- | integration | [SlingshotIntegration](#SlingshotIntegration)? |  yes  |  |
- 
+ | ---------- | ---- | -------- | ----------- || companies | [[GCompany](#GCompany)] |  no  |  || integration | [SlingshotIntegration](#SlingshotIntegration) |  no  |  |
 
 ---
 
 #### [SlingshotIntegration](#SlingshotIntegration)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | _id | string? |  yes  |  |
- | description | string? |  yes  |  |
- | meta | [[Metum](#Metum)]? |  yes  |  |
- | name | string? |  yes  |  |
- | slug | string? |  yes  |  |
- 
+ | ---------- | ---- | -------- | ----------- || _id | string |  no  |  || description | string |  no  |  || meta | [[Metum](#Metum)] |  no  |  || name | string |  no  |  || slug | string |  no  |  |
 
 ---
 
 #### [StoreData](#StoreData)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | location_id | string? |  yes  |  |
- 
+ | ---------- | ---- | -------- | ----------- || location_id | string |  no  |  |
 
 ---
 
 #### [TaskDTO](#TaskDTO)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | group_list | [[GenericDTO](#GenericDTO)]? |  yes  |  |
- | type | number? |  yes  |  |
- 
+ | ---------- | ---- | -------- | ----------- || group_list | [[GenericDTO](#GenericDTO)] |  no  |  || type | number |  no  |  |
 
 ---
 

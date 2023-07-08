@@ -79,5 +79,4 @@ class InventoryValidator {
     }).required();
   }
 }
-
 module.exports = InventoryValidator;

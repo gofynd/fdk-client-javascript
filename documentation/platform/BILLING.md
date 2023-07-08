@@ -35,10 +35,10 @@ Activate subscription
 
 ```javascript
 // Promise
-const promise = platformClient.billing.activateSubscriptionPlan({  body : value });
+const promise = client.billing.activateSubscriptionPlan({  body : value });
 
 // Async/Await
-const data = await platformClient.billing.activateSubscriptionPlan({  body : value });
+const data = await client.billing.activateSubscriptionPlan({  body : value });
 ```
 
 
@@ -146,11 +146,11 @@ Cancel subscription charge
 
 ```javascript
 // Promise
-const promise = platformClient.billing.cancelSubscriptionCharge({  extensionId : value,
+const promise = client.billing.cancelSubscriptionCharge({  extensionId : value,
  subscriptionId : value });
 
 // Async/Await
-const data = await platformClient.billing.cancelSubscriptionCharge({  extensionId : value,
+const data = await client.billing.cancelSubscriptionCharge({  extensionId : value,
  subscriptionId : value });
 ```
 
@@ -205,10 +205,10 @@ Cancel subscription
 
 ```javascript
 // Promise
-const promise = platformClient.billing.cancelSubscriptionPlan({  body : value });
+const promise = client.billing.cancelSubscriptionPlan({  body : value });
 
 // Async/Await
-const data = await platformClient.billing.cancelSubscriptionPlan({  body : value });
+const data = await client.billing.cancelSubscriptionPlan({  body : value });
 ```
 
 
@@ -318,11 +318,11 @@ Check coupon validity
 
 ```javascript
 // Promise
-const promise = platformClient.billing.checkCouponValidity({  plan : value,
+const promise = client.billing.checkCouponValidity({  plan : value,
  couponCode : value });
 
 // Async/Await
-const data = await platformClient.billing.checkCouponValidity({  plan : value,
+const data = await client.billing.checkCouponValidity({  plan : value,
  couponCode : value });
 ```
 
@@ -377,11 +377,11 @@ Create subscription charge
 
 ```javascript
 // Promise
-const promise = platformClient.billing.createSubscriptionCharge({  extensionId : value,
+const promise = client.billing.createSubscriptionCharge({  extensionId : value,
  body : value });
 
 // Async/Await
-const data = await platformClient.billing.createSubscriptionCharge({  extensionId : value,
+const data = await client.billing.createSubscriptionCharge({  extensionId : value,
  body : value });
 ```
 
@@ -435,10 +435,10 @@ Get subscription customer detail
 
 ```javascript
 // Promise
-const promise = platformClient.billing.getCustomerDetail();
+const promise = client.billing.getCustomerDetail();
 
 // Async/Await
-const data = await platformClient.billing.getCustomerDetail();
+const data = await client.billing.getCustomerDetail();
 ```
 
 
@@ -518,10 +518,10 @@ Get subscription subscription limits
 
 ```javascript
 // Promise
-const promise = platformClient.billing.getFeatureLimitConfig();
+const promise = client.billing.getFeatureLimitConfig();
 
 // Async/Await
-const data = await platformClient.billing.getFeatureLimitConfig();
+const data = await client.billing.getFeatureLimitConfig();
 ```
 
 
@@ -605,10 +605,10 @@ Get invoice by id
 
 ```javascript
 // Promise
-const promise = platformClient.billing.getInvoiceById({  invoiceId : value });
+const promise = client.billing.getInvoiceById({  invoiceId : value });
 
 // Async/Await
-const data = await platformClient.billing.getInvoiceById({  invoiceId : value });
+const data = await client.billing.getInvoiceById({  invoiceId : value });
 ```
 
 
@@ -894,10 +894,10 @@ Get invoices
 
 ```javascript
 // Promise
-const promise = platformClient.billing.getInvoices();
+const promise = client.billing.getInvoices();
 
 // Async/Await
-const data = await platformClient.billing.getInvoices();
+const data = await client.billing.getInvoices();
 ```
 
 
@@ -1185,10 +1185,10 @@ Get current subscription detail
 
 ```javascript
 // Promise
-const promise = platformClient.billing.getSubscription();
+const promise = client.billing.getSubscription();
 
 // Async/Await
-const data = await platformClient.billing.getSubscription();
+const data = await client.billing.getSubscription();
 ```
 
 
@@ -1307,11 +1307,11 @@ Get subscription charge details
 
 ```javascript
 // Promise
-const promise = platformClient.billing.getSubscriptionCharge({  extensionId : value,
+const promise = client.billing.getSubscriptionCharge({  extensionId : value,
  subscriptionId : value });
 
 // Async/Await
-const data = await platformClient.billing.getSubscriptionCharge({  extensionId : value,
+const data = await client.billing.getSubscriptionCharge({  extensionId : value,
  subscriptionId : value });
 ```
 
@@ -1366,10 +1366,10 @@ Upsert subscription customer detail
 
 ```javascript
 // Promise
-const promise = platformClient.billing.upsertCustomerDetail({  body : value });
+const promise = client.billing.upsertCustomerDetail({  body : value });
 
 // Async/Await
-const data = await platformClient.billing.upsertCustomerDetail({  body : value });
+const data = await client.billing.upsertCustomerDetail({  body : value });
 ```
 
 
@@ -1453,823 +1453,434 @@ Success
 #### [BadRequest](#BadRequest)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | message | string? |  yes  | Failure message. |
- 
+ | ---------- | ---- | -------- | ----------- || message | string |  no  |  |
 
 ---
 
 #### [CancelSubscriptionReq](#CancelSubscriptionReq)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | product_suite | string? |  yes  |  |
- | subscription_id | string? |  yes  |  |
- | type | string? |  yes  |  |
- | unique_id | string? |  yes  |  |
- 
+ | ---------- | ---- | -------- | ----------- || product_suite | string |  no  |  || subscription_id | string |  no  |  || type | string |  no  |  || unique_id | string |  no  |  |
 
 ---
 
 #### [CancelSubscriptionRes](#CancelSubscriptionRes)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | data | [Subscription](#Subscription)? |  yes  |  |
- | success | boolean? |  yes  |  |
- 
+ | ---------- | ---- | -------- | ----------- || data | [Subscription](#Subscription) |  no  |  || success | boolean |  no  |  |
 
 ---
 
 #### [ChargeLineItem](#ChargeLineItem)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | capped_amount | number? |  yes  |  |
- | is_test | boolean? |  yes  |  |
- | metadata | string? |  yes  |  |
- | name | string |  no  |  |
- | price | [EntityChargePrice](#EntityChargePrice) |  no  |  |
- | pricing_type | string |  no  |  |
- | recurring | [EntityChargeRecurring](#EntityChargeRecurring)? |  yes  |  |
- | term | string |  no  |  |
- | trial_days | number? |  yes  |  |
- 
+ | ---------- | ---- | -------- | ----------- || capped_amount | number |  no  |  || is_test | boolean |  no  |  || metadata | string |  no  |  || name | string |  yes  |  || price | [EntityChargePrice](#EntityChargePrice) |  yes  |  || pricing_type | string |  yes  |  || recurring | [EntityChargeRecurring](#EntityChargeRecurring) |  no  |  || term | string |  yes  |  || trial_days | number |  no  |  |
 
 ---
 
 #### [CheckValidityResponse](#CheckValidityResponse)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | discount_amount | number? |  yes  |  |
- | is_valid | boolean? |  yes  |  |
- 
+ | ---------- | ---- | -------- | ----------- || discount_amount | number |  no  |  || is_valid | boolean |  no  |  |
 
 ---
 
 #### [CreateSubscriptionCharge](#CreateSubscriptionCharge)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | is_test | boolean? |  yes  |  |
- | line_items | [[ChargeLineItem](#ChargeLineItem)] |  no  |  |
- | name | string |  no  |  |
- | return_url | string |  no  |  |
- | trial_days | number? |  yes  |  |
- 
+ | ---------- | ---- | -------- | ----------- || is_test | boolean |  no  |  || line_items | [[ChargeLineItem](#ChargeLineItem)] |  yes  |  || name | string |  yes  |  || return_url | string |  yes  |  || trial_days | number |  no  |  |
 
 ---
 
 #### [CreateSubscriptionResponse](#CreateSubscriptionResponse)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | confirm_url | string? |  yes  |  |
- | subscription | [EntitySubscription](#EntitySubscription)? |  yes  |  |
- 
+ | ---------- | ---- | -------- | ----------- || confirm_url | string |  no  |  || subscription | [EntitySubscription](#EntitySubscription) |  no  |  |
 
 ---
 
 #### [CurrentPeriod](#CurrentPeriod)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | end_date | string? |  yes  |  |
- | start_date | string? |  yes  |  |
- 
+ | ---------- | ---- | -------- | ----------- || end_date | string |  no  |  || start_date | string |  no  |  |
 
 ---
 
 #### [DetailedPlan](#DetailedPlan)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | _id | string? |  yes  |  |
- | addons | [string]? |  yes  |  |
- | amount | number? |  yes  |  |
- | components | [[DetailedPlanComponents](#DetailedPlanComponents)]? |  yes  |  |
- | country | string? |  yes  |  |
- | created_at | string? |  yes  |  |
- | currency | string? |  yes  |  |
- | description | string? |  yes  |  |
- | is_active | boolean? |  yes  |  |
- | is_trial_plan | boolean? |  yes  |  |
- | is_visible | boolean? |  yes  |  |
- | modified_at | string? |  yes  |  |
- | name | string? |  yes  |  |
- | plan_group | string? |  yes  |  |
- | product_suite_id | string? |  yes  |  |
- | recurring | [PlanRecurring](#PlanRecurring)? |  yes  |  |
- | tag_lines | [string]? |  yes  |  |
- | tags | [string]? |  yes  |  |
- | trial_period | number? |  yes  |  |
- | type | string? |  yes  |  |
- 
+ | ---------- | ---- | -------- | ----------- || _id | string |  no  |  || addons | [string] |  no  |  || amount | number |  no  |  || components | [[DetailedPlanComponents](#DetailedPlanComponents)] |  no  |  || country | string |  no  |  || created_at | string |  no  |  || currency | string |  no  |  || description | string |  no  |  || is_active | boolean |  no  |  || is_trial_plan | boolean |  no  |  || is_visible | boolean |  no  |  || modified_at | string |  no  |  || name | string |  no  |  || plan_group | string |  no  |  || product_suite_id | string |  no  |  || recurring | [PlanRecurring](#PlanRecurring) |  no  |  || tag_lines | [string] |  no  |  || tags | [string] |  no  |  || trial_period | number |  no  |  || type | string |  no  |  |
 
 ---
 
 #### [DetailedPlanComponents](#DetailedPlanComponents)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | description | string? |  yes  |  |
- | display_text | string? |  yes  |  |
- | enabled | boolean? |  yes  |  |
- | group | string? |  yes  |  |
- | icon | string? |  yes  |  |
- | links | string? |  yes  |  |
- | name | string? |  yes  |  |
- | slug | string? |  yes  |  |
- 
+ | ---------- | ---- | -------- | ----------- || description | string |  no  |  || display_text | string |  no  |  || enabled | boolean |  no  |  || group | string |  no  |  || icon | string |  no  |  || links | string |  no  |  || name | string |  no  |  || slug | string |  no  |  |
 
 ---
 
 #### [EntityChargePrice](#EntityChargePrice)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | amount | number |  no  | Amount for price. Minimum value 1 |
- | currency_code | string |  no  |  |
- 
+ | ---------- | ---- | -------- | ----------- || amount | number |  yes  |  || currency_code | string |  yes  |  |
 
 ---
 
 #### [EntityChargeRecurring](#EntityChargeRecurring)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | interval | string |  no  |  |
- 
+ | ---------- | ---- | -------- | ----------- || interval | string |  yes  |  |
 
 ---
 
 #### [EntitySubscription](#EntitySubscription)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | _id | string? |  yes  |  |
- | activated_on | string? |  yes  |  |
- | cancelled_on | string? |  yes  |  |
- | company_id | number? |  yes  |  |
- | line_items | [[SubscriptionCharge](#SubscriptionCharge)]? |  yes  |  |
- | metadata | string? |  yes  |  |
- | name | string? |  yes  |  |
- | status | string? |  yes  |  |
- | trial_days | number? |  yes  |  |
- | trial_period | [SubscriptionTrialPeriod](#SubscriptionTrialPeriod)? |  yes  |  |
- 
+ | ---------- | ---- | -------- | ----------- || _id | string |  no  |  || activated_on | string |  no  |  || cancelled_on | string |  no  |  || company_id | number |  no  |  || line_items | [[SubscriptionCharge](#SubscriptionCharge)] |  no  |  || metadata | string |  no  |  || name | string |  no  |  || status | string |  no  |  || trial_days | number |  no  |  || trial_period | [SubscriptionTrialPeriod](#SubscriptionTrialPeriod) |  no  |  |
 
 ---
 
 #### [InternalServerError](#InternalServerError)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | code | string? |  yes  | Error code |
- | message | string? |  yes  | Internal server Server error |
- 
+ | ---------- | ---- | -------- | ----------- || code | string |  no  |  || message | string |  no  |  |
 
 ---
 
 #### [Invoice](#Invoice)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | invoice | [InvoiceDetails](#InvoiceDetails)? |  yes  |  |
- | invoice_items | [[InvoiceItems](#InvoiceItems)]? |  yes  |  |
- 
+ | ---------- | ---- | -------- | ----------- || invoice | [InvoiceDetails](#InvoiceDetails) |  no  |  || invoice_items | [[InvoiceItems](#InvoiceItems)] |  no  |  |
 
 ---
 
 #### [InvoiceDetails](#InvoiceDetails)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | _id | string? |  yes  |  |
- | attemp | number? |  yes  |  |
- | auto_advance | boolean? |  yes  |  |
- | client | [InvoiceDetailsClient](#InvoiceDetailsClient)? |  yes  |  |
- | collection_method | string? |  yes  |  |
- | created_at | string? |  yes  |  |
- | currency | string? |  yes  |  |
- | current_status | string? |  yes  |  |
- | hash_identifier | string? |  yes  |  |
- | invoice_url | string? |  yes  |  |
- | modified_at | string? |  yes  |  |
- | next_action_time | string? |  yes  |  |
- | number | string? |  yes  |  |
- | paid | boolean? |  yes  |  |
- | payment_method | [InvoicePaymentMethod](#InvoicePaymentMethod)? |  yes  |  |
- | period | [InvoiceDetailsPeriod](#InvoiceDetailsPeriod)? |  yes  |  |
- | pg_data | string? |  yes  |  |
- | receipt_number | string? |  yes  |  |
- | statement_descriptor | string? |  yes  |  |
- | status_trail | [[InvoiceDetailsStatusTrail](#InvoiceDetailsStatusTrail)]? |  yes  |  |
- | subscriber_id | string? |  yes  |  |
- | subscription | string? |  yes  |  |
- | subtotal | number? |  yes  |  |
- | total | number? |  yes  |  |
- 
+ | ---------- | ---- | -------- | ----------- || _id | string |  no  |  || attemp | number |  no  |  || auto_advance | boolean |  no  |  || client | [InvoiceDetailsClient](#InvoiceDetailsClient) |  no  |  || collection_method | string |  no  |  || created_at | string |  no  |  || currency | string |  no  |  || current_status | string |  no  |  || hash_identifier | string |  no  |  || invoice_url | string |  no  |  || modified_at | string |  no  |  || next_action_time | string |  no  |  || number | string |  no  |  || paid | boolean |  no  |  || payment_method | [InvoicePaymentMethod](#InvoicePaymentMethod) |  no  |  || period | [InvoiceDetailsPeriod](#InvoiceDetailsPeriod) |  no  |  || pg_data | string |  no  |  || receipt_number | string |  no  |  || statement_descriptor | string |  no  |  || status_trail | [[InvoiceDetailsStatusTrail](#InvoiceDetailsStatusTrail)] |  no  |  || subscriber_id | string |  no  |  || subscription | string |  no  |  || subtotal | number |  no  |  || total | number |  no  |  |
 
 ---
 
 #### [InvoiceDetailsClient](#InvoiceDetailsClient)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | address_lines | [string]? |  yes  |  |
- | email | string? |  yes  |  |
- | name | string? |  yes  |  |
- | phone | string? |  yes  |  |
- 
+ | ---------- | ---- | -------- | ----------- || address_lines | [string] |  no  |  || email | string |  no  |  || name | string |  no  |  || phone | string |  no  |  |
 
 ---
 
 #### [InvoiceDetailsPaymentMethods](#InvoiceDetailsPaymentMethods)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | data | [InvoiceDetailsPaymentMethodsData](#InvoiceDetailsPaymentMethodsData)? |  yes  |  |
- | id | number? |  yes  |  |
- | is_default | boolean? |  yes  |  |
- | pg_payment_method_id | string? |  yes  |  |
- | type | string? |  yes  |  |
- 
+ | ---------- | ---- | -------- | ----------- || data | [InvoiceDetailsPaymentMethodsData](#InvoiceDetailsPaymentMethodsData) |  no  |  || id | number |  no  |  || is_default | boolean |  no  |  || pg_payment_method_id | string |  no  |  || type | string |  no  |  |
 
 ---
 
 #### [InvoiceDetailsPaymentMethodsData](#InvoiceDetailsPaymentMethodsData)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | brand | string? |  yes  |  |
- | checks | [InvoiceDetailsPaymentMethodsDataChecks](#InvoiceDetailsPaymentMethodsDataChecks)? |  yes  |  |
- | country | string? |  yes  |  |
- | exp_month | number? |  yes  |  |
- | exp_year | number? |  yes  |  |
- | fingerprint | string? |  yes  |  |
- | funding | string? |  yes  |  |
- | generated_from | string? |  yes  |  |
- | last4 | string? |  yes  |  |
- | networks | [InvoiceDetailsPaymentMethodsDataNetworks](#InvoiceDetailsPaymentMethodsDataNetworks)? |  yes  |  |
- | three_d_secure_usage | [InvoiceDetailsPaymentMethodsDataThreeDSecureUsage](#InvoiceDetailsPaymentMethodsDataThreeDSecureUsage)? |  yes  |  |
- | wallet | string? |  yes  |  |
- 
+ | ---------- | ---- | -------- | ----------- || brand | string |  no  |  || checks | [InvoiceDetailsPaymentMethodsDataChecks](#InvoiceDetailsPaymentMethodsDataChecks) |  no  |  || country | string |  no  |  || exp_month | number |  no  |  || exp_year | number |  no  |  || fingerprint | string |  no  |  || funding | string |  no  |  || generated_from | string |  no  |  || last4 | string |  no  |  || networks | [InvoiceDetailsPaymentMethodsDataNetworks](#InvoiceDetailsPaymentMethodsDataNetworks) |  no  |  || three_d_secure_usage | [InvoiceDetailsPaymentMethodsDataThreeDSecureUsage](#InvoiceDetailsPaymentMethodsDataThreeDSecureUsage) |  no  |  || wallet | string |  no  |  |
 
 ---
 
 #### [InvoiceDetailsPaymentMethodsDataChecks](#InvoiceDetailsPaymentMethodsDataChecks)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | address_line1_check | string? |  yes  |  |
- | address_postal_code_check | string? |  yes  |  |
- | cvc_check | string? |  yes  |  |
- 
+ | ---------- | ---- | -------- | ----------- || address_line1_check | string |  no  |  || address_postal_code_check | string |  no  |  || cvc_check | string |  no  |  |
 
 ---
 
 #### [InvoiceDetailsPaymentMethodsDataNetworks](#InvoiceDetailsPaymentMethodsDataNetworks)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | available | [string]? |  yes  |  |
- | preferred | string? |  yes  |  |
- 
+ | ---------- | ---- | -------- | ----------- || available | [string] |  no  |  || preferred | string |  no  |  |
 
 ---
 
 #### [InvoiceDetailsPaymentMethodsDataThreeDSecureUsage](#InvoiceDetailsPaymentMethodsDataThreeDSecureUsage)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | supported | boolean? |  yes  |  |
- 
+ | ---------- | ---- | -------- | ----------- || supported | boolean |  no  |  |
 
 ---
 
 #### [InvoiceDetailsPeriod](#InvoiceDetailsPeriod)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | end | string? |  yes  |  |
- | start | string? |  yes  |  |
- 
+ | ---------- | ---- | -------- | ----------- || end | string |  no  |  || start | string |  no  |  |
 
 ---
 
 #### [InvoiceDetailsStatusTrail](#InvoiceDetailsStatusTrail)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | _id | string? |  yes  |  |
- | timestamp | string? |  yes  |  |
- | value | string? |  yes  |  |
- 
+ | ---------- | ---- | -------- | ----------- || _id | string |  no  |  || timestamp | string |  no  |  || value | string |  no  |  |
 
 ---
 
 #### [InvoiceItems](#InvoiceItems)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | _id | string? |  yes  |  |
- | amount | number? |  yes  |  |
- | created_at | string? |  yes  |  |
- | currency | string? |  yes  |  |
- | description | string? |  yes  |  |
- | invoice_id | string? |  yes  |  |
- | modified_at | string? |  yes  |  |
- | name | string? |  yes  |  |
- | period | [InvoiceItemsPeriod](#InvoiceItemsPeriod)? |  yes  |  |
- | plan | [InvoiceItemsPlan](#InvoiceItemsPlan)? |  yes  |  |
- | quantity | number? |  yes  |  |
- | type | string? |  yes  |  |
- | unit_amount | number? |  yes  |  |
- 
+ | ---------- | ---- | -------- | ----------- || _id | string |  no  |  || amount | number |  no  |  || created_at | string |  no  |  || currency | string |  no  |  || description | string |  no  |  || invoice_id | string |  no  |  || modified_at | string |  no  |  || name | string |  no  |  || period | [InvoiceItemsPeriod](#InvoiceItemsPeriod) |  no  |  || plan | [InvoiceItemsPlan](#InvoiceItemsPlan) |  no  |  || quantity | number |  no  |  || type | string |  no  |  || unit_amount | number |  no  |  |
 
 ---
 
 #### [InvoiceItemsPeriod](#InvoiceItemsPeriod)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | end | string? |  yes  |  |
- | start | string? |  yes  |  |
- 
+ | ---------- | ---- | -------- | ----------- || end | string |  no  |  || start | string |  no  |  |
 
 ---
 
 #### [InvoiceItemsPlan](#InvoiceItemsPlan)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | _id | string? |  yes  |  |
- | addons | [string]? |  yes  |  |
- | amount | number? |  yes  |  |
- | country | string? |  yes  |  |
- | created_at | string? |  yes  |  |
- | currency | string? |  yes  |  |
- | description | string? |  yes  |  |
- | is_active | boolean? |  yes  |  |
- | is_trial_plan | boolean? |  yes  |  |
- | is_visible | boolean? |  yes  |  |
- | modified_at | string? |  yes  |  |
- | name | string? |  yes  |  |
- | plan_group | string? |  yes  |  |
- | product_suite_id | string? |  yes  |  |
- | recurring | [InvoiceItemsPlanRecurring](#InvoiceItemsPlanRecurring)? |  yes  |  |
- | tag_lines | [string]? |  yes  |  |
- | tags | [string]? |  yes  |  |
- | trial_period | number? |  yes  |  |
- | type | string? |  yes  |  |
- 
+ | ---------- | ---- | -------- | ----------- || _id | string |  no  |  || addons | [string] |  no  |  || amount | number |  no  |  || country | string |  no  |  || created_at | string |  no  |  || currency | string |  no  |  || description | string |  no  |  || is_active | boolean |  no  |  || is_trial_plan | boolean |  no  |  || is_visible | boolean |  no  |  || modified_at | string |  no  |  || name | string |  no  |  || plan_group | string |  no  |  || product_suite_id | string |  no  |  || recurring | [InvoiceItemsPlanRecurring](#InvoiceItemsPlanRecurring) |  no  |  || tag_lines | [string] |  no  |  || tags | [string] |  no  |  || trial_period | number |  no  |  || type | string |  no  |  |
 
 ---
 
 #### [InvoiceItemsPlanRecurring](#InvoiceItemsPlanRecurring)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | interval | string? |  yes  |  |
- | interval_count | number? |  yes  |  |
- 
+ | ---------- | ---- | -------- | ----------- || interval | string |  no  |  || interval_count | number |  no  |  |
 
 ---
 
 #### [InvoicePaymentMethod](#InvoicePaymentMethod)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | pg_payment_method_id | string? |  yes  |  |
- 
+ | ---------- | ---- | -------- | ----------- || pg_payment_method_id | string |  no  |  |
 
 ---
 
 #### [Invoices](#Invoices)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | data | [[InvoicesData](#InvoicesData)]? |  yes  |  |
- | end | number? |  yes  |  |
- | limit | number? |  yes  |  |
- | page | number? |  yes  |  |
- | start | number? |  yes  |  |
- | total | number? |  yes  |  |
- 
+ | ---------- | ---- | -------- | ----------- || data | [[InvoicesData](#InvoicesData)] |  no  |  || end | number |  no  |  || limit | number |  no  |  || page | number |  no  |  || start | number |  no  |  || total | number |  no  |  |
 
 ---
 
 #### [InvoicesData](#InvoicesData)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | _id | string? |  yes  |  |
- | attemp | number? |  yes  |  |
- | auto_advance | boolean? |  yes  |  |
- | client | [InvoicesDataClient](#InvoicesDataClient)? |  yes  |  |
- | collection_method | string? |  yes  |  |
- | created_at | string? |  yes  |  |
- | currency | string? |  yes  |  |
- | current_status | string? |  yes  |  |
- | hash_identifier | string? |  yes  |  |
- | invoice_items | [[InvoiceItems](#InvoiceItems)]? |  yes  |  |
- | invoice_url | string? |  yes  |  |
- | modified_at | string? |  yes  |  |
- | next_action_time | string? |  yes  |  |
- | number | string? |  yes  |  |
- | paid | boolean? |  yes  |  |
- | payment_method | [InvoicesDataPaymentMethod](#InvoicesDataPaymentMethod)? |  yes  |  |
- | period | [InvoicesDataPeriod](#InvoicesDataPeriod)? |  yes  |  |
- | pg_data | string? |  yes  |  |
- | receipt_number | string? |  yes  |  |
- | statement_descriptor | string? |  yes  |  |
- | status_trail | [[InvoiceDetailsStatusTrail](#InvoiceDetailsStatusTrail)]? |  yes  |  |
- | subscriber_id | string? |  yes  |  |
- | subscription | string? |  yes  |  |
- | subtotal | number? |  yes  |  |
- | total | number? |  yes  |  |
- 
+ | ---------- | ---- | -------- | ----------- || _id | string |  no  |  || attemp | number |  no  |  || auto_advance | boolean |  no  |  || client | [InvoicesDataClient](#InvoicesDataClient) |  no  |  || collection_method | string |  no  |  || created_at | string |  no  |  || currency | string |  no  |  || current_status | string |  no  |  || hash_identifier | string |  no  |  || invoice_items | [[InvoiceItems](#InvoiceItems)] |  no  |  || invoice_url | string |  no  |  || modified_at | string |  no  |  || next_action_time | string |  no  |  || number | string |  no  |  || paid | boolean |  no  |  || payment_method | [InvoicesDataPaymentMethod](#InvoicesDataPaymentMethod) |  no  |  || period | [InvoicesDataPeriod](#InvoicesDataPeriod) |  no  |  || pg_data | string |  no  |  || receipt_number | string |  no  |  || statement_descriptor | string |  no  |  || status_trail | [[InvoiceDetailsStatusTrail](#InvoiceDetailsStatusTrail)] |  no  |  || subscriber_id | string |  no  |  || subscription | string |  no  |  || subtotal | number |  no  |  || total | number |  no  |  |
 
 ---
 
 #### [InvoicesDataClient](#InvoicesDataClient)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | address_lines | [string]? |  yes  |  |
- | email | string? |  yes  |  |
- | name | string? |  yes  |  |
- | phone | string? |  yes  |  |
- 
+ | ---------- | ---- | -------- | ----------- || address_lines | [string] |  no  |  || email | string |  no  |  || name | string |  no  |  || phone | string |  no  |  |
 
 ---
 
 #### [InvoicesDataPaymentMethod](#InvoicesDataPaymentMethod)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | pg_payment_method_id | string? |  yes  |  |
- 
+ | ---------- | ---- | -------- | ----------- || pg_payment_method_id | string |  no  |  |
 
 ---
 
 #### [InvoicesDataPeriod](#InvoicesDataPeriod)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | end | string? |  yes  |  |
- | start | string? |  yes  |  |
- 
+ | ---------- | ---- | -------- | ----------- || end | string |  no  |  || start | string |  no  |  |
 
 ---
 
 #### [Page](#Page)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | current | number? |  yes  |  |
- | has_next | boolean? |  yes  |  |
- | has_previous | boolean? |  yes  |  |
- | item_total | number? |  yes  |  |
- | next_id | string? |  yes  |  |
- | size | number? |  yes  |  |
- | type | string |  no  |  |
- 
+ | ---------- | ---- | -------- | ----------- || current | number |  no  |  || has_next | boolean |  no  |  || has_previous | boolean |  no  |  || item_total | number |  no  |  || next_id | string |  no  |  || size | number |  no  |  || type | string |  yes  |  |
 
 ---
 
 #### [Phone](#Phone)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | phone_country_code | string? |  yes  |  |
- | phone_number | string? |  yes  |  |
- 
+ | ---------- | ---- | -------- | ----------- || phone_country_code | string |  no  |  || phone_number | string |  no  |  |
 
 ---
 
 #### [Plan](#Plan)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | _id | string? |  yes  |  |
- | addons | [string]? |  yes  |  |
- | amount | number? |  yes  |  |
- | country | string? |  yes  |  |
- | created_at | string? |  yes  |  |
- | currency | string? |  yes  |  |
- | description | string? |  yes  |  |
- | is_active | boolean? |  yes  |  |
- | is_trial_plan | boolean? |  yes  |  |
- | is_visible | boolean? |  yes  |  |
- | modified_at | string? |  yes  |  |
- | name | string? |  yes  |  |
- | plan_group | string? |  yes  |  |
- | product_suite_id | string? |  yes  |  |
- | recurring | [PlanRecurring](#PlanRecurring)? |  yes  |  |
- | tag_lines | [string]? |  yes  |  |
- | tags | [string]? |  yes  |  |
- | trial_period | number? |  yes  |  |
- | type | string? |  yes  |  |
- 
+ | ---------- | ---- | -------- | ----------- || _id | string |  no  |  || addons | [string] |  no  |  || amount | number |  no  |  || country | string |  no  |  || created_at | string |  no  |  || currency | string |  no  |  || description | string |  no  |  || is_active | boolean |  no  |  || is_trial_plan | boolean |  no  |  || is_visible | boolean |  no  |  || modified_at | string |  no  |  || name | string |  no  |  || plan_group | string |  no  |  || product_suite_id | string |  no  |  || recurring | [PlanRecurring](#PlanRecurring) |  no  |  || tag_lines | [string] |  no  |  || tags | [string] |  no  |  || trial_period | number |  no  |  || type | string |  no  |  |
 
 ---
 
 #### [PlanRecurring](#PlanRecurring)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | interval | string? |  yes  |  |
- | interval_count | number? |  yes  |  |
- 
+ | ---------- | ---- | -------- | ----------- || interval | string |  no  |  || interval_count | number |  no  |  |
 
 ---
 
 #### [ResourceNotFound](#ResourceNotFound)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | message | string? |  yes  | Resource not found with {id} |
- 
+ | ---------- | ---- | -------- | ----------- || message | string |  no  |  |
 
 ---
 
 #### [Subscription](#Subscription)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | _id | string? |  yes  |  |
- | cancel_at_period_end | boolean? |  yes  |  |
- | collection_method | string? |  yes  |  |
- | created_at | string? |  yes  |  |
- | current_period | [SubscriptionCurrentPeriod](#SubscriptionCurrentPeriod)? |  yes  |  |
- | current_status | string? |  yes  |  |
- | invoice_settings | [SubscriptionInvoiceSettings](#SubscriptionInvoiceSettings)? |  yes  |  |
- | is_active | boolean? |  yes  |  |
- | latest_invoice | string? |  yes  |  |
- | modified_at | string? |  yes  |  |
- | pause_collection | [SubscriptionPauseCollection](#SubscriptionPauseCollection)? |  yes  |  |
- | plan_data | [Plan](#Plan)? |  yes  |  |
- | plan_id | string? |  yes  |  |
- | product_suite_id | string? |  yes  |  |
- | subscriber_id | string? |  yes  |  |
- | trial | [SubscriptionTrial](#SubscriptionTrial)? |  yes  |  |
- 
+ | ---------- | ---- | -------- | ----------- || _id | string |  no  |  || cancel_at_period_end | boolean |  no  |  || collection_method | string |  no  |  || created_at | string |  no  |  || current_period | [SubscriptionCurrentPeriod](#SubscriptionCurrentPeriod) |  no  |  || current_status | string |  no  |  || invoice_settings | [SubscriptionInvoiceSettings](#SubscriptionInvoiceSettings) |  no  |  || is_active | boolean |  no  |  || latest_invoice | string |  no  |  || modified_at | string |  no  |  || pause_collection | [SubscriptionPauseCollection](#SubscriptionPauseCollection) |  no  |  || plan_data | [Plan](#Plan) |  no  |  || plan_id | string |  no  |  || product_suite_id | string |  no  |  || subscriber_id | string |  no  |  || trial | [SubscriptionTrial](#SubscriptionTrial) |  no  |  |
 
 ---
 
 #### [SubscriptionActivateReq](#SubscriptionActivateReq)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | payment_method | string? |  yes  |  |
- | plan_id | string? |  yes  |  |
- | product_suite | string? |  yes  |  |
- | type | string? |  yes  |  |
- | unique_id | string? |  yes  |  |
- 
+ | ---------- | ---- | -------- | ----------- || payment_method | string |  no  |  || plan_id | string |  no  |  || product_suite | string |  no  |  || type | string |  no  |  || unique_id | string |  no  |  |
 
 ---
 
 #### [SubscriptionActivateRes](#SubscriptionActivateRes)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | data | [Subscription](#Subscription)? |  yes  |  |
- | success | boolean? |  yes  |  |
- 
+ | ---------- | ---- | -------- | ----------- || data | [Subscription](#Subscription) |  no  |  || success | boolean |  no  |  |
 
 ---
 
 #### [SubscriptionBillingAddress](#SubscriptionBillingAddress)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | city | string? |  yes  |  |
- | country | string? |  yes  |  |
- | line1 | string? |  yes  |  |
- | line2 | string? |  yes  |  |
- | postal_code | string? |  yes  |  |
- | state | string? |  yes  |  |
- 
+ | ---------- | ---- | -------- | ----------- || city | string |  no  |  || country | string |  no  |  || line1 | string |  no  |  || line2 | string |  no  |  || postal_code | string |  no  |  || state | string |  no  |  |
 
 ---
 
 #### [SubscriptionCharge](#SubscriptionCharge)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | _id | string? |  yes  |  |
- | activated_on | string? |  yes  |  |
- | billing_date | string? |  yes  |  |
- | cancelled_on | string? |  yes  |  |
- | capped_amount | number? |  yes  |  |
- | current_period | [CurrentPeriod](#CurrentPeriod)? |  yes  |  |
- | is_test | boolean? |  yes  |  |
- | metadata | string? |  yes  |  |
- | name | string? |  yes  |  |
- | price | [EntityChargePrice](#EntityChargePrice)? |  yes  |  |
- | pricing_type | string? |  yes  |  |
- | recurring | [EntityChargeRecurring](#EntityChargeRecurring)? |  yes  |  |
- | status | string? |  yes  |  |
- | term | string? |  yes  |  |
- 
+ | ---------- | ---- | -------- | ----------- || _id | string |  no  |  || activated_on | string |  no  |  || billing_date | string |  no  |  || cancelled_on | string |  no  |  || capped_amount | number |  no  |  || current_period | [CurrentPeriod](#CurrentPeriod) |  no  |  || is_test | boolean |  no  |  || metadata | string |  no  |  || name | string |  no  |  || price | [EntityChargePrice](#EntityChargePrice) |  no  |  || pricing_type | string |  no  |  || recurring | [EntityChargeRecurring](#EntityChargeRecurring) |  no  |  || status | string |  no  |  || term | string |  no  |  |
 
 ---
 
 #### [SubscriptionCurrentPeriod](#SubscriptionCurrentPeriod)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | end | string? |  yes  |  |
- | start | string? |  yes  |  |
- 
+ | ---------- | ---- | -------- | ----------- || end | string |  no  |  || start | string |  no  |  |
 
 ---
 
 #### [SubscriptionCustomer](#SubscriptionCustomer)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | _id | string? |  yes  |  |
- | billing_address | [SubscriptionBillingAddress](#SubscriptionBillingAddress)? |  yes  |  |
- | created_at | string? |  yes  |  |
- | data | string? |  yes  |  |
- | email | string? |  yes  |  |
- | modified_at | string? |  yes  |  |
- | name | string? |  yes  |  |
- | phone | [Phone](#Phone)? |  yes  |  |
- | type | string? |  yes  |  |
- | unique_id | string? |  yes  |  |
- 
+ | ---------- | ---- | -------- | ----------- || _id | string |  no  |  || billing_address | [SubscriptionBillingAddress](#SubscriptionBillingAddress) |  no  |  || created_at | string |  no  |  || data | string |  no  |  || email | string |  no  |  || modified_at | string |  no  |  || name | string |  no  |  || phone | [Phone](#Phone) |  no  |  || type | string |  no  |  || unique_id | string |  no  |  |
 
 ---
 
 #### [SubscriptionCustomerCreate](#SubscriptionCustomerCreate)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | billing_address | [SubscriptionBillingAddress](#SubscriptionBillingAddress)? |  yes  |  |
- | email | string? |  yes  |  |
- | name | string? |  yes  |  |
- | phone | [Phone](#Phone)? |  yes  |  |
- | type | string? |  yes  |  |
- | unique_id | string? |  yes  |  |
- 
+ | ---------- | ---- | -------- | ----------- || billing_address | [SubscriptionBillingAddress](#SubscriptionBillingAddress) |  no  |  || email | string |  no  |  || name | string |  no  |  || phone | [Phone](#Phone) |  no  |  || type | string |  no  |  || unique_id | string |  no  |  |
 
 ---
 
 #### [SubscriptionInvoiceSettings](#SubscriptionInvoiceSettings)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | charging | boolean? |  yes  |  |
- | generation | boolean? |  yes  |  |
- 
+ | ---------- | ---- | -------- | ----------- || charging | boolean |  no  |  || generation | boolean |  no  |  |
 
 ---
 
 #### [SubscriptionLimit](#SubscriptionLimit)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | application | [SubscriptionLimitApplication](#SubscriptionLimitApplication)? |  yes  |  |
- | extensions | [SubscriptionLimitExtensions](#SubscriptionLimitExtensions)? |  yes  |  |
- | integrations | [SubscriptionLimitIntegrations](#SubscriptionLimitIntegrations)? |  yes  |  |
- | is_trial_plan | boolean? |  yes  |  |
- | marketplace | [SubscriptionLimitMarketplace](#SubscriptionLimitMarketplace)? |  yes  |  |
- | other_platform | [SubscriptionLimitOtherPlatform](#SubscriptionLimitOtherPlatform)? |  yes  |  |
- | products | [SubscriptionLimitProducts](#SubscriptionLimitProducts)? |  yes  |  |
- | team | [SubscriptionLimitTeam](#SubscriptionLimitTeam)? |  yes  |  |
- 
+ | ---------- | ---- | -------- | ----------- || application | [SubscriptionLimitApplication](#SubscriptionLimitApplication) |  no  |  || extensions | [SubscriptionLimitExtensions](#SubscriptionLimitExtensions) |  no  |  || integrations | [SubscriptionLimitIntegrations](#SubscriptionLimitIntegrations) |  no  |  || is_trial_plan | boolean |  no  |  || marketplace | [SubscriptionLimitMarketplace](#SubscriptionLimitMarketplace) |  no  |  || other_platform | [SubscriptionLimitOtherPlatform](#SubscriptionLimitOtherPlatform) |  no  |  || products | [SubscriptionLimitProducts](#SubscriptionLimitProducts) |  no  |  || team | [SubscriptionLimitTeam](#SubscriptionLimitTeam) |  no  |  |
 
 ---
 
 #### [SubscriptionLimitApplication](#SubscriptionLimitApplication)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | enabled | boolean? |  yes  |  |
- | hard_limit | number? |  yes  |  |
- | soft_limit | number? |  yes  |  |
- 
+ | ---------- | ---- | -------- | ----------- || enabled | boolean |  no  |  || hard_limit | number |  no  |  || soft_limit | number |  no  |  |
 
 ---
 
 #### [SubscriptionLimitExtensions](#SubscriptionLimitExtensions)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | enabled | boolean? |  yes  |  |
- | limit | number? |  yes  |  |
- 
+ | ---------- | ---- | -------- | ----------- || enabled | boolean |  no  |  || limit | number |  no  |  |
 
 ---
 
 #### [SubscriptionLimitIntegrations](#SubscriptionLimitIntegrations)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | enabled | boolean? |  yes  |  |
- | limit | number? |  yes  |  |
- 
+ | ---------- | ---- | -------- | ----------- || enabled | boolean |  no  |  || limit | number |  no  |  |
 
 ---
 
 #### [SubscriptionLimitMarketplace](#SubscriptionLimitMarketplace)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | enabled | boolean? |  yes  |  |
- 
+ | ---------- | ---- | -------- | ----------- || enabled | boolean |  no  |  |
 
 ---
 
 #### [SubscriptionLimitOtherPlatform](#SubscriptionLimitOtherPlatform)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | enabled | boolean? |  yes  |  |
- 
+ | ---------- | ---- | -------- | ----------- || enabled | boolean |  no  |  |
 
 ---
 
 #### [SubscriptionLimitProducts](#SubscriptionLimitProducts)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | bulk | boolean? |  yes  |  |
- | limit | number? |  yes  |  |
- 
+ | ---------- | ---- | -------- | ----------- || bulk | boolean |  no  |  || limit | number |  no  |  |
 
 ---
 
 #### [SubscriptionLimitTeam](#SubscriptionLimitTeam)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | limit | number? |  yes  |  |
- 
+ | ---------- | ---- | -------- | ----------- || limit | number |  no  |  |
 
 ---
 
 #### [SubscriptionPauseCollection](#SubscriptionPauseCollection)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | behavior | string? |  yes  |  |
- | resume_at | string? |  yes  |  |
- 
+ | ---------- | ---- | -------- | ----------- || behavior | string |  no  |  || resume_at | string |  no  |  |
 
 ---
 
 #### [SubscriptionStatus](#SubscriptionStatus)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | is_enabled | boolean? |  yes  |  |
- | subscription | [Subscription](#Subscription)? |  yes  |  |
- 
+ | ---------- | ---- | -------- | ----------- || is_enabled | boolean |  no  |  || subscription | [Subscription](#Subscription) |  no  |  |
 
 ---
 
 #### [SubscriptionTrial](#SubscriptionTrial)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | end | string? |  yes  |  |
- | start | string? |  yes  |  |
- 
+ | ---------- | ---- | -------- | ----------- || end | string |  no  |  || start | string |  no  |  |
 
 ---
 
 #### [SubscriptionTrialPeriod](#SubscriptionTrialPeriod)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | end_date | string? |  yes  |  |
- | start_date | string? |  yes  |  |
- 
+ | ---------- | ---- | -------- | ----------- || end_date | string |  no  |  || start_date | string |  no  |  |
 
 ---
 
 #### [UnauthenticatedApplication](#UnauthenticatedApplication)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | message | string? |  yes  | Failure message. |
- 
+ | ---------- | ---- | -------- | ----------- || message | string |  no  |  |
 
 ---
 
 #### [UnauthenticatedUser](#UnauthenticatedUser)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | message | string? |  yes  | Failure message. |
- 
+ | ---------- | ---- | -------- | ----------- || message | string |  no  |  |
 
 ---
 

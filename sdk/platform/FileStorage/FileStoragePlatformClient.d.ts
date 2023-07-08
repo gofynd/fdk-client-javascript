@@ -10,7 +10,7 @@ declare class FileStorage {
      * @summary: Browse Files
      * @description: Browse Files
      */
-    browse({ namespace, pageNo, }?: {
+    browse({ namespace, pageNo }?: {
         namespace: string;
         pageNo?: number;
     }): Promise<BrowseResponse>;
@@ -48,7 +48,7 @@ declare class FileStorage {
      * After successfully upload, call `completeUpload` api to complete the upload process.
      * This operation will return the url for the uploaded file.
      */
-    completeUpload({ namespace, body, }?: {
+    completeUpload({ namespace, body }?: {
         namespace: string;
         body: StartResponse;
     }): Promise<CompleteResponse>;
@@ -109,7 +109,7 @@ declare class FileStorage {
      * After successfully upload, call `completeUpload` api to complete the upload process.
      * This operation will return the url for the uploaded file.
      */
-    startUpload({ namespace, body, }?: {
+    startUpload({ namespace, body }?: {
         namespace: string;
         body: StartRequest;
     }): Promise<StartResponse>;

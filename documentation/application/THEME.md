@@ -27,10 +27,10 @@ Get all pages of a theme
 
 ```javascript
 // Promise
-const promise = applicationClient.theme.getAllPages({  themeId : value });
+const promise = theme.getAllPages({  themeId : value });
 
 // Async/Await
-const data = await applicationClient.theme.getAllPages({  themeId : value });
+const data = await theme.getAllPages({  themeId : value });
 ```
 
 
@@ -379,10 +379,10 @@ Get the theme currently applied to an application
 
 ```javascript
 // Promise
-const promise = applicationClient.theme.getAppliedTheme();
+const promise = theme.getAppliedTheme();
 
 // Async/Await
-const data = await applicationClient.theme.getAppliedTheme();
+const data = await theme.getAppliedTheme();
 ```
 
 
@@ -2570,11 +2570,11 @@ Get page of a theme
 
 ```javascript
 // Promise
-const promise = applicationClient.theme.getPage({  themeId : value,
+const promise = theme.getPage({  themeId : value,
  pageValue : value });
 
 // Async/Await
-const data = await applicationClient.theme.getPage({  themeId : value,
+const data = await theme.getPage({  themeId : value,
  pageValue : value });
 ```
 
@@ -2997,10 +2997,10 @@ Get a theme for a preview
 
 ```javascript
 // Promise
-const promise = applicationClient.theme.getThemeForPreview({  themeId : value });
+const promise = theme.getThemeForPreview({  themeId : value });
 
 // Async/Await
-const data = await applicationClient.theme.getThemeForPreview({  themeId : value });
+const data = await theme.getThemeForPreview({  themeId : value });
 ```
 
 
@@ -5193,515 +5193,322 @@ Success. Returns a JSON object of the theme. Check the example shown below or re
 #### [AddThemeRequestSchema](#AddThemeRequestSchema)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | theme_id | string? |  yes  |  |
- 
+ | ---------- | ---- | -------- | ----------- || theme_id | string |  no  |  |
 
 ---
 
 #### [AllAvailablePageSchema](#AllAvailablePageSchema)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | pages | [[AvailablePageSchema](#AvailablePageSchema)]? |  yes  |  |
- 
+ | ---------- | ---- | -------- | ----------- || pages | [[AvailablePageSchema](#AvailablePageSchema)] |  no  |  |
 
 ---
 
 #### [AssetsSchema](#AssetsSchema)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | common_js | [CommonJs](#CommonJs)? |  yes  |  |
- | css | [Css](#Css)? |  yes  |  |
- | umd_js | [UmdJs](#UmdJs)? |  yes  |  |
- 
+ | ---------- | ---- | -------- | ----------- || common_js | [CommonJs](#CommonJs) |  no  |  || css | [Css](#Css) |  no  |  || umd_js | [UmdJs](#UmdJs) |  no  |  |
 
 ---
 
 #### [AvailablePagePredicate](#AvailablePagePredicate)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | route | [AvailablePageRoutePredicate](#AvailablePageRoutePredicate)? |  yes  |  |
- | screen | [AvailablePageScreenPredicate](#AvailablePageScreenPredicate)? |  yes  |  |
- | user | [AvailablePageUserPredicate](#AvailablePageUserPredicate)? |  yes  |  |
- 
+ | ---------- | ---- | -------- | ----------- || route | [AvailablePageRoutePredicate](#AvailablePageRoutePredicate) |  no  |  || screen | [AvailablePageScreenPredicate](#AvailablePageScreenPredicate) |  no  |  || user | [AvailablePageUserPredicate](#AvailablePageUserPredicate) |  no  |  |
 
 ---
 
 #### [AvailablePageRoutePredicate](#AvailablePageRoutePredicate)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | exact_url | string? |  yes  |  |
- | query | string? |  yes  |  |
- | selected | string? |  yes  |  |
- 
+ | ---------- | ---- | -------- | ----------- || exact_url | string |  no  |  || query | string |  no  |  || selected | string |  no  |  |
 
 ---
 
 #### [AvailablePageSchema](#AvailablePageSchema)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | _id | string? |  yes  |  |
- | path | string? |  yes  |  |
- | props | [string]? |  yes  |  |
- | sections | [[AvailablePageSchemaSections](#AvailablePageSchemaSections)]? |  yes  |  |
- | sections_meta | [[AvailablePageSectionMetaAttributes](#AvailablePageSectionMetaAttributes)]? |  yes  |  |
- | seo | [AvailablePageSeo](#AvailablePageSeo)? |  yes  |  |
- | text | string? |  yes  |  |
- | theme | string? |  yes  |  |
- | type | string? |  yes  |  |
- | value | string? |  yes  |  |
- 
+ | ---------- | ---- | -------- | ----------- || _id | string |  no  |  || path | string |  no  |  || props | [string] |  no  |  || sections | [[AvailablePageSchemaSections](#AvailablePageSchemaSections)] |  no  |  || sections_meta | [[AvailablePageSectionMetaAttributes](#AvailablePageSectionMetaAttributes)] |  no  |  || seo | [AvailablePageSeo](#AvailablePageSeo) |  no  |  || text | string |  no  |  || theme | string |  no  |  || type | string |  no  |  || value | string |  no  |  |
 
 ---
 
 #### [AvailablePageSchemaSections](#AvailablePageSchemaSections)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | blocks | [string]? |  yes  |  |
- | label | string? |  yes  |  |
- | name | string? |  yes  |  |
- | predicate | [AvailablePagePredicate](#AvailablePagePredicate)? |  yes  |  |
- | preset | string? |  yes  |  |
- | props | string? |  yes  |  |
- 
+ | ---------- | ---- | -------- | ----------- || blocks | [string] |  no  |  || label | string |  no  |  || name | string |  no  |  || predicate | [AvailablePagePredicate](#AvailablePagePredicate) |  no  |  || preset | string |  no  |  || props | string |  no  |  |
 
 ---
 
 #### [AvailablePageScreenPredicate](#AvailablePageScreenPredicate)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | desktop | boolean? |  yes  |  |
- | mobile | boolean? |  yes  |  |
- | tablet | boolean? |  yes  |  |
- 
+ | ---------- | ---- | -------- | ----------- || desktop | boolean |  no  |  || mobile | boolean |  no  |  || tablet | boolean |  no  |  |
 
 ---
 
 #### [AvailablePageSectionMetaAttributes](#AvailablePageSectionMetaAttributes)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | attributes | string? |  yes  |  |
- 
+ | ---------- | ---- | -------- | ----------- || attributes | string |  no  |  |
 
 ---
 
 #### [AvailablePageSeo](#AvailablePageSeo)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | _id | string? |  yes  |  |
- | description | string? |  yes  |  |
- | title | string? |  yes  |  |
- 
+ | ---------- | ---- | -------- | ----------- || _id | string |  no  |  || description | string |  no  |  || title | string |  no  |  |
 
 ---
 
 #### [AvailablePageUserPredicate](#AvailablePageUserPredicate)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | anonymous | boolean? |  yes  |  |
- | authenticated | boolean? |  yes  |  |
- 
+ | ---------- | ---- | -------- | ----------- || anonymous | boolean |  no  |  || authenticated | boolean |  no  |  |
 
 ---
 
 #### [availableSectionSchema](#availableSectionSchema)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | blocks | [[Blocks](#Blocks)]? |  yes  |  |
- | label | string? |  yes  |  |
- | name | string? |  yes  |  |
- | props | [[BlocksProps](#BlocksProps)]? |  yes  |  |
- 
+ | ---------- | ---- | -------- | ----------- || blocks | [[Blocks](#Blocks)] |  no  |  || label | string |  no  |  || name | string |  no  |  || props | [[BlocksProps](#BlocksProps)] |  no  |  |
 
 ---
 
 #### [BlitzkriegApiErrorSchema](#BlitzkriegApiErrorSchema)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | message | string? |  yes  |  |
- 
+ | ---------- | ---- | -------- | ----------- || message | string |  no  |  |
 
 ---
 
 #### [BlitzkriegInternalServerErrorSchema](#BlitzkriegInternalServerErrorSchema)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | message | string? |  yes  |  |
- 
+ | ---------- | ---- | -------- | ----------- || message | string |  no  |  |
 
 ---
 
 #### [BlitzkriegNotFoundSchema](#BlitzkriegNotFoundSchema)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | message | string? |  yes  |  |
- 
+ | ---------- | ---- | -------- | ----------- || message | string |  no  |  |
 
 ---
 
 #### [Blocks](#Blocks)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | name | string? |  yes  |  |
- | props | [[BlocksProps](#BlocksProps)]? |  yes  |  |
- | type | string? |  yes  |  |
- 
+ | ---------- | ---- | -------- | ----------- || name | string |  no  |  || props | [[BlocksProps](#BlocksProps)] |  no  |  || type | string |  no  |  |
 
 ---
 
 #### [BlocksProps](#BlocksProps)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | id | string? |  yes  |  |
- | label | string? |  yes  |  |
- | type | string? |  yes  |  |
- 
+ | ---------- | ---- | -------- | ----------- || id | string |  no  |  || label | string |  no  |  || type | string |  no  |  |
 
 ---
 
 #### [Bold](#Bold)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | file | string? |  yes  |  |
- | name | string? |  yes  |  |
- 
+ | ---------- | ---- | -------- | ----------- || file | string |  no  |  || name | string |  no  |  |
 
 ---
 
 #### [Colors](#Colors)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | accent_color | string? |  yes  |  |
- | bg_color | string? |  yes  |  |
- | button_secondary_color | string? |  yes  |  |
- | link_color | string? |  yes  |  |
- | primary_color | string? |  yes  |  |
- | secondary_color | string? |  yes  |  |
- 
+ | ---------- | ---- | -------- | ----------- || accent_color | string |  no  |  || bg_color | string |  no  |  || button_secondary_color | string |  no  |  || link_color | string |  no  |  || primary_color | string |  no  |  || secondary_color | string |  no  |  |
 
 ---
 
 #### [CommonJs](#CommonJs)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | link | string? |  yes  |  |
- 
+ | ---------- | ---- | -------- | ----------- || link | string |  no  |  |
 
 ---
 
 #### [Config](#Config)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | current | string? |  yes  |  |
- | global_schema | [GlobalSchema](#GlobalSchema)? |  yes  |  |
- | list | [[ListSchemaItem](#ListSchemaItem)]? |  yes  |  |
- | preset | [Preset](#Preset)? |  yes  |  |
- 
+ | ---------- | ---- | -------- | ----------- || current | string |  no  |  || global_schema | [GlobalSchema](#GlobalSchema) |  no  |  || list | [[ListSchemaItem](#ListSchemaItem)] |  no  |  || preset | [Preset](#Preset) |  no  |  |
 
 ---
 
 #### [ConfigPage](#ConfigPage)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | page | string? |  yes  |  |
- | settings | string? |  yes  |  |
- 
+ | ---------- | ---- | -------- | ----------- || page | string |  no  |  || settings | string |  no  |  |
 
 ---
 
 #### [Css](#Css)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | link | string? |  yes  |  |
- | links | [string]? |  yes  |  |
- 
+ | ---------- | ---- | -------- | ----------- || link | string |  no  |  || links | [string] |  no  |  |
 
 ---
 
 #### [Custom](#Custom)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | props | string? |  yes  |  |
- 
+ | ---------- | ---- | -------- | ----------- || props | string |  no  |  |
 
 ---
 
 #### [Font](#Font)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | family | string? |  yes  |  |
- | variants | [Variants](#Variants)? |  yes  |  |
- 
+ | ---------- | ---- | -------- | ----------- || family | string |  no  |  || variants | [Variants](#Variants) |  no  |  |
 
 ---
 
 #### [FontsSchema](#FontsSchema)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | items | [FontsSchemaItems](#FontsSchemaItems)? |  yes  |  |
- | kind | string? |  yes  |  |
- 
+ | ---------- | ---- | -------- | ----------- || items | [FontsSchemaItems](#FontsSchemaItems) |  no  |  || kind | string |  no  |  |
 
 ---
 
 #### [FontsSchemaItems](#FontsSchemaItems)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | category | string? |  yes  |  |
- | family | string? |  yes  |  |
- | files | [FontsSchemaItemsFiles](#FontsSchemaItemsFiles)? |  yes  |  |
- | kind | string? |  yes  |  |
- | last_modified | string? |  yes  |  |
- | subsets | [string]? |  yes  |  |
- | variants | [string]? |  yes  |  |
- | version | string? |  yes  |  |
- 
+ | ---------- | ---- | -------- | ----------- || category | string |  no  |  || family | string |  no  |  || files | [FontsSchemaItemsFiles](#FontsSchemaItemsFiles) |  no  |  || kind | string |  no  |  || last_modified | string |  no  |  || subsets | [string] |  no  |  || variants | [string] |  no  |  || version | string |  no  |  |
 
 ---
 
 #### [FontsSchemaItemsFiles](#FontsSchemaItemsFiles)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | bold | string? |  yes  |  |
- | italic | string? |  yes  |  |
- | regular | string? |  yes  |  |
- 
+ | ---------- | ---- | -------- | ----------- || bold | string |  no  |  || italic | string |  no  |  || regular | string |  no  |  |
 
 ---
 
 #### [GlobalSchema](#GlobalSchema)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | props | [[GlobalSchemaProps](#GlobalSchemaProps)]? |  yes  |  |
- 
+ | ---------- | ---- | -------- | ----------- || props | [[GlobalSchemaProps](#GlobalSchemaProps)] |  no  |  |
 
 ---
 
 #### [GlobalSchemaProps](#GlobalSchemaProps)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | category | string? |  yes  |  |
- | id | string? |  yes  |  |
- | label | string? |  yes  |  |
- | type | string? |  yes  |  |
- 
+ | ---------- | ---- | -------- | ----------- || category | string |  no  |  || id | string |  no  |  || label | string |  no  |  || type | string |  no  |  |
 
 ---
 
 #### [Images](#Images)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | android | [string]? |  yes  |  |
- | desktop | [string]? |  yes  |  |
- | ios | [string]? |  yes  |  |
- | thumbnail | [string]? |  yes  |  |
- 
+ | ---------- | ---- | -------- | ----------- || android | [string] |  no  |  || desktop | [string] |  no  |  || ios | [string] |  no  |  || thumbnail | [string] |  no  |  |
 
 ---
 
 #### [Information](#Information)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | description | string? |  yes  |  |
- | features | [string]? |  yes  |  |
- | images | [Images](#Images)? |  yes  |  |
- | name | string? |  yes  |  |
- 
+ | ---------- | ---- | -------- | ----------- || description | string |  no  |  || features | [string] |  no  |  || images | [Images](#Images) |  no  |  || name | string |  no  |  |
 
 ---
 
 #### [Light](#Light)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | file | string? |  yes  |  |
- | name | string? |  yes  |  |
- 
+ | ---------- | ---- | -------- | ----------- || file | string |  no  |  || name | string |  no  |  |
 
 ---
 
 #### [ListSchemaItem](#ListSchemaItem)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | global_config | string? |  yes  |  |
- | name | string? |  yes  |  |
- | page | [[ConfigPage](#ConfigPage)]? |  yes  |  |
- 
+ | ---------- | ---- | -------- | ----------- || global_config | string |  no  |  || name | string |  no  |  || page | [[ConfigPage](#ConfigPage)] |  no  |  |
 
 ---
 
 #### [Medium](#Medium)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | file | string? |  yes  |  |
- | name | string? |  yes  |  |
- 
+ | ---------- | ---- | -------- | ----------- || file | string |  no  |  || name | string |  no  |  |
 
 ---
 
 #### [PaginationSchema](#PaginationSchema)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | current | number? |  yes  |  |
- | has_next | boolean? |  yes  |  |
- | item_total | number? |  yes  |  |
- | size | number? |  yes  |  |
- | type | string? |  yes  |  |
- 
+ | ---------- | ---- | -------- | ----------- || current | number |  no  |  || has_next | boolean |  no  |  || item_total | number |  no  |  || size | number |  no  |  || type | string |  no  |  |
 
 ---
 
 #### [Preset](#Preset)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | pages | [[AvailablePageSchema](#AvailablePageSchema)]? |  yes  |  |
- 
+ | ---------- | ---- | -------- | ----------- || pages | [[AvailablePageSchema](#AvailablePageSchema)] |  no  |  |
 
 ---
 
 #### [Regular](#Regular)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | file | string? |  yes  |  |
- | name | string? |  yes  |  |
- 
+ | ---------- | ---- | -------- | ----------- || file | string |  no  |  || name | string |  no  |  |
 
 ---
 
 #### [Sections](#Sections)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | attributes | string? |  yes  |  |
- 
+ | ---------- | ---- | -------- | ----------- || attributes | string |  no  |  |
 
 ---
 
 #### [SemiBold](#SemiBold)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | file | string? |  yes  |  |
- | name | string? |  yes  |  |
- 
+ | ---------- | ---- | -------- | ----------- || file | string |  no  |  || name | string |  no  |  |
 
 ---
 
 #### [Src](#Src)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | link | string? |  yes  |  |
- 
+ | ---------- | ---- | -------- | ----------- || link | string |  no  |  |
 
 ---
 
 #### [ThemesListingResponseSchema](#ThemesListingResponseSchema)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | items | [[ThemesSchema](#ThemesSchema)]? |  yes  |  |
- | page | [PaginationSchema](#PaginationSchema)? |  yes  |  |
- 
+ | ---------- | ---- | -------- | ----------- || items | [[ThemesSchema](#ThemesSchema)] |  no  |  || page | [PaginationSchema](#PaginationSchema) |  no  |  |
 
 ---
 
 #### [ThemesSchema](#ThemesSchema)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | __v | number? |  yes  |  |
- | _id | string? |  yes  |  |
- | application | string? |  yes  |  |
- | applied | boolean? |  yes  |  |
- | archived | boolean? |  yes  |  |
- | assets | [AssetsSchema](#AssetsSchema)? |  yes  |  |
- | available_sections | [[availableSectionSchema](#availableSectionSchema)]? |  yes  |  |
- | colors | [Colors](#Colors)? |  yes  |  |
- | config | [Config](#Config)? |  yes  |  |
- | created_at | string? |  yes  |  |
- | customized | boolean? |  yes  |  |
- | font | [Font](#Font)? |  yes  |  |
- | information | [Information](#Information)? |  yes  |  |
- | parent_theme | string? |  yes  |  |
- | parent_theme_version | string? |  yes  |  |
- | published | boolean? |  yes  |  |
- | src | [Src](#Src)? |  yes  |  |
- | styles | string? |  yes  |  |
- | tags | [string]? |  yes  |  |
- | updated_at | string? |  yes  |  |
- | version | string? |  yes  |  |
- 
+ | ---------- | ---- | -------- | ----------- || __v | number |  no  |  || _id | string |  no  |  || application | string |  no  |  || applied | boolean |  no  |  || archived | boolean |  no  |  || assets | [AssetsSchema](#AssetsSchema) |  no  |  || available_sections | [[availableSectionSchema](#availableSectionSchema)] |  no  |  || colors | [Colors](#Colors) |  no  |  || config | [Config](#Config) |  no  |  || created_at | string |  no  |  || customized | boolean |  no  |  || font | [Font](#Font) |  no  |  || information | [Information](#Information) |  no  |  || parent_theme | string |  no  |  || parent_theme_version | string |  no  |  || published | boolean |  no  |  || src | [Src](#Src) |  no  |  || styles | string |  no  |  || tags | [string] |  no  |  || updated_at | string |  no  |  || version | string |  no  |  |
 
 ---
 
 #### [UmdJs](#UmdJs)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | link | string? |  yes  |  |
- | links | [string]? |  yes  |  |
- 
+ | ---------- | ---- | -------- | ----------- || link | string |  no  |  || links | [string] |  no  |  |
 
 ---
 
 #### [UpgradableThemeSchema](#UpgradableThemeSchema)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | applied_theme | string? |  yes  |  |
- | parent_theme | string? |  yes  |  |
- | upgrade | boolean? |  yes  |  |
- 
+ | ---------- | ---- | -------- | ----------- || applied_theme | string |  no  |  || parent_theme | string |  no  |  || upgrade | boolean |  no  |  |
 
 ---
 
 #### [Variants](#Variants)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | bold | [Bold](#Bold)? |  yes  |  |
- | light | [Light](#Light)? |  yes  |  |
- | medium | [Medium](#Medium)? |  yes  |  |
- | regular | [Regular](#Regular)? |  yes  |  |
- | semi_bold | [SemiBold](#SemiBold)? |  yes  |  |
- 
+ | ---------- | ---- | -------- | ----------- || bold | [Bold](#Bold) |  no  |  || light | [Light](#Light) |  no  |  || medium | [Medium](#Medium) |  no  |  || regular | [Regular](#Regular) |  no  |  || semi_bold | [SemiBold](#SemiBold) |  no  |  |
 
 ---
 

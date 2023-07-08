@@ -1,10 +1,9 @@
-const PlatformAPIClient = require("../PlatformAPIClient");
-const { FDKClientValidationError } = require("../../common/FDKError");
 const Paginator = require("../../common/Paginator");
+const { FDKClientValidationError } = require("../../common/FDKError");
+const PlatformAPIClient = require("../PlatformAPIClient");
 const CommonValidator = require("./CommonPlatformValidator");
 const CommonModel = require("./CommonPlatformModel");
 const { Logger } = require("./../../common/Logger");
-const Joi = require("joi");
 
 class Common {
   constructor(config) {
@@ -24,7 +23,10 @@ class Common {
    */
   async getLocations({ locationType, id } = {}) {
     const { error } = CommonValidator.getLocations().validate(
-      { locationType, id },
+      {
+        locationType,
+        id,
+      },
       { abortEarly: false, allowUnknown: true }
     );
     if (error) {
@@ -33,7 +35,10 @@ class Common {
 
     // Showing warrnings if extra unknown parameters are found
     const { error: warrning } = CommonValidator.getLocations().validate(
-      { locationType, id },
+      {
+        locationType,
+        id,
+      },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
@@ -85,7 +90,10 @@ class Common {
    */
   async searchApplication({ authorization, query } = {}) {
     const { error } = CommonValidator.searchApplication().validate(
-      { authorization, query },
+      {
+        authorization,
+        query,
+      },
       { abortEarly: false, allowUnknown: true }
     );
     if (error) {
@@ -94,7 +102,10 @@ class Common {
 
     // Showing warrnings if extra unknown parameters are found
     const { error: warrning } = CommonValidator.searchApplication().validate(
-      { authorization, query },
+      {
+        authorization,
+        query,
+      },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
