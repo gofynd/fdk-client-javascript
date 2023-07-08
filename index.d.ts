@@ -10,4 +10,4 @@ import { PublicModel } from "./sdk/public";
 import { fdkAxios } from "./sdk/common/AxiosHelper";
 import Utility = require("./sdk/common/Utility");
 import Constant = require("./sdk/common/Constant");
-export { ApplicationConfig, ApplicationClient, ApplicationModel, PlatformConfig, PlatformClient, PlatformModel, PublicConfig, PublicClient, PublicModel, AdministratorConfig, AdministratorClient, AdministratorModel, fdkAxios as FdkAxios, Utility, Constant };
+export { ApplicationConfig, ApplicationClient, ApplicationModel, PlatformConfig, PlatformClient, PlatformModel, PublicConfig, PublicClient, PublicModel, fdkAxios as FdkAxios, Utility, Constant };

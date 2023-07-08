@@ -2,7 +2,7 @@ const {ApplicationConfig, ApplicationClient, ApplicationModel } = require('./sdk
 const {PlatformConfig, PlatformClient, PlatformModel } = require('./sdk/platform');
 const {PublicConfig, PublicClient, PublicModel } = require('./sdk/public');
 
-const {AdministratorConfig, AdministratorClient, AdministratorModel } = require('./sdk/administrator'); 
+
 
 const {fdkAxios} = require('./sdk/common/AxiosHelper');
 const Utility = require('./sdk/common/Utility');
@@ -19,10 +19,6 @@ module.exports = {
     PublicClient,
     PublicModel,
     
-    
-    AdministratorConfig,
-    AdministratorClient,
-    AdministratorModel,
     
     
     FdkAxios: fdkAxios,

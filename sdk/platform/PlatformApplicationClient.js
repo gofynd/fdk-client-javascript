@@ -24,6 +24,8 @@ const Cart = require("./Cart/CartPlatformApplicationClient");
 
 const Rewards = require("./Rewards/RewardsPlatformApplicationClient");
 
+const Analytics = require("./Analytics/AnalyticsPlatformApplicationClient");
+
 const Partner = require("./Partner/PartnerPlatformApplicationClient");
 
 const { FDKClientValidationError } = require("../common/FDKError");
@@ -59,6 +61,8 @@ class PlatformApplicationClient {
     this.cart = new Cart(config, applicationId);
 
     this.rewards = new Rewards(config, applicationId);
+
+    this.analytics = new Analytics(config, applicationId);
 
     this.partner = new Partner(config, applicationId);
   }
@@ -1476,6 +1480,27 @@ class PlatformApplicationClient {
 /** @typedef Schedule */
 /** @typedef ShareMessages */
 /** @typedef UserRes */
+
+/** @typedef AbandonCartDetail */
+/** @typedef AbandonCartsDetail */
+/** @typedef AbandonCartsList */
+/** @typedef ErrorRes */
+/** @typedef ExportJobReq */
+/** @typedef ExportJobRes */
+/** @typedef ExportJobStatusRes */
+/** @typedef GetLogsListReq */
+/** @typedef GetLogsListRes */
+/** @typedef LogInfo */
+/** @typedef MkpLogsResp */
+/** @typedef Page */
+/** @typedef ReceivedAt */
+/** @typedef SearchLogReq */
+/** @typedef SearchLogRes */
+/** @typedef StatGroup */
+/** @typedef StatsGroupComponent */
+/** @typedef StatsGroupComponents */
+/** @typedef StatsGroups */
+/** @typedef StatsRes */
 
 /** @typedef BadRequestObject */
 /** @typedef CancelJobResponse */
