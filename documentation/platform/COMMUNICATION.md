@@ -64,10 +64,10 @@ Create audience
 
 ```javascript
 // Promise
-const promise = platformClient.application("<APPLICATION_ID>").communication.createAudience({  body : value });
+const promise = client.application("<APPLICATION_ID>").communication.createAudience({  body : value });
 
 // Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").communication.createAudience({  body : value });
+const data = await client.application("<APPLICATION_ID>").communication.createAudience({  body : value });
 ```
 
 
@@ -150,10 +150,10 @@ Create campaign
 
 ```javascript
 // Promise
-const promise = platformClient.application("<APPLICATION_ID>").communication.createCampaign({  body : value });
+const promise = client.application("<APPLICATION_ID>").communication.createCampaign({  body : value });
 
 // Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").communication.createCampaign({  body : value });
+const data = await client.application("<APPLICATION_ID>").communication.createCampaign({  body : value });
 ```
 
 
@@ -240,10 +240,10 @@ Create email provider
 
 ```javascript
 // Promise
-const promise = platformClient.application("<APPLICATION_ID>").communication.createEmailProvider({  body : value });
+const promise = client.application("<APPLICATION_ID>").communication.createEmailProvider({  body : value });
 
 // Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").communication.createEmailProvider({  body : value });
+const data = await client.application("<APPLICATION_ID>").communication.createEmailProvider({  body : value });
 ```
 
 
@@ -322,10 +322,10 @@ Create email template
 
 ```javascript
 // Promise
-const promise = platformClient.application("<APPLICATION_ID>").communication.createEmailTemplate({  body : value });
+const promise = client.application("<APPLICATION_ID>").communication.createEmailTemplate({  body : value });
 
 // Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").communication.createEmailTemplate({  body : value });
+const data = await client.application("<APPLICATION_ID>").communication.createEmailTemplate({  body : value });
 ```
 
 
@@ -430,10 +430,10 @@ Create sms provider
 
 ```javascript
 // Promise
-const promise = platformClient.application("<APPLICATION_ID>").communication.createSmsProvider({  body : value });
+const promise = client.application("<APPLICATION_ID>").communication.createSmsProvider({  body : value });
 
 // Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").communication.createSmsProvider({  body : value });
+const data = await client.application("<APPLICATION_ID>").communication.createSmsProvider({  body : value });
 ```
 
 
@@ -508,10 +508,10 @@ Create sms template
 
 ```javascript
 // Promise
-const promise = platformClient.application("<APPLICATION_ID>").communication.createSmsTemplate({  body : value });
+const promise = client.application("<APPLICATION_ID>").communication.createSmsTemplate({  body : value });
 
 // Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").communication.createSmsTemplate({  body : value });
+const data = await client.application("<APPLICATION_ID>").communication.createSmsTemplate({  body : value });
 ```
 
 
@@ -591,10 +591,10 @@ Delete email template by id
 
 ```javascript
 // Promise
-const promise = platformClient.application("<APPLICATION_ID>").communication.deleteEmailTemplateById({  id : value });
+const promise = client.application("<APPLICATION_ID>").communication.deleteEmailTemplateById({  id : value });
 
 // Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").communication.deleteEmailTemplateById({  id : value });
+const data = await client.application("<APPLICATION_ID>").communication.deleteEmailTemplateById({  id : value });
 ```
 
 
@@ -658,10 +658,10 @@ Delete sms template by id
 
 ```javascript
 // Promise
-const promise = platformClient.application("<APPLICATION_ID>").communication.deleteSmsTemplateById({  id : value });
+const promise = client.application("<APPLICATION_ID>").communication.deleteSmsTemplateById({  id : value });
 
 // Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").communication.deleteSmsTemplateById({  id : value });
+const data = await client.application("<APPLICATION_ID>").communication.deleteSmsTemplateById({  id : value });
 ```
 
 
@@ -725,10 +725,10 @@ Get audience by id
 
 ```javascript
 // Promise
-const promise = platformClient.application("<APPLICATION_ID>").communication.getAudienceById({  id : value });
+const promise = client.application("<APPLICATION_ID>").communication.getAudienceById({  id : value });
 
 // Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").communication.getAudienceById({  id : value });
+const data = await client.application("<APPLICATION_ID>").communication.getAudienceById({  id : value });
 ```
 
 
@@ -812,12 +812,12 @@ Get audiences
 
 ```javascript
 // Promise
-const promise = platformClient.application("<APPLICATION_ID>").communication.getAudiences({  pageNo : value,
+const promise = client.application("<APPLICATION_ID>").communication.getAudiences({  pageNo : value,
  pageSize : value,
  sort : value });
 
 // Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").communication.getAudiences({  pageNo : value,
+const data = await client.application("<APPLICATION_ID>").communication.getAudiences({  pageNo : value,
  pageSize : value,
  sort : value });
 ```
@@ -916,10 +916,10 @@ Get bigquery headers
 
 ```javascript
 // Promise
-const promise = platformClient.application("<APPLICATION_ID>").communication.getBigqueryHeaders({  body : value });
+const promise = client.application("<APPLICATION_ID>").communication.getBigqueryHeaders({  body : value });
 
 // Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").communication.getBigqueryHeaders({  body : value });
+const data = await client.application("<APPLICATION_ID>").communication.getBigqueryHeaders({  body : value });
 ```
 
 
@@ -1006,10 +1006,10 @@ Get campaign by id
 
 ```javascript
 // Promise
-const promise = platformClient.application("<APPLICATION_ID>").communication.getCampaignById({  id : value });
+const promise = client.application("<APPLICATION_ID>").communication.getCampaignById({  id : value });
 
 // Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").communication.getCampaignById({  id : value });
+const data = await client.application("<APPLICATION_ID>").communication.getCampaignById({  id : value });
 ```
 
 
@@ -1097,12 +1097,12 @@ Get campaigns
 
 ```javascript
 // Promise
-const promise = platformClient.application("<APPLICATION_ID>").communication.getCampaigns({  pageNo : value,
+const promise = client.application("<APPLICATION_ID>").communication.getCampaigns({  pageNo : value,
  pageSize : value,
  sort : value });
 
 // Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").communication.getCampaigns({  pageNo : value,
+const data = await client.application("<APPLICATION_ID>").communication.getCampaigns({  pageNo : value,
  pageSize : value,
  sort : value });
 ```
@@ -1231,13 +1231,13 @@ Get communication logs
 
 ```javascript
 // Promise
-const promise = platformClient.application("<APPLICATION_ID>").communication.getCommunicationLogs({  pageId : value,
+const promise = client.application("<APPLICATION_ID>").communication.getCommunicationLogs({  pageId : value,
  pageSize : value,
  sort : value,
  query : value });
 
 // Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").communication.getCommunicationLogs({  pageId : value,
+const data = await client.application("<APPLICATION_ID>").communication.getCommunicationLogs({  pageId : value,
  pageSize : value,
  sort : value,
  query : value });
@@ -1338,10 +1338,10 @@ Get email provider by id
 
 ```javascript
 // Promise
-const promise = platformClient.application("<APPLICATION_ID>").communication.getEmailProviderById({  id : value });
+const promise = client.application("<APPLICATION_ID>").communication.getEmailProviderById({  id : value });
 
 // Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").communication.getEmailProviderById({  id : value });
+const data = await client.application("<APPLICATION_ID>").communication.getEmailProviderById({  id : value });
 ```
 
 
@@ -1421,12 +1421,12 @@ Get email providers
 
 ```javascript
 // Promise
-const promise = platformClient.application("<APPLICATION_ID>").communication.getEmailProviders({  pageNo : value,
+const promise = client.application("<APPLICATION_ID>").communication.getEmailProviders({  pageNo : value,
  pageSize : value,
  sort : value });
 
 // Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").communication.getEmailProviders({  pageNo : value,
+const data = await client.application("<APPLICATION_ID>").communication.getEmailProviders({  pageNo : value,
  pageSize : value,
  sort : value });
 ```
@@ -1521,10 +1521,10 @@ Get email template by id
 
 ```javascript
 // Promise
-const promise = platformClient.application("<APPLICATION_ID>").communication.getEmailTemplateById({  id : value });
+const promise = client.application("<APPLICATION_ID>").communication.getEmailTemplateById({  id : value });
 
 // Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").communication.getEmailTemplateById({  id : value });
+const data = await client.application("<APPLICATION_ID>").communication.getEmailTemplateById({  id : value });
 ```
 
 
@@ -1616,12 +1616,12 @@ Get email templates
 
 ```javascript
 // Promise
-const promise = platformClient.application("<APPLICATION_ID>").communication.getEmailTemplates({  pageNo : value,
+const promise = client.application("<APPLICATION_ID>").communication.getEmailTemplates({  pageNo : value,
  pageSize : value,
  sort : value });
 
 // Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").communication.getEmailTemplates({  pageNo : value,
+const data = await client.application("<APPLICATION_ID>").communication.getEmailTemplates({  pageNo : value,
  pageSize : value,
  sort : value });
 ```
@@ -1728,12 +1728,12 @@ Get event subscriptions
 
 ```javascript
 // Promise
-const promise = platformClient.application("<APPLICATION_ID>").communication.getEventSubscriptions({  pageNo : value,
+const promise = client.application("<APPLICATION_ID>").communication.getEventSubscriptions({  pageNo : value,
  pageSize : value,
  populate : value });
 
 // Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").communication.getEventSubscriptions({  pageNo : value,
+const data = await client.application("<APPLICATION_ID>").communication.getEventSubscriptions({  pageNo : value,
  pageSize : value,
  populate : value });
 ```
@@ -2368,12 +2368,12 @@ Get job logs
 
 ```javascript
 // Promise
-const promise = platformClient.application("<APPLICATION_ID>").communication.getJobLogs({  pageNo : value,
+const promise = client.application("<APPLICATION_ID>").communication.getJobLogs({  pageNo : value,
  pageSize : value,
  sort : value });
 
 // Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").communication.getJobLogs({  pageNo : value,
+const data = await client.application("<APPLICATION_ID>").communication.getJobLogs({  pageNo : value,
  pageSize : value,
  sort : value });
 ```
@@ -2471,12 +2471,12 @@ Get jobs
 
 ```javascript
 // Promise
-const promise = platformClient.application("<APPLICATION_ID>").communication.getJobs({  pageNo : value,
+const promise = client.application("<APPLICATION_ID>").communication.getJobs({  pageNo : value,
  pageSize : value,
  sort : value });
 
 // Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").communication.getJobs({  pageNo : value,
+const data = await client.application("<APPLICATION_ID>").communication.getJobs({  pageNo : value,
  pageSize : value,
  sort : value });
 ```
@@ -2561,10 +2561,10 @@ Get n sample records from csv
 
 ```javascript
 // Promise
-const promise = platformClient.application("<APPLICATION_ID>").communication.getNSampleRecordsFromCsv({  body : value });
+const promise = client.application("<APPLICATION_ID>").communication.getNSampleRecordsFromCsv({  body : value });
 
 // Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").communication.getNSampleRecordsFromCsv({  body : value });
+const data = await client.application("<APPLICATION_ID>").communication.getNSampleRecordsFromCsv({  body : value });
 ```
 
 
@@ -2632,10 +2632,10 @@ Get sms provider by id
 
 ```javascript
 // Promise
-const promise = platformClient.application("<APPLICATION_ID>").communication.getSmsProviderById({  id : value });
+const promise = client.application("<APPLICATION_ID>").communication.getSmsProviderById({  id : value });
 
 // Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").communication.getSmsProviderById({  id : value });
+const data = await client.application("<APPLICATION_ID>").communication.getSmsProviderById({  id : value });
 ```
 
 
@@ -2711,12 +2711,12 @@ Get sms providers
 
 ```javascript
 // Promise
-const promise = platformClient.application("<APPLICATION_ID>").communication.getSmsProviders({  pageNo : value,
+const promise = client.application("<APPLICATION_ID>").communication.getSmsProviders({  pageNo : value,
  pageSize : value,
  sort : value });
 
 // Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").communication.getSmsProviders({  pageNo : value,
+const data = await client.application("<APPLICATION_ID>").communication.getSmsProviders({  pageNo : value,
  pageSize : value,
  sort : value });
 ```
@@ -2807,10 +2807,10 @@ Get sms template by id
 
 ```javascript
 // Promise
-const promise = platformClient.application("<APPLICATION_ID>").communication.getSmsTemplateById({  id : value });
+const promise = client.application("<APPLICATION_ID>").communication.getSmsTemplateById({  id : value });
 
 // Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").communication.getSmsTemplateById({  id : value });
+const data = await client.application("<APPLICATION_ID>").communication.getSmsTemplateById({  id : value });
 ```
 
 
@@ -2891,12 +2891,12 @@ Get sms templates
 
 ```javascript
 // Promise
-const promise = platformClient.application("<APPLICATION_ID>").communication.getSmsTemplates({  pageNo : value,
+const promise = client.application("<APPLICATION_ID>").communication.getSmsTemplates({  pageNo : value,
  pageSize : value,
  sort : value });
 
 // Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").communication.getSmsTemplates({  pageNo : value,
+const data = await client.application("<APPLICATION_ID>").communication.getSmsTemplates({  pageNo : value,
  pageSize : value,
  sort : value });
 ```
@@ -2992,10 +2992,10 @@ Get stats of campaign by id
 
 ```javascript
 // Promise
-const promise = platformClient.application("<APPLICATION_ID>").communication.getStatsOfCampaignById({  id : value });
+const promise = client.application("<APPLICATION_ID>").communication.getStatsOfCampaignById({  id : value });
 
 // Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").communication.getStatsOfCampaignById({  id : value });
+const data = await client.application("<APPLICATION_ID>").communication.getStatsOfCampaignById({  id : value });
 ```
 
 
@@ -3075,12 +3075,12 @@ Get system email templates
 
 ```javascript
 // Promise
-const promise = platformClient.application("<APPLICATION_ID>").communication.getSystemEmailTemplates({  pageNo : value,
+const promise = client.application("<APPLICATION_ID>").communication.getSystemEmailTemplates({  pageNo : value,
  pageSize : value,
  sort : value });
 
 // Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").communication.getSystemEmailTemplates({  pageNo : value,
+const data = await client.application("<APPLICATION_ID>").communication.getSystemEmailTemplates({  pageNo : value,
  pageSize : value,
  sort : value });
 ```
@@ -3187,11 +3187,11 @@ Get system notifications
 
 ```javascript
 // Promise
-const promise = platformClient.communication.getSystemNotifications({  pageNo : value,
+const promise = client.communication.getSystemNotifications({  pageNo : value,
  pageSize : value });
 
 // Async/Await
-const data = await platformClient.communication.getSystemNotifications({  pageNo : value,
+const data = await client.communication.getSystemNotifications({  pageNo : value,
  pageSize : value });
 ```
 
@@ -3287,12 +3287,12 @@ Get system sms templates
 
 ```javascript
 // Promise
-const promise = platformClient.application("<APPLICATION_ID>").communication.getSystemSystemTemplates({  pageNo : value,
+const promise = client.application("<APPLICATION_ID>").communication.getSystemSystemTemplates({  pageNo : value,
  pageSize : value,
  sort : value });
 
 // Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").communication.getSystemSystemTemplates({  pageNo : value,
+const data = await client.application("<APPLICATION_ID>").communication.getSystemSystemTemplates({  pageNo : value,
  pageSize : value,
  sort : value });
 ```
@@ -3388,10 +3388,10 @@ Send email or sms asynchronously
 
 ```javascript
 // Promise
-const promise = platformClient.application("<APPLICATION_ID>").communication.sendCommunicationAsynchronously({  body : value });
+const promise = client.application("<APPLICATION_ID>").communication.sendCommunicationAsynchronously({  body : value });
 
 // Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").communication.sendCommunicationAsynchronously({  body : value });
+const data = await client.application("<APPLICATION_ID>").communication.sendCommunicationAsynchronously({  body : value });
 ```
 
 
@@ -3453,10 +3453,10 @@ Send email or sms synchronously
 
 ```javascript
 // Promise
-const promise = platformClient.application("<APPLICATION_ID>").communication.sendCommunicationSynchronously({  body : value });
+const promise = client.application("<APPLICATION_ID>").communication.sendCommunicationSynchronously({  body : value });
 
 // Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").communication.sendCommunicationSynchronously({  body : value });
+const data = await client.application("<APPLICATION_ID>").communication.sendCommunicationSynchronously({  body : value });
 ```
 
 
@@ -3518,10 +3518,10 @@ Send OTP using email and sms
 
 ```javascript
 // Promise
-const promise = platformClient.application("<APPLICATION_ID>").communication.sendOtp({  body : value });
+const promise = client.application("<APPLICATION_ID>").communication.sendOtp({  body : value });
 
 // Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").communication.sendOtp({  body : value });
+const data = await client.application("<APPLICATION_ID>").communication.sendOtp({  body : value });
 ```
 
 
@@ -3597,10 +3597,10 @@ Trigger campaign job
 
 ```javascript
 // Promise
-const promise = platformClient.application("<APPLICATION_ID>").communication.triggerCampaignJob({  body : value });
+const promise = client.application("<APPLICATION_ID>").communication.triggerCampaignJob({  body : value });
 
 // Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").communication.triggerCampaignJob({  body : value });
+const data = await client.application("<APPLICATION_ID>").communication.triggerCampaignJob({  body : value });
 ```
 
 
@@ -3662,11 +3662,11 @@ Update audience by id
 
 ```javascript
 // Promise
-const promise = platformClient.application("<APPLICATION_ID>").communication.updateAudienceById({  id : value,
+const promise = client.application("<APPLICATION_ID>").communication.updateAudienceById({  id : value,
  body : value });
 
 // Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").communication.updateAudienceById({  id : value,
+const data = await client.application("<APPLICATION_ID>").communication.updateAudienceById({  id : value,
  body : value });
 ```
 
@@ -3751,11 +3751,11 @@ Update campaign by id
 
 ```javascript
 // Promise
-const promise = platformClient.application("<APPLICATION_ID>").communication.updateCampaignById({  id : value,
+const promise = client.application("<APPLICATION_ID>").communication.updateCampaignById({  id : value,
  body : value });
 
 // Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").communication.updateCampaignById({  id : value,
+const data = await client.application("<APPLICATION_ID>").communication.updateCampaignById({  id : value,
  body : value });
 ```
 
@@ -3844,11 +3844,11 @@ Update email provider by id
 
 ```javascript
 // Promise
-const promise = platformClient.application("<APPLICATION_ID>").communication.updateEmailProviderById({  id : value,
+const promise = client.application("<APPLICATION_ID>").communication.updateEmailProviderById({  id : value,
  body : value });
 
 // Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").communication.updateEmailProviderById({  id : value,
+const data = await client.application("<APPLICATION_ID>").communication.updateEmailProviderById({  id : value,
  body : value });
 ```
 
@@ -3929,11 +3929,11 @@ Update email template by id
 
 ```javascript
 // Promise
-const promise = platformClient.application("<APPLICATION_ID>").communication.updateEmailTemplateById({  id : value,
+const promise = client.application("<APPLICATION_ID>").communication.updateEmailTemplateById({  id : value,
  body : value });
 
 // Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").communication.updateEmailTemplateById({  id : value,
+const data = await client.application("<APPLICATION_ID>").communication.updateEmailTemplateById({  id : value,
  body : value });
 ```
 
@@ -4040,11 +4040,11 @@ Update sms provider by id
 
 ```javascript
 // Promise
-const promise = platformClient.application("<APPLICATION_ID>").communication.updateSmsProviderById({  id : value,
+const promise = client.application("<APPLICATION_ID>").communication.updateSmsProviderById({  id : value,
  body : value });
 
 // Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").communication.updateSmsProviderById({  id : value,
+const data = await client.application("<APPLICATION_ID>").communication.updateSmsProviderById({  id : value,
  body : value });
 ```
 
@@ -4121,11 +4121,11 @@ Update sms template by id
 
 ```javascript
 // Promise
-const promise = platformClient.application("<APPLICATION_ID>").communication.updateSmsTemplateById({  id : value,
+const promise = client.application("<APPLICATION_ID>").communication.updateSmsTemplateById({  id : value,
  body : value });
 
 // Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").communication.updateSmsTemplateById({  id : value,
+const data = await client.application("<APPLICATION_ID>").communication.updateSmsTemplateById({  id : value,
  body : value });
 ```
 
@@ -4207,10 +4207,10 @@ Verify OTP sent via email and sms
 
 ```javascript
 // Promise
-const promise = platformClient.application("<APPLICATION_ID>").communication.verfiyOtp({  body : value });
+const promise = client.application("<APPLICATION_ID>").communication.verfiyOtp({  body : value });
 
 // Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").communication.verfiyOtp({  body : value });
+const data = await client.application("<APPLICATION_ID>").communication.verfiyOtp({  body : value });
 ```
 
 
@@ -4275,1256 +4275,700 @@ Success
 #### [Audience](#Audience)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | __v | number? |  yes  |  |
- | _id | string? |  yes  |  |
- | application | string? |  yes  |  |
- | created_at | string? |  yes  |  |
- | description | string? |  yes  |  |
- | file_url | string? |  yes  |  |
- | headers | [string]? |  yes  |  |
- | is_active | boolean? |  yes  |  |
- | name | string? |  yes  |  |
- | records_count | number? |  yes  |  |
- | slug | string? |  yes  |  |
- | tags | [string]? |  yes  |  |
- | type | string? |  yes  |  |
- | updated_at | string? |  yes  |  |
- 
+ | ---------- | ---- | -------- | ----------- || __v | number |  no  |  || _id | string |  no  |  || application | string |  no  |  || created_at | string |  no  |  || description | string |  no  |  || file_url | string |  no  |  || headers | [string] |  no  |  || is_active | boolean |  no  |  || name | string |  no  |  || records_count | number |  no  |  || slug | string |  no  |  || tags | [string] |  no  |  || type | string |  no  |  || updated_at | string |  no  |  |
 
 ---
 
 #### [AudienceReq](#AudienceReq)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | application | string? |  yes  |  |
- | description | string? |  yes  |  |
- | file_url | string? |  yes  |  |
- | headers | [string]? |  yes  |  |
- | is_active | boolean? |  yes  |  |
- | name | string? |  yes  |  |
- | records_count | number? |  yes  |  |
- | tags | [string]? |  yes  |  |
- | type | string? |  yes  |  |
- 
+ | ---------- | ---- | -------- | ----------- || application | string |  no  |  || description | string |  no  |  || file_url | string |  no  |  || headers | [string] |  no  |  || is_active | boolean |  no  |  || name | string |  no  |  || records_count | number |  no  |  || tags | [string] |  no  |  || type | string |  no  |  |
 
 ---
 
 #### [Audiences](#Audiences)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | items | [[Audience](#Audience)]? |  yes  |  |
- | page | [Page](#Page)? |  yes  |  |
- 
+ | ---------- | ---- | -------- | ----------- || items | [[Audience](#Audience)] |  no  |  || page | [Page](#Page) |  no  |  |
 
 ---
 
 #### [BadRequestSchema](#BadRequestSchema)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | message | string? |  yes  | Failure message. |
- | status | string? |  yes  | Response status. |
- 
+ | ---------- | ---- | -------- | ----------- || message | string |  no  |  || status | string |  no  |  |
 
 ---
 
 #### [BigqueryHeadersReq](#BigqueryHeadersReq)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | query | string? |  yes  |  |
- | type | string? |  yes  |  |
- 
+ | ---------- | ---- | -------- | ----------- || query | string |  no  |  || type | string |  no  |  |
 
 ---
 
 #### [BigqueryHeadersRes](#BigqueryHeadersRes)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | headers | [[BigqueryHeadersResHeaders](#BigqueryHeadersResHeaders)]? |  yes  |  |
- 
+ | ---------- | ---- | -------- | ----------- || headers | [[BigqueryHeadersResHeaders](#BigqueryHeadersResHeaders)] |  no  |  |
 
 ---
 
 #### [BigqueryHeadersResHeaders](#BigqueryHeadersResHeaders)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | name | string? |  yes  |  |
- | type | string? |  yes  |  |
- 
+ | ---------- | ---- | -------- | ----------- || name | string |  no  |  || type | string |  no  |  |
 
 ---
 
 #### [Campaign](#Campaign)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | __v | number? |  yes  |  |
- | _id | string? |  yes  |  |
- | application | string? |  yes  |  |
- | created_at | string? |  yes  |  |
- | datasource | string? |  yes  |  |
- | description | string? |  yes  |  |
- | email | [CampaignEmail](#CampaignEmail)? |  yes  |  |
- | is_active | boolean? |  yes  |  |
- | name | string? |  yes  |  |
- | recipient_headers | [RecipientHeaders](#RecipientHeaders)? |  yes  |  |
- | slug | string? |  yes  |  |
- | tags | [any]? |  yes  |  |
- | type | string? |  yes  |  |
- | updated_at | string? |  yes  |  |
- 
+ | ---------- | ---- | -------- | ----------- || __v | number |  no  |  || _id | string |  no  |  || application | string |  no  |  || created_at | string |  no  |  || datasource | string |  no  |  || description | string |  no  |  || email | [CampaignEmail](#CampaignEmail) |  no  |  || is_active | boolean |  no  |  || name | string |  no  |  || recipient_headers | [RecipientHeaders](#RecipientHeaders) |  no  |  || slug | string |  no  |  || tags | [any] |  no  |  || type | string |  no  |  || updated_at | string |  no  |  |
 
 ---
 
 #### [CampaignEmail](#CampaignEmail)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | provider | [CampignEmailProvider](#CampignEmailProvider)? |  yes  |  |
- | template | [CampaignEmailTemplate](#CampaignEmailTemplate)? |  yes  |  |
- 
+ | ---------- | ---- | -------- | ----------- || provider | [CampignEmailProvider](#CampignEmailProvider) |  no  |  || template | [CampaignEmailTemplate](#CampaignEmailTemplate) |  no  |  |
 
 ---
 
 #### [CampaignEmailTemplate](#CampaignEmailTemplate)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | key | string? |  yes  |  |
- | value | string? |  yes  |  |
- 
+ | ---------- | ---- | -------- | ----------- || key | string |  no  |  || value | string |  no  |  |
 
 ---
 
 #### [CampaignReq](#CampaignReq)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | application | string? |  yes  |  |
- | description | string? |  yes  |  |
- | file_url | string? |  yes  |  |
- | headers | [string]? |  yes  |  |
- | is_active | boolean? |  yes  |  |
- | name | string? |  yes  |  |
- | records_count | number? |  yes  |  |
- | tags | [string]? |  yes  |  |
- | type | string? |  yes  |  |
- 
+ | ---------- | ---- | -------- | ----------- || application | string |  no  |  || description | string |  no  |  || file_url | string |  no  |  || headers | [string] |  no  |  || is_active | boolean |  no  |  || name | string |  no  |  || records_count | number |  no  |  || tags | [string] |  no  |  || type | string |  no  |  |
 
 ---
 
 #### [Campaigns](#Campaigns)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | items | [[Campaign](#Campaign)]? |  yes  |  |
- | page | [Page](#Page)? |  yes  |  |
- 
+ | ---------- | ---- | -------- | ----------- || items | [[Campaign](#Campaign)] |  no  |  || page | [Page](#Page) |  no  |  |
 
 ---
 
 #### [CampignEmailProvider](#CampignEmailProvider)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | _id | string? |  yes  |  |
- | from_email | string? |  yes  |  |
- | from_name | string? |  yes  |  |
- 
+ | ---------- | ---- | -------- | ----------- || _id | string |  no  |  || from_email | string |  no  |  || from_name | string |  no  |  |
 
 ---
 
 #### [EmailProvider](#EmailProvider)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | __v | number? |  yes  |  |
- | _id | string? |  yes  |  |
- | api_key | string? |  yes  |  |
- | application | string? |  yes  |  |
- | created_at | string? |  yes  |  |
- | description | string? |  yes  |  |
- | from_address | [[EmailProviderReqFrom](#EmailProviderReqFrom)]? |  yes  |  |
- | name | string? |  yes  |  |
- | provider | string? |  yes  |  |
- | slug | string? |  yes  |  |
- | type | string? |  yes  |  |
- | updated_at | string? |  yes  |  |
- 
+ | ---------- | ---- | -------- | ----------- || __v | number |  no  |  || _id | string |  no  |  || api_key | string |  no  |  || application | string |  no  |  || created_at | string |  no  |  || description | string |  no  |  || from_address | [[EmailProviderReqFrom](#EmailProviderReqFrom)] |  no  |  || name | string |  no  |  || provider | string |  no  |  || slug | string |  no  |  || type | string |  no  |  || updated_at | string |  no  |  |
 
 ---
 
 #### [EmailProviderReq](#EmailProviderReq)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | api_key | string? |  yes  |  |
- | description | string? |  yes  |  |
- | from_address | [[EmailProviderReqFrom](#EmailProviderReqFrom)]? |  yes  |  |
- | name | string? |  yes  |  |
- | provider | string? |  yes  |  |
- | type | string? |  yes  |  |
- 
+ | ---------- | ---- | -------- | ----------- || api_key | string |  no  |  || description | string |  no  |  || from_address | [[EmailProviderReqFrom](#EmailProviderReqFrom)] |  no  |  || name | string |  no  |  || provider | string |  no  |  || type | string |  no  |  |
 
 ---
 
 #### [EmailProviderReqFrom](#EmailProviderReqFrom)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | email | string? |  yes  |  |
- | is_default | boolean? |  yes  |  |
- | name | string? |  yes  |  |
- 
+ | ---------- | ---- | -------- | ----------- || email | string |  no  |  || is_default | boolean |  no  |  || name | string |  no  |  |
 
 ---
 
 #### [EmailProviders](#EmailProviders)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | items | [[EmailProvider](#EmailProvider)]? |  yes  |  |
- | page | [Page](#Page)? |  yes  |  |
- 
+ | ---------- | ---- | -------- | ----------- || items | [[EmailProvider](#EmailProvider)] |  no  |  || page | [Page](#Page) |  no  |  |
 
 ---
 
 #### [EmailTemplate](#EmailTemplate)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | __v | number? |  yes  |  |
- | _id | string? |  yes  |  |
- | attachments | [any]? |  yes  |  |
- | created_at | string? |  yes  |  |
- | description | string? |  yes  |  |
- | from_name | string? |  yes  |  |
- | headers | [any]? |  yes  |  |
- | html | [TemplateAndType](#TemplateAndType)? |  yes  |  |
- | is_internal | boolean? |  yes  |  |
- | is_system | boolean? |  yes  |  |
- | name | string? |  yes  |  |
- | priority | string? |  yes  |  |
- | published | boolean? |  yes  |  |
- | slug | string? |  yes  |  |
- | static_bcc | [any]? |  yes  |  |
- | static_cc | [any]? |  yes  |  |
- | static_to | [any]? |  yes  |  |
- | subject | [TemplateAndType](#TemplateAndType)? |  yes  |  |
- | tags | [any]? |  yes  |  |
- | text | [TemplateAndType](#TemplateAndType)? |  yes  |  |
- | updated_at | string? |  yes  |  |
- 
+ | ---------- | ---- | -------- | ----------- || __v | number |  no  |  || _id | string |  no  |  || attachments | [any] |  no  |  || created_at | string |  no  |  || description | string |  no  |  || from_name | string |  no  |  || headers | [any] |  no  |  || html | [TemplateAndType](#TemplateAndType) |  no  |  || is_internal | boolean |  no  |  || is_system | boolean |  no  |  || name | string |  no  |  || priority | string |  no  |  || published | boolean |  no  |  || slug | string |  no  |  || static_bcc | [any] |  no  |  || static_cc | [any] |  no  |  || static_to | [any] |  no  |  || subject | [TemplateAndType](#TemplateAndType) |  no  |  || tags | [any] |  no  |  || text | [TemplateAndType](#TemplateAndType) |  no  |  || updated_at | string |  no  |  |
 
 ---
 
 #### [EmailTemplateDeleteFailureRes](#EmailTemplateDeleteFailureRes)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | message | string? |  yes  |  |
- | success | boolean? |  yes  |  |
- 
+ | ---------- | ---- | -------- | ----------- || message | string |  no  |  || success | boolean |  no  |  |
 
 ---
 
 #### [EmailTemplateDeleteSuccessRes](#EmailTemplateDeleteSuccessRes)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | message | string? |  yes  |  |
- | success | boolean? |  yes  |  |
- 
+ | ---------- | ---- | -------- | ----------- || message | string |  no  |  || success | boolean |  no  |  |
 
 ---
 
 #### [EmailTemplateHeaders](#EmailTemplateHeaders)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | key | string? |  yes  |  |
- | value | string? |  yes  |  |
- 
+ | ---------- | ---- | -------- | ----------- || key | string |  no  |  || value | string |  no  |  |
 
 ---
 
 #### [EmailTemplateKeys](#EmailTemplateKeys)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | bcc | string? |  yes  |  |
- | cc | string? |  yes  |  |
- | to | string? |  yes  |  |
- 
+ | ---------- | ---- | -------- | ----------- || bcc | string |  no  |  || cc | string |  no  |  || to | string |  no  |  |
 
 ---
 
 #### [EmailTemplateReq](#EmailTemplateReq)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | attachments | [any]? |  yes  |  |
- | description | string? |  yes  |  |
- | headers | [[EmailTemplateHeaders](#EmailTemplateHeaders)]? |  yes  |  |
- | html | [TemplateAndType](#TemplateAndType)? |  yes  |  |
- | keys | [EmailTemplateKeys](#EmailTemplateKeys)? |  yes  |  |
- | name | string? |  yes  |  |
- | priority | string? |  yes  |  |
- | reply_to | string? |  yes  |  |
- | static_bcc | [string]? |  yes  |  |
- | static_cc | [string]? |  yes  |  |
- | static_to | [string]? |  yes  |  |
- | subject | [TemplateAndType](#TemplateAndType)? |  yes  |  |
- | text | [TemplateAndType](#TemplateAndType)? |  yes  |  |
- 
+ | ---------- | ---- | -------- | ----------- || attachments | [any] |  no  |  || description | string |  no  |  || headers | [[EmailTemplateHeaders](#EmailTemplateHeaders)] |  no  |  || html | [TemplateAndType](#TemplateAndType) |  no  |  || keys | [EmailTemplateKeys](#EmailTemplateKeys) |  no  |  || name | string |  no  |  || priority | string |  no  |  || reply_to | string |  no  |  || static_bcc | [string] |  no  |  || static_cc | [string] |  no  |  || static_to | [string] |  no  |  || subject | [TemplateAndType](#TemplateAndType) |  no  |  || text | [TemplateAndType](#TemplateAndType) |  no  |  |
 
 ---
 
 #### [EmailTemplateRes](#EmailTemplateRes)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | __v | number? |  yes  |  |
- | _id | string? |  yes  |  |
- | attachments | [any]? |  yes  |  |
- | created_at | string? |  yes  |  |
- | description | string? |  yes  |  |
- | headers | [[EmailTemplateHeaders](#EmailTemplateHeaders)]? |  yes  |  |
- | html | [TemplateAndType](#TemplateAndType)? |  yes  |  |
- | is_internal | boolean? |  yes  |  |
- | is_system | boolean? |  yes  |  |
- | keys | [EmailTemplateKeys](#EmailTemplateKeys)? |  yes  |  |
- | name | string? |  yes  |  |
- | priority | string? |  yes  |  |
- | published | boolean? |  yes  |  |
- | reply_to | string? |  yes  |  |
- | slug | string? |  yes  |  |
- | static_bcc | [string]? |  yes  |  |
- | static_cc | [string]? |  yes  |  |
- | static_to | [string]? |  yes  |  |
- | subject | [TemplateAndType](#TemplateAndType)? |  yes  |  |
- | tags | [any]? |  yes  |  |
- | text | [TemplateAndType](#TemplateAndType)? |  yes  |  |
- | updated_at | string? |  yes  |  |
- 
+ | ---------- | ---- | -------- | ----------- || __v | number |  no  |  || _id | string |  no  |  || attachments | [any] |  no  |  || created_at | string |  no  |  || description | string |  no  |  || headers | [[EmailTemplateHeaders](#EmailTemplateHeaders)] |  no  |  || html | [TemplateAndType](#TemplateAndType) |  no  |  || is_internal | boolean |  no  |  || is_system | boolean |  no  |  || keys | [EmailTemplateKeys](#EmailTemplateKeys) |  no  |  || name | string |  no  |  || priority | string |  no  |  || published | boolean |  no  |  || reply_to | string |  no  |  || slug | string |  no  |  || static_bcc | [string] |  no  |  || static_cc | [string] |  no  |  || static_to | [string] |  no  |  || subject | [TemplateAndType](#TemplateAndType) |  no  |  || tags | [any] |  no  |  || text | [TemplateAndType](#TemplateAndType) |  no  |  || updated_at | string |  no  |  |
 
 ---
 
 #### [EmailTemplates](#EmailTemplates)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | items | [[EmailTemplate](#EmailTemplate)]? |  yes  |  |
- | page | [Page](#Page)? |  yes  |  |
- 
+ | ---------- | ---- | -------- | ----------- || items | [[EmailTemplate](#EmailTemplate)] |  no  |  || page | [Page](#Page) |  no  |  |
 
 ---
 
 #### [EngineRequest](#EngineRequest)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | meta | [MetaStructure](#MetaStructure)? |  yes  |  |
- | payload | [PayloadStructure](#PayloadStructure)? |  yes  |  |
- 
+ | ---------- | ---- | -------- | ----------- || meta | [MetaStructure](#MetaStructure) |  no  |  || payload | [PayloadStructure](#PayloadStructure) |  no  |  |
 
 ---
 
 #### [EngineResponse](#EngineResponse)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | success | boolean? |  yes  |  |
- 
+ | ---------- | ---- | -------- | ----------- || success | boolean |  no  |  |
 
 ---
 
 #### [EventSubscription](#EventSubscription)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | __v | number? |  yes  |  |
- | _id | string? |  yes  |  |
- | application | string? |  yes  |  |
- | created_at | string? |  yes  |  |
- | event | string? |  yes  |  |
- | is_default | boolean? |  yes  |  |
- | slug | string? |  yes  |  |
- | template | [EventSubscriptionTemplate](#EventSubscriptionTemplate)? |  yes  |  |
- | updated_at | string? |  yes  |  |
- 
+ | ---------- | ---- | -------- | ----------- || __v | number |  no  |  || _id | string |  no  |  || application | string |  no  |  || created_at | string |  no  |  || event | string |  no  |  || is_default | boolean |  no  |  || slug | string |  no  |  || template | [EventSubscriptionTemplate](#EventSubscriptionTemplate) |  no  |  || updated_at | string |  no  |  |
 
 ---
 
 #### [EventSubscriptions](#EventSubscriptions)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | items | [[EventSubscription](#EventSubscription)]? |  yes  |  |
- | page | [Page](#Page)? |  yes  |  |
- 
+ | ---------- | ---- | -------- | ----------- || items | [[EventSubscription](#EventSubscription)] |  no  |  || page | [Page](#Page) |  no  |  |
 
 ---
 
 #### [EventSubscriptionTemplate](#EventSubscriptionTemplate)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | email | [EventSubscriptionTemplateEmail](#EventSubscriptionTemplateEmail)? |  yes  |  |
- | sms | [EventSubscriptionTemplateSms](#EventSubscriptionTemplateSms)? |  yes  |  |
- 
+ | ---------- | ---- | -------- | ----------- || email | [EventSubscriptionTemplateEmail](#EventSubscriptionTemplateEmail) |  no  |  || sms | [EventSubscriptionTemplateSms](#EventSubscriptionTemplateSms) |  no  |  |
 
 ---
 
 #### [EventSubscriptionTemplateEmail](#EventSubscriptionTemplateEmail)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | subscribed | boolean? |  yes  |  |
- | template | string? |  yes  |  |
- 
+ | ---------- | ---- | -------- | ----------- || subscribed | boolean |  no  |  || template | string |  no  |  |
 
 ---
 
 #### [EventSubscriptionTemplateSms](#EventSubscriptionTemplateSms)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | subscribed | boolean? |  yes  |  |
- | template | string? |  yes  |  |
- 
+ | ---------- | ---- | -------- | ----------- || subscribed | boolean |  no  |  || template | string |  no  |  |
 
 ---
 
 #### [GetNRecordsCsvReq](#GetNRecordsCsvReq)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | count | number? |  yes  |  |
- | header | boolean? |  yes  |  |
- | url | string? |  yes  |  |
- 
+ | ---------- | ---- | -------- | ----------- || count | number |  no  |  || header | boolean |  no  |  || url | string |  no  |  |
 
 ---
 
 #### [GetNRecordsCsvRes](#GetNRecordsCsvRes)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | items | [[GetNRecordsCsvResItems](#GetNRecordsCsvResItems)]? |  yes  |  |
- 
+ | ---------- | ---- | -------- | ----------- || items | [[GetNRecordsCsvResItems](#GetNRecordsCsvResItems)] |  no  |  |
 
 ---
 
 #### [GetNRecordsCsvResItems](#GetNRecordsCsvResItems)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | email | string? |  yes  |  |
- | firstname | string? |  yes  |  |
- | lastname | string? |  yes  |  |
- | orderid | string? |  yes  |  |
- | phone_number | string? |  yes  |  |
- 
+ | ---------- | ---- | -------- | ----------- || email | string |  no  |  || firstname | string |  no  |  || lastname | string |  no  |  || orderid | string |  no  |  || phone_number | string |  no  |  |
 
 ---
 
 #### [GetStats](#GetStats)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | items | [[Stats](#Stats)]? |  yes  |  |
- 
+ | ---------- | ---- | -------- | ----------- || items | [[Stats](#Stats)] |  no  |  |
 
 ---
 
 #### [Job](#Job)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | __v | number? |  yes  |  |
- | _id | string? |  yes  |  |
- | application | string? |  yes  |  |
- | campaign | string? |  yes  |  |
- | completed | boolean? |  yes  |  |
- | created_at | string? |  yes  |  |
- | is_active | boolean? |  yes  |  |
- | updated_at | string? |  yes  |  |
- 
+ | ---------- | ---- | -------- | ----------- || __v | number |  no  |  || _id | string |  no  |  || application | string |  no  |  || campaign | string |  no  |  || completed | boolean |  no  |  || created_at | string |  no  |  || is_active | boolean |  no  |  || updated_at | string |  no  |  |
 
 ---
 
 #### [JobLog](#JobLog)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | __v | number? |  yes  |  |
- | _id | string? |  yes  |  |
- | campaign | string? |  yes  |  |
- | created_at | string? |  yes  |  |
- | imported | any? |  yes  |  |
- | job | string? |  yes  |  |
- | processed | any? |  yes  |  |
- | updated_at | string? |  yes  |  |
- 
+ | ---------- | ---- | -------- | ----------- || __v | number |  no  |  || _id | string |  no  |  || campaign | string |  no  |  || created_at | string |  no  |  || imported | any |  no  |  || job | string |  no  |  || processed | any |  no  |  || updated_at | string |  no  |  |
 
 ---
 
 #### [JobLogs](#JobLogs)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | items | [[JobLog](#JobLog)]? |  yes  |  |
- | page | [Page](#Page)? |  yes  |  |
- 
+ | ---------- | ---- | -------- | ----------- || items | [[JobLog](#JobLog)] |  no  |  || page | [Page](#Page) |  no  |  |
 
 ---
 
 #### [Jobs](#Jobs)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | items | [[Job](#Job)]? |  yes  |  |
- | page | [Page](#Page)? |  yes  |  |
- 
+ | ---------- | ---- | -------- | ----------- || items | [[Job](#Job)] |  no  |  || page | [Page](#Page) |  no  |  |
 
 ---
 
 #### [Log](#Log)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | _id | string? |  yes  |  |
- | application | string? |  yes  |  |
- | created_at | string? |  yes  |  |
- | data | any? |  yes  |  |
- | email | [LogEmail](#LogEmail)? |  yes  |  |
- | expire_at | string? |  yes  |  |
- | meta | [LogMeta](#LogMeta)? |  yes  |  |
- | pushnotification | [LogPushnotification](#LogPushnotification)? |  yes  |  |
- | service | string? |  yes  |  |
- | status | string? |  yes  |  |
- | step | string? |  yes  |  |
- 
+ | ---------- | ---- | -------- | ----------- || _id | string |  no  |  || application | string |  no  |  || created_at | string |  no  |  || data | any |  no  |  || email | [LogEmail](#LogEmail) |  no  |  || expire_at | string |  no  |  || meta | [LogMeta](#LogMeta) |  no  |  || pushnotification | [LogPushnotification](#LogPushnotification) |  no  |  || service | string |  no  |  || status | string |  no  |  || step | string |  no  |  |
 
 ---
 
 #### [LogEmail](#LogEmail)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | template | string? |  yes  |  |
- 
+ | ---------- | ---- | -------- | ----------- || template | string |  no  |  |
 
 ---
 
 #### [LogMeta](#LogMeta)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | identifier | string? |  yes  |  |
- | key | string? |  yes  |  |
- | offset | string? |  yes  |  |
- | partition | string? |  yes  |  |
- | topic | string? |  yes  |  |
- | type | string? |  yes  |  |
- 
+ | ---------- | ---- | -------- | ----------- || identifier | string |  no  |  || key | string |  no  |  || offset | string |  no  |  || partition | string |  no  |  || topic | string |  no  |  || type | string |  no  |  |
 
 ---
 
 #### [LogPushnotification](#LogPushnotification)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | pushtokens | [string]? |  yes  |  |
- 
+ | ---------- | ---- | -------- | ----------- || pushtokens | [string] |  no  |  |
 
 ---
 
 #### [Logs](#Logs)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | items | [[Log](#Log)]? |  yes  |  |
- | page | [Page](#Page)? |  yes  |  |
- 
+ | ---------- | ---- | -------- | ----------- || items | [[Log](#Log)] |  no  |  || page | [Page](#Page) |  no  |  |
 
 ---
 
 #### [MetaStructure](#MetaStructure)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | action | string? |  yes  |  |
- | job_type | string? |  yes  |  |
- | timestamp | string? |  yes  |  |
- | trace | string? |  yes  |  |
- 
+ | ---------- | ---- | -------- | ----------- || action | string |  no  |  || job_type | string |  no  |  || timestamp | string |  no  |  || trace | string |  no  |  |
 
 ---
 
 #### [NotFound](#NotFound)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | message | string? |  yes  | Failure message. |
- 
+ | ---------- | ---- | -------- | ----------- || message | string |  no  |  |
 
 ---
 
 #### [Notification](#Notification)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | body | string? |  yes  |  |
- | click_action | string? |  yes  |  |
- | deeplink | string? |  yes  |  |
- | icon | string? |  yes  |  |
- | subtitle | string? |  yes  |  |
- | title | string? |  yes  |  |
- 
+ | ---------- | ---- | -------- | ----------- || body | string |  no  |  || click_action | string |  no  |  || deeplink | string |  no  |  || icon | string |  no  |  || subtitle | string |  no  |  || title | string |  no  |  |
 
 ---
 
 #### [Page](#Page)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | current | number? |  yes  |  |
- | has_next | boolean? |  yes  |  |
- | has_previous | boolean? |  yes  |  |
- | item_total | number? |  yes  |  |
- | next_id | string? |  yes  |  |
- | size | number? |  yes  |  |
- | type | string |  no  |  |
- 
+ | ---------- | ---- | -------- | ----------- || current | number |  no  |  || has_next | boolean |  no  |  || has_previous | boolean |  no  |  || item_total | number |  no  |  || next_id | string |  no  |  || size | number |  no  |  || type | string |  yes  |  |
 
 ---
 
 #### [PayloadEmailProviderStructure](#PayloadEmailProviderStructure)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | _id | string? |  yes  |  |
- 
+ | ---------- | ---- | -------- | ----------- || _id | string |  no  |  |
 
 ---
 
 #### [PayloadEmailStructure](#PayloadEmailStructure)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | provider | [PayloadEmailProviderStructure](#PayloadEmailProviderStructure)? |  yes  |  |
- | template | [PayloadEmailTemplateStructure](#PayloadEmailTemplateStructure)? |  yes  |  |
- 
+ | ---------- | ---- | -------- | ----------- || provider | [PayloadEmailProviderStructure](#PayloadEmailProviderStructure) |  no  |  || template | [PayloadEmailTemplateStructure](#PayloadEmailTemplateStructure) |  no  |  |
 
 ---
 
 #### [PayloadEmailTemplateStructure](#PayloadEmailTemplateStructure)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | key | string? |  yes  |  |
- | value | any? |  yes  |  |
- 
+ | ---------- | ---- | -------- | ----------- || key | string |  no  |  || value | any |  no  |  |
 
 ---
 
 #### [PayloadSmsProviderStructure](#PayloadSmsProviderStructure)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | _id | string? |  yes  |  |
- 
+ | ---------- | ---- | -------- | ----------- || _id | string |  no  |  |
 
 ---
 
 #### [PayloadSmsStructure](#PayloadSmsStructure)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | provider | [PayloadSmsProviderStructure](#PayloadSmsProviderStructure)? |  yes  |  |
- | template | [PayloadSmsTemplateStructure](#PayloadSmsTemplateStructure)? |  yes  |  |
- 
+ | ---------- | ---- | -------- | ----------- || provider | [PayloadSmsProviderStructure](#PayloadSmsProviderStructure) |  no  |  || template | [PayloadSmsTemplateStructure](#PayloadSmsTemplateStructure) |  no  |  |
 
 ---
 
 #### [PayloadSmsTemplateStructure](#PayloadSmsTemplateStructure)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | key | string? |  yes  |  |
- | value | any? |  yes  |  |
- 
+ | ---------- | ---- | -------- | ----------- || key | string |  no  |  || value | any |  no  |  |
 
 ---
 
 #### [PayloadStructure](#PayloadStructure)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | application | string? |  yes  |  |
- | data | [string]? |  yes  |  |
- | email | [PayloadEmailStructure](#PayloadEmailStructure)? |  yes  |  |
- | sms | [PayloadSmsStructure](#PayloadSmsStructure)? |  yes  |  |
- 
+ | ---------- | ---- | -------- | ----------- || application | string |  no  |  || data | [string] |  no  |  || email | [PayloadEmailStructure](#PayloadEmailStructure) |  no  |  || sms | [PayloadSmsStructure](#PayloadSmsStructure) |  no  |  |
 
 ---
 
 #### [PushtokenReq](#PushtokenReq)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | action | string? |  yes  |  |
- | bundle_identifier | string? |  yes  |  |
- | push_token | string? |  yes  |  |
- | unique_device_id | string? |  yes  |  |
- 
+ | ---------- | ---- | -------- | ----------- || action | string |  no  |  || bundle_identifier | string |  no  |  || push_token | string |  no  |  || unique_device_id | string |  no  |  |
 
 ---
 
 #### [PushtokenRes](#PushtokenRes)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | _id | string? |  yes  |  |
- | application_id | string? |  yes  |  |
- | bundle_identifier | string? |  yes  |  |
- | created_at | string? |  yes  |  |
- | expired_at | string? |  yes  |  |
- | platform | string? |  yes  |  |
- | push_token | string? |  yes  |  |
- | type | string? |  yes  |  |
- | unique_device_id | string? |  yes  |  |
- | updated_at | string? |  yes  |  |
- | user_id | string? |  yes  |  |
- 
+ | ---------- | ---- | -------- | ----------- || _id | string |  no  |  || application_id | string |  no  |  || bundle_identifier | string |  no  |  || created_at | string |  no  |  || expired_at | string |  no  |  || platform | string |  no  |  || push_token | string |  no  |  || type | string |  no  |  || unique_device_id | string |  no  |  || updated_at | string |  no  |  || user_id | string |  no  |  |
 
 ---
 
 #### [RecipientHeaders](#RecipientHeaders)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | email | string? |  yes  |  |
- 
+ | ---------- | ---- | -------- | ----------- || email | string |  no  |  |
 
 ---
 
 #### [SendOtpCommsReq](#SendOtpCommsReq)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | data | [SendOtpCommsReqData](#SendOtpCommsReqData)? |  yes  |  |
- | email | [SendOtpCommsReqEmail](#SendOtpCommsReqEmail)? |  yes  |  |
- | sms | [SendOtpCommsReqSms](#SendOtpCommsReqSms)? |  yes  |  |
- 
+ | ---------- | ---- | -------- | ----------- || data | [SendOtpCommsReqData](#SendOtpCommsReqData) |  no  |  || email | [SendOtpCommsReqEmail](#SendOtpCommsReqEmail) |  no  |  || sms | [SendOtpCommsReqSms](#SendOtpCommsReqSms) |  no  |  |
 
 ---
 
 #### [SendOtpCommsReqData](#SendOtpCommsReqData)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | country_code | string? |  yes  |  |
- | mobile | string? |  yes  |  |
- | send_same_otp_to_channel | boolean? |  yes  |  |
- | to | string? |  yes  |  |
- 
+ | ---------- | ---- | -------- | ----------- || country_code | string |  no  |  || mobile | string |  no  |  || send_same_otp_to_channel | boolean |  no  |  || to | string |  no  |  |
 
 ---
 
 #### [SendOtpCommsReqEmail](#SendOtpCommsReqEmail)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | expiry | number? |  yes  |  |
- | otp_length | number? |  yes  |  |
- | provider | [SendOtpEmailCommsProvider](#SendOtpEmailCommsProvider)? |  yes  |  |
- | template | [SendOtpEmailCommsTemplate](#SendOtpEmailCommsTemplate)? |  yes  |  |
- 
+ | ---------- | ---- | -------- | ----------- || expiry | number |  no  |  || otp_length | number |  no  |  || provider | [SendOtpEmailCommsProvider](#SendOtpEmailCommsProvider) |  no  |  || template | [SendOtpEmailCommsTemplate](#SendOtpEmailCommsTemplate) |  no  |  |
 
 ---
 
 #### [SendOtpCommsReqSms](#SendOtpCommsReqSms)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | expiry | number? |  yes  |  |
- | otp_length | number? |  yes  |  |
- | provider | [SendOtpSmsCommsProvider](#SendOtpSmsCommsProvider)? |  yes  |  |
- | template | [SendOtpSmsCommsTemplate](#SendOtpSmsCommsTemplate)? |  yes  |  |
- 
+ | ---------- | ---- | -------- | ----------- || expiry | number |  no  |  || otp_length | number |  no  |  || provider | [SendOtpSmsCommsProvider](#SendOtpSmsCommsProvider) |  no  |  || template | [SendOtpSmsCommsTemplate](#SendOtpSmsCommsTemplate) |  no  |  |
 
 ---
 
 #### [SendOtpCommsRes](#SendOtpCommsRes)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | email | [SendOtpCommsResEmail](#SendOtpCommsResEmail)? |  yes  |  |
- | sms | [SendOtpCommsResSms](#SendOtpCommsResSms)? |  yes  |  |
- 
+ | ---------- | ---- | -------- | ----------- || email | [SendOtpCommsResEmail](#SendOtpCommsResEmail) |  no  |  || sms | [SendOtpCommsResSms](#SendOtpCommsResSms) |  no  |  |
 
 ---
 
 #### [SendOtpCommsResEmail](#SendOtpCommsResEmail)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | message | string? |  yes  |  |
- | request_id | string? |  yes  |  |
- | resend_timer | number? |  yes  |  |
- | success | boolean? |  yes  |  |
- | to | string? |  yes  |  |
- 
+ | ---------- | ---- | -------- | ----------- || message | string |  no  |  || request_id | string |  no  |  || resend_timer | number |  no  |  || success | boolean |  no  |  || to | string |  no  |  |
 
 ---
 
 #### [SendOtpCommsResSms](#SendOtpCommsResSms)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | country_code | string? |  yes  |  |
- | message | string? |  yes  |  |
- | mobile | string? |  yes  |  |
- | request_id | string? |  yes  |  |
- | resend_timer | number? |  yes  |  |
- | success | boolean? |  yes  |  |
- 
+ | ---------- | ---- | -------- | ----------- || country_code | string |  no  |  || message | string |  no  |  || mobile | string |  no  |  || request_id | string |  no  |  || resend_timer | number |  no  |  || success | boolean |  no  |  |
 
 ---
 
 #### [SendOtpEmailCommsProvider](#SendOtpEmailCommsProvider)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | _id | string? |  yes  |  |
- | slug | string? |  yes  |  |
- 
+ | ---------- | ---- | -------- | ----------- || _id | string |  no  |  || slug | string |  no  |  |
 
 ---
 
 #### [SendOtpEmailCommsTemplate](#SendOtpEmailCommsTemplate)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | key | string? |  yes  |  |
- | value | any? |  yes  |  |
- 
+ | ---------- | ---- | -------- | ----------- || key | string |  no  |  || value | any |  no  |  |
 
 ---
 
 #### [SendOtpSmsCommsProvider](#SendOtpSmsCommsProvider)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | _id | string? |  yes  |  |
- | slug | string? |  yes  |  |
- 
+ | ---------- | ---- | -------- | ----------- || _id | string |  no  |  || slug | string |  no  |  |
 
 ---
 
 #### [SendOtpSmsCommsTemplate](#SendOtpSmsCommsTemplate)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | key | string? |  yes  |  |
- | value | any? |  yes  |  |
- 
+ | ---------- | ---- | -------- | ----------- || key | string |  no  |  || value | any |  no  |  |
 
 ---
 
 #### [SmsProvider](#SmsProvider)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | __v | number? |  yes  |  |
- | _id | string? |  yes  |  |
- | application | string? |  yes  |  |
- | authkey | string? |  yes  |  |
- | created_at | string? |  yes  |  |
- | description | string? |  yes  |  |
- | name | string? |  yes  |  |
- | provider | string? |  yes  |  |
- | rpt | number? |  yes  |  |
- | sender | string? |  yes  |  |
- | slug | string? |  yes  |  |
- | type | string? |  yes  |  |
- | updated_at | string? |  yes  |  |
- | username | string? |  yes  |  |
- 
+ | ---------- | ---- | -------- | ----------- || __v | number |  no  |  || _id | string |  no  |  || application | string |  no  |  || authkey | string |  no  |  || created_at | string |  no  |  || description | string |  no  |  || name | string |  no  |  || provider | string |  no  |  || rpt | number |  no  |  || sender | string |  no  |  || slug | string |  no  |  || type | string |  no  |  || updated_at | string |  no  |  || username | string |  no  |  |
 
 ---
 
 #### [SmsProviderReq](#SmsProviderReq)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | authkey | string? |  yes  |  |
- | description | string? |  yes  |  |
- | name | string? |  yes  |  |
- | provider | string? |  yes  |  |
- | sender | string? |  yes  |  |
- | type | string? |  yes  |  |
- | username | string? |  yes  |  |
- 
+ | ---------- | ---- | -------- | ----------- || authkey | string |  no  |  || description | string |  no  |  || name | string |  no  |  || provider | string |  no  |  || sender | string |  no  |  || type | string |  no  |  || username | string |  no  |  |
 
 ---
 
 #### [SmsProviders](#SmsProviders)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | items | [[SmsProvider](#SmsProvider)]? |  yes  |  |
- | page | [Page](#Page)? |  yes  |  |
- 
+ | ---------- | ---- | -------- | ----------- || items | [[SmsProvider](#SmsProvider)] |  no  |  || page | [Page](#Page) |  no  |  |
 
 ---
 
 #### [SmsTemplate](#SmsTemplate)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | __v | number? |  yes  |  |
- | _id | string? |  yes  |  |
- | created_at | string? |  yes  |  |
- | description | string? |  yes  |  |
- | is_internal | boolean? |  yes  |  |
- | is_system | boolean? |  yes  |  |
- | message | [SmsTemplateMessage](#SmsTemplateMessage)? |  yes  |  |
- | name | string? |  yes  |  |
- | priority | string? |  yes  |  |
- | published | boolean? |  yes  |  |
- | slug | string? |  yes  |  |
- | tags | [any]? |  yes  |  |
- | template_variables | any? |  yes  |  |
- | updated_at | string? |  yes  |  |
- 
+ | ---------- | ---- | -------- | ----------- || __v | number |  no  |  || _id | string |  no  |  || created_at | string |  no  |  || description | string |  no  |  || is_internal | boolean |  no  |  || is_system | boolean |  no  |  || message | [SmsTemplateMessage](#SmsTemplateMessage) |  no  |  || name | string |  no  |  || priority | string |  no  |  || published | boolean |  no  |  || slug | string |  no  |  || tags | [any] |  no  |  || template_variables | any |  no  |  || updated_at | string |  no  |  |
 
 ---
 
 #### [SmsTemplateDeleteFailureRes](#SmsTemplateDeleteFailureRes)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | message | string? |  yes  |  |
- | success | boolean? |  yes  |  |
- 
+ | ---------- | ---- | -------- | ----------- || message | string |  no  |  || success | boolean |  no  |  |
 
 ---
 
 #### [SmsTemplateDeleteSuccessRes](#SmsTemplateDeleteSuccessRes)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | message | string? |  yes  |  |
- | success | boolean? |  yes  |  |
- 
+ | ---------- | ---- | -------- | ----------- || message | string |  no  |  || success | boolean |  no  |  |
 
 ---
 
 #### [SmsTemplateMessage](#SmsTemplateMessage)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | template | string? |  yes  |  |
- | template_type | string? |  yes  |  |
- 
+ | ---------- | ---- | -------- | ----------- || template | string |  no  |  || template_type | string |  no  |  |
 
 ---
 
 #### [SmsTemplateReq](#SmsTemplateReq)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | attachments | [any]? |  yes  |  |
- | description | string? |  yes  |  |
- | message | [SmsTemplateMessage](#SmsTemplateMessage)? |  yes  |  |
- | name | string? |  yes  |  |
- | priority | string? |  yes  |  |
- | template_variables | any? |  yes  |  |
- 
+ | ---------- | ---- | -------- | ----------- || attachments | [any] |  no  |  || description | string |  no  |  || message | [SmsTemplateMessage](#SmsTemplateMessage) |  no  |  || name | string |  no  |  || priority | string |  no  |  || template_variables | any |  no  |  |
 
 ---
 
 #### [SmsTemplateRes](#SmsTemplateRes)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | __v | number? |  yes  |  |
- | _id | string? |  yes  |  |
- | created_at | string? |  yes  |  |
- | description | string? |  yes  |  |
- | is_internal | boolean? |  yes  |  |
- | is_system | boolean? |  yes  |  |
- | message | [SmsTemplateMessage](#SmsTemplateMessage)? |  yes  |  |
- | name | string? |  yes  |  |
- | priority | string? |  yes  |  |
- | published | boolean? |  yes  |  |
- | slug | string? |  yes  |  |
- | tags | [any]? |  yes  |  |
- | template_variables | any? |  yes  |  |
- | updated_at | string? |  yes  |  |
- 
+ | ---------- | ---- | -------- | ----------- || __v | number |  no  |  || _id | string |  no  |  || created_at | string |  no  |  || description | string |  no  |  || is_internal | boolean |  no  |  || is_system | boolean |  no  |  || message | [SmsTemplateMessage](#SmsTemplateMessage) |  no  |  || name | string |  no  |  || priority | string |  no  |  || published | boolean |  no  |  || slug | string |  no  |  || tags | [any] |  no  |  || template_variables | any |  no  |  || updated_at | string |  no  |  |
 
 ---
 
 #### [SmsTemplates](#SmsTemplates)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | items | [[SmsTemplate](#SmsTemplate)]? |  yes  |  |
- | page | [Page](#Page)? |  yes  |  |
- 
+ | ---------- | ---- | -------- | ----------- || items | [[SmsTemplate](#SmsTemplate)] |  no  |  || page | [Page](#Page) |  no  |  |
 
 ---
 
 #### [Stats](#Stats)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | _id | string? |  yes  |  |
- | imported | any? |  yes  |  |
- | processed | any? |  yes  |  |
- 
+ | ---------- | ---- | -------- | ----------- || _id | string |  no  |  || imported | any |  no  |  || processed | any |  no  |  |
 
 ---
 
 #### [StatsImported](#StatsImported)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | count | number? |  yes  |  |
- 
+ | ---------- | ---- | -------- | ----------- || count | number |  no  |  |
 
 ---
 
 #### [StatsProcessed](#StatsProcessed)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | email | [StatsProcessedEmail](#StatsProcessedEmail)? |  yes  |  |
- | sms | [StatsProcessedSms](#StatsProcessedSms)? |  yes  |  |
- 
+ | ---------- | ---- | -------- | ----------- || email | [StatsProcessedEmail](#StatsProcessedEmail) |  no  |  || sms | [StatsProcessedSms](#StatsProcessedSms) |  no  |  |
 
 ---
 
 #### [StatsProcessedEmail](#StatsProcessedEmail)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | failed | number? |  yes  |  |
- | success | number? |  yes  |  |
- | suppressed | number? |  yes  |  |
- 
+ | ---------- | ---- | -------- | ----------- || failed | number |  no  |  || success | number |  no  |  || suppressed | number |  no  |  |
 
 ---
 
 #### [StatsProcessedSms](#StatsProcessedSms)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | failed | number? |  yes  |  |
- | success | number? |  yes  |  |
- | suppressed | number? |  yes  |  |
- 
+ | ---------- | ---- | -------- | ----------- || failed | number |  no  |  || success | number |  no  |  || suppressed | number |  no  |  |
 
 ---
 
 #### [SystemEmailTemplate](#SystemEmailTemplate)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | __v | number? |  yes  |  |
- | _id | string? |  yes  |  |
- | attachments | [any]? |  yes  |  |
- | created_at | string? |  yes  |  |
- | description | string? |  yes  |  |
- | from_name | string? |  yes  |  |
- | headers | [any]? |  yes  |  |
- | html | [TemplateAndType](#TemplateAndType)? |  yes  |  |
- | is_internal | boolean? |  yes  |  |
- | is_system | boolean? |  yes  |  |
- | name | string? |  yes  |  |
- | priority | string? |  yes  |  |
- | published | boolean? |  yes  |  |
- | slug | string? |  yes  |  |
- | static_bcc | [any]? |  yes  |  |
- | static_cc | [any]? |  yes  |  |
- | static_to | [any]? |  yes  |  |
- | subject | [TemplateAndType](#TemplateAndType)? |  yes  |  |
- | tags | [any]? |  yes  |  |
- | text | [TemplateAndType](#TemplateAndType)? |  yes  |  |
- | updated_at | string? |  yes  |  |
- 
+ | ---------- | ---- | -------- | ----------- || __v | number |  no  |  || _id | string |  no  |  || attachments | [any] |  no  |  || created_at | string |  no  |  || description | string |  no  |  || from_name | string |  no  |  || headers | [any] |  no  |  || html | [TemplateAndType](#TemplateAndType) |  no  |  || is_internal | boolean |  no  |  || is_system | boolean |  no  |  || name | string |  no  |  || priority | string |  no  |  || published | boolean |  no  |  || slug | string |  no  |  || static_bcc | [any] |  no  |  || static_cc | [any] |  no  |  || static_to | [any] |  no  |  || subject | [TemplateAndType](#TemplateAndType) |  no  |  || tags | [any] |  no  |  || text | [TemplateAndType](#TemplateAndType) |  no  |  || updated_at | string |  no  |  |
 
 ---
 
 #### [SystemEmailTemplates](#SystemEmailTemplates)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | items | [[SystemEmailTemplate](#SystemEmailTemplate)]? |  yes  |  |
- | page | [Page](#Page)? |  yes  |  |
- 
+ | ---------- | ---- | -------- | ----------- || items | [[SystemEmailTemplate](#SystemEmailTemplate)] |  no  |  || page | [Page](#Page) |  no  |  |
 
 ---
 
 #### [SystemNotification](#SystemNotification)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | _id | string? |  yes  |  |
- | created_at | string? |  yes  |  |
- | group | string? |  yes  |  |
- | notification | [Notification](#Notification)? |  yes  |  |
- | settings | [SystemNotificationUser](#SystemNotificationUser)? |  yes  |  |
- | user | [SystemNotificationUser](#SystemNotificationUser)? |  yes  |  |
- 
+ | ---------- | ---- | -------- | ----------- || _id | string |  no  |  || created_at | string |  no  |  || group | string |  no  |  || notification | [Notification](#Notification) |  no  |  || settings | [SystemNotificationUser](#SystemNotificationUser) |  no  |  || user | [SystemNotificationUser](#SystemNotificationUser) |  no  |  |
 
 ---
 
 #### [SystemNotifications](#SystemNotifications)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | items | [[SystemNotification](#SystemNotification)]? |  yes  |  |
- | last_read_anchor | number? |  yes  |  |
- | page | [Page](#Page)? |  yes  |  |
- 
+ | ---------- | ---- | -------- | ----------- || items | [[SystemNotification](#SystemNotification)] |  no  |  || last_read_anchor | number |  no  |  || page | [Page](#Page) |  no  |  |
 
 ---
 
 #### [SystemNotificationSettings](#SystemNotificationSettings)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | priority | string? |  yes  |  |
- | sound | boolean? |  yes  |  |
- | time_to_live | string? |  yes  |  |
- 
+ | ---------- | ---- | -------- | ----------- || priority | string |  no  |  || sound | boolean |  no  |  || time_to_live | string |  no  |  |
 
 ---
 
 #### [SystemNotificationsPage](#SystemNotificationsPage)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | current | number? |  yes  |  |
- | has_next | boolean? |  yes  |  |
- | item_total | number? |  yes  |  |
- | size | number? |  yes  |  |
- | type | string? |  yes  |  |
- 
+ | ---------- | ---- | -------- | ----------- || current | number |  no  |  || has_next | boolean |  no  |  || item_total | number |  no  |  || size | number |  no  |  || type | string |  no  |  |
 
 ---
 
 #### [SystemNotificationUser](#SystemNotificationUser)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | type | string? |  yes  |  |
- | value | string? |  yes  |  |
- 
+ | ---------- | ---- | -------- | ----------- || type | string |  no  |  || value | string |  no  |  |
 
 ---
 
 #### [SystemSmsTemplate](#SystemSmsTemplate)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | __v | number? |  yes  |  |
- | _id | string? |  yes  |  |
- | created_at | string? |  yes  |  |
- | description | string? |  yes  |  |
- | is_internal | boolean? |  yes  |  |
- | is_system | boolean? |  yes  |  |
- | message | [SmsTemplateMessage](#SmsTemplateMessage)? |  yes  |  |
- | name | string? |  yes  |  |
- | priority | string? |  yes  |  |
- | published | boolean? |  yes  |  |
- | slug | string? |  yes  |  |
- | tags | [any]? |  yes  |  |
- | template_variables | any? |  yes  |  |
- | updated_at | string? |  yes  |  |
- 
+ | ---------- | ---- | -------- | ----------- || __v | number |  no  |  || _id | string |  no  |  || created_at | string |  no  |  || description | string |  no  |  || is_internal | boolean |  no  |  || is_system | boolean |  no  |  || message | [SmsTemplateMessage](#SmsTemplateMessage) |  no  |  || name | string |  no  |  || priority | string |  no  |  || published | boolean |  no  |  || slug | string |  no  |  || tags | [any] |  no  |  || template_variables | any |  no  |  || updated_at | string |  no  |  |
 
 ---
 
 #### [SystemSmsTemplates](#SystemSmsTemplates)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | items | [[SystemSmsTemplate](#SystemSmsTemplate)]? |  yes  |  |
- | page | [Page](#Page)? |  yes  |  |
- 
+ | ---------- | ---- | -------- | ----------- || items | [[SystemSmsTemplate](#SystemSmsTemplate)] |  no  |  || page | [Page](#Page) |  no  |  |
 
 ---
 
 #### [TemplateAndType](#TemplateAndType)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | template | string? |  yes  |  |
- | template_type | string? |  yes  |  |
- 
+ | ---------- | ---- | -------- | ----------- || template | string |  no  |  || template_type | string |  no  |  |
 
 ---
 
 #### [TriggerJobRequest](#TriggerJobRequest)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | job_id | string? |  yes  |  |
- 
+ | ---------- | ---- | -------- | ----------- || job_id | string |  no  |  |
 
 ---
 
 #### [TriggerJobResponse](#TriggerJobResponse)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | status | number? |  yes  |  |
- 
+ | ---------- | ---- | -------- | ----------- || status | number |  no  |  |
 
 ---
 
 #### [VerifyOtpCommsErrorRes](#VerifyOtpCommsErrorRes)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | message | string? |  yes  |  |
- | success | boolean? |  yes  |  |
- 
+ | ---------- | ---- | -------- | ----------- || message | string |  no  |  || success | boolean |  no  |  |
 
 ---
 
 #### [VerifyOtpCommsReq](#VerifyOtpCommsReq)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | otp | string? |  yes  |  |
- | request_id | string? |  yes  |  |
- 
+ | ---------- | ---- | -------- | ----------- || otp | string |  no  |  || request_id | string |  no  |  |
 
 ---
 
 #### [VerifyOtpCommsSuccessRes](#VerifyOtpCommsSuccessRes)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | country_code | string? |  yes  |  |
- | message | string? |  yes  |  |
- | mobile | string? |  yes  |  |
- | success | boolean? |  yes  |  |
- 
+ | ---------- | ---- | -------- | ----------- || country_code | string |  no  |  || message | string |  no  |  || mobile | string |  no  |  || success | boolean |  no  |  |
 
 ---
 

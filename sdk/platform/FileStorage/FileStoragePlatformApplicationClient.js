@@ -1,12 +1,9 @@
+const Paginator = require("../../common/Paginator");
 const PlatformAPIClient = require("../PlatformAPIClient");
 const { FDKClientValidationError } = require("../../common/FDKError");
-const Paginator = require("../../common/Paginator");
 const FileStorageValidator = require("./FileStoragePlatformApplicationValidator");
 const FileStorageModel = require("./FileStoragePlatformModel");
 const { Logger } = require("./../../common/Logger");
-const Joi = require("joi");
-
-const axios = require("axios");
 
 class FileStorage {
   constructor(config, applicationId) {
@@ -39,15 +36,10 @@ class FileStorage {
    * After successfully upload, call `appCompleteUpload` api to complete the upload process.
    * This operation will return the url for the uploaded file.
    */
-  async appCompleteUpload({
-    namespace,
-
-    body,
-  } = {}) {
+  async appCompleteUpload({ namespace, body } = {}) {
     const { error } = FileStorageValidator.appCompleteUpload().validate(
       {
         namespace,
-
         body,
       },
       { abortEarly: false, allowUnknown: true }
@@ -62,7 +54,6 @@ class FileStorage {
     } = FileStorageValidator.appCompleteUpload().validate(
       {
         namespace,
-
         body,
       },
       { abortEarly: false, allowUnknown: false }
@@ -193,15 +184,10 @@ class FileStorage {
    * After successfully upload, call `appCompleteUpload` api to complete the upload process.
    * This operation will return the url for the uploaded file.
    */
-  async appStartUpload({
-    namespace,
-
-    body,
-  } = {}) {
+  async appStartUpload({ namespace, body } = {}) {
     const { error } = FileStorageValidator.appStartUpload().validate(
       {
         namespace,
-
         body,
       },
       { abortEarly: false, allowUnknown: true }
@@ -214,7 +200,6 @@ class FileStorage {
     const { error: warrning } = FileStorageValidator.appStartUpload().validate(
       {
         namespace,
-
         body,
       },
       { abortEarly: false, allowUnknown: false }
@@ -263,15 +248,10 @@ class FileStorage {
    * @summary: Browse Files
    * @description: Browse Files
    */
-  async browse({
-    namespace,
-
-    pageNo,
-  } = {}) {
+  async browse({ namespace, pageNo } = {}) {
     const { error } = FileStorageValidator.browse().validate(
       {
         namespace,
-
         pageNo,
       },
       { abortEarly: false, allowUnknown: true }
@@ -284,7 +264,6 @@ class FileStorage {
     const { error: warrning } = FileStorageValidator.browse().validate(
       {
         namespace,
-
         pageNo,
       },
       { abortEarly: false, allowUnknown: false }
@@ -356,6 +335,7 @@ class FileStorage {
     return paginator;
   }
 }
+module.exports = FileStorage;
 
 /**
  * @param data
@@ -405,5 +385,3 @@ FileStorage.prototype.upload = function ({
     }
   });
 };
-
-module.exports = FileStorage;

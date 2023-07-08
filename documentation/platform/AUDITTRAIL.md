@@ -27,10 +27,10 @@ Create logs for auditing later on
 
 ```javascript
 // Promise
-const promise = platformClient.auditTrail.createAuditLog({  body : value });
+const promise = client.auditTrail.createAuditLog({  body : value });
 
 // Async/Await
-const data = await platformClient.auditTrail.createAuditLog({  body : value });
+const data = await client.auditTrail.createAuditLog({  body : value });
 ```
 
 
@@ -93,10 +93,10 @@ Get audit log
 
 ```javascript
 // Promise
-const promise = platformClient.auditTrail.getAuditLog({  id : value });
+const promise = client.auditTrail.getAuditLog({  id : value });
 
 // Async/Await
-const data = await platformClient.auditTrail.getAuditLog({  id : value });
+const data = await client.auditTrail.getAuditLog({  id : value });
 ```
 
 
@@ -195,10 +195,10 @@ Get paginated audit logs
 
 ```javascript
 // Promise
-const promise = platformClient.auditTrail.getAuditLogs({  qs : value });
+const promise = client.auditTrail.getAuditLogs({  qs : value });
 
 // Async/Await
-const data = await platformClient.auditTrail.getAuditLogs({  qs : value });
+const data = await client.auditTrail.getAuditLogs({  qs : value });
 ```
 
 
@@ -297,10 +297,10 @@ Get entity types
 
 ```javascript
 // Promise
-const promise = platformClient.auditTrail.getEntityTypes();
+const promise = client.auditTrail.getEntityTypes();
 
 // Async/Await
-const data = await platformClient.auditTrail.getEntityTypes();
+const data = await client.auditTrail.getEntityTypes();
 ```
 
 
@@ -367,160 +367,105 @@ Success
 #### [BadRequest](#BadRequest)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | message | string? |  yes  | Failure message. |
- 
+ | ---------- | ---- | -------- | ----------- || message | string |  no  |  |
 
 ---
 
 #### [CreateLogResponse](#CreateLogResponse)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | internal_message | string? |  yes  |  |
- | message | string? |  yes  |  |
- 
+ | ---------- | ---- | -------- | ----------- || internal_message | string |  no  |  || message | string |  no  |  |
 
 ---
 
 #### [DeviceInfo](#DeviceInfo)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | extra_meta | string? |  yes  |  |
- | user_agent | string? |  yes  |  |
- 
+ | ---------- | ---- | -------- | ----------- || extra_meta | string |  no  |  || user_agent | string |  no  |  |
 
 ---
 
 #### [EntityObj](#EntityObj)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | action | string? |  yes  |  |
- | entity_details | string? |  yes  |  |
- | id | string? |  yes  |  |
- | type | string? |  yes  |  |
- 
+ | ---------- | ---- | -------- | ----------- || action | string |  no  |  || entity_details | string |  no  |  || id | string |  no  |  || type | string |  no  |  |
 
 ---
 
 #### [EntityObject](#EntityObject)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | action | string? |  yes  |  |
- | id | string? |  yes  |  |
- | type | string? |  yes  |  |
- 
+ | ---------- | ---- | -------- | ----------- || action | string |  no  |  || id | string |  no  |  || type | string |  no  |  |
 
 ---
 
 #### [EntityTypeObj](#EntityTypeObj)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | display_name | string? |  yes  |  |
- | entity_value | string? |  yes  |  |
- 
+ | ---------- | ---- | -------- | ----------- || display_name | string |  no  |  || entity_value | string |  no  |  |
 
 ---
 
 #### [EntityTypesResponse](#EntityTypesResponse)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | items | [[EntityTypeObj](#EntityTypeObj)]? |  yes  |  |
- 
+ | ---------- | ---- | -------- | ----------- || items | [[EntityTypeObj](#EntityTypeObj)] |  no  |  |
 
 ---
 
 #### [InternalServerError](#InternalServerError)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | code | string? |  yes  | Error code |
- | message | string? |  yes  | Internal server Server error |
- 
+ | ---------- | ---- | -------- | ----------- || code | string |  no  |  || message | string |  no  |  |
 
 ---
 
 #### [Location](#Location)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | extra_meta | string? |  yes  |  |
- 
+ | ---------- | ---- | -------- | ----------- || extra_meta | string |  no  |  |
 
 ---
 
 #### [LogDocs](#LogDocs)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | _id | string? |  yes  |  |
- | application | string? |  yes  |  |
- | company | string? |  yes  |  |
- | date | string? |  yes  |  |
- | device_info | [DeviceInfo](#DeviceInfo)? |  yes  |  |
- | entity | [EntityObj](#EntityObj)? |  yes  |  |
- | location | [Location](#Location)? |  yes  |  |
- | logs | string? |  yes  |  |
- | modifier | [Modifier](#Modifier)? |  yes  |  |
- | sessions | string? |  yes  |  |
- 
+ | ---------- | ---- | -------- | ----------- || _id | string |  no  |  || application | string |  no  |  || company | string |  no  |  || date | string |  no  |  || device_info | [DeviceInfo](#DeviceInfo) |  no  |  || entity | [EntityObj](#EntityObj) |  no  |  || location | [Location](#Location) |  no  |  || logs | string |  no  |  || modifier | [Modifier](#Modifier) |  no  |  || sessions | string |  no  |  |
 
 ---
 
 #### [LogMetaObj](#LogMetaObj)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | application | string? |  yes  |  |
- | device_info | string? |  yes  |  |
- | entity | [EntityObject](#EntityObject)? |  yes  |  |
- | location | string? |  yes  |  |
- | modifier | string? |  yes  |  |
- 
+ | ---------- | ---- | -------- | ----------- || application | string |  no  |  || device_info | string |  no  |  || entity | [EntityObject](#EntityObject) |  no  |  || location | string |  no  |  || modifier | string |  no  |  |
 
 ---
 
 #### [LogSchemaResponse](#LogSchemaResponse)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | docs | [[LogDocs](#LogDocs)]? |  yes  |  |
- 
+ | ---------- | ---- | -------- | ----------- || docs | [[LogDocs](#LogDocs)] |  no  |  |
 
 ---
 
 #### [Modifier](#Modifier)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | as_administrator | boolean? |  yes  |  |
- | user_details | string? |  yes  |  |
- | user_id | string? |  yes  |  |
- 
+ | ---------- | ---- | -------- | ----------- || as_administrator | boolean |  no  |  || user_details | string |  no  |  || user_id | string |  no  |  |
 
 ---
 
 #### [RequestBodyAuditLog](#RequestBodyAuditLog)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | log_meta | [LogMetaObj](#LogMetaObj) |  no  |  |
- | log_payload | string |  no  |  |
- 
+ | ---------- | ---- | -------- | ----------- || log_meta | [LogMetaObj](#LogMetaObj) |  yes  |  || log_payload | string |  yes  |  |
 
 ---
 
 #### [ResourceNotFound](#ResourceNotFound)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | message | string? |  yes  | Resource not found with {id} |
- 
+ | ---------- | ---- | -------- | ----------- || message | string |  no  |  |
 
 ---
 

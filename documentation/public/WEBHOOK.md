@@ -25,10 +25,10 @@ Get All Webhook Events
 
 ```javascript
 // Promise
-const promise = publicClient.webhook.fetchAllWebhookEvents();
+const promise = webhook.fetchAllWebhookEvents();
 
 // Async/Await
-const data = await publicClient.webhook.fetchAllWebhookEvents();
+const data = await webhook.fetchAllWebhookEvents();
 ```
 
 
@@ -76,10 +76,10 @@ Send webhook event name, type, version, category in request body to get complete
 
 ```javascript
 // Promise
-const promise = publicClient.webhook.queryWebhookEventDetails({  body : value });
+const promise = webhook.queryWebhookEventDetails({  body : value });
 
 // Async/Await
-const data = await publicClient.webhook.queryWebhookEventDetails({  body : value });
+const data = await webhook.queryWebhookEventDetails({  body : value });
 ```
 
 
@@ -131,173 +131,91 @@ Success
 #### [Association](#Association)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | application_id | [string]? |  yes  |  |
- | company_id | number? |  yes  |  |
- | criteria | string? |  yes  |  |
- | extension_id | string? |  yes  |  |
- 
+ | ---------- | ---- | -------- | ----------- || application_id | [string] |  no  |  || company_id | number |  no  |  || criteria | string |  no  |  || extension_id | string |  no  |  |
 
 ---
 
 #### [AuthMeta](#AuthMeta)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | secret | string? |  yes  |  |
- | type | string? |  yes  |  |
- 
+ | ---------- | ---- | -------- | ----------- || secret | string |  no  |  || type | string |  no  |  |
 
 ---
 
 #### [EventConfig](#EventConfig)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | created_on | string? |  yes  |  |
- | description | string? |  yes  |  |
- | display_name | string? |  yes  |  |
- | event_category | string? |  yes  |  |
- | event_name | string? |  yes  |  |
- | event_type | string? |  yes  |  |
- | id | number? |  yes  |  |
- | version | string? |  yes  |  |
- 
+ | ---------- | ---- | -------- | ----------- || created_on | string |  no  |  || description | string |  no  |  || display_name | string |  no  |  || event_category | string |  no  |  || event_name | string |  no  |  || event_type | string |  no  |  || id | number |  no  |  || version | string |  no  |  |
 
 ---
 
 #### [EventConfigBase](#EventConfigBase)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | event_category | string? |  yes  |  |
- | event_name | string? |  yes  |  |
- | event_type | string? |  yes  |  |
- | version | string? |  yes  |  |
- 
+ | ---------- | ---- | -------- | ----------- || event_category | string |  no  |  || event_name | string |  no  |  || event_type | string |  no  |  || version | string |  no  |  |
 
 ---
 
 #### [EventConfigList](#EventConfigList)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | items | [[EventConfig](#EventConfig)]? |  yes  |  |
- | page | [Page](#Page)? |  yes  |  |
- 
+ | ---------- | ---- | -------- | ----------- || items | [[EventConfig](#EventConfig)] |  no  |  || page | [Page](#Page) |  no  |  |
 
 ---
 
 #### [EventConfigResponse](#EventConfigResponse)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | event_configs | [[EventConfig](#EventConfig)]? |  yes  |  |
- 
+ | ---------- | ---- | -------- | ----------- || event_configs | [[EventConfig](#EventConfig)] |  no  |  |
 
 ---
 
 #### [EventPayload](#EventPayload)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | event_name | string? |  yes  |  |
- | event_trace_id | string? |  yes  |  |
- | event_type | string? |  yes  |  |
- | id | number? |  yes  |  |
- | message_id | string? |  yes  |  |
- | status | boolean? |  yes  |  |
- | version | string? |  yes  |  |
- 
+ | ---------- | ---- | -------- | ----------- || event_name | string |  no  |  || event_trace_id | string |  no  |  || event_type | string |  no  |  || id | number |  no  |  || message_id | string |  no  |  || status | boolean |  no  |  || version | string |  no  |  |
 
 ---
 
 #### [EventProcessedStatus](#EventProcessedStatus)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | attempt | number? |  yes  |  |
- | created_on | string? |  yes  |  |
- | id | number? |  yes  |  |
- | processed_on | string? |  yes  |  |
- | response_code | string? |  yes  |  |
- | response_message | string? |  yes  |  |
- | status | boolean? |  yes  |  |
- | subscriber_id | string? |  yes  |  |
- 
+ | ---------- | ---- | -------- | ----------- || attempt | number |  no  |  || created_on | string |  no  |  || id | number |  no  |  || processed_on | string |  no  |  || response_code | string |  no  |  || response_message | string |  no  |  || status | boolean |  no  |  || subscriber_id | string |  no  |  |
 
 ---
 
 #### [Page](#Page)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | current | number? |  yes  |  |
- | has_next | boolean? |  yes  |  |
- | has_previous | boolean? |  yes  |  |
- | item_total | number? |  yes  |  |
- | next_id | string? |  yes  |  |
- | size | number? |  yes  |  |
- | type | string |  no  |  |
- 
+ | ---------- | ---- | -------- | ----------- || current | number |  no  |  || has_next | boolean |  no  |  || has_previous | boolean |  no  |  || item_total | number |  no  |  || next_id | string |  no  |  || size | number |  no  |  || type | string |  yes  |  |
 
 ---
 
 #### [SubscriberConfig](#SubscriberConfig)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | association | [Association](#Association)? |  yes  |  |
- | auth_meta | [AuthMeta](#AuthMeta)? |  yes  |  |
- | custom_headers | string? |  yes  |  |
- | email_id | string? |  yes  |  |
- | event_id | [number]? |  yes  |  |
- | id | number? |  yes  |  |
- | name | string? |  yes  |  |
- | status | [SubscriberStatus](#SubscriberStatus)? |  yes  |  |
- | webhook_url | string? |  yes  |  |
- 
+ | ---------- | ---- | -------- | ----------- || association | [Association](#Association) |  no  |  || auth_meta | [AuthMeta](#AuthMeta) |  no  |  || custom_headers | string |  no  |  || email_id | string |  no  |  || event_id | [number] |  no  |  || id | number |  no  |  || name | string |  no  |  || status | [SubscriberStatus](#SubscriberStatus) |  no  |  || webhook_url | string |  no  |  |
 
 ---
 
 #### [SubscriberConfigList](#SubscriberConfigList)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | items | [[SubscriberResponse](#SubscriberResponse)]? |  yes  |  |
- | page | [Page](#Page)? |  yes  |  |
- 
+ | ---------- | ---- | -------- | ----------- || items | [[SubscriberResponse](#SubscriberResponse)] |  no  |  || page | [Page](#Page) |  no  |  |
 
 ---
 
 #### [SubscriberEvent](#SubscriberEvent)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | created_date | string? |  yes  |  |
- | event_id | number? |  yes  |  |
- | id | number? |  yes  |  |
- | subscriber_id | number? |  yes  |  |
- 
+ | ---------- | ---- | -------- | ----------- || created_date | string |  no  |  || event_id | number |  no  |  || id | number |  no  |  || subscriber_id | number |  no  |  |
 
 ---
 
 #### [SubscriberResponse](#SubscriberResponse)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | association | [Association](#Association)? |  yes  |  |
- | auth_meta | [AuthMeta](#AuthMeta)? |  yes  |  |
- | created_on | string? |  yes  |  |
- | custom_headers | string? |  yes  |  |
- | email_id | string? |  yes  |  |
- | event_configs | [[EventConfig](#EventConfig)]? |  yes  |  |
- | id | number? |  yes  |  |
- | name | string? |  yes  |  |
- | status | [SubscriberStatus](#SubscriberStatus)? |  yes  |  |
- | updated_on | string? |  yes  |  |
- | webhook_url | string? |  yes  |  |
- 
+ | ---------- | ---- | -------- | ----------- || association | [Association](#Association) |  no  |  || auth_meta | [AuthMeta](#AuthMeta) |  no  |  || created_on | string |  no  |  || custom_headers | string |  no  |  || email_id | string |  no  |  || event_configs | [[EventConfig](#EventConfig)] |  no  |  || id | number |  no  |  || name | string |  no  |  || status | [SubscriberStatus](#SubscriberStatus) |  no  |  || updated_on | string |  no  |  || webhook_url | string |  no  |  |
 
 ---
 

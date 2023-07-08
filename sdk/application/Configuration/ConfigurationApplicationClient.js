@@ -1,11 +1,10 @@
-const ApplicationAPIClient = require("../ApplicationAPIClient");
-const { FDKClientValidationError } = require("../../common/FDKError");
+const APIClient = require("../ApplicationAPIClient");
 const constructUrl = require("../constructUrl");
 const Paginator = require("../../common/Paginator");
+const { FDKClientValidationError } = require("../../common/FDKError");
 const ConfigurationValidator = require("./ConfigurationApplicationValidator");
 const ConfigurationModel = require("./ConfigurationApplicationModel");
 const { Logger } = require("./../../common/Logger");
-const Joi = require("joi");
 
 class Configuration {
   constructor(_conf) {
@@ -82,7 +81,7 @@ class Configuration {
 
     const xHeaders = {};
 
-    const response = await ApplicationAPIClient.execute(
+    const response = await APIClient.execute(
       this._conf,
       "get",
       constructUrl({
@@ -165,7 +164,7 @@ class Configuration {
 
     const xHeaders = {};
 
-    const response = await ApplicationAPIClient.execute(
+    const response = await APIClient.execute(
       this._conf,
       "get",
       constructUrl({
@@ -231,7 +230,7 @@ class Configuration {
       });
       return data;
     };
-    paginator.setCallback(callback.bind(this));
+    paginator.setCallback(callback);
     return paginator;
   }
 
@@ -276,7 +275,7 @@ class Configuration {
 
     const xHeaders = {};
 
-    const response = await ApplicationAPIClient.execute(
+    const response = await APIClient.execute(
       this._conf,
       "get",
       constructUrl({
@@ -340,7 +339,7 @@ class Configuration {
 
     const xHeaders = {};
 
-    const response = await ApplicationAPIClient.execute(
+    const response = await APIClient.execute(
       this._conf,
       "get",
       constructUrl({
@@ -404,7 +403,7 @@ class Configuration {
 
     const xHeaders = {};
 
-    const response = await ApplicationAPIClient.execute(
+    const response = await APIClient.execute(
       this._conf,
       "get",
       constructUrl({
@@ -468,7 +467,7 @@ class Configuration {
 
     const xHeaders = {};
 
-    const response = await ApplicationAPIClient.execute(
+    const response = await APIClient.execute(
       this._conf,
       "get",
       constructUrl({
@@ -530,7 +529,7 @@ class Configuration {
 
     const xHeaders = {};
 
-    const response = await ApplicationAPIClient.execute(
+    const response = await APIClient.execute(
       this._conf,
       "get",
       constructUrl({
@@ -595,7 +594,7 @@ class Configuration {
 
     const xHeaders = {};
 
-    const response = await ApplicationAPIClient.execute(
+    const response = await APIClient.execute(
       this._conf,
       "get",
       constructUrl({
@@ -657,7 +656,7 @@ class Configuration {
 
     const xHeaders = {};
 
-    const response = await ApplicationAPIClient.execute(
+    const response = await APIClient.execute(
       this._conf,
       "get",
       constructUrl({
@@ -721,7 +720,7 @@ class Configuration {
 
     const xHeaders = {};
 
-    const response = await ApplicationAPIClient.execute(
+    const response = await APIClient.execute(
       this._conf,
       "get",
       constructUrl({
@@ -783,7 +782,7 @@ class Configuration {
 
     const xHeaders = {};
 
-    const response = await ApplicationAPIClient.execute(
+    const response = await APIClient.execute(
       this._conf,
       "get",
       constructUrl({
@@ -848,7 +847,7 @@ class Configuration {
 
     const xHeaders = {};
 
-    const response = await ApplicationAPIClient.execute(
+    const response = await APIClient.execute(
       this._conf,
       "post",
       constructUrl({
@@ -920,7 +919,7 @@ class Configuration {
 
     const xHeaders = {};
 
-    const response = await ApplicationAPIClient.execute(
+    const response = await APIClient.execute(
       this._conf,
       "get",
       constructUrl({
@@ -975,7 +974,7 @@ class Configuration {
       });
       return data;
     };
-    paginator.setCallback(callback.bind(this));
+    paginator.setCallback(callback);
     return paginator;
   }
 
@@ -1011,7 +1010,7 @@ class Configuration {
 
     const xHeaders = {};
 
-    const response = await ApplicationAPIClient.execute(
+    const response = await APIClient.execute(
       this._conf,
       "get",
       constructUrl({
@@ -1076,7 +1075,7 @@ class Configuration {
 
     const xHeaders = {};
 
-    const response = await ApplicationAPIClient.execute(
+    const response = await APIClient.execute(
       this._conf,
       "get",
       constructUrl({
@@ -1142,7 +1141,7 @@ class Configuration {
 
     const xHeaders = {};
 
-    const response = await ApplicationAPIClient.execute(
+    const response = await APIClient.execute(
       this._conf,
       "delete",
       constructUrl({

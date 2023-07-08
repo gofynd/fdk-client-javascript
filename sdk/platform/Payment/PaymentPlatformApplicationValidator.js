@@ -1,16 +1,23 @@
 const Joi = require("joi");
-
 const PaymentModel = require("./PaymentPlatformModel");
+
 class PaymentValidator {
-  static addBeneficiaryDetails() {
+  static addRefundBankAccountUsingOTP() {
     return Joi.object({
-      body: PaymentModel.AddBeneficiaryDetailsRequest().required(),
+      body: PaymentModel.AddBeneficiaryDetailsOTPRequest().required(),
     }).required();
   }
 
   static confirmPayment() {
     return Joi.object({
       body: PaymentModel.PaymentConfirmationRequest().required(),
+    }).required();
+  }
+
+  static getBankAccountDetailsOpenAPI() {
+    return Joi.object({
+      orderId: Joi.string().allow("").required(),
+      requestHash: Joi.string().allow(""),
     }).required();
   }
 
@@ -31,15 +38,34 @@ class PaymentValidator {
     }).required();
   }
 
+  static getUserCODlimitRoutes() {
+    return Joi.object({
+      merchantUserId: Joi.string().allow("").required(),
+      mobileNo: Joi.string().allow("").required(),
+    }).required();
+  }
+
   static getUserOrderBeneficiaries() {
     return Joi.object({
       orderId: Joi.string().allow("").required(),
     }).required();
   }
 
+  static paymentStatusBulk() {
+    return Joi.object({
+      body: PaymentModel.PaymentStatusBulkHandlerRequest().required(),
+    }).required();
+  }
+
   static saveBrandPaymentGatewayConfig() {
     return Joi.object({
       body: PaymentModel.PaymentGatewayConfigRequest().required(),
+    }).required();
+  }
+
+  static setUserCODlimitRoutes() {
+    return Joi.object({
+      body: PaymentModel.SetCODForUserRequest().required(),
     }).required();
   }
 

@@ -1,11 +1,10 @@
-const ApplicationAPIClient = require("../ApplicationAPIClient");
-const { FDKClientValidationError } = require("../../common/FDKError");
+const APIClient = require("../ApplicationAPIClient");
 const constructUrl = require("../constructUrl");
 const Paginator = require("../../common/Paginator");
+const { FDKClientValidationError } = require("../../common/FDKError");
 const FileStorageValidator = require("./FileStorageApplicationValidator");
 const FileStorageModel = require("./FileStorageApplicationModel");
 const { Logger } = require("./../../common/Logger");
-const Joi = require("joi");
 const axios = require("axios");
 
 class FileStorage {
@@ -85,7 +84,7 @@ class FileStorage {
 
     const xHeaders = {};
 
-    const response = await ApplicationAPIClient.execute(
+    const response = await APIClient.execute(
       this._conf,
       "post",
       constructUrl({
@@ -148,7 +147,7 @@ class FileStorage {
 
     const xHeaders = {};
 
-    const response = await ApplicationAPIClient.execute(
+    const response = await APIClient.execute(
       this._conf,
       "post",
       constructUrl({
@@ -229,7 +228,7 @@ class FileStorage {
 
     const xHeaders = {};
 
-    const response = await ApplicationAPIClient.execute(
+    const response = await APIClient.execute(
       this._conf,
       "post",
       constructUrl({

@@ -10,8 +10,6 @@ const Communication = require("./Communication/CommunicationPlatformApplicationC
 
 const Payment = require("./Payment/PaymentPlatformApplicationClient");
 
-const Order = require("./Order/OrderPlatformApplicationClient");
-
 const Catalog = require("./Catalog/CatalogPlatformApplicationClient");
 
 const FileStorage = require("./FileStorage/FileStoragePlatformApplicationClient");
@@ -21,8 +19,6 @@ const Share = require("./Share/SharePlatformApplicationClient");
 const Configuration = require("./Configuration/ConfigurationPlatformApplicationClient");
 
 const Cart = require("./Cart/CartPlatformApplicationClient");
-
-const Rewards = require("./Rewards/RewardsPlatformApplicationClient");
 
 const Analytics = require("./Analytics/AnalyticsPlatformApplicationClient");
 
@@ -48,8 +44,6 @@ class PlatformApplicationClient {
 
     this.payment = new Payment(config, applicationId);
 
-    this.order = new Order(config, applicationId);
-
     this.catalog = new Catalog(config, applicationId);
 
     this.fileStorage = new FileStorage(config, applicationId);
@@ -59,8 +53,6 @@ class PlatformApplicationClient {
     this.configuration = new Configuration(config, applicationId);
 
     this.cart = new Cart(config, applicationId);
-
-    this.rewards = new Rewards(config, applicationId);
 
     this.analytics = new Analytics(config, applicationId);
 
@@ -551,20 +543,23 @@ class PlatformApplicationClient {
 /** @typedef VerifyOtpCommsReq */
 /** @typedef VerifyOtpCommsSuccessRes */
 
-/** @typedef AddBeneficiaryDetailsRequest */
-/** @typedef BeneficiaryModeDetails */
+/** @typedef AddBeneficiaryDetailsOTPRequest */
+/** @typedef BankDetailsForOTP */
+/** @typedef CODdata */
 /** @typedef DeletePayoutResponse */
 /** @typedef DeleteSubscriptionPaymentMethodResponse */
 /** @typedef ErrorCodeAndDescription */
 /** @typedef ErrorCodeDescription */
+/** @typedef GetUserCODLimitResponse */
 /** @typedef HttpErrorCodeAndResponse */
 /** @typedef IfscCodeResponse */
 /** @typedef IntentApp */
 /** @typedef IntentAppErrorList */
+/** @typedef MultiTenderPaymentMeta */
+/** @typedef MultiTenderPaymentMethod */
 /** @typedef NotFoundResourceError */
 /** @typedef OrderBeneficiaryDetails */
 /** @typedef OrderBeneficiaryResponse */
-/** @typedef PaymentConfirmationMode */
 /** @typedef PaymentConfirmationRequest */
 /** @typedef PaymentConfirmationResponse */
 /** @typedef PaymentGatewayConfig */
@@ -573,8 +568,12 @@ class PlatformApplicationClient {
 /** @typedef PaymentGatewayToBeReviewed */
 /** @typedef PaymentModeList */
 /** @typedef PaymentModeLogo */
+/** @typedef PaymentObjectListSerializer */
 /** @typedef PaymentOptions */
 /** @typedef PaymentOptionsResponse */
+/** @typedef PaymentStatusBulkHandlerRequest */
+/** @typedef PaymentStatusBulkHandlerResponse */
+/** @typedef PaymentStatusObject */
 /** @typedef PayoutBankDetails */
 /** @typedef PayoutRequest */
 /** @typedef PayoutResponse */
@@ -583,129 +582,12 @@ class PlatformApplicationClient {
 /** @typedef RootPaymentMode */
 /** @typedef SaveSubscriptionSetupIntentRequest */
 /** @typedef SaveSubscriptionSetupIntentResponse */
+/** @typedef SetCODForUserRequest */
+/** @typedef SetCODOptionResponse */
 /** @typedef SubscriptionConfigResponse */
 /** @typedef SubscriptionPaymentMethodResponse */
 /** @typedef UpdatePayoutRequest */
 /** @typedef UpdatePayoutResponse */
-
-/** @typedef AdvanceFilterInfo */
-/** @typedef AffiliateBagDetails */
-/** @typedef AffiliateDetails */
-/** @typedef AffiliateMeta */
-/** @typedef AppliedPromos */
-/** @typedef Article */
-/** @typedef ArticleDetails */
-/** @typedef Attributes */
-/** @typedef B2BPODetails */
-/** @typedef BagConfigs */
-/** @typedef BagDetailsPlatformResponse */
-/** @typedef BagGST */
-/** @typedef BagGSTDetails */
-/** @typedef BagMeta */
-/** @typedef BagReturnableCancelableStatus */
-/** @typedef BagStateMapper */
-/** @typedef BagStatusHistory */
-/** @typedef BagUnit */
-/** @typedef Brand */
-/** @typedef BulkActionDetailsDataField */
-/** @typedef BulkActionDetailsResponse */
-/** @typedef BulkActionPayload */
-/** @typedef BulkActionResponse */
-/** @typedef BulkInvoiceLabelResponse */
-/** @typedef BulkInvoicingResponse */
-/** @typedef bulkListingData */
-/** @typedef BulkListingPage */
-/** @typedef BulkListingResponse */
-/** @typedef BuyerDetails */
-/** @typedef BuyRules */
-/** @typedef CompanyDetails */
-/** @typedef CurrentStatus */
-/** @typedef Dates */
-/** @typedef DebugInfo */
-/** @typedef Dimensions */
-/** @typedef DiscountRules */
-/** @typedef Document */
-/** @typedef DPDetailsData */
-/** @typedef EinvoiceInfo */
-/** @typedef EInvoicePortalDetails */
-/** @typedef Error */
-/** @typedef ErrorResponse */
-/** @typedef FileResponse */
-/** @typedef FileUploadResponse */
-/** @typedef FilterInfoOption */
-/** @typedef FiltersInfo */
-/** @typedef FiltersResponse */
-/** @typedef FinancialBreakup */
-/** @typedef Formatted */
-/** @typedef FulfillingStore */
-/** @typedef GetBagsPlatformResponse */
-/** @typedef GSTDetailsData */
-/** @typedef Identifier */
-/** @typedef InvoiceInfo */
-/** @typedef Item */
-/** @typedef ItemCriterias */
-/** @typedef JioCodeUpsertDataSet */
-/** @typedef JioCodeUpsertPayload */
-/** @typedef JioCodeUpsertResponse */
-/** @typedef LaneConfigResponse */
-/** @typedef LockData */
-/** @typedef Meta */
-/** @typedef MetricCountResponse */
-/** @typedef MetricsCount */
-/** @typedef NestedErrorSchemaDataSet */
-/** @typedef OmsReports */
-/** @typedef Options */
-/** @typedef OrderBagArticle */
-/** @typedef OrderBags */
-/** @typedef OrderBrandName */
-/** @typedef OrderDetailsData */
-/** @typedef OrderDict */
-/** @typedef OrderingStoreDetails */
-/** @typedef OrderListingResponse */
-/** @typedef OrderMeta */
-/** @typedef Page */
-/** @typedef Page1 */
-/** @typedef PaymentModeInfo */
-/** @typedef PDFLinks */
-/** @typedef PlatformBreakupValues */
-/** @typedef PlatformChannel */
-/** @typedef PlatformDeliveryAddress */
-/** @typedef PlatformItem */
-/** @typedef PlatformOrderItems */
-/** @typedef PlatformShipment */
-/** @typedef PlatformShipmentReasonsResponse */
-/** @typedef PlatformShipmentTrack */
-/** @typedef PlatformTrack */
-/** @typedef Prices */
-/** @typedef QuestionSet */
-/** @typedef Reason */
-/** @typedef ReturnConfig */
-/** @typedef ShipmentDetailsResponse */
-/** @typedef ShipmentInfoResponse */
-/** @typedef ShipmentInternalPlatformViewResponse */
-/** @typedef ShipmentItem */
-/** @typedef ShipmentItemFulFillingStore */
-/** @typedef ShipmentMeta */
-/** @typedef ShipmentPayments */
-/** @typedef ShipmentStatus */
-/** @typedef ShipmentStatusData */
-/** @typedef ShipmentTimeStamp */
-/** @typedef Store */
-/** @typedef StoreAddress */
-/** @typedef StoreDocuments */
-/** @typedef StoreEinvoice */
-/** @typedef StoreEwaybill */
-/** @typedef StoreGstCredentials */
-/** @typedef StoreMeta */
-/** @typedef SubLane */
-/** @typedef Success */
-/** @typedef SuperLane */
-/** @typedef TaxDetails */
-/** @typedef TrackingList */
-/** @typedef URL */
-/** @typedef UserDataInfo */
-/** @typedef UserDetailsData */
-/** @typedef Weight */
 
 /** @typedef Action */
 /** @typedef ActionPage */
@@ -1078,66 +960,6 @@ class PlatformApplicationClient {
 /** @typedef UrlInfo */
 /** @typedef WebRedirect */
 
-/** @typedef ArchiveConfig */
-/** @typedef Audit */
-/** @typedef AWSS3config */
-/** @typedef CatalogMasterConfig */
-/** @typedef CompanyConfig */
-/** @typedef DataTresholdDTO */
-/** @typedef DBConfig */
-/** @typedef DBConnectionProfile */
-/** @typedef DBParamConfig */
-/** @typedef DefaultHeadersDTO */
-/** @typedef DocMappingConfig */
-/** @typedef EmailConfig */
-/** @typedef FileConfig */
-/** @typedef FTPConfig */
-/** @typedef GCompany */
-/** @typedef GenericDTO */
-/** @typedef GoogleSpreadSheetConfig */
-/** @typedef GStore */
-/** @typedef HttpConfig */
-/** @typedef JobConfig */
-/** @typedef JobConfigDTO */
-/** @typedef JobConfigListDTO */
-/** @typedef JobConfigRawDTO */
-/** @typedef JobHistoryDto */
-/** @typedef JobMetricsDto */
-/** @typedef JobStepsDTO */
-/** @typedef JsonDocConfig */
-/** @typedef KafkaMetaModel */
-/** @typedef KafkaResponse */
-/** @typedef LocalFileConfig */
-/** @typedef Metum */
-/** @typedef MongoDocConfig */
-/** @typedef OAuthConfig */
-/** @typedef Page */
-/** @typedef ProcessConfig */
-/** @typedef PropBeanConfig */
-/** @typedef PropBeanDTO */
-/** @typedef ResponseEnvelopeJobConfigDTO */
-/** @typedef ResponseEnvelopeJobMetricsDto */
-/** @typedef ResponseEnvelopeKafkaResponse */
-/** @typedef ResponseEnvelopeListJobConfigDTO */
-/** @typedef ResponseEnvelopeListJobConfigListDTO */
-/** @typedef ResponseEnvelopeListJobConfigRawDTO */
-/** @typedef ResponseEnvelopeListJobStepsDTO */
-/** @typedef ResponseEnvelopeListSlingshotConfigurationDetail */
-/** @typedef ResponseEnvelopeString */
-/** @typedef Send */
-/** @typedef SFTPConfig */
-/** @typedef SlingshotConfigurationDetail */
-/** @typedef SlingshotIntegration */
-/** @typedef StoreConfig */
-/** @typedef StoreData */
-/** @typedef StoreFilter */
-/** @typedef SuppressStoreModel */
-/** @typedef SuppressStorePayload */
-/** @typedef TaskConfig */
-/** @typedef TaskDTO */
-/** @typedef TaskParam */
-/** @typedef TaskStepConfig */
-
 /** @typedef Android */
 /** @typedef App */
 /** @typedef AppCartConfig */
@@ -1421,28 +1243,6 @@ class PlatformApplicationClient {
 /** @typedef Validation */
 /** @typedef Validity */
 /** @typedef Visibility */
-
-/** @typedef AppUser */
-/** @typedef Asset */
-/** @typedef ConfigurationRequest */
-/** @typedef ConfigurationRes */
-/** @typedef E */
-/** @typedef Giveaway */
-/** @typedef GiveawayAudience */
-/** @typedef GiveawayResponse */
-/** @typedef HistoryRes */
-/** @typedef Offer */
-/** @typedef Page */
-/** @typedef Points */
-/** @typedef PointsHistory */
-/** @typedef Referral */
-/** @typedef RewardsAudience */
-/** @typedef RewardsRule */
-/** @typedef RewardUser */
-/** @typedef Schedule */
-/** @typedef SetConfigurationRes */
-/** @typedef ShareMessages */
-/** @typedef UserRes */
 
 /** @typedef AbandonCartDetail */
 /** @typedef AbandonCartsDetail */

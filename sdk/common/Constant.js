@@ -20,6 +20,8 @@ const AVAILABLE_PAGE_TYPE = {
   PAGE: "page",
   POLICY: "policy",
   PRODUCT: "product",
+  PRODUCT_REVIEWS: "product-reviews",
+  ADD_PRODUCT_REVIEW: "add-product-review",
   PRODUCT_REQUEST: "product-request",
   PRODUCTS: "products",
   PROFILE: "profile",
@@ -180,6 +182,26 @@ const NAVIGATORS = {
   product: {
     name: "Product",
     link: "/product/:slug",
+    params: [
+      {
+        key: "slug",
+        required: true,
+      },
+    ],
+  },
+  "product-reviews": {
+    name: "Product Reviews",
+    link: "/product/:slug/reviews",
+    params: [
+      {
+        key: "slug",
+        required: true,
+      },
+    ],
+  },
+  "add-product-review": {
+    name: "Add Product review",
+    link: "/product/:slug/add-review",
     params: [
       {
         key: "slug",

@@ -1,6 +1,6 @@
 const Joi = require("joi");
-
 const AnalyticsModel = require("./AnalyticsPlatformModel");
+
 class AnalyticsValidator {
   static getAbandonCartDetail() {
     return Joi.object({

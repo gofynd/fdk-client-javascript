@@ -1,10 +1,9 @@
-const PlatformAPIClient = require("../PlatformAPIClient");
-const { FDKClientValidationError } = require("../../common/FDKError");
 const Paginator = require("../../common/Paginator");
+const { FDKClientValidationError } = require("../../common/FDKError");
+const PlatformAPIClient = require("../PlatformAPIClient");
 const PaymentValidator = require("./PaymentPlatformValidator");
 const PaymentModel = require("./PaymentPlatformModel");
 const { Logger } = require("./../../common/Logger");
-const Joi = require("joi");
 
 class Payment {
   constructor(config) {

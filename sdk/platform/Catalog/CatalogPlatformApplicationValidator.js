@@ -1,6 +1,6 @@
 const Joi = require("joi");
-
 const CatalogModel = require("./CatalogPlatformModel");
+
 class CatalogValidator {
   static addCollectionItems() {
     return Joi.object({

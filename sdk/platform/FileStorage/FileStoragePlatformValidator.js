@@ -42,5 +42,4 @@ class FileStorageValidator {
     }).required();
   }
 }
-
 module.exports = FileStorageValidator;

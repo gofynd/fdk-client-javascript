@@ -1,11 +1,10 @@
-const ApplicationAPIClient = require("../ApplicationAPIClient");
-const { FDKClientValidationError } = require("../../common/FDKError");
+const APIClient = require("../ApplicationAPIClient");
 const constructUrl = require("../constructUrl");
 const Paginator = require("../../common/Paginator");
+const { FDKClientValidationError } = require("../../common/FDKError");
 const ContentValidator = require("./ContentApplicationValidator");
 const ContentModel = require("./ContentApplicationModel");
 const { Logger } = require("./../../common/Logger");
-const Joi = require("joi");
 
 class Content {
   constructor(_conf) {
@@ -81,7 +80,7 @@ class Content {
 
     const xHeaders = {};
 
-    const response = await ApplicationAPIClient.execute(
+    const response = await APIClient.execute(
       this._conf,
       "get",
       constructUrl({
@@ -148,7 +147,7 @@ class Content {
 
     const xHeaders = {};
 
-    const response = await ApplicationAPIClient.execute(
+    const response = await APIClient.execute(
       this._conf,
       "get",
       constructUrl({
@@ -213,7 +212,7 @@ class Content {
 
     const xHeaders = {};
 
-    const response = await ApplicationAPIClient.execute(
+    const response = await APIClient.execute(
       this._conf,
       "get",
       constructUrl({
@@ -265,7 +264,7 @@ class Content {
       });
       return data;
     };
-    paginator.setCallback(callback.bind(this));
+    paginator.setCallback(callback);
     return paginator;
   }
 
@@ -301,7 +300,7 @@ class Content {
 
     const xHeaders = {};
 
-    const response = await ApplicationAPIClient.execute(
+    const response = await APIClient.execute(
       this._conf,
       "get",
       constructUrl({
@@ -366,7 +365,7 @@ class Content {
 
     const xHeaders = {};
 
-    const response = await ApplicationAPIClient.execute(
+    const response = await APIClient.execute(
       this._conf,
       "get",
       constructUrl({
@@ -426,7 +425,7 @@ class Content {
 
     const xHeaders = {};
 
-    const response = await ApplicationAPIClient.execute(
+    const response = await APIClient.execute(
       this._conf,
       "get",
       constructUrl({
@@ -493,7 +492,7 @@ class Content {
 
     const xHeaders = {};
 
-    const response = await ApplicationAPIClient.execute(
+    const response = await APIClient.execute(
       this._conf,
       "get",
       constructUrl({
@@ -555,7 +554,7 @@ class Content {
 
     const xHeaders = {};
 
-    const response = await ApplicationAPIClient.execute(
+    const response = await APIClient.execute(
       this._conf,
       "get",
       constructUrl({
@@ -622,7 +621,7 @@ class Content {
 
     const xHeaders = {};
 
-    const response = await ApplicationAPIClient.execute(
+    const response = await APIClient.execute(
       this._conf,
       "get",
       constructUrl({
@@ -682,7 +681,7 @@ class Content {
 
     const xHeaders = {};
 
-    const response = await ApplicationAPIClient.execute(
+    const response = await APIClient.execute(
       this._conf,
       "get",
       constructUrl({
@@ -744,7 +743,7 @@ class Content {
 
     const xHeaders = {};
 
-    const response = await ApplicationAPIClient.execute(
+    const response = await APIClient.execute(
       this._conf,
       "get",
       constructUrl({
@@ -811,7 +810,7 @@ class Content {
 
     const xHeaders = {};
 
-    const response = await ApplicationAPIClient.execute(
+    const response = await APIClient.execute(
       this._conf,
       "get",
       constructUrl({
@@ -863,7 +862,7 @@ class Content {
       });
       return data;
     };
-    paginator.setCallback(callback.bind(this));
+    paginator.setCallback(callback);
     return paginator;
   }
 
@@ -904,7 +903,7 @@ class Content {
 
     const xHeaders = {};
 
-    const response = await ApplicationAPIClient.execute(
+    const response = await APIClient.execute(
       this._conf,
       "get",
       constructUrl({
@@ -969,7 +968,7 @@ class Content {
 
     const xHeaders = {};
 
-    const response = await ApplicationAPIClient.execute(
+    const response = await APIClient.execute(
       this._conf,
       "get",
       constructUrl({
@@ -1021,7 +1020,7 @@ class Content {
       });
       return data;
     };
-    paginator.setCallback(callback.bind(this));
+    paginator.setCallback(callback);
     return paginator;
   }
 
@@ -1057,7 +1056,7 @@ class Content {
 
     const xHeaders = {};
 
-    const response = await ApplicationAPIClient.execute(
+    const response = await APIClient.execute(
       this._conf,
       "get",
       constructUrl({
@@ -1120,7 +1119,7 @@ class Content {
 
     const xHeaders = {};
 
-    const response = await ApplicationAPIClient.execute(
+    const response = await APIClient.execute(
       this._conf,
       "get",
       constructUrl({
@@ -1187,7 +1186,7 @@ class Content {
 
     const xHeaders = {};
 
-    const response = await ApplicationAPIClient.execute(
+    const response = await APIClient.execute(
       this._conf,
       "get",
       constructUrl({
@@ -1239,7 +1238,7 @@ class Content {
       });
       return data;
     };
-    paginator.setCallback(callback.bind(this));
+    paginator.setCallback(callback);
     return paginator;
   }
 
@@ -1277,7 +1276,7 @@ class Content {
 
     const xHeaders = {};
 
-    const response = await ApplicationAPIClient.execute(
+    const response = await APIClient.execute(
       this._conf,
       "get",
       constructUrl({
@@ -1337,7 +1336,7 @@ class Content {
 
     const xHeaders = {};
 
-    const response = await ApplicationAPIClient.execute(
+    const response = await APIClient.execute(
       this._conf,
       "get",
       constructUrl({

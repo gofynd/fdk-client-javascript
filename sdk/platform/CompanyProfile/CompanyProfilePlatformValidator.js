@@ -91,5 +91,4 @@ class CompanyProfileValidator {
     }).required();
   }
 }
-
 module.exports = CompanyProfileValidator;

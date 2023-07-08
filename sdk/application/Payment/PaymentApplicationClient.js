@@ -1,11 +1,10 @@
-const ApplicationAPIClient = require("../ApplicationAPIClient");
-const { FDKClientValidationError } = require("../../common/FDKError");
+const APIClient = require("../ApplicationAPIClient");
 const constructUrl = require("../constructUrl");
 const Paginator = require("../../common/Paginator");
+const { FDKClientValidationError } = require("../../common/FDKError");
 const PaymentValidator = require("./PaymentApplicationValidator");
 const PaymentModel = require("./PaymentApplicationModel");
 const { Logger } = require("./../../common/Logger");
-const Joi = require("joi");
 
 class Payment {
   constructor(_conf) {
@@ -15,9 +14,17 @@ class Payment {
       addRefundBankAccountUsingOTP:
         "/service/application/payment/v1.0/refund/account/otp",
       attachCardToCustomer: "/service/application/payment/v1.0/card/attach",
+      cancelPaymentLink:
+        "/service/application/payment/v1.0/cancel-payment-link/",
       checkAndUpdatePaymentStatus:
         "/service/application/payment/v1.0/payment/confirm/polling",
+      checkAndUpdatePaymentStatusPaymentLink:
+        "/service/application/payment/v1.0/payment/confirm/polling/link/",
       checkCredit: "/service/application/payment/v1.0/check-credits/",
+      createOrderHandlerPaymentLink:
+        "/service/application/payment/v1.0/create-order/link/",
+      createPaymentLink:
+        "/service/application/payment/v1.0/create-payment-link/",
       customerCreditSummary:
         "/service/application/payment/v1.0/payment/credit-summary/",
       customerOnboard: "/service/application/payment/v1.0/credit-onboard/",
@@ -35,19 +42,30 @@ class Payment {
         "/service/application/payment/v1.0/epaylater/banner",
       getOrderBeneficiariesDetail:
         "/service/application/payment/v1.0/refund/order/beneficiaries",
+      getPaymentLink: "/service/application/payment/v1.0/create-payment-link/",
       getPaymentModeRoutes: "/service/application/payment/v1.0/payment/options",
+      getPaymentModeRoutesPaymentLink:
+        "/service/application/payment/v1.0/payment/options/link/",
       getPosPaymentModeRoutes:
         "/service/application/payment/v1.0/payment/options/pos",
       getRupifiBannerDetails: "/service/application/payment/v1.0/rupifi/banner",
       getUserBeneficiariesDetail:
         "/service/application/payment/v1.0/refund/user/beneficiary",
       initialisePayment: "/service/application/payment/v1.0/payment/request",
+      initialisePaymentPaymentLink:
+        "/service/application/payment/v1.0/payment/request/link/",
+      pollingPaymentLink:
+        "/service/application/payment/v1.0/polling-payment-link/",
       redirectToAggregator:
         "/service/application/payment/v1.0/payment/redirect-to-aggregator/",
+      renderHTML: "/service/application/payment/v1.0/payment/html/render/",
       resendOrCancelPayment:
         "/service/application/payment/v1.0/payment/resend_or_cancel",
+      resendPaymentLink:
+        "/service/application/payment/v1.0/resend-payment-link/",
       updateDefaultBeneficiary:
         "/service/application/payment/v1.0/refund/beneficiary/default",
+      validateVPA: "/service/application/payment/v1.0/validate-vpa",
       verifyAndChargePayment:
         "/service/application/payment/v1.0/payment/confirm/charge",
       verifyCustomerForPayment:
@@ -109,7 +127,7 @@ class Payment {
 
     const xHeaders = {};
 
-    const response = await ApplicationAPIClient.execute(
+    const response = await APIClient.execute(
       this._conf,
       "post",
       constructUrl({
@@ -175,7 +193,7 @@ class Payment {
 
     const xHeaders = {};
 
-    const response = await ApplicationAPIClient.execute(
+    const response = await APIClient.execute(
       this._conf,
       "post",
       constructUrl({
@@ -241,7 +259,7 @@ class Payment {
 
     const xHeaders = {};
 
-    const response = await ApplicationAPIClient.execute(
+    const response = await APIClient.execute(
       this._conf,
       "post",
       constructUrl({
@@ -264,6 +282,69 @@ class Payment {
       Logger({
         level: "WARN",
         message: "Response Validation Warnnings for attachCardToCustomer",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {CancelOrResendPaymentLinkRequest} arg.body
+   * @returns {Promise<CancelPaymentLinkResponse>} - Success response
+   * @summary: Cancel payment link
+   * @description: Use this API to cancel a payment link for the customer
+   */
+  async cancelPaymentLink({ body } = {}) {
+    const { error } = PaymentValidator.cancelPaymentLink().validate(
+      { body },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = PaymentValidator.cancelPaymentLink().validate(
+      { body },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for cancelPaymentLink",
+      });
+      Logger({ level: "WARN", message: warrning });
+    }
+
+    const query_params = {};
+
+    const xHeaders = {};
+
+    const response = await APIClient.execute(
+      this._conf,
+      "post",
+      constructUrl({
+        url: this._urls["cancelPaymentLink"],
+        params: {},
+      }),
+      query_params,
+      body,
+      xHeaders
+    );
+
+    const {
+      error: res_error,
+    } = PaymentModel.CancelPaymentLinkResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for cancelPaymentLink",
       });
       Logger({ level: "WARN", message: res_error });
     }
@@ -307,7 +388,7 @@ class Payment {
 
     const xHeaders = {};
 
-    const response = await ApplicationAPIClient.execute(
+    const response = await APIClient.execute(
       this._conf,
       "post",
       constructUrl({
@@ -331,6 +412,75 @@ class Payment {
         level: "WARN",
         message:
           "Response Validation Warnnings for checkAndUpdatePaymentStatus",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {PaymentStatusUpdateRequest} arg.body
+   * @returns {Promise<PaymentStatusUpdateResponse>} - Success response
+   * @summary: Performs continuous polling to check status of payment on the server
+   * @description: Use this API to perform continuous polling at intervals to check the status of payment until timeout.
+   */
+  async checkAndUpdatePaymentStatusPaymentLink({ body } = {}) {
+    const {
+      error,
+    } = PaymentValidator.checkAndUpdatePaymentStatusPaymentLink().validate(
+      { body },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = PaymentValidator.checkAndUpdatePaymentStatusPaymentLink().validate(
+      { body },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message:
+          "Parameter Validation warrnings for checkAndUpdatePaymentStatusPaymentLink",
+      });
+      Logger({ level: "WARN", message: warrning });
+    }
+
+    const query_params = {};
+
+    const xHeaders = {};
+
+    const response = await APIClient.execute(
+      this._conf,
+      "post",
+      constructUrl({
+        url: this._urls["checkAndUpdatePaymentStatusPaymentLink"],
+        params: {},
+      }),
+      query_params,
+      body,
+      xHeaders
+    );
+
+    const {
+      error: res_error,
+    } = PaymentModel.PaymentStatusUpdateResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message:
+          "Response Validation Warnnings for checkAndUpdatePaymentStatusPaymentLink",
       });
       Logger({ level: "WARN", message: res_error });
     }
@@ -372,7 +522,7 @@ class Payment {
 
     const xHeaders = {};
 
-    const response = await ApplicationAPIClient.execute(
+    const response = await APIClient.execute(
       this._conf,
       "get",
       constructUrl({
@@ -395,6 +545,136 @@ class Payment {
       Logger({
         level: "WARN",
         message: "Response Validation Warnnings for checkCredit",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {CreateOrderUserRequest} arg.body
+   * @returns {Promise<CreateOrderUserResponse>} - Success response
+   * @summary: Create Order user
+   * @description: Use this API to create a order and payment on aggregator side
+   */
+  async createOrderHandlerPaymentLink({ body } = {}) {
+    const { error } = PaymentValidator.createOrderHandlerPaymentLink().validate(
+      { body },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = PaymentValidator.createOrderHandlerPaymentLink().validate(
+      { body },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message:
+          "Parameter Validation warrnings for createOrderHandlerPaymentLink",
+      });
+      Logger({ level: "WARN", message: warrning });
+    }
+
+    const query_params = {};
+
+    const xHeaders = {};
+
+    const response = await APIClient.execute(
+      this._conf,
+      "post",
+      constructUrl({
+        url: this._urls["createOrderHandlerPaymentLink"],
+        params: {},
+      }),
+      query_params,
+      body,
+      xHeaders
+    );
+
+    const {
+      error: res_error,
+    } = PaymentModel.CreateOrderUserResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message:
+          "Response Validation Warnnings for createOrderHandlerPaymentLink",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {CreatePaymentLinkRequest} arg.body
+   * @returns {Promise<CreatePaymentLinkResponse>} - Success response
+   * @summary: Create payment link
+   * @description: Use this API to create a payment link for the customer
+   */
+  async createPaymentLink({ body } = {}) {
+    const { error } = PaymentValidator.createPaymentLink().validate(
+      { body },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = PaymentValidator.createPaymentLink().validate(
+      { body },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for createPaymentLink",
+      });
+      Logger({ level: "WARN", message: warrning });
+    }
+
+    const query_params = {};
+
+    const xHeaders = {};
+
+    const response = await APIClient.execute(
+      this._conf,
+      "post",
+      constructUrl({
+        url: this._urls["createPaymentLink"],
+        params: {},
+      }),
+      query_params,
+      body,
+      xHeaders
+    );
+
+    const {
+      error: res_error,
+    } = PaymentModel.CreatePaymentLinkResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for createPaymentLink",
       });
       Logger({ level: "WARN", message: res_error });
     }
@@ -438,7 +718,7 @@ class Payment {
 
     const xHeaders = {};
 
-    const response = await ApplicationAPIClient.execute(
+    const response = await APIClient.execute(
       this._conf,
       "get",
       constructUrl({
@@ -501,7 +781,7 @@ class Payment {
 
     const xHeaders = {};
 
-    const response = await ApplicationAPIClient.execute(
+    const response = await APIClient.execute(
       this._conf,
       "post",
       constructUrl({
@@ -564,7 +844,7 @@ class Payment {
 
     const xHeaders = {};
 
-    const response = await ApplicationAPIClient.execute(
+    const response = await APIClient.execute(
       this._conf,
       "post",
       constructUrl({
@@ -632,7 +912,7 @@ class Payment {
 
     const xHeaders = {};
 
-    const response = await ApplicationAPIClient.execute(
+    const response = await APIClient.execute(
       this._conf,
       "put",
       constructUrl({
@@ -699,7 +979,7 @@ class Payment {
 
     const xHeaders = {};
 
-    const response = await ApplicationAPIClient.execute(
+    const response = await APIClient.execute(
       this._conf,
       "get",
       constructUrl({
@@ -764,7 +1044,7 @@ class Payment {
 
     const xHeaders = {};
 
-    const response = await ApplicationAPIClient.execute(
+    const response = await APIClient.execute(
       this._conf,
       "get",
       constructUrl({
@@ -829,7 +1109,7 @@ class Payment {
 
     const xHeaders = {};
 
-    const response = await ApplicationAPIClient.execute(
+    const response = await APIClient.execute(
       this._conf,
       "get",
       constructUrl({
@@ -899,7 +1179,7 @@ class Payment {
     const xHeaders = {};
     xHeaders["x-api-token"] = xApiToken;
 
-    const response = await ApplicationAPIClient.execute(
+    const response = await APIClient.execute(
       this._conf,
       "get",
       constructUrl({
@@ -963,7 +1243,7 @@ class Payment {
 
     const xHeaders = {};
 
-    const response = await ApplicationAPIClient.execute(
+    const response = await APIClient.execute(
       this._conf,
       "get",
       constructUrl({
@@ -1031,7 +1311,7 @@ class Payment {
 
     const xHeaders = {};
 
-    const response = await ApplicationAPIClient.execute(
+    const response = await APIClient.execute(
       this._conf,
       "get",
       constructUrl({
@@ -1055,6 +1335,70 @@ class Payment {
         level: "WARN",
         message:
           "Response Validation Warnnings for getOrderBeneficiariesDetail",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {string} [arg.paymentLinkId] -
+   * @returns {Promise<GetPaymentLinkResponse>} - Success response
+   * @summary: Get payment link
+   * @description: Use this API to get a payment link
+   */
+  async getPaymentLink({ paymentLinkId } = {}) {
+    const { error } = PaymentValidator.getPaymentLink().validate(
+      { paymentLinkId },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = PaymentValidator.getPaymentLink().validate(
+      { paymentLinkId },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getPaymentLink",
+      });
+      Logger({ level: "WARN", message: warrning });
+    }
+
+    const query_params = {};
+    query_params["payment_link_id"] = paymentLinkId;
+
+    const xHeaders = {};
+
+    const response = await APIClient.execute(
+      this._conf,
+      "get",
+      constructUrl({
+        url: this._urls["getPaymentLink"],
+        params: {},
+      }),
+      query_params,
+      undefined,
+      xHeaders
+    );
+
+    const {
+      error: res_error,
+    } = PaymentModel.GetPaymentLinkResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getPaymentLink",
       });
       Logger({ level: "WARN", message: res_error });
     }
@@ -1138,7 +1482,7 @@ class Payment {
 
     const xHeaders = {};
 
-    const response = await ApplicationAPIClient.execute(
+    const response = await APIClient.execute(
       this._conf,
       "get",
       constructUrl({
@@ -1161,6 +1505,76 @@ class Payment {
       Logger({
         level: "WARN",
         message: "Response Validation Warnnings for getPaymentModeRoutes",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.paymentLinkId - Payment link id
+   * @returns {Promise<PaymentModeRouteResponse>} - Success response
+   * @summary: Get applicable payment options for payment link
+   * @description: Use this API to get all valid payment options for doing a payment through payment link
+   */
+  async getPaymentModeRoutesPaymentLink({ paymentLinkId } = {}) {
+    const {
+      error,
+    } = PaymentValidator.getPaymentModeRoutesPaymentLink().validate(
+      { paymentLinkId },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = PaymentValidator.getPaymentModeRoutesPaymentLink().validate(
+      { paymentLinkId },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message:
+          "Parameter Validation warrnings for getPaymentModeRoutesPaymentLink",
+      });
+      Logger({ level: "WARN", message: warrning });
+    }
+
+    const query_params = {};
+    query_params["payment_link_id"] = paymentLinkId;
+
+    const xHeaders = {};
+
+    const response = await APIClient.execute(
+      this._conf,
+      "get",
+      constructUrl({
+        url: this._urls["getPaymentModeRoutesPaymentLink"],
+        params: {},
+      }),
+      query_params,
+      undefined,
+      xHeaders
+    );
+
+    const {
+      error: res_error,
+    } = PaymentModel.PaymentModeRouteResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message:
+          "Response Validation Warnnings for getPaymentModeRoutesPaymentLink",
       });
       Logger({ level: "WARN", message: res_error });
     }
@@ -1251,7 +1665,7 @@ class Payment {
 
     const xHeaders = {};
 
-    const response = await ApplicationAPIClient.execute(
+    const response = await APIClient.execute(
       this._conf,
       "get",
       constructUrl({
@@ -1315,7 +1729,7 @@ class Payment {
 
     const xHeaders = {};
 
-    const response = await ApplicationAPIClient.execute(
+    const response = await APIClient.execute(
       this._conf,
       "get",
       constructUrl({
@@ -1383,7 +1797,7 @@ class Payment {
 
     const xHeaders = {};
 
-    const response = await ApplicationAPIClient.execute(
+    const response = await APIClient.execute(
       this._conf,
       "get",
       constructUrl({
@@ -1446,7 +1860,7 @@ class Payment {
 
     const xHeaders = {};
 
-    const response = await ApplicationAPIClient.execute(
+    const response = await APIClient.execute(
       this._conf,
       "post",
       constructUrl({
@@ -1469,6 +1883,137 @@ class Payment {
       Logger({
         level: "WARN",
         message: "Response Validation Warnnings for initialisePayment",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {PaymentInitializationRequest} arg.body
+   * @returns {Promise<PaymentInitializationResponse>} - Success response
+   * @summary: Initialize a payment (server-to-server) for UPI and BharatQR
+   * @description: Use this API to inititate payment using UPI, BharatQR, wherein the UPI requests are send to the app and QR code is displayed on the screen.
+   */
+  async initialisePaymentPaymentLink({ body } = {}) {
+    const { error } = PaymentValidator.initialisePaymentPaymentLink().validate(
+      { body },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = PaymentValidator.initialisePaymentPaymentLink().validate(
+      { body },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message:
+          "Parameter Validation warrnings for initialisePaymentPaymentLink",
+      });
+      Logger({ level: "WARN", message: warrning });
+    }
+
+    const query_params = {};
+
+    const xHeaders = {};
+
+    const response = await APIClient.execute(
+      this._conf,
+      "post",
+      constructUrl({
+        url: this._urls["initialisePaymentPaymentLink"],
+        params: {},
+      }),
+      query_params,
+      body,
+      xHeaders
+    );
+
+    const {
+      error: res_error,
+    } = PaymentModel.PaymentInitializationResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message:
+          "Response Validation Warnnings for initialisePaymentPaymentLink",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {string} [arg.paymentLinkId] -
+   * @returns {Promise<PollingPaymentLinkResponse>} - Success response
+   * @summary: Used for polling if payment successful or not
+   * @description: Use this API to poll if payment through payment was successful or not
+   */
+  async pollingPaymentLink({ paymentLinkId } = {}) {
+    const { error } = PaymentValidator.pollingPaymentLink().validate(
+      { paymentLinkId },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = PaymentValidator.pollingPaymentLink().validate(
+      { paymentLinkId },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for pollingPaymentLink",
+      });
+      Logger({ level: "WARN", message: warrning });
+    }
+
+    const query_params = {};
+    query_params["payment_link_id"] = paymentLinkId;
+
+    const xHeaders = {};
+
+    const response = await APIClient.execute(
+      this._conf,
+      "get",
+      constructUrl({
+        url: this._urls["pollingPaymentLink"],
+        params: {},
+      }),
+      query_params,
+      undefined,
+      xHeaders
+    );
+
+    const {
+      error: res_error,
+    } = PaymentModel.PollingPaymentLinkResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for pollingPaymentLink",
       });
       Logger({ level: "WARN", message: res_error });
     }
@@ -1516,7 +2061,7 @@ class Payment {
 
     const xHeaders = {};
 
-    const response = await ApplicationAPIClient.execute(
+    const response = await APIClient.execute(
       this._conf,
       "get",
       constructUrl({
@@ -1539,6 +2084,69 @@ class Payment {
       Logger({
         level: "WARN",
         message: "Response Validation Warnnings for redirectToAggregator",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {renderHTMLRequest} arg.body
+   * @returns {Promise<renderHTMLResponse>} - Success response
+   * @summary: Convert base64 string to HTML form
+   * @description: Use this API to decode base64 html form to plain HTML string.
+   */
+  async renderHTML({ body } = {}) {
+    const { error } = PaymentValidator.renderHTML().validate(
+      { body },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = PaymentValidator.renderHTML().validate(
+      { body },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for renderHTML",
+      });
+      Logger({ level: "WARN", message: warrning });
+    }
+
+    const query_params = {};
+
+    const xHeaders = {};
+
+    const response = await APIClient.execute(
+      this._conf,
+      "post",
+      constructUrl({
+        url: this._urls["renderHTML"],
+        params: {},
+      }),
+      query_params,
+      body,
+      xHeaders
+    );
+
+    const {
+      error: res_error,
+    } = PaymentModel.renderHTMLResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for renderHTML",
       });
       Logger({ level: "WARN", message: res_error });
     }
@@ -1581,7 +2189,7 @@ class Payment {
 
     const xHeaders = {};
 
-    const response = await ApplicationAPIClient.execute(
+    const response = await APIClient.execute(
       this._conf,
       "post",
       constructUrl({
@@ -1604,6 +2212,69 @@ class Payment {
       Logger({
         level: "WARN",
         message: "Response Validation Warnnings for resendOrCancelPayment",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {CancelOrResendPaymentLinkRequest} arg.body
+   * @returns {Promise<ResendPaymentLinkResponse>} - Success response
+   * @summary: Resend payment link
+   * @description: Use this API to resend a payment link for the customer
+   */
+  async resendPaymentLink({ body } = {}) {
+    const { error } = PaymentValidator.resendPaymentLink().validate(
+      { body },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = PaymentValidator.resendPaymentLink().validate(
+      { body },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for resendPaymentLink",
+      });
+      Logger({ level: "WARN", message: warrning });
+    }
+
+    const query_params = {};
+
+    const xHeaders = {};
+
+    const response = await APIClient.execute(
+      this._conf,
+      "post",
+      constructUrl({
+        url: this._urls["resendPaymentLink"],
+        params: {},
+      }),
+      query_params,
+      body,
+      xHeaders
+    );
+
+    const {
+      error: res_error,
+    } = PaymentModel.ResendPaymentLinkResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for resendPaymentLink",
       });
       Logger({ level: "WARN", message: res_error });
     }
@@ -1646,7 +2317,7 @@ class Payment {
 
     const xHeaders = {};
 
-    const response = await ApplicationAPIClient.execute(
+    const response = await APIClient.execute(
       this._conf,
       "post",
       constructUrl({
@@ -1669,6 +2340,69 @@ class Payment {
       Logger({
         level: "WARN",
         message: "Response Validation Warnnings for updateDefaultBeneficiary",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {ValidateVPARequest} arg.body
+   * @returns {Promise<ValidateVPAResponse>} - Success response
+   * @summary: API to Validate UPI ID
+   * @description: API to Validate UPI ID
+   */
+  async validateVPA({ body } = {}) {
+    const { error } = PaymentValidator.validateVPA().validate(
+      { body },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = PaymentValidator.validateVPA().validate(
+      { body },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for validateVPA",
+      });
+      Logger({ level: "WARN", message: warrning });
+    }
+
+    const query_params = {};
+
+    const xHeaders = {};
+
+    const response = await APIClient.execute(
+      this._conf,
+      "post",
+      constructUrl({
+        url: this._urls["validateVPA"],
+        params: {},
+      }),
+      query_params,
+      body,
+      xHeaders
+    );
+
+    const {
+      error: res_error,
+    } = PaymentModel.ValidateVPAResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for validateVPA",
       });
       Logger({ level: "WARN", message: res_error });
     }
@@ -1711,7 +2445,7 @@ class Payment {
 
     const xHeaders = {};
 
-    const response = await ApplicationAPIClient.execute(
+    const response = await APIClient.execute(
       this._conf,
       "post",
       constructUrl({
@@ -1776,7 +2510,7 @@ class Payment {
 
     const xHeaders = {};
 
-    const response = await ApplicationAPIClient.execute(
+    const response = await APIClient.execute(
       this._conf,
       "post",
       constructUrl({
@@ -1841,7 +2575,7 @@ class Payment {
 
     const xHeaders = {};
 
-    const response = await ApplicationAPIClient.execute(
+    const response = await APIClient.execute(
       this._conf,
       "get",
       constructUrl({
@@ -1909,7 +2643,7 @@ class Payment {
 
     const xHeaders = {};
 
-    const response = await ApplicationAPIClient.execute(
+    const response = await APIClient.execute(
       this._conf,
       "post",
       constructUrl({
@@ -1978,7 +2712,7 @@ class Payment {
 
     const xHeaders = {};
 
-    const response = await ApplicationAPIClient.execute(
+    const response = await APIClient.execute(
       this._conf,
       "post",
       constructUrl({

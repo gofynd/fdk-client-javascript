@@ -1,5 +1,4 @@
 const { fdkAxios } = require("../common/AxiosHelper");
-const { btoa } = require("isomorphic-base64");
 
 class APIClient {
   /**
@@ -11,7 +10,10 @@ class APIClient {
    */
 
   static execute(conf, method, url, query, body, xHeaders) {
-    const token = btoa(`${conf.applicationID}:${conf.applicationToken}`);
+    const token = Buffer.from(
+      `${conf.applicationID}:${conf.applicationToken}`,
+      "utf8"
+    ).toString("base64");
 
     let headers = { Authorization: "Bearer " + token };
     if (conf.cookie) {

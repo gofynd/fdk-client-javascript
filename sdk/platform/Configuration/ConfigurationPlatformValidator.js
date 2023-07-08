@@ -133,5 +133,4 @@ class ConfigurationValidator {
     }).required();
   }
 }
-
 module.exports = ConfigurationValidator;

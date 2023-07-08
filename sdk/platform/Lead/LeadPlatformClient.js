@@ -1,10 +1,9 @@
-const PlatformAPIClient = require("../PlatformAPIClient");
-const { FDKClientValidationError } = require("../../common/FDKError");
 const Paginator = require("../../common/Paginator");
+const { FDKClientValidationError } = require("../../common/FDKError");
+const PlatformAPIClient = require("../PlatformAPIClient");
 const LeadValidator = require("./LeadPlatformValidator");
 const LeadModel = require("./LeadPlatformModel");
 const { Logger } = require("./../../common/Logger");
-const Joi = require("joi");
 
 class Lead {
   constructor(config) {
@@ -601,7 +600,7 @@ class Lead {
       });
       return data;
     };
-    paginator.setCallback(callback.bind(this));
+    paginator.setCallback(callback);
     return paginator;
   }
 
