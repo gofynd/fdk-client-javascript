@@ -97,36 +97,6 @@
       }
     },
     {
-      "name": "Review page",
-      "action": {
-        "type": "page",
-        "page": {
-          "type": "product-reviews",
-          "params": {
-            "slug": ["test-product"]
-          }
-        }
-      },
-      "result": {
-        "path": "/product/test-product/reviews"
-      }
-    },
-    {
-      "name": "Multiple slugs",
-      "action": {
-        "type": "page",
-        "page": {
-          "type": "product-reviews",
-          "params": {
-            "slug": ["test-product", "test-product-2"]
-          }
-        }
-      },
-      "result": {
-        "path": "/product/test-product:::test-product-2/reviews"
-      }
-    },
-    {
       "name": "login page  ",
       "action": {
         "type": "page",
@@ -172,6 +142,18 @@
       },
       "result": {
         "path": "/return-policy"
+      }
+    },
+    {
+      "name": "Order status  ",
+      "action": {
+        "type": "page",
+        "page": {
+          "type": "order-status"
+        }
+      },
+      "result": {
+        "path": "/cart/order-status"
       }
     }
   ]

@@ -110,4 +110,5 @@ class OrderValidator {
     }).required();
   }
 }
+
 module.exports = OrderValidator;

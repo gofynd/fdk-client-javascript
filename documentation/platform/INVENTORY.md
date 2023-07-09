@@ -35,10 +35,10 @@ Creates A New Job Config
 
 ```javascript
 // Promise
-const promise = client.inventory.createJob({  body : value });
+const promise = platformClient.inventory.createJob({  body : value });
 
 // Async/Await
-const data = await client.inventory.createJob({  body : value });
+const data = await platformClient.inventory.createJob({  body : value });
 ```
 
 
@@ -90,10 +90,10 @@ Disable Job Config
 
 ```javascript
 // Promise
-const promise = client.inventory.disable({  integrationId : value });
+const promise = platformClient.inventory.disable({  integrationId : value });
 
 // Async/Await
-const data = await client.inventory.disable({  integrationId : value });
+const data = await platformClient.inventory.disable({  integrationId : value });
 ```
 
 
@@ -146,10 +146,10 @@ Get Slingshot Configuration Of  A Company
 
 ```javascript
 // Promise
-const promise = client.inventory.getConfigByCompany();
+const promise = platformClient.inventory.getConfigByCompany();
 
 // Async/Await
-const data = await client.inventory.getConfigByCompany();
+const data = await platformClient.inventory.getConfigByCompany();
 ```
 
 
@@ -197,10 +197,10 @@ Get Job Config By Code
 
 ```javascript
 // Promise
-const promise = client.inventory.getJobByCode({  code : value });
+const promise = platformClient.inventory.getJobByCode({  code : value });
 
 // Async/Await
-const data = await client.inventory.getJobByCode({  code : value });
+const data = await platformClient.inventory.getJobByCode({  code : value });
 ```
 
 
@@ -253,12 +253,12 @@ Get Job Configs By Company And Integration
 
 ```javascript
 // Promise
-const promise = client.inventory.getJobByCompanyAndIntegration({  integrationId : value,
+const promise = platformClient.inventory.getJobByCompanyAndIntegration({  integrationId : value,
  pageNo : value,
  pageSize : value });
 
 // Async/Await
-const data = await client.inventory.getJobByCompanyAndIntegration({  integrationId : value,
+const data = await platformClient.inventory.getJobByCompanyAndIntegration({  integrationId : value,
  pageNo : value,
  pageSize : value });
 ```
@@ -315,14 +315,14 @@ Get Job Metrics
 
 ```javascript
 // Promise
-const promise = client.inventory.getJobCodeMetrics({  code : value,
+const promise = platformClient.inventory.getJobCodeMetrics({  code : value,
  pageNo : value,
  pageSize : value,
  status : value,
  date : value });
 
 // Async/Await
-const data = await client.inventory.getJobCodeMetrics({  code : value,
+const data = await platformClient.inventory.getJobCodeMetrics({  code : value,
  pageNo : value,
  pageSize : value,
  status : value,
@@ -383,12 +383,12 @@ Get Job Codes By Company And Integration
 
 ```javascript
 // Promise
-const promise = client.inventory.getJobCodesByCompanyAndIntegration({  integrationId : value,
+const promise = platformClient.inventory.getJobCodesByCompanyAndIntegration({  integrationId : value,
  pageNo : value,
  pageSize : value });
 
 // Async/Await
-const data = await client.inventory.getJobCodesByCompanyAndIntegration({  integrationId : value,
+const data = await platformClient.inventory.getJobCodesByCompanyAndIntegration({  integrationId : value,
  pageNo : value,
  pageSize : value });
 ```
@@ -445,10 +445,10 @@ Get Job Configs Defaults
 
 ```javascript
 // Promise
-const promise = client.inventory.getJobConfigDefaults();
+const promise = platformClient.inventory.getJobConfigDefaults();
 
 // Async/Await
-const data = await client.inventory.getJobConfigDefaults();
+const data = await platformClient.inventory.getJobConfigDefaults();
 ```
 
 
@@ -496,10 +496,10 @@ Get Job Code Steps
 
 ```javascript
 // Promise
-const promise = client.inventory.getJobSteps({  jobId : value });
+const promise = platformClient.inventory.getJobSteps({  jobId : value });
 
 // Async/Await
-const data = await client.inventory.getJobSteps({  jobId : value });
+const data = await platformClient.inventory.getJobSteps({  jobId : value });
 ```
 
 
@@ -552,11 +552,11 @@ Get Job Configs For A Company
 
 ```javascript
 // Promise
-const promise = client.inventory.getJobsByCompany({  pageNo : value,
+const promise = platformClient.inventory.getJobsByCompany({  pageNo : value,
  pageSize : value });
 
 // Async/Await
-const data = await client.inventory.getJobsByCompany({  pageNo : value,
+const data = await platformClient.inventory.getJobsByCompany({  pageNo : value,
  pageSize : value });
 ```
 
@@ -611,10 +611,10 @@ Get Slingshot Configuration Of  A Company
 
 ```javascript
 // Promise
-const promise = client.inventory.suppressStores({  body : value });
+const promise = platformClient.inventory.suppressStores({  body : value });
 
 // Async/Await
-const data = await client.inventory.suppressStores({  body : value });
+const data = await platformClient.inventory.suppressStores({  body : value });
 ```
 
 
@@ -666,10 +666,10 @@ Updates An Existing Job Config
 
 ```javascript
 // Promise
-const promise = client.inventory.updateJob({  body : value });
+const promise = platformClient.inventory.updateJob({  body : value });
 
 // Async/Await
-const data = await client.inventory.updateJob({  body : value });
+const data = await platformClient.inventory.updateJob({  body : value });
 ```
 
 
@@ -721,413 +721,942 @@ Job Config Updated Successfully
 #### [ArchiveConfig](#ArchiveConfig)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || archive | boolean |  no  |  || archive_dir | string |  no  |  || delete | boolean |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | archive | boolean? |  yes  |  |
+ | archive_dir | string? |  yes  |  |
+ | delete | boolean? |  yes  |  |
+ 
 
 ---
 
 #### [Audit](#Audit)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || created_by | string |  no  |  || created_on | string |  no  |  || modified_by | string |  no  |  || modified_on | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | created_by | string? |  yes  |  |
+ | created_on | string? |  yes  |  |
+ | modified_by | string? |  yes  |  |
+ | modified_on | string? |  yes  |  |
+ 
 
 ---
 
 #### [AWSS3config](#AWSS3config)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || access_key | string |  no  |  || archive | boolean |  no  |  || archive_config | [ArchiveConfig](#ArchiveConfig) |  no  |  || archive_path | string |  no  |  || bucket | string |  no  |  || delete | boolean |  no  |  || dir | string |  no  |  || file_regex | string |  no  |  || local_file_path | string |  no  |  || region | string |  no  |  || secret_key | string |  no  |  || unzip | boolean |  no  |  || zip_format | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | access_key | string? |  yes  |  |
+ | archive | boolean? |  yes  |  |
+ | archive_config | [ArchiveConfig](#ArchiveConfig)? |  yes  |  |
+ | archive_path | string? |  yes  |  |
+ | bucket | string? |  yes  |  |
+ | delete | boolean? |  yes  |  |
+ | dir | string? |  yes  |  |
+ | file_regex | string? |  yes  |  |
+ | local_file_path | string? |  yes  |  |
+ | region | string? |  yes  |  |
+ | secret_key | string? |  yes  |  |
+ | unzip | boolean? |  yes  |  |
+ | zip_format | string? |  yes  |  |
+ 
 
 ---
 
 #### [CatalogMasterConfig](#CatalogMasterConfig)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || source_slug | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | source_slug | string? |  yes  |  |
+ 
 
 ---
 
 #### [CompanyConfig](#CompanyConfig)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || company_id | number |  no  |  || delete_quantity_threshold | number |  no  |  || exclude_steps | [number] |  no  |  || hidden_closet_keys | [string] |  no  |  || open_tags | string |  no  |  || tax_identifiers | [string] |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | company_id | number? |  yes  |  |
+ | delete_quantity_threshold | number? |  yes  |  |
+ | exclude_steps | [number]? |  yes  |  |
+ | hidden_closet_keys | [string]? |  yes  |  |
+ | open_tags | string? |  yes  |  |
+ | tax_identifiers | [string]? |  yes  |  |
+ 
 
 ---
 
 #### [DataTresholdDTO](#DataTresholdDTO)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || min_price | number |  no  |  || period_threshold | number |  no  |  || period_threshold_type | string |  no  |  || period_type_list | [[GenericDTO](#GenericDTO)] |  no  |  || safe_stock | number |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | min_price | number? |  yes  |  |
+ | period_threshold | number? |  yes  |  |
+ | period_threshold_type | string? |  yes  |  |
+ | period_type_list | [[GenericDTO](#GenericDTO)]? |  yes  |  |
+ | safe_stock | number? |  yes  |  |
+ 
 
 ---
 
 #### [DBConfig](#DBConfig)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || dbname | string |  no  |  || driver_class | string |  no  |  || host | string |  no  |  || jdbc_url | string |  no  |  || optional_properties | [String: string] |  no  |  || password | string |  no  |  || port | number |  no  |  || procedure | boolean |  no  |  || query | string |  no  |  || username | string |  no  |  || vendor | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | dbname | string? |  yes  |  |
+ | driver_class | string? |  yes  |  |
+ | host | string? |  yes  |  |
+ | jdbc_url | string? |  yes  |  |
+ | optional_properties | [String: string]? |  yes  |  |
+ | password | string? |  yes  |  |
+ | port | number? |  yes  |  |
+ | procedure | boolean? |  yes  |  |
+ | query | string? |  yes  |  |
+ | username | string? |  yes  |  |
+ | vendor | string? |  yes  |  |
+ 
 
 ---
 
 #### [DBConnectionProfile](#DBConnectionProfile)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || inventory | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | inventory | string? |  yes  |  |
+ 
 
 ---
 
 #### [DBParamConfig](#DBParamConfig)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || params | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | params | string? |  yes  |  |
+ 
 
 ---
 
 #### [DefaultHeadersDTO](#DefaultHeadersDTO)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || intf_article_id | [PropBeanDTO](#PropBeanDTO) |  no  |  || price_effective | [PropBeanDTO](#PropBeanDTO) |  no  |  || quantity | [PropBeanDTO](#PropBeanDTO) |  no  |  || store | [PropBeanDTO](#PropBeanDTO) |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | intf_article_id | [PropBeanDTO](#PropBeanDTO)? |  yes  |  |
+ | price_effective | [PropBeanDTO](#PropBeanDTO)? |  yes  |  |
+ | quantity | [PropBeanDTO](#PropBeanDTO)? |  yes  |  |
+ | store | [PropBeanDTO](#PropBeanDTO)? |  yes  |  |
+ 
 
 ---
 
 #### [DocMappingConfig](#DocMappingConfig)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || default_headers | [DefaultHeadersDTO](#DefaultHeadersDTO) |  no  |  || junk_data_threshold_count | number |  no  |  || prop_bean_configs | [[PropBeanConfig](#PropBeanConfig)] |  no  |  || properties | string |  no  |  || unwind_field | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | default_headers | [DefaultHeadersDTO](#DefaultHeadersDTO)? |  yes  |  |
+ | junk_data_threshold_count | number? |  yes  |  |
+ | prop_bean_configs | [[PropBeanConfig](#PropBeanConfig)]? |  yes  |  |
+ | properties | string? |  yes  |  |
+ | unwind_field | string? |  yes  |  |
+ 
 
 ---
 
 #### [EmailConfig](#EmailConfig)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || archive_config | [ArchiveConfig](#ArchiveConfig) |  no  |  || attachment_mandate | boolean |  no  |  || attachment_regex | string |  no  |  || body_content_regex | string |  no  |  || content_type | string |  no  |  || downloadable_link | boolean |  no  |  || filter_based_on_recepients | boolean |  no  |  || filter_files_after_extraction | boolean |  no  |  || folder_name_hierarchies | [string] |  no  |  || host | string |  no  |  || local_dir | string |  no  |  || password | string |  no  |  || password_protected | boolean |  no  |  || pcol | string |  no  |  || properties | [String: string] |  no  |  || read_all_unread_mails | boolean |  no  |  || read_from_content | boolean |  no  |  || recepient | string |  no  |  || sender_address | string |  no  |  || subject_line_regex | string |  no  |  || unzip | boolean |  no  |  || username | string |  no  |  || zip_format | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | archive_config | [ArchiveConfig](#ArchiveConfig)? |  yes  |  |
+ | attachment_mandate | boolean? |  yes  |  |
+ | attachment_regex | string? |  yes  |  |
+ | body_content_regex | string? |  yes  |  |
+ | content_type | string? |  yes  |  |
+ | downloadable_link | boolean? |  yes  |  |
+ | filter_based_on_recepients | boolean? |  yes  |  |
+ | filter_files_after_extraction | boolean? |  yes  |  |
+ | folder_name_hierarchies | [string]? |  yes  |  |
+ | host | string? |  yes  |  |
+ | local_dir | string? |  yes  |  |
+ | password | string? |  yes  |  |
+ | password_protected | boolean? |  yes  |  |
+ | pcol | string? |  yes  |  |
+ | properties | [String: string]? |  yes  |  |
+ | read_all_unread_mails | boolean? |  yes  |  |
+ | read_from_content | boolean? |  yes  |  |
+ | recepient | string? |  yes  |  |
+ | sender_address | string? |  yes  |  |
+ | subject_line_regex | string? |  yes  |  |
+ | unzip | boolean? |  yes  |  |
+ | username | string? |  yes  |  |
+ | zip_format | string? |  yes  |  |
+ 
 
 ---
 
 #### [FileConfig](#FileConfig)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || charset | string |  no  |  || data_start_index | number |  no  |  || default_headers | [DefaultHeadersDTO](#DefaultHeadersDTO) |  no  |  || delimiter | string |  no  |  || escape_char | string |  no  |  || file_has_header | boolean |  no  |  || file_type | string |  no  |  || header_array | [string] |  no  |  || header_index | number |  no  |  || junk_data_threshold_count | number |  no  |  || line_validity_check | boolean |  no  |  || prop_bean_configs | [[PropBeanConfig](#PropBeanConfig)] |  no  |  || properties | string |  no  |  || quote_char | string |  no  |  || read_all_sheets | boolean |  no  |  || sheet_names | [string] |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | charset | string? |  yes  |  |
+ | data_start_index | number? |  yes  |  |
+ | default_headers | [DefaultHeadersDTO](#DefaultHeadersDTO)? |  yes  |  |
+ | delimiter | string? |  yes  |  |
+ | escape_char | string? |  yes  |  |
+ | file_has_header | boolean? |  yes  |  |
+ | file_type | string? |  yes  |  |
+ | header_array | [string]? |  yes  |  |
+ | header_index | number? |  yes  |  |
+ | junk_data_threshold_count | number? |  yes  |  |
+ | line_validity_check | boolean? |  yes  |  |
+ | prop_bean_configs | [[PropBeanConfig](#PropBeanConfig)]? |  yes  |  |
+ | properties | string? |  yes  |  |
+ | quote_char | string? |  yes  |  |
+ | read_all_sheets | boolean? |  yes  |  |
+ | sheet_names | [string]? |  yes  |  |
+ 
 
 ---
 
 #### [FTPConfig](#FTPConfig)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || archive_config | [ArchiveConfig](#ArchiveConfig) |  no  |  || file_regex | string |  no  |  || host | string |  no  |  || interval | number |  no  |  || local_dir | string |  no  |  || password | string |  no  |  || port | number |  no  |  || read_all_files | boolean |  no  |  || remote_dir | string |  no  |  || retries | number |  no  |  || unzip | boolean |  no  |  || username | string |  no  |  || zip_file_regex | string |  no  |  || zip_format | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | archive_config | [ArchiveConfig](#ArchiveConfig)? |  yes  |  |
+ | file_regex | string? |  yes  |  |
+ | host | string? |  yes  |  |
+ | interval | number? |  yes  |  |
+ | local_dir | string? |  yes  |  |
+ | password | string? |  yes  |  |
+ | port | number? |  yes  |  |
+ | read_all_files | boolean? |  yes  |  |
+ | remote_dir | string? |  yes  |  |
+ | retries | number? |  yes  |  |
+ | unzip | boolean? |  yes  |  |
+ | username | string? |  yes  |  |
+ | zip_file_regex | string? |  yes  |  |
+ | zip_format | string? |  yes  |  |
+ 
 
 ---
 
 #### [GCompany](#GCompany)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || _id | string |  no  |  || gstores | [[GStore](#GStore)] |  no  |  || integration | string |  no  |  || level | string |  no  |  || name | string |  no  |  || opted | boolean |  no  |  || permissions | [string] |  no  |  || stores | [[GStore](#GStore)] |  no  |  || token | string |  no  |  || uid | number |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | _id | string? |  yes  |  |
+ | gstores | [[GStore](#GStore)]? |  yes  |  |
+ | integration | string? |  yes  |  |
+ | level | string? |  yes  |  |
+ | name | string? |  yes  |  |
+ | opted | boolean? |  yes  |  |
+ | permissions | [string]? |  yes  |  |
+ | stores | [[GStore](#GStore)]? |  yes  |  |
+ | token | string? |  yes  |  |
+ | uid | number? |  yes  |  |
+ 
 
 ---
 
 #### [GenericDTO](#GenericDTO)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || text | string |  no  |  || value | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | text | string? |  yes  |  |
+ | value | string? |  yes  |  |
+ 
 
 ---
 
 #### [GoogleSpreadSheetConfig](#GoogleSpreadSheetConfig)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || archive_config | [ArchiveConfig](#ArchiveConfig) |  no  |  || client_secret_location | string |  no  |  || cred_storage_directory | string |  no  |  || local_dir | string |  no  |  || range | string |  no  |  || sheet_id | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | archive_config | [ArchiveConfig](#ArchiveConfig)? |  yes  |  |
+ | client_secret_location | string? |  yes  |  |
+ | cred_storage_directory | string? |  yes  |  |
+ | local_dir | string? |  yes  |  |
+ | range | string? |  yes  |  |
+ | sheet_id | string? |  yes  |  |
+ 
 
 ---
 
 #### [GStore](#GStore)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || _id | string |  no  |  || code | string |  no  |  || data | [StoreData](#StoreData) |  no  |  || integration | string |  no  |  || level | string |  no  |  || name | string |  no  |  || opted | boolean |  no  |  || permissions | [string] |  no  |  || token | string |  no  |  || uid | number |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | _id | string? |  yes  |  |
+ | code | string? |  yes  |  |
+ | data | [StoreData](#StoreData)? |  yes  |  |
+ | integration | string? |  yes  |  |
+ | level | string? |  yes  |  |
+ | name | string? |  yes  |  |
+ | opted | boolean? |  yes  |  |
+ | permissions | [string]? |  yes  |  |
+ | token | string? |  yes  |  |
+ | uid | number? |  yes  |  |
+ 
 
 ---
 
 #### [HttpConfig](#HttpConfig)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || archive_config | [ArchiveConfig](#ArchiveConfig) |  no  |  || hosturl | string |  no  |  || http_method | string |  no  |  || local_path | string |  no  |  || password | string |  no  |  || request_params | [String: string] |  no  |  || request_payload | string |  no  |  || username | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | archive_config | [ArchiveConfig](#ArchiveConfig)? |  yes  |  |
+ | hosturl | string? |  yes  |  |
+ | http_method | string? |  yes  |  |
+ | local_path | string? |  yes  |  |
+ | password | string? |  yes  |  |
+ | request_params | [String: string]? |  yes  |  |
+ | request_payload | string? |  yes  |  |
+ | username | string? |  yes  |  |
+ 
 
 ---
 
 #### [JobConfig](#JobConfig)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || _id | number |  no  |  || aggregator_types | [string] |  no  |  || alias | string |  no  |  || audit | [Audit](#Audit) |  no  |  || catalog_master_config | [CatalogMasterConfig](#CatalogMasterConfig) |  no  |  || company_config | [[CompanyConfig](#CompanyConfig)] |  no  |  || company_ids | [number] |  no  |  || cron_expression | string |  no  |  || db_connection_profile | [DBConnectionProfile](#DBConnectionProfile) |  no  |  || delete_quantity_threshold | number |  no  |  || dependent_job_codes | [string] |  no  |  || disable | boolean |  no  |  || immediate_first_run | boolean |  no  |  || integration_type | string |  no  |  || job_code | string |  no  |  || min_price | number |  no  |  || open_tags | string |  no  |  || params | string |  no  |  || period_threshold | number |  no  |  || period_threshold_type | string |  no  |  || priority | string |  no  |  || process_config | [ProcessConfig](#ProcessConfig) |  no  |  || properties | [String: string] |  no  |  || store_config | [[StoreConfig](#StoreConfig)] |  no  |  || store_filter | [StoreFilter](#StoreFilter) |  no  |  || sync_delay | number |  no  |  || task_type | string |  no  |  || tax_identifiers | [string] |  no  |  || version | number |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | _id | number? |  yes  |  |
+ | aggregator_types | [string]? |  yes  |  |
+ | alias | string? |  yes  |  |
+ | audit | [Audit](#Audit)? |  yes  |  |
+ | catalog_master_config | [CatalogMasterConfig](#CatalogMasterConfig)? |  yes  |  |
+ | company_config | [[CompanyConfig](#CompanyConfig)]? |  yes  |  |
+ | company_ids | [number]? |  yes  |  |
+ | cron_expression | string? |  yes  |  |
+ | db_connection_profile | [DBConnectionProfile](#DBConnectionProfile)? |  yes  |  |
+ | delete_quantity_threshold | number? |  yes  |  |
+ | dependent_job_codes | [string]? |  yes  |  |
+ | disable | boolean? |  yes  |  |
+ | immediate_first_run | boolean? |  yes  |  |
+ | integration_type | string? |  yes  |  |
+ | job_code | string? |  yes  |  |
+ | min_price | number? |  yes  |  |
+ | open_tags | string? |  yes  |  |
+ | params | string? |  yes  |  |
+ | period_threshold | number? |  yes  |  |
+ | period_threshold_type | string? |  yes  |  |
+ | priority | string? |  yes  |  |
+ | process_config | [ProcessConfig](#ProcessConfig)? |  yes  |  |
+ | properties | [String: string]? |  yes  |  |
+ | store_config | [[StoreConfig](#StoreConfig)]? |  yes  |  |
+ | store_filter | [StoreFilter](#StoreFilter)? |  yes  |  |
+ | sync_delay | number? |  yes  |  |
+ | task_type | string? |  yes  |  |
+ | tax_identifiers | [string]? |  yes  |  |
+ | version | number? |  yes  |  |
+ 
 
 ---
 
 #### [JobConfigDTO](#JobConfigDTO)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || alias | string |  no  |  || company_id | number |  yes  |  || company_name | string |  no  |  || integration | string |  yes  |  || integration_data | string |  no  |  || job_code | string |  no  |  || task_details | [TaskDTO](#TaskDTO) |  no  |  || threshold_details | [DataTresholdDTO](#DataTresholdDTO) |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | alias | string? |  yes  |  |
+ | company_id | number |  no  |  |
+ | company_name | string? |  yes  |  |
+ | integration | string |  no  |  |
+ | integration_data | string? |  yes  |  |
+ | job_code | string? |  yes  |  |
+ | task_details | [TaskDTO](#TaskDTO)? |  yes  |  |
+ | threshold_details | [DataTresholdDTO](#DataTresholdDTO)? |  yes  |  |
+ 
 
 ---
 
 #### [JobConfigListDTO](#JobConfigListDTO)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || active | boolean |  no  |  || alias | string |  no  |  || code | string |  no  |  || created_by | string |  no  |  || created_on | string |  no  |  || modified_by | string |  no  |  || modified_on | string |  no  |  || type | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | active | boolean? |  yes  |  |
+ | alias | string? |  yes  |  |
+ | code | string? |  yes  |  |
+ | created_by | string? |  yes  |  |
+ | created_on | string? |  yes  |  |
+ | modified_by | string? |  yes  |  |
+ | modified_on | string? |  yes  |  |
+ | type | string? |  yes  |  |
+ 
 
 ---
 
 #### [JobConfigRawDTO](#JobConfigRawDTO)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || company_id | number |  yes  |  || company_name | string |  yes  |  || data | [JobConfig](#JobConfig) |  no  |  || integration | string |  yes  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | company_id | number |  no  |  |
+ | company_name | string |  no  |  |
+ | data | [JobConfig](#JobConfig)? |  yes  |  |
+ | integration | string |  no  |  |
+ 
 
 ---
 
 #### [JobHistoryDto](#JobHistoryDto)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || error_type | string |  no  |  || filename | [string] |  no  |  || job_code | string |  no  |  || job_id | number |  no  |  || message | string |  no  |  || processed_on | string |  no  |  || status | string |  no  |  || total_added_count | number |  no  |  || total_initial_count | number |  no  |  || total_suppressed_count | number |  no  |  || total_updated_count | number |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | error_type | string? |  yes  |  |
+ | filename | [string]? |  yes  |  |
+ | job_code | string? |  yes  |  |
+ | job_id | number? |  yes  |  |
+ | message | string? |  yes  |  |
+ | processed_on | string? |  yes  |  |
+ | status | string? |  yes  |  |
+ | total_added_count | number? |  yes  |  |
+ | total_initial_count | number? |  yes  |  |
+ | total_suppressed_count | number? |  yes  |  |
+ | total_updated_count | number? |  yes  |  |
+ 
 
 ---
 
 #### [JobMetricsDto](#JobMetricsDto)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || is_run_more_than_usual | string |  no  |  || job_code | string |  no  |  || job_history | [[JobHistoryDto](#JobHistoryDto)] |  no  |  || total_failure_count | number |  no  |  || total_job_runs | number |  no  |  || total_success_count | number |  no  |  || total_suppressed_count | number |  no  |  || total_warning_count | number |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | is_run_more_than_usual | string? |  yes  |  |
+ | job_code | string? |  yes  |  |
+ | job_history | [[JobHistoryDto](#JobHistoryDto)]? |  yes  |  |
+ | total_failure_count | number? |  yes  |  |
+ | total_job_runs | number? |  yes  |  |
+ | total_success_count | number? |  yes  |  |
+ | total_suppressed_count | number? |  yes  |  |
+ | total_warning_count | number? |  yes  |  |
+ 
 
 ---
 
 #### [JobStepsDTO](#JobStepsDTO)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || deleted_count | number |  no  |  || end_count | number |  no  |  || processed_at | string |  no  |  || processed_start_time | string |  no  |  || start_count | number |  no  |  || step_execution_time | number |  no  |  || step_name | string |  no  |  || type | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | deleted_count | number? |  yes  |  |
+ | end_count | number? |  yes  |  |
+ | processed_at | string? |  yes  |  |
+ | processed_start_time | string? |  yes  |  |
+ | start_count | number? |  yes  |  |
+ | step_execution_time | number? |  yes  |  |
+ | step_name | string? |  yes  |  |
+ | type | string? |  yes  |  |
+ 
 
 ---
 
 #### [JsonDocConfig](#JsonDocConfig)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || prop_bean_configs | [[PropBeanConfig](#PropBeanConfig)] |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | prop_bean_configs | [[PropBeanConfig](#PropBeanConfig)]? |  yes  |  |
+ 
 
 ---
 
 #### [KafkaMetaModel](#KafkaMetaModel)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || action | string |  no  |  || batch_id | number |  no  |  || created_on | string |  no  |  || created_timestamp | number |  no  |  || job_type | string |  no  |  || trace | [string] |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | action | string? |  yes  |  |
+ | batch_id | number? |  yes  |  |
+ | created_on | string? |  yes  |  |
+ | created_timestamp | number? |  yes  |  |
+ | job_type | string? |  yes  |  |
+ | trace | [string]? |  yes  |  |
+ 
 
 ---
 
 #### [KafkaResponse](#KafkaResponse)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || offset | number |  no  |  || partition | number |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | offset | number? |  yes  |  |
+ | partition | number? |  yes  |  |
+ 
 
 ---
 
 #### [LocalFileConfig](#LocalFileConfig)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || archive_config | [ArchiveConfig](#ArchiveConfig) |  no  |  || file_regex | string |  no  |  || interval | number |  no  |  || local_dir | string |  no  |  || read_all_files | boolean |  no  |  || retries | number |  no  |  || unzip | boolean |  no  |  || working_dir | string |  no  |  || zip_file_regex | string |  no  |  || zip_format | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | archive_config | [ArchiveConfig](#ArchiveConfig)? |  yes  |  |
+ | file_regex | string? |  yes  |  |
+ | interval | number? |  yes  |  |
+ | local_dir | string? |  yes  |  |
+ | read_all_files | boolean? |  yes  |  |
+ | retries | number? |  yes  |  |
+ | unzip | boolean? |  yes  |  |
+ | working_dir | string? |  yes  |  |
+ | zip_file_regex | string? |  yes  |  |
+ | zip_format | string? |  yes  |  |
+ 
 
 ---
 
 #### [Metum](#Metum)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || _id | string |  no  |  || name | string |  no  |  || value | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | _id | string? |  yes  |  |
+ | name | string? |  yes  |  |
+ | value | string? |  yes  |  |
+ 
 
 ---
 
 #### [MongoDocConfig](#MongoDocConfig)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || aggregate_pipeline | [string] |  no  |  || collection_name | string |  no  |  || find_query | string |  no  |  || projection_query | string |  no  |  || prop_bean_configs | [[PropBeanConfig](#PropBeanConfig)] |  no  |  || skip_save | boolean |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | aggregate_pipeline | [string]? |  yes  |  |
+ | collection_name | string? |  yes  |  |
+ | find_query | string? |  yes  |  |
+ | projection_query | string? |  yes  |  |
+ | prop_bean_configs | [[PropBeanConfig](#PropBeanConfig)]? |  yes  |  |
+ | skip_save | boolean? |  yes  |  |
+ 
 
 ---
 
 #### [OAuthConfig](#OAuthConfig)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || consumer_key | string |  no  |  || consumer_secret | string |  no  |  || function_name | string |  no  |  || interval | number |  no  |  || limit | number |  no  |  || pages | number |  no  |  || rest_base_url | string |  no  |  || rest_url | string |  no  |  || token | string |  no  |  || token_secret | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | consumer_key | string? |  yes  |  |
+ | consumer_secret | string? |  yes  |  |
+ | function_name | string? |  yes  |  |
+ | interval | number? |  yes  |  |
+ | limit | number? |  yes  |  |
+ | pages | number? |  yes  |  |
+ | rest_base_url | string? |  yes  |  |
+ | rest_url | string? |  yes  |  |
+ | token | string? |  yes  |  |
+ | token_secret | string? |  yes  |  |
+ 
 
 ---
 
 #### [Page](#Page)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || current | number |  no  |  || has_next | boolean |  no  |  || has_previous | boolean |  no  |  || item_total | number |  no  |  || next_id | string |  no  |  || size | number |  no  |  || type | string |  yes  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | current | number? |  yes  |  |
+ | has_next | boolean? |  yes  |  |
+ | has_previous | boolean? |  yes  |  |
+ | item_total | number? |  yes  |  |
+ | next_id | string? |  yes  |  |
+ | size | number? |  yes  |  |
+ | type | string |  no  |  |
+ 
 
 ---
 
 #### [ProcessConfig](#ProcessConfig)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || aws_s3_config | [AWSS3config](#AWSS3config) |  no  |  || db_config | [DBConfig](#DBConfig) |  no  |  || db_param_config | [DBParamConfig](#DBParamConfig) |  no  |  || doc_mapping_config | [DocMappingConfig](#DocMappingConfig) |  no  |  || email_config | [EmailConfig](#EmailConfig) |  no  |  || file_config | [FileConfig](#FileConfig) |  no  |  || ftp_config | [FTPConfig](#FTPConfig) |  no  |  || google_spreadsheet_config | [GoogleSpreadSheetConfig](#GoogleSpreadSheetConfig) |  no  |  || http_config | [HttpConfig](#HttpConfig) |  no  |  || json_doc_config | [JsonDocConfig](#JsonDocConfig) |  no  |  || local_file_config | [LocalFileConfig](#LocalFileConfig) |  no  |  || mongo_doc_config | [MongoDocConfig](#MongoDocConfig) |  no  |  || oauth_config | [OAuthConfig](#OAuthConfig) |  no  |  || sftp_config | [SFTPConfig](#SFTPConfig) |  no  |  || task_step_config | [TaskStepConfig](#TaskStepConfig) |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | aws_s3_config | [AWSS3config](#AWSS3config)? |  yes  |  |
+ | db_config | [DBConfig](#DBConfig)? |  yes  |  |
+ | db_param_config | [DBParamConfig](#DBParamConfig)? |  yes  |  |
+ | doc_mapping_config | [DocMappingConfig](#DocMappingConfig)? |  yes  |  |
+ | email_config | [EmailConfig](#EmailConfig)? |  yes  |  |
+ | file_config | [FileConfig](#FileConfig)? |  yes  |  |
+ | ftp_config | [FTPConfig](#FTPConfig)? |  yes  |  |
+ | google_spreadsheet_config | [GoogleSpreadSheetConfig](#GoogleSpreadSheetConfig)? |  yes  |  |
+ | http_config | [HttpConfig](#HttpConfig)? |  yes  |  |
+ | json_doc_config | [JsonDocConfig](#JsonDocConfig)? |  yes  |  |
+ | local_file_config | [LocalFileConfig](#LocalFileConfig)? |  yes  |  |
+ | mongo_doc_config | [MongoDocConfig](#MongoDocConfig)? |  yes  |  |
+ | oauth_config | [OAuthConfig](#OAuthConfig)? |  yes  |  |
+ | sftp_config | [SFTPConfig](#SFTPConfig)? |  yes  |  |
+ | task_step_config | [TaskStepConfig](#TaskStepConfig)? |  yes  |  |
+ 
 
 ---
 
 #### [PropBeanConfig](#PropBeanConfig)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || all_param_function_name | string |  no  |  || concat_str | string |  no  |  || const_value | string |  no  |  || data_type | string |  no  |  || default_value | string |  no  |  || destination_field | string |  no  |  || enrich_from_master | boolean |  no  |  || function_name | string |  no  |  || identifier_type | string |  no  |  || ignore_if_not_exists | boolean |  no  |  || include | boolean |  no  |  || index_field | string |  no  |  || mapping | [String: [PropBeanConfig](#PropBeanConfig)] |  no  |  || optional | boolean |  no  |  || projection_query | string |  no  |  || required | boolean |  no  |  || send | [Send](#Send) |  no  |  || source_field | string |  no  |  || source_fields | [string] |  no  |  || sub_separator | string |  no  |  || transformer_name | string |  no  |  || validations | [string] |  no  |  || values | [string] |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | all_param_function_name | string? |  yes  |  |
+ | concat_str | string? |  yes  |  |
+ | const_value | string? |  yes  |  |
+ | data_type | string? |  yes  |  |
+ | default_value | string? |  yes  |  |
+ | destination_field | string? |  yes  |  |
+ | enrich_from_master | boolean? |  yes  |  |
+ | function_name | string? |  yes  |  |
+ | identifier_type | string? |  yes  |  |
+ | ignore_if_not_exists | boolean? |  yes  |  |
+ | include | boolean? |  yes  |  |
+ | index_field | string? |  yes  |  |
+ | mapping | [String: [PropBeanConfig](#PropBeanConfig)]? |  yes  |  |
+ | optional | boolean? |  yes  |  |
+ | projection_query | string? |  yes  |  |
+ | required | boolean? |  yes  |  |
+ | send | [Send](#Send)? |  yes  |  |
+ | source_field | string? |  yes  |  |
+ | source_fields | [string]? |  yes  |  |
+ | sub_separator | string? |  yes  |  |
+ | transformer_name | string? |  yes  |  |
+ | validations | [string]? |  yes  |  |
+ | values | [string]? |  yes  |  |
+ 
 
 ---
 
 #### [PropBeanDTO](#PropBeanDTO)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || all_param_function_name | string |  no  |  || concat_str | string |  no  |  || const_value | string |  no  |  || data_type | string |  no  |  || default_value | string |  no  |  || destination_field | string |  no  |  || enrich_from_master | boolean |  no  |  || function_name | string |  no  |  || identifier_type | string |  no  |  || ignore_if_not_exists | boolean |  no  |  || include | boolean |  no  |  || index_field | string |  no  |  || optional | boolean |  no  |  || projection_query | string |  no  |  || required | boolean |  no  |  || source_field | string |  no  |  || source_fields | [string] |  no  |  || sub_separator | string |  no  |  || transformer_name | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | all_param_function_name | string? |  yes  |  |
+ | concat_str | string? |  yes  |  |
+ | const_value | string? |  yes  |  |
+ | data_type | string? |  yes  |  |
+ | default_value | string? |  yes  |  |
+ | destination_field | string? |  yes  |  |
+ | enrich_from_master | boolean? |  yes  |  |
+ | function_name | string? |  yes  |  |
+ | identifier_type | string? |  yes  |  |
+ | ignore_if_not_exists | boolean? |  yes  |  |
+ | include | boolean? |  yes  |  |
+ | index_field | string? |  yes  |  |
+ | optional | boolean? |  yes  |  |
+ | projection_query | string? |  yes  |  |
+ | required | boolean? |  yes  |  |
+ | source_field | string? |  yes  |  |
+ | source_fields | [string]? |  yes  |  |
+ | sub_separator | string? |  yes  |  |
+ | transformer_name | string? |  yes  |  |
+ 
 
 ---
 
 #### [ResponseEnvelopeJobConfigDTO](#ResponseEnvelopeJobConfigDTO)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || error | string |  no  |  || exception | string |  no  |  || http_status | string |  no  |  || items | [JobConfigDTO](#JobConfigDTO) |  no  |  || message | string |  no  |  || page | [Page](#Page) |  no  |  || payload | [JobConfigDTO](#JobConfigDTO) |  no  |  || status | number |  no  |  || timestamp | string |  no  |  || total_time_taken_in_millis | number |  no  |  || trace_id | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | error | string? |  yes  |  |
+ | exception | string? |  yes  |  |
+ | http_status | string? |  yes  |  |
+ | items | [JobConfigDTO](#JobConfigDTO)? |  yes  |  |
+ | message | string? |  yes  |  |
+ | page | [Page](#Page)? |  yes  |  |
+ | payload | [JobConfigDTO](#JobConfigDTO)? |  yes  |  |
+ | status | number? |  yes  |  |
+ | timestamp | string? |  yes  |  |
+ | total_time_taken_in_millis | number? |  yes  |  |
+ | trace_id | string? |  yes  |  |
+ 
 
 ---
 
 #### [ResponseEnvelopeJobMetricsDto](#ResponseEnvelopeJobMetricsDto)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || error | string |  no  |  || exception | string |  no  |  || http_status | string |  no  |  || items | [JobMetricsDto](#JobMetricsDto) |  no  |  || message | string |  no  |  || page | [Page](#Page) |  no  |  || payload | [JobMetricsDto](#JobMetricsDto) |  no  |  || status | number |  no  |  || timestamp | string |  no  |  || total_time_taken_in_millis | number |  no  |  || trace_id | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | error | string? |  yes  |  |
+ | exception | string? |  yes  |  |
+ | http_status | string? |  yes  |  |
+ | items | [JobMetricsDto](#JobMetricsDto)? |  yes  |  |
+ | message | string? |  yes  |  |
+ | page | [Page](#Page)? |  yes  |  |
+ | payload | [JobMetricsDto](#JobMetricsDto)? |  yes  |  |
+ | status | number? |  yes  |  |
+ | timestamp | string? |  yes  |  |
+ | total_time_taken_in_millis | number? |  yes  |  |
+ | trace_id | string? |  yes  |  |
+ 
 
 ---
 
 #### [ResponseEnvelopeKafkaResponse](#ResponseEnvelopeKafkaResponse)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || error | string |  no  |  || exception | string |  no  |  || http_status | string |  no  |  || items | [KafkaResponse](#KafkaResponse) |  no  |  || message | string |  no  |  || page | [Page](#Page) |  no  |  || payload | [KafkaResponse](#KafkaResponse) |  no  |  || status | number |  no  |  || timestamp | string |  no  |  || total_time_taken_in_millis | number |  no  |  || trace_id | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | error | string? |  yes  |  |
+ | exception | string? |  yes  |  |
+ | http_status | string? |  yes  |  |
+ | items | [KafkaResponse](#KafkaResponse)? |  yes  |  |
+ | message | string? |  yes  |  |
+ | page | [Page](#Page)? |  yes  |  |
+ | payload | [KafkaResponse](#KafkaResponse)? |  yes  |  |
+ | status | number? |  yes  |  |
+ | timestamp | string? |  yes  |  |
+ | total_time_taken_in_millis | number? |  yes  |  |
+ | trace_id | string? |  yes  |  |
+ 
 
 ---
 
 #### [ResponseEnvelopeListJobConfigDTO](#ResponseEnvelopeListJobConfigDTO)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || error | string |  no  |  || exception | string |  no  |  || http_status | string |  no  |  || items | [[JobConfigDTO](#JobConfigDTO)] |  no  |  || message | string |  no  |  || page | [Page](#Page) |  no  |  || payload | [[JobConfigDTO](#JobConfigDTO)] |  no  |  || status | number |  no  |  || timestamp | string |  no  |  || total_time_taken_in_millis | number |  no  |  || trace_id | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | error | string? |  yes  |  |
+ | exception | string? |  yes  |  |
+ | http_status | string? |  yes  |  |
+ | items | [[JobConfigDTO](#JobConfigDTO)]? |  yes  |  |
+ | message | string? |  yes  |  |
+ | page | [Page](#Page)? |  yes  |  |
+ | payload | [[JobConfigDTO](#JobConfigDTO)]? |  yes  |  |
+ | status | number? |  yes  |  |
+ | timestamp | string? |  yes  |  |
+ | total_time_taken_in_millis | number? |  yes  |  |
+ | trace_id | string? |  yes  |  |
+ 
 
 ---
 
 #### [ResponseEnvelopeListJobConfigListDTO](#ResponseEnvelopeListJobConfigListDTO)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || error | string |  no  |  || exception | string |  no  |  || http_status | string |  no  |  || items | [[JobConfigListDTO](#JobConfigListDTO)] |  no  |  || message | string |  no  |  || page | [Page](#Page) |  no  |  || payload | [[JobConfigListDTO](#JobConfigListDTO)] |  no  |  || status | number |  no  |  || timestamp | string |  no  |  || total_time_taken_in_millis | number |  no  |  || trace_id | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | error | string? |  yes  |  |
+ | exception | string? |  yes  |  |
+ | http_status | string? |  yes  |  |
+ | items | [[JobConfigListDTO](#JobConfigListDTO)]? |  yes  |  |
+ | message | string? |  yes  |  |
+ | page | [Page](#Page)? |  yes  |  |
+ | payload | [[JobConfigListDTO](#JobConfigListDTO)]? |  yes  |  |
+ | status | number? |  yes  |  |
+ | timestamp | string? |  yes  |  |
+ | total_time_taken_in_millis | number? |  yes  |  |
+ | trace_id | string? |  yes  |  |
+ 
 
 ---
 
 #### [ResponseEnvelopeListJobConfigRawDTO](#ResponseEnvelopeListJobConfigRawDTO)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || error | string |  no  |  || exception | string |  no  |  || http_status | string |  no  |  || items | [[JobConfigRawDTO](#JobConfigRawDTO)] |  no  |  || message | string |  no  |  || page | [Page](#Page) |  no  |  || payload | [[JobConfigRawDTO](#JobConfigRawDTO)] |  no  |  || status | number |  no  |  || timestamp | string |  no  |  || total_time_taken_in_millis | number |  no  |  || trace_id | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | error | string? |  yes  |  |
+ | exception | string? |  yes  |  |
+ | http_status | string? |  yes  |  |
+ | items | [[JobConfigRawDTO](#JobConfigRawDTO)]? |  yes  |  |
+ | message | string? |  yes  |  |
+ | page | [Page](#Page)? |  yes  |  |
+ | payload | [[JobConfigRawDTO](#JobConfigRawDTO)]? |  yes  |  |
+ | status | number? |  yes  |  |
+ | timestamp | string? |  yes  |  |
+ | total_time_taken_in_millis | number? |  yes  |  |
+ | trace_id | string? |  yes  |  |
+ 
 
 ---
 
 #### [ResponseEnvelopeListJobStepsDTO](#ResponseEnvelopeListJobStepsDTO)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || error | string |  no  |  || exception | string |  no  |  || http_status | string |  no  |  || items | [[JobStepsDTO](#JobStepsDTO)] |  no  |  || message | string |  no  |  || page | [Page](#Page) |  no  |  || payload | [[JobStepsDTO](#JobStepsDTO)] |  no  |  || status | number |  no  |  || timestamp | string |  no  |  || total_time_taken_in_millis | number |  no  |  || trace_id | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | error | string? |  yes  |  |
+ | exception | string? |  yes  |  |
+ | http_status | string? |  yes  |  |
+ | items | [[JobStepsDTO](#JobStepsDTO)]? |  yes  |  |
+ | message | string? |  yes  |  |
+ | page | [Page](#Page)? |  yes  |  |
+ | payload | [[JobStepsDTO](#JobStepsDTO)]? |  yes  |  |
+ | status | number? |  yes  |  |
+ | timestamp | string? |  yes  |  |
+ | total_time_taken_in_millis | number? |  yes  |  |
+ | trace_id | string? |  yes  |  |
+ 
 
 ---
 
 #### [ResponseEnvelopeListSlingshotConfigurationDetail](#ResponseEnvelopeListSlingshotConfigurationDetail)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || error | string |  no  |  || exception | string |  no  |  || http_status | string |  no  |  || items | [[SlingshotConfigurationDetail](#SlingshotConfigurationDetail)] |  no  |  || message | string |  no  |  || page | [Page](#Page) |  no  |  || payload | [[SlingshotConfigurationDetail](#SlingshotConfigurationDetail)] |  no  |  || status | number |  no  |  || timestamp | string |  no  |  || total_time_taken_in_millis | number |  no  |  || trace_id | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | error | string? |  yes  |  |
+ | exception | string? |  yes  |  |
+ | http_status | string? |  yes  |  |
+ | items | [[SlingshotConfigurationDetail](#SlingshotConfigurationDetail)]? |  yes  |  |
+ | message | string? |  yes  |  |
+ | page | [Page](#Page)? |  yes  |  |
+ | payload | [[SlingshotConfigurationDetail](#SlingshotConfigurationDetail)]? |  yes  |  |
+ | status | number? |  yes  |  |
+ | timestamp | string? |  yes  |  |
+ | total_time_taken_in_millis | number? |  yes  |  |
+ | trace_id | string? |  yes  |  |
+ 
 
 ---
 
 #### [ResponseEnvelopeString](#ResponseEnvelopeString)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || error | string |  no  |  || exception | string |  no  |  || http_status | string |  no  |  || items | string |  no  |  || message | string |  no  |  || page | [Page](#Page) |  no  |  || payload | string |  no  |  || status | number |  no  |  || timestamp | string |  no  |  || total_time_taken_in_millis | number |  no  |  || trace_id | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | error | string? |  yes  |  |
+ | exception | string? |  yes  |  |
+ | http_status | string? |  yes  |  |
+ | items | string? |  yes  |  |
+ | message | string? |  yes  |  |
+ | page | [Page](#Page)? |  yes  |  |
+ | payload | string? |  yes  |  |
+ | status | number? |  yes  |  |
+ | timestamp | string? |  yes  |  |
+ | total_time_taken_in_millis | number? |  yes  |  |
+ | trace_id | string? |  yes  |  |
+ 
 
 ---
 
 #### [Send](#Send)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || processed | boolean |  no  |  || raw | boolean |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | processed | boolean? |  yes  |  |
+ | raw | boolean? |  yes  |  |
+ 
 
 ---
 
 #### [SFTPConfig](#SFTPConfig)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || archive_config | [ArchiveConfig](#ArchiveConfig) |  no  |  || file_regex | string |  no  |  || host | string |  no  |  || interval | number |  no  |  || local_dir | string |  no  |  || password | string |  no  |  || password_protected | boolean |  no  |  || port | number |  no  |  || private_key_path | string |  no  |  || read_all_files | boolean |  no  |  || remote_dir | string |  no  |  || retries | number |  no  |  || strict_host_key_checking | boolean |  no  |  || unzip | boolean |  no  |  || username | string |  no  |  || zip_file_regex | string |  no  |  || zip_format | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | archive_config | [ArchiveConfig](#ArchiveConfig)? |  yes  |  |
+ | file_regex | string? |  yes  |  |
+ | host | string? |  yes  |  |
+ | interval | number? |  yes  |  |
+ | local_dir | string? |  yes  |  |
+ | password | string? |  yes  |  |
+ | password_protected | boolean? |  yes  |  |
+ | port | number? |  yes  |  |
+ | private_key_path | string? |  yes  |  |
+ | read_all_files | boolean? |  yes  |  |
+ | remote_dir | string? |  yes  |  |
+ | retries | number? |  yes  |  |
+ | strict_host_key_checking | boolean? |  yes  |  |
+ | unzip | boolean? |  yes  |  |
+ | username | string? |  yes  |  |
+ | zip_file_regex | string? |  yes  |  |
+ | zip_format | string? |  yes  |  |
+ 
 
 ---
 
 #### [SlingshotConfigurationDetail](#SlingshotConfigurationDetail)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || companies | [[GCompany](#GCompany)] |  no  |  || integration | [SlingshotIntegration](#SlingshotIntegration) |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | companies | [[GCompany](#GCompany)]? |  yes  |  |
+ | integration | [SlingshotIntegration](#SlingshotIntegration)? |  yes  |  |
+ 
 
 ---
 
 #### [SlingshotIntegration](#SlingshotIntegration)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || _id | string |  no  |  || description | string |  no  |  || meta | [[Metum](#Metum)] |  no  |  || name | string |  no  |  || slug | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | _id | string? |  yes  |  |
+ | description | string? |  yes  |  |
+ | meta | [[Metum](#Metum)]? |  yes  |  |
+ | name | string? |  yes  |  |
+ | slug | string? |  yes  |  |
+ 
 
 ---
 
 #### [StoreConfig](#StoreConfig)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || job_code | string |  no  |  || process_config | [ProcessConfig](#ProcessConfig) |  no  |  || properties | [String: string] |  no  |  || store_alias | string |  no  |  || store_file_name | string |  no  |  || store_file_regex | string |  no  |  || storeid | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | job_code | string? |  yes  |  |
+ | process_config | [ProcessConfig](#ProcessConfig)? |  yes  |  |
+ | properties | [String: string]? |  yes  |  |
+ | store_alias | string? |  yes  |  |
+ | store_file_name | string? |  yes  |  |
+ | store_file_regex | string? |  yes  |  |
+ | storeid | string? |  yes  |  |
+ 
 
 ---
 
 #### [StoreData](#StoreData)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || location_id | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | location_id | string? |  yes  |  |
+ 
 
 ---
 
 #### [StoreFilter](#StoreFilter)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || exclude_tags | [string] |  no  |  || include_tags | [string] |  no  |  || query | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | exclude_tags | [string]? |  yes  |  |
+ | include_tags | [string]? |  yes  |  |
+ | query | string? |  yes  |  |
+ 
 
 ---
 
 #### [SuppressStoreModel](#SuppressStoreModel)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || stores | [number] |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | stores | [number]? |  yes  |  |
+ 
 
 ---
 
 #### [SuppressStorePayload](#SuppressStorePayload)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || meta | [KafkaMetaModel](#KafkaMetaModel) |  no  |  || payload | [[SuppressStoreModel](#SuppressStoreModel)] |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | meta | [KafkaMetaModel](#KafkaMetaModel)? |  yes  |  |
+ | payload | [[SuppressStoreModel](#SuppressStoreModel)]? |  yes  |  |
+ 
 
 ---
 
 #### [TaskConfig](#TaskConfig)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || name | string |  no  |  || task_config_id | number |  no  |  || task_params | [[TaskParam](#TaskParam)] |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | name | string? |  yes  |  |
+ | task_config_id | number? |  yes  |  |
+ | task_params | [[TaskParam](#TaskParam)]? |  yes  |  |
+ 
 
 ---
 
 #### [TaskDTO](#TaskDTO)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || group_list | [[GenericDTO](#GenericDTO)] |  no  |  || type | number |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | group_list | [[GenericDTO](#GenericDTO)]? |  yes  |  |
+ | type | number? |  yes  |  |
+ 
 
 ---
 
 #### [TaskParam](#TaskParam)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || name | string |  no  |  || value | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | name | string? |  yes  |  |
+ | value | string? |  yes  |  |
+ 
 
 ---
 
 #### [TaskStepConfig](#TaskStepConfig)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || task_config_group_ids | [number] |  no  |  || task_config_ids | [number] |  no  |  || task_configs | [[TaskConfig](#TaskConfig)] |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | task_config_group_ids | [number]? |  yes  |  |
+ | task_config_ids | [number]? |  yes  |  |
+ | task_configs | [[TaskConfig](#TaskConfig)]? |  yes  |  |
+ 
 
 ---
 

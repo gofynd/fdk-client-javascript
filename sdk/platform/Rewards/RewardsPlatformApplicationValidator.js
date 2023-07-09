@@ -1,6 +1,6 @@
 const Joi = require("joi");
-const RewardsModel = require("./RewardsPlatformModel");
 
+const RewardsModel = require("./RewardsPlatformModel");
 class RewardsValidator {
   static createGiveaway() {
     return Joi.object({

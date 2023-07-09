@@ -114,11 +114,11 @@ This will complete the upload process. After successfully uploading file, you ca
 
 ```javascript
 // Promise
-const promise = client.application("<APPLICATION_ID>").fileStorage.appCompleteUpload({  namespace : value,
+const promise = platformClient.application("<APPLICATION_ID>").fileStorage.appCompleteUpload({  namespace : value,
  body : value });
 
 // Async/Await
-const data = await client.application("<APPLICATION_ID>").fileStorage.appCompleteUpload({  namespace : value,
+const data = await platformClient.application("<APPLICATION_ID>").fileStorage.appCompleteUpload({  namespace : value,
  body : value });
 ```
 
@@ -190,11 +190,11 @@ Copy Files
 
 ```javascript
 // Promise
-const promise = client.application("<APPLICATION_ID>").fileStorage.appCopyFiles({  body : value,
+const promise = platformClient.application("<APPLICATION_ID>").fileStorage.appCopyFiles({  body : value,
  sync : value });
 
 // Async/Await
-const data = await client.application("<APPLICATION_ID>").fileStorage.appCopyFiles({  body : value,
+const data = await platformClient.application("<APPLICATION_ID>").fileStorage.appCopyFiles({  body : value,
  sync : value });
 ```
 
@@ -275,11 +275,11 @@ This operation initiates upload and returns storage link which is valid for 30 M
 
 ```javascript
 // Promise
-const promise = client.application("<APPLICATION_ID>").fileStorage.appStartUpload({  namespace : value,
+const promise = platformClient.application("<APPLICATION_ID>").fileStorage.appStartUpload({  namespace : value,
  body : value });
 
 // Async/Await
-const data = await client.application("<APPLICATION_ID>").fileStorage.appStartUpload({  namespace : value,
+const data = await platformClient.application("<APPLICATION_ID>").fileStorage.appStartUpload({  namespace : value,
  body : value });
 ```
 
@@ -351,11 +351,11 @@ Browse Files
 
 ```javascript
 // Promise
-const promise = client.fileStorage.browse({  namespace : value,
+const promise = platformClient.fileStorage.browse({  namespace : value,
  pageNo : value });
 
 // Async/Await
-const data = await client.fileStorage.browse({  namespace : value,
+const data = await platformClient.fileStorage.browse({  namespace : value,
  pageNo : value });
 ```
 
@@ -410,11 +410,11 @@ Browse Files
 
 ```javascript
 // Promise
-const promise = client.application("<APPLICATION_ID>").fileStorage.browse({  namespace : value,
+const promise = platformClient.application("<APPLICATION_ID>").fileStorage.browse({  namespace : value,
  pageNo : value });
 
 // Async/Await
-const data = await client.application("<APPLICATION_ID>").fileStorage.browse({  namespace : value,
+const data = await platformClient.application("<APPLICATION_ID>").fileStorage.browse({  namespace : value,
  pageNo : value });
 ```
 
@@ -469,11 +469,11 @@ This will complete the upload process. After successfully uploading file, you ca
 
 ```javascript
 // Promise
-const promise = client.fileStorage.completeUpload({  namespace : value,
+const promise = platformClient.fileStorage.completeUpload({  namespace : value,
  body : value });
 
 // Async/Await
-const data = await client.fileStorage.completeUpload({  namespace : value,
+const data = await platformClient.fileStorage.completeUpload({  namespace : value,
  body : value });
 ```
 
@@ -545,11 +545,11 @@ Copy Files
 
 ```javascript
 // Promise
-const promise = client.fileStorage.copyFiles({  body : value,
+const promise = platformClient.fileStorage.copyFiles({  body : value,
  sync : value });
 
 // Async/Await
-const data = await client.fileStorage.copyFiles({  body : value,
+const data = await platformClient.fileStorage.copyFiles({  body : value,
  sync : value });
 ```
 
@@ -630,10 +630,10 @@ Gives signed urls to access private files
 
 ```javascript
 // Promise
-const promise = client.fileStorage.getSignUrls({  body : value });
+const promise = platformClient.fileStorage.getSignUrls({  body : value });
 
 // Async/Await
-const data = await client.fileStorage.getSignUrls({  body : value });
+const data = await platformClient.fileStorage.getSignUrls({  body : value });
 ```
 
 
@@ -685,10 +685,10 @@ Proxy
 
 ```javascript
 // Promise
-const promise = client.fileStorage.proxy({  url : value });
+const promise = platformClient.fileStorage.proxy({  url : value });
 
 // Async/Await
-const data = await client.fileStorage.proxy({  url : value });
+const data = await platformClient.fileStorage.proxy({  url : value });
 ```
 
 
@@ -741,11 +741,11 @@ This operation initiates upload and returns storage link which is valid for 30 M
 
 ```javascript
 // Promise
-const promise = client.fileStorage.startUpload({  namespace : value,
+const promise = platformClient.fileStorage.startUpload({  namespace : value,
  body : value });
 
 // Async/Await
-const data = await client.fileStorage.startUpload({  namespace : value,
+const data = await platformClient.fileStorage.startUpload({  namespace : value,
  body : value });
 ```
 
@@ -817,126 +817,226 @@ Success
 #### [BrowseResponse](#BrowseResponse)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || items | [[DbRecord](#DbRecord)] |  yes  |  || page | [Page](#Page) |  yes  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | items | [[DbRecord](#DbRecord)] |  no  |  |
+ | page | [Page](#Page) |  no  |  |
+ 
 
 ---
 
 #### [BulkRequest](#BulkRequest)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || configuration | [ReqConfiguration](#ReqConfiguration) |  no  |  || destination | [Destination](#Destination) |  yes  |  || urls | [string] |  yes  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | configuration | [ReqConfiguration](#ReqConfiguration)? |  yes  |  |
+ | destination | [Destination](#Destination) |  no  |  |
+ | urls | [string] |  no  |  |
+ 
 
 ---
 
 #### [BulkUploadResponse](#BulkUploadResponse)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || task | [CopyFileTask](#CopyFileTask) |  yes  |  || tracking_url | string |  yes  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | task | [CopyFileTask](#CopyFileTask) |  no  |  |
+ | tracking_url | string |  no  |  |
+ 
 
 ---
 
 #### [CDN](#CDN)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || url | string |  yes  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | url | string |  no  |  |
+ 
 
 ---
 
 #### [CompleteResponse](#CompleteResponse)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || _id | string |  yes  |  || cdn | [CDN](#CDN) |  yes  |  || content_type | string |  yes  |  || created_on | string |  yes  |  || file_name | string |  yes  |  || file_path | string |  yes  |  || modified_on | string |  yes  |  || namespace | string |  yes  |  || operation | string |  yes  |  || size | number |  yes  |  || success | boolean |  yes  |  || tags | [string] |  no  |  || upload | [Upload](#Upload) |  yes  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | _id | string |  no  |  |
+ | cdn | [CDN](#CDN) |  no  |  |
+ | content_type | string |  no  |  |
+ | created_on | string |  no  |  |
+ | file_name | string |  no  |  |
+ | file_path | string |  no  |  |
+ | modified_on | string |  no  |  |
+ | namespace | string |  no  |  |
+ | operation | string |  no  |  |
+ | size | number |  no  |  |
+ | success | boolean |  no  |  |
+ | tags | [string]? |  yes  |  |
+ | upload | [Upload](#Upload) |  no  |  |
+ 
 
 ---
 
 #### [CopyFileTask](#CopyFileTask)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || attempts_made | number |  yes  |  || data | [BulkRequest](#BulkRequest) |  yes  |  || delay | number |  yes  |  || finished_on | number |  yes  |  || id | string |  yes  |  || name | string |  yes  |  || opts | [Opts](#Opts) |  yes  |  || processed_on | number |  yes  |  || progress | number |  yes  |  || stacktrace | [string] |  no  |  || timestamp | number |  yes  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | attempts_made | number |  no  |  |
+ | data | [BulkRequest](#BulkRequest) |  no  |  |
+ | delay | number |  no  |  |
+ | finished_on | number |  no  |  |
+ | id | string |  no  |  |
+ | name | string |  no  |  |
+ | opts | [Opts](#Opts) |  no  |  |
+ | processed_on | number |  no  |  |
+ | progress | number |  no  |  |
+ | stacktrace | [string]? |  yes  |  |
+ | timestamp | number |  no  |  |
+ 
 
 ---
 
 #### [DbRecord](#DbRecord)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || _id | string |  yes  |  || cdn | [CDN](#CDN) |  yes  |  || content_type | string |  yes  |  || created_on | string |  yes  |  || file_name | string |  yes  |  || file_path | string |  yes  |  || modified_on | string |  yes  |  || namespace | string |  yes  |  || operation | string |  no  |  || success | boolean |  yes  |  || tags | [string] |  yes  |  || upload | [Upload](#Upload) |  yes  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | _id | string |  no  |  |
+ | cdn | [CDN](#CDN) |  no  |  |
+ | content_type | string |  no  |  |
+ | created_on | string |  no  |  |
+ | file_name | string |  no  |  |
+ | file_path | string |  no  |  |
+ | modified_on | string |  no  |  |
+ | namespace | string |  no  |  |
+ | operation | string? |  yes  |  |
+ | success | boolean |  no  |  |
+ | tags | [string] |  no  |  |
+ | upload | [Upload](#Upload) |  no  |  |
+ 
 
 ---
 
 #### [Destination](#Destination)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || basepath | string |  no  |  || namespace | string |  yes  |  || rewrite | string |  yes  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | basepath | string? |  yes  |  |
+ | namespace | string |  no  |  |
+ | rewrite | string |  no  |  |
+ 
 
 ---
 
 #### [FailedResponse](#FailedResponse)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || message | string |  yes  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | message | string |  no  |  |
+ 
 
 ---
 
 #### [Opts](#Opts)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || attempts | number |  no  |  || delay | number |  no  |  || timestamp | number |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | attempts | number? |  yes  |  |
+ | delay | number? |  yes  |  |
+ | timestamp | number? |  yes  |  |
+ 
 
 ---
 
 #### [Page](#Page)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || current | number |  no  |  || has_next | boolean |  no  |  || has_previous | boolean |  no  |  || item_total | number |  no  |  || next_id | string |  no  |  || size | number |  no  |  || type | number |  yes  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | current | number? |  yes  |  |
+ | has_next | boolean? |  yes  |  |
+ | has_previous | boolean? |  yes  |  |
+ | item_total | number? |  yes  |  |
+ | next_id | string? |  yes  |  |
+ | size | number? |  yes  |  |
+ | type | number |  no  |  |
+ 
 
 ---
 
 #### [ReqConfiguration](#ReqConfiguration)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || concurrency | number |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | concurrency | number? |  yes  |  |
+ 
 
 ---
 
 #### [SignUrlRequest](#SignUrlRequest)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || expiry | number |  yes  |  || urls | [string] |  yes  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | expiry | number |  no  |  |
+ | urls | [string] |  no  |  |
+ 
 
 ---
 
 #### [SignUrlResponse](#SignUrlResponse)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || urls | [[Urls](#Urls)] |  yes  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | urls | [[Urls](#Urls)] |  no  |  |
+ 
 
 ---
 
 #### [StartRequest](#StartRequest)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || content_type | string |  yes  |  || file_name | string |  yes  |  || params | string |  no  |  || size | number |  yes  |  || tags | [string] |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | content_type | string |  no  |  |
+ | file_name | string |  no  |  |
+ | params | string? |  yes  |  |
+ | size | number |  no  |  |
+ | tags | [string]? |  yes  |  |
+ 
 
 ---
 
 #### [StartResponse](#StartResponse)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || cdn | [CDN](#CDN) |  yes  |  || content_type | string |  yes  |  || file_name | string |  yes  |  || file_path | string |  yes  |  || method | string |  no  |  || namespace | string |  yes  |  || operation | string |  yes  |  || size | number |  yes  |  || tags | [string] |  no  |  || upload | [Upload](#Upload) |  yes  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | cdn | [CDN](#CDN) |  no  |  |
+ | content_type | string |  no  |  |
+ | file_name | string |  no  |  |
+ | file_path | string |  no  |  |
+ | method | string? |  yes  |  |
+ | namespace | string |  no  |  |
+ | operation | string |  no  |  |
+ | size | number |  no  |  |
+ | tags | [string]? |  yes  |  |
+ | upload | [Upload](#Upload) |  no  |  |
+ 
 
 ---
 
 #### [Upload](#Upload)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || expiry | number |  yes  |  || url | string |  yes  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | expiry | number |  no  |  |
+ | url | string |  no  |  |
+ 
 
 ---
 
 #### [Urls](#Urls)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || expiry | number |  yes  |  || signed_url | string |  yes  |  || url | string |  yes  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | expiry | number |  no  |  |
+ | signed_url | string |  no  |  |
+ | url | string |  no  |  |
+ 
 
 ---
 

@@ -1,9 +1,10 @@
-const Paginator = require("../../common/Paginator");
 const PlatformAPIClient = require("../PlatformAPIClient");
 const { FDKClientValidationError } = require("../../common/FDKError");
+const Paginator = require("../../common/Paginator");
 const RewardsValidator = require("./RewardsPlatformApplicationValidator");
 const RewardsModel = require("./RewardsPlatformModel");
 const { Logger } = require("./../../common/Logger");
+const Joi = require("joi");
 
 class Rewards {
   constructor(config, applicationId) {
@@ -706,4 +707,5 @@ class Rewards {
     return response;
   }
 }
+
 module.exports = Rewards;

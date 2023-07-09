@@ -1,6 +1,6 @@
 const Joi = require("joi");
-const OrderModel = require("./OrderPlatformModel");
 
+const OrderModel = require("./OrderPlatformModel");
 class OrderValidator {
   static failedOrders() {
     return Joi.object({}).required();

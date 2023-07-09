@@ -5,6 +5,7 @@ const Paginator = require("../../common/Paginator");
 const InventoryValidator = require("./InventoryPublicValidator");
 const InventoryModel = require("./InventoryPublicModel");
 const { Logger } = require("./../../common/Logger");
+const Joi = require("joi");
 
 class Inventory {
   constructor(_conf) {
@@ -434,4 +435,5 @@ class Inventory {
     return response;
   }
 }
+
 module.exports = Inventory;

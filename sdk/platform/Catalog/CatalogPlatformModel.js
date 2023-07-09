@@ -2747,10 +2747,6 @@ class CatalogModel {
 
       "product",
 
-      "product-reviews",
-
-      "add-product-review",
-
       "product-request",
 
       "products",
@@ -2797,7 +2793,9 @@ class CatalogModel {
 
       "shipping-policy",
 
-      "return-policy"
+      "return-policy",
+
+      "order-status"
     );
   }
 }

@@ -1,6 +1,6 @@
 const Joi = require("joi");
-const PaymentModel = require("./PaymentPlatformModel");
 
+const PaymentModel = require("./PaymentPlatformModel");
 class PaymentValidator {
   static addRefundBankAccountUsingOTP() {
     return Joi.object({
